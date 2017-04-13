@@ -1,5 +1,5 @@
 MUPDF=/home/ivan-dev/dev/mupdf-test/platform/java
-MY=/home/ivan-dev/git/pdf4
+MY=/home/ivan-dev/git/LirbiReader
 
 rm -rf  $MUPDF/jni
 cp -rR $MY/Builder/jni $MUPDF/jni

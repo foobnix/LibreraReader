@@ -28,7 +28,7 @@ DOWNLOAD LIRBI SOURCE CODE from GITHUB
 1) git clone https://github.com/foobnix/LirbiReader.git
 
 2) run ./pdf4/update_all.sh
-Downlaod required packages (Google Play Service, RecicleView, CardView libraries ect)
+Downlaod required packages (Google Play Service, RecicleView, CardView, etc)
 
 3) Download Mupdf sources tar.gz from [http://mupdf.com/downloads](http://mupdf.com/downloads)
 
@@ -61,6 +61,8 @@ EbookDroid
 djvulibre
 hpx
 
+junrar
+Universal Image Loader
 libmobi
 commons-compress
 eventbus
