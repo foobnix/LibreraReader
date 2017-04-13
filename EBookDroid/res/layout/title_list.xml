@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:ads="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <include
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        layout="@layout/nav_top_panel" />
+
+    <android.widget.HorizontalScrollView
+        android:layout_width="match_parent"
+        android:layout_height="40dip"
+        android:layout_marginLeft="8dip"
+        android:layout_marginRight="8dip"
+        android:scrollbars="none"
+        android:visibility="gone" >
+
+        <LinearLayout
+            android:id="@+id/starList"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal" >
+        </LinearLayout>
+    </android.widget.HorizontalScrollView>
+
+    <com.foobnix.pdf.search.view.BookshelfView
+        android:id="@+id/list"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="2dip"
+        android:layout_marginTop="4dip"
+        android:background="@android:color/transparent"
+        android:cacheColorHint="@android:color/transparent"
+        android:fastScrollAlwaysVisible="false"
+        android:fastScrollEnabled="true"
+        android:gravity="center_horizontal"
+        android:horizontalSpacing="6dip"
+        android:paddingLeft="4dip"
+        android:paddingRight="4dip"
+        android:scrollbarStyle="outsideOverlay"
+        android:scrollbars="none"
+        android:scrollbarSize="10dip"
+        android:stretchMode="columnWidth"
+        android:verticalSpacing="6dip" />
+
+    <com.google.android.gms.ads.NativeExpressAdView
+        android:id="@+id/nativeBig"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dip"
+        ads:adSize="@string/ads_banner_size"
+        ads:adUnitId="ca-app-pub-8347903083053959/8961352478"
+        android:visibility="gone" >
+    </com.google.android.gms.ads.NativeExpressAdView>
+
+</LinearLayout>

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector
+	xmlns:android="http://schemas.android.com/apk/res/android">
+	
+	<!-- normal state -->
+	
+	<item android:state_pressed="true">
+		<shape>
+		   	<solid android:color="#99daf2" />
+		</shape>
+	</item>
+</selector>
+

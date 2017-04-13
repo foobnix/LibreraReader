@@ -1,0 +1,8 @@
+
+* PDF, DjVu: mărire - micșorare poate fi configurat pentru a apăsa de două ori 
+* TTS înregistrare vocală la fișierul (.wav) 
+* TTS spune „carte este de peste“ 
+* Adaugata parcurgere cu 25%, 50%, 75% din înălțimea ecranului 
+* algoritm îmbunătățit pentru pagina de decupare automată 
+* Tap zonă poate 0% 
+* dimensiune îmbunătățită lectură html

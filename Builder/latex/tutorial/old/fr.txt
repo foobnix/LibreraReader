@@ -1,0 +1,49 @@
+Read
+Lecteur de livres et documents PDF et DjVu pour une lecture plaisante et confortable
+
+Si vous cherchez un bon lecteur PDF, arrêtez-vous, vous l'avez trouvé. 
+Compact, clair, fonctionnel, personnalisable. Choisissez votre mode de lecture préféré. 
+Cette application trouve tous les livres présents sur l'appareil et montre des aperçus des documents. 
+
+
+Fonctionnalités :
+
+1) Mode lecture et mode contrôle (toucher l'écran pour passer de l'un à l'autre)
+2) Verrouillage du déplacement horizontal lors du défilement
+3) Recherche de texte
+4) Table des matières
+5) Mode nocturne
+6) Recherche de tous les livres (PDF, DjVu) sur l'appareil
+7) Changement de page par toucher de l'écran
+8) Mode plein écran
+9) Touches des liseuses supportées (Nook, Kindle, Sony,...)
+10) Navigation parmi les fichiers
+11) Livres récents
+12) Thème visuel lumineux ou sombre
+13) Choix de l'orientation de l'écran : portrait, paysage, automatique
+14) Utilisation de marque-pages
+15) Mémorisation de la dernière position de lecture et de la configuration d'affichage pour chaque document
+16) Découpage du blanc autour des documents
+17) Défilement automatique, à vitesse réglable
+18) Changement de page par geste en mode verrouillage
+19) Intel Atom x86 CPU supporté
+20) Aperçus des livres et pages
+21) Widget des livres récents
+22) Envoi et partage de documents et marque-pages
+23) Exportation et importation des paramètres
+24) Choix des répertoires à parcourir pour chercher les livres
+25) Utilisation en multi-fenêtres sur appareils compatibles (Samsung Galaxy Notes, S3, S4)
+
+Fonctionnalités Pro : http://tinyurl.com/pro-pdf-reader
+
+1) Pas de publicité, pas d'autorisation d'accès internet 
+2) Ouverture de fichiers PDF protégés par mot de passe
+3) Filtrage de la liste des documents
+4) Tri des documents par nom, chemin ou taille (ordre croissant ou décroissant)
+
+Le meilleur lecteur de PDF et DjVu pour Android
+
+Pour télécharger le paquet .apk directement : http://tinyurl.com/pdf-reader-dropbox
+
+Pour toute question, suggestion, amélioration, merci d'écrire à ivan.ivanenko@gmail.com
+

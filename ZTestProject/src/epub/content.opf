@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<package version="2.0" unique-identifier="uid" xmlns="http://www.idpf.org/2007/opf">
+ <metadata xmlns:opf="http://www.idpf.org/2007/opf" xmlns:dc="http://purl.org/dc/elements/1.1/">
+  <dc:title>%title%</dc:title>
+  <dc:description>%description%</dc:description>
+ </metadata>
+ <manifest>
+  <item id="book" href="book.html" media-type="application/xhtml+xml"/>
+  <item id="outline" href="outline.ncx" media-type="application/x-dtbncx+xml"/>
+ </manifest>
+ <spine toc="outline">
+  <itemref idref="book"/>
+ </spine>
+</package>

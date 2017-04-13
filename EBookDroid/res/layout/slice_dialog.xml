@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:focusableInTouchMode="false"
+        android:padding="5dip" >
+
+        <ImageView
+            android:id="@+id/imageMinus"
+            android:layout_width="@dimen/wh_button"
+            android:layout_height="@dimen/wh_button"
+            android:layout_weight="0"
+            android:adjustViewBounds="true"
+            android:padding="3dip"
+            android:src="@drawable/glyphicons_434_minus"
+            android:tint="@color/tint_gray" />
+
+        <EditText
+            android:id="@+id/editPercent"
+            android:layout_width="100dip"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:imeOptions="actionDone"
+            android:singleLine="true"
+            android:text="0.55"
+            android:focusable="false"
+            android:editable="false"
+            android:gravity="center"
+            android:visibility="visible" >
+        </EditText>
+
+        <ImageView
+            android:id="@+id/imagePlus"
+            android:layout_width="@dimen/wh_button"
+            android:layout_height="@dimen/wh_button"
+            android:layout_weight="0"
+            android:adjustViewBounds="true"
+            android:padding="3dip"
+            android:src="@drawable/glyphicons_433_plus"
+            android:tint="@color/tint_gray" />
+    </LinearLayout>
+
+    <SeekBar
+        android:id="@+id/seekBar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="5dip" >
+
+        <Button
+            android:id="@+id/buttonCancel"
+            style="?android:attr/buttonStyleSmall"
+            android:layout_width="140dip"
+            android:layout_height="wrap_content"
+            android:text="@string/cancel" />
+
+        <Button
+            android:layout_marginLeft="10dip"
+            android:id="@+id/buttonApply"
+            style="?android:attr/buttonStyleSmall"
+            android:layout_width="140dip"
+            android:layout_height="wrap_content"
+            android:text="@string/apply" />
+    </LinearLayout>
+
+</LinearLayout>

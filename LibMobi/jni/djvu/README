@@ -1,0 +1,286 @@
+
+1- WHAT IS DJVU.
+================
+
+DjVu (pronounced "déjà vu") a set of compression technologies, a file format,
+and a software platform for the delivery over the Web of digital documents,
+scanned documents, and high resolution images.
+
+DjVu documents download and display extremely quickly, and look exactly the
+same on all platforms. DjVu can be seen as superior alternative to PDF and
+Postscript for digital documents, to TIFF (and PDF) for scanned documents, to
+JPEG for photographs and pictures, and to GIF for large palettized
+images. DjVu is the only Web format that is practical for distributing
+high-resolution scanned documents in color. No other format comes close.
+
+Typical DjVu file sizes are as follows: 
+
+- Bitonal scanned documents: 
+        5 to 30KB per page at 300dpi, 
+        3 to 10 times smaller than PDF or TIFF.
+
+- Color scanned documents: 
+           30 to 100KB per page at 300dpi,
+           5 to 10 times smaller than JPEG.
+
+- Photos:
+        2 times smaller than JPEG, 
+        about the same as JPEG-2000. 
+
+- Palettized images: 
+        2 times smaller than GIF,
+        up to 10 times if there is text.
+
+DjVu is used by hundreds of commercial, governmental, and non-commercial web
+sites around the world to distribute scanned documents, digital documents, and
+high-resolution photos.
+
+Demos, and general information about DjVu can be found at 
+http://www.djvuzone.org, or at http://www.lizardtech.com. 
+
+DjVu was originally developed at AT&T Labs-Research. AT&T sold DjVu to
+LizardTech Inc. in March 2000.
+
+
+
+2- WHAT IS DJVULIBRE? 
+=====================
+
+In an effort to promote DjVu as a Web standard, LizardTech's management was
+enlightened enough to release the reference implementation of DjVu under the
+GNU GPL in October 2000. DjVuLibre (pronounced like the French "déjà vu
+libre"), is an enhanced version of that code maintained by the original
+inventors of DjVu. It is compatible with LizardTech's DjVu software v3.5.
+
+This package includes: 
+
+- An up-to-date version of the C++ DjVu Reference Library 
+- A full-fledged wavelet-based compressor for pictures. 
+- A simple compressor for bitonal (black and white) scanned pages. 
+- A compressor for palettized images (a la GIF). 
+- A full set of utilities to manipulate and assemble DjVu images and documents. 
+- A set of decoders to convert DjVu to a number of other formats. 
+
+The full-fledged DjVu file viewer and browser plugin DjView4
+is available as a separate package.
+
+
+
+3- BUILDING DJVULIBRE
+=====================
+
+3.1- PREREQUISITES
+------------------
+
+DjVuLibre-3.5 relies on various components available from the web.  
+Most recent Linux distribution already come with these.  
+You can also download and compile them if you wish.
+Be sure to read the system specific notes 
+at the end of this file.
+
+COMPILER --
+Development is done with the GCC g++ compiler, which is therefore
+recommended for all platforms.  The CLANG compiler has been tried and
+seems to work, but its output has not been seriously tested.
+
+LIBJPEG/LIBTIFF --
+A small number of DjVu files internally use JPEG encoding instead 
+of IW44 wavelet encoding.  These files are processed using either 
+version 6a or 6b of the IJG libjpeg library <http://www.ijg.org>.  
+Some utility programs are able to read TIFF files. These programs
+rely on the LIBTIFF library <http://libtiff.org>.
+You can also compile DjVuLibre with neither JPEG nor TIFF support.  
+You might never notice the difference.
+
+THREADS --
+The DjVu viewer makes heavy use of multiple threads of execution.  
+Modern  Unix operating systems come with the standardized Posix threads.  
+DjVuLibre-3.5 fully supports detecting and using Posix threads.
+
+
+3.2 - CONFIGURE
+---------------
+
+Chances are that everything will work by simply running 
+commands "./configure", "make" and "make install". 
+
+Various options and environment variables affect the execution of the
+configuration script.  A complete list can be obtained by typing 
+"configure --help".  Also see the INSTALL file for further details.
+Here are the most important ones.
+
+* Option "--prefix=PREFIXDIR"
+  This option specifies where the DjVuLibre software will be installed.
+  The default prefix is /usr/local.  
+
+* Option "--enable-desktopfiles[=(yes|no)]"
+  Installs icon and mime type files in the customary xdg directories.
+  The default is "yes".
+
+* Option "--with-jpeg=JPEGDIR"
+  This option specifies a directory where the JPEG library has been
+  compiled. This directory contains both the include files and the 
+  library.  Without this option, the configuration script will search 
+  the JPEG library in standard places.
+  When everything else fails, you can simply define the environment
+  variables JPEG_CFLAGS and JPEG_LIBS.
+
+* Option "--with-tiff=TIFFDIR"
+  This option specifies a directory where the LIBTIFF library has been
+  compiled. This directory contains both the include files and the 
+  library.  Without this option, the configuration script will search 
+  the LIBTIFF library in standard places.
+  When everything else fails, you can simply define the environment
+  variables TIFF_CFLAGS and TIFF_LIBS.
+
+* Option "--enable-threads=(auto|win32|posix|no)"
+  This option specifies which threading model should be used.
+  You can help the search process by defining environment
+  variables PTHREAD_CFLAGS and PTHREAD_LIBS.
+
+Always check the output of the configuration script for warnings and errors.
+In particular, the configuration script might disable the compilation of
+djview if it cannot locate the required libraries and utilities.  The warning
+messages are the only way to know.
+
+3.3 - MAKE
+----------
+
+You can then perform the compilation by typing 
+
+        $ make
+
+The compilation can last a few minutes.  Again check the output for warnings
+and errors.  Finally a brief message lets you know that the compilation was
+successful.  You can then proceed with the installation.
+
+3.4 - INSTALL
+------------
+
+Typing:
+
+        $ make install
+
+or if necessary:
+
+        $ sudo make install
+
+should:
+
+- install the executable programs into "${prefix}/bin/".
+- possibly install the shared library into "${prefix}/lib/".
+- install the man pages under "${prefix}/man or ${prefix}/share/man/".
+- install various ancillary files under "${prefix}/share/djvu/".
+- install "${prefix}/share/pkgconfig.pc".
+- optionally install the icon and mime type information files
+
+Where ${prefix} refers to the directory specified by the prefix option
+of the configuration script, which defaults to "/usr/local", and the
+paths above can be fine-tuned using appropriate arguments to
+./configure and make.
+
+
+4 - BUILDING FOR MAC OS X
+=========================
+
+(note: these instructions are slightly outdated.)
+
+The Mac OS X version of djvulibre can be built in one of two ways:
+
+- the Unix way
+- the Xcode way
+
+These instructions are to help setup and build djvulibre for a
+multi-architecture binary (ppc, i386).  Your milage with the following
+configure options (note: libjpeg.a and libtiff.a are installed
+universal on the machine this was tested with.)
+
+We recommend that you first install macports with the 
+libraries zlib, libpng, jpeg and tiff with option +universal.
+The commands to install these libraries are
+  $ sudo port install zlib +universal
+  $ sudo port install libpng +universal
+  $ sudo port install jpeg +universal
+  $ sudo port install tiff +universal
+
+Then you can run configure
+
+./configure \
+   --enable-static=yes \
+   --disable-desktopfiles \
+   --with-extra-includes=/usr/include \
+   --with-extra-libraries=/usr/lib \
+   CFLAGS="-arch ppc -arch i386" \
+   CXXFLAGS="-arch ppc -arch i386" \
+   LDFLAGS="-arch ppc -arch i386"
+
+The --with-extra-include and --with-extra-libraries are here
+to favor system libraries (in /usr) over those that come with macports.
+Then you can compile with 
+
+$ make
+
+Running "make install" will install djvulibre in directory /usr/local.
+Note that the produced libraries will depend on the macports jpeg and tiff
+libraries.  You can change that using the command "install_name_tool"
+and other macosx tricks...
+
+Alternatively you can just open the macosx/DjVuLibre/DjVuLibre.xcodeproj 
+and build everything using Xcode. This can be painful if you do not have
+the same version of Xcode as the one we used to generate that file.
+In Leon's opinion, this is hell.  Jeff agrees, those dyld dependancies 
+trap us forever in the eighth circle.
+
+Note that the macosx directory contains a few useful tools
+that are not compiled using the main makefile:
+
+The djvu.mdimporter program is a spotlight importer for djvu metadata.
+The djvu.qlgenerator program generates quicklook data (leopard only).
+
+
+5 - BUILDING FOR WINDOWS
+========================
+
+5.1- Using Microsoft Visual C++ 2012
+------------------------------------
+
+   See the directory win32.
+   Populate the zlib, jpeg and tiff directories with
+   the open source code suggested in the README files.
+   Check win32/djvulibre/dirs.props to see
+   how to name the directories.
+   Then open win32/djvulibre/djvulibre.sln and compile.
+
+   Next step would then be to follow the instructions
+   in the djview package to create a djview project and
+   add it to this solution. Finally you can use the script
+   djvulibre-install.sh and djvulibre.nsi to prepare
+   the djvulibre+djview installer.
+
+
+5.2- Using Mingw
+----------------
+
+   You must first install the mingw compiler and the msys environment.
+   See www.mingw.org for more information.
+   From the msys shell, run the usual commands 
+     $ configure
+     $ make
+   Then collect the djvulibre dll from directory libdjvu/.libs
+   and the executables from directory tools/.libs 
+   Please refer to the file INSTALL for information
+   about the arguments of the script 'configure'.
+
+
+5.3- Using Cygwin 
+-----------------
+
+   Simply run the usual commands 
+     $ configure
+     $ make
+     $ make install
+   Please refer to the file INSTALL for information
+   about the arguments of the script 'configure'.
+ 
+
+

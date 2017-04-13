@@ -1,0 +1,239 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="2dip" >
+
+    <LinearLayout
+        android:id="@+id/fontNameSelectionLayout"
+        android:layout_width="wrap_content"
+        android:layout_height="40dip"
+        android:gravity="center_vertical"
+        android:orientation="horizontal" >
+
+        <TextView
+            android:id="@+id/textFontNormal"
+            android:layout_width="90dip"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dip"
+            android:text="@string/regular_font"
+             />
+
+        <Spinner
+            android:id="@+id/normalFontSpinner"
+            android:layout_width="match_parent"
+            android:layout_height="40dip"
+            android:layout_weight="1"
+            android:gravity="center_vertical"
+            android:minWidth="500dip" />
+
+        <ImageView
+            android:id="@+id/normalFontUp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_weight="0"
+            android:background="@drawable/bg_clickable"
+            android:padding="10dip"
+            android:src="@drawable/glyphicons_214_arrow_up"
+            android:tint="@color/tint_gray" />
+
+        <ImageView
+            android:id="@+id/normalFontDown"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_weight="0"
+            android:background="@drawable/bg_clickable"
+            android:padding="10dip"
+            android:src="@drawable/glyphicons_21_arrow_down"
+            android:tint="@color/tint_gray" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="40dip"
+        android:gravity="center_vertical"
+        android:orientation="horizontal" >
+
+        <TextView
+            android:id="@+id/textFontBold"
+            android:layout_width="90dip"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dip"
+            android:text="@string/bold_font"
+            
+            android:textStyle="bold" />
+
+        <Spinner
+            android:id="@+id/boldFontSpinner"
+            android:layout_width="match_parent"
+            android:layout_height="40dip"
+            android:layout_weight="1"
+            android:gravity="center_vertical"
+            android:minWidth="500dip" />
+
+        <ImageView
+            android:id="@+id/boldFontUp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_weight="0"
+            android:background="@drawable/bg_clickable"
+            android:padding="10dip"
+            android:src="@drawable/glyphicons_214_arrow_up"
+            android:tint="@color/tint_gray" />
+
+        <ImageView
+            android:id="@+id/boldFontDown"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_weight="0"
+            android:background="@drawable/bg_clickable"
+            android:padding="10dip"
+            android:src="@drawable/glyphicons_21_arrow_down"
+            android:tint="@color/tint_gray" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="40dip"
+        android:gravity="center_vertical"
+        android:orientation="horizontal" >
+
+        <TextView
+            android:id="@+id/textFontItalic"
+            android:layout_width="90dip"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dip"
+            android:text="@string/italic_font"
+            
+            android:textStyle="italic" />
+
+        <Spinner
+            android:id="@+id/italicFontSpinner"
+            android:layout_width="match_parent"
+            android:layout_height="40dip"
+            android:layout_weight="1"
+            android:gravity="center_vertical"
+            android:minWidth="500dip" />
+
+        <ImageView
+            android:id="@+id/italicFontUp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_weight="0"
+            android:background="@drawable/bg_clickable"
+            android:padding="10dip"
+            android:src="@drawable/glyphicons_214_arrow_up"
+            android:tint="@color/tint_gray" />
+
+        <ImageView
+            android:id="@+id/italicFontDown"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_weight="0"
+            android:background="@drawable/bg_clickable"
+            android:padding="10dip"
+            android:src="@drawable/glyphicons_21_arrow_down"
+            android:tint="@color/tint_gray" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="40dip"
+        android:gravity="center_vertical"
+        android:orientation="horizontal" >
+
+        <TextView
+            android:id="@+id/textFontBoldItalic"
+            android:layout_width="90dip"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dip"
+            android:text="@string/bold_italic_font"
+            
+            android:textStyle="bold|italic" />
+
+        <Spinner
+            android:id="@+id/boldItalicFontSpinner"
+            android:layout_width="match_parent"
+            android:layout_height="40dip"
+            android:layout_weight="1"
+            android:gravity="center_vertical"
+            android:minWidth="500dip" />
+
+        <ImageView
+            android:id="@+id/boldItalicFontUp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_weight="0"
+            android:background="@drawable/bg_clickable"
+            android:padding="10dip"
+            android:src="@drawable/glyphicons_214_arrow_up"
+            android:tint="@color/tint_gray" />
+
+        <ImageView
+            android:id="@+id/boldItalicFontDown"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_weight="0"
+            android:background="@drawable/bg_clickable"
+            android:padding="10dip"
+            android:src="@drawable/glyphicons_21_arrow_down"
+            android:tint="@color/tint_gray" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="40dip"
+        android:gravity="center_vertical"
+        android:orientation="horizontal" >
+
+        <TextView
+            android:id="@+id/textFontHeaders"
+            android:layout_width="90dip"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dip"
+            android:text="@string/font_for_headers"
+            
+            android:textSize="16sp"
+            android:textStyle="bold" />
+
+        <Spinner
+            android:id="@+id/headersFontSpinner"
+            android:layout_width="match_parent"
+            android:layout_height="40dip"
+            android:layout_weight="1"
+            android:gravity="center_vertical"
+            android:minWidth="500dip" />
+
+        <ImageView
+            android:id="@+id/headersFontUp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_weight="0"
+            android:background="@drawable/bg_clickable"
+            android:padding="10dip"
+            android:src="@drawable/glyphicons_214_arrow_up"
+            android:tint="@color/tint_gray" />
+
+        <ImageView
+            android:id="@+id/headersFontDown"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_weight="0"
+            android:background="@drawable/bg_clickable"
+            android:padding="10dip"
+            android:src="@drawable/glyphicons_21_arrow_down"
+            android:tint="@color/tint_gray" />
+    </LinearLayout>
+
+</LinearLayout>

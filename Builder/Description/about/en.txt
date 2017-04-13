@@ -1,0 +1,48 @@
+For daily reading and viewing books in PDF, MOBI, EPUB, DJVU, FB2 ... 
+
+Lirbi application is for reading, viewing books in many formats (PDF, EPUB, MOBI, DjVu, FB2, TXT, RTF, AZW, AZW3, HTML, CBZ)	 
+Lirbi is perfect for everyday usage. It's cool book reader, so enjoy it and have a nice reading! 
+
+
+✓ Finds all files on your device and displays them after launching. 
+✓ One click to review, file, configure suitable scale for reading and lock it. 
+✓ In the lock mode the book scrolls down or up only, and not to the left or right. 
+✓ Turn on automatic scrolling of the document and configure scrolling speed. 
+✓ Translate words or sentences in your favorite offline dictionary or use free online translators of words and expressions. 
+✓ Easy to view, add bookmarks, see all page-thumbnails, navigate via book content and much more. 
+✓ voice reading texts  (TTS or Text to speech). 
+
+Three types of reading mode: 
+
+• In Advanced mode all pages are scrolling up and down in consecutive order  
+• In Lightweight mode all pages are displayed horizontally like in a real book 
+• Musician mode is for playing music sheets or music notes in PDF, DjVu  
+
+
+• In the opened book one click  to hide/show UI controls 
+• Lock it to prevent page movement from left to right 
+• Search text in a book 
+• Table of content 
+• Night Mode 
+• Support Kindle books MOBI, AZW, AZW3, PRC with styles
+• Search all (PDF, EPUB, MOBI, DjVu, FB2, TXT, RTF, AZW, AZW3, HTML, CBZ) books on your device 
+• Full screen book view hides all UI controls 
+• Configure flipping through the pages of book on devices like Nook, Kindle, Sony 
+• Navigation in file system 
+• Display all recent Books chronologically 
+• Switch to white or black theme 
+• Change screen orientation: Portrait, Landscape, Automatic 
+• Write notes to the page, add bookmarks 
+• Export and send book page as Image (send it via Gmail, Viber, Skype) 
+• Cut white document borders 
+• Automatic scroll, configure speed, start-stop on double tap 
+• Customize background and font colors 
+• Thumbnails for book and for pages 
+• Widget for recent books 
+• Export bookmarks 
+• Samsung multi-window mode support  
+• Text selection 
+• Plain text (.txt) view can be formatted or not 
+• voice reading texts  (TTS or Text to speech) 
+• Manipulate with selected text or expression: copy, search on Google, translate online, translate in offline application 
+

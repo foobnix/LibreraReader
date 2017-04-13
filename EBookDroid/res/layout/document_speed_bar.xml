@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:gravity="center_vertical"
+    android:layout_height="@dimen/speed_size" >
+
+    <com.foobnix.pdf.search.view.SpeedBgView
+        android:id="@+id/speedBgView1"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginLeft="14dip"
+        android:layout_marginRight="14dip" />
+
+    <SeekBar
+        android:id="@+id/seekBarSpeed"
+        android:layout_width="match_parent"
+        android:paddingTop="@dimen/speed_size_padding"
+        android:paddingBottom="@dimen/speed_size_padding"
+        android:layout_height="match_parent"
+        android:layout_gravity="center_vertical"
+        android:gravity="center_vertical"
+        android:layout_centerVertical="true"
+        android:progress="40" />
+
+</RelativeLayout>

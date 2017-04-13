@@ -1,0 +1,57 @@
+For reading books, files, documents, presentations, music sheets, notes
+You can read PDF, EPUB, MOBI, DjVu, FB2, FB2.ZIP, TXT, RTF, AZW, AZW3, HTML, CBZ book formats for free in the single small app
+
+Now 12 millions downloads and thousands of happy users
+
+✓ It finds all books on your device and displays covers
+✓ Colors for Day mode and night mode can be configured separately
+✓ Translate words, sentences in offline dictionaries or in online translators from the app like Oxford, Macmillan, Longman, Cambridge etc.
+✓ In the lock mode the book scrolls down or up only, and not to the left or right
+✓ Automatic scrolling of the document and configuring scrolling speed
+✓ Listen the book by voice (TTS Engine or text to speech)
+✓ Easy to add bookmarks, displaying of page thumbnails, table of content
+✓ Automatic scroll of book pages or music sheets or music notes with reconfigured speed (very good for people who playing on the music instrument)
+
+Three types of reading: 
+
+• Advanced mode: all pages are scrolling vertically  
+• Easy mode: all pages scrolling horizontally
+• Musician mode: is for auto scrolling music sheets, music notes with defined speed for each file separately
+
+Functionality:
+
+• One single click  to hide the ads and UI
+• Lock is to prevent page movement from left to right 
+• Search text in a book 
+• Table of contents with hierarchical structure
+• Support Kindle books MOBI, AZW, AZW3, PRC with styles and table of content
+• Support FB2 and FB2.ZIP
+• Find all books on your device and displaying cover of books
+• Can search all unsupported formats like (Zip, Rar, 7z, Gz, iso) and Doc, Docx, ppt, pptx, CHM, CBR, LIT, ODT and open with other apps.
+• Configure flipping through the hardware keys on devices like Nook, Kindle, Sony 
+• Navigation in the file system, displaying folders and book covers
+• Display all recent books  you read chronologically with percent of reading
+• Switch to white or black theme, configure custom colors of background and for text
+• Change screen orientation: Vertical, Horizontal, Automatic 
+• Write notes to the page, add bookmarks 
+• Export and send page as Image (send it via Gmail, Viber, Skype) 
+• Cut white document borders 
+• Automatic scroll, configure speed, start-stop on double tap 
+• Customize background and font colors for day and for night separately 
+• Book cover and pages thumbnails previewer
+• Widget for recent books you reading
+• Export bookmarks to email, to .txt file
+• Samsung multi-window mode support  
+• Text selection
+• Plain text (.txt files) view can be formatted or not
+• Voice reading book page by page  (TTS or Text to speech) 
+• Manipulate with selected text or expression: copy, search on Google, translate online, translate in offline application
+• Simple edit in PDF (bold, underline, strikethrough) and drawing 
+
+Support online dictionaries and translators from the application:
+Google Translate, Lingvo, Dictionary.com, Oxford, Longman, Cambridge, Macmillan, Collins, Merriam-Webster, 1tudien, Vdict
+
+Lirbi PRO Book reader (http://pro.lirbi.com) is the PRO version of Lirbi Book Reader without ads and smaller size
+
+http://en.lirbi.com - User manual on English
+http://ru.lirbi.com - User manual on Russian

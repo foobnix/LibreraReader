@@ -1,0 +1,43 @@
+Pre príjemné čítanie a prezeranie kníh vo formáte PDF, EPUB, Djvu, FB2 
+
+Lirbi Aplikácia je určená pre čítanie, prezeranie kníh vo formáte PDF, EPUB, DjVu, FB2 
+Lirbi je ideálny pre každodenné použitie. To je v pohode ebook reader, tak to baví a majú príjemné čítanie! 
+
+
+✓ Program vyhľadá všetky súbory na vašom zariadení a zobrazí ich po spustení. 
+✓ Jedným kliknutím skontrolovať, súbor, konfigurovať vhodnej mierke pre čítanie a zaistite ju. 
+✓ V režime zámku knižnej zvitky nadol alebo nahor jediný, a nie doľava alebo doprava. 
+✓ Zapnutie automatickej rolovanie dokumentu a konfigurovať posuvu. 
+✓ Preložiť slová alebo vety vo svojej obľúbenej off-line slovníka alebo pomocou bezplatné on-line prekladateľa slov a výrazov. 
+✓ ľahko prezerať, pridávať záložky, zobraziť všetky page-miniatúry, navigovať pomocou obsahu knihy a mnoho ďalšieho. 
+
+Tri typy režime čítania: 
+
+• V pokročilom režime sú všetky stránky pohyb hore a dole v poradí, 
+• Vo zjednodušenom režime sa všetky stránky zobrazí vodorovne ako v skutočnej knihy 
+• režim hudobník pre prehrávanie hudobných listy alebo hudbu poznámky v PDF, DjVu 
+
+
+• v otvorenom kniha jedným kliknutím skryť / ovládacie prvky zobraziť UI 
+• Zamknite to, aby sa zabránilo stránku pohyb zľava doprava 
+• Hľadaný text v knihe 
+• obsah 
+• Nočný režim 
+• Hľadať všade PDF, EPUB, DjVu, FB2 knihy na vašom prístroji 
+• Full screen kniha pohľad skryje všetky ovládacie prvky používateľského rozhrania 
+• Konfigurácia listoval stránkami knihy na zariadeniach, ako sú Nook, Kindle, Sony 
+• Navigácia v súborovom systéme 
+• displej všetky nedávne knihy chronologicky 
+• Prepnutie do bielej alebo čiernej tému 
+• Zmena orientácie obrazovky: Portrét, Krajina, Automatická 
+• písať poznámky na stránke, pridávať záložky 
+• Export a odoslanie PDF, DjVu strana ako obrázok (poslať cez Gmail, Vıber, Skype) 
+• Cut biele okraje dokumentu 
+• Automatické rolovanie, nastavenie rýchlosti, štart-stop na dvojité poklepanie 
+• Prispôsobiť farby pozadia a písma 
+• Miniatúry pre knihy a stránok 
+• Widget za posledných knihách 
+• Exportovať záložky 
+• podpora režimu zobrazenia viacerých okien Samsung 
+• Výber textu 
+• Manipulovať s vybraným textom alebo výrazu: kopírovanie, vyhľadávanie na Googli, prekladať on-line, prekladať v offline aplikácií 

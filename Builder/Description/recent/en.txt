@@ -1,0 +1,5 @@
+It is a small application for reading book in 12 formats 
+Configuration on double tap: auto scroll, auto alignment, nothing 
+Tutorials: ru.lirbi.com - on Russian, en.lirbi.com - on English 
+Interface Improvements 
+Fixing of bugs 

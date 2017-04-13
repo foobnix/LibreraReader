@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="org.libreoffice">
+
+    <!-- App requires OpenGL ES 2.0 -->
+    <uses-feature android:glEsVersion="0x00020000" android:required="true" />
+    <uses-sdk android:minSdkVersion="14" android:targetSdkVersion="21"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.INTERNET" />
+
+    <application
+        android:allowBackup="true"
+        android:icon="@drawable/main"
+        android:label="@string/app_name"
+        android:debuggable="true"
+        android:hardwareAccelerated="true"
+        android:largeHeap="false">
+
+        <service
+            android:name="com.foobnix.aidle.LibreService"
+            android:enabled="true"
+            android:process=":remote" >
+            <intent-filter>
+                <action android:name="myLirbeService" />
+            </intent-filter>
+        </service>
+
+        <!-- Viewer Activity -->
+        <activity
+            android:name=".LibreOfficeMainActivity"
+            android:label="@string/app_name"
+            android:configChanges="orientation|keyboard|keyboardHidden|screenLayout|uiMode|screenSize|smallestScreenSize"
+            android:theme="@style/LibreOfficeTheme">
+            <!-- android:windowSoftInputMode="adjustResize" -->
+
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+                <action android:name="android.intent.action.EDIT" />
+                <action android:name="android.intent.action.PICK" />
+                <category android:name="android.intent.category.DEFAULT" />
+
+                <data android:scheme="file"/>
+                <data android:scheme="content"/>
+
+                <!-- Please keep this in sync with FileUtilities.java. -->
+
+                <!-- ODF -->
+                <data android:mimeType="application/vnd.oasis.opendocument.text" />
+                <data android:mimeType="application/vnd.oasis.opendocument.graphics" />
+                <data android:mimeType="application/vnd.oasis.opendocument.presentation" />
+                <data android:mimeType="application/vnd.oasis.opendocument.spreadsheet"/>
+                <data android:mimeType="application/vnd.oasis.opendocument.text-flat-xml" />
+                <data android:mimeType="application/vnd.oasis.opendocument.graphics-flat-xml" />
+                <data android:mimeType="application/vnd.oasis.opendocument.presentation-flat-xml" />
+                <!-- TODO: opening FODS documents crashes currently
+                <data android:mimeType="application/vnd.oasis.opendocument.spreadsheet-flat-xml" />
+                -->
+
+                <!-- ODF templates -->
+                <data android:mimeType="application/vnd.oasis.opendocument.text-template"/>
+                <data android:mimeType="application/vnd.oasis.opendocument.spreadsheet-template"/>
+                <data android:mimeType="application/vnd.oasis.opendocument.graphics-template"/>
+                <!-- Seems at least Android 5.0 does not recognize this as the mime type of .otp files. -->
+                <data android:mimeType="application/vnd.oasis.opendocument.presentation-template"/>
+
+                <!-- MS -->
+                <data android:mimeType="application/rtf" />
+                <data android:mimeType="text/rtf" />
+                <data android:mimeType="application/msword" />
+                <data android:mimeType="application/vnd.ms-powerpoint" />
+                <data android:mimeType="application/vnd.ms-excel"/>
+                <data android:mimeType="application/vnd.visio" />
+                <data android:mimeType="application/vnd.visio.xml" />
+                <data android:mimeType="application/x-mspublisher" />
+
+                <!-- OOXML -->
+                <data android:mimeType="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" />
+                <data android:mimeType="application/vnd.openxmlformats-officedocument.presentationml.presentation" />
+                <!-- Currently crashes. <data android:mimeType="application/vnd.openxmlformats-officedocument.presentationml.slideshow"/> -->
+                <data android:mimeType="application/vnd.openxmlformats-officedocument.wordprocessingml.document" />
+
+                <!-- OOXML templates -->
+                <data android:mimeType="application/vnd.openxmlformats-officedocument.wordprocessingml.template"/>
+                <data android:mimeType="application/vnd.openxmlformats-officedocument.spreadsheetml.template"/>
+                <data android:mimeType="application/vnd.openxmlformats-officedocument.presentationml.template"/>
+
+                <!-- OTHER -->
+                <data android:mimeType="text/csv"/>
+                <data android:mimeType="text/comma-separated-values"/>
+                <data android:mimeType="application/vnd.ms-works" />
+                <data android:mimeType="application/vnd.apple.keynote" />
+                <data android:mimeType="application/x-abiword" />
+                <data android:mimeType="application/x-pagemaker" />
+                <data android:mimeType="image/x-emf" />
+                <data android:mimeType="image/x-svm" />
+                <data android:mimeType="image/x-wmf" />
+                <data android:mimeType="image/svg+xml" />
+
+            </intent-filter>
+        </activity>
+
+        <activity
+            android:name=".SettingsActivity"
+            android:label="@string/app_name_settings">
+        </activity>
+
+        <!-- Document Browser Activity -->
+        <activity android:name="org.libreoffice.ui.LibreOfficeUIActivity"
+                  android:label="@string/app_name"
+                  android:theme="@style/BrowserTheme">
+
+        </activity>
+
+        <activity android:name="com.foobnix.aidle.DemoActivity"
+            android:label="@string/app_name"
+            android:theme="@style/BrowserTheme">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <!-- Document Provider Settings Activity -->
+        <activity android:name=".storage.DocumentProviderSettingsActivity"
+                  android:label="@string/storage_provider_settings">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+            </intent-filter>
+        </activity>
+
+        <activity android:name=".storage.external.BrowserSelectorActivity"
+                  android:theme="@style/LibreOfficeTheme">
+        </activity>
+
+        <activity android:name=".storage.external.DirectoryBrowserActivity"
+            android:label="@string/directory_browser_label"
+            android:theme="@style/LibreOfficeTheme"
+            android:windowSoftInputMode="stateHidden">
+        </activity>
+
+    </application>
+
+</manifest>
+<!-- vim: shiftwidth=4 softtabstop=4 expandtab:
+-->

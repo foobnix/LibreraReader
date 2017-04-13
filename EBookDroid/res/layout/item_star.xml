@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:background="@drawable/bg_clickable"
+    android:padding="2dip" >
+
+    <ImageView
+        android:id="@+id/browserItemIcon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:scaleType="centerCrop" />
+
+    <ImageView
+        android:id="@+id/starIcon"
+          android:background="?android:attr/selectableItemBackground"    
+        android:layout_width="20dip"
+        android:layout_height="20dip"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:padding="1dip"
+        android:src="@drawable/star_1" />
+
+</RelativeLayout>

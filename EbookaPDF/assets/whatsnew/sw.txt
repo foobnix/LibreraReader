@@ -1,0 +1,8 @@
+
+* PDF, DjVu: zoom katika - zoom nje inaweza configured kwa bomba mbili 
+* TTS rekodi ya sauti kwenye file (wav) 
+* TTS anasemakitabu ni zaidi ya 
+* Aliongeza kitabu na 25%, 50%, 75% ya screen urefu 
+* Kuboresha algorithm kwa moja kwa moja ukurasa mseto 
+* Tap zone anaweza 0% ukubwa 
+* Kuboresha kusoma html

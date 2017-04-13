@@ -1,0 +1,8 @@
+
+* PDF, DjVu: phóng to - thu nhỏ có thể được cấu hình cho chạm đúp 
+* TTS kỷ lục giọng nói đến tập tin (.wav) 
+* TTS nóiCuốn sách kết thúc 
+* Thêm cuộn bằng 25%, 50%, 75% chiều cao màn hình 
+* Cải thiện thuật toán cho cắt xén trang tự động 
+* Tap khu lon 0% kích thước 
+* Cải thiện đọc html

@@ -1,0 +1,8 @@
+
+* PDF, DJVU: zoom in - zoom out puede ser configurado para doble toque 
+* TTS grabar voz en el archivo (.wav) 
+* TTS dicelibro ha terminado 
+* Añadido desplazamiento de 25%, 50%, 75% de la altura de la pantalla 
+* Algoritmo mejorado para el recorte automático de la página 
+* La zona del golpecito puede 0% tamaño 
+* El html mejorado de la lectura

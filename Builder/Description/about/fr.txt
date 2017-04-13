@@ -1,0 +1,43 @@
+Pour la lecture et l’affichage des livres agréables en PDF, Epub, Djvu, FB2 
+
+l’application Lirbi est pour la lecture, la visualisation de livres au format PDF, Epub, DjVu, FB2 
+Lirbi est parfait pour une utilisation quotidienne. Il est lecteur ebook cool, alors profitez-en et bonne lecture! 
+
+
+✓ Programme trouve tous les fichiers sur votre appareil et les affiche après le lancement. 
+✓ Un clic pour examiner, fichier, configurer échelle appropriée pour la lecture et le verrouiller. 
+✓ Dans le mode de verrouillage de défilement du livre vers le bas ou vers le haut, et non vers la gauche ou la droite. 
+✓ Allumez le défilement automatique du document et configurer la vitesse de défilement. 
+✓ Traduire des mots ou des phrases dans votre dictionnaire hors ligne préférée ou utiliser des traducteurs en ligne gratuits de mots et expressions. 
+✓ Facile à afficher, ajouter des signets, voir toutes les pages-miniatures, naviguer via le contenu des livres et bien plus encore. 
+
+Trois types de mode de lecture: 
+
+• En mode Avancé toutes les pages défilent de haut en bas dans l’ordre consécutif 
+• En mode Lightweight toutes les pages sont affichées horizontalement comme dans un vrai livre 
+• Mode Musicien est pour jouer les partitions ou de la musique notes en PDF, DjVu 
+
+
+• dans le ouvert livre en un seul clic pour cacher / commandes show de l’interface utilisateur 
+• verrouiller pour empêcher le mouvement de la page de gauche à droite 
+• texte de recherche dans un livre 
+• Table des matières 
+• mode Nuit 
+• Rechercher tous les PDF, Epub, DjVu, livres FB2 sur votre appareil 
+• pleine vue livre écran cache toutes les commandes de l’interface utilisateur 
+• Configurer feuilletant les pages du livre sur les appareils tels que Nook, Kindle, Sony 
+• Navigation dans le système de fichiers 
+• Affichage tous les livres récents chronologiquement 
+• Passer au thème blanc ou noir 
+• Modifier l’orientation de l’écran: Portrait, Paysage, automatique 
+• Rédiger des notes à la page, ajouter des signets 
+• Exporter et envoyer PDF, page DJVU que l’image (l’envoyer via Gmail, Viber, Skype) 
+• Couper documents blancs frontières 
+• défilement automatique, configurer la vitesse, start-stop sur double tap 
+• Personnaliser fond et de police couleurs 
+• Vignettes pour le livre et pour les pages 
+• Widget pour les livres récents 
+• Exporter les favoris 
+• Samsung en charge du mode multi-fenêtre 
+• sélection de texte 
+• Manipuler avec le texte sélectionné ou expression: copie, recherche sur Google, traduire en ligne, traduire en mode hors connexion demande 

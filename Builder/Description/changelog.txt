@@ -1,0 +1,215 @@
+===5.0.x==
+PDF Reader become Lirbi Reader
+The biggest update during last years
+Support new formats Epub and FB2
+Updated Easy mode of reading
+Updated recent tab, showing progress of reading
+
+
+== 4.6.1 ==
+Change brightness from the document
+Change screen orientation from the document
+Small UI improvements
+Volume keys for page flipping can be configured in reverse mode
+
+== 4.5.x ==
+Offilne dictionaries support (Troy Dalton)
+Fixed urls copy from PDF Files (Troy Dalton)
+Fixed text colors in dialogs (Troy Dalton)
+Added background for numbers in search dialog, page navigation dialog for clicks (Troy Dalton)
+Fixed search dialog number width (Troy Dalton)
+Add Clear Recent and Clear Bookmarks in pref tab (Ondřej Maňák)
+
+== 4.4.x ==
+Choose custom style color and icons color
+Support Android 6.0 (Marshmallow)
+Add, remove line annotations
+Fixes and improvements
+
+== 4.3.x ==
+Share page as Image (send via Gmail, Viber, Skype, etc.)
+Scroll through a document with bluetooth keyboard keys
+Fixed page count in some cases
+Customize background and font colors (In testing)
+
+
+== 4.2.x ==
+Added Vietnamese Online Dictionaries (Phuong Vu)
+Remember Dictionary
+
+== 4.1.x ==
+Updated design of dialogs (possibility move and resize)
+Improved search (Razvan Eduard)
+Improved musician mode (Domenico Severin)
+Improved widgets (Mahdi Kefayati)
+Added underline, highlighting text (In testing)
+Drawing annotation lines and deleting annotations (In testing)
+
+== 4.0.x ==
+Text Selection
+Copy, Share, Translate, find in dictionary selected text
+Add selected text to bookmark
+Resizable widget 
+
+== 3.12.x == 
+Special mode for musicians. Scroll note, scores and musical notation. 
+(Realized in collaboration with Domenico Severin famous French/Italian organist http://domenicoseverin.perso.sfr.fr/) 
+* Start / Stop scroll by pressing in the center of the screen 
+* Large and comfortable speed change with gradation 
+* Zone on the top for the next page, previous page
+* Hide-show elements on double-click 
+VIDEO: https://www.youtube.com/watch?v=_O7dk9UzrXs
+
+Displaying battery charge (Domenico Severin) 
+Fixed crash on files with problems (Maxim Sorokin)
+
+==3.11.x==
+Increased productivity 
+
+Magazines mode 
+* Select the orientation of the screen: Automatic Horizontal, Vertical 
+* Full screen mode 
+* Reverse the volume keys for scrolling a forward-backward 
+* Trim the white edges 
+* Night mode (invert colors) 
+* Cutting pages into two parts 
+* Rotate the page at an angle of 90, 180, 270 degrees
+
+==3.10.x==
+Magazines/Journals 
+Always open as Magazine 
+Show-hide the Magazines tab 
+Show-hide the Bookmarks tab
+Fixed numbering pages in search (Francesco Donni)
+
+==3.9.24==
+Fixed crash with broken files (Michael Matrix)
+Fix reverse buttons (Mahdi Kefayati)
+New widgets (Mahdi Kefayati)
+Hide Navigation Bar in full screen (Android 4.0+)
+No sounds on volume buttons press
+
+==3.9.20==
+Google Cloud Print
+Hide Navigation Bar in Andorid 4.4 KitKat (Immersive Mode)
+Fixed rotation bug (David Crespo)
+Fixed small bugs
+
+==3.9.19==
+Many UI improvements (Thanks to Laurent Tournier)
+Samsung multi-window mode support (Laurent Tournier)
+
+
+==3.9.xx==
+Book and pages preview thumbnails
+List or grid books displaying.
+Recent books widget (dinos michailo)
+Send PDF and bookmarks by email (Fam VA Robert)
+Export bookmarks (amy <amyeec, shigel fujita)
+Volume scroll bar (Victor Sanchez-Aranzueque Pantoja)
+Number of page in bookmarks (From comments)
+Import-Export settings, bookmarks, recent books, all. (Dmitriy Stepanenko )
+Select directories for book scanning
+Edit-Delete bookmarks(amy amyeec)
+
+
+==3.8.x==
+Remembering the last open dir (Joe Kundlak)
+Auto Scroll individual for each file (MIKE GORDON)
+Improved Swipe 
+BiblioClub book format Support
+Fix Nook Simple Touch freezes
+Fix recalculate pages count for the same book if book changed (Adrian)
+Enable disable looping auto scroll
+Mouse scroll by wheel (Tobias Zürn)
+
+
+==3.7.x==
+German translation (Vitali Fleming and Kofi Jedamzik) 
+Preservation of the type paging for each book separately 
+Saving the day and night for each book separately 
+Save lock for each book separately 
+Added icon type paging 
+Improved performance
+Fixed recent books  (Jonathan P MARTIN)
+Improved brightness
+Easy refresh books list
+Looping PDF Document while auto playing for an information kiosk (PDF Reader)
+
+==3.6.x==
+Fixed choose black theme on start application (many users)
+Long tap on top to scroll to page head (Olmo López de la Paz)
+Fixed Portuguese translation (Marcus Aurelius Farias)
+X86 support
+Go to page dialog
+
+==3.5.x==
+Improved search page (scan) (Oleg Grachev)
+Displays the date of the file in the search results
+Disable-Enable swipe gestures in lock mode (Ryou OHSAWA)
+
+Swipe page gestures in lock mode (Nicholas zmeyfly)
+Swipe page gestures with animation (Nicholas zmeyfly)
+Recover default system brightness (Katya)
+Screen off when idle (Guy Cramp)
+Fixed light theme for older devices
+Fixed search of books for older devices
+Fixed full-screen reading mode for Nexus 7 (Paul Hodges)
+Enable/disable page scrolling by swiping (Ryou OHSAWA)
+
+==3.4.x==
+Automatic scroll (Николай zmeyfly)
+Scale to small page size(Николай Тузов)
+Changed lock functional (Николай zmeyfly)
+PDF Reader Tutorial http://goo.gl/CsL63 (Rusty Wright)
+Open http:// links in document (Rusty Wright)
+Remember day-night for books (Wesley Ooms)
+Improve performance
+
+==3.3.x==
+Fixed page repaint on hide-show action (Николай)
+Fixed keyboard on search (Pavel Popov)
+Improved appearance of the buttons
+
+
+==3.2.0==
+Crop borders (Петр и Екатерина)
+Fixed screen orientation and lose focus (Intelly)
+Fixed scroll by volume buttons
+Optimization and speed improvements
+Ukrainian translation
+
+==3.1.1==
+Support inherit fonts (Николай zmeyfly)
+Access recent books from current book (Tiago Braga)
+Slovak translation (Milan Fabian)
+German translation (google translate)
+
+==2.6.2==
+New Icon
+Sort Search By date
+Hide Next-Prev on Search (@ zmeyfly)
+Reading progress bar (@ zmeyfly)
+
+==2.6.0==
+Lock-Unlock horizontal scroll
+
+==2.5.7==
+Back button to back in links (hyperlinks) history (@ Caroline Leonard)
+Add double tap - zoom in, long tap - zoom out (@ Hoang Duong)
+Velocity scrolling in read mode  (@ Сергей on Monday, October 15)
+
+==2.5.5==
+Text Bookmarks (@ Kate on Monday, October 15)
+Links (hyperlinks) history (@ Caroline Leonard)
+
+==2.5.1==
+Suport clicks on bottom, top screen. (@ Tymur )
+Remove recent books (@ Robert Unterweger, tahaniyazikaraca)
+Configure custom keys 
+Application screen brightness
+
+==2.5.0==
+Filter By Name (@ tahaniyazikaraca)
+Sort By Name, Path, Size (Ascending, Descending) (@ tahaniyazikaraca)
+Save search result (@Eric Lim, tahaniyazikaraca)	

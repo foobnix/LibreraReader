@@ -1,0 +1,7 @@
+* PDF, DJVU: zoom in - zoom out can be configured for double tap
+* TTS record voice to the file (.wav)
+* TTS says "book is over"
+* Added scroll by 25%, 50%, 75%  of screen height
+* Improved algorithm for automatic page cropping 
+* Tap zone can 0% size
+* Improved reading html

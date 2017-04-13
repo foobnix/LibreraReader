@@ -1,0 +1,366 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="Builder">
+	<property file="../Builder/local.properties" />
+
+	<target name="prepare-packages">
+
+		<replaceregexp file="../EbookaPDF/AndroidManifest.xml"
+			match='package="com.foobnix.pro.pdf.reader"' replace='package="${pdf.package}"' />
+		<replaceregexp file="../EbookaPDF/AndroidManifest.xml"
+			match='package="com.foobnix.pdf.reader"' replace='package="${pdf.package}"' />
+		<replaceregexp file="../EbookaPDF/AndroidManifest.xml"
+			match='package="${package.classic}"' replace='package="${pdf.package}"' />
+		<replaceregexp file="../EbookaPDF/AndroidManifest.xml"
+			match='package="${package.droid}"' replace='package="${pdf.package}"' />
+		
+		<replaceregexp file="../EbookaPDF/AndroidManifest.xml"
+			match='android:authorities="com.foobnix.pro.pdf.reader.provider"' replace='android:authorities="${pdf.package}.provider"' />
+		<replaceregexp file="../EbookaPDF/AndroidManifest.xml"
+			match='android:authorities="com.foobnix.pdf.reader.provider"' replace='android:authorities="${pdf.package}.provider"' />
+		<replaceregexp file="../EbookaPDF/AndroidManifest.xml"
+			match='android:authorities="${package.classic}.provider"' replace='android:authorities="${pdf.package}.provider"' />
+		<replaceregexp file="../EbookaPDF/AndroidManifest.xml"
+			match='android:authorities="${package.droid}.provider"' replace='android:authorities="${pdf.package}.provider"' />
+		
+		
+		
+
+
+		<replaceregexp file="../EbookaPDF/AndroidManifest.xml"
+			match='android:icon="@drawable/icon_pdf_classic"' replace='android:icon="${pdf.icon}"' />
+		
+		<replaceregexp file="../EbookaPDF/AndroidManifest.xml"
+			match='android:icon="@drawable/icon_pdf_pro"' replace='android:icon="${pdf.icon}"' />
+		
+		<replaceregexp file="../EbookaPDF/AndroidManifest.xml"
+			match='android:icon="@drawable/icon_pdf_reader"' replace='android:icon="${pdf.icon}"' />
+		
+		<replaceregexp file="../EbookaPDF/AndroidManifest.xml"
+			match='android:icon="@drawable/icon_pdf_droid"' replace='android:icon="${pdf.icon}"' />
+		
+		
+		<replaceregexp file="../EbookaPDF/AndroidManifest.xml"
+			match='android:icon="@drawable/test"' replace='android:icon="${pdf.icon}"' />
+
+		<replaceregexp file="../EBookDroid/res/values/config.xml"
+			match='&lt;string name="app_name">${name.pro}&lt;/string>' replace='&lt;string name="app_name">${pdf.app.name}&lt;/string>' />
+		
+		<replaceregexp file="../EBookDroid/res/values/config.xml"
+			match='&lt;string name="app_name">${name.pdf}&lt;/string>' replace='&lt;string name="app_name">${pdf.app.name}&lt;/string>' />
+		
+		<replaceregexp file="../EBookDroid/res/values/config.xml"
+			match='&lt;string name="app_name">${name.classic}&lt;/string>' replace='&lt;string name="app_name">${pdf.app.name}&lt;/string>' />
+		
+		<replaceregexp file="../EBookDroid/res/values/config.xml"
+			match='&lt;string name="app_name">${name.droid}&lt;/string>' replace='&lt;string name="app_name">${pdf.app.name}&lt;/string>' />
+		
+		<replaceregexp file="../EBookDroid/res/values/config.xml"
+			match='&lt;bool name="is_log_enable">true&lt;/bool>' replace='&lt;bool name="is_log_enable">false&lt;/bool>' />
+
+		<replaceregexp file="../EbookaPDF/AndroidManifest.xml"
+			match="android:versionCode=(.*)" replace='android:versionCode="${pdf.reader.code}"' />
+		<replaceregexp file="../EbookaPDF/AndroidManifest.xml"
+			match='android:versionName=(.*)" >' replace='android:versionName="${version.code}" >' />
+		
+		
+
+	</target>
+
+	<target name="x86">
+		<property name="pdf.app.platform" value="x86" />
+		<property name="pdf.reader.code" value="${pdf.reader.code3}" />
+		
+		
+		<replaceregexp file="../EbookaPDF/jni/Application.mk"
+			match='APP_ABI := armeabi-v7a' replace='APP_ABI := x86' />
+		
+		<replaceregexp file="../EbookaPDF/jni/Application.mk"
+			match='APP_ABI := armeabi' replace='APP_ABI := x86' />
+		
+		<replaceregexp file="../EbookaPDF/project.properties"
+			match='android.library.reference.1=../arm_v7a' replace='android.library.reference.1=../cpu_x86' />
+		
+		<replaceregexp file="../EbookaPDF/project.properties"
+			match='android.library.reference.1=../arm' replace='android.library.reference.1=../cpu_x86' />
+		
+		<replaceregexp file="../EbookaPDF/project.properties"
+			match='android.library.reference.1=../cpu_all' replace='android.library.reference.1=../cpu_x86' />
+		
+	</target>
+
+	<target name="armeabi">
+		<property name="pdf.app.platform" value="armeabi" />
+		<property name="pdf.reader.code" value="${pdf.reader.code1}" />
+		
+		<replaceregexp file="../EbookaPDF/jni/Application.mk"
+			match='APP_ABI := x86' replace='APP_ABI := armeabi' />
+		
+		<replaceregexp file="../EbookaPDF/jni/Application.mk"
+			match='APP_ABI := armeabi-v7a' replace='APP_ABI := armeabi' />
+		
+		<replaceregexp file="../EbookaPDF/project.properties"
+			match='android.library.reference.1=../cpu_x86' replace='android.library.reference.1=../arm' />
+		
+		<replaceregexp file="../EbookaPDF/project.properties"
+			match='android.library.reference.1=../arm_v7a' replace='android.library.reference.1=../arm' />
+		
+		<replaceregexp file="../EbookaPDF/project.properties"
+			match='android.library.reference.1=../cpu_all' replace='android.library.reference.1=../arm' />
+	</target>
+	
+	<target name="armeabi-v7a">
+		<property name="pdf.app.platform" value="armeabi-v7a" />
+		<property name="pdf.reader.code" value="${pdf.reader.code2}" />
+		
+		
+		<replaceregexp file="../EbookaPDF/jni/Application.mk"
+			match='APP_ABI := armeabi' replace='APP_ABI := armeabi-v7a' />
+		
+		<replaceregexp file="../EbookaPDF/jni/Application.mk"
+			match='APP_ABI := armeabi-v7a-v7a' replace='APP_ABI := armeabi-v7a' />
+		
+		<replaceregexp file="../EbookaPDF/jni/Application.mk"
+			match='APP_ABI := x86' replace='APP_ABI := armeabi-v7a' />
+		
+		
+		
+		
+		<replaceregexp file="../EbookaPDF/project.properties"
+			match='android.library.reference.1=../arm' replace='android.library.reference.1=../arm_v7a' />
+		
+		<replaceregexp file="../EbookaPDF/project.properties"
+			match='android.library.reference.1=../arm_v7a_v7a' replace='android.library.reference.1=../arm_v7a' />
+		
+		<replaceregexp file="../EbookaPDF/project.properties"
+			match='android.library.reference.1=../cpu_x86' replace='android.library.reference.1=../arm_v7a' />
+		
+		<replaceregexp file="../EbookaPDF/project.properties"
+			match='android.library.reference.1=../cpu_all' replace='android.library.reference.1=../arm_v7a' />
+		
+		
+	</target>
+
+	
+	
+
+	<target name="pro-replace">
+	    <replaceregexp file="../EbookaPDF/AndroidManifest.xml"
+			match='&lt;meta-data android:name="com.google.android.gms.version" android:value="@integer/google_play_services_version"/>'
+			replace="" />
+		<replaceregexp file="../EbookaPDF/AndroidManifest.xml"
+			match='&lt;uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" /&gt;'
+			replace="" />
+		<replaceregexp file="../EbookaPDF/AndroidManifest.xml"
+			match='&lt;uses-permission android:name="android.permission.INTERNET" /&gt;'
+			replace="" />
+		
+		<replaceregexp file="../EBookDroid/project.properties"
+			match='android.library.reference.1=../google-play-services_lib' replace='android.library.reference.1=../google_play_services_fake' />
+		
+		
+	</target>
+
+	<target name="free-replace" depends="pro-replace">
+	     <replaceregexp file="../EbookaPDF/AndroidManifest.xml"
+			match='&lt;!-- PLAY_SERVICE -->'
+			replace='&lt;!-- PLAY_SERVICE -->&lt;meta-data android:name="com.google.android.gms.version" android:value="@integer/google_play_services_version"/>' />
+		<replaceregexp file="../EbookaPDF/AndroidManifest.xml"
+			match='&lt;!-- ACCESS_NETWORK_STATE -->'
+			replace='&lt;!-- ACCESS_NETWORK_STATE -->&lt;uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />' />
+		<replaceregexp file="../EbookaPDF/AndroidManifest.xml"
+			match='&lt;!-- INTERNET -->'
+			replace='&lt;!-- INTERNET -->&lt;uses-permission android:name="android.permission.INTERNET" />' />
+		
+		<replaceregexp file="../EBookDroid/project.properties"
+			match='android.library.reference.1=../google_play_services_fake' replace='android.library.reference.1=../google-play-services_lib' />
+		
+	</target>
+
+	<target name="copy">
+	    <echo>Build: ${pdf.app.name}-${version.code}-c${pdf.reader.code}-${pdf.app.platform}.apk</echo>
+		<copy file="../EbookaPDF/bin/EbookaPDF-release.apk"
+			tofile="apk/${pdf.export.name}-${version.code}-c${pdf.reader.code}-${pdf.app.platform}.apk"
+			overwrite="true" />
+			
+		
+		<replaceregexp file="../EBookDroid/res/values/config.xml"
+			match='&lt;bool name="is_log_enable">false&lt;/bool>' replace='&lt;bool name="is_log_enable">true&lt;/bool>' />
+		
+	</target>
+
+	<target name="clean-apk">
+		<delete dir="apk" includes="**/*.apk" />
+	</target>
+	<target name="clean-all">
+	    
+		<subant target="clean">
+			<fileset dir="../EBookDroid/" includes="build.xml" />
+		</subant>
+		<subant target="clean">
+			<fileset dir="../EbookaPDF/" includes="build.xml" />
+		</subant>
+		<subant target="clean">
+			<fileset dir="../LibMobi/" includes="build.xml" />
+		</subant>
+		
+		<subant target="clean">
+			<fileset dir="../google-play-services_lib/" includes="build.xml" />
+		</subant>
+		<subant target="clean">
+			<fileset dir="../google_play_services_fake/" includes="build.xml" />
+		</subant>
+	</target>
+
+	<!-- pdf -->
+	<target name="pdf">
+	    
+
+	    
+	     
+		<antcall target="clean-all" />
+
+		<property name="pdf.package" value="com.foobnix.pdf.reader" />
+		<property name="pdf.icon" value="@drawable/icon_pdf_reader" />
+		<property name="pdf.app.name" value="${name.pdf}" />
+		<property name="pdf.export.name" value="${name.pdf}" />
+
+		<antcall target="prepare-packages" />
+		<antcall target="free-replace" />
+
+		<!-- -->
+		<subant target="release">
+			<fileset dir="../EbookaPDF/" includes="build.xml" />
+		</subant>
+
+		<antcall target="copy" inheritAll="true" />
+		<copy file="../EbookaPDF/bin/EbookaPDF-release.apk"
+				tofile="${dropbox}/${pdf.export.name}-${version.code}-c${pdf.reader.code}-${pdf.app.platform}.apk"
+				overwrite="true" />
+		
+		<copy file="../EbookaPDF/bin/EbookaPDF-release.apk"
+				tofile="${dropbox.root}/${version.code}/${pdf.export.name}-${version.code}-c${pdf.reader.code}-${pdf.app.platform}.apk"
+				overwrite="true" />
+		
+		
+	</target>
+	
+	<target name="classic">
+	    
+	   
+	     
+		<antcall target="clean-all" />
+
+		<property name="pdf.package" value="${package.classic}" />
+		<property name="pdf.icon" value="@drawable/icon_pdf_classic" />
+		<property name="pdf.app.name" value="${name.classic}" />
+		<property name="pdf.export.name" value="${name.classic}" />
+
+		<antcall target="prepare-packages" />
+		<antcall target="free-replace" />
+
+		<!-- -->
+		<subant target="release">
+			<fileset dir="../EbookaPDF/" includes="build.xml" />
+		</subant>
+
+		<antcall target="copy" inheritAll="true" />
+		<copy file="../EbookaPDF/bin/EbookaPDF-release.apk"
+				tofile="${dropbox}/${pdf.export.name}-${version.code}-c${pdf.reader.code}-${pdf.app.platform}.apk"
+				overwrite="true" />
+		
+		<copy file="../EbookaPDF/bin/EbookaPDF-release.apk"
+				tofile="${dropbox1}/${pdf.export.name}-${version.code}-c${pdf.reader.code}-${pdf.app.platform}.apk"
+				overwrite="true" />
+		
+		
+		
+	</target>
+	
+	<target name="test">
+	    
+	   
+	     
+		<antcall target="clean-all" />
+
+		<property name="pdf.package" value="${package.classic}" />
+		<property name="pdf.icon" value="@drawable/test" />
+		<property name="pdf.app.name" value="${name.classic}" />
+		<property name="pdf.export.name" value="${name.classic}-Mustafa" />
+
+		<antcall target="prepare-packages" />
+		<antcall target="free-replace" />
+
+		<!-- -->
+		<subant target="release">
+			<fileset dir="../EbookaPDF/" includes="build.xml" />
+		</subant>
+
+		<antcall target="copy" inheritAll="true" />
+		<copy file="../EbookaPDF/bin/EbookaPDF-release.apk"
+				tofile="${dropbox}/${pdf.export.name}-${version.code}-c${pdf.reader.code}-${pdf.app.platform}.apk"
+				overwrite="true" />
+		
+		<copy file="../EbookaPDF/bin/EbookaPDF-release.apk"
+				tofile="${dropbox1}/${pdf.export.name}-${version.code}-c${pdf.reader.code}-${pdf.app.platform}.apk"
+				overwrite="true" />
+		
+		
+		
+	</target>
+	
+	<target name="droid">
+	     
+	    
+	    
+		<antcall target="clean-all" />
+
+		<property name="pdf.package" value="${package.droid}" />
+		<property name="pdf.icon" value="@drawable/icon_pdf_droid" />
+		<property name="pdf.app.name" value="${name.droid}" />
+		<property name="pdf.export.name" value="${name.droid}" />
+
+		<antcall target="prepare-packages" />
+		<antcall target="free-replace" />
+
+		<!-- -->
+		<subant target="release">
+			<fileset dir="../EbookaPDF/" includes="build.xml" />
+		</subant>
+
+		<antcall target="copy" inheritAll="true" />
+		<copy file="../EbookaPDF/bin/EbookaPDF-release.apk"
+				tofile="${dropbox}/${pdf.export.name}-${version.code}-c${pdf.reader.code}-${pdf.app.platform}.apk"
+				overwrite="true" />
+	</target>
+
+	
+
+	<!-- PRO -->
+	<target name="pro">
+	   
+	    
+		<antcall target="clean-all" />
+
+		<property name="pdf.package" value="com.foobnix.pro.pdf.reader" />
+		<property name="pdf.icon" value="@drawable/icon_pdf_pro" />
+		<property name="pdf.app.name" value="${name.pro}" />
+		<property name="pdf.export.name" value="${name.pro}-PRO" />
+
+		<antcall target="prepare-packages" />
+		<antcall target="pro-replace" />
+		
+		<!-- -->
+
+		<subant target="release">
+			<fileset dir="../EbookaPDF/" includes="build.xml" />
+		</subant>
+
+		<antcall target="copy" inheritAll="true" />
+		
+	</target>
+
+
+
+
+
+</project>

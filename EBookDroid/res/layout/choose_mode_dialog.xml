@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="5dip" >
+
+    <TextView
+        android:id="@+id/advanced"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="0"
+        android:gravity="center_vertical"
+        android:padding="15dip"
+        android:text="@string/advanced_mode"
+         android:background="@android:drawable/list_selector_background"
+        android:textSize="16sp" />
+
+    <TextView
+        android:id="@+id/simple"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="0"
+        android:background="@android:drawable/list_selector_background"
+        android:padding="15dip"
+        android:text="@string/easy_mode"
+        android:textSize="16sp" />
+
+    <TextView
+        android:id="@+id/music"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="0"
+        android:background="@android:drawable/list_selector_background"
+        android:padding="15dip"
+        android:text="@string/music_mode"
+        android:textSize="16sp" />
+
+    <CheckBox
+        android:layout_marginTop="10dip"
+        android:id="@+id/checkBoxRemember"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="0"
+        android:text="@string/remember_my_choose"
+        android:textSize="16sp" />
+
+</LinearLayout>

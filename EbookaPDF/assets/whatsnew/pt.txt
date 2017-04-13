@@ -1,0 +1,8 @@
+
+* PDF, DJVU: zoom - zoom pode ser configurado para tocar duas vezes 
+* TTS gravação de voz para o arquivo (.wav) 
+* TTS dizlivro é sobre 
+* rolagem Adicionado em 25%, 50%, 75% da altura da tela 
+* Melhor algoritmo para corte automático de página 
+* Tap zona pode 0% tamanho 
+* Melhor lendo html

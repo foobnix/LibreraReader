@@ -1,0 +1,276 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/parent"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <com.foobnix.pdf.search.view.VerticalViewPager
+        android:id="@+id/pager"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_centerInParent="false" />
+
+    <FrameLayout
+        android:id="@+id/adFrame"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="80dip"
+        android:layout_weight="0" >
+    </FrameLayout>
+
+    <LinearLayout
+        android:id="@+id/actionBar"
+        android:layout_width="match_parent"
+        android:layout_height="?android:attr/actionBarSize"
+        android:layout_weight="0"
+        android:background="#96aa39"
+        android:clickable="true"
+        android:gravity="center_vertical"
+        android:paddingLeft="2dip"
+        android:paddingRight="2dip" >
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical" >
+
+            <TextView
+                android:id="@+id/title"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center_vertical"
+                android:paddingLeft="15dip"
+                android:singleLine="true"
+                android:text="@string/msg_loading"
+                android:textColor="#ffffff"
+                android:textSize="16sp"
+                android:textStyle="bold" >
+            </TextView>
+
+            <TextView
+                android:id="@+id/chapter"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center_vertical"
+                android:paddingLeft="15dip"
+                android:singleLine="true"
+                android:text="@string/msg_loading"
+                android:textColor="#ffffff"
+                android:textSize="12sp"
+                android:visibility="gone" >
+            </TextView>
+        </LinearLayout>
+
+        <ImageView
+            android:contentDescription="change day or night"
+            android:id="@+id/bookNight"
+            style="@style/buttonWhite"
+            android:layout_width="@dimen/wh_button"
+            android:layout_height="@dimen/wh_button"
+            android:layout_weight="0"
+            android:src="@drawable/glyphicons_232_sun" />
+
+        <ImageView
+            android:contentDescription="@string/recent"
+            android:id="@+id/bookRecent"
+            style="@style/buttonWhite"
+            android:layout_width="@dimen/wh_button"
+            android:layout_height="@dimen/wh_button"
+            android:layout_weight="0"
+            android:src="@drawable/glyphicons_72_book1" />
+
+        <ImageView
+            android:contentDescription="read aloud TTS"
+            android:id="@+id/bookTTS"
+            style="@style/buttonWhite"
+            android:layout_width="@dimen/wh_button"
+            android:layout_height="@dimen/wh_button"
+            android:layout_weight="0"
+            android:src="@drawable/glyphicons_185_volume_up" />
+
+        <ImageView
+            android:id="@+id/bookPref"
+            style="@style/buttonWhite"
+            android:layout_width="@dimen/wh_button"
+            android:layout_height="@dimen/wh_button"
+            android:layout_weight="0"
+            android:contentDescription="@string/preferences"
+            android:src="@drawable/glyphicons_137_cogwheel" />
+
+        <ImageView
+            android:id="@+id/bookMenu"
+            style="@style/buttonWhite"
+            android:layout_width="@dimen/wh_button"
+            android:layout_height="@dimen/wh_button"
+            android:layout_weight="0"
+            android:contentDescription="@string/menu"
+            android:src="@drawable/glyphicons_518_option_vertical" />
+
+        <ImageView
+            android:id="@+id/bookClose"
+            style="@style/buttonWhiteClose"
+            android:layout_width="@dimen/wh_button"
+            android:layout_height="@dimen/wh_button"
+            android:layout_weight="0"
+            android:contentDescription="@string/close_book"
+            android:src="@drawable/glyphicons_208_remove_2" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/pagesTime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_marginLeft="10dip"
+        android:text="--:--"
+        android:textColor="@color/tint_gray"
+        android:textSize="9sp" />
+
+    <TextView
+        android:id="@+id/pagesCountIndicator"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:text="-/-"
+        android:textColor="@color/tint_gray"
+        android:textSize="12sp" />
+
+    <TextView
+        android:id="@+id/pagesPower"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginBottom="1dip"
+        android:layout_marginRight="10dip"
+        android:background="@drawable/bg_rect_power"
+        android:drawablePadding="0dip"
+        android:text="--%"
+        android:textColor="@color/tint_gray"
+        android:textSize="9sp" />
+
+    <LinearLayout
+        android:id="@+id/bottomBar"
+        android:layout_width="match_parent"
+        android:layout_height="42dip"
+        android:layout_alignParentBottom="true"
+        android:background="#96aa39"
+        android:clickable="true"
+        android:gravity="center_vertical"
+        android:paddingLeft="2dip"
+        android:paddingRight="2dip"
+        android:visibility="visible" >
+
+        <ImageView
+            android:id="@+id/linkHistory"
+            style="@style/buttonWhite"
+            android:layout_width="@dimen/wh_button"
+            android:layout_height="@dimen/wh_button"
+            android:layout_weight="0"
+            android:src="@drawable/glyphicons_173_rewind"
+            android:tint="@color/tint_white"
+            android:visibility="gone" />
+
+        <ImageView
+            android:id="@+id/search"
+            style="@style/buttonWhite"
+            android:layout_width="@dimen/wh_button"
+            android:layout_height="@dimen/wh_button"
+            android:layout_weight="0"
+             android:contentDescription="@string/search"
+            android:src="@drawable/glyphicons_28_search1" />
+
+        <ImageView
+            android:id="@+id/thumbnail"
+            android:contentDescription="@string/go_to_page_dialog"
+            style="@style/buttonWhite"
+            android:layout_width="@dimen/wh_button"
+            android:layout_height="@dimen/wh_button"
+            android:layout_weight="0"
+            android:src="@drawable/glyphicons_37_file" />
+
+        <ImageView
+            android:id="@+id/content"
+            style="@style/buttonWhite"
+            android:layout_width="@dimen/wh_button"
+            android:layout_height="@dimen/wh_button"
+            android:layout_weight="0"
+            android:contentDescription="@string/content_of_book"
+            android:src="@drawable/glyphicons_115_list1" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="horizontal"
+            android:paddingLeft="4dip"
+            android:paddingRight="4dip" >
+
+            <TextView
+                android:id="@+id/currentSeek"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:minWidth="32dip"
+                android:text="--"
+                android:textColor="#ffffff"
+                android:textStyle="bold" />
+
+            <SeekBar
+                android:id="@+id/seekBar"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:paddingTop="4dip"
+                android:paddingBottom="4dip"
+                android:layout_gravity="center_vertical"
+                android:layout_weight="1"
+                android:progressTint="@android:color/white"
+                android:thumbTint="@android:color/white" />
+
+            <TextView
+                android:id="@+id/maxSeek"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:minWidth="32dip"
+                android:text="--"
+                android:textColor="#ffffff"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+        <ImageView
+            android:id="@+id/bookmarks"
+            style="@style/buttonWhite"
+            android:contentDescription="@string/bookmarks"
+            android:layout_width="@dimen/wh_button"
+            android:layout_height="@dimen/wh_button"
+            android:layout_weight="0"
+            android:src="@drawable/glyphicons_73_bookmark1" />
+
+        <ImageView
+            android:contentDescription="Lock unlock the document"
+            android:id="@+id/lockMode"
+            style="@style/buttonWhite"
+            android:layout_width="@dimen/wh_button"
+            android:layout_height="@dimen/wh_button"
+            android:layout_weight="0"
+            android:src="@drawable/glyphicons_205_unlock" />
+    </LinearLayout>
+
+    <FrameLayout
+        android:id="@+id/anchor"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="false"
+        android:minHeight="10dip"
+        android:minWidth="10dip"
+        android:visibility="gone" />
+
+</RelativeLayout>

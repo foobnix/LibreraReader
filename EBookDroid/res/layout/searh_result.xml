@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#e5e5e5"
+    android:orientation="vertical" >
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dip"
+        android:background="#cbcbcb" />
+    
+    
+    <LinearLayout
+        android:visibility="gone"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dip"
+        android:gravity="center_horizontal" >
+
+        <Button
+            android:id="@+id/onRelevance"
+            android:layout_width="wrap_content"
+            android:layout_height="35dip"
+            android:layout_margin="2dip"
+            android:background="@drawable/bg_button_item"
+            android:padding="5dip"
+            android:text="RELEVANCE"
+            android:textColor="#666666" />
+
+        <Button
+            android:id="@+id/onDate"
+            android:layout_width="wrap_content"
+            android:layout_height="35dip"
+            android:layout_margin="2dip"
+            android:background="@drawable/bg_button_item"
+            android:padding="5dip"
+            android:text="DATE"
+            android:textColor="#666666" />
+
+        <Button
+            android:id="@+id/onViews"
+            android:layout_width="wrap_content"
+            android:layout_height="35dip"
+            android:layout_margin="2dip"
+            android:background="@drawable/bg_button_item"
+            android:padding="5dip"
+            android:text="VIEWS"
+            android:textColor="#666666" />
+
+        <Button
+            android:id="@+id/button3"
+            android:layout_width="40dip"
+            android:layout_height="wrap_content"
+            android:layout_margin="2dip"
+            android:background="@drawable/bg_button_item"
+            android:padding="5dip"
+            android:text="+"
+            android:textColor="#666666"
+            android:visibility="gone" />
+    </LinearLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" >
+
+        <ProgressBar
+            android:id="@+id/progressBar1"
+            style="?android:attr/progressBarStyleLarge"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_marginTop="56dp"
+            android:visibility="gone" />
+
+        <TextView
+            android:id="@+id/onResuls"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_centerInParent="true"
+            android:layout_centerVertical="true"
+            android:text="@string/no_results_found_"
+            android:visibility="gone"
+            android:textColor="#96aa39"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <GridView
+            android:id="@+id/gridView1"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="5dip"
+            android:fastScrollEnabled="true"
+            android:gravity="center_horizontal"
+            android:horizontalSpacing="7dip"
+            android:numColumns="auto_fit"
+            android:stretchMode="columnWidth"
+            android:verticalSpacing="7dip" >
+        </GridView>
+    </RelativeLayout>
+
+</LinearLayout>

@@ -1,0 +1,290 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/topBanelHide"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical" >
+
+    <LinearLayout
+        android:id="@+id/filterLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="4dip"
+        android:layout_marginRight="4dip"
+        android:layout_marginTop="4dip"
+        android:gravity="center_vertical"
+        android:orientation="horizontal" >
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginRight="4dip"
+            android:layout_weight="1" >
+
+            <AutoCompleteTextView
+                android:id="@+id/filterLine"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_centerVertical="true"
+                android:layout_margin="0dip"
+                android:background="@drawable/bg_search_edit"
+                android:ellipsize="end"
+                android:hint="@string/search"
+                android:imeOptions="actionDone"
+                android:inputType="textEmailAddress"
+                android:paddingBottom="0dip"
+                android:paddingLeft="10dip"
+                android:paddingRight="50dip"
+                android:paddingTop="0dip"
+                android:singleLine="true"
+                android:textColor="@color/tint_gray"
+                android:textColorHint="@color/tint_gray"
+                android:textSize="14sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/countBooks"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="4dip"
+                android:gravity="center"
+                android:text="0"
+                android:textColor="@color/tint_gray"
+                android:textSize="14sp"
+                android:textStyle="bold" />
+
+            <ImageView
+                android:id="@+id/cleanFilter"
+                style="@style/buttonClear"
+                android:layout_width="@dimen/wh_button_small"
+                android:layout_height="@dimen/wh_button_small"
+                android:layout_centerVertical="true"
+                android:layout_toLeftOf="@+id/countBooks"
+                android:layout_weight="0"
+                android:src="@drawable/glyphicons_208_remove_2" />
+        </RelativeLayout>
+
+        <LinearLayout
+            android:id="@+id/secondTopPanel"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/wh_button"
+            android:background="@drawable/bg_search_second"
+            android:gravity="center_vertical"
+            android:orientation="horizontal" >
+
+            <TextView
+                android:id="@+id/sortBy"
+                android:layout_width="@dimen/sort_by_size"
+                android:layout_height="@dimen/wh_button"
+                android:layout_weight="0"
+                android:background="?android:attr/selectableItemBackground"
+                android:clickable="true"
+                android:ellipsize="end"
+                android:gravity="center_vertical"
+                android:paddingLeft="8dip"
+                android:singleLine="true"
+                android:text="@string/by_path"
+                android:textColor="@color/tint_white"
+                android:textStyle="normal" />
+
+            <ImageView
+                android:id="@+id/sortOrder"
+                android:layout_width="@dimen/wh_button"
+                android:layout_height="@dimen/wh_button"
+                android:layout_weight="0"
+                android:background="?android:attr/selectableItemBackground"
+                android:clickable="true"
+                android:padding="12dip"
+                android:src="@drawable/glyphicons_601_chevron_up"
+                android:tint="@color/white" />
+
+            <View
+                android:layout_width="1dip"
+                android:layout_height="match_parent"
+                android:background="@color/tint_divider" />
+
+            <ImageView
+                android:id="@+id/onRefresh"
+                android:layout_width="@dimen/wh_button"
+                android:layout_height="@dimen/wh_button"
+                android:layout_weight="0"
+                android:background="?android:attr/selectableItemBackground"
+                android:clickable="true"
+                android:padding="8dip"
+                android:src="@drawable/glyphicons_82_refresh"
+                android:tint="@color/white" />
+
+            <View
+                android:layout_width="1dip"
+                android:layout_height="match_parent"
+                android:background="@color/tint_divider" />
+
+            <ImageView
+                android:id="@+id/onGridList"
+                android:layout_width="@dimen/wh_button"
+                android:layout_height="@dimen/wh_button"
+                android:layout_weight="0"
+                android:background="?android:attr/selectableItemBackground"
+                android:clickable="true"
+                android:padding="8dip"
+                android:src="@drawable/glyphicons_114_justify"
+                android:tint="@color/white" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/pathContainer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:visibility="visible" >
+
+        <ProgressBar
+            android:id="@+id/progressBar"
+            style="?android:attr/progressBarStyleSmall"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="0"
+            android:padding="2dip"
+            android:visibility="gone" />
+
+        <TextView
+            android:id="@+id/path"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="8dip"
+            android:layout_marginRight="8dip"
+            android:layout_weight="1"
+            android:ellipsize="end"
+            android:gravity="center_vertical"
+            android:singleLine="true"
+            android:text="path"
+            android:visibility="visible" />
+
+        <ImageView
+            android:id="@+id/onHome"
+            android:layout_width="@dimen/wh_button_small"
+            android:layout_height="@dimen/wh_button_small"
+            android:layout_weight="0"
+            android:background="?android:attr/selectableItemBackground"
+            android:padding="5dip"
+            android:src="@drawable/glyphicons_21_home"
+            android:tint="@color/tint_gray" />
+
+        <ImageView
+            android:id="@+id/onListGrid"
+            android:layout_width="@dimen/wh_button_small"
+            android:layout_height="@dimen/wh_button_small"
+            android:layout_marginRight="5dip"
+            android:layout_weight="0"
+            android:background="?android:attr/selectableItemBackground"
+            android:padding="5dip"
+            android:src="@drawable/glyphicons_114_justify"
+            android:tint="@color/tint_gray" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/exportContainer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:visibility="visible" >
+
+        <TextView
+            android:id="@+id/exportBookmarks"
+            style="@style/textLink"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dip"
+            android:text="@string/export_bookmarks"
+            android:visibility="visible" />
+
+        <TextView
+            android:id="@+id/importBookmarks"
+            style="@style/textLink"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dip"
+            android:text="@string/import_bookmarks"
+            android:visibility="visible" />
+
+        <TextView
+            android:id="@+id/searchBookmarks"
+            style="@style/textLink"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dip"
+            android:text="@string/search"
+            android:visibility="visible" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/recentContainer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:visibility="visible" >
+
+        <TextView
+            android:id="@+id/clearAllRecent"
+            style="@style/textLink"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dip"
+            android:text="@string/clear_all_recent"
+            android:visibility="visible" />
+
+        <TextView
+            android:id="@+id/clearAllStarred"
+            style="@style/textLink"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dip"
+            android:text="@string/clear_all_marked"
+            android:visibility="visible" />
+    </LinearLayout>
+
+    <RelativeLayout
+        android:id="@+id/bookmarksSearchContainer"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_marginLeft="2dip"
+        android:layout_marginRight="2dip"
+        android:layout_weight="1" >
+
+        <EditText
+            android:id="@+id/bookmarksEditSearch"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/wh_button"
+            android:layout_centerVertical="true"
+            android:layout_margin="2dip"
+            android:background="@drawable/bg_search_edit"
+            android:ellipsize="end"
+            android:hint="@string/filter"
+            android:paddingBottom="5dip"
+            android:paddingLeft="5dip"
+            android:paddingRight="25dip"
+            android:paddingTop="5dip"
+            android:singleLine="true" >
+        </EditText>
+
+        <ImageView
+            android:id="@+id/bookmarksClearFilter"
+            android:layout_width="@dimen/wh_button_small"
+            android:layout_height="@dimen/wh_button_small"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_weight="0"
+            android:background="?android:attr/selectableItemBackground"
+            android:clickable="true"
+            android:padding="8dip"
+            android:src="@drawable/glyphicons_208_remove_2"
+            android:tint="@color/tint_gray" />
+    </RelativeLayout>
+
+</LinearLayout>

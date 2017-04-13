@@ -1,0 +1,48 @@
+Ebook Reader mit PDF und DjVu Unterstützung für komfortables Lesen.
+
+Wenn Sie für einen guten PDF-Reader suchen, stoppen Sie hier! Sie haben ihn gefunden!
+Intuitive Bedienung. Lehnen Sie sich gemütlich zurück und lesen Sie mit dieser App  PDF-Bücher und Dokumente.
+Durch die letzte Verbesserung wird Ihr Display besonders augenschonend gedimmt.
+Sehr einfache Einstellungen. Das beste Zoom und Scrollverhalten von allen Reader-Apps.
+
+Funktional:
+1) Lese- und Bedienmodus (tippen zum wechseln)
+2) fixieren der Ansicht nach Breite während des scrollens
+3) Suche in Büchern
+4) Inhaltsverzeichnis
+5) Nachtmodus
+6) Alle Bücher auf dem Gerät durchsuchbar (PDF, DjVu)
+7) Blättern durch tippen
+8) Vollbildmodus
+9) Unterstützt e-reader Tasten wie Nook, Kindle, Sony
+10) Dateinavigation
+11) Zuletzt geöffnete Bücher
+12) Helle und dunkle Ansicht
+13) Bildschirm Ausrichtung: Porträt, Querformat , Automatisch
+14) Lesezeichen
+15) Link-Historie zur Seite
+16) Ausschnittgrenzen
+17) Automatisches Scrollen
+18) Swipe-Gesten trotz Tastensperre
+19) Unterstützung von Intel Atom CPU x86
+20) Buch und Seitenminiaturen
+21) Aktuelle Bücher Widget
+22) Senden, Dokumente freigeben und Lesezeichen
+23) Import, Export Settings
+
+Funktionen der PRO-Version: http://tinyurl.com/pro-pdf-reader
+
+1) Keine Werbung, kein Internet erforderlich
+2) Passwortgeschützte PDF-Dateien
+3) Suchergebnisse Filtern
+4) Suchergebnisse nach Name, Pfad und Größe auf- und absteigend sortieren
+5) Bildschirmhelligkeit einstelbar
+6) Benutzerdefinierte Tasten z.B. für Bildlauf und Vor/Zurück
+
+Der beste PDF-Reader für Android.
+
+.apk direkt Herunterladen: https://www.dropbox.com/sh/4nhbem9fcgycq5a/6RYw21KpSr
+
+Für Fragen, Wünsche, Anregungen und Verbesserungsvorschläge schreiben Sie bitte an ivan.ivanenko@gmail.com
+Der FOOBNIX PDF READER läuft auch auf x86-und MIPS.
+

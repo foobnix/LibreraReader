@@ -1,0 +1,800 @@
+package com.foobnix.pdf.info.wrapper;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Map;
+
+import com.foobnix.android.utils.Apps;
+import com.foobnix.android.utils.Dips;
+import com.foobnix.android.utils.LOG;
+import com.foobnix.android.utils.MemoryUtils;
+import com.foobnix.pdf.info.AppsConfig;
+import com.foobnix.pdf.info.ExportSettingsManager;
+import com.foobnix.pdf.info.TTSModule;
+import com.foobnix.pdf.info.Urls;
+import com.foobnix.pdf.info.model.BookCSS;
+import com.foobnix.pdf.info.view.DragingPopup;
+import com.foobnix.ui2.AppDB;
+
+import android.content.Context;
+import android.content.SharedPreferences;
+import android.content.pm.ActivityInfo;
+import android.graphics.Color;
+import android.net.Uri;
+import android.os.Build;
+import android.os.Environment;
+import android.view.KeyEvent;
+
+public class AppState {
+
+	public static final int DAY_TRANSPARENCY = 200;
+	public static final int NIGHT_TRANSPARENCY = 160;
+	public static Map<String, String[]> CONVERTERS = new LinkedHashMap<String, String[]>();
+	static {
+		CONVERTERS.put("PDF", "https://cloudconvert.com/anything-to-pdf, http://topdf.com".split(", "));
+		CONVERTERS.put("PDF Rotate",
+				"https://www.pdfrotate.com, https://smallpdf.com/rotate-pdf, http://www.rotatepdf.net".split(", "));
+		CONVERTERS.put("EPUB", "https://cloudconvert.com/anything-to-epub, http://toepub.com".split(", "));
+		CONVERTERS.put("MOBI", "https://cloudconvert.com/anything-to-mobi, http://toepub.com".split(", "));
+		CONVERTERS.put("AZW3", "https://cloudconvert.com/anything-to-azw3, http://toepub.com".split(", "));
+		CONVERTERS.put("DOCX",
+				"https://cloudconvert.com/anything-to-docx, http://document.online-convert.com/convert-to-docx, http://pdf2docx.com/"
+						.split(", "));
+
+	}
+
+	public static final String PNG = "PNG";
+	public static final String JPG = "JPG";
+
+	public static final String[] LIBRE_EXT = ".odt, .odp, .docx, .doc, .pptx, .ppt".split(", ");
+	public static final String[] OTHER_BOOK_EXT = ".wav, .abw, .docm, .lwp, .md, .pages, .rst, .sdw, .tex, .wpd, .wps, .zabw, .cbc,  .chm, .lit, .lrf, .oeb, .pml, .rb, .snb, .tcr, .txtz"
+			.split(", ");
+	public static final String[] OTHER_ARCH_EXT = ".img, .zip, .rar, .7z, .arj, .bz2, .bzip2, .tbz2, .tbz, .txz, .cab, .gz, .gzip, .tgz, .iso, .lzh, .lha, .lzma, .tar, .xar, .z, .taz, .xz, .dmg"
+			.split(", ");
+
+	public static int COLOR_WHITE = Color.WHITE;
+	public static int COLOR_BLACK = Color.parseColor("#030303");
+	// public static int COLOR_BLACK = Color.BLACK;
+
+	public static int WIDGET_LIST = 1;
+	public static int WIDGET_GRID = 2;
+
+	public static int EDIT_NONE = 0;
+	public static int EDIT_PEN = 1;
+	public static int EDIT_DELETE = 2;
+
+	public static int TAP_NEXT_PAGE = 0;
+	public static int TAP_PREV_PAGE = 1;
+    public static int TAP_DO_NOTHING = 2;
+
+
+
+
+	public static List<Integer> NEXT_KEYS = Arrays.asList(//
+			KeyEvent.KEYCODE_VOLUME_UP, //
+			KeyEvent.KEYCODE_PAGE_UP, //
+			// KeyEvent.KEYCODE_DPAD_UP,//
+			KeyEvent.KEYCODE_DPAD_RIGHT, //
+			94, //
+			105//
+	);
+
+	public static List<Integer> PREV_KEYS = Arrays.asList(//
+			KeyEvent.KEYCODE_VOLUME_DOWN, //
+			KeyEvent.KEYCODE_PAGE_DOWN, //
+			// KeyEvent.KEYCODE_DPAD_DOWN, //
+			KeyEvent.KEYCODE_DPAD_LEFT, //
+			95, //
+			106//
+	);
+
+	public List<String> COLORS = Arrays.asList(//
+			"#000001", //
+			"#000002", //
+			"#0000FF", //
+			"#00FF00", //
+			"#808000", //
+			"#FFFF00", //
+			"#FF0000", //
+			"#00FFFF", //
+			"#000000", //
+			"#FF00FF", //
+			"#808080", //
+			"#008000", //
+			"#800000", //
+			"#000080", //
+			"#800080", //
+			"#008080", //
+			"#C0C0C0", //
+			"#FFFFFF", //
+			"#CDDC39"//
+	);
+
+	public static final List<String> STYLE_COLORS = Arrays.asList(//
+			// "#3949AB", //
+			"#2a56c6", //
+			"#E6A639", //
+			"#395B9C", //
+			"#EA5964", //
+			"#00897B", //
+			"#000000" //
+
+	);
+
+	public static final List<String> READ_COLORS = Arrays.asList(//
+			// name, bg, text,0-day,1-nigth
+			"1,#f2f0e9,#383226,0", //
+			"2,#f9f5e8,#333333,0", //
+			"3,#fff3de,#030303,0", //
+			// "4,#f4ecd9,#544734,0", //
+
+			"A,#030303,#8cffb5,1", //
+			// "B,#030303,#00f200,1", //
+			"B,#3a3a3a,#c8c8c8,1", //
+			"C,#37454e,#edf0e9,1" //
+
+	);
+
+	public int tintColor = Color.parseColor(STYLE_COLORS.get(0));
+	// public int tintColor =
+	// Color.parseColor(STYLE_COLORS.get(STYLE_COLORS.size() - 2));
+	public int userColor = Color.MAGENTA;
+
+	final public static List<Integer> WIDGET_SIZE = Arrays.asList(0, 70, 100, 150, 200, 250);
+
+	public final static int MAX_SPEED = 149;
+
+	public final static int SORT_BY_PATH = 0;
+	public final static int SORT_BY_NAME = 1;
+	public final static int SORT_BY_SIZE = 2;
+	public final static int SORT_BY_DATE = 3;
+
+	public final static int MODE_GRID = 1;
+	public final static int MODE_LIST = 2;
+	public final static int MODE_COVERS = 3;
+	public final static int MODE_AUTHORS = 4;
+	public final static int MODE_GENRE = 5;
+	public final static int MODE_SERIES = 6;
+
+	public final static int BOOKMARK_MODE_BY_DATE = 1;
+	public final static int BOOKMARK_MODE_BY_BOOK = 2;
+
+	public final static int DOUBLE_CLICK_AUTOSCROLL = 0;
+	public final static int DOUBLE_CLICK_RECENTER = 1;
+	public final static int DOUBLE_CLICK_NOTHING = 2;
+    public final static int DOUBLE_CLICK_ZOOM_IN_OUT = 3;
+
+    public final static int NEXT_SCREEN_SCROLL_BY_PAGES = 0;
+
+	public int doubleClickAction = DOUBLE_CLICK_AUTOSCROLL;
+	public int inactivityTime = 2;
+
+	public boolean isEditMode = true;
+	public boolean isFullScreen = true;
+	public boolean isAutoFit = false;
+    public boolean notificationOngoing = false;
+    public boolean ttsReplacement = false;
+    public boolean ttsSkeakToFile = false;
+    public String ttsSpeakPath = TTSModule.speakToPath;
+
+	public boolean isShowToolBar = true;
+    public int nextScreenScrollBy = NEXT_SCREEN_SCROLL_BY_PAGES;// 0 by
+                                                                       // pages,
+                                                                // 25 - 25%
+                                                                // persent
+
+	public boolean isWhiteTheme = true;
+
+	public boolean isSortAsc = true;
+	public int sortBy = AppDB.SORT_BY.PATH.ordinal();
+
+	public float brightness = 0f;
+    public float cropTolerance = 0.5f;
+
+	public float ttsSpeed = 1.0f;
+	public float ttsPitch = 1.0f;
+
+	public List<Integer> nextKeys = NEXT_KEYS;
+	public List<Integer> prevKeys = PREV_KEYS;
+	public boolean isUseVolumeKeys = true;
+	public boolean isReverseKeys = Dips.isSmallScreen();
+	public boolean isMusicianMode = false;
+
+	public boolean isCrop = false;
+	public boolean isCut = false;
+
+	public boolean isInvert = true;
+
+	public int cpTextLight = Color.BLACK;
+	public int cpBGLight = Color.WHITE;
+	public int cpTextBlack = Color.WHITE;
+	public int cpBGBlack = Color.BLACK;
+
+	public boolean isUseBGImageDay = false;
+	public boolean isUseBGImageNight = false;
+	public String bgImageDayPath = MagicHelper.IMAGE_BG_1;
+	public String bgImageNightPath = MagicHelper.IMAGE_BG_1;
+	public String texturePath = Environment.getExternalStorageDirectory().getPath();
+	public int bgImageDayTransparency = DAY_TRANSPARENCY;
+	public int bgImageNightTransparency = NIGHT_TRANSPARENCY;
+
+	public boolean isLocked = false;
+	public boolean isLoopAutoplay = false;
+	public boolean isBookCoverEffect = false;
+
+	public int editWith = EDIT_PEN;
+	public String annotationDrawColor = "";
+	public String annotationTextColor = COLORS.get(2);
+	public int editAlphaColor = 100;
+	public int editLineWidth = 3;
+
+	public boolean isShowBookmarks = true;
+	public boolean isShowRecent = true;
+
+	public boolean isAlwaysOpenAsMagazine = false;
+	public boolean isRememberMode = false;
+
+	public volatile boolean isAutoScroll = false;
+	public int autoScrollSpeed = 120;
+	public int mouseWheelSpeed = 70;
+	public String selectedText;
+
+	// public int widgetHeigth = 100;
+	public int widgetType = WIDGET_LIST;
+	public int widgetItemsCount = 4;
+
+	public int widgetSize = WIDGET_SIZE.get(1);
+
+	public String rememberDict = "web:Google Translate";
+	public boolean isRememberDictionary;
+
+	public String fromLang = "en";
+	public String toLang = Urls.getLangCode();
+
+	public int orientation = ActivityInfo.SCREEN_ORIENTATION_SENSOR;
+
+	private static AppState instance = new AppState();
+	private SharedPreferences sp;
+
+	public int libraryMode = MODE_GRID;
+	public int broseMode = MODE_LIST;
+	public int recentMode = MODE_GRID;
+	public int bookmarksMode = BOOKMARK_MODE_BY_DATE;
+
+	public boolean isBrowseGrid = false;
+	public boolean isRecentGrid = false;
+
+	public String searchPaths = Environment.getExternalStorageDirectory() == null ? "/"
+			: Environment.getExternalStorageDirectory().getPath();
+
+	public String fileToDelete;
+
+	public int colorDayText = COLOR_BLACK;
+	public int colorDayBg = COLOR_WHITE;
+
+	public int colorNigthText = COLOR_WHITE;
+	public int colorNigthBg = COLOR_BLACK;
+
+	public boolean supportPDF = true;
+	// need to fix on Android 7 Nexus 5
+	public boolean supportDJVU = Build.VERSION.SDK_INT >= 24 ? false : true;
+	// public boolean supportDJVU = true;
+	public boolean supportEPUB = true;
+	public boolean supportFB2 = true;
+	public boolean supportRTF = false;
+	public boolean supportMOBI = true;
+	public boolean supportCBZ = false;
+	public boolean supportZIP = false;
+	public boolean supportOther = false;
+
+	public boolean supportTXT = false;
+	public boolean isPreText = false;
+	public boolean isLineBreaksText = false;
+	public boolean isShowDroid = true;
+	public boolean isIgnoreAnnotatations = false;
+	public boolean isSaveAnnotatationsAutomatically = false;
+	public boolean isShowWhatIsNewDialog = true;
+
+	public int cutP = 50;
+
+	public volatile int fontSizeSp = 22;
+
+	public String lastA;
+	public String dirLastPath;
+
+	public String versionNew = "";
+
+	public boolean isRTL = Urls.isRtl();
+	public boolean isCutRTL = Urls.isRtl();
+
+	// perofrmance
+	public int pagesInMemory = Build.VERSION.SDK_INT >= Build.VERSION_CODES.ICE_CREAM_SANDWICH ? 2
+			: MemoryUtils.IS_SMALL_MEMORY_SIZE ? 0 : 1;
+	public float pageQuality = MemoryUtils.IS_SMALL_MEMORY_SIZE ? 1f : 1.2f;
+	public int rotate = 0;
+	public int rotateViewPager = 0;
+
+	public int tapzoneSize = 15;
+	public int allocatedMemorySize = (int) MemoryUtils.RECOMENDED_MEMORY_SIZE;
+	public boolean isScrollAnimation = true;
+	public String imageFormat = JPG;
+	public boolean isCustomizeBgAndColors = false;
+	public boolean isVibration = true;
+	public boolean isLockPDF = false;
+	public boolean selectingByLetters = Arrays.asList("ja", "zh", "ko", "vi").contains(Urls.getLangCode());
+
+	public long installationDate = System.currentTimeMillis();
+
+	public String customConfigColors = "";
+
+	public boolean isStarsInWidget = false;
+
+	public boolean isCropBookCovers = true;
+	public boolean isBorderAndShadow = true;
+
+	public boolean isBrowseImages = false;
+
+	public int coverBigSize = (Dips.screenWidthDP() / (Dips.screenWidthDP() / 120)) - 8;
+	public int coverSmallSize = 80;
+
+	public int tapZoneTop = TAP_PREV_PAGE;
+	public int tapZoneBottom = TAP_NEXT_PAGE;
+	public int tapZoneLeft = TAP_PREV_PAGE;
+	public int tapZoneRight = TAP_NEXT_PAGE;
+
+	public List<Integer> getNextKeys() {
+		return isReverseKeys ? prevKeys : nextKeys;
+	}
+
+	public List<Integer> getPrevKeys() {
+		return isReverseKeys ? nextKeys : prevKeys;
+	}
+
+	public static Map<String, String> getUserGuides() {
+		final Map<String, String> providers = new LinkedHashMap<String, String>();
+		providers.put("ru", "Русский");
+		providers.put("en", "English");
+
+		return providers;
+	}
+
+	public static Map<String, String> getDictionaries(String input) {
+		final Map<String, String> providers = new LinkedHashMap<String, String>();
+		String ln = AppState.get().toLang;
+		String from = AppState.get().fromLang;
+		String text = Uri.encode(input);
+		providers.put("Google Translate", String.format("https://translate.google.com/#%s/%s/%s", from, ln, text));
+		providers.put("Lingvo", String.format("http://www.lingvo-online.ru/en/Translate/%s-%s/%s", from, ln, text));
+
+		providers.put("Dictionary.com", "http://dictionary.reference.com/browse/" + text);
+
+		providers.put("Oxford", "http://www.oxforddictionaries.com/definition/english/" + text);
+		providers.put("Longman", "http://www.ldoceonline.com/search/?q=" + text);
+		providers.put("Cambridge", "http://dictionary.cambridge.org/dictionary/american-english/" + text);
+		providers.put("Macmillan", "http://www.macmillandictionary.com/dictionary/british/" + text);
+		providers.put("Collins", "http://www.collinsdictionary.com/dictionary/english/" + text);
+		providers.put("Merriam-Webster", "http://www.merriam-webster.com/dictionary/" + text);
+		providers.put("1tudien", "http://www.1tudien.com/?w=" + text);
+		providers.put("Vdict", String.format("http://vdict.com/%s,1,0,0.html", text));
+		providers.put("Google Search", String.format("http://www.google.com/search?q=%s", text));
+		providers.put("Wikipedia", String.format("https://%s.wikipedia.org/wiki/%s", from, text));
+		return providers;
+	}
+
+	public final static List<String> appDictionariesKeysTest = Arrays.asList(//
+			"pdf" //
+	//
+	);
+
+	public final static List<String> appDictionariesKeys = Arrays.asList(//
+			"search", //
+			"lingvo", //
+			"dict", //
+			"livio", //
+			"tran", //
+			"promt", //
+			"fora", //
+			"aard", //
+			"web"
+
+	//
+	);
+
+	public static synchronized AppState getInstance() {
+		return instance;
+	}
+
+	public static synchronized AppState get() {
+		return instance;
+	}
+
+	private boolean isLoaded = false;
+
+	public void load(final Context a) {
+		try {
+			if (!isLoaded) {
+				loadIn(a);
+				BookCSS.get().load(a);
+				DragingPopup.loadCache(a);
+				LOG.d("AppState Load lasta", lastA);
+			} else {
+				LOG.d("AppState is Loaded", lastA);
+			}
+			isLoaded = true;
+		} catch (Exception e) {
+			LOG.e(e);
+		}
+	}
+
+	public static float getAsFloatOrInt(SharedPreferences sp, String name, float init) {
+		try {
+			return sp.getFloat(name, init);
+		} catch (final Exception e) {
+			return sp.getInt(name, (int) init);
+		}
+	}
+
+	public void loadIn(final Context a) {
+		sp = a.getSharedPreferences(ExportSettingsManager.PREFIX_PDF, Context.MODE_PRIVATE);
+
+		isCropBookCovers = sp.getBoolean("isCropBookCovers", isCropBookCovers);
+		isBorderAndShadow = sp.getBoolean("isBorderAndShadow", isBorderAndShadow);
+		isBrowseImages = sp.getBoolean("isBrowseImages", isBrowseImages);
+
+		isEditMode = sp.getBoolean("isEditMode", isEditMode);
+		isBrowseGrid = sp.getBoolean("isBrowseGrid", isBrowseGrid);
+		isRecentGrid = sp.getBoolean("isRecentGrid", isRecentGrid);
+		isFullScreen = sp.getBoolean("isFullScrean", isFullScreen);
+        notificationOngoing = sp.getBoolean("notificationOngoing", notificationOngoing);
+        ttsReplacement = sp.getBoolean("ttsReplacement", ttsReplacement);
+		isShowToolBar = sp.getBoolean("isShowToolBar", isShowToolBar);
+		isWhiteTheme = sp.getBoolean("isWhiteTheme", isWhiteTheme);
+		orientation = sp.getInt("orientation", orientation);
+		mouseWheelSpeed = sp.getInt("mouseWheelSpeed", mouseWheelSpeed);
+		rotate = sp.getInt("rotate", rotate);
+		rotateViewPager = sp.getInt("rotateViewPager", rotateViewPager);
+		tapzoneSize = sp.getInt("tapzoneSize", tapzoneSize);
+		allocatedMemorySize = sp.getInt("allocatedMemorySize", allocatedMemorySize);
+
+		pagesInMemory = sp.getInt("pagesInMemory", pagesInMemory);
+
+		pageQuality = getAsFloatOrInt(sp, "pageQuality", pageQuality);
+		brightness = getAsFloatOrInt(sp, "brightness", brightness);
+        cropTolerance = getAsFloatOrInt(sp, "cropTolerance", cropTolerance);
+		ttsSpeed = getAsFloatOrInt(sp, "ttsSpeed", ttsSpeed);
+		ttsPitch = getAsFloatOrInt(sp, "ttsPitch", ttsPitch);
+
+		isSortAsc = sp.getBoolean("isSortAsc", isSortAsc);
+		isLocked = sp.getBoolean("isLocked", isLocked);
+		isReverseKeys = sp.getBoolean("isReverseKeys", isReverseKeys);
+		isUseVolumeKeys = sp.getBoolean("isUseVolumeKeys", isUseVolumeKeys);
+		isRememberMode = sp.getBoolean("isRememberMode", isRememberMode);
+
+		isCrop = sp.getBoolean("isCrop", isCrop);
+		isInvert = sp.getBoolean("isInvert", isInvert);
+
+		isLoopAutoplay = sp.getBoolean("isLoopAutoplay", isLoopAutoplay);
+		isBookCoverEffect = sp.getBoolean("isBookCoverEffect", isBookCoverEffect);
+		isMusicianMode = sp.getBoolean("isReverseTaps", isMusicianMode);
+
+		isShowBookmarks = sp.getBoolean("isShowBookmarks", isShowBookmarks);
+		isShowRecent = sp.getBoolean("isShowRecent", isShowRecent);
+		isAlwaysOpenAsMagazine = sp.getBoolean("isOlwaysOpenAsMagazine", isAlwaysOpenAsMagazine);
+
+		nextKeys = stringToKyes(sp.getString("nextKeys1", keyToString(NEXT_KEYS)));
+		prevKeys = stringToKyes(sp.getString("prevKeys1", keyToString(PREV_KEYS)));
+
+		cpTextLight = sp.getInt("cpTextLight", cpTextLight);
+		cpBGLight = sp.getInt("cpBGLight", cpBGLight);
+		cpTextBlack = sp.getInt("cpTextBlack", cpTextBlack);
+		cpBGBlack = sp.getInt("cpBGBlack", cpBGBlack);
+		editLineWidth = sp.getInt("editLineWidth", editLineWidth);
+
+		libraryMode = sp.getInt("libraryMode", libraryMode);
+		broseMode = sp.getInt("broseMode", broseMode);
+		recentMode = sp.getInt("recentMode", recentMode);
+		bookmarksMode = sp.getInt("bookmarksMode", bookmarksMode);
+		isRememberDictionary = sp.getBoolean("isRememberDictionary", isRememberDictionary);
+		// isExpirementalFeatures =
+		// sharedPreferences.getBoolean("isExpirementalFeatures",
+		// isExpirementalFeatures);
+
+		widgetItemsCount = sp.getInt("widgetItemsCount", widgetItemsCount);
+		widgetType = sp.getInt("widgetType", widgetType);
+		widgetSize = sp.getInt("widgetSize", widgetSize);
+
+		sortBy = sp.getInt("sortBy", SORT_BY_PATH);
+		searchPaths = sp.getString("searchPaths", searchPaths);
+		rememberDict = sp.getString("rememberDict", rememberDict);
+
+		fileToDelete = sp.getString("fileToDelete", fileToDelete);
+		lastA = sp.getString("lastA", lastA);
+		dirLastPath = sp.getString("dirLastPath", dirLastPath);
+		versionNew = sp.getString("versionNew", versionNew);
+
+		colorDayText = sp.getInt("colorDayText", colorDayText);
+		colorDayBg = sp.getInt("colorDayBg", colorDayBg);
+		colorNigthText = sp.getInt("colorNigthText", colorNigthText);
+		colorNigthBg = sp.getInt("colorNigthBg", colorNigthBg);
+
+		tintColor = sp.getInt("tintColor", tintColor);
+		userColor = sp.getInt("userColor", userColor);
+		fontSizeSp = sp.getInt("fontSizeSp", fontSizeSp);
+
+		doubleClickAction = sp.getInt("doubleClickAction", doubleClickAction);
+		inactivityTime = sp.getInt("inactivityTime", inactivityTime);
+
+		supportPDF = sp.getBoolean("supportPDF", supportPDF);
+		supportDJVU = sp.getBoolean("supportDJVU", supportDJVU);
+		supportEPUB = sp.getBoolean("supportEPUB", supportEPUB);
+		supportFB2 = sp.getBoolean("supportFB2", supportFB2);
+		supportTXT = sp.getBoolean("supportTXT", supportTXT);
+		supportRTF = sp.getBoolean("supportRTF", supportRTF);
+		supportMOBI = sp.getBoolean("supportMOBI", supportMOBI);
+		supportCBZ = sp.getBoolean("supportCBZ", supportCBZ);
+		supportZIP = sp.getBoolean("supportZIP", supportZIP);
+		supportOther = sp.getBoolean("supportOther", supportOther);
+		isPreText = sp.getBoolean("isPreText", isPreText);
+		isLineBreaksText = sp.getBoolean("isLineBreaksText", isLineBreaksText);
+
+		isShowDroid = sp.getBoolean("isShowDroid", isShowDroid);
+		isRTL = sp.getBoolean("isRTL", isRTL);
+		isCutRTL = sp.getBoolean("isCutRTL", isCutRTL);
+		isScrollAnimation = sp.getBoolean("isScrollAnimation", isScrollAnimation);
+		isCustomizeBgAndColors = sp.getBoolean("isCustomizeBgAndColors", isCustomizeBgAndColors);
+		isVibration = sp.getBoolean("isVibration", isVibration);
+		isLockPDF = sp.getBoolean("isLockPDF", isLockPDF);
+		selectingByLetters = sp.getBoolean("selectingByLetters", selectingByLetters);
+		isStarsInWidget = sp.getBoolean("isStarsInWidget", isStarsInWidget);
+
+		isIgnoreAnnotatations = sp.getBoolean("isIgnoreAnnotatations", isIgnoreAnnotatations);
+		isSaveAnnotatationsAutomatically = sp.getBoolean("isSaveAnnotatationsAutomatically",
+				isSaveAnnotatationsAutomatically);
+		isShowWhatIsNewDialog = sp.getBoolean("isShowWhatIsNewDialog", isShowWhatIsNewDialog);
+
+		imageFormat = sp.getString("imageFormat", imageFormat);
+		fromLang = sp.getString("fromLang", fromLang);
+		toLang = sp.getString("toLang", toLang);
+
+		customConfigColors = sp.getString("customConfigColors", customConfigColors);
+
+		installationDate = sp.getLong("installationDate", installationDate);
+
+		// custom bgs
+		isUseBGImageDay = sp.getBoolean("isUseBGImageDay", isUseBGImageDay);
+		isUseBGImageNight = sp.getBoolean("isUseBGImageNight", isUseBGImageNight);
+
+		bgImageDayPath = sp.getString("bgImageDayPath", bgImageDayPath);
+		bgImageNightPath = sp.getString("bgImageNightPath", bgImageNightPath);
+		texturePath = sp.getString("texturePath", texturePath);
+		ttsSpeakPath = sp.getString("ttsSpeakPath", ttsSpeakPath);
+
+		bgImageDayTransparency = sp.getInt("bgImageDayTransparency", bgImageDayTransparency);
+		bgImageNightTransparency = sp.getInt("bgImageNightTransparency", bgImageNightTransparency);
+
+		coverSmallSize = sp.getInt("coverSmallSize", coverSmallSize);
+		coverBigSize = sp.getInt("coverBigSize", coverBigSize);
+
+		tapZoneTop = sp.getInt("tapZoneTop", tapZoneTop);
+		tapZoneBottom = sp.getInt("tapZoneBottom", tapZoneBottom);
+		tapZoneLeft = sp.getInt("tapZoneLeft", tapZoneLeft);
+		tapZoneRight = sp.getInt("tapZoneRight", tapZoneRight);
+		nextScreenScrollBy = sp.getInt("nextScreenScrollBy", nextScreenScrollBy);
+
+		LOG.d("LOAD AppState", "coverSmallSize", coverSmallSize);
+	}
+
+	public static String keyToString(final List<Integer> list) {
+		Collections.sort(list);
+		final StringBuilder line = new StringBuilder();
+		for (final int value : list) {
+			line.append(value);
+			line.append(",");
+		}
+		return line.toString();
+	}
+
+	public static List<Integer> stringToKyes(final String list) {
+		final List<Integer> res = new ArrayList<Integer>();
+
+		for (final String value : list.split(",")) {
+			if (value != null && !value.trim().equals("")) {
+				res.add(new Integer(value.trim()));
+			}
+		}
+		Collections.sort(res);
+		return res;
+	}
+
+	public void save(final Context a) {
+		try {
+			saveIn(a);
+			BookCSS.get().save(a);
+			DragingPopup.saveCache(a);
+		} catch (Exception e) {
+			LOG.e(e);
+		}
+	}
+
+	public void saveIn(final Context a) {
+		if (a == null) {
+			return;
+		}
+		sp = a.getSharedPreferences(ExportSettingsManager.PREFIX_PDF, Context.MODE_PRIVATE);
+		final SharedPreferences.Editor editor = sp.edit();
+
+		try {
+			editor.putString("appName", AppsConfig.APP_NAME);
+			editor.putString("appVersion", Apps.getVersionName(a));
+		} catch (Exception e) {
+			LOG.e(e);
+		}
+
+		editor.putBoolean("isCropBookCovers", isCropBookCovers);
+		editor.putBoolean("isBorderAndShadow", isBorderAndShadow);
+		editor.putBoolean("isBrowseImages", isBrowseImages);
+		editor.putBoolean("isEditMode", isEditMode);
+		editor.putBoolean("isFullScrean", isFullScreen);
+        editor.putBoolean("notificationOngoing", notificationOngoing);
+        editor.putBoolean("ttsReplacement", ttsReplacement);
+		editor.putBoolean("isShowToolBar", isShowToolBar);
+		editor.putBoolean("isWhiteTheme", isWhiteTheme);
+		editor.putBoolean("isRememberMode", isRememberMode);
+		editor.putBoolean("isBrowseGrid", isBrowseGrid);
+		editor.putBoolean("isRecentGrid", isRecentGrid);
+
+		editor.putInt("orientation", orientation);
+		editor.putInt("mouseWheelSpeed", mouseWheelSpeed);
+		editor.putInt("rotate", rotate);
+		editor.putInt("rotateViewPager", rotateViewPager);
+		editor.putInt("tapzoneSize", tapzoneSize);
+		editor.putInt("allocatedMemorySize", allocatedMemorySize);
+
+		editor.putInt("pagesInMemory", pagesInMemory);
+		editor.putFloat("pageQuality", pageQuality);
+
+		editor.putInt("editLineWidth", editLineWidth);
+
+		editor.putBoolean("isSortAsc", isSortAsc);
+		editor.putBoolean("isReverseKeys", isReverseKeys);
+		editor.putBoolean("isUseVolumeKeys", isUseVolumeKeys);
+
+		editor.putBoolean("isCrop", isCrop);
+		editor.putBoolean("isInvert", isInvert);
+
+		editor.putBoolean("isLoopAutoplay", isLoopAutoplay);
+		editor.putBoolean("isBookCoverEffect", isBookCoverEffect);
+		editor.putInt("libraryMode", libraryMode);
+		editor.putInt("broseMode", broseMode);
+		editor.putInt("recentMode", recentMode);
+		editor.putInt("bookmarksMode", bookmarksMode);
+		editor.putBoolean("isReverseTaps", isMusicianMode);
+
+		editor.putBoolean("isShowBookmarks", isShowBookmarks);
+		editor.putBoolean("isShowRecent", isShowRecent);
+
+		editor.putBoolean("isOlwaysOpenAsMagazine", isAlwaysOpenAsMagazine);
+		// editor.putBoolean("isExpirementalFeatures", isExpirementalFeatures);
+		editor.putBoolean("isRememberDictionary", isRememberDictionary);
+
+		editor.putInt("sortBy", sortBy);
+		editor.putFloat("brightness", brightness);
+        editor.putFloat("cropTolerance", cropTolerance);
+		editor.putFloat("ttsSpeed", ttsSpeed);
+		editor.putFloat("ttsPitch", ttsPitch);
+
+		editor.putString("nextKeys1", keyToString(nextKeys));
+		editor.putString("prevKeys1", keyToString(prevKeys));
+
+		editor.putInt("cpTextLight", cpTextLight);
+		editor.putInt("cpBGLight", cpBGLight);
+		editor.putInt("cpTextBlack", cpTextBlack);
+		editor.putInt("cpBGBlack", cpBGBlack);
+		editor.putString("searchPaths", searchPaths);
+		editor.putInt("widgetItemsCount", widgetItemsCount);
+		editor.putInt("widgetType", widgetType);
+		editor.putInt("widgetSize", widgetSize);
+		editor.putString("rememberDict", rememberDict);
+		editor.putString("recurcive", null);
+		editor.putString("fileToDelete", fileToDelete);
+		editor.putString("lastA", lastA);
+		editor.putString("dirLastPath", dirLastPath);
+		editor.putString("versionNew", versionNew);
+
+		editor.putInt("colorDayBg", colorDayBg);
+		editor.putInt("colorDayText", colorDayText);
+
+		editor.putInt("colorNigthBg", colorNigthBg);
+		editor.putInt("colorNigthText", colorNigthText);
+
+		editor.putInt("tintColor", tintColor);
+		editor.putInt("userColor", userColor);
+		editor.putInt("fontSizeSp", fontSizeSp);
+		editor.putInt("doubleClickAction", doubleClickAction);
+		editor.putInt("inactivityTime", inactivityTime);
+
+		editor.putBoolean("supportPDF", supportPDF);
+		editor.putBoolean("supportDJVU", supportDJVU);
+		editor.putBoolean("supportEPUB", supportEPUB);
+		editor.putBoolean("supportFB2", supportFB2);
+		editor.putBoolean("supportTXT", supportTXT);
+		editor.putBoolean("supportMOBI", supportMOBI);
+		editor.putBoolean("supportCBZ", supportCBZ);
+		editor.putBoolean("supportRTF", supportRTF);
+		editor.putBoolean("supportZIP", supportZIP);
+		editor.putBoolean("supportOther", supportOther);
+
+		editor.putBoolean("isPreText", isPreText);
+		editor.putBoolean("isLineBreaksText", isLineBreaksText);
+		editor.putBoolean("isShowDroid", isShowDroid);
+		editor.putBoolean("isRTL", isRTL);
+		editor.putBoolean("isCutRTL", isCutRTL);
+		editor.putBoolean("isScrollAnimation", isScrollAnimation);
+		editor.putBoolean("isCustomizeBgAndColors", isCustomizeBgAndColors);
+		editor.putBoolean("isVibration", isVibration);
+		editor.putBoolean("isLockPDF", isLockPDF);
+		editor.putBoolean("selectingByLetters", selectingByLetters);
+		editor.putBoolean("isStarsInWidget", isStarsInWidget);
+		editor.putBoolean("isIgnoreAnnotatations", isIgnoreAnnotatations);
+		editor.putBoolean("isSaveAnnotatationsAutomatically", isSaveAnnotatationsAutomatically);
+		editor.putBoolean("isShowWhatIsNewDialog", isShowWhatIsNewDialog);
+
+		editor.putString("imageFormat", imageFormat);
+
+		editor.putString("fromLang", fromLang);
+		editor.putString("toLang", toLang);
+		editor.putString("customConfigColors", customConfigColors);
+		editor.putLong("installationDate", installationDate);
+
+		// custom bgs
+		editor.putBoolean("isUseBGImageDay", isUseBGImageDay);
+		editor.putBoolean("isUseBGImageNight", isUseBGImageNight);
+
+		editor.putString("bgImageDayPath", bgImageDayPath);
+		editor.putString("bgImageNightPath", bgImageNightPath);
+		editor.putString("texturePath", texturePath);
+		editor.putString("ttsSpeakPath", ttsSpeakPath);
+
+		editor.putInt("bgImageDayTransparency", bgImageDayTransparency);
+		editor.putInt("bgImageNightTransparency", bgImageNightTransparency);
+
+		editor.putInt("coverSmallSize", coverSmallSize);
+		editor.putInt("coverBigSize", coverBigSize);
+
+		editor.putInt("tapZoneTop", tapZoneTop);
+		editor.putInt("tapZoneBottom", tapZoneBottom);
+		editor.putInt("tapZoneLeft", tapZoneLeft);
+		editor.putInt("tapZoneRight", tapZoneRight);
+		editor.putInt("nextScreenScrollBy", nextScreenScrollBy);
+
+		editor.commit();
+
+		LOG.d("Save AppState", "coverSmallSize", coverSmallSize);
+		LOG.d("AppState Save lasta", lastA, a.getClass());
+	}
+
+	public boolean isEditMode() {
+		return isEditMode;
+	}
+
+	public boolean isReadMode() {
+		return !isEditMode;
+	}
+
+	public void setEditMode(final boolean isEditMode) {
+		this.isEditMode = isEditMode;
+	}
+
+	public boolean isFullScrean() {
+		return isFullScreen;
+	}
+
+	public void setFullScrean(final boolean isFullScrean) {
+		this.isFullScreen = isFullScrean;
+	}
+
+
+}

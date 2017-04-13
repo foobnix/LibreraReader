@@ -1,0 +1,8 @@
+
+* PDF, DjVu: zoom in - zoomar ut kan konfigureras för dubbeltryck 
+* TTS rekord röst till fil (.wav) 
+* TTS sägerbok är över 
+* Lade rulla med 25%, 50%, 75% av skärmhöjd 
+* Förbättrad algoritm för automatisk sida beskärning 
+* Tap zonen burk 0% storlek 
+* Förbättrad läsning html

@@ -1,0 +1,8 @@
+
+* PDF, DJVU: inzoomen - uitzoomen kan worden geconfigureerd voor dubbele tik 
+* TTS spraak opnemen om het bestand (.wav) 
+* TTS zegtboek is meer dan 
+* Toegevoegd scroll met 25%, 50%, 75% van de schermhoogte 
+* Verbeterde algoritme voor de automatische pagina bijsnijden 
+* Tap zone kan 0% van de grootte 
+* Verbeterde lezen html

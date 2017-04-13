@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/parentRoot"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <FrameLayout
+        android:id="@+id/documentView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="40dip"
+        android:orientation="horizontal" >
+
+        <com.foobnix.pdf.search.view.BgClickbaleView
+            android:id="@+id/line1"
+            android:layout_width="match_parent"
+            android:layout_height="220dip"
+            android:layout_weight="2" />
+
+        <View
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="3" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dip"
+            android:layout_marginRight="5dip"
+            android:layout_weight="3"
+            android:orientation="vertical"
+            android:visibility="gone" >
+
+            <com.foobnix.pdf.search.view.BgClickbaleView
+                android:id="@+id/lineClose"
+                android:layout_width="match_parent"
+                android:layout_height="105dip"
+                android:layout_weight="0"
+                app:text="x" />
+
+            <com.foobnix.pdf.search.view.BgClickbaleView
+                android:id="@+id/lineFirst"
+                android:layout_width="match_parent"
+                android:layout_height="105dip"
+                android:layout_marginTop="10dip"
+                android:layout_weight="0"
+                app:text="1" />
+        </LinearLayout>
+
+        <com.foobnix.pdf.search.view.BgClickbaleView
+            android:id="@+id/line2"
+            android:layout_width="match_parent"
+            android:layout_height="220dip"
+            android:layout_weight="2" />
+    </LinearLayout>
+
+    <com.foobnix.pdf.info.view.DrawView
+        android:id="@+id/drawView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone" />
+
+    <include
+        android:id="@+id/document_title_bar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        layout="@layout/document_title_bar"
+        android:elevation="2dip" />
+
+    <include
+        android:id="@+id/menuLayout"
+        android:layout_width="match_parent"
+        android:layout_height="?android:attr/actionBarSize"
+        android:layout_below="@+id/document_title_bar"
+        android:layout_centerHorizontal="true"
+        layout="@layout/document_title_buttons"
+        android:clickable="true" />
+
+    <FrameLayout
+        android:id="@+id/adFrame"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/menuLayout"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="10dip" />
+
+    <include
+        android:id="@+id/includeEditPanel"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/adFrame"
+        android:layout_margin="10dip"
+        layout="@layout/edit_panel"
+        android:visibility="gone" />
+
+    <include
+        android:id="@+id/seekSpeedLayot"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/speed_size"
+        android:layout_above="@+id/document_footer"
+        layout="@layout/document_speed_bar" />
+
+    <include
+        android:id="@+id/document_footer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        layout="@layout/document_footer"
+        android:clickable="true" />
+
+    <FrameLayout
+        android:id="@+id/anchor"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="false"
+        android:minHeight="10dip"
+        android:minWidth="10dip"
+        android:visibility="gone" />
+
+</RelativeLayout>

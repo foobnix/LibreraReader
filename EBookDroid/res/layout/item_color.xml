@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="35dip"
+    android:layout_height="35dip"
+    android:background="@drawable/bg_border_1_lines"
+    android:padding="2dip" >
+
+    <ImageView
+        android:padding="4dip"
+        android:id="@+id/itColor"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:textSize="24sp"
+        android:background="#ff0000" />
+
+</FrameLayout>

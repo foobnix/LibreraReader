@@ -1,0 +1,8 @@
+
+* PDF, DJVU: powiększenie - pomniejszenie może być skonfigurowany do podwójnego dotknięcia 
+* głos TTS rekord do pliku (.wav) 
+* TTS mówi „książka jest skończona” 
+* Dodano przewijania o 25%, 50%, 75% wysokości ekranu 
+* Poprawiono algorytm automatycznego strona kadrowanie 
+* Tap zone może 0% rozmiar 
+* Improved czytania html
