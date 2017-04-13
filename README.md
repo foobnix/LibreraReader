@@ -53,15 +53,15 @@ MY=/home/ivan-dev/git/pdf4
 4) To build PDF Classic
 ./pdf4/Builder/all-classic.sh
 
-## Libri depend of
+## Lirbi depend on
 
 MuPDF - http://www.mupdf.com
-EbookDroid
 
+EbookDroid
 djvulibre
 hpx
-libmobi
 
+libmobi
 commons-compress
 eventbus
 greendao
@@ -73,5 +73,5 @@ Lirbi is distributed under the GPL
 
 ## License
 
-See the [LICENSE](LICENSE.md) file for license rights and limitations (GPL v.3).
+See the [LICENSE](LICENSE.txt) file for license rights and limitations (GPL v.3).
 
