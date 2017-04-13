@@ -1,4 +1,4 @@
-screens=/home/ivan-dev/git/pdf4/Builder/screens/all
+screens=/home/ivan-dev/git/LirbiReader/Builder/screens/all
 
 for lang in en
 do

@@ -1,6 +1,6 @@
 #!/bin/bash
 
-SOURCE=/home/ivan-dev/git/pdf4/EBookDroid/res
+SOURCE=/home/ivan-dev/git/LirbiReader/EBookDroid/res
 DEST=/home/ivan-dev/Dropbox/FREE_PDF_APK/testing/languages
 
 

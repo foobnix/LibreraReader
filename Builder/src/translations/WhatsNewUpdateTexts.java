@@ -8,13 +8,13 @@ import java.util.List;
 
 public class WhatsNewUpdateTexts {
 
-    private static final String RECENT_PATH = "/home/ivan-dev/git/pdf4/EbookaPDF/assets/whatsnew/";
+    private static final String RECENT_PATH = "/home/ivan-dev/git/LirbiReader/EbookaPDF/assets/whatsnew/";
 
     public static void main(String[] args) throws IOException {
-        final List<String> asList = SyncTranslations.getAllLangCodes("/home/ivan-dev/git/pdf4/EBookDroid/res");
+        final List<String> asList = SyncTranslations.getAllLangCodes("/home/ivan-dev/git/LirbiReader/EBookDroid/res");
          //final List<String> asList = Arrays.asList("ru");
 
-        String recentEN = new String(Files.readAllBytes(Paths.get("/home/ivan-dev/git/pdf4/EbookaPDF/assets/recent.txt")));
+        String recentEN = new String(Files.readAllBytes(Paths.get("/home/ivan-dev/git/LirbiReader/EbookaPDF/assets/recent.txt")));
 
         for (String ex : asList) {
             String outRecnet = RECENT_PATH + ex + ".txt";

@@ -1,7 +1,4 @@
-MY=/home/ivan-dev/git/pdf4
-
-rm -rf ../cpu_all/jni
-cp -rR  ../Builder/jni ../cpu_all/jni
+MY=/home/ivan-dev/git/LirbiReader
 
 tar -cvzhf source.tar.gz \
 --exclude=bin \

@@ -1,4 +1,4 @@
-screens=/home/ivan-dev/git/pdf4/Builder/screens/banners
+screens=/home/ivan-dev/git/LirbiReader/Builder/screens/banners
 rm -r $screens/*
 for lang in en ru it fr de ja zh tr pt es ar fa 
 do

@@ -1,5 +1,5 @@
 #1080x1920-420
-screens=/home/ivan-dev/git/pdf4/Builder/screens/phone
+screens=/home/ivan-dev/git/LirbiReader/Builder/screens/phone
 rm -r $screens/*
 for lang in en ar de es fa fr hi it ja ko nl pl pt ro ru sv tr uk vi zh
 do
