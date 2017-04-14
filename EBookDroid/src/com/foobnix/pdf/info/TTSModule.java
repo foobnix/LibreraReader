@@ -147,24 +147,43 @@ public final class TTSModule {
         play(readingText);
     }
 
-    public void bookIsOver() {
-        Vibrator v = (Vibrator) controller.getActivity().getSystemService(Context.VIBRATOR_SERVICE);
-        if (AppState.get().isVibration) {
-            v.vibrate(1000);
+    public static String replaceHTML(String pageHTML) {
+        if (true) {
+            // return pageHTML;
         }
+        pageHTML = pageHTML.replace("<b>", " ").replace("</b>", " ").replace("<i>", " ").replace("</i>", " ");
+        pageHTML = pageHTML.replace("<br/>", " ");
+        pageHTML = pageHTML.replace("&nbsp;", " ");
+        // pageHTML = pageHTML.trim();
+        pageHTML = pageHTML.replaceAll("<end/>$", " ").replace("<end/>", ".");
+        return pageHTML;
+    }
 
-        controller.handler.postDelayed(new Runnable() {
-
-            @Override
-            public void run() {
-
-                String overString = controller.getString(R.string.the_book_is_over);
-                LOG.d("overString", ". . . . " + overString);
-                play(overString, true);
-
-                AppState.getInstance().ttsSkeakToFile = false;
+    public void bookIsOver() {
+        try {
+            if (controller == null || controller.getActivity() == null) {
+                return;
             }
-        }, 2000);
+            Vibrator v = (Vibrator) controller.getActivity().getSystemService(Context.VIBRATOR_SERVICE);
+            if (AppState.get().isVibration) {
+                v.vibrate(1000);
+            }
+
+            controller.handler.postDelayed(new Runnable() {
+
+                @Override
+                public void run() {
+
+                    String overString = controller.getString(R.string.the_book_is_over);
+                    LOG.d("overString", ". . . . " + overString);
+                    play(overString, true);
+
+                    AppState.getInstance().ttsSkeakToFile = false;
+                }
+            }, 2000);
+        } catch (Exception e) {
+            LOG.e(e);
+        }
 
         // stop();
     }
@@ -228,9 +247,6 @@ public final class TTSModule {
         }
         text = text.replace("?", "?.");
         text = text.replace("!", "!.");
-
-        text = text.replace("<b>", "").replace("</b>", "").replace("<i>", "").replace("</i>", "");
-        text = text.replace("<br/>", " ").replace("&nbsp;", "");
 
         if (false) {
             text = text.replace("...", ". .");

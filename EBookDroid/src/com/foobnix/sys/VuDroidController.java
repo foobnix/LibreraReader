@@ -315,6 +315,9 @@ public class VuDroidController extends DocumentController {
     @Override
     public String getTextForPage(int page) {
         String pageHTML = ctr.getDecodeService().getPageHTML(page);
+
+        pageHTML = TTSModule.replaceHTML(pageHTML);
+
         return pageHTML;
     }
 

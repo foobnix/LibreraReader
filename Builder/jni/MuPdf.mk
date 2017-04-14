@@ -255,24 +255,3 @@ LOCAL_SRC_FILES += \
 	$(MUPDF_PATH)/thirdparty/zlib/zutil.c \
 
 include $(BUILD_STATIC_LIBRARY)
-
-# --- Build the final JNI shared library ---
-
-include $(CLEAR_VARS)
-LOCAL_ARM_MODE := $(MY_ARM_MODE)
-LOCAL_MODULE := mupdf_java
-
-LOCAL_C_INCLUDES := \
-	$(MUPDF_PATH)/include
-
-LOCAL_CFLAGS := \
-	-DHAVE_ANDROID
-
-LOCAL_SRC_FILES := mupdf_native.c
-
-LOCAL_STATIC_LIBRARIES := mupdf_core mupdf_thirdparty
-LOCAL_LDLIBS := -ljnigraphics -llog -lm
-LOCAL_LDFLAGS := -Wl,--gc-sections
-
-#include $(BUILD_SHARED_LIBRARY)
-include $(BUILD_STATIC_LIBRARY)

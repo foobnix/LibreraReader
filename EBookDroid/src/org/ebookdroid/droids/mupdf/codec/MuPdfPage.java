@@ -248,7 +248,8 @@ public class MuPdfPage extends AbstractCodecPage {
         try {
             TempHolder.lock.lock();
             byte[] pageAsHtml = getPageAsHtml(docHandle, pageHandle);
-            return new String(pageAsHtml);
+            String string = new String(pageAsHtml);
+            return string;
         } catch (Exception e) {
             LOG.e(e);
             return "";

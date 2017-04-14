@@ -221,7 +221,9 @@ public abstract class DocumentControllerHorizontalView extends DocumentControlle
 
     @Override
     public String getTextForPage(int page) {
-        return generadDocInterface.getPageHTML(getBookPath(), page);
+        String pageHTML = generadDocInterface.getPageHTML(getBookPath(), page);
+        pageHTML = TTSModule.replaceHTML(pageHTML);
+        return pageHTML;
     }
 
 

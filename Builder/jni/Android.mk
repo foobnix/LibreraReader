@@ -31,7 +31,7 @@ LOCAL_SRC_FILES := \
 	mupdfdroidbridge1.c \
 	jni_concurrent.c
 
-LOCAL_STATIC_LIBRARIES := djvu hqx mupdf_java 
+LOCAL_STATIC_LIBRARIES := djvu hqx mupdf_core mupdf_thirdparty 
 LOCAL_LDLIBS := -lm -llog -ljnigraphics
 
 include $(BUILD_SHARED_LIBRARY)
