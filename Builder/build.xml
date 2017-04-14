@@ -199,9 +199,7 @@
 		<subant target="clean">
 			<fileset dir="../EbookaPDF/" includes="build.xml" />
 		</subant>
-		<subant target="clean">
-			<fileset dir="../LibMobi/" includes="build.xml" />
-		</subant>
+		
 		
 		<subant target="clean">
 			<fileset dir="../google-play-services_lib/" includes="build.xml" />

@@ -8,12 +8,13 @@ rm -rf $DEST/*
 
 
 for item in $SOURCE/values-*; do
- NAME=$(basename $item)
- ln -s $SOURCE/$NAME $DEST/$NAME
+	 NAME=$(basename $item)
+	echo $SOURCE/$NAME $DEST/$NAME
+	cp -rf $SOURCE/$NAME $DEST/$NAME
 done
-ln -s $SOURCE/values/strings.xml $DEST/values-English.xml
+cp $SOURCE/values/strings.xml $DEST/values-English.xml
 
-rm $DEST/values-large
-rm $DEST/values-xlarge
-rm $DEST/values-v14
-rm $DEST/values-v21
+rm -r $DEST/values-large
+rm -r $DEST/values-xlarge
+rm -r $DEST/values-v14
+rm -r $DEST/values-v21
