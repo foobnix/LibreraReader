@@ -4,5 +4,8 @@
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry exported="true" kind="con" path="com.android.ide.eclipse.adt.LIBRARIES"/>
 	<classpathentry exported="true" kind="con" path="com.android.ide.eclipse.adt.DEPENDENCIES"/>
+	<classpathentry kind="lib" path="libs/greendao-3.2.0.jar"/>
+	<classpathentry kind="lib" path="libs/greendao-api-3.2.0.jar"/>
+	<classpathentry kind="lib" path="libs/greendao-generator-3.2.0.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
