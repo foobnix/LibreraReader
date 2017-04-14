@@ -137,6 +137,8 @@ public class FileMetaCore {
         fileMeta.setGenre(meta.getGenre());
         fileMeta.setAnnotation(meta.getAnnotation());
         fileMeta.setSIndex(meta.getsIndex());
+        fileMeta.setChild(ExtUtils.getFileExtension(meta.getUnzipPath()));
+
     }
 
     public void upadteBasicMeta(FileMeta fileMeta, File file) {

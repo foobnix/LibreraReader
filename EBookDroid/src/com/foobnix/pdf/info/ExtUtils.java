@@ -294,6 +294,9 @@ public class ExtUtils {
     }
 
     public static String getFileExtension(String name) {
+        if (name == null) {
+            return "";
+        }
         try {
             return name.substring(name.lastIndexOf(".") + 1);
         } catch (Exception e) {

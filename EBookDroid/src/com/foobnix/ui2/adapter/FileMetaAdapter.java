@@ -267,7 +267,7 @@ public class FileMetaAdapter extends AppRecycleAdapter<FileMeta, RecyclerView.Vi
         });
 
         holder.path.setText(fileMeta.getPathTxt());
-        holder.ext.setText(fileMeta.getExt());
+        holder.ext.setText(fileMeta.getChild());
         holder.size.setText(fileMeta.getSizeTxt());
         holder.date.setText(fileMeta.getDateTxt());
 
