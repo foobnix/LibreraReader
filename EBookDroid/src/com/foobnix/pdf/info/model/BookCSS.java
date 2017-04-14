@@ -87,6 +87,7 @@ public class BookCSS {
         italicFont = sp.getString("italicFont", italicFont);
         headersFont = sp.getString("headersFont", headersFont);
 
+        textAlign = sp.getInt("textAlign", textAlign);
         marginTop = sp.getInt("marginTop", marginTop);
         marginRight = sp.getInt("marginRight", marginRight);
         marginBottom = sp.getInt("marginBottom", marginBottom);
@@ -153,6 +154,7 @@ public class BookCSS {
         edit.putString("boldItalicFont", boldItalicFont);
         edit.putString("headersFont", headersFont);
 
+        edit.putInt("textAlign", textAlign);
         edit.putInt("marginTop", marginTop);
         edit.putInt("marginRight", marginRight);
         edit.putInt("marginBottom", marginBottom);
