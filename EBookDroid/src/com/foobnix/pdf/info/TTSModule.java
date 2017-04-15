@@ -154,9 +154,9 @@ public final class TTSModule {
         pageHTML = pageHTML.replace("<b>", " ").replace("</b>", " ").replace("<i>", " ").replace("</i>", " ");
         pageHTML = pageHTML.replace("<br/>", " ");
         pageHTML = pageHTML.replace("<p>", " ").replace("</p>", ". ");
-        pageHTML = pageHTML.replace(".", ". ");
         pageHTML = pageHTML.replace("&nbsp;", " ");
         pageHTML = pageHTML.replaceAll("<end/>$", " ").replace("<end/>", ".");
+        pageHTML = pageHTML.replace(".", ". ").replace(" .", ".").replace(" .", ".");
         return pageHTML;
     }
 

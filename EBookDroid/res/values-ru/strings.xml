@@ -53,8 +53,8 @@
    <string name="msg_search_text_on_page">Поиск на странице</string>
    <string name="msg_unexpected_error">Непредвиденная ошибка</string>
    <string name="msg_wrong_password">Неверный пароль</string>
-   <string name="next">Следующая</string>
-   <string name="next_keys">След. клавиши:</string>
+   <string name="next">След. стр.</string>
+   <string name="next_keys">След. клавиши :</string>
    <string name="no_results_found_">Увы, ничего не найдено</string>
    <string name="off">Выкл</string>
    <string name="on">Вкл</string>
@@ -196,7 +196,7 @@
    <string name="advanced_settings">Расширенные настройки</string>
    <string name="more">Больше</string>
    <string name="font_name">Шрифт</string>
-   <string name="tap_zone_size">Размер зон нажатий</string>
+   <string name="tap_zone_size">Размер зон листания</string>
    <string name="size_of_allocated_memory">Размер выделенной памяти</string>
    <string name="display_settings">Настройки отображения</string>
    <string name="margin_width">Ширина отступов</string>
@@ -226,7 +226,7 @@
    <string name="highlight_of_text">Выделение текста</string>
    <string name="underline_of_text">Подчеркивание текста</string>
    <string name="strikethrough_of_text">Зачеркивание текста</string>
-   <string name="selecting_text_by_letters">Выделять текст по буквам</string>
+   <string name="selecting_text_by_letters">Выделять текст по буквам (для иероглиф. языков)</string>
    <string name="color">Цвет</string>
    <string name="image">Изображение</string>
    <string name="transparency">Прозрачность</string>
@@ -234,7 +234,7 @@
    <string name="book_settings">Настройки чтения</string>
    <string name="back">Назад</string>
    <string name="open_web_page">Открыть веб-страницу</string>
-   <string name="split_in_half_right_page_then_left_page_rtl_mode_">При разделении пополам сначала показывать правую страницу, а затем левую (режим RTL)</string>
+   <string name="split_in_half_right_page_then_left_page_rtl_mode_">При делении на части сначала показывать правую страницу, а затем левую (режим RTL)</string>
    <string name="starred">Избранные</string>
    <string name="clear_all_recent">Очистить все недавние</string>
    <string name="clear_all_bookmars">Очистить все закладки</string>
@@ -272,7 +272,7 @@
    <string name="by_date">Дата добавления</string>
    <string name="by_size">Размер</string>
    <string name="read_a_book">Читать книгу</string>
-   <string name="screen_turn_off_after_inactivity_minutes_">Время перед гашением экрана (мин.)</string>
+   <string name="screen_turn_off_after_inactivity_minutes_">Время перед гашением экрана (в минутах)</string>
    <string name="all_bookmarks">Все закладки</string>
    <string name="bookmark_by_date">По дате</string>
    <string name="bookmark_by_book">По книге</string>
@@ -288,7 +288,7 @@
    <string name="top_side">Верхняя сторона</string>
    <string name="bottom_side">Нижняя сторона</string>
    <string name="direction_of_reading_rtl_">Направление чтения (RTL)</string>
-   <string name="customize_tap_zones">Настройка зон нажатий</string>
+   <string name="customize_tap_zones">Настройка зон листания</string>
    <string name="right_side">Правая сторона</string>
    <string name="text_without_line_break">Текст без разрыва строки</string>
    <string name="apply_a_new_screen_orientation_">Применить новую ориентацию экрана?</string>
@@ -312,14 +312,14 @@
    <string name="screenshot18">Все книжные жанры, имеющиеся в библиотеке</string>
    <string name="screenshot19">Легкий поиск книг внутри библиотеки</string>
    <string name="styles">Стили</string>
-   <string name="document_styles">Стили документа</string>
+   <string name="document_styles">Встроенные стили</string>
    <string name="user_styles">Пользовательские стили</string>
    <string name="archive">Архив</string>
    <string name="beta_version">Бета-версия</string>
-   <string name="of_screen">Экрана</string>
-   <string name="ongoing_notification">Постоянное уведомление</string>
-   <string name="apply_text_replacement_dictionary1">Применить словарь замены текста</string>
-   <string name="speak_into_file_wav_">Говорите в файл (.wav)</string>
-   <string name="the_book_is_over">Книга закончена</string>
-   <string name="zoom_in_zoom_out">Увеличение, уменьшение масштаба</string>
+   <string name="of_screen">экрана</string>
+   <string name="ongoing_notification">Закрепить уведомление в шторке</string>
+   <string name="apply_text_replacement_dictionary1">Применить словарь замен</string>
+   <string name="speak_into_file_wav_">Начитать в файл (.wav)</string>
+   <string name="the_book_is_over">Книга прочитана</string>
+   <string name="zoom_in_zoom_out">Увеличение/уменьшение масштаба</string>
 </resources>
