@@ -322,4 +322,5 @@
    <string name="speak_into_file_wav_">Habla en un archivo (wav)</string>
    <string name="the_book_is_over">El libro ha terminado</string>
    <string name="zoom_in_zoom_out">Ampliar reducir</string>
+   <string name="automatic_hyphenation">La división automática</string>
 </resources>

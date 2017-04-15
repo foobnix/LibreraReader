@@ -322,4 +322,5 @@
    <string name="speak_into_file_wav_">Vorbiți în fișier (wav)</string>
    <string name="the_book_is_over">Cartea este de peste</string>
    <string name="zoom_in_zoom_out">Zoom in, zoom out</string>
+   <string name="automatic_hyphenation">Automată despărțirea în silabe</string>
 </resources>

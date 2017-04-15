@@ -316,10 +316,11 @@
    <string name="user_styles">Пользовательские стили</string>
    <string name="archive">Архив</string>
    <string name="beta_version">Бета-версия</string>
-   <string name="of_screen">экрана</string>
+   <string name="of_screen">Экрана</string>
    <string name="ongoing_notification">Закрепить уведомление в шторке</string>
    <string name="apply_text_replacement_dictionary1">Применить словарь замен</string>
    <string name="speak_into_file_wav_">Начитать в файл (.wav)</string>
    <string name="the_book_is_over">Книга прочитана</string>
    <string name="zoom_in_zoom_out">Увеличение/уменьшение масштаба</string>
+   <string name="automatic_hyphenation">Автоматическая расстановка переносов</string>
 </resources>

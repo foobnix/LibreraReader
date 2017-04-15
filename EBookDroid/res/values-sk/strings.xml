@@ -322,4 +322,5 @@
    <string name="speak_into_file_wav_">Hovorte do súboru (wav)</string>
    <string name="the_book_is_over">Kniha je u konca</string>
    <string name="zoom_in_zoom_out">Priblíženie, oddialenie</string>
+   <string name="automatic_hyphenation">Automatické delenie slov</string>
 </resources>

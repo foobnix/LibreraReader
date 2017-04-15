@@ -322,4 +322,5 @@
    <string name="speak_into_file_wav_">صحبت به فایل های (WAV)</string>
    <string name="the_book_is_over">این کتاب به پایان رسیده است</string>
    <string name="zoom_in_zoom_out">زوم در، زوم کردن</string>
+   <string name="automatic_hyphenation">فاصلهگذاری اتوماتیک</string>
 </resources>

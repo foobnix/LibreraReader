@@ -322,4 +322,5 @@
    <string name="speak_into_file_wav_">Spreek in bestand (wav)</string>
    <string name="the_book_is_over">Het boek is voorbij</string>
    <string name="zoom_in_zoom_out">Inzoomen, uitzoomen</string>
+   <string name="automatic_hyphenation">Automatische woordafbreking</string>
 </resources>

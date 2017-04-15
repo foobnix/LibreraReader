@@ -322,4 +322,5 @@
    <string name="speak_into_file_wav_">फ़ाइल में बोलें (wav)</string>
    <string name="the_book_is_over">किताब खत्म हो गया है</string>
    <string name="zoom_in_zoom_out">ज़ूम इन ज़ूम आउट</string>
+   <string name="automatic_hyphenation">स्वत: हायफ़नेशन</string>
 </resources>

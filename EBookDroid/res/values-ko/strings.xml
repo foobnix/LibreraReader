@@ -322,4 +322,5 @@
    <string name="speak_into_file_wav_">파일에 대고 말 (WAV)</string>
    <string name="the_book_is_over">이 책은 끝났다</string>
    <string name="zoom_in_zoom_out">축소, 확대</string>
+   <string name="automatic_hyphenation">자동 하이픈</string>
 </resources>

@@ -3,6 +3,7 @@ package com.foobnix.pdf.info.view;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -25,6 +26,7 @@ import com.foobnix.android.utils.TxtUtils;
 import com.foobnix.android.utils.Views;
 import com.foobnix.dao2.FileMeta;
 import com.foobnix.ext.EpubExtractor;
+import com.foobnix.hypen.HyphenPattern;
 import com.foobnix.pdf.info.AppSharedPreferences;
 import com.foobnix.pdf.info.ExtUtils;
 import com.foobnix.pdf.info.IMG;
@@ -1954,7 +1956,7 @@ public class DragingDialogs {
 
                 List<String> doubleTapNames = Arrays.asList(//
                         controller.getString(R.string.db_auto_scroll), //
-                        controller.getString(R.string.db_auto_alignemnt),// 
+                        controller.getString(R.string.db_auto_alignemnt), //
                         controller.getString(R.string.db_do_nothing), //
                         controller.getString(R.string.zoom_in_zoom_out));
 
@@ -1973,7 +1975,6 @@ public class DragingDialogs {
                     @Override
                     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                         AppState.getInstance().doubleClickAction = doubleTapIDS.get(position);
-
 
                         try {
                             TextView textView = (TextView) doubleTapSpinner.getChildAt(0);
@@ -2187,18 +2188,14 @@ public class DragingDialogs {
         return dialog;
     };
 
-    static boolean isBookSettingsChanged = false;
-
     public static DragingPopup moreBookSettings(final FrameLayout anchor, final DocumentController controller, final Runnable onRefresh, final Runnable updateUIRefresh) {
-        final int textAlignInit = BookCSS.get().textAlign;
+        final int initCssHash = BookCSS.get().toCssString().hashCode();
 
         DragingPopup dialog = new DragingPopup(R.string.more_reading_settings, anchor, 330, 520) {
 
             @Override
             public View getContentView(final LayoutInflater inflater) {
                 View inflate = inflater.inflate(R.layout.dialog_book_style_pref, null, false);
-
-                isBookSettingsChanged = false;
 
                 TxtUtils.underlineTextView(((TextView) inflate.findViewById(R.id.onBack))).setOnClickListener(new OnClickListener() {
 
@@ -2216,7 +2213,6 @@ public class DragingDialogs {
                     public boolean onResultRecive(int result) {
                         fontWeight.setValueText("" + (result * 100));
                         BookCSS.get().fontWeight = result * 100;
-                        isBookSettingsChanged = true;
                         return false;
                     }
                 });
@@ -2229,7 +2225,6 @@ public class DragingDialogs {
                     @Override
                     public boolean onResultRecive(int result) {
                         BookCSS.get().lineHeight = result;
-                        isBookSettingsChanged = true;
                         return false;
                     }
                 });
@@ -2240,7 +2235,6 @@ public class DragingDialogs {
                     @Override
                     public boolean onResultRecive(int result) {
                         BookCSS.get().textIndent = result;
-                        isBookSettingsChanged = true;
                         return false;
                     }
                 });
@@ -2257,7 +2251,6 @@ public class DragingDialogs {
                     @Override
                     public boolean onResultRecive(int result) {
                         BookCSS.get().emptyLine = result;
-                        isBookSettingsChanged = true;
                         return false;
                     }
                 });
@@ -2270,7 +2263,6 @@ public class DragingDialogs {
                     @Override
                     public boolean onResultRecive(int result) {
                         BookCSS.get().marginTop = result;
-                        isBookSettingsChanged = true;
                         return false;
                     }
                 });
@@ -2282,7 +2274,6 @@ public class DragingDialogs {
                     @Override
                     public boolean onResultRecive(int result) {
                         BookCSS.get().marginBottom = result;
-                        isBookSettingsChanged = true;
                         return false;
                     }
                 });
@@ -2294,7 +2285,6 @@ public class DragingDialogs {
                     @Override
                     public boolean onResultRecive(int result) {
                         BookCSS.get().marginLeft = result;
-                        isBookSettingsChanged = true;
                         return false;
                     }
                 });
@@ -2305,7 +2295,6 @@ public class DragingDialogs {
 
                     @Override
                     public boolean onResultRecive(int result) {
-                        isBookSettingsChanged = true;
                         BookCSS.get().marginRight = result;
                         return false;
                     }
@@ -2333,6 +2322,8 @@ public class DragingDialogs {
                     }
 
                 });
+
+                /// aling
 
                 final Map<Integer, String> alignConst = new LinkedHashMap<Integer, String>();
                 alignConst.put(BookCSS.TEXT_ALIGN_JUSTIFY, controller.getString(R.string.width));
@@ -2374,6 +2365,66 @@ public class DragingDialogs {
 
                     }
                 });
+                // hypens
+                boolean isSupportHypens = BookType.TXT.is(controller.getCurrentBook().getPath()) || //
+                BookType.FB2.is(controller.getCurrentBook().getPath()) || //
+                BookType.HTML.is(controller.getCurrentBook().getPath()); //
+
+                CheckBox isPreText = (CheckBox) inflate.findViewById(R.id.isAutoHypens);
+                isPreText.setVisibility(isSupportHypens ? View.VISIBLE : View.GONE);
+
+                isPreText.setChecked(BookCSS.get().isAutoHypens);
+                isPreText.setOnCheckedChangeListener(new OnCheckedChangeListener() {
+
+                    @Override
+                    public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                        BookCSS.get().isAutoHypens = isChecked;
+                    }
+                });
+
+                //
+
+                final TextView hypenLang = (TextView) inflate.findViewById(R.id.hypenLang);
+                hypenLang.setVisibility(isSupportHypens ? View.VISIBLE : View.GONE);
+
+                hypenLang.setText(DialogTranslateFromTo.getLanuageByCode(BookCSS.get().hypenLang) + " (" + BookCSS.get().hypenLang + ")");
+                TxtUtils.underlineTextView(hypenLang);
+
+                hypenLang.setOnClickListener(new OnClickListener() {
+
+                    @Override
+                    public void onClick(View v) {
+
+                        final PopupMenu popupMenu = new PopupMenu(anchor.getContext(), hypenLang);
+
+                        HyphenPattern[] values = HyphenPattern.values();
+
+                        List<String> all = new ArrayList<String>();
+                        for (HyphenPattern p : values) {
+                            all.add(p.lang);
+                        }
+                        Collections.sort(all);
+
+                        for (final String lang : all) {
+
+                            final String titleLang = DialogTranslateFromTo.getLanuageByCode(lang) + " (" + lang + ")";
+                            popupMenu.getMenu().add(titleLang).setOnMenuItemClickListener(new OnMenuItemClickListener() {
+
+                                @Override
+                                public boolean onMenuItemClick(MenuItem item) {
+                                    BookCSS.get().hypenLang = lang;
+                                    hypenLang.setText(titleLang);
+                                    TxtUtils.underlineTextView(hypenLang);
+                                    return false;
+                                }
+                            });
+                        }
+                        popupMenu.show();
+
+                    }
+                });
+
+                //
 
                 TxtUtils.underlineTextView((TextView) inflate.findViewById(R.id.onResetStyles)).setOnClickListener(new OnClickListener() {
 
@@ -2396,7 +2447,6 @@ public class DragingDialogs {
                         marginRight.reset(BookCSS.get().marginRight);
 
                         emptyLine.reset(BookCSS.get().emptyLine);
-                        isBookSettingsChanged = true;
                     }
                 });
 
@@ -2408,7 +2458,7 @@ public class DragingDialogs {
 
             @Override
             public void run() {
-                if (isBookSettingsChanged || textAlignInit != BookCSS.get().textAlign) {
+                if (initCssHash != BookCSS.get().toCssString().hashCode()) {
                     AppState.get().save(controller.getActivity());
                     if (onRefresh != null) {
                         onRefresh.run();

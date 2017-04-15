@@ -322,4 +322,5 @@
    <string name="speak_into_file_wav_">Говоріть у файл (.wav)</string>
    <string name="the_book_is_over">Книга закінчена</string>
    <string name="zoom_in_zoom_out">Збільшення, зменшення масштабу</string>
+   <string name="automatic_hyphenation">Автоматична розстановка переносів</string>
 </resources>

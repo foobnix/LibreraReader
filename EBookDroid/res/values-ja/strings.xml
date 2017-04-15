@@ -322,4 +322,5 @@
    <string name="speak_into_file_wav_">ファイルに話す（WAV）</string>
    <string name="the_book_is_over">この本は終わりました</string>
    <string name="zoom_in_zoom_out">ズームイン、ズームアウト</string>
+   <string name="automatic_hyphenation">自動ハイフネーション</string>
 </resources>

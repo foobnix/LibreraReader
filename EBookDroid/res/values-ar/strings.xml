@@ -322,4 +322,5 @@
    <string name="speak_into_file_wav_">الكلام في ملف (الرعايا)</string>
    <string name="the_book_is_over">الكتاب هو أكثر</string>
    <string name="zoom_in_zoom_out">تكبير، تصغير</string>
+   <string name="automatic_hyphenation">الواصلة التلقائي</string>
 </resources>

@@ -322,4 +322,5 @@
    <string name="speak_into_file_wav_">Zungumza kwenye file (wav)</string>
    <string name="the_book_is_over">Kitabu ni zaidi ya</string>
    <string name="zoom_in_zoom_out">Kuvuta, kuvuta nje</string>
+   <string name="automatic_hyphenation">Moja kwa moja hyphenation</string>
 </resources>

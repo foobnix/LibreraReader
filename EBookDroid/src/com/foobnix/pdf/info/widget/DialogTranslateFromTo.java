@@ -123,6 +123,19 @@ public class DialogTranslateFromTo {
         langs.put("Zulu", "zu");
     }
 
+    public static String getLanuageByCode(String code) {
+        if (code.contains("_")) {
+            code = code.split("_")[0];
+        }
+        for (String key : langs.keySet()) {
+            String value = langs.get(key);
+            if (code.equals(value)) {
+                return key;
+            }
+        }
+        return "";
+    }
+
     public static Spanned getSelectedDictionaryUnderline() {
         return Html.fromHtml("<u>" + getSelectedDictionary() + "</u>");
     }
@@ -205,8 +218,6 @@ public class DialogTranslateFromTo {
 
             }
         });
-
-
 
         final AlertDialog show = alertDialog.show();
         dictSpinner.setOnItemClickListener(new OnItemClickListener() {

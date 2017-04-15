@@ -322,4 +322,5 @@
    <string name="speak_into_file_wav_">Sprechen Sie in Datei (wav)</string>
    <string name="the_book_is_over">Das Buch ist über</string>
    <string name="zoom_in_zoom_out">Hineinzoomen herauszoomen</string>
+   <string name="automatic_hyphenation">Automatische Silbentrennung</string>
 </resources>

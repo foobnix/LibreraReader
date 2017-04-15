@@ -322,4 +322,5 @@
    <string name="speak_into_file_wav_">对着文件（WAV）</string>
    <string name="the_book_is_over">这本书是在</string>
    <string name="zoom_in_zoom_out">放大，缩小</string>
+   <string name="automatic_hyphenation">自动断字</string>
 </resources>

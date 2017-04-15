@@ -322,4 +322,5 @@
    <string name="speak_into_file_wav_">דבר אל קובץ (WAV)</string>
    <string name="the_book_is_over">הספר נגמר</string>
    <string name="zoom_in_zoom_out">הגדלה, הקטנה החוצה</string>
+   <string name="automatic_hyphenation">המיקוף אוטומטי</string>
 </resources>

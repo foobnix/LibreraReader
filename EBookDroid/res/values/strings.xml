@@ -322,4 +322,5 @@
    <string name="speak_into_file_wav_">Speak into file (wav)</string>
    <string name="the_book_is_over">The book is over</string>
    <string name="zoom_in_zoom_out">Zoom in, zoom out</string>
+   <string name="automatic_hyphenation">Automatic hyphenation</string>
 </resources>

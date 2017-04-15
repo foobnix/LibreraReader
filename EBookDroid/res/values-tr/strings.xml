@@ -16,7 +16,7 @@
    <string name="close_book">Kitabı kapat</string>
    <string name="close_dialog">Dialoğu kapat</string>
    <string name="content">İçindekiler</string>
-   <string name="content_of_book">     İÇİNDEKİLER</string>
+   <string name="content_of_book">İÇİNDEKİLER</string>
    <string name="crop_white_borders">Beyaz kenarları kes</string>
    <string name="delete">Sil</string>
    <string name="delete_book_">SD karttan sil?</string>
@@ -322,4 +322,5 @@
    <string name="speak_into_file_wav_">Dosyaya doğru konuşun (wav)</string>
    <string name="the_book_is_over">Kitap bitti</string>
    <string name="zoom_in_zoom_out">Uzaklaştırmak, yakınlaştırma</string>
+   <string name="automatic_hyphenation">Otomatik heceleme</string>
 </resources>

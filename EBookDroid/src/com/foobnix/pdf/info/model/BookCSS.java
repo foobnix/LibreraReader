@@ -13,6 +13,7 @@ import java.util.Locale;
 import com.foobnix.android.utils.TxtUtils;
 import com.foobnix.pdf.info.ExtUtils;
 import com.foobnix.pdf.info.FontExtractor;
+import com.foobnix.pdf.info.Urls;
 import com.foobnix.pdf.info.wrapper.MagicHelper;
 
 import android.content.Context;
@@ -70,6 +71,9 @@ public class BookCSS {
     public String italicFont;
     public String headersFont;
 
+    public boolean isAutoHypens;
+    public String hypenLang;
+
     public int spinnerIndex = FONT_NAMES.indexOf(DEFAULT_FONT);
 
     public void load(Context c) {
@@ -99,6 +103,9 @@ public class BookCSS {
         fontWeight = sp.getInt("fontWeight", fontWeight);
         spinnerIndex = sp.getInt("spinnerIndex", spinnerIndex);
         documentStyle = sp.getInt("documentStyle", documentStyle);
+
+        isAutoHypens = sp.getBoolean("isAutoHypens", isAutoHypens);
+        hypenLang = sp.getString("hypenLang", hypenLang);
 
     }
 
@@ -134,6 +141,9 @@ public class BookCSS {
         headersFont = DEFAULT_FONT;
 
         documentStyle = STYLES_DOC_AND_USER;
+        isAutoHypens = false;
+        hypenLang = Urls.getLangCode();
+
     }
 
     public void allFonts(String fontName) {
@@ -166,6 +176,8 @@ public class BookCSS {
         edit.putInt("fontWeight", fontWeight);
         edit.putInt("spinnerIndex", spinnerIndex);
         edit.putInt("documentStyle", documentStyle);
+        edit.putBoolean("isAutoHypens", isAutoHypens);
+        edit.putString("hypenLang", hypenLang);
 
         edit.commit();
     }
@@ -356,6 +368,7 @@ public class BookCSS {
         String textColor = MagicHelper.colorToString(MagicHelper.getTextColor());
 
         builder.append("documentStyle" + documentStyle + "{}");
+        builder.append("isAutoHypens" + isAutoHypens + hypenLang + "{}");
 
         // PAGE BEGIN
         builder.append("@page{");

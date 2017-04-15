@@ -12,7 +12,9 @@ import org.jsoup.Jsoup;
 import org.jsoup.safety.Whitelist;
 
 import com.foobnix.android.utils.LOG;
+import com.foobnix.hypen.HypenUtils;
 import com.foobnix.pdf.info.ExtUtils;
+import com.foobnix.pdf.info.model.BookCSS;
 
 public class HtmlExtractor {
 
@@ -32,6 +34,10 @@ public class HtmlExtractor {
             StringBuilder html = new StringBuilder();
             String line;
 
+            if (BookCSS.get().isAutoHypens) {
+                HypenUtils.applyLanguage(BookCSS.get().hypenLang);
+            }
+
             boolean isBody = false;
             while ((line = input.readLine()) != null) {
 
@@ -41,6 +47,9 @@ public class HtmlExtractor {
                     isBody = true;
                 }
                 if (isBody) {
+                    if (BookCSS.get().isAutoHypens) {
+                        line = HypenUtils.applyHypnes(line);
+                    }
                     html.append(line);
                 }
                 if (line.toLowerCase(Locale.US).contains("</html>")) {

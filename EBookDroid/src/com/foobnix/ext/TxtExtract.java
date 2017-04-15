@@ -9,143 +9,152 @@ import java.io.PrintWriter;
 
 import com.foobnix.android.utils.LOG;
 import com.foobnix.android.utils.TxtUtils;
+import com.foobnix.hypen.HypenUtils;
 import com.foobnix.pdf.info.ExtUtils;
+import com.foobnix.pdf.info.model.BookCSS;
 import com.foobnix.pdf.info.wrapper.AppState;
 
 import android.text.TextUtils;
 
 public class TxtExtract {
 
-	public static final String OUT_FB2_XML = "txt.html";
+    public static final String OUT_FB2_XML = "txt.html";
 
-	static char[] endChars = new char[] { '.', '!', '?', ';' };
+    static char[] endChars = new char[] { '.', '!', '?', ';' };
 
-	public static String foramtUB(String line) {
-		if (line != null && line.trim().startsWith("(*)") && TxtUtils.isLastCharEq(line, endChars)) {
-			line = "<b><u>" + line + "</u></b>";
-		}
-		return line;
-	}
+    public static String foramtUB(String line) {
+        if (line != null && line.trim().startsWith("(*)") && TxtUtils.isLastCharEq(line, endChars)) {
+            line = "<b><u>" + line + "</u></b>";
+        }
+        return line;
+    }
 
-	public static FooterNote extract(String inputPath, String outputDir) throws IOException {
-		File file = new File(outputDir, AppState.get().isPreText + OUT_FB2_XML);
-
+    public static FooterNote extract(String inputPath, String outputDir) throws IOException {
+        File file = new File(outputDir, AppState.get().isPreText + OUT_FB2_XML);
 
         String encoding = ExtUtils.determineEncoding(new FileInputStream(inputPath));
 
-		BufferedReader input = new BufferedReader(new InputStreamReader(new FileInputStream(inputPath), encoding));
-		PrintWriter writer = new PrintWriter(file);
-		String line;
+        BufferedReader input = new BufferedReader(new InputStreamReader(new FileInputStream(inputPath), encoding));
+        PrintWriter writer = new PrintWriter(file);
+        String line;
 
-		writer.println("<!DOCTYPE html>");
-		writer.println("<html>");
-		if (AppState.get().isPreText) {
-			writer.println("<head><style>@page{margin:0px 0.5em} pre{margin:0px} {body:margin:0px;}</style></head>");
-		} else {
-			writer.println("<head><style>p,p+p{margin:0;}</style></head>");
-		}
-		writer.println("<body>");
+        writer.println("<!DOCTYPE html>");
+        writer.println("<html>");
+        if (AppState.get().isPreText) {
+            writer.println("<head><style>@page{margin:0px 0.5em} pre{margin:0px} {body:margin:0px;}</style></head>");
+        } else {
+            writer.println("<head><style>p,p+p{margin:0;}</style></head>");
+        }
+        writer.println("<body>");
 
-		if (AppState.get().isPreText) {
-			writer.println("<pre>");
-		}
+        if (AppState.get().isPreText) {
+            writer.println("<pre>");
+        }
 
-		if (AppState.get().isLineBreaksText) {
-			writer.println("<p>");
-		}
-		while ((line = input.readLine()) != null) {
-			String outLn = null;
-			if (AppState.get().isPreText) {
+        if (AppState.get().isLineBreaksText) {
+            writer.println("<p>");
+        }
 
-				// outLn = outLn.replace("==\t==", "== ==");
-				// outLn = outLn.replace("\t", " ");
-				outLn = retab(line, 8);
-				outLn = TextUtils.htmlEncode(outLn);
+        if (BookCSS.get().isAutoHypens) {
+            HypenUtils.applyLanguage(BookCSS.get().hypenLang);
+        }
 
-				if (TxtUtils.isLineStartEndUpperCase(outLn)) {
-					outLn = "<b>" + outLn + "</b>";
-				}
+        while ((line = input.readLine()) != null) {
+            String outLn = null;
+            if (AppState.get().isPreText) {
 
-			} else {
-				if (AppState.get().isLineBreaksText) {
-					if (line.trim().length() == 0) {
-						outLn = "<br/>";
-					} else {
-						outLn = format(line);
-					}
+                outLn = retab(line, 8);
+                outLn = TextUtils.htmlEncode(outLn);
 
-				} else {
-					if (line.trim().length() == 0) {
-						outLn = "<br/>";
-					} else if (TxtUtils.isLineStartEndUpperCase(line)) {
-						outLn = "<b>" + format(line) + "</b>";
-					} else if (line.contains("Title:")) {
-						outLn = "<b>" + format(line) + "</b>";
-					} else {
-						outLn = "<p>" + format(line) + "</p>";
-					}
-				}
+                if (TxtUtils.isLineStartEndUpperCase(outLn)) {
+                    outLn = "<b>" + outLn + "</b>";
+                }
 
-			}
-			// LOG.d("LINE", outLn);
-			writer.println(outLn);
-		}
-		if (AppState.get().isLineBreaksText) {
-			writer.println("</p>");
-		}
+            } else {
 
-		if (AppState.get().isPreText)
+                if (AppState.get().isLineBreaksText) {
+                    if (line.trim().length() == 0) {
+                        outLn = "<br/>";
+                    } else {
+                        outLn = format(line);
+                    }
 
-		{
-			writer.println("</pre>");
-		}
-		writer.println("</body></html>");
+                } else {
+                    if (line.trim().length() == 0) {
+                        outLn = "<br/>";
+                    } else if (TxtUtils.isLineStartEndUpperCase(line)) {
+                        outLn = "<b>" + format(line) + "</b>";
+                    } else if (line.contains("Title:")) {
+                        outLn = "<b>" + format(line) + "</b>";
+                    } else {
+                        outLn = "<p>" + format(line) + "</p>";
+                    }
+                }
 
-		input.close();
-		writer.close();
+            }
+            // LOG.d("LINE", outLn);
+            writer.println(outLn);
+        }
+        if (AppState.get().isLineBreaksText) {
+            writer.println("</p>");
+        }
 
-		return new FooterNote(file.getPath(), null);
-	}
+        if (AppState.get().isPreText)
 
-	public static String retab(final String text, final int tabstop) {
-		final char[] input = text.toCharArray();
-		final StringBuilder sb = new StringBuilder();
+        {
+            writer.println("</pre>");
+        }
+        writer.println("</body></html>");
 
-		int linepos = 0;
-		for (int i = 0; i < input.length; i++) {
-			// treat the character
-			final char ch = input[i];
-			if (ch == '\t') {
-				// expand the tab
-				do {
-					sb.append(' ');
-					linepos++;
-				} while (linepos % tabstop != 0);
-			} else {
-				sb.append(ch);
-				linepos++;
-			}
+        input.close();
+        writer.close();
 
-			// end of line. Reset the lineposition to zero.
-			// if (ch == '\n' || ch == '\r' || (ch | 1) == '\u2029' || ch ==
-			// '\u0085')
-			// linepos = 0;
+        return new FooterNote(file.getPath(), null);
+    }
 
-		}
+    public static String retab(final String text, final int tabstop) {
+        final char[] input = text.toCharArray();
+        final StringBuilder sb = new StringBuilder();
 
-		return sb.toString();
-	}
+        int linepos = 0;
+        for (int i = 0; i < input.length; i++) {
+            // treat the character
+            final char ch = input[i];
+            if (ch == '\t') {
+                // expand the tab
+                do {
+                    sb.append(' ');
+                    linepos++;
+                } while (linepos % tabstop != 0);
+            } else {
+                sb.append(ch);
+                linepos++;
+            }
 
-	public static String format(String line) {
-		try {
-			line = line.replace("\n", "");
-			line = line.replace("\r", "");
-			line = line.trim();
-			line = TextUtils.htmlEncode(line);
-		} catch (Exception e) {
-			LOG.e(e);
-		}
-		return line;
-	}
+            // end of line. Reset the lineposition to zero.
+            // if (ch == '\n' || ch == '\r' || (ch | 1) == '\u2029' || ch ==
+            // '\u0085')
+            // linepos = 0;
+
+        }
+
+        return sb.toString();
+    }
+
+    public static String format(String line) {
+        try {
+            line = line.replace("\n", "");
+            line = line.replace("\r", "");
+            line = TextUtils.htmlEncode(line);
+            if (BookCSS.get().isAutoHypens) {
+                line = HypenUtils.applyHypnes(line);
+            }
+            line = line.trim();
+
+        } catch (Exception e) {
+            LOG.e(e);
+        }
+        return line;
+    }
 
 }

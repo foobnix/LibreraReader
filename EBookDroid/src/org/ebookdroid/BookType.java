@@ -84,7 +84,7 @@ public enum BookType {
 
         path = path.toLowerCase(Locale.US);
         for (final String ext : extensions) {
-            if (path.endsWith(ext)) {
+            if (path.endsWith(ext) || path.endsWith(ext + ".zip")) {
                 return true;
             }
         }
