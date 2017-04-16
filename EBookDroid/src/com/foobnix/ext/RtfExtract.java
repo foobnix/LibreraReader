@@ -8,6 +8,8 @@ import java.io.InputStream;
 import java.io.PrintWriter;
 
 import com.foobnix.android.utils.LOG;
+import com.foobnix.hypen.HypenUtils;
+import com.foobnix.pdf.info.model.BookCSS;
 import com.rtfparserkit.converter.text.StringTextConverter;
 import com.rtfparserkit.parser.IRtfParser;
 import com.rtfparserkit.parser.IRtfSource;
@@ -38,6 +40,10 @@ public class RtfExtract {
 			IRtfSource source = new RtfStreamSource(is);
 			IRtfParser parser = new StandardRtfParser();
 
+            if (BookCSS.get().isAutoHypens) {
+                HypenUtils.applyLanguage(BookCSS.get().hypenLang);
+            }
+
 			parser.parse(source, new StringTextConverter() {
 				boolean isImage;
 				boolean isBR;
@@ -46,7 +52,12 @@ public class RtfExtract {
 
 				@Override
 				public void processExtractedText(String text) {
-					writer.println(TextUtils.htmlEncode(text));
+
+					String htmlEncode = TextUtils.htmlEncode(text);
+                    if (BookCSS.get().isAutoHypens) {
+                        htmlEncode = HypenUtils.applyHypnes(htmlEncode);
+                    }
+                    writer.println(htmlEncode);
 					isBR = false;
 				}
 

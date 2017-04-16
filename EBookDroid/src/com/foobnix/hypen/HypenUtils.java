@@ -19,27 +19,20 @@ public class HypenUtils {
         if (input == null || input.length() == 0) {
             return "";
         }
-        input = input.replace("</", " </").replace(">", "> ");
-        // if (input.startsWith("<") && input.endsWith(">")) {
-        // return input;
-        // }
+        input = input.replace("<", " <").replace(">", "> ").replace("—", "-");
+
         String split[] = input.split(" ");
         StringBuilder res = new StringBuilder();
         for (String w : split) {
-            if (w.length() == 0) {
-                res.append(" ");
-                continue;
-            }
-
-            if (w.contains("-") || w.contains("<") || w.contains("/>")) {
+            if (w.length() <= 3) {
                 res.append(w + " ");
                 continue;
             }
 
-            // if (w.contains("<") || w.contains("/>")) {
-            // res.append(w); // skip html tags
-            // continue;
-            // }
+            if (w.contains("-") || w.contains("<") || w.contains(">")) {
+                res.append(w + " ");
+                continue;
+            }
 
             char last = w.charAt(w.length() - 1);
             char first = w.charAt(0);
@@ -71,7 +64,7 @@ public class HypenUtils {
         }
 
         String result = res.toString();
-        result = result.replace(" </", "</").replace("> ", ">");
+        result = result.replace(" <", "<").replace("> ", ">");
         return result;
     }
 

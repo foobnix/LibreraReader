@@ -9,6 +9,7 @@ import org.ebookdroid.droids.mupdf.codec.PdfContext;
 import com.foobnix.android.utils.LOG;
 import com.foobnix.ext.CacheZipUtils;
 import com.foobnix.ext.RtfExtract;
+import com.foobnix.pdf.info.model.BookCSS;
 
 public class RtfContext extends PdfContext {
 
@@ -16,6 +17,7 @@ public class RtfContext extends PdfContext {
 
 	@Override
 	public File getCacheFileName(String fileNameOriginal) {
+        fileNameOriginal = fileNameOriginal + BookCSS.get().isAutoHypens + BookCSS.get().hypenLang;
 		cacheFile = new File(CacheZipUtils.CACHE_BOOK_DIR, fileNameOriginal.hashCode() + ".html");
 		return cacheFile;
 	}
