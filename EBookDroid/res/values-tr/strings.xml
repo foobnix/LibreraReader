@@ -204,7 +204,7 @@
    <string name="bottom">Alt</string>
    <string name="left">Sol</string>
    <string name="right">Sağ</string>
-   <string name="folder_with_fonts">Yazı ile Klasör</string>
+   <string name="folder_with_fonts">Yazıtipi Klasörü</string>
    <string name="interval">Aralık</string>
    <string name="paragraph">Paragraf</string>
    <string name="simple_scroll_animation">Basit kaydırma animasyonu</string>

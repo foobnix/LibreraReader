@@ -2,15 +2,13 @@ package com.foobnix.hypen;
 
 import java.util.List;
 
-import com.foobnix.android.utils.LOG;
-
 public class HypenUtils {
 
+    private static final String SHY = "&shy;";
     private static DefaultHyphenator instance = new DefaultHyphenator(HyphenPattern.en_us);
 
     public static void applyLanguage(String lang) {
         HyphenPattern pattern = HyphenPattern.valueOf(lang);
-        LOG.d("applyLanguage", pattern.lang);
 
         if (instance.pattern != pattern) {
             instance = new DefaultHyphenator(pattern);
@@ -21,6 +19,7 @@ public class HypenUtils {
         if (input == null || input.length() == 0) {
             return "";
         }
+        input = input.replace("</", " </").replace(">", "> ");
         // if (input.startsWith("<") && input.endsWith(">")) {
         // return input;
         // }
@@ -32,27 +31,48 @@ public class HypenUtils {
                 continue;
             }
 
+            if (w.contains("-") || w.contains("<") || w.contains("/>")) {
+                res.append(w + " ");
+                continue;
+            }
+
             // if (w.contains("<") || w.contains("/>")) {
             // res.append(w); // skip html tags
             // continue;
             // }
 
             char last = w.charAt(w.length() - 1);
-            boolean needRemove = false;
-            if (!Character.isLetter(last)) {
-                needRemove = true;
+            char first = w.charAt(0);
+
+            boolean startWithOther = false;
+            if (!Character.isLetter(first)) {
+                startWithOther = true;
+                w = w.substring(1, w.length());
+            }
+
+            boolean endWithOther = false;
+            if (w.length() != 0 && !Character.isLetter(last)) {
+                endWithOther = true;
                 w = w.substring(0, w.length() - 1);
             }
 
             List<String> hyphenate = instance.hyphenate(w);
-            String result = join(hyphenate, "&shy;");
-            if (needRemove) {
+            String result = join(hyphenate, SHY);
+
+            if (startWithOther) {
+                result = String.valueOf(first) + result;
+            }
+
+            if (endWithOther) {
                 result = result + String.valueOf(last);
             }
+
             res.append(result + " ");
         }
 
-        return res.toString();
+        String result = res.toString();
+        result = result.replace(" </", "</").replace("> ", ">");
+        return result;
     }
 
     public static String join(List<String> list, String delimiter) {
@@ -63,6 +83,7 @@ public class HypenUtils {
         for (int i = 1; i < list.size(); i++) {
             result.append(delimiter).append(list.get(i));
         }
-        return result.toString().replace("|­|", "|");
+        String string = result.toString();
+        return string.replace(SHY + SHY, SHY);
     }
 }

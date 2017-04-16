@@ -47,9 +47,6 @@ public class HtmlExtractor {
                     isBody = true;
                 }
                 if (isBody) {
-                    if (BookCSS.get().isAutoHypens) {
-                        line = HypenUtils.applyHypnes(line);
-                    }
                     html.append(line);
                 }
                 if (line.toLowerCase(Locale.US).contains("</html>")) {
@@ -60,6 +57,10 @@ public class HtmlExtractor {
 
             FileOutputStream out = new FileOutputStream(file);
             String string = Jsoup.clean(html.toString(), Whitelist.relaxed().removeTags("img"));
+
+            if (BookCSS.get().isAutoHypens) {
+                string = HypenUtils.applyHypnes(string);
+            }
             // String string = html.toString();
             string = "<html><head></head><body style='text-align:justify;'><br/>" + string + "</body></html>";
             // string = string.replace("\">", "\"/>");
