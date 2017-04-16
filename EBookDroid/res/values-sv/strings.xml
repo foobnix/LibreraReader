@@ -323,4 +323,7 @@
    <string name="the_book_is_over">Boken är över</string>
    <string name="zoom_in_zoom_out">Zooma in, zooma ut</string>
    <string name="automatic_hyphenation">Automatisk avstavning</string>
+   <string name="bookmark_for_this_page_already_exists">Bokmärke för denna sida finns redan</string>
+   <string name="bookmark_with_text">Bokmärke med text</string>
+   <string name="fast_bookmark">Snabb bokmärke</string>
 </resources>

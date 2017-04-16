@@ -44,6 +44,7 @@
                 android:text="125"
                 android:textColor="@color/white"
                 android:textSize="12sp"
+                
                 android:textStyle="bold" />
 
         </RelativeLayout>
@@ -71,8 +72,8 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
                 android:ellipsize="end"
+                android:maxLines="3"
                 android:gravity="center_vertical"
-                android:lines="3"
                 android:text="Bookmark text   Bookmark text BookmarkBookmark text BookmarkBookmark text BookmarkBookmark text BookmarkBookmark text Bookmark" />
         </LinearLayout>
 

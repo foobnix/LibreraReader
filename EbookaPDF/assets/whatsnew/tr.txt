@@ -3,6 +3,6 @@
 * TTS dosyasına ses kaydı (.wav) 
 * TTSkitap bitti diyor 
 *% 25,% 50, ekran yüksekliğinin% 75’i tarafından eklendi kaydırma 
-* otomatik sayfa kırpmaya Geliştirilmiş algoritma 
 * dokunun bölge kutu% 0 boyutu 
-* Geliştirilmiş okuma html
+* Hızlı imleri FB2, RTF, TXT, HTML için otomatik tireleme 
+*

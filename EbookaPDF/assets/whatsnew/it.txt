@@ -3,6 +3,6 @@
 * TTS registrare la voce al file (.wav) 
 * TTS dicelibro è finita 
 * scroll Aggiunto del 25%, 50%, 75% dell’altezza dello schermo 
-* algoritmo migliorato per ritaglio automatico pagina 
-* Tap zona lattina 0% formato 
-* lettura migliorata html
+* Tap zona può 0% 
+* dimensioni segnalibri veloci 
+* sillabazione automatica per FB2, RTF, TXT, HTML

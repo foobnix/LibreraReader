@@ -3,6 +3,6 @@
 * TTS kỷ lục giọng nói đến tập tin (.wav) 
 * TTS nóiCuốn sách kết thúc 
 * Thêm cuộn bằng 25%, 50%, 75% chiều cao màn hình 
-* Cải thiện thuật toán cho cắt xén trang tự động 
-* Tap khu lon 0% kích thước 
-* Cải thiện đọc html
+* Tập khu lon 0% kích thước 
+* bookmark nhanh 
+* dấu gạch nối tự động cho FB2, RTF, TXT, HTML

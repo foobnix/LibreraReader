@@ -639,6 +639,7 @@ public class DocumentWrapperUI {
 
         View bookmarks = a.findViewById(R.id.onBookmarks);
         bookmarks.setOnClickListener(onBookmarks);
+        bookmarks.setOnLongClickListener(onBookmarksLong);
 
         currentPageIndex = (TextView) a.findViewById(R.id.currentPageIndex);
         currentSeek = (TextView) a.findViewById(R.id.currentSeek);
@@ -1101,6 +1102,14 @@ public class DocumentWrapperUI {
         @Override
         public void onClick(final View arg0) {
             DragingDialogs.addBookmarks(anchor, controller);
+        }
+    };
+    public View.OnLongClickListener onBookmarksLong = new View.OnLongClickListener() {
+
+        @Override
+        public boolean onLongClick(final View arg0) {
+            DragingDialogs.addBookmarksLong(anchor, controller);
+            return true;
         }
     };
 

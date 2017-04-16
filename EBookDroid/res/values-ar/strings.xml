@@ -323,4 +323,7 @@
    <string name="the_book_is_over">الكتاب هو أكثر</string>
    <string name="zoom_in_zoom_out">تكبير، تصغير</string>
    <string name="automatic_hyphenation">الواصلة التلقائي</string>
+   <string name="bookmark_for_this_page_already_exists">مرجعية لهذه الصفحة موجود بالفعل</string>
+   <string name="bookmark_with_text">المرجعية مع النص</string>
+   <string name="fast_bookmark">مرجعية سريعة</string>
 </resources>

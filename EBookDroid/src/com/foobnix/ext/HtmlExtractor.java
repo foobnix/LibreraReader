@@ -60,6 +60,7 @@ public class HtmlExtractor {
 
             if (BookCSS.get().isAutoHypens) {
                 string = HypenUtils.applyHypnes(string);
+                string = Jsoup.clean(string, Whitelist.relaxed());
             }
             // String string = html.toString();
             string = "<html><head></head><body style='text-align:justify;'><br/>" + string + "</body></html>";

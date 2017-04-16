@@ -323,4 +323,7 @@
    <string name="the_book_is_over">Книга закінчена</string>
    <string name="zoom_in_zoom_out">Збільшення, зменшення масштабу</string>
    <string name="automatic_hyphenation">Автоматична розстановка переносів</string>
+   <string name="bookmark_for_this_page_already_exists">Закладка для цієї сторінки вже існує</string>
+   <string name="bookmark_with_text">Закладка з текстом</string>
+   <string name="fast_bookmark">Швидка закладка</string>
 </resources>

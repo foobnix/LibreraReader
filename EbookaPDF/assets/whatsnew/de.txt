@@ -3,6 +3,6 @@
 * TTS Sprachaufnahme in die Datei (.wav) 
 * TTS sagt 
 *Buch über ist um 25% Hinzugefügt blättern, 50%, 75% der Bildschirmhöhe 
-* Verbesserte Algorithmus für die automatische Seiten Zuschneiden 
 * Tap-Zone kann 0% Größe 
-* Verbesserte Lesen html
+* Schnelle Lesezeichen 
+* Automatische Silbentrennung für FB2, RTF, TXT, HTML

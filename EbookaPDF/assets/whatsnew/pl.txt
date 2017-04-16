@@ -3,6 +3,6 @@
 * głos TTS rekord do pliku (.wav) 
 * TTS mówi „książka jest skończona” 
 * Dodano przewijania o 25%, 50%, 75% wysokości ekranu 
-* Poprawiono algorytm automatycznego strona kadrowanie 
-* Tap zone może 0% rozmiar 
-* Improved czytania html
+* Tap zone może 0% wielkości 
+* Szybko zakładki 
+* Automatyczne dzielenie wyrazów dla FB2, RTF, TXT, HTML

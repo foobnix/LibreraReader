@@ -323,4 +323,7 @@
    <string name="the_book_is_over">Het boek is voorbij</string>
    <string name="zoom_in_zoom_out">Inzoomen, uitzoomen</string>
    <string name="automatic_hyphenation">Automatische woordafbreking</string>
+   <string name="bookmark_for_this_page_already_exists">Bookmark voor deze pagina bestaat al</string>
+   <string name="bookmark_with_text">Bookmark met tekst</string>
+   <string name="fast_bookmark">Fast bookmark</string>
 </resources>

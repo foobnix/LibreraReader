@@ -3,6 +3,6 @@
 * TTS gravação de voz para o arquivo (.wav) 
 * TTS dizlivro é sobre 
 * rolagem Adicionado em 25%, 50%, 75% da altura da tela 
-* Melhor algoritmo para corte automático de página 
-* Tap zona pode 0% tamanho 
-* Melhor lendo html
+* Tap zona pode 0% do tamanho 
+* bookmarks rápido 
+* hifenização automática para FB2, RTF, TXT, HTML

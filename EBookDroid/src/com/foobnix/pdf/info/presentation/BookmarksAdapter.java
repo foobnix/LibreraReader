@@ -45,14 +45,15 @@ public class BookmarksAdapter extends BaseAdapter {
         final TextView titleView = (TextView) view.findViewById(R.id.title);
         final ImageView image = (ImageView) view.findViewById(R.id.image);
         final View deleteView = view.findViewById(R.id.remove);
-        image.setVisibility(View.GONE);
+        ((View) image.getParent()).setVisibility(View.GONE);
         ViewCompat.setElevation(((View) image.getParent()), 0);
         view.setBackgroundColor(Color.TRANSPARENT);
 
 
+        String pageNumber = "" + (AppState.get().isCut ? bookmark.getPage() * 2 : bookmark.getPage());
         titleView.setVisibility(View.GONE);
-        textView.setText("" + bookmark.getText());
-        pageView.setText("" + (AppState.get().isCut ? bookmark.getPage() * 2 : bookmark.getPage()));
+        textView.setText(pageNumber + ": " + bookmark.getText());
+        pageView.setText(pageNumber);
 
         RelativeLayout.LayoutParams layoutParams = (RelativeLayout.LayoutParams) pageView.getLayoutParams();
         layoutParams.addRule(RelativeLayout.ALIGN_PARENT_BOTTOM, 0);

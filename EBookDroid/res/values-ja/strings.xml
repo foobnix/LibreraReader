@@ -323,4 +323,7 @@
    <string name="the_book_is_over">この本は終わりました</string>
    <string name="zoom_in_zoom_out">ズームイン、ズームアウト</string>
    <string name="automatic_hyphenation">自動ハイフネーション</string>
+   <string name="bookmark_for_this_page_already_exists">このページのブックマークはすでに存在します</string>
+   <string name="bookmark_with_text">テキストをブックマーク</string>
+   <string name="fast_bookmark">高速ブックマーク</string>
 </resources>

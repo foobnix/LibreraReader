@@ -323,4 +323,7 @@
    <string name="the_book_is_over">Das Buch ist über</string>
    <string name="zoom_in_zoom_out">Hineinzoomen herauszoomen</string>
    <string name="automatic_hyphenation">Automatische Silbentrennung</string>
+   <string name="bookmark_for_this_page_already_exists">Lesezeichen für diese Seite bereits vorhanden</string>
+   <string name="bookmark_with_text">Lesezeichen mit Text</string>
+   <string name="fast_bookmark">Schnell Lesezeichen</string>
 </resources>

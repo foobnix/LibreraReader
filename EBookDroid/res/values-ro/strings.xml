@@ -323,4 +323,7 @@
    <string name="the_book_is_over">Cartea este de peste</string>
    <string name="zoom_in_zoom_out">Zoom in, zoom out</string>
    <string name="automatic_hyphenation">Automată despărțirea în silabe</string>
+   <string name="bookmark_for_this_page_already_exists">Marcaj pentru această pagină există deja</string>
+   <string name="bookmark_with_text">Semne de carte cu text</string>
+   <string name="fast_bookmark">Rapid semn de carte</string>
 </resources>

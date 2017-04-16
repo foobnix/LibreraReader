@@ -316,11 +316,14 @@
    <string name="user_styles">User styles</string>
    <string name="archive">Archive</string>
    <string name="beta_version">Beta version</string>
-   <string name="of_screen">of screen</string>
+   <string name="of_screen">Of screen</string>
    <string name="ongoing_notification">Ongoing notification</string>
    <string name="apply_text_replacement_dictionary1">Apply replacement dictionary for text</string>
    <string name="speak_into_file_wav_">Speak into file (wav)</string>
    <string name="the_book_is_over">The book is over</string>
    <string name="zoom_in_zoom_out">Zoom in, zoom out</string>
    <string name="automatic_hyphenation">Automatic hyphenation</string>
+   <string name="bookmark_for_this_page_already_exists">Bookmark for this page already exists</string>
+   <string name="bookmark_with_text">Bookmark with text</string>
+   <string name="fast_bookmark">Fast bookmark</string>
 </resources>

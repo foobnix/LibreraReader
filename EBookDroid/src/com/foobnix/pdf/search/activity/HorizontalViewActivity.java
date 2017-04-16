@@ -294,6 +294,14 @@ public class HorizontalViewActivity extends FragmentActivity {
                 DragingDialogs.addBookmarks(anchor, documentController);
             }
         });
+        findViewById(R.id.bookmarks).setOnLongClickListener(new View.OnLongClickListener() {
+
+            @Override
+            public boolean onLongClick(final View arg0) {
+                DragingDialogs.addBookmarksLong(anchor, documentController);
+                return true;
+            }
+        });
 
         findViewById(R.id.bookRecent).setOnClickListener(new View.OnClickListener() {
 

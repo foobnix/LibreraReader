@@ -323,4 +323,7 @@
    <string name="the_book_is_over">این کتاب به پایان رسیده است</string>
    <string name="zoom_in_zoom_out">زوم در، زوم کردن</string>
    <string name="automatic_hyphenation">فاصلهگذاری اتوماتیک</string>
+   <string name="bookmark_for_this_page_already_exists">نشانک برای این صفحه قبلا وجود داشته</string>
+   <string name="bookmark_with_text">نشانه با متن</string>
+   <string name="fast_bookmark">نشانه سریع</string>
 </resources>

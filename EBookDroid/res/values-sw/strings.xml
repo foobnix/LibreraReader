@@ -323,4 +323,7 @@
    <string name="the_book_is_over">Kitabu ni zaidi ya</string>
    <string name="zoom_in_zoom_out">Kuvuta, kuvuta nje</string>
    <string name="automatic_hyphenation">Moja kwa moja hyphenation</string>
+   <string name="bookmark_for_this_page_already_exists">Alamisho ya ukurasa huu tayari upo</string>
+   <string name="bookmark_with_text">Bookmark na maandishi</string>
+   <string name="fast_bookmark">Fast bookmark</string>
 </resources>

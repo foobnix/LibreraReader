@@ -1,8 +1,8 @@
 
-* PDF, DJVU: zoom arrière - le zoom arrière peut être configuré pour double effet 
-* TTS enregistre la voix dans le fichier (.wav) 
-* TTS ditle livre est terminé 
-* Ajouté scroll par 25%, 50%, 75% de hauteur d’écran 
-* Algorithme amélioré pour la culture automatique des pages 
-* La zone de prise peut atteindre 0% de taille 
-* Meilleure lecture html
+* PDF, DJVU: zoom - zoom arrière peut être configuré pour le double tap 
+* TTS voix d’enregistrement dans le fichier (.wav) 
+* TTS ditlivre sur 
+* rouleau Ajouté par 25%, 50%, 75% de la hauteur de l’écran 
+* zone 0% Tap peut taille 
+* signets rapide 
+* césure automatique pour FB2, RTF, TXT, HTML

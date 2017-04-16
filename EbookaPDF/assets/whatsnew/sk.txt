@@ -3,6 +3,6 @@
 * TTS záznam hlasu do súboru (WAV) 
 * TTS hovorí:Kniha je u konca 
 * Pridaná scroll o 25%, 50%, 75% výšky obrazovky 
-* Vylepšený algoritmus pre automatické strana orezanie 
 * Tap zóna môže veľkosť 0% 
-* Lepšie čítanie html
+* Rýchle záložky 
+* Automatické delenie slov pre FB2, RTF, TXT, HTML

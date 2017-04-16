@@ -323,4 +323,7 @@
    <string name="the_book_is_over">이 책은 끝났다</string>
    <string name="zoom_in_zoom_out">축소, 확대</string>
    <string name="automatic_hyphenation">자동 하이픈</string>
+   <string name="bookmark_for_this_page_already_exists">이 페이지의 북마크가 이미 존재</string>
+   <string name="bookmark_with_text">텍스트 북마크</string>
+   <string name="fast_bookmark">빠른 북마크</string>
 </resources>

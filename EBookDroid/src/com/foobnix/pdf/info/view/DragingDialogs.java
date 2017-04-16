@@ -1369,6 +1369,25 @@ public class DragingDialogs {
         }.show("recentBooks");
     }
 
+    public static void addBookmarksLong(final FrameLayout anchor, final DocumentController controller) {
+        List<AppBookmark> objects = AppSharedPreferences.get().getBookmarksByBook(controller.getCurrentBook());
+        int page = controller.getCurentPageFirst1();
+
+        for (AppBookmark all : objects) {
+            if (all.getPage() == page) {
+                Toast.makeText(controller.getActivity(), R.string.bookmark_for_this_page_already_exists, Toast.LENGTH_LONG).show();
+                return;
+            }
+        }
+
+        final AppBookmark bookmark = new AppBookmark(controller.getCurrentBook().getPath(), controller.getString(R.string.page) + " " + page, page, controller.getTitle());
+        AppSharedPreferences.get().addBookMark(bookmark);
+
+        String TEXT = controller.getString(R.string.fast_bookmark) + " \"" + controller.getString(R.string.page) + " " + page + "\"";
+        Toast.makeText(controller.getActivity(), TEXT, Toast.LENGTH_SHORT).show();
+
+    }
+
     public static void addBookmarks(final FrameLayout anchor, final DocumentController controller) {
         final List<AppBookmark> objects = new ArrayList<AppBookmark>();
         final BookmarksAdapter bookmarksAdapter = new BookmarksAdapter(anchor.getContext(), objects, true);
@@ -1405,13 +1424,42 @@ public class DragingDialogs {
             @Override
             public View getContentView(final LayoutInflater inflater) {
                 View a = inflater.inflate(R.layout.dialog_bookmarks, null, false);
-                ListView contentList = (ListView) a.findViewById(R.id.contentList);
+                final ListView contentList = (ListView) a.findViewById(R.id.contentList);
                 contentList.setDivider(new ColorDrawable(Color.TRANSPARENT));
                 contentList.setVerticalScrollBarEnabled(false);
                 contentList.setAdapter(bookmarksAdapter);
                 contentList.setOnItemClickListener(onItem);
                 contentList.setOnItemLongClickListener(onBooksLong);
                 a.findViewById(R.id.addBookmark).setOnClickListener(onAdd);
+
+                final View.OnClickListener onAddPAge = new View.OnClickListener() {
+
+                    @Override
+                    public void onClick(final View v) {
+                        int page = controller.getCurentPageFirst1();
+
+                        for (AppBookmark all : objects) {
+                            if (all.getPage() == page) {
+                                Toast.makeText(controller.getActivity(), R.string.bookmark_for_this_page_already_exists, Toast.LENGTH_LONG).show();
+                                return;
+                            }
+                        }
+
+                        final AppBookmark bookmark = new AppBookmark(controller.getCurrentBook().getPath(), controller.getString(R.string.page) + " " + page, page, controller.getTitle());
+                        AppSharedPreferences.get().addBookMark(bookmark);
+
+                        objects.clear();
+                        objects.addAll(AppSharedPreferences.get().getBookmarksByBook(controller.getCurrentBook()));
+                        bookmarksAdapter.notifyDataSetChanged();
+
+                        closeDialog();
+                        String TEXT = controller.getString(R.string.fast_bookmark) + " \"" + controller.getString(R.string.page) + " " + page + "\"";
+                        Toast.makeText(controller.getActivity(), TEXT, Toast.LENGTH_SHORT).show();
+
+                    }
+                };
+
+                a.findViewById(R.id.addPageBookmark).setOnClickListener(onAddPAge);
 
                 objects.clear();
                 objects.addAll(AppSharedPreferences.get().getBookmarksByBook(controller.getCurrentBook()));

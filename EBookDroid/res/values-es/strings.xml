@@ -323,4 +323,7 @@
    <string name="the_book_is_over">El libro ha terminado</string>
    <string name="zoom_in_zoom_out">Ampliar reducir</string>
    <string name="automatic_hyphenation">La división automática</string>
+   <string name="bookmark_for_this_page_already_exists">Marcador para esta página ya existe</string>
+   <string name="bookmark_with_text">Marcar con el texto</string>
+   <string name="fast_bookmark">Marcador rápido</string>
 </resources>

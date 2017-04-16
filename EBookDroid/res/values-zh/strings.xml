@@ -323,4 +323,7 @@
    <string name="the_book_is_over">这本书是在</string>
    <string name="zoom_in_zoom_out">放大，缩小</string>
    <string name="automatic_hyphenation">自动断字</string>
+   <string name="bookmark_for_this_page_already_exists">此页的书签已经存在</string>
+   <string name="bookmark_with_text">书签文字</string>
+   <string name="fast_bookmark">快速书签</string>
 </resources>

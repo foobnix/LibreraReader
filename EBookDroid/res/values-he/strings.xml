@@ -323,4 +323,7 @@
    <string name="the_book_is_over">הספר נגמר</string>
    <string name="zoom_in_zoom_out">הגדלה, הקטנה החוצה</string>
    <string name="automatic_hyphenation">המיקוף אוטומטי</string>
+   <string name="bookmark_for_this_page_already_exists">Bookmark עבור הדף הזה כבר קיים</string>
+   <string name="bookmark_with_text">Bookmark עם טקסט</string>
+   <string name="fast_bookmark">סימניה מהירה</string>
 </resources>

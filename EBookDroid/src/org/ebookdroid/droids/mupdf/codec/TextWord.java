@@ -36,7 +36,8 @@ public class TextWord extends RectF {
         this.original = new RectF(original);
     }
 
-    public static String asString(TextWord[][] input, boolean isFiltering) {
+    @Deprecated
+    private String asString(TextWord[][] input, boolean isFiltering) {
         if (input == null) {
             return "";
         }

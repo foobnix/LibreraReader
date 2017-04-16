@@ -323,4 +323,7 @@
    <string name="the_book_is_over">Kniha je u konca</string>
    <string name="zoom_in_zoom_out">Priblíženie, oddialenie</string>
    <string name="automatic_hyphenation">Automatické delenie slov</string>
+   <string name="bookmark_for_this_page_already_exists">Záložka pre túto stránku už existuje</string>
+   <string name="bookmark_with_text">Záložka s textom</string>
+   <string name="fast_bookmark">Fast záložky</string>
 </resources>
