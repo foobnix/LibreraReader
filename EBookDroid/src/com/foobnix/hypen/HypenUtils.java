@@ -19,7 +19,7 @@ public class HypenUtils {
         if (input == null || input.length() == 0) {
             return "";
         }
-        input = input.replace("<", " <").replace(">", "> ").replace("—", "-");
+        input = input.replace("<", " <").replace(">", "> ");
 
         String split[] = input.split(" ");
         StringBuilder res = new StringBuilder();
