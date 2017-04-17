@@ -324,6 +324,6 @@
    <string name="zoom_in_zoom_out">Uzaklaştırmak, yakınlaştırma</string>
    <string name="automatic_hyphenation">Otomatik heceleme</string>
    <string name="bookmark_for_this_page_already_exists">Bu sayfa için Favori zaten var</string>
-   <string name="bookmark_with_text">Metin ile İmi</string>
-   <string name="fast_bookmark">Hızlı imi</string>
+   <string name="bookmark_with_text">Yazı ile yer imi</string>
+   <string name="fast_bookmark">Hızlı yer imi</string>
 </resources>
