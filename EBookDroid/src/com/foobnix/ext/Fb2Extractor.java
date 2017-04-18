@@ -397,11 +397,8 @@ public class Fb2Extractor extends BaseExtractor {
                     isFindBodyEnd = true;
                 }
                 if (!isFindBodyEnd) {
+                    line = line.replace("&nbsp;", " ");
                     line = HypenUtils.applyHypnes(line);
-                    if (line.contains("shy")) {
-                        LOG.d("FICTION", line);
-                    }
-
                 }
             }
             writer.println(line);

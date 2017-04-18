@@ -1,8 +1,8 @@
 
-* PDF, DJVU: inzoomen - uitzoomen kan worden geconfigureerd voor dubbele tik 
-* TTS spraak opnemen om het bestand (.wav) 
-* TTS zegtboek is meer dan 
-* Toegevoegd scroll met 25%, 50%, 75% van de schermhoogte 
-* Tap zone kan 0% van de grootte 
-* Fast bookmarks 
-* Automatische woordafbreking voor FB2, RTF, TXT, HTML
+* Automatische woordafbreking voor FB2, RTF, TXT, HTML (andere formaten later) 
+* PDF, DJVU: verhoging en de pagina te verminderen kan worden ingeschakeld door te dubbelklikken 
+* TTS spraak opnemen naar bestand (WAV) 
+* De mogelijkheid toegevoegd om met 5 te scrollen %, 25%, 50%, 75%, 100% scherm hoogte 
+* Ga naar de volgende pagina op het scherm kan worden uitgeschakeld (waarde 0%) 
+* Fast bladwijzer voor de pagina (met de knop in het dialoogvenster bladwijzer of lang op op het bladwijzerpictogram) 
+* Verbeterde bijsnijden van witte document velden voor PDF, DJVU

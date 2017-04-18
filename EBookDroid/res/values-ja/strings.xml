@@ -326,4 +326,5 @@
    <string name="bookmark_for_this_page_already_exists">このページのブックマークはすでに存在します</string>
    <string name="bookmark_with_text">テキストをブックマーク</string>
    <string name="fast_bookmark">高速ブックマーク</string>
+   <string name="reading_settings">読書の設定</string>
 </resources>

@@ -326,4 +326,5 @@
    <string name="bookmark_for_this_page_already_exists">Bookmark cho trang này đã tồn tại</string>
    <string name="bookmark_with_text">Chia sẻ với bạn văn bản</string>
    <string name="fast_bookmark">Bookmark nhanh</string>
+   <string name="reading_settings">Cài đặt đọc</string>
 </resources>

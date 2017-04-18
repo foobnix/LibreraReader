@@ -1,7 +1,7 @@
-* PDF, DJVU: zoom in - zoom out can be configured for double tap
-* TTS record voice to the file (.wav)
-* TTS says "book is over"
-* Added scroll by 25%, 50%, 75%  of screen height
-* Tap zone can 0% size
-* Fast bookmarks
-* Automatic hyphenation for FB2, RTF, TXT, HTML
+* Automatic hyphenation for FB2, RTF, TXT, HTML (other formats later)
+* PDF, DJVU: increase and decrease the page can be enabled by double-clicking
+* TTS record voice to file (WAV)
+* Added the ability to scroll by 5%, 25%, 50%, 75%, 100% screen height
+* Go to the next page on screen can be turned off (value 0%)
+* Fast bookmark for the  page (with the button from the bookmark dialog, or long pressing on the bookmark icon)
+* Improved cropping of white document fields for PDF, DJVU

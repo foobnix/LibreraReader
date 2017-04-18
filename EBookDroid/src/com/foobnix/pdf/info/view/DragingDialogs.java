@@ -132,6 +132,7 @@ public class DragingDialogs {
 
     static TextToSpeech ttsEngine;
     static boolean isPrefclicked = false;
+    static boolean isFistTime = false;
     static String readingTExt = "";
     static int attempt = 0;
 
@@ -275,8 +276,9 @@ public class DragingDialogs {
                     @Override
                     public void onClick(View v) {
 
-                        if (isPrefclicked) {
+                        if (isPrefclicked || isFistTime) {
                             isPrefclicked = false;
+                            isFistTime = false;
                             TTSModule.getInstance().engine = TTSModule.getInstance().getDefaultEngineName();
                             TTSModule.getInstance().init(controller.getActivity(), TTSModule.getInstance().engine);
                         }
@@ -2549,7 +2551,10 @@ public class DragingDialogs {
 
                 // TOP panel start
                 View topPanelLine = inflate.findViewById(R.id.topPanelLine);
+                View topPanelLineDiv = inflate.findViewById(R.id.topPanelLineDiv);
                 topPanelLine.setVisibility(controller instanceof DocumentControllerHorizontalView ? View.VISIBLE : View.GONE);
+                topPanelLineDiv.setVisibility(controller.isTextFormat() ? View.VISIBLE : View.GONE);
+
                 View onRecent = inflate.findViewById(R.id.onRecent);
                 onRecent.setOnClickListener(new OnClickListener() {
 
@@ -2677,7 +2682,10 @@ public class DragingDialogs {
                 //
 
                 TextView moreSettings = (TextView) inflate.findViewById(R.id.moreSettings);
+                View moreSettingsImage = inflate.findViewById(R.id.moreSettingsImage);
                 moreSettings.setVisibility(controller.isTextFormat() ? View.VISIBLE : View.GONE);
+                moreSettingsImage.setVisibility(controller.isTextFormat() ? View.VISIBLE : View.GONE);
+
                 TxtUtils.underlineTextView(moreSettings).setOnClickListener(new OnClickListener() {
 
                     @Override
@@ -3024,41 +3032,8 @@ public class DragingDialogs {
                     }
                 });
 
-                final LinearLayout lc = (LinearLayout) inflate.findViewById(R.id.preColors);
-
-                TxtUtils.underlineTextView((TextView) inflate.findViewById(R.id.onDefaultColor)).setOnClickListener(new OnClickListener() {
-
-                    @Override
-                    public void onClick(View v) {
-                        AppState.get().isUseBGImageDay = false;
-                        AppState.get().isUseBGImageNight = false;
-
-                        AppState.get().bgImageDayTransparency = AppState.DAY_TRANSPARENCY;
-                        AppState.get().bgImageDayPath = MagicHelper.IMAGE_BG_1;
-
-                        AppState.get().bgImageNightTransparency = AppState.NIGHT_TRANSPARENCY;
-                        AppState.get().bgImageNightPath = MagicHelper.IMAGE_BG_1;
-
-                        AppState.get().isCustomizeBgAndColors = false;
-
-                        AppState.get().colorDayText = AppState.COLOR_BLACK;
-                        AppState.get().colorDayBg = AppState.COLOR_WHITE;
-
-                        textDayColor.setTextColor(AppState.COLOR_BLACK);
-                        textDayColor.setBackgroundColor(AppState.COLOR_WHITE);
-
-                        AppState.get().colorNigthText = AppState.COLOR_WHITE;
-                        AppState.get().colorNigthBg = AppState.COLOR_BLACK;
-
-                        textNigthColor.setTextColor(AppState.COLOR_WHITE);
-                        textNigthColor.setBackgroundColor(AppState.COLOR_BLACK);
-
-                        TintUtil.setTintImage(onDayColorImage, AppState.get().colorDayText);
-                        TintUtil.setTintImage(onNigthColorImage, AppState.get().colorNigthText);
-
-                        isChangedColor = true;
-                    }
-                });
+                final LinearLayout lcDay = (LinearLayout) inflate.findViewById(R.id.preColorsDay);
+                final LinearLayout lcNight = (LinearLayout) inflate.findViewById(R.id.preColorsNight);
 
                 TintUtil.setTintImage(onDayColorImage, AppState.get().colorDayText);
                 TintUtil.setTintImage(onNigthColorImage, AppState.get().colorNigthText);
@@ -3082,8 +3057,11 @@ public class DragingDialogs {
                 // AppState.get().isCustomizeBgAndColors ? View.VISIBLE :
                 // View.GONE);
 
-                lc.removeAllViews();
+                lcDay.removeAllViews();
+                lcNight.removeAllViews();
                 final int padding = Dips.dpToPx(3);
+
+                final int wh = (int) controller.getActivity().getResources().getDimension(R.dimen.wh_button);
 
                 for (String line : AppState.READ_COLORS) {
                     String[] split = line.split(",");
@@ -3093,7 +3071,7 @@ public class DragingDialogs {
                     final boolean isDay = split[3].equals("0");
 
                     TextView t1 = new TextView(controller.getActivity());
-                    LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(Dips.dpToPx(30), Dips.dpToPx(30));
+                    LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(wh, wh);
                     params.setMargins(padding, padding, padding, padding);
                     t1.setLayoutParams(params);
                     t1.setGravity(Gravity.CENTER);
@@ -3131,12 +3109,16 @@ public class DragingDialogs {
 
                         }
                     });
-                    lc.addView(t1);
+                    if (isDay) {
+                        lcDay.addView(t1);
+                    } else {
+                        lcNight.addView(t1);
+                    }
                 }
                 // add DayBG
                 {
                     ImageView t1 = new ImageView(controller.getActivity());
-                    LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(Dips.dpToPx(30), Dips.dpToPx(30));
+                    LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(wh, wh);
                     params.setMargins(padding, padding, padding, padding);
                     t1.setLayoutParams(params);
                     t1.setScaleType(ScaleType.FIT_XY);
@@ -3156,13 +3138,13 @@ public class DragingDialogs {
                             isChangedColor = true;
                         }
                     });
-                    lc.addView(t1, AppState.READ_COLORS.size() / 2);
+                    lcDay.addView(t1, 0);
                 }
 
                 // add Night
                 {
                     ImageView t2 = new ImageView(controller.getActivity());
-                    LinearLayout.LayoutParams params2 = new LinearLayout.LayoutParams(Dips.dpToPx(30), Dips.dpToPx(30));
+                    LinearLayout.LayoutParams params2 = new LinearLayout.LayoutParams(wh, wh);
                     params2.setMargins(padding, padding, padding, padding);
                     t2.setLayoutParams(params2);
                     t2.setScaleType(ScaleType.FIT_XY);
@@ -3182,7 +3164,7 @@ public class DragingDialogs {
                             isChangedColor = true;
                         }
                     });
-                    lc.addView(t2);
+                    lcNight.addView(t2, 0);
                 }
 
                 return inflate;

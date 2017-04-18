@@ -1,8 +1,8 @@
 
-* PDF, DJVU: zväčšiť - oddialenie môže byť konfigurovaný pre dvojité poklepanie 
+* Automatické delenie slov pre FB2, RTF, TXT, HTML (iné formáty neskôr) 
+* PDF, DJVU: zvýšenie a zníženie stránky možno aktivovať pomocou dvojkliku 
 * TTS záznam hlasu do súboru (WAV) 
-* TTS hovorí:Kniha je u konca 
-* Pridaná scroll o 25%, 50%, 75% výšky obrazovky 
-* Tap zóna môže veľkosť 0% 
-* Rýchle záložky 
-* Automatické delenie slov pre FB2, RTF, TXT, HTML
+* Pridaná možnosť posúvať o 5 %, 25%, 50%, 75%, 100% výšky obrazovky 
+* Ísť na ďalšiu stránku na obrazovke je možné vypnúť (hodnota 0%) 
+* Rýchle záložka stránky (tlačidlom z dialógu záložky, alebo dlhým stlačením na záložku) 
+* Vylepšená orezanie bielych dokumentov polí pre PDF, DJVU

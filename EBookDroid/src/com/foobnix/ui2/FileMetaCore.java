@@ -124,6 +124,7 @@ public class FileMetaCore {
                 info = MobiExtract.getBookOverview(path);
             }
             info = Jsoup.clean(info, Whitelist.none());
+            info = info.replace("&nbsp;", " ");
         } catch (Exception e) {
             LOG.e(e);
         }

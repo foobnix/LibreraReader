@@ -1,8 +1,8 @@
 
-* PDF, DjVu: zoom katika - zoom nje inaweza configured kwa bomba mbili 
-* TTS rekodi ya sauti kwenye file (wav) 
-* TTS anasemakitabu ni zaidi ya 
-* Aliongeza kitabu na 25%, 50%, 75% ya screen urefu 
-* Gonga zone anaweza 0% ukubwa 
-* Fast bookmarks 
-* Automatic hyphenation kwa FB2, rtf, TXT, HTML
+* Moja kwa moja hyphenation kwa FB2, rtf, TXT, HTML (miundo mengine baadaye) 
+* PDF, DjVu: ongezeko na kupungua ukurasa inaweza kuwezeshwa kwa mara mbili-kubonyeza 
+* TTS rekodi ya sauti kwenye faili (WAV) 
+* Aliongeza uwezo wa kitabu kwa 5 %, 25%, 50%, 75%, 100% screen urefu 
+* Nenda kwa ukurasa ufuatao kwenye screen inaweza akageuka mbali (thamani 0%) 
+* Fast alamisho ya ukurasa (pamoja na button kutoka bookmark dialog, au muda kubwa juu ya alama icon) 
+* Kuboresha mseto ya mashamba hati nyeupe kwa PDF, DjVu

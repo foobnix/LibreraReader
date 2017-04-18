@@ -326,4 +326,5 @@
    <string name="bookmark_for_this_page_already_exists">Bokmärke för denna sida finns redan</string>
    <string name="bookmark_with_text">Bokmärke med text</string>
    <string name="fast_bookmark">Snabb bokmärke</string>
+   <string name="reading_settings">Läsa inställningar</string>
 </resources>

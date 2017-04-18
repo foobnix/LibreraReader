@@ -1,8 +1,8 @@
 
-* PDF, DjVu: mărire - micșorare poate fi configurat pentru a apăsa de două ori 
-* TTS înregistrare vocală la fișierul (.wav) 
-* TTS spune „carte este de peste“ 
-* Adaugata parcurgere cu 25%, 50%, 75% din înălțimea ecranului 
-* Apăsați zonă poate 0% dimensiune 
-* semne de carte Fast 
-* automată în silabe pentru FB2, RTF, TXT, HTML
+* Despărțirea în silabe automată pentru FB2, RTF, TXT, HTML (alte formate de mai târziu) 
+* PDF, DjVu: creștere și de reducere a paginii poate fi activată prin dublu-clic 
+* TTS voce înregistra în fișier (WAV) 
+* adăugat posibilitatea de a derula 5 %, 25%, 50%, 75%, 100% înălțimea ecranului 
+* Du-te la pagina următoare pe ecran poate fi oprit (valoarea 0%) 
+* semn de carte rapidă pentru pagina (cu butonul din dialogul semn de carte, sau o apăsare lungă pe pictograma marcaj) 
+* trunchiere îmbunătățită a câmpurilor de documente albe pentru PDF, DjVu

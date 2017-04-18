@@ -883,7 +883,7 @@ public class DocumentWrapperUI {
         final PopupMenu popupMenu = new PopupMenu(view.getContext(), view);
 
         String pages = controller.getString(R.string.by_pages);
-        String screen = controller.getString(R.string.of_screen);
+        String screen = controller.getString(R.string.of_screen).toLowerCase(Locale.US);
         final List<Integer> values = Arrays.asList(AppState.NEXT_SCREEN_SCROLL_BY_PAGES, 100, 75, 50, 25, 5);
 
         for (int i = 0; i < values.size(); i++) {

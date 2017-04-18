@@ -326,4 +326,5 @@
    <string name="bookmark_for_this_page_already_exists">इस पृष्ठ के लिए बुकमार्क पहले से मौजूद</string>
    <string name="bookmark_with_text">पाठ के साथ बुकमार्क</string>
    <string name="fast_bookmark">फास्ट बुकमार्क</string>
+   <string name="reading_settings">पढ़ना सेटिंग</string>
 </resources>

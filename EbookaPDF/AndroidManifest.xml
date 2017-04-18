@@ -2,8 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="classic.pdf.reader.viewer.djvu.epub.fb2.txt.mobi.book.reader.lirbi.libri"
     android:installLocation="auto"
-    android:versionCode="437"
-    android:versionName="6.2.23" >
+    android:versionCode="439"
+    android:versionName="6.2.25" >
 
     <uses-sdk
         android:minSdkVersion="14"

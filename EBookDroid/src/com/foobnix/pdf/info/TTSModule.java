@@ -157,6 +157,7 @@ public final class TTSModule {
         pageHTML = pageHTML.replace("&nbsp;", " ");
         pageHTML = pageHTML.replaceAll("<end/>$", " ").replace("<end/>", ".");
         pageHTML = pageHTML.replace(".", ". ").replace(" .", ".").replace(" .", ".");
+        pageHTML = pageHTML.replaceAll("(?u)(\\w+)(-\\s)", "$1");
         return pageHTML;
     }
 
@@ -248,19 +249,6 @@ public final class TTSModule {
         }
         text = text.replace("?", "?.");
         text = text.replace("!", "!.");
-
-        if (false) {
-            text = text.replace("...", ". .");
-            String all[] = text.split(" ");
-            StringBuffer sb = new StringBuffer();
-            for (String t : all) {
-                if (TxtUtils.isNotEmpty(t) && Character.isUpperCase(t.charAt(0))) {
-                    sb.append(".");
-                }
-                sb.append(" " + t);
-            }
-            text = sb.toString();
-        }
 
         if (!AppState.getInstance().ttsReplacement) {
             return text;

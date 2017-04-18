@@ -1,8 +1,8 @@
 
-* PDF, DjVu: zoom in - zoomar ut kan konfigureras för dubbeltryck 
-* TTS rekord röst till fil (.wav) 
-* TTS sägerbok är över 
-* Lade rulla med 25%, 50%, 75% av skärmhöjd 
-* Tryck zonen burk 0% storlek 
-* Snabba bokmärken 
-* Automatisk avstavning för FB2, RTF, TXT, HTML
+* Automatisk avstavning för FB2, RTF, TXT, HTML (andra format senare) 
+* PDF, DjVu: öka och minska sidan kan aktiveras genom att dubbelklicka 
+* TTS rekord röst till fil (WAV) 
+* Lagt till möjligheten att rulla med 5 %, 25%, 50%, 75%, 100% skärmhöjd 
+* Gå till nästa sida på skärmen kan stängas av (värde 0%) 
+* Snabb bokmärke för sidan (med knappen från dialogrutan bokmärke, eller lång pressning på ikonen bokmärke) 
+* Förbättrad beskärning av vita dokumentfält för PDF, DjVu

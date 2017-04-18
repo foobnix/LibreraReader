@@ -326,4 +326,5 @@
    <string name="bookmark_for_this_page_already_exists">Segnalibro per questa pagina esiste già</string>
    <string name="bookmark_with_text">Bookmark con testo</string>
    <string name="fast_bookmark">Segnalibro veloce</string>
+   <string name="reading_settings">Impostazioni di lettura</string>
 </resources>

@@ -1,8 +1,8 @@
 
-* PDF, DjVu: zoom - zoom out se puede configurar para tocar dos veces 
-* TTS grabación de voz al archivo (.wav) 
-* TTS dicelibro es sobre 
-* Añadido de desplazamiento en un 25%, 50%, 75% de la altura de la pantalla 
-* Toque zona lata de tamaño 0% 
-* marcadores rápida 
-* La separación silábica automática para FB2, RTF, TXT, HTML
+* La separación silábica automática para FB2, RTF, TXT, HTML (otros formatos más adelante) 
+* PDF, DjVu: aumentar y disminuir la página se pueden activar haciendo doble clic 
+* TTS de voz grabar en un fichero (WAV) 
+* Se ha añadido la capacidad para desplazarse por 5 %, 25%, 50%, 75%, 100% altura de la pantalla 
+* Ir a la página siguiente en la pantalla se puede desactivar (valor 0%) 
+* marcador rápido para la página (con el botón desde el diálogo de marcador, o una presión prolongada en el icono de marcador) 
+* Mejora de cultivo de los campos del documento blancos para PDF, DjVu

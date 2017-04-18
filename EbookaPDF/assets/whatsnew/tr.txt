@@ -1,8 +1,8 @@
 
-* PDF, DJVU: yakınlaştırma - uzaklaştırma çift musluk için yapılandırılabilir 
-* TTS dosyasına ses kaydı (.wav) 
-* TTSkitap bitti diyor 
-*% 25,% 50, ekran yüksekliğinin% 75’i tarafından eklendi kaydırma 
-* dokunun bölge kutu% 0 boyutu 
-* Hızlı imleri FB2, RTF, TXT, HTML için otomatik tireleme 
-*
+* FB2, RTF, TXT, HTML (diğer formatlar üstü) için otomatik heceleme 
+* PDF, DJVU: artış ve sayfayı azaltmak çift tıklayarak etkinleştirilebilir 
+* TTS ses kaydı 
+* 5 kaydırma özelliği eklendi (WAV) Dosyaya % 25,% 50,% 75,% 
+* ekranda bir sonraki sayfaya gidin% 100 ekran yüksekliği kapatılabilir (değer% 0) 
+* imi iletişim kutusundan düğmesiyle sayfa için Hızlı imi (ya da uzun basılarak PDF, DJVU beyaz belge alanların 
+* Geliştirilmiş kırpma) imi simgesine

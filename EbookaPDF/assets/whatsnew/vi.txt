@@ -1,8 +1,8 @@
 
-* PDF, DjVu: phóng to - thu nhỏ có thể được cấu hình cho chạm đúp 
-* TTS kỷ lục giọng nói đến tập tin (.wav) 
-* TTS nóiCuốn sách kết thúc 
-* Thêm cuộn bằng 25%, 50%, 75% chiều cao màn hình 
-* Tập khu lon 0% kích thước 
-* bookmark nhanh 
-* dấu gạch nối tự động cho FB2, RTF, TXT, HTML
+* Tự động dấu gạch nối cho FB2, RTF, TXT, HTML (định dạng khác sau này) 
+* PDF, DjVu: tăng và giảm trang có thể được kích hoạt bằng cách double-click 
+* TTS giọng nói ghi vào tập tin (WAV) 
+* Thêm khả năng di chuyển của 5 %, 25%, 50%, 75%, 100% màn hình chiều cao 
+* Đi đến trang tiếp theo trên màn hình có thể được tắt (giá trị 0%) 
+* nhanh dấu trang (với nút từ hộp thoại bookmark, hoặc nhấn lâu vào biểu tượng dấu) 
+* Cải thiện sau thu hoạch của lĩnh vực tài liệu trắng cho PDF, DjVu

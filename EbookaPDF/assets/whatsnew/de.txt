@@ -1,8 +1,8 @@
 
-* PDF, DJVU: Zoom in - Verkleinern kann für doppeltes Tippen konfiguriert werden 
-* TTS Sprachaufnahme in die Datei (.wav) 
-* TTS sagt 
-*Buch über ist um 25% Hinzugefügt blättern, 50%, 75% der Bildschirmhöhe 
-* Tap-Zone kann 0% Größe 
-* Schnelle Lesezeichen 
-* Automatische Silbentrennung für FB2, RTF, TXT, HTML
+* Automatische Silbentrennung für FB2, RTF, TXT, HTML (andere Formate später) 
+* PDF, DJVU: Steigerung und die Seite verringern 
+* durch einen Doppelklick aktiviert werden TTS Sprachaufnahme (WAV) 
+* Hinzugefügt wurde die Fähigkeit zur Einreichung von 5 blättern %, 25%, 50%, 75%, 100% Bildschirmhöhe 
+* auf die nächste Seite auf dem Bildschirm gehen (0% -Wert) 
+* Schnelle Lesezeichen für die Seite ausgeschaltet wird (mit dem Button aus dem Lesezeichen-Dialog oder langen Drücken auf dem Lesezeichen-Symbol) 
+* Verbessertes Zuschneiden von weißen Dokumentenfeldern für PDF, DJVU

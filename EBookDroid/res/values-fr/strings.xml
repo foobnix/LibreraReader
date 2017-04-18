@@ -326,4 +326,5 @@
    <string name="bookmark_for_this_page_already_exists">Signet pour cette page existe déjà</string>
    <string name="bookmark_with_text">Conservez ce lien avec le texte</string>
    <string name="fast_bookmark">Signet rapide</string>
+   <string name="reading_settings">Paramètres de lecture</string>
 </resources>

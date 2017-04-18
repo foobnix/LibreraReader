@@ -326,4 +326,5 @@
    <string name="bookmark_for_this_page_already_exists">نشانک برای این صفحه قبلا وجود داشته</string>
    <string name="bookmark_with_text">نشانه با متن</string>
    <string name="fast_bookmark">نشانه سریع</string>
+   <string name="reading_settings">تنظیمات خواندن</string>
 </resources>

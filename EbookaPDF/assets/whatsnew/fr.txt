@@ -1,8 +1,8 @@
 
-* PDF, DJVU: zoom - zoom arrière peut être configuré pour le double tap 
-* TTS voix d’enregistrement dans le fichier (.wav) 
-* TTS ditlivre sur 
-* rouleau Ajouté par 25%, 50%, 75% de la hauteur de l’écran 
-* zone 0% Tap peut taille 
-* signets rapide 
-* césure automatique pour FB2, RTF, TXT, HTML
+* Césure automatique pour FB2, RTF, TXT, HTML (autres formats plus tard) 
+* PDF, DJVU: augmenter et diminuer la page peuvent être activés par un double-clic 
+* TTS voix d’enregistrement dans un fichier (WAV) 
+* Ajout de la possibilité de faire défiler par 5 %, 25%, 50%, 75%, 100% de la hauteur de l’écran 
+* Aller à la page suivante à l’écran peut être désactivé (valeur 0%) 
+* signet rapide pour la page (avec le bouton de la boîte de dialogue de signet ou un appui long sur l’icône du signet) 
+* Amélioration des cultures des champs de document blanc pour PDF, DJVU

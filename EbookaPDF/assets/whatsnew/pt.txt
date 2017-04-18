@@ -1,8 +1,8 @@
 
-* PDF, DJVU: zoom - zoom pode ser configurado para tocar duas vezes 
-* TTS gravação de voz para o arquivo (.wav) 
-* TTS dizlivro é sobre 
-* rolagem Adicionado em 25%, 50%, 75% da altura da tela 
-* Tap zona pode 0% do tamanho 
-* bookmarks rápido 
-* hifenização automática para FB2, RTF, TXT, HTML
+* Hifenização automática para FB2, RTF, TXT, HTML (outros formatos mais tarde) 
+* PDF, DJVU: aumentar e diminuir a página pode ser ativado por um clique duplo 
+* TTS voz de registro em arquivo (WAV) 
+* Adicionado a capacidade para rolar por 5 %, 25%, 50%, 75%, 100% altura da tela 
+* Vá para a próxima página na tela pode ser desligado (valor de 0%) 
+* bookmark rápido para a página (com o botão da caixa de diálogo marcador, ou muito tempo pressionando no ícone de marcador) 
+* Melhor corte de campos de documentos brancos para PDF, DJVU

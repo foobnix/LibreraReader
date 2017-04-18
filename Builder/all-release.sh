@@ -7,8 +7,6 @@ ant clean-apk
 ant x86 droid
 ant armeabi-v7a droid
 
-./remove_all.sh
-./install_all.sh
 
 ant x86 pro
 ant armeabi-v7a pro
