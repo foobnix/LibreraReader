@@ -3,7 +3,6 @@ package org.ebookdroid.core.crop;
 import org.ebookdroid.common.bitmaps.BitmapRef;
 
 import com.foobnix.android.utils.LOG;
-import com.foobnix.pdf.info.wrapper.AppState;
 import com.foobnix.pdf.info.wrapper.MagicHelper;
 
 import android.graphics.Bitmap;
@@ -42,9 +41,10 @@ public class PageCropper {
                 if (baseColor == pixel) {
                     continue;
                 }
+
                 // if (colorWithinTolerance(baseColor, pixel,
                 // AppState.get().cropTolerance)) {
-                if (MagicHelper.isColorDarkSimple(pixel)) {
+                if (pixel == Color.BLACK || MagicHelper.isColorDarkSimple(pixel)) {
                     if (x < topX)
                         topX = x;
                     if (y < topY)

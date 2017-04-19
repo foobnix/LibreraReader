@@ -23,7 +23,7 @@
                 android:layout_weight="0"
                 android:padding="5dip"
                 android:src="@drawable/glyphicons_137_cogwheel"
-                android:tint="@color/tint_gray" />
+                android:tint="@color/lt_grey" />
 
             <TextView
                 android:id="@+id/moreSettings"
@@ -39,7 +39,7 @@
                 android:layout_weight="0"
                 android:padding="5dip"
                 android:src="@drawable/glyphicons_137_cogwheel"
-                android:tint="@color/tint_gray" />
+                android:tint="@color/lt_grey" />
 
             <TextView
                 android:id="@+id/performanceSettigns"
@@ -66,6 +66,7 @@
             android:orientation="horizontal" >
 
             <ImageView
+                android:visibility="gone"
                 android:id="@+id/onRecent"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -103,6 +104,7 @@
                 android:tint="@color/tint_gray" />
 
             <ImageView
+                android:visibility="gone"
                 android:id="@+id/onBrightness"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -136,6 +138,7 @@
                 android:tint="@color/tint_gray" />
 
             <ImageView
+                android:visibility="gone"
                 android:id="@+id/onTTS"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
