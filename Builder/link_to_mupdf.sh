@@ -21,4 +21,4 @@ ln -s $MUPDF/libs/armeabi-v7a $ARM_V7/armeabi-v7a
 ln -s $MUPDF/libs/x86 $X86/x86
 
 cd $MUPDF
-ndk-build
+#ndk-build
