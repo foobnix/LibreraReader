@@ -27,7 +27,7 @@ DOWNLOAD LIRBI SOURCE CODE from GITHUB
 
 1) git clone https://github.com/foobnix/LirbiReader.git
 
-2) run ./pdf4/update_all.sh
+2) run ./LirbiReader/update_all.sh
 Downlaod required packages (Google Play Service, RecicleView, CardView, etc)
 
 3) Download Mupdf sources tar.gz from [http://mupdf.com/downloads](http://mupdf.com/downloads)
@@ -38,24 +38,26 @@ Downlaod required packages (Google Play Service, RecicleView, CardView, etc)
 ## Build
 
 1) Build NDK part
-./pdf4/Builder/link_to_mupdf.sh
+./LirbiReader/Builder/link_to_mupdf.sh
 
 Specify you project path and MUPDF path
 MUPDF=/dev/mupdf-test/platform/java
-MY=/home/ivan-dev/git/pdf4
+MY=/home/ivan-dev/git/LirbiReader
 
 2) To build Lirbi reader
-./pdf4/Builder/all-lirbi-free.sh
+./LirbiReader/Builder/all-lirbi-free.sh
 
 3) To build Lirbi PRO
-./pdf4/Builder/all-pro.sh
+./LirbiReader/Builder/all-pro.sh
 
 4) To build PDF Classic
-./pdf4/Builder/all-classic.sh
+./LirbiReader/Builder/all-classic.sh
 
 ## Lirbi depend on
 
-MuPDF - http://www.mupdf.com
+MuPDF - (AGPL License) http://git.ghostscript.com/?p=mupdf.git;a=commit;h=0628a0b3d166543dbc1c346790014ff39ccf76b8
+Lirbi Patch ./LirbiReader/Builder/jni/MupdfPatch.txt
+Mupdf patch source ./LirbiReader/mupdf-source.tar.gz
 
 EbookDroid
 djvulibre
