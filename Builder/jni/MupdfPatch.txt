@@ -1,3 +1,4 @@
+#1
 source/html/epub-doc.c
 //if (fz_has_archive_entry(ctx, zip, "META-INF/rights.xml"))
 //		fz_throw(ctx, FZ_ERROR_GENERIC, "EPUB is locked by DRM");
