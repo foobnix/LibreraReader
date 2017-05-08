@@ -154,9 +154,10 @@ public class AppState {
     public final static int BOOKMARK_MODE_BY_BOOK = 2;
 
     public final static int DOUBLE_CLICK_AUTOSCROLL = 0;
-    public final static int DOUBLE_CLICK_RECENTER = 1;
+    public final static int DOUBLE_CLICK_ADJUST_PAGE = 1;
     public final static int DOUBLE_CLICK_NOTHING = 2;
     public final static int DOUBLE_CLICK_ZOOM_IN_OUT = 3;
+    public final static int DOUBLE_CLICK_CENTER_HORIZONTAL = 4;
 
     public final static int NEXT_SCREEN_SCROLL_BY_PAGES = 0;
 

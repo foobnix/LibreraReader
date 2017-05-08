@@ -1167,7 +1167,7 @@ public class HorizontalViewActivity extends FragmentActivity {
                 return true;
             }
             if (KeyEvent.KEYCODE_F == keyCode) {
-                documentController.recenterDocument();
+                documentController.alignDocument();
                 return true;
             }
 

@@ -14,6 +14,7 @@ import com.foobnix.pdf.info.wrapper.AppState;
 import com.foobnix.pdf.info.wrapper.MagicHelper;
 import com.foobnix.pdf.search.activity.msg.InvalidateMessage;
 import com.foobnix.pdf.search.activity.msg.MessageAutoFit;
+import com.foobnix.pdf.search.activity.msg.MessageCenterHorizontally;
 import com.foobnix.pdf.search.activity.msg.MessageEvent;
 import com.foobnix.pdf.search.activity.msg.TextWordsMessage;
 import com.foobnix.sys.ClickUtils;
@@ -107,6 +108,16 @@ public class PageImaveView extends View {
     }
 
     @Subscribe
+    public void onCenterHorizontally(MessageCenterHorizontally event) {
+        LOG.d("onCenterHorizontally recive");
+        if (pageNumber == event.getPage()) {
+            LOG.d("onAutoFit recive", event.getPage(), pageNumber);
+            centerHorizontally();
+            invalidate();
+        }
+    }
+
+    @Subscribe
     public void onTextWords(TextWordsMessage event) {
         if (event.getPage() == pageNumber) {
             // pageText = event.getMessages();
@@ -123,10 +134,11 @@ public class PageImaveView extends View {
         public boolean onDoubleTap(final MotionEvent e) {
             if (clickUtils.isClickCenter(e.getX(), e.getY())) {
                 isLognPress = true;
+
                 if (isFirstZoomInOut) {
                     // imageMatrix().reset();
                     imageMatrix().preTranslate(getWidth() / 2 - e.getX(), getHeight() / 2 - e.getY());
-                    imageMatrix().postScale(3, 3, getWidth() / 2, getHeight() / 2);
+                    imageMatrix().postScale(2.5f, 2.5f, getWidth() / 2, getHeight() / 2);
                     isFirstZoomInOut = false;
                     AppState.get().isLocked = false;
                     invalidate();
@@ -434,6 +446,13 @@ public class PageImaveView extends View {
 
         autoFit();
         invalidate();
+    }
+
+    public void centerHorizontally() {
+        float[] f = new float[9];
+        imageMatrix().getValues(f);
+        float y = f[Matrix.MTRANS_Y];
+        imageMatrix().setTranslate((getWidth() - drawableWidth) / 2, y);
     }
 
     public void autoFit() {

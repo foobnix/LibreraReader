@@ -466,6 +466,8 @@ public abstract class DocumentController {
 
     }
 
-    public abstract void recenterDocument();
+    public abstract void alignDocument();
+
+    public abstract void centerHorizontal();
 
 }

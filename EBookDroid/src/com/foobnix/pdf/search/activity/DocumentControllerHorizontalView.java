@@ -25,6 +25,7 @@ import com.foobnix.pdf.info.wrapper.AppState;
 import com.foobnix.pdf.info.wrapper.DocumentController;
 import com.foobnix.pdf.search.activity.msg.InvalidateMessage;
 import com.foobnix.pdf.search.activity.msg.MessageAutoFit;
+import com.foobnix.pdf.search.activity.msg.MessageCenterHorizontally;
 import com.foobnix.sys.GeneralDocInterfaceImpl;
 import com.foobnix.sys.TempHolder;
 import com.foobnix.ui2.AppDB;
@@ -509,9 +510,15 @@ public abstract class DocumentControllerHorizontalView extends DocumentControlle
     }
 
     @Override
-    public void recenterDocument() {
+    public void alignDocument() {
         PageImageState.get().isAutoFit = true;
         EventBus.getDefault().post(new MessageAutoFit(getCurentPage()));
+    }
+
+    @Override
+    public void centerHorizontal() {
+        PageImageState.get().isAutoFit = true;
+        EventBus.getDefault().post(new MessageCenterHorizontally(getCurentPage()));
     }
 
 }

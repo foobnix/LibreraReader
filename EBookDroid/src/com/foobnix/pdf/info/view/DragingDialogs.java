@@ -2009,10 +2009,16 @@ public class DragingDialogs {
                 List<String> doubleTapNames = Arrays.asList(//
                         controller.getString(R.string.db_auto_scroll), //
                         controller.getString(R.string.db_auto_alignemnt), //
+                        controller.getString(R.string.db_auto_center_horizontally), //
                         controller.getString(R.string.db_do_nothing), //
                         controller.getString(R.string.zoom_in_zoom_out));
 
-                final List<Integer> doubleTapIDS = Arrays.asList(AppState.DOUBLE_CLICK_AUTOSCROLL, AppState.DOUBLE_CLICK_RECENTER, AppState.DOUBLE_CLICK_NOTHING, AppState.DOUBLE_CLICK_ZOOM_IN_OUT);
+                final List<Integer> doubleTapIDS = Arrays.asList(//
+                        AppState.DOUBLE_CLICK_AUTOSCROLL, //
+                        AppState.DOUBLE_CLICK_ADJUST_PAGE, //
+                        AppState.DOUBLE_CLICK_CENTER_HORIZONTAL, //
+                        AppState.DOUBLE_CLICK_NOTHING, //
+                        AppState.DOUBLE_CLICK_ZOOM_IN_OUT);//
 
                 final Spinner doubleTapSpinner = (Spinner) inflate.findViewById(R.id.doubleTapSpinner);
                 doubleTapSpinner.setAdapter(new BaseItemLayoutAdapter<String>(controller.getActivity(), android.R.layout.simple_spinner_dropdown_item, doubleTapNames) {
@@ -3037,8 +3043,6 @@ public class DragingDialogs {
                 });
 
                 final LinearLayout lc = (LinearLayout) inflate.findViewById(R.id.preColors);
-
-
 
                 TintUtil.setTintImage(onDayColorImage, AppState.get().colorDayText);
                 TintUtil.setTintImage(onNigthColorImage, AppState.get().colorNigthText);

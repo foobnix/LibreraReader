@@ -232,7 +232,7 @@ public class DocumentWrapperUI {
             return true;
         }
         if (KeyEvent.KEYCODE_F == keyCode) {
-            controller.recenterDocument();
+            controller.alignDocument();
             return true;
         }
 
@@ -856,14 +856,16 @@ public class DocumentWrapperUI {
 
     public void doDoubleTap(int x, int y) {
         if (AppState.getInstance().isMusicianMode) {
-            controller.recenterDocument();
+            controller.alignDocument();
         } else {
             if (AppState.get().doubleClickAction == AppState.DOUBLE_CLICK_ZOOM_IN_OUT) {
                 controller.onZoomInOut(x, y);
                 AppState.get().isEditMode = false;
                 showHide();
-            } else if (AppState.get().doubleClickAction == AppState.DOUBLE_CLICK_RECENTER) {
-                controller.recenterDocument();
+            } else if (AppState.get().doubleClickAction == AppState.DOUBLE_CLICK_ADJUST_PAGE) {
+                controller.alignDocument();
+            } else if (AppState.get().doubleClickAction == AppState.DOUBLE_CLICK_CENTER_HORIZONTAL) {
+                controller.centerHorizontal();
             } else if (AppState.get().doubleClickAction == AppState.DOUBLE_CLICK_AUTOSCROLL) {
                 onAutoScrollClick();
             }
@@ -1230,7 +1232,7 @@ public class DocumentWrapperUI {
 
             controller.onCrop();
             controller.updateRendering();
-            controller.recenterDocument();
+            controller.alignDocument();
 
         }
     };
@@ -1287,7 +1289,7 @@ public class DocumentWrapperUI {
 
         @Override
         public void onClick(final View arg0) {
-            controller.recenterDocument();
+            controller.alignDocument();
         }
     };
 

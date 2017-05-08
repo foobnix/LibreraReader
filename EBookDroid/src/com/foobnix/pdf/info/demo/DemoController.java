@@ -29,6 +29,10 @@ public class DemoController extends DocumentController {
     public void deleteAnnotation(long pageHandler, int page, int index) {
     }
 
+    @Override
+    public void centerHorizontal() {
+
+    }
 
     @Override
     public int getCurentPageFirst1() {
@@ -67,7 +71,7 @@ public class DemoController extends DocumentController {
     }
 
     @Override
-    public void recenterDocument() {
+    public void alignDocument() {
     }
 
     @Override

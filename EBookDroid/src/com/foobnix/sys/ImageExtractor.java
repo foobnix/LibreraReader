@@ -332,7 +332,7 @@ public class ImageExtractor implements ImageDownloader {
             boolean isJPG = AppState.get().imageFormat.equals(AppState.JPG);
 
             CompressFormat format = isJPG ? CompressFormat.JPEG : CompressFormat.PNG;
-            int quality = isJPG ? 90 : 100;
+            int quality = isJPG ? 80 : 100;
             bitmap.compress(format, quality, os);
 
             byte[] byteArray = os.toByteArray();

@@ -470,7 +470,7 @@ public class VuDroidController extends DocumentController {
     }
 
     @Override
-    public void recenterDocument() {
+    public void alignDocument() {
         int curentPage = ctr.getDocumentModel().getCurrentDocPageIndex();
 
         ctr.getZoomModel().initZoom(1);
@@ -480,6 +480,18 @@ public class VuDroidController extends DocumentController {
         ctr.getDocumentController().goToPage(curentPage);
 
         ctr.getDocumentController().toggleRenderingEffects();
+    }
+
+    @Override
+    public void centerHorizontal() {
+        final float zoom = ctr.getZoomModel().getZoom();
+        int viewWidth = (int) ctr.getDocumentModel().getCurrentPageObject().getBounds(zoom).width();
+        int currentY = ctr.getDocumentController().getView().getScrollY();
+
+        int dx = (viewWidth - Dips.screenWidth()) / 2;
+        ctr.getDocumentController().getView().scrollTo(dx, currentY);
+        LOG.d("viewWidth", viewWidth, dx);
+        // commit();
     }
 
     @Override
