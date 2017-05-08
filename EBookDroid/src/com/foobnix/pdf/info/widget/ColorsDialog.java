@@ -4,6 +4,7 @@ import com.buzzingandroid.ui.HSVColorPickerDialog.OnColorSelectedListener;
 import com.buzzingandroid.ui.HSVColorWheel;
 import com.buzzingandroid.ui.HSVValueSlider;
 import com.foobnix.android.utils.IntegerResponse;
+import com.foobnix.android.utils.LOG;
 import com.foobnix.android.utils.ResultResponse2;
 import com.foobnix.android.utils.TxtUtils;
 import com.foobnix.pdf.info.R;
@@ -53,7 +54,7 @@ public class ColorsDialog {
 
     Handler handler;
 
-    public ColorsDialog(final FragmentActivity c, final boolean isDayMode, int colorText, int colorBg, final int defText, final int defBg, final ColorsDialogResult colorsDialogResult) {
+    public ColorsDialog(final FragmentActivity c, final boolean isDayMode, int colorText, int colorBg, boolean onlyColorBg, final ColorsDialogResult colorsDialogResult) {
         super();
         final View view = LayoutInflater.from(c).inflate(R.layout.dialog_colors, null, false);
 
@@ -335,6 +336,7 @@ public class ColorsDialog {
         hsvColorWheel1.setListener(new OnColorSelectedListener() {
             @Override
             public void colorSelected(Integer color) {
+                LOG.d("hsvColorWheel1 colorSelected", MagicHelper.colorToString(color));
                 hsvValueSlider1.setColor(color, true);
                 updateRGB(fontRGB, color);
             }
@@ -343,6 +345,7 @@ public class ColorsDialog {
         hsvColorWheel2.setListener(new OnColorSelectedListener() {
             @Override
             public void colorSelected(Integer color) {
+                LOG.d("hsvColorWheel2 colorSelected", MagicHelper.colorToString(color));
                 hsvValueSlider2.setColor(color, true);
                 updateRGB(bgRGB, color);
             }
@@ -394,7 +397,8 @@ public class ColorsDialog {
         });
         d.show();
 
-        TxtUtils.underlineTextView((TextView) view.findViewById(R.id.onDefaults)).setOnClickListener(new OnClickListener() {
+        TextView isDefaults = TxtUtils.underlineTextView((TextView) view.findViewById(R.id.onDefaults));
+        isDefaults.setOnClickListener(new OnClickListener() {
 
             @Override
             public void onClick(View v) {
@@ -407,7 +411,7 @@ public class ColorsDialog {
                     AppState.get().bgImageNightPath = MagicHelper.IMAGE_BG_2;
                     imageTransparency.reset(AppState.get().bgImageNightTransparency);
                 }
-                updateAll(defText, defBg);
+                // updateAll(defText, defBg);
 
             }
         });
@@ -442,6 +446,12 @@ public class ColorsDialog {
                 }
             }
         }, 25);
+
+        if (onlyColorBg) {
+            isImage.setVisibility(View.GONE);
+            isDefaults.setVisibility(View.GONE);
+
+        }
 
     }
 

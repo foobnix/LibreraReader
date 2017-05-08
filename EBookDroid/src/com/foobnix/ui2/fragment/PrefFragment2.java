@@ -829,7 +829,7 @@ public class PrefFragment2 extends UIFragment {
 
             @Override
             public void onClick(View v) {
-                new ColorsDialog(getActivity(), true, AppState.get().colorDayText, AppState.get().colorDayBg, AppState.COLOR_BLACK, AppState.COLOR_WHITE, new ColorsDialogResult() {
+                new ColorsDialog(getActivity(), true, AppState.get().colorDayText, AppState.get().colorDayBg, false, new ColorsDialogResult() {
 
                     @Override
                     public void onChooseColor(int colorText, int colorBg) {
@@ -851,7 +851,7 @@ public class PrefFragment2 extends UIFragment {
 
             @Override
             public void onClick(View v) {
-                new ColorsDialog(getActivity(), false, AppState.get().colorNigthText, AppState.get().colorNigthBg, AppState.COLOR_WHITE, AppState.COLOR_BLACK, new ColorsDialogResult() {
+                new ColorsDialog(getActivity(), false, AppState.get().colorNigthText, AppState.get().colorNigthBg, false, new ColorsDialogResult() {
 
                     @Override
                     public void onChooseColor(int colorText, int colorBg) {

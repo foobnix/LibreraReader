@@ -66,11 +66,13 @@ import com.nostra13.universalimageloader.core.ImageLoader;
 import android.annotation.SuppressLint;
 import android.annotation.TargetApi;
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.app.SearchManager;
 import android.content.ComponentName;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
@@ -2982,7 +2984,7 @@ public class DragingDialogs {
 
                     @Override
                     public void onClick(View v) {
-                        new ColorsDialog((FragmentActivity) controller.getActivity(), true, AppState.get().colorDayText, AppState.get().colorDayBg, AppState.COLOR_BLACK, AppState.COLOR_WHITE, new ColorsDialogResult() {
+                        new ColorsDialog((FragmentActivity) controller.getActivity(), true, AppState.get().colorDayText, AppState.get().colorDayBg, false, new ColorsDialogResult() {
 
                             @Override
                             public void onChooseColor(int colorText, int colorBg) {
@@ -3011,7 +3013,7 @@ public class DragingDialogs {
 
                     @Override
                     public void onClick(View v) {
-                        new ColorsDialog((FragmentActivity) controller.getActivity(), false, AppState.get().colorNigthText, AppState.get().colorNigthBg, AppState.COLOR_WHITE, AppState.COLOR_BLACK, new ColorsDialogResult() {
+                        new ColorsDialog((FragmentActivity) controller.getActivity(), false, AppState.get().colorNigthText, AppState.get().colorNigthBg, false, new ColorsDialogResult() {
 
                             @Override
                             public void onChooseColor(int colorText, int colorBg) {
@@ -3034,10 +3036,152 @@ public class DragingDialogs {
 
                 final LinearLayout lc = (LinearLayout) inflate.findViewById(R.id.preColors);
 
+
+
+                TintUtil.setTintImage(onDayColorImage, AppState.get().colorDayText);
+                TintUtil.setTintImage(onNigthColorImage, AppState.get().colorNigthText);
+
+                textNigthColor.setTextColor(AppState.get().colorNigthText);
+                textNigthColor.setBackgroundColor(AppState.get().colorNigthBg);
+                textDayColor.setTextColor(AppState.get().colorDayText);
+                textDayColor.setBackgroundColor(AppState.get().colorDayBg);
+
+                if (AppState.get().isUseBGImageDay) {
+                    textDayColor.setTextColor(Color.BLACK);
+                    textDayColor.setBackgroundDrawable(MagicHelper.getBgImageDayDrawable(true));
+
+                }
+                if (AppState.get().isUseBGImageNight) {
+                    textNigthColor.setTextColor(Color.WHITE);
+                    textNigthColor.setBackgroundDrawable(MagicHelper.getBgImageNightDrawable(true));
+                }
+
+                // lc.setVisibility(controller.isTextFormat() ||
+                // AppState.get().isCustomizeBgAndColors ? View.VISIBLE :
+                // View.GONE);
+
+                final int padding = Dips.dpToPx(3);
+                final Runnable colorsLine = new Runnable() {
+
+                    @Override
+                    public void run() {
+                        // TODO Auto-generated method stub
+
+                        lc.removeAllViews();
+
+                        for (String line : AppState.get().readColors.split(";")) {
+                            if (TxtUtils.isEmpty(line)) {
+                                continue;
+                            }
+                            String[] split = line.split(",");
+                            LOG.d("Split colors", split[0], split[1], split[2]);
+                            String name = split[0];
+                            final int bg = Color.parseColor(split[1]);
+                            final int text = Color.parseColor(split[2]);
+                            final boolean isDay = split[3].equals("0");
+
+                            TextView t1 = new TextView(controller.getActivity());
+                            LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(Dips.dpToPx(30), Dips.dpToPx(30));
+                            params.setMargins(padding, padding, padding, padding);
+                            t1.setLayoutParams(params);
+                            t1.setGravity(Gravity.CENTER);
+                            t1.setBackgroundColor(bg);
+                            if (controller.isTextFormat() || AppState.get().isCustomizeBgAndColors) {
+                                t1.setText(name);
+                                t1.setTextColor(text);
+                                t1.setTypeface(null, Typeface.BOLD);
+                            }
+
+                            t1.setOnClickListener(new OnClickListener() {
+
+                                @Override
+                                public void onClick(View v) {
+                                    if (isDay) {
+                                        if (controller.isTextFormat() || AppState.get().isCustomizeBgAndColors) {
+                                            AppState.get().colorDayText = text;
+                                            textDayColor.setTextColor(text);
+                                        }
+
+                                        AppState.get().colorDayBg = bg;
+                                        textDayColor.setBackgroundColor(bg);
+                                        AppState.get().isUseBGImageDay = false;
+                                    } else {
+                                        if (controller.isTextFormat() || AppState.get().isCustomizeBgAndColors) {
+                                            AppState.get().colorNigthText = text;
+                                            textNigthColor.setTextColor(text);
+                                        }
+
+                                        AppState.get().colorNigthBg = bg;
+                                        textNigthColor.setBackgroundColor(bg);
+                                        AppState.get().isUseBGImageNight = false;
+                                    }
+                                    isChangedColor = true;
+
+                                }
+                            });
+                            lc.addView(t1);
+                        }
+                        // add DayBG
+                        {
+                            ImageView t1 = new ImageView(controller.getActivity());
+                            LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(Dips.dpToPx(30), Dips.dpToPx(30));
+                            params.setMargins(padding, padding, padding, padding);
+                            t1.setLayoutParams(params);
+                            t1.setScaleType(ScaleType.FIT_XY);
+
+                            t1.setImageDrawable(MagicHelper.getBgImageDayDrawable(false));
+
+                            t1.setOnClickListener(new OnClickListener() {
+
+                                @Override
+                                public void onClick(View v) {
+                                    AppState.get().colorDayText = AppState.COLOR_BLACK;
+                                    AppState.get().colorDayBg = AppState.COLOR_WHITE;
+
+                                    textDayColor.setTextColor(Color.BLACK);
+                                    textDayColor.setBackgroundDrawable(MagicHelper.getBgImageDayDrawable(false));
+                                    AppState.get().isUseBGImageDay = true;
+                                    isChangedColor = true;
+                                }
+                            });
+                            lc.addView(t1, AppState.get().readColors.split(";").length / 2);
+                        }
+
+                        // add Night
+                        {
+                            ImageView t2 = new ImageView(controller.getActivity());
+                            LinearLayout.LayoutParams params2 = new LinearLayout.LayoutParams(Dips.dpToPx(30), Dips.dpToPx(30));
+                            params2.setMargins(padding, padding, padding, padding);
+                            t2.setLayoutParams(params2);
+                            t2.setScaleType(ScaleType.FIT_XY);
+
+                            t2.setImageDrawable(MagicHelper.getBgImageNightDrawable(false));
+
+                            t2.setOnClickListener(new OnClickListener() {
+
+                                @Override
+                                public void onClick(View v) {
+                                    AppState.get().colorNigthText = AppState.COLOR_WHITE;
+                                    AppState.get().colorNigthBg = AppState.COLOR_BLACK;
+
+                                    textNigthColor.setTextColor(Color.WHITE);
+                                    textNigthColor.setBackgroundDrawable(MagicHelper.getBgImageNightDrawable(false));
+                                    AppState.get().isUseBGImageNight = true;
+                                    isChangedColor = true;
+                                }
+                            });
+                            lc.addView(t2);
+                        }
+
+                    }
+                };
+                colorsLine.run();
+
                 TxtUtils.underlineTextView((TextView) inflate.findViewById(R.id.onDefaultColor)).setOnClickListener(new OnClickListener() {
 
                     @Override
                     public void onClick(View v) {
+                        AppState.get().readColors = AppState.READ_COLORS_DEAFAUL;
                         AppState.get().isUseBGImageDay = false;
                         AppState.get().isUseBGImageNight = false;
 
@@ -3065,133 +3209,127 @@ public class DragingDialogs {
                         TintUtil.setTintImage(onNigthColorImage, AppState.get().colorNigthText);
 
                         isChangedColor = true;
+
+                        colorsLine.run();
                     }
                 });
 
-                TintUtil.setTintImage(onDayColorImage, AppState.get().colorDayText);
-                TintUtil.setTintImage(onNigthColorImage, AppState.get().colorNigthText);
+                inflate.findViewById(R.id.moreReadColorSettings).setOnClickListener(new OnClickListener() {
 
-                textNigthColor.setTextColor(AppState.get().colorNigthText);
-                textNigthColor.setBackgroundColor(AppState.get().colorNigthBg);
-                textDayColor.setTextColor(AppState.get().colorDayText);
-                textDayColor.setBackgroundColor(AppState.get().colorDayBg);
+                    @Override
+                    public void onClick(View v) {
+                        final AlertDialog.Builder builder = new AlertDialog.Builder(controller.getActivity());
+                        builder.setTitle(R.string.customize);
 
-                if (AppState.get().isUseBGImageDay) {
-                    textDayColor.setTextColor(Color.BLACK);
-                    textDayColor.setBackgroundDrawable(MagicHelper.getBgImageDayDrawable(true));
+                        final LinearLayout root = new LinearLayout(controller.getActivity());
+                        root.setOrientation(LinearLayout.VERTICAL);
 
-                }
-                if (AppState.get().isUseBGImageNight) {
-                    textNigthColor.setTextColor(Color.WHITE);
-                    textNigthColor.setBackgroundDrawable(MagicHelper.getBgImageNightDrawable(true));
-                }
-
-                // lc.setVisibility(controller.isTextFormat() ||
-                // AppState.get().isCustomizeBgAndColors ? View.VISIBLE :
-                // View.GONE);
-
-                lc.removeAllViews();
-                final int padding = Dips.dpToPx(3);
-
-                for (String line : AppState.READ_COLORS) {
-                    String[] split = line.split(",");
-                    String name = split[0];
-                    final int bg = Color.parseColor(split[1]);
-                    final int text = Color.parseColor(split[2]);
-                    final boolean isDay = split[3].equals("0");
-
-                    TextView t1 = new TextView(controller.getActivity());
-                    LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(Dips.dpToPx(30), Dips.dpToPx(30));
-                    params.setMargins(padding, padding, padding, padding);
-                    t1.setLayoutParams(params);
-                    t1.setGravity(Gravity.CENTER);
-                    t1.setBackgroundColor(bg);
-                    if (controller.isTextFormat() || AppState.get().isCustomizeBgAndColors) {
-                        t1.setText(name);
-                        t1.setTextColor(text);
-                        t1.setTypeface(null, Typeface.BOLD);
-                    }
-
-                    t1.setOnClickListener(new OnClickListener() {
-
-                        @Override
-                        public void onClick(View v) {
-                            if (isDay) {
-                                if (controller.isTextFormat() || AppState.get().isCustomizeBgAndColors) {
-                                    AppState.get().colorDayText = text;
-                                    textDayColor.setTextColor(text);
-                                }
-
-                                AppState.get().colorDayBg = bg;
-                                textDayColor.setBackgroundColor(bg);
-                                AppState.get().isUseBGImageDay = false;
-                            } else {
-                                if (controller.isTextFormat() || AppState.get().isCustomizeBgAndColors) {
-                                    AppState.get().colorNigthText = text;
-                                    textNigthColor.setTextColor(text);
-                                }
-
-                                AppState.get().colorNigthBg = bg;
-                                textNigthColor.setBackgroundColor(bg);
-                                AppState.get().isUseBGImageNight = false;
+                        for (String line : AppState.get().readColors.split(";")) {
+                            if (TxtUtils.isEmpty(line)) {
+                                continue;
                             }
-                            isChangedColor = true;
+                            final String[] split = line.split(",");
+                            LOG.d("Split colors", split[0], split[1], split[2]);
+                            final String name = split[0];
+                            final int bg = Color.parseColor(split[1]);
+                            final int text = Color.parseColor(split[2]);
+                            final boolean isDay = split[3].equals("0");
+
+                            final LinearLayout child = new LinearLayout(controller.getActivity());
+                            child.setOrientation(LinearLayout.HORIZONTAL);
+                            child.setTag(line);
+
+                            final TextView t1Img = new TextView(controller.getActivity());
+                            LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(Dips.dpToPx(60), Dips.dpToPx(30));
+                            params.setMargins(padding, padding, padding, padding);
+                            t1Img.setLayoutParams(params);
+                            t1Img.setGravity(Gravity.CENTER);
+                            t1Img.setBackgroundColor(bg);
+                            t1Img.setText(name);
+                            t1Img.setTextColor(text);
+                            t1Img.setTypeface(null, Typeface.BOLD);
+                            t1Img.setTag(isDay);
+
+                            TextView t0 = new TextView(controller.getActivity());
+                            t0.setEms(1);
+
+                            TextView t00 = new TextView(controller.getActivity());
+                            t00.setEms(2);
+
+                            final TextView t2BG = new TextView(controller.getActivity());
+                            t2BG.setText(TxtUtils.underline(split[1]));
+                            t2BG.setEms(5);
+                            t2BG.setTag(bg);
+
+                            final TextView t3Text = new TextView(controller.getActivity());
+                            t3Text.setText(TxtUtils.underline(split[2]));
+                            t3Text.setEms(5);
+                            t3Text.setTag(text);
+
+                            child.addView(t0);
+                            child.addView(t1Img);
+                            child.addView(t00);
+                            child.addView(t2BG);
+                            child.addView(t3Text);
+
+                            child.setOnClickListener(new OnClickListener() {
+
+                                @Override
+                                public void onClick(View v) {
+                                    new ColorsDialog((FragmentActivity) controller.getActivity(), (Boolean) t1Img.getTag(), (Integer) t3Text.getTag(), (Integer) t2BG.getTag(), true, new ColorsDialogResult() {
+
+                                        @Override
+                                        public void onChooseColor(int colorText, int colorBg) {
+                                            t1Img.setTextColor(colorText);
+                                            t1Img.setBackgroundColor(colorBg);
+
+                                            t2BG.setText(TxtUtils.underline(MagicHelper.colorToString(colorBg)));
+                                            t3Text.setText(TxtUtils.underline(MagicHelper.colorToString(colorText)));
+
+                                            t2BG.setTag(colorBg);
+                                            t3Text.setTag(colorText);
+
+                                            String line = name + "," + MagicHelper.colorToString(colorBg) + "," + MagicHelper.colorToString(colorText) + "," + split[3];
+                                            child.setTag(line);
+
+                                        }
+                                    });
+
+                                }
+                            });
+
+                            root.addView(child);
 
                         }
-                    });
-                    lc.addView(t1);
-                }
-                // add DayBG
-                {
-                    ImageView t1 = new ImageView(controller.getActivity());
-                    LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(Dips.dpToPx(30), Dips.dpToPx(30));
-                    params.setMargins(padding, padding, padding, padding);
-                    t1.setLayoutParams(params);
-                    t1.setScaleType(ScaleType.FIT_XY);
 
-                    t1.setImageDrawable(MagicHelper.getBgImageDayDrawable(false));
+                        builder.setView(root);
 
-                    t1.setOnClickListener(new OnClickListener() {
+                        builder.setNegativeButton(R.string.apply, new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                String res = "";
+                                for (int i = 0; i < root.getChildCount(); i++) {
+                                    View childAt = root.getChildAt(i);
+                                    String line = (String) childAt.getTag();
+                                    res = res + line + ";";
+                                }
+                                AppState.get().readColors = res;
+                                LOG.d("SAVE readColors", AppState.get().readColors);
+                                colorsLine.run();
 
-                        @Override
-                        public void onClick(View v) {
-                            AppState.get().colorDayText = AppState.COLOR_BLACK;
-                            AppState.get().colorDayBg = AppState.COLOR_WHITE;
+                            }
+                        });
+                        builder.setPositiveButton(R.string.cancel, new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                dialog.dismiss();
+                            }
+                        });
 
-                            textDayColor.setTextColor(Color.BLACK);
-                            textDayColor.setBackgroundDrawable(MagicHelper.getBgImageDayDrawable(false));
-                            AppState.get().isUseBGImageDay = true;
-                            isChangedColor = true;
-                        }
-                    });
-                    lc.addView(t1, AppState.READ_COLORS.size() / 2);
-                }
+                        builder.show();
 
-                // add Night
-                {
-                    ImageView t2 = new ImageView(controller.getActivity());
-                    LinearLayout.LayoutParams params2 = new LinearLayout.LayoutParams(Dips.dpToPx(30), Dips.dpToPx(30));
-                    params2.setMargins(padding, padding, padding, padding);
-                    t2.setLayoutParams(params2);
-                    t2.setScaleType(ScaleType.FIT_XY);
-
-                    t2.setImageDrawable(MagicHelper.getBgImageNightDrawable(false));
-
-                    t2.setOnClickListener(new OnClickListener() {
-
-                        @Override
-                        public void onClick(View v) {
-                            AppState.get().colorNigthText = AppState.COLOR_WHITE;
-                            AppState.get().colorNigthBg = AppState.COLOR_BLACK;
-
-                            textNigthColor.setTextColor(Color.WHITE);
-                            textNigthColor.setBackgroundDrawable(MagicHelper.getBgImageNightDrawable(false));
-                            AppState.get().isUseBGImageNight = true;
-                            isChangedColor = true;
-                        }
-                    });
-                    lc.addView(t2);
-                }
+                    }
+                });
 
                 return inflate;
 

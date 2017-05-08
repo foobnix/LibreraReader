@@ -195,6 +195,11 @@ public class HSVColorWheel extends View {
         double centerDist = Math.sqrt(x * x + y * y);
         hsv[0] = (float) (Math.atan2(y, x) / Math.PI * 180f) + 180;
         hsv[1] = Math.max(0f, Math.min(1f, (float) (centerDist / innerCircleRadius)));
+
+        if (hsv[2] == 0) {
+            hsv[2] = 1f;
+        }
+
         return Color.HSVToColor(hsv);
     }
 

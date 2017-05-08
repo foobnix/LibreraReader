@@ -51,8 +51,8 @@ public class AppState {
     public static final String[] OTHER_ARCH_EXT = ".img, .zip, .rar, .7z, .arj, .bz2, .bzip2, .tbz2, .tbz, .txz, .cab, .gz, .gzip, .tgz, .iso, .lzh, .lha, .lzma, .tar, .xar, .z, .taz, .xz, .dmg".split(", ");
 
     public static int COLOR_WHITE = Color.WHITE;
-    public static int COLOR_BLACK = Color.parseColor("#030303");
-    // public static int COLOR_BLACK = Color.BLACK;
+    // public static int COLOR_BLACK = Color.parseColor("#030303");
+    public static int COLOR_BLACK = Color.BLACK;
 
     public static int WIDGET_LIST = 1;
     public static int WIDGET_GRID = 2;
@@ -116,17 +116,18 @@ public class AppState {
 
     );
 
-    public final static List<String> READ_COLORS = Arrays.asList(//
+    public final static String READ_COLORS_DEAFAUL =
             // (name),(bg),(text),(0-day 1-nigth)
-            "1,#ffffff,#030303,0", //
-            "2,#f2f0e9,#383226,0", //
-            "3,#f9f5e8,#333333,0", //
-            //
-            "A,#030303,#ffffff,1", //
-            "B,#030303,#8cffb5,1", //
-            "C,#3a3a3a,#c8c8c8,1" //
+            "" + //
+                    "1,#ffffff,#000000,0;" + //
+                    "2,#f2f0e9,#383226,0;" + //
+                    "3,#f9f5e8,#333333,0;" + //
+                    //
+                    "A,#000000,#ffffff,1;" + //
+                    "B,#000000,#8cffb5,1;" + //
+                    "C,#3a3a3a,#c8c8c8,1;"; //
 
-    );
+    public String readColors = READ_COLORS_DEAFAUL;
 
     public int tintColor = Color.parseColor(STYLE_COLORS.get(0));
     // public int tintColor =
@@ -558,6 +559,7 @@ public class AppState {
         bgImageNightPath = sp.getString("bgImageNightPath", bgImageNightPath);
         texturePath = sp.getString("texturePath", texturePath);
         ttsSpeakPath = sp.getString("ttsSpeakPath", ttsSpeakPath);
+        readColors = sp.getString("readColors", readColors);
 
         bgImageDayTransparency = sp.getInt("bgImageDayTransparency", bgImageDayTransparency);
         bgImageNightTransparency = sp.getInt("bgImageNightTransparency", bgImageNightTransparency);
@@ -570,7 +572,6 @@ public class AppState {
         tapZoneLeft = sp.getInt("tapZoneLeft", tapZoneLeft);
         tapZoneRight = sp.getInt("tapZoneRight", tapZoneRight);
         nextScreenScrollBy = sp.getInt("nextScreenScrollBy", nextScreenScrollBy);
-
 
         LOG.d("LOAD AppState", "coverSmallSize", coverSmallSize);
     }
@@ -745,6 +746,7 @@ public class AppState {
         editor.putString("bgImageNightPath", bgImageNightPath);
         editor.putString("texturePath", texturePath);
         editor.putString("ttsSpeakPath", ttsSpeakPath);
+        editor.putString("readColors", readColors);
 
         editor.putInt("bgImageDayTransparency", bgImageDayTransparency);
         editor.putInt("bgImageNightTransparency", bgImageNightTransparency);
