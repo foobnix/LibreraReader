@@ -55,9 +55,9 @@ MY=/home/ivan-dev/git/LirbiReader
 
 ## Lirbi depend on
 
-MuPDF - (AGPL License) http://git.ghostscript.com/?p=mupdf.git;a=commit;h=0628a0b3d166543dbc1c346790014ff39ccf76b8
-Lirbi Patch ./LirbiReader/Builder/jni/MupdfPatch.txt
-Mupdf patch source ./LirbiReader/mupdf-source.tar.gz
+ MuPDF - (AGPL License) http://git.ghostscript.com/?p=mupdf.git;a=commit;h=0628a0b3d166543dbc1c346790014ff39ccf76b8
+ Lirbi Patch ./LirbiReader/Builder/jni/MupdfPatch.txt
+ Mupdf patch source ./LirbiReader/mupdf-source.tar.gz
 
 EbookDroid
 djvulibre
