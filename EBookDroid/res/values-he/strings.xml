@@ -327,4 +327,5 @@
    <string name="bookmark_with_text">Bookmark עם טקסט</string>
    <string name="fast_bookmark">סימניה מהירה</string>
    <string name="reading_settings">הגדרות קריאה</string>
+   <string name="db_auto_center_horizontally">מרכז אופקית</string>
 </resources>

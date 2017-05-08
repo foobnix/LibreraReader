@@ -327,4 +327,5 @@
    <string name="bookmark_with_text">Bookmark na maandishi</string>
    <string name="fast_bookmark">Fast bookmark</string>
    <string name="reading_settings">Mipangilio Reading</string>
+   <string name="db_auto_center_horizontally">Center sambamba</string>
 </resources>

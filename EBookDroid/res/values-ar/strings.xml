@@ -327,4 +327,5 @@
    <string name="bookmark_with_text">المرجعية مع النص</string>
    <string name="fast_bookmark">مرجعية سريعة</string>
    <string name="reading_settings">إعدادات القراءة</string>
+   <string name="db_auto_center_horizontally">مركز أفقيا</string>
 </resources>

@@ -327,4 +327,5 @@
    <string name="bookmark_with_text">Záložka s textom</string>
    <string name="fast_bookmark">Fast záložky</string>
    <string name="reading_settings">Nastavenie čítanie</string>
+   <string name="db_auto_center_horizontally">Stred horizontálne</string>
 </resources>

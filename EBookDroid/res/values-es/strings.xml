@@ -327,4 +327,5 @@
    <string name="bookmark_with_text">Marcar con el texto</string>
    <string name="fast_bookmark">Marcador rápido</string>
    <string name="reading_settings">Ajustes de lectura</string>
+   <string name="db_auto_center_horizontally">Centrar horizontalmente</string>
 </resources>

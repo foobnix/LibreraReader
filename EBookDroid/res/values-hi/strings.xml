@@ -327,4 +327,5 @@
    <string name="bookmark_with_text">पाठ के साथ बुकमार्क</string>
    <string name="fast_bookmark">फास्ट बुकमार्क</string>
    <string name="reading_settings">पढ़ना सेटिंग</string>
+   <string name="db_auto_center_horizontally">केंद्र क्षैतिज रूप से</string>
 </resources>

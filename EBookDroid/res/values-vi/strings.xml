@@ -327,4 +327,5 @@
    <string name="bookmark_with_text">Chia sẻ với bạn văn bản</string>
    <string name="fast_bookmark">Bookmark nhanh</string>
    <string name="reading_settings">Cài đặt đọc</string>
+   <string name="db_auto_center_horizontally">Trung tâm ngang</string>
 </resources>

@@ -327,4 +327,5 @@
    <string name="bookmark_with_text">Yazı ile yer imi</string>
    <string name="fast_bookmark">Hızlı imi</string>
    <string name="reading_settings">Okuma Ayarları</string>
+   <string name="db_auto_center_horizontally">Yatay olarak merkezleyin</string>
 </resources>

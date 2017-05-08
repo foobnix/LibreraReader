@@ -327,4 +327,5 @@
    <string name="bookmark_with_text">Закладка з текстом</string>
    <string name="fast_bookmark">Швидка закладка</string>
    <string name="reading_settings">Установки читача</string>
+   <string name="db_auto_center_horizontally">Центр по горизонталі</string>
 </resources>
