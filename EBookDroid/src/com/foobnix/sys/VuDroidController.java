@@ -296,7 +296,7 @@ public class VuDroidController extends DocumentController {
 
         }
 
-        int width = AppState.get().editLineWidth * 3;
+        float width = AppState.get().editLineWidth * 3;
         float alpha = AppState.get().editAlphaColor;
 
         ctr.getDecodeService().addAnnotation(result, color, width, alpha, new ResultResponse<Pair<Integer, List<Annotation>>>() {

@@ -220,7 +220,7 @@ public class AppState {
     public String annotationDrawColor = "";
     public String annotationTextColor = COLORS.get(2);
     public int editAlphaColor = 100;
-    public int editLineWidth = 3;
+    public float editLineWidth = 3;
 
     public boolean isShowBookmarks = true;
     public boolean isShowRecent = true;
@@ -455,6 +455,7 @@ public class AppState {
         cropTolerance = getAsFloatOrInt(sp, "cropTolerance", cropTolerance);
         ttsSpeed = getAsFloatOrInt(sp, "ttsSpeed", ttsSpeed);
         ttsPitch = getAsFloatOrInt(sp, "ttsPitch", ttsPitch);
+        editLineWidth = getAsFloatOrInt(sp, "editLineWidth", editLineWidth);
 
         isSortAsc = sp.getBoolean("isSortAsc", isSortAsc);
         isLocked = sp.getBoolean("isLocked", isLocked);
@@ -480,7 +481,7 @@ public class AppState {
         cpBGLight = sp.getInt("cpBGLight", cpBGLight);
         cpTextBlack = sp.getInt("cpTextBlack", cpTextBlack);
         cpBGBlack = sp.getInt("cpBGBlack", cpBGBlack);
-        editLineWidth = sp.getInt("editLineWidth", editLineWidth);
+
 
         libraryMode = sp.getInt("libraryMode", libraryMode);
         broseMode = sp.getInt("broseMode", broseMode);
@@ -644,8 +645,7 @@ public class AppState {
 
         editor.putInt("pagesInMemory", pagesInMemory);
         editor.putFloat("pageQuality", pageQuality);
-
-        editor.putInt("editLineWidth", editLineWidth);
+        editor.putFloat("editLineWidth", editLineWidth);
 
         editor.putBoolean("isSortAsc", isSortAsc);
         editor.putBoolean("isReverseKeys", isReverseKeys);

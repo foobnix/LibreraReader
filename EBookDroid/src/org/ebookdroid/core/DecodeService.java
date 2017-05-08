@@ -43,7 +43,7 @@ public interface DecodeService {
 
 	void recycle();
 
-	void updateAnnotation(int page, float[] color, PointF[][] points, int width, float alpha);
+    void updateAnnotation(int page, float[] color, PointF[][] points, float width, float alpha);
 
 	void updateViewState(ViewState viewState);
 
@@ -59,7 +59,7 @@ public interface DecodeService {
 
 	}
 
-	void addAnnotation(Map<Integer, List<PointF>> points, int color, int width, float alpha, ResultResponse<Pair<Integer, List<Annotation>>> resultResponse);
+    void addAnnotation(Map<Integer, List<PointF>> points, int color, float width, float alpha, ResultResponse<Pair<Integer, List<Annotation>>> resultResponse);
 
 	Map<Integer, CodecPageHolder> getPages();
 

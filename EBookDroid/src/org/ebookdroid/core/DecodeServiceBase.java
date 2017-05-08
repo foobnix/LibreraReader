@@ -153,7 +153,7 @@ public class DecodeServiceBase implements DecodeService {
     }
 
     @Override
-    public void addAnnotation(Map<Integer, List<PointF>> points, int color, int width, float alpha, ResultResponse<Pair<Integer, List<Annotation>>> result) {
+    public void addAnnotation(Map<Integer, List<PointF>> points, int color, float width, float alpha, ResultResponse<Pair<Integer, List<Annotation>>> result) {
         final AddAnnotationTask anTask = new AddAnnotationTask(points, color, width, alpha, result);
         executor.addAny(anTask);
     }
@@ -175,7 +175,7 @@ public class DecodeServiceBase implements DecodeService {
     }
 
     @Override
-    public void updateAnnotation(int page, float[] color, PointF[][] points, int width, float alpha) {
+    public void updateAnnotation(int page, float[] color, PointF[][] points, float width, float alpha) {
         if (points != null) {
             getPage(page).addAnnotation(color, points, width, alpha);
         }
@@ -754,10 +754,10 @@ public class DecodeServiceBase implements DecodeService {
         private Map<Integer, List<PointF>> points;
         private int color;
         private ResultResponse<Pair<Integer, List<Annotation>>> onResult;
-        private int width;
+        private float width;
         private float alpha;
 
-        public AddAnnotationTask(Map<Integer, List<PointF>> points, int color, int width, float alpha, ResultResponse<Pair<Integer, List<Annotation>>> result) {
+        public AddAnnotationTask(Map<Integer, List<PointF>> points, int color, float width, float alpha, ResultResponse<Pair<Integer, List<Annotation>>> result) {
             super(1);
             this.points = points;
             this.width = width;

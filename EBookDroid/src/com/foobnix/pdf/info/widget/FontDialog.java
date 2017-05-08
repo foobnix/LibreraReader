@@ -4,7 +4,6 @@ import java.util.List;
 
 import com.foobnix.android.utils.BaseItemLayoutAdapter;
 import com.foobnix.android.utils.LOG;
-import com.foobnix.android.utils.Views;
 import com.foobnix.pdf.info.R;
 import com.foobnix.pdf.info.model.BookCSS;
 
@@ -60,18 +59,17 @@ public class FontDialog {
 
             @Override
             public void onItemSelected(AdapterView<?> arg0, View arg1, int arg2, long arg3) {
+                TextView textView = (TextView) spinner.getChildAt(0);
                 try {
-                    Typeface typeFace = Typeface.createFromFile(BookCSS.get().getFontPath((String) spinner.getSelectedItem()));
-                    textViewPreview.setTypeface(typeFace);
-
-
+                    String value = (String) spinner.getSelectedItem();
+                    textView.setTypeface(BookCSS.getTypeFaceForFont(value));
                 } catch (Exception e) {
-                    textViewPreview.setTypeface(Typeface.DEFAULT);
+                    textView.setTypeface(Typeface.DEFAULT);
                     LOG.e(e);
                 }
 
-                TextView textView = (TextView) spinner.getChildAt(0);
-                textView.setTextAppearance(spinner.getContext(), R.style.textLinkStyle);
+                // textView.setTextAppearance(spinner.getContext(),
+                // R.style.textLinkStyle);
             }
 
             @Override
@@ -92,7 +90,9 @@ public class FontDialog {
 
             @Override
             public void populateView(View inflate, int arg1, String value) {
-                Views.text(inflate, android.R.id.text1, "" + value);
+                TextView tv = (TextView) inflate.findViewById(android.R.id.text1);
+                tv.setText("" + value);
+                tv.setTypeface(BookCSS.getTypeFaceForFont(value));
             }
 
             @Override

@@ -37,9 +37,9 @@ public class DrawView extends View {
 		super(context, attrs);
 	}
 
-	public void setColor(int color, int width) {
+    public void setColor(int color, float width) {
 		paint.setColor(color);
-		paint.setStrokeWidth(Dips.dpToPx(width * 2));
+        paint.setStrokeWidth(Dips.dpToPx((int) width * 2));
 	}
 
 	@Override

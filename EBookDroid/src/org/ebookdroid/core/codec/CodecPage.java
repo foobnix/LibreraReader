@@ -37,7 +37,7 @@ public interface CodecPage {
 
 	boolean isRecycled();
 
-	public void addAnnotation(float[] color, PointF[][] points, int width, float alpha);
+    public void addAnnotation(float[] color, PointF[][] points, float width, float alpha);
 
 	long getPageHandle();
 

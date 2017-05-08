@@ -1239,12 +1239,12 @@ public class DragingDialogs {
                         } else if (pos == 1) {
                             view = inflater.inflate(R.layout.item_color_spinner, arg2, false);
                             final Spinner spinner = (Spinner) view.findViewById(R.id.spinner1);
-                            final List<Integer> values = Arrays.asList(1, 2, 3, 4, 5, 6, 7, 8, 9, 10);
-                            spinner.setAdapter(new BaseItemLayoutAdapter<Integer>(anchor.getContext(), android.R.layout.simple_spinner_dropdown_item, values) {
+                            final List<Float> values = Arrays.asList(0.5f, 0.75f, 1f, 2f, 3f, 4f, 5f, 6f, 7f, 8f, 9f, 10f);
+                            spinner.setAdapter(new BaseItemLayoutAdapter<Float>(anchor.getContext(), android.R.layout.simple_spinner_dropdown_item, values) {
 
                                 @Override
-                                public void populateView(View inflate, int arg1, Integer value) {
-                                    TextView text = Views.text(inflate, android.R.id.text1, "" + value + "pt");
+                                public void populateView(View inflate, int arg1, Float value) {
+                                    TextView text = Views.text(inflate, android.R.id.text1, "" + value + "");
 
                                 }
                             });
@@ -2730,7 +2730,9 @@ public class DragingDialogs {
 
                     @Override
                     public void populateView(View inflate, int arg1, String value) {
-                        Views.text(inflate, android.R.id.text1, "" + value);
+                        TextView tv = (TextView) inflate.findViewById(android.R.id.text1);
+                        tv.setText("" + value);
+                        // tv.setTypeface(BookCSS.getTypeFaceForFont(value));
                     }
                 });
 

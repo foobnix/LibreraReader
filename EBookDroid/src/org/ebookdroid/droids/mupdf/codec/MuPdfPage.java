@@ -295,11 +295,11 @@ public class MuPdfPage extends AbstractCodecPage {
     }
 
     @Override
-    public synchronized void addAnnotation(float[] color, PointF[][] points, int width, float alpha) {
+    public synchronized void addAnnotation(float[] color, PointF[][] points, float width, float alpha) {
         LOG.d("addInkAnnotationInternal", color[0], color[1], color[2]);
         TempHolder.lock.lock();
         try {
-            addInkAnnotationInternal(docHandle, pageHandle, color, points, width, alpha);
+            addInkAnnotationInternal(docHandle, pageHandle, color, points, (int) width, alpha);
         } finally {
             TempHolder.lock.unlock();
         }
