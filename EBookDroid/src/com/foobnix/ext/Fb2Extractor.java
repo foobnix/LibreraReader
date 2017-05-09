@@ -392,6 +392,10 @@ public class Fb2Extractor extends BaseExtractor {
                 count++;
                 line = line.replace("</subtitle>", "<a id=\"" + count + "\"></a></subtitle>");
             }
+            if (line.contains("</body>")) {
+                count++;
+                line = line.replace("</body>", "<a id=\"" + count + "\"></a></body>");
+            }
             if (BookCSS.get().isAutoHypens) {
                 if (!isFindBodyEnd && line.contains("</body>")) {
                     isFindBodyEnd = true;
@@ -428,6 +432,7 @@ public class Fb2Extractor extends BaseExtractor {
         List<String> titles = new ArrayList<String>();
 
         int section = 0;
+        boolean isFirstEndBody = false;
         while (eventType != XmlPullParser.END_DOCUMENT) {
             if (eventType == XmlPullParser.START_TAG) {
                 if (xpp.getName().equals("section")) {
@@ -446,6 +451,11 @@ public class Fb2Extractor extends BaseExtractor {
                 if (xpp.getName().equals("section")) {
                     section--;
                 }
+                if (!isFirstEndBody && xpp.getName().equals("body")) {
+                    isFirstEndBody = true;
+                    section++;
+                    titles.add(section + DIVIDER + "...");
+                }
 
             } else if (eventType == XmlPullParser.TEXT) {
                 if (isTitle) {
@@ -457,6 +467,13 @@ public class Fb2Extractor extends BaseExtractor {
             }
             eventType = xpp.next();
         }
+        if (!titles.isEmpty() && titles.get(titles.size() - 1).endsWith(DIVIDER)) {
+            titles.remove(titles.size() - 1);
+        }
+        if (!titles.isEmpty() && titles.get(titles.size() - 1).endsWith("...")) {
+            titles.remove(titles.size() - 1);
+        }
+
         return titles;
     }
 
