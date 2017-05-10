@@ -56,7 +56,7 @@ public class SyncTranslations {
             }
         });
 
-        final List<String> asList = new ArrayList<>();
+        final List<String> asList = new ArrayList<String>();
         for (String ln : list) {
             asList.add(ln.replace("values-", ""));
         }

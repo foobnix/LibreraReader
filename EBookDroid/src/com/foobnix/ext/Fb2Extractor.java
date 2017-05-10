@@ -32,6 +32,8 @@ import com.foobnix.pdf.info.model.BookCSS;
 import android.util.Base64;
 
 public class Fb2Extractor extends BaseExtractor {
+    private static final String FOOTER_NOTES_SIGN = "***";
+
     public static final String DIVIDER = "~@~";
 
     static Fb2Extractor inst = new Fb2Extractor();
@@ -454,7 +456,7 @@ public class Fb2Extractor extends BaseExtractor {
                 if (!isFirstEndBody && xpp.getName().equals("body")) {
                     isFirstEndBody = true;
                     section++;
-                    titles.add(section + DIVIDER + "...");
+                    titles.add(section + DIVIDER + FOOTER_NOTES_SIGN);
                 }
 
             } else if (eventType == XmlPullParser.TEXT) {
@@ -470,7 +472,7 @@ public class Fb2Extractor extends BaseExtractor {
         if (!titles.isEmpty() && titles.get(titles.size() - 1).endsWith(DIVIDER)) {
             titles.remove(titles.size() - 1);
         }
-        if (!titles.isEmpty() && titles.get(titles.size() - 1).endsWith("...")) {
+        if (!titles.isEmpty() && titles.get(titles.size() - 1).endsWith(FOOTER_NOTES_SIGN)) {
             titles.remove(titles.size() - 1);
         }
 
