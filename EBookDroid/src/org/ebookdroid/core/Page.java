@@ -56,6 +56,10 @@ public class Page {
     }
 
     public List<TextWord> findText(String text) {
+        return findText(text, texts);
+    }
+
+    public static List<TextWord> findText(String text, TextWord[][] texts) {
         List<TextWord> result = new ArrayList<TextWord>();
         if (texts == null) {
             return result;

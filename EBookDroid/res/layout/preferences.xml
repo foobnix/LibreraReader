@@ -157,8 +157,8 @@
                     android:ems="5"
                     android:text="EPUB"
                     android:textSize="12sp" />
-                
-                 <CheckBox
+
+                <CheckBox
                     android:id="@+id/supportRTF"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -173,8 +173,6 @@
                     android:ems="7"
                     android:text="TXT/HTML"
                     android:textSize="12sp" />
-
-               
             </LinearLayout>
         </LinearLayout>
 
@@ -257,6 +255,12 @@
                 </LinearLayout>
             </LinearLayout>
         </LinearLayout>
+
+        <Button
+            android:id="@+id/docSearch"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Search in the documents" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -603,8 +607,7 @@
                         android:layout_marginLeft="5dip"
                         android:text="@string/widget"
                         android:textStyle="bold" />
-                    
-                    
+
                     <TextView
                         android:id="@+id/widgetForRecent"
                         style="@style/textLink"
@@ -630,13 +633,11 @@
                         android:layout_height="wrap_content"
                         android:text="@string/grid" />
 
-                    
-
                     <TextView
-                        android:layout_marginLeft="8dip"
                         android:id="@+id/textView1"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_marginLeft="8dip"
                         android:text="@string/items_" />
 
                     <TextView
@@ -999,25 +1000,26 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="7dip"
             android:text="Version: 1.2.3" />
-        
-        <LinearLayout android:layout_width="wrap_content"
-            android:layout_height="wrap_content" android:orientation="horizontal">
 
-        <TextView
+        <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="7dip"
-            android:text="@string/licence_gnu_gpl_v3_0" />
-        
-        <TextView
-            android:id="@+id/libraryLicenses"
-            android:layout_marginLeft="10dip"
-             style="@style/textLink"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="7dip"
-            android:text="@string/licenses_for_libraries" />
-        
+            android:orientation="horizontal" >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="7dip"
+                android:text="@string/licence_gnu_gpl_v3_0" />
+
+            <TextView
+                android:id="@+id/libraryLicenses"
+                style="@style/textLink"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dip"
+                android:layout_marginTop="7dip"
+                android:text="@string/licenses_for_libraries" />
         </LinearLayout>
 
         <LinearLayout
@@ -1034,8 +1036,8 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="center_vertical"
-            android:layout_marginTop="7dip" >
+            android:layout_marginTop="7dip"
+            android:gravity="center_vertical" >
 
             <TextView
                 android:layout_width="100dip"
@@ -1052,12 +1054,11 @@
         </LinearLayout>
 
         <LinearLayout
-            android:gravity="center_vertical"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" >
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical" >
 
             <TextView
-                
                 android:layout_width="100dip"
                 android:layout_height="wrap_content"
                 android:paddingLeft="5dip"
@@ -1070,11 +1071,11 @@
                 android:layout_height="wrap_content"
                 android:text="http://lirbi.com" />
         </LinearLayout>
-        
+
         <LinearLayout
-            android:gravity="center_vertical"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" >
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical" >
 
             <TextView
                 android:layout_width="100dip"
@@ -1089,11 +1090,11 @@
                 android:layout_height="wrap_content"
                 android:text="http://beta.lirbi.com" />
         </LinearLayout>
-        
-         <LinearLayout
-             android:gravity="center_vertical"
+
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" >
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical" >
 
             <TextView
                 android:layout_width="100dip"

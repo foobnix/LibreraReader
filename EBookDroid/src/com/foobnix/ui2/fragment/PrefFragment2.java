@@ -18,6 +18,7 @@ import com.foobnix.pdf.info.Urls;
 import com.foobnix.pdf.info.fragment.KeyCodeDialog;
 import com.foobnix.pdf.info.fragment.SearchFragment;
 import com.foobnix.pdf.info.view.CustomSeek;
+import com.foobnix.pdf.info.view.MultyDocSearchDialog;
 import com.foobnix.pdf.info.widget.ColorsDialog;
 import com.foobnix.pdf.info.widget.ColorsDialog.ColorsDialogResult;
 import com.foobnix.pdf.info.widget.DialogTranslateFromTo;
@@ -1129,6 +1130,14 @@ public class PrefFragment2 extends UIFragment {
                     }
                 });
                 alert.show();
+            }
+        });
+
+        inflate.findViewById(R.id.docSearch).setOnClickListener(new OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                MultyDocSearchDialog.show(getActivity());
             }
         });
 
