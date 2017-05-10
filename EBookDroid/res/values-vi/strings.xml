@@ -328,4 +328,5 @@
    <string name="fast_bookmark">Bookmark nhanh</string>
    <string name="reading_settings">Cài đặt đọc</string>
    <string name="db_auto_center_horizontally">Trung tâm ngang</string>
+   <string name="licenses_for_libraries">Giấy phép cho thư viện</string>
 </resources>

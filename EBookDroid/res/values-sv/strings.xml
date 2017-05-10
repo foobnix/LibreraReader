@@ -328,4 +328,5 @@
    <string name="fast_bookmark">Snabb bokmärke</string>
    <string name="reading_settings">Läsa inställningar</string>
    <string name="db_auto_center_horizontally">Centrum horisontellt</string>
+   <string name="licenses_for_libraries">Licenser för bibliotek</string>
 </resources>

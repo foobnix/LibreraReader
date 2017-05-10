@@ -328,4 +328,5 @@
    <string name="fast_bookmark">Fast záložky</string>
    <string name="reading_settings">Nastavenie čítanie</string>
    <string name="db_auto_center_horizontally">Stred horizontálne</string>
+   <string name="licenses_for_libraries">Licencie pre knižnice</string>
 </resources>

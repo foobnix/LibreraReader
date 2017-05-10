@@ -328,4 +328,5 @@
    <string name="fast_bookmark">Rapid semn de carte</string>
    <string name="reading_settings">Setări de lectură</string>
    <string name="db_auto_center_horizontally">Centrul orizontal</string>
+   <string name="licenses_for_libraries">Licențe pentru biblioteci</string>
 </resources>

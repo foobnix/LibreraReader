@@ -328,4 +328,5 @@
    <string name="fast_bookmark">快速书签</string>
    <string name="reading_settings">阅读设置</string>
    <string name="db_auto_center_horizontally">水平中心</string>
+   <string name="licenses_for_libraries">图书馆许可证</string>
 </resources>

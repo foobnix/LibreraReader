@@ -328,4 +328,5 @@
    <string name="fast_bookmark">Szybka zakładka</string>
    <string name="reading_settings">Ustawienia Reading</string>
    <string name="db_auto_center_horizontally">Centrum poziomo</string>
+   <string name="licenses_for_libraries">Licencje dla bibliotek</string>
 </resources>

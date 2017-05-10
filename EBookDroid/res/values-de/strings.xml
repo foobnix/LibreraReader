@@ -328,4 +328,5 @@
    <string name="fast_bookmark">Schnell Lesezeichen</string>
    <string name="reading_settings">Lesen Einstellungen</string>
    <string name="db_auto_center_horizontally">Mitte horizontal</string>
+   <string name="licenses_for_libraries">Lizenzen für Bibliotheken</string>
 </resources>
