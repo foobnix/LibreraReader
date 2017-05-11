@@ -329,4 +329,9 @@
    <string name="reading_settings">읽기 설정</string>
    <string name="db_auto_center_horizontally">수평 중심</string>
    <string name="licenses_for_libraries">도서관 라이센스</string>
+   <string name="search_for_text_in_documents">다중 문서 검색</string>
+   <string name="stop">중지</string>
+   <string name="incorrect_value">잘못된 값</string>
+   <string name="search_in_the_subfolders">하위 폴더에서 검색</string>
+   <string name="document_converter_online_">문서 변환기 (온라인)</string>
 </resources>

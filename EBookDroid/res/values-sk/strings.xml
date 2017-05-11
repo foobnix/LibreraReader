@@ -329,4 +329,9 @@
    <string name="reading_settings">Nastavenie čítanie</string>
    <string name="db_auto_center_horizontally">Stred horizontálne</string>
    <string name="licenses_for_libraries">Licencie pre knižnice</string>
+   <string name="search_for_text_in_documents">Vyhľadávanie viacerých dokumentov</string>
+   <string name="stop">Prestať</string>
+   <string name="incorrect_value">Nesprávna hodnota</string>
+   <string name="search_in_the_subfolders">Vyhľadávanie v podpriečinkoch</string>
+   <string name="document_converter_online_">Konvertor dokumentov (online)</string>
 </resources>

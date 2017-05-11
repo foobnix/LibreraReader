@@ -329,4 +329,9 @@
    <string name="reading_settings">Reading Instellingen</string>
    <string name="db_auto_center_horizontally">Centrum horizontaal</string>
    <string name="licenses_for_libraries">Licenties voor bibliotheken</string>
+   <string name="search_for_text_in_documents">Multi document zoeken</string>
+   <string name="stop">Hou op</string>
+   <string name="incorrect_value">Incorrecte waarde</string>
+   <string name="search_in_the_subfolders">Zoek in de submappen</string>
+   <string name="document_converter_online_">Document converter (online)</string>
 </resources>

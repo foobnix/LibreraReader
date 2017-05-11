@@ -329,4 +329,9 @@
    <string name="reading_settings">読書の設定</string>
    <string name="db_auto_center_horizontally">中央に水平に</string>
    <string name="licenses_for_libraries">ライブラリのライセンス</string>
+   <string name="search_for_text_in_documents">マルチドキュメント検索</string>
+   <string name="stop">やめる</string>
+   <string name="incorrect_value">間違った値</string>
+   <string name="search_in_the_subfolders">サブフォルダで検索する</string>
+   <string name="document_converter_online_">ドキュメントコンバータ（オンライン）</string>
 </resources>

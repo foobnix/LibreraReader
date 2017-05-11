@@ -13,12 +13,16 @@ import org.ebookdroid.core.codec.CodecPage;
 import org.ebookdroid.droids.mupdf.codec.TextWord;
 
 import com.foobnix.android.utils.BaseItemLayoutAdapter;
+import com.foobnix.android.utils.LOG;
 import com.foobnix.android.utils.ResultResponse2;
 import com.foobnix.android.utils.TxtUtils;
+import com.foobnix.dao2.FileMeta;
 import com.foobnix.ext.CacheZipUtils;
 import com.foobnix.pdf.info.ExtUtils;
 import com.foobnix.pdf.info.R;
+import com.foobnix.pdf.info.io.SearchCore;
 import com.foobnix.pdf.info.widget.ChooserDialogFragment;
+import com.foobnix.pdf.info.wrapper.AppState;
 
 import android.app.AlertDialog;
 import android.app.Dialog;
@@ -29,13 +33,18 @@ import android.os.Handler;
 import android.os.Message;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.util.Pair;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.View.OnKeyListener;
+import android.view.inputmethod.EditorInfo;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.TextView.OnEditorActionListener;
 import android.widget.Toast;
 
 public class MultyDocSearchDialog {
@@ -58,13 +67,16 @@ public class MultyDocSearchDialog {
     }
 
     public static void show(FragmentActivity c) {
+        Model.get().path = AppState.get().dirLastPath == null ? Environment.getExternalStorageDirectory().getPath() : AppState.get().dirLastPath;
         final AlertDialog.Builder builder = new AlertDialog.Builder(c);
-        builder.setTitle("Doc Search");
+        builder.setTitle(R.string.search_for_text_in_documents);
         builder.setView(getDialogView(c));
+        builder.setCancelable(false);
         builder.setPositiveButton(R.string.close, new DialogInterface.OnClickListener() {
 
             @Override
             public void onClick(final DialogInterface dialog, final int id) {
+                Model.get().isSearcingRun = false;
             }
         });
         builder.show();
@@ -82,6 +94,8 @@ public class MultyDocSearchDialog {
 
         final TextView infoView1 = (TextView) inflate.findViewById(R.id.infoView1);
         final ListView listView = (ListView) inflate.findViewById(R.id.listView);
+
+        final CheckBox searchInTheSubfolders = (CheckBox) inflate.findViewById(R.id.searchInTheSubfolders);
 
         final BaseItemLayoutAdapter adapter = new BaseItemLayoutAdapter<Pair<String, Integer>>(c, android.R.layout.simple_list_item_1, Model.get().res) {
 
@@ -114,6 +128,7 @@ public class MultyDocSearchDialog {
                     @Override
                     public boolean onResultRecive(String nPath, Dialog dialog) {
                         Model.get().path = nPath;
+                        AppState.get().dirLastPath = nPath;
                         editPath.setText(Model.get().path);
                         dialog.dismiss();
 
@@ -147,21 +162,45 @@ public class MultyDocSearchDialog {
             public void onClick(View v) {
                 Model.get().text = editSearchText.getText().toString().trim();
                 if (TxtUtils.isEmpty(Model.get().text)) {
-                    Toast.makeText(c, "Empty Criteria", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(c, R.string.incorrect_value, Toast.LENGTH_SHORT).show();
                     return;
                 }
 
                 if (Model.get().isSearcingRun) {
-                    Toast.makeText(c, "Searching is running", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(c, R.string.searching_please_wait_, Toast.LENGTH_SHORT).show();
                     return;
                 }
                 Model.get().isSearcingRun = true;
-                new MyTask(updater1, updater2).execute();
+                new MyTask(updater1, updater2, c, searchInTheSubfolders.isChecked()).execute();
 
                 infoView1.setText("");
 
                 Model.get().res.clear();
                 adapter.notifyDataSetChanged();
+            }
+        });
+
+        editSearchText.setOnEditorActionListener(new OnEditorActionListener() {
+            @Override
+            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+                boolean handled = false;
+                if (actionId == EditorInfo.IME_ACTION_SEARCH) {
+                    searchStart.performClick();
+                    handled = true;
+                }
+                return handled;
+            }
+        });
+
+        editSearchText.setOnKeyListener(new OnKeyListener() {
+
+            @Override
+            public boolean onKey(View v, int keyCode, KeyEvent event) {
+                if (keyCode == KeyEvent.KEYCODE_ENTER) {
+                    searchStart.performClick();
+                    return true;
+                }
+                return false;
             }
         });
 
@@ -184,10 +223,14 @@ public class MultyDocSearchDialog {
     static class MyTask extends AsyncTask {
 
         private Handler updater1, updater2;
+        private FragmentActivity a;
+        private boolean isReqursiveSearch;
 
-        public MyTask(Handler h1, Handler h2) {
+        public MyTask(Handler h1, Handler h2, FragmentActivity a, boolean isReqursiveSearch) {
             this.updater1 = h1;
             this.updater2 = h2;
+            this.a = a;
+            this.isReqursiveSearch = isReqursiveSearch;
 
         }
 
@@ -196,19 +239,30 @@ public class MultyDocSearchDialog {
 
             Model.get().res.clear();
 
-            File[] list = new File(Model.get().path).listFiles();
-            for (File file : list) {
+            final List<FileMeta> allFilesMeta = new ArrayList<FileMeta>();
+
+            if (isReqursiveSearch) {
+                SearchCore.search(allFilesMeta, new File(Model.get().path), ExtUtils.seachExts);
+            } else {
+                SearchCore.searchSimple(allFilesMeta, new File(Model.get().path), ExtUtils.seachExts);
+            }
+
+            for (FileMeta fileMeta : allFilesMeta) {
+                final String filePath = fileMeta.getPath();
                 if (!Model.get().isSearcingRun) {
                     return -1;
                 }
-                if (file.getName().toLowerCase(Locale.US).endsWith(".pdf")) {
-                    int page = -1;
-                    try {
-                        page = searchInThePDF(file.getPath(), Model.get().text, updater1);
-                    } catch (Exception e) {
-                        page = -2;
-                    }
-                    Model.get().res.add(new Pair<String, Integer>(file.getPath(), page));
+                final int page = searchInThePDF(filePath, Model.get().text, updater1);
+
+                if (page != -1) {
+                    a.runOnUiThread(new Runnable() {
+
+                        @Override
+                        public void run() {
+                            Model.get().res.add(new Pair<String, Integer>(filePath, page));
+                        }
+                    });
+
                     updater2.sendEmptyMessage(0);
                 }
             }
@@ -220,39 +274,43 @@ public class MultyDocSearchDialog {
     };
 
     public static int searchInThePDF(String path, String text, final Handler update1) {
-        text = text.toLowerCase(Locale.US);
-        CodecContext ctx = BookType.getCodecContextByPath(path);
-        CodecDocument openDocument = null;
-        CacheZipUtils.cacheLock.lock();
         try {
-            // String zipPath = CacheZipUtils.extracIfNeed(path).unZipPath;
-            openDocument = ctx.openDocument(path, "");
-        } finally {
-            CacheZipUtils.cacheLock.unlock();
-        }
-
-        int pageCount = openDocument.getPageCount();
-        Model.get().currentPagesCount = pageCount;
-        Model.get().currentDoc = new File(path).getName();
-
-        for (int i = 0; i < pageCount; i++) {
-            if (!Model.get().isSearcingRun) {
-                return -1;
+            text = text.toLowerCase(Locale.US);
+            CodecContext ctx = BookType.getCodecContextByPath(path);
+            CodecDocument openDocument = null;
+            CacheZipUtils.cacheLock.lock();
+            try {
+                String zipPath = CacheZipUtils.extracIfNeed(path).unZipPath;
+                openDocument = ctx.openDocument(zipPath, "");
+            } finally {
+                CacheZipUtils.cacheLock.unlock();
             }
-            CodecPage page = openDocument.getPage(i);
-            List<TextWord> findText = Page.findText(text, page.getText());
-            page.recycle();
 
-            Model.get().currentPage = i;
-            update1.sendEmptyMessage(0);
+            int pageCount = openDocument.getPageCount();
+            Model.get().currentPagesCount = pageCount;
+            Model.get().currentDoc = new File(path).getName();
 
-            if (!findText.isEmpty()) {
-                ctx.recycle();
-                return i;
+            for (int i = 0; i < pageCount; i++) {
+                if (!Model.get().isSearcingRun) {
+                    return -1;
+                }
+                CodecPage page = openDocument.getPage(i);
+                List<TextWord> findText = Page.findText(text, page.getText());
+                page.recycle();
+
+                Model.get().currentPage = i;
+                update1.sendEmptyMessage(0);
+
+                if (!findText.isEmpty()) {
+                    ctx.recycle();
+                    return i;
+                }
             }
-        }
 
-        ctx.recycle();
+            ctx.recycle();
+        } catch (Exception e) {
+            LOG.e(e);
+        }
         return -1;
     }
 

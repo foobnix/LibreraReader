@@ -88,7 +88,7 @@
    <string name="screen_orientation">Screen Orientation</string>
    <string name="search">Search</string>
    <string name="search_text">Search Text</string>
-   <string name="searching_please_wait_">SearchingPlease wait...</string>
+   <string name="searching_please_wait_">Searching is running, please wait...</string>
    <string name="select">Select</string>
    <string name="send_file_to">Send file to</string>
    <string name="share">Share</string>
@@ -329,4 +329,9 @@
    <string name="reading_settings">Reading settings</string>
    <string name="db_auto_center_horizontally">Center horizontally</string>
    <string name="licenses_for_libraries">Licenses for libraries</string>
+   <string name="search_for_text_in_documents">Multi document search</string>
+   <string name="stop">Stop</string>
+   <string name="incorrect_value">Incorrect value</string>
+   <string name="search_in_the_subfolders">Search in the subfolders</string>
+   <string name="document_converter_online_">Document converter (online)</string>
 </resources>

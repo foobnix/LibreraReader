@@ -316,7 +316,7 @@ public class Fb2Extractor extends BaseExtractor {
                             text.append(trim + " ");
                         }
                     }
-                    LOG.d("TEXT", xpp.getText());
+                    // LOG.d("TEXT", xpp.getText());
 
                 } else if (eventType == XmlPullParser.END_TAG) {
                     if (sectionId != null && xpp.getName().equals("section")) {
@@ -382,32 +382,44 @@ public class Fb2Extractor extends BaseExtractor {
         boolean isEncoding = false;
         boolean isFindBodyEnd = false;
         while ((line = input.readLine()) != null) {
+
             if (!isEncoding && line.contains("windows-1251")) {
                 line = line.replace("windows-1251", "utf-8");
                 isEncoding = true;
             }
-            if (line.contains("</title>")) {
-                count++;
-                line = line.replace("</title>", "<a id=\"" + count + "\"></a></title>");
-            }
-            if (line.contains("</subtitle>")) {
-                count++;
-                line = line.replace("</subtitle>", "<a id=\"" + count + "\"></a></subtitle>");
-            }
-            if (line.contains("</body>")) {
-                count++;
-                line = line.replace("</body>", "<a id=\"" + count + "\"></a></body>");
-            }
-            if (BookCSS.get().isAutoHypens) {
-                if (!isFindBodyEnd && line.contains("</body>")) {
-                    isFindBodyEnd = true;
+
+            String subLine[] = line.split("</");
+
+            for (int i = 0; i < subLine.length; i++) {
+                if (i == 0) {
+                    line = subLine[i];
+                } else {
+                    line = "</" + subLine[i];
                 }
-                if (!isFindBodyEnd) {
-                    line = line.replace("&nbsp;", " ");
-                    line = HypenUtils.applyHypnes(line);
+                if (line.contains("</title>")) {
+                    count++;
+                    line = line.replace("</title>", "<a id=\"" + count + "\"></a></title>");
                 }
+                if (line.contains("</subtitle>")) {
+                    count++;
+                    line = line.replace("</subtitle>", "<a id=\"" + count + "\"></a></subtitle>");
+                }
+                if (line.contains("</body>")) {
+                    count++;
+                    line = line.replace("</body>", "<a id=\"" + count + "\"></a></body>");
+                }
+                if (BookCSS.get().isAutoHypens) {
+                    if (!isFindBodyEnd && line.contains("</body>")) {
+                        isFindBodyEnd = true;
+                    }
+                    if (!isFindBodyEnd) {
+                        line = line.replace("&nbsp;", " ");
+                        line = HypenUtils.applyHypnes(line);
+                    }
+                }
+                writer.println(line);
             }
-            writer.println(line);
+
         }
         input.close();
         writer.close();

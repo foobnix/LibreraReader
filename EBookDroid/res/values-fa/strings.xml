@@ -329,4 +329,9 @@
    <string name="reading_settings">تنظیمات خواندن</string>
    <string name="db_auto_center_horizontally">مرکز افقی</string>
    <string name="licenses_for_libraries">مجوز برای کتابخانه ها</string>
+   <string name="search_for_text_in_documents">جستجو چند سند</string>
+   <string name="stop">متوقف کردن</string>
+   <string name="incorrect_value">مقدار نادرست</string>
+   <string name="search_in_the_subfolders">جستجو در پوشه</string>
+   <string name="document_converter_online_">تبدیل سند (آنلاین)</string>
 </resources>

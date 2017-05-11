@@ -182,6 +182,7 @@
             android:orientation="vertical" >
 
             <TextView
+                android:visibility="gone"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="5dip"
@@ -209,6 +210,7 @@
             </LinearLayout>
         </LinearLayout>
 
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -220,47 +222,34 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:padding="5dip"
+                android:src="@drawable/glyphicons_529_database_search"
+                android:tint="@color/tint_gray" />
+
+            <Button
+                android:id="@+id/docSearch"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/search_for_text_in_documents" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical" >
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="5dip"
                 android:src="@drawable/glyphicons_filetypes_65_pdf"
                 android:tint="@color/tint_gray" />
 
-            <LinearLayout
-                android:layout_width="match_parent"
+            <Button
+                android:id="@+id/docConverter"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="vertical" >
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="5dip"
-                    android:singleLine="true"
-                    android:text="@string/convert_to_other_format_online_"
-                    android:textStyle="bold" />
-
-                <LinearLayout
-                    android:id="@+id/converters"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="5dip"
-                    android:gravity="center_vertical" >
-
-                    <TextView
-                        android:layout_width="35dip"
-                        android:layout_height="wrap_content"
-                        android:text="PDF" />
-
-                    <TextView
-                        android:layout_width="35dip"
-                        android:layout_height="wrap_content"
-                        android:text="EPUB" />
-                </LinearLayout>
-            </LinearLayout>
+                android:text="@string/document_converter_online_" />
         </LinearLayout>
-
-        <Button
-            android:id="@+id/docSearch"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Search in the documents" />
 
         <LinearLayout
             android:layout_width="match_parent"

@@ -26,6 +26,19 @@ public class SearchCore {
 
     public static boolean findOnce = false;
 
+    public static void searchSimple(List<FileMeta> items, File root, List<String> exts) {
+        File[] listFiles = root.listFiles();
+
+        if (listFiles == null) {
+            return;
+        }
+        for (File file : listFiles) {
+            if (file.isFile() && endWith(file.getName(), exts)) {
+                items.add(new FileMeta(file.getPath()));
+            }
+        }
+    }
+
     public static void search(List<FileMeta> items, File root, List<String> exts) {
         findOnce = false;
         search(root, exts, items);

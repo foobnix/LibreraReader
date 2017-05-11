@@ -329,4 +329,9 @@
    <string name="reading_settings">Настройки чтения</string>
    <string name="db_auto_center_horizontally">Центрировать по горизонтали</string>
    <string name="licenses_for_libraries">Лицензии для библиотек</string>
+   <string name="search_for_text_in_documents">Поиск по нескольким документам</string>
+   <string name="stop">Стоп</string>
+   <string name="incorrect_value">Неверное значение</string>
+   <string name="search_in_the_subfolders">Поиск в подпапках</string>
+   <string name="document_converter_online_">Конвертер документов (онлайн)</string>
 </resources>

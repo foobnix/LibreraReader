@@ -329,4 +329,9 @@
    <string name="reading_settings">Paramètres de lecture</string>
    <string name="db_auto_center_horizontally">Centre horizontalement</string>
    <string name="licenses_for_libraries">Licences pour bibliothèques</string>
+   <string name="search_for_text_in_documents">Recherche de documents multiples</string>
+   <string name="stop">Arrêtez</string>
+   <string name="incorrect_value">Valeur incorrecte</string>
+   <string name="search_in_the_subfolders">Rechercher dans les sous-dossiers</string>
+   <string name="document_converter_online_">Convertisseur de documents (en ligne)</string>
 </resources>

@@ -329,4 +329,9 @@
    <string name="reading_settings">إعدادات القراءة</string>
    <string name="db_auto_center_horizontally">مركز أفقيا</string>
    <string name="licenses_for_libraries">تراخيص للمكتبات</string>
+   <string name="search_for_text_in_documents">بحث متعدد المستندات</string>
+   <string name="stop">توقف</string>
+   <string name="incorrect_value">قيمة غير صحيحة</string>
+   <string name="search_in_the_subfolders">البحث في المجلدات الفرعية</string>
+   <string name="document_converter_online_">تحويل المستندات (عبر الإنترنت)</string>
 </resources>

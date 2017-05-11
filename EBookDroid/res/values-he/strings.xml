@@ -329,4 +329,9 @@
    <string name="reading_settings">הגדרות קריאה</string>
    <string name="db_auto_center_horizontally">מרכז אופקית</string>
    <string name="licenses_for_libraries">רשיונות לספריות</string>
+   <string name="search_for_text_in_documents">חיפוש מסמכים מרובים</string>
+   <string name="stop">תפסיק</string>
+   <string name="incorrect_value">ערך שגוי</string>
+   <string name="search_in_the_subfolders">חפש בתיקיות המשנה</string>
+   <string name="document_converter_online_">ממיר מסמכים (באינטרנט)</string>
 </resources>

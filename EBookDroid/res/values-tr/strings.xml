@@ -329,4 +329,9 @@
    <string name="reading_settings">Okuma Ayarları</string>
    <string name="db_auto_center_horizontally">Yatay olarak merkezleyin</string>
    <string name="licenses_for_libraries">Kütüphaneler için lisanslar</string>
+   <string name="search_for_text_in_documents">Çoklu doküman araması</string>
+   <string name="stop">Dur</string>
+   <string name="incorrect_value">Yanlış değer</string>
+   <string name="search_in_the_subfolders">Alt klasörlerde ara</string>
+   <string name="document_converter_online_">Belge dönüştürücü (çevrimiçi)</string>
 </resources>

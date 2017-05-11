@@ -33,7 +33,6 @@ public abstract class AbstractCodecContext implements CodecContext {
     public CodecDocument openDocument(String fileNameOriginal, String password) {
         LOG.d("Open Document", fileNameOriginal);
 
-
         File cacheFileName = getCacheFileName(fileNameOriginal);
         CacheZipUtils.removeFiles(CacheZipUtils.CACHE_BOOK_DIR.listFiles(), cacheFileName);
 
@@ -50,7 +49,12 @@ public abstract class AbstractCodecContext implements CodecContext {
             if (!ExtUtils.isValidFile(fileName)) {
                 return null;
             }
-            return openDocumentInner(fileName, password);
+            try {
+                return openDocumentInner(fileName, password);
+            } catch (Throwable e) {
+                LOG.e(e);
+                return null;
+            }
         } finally {
             CacheZipUtils.cacheLock.unlock();
         }

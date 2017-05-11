@@ -18,7 +18,6 @@
             android:layout_weight="1"
             android:clickable="false"
             android:enabled="false"
-            android:hint="path"
              >
 
             <requestFocus />
@@ -29,10 +28,17 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="0"
-            android:text="Folder" />
+            android:text="@string/folders" />
       
         
     </LinearLayout>
+    
+    <CheckBox
+            android:id="@+id/searchInTheSubfolders"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="0"
+            android:text="@string/search_in_the_subfolders" />
 
     <LinearLayout
         android:layout_weight="0"
@@ -40,10 +46,15 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content" >
 
+        
+
         <EditText
+            android:singleLine="true"
             android:id="@+id/editSearchText"
+            android:imeOptions="actionSearch"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:hint="@string/text"
             android:layout_weight="1" />
 
         <Button
@@ -51,14 +62,14 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="0"
-            android:text="Search" />
+            android:text="@string/search" />
         
           <Button
             android:id="@+id/searchStop"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="0"
-            android:text="Stop" />
+            android:text="@string/stop" />
         
     </LinearLayout>
     

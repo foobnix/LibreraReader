@@ -329,4 +329,9 @@
    <string name="reading_settings">Setări de lectură</string>
    <string name="db_auto_center_horizontally">Centrul orizontal</string>
    <string name="licenses_for_libraries">Licențe pentru biblioteci</string>
+   <string name="search_for_text_in_documents">Căutarea în mai multe documente</string>
+   <string name="stop">Stop</string>
+   <string name="incorrect_value">Valoare incorectă</string>
+   <string name="search_in_the_subfolders">Căutați în subfoldere</string>
+   <string name="document_converter_online_">Convertor de documente (online)</string>
 </resources>

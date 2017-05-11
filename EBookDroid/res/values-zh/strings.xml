@@ -329,4 +329,9 @@
    <string name="reading_settings">阅读设置</string>
    <string name="db_auto_center_horizontally">水平中心</string>
    <string name="licenses_for_libraries">图书馆许可证</string>
+   <string name="search_for_text_in_documents">多文档搜索</string>
+   <string name="stop">停止</string>
+   <string name="incorrect_value">值不正确</string>
+   <string name="search_in_the_subfolders">搜索子文件夹</string>
+   <string name="document_converter_online_">文件转换器（在线）</string>
 </resources>

@@ -329,4 +329,9 @@
    <string name="reading_settings">पढ़ना सेटिंग</string>
    <string name="db_auto_center_horizontally">केंद्र क्षैतिज रूप से</string>
    <string name="licenses_for_libraries">पुस्तकालयों के लिए लाइसेंस</string>
+   <string name="search_for_text_in_documents">बहु दस्तावेज़ खोज</string>
+   <string name="stop">रुकें</string>
+   <string name="incorrect_value">गलत मान</string>
+   <string name="search_in_the_subfolders">सबफ़ोल्डर्स में खोजें</string>
+   <string name="document_converter_online_">दस्तावेज़ कनवर्टर (ऑनलाइन)</string>
 </resources>

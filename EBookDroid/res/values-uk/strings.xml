@@ -329,4 +329,9 @@
    <string name="reading_settings">Установки читача</string>
    <string name="db_auto_center_horizontally">Центр по горизонталі</string>
    <string name="licenses_for_libraries">Ліцензії для бібліотек</string>
+   <string name="search_for_text_in_documents">Мульти пошук документів</string>
+   <string name="stop">СТОП</string>
+   <string name="incorrect_value">Некоректна</string>
+   <string name="search_in_the_subfolders">Пошук у вкладених папках</string>
+   <string name="document_converter_online_">Конвертер документів (онлайн)</string>
 </resources>

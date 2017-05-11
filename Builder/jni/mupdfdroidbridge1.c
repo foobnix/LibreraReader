@@ -591,7 +591,7 @@ Java_org_ebookdroid_droids_mupdf_codec_MuPdfPage_renderPage(JNIEnv *env,
 
 		//fz_invert_pixmap(ctx,pixmap);
 		fz_clear_pixmap_with_value(ctx, pixmap, 0xFF);
-		if(r || g || b){
+		if(r!=-1 && g!=-1 && b!=-1){
 			fz_tint_pixmap(ctx,pixmap,r,g,b);
 		}
 		//fz_clear_pixmap(ctx, pixmap);

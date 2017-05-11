@@ -329,4 +329,9 @@
    <string name="reading_settings">Mipangilio Reading</string>
    <string name="db_auto_center_horizontally">Center sambamba</string>
    <string name="licenses_for_libraries">Leseni kwa ajili ya maktaba</string>
+   <string name="search_for_text_in_documents">Multi hati search</string>
+   <string name="stop">Kukomesha</string>
+   <string name="incorrect_value">Thamani isiyo sahihi</string>
+   <string name="search_in_the_subfolders">Search katika folda ndogo</string>
+   <string name="document_converter_online_">Document kubadilisha (mtandaoni)</string>
 </resources>

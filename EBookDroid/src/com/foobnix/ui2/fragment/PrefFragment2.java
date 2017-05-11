@@ -758,7 +758,6 @@ public class PrefFragment2 extends UIFragment {
             }
         });
 
-
         final TextView widgetItemsCount = (TextView) inflate.findViewById(R.id.widgetItemsCount);
         widgetItemsCount.setText("" + AppState.getInstance().widgetItemsCount);
         TxtUtils.underlineTextView(widgetItemsCount);
@@ -785,9 +784,6 @@ public class PrefFragment2 extends UIFragment {
                 p.show();
             }
         });
-
-
-
 
         // dictionary
         widgetGrid.setChecked(AppState.getInstance().widgetType == AppState.WIDGET_GRID);
@@ -1083,27 +1079,6 @@ public class PrefFragment2 extends UIFragment {
             }
         });
 
-        // convert
-
-        LinearLayout converterLayout = (LinearLayout) inflate.findViewById(R.id.converters);
-        converterLayout.removeAllViews();
-
-        for (final String id : AppState.CONVERTERS.keySet()) {
-            TextView text = new TextView(getActivity());
-            text.setText(TxtUtils.underline(id));
-            text.setOnClickListener(new View.OnClickListener() {
-
-                @Override
-                public void onClick(final View v) {
-                    ShareDialog.showsItemsDialog(getActivity(), getActivity().getString(R.string.convert_to) + " " + id, AppState.CONVERTERS.get(id));
-                }
-            });
-            LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);
-            params.setMargins(0, 0, Dips.dpToPx(8), 0);
-
-            converterLayout.addView(text, params);
-        }
-
         // licences link
         underline(inflate.findViewById(R.id.libraryLicenses)).setOnClickListener(new OnClickListener() {
 
@@ -1138,6 +1113,28 @@ public class PrefFragment2 extends UIFragment {
             @Override
             public void onClick(View v) {
                 MultyDocSearchDialog.show(getActivity());
+            }
+        });
+        // convert
+        final View docConverter = inflate.findViewById(R.id.docConverter);
+        docConverter.setOnClickListener(new OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                PopupMenu p = new PopupMenu(getContext(), v);
+                for (final String id : AppState.CONVERTERS.keySet()) {
+                    p.getMenu().add("" + getActivity().getString(R.string.convert_to) + " " + id).setOnMenuItemClickListener(new OnMenuItemClickListener() {
+
+                        @Override
+                        public boolean onMenuItemClick(MenuItem item) {
+                            ShareDialog.showsItemsDialog(getActivity(), getActivity().getString(R.string.convert_to) + " " + id, AppState.CONVERTERS.get(id));
+
+                            return false;
+                        }
+                    });
+
+                }
+                p.show();
             }
         });
 

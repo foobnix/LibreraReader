@@ -3187,36 +3187,55 @@ public class DragingDialogs {
 
                     @Override
                     public void onClick(View v) {
-                        AppState.get().readColors = AppState.READ_COLORS_DEAFAUL;
-                        AppState.get().isUseBGImageDay = false;
-                        AppState.get().isUseBGImageNight = false;
+                        AlertDialog.Builder alert = new AlertDialog.Builder(controller.getActivity());
+                        alert.setMessage(R.string.restore_defaults);
 
-                        AppState.get().bgImageDayTransparency = AppState.DAY_TRANSPARENCY;
-                        AppState.get().bgImageDayPath = MagicHelper.IMAGE_BG_1;
+                        alert.setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
 
-                        AppState.get().bgImageNightTransparency = AppState.NIGHT_TRANSPARENCY;
-                        AppState.get().bgImageNightPath = MagicHelper.IMAGE_BG_1;
+                            }
+                        });
 
-                        AppState.get().isCustomizeBgAndColors = false;
+                        alert.setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
 
-                        AppState.get().colorDayText = AppState.COLOR_BLACK;
-                        AppState.get().colorDayBg = AppState.COLOR_WHITE;
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                AppState.get().readColors = AppState.READ_COLORS_DEAFAUL;
+                                AppState.get().isUseBGImageDay = false;
+                                AppState.get().isUseBGImageNight = false;
 
-                        textDayColor.setTextColor(AppState.COLOR_BLACK);
-                        textDayColor.setBackgroundColor(AppState.COLOR_WHITE);
+                                AppState.get().bgImageDayTransparency = AppState.DAY_TRANSPARENCY;
+                                AppState.get().bgImageDayPath = MagicHelper.IMAGE_BG_1;
 
-                        AppState.get().colorNigthText = AppState.COLOR_WHITE;
-                        AppState.get().colorNigthBg = AppState.COLOR_BLACK;
+                                AppState.get().bgImageNightTransparency = AppState.NIGHT_TRANSPARENCY;
+                                AppState.get().bgImageNightPath = MagicHelper.IMAGE_BG_1;
 
-                        textNigthColor.setTextColor(AppState.COLOR_WHITE);
-                        textNigthColor.setBackgroundColor(AppState.COLOR_BLACK);
+                                AppState.get().isCustomizeBgAndColors = false;
 
-                        TintUtil.setTintImage(onDayColorImage, AppState.get().colorDayText);
-                        TintUtil.setTintImage(onNigthColorImage, AppState.get().colorNigthText);
+                                AppState.get().colorDayText = AppState.COLOR_BLACK;
+                                AppState.get().colorDayBg = AppState.COLOR_WHITE;
 
-                        isChangedColor = true;
+                                textDayColor.setTextColor(AppState.COLOR_BLACK);
+                                textDayColor.setBackgroundColor(AppState.COLOR_WHITE);
 
-                        colorsLine.run();
+                                AppState.get().colorNigthText = AppState.COLOR_WHITE;
+                                AppState.get().colorNigthBg = AppState.COLOR_BLACK;
+
+                                textNigthColor.setTextColor(AppState.COLOR_WHITE);
+                                textNigthColor.setBackgroundColor(AppState.COLOR_BLACK);
+
+                                TintUtil.setTintImage(onDayColorImage, AppState.get().colorDayText);
+                                TintUtil.setTintImage(onNigthColorImage, AppState.get().colorNigthText);
+
+                                isChangedColor = true;
+
+                                colorsLine.run();
+                            }
+
+                        });
+                        alert.show();
+
                     }
                 });
 

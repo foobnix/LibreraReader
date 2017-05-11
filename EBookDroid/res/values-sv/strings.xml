@@ -329,4 +329,9 @@
    <string name="reading_settings">Läsa inställningar</string>
    <string name="db_auto_center_horizontally">Centrum horisontellt</string>
    <string name="licenses_for_libraries">Licenser för bibliotek</string>
+   <string name="search_for_text_in_documents">Sökning av flera dokument</string>
+   <string name="stop">Sluta</string>
+   <string name="incorrect_value">Felaktigt värde</string>
+   <string name="search_in_the_subfolders">Sök i undermapparna</string>
+   <string name="document_converter_online_">Dokumentkonverterare (online)</string>
 </resources>

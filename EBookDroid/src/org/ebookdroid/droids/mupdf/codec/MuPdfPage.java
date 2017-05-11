@@ -184,7 +184,7 @@ public class MuPdfPage extends AbstractCodecPage {
             } else if (MagicHelper.isNeedMagic()) {
 
                 if (AppState.get().isCustomizeBgAndColors) {
-                    renderPage(docHandle, pageHandle, mRect, ctm, bufferarray, 0, 0, 0);
+                    renderPage(docHandle, pageHandle, mRect, ctm, bufferarray, -1, -1, -1);
                     MagicHelper.udpateColorsMagic(bufferarray);
                 } else {
                     int color = MagicHelper.getBgColor();
@@ -198,7 +198,7 @@ public class MuPdfPage extends AbstractCodecPage {
 
                 }
             } else {
-                renderPage(docHandle, pageHandle, mRect, ctm, bufferarray, 0, 0, 0);
+                renderPage(docHandle, pageHandle, mRect, ctm, bufferarray, -1, -1, -1);
             }
         } finally {
             TempHolder.lock.unlock();
