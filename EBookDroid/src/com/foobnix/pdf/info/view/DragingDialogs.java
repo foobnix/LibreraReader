@@ -648,6 +648,7 @@ public class DragingDialogs {
                 TextView goTo = (TextView) inflate.findViewById(R.id.goTo);
                 TextView goBack = (TextView) inflate.findViewById(R.id.goBack);
                 TextView text = (TextView) inflate.findViewById(R.id.text);
+                text.setTextSize(AppState.get().fontSizeSp - 3);
 
                 goTo.setText(controller.getString(R.string.go_to_page_dialog) + " " + page);
                 text.setText(controller.getFootNote(selectedText));
