@@ -191,6 +191,15 @@
             android:layout_marginTop="5dip"
             myseek:text="@string/right" >
         </com.foobnix.pdf.info.view.CustomSeek>
+        
+        
+        <com.foobnix.pdf.info.view.CustomColorView
+            android:id="@+id/linkColor"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dip"
+            myseek:text="@string/links_color" />
+        
 
         <TextView
             android:id="@+id/onResetStyles"

@@ -23,6 +23,7 @@ import com.foobnix.pdf.info.widget.RecentBooksWidget;
 import com.foobnix.pdf.info.wrapper.AppState;
 import com.foobnix.pdf.info.wrapper.DocumentController;
 import com.foobnix.pdf.search.activity.HorizontalViewActivity;
+import com.foobnix.pdf.search.view.CloseAppDialog;
 import com.foobnix.sys.TempHolder;
 import com.foobnix.ui2.adapter.TabsAdapter2;
 import com.foobnix.ui2.fragment.BookmarksFragment2;
@@ -36,12 +37,9 @@ import com.google.android.gms.ads.InterstitialAd;
 import com.google.android.gms.ads.NativeExpressAdView;
 
 import android.annotation.SuppressLint;
-import android.app.AlertDialog;
 import android.app.SearchManager;
 import android.content.BroadcastReceiver;
 import android.content.Context;
-import android.content.DialogInterface;
-import android.content.DialogInterface.OnClickListener;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.res.Configuration;
@@ -56,6 +54,7 @@ import android.view.KeyEvent;
 
 @SuppressLint("NewApi")
 public class MainTabs2 extends FragmentActivity {
+    public static final String EXTRA_EXIT = "EXTRA_EXIT";
     public static String EXTRA_PAGE_NUMBER = "EXTRA_PAGE_NUMBER";
     public static String EXTRA_SEACH_TEXT = "EXTRA_SEACH_TEXT";
     ViewPager pager;
@@ -67,6 +66,9 @@ public class MainTabs2 extends FragmentActivity {
     @Override
     protected void onNewIntent(final Intent intent) {
         testIntentHandler();
+        if (intent.getBooleanExtra(EXTRA_EXIT, false)) {
+            finish();
+        }
     }
 
     public void testIntentHandler() {
@@ -82,15 +84,15 @@ public class MainTabs2 extends FragmentActivity {
                     public void run() {
                         DocumentController.chooseFullScreen(MainTabs2.this, true);
 
-						if (getIntent().getBooleanExtra("id0", false)) {
-							((SearchFragment2) tabFragments.get(0)).popupMenuTest();
+                        if (getIntent().getBooleanExtra("id0", false)) {
+                            ((SearchFragment2) tabFragments.get(0)).popupMenuTest();
 
-						}
+                        }
 
-						if (getIntent().getBooleanExtra("id1", false)) {
-							((SearchFragment2) tabFragments.get(0)).onTextRecive("Lewis");
+                        if (getIntent().getBooleanExtra("id1", false)) {
+                            ((SearchFragment2) tabFragments.get(0)).onTextRecive("Lewis");
 
-						}
+                        }
                     }
                 }, 100);
 
@@ -98,7 +100,6 @@ public class MainTabs2 extends FragmentActivity {
                 finish();
                 startActivity(new Intent(this, MainTabs2.class));
             }
-
 
         }
     }
@@ -118,6 +119,11 @@ public class MainTabs2 extends FragmentActivity {
         }
         super.onCreate(savedInstanceState);
         // test
+
+        if (getIntent().getBooleanExtra(EXTRA_EXIT, false)) {
+            finish();
+            return;
+        }
 
         isInStack = true;
 
@@ -203,6 +209,7 @@ public class MainTabs2 extends FragmentActivity {
         }
         LOG.d("lasta", AppState.get().lastA);
         if (HorizontalViewActivity.class.getSimpleName().equals(AppState.get().lastA)) {
+
             FileMeta meta = AppDB.get().getRecentLast();
             if (meta != null) {
                 Intent intent = new Intent(this, HorizontalViewActivity.class);
@@ -305,7 +312,7 @@ public class MainTabs2 extends FragmentActivity {
 
     @Override
     public boolean onKeyLongPress(final int keyCode, final KeyEvent event) {
-        if (keyCode == KeyEvent.KEYCODE_BACK) {
+        if (CloseAppDialog.checkLongPress(this, event, closeActivityRunnable)) {
             return true;
         }
         return super.onKeyLongPress(keyCode, event);
@@ -317,22 +324,16 @@ public class MainTabs2 extends FragmentActivity {
             return;
         }
 
-        AlertDialog.Builder dialog = new AlertDialog.Builder(this);
-        dialog.setTitle(R.string.close_application_);
-        dialog.setPositiveButton(R.string.no, new OnClickListener() {
-
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-            }
-        });
-        dialog.setNegativeButton(R.string.yes, new OnClickListener() {
-
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                closeActivity();
-            }
-        });
-        dialog.show();
+        CloseAppDialog.show(this, closeActivityRunnable);
     }
+
+    Runnable closeActivityRunnable = new Runnable() {
+
+        @Override
+        public void run() {
+            closeActivity();
+
+        }
+    };
 
 }

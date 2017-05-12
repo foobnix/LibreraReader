@@ -35,6 +35,7 @@ import com.foobnix.pdf.info.wrapper.DocumentController;
 import com.foobnix.pdf.search.activity.msg.InvalidateMessage;
 import com.foobnix.pdf.search.activity.msg.MessageAutoFit;
 import com.foobnix.pdf.search.activity.msg.MessageEvent;
+import com.foobnix.pdf.search.view.CloseAppDialog;
 import com.foobnix.pdf.search.view.VerticalViewPager;
 import com.foobnix.sys.ClickUtils;
 import com.foobnix.sys.TempHolder;
@@ -96,7 +97,6 @@ public class HorizontalViewActivity extends FragmentActivity {
     private NativeExpressAdView adViewNative;
 
     ImageView lockModelImage, linkHistory;
-
 
     DocumentControllerHorizontalView documentController;
 
@@ -1144,7 +1144,6 @@ public class HorizontalViewActivity extends FragmentActivity {
         DocumentController.chooseFullScreen(this, AppState.get().isFullScreen);
     }
 
-
     private boolean isMyKey = false;
 
     @Override
@@ -1223,6 +1222,20 @@ public class HorizontalViewActivity extends FragmentActivity {
         }
 
         return super.onKeyDown(keyCode, event);
+    }
+
+    @Override
+    public boolean onKeyLongPress(final int keyCode, final KeyEvent event) {
+        if (CloseAppDialog.checkLongPress(this, event, new Runnable() {
+
+            @Override
+            public void run() {
+                closeActivity();
+            }
+        })) {
+            return true;
+        }
+        return super.onKeyLongPress(keyCode, event);
     }
 
     @Override

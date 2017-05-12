@@ -334,4 +334,5 @@
    <string name="incorrect_value">مقدار نادرست</string>
    <string name="search_in_the_subfolders">جستجو در پوشه</string>
    <string name="document_converter_online_">تبدیل سند (آنلاین)</string>
+   <string name="links_color">رنگ ها</string>
 </resources>

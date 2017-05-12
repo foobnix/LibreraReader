@@ -334,4 +334,5 @@
    <string name="incorrect_value">Valor incorreto</string>
    <string name="search_in_the_subfolders">Pesquisar nas subpastas</string>
    <string name="document_converter_online_">Conversor de documentos (online)</string>
+   <string name="links_color">Cor de links</string>
 </resources>

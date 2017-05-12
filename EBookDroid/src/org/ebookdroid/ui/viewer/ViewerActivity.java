@@ -19,6 +19,7 @@ import com.foobnix.pdf.info.TTSModule;
 import com.foobnix.pdf.info.widget.RecentUpates;
 import com.foobnix.pdf.info.wrapper.AppState;
 import com.foobnix.pdf.info.wrapper.DocumentController;
+import com.foobnix.pdf.search.view.CloseAppDialog;
 import com.foobnix.sys.TempHolder;
 import com.foobnix.ui2.FileMetaCore;
 import com.google.android.gms.ads.AdView;
@@ -299,19 +300,6 @@ public class ViewerActivity extends AbstractActionActivity<ViewerActivity, Viewe
 		return false;
 	}
 
-	/**
-	 * {@inheritDoc}
-	 * 
-	 * @see android.app.Activity#onMenuOpened(int, android.view.Menu)
-	 */
-
-	@Override
-	public boolean onKeyLongPress(final int keyCode, final KeyEvent event) {
-		if (keyCode == KeyEvent.KEYCODE_BACK) {
-			return true;
-		}
-		return false;
-	}
 
 	@Override
 	public boolean onKeyUp(final int keyCode, final KeyEvent event) {
@@ -338,5 +326,19 @@ public class ViewerActivity extends AbstractActionActivity<ViewerActivity, Viewe
 		}
 		return false;
 	}
+
+    @Override
+    public boolean onKeyLongPress(final int keyCode, final KeyEvent event) {
+        if (CloseAppDialog.checkLongPress(this, event, new Runnable() {
+
+            @Override
+            public void run() {
+                getController().closeActivity(null);
+            }
+        })) {
+            return true;
+        }
+        return super.onKeyLongPress(keyCode, event);
+    }
 
 }
