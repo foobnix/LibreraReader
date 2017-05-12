@@ -388,7 +388,8 @@ public class AppState {
             "promt", //
             "fora", //
             "aard", //
-            "web"
+            "web", //
+            "woordenboek"// https://play.google.com/store/apps/details?id=com.prisma.woordenboek.englesxl
 
     //
     );
@@ -482,7 +483,6 @@ public class AppState {
         cpBGLight = sp.getInt("cpBGLight", cpBGLight);
         cpTextBlack = sp.getInt("cpTextBlack", cpTextBlack);
         cpBGBlack = sp.getInt("cpBGBlack", cpBGBlack);
-
 
         libraryMode = sp.getInt("libraryMode", libraryMode);
         broseMode = sp.getInt("broseMode", broseMode);
