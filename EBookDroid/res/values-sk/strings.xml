@@ -334,4 +334,5 @@
    <string name="incorrect_value">Nesprávna hodnota</string>
    <string name="search_in_the_subfolders">Vyhľadávanie v podpriečinkoch</string>
    <string name="document_converter_online_">Konvertor dokumentov (online)</string>
+   <string name="links_color">Farba odkazov</string>
 </resources>

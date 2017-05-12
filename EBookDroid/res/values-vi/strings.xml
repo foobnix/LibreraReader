@@ -334,4 +334,5 @@
    <string name="incorrect_value">Giá trị không chính xác</string>
    <string name="search_in_the_subfolders">Tìm trong các thư mục con</string>
    <string name="document_converter_online_">Chuyển đổi tài liệu (trực tuyến)</string>
+   <string name="links_color">Màu liên kết</string>
 </resources>

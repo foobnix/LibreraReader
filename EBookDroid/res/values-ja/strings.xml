@@ -334,4 +334,5 @@
    <string name="incorrect_value">間違った値</string>
    <string name="search_in_the_subfolders">サブフォルダで検索する</string>
    <string name="document_converter_online_">ドキュメントコンバータ（オンライン）</string>
+   <string name="links_color">リンクの色</string>
 </resources>

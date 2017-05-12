@@ -13,6 +13,7 @@ import org.ebookdroid.common.settings.SettingsManager;
 import org.ebookdroid.common.settings.books.BookSettings;
 import org.greenrobot.eventbus.EventBus;
 
+import com.foobnix.StringResponse;
 import com.foobnix.android.utils.BaseItemAdapter;
 import com.foobnix.android.utils.BaseItemLayoutAdapter;
 import com.foobnix.android.utils.Dips;
@@ -2482,8 +2483,17 @@ public class DragingDialogs {
 
                     }
                 });
+                // link color
+                final CustomColorView linkColor = (CustomColorView) inflate.findViewById(R.id.linkColor);
+                linkColor.init(Color.parseColor(BookCSS.get().linkColor));
+                linkColor.setOnColorChanged(new StringResponse() {
 
-                //
+                    @Override
+                    public boolean onResultRecive(String string) {
+                        BookCSS.get().linkColor = string;
+                        return false;
+                    }
+                });
 
                 TxtUtils.underlineTextView((TextView) inflate.findViewById(R.id.onResetStyles)).setOnClickListener(new OnClickListener() {
 
@@ -2506,8 +2516,14 @@ public class DragingDialogs {
                         marginRight.reset(BookCSS.get().marginRight);
 
                         emptyLine.reset(BookCSS.get().emptyLine);
+
+                        linkColor.init(Color.parseColor(BookCSS.get().linkColor));
                     }
                 });
+
+
+
+
 
                 return inflate;
             }

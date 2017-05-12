@@ -73,6 +73,7 @@ public class BookCSS {
 
     public boolean isAutoHypens;
     public String hypenLang;
+    public String linkColor;
 
     public int spinnerIndex = FONT_NAMES.indexOf(DEFAULT_FONT);
 
@@ -106,6 +107,7 @@ public class BookCSS {
 
         isAutoHypens = sp.getBoolean("isAutoHypens", isAutoHypens);
         hypenLang = sp.getString("hypenLang", hypenLang);
+        linkColor = sp.getString("linkColor", linkColor);
 
     }
 
@@ -144,6 +146,8 @@ public class BookCSS {
         isAutoHypens = false;
         hypenLang = Urls.getLangCode();
 
+        linkColor = "#0066cc";
+
     }
 
     public void allFonts(String fontName) {
@@ -178,6 +182,7 @@ public class BookCSS {
         edit.putInt("documentStyle", documentStyle);
         edit.putBoolean("isAutoHypens", isAutoHypens);
         edit.putString("hypenLang", hypenLang);
+        edit.putString("linkColor", linkColor);
 
         edit.commit();
     }
@@ -399,6 +404,8 @@ public class BookCSS {
         builder.append("}");
 
         if (documentStyle == STYLES_DOC_AND_USER || documentStyle == STYLES_ONLY_USER) {
+
+            builder.append("a{color:" + linkColor + " !important;}");
 
             // FONTS BEGIN
             if (isFontFileName(normalFont)) {
