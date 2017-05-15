@@ -340,4 +340,7 @@
    <string name="minutes">Minúty</string>
    <string name="seconds">Sekundy</string>
    <string name="remind_msg">Prosím, urobte prestávku pre vaše oči a trochu odpočívajte.</string>
+   <string name="automatic_page_flipping">Automatické preklopenie stránky</string>
+   <string name="start">Štart</string>
+   <string name="show_bottom_panel">Zobraziť spodný panel</string>
 </resources>

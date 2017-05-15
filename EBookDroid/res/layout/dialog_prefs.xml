@@ -77,6 +77,20 @@
                 android:padding="6dip"
                 android:src="@drawable/glyphicons_72_book1"
                 android:tint="@color/tint_gray" />
+            
+            
+            
+            <ImageView
+                android:id="@+id/onPageFlip"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="2dip"
+                android:layout_weight="0"
+                android:background="@drawable/bg_clickable"
+                android:contentDescription="@string/recent"
+                android:padding="6dip"
+                android:src="@drawable/glyphicons_174_play"
+                android:tint="@color/tint_gray" />
 
             <ImageView
                 android:id="@+id/bookCut"

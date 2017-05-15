@@ -340,4 +340,7 @@
    <string name="minutes">Notulen</string>
    <string name="seconds">Seconden</string>
    <string name="remind_msg">Neem een ​​pauze voor je ogen en rust een beetje.</string>
+   <string name="automatic_page_flipping">Automatische bladzijde</string>
+   <string name="start">Begin</string>
+   <string name="show_bottom_panel">Toon het onderste paneel</string>
 </resources>

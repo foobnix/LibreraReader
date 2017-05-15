@@ -164,6 +164,7 @@ public class AppState {
     public int doubleClickAction = DOUBLE_CLICK_AUTOSCROLL;
     public int inactivityTime = 2;
     public int remindRestTime = 120;
+    public int flippingInterval = 10;
 
     public boolean isEditMode = true;
     public boolean isFullScreen = true;
@@ -313,7 +314,7 @@ public class AppState {
     public int tapzoneSize = 15;
     public int allocatedMemorySize = (int) MemoryUtils.RECOMENDED_MEMORY_SIZE;
     public boolean isScrollAnimation = true;
-    public String imageFormat = PNG;
+    public String imageFormat = JPG;
     public boolean isCustomizeBgAndColors = false;
     public boolean isVibration = true;
     public boolean isLockPDF = false;
@@ -521,6 +522,7 @@ public class AppState {
         doubleClickAction = sp.getInt("doubleClickAction", doubleClickAction);
         inactivityTime = sp.getInt("inactivityTime", inactivityTime);
         remindRestTime = sp.getInt("remindRestTime", remindRestTime);
+        flippingInterval = sp.getInt("flippingInterval", flippingInterval);
 
         supportPDF = sp.getBoolean("supportPDF", supportPDF);
         supportDJVU = sp.getBoolean("supportDJVU", supportDJVU);
@@ -711,6 +713,7 @@ public class AppState {
         editor.putInt("doubleClickAction", doubleClickAction);
         editor.putInt("inactivityTime", inactivityTime);
         editor.putInt("remindRestTime", remindRestTime);
+        editor.putInt("flippingInterval", flippingInterval);
 
         editor.putBoolean("supportPDF", supportPDF);
         editor.putBoolean("supportDJVU", supportDJVU);

@@ -340,4 +340,7 @@
    <string name="minutes">分</string>
    <string name="seconds">秒</string>
    <string name="remind_msg">目を覚まして少し休憩してください。</string>
+   <string name="automatic_page_flipping">自動ページ反転</string>
+   <string name="start">開始</string>
+   <string name="show_bottom_panel">下のパネルを表示</string>
 </resources>

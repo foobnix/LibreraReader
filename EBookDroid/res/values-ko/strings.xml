@@ -340,4 +340,7 @@
    <string name="minutes">의사록</string>
    <string name="seconds">초</string>
    <string name="remind_msg">눈을 뜨고 휴식을 취하십시오.</string>
+   <string name="automatic_page_flipping">자동 페이지 뒤집기</string>
+   <string name="start">스타트</string>
+   <string name="show_bottom_panel">하단 패널 표시</string>
 </resources>

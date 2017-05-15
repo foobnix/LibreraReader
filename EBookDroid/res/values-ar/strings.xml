@@ -340,4 +340,7 @@
    <string name="minutes">الدقائق</string>
    <string name="seconds">ثواني</string>
    <string name="remind_msg">يرجى أخذ قسط من الراحة لعينيك والراحة قليلا.</string>
+   <string name="automatic_page_flipping">التلقائي التقليب الصفحة</string>
+   <string name="start">بداية</string>
+   <string name="show_bottom_panel">إظهار اللوحة السفلية</string>
 </resources>

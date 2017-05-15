@@ -340,4 +340,7 @@
    <string name="minutes">Protokoll</string>
    <string name="seconds">Sekunden</string>
    <string name="remind_msg">Bitte nehmen Sie eine Pause für Ihre Augen und Rest ein bisschen.</string>
+   <string name="automatic_page_flipping">Automatisches Seitenumschlag</string>
+   <string name="start">Anfang</string>
+   <string name="show_bottom_panel">Boden anzeigen</string>
 </resources>

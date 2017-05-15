@@ -141,6 +141,20 @@
         android:text="-/-"
         android:textColor="@color/tint_gray"
         android:textSize="12sp" />
+    
+    <TextView
+        android:layout_marginLeft="10dip"
+        android:visibility="gone"
+        android:layout_toRightOf="@+id/pagesCountIndicator"
+        android:id="@+id/flippingIntervalView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:text="{10}"
+        android:textColor="@color/tint_gray"
+        android:textSize="12sp" />
+    
+    
 
     <TextView
         android:id="@+id/pagesPower"

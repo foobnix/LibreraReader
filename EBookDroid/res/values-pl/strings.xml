@@ -340,4 +340,7 @@
    <string name="minutes">Minuty</string>
    <string name="seconds">Towary drugiej jakości</string>
    <string name="remind_msg">Proszę się trochę złapać oczami i odpocząć.</string>
+   <string name="automatic_page_flipping">Automatyczna flippingowa strona</string>
+   <string name="start">Początek</string>
+   <string name="show_bottom_panel">Pokaż panel dolny</string>
 </resources>

@@ -340,4 +340,7 @@
    <string name="minutes">分钟</string>
    <string name="seconds">秒</string>
    <string name="remind_msg">请休息一下，休息一下。</string>
+   <string name="automatic_page_flipping">自动翻页</string>
+   <string name="start">开始</string>
+   <string name="show_bottom_panel">显示底部面板</string>
 </resources>

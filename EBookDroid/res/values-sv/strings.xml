@@ -340,4 +340,7 @@
    <string name="minutes">Minuter</string>
    <string name="seconds">Sekunder</string>
    <string name="remind_msg">Ta en paus för dina ögon och vila lite.</string>
+   <string name="automatic_page_flipping">Automatisk sida bläddring</string>
+   <string name="start">Start</string>
+   <string name="show_bottom_panel">Visa bottenpanelen</string>
 </resources>

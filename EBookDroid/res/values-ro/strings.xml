@@ -340,4 +340,7 @@
    <string name="minutes">Minute</string>
    <string name="seconds">Secunde</string>
    <string name="remind_msg">Vă rugăm să luați o pauză pentru ochi și să vă odihniți puțin.</string>
+   <string name="automatic_page_flipping">Schimbarea automată a paginii</string>
+   <string name="start">Start</string>
+   <string name="show_bottom_panel">Afișați panoul de jos</string>
 </resources>

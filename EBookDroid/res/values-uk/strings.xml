@@ -340,4 +340,7 @@
    <string name="minutes">Хвилин</string>
    <string name="seconds">Секунд</string>
    <string name="remind_msg">Будь ласка, зробіть перерву на ваші очі і трохи відпочити.</string>
+   <string name="automatic_page_flipping">Автоматична гортати сторінки</string>
+   <string name="start">Початок</string>
+   <string name="show_bottom_panel">Показати нижню панель</string>
 </resources>

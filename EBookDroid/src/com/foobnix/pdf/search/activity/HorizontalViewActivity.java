@@ -32,6 +32,8 @@ import com.foobnix.pdf.info.widget.RecentUpates;
 import com.foobnix.pdf.info.widget.ShareDialog;
 import com.foobnix.pdf.info.wrapper.AppState;
 import com.foobnix.pdf.info.wrapper.DocumentController;
+import com.foobnix.pdf.search.activity.msg.FlippingStart;
+import com.foobnix.pdf.search.activity.msg.FlippingStop;
 import com.foobnix.pdf.search.activity.msg.InvalidateMessage;
 import com.foobnix.pdf.search.activity.msg.MessageAutoFit;
 import com.foobnix.pdf.search.activity.msg.MessageEvent;
@@ -89,7 +91,7 @@ public class HorizontalViewActivity extends FragmentActivity {
 
     VerticalViewPager viewPager;
     SeekBar seekBar;
-    private TextView maxSeek, currentSeek, pagesCountIndicator, pagesTime, pagesPower, titleTxt, chapterView;
+    private TextView maxSeek, currentSeek, pagesCountIndicator, flippingIntervalView, pagesTime, pagesPower, titleTxt, chapterView;
     View actionBar, adFrame, bottomBar;
     private FrameLayout anchor;
 
@@ -120,10 +122,16 @@ public class HorizontalViewActivity extends FragmentActivity {
 
     ClickUtils clickUtils;
 
+    Handler flippingHandler;
+    int flippingTimer = 0;
+
     @TargetApi(Build.VERSION_CODES.HONEYCOMB)
     @Override
     protected void onCreate(final Bundle savedInstanceState) {
         handler = new Handler();
+        flippingHandler = new Handler();
+        flippingTimer = 0;
+
         if (!AppsConfig.checkIsProInstalled(this) && AppsConfig.ADMOB_FULLSCREEN != null) {
             handler.postDelayed(new Runnable() {
 
@@ -188,6 +196,7 @@ public class HorizontalViewActivity extends FragmentActivity {
         currentSeek = (TextView) findViewById(R.id.currentSeek);
         maxSeek = (TextView) findViewById(R.id.maxSeek);
         pagesCountIndicator = (TextView) findViewById(R.id.pagesCountIndicator);
+        flippingIntervalView = (TextView) findViewById(R.id.flippingIntervalView);
         pagesTime = (TextView) findViewById(R.id.pagesTime);
         pagesPower = (TextView) findViewById(R.id.pagesPower);
         linkHistory = (ImageView) findViewById(R.id.linkHistory);
@@ -201,6 +210,7 @@ public class HorizontalViewActivity extends FragmentActivity {
         TintUtil.setTintText(pagesPower);
         TintUtil.setTintText(pagesTime);
         TintUtil.setTintText(pagesCountIndicator);
+        TintUtil.setTintText(flippingIntervalView);
 
         GradientDrawable bg = (GradientDrawable) pagesPower.getBackground();
         bg.setStroke(1, AppState.get().tintColor);
@@ -541,6 +551,50 @@ public class HorizontalViewActivity extends FragmentActivity {
         isInitPosistion = Dips.screenHeight() > Dips.screenWidth();
     }
 
+    @Subscribe
+    public void onFlippingStart(FlippingStart event) {
+        flippingTimer = 0;
+        flippingHandler.post(flippingRunnable);
+        flippingIntervalView.setText("");
+        flippingIntervalView.setVisibility(View.VISIBLE);
+
+        AppState.get().isEditMode = false;
+        hideShow();
+    }
+
+    @Subscribe
+    public void onFlippingStop(FlippingStop event) {
+        flippingHandler.removeCallbacks(flippingRunnable);
+        flippingHandler.removeCallbacksAndMessages(null);
+        flippingIntervalView.setVisibility(View.GONE);
+    }
+
+    Runnable flippingRunnable = new Runnable() {
+
+        @Override
+        public void run() {
+
+            if (flippingTimer >= AppState.get().flippingInterval) {
+                flippingTimer = 0;
+                if (documentController.getCurentPage() == documentController.getPageCount() - 1) {
+                    if (AppState.get().isLoopAutoplay) {
+                        documentController.onGoToPage(1);
+                    } else {
+                        onFlippingStop(null);
+                        return;
+                    }
+                } else {
+                    nextPage();
+                }
+            }
+
+            flippingTimer += 1;
+            flippingIntervalView.setText("{" + (AppState.get().flippingInterval - flippingTimer + 1) + "}");
+            flippingHandler.postDelayed(flippingRunnable, 1000);
+
+        }
+    };
+
     public void testScreenshots() {
 
         if (getIntent().hasExtra("id1")) {
@@ -633,6 +687,7 @@ public class HorizontalViewActivity extends FragmentActivity {
         super.onStop();
         Analytics.onStop(this);
         getWindow().clearFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
+        flippingHandler.removeCallbacksAndMessages(null);
     }
 
     @Override
@@ -647,6 +702,7 @@ public class HorizontalViewActivity extends FragmentActivity {
             }
         }
         handler.removeCallbacksAndMessages(null);
+        flippingHandler.removeCallbacksAndMessages(null);
         ADS.destory(adView);
         ADS.destoryNative(adViewNative);
         // AppState.get().isCut = false;
@@ -691,11 +747,13 @@ public class HorizontalViewActivity extends FragmentActivity {
     }
 
     public void nextPage() {
+        flippingTimer = 0;
         viewPager.setCurrentItem(documentController.getCurentPage() + 1, AppState.get().isScrollAnimation);
         documentController.checkReadingTimer();
     }
 
     public void prevPage() {
+        flippingTimer = 0;
         viewPager.setCurrentItem(documentController.getCurentPage() - 1, AppState.get().isScrollAnimation);
         documentController.checkReadingTimer();
     }
@@ -706,7 +764,6 @@ public class HorizontalViewActivity extends FragmentActivity {
         if (ev.getMessage().equals(MessageEvent.MESSAGE_PERFORM_CLICK)) {
             int x = (int) ev.getX();
             int y = (int) ev.getY();
-
             if (clickUtils.isClickRight(x, y) && AppState.get().tapZoneRight != AppState.TAP_DO_NOTHING) {
                 if (AppState.get().tapZoneRight == AppState.TAP_NEXT_PAGE) {
                     nextPage();
@@ -952,6 +1009,7 @@ public class HorizontalViewActivity extends FragmentActivity {
         public void onProgressChanged(final SeekBar seekBar, final int progress, final boolean fromUser) {
             // updateUI(progress);
             viewPager.setCurrentItem(progress, false);
+            flippingTimer = 0;
 
             if (AppState.get().isEditMode && !fromUser) {
                 AppState.get().isEditMode = false;
@@ -1213,7 +1271,10 @@ public class HorizontalViewActivity extends FragmentActivity {
                     isMyKey = true;
                     return true;
                 }
-                viewPager.setCurrentItem(documentController.getCurentPage() + 1, AppState.get().isScrollAnimation);
+                // viewPager.setCurrentItem(documentController.getCurentPage() +
+                // 1, AppState.get().isScrollAnimation);
+                nextPage();
+                flippingTimer = 0;
                 isMyKey = true;
                 return true;
             } else if (AppState.get().getPrevKeys().contains(keyCode)) {
@@ -1222,7 +1283,10 @@ public class HorizontalViewActivity extends FragmentActivity {
                     isMyKey = true;
                     return true;
                 }
-                viewPager.setCurrentItem(documentController.getCurentPage() - 1, AppState.get().isScrollAnimation);
+                // viewPager.setCurrentItem(documentController.getCurentPage() -
+                // 1, AppState.get().isScrollAnimation);
+                prevPage();
+                flippingTimer = 0;
                 isMyKey = true;
                 return true;
             }

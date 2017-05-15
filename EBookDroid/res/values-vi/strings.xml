@@ -340,4 +340,7 @@
    <string name="minutes">Biên bản</string>
    <string name="seconds">Giây</string>
    <string name="remind_msg">Hãy nghỉ ngơi và đôi mắt của bạn nghỉ ngơi.</string>
+   <string name="automatic_page_flipping">Tự động lật trang</string>
+   <string name="start">Khởi đầu</string>
+   <string name="show_bottom_panel">Hiển thị bảng dưới cùng</string>
 </resources>

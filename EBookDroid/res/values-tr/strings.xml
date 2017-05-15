@@ -340,4 +340,7 @@
    <string name="minutes">Dakika</string>
    <string name="seconds">Saniye</string>
    <string name="remind_msg">Lütfen gözleriniz için biraz ara ve biraz dinlenin.</string>
+   <string name="automatic_page_flipping">Otomatik sayfa çevirme</string>
+   <string name="start">Başlama</string>
+   <string name="show_bottom_panel">Alt paneli göster</string>
 </resources>

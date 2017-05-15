@@ -340,4 +340,7 @@
    <string name="minutes">Dakika</string>
    <string name="seconds">Seconds</string>
    <string name="remind_msg">Tafadhali kuchukua mapumziko kwa macho yako na kupumzika kidogo.</string>
+   <string name="automatic_page_flipping">Moja kwa moja ukurasa flipping</string>
+   <string name="start">Start</string>
+   <string name="show_bottom_panel">Onyesha jopo chini</string>
 </resources>

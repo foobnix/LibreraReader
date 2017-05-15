@@ -56,6 +56,8 @@ import com.foobnix.pdf.info.wrapper.MagicHelper;
 import com.foobnix.pdf.info.wrapper.PopupHelper;
 import com.foobnix.pdf.search.activity.DocumentControllerHorizontalView;
 import com.foobnix.pdf.search.activity.PageImageState;
+import com.foobnix.pdf.search.activity.msg.FlippingStart;
+import com.foobnix.pdf.search.activity.msg.FlippingStop;
 import com.foobnix.pdf.search.activity.msg.InvalidateMessage;
 import com.foobnix.pdf.search.menu.MenuBuilderM;
 import com.foobnix.sys.TempHolder;
@@ -1719,6 +1721,92 @@ public class DragingDialogs {
 
     }
 
+    public static void pageFlippingDialog(final FrameLayout anchor, final DocumentController controller, final Runnable onRefresh) {
+
+        new DragingPopup(anchor.getContext().getString(R.string.automatic_page_flipping), anchor, 300, 260) {
+
+            @Override
+            public View getContentView(LayoutInflater inflater) {
+                View inflate = inflater.inflate(R.layout.dialog_flipping_pages, null, false);
+
+                CheckBox isScrollAnimation = (CheckBox) inflate.findViewById(R.id.isScrollAnimation);
+                isScrollAnimation.setVisibility(AppState.get().isAlwaysOpenAsMagazine ? View.VISIBLE : View.GONE);
+                isScrollAnimation.setChecked(AppState.getInstance().isScrollAnimation);
+                isScrollAnimation.setOnCheckedChangeListener(new OnCheckedChangeListener() {
+
+                    @Override
+                    public void onCheckedChanged(final CompoundButton buttonView, final boolean isChecked) {
+                        AppState.getInstance().isScrollAnimation = isChecked;
+                    }
+                });
+
+                CheckBox isLoopAutoplay = (CheckBox) inflate.findViewById(R.id.isLoopAutoplay);
+                isLoopAutoplay.setChecked(AppState.getInstance().isLoopAutoplay);
+                isLoopAutoplay.setOnCheckedChangeListener(new OnCheckedChangeListener() {
+
+                    @Override
+                    public void onCheckedChanged(final CompoundButton buttonView, final boolean isChecked) {
+                        AppState.getInstance().isLoopAutoplay = isChecked;
+                    }
+                });
+
+                CheckBox isShowToolBar = (CheckBox) inflate.findViewById(R.id.isShowToolBar);
+                isShowToolBar.setChecked(AppState.getInstance().isShowToolBar);
+                isShowToolBar.setOnCheckedChangeListener(new OnCheckedChangeListener() {
+
+                    @Override
+                    public void onCheckedChanged(final CompoundButton buttonView, final boolean isChecked) {
+                        AppState.getInstance().isShowToolBar = isChecked;
+                        if (onRefresh != null) {
+                            onRefresh.run();
+                        }
+                    }
+                });
+
+                final CustomSeek flippingInterval = (CustomSeek) inflate.findViewById(R.id.flippingInterval);
+                flippingInterval.init(1, 120, AppState.get().flippingInterval);
+                flippingInterval.setOnSeekChanged(new IntegerResponse() {
+
+                    @Override
+                    public boolean onResultRecive(int result) {
+                        flippingInterval.setValueText("" + result);
+                        AppState.get().flippingInterval = result;
+                        return false;
+                    }
+                });
+                flippingInterval.setValueText("" + AppState.get().flippingInterval);
+
+
+                inflate.findViewById(R.id.flippingStart).setOnClickListener(new OnClickListener() {
+
+                    @Override
+                    public void onClick(View v) {
+                        EventBus.getDefault().post(new FlippingStart());
+                    }
+                });
+
+                inflate.findViewById(R.id.flippingStop).setOnClickListener(new OnClickListener() {
+
+                    @Override
+                    public void onClick(View v) {
+                        EventBus.getDefault().post(new FlippingStop());
+
+                    }
+                });
+
+                return inflate;
+            }
+        }.show("pageFlippingDialog").setOnCloseListener(new Runnable() {
+
+            @Override
+            public void run() {
+
+            }
+
+        });
+
+    }
+
     public static DragingPopup performanceSettings(final FrameLayout anchor, final DocumentController controller, final Runnable onRefresh, final Runnable updateUIRefresh) {
         if (Build.VERSION.SDK_INT <= 10) {
             Toast.makeText(anchor.getContext(), R.string.this_function_will_works_in_modern_android, Toast.LENGTH_SHORT).show();
@@ -2632,6 +2720,16 @@ public class DragingDialogs {
                         }
                         // closeDialog();
                         MenuBuilderM.addRotateMenu(onRotate, null, updateUIRefresh).show();
+                    }
+                });
+
+                inflate.findViewById(R.id.onPageFlip).setOnClickListener(new View.OnClickListener() {
+
+                    @Override
+                    public void onClick(final View v) {
+                        closeDialog();
+                        DragingDialogs.pageFlippingDialog(anchor, controller, onRefresh);
+
                     }
                 });
 

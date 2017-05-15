@@ -340,4 +340,7 @@
    <string name="minutes">דקות</string>
    <string name="seconds">שניות</string>
    <string name="remind_msg">קח הפסקה לעיניים שלך ותנוח קצת.</string>
+   <string name="automatic_page_flipping">דף אוטומטי מדפדף</string>
+   <string name="start">הַתחָלָה</string>
+   <string name="show_bottom_panel">הצג את החלונית התחתונה</string>
 </resources>
