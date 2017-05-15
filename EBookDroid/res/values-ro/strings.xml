@@ -335,4 +335,5 @@
    <string name="search_in_the_subfolders">Căutați în subfoldere</string>
    <string name="document_converter_online_">Convertor de documente (online)</string>
    <string name="links_color">Culoare legături</string>
+   <string name="in_the_author_s_name_first_the_surname">În numele autorului, mai întâi numele de familie</string>
 </resources>

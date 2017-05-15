@@ -335,4 +335,5 @@
    <string name="search_in_the_subfolders">Zoek in de submappen</string>
    <string name="document_converter_online_">Document converter (online)</string>
    <string name="links_color">Links kleur</string>
+   <string name="in_the_author_s_name_first_the_surname">In de auteur\'s naam, eerst de achternaam</string>
 </resources>

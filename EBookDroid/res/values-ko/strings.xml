@@ -335,4 +335,5 @@
    <string name="search_in_the_subfolders">하위 폴더에서 검색</string>
    <string name="document_converter_online_">문서 변환기 (온라인)</string>
    <string name="links_color">링크 색</string>
+   <string name="in_the_author_s_name_first_the_surname">저자의 이름에서 먼저 성</string>
 </resources>

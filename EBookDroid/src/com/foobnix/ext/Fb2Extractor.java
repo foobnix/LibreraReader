@@ -28,6 +28,7 @@ import com.foobnix.android.utils.TxtUtils;
 import com.foobnix.hypen.HypenUtils;
 import com.foobnix.pdf.info.ExtUtils;
 import com.foobnix.pdf.info.model.BookCSS;
+import com.foobnix.pdf.info.wrapper.AppState;
 
 import android.util.Base64;
 
@@ -190,6 +191,11 @@ public class Fb2Extractor extends BaseExtractor {
 
                 eventType = xpp.next();
             }
+            if (AppState.get().isFirstSurname) {
+                String temp = lastName;
+                lastName = firstName;
+                firstName = temp;
+            }
 
             if (TxtUtils.isNotEmpty(number)) {
                 String index = number.replaceAll("^,", "");
@@ -254,6 +260,12 @@ public class Fb2Extractor extends BaseExtractor {
                 }
 
                 eventType = xpp.next();
+            }
+
+            if (AppState.get().isFirstSurname) {
+                String temp = lastName;
+                lastName = firstName;
+                firstName = temp;
             }
 
             if (TxtUtils.isNotEmpty(number)) {

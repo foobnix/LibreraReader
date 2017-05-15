@@ -335,4 +335,5 @@
    <string name="search_in_the_subfolders">Cerca nelle sottocartelle</string>
    <string name="document_converter_online_">Convertitore documenti (in linea)</string>
    <string name="links_color">Colore dei collegamenti</string>
+   <string name="in_the_author_s_name_first_the_surname">Nel nome dell\'autore, innanzitutto il cognome</string>
 </resources>

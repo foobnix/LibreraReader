@@ -18,6 +18,26 @@ import android.widget.TextView;
 
 public class TxtUtils {
 
+    public static String replaceLastFirstName(String name) {
+        if (TxtUtils.isEmpty(name)) {
+            return "";
+        }
+        name = name.trim();
+
+        if (!name.contains(" ") || name.endsWith(".")) {
+            return name;
+        }
+        String[] split = name.split(" ");
+        StringBuilder res = new StringBuilder();
+        res.append(split[split.length - 1]);
+        for (int i = 0; i <= split.length - 2; i++) {
+            res.append(" ");
+            res.append(split[i]);
+        }
+        return res.toString();
+
+    }
+
     public static String space() {
         return AppState.get().selectingByLetters ? "" : " ";
     }
@@ -230,18 +250,31 @@ public class TxtUtils {
         if (footNotes == null) {
             return "";
         }
-        LOG.d("Ask for footer note", input);
+
+        String id = getFooterNoteNumber(input);
+
+        if (TxtUtils.isNotEmpty(id)) {
+            String string = footNotes.get(id);
+            LOG.d("Find note for id", string);
+            string = string.trim().replaceAll("^[0-9]+ ", "");
+            return string;
+        }
+
+        return "";
+
+    }
+
+    public static String getFooterNoteNumber(String input) {
+        if (input == null) {
+            return "";
+        }
         String patternString = "[\\[{]([0-9]+)[\\]}]";
 
         Matcher m = Pattern.compile(patternString).matcher(input);
 
         if (m.find()) {
-            String id = m.group(0);
-            String string = footNotes.get(id);
-            LOG.d("Find note for id", string);
-            return string;
+            return m.group(0);
         }
-
         return "";
 
     }
@@ -351,7 +384,5 @@ public class TxtUtils {
     public static boolean isEmailValid(String email) {
         return SIMPLE_EMAIL_PATTERN.matcher(email).matches();
     }
-
-
 
 }

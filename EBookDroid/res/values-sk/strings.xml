@@ -335,4 +335,5 @@
    <string name="search_in_the_subfolders">Vyhľadávanie v podpriečinkoch</string>
    <string name="document_converter_online_">Konvertor dokumentov (online)</string>
    <string name="links_color">Farba odkazov</string>
+   <string name="in_the_author_s_name_first_the_surname">V názve autora, najprv priezvisko</string>
 </resources>

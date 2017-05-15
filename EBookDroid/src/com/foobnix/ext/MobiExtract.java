@@ -10,6 +10,7 @@ import com.foobnix.android.utils.LOG;
 import com.foobnix.android.utils.TxtUtils;
 import com.foobnix.libmobi.LibMobi;
 import com.foobnix.mobi.parser.MobiParser;
+import com.foobnix.pdf.info.wrapper.AppState;
 
 public class MobiExtract {
 
@@ -43,6 +44,11 @@ public class MobiExtract {
             if (!onlyTitle) {
                 decode = parse.getCoverOrThumb();
             }
+
+            if (AppState.get().isFirstSurname) {
+                author = TxtUtils.replaceLastFirstName(author);
+            }
+
             EbookMeta ebookMeta = new EbookMeta(title, author, decode);
             ebookMeta.setGenre(subject);
             return ebookMeta;

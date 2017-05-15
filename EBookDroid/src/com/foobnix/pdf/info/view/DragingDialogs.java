@@ -646,9 +646,12 @@ public class DragingDialogs {
                 final int currentPage = controller.getCurentPageFirst1();
 
                 TextView goTo = (TextView) inflate.findViewById(R.id.goTo);
+                TextView footerNumber = (TextView) inflate.findViewById(R.id.footerNumber);
                 TextView goBack = (TextView) inflate.findViewById(R.id.goBack);
                 TextView text = (TextView) inflate.findViewById(R.id.text);
-                text.setTextSize(AppState.get().fontSizeSp - 3);
+                text.setTextSize(Math.max(14, AppState.get().fontSizeSp * 0.7f));
+
+                footerNumber.setText(TxtUtils.getFooterNoteNumber(selectedText));
 
                 goTo.setText(controller.getString(R.string.go_to_page_dialog) + " " + page);
                 text.setText(controller.getFootNote(selectedText));
@@ -2521,10 +2524,6 @@ public class DragingDialogs {
                         linkColor.init(Color.parseColor(BookCSS.get().linkColor));
                     }
                 });
-
-
-
-
 
                 return inflate;
             }

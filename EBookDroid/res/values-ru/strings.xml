@@ -1,5 +1,5 @@
 <resources>
-  <string name="apply">Применить</string>
+   <string name="apply">Применить</string>
    <string name="auto_fit">Автовыравнивание</string>
    <string name="automatic">Автоматическая</string>
    <string name="autor_ivan_ivanenko">Автор: Иван Иваненко</string>
@@ -316,7 +316,7 @@
    <string name="user_styles">Пользовательские</string>
    <string name="archive">Архив</string>
    <string name="beta_version">Бета-версия</string>
-   <string name="of_screen">экрана</string>
+   <string name="of_screen">Экрана</string>
    <string name="ongoing_notification">Закрепить уведомление в шторке</string>
    <string name="apply_text_replacement_dictionary1">Применить словарь замен</string>
    <string name="speak_into_file_wav_">Начитать в файл (.wav)</string>
@@ -335,4 +335,5 @@
    <string name="search_in_the_subfolders">Искать в подпапках</string>
    <string name="document_converter_online_">Онлайн-конвертация файлов</string>
    <string name="links_color">Цвет ссылок</string>
+   <string name="in_the_author_s_name_first_the_surname">В имени автора, сначала фамилия</string>
 </resources>

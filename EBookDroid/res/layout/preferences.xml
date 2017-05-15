@@ -209,6 +209,12 @@
                     android:textSize="12sp" />
             </LinearLayout>
         </LinearLayout>
+        
+        <CheckBox
+            android:id="@+id/isFirstSurname"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/in_the_author_s_name_first_the_surname" />
 
 
         <LinearLayout

@@ -335,4 +335,5 @@
    <string name="search_in_the_subfolders">सबफ़ोल्डर्स में खोजें</string>
    <string name="document_converter_online_">दस्तावेज़ कनवर्टर (ऑनलाइन)</string>
    <string name="links_color">लिंक रंग</string>
+   <string name="in_the_author_s_name_first_the_surname">लेखक के नाम में, सबसे पहले उपनाम</string>
 </resources>

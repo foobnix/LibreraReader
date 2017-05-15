@@ -327,6 +327,17 @@ public class PrefFragment2 extends UIFragment {
             }
         });
 
+        CheckBox isFirstSurname = (CheckBox) inflate.findViewById(R.id.isFirstSurname);
+        isFirstSurname.setChecked(AppState.get().isFirstSurname);
+        isFirstSurname.setOnCheckedChangeListener(new OnCheckedChangeListener() {
+
+            @Override
+            public void onCheckedChanged(final CompoundButton buttonView, final boolean isChecked) {
+                AppState.get().isFirstSurname = isChecked;
+
+            }
+        });
+
         autoSettings = (CheckBox) inflate.findViewById(R.id.autoSettings);
         autoSettings.setOnCheckedChangeListener(new OnCheckedChangeListener() {
 
