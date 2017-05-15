@@ -336,4 +336,8 @@
    <string name="document_converter_online_">Convertor de documente (online)</string>
    <string name="links_color">Culoare legături</string>
    <string name="in_the_author_s_name_first_the_surname">În numele autorului, mai întâi numele de familie</string>
+   <string name="remind_about_rest_every">Amintiți-vă de odihnă în fiecare</string>
+   <string name="minutes">Minute</string>
+   <string name="seconds">Secunde</string>
+   <string name="remind_msg">Vă rugăm să luați o pauză pentru ochi și să vă odihniți puțin.</string>
 </resources>

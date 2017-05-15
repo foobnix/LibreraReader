@@ -336,4 +336,8 @@
    <string name="document_converter_online_">Document converter (online)</string>
    <string name="links_color">Links kleur</string>
    <string name="in_the_author_s_name_first_the_surname">In de auteur\'s naam, eerst de achternaam</string>
+   <string name="remind_about_rest_every">Herinner u aan rust elke</string>
+   <string name="minutes">Notulen</string>
+   <string name="seconds">Seconden</string>
+   <string name="remind_msg">Neem een ​​pauze voor je ogen en rust een beetje.</string>
 </resources>

@@ -336,4 +336,8 @@
    <string name="document_converter_online_">Document kubadilisha (mtandaoni)</string>
    <string name="links_color">Links rangi</string>
    <string name="in_the_author_s_name_first_the_surname">Katika jina la mwandishi \ \'s, kwanza jina</string>
+   <string name="remind_about_rest_every">Wakumbushe kuhusu wengine kila</string>
+   <string name="minutes">Dakika</string>
+   <string name="seconds">Seconds</string>
+   <string name="remind_msg">Tafadhali kuchukua mapumziko kwa macho yako na kupumzika kidogo.</string>
 </resources>

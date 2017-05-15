@@ -336,4 +336,8 @@
    <string name="document_converter_online_">Belge dönüştürücü (çevrimiçi)</string>
    <string name="links_color">Bağlantı renkleri</string>
    <string name="in_the_author_s_name_first_the_surname">Yazarın adına, önce soyad</string>
+   <string name="remind_about_rest_every">Dinlenmek hakkında hatırlat</string>
+   <string name="minutes">Dakika</string>
+   <string name="seconds">Saniye</string>
+   <string name="remind_msg">Lütfen gözleriniz için biraz ara ve biraz dinlenin.</string>
 </resources>

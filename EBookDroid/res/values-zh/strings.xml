@@ -336,4 +336,8 @@
    <string name="document_converter_online_">文件转换器（在线）</string>
    <string name="links_color">链接颜色</string>
    <string name="in_the_author_s_name_first_the_surname">以作者姓名，先姓</string>
+   <string name="remind_about_rest_every">提醒每一个休息</string>
+   <string name="minutes">分钟</string>
+   <string name="seconds">秒</string>
+   <string name="remind_msg">请休息一下，休息一下。</string>
 </resources>

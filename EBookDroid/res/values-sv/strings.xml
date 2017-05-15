@@ -336,4 +336,8 @@
    <string name="document_converter_online_">Dokumentkonverterare (online)</string>
    <string name="links_color">Länkar färg</string>
    <string name="in_the_author_s_name_first_the_surname">I författarens namn, först efternamnet</string>
+   <string name="remind_about_rest_every">Påminner om vila varje</string>
+   <string name="minutes">Minuter</string>
+   <string name="seconds">Sekunder</string>
+   <string name="remind_msg">Ta en paus för dina ögon och vila lite.</string>
 </resources>

@@ -336,4 +336,8 @@
    <string name="document_converter_online_">Chuyển đổi tài liệu (trực tuyến)</string>
    <string name="links_color">Màu liên kết</string>
    <string name="in_the_author_s_name_first_the_surname">Trong tên của tác giả, đầu tiên họ</string>
+   <string name="remind_about_rest_every">Nhắc về phần còn lại</string>
+   <string name="minutes">Biên bản</string>
+   <string name="seconds">Giây</string>
+   <string name="remind_msg">Hãy nghỉ ngơi và đôi mắt của bạn nghỉ ngơi.</string>
 </resources>

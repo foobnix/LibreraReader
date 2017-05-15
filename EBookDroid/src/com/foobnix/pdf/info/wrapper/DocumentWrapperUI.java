@@ -1310,6 +1310,8 @@ public class DocumentWrapperUI {
     };
 
     public void nextChose(final boolean animate) {
+        controller.checkReadingTimer();
+
         if (controller.closeFooterNotesDialog()) {
             return;
         }
@@ -1327,6 +1329,8 @@ public class DocumentWrapperUI {
     }
 
     public void prevChose(final boolean animate) {
+        controller.checkReadingTimer();
+
         if (controller.closeFooterNotesDialog()) {
             return;
         }
@@ -1407,5 +1411,6 @@ public class DocumentWrapperUI {
     public DrawView getDrawView() {
         return drawView;
     }
+
 
 }

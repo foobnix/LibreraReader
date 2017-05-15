@@ -336,4 +336,8 @@
    <string name="document_converter_online_">ドキュメントコンバータ（オンライン）</string>
    <string name="links_color">リンクの色</string>
    <string name="in_the_author_s_name_first_the_surname">著者の名前では、最初に姓</string>
+   <string name="remind_about_rest_every">毎日休息を思い出させる</string>
+   <string name="minutes">分</string>
+   <string name="seconds">秒</string>
+   <string name="remind_msg">目を覚まして少し休憩してください。</string>
 </resources>

@@ -336,4 +336,8 @@
    <string name="document_converter_online_">문서 변환기 (온라인)</string>
    <string name="links_color">링크 색</string>
    <string name="in_the_author_s_name_first_the_surname">저자의 이름에서 먼저 성</string>
+   <string name="remind_about_rest_every">매번 휴식을 상기시킨다.</string>
+   <string name="minutes">의사록</string>
+   <string name="seconds">초</string>
+   <string name="remind_msg">눈을 뜨고 휴식을 취하십시오.</string>
 </resources>

@@ -336,4 +336,8 @@
    <string name="document_converter_online_">Конвертер документів (онлайн)</string>
    <string name="links_color">Колір посилання</string>
    <string name="in_the_author_s_name_first_the_surname">В імені автора \ \'s, перша прізвище</string>
+   <string name="remind_about_rest_every">Нагадайте про відпочинок кожен</string>
+   <string name="minutes">Хвилин</string>
+   <string name="seconds">Секунд</string>
+   <string name="remind_msg">Будь ласка, зробіть перерву на ваші очі і трохи відпочити.</string>
 </resources>

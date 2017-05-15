@@ -336,4 +336,8 @@
    <string name="document_converter_online_">Document converter (online)</string>
    <string name="links_color">Links color</string>
    <string name="in_the_author_s_name_first_the_surname">In the author\'s name, first the surname</string>
+   <string name="remind_about_rest_every">Remind about rest every</string>
+   <string name="minutes">Minutes</string>
+   <string name="seconds">Seconds</string>
+   <string name="remind_msg">Please take a break for your eyes and rest a bit.</string>
 </resources>

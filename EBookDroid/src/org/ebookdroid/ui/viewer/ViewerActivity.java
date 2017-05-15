@@ -144,6 +144,7 @@ public class ViewerActivity extends AbstractActionActivity<ViewerActivity, Viewe
 		if (AppState.getInstance().isFullScrean()) {
 			DocumentController.hideHavigationBar(this);
 		}
+        getController().onResume();
 
 	}
 

@@ -665,12 +665,17 @@ public class HorizontalViewActivity extends FragmentActivity {
     @Override
     protected void onResume() {
         super.onResume();
+
         ADS.onResume(adView);
         ADS.onResumeNative(adViewNative);
         DocumentController.chooseFullScreen(this, AppState.get().isFullScreen);
         DocumentController.doRotation(this);
 
         clickUtils.init();
+
+        if (documentController != null) {
+            documentController.onResume();
+        }
     }
 
     @Override
@@ -687,10 +692,12 @@ public class HorizontalViewActivity extends FragmentActivity {
 
     public void nextPage() {
         viewPager.setCurrentItem(documentController.getCurentPage() + 1, AppState.get().isScrollAnimation);
+        documentController.checkReadingTimer();
     }
 
     public void prevPage() {
         viewPager.setCurrentItem(documentController.getCurentPage() - 1, AppState.get().isScrollAnimation);
+        documentController.checkReadingTimer();
     }
 
     @TargetApi(Build.VERSION_CODES.HONEYCOMB)

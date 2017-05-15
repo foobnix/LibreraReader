@@ -336,4 +336,8 @@
    <string name="document_converter_online_">تبدیل سند (آنلاین)</string>
    <string name="links_color">رنگ ها</string>
    <string name="in_the_author_s_name_first_the_surname">در نویسنده \ \'s با نام، برای اولین بار نام خانوادگی</string>
+   <string name="remind_about_rest_every">یادآوری در مورد بقیه هر</string>
+   <string name="minutes">دقایق</string>
+   <string name="seconds">ثانیه</string>
+   <string name="remind_msg">لطفا یک استراحت برای چشم خود را و استراحت کمی.</string>
 </resources>

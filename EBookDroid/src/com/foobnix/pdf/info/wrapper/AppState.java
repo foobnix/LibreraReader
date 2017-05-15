@@ -163,6 +163,7 @@ public class AppState {
 
     public int doubleClickAction = DOUBLE_CLICK_AUTOSCROLL;
     public int inactivityTime = 2;
+    public int remindRestTime = 120;
 
     public boolean isEditMode = true;
     public boolean isFullScreen = true;
@@ -519,6 +520,7 @@ public class AppState {
 
         doubleClickAction = sp.getInt("doubleClickAction", doubleClickAction);
         inactivityTime = sp.getInt("inactivityTime", inactivityTime);
+        remindRestTime = sp.getInt("remindRestTime", remindRestTime);
 
         supportPDF = sp.getBoolean("supportPDF", supportPDF);
         supportDJVU = sp.getBoolean("supportDJVU", supportDJVU);
@@ -708,6 +710,7 @@ public class AppState {
         editor.putInt("fontSizeSp", fontSizeSp);
         editor.putInt("doubleClickAction", doubleClickAction);
         editor.putInt("inactivityTime", inactivityTime);
+        editor.putInt("remindRestTime", remindRestTime);
 
         editor.putBoolean("supportPDF", supportPDF);
         editor.putBoolean("supportDJVU", supportDJVU);

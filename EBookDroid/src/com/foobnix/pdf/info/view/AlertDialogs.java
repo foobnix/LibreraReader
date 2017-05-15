@@ -31,4 +31,20 @@ public class AlertDialogs {
         builder.show();
     }
 
+    public static void showOkDialog(final Context c, final String message, final Runnable action) {
+        final AlertDialog.Builder builder = new AlertDialog.Builder(c);
+        builder.setMessage(message);
+        builder.setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
+
+            @Override
+            public void onClick(final DialogInterface dialog, final int id) {
+                if (action != null) {
+                    action.run();
+                }
+
+            }
+        });
+        builder.show();
+    }
+
 }

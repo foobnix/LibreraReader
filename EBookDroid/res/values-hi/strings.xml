@@ -336,4 +336,8 @@
    <string name="document_converter_online_">दस्तावेज़ कनवर्टर (ऑनलाइन)</string>
    <string name="links_color">लिंक रंग</string>
    <string name="in_the_author_s_name_first_the_surname">लेखक के नाम में, सबसे पहले उपनाम</string>
+   <string name="remind_about_rest_every">प्रत्येक को आराम के बारे में याद दिलाएं</string>
+   <string name="minutes">मिनट</string>
+   <string name="seconds">सेकंड</string>
+   <string name="remind_msg">कृपया अपनी आँखों के लिए एक ब्रेक ले लो और थोड़ा आराम करो।</string>
 </resources>

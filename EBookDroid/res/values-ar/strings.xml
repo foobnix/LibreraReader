@@ -336,4 +336,8 @@
    <string name="document_converter_online_">تحويل المستندات (عبر الإنترنت)</string>
    <string name="links_color">لون الروابط</string>
    <string name="in_the_author_s_name_first_the_surname">في اسم المؤلف، أولا اللقب</string>
+   <string name="remind_about_rest_every">تذكير عن بقية كل</string>
+   <string name="minutes">الدقائق</string>
+   <string name="seconds">ثواني</string>
+   <string name="remind_msg">يرجى أخذ قسط من الراحة لعينيك والراحة قليلا.</string>
 </resources>

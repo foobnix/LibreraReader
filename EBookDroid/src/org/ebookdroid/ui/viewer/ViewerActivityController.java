@@ -179,12 +179,10 @@ public class ViewerActivityController extends ActionController<ViewerActivity> i
 
             final BookSettings.Diff diff = new BookSettings.Diff(null, SettingsManager.getBookSettings());
             onBookSettingsChanged(null, SettingsManager.getBookSettings(), diff);
-            
-            
-            if (intent.hasExtra("id2")) {
-				wrapperControlls.showSelectTextMenu();
-            }
 
+            if (intent.hasExtra("id2")) {
+                wrapperControlls.showSelectTextMenu();
+            }
 
         }
         wrapperControlls.updateUI();
@@ -361,6 +359,13 @@ public class ViewerActivityController extends ActionController<ViewerActivity> i
         }
 
         wrapperControlls.initUI(a);
+    }
+
+    public void onResume() {
+        if (controller != null) {
+            controller.onResume();
+        }
+
     }
 
     public void setWindowTitle() {

@@ -2129,6 +2129,35 @@ public class DragingDialogs {
                     }
                 });
 
+                // remind rest time
+                final TextView remindRestTime = (TextView) inflate.findViewById(R.id.remindRestTime);
+                remindRestTime.setText(AppState.get().remindRestTime + " " + controller.getString(R.string.minutes));
+                TxtUtils.underlineTextView(remindRestTime);
+                remindRestTime.setOnClickListener(new OnClickListener() {
+
+                    @SuppressLint("NewApi")
+                    @Override
+                    public void onClick(View v) {
+                        final PopupMenu popupMenu = new PopupMenu(v.getContext(), v);
+                        for (int i = 10; i <= 240; i += 10) {
+                            final int j = i;
+                            popupMenu.getMenu().add(i + " " + controller.getString(R.string.minutes)).setOnMenuItemClickListener(new OnMenuItemClickListener() {
+
+                                @Override
+                                public boolean onMenuItemClick(MenuItem item) {
+                                    AppState.get().remindRestTime = j;
+                                    remindRestTime.setText(AppState.get().remindRestTime + " " + controller.getString(R.string.minutes));
+                                    TxtUtils.underlineTextView(remindRestTime);
+                                    return false;
+                                }
+                            });
+                        }
+
+                        popupMenu.show();
+
+                    }
+                });
+
                 // rotate
 
                 final TextView rotateViewPager = (TextView) inflate.findViewById(R.id.rotateViewPager);

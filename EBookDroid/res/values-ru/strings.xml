@@ -336,4 +336,8 @@
    <string name="document_converter_online_">Онлайн-конвертация файлов</string>
    <string name="links_color">Цвет ссылок</string>
    <string name="in_the_author_s_name_first_the_surname">В имени автора, сначала фамилия</string>
+   <string name="remind_about_rest_every">Напоминать об отдыхе каждые</string>
+   <string name="minutes">Минут</string>
+   <string name="seconds">Секунд</string>
+   <string name="remind_msg">Пожалуйста, сделайте перерыв для глаз и немного отдохните.</string>
 </resources>

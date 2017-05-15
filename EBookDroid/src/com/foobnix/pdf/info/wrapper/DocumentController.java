@@ -4,6 +4,7 @@ import java.io.File;
 import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 import org.ebookdroid.core.codec.Annotation;
 import org.ebookdroid.core.codec.PageLink;
@@ -16,6 +17,7 @@ import com.foobnix.pdf.info.OutlineHelper;
 import com.foobnix.pdf.info.R;
 import com.foobnix.pdf.info.model.AnnotationType;
 import com.foobnix.pdf.info.model.OutlineLinkWrapper;
+import com.foobnix.pdf.info.view.AlertDialogs;
 import com.foobnix.sys.ImageExtractor;
 import com.foobnix.ui2.AppDB;
 import com.nostra13.universalimageloader.core.ImageLoader;
@@ -47,8 +49,11 @@ public abstract class DocumentController {
     private DocumentWrapperUI ui;
     public Handler handler;
 
+    public long readTimeStart;
+
     public DocumentController(final Activity activity) {
         this.activity = activity;
+        readTimeStart = System.currentTimeMillis();
     }
 
     public void initHandler() {
@@ -129,6 +134,25 @@ public abstract class DocumentController {
     }
 
     public abstract void cleanImageMatrix();
+
+
+
+    public void checkReadingTimer() {
+        long timeout = System.currentTimeMillis() - readTimeStart;
+        if (timeout >= TimeUnit.MINUTES.toMillis(AppState.get().remindRestTime)) {
+            AlertDialogs.showOkDialog(activity, getString(R.string.remind_msg), new Runnable() {
+
+                @Override
+                public void run() {
+                    readTimeStart = System.currentTimeMillis();
+                }
+            });
+        }
+    }
+
+    public void onResume() {
+        readTimeStart = System.currentTimeMillis();
+    }
 
     public Bitmap getBookImage() {
         String url = IMG.toUrl(getCurrentBook().getPath(), ImageExtractor.COVER_PAGE_WITH_EFFECT, IMG.getImageSize());
@@ -394,7 +418,6 @@ public abstract class DocumentController {
     }
 
     public abstract String getTextForPage(int page);
-
 
     public abstract List<PageLink> getLinksForPage(int page);
 
