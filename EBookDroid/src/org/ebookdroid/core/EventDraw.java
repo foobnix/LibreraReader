@@ -7,6 +7,7 @@ import org.ebookdroid.core.codec.PageLink;
 import org.ebookdroid.ui.viewer.IActivityController;
 import org.emdev.utils.LengthUtils;
 
+import com.foobnix.android.utils.Dips;
 import com.foobnix.pdf.info.R;
 import com.foobnix.pdf.info.wrapper.AppState;
 import com.foobnix.pdf.info.wrapper.MagicHelper;
@@ -157,7 +158,8 @@ public class EventDraw implements IEvent {
         canvas.drawRect(fixedPageBounds, viewState.paint.fillPaint);
 
         final TextPaint textPaint = viewState.paint.textPaint;
-        textPaint.setTextSize(24 * viewState.zoom);
+        // textPaint.setTextSize(20 * viewState.zoom);
+        textPaint.setTextSize(Dips.spToPx(16));
         textPaint.setColor(MagicHelper.getTextColor());
 
         final String text = EBookDroidApp.context.getString(R.string.text_page) + " " + (page.index.viewIndex + 1);

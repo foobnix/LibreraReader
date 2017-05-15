@@ -106,8 +106,8 @@ public class ImageExtractor implements ImageDownloader {
             cover = BaseExtractor.arrayToBitmap(RtfExtract.getImageCover(unZipPath), pageUrl.getWidth());
         } else if (BookType.PDF.is(unZipPath) || BookType.DJVU.is(unZipPath)) {
             cover = proccessOtherPage(pageUrl);
-		} else if (BookType.CBZ.is(unZipPath) || BookType.CBR.is(unZipPath)) {
-			cover = BaseExtractor.arrayToBitmap(CbzCbrExtractor.getBookCover(unZipPath), pageUrl.getWidth());
+        } else if (BookType.CBZ.is(unZipPath) || BookType.CBR.is(unZipPath)) {
+            cover = BaseExtractor.arrayToBitmap(CbzCbrExtractor.getBookCover(unZipPath), pageUrl.getWidth());
         } else if (ExtUtils.isFileArchive(unZipPath)) {
             String ext = ExtUtils.getFileExtension(unZipPath);
             cover = BaseExtractor.getBookCoverWithTitle("...", "  [" + ext.toUpperCase(Locale.US) + "]", true);
@@ -326,7 +326,7 @@ public class ImageExtractor implements ImageDownloader {
         }
     }
 
-    private ByteArrayInputStream bitmapToStream(Bitmap bitmap) {
+    private ByteArrayInputStream bitmapToStream1(Bitmap bitmap) {
         try {
             ByteArrayOutputStream os = new ByteArrayOutputStream();
             boolean isJPG = AppState.get().imageFormat.equals(AppState.JPG);
@@ -343,6 +343,28 @@ public class ImageExtractor implements ImageDownloader {
             os.close();
             os = null;
             byteArray = null;
+
+            return byteArrayInputStream;
+        } catch (Exception e) {
+            return null;
+        }
+    }
+
+    private ByteArrayInputStream bitmapToStream(Bitmap bitmap) {
+        try {
+
+            int[] pixels = new int[bitmap.getHeight() * bitmap.getWidth()];
+            bitmap.getPixels(pixels, 0, bitmap.getWidth(), 0, 0, bitmap.getWidth(), bitmap.getHeight());
+            bitmap.recycle();
+
+            ByteArrayOutputStream out = new ByteArrayOutputStream();
+            out.write(bitmap.getWidth());
+            out.write(bitmap.getHeight());
+            for (int i = 0; i < pixels.length; i++) {
+                out.write(pixels[i]);
+            }
+
+            final ByteArrayInputStream byteArrayInputStream = new ByteArrayInputStream(out.toByteArray());
 
             return byteArrayInputStream;
         } catch (Exception e) {

@@ -137,7 +137,7 @@
    <string name="import_or_export_application_settings_to_json_file">Импорт или экспорт всех настроек</string>
    <string name="show_and_remeber_the_recent">Отображать «Недавние»</string>
    <string name="menu">Меню</string>
-   <string name="foot_notes">Сноска</string>
+   <string name="foot_notes">Примечание</string>
    <string name="music_mode">Режим «Музыкант»</string>
    <string name="advanced_mode">Расширенный режим</string>
    <string name="easy_mode">Облегченный режим</string>

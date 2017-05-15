@@ -4,6 +4,7 @@ import com.foobnix.android.utils.LOG;
 import com.foobnix.pdf.info.IMG;
 import com.foobnix.pdf.info.R;
 import com.foobnix.pdf.info.model.BookCSS;
+import com.foobnix.pdf.info.wrapper.MagicHelper;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.assist.FailReason;
 import com.nostra13.universalimageloader.core.listener.ImageLoadingListener;
@@ -42,6 +43,8 @@ public class ImagePageFragment extends Fragment {
 
         image.setPageNumber(page);
         text.setText(getString(R.string.page) + " " + (page + 1));
+
+        text.setTextColor(MagicHelper.getTextColor());
 
         handler = new Handler();
         handler.postDelayed(new Runnable() {
