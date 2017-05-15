@@ -2092,7 +2092,10 @@ public class DragingDialogs {
 
                 // image format
                 final TextView imageFormat = (TextView) inflate.findViewById(R.id.imageFormat);
-                ((ViewGroup) imageFormat.getParent()).setVisibility(AppState.get().isAlwaysOpenAsMagazine ? View.VISIBLE : View.GONE);
+                // ((ViewGroup)
+                // imageFormat.getParent()).setVisibility(AppState.get().isAlwaysOpenAsMagazine
+                // ? View.VISIBLE : View.GONE);
+                ((ViewGroup) imageFormat.getParent()).setVisibility(View.GONE);
                 imageFormat.setText(AppState.get().imageFormat);
                 TxtUtils.underlineTextView(imageFormat);
                 imageFormat.setOnClickListener(new OnClickListener() {

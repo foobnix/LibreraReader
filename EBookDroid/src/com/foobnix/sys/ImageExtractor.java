@@ -313,7 +313,7 @@ public class ImageExtractor implements ImageDownloader {
             } else if (page == COVER_PAGE_NO_EFFECT) {
                 return bitmapToStream(proccessCoverPage(pageUrl));
             } else {
-                return bitmapToStream(proccessOtherPage(pageUrl));
+                return bitmapToStreamRAW(proccessOtherPage(pageUrl));
             }
 
         } catch (MuPdfPasswordException e) {
@@ -326,7 +326,7 @@ public class ImageExtractor implements ImageDownloader {
         }
     }
 
-    private ByteArrayInputStream bitmapToStream1(Bitmap bitmap) {
+    private ByteArrayInputStream bitmapToStream(Bitmap bitmap) {
         try {
             ByteArrayOutputStream os = new ByteArrayOutputStream();
             boolean isJPG = AppState.get().imageFormat.equals(AppState.JPG);
@@ -350,23 +350,10 @@ public class ImageExtractor implements ImageDownloader {
         }
     }
 
-    private ByteArrayInputStream bitmapToStream(Bitmap bitmap) {
+    private InputStream bitmapToStreamRAW(Bitmap bitmap) {
         try {
-
-            int[] pixels = new int[bitmap.getHeight() * bitmap.getWidth()];
-            bitmap.getPixels(pixels, 0, bitmap.getWidth(), 0, 0, bitmap.getWidth(), bitmap.getHeight());
-            bitmap.recycle();
-
-            ByteArrayOutputStream out = new ByteArrayOutputStream();
-            out.write(bitmap.getWidth());
-            out.write(bitmap.getHeight());
-            for (int i = 0; i < pixels.length; i++) {
-                out.write(pixels[i]);
-            }
-
-            final ByteArrayInputStream byteArrayInputStream = new ByteArrayInputStream(out.toByteArray());
-
-            return byteArrayInputStream;
+            LOG.d("Rerurn bitmapToStreamRAW");
+            return new InputStreamBitmap(bitmap);
         } catch (Exception e) {
             return null;
         }
