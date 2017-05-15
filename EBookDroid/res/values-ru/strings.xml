@@ -4,7 +4,7 @@
    <string name="automatic">Автоматическая</string>
    <string name="autor_ivan_ivanenko">Автор: Иван Иваненко</string>
    <string name="black">Темная</string>
-   <string name="book_is_loading_or_no_content">Файл открывается или пуст</string>
+   <string name="book_is_loading_or_no_content">Файл открывается или он пуст</string>
    <string name="bookmark_on_page_">Закладка к странице</string>
    <string name="bookmarks">Закладки</string>
    <string name="brightness">Яркость экрана</string>
@@ -47,7 +47,7 @@
    <string name="loading_failed">Ошибка загрузки страницы</string>
    <string name="loop_autoplay">Бесконечная автопрокрутка</string>
    <string name="mouse_scroll_speed">Скорость прокрутки колесиком мышки</string>
-   <string name="msg_loading">Открывается, подождите...</string>
+   <string name="msg_loading">Открываю...</string>
    <string name="msg_no_text_found">Текст не найден</string>
    <string name="msg_password_required">Введите пароль</string>
    <string name="msg_search_text_on_page">Поиск на странице</string>
@@ -83,7 +83,7 @@
    <string name="rotate_default">По умолчанию</string>
    <string name="save">Сохранить</string>
    <string name="scan">Поиск</string>
-   <string name="scan_device_for_new_books">Запуск поиска книг на устройстве</string>
+   <string name="scan_device_for_new_books">Пути поиска книг на устройстве</string>
    <string name="screen_orientation">Ориентация экрана</string>
    <string name="search">Поиск</string>
    <string name="search_text">Поиск текста</string>
@@ -140,11 +140,11 @@
    <string name="foot_notes">Примечание</string>
    <string name="music_mode">Режим «Музыкант»</string>
    <string name="advanced_mode">Расширенный режим</string>
-   <string name="easy_mode">Облегченный режим</string>
+   <string name="easy_mode">Простой режим</string>
    <string name="plain_text_txt_preformatted">Обычный текст (.txt) отформатирован</string>
    <string name="dictionary">Словарь</string>
    <string name="import_bookmarks">Импорт закладок</string>
-   <string name="email">Электр. адрес</string>
+   <string name="email">Email</string>
    <string name="file">Файл</string>
    <string name="file_not_found">Файл не найден</string>
    <string name="send_file">Отправить файл</string>
@@ -196,7 +196,7 @@
    <string name="advanced_settings">Расширенные настройки</string>
    <string name="more">Больше</string>
    <string name="font_name">Шрифт</string>
-   <string name="tap_zone_size">Размер зон листания</string>
+   <string name="tap_zone_size">Размер зон листаний</string>
    <string name="size_of_allocated_memory">Размер выделенной памяти</string>
    <string name="display_settings">Настройки отображения</string>
    <string name="margin_width">Ширина отступов</string>
@@ -283,12 +283,12 @@
    <string name="banner_slogan_PRO_LIRBI_READER_1">Платная версия лучшей программы для чтения электронных книг</string>
    <string name="next_page">Следущая страница</string>
    <string name="previous_page">Предыдущая страница</string>
-   <string name="customize">Настроить</string>
+   <string name="customize">Настройка</string>
    <string name="left_side">Левая сторона</string>
    <string name="top_side">Верхняя сторона</string>
    <string name="bottom_side">Нижняя сторона</string>
    <string name="direction_of_reading_rtl_">Направление чтения (RTL)</string>
-   <string name="customize_tap_zones">Настройка зон листания</string>
+   <string name="customize_tap_zones">Настройка зон листаний</string>
    <string name="right_side">Правая сторона</string>
    <string name="text_without_line_break">Текст без разрыва строки</string>
    <string name="apply_a_new_screen_orientation_">Переориентировать экран?</string>
@@ -314,8 +314,8 @@
    <string name="styles">Стили</string>
    <string name="document_styles">Встроенные</string>
    <string name="user_styles">Пользовательские</string>
-   <string name="archive">Архив</string>
-   <string name="beta_version">Бета-версия</string>
+   <string name="archive">Архив:</string>
+   <string name="beta_version">Бета-версия:</string>
    <string name="of_screen">Экрана</string>
    <string name="ongoing_notification">Закрепить уведомление в шторке</string>
    <string name="apply_text_replacement_dictionary1">Применить словарь замен</string>
@@ -335,12 +335,13 @@
    <string name="search_in_the_subfolders">Искать в подпапках</string>
    <string name="document_converter_online_">Онлайн-конвертация файлов</string>
    <string name="links_color">Цвет ссылок</string>
-   <string name="in_the_author_s_name_first_the_surname">В имени автора, сначала фамилия</string>
-   <string name="remind_about_rest_every">Напоминать об отдыхе каждые</string>
+   <string name="in_the_author_s_name_first_the_surname">Отображать сперва фамилию автора, затем имя</string>
+   <string name="remind_about_rest_every">Увед-е об отдыхе каждые</string>
    <string name="minutes">Минут</string>
    <string name="seconds">Секунд</string>
-   <string name="remind_msg">Пожалуйста, сделайте перерыв для глаз и немного отдохните.</string>
-   <string name="automatic_page_flipping">Автоматическое перелистывание страниц</string>
-   <string name="start">Начало</string>
-   <string name="show_bottom_panel">Показать нижнюю панель</string>
+   <string name="remind_msg">Пожалуйста, сделайте перерыв и дайте глазам немного отдохнуть</string>
+   <string name="automatic_page_flipping">Автоперелистывание страниц</string>
+   <string name="start">Начать</string>
+   <string name="show_bottom_panel">Показывать строку прогресса</string>
+   <string name="interval_sec_">Интервал (сек)</string>
 </resources>

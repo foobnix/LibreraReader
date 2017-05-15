@@ -92,7 +92,7 @@ public class HorizontalViewActivity extends FragmentActivity {
     VerticalViewPager viewPager;
     SeekBar seekBar;
     private TextView maxSeek, currentSeek, pagesCountIndicator, flippingIntervalView, pagesTime, pagesPower, titleTxt, chapterView;
-    View actionBar, adFrame, bottomBar;
+    View actionBar, adFrame, bottomBar, onPageFlip1;
     private FrameLayout anchor;
 
     private AdView adView;
@@ -252,6 +252,15 @@ public class HorizontalViewActivity extends FragmentActivity {
         // ADS.activate(this, adView);
         ADS.activateNative(this, adViewNative);
 
+        onPageFlip1 = findViewById(R.id.onPageFlip1);
+        onPageFlip1.setOnClickListener(new OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                DragingDialogs.pageFlippingDialog(anchor, documentController, onRefresh);
+            }
+        });
+
         ImageView dayNightButton = (ImageView) findViewById(R.id.bookNight);
         dayNightButton.setOnClickListener(new View.OnClickListener() {
 
@@ -352,19 +361,10 @@ public class HorizontalViewActivity extends FragmentActivity {
 
             @Override
             public void onClick(final View v) {
-                DragingDialogs.preferences(anchor, documentController, new Runnable() {
-
-                    @Override
-                    public void run() {
-                        documentController.getOutline(null);
-                        updateReadPercent();
-
-                        showHideInfoToolBar();
-
-                    }
-                }, reloadDoc);
+                DragingDialogs.preferences(anchor, documentController, onRefresh, reloadDoc);
             }
         });
+
         View onClose = findViewById(R.id.bookClose);
         onClose.setOnClickListener(new View.OnClickListener() {
 
@@ -551,15 +551,32 @@ public class HorizontalViewActivity extends FragmentActivity {
         isInitPosistion = Dips.screenHeight() > Dips.screenWidth();
     }
 
+    Runnable onRefresh = new Runnable() {
+
+        @Override
+        public void run() {
+            documentController.getOutline(null);
+            updateReadPercent();
+
+            showHideInfoToolBar();
+
+        }
+    };
+
     @Subscribe
     public void onFlippingStart(FlippingStart event) {
         flippingTimer = 0;
+        flippingHandler.removeCallbacks(flippingRunnable);
         flippingHandler.post(flippingRunnable);
         flippingIntervalView.setText("");
-        flippingIntervalView.setVisibility(View.VISIBLE);
+        flippingIntervalView.setVisibility(AppState.get().isShowToolBar ? View.VISIBLE : View.GONE);
 
-        AppState.get().isEditMode = false;
-        hideShow();
+        if (AppState.get().isEditMode) {
+            AppState.get().isEditMode = false;
+            hideShow();
+        }
+
+        onPageFlip1.setVisibility(View.VISIBLE);
     }
 
     @Subscribe
@@ -590,6 +607,7 @@ public class HorizontalViewActivity extends FragmentActivity {
 
             flippingTimer += 1;
             flippingIntervalView.setText("{" + (AppState.get().flippingInterval - flippingTimer + 1) + "}");
+            flippingIntervalView.setVisibility(AppState.get().isShowToolBar ? View.VISIBLE : View.GONE);
             flippingHandler.postDelayed(flippingRunnable, 1000);
 
         }

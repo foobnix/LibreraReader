@@ -343,4 +343,5 @@
    <string name="automatic_page_flipping">Tự động lật trang</string>
    <string name="start">Khởi đầu</string>
    <string name="show_bottom_panel">Hiển thị bảng dưới cùng</string>
+   <string name="interval_sec_">Khoảng (giây)</string>
 </resources>

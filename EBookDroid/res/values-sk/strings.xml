@@ -343,4 +343,5 @@
    <string name="automatic_page_flipping">Automatické preklopenie stránky</string>
    <string name="start">Štart</string>
    <string name="show_bottom_panel">Zobraziť spodný panel</string>
+   <string name="interval_sec_">Interval (sek)</string>
 </resources>

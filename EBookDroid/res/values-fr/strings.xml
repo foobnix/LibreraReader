@@ -343,4 +343,5 @@
    <string name="automatic_page_flipping">Retour automatique de la page</string>
    <string name="start">Début</string>
    <string name="show_bottom_panel">Afficher le panneau inférieur</string>
+   <string name="interval_sec_">Intervalle (sec)</string>
 </resources>

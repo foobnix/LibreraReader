@@ -61,10 +61,11 @@ public class MainTabs2 extends FragmentActivity {
     List<UIFragment> tabFragments;
     private NativeExpressAdView adViewNative;
     InterstitialAd mInterstitialAd;
-    public static boolean isInStack;
+    public static volatile boolean isInStack;
 
     @Override
     protected void onNewIntent(final Intent intent) {
+        isInStack = true;
         testIntentHandler();
         if (intent.getBooleanExtra(EXTRA_EXIT, false)) {
             finish();

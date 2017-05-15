@@ -38,13 +38,13 @@ public class CloseAppDialog {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 action.run();
-
                 if (MainTabs2.isInStack) {
                     Intent startMain = new Intent(c, MainTabs2.class);
                     startMain.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                     startMain.putExtra(MainTabs2.EXTRA_EXIT, true);
                     c.startActivity(startMain);
                 }
+
 
             }
         });

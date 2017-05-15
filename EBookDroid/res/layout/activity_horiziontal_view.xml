@@ -65,6 +65,16 @@
                 android:visibility="gone" >
             </TextView>
         </LinearLayout>
+        
+        <ImageView
+            android:contentDescription="change day or night"
+            android:id="@+id/onPageFlip1"
+            android:visibility="gone"
+            style="@style/buttonWhite"
+            android:layout_width="@dimen/wh_button"
+            android:layout_height="@dimen/wh_button"
+            android:layout_weight="0"
+            android:src="@drawable/glyphicons_174_play" />
 
         <ImageView
             android:contentDescription="change day or night"

@@ -343,4 +343,5 @@
    <string name="automatic_page_flipping">Schimbarea automată a paginii</string>
    <string name="start">Start</string>
    <string name="show_bottom_panel">Afișați panoul de jos</string>
+   <string name="interval_sec_">Interval (sec)</string>
 </resources>

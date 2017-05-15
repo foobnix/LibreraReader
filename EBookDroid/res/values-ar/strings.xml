@@ -343,4 +343,5 @@
    <string name="automatic_page_flipping">التلقائي التقليب الصفحة</string>
    <string name="start">بداية</string>
    <string name="show_bottom_panel">إظهار اللوحة السفلية</string>
+   <string name="interval_sec_">الفاصل الزمني (ثانية)</string>
 </resources>

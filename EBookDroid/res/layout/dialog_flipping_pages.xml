@@ -10,7 +10,7 @@
         android:id="@+id/textView1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Interval (sec)" />
+        android:text="@string/interval_sec_" />
 
     <com.foobnix.pdf.info.view.CustomSeek
         android:id="@+id/flippingInterval"

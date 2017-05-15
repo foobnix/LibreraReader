@@ -343,4 +343,5 @@
    <string name="automatic_page_flipping">Автоматична гортати сторінки</string>
    <string name="start">Початок</string>
    <string name="show_bottom_panel">Показати нижню панель</string>
+   <string name="interval_sec_">Інтервал (сек)</string>
 </resources>

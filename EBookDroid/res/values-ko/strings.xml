@@ -343,4 +343,5 @@
    <string name="automatic_page_flipping">자동 페이지 뒤집기</string>
    <string name="start">스타트</string>
    <string name="show_bottom_panel">하단 패널 표시</string>
+   <string name="interval_sec_">간격 (초)</string>
 </resources>
