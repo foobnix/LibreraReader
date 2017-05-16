@@ -192,37 +192,6 @@ public class PageImaveView extends View {
             }
         }
 
-        public void myTap(MotionEvent e) {
-            if (!isLognPress) {
-                xInit = e.getX();
-                yInit = e.getY();
-            }
-            String selectText = TempHolder.get().isTextFormat ? selectText(xInit, yInit, e.getX(), e.getY()) : null;
-            if (TxtUtils.isFooterNote(selectText)) {
-            } else {
-                PageImageState.get().cleanSelectedWords();
-                AppState.get().selectedText = null;
-                EventBus.getDefault().post(new MessageEvent(MessageEvent.MESSAGE_PERFORM_CLICK, e.getX(), e.getY()));
-            }
-            LOG.d("onSingleTapUp");
-        }
-
-        @Override
-        public boolean onSingleTapConfirmed(MotionEvent e) {
-            if (clickUtils.isClickCenter(e.getX(), e.getY())) {
-                myTap(e);
-            }
-            return false;
-        }
-
-        @Override
-        public boolean onSingleTapUp(MotionEvent e) {
-            if (!clickUtils.isClickCenter(e.getX(), e.getY())) {
-                myTap(e);
-            }
-            return true;
-
-        }
 
         public boolean onTouchEvent(final MotionEvent event) {
             final int action = event.getAction() & MotionEvent.ACTION_MASK;
@@ -325,28 +294,37 @@ public class PageImaveView extends View {
 
             } else if (action == MotionEvent.ACTION_UP) {
 
-                LOG.d("TEST", "action ACTION_UP");
+                LOG.d("TEST", "action ACTION_UP", "long: " + isLognPress);
                 distance = 0;
                 isReadyForMove = false;
                 cx = 0;
                 cy = 0;
+
+                if (isLognPress) {
+                    selectText(event.getX(), event.getY(), xInit, yInit);
+                } else if (TempHolder.get().isTextFormat) {
+                    selectText(event.getX(), event.getY(), event.getX(), event.getY());
+                    if (!TxtUtils.isFooterNote(AppState.get().selectedText)) {
+                        PageImageState.get().cleanSelectedWords();
+                        AppState.get().selectedText = null;
+                        invalidate();
+                    }
+                }
+
+                PageLink pageLink = getPageLink(event.getX(), event.getY());
+                if (pageLink != null) {
+                    TempHolder.get().linkPage = pageLink.targetPage;
+                }
+
                 if (TxtUtils.isNotEmpty(AppState.get().selectedText)) {
-                    PageLink pageLink = getPageLink(event.getX(), event.getY());
-                    if (pageLink != null) {
-                        TempHolder.get().linkPage = pageLink.targetPage;
-                    }
                     EventBus.getDefault().post(new MessageEvent(MessageEvent.MESSAGE_SELECTED_TEXT));
+                } else if (pageLink != null) {
+                    EventBus.getDefault().post(new MessageEvent(MessageEvent.MESSAGE_GOTO_PAGE, pageLink.targetPage, pageLink.url));
                 } else {
-                    PageLink pageLink = getPageLink(event.getX(), event.getY());
-                    if (pageLink != null) {
-                        EventBus.getDefault().post(new MessageEvent(MessageEvent.MESSAGE_GOTO_PAGE, pageLink.targetPage, pageLink.url));
-                    }
+                    EventBus.getDefault().post(new MessageEvent(MessageEvent.MESSAGE_PERFORM_CLICK, event.getX(), event.getY()));
                 }
             } else if (action == MotionEvent.ACTION_CANCEL) {
                 LOG.d("TEST", "action ACTION_CANCEL");
-                if (TxtUtils.isNotEmpty(AppState.get().selectedText)) {
-                    EventBus.getDefault().post(new MessageEvent(MessageEvent.MESSAGE_SELECTED_TEXT));
-                }
             }
 
             return true;
