@@ -65,9 +65,7 @@ import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.view.ViewPager.OnPageChangeListener;
 import android.text.InputType;
-import android.view.GestureDetector;
 import android.view.KeyEvent;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.View.OnLongClickListener;
@@ -102,7 +100,6 @@ public class HorizontalViewActivity extends FragmentActivity {
 
     DocumentControllerHorizontalView documentController;
 
-    GestureDetector gestureDetector;
     Handler handler;
     CopyAsyncTask loadinAsyncTask;
 
@@ -237,15 +234,6 @@ public class HorizontalViewActivity extends FragmentActivity {
                 seekBar.setRotation(180);
             }
         }
-
-        gestureDetector = new GestureDetector(this, new GestureDetector.SimpleOnGestureListener() {
-
-            @Override
-            public boolean onSingleTapConfirmed(MotionEvent e) {
-                doShowHideWrapperControlls();
-                return super.onSingleTapConfirmed(e);
-            }
-        });
 
         // loaginTask.execute();
 
@@ -809,8 +797,13 @@ public class HorizontalViewActivity extends FragmentActivity {
                 }
 
             } else {
-                doShowHideWrapperControlls();
+                handler.removeCallbacks(doShowHideWrapperControllsRunnable);
+                handler.postDelayed(doShowHideWrapperControllsRunnable, 250);
+                // Toast.makeText(this, "Click", Toast.LENGTH_SHORT).show();
             }
+        } else if (ev.getMessage().equals(MessageEvent.MESSAGE_DOUBLE_TAP)) {
+            handler.removeCallbacks(doShowHideWrapperControllsRunnable);
+            // Toast.makeText(this, "DB", Toast.LENGTH_SHORT).show();
         } else if (ev.getMessage().equals(MessageEvent.MESSAGE_SELECTED_TEXT)) {
             if (documentController.isTextFormat() && TxtUtils.isFooterNote(AppState.get().selectedText)) {
                 showFootNotes = DragingDialogs.showFootNotes(anchor, documentController, new Runnable() {
@@ -838,6 +831,14 @@ public class HorizontalViewActivity extends FragmentActivity {
             }
         }
     }
+
+    Runnable doShowHideWrapperControllsRunnable = new Runnable() {
+
+        @Override
+        public void run() {
+            doShowHideWrapperControlls();
+        }
+    };
 
     DragingPopup showFootNotes;
 

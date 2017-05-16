@@ -53,6 +53,7 @@ public class PageImaveView extends View {
 
     private boolean isReadyForMove = false;
     private boolean isLognPress = false;
+    private boolean isDoublePress = false;
 
     float x, y, xInit, yInit, cx, cy, distance = 0;
 
@@ -132,9 +133,10 @@ public class PageImaveView extends View {
 
         @Override
         public boolean onDoubleTap(final MotionEvent e) {
+            isDoublePress = true;
             if (clickUtils.isClickCenter(e.getX(), e.getY())) {
                 isLognPress = true;
-
+                EventBus.getDefault().post(new MessageEvent(MessageEvent.MESSAGE_DOUBLE_TAP, e.getX(), e.getY()));
                 if (isFirstZoomInOut) {
                     // imageMatrix().reset();
                     imageMatrix().preTranslate(getWidth() / 2 - e.getX(), getHeight() / 2 - e.getY());
@@ -191,7 +193,6 @@ public class PageImaveView extends View {
                 AppState.get().selectedText = null;
             }
         }
-
 
         public boolean onTouchEvent(final MotionEvent event) {
             final int action = event.getAction() & MotionEvent.ACTION_MASK;
@@ -321,8 +322,11 @@ public class PageImaveView extends View {
                 } else if (pageLink != null) {
                     EventBus.getDefault().post(new MessageEvent(MessageEvent.MESSAGE_GOTO_PAGE, pageLink.targetPage, pageLink.url));
                 } else {
-                    EventBus.getDefault().post(new MessageEvent(MessageEvent.MESSAGE_PERFORM_CLICK, event.getX(), event.getY()));
+                    if (!isDoublePress) {
+                        EventBus.getDefault().post(new MessageEvent(MessageEvent.MESSAGE_PERFORM_CLICK, event.getX(), event.getY()));
+                    }
                 }
+                isDoublePress = false;
             } else if (action == MotionEvent.ACTION_CANCEL) {
                 LOG.d("TEST", "action ACTION_CANCEL");
             }

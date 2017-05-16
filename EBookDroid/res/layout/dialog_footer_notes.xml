@@ -16,10 +16,11 @@
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_margin="2dip"
+        android:scrollbarStyle="outsideInset"
         android:layout_weight="1" >
 
         <TextView
+            android:padding="4dip"
             android:id="@+id/text"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
