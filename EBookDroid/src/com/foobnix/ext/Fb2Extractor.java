@@ -149,71 +149,6 @@ public class Fb2Extractor extends BaseExtractor {
         return info;
     }
 
-    public EbookMeta getBookMetaInformation(InputStream inputStream, String inputFile) {
-        try {
-
-            XmlPullParser xpp = XmlParser.buildPullParser();
-            xpp.setInput(inputStream, "cp1251");
-
-            String bookTitle = null;
-
-            String firstName = null;
-            String lastName = null;
-            String sequence = "";
-            String genre = "";
-            String number = "";
-
-            int eventType = xpp.getEventType();
-            while (eventType != XmlPullParser.END_DOCUMENT) {
-
-                if (eventType == XmlPullParser.START_TAG) {
-
-                    if (xpp.getName().equals("book-title")) {
-                        bookTitle = xpp.nextText();
-                    } else if (firstName == null && xpp.getName().equals("first-name")) {
-                        firstName = xpp.nextText();
-                    } else if (lastName == null && xpp.getName().equals("last-name")) {
-                        lastName = xpp.nextText();
-                    } else if (xpp.getName().equals("genre")) {
-                        genre = xpp.nextText() + "," + genre;
-                    } else if (xpp.getName().equals("sequence")) {
-                        // sequence = xpp.getAttributeValue(null, "name") + ","
-                        // + sequence;
-                        sequence = xpp.getAttributeValue(null, "name");
-                        String current = xpp.getAttributeValue(null, "number");
-                        if (current != null && !("0".equals(current) || "00".equals(current))) {
-                            number = number + "," + current;
-                        }
-                    } else if (xpp.getName().equals("body")) {
-                        break;
-                    }
-                }
-
-                eventType = xpp.next();
-            }
-            if (AppState.get().isFirstSurname) {
-                String temp = lastName;
-                lastName = firstName;
-                firstName = temp;
-            }
-
-            if (TxtUtils.isNotEmpty(number)) {
-                String index = number.replaceAll("^,", "");
-                EbookMeta ebookMeta = new EbookMeta(bookTitle + " [" + index + "]", firstName + " " + lastName, sequence, genre);
-                try {
-                    ebookMeta.setsIndex(Integer.parseInt(index));
-                } catch (Exception e) {
-                    LOG.d(e);
-                }
-                return ebookMeta;
-            } else {
-                return new EbookMeta(bookTitle, firstName + " " + lastName, sequence, genre);
-            }
-        } catch (Exception e) {
-            LOG.e(e, "!!!!", inputFile);
-        }
-        return EbookMeta.Empty();
-    }
 
     @Override
     public EbookMeta getBookMetaInformation(String inputFile) {
@@ -233,34 +168,52 @@ public class Fb2Extractor extends BaseExtractor {
             String genre = "";
             String number = "";
 
+            boolean titleInfo = false;
+
             int eventType = xpp.getEventType();
             while (eventType != XmlPullParser.END_DOCUMENT) {
 
                 if (eventType == XmlPullParser.START_TAG) {
 
-                    if (xpp.getName().equals("book-title")) {
-                        bookTitle = xpp.nextText();
-                    } else if (firstName == null && xpp.getName().equals("first-name")) {
-                        firstName = xpp.nextText();
-                    } else if (lastName == null && xpp.getName().equals("last-name")) {
-                        lastName = xpp.nextText();
-                    } else if (xpp.getName().equals("genre")) {
-                        genre = xpp.nextText() + "," + genre;
-                    } else if (xpp.getName().equals("sequence")) {
-                        // sequence = xpp.getAttributeValue(null, "name") + ","
-                        // + sequence;
-                        sequence = xpp.getAttributeValue(null, "name");
-                        String current = xpp.getAttributeValue(null, "number");
-                        if (current != null && !("0".equals(current) || "00".equals(current))) {
-                            number = number + "," + current;
+                    if (xpp.getName().equals("title-info")) {
+                        titleInfo = true;
+                    }
+
+                    if (titleInfo) {
+                        if (xpp.getName().equals("book-title")) {
+                            bookTitle = xpp.nextText();
+                        } else if (firstName == null && xpp.getName().equals("first-name")) {
+                            firstName = xpp.nextText();
+                        } else if (lastName == null && xpp.getName().equals("last-name")) {
+                            lastName = xpp.nextText();
+                        } else if (xpp.getName().equals("genre")) {
+                            genre = xpp.nextText() + "," + genre;
+                        } else if (xpp.getName().equals("sequence")) {
+                            // sequence = xpp.getAttributeValue(null, "name") +
+                            // ","
+                            // + sequence;
+                            sequence = xpp.getAttributeValue(null, "name");
+                            String current = xpp.getAttributeValue(null, "number");
+                            if (current != null && !("0".equals(current) || "00".equals(current))) {
+                                number = number + "," + current;
+                            }
                         }
-                    } else if (xpp.getName().equals("body")) {
+                    }
+
+                    if (xpp.getName().equals("body")) {
                         break;
+                    }
+                }
+                if (eventType == XmlPullParser.END_TAG) {
+                    if (xpp.getName().equals("title-info")) {
+                        titleInfo = false;
                     }
                 }
 
                 eventType = xpp.next();
             }
+            lastName = TxtUtils.nullNullToEmpty(lastName);
+            firstName = TxtUtils.nullNullToEmpty(firstName);
 
             if (AppState.get().isFirstSurname) {
                 String temp = lastName;

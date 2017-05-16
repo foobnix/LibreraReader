@@ -9,6 +9,7 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.Locale;
 
+import com.foobnix.android.utils.LOG;
 import com.foobnix.dao2.FileMeta;
 import com.foobnix.pdf.info.ExtUtils;
 import com.foobnix.ui2.FileMetaCore;
@@ -59,10 +60,12 @@ public class SearchCore {
         }
         for (File file : listFiles) {
             if (file.isDirectory()) {
-                if (!findOnce && file.getPath().equals("/mnt/sdcard/Android")) {
+                if (!findOnce && file.getPath().endsWith("/Android/data")) {
+                    LOG.d("Skip path", file.getPath());
                     findOnce = true;
                     continue;
                 }
+
                 search(file, exts, items);
             } else if (endWith(file.getName(), exts)) {
                 items.add(new FileMeta(file.getPath()));
