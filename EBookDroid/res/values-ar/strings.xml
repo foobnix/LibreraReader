@@ -344,4 +344,5 @@
    <string name="start">بداية</string>
    <string name="show_bottom_panel">إظهار اللوحة السفلية</string>
    <string name="interval_sec_">الفاصل الزمني (ثانية)</string>
+   <string name="library_settings">إعدادات المكتبة</string>
 </resources>

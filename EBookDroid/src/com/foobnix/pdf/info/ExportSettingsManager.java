@@ -26,9 +26,9 @@ public class ExportSettingsManager {
                                                                                   // NOT
                                                                                   // CHANGE!!!!
     public static final String PREFIX_BOOKS = "BOOKS";
-    public static final String PREFIX_LASTPATH = "lastpath";
     public static final String PREFIX_PDF = "pdf";
     public static final String PREFIX_RESULTS = "search_results_1";
+    public static final String PREFIX_BOOK_CSS = "BookCSS";
 
     public static final String RECURCIVE = "recurcive";
     private static final String PATH2 = "PATH";
@@ -37,16 +37,17 @@ public class ExportSettingsManager {
     SharedPreferences booksSP;
     SharedPreferences viewerSP;
     SharedPreferences pdfSP;
+    SharedPreferences bookCSS;
 
     private static ExportSettingsManager instance;
     private Context c;
 
     private ExportSettingsManager(Context c) {
         this.c = c;
-        lastPathSP = c.getSharedPreferences(PREFIX_LASTPATH, Context.MODE_PRIVATE);
         booksSP = c.getSharedPreferences(PREFIX_BOOKS, Context.MODE_PRIVATE);
         viewerSP = c.getSharedPreferences(PREFIX_BOOKMARKS_PREFERENCES, Context.MODE_PRIVATE);
         pdfSP = c.getSharedPreferences(PREFIX_PDF, Context.MODE_PRIVATE);
+        bookCSS = c.getSharedPreferences(PREFIX_BOOK_CSS, Context.MODE_PRIVATE);
     }
 
     public boolean exportAll(File toFile) {
@@ -59,9 +60,9 @@ public class ExportSettingsManager {
             JSONObject root = new JSONObject();
 
             root.put(PREFIX_PDF, exportToJSon(PREFIX_RESULTS, pdfSP, null));
-            root.put(PREFIX_LASTPATH, exportToJSon(PREFIX_LASTPATH, lastPathSP, null));
             root.put(PREFIX_BOOKS, exportToJSon(PREFIX_BOOKS, booksSP, null));
             root.put(PREFIX_BOOKMARKS_PREFERENCES, exportToJSon(PREFIX_BOOKMARKS_PREFERENCES, viewerSP, null));
+            root.put(PREFIX_BOOK_CSS, exportToJSon(PREFIX_BOOK_CSS, bookCSS, null));
 
             String name = getSampleJsonConfigName(c, "export_all.json");
             File fileConfig = toFile;
@@ -112,9 +113,9 @@ public class ExportSettingsManager {
             JSONObject jsonObject = new JSONObject(json);
 
             importFromJSon(jsonObject.optJSONObject(PREFIX_PDF), pdfSP, null);
-            importFromJSon(jsonObject.optJSONObject(PREFIX_LASTPATH), lastPathSP, null);
             importFromJSon(jsonObject.optJSONObject(PREFIX_BOOKS), booksSP, null);
             importFromJSon(jsonObject.optJSONObject(PREFIX_BOOKMARKS_PREFERENCES), viewerSP, null);
+            importFromJSon(jsonObject.optJSONObject(PREFIX_BOOK_CSS), bookCSS, null);
 
             return true;
         } catch (Exception e) {

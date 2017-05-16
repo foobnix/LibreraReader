@@ -344,4 +344,5 @@
    <string name="start">प्रारंभ</string>
    <string name="show_bottom_panel">नीचे पैनल दिखाएं</string>
    <string name="interval_sec_">अंतराल (सेकंड)</string>
+   <string name="library_settings">पुस्तकालय सेटिंग</string>
 </resources>

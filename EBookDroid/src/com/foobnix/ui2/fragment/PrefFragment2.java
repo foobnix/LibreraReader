@@ -103,23 +103,27 @@ public class PrefFragment2 extends UIFragment {
     @Override
     public void onTintChanged() {
         TintUtil.setStatusBarColor(getActivity(), TintUtil.color);
-        TintUtil.setBackgroundFillColor(sectoinPref, TintUtil.color);
-        TintUtil.setBackgroundFillColor(sectionImages, TintUtil.color);
-        TintUtil.setBackgroundFillColor(tutorials_title, TintUtil.color);
-        TintUtil.setBackgroundFillColor(pName, TintUtil.color);
+        TintUtil.setBackgroundFillColor(section1, TintUtil.color);
+        TintUtil.setBackgroundFillColor(section2, TintUtil.color);
+        TintUtil.setBackgroundFillColor(section3, TintUtil.color);
+        TintUtil.setBackgroundFillColor(section4, TintUtil.color);
+        TintUtil.setBackgroundFillColor(section5, TintUtil.color);
+        TintUtil.setBackgroundFillColor(section6, TintUtil.color);
 
     }
 
-    View sectoinPref, sectionImages, tutorials_title, pName;
+    View section1, section2, section3, section4, section5, section6;
 
     @Override
     public View onCreateView(final LayoutInflater inflater, final ViewGroup container, final Bundle savedInstanceState) {
         final View inflate = inflater.inflate(R.layout.preferences, container, false);
 
-        sectoinPref = inflate.findViewById(R.id.sectoinPref);
-        sectionImages = inflate.findViewById(R.id.sectionImages);
-        tutorials_title = inflate.findViewById(R.id.tutorials_title);
-        pName = inflate.findViewById(R.id.pName);
+        section1 = inflate.findViewById(R.id.section1);
+        section2 = inflate.findViewById(R.id.section2);
+        section3 = inflate.findViewById(R.id.section3);
+        section4 = inflate.findViewById(R.id.section4);
+        section5 = inflate.findViewById(R.id.section5);
+        section6 = inflate.findViewById(R.id.section6);
 
         onTintChanged();
 
@@ -184,7 +188,7 @@ public class PrefFragment2 extends UIFragment {
         final ScrollView scrollView = (ScrollView) inflate.findViewById(R.id.scroll);
         scrollView.setVerticalScrollBarEnabled(false);
 
-        ((TextView) inflate.findViewById(R.id.pName)).setText(String.format("%s: %s", getString(R.string.product), AppsConfig.APP_NAME));
+        ((TextView) inflate.findViewById(R.id.section6)).setText(String.format("%s: %s", getString(R.string.product), AppsConfig.APP_NAME));
         // ((TextView) findViewById(R.id.appName)).setText(AppsConfig.APP_NAME);
 
         try {
@@ -1076,7 +1080,7 @@ public class PrefFragment2 extends UIFragment {
         TextView tutorialLink = (TextView) inflate.findViewById(R.id.tutorialLink);
         LinearLayout tutorialLayout = (LinearLayout) inflate.findViewById(R.id.tutorialLayout);
         tutorialLayout.setVisibility(containsKey ? View.VISIBLE : View.GONE);
-        tutorials_title.setVisibility(containsKey ? View.VISIBLE : View.GONE);
+        section5.setVisibility(containsKey ? View.VISIBLE : View.GONE);
 
         final String web = "http://" + displayLanguage + ".lirbi.com";
         tutorialLink.setText(web);
@@ -1119,7 +1123,7 @@ public class PrefFragment2 extends UIFragment {
             }
         });
 
-        inflate.findViewById(R.id.docSearch).setOnClickListener(new OnClickListener() {
+        TxtUtils.underlineTextView((TextView) inflate.findViewById(R.id.docSearch)).setOnClickListener(new OnClickListener() {
 
             @Override
             public void onClick(View v) {
@@ -1127,7 +1131,8 @@ public class PrefFragment2 extends UIFragment {
             }
         });
         // convert
-        final View docConverter = inflate.findViewById(R.id.docConverter);
+        final TextView docConverter = (TextView) inflate.findViewById(R.id.docConverter);
+        TxtUtils.underlineTextView(docConverter);
         docConverter.setOnClickListener(new OnClickListener() {
 
             @Override

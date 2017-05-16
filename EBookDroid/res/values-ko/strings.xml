@@ -344,4 +344,5 @@
    <string name="start">스타트</string>
    <string name="show_bottom_panel">하단 패널 표시</string>
    <string name="interval_sec_">간격 (초)</string>
+   <string name="library_settings">라이브러리 설정</string>
 </resources>

@@ -344,4 +344,5 @@
    <string name="start">شروع</string>
    <string name="show_bottom_panel">نمایش پانل پایین</string>
    <string name="interval_sec_">فاصله (ثانیه)</string>
+   <string name="library_settings">تنظیمات کتابخانه</string>
 </resources>

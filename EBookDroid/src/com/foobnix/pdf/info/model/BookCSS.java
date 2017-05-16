@@ -11,6 +11,7 @@ import java.util.List;
 import java.util.Locale;
 
 import com.foobnix.android.utils.TxtUtils;
+import com.foobnix.pdf.info.ExportSettingsManager;
 import com.foobnix.pdf.info.ExtUtils;
 import com.foobnix.pdf.info.FontExtractor;
 import com.foobnix.pdf.info.Urls;
@@ -36,7 +37,7 @@ public class BookCSS {
 
     public static final String COURIER = "Courier";
     private static final String DEFAULT_FONT = "Times New Roman";
-    private static final String BOOK_CSS_SP = "BookCSS";
+
     public static List<String> fontExts = Arrays.asList(".ttf", ".otf");
 
     private static List<String> FONT_NAMES = Arrays.asList(//
@@ -83,7 +84,7 @@ public class BookCSS {
         }
         resetToDefault(c);
 
-        SharedPreferences sp = c.getSharedPreferences(BOOK_CSS_SP, Context.MODE_PRIVATE);
+        SharedPreferences sp = c.getSharedPreferences(ExportSettingsManager.PREFIX_BOOK_CSS, Context.MODE_PRIVATE);
         fontFolder = sp.getString("fontFolder", fontFolder);
 
         normalFont = sp.getString("normalFont", normalFont);
@@ -158,7 +159,7 @@ public class BookCSS {
         if (c == null) {
             return;
         }
-        SharedPreferences sp = c.getSharedPreferences(BOOK_CSS_SP, Context.MODE_PRIVATE);
+        SharedPreferences sp = c.getSharedPreferences(ExportSettingsManager.PREFIX_BOOK_CSS, Context.MODE_PRIVATE);
         Editor edit = sp.edit();
         edit.putString("fontFolder", fontFolder);
 

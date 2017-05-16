@@ -15,6 +15,7 @@ import com.foobnix.pdf.info.ExtFilter;
 import com.foobnix.pdf.info.ExtUtils;
 import com.foobnix.pdf.info.R;
 import com.foobnix.pdf.info.TintUtil;
+import com.foobnix.pdf.info.model.BookCSS;
 import com.foobnix.pdf.info.presentation.BrowserAdapter;
 import com.foobnix.pdf.info.presentation.PathAdapter;
 import com.foobnix.pdf.info.wrapper.AppState;
@@ -276,6 +277,7 @@ public class PrefDialogs {
 									activity.getString(R.string.import_) + " " + activity.getString(R.string.success),
 									Toast.LENGTH_LONG).show();
 							AppState.get().loadIn(activity);
+                            BookCSS.get().load(activity);
 							TintUtil.init();
 							SettingsManager.clearCache();
 							Intent i = new Intent(activity, MainTabs2.class);

@@ -344,4 +344,5 @@
    <string name="start">Début</string>
    <string name="show_bottom_panel">Afficher le panneau inférieur</string>
    <string name="interval_sec_">Intervalle (sec)</string>
+   <string name="library_settings">Paramètres de la bibliothèque</string>
 </resources>

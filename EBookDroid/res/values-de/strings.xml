@@ -344,4 +344,5 @@
    <string name="start">Anfang</string>
    <string name="show_bottom_panel">Boden anzeigen</string>
    <string name="interval_sec_">Intervall (sec)</string>
+   <string name="library_settings">Bibliothekseinstellungen</string>
 </resources>

@@ -344,4 +344,5 @@
    <string name="start">开始</string>
    <string name="show_bottom_panel">显示底部面板</string>
    <string name="interval_sec_">间隔（秒）</string>
+   <string name="library_settings">图书馆设置</string>
 </resources>

@@ -344,4 +344,5 @@
    <string name="start">開始</string>
    <string name="show_bottom_panel">下のパネルを表示</string>
    <string name="interval_sec_">間隔（秒）</string>
+   <string name="library_settings">ライブラリ設定</string>
 </resources>

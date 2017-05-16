@@ -344,4 +344,5 @@
    <string name="start">Başlama</string>
    <string name="show_bottom_panel">Alt paneli göster</string>
    <string name="interval_sec_">Aralık (sn)</string>
+   <string name="library_settings">Kütüphane ayarları</string>
 </resources>

@@ -344,4 +344,5 @@
    <string name="start">Начать</string>
    <string name="show_bottom_panel">Показывать строку прогресса</string>
    <string name="interval_sec_">Интервал (сек)</string>
+   <string name="library_settings">Настройки библиотеки</string>
 </resources>

@@ -16,6 +16,14 @@
             android:id="@+id/downloadPRO"
             layout="@layout/ads" />
 
+        <TextView
+            android:id="@+id/section1"
+            style="@style/textLinkWhite"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bg_search_second"
+            android:text="@string/library_settings" />
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -23,15 +31,6 @@
             android:gravity="center_vertical"
             android:orientation="horizontal"
             android:padding="3dip" >
-
-            <TextView
-                android:id="@+id/sectoinPref"
-                style="@style/textLinkWhite"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:background="@drawable/bg_search_second"
-                android:text="@string/preferences" />
 
             <TextView
                 android:id="@+id/onCloseApp"
@@ -182,11 +181,11 @@
             android:orientation="vertical" >
 
             <TextView
-                android:visibility="gone"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="5dip"
-                android:text="@string/search_not_supported_formats" />
+                android:text="@string/search_not_supported_formats"
+                android:visibility="gone" />
 
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -197,6 +196,7 @@
                     android:id="@+id/supportZIP"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:ems="12"
                     android:text="ZIP/RAR/7Z/GZ"
                     android:textSize="12sp" />
 
@@ -208,54 +208,23 @@
                     android:text="DOC/CHM/CBR/LIT"
                     android:textSize="12sp" />
             </LinearLayout>
-        </LinearLayout>
-        
-        <CheckBox
-            android:id="@+id/isFirstSurname"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/in_the_author_s_name_first_the_surname" />
 
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="5dip"
-            android:clickable="true"
-            android:gravity="center_vertical" >
-
-            <ImageView
-                android:layout_width="wrap_content"
+            <CheckBox
+                android:id="@+id/isFirstSurname"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:padding="5dip"
-                android:src="@drawable/glyphicons_529_database_search"
-                android:tint="@color/tint_gray" />
-
-            <Button
-                android:id="@+id/docSearch"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/search_for_text_in_documents" />
+                android:text="@string/in_the_author_s_name_first_the_surname" />
         </LinearLayout>
 
-        <LinearLayout
+        <TextView
+            android:id="@+id/section2"
+            android:layout_marginTop="4dip"
+            style="@style/textLinkWhite"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="center_vertical" >
-
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:padding="5dip"
-                android:src="@drawable/glyphicons_filetypes_65_pdf"
-                android:tint="@color/tint_gray" />
-
-            <Button
-                android:id="@+id/docConverter"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/document_converter_online_" />
-        </LinearLayout>
+            android:layout_weight="1"
+            android:background="@drawable/bg_search_second"
+            android:text="@string/preferences" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -829,35 +798,43 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="4dip"
-            android:gravity="center_vertical"
-            android:visibility="visible" >
+            android:layout_marginTop="5dip"
+            android:clickable="true"
+            android:gravity="center_vertical" >
 
-            <TextView
+            <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:ellipsize="end"
-                android:gravity="center_vertical"
-                android:lines="2"
-                android:text="@string/import_or_export_application_settings_to_json_file" />
+                android:padding="5dip"
+                android:src="@drawable/glyphicons_529_database_search"
+                android:tint="@color/tint_gray" />
 
             <TextView
-                android:id="@+id/importButton"
+                android:id="@+id/docSearch"
                 style="@style/textLink"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="0"
-                android:text="@string/import_" />
+                android:text="@string/search_for_text_in_documents" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical" >
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="5dip"
+                android:src="@drawable/glyphicons_filetypes_65_pdf"
+                android:tint="@color/tint_gray" />
 
             <TextView
-                android:id="@+id/exportButton"
+                android:id="@+id/docConverter"
                 style="@style/textLink"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="10dip"
-                android:layout_weight="0"
-                android:text="@string/export_" />
+                android:text="@string/document_converter_online_" />
         </LinearLayout>
 
         <LinearLayout
@@ -886,7 +863,40 @@
         </LinearLayout>
 
         <TextView
-            android:id="@+id/sectionImages"
+            android:id="@+id/section3"
+            style="@style/textLinkWhite"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dip"
+            android:background="@drawable/bg_search_second"
+            android:text="@string/import_or_export_application_settings_to_json_file" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:visibility="visible" >
+
+            <TextView
+                android:id="@+id/importButton"
+                style="@style/textLink"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="0"
+                android:text="@string/import_" />
+
+            <TextView
+                android:id="@+id/exportButton"
+                style="@style/textLink"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dip"
+                android:layout_weight="0"
+                android:text="@string/export_" />
+        </LinearLayout>
+
+        <TextView
+           android:id="@+id/section4"
             style="@style/textLinkWhite"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -957,7 +967,7 @@
             android:text="@string/borders_and_shadow_around_the_book_cover" />
 
         <TextView
-            android:id="@+id/tutorials_title"
+          android:id="@+id/section5"
             style="@style/textLinkWhite"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -981,7 +991,7 @@
         </LinearLayout>
 
         <TextView
-            android:id="@+id/pName"
+            android:id="@+id/section6"
             style="@style/textLinkWhite"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

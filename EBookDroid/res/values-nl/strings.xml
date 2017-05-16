@@ -344,4 +344,5 @@
    <string name="start">Begin</string>
    <string name="show_bottom_panel">Toon het onderste paneel</string>
    <string name="interval_sec_">Interval (sec)</string>
+   <string name="library_settings">Bibliotheek instellingen</string>
 </resources>

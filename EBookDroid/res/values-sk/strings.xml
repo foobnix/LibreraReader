@@ -344,4 +344,5 @@
    <string name="start">Štart</string>
    <string name="show_bottom_panel">Zobraziť spodný panel</string>
    <string name="interval_sec_">Interval (sek)</string>
+   <string name="library_settings">Nastavenia knižnice</string>
 </resources>
