@@ -53,7 +53,7 @@ public class PageImaveView extends View {
 
     private boolean isReadyForMove = false;
     private boolean isLognPress = false;
-    private boolean isDoublePress = false;
+    private boolean isIgronerClick = false;
 
     float x, y, xInit, yInit, cx, cy, distance = 0;
 
@@ -133,7 +133,7 @@ public class PageImaveView extends View {
 
         @Override
         public boolean onDoubleTap(final MotionEvent e) {
-            isDoublePress = true;
+            isIgronerClick = true;
             if (clickUtils.isClickCenter(e.getX(), e.getY())) {
                 isLognPress = true;
                 EventBus.getDefault().post(new MessageEvent(MessageEvent.MESSAGE_DOUBLE_TAP, e.getX(), e.getY()));
@@ -218,10 +218,12 @@ public class PageImaveView extends View {
                         if (AppState.get().rotateViewPager == 0) {
                             if (Math.abs(dy) > Math.abs(dx / 1.5) && (Math.abs(dy) + Math.abs(dx) > DP_5)) {
                                 isReadyForMove = true;
+                                isIgronerClick = true;
                             }
                         } else {
                             if (Math.abs(dx) > Math.abs(dy / 1.5) && (Math.abs(dx) + Math.abs(dy) > DP_5)) {
                                 isReadyForMove = true;
+                                isIgronerClick = true;
                             }
                         }
 
@@ -239,6 +241,7 @@ public class PageImaveView extends View {
                 }
 
                 if (event.getPointerCount() == 2) {
+                    isIgronerClick = true;
                     LOG.d("TEST", "action ACTION_MOVE 2");
                     if (cx == 0) {
                         cx = centerX(event);
@@ -322,11 +325,11 @@ public class PageImaveView extends View {
                 } else if (pageLink != null) {
                     EventBus.getDefault().post(new MessageEvent(MessageEvent.MESSAGE_GOTO_PAGE, pageLink.targetPage, pageLink.url));
                 } else {
-                    if (!isDoublePress) {
+                    if (!isIgronerClick) {
                         EventBus.getDefault().post(new MessageEvent(MessageEvent.MESSAGE_PERFORM_CLICK, event.getX(), event.getY()));
                     }
                 }
-                isDoublePress = false;
+                isIgronerClick = false;
             } else if (action == MotionEvent.ACTION_CANCEL) {
                 LOG.d("TEST", "action ACTION_CANCEL");
             }

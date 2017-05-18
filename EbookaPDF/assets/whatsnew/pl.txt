@@ -1,8 +1,10 @@
 
-* Automatyczne dzielenie wyrazów dla FB2, RTF, TXT, HTML (inne formaty później) 
-* PDF, DJVU: zwiększanie i zmniejszanie strony może być włączona przez dwukrotne kliknięcie 
-* TTS rekord głos do pliku (WAV) 
-* Dodano możliwość przewijania przez 5 %, 25%, 50%, 75%, 100% wysokości ekranu 
-* Przejdź do następnej strony na ekranie może być wyłączony (wartość 0%) 
-* Szybkie zakładka na stronie (za pomocą przycisku z okna zakładek, lub długie naciśnięcie ikonę zakładek) 
-* Improved uprawy białych pól dokumentów do PDF, DjVu
+* Przyspieszone ładowanie stron wtrybie prostym 
+* Automatyczna strona odwracająca się w trybieEasy z określonym przedziałem 
+* W dodatkowych ustawieniach zegar przypomina odpoczynek 
+* Możliwość zmiany kolejności Nazwisko - imię i nazwisko autora w bibliotece 
+* Ulepszone okna dialogowe notatek 
+* Możliwość wyrównywania środka w celu podwójnego kliknięcia 
+* Wyszukiwanie wyrazów w wielu dokumentach (z głównej karty ustawień programu) 
+* Wyjście z dowolnego ekranu na dowolnym ekranie przez długie naciśnięcie przycisku Powrót 
+* Dostosowywanie profili do koloru Tekst i tło dla trybu nocnego i dnia

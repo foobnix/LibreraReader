@@ -346,7 +346,7 @@ public class RecentBooksWidget extends AppWidgetProvider {
 	private void updateList(final RemoteViews remoteViews) {
 		List<FileMeta> recent = null;
 		if (AppState.get().isStarsInWidget) {
-			recent = AppDB.get().getStars();
+            recent = AppDB.get().getStarsFiles();
 		} else {
 			recent = AppDB.get().getRecent();
 		}

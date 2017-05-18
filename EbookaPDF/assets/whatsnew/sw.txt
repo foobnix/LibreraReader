@@ -1,8 +1,10 @@
 
-* Moja kwa moja hyphenation kwa FB2, rtf, TXT, HTML (miundo mengine baadaye) 
-* PDF, DjVu: ongezeko na kupungua ukurasa inaweza kuwezeshwa kwa mara mbili-kubonyeza 
-* TTS rekodi ya sauti kwenye faili (WAV) 
-* Aliongeza uwezo wa kitabu kwa 5 %, 25%, 50%, 75%, 100% screen urefu 
-* Nenda kwa ukurasa ufuatao kwenye screen inaweza akageuka mbali (thamani 0%) 
-* Fast alamisho ya ukurasa (pamoja na button kutoka bookmark dialog, au muda kubwa juu ya alama icon) 
-* Kuboresha mseto ya mashamba hati nyeupe kwa PDF, DjVu
+* Kasi upakiaji wa kurasa katikamode Easy 
+* Automatic ukurasa flipping katikamode Easy kwa muda maalum 
+* Katika mipangilio, timer inafanana wengine kuvunja 
+* Uwezekano wa kubadilisha utaratibu Surname-Jina la mwandishi katika maktaba 
+* Kuboresha maelezo dialog 
+* uwezo wa kurekebisha mfungamano kituo cha bofya mara mbili 
+* Neno utafutaji katika hati nyingi (kutoka mipangilio kuu mpango tab) 
+* Toka mpango kutoka screen yoyote kwa muda mrefu kubwa ya kifungo nyuma 
+* Customize maelezo yako kwa ajili ya rangi ya maandishi na background kwa usiku na siku ya njia

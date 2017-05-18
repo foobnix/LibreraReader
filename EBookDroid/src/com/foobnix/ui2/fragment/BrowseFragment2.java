@@ -225,6 +225,11 @@ public class BrowseFragment2 extends UIFragment<FileMeta> {
         return view;
     }
 
+    @Override
+    public void onReviceOpenDir(String path) {
+        setDirPath(path);
+    }
+
     OnClickListener onCloseButtonActoin = new OnClickListener() {
 
         @Override

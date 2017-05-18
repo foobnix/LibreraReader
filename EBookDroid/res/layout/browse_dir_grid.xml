@@ -11,11 +11,11 @@
 
     <LinearLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="?android:attr/selectableItemBackground"
         android:gravity="center_vertical"
-        android:orientation="horizontal"
+        android:orientation="vertical"
         android:padding="5dip" >
 
         <ImageView
@@ -26,39 +26,6 @@
             android:layout_weight="0"
             android:src="@drawable/glyphicons_441_folder_closed" />
 
-        <LinearLayout
-            android:layout_weight="1"
-            android:orientation="vertical"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginLeft="8dip"
-            android:gravity="center_vertical" >
-
-            <TextView
-                android:id="@+id/text1"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:ellipsize="end"
-                android:gravity="center_vertical"
-                android:singleLine="true"
-                android:text="Page"
-                android:textSize="16sp"
-                android:textStyle="bold" />
-
-            <TextView
-                android:id="@+id/text2"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:ellipsize="end"
-                android:gravity="center_vertical"
-                android:singleLine="true"
-                android:text="/path/"
-                android:textSize="12sp"
-                android:textStyle="normal" />
-        </LinearLayout>
-
         <ImageView
             android:id="@+id/starIcon"
             android:layout_width="@dimen/wh_button_small"
@@ -68,6 +35,19 @@
             android:padding="4dip"
             android:src="@drawable/star_2"
             android:tint="@color/tint_gray" />
+
+        <TextView
+            android:id="@+id/text1"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="8dip"
+            android:layout_weight="1"
+            android:ellipsize="end"
+            android:gravity="center_vertical"
+            android:singleLine="true"
+            android:text="Page"
+            android:textSize="16sp"
+            android:textStyle="bold" />
     </LinearLayout>
 
 </android.support.v7.widget.CardView>

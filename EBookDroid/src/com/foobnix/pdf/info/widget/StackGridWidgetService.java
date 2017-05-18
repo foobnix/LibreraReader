@@ -49,7 +49,7 @@ class StackRemoteViewsFactory implements RemoteViewsService.RemoteViewsFactory {
     @Override
     public void onDataSetChanged() {
         if (AppState.get().isStarsInWidget) {
-            recent = AppDB.get().getStars();
+            recent = AppDB.get().getStarsFiles();
         } else {
             recent = AppDB.get().getRecent();
         }

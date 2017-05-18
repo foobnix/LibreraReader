@@ -65,42 +65,42 @@
                 android:visibility="gone" >
             </TextView>
         </LinearLayout>
-        
+
         <ImageView
-            android:contentDescription="change day or night"
             android:id="@+id/onPageFlip1"
-            android:visibility="gone"
             style="@style/buttonWhite"
             android:layout_width="@dimen/wh_button"
             android:layout_height="@dimen/wh_button"
             android:layout_weight="0"
-            android:src="@drawable/glyphicons_174_play" />
+            android:contentDescription="change day or night"
+            android:src="@drawable/glyphicons_174_play"
+            android:visibility="gone" />
 
         <ImageView
-            android:contentDescription="change day or night"
             android:id="@+id/bookNight"
             style="@style/buttonWhite"
             android:layout_width="@dimen/wh_button"
             android:layout_height="@dimen/wh_button"
             android:layout_weight="0"
+            android:contentDescription="change day or night"
             android:src="@drawable/glyphicons_232_sun" />
 
         <ImageView
-            android:contentDescription="@string/recent"
             android:id="@+id/bookRecent"
             style="@style/buttonWhite"
             android:layout_width="@dimen/wh_button"
             android:layout_height="@dimen/wh_button"
             android:layout_weight="0"
+            android:contentDescription="@string/recent"
             android:src="@drawable/glyphicons_72_book1" />
 
         <ImageView
-            android:contentDescription="read aloud TTS"
             android:id="@+id/bookTTS"
             style="@style/buttonWhite"
             android:layout_width="@dimen/wh_button"
             android:layout_height="@dimen/wh_button"
             android:layout_weight="0"
+            android:contentDescription="read aloud TTS"
             android:src="@drawable/glyphicons_185_volume_up" />
 
         <ImageView
@@ -151,20 +151,18 @@
         android:text="-/-"
         android:textColor="@color/tint_gray"
         android:textSize="12sp" />
-    
+
     <TextView
-        android:layout_marginLeft="10dip"
-        android:visibility="gone"
-        android:layout_toRightOf="@+id/pagesCountIndicator"
         android:id="@+id/flippingIntervalView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
+        android:layout_marginLeft="10dip"
+        android:layout_toRightOf="@+id/pagesCountIndicator"
         android:text="{10}"
         android:textColor="@color/tint_gray"
-        android:textSize="12sp" />
-    
-    
+        android:textSize="12sp"
+        android:visibility="gone" />
 
     <TextView
         android:id="@+id/pagesPower"
@@ -181,12 +179,13 @@
         android:textSize="9sp" />
 
     <LinearLayout
+        android:clickable="true"
         android:id="@+id/bottomBar"
         android:layout_width="match_parent"
-        android:layout_height="42dip"
+        android:layout_height="48dp"
         android:layout_alignParentBottom="true"
         android:background="#96aa39"
-        android:clickable="true"
+        android:focusableInTouchMode="false"
         android:gravity="center_vertical"
         android:paddingLeft="2dip"
         android:paddingRight="2dip"
@@ -195,8 +194,8 @@
         <ImageView
             android:id="@+id/linkHistory"
             style="@style/buttonWhite"
-            android:layout_width="@dimen/wh_button"
-            android:layout_height="@dimen/wh_button"
+            android:layout_width="@dimen/wh_button_big"
+            android:layout_height="@dimen/wh_button_big"
             android:layout_weight="0"
             android:src="@drawable/glyphicons_173_rewind"
             android:tint="@color/tint_white"
@@ -205,42 +204,46 @@
         <ImageView
             android:id="@+id/search"
             style="@style/buttonWhite"
-            android:layout_width="@dimen/wh_button"
-            android:layout_height="@dimen/wh_button"
+            android:layout_width="@dimen/wh_button_big"
+            android:layout_height="@dimen/wh_button_big"
             android:layout_weight="0"
-             android:contentDescription="@string/search"
+            android:contentDescription="@string/search"
             android:src="@drawable/glyphicons_28_search1" />
 
         <ImageView
             android:id="@+id/thumbnail"
-            android:contentDescription="@string/go_to_page_dialog"
             style="@style/buttonWhite"
-            android:layout_width="@dimen/wh_button"
-            android:layout_height="@dimen/wh_button"
+            android:layout_width="@dimen/wh_button_big"
+            android:layout_height="@dimen/wh_button_big"
             android:layout_weight="0"
+            android:contentDescription="@string/go_to_page_dialog"
             android:src="@drawable/glyphicons_37_file" />
 
         <ImageView
             android:id="@+id/content"
             style="@style/buttonWhite"
-            android:layout_width="@dimen/wh_button"
-            android:layout_height="@dimen/wh_button"
+            android:layout_width="@dimen/wh_button_big"
+            android:layout_height="@dimen/wh_button_big"
             android:layout_weight="0"
             android:contentDescription="@string/content_of_book"
             android:src="@drawable/glyphicons_115_list1" />
 
         <LinearLayout
-            android:layout_width="wrap_content"
+            android:clickable="true"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:focusableInTouchMode="false"
             android:orientation="horizontal"
-            android:paddingLeft="4dip"
-            android:paddingRight="4dip" >
+            android:layout_marginLeft="4dip"
+            android:layout_marginRight="4dip" >
 
             <TextView
                 android:id="@+id/currentSeek"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
+                android:layout_weight="0"
+                android:clickable="true"
                 android:gravity="center"
                 android:minWidth="32dip"
                 android:text="--"
@@ -250,11 +253,11 @@
             <SeekBar
                 android:id="@+id/seekBar"
                 android:layout_width="match_parent"
-                android:layout_height="40dp"
-                android:paddingTop="4dip"
-                android:paddingBottom="4dip"
+                android:layout_height="@dimen/wh_button_big"
                 android:layout_gravity="center_vertical"
                 android:layout_weight="1"
+                android:paddingBottom="4dip"
+                android:paddingTop="4dip"
                 android:progressTint="@android:color/white"
                 android:thumbTint="@android:color/white" />
 
@@ -262,6 +265,8 @@
                 android:id="@+id/maxSeek"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
+                android:layout_weight="0"
+                android:clickable="true"
                 android:gravity="center"
                 android:minWidth="32dip"
                 android:text="--"
@@ -272,19 +277,19 @@
         <ImageView
             android:id="@+id/bookmarks"
             style="@style/buttonWhite"
-            android:contentDescription="@string/bookmarks"
-            android:layout_width="@dimen/wh_button"
-            android:layout_height="@dimen/wh_button"
+            android:layout_width="@dimen/wh_button_big"
+            android:layout_height="@dimen/wh_button_big"
             android:layout_weight="0"
+            android:contentDescription="@string/bookmarks"
             android:src="@drawable/glyphicons_73_bookmark1" />
 
         <ImageView
-            android:contentDescription="Lock unlock the document"
             android:id="@+id/lockMode"
             style="@style/buttonWhite"
-            android:layout_width="@dimen/wh_button"
-            android:layout_height="@dimen/wh_button"
+            android:layout_width="@dimen/wh_button_big"
+            android:layout_height="@dimen/wh_button_big"
             android:layout_weight="0"
+            android:contentDescription="Lock unlock the document"
             android:src="@drawable/glyphicons_205_unlock" />
     </LinearLayout>
 

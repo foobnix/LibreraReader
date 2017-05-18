@@ -1,8 +1,10 @@
 
-* Automatische Silbentrennung für FB2, RTF, TXT, HTML (andere Formate später) 
-* PDF, DJVU: Steigerung und die Seite verringern 
-* durch einen Doppelklick aktiviert werden TTS Sprachaufnahme (WAV) 
-* Hinzugefügt wurde die Fähigkeit zur Einreichung von 5 blättern %, 25%, 50%, 75%, 100% Bildschirmhöhe 
-* auf die nächste Seite auf dem Bildschirm gehen (0% -Wert) 
-* Schnelle Lesezeichen für die Seite ausgeschaltet wird (mit dem Button aus dem Lesezeichen-Dialog oder langen Drücken auf dem Lesezeichen-Symbol) 
-* Verbessertes Zuschneiden von weißen Dokumentenfeldern für PDF, DJVU
+* Beschleunigtes Laden der Seiten in einemEasy-Modus 
+* Automatische Seitenumkehr inEasy-Modus mit einem bestimmten Intervall 
+* In weiteren Einstellungen ähnelt der Timer einer Ruhepause 
+* Möglichkeit, die Reihenfolge zu ändern Name des Namens des Autors in der Bibliothek 
+* Verbesserte Notizen-Dialog 
+* Die Möglichkeit, die Mittelausrichtung für einen Doppelklick anzupassen 
+* Word-Suche in vielen Dokumenten (von der Registerkarte Haupteinsatz-Einstellungen) 
+* Beenden Sie das Programm von jedem Bildschirm durch langes Drücken der Taste zurück 
+* Passen Sie Ihre Profile für die Farbe von Text und Hintergrund für Nacht- und Tag-Modi

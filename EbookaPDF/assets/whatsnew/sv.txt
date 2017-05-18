@@ -1,8 +1,10 @@
 
-* Automatisk avstavning för FB2, RTF, TXT, HTML (andra format senare) 
-* PDF, DjVu: öka och minska sidan kan aktiveras genom att dubbelklicka 
-* TTS rekord röst till fil (WAV) 
-* Lagt till möjligheten att rulla med 5 %, 25%, 50%, 75%, 100% skärmhöjd 
-* Gå till nästa sida på skärmen kan stängas av (värde 0%) 
-* Snabb bokmärke för sidan (med knappen från dialogrutan bokmärke, eller lång pressning på ikonen bokmärke) 
-* Förbättrad beskärning av vita dokumentfält för PDF, DjVu
+* Accelererad laddning av sidor i ettEnkelt läge 
+* Automatisk sida bläddrar iEnkelt läge med ett angivet intervall 
+* I ytterligare inställningar liknar timern en vilopaus 
+* Möjlighet att ändra ordningen Efternamn-Författarens namn i biblioteket 
+* Förbättrad anteckningsdialog 
+* Möjligheten att justera mittlinjen för ett dubbelklick 
+* Ordsökning i många dokument (från fliken Programinställningar) 
+* Avsluta programmet från vilken skärm som helst genom att länge trycka på knappen tillbaka 
+* Anpassa dina profiler för färgen på Text och bakgrund för natt och daglägen

@@ -49,6 +49,8 @@ import android.widget.Toast;
 
 public class MultyDocSearchDialog {
 
+    private static TextView infoView1;
+
     public static class Model {
         static Model inst = new Model();
         public String path = Environment.getExternalStorageDirectory().getPath();
@@ -92,7 +94,7 @@ public class MultyDocSearchDialog {
         final Button searchStart = (Button) inflate.findViewById(R.id.searchStart);
         final Button searchStop = (Button) inflate.findViewById(R.id.searchStop);
 
-        final TextView infoView1 = (TextView) inflate.findViewById(R.id.infoView1);
+        infoView1 = (TextView) inflate.findViewById(R.id.infoView1);
         final ListView listView = (ListView) inflate.findViewById(R.id.listView);
 
         final CheckBox searchInTheSubfolders = (CheckBox) inflate.findViewById(R.id.searchInTheSubfolders);
@@ -151,7 +153,7 @@ public class MultyDocSearchDialog {
         final Handler updater1 = new Handler() {
             @Override
             public void handleMessage(Message msg) {
-                infoView1.setText(Model.get().currentPage + "/" + Model.get().currentPagesCount + " " + Model.get().currentDoc);
+                infoView1.setText((Model.get().currentPage + 1) + "/" + Model.get().currentPagesCount + " " + Model.get().currentDoc);
             }
 
         };
@@ -209,6 +211,7 @@ public class MultyDocSearchDialog {
             @Override
             public void onClick(View v) {
                 Model.get().isSearcingRun = false;
+                infoView1.setText("");
             }
         });
         infoView1.setText("");
@@ -240,6 +243,14 @@ public class MultyDocSearchDialog {
             Model.get().res.clear();
 
             final List<FileMeta> allFilesMeta = new ArrayList<FileMeta>();
+
+            a.runOnUiThread(new Runnable() {
+
+                @Override
+                public void run() {
+                    infoView1.setText(R.string.searching_please_wait_);
+                }
+            });
 
             if (isReqursiveSearch) {
                 SearchCore.search(allFilesMeta, new File(Model.get().path), ExtUtils.seachExts);
@@ -286,12 +297,18 @@ public class MultyDocSearchDialog {
                 CacheZipUtils.cacheLock.unlock();
             }
 
+            if (!Model.get().isSearcingRun) {
+                ctx.recycle();
+                return -1;
+            }
+
             int pageCount = openDocument.getPageCount();
             Model.get().currentPagesCount = pageCount;
             Model.get().currentDoc = new File(path).getName();
 
             for (int i = 0; i < pageCount; i++) {
                 if (!Model.get().isSearcingRun) {
+                    ctx.recycle();
                     return -1;
                 }
                 CodecPage page = openDocument.getPage(i);

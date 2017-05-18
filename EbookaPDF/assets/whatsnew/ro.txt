@@ -1,8 +1,10 @@
 
-* Despărțirea în silabe automată pentru FB2, RTF, TXT, HTML (alte formate de mai târziu) 
-* PDF, DjVu: creștere și de reducere a paginii poate fi activată prin dublu-clic 
-* TTS voce înregistra în fișier (WAV) 
-* adăugat posibilitatea de a derula 5 %, 25%, 50%, 75%, 100% înălțimea ecranului 
-* Du-te la pagina următoare pe ecran poate fi oprit (valoarea 0%) 
-* semn de carte rapidă pentru pagina (cu butonul din dialogul semn de carte, sau o apăsare lungă pe pictograma marcaj) 
-* trunchiere îmbunătățită a câmpurilor de documente albe pentru PDF, DjVu
+* Încărcarea accelerată a paginilor într-unmod ușor 
+* Pagină automată în modulEasy cu un interval specificat 
+* În setări suplimentare, timerul seamănă cu o pauză de odihnă 
+* Posibilitatea de a schimba ordinea Prenume-Numele autorului în bibliotecă 
+* Dialogul îmbunătățit de note 
+* Abilitatea de a ajusta alinierea centrului pentru un dublu clic 
+* Căutarea în Word în multe documente (din fila principală a setărilor programului) 
+* Ieșiți programul de pe orice ecran apăsând lung butonul înapoi 
+* Personalizați-vă profilurile pentru culoarea Text și fundal pentru modurile de noapte și zi

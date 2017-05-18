@@ -886,11 +886,16 @@ public class DocumentWrapperUI {
 
         String pages = controller.getString(R.string.by_pages);
         String screen = controller.getString(R.string.of_screen).toLowerCase(Locale.US);
-        final List<Integer> values = Arrays.asList(AppState.NEXT_SCREEN_SCROLL_BY_PAGES, 100, 75, 50, 25, 5);
+        String screens = controller.getString(R.string.by_screans);
+        final List<Integer> values = Arrays.asList(AppState.NEXT_SCREEN_SCROLL_BY_PAGES, 100, 95, 75, 50, 25, 5);
 
         for (int i = 0; i < values.size(); i++) {
             final int n = i;
             String name = i == AppState.NEXT_SCREEN_SCROLL_BY_PAGES ? pages : values.get(i) + "% " + screen;
+            if (values.get(i) == 100) {
+                name = screens;
+            }
+
             popupMenu.getMenu().add(name).setOnMenuItemClickListener(new OnMenuItemClickListener() {
 
                 @Override
@@ -932,7 +937,11 @@ public class DocumentWrapperUI {
             nextScreenType.setImageResource(R.drawable.glyphicons_full_page);
             nextTypeBootom.setTypeface(BookCSS.getNormalTypeFace());
         } else {
-            nextTypeBootom.setText(AppState.get().nextScreenScrollBy + "% " + controller.getString(R.string.of_screen));
+            if (AppState.get().nextScreenScrollBy == 100) {
+                nextTypeBootom.setText(controller.getString(R.string.by_screans));
+            } else {
+                nextTypeBootom.setText(AppState.get().nextScreenScrollBy + "% " + controller.getString(R.string.of_screen));
+            }
             nextScreenType.setImageResource(R.drawable.glyphicons_halp_page);
             nextTypeBootom.setTypeface(BookCSS.getNormalTypeFace());
         }
@@ -1411,6 +1420,5 @@ public class DocumentWrapperUI {
     public DrawView getDrawView() {
         return drawView;
     }
-
 
 }

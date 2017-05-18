@@ -46,6 +46,10 @@ public class FileMetaAdapter extends AppRecycleAdapter<FileMeta, RecyclerView.Vi
 
     private int adapterType = ADAPTER_LIST;
 
+    public static final int TEMP_VALUE_NONE = 0;
+    public static final int TEMP_VALUE_FOLDER_PATH = 1;
+    public int tempValue = TEMP_VALUE_NONE;
+
     public class FileMetaViewHolder extends RecyclerView.ViewHolder {
         public TextView title, author, path, ext, size, date, series, idPercentText;
         public ImageView image, star, menu;
@@ -78,14 +82,16 @@ public class FileMetaAdapter extends AppRecycleAdapter<FileMeta, RecyclerView.Vi
     }
 
     public class DirectoryViewHolder extends RecyclerView.ViewHolder {
-        public TextView title;
-        public ImageView image;
+        public TextView title, path;
+        public ImageView image, starIcon;
         public View parent;
 
         public DirectoryViewHolder(View view) {
             super(view);
             title = (TextView) view.findViewById(R.id.text1);
+            path = (TextView) view.findViewById(R.id.text2);
             image = (ImageView) view.findViewById(R.id.image1);
+            starIcon = (ImageView) view.findViewById(R.id.starIcon);
             parent = view;
         }
     }
@@ -164,10 +170,35 @@ public class FileMetaAdapter extends AppRecycleAdapter<FileMeta, RecyclerView.Vi
         } else if (holderAll instanceof DirectoryViewHolder) {
             final DirectoryViewHolder holder = (DirectoryViewHolder) holderAll;
             holder.title.setText(ExtUtils.getFileName(fileMeta.getPath()));
+            holder.path.setText(fileMeta.getPath());
+
+            if (tempValue == TEMP_VALUE_FOLDER_PATH) {
+                holder.path.setVisibility(View.VISIBLE);
+            } else {
+                holder.path.setVisibility(View.GONE);
+            }
+
             TintUtil.setTintImage(holder.image);
             bindItemClickAndLongClickListeners(holder.parent, fileMeta);
             if (!AppState.get().isBorderAndShadow) {
                 holder.parent.setBackgroundColor(Color.TRANSPARENT);
+            }
+
+            if (fileMeta.getIsStar() == null || fileMeta.getIsStar() == false) {
+                holder.starIcon.setImageResource(R.drawable.star_2);
+            } else {
+                holder.starIcon.setImageResource(R.drawable.star_1);
+            }
+            TintUtil.setTintImage(holder.starIcon, TintUtil.color);
+
+            if (onStarClickListener != null) {
+                holder.starIcon.setOnClickListener(new OnClickListener() {
+
+                    @Override
+                    public void onClick(View v) {
+                        onStarClickListener.onResultRecive(fileMeta, FileMetaAdapter.this);
+                    }
+                });
             }
 
         } else if (holderAll instanceof StarsLayoutViewHolder) {
@@ -186,7 +217,7 @@ public class FileMetaAdapter extends AppRecycleAdapter<FileMeta, RecyclerView.Vi
             holder.recyclerView.setAdapter(adapter);
 
             adapter.getItemsList().clear();
-            List<FileMeta> allStars = AppDB.get().getStars();
+            List<FileMeta> allStars = AppDB.get().getStarsFiles();
             adapter.getItemsList().addAll(allStars);
             adapter.notifyDataSetChanged();
 
@@ -311,6 +342,7 @@ public class FileMetaAdapter extends AppRecycleAdapter<FileMeta, RecyclerView.Vi
 
             LayoutParams lp = holder.image.getLayoutParams();
             lp.width = Dips.dpToPx(AppState.get().coverBigSize);
+
             if (AppState.get().isCropBookCovers) {
                 lp.height = (int) (lp.width * 1.5);
             } else {

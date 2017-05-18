@@ -1,8 +1,10 @@
 
-* Automatische woordafbreking voor FB2, RTF, TXT, HTML (andere formaten later) 
-* PDF, DJVU: verhoging en de pagina te verminderen kan worden ingeschakeld door te dubbelklikken 
-* TTS spraak opnemen naar bestand (WAV) 
-* De mogelijkheid toegevoegd om met 5 te scrollen %, 25%, 50%, 75%, 100% scherm hoogte 
-* Ga naar de volgende pagina op het scherm kan worden uitgeschakeld (waarde 0%) 
-* Fast bladwijzer voor de pagina (met de knop in het dialoogvenster bladwijzer of lang op op het bladwijzerpictogram) 
-* Verbeterde bijsnijden van witte document velden voor PDF, DJVU
+* Versnelde laad van pagina’s in eenEasy mode 
+* Automatische pagina wisselen inEasy mode met een opgegeven interval 
+* In aanvullende instellingen lijkt de timer op een rustpauze 
+* Mogelijkheid om de bestelling te veranderen Achternaam-Naam van de auteur in de bibliotheek 
+* Verbeterde notitiesdialoog 
+* De mogelijkheid om de uitlijning van het middel voor een dubbelklik te aanpassen 
+* Word zoeken in veel documenten (vanaf het hoofdprogramma tabblad Programma) 
+* Sluit het programma uit elk scherm door lang op de knop terug te drukken. 
+* Pas uw profielen aan voor de kleur van Tekst en achtergrond voor nacht- en dagmodi

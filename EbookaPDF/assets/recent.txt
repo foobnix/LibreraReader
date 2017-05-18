@@ -1,7 +1,9 @@
-* Automatic hyphenation for FB2, RTF, TXT, HTML (other formats later)
-* PDF, DJVU: increase and decrease the page can be enabled by double-clicking
-* TTS record voice to file (WAV)
-* Added the ability to scroll by 5%, 25%, 50%, 75%, 100% screen height
-* Go to the next page on screen can be turned off (value 0%)
-* Fast bookmark for the  page (with the button from the bookmark dialog, or long pressing on the bookmark icon)
-* Improved cropping of white document fields for PDF, DJVU
+* Accelerated loading of pages in an "Easy mode"
+* Automatic page flipping in "Easy mode" with a specified interval
+* In additional settings, the timer resembles a rest break
+* Possibility to change the order Surname-Name of the author in the library
+* Improved notes dialog
+* The ability to adjust center alignment for a double click
+* Word search in many documents (from the main program settings tab)
+* Exit the program from any screen by long pressing the button back
+* Customize your profiles for the color of text and background for night and day modes

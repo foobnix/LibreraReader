@@ -2,12 +2,15 @@ package com.foobnix.ui2.adapter;
 
 import java.io.File;
 
+import org.greenrobot.eventbus.EventBus;
+
 import com.foobnix.android.utils.ResultResponse;
 import com.foobnix.android.utils.ResultResponse2;
 import com.foobnix.dao2.FileMeta;
 import com.foobnix.pdf.info.ExtUtils;
 import com.foobnix.pdf.info.widget.FileInformationDialog;
 import com.foobnix.pdf.info.widget.ShareDialog;
+import com.foobnix.pdf.search.activity.msg.OpenDirMessage;
 import com.foobnix.sys.TempHolder;
 import com.foobnix.ui2.AppDB;
 import com.foobnix.ui2.MainTabs2;
@@ -38,7 +41,16 @@ public class DefaultListeners {
             @Override
             public boolean onResultRecive(FileMeta result) {
                 File item = new File(result.getPath());
-                ExtUtils.openFile(a, item);
+                if (item.isDirectory()) {
+                    Intent intent = new Intent(UIFragment.INTENT_TINT_CHANGE)//
+                            .putExtra(MainTabs2.EXTRA_PAGE_NUMBER, 1);//
+                    LocalBroadcastManager.getInstance(a).sendBroadcast(intent);
+
+                    EventBus.getDefault().post(new OpenDirMessage(result.getPath()));
+
+                } else {
+                    ExtUtils.openFile(a, item);
+                }
                 return false;
             }
         };
@@ -50,6 +62,16 @@ public class DefaultListeners {
             @Override
             public boolean onResultRecive(final FileMeta result) {
                 File item = new File(result.getPath());
+
+                if (item.isDirectory()) {
+                    Intent intent = new Intent(UIFragment.INTENT_TINT_CHANGE)//
+                            .putExtra(MainTabs2.EXTRA_PAGE_NUMBER, 1);//
+                    LocalBroadcastManager.getInstance(a).sendBroadcast(intent);
+
+                    EventBus.getDefault().post(new OpenDirMessage(result.getPath()));
+                    return true;
+                }
+
                 Runnable onDeleteAction = new Runnable() {
 
                     @Override
@@ -146,7 +168,7 @@ public class DefaultListeners {
                 }
                 fileMeta.setIsStar(!isStar);
                 fileMeta.setIsStarTime(System.currentTimeMillis());
-                AppDB.get().update(fileMeta);
+                AppDB.get().updateOrSave(fileMeta);
 
                 if (adapter != null) {
                     adapter.notifyDataSetChanged();

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <dimen name="wh_button">34dp</dimen>
+    <dimen name="wh_button">36dp</dimen>
     <dimen name="wh_button_small">28dp</dimen>
    
     

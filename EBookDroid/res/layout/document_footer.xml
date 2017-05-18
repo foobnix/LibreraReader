@@ -7,6 +7,8 @@
     android:orientation="vertical" >
 
     <LinearLayout
+        android:focusableInTouchMode="true"
+        android:clickable="true"
         android:id="@+id/lineNavgination"
         android:layout_width="match_parent"
         android:layout_height="40dip"
@@ -104,6 +106,8 @@
         android:visibility="gone" />
 
     <LinearLayout
+        android:focusableInTouchMode="true"
+        android:clickable="true"
         android:id="@+id/pagsLayout"
         android:layout_width="match_parent"
         android:layout_height="42dp"

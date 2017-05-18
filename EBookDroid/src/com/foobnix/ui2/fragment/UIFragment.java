@@ -3,8 +3,12 @@ package com.foobnix.ui2.fragment;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+
 import com.foobnix.android.utils.LOG;
 import com.foobnix.android.utils.TxtUtils;
+import com.foobnix.pdf.search.activity.msg.OpenDirMessage;
 import com.foobnix.sys.TempHolder;
 import com.foobnix.ui2.MainTabs2;
 import com.foobnix.ui2.adapter.DefaultListeners;
@@ -99,12 +103,23 @@ public abstract class UIFragment<T> extends Fragment {
         super.onResume();
         onSelectFragment();
         LocalBroadcastManager.getInstance(getActivity()).registerReceiver(broadcastReceiver, new IntentFilter(INTENT_TINT_CHANGE));
+        EventBus.getDefault().register(this);
     }
 
     @Override
     public void onPause() {
         super.onPause();
         LocalBroadcastManager.getInstance(getActivity()).unregisterReceiver(broadcastReceiver);
+        EventBus.getDefault().unregister(this);
+    }
+
+    @Subscribe
+    public void onReviceOpenDir(OpenDirMessage msg) {
+        onReviceOpenDir(msg.getPath());
+    }
+
+    public void onReviceOpenDir(String path) {
+
     }
 
     BroadcastReceiver broadcastReceiver = new BroadcastReceiver() {

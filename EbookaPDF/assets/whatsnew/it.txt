@@ -1,8 +1,10 @@
 
-* Sillabazione automatica per FB2, RTF, TXT, HTML (altri formati in seguito) 
-* PDF, DJVU: aumentare e diminuire la pagina possono essere attivate con un doppio clic 
-* TTS registrare la voce su file (WAV) 
-* Aggiunta la possibilità di scorrere da 5 %, 25%, 50%, 75%, 100% dell’altezza dello schermo 
-* Vai alla pagina successiva sullo schermo può essere disattivato (valore 0%) 
-* segnalibro rapido per la pagina (con il tasto dalla finestra di dialogo segnalibro, oppure premere a lungo sull’icona segnalibro) 
-* migliorata ritaglio di campi di documenti bianchi per PDF, DJVU
+* Accelerato caricamento delle pagine in un modosemplice 
+* Pagamento automatico della pagina in modalitàEasy con un intervallo specificato 
+* In altre impostazioni, il timer assomiglia ad una pausa di riposo 
+* Possibilità di cambiare l’ordine Cognome-Nome dell’autore nella libreria 
+* Miglioramento della finestra di dialogo delle note 
+* Possibilità di regolare l’allineamento del centro per un doppio clic 
+* Ricerca di parole in molti documenti (dalla scheda impostazioni principali del programma) 
+* Uscire dal programma da qualsiasi schermata premendo a lungo il pulsante indietro 
+* Personalizzare i profili per il colore Testo e sfondo per le modalità notte e giorno

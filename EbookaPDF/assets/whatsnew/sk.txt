@@ -1,8 +1,10 @@
 
-* Automatické delenie slov pre FB2, RTF, TXT, HTML (iné formáty neskôr) 
-* PDF, DJVU: zvýšenie a zníženie stránky možno aktivovať pomocou dvojkliku 
-* TTS záznam hlasu do súboru (WAV) 
-* Pridaná možnosť posúvať o 5 %, 25%, 50%, 75%, 100% výšky obrazovky 
-* Ísť na ďalšiu stránku na obrazovke je možné vypnúť (hodnota 0%) 
-* Rýchle záložka stránky (tlačidlom z dialógu záložky, alebo dlhým stlačením na záložku) 
-* Vylepšená orezanie bielych dokumentov polí pre PDF, DJVU
+* Zrýchlené načítanie stránok v režimeJednoduché 
+* Automatické prepínanie stránok v režimeJednoduchý režim so zadaným intervalom 
+* V ďalších nastaveniach sa časovač podobá odpočinku 
+* Možnosť zmeniť objednávku Priezvisko-Meno autora v knižnici 
+* Vylepšené dialógové okno s poznámkami 
+* Schopnosť prispôsobiť zarovnanie stredu pre dvojité kliknutie 
+* Hľadanie slov v mnohých dokumentoch (z hlavnej tabuľky nastavení programu) 
+* Ukončite program z akejkoľvek obrazovky dlhým stlačením tlačidla späť 
+* Prispôsobte si profily farby Text a pozadie pre nočné a denné režimy

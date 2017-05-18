@@ -1,15 +1,13 @@
 package com.foobnix.ui2.fragment;
 
-import java.util.Arrays;
+import java.util.ArrayList;
 import java.util.List;
 
 import com.foobnix.android.utils.Dips;
 import com.foobnix.android.utils.ResultResponse;
 import com.foobnix.dao2.FileMeta;
 import com.foobnix.pdf.info.R;
-import com.foobnix.pdf.info.TintUtil;
 import com.foobnix.pdf.info.wrapper.AppState;
-import com.foobnix.pdf.info.wrapper.PopupHelper;
 import com.foobnix.ui2.AppDB;
 import com.foobnix.ui2.adapter.FileMetaAdapter;
 
@@ -19,12 +17,8 @@ import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
-import android.view.MenuItem;
-import android.view.MenuItem.OnMenuItemClickListener;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
-import android.widget.PopupMenu;
 
 public class RecentFragment2 extends UIFragment<FileMeta> {
     FileMetaAdapter recentAdapter;
@@ -42,6 +36,7 @@ public class RecentFragment2 extends UIFragment<FileMeta> {
         recyclerView = (RecyclerView) view.findViewById(R.id.recyclerView);
 
         recentAdapter = new FileMetaAdapter();
+        recentAdapter.tempValue = FileMetaAdapter.TEMP_VALUE_FOLDER_PATH;
         bindAdapter(recentAdapter);
         bindAuthorsSeriesAdapter(recentAdapter);
 
@@ -102,10 +97,16 @@ public class RecentFragment2 extends UIFragment<FileMeta> {
 
     @Override
     public List<FileMeta> prepareDataInBackground() {
-        List<FileMeta> all = AppDB.get().getAllRecentWithProgress();
+        List<FileMeta> all = new ArrayList<FileMeta>();
+
+        all.addAll(AppDB.get().getStarsFolder());
+
         FileMeta stars = new FileMeta();
         stars.setCusType(FileMetaAdapter.DISPALY_TYPE_LAYOUT_STARS);
-        all.add(0, stars);
+        all.add(stars);
+
+        all.addAll(AppDB.get().getAllRecentWithProgress());
+
         return all;
     }
 
@@ -145,32 +146,6 @@ public class RecentFragment2 extends UIFragment<FileMeta> {
 
     }
 
-    private void popupMenu(final ImageView onGridList) {
-        PopupMenu p = new PopupMenu(getActivity(), onGridList);
-        List<Integer> names = Arrays.asList(R.string.list, R.string.grid, R.string.cover);
-        final List<Integer> icons = Arrays.asList(R.drawable.glyphicons_114_justify, R.drawable.glyphicons_156_show_big_thumbnails, R.drawable.glyphicons_157_show_thumbnails);
-        final List<Integer> actions = Arrays.asList(AppState.MODE_LIST, AppState.MODE_GRID, AppState.MODE_COVERS);
-
-        for (int i = 0; i < names.size(); i++) {
-            final int index = i;
-            p.getMenu().add(names.get(i)).setIcon(icons.get(i)).setOnMenuItemClickListener(new OnMenuItemClickListener() {
-
-                @Override
-                public boolean onMenuItemClick(MenuItem item) {
-                    AppState.getInstance().recentMode = actions.get(index);
-                    onGridList.setImageResource(icons.get(index));
-                    onGridList();
-                    return false;
-                }
-            });
-        }
-
-        p.show();
-
-        PopupHelper.initIcons(p, TintUtil.color);
-    }
-
-
     @Override
     public void notifyFragment() {
         if (recentAdapter != null) {
@@ -182,6 +157,5 @@ public class RecentFragment2 extends UIFragment<FileMeta> {
     public void resetFragment() {
 
     }
-
 
 }
