@@ -300,7 +300,15 @@ public class AppDB {
     }
 
     public List<FileMeta> getStarsFolder() {
-        return fileMetaDao.queryBuilder().where(FileMetaDao.Properties.IsStar.eq(1), FileMetaDao.Properties.CusType.eq(FileMetaAdapter.DISPLAY_TYPE_DIRECTORY)).orderDesc(FileMetaDao.Properties.IsStarTime).list();
+        return fileMetaDao.queryBuilder().where(FileMetaDao.Properties.IsStar.eq(1), FileMetaDao.Properties.CusType.eq(FileMetaAdapter.DISPLAY_TYPE_DIRECTORY)).orderAsc(FileMetaDao.Properties.PathTxt).list();
+    }
+
+    public boolean isStarFolder(String path) {
+        FileMeta load = fileMetaDao.load(path);
+        if (load == null) {
+            return false;
+        }
+        return load.getIsStar();
     }
 
     public void clearAllRecent() {

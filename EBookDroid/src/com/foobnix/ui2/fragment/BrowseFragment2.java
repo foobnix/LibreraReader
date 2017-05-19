@@ -15,10 +15,12 @@ import com.foobnix.pdf.info.TintUtil;
 import com.foobnix.pdf.info.io.SearchCore;
 import com.foobnix.pdf.info.wrapper.AppState;
 import com.foobnix.pdf.info.wrapper.PopupHelper;
+import com.foobnix.ui2.AppDB;
 import com.foobnix.ui2.adapter.DefaultListeners;
 import com.foobnix.ui2.adapter.FileMetaAdapter;
 import com.foobnix.ui2.fast.FastScrollRecyclerView;
 
+import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.os.Environment;
@@ -57,7 +59,7 @@ public class BrowseFragment2 extends UIFragment<FileMeta> {
     private LinearLayout paths;
     HorizontalScrollView scroller;
     private TextView stub;
-    private ImageView onListGrid;
+    private ImageView onListGrid, starIcon;
     private EditText editPath;
     private View pathContainer;
 
@@ -96,6 +98,8 @@ public class BrowseFragment2 extends UIFragment<FileMeta> {
         pathContainer = view.findViewById(R.id.pathContainer);
         View onCloseActionPaner = view.findViewById(R.id.onCloseActionPaner);
         View onClose = view.findViewById(R.id.onClose);
+
+        starIcon = (ImageView) view.findViewById(R.id.starIcon);
 
         TextView onAction = (TextView) view.findViewById(R.id.onAction);
         editPath = (EditText) view.findViewById(R.id.editPath);
@@ -294,10 +298,33 @@ public class BrowseFragment2 extends UIFragment<FileMeta> {
         setDirPath(path, null);
     }
 
-    public void setDirPath(String path, List<FileMeta> items) {
+    public void setDirPath(final String path, List<FileMeta> items) {
         if (searchAdapter == null) {
             return;
         }
+
+        if (AppDB.get().isStarFolder(path)) {
+            starIcon.setImageResource(R.drawable.star_1);
+        } else {
+            starIcon.setImageResource(R.drawable.star_2);
+        }
+        TintUtil.setTintImage(starIcon, Color.WHITE);
+
+        starIcon.setOnClickListener(new OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                FileMeta fileMeta = AppDB.get().getOrCreate(path);
+                fileMeta.setCusType(FileMetaAdapter.DISPLAY_TYPE_DIRECTORY);
+                DefaultListeners.getOnStarClick(getActivity()).onResultRecive(fileMeta, null);
+                if (AppDB.get().isStarFolder(path)) {
+                    starIcon.setImageResource(R.drawable.star_1);
+                } else {
+                    starIcon.setImageResource(R.drawable.star_2);
+                }
+            }
+        });
+
         AppState.get().dirLastPath = path;
 
         searchAdapter.clearItems();
@@ -443,6 +470,7 @@ public class BrowseFragment2 extends UIFragment<FileMeta> {
     public void notifyFragment() {
         if (searchAdapter != null) {
             searchAdapter.notifyDataSetChanged();
+            populate();
         }
     }
 
