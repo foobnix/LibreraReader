@@ -65,6 +65,7 @@ public class BrowseFragment2 extends UIFragment<FileMeta> {
 
     private int fragmentType = TYPE_DEFAULT;
     private String fragmentText = "";
+    int rememberPos;
 
     public BrowseFragment2() {
         super();
@@ -288,6 +289,7 @@ public class BrowseFragment2 extends UIFragment<FileMeta> {
     public boolean onBackAction() {
         File file = new File(AppState.get().dirLastPath);
         if (file.getParent() != null) {
+            recyclerView.scrollToPosition(rememberPos);
             setDirPath(file.getParent());
             return true;
         }
@@ -302,6 +304,8 @@ public class BrowseFragment2 extends UIFragment<FileMeta> {
         if (searchAdapter == null) {
             return;
         }
+
+        rememberPos = ((LinearLayoutManager) recyclerView.getLayoutManager()).findFirstVisibleItemPosition();
 
         if (AppDB.get().isStarFolder(path)) {
             starIcon.setImageResource(R.drawable.star_1);
