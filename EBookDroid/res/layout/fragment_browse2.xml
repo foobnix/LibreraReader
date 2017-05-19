@@ -53,9 +53,8 @@
                     android:textColor="@color/white" />
             </LinearLayout>
         </HorizontalScrollView>
-        
-        
-            <ImageView
+
+        <ImageView
             android:id="@+id/starIcon"
             android:layout_width="@dimen/wh_button_small"
             android:layout_height="@dimen/wh_button_small"
@@ -64,6 +63,19 @@
             android:padding="4dip"
             android:src="@drawable/star_2"
             android:tint="@color/tint_gray" />
+
+        <View
+            android:layout_width="1dip"
+            android:layout_height="match_parent"
+            android:background="@color/tint_divider" />
+
+        <ImageView
+            android:id="@+id/onSort"
+            style="@style/buttonWhite"
+            android:layout_width="@dimen/wh_button"
+            android:layout_height="@dimen/wh_button"
+            android:layout_weight="0"
+            android:src="@drawable/glyphicons_409_sort_by_attributes" />
 
         <View
             android:layout_width="1dip"

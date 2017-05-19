@@ -51,7 +51,7 @@
         </LinearLayout>
 
         <View
-              android:id="@+id/topPanelLineDiv"
+            android:id="@+id/topPanelLineDiv"
             android:layout_width="match_parent"
             android:layout_height="1dp"
             android:layout_marginBottom="1dip"
@@ -66,7 +66,6 @@
             android:orientation="horizontal" >
 
             <ImageView
-                android:visibility="gone"
                 android:id="@+id/onRecent"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -76,10 +75,9 @@
                 android:contentDescription="@string/recent"
                 android:padding="6dip"
                 android:src="@drawable/glyphicons_72_book1"
-                android:tint="@color/tint_gray" />
-            
-            
-            
+                android:tint="@color/tint_gray"
+                android:visibility="gone" />
+
             <ImageView
                 android:id="@+id/onPageFlip"
                 android:layout_width="wrap_content"
@@ -118,7 +116,6 @@
                 android:tint="@color/tint_gray" />
 
             <ImageView
-                android:visibility="gone"
                 android:id="@+id/onBrightness"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -127,7 +124,8 @@
                 android:background="@drawable/bg_clickable"
                 android:padding="6dip"
                 android:src="@drawable/glyphicons_232_sun"
-                android:tint="@color/tint_gray" />
+                android:tint="@color/tint_gray"
+                android:visibility="gone" />
 
             <ImageView
                 android:id="@+id/onCrop"
@@ -152,7 +150,6 @@
                 android:tint="@color/tint_gray" />
 
             <ImageView
-                android:visibility="gone"
                 android:id="@+id/onTTS"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -161,7 +158,8 @@
                 android:background="@drawable/bg_clickable"
                 android:padding="6dip"
                 android:src="@drawable/glyphicons_185_volume_up"
-                android:tint="@color/tint_gray" />
+                android:tint="@color/tint_gray"
+                android:visibility="gone" />
 
             <ImageView
                 android:id="@+id/onPin"
@@ -496,8 +494,8 @@
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:layout_marginTop="1dip"
             android:layout_marginBottom="1dip"
+            android:layout_marginTop="1dip"
             android:background="@color/lt_grey_alpha" />
 
         <LinearLayout
@@ -508,13 +506,15 @@
             android:orientation="horizontal" >
 
             <RelativeLayout
-                android:layout_width="90dip"
-                android:layout_height="@dimen/wh_button"
-                android:layout_marginLeft="5dip" >
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dip"
+                android:background="@color/lt_grey"
+                android:padding="1px" >
 
                 <TextView
                     android:id="@+id/onDayColor"
-                    android:layout_width="100dip"
+                    android:layout_width="80dip"
                     android:layout_height="@dimen/wh_button"
                     android:background="#FFFFFF"
                     android:gravity="center"
@@ -524,7 +524,7 @@
                     android:textStyle="bold" />
 
                 <ImageView
-                     android:id="@+id/onDayColorImage"
+                    android:id="@+id/onDayColorImage"
                     android:layout_width="@dimen/wh_button"
                     android:layout_height="@dimen/wh_button"
                     android:padding="10dip"
@@ -533,13 +533,15 @@
             </RelativeLayout>
 
             <RelativeLayout
-                android:layout_width="90dip"
-                android:layout_height="@dimen/wh_button"
-                android:layout_marginLeft="5dip" >
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dip"
+                android:background="@color/lt_grey"
+                android:padding="1px" >
 
                 <TextView
                     android:id="@+id/onNigthColor"
-                    android:layout_width="100dip"
+                    android:layout_width="80dip"
                     android:layout_height="@dimen/wh_button"
                     android:background="#000000"
                     android:gravity="center"
@@ -549,14 +551,14 @@
                     android:textStyle="bold" />
 
                 <ImageView
-                     android:id="@+id/onNigthColorImage"
+                    android:id="@+id/onNigthColorImage"
                     android:layout_width="@dimen/wh_button"
                     android:layout_height="@dimen/wh_button"
                     android:padding="10dip"
                     android:src="@drawable/glyphicons_2_moon"
                     android:tint="#ffffff" />
             </RelativeLayout>
-            
+
             <ImageView
                 android:id="@+id/moreReadColorSettings"
                 android:layout_width="wrap_content"
@@ -584,7 +586,7 @@
             android:layout_marginTop="3dip"
             android:gravity="center_vertical"
             android:orientation="horizontal"
-            android:paddingLeft="3dip" >
+            android:paddingLeft="2dip" >
 
             <TextView
                 android:id="@+id/t1"
@@ -638,7 +640,6 @@
                 android:text=" C "
                 android:textStyle="bold" />
         </LinearLayout>
-
     </LinearLayout>
 
 </ScrollView>

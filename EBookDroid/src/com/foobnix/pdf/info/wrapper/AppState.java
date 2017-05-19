@@ -159,6 +159,11 @@ public class AppState {
     public final static int DOUBLE_CLICK_ZOOM_IN_OUT = 3;
     public final static int DOUBLE_CLICK_CENTER_HORIZONTAL = 4;
 
+    public final static int BR_SORT_BY_PATH = 0;
+    public final static int BR_SORT_BY_DATE = 1;
+    public final static int BR_SORT_BY_SIZE = 2;
+    public final static int BR_SORT_BY_TITLE = 3;// not possible
+
     public final static int NEXT_SCREEN_SCROLL_BY_PAGES = 0;
 
     public int doubleClickAction = DOUBLE_CLICK_AUTOSCROLL;
@@ -184,6 +189,8 @@ public class AppState {
 
     public boolean isSortAsc = true;
     public int sortBy = AppDB.SORT_BY.PATH.ordinal();
+    public int sortByBrowse = BR_SORT_BY_PATH;
+    public boolean sortByReverse = false;
 
     public float brightness = 0f;
     public float cropTolerance = 0.5f;
@@ -464,6 +471,7 @@ public class AppState {
         editLineWidth = getAsFloatOrInt(sp, "editLineWidth", editLineWidth);
 
         isSortAsc = sp.getBoolean("isSortAsc", isSortAsc);
+        sortByReverse = sp.getBoolean("sortByReverse", sortByReverse);
         isLocked = sp.getBoolean("isLocked", isLocked);
         isReverseKeys = sp.getBoolean("isReverseKeys", isReverseKeys);
         isUseVolumeKeys = sp.getBoolean("isUseVolumeKeys", isUseVolumeKeys);
@@ -502,6 +510,7 @@ public class AppState {
         widgetSize = sp.getInt("widgetSize", widgetSize);
 
         sortBy = sp.getInt("sortBy", SORT_BY_PATH);
+        sortByBrowse = sp.getInt("sortByBrowse", SORT_BY_PATH);
         searchPaths = sp.getString("searchPaths", searchPaths);
         rememberDict = sp.getString("rememberDict", rememberDict);
 
@@ -656,6 +665,7 @@ public class AppState {
         editor.putFloat("editLineWidth", editLineWidth);
 
         editor.putBoolean("isSortAsc", isSortAsc);
+        editor.putBoolean("sortByReverse", sortByReverse);
         editor.putBoolean("isReverseKeys", isReverseKeys);
         editor.putBoolean("isUseVolumeKeys", isUseVolumeKeys);
 
@@ -678,6 +688,7 @@ public class AppState {
         editor.putBoolean("isRememberDictionary", isRememberDictionary);
 
         editor.putInt("sortBy", sortBy);
+        editor.putInt("sortByBrowse", sortByBrowse);
         editor.putFloat("brightness", brightness);
         editor.putFloat("cropTolerance", cropTolerance);
         editor.putFloat("ttsSpeed", ttsSpeed);

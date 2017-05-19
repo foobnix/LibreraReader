@@ -2,6 +2,7 @@ package com.foobnix.ui2.fragment;
 
 import java.io.File;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 import com.foobnix.android.utils.Dips;
@@ -10,6 +11,7 @@ import com.foobnix.android.utils.ResultResponse;
 import com.foobnix.android.utils.TxtUtils;
 import com.foobnix.dao2.FileMeta;
 import com.foobnix.pdf.info.ExtUtils;
+import com.foobnix.pdf.info.FileMetaComparators;
 import com.foobnix.pdf.info.R;
 import com.foobnix.pdf.info.TintUtil;
 import com.foobnix.pdf.info.io.SearchCore;
@@ -35,6 +37,7 @@ import android.view.MenuItem;
 import android.view.MenuItem.OnMenuItemClickListener;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.View.OnLongClickListener;
 import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.HorizontalScrollView;
@@ -59,7 +62,7 @@ public class BrowseFragment2 extends UIFragment<FileMeta> {
     private LinearLayout paths;
     HorizontalScrollView scroller;
     private TextView stub;
-    private ImageView onListGrid, starIcon;
+    private ImageView onListGrid, starIcon, onSort;
     private EditText editPath;
     private View pathContainer;
 
@@ -101,6 +104,20 @@ public class BrowseFragment2 extends UIFragment<FileMeta> {
         View onClose = view.findViewById(R.id.onClose);
 
         starIcon = (ImageView) view.findViewById(R.id.starIcon);
+        onSort = (ImageView) view.findViewById(R.id.onSort);
+
+        onSort.setOnLongClickListener(new OnLongClickListener() {
+
+            @Override
+            public boolean onLongClick(View v) {
+                AppState.get().sortByReverse = !AppState.get().sortByReverse;
+                onSort.setImageResource(AppState.get().sortByReverse ? R.drawable.glyphicons_410_sort_by_attributes_alt : R.drawable.glyphicons_409_sort_by_attributes);
+                populate();
+                return true;
+            }
+        });
+
+        onSort.setImageResource(AppState.get().sortByReverse ? R.drawable.glyphicons_410_sort_by_attributes_alt : R.drawable.glyphicons_409_sort_by_attributes);
 
         TextView onAction = (TextView) view.findViewById(R.id.onAction);
         editPath = (EditText) view.findViewById(R.id.editPath);
@@ -224,6 +241,40 @@ public class BrowseFragment2 extends UIFragment<FileMeta> {
             }
         });
 
+        onSort.setOnClickListener(new OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+
+                List<String> names = Arrays.asList(//
+                        getActivity().getString(R.string.by_file_name), //
+                        getActivity().getString(R.string.by_date), //
+                        getActivity().getString(R.string.by_size) //
+                );//
+
+                final List<Integer> ids = Arrays.asList(//
+                        AppState.BR_SORT_BY_PATH, //
+                        AppState.BR_SORT_BY_DATE, //
+                        AppState.BR_SORT_BY_SIZE //
+                );//
+
+                PopupMenu menu = new PopupMenu(getActivity(), v);
+                for (int i = 0; i < names.size(); i++) {
+                    String name = names.get(i);
+                    final int j = i;
+                    menu.getMenu().add(name).setOnMenuItemClickListener(new OnMenuItemClickListener() {
+
+                        @Override
+                        public boolean onMenuItemClick(MenuItem item) {
+                            AppState.get().sortByBrowse = ids.get(j);
+                            populate();
+                            return false;
+                        }
+                    });
+                }
+                menu.show();
+            }
+        });
         populate();
         onTintChanged();
 
@@ -335,6 +386,19 @@ public class BrowseFragment2 extends UIFragment<FileMeta> {
         if (items == null) {
             items = SearchCore.getFilesAndDirs(path);
         }
+
+        if (AppState.get().sortByBrowse == AppState.BR_SORT_BY_PATH) {
+            Collections.sort(items, FileMetaComparators.BY_PATH);
+        } else if (AppState.get().sortByBrowse == AppState.BR_SORT_BY_DATE) {
+            Collections.sort(items, FileMetaComparators.BY_DATE);
+        } else if (AppState.get().sortByBrowse == AppState.BR_SORT_BY_SIZE) {
+            Collections.sort(items, FileMetaComparators.BY_SIZE);
+        }
+        if (AppState.get().sortByReverse) {
+            Collections.reverse(items);
+        }
+        Collections.sort(items, FileMetaComparators.DIRS);
+
         searchAdapter.getItemsList().addAll(items);
         recyclerView.setAdapter(searchAdapter);
 

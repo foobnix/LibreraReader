@@ -3232,7 +3232,7 @@ public class DragingDialogs {
                             final int text = Color.parseColor(split[2]);
                             final boolean isDay = split[3].equals("0");
 
-                            TextView t1 = new TextView(controller.getActivity());
+                            BorderTextView t1 = new BorderTextView(controller.getActivity());
                             LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(Dips.dpToPx(30), Dips.dpToPx(30));
                             params.setMargins(padding, padding, padding, padding);
                             t1.setLayoutParams(params);

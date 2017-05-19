@@ -264,6 +264,7 @@
    <string name="musician">Musician</string>
    <string name="borders_and_shadow_around_the_book_cover">Borders and shadow around the book cover</string>
    <string name="by_path">File path</string>
+   <string name="by_name">Name</string>
    <string name="by_file_name">File name</string>
    <string name="by_title">Book title</string>
    <string name="by_author">Book author</string>

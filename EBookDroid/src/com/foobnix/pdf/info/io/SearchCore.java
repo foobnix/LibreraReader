@@ -89,7 +89,7 @@ public class SearchCore {
         }
 
         List<File> res = new ArrayList<File>(Arrays.asList(listFiles));
-        Collections.sort(res, FILES_AND_DIRS_COMPARATOR);
+        // Collections.sort(res, FILES_AND_DIRS_COMPARATOR);
 
         for (File it : res) {
             FileMeta meta = new FileMeta(it.getPath());
