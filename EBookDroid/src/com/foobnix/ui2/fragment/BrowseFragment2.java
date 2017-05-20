@@ -371,6 +371,7 @@ public class BrowseFragment2 extends UIFragment<FileMeta> {
             public void onClick(View v) {
                 FileMeta fileMeta = AppDB.get().getOrCreate(path);
                 fileMeta.setCusType(FileMetaAdapter.DISPLAY_TYPE_DIRECTORY);
+                fileMeta.setPathTxt(ExtUtils.getFileName(path));
                 DefaultListeners.getOnStarClick(getActivity()).onResultRecive(fileMeta, null);
                 if (AppDB.get().isStarFolder(path)) {
                     starIcon.setImageResource(R.drawable.star_1);

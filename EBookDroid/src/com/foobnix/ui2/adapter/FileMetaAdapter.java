@@ -8,7 +8,6 @@ import com.foobnix.android.utils.ResultResponse;
 import com.foobnix.android.utils.ResultResponse2;
 import com.foobnix.android.utils.TxtUtils;
 import com.foobnix.dao2.FileMeta;
-import com.foobnix.pdf.info.ExtUtils;
 import com.foobnix.pdf.info.IMG;
 import com.foobnix.pdf.info.R;
 import com.foobnix.pdf.info.TintUtil;
@@ -169,7 +168,7 @@ public class FileMetaAdapter extends AppRecycleAdapter<FileMeta, RecyclerView.Vi
             });
         } else if (holderAll instanceof DirectoryViewHolder) {
             final DirectoryViewHolder holder = (DirectoryViewHolder) holderAll;
-            holder.title.setText(ExtUtils.getFileName(fileMeta.getPath()));
+            holder.title.setText(fileMeta.getPathTxt());
             holder.path.setText(fileMeta.getPath());
 
             if (tempValue == TEMP_VALUE_FOLDER_PATH) {
@@ -184,10 +183,10 @@ public class FileMetaAdapter extends AppRecycleAdapter<FileMeta, RecyclerView.Vi
                 holder.parent.setBackgroundColor(Color.TRANSPARENT);
             }
 
-            if (fileMeta.getIsStar() == null || fileMeta.getIsStar() == false) {
-                holder.starIcon.setImageResource(R.drawable.star_2);
-            } else {
+            if (AppDB.get().isStarFolder(fileMeta.getPath())) {
                 holder.starIcon.setImageResource(R.drawable.star_1);
+            } else {
+                holder.starIcon.setImageResource(R.drawable.star_2);
             }
             TintUtil.setTintImage(holder.starIcon, TintUtil.color);
 
