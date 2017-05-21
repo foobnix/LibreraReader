@@ -144,7 +144,7 @@ public class BookCSS {
         headersFont = DEFAULT_FONT;
 
         documentStyle = STYLES_DOC_AND_USER;
-        isAutoHypens = false;
+        isAutoHypens = Arrays.asList("ru", "uk", "tr").contains(Urls.getLangCode());
         hypenLang = Urls.getLangCode();
 
         linkColor = "#0066cc";

@@ -617,7 +617,7 @@ public class MagicHelper {
     
     public static boolean isColorDarkSimple(int color){
         int k = Color.red(color) + Color.green(color) + Color.blue(color);
-        if (k > 350) {
+        if (k > 350) {// 350
             return false;
         }else{
             return true;

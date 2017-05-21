@@ -86,22 +86,5 @@ public class PageCropper {
                 bottom * pageSliceBounds.height() + pageSliceBounds.top);
     }
 
-    private static boolean colorWithinTolerance(int a, int b, double tolerance) {
-        int aAlpha = (a & 0xFF000000) >>> 24; // Alpha level
-        int aRed = (a & 0x00FF0000) >>> 16; // Red level
-        int aGreen = (a & 0x0000FF00) >>> 8; // Green level
-        int aBlue = a & 0x000000FF; // Blue level
-
-        int bAlpha = (b & 0xFF000000) >>> 24; // Alpha level
-        int bRed = (b & 0x00FF0000) >>> 16; // Red level
-        int bGreen = (b & 0x0000FF00) >>> 8; // Green level
-        int bBlue = b & 0x000000FF; // Blue level
-
-        double distance = Math.sqrt((aAlpha - bAlpha) * (aAlpha - bAlpha) + (aRed - bRed) * (aRed - bRed) + (aGreen - bGreen) * (aGreen - bGreen) + (aBlue - bBlue) * (aBlue - bBlue));
-        // 510.0 is the maximum distance between two colors
-        // (0,0,0,0 -> 255,255,255,255)
-        double percentAway = distance / 510.0d;
-        return (percentAway > tolerance);
-    }
 
 }
