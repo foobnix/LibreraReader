@@ -42,8 +42,6 @@ public class PageCropper {
                     continue;
                 }
 
-                // if (colorWithinTolerance(baseColor, pixel,
-                // AppState.get().cropTolerance)) {
                 if (pixel == Color.BLACK || MagicHelper.isColorDarkSimple(pixel)) {
                     if (x < topX)
                         topX = x;
@@ -85,6 +83,5 @@ public class PageCropper {
         return new RectF(left * pageSliceBounds.width() + pageSliceBounds.left, top * pageSliceBounds.height() + pageSliceBounds.top, right * pageSliceBounds.width() + pageSliceBounds.left,
                 bottom * pageSliceBounds.height() + pageSliceBounds.top);
     }
-
 
 }

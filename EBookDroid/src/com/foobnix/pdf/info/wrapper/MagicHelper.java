@@ -617,7 +617,7 @@ public class MagicHelper {
     
     public static boolean isColorDarkSimple(int color){
         int k = Color.red(color) + Color.green(color) + Color.blue(color);
-        if (k > 350) {// 350
+        if (k > 550) {// 350
             return false;
         }else{
             return true;
@@ -625,7 +625,7 @@ public class MagicHelper {
     }
     public static boolean isColorDark(int color){
         double darkness = 1-(0.299*Color.red(color) + 0.587*Color.green(color) + 0.114*Color.blue(color))/255;
-        if(darkness<0.3){
+        if (darkness < 0.5) {
             return false; // It's a light color
         }else{
             return true; // It's a dark color
