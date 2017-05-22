@@ -387,8 +387,8 @@ public class BookCSS {
 
         // FB2
         builder.append("section>title{page-break-before:avoide;}");
-        builder.append("title>p{text-align:center !important;}");
-        builder.append("section+section>title{page-break-before:always}");
+        builder.append("title>p{text-align:center !important; text-indent:0px !important;}");
+        builder.append("section+section>title{page-break-before:always;}");
         builder.append(String.format("empty-line{padding-top:%s;}", em(emptyLine)));
         builder.append("epigraph{text-align:right; margin-left:2em;font-style: italic;}");
         builder.append("text-author{font-style: italic;font-weight: bold;}");

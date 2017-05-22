@@ -7,3 +7,4 @@
 * Word search in many documents (from the main program settings tab)
 * Exit the program from any screen by long pressing the button back
 * Customize your profiles for the color of text and background for night and day modes
+* Starred folders
