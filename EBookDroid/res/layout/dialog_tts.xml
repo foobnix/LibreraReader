@@ -26,11 +26,11 @@
 
             <ImageView
                 android:id="@+id/ttsSettings"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                 android:layout_width="@dimen/wh_button"
+                android:layout_height="@dimen/wh_button"
+                android:background="@drawable/bg_border_ltgray"
                 android:layout_alignParentRight="true"
-                android:background="@drawable/bg_clickable"
-                android:padding="10dip"
+                android:padding="8dip"
                 android:src="@drawable/glyphicons_137_cogwheel"
                 android:tint="@color/tint_gray" />
 

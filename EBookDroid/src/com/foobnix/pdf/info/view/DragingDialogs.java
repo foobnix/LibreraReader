@@ -2939,7 +2939,7 @@ public class DragingDialogs {
 
                     @Override
                     public void populateView(View inflate, int arg1, String value) {
-                        Views.text(inflate, android.R.id.text1, "" + value);
+                        TextView tv = Views.text(inflate, android.R.id.text1, "" + value);
                     }
                 });
 
@@ -3065,39 +3065,36 @@ public class DragingDialogs {
                 });
 
                 // orientation
-                List<String> orientations = Arrays.asList(controller.getString(R.string.automatic), controller.getString(R.string.landscape), controller.getString(R.string.portrait));
-
+                final List<String> orientations = Arrays.asList(controller.getString(R.string.automatic), controller.getString(R.string.landscape), controller.getString(R.string.portrait));
                 final List<Integer> orIds = Arrays.asList(ActivityInfo.SCREEN_ORIENTATION_SENSOR, ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE, ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
-                final Spinner spinner = (Spinner) inflate.findViewById(R.id.spinnerScreenOrientation);
-                spinner.setAdapter(new BaseItemLayoutAdapter<String>(controller.getActivity(), android.R.layout.simple_spinner_dropdown_item, orientations) {
+                final TextView screenOrientation = (TextView) inflate.findViewById(R.id.screenOrientation);
+                screenOrientation.setText(orientations.get(orIds.indexOf(AppState.getInstance().orientation)));
 
+                TxtUtils.underlineTextView(screenOrientation);
+                
+                screenOrientation.setOnClickListener(new OnClickListener() {
+                    
                     @Override
-                    public void populateView(View inflate, int arg1, String value) {
-                        Views.text(inflate, android.R.id.text1, "" + value);
-                    }
-                });
-                spinner.setOnItemSelectedListener(new OnItemSelectedListener() {
+                    public void onClick(View v) {
+                        PopupMenu menu = new PopupMenu(v.getContext(), v);
+                        for (int i = 0; i < orientations.size(); i++) {
+                            final int j = i;
+                            final String name = orientations.get(i);
+                            menu.getMenu().add(name).setOnMenuItemClickListener(new OnMenuItemClickListener() {
 
-                    @Override
-                    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                        AppState.getInstance().orientation = orIds.get(position);
-                        controller.doRotation(controller.getActivity());
-
-                        try {
-                            TextView textView = (TextView) spinner.getChildAt(0);
-                            textView.setTextAppearance(controller.getActivity(), R.style.textLinkStyle);
-                        } catch (Exception e) {
-                            LOG.e(e);
+                                @Override
+                                public boolean onMenuItemClick(MenuItem item) {
+                                    AppState.getInstance().orientation = orIds.get(j);
+                                    controller.doRotation(controller.getActivity());
+                                    return false;
+                                }
+                            });
                         }
-                    }
-
-                    @Override
-                    public void onNothingSelected(AdapterView<?> parent) {
-
+                        menu.show();
+                        
                     }
                 });
-                spinner.setSelection(orIds.indexOf(AppState.getInstance().orientation));
 
                 // dicts
 

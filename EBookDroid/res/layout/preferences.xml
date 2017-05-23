@@ -218,10 +218,10 @@
 
         <TextView
             android:id="@+id/section2"
-            android:layout_marginTop="4dip"
             style="@style/textLinkWhite"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="4dip"
             android:layout_weight="1"
             android:background="@drawable/bg_search_second"
             android:text="@string/preferences" />
@@ -265,10 +265,10 @@
 
             <ImageView
                 android:id="@+id/iconRandom"
-                style="@style/buttonWhiteInverted"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:padding="5dip"
+                android:layout_width="@dimen/wh_button_small"
+                android:layout_height="@dimen/wh_button_small"
+                android:background="@drawable/bg_border_ltgray"
+                android:padding="4dip"
                 android:src="@drawable/glyphicons_748_synchronization"
                 android:tint="@color/tint_gray" />
 
@@ -896,7 +896,7 @@
         </LinearLayout>
 
         <TextView
-           android:id="@+id/section4"
+            android:id="@+id/section4"
             style="@style/textLinkWhite"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -967,7 +967,7 @@
             android:text="@string/borders_and_shadow_around_the_book_cover" />
 
         <TextView
-          android:id="@+id/section5"
+            android:id="@+id/section5"
             style="@style/textLinkWhite"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
