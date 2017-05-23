@@ -6,6 +6,7 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 
 import org.ebookdroid.BookType;
@@ -2219,7 +2220,8 @@ public class DragingDialogs {
 
                 // remind rest time
                 final TextView remindRestTime = (TextView) inflate.findViewById(R.id.remindRestTime);
-                remindRestTime.setText(AppState.get().remindRestTime + " " + controller.getString(R.string.minutes));
+                final String minutesString = controller.getString(R.string.minutes).toLowerCase(Locale.US);
+                remindRestTime.setText(AppState.get().remindRestTime + " " + minutesString);
                 TxtUtils.underlineTextView(remindRestTime);
                 remindRestTime.setOnClickListener(new OnClickListener() {
 
@@ -2229,12 +2231,12 @@ public class DragingDialogs {
                         final PopupMenu popupMenu = new PopupMenu(v.getContext(), v);
                         for (int i = 10; i <= 240; i += 10) {
                             final int j = i;
-                            popupMenu.getMenu().add(i + " " + controller.getString(R.string.minutes)).setOnMenuItemClickListener(new OnMenuItemClickListener() {
+                            popupMenu.getMenu().add(i + " " + minutesString).setOnMenuItemClickListener(new OnMenuItemClickListener() {
 
                                 @Override
                                 public boolean onMenuItemClick(MenuItem item) {
                                     AppState.get().remindRestTime = j;
-                                    remindRestTime.setText(AppState.get().remindRestTime + " " + controller.getString(R.string.minutes));
+                                    remindRestTime.setText(AppState.get().remindRestTime + " " + minutesString);
                                     TxtUtils.underlineTextView(remindRestTime);
                                     return false;
                                 }
