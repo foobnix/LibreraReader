@@ -253,7 +253,7 @@
             <SeekBar
                 android:id="@+id/seekBar"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/wh_button_big"
+                android:layout_height="40dip"
                 android:layout_gravity="center_vertical"
                 android:layout_weight="1"
                 android:paddingBottom="4dip"

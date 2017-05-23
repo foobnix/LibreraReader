@@ -652,7 +652,9 @@ public class DragingDialogs {
                 TextView footerNumber = (TextView) inflate.findViewById(R.id.footerNumber);
                 TextView goBack = (TextView) inflate.findViewById(R.id.goBack);
                 TextView text = (TextView) inflate.findViewById(R.id.text);
-                text.setTextSize(Math.max(14, AppState.get().fontSizeSp * 0.7f));
+                float size = Math.max(14, AppState.get().fontSizeSp * 0.85f);
+                text.setTextSize(size);
+                LOG.d("FONT SIZE", size);
 
                 footerNumber.setText(TxtUtils.getFooterNoteNumber(selectedText));
 
@@ -1776,7 +1778,6 @@ public class DragingDialogs {
                     }
                 });
                 flippingInterval.setValueText("" + AppState.get().flippingInterval);
-
 
                 inflate.findViewById(R.id.flippingStart).setOnClickListener(new OnClickListener() {
 
