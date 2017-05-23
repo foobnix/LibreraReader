@@ -205,7 +205,7 @@
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="5dip"
+                android:layout_marginLeft="4dip"
                 android:layout_weight="1"
                 android:orientation="vertical" >
 
@@ -244,10 +244,10 @@
                 android:id="@+id/fontNamePreview"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="5dip"
+                android:layout_marginLeft="4dip"
                 android:layout_weight="0"
                 android:singleLine="true"
-                android:ems="5"
+                android:ems="4"
                 android:text="@string/font_name"
                 android:textStyle="bold" />
 
@@ -290,10 +290,10 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="5dip"
+                android:layout_marginLeft="4dip"
                 android:layout_weight="0"
                 android:singleLine="true"
-                android:ems="5"
+                android:ems="4"
                 android:text="@string/styles" />
 
             <Spinner
@@ -376,7 +376,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="5dip"
+                android:layout_marginLeft="4dip"
                 android:layout_weight="1"
                 android:text="@string/crop_white_borders"
                 android:textStyle="bold" />
@@ -444,7 +444,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="5dip"
+                android:layout_marginLeft="4dip"
                 android:layout_weight="1"
                 android:ellipsize="end"
                 android:singleLine="true"
@@ -494,7 +494,7 @@
             android:id="@+id/textCustomizeFontBGColor"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="5dip"
+            android:layout_marginLeft="4dip"
             android:layout_marginTop="2dip"
             android:text="@string/customize_font_background_colors"
             android:textStyle="bold"
@@ -517,7 +517,7 @@
             <RelativeLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="5dip"
+                android:layout_marginLeft="4dip"
                 android:background="@drawable/bg_border_ltgray"
                  >
 
@@ -544,7 +544,7 @@
             <RelativeLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="5dip"
+                android:layout_marginLeft="4dip"
                 android:background="@drawable/bg_border_ltgray" >
 
                 <TextView
