@@ -5,7 +5,7 @@ import java.util.List;
 public class HypenUtils {
 
     private static final String SHY = "&shy;";
-    private static DefaultHyphenator instance = new DefaultHyphenator(HyphenPattern.en_us);
+    private static DefaultHyphenator instance = new DefaultHyphenator(HyphenPattern.ru);
 
     public static void applyLanguage(String lang) {
         HyphenPattern pattern = HyphenPattern.valueOf(lang);
@@ -64,7 +64,8 @@ public class HypenUtils {
         }
 
         String result = res.toString();
-        result = result.replace(" <", "<").replace("> ", ">");
+        result = result.replace(" <", "<").replace("> ", ">").replace("] ", "]");
+
         return result;
     }
 

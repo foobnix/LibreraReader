@@ -318,7 +318,7 @@ public class AppState {
     public int rotate = 0;
     public int rotateViewPager = 0;
 
-    public int tapzoneSize = 15;
+    public int tapzoneSize = 25;
     public int allocatedMemorySize = (int) MemoryUtils.RECOMENDED_MEMORY_SIZE;
     public boolean isScrollAnimation = true;
     public String imageFormat = JPG;

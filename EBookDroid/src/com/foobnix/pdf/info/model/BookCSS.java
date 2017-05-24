@@ -145,7 +145,7 @@ public class BookCSS {
 
         documentStyle = STYLES_DOC_AND_USER;
         isAutoHypens = Arrays.asList("ru", "uk", "tr").contains(Urls.getLangCode());
-        hypenLang = Urls.getLangCode();
+        hypenLang = "ru";
 
         linkColor = "#0066cc";
 

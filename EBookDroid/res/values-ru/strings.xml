@@ -16,7 +16,7 @@
    <string name="close_book">Закрыть книгу</string>
    <string name="close_dialog">Закрыть окно</string>
    <string name="content">Содержание</string>
-   <string name="content_of_book">Содержание книги</string>
+   <string name="content_of_book">Содержание</string>
    <string name="crop_white_borders">Обрезать пустые поля</string>
    <string name="delete">Удалить</string>
    <string name="delete_book_">Удалить файл с карты SD?</string>
@@ -47,7 +47,7 @@
    <string name="loading_failed">Ошибка загрузки страницы</string>
    <string name="loop_autoplay">Бесконечная автопрокрутка</string>
    <string name="mouse_scroll_speed">Скорость прокрутки колесиком мышки</string>
-   <string name="msg_loading">Открываю...</string>
+   <string name="msg_loading">Открывается...</string>
    <string name="msg_no_text_found">Текст не найден</string>
    <string name="msg_password_required">Введите пароль</string>
    <string name="msg_search_text_on_page">Поиск на странице</string>
@@ -87,7 +87,7 @@
    <string name="screen_orientation">Ориентация экрана</string>
    <string name="search">Поиск</string>
    <string name="search_text">Поиск текста</string>
-   <string name="searching_please_wait_">Идет поиск, подождите...</string>
+   <string name="searching_please_wait_">Ищется...</string>
    <string name="select">Выбрать</string>
    <string name="send_file_to">Отправить файл</string>
    <string name="share">Поделиться</string>
@@ -120,7 +120,7 @@
    <string name="pdf_mode">Режим PDF</string>
    <string name="expiremental_features">Комментирование и рисование (в тестировании; может повредить некоторые файлы)</string>
    <string name="remember_my_choose">Запомнить режим просмотра</string>
-   <string name="customize_font_background_colors">Отображать доп. настройки смены фона (эффект старины и др.)</string>
+   <string name="customize_font_background_colors">Отображать доп. настройки смены фона (эффект застаривания и др.)</string>
    <string name="day">День</string>
    <string name="nigth">Ночь</string>
    <string name="restore_defaults">Вернуть настройки по умолчанию</string>
@@ -239,7 +239,7 @@
    <string name="clear_all_recent">Очистить все недавние</string>
    <string name="clear_all_bookmars">Очистить все закладки</string>
    <string name="clear_all_marked">Снять отметки со всех избранных</string>
-   <string name="enable_volume_keys">Листание клавишами регул. громкости</string>
+   <string name="enable_volume_keys">Листать клавишами регул. громкости</string>
    <string name="open_in_the_dictionary">Открывать выдел. текст в словаре</string>
    <string name="lock_for_pdf_and_djvu_when_opening">Всегда блокировать изменение ширины страниц при открытии PDF и DJVU</string>
    <string name="cover_image_size">Размер обложек</string>
@@ -252,7 +252,7 @@
    <string name="rate_pdf_reader1">Пожалуйста, напишите свой отзыв и оцените нас на Google Play. Это очень важно для нас</string>
    <string name="if_you_buy1">Lirbi PRO - платная версия этого приложения, предназначенного для чтения электронных книг: без рекламы, без доступа к интернету, меньшего размера и чуть более быстрого.</string>
    <string name="enable_effect_of_the_book_cover">Эффект реалистичных книжных обложек</string>
-   <string name="archive_files">Архивные файлы</string>
+   <string name="archive_files">Файл(ы) в архиве</string>
    <string name="column_count">Количество столбцов:</string>
    <string name="crop_images_in_the_book_cover">Кадрировать обложки книг</string>
    <string name="by_screans">Экран</string>
@@ -321,7 +321,7 @@
    <string name="apply_text_replacement_dictionary1">Применить словарь замен</string>
    <string name="speak_into_file_wav_">Начитать в файл (.wav)</string>
    <string name="the_book_is_over">Книга прочитана</string>
-   <string name="zoom_in_zoom_out">Увеличение/уменьшение масштаба</string>
+   <string name="zoom_in_zoom_out">Увеличить/уменьшить масштаб</string>
    <string name="automatic_hyphenation">Авторасстановка переносов</string>
    <string name="bookmark_for_this_page_already_exists">Закладка для этой страницы уже существует</string>
    <string name="bookmark_with_text">Текстовая закладка</string>
