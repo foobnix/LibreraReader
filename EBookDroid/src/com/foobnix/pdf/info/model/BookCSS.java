@@ -340,6 +340,9 @@ public class BookCSS {
     }
 
     public String em(int value) {
+        if (value == 0) {
+            return "0px";
+        }
         float em = (float) value / 10;
         return "" + em + "em";
     }
@@ -387,7 +390,10 @@ public class BookCSS {
 
         // FB2
         builder.append("section>title{page-break-before:avoide;}");
+        builder.append("section>title>p{text-align:center !important; text-indent:0px !important;}");
         builder.append("title>p{text-align:center !important; text-indent:0px !important;}");
+        builder.append("subtitle{text-align:center !important; text-indent:0px !important;}");
+        builder.append("image{text-align:center; text-indent:0px;}");
         builder.append("section+section>title{page-break-before:always;}");
         builder.append(String.format("empty-line{padding-top:%s;}", em(emptyLine)));
         builder.append("epigraph{text-align:right; margin-left:2em;font-style: italic;}");
@@ -466,6 +472,8 @@ public class BookCSS {
             builder.append(String.format("text-indent:%s;", em(textIndent)));
             builder.append(String.format("text-align:%s !important;", getTextAlignConst(textAlign)));
             builder.append("}");
+
+            builder.append(String.format("p+p{text-indent:%s;}", em(textIndent)));
 
             if (!isFontFileName(boldFont)) {
                 builder.append("b{font-family:" + boldFont + ";font-weight: bold;}");
