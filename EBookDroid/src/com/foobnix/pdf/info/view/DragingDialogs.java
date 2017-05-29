@@ -1698,6 +1698,8 @@ public class DragingDialogs {
                     public void onClick(View v) {
                         PageImageState.get().isShowCuttingLine = false;
                         AppState.get().isCut = true;
+                        AppState.get().isCrop = false;
+                        SettingsManager.getBookSettings().cropPages = false;
                         boolean init = SettingsManager.getBookSettings().splitPages;
                         SettingsManager.getBookSettings().splitPages = true;
                         onRefreshDoc.run();
@@ -2736,21 +2738,7 @@ public class DragingDialogs {
                     }
                 });
 
-                inflate.findViewById(R.id.bookCut).setOnClickListener(new View.OnClickListener() {
 
-                    @Override
-                    public void onClick(final View v) {
-                        closeDialog();
-                        DragingDialogs.sliceDialog(anchor, controller, updateUIRefresh, new ResultResponse<Integer>() {
-
-                            @Override
-                            public boolean onResultRecive(Integer result) {
-                                EventBus.getDefault().post(new InvalidateMessage());
-                                return false;
-                            }
-                        });
-                    }
-                });
 
                 ImageView brightness = (ImageView) inflate.findViewById(R.id.onBrightness);
                 brightness.setOnClickListener(new View.OnClickListener() {
@@ -2763,16 +2751,42 @@ public class DragingDialogs {
                 });
                 brightness.setImageResource(!AppState.get().isInvert ? R.drawable.glyphicons_232_sun : R.drawable.glyphicons_2_moon);
 
-                View isCrop = inflate.findViewById(R.id.onCrop);
-                isCrop.setVisibility(controller.isTextFormat() ? View.GONE : View.VISIBLE);
+                final ImageView isCrop = (ImageView) inflate.findViewById(R.id.onCrop);
+                isCrop.setVisibility(controller.isTextFormat() || AppState.get().isCut ? View.GONE : View.VISIBLE);
                 isCrop.setOnClickListener(new View.OnClickListener() {
 
                     @Override
                     public void onClick(final View v) {
                         AppState.get().isCrop = !AppState.get().isCrop;
+                        SettingsManager.getBookSettings().cropPages = AppState.get().isCrop;
+                        TintUtil.setTintImage(isCrop, !AppState.get().isCrop ? TintUtil.COLOR_TINT_GRAY : Color.LTGRAY);
                         updateUIRefresh.run();
                     }
                 });
+                TintUtil.setTintImage(isCrop, !AppState.get().isCrop ? TintUtil.COLOR_TINT_GRAY : Color.LTGRAY);
+
+                final ImageView bookCut = (ImageView) inflate.findViewById(R.id.bookCut);
+                bookCut.setVisibility(controller.isTextFormat() ? View.GONE : View.VISIBLE);
+                bookCut.setOnClickListener(new View.OnClickListener() {
+
+                    @Override
+                    public void onClick(final View v) {
+                        closeDialog();
+                        DragingDialogs.sliceDialog(anchor, controller, updateUIRefresh, new ResultResponse<Integer>() {
+
+                            @Override
+                            public boolean onResultRecive(Integer result) {
+                                TintUtil.setTintImage(bookCut, !AppState.get().isCut ? TintUtil.COLOR_TINT_GRAY : Color.LTGRAY);
+                                SettingsManager.getBookSettings().splitPages = AppState.get().isCut;
+                                EventBus.getDefault().post(new InvalidateMessage());
+                                return false;
+                            }
+                        });
+                    }
+                });
+                TintUtil.setTintImage(bookCut, !AppState.get().isCut ? TintUtil.COLOR_TINT_GRAY : Color.LTGRAY);
+
+
 
                 inflate.findViewById(R.id.onFullScreen).setOnClickListener(new View.OnClickListener() {
 
@@ -3072,9 +3086,9 @@ public class DragingDialogs {
                 screenOrientation.setText(orientations.get(orIds.indexOf(AppState.getInstance().orientation)));
 
                 TxtUtils.underlineTextView(screenOrientation);
-                
+
                 screenOrientation.setOnClickListener(new OnClickListener() {
-                    
+
                     @Override
                     public void onClick(View v) {
                         PopupMenu menu = new PopupMenu(v.getContext(), v);
@@ -3092,7 +3106,7 @@ public class DragingDialogs {
                             });
                         }
                         menu.show();
-                        
+
                     }
                 });
 

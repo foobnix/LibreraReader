@@ -452,7 +452,7 @@ public class BookCSS {
                 builder.append("h6{font-size:0.60em; text-align: center; font-weight: bold; font-family: " + headersFont + ";}");
 
                 builder.append("title   {font-size:1.2em; font-weight: bold; font-family: " + headersFont + ";}");
-                builder.append("subtitle{    font-size:1.0em; font-weight: bold; font-family: " + headersFont + ";}");
+                builder.append("subtitle{font-size:1.0em; font-weight: bold; font-family: " + headersFont + ";}");
             }
 
             // FONTS END

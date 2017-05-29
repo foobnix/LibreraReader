@@ -163,7 +163,7 @@ public class PrefFragment2 extends UIFragment {
             @Override
             public void onClick(View v) {
                 PopupMenu p = new PopupMenu(getContext(), columsCount);
-                for (int i = 2; i <= 8; i++) {
+                for (int i = 1; i <= 8; i++) {
                     final int k = i;
                     p.getMenu().add("" + k).setOnMenuItemClickListener(new OnMenuItemClickListener() {
 

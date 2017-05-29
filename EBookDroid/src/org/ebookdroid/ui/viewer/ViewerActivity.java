@@ -95,6 +95,7 @@ public class ViewerActivity extends AbstractActionActivity<ViewerActivity, Viewe
 				AppState.getInstance().isLocked = bs.isLocked;
 				AppState.getInstance().autoScrollSpeed = bs.speed;
 				AppState.get().isCut = bs.splitPages;
+                AppState.get().isCrop = bs.cropPages;
 			}
 
 			getController().beforeCreate(this);

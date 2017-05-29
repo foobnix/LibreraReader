@@ -86,10 +86,9 @@ public class DocumentWrapperUI {
     private ImageView lockUnlockTop, textToSpeachTop;
     private ImageView showSearch;
     private View underProgress, underLayout;
-    private ImageView autoScroll, textToSpeach;
-    private ImageView nextScreenType;
+    private ImageView nextScreenType, crop, cut, autoScroll, textToSpeach;
     private SeekBar speedSeekBar;
-    private View seekSpeedLayot, crop, cut, zoomPlus, zoomMinus;
+    private View seekSpeedLayot, zoomPlus, zoomMinus;
     private FrameLayout anchor;
     private TextView batteryLevel;
 
@@ -439,6 +438,18 @@ public class DocumentWrapperUI {
             cut.setVisibility(View.GONE);
         }
 
+        if (AppState.get().isCrop) {
+            TintUtil.setTintImage(crop, Color.LTGRAY);
+        } else {
+            TintUtil.setTintImage(crop, Color.WHITE);
+        }
+
+        if (AppState.get().isCut) {
+            TintUtil.setTintImage(cut, Color.LTGRAY);
+        } else {
+            TintUtil.setTintImage(cut, Color.WHITE);
+        }
+
     }
 
     public void showChapter() {
@@ -584,14 +595,14 @@ public class DocumentWrapperUI {
 
         a.findViewById(R.id.toPage).setOnClickListener(toPage);
 
-        crop = a.findViewById(R.id.crop);
+        crop = (ImageView) a.findViewById(R.id.crop);
         crop.setOnClickListener(onCrop);
 
         if (AppState.get().isCut) {
             crop.setVisibility(View.GONE);
         }
 
-        cut = a.findViewById(R.id.cut);
+        cut = (ImageView) a.findViewById(R.id.cut);
         cut.setOnClickListener(onCut);
 
         View prefTop = a.findViewById(R.id.prefTop);
@@ -706,6 +717,7 @@ public class DocumentWrapperUI {
                     }
                 }
             }
+
         });
         TintUtil.setTintText(bookName);
         TintUtil.setTintImage(textToSpeachTop);
@@ -1217,7 +1229,9 @@ public class DocumentWrapperUI {
 
         @Override
         public void onClick(final View arg0) {
+            AppState.get().isCrop = !AppState.get().isCrop;
             controller.onCrop();
+            updateUI();
 
         }
     };
@@ -1242,6 +1256,8 @@ public class DocumentWrapperUI {
             controller.onCrop();
             controller.updateRendering();
             controller.alignDocument();
+
+            updateUI();
 
         }
     };

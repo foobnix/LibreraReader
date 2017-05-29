@@ -33,6 +33,8 @@ public class TintUtil {
     private static List<GradientDrawable> drawableFill = new ArrayList<GradientDrawable>();
     private static List<View> drawables1 = new ArrayList<View>();
 
+    public static int COLOR_TINT_GRAY = Color.parseColor("#009688");
+
     static Random random = new Random();
     public static int randomColor() {
         return Color.HSVToColor(new float[] { random.nextInt(360), random.nextFloat(), (3f + random.nextInt(4)) / 10f });

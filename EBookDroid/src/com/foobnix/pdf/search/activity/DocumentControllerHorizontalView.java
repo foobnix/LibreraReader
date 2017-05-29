@@ -123,6 +123,7 @@ public abstract class DocumentControllerHorizontalView extends DocumentControlle
             LOG.d("MATRIX", "READ", bookPath.hashCode() + "", PageImageState.get().getMatrixAsString());
 
             AppState.get().isCut = SettingsManager.getBookSettings(bookPath).splitPages;
+            AppState.get().isCrop = SettingsManager.getBookSettings(bookPath).cropPages;
         }
 
         FileMetaCore.checkOrCreateMetaInfo(activity);
