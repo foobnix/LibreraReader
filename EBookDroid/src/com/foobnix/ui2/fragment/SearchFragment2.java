@@ -57,6 +57,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 public class SearchFragment2 extends UIFragment<FileMeta> {
+    public static int NONE = -1;
 
     FastScrollRecyclerView recyclerView;
 
@@ -72,7 +73,7 @@ public class SearchFragment2 extends UIFragment<FileMeta> {
     public static List<FileMeta> itemsMeta = new ArrayList<FileMeta>();
     final Set<String> autocomplitions = new HashSet<String>();
     public int prevLibModeFileMeta = AppState.MODE_GRID;
-    public int prevLibModeAuthors = AppState.MODE_AUTHORS;
+    public int prevLibModeAuthors = AppState.MODE_LIST;
     public int rememberPos = 0;
 
     @Override
@@ -505,8 +506,8 @@ public class SearchFragment2 extends UIFragment<FileMeta> {
     private void popupMenu(final ImageView onGridList) {
         PopupMenu p = new PopupMenu(getActivity(), onGridList);
         List<Integer> names = Arrays.asList(R.string.list, R.string.grid, R.string.cover, R.string.author, R.string.genre, R.string.series);
-        final List<Integer> icons = Arrays.asList(R.drawable.glyphicons_114_justify, R.drawable.glyphicons_156_show_big_thumbnails, R.drawable.glyphicons_157_show_thumbnails, R.drawable.glyphicons_4_user,
-                R.drawable.glyphicons_66_tag, R.drawable.glyphicons_710_list_numbered);
+        final List<Integer> icons = Arrays.asList(R.drawable.glyphicons_114_justify, R.drawable.glyphicons_156_show_big_thumbnails, R.drawable.glyphicons_157_show_thumbnails, R.drawable.glyphicons_4_user, R.drawable.glyphicons_66_tag,
+                R.drawable.glyphicons_710_list_numbered);
         final List<Integer> actions = Arrays.asList(AppState.MODE_LIST, AppState.MODE_GRID, AppState.MODE_COVERS, AppState.MODE_AUTHORS, AppState.MODE_GENRE, AppState.MODE_SERIES);
 
         for (int i = 0; i < names.size(); i++) {
@@ -544,9 +545,11 @@ public class SearchFragment2 extends UIFragment<FileMeta> {
             return false;
         }
         if (recyclerView.getAdapter() instanceof FileMetaAdapter) {
-            if (TxtUtils.isEmpty(searchEditText.getText().toString())) {
+            String searchText = searchEditText.getText().toString();
+            if (TxtUtils.isEmpty(searchText)) {
                 return false;
             }
+
             searchEditText.setText("");
             AppState.get().libraryMode = prevLibModeAuthors;
             onGridList();
