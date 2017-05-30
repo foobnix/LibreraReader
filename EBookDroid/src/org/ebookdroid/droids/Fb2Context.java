@@ -32,7 +32,7 @@ public class Fb2Context extends PdfContext {
         }
 
         String outName;
-        if (cacheFile.isFile()) {
+        if (false && cacheFile.isFile()) {
             outName = cacheFile.getPath();
         } else {
             outName = cacheFile.getPath();

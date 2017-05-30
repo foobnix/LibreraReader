@@ -1,6 +1,7 @@
 package com.foobnix.hypen;
 
 import java.util.List;
+import java.util.StringTokenizer;
 
 public class HypenUtils {
 
@@ -21,16 +22,24 @@ public class HypenUtils {
         }
         input = input.replace("<", " <").replace(">", "> ").replace("\u00A0", " ");
 
-        String split[] = input.split(" ");
+        StringTokenizer split = new StringTokenizer(input, " ", true);
         StringBuilder res = new StringBuilder();
-        for (String w : split) {
-            if (w.length() <= 3) {
-                res.append(w + " ");
+
+        while (split.hasMoreTokens()) {
+            String w = split.nextToken();
+
+            if (w.equals(" ")) {
+                res.append(" ");
                 continue;
             }
 
-            if (w.contains("<") || w.contains(">")) {// w.contains("-") ||
-                res.append(w + " ");
+            if (w.length() <= 3) {
+                res.append(w);
+                continue;
+            }
+
+            if (w.contains("<") || w.contains(">")) {
+                res.append(w);
                 continue;
             }
 
@@ -59,14 +68,11 @@ public class HypenUtils {
             if (endWithOther) {
                 result = result + String.valueOf(last);
             }
-
-            res.append(result + " ");
+            res.append(result);
         }
 
         String result = res.toString();
-        result = result.replace(" <", "<").replace("> ", ">");// .replace("]
-                                                                                                  // ",
-
+        result = result.replace(" <", "<").replace("> ", ">");
         return result;
     }
 

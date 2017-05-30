@@ -149,7 +149,6 @@ public class Fb2Extractor extends BaseExtractor {
         return info;
     }
 
-
     @Override
     public EbookMeta getBookMetaInformation(String inputFile) {
         try {
@@ -380,7 +379,8 @@ public class Fb2Extractor extends BaseExtractor {
                     if (!isFindBodyEnd) {
                         line = line.replace("&nbsp;", " ");
                         line = HypenUtils.applyHypnes(line);
-                        line = line.trim();
+                        // line = line.trim();
+
                     }
                 }
                 writer.print(line);
