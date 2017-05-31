@@ -485,7 +485,7 @@ public class BrowseFragment2 extends UIFragment<FileMeta> {
         }
 
         if (AppState.get().broseMode == AppState.MODE_COVERS) {
-            int num = Dips.screenWidthDP() / AppState.get().coverBigSize;
+            int num = Math.max(1,Dips.screenWidthDP() / AppState.get().coverBigSize);
             RecyclerView.LayoutManager mGridManager = new GridLayoutManager(getActivity(), num);
             recyclerView.setLayoutManager(mGridManager);
 
@@ -494,7 +494,7 @@ public class BrowseFragment2 extends UIFragment<FileMeta> {
         }
 
         if (AppState.get().broseMode == AppState.MODE_GRID) {
-            int num = Dips.screenWidthDP() / AppState.get().coverBigSize;
+            int num = Math.max(1, Dips.screenWidthDP() / AppState.get().coverBigSize);
             RecyclerView.LayoutManager mGridManager = new GridLayoutManager(getActivity(), num);
             recyclerView.setLayoutManager(mGridManager);
 

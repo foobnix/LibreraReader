@@ -398,6 +398,8 @@ public class BookCSS {
         builder.append(String.format("empty-line{padding-top:%s;}", em(emptyLine)));
         builder.append("epigraph{text-align:right; margin-left:2em;font-style: italic;}");
         builder.append("text-author{font-style: italic;font-weight: bold;}");
+        builder.append("p>image{display:block;}");
+
         // FB2 END
 
         builder.append("p,div,body{");

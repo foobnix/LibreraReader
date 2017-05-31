@@ -1769,7 +1769,7 @@ public class DragingDialogs {
                 });
 
                 final CustomSeek flippingInterval = (CustomSeek) inflate.findViewById(R.id.flippingInterval);
-                flippingInterval.init(1, 120, AppState.get().flippingInterval);
+                flippingInterval.init(1, 240, AppState.get().flippingInterval);
                 flippingInterval.setOnSeekChanged(new IntegerResponse() {
 
                     @Override

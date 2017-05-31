@@ -57,6 +57,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 public class SearchFragment2 extends UIFragment<FileMeta> {
+
     public static int NONE = -1;
 
     FastScrollRecyclerView recyclerView;
@@ -73,7 +74,7 @@ public class SearchFragment2 extends UIFragment<FileMeta> {
     public static List<FileMeta> itemsMeta = new ArrayList<FileMeta>();
     final Set<String> autocomplitions = new HashSet<String>();
     public int prevLibModeFileMeta = AppState.MODE_GRID;
-    public int prevLibModeAuthors = AppState.MODE_LIST;
+    public int prevLibModeAuthors = NONE;
     public int rememberPos = 0;
 
     @Override
@@ -98,7 +99,7 @@ public class SearchFragment2 extends UIFragment<FileMeta> {
             recyclerView.setAdapter(searchAdapter);
 
         } else if (AppState.get().libraryMode == AppState.MODE_COVERS || AppState.get().libraryMode == AppState.MODE_GRID) {
-            int num = Dips.screenWidthDP() / AppState.get().coverBigSize;
+            int num = Math.max(1, Dips.screenWidthDP() / AppState.get().coverBigSize);
             RecyclerView.LayoutManager mGridManager = new GridLayoutManager(getActivity(), num);
             recyclerView.setLayoutManager(mGridManager);
 
@@ -551,6 +552,9 @@ public class SearchFragment2 extends UIFragment<FileMeta> {
             }
 
             searchEditText.setText("");
+            if (prevLibModeAuthors == NONE) {
+                prevLibModeAuthors = prevLibModeFileMeta;
+            }
             AppState.get().libraryMode = prevLibModeAuthors;
             onGridList();
             searchAndOrderAsync();

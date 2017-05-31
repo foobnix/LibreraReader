@@ -117,6 +117,16 @@ public class IMG {
         lp.height = (int) (lp.width * 1.5);
     }
 
+    public static void updateImageSizeBig(View imageView, int sizeDP) {
+        if (imageView == null || imageView.getLayoutParams() == null) {
+            return;
+        }
+
+        LayoutParams lp = imageView.getLayoutParams();
+        lp.width = Dips.dpToPx(sizeDP);
+        lp.height = (int) (lp.width * 1.5);
+    }
+
     public static int alphaColor(int persent, String color) {
         try {
             int parseColor = Color.parseColor(color);

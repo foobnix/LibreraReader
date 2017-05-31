@@ -127,7 +127,7 @@ public class PrefFragment2 extends UIFragment {
 
         onTintChanged();
 
-        int max = Dips.pxToDp(Dips.screenMinWH() / 2) - 2 * 4;
+        final int max = Dips.pxToDp(Dips.screenMinWH() / 2) - 2 * 4;
 
         CustomSeek coverSmallSize = (CustomSeek) inflate.findViewById(R.id.coverSmallSize);
         coverSmallSize.init(40, max, AppState.get().coverSmallSize);
@@ -143,7 +143,7 @@ public class PrefFragment2 extends UIFragment {
         });
 
         final CustomSeek coverBigSize = (CustomSeek) inflate.findViewById(R.id.coverBigSize);
-        coverBigSize.init(40, max, AppState.get().coverBigSize);
+        coverBigSize.init(40, Math.max(max, AppState.get().coverBigSize), AppState.get().coverBigSize);
         coverBigSize.setOnSeekChanged(new IntegerResponse() {
 
             @Override
@@ -170,12 +170,14 @@ public class PrefFragment2 extends UIFragment {
                         @Override
                         public boolean onMenuItemClick(MenuItem item) {
                             int result = Dips.screenWidthDP() / k - 8;
-                            coverBigSize.reset(result);
+
                             TempHolder.listHash++;
                             AppState.get().coverBigSize = result;
 
                             columsCount.setText("" + k);
                             TxtUtils.underlineTextView(columsCount);
+
+                            coverBigSize.init(40, Math.max(max, AppState.get().coverBigSize), AppState.get().coverBigSize);
                             return false;
                         }
                     });

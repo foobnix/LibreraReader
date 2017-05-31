@@ -334,7 +334,7 @@ public class AppState {
     public boolean isStarsInWidget = false;
 
     public boolean isCropBookCovers = true;
-    public boolean isBorderAndShadow = true;
+    public boolean isBorderAndShadow = false;
 
     public boolean isBrowseImages = false;
 

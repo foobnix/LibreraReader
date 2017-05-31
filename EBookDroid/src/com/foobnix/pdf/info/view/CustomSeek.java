@@ -95,6 +95,12 @@ public class CustomSeek extends FrameLayout {
         init(min, max, current);
     }
 
+    public void setMax(int max) {
+        this.max = max;
+        distance = max - min;
+        seek.setMax(distance);
+    }
+
     public void init(final int min, int max, int current) {
         seek.setOnSeekBarChangeListener(null);
         this.min = min;

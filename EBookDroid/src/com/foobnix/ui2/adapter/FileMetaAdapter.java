@@ -47,6 +47,7 @@ public class FileMetaAdapter extends AppRecycleAdapter<FileMeta, RecyclerView.Vi
 
     public static final int TEMP_VALUE_NONE = 0;
     public static final int TEMP_VALUE_FOLDER_PATH = 1;
+    public static final int TEMP_VALUE_STAR_GRID_ITEM = 2;
     public int tempValue = TEMP_VALUE_NONE;
 
     public class FileMetaViewHolder extends RecyclerView.ViewHolder {
@@ -213,6 +214,7 @@ public class FileMetaAdapter extends AppRecycleAdapter<FileMeta, RecyclerView.Vi
             adapter.setOnSeriesClickListener(onSeriesClickListener);
 
             adapter.setAdapterType(FileMetaAdapter.ADAPTER_GRID);
+            adapter.tempValue = TEMP_VALUE_STAR_GRID_ITEM;
             holder.recyclerView.setAdapter(adapter);
 
             adapter.getItemsList().clear();
@@ -337,10 +339,15 @@ public class FileMetaAdapter extends AppRecycleAdapter<FileMeta, RecyclerView.Vi
             holder.path.setVisibility(View.GONE);
             holder.size.setVisibility(View.GONE);
 
-            IMG.updateImageSizeBig((View) holder.image.getParent().getParent());
+            int sizeDP = AppState.get().coverBigSize;
+            if (tempValue == TEMP_VALUE_STAR_GRID_ITEM) {
+                sizeDP = (int) (AppState.get().coverSmallSize * 1.1f);
+            }
+
+            IMG.updateImageSizeBig((View) holder.image.getParent().getParent(), sizeDP);
 
             LayoutParams lp = holder.image.getLayoutParams();
-            lp.width = Dips.dpToPx(AppState.get().coverBigSize);
+            lp.width = Dips.dpToPx(sizeDP);
 
             if (AppState.get().isCropBookCovers) {
                 lp.height = (int) (lp.width * 1.5);

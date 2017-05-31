@@ -128,7 +128,7 @@ public class RecentFragment2 extends UIFragment<FileMeta> {
         }
 
         if (AppState.get().recentMode == AppState.MODE_COVERS) {
-            int num = Dips.screenWidthDP() / AppState.get().coverBigSize;
+            int num = Math.max(1, Dips.screenWidthDP() / AppState.get().coverBigSize);
             RecyclerView.LayoutManager mGridManager = new GridLayoutManager(getActivity(), num);
             recyclerView.setLayoutManager(mGridManager);
 
@@ -137,7 +137,7 @@ public class RecentFragment2 extends UIFragment<FileMeta> {
         }
 
         if (AppState.get().recentMode == AppState.MODE_GRID) {
-            int num = Dips.screenWidthDP() / AppState.get().coverBigSize;
+            int num = Math.max(1, Dips.screenWidthDP() / AppState.get().coverBigSize);
             RecyclerView.LayoutManager mGridManager = new GridLayoutManager(getActivity(), num);
             recyclerView.setLayoutManager(mGridManager);
             recentAdapter.setAdapterType(FileMetaAdapter.ADAPTER_GRID);
