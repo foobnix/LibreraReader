@@ -1,10 +1,7 @@
 
-* Zrýchlené načítanie stránok v režimeJednoduché 
-* Automatické prepínanie stránok v režimeJednoduchý režim so zadaným intervalom 
-* V ďalších nastaveniach sa časovač podobá odpočinku 
-* Možnosť zmeniť objednávku Priezvisko-Meno autora v knižnici 
-* Vylepšené dialógové okno s poznámkami 
-* Schopnosť prispôsobiť zarovnanie stredu pre dvojité kliknutie 
-* Hľadanie slov v mnohých dokumentoch (z hlavnej tabuľky nastavení programu) 
-* Ukončite program z akejkoľvek obrazovky dlhým stlačením tlačidla späť 
-* Prispôsobte si profily farby Text a pozadie pre nočné a denné režimy
+* Zrýchlené načítanie stránok vJednoduchom režime pre PDF a iné formáty 
+* Zostávajúce priečinky s knihami 
+* Vylepšené dialógové okno s poznámkami pre FB2, MOBI a EPUB 
+* Vyhľadávanie slov vo viacerých dokumentoch 
+* Ukončenie programu z akejkoľvek obrazovky dlhým stlačením tlačidla späť 
+* Zlepšenia používateľského rozhrania podľa vašej spätnej väzby

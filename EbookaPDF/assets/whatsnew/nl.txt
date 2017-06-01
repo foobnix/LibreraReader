@@ -1,10 +1,7 @@
 
-* Versnelde laad van pagina’s in eenEasy mode 
-* Automatische pagina wisselen inEasy mode met een opgegeven interval 
-* In aanvullende instellingen lijkt de timer op een rustpauze 
-* Mogelijkheid om de bestelling te veranderen Achternaam-Naam van de auteur in de bibliotheek 
-* Verbeterde notitiesdialoog 
-* De mogelijkheid om de uitlijning van het middel voor een dubbelklik te aanpassen 
-* Word zoeken in veel documenten (vanaf het hoofdprogramma tabblad Programma) 
-* Sluit het programma uit elk scherm door lang op de knop terug te drukken. 
-* Pas uw profielen aan voor de kleur van Tekst en achtergrond voor nacht- en dagmodi
+* Versnelde laden van pagina’s in eenEasy mode voor PDF en andere formaten 
+* Starred mappen met boeken 
+* Verbeterde notities dialoog voor FB2, MOBI en EPUB 
+* Word zoeken in meerdere documenten 
+* Sluit het programma uit elk scherm door lang op de knop terug te drukken 
+* UI Verbeteringen door uw feedback

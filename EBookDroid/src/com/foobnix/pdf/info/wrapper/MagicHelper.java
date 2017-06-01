@@ -54,7 +54,7 @@ public class MagicHelper {
     public static int darkerColor2(int color) {
         float[] hsv = new float[3];
         Color.colorToHSV(color, hsv);
-        hsv[2] -= 0.2f;
+        hsv[2] -= 0.3f;
         return Color.HSVToColor(hsv);
     }
 

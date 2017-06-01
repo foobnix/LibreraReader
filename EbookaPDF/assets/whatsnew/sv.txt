@@ -1,10 +1,7 @@
 
-* Accelererad laddning av sidor i ettEnkelt läge 
-* Automatisk sida bläddrar iEnkelt läge med ett angivet intervall 
-* I ytterligare inställningar liknar timern en vilopaus 
-* Möjlighet att ändra ordningen Efternamn-Författarens namn i biblioteket 
-* Förbättrad anteckningsdialog 
-* Möjligheten att justera mittlinjen för ett dubbelklick 
-* Ordsökning i många dokument (från fliken Programinställningar) 
-* Avsluta programmet från vilken skärm som helst genom att länge trycka på knappen tillbaka 
-* Anpassa dina profiler för färgen på Text och bakgrund för natt och daglägen
+* Snabbare inläsning av sidor i ettEnkelt läge för PDF och andra format 
+* Stjärnriga mappar med böcker 
+* Förbättrad anteckningsdialog för FB2, MOBI och EPUB 
+* Word-sökning i flera dokument 
+* Avsluta programmet från vilken skärm som helst med lång tryckning på knappen tillbaka 
+* UI förbättringar genom din feedback

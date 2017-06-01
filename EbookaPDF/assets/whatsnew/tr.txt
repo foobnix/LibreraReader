@@ -1,10 +1,8 @@
 
-*Kolay mod daki sayfaların hızlandırılmış yüklenmesi 
-* Belirli bir aralıklaKolay mod da otomatik sayfa çevirme 
-* Ek ayarlarda zamanlayıcı, dinlenme molasına benzer 
-* Siparişi değiştirmek imkanı Soyadı-Kitaplığın yazarının adı 
-* Geliştirilmiş notlar iletişim kutusu 
-* Bir çift tıklama için orta hizalamayı ayarlama yeteneği (ana program ayarları sekmesinden) birçok belgede 
-* Kelime arama 
-* Herhangi bir ekrandan programdan çıkma düğmeye arka tarafından basarak geri 
-* Renk profillerini özelleştirme Gece ve gündüz modları için metin ve arka plan
+* PDF ve diğer formatlar içinKolay mod daki sayfaların hızlandırılmış yüklenmesi 
+* Kitaplarla yıldızlı klasörler 
+* FB2, MOBI ve EPUB için geliştirilmiş notlar iletişim kutusu 
+* Birden çok belgede Word arama 
+* Herhangi bir ekrandan programdan çıkma, düğmeye geri uzun basma 
+* Geri bildiriminizle 
+* Kullanıcı Arayüzü İyileştirmeleri

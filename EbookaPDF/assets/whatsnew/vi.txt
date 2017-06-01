@@ -1,10 +1,7 @@
 
-* Tăng tốc tải các trang trong chế độDễ dàng 
-* Tự động lật trang trong chế độDễ dàng với khoảng thời gian quy định 
-* Trong cài đặt bổ sung, bộ đếm thời gian giống như nghỉ ngơi 
-* Có thể thay đổi thứ tự Họ-Tên của tác giả trong thư viện 
-* Cải thiện hộp thoại ghi chú 
-* Khả năng điều chỉnh trung tâm căn cứ cho một nhấp đúp chuột 
-* Tìm kiếm từ trong nhiều tài liệu (từ tab cài đặt chương trình chính) 
-* Thoát khỏi chương trình từ bất kỳ màn hình bằng cách nhấn lâu vào nút trở lại 
-* Tùy chỉnh cấu hình của bạn cho màu sắc của Văn bản và nền cho các chế độ ban đêm và ban ngày
+* Tăng tốc độ tải trang trong chế độDễ dàng cho PDF và các định dạng khác 
+* Thư mục có gắn dấu sao với sách 
+* Hộp thoại ghi chú cải tiến cho FB2, MOBI và EPUB 
+* Tìm kiếm từ trong nhiều tài liệu 
+* Thoát khỏi chương trình từ bất kỳ màn hình nào bằng cách nhấn nút lâu 
+* Giao diện người dùng cải tiến theo phản hồi của bạn

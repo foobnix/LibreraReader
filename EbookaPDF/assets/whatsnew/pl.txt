@@ -1,10 +1,6 @@
 
-* Przyspieszone ładowanie stron wtrybie prostym 
-* Automatyczna strona odwracająca się w trybieEasy z określonym przedziałem 
-* W dodatkowych ustawieniach zegar przypomina odpoczynek 
-* Możliwość zmiany kolejności Nazwisko - imię i nazwisko autora w bibliotece 
-* Ulepszone okna dialogowe notatek 
-* Możliwość wyrównywania środka w celu podwójnego kliknięcia 
-* Wyszukiwanie wyrazów w wielu dokumentach (z głównej karty ustawień programu) 
-* Wyjście z dowolnego ekranu na dowolnym ekranie przez długie naciśnięcie przycisku Powrót 
-* Dostosowywanie profili do koloru Tekst i tło dla trybu nocnego i dnia
+* Przyspieszone wczytywanie stron w trybieEasy mode w formacie PDF i innych formatach 
+* Foldery oznaczone gwiazdką z książkami 
+* Ulepszone okna dialogowe notatek dla FB2, MOBI i EPUB 
+* Wyszukiwanie w wielu dokumentach 
+* Wyjście z dowolnego ekranu na dowolny ekran przez długie naciśnięcie przycisku Ulepszenia interfejsu użytkownika za pomocĘ ... opinii

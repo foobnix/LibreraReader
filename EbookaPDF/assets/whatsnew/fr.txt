@@ -1,10 +1,7 @@
 
-* Chargement accéléré des pages dans unmode Facile 
-* Lancement automatique de la page en modeFacile avec un intervalle spécifié 
-* Dans des paramètres supplémentaires, la minuterie ressemble à un repos 
-* Possibilité de modifier l’ordre Nom-Nom de l’auteur dans la bibliothèque 
-* Boîte de dialogue améliorée des notes 
-* La possibilité de régler l’alignement central pour un double clic 
-* Recherche par mot dans de nombreux documents (à partir de l’onglet principal des paramètres du programme) 
-* Quittez le programme de n’importe quel écran en appuyant longuement sur le bouton 
-* Personnalisez vos profils pour la couleur de Texte et arrière-plan pour les modes nuit et jour
+* Chargement accéléré des pages dans unMode facile pour le format PDF et autres formats 
+* Dossiers étoilés avec des livres 
+* Boîte de dialogue améliorée pour les notes pour FB2, MOBI et EPUB 
+* Recherche par mot dans plusieurs documents 
+* Quittez le programme de n’importe quel écran en appuyant longuement sur le bouton arrière 
+* UI Améliorations par vos commentaires

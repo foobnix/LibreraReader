@@ -1,10 +1,7 @@
 
-* Încărcarea accelerată a paginilor într-unmod ușor 
-* Pagină automată în modulEasy cu un interval specificat 
-* În setări suplimentare, timerul seamănă cu o pauză de odihnă 
-* Posibilitatea de a schimba ordinea Prenume-Numele autorului în bibliotecă 
-* Dialogul îmbunătățit de note 
-* Abilitatea de a ajusta alinierea centrului pentru un dublu clic 
-* Căutarea în Word în multe documente (din fila principală a setărilor programului) 
-* Ieșiți programul de pe orice ecran apăsând lung butonul înapoi 
-* Personalizați-vă profilurile pentru culoarea Text și fundal pentru modurile de noapte și zi
+* Încărcare accelerată a paginilor într-un modușor pentru PDF și alte formate 
+* Dosare cu cărți de poștă electronică cu cărți 
+* Dialog note îmbunătățite pentru FB2, MOBI și EPUB 
+* Căutarea în documente în mai multe documente 
+* Ieșirea programului din orice ecran prin apăsarea lungă a butonului înapoi 
+* Îmbunătățiri ale UI prin feedbackul dvs.

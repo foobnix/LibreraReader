@@ -1,10 +1,7 @@
 
-* Carregamento acelerado de páginas em ummodo fácil 
-* página automática lançando emmodo fácil com um intervalo especificado 
-* Em configurações adicionais, o temporizador se assemelha a um descanso 
-* Possibilidade de alterar a ordem Apelido-Nome do autor na biblioteca 
-* Diálogo de notas melhorou 
-* A capacidade de ajustar o alinhamento de centro para um clique duplo 
-* pesquisa de Word em muitos documentos (a partir da guia de configurações de programa principal) 
-* Sair do programa de qualquer tela pressionando o botão de volta 
-* Personalize seus perfis para a cor de Texto e fundo para modos de noite e dia
+* Carregamento acelerado de páginas em umModo Fácil para PDF e outros formatos 
+* Pastas destacadas com livros 
+* Caixa de diálogo de notas melhorada para FB2, MOBI e EPUB 
+* Pesquisa de texto em vários documentos 
+* Sair do programa de qualquer tela pressionando longamente o botão de volta 
+* UI Melhorias por seus comentários

@@ -1,10 +1,7 @@
 
-* Kasi upakiaji wa kurasa katikamode Easy 
-* Automatic ukurasa flipping katikamode Easy kwa muda maalum 
-* Katika mipangilio, timer inafanana wengine kuvunja 
-* Uwezekano wa kubadilisha utaratibu Surname-Jina la mwandishi katika maktaba 
-* Kuboresha maelezo dialog 
-* uwezo wa kurekebisha mfungamano kituo cha bofya mara mbili 
-* Neno utafutaji katika hati nyingi (kutoka mipangilio kuu mpango tab) 
-* Toka mpango kutoka screen yoyote kwa muda mrefu kubwa ya kifungo nyuma 
-* Customize maelezo yako kwa ajili ya rangi ya maandishi na background kwa usiku na siku ya njia
+* Kasi upakiaji wa kurasa katikamode Easy kwa ajili ya PDF na miundo mingine 
+* folders zenye nyota na vitabu 
+* maelezo Kuboresha kidirisha kwa FB2, MOBI na EPUB 
+* Neno search katika hati moja 
+* Toka mpango kutoka screen yoyote kwa vyombo vya habari kwa muda mrefu ya kifungo nyuma 
+* UI Maboresho na maoni yako

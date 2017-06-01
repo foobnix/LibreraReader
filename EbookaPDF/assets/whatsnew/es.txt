@@ -1,10 +1,7 @@
 
-* Carga acelerada de páginas en unmodo fácil 
-* Paje automático de página enModo fácil con un intervalo especificado 
-* En ajustes adicionales, el temporizador se asemeja a un descanso 
-* Posibilidad de cambiar el orden Apellido-Nombre del autor en la biblioteca 
-* El diálogo de notas mejorado 
-* La capacidad de ajustar la alineación de centro para un doble clic 
-* Búsqueda de palabras en muchos documentos (desde la pestaña de configuración de programa principal) 
-* Salir del programa de cualquier pantalla por largo presionando el botón de nuevo 
-* Personalizar sus perfiles para el color de Texto y fondo para los modos de noche y día
+* Carga acelerada de páginas en unmodo fácil para PDF y otros formatos 
+* Carpetas con favoritos con libros 
+* Diálogo de notas mejorado para FB2, MOBI y EPUB 
+* Búsqueda de palabras en varios documentos 
+* Salga del programa desde cualquier pantalla presionando largo de botón de nuevo 
+* Mejoras en la interfaz de usuario por sus comentarios

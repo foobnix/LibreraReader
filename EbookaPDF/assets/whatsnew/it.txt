@@ -1,10 +1,7 @@
 
-* Accelerato caricamento delle pagine in un modosemplice 
-* Pagamento automatico della pagina in modalitàEasy con un intervallo specificato 
-* In altre impostazioni, il timer assomiglia ad una pausa di riposo 
-* Possibilità di cambiare l’ordine Cognome-Nome dell’autore nella libreria 
-* Miglioramento della finestra di dialogo delle note 
-* Possibilità di regolare l’allineamento del centro per un doppio clic 
-* Ricerca di parole in molti documenti (dalla scheda impostazioni principali del programma) 
-* Uscire dal programma da qualsiasi schermata premendo a lungo il pulsante indietro 
-* Personalizzare i profili per il colore Testo e sfondo per le modalità notte e giorno
+* Accelerato caricamento delle pagine in un modoEasy per PDF e altri formati 
+* Cartelle con i libri asterisco 
+* Miglioramento delle note di dialogo per FB2, MOBI e EPUB 
+* Ricerca di parole in più documenti 
+* Uscire dal programma da qualsiasi schermo premendo a lungo il pulsante indietro 
+* Miglioramenti dell’interfaccia utente tramite i tuoi commenti
