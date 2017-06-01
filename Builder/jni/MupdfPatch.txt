@@ -27,9 +27,9 @@ source/html/css-apply.c
 	}else if(image_w < max_w && image_h < max_h/7){//line images
 		xs = max_w / image_w;
 		ys = max_h / image_h;
-	}else if(image_w < max_w/2.5 && image_h < max_h/4){//line images
-		xs = 2.5;
-		ys = 2.5;	
+	}else if(image_w < max_w/2 && image_h < max_h/3){//line images
+		xs = 2;
+		ys = 2;	
 	}
 
 //stext-output.c

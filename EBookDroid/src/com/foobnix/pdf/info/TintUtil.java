@@ -159,6 +159,17 @@ public class TintUtil {
     }
 
     @SuppressLint("NewApi")
+    public static void setTintBgSimple(View txtView, int alpha, int color) {
+        ColorDrawable colorDrawable = new ColorDrawable(color);
+        colorDrawable.setAlpha(alpha);
+        if (Build.VERSION.SDK_INT >= 16) {
+            txtView.setBackground(colorDrawable.getCurrent());
+        } else {
+            txtView.setBackgroundDrawable(colorDrawable);
+        }
+    }
+
+    @SuppressLint("NewApi")
     public static void setTintBg(View txtView) {
         if (txtView == null || txtView.getBackground() == null) {
             return;

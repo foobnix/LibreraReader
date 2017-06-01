@@ -51,6 +51,20 @@ public class MagicHelper {
         return Color.HSVToColor(hsv);
     }
 
+    public static int darkerColor2(int color) {
+        float[] hsv = new float[3];
+        Color.colorToHSV(color, hsv);
+        hsv[2] -= 0.2f;
+        return Color.HSVToColor(hsv);
+    }
+
+    public static int ligherColor2(int color) {
+        float[] hsv = new float[3];
+        Color.colorToHSV(color, hsv);
+        hsv[2] += 0.2f;
+        return Color.HSVToColor(hsv);
+    }
+
     public static ByteArrayInputStream scaleCenterCrop(byte[] source, int w, int h) {
         Bitmap decodeStream = BitmapFactory.decodeStream(new ByteArrayInputStream(source));
 

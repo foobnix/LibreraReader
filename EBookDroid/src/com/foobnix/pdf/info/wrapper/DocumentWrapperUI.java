@@ -737,7 +737,10 @@ public class DocumentWrapperUI {
 
         // bottom 1
         TintUtil.setStatusBarColor(a);
-        TintUtil.setTintBgSimple(underProgress, TRANSPARENT_UI);
+
+        int color = AppState.get().isInvert ? MagicHelper.darkerColor2(MagicHelper.getBgColor()) : MagicHelper.ligherColor2(MagicHelper.getBgColor());
+
+        TintUtil.setTintBgSimple(underProgress, TRANSPARENT_UI, color);
         TintUtil.setTintBgSimple(a.findViewById(R.id.menuLayout), TRANSPARENT_UI);
         TintUtil.setTintBgSimple(a.findViewById(R.id.document_footer), TRANSPARENT_UI);
         TintUtil.setBackgroundFillColorBottomRight(lirbiLogo, ColorUtils.setAlphaComponent(TintUtil.color, TRANSPARENT_UI));
