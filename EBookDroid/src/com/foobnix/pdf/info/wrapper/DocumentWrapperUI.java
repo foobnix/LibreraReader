@@ -16,7 +16,6 @@ import com.foobnix.android.utils.TxtUtils;
 import com.foobnix.pdf.info.ADS;
 import com.foobnix.pdf.info.AppsConfig;
 import com.foobnix.pdf.info.DictsHelper;
-import com.foobnix.pdf.info.MainBrowserActivity;
 import com.foobnix.pdf.info.R;
 import com.foobnix.pdf.info.TTSModule;
 import com.foobnix.pdf.info.TintUtil;
@@ -320,14 +319,12 @@ public class DocumentWrapperUI {
             controller.onCloseActivity();
 
             if (isLong && !MainTabs2.isInStack) {
-                final Intent intent = new Intent(a, MainTabs2.class);
-                a.startActivity(intent);
-                a.overridePendingTransition(0, 0);
+                MainTabs2.startActivity(a);
             }
         }
     }
 
-    public void closeAndRunList1(final boolean isLong) {
+    private void closeAndRunList1(final boolean isLong) {
         if (!MainTabs2.isInStack) {
             AlertDialog.Builder dialog = new AlertDialog.Builder(a);
             CharSequence items[] = new CharSequence[] { "Return to PDF", "Return to app" };
@@ -339,7 +336,7 @@ public class DocumentWrapperUI {
                         titleBar.removeCallbacks(null);
                         controller.onCloseActivity();
 
-                        final Intent intent = new Intent(a, MainBrowserActivity.class);
+                        final Intent intent = new Intent(a, MainTabs2.class);
                         a.startActivity(intent);
                         a.overridePendingTransition(0, 0);
                     }

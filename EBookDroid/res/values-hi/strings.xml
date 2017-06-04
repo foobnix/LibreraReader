@@ -334,7 +334,6 @@
    <string name="incorrect_value">गलत मान</string>
    <string name="search_in_the_subfolders">सबफ़ोल्डर्स में खोजें</string>
    <string name="document_converter_online_">दस्तावेज़ कनवर्टर (ऑनलाइन)</string>
-   <string name="links_color">लिंक रंग</string>
    <string name="in_the_author_s_name_first_the_surname">लेखक के नाम में, सबसे पहले उपनाम</string>
    <string name="remind_about_rest_every">प्रत्येक को आराम के बारे में याद दिलाएं</string>
    <string name="minutes">मिनट</string>
@@ -345,4 +344,8 @@
    <string name="show_bottom_panel">नीचे पैनल दिखाएं</string>
    <string name="interval_sec_">अंतराल (सेकंड)</string>
    <string name="library_settings">पुस्तकालय सेटिंग</string>
+   <string name="by_name">नाम</string>
+   <string name="opening_the_last_book_when_the_application_starts">एप्लिकेशन को शुरू होने पर अंतिम पुस्तक खोलना</string>
+   <string name="links_color_day">लिंक रंग (दिन)</string>
+   <string name="links_color_night">लिंक रंग (रात)</string>
 </resources>

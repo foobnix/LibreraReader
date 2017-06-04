@@ -334,7 +334,6 @@
    <string name="incorrect_value">Yanlış değer</string>
    <string name="search_in_the_subfolders">Alt klasörlerde ara</string>
    <string name="document_converter_online_">Belge dönüştürücü (çevrimiçi)</string>
-   <string name="links_color">Bağlantı renkleri</string>
    <string name="in_the_author_s_name_first_the_surname">Yazarın adına, önce soyad</string>
    <string name="remind_about_rest_every">Dinlenmek hakkında hatırlat</string>
    <string name="minutes">Dakika</string>
@@ -345,4 +344,8 @@
    <string name="show_bottom_panel">Alt paneli göster</string>
    <string name="interval_sec_">Aralık (sn)</string>
    <string name="library_settings">Kütüphane ayarları</string>
+   <string name="by_name">Isim</string>
+   <string name="opening_the_last_book_when_the_application_starts">Başvuru başladığında son kitabı açma</string>
+   <string name="links_color_day">Bağlantı renkleri (gün)</string>
+   <string name="links_color_night">Bağlantılar rengi (gece)</string>
 </resources>

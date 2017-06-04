@@ -19,6 +19,7 @@ public class CustomColorView extends FrameLayout {
     private TextView text2;
     StringResponse stringResponse;
     private int initColor;
+    private TextView text1;
 
     public CustomColorView(Context context, AttributeSet attrs) {
         super(context, attrs);
@@ -28,7 +29,7 @@ public class CustomColorView extends FrameLayout {
         a.recycle();
 
         View inflate = LayoutInflater.from(context).inflate(R.layout.custom_color_view, this, false);
-        TextView text1 = (TextView) inflate.findViewById(R.id.text1);
+        text1 = (TextView) inflate.findViewById(R.id.text1);
         text2 = (TextView) inflate.findViewById(R.id.text2);
 
         text1.setText(name);
@@ -51,6 +52,10 @@ public class CustomColorView extends FrameLayout {
         });
 
         addView(inflate);
+    }
+
+    public TextView getText1() {
+        return text1;
     }
 
     public void init(int initColor) {

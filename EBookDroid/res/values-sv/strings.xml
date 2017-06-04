@@ -334,7 +334,6 @@
    <string name="incorrect_value">Felaktigt värde</string>
    <string name="search_in_the_subfolders">Sök i undermapparna</string>
    <string name="document_converter_online_">Dokumentkonverterare (online)</string>
-   <string name="links_color">Länkar färg</string>
    <string name="in_the_author_s_name_first_the_surname">I författarens namn, först efternamnet</string>
    <string name="remind_about_rest_every">Påminner om vila varje</string>
    <string name="minutes">Minuter</string>
@@ -345,4 +344,8 @@
    <string name="show_bottom_panel">Visa bottenpanelen</string>
    <string name="interval_sec_">Intervall (sek)</string>
    <string name="library_settings">Bibliotekets inställningar</string>
+   <string name="by_name">Namn</string>
+   <string name="opening_the_last_book_when_the_application_starts">Öppnar den sista boken när programmet startar</string>
+   <string name="links_color_day">Länkar färg (dag)</string>
+   <string name="links_color_night">Länkar färg (natt)</string>
 </resources>

@@ -334,7 +334,6 @@
    <string name="incorrect_value">Nesprávna hodnota</string>
    <string name="search_in_the_subfolders">Vyhľadávanie v podpriečinkoch</string>
    <string name="document_converter_online_">Konvertor dokumentov (online)</string>
-   <string name="links_color">Farba odkazov</string>
    <string name="in_the_author_s_name_first_the_surname">V názve autora, najprv priezvisko</string>
    <string name="remind_about_rest_every">Pripomínajte si odpočinok každý</string>
    <string name="minutes">Minúty</string>
@@ -345,4 +344,8 @@
    <string name="show_bottom_panel">Zobraziť spodný panel</string>
    <string name="interval_sec_">Interval (sek)</string>
    <string name="library_settings">Nastavenia knižnice</string>
+   <string name="by_name">Názov</string>
+   <string name="opening_the_last_book_when_the_application_starts">Otvorenie poslednej knihy pri spustení aplikácie</string>
+   <string name="links_color_day">Farebné odkazy (deň)</string>
+   <string name="links_color_night">Odkazy farba (noc)</string>
 </resources>

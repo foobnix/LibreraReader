@@ -334,7 +334,6 @@
    <string name="incorrect_value">間違った値</string>
    <string name="search_in_the_subfolders">サブフォルダで検索する</string>
    <string name="document_converter_online_">ドキュメントコンバータ（オンライン）</string>
-   <string name="links_color">リンクの色</string>
    <string name="in_the_author_s_name_first_the_surname">著者の名前では、最初に姓</string>
    <string name="remind_about_rest_every">毎日休息を思い出させる</string>
    <string name="minutes">分</string>
@@ -345,4 +344,8 @@
    <string name="show_bottom_panel">下のパネルを表示</string>
    <string name="interval_sec_">間隔（秒）</string>
    <string name="library_settings">ライブラリ設定</string>
+   <string name="by_name">名</string>
+   <string name="opening_the_last_book_when_the_application_starts">アプリケーションの起動時に最後の本を開く</string>
+   <string name="links_color_day">リンク色（日）</string>
+   <string name="links_color_night">リンクカラー（夜間）</string>
 </resources>

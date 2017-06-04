@@ -15,6 +15,7 @@ import com.foobnix.pdf.info.ExportSettingsManager;
 import com.foobnix.pdf.info.ExtUtils;
 import com.foobnix.pdf.info.FontExtractor;
 import com.foobnix.pdf.info.Urls;
+import com.foobnix.pdf.info.wrapper.AppState;
 import com.foobnix.pdf.info.wrapper.MagicHelper;
 
 import android.content.Context;
@@ -74,7 +75,8 @@ public class BookCSS {
 
     public boolean isAutoHypens;
     public String hypenLang;
-    public String linkColor;
+    public String linkColorDay;
+    public String linkColorNight;
 
     public int spinnerIndex = FONT_NAMES.indexOf(DEFAULT_FONT);
 
@@ -108,7 +110,8 @@ public class BookCSS {
 
         isAutoHypens = sp.getBoolean("isAutoHypens", isAutoHypens);
         hypenLang = sp.getString("hypenLang", hypenLang);
-        linkColor = sp.getString("linkColor", linkColor);
+        linkColorDay = sp.getString("linkColorDay", linkColorDay);
+        linkColorNight = sp.getString("linkColorNight", linkColorNight);
 
     }
 
@@ -147,7 +150,7 @@ public class BookCSS {
         isAutoHypens = Arrays.asList("ru", "uk", "tr").contains(Urls.getLangCode());
         hypenLang = "ru";
 
-        linkColor = "#0066cc";
+        linkColorDay = linkColorNight = "#0066cc";
 
     }
 
@@ -183,7 +186,8 @@ public class BookCSS {
         edit.putInt("documentStyle", documentStyle);
         edit.putBoolean("isAutoHypens", isAutoHypens);
         edit.putString("hypenLang", hypenLang);
-        edit.putString("linkColor", linkColor);
+        edit.putString("linkColorDay", linkColorDay);
+        edit.putString("linkColorNight", linkColorNight);
 
         edit.commit();
     }
@@ -430,7 +434,11 @@ public class BookCSS {
 
         if (documentStyle == STYLES_DOC_AND_USER || documentStyle == STYLES_ONLY_USER) {
 
-            builder.append("a{color:" + linkColor + " !important;}");
+            if (AppState.get().isInvert) {
+                builder.append("a{color:" + linkColorDay + " !important;}");
+            } else {
+                builder.append("a{color:" + linkColorNight + " !important;}");
+            }
 
             // FONTS BEGIN
             if (isFontFileName(normalFont)) {

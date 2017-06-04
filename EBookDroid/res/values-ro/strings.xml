@@ -334,7 +334,6 @@
    <string name="incorrect_value">Valoare incorectă</string>
    <string name="search_in_the_subfolders">Căutați în subfoldere</string>
    <string name="document_converter_online_">Convertor de documente (online)</string>
-   <string name="links_color">Culoare legături</string>
    <string name="in_the_author_s_name_first_the_surname">În numele autorului, mai întâi numele de familie</string>
    <string name="remind_about_rest_every">Amintiți-vă de odihnă în fiecare</string>
    <string name="minutes">Minute</string>
@@ -345,4 +344,8 @@
    <string name="show_bottom_panel">Afișați panoul de jos</string>
    <string name="interval_sec_">Interval (sec)</string>
    <string name="library_settings">Setările bibliotecii</string>
+   <string name="by_name">Nume</string>
+   <string name="opening_the_last_book_when_the_application_starts">Deschiderea ultimei cărți când începe aplicația</string>
+   <string name="links_color_day">Linkuri culori (zi)</string>
+   <string name="links_color_night">Culoare link (noapte)</string>
 </resources>

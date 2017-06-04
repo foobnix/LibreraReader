@@ -334,7 +334,6 @@
    <string name="incorrect_value">Некоректна</string>
    <string name="search_in_the_subfolders">Пошук у вкладених папках</string>
    <string name="document_converter_online_">Конвертер документів (онлайн)</string>
-   <string name="links_color">Колір посилання</string>
    <string name="in_the_author_s_name_first_the_surname">В імені автора \ \'s, перша прізвище</string>
    <string name="remind_about_rest_every">Нагадайте про відпочинок кожен</string>
    <string name="minutes">Хвилин</string>
@@ -345,4 +344,8 @@
    <string name="show_bottom_panel">Показати нижню панель</string>
    <string name="interval_sec_">Інтервал (сек)</string>
    <string name="library_settings">Бібліотека настройки</string>
+   <string name="by_name">Ім\'я</string>
+   <string name="opening_the_last_book_when_the_application_starts">Відкриття останньої книги під час запуску програми</string>
+   <string name="links_color_day">Колір посилання (день)</string>
+   <string name="links_color_night">Колір посилання (ніч)</string>
 </resources>

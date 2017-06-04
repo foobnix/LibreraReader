@@ -638,6 +638,12 @@
                 android:layout_marginLeft="10dip"
                 android:text="@string/music_mode" />
         </LinearLayout>
+        
+        <CheckBox
+                android:id="@+id/isOpenLastBook"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/opening_the_last_book_when_the_application_starts" />
 
         <LinearLayout
             android:layout_width="match_parent"

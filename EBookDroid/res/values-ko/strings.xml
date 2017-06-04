@@ -334,7 +334,6 @@
    <string name="incorrect_value">잘못된 값</string>
    <string name="search_in_the_subfolders">하위 폴더에서 검색</string>
    <string name="document_converter_online_">문서 변환기 (온라인)</string>
-   <string name="links_color">링크 색</string>
    <string name="in_the_author_s_name_first_the_surname">저자의 이름에서 먼저 성</string>
    <string name="remind_about_rest_every">매번 휴식을 상기시킨다.</string>
    <string name="minutes">의사록</string>
@@ -345,4 +344,8 @@
    <string name="show_bottom_panel">하단 패널 표시</string>
    <string name="interval_sec_">간격 (초)</string>
    <string name="library_settings">라이브러리 설정</string>
+   <string name="by_name">이름</string>
+   <string name="opening_the_last_book_when_the_application_starts">응용 프로그램이 시작될 때 마지막 책 열기</string>
+   <string name="links_color_day">링크 색상 (일)</string>
+   <string name="links_color_night">링크 색상 (야간)</string>
 </resources>

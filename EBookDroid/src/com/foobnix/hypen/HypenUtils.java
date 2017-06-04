@@ -72,7 +72,7 @@ public class HypenUtils {
         }
 
         String result = res.toString();
-        result = result.replace(" <", "<").replace("> ", ">");
+        result = result.replace(" <", "<").replace("> ", ">").replace("-" + SHY, "-");
         return result;
     }
 

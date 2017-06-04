@@ -194,11 +194,18 @@
         
         
         <com.foobnix.pdf.info.view.CustomColorView
-            android:id="@+id/linkColor"
+            android:id="@+id/linkColorDay"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="5dip"
-            myseek:text="@string/links_color" />
+            myseek:text="@string/links_color_day" />
+        
+        <com.foobnix.pdf.info.view.CustomColorView
+            android:id="@+id/linkColorNight"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dip"
+            myseek:text="@string/links_color_night" />
         
 
         <TextView

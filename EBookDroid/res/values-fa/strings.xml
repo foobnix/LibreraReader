@@ -334,7 +334,6 @@
    <string name="incorrect_value">مقدار نادرست</string>
    <string name="search_in_the_subfolders">جستجو در پوشه</string>
    <string name="document_converter_online_">تبدیل سند (آنلاین)</string>
-   <string name="links_color">رنگ ها</string>
    <string name="in_the_author_s_name_first_the_surname">در نویسنده \ \'s با نام، برای اولین بار نام خانوادگی</string>
    <string name="remind_about_rest_every">یادآوری در مورد بقیه هر</string>
    <string name="minutes">دقایق</string>
@@ -345,4 +344,8 @@
    <string name="show_bottom_panel">نمایش پانل پایین</string>
    <string name="interval_sec_">فاصله (ثانیه)</string>
    <string name="library_settings">تنظیمات کتابخانه</string>
+   <string name="by_name">نام</string>
+   <string name="opening_the_last_book_when_the_application_starts">باز کردن آخرین کتاب زمانی که برنامه شروع می شود</string>
+   <string name="links_color_day">رنگ ها (روز)</string>
+   <string name="links_color_night">رنگ ها (شب)</string>
 </resources>

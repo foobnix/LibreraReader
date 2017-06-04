@@ -18,7 +18,6 @@ import com.foobnix.pdf.info.AppsConfig;
 import com.foobnix.pdf.info.DictsHelper;
 import com.foobnix.pdf.info.ExtUtils;
 import com.foobnix.pdf.info.IMG;
-import com.foobnix.pdf.info.MainBrowserActivity;
 import com.foobnix.pdf.info.R;
 import com.foobnix.pdf.info.TTSModule;
 import com.foobnix.pdf.info.TintUtil;
@@ -367,9 +366,7 @@ public class HorizontalViewActivity extends FragmentActivity {
             public boolean onLongClick(View v) {
                 closeActivity();
                 if (!MainTabs2.isInStack) {
-                    final Intent intent = new Intent(HorizontalViewActivity.this, MainBrowserActivity.class);
-                    startActivity(intent);
-                    overridePendingTransition(0, 0);
+                    MainTabs2.startActivity(HorizontalViewActivity.this);
                 }
                 return false;
             }

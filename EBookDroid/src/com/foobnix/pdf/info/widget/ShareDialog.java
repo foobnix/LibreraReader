@@ -13,6 +13,7 @@ import com.foobnix.pdf.info.Urls;
 import com.foobnix.pdf.info.wrapper.AppState;
 import com.foobnix.pdf.info.wrapper.DocumentWrapperUI;
 import com.foobnix.pdf.search.activity.HorizontalViewActivity;
+import com.foobnix.ui2.MainTabs2;
 
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -89,10 +90,14 @@ public class ShareDialog {
             return;
         }
         final boolean isPDF = BookType.PDF.is(file.getPath());
+        final boolean isLibrary = a instanceof MainTabs2 ? false : true;
 
         List<String> items = new ArrayList<String>();
         if (isPDF) {
             items.add(a.getString(R.string.make_text_reflow));
+        }
+        if (isLibrary) {
+            items.add(a.getString(R.string.library));
         }
         items.add(a.getString(R.string.advanced_mode));
         items.add(a.getString(R.string.easy_mode));
@@ -110,8 +115,13 @@ public class ShareDialog {
                     @Override
                     public void onClick(final DialogInterface dialog, final int which) {
                         int i = 0;
+
                         if (isPDF && which == i++) {
                             ExtUtils.openPDFInTextReflow(a, file, page + 1);
+                        }
+                        if (isLibrary && which == i++) {
+                            a.finish();
+                            MainTabs2.startActivity(a);
                         }
                         if (which == i++) {
                             if (a instanceof ViewerActivity || a instanceof HorizontalViewActivity) {
@@ -150,7 +160,7 @@ public class ShareDialog {
                             ExtUtils.sharePage(a, file, page);
                         } else if (which == i++) {
                             FileInformationDialog.showFileInfoDialog(a, file, onDeleteAction);
-                        } 
+                        }
 
                     }
                 });

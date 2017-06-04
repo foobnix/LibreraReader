@@ -186,6 +186,7 @@ public class AppState {
                                                                 // persent
 
     public boolean isWhiteTheme = true;
+    public boolean isOpenLastBook = false;
 
     public boolean isSortAsc = true;
     public int sortBy = AppDB.SORT_BY.PATH.ordinal();
@@ -454,6 +455,7 @@ public class AppState {
         ttsReplacement = sp.getBoolean("ttsReplacement", ttsReplacement);
         isShowToolBar = sp.getBoolean("isShowToolBar", isShowToolBar);
         isWhiteTheme = sp.getBoolean("isWhiteTheme", isWhiteTheme);
+        isOpenLastBook = sp.getBoolean("isOpenLastBook", isOpenLastBook);
         orientation = sp.getInt("orientation", orientation);
         mouseWheelSpeed = sp.getInt("mouseWheelSpeed", mouseWheelSpeed);
         rotate = sp.getInt("rotate", rotate);
@@ -649,6 +651,7 @@ public class AppState {
         editor.putBoolean("ttsReplacement", ttsReplacement);
         editor.putBoolean("isShowToolBar", isShowToolBar);
         editor.putBoolean("isWhiteTheme", isWhiteTheme);
+        editor.putBoolean("isOpenLastBook", isOpenLastBook);
         editor.putBoolean("isRememberMode", isRememberMode);
         editor.putBoolean("isBrowseGrid", isBrowseGrid);
         editor.putBoolean("isRecentGrid", isRecentGrid);

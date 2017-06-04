@@ -11,7 +11,6 @@ import com.foobnix.pdf.info.AndroidWhatsNew;
 import com.foobnix.pdf.info.AppSharedPreferences;
 import com.foobnix.pdf.info.AppsConfig;
 import com.foobnix.pdf.info.ExtUtils;
-import com.foobnix.pdf.info.MainBrowserActivity;
 import com.foobnix.pdf.info.R;
 import com.foobnix.pdf.info.TintUtil;
 import com.foobnix.pdf.info.Urls;
@@ -207,14 +206,14 @@ public class PrefFragment2 extends UIFragment {
 
             @Override
             public void onClick(View v) {
-                ((MainBrowserActivity) getActivity()).closeActivity();
+                ((MainTabs2) getActivity()).closeActivity();
             }
         });
         inflate.findViewById(R.id.onImageClose).setOnClickListener(new OnClickListener() {
 
             @Override
             public void onClick(View v) {
-                ((MainBrowserActivity) getActivity()).closeActivity();
+                ((MainTabs2) getActivity()).closeActivity();
             }
         });
 
@@ -522,6 +521,16 @@ public class PrefFragment2 extends UIFragment {
             @Override
             public void onCheckedChanged(final CompoundButton buttonView, final boolean isChecked) {
                 AppState.getInstance().isLoopAutoplay = isChecked;
+            }
+        });
+
+        CheckBox isOpenLastBook = (CheckBox) inflate.findViewById(R.id.isOpenLastBook);
+        isOpenLastBook.setChecked(AppState.getInstance().isOpenLastBook);
+        isOpenLastBook.setOnCheckedChangeListener(new OnCheckedChangeListener() {
+
+            @Override
+            public void onCheckedChanged(final CompoundButton buttonView, final boolean isChecked) {
+                AppState.getInstance().isOpenLastBook = isChecked;
             }
         });
 

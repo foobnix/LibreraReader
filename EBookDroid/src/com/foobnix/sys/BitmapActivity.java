@@ -5,11 +5,11 @@ import java.io.File;
 import org.ebookdroid.core.codec.CodecDocument;
 
 import com.foobnix.android.utils.Dips;
+import com.foobnix.pdf.info.ExportSettingsManager;
 import com.foobnix.pdf.info.ExtUtils;
 import com.foobnix.pdf.info.IMG;
-import com.foobnix.pdf.info.MainBrowserActivity;
 import com.foobnix.pdf.info.R;
-import com.foobnix.pdf.info.ExportSettingsManager;
+import com.foobnix.ui2.MainTabs2;
 import com.nostra13.universalimageloader.core.ImageLoader;
 
 import android.app.Activity;
@@ -98,7 +98,7 @@ public class BitmapActivity extends Activity {
 
             @Override
             public void run() {
-                startActivity(new Intent(BitmapActivity.this, MainBrowserActivity.class));
+                startActivity(new Intent(BitmapActivity.this, MainTabs2.class));
             }
         }, 5000);
 

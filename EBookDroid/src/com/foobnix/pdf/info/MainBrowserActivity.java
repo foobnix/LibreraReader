@@ -47,7 +47,7 @@ import android.view.View;
 import android.widget.FrameLayout;
 
 @SuppressLint("NewApi")
-public class MainBrowserActivity extends FragmentActivity {
+class MainBrowserActivity extends FragmentActivity {
     private RecentFragmet RECENT_FRAGMET = new RecentFragmet();
     private SearchFragment SEARCH_FRAGMET = new SearchFragment();
     private PrefFragment2 PREF_FRAGMET = new PrefFragment2();

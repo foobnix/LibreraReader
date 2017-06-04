@@ -334,7 +334,6 @@
    <string name="incorrect_value">Неверное значение</string>
    <string name="search_in_the_subfolders">Искать в подпапках</string>
    <string name="document_converter_online_">Онлайн-конвертация файлов</string>
-   <string name="links_color">Цвет ссылок</string>
    <string name="in_the_author_s_name_first_the_surname">Отображать сперва фамилию автора, затем имя</string>
    <string name="remind_about_rest_every">Увед-е об отдыхе каждые</string>
    <string name="minutes">Минут</string>
@@ -345,4 +344,8 @@
    <string name="show_bottom_panel">Показывать строку прогресса</string>
    <string name="interval_sec_">Интервал (в секундах)</string>
    <string name="library_settings">Настройки библиотеки</string>
+   <string name="by_name">Имя</string>
+   <string name="opening_the_last_book_when_the_application_starts">Открытие последней книги при запуске приложения</string>
+   <string name="links_color_day">Цвет ссылок (день)</string>
+   <string name="links_color_night">Цвет ссылок (ночь)</string>
 </resources>

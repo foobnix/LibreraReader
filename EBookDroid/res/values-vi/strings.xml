@@ -334,7 +334,6 @@
    <string name="incorrect_value">Giá trị không chính xác</string>
    <string name="search_in_the_subfolders">Tìm trong các thư mục con</string>
    <string name="document_converter_online_">Chuyển đổi tài liệu (trực tuyến)</string>
-   <string name="links_color">Màu liên kết</string>
    <string name="in_the_author_s_name_first_the_surname">Trong tên của tác giả, đầu tiên họ</string>
    <string name="remind_about_rest_every">Nhắc về phần còn lại</string>
    <string name="minutes">Biên bản</string>
@@ -345,4 +344,8 @@
    <string name="show_bottom_panel">Hiển thị bảng dưới cùng</string>
    <string name="interval_sec_">Khoảng (giây)</string>
    <string name="library_settings">Cài đặt thư viện</string>
+   <string name="by_name">Tên</string>
+   <string name="opening_the_last_book_when_the_application_starts">Mở cuốn sách cuối cùng khi ứng dụng bắt đầu</string>
+   <string name="links_color_day">Màu liên kết (ngày)</string>
+   <string name="links_color_night">Màu liên kết (ban đêm)</string>
 </resources>

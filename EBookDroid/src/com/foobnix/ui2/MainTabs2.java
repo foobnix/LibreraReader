@@ -16,7 +16,6 @@ import com.foobnix.pdf.info.Analytics;
 import com.foobnix.pdf.info.Android6;
 import com.foobnix.pdf.info.AppsConfig;
 import com.foobnix.pdf.info.FontExtractor;
-import com.foobnix.pdf.info.MainBrowserActivity;
 import com.foobnix.pdf.info.R;
 import com.foobnix.pdf.info.TintUtil;
 import com.foobnix.pdf.info.widget.RecentBooksWidget;
@@ -37,6 +36,7 @@ import com.google.android.gms.ads.InterstitialAd;
 import com.google.android.gms.ads.NativeExpressAdView;
 
 import android.annotation.SuppressLint;
+import android.app.Activity;
 import android.app.SearchManager;
 import android.content.BroadcastReceiver;
 import android.content.Context;
@@ -55,6 +55,7 @@ import android.view.KeyEvent;
 @SuppressLint("NewApi")
 public class MainTabs2 extends FragmentActivity {
     public static final String EXTRA_EXIT = "EXTRA_EXIT";
+    public static final String EXTRA_SHOW_TABS = "EXTRA_SHOW_TABS";
     public static String EXTRA_PAGE_NUMBER = "EXTRA_PAGE_NUMBER";
     public static String EXTRA_SEACH_TEXT = "EXTRA_SEACH_TEXT";
     ViewPager pager;
@@ -121,7 +122,23 @@ public class MainTabs2 extends FragmentActivity {
         super.onCreate(savedInstanceState);
         // test
 
+        LOG.d("EXTRA_EXIT", EXTRA_EXIT);
         if (getIntent().getBooleanExtra(EXTRA_EXIT, false)) {
+            finish();
+            return;
+        }
+
+        boolean showTabs = getIntent().getBooleanExtra(EXTRA_SHOW_TABS, false);
+        LOG.d("EXTRA_SHOW_TABS", showTabs);
+        if (showTabs == false && AppState.getInstance().isOpenLastBook) {
+            FileMeta meta = AppDB.get().getRecentLast();
+
+            if (meta != null) {
+                Intent intent = new Intent(this, ViewerActivity.class);
+                intent.setData(Uri.fromFile(new File(meta.getPath())));
+                startActivity(intent);
+            }
+
             finish();
             return;
         }
@@ -251,7 +268,7 @@ public class MainTabs2 extends FragmentActivity {
         ADS.onResumeNative(adViewNative);
         DocumentController.chooseFullScreen(this, false);
         TintUtil.updateAll();
-        AppState.get().lastA = MainBrowserActivity.class.getSimpleName();
+        AppState.get().lastA = MainTabs2.class.getSimpleName();
         LocalBroadcastManager.getInstance(this).registerReceiver(broadcastReceiver, new IntentFilter(UIFragment.INTENT_TINT_CHANGE));
     };
 
@@ -336,5 +353,14 @@ public class MainTabs2 extends FragmentActivity {
 
         }
     };
+
+    public static void startActivity(Activity c) {
+        AppState.get().lastA = null;
+        final Intent intent = new Intent(c, MainTabs2.class);
+        intent.putExtra(MainTabs2.EXTRA_SHOW_TABS, true);
+        c.startActivity(intent);
+        c.overridePendingTransition(0, 0);
+
+    }
 
 }

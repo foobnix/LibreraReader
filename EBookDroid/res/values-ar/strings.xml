@@ -334,7 +334,6 @@
    <string name="incorrect_value">قيمة غير صحيحة</string>
    <string name="search_in_the_subfolders">البحث في المجلدات الفرعية</string>
    <string name="document_converter_online_">تحويل المستندات (عبر الإنترنت)</string>
-   <string name="links_color">لون الروابط</string>
    <string name="in_the_author_s_name_first_the_surname">في اسم المؤلف، أولا اللقب</string>
    <string name="remind_about_rest_every">تذكير عن بقية كل</string>
    <string name="minutes">الدقائق</string>
@@ -345,4 +344,8 @@
    <string name="show_bottom_panel">إظهار اللوحة السفلية</string>
    <string name="interval_sec_">الفاصل الزمني (ثانية)</string>
    <string name="library_settings">إعدادات المكتبة</string>
+   <string name="by_name">اسم</string>
+   <string name="opening_the_last_book_when_the_application_starts">فتح الكتاب الأخير عند بدء تشغيل التطبيق</string>
+   <string name="links_color_day">لون الروابط (اليوم)</string>
+   <string name="links_color_night">لينكس كولور (نايت)</string>
 </resources>

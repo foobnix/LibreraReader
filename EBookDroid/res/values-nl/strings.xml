@@ -334,7 +334,6 @@
    <string name="incorrect_value">Incorrecte waarde</string>
    <string name="search_in_the_subfolders">Zoek in de submappen</string>
    <string name="document_converter_online_">Document converter (online)</string>
-   <string name="links_color">Links kleur</string>
    <string name="in_the_author_s_name_first_the_surname">In de auteur\'s naam, eerst de achternaam</string>
    <string name="remind_about_rest_every">Herinner u aan rust elke</string>
    <string name="minutes">Notulen</string>
@@ -345,4 +344,8 @@
    <string name="show_bottom_panel">Toon het onderste paneel</string>
    <string name="interval_sec_">Interval (sec)</string>
    <string name="library_settings">Bibliotheek instellingen</string>
+   <string name="by_name">Naam</string>
+   <string name="opening_the_last_book_when_the_application_starts">Het laatste boek openen wanneer de applicatie start</string>
+   <string name="links_color_day">Links kleur (dag)</string>
+   <string name="links_color_night">Links kleur (nacht)</string>
 </resources>

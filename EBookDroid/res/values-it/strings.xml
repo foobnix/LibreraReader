@@ -334,7 +334,6 @@
    <string name="incorrect_value">Valore non corretto</string>
    <string name="search_in_the_subfolders">Cerca nelle sottocartelle</string>
    <string name="document_converter_online_">Convertitore documenti (in linea)</string>
-   <string name="links_color">Colore dei collegamenti</string>
    <string name="in_the_author_s_name_first_the_surname">Nel nome dell\'autore, innanzitutto il cognome</string>
    <string name="remind_about_rest_every">Ricorda di riposare ogni</string>
    <string name="minutes">Minuti</string>
@@ -345,4 +344,8 @@
    <string name="show_bottom_panel">Mostra il pannello inferiore</string>
    <string name="interval_sec_">Intervallo (sec)</string>
    <string name="library_settings">Impostazioni della libreria</string>
+   <string name="by_name">Nome</string>
+   <string name="opening_the_last_book_when_the_application_starts">Aprire l\'ultimo libro all\'avvio dell\'applicazione</string>
+   <string name="links_color_day">Colore dei collegamenti (giorno)</string>
+   <string name="links_color_night">Collegamenti colore (notte)</string>
 </resources>

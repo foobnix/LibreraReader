@@ -2613,16 +2613,29 @@ public class DragingDialogs {
                     }
                 });
                 // link color
-                final CustomColorView linkColor = (CustomColorView) inflate.findViewById(R.id.linkColor);
-                linkColor.init(Color.parseColor(BookCSS.get().linkColor));
-                linkColor.setOnColorChanged(new StringResponse() {
+                final CustomColorView linkColorDay = (CustomColorView) inflate.findViewById(R.id.linkColorDay);
+                linkColorDay.init(Color.parseColor(BookCSS.get().linkColorDay));
+                linkColorDay.setOnColorChanged(new StringResponse() {
 
                     @Override
                     public boolean onResultRecive(String string) {
-                        BookCSS.get().linkColor = string;
+                        BookCSS.get().linkColorDay = string;
                         return false;
                     }
                 });
+
+                final CustomColorView linkColorNight = (CustomColorView) inflate.findViewById(R.id.linkColorNight);
+                linkColorNight.init(Color.parseColor(BookCSS.get().linkColorNight));
+                linkColorNight.setOnColorChanged(new StringResponse() {
+
+                    @Override
+                    public boolean onResultRecive(String string) {
+                        BookCSS.get().linkColorNight = string;
+                        return false;
+                    }
+                });
+                linkColorDay.getText1().getLayoutParams().width = Dips.dpToPx(120);
+                linkColorNight.getText1().getLayoutParams().width = Dips.dpToPx(120);
 
                 TxtUtils.underlineTextView((TextView) inflate.findViewById(R.id.onResetStyles)).setOnClickListener(new OnClickListener() {
 
@@ -2646,7 +2659,8 @@ public class DragingDialogs {
 
                         emptyLine.reset(BookCSS.get().emptyLine);
 
-                        linkColor.init(Color.parseColor(BookCSS.get().linkColor));
+                        linkColorDay.init(Color.parseColor(BookCSS.get().linkColorDay));
+                        linkColorNight.init(Color.parseColor(BookCSS.get().linkColorNight));
                     }
                 });
 

@@ -334,7 +334,6 @@
    <string name="incorrect_value">Thamani isiyo sahihi</string>
    <string name="search_in_the_subfolders">Search katika folda ndogo</string>
    <string name="document_converter_online_">Document kubadilisha (mtandaoni)</string>
-   <string name="links_color">Links rangi</string>
    <string name="in_the_author_s_name_first_the_surname">Katika jina la mwandishi \ \'s, kwanza jina</string>
    <string name="remind_about_rest_every">Wakumbushe kuhusu wengine kila</string>
    <string name="minutes">Dakika</string>
@@ -345,4 +344,8 @@
    <string name="show_bottom_panel">Onyesha jopo chini</string>
    <string name="interval_sec_">Muda (sekunde)</string>
    <string name="library_settings">Mazingira Library</string>
+   <string name="by_name">Jina</string>
+   <string name="opening_the_last_book_when_the_application_starts">Kufungua kitabu mwisho programu inapoanza</string>
+   <string name="links_color_day">Links rangi (siku)</string>
+   <string name="links_color_night">Links Michezo (usiku)</string>
 </resources>
