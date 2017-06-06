@@ -696,6 +696,7 @@ public class HorizontalViewActivity extends FragmentActivity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
+        IMG.clearMemoryCache();
         if (loadinAsyncTask != null) {
             try {
                 loadinAsyncTask.cancel(true);
@@ -1079,6 +1080,7 @@ public class HorizontalViewActivity extends FragmentActivity {
 
         AppState.get().save(this);
         if (ExtUtils.isTextFomat(getIntent())) {
+            IMG.clearMemoryCache();
             updateReadPercent();
             if (Build.VERSION.SDK_INT >= 11) {
                 getIntent().putExtra(EXTRA_MEMORY_CLEAN, true);
@@ -1126,21 +1128,11 @@ public class HorizontalViewActivity extends FragmentActivity {
 
             @Override
             public Parcelable saveState() {
-                try {
-                    return super.saveState();
-                } catch (Exception e) {
-                    LOG.e(e);
-                }
                 return null;
             }
 
             @Override
             public void restoreState(Parcelable arg0, ClassLoader arg1) {
-                try {
-                    super.restoreState(arg0, arg1);
-                } catch (Exception e) {
-                    LOG.e(e);
-                }
             }
 
         };

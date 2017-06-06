@@ -2634,8 +2634,8 @@ public class DragingDialogs {
                         return false;
                     }
                 });
-                linkColorDay.getText1().getLayoutParams().width = Dips.dpToPx(120);
-                linkColorNight.getText1().getLayoutParams().width = Dips.dpToPx(120);
+                linkColorDay.getText1().getLayoutParams().width = Dips.dpToPx(150);
+                linkColorNight.getText1().getLayoutParams().width = Dips.dpToPx(150);
 
                 TxtUtils.underlineTextView((TextView) inflate.findViewById(R.id.onResetStyles)).setOnClickListener(new OnClickListener() {
 
