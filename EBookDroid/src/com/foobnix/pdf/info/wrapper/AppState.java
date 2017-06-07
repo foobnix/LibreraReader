@@ -306,6 +306,7 @@ public class AppState {
     public volatile int fontSizeSp = 22;
 
     public String lastA;
+    public String lastMode;
     public String dirLastPath;
 
     public String versionNew = "";
@@ -518,6 +519,7 @@ public class AppState {
 
         fileToDelete = sp.getString("fileToDelete", fileToDelete);
         lastA = sp.getString("lastA", lastA);
+        lastMode = sp.getString("lastMode", lastMode);
         dirLastPath = sp.getString("dirLastPath", dirLastPath);
         versionNew = sp.getString("versionNew", versionNew);
 
@@ -712,6 +714,7 @@ public class AppState {
         editor.putString("recurcive", null);
         editor.putString("fileToDelete", fileToDelete);
         editor.putString("lastA", lastA);
+        editor.putString("lastMode", lastMode);
         editor.putString("dirLastPath", dirLastPath);
         editor.putString("versionNew", versionNew);
 

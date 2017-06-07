@@ -375,22 +375,6 @@ public class BookCSS {
     }
 
     public String toCssString() {
-        if (false) {
-            StringBuilder builder = new StringBuilder();
-
-            builder.append("@page{");
-            builder.append(String.format("margin-top:%s !important;", em(marginTop)));
-            builder.append(String.format("margin-right:%s !important;", em(marginRight)));
-            builder.append(String.format("margin-bottom:%s !important;", em(marginBottom)));
-            builder.append(String.format("margin-left:%s !important;", em(marginLeft)));
-            builder.append("}");
-
-            builder.append("body{");
-            builder.append("padding:0 !important; margin:0 !important;");
-            builder.append("}");
-
-            return builder.toString();
-        }
         StringBuilder builder = new StringBuilder();
 
         String backgroundColor = MagicHelper.colorToString(MagicHelper.getBgColor());

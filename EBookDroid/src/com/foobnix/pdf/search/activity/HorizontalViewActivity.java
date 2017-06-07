@@ -465,6 +465,7 @@ public class HorizontalViewActivity extends FragmentActivity {
                 } else {
                     documentController.initHandler();
                     AppState.get().lastA = HorizontalViewActivity.class.getSimpleName();
+                    AppState.get().lastMode = HorizontalViewActivity.class.getSimpleName();
                     LOG.d("lasta save", AppState.get().lastA);
 
                     AppState.get().isEditMode = true;

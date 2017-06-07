@@ -228,6 +228,7 @@ public class ViewerActivityController extends ActionController<ViewerActivity> i
                 controller.loadOutline();
 
                 AppState.get().lastA = ViewerActivity.class.getSimpleName();
+                AppState.get().lastMode = ViewerActivity.class.getSimpleName();
                 LOG.d("lasta save", AppState.get().lastA);
             }
         }));

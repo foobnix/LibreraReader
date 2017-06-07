@@ -129,12 +129,13 @@ public class MainTabs2 extends FragmentActivity {
         }
 
         boolean showTabs = getIntent().getBooleanExtra(EXTRA_SHOW_TABS, false);
-        LOG.d("EXTRA_SHOW_TABS", showTabs);
+        LOG.d("EXTRA_SHOW_TABS", showTabs, AppState.get().lastMode);
         if (showTabs == false && AppState.getInstance().isOpenLastBook) {
             FileMeta meta = AppDB.get().getRecentLast();
+            AppState.get().lastA = null;
 
             if (meta != null) {
-                boolean isEasyMode = HorizontalViewActivity.class.getSimpleName().equals(AppState.get().lastA);
+                boolean isEasyMode = HorizontalViewActivity.class.getSimpleName().equals(AppState.get().lastMode);
                 Intent intent = new Intent(this, isEasyMode ? HorizontalViewActivity.class : ViewerActivity.class);
                 intent.setData(Uri.fromFile(new File(meta.getPath())));
                 startActivity(intent);
@@ -356,7 +357,7 @@ public class MainTabs2 extends FragmentActivity {
     };
 
     public static void startActivity(Activity c) {
-        // AppState.get().lastA = null;
+        AppState.get().lastA = null;
         final Intent intent = new Intent(c, MainTabs2.class);
         intent.putExtra(MainTabs2.EXTRA_SHOW_TABS, true);
         c.startActivity(intent);
