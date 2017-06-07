@@ -40,7 +40,7 @@ public class HSVColorPickerDialog extends AlertDialog {
         public void colorSelected(Integer color);
     }
 
-    public HSVColorPickerDialog(Context context, int initialColor, final OnColorSelectedListener listener) {
+    public HSVColorPickerDialog(final Context context, int initialColor, final OnColorSelectedListener listener) {
         super(context);
         this.selectedColor = initialColor;
         if (AppState.get().userColor == Color.TRANSPARENT) {

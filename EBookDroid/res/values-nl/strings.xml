@@ -348,4 +348,10 @@
    <string name="opening_the_last_book_when_the_application_starts">Het laatste boek openen wanneer de applicatie start</string>
    <string name="links_color_day">Links kleur (dag)</string>
    <string name="links_color_night">Links kleur (nacht)</string>
+   <string name="status_bar">Status balk</string>
+   <string name="show_status_bar">Toon statusbalk</string>
+   <string name="settings">Instellingen</string>
+   <string name="text_size">Lettergrootte</string>
+   <string name="text_color_day">Tekst kleur (dag)</string>
+   <string name="text_color_night">Tekst kleur (nacht)</string>
 </resources>

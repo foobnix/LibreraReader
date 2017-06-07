@@ -348,4 +348,10 @@
    <string name="opening_the_last_book_when_the_application_starts">Aprire l\'ultimo libro all\'avvio dell\'applicazione</string>
    <string name="links_color_day">Colore dei collegamenti (giorno)</string>
    <string name="links_color_night">Collegamenti colore (notte)</string>
+   <string name="status_bar">Barra di stato</string>
+   <string name="show_status_bar">Mostra la barra di stato</string>
+   <string name="settings">Impostazioni</string>
+   <string name="text_size">Dimensione del testo</string>
+   <string name="text_color_day">Colore del testo (giorno)</string>
+   <string name="text_color_night">Colore del testo (notte)</string>
 </resources>

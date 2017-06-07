@@ -1811,11 +1811,101 @@ public class DragingDialogs {
 
     }
 
+    public static DragingPopup statusBarSettings(final FrameLayout anchor, final DocumentController controller, final Runnable onRefresh, final Runnable updateUIRefresh) {
+
+        DragingPopup dialog = new DragingPopup(R.string.status_bar, anchor, 330, 240) {
+
+            @Override
+            public View getContentView(final LayoutInflater inflater) {
+                View inflate = inflater.inflate(R.layout.dialog_status_bar_settings, null, false);
+
+                TxtUtils.underlineTextView(((TextView) inflate.findViewById(R.id.onBack))).setOnClickListener(new OnClickListener() {
+
+                    @Override
+                    public void onClick(View v) {
+                        preferences(anchor, controller, onRefresh, updateUIRefresh);
+                    }
+                });
+
+                final CheckBox isShowSatusBar = (CheckBox) inflate.findViewById(R.id.isShowSatusBar);
+                isShowSatusBar.setOnCheckedChangeListener(new OnCheckedChangeListener() {
+
+                    @Override
+                    public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                        AppState.get().isShowToolBar = isChecked;
+                        AppState.get().isEditMode = false;
+                        if (onRefresh != null) {
+                            onRefresh.run();
+                        }
+                    }
+                });
+                isShowSatusBar.setChecked(AppState.get().isShowToolBar);
+                /// asd
+
+                final CustomSeek statusBarTextSize = (CustomSeek) inflate.findViewById(R.id.statusBarTextSize);
+                statusBarTextSize.init(5, 30, AppState.get().statusBarTextSize);
+                statusBarTextSize.setOnSeekChanged(new IntegerResponse() {
+
+                    @Override
+                    public boolean onResultRecive(int result) {
+                        isShowSatusBar.setChecked(true);
+                        AppState.get().statusBarTextSize = result;
+                        AppState.get().isEditMode = false;
+                        if (onRefresh != null) {
+                            onRefresh.run();
+                        }
+                        return false;
+                    }
+                });
+
+                final CustomColorView statusBarColorDay = (CustomColorView) inflate.findViewById(R.id.statusBarColorDay);
+                statusBarColorDay.init(AppState.get().statusBarColorDay);
+                statusBarColorDay.setOnColorChanged(new StringResponse() {
+
+                    @Override
+                    public boolean onResultRecive(String string) {
+                        isShowSatusBar.setChecked(true);
+                        AppState.get().statusBarColorDay = Color.parseColor(string);
+                        AppState.get().isEditMode = false;
+                        if (onRefresh != null) {
+                            onRefresh.run();
+                        }
+                        Keyboards.hideNavigation(controller.getActivity());
+                        return false;
+                    }
+                });
+
+                final CustomColorView statusBarColorNight = (CustomColorView) inflate.findViewById(R.id.statusBarColorNight);
+                statusBarColorNight.init(AppState.get().statusBarColorNight);
+                statusBarColorNight.setOnColorChanged(new StringResponse() {
+
+                    @Override
+                    public boolean onResultRecive(String string) {
+                        isShowSatusBar.setChecked(true);
+                        AppState.get().statusBarColorNight = Color.parseColor(string);
+                        AppState.get().isEditMode = false;
+                        if (onRefresh != null) {
+                            onRefresh.run();
+                        }
+                        Keyboards.hideNavigation(controller.getActivity());
+                        return false;
+                    }
+                });
+
+                statusBarColorDay.getText1().getLayoutParams().width = Dips.dpToPx(150);
+                statusBarColorNight.getText1().getLayoutParams().width = Dips.dpToPx(150);
+
+                return inflate;
+            }
+        };
+
+        dialog.show("statusBarSettings");
+
+        return dialog;
+    }
+
     public static DragingPopup performanceSettings(final FrameLayout anchor, final DocumentController controller, final Runnable onRefresh, final Runnable updateUIRefresh) {
-        if (Build.VERSION.SDK_INT <= 10) {
-            Toast.makeText(anchor.getContext(), R.string.this_function_will_works_in_modern_android, Toast.LENGTH_SHORT).show();
-            return null;
-        }
+
         final float pageQualityInit = AppState.get().pageQuality;
         final int pagesInMemoryInit = AppState.get().pagesInMemory;
         final int rotateInit = AppState.get().rotate;
@@ -2752,8 +2842,6 @@ public class DragingDialogs {
                     }
                 });
 
-
-
                 ImageView brightness = (ImageView) inflate.findViewById(R.id.onBrightness);
                 brightness.setOnClickListener(new View.OnClickListener() {
 
@@ -2799,8 +2887,6 @@ public class DragingDialogs {
                     }
                 });
                 TintUtil.setTintImage(bookCut, !AppState.get().isCut ? TintUtil.COLOR_TINT_GRAY : Color.LTGRAY);
-
-
 
                 inflate.findViewById(R.id.onFullScreen).setOnClickListener(new View.OnClickListener() {
 
@@ -2867,10 +2953,12 @@ public class DragingDialogs {
                 //
 
                 TextView moreSettings = (TextView) inflate.findViewById(R.id.moreSettings);
-                View moreSettingsImage = inflate.findViewById(R.id.moreSettingsImage);
                 moreSettings.setVisibility(controller.isTextFormat() ? View.VISIBLE : View.GONE);
-                moreSettingsImage.setVisibility(controller.isTextFormat() ? View.VISIBLE : View.GONE);
 
+                // View moreSettingsImage =
+                // inflate.findViewById(R.id.moreSettingsImage);
+                // moreSettingsImage.setVisibility(controller.isTextFormat() ?
+                // View.VISIBLE : View.GONE);
                 TxtUtils.underlineTextView(moreSettings).setOnClickListener(new OnClickListener() {
 
                     @Override
@@ -2885,6 +2973,15 @@ public class DragingDialogs {
                     @Override
                     public void onClick(View v) {
                         performanceSettings(anchor, controller, onRefresh, updateUIRefresh);
+                    }
+                });
+
+                TextView statusBarSettings = TxtUtils.underlineTextView((TextView) inflate.findViewById(R.id.statusBarSettings));
+                statusBarSettings.setOnClickListener(new OnClickListener() {
+
+                    @Override
+                    public void onClick(View v) {
+                        statusBarSettings(anchor, controller, onRefresh, updateUIRefresh);
                     }
                 });
 

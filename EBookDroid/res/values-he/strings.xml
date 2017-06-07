@@ -348,4 +348,10 @@
    <string name="opening_the_last_book_when_the_application_starts">פתיחת הספר האחרון כאשר היישום מתחיל</string>
    <string name="links_color_day">צבעי קישור (יום)</string>
    <string name="links_color_night">קישורים צבע (לילה)</string>
+   <string name="status_bar">שורת מצב</string>
+   <string name="show_status_bar">הצג שורת מצב</string>
+   <string name="settings">הגדרות</string>
+   <string name="text_size">גודל טקסט</string>
+   <string name="text_color_day">צבע טקסט (יום)</string>
+   <string name="text_color_night">צבע טקסט (לילה)</string>
 </resources>

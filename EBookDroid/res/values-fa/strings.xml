@@ -348,4 +348,10 @@
    <string name="opening_the_last_book_when_the_application_starts">باز کردن آخرین کتاب زمانی که برنامه شروع می شود</string>
    <string name="links_color_day">رنگ ها (روز)</string>
    <string name="links_color_night">رنگ ها (شب)</string>
+   <string name="status_bar">نوار وضعیت</string>
+   <string name="show_status_bar">نمایش نوار وضعیت</string>
+   <string name="settings">تنظیمات</string>
+   <string name="text_size">اندازه متن</string>
+   <string name="text_color_day">رنگ متن (روز)</string>
+   <string name="text_color_night">رنگ متن (شب)</string>
 </resources>

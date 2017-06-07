@@ -348,4 +348,10 @@
    <string name="opening_the_last_book_when_the_application_starts">アプリケーションの起動時に最後の本を開く</string>
    <string name="links_color_day">リンク色（日）</string>
    <string name="links_color_night">リンクカラー（夜間）</string>
+   <string name="status_bar">ステータスバー</string>
+   <string name="show_status_bar">ステータスバーを表示</string>
+   <string name="settings">設定</string>
+   <string name="text_size">文字サイズ</string>
+   <string name="text_color_day">テキストの色（日）</string>
+   <string name="text_color_night">テキストの色（夜）</string>
 </resources>

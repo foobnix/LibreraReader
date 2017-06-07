@@ -348,4 +348,10 @@
    <string name="opening_the_last_book_when_the_application_starts">Başvuru başladığında son kitabı açma</string>
    <string name="links_color_day">Bağlantı renkleri (gün)</string>
    <string name="links_color_night">Bağlantılar rengi (gece)</string>
+   <string name="status_bar">Durum çubuğu</string>
+   <string name="show_status_bar">Durum çubuğunu göster</string>
+   <string name="settings">Ayarlar</string>
+   <string name="text_size">Yazı Boyutu</string>
+   <string name="text_color_day">Metin rengi (gün)</string>
+   <string name="text_color_night">Metin rengi (gece)</string>
 </resources>

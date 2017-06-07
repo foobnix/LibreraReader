@@ -348,4 +348,10 @@
    <string name="opening_the_last_book_when_the_application_starts">فتح الكتاب الأخير عند بدء تشغيل التطبيق</string>
    <string name="links_color_day">لون الروابط (اليوم)</string>
    <string name="links_color_night">لينكس كولور (نايت)</string>
+   <string name="status_bar">شريط الحالة</string>
+   <string name="show_status_bar">أظهر شريط الحالة</string>
+   <string name="settings">إعدادات</string>
+   <string name="text_size">حجم الخط</string>
+   <string name="text_color_day">لون النص (اليوم)</string>
+   <string name="text_color_night">لون النص (ليل)</string>
 </resources>

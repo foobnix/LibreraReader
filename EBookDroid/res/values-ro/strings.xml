@@ -348,4 +348,10 @@
    <string name="opening_the_last_book_when_the_application_starts">Deschiderea ultimei cărți când începe aplicația</string>
    <string name="links_color_day">Linkuri culori (zi)</string>
    <string name="links_color_night">Culoare link (noapte)</string>
+   <string name="status_bar">Bara de stare</string>
+   <string name="show_status_bar">Afișează bara de stare</string>
+   <string name="settings">Setări</string>
+   <string name="text_size">Mărimea textului</string>
+   <string name="text_color_day">Culoarea textului (zi)</string>
+   <string name="text_color_night">Culoarea textului (noapte)</string>
 </resources>

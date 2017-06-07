@@ -9,22 +9,19 @@
         android:layout_height="match_parent"
         android:orientation="vertical"
         android:padding="2dip" >
+        
+        <TextView
+                    android:id="@+id/allSettings"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/settings"
+                    android:textStyle="bold" />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center_vertical"
-            android:orientation="vertical" >
-
-            <ImageView
-                android:visibility="gone"
-                android:id="@+id/moreSettingsImage"
-                android:layout_width="@dimen/wh_button_small"
-                android:layout_height="@dimen/wh_button_small"
-                android:layout_weight="0"
-                android:padding="5dip"
-                android:src="@drawable/glyphicons_137_cogwheel"
-                android:tint="@color/lt_grey" />
+            android:orientation="horizontal" >
 
             <TextView
                 android:id="@+id/moreSettings"
@@ -34,15 +31,6 @@
                 android:layout_weight="1"
                 android:text="@string/reading_settings" />
 
-            <ImageView
-                android:visibility="gone"
-                android:layout_width="@dimen/wh_button_small"
-                android:layout_height="@dimen/wh_button_small"
-                android:layout_weight="0"
-                android:padding="5dip"
-                android:src="@drawable/glyphicons_137_cogwheel"
-                android:tint="@color/lt_grey" />
-
             <TextView
                 android:id="@+id/performanceSettigns"
                 style="@style/textLink"
@@ -50,14 +38,14 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="@string/advanced_settings" />
-            
-             <TextView
-                android:id="@+id/statusBar"
+
+            <TextView
+                android:id="@+id/statusBarSettings"
                 style="@style/textLink"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="Status bar settings" />
+                android:text="@string/status_bar" />
         </LinearLayout>
 
         <View
@@ -94,7 +82,7 @@
                 android:layout_height="@dimen/wh_button"
                 android:layout_margin="2dip"
                 android:layout_weight="0"
-               android:background="@drawable/bg_border_ltgray"
+                android:background="@drawable/bg_border_ltgray"
                 android:contentDescription="@string/recent"
                 android:padding="9dip"
                 android:src="@drawable/glyphicons_174_play"
@@ -107,7 +95,7 @@
                 android:layout_margin="2dip"
                 android:layout_weight="0"
                 android:adjustViewBounds="true"
-               android:background="@drawable/bg_border_ltgray"
+                android:background="@drawable/bg_border_ltgray"
                 android:contentDescription="@string/preferences"
                 android:padding="8dip"
                 android:src="@drawable/glyphicons_166_iphone_exchange"
@@ -143,7 +131,7 @@
                 android:layout_height="@dimen/wh_button"
                 android:layout_margin="2dip"
                 android:adjustViewBounds="true"
-               android:background="@drawable/bg_border_ltgray"
+                android:background="@drawable/bg_border_ltgray"
                 android:padding="8dip"
                 android:src="@drawable/glyphicons_94_crop"
                 android:tint="@color/tint_gray" />
@@ -177,7 +165,7 @@
                 android:layout_height="@dimen/wh_button"
                 android:layout_margin="2dip"
                 android:adjustViewBounds="true"
-               android:background="@drawable/bg_border_ltgray"
+                android:background="@drawable/bg_border_ltgray"
                 android:padding="8dip"
                 android:src="@drawable/glyphicons_336_pushpin"
                 android:tint="@color/tint_gray" />
@@ -256,8 +244,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="4dip"
                 android:layout_weight="0"
-                android:singleLine="true"
                 android:ems="4"
+                android:singleLine="true"
                 android:text="@string/font_name"
                 android:textStyle="bold" />
 
@@ -266,8 +254,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="40dip"
                 android:layout_marginRight="4dip"
-                android:minWidth="300dp"
-                android:layout_weight="1" />
+                android:layout_weight="1"
+                android:minWidth="300dp" />
 
             <ImageView
                 android:id="@+id/moreFontSettings"
@@ -285,8 +273,8 @@
             android:id="@+id/documentStyleLayout"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:gravity="center_vertical"
             android:layout_marginRight="@dimen/wh_button"
+            android:gravity="center_vertical"
             android:orientation="horizontal" >
 
             <ImageView
@@ -302,17 +290,17 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="4dip"
                 android:layout_weight="0"
-                android:singleLine="true"
                 android:ems="4"
+                android:singleLine="true"
                 android:text="@string/styles" />
 
             <Spinner
-                android:layout_marginRight="4dip"
-                android:minWidth="300dp"
                 android:id="@+id/documentStyle"
                 android:layout_width="match_parent"
                 android:layout_height="40dip"
-                android:layout_weight="1" />
+                android:layout_marginRight="4dip"
+                android:layout_weight="1"
+                android:minWidth="300dp" />
         </LinearLayout>
 
         <View
@@ -528,8 +516,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="4dip"
-                android:background="@drawable/bg_border_ltgray"
-                 >
+                android:background="@drawable/bg_border_ltgray" >
 
                 <TextView
                     android:id="@+id/onDayColor"
@@ -578,11 +565,11 @@
             </RelativeLayout>
 
             <ImageView
-                android:layout_marginLeft="4dip"
                 android:id="@+id/moreReadColorSettings"
                 android:layout_width="@dimen/wh_button"
                 android:layout_height="@dimen/wh_button"
                 android:layout_alignParentRight="true"
+                android:layout_marginLeft="4dip"
                 android:layout_weight="0"
                 android:background="@drawable/bg_border_ltgray"
                 android:padding="8dip"

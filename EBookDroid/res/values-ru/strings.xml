@@ -348,4 +348,10 @@
    <string name="opening_the_last_book_when_the_application_starts">Открытие последней книги при запуске приложения</string>
    <string name="links_color_day">Цвет ссылок (день)</string>
    <string name="links_color_night">Цвет ссылок (ночь)</string>
+   <string name="status_bar">Статус бар</string>
+   <string name="show_status_bar">Показать строку состояния</string>
+   <string name="settings">Настройки</string>
+   <string name="text_size">Размер текста</string>
+   <string name="text_color_day">Цвет текста (день)</string>
+   <string name="text_color_night">Цвет текста (ночь)</string>
 </resources>

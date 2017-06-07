@@ -348,4 +348,10 @@
    <string name="opening_the_last_book_when_the_application_starts">Kufungua kitabu mwisho programu inapoanza</string>
    <string name="links_color_day">Links rangi (siku)</string>
    <string name="links_color_night">Links Michezo (usiku)</string>
+   <string name="status_bar">Kuonyesha hali</string>
+   <string name="show_status_bar">Show mwamba hali</string>
+   <string name="settings">Mipangilio</string>
+   <string name="text_size">Ukubwa wa maandishi</string>
+   <string name="text_color_day">Rangi ya maandishi (siku)</string>
+   <string name="text_color_night">Rangi ya maandishi (usiku)</string>
 </resources>

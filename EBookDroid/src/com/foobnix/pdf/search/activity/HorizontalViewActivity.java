@@ -203,13 +203,7 @@ public class HorizontalViewActivity extends FragmentActivity {
         pagesTime.setTypeface(BookCSS.getNormalTypeFace());
         pagesPower.setTypeface(BookCSS.getNormalTypeFace());
 
-        TintUtil.setTintText(pagesPower);
-        TintUtil.setTintText(pagesTime);
-        TintUtil.setTintText(pagesCountIndicator);
-        TintUtil.setTintText(flippingIntervalView);
-
-        GradientDrawable bg = (GradientDrawable) pagesPower.getBackground();
-        bg.setStroke(1, AppState.get().tintColor);
+        updateSeekBarColorAndSize();
 
         titleTxt = (TextView) findViewById(R.id.title);
         chapterView = (TextView) findViewById(R.id.chapter);
@@ -537,6 +531,22 @@ public class HorizontalViewActivity extends FragmentActivity {
         isInitPosistion = Dips.screenHeight() > Dips.screenWidth();
     }
 
+    public void updateSeekBarColorAndSize() {
+
+        TintUtil.setTintText(pagesPower, TintUtil.getStatusBarColor());
+        TintUtil.setTintText(pagesTime, TintUtil.getStatusBarColor());
+        TintUtil.setTintText(pagesCountIndicator, TintUtil.getStatusBarColor());
+        TintUtil.setTintText(flippingIntervalView, TintUtil.getStatusBarColor());
+
+        GradientDrawable bg = (GradientDrawable) pagesPower.getBackground();
+        bg.setStroke(1, TintUtil.getStatusBarColor());
+
+        pagesPower.setTextSize(AppState.get().statusBarTextSize);
+        pagesTime.setTextSize(AppState.get().statusBarTextSize);
+        pagesCountIndicator.setTextSize(AppState.get().statusBarTextSize);
+        flippingIntervalView.setTextSize(AppState.get().statusBarTextSize);
+    }
+
     Runnable onRefresh = new Runnable() {
 
         @Override
@@ -545,6 +555,8 @@ public class HorizontalViewActivity extends FragmentActivity {
             updateReadPercent();
 
             showHideInfoToolBar();
+            updateSeekBarColorAndSize();
+            hideShow();
 
         }
     };
@@ -1139,7 +1151,13 @@ public class HorizontalViewActivity extends FragmentActivity {
         };
     }
 
+    public boolean prev = true;
+
     public void hideShow() {
+        if (prev == AppState.get().isEditMode) {
+            return;
+        }
+        prev = AppState.get().isEditMode;
 
         final TranslateAnimation hideActionBar = new TranslateAnimation(0, 0, 0, -actionBar.getHeight());
         final TranslateAnimation hideBottomBar = new TranslateAnimation(0, 0, 0, bottomBar.getHeight());

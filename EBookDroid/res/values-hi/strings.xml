@@ -348,4 +348,10 @@
    <string name="opening_the_last_book_when_the_application_starts">एप्लिकेशन को शुरू होने पर अंतिम पुस्तक खोलना</string>
    <string name="links_color_day">लिंक रंग (दिन)</string>
    <string name="links_color_night">लिंक रंग (रात)</string>
+   <string name="status_bar">स्टेटस बार</string>
+   <string name="show_status_bar">स्टेटस बार दिखाएं</string>
+   <string name="settings">सेटिंग्स</string>
+   <string name="text_size">शब्दों का आकर</string>
+   <string name="text_color_day">पाठ रंग (दिन)</string>
+   <string name="text_color_night">पाठ रंग (रात)</string>
 </resources>

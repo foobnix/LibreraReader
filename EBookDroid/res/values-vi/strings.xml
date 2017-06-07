@@ -348,4 +348,10 @@
    <string name="opening_the_last_book_when_the_application_starts">Mở cuốn sách cuối cùng khi ứng dụng bắt đầu</string>
    <string name="links_color_day">Màu liên kết (ngày)</string>
    <string name="links_color_night">Màu liên kết (ban đêm)</string>
+   <string name="status_bar">Thanh trạng thái</string>
+   <string name="show_status_bar">Hiển thị thanh trạng thái</string>
+   <string name="settings">Cài đặt</string>
+   <string name="text_size">Cỡ chữ</string>
+   <string name="text_color_day">Màu văn bản (ngày)</string>
+   <string name="text_color_night">Màu văn bản (ban đêm)</string>
 </resources>

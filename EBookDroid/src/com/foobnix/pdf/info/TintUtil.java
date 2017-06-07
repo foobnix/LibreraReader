@@ -36,8 +36,13 @@ public class TintUtil {
     public static int COLOR_TINT_GRAY = Color.parseColor("#009688");
 
     static Random random = new Random();
+
     public static int randomColor() {
         return Color.HSVToColor(new float[] { random.nextInt(360), random.nextFloat(), (3f + random.nextInt(4)) / 10f });
+    }
+
+    public static int getStatusBarColor() {
+        return AppState.get().isInvert ? AppState.get().statusBarColorDay : AppState.get().statusBarColorNight;
     }
 
     public static int tintRandomColor() {
@@ -143,6 +148,7 @@ public class TintUtil {
     public static void setTintText(TextView img) {
         img.setTextColor(color);
     }
+
     public static void setTintText(TextView img, int color) {
         img.setTextColor(color);
     }

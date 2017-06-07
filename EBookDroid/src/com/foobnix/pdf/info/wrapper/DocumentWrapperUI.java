@@ -555,6 +555,7 @@ public class DocumentWrapperUI {
 
         closeTop = a.findViewById(R.id.closeTop);
         closeTop.setOnClickListener(onClose);
+        closeTop.setOnLongClickListener(onCloseLongClick);
 
         lineFirst = a.findViewById(R.id.lineFirst);
         lineFirst.setOnClickListener(onGoToPAge1);
@@ -716,21 +717,7 @@ public class DocumentWrapperUI {
             }
 
         });
-        TintUtil.setTintText(bookName);
-        TintUtil.setTintImage(textToSpeachTop);
-        TintUtil.setTintImage(lockUnlockTop);
-        TintUtil.setTintImage(nextScreenType);
-        TintUtil.setTintText(currentPageIndex);
-        TintUtil.setTintText(currentTime);
-        TintUtil.setTintText(batteryLevel);
-        TintUtil.setTintText(reverseKeysIndicator, ColorUtils.setAlphaComponent(TintUtil.color, 200));
-
-        TintUtil.setTintImage(goToPage1Top);
-        TintUtil.setTintImage((ImageView) closeTop);
-
-        TintUtil.setTintImage(toolBarButton);
-        TintUtil.setTintImage((ImageView) a.findViewById(R.id.clockIcon)).setAlpha(200);
-        TintUtil.setTintImage((ImageView) a.findViewById(R.id.batteryIcon)).setAlpha(200);
+        updateSeekBarColorAndSize();
 
         // bottom 1
         TintUtil.setStatusBarColor(a);
@@ -766,6 +753,31 @@ public class DocumentWrapperUI {
             reverseKeysIndicator.setVisibility(View.GONE);
             textToSpeachTop.setVisibility(View.GONE);
         }
+    }
+
+    public void updateSeekBarColorAndSize() {
+        TintUtil.setTintText(bookName, TintUtil.getStatusBarColor());
+        TintUtil.setTintImage(textToSpeachTop, TintUtil.getStatusBarColor());
+        TintUtil.setTintImage(lockUnlockTop, TintUtil.getStatusBarColor());
+        TintUtil.setTintImage(nextScreenType, TintUtil.getStatusBarColor());
+        TintUtil.setTintText(currentPageIndex, TintUtil.getStatusBarColor());
+        TintUtil.setTintText(currentTime, TintUtil.getStatusBarColor());
+        TintUtil.setTintText(batteryLevel, TintUtil.getStatusBarColor());
+        TintUtil.setTintText(reverseKeysIndicator, ColorUtils.setAlphaComponent(TintUtil.getStatusBarColor(), 200));
+
+        TintUtil.setTintImage(goToPage1Top, TintUtil.getStatusBarColor());
+        TintUtil.setTintImage((ImageView) closeTop, TintUtil.getStatusBarColor());
+
+        TintUtil.setTintImage(toolBarButton, TintUtil.getStatusBarColor());
+        TintUtil.setTintImage((ImageView) a.findViewById(R.id.clockIcon), TintUtil.getStatusBarColor()).setAlpha(200);
+        TintUtil.setTintImage((ImageView) a.findViewById(R.id.batteryIcon), TintUtil.getStatusBarColor()).setAlpha(200);
+
+        // textSize
+        bookName.setTextSize(AppState.get().statusBarTextSize);
+        currentPageIndex.setTextSize(AppState.get().statusBarTextSize);
+        currentTime.setTextSize(AppState.get().statusBarTextSize);
+        batteryLevel.setTextSize(AppState.get().statusBarTextSize);
+        reverseKeysIndicator.setTextSize(AppState.get().statusBarTextSize);
     }
 
     @TargetApi(Build.VERSION_CODES.JELLY_BEAN)
@@ -1274,6 +1286,8 @@ public class DocumentWrapperUI {
                     double value = (getController().getCurentPage() + 0.0001) / getController().getPageCount();
                     a.getIntent().putExtra("percent", value);
                     // titleBar.setBackgroundColor(MagicHelper.getBgColor());
+                    initToolBarPlusMinus();
+                    updateSeekBarColorAndSize();
                 }
             }, new Runnable() {
 

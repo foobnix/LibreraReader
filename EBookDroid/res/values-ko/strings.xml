@@ -348,4 +348,10 @@
    <string name="opening_the_last_book_when_the_application_starts">응용 프로그램이 시작될 때 마지막 책 열기</string>
    <string name="links_color_day">링크 색상 (일)</string>
    <string name="links_color_night">링크 색상 (야간)</string>
+   <string name="status_bar">상태 표시 줄</string>
+   <string name="show_status_bar">상태 표시 줄 표시</string>
+   <string name="settings">설정</string>
+   <string name="text_size">텍스트 크기</string>
+   <string name="text_color_day">텍스트 색상 (일)</string>
+   <string name="text_color_night">텍스트 색상 (야간)</string>
 </resources>

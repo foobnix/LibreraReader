@@ -348,4 +348,10 @@
    <string name="opening_the_last_book_when_the_application_starts">Otvorenie poslednej knihy pri spustení aplikácie</string>
    <string name="links_color_day">Farebné odkazy (deň)</string>
    <string name="links_color_night">Odkazy farba (noc)</string>
+   <string name="status_bar">Stavový riadok</string>
+   <string name="show_status_bar">Zobraziť stavový riadok</string>
+   <string name="settings">Nastavenie</string>
+   <string name="text_size">Veľkosť textu</string>
+   <string name="text_color_day">Farba textu (deň)</string>
+   <string name="text_color_night">Farba textu (noc)</string>
 </resources>

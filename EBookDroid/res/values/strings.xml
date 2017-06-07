@@ -348,4 +348,10 @@
    <string name="opening_the_last_book_when_the_application_starts">Opening the last book when the application starts</string>
    <string name="links_color_day">Links color (day)</string>
    <string name="links_color_night">Links color (night)</string>
+   <string name="status_bar">Status bar</string>
+   <string name="show_status_bar">Show status bar</string>
+   <string name="settings">Settings</string>
+   <string name="text_size">Text size</string>
+   <string name="text_color_day">Text color (day)</string>
+   <string name="text_color_night">Text color (night)</string>
 </resources>

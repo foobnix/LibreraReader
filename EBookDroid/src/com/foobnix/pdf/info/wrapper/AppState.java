@@ -130,6 +130,8 @@ public class AppState {
     public String readColors = READ_COLORS_DEAFAUL;
 
     public int tintColor = Color.parseColor(STYLE_COLORS.get(0));
+    public int statusBarColorDay = tintColor;
+    public int statusBarColorNight = tintColor;
     // public int tintColor =
     // Color.parseColor(STYLE_COLORS.get(STYLE_COLORS.size() - 2));
     public int userColor = Color.MAGENTA;
@@ -304,6 +306,7 @@ public class AppState {
     public int cutP = 50;
 
     public volatile int fontSizeSp = 22;
+    public volatile int statusBarTextSize = 14;
 
     public String lastA;
     public String lastMode;
@@ -529,8 +532,11 @@ public class AppState {
         colorNigthBg = sp.getInt("colorNigthBg", colorNigthBg);
 
         tintColor = sp.getInt("tintColor", tintColor);
+        statusBarColorDay = sp.getInt("statusBarColorDay", statusBarColorDay);
+        statusBarColorNight = sp.getInt("statusBarColorNight", statusBarColorNight);
         userColor = sp.getInt("userColor", userColor);
         fontSizeSp = sp.getInt("fontSizeSp", fontSizeSp);
+        statusBarTextSize = sp.getInt("statusBarTextSize", statusBarTextSize);
 
         doubleClickAction = sp.getInt("doubleClickAction", doubleClickAction);
         inactivityTime = sp.getInt("inactivityTime", inactivityTime);
@@ -725,8 +731,11 @@ public class AppState {
         editor.putInt("colorNigthText", colorNigthText);
 
         editor.putInt("tintColor", tintColor);
+        editor.putInt("statusBarColorDay", statusBarColorDay);
+        editor.putInt("statusBarColorNight", statusBarColorNight);
         editor.putInt("userColor", userColor);
         editor.putInt("fontSizeSp", fontSizeSp);
+        editor.putInt("statusBarTextSize", statusBarTextSize);
         editor.putInt("doubleClickAction", doubleClickAction);
         editor.putInt("inactivityTime", inactivityTime);
         editor.putInt("remindRestTime", remindRestTime);
