@@ -49,14 +49,8 @@ public class FileInformationDialog {
 
 		View dialog = LayoutInflater.from(a).inflate(R.layout.dialog_file_info, null, false);
 		TextView title = (TextView) dialog.findViewById(R.id.title);
-		if (TxtUtils.isNotEmpty(fileMeta.getAuthor())) {
-			title.setText(fileMeta.getAuthor() + " - " + fileMeta.getTitle());
-		} else {
-			title.setText(fileMeta.getTitle());
-		}
-		if (!ExtUtils.isTextFomat(file.getPath())) {
-			title.setText(ExtUtils.getFileNameWithoutExt(file.getName()));
-		}
+
+        title.setText(TxtUtils.getFileMetaBookName(fileMeta));
 
 		((TextView) dialog.findViewById(R.id.path)).setText(file.getPath());
 		((TextView) dialog.findViewById(R.id.date)).setText(fileMeta.getDateTxt());

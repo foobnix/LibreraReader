@@ -7,6 +7,8 @@ import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import com.foobnix.dao2.FileMeta;
+import com.foobnix.pdf.info.ExtUtils;
 import com.foobnix.pdf.info.wrapper.AppState;
 
 import android.annotation.TargetApi;
@@ -17,6 +19,19 @@ import android.text.Spanned;
 import android.widget.TextView;
 
 public class TxtUtils {
+
+    public static String getFileMetaBookName(FileMeta fileMeta) {
+        if (!ExtUtils.isTextFomat(fileMeta.getPath())) {
+            return ExtUtils.getFileNameWithoutExt(fileMeta.getPath());
+        }
+
+        if (TxtUtils.isNotEmpty(fileMeta.getAuthor())) {
+            return fileMeta.getAuthor() + " - " + fileMeta.getTitle();
+        } else {
+            return fileMeta.getTitle();
+        }
+
+    }
 
     public static String replaceLastFirstName(String name) {
         if (TxtUtils.isEmpty(name)) {

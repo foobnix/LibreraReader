@@ -10,6 +10,7 @@ import org.ebookdroid.core.codec.Annotation;
 import org.ebookdroid.core.codec.PageLink;
 
 import com.foobnix.android.utils.ResultResponse;
+import com.foobnix.android.utils.TxtUtils;
 import com.foobnix.dao2.FileMeta;
 import com.foobnix.pdf.info.ExtUtils;
 import com.foobnix.pdf.info.IMG;
@@ -161,6 +162,10 @@ public abstract class DocumentController {
 
     public FileMeta getBookFileMeta() {
         return AppDB.get().getOrCreate(getCurrentBook().getPath());
+    }
+
+    public String getBookFileMetaName() {
+        return TxtUtils.getFileMetaBookName(getBookFileMeta());
     }
 
     public void loadOutline() {

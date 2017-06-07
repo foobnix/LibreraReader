@@ -929,7 +929,8 @@ public class DragingDialogs {
                         closeDialog();
                         final Intent intent = new Intent(Intent.ACTION_SEND);
                         intent.setType("text/plain");
-                        intent.putExtra(Intent.EXTRA_TEXT, editText.getText().toString().trim());
+                        String txt = "\"" + editText.getText().toString().trim() + "\" " + controller.getBookFileMetaName();
+                        intent.putExtra(Intent.EXTRA_TEXT, txt);
                         controller.getActivity().startActivity(intent);
                     }
                 });
