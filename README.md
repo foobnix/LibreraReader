@@ -3,7 +3,7 @@
 Lirbi Reader is a book reader and PDF Redaer for Android 
 Supprt formats PDF, EPUB, MOBI, DjVu, FB2, TXT, RTF, AZW, AZW3, HTML, CBZ, CBR
 
-Web: [http://lirbi.com/](http://lirbi.com/)
+Web: [http://lirbireader.com/](http://lirbireader.com/)
 
 Android Play market apps:
 
