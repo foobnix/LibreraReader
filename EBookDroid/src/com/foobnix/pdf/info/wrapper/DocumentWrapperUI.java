@@ -82,7 +82,7 @@ public class DocumentWrapperUI {
     private final AppConfig appConfig;
     private ImageView linkHistory;
     private ImageView lockUnlock;
-    private ImageView lockUnlockTop, textToSpeachTop;
+    private ImageView lockUnlockTop, textToSpeachTop, clockIcon, batteryIcon;
     private ImageView showSearch;
     private View underProgress, underLayout;
     private ImageView nextScreenType, crop, cut, autoScroll, textToSpeach;
@@ -640,6 +640,9 @@ public class DocumentWrapperUI {
         textToSpeachTop.setOnClickListener(onTextToSpeach);
         textToSpeachTop.setVisibility(TTSModule.isAvailableTTS() ? View.VISIBLE : View.GONE);
 
+        batteryIcon = (ImageView) a.findViewById(R.id.batteryIcon);
+        clockIcon = (ImageView) a.findViewById(R.id.clockIcon);
+
         textToSpeach = (ImageView) a.findViewById(R.id.textToSpeach);
         textToSpeach.setOnClickListener(onTextToSpeach);
         textToSpeach.setVisibility(TTSModule.isAvailableTTS() ? View.VISIBLE : View.GONE);
@@ -769,8 +772,8 @@ public class DocumentWrapperUI {
         TintUtil.setTintImage((ImageView) closeTop, TintUtil.getStatusBarColor());
 
         TintUtil.setTintImage(toolBarButton, TintUtil.getStatusBarColor());
-        TintUtil.setTintImage((ImageView) a.findViewById(R.id.clockIcon), TintUtil.getStatusBarColor()).setAlpha(200);
-        TintUtil.setTintImage((ImageView) a.findViewById(R.id.batteryIcon), TintUtil.getStatusBarColor()).setAlpha(200);
+        TintUtil.setTintImage(clockIcon, TintUtil.getStatusBarColor()).setAlpha(200);
+        TintUtil.setTintImage(batteryIcon, TintUtil.getStatusBarColor()).setAlpha(200);
 
         // textSize
         bookName.setTextSize(AppState.get().statusBarTextSize);
@@ -778,6 +781,21 @@ public class DocumentWrapperUI {
         currentTime.setTextSize(AppState.get().statusBarTextSize);
         batteryLevel.setTextSize(AppState.get().statusBarTextSize);
         reverseKeysIndicator.setTextSize(AppState.get().statusBarTextSize);
+        lirbiLogo.getLayoutParams().height = Dips.spToPx(AppState.get().statusBarTextSize + 10);
+
+        int size = Dips.spToPx(AppState.get().statusBarTextSize + 5);
+        int sizeSmall = Dips.spToPx(AppState.get().statusBarTextSize - 5);
+
+        textToSpeachTop.getLayoutParams().height = textToSpeachTop.getLayoutParams().width = size;
+        lockUnlockTop.getLayoutParams().height = lockUnlockTop.getLayoutParams().width = size;
+        nextScreenType.getLayoutParams().height = nextScreenType.getLayoutParams().width = size;
+        goToPage1Top.getLayoutParams().height = goToPage1Top.getLayoutParams().width = size;
+        closeTop.getLayoutParams().height = closeTop.getLayoutParams().width = size;
+        toolBarButton.getLayoutParams().height = toolBarButton.getLayoutParams().width = size;
+
+        clockIcon.getLayoutParams().height = clockIcon.getLayoutParams().width = sizeSmall;
+        batteryIcon.getLayoutParams().height = batteryIcon.getLayoutParams().width = sizeSmall;
+
     }
 
     @TargetApi(Build.VERSION_CODES.JELLY_BEAN)

@@ -79,7 +79,7 @@ public class SearchFragment2 extends UIFragment<FileMeta> {
 
     @Override
     public Pair<Integer, Integer> getNameAndIconRes() {
-        int resID = (AppsConfig.APP_PACKAGE.equals(AppsConfig.PDF_READER_LIRBI) || AppsConfig.APP_PACKAGE.equals(AppsConfig.PRO_PDF_READER)) ? R.drawable.lirbi_text : R.drawable.glyphicons_2_book_open;
+        int resID = (AppsConfig.PDF_READER_LIRBI.equals(AppsConfig.APP_PACKAGE) || AppsConfig.PRO_PDF_READER.equals(AppsConfig.APP_PACKAGE)) ? R.drawable.lirbi_text : R.drawable.glyphicons_2_book_open;
         return new Pair<Integer, Integer>(R.string.library, resID);
     }
 

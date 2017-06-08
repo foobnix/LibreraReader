@@ -38,7 +38,6 @@
             android:layout_height="wrap_content"
             android:layout_toRightOf="@+id/lirbiLogo"
             android:gravity="center_vertical"
-            android:paddingTop="1dip"
             android:visibility="visible" >
 
             <ImageView
@@ -55,9 +54,9 @@
                 android:id="@+id/bookName"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
+                android:gravity="center_vertical"
                 android:layout_marginLeft="2dip"
                 android:layout_weight="1"
-                android:gravity="center_vertical"
                 android:singleLine="true"
                 android:text="Book Name.pdf"
                 android:textSize="@dimen/title_h_adv" />
@@ -129,7 +128,6 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="3dip"
                 android:layout_weight="0"
-                android:gravity="center"
                 android:text="R"
                 android:textSize="@dimen/title_h_adv" />
 

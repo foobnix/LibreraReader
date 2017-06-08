@@ -339,7 +339,7 @@ public class BrowseFragment2 extends UIFragment<FileMeta> {
 
     public boolean onBackAction() {
         File file = new File(AppState.get().dirLastPath);
-        if (file.getParent() != null) {
+        if (recyclerView != null && file.getParent() != null) {
             recyclerView.scrollToPosition(rememberPos);
             setDirPath(file.getParent());
             return true;

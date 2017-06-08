@@ -148,8 +148,8 @@ public final class TTSModule {
     }
 
     public static String replaceHTML(String pageHTML) {
-        if (true) {
-            // return pageHTML;
+        if (pageHTML == null) {
+            return "";
         }
         pageHTML = pageHTML.replace("<b>", " ").replace("</b>", " ").replace("<i>", " ").replace("</i>", " ");
         pageHTML = pageHTML.replace("<br/>", " ");

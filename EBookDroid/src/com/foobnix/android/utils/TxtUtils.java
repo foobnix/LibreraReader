@@ -266,13 +266,19 @@ public class TxtUtils {
             return "";
         }
 
-        String id = getFooterNoteNumber(input);
+        try {
+            String id = getFooterNoteNumber(input);
 
-        if (TxtUtils.isNotEmpty(id)) {
-            String string = footNotes.get(id);
-            LOG.d("Find note for id", string);
-            string = string.trim().replaceAll("^[0-9]+ ", "");
-            return string;
+            if (TxtUtils.isNotEmpty(id)) {
+                String string = footNotes.get(id);
+                LOG.d("Find note for id", string);
+                string = string.trim().replaceAll("^[0-9]+ ", "");
+                return string;
+            }
+
+        } catch (Exception e) {
+            LOG.e(e);
+            return "";
         }
 
         return "";
