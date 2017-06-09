@@ -1844,13 +1844,17 @@ public class DragingDialogs {
                 /// asd
 
                 final CustomSeek statusBarTextSize = (CustomSeek) inflate.findViewById(R.id.statusBarTextSize);
-                statusBarTextSize.init(5, 30, AppState.get().statusBarTextSize);
+                statusBarTextSize.init(5, 30, controller.isEasyMode() ? AppState.get().statusBarTextSizeEasy : AppState.get().statusBarTextSizeAdv);
                 statusBarTextSize.setOnSeekChanged(new IntegerResponse() {
 
                     @Override
                     public boolean onResultRecive(int result) {
                         isShowSatusBar.setChecked(true);
-                        AppState.get().statusBarTextSize = result;
+                        if (controller.isEasyMode()) {
+                            AppState.get().statusBarTextSizeEasy = result;
+                        } else {
+                            AppState.get().statusBarTextSizeAdv = result;
+                        }
                         AppState.get().isEditMode = false;
                         if (onRefresh != null) {
                             onRefresh.run();

@@ -151,6 +151,10 @@ public abstract class DocumentController {
         }
     }
 
+    public boolean isEasyMode() {
+        return AppState.getInstance().isAlwaysOpenAsMagazine;
+    }
+
     public void onResume() {
         readTimeStart = System.currentTimeMillis();
     }

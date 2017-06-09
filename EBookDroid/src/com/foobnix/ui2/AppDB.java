@@ -308,7 +308,7 @@ public class AppDB {
         if (load == null) {
             return false;
         }
-        return load.getIsStar();
+        return load != null && load.getIsStar();
     }
 
     public void clearAllRecent() {

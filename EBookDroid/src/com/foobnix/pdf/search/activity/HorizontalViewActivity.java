@@ -541,10 +541,10 @@ public class HorizontalViewActivity extends FragmentActivity {
         GradientDrawable bg = (GradientDrawable) pagesPower.getBackground();
         bg.setStroke(1, TintUtil.getStatusBarColor());
 
-        pagesPower.setTextSize(AppState.get().statusBarTextSize);
-        pagesTime.setTextSize(AppState.get().statusBarTextSize);
-        pagesCountIndicator.setTextSize(AppState.get().statusBarTextSize);
-        flippingIntervalView.setTextSize(AppState.get().statusBarTextSize);
+        pagesPower.setTextSize(AppState.get().statusBarTextSizeEasy);
+        pagesTime.setTextSize(AppState.get().statusBarTextSizeEasy);
+        pagesCountIndicator.setTextSize(AppState.get().statusBarTextSizeEasy);
+        flippingIntervalView.setTextSize(AppState.get().statusBarTextSizeEasy);
     }
 
     Runnable onRefresh = new Runnable() {

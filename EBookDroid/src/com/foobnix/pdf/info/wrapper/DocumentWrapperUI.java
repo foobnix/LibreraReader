@@ -11,6 +11,7 @@ import org.ebookdroid.common.settings.SettingsManager;
 import org.ebookdroid.common.settings.books.BookSettings;
 
 import com.foobnix.android.utils.Dips;
+import com.foobnix.android.utils.Keyboards;
 import com.foobnix.android.utils.LOG;
 import com.foobnix.android.utils.TxtUtils;
 import com.foobnix.pdf.info.ADS;
@@ -776,15 +777,14 @@ public class DocumentWrapperUI {
         TintUtil.setTintImage(batteryIcon, TintUtil.getStatusBarColor()).setAlpha(200);
 
         // textSize
-        bookName.setTextSize(AppState.get().statusBarTextSize);
-        currentPageIndex.setTextSize(AppState.get().statusBarTextSize);
-        currentTime.setTextSize(AppState.get().statusBarTextSize);
-        batteryLevel.setTextSize(AppState.get().statusBarTextSize);
-        reverseKeysIndicator.setTextSize(AppState.get().statusBarTextSize);
-        lirbiLogo.getLayoutParams().height = Dips.spToPx(AppState.get().statusBarTextSize + 10);
+        bookName.setTextSize(AppState.get().statusBarTextSizeAdv);
+        currentPageIndex.setTextSize(AppState.get().statusBarTextSizeAdv);
+        currentTime.setTextSize(AppState.get().statusBarTextSizeAdv);
+        batteryLevel.setTextSize(AppState.get().statusBarTextSizeAdv);
+        reverseKeysIndicator.setTextSize(AppState.get().statusBarTextSizeAdv);
 
-        int size = Dips.spToPx(AppState.get().statusBarTextSize + 5);
-        int sizeSmall = Dips.spToPx(AppState.get().statusBarTextSize - 5);
+        int size = Dips.spToPx(AppState.get().statusBarTextSizeAdv + 5);
+        int sizeSmall = Dips.spToPx(AppState.get().statusBarTextSizeAdv - 3);
 
         textToSpeachTop.getLayoutParams().height = textToSpeachTop.getLayoutParams().width = size;
         lockUnlockTop.getLayoutParams().height = lockUnlockTop.getLayoutParams().width = size;
@@ -795,6 +795,8 @@ public class DocumentWrapperUI {
 
         clockIcon.getLayoutParams().height = clockIcon.getLayoutParams().width = sizeSmall;
         batteryIcon.getLayoutParams().height = batteryIcon.getLayoutParams().width = sizeSmall;
+
+        lirbiLogo.getLayoutParams().height = titleBar.getLayoutParams().height = size + Dips.dpToPx(2);
 
     }
 
@@ -944,6 +946,7 @@ public class DocumentWrapperUI {
                 public boolean onMenuItemClick(MenuItem item) {
                     AppState.get().nextScreenScrollBy = values.get(n);
                     initNextType();
+                    Keyboards.hideNavigation(controller.getActivity());
                     return false;
                 }
             });

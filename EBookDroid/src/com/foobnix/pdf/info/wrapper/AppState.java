@@ -306,7 +306,8 @@ public class AppState {
     public int cutP = 50;
 
     public volatile int fontSizeSp = 22;
-    public volatile int statusBarTextSize = 14;
+    public volatile int statusBarTextSizeAdv = 14;
+    public volatile int statusBarTextSizeEasy = 10;
 
     public String lastA;
     public String lastMode;
@@ -536,7 +537,8 @@ public class AppState {
         statusBarColorNight = sp.getInt("statusBarColorNight", statusBarColorNight);
         userColor = sp.getInt("userColor", userColor);
         fontSizeSp = sp.getInt("fontSizeSp", fontSizeSp);
-        statusBarTextSize = sp.getInt("statusBarTextSize", statusBarTextSize);
+        statusBarTextSizeAdv = sp.getInt("statusBarTextSizeAdv", statusBarTextSizeAdv);
+        statusBarTextSizeEasy = sp.getInt("statusBarTextSizeEasy", statusBarTextSizeEasy);
 
         doubleClickAction = sp.getInt("doubleClickAction", doubleClickAction);
         inactivityTime = sp.getInt("inactivityTime", inactivityTime);
@@ -735,7 +737,8 @@ public class AppState {
         editor.putInt("statusBarColorNight", statusBarColorNight);
         editor.putInt("userColor", userColor);
         editor.putInt("fontSizeSp", fontSizeSp);
-        editor.putInt("statusBarTextSize", statusBarTextSize);
+        editor.putInt("statusBarTextSizeAdv", statusBarTextSizeAdv);
+        editor.putInt("statusBarTextSizeEasy", statusBarTextSizeEasy);
         editor.putInt("doubleClickAction", doubleClickAction);
         editor.putInt("inactivityTime", inactivityTime);
         editor.putInt("remindRestTime", remindRestTime);
