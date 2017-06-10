@@ -4,6 +4,8 @@ import java.io.File;
 import java.lang.reflect.Field;
 import java.util.concurrent.atomic.AtomicLong;
 
+import org.ebookdroid.droids.mupdf.codec.exceptions.MuPdfPasswordException;
+import org.ebookdroid.droids.mupdf.codec.exceptions.MuPdfPasswordRequiredException;
 import org.ebookdroid.ui.viewer.ViewerActivity;
 
 import com.foobnix.android.utils.LOG;
@@ -51,6 +53,8 @@ public abstract class AbstractCodecContext implements CodecContext {
             }
             try {
                 return openDocumentInner(fileName, password);
+            } catch (MuPdfPasswordException e) {
+                throw new MuPdfPasswordRequiredException();
             } catch (Throwable e) {
                 LOG.e(e);
                 return null;

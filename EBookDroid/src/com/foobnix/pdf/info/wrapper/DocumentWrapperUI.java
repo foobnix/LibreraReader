@@ -783,20 +783,22 @@ public class DocumentWrapperUI {
         batteryLevel.setTextSize(AppState.get().statusBarTextSizeAdv);
         reverseKeysIndicator.setTextSize(AppState.get().statusBarTextSizeAdv);
 
-        int size = Dips.spToPx(AppState.get().statusBarTextSizeAdv + 5);
-        int sizeSmall = Dips.spToPx(AppState.get().statusBarTextSizeAdv - 3);
+        int iconSize = Dips.spToPx(AppState.get().statusBarTextSizeAdv);
+        int smallIconSize = iconSize - Dips.dpToPx(5);
+        int panelSize = iconSize + Dips.dpToPx(4);
 
-        textToSpeachTop.getLayoutParams().height = textToSpeachTop.getLayoutParams().width = size;
-        lockUnlockTop.getLayoutParams().height = lockUnlockTop.getLayoutParams().width = size;
-        nextScreenType.getLayoutParams().height = nextScreenType.getLayoutParams().width = size;
-        goToPage1Top.getLayoutParams().height = goToPage1Top.getLayoutParams().width = size;
-        closeTop.getLayoutParams().height = closeTop.getLayoutParams().width = size;
-        toolBarButton.getLayoutParams().height = toolBarButton.getLayoutParams().width = size;
+        textToSpeachTop.getLayoutParams().height = textToSpeachTop.getLayoutParams().width = iconSize;
+        lockUnlockTop.getLayoutParams().height = lockUnlockTop.getLayoutParams().width = iconSize;
+        nextScreenType.getLayoutParams().height = nextScreenType.getLayoutParams().width = iconSize;
+        goToPage1Top.getLayoutParams().height = goToPage1Top.getLayoutParams().width = iconSize;
+        closeTop.getLayoutParams().height = closeTop.getLayoutParams().width = iconSize;
+        toolBarButton.getLayoutParams().height = toolBarButton.getLayoutParams().width = iconSize;
 
-        clockIcon.getLayoutParams().height = clockIcon.getLayoutParams().width = sizeSmall;
-        batteryIcon.getLayoutParams().height = batteryIcon.getLayoutParams().width = sizeSmall;
+        clockIcon.getLayoutParams().height = clockIcon.getLayoutParams().width = smallIconSize;
+        batteryIcon.getLayoutParams().height = batteryIcon.getLayoutParams().width = smallIconSize;
 
-        lirbiLogo.getLayoutParams().height = titleBar.getLayoutParams().height = size + Dips.dpToPx(2);
+        lirbiLogo.getLayoutParams().height = panelSize + Dips.dpToPx(1);
+        titleBar.getLayoutParams().height = panelSize;
 
     }
 

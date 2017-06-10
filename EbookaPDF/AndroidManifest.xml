@@ -3,7 +3,7 @@
     package="classic.pdf.reader.viewer.djvu.epub.fb2.txt.mobi.book.reader.lirbi.libri"
     android:installLocation="auto"
     android:versionCode="443"
-    android:versionName="6.3.36" >
+    android:versionName="6.3.38" >
 
     <uses-sdk
         android:minSdkVersion="14"
