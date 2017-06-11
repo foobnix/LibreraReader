@@ -354,17 +354,28 @@ public class Fb2Extractor extends BaseExtractor {
 
             String subLine[] = line.split("</");
 
+            boolean titleBegin = false;
+
             for (int i = 0; i < subLine.length; i++) {
                 if (i == 0) {
                     line = subLine[i];
                 } else {
                     line = "</" + subLine[i];
                 }
+
+                if (line.contains("<title")) {
+                    titleBegin = true;
+                }
                 if (line.contains("</title>")) {
+                    titleBegin = false;
                     count++;
                     line = line.replace("</title>", "<a id=\"" + count + "\"></a></title>");
                 }
+                if (line.contains("<subtitle>")) {
+                    titleBegin = true;
+                }
                 if (line.contains("</subtitle>")) {
+                    titleBegin = false;
                     count++;
                     line = line.replace("</subtitle>", "<a id=\"" + count + "\"></a></subtitle>");
                 }
@@ -372,7 +383,8 @@ public class Fb2Extractor extends BaseExtractor {
                     count++;
                     line = line.replace("</body>", "<a id=\"" + count + "\"></a></body>");
                 }
-                if (BookCSS.get().isAutoHypens) {
+
+                if (!titleBegin && BookCSS.get().isAutoHypens) {
                     if (!isFindBodyEnd && line.contains("</body>")) {
                         isFindBodyEnd = true;
                     }

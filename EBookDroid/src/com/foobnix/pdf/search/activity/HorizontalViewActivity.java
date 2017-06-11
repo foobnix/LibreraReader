@@ -814,6 +814,7 @@ public class HorizontalViewActivity extends FragmentActivity {
             }
         } else if (ev.getMessage().equals(MessageEvent.MESSAGE_DOUBLE_TAP)) {
             handler.removeCallbacks(doShowHideWrapperControllsRunnable);
+            updateLockMode();
             // Toast.makeText(this, "DB", Toast.LENGTH_SHORT).show();
         } else if (ev.getMessage().equals(MessageEvent.MESSAGE_SELECTED_TEXT)) {
             if (documentController.isTextFormat() && TxtUtils.isFooterNote(AppState.get().selectedText)) {

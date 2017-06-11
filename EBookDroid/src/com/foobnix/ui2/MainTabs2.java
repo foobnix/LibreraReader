@@ -128,23 +128,6 @@ public class MainTabs2 extends FragmentActivity {
             return;
         }
 
-        boolean showTabs = getIntent().getBooleanExtra(EXTRA_SHOW_TABS, false);
-        LOG.d("EXTRA_SHOW_TABS", showTabs, AppState.get().lastMode);
-        if (showTabs == false && AppState.getInstance().isOpenLastBook) {
-            FileMeta meta = AppDB.get().getRecentLast();
-            AppState.get().lastA = null;
-
-            if (meta != null) {
-                boolean isEasyMode = HorizontalViewActivity.class.getSimpleName().equals(AppState.get().lastMode);
-                Intent intent = new Intent(this, isEasyMode ? HorizontalViewActivity.class : ViewerActivity.class);
-                intent.setData(Uri.fromFile(new File(meta.getPath())));
-                startActivity(intent);
-            }
-
-            finish();
-            return;
-        }
-
         isInStack = true;
 
         if (!AppsConfig.checkIsProInstalled(this) && AppsConfig.ADMOB_FULLSCREEN != null) {
@@ -227,6 +210,21 @@ public class MainTabs2 extends FragmentActivity {
             }
 
         }
+
+        boolean showTabs = getIntent().getBooleanExtra(EXTRA_SHOW_TABS, false);
+        LOG.d("EXTRA_SHOW_TABS", showTabs, AppState.get().lastMode);
+        if (showTabs == false && AppState.getInstance().isOpenLastBook) {
+            FileMeta meta = AppDB.get().getRecentLast();
+            AppState.get().lastA = null;
+
+            if (meta != null) {
+                boolean isEasyMode = HorizontalViewActivity.class.getSimpleName().equals(AppState.get().lastMode);
+                Intent intent = new Intent(this, isEasyMode ? HorizontalViewActivity.class : ViewerActivity.class);
+                intent.setData(Uri.fromFile(new File(meta.getPath())));
+                startActivity(intent);
+            }
+        }
+
         LOG.d("lasta", AppState.get().lastA);
         if (HorizontalViewActivity.class.getSimpleName().equals(AppState.get().lastA)) {
 

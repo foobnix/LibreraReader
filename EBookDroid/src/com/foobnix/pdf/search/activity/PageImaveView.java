@@ -131,25 +131,27 @@ public class PageImaveView extends View {
     class ImageSimpleGestureListener extends GestureDetector.SimpleOnGestureListener {
         private final int DP_5 = Dips.dpToPx(10);
 
+        boolean prevLock = false;
         @Override
         public boolean onDoubleTap(final MotionEvent e) {
             isIgronerClick = true;
             if (clickUtils.isClickCenter(e.getX(), e.getY())) {
                 isLognPress = true;
-                EventBus.getDefault().post(new MessageEvent(MessageEvent.MESSAGE_DOUBLE_TAP, e.getX(), e.getY()));
+
                 if (isFirstZoomInOut) {
                     // imageMatrix().reset();
                     imageMatrix().preTranslate(getWidth() / 2 - e.getX(), getHeight() / 2 - e.getY());
                     imageMatrix().postScale(2.5f, 2.5f, getWidth() / 2, getHeight() / 2);
                     isFirstZoomInOut = false;
+                    prevLock = AppState.get().isLocked;
                     AppState.get().isLocked = false;
                     invalidate();
                     PageImageState.get().isAutoFit = false;
 
                 } else {
-                    if (TempHolder.get().isTextFormat) {
-                        AppState.get().isLocked = true;
-                    }
+                    // if (TempHolder.get().isTextFormat) {
+                    AppState.get().isLocked = prevLock;
+                    // }
                     isLognPress = true;
                     PageImageState.get().isAutoFit = true;
                     autoFit();
@@ -157,6 +159,7 @@ public class PageImaveView extends View {
                     isFirstZoomInOut = true;
 
                 }
+                EventBus.getDefault().post(new MessageEvent(MessageEvent.MESSAGE_DOUBLE_TAP, e.getX(), e.getY()));
                 return true;
             }
 
