@@ -345,6 +345,8 @@ public class Fb2Extractor extends BaseExtractor {
 
         boolean isEncoding = false;
         boolean isFindBodyEnd = false;
+        boolean titleBegin = false;
+
         while ((line = input.readLine()) != null) {
 
             if (!isEncoding && line.contains("windows-1251")) {
@@ -354,7 +356,7 @@ public class Fb2Extractor extends BaseExtractor {
 
             String subLine[] = line.split("</");
 
-            boolean titleBegin = false;
+
 
             for (int i = 0; i < subLine.length; i++) {
                 if (i == 0) {
@@ -363,7 +365,7 @@ public class Fb2Extractor extends BaseExtractor {
                     line = "</" + subLine[i];
                 }
 
-                if (line.contains("<title")) {
+                if (BookCSS.get().isAutoHypens && line.contains("<title")) {
                     titleBegin = true;
                 }
                 if (line.contains("</title>")) {
@@ -371,7 +373,7 @@ public class Fb2Extractor extends BaseExtractor {
                     count++;
                     line = line.replace("</title>", "<a id=\"" + count + "\"></a></title>");
                 }
-                if (line.contains("<subtitle>")) {
+                if (BookCSS.get().isAutoHypens && line.contains("<subtitle>")) {
                     titleBegin = true;
                 }
                 if (line.contains("</subtitle>")) {

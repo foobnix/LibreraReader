@@ -10,13 +10,6 @@
         android:orientation="vertical"
         android:padding="2dip" >
         
-        <TextView
-                    android:id="@+id/allSettings"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/settings"
-                    android:textStyle="bold" />
-
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

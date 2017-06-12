@@ -126,12 +126,13 @@ public class PageImaveView extends View {
         }
     }
 
-    boolean isFirstZoomInOut = true;
+    static volatile boolean isFirstZoomInOut = true;
+    static volatile boolean prevLock = false;
 
     class ImageSimpleGestureListener extends GestureDetector.SimpleOnGestureListener {
         private final int DP_5 = Dips.dpToPx(10);
 
-        boolean prevLock = false;
+
         @Override
         public boolean onDoubleTap(final MotionEvent e) {
             isIgronerClick = true;
@@ -145,13 +146,15 @@ public class PageImaveView extends View {
                     isFirstZoomInOut = false;
                     prevLock = AppState.get().isLocked;
                     AppState.get().isLocked = false;
-                    invalidate();
+                    // invalidate();
+                    invalidateAndMsg();
                     PageImageState.get().isAutoFit = false;
 
                 } else {
-                    // if (TempHolder.get().isTextFormat) {
                     AppState.get().isLocked = prevLock;
-                    // }
+                    if (TempHolder.get().isTextFormat) {
+                        AppState.get().isLocked = true;
+                    }
                     isLognPress = true;
                     PageImageState.get().isAutoFit = true;
                     autoFit();

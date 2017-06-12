@@ -90,7 +90,8 @@ public class ShareDialog {
             return;
         }
         final boolean isPDF = BookType.PDF.is(file.getPath());
-        final boolean isLibrary = a instanceof MainTabs2 ? false : true;
+        final boolean isLibrary = false;// a instanceof MainTabs2 ? false :
+                                        // true;
 
         List<String> items = new ArrayList<String>();
         if (isPDF) {

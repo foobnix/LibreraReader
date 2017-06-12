@@ -57,6 +57,7 @@ public class VerticalViewPager extends CustomViewPager {
         return ev;
     }
 
+
     @Override
     public boolean onInterceptTouchEvent(MotionEvent ev) {
         boolean intercepted = super.onInterceptTouchEvent(swapXY(ev));

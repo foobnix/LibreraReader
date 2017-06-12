@@ -45,7 +45,6 @@ import com.google.android.gms.ads.AdListener;
 import com.google.android.gms.ads.AdView;
 import com.google.android.gms.ads.InterstitialAd;
 import com.google.android.gms.ads.NativeExpressAdView;
-import com.nostra13.universalimageloader.core.ImageLoader;
 
 import android.annotation.TargetApi;
 import android.app.AlertDialog;
@@ -82,7 +81,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 public class HorizontalViewActivity extends FragmentActivity {
-    private static final String EXTRA_MEMORY_CLEAN = "EXTRA_MEMORY_CLEAN";
     private static final String PAGE = "page";
     private static final String PERCENT_EXTRA = "percent";
 
@@ -166,8 +164,6 @@ public class HorizontalViewActivity extends FragmentActivity {
         super.onCreate(savedInstanceState);
 
         clickUtils = new ClickUtils();
-
-        ImageLoader.getInstance().clearMemoryCache();
 
         AppState.get().load(this);
 
@@ -466,14 +462,6 @@ public class HorizontalViewActivity extends FragmentActivity {
                     PageImageState.get().isAutoFit = PageImageState.get().needAutoFit;
 
                     if (ExtUtils.isTextFomat(getIntent())) {
-
-                        if (getIntent() != null && getIntent().hasExtra(EXTRA_MEMORY_CLEAN)) {
-                            // Toast.makeText(HorizontalViewActivity.this,
-                            // "EXTRA_MEMORY_CLEAN", Toast.LENGTH_LONG).show();
-                            IMG.clearMemoryCache();
-                        }
-
-                        AppState.get().isLocked = true;
                         PageImageState.get().isAutoFit = true;
                     } else if (AppState.get().isLockPDF) {
                         AppState.get().isLocked = true;
@@ -684,7 +672,7 @@ public class HorizontalViewActivity extends FragmentActivity {
             documentController.getOutline(null);
             documentController.saveCurrentPage();
             createAdapter();
-            viewPager.setAdapter(pagerAdapter);
+
             loadUI();
         }
     };
@@ -709,7 +697,6 @@ public class HorizontalViewActivity extends FragmentActivity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        IMG.clearMemoryCache();
         if (loadinAsyncTask != null) {
             try {
                 loadinAsyncTask.cancel(true);
@@ -933,7 +920,6 @@ public class HorizontalViewActivity extends FragmentActivity {
         titleTxt.setText(documentController.getTitle());
         createAdapter();
 
-        viewPager.setAdapter(pagerAdapter);
         viewPager.addOnPageChangeListener(onViewPagerChangeListener);
         viewPager.setCurrentItem(documentController.getCurentPage(), false);
 
@@ -1094,10 +1080,8 @@ public class HorizontalViewActivity extends FragmentActivity {
 
         AppState.get().save(this);
         if (ExtUtils.isTextFomat(getIntent())) {
-            IMG.clearMemoryCache();
             updateReadPercent();
             if (Build.VERSION.SDK_INT >= 11) {
-                getIntent().putExtra(EXTRA_MEMORY_CLEAN, true);
                 recreate();
             } else {
                 finish();
@@ -1121,6 +1105,8 @@ public class HorizontalViewActivity extends FragmentActivity {
     FragmentStatePagerAdapter pagerAdapter;
 
     public void createAdapter() {
+        IMG.clearMemoryCache();
+        pagerAdapter = null;
         pagerAdapter = new FragmentStatePagerAdapter(getSupportFragmentManager()) {
 
             @Override
@@ -1142,14 +1128,28 @@ public class HorizontalViewActivity extends FragmentActivity {
 
             @Override
             public Parcelable saveState() {
-                return null;
+                try {
+                    return super.saveState();
+                } catch (Exception e) {
+                    Toast.makeText(HorizontalViewActivity.this, R.string.msg_unexpected_error, Toast.LENGTH_LONG).show();
+                    LOG.e(e);
+                    return null;
+                }
             }
+
 
             @Override
             public void restoreState(Parcelable arg0, ClassLoader arg1) {
+                try {
+                    super.restoreState(arg0, arg1);
+                } catch (Exception e) {
+                    Toast.makeText(HorizontalViewActivity.this, R.string.msg_unexpected_error, Toast.LENGTH_LONG).show();
+                    LOG.e(e);
+                }
             }
 
         };
+        viewPager.setAdapter(pagerAdapter);
     }
 
     public boolean prev = true;

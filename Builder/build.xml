@@ -266,9 +266,7 @@
 				tofile="${dropbox}/${pdf.export.name}-${version.code}-c${pdf.reader.code}-${pdf.app.platform}.apk"
 				overwrite="true" />
 		
-		<copy file="../EbookaPDF/bin/EbookaPDF-release.apk"
-				tofile="${dropbox1}/${pdf.export.name}-${version.code}-c${pdf.reader.code}-${pdf.app.platform}.apk"
-				overwrite="true" />
+		
 		
 		
 		
@@ -298,9 +296,6 @@
 				tofile="${dropbox}/${pdf.export.name}-${version.code}-c${pdf.reader.code}-${pdf.app.platform}.apk"
 				overwrite="true" />
 		
-		<copy file="../EbookaPDF/bin/EbookaPDF-release.apk"
-				tofile="${dropbox1}/${pdf.export.name}-${version.code}-c${pdf.reader.code}-${pdf.app.platform}.apk"
-				overwrite="true" />
 		
 		
 		
