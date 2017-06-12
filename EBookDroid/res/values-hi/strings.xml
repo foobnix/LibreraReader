@@ -354,4 +354,5 @@
    <string name="text_size">शब्दों का आकर</string>
    <string name="text_color_day">पाठ रंग (दिन)</string>
    <string name="text_color_night">पाठ रंग (रात)</string>
+   <string name="show_application_close_dialog_every_time">हर बार एप्लिकेशन बंद संवाद दिखाएं</string>
 </resources>

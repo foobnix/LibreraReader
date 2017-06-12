@@ -300,6 +300,7 @@ public class AppState {
     public boolean isIgnoreAnnotatations = false;
     public boolean isSaveAnnotatationsAutomatically = false;
     public boolean isShowWhatIsNewDialog = true;
+    public boolean isShowCloseAppDialog = true;
 
     public boolean isFirstSurname = false;
 
@@ -571,6 +572,7 @@ public class AppState {
         isIgnoreAnnotatations = sp.getBoolean("isIgnoreAnnotatations", isIgnoreAnnotatations);
         isSaveAnnotatationsAutomatically = sp.getBoolean("isSaveAnnotatationsAutomatically", isSaveAnnotatationsAutomatically);
         isShowWhatIsNewDialog = sp.getBoolean("isShowWhatIsNewDialog", isShowWhatIsNewDialog);
+        isShowCloseAppDialog = sp.getBoolean("isShowCloseAppDialog", isShowCloseAppDialog);
         isFirstSurname = sp.getBoolean("isFirstSurname", isFirstSurname);
 
         imageFormat = sp.getString("imageFormat", imageFormat);
@@ -769,6 +771,7 @@ public class AppState {
         editor.putBoolean("isIgnoreAnnotatations", isIgnoreAnnotatations);
         editor.putBoolean("isSaveAnnotatationsAutomatically", isSaveAnnotatationsAutomatically);
         editor.putBoolean("isShowWhatIsNewDialog", isShowWhatIsNewDialog);
+        editor.putBoolean("isShowCloseAppDialog", isShowCloseAppDialog);
         editor.putBoolean("isFirstSurname", isFirstSurname);
 
         editor.putString("imageFormat", imageFormat);

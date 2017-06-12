@@ -534,6 +534,16 @@ public class PrefFragment2 extends UIFragment {
             }
         });
 
+        CheckBox isShowCloseAppDialog = (CheckBox) inflate.findViewById(R.id.isShowCloseAppDialog);
+        isShowCloseAppDialog.setChecked(AppState.getInstance().isShowCloseAppDialog);
+        isShowCloseAppDialog.setOnCheckedChangeListener(new OnCheckedChangeListener() {
+
+            @Override
+            public void onCheckedChanged(final CompoundButton buttonView, final boolean isChecked) {
+                AppState.getInstance().isShowCloseAppDialog = isChecked;
+            }
+        });
+
         CheckBox isShowBookmarks = (CheckBox) inflate.findViewById(R.id.isShowBookmarks);
         isShowBookmarks.setChecked(AppState.getInstance().isShowBookmarks);
         isShowBookmarks.setOnCheckedChangeListener(new OnCheckedChangeListener() {

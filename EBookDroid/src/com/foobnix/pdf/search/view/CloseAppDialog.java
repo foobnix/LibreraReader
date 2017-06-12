@@ -1,6 +1,7 @@
 package com.foobnix.pdf.search.view;
 
 import com.foobnix.pdf.info.R;
+import com.foobnix.pdf.info.wrapper.AppState;
 import com.foobnix.ui2.MainTabs2;
 
 import android.app.AlertDialog;
@@ -25,18 +26,10 @@ public class CloseAppDialog {
     }
 
     public static void show(final Context c, final Runnable action) {
-        AlertDialog.Builder dialog = new AlertDialog.Builder(c);
-        dialog.setTitle(R.string.close_application_);
-        dialog.setPositiveButton(R.string.no, new OnClickListener() {
+        final Runnable closeApp = new Runnable() {
 
             @Override
-            public void onClick(DialogInterface dialog, int which) {
-            }
-        });
-        dialog.setNegativeButton(R.string.yes, new OnClickListener() {
-
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
+            public void run() {
                 action.run();
                 if (MainTabs2.isInStack) {
                     Intent startMain = new Intent(c, MainTabs2.class);
@@ -45,6 +38,22 @@ public class CloseAppDialog {
                     c.startActivity(startMain);
                 }
 
+            }
+        };
+        if (!AppState.get().isShowCloseAppDialog) {
+            closeApp.run();
+            return;
+        }
+
+        AlertDialog.Builder dialog = new AlertDialog.Builder(c);
+        dialog.setTitle(R.string.close_application_);
+
+        dialog.setNegativeButton(R.string.yes, new OnClickListener() {
+
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+
+                closeApp.run();
 
             }
         });

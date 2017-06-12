@@ -354,4 +354,5 @@
    <string name="text_size">Textstorlek</string>
    <string name="text_color_day">Textfärg (dag)</string>
    <string name="text_color_night">Textfärg (natt)</string>
+   <string name="show_application_close_dialog_every_time">Visa dialogrutan nära dialog varje gång</string>
 </resources>

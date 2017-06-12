@@ -644,6 +644,12 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/opening_the_last_book_when_the_application_starts" />
+        
+        <CheckBox
+                android:id="@+id/isShowCloseAppDialog"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/show_application_close_dialog_every_time" />
 
         <LinearLayout
             android:layout_width="match_parent"

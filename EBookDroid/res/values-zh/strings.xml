@@ -354,4 +354,5 @@
    <string name="text_size">字体大小</string>
    <string name="text_color_day">文字颜色（天）</string>
    <string name="text_color_night">文字颜色（夜晚）</string>
+   <string name="show_application_close_dialog_every_time">每次显示应用程序关闭对话框</string>
 </resources>

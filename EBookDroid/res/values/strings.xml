@@ -354,4 +354,5 @@
    <string name="text_size">Text size</string>
    <string name="text_color_day">Text color (day)</string>
    <string name="text_color_night">Text color (night)</string>
+   <string name="show_application_close_dialog_every_time">Show application close dialog every time</string>
 </resources>

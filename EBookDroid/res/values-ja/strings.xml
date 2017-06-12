@@ -354,4 +354,5 @@
    <string name="text_size">文字サイズ</string>
    <string name="text_color_day">テキストの色（日）</string>
    <string name="text_color_night">テキストの色（夜）</string>
+   <string name="show_application_close_dialog_every_time">毎回アプリケーションの閉じるダイアログを表示する</string>
 </resources>

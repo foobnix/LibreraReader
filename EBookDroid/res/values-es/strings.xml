@@ -354,4 +354,5 @@
    <string name="text_size">Tamaño del texto</string>
    <string name="text_color_day">Color del texto (día)</string>
    <string name="text_color_night">Color del texto (noche)</string>
+   <string name="show_application_close_dialog_every_time">Mostrar el diálogo de cierre de la aplicación cada vez</string>
 </resources>

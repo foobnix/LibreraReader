@@ -354,4 +354,5 @@
    <string name="text_size">Cỡ chữ</string>
    <string name="text_color_day">Màu văn bản (ngày)</string>
    <string name="text_color_night">Màu văn bản (ban đêm)</string>
+   <string name="show_application_close_dialog_every_time">Hiển thị hộp thoại đóng ứng dụng mỗi lần</string>
 </resources>

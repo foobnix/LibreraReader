@@ -354,4 +354,5 @@
    <string name="text_size">Lettergrootte</string>
    <string name="text_color_day">Tekst kleur (dag)</string>
    <string name="text_color_night">Tekst kleur (nacht)</string>
+   <string name="show_application_close_dialog_every_time">Toon applicatie sluiten dialoog elke keer</string>
 </resources>

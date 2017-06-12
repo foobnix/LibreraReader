@@ -354,4 +354,5 @@
    <string name="text_size">Mărimea textului</string>
    <string name="text_color_day">Culoarea textului (zi)</string>
    <string name="text_color_night">Culoarea textului (noapte)</string>
+   <string name="show_application_close_dialog_every_time">Afișați dialogul de închidere a aplicației de fiecare dată</string>
 </resources>

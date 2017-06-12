@@ -354,4 +354,5 @@
    <string name="text_size">Размер текста</string>
    <string name="text_color_day">Цвет текста (День)</string>
    <string name="text_color_night">Цвет текста (Ночь)</string>
+   <string name="show_application_close_dialog_every_time">Показывать диалог закрытия приложения каждый раз</string>
 </resources>

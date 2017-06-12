@@ -354,4 +354,5 @@
    <string name="text_size">Rozmiar czcionki</string>
    <string name="text_color_day">Kolor tekstu (dzień)</string>
    <string name="text_color_night">Kolor tekstu (noc)</string>
+   <string name="show_application_close_dialog_every_time">Pokazuj każde zamknięcie aplikacji</string>
 </resources>

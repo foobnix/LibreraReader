@@ -354,4 +354,5 @@
    <string name="text_size">Veľkosť textu</string>
    <string name="text_color_day">Farba textu (deň)</string>
    <string name="text_color_night">Farba textu (noc)</string>
+   <string name="show_application_close_dialog_every_time">Zobrazí vždy dialógové okno zavádzania aplikácií</string>
 </resources>

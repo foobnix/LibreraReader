@@ -354,4 +354,5 @@
    <string name="text_size">Yazı Boyutu</string>
    <string name="text_color_day">Metin rengi (gün)</string>
    <string name="text_color_night">Metin rengi (gece)</string>
+   <string name="show_application_close_dialog_every_time">Her seferinde uygulama kapat iletişim kutusunu göster</string>
 </resources>

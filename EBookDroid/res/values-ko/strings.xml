@@ -354,4 +354,5 @@
    <string name="text_size">텍스트 크기</string>
    <string name="text_color_day">텍스트 색상 (일)</string>
    <string name="text_color_night">텍스트 색상 (야간)</string>
+   <string name="show_application_close_dialog_every_time">매번 응용 프로그램 닫기 대화 상자 표시</string>
 </resources>
