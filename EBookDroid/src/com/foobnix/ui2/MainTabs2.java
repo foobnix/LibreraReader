@@ -21,6 +21,7 @@ import com.foobnix.pdf.info.TintUtil;
 import com.foobnix.pdf.info.widget.RecentBooksWidget;
 import com.foobnix.pdf.info.wrapper.AppState;
 import com.foobnix.pdf.info.wrapper.DocumentController;
+import com.foobnix.pdf.info.wrapper.UITab;
 import com.foobnix.pdf.search.activity.HorizontalViewActivity;
 import com.foobnix.pdf.search.view.CloseAppDialog;
 import com.foobnix.sys.TempHolder;
@@ -156,16 +157,19 @@ public class MainTabs2 extends FragmentActivity {
 
         tabFragments = new ArrayList<UIFragment>();
 
-        tabFragments.add(new SearchFragment2());
-        tabFragments.add(new BrowseFragment2());
-
-        if (AppState.getInstance().isShowRecent) {
+        try {
+            for (UITab tab : UITab.getOrdered(AppState.get().tabsOrder)) {
+                if (tab.isVisible()) {
+                    tabFragments.add(tab.getClazz().newInstance());
+                }
+            }
+        } catch (Exception e) {
+            tabFragments.add(new SearchFragment2());
+            tabFragments.add(new BrowseFragment2());
             tabFragments.add(new RecentFragment2());
-        }
-        if (AppState.getInstance().isShowBookmarks) {
             tabFragments.add(new BookmarksFragment2());
+            tabFragments.add(new PrefFragment2());
         }
-        tabFragments.add(new PrefFragment2());
 
         final TabsAdapter2 adapter = new TabsAdapter2(this, tabFragments);
 
@@ -338,7 +342,7 @@ public class MainTabs2 extends FragmentActivity {
 
     @Override
     public void onBackPressed() {
-        if (tabFragments.get(pager.getCurrentItem()).isBackPressed()) {
+        if (!tabFragments.isEmpty() && tabFragments.get(pager.getCurrentItem()).isBackPressed()) {
             return;
         }
 

@@ -20,6 +20,10 @@ import android.widget.TextView;
 
 public class TxtUtils {
 
+    public static String replaceLast(String input, String from, String to) {
+        return input.replaceAll(from + "$", to);
+    }
+
     public static String getFileMetaBookName(FileMeta fileMeta) {
         if (!ExtUtils.isTextFomat(fileMeta.getPath())) {
             return ExtUtils.getFileNameWithoutExt(fileMeta.getPath());

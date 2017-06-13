@@ -26,10 +26,12 @@ import com.foobnix.pdf.info.widget.RecentUpates;
 import com.foobnix.pdf.info.widget.ShareDialog;
 import com.foobnix.pdf.info.wrapper.AppState;
 import com.foobnix.pdf.info.wrapper.DocumentController;
+import com.foobnix.pdf.info.wrapper.UITab;
 import com.foobnix.sys.TempHolder;
 import com.foobnix.ui2.AppDB;
 import com.foobnix.ui2.BooksService;
 import com.foobnix.ui2.MainTabs2;
+import com.jmedeisis.draglinearlayout.DragLinearLayout;
 import com.nostra13.universalimageloader.core.ImageLoader;
 
 import android.annotation.SuppressLint;
@@ -108,14 +110,70 @@ public class PrefFragment2 extends UIFragment {
         TintUtil.setBackgroundFillColor(section4, TintUtil.color);
         TintUtil.setBackgroundFillColor(section5, TintUtil.color);
         TintUtil.setBackgroundFillColor(section6, TintUtil.color);
+        TintUtil.setBackgroundFillColor(section7, TintUtil.color);
 
     }
 
-    View section1, section2, section3, section4, section5, section6;
+    View section1, section2, section3, section4, section5, section6, section7;
 
     @Override
     public View onCreateView(final LayoutInflater inflater, final ViewGroup container, final Bundle savedInstanceState) {
         final View inflate = inflater.inflate(R.layout.preferences, container, false);
+
+        // tabs position
+        final DragLinearLayout dragLinearLayout = (DragLinearLayout) inflate.findViewById(R.id.dragLinearLayout);
+        final LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+        layoutParams.setMargins(Dips.dpToPx(2), Dips.dpToPx(2), Dips.dpToPx(2), Dips.dpToPx(2));
+
+        final Runnable dragLinear = new Runnable() {
+
+            @Override
+            public void run() {
+                dragLinearLayout.removeAllViews();
+                for (UITab tab : UITab.getOrdered(AppState.get().tabsOrder)) {
+                    View library = LayoutInflater.from(getActivity()).inflate(R.layout.item_tab_line, null, false);
+                    ((TextView) library.findViewById(R.id.text1)).setText(tab.getName());
+                    ((CheckBox) library.findViewById(R.id.isVisible)).setChecked(tab.isVisible());
+                    ((ImageView) library.findViewById(R.id.image1)).setImageResource(tab.getIcon());
+                    TintUtil.setTintImage(((ImageView) library.findViewById(R.id.image1)), TintUtil.COLOR_TINT_GRAY);
+                    library.setTag(tab.getIndex());
+                    dragLinearLayout.addView(library, layoutParams);
+                }
+
+                for (int i = 0; i < dragLinearLayout.getChildCount(); i++) {
+                    View child = dragLinearLayout.getChildAt(i);
+                    dragLinearLayout.setViewDraggable(child, child);
+                }
+            }
+        };
+        dragLinear.run();
+        TxtUtils.underlineTextView((TextView) inflate.findViewById(R.id.tabsApply)).setOnClickListener(new OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                AppState.get().tabsOrder = "";
+                for (int i = 0; i < dragLinearLayout.getChildCount(); i++) {
+                    View child = dragLinearLayout.getChildAt(i);
+                    boolean isVisible = ((CheckBox) child.findViewById(R.id.isVisible)).isChecked();
+                    AppState.get().tabsOrder += child.getTag() + "#" + (isVisible ? "1" : "0") + ",";
+                }
+                AppState.get().tabsOrder = TxtUtils.replaceLast(AppState.get().tabsOrder, ",", "");
+                LOG.d("tabsApply", AppState.get().tabsOrder);
+                AppState.get().save(getActivity());
+                onTheme();
+
+            }
+        });
+        TxtUtils.underlineTextView((TextView) inflate.findViewById(R.id.tabsDefaul)).setOnClickListener(new OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                AppState.get().tabsOrder = AppState.DEFAULTS_TABS_ORDER;
+                dragLinear.run();
+            }
+        });
+
+        // tabs position
 
         section1 = inflate.findViewById(R.id.section1);
         section2 = inflate.findViewById(R.id.section2);
@@ -123,6 +181,7 @@ public class PrefFragment2 extends UIFragment {
         section4 = inflate.findViewById(R.id.section4);
         section5 = inflate.findViewById(R.id.section5);
         section6 = inflate.findViewById(R.id.section6);
+        section7 = inflate.findViewById(R.id.section7);
 
         onTintChanged();
 

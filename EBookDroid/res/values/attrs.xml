@@ -25,5 +25,12 @@
         <attr name="bubbleColor" format="color" />
         <attr name="bubbleTextColor" format="color" />
     </declare-styleable>
+    
+    
+    <declare-styleable name="DragLinearLayout">
+        <attr name="scrollSensitiveHeight" format="dimension" />
+        <attr name="placeholderView" format="reference" />
+    </declare-styleable>
+    
 
 </resources>

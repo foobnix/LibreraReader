@@ -44,5 +44,8 @@
 
     <dimen name="fastscroll_scrollbar_padding">8dp</dimen>
     
+    <dimen name="downwards_drop_shadow_height">16dp</dimen>
+    
+    
 
 </resources>

@@ -17,6 +17,47 @@
             layout="@layout/ads" />
 
         <TextView
+            android:id="@+id/section7"
+            style="@style/textLinkWhite"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bg_search_second"
+            android:text="Tabs position" />
+
+        <com.jmedeisis.draglinearlayout.DragLinearLayout
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            android:id="@+id/dragLinearLayout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" >
+
+            <include layout="@layout/item_tab_line" />
+
+            <include layout="@layout/item_tab_line" />
+        </com.jmedeisis.draglinearlayout.DragLinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal" >
+
+            <TextView
+                android:id="@+id/tabsDefaul"
+                style="@style/textLink"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/restore_defaults" />
+
+            <TextView
+                android:id="@+id/tabsApply"
+                style="@style/textLink"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/apply" />
+        </LinearLayout>
+
+        <TextView
             android:id="@+id/section1"
             style="@style/textLinkWhite"
             android:layout_width="match_parent"
@@ -267,9 +308,9 @@
                 android:id="@+id/iconRandom"
                 android:layout_width="30dip"
                 android:layout_height="30dip"
+                android:layout_marginRight="2dip"
                 android:background="@drawable/bg_border_ltgray"
                 android:padding="4dip"
-                android:layout_marginRight="2dip"
                 android:src="@drawable/glyphicons_748_synchronization"
                 android:tint="@color/tint_gray" />
 
@@ -638,18 +679,18 @@
                 android:layout_marginLeft="10dip"
                 android:text="@string/music_mode" />
         </LinearLayout>
-        
+
         <CheckBox
-                android:id="@+id/isOpenLastBook"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/opening_the_last_book_when_the_application_starts" />
-        
+            android:id="@+id/isOpenLastBook"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/opening_the_last_book_when_the_application_starts" />
+
         <CheckBox
-                android:id="@+id/isShowCloseAppDialog"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/show_application_close_dialog_every_time" />
+            android:id="@+id/isShowCloseAppDialog"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/show_application_close_dialog_every_time" />
 
         <LinearLayout
             android:layout_width="match_parent"

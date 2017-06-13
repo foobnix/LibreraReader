@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/card_view"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="@dimen/dv"
+    android:elevation="@dimen/dv"
+    card_view:cardCornerRadius="@dimen/radius" >
+
+    <LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:padding="5dip" >
+
+        <ImageView
+            android:tint="@color/tint_gray"
+            android:id="@+id/image1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="0"
+            android:adjustViewBounds="true"
+            android:cropToPadding="true"
+            android:src="@drawable/lirbi_text" />
+
+        <TextView
+            android:id="@+id/text1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dip"
+            android:layout_weight="1"
+            android:text="Lirbary"
+            android:textAllCaps="true"
+             />
+
+        <CheckBox
+            android:id="@+id/isVisible"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Visible" />
+
+        <ImageView
+            android:layout_marginLeft="10dip"
+            android:id="@+id/image2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="0"
+            android:adjustViewBounds="true"
+            android:cropToPadding="true"
+            android:src="@drawable/glyphicons_517_menu_hamburger"
+            android:tint="@color/tint_gray" />
+    </LinearLayout>
+
+</android.support.v7.widget.CardView>
