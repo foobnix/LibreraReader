@@ -17,47 +17,6 @@
             layout="@layout/ads" />
 
         <TextView
-            android:id="@+id/section7"
-            style="@style/textLinkWhite"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@drawable/bg_search_second"
-            android:text="Tabs position" />
-
-        <com.jmedeisis.draglinearlayout.DragLinearLayout
-            xmlns:android="http://schemas.android.com/apk/res/android"
-            android:id="@+id/dragLinearLayout"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" >
-
-            <include layout="@layout/item_tab_line" />
-
-            <include layout="@layout/item_tab_line" />
-        </com.jmedeisis.draglinearlayout.DragLinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal" >
-
-            <TextView
-                android:id="@+id/tabsDefaul"
-                style="@style/textLink"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="@string/restore_defaults" />
-
-            <TextView
-                android:id="@+id/tabsApply"
-                style="@style/textLink"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="@string/apply" />
-        </LinearLayout>
-
-        <TextView
             android:id="@+id/section1"
             style="@style/textLinkWhite"
             android:layout_width="match_parent"
@@ -715,17 +674,6 @@
                 android:text="GoogleTranslate" />
         </LinearLayout>
 
-        <CheckBox
-            android:id="@+id/isShowBookmarks"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/show_bookmarks_tab" />
-
-        <CheckBox
-            android:id="@+id/isShowRecent"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/show_and_remeber_the_recent" />
 
         <CheckBox
             android:id="@+id/isLoopAutoplay"
@@ -735,11 +683,6 @@
             android:text="@string/loop_autoplay"
             android:visibility="gone" />
 
-        <CheckBox
-            android:id="@+id/isShowDroid"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/show_assistant_droid_reader" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -915,39 +858,49 @@
                 android:singleLine="true"
                 android:text="@string/clear_all_bookmars" />
         </LinearLayout>
-
+        
+        
         <TextView
-            android:id="@+id/section3"
+            android:id="@+id/section7"
             style="@style/textLinkWhite"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dip"
             android:background="@drawable/bg_search_second"
-            android:text="@string/import_or_export_application_settings_to_json_file" />
+            android:text="@string/tabs_position" />
+
+        <com.jmedeisis.draglinearlayout.DragLinearLayout
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            android:id="@+id/dragLinearLayout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" >
+
+            <include layout="@layout/item_tab_line" />
+
+            <include layout="@layout/item_tab_line" />
+        </com.jmedeisis.draglinearlayout.DragLinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="center_vertical"
-            android:visibility="visible" >
+            android:orientation="horizontal" >
 
             <TextView
-                android:id="@+id/importButton"
+                android:id="@+id/tabsDefaul"
                 style="@style/textLink"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="0"
-                android:text="@string/import_" />
+                android:layout_weight="1"
+                android:text="@string/restore_defaults" />
 
             <TextView
-                android:id="@+id/exportButton"
+                android:id="@+id/tabsApply"
                 style="@style/textLink"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="10dip"
-                android:layout_weight="0"
-                android:text="@string/export_" />
+                android:layout_weight="1"
+                android:text="@string/apply" />
         </LinearLayout>
+
 
         <TextView
             android:id="@+id/section4"
@@ -1042,6 +995,40 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="http://en.lirbi.com English" />
+        </LinearLayout>
+        
+        
+         <TextView
+            android:id="@+id/section3"
+            style="@style/textLinkWhite"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dip"
+            android:background="@drawable/bg_search_second"
+            android:text="@string/import_or_export_application_settings_to_json_file" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:visibility="visible" >
+
+            <TextView
+                android:id="@+id/importButton"
+                style="@style/textLink"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="0"
+                android:text="@string/import_" />
+
+            <TextView
+                android:id="@+id/exportButton"
+                style="@style/textLink"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dip"
+                android:layout_weight="0"
+                android:text="@string/export_" />
         </LinearLayout>
 
         <TextView

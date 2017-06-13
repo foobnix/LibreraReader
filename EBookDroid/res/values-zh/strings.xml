@@ -136,7 +136,6 @@
    <string name="volume_keys">音量键</string>
    <string name="this_function_will_works_in_modern_android">此功能将在现代的Andr​​oid工作</string>
    <string name="import_or_export_application_settings_to_json_file">导入或导出应用程序设置JSON文件</string>
-   <string name="show_and_remeber_the_recent">显示并记住最近</string>
    <string name="menu">菜单</string>
    <string name="foot_notes">脚注</string>
    <string name="music_mode">音乐家</string>
@@ -355,4 +354,6 @@
    <string name="text_color_day">文字颜色（天）</string>
    <string name="text_color_night">文字颜色（夜晚）</string>
    <string name="show_application_close_dialog_every_time">每次显示应用程序关闭对话框</string>
+   <string name="tabs_position">标签位置</string>
+   <string name="visible">可见</string>
 </resources>

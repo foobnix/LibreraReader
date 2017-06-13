@@ -136,7 +136,6 @@
    <string name="volume_keys">Teclas de Volume</string>
    <string name="this_function_will_works_in_modern_android">Esta função vai ser um trabalho no Android moderno</string>
    <string name="import_or_export_application_settings_to_json_file">De importação ou de aplicação de exportação configurações para arquivo JSON</string>
-   <string name="show_and_remeber_the_recent">Mostrar e lembrar a recente</string>
    <string name="menu">Cardápio</string>
    <string name="foot_notes">Nota de rodapé</string>
    <string name="music_mode">Músico</string>
@@ -355,4 +354,6 @@
    <string name="text_color_day">Cor do texto (dia)</string>
    <string name="text_color_night">Cor do texto (noite)</string>
    <string name="show_application_close_dialog_every_time">Mostrar diálogo de fechamento de aplicativos toda vez</string>
+   <string name="tabs_position">Posição das guias</string>
+   <string name="visible">Visível</string>
 </resources>

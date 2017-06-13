@@ -136,7 +136,6 @@
    <string name="volume_keys">ボリュームキー</string>
    <string name="this_function_will_works_in_modern_android">この関数は、現代のAndroidでの作業になります</string>
    <string name="import_or_export_application_settings_to_json_file">JSONファイルのインポートまたはエクスポートするアプリケーションの設定</string>
-   <string name="show_and_remeber_the_recent">表示と最近のを覚えています</string>
    <string name="menu">メニュー</string>
    <string name="foot_notes">脚注</string>
    <string name="music_mode">ミュージシャン</string>
@@ -355,4 +354,6 @@
    <string name="text_color_day">テキストの色（日）</string>
    <string name="text_color_night">テキストの色（夜）</string>
    <string name="show_application_close_dialog_every_time">毎回アプリケーションの閉じるダイアログを表示する</string>
+   <string name="tabs_position">タブの位置</string>
+   <string name="visible">見える</string>
 </resources>

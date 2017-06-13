@@ -144,7 +144,6 @@
    <string name="volume_keys">Volume Keys</string>
    <string name="this_function_will_works_in_modern_android">Deze functie zal werken in de moderne Android</string>
    <string name="import_or_export_application_settings_to_json_file">Importeren of exporteren alle programma-instellingen</string>
-   <string name="show_and_remeber_the_recent">Toon en herinner me de recente</string>
    <string name="menu">Menu</string>
    <string name="font_size">Lettertypegrootte</string>
    <string name="foot_notes">Voetnoot</string>
@@ -355,4 +354,6 @@
    <string name="text_color_day">Tekst kleur (dag)</string>
    <string name="text_color_night">Tekst kleur (nacht)</string>
    <string name="show_application_close_dialog_every_time">Toon applicatie sluiten dialoog elke keer</string>
+   <string name="tabs_position">Tabs positie</string>
+   <string name="visible">Zichtbaar</string>
 </resources>

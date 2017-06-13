@@ -144,7 +144,6 @@
    <string name="volume_keys">볼륨 키</string>
    <string name="this_function_will_works_in_modern_android">이 기능은 최신 안드로이드에서 작동됩니다</string>
    <string name="import_or_export_application_settings_to_json_file">설정 가져오기 혹은 내보내기</string>
-   <string name="show_and_remeber_the_recent">최근 설정 저장하기</string>
    <string name="menu">메뉴</string>
    <string name="font_size">글꼴 크기</string>
    <string name="foot_notes">각주</string>
@@ -355,4 +354,6 @@
    <string name="text_color_day">텍스트 색상 (일)</string>
    <string name="text_color_night">텍스트 색상 (야간)</string>
    <string name="show_application_close_dialog_every_time">매번 응용 프로그램 닫기 대화 상자 표시</string>
+   <string name="tabs_position">탭 위치</string>
+   <string name="visible">명백한</string>
 </resources>

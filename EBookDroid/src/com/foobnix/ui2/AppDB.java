@@ -19,6 +19,7 @@ import com.foobnix.dao2.FileMeta;
 import com.foobnix.dao2.FileMetaDao;
 import com.foobnix.pdf.info.R;
 import com.foobnix.pdf.info.wrapper.AppState;
+import com.foobnix.pdf.info.wrapper.UITab;
 import com.foobnix.ui2.adapter.FileMetaAdapter;
 
 import android.content.Context;
@@ -177,7 +178,7 @@ public class AppDB {
     }
 
     public void addRecent(String path) {
-        if (!AppState.getInstance().isShowRecent) {
+        if (!UITab.isShowRecent()) {
             return;
         }
 

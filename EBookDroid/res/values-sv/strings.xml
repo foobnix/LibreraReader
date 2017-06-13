@@ -144,7 +144,6 @@
    <string name="volume_keys">Volym Keys</string>
    <string name="this_function_will_works_in_modern_android">Denna funktion kommer att vara arbete i modern Android</string>
    <string name="import_or_export_application_settings_to_json_file">Import eller export alla programinställningar</string>
-   <string name="show_and_remeber_the_recent">Visa och minns Senaste</string>
    <string name="menu">Meny</string>
    <string name="font_size">Textstorlek</string>
    <string name="foot_notes">Fotnot</string>
@@ -355,4 +354,6 @@
    <string name="text_color_day">Textfärg (dag)</string>
    <string name="text_color_night">Textfärg (natt)</string>
    <string name="show_application_close_dialog_every_time">Visa dialogrutan nära dialog varje gång</string>
+   <string name="tabs_position">Tabs position</string>
+   <string name="visible">Synlig</string>
 </resources>

@@ -60,14 +60,12 @@ class MainBrowserActivity extends FragmentActivity {
     private final List<String> CONTENT = new ArrayList<String>();
     private final List<Integer> ICONS = new ArrayList<Integer>();
 
-
     private static int lastPage = 0;
 
     InterstitialAd mInterstitialAd;
     FrameLayout adFrame;
 
     Handler hadler;
-
 
     @Override
     protected void onCreate(final Bundle savedInstanceState) {
@@ -76,15 +74,8 @@ class MainBrowserActivity extends FragmentActivity {
         hadler = new Handler();
         if (getIntent() != null && "android.appwidget.action.APPWIDGET_CONFIGURE".equals(getIntent().getAction())) {
             int prefPage = 5;
-            if (!AppState.getInstance().isShowBookmarks) {
-                prefPage--;
-            }
-            if (!AppState.getInstance().isShowRecent) {
-                prefPage--;
-            }
             lastPage = prefPage;
         }
-
 
         if (AppState.getInstance().isWhiteTheme) {
             setTheme(R.style.StyledIndicatorsWhite);
@@ -133,17 +124,13 @@ class MainBrowserActivity extends FragmentActivity {
         CONTENT.add(getString(R.string.folders));
         ICONS.add(R.drawable.glyphicons_145_folder_open);
 
-        if (AppState.getInstance().isShowRecent) {
-            FRAGMENTS.add(RECENT_FRAGMET);
-            CONTENT.add(getString(R.string.recent));
-            ICONS.add(R.drawable.glyphicons_72_book);
-        }
+        FRAGMENTS.add(RECENT_FRAGMET);
+        CONTENT.add(getString(R.string.recent));
+        ICONS.add(R.drawable.glyphicons_72_book);
 
-        if (AppState.getInstance().isShowBookmarks) {
-            FRAGMENTS.add(bookmarks);
-            CONTENT.add(getString(R.string.bookmarks));
-            ICONS.add(R.drawable.glyphicons_73_bookmark);
-        }
+        FRAGMENTS.add(bookmarks);
+        CONTENT.add(getString(R.string.bookmarks));
+        ICONS.add(R.drawable.glyphicons_73_bookmark);
 
         FRAGMENTS.add(PREF_FRAGMET);
         CONTENT.add(getString(R.string.preferences));
@@ -163,7 +150,6 @@ class MainBrowserActivity extends FragmentActivity {
         indicator.setSelectedIndicatorColors(Color.WHITE);
 
         indicator.setBackgroundColor(TintUtil.color);
-
 
         // indicator.notifyDataSetChanged();
         indicator.setOnPageChangeListener(onChange);

@@ -144,7 +144,6 @@
    <string name="volume_keys">Volume Keys</string>
    <string name="this_function_will_works_in_modern_android">Kazi hii itakuwa kazi katika Android kisasa</string>
    <string name="import_or_export_application_settings_to_json_file">Kuagiza au kuuza nje mazingira yote ya maombi</string>
-   <string name="show_and_remeber_the_recent">Kuonyesha na kukumbuka ya hivi karibuni</string>
    <string name="menu">Orodha</string>
    <string name="font_size">Ukubwa wa herufi</string>
    <string name="foot_notes">Tanbihi</string>
@@ -355,4 +354,6 @@
    <string name="text_color_day">Rangi ya maandishi (siku)</string>
    <string name="text_color_night">Rangi ya maandishi (usiku)</string>
    <string name="show_application_close_dialog_every_time">Show maombi karibu dialog kila wakati</string>
+   <string name="tabs_position">Tabs nafasi</string>
+   <string name="visible">Inaonekana</string>
 </resources>

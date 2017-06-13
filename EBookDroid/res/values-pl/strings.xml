@@ -140,7 +140,6 @@
    <string name="volume_keys">Przyciski głośności</string>
    <string name="this_function_will_works_in_modern_android">Funkcja ta działa w nowszej wersji Androida</string>
    <string name="import_or_export_application_settings_to_json_file">Importuj lub eksportuj wszystkie ustawienia</string>
-   <string name="show_and_remeber_the_recent">Pokaż i zapamiętaj ostatnie</string>
    <string name="menu">Menu</string>
    <string name="foot_notes">Notatka</string>
    <string name="plain_text_txt_preformatted">Zwykły tekst (.txt) preformatowany</string>
@@ -355,4 +354,6 @@
    <string name="text_color_day">Kolor tekstu (dzień)</string>
    <string name="text_color_night">Kolor tekstu (noc)</string>
    <string name="show_application_close_dialog_every_time">Pokazuj każde zamknięcie aplikacji</string>
+   <string name="tabs_position">Położenie kart</string>
+   <string name="visible">Widoczny</string>
 </resources>

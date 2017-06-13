@@ -144,7 +144,6 @@
    <string name="volume_keys">מקשי עוצמת קול</string>
    <string name="this_function_will_works_in_modern_android">פונקציה זו תהיה עבודת Android המודרנית</string>
    <string name="import_or_export_application_settings_to_json_file">כל ייבוא ​​או ייצוא של הגדרות יישום</string>
-   <string name="show_and_remeber_the_recent">הצג ולזכור את אחרונים</string>
    <string name="menu">תַפרִיט</string>
    <string name="font_size">גודל גופן</string>
    <string name="foot_notes">הערת שוליים</string>
@@ -355,4 +354,6 @@
    <string name="text_color_day">צבע טקסט (יום)</string>
    <string name="text_color_night">צבע טקסט (לילה)</string>
    <string name="show_application_close_dialog_every_time">הצג תיבת דו-שיח של יישום קרוב בכל פעם</string>
+   <string name="tabs_position">מיקום הכרטיסיות</string>
+   <string name="visible">נִרְאֶה</string>
 </resources>

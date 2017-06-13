@@ -40,7 +40,7 @@
             android:id="@+id/isVisible"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Visible" />
+            android:text="@string/visible" />
 
         <ImageView
             android:layout_marginLeft="10dip"

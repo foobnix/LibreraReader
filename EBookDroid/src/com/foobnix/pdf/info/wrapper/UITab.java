@@ -74,6 +74,10 @@ public enum UITab {
 
     }
 
+    public static boolean isShowRecent() {
+        return AppState.get().tabsOrder.contains("2#1");
+    }
+
     public boolean isVisible() {
         return isVisible;
     }

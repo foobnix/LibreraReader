@@ -136,7 +136,6 @@
    <string name="volume_keys">Tasti del volume</string>
    <string name="this_function_will_works_in_modern_android">Questa funzione è compatibile solo con le recenti versioni di Android</string>
    <string name="import_or_export_application_settings_to_json_file">Importa o esporta le impostazioni in un file JSON</string>
-   <string name="show_and_remeber_the_recent">Mostra scheda recenti</string>
    <string name="menu">Menu</string>
    <string name="foot_notes">Note a piè di pagina</string>
    <string name="music_mode">Modalità musicista</string>
@@ -355,4 +354,6 @@
    <string name="text_color_day">Colore del testo (giorno)</string>
    <string name="text_color_night">Colore del testo (notte)</string>
    <string name="show_application_close_dialog_every_time">Mostra la finestra di dialogo dell\'applicazione ogni volta</string>
+   <string name="tabs_position">Posizione delle schede</string>
+   <string name="visible">Visibile</string>
 </resources>

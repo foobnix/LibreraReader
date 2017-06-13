@@ -136,7 +136,6 @@
    <string name="volume_keys">Klávesy pre ovládanie hlasitosti</string>
    <string name="this_function_will_works_in_modern_android">Táto funkcia bude pracovať v modernej Android</string>
    <string name="import_or_export_application_settings_to_json_file">Import alebo export nastavenia aplikácie do súboru json</string>
-   <string name="show_and_remeber_the_recent">Zobraziť a spomenúť na nedávne</string>
    <string name="menu">Menu</string>
    <string name="foot_notes">Poznámka pod čiarou</string>
    <string name="music_mode">Hudobník</string>
@@ -355,4 +354,6 @@
    <string name="text_color_day">Farba textu (deň)</string>
    <string name="text_color_night">Farba textu (noc)</string>
    <string name="show_application_close_dialog_every_time">Zobrazí vždy dialógové okno zavádzania aplikácií</string>
+   <string name="tabs_position">Poloha záložiek</string>
+   <string name="visible">Viditeľný</string>
 </resources>

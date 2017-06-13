@@ -144,7 +144,6 @@
    <string name="volume_keys">Phím âm lượng</string>
    <string name="this_function_will_works_in_modern_android">Chức năng này sẽ được làm việc trong Android hiện đại</string>
    <string name="import_or_export_application_settings_to_json_file">Nhập khẩu hoặc xuất khẩu tất cả các cài đặt ứng dụng</string>
-   <string name="show_and_remeber_the_recent">Xem và nhớ gần đây</string>
    <string name="menu">Thực đơn</string>
    <string name="font_size">Cỡ chữ</string>
    <string name="foot_notes">Chú thích</string>
@@ -355,4 +354,6 @@
    <string name="text_color_day">Màu văn bản (ngày)</string>
    <string name="text_color_night">Màu văn bản (ban đêm)</string>
    <string name="show_application_close_dialog_every_time">Hiển thị hộp thoại đóng ứng dụng mỗi lần</string>
+   <string name="tabs_position">Vị trí tab</string>
+   <string name="visible">Có thể nhìn thấy</string>
 </resources>

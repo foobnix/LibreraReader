@@ -136,7 +136,6 @@
    <string name="volume_keys">Клавіші регулювання гучності</string>
    <string name="this_function_will_works_in_modern_android">Ця функція буде працювати в сучасних Android</string>
    <string name="import_or_export_application_settings_to_json_file">Імпорт або експорт налаштувань додатка в файл JSon</string>
-   <string name="show_and_remeber_the_recent">Показати і памятати недавнє</string>
    <string name="menu">Меню</string>
    <string name="foot_notes">Виноска</string>
    <string name="music_mode">Музичний режим</string>
@@ -355,4 +354,6 @@
    <string name="text_color_day">Колір тексту (день)</string>
    <string name="text_color_night">Колір тексту (ніч)</string>
    <string name="show_application_close_dialog_every_time">Показати додаток закрити діалог кожен раз</string>
+   <string name="tabs_position">Становище Виберіть</string>
+   <string name="visible">Видимий</string>
 </resources>

@@ -11,7 +11,7 @@ import java.util.TreeMap;
 
 import com.foobnix.android.utils.LOG;
 import com.foobnix.pdf.info.wrapper.AppBookmark;
-import com.foobnix.pdf.info.wrapper.AppState;
+import com.foobnix.pdf.info.wrapper.UITab;
 import com.foobnix.sys.TempHolder;
 
 import android.content.Context;
@@ -38,7 +38,7 @@ public class AppSharedPreferences {
 
     public void addRecent(Uri uri) {
         LOG.d("ADD_PREF RECENT", uri.toString());
-        if (!AppState.get().isShowRecent) {
+        if (!UITab.isShowRecent()) {
             return;
         }
         SharedPreferences.Editor editor = bookmarkPreferences.edit();

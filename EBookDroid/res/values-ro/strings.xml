@@ -143,7 +143,6 @@
    <string name="volume_keys">Taste de volum</string>
    <string name="this_function_will_works_in_modern_android">Această funcție va funcționa pe versiunile de Android moderne</string>
    <string name="import_or_export_application_settings_to_json_file">Importați sau de exportați toate setările aplicației</string>
-   <string name="show_and_remeber_the_recent">Afișați și amintiți-vă de recenta</string>
    <string name="menu">Meniu</string>
    <string name="font_size">Mărimea fontului</string>
    <string name="foot_notes">Notă de subsol</string>
@@ -355,4 +354,6 @@
    <string name="text_color_day">Culoarea textului (zi)</string>
    <string name="text_color_night">Culoarea textului (noapte)</string>
    <string name="show_application_close_dialog_every_time">Afișați dialogul de închidere a aplicației de fiecare dată</string>
+   <string name="tabs_position">Pozițiile filelor</string>
+   <string name="visible">Vizibil</string>
 </resources>

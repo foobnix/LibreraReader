@@ -136,7 +136,6 @@
    <string name="volume_keys">مفاتيح حجم</string>
    <string name="this_function_will_works_in_modern_android">وهذه وظيفة يكون العمل في الروبوت الحديث</string>
    <string name="import_or_export_application_settings_to_json_file">استيراد أو تصدير تطبيق الإعدادات إلى ملف سلمان</string>
-   <string name="show_and_remeber_the_recent">إظهار وتذكر آخر</string>
    <string name="menu">قائمة طعام</string>
    <string name="foot_notes">حاشية</string>
    <string name="music_mode">موسيقي</string>
@@ -355,4 +354,6 @@
    <string name="text_color_day">لون النص (اليوم)</string>
    <string name="text_color_night">لون النص (ليل)</string>
    <string name="show_application_close_dialog_every_time">عرض الحوار وثيقة التطبيق في كل مرة</string>
+   <string name="tabs_position">موضع علامات التبويب</string>
+   <string name="visible">مرئي</string>
 </resources>

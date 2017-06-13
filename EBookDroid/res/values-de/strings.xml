@@ -136,7 +136,6 @@
    <string name="volume_keys">Lautstärketasten</string>
    <string name="this_function_will_works_in_modern_android">Diese Funktion wird in der modernen Android sein</string>
    <string name="import_or_export_application_settings_to_json_file">Importieren oder Exportieren von Anwendungseinstellungen zu JSON-Datei</string>
-   <string name="show_and_remeber_the_recent">Tab ""Verlauf"" anzeigen</string>
    <string name="menu">Menü</string>
    <string name="foot_notes">Fußnote</string>
    <string name="music_mode">Musiker</string>
@@ -355,4 +354,6 @@
    <string name="text_color_day">Textfarbe (Tag)</string>
    <string name="text_color_night">Textfarbe (Nacht)</string>
    <string name="show_application_close_dialog_every_time">Anwendungsdialog jederzeit anzeigen</string>
+   <string name="tabs_position">Tabs Position</string>
+   <string name="visible">Sichtbar</string>
 </resources>

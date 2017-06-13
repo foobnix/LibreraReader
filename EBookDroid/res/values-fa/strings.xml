@@ -139,7 +139,6 @@
    <string name="volume_keys">کلید های تنظیم صدا</string>
    <string name="this_function_will_works_in_modern_android">این تابع خواهد بود کار در آندروید مدرن</string>
    <string name="import_or_export_application_settings_to_json_file">واردات و یا صادرات نرم افزار تنظیمات به فایل JSON</string>
-   <string name="show_and_remeber_the_recent">نشان می دهد و به یاد داشته باشید آخرین</string>
    <string name="menu">فهرست</string>
    <string name="foot_notes">پاورقی</string>
    <string name="plain_text_txt_preformatted">متن ساده (.txt) تنظیم نشده</string>
@@ -355,4 +354,6 @@
    <string name="text_color_day">رنگ متن (روز)</string>
    <string name="text_color_night">رنگ متن (شب)</string>
    <string name="show_application_close_dialog_every_time">نمایش برنامه گفت و گو نزدیک هر بار</string>
+   <string name="tabs_position">موقعیت زبانهها</string>
+   <string name="visible">قابل رویت</string>
 </resources>

@@ -91,7 +91,6 @@
    <string name="select">Выбрать</string>
    <string name="send_file_to">Отправить файл</string>
    <string name="share">Поделиться</string>
-   <string name="show_bookmarks_tab">Отображать «Закладки»</string>
    <string name="show_books_thumbnails_preview">Показывать обложки книг и миниатюры страниц</string>
    <string name="sorting">Сортировка</string>
    <string name="split_pages_in_two">Разрезать страницы</string>
@@ -135,7 +134,6 @@
    <string name="volume_keys">Клавиши регулировки громкости</string>
    <string name="this_function_will_works_in_modern_android">Эта функция будет работать на поздних версиях ОС Android</string>
    <string name="import_or_export_application_settings_to_json_file">Импорт или экспорт всех настроек</string>
-   <string name="show_and_remeber_the_recent">Отображать «Недавние»</string>
    <string name="menu">Меню</string>
    <string name="foot_notes">Примечание</string>
    <string name="music_mode">Режим «Музыкант»</string>
@@ -169,7 +167,6 @@
    <string name="action_on_double_tap">Двойное нажатие</string>
    <string name="add_bookmark">Добавить закладку</string>
    <string name="add">Добавить</string>
-   <string name="show_assistant_droid_reader">Показать помощника Droid-ридера</string>
    <string name="say_hello_my_name_is_droid_reader1">Здравствуйте, меня зовут Droid-ридер</string>
    <string name="say_i_have_found_books1">Я нашел книги!</string>
    <string name="let_read_a_book">Я думаю, вы хотите почитать книгу!</string>
@@ -355,4 +352,8 @@
    <string name="text_color_day">Цвет текста (День)</string>
    <string name="text_color_night">Цвет текста (Ночь)</string>
    <string name="show_application_close_dialog_every_time">Показывать диалог закрытия приложения каждый раз</string>
+   <string name="show_bookmarks_tab">Показать вкладку «Закладки»</string>
+   <string name="show_assistant_droid_reader">Показать помощник Droid Reader</string>
+   <string name="tabs_position">Позиция вкладок</string>
+   <string name="visible">Видимая</string>
 </resources>

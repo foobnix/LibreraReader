@@ -28,7 +28,6 @@ import com.foobnix.pdf.info.wrapper.AppState;
 import com.foobnix.pdf.info.wrapper.DocumentController;
 import com.foobnix.pdf.info.wrapper.UITab;
 import com.foobnix.sys.TempHolder;
-import com.foobnix.ui2.AppDB;
 import com.foobnix.ui2.BooksService;
 import com.foobnix.ui2.MainTabs2;
 import com.jmedeisis.draglinearlayout.DragLinearLayout;
@@ -562,16 +561,6 @@ public class PrefFragment2 extends UIFragment {
             }
         });
 
-        CheckBox isShowDroid = (CheckBox) inflate.findViewById(R.id.isShowDroid);
-        isShowDroid.setChecked(AppState.getInstance().isShowDroid);
-        isShowDroid.setOnCheckedChangeListener(new OnCheckedChangeListener() {
-
-            @Override
-            public void onCheckedChanged(final CompoundButton buttonView, final boolean isChecked) {
-                AppState.getInstance().isShowDroid = isChecked;
-            }
-        });
-        isShowDroid.setVisibility(AppsConfig.isDroidReaderPkg(getActivity()) ? View.VISIBLE : View.GONE);
 
         CheckBox isLoopAutoplay = (CheckBox) inflate.findViewById(R.id.isLoopAutoplay);
         isLoopAutoplay.setChecked(AppState.getInstance().isLoopAutoplay);
@@ -600,32 +589,6 @@ public class PrefFragment2 extends UIFragment {
             @Override
             public void onCheckedChanged(final CompoundButton buttonView, final boolean isChecked) {
                 AppState.getInstance().isShowCloseAppDialog = isChecked;
-            }
-        });
-
-        CheckBox isShowBookmarks = (CheckBox) inflate.findViewById(R.id.isShowBookmarks);
-        isShowBookmarks.setChecked(AppState.getInstance().isShowBookmarks);
-        isShowBookmarks.setOnCheckedChangeListener(new OnCheckedChangeListener() {
-
-            @Override
-            public void onCheckedChanged(final CompoundButton buttonView, final boolean isChecked) {
-                AppState.getInstance().isShowBookmarks = isChecked;
-            }
-        });
-
-        CheckBox isShowRecent = (CheckBox) inflate.findViewById(R.id.isShowRecent);
-        isShowRecent.setChecked(AppState.getInstance().isShowRecent);
-        isShowRecent.setOnCheckedChangeListener(new OnCheckedChangeListener() {
-
-            @Override
-            public void onCheckedChanged(final CompoundButton buttonView, final boolean isChecked) {
-                AppState.getInstance().isShowRecent = isChecked;
-
-                if (!AppState.getInstance().isShowRecent) {
-                    // AppSharedPreferences.get().cleanRecent();
-                    AppDB.get().clearAllRecent();
-                }
-
             }
         });
 

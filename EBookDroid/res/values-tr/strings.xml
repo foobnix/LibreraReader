@@ -136,7 +136,6 @@
    <string name="volume_keys">Cilt Keys</string>
    <string name="this_function_will_works_in_modern_android">Bu işlev, modern Androidde olur</string>
    <string name="import_or_export_application_settings_to_json_file">Json dosyası alma veya verme uygulama ayarları</string>
-   <string name="show_and_remeber_the_recent">Sonuncuyu Göster</string>
    <string name="menu">Menü</string>
    <string name="foot_notes">Dipnot</string>
    <string name="music_mode">Müzisyen</string>
@@ -355,4 +354,6 @@
    <string name="text_color_day">Metin rengi (gün)</string>
    <string name="text_color_night">Metin rengi (gece)</string>
    <string name="show_application_close_dialog_every_time">Her seferinde uygulama kapat iletişim kutusunu göster</string>
+   <string name="tabs_position">Sekmeler konumu</string>
+   <string name="visible">Gözle görülür</string>
 </resources>

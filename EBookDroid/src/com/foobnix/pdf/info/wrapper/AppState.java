@@ -238,9 +238,6 @@ public class AppState {
     public int editAlphaColor = 100;
     public float editLineWidth = 3;
 
-    public boolean isShowBookmarks = true;
-    public boolean isShowRecent = true;
-
     public boolean isAlwaysOpenAsMagazine = false;
     public boolean isRememberMode = false;
 
@@ -495,8 +492,6 @@ public class AppState {
         isBookCoverEffect = sp.getBoolean("isBookCoverEffect", isBookCoverEffect);
         isMusicianMode = sp.getBoolean("isReverseTaps", isMusicianMode);
 
-        isShowBookmarks = sp.getBoolean("isShowBookmarks", isShowBookmarks);
-        isShowRecent = sp.getBoolean("isShowRecent", isShowRecent);
         isAlwaysOpenAsMagazine = sp.getBoolean("isOlwaysOpenAsMagazine", isAlwaysOpenAsMagazine);
 
         nextKeys = stringToKyes(sp.getString("nextKeys1", keyToString(NEXT_KEYS)));
@@ -698,9 +693,6 @@ public class AppState {
         editor.putInt("recentMode", recentMode);
         editor.putInt("bookmarksMode", bookmarksMode);
         editor.putBoolean("isReverseTaps", isMusicianMode);
-
-        editor.putBoolean("isShowBookmarks", isShowBookmarks);
-        editor.putBoolean("isShowRecent", isShowRecent);
 
         editor.putBoolean("isOlwaysOpenAsMagazine", isAlwaysOpenAsMagazine);
         // editor.putBoolean("isExpirementalFeatures", isExpirementalFeatures);

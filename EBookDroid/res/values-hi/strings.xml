@@ -139,7 +139,6 @@
    <string name="volume_keys">मात्रा कुंजी</string>
    <string name="this_function_will_works_in_modern_android">इस समारोह में आधुनिक एंड्रॉयड में काम हो जाएगा</string>
    <string name="import_or_export_application_settings_to_json_file">JSON फाइल करने के लिए आयात या निर्यात आवेदन सेटिंग्स</string>
-   <string name="show_and_remeber_the_recent">दिखाने के लिए और हाल ही में याद</string>
    <string name="menu">मेन्यू</string>
    <string name="foot_notes">पाद लेख</string>
    <string name="plain_text_txt_preformatted">सादा पाठ (.txt) preformatted</string>
@@ -355,4 +354,6 @@
    <string name="text_color_day">पाठ रंग (दिन)</string>
    <string name="text_color_night">पाठ रंग (रात)</string>
    <string name="show_application_close_dialog_every_time">हर बार एप्लिकेशन बंद संवाद दिखाएं</string>
+   <string name="tabs_position">टैब्स की स्थिति</string>
+   <string name="visible">दर्शनीय</string>
 </resources>
