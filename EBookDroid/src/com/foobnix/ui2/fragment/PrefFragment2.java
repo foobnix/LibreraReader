@@ -141,7 +141,8 @@ public class PrefFragment2 extends UIFragment {
 
                 for (int i = 0; i < dragLinearLayout.getChildCount(); i++) {
                     View child = dragLinearLayout.getChildAt(i);
-                    dragLinearLayout.setViewDraggable(child, child);
+                    View handle = child.findViewById(R.id.imageDrag);
+                    dragLinearLayout.setViewDraggable(child, handle);
                 }
             }
         };
@@ -163,16 +164,9 @@ public class PrefFragment2 extends UIFragment {
 
             }
         });
-        TxtUtils.underlineTextView((TextView) inflate.findViewById(R.id.tabsDefaul)).setOnClickListener(new OnClickListener() {
 
-            @Override
-            public void onClick(View v) {
-                AppState.get().tabsOrder = AppState.DEFAULTS_TABS_ORDER;
-                dragLinear.run();
-            }
-        });
 
-        CheckBox isshowPrefAsMenu = (CheckBox) inflate.findViewById(R.id.isshowPrefAsMenu);
+        final CheckBox isshowPrefAsMenu = (CheckBox) inflate.findViewById(R.id.isshowPrefAsMenu);
         isshowPrefAsMenu.setChecked(AppState.get().tabsOrder.contains("4#0"));
         isshowPrefAsMenu.setOnCheckedChangeListener(new OnCheckedChangeListener() {
 
@@ -186,6 +180,16 @@ public class PrefFragment2 extends UIFragment {
 
                 dragLinear.run();
 
+            }
+        });
+
+        TxtUtils.underlineTextView((TextView) inflate.findViewById(R.id.tabsDefaul)).setOnClickListener(new OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                AppState.get().tabsOrder = AppState.DEFAULTS_TABS_ORDER;
+                isshowPrefAsMenu.setChecked(false);
+                dragLinear.run();
             }
         });
 

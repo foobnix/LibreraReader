@@ -44,7 +44,7 @@
 
         <ImageView
             android:layout_marginLeft="10dip"
-            android:id="@+id/image2"
+            android:id="@+id/imageDrag"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="0"
