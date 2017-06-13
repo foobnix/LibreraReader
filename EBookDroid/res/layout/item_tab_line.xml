@@ -19,6 +19,7 @@
         <ImageView
             android:tint="@color/tint_gray"
             android:id="@+id/image1"
+            android:layout_marginLeft="4dip"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="0"
@@ -30,7 +31,7 @@
             android:id="@+id/text1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="5dip"
+            android:layout_marginLeft="8dip"
             android:layout_weight="1"
             android:text="Lirbary"
             android:textAllCaps="true"
@@ -49,6 +50,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="0"
             android:adjustViewBounds="true"
+            android:layout_marginRight="4dip"
             android:cropToPadding="true"
             android:src="@drawable/glyphicons_517_menu_hamburger"
             android:tint="@color/tint_gray" />

@@ -26,7 +26,7 @@ public class TxtUtils {
 
     public static String getFileMetaBookName(FileMeta fileMeta) {
         if (!ExtUtils.isTextFomat(fileMeta.getPath())) {
-            return ExtUtils.getFileNameWithoutExt(fileMeta.getPath());
+            return ExtUtils.getFileName(fileMeta.getPath());
         }
 
         if (TxtUtils.isNotEmpty(fileMeta.getAuthor())) {

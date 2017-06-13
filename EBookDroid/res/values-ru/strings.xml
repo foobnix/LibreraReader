@@ -354,7 +354,8 @@
    <string name="show_application_close_dialog_every_time">Показывать диалог закрытия приложения каждый раз</string>
    <string name="show_bookmarks_tab">Показать вкладку «Закладки»</string>
    <string name="show_assistant_droid_reader">Показать помощник Droid Reader</string>
-   <string name="tabs_position">Позиция вкладок</string>
-   <string name="visible">Видимая</string>
-   <string name="show_preferences_tab_in_the_left_menu">Показать вкладку настроек в левом меню</string>
+   <string name="tabs_position">Очередность/видимость вкладок</string>
+   <string name="visible">Показывать</string>
+   <string name="show_preferences_tab_in_the_left_menu">Показать вкладку настроек в боковом меню</string>
+   <string name="buy_pro_lirbi_reader_and_remove_ads">Купить PRO Lirbi Reader (без рекламы)</string>
 </resources>

@@ -52,6 +52,7 @@ import android.support.v4.content.LocalBroadcastManager;
 import android.support.v4.view.ViewPager;
 import android.support.v4.view.ViewPager.OnPageChangeListener;
 import android.support.v4.widget.DrawerLayout;
+import android.support.v4.widget.DrawerLayout.DrawerListener;
 import android.view.Gravity;
 import android.view.KeyEvent;
 import android.view.View;
@@ -209,12 +210,34 @@ public class MainTabs2 extends FragmentActivity {
 
         final TabsAdapter2 adapter = new TabsAdapter2(this, tabFragments);
 
-        pager = (ViewPager)
-
-        findViewById(R.id.pager);
+        pager = (ViewPager) findViewById(R.id.pager);
         pager.setAdapter(adapter);
         pager.setOffscreenPageLimit(5);
         pager.addOnPageChangeListener(onPageChangeListener);
+
+        drawerLayout.addDrawerListener(new DrawerListener() {
+
+            @Override
+            public void onDrawerStateChanged(int arg0) {
+            }
+
+            @Override
+            public void onDrawerSlide(View arg0, float arg1) {
+
+            }
+
+            @Override
+            public void onDrawerOpened(View arg0) {
+                // TODO Auto-generated method stub
+
+            }
+
+            @Override
+            public void onDrawerClosed(View arg0) {
+                tabFragments.get(pager.getCurrentItem()).onSelectFragment();
+
+            }
+        });
 
         indicator = (SlidingTabLayout) findViewById(R.id.slidingTabs);
         indicator.setViewPager(pager);
@@ -297,6 +320,7 @@ public class MainTabs2 extends FragmentActivity {
                 pager.setCurrentItem(pos);
             } else {
                 indicator.setBackgroundColor(TintUtil.color);
+                ((ViewGroup) imageMenu.getParent()).setBackgroundColor(TintUtil.color);
             }
         }
 

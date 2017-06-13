@@ -48,6 +48,14 @@ public class CloseAppDialog {
         AlertDialog.Builder dialog = new AlertDialog.Builder(c);
         dialog.setTitle(R.string.close_application_);
 
+        dialog.setPositiveButton(R.string.no, new OnClickListener() {
+
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+
+            }
+        });
+
         dialog.setNegativeButton(R.string.yes, new OnClickListener() {
 
             @Override

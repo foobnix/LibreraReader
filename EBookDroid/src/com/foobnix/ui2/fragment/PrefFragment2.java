@@ -165,7 +165,6 @@ public class PrefFragment2 extends UIFragment {
             }
         });
 
-
         final CheckBox isshowPrefAsMenu = (CheckBox) inflate.findViewById(R.id.isshowPrefAsMenu);
         isshowPrefAsMenu.setChecked(AppState.get().tabsOrder.contains("4#0"));
         isshowPrefAsMenu.setOnCheckedChangeListener(new OnCheckedChangeListener() {
@@ -1068,7 +1067,8 @@ public class PrefFragment2 extends UIFragment {
             }
         });
 
-        View proText = inflate.findViewById(R.id.downloadPRO);
+        TextView proText = (TextView) inflate.findViewById(R.id.downloadPRO);
+        TxtUtils.underlineTextView(proText);
         proText.setOnClickListener(new OnClickListener() {
 
             @Override
