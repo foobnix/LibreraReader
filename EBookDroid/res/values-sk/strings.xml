@@ -356,4 +356,5 @@
    <string name="show_application_close_dialog_every_time">Zobrazí vždy dialógové okno zavádzania aplikácií</string>
    <string name="tabs_position">Poloha záložiek</string>
    <string name="visible">Viditeľný</string>
+   <string name="show_preferences_tab_in_the_left_menu">V ľavej ponuke zobrazte kartu predvolieb</string>
 </resources>

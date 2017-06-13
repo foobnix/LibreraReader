@@ -356,4 +356,5 @@
    <string name="show_application_close_dialog_every_time">Показати додаток закрити діалог кожен раз</string>
    <string name="tabs_position">Становище Виберіть</string>
    <string name="visible">Видимий</string>
+   <string name="show_preferences_tab_in_the_left_menu">Показувати вкладку налаштувань в меню зліва</string>
 </resources>

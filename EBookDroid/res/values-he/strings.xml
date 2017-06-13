@@ -356,4 +356,5 @@
    <string name="show_application_close_dialog_every_time">הצג תיבת דו-שיח של יישום קרוב בכל פעם</string>
    <string name="tabs_position">מיקום הכרטיסיות</string>
    <string name="visible">נִרְאֶה</string>
+   <string name="show_preferences_tab_in_the_left_menu">הצג את הכרטיסייה העדפות בתפריט השמאלי</string>
 </resources>

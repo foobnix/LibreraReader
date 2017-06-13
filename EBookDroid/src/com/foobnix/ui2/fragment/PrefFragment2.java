@@ -115,7 +115,6 @@ public class PrefFragment2 extends UIFragment {
 
     View section1, section2, section3, section4, section5, section6, section7;
 
-
     @Override
     public View onCreateView(final LayoutInflater inflater, final ViewGroup container, final Bundle savedInstanceState) {
         final View inflate = inflater.inflate(R.layout.preferences, container, false);
@@ -170,6 +169,23 @@ public class PrefFragment2 extends UIFragment {
             public void onClick(View v) {
                 AppState.get().tabsOrder = AppState.DEFAULTS_TABS_ORDER;
                 dragLinear.run();
+            }
+        });
+
+        CheckBox isshowPrefAsMenu = (CheckBox) inflate.findViewById(R.id.isshowPrefAsMenu);
+        isshowPrefAsMenu.setChecked(AppState.get().tabsOrder.contains("4#0"));
+        isshowPrefAsMenu.setOnCheckedChangeListener(new OnCheckedChangeListener() {
+
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (isChecked) {
+                    AppState.get().tabsOrder = AppState.get().tabsOrder.replace("4#1", "4#0");
+                } else {
+                    AppState.get().tabsOrder = AppState.get().tabsOrder.replace("4#0", "4#1");
+                }
+
+                dragLinear.run();
+
             }
         });
 
@@ -561,7 +577,6 @@ public class PrefFragment2 extends UIFragment {
 
             }
         });
-
 
         CheckBox isLoopAutoplay = (CheckBox) inflate.findViewById(R.id.isLoopAutoplay);
         isLoopAutoplay.setChecked(AppState.getInstance().isLoopAutoplay);

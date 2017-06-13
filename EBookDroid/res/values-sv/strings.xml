@@ -356,4 +356,5 @@
    <string name="show_application_close_dialog_every_time">Visa dialogrutan nära dialog varje gång</string>
    <string name="tabs_position">Tabs position</string>
    <string name="visible">Synlig</string>
+   <string name="show_preferences_tab_in_the_left_menu">Visa fliken Inställningar i vänstra menyn</string>
 </resources>

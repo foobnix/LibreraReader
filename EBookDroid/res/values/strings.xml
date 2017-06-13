@@ -356,4 +356,5 @@
    <string name="show_application_close_dialog_every_time">Show application close dialog every time</string>
    <string name="tabs_position">Tabs position</string>
    <string name="visible">Visible</string>
+   <string name="show_preferences_tab_in_the_left_menu">Show the preferences tab in the left menu</string>
 </resources>

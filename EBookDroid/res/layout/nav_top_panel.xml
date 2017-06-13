@@ -113,6 +113,7 @@
                 android:background="?android:attr/selectableItemBackground"
                 android:clickable="true"
                 android:padding="8dip"
+                
                 android:src="@drawable/glyphicons_82_refresh"
                 android:tint="@color/white" />
 

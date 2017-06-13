@@ -356,4 +356,5 @@
    <string name="show_application_close_dialog_every_time">Toon applicatie sluiten dialoog elke keer</string>
    <string name="tabs_position">Tabs positie</string>
    <string name="visible">Zichtbaar</string>
+   <string name="show_preferences_tab_in_the_left_menu">Toon het tabblad voorkeuren in het linker menu</string>
 </resources>

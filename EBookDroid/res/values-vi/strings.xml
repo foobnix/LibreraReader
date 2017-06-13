@@ -356,4 +356,5 @@
    <string name="show_application_close_dialog_every_time">Hiển thị hộp thoại đóng ứng dụng mỗi lần</string>
    <string name="tabs_position">Vị trí tab</string>
    <string name="visible">Có thể nhìn thấy</string>
+   <string name="show_preferences_tab_in_the_left_menu">Hiển thị tab tuỳ chọn ở trình đơn bên trái</string>
 </resources>

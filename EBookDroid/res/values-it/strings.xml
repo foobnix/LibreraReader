@@ -356,4 +356,5 @@
    <string name="show_application_close_dialog_every_time">Mostra la finestra di dialogo dell\'applicazione ogni volta</string>
    <string name="tabs_position">Posizione delle schede</string>
    <string name="visible">Visibile</string>
+   <string name="show_preferences_tab_in_the_left_menu">Mostra la scheda Preferenze nel menu a sinistra</string>
 </resources>

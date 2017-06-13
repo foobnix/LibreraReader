@@ -356,4 +356,5 @@
    <string name="show_application_close_dialog_every_time">Pokazuj każde zamknięcie aplikacji</string>
    <string name="tabs_position">Położenie kart</string>
    <string name="visible">Widoczny</string>
+   <string name="show_preferences_tab_in_the_left_menu">Pokaż kartę preferencji w menu po lewej stronie</string>
 </resources>

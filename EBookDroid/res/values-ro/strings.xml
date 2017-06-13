@@ -356,4 +356,5 @@
    <string name="show_application_close_dialog_every_time">Afișați dialogul de închidere a aplicației de fiecare dată</string>
    <string name="tabs_position">Pozițiile filelor</string>
    <string name="visible">Vizibil</string>
+   <string name="show_preferences_tab_in_the_left_menu">Afișați fila Preferințe din meniul din stânga</string>
 </resources>

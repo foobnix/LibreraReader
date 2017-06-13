@@ -17,9 +17,12 @@
 
             <ImageView
                 android:id="@+id/imageMenu"
-                  android:background="?android:attr/selectableItemBackground"
-                android:layout_width="wrap_content"
+                android:layout_width="40dip"
                 android:layout_height="match_parent"
+                android:adjustViewBounds="true"
+                android:background="?android:attr/selectableItemBackground"
+                android:cropToPadding="true"
+                android:scaleType="centerInside"
                 android:gravity="center_vertical"
                 android:padding="4dip"
                 android:src="@drawable/glyphicons_517_menu_hamburger"

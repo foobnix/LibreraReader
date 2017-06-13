@@ -356,4 +356,5 @@
    <string name="show_application_close_dialog_every_time">Anwendungsdialog jederzeit anzeigen</string>
    <string name="tabs_position">Tabs Position</string>
    <string name="visible">Sichtbar</string>
+   <string name="show_preferences_tab_in_the_left_menu">Zeigen Sie im linken Menü die Registerkarte Einstellungen an</string>
 </resources>

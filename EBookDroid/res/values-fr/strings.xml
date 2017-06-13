@@ -356,4 +356,5 @@
    <string name="show_application_close_dialog_every_time">Afficher la boîte de dialogue étroite de l\'application à chaque fois</string>
    <string name="tabs_position">Position des onglets</string>
    <string name="visible">Visible</string>
+   <string name="show_preferences_tab_in_the_left_menu">Afficher l\'onglet Préférences dans le menu de gauche</string>
 </resources>

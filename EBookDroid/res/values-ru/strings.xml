@@ -356,4 +356,5 @@
    <string name="show_assistant_droid_reader">Показать помощник Droid Reader</string>
    <string name="tabs_position">Позиция вкладок</string>
    <string name="visible">Видимая</string>
+   <string name="show_preferences_tab_in_the_left_menu">Показать вкладку настроек в левом меню</string>
 </resources>

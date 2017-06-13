@@ -356,4 +356,5 @@
    <string name="show_application_close_dialog_every_time">نمایش برنامه گفت و گو نزدیک هر بار</string>
    <string name="tabs_position">موقعیت زبانهها</string>
    <string name="visible">قابل رویت</string>
+   <string name="show_preferences_tab_in_the_left_menu">نشان دادن برگه تنظیمات در منوی سمت چپ</string>
 </resources>

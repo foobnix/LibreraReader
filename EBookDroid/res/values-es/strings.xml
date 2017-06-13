@@ -356,4 +356,5 @@
    <string name="show_application_close_dialog_every_time">Mostrar el diálogo de cierre de la aplicación cada vez</string>
    <string name="tabs_position">Posición de pestañas</string>
    <string name="visible">Visible</string>
+   <string name="show_preferences_tab_in_the_left_menu">Mostrar la pestaña de preferencias en el menú de la izquierda</string>
 </resources>

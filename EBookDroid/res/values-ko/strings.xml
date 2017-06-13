@@ -356,4 +356,5 @@
    <string name="show_application_close_dialog_every_time">매번 응용 프로그램 닫기 대화 상자 표시</string>
    <string name="tabs_position">탭 위치</string>
    <string name="visible">명백한</string>
+   <string name="show_preferences_tab_in_the_left_menu">왼쪽 메뉴에 환경 설정 탭 표시</string>
 </resources>

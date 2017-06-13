@@ -356,4 +356,5 @@
    <string name="show_application_close_dialog_every_time">عرض الحوار وثيقة التطبيق في كل مرة</string>
    <string name="tabs_position">موضع علامات التبويب</string>
    <string name="visible">مرئي</string>
+   <string name="show_preferences_tab_in_the_left_menu">عرض علامة التبويب التفضيلات في القائمة اليمنى</string>
 </resources>

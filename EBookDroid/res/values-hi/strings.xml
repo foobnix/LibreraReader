@@ -356,4 +356,5 @@
    <string name="show_application_close_dialog_every_time">हर बार एप्लिकेशन बंद संवाद दिखाएं</string>
    <string name="tabs_position">टैब्स की स्थिति</string>
    <string name="visible">दर्शनीय</string>
+   <string name="show_preferences_tab_in_the_left_menu">बाएं मेनू में प्राथमिकताएं टैब दिखाएं</string>
 </resources>

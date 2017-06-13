@@ -356,4 +356,5 @@
    <string name="show_application_close_dialog_every_time">每次显示应用程序关闭对话框</string>
    <string name="tabs_position">标签位置</string>
    <string name="visible">可见</string>
+   <string name="show_preferences_tab_in_the_left_menu">显示左侧菜单中的首选项选项卡</string>
 </resources>

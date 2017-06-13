@@ -3,6 +3,7 @@
     xmlns:ads="http://schemas.android.com/apk/res-auto"
     xmlns:myseek="http://schemas.android.com/apk/res-auto"
     android:id="@+id/scroll"
+     android:background="?android:attr/colorBackground"
     android:layout_width="match_parent"
     android:layout_height="match_parent" >
 
@@ -867,9 +868,14 @@
             android:layout_height="wrap_content"
             android:background="@drawable/bg_search_second"
             android:text="@string/tabs_position" />
+        
+        <CheckBox
+                android:id="@+id/isshowPrefAsMenu"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/show_preferences_tab_in_the_left_menu" />
 
         <com.jmedeisis.draglinearlayout.DragLinearLayout
-            xmlns:android="http://schemas.android.com/apk/res/android"
             android:id="@+id/dragLinearLayout"
             android:layout_width="match_parent"
             android:layout_height="match_parent" >

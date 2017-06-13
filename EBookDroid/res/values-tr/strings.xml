@@ -356,4 +356,5 @@
    <string name="show_application_close_dialog_every_time">Her seferinde uygulama kapat iletişim kutusunu göster</string>
    <string name="tabs_position">Sekmeler konumu</string>
    <string name="visible">Gözle görülür</string>
+   <string name="show_preferences_tab_in_the_left_menu">Sol menüde tercihler sekmesini gösterin</string>
 </resources>

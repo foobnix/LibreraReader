@@ -356,4 +356,5 @@
    <string name="show_application_close_dialog_every_time">毎回アプリケーションの閉じるダイアログを表示する</string>
    <string name="tabs_position">タブの位置</string>
    <string name="visible">見える</string>
+   <string name="show_preferences_tab_in_the_left_menu">左メニューに環境設定タブを表示する</string>
 </resources>
