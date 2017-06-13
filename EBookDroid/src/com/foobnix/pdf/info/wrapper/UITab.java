@@ -78,6 +78,10 @@ public enum UITab {
         return AppState.get().tabsOrder.contains("2#1");
     }
 
+    public static boolean isShowPreferences() {
+        return AppState.get().tabsOrder.contains("4#1");
+    }
+
     public boolean isVisible() {
         return isVisible;
     }

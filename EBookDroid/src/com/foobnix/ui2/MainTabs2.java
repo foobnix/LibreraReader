@@ -51,7 +51,14 @@ import android.support.v4.app.FragmentActivity;
 import android.support.v4.content.LocalBroadcastManager;
 import android.support.v4.view.ViewPager;
 import android.support.v4.view.ViewPager.OnPageChangeListener;
+import android.support.v4.widget.DrawerLayout;
+import android.view.Gravity;
 import android.view.KeyEvent;
+import android.view.View;
+import android.view.View.OnClickListener;
+import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.Toast;
 
 @SuppressLint("NewApi")
 public class MainTabs2 extends FragmentActivity {
@@ -64,6 +71,8 @@ public class MainTabs2 extends FragmentActivity {
     private NativeExpressAdView adViewNative;
     InterstitialAd mInterstitialAd;
     public static volatile boolean isInStack;
+
+    ImageView imageMenu;
 
     @Override
     protected void onNewIntent(final Intent intent) {
@@ -164,11 +173,38 @@ public class MainTabs2 extends FragmentActivity {
                 }
             }
         } catch (Exception e) {
+            LOG.e(e);
+            Toast.makeText(MainTabs2.this, R.string.msg_unexpected_error, Toast.LENGTH_LONG).show();
             tabFragments.add(new SearchFragment2());
             tabFragments.add(new BrowseFragment2());
             tabFragments.add(new RecentFragment2());
             tabFragments.add(new BookmarksFragment2());
             tabFragments.add(new PrefFragment2());
+        }
+        getSupportFragmentManager().beginTransaction().replace(R.id.left_drawer, new PrefFragment2()).commit();
+
+        imageMenu = (ImageView) findViewById(R.id.imageMenu);
+        ((ViewGroup) imageMenu.getParent()).setBackgroundColor(TintUtil.color);
+
+        final DrawerLayout drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
+
+        imageMenu.setOnClickListener(new OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                if (drawerLayout.isDrawerOpen(Gravity.START))
+                    drawerLayout.closeDrawer(Gravity.START);
+                else
+                    drawerLayout.openDrawer(Gravity.START);
+
+            }
+        });
+
+        if (UITab.isShowPreferences()) {
+            imageMenu.setVisibility(View.GONE);
+            drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED);
+        } else {
+            imageMenu.setVisibility(View.VISIBLE);
         }
 
         final TabsAdapter2 adapter = new TabsAdapter2(this, tabFragments);

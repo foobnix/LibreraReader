@@ -115,6 +115,7 @@ public class PrefFragment2 extends UIFragment {
 
     View section1, section2, section3, section4, section5, section6, section7;
 
+
     @Override
     public View onCreateView(final LayoutInflater inflater, final ViewGroup container, final Bundle savedInstanceState) {
         final View inflate = inflater.inflate(R.layout.preferences, container, false);
