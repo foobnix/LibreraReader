@@ -138,7 +138,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:ems="7"
-                    android:text="CBZ/CBR"
+                    android:text="CBZ"
                     android:textSize="12sp" />
             </LinearLayout>
 
@@ -176,7 +176,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:ems="7"
-                    android:text="TXT/HTML"
+                    android:text="TXT"
                     android:textSize="12sp" />
             </LinearLayout>
         </LinearLayout>
@@ -211,7 +211,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:ellipsize="end"
-                    android:text="DOC/DOCX/CHM/LIT"
+                    android:text="DOC/DOCX/CHM"
                     android:textSize="12sp" />
             </LinearLayout>
 
