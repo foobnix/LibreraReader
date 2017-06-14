@@ -105,7 +105,8 @@ public class ADS {
                     @Override
                     public void onAdFailedToLoad(int arg0) {
                         frame.removeAllViews();
-                        frame.addView(proAdsLayout(a));
+                        frame.setVisibility(View.GONE);
+                        // frame.addView(proAdsLayout(a));
                     }
                 });
             } else {
