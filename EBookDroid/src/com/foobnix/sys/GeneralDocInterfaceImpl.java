@@ -85,6 +85,15 @@ public class GeneralDocInterfaceImpl implements GeneralDocInterface {
     }
 
     @Override
+    public void recyleDoc(String path) {
+        try {
+            ImageExtractor.getCodecContext(path, "", 0, 0).recycle();
+        } catch (Exception e) {
+            LOG.e(e);
+        }
+    }
+
+    @Override
     public int getCurrentPage(String path) {
         return SettingsManager.getBookSettings(path).getCurrentPage().viewIndex;
     }

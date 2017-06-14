@@ -87,7 +87,9 @@ public class BaseImageDecoder implements ImageDecoder {
         }
 
         if (imageStream instanceof InputStreamBitmap) {
-            decodedBitmap = ((InputStreamBitmap) imageStream).bitmap;
+            decodedBitmap = ((InputStreamBitmap) imageStream).getBitmap();
+            imageInfo = defineImageSizeAndRotation(imageStream, decodingInfo);
+            decodedBitmap = considerExactScaleAndOrientatiton(decodedBitmap, decodingInfo, imageInfo.exif.rotation, imageInfo.exif.flipHorizontal);
             L.d("decode InputStreamBitmap", decodingInfo.getImageKey());
             return decodedBitmap;
         }

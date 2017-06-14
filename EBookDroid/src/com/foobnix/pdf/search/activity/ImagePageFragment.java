@@ -147,6 +147,7 @@ public class ImagePageFragment extends Fragment {
         LOG.d("ImagePageFragment1 onDestroyView ", page, "Lifi Time: ", System.currentTimeMillis() - lifeTime);
         // ImageLoader.getInstance().cancelDisplayTaskForID(loadImageId);
         handler.removeCallbacksAndMessages(null);
+        image = null;
     }
 
     @Override
@@ -154,6 +155,7 @@ public class ImagePageFragment extends Fragment {
         super.onDetach();
         LOG.d("ImagePageFragment1 onDetach ", page, "Lifi Time: ", System.currentTimeMillis() - lifeTime);
         handler.removeCallbacksAndMessages(null);
+        image = null;
     }
 
 }

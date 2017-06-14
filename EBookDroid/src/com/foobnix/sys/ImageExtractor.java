@@ -354,6 +354,7 @@ public class ImageExtractor implements ImageDownloader {
         try {
             LOG.d("Rerurn bitmapToStreamRAW");
             return new InputStreamBitmap(bitmap);
+            // return bitmapToStream(bitmap);
         } catch (Exception e) {
             return null;
         }

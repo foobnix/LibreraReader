@@ -713,6 +713,7 @@ public class HorizontalViewActivity extends FragmentActivity {
         if (TTSModule.getInstance() != null) {
             TTSModule.getInstance().shutdownTTS();
         }
+        PageImageState.get().clearResouces();
     }
 
     public void updateReadPercent() {
@@ -858,7 +859,6 @@ public class HorizontalViewActivity extends FragmentActivity {
         public void run() {
             if (AppState.get().selectedText != null) {
                 AppState.get().selectedText = null;
-                PageImageState.get().cleanSelectedWords();
                 EventBus.getDefault().post(new InvalidateMessage());
             }
         }

@@ -33,7 +33,11 @@ public class PageImageState {
         return instance;
     }
 
-
+    public void clearResouces() {
+        selectedWords.clear();
+        pagesText.clear();
+        pagesLinks.clear();
+    }
 
     public List<TextWord> getSelectedWords(int page) {
         return selectedWords.get(page);

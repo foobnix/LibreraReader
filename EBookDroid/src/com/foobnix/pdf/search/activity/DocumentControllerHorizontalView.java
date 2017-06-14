@@ -72,6 +72,7 @@ public abstract class DocumentControllerHorizontalView extends DocumentControlle
         if (isTextFormat) {
             AppState.get().isCrop = false;
             AppState.get().isCut = false;
+            AppState.get().isLocked = true;
         }
         TTSModule.getInstanceInit(activity, this);
     }
@@ -319,6 +320,9 @@ public abstract class DocumentControllerHorizontalView extends DocumentControlle
         i.putExtra("page", getCurentPage());
         activity.setResult(Activity.RESULT_OK, i);
         activity.finish();
+
+        // generadDocInterface.recyleDoc(bookPath);
+        TempHolder.get().clear();
     }
 
     @Override

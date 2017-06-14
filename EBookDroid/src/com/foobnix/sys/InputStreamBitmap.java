@@ -2,16 +2,21 @@ package com.foobnix.sys;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.lang.ref.WeakReference;
 
 import android.graphics.Bitmap;
 
 public class InputStreamBitmap extends InputStream {
 
-    public Bitmap bitmap;
+    private WeakReference<Bitmap> bitmap;
 
     public InputStreamBitmap(Bitmap bitmap) {
         super();
-        this.bitmap = bitmap;
+        this.bitmap = new WeakReference<Bitmap>(bitmap);
+    }
+
+    public Bitmap getBitmap() {
+        return bitmap.get();
     }
 
     @Override

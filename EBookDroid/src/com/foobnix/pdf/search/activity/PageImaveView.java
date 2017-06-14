@@ -40,7 +40,6 @@ import android.view.animation.AccelerateDecelerateInterpolator;
 import android.widget.Scroller;
 
 public class PageImaveView extends View {
-    // private static final String SPACE_CHAR = "\\s";
 
     private Drawable imageDrawable;
     int drawableHeight, drawableWidth;
@@ -380,7 +379,8 @@ public class PageImaveView extends View {
     protected void onDetachedFromWindow() {
         super.onDetachedFromWindow();
         LOG.d("ImagePageFragment", "onDetachedFromWindow");
-        if (bitmap != null) {
+        if (bitmap != null && !bitmap.isRecycled()) {
+            LOG.d("recycle onDetachedFromWindow");
             bitmap.recycle();
             bitmap = null;
         }

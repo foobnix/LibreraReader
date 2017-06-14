@@ -34,4 +34,5 @@ public interface GeneralDocInterface {
 
     public List<String> getMediaAttachments(String path);
 
+    public void recyleDoc(String path);
 }

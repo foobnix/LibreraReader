@@ -699,8 +699,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:maxLines="2"
-                android:singleLine="false"
                 android:text="@string/show_the_dialog_what_is_new_for_updates" />
 
             <TextView
