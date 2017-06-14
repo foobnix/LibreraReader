@@ -161,7 +161,6 @@ public class PrefFragment2 extends UIFragment {
                 LOG.d("tabsApply", AppState.get().tabsOrder);
                 AppState.get().save(getActivity());
                 onTheme();
-
             }
         });
 
@@ -1422,7 +1421,8 @@ public class PrefFragment2 extends UIFragment {
 
     public void onTheme() {
         getActivity().finish();
-        startActivity(getActivity().getIntent());
+        // startActivity(getActivity().getIntent());
+        MainTabs2.startActivity(getActivity());
     }
 
     public void onScan() {
