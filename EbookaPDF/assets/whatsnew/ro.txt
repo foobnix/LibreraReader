@@ -1,7 +1,8 @@
 
-* Încărcare accelerată a paginilor într-un modușor pentru PDF și alte formate 
-* Dosare cu cărți de poștă electronică cu cărți 
-* Dialog note îmbunătățite pentru FB2, MOBI și EPUB 
-* Căutarea în documente în mai multe documente 
-* Ieșirea programului din orice ecran prin apăsarea lungă a butonului înapoi 
-* Îmbunătățiri ale UI prin feedbackul dvs.
+* Tab-uri în ordine particularizată 
+* Ascunde orice filă 
+* Fila Preferințe din meniul din stânga 
+* Ajustarea înălțimii barei de stare și culoarea textului 
+* Abilitatea de a deschide automat ultima carte 
+* Îmbunătățiri în FB2 și PDF 
+* Vă mulțumim pentru feedback și idei

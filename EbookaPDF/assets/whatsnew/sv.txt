@@ -1,7 +1,8 @@
 
-* Snabbare inläsning av sidor i ettEnkelt läge för PDF och andra format 
-* Stjärnriga mappar med böcker 
-* Förbättrad anteckningsdialog för FB2, MOBI och EPUB 
-* Word-sökning i flera dokument 
-* Avsluta programmet från vilken skärm som helst med lång tryckning på knappen tillbaka 
-* UI förbättringar genom din feedback
+* Flikar i anpassad ordning 
+* Dölj alla flikar 
+* Inställningar fliken i vänstermenyn 
+* Justera höjden på statusfältet och textfärgen 
+* Möjligheten att automatiskt öppna den senaste boken 
+* Förbättringar i FB2 och PDF 
+* Tack för feedback och idéer

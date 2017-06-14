@@ -1,7 +1,8 @@
 
-* Versnelde laden van pagina’s in eenEasy mode voor PDF en andere formaten 
-* Starred mappen met boeken 
-* Verbeterde notities dialoog voor FB2, MOBI en EPUB 
-* Word zoeken in meerdere documenten 
-* Sluit het programma uit elk scherm door lang op de knop terug te drukken 
-* UI Verbeteringen door uw feedback
+* Tabs in aangepaste volgorde 
+* Verberg een tabblad 
+* Voorkeuren tabblad in het linker menu 
+* Verstel de hoogte van de statusbalk en tekstkleur 
+* De mogelijkheid om automatisch het laatste boek te openen 
+* Verbeteringen in FB2 en PDF 
+* Bedankt voor de feedback en ideeën

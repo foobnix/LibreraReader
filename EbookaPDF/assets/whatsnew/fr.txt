@@ -1,7 +1,8 @@
 
-* Chargement accéléré des pages dans unMode facile pour le format PDF et autres formats 
-* Dossiers étoilés avec des livres 
-* Boîte de dialogue améliorée pour les notes pour FB2, MOBI et EPUB 
-* Recherche par mot dans plusieurs documents 
-* Quittez le programme de n’importe quel écran en appuyant longuement sur le bouton arrière 
-* UI Améliorations par vos commentaires
+* Onglets dans l’ordre personnalisé 
+* Cacher l’onglet 
+* Onglet Préférences dans le menu de gauche 
+* Réglage de la hauteur de la barre d’état et de la couleur du texte 
+* La possibilité d’ouvrir automatiquement le dernier livre 
+* Améliorations en FB2 et PDF 
+* Merci pour les commentaires et les idées

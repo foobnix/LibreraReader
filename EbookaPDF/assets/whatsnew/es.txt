@@ -1,7 +1,8 @@
 
-* Carga acelerada de páginas en unmodo fácil para PDF y otros formatos 
-* Carpetas con favoritos con libros 
-* Diálogo de notas mejorado para FB2, MOBI y EPUB 
-* Búsqueda de palabras en varios documentos 
-* Salga del programa desde cualquier pantalla presionando largo de botón de nuevo 
-* Mejoras en la interfaz de usuario por sus comentarios
+* Tabs en el pedido personalizado 
+* Ocultar cualquier pestaña 
+* Preferencias en el menú de la izquierda 
+* Ajustar la altura de la barra de estado y el color del texto 
+* La capacidad de abrir automáticamente el último libro 
+* Mejoras en FB2 y PDF 
+* Gracias por la retroalimentación y las ideas

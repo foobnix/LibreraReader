@@ -1,7 +1,8 @@
 
-* Carregamento acelerado de páginas em umModo Fácil para PDF e outros formatos 
-* Pastas destacadas com livros 
-* Caixa de diálogo de notas melhorada para FB2, MOBI e EPUB 
-* Pesquisa de texto em vários documentos 
-* Sair do programa de qualquer tela pressionando longamente o botão de volta 
-* UI Melhorias por seus comentários
+* Separadores na ordem personalizada 
+* Ocultar qualquer guia 
+* guia Preferências no menu à esquerda 
+* Ajustar a altura da barra de status e cor do texto 
+* A capacidade de abrir automaticamente o último livro 
+* Melhorias em FB2 e PDF 
+* Obrigado pelo feedback e idéias

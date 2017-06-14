@@ -1,7 +1,8 @@
 
-* Kasi upakiaji wa kurasa katikamode Easy kwa ajili ya PDF na miundo mingine 
-* folders zenye nyota na vitabu 
-* maelezo Kuboresha kidirisha kwa FB2, MOBI na EPUB 
-* Neno search katika hati moja 
-* Toka mpango kutoka screen yoyote kwa vyombo vya habari kwa muda mrefu ya kifungo nyuma 
-* UI Maboresho na maoni yako
+* Tabs ili desturi 
+* Ficha yoyote tab 
+* Mapendekezo tab upande wa kushoto menu 
+* Marekebisho urefu wa upau na rangi ya maandishi 
+* uwezo wa moja kwa moja kufungua kitabu mwisho 
+* Aidha, katika FB2 na PDF 
+* Asante kwa maoni na mawazo

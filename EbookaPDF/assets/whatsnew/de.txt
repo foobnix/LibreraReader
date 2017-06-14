@@ -1,7 +1,8 @@
 
-* Beschleunigtes Laden von Seiten in einemEasy Mode für PDF und andere Formate 
-* Starred Ordner mit Büchern 
-* Verbesserte Notizen Dialog für FB2, MOBI und EPUB 
-* Word-Suche in mehreren Dokumenten 
-* Beenden Sie das Programm von jedem Bildschirm durch lange drücken Sie die Taste zurück 
-* UI Verbesserungen durch Ihr Feedback
+* Tabs in kundenspezifischer Reihenfolge 
+* Alle Registerkarten ausblenden 
+* Registerkarte Voreinstellungen im linken Menü 
+* Anpassung der Höhe der Statusleiste und Textfarbe 
+* Die Möglichkeit, das letzte Buch automatisch zu öffnen 
+* Verbesserungen in FB2 und PDF 
+* Danke für Feedback und Ideen

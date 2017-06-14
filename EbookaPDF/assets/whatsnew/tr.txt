@@ -1,8 +1,8 @@
 
-* PDF ve diğer formatlar içinKolay mod daki sayfaların hızlandırılmış yüklenmesi 
-* Kitaplarla yıldızlı klasörler 
-* FB2, MOBI ve EPUB için geliştirilmiş notlar iletişim kutusu 
-* Birden çok belgede Word arama 
-* Herhangi bir ekrandan programdan çıkma, düğmeye geri uzun basma 
-* Geri bildiriminizle 
-* Kullanıcı Arayüzü İyileştirmeleri
+* Özel siparişlerdeki sekmeler 
+* Herhangi bir sekmeyi gizle 
+* Sol menüdeki Tercihler sekmesi 
+* Durum çubuğunun ve metin renginin ayarlanması 
+* Son kitabı otomatik olarak açma yeteneği 
+* FB2 ve PDF’deki iyileştirmeler 
+* Geri bildirim ve fikirler için teşekkürler

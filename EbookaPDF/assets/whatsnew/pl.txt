@@ -1,6 +1,8 @@
 
-* Przyspieszone wczytywanie stron w trybieEasy mode w formacie PDF i innych formatach 
-* Foldery oznaczone gwiazdką z książkami 
-* Ulepszone okna dialogowe notatek dla FB2, MOBI i EPUB 
-* Wyszukiwanie w wielu dokumentach 
-* Wyjście z dowolnego ekranu na dowolny ekran przez długie naciśnięcie przycisku Ulepszenia interfejsu użytkownika za pomocĘ ... opinii
+* Zakładki w niestandardowym porządku 
+* Ukryj dowolną kartę 
+* Preferencje w lewym menu 
+* Dostosuj wysokość paska stanu i koloru tekstu 
+* Możliwość automatycznego otwierania ostatniej książki 
+* Poprawa w FB2 i PDF 
+* Dzięki za opinie i pomysły

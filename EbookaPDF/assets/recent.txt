@@ -1,6 +1,7 @@
-* Accelerated loading of pages in an "Easy mode" for PDF and other formats
-* Starred folders with books
-* Improved notes dialog for FB2, MOBI and EPUB
-* Word search in multiple documents
-* Exit the program from any screen by long press of button back
-* UI Improvements by your feedback
+* Tabs in custom order
+* Hide any tab
+* Preferences tab in the left menu
+* Adjustment the height of the status bar and text color
+* The ability to automatically open the last book
+* Improvements in FB2 and PDF
+* Thanks for the feedback and ideas

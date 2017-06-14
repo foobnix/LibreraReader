@@ -1,7 +1,8 @@
 
-* Tăng tốc độ tải trang trong chế độDễ dàng cho PDF và các định dạng khác 
-* Thư mục có gắn dấu sao với sách 
-* Hộp thoại ghi chú cải tiến cho FB2, MOBI và EPUB 
-* Tìm kiếm từ trong nhiều tài liệu 
-* Thoát khỏi chương trình từ bất kỳ màn hình nào bằng cách nhấn nút lâu 
-* Giao diện người dùng cải tiến theo phản hồi của bạn
+* Tabs theo thứ tự tùy chọn 
+* Ẩn bất kỳ tab 
+* Tab Preferences trong menu bên trái 
+* Điều chỉnh chiều cao của thanh trạng thái và màu văn bản 
+* Khả năng tự động mở cuốn sách cuối cùng 
+* Cải tiến FB2 và PDF 
+* Cảm ơn thông tin phản hồi và ý tưởng

@@ -1,7 +1,8 @@
 
-* Accelerato caricamento delle pagine in un modoEasy per PDF e altri formati 
-* Cartelle con i libri asterisco 
-* Miglioramento delle note di dialogo per FB2, MOBI e EPUB 
-* Ricerca di parole in più documenti 
-* Uscire dal programma da qualsiasi schermo premendo a lungo il pulsante indietro 
-* Miglioramenti dell’interfaccia utente tramite i tuoi commenti
+* Tabulazioni in ordine personalizzato 
+* Nascondi qualsiasi scheda 
+* Scheda Preferenze nel menu a sinistra 
+* Regolazione dell’altezza della barra di stato e colore del testo 
+* Possibilità di aprire automaticamente l’ultimo libro 
+* Miglioramenti in FB2 e PDF 
+* Grazie per i commenti e le idee
