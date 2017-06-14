@@ -99,7 +99,6 @@
    <string name="star">तारा</string>
    <string name="success">सफलता</string>
    <string name="text_page">पृष्ठ</string>
-   <string name="theme_color">विषय शैली</string>
    <string name="this_directory_is_already_in_the_list">इस निर्देशिका में सूची में पहले से ही है</string>
    <string name="up_next_down_prev">ऊपर - आगे, नीचे - पिछला</string>
    <string name="up_prev_down_next">ऊपर - पीछे, नीचे - अगला</string>
@@ -358,4 +357,5 @@
    <string name="visible">दर्शनीय</string>
    <string name="show_preferences_tab_in_the_left_menu">बाएं मेनू में प्राथमिकताएं टैब दिखाएं</string>
    <string name="buy_pro_lirbi_reader_and_remove_ads">प्रो Lirbi रीडर खरीदें (विज्ञापन के बिना)</string>
+   <string name="theme">विषय</string>
 </resources>

@@ -99,7 +99,6 @@
    <string name="star">Markierung</string>
    <string name="success">Erfolg</string>
    <string name="text_page">Seite</string>
-   <string name="theme_color">Farbschema</string>
    <string name="this_directory_is_already_in_the_list">Dieses Verzeichnis ist bereits in der Liste</string>
    <string name="up_next_down_prev">Lauter: Nächste; Leiser: Vorige</string>
    <string name="up_prev_down_next">Lauter: Vorige; Leiser: Nächste</string>
@@ -358,4 +357,5 @@
    <string name="visible">Sichtbar</string>
    <string name="show_preferences_tab_in_the_left_menu">Zeigen Sie im linken Menü die Registerkarte Einstellungen an</string>
    <string name="buy_pro_lirbi_reader_and_remove_ads">PRO Lirbi Reader kaufen (ohne Anzeigen)</string>
+   <string name="theme">Thema</string>
 </resources>

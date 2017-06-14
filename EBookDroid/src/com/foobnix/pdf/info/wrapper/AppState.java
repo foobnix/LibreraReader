@@ -108,7 +108,7 @@ public class AppState {
     public static final List<String> STYLE_COLORS = Arrays.asList(//
             // "#3949AB", //
             "#2a56c6", //
-            "#E6A639", //
+            // "#E6A639", //
             "#395B9C", //
             "#EA5964", //
             "#00897B", //
@@ -132,7 +132,7 @@ public class AppState {
     public static String DEFAULTS_TABS_ORDER = "0#1,1#1,2#1,3#1,4#0";
     public String tabsOrder = DEFAULTS_TABS_ORDER;
 
-    public int tintColor = Color.parseColor(STYLE_COLORS.get(2));
+    public int tintColor = Color.parseColor(STYLE_COLORS.get(1));
     public int statusBarColorDay = tintColor;
     public int statusBarColorNight = tintColor;
     // public int tintColor =

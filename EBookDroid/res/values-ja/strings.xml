@@ -98,7 +98,6 @@
    <string name="star">Star</string>
    <string name="success">成功しました</string>
    <string name="text_page">ページ</string>
-   <string name="theme_color">テーマのカラー</string>
    <string name="this_directory_is_already_in_the_list">このディレクトリは既にリストに含まれています</string>
    <string name="up_next_down_prev">アップキー - 次へ, ダウンキー - 前へ</string>
    <string name="up_prev_down_next">アップキー - 前へ, ダウンキー - 次へ</string>
@@ -358,4 +357,5 @@
    <string name="visible">見える</string>
    <string name="show_preferences_tab_in_the_left_menu">左メニューに環境設定タブを表示する</string>
    <string name="buy_pro_lirbi_reader_and_remove_ads">PRO Lirbi Readerを購入する（広告なし）</string>
+   <string name="theme">テーマ</string>
 </resources>

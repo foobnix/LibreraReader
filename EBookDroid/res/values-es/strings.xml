@@ -98,7 +98,6 @@
    <string name="star">Favorito</string>
    <string name="success">Éxito</string>
    <string name="text_page">Página</string>
-   <string name="theme_color">Estilo visual</string>
    <string name="this_directory_is_already_in_the_list">Este directorio ya está en la lista</string>
    <string name="up_next_down_prev">Arriba - Siguiente, Abajo - Anterior</string>
    <string name="up_prev_down_next">Arriba - Anterior, Abajo - Siguiente</string>
@@ -358,4 +357,5 @@
    <string name="visible">Visible</string>
    <string name="show_preferences_tab_in_the_left_menu">Mostrar la pestaña de preferencias en el menú de la izquierda</string>
    <string name="buy_pro_lirbi_reader_and_remove_ads">Comprar PRO Lirbi Reader (sin anuncios)</string>
+   <string name="theme">Tema</string>
 </resources>

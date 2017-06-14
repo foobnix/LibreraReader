@@ -99,7 +99,6 @@
    <string name="star">Stjärna</string>
    <string name="success">Framgång</string>
    <string name="text_page">Sida</string>
-   <string name="theme_color">Tema Style</string>
    <string name="this_directory_is_already_in_the_list">Denna katalog är redan i listan</string>
    <string name="up_next_down_prev">Up - Därefter Down - Föregående</string>
    <string name="up_prev_down_next">Up - Föregående, Down - Nästa</string>
@@ -358,4 +357,5 @@
    <string name="visible">Synlig</string>
    <string name="show_preferences_tab_in_the_left_menu">Visa fliken Inställningar i vänstra menyn</string>
    <string name="buy_pro_lirbi_reader_and_remove_ads">Köp PRO Lirbi Reader (utan annonser)</string>
+   <string name="theme">Tema</string>
 </resources>

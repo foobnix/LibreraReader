@@ -99,7 +99,6 @@
    <string name="star">Star</string>
    <string name="success">Mafanikio</string>
    <string name="text_page">Kwanza</string>
-   <string name="theme_color">Mandhari Sinema</string>
    <string name="this_directory_is_already_in_the_list">Directory Hii ni tayari katika orodha</string>
    <string name="up_next_down_prev">Up - Next, Down - Kabla</string>
    <string name="up_prev_down_next">Up - Kabla, Down - Next</string>
@@ -358,4 +357,5 @@
    <string name="visible">Inaonekana</string>
    <string name="show_preferences_tab_in_the_left_menu">Onyesha mapendekezo tab katika orodha ya kushoto</string>
    <string name="buy_pro_lirbi_reader_and_remove_ads">Kununua PRO Lirbi Reader (bila matangazo)</string>
+   <string name="theme">Theme</string>
 </resources>

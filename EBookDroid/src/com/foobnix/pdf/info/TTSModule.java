@@ -291,6 +291,11 @@ public final class TTSModule {
     }
 
     private TTSModule(Activity activity) {
+        initTTS(activity);
+
+    }
+
+    public void initTTS(Activity activity) {
         if (!isAvailableTTS()) {
             return;
         }
@@ -410,6 +415,9 @@ public final class TTSModule {
             }
             timeout = System.currentTimeMillis();
             stop();
+            if (ttsEngine == null) {
+                initTTS(activity);
+            }
             ttsEngine.setPitch(AppState.get().ttsPitch);
             if (AppState.get().ttsSpeed == 0.0f) {
                 AppState.get().ttsSpeed = 0.01f;
@@ -458,9 +466,6 @@ public final class TTSModule {
     }
 
     public void stop() {
-        if (controller == null) {
-            return;
-        }
         try {
             ttsEngine.setOnUtteranceCompletedListener(null);
             ttsEngine.stop();

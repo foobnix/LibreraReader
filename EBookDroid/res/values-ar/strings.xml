@@ -98,7 +98,6 @@
    <string name="star">إضافة الى المفضّلة</string>
    <string name="success">نجاح</string>
    <string name="text_page">صفحة</string>
-   <string name="theme_color">لون التطبيق</string>
    <string name="this_directory_is_already_in_the_list">هذا المسار موجود مسبقا في قائمة</string>
    <string name="up_next_down_prev">السابق - أسفل, التالي - أعلى</string>
    <string name="up_prev_down_next">التالي - أسفل, السابق - أعلى</string>
@@ -358,4 +357,5 @@
    <string name="visible">مرئي</string>
    <string name="show_preferences_tab_in_the_left_menu">عرض علامة التبويب التفضيلات في القائمة اليمنى</string>
    <string name="buy_pro_lirbi_reader_and_remove_ads">شراء برو ليربي القارئ (بدون إعلانات)</string>
+   <string name="theme">المقدمة</string>
 </resources>

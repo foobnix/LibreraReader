@@ -301,6 +301,8 @@ public class DragingDialogs {
                             TTSModule.getInstance().play(text);
                         }
 
+                        TTSModule.getInstance().showNotification();
+
                     }
                 });
                 view.findViewById(R.id.onPause).setOnClickListener(new OnClickListener() {

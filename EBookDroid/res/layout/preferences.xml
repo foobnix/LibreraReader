@@ -258,7 +258,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="5dip"
-                    android:text="@string/theme_color"
+                    android:text="@string/theme"
                     android:textStyle="bold" />
 
                 <TextView

@@ -99,7 +99,6 @@
    <string name="star">Gwiazda</string>
    <string name="success">Sukces</string>
    <string name="text_page">Strona</string>
-   <string name="theme_color">Motyw</string>
    <string name="this_directory_is_already_in_the_list">Ten katalog jest już na liście</string>
    <string name="up_next_down_prev">W górę - dalej, w dół - wstecz</string>
    <string name="up_prev_down_next">W górę - wstecz, w dół - dalej</string>
@@ -358,4 +357,5 @@
    <string name="visible">Widoczny</string>
    <string name="show_preferences_tab_in_the_left_menu">Pokaż kartę preferencji w menu po lewej stronie</string>
    <string name="buy_pro_lirbi_reader_and_remove_ads">Kupuj czytnik PRO Lirbi (bez reklam)</string>
+   <string name="theme">Motyw</string>
 </resources>

@@ -99,7 +99,6 @@
    <string name="star">별</string>
    <string name="success">성공</string>
    <string name="text_page">페이지</string>
-   <string name="theme_color">테마 스타일</string>
    <string name="this_directory_is_already_in_the_list">이 디렉토리는 목록에 이미</string>
    <string name="up_next_down_prev">최대 - 다음, 아래로 - 이전</string>
    <string name="up_prev_down_next">최대 - 이전, 아래로 - 다음</string>
@@ -358,4 +357,5 @@
    <string name="visible">명백한</string>
    <string name="show_preferences_tab_in_the_left_menu">왼쪽 메뉴에 환경 설정 탭 표시</string>
    <string name="buy_pro_lirbi_reader_and_remove_ads">PRO Lirbi Reader (광고없이) 구입</string>
+   <string name="theme">테마</string>
 </resources>
