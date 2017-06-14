@@ -429,7 +429,7 @@ public class Fb2Extractor extends BaseExtractor {
         boolean isFirstEndBody = false;
         while (eventType != XmlPullParser.END_DOCUMENT) {
             if (eventType == XmlPullParser.START_TAG) {
-                if (xpp.getName().equals("section")) {
+                if (xpp.getName().equals("section") || xpp.getName().equals("subtitle")) {
                     section++;
                 }
                 if (xpp.getName().equals("title") || xpp.getName().equals("subtitle")) {
@@ -442,7 +442,7 @@ public class Fb2Extractor extends BaseExtractor {
                     titles.add(section + DIVIDER + title);
                     title = "";
                 }
-                if (xpp.getName().equals("section")) {
+                if (xpp.getName().equals("section") || xpp.getName().equals("subtitle")) {
                     section--;
                 }
                 if (!isFirstEndBody && xpp.getName().equals("body")) {

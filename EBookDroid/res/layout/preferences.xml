@@ -129,7 +129,7 @@
                     android:id="@+id/supportFB2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:ems="5"
+                    android:ems="4"
                     android:text="FB2"
                     android:textSize="12sp" />
 
@@ -138,7 +138,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:ems="7"
-                    android:text="CBZ"
+                    android:text="CBZ/R"
                     android:textSize="12sp" />
             </LinearLayout>
 
@@ -167,7 +167,7 @@
                     android:id="@+id/supportRTF"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:ems="5"
+                    android:ems="4"
                     android:text="RTF"
                     android:textSize="12sp" />
 
@@ -176,7 +176,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:ems="7"
-                    android:text="TXT"
+                    android:text="H/TXT"
                     android:textSize="12sp" />
             </LinearLayout>
         </LinearLayout>
