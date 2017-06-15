@@ -113,7 +113,7 @@
    <string name="widget">Виджет</string>
    <string name="list">Список</string>
    <string name="grid">Сетка</string>
-   <string name="items_">Элементов</string>
+   <string name="items_">Элементов:</string>
    <string name="musician_performance">Режим «Музыкант»</string>
    <string name="pdf_mode">Режим PDF</string>
    <string name="expiremental_features">Комментирование и рисование (в тестировании; может повредить некоторые файлы)</string>
@@ -160,7 +160,7 @@
    <string name="text_to_speech">Текст в речь</string>
    <string name="application_user_guide_">Руководство пользователя</string>
    <string name="you_need_grant_permission">Вам необходимо предоставить приложению доступ к внешнему запоминающему устройству</string>
-   <string name="db_auto_alignemnt">Автовыравнивание</string>
+   <string name="db_auto_alignemnt">Вписать в ширину экрана</string>
    <string name="db_auto_scroll">Автопрокрутка</string>
    <string name="db_do_nothing">Ничего не делать</string>
    <string name="action_on_double_tap">Двойное нажатие</string>
@@ -180,7 +180,7 @@
    <string name="left_to_rigth">Слева направо</string>
    <string name="right_to_left">Справа налево</string>
    <string name="what_is_new">Что нового</string>
-   <string name="show_the_dialog_what_is_new_for_updates">Показывать «Что нового?» при обновлении</string>
+   <string name="show_the_dialog_what_is_new_for_updates">Показывать «Что нового?» при обновлениях</string>
    <string name="font_size">Размер шрифта</string>
    <string name="performance_settings">Параметры быстродействия</string>
    <string name="page_quality">Качество страниц</string>
@@ -203,7 +203,7 @@
    <string name="folder_with_fonts">Папка со шрифтами</string>
    <string name="interval">Интервал</string>
    <string name="paragraph">Абзац</string>
-   <string name="simple_scroll_animation">Анимация сдвига страниц</string>
+   <string name="simple_scroll_animation">Показывать анимацию сдвига страниц</string>
    <string name="image_format">Формат изображений</string>
    <string name="more_reading_settings">Дополнительные настройки чтения</string>
    <string name="empty_line">Пустая строка</string>
@@ -237,7 +237,7 @@
    <string name="clear_all_marked">Снять отметки со всех избранных</string>
    <string name="enable_volume_keys">Листать клавишами регул. громкости</string>
    <string name="open_in_the_dictionary">Открывать выдел. текст в словаре</string>
-   <string name="lock_for_pdf_and_djvu_when_opening">Всегда блокировать изменение ширины страниц при открытии PDF и DJVU</string>
+   <string name="lock_for_pdf_and_djvu_when_opening">Всегда блокировать изменение ширины страниц и их смещение в стороны при открытии PDF/DJVU</string>
    <string name="cover_image_size">Размер обложек</string>
    <string name="author">Автор</string>
    <string name="close_application_">Закрыть приложение?</string>
@@ -323,7 +323,7 @@
    <string name="bookmark_with_text">Текстовая закладка</string>
    <string name="fast_bookmark">Быстрая закладка</string>
    <string name="reading_settings">Настройки чтения</string>
-   <string name="db_auto_center_horizontally">Центрировать по горизонтали</string>
+   <string name="db_auto_center_horizontally">Выровнить по горизонтали</string>
    <string name="licenses_for_libraries">Лицензии для библиотек</string>
    <string name="search_for_text_in_documents">Поиск внутри нескольких файлов</string>
    <string name="stop">Стоп</string>
@@ -341,7 +341,7 @@
    <string name="interval_sec_">Интервал (в секундах)</string>
    <string name="library_settings">Настройки библиотеки</string>
    <string name="by_name">Имя</string>
-   <string name="opening_the_last_book_when_the_application_starts">Открывать послед. книгу при запуске прил-я</string>
+   <string name="opening_the_last_book_when_the_application_starts">Открывать последнюю книгу при запуске приложения</string>
    <string name="links_color_day">Цвет ссылок (День)</string>
    <string name="links_color_night">Цвет ссылок (Ночь)</string>
    <string name="status_bar">Строка состояния</string>
@@ -350,12 +350,12 @@
    <string name="text_size">Размер текста</string>
    <string name="text_color_day">Цвет текста (День)</string>
    <string name="text_color_night">Цвет текста (Ночь)</string>
-   <string name="show_application_close_dialog_every_time">Показывать диалог закрытия приложения каждый раз</string>
+   <string name="show_application_close_dialog_every_time">Всегда спрашивать подтверждение при закрытии приложения</string>
    <string name="show_bookmarks_tab">Показать вкладку «Закладки»</string>
    <string name="show_assistant_droid_reader">Показать помощник Droid Reader</string>
    <string name="tabs_position">Очередность/видимость вкладок</string>
    <string name="visible">Показывать</string>
-   <string name="show_preferences_tab_in_the_left_menu">Показать вкладку настроек в боковом меню</string>
+   <string name="show_preferences_tab_in_the_left_menu">Показывать вкладку настроек в боковом меню</string>
    <string name="buy_pro_lirbi_reader_and_remove_ads">Купить PRO Lirbi Reader (без рекламы)</string>
    <string name="theme">Тема</string>
 </resources>
