@@ -208,6 +208,7 @@ public class IMG {
 
         PageUrl pageUrl = IMG.toPageUrl(path, page, sizePx);
         pageUrl.setUnic(BookCSS.get().toCssString().hashCode());
+        pageUrl.setInvert(!AppState.get().isInvert);
         final String url = pageUrl.toString();
         if (listener != null) {
             ImageLoader.getInstance().displayImage(url, imageView, displayOptions, listener);

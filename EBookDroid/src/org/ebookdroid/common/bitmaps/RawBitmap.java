@@ -101,7 +101,7 @@ public final class RawBitmap {
 
     }
 
-    public static Bitmap invert(Bitmap bitmap) {
+    private static Bitmap invert(Bitmap bitmap) {
         int pixels[] = new int[bitmap.getWidth() * bitmap.getHeight()];
         bitmap.getPixels(pixels, 0, bitmap.getWidth(), 0, 0, bitmap.getWidth(), bitmap.getHeight());
         nativeInvert(pixels, bitmap.getWidth(), bitmap.getHeight());

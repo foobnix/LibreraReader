@@ -248,7 +248,7 @@ public class MagicHelper {
             return null;
         }
         BitmapFactory.Options opt = new BitmapFactory.Options();
-        // opt.inPreferredConfig = Config.RGB_565;
+        opt.inPreferredConfig = Config.RGB_565;
 
         if (name.startsWith("/") && !new File(name).exists()) {
             return loadBitmap(MagicHelper.IMAGE_BG_1);
@@ -259,8 +259,10 @@ public class MagicHelper {
         }
         try {
             InputStream oldBook = EBookDroidApp.context.getAssets().open(name);
-            return BitmapFactory.decodeStream(oldBook);
-            // return decodeStream.copy(Config.RGB_565, false);
+            Bitmap decodeStream = BitmapFactory.decodeStream(oldBook);
+            Bitmap res = decodeStream.copy(Config.RGB_565, false);
+            decodeStream.recycle();
+            return res;
         } catch (Exception e) {
             LOG.e(e);
             return null;
@@ -628,20 +630,21 @@ public class MagicHelper {
         return Bitmap.createBitmap(bmp, startWidth, startHeight, endWidth - startWidth, endHeight - startHeight);
 
     }
-    
-    public static boolean isColorDarkSimple(int color){
+
+    public static boolean isColorDarkSimple(int color) {
         int k = Color.red(color) + Color.green(color) + Color.blue(color);
         if (k > 550) {// 350
             return false;
-        }else{
+        } else {
             return true;
         }
     }
-    public static boolean isColorDark(int color){
-        double darkness = 1-(0.299*Color.red(color) + 0.587*Color.green(color) + 0.114*Color.blue(color))/255;
+
+    public static boolean isColorDark(int color) {
+        double darkness = 1 - (0.299 * Color.red(color) + 0.587 * Color.green(color) + 0.114 * Color.blue(color)) / 255;
         if (darkness < 0.5) {
             return false; // It's a light color
-        }else{
+        } else {
             return true; // It's a dark color
         }
     }
