@@ -71,7 +71,16 @@ public enum UITab {
             list.add(byIndex);
         }
         return list;
+    }
 
+    public static int getCurrentTabIndex(UITab tab) {
+        List<UITab> ordered = getOrdered(AppState.get().tabsOrder);
+        for (int i = 0; i < ordered.size(); i++) {
+            if (ordered.get(i) == tab) {
+                return i;
+            }
+        }
+        return 0;
     }
 
     public static boolean isShowRecent() {

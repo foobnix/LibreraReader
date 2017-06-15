@@ -92,6 +92,9 @@ public class SearchCore {
         // Collections.sort(res, FILES_AND_DIRS_COMPARATOR);
 
         for (File it : res) {
+            if (it.getName().startsWith(".")) {
+                continue;
+            }
             FileMeta meta = new FileMeta(it.getPath());
             FileMetaCore.get().upadteBasicMeta(meta, it);
             if (it.isDirectory()) {

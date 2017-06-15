@@ -10,6 +10,7 @@ import com.foobnix.dao2.FileMeta;
 import com.foobnix.pdf.info.ExtUtils;
 import com.foobnix.pdf.info.widget.FileInformationDialog;
 import com.foobnix.pdf.info.widget.ShareDialog;
+import com.foobnix.pdf.info.wrapper.UITab;
 import com.foobnix.pdf.search.activity.msg.OpenDirMessage;
 import com.foobnix.sys.TempHolder;
 import com.foobnix.ui2.AppDB;
@@ -43,7 +44,7 @@ public class DefaultListeners {
                 File item = new File(result.getPath());
                 if (item.isDirectory()) {
                     Intent intent = new Intent(UIFragment.INTENT_TINT_CHANGE)//
-                            .putExtra(MainTabs2.EXTRA_PAGE_NUMBER, 1);//
+                            .putExtra(MainTabs2.EXTRA_PAGE_NUMBER, UITab.getCurrentTabIndex(UITab.BrowseFragment2));//
                     LocalBroadcastManager.getInstance(a).sendBroadcast(intent);
 
                     EventBus.getDefault().post(new OpenDirMessage(result.getPath()));
@@ -65,7 +66,7 @@ public class DefaultListeners {
 
                 if (item.isDirectory()) {
                     Intent intent = new Intent(UIFragment.INTENT_TINT_CHANGE)//
-                            .putExtra(MainTabs2.EXTRA_PAGE_NUMBER, 1);//
+                            .putExtra(MainTabs2.EXTRA_PAGE_NUMBER, UITab.getCurrentTabIndex(UITab.BrowseFragment2));//
                     LocalBroadcastManager.getInstance(a).sendBroadcast(intent);
 
                     EventBus.getDefault().post(new OpenDirMessage(result.getPath()));
@@ -131,7 +132,7 @@ public class DefaultListeners {
 
                 Intent intent = new Intent(UIFragment.INTENT_TINT_CHANGE)//
                         .putExtra(MainTabs2.EXTRA_SEACH_TEXT, result)//
-                        .putExtra(MainTabs2.EXTRA_PAGE_NUMBER, 0);//
+                        .putExtra(MainTabs2.EXTRA_PAGE_NUMBER, UITab.getCurrentTabIndex(UITab.SearchFragment2));//
 
                 LocalBroadcastManager.getInstance(a).sendBroadcast(intent);
                 return false;
@@ -149,7 +150,7 @@ public class DefaultListeners {
 
                 Intent intent = new Intent(UIFragment.INTENT_TINT_CHANGE)//
                         .putExtra(MainTabs2.EXTRA_SEACH_TEXT, result)//
-                        .putExtra(MainTabs2.EXTRA_PAGE_NUMBER, 0);//
+                        .putExtra(MainTabs2.EXTRA_PAGE_NUMBER, UITab.getCurrentTabIndex(UITab.SearchFragment2));//
 
                 LocalBroadcastManager.getInstance(a).sendBroadcast(intent);
                 return false;

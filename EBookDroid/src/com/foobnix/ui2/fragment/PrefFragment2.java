@@ -1429,7 +1429,7 @@ public class PrefFragment2 extends UIFragment {
         getActivity().startService(new Intent(getActivity(), BooksService.class).setAction(BooksService.ACTION_SEARCH_ALL));
 
         Intent intent = new Intent(UIFragment.INTENT_TINT_CHANGE)//
-                .putExtra(MainTabs2.EXTRA_PAGE_NUMBER, 0);//
+                .putExtra(MainTabs2.EXTRA_PAGE_NUMBER, UITab.getCurrentTabIndex(UITab.SearchFragment2));//
 
         LocalBroadcastManager.getInstance(getActivity()).sendBroadcast(intent);
     }
