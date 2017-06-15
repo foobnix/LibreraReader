@@ -86,6 +86,10 @@ public final class RawBitmap {
     }
 
     public void invert() {
+        if (!MagicHelper.isNeedMagic() && BookType.DJVU.is(TempHolder.get().path)) {
+            nativeInvert(pixels, width, height);
+            return;
+        }
         if (BookType.DJVU.is(TempHolder.get().path)) {
             return;
         }

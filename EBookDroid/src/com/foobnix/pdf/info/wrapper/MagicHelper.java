@@ -248,7 +248,7 @@ public class MagicHelper {
             return null;
         }
         BitmapFactory.Options opt = new BitmapFactory.Options();
-        opt.inPreferredConfig = Config.RGB_565;
+        // opt.inPreferredConfig = Config.RGB_565;
 
         if (name.startsWith("/") && !new File(name).exists()) {
             return loadBitmap(MagicHelper.IMAGE_BG_1);
@@ -259,8 +259,8 @@ public class MagicHelper {
         }
         try {
             InputStream oldBook = EBookDroidApp.context.getAssets().open(name);
-            Bitmap decodeStream = BitmapFactory.decodeStream(oldBook);
-            return decodeStream.copy(Config.RGB_565, false);
+            return BitmapFactory.decodeStream(oldBook);
+            // return decodeStream.copy(Config.RGB_565, false);
         } catch (Exception e) {
             LOG.e(e);
             return null;
@@ -275,7 +275,7 @@ public class MagicHelper {
         Paint p = new Paint();
         p.setAlpha(alpha);
 
-        Bitmap result = Bitmap.createBitmap(bitmap.getWidth(), bitmap.getHeight(), Config.RGB_565);
+        Bitmap result = Bitmap.createBitmap(bitmap.getWidth(), bitmap.getHeight(), bitmap.getConfig());
         Canvas canvas = new Canvas(result);
 
         // for PDF only
@@ -295,7 +295,7 @@ public class MagicHelper {
         Paint p = new Paint();
         p.setAlpha(alpha);
 
-        Bitmap result = Bitmap.createBitmap(bitmap.getWidth(), bitmap.getHeight(), Config.RGB_565);
+        Bitmap result = Bitmap.createBitmap(bitmap.getWidth(), bitmap.getHeight(), bitmap.getConfig());
         Canvas canvas = new Canvas(result);
 
         canvas.drawColor(color);

@@ -20,11 +20,7 @@ import com.foobnix.pdf.info.wrapper.MagicHelper;
 import com.foobnix.sys.TempHolder;
 
 import android.graphics.Bitmap;
-import android.graphics.Canvas;
-import android.graphics.Color;
-import android.graphics.Paint;
 import android.graphics.PointF;
-import android.graphics.Rect;
 import android.graphics.RectF;
 
 public class DjvuPage extends AbstractCodecPage {
@@ -84,10 +80,10 @@ public class DjvuPage extends AbstractCodecPage {
         if (bmp == null) {
             bmp = BitmapManager.getBitmap("Djvu page", 100, 100, Bitmap.Config.RGB_565);
         }
-        final Canvas c = new Canvas(bmp.getBitmap());
-        final Paint paint = new Paint();
-        paint.setColor(Color.GRAY);
-        c.drawRect(new Rect(0, 0, width, height), paint);
+        // final Canvas c = new Canvas(bmp.getBitmap());
+        // final Paint paint = new Paint();
+        // paint.setColor(Color.GRAY);
+        // c.drawRect(new Rect(0, 0, width, height), paint);
         return bmp;
     }
 
