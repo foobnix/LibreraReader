@@ -1,6 +1,5 @@
 package com.foobnix.pdf.info.widget;
 
-import com.foobnix.android.utils.Dips;
 import com.foobnix.android.utils.ResultResponse;
 import com.foobnix.android.utils.ResultResponse2;
 import com.foobnix.pdf.info.R;
@@ -12,6 +11,7 @@ import android.support.v4.app.DialogFragment;
 import android.support.v4.app.FragmentActivity;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import android.widget.FrameLayout.LayoutParams;
 
@@ -54,9 +54,6 @@ public class ChooserDialogFragment extends DialogFragment {
     public View onCreateView(LayoutInflater inflater, android.view.ViewGroup container, android.os.Bundle savedInstanceState) {
         setRetainInstance(true);
         FrameLayout frame = new FrameLayout(getContext());
-        frame.setLayoutParams(new FrameLayout.LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT));
-        frame.setMinimumHeight(Dips.dpToPx(1000));
-        frame.setMinimumWidth(Dips.dpToPx(1000));
         frame.setId(0x13);
 
         final BrowseFragment2 fr = BrowseFragment2.newInstance(getArguments());
@@ -81,8 +78,19 @@ public class ChooserDialogFragment extends DialogFragment {
 
         getDialog().setTitle(R.string.choose_);
 
+
         return frame;
     };
+
+    @Override
+    public void onResume() {
+        ViewGroup.LayoutParams params = getDialog().getWindow().getAttributes();
+        params.width = LayoutParams.MATCH_PARENT;
+        params.height = LayoutParams.MATCH_PARENT;
+        getDialog().getWindow().setAttributes((android.view.WindowManager.LayoutParams) params);
+
+        super.onResume();
+    }
 
 
     public void setOnSelectListener(ResultResponse2<String, Dialog> onSelectListener) {
