@@ -208,11 +208,16 @@ public class ExtUtils {
 
     public static boolean isImageFile(File file) {
         if (file != null && file.isFile()) {
-            String name = file.getName().toLowerCase();
-            for (String ext : imageExts) {
-                if (name.endsWith(ext)) {
-                    return true;
-                }
+            return isImagePath(file.getName());
+        }
+        return false;
+    }
+
+    public static boolean isImagePath(String path) {
+        String name = path.toLowerCase(Locale.US);
+        for (String ext : imageExts) {
+            if (name.endsWith(ext)) {
+                return true;
             }
         }
         return false;

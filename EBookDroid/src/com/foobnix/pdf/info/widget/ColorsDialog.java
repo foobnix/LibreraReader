@@ -7,6 +7,7 @@ import com.foobnix.android.utils.IntegerResponse;
 import com.foobnix.android.utils.LOG;
 import com.foobnix.android.utils.ResultResponse2;
 import com.foobnix.android.utils.TxtUtils;
+import com.foobnix.pdf.info.ExtUtils;
 import com.foobnix.pdf.info.R;
 import com.foobnix.pdf.info.view.CustomSeek;
 import com.foobnix.pdf.info.wrapper.AppState;
@@ -29,6 +30,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class ColorsDialog {
     int colorTextChoose;
@@ -185,6 +187,10 @@ public class ColorsDialog {
                 ChooserDialogFragment.chooseFile(c, "").setOnSelectListener(new ResultResponse2<String, Dialog>() {
                     @Override
                     public boolean onResultRecive(String nPath, Dialog dialog) {
+                        if (!ExtUtils.isImagePath(nPath)) {
+                            Toast.makeText(c, R.string.incorrect_value, Toast.LENGTH_SHORT).show();
+                            return false;
+                        }
                         if (isDayMode) {
                             AppState.get().bgImageDayPath = nPath;
                         } else {
@@ -200,7 +206,6 @@ public class ColorsDialog {
                         return false;
                     }
                 });
-
 
             }
         });
