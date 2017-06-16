@@ -1,4 +1,3 @@
-
 * Tabs in aangepaste volgorde 
 * Verberg een tabblad 
 * Voorkeuren tabblad in het linker menu 

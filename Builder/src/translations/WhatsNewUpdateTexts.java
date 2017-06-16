@@ -3,7 +3,6 @@ package translations;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-import java.util.Arrays;
 import java.util.List;
 
 public class WhatsNewUpdateTexts {
@@ -12,7 +11,7 @@ public class WhatsNewUpdateTexts {
 
     public static void main(String[] args) throws IOException {
         final List<String> asList = SyncTranslations.getAllLangCodes("/home/ivan-dev/git/LirbiReader/EBookDroid/res");
-         //final List<String> asList = Arrays.asList("ru");
+        // final List<String> asList = Arrays.asList("ru");
 
         String recentEN = new String(Files.readAllBytes(Paths.get("/home/ivan-dev/git/LirbiReader/EbookaPDF/assets/recent.txt")));
 
@@ -29,6 +28,7 @@ public class WhatsNewUpdateTexts {
             recentTR = recentTR.replace("&#39;", "’");
             recentTR = recentTR.replace(" &quot;", "");
             recentTR = recentTR.replace("&quot;", "");
+            recentTR = recentTR.replaceAll("^\n", "");
             translation = SyncTranslations.upperCase(translation);
             Files.write(Paths.get(outRecnet), recentTR.getBytes());
 

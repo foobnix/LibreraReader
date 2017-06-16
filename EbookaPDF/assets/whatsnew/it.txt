@@ -1,4 +1,3 @@
-
 * Tabulazioni in ordine personalizzato 
 * Nascondi qualsiasi scheda 
 * Scheda Preferenze nel menu a sinistra 

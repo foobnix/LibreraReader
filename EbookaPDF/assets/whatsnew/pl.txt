@@ -1,4 +1,3 @@
-
 * Zakładki w niestandardowym porządku 
 * Ukryj dowolną kartę 
 * Preferencje w lewym menu 

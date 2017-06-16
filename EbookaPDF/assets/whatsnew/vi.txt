@@ -1,4 +1,3 @@
-
 * Tabs theo thứ tự tùy chọn 
 * Ẩn bất kỳ tab 
 * Tab Preferences trong menu bên trái 

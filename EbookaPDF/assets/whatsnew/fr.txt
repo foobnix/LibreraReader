@@ -1,4 +1,3 @@
-
 * Onglets dans l’ordre personnalisé 
 * Cacher l’onglet 
 * Onglet Préférences dans le menu de gauche 

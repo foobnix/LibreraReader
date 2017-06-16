@@ -1,4 +1,3 @@
-
 * Tabs en el pedido personalizado 
 * Ocultar cualquier pestaña 
 * Preferencias en el menú de la izquierda 

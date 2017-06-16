@@ -1,4 +1,3 @@
-
 * Separadores na ordem personalizada 
 * Ocultar qualquer guia 
 * guia Preferências no menu à esquerda 

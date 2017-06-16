@@ -1,4 +1,3 @@
-
 * Flikar i anpassad ordning 
 * Dölj alla flikar 
 * Inställningar fliken i vänstermenyn 

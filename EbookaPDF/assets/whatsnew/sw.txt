@@ -1,4 +1,3 @@
-
 * Tabs ili desturi 
 * Ficha yoyote tab 
 * Mapendekezo tab upande wa kushoto menu 

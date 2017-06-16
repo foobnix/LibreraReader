@@ -1,8 +1,7 @@
-
 * Záložky vo vlastnom poradí 
 * Skryť ľubovoľnú kartu 
 * Záložka preferencií v ľavej ponuke 
-* Nastavenie výšky stavového riadka a farby textu 
+* Nastavenie výšky stavového riadku a farby textu 
 * Možnosť automaticky otvoriť poslednú knihu 
 * Vylepšenia v FB2 a PDF 
 * Vďaka za spätnú väzbu a nápady

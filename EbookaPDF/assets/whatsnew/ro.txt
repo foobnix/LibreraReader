@@ -1,4 +1,3 @@
-
 * Tab-uri în ordine particularizată 
 * Ascunde orice filă 
 * Fila Preferințe din meniul din stânga 

@@ -1,4 +1,3 @@
-
 * Özel siparişlerdeki sekmeler 
 * Herhangi bir sekmeyi gizle 
 * Sol menüdeki Tercihler sekmesi 

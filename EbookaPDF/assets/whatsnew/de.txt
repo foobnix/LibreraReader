@@ -1,4 +1,3 @@
-
 * Tabs in kundenspezifischer Reihenfolge 
 * Alle Registerkarten ausblenden 
 * Registerkarte Voreinstellungen im linken Menü 

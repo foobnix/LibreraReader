@@ -1,0 +1,7 @@
+* Tab dalam urutan khusus 
+* Sembunyikan tab apapun 
+* tab Preferensi di menu kiri 
+* Atur tinggi status bar dan warna teks 
+* Kemampuan untuk secara otomatis membuka buku terakhir 
+* Perbaikan pada FB2 dan PDF 
+* Terima kasih atas umpan balik dan gagasannya.
