@@ -1184,7 +1184,7 @@ public class DocumentWrapperUI {
 
         @Override
         public void onClick(View v) {
-            controller.onGoToPage(1);
+            controller.onScrollY(0);
             updateUI();
         }
     };
