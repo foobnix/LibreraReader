@@ -15,12 +15,11 @@
 
         <TextView
             android:id="@+id/downloadPRO"
+            style="@style/textLink"
             android:layout_width="match_parent"
             android:layout_height="60dip"
             android:gravity="center"
-            style="@style/textLink"
-            android:text="@string/buy_pro_lirbi_reader_and_remove_ads"
-             />
+            android:text="@string/buy_pro_lirbi_reader_and_remove_ads" />
 
         <TextView
             android:id="@+id/section1"
@@ -129,16 +128,8 @@
                     android:id="@+id/supportFB2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:ems="4"
+                    android:ems="5"
                     android:text="FB2"
-                    android:textSize="12sp" />
-
-                <CheckBox
-                    android:id="@+id/supportCBZ"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:ems="7"
-                    android:text="CBZ/R"
                     android:textSize="12sp" />
             </LinearLayout>
 
@@ -167,8 +158,22 @@
                     android:id="@+id/supportRTF"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:ems="4"
+                    android:ems="5"
                     android:text="RTF"
+                    android:textSize="12sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal" >
+
+                <CheckBox
+                    android:id="@+id/supportCBZ"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:ems="7"
+                    android:text="CBZ/CBR"
                     android:textSize="12sp" />
 
                 <CheckBox
@@ -176,7 +181,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:ems="7"
-                    android:text="H/TXT"
+                    android:text="HTML/TXT"
                     android:textSize="12sp" />
             </LinearLayout>
         </LinearLayout>
@@ -202,8 +207,8 @@
                     android:id="@+id/supportZIP"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:ems="12"
-                    android:text="ZIP/RAR/7Z/GZ"
+                    android:ems="7"
+                    android:text="ZIP/RAR"
                     android:textSize="12sp" />
 
                 <CheckBox
