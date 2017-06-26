@@ -282,6 +282,10 @@ public class WrapperGuestureDetector extends SimpleOnGestureListener implements 
     public void onLongPress(final MotionEvent e) {
         isLongMovement = true;
 
+        if (!AppState.get().longTapEnable) {
+            return;
+        }
+
         if (SettingsManager.getBookSettings().cropPages) {
             docCtrl.onCrop();
         }

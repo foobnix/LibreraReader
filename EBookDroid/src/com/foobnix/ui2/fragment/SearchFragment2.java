@@ -58,6 +58,10 @@ import android.widget.Toast;
 
 public class SearchFragment2 extends UIFragment<FileMeta> {
 
+    private static final String CMD_LONG_TAP_OFF = "@cmd_long_tap_off";
+    private static final String CMD_LONG_TAP_ON = "@cmd_long_tap_on";
+    private static final String CMD_FULLSCREEN_ON = "@cmd_fullscreen_on";
+
     public static int NONE = -1;
 
     FastScrollRecyclerView recyclerView;
@@ -120,6 +124,11 @@ public class SearchFragment2 extends UIFragment<FileMeta> {
         for (SEARCH_IN search : AppDB.SEARCH_IN.values()) {
             autocomplitions.add(search.getDotPrefix() + " ");
         }
+
+        autocomplitions.add(CMD_FULLSCREEN_ON);
+        autocomplitions.add(CMD_LONG_TAP_OFF);
+        autocomplitions.add(CMD_LONG_TAP_ON);
+
         updateFilterListAdapter();
     }
 
@@ -371,16 +380,24 @@ public class SearchFragment2 extends UIFragment<FileMeta> {
     public void searchAndOrderSync(List<FileMeta> loadingResults) {
         handler.removeCallbacks(sortAndSeach);
 
-        // sortBy.setText(AppDB.SORT_BY.getByID(AppState.get().sortBy).getResName());
-        // sortOrder.setImageResource(AppState.getInstance().isSortAsc ?
-        // R.drawable.glyphicons_601_chevron_up :
-        // R.drawable.glyphicons_602_chevron_down);
 
         String txt = searchEditText.getText().toString().trim();
         searchEditText.setHint(R.string.search);
 
-        if ("@full".equals(txt)) {
+        if (CMD_FULLSCREEN_ON.equals(txt)) {
             DocumentController.chooseFullScreen(getActivity(), true);
+            Toast.makeText(getContext(), CMD_FULLSCREEN_ON, Toast.LENGTH_SHORT);
+            searchEditText.setText("");
+        }
+        if (CMD_LONG_TAP_ON.equals(txt)) {
+            AppState.get().longTapEnable = true;
+            Toast.makeText(getContext(), CMD_LONG_TAP_ON, Toast.LENGTH_SHORT);
+            searchEditText.setText("");
+        }
+        if (CMD_LONG_TAP_OFF.equals(txt)) {
+            AppState.get().longTapEnable = false;
+            Toast.makeText(getContext(), CMD_LONG_TAP_OFF, Toast.LENGTH_SHORT);
+            searchEditText.setText("");
         }
 
         if (TxtUtils.isEmpty(txt)) {

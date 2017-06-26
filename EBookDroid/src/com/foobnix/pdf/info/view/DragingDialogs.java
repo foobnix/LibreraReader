@@ -874,10 +874,6 @@ public class DragingDialogs {
 
                         anchor.removeAllViews();
 
-                        if (Build.VERSION.SDK_INT <= 10) {
-                            Toast.makeText(anchor.getContext(), R.string.this_function_will_works_in_modern_android, Toast.LENGTH_SHORT).show();
-                            return;
-                        }
 
                         final PopupMenu popupMenu = new PopupMenu(anchor.getContext(), onTranslate);
 
@@ -894,6 +890,7 @@ public class DragingDialogs {
                                 }
                             });
                         }
+
                         popupMenu.show();
                     }
                 });

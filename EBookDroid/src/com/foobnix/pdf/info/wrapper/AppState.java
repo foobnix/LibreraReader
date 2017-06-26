@@ -176,12 +176,15 @@ public class AppState {
     public int remindRestTime = 120;
     public int flippingInterval = 10;
 
+    public boolean longTapEnable = true;
+
     public boolean isEditMode = true;
     public boolean isFullScreen = true;
     public boolean isAutoFit = false;
     public boolean notificationOngoing = false;
     public boolean ttsReplacement = false;
     public boolean ttsSkeakToFile = false;
+
     public String ttsSpeakPath = TTSModule.speakToPath;
 
     public boolean isShowToolBar = true;
@@ -453,6 +456,7 @@ public class AppState {
         isBorderAndShadow = sp.getBoolean("isBorderAndShadow", isBorderAndShadow);
         isBrowseImages = sp.getBoolean("isBrowseImages", isBrowseImages);
 
+        longTapEnable = sp.getBoolean("longTapEnable", longTapEnable);
         isEditMode = sp.getBoolean("isEditMode", isEditMode);
         isBrowseGrid = sp.getBoolean("isBrowseGrid", isBrowseGrid);
         isRecentGrid = sp.getBoolean("isRecentGrid", isRecentGrid);
@@ -656,6 +660,7 @@ public class AppState {
         editor.putBoolean("isCropBookCovers", isCropBookCovers);
         editor.putBoolean("isBorderAndShadow", isBorderAndShadow);
         editor.putBoolean("isBrowseImages", isBrowseImages);
+        editor.putBoolean("longTapEnable", longTapEnable);
         editor.putBoolean("isEditMode", isEditMode);
         editor.putBoolean("isFullScrean", isFullScreen);
         editor.putBoolean("notificationOngoing", notificationOngoing);

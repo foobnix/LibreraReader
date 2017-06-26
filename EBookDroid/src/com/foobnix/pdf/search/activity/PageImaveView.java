@@ -185,6 +185,9 @@ public class PageImaveView extends View {
 
         @Override
         public void onLongPress(MotionEvent e) {
+            if (!AppState.get().longTapEnable) {
+                return;
+            }
             isLognPress = true;
             xInit = e.getX();
             yInit = e.getY();
