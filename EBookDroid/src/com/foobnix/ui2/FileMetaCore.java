@@ -13,6 +13,7 @@ import com.foobnix.android.utils.TxtUtils;
 import com.foobnix.dao2.FileMeta;
 import com.foobnix.ext.CacheZipUtils;
 import com.foobnix.ext.CacheZipUtils.UnZipRes;
+import com.foobnix.ext.CalirbeExtractor;
 import com.foobnix.ext.EbookMeta;
 import com.foobnix.ext.EpubExtractor;
 import com.foobnix.ext.Fb2Extractor;
@@ -79,7 +80,11 @@ public class FileMetaCore {
 
     private EbookMeta getEbookMeta(String path, String unZipPath, String child) throws IOException {
         EbookMeta ebookMeta = EbookMeta.Empty();
-        if (BookType.EPUB.is(unZipPath)) {
+
+        if (CalirbeExtractor.isCalibre(unZipPath)) {
+            ebookMeta = CalirbeExtractor.getBookMetaInformation(unZipPath);
+            LOG.d("isCalibre find");
+        } else if (BookType.EPUB.is(unZipPath)) {
             ebookMeta = EpubExtractor.get().getBookMetaInformation(unZipPath);
         } else if (BookType.FB2.is(unZipPath)) {
             ebookMeta = Fb2Extractor.get().getBookMetaInformation(unZipPath);
@@ -114,6 +119,11 @@ public class FileMetaCore {
     public static String getBookOverview(String path) {
         String info = "";
         try {
+
+            if (CalirbeExtractor.isCalibre(path)) {
+                return CalirbeExtractor.getBookOverview(path);
+            }
+
             path = CacheZipUtils.extracIfNeed(path).unZipPath;
 
             if (BookType.EPUB.is(path)) {

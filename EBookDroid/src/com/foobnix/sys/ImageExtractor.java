@@ -96,7 +96,9 @@ public class ImageExtractor implements ImageDownloader {
 
         Bitmap cover = null;
 
-        if (BookType.EPUB.is(unZipPath)) {
+        if (ebookMeta.coverImage != null) {
+            cover = BaseExtractor.arrayToBitmap(ebookMeta.coverImage, pageUrl.getWidth());
+        } else if (BookType.EPUB.is(unZipPath)) {
             cover = BaseExtractor.arrayToBitmap(EpubExtractor.get().getBookCover(unZipPath), pageUrl.getWidth());
         } else if (BookType.FB2.is(unZipPath)) {
             cover = BaseExtractor.arrayToBitmap(Fb2Extractor.get().getBookCover(unZipPath), pageUrl.getWidth());

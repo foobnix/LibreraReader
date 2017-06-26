@@ -1129,7 +1129,8 @@ public class HorizontalViewActivity extends FragmentActivity {
             @Override
             public Parcelable saveState() {
                 try {
-                    return super.saveState();
+                    // return super.saveState();
+                    return null;
                 } catch (Exception e) {
                     Toast.makeText(HorizontalViewActivity.this, R.string.msg_unexpected_error, Toast.LENGTH_LONG).show();
                     LOG.e(e);
@@ -1141,7 +1142,7 @@ public class HorizontalViewActivity extends FragmentActivity {
             @Override
             public void restoreState(Parcelable arg0, ClassLoader arg1) {
                 try {
-                    super.restoreState(arg0, arg1);
+                    // super.restoreState(arg0, arg1);
                 } catch (Exception e) {
                     Toast.makeText(HorizontalViewActivity.this, R.string.msg_unexpected_error, Toast.LENGTH_LONG).show();
                     LOG.e(e);
