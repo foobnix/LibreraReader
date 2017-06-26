@@ -163,7 +163,7 @@ public class OutlineAdapter extends BaseAdapter {
 			num.setVisibility(View.INVISIBLE);
 		}
 		if (currentId == id) {
-			container.setBackgroundResource(R.color.tint_blue);
+            container.setBackgroundResource(R.color.tint_blue);
 		} else {
 			container.setBackgroundColor(Color.TRANSPARENT);
 		}
@@ -197,7 +197,7 @@ public class OutlineAdapter extends BaseAdapter {
 
 			btn.setImageResource(states[id] == OutlineItemState.EXPANDED ? R.drawable.screen_zoom_out_dark
 					: R.drawable.screen_zoom_in_dark);
-			TintUtil.setTintImage(btn);
+            TintUtil.setTintImage(btn, view.getCurrentTextColor());
 
 			view.setTypeface(BookCSS.getNormalTypeFace(), Typeface.BOLD);
 

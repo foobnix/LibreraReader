@@ -452,7 +452,7 @@ public class DocumentWrapperUI {
 
     public void showChapter() {
         if (TxtUtils.isNotEmpty(controller.getCurrentChapter())) {
-            bookName.setText(bookTitle + " : " + controller.getCurrentChapter());
+            bookName.setText(bookTitle + " \"" + controller.getCurrentChapter().trim() + "\"");
         } else {
             bookName.setText(bookTitle);
 
@@ -785,7 +785,7 @@ public class DocumentWrapperUI {
 
         int iconSize = Dips.spToPx(AppState.get().statusBarTextSizeAdv);
         int smallIconSize = iconSize - Dips.dpToPx(5);
-        int panelSize = iconSize + Dips.dpToPx(4);
+        int panelSize = (int) (iconSize * 1.5);
 
         textToSpeachTop.getLayoutParams().height = textToSpeachTop.getLayoutParams().width = iconSize;
         lockUnlockTop.getLayoutParams().height = lockUnlockTop.getLayoutParams().width = iconSize;
@@ -797,8 +797,7 @@ public class DocumentWrapperUI {
         clockIcon.getLayoutParams().height = clockIcon.getLayoutParams().width = smallIconSize;
         batteryIcon.getLayoutParams().height = batteryIcon.getLayoutParams().width = smallIconSize;
 
-        lirbiLogo.getLayoutParams().height = panelSize + Dips.dpToPx(1);
-        titleBar.getLayoutParams().height = panelSize;
+        lirbiLogo.getLayoutParams().height = panelSize;
 
     }
 

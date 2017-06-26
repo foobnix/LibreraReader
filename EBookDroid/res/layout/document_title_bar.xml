@@ -54,13 +54,13 @@
             <TextView
                 android:id="@+id/bookName"
                 android:layout_width="wrap_content"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:gravity="center_vertical"
                 android:layout_marginLeft="2dip"
                 android:layout_weight="1"
                 android:singleLine="true"
                 android:text="Book Name.pdf"
-                android:textSize="@dimen/title_h_adv" />
+                android:textSize="29sp" />
 
             <ImageView
                 android:id="@+id/goToPage1Top"

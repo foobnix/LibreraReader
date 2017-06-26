@@ -378,6 +378,7 @@ public class HorizontalViewActivity extends FragmentActivity {
 
             @Override
             protected void onPreExecute() {
+                isInitPosistion = Dips.screenHeight() > Dips.screenWidth();
                 dialog = ProgressDialog.show(HorizontalViewActivity.this, "", getString(R.string.msg_loading));
                 dialog.getWindow().clearFlags(WindowManager.LayoutParams.FLAG_DIM_BEHIND);
             };
@@ -516,8 +517,9 @@ public class HorizontalViewActivity extends FragmentActivity {
             }
         });
 
-        isInitPosistion = Dips.screenHeight() > Dips.screenWidth();
     }
+
+
 
     public void updateSeekBarColorAndSize() {
 
