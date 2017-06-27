@@ -325,7 +325,7 @@ public class PrefFragment2 extends UIFragment {
 
                     @Override
                     public boolean onMenuItemClick(MenuItem item) {
-                        AppState.getInstance().orientation = ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE;
+                        AppState.getInstance().orientation = ActivityInfo.SCREEN_ORIENTATION_SENSOR_LANDSCAPE;
                         rotationText();
                         DocumentController.doRotation(getActivity());
                         return false;
@@ -336,7 +336,7 @@ public class PrefFragment2 extends UIFragment {
 
                     @Override
                     public boolean onMenuItemClick(MenuItem item) {
-                        AppState.getInstance().orientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT;
+                        AppState.getInstance().orientation = ActivityInfo.SCREEN_ORIENTATION_SENSOR_PORTRAIT;
                         rotationText();
                         DocumentController.doRotation(getActivity());
                         return false;
@@ -1449,10 +1449,10 @@ public class PrefFragment2 extends UIFragment {
         if (type == ActivityInfo.SCREEN_ORIENTATION_SENSOR) {
             screenType.setText(TxtUtils.underline(getString(R.string.automatic)));
         }
-        if (type == ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE) {
+        if (type == ActivityInfo.SCREEN_ORIENTATION_SENSOR_LANDSCAPE) {
             screenType.setText(TxtUtils.underline(getString(R.string.landscape)));
         }
-        if (type == ActivityInfo.SCREEN_ORIENTATION_PORTRAIT) {
+        if (type == ActivityInfo.SCREEN_ORIENTATION_SENSOR_PORTRAIT) {
             screenType.setText(TxtUtils.underline(getString(R.string.portrait)));
         }
         DocumentController.doRotation(getActivity());

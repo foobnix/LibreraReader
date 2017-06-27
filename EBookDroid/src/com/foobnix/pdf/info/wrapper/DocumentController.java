@@ -346,12 +346,12 @@ public abstract class DocumentController {
     public void restartActivity() {
         saveAppState();
         if (Build.VERSION.SDK_INT >= 11) {
-            // activity.recreate();
+            activity.recreate();
         } else {
-
+            activity.finish();
+            activity.startActivity(activity.getIntent());
         }
-        activity.finish();
-        activity.startActivity(activity.getIntent());
+
     }
 
     public void saveAppState() {

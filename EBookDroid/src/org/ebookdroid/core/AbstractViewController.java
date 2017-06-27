@@ -404,6 +404,8 @@ public abstract class AbstractViewController extends AbstractComponentController
 
         StringBuilder build = new StringBuilder();
 
+        boolean isHyphenWorld = false;
+
         LOG.d("Add Word page", "----", firstVisiblePage, lastVisiblePage + 1);
         for (final Page page : model.getPages(firstVisiblePage, lastVisiblePage + 1)) {
             page.selectedText.clear();
@@ -423,10 +425,23 @@ public abstract class AbstractViewController extends AbstractComponentController
                                 continue;
                             }
 
-                            if (single && RectF.intersects(wordRect, tapRect)) {
-                                page.selectedText.add(line);
-                                build.append(line.w);
+                            if (isHyphenWorld || (single && RectF.intersects(wordRect, tapRect))) {
+                                build.append(line.w + " ");
+
+                                if (!isHyphenWorld) {
+                                    page.selectedText.add(line);
+                                }
+
                                 LOG.d("Add Word", line.w);
+
+                                if (isHyphenWorld && TxtUtils.isNotEmpty(line.w)) {
+                                    page.selectedText.add(line);
+                                    isHyphenWorld = false;
+                                }
+
+                                if (line.w.endsWith("-")) {
+                                    isHyphenWorld = true;
+                                }
 
                                 // get links
                                 if (LengthUtils.isNotEmpty(page.links)) {

@@ -131,7 +131,6 @@ public class PageImaveView extends View {
     class ImageSimpleGestureListener extends GestureDetector.SimpleOnGestureListener {
         private final int DP_5 = Dips.dpToPx(10);
 
-
         @Override
         public boolean onDoubleTap(final MotionEvent e) {
             isIgronerClick = true;
@@ -595,6 +594,8 @@ public class PageImaveView extends View {
 
         StringBuilder build = new StringBuilder();
 
+        boolean isHyphenWorld = false;
+
         for (TextWord line[] : getPageText()) {
             final TextWord current[] = line;
             for (TextWord textWord : current) {
@@ -605,9 +606,20 @@ public class PageImaveView extends View {
                 RectF wordRect = transform(textWord);
                 if (single) {
                     boolean intersects = RectF.intersects(wordRect, tapRect);
-                    if (intersects) {
+                    if (intersects || isHyphenWorld) {
                         LOG.d("ADD TEXT", textWord);
-                        PageImageState.get().addWord(pageNumber, textWord);
+
+                        if (!isHyphenWorld) {
+                            PageImageState.get().addWord(pageNumber, textWord);
+                        }
+
+                        if (isHyphenWorld && TxtUtils.isNotEmpty(textWord.getWord())) {
+                            PageImageState.get().addWord(pageNumber, textWord);
+                            isHyphenWorld = false;
+                        }
+                        if (textWord.getWord().endsWith("-")) {
+                            isHyphenWorld = true;
+                        }
                         build.append(textWord.getWord() + " ");
                     }
                 } else {

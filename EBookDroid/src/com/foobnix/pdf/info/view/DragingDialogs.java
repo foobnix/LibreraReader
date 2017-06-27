@@ -3195,7 +3195,7 @@ public class DragingDialogs {
 
                 // orientation
                 final List<String> orientations = Arrays.asList(controller.getString(R.string.automatic), controller.getString(R.string.landscape), controller.getString(R.string.portrait));
-                final List<Integer> orIds = Arrays.asList(ActivityInfo.SCREEN_ORIENTATION_SENSOR, ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE, ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+                final List<Integer> orIds = Arrays.asList(ActivityInfo.SCREEN_ORIENTATION_SENSOR, ActivityInfo.SCREEN_ORIENTATION_SENSOR_LANDSCAPE, ActivityInfo.SCREEN_ORIENTATION_SENSOR_PORTRAIT);
 
                 final TextView screenOrientation = (TextView) inflate.findViewById(R.id.screenOrientation);
                 screenOrientation.setText(orientations.get(orIds.indexOf(AppState.getInstance().orientation)));

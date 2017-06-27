@@ -421,7 +421,7 @@ public class DocumentWrapperUI {
         }
 
         reverseKeysIndicator.setVisibility(AppState.get().isReverseKeys ? View.VISIBLE : View.GONE);
-        if (AppState.get().isMusicianMode) {
+        if (true || AppState.get().isMusicianMode) {
             reverseKeysIndicator.setVisibility(View.GONE);
         }
 

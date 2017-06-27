@@ -53,6 +53,7 @@ import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.res.Configuration;
+import android.graphics.Color;
 import android.graphics.drawable.GradientDrawable;
 import android.os.Build;
 import android.os.Bundle;
@@ -101,7 +102,7 @@ public class HorizontalViewActivity extends FragmentActivity {
     CopyAsyncTask loadinAsyncTask;
 
     Dialog rotatoinDialog;
-    boolean isInitPosistion;
+    boolean isInitPosistion = true;
 
     @Override
     protected void onNewIntent(final Intent intent) {
@@ -122,6 +123,7 @@ public class HorizontalViewActivity extends FragmentActivity {
     @TargetApi(Build.VERSION_CODES.HONEYCOMB)
     @Override
     protected void onCreate(final Bundle savedInstanceState) {
+        DocumentController.doRotation(this);
         handler = new Handler();
         flippingHandler = new Handler();
         flippingTimer = 0;
@@ -378,7 +380,6 @@ public class HorizontalViewActivity extends FragmentActivity {
 
             @Override
             protected void onPreExecute() {
-                isInitPosistion = Dips.screenHeight() > Dips.screenWidth();
                 dialog = ProgressDialog.show(HorizontalViewActivity.this, "", getString(R.string.msg_loading));
                 dialog.getWindow().clearFlags(WindowManager.LayoutParams.FLAG_DIM_BEHIND);
             };
@@ -479,6 +480,9 @@ public class HorizontalViewActivity extends FragmentActivity {
                     showHideInfoToolBar();
 
                     testScreenshots();
+
+                    isInitPosistion = Dips.screenHeight() > Dips.screenWidth();
+
                 }
 
             };
@@ -519,8 +523,6 @@ public class HorizontalViewActivity extends FragmentActivity {
 
     }
 
-
-
     public void updateSeekBarColorAndSize() {
 
         TintUtil.setTintText(pagesPower, TintUtil.getStatusBarColor());
@@ -528,8 +530,12 @@ public class HorizontalViewActivity extends FragmentActivity {
         TintUtil.setTintText(pagesCountIndicator, TintUtil.getStatusBarColor());
         TintUtil.setTintText(flippingIntervalView, TintUtil.getStatusBarColor());
 
-        GradientDrawable bg = (GradientDrawable) pagesPower.getBackground();
-        bg.setStroke(1, TintUtil.getStatusBarColor());
+        if (false) {
+            GradientDrawable bg = (GradientDrawable) pagesPower.getBackground();
+            bg.setStroke(1, TintUtil.getStatusBarColor());
+        } else {
+            pagesPower.setBackgroundColor(Color.TRANSPARENT);
+        }
 
         pagesPower.setTextSize(AppState.get().statusBarTextSizeEasy);
         pagesTime.setTextSize(AppState.get().statusBarTextSizeEasy);
@@ -1139,7 +1145,6 @@ public class HorizontalViewActivity extends FragmentActivity {
                     return null;
                 }
             }
-
 
             @Override
             public void restoreState(Parcelable arg0, ClassLoader arg1) {
