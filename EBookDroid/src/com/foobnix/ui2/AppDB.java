@@ -266,7 +266,10 @@ public class AppDB {
                             }
                         }
                     } else {
-                        result.add(item.trim());
+                        String trim = item.trim();
+                        if (!result.contains(trim)) {
+                            result.add(trim);
+                        }
                     }
                 } while (c.moveToNext());
             }
@@ -274,24 +277,6 @@ public class AppDB {
             c.close();
         }
         Collections.sort(result, String.CASE_INSENSITIVE_ORDER);
-        return result;
-    }
-
-    public List<String> getAll(boolean isAsc) {
-        QueryBuilder<FileMeta> where = fileMetaDao.queryBuilder().where(FileMetaDao.Properties.Author.notEq(""));
-
-        if (isAsc) {
-            where = where.orderAsc(FileMetaDao.Properties.Author);
-        } else {
-            where = where.orderDesc(FileMetaDao.Properties.Author);
-        }
-        List<String> result = new ArrayList<String>();
-        for (FileMeta meta : where.list()) {
-            // if (!result.contains(meta.getAuthor()) &&
-            // TxtUtils.isNotEmpty(meta.getAuthor())) {
-            result.add(meta.getAuthor());
-            // }
-        }
         return result;
     }
 

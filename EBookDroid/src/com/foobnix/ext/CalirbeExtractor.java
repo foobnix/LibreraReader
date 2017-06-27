@@ -9,6 +9,8 @@ import org.xmlpull.v1.XmlPullParser;
 
 import com.BaseExtractor;
 import com.foobnix.android.utils.LOG;
+import com.foobnix.android.utils.TxtUtils;
+import com.foobnix.pdf.info.wrapper.AppState;
 
 public class CalirbeExtractor {
 
@@ -68,7 +70,15 @@ public class CalirbeExtractor {
                     }
 
                     if ("dc:creator".equals(xpp.getName())) {
-                        meta.setAuthor(xpp.nextText());
+                        String author = xpp.nextText();
+                        if (AppState.get().isFirstSurname) {
+                            author = TxtUtils.replaceLastFirstName(author);
+                        }
+                        if (TxtUtils.isNotEmpty(author)) {
+                            meta.setAuthor(meta.getAuthor() + ", " + author);
+                        } else {
+                            meta.setAuthor(author);
+                        }
                     }
 
                     if ("dc:description".equals(xpp.getName())) {
@@ -80,7 +90,7 @@ public class CalirbeExtractor {
                         String attrContent = xpp.getAttributeValue(null, "content");
 
                         if ("calibre:series".equals(attrName)) {
-                            meta.setSequence(attrContent);
+                            meta.setSequence(attrContent.replace(",", ""));
                         }
 
                         if ("calibre:series_index".equals(attrName)) {
@@ -102,6 +112,7 @@ public class CalirbeExtractor {
         } catch (Exception e) {
             LOG.e(e);
         }
+
         return meta;
 
     }
