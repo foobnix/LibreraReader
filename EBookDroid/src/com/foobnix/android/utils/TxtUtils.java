@@ -309,7 +309,7 @@ public class TxtUtils {
             return txt;
         }
 
-        String regexp = "[^\\w\\[\\]\\{\\}]+";
+        String regexp = "[^\\w\\[\\]\\{\\}’']+";
         String replaceAll = txt.trim().replace("   ", " ").replace("  ", " ").replaceAll("\\s", " ").trim().replaceAll(regexp + "$", "").replaceAll("^" + regexp, "");
         replaceAll = replaceAll.replaceAll("(?u)(\\w+)(-\\s)", "$1");// remove
                                                                      // hyphen

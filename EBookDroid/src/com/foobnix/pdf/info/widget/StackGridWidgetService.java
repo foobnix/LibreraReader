@@ -68,13 +68,17 @@ class StackRemoteViewsFactory implements RemoteViewsService.RemoteViewsFactory {
     @Override
     public RemoteViews getViewAt(int position) {
         RemoteViews v = new RemoteViews(context.getPackageName(), R.layout.widget_grid_image);
+
+        if (recent.size() <= position) {
+            return v;
+        }
+
         FileMeta uri = recent.get(position);
 
         String url = IMG.toUrl(uri.getPath(), ImageExtractor.COVER_PAGE_WITH_EFFECT, IMG.getImageSize());
         Bitmap image = ImageLoader.getInstance().loadImageSync(url, IMG.displayImageOptions);
         v.setImageViewBitmap(R.id.imageView1, image);
         v.setContentDescription(R.id.imageView1, new File(uri.getPath()).getName());
-
 
         Bundle extras = new Bundle();
         extras.putInt("pos", position);
@@ -83,7 +87,6 @@ class StackRemoteViewsFactory implements RemoteViewsService.RemoteViewsFactory {
         fillInIntent.putExtras(extras);
 
         v.setOnClickFillInIntent(R.id.imageView1, fillInIntent);
-        
 
         return v;
     }

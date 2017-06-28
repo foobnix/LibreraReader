@@ -74,7 +74,7 @@ public class CalirbeExtractor {
                         if (AppState.get().isFirstSurname) {
                             author = TxtUtils.replaceLastFirstName(author);
                         }
-                        if (TxtUtils.isNotEmpty(author)) {
+                        if (TxtUtils.isNotEmpty(meta.getAuthor())) {
                             meta.setAuthor(meta.getAuthor() + ", " + author);
                         } else {
                             meta.setAuthor(author);
