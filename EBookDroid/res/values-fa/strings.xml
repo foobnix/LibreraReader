@@ -358,4 +358,5 @@
    <string name="show_preferences_tab_in_the_left_menu">نشان دادن برگه تنظیمات در منوی سمت چپ</string>
    <string name="buy_pro_lirbi_reader_and_remove_ads">خرید PRO Lirbi خواننده (بدون تبلیغات)</string>
    <string name="theme">موضوع</string>
+   <string name="hide_app">مخفی کردن برنامه</string>
 </resources>

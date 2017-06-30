@@ -358,4 +358,5 @@
    <string name="show_preferences_tab_in_the_left_menu">Zeigen Sie im linken Menü die Registerkarte Einstellungen an</string>
    <string name="buy_pro_lirbi_reader_and_remove_ads">PRO Lirbi Reader kaufen (ohne Anzeigen)</string>
    <string name="theme">Thema</string>
+   <string name="hide_app">Anwendung ausblenden</string>
 </resources>

@@ -279,7 +279,7 @@
    <string name="banner_slogan_LIRBI_READER">Program yang handal dan profesional untuk membaca semua buku</string>
    <string name="banner_slogan_PRO_LIRBI_READER_1">Versi berbayar dari program pembaca ebook terbaik</string>
    <string name="banner_slogan_EPUB_READER">Pembaca yang paling nyaman untuk membaca buku elektronik</string>
-   <string name="banner_slogan_PDF_READER">Yang paling mudah &quot;PDF Reader&quot; untuk membaca dokumen elektronik</string>
+   <string name="banner_slogan_PDF_READER">Yang paling mudah "PDF Reader" untuk membaca dokumen elektronik</string>
    <string name="remove_ads_install_lirbi_pro_version_">Hapus versi adsInstall Lirbi PRO.</string>
    <string name="next_page">Halaman selanjutnya</string>
    <string name="previous_page">Halaman sebelumnya</string>
@@ -358,4 +358,5 @@
    <string name="visible">Terlihat</string>
    <string name="show_preferences_tab_in_the_left_menu">Tampilkan tab preferensi di menu sebelah kiri</string>
    <string name="buy_pro_lirbi_reader_and_remove_ads">Beli PRO Lirbi Reader (tanpa iklan)</string>
+   <string name="hide_app">Sembunyikan aplikasi</string>
 </resources>

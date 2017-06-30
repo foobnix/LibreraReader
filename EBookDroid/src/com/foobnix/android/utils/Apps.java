@@ -1,6 +1,7 @@
 package com.foobnix.android.utils;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.pm.PackageInfo;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
@@ -66,6 +67,13 @@ public class Apps {
             LOG.e(e);
         }
         return "";
+    }
+
+    public static void showDesctop(Context c) {
+        Intent startMain = new Intent(Intent.ACTION_MAIN);
+        startMain.addCategory(Intent.CATEGORY_HOME);
+        startMain.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        c.startActivity(startMain);
     }
 
 }

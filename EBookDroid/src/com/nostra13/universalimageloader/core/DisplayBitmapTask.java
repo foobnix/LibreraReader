@@ -15,12 +15,13 @@
  *******************************************************************************/
 package com.nostra13.universalimageloader.core;
 
-import android.graphics.Bitmap;
 import com.nostra13.universalimageloader.core.assist.LoadedFrom;
 import com.nostra13.universalimageloader.core.display.BitmapDisplayer;
 import com.nostra13.universalimageloader.core.imageaware.ImageAware;
 import com.nostra13.universalimageloader.core.listener.ImageLoadingListener;
 import com.nostra13.universalimageloader.utils.L;
+
+import android.graphics.Bitmap;
 
 /**
  * Displays bitmap in {@link com.nostra13.universalimageloader.core.imageaware.ImageAware}. Must be called on UI thread.
@@ -65,6 +66,8 @@ final class DisplayBitmapTask implements Runnable {
 		} else if (isViewWasReused()) {
 			L.d(LOG_TASK_CANCELLED_IMAGEAWARE_REUSED, memoryCacheKey);
 			listener.onLoadingCancelled(imageUri, imageAware.getWrappedView());
+            displayer.display(bitmap, imageAware, loadedFrom);
+            engine.cancelDisplayTaskFor(imageAware);
 		} else {
 			L.d(LOG_DISPLAY_IMAGE_IN_IMAGEAWARE, loadedFrom, memoryCacheKey);
 			displayer.display(bitmap, imageAware, loadedFrom);

@@ -358,4 +358,5 @@
    <string name="show_preferences_tab_in_the_left_menu">Показывать вкладку настроек в боковом меню</string>
    <string name="buy_pro_lirbi_reader_and_remove_ads">Купить PRO Lirbi Reader (без рекламы)</string>
    <string name="theme">Тема</string>
+   <string name="hide_app">Скрыть приложение</string>
 </resources>

@@ -98,6 +98,7 @@ public abstract class UIFragment<T> extends Fragment {
         onSelectFragment();
     }
 
+
     @Override
     public void onResume() {
         super.onResume();

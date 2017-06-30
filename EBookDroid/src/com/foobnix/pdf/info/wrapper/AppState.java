@@ -171,7 +171,7 @@ public class AppState {
 
     public final static int NEXT_SCREEN_SCROLL_BY_PAGES = 0;
 
-    public int doubleClickAction = DOUBLE_CLICK_AUTOSCROLL;
+    public int doubleClickAction = DOUBLE_CLICK_ZOOM_IN_OUT;
     public int inactivityTime = 2;
     public int remindRestTime = 120;
     public int flippingInterval = 10;

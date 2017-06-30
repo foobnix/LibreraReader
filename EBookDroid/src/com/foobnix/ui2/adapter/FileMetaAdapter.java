@@ -159,6 +159,16 @@ public class FileMetaAdapter extends AppRecycleAdapter<FileMeta, RecyclerView.Vi
             IMG.getCoverPageWithEffectPos(holder.image, fileMeta.getPath(), IMG.getImageSize(), position, new SimpleImageLoadingListener() {
 
                 @Override
+                public void onLoadingCancelled(String imageUri, View view) {
+                    super.onLoadingCancelled(imageUri, view);
+                }
+
+                @Override
+                public void onLoadingStarted(String imageUri, View view) {
+                    super.onLoadingStarted(imageUri, view);
+                }
+
+                @Override
                 public void onLoadingComplete(String arg0, View arg1, Bitmap arg2) {
                     if (position <= items.size() - 1) {
                         items.set(position, AppDB.get().getOrCreate(fileMeta.getPath()));
@@ -465,6 +475,7 @@ public class FileMetaAdapter extends AppRecycleAdapter<FileMeta, RecyclerView.Vi
     public String getSectionText(int position) {
         return " " + (position + 1) + " ";
     }
+
 
     @Override
     public int getItemViewType(int position) {

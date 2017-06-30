@@ -153,6 +153,7 @@ public class RecentFragment2 extends UIFragment<FileMeta> {
         }
     }
 
+
     @Override
     public void resetFragment() {
 

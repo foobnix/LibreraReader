@@ -358,4 +358,5 @@
    <string name="show_preferences_tab_in_the_left_menu">Sol menüde tercihler sekmesini gösterin</string>
    <string name="buy_pro_lirbi_reader_and_remove_ads">PRO Lirbi Reader Satın Alın (reklamsız)</string>
    <string name="theme">Tema</string>
+   <string name="hide_app">Uygulamayı gizle</string>
 </resources>

@@ -358,4 +358,5 @@
    <string name="show_preferences_tab_in_the_left_menu">Toon het tabblad voorkeuren in het linker menu</string>
    <string name="buy_pro_lirbi_reader_and_remove_ads">Koop PRO Lirbi Reader (zonder advertenties)</string>
    <string name="theme">Thema</string>
+   <string name="hide_app">Verberg applicatie</string>
 </resources>

@@ -40,7 +40,6 @@ import com.foobnix.pdf.search.view.CloseAppDialog;
 import com.foobnix.pdf.search.view.VerticalViewPager;
 import com.foobnix.sys.ClickUtils;
 import com.foobnix.sys.TempHolder;
-import com.foobnix.ui2.MainTabs2;
 import com.google.android.gms.ads.AdListener;
 import com.google.android.gms.ads.AdView;
 import com.google.android.gms.ads.InterstitialAd;
@@ -355,11 +354,8 @@ public class HorizontalViewActivity extends FragmentActivity {
         onClose.setOnLongClickListener(new OnLongClickListener() {
 
             @Override
-            public boolean onLongClick(View v) {
-                closeActivity();
-                if (!MainTabs2.isInStack) {
-                    MainTabs2.startActivity(HorizontalViewActivity.this);
-                }
+            public boolean onLongClick(final View v) {
+                CloseAppDialog.showOnLongClick(HorizontalViewActivity.this, v, documentController);
                 return false;
             }
         });

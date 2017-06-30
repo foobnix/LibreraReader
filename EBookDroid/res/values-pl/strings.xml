@@ -358,4 +358,5 @@
    <string name="show_preferences_tab_in_the_left_menu">Pokaż kartę preferencji w menu po lewej stronie</string>
    <string name="buy_pro_lirbi_reader_and_remove_ads">Kupuj czytnik PRO Lirbi (bez reklam)</string>
    <string name="theme">Motyw</string>
+   <string name="hide_app">Ukryj aplikację</string>
 </resources>

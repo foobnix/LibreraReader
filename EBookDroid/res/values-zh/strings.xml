@@ -358,4 +358,5 @@
    <string name="show_preferences_tab_in_the_left_menu">显示左侧菜单中的首选项选项卡</string>
    <string name="buy_pro_lirbi_reader_and_remove_ads">购买PRO Lirbi Reader（无广告）</string>
    <string name="theme">主题</string>
+   <string name="hide_app">隐藏应用程序</string>
 </resources>

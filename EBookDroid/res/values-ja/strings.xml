@@ -358,4 +358,5 @@
    <string name="show_preferences_tab_in_the_left_menu">左メニューに環境設定タブを表示する</string>
    <string name="buy_pro_lirbi_reader_and_remove_ads">PRO Lirbi Readerを購入する（広告なし）</string>
    <string name="theme">テーマ</string>
+   <string name="hide_app">アプリケーションを非表示にする</string>
 </resources>

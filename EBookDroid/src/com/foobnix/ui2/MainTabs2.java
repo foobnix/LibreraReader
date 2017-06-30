@@ -336,6 +336,7 @@ public class MainTabs2 extends FragmentActivity {
         LocalBroadcastManager.getInstance(this).registerReceiver(broadcastReceiver, new IntentFilter(UIFragment.INTENT_TINT_CHANGE));
     };
 
+
     @Override
     protected void onPause() {
         super.onPause();

@@ -26,6 +26,7 @@ import com.foobnix.pdf.info.view.DragingDialogs;
 import com.foobnix.pdf.info.view.DragingPopup;
 import com.foobnix.pdf.info.view.DrawView;
 import com.foobnix.pdf.info.widget.ShareDialog;
+import com.foobnix.pdf.search.view.CloseAppDialog;
 import com.foobnix.ui2.MainTabs2;
 import com.google.android.gms.ads.AdListener;
 import com.google.android.gms.ads.InterstitialAd;
@@ -1333,7 +1334,7 @@ public class DocumentWrapperUI {
 
         @Override
         public boolean onLongClick(final View v) {
-            closeAndRunList(true);
+            CloseAppDialog.showOnLongClick(a, v, getController());
             return true;
         };
     };

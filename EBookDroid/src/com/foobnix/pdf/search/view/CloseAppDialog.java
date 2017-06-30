@@ -1,15 +1,22 @@
 package com.foobnix.pdf.search.view;
 
+import com.foobnix.android.utils.Apps;
 import com.foobnix.pdf.info.R;
 import com.foobnix.pdf.info.wrapper.AppState;
+import com.foobnix.pdf.info.wrapper.DocumentController;
 import com.foobnix.ui2.MainTabs2;
 
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.DialogInterface.OnClickListener;
 import android.content.Intent;
 import android.view.KeyEvent;
+import android.view.MenuItem;
+import android.view.MenuItem.OnMenuItemClickListener;
+import android.view.View;
+import android.widget.PopupMenu;
 
 public class CloseAppDialog {
 
@@ -67,6 +74,37 @@ public class CloseAppDialog {
         });
         dialog.show();
 
+    }
+
+    public static void showOnLongClick(final Activity a, View v, final DocumentController c) {
+        final PopupMenu popupMenu = new PopupMenu(a, v);
+        popupMenu.getMenu().add(R.string.close).setOnMenuItemClickListener(new OnMenuItemClickListener() {
+
+            @Override
+            public boolean onMenuItemClick(MenuItem item) {
+                c.onCloseActivity();
+                return false;
+            }
+        });
+        popupMenu.getMenu().add(R.string.hide_app).setOnMenuItemClickListener(new OnMenuItemClickListener() {
+
+            @Override
+            public boolean onMenuItemClick(MenuItem item) {
+                Apps.showDesctop(a);
+                return false;
+            }
+        });
+        popupMenu.getMenu().add(R.string.library).setOnMenuItemClickListener(new OnMenuItemClickListener() {
+
+            @Override
+            public boolean onMenuItemClick(MenuItem item) {
+                c.onCloseActivity();
+                MainTabs2.startActivity(a);
+                return false;
+            }
+        });
+
+        popupMenu.show();
     }
 
 }

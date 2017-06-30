@@ -332,7 +332,7 @@
    <string name="incorrect_value">Некоректна</string>
    <string name="search_in_the_subfolders">Пошук у вкладених папках</string>
    <string name="document_converter_online_">Конвертер документів (онлайн)</string>
-<string name="in_the_author_s_name_first_the_surname">В імені автора спочатку прізвище</string>
+   <string name="in_the_author_s_name_first_the_surname">В імені автора спочатку прізвище</string>
    <string name="remind_about_rest_every">Нагадайте про відпочинок кожні</string>
    <string name="minutes">Хвилин</string>
    <string name="seconds">Секунд</string>
@@ -358,4 +358,5 @@
    <string name="show_preferences_tab_in_the_left_menu">Показувати вкладку налаштувань в меню зліва</string>
    <string name="buy_pro_lirbi_reader_and_remove_ads">Купити PRO Lirbi Reader (без реклами)</string>
    <string name="theme">Тема</string>
+   <string name="hide_app">Приховати додаток</string>
 </resources>

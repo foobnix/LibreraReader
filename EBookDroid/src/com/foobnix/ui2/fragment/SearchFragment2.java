@@ -273,6 +273,7 @@ public class SearchFragment2 extends UIFragment<FileMeta> {
         LocalBroadcastManager.getInstance(getActivity()).registerReceiver(broadcastReceiver, new IntentFilter(BooksService.INTENT_NAME));
     }
 
+
     @Override
     public void onPause() {
         super.onPause();
@@ -379,7 +380,6 @@ public class SearchFragment2 extends UIFragment<FileMeta> {
 
     public void searchAndOrderSync(List<FileMeta> loadingResults) {
         handler.removeCallbacks(sortAndSeach);
-
 
         String txt = searchEditText.getText().toString().trim();
         searchEditText.setHint(R.string.search);
@@ -588,7 +588,9 @@ public class SearchFragment2 extends UIFragment<FileMeta> {
     @Override
     public void notifyFragment() {
         if (searchAdapter != null) {
+            recyclerView.setAdapter(searchAdapter);
             searchAdapter.notifyDataSetChanged();
+            Toast.makeText(getContext(), "nofity", Toast.LENGTH_SHORT).show();
         }
     }
 

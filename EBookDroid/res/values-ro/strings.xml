@@ -358,4 +358,5 @@
    <string name="show_preferences_tab_in_the_left_menu">Afișați fila Preferințe din meniul din stânga</string>
    <string name="buy_pro_lirbi_reader_and_remove_ads">Cumpărați PRO Lirbi Reader (fără anunțuri)</string>
    <string name="theme">Temă</string>
+   <string name="hide_app">Ascundeți aplicația</string>
 </resources>

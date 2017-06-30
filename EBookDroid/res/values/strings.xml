@@ -358,4 +358,5 @@
    <string name="visible">Visible</string>
    <string name="show_preferences_tab_in_the_left_menu">Show the preferences tab in the left menu</string>
    <string name="buy_pro_lirbi_reader_and_remove_ads">Buy PRO Lirbi Reader (without ads)</string>
+   <string name="hide_app">Hide application</string>
 </resources>
