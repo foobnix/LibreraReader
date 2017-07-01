@@ -411,6 +411,7 @@ public abstract class AbstractViewController extends AbstractComponentController
             page.selectedText.clear();
             LOG.d("Add Word page", page.hashCode());
             final RectF bounds = page.getBounds(zoom);
+            TextWord prevWord = null;
             if (RectF.intersects(bounds, tapRect)) {
                 if (LengthUtils.isNotEmpty(page.texts)) {
 
@@ -426,6 +427,11 @@ public abstract class AbstractViewController extends AbstractComponentController
                             }
 
                             if (isHyphenWorld || (single && RectF.intersects(wordRect, tapRect))) {
+                                if (prevWord != null && prevWord.w.endsWith("-") && !isHyphenWorld) {
+                                    build.append(prevWord.w.replace("-", ""));
+                                    page.selectedText.add(prevWord);
+                                }
+
                                 build.append(line.w + " ");
 
                                 if (!isHyphenWorld) {
@@ -487,7 +493,9 @@ public abstract class AbstractViewController extends AbstractComponentController
                                     LOG.d("Add Word", line.w);
                                 }
                             }
-
+                            if (TxtUtils.isNotEmpty(line.w)) {
+                                prevWord = line;
+                            }
                         }
                         String k;
                         if (AppState.get().selectingByLetters && current.length >= 2 && !(k = current[current.length - 1].getWord()).equals(" ") && !k.equals("-")) {

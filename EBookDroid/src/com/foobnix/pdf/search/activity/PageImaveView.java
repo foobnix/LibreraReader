@@ -595,7 +595,7 @@ public class PageImaveView extends View {
         StringBuilder build = new StringBuilder();
 
         boolean isHyphenWorld = false;
-
+        TextWord prevWord = null;
         for (TextWord line[] : getPageText()) {
             final TextWord current[] = line;
             for (TextWord textWord : current) {
@@ -608,6 +608,11 @@ public class PageImaveView extends View {
                     boolean intersects = RectF.intersects(wordRect, tapRect);
                     if (intersects || isHyphenWorld) {
                         LOG.d("ADD TEXT", textWord);
+
+                        if (prevWord != null && prevWord.w.endsWith("-") && !isHyphenWorld) {
+                            build.append(prevWord.w.replace("-", ""));
+                            PageImageState.get().addWord(pageNumber, prevWord);
+                        }
 
                         if (!isHyphenWorld) {
                             PageImageState.get().addWord(pageNumber, textWord);
@@ -642,6 +647,10 @@ public class PageImaveView extends View {
                             build.append(textWord.w.trim() + " ");
                         }
                     }
+                }
+
+                if (TxtUtils.isNotEmpty(textWord.w)) {
+                    prevWord = textWord;
                 }
 
             }
