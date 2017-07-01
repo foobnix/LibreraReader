@@ -3,7 +3,7 @@
     package="classic.pdf.reader.viewer.djvu.epub.fb2.txt.mobi.book.reader.lirbi.libri"
     android:installLocation="auto"
     android:versionCode="445"
-    android:versionName="6.4.22" >
+    android:versionName="6.4.25" >
 
     <uses-sdk
         android:minSdkVersion="14"
@@ -18,7 +18,7 @@
 
     <!-- android:name="com.foobnix.pdf.info.TestAppName" -->
     <application
-        android:name="org.ebookdroid.EBookDroidApp"
+        android:name="org.ebookdroid.LirbiApp"
         android:icon="@drawable/icon_pdf_classic"
         android:label="@string/app_name"
         android:largeHeap="true"

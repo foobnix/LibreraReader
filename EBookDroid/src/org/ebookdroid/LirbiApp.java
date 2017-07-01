@@ -25,7 +25,7 @@ import android.content.Context;
 import android.os.Build;
 import android.os.StrictMode;
 
-public class EBookDroidApp extends Application {
+public class LirbiApp extends Application {
 
     static {
         System.loadLibrary("mypdf");

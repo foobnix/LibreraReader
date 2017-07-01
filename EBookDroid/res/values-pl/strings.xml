@@ -359,4 +359,6 @@
    <string name="buy_pro_lirbi_reader_and_remove_ads">Kupuj czytnik PRO Lirbi (bez reklam)</string>
    <string name="theme">Motyw</string>
    <string name="hide_app">Ukryj aplikację</string>
+   <string name="close_application">Zamknij aplikację</string>
+   <string name="go_to_the_library">Pójść do biblioteki</string>
 </resources>

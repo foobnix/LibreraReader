@@ -359,4 +359,6 @@
    <string name="show_preferences_tab_in_the_left_menu">Tampilkan tab preferensi di menu sebelah kiri</string>
    <string name="buy_pro_lirbi_reader_and_remove_ads">Beli PRO Lirbi Reader (tanpa iklan)</string>
    <string name="hide_app">Sembunyikan aplikasi</string>
+   <string name="close_application">Tutup aplikasi</string>
+   <string name="go_to_the_library">Pergi ke perpustakaan</string>
 </resources>

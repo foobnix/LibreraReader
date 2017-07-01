@@ -588,9 +588,7 @@ public class SearchFragment2 extends UIFragment<FileMeta> {
     @Override
     public void notifyFragment() {
         if (searchAdapter != null) {
-            recyclerView.setAdapter(searchAdapter);
             searchAdapter.notifyDataSetChanged();
-            Toast.makeText(getContext(), "nofity", Toast.LENGTH_SHORT).show();
         }
     }
 

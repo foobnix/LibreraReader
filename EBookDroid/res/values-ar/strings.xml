@@ -359,4 +359,6 @@
    <string name="buy_pro_lirbi_reader_and_remove_ads">شراء برو ليربي القارئ (بدون إعلانات)</string>
    <string name="theme">المقدمة</string>
    <string name="hide_app">إخفاء التطبيق</string>
+   <string name="close_application">تطبيق وثيقة</string>
+   <string name="go_to_the_library">اذهب الى المكتبة</string>
 </resources>

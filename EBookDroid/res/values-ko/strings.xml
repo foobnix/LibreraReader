@@ -359,4 +359,6 @@
    <string name="buy_pro_lirbi_reader_and_remove_ads">PRO Lirbi Reader (광고없이) 구입</string>
    <string name="theme">테마</string>
    <string name="hide_app">응용 프로그램 숨기기</string>
+   <string name="close_application">응용 프로그램 닫기</string>
+   <string name="go_to_the_library">도서관에 가라.</string>
 </resources>

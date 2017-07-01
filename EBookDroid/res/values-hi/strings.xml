@@ -359,4 +359,6 @@
    <string name="buy_pro_lirbi_reader_and_remove_ads">प्रो Lirbi रीडर खरीदें (विज्ञापन के बिना)</string>
    <string name="theme">विषय</string>
    <string name="hide_app">एप्लिकेशन छिपाएं</string>
+   <string name="close_application">एप्लिकेशन बंद करो</string>
+   <string name="go_to_the_library">पुस्तकालय जाओ</string>
 </resources>

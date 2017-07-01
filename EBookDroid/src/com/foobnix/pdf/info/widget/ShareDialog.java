@@ -12,6 +12,7 @@ import com.foobnix.pdf.info.R;
 import com.foobnix.pdf.info.Urls;
 import com.foobnix.pdf.info.wrapper.AppState;
 import com.foobnix.pdf.info.wrapper.DocumentWrapperUI;
+import com.foobnix.pdf.info.wrapper.UITab;
 import com.foobnix.pdf.search.activity.HorizontalViewActivity;
 import com.foobnix.ui2.MainTabs2;
 
@@ -122,7 +123,7 @@ public class ShareDialog {
                         }
                         if (isLibrary && which == i++) {
                             a.finish();
-                            MainTabs2.startActivity(a);
+                            MainTabs2.startActivity(a, UITab.getCurrentTabIndex(UITab.SearchFragment2));
                         }
                         if (which == i++) {
                             if (a instanceof ViewerActivity || a instanceof HorizontalViewActivity) {

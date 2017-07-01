@@ -359,4 +359,6 @@
    <string name="buy_pro_lirbi_reader_and_remove_ads">קנה Pro Lirbi Reader (ללא מודעות)</string>
    <string name="theme">נושא</string>
    <string name="hide_app">הסתר את היישום</string>
+   <string name="close_application">סגור את היישום</string>
+   <string name="go_to_the_library">לך לספרייה</string>
 </resources>

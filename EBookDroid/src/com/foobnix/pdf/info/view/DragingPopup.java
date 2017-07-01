@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import com.foobnix.android.utils.Dips;
+import com.foobnix.android.utils.Keyboards;
 import com.foobnix.android.utils.LOG;
 import com.foobnix.android.utils.TxtUtils;
 import com.foobnix.pdf.info.R;
@@ -11,6 +12,7 @@ import com.foobnix.pdf.info.TintUtil;
 import com.foobnix.pdf.info.model.BookCSS;
 import com.foobnix.pdf.info.widget.DraggbleTouchListener;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
@@ -299,6 +301,7 @@ public abstract class DragingPopup {
         if (onCloseListener != null) {
             onCloseListener.run();
         }
+        Keyboards.hideNavigation((Activity) anchor.getContext());
     }
 
     private void saveLayout() {

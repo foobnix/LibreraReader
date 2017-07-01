@@ -82,6 +82,7 @@ public class MainTabs2 extends FragmentActivity {
         if (intent.getBooleanExtra(EXTRA_EXIT, false)) {
             finish();
         }
+        checkGoToPage(intent);
     }
 
     public void testIntentHandler() {
@@ -309,6 +310,9 @@ public class MainTabs2 extends FragmentActivity {
 
         }
 
+        checkGoToPage(getIntent());
+
+
     }
 
     BroadcastReceiver broadcastReceiver = new BroadcastReceiver() {
@@ -326,6 +330,13 @@ public class MainTabs2 extends FragmentActivity {
 
     };
 
+    public void checkGoToPage(Intent intent) {
+        int pos = intent.getIntExtra(EXTRA_PAGE_NUMBER, -1);
+        if (pos != -1) {
+            pager.setCurrentItem(pos);
+        }
+    }
+
     @Override
     protected void onResume() {
         super.onResume();
@@ -335,7 +346,6 @@ public class MainTabs2 extends FragmentActivity {
         AppState.get().lastA = MainTabs2.class.getSimpleName();
         LocalBroadcastManager.getInstance(this).registerReceiver(broadcastReceiver, new IntentFilter(UIFragment.INTENT_TINT_CHANGE));
     };
-
 
     @Override
     protected void onPause() {
@@ -395,7 +405,8 @@ public class MainTabs2 extends FragmentActivity {
 
     @Override
     public boolean onKeyLongPress(final int keyCode, final KeyEvent event) {
-        if (CloseAppDialog.checkLongPress(this, event, closeActivityRunnable)) {
+        if (CloseAppDialog.checkLongPress(this, event)) {
+            CloseAppDialog.show(this, closeActivityRunnable);
             return true;
         }
         return super.onKeyLongPress(keyCode, event);
@@ -419,13 +430,23 @@ public class MainTabs2 extends FragmentActivity {
         }
     };
 
-    public static void startActivity(Activity c) {
+    public static void startActivity(Activity c, int tab) {
         AppState.get().lastA = null;
         final Intent intent = new Intent(c, MainTabs2.class);
         intent.putExtra(MainTabs2.EXTRA_SHOW_TABS, true);
+        intent.putExtra(MainTabs2.EXTRA_PAGE_NUMBER, tab);
         c.startActivity(intent);
         c.overridePendingTransition(0, 0);
 
+    }
+
+    public static void closeApp(Context c) {
+        if (MainTabs2.isInStack) {
+            Intent startMain = new Intent(c, MainTabs2.class);
+            startMain.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            startMain.putExtra(MainTabs2.EXTRA_EXIT, true);
+            c.startActivity(startMain);
+        }
     }
 
 }

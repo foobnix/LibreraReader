@@ -359,4 +359,6 @@
    <string name="buy_pro_lirbi_reader_and_remove_ads">Купити PRO Lirbi Reader (без реклами)</string>
    <string name="theme">Тема</string>
    <string name="hide_app">Приховати додаток</string>
+   <string name="close_application">Закрити додаток</string>
+   <string name="go_to_the_library">Йти до бібліотеки</string>
 </resources>

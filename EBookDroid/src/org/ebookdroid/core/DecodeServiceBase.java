@@ -204,7 +204,7 @@ public class DecodeServiceBase implements DecodeService {
                 for (Page page : pages) {
 
                     if (!TempHolder.isSeaching) {
-                        response.onResultRecive(0);
+                        response.onResultRecive(Integer.MAX_VALUE);
                         finish.run();
                         return;
                     }

@@ -11,7 +11,7 @@ import java.nio.channels.ReadableByteChannel;
 import java.nio.channels.WritableByteChannel;
 
 import org.ebookdroid.BookType;
-import org.ebookdroid.EBookDroidApp;
+import org.ebookdroid.LirbiApp;
 import org.emdev.utils.StringUtils;
 
 import com.foobnix.android.utils.LOG;
@@ -59,7 +59,7 @@ public class CacheManager {
         if (uri.getScheme().equals("content")) {
             Cursor cursor = null;
             try {
-                cursor = EBookDroidApp.context.getContentResolver().query(uri, new String[] { OpenableColumns.DISPLAY_NAME }, null, null, null);
+                cursor = LirbiApp.context.getContentResolver().query(uri, new String[] { OpenableColumns.DISPLAY_NAME }, null, null, null);
                 if (cursor.moveToFirst()) {
                     result = cursor.getString(cursor.getColumnIndex(OpenableColumns.DISPLAY_NAME));
                 }

@@ -359,4 +359,6 @@
    <string name="buy_pro_lirbi_reader_and_remove_ads">Kununua PRO Lirbi Reader (bila matangazo)</string>
    <string name="theme">Theme</string>
    <string name="hide_app">Ficha programu</string>
+   <string name="close_application">Close maombi</string>
+   <string name="go_to_the_library">Nenda kwenye maktaba</string>
 </resources>

@@ -68,6 +68,10 @@ public class Page {
         int index = 0;
         List<TextWord> find = new ArrayList<TextWord>();
 
+        boolean nextWorld = false;
+        String firstPart = "";
+        TextWord firstWord = null;
+
         for (final TextWord[] lines : texts) {
             find.clear();
             index = 0;
@@ -88,8 +92,18 @@ public class Page {
                             result.add(t);
                         }
                     }
-                } else if (word.w.toLowerCase().contains(text.toLowerCase())) {
+                } else if (word.w.toLowerCase(Locale.US).contains(text)) {
                     result.add(word);
+                } else if (word.w.length() >= 3 && word.w.endsWith("-")) {
+                    nextWorld = true;
+                    firstWord = word;
+                    firstPart = word.w.replace("-", "");
+                } else if (nextWorld && (firstPart + word.w.toLowerCase(Locale.US)).contains(text)) {
+                    result.add(firstWord);
+                    result.add(word);
+                    nextWorld = false;
+                    firstWord = null;
+                    firstPart = "";
                 }
             }
         }

@@ -585,12 +585,12 @@ public class DragingDialogs {
                             }
                         }
 
-                        if (pageNumber == 0) {
+                        if (pageNumber == Integer.MAX_VALUE) {
                             adapter.notifyDataSetChanged();
                             return;
                         }
 
-                        if (pageNumber >= 1) {
+                        if (pageNumber >= 0) {
                             searchingMsg.setVisibility(View.VISIBLE);
                             adapter.getItems().add(pageNumber);
                             adapter.notifyDataSetChanged();

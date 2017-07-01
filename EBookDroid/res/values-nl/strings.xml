@@ -359,4 +359,6 @@
    <string name="buy_pro_lirbi_reader_and_remove_ads">Koop PRO Lirbi Reader (zonder advertenties)</string>
    <string name="theme">Thema</string>
    <string name="hide_app">Verberg applicatie</string>
+   <string name="close_application">Dichte toepassing</string>
+   <string name="go_to_the_library">Ga naar de bibliotheek</string>
 </resources>

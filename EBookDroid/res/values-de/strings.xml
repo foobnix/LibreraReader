@@ -359,4 +359,6 @@
    <string name="buy_pro_lirbi_reader_and_remove_ads">PRO Lirbi Reader kaufen (ohne Anzeigen)</string>
    <string name="theme">Thema</string>
    <string name="hide_app">Anwendung ausblenden</string>
+   <string name="close_application">Schließe die Anwendung</string>
+   <string name="go_to_the_library">In die Bibliothek gehen</string>
 </resources>

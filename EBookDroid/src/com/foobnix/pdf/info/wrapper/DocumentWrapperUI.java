@@ -321,7 +321,7 @@ public class DocumentWrapperUI {
             controller.onCloseActivity();
 
             if (isLong && !MainTabs2.isInStack) {
-                MainTabs2.startActivity(a);
+                MainTabs2.startActivity(a, UITab.getCurrentTabIndex(UITab.SearchFragment2));
             }
         }
     }
@@ -1334,7 +1334,7 @@ public class DocumentWrapperUI {
 
         @Override
         public boolean onLongClick(final View v) {
-            CloseAppDialog.showOnLongClick(a, v, getController());
+            CloseAppDialog.showOnLongClickDialog(a, v, getController());
             return true;
         };
     };

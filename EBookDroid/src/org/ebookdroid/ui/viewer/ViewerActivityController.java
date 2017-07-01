@@ -37,7 +37,7 @@ import com.foobnix.pdf.info.R;
 import com.foobnix.pdf.info.wrapper.AppState;
 import com.foobnix.pdf.info.wrapper.DocumentWrapperUI;
 import com.foobnix.sys.VuDroidConfig;
-import com.foobnix.sys.VuDroidController;
+import com.foobnix.sys.AdvModeController;
 import com.foobnix.ui2.AppDB;
 
 import android.app.Activity;
@@ -82,7 +82,7 @@ public class ViewerActivityController extends ActionController<ViewerActivity> i
 
     private DocumentWrapperUI wrapperControlls;
 
-    private VuDroidController controller;
+    private AdvModeController controller;
 
     /**
      * Instantiates a new base viewer activity.
@@ -92,12 +92,12 @@ public class ViewerActivityController extends ActionController<ViewerActivity> i
         this.intent = activity.getIntent();
         SettingsManager.addListener(this);
 
-        controller = new VuDroidController(activity, this);
+        controller = new AdvModeController(activity, this);
         wrapperControlls = new DocumentWrapperUI(new VuDroidConfig(), controller);
     }
 
     @Override
-    public VuDroidController getListener() {
+    public AdvModeController getListener() {
         return controller;
     }
 

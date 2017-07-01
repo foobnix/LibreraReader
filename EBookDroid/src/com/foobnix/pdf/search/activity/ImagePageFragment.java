@@ -120,12 +120,9 @@ public class ImagePageFragment extends Fragment {
 
             @Override
             public void onLoadingCancelled(String arg0, View arg1) {
-                if (false) {
                     count--;
                     text.setText("Cancelled");
                     loadImage();
-                }
-
             }
         });
     }

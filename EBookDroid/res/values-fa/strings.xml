@@ -359,4 +359,6 @@
    <string name="buy_pro_lirbi_reader_and_remove_ads">خرید PRO Lirbi خواننده (بدون تبلیغات)</string>
    <string name="theme">موضوع</string>
    <string name="hide_app">مخفی کردن برنامه</string>
+   <string name="close_application">بستن برنامه</string>
+   <string name="go_to_the_library">برو به کتابخانه</string>
 </resources>

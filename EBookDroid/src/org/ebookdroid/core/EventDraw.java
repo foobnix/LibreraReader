@@ -2,7 +2,7 @@ package org.ebookdroid.core;
 
 import java.util.Queue;
 
-import org.ebookdroid.EBookDroidApp;
+import org.ebookdroid.LirbiApp;
 import org.ebookdroid.core.codec.PageLink;
 import org.ebookdroid.ui.viewer.IActivityController;
 import org.emdev.utils.LengthUtils;
@@ -162,7 +162,7 @@ public class EventDraw implements IEvent {
         textPaint.setTextSize(Dips.spToPx(16));
         textPaint.setColor(MagicHelper.getTextColor());
 
-        final String text = EBookDroidApp.context.getString(R.string.text_page) + " " + (page.index.viewIndex + 1);
+        final String text = LirbiApp.context.getString(R.string.text_page) + " " + (page.index.viewIndex + 1);
         canvas.drawText(text, fixedPageBounds.centerX(), fixedPageBounds.centerY(), textPaint);
 
 

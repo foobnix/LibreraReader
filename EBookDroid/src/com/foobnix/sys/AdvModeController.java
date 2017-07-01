@@ -52,7 +52,7 @@ import android.view.View.OnKeyListener;
 import android.widget.EditText;
 import android.widget.Toast;
 
-public class VuDroidController extends DocumentController {
+public class AdvModeController extends DocumentController {
 
     private final ViewerActivityController ctr;
 
@@ -61,7 +61,7 @@ public class VuDroidController extends DocumentController {
 
     Handler handler;
 
-    public VuDroidController(final Activity activity, final ViewerActivityController ctr) {
+    public AdvModeController(final Activity activity, final ViewerActivityController ctr) {
         super(activity);
         this.ctr = ctr;
         AppSettings.getInstance().fullScreen = AppState.getInstance().isFullScrean();
@@ -442,7 +442,7 @@ public class VuDroidController extends DocumentController {
 
     }
 
-    float currentZoom, currentX, currentY;
+    float currentZoom, currentX, currentY, pageN;
     boolean isLocked;
 
     @Override
@@ -453,6 +453,7 @@ public class VuDroidController extends DocumentController {
             currentZoom = zoom;
             currentX = ctr.getDocumentController().getView().getScrollX();
             currentY = ctr.getDocumentController().getView().getScrollY();
+            pageN = ctr.getDocumentController().getFirstVisiblePage();
             int w = Dips.screenWidth() / 2;// center y
             int h = Dips.screenHeight() / 2;// center x
             ctr.getDocumentController().getView().scrollBy(x - w, y - h);
@@ -462,7 +463,9 @@ public class VuDroidController extends DocumentController {
             AppState.get().isLocked = false;
         } else {
             ctr.getZoomModel().setZoom(currentZoom, false);
-            ctr.getDocumentController().getView().scrollTo((int) currentX, (int) currentY);
+            if (pageN == ctr.getDocumentController().getFirstVisiblePage()) {
+                ctr.getDocumentController().getView().scrollTo((int) currentX, (int) currentY);
+            }
             commit();
             currentZoom = 0;
             AppState.get().isLocked = isLocked;

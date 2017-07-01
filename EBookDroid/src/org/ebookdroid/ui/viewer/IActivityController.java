@@ -11,7 +11,7 @@ import android.content.Context;
 
 import org.emdev.ui.actions.IActionController;
 
-import com.foobnix.sys.VuDroidController;
+import com.foobnix.sys.AdvModeController;
 
 public interface IActivityController extends IActionController<ViewerActivity> {
 
@@ -35,6 +35,6 @@ public interface IActivityController extends IActionController<ViewerActivity> {
 
     ViewState jumpToPage(int viewIndex, float offsetX, float offsetY, boolean addToHistory);
 
-    VuDroidController getListener();
+    AdvModeController getListener();
 
 }

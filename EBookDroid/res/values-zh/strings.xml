@@ -359,4 +359,6 @@
    <string name="buy_pro_lirbi_reader_and_remove_ads">购买PRO Lirbi Reader（无广告）</string>
    <string name="theme">主题</string>
    <string name="hide_app">隐藏应用程序</string>
+   <string name="close_application">关闭应用程序</string>
+   <string name="go_to_the_library">去图书馆</string>
 </resources>

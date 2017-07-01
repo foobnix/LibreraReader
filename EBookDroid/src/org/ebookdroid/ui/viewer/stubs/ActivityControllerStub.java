@@ -1,6 +1,6 @@
 package org.ebookdroid.ui.viewer.stubs;
 
-import org.ebookdroid.EBookDroidApp;
+import org.ebookdroid.LirbiApp;
 import org.ebookdroid.core.DecodeService;
 import org.ebookdroid.core.ViewState;
 import org.ebookdroid.core.models.DecodingProgressModel;
@@ -17,7 +17,7 @@ import android.content.Context;
 import org.emdev.ui.actions.ActionController;
 import org.emdev.ui.actions.IActionController;
 
-import com.foobnix.sys.VuDroidController;
+import com.foobnix.sys.AdvModeController;
 
 public class ActivityControllerStub extends ActionController<ViewerActivity> implements IActivityController {
 
@@ -34,7 +34,7 @@ public class ActivityControllerStub extends ActionController<ViewerActivity> imp
 
     @Override
     public Context getContext() {
-        return EBookDroidApp.context;
+        return LirbiApp.context;
     }
 
     @Override
@@ -83,7 +83,7 @@ public class ActivityControllerStub extends ActionController<ViewerActivity> imp
     }
 
     @Override
-    public VuDroidController getListener() {
+    public AdvModeController getListener() {
         return null;
     }
 

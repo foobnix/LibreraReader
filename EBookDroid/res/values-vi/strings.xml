@@ -359,4 +359,6 @@
    <string name="buy_pro_lirbi_reader_and_remove_ads">Mua PRO Lirbi Reader (không có quảng cáo)</string>
    <string name="theme">Chủ đề</string>
    <string name="hide_app">Ẩn ứng dụng</string>
+   <string name="close_application">Đóng ứng dụng</string>
+   <string name="go_to_the_library">Đi đến thư viện</string>
 </resources>

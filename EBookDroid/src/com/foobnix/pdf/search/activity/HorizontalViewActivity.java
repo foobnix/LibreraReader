@@ -355,7 +355,7 @@ public class HorizontalViewActivity extends FragmentActivity {
 
             @Override
             public boolean onLongClick(final View v) {
-                CloseAppDialog.showOnLongClick(HorizontalViewActivity.this, v, documentController);
+                CloseAppDialog.showOnLongClickDialog(HorizontalViewActivity.this, v, documentController);
                 return false;
             }
         });
@@ -1329,13 +1329,8 @@ public class HorizontalViewActivity extends FragmentActivity {
 
     @Override
     public boolean onKeyLongPress(final int keyCode, final KeyEvent event) {
-        if (CloseAppDialog.checkLongPress(this, event, new Runnable() {
-
-            @Override
-            public void run() {
-                closeActivity();
-            }
-        })) {
+        if (CloseAppDialog.checkLongPress(this, event)) {
+            CloseAppDialog.showOnLongClickDialog(HorizontalViewActivity.this, null, documentController);
             return true;
         }
         return super.onKeyLongPress(keyCode, event);

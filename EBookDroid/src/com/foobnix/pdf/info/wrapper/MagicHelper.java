@@ -6,7 +6,7 @@ import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 
-import org.ebookdroid.EBookDroidApp;
+import org.ebookdroid.LirbiApp;
 
 import com.foobnix.android.utils.LOG;
 import com.foobnix.android.utils.TxtUtils;
@@ -258,7 +258,7 @@ public class MagicHelper {
             return BitmapFactory.decodeFile(name, opt);
         }
         try {
-            InputStream oldBook = EBookDroidApp.context.getAssets().open(name);
+            InputStream oldBook = LirbiApp.context.getAssets().open(name);
             Bitmap decodeStream = BitmapFactory.decodeStream(oldBook);
             Bitmap res = decodeStream.copy(Config.RGB_565, false);
             decodeStream.recycle();

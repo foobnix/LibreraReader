@@ -423,9 +423,14 @@ public abstract class DocumentControllerHorizontalView extends DocumentControlle
                     String textLowCase = text.toLowerCase(Locale.US);
                     String bookPath = getBookPath();
                     int prev = -1;
+
+                    boolean nextWorld = false;
+                    String firstPart = "";
+                    TextWord firstWord = null;
+
                     for (int i = 0; i < getPageCount(); i++) {
                         if (!TempHolder.isSeaching) {
-                            result.onResultRecive(0);
+                            result.onResultRecive(Integer.MAX_VALUE);
                             return null;
                         }
 
@@ -475,6 +480,21 @@ public abstract class DocumentControllerHorizontalView extends DocumentControlle
                                         prev = i;
                                     }
                                     PageImageState.get().addWord(i, word);
+                                } else if (word.w.length() >= 3 && word.w.endsWith("-")) {
+                                    nextWorld = true;
+                                    firstWord = word;
+                                    firstPart = word.w.replace("-", "");
+                                } else if (nextWorld && (firstPart + word.w.toLowerCase(Locale.US)).contains(text)) {
+                                    PageImageState.get().addWord(i, firstWord);
+                                    PageImageState.get().addWord(i, word);
+                                    nextWorld = false;
+                                    firstWord = null;
+                                    firstPart = "";
+                                    if (prev != i) {
+                                        result.onResultRecive(i);
+                                        prev = i;
+                                    }
+
                                 }
                             }
                         }
