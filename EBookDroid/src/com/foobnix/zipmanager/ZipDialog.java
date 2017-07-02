@@ -53,7 +53,7 @@ public class ZipDialog {
 
         Pair<Boolean, String> res = CacheZipUtils.isSingleAndSupportEntry(getStream(a, uri));
         if (res.first) {
-            extractAsyncProccess(a, res.second, uri, onDismiss);
+            extractAsyncProccess(a, res.second, uri, onDismiss, true);
             return;
         }
 
@@ -131,7 +131,7 @@ public class ZipDialog {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, final int position, long id) {
                 String name = items.get(position);
-                extractAsyncProccess(a, name, uri, onDismiss);
+                extractAsyncProccess(a, name, uri, onDismiss, false);
             }
         });
 
@@ -152,7 +152,7 @@ public class ZipDialog {
         }
     }
 
-    public static void extractAsyncProccess(final Activity a, final String name, final Uri uri, final Runnable onDismiss) {
+    public static void extractAsyncProccess(final Activity a, final String name, final Uri uri, final Runnable onDismiss, final boolean single) {
         new AsyncProgressTask<File>() {
             @Override
             public Context getContext() {
@@ -161,7 +161,7 @@ public class ZipDialog {
 
             @Override
             protected File doInBackground(Object... params) {
-                return extractFile(a, name, uri);
+                return extractFile(a, name, uri, single);
             };
 
             @Override
@@ -184,7 +184,7 @@ public class ZipDialog {
 
     }
 
-    public static File extractFile(Activity a, String fileName, Uri uri) {
+    public static File extractFile(Activity a, String fileName, Uri uri, boolean single) {
         try {
             CacheZipUtils.CACHE_UN_ZIP_DIR.mkdirs();
 
@@ -207,7 +207,7 @@ public class ZipDialog {
             while ((nextEntry = zipInputStream.getNextZipEntry()) != null) {
                 String name = nextEntry.getName();
                 LOG.d("extractFile", name, fileName);
-                if (name.equals(fileName)) {
+                if (name.equals(fileName) || single) {
 
                     LOG.d("File extract", out.getPath());
                     CacheZipUtils.writeToStream(zipInputStream, new FileOutputStream(out));
