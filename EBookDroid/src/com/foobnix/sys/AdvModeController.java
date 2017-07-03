@@ -465,8 +465,11 @@ public class AdvModeController extends DocumentController {
             ctr.getZoomModel().setZoom(currentZoom, false);
             if (pageN == ctr.getDocumentController().getFirstVisiblePage()) {
                 ctr.getDocumentController().getView().scrollTo((int) currentX, (int) currentY);
+                commit();
+            } else {
+                alignDocument();
             }
-            commit();
+
             currentZoom = 0;
             AppState.get().isLocked = isLocked;
         }

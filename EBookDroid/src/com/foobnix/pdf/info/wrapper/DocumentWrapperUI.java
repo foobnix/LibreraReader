@@ -711,13 +711,11 @@ public class DocumentWrapperUI {
                     }
                 }
 
-                if (Build.VERSION.SDK_INT >= 11) {
-                    if (anchor.getX() < 0) {
-                        anchor.setX(0);
-                    }
-                    if (anchor.getY() < 0) {
-                        anchor.setY(0);
-                    }
+                if (anchor.getX() < 0) {
+                    anchor.setX(0);
+                }
+                if (anchor.getY() < 0) {
+                    anchor.setY(0);
                 }
             }
 
