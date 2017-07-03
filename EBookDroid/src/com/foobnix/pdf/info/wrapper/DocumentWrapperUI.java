@@ -917,12 +917,16 @@ public class DocumentWrapperUI {
     }
 
     public void doShowHideWrapperControlls() {
-        AppState.getInstance().setEditMode(!AppState.getInstance().isEditMode());
+        AppState.getInstance().isEditMode = !AppState.getInstance().isEditMode;
         showHide();
-        if (!AppState.getInstance().isEditMode() && AppState.getInstance().isFullScrean()) {
-            DocumentController.hideHavigationBar(a);
-        }
 
+
+    }
+
+    public void showHideHavigationBar() {
+        if (!AppState.getInstance().isEditMode && AppState.getInstance().isFullScrean()) {
+            Keyboards.hideNavigation(a);
+        }
     }
 
     public void doChooseNextType(View view) {
@@ -966,7 +970,7 @@ public class DocumentWrapperUI {
         } else {
             toolBarButton.setImageResource(R.drawable.glyphicons_200_ban);
         }
-        if (AppState.getInstance().isEditMode() || AppState.getInstance().isShowToolBar) {
+        if (AppState.getInstance().isEditMode || AppState.getInstance().isShowToolBar) {
             titleBar.setVisibility(View.VISIBLE);
         } else {
             titleBar.setVisibility(View.GONE);
@@ -994,7 +998,7 @@ public class DocumentWrapperUI {
     }
 
     public void showHide() {
-        if (AppState.getInstance().isEditMode()) {
+        if (AppState.getInstance().isEditMode) {
             show();
         } else {
             hide();
@@ -1028,6 +1032,7 @@ public class DocumentWrapperUI {
         }
 
         // hideSeekBarInReadMode();
+        showHideHavigationBar();
     }
 
     public void hide() {
@@ -1043,7 +1048,7 @@ public class DocumentWrapperUI {
     }
 
     public void _hideSeekBarInReadMode() {
-        if (!AppState.getInstance().isEditMode()) {
+        if (!AppState.getInstance().isEditMode) {
             handler.removeCallbacks(hideSeekBar);
             handler.postDelayed(hideSeekBar, 5000);
         }
@@ -1309,6 +1314,7 @@ public class DocumentWrapperUI {
                     // titleBar.setBackgroundColor(MagicHelper.getBgColor());
                     initToolBarPlusMinus();
                     updateSeekBarColorAndSize();
+                    showHide();
                 }
             }, new Runnable() {
 

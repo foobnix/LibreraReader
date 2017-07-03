@@ -9,6 +9,7 @@ import org.emdev.ui.AbstractActionActivity;
 import org.emdev.utils.LengthUtils;
 
 import com.foobnix.android.utils.Dips;
+import com.foobnix.android.utils.Keyboards;
 import com.foobnix.android.utils.LOG;
 import com.foobnix.pdf.info.ADS;
 import com.foobnix.pdf.info.Analytics;
@@ -143,7 +144,7 @@ public class ViewerActivity extends AbstractActionActivity<ViewerActivity, Viewe
         ADS.onResumeNative(adViewNative);
 
         if (AppState.getInstance().isFullScrean()) {
-            DocumentController.hideHavigationBar(this);
+            Keyboards.hideNavigation(this);
         }
         getController().onResume();
 

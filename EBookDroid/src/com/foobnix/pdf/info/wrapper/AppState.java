@@ -811,17 +811,6 @@ public class AppState {
         LOG.d("AppState Save lasta", lastA, a.getClass());
     }
 
-    public boolean isEditMode() {
-        return isEditMode;
-    }
-
-    public boolean isReadMode() {
-        return !isEditMode;
-    }
-
-    public void setEditMode(final boolean isEditMode) {
-        this.isEditMode = isEditMode;
-    }
 
     public boolean isFullScrean() {
         return isFullScreen;

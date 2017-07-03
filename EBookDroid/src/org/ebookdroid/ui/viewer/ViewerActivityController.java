@@ -36,8 +36,8 @@ import com.foobnix.pdf.info.ExtUtils;
 import com.foobnix.pdf.info.R;
 import com.foobnix.pdf.info.wrapper.AppState;
 import com.foobnix.pdf.info.wrapper.DocumentWrapperUI;
-import com.foobnix.sys.VuDroidConfig;
 import com.foobnix.sys.AdvModeController;
+import com.foobnix.sys.VuDroidConfig;
 import com.foobnix.ui2.AppDB;
 
 import android.app.Activity;

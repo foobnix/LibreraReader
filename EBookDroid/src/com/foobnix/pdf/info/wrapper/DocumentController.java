@@ -9,6 +9,7 @@ import java.util.concurrent.TimeUnit;
 import org.ebookdroid.core.codec.Annotation;
 import org.ebookdroid.core.codec.PageLink;
 
+import com.foobnix.android.utils.Keyboards;
 import com.foobnix.android.utils.ResultResponse;
 import com.foobnix.android.utils.TxtUtils;
 import com.foobnix.dao2.FileMeta;
@@ -244,36 +245,10 @@ public abstract class DocumentController {
     public static void runFullScreen(final Activity a) {
         a.getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
         a.getWindow().clearFlags(WindowManager.LayoutParams.FLAG_FORCE_NOT_FULLSCREEN);
-        hideHavigationBar(a);
-
+        Keyboards.hideNavigation(a);
     }
 
-    public static void hideHavigationBar(final Activity a) {
-        final View decorView = a.getWindow().getDecorView();
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
-            decorView.postDelayed(new Runnable() {
-                @Override
-                public void run() {
-                    decorView.setSystemUiVisibility(//
-                            View.SYSTEM_UI_FLAG_LAYOUT_STABLE//
-                                    | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION //
-                                    | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION //
-                                    | View.SYSTEM_UI_FLAG_IMMERSIVE);
-                }
-            }, 100);
-        } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.ICE_CREAM_SANDWICH) {
-            decorView.postDelayed(new Runnable() {
-                @Override
-                public void run() {
-                    decorView.setSystemUiVisibility( //
-                            View.SYSTEM_UI_FLAG_LOW_PROFILE //
-                                    | View.SYSTEM_UI_FLAG_FULLSCREEN //
-                    );
-                }
-            }, 100);
-        }
 
-    }
 
     public static void runNormalScreen(final Activity a) {
         a.getWindow().addFlags(WindowManager.LayoutParams.FLAG_FORCE_NOT_FULLSCREEN);
