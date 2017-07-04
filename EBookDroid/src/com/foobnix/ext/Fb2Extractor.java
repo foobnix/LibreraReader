@@ -356,8 +356,6 @@ public class Fb2Extractor extends BaseExtractor {
 
             String subLine[] = line.split("</");
 
-
-
             for (int i = 0; i < subLine.length; i++) {
                 if (i == 0) {
                     line = subLine[i];
@@ -427,6 +425,8 @@ public class Fb2Extractor extends BaseExtractor {
 
         int section = 0;
         boolean isFirstEndBody = false;
+        int dividerSection = -1;
+        String dividerLine = null;
         while (eventType != XmlPullParser.END_DOCUMENT) {
             if (eventType == XmlPullParser.START_TAG) {
                 if (xpp.getName().equals("section") || xpp.getName().equals("subtitle")) {
@@ -441,6 +441,9 @@ public class Fb2Extractor extends BaseExtractor {
                     isTitle = false;
                     titles.add(section + DIVIDER + title);
                     title = "";
+                    if (section >= dividerSection) {
+                        titles.remove(dividerLine);
+                    }
                 }
                 if (xpp.getName().equals("section") || xpp.getName().equals("subtitle")) {
                     section--;
@@ -448,15 +451,14 @@ public class Fb2Extractor extends BaseExtractor {
                 if (!isFirstEndBody && xpp.getName().equals("body")) {
                     isFirstEndBody = true;
                     section++;
-                    titles.add(section + DIVIDER + FOOTER_NOTES_SIGN);
+                    dividerSection = section;
+                    dividerLine = section + DIVIDER + FOOTER_NOTES_SIGN;
+                    titles.add(dividerLine);
                 }
 
             } else if (eventType == XmlPullParser.TEXT) {
                 if (isTitle) {
                     title = title + " " + xpp.getText().trim();
-                    // if (title.length() != 0) {
-                    // titles.add(section + DIVIDER + title);
-                    // }
                 }
             }
             eventType = xpp.next();

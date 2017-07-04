@@ -173,7 +173,7 @@ public class AppState {
 
     public int doubleClickAction = DOUBLE_CLICK_ZOOM_IN_OUT;
     public int inactivityTime = 2;
-    public int remindRestTime = 120;
+    public int remindRestTime = 60;
     public int flippingInterval = 10;
 
     public boolean longTapEnable = true;

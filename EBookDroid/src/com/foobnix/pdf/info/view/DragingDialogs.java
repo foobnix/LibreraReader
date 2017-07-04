@@ -1497,6 +1497,9 @@ public class DragingDialogs {
                         Toast.makeText(anchor.getContext(), "no", Toast.LENGTH_SHORT).show();
                     } else {
                         controller.onGoToPage(link.targetPage);
+                        ((ListView) parent).requestFocusFromTouch();
+                        ((ListView) parent).setSelection(position);
+
                     }
                     return;
                 }
