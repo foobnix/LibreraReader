@@ -2,7 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="classic.pdf.reader.viewer.djvu.epub.fb2.txt.mobi.book.reader.lirbi.libri"
     android:installLocation="auto"
-    android:versionCode="445"
+    android:versionCode="447"
     android:versionName="6.4.34" >
 
     <uses-sdk
