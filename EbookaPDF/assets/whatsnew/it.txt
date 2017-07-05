@@ -1,7 +1,6 @@
+* Molti piccoli miglioramenti 
 * Tabulazioni in ordine personalizzato 
-* Nascondi qualsiasi scheda 
-* Scheda Preferenze nel menu a sinistra 
-* Regolazione dell’altezza della barra di stato e colore del testo 
+* Regolazione dell’altezza della barra di stato 
 * Possibilità di aprire automaticamente l’ultimo libro 
-* Miglioramenti in FB2 e PDF 
-* Grazie per i commenti e le idee
+* Miglioramenti in PDF Viewer 
+* Grazie per i commenti e le idee, il programma sta migliorando con ogni aggiornamento

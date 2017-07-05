@@ -1,0 +1,6 @@
+* Mange små forbedringer 
+* Faner i tilpasset rekkefølge 
+* Justere høyden på statuslinjen 
+* Muligheten til å automatisk åpne den siste boken 
+* Forbedringer i PDF Viewer 
+* Takk for tilbakemeldingen og ideene, blir programmet bedre med hver oppdatering

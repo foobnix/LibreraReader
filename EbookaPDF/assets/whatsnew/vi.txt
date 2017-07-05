@@ -1,7 +1,6 @@
-* Tabs theo thứ tự tùy chọn 
-* Ẩn bất kỳ tab 
-* Tab Preferences trong menu bên trái 
-* Điều chỉnh chiều cao của thanh trạng thái và màu văn bản 
-* Khả năng tự động mở cuốn sách cuối cùng 
-* Cải tiến FB2 và PDF 
-* Cảm ơn thông tin phản hồi và ý tưởng
+* Nhiều cải tiến nhỏ 
+* Tab theo thứ tự tùy chỉnh 
+* Điều chỉnh chiều cao của thanh trạng thái 
+* Khả năng tự động mở cuốn sách mới nhất 
+* Cải tiến trong PDF Viewer 
+* Cảm ơn các phản hồi và ý tưởng, chương trình đã trở nên tốt hơn với mọi cập nhật

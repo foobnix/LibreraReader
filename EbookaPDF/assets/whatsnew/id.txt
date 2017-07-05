@@ -1,7 +1,6 @@
+* Banyak perbaikan kecil 
 * Tab dalam urutan khusus 
-* Sembunyikan tab apapun 
-* tab Preferensi di menu kiri 
-* Atur tinggi status bar dan warna teks 
+* Penyesuaian tinggi status bar 
 * Kemampuan untuk secara otomatis membuka buku terakhir 
-* Perbaikan pada FB2 dan PDF 
-* Terima kasih atas umpan balik dan gagasannya.
+* Perbaikan PDF Viewer 
+* Terima kasih atas umpan balik dan gagasannya, program semakin membaik dengan setiap update.

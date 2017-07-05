@@ -1,7 +1,6 @@
+* Muchas pequeñas mejoras 
 * Tabs en el pedido personalizado 
-* Ocultar cualquier pestaña 
-* Preferencias en el menú de la izquierda 
-* Ajustar la altura de la barra de estado y el color del texto 
+* Ajuste de la altura de la barra de estado 
 * La capacidad de abrir automáticamente el último libro 
-* Mejoras en FB2 y PDF 
-* Gracias por la retroalimentación y las ideas
+* Mejoras en PDF Viewer 
+* Gracias por la retroalimentación y las ideas, el programa está mejorando con cada actualización

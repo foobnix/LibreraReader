@@ -1,7 +1,6 @@
+* Birçok küçük iyileştirmeler 
 * Özel siparişlerdeki sekmeler 
-* Herhangi bir sekmeyi gizle 
-* Sol menüdeki Tercihler sekmesi 
-* Durum çubuğunun ve metin renginin ayarlanması 
-* Son kitabı otomatik olarak açma yeteneği 
-* FB2 ve PDF’deki iyileştirmeler 
-* Geri bildirim ve fikirler için teşekkürler
+* Ayarlama çubuğunun durum çubuğunun yüksekliği 
+* Otomatik olarak son kitabı açma yeteneği 
+* PDF Görüntülemedeki iyileştirmeler 
+* Geri bildirim ve fikirler için teşekkürler, program her güncelleme ile daha da gelişiyor

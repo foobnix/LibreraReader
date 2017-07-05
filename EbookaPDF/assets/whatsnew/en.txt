@@ -1,7 +1,6 @@
+* Many small improvements
 * Tabs in custom order
-* Hide any tab
-* Preferences tab in the left menu
-* Adjustment the height of the status bar and text color
+* Adjustment the height of the status bar
 * The ability to automatically open the last book
-* Improvements in FB2 and PDF
-* Thanks for the feedback and ideas
+* Improvements in PDF Viewer
+* Thanks for the feedback and ideas, the program is getting better with every update

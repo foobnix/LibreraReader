@@ -1,0 +1,243 @@
+
+<vi>
+* Nhiều cải tiến nhỏ 
+* Tab theo thứ tự tùy chỉnh 
+* Điều chỉnh chiều cao của thanh trạng thái 
+* Khả năng tự động mở cuốn sách mới nhất 
+* Cải tiến trong PDF Viewer 
+* Cảm ơn các phản hồi và ý tưởng, chương trình đã trở nên tốt hơn với mọi cập nhật
+</vi>
+
+<no-NO>
+* Mange små forbedringer 
+* Faner i tilpasset rekkefølge 
+* Justere høyden på statuslinjen 
+* Muligheten til å automatisk åpne den siste boken 
+* Forbedringer i PDF Viewer 
+* Takk for tilbakemeldingen og ideene, blir programmet bedre med hver oppdatering
+</no-NO>
+
+<th>
+* ปรับปรุงขนาดเล็กหลาย 
+* แท็บในการสั่งซื้อที่กำหนดเอง 
+* การปรับความสูงของแถบสถานะ 
+* ความสามารถในการเปิดหนังสือเล่มล่าสุดโดยอัตโนมัติ 
+* การปรับปรุงใน PDF Viewer 
+* ขอบคุณสำหรับข้อเสนอแนะและความคิดโปรแกรมจะเริ่มดีขึ้นกับการปรับปรุงทุก
+</th>
+
+<nl-NL>
+* Veel kleine verbeteringen 
+* Tabs in aangepaste volgorde 
+* Aanpassen van de hoogte van de statusbalk 
+* Het vermogen om automatisch het laatste boek te openen 
+* Verbeteringen in PDF Viewer 
+* Bedankt voor de feedback en ideeën, wordt het programma beter met elke update
+</nl-NL>
+
+<ro>
+* Multe îmbunătățiri mici 
+* Tab-uri în ordine particularizată 
+* Ajustarea înălțimea barei de stare 
+* Abilitatea de a deschide automat ultima carte 
+* Îmbunătățiri în PDF Viewer 
+* Vă mulțumim pentru feedback și idei, programul se îmbunătățește cu fiecare actualizare
+</ro>
+
+<hi-IN>
+* कई छोटे सुधार 
+* कस्टम ऑर्डर में टैब्स 
+* स्टेटस बार की ऊंचाई समायोजित करें 
+* स्वतः पिछली किताब खोलने की क्षमता 
+* पीडीएफ व्यूअर में सुधार 
+* प्रतिक्रिया और विचारों के लिए धन्यवाद, कार्यक्रम हर अपडेट के साथ बेहतर हो रहा है
+</hi-IN>
+
+<es-ES>
+* Muchas pequeñas mejoras 
+* Tabs en el pedido personalizado 
+* Ajuste de la altura de la barra de estado 
+* La capacidad de abrir automáticamente el último libro 
+* Mejoras en PDF Viewer 
+* Gracias por la retroalimentación y las ideas, el programa está mejorando con cada actualización
+</es-ES>
+
+<fr-FR>
+* De nombreuses petites améliorations 
+* Onglets en ordre personnalisé 
+* Réglage de la hauteur de la barre d’état 
+* La possibilité d’ouvrir automatiquement le dernier livre 
+* Améliorations dans la visionneuse PDF 
+* Merci pour les commentaires et les idées, le programme s’améliore avec toutes les mises à jour
+</fr-FR>
+
+<tr-TR>
+* Birçok küçük iyileştirmeler 
+* Özel siparişlerdeki sekmeler 
+* Ayarlama çubuğunun durum çubuğunun yüksekliği 
+* Otomatik olarak son kitabı açma yeteneği 
+* PDF Görüntülemedeki iyileştirmeler 
+* Geri bildirim ve fikirler için teşekkürler, program her güncelleme ile daha da gelişiyor
+</tr-TR>
+
+<sv-SE>
+* Många små förbättringar 
+* Flikar i anpassad ordning 
+* Justera höjden på statusfältet 
+* Möjligheten att automatiskt öppna den senaste boken 
+* Förbättringar i PDF Viewer 
+* Tack för feedback och idéer blir programmet bättre med varje uppdatering
+</sv-SE>
+
+<pl-PL>
+* Wiele małych ulepszeń 
+* Tabulatury w niestandardowym porządku 
+* Dostosowanie wysokości paska stanu 
+* Możliwość automatycznego otwierania ostatniej książki 
+* Ulepszenia w przeglądarce PDF 
+* Dzięki za opinie i pomysły program jest coraz lepiej z każdą aktualizacją
+</pl-PL>
+
+<pt-PT>
+* Muitas pequenas melhorias 
+* Tabs na ordem personalizada 
+* Ajustar a altura da barra de status 
+* A capacidade de abrir automaticamente o último livro 
+* Melhorias no Visualizador de PDF 
+* Obrigado pelo feedback e idéias, o programa está melhorando com cada atualização
+</pt-PT>
+
+<iw-IL>
+* שיפורים קטנים רבים 
+* כרטיסיות בסדר מותאם אישית 
+* התאמת גובה שורת המצב 
+* היכולת לפתוח באופן אוטומטי את הספר האחרון 
+* שיפורים ב- PDF Viewer 
+* תודה על המשוב ורעיונות, התוכנית משתפרת עם כל עדכון
+</iw-IL>
+
+<uk>
+* Безліч дрібних поліпшень 
+* Вкладка в довільному порядку 
+* Регулювання висоти рядка стану 
+* Можливість автоматичного відкриття останньої книги 
+* Покращення в PDF Viewer 
+* Дякую за відгуки та ідеї, програма стає все краще з кожним оновленням
+</uk>
+
+<ja-JP>
+*多くの小さな改善
+*カスタムタブのタブ
+*ステータスバーの高さを調整
+*最後の本を自動的に開く機能
+* PDFビューアの改善
+*フィードバックとアイデアのおかげで、
+</ja-JP>
+
+<id>
+* Banyak perbaikan kecil 
+* Tab dalam urutan khusus 
+* Penyesuaian tinggi status bar 
+* Kemampuan untuk secara otomatis membuka buku terakhir 
+* Perbaikan PDF Viewer 
+* Terima kasih atas umpan balik dan gagasannya, program semakin membaik dengan setiap update.
+</id>
+
+<fa>
+* بسیاری از پیشرفت های کوچک 
+* زبانهها به منظور سفارشی 
+* تنظیم ارتفاع نوار وضعیت 
+* توانایی به طور خودکار آخرین کتاب باز 
+* بهبود در نمایشگر PDF 
+* با تشکر برای انتقادات و پیشنهادات و ایده ها، برنامه در حال بهتر شدن با هر بروز رسانی
+</fa>
+
+<ar>
+* العديد من التحسينات الصغيرة 
+* علامات التبويب في ترتيب مخصص 
+* تعديل ارتفاع شريط الحالة 
+* القدرة على فتح تلقائيا الكتاب الأخير 
+* التحسينات في بدف عارض 
+* شكرا على ردود الفعل والأفكار، البرنامج هو الحصول على أفضل مع كل تحديث
+</ar>
+
+<de-DE>
+* Viele kleine Verbesserungen 
+* Tabs in kundenspezifischer Reihenfolge 
+* Anpassung der Höhe der Statusleiste 
+* Die Möglichkeit, das letzte Buch automatisch zu öffnen 
+* Verbesserungen im PDF Viewer 
+* Danke für das Feedback und die Ideen, das Programm wird bei jedem Update immer besser
+</de-DE>
+
+<sw>
+* Wengi maboresho madogo 
+* Tabs ili desturi 
+* Marekebisho urefu wa upau 
+* uwezo wa moja kwa moja kufungua kitabu mwisho 
+* Aidha, katika Viewer PDF 
+* Asante kwa maoni na mawazo, mpango ni kupata bora kwa kila update
+</sw>
+
+<ko-KR>
+* 많은 작은 개선 
+* 맞춤 탭의 탭 
+* 상태 표시 줄의 높이 조정 
+* 마지막 책을 자동으로 열 수있는 기능 
+* PDF 뷰어의 향상된 기능 
+* 의견과 아이디어에 감사드립니다. 프로그램은 모든 업데이트와 함께 개선되고 있습니다.
+</ko-KR>
+
+<fi-FI>
+* Monet pienet parannukset 
+* välilehdet järjestykseen 
+* Säätö korkeus palkki 
+* Kyky automaattisesti avaamaan viimeinen kirja 
+* Parannuksia PDF Viewer 
+* Kiitos palautteesta ja ideoita, ohjelma paranee jokaisen päivityksen
+</fi-FI>
+
+<zh-TW>
+*许多小改进
+*自定义顺序的标签
+*调整状态栏的高度
+*自动打开最后一本书的能力
+* PDF查看器的改进
+*感谢您的反馈和想法，该程序随着每个更新越来越好
+</zh-TW>
+
+<it-IT>
+* Molti piccoli miglioramenti 
+* Tabulazioni in ordine personalizzato 
+* Regolazione dell’altezza della barra di stato 
+* Possibilità di aprire automaticamente l’ultimo libro 
+* Miglioramenti in PDF Viewer 
+* Grazie per i commenti e le idee, il programma sta migliorando con ogni aggiornamento
+</it-IT>
+
+<ru-RU>
+* Много мелких улучшений 
+* Вкладки в пользовательском порядке 
+* Регулировка высоты строки состояния 
+* Возможность автоматического открытия последней книги 
+* Усовершенствования в PDF Viewer 
+* Спасибо за отзывы и идеи, программа улучшается с каждым обновлением
+</ru-RU>
+
+<sk>
+* Veľa malých vylepšení 
+* Záložky vo vlastnom poradí 
+* Nastavenie výšky stavového panela 
+* Možnosť automaticky otvoriť poslednú knihu 
+* Vylepšenia v PDF Viewer 
+* Vďaka za spätnú väzbu a nápady, program sa zlepšuje s každou aktualizáciou
+</sk>
+
+<en-US>
+* Many small improvements
+* Tabs in custom order
+* Adjustment the height of the status bar
+* The ability to automatically open the last book
+* Improvements in PDF Viewer
+* Thanks for the feedback and ideas, the program is getting better with every update
+</en-US>

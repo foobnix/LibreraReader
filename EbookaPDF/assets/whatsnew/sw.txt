@@ -1,7 +1,6 @@
+* Wengi maboresho madogo 
 * Tabs ili desturi 
-* Ficha yoyote tab 
-* Mapendekezo tab upande wa kushoto menu 
-* Marekebisho urefu wa upau na rangi ya maandishi 
+* Marekebisho urefu wa upau 
 * uwezo wa moja kwa moja kufungua kitabu mwisho 
-* Aidha, katika FB2 na PDF 
-* Asante kwa maoni na mawazo
+* Aidha, katika Viewer PDF 
+* Asante kwa maoni na mawazo, mpango ni kupata bora kwa kila update

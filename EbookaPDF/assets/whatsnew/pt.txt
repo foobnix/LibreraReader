@@ -1,7 +1,6 @@
-* Separadores na ordem personalizada 
-* Ocultar qualquer guia 
-* guia Preferências no menu à esquerda 
-* Ajustar a altura da barra de status e cor do texto 
+* Muitas pequenas melhorias 
+* Tabs na ordem personalizada 
+* Ajustar a altura da barra de status 
 * A capacidade de abrir automaticamente o último livro 
-* Melhorias em FB2 e PDF 
-* Obrigado pelo feedback e idéias
+* Melhorias no Visualizador de PDF 
+* Obrigado pelo feedback e idéias, o programa está melhorando com cada atualização

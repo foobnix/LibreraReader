@@ -1,7 +1,6 @@
-* Zakładki w niestandardowym porządku 
-* Ukryj dowolną kartę 
-* Preferencje w lewym menu 
-* Dostosuj wysokość paska stanu i koloru tekstu 
+* Wiele małych ulepszeń 
+* Tabulatury w niestandardowym porządku 
+* Dostosowanie wysokości paska stanu 
 * Możliwość automatycznego otwierania ostatniej książki 
-* Poprawa w FB2 i PDF 
-* Dzięki za opinie i pomysły
+* Ulepszenia w przeglądarce PDF 
+* Dzięki za opinie i pomysły program jest coraz lepiej z każdą aktualizacją

@@ -1,7 +1,6 @@
+* Veľa malých vylepšení 
 * Záložky vo vlastnom poradí 
-* Skryť ľubovoľnú kartu 
-* Záložka preferencií v ľavej ponuke 
-* Nastavenie výšky stavového riadku a farby textu 
+* Nastavenie výšky stavového panela 
 * Možnosť automaticky otvoriť poslednú knihu 
-* Vylepšenia v FB2 a PDF 
-* Vďaka za spätnú väzbu a nápady
+* Vylepšenia v PDF Viewer 
+* Vďaka za spätnú väzbu a nápady, program sa zlepšuje s každou aktualizáciou

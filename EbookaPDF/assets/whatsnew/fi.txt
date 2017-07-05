@@ -1,0 +1,6 @@
+* Monet pienet parannukset 
+* välilehdet järjestykseen 
+* Säätö korkeus palkki 
+* Kyky automaattisesti avaamaan viimeinen kirja 
+* Parannuksia PDF Viewer 
+* Kiitos palautteesta ja ideoita, ohjelma paranee jokaisen päivityksen

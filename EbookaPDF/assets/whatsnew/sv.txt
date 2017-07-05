@@ -1,7 +1,6 @@
+* Många små förbättringar 
 * Flikar i anpassad ordning 
-* Dölj alla flikar 
-* Inställningar fliken i vänstermenyn 
-* Justera höjden på statusfältet och textfärgen 
+* Justera höjden på statusfältet 
 * Möjligheten att automatiskt öppna den senaste boken 
-* Förbättringar i FB2 och PDF 
-* Tack för feedback och idéer
+* Förbättringar i PDF Viewer 
+* Tack för feedback och idéer blir programmet bättre med varje uppdatering

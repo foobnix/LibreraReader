@@ -1,7 +1,6 @@
+* Multe îmbunătățiri mici 
 * Tab-uri în ordine particularizată 
-* Ascunde orice filă 
-* Fila Preferințe din meniul din stânga 
-* Ajustarea înălțimii barei de stare și culoarea textului 
+* Ajustarea înălțimea barei de stare 
 * Abilitatea de a deschide automat ultima carte 
-* Îmbunătățiri în FB2 și PDF 
-* Vă mulțumim pentru feedback și idei
+* Îmbunătățiri în PDF Viewer 
+* Vă mulțumim pentru feedback și idei, programul se îmbunătățește cu fiecare actualizare

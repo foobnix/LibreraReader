@@ -1,7 +1,6 @@
+* Veel kleine verbeteringen 
 * Tabs in aangepaste volgorde 
-* Verberg een tabblad 
-* Voorkeuren tabblad in het linker menu 
-* Verstel de hoogte van de statusbalk en tekstkleur 
-* De mogelijkheid om automatisch het laatste boek te openen 
-* Verbeteringen in FB2 en PDF 
-* Bedankt voor de feedback en ideeën
+* Aanpassen van de hoogte van de statusbalk 
+* Het vermogen om automatisch het laatste boek te openen 
+* Verbeteringen in PDF Viewer 
+* Bedankt voor de feedback en ideeën, wordt het programma beter met elke update
