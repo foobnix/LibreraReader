@@ -9,9 +9,11 @@ import com.foobnix.dao2.FileMeta;
 import com.foobnix.ext.EbookMeta;
 import com.foobnix.pdf.info.AppSharedPreferences;
 import com.foobnix.pdf.info.ExtUtils;
+import com.foobnix.pdf.info.IMG;
 import com.foobnix.pdf.info.io.SearchCore;
 import com.foobnix.pdf.info.wrapper.AppState;
 import com.foobnix.sys.ImageExtractor;
+import com.foobnix.ui2.adapter.FileMetaAdapter;
 
 import android.app.IntentService;
 import android.content.Intent;
@@ -49,10 +51,9 @@ public class BooksService extends IntentService {
         if (ACTION_SEARCH_ALL.equals(intent.getAction())) {
             LOG.d(ACTION_SEARCH_ALL);
 
-            // IMG.clearDiscCache();
-            // IMG.clearMemoryCache();
+            IMG.clearDiscCache();
+            IMG.clearMemoryCache();
             ImageExtractor.clearErrors();
-            
 
             List<Uri> recent = AppSharedPreferences.get().getRecent();
             List<FileMeta> starsAndRecent = AppDB.get().deleteAllSafe();
@@ -65,7 +66,11 @@ public class BooksService extends IntentService {
                 starsAndRecent.add(item);
             }
             for (FileMeta m : starsAndRecent) {
-                m.setIsSearchBook(true);
+                if (m.getCusType() != null && FileMetaAdapter.DISPLAY_TYPE_DIRECTORY == m.getCusType()) {
+                    m.setIsSearchBook(false);
+                } else {
+                    m.setIsSearchBook(true);
+                }
             }
 
             AppSharedPreferences.get().cleanRecent();

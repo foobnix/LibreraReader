@@ -44,7 +44,7 @@ public class HypenUtils {
             }
 
             char last = w.charAt(w.length() - 1);
-            char last2 = w.charAt(w.length() - 2);
+
             char first = w.charAt(0);
 
             boolean startWithOther = false;
@@ -60,9 +60,13 @@ public class HypenUtils {
             }
 
             boolean endWithOther2 = false;
-            if (w.length() != 0 && !Character.isLetter(last2)) {
-                endWithOther2 = true;
-                w = w.substring(0, w.length() - 1);
+            char last2 = ' ';
+            if (endWithOther) {
+                last2 = w.charAt(w.length() - 2);
+                if (w.length() != 0 && !Character.isLetter(last2)) {
+                    endWithOther2 = true;
+                    w = w.substring(0, w.length() - 1);
+                }
             }
 
             List<String> hyphenate = instance.hyphenate(w);

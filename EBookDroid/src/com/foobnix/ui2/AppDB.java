@@ -193,6 +193,32 @@ public class AppDB {
         fileMetaDao.update(load);
     }
 
+    public void addStarFile(String path) {
+        if (!new File(path).isFile()) {
+            LOG.d("Can't add to recent, it's not a file", path);
+            return;
+        }
+        LOG.d("addStarFile", path);
+        FileMeta load = getOrCreate(path);
+        load.setIsStar(true);
+        load.setIsStarTime(System.currentTimeMillis());
+        load.setCusType(FileMetaAdapter.DISPLAY_TYPE_FILE);
+        fileMetaDao.update(load);
+    }
+
+    public void addStarFolder(String path) {
+        if (!new File(path).isDirectory()) {
+            LOG.d("Can't add to recent, it's not a file", path);
+            return;
+        }
+        LOG.d("addStarFile", path);
+        FileMeta load = getOrCreate(path);
+        load.setIsStar(true);
+        load.setIsStarTime(System.currentTimeMillis());
+        load.setCusType(FileMetaAdapter.DISPLAY_TYPE_DIRECTORY);
+        fileMetaDao.update(load);
+    }
+
     public void save(FileMeta meta) {
         fileMetaDao.insertOrReplace(meta);
     }

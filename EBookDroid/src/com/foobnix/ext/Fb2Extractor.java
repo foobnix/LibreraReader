@@ -441,7 +441,7 @@ public class Fb2Extractor extends BaseExtractor {
                     isTitle = false;
                     titles.add(section + DIVIDER + title);
                     title = "";
-                    if (section >= dividerSection) {
+                    if (section == dividerSection) {
                         titles.remove(dividerLine);
                     }
                 }

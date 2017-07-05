@@ -4,13 +4,18 @@ import java.io.File;
 import java.io.FileWriter;
 import java.text.SimpleDateFormat;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import com.foobnix.android.utils.LOG;
+import com.foobnix.android.utils.ResultResponse;
+import com.foobnix.dao2.FileMeta;
+import com.foobnix.ui2.AppDB;
 
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -29,6 +34,10 @@ public class ExportSettingsManager {
     public static final String PREFIX_PDF = "pdf";
     public static final String PREFIX_RESULTS = "search_results_1";
     public static final String PREFIX_BOOK_CSS = "BookCSS";
+
+    public static final String PREFIX_RECENT = "Recent";
+    public static final String PREFIX_STARS_Books = "StarsBook";
+    public static final String PREFIX_STARS_Folders = "StarsFolder";
 
     public static final String RECURCIVE = "recurcive";
     private static final String PATH2 = "PATH";
@@ -63,6 +72,10 @@ public class ExportSettingsManager {
             root.put(PREFIX_BOOKS, exportToJSon(PREFIX_BOOKS, booksSP, null));
             root.put(PREFIX_BOOKMARKS_PREFERENCES, exportToJSon(PREFIX_BOOKMARKS_PREFERENCES, viewerSP, null));
             root.put(PREFIX_BOOK_CSS, exportToJSon(PREFIX_BOOK_CSS, bookCSS, null));
+
+            root.put(PREFIX_RECENT, fileMetaToJSON(AppDB.get().getRecent()));
+            root.put(PREFIX_STARS_Books, fileMetaToJSON(AppDB.get().getStarsFiles()));
+            root.put(PREFIX_STARS_Folders, fileMetaToJSON(AppDB.get().getStarsFolder()));
 
             String name = getSampleJsonConfigName(c, "export_all.json");
             File fileConfig = toFile;
@@ -117,6 +130,33 @@ public class ExportSettingsManager {
             importFromJSon(jsonObject.optJSONObject(PREFIX_BOOKMARKS_PREFERENCES), viewerSP, null);
             importFromJSon(jsonObject.optJSONObject(PREFIX_BOOK_CSS), bookCSS, null);
 
+            jsonToMeta(jsonObject.optJSONArray(PREFIX_RECENT), new ResultResponse<String>() {
+
+                @Override
+                public boolean onResultRecive(String result) {
+                    AppDB.get().addRecent(result);
+                    return false;
+                }
+            });
+
+            jsonToMeta(jsonObject.optJSONArray(PREFIX_STARS_Books), new ResultResponse<String>() {
+
+                @Override
+                public boolean onResultRecive(String result) {
+                    AppDB.get().addStarFile(result);
+                    return false;
+                }
+            });
+
+            jsonToMeta(jsonObject.optJSONArray(PREFIX_STARS_Folders), new ResultResponse<String>() {
+
+                @Override
+                public boolean onResultRecive(String result) {
+                    AppDB.get().addStarFolder(result);
+                    return false;
+                }
+            });
+
             return true;
         } catch (Exception e) {
             e.printStackTrace();
@@ -124,6 +164,33 @@ public class ExportSettingsManager {
         }
         return false;
 
+    }
+
+    public static JSONArray fileMetaToJSON(List<FileMeta> list) {
+        JSONArray jsonObject = new JSONArray();
+        if (list == null) {
+            return jsonObject;
+        }
+        for (FileMeta value : list) {
+            jsonObject.put(value.getPath());
+        }
+        return jsonObject;
+    }
+
+    public static void jsonToMeta(JSONArray jsonObject, ResultResponse<String> action) {
+        if (jsonObject == null) {
+            return;
+        }
+        try {
+            for (int i = jsonObject.length() - 1; i >= 0; i--) {
+                String path = jsonObject.getString(i);
+                if (path != null) {
+                    action.onResultRecive(path);
+                }
+            }
+        } catch (Exception e) {
+            LOG.e(e);
+        }
     }
 
     public static JSONObject exportToJSon(String name, SharedPreferences sp, String exclude) throws JSONException {
@@ -185,7 +252,5 @@ public class ExportSettingsManager {
         edit.putString(PATH2, file.getPath());
         edit.commit();
     }
-
-
 
 }
