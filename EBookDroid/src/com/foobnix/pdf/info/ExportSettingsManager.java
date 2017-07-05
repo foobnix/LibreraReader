@@ -15,6 +15,7 @@ import org.json.JSONObject;
 import com.foobnix.android.utils.LOG;
 import com.foobnix.android.utils.ResultResponse;
 import com.foobnix.dao2.FileMeta;
+import com.foobnix.pdf.info.wrapper.AppState;
 import com.foobnix.ui2.AppDB;
 
 import android.content.Context;
@@ -66,6 +67,7 @@ public class ExportSettingsManager {
         LOG.d("TEST", "Export all to" + toFile.getPath());
 
         try {
+            AppState.get().save(c);
             JSONObject root = new JSONObject();
 
             root.put(PREFIX_PDF, exportToJSon(PREFIX_RESULTS, pdfSP, null));
