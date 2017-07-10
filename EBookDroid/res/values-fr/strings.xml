@@ -361,4 +361,5 @@
    <string name="hide_app">Masquer l\'application</string>
    <string name="close_application">Fermer l\'application</string>
    <string name="go_to_the_library">Aller à la bibliothèque</string>
+   <string name="book_styles">Styles de livres</string>
 </resources>

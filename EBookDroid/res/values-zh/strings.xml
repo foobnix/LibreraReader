@@ -361,4 +361,5 @@
    <string name="hide_app">隐藏应用程序</string>
    <string name="close_application">关闭应用程序</string>
    <string name="go_to_the_library">去图书馆</string>
+   <string name="book_styles">图书风格</string>
 </resources>

@@ -361,4 +361,5 @@
    <string name="hide_app">Skjul søknad</string>
    <string name="close_application">Lukk søknad</string>
    <string name="go_to_the_library">Gå til biblioteket</string>
+   <string name="book_styles">Bestill stiler</string>
 </resources>

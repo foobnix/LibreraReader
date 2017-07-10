@@ -279,7 +279,7 @@
    <string name="banner_slogan_LIRBI_READER">Luotettava ja ammattimainen ohjelma lukenut kaikki kirjat</string>
    <string name="banner_slogan_PRO_LIRBI_READER_1">Maksettu versio paras e-kirjan lukija ohjelma</string>
    <string name="banner_slogan_EPUB_READER">Kätevin lukijan luettavuutta elektronisia kirjoja</string>
-   <string name="banner_slogan_PDF_READER">Kätevin &quot;PDF Reader&quot; lukemiseen sähköisiä asiakirjoja</string>
+   <string name="banner_slogan_PDF_READER">Kätevin "PDF Reader" lukemiseen sähköisiä asiakirjoja</string>
    <string name="remove_ads_install_lirbi_pro_version_">Poista adsInstall Lirbi PRO-versio.</string>
    <string name="next_page">Seuraava sivu</string>
    <string name="previous_page">Edellinen sivu</string>
@@ -361,4 +361,5 @@
    <string name="hide_app">Piilota sovellus</string>
    <string name="close_application">Sulje sovellus</string>
    <string name="go_to_the_library">Mene kirjastoon</string>
+   <string name="book_styles">Kirja tyylit</string>
 </resources>

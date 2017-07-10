@@ -361,4 +361,5 @@
    <string name="hide_app">Sembunyikan aplikasi</string>
    <string name="close_application">Tutup aplikasi</string>
    <string name="go_to_the_library">Pergi ke perpustakaan</string>
+   <string name="book_styles">Gaya buku</string>
 </resources>

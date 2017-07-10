@@ -35,7 +35,7 @@ public class GeneralDocInterfaceImpl implements GeneralDocInterface {
         } catch (MuPdfPasswordException e) {
             throw e;
         } catch (Exception e) {
-            return 0;
+            return -1;
         }
     }
 

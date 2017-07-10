@@ -130,6 +130,10 @@ public abstract class DocumentControllerHorizontalView extends DocumentControlle
         FileMetaCore.checkOrCreateMetaInfo(activity);
 
         pagesCount = generadDocInterface.getPageCount(getBookPath(), activity.getIntent().getStringExtra(PASSWORD_EXTRA), imageWidth, imageHeight, AppState.get().fontSizeSp);
+        if (pagesCount == -1) {
+            throw new IllegalArgumentException("Pages count = -1");
+        }
+
         generadDocInterface.addToRecent(activity, activity.getIntent().getData());
         getPageFromUri();
 

@@ -361,4 +361,5 @@
    <string name="hide_app">アプリケーションを非表示にする</string>
    <string name="close_application">アプリケーションを閉じる</string>
    <string name="go_to_the_library">図書館へ行く</string>
+   <string name="book_styles">ブックスタイル</string>
 </resources>

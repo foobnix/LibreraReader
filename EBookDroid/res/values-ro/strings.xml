@@ -361,4 +361,5 @@
    <string name="hide_app">Ascundeți aplicația</string>
    <string name="close_application">Închideți aplicația</string>
    <string name="go_to_the_library">Mergi la biblioteca</string>
+   <string name="book_styles">Stiluri de carte</string>
 </resources>

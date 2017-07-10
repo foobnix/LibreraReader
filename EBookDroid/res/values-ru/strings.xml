@@ -361,4 +361,5 @@
    <string name="hide_app">Свернуть приложение</string>
    <string name="close_application">Закрыть приложение</string>
    <string name="go_to_the_library">Перейти в библиотеку</string>
+   <string name="book_styles">Стили книги</string>
 </resources>

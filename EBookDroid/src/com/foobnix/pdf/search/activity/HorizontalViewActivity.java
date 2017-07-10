@@ -403,6 +403,7 @@ public class HorizontalViewActivity extends FragmentActivity {
             @Override
             protected void onPostExecute(Object result) {
                 try {
+                    LOG.d("RESULT", result);
                     dialog.dismiss();
                 } catch (Exception e) {
                 }
@@ -411,6 +412,8 @@ public class HorizontalViewActivity extends FragmentActivity {
                 }
                 if ((Integer) result == -2) {
                     Toast.makeText(HorizontalViewActivity.this, R.string.msg_unexpected_error, Toast.LENGTH_SHORT).show();
+                    AppState.get().isEditMode = true;
+                    hideShow();
                     return;
                 }
 
@@ -1145,7 +1148,6 @@ public class HorizontalViewActivity extends FragmentActivity {
                     LOG.e(e);
                 }
             }
-
 
         };
         viewPager.setAdapter(pagerAdapter);

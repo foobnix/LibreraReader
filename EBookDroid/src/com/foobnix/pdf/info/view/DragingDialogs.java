@@ -2347,6 +2347,49 @@ public class DragingDialogs {
                     }
                 });
 
+                // begin styles
+                final List<String> docStyles = Arrays.asList(//
+                        controller.getString(R.string.document_styles) + " + " + controller.getString(R.string.user_styles), //
+                        controller.getString(R.string.document_styles), //
+                        controller.getString(R.string.user_styles));
+
+                final TextView docStyle = (TextView) inflate.findViewById(R.id.documentStyle);
+
+                docStyle.setText(docStyles.get(BookCSS.get().documentStyle));
+                TxtUtils.underlineTextView(docStyle);
+
+                inflate.findViewById(R.id.documentStyleLayout).setVisibility(ExtUtils.isTextFomat(controller.getCurrentBook().getPath()) ? View.VISIBLE : View.GONE);
+
+                docStyle.setOnClickListener(new OnClickListener() {
+
+                    @SuppressLint("NewApi")
+                    @Override
+                    public void onClick(View v) {
+                        final PopupMenu popupMenu = new PopupMenu(v.getContext(), v);
+                        for (int i = 0; i < docStyles.size(); i++) {
+                            String type = docStyles.get(i);
+                            final int j = i;
+
+                            popupMenu.getMenu().add(type).setOnMenuItemClickListener(new OnMenuItemClickListener() {
+
+                                @Override
+                                public boolean onMenuItemClick(MenuItem item) {
+                                    BookCSS.get().documentStyle = j;
+                                    docStyle.setText(docStyles.get(BookCSS.get().documentStyle));
+                                    TxtUtils.underlineTextView(docStyle);
+
+                                    return false;
+                                }
+                            });
+                        }
+
+                        popupMenu.show();
+
+                    }
+                });
+
+                // end styles
+
                 // rotate
 
                 final TextView rotateViewPager = (TextView) inflate.findViewById(R.id.rotateViewPager);
@@ -3059,41 +3102,6 @@ public class DragingDialogs {
                     }
                 };
                 spinnerFontName.postDelayed(runnable, 100);
-
-                final List<String> docStyles = Arrays.asList(//
-                        controller.getString(R.string.document_styles) + " + " + controller.getString(R.string.user_styles), //
-                        controller.getString(R.string.document_styles), //
-                        controller.getString(R.string.user_styles));
-
-                final Spinner docStylesSpinner = (Spinner) inflate.findViewById(R.id.documentStyle);
-                docStylesSpinner.setAdapter(new BaseItemLayoutAdapter<String>(controller.getActivity(), android.R.layout.simple_spinner_dropdown_item, docStyles) {
-
-                    @Override
-                    public void populateView(View inflate, int arg1, String value) {
-                        TextView tv = Views.text(inflate, android.R.id.text1, "" + value);
-                    }
-                });
-
-                docStylesSpinner.setOnItemSelectedListener(new OnItemSelectedListener() {
-
-                    @Override
-                    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                        BookCSS.get().documentStyle = docStylesSpinner.getSelectedItemPosition();
-                        try {
-                            TextView textView = (TextView) docStylesSpinner.getChildAt(0);
-                            textView.setTextAppearance(controller.getActivity(), R.style.textLinkStyle);
-                        } catch (Exception e) {
-                            LOG.e(e);
-                        }
-                    }
-
-                    @Override
-                    public void onNothingSelected(AdapterView<?> parent) {
-                    }
-                });
-
-                docStylesSpinner.setSelection(BookCSS.get().documentStyle);
-                inflate.findViewById(R.id.documentStyleLayout).setVisibility(ExtUtils.isTextFomat(controller.getCurrentBook().getPath()) ? View.VISIBLE : View.GONE);
 
                 final View moreFontSettings = inflate.findViewById(R.id.moreFontSettings);
                 moreFontSettings.setOnClickListener(new OnClickListener() {

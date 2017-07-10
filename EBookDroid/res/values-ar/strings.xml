@@ -361,4 +361,5 @@
    <string name="hide_app">إخفاء التطبيق</string>
    <string name="close_application">تطبيق وثيقة</string>
    <string name="go_to_the_library">اذهب الى المكتبة</string>
+   <string name="book_styles">أنماط الكتاب</string>
 </resources>

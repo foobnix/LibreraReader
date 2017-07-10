@@ -262,39 +262,7 @@
                 android:tint="@color/tint_gray" />
         </LinearLayout>
 
-        <LinearLayout
-            android:id="@+id/documentStyleLayout"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginRight="@dimen/wh_button"
-            android:gravity="center_vertical"
-            android:orientation="horizontal" >
-
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="0"
-                android:padding="5dip"
-                android:src="@drawable/glyphicons_1_picture"
-                android:tint="@color/tint_gray" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="4dip"
-                android:layout_weight="0"
-                android:ems="4"
-                android:singleLine="true"
-                android:text="@string/styles" />
-
-            <Spinner
-                android:id="@+id/documentStyle"
-                android:layout_width="match_parent"
-                android:layout_height="40dip"
-                android:layout_marginRight="4dip"
-                android:layout_weight="1"
-                android:minWidth="300dp" />
-        </LinearLayout>
+        
 
         <View
             android:layout_width="match_parent"

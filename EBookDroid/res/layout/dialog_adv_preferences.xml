@@ -42,6 +42,32 @@
         </LinearLayout>
 
         <LinearLayout
+            android:layout_marginLeft="15dip"
+            android:id="@+id/documentStyleLayout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="@dimen/wh_button"
+            android:gravity="center_vertical"
+            android:orientation="horizontal" >
+
+            <TextView
+                android:layout_width="100dip"
+                android:layout_height="wrap_content"
+                android:layout_weight="0"
+                android:singleLine="true"
+                android:text="@string/book_styles"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/documentStyle"
+                 style="@style/textLink"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/document_styles"
+                 />
+        </LinearLayout>
+
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="15dip" >
@@ -116,12 +142,11 @@
             <TextView
                 android:id="@+id/tapzoneSize"
                 style="@style/textLink"
-                android:minEms="2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:minEms="2"
                 android:text="5%" />
-            
-            
+
             <TextView
                 android:id="@+id/tapzoneCustomize"
                 style="@style/textLink"
@@ -129,7 +154,7 @@
                 android:layout_height="wrap_content"
                 android:text="@string/customize" />
         </LinearLayout>
-        
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -149,10 +174,7 @@
                 android:layout_height="wrap_content"
                 android:text="120 min" />
         </LinearLayout>
-        
-        
-        
-        
+
         <LinearLayout
             android:id="@+id/onDoubleTapLayout"
             android:layout_width="match_parent"
@@ -185,8 +207,6 @@
                 android:layout_weight="0"
                 android:gravity="center" />
         </LinearLayout>
-        
-         
 
         <CheckBox
             android:id="@+id/isVibration"
@@ -356,12 +376,12 @@
                 android:layout_height="wrap_content"
                 android:text="2" />
         </LinearLayout>
-        
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="center_vertical"
-            android:layout_marginLeft="15dip" >
+            android:layout_marginLeft="15dip"
+            android:gravity="center_vertical" >
 
             <TextView
                 android:layout_width="180dip"

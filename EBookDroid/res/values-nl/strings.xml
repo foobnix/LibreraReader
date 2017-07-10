@@ -361,4 +361,5 @@
    <string name="hide_app">Verberg applicatie</string>
    <string name="close_application">Dichte toepassing</string>
    <string name="go_to_the_library">Ga naar de bibliotheek</string>
+   <string name="book_styles">Boekstijlen</string>
 </resources>
