@@ -100,7 +100,7 @@ public class HorizontalViewActivity extends FragmentActivity {
     CopyAsyncTask loadinAsyncTask;
 
     Dialog rotatoinDialog;
-    boolean isInitPosistion = true;
+    volatile Boolean isInitPosistion = null;
 
     @Override
     protected void onNewIntent(final Intent intent) {
@@ -118,7 +118,12 @@ public class HorizontalViewActivity extends FragmentActivity {
     Handler flippingHandler;
     int flippingTimer = 0;
 
-    @TargetApi(Build.VERSION_CODES.HONEYCOMB)
+    protected void onCreateTest(final Bundle savedInstanceState) {
+        DocumentController.doRotation(this);
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_horiziontal_view);
+    }
+
     @Override
     protected void onCreate(final Bundle savedInstanceState) {
         DocumentController.doRotation(this);
@@ -484,7 +489,8 @@ public class HorizontalViewActivity extends FragmentActivity {
                 }
 
             };
-        }.execute();
+        };
+        loadinAsyncTask.execute();
 
         //
         tinUI();
@@ -697,7 +703,9 @@ public class HorizontalViewActivity extends FragmentActivity {
         super.onStop();
         Analytics.onStop(this);
         getWindow().clearFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
-        flippingHandler.removeCallbacksAndMessages(null);
+        if (flippingHandler != null) {
+            flippingHandler.removeCallbacksAndMessages(null);
+        }
     }
 
     @Override
@@ -711,8 +719,12 @@ public class HorizontalViewActivity extends FragmentActivity {
                 LOG.e(e);
             }
         }
-        handler.removeCallbacksAndMessages(null);
-        flippingHandler.removeCallbacksAndMessages(null);
+        if (handler != null) {
+            handler.removeCallbacksAndMessages(null);
+        }
+        if (flippingHandler != null) {
+            flippingHandler.removeCallbacksAndMessages(null);
+        }
         ADS.destory(adView);
         ADS.destoryNative(adViewNative);
         // AppState.get().isCut = false;
@@ -739,7 +751,9 @@ public class HorizontalViewActivity extends FragmentActivity {
         DocumentController.chooseFullScreen(this, AppState.get().isFullScreen);
         DocumentController.doRotation(this);
 
-        clickUtils.init();
+        if (clickUtils != null) {
+            clickUtils.init();
+        }
 
         if (documentController != null) {
             documentController.onResume();
@@ -1046,6 +1060,9 @@ public class HorizontalViewActivity extends FragmentActivity {
     @Override
     public void onConfigurationChanged(final Configuration newConfig) {
         super.onConfigurationChanged(newConfig);
+        if (isInitPosistion == null) {
+            return;
+        }
 
         if (ExtUtils.isTextFomat(getIntent())) {
 
@@ -1335,14 +1352,14 @@ public class HorizontalViewActivity extends FragmentActivity {
 
     @Override
     public void onBackPressed() {
-        if (anchor.getChildCount() > 0 && anchor.getVisibility() == View.VISIBLE) {
+        if (anchor != null && anchor.getChildCount() > 0 && anchor.getVisibility() == View.VISIBLE) {
             anchor.setVisibility(View.GONE);
             anchor.setTag("backGo");
             anchor.removeAllViews();
             return;
         }
 
-        if (!documentController.getLinkHistory().isEmpty()) {
+        if (documentController != null && !documentController.getLinkHistory().isEmpty()) {
             documentController.onLinkHistory();
             showHideHistory();
             return;
@@ -1360,7 +1377,11 @@ public class HorizontalViewActivity extends FragmentActivity {
         if (mInterstitialAd != null && mInterstitialAd.isLoaded()) {
             mInterstitialAd.show();
         } else {
-            documentController.onCloseActivity();
+            if (documentController != null) {
+                documentController.onCloseActivity();
+            } else {
+                finish();
+            }
         }
 
     }

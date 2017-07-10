@@ -61,6 +61,7 @@
         <activity
             android:resizeableActivity="true"
             android:name="org.ebookdroid.ui.viewer.ViewerActivity"
+             android:screenOrientation="behind"
             android:configChanges="orientation|screenSize|keyboard|keyboardHidden"
             android:exported="true"
             android:launchMode="singleTask"
@@ -140,6 +141,7 @@
         <activity
             android:resizeableActivity="true"
             android:name="com.foobnix.ui2.MainTabs2"
+             android:screenOrientation="behind"
             android:configChanges="orientation|screenSize|keyboard|keyboardHidden"
             android:exported="true"
             android:launchMode="singleTop"
@@ -175,9 +177,10 @@
             android:name="com.foobnix.pdf.search.activity.HorizontalViewActivity"
             android:configChanges="orientation|screenSize|keyboard|keyboardHidden"
             android:exported="true"
+            android:screenOrientation="behind"
             android:launchMode="singleTask" >
         </activity>
-
+        
         <!-- PLAY_SERVICE --><meta-data android:name="com.google.android.gms.version" android:value="@integer/google_play_services_version"/>
 
         <activity
