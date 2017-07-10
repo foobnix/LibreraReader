@@ -40,7 +40,7 @@ public class ADS {
 
     public static AdRequest adRequest = new AdRequest.Builder()//
             .addTestDevice(AdRequest.DEVICE_ID_EMULATOR)//
-            // .addTestDevice("F9A166B8CA68B237A2AFB22BA63EBEDF")//
+            .addTestDevice("E0A9E8CB1E71AE8C3F6F64D692E914DB")//
             .addTestDevice("ECC8DAFFDFD6BE5A3C799695FC4853E8")//
             .build();//
 

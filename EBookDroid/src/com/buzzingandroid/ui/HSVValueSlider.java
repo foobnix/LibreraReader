@@ -64,6 +64,9 @@ public class HSVValueSlider extends View {
     @Override
     protected void onSizeChanged(int w, int h, int oldw, int oldh) {
         super.onSizeChanged(w, h, oldw, oldh);
+        if (w <= 0) {
+            return;
+        }
 
         srcRect = new Rect(0, 0, w, 1);
         dstRect = new Rect(0, 0, w, h);

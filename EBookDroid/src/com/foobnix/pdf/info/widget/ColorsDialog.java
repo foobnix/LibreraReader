@@ -71,6 +71,7 @@ public class ColorsDialog {
         textPreview = (TextView) view.findViewById(R.id.textView1);
         textPreview2 = (TextView) view.findViewById(R.id.textView2);
 
+
         isColor = TxtUtils.underlineTextView((TextView) view.findViewById(R.id.isColor));
         isImage = TxtUtils.underlineTextView((TextView) view.findViewById(R.id.isImage));
 

@@ -1,5 +1,6 @@
 package com.buzzingandroid.ui;
 
+import com.foobnix.android.utils.Dips;
 import com.foobnix.pdf.info.R;
 import com.foobnix.pdf.info.wrapper.AppState;
 import com.foobnix.pdf.info.wrapper.MagicHelper;
@@ -13,7 +14,7 @@ import android.view.View;
 import android.view.ViewGroup.LayoutParams;
 import android.widget.EditText;
 import android.widget.FrameLayout;
-import android.widget.RelativeLayout;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 public class HSVColorPickerDialog extends AlertDialog {
@@ -52,9 +53,19 @@ public class HSVColorPickerDialog extends AlertDialog {
         valueSlider = new HSVValueSlider(context);
         int padding = (int) (context.getResources().getDisplayMetrics().density * PADDING_DP);
         int borderSize = (int) (context.getResources().getDisplayMetrics().density * BORDER_DP);
-        RelativeLayout layout = new RelativeLayout(context);
+        LinearLayout layout = new LinearLayout(context);
+        layout.setMinimumWidth(Dips.dpToPx(1000));
+        layout.setMinimumHeight(Dips.dpToPx(1000));
 
-        RelativeLayout.LayoutParams lp = new RelativeLayout.LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT);
+        if (Dips.screenWidth() > Dips.screenHeight()) {
+            layout.setOrientation(LinearLayout.HORIZONTAL);
+        } else {
+            layout.setOrientation(LinearLayout.VERTICAL);
+
+        }
+
+        LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT);
+
         lp.bottomMargin = (int) (context.getResources().getDisplayMetrics().density * CONTROL_SPACING_DP);
         colorWheel.setListener(new OnColorSelectedListener() {
             @Override
@@ -72,10 +83,11 @@ public class HSVColorPickerDialog extends AlertDialog {
         valueSliderBorder.setBackgroundColor(BORDER_COLOR);
         valueSliderBorder.setPadding(borderSize, borderSize, borderSize, borderSize);
         valueSliderBorder.setId(2);
-        lp = new RelativeLayout.LayoutParams(LayoutParams.MATCH_PARENT, selectedColorHeight + 2 * borderSize);
-        lp.bottomMargin = (int) (context.getResources().getDisplayMetrics().density * CONTROL_SPACING_DP);
-        lp.addRule(RelativeLayout.BELOW, 1);
-        layout.addView(valueSliderBorder, lp);
+        lp = new LinearLayout.LayoutParams(LayoutParams.MATCH_PARENT, selectedColorHeight + 2 * borderSize);
+        // lp.bottomMargin = (int)
+        // (context.getResources().getDisplayMetrics().density *
+        // CONTROL_SPACING_DP);
+        // lp.addRule(RelativeLayout.BELOW, 1);
 
         valueSlider.setColor(initialColor, false);
         valueSlider.setListener(new OnColorSelectedListener() {
@@ -90,10 +102,10 @@ public class HSVColorPickerDialog extends AlertDialog {
 
         FrameLayout selectedColorborder = new FrameLayout(context);
         selectedColorborder.setBackgroundColor(BORDER_COLOR);
-        lp = new RelativeLayout.LayoutParams(LayoutParams.MATCH_PARENT, selectedColorHeight + 2 * borderSize);
+        lp = new LinearLayout.LayoutParams(LayoutParams.MATCH_PARENT, selectedColorHeight + 2 * borderSize);
+        lp.topMargin = Dips.dpToPx(10);
         selectedColorborder.setPadding(borderSize, borderSize, borderSize, borderSize);
-        lp.addRule(RelativeLayout.BELOW, 2);
-        layout.addView(selectedColorborder, lp);
+        // lp.addRule(RelativeLayout.BELOW, 2);
 
         selectedColorView = new TextView(context);
         selectedColorView.setBackgroundColor(selectedColor);
@@ -101,6 +113,14 @@ public class HSVColorPickerDialog extends AlertDialog {
         selectedColorView.setTextColor(Color.WHITE);
         selectedColorView.setGravity(Gravity.CENTER);
         selectedColorView.setTextSize(24);
+
+        LinearLayout childs = new LinearLayout(context);
+        childs.setOrientation(LinearLayout.VERTICAL);
+
+        childs.addView(valueSliderBorder, lp);
+        childs.addView(selectedColorborder, lp);
+
+        layout.addView(childs);
 
         selectedColorView.setOnClickListener(new View.OnClickListener() {
 
