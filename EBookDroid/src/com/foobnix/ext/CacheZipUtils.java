@@ -242,7 +242,7 @@ public class CacheZipUtils {
 		if (folder.isDirectory()) {
 			addFolderToZip(path, srcFile, zip);
 		} else {
-			byte[] buf = new byte[1024];
+            byte[] buf = new byte[BUFFER_SIZE];
 			int len;
 			FileInputStream in = new FileInputStream(srcFile);
 			zip.putNextEntry(new ZipEntry(path + "/" + folder.getName()));
@@ -274,4 +274,21 @@ public class CacheZipUtils {
 		}
 		file.delete();
 	}
+
+    public static void copyFile(File source, File dest) throws IOException {
+        InputStream is = null;
+        OutputStream os = null;
+        try {
+            is = new FileInputStream(source);
+            os = new FileOutputStream(dest);
+            byte[] buffer = new byte[BUFFER_SIZE];
+            int length;
+            while ((length = is.read(buffer)) > 0) {
+                os.write(buffer, 0, length);
+            }
+        } finally {
+            is.close();
+            os.close();
+        }
+    }
 }

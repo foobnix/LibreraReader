@@ -2,6 +2,8 @@
 #PATH=/home/papa/dev/apache-ant-1.9.4/bin:$PATH
 #PATH=/home/papa/dev/android-sdk-linux/platform-tools:$PATH
 
+./inc-index.sh
+
 ant clean-apk
 
 ant x86 droid

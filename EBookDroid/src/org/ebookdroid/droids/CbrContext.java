@@ -8,42 +8,49 @@ import org.ebookdroid.droids.mupdf.codec.PdfContext;
 
 import com.foobnix.android.utils.LOG;
 import com.foobnix.ext.CacheZipUtils;
+import com.foobnix.ext.CbzCbrExtractor;
 
 import junrar.ExtractArchive;
 
 public class CbrContext extends PdfContext {
 
-	File cacheFile;
+    File cacheFile;
 
-	@Override
-	public File getCacheFileName(String fileNameOriginal) {
-		cacheFile = new File(CacheZipUtils.CACHE_BOOK_DIR, fileNameOriginal.hashCode() + ".cbz");
-		return cacheFile;
-	}
+    @Override
+    public File getCacheFileName(String fileNameOriginal) {
+        cacheFile = new File(CacheZipUtils.CACHE_BOOK_DIR, fileNameOriginal.hashCode() + ".cbz");
+        return cacheFile;
+    }
 
-	@Override
-	public CodecDocument openDocumentInner(String fileName, String password) {
+    @Override
+    public CodecDocument openDocumentInner(String fileName, String password) {
 
-		if (!cacheFile.isFile()) {
+        if (!cacheFile.isFile()) {
+            LOG.d("Type no cache file");
+            try {
 
-			try {
-				String extractDir = CacheZipUtils.CACHE_BOOK_DIR + "/" + "CBR_" + fileName.hashCode();
+                if (CbzCbrExtractor.isZip(fileName)) {
+                    CacheZipUtils.copyFile(new File(fileName), cacheFile);
+                } else {
 
-				File cbrDir = new File(extractDir);
-				cbrDir.mkdirs();
+                    String extractDir = CacheZipUtils.CACHE_BOOK_DIR + "/" + "CBR_" + fileName.hashCode();
 
-				ExtractArchive.extractArchive(fileName, extractDir, password);
-				CacheZipUtils.zipFolder(extractDir, cacheFile.getPath());
+                    File cbrDir = new File(extractDir);
+                    cbrDir.mkdirs();
 
-				CacheZipUtils.deleteDir(cbrDir);
+                    ExtractArchive.extractArchive(fileName, extractDir, password);
+                    CacheZipUtils.zipFolder(extractDir, cacheFile.getPath());
 
-			} catch (Exception e) {
-				LOG.e(e);
-			}
-		}
+                    CacheZipUtils.deleteDir(cbrDir);
+                }
 
-		MuPdfDocument muPdfDocument = new MuPdfDocument(this, MuPdfDocument.FORMAT_PDF, cacheFile.getPath(), password);
-		return muPdfDocument;
-	}
+            } catch (Exception e) {
+                LOG.e(e);
+            }
+        }
+
+        MuPdfDocument muPdfDocument = new MuPdfDocument(this, MuPdfDocument.FORMAT_PDF, cacheFile.getPath(), password);
+        return muPdfDocument;
+    }
 
 }

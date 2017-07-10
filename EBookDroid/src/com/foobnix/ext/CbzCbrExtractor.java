@@ -18,58 +18,74 @@ import junrar.rarfile.FileHeader;
 
 public class CbzCbrExtractor {
 
-	public static byte[] getBookCover(String path) {
-		ByteArrayOutputStream out = new ByteArrayOutputStream();
-		try {
-			if (BookType.CBZ.is(path)) {
-				FileInputStream is = new FileInputStream(new File(path));
+    public static boolean isZip(String path) {
+        try {
+            byte[] buffer = new byte[2];
+            FileInputStream is = new FileInputStream(path);
+            is.read(buffer);
+            is.close();
+            String archType = new String(buffer);
+            if ("pk".equalsIgnoreCase(archType)) {
+                return true;
+            }
+        } catch (Exception e) {
+            LOG.e(e);
+        }
+        return false;
+    }
 
-				ZipArchiveInputStream zipInputStream = new ZipArchiveInputStream(is, "cp1251");
-				ZipArchiveEntry nextEntry = null;
+    public static byte[] getBookCover(String path) {
+        ByteArrayOutputStream out = new ByteArrayOutputStream();
+        try {
+            if (BookType.CBZ.is(path) || isZip(path)) {
+                FileInputStream is = new FileInputStream(new File(path));
 
-				List<String> names = new ArrayList<String>();
-				while ((nextEntry = zipInputStream.getNextZipEntry()) != null) {
-					if (nextEntry.getName().endsWith(".jpg") || nextEntry.getName().endsWith(".jpeg")) {
-						names.add(nextEntry.getName());
-					}
-				}
-				zipInputStream.close();
-				is.close();
-				Collections.sort(names);
+                ZipArchiveInputStream zipInputStream = new ZipArchiveInputStream(is, "cp1251");
+                ZipArchiveEntry nextEntry = null;
 
-				is = new FileInputStream(new File(path));
+                List<String> names = new ArrayList<String>();
+                while ((nextEntry = zipInputStream.getNextZipEntry()) != null) {
+                    if (nextEntry.getName().endsWith(".jpg") || nextEntry.getName().endsWith(".jpeg")) {
+                        names.add(nextEntry.getName());
+                    }
+                }
+                zipInputStream.close();
+                is.close();
+                Collections.sort(names);
 
-				zipInputStream = new ZipArchiveInputStream(is, "cp1251");
-				nextEntry = null;
+                is = new FileInputStream(new File(path));
 
-				String first = names.get(0);
-				while ((nextEntry = zipInputStream.getNextZipEntry()) != null) {
-					if (nextEntry.getName().equals(first)) {
-						CacheZipUtils.writeToStream(zipInputStream, out);
-						break;
-					}
-				}
-				zipInputStream.close();
-				is.close();
+                zipInputStream = new ZipArchiveInputStream(is, "cp1251");
+                nextEntry = null;
 
-			} else if (BookType.CBR.is(path)) {
-				FileInputStream is = new FileInputStream(new File(path));
-				Archive archive = new Archive(new File(path));
-				FileHeader fileHeader = archive.getFileHeaders().get(0);
-				if(fileHeader.isDirectory()){
-					fileHeader = archive.getFileHeaders().get(1);
-					
-				}
-				LOG.d("EXtract CBR", fileHeader.getFileNameString());
-				archive.extractFile(fileHeader, out);
-				archive.close();
-				is.close();
-			}
+                String first = names.get(0);
+                while ((nextEntry = zipInputStream.getNextZipEntry()) != null) {
+                    if (nextEntry.getName().equals(first)) {
+                        CacheZipUtils.writeToStream(zipInputStream, out);
+                        break;
+                    }
+                }
+                zipInputStream.close();
+                is.close();
 
-		} catch (Exception e) {
-			LOG.e(e);
-		}
-		return out.toByteArray();
-	}
+            } else if (BookType.CBR.is(path)) {
+                FileInputStream is = new FileInputStream(new File(path));
+                Archive archive = new Archive(new File(path));
+                FileHeader fileHeader = archive.getFileHeaders().get(0);
+                if (fileHeader.isDirectory()) {
+                    fileHeader = archive.getFileHeaders().get(1);
+
+                }
+                LOG.d("EXtract CBR", fileHeader.getFileNameString());
+                archive.extractFile(fileHeader, out);
+                archive.close();
+                is.close();
+            }
+
+        } catch (Exception e) {
+            LOG.e(e);
+        }
+        return out.toByteArray();
+    }
 
 }

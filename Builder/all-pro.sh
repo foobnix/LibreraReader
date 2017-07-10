@@ -1,3 +1,4 @@
+./inc-index.sh
 
 ant clean-apk
 

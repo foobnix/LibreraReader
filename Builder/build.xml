@@ -2,13 +2,6 @@
 <project name="Builder">
 	<property file="../Builder/local.properties" />
 
-
-	<target name="test1">
-		<propertyfile file="my.properties">
-			<entry key="version.code.index" type="int" operation="+" value="1" />
-		</propertyfile>
-	</target>
-
 	<target name="prepare-packages">
 
 		<replaceregexp file="../EbookaPDF/AndroidManifest.xml"
@@ -70,7 +63,7 @@
 		<replaceregexp file="../EbookaPDF/AndroidManifest.xml"
 			match="android:versionCode=(.*)" replace='android:versionCode="${pdf.reader.code}"' />
 		<replaceregexp file="../EbookaPDF/AndroidManifest.xml"
-			match='android:versionName=(.*)" >' replace='android:versionName="${version.code}" >' />
+			match='android:versionName=(.*)" >' replace='android:versionName="${version.code}.${version.code.index}" >' />
 
 
 
@@ -190,10 +183,10 @@
 
 	<target name="copy">
 		<echo>Build:
-			${pdf.app.name}-${version.code}-c${pdf.reader.code}-${pdf.app.platform}.apk
+			${pdf.app.name}-${version.code}.${version.code.index}-c${pdf.reader.code}-${pdf.app.platform}.apk
 		</echo>
 		<copy file="../EbookaPDF/bin/EbookaPDF-release.apk"
-			tofile="apk/${pdf.export.name}-${version.code}-c${pdf.reader.code}-${pdf.app.platform}.apk"
+			tofile="apk/${pdf.export.name}-${version.code}.${version.code.index}-c${pdf.reader.code}-${pdf.app.platform}.apk"
 			overwrite="true" />
 
 
@@ -246,11 +239,11 @@
 
 		<antcall target="copy" inheritAll="true" />
 		<copy file="../EbookaPDF/bin/EbookaPDF-release.apk"
-			tofile="${dropbox}/${pdf.export.name}-${version.code}-c${pdf.reader.code}-${pdf.app.platform}.apk"
+			tofile="${dropbox}/${pdf.export.name}-${version.code}.${version.code.index}-c${pdf.reader.code}-${pdf.app.platform}.apk"
 			overwrite="true" />
 
 		<copy file="../EbookaPDF/bin/EbookaPDF-release.apk"
-			tofile="${dropbox.root}/${version.code}/${pdf.export.name}-${version.code}-c${pdf.reader.code}-${pdf.app.platform}.apk"
+			tofile="${dropbox.root}/${version.code}.${version.code.index}/${pdf.export.name}-${version.code}.${version.code.index}-c${pdf.reader.code}-${pdf.app.platform}.apk"
 			overwrite="true" />
 
 
@@ -277,7 +270,7 @@
 
 		<antcall target="copy" inheritAll="true" />
 		<copy file="../EbookaPDF/bin/EbookaPDF-release.apk"
-			tofile="${dropbox}/${pdf.export.name}-${version.code}-c${pdf.reader.code}-${pdf.app.platform}.apk"
+			tofile="${dropbox}/${pdf.export.name}-${version.code}.${version.code.index}-c${pdf.reader.code}-${pdf.app.platform}.apk"
 			overwrite="true" />
 
 
@@ -307,7 +300,7 @@
 
 		<antcall target="copy" inheritAll="true" />
 		<copy file="../EbookaPDF/bin/EbookaPDF-release.apk"
-			tofile="${dropbox}/${pdf.export.name}-${version.code}-c${pdf.reader.code}-${pdf.app.platform}.apk"
+			tofile="${dropbox}/${pdf.export.name}-${version.code}.${version.code.index}-c${pdf.reader.code}-${pdf.app.platform}.apk"
 			overwrite="true" />
 
 
@@ -336,7 +329,7 @@
 
 		<antcall target="copy" inheritAll="true" />
 		<copy file="../EbookaPDF/bin/EbookaPDF-release.apk"
-			tofile="${dropbox}/${pdf.export.name}-${version.code}-c${pdf.reader.code}-${pdf.app.platform}.apk"
+			tofile="${dropbox}/${pdf.export.name}-${version.code}.${version.code.index}-c${pdf.reader.code}-${pdf.app.platform}.apk"
 			overwrite="true" />
 	</target>
 
