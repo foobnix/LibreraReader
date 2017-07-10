@@ -1,11 +1,14 @@
 package com.foobnix.ext;
 
 import java.io.BufferedOutputStream;
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -16,6 +19,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipInputStream;
+import java.util.zip.ZipOutputStream;
 
 import org.apache.commons.compress.archivers.ArchiveEntry;
 import org.apache.commons.compress.archivers.zip.ZipArchiveInputStream;
@@ -42,6 +46,42 @@ public class EpubExtractor extends BaseExtractor {
 
     public static EpubExtractor get() {
         return inst;
+    }
+
+    public static void proccessHypens(String input, String output) {
+        try {
+
+            LOG.d("proccessHypens", input, output);
+
+            FileInputStream inputStream = new FileInputStream(new File(input));
+            ZipArchiveInputStream zipInputStream = new ZipArchiveInputStream(inputStream);
+            ArchiveEntry nextEntry = null;
+
+            ZipOutputStream zos = new ZipOutputStream(new FileOutputStream(new File(output)));
+            zos.setLevel(0);
+
+            while ((nextEntry = zipInputStream.getNextEntry()) != null) {
+                String name = nextEntry.getName();
+                String nameLow = name.toLowerCase();
+
+                if (!name.endsWith("container.xml") && (nameLow.endsWith("html") || nameLow.endsWith("htm") || nameLow.endsWith("xml"))) {
+                    LOG.d("nextEntry HTML", name);
+                    ByteArrayOutputStream hStream = Fb2Extractor.generateHyphenFile(new InputStreamReader(zipInputStream));
+                    Fb2Extractor.writeToZipNoClose(zos, name, new ByteArrayInputStream(hStream.toByteArray()));
+                } else {
+                    LOG.d("nextEntry", name);
+                    Fb2Extractor.writeToZipNoClose(zos, name, zipInputStream);
+                }
+
+            }
+            zipInputStream.close();
+            inputStream.close();
+
+            zos.close();
+        } catch (Exception e) {
+            LOG.e(e);
+        }
+
     }
 
     @Override

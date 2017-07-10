@@ -392,6 +392,7 @@ public class Fb2Extractor extends BaseExtractor {
                         line = line.replace("&nbsp;", " ");
                         line = HypenUtils.applyHypnes(line);
                         // line = line.trim();
+                        LOG.d("HHH", line);
 
                     }
                 }
@@ -402,6 +403,35 @@ public class Fb2Extractor extends BaseExtractor {
         input.close();
         writer.close();
 
+        return out;
+    }
+
+    public static ByteArrayOutputStream generateHyphenFile(InputStreamReader inputStream) throws Exception {
+        BufferedReader input = new BufferedReader(inputStream);
+
+        ByteArrayOutputStream out = new ByteArrayOutputStream();
+        PrintWriter writer = new PrintWriter(out);
+        String line;
+
+        HypenUtils.applyLanguage(BookCSS.get().hypenLang);
+
+        while ((line = input.readLine()) != null) {
+
+            String subLine[] = line.split("</");
+
+            for (int i = 0; i < subLine.length; i++) {
+                if (i == 0) {
+                    line = subLine[i];
+                } else {
+                    line = "</" + subLine[i];
+                }
+
+                line = line.replace("&nbsp;", " ");
+                line = HypenUtils.applyHypnes(line);
+                writer.print(line);
+            }
+        }
+        writer.close();
         return out;
     }
 
@@ -535,9 +565,14 @@ public class Fb2Extractor extends BaseExtractor {
                 "</navPoint>"; //
     }
 
-    public void writeToZip(ZipOutputStream zos, String name, InputStream stream) throws IOException {
+    public static void writeToZip(ZipOutputStream zos, String name, InputStream stream) throws IOException {
         zos.putNextEntry(new ZipEntry(name));
         zipCopy(stream, zos);
+    }
+
+    public static void writeToZipNoClose(ZipOutputStream zos, String name, InputStream stream) throws IOException {
+        zos.putNextEntry(new ZipEntry(name));
+        zipCopyNoClose(stream, zos);
     }
 
     public void writeToZip(ZipOutputStream zos, String name, String content) throws IOException {
@@ -546,7 +581,7 @@ public class Fb2Extractor extends BaseExtractor {
 
     private static final int BUFFER_SIZE = 16 * 1024;
 
-    public void zipCopy(InputStream inputStream, OutputStream zipStream) throws IOException {
+    public static void zipCopy(InputStream inputStream, OutputStream zipStream) throws IOException {
 
         byte[] bytesIn = new byte[BUFFER_SIZE];
         int read = 0;
@@ -554,6 +589,15 @@ public class Fb2Extractor extends BaseExtractor {
             zipStream.write(bytesIn, 0, read);
         }
         inputStream.close();
+    }
+
+    public static void zipCopyNoClose(InputStream inputStream, OutputStream zipStream) throws IOException {
+
+        byte[] bytesIn = new byte[BUFFER_SIZE];
+        int read = 0;
+        while ((read = inputStream.read(bytesIn)) != -1) {
+            zipStream.write(bytesIn, 0, read);
+        }
     }
 
 }

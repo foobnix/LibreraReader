@@ -13,6 +13,7 @@ import com.foobnix.ext.EpubExtractor;
 import com.foobnix.ext.FooterNote;
 import com.foobnix.ext.MobiExtract;
 import com.foobnix.pdf.info.JsonHelper;
+import com.foobnix.pdf.info.model.BookCSS;
 
 public class MobiContext extends PdfContext {
 
@@ -23,8 +24,8 @@ public class MobiContext extends PdfContext {
 
     @Override
     public File getCacheFileName(String fileName) {
-        originalHashCode = fileName.hashCode();
-        cacheFile = new File(CacheZipUtils.CACHE_BOOK_DIR, fileName.hashCode() + "" + fileName.hashCode() + ".epub");
+        originalHashCode = (fileName + BookCSS.get().isAutoHypens + BookCSS.get().hypenLang).hashCode();
+        cacheFile = new File(CacheZipUtils.CACHE_BOOK_DIR, originalHashCode + "" + originalHashCode + ".epub");
         return cacheFile;
     }
 
@@ -37,8 +38,13 @@ public class MobiContext extends PdfContext {
             fileNameEpub = cacheFile.getPath();
         } else {
             try {
-                FooterNote extract = MobiExtract.extract(fileName, CacheZipUtils.CACHE_BOOK_DIR.getPath(), originalHashCode + "");
+                int outName = BookCSS.get().isAutoHypens ? "temp".hashCode() : originalHashCode;
+                FooterNote extract = MobiExtract.extract(fileName, CacheZipUtils.CACHE_BOOK_DIR.getPath(), outName + "");
                 fileNameEpub = extract.path;
+                if (BookCSS.get().isAutoHypens) {
+                    EpubExtractor.proccessHypens(fileNameEpub, cacheFile.getPath());
+                    fileNameEpub = cacheFile.getPath();
+                }
                 LOG.d("new file name", fileName);
             } catch (Exception e) {
                 LOG.e(e);

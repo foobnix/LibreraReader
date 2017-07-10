@@ -38,7 +38,7 @@ public class HypenUtils {
                 continue;
             }
 
-            if (w.contains("<") || w.contains(">")) {
+            if (w.contains("<") || w.contains(">") || w.contains("=")) {
                 res.append(w);
                 continue;
             }

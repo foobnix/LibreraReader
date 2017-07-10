@@ -12,6 +12,7 @@ import com.foobnix.android.utils.MemoryUtils;
 import com.foobnix.ext.CacheZipUtils;
 import com.foobnix.ext.EpubExtractor;
 import com.foobnix.pdf.info.JsonHelper;
+import com.foobnix.pdf.info.model.BookCSS;
 
 public class EpubContext extends PdfContext {
 
@@ -19,14 +20,20 @@ public class EpubContext extends PdfContext {
 
     @Override
     public File getCacheFileName(String fileNameOriginal) {
-        cacheFile = new File(CacheZipUtils.CACHE_BOOK_DIR, fileNameOriginal.hashCode() + ".epub");
+        cacheFile = new File(CacheZipUtils.CACHE_BOOK_DIR, (fileNameOriginal + BookCSS.get().isAutoHypens + BookCSS.get().hypenLang).hashCode() + ".epub");
         return cacheFile;
     }
 
     @Override
     public CodecDocument openDocumentInner(final String fileName, String password) {
         LOG.d("Context", "EpubContext", fileName);
-        final MuPdfDocument muPdfDocument = new MuPdfDocument(this, MuPdfDocument.FORMAT_PDF, fileName, password);
+
+        if (BookCSS.get().isAutoHypens && !cacheFile.isFile()) {
+            EpubExtractor.proccessHypens(fileName, cacheFile.getPath());
+        }
+
+        String bookPath = BookCSS.get().isAutoHypens ? cacheFile.getPath() : fileName;
+        final MuPdfDocument muPdfDocument = new MuPdfDocument(this, MuPdfDocument.FORMAT_PDF, bookPath, password);
 
         final File jsonFile = new File(cacheFile + ".json");
         if (jsonFile.isFile()) {

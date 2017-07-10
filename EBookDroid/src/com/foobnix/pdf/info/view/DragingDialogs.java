@@ -2693,10 +2693,7 @@ public class DragingDialogs {
                     }
                 });
                 // hypens
-                boolean isSupportHypens = BookType.TXT.is(controller.getCurrentBook().getPath()) || //
-                BookType.FB2.is(controller.getCurrentBook().getPath()) || //
-                BookType.RTF.is(controller.getCurrentBook().getPath()) || //
-                BookType.HTML.is(controller.getCurrentBook().getPath()); //
+                boolean isSupportHypens = controller.isTextFormat();
 
                 CheckBox isPreText = (CheckBox) inflate.findViewById(R.id.isAutoHypens);
                 isPreText.setVisibility(isSupportHypens ? View.VISIBLE : View.GONE);
