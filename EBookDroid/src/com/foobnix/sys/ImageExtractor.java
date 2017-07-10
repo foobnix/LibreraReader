@@ -160,7 +160,8 @@ public class ImageExtractor implements ImageDownloader {
         String path = pageUrl.getPath();
 
         boolean isNeedDisableMagicInPDFDjvu = false;
-        if (pageUrl.getPage() == COVER_PAGE || pageUrl.getPage() == COVER_PAGE_NO_EFFECT) {
+        LOG.d("Page Number", pageUrl.getPage());
+        if (pageUrl.getPage() == COVER_PAGE || pageUrl.getPage() == COVER_PAGE_NO_EFFECT || pageUrl.getPage() == COVER_PAGE_WITH_EFFECT) {
             isNeedDisableMagicInPDFDjvu = true;
         }
         if (page < 0) {
@@ -258,7 +259,7 @@ public class ImageExtractor implements ImageDownloader {
 
         codecDocumentLocal.getPage(page).recycle();
 
-        if (pageUrl.getPage() != COVER_PAGE && MagicHelper.isNeedBookBackgroundImage()) {
+        if (!isNeedDisableMagicInPDFDjvu && MagicHelper.isNeedBookBackgroundImage()) {
             bitmap = MagicHelper.updateWithBackground(bitmap);
         }
 

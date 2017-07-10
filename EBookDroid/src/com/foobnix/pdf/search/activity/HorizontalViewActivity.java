@@ -60,7 +60,6 @@ import android.os.Handler;
 import android.os.Parcelable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
-import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.view.ViewPager.OnPageChangeListener;
 import android.text.InputType;
 import android.view.KeyEvent;
@@ -718,6 +717,7 @@ public class HorizontalViewActivity extends FragmentActivity {
             TTSModule.getInstance().shutdownTTS();
         }
         PageImageState.get().clearResouces();
+
     }
 
     public void updateReadPercent() {
@@ -1085,12 +1085,7 @@ public class HorizontalViewActivity extends FragmentActivity {
         AppState.get().save(this);
         if (ExtUtils.isTextFomat(getIntent())) {
             updateReadPercent();
-            if (Build.VERSION.SDK_INT >= 11) {
-                recreate();
-            } else {
-                finish();
-                startActivity(getIntent());
-            }
+            recreate();
         } else {
             PageImageState.get().isAutoFit = true;
             if (viewPager != null) {
@@ -1106,12 +1101,12 @@ public class HorizontalViewActivity extends FragmentActivity {
         }
     }
 
-    FragmentStatePagerAdapter pagerAdapter;
+    UpdatableFragmentPagerAdapter pagerAdapter;
 
     public void createAdapter() {
         IMG.clearMemoryCache();
         pagerAdapter = null;
-        pagerAdapter = new FragmentStatePagerAdapter(getSupportFragmentManager()) {
+        pagerAdapter = new UpdatableFragmentPagerAdapter(getSupportFragmentManager()) {
 
             @Override
             public int getCount() {
@@ -1133,8 +1128,7 @@ public class HorizontalViewActivity extends FragmentActivity {
             @Override
             public Parcelable saveState() {
                 try {
-                    // return super.saveState();
-                    return null;
+                    return super.saveState();
                 } catch (Exception e) {
                     Toast.makeText(HorizontalViewActivity.this, R.string.msg_unexpected_error, Toast.LENGTH_LONG).show();
                     LOG.e(e);
@@ -1145,12 +1139,13 @@ public class HorizontalViewActivity extends FragmentActivity {
             @Override
             public void restoreState(Parcelable arg0, ClassLoader arg1) {
                 try {
-                    // super.restoreState(arg0, arg1);
+                    super.restoreState(arg0, arg1);
                 } catch (Exception e) {
                     Toast.makeText(HorizontalViewActivity.this, R.string.msg_unexpected_error, Toast.LENGTH_LONG).show();
                     LOG.e(e);
                 }
             }
+
 
         };
         viewPager.setAdapter(pagerAdapter);

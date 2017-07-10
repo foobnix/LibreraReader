@@ -286,7 +286,7 @@ public class WrapperGuestureDetector extends SimpleOnGestureListener implements 
             return;
         }
 
-        if (SettingsManager.getBookSettings().cropPages) {
+        if (SettingsManager.getBookSettings() != null && SettingsManager.getBookSettings().cropPages) {
             docCtrl.onCrop();
         }
         AppState.get().selectedText = avc.processLongTap(true, e, e);

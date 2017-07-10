@@ -3,6 +3,7 @@ package com.foobnix.ui2;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Locale;
 
@@ -152,11 +153,27 @@ public class AppDB {
     }
 
     public List<FileMeta> getRecent() {
-        return fileMetaDao.queryBuilder().where(FileMetaDao.Properties.IsRecent.eq(1)).orderDesc(FileMetaDao.Properties.IsRecentTime).list();
+        List<FileMeta> list = fileMetaDao.queryBuilder().where(FileMetaDao.Properties.IsRecent.eq(1)).orderDesc(FileMetaDao.Properties.IsRecentTime).list();
+        return removeNotExist(list);
+    }
+
+    public static List<FileMeta> removeNotExist(List<FileMeta> items) {
+        if (items == null || items.isEmpty()) {
+            return new ArrayList<FileMeta>();
+        }
+        Iterator<FileMeta> iterator = items.iterator();
+        while (iterator.hasNext()) {
+            FileMeta next = iterator.next();
+            if (!new File(next.getPath()).isFile()) {
+                iterator.remove();
+            }
+        }
+        return items;
     }
 
     public FileMeta getRecentLast() {
         List<FileMeta> list = fileMetaDao.queryBuilder().where(FileMetaDao.Properties.IsRecent.eq(1)).orderDesc(FileMetaDao.Properties.IsRecentTime).limit(1).list();
+        removeNotExist(list);
         if (list == null || list.isEmpty()) {
             return null;
         }
@@ -174,7 +191,7 @@ public class AppDB {
             }
         }
 
-        return list;
+        return removeNotExist(list);
     }
 
     public void addRecent(String path) {
@@ -308,7 +325,9 @@ public class AppDB {
 
     public List<FileMeta> getStarsFiles() {
         QueryBuilder<FileMeta> where = fileMetaDao.queryBuilder();
-        return where.where(FileMetaDao.Properties.IsStar.eq(1), where.or(FileMetaDao.Properties.CusType.isNull(), FileMetaDao.Properties.CusType.eq(FileMetaAdapter.DISPLAY_TYPE_FILE))).orderDesc(FileMetaDao.Properties.IsStarTime).list();
+        List<FileMeta> list = where.where(FileMetaDao.Properties.IsStar.eq(1), where.or(FileMetaDao.Properties.CusType.isNull(), FileMetaDao.Properties.CusType.eq(FileMetaAdapter.DISPLAY_TYPE_FILE)))
+                .orderDesc(FileMetaDao.Properties.IsStarTime).list();
+        return removeNotExist(list);
     }
 
     public List<FileMeta> getStarsFolder() {

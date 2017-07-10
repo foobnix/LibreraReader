@@ -56,7 +56,7 @@ public class ColorsDialog {
 
     Handler handler;
 
-    public ColorsDialog(final FragmentActivity c, final boolean isDayMode, int colorText, int colorBg, boolean onlyColorBg, final ColorsDialogResult colorsDialogResult) {
+    public ColorsDialog(final FragmentActivity c, final boolean isDayMode, int colorText, int colorBg, boolean onlyColorBg, final boolean soligBG, final ColorsDialogResult colorsDialogResult) {
         super();
         final View view = LayoutInflater.from(c).inflate(R.layout.dialog_colors, null, false);
 
@@ -443,11 +443,10 @@ public class ColorsDialog {
 
             @Override
             public void run() {
-                boolean isNeed = (isDayMode && AppState.get().isUseBGImageDay) || (!isDayMode && AppState.get().isUseBGImageNight);
-                if (isNeed) {
-                    isImage.performClick();
-                } else {
+                if (soligBG) {
                     isColor.performClick();
+                } else {
+                    isImage.performClick();
                 }
             }
         }, 25);

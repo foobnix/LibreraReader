@@ -81,6 +81,7 @@ public class ImagePageFragment extends Fragment {
 
     int loadImageId;
 
+
     public void loadImage() {
         if (getPriority() > 2) {
             LOG.d("ImagePageFragment1  skip loading page ", page, "getPriority", getPriority());
@@ -95,6 +96,10 @@ public class ImagePageFragment extends Fragment {
             public void onLoadingStarted(String arg0, View arg1) {
                 LOG.d("ImagePageFragment1 onLoadingStarted ", page);
                 count++;
+
+                if (LOG.isEnable) {
+                    text.setText("onLoadingStarted");
+                }
             }
 
             @Override
@@ -103,6 +108,10 @@ public class ImagePageFragment extends Fragment {
                 // text.setVisibility(View.GONE);
                 // loadImage();
                 count--;
+
+                if (LOG.isEnable) {
+                    text.setText("onLoadingFailed");
+                }
             }
 
             @Override
@@ -116,24 +125,29 @@ public class ImagePageFragment extends Fragment {
                     bitmap = null;
                 }
                 count--;
+
+                if (LOG.isEnable) {
+                    text.setText("onLoadingComplete");
+                }
             }
 
             @Override
             public void onLoadingCancelled(String arg0, View arg1) {
-                    count--;
-                    text.setText("Cancelled");
-                    loadImage();
+                count--;
+                loadImage();
+
+                if (LOG.isEnable) {
+                    text.setText("onLoadingCancelled");
+                }
             }
         });
     }
 
-    Runnable callback = new Runnable() {
+    Runnable callback=new Runnable(){
 
-        @Override
-        public void run() {
+    @Override public void run(){
 
-            loadImage();
-        }
+    loadImage();}
 
     };
     private String path;

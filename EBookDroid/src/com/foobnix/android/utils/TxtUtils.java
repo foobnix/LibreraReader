@@ -235,7 +235,7 @@ public class TxtUtils {
 
     public static boolean isFooterNote(String text) {
         Pattern p = Pattern.compile("[\\[{][0-9]+[}\\]]");
-        return text != null && text.length() < 25 && (p.matcher(text).find());
+        return text != null && text.length() < 30 && (p.matcher(text).find());
     }
 
     public static boolean isNumber(String text) {

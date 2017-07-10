@@ -331,7 +331,7 @@ public class AppState {
     public int tapzoneSize = 25;
     public int allocatedMemorySize = (int) MemoryUtils.RECOMENDED_MEMORY_SIZE;
     public boolean isScrollAnimation = true;
-    public String imageFormat = JPG;
+    public String imageFormat = PNG;
     public boolean isCustomizeBgAndColors = false;
     public boolean isVibration = true;
     public boolean isLockPDF = false;

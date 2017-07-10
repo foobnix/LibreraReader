@@ -874,7 +874,6 @@ public class DragingDialogs {
 
                         anchor.removeAllViews();
 
-
                         final PopupMenu popupMenu = new PopupMenu(anchor.getContext(), onTranslate);
 
                         final Map<String, String> providers = AppState.getDictionaries(editText.getText().toString().trim());
@@ -3201,7 +3200,12 @@ public class DragingDialogs {
                 final List<Integer> orIds = Arrays.asList(ActivityInfo.SCREEN_ORIENTATION_SENSOR, ActivityInfo.SCREEN_ORIENTATION_SENSOR_LANDSCAPE, ActivityInfo.SCREEN_ORIENTATION_SENSOR_PORTRAIT);
 
                 final TextView screenOrientation = (TextView) inflate.findViewById(R.id.screenOrientation);
-                screenOrientation.setText(orientations.get(orIds.indexOf(AppState.getInstance().orientation)));
+                try {
+                    screenOrientation.setText(orientations.get(orIds.indexOf(AppState.getInstance().orientation)));
+                } catch (Exception e) {
+                    AppState.getInstance().orientation = ActivityInfo.SCREEN_ORIENTATION_SENSOR;
+                    screenOrientation.setText(orientations.get(orIds.indexOf(AppState.getInstance().orientation)));
+                }
 
                 TxtUtils.underlineTextView(screenOrientation);
 
@@ -3270,7 +3274,9 @@ public class DragingDialogs {
 
                     @Override
                     public void onClick(View v) {
-                        new ColorsDialog((FragmentActivity) controller.getActivity(), true, AppState.get().colorDayText, AppState.get().colorDayBg, false, new ColorsDialogResult() {
+                        boolean isSolid = !AppState.get().isUseBGImageDay;
+
+                        new ColorsDialog((FragmentActivity) controller.getActivity(), true, AppState.get().colorDayText, AppState.get().colorDayBg, false, isSolid, new ColorsDialogResult() {
 
                             @Override
                             public void onChooseColor(int colorText, int colorBg) {
@@ -3299,7 +3305,8 @@ public class DragingDialogs {
 
                     @Override
                     public void onClick(View v) {
-                        new ColorsDialog((FragmentActivity) controller.getActivity(), false, AppState.get().colorNigthText, AppState.get().colorNigthBg, false, new ColorsDialogResult() {
+                        boolean isSolid = !AppState.get().isUseBGImageNight;
+                        new ColorsDialog((FragmentActivity) controller.getActivity(), false, AppState.get().colorNigthText, AppState.get().colorNigthBg, false, isSolid, new ColorsDialogResult() {
 
                             @Override
                             public void onChooseColor(int colorText, int colorBg) {
@@ -3579,7 +3586,7 @@ public class DragingDialogs {
 
                                 @Override
                                 public void onClick(View v) {
-                                    new ColorsDialog((FragmentActivity) controller.getActivity(), (Boolean) t1Img.getTag(), (Integer) t3Text.getTag(), (Integer) t2BG.getTag(), true, new ColorsDialogResult() {
+                                    new ColorsDialog((FragmentActivity) controller.getActivity(), (Boolean) t1Img.getTag(), (Integer) t3Text.getTag(), (Integer) t2BG.getTag(), true, true, new ColorsDialogResult() {
 
                                         @Override
                                         public void onChooseColor(int colorText, int colorBg) {

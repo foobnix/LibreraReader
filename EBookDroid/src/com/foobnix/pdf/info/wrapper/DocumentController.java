@@ -137,8 +137,6 @@ public abstract class DocumentController {
 
     public abstract void cleanImageMatrix();
 
-
-
     public void checkReadingTimer() {
         long timeout = System.currentTimeMillis() - readTimeStart;
         if (timeout >= TimeUnit.MINUTES.toMillis(AppState.get().remindRestTime)) {
@@ -248,8 +246,6 @@ public abstract class DocumentController {
         Keyboards.hideNavigation(a);
     }
 
-
-
     public static void runNormalScreen(final Activity a) {
         a.getWindow().addFlags(WindowManager.LayoutParams.FLAG_FORCE_NOT_FULLSCREEN);
         a.getWindow().clearFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
@@ -313,19 +309,10 @@ public abstract class DocumentController {
         }
     }
 
-    public static void restartActivity(Activity a) {
-        a.finish();
-        a.startActivity(a.getIntent());
-    }
-
     public void restartActivity() {
         saveAppState();
-        if (Build.VERSION.SDK_INT >= 11) {
-            activity.recreate();
-        } else {
-            activity.finish();
-            activity.startActivity(activity.getIntent());
-        }
+        activity.finish();
+        activity.startActivity(activity.getIntent());
 
     }
 
