@@ -313,7 +313,6 @@ public abstract class DocumentController {
         saveAppState();
         activity.finish();
         activity.startActivity(activity.getIntent());
-
     }
 
     public void saveAppState() {

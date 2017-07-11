@@ -249,17 +249,7 @@ public class HorizontalViewActivity extends FragmentActivity {
             @Override
             public void onClick(final View v) {
                 AppState.get().isInvert = !AppState.get().isInvert;
-                if (true) {
-                    // AppState.getInstance().setWhiteTheme(AppState.getInstance().isInvert);
-                    documentController.restartActivity();
-                    return;
-                }
-                if (ExtUtils.isTextFomat(documentController.getCurrentBook().getPath())) {
-                    // AppState.getInstance().setWhiteTheme(AppState.getInstance().isInvert);
-                    documentController.restartActivity();
-                } else {
-                    reloadDoc.run();
-                }
+                documentController.restartActivity();
             }
         });
         dayNightButton.setImageResource(!AppState.get().isInvert ? R.drawable.glyphicons_232_sun : R.drawable.glyphicons_2_moon);
