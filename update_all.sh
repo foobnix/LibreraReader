@@ -3,6 +3,7 @@ git clone https://github.com/dandar3/android-google-play-services-ads-lite googl
 git clone https://github.com/dandar3/android-google-play-services-base google-play-services-base
 git clone https://github.com/dandar3/android-google-play-services-basement google-play-services-basement
 git clone https://github.com/dandar3/android-google-play-services-clearcut google-play-services-clearcut
+git clone https://github.com/dandar3/android-google-play-services-safetynet google-play-services-safetynet
 git clone https://github.com/dandar3/android-google-play-services-gass google-play-services-gass
 git clone https://github.com/dandar3/android-google-play-services-tasks google-play-services-tasks
 git clone https://github.com/dandar3/android-google-play-services-analytics google-play-services-analytics

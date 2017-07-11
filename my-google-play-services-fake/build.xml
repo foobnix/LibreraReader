@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-	<project name="google_play_services_fake" default="help">
+	<project name="my-google-play-services-fake" default="help">
 
        <property file="../Builder/ant.properties" />
     <property file="../Builder/local.properties" />

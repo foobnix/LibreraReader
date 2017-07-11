@@ -158,8 +158,8 @@
 			replace="" />
 
 		<replaceregexp file="../EBookDroid/project.properties"
-			match='android.library.reference.1=../google-play-services_lib'
-			replace='android.library.reference.1=../google_play_services_fake' />
+			match='android.library.reference.1=../my-google-play-services-lib'
+			replace='android.library.reference.1=../my-google-play-services-fake' />
 
 
 	</target>
@@ -176,8 +176,8 @@
 			replace='&lt;!-- INTERNET -->&lt;uses-permission android:name="android.permission.INTERNET" />' />
 
 		<replaceregexp file="../EBookDroid/project.properties"
-			match='android.library.reference.1=../google_play_services_fake'
-			replace='android.library.reference.1=../google-play-services_lib' />
+			match='android.library.reference.1=../my-google-play-services-fake'
+			replace='android.library.reference.1=../my-google-play-services-lib' />
 
 	</target>
 
@@ -209,10 +209,10 @@
 
 
 		<subant target="clean">
-			<fileset dir="../google-play-services_lib/" includes="build.xml" />
+			<fileset dir="../my-google-play-services-lib/" includes="build.xml" />
 		</subant>
 		<subant target="clean">
-			<fileset dir="../google_play_services_fake/" includes="build.xml" />
+			<fileset dir="../my-google-play-services-fake/" includes="build.xml" />
 		</subant>
 	</target>
 
