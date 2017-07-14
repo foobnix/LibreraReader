@@ -362,4 +362,5 @@
    <string name="close_application">응용 프로그램 닫기</string>
    <string name="go_to_the_library">도서관에 가라.</string>
    <string name="book_styles">책 스타일</string>
+   <string name="language">언어</string>
 </resources>

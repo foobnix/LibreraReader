@@ -305,10 +305,16 @@ public class ViewerActivity extends AbstractActionActivity<ViewerActivity, Viewe
 
     @Override
     public boolean onKeyUp(final int keyCode, final KeyEvent event) {
+        LOG.d("onKeyUp");
         if (keyCode == KeyEvent.KEYCODE_BACK && event.isTracking() && !event.isCanceled()) {
             getController().getWrapperControlls().checkBack(event);
             return true;
         }
+
+        if (getController().getWrapperControlls().dispatchKeyEventUp(event)) {
+            return true;
+        }
+
         return isMyKey;
     }
 
@@ -316,13 +322,14 @@ public class ViewerActivity extends AbstractActionActivity<ViewerActivity, Viewe
 
     @Override
     public boolean onKeyDown(final int keyCode, final KeyEvent event) {
+        LOG.d("onKeyDown");
         isMyKey = false;
         if (keyCode == KeyEvent.KEYCODE_BACK) {
             event.startTracking();
             return true;
         }
 
-        if (getController().getWrapperControlls().dispatchKeyEvent(event)) {
+        if (getController().getWrapperControlls().dispatchKeyEventDown(event)) {
             isMyKey = true;
             return true;
         }

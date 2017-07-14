@@ -362,4 +362,5 @@
    <string name="close_application">Başvuruyu kapat</string>
    <string name="go_to_the_library">Kütüphaneye git</string>
    <string name="book_styles">Kitap stilleri</string>
+   <string name="language">Dil</string>
 </resources>

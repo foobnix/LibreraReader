@@ -362,4 +362,5 @@
    <string name="close_application">Đóng ứng dụng</string>
    <string name="go_to_the_library">Đi đến thư viện</string>
    <string name="book_styles">Phong cách sách</string>
+   <string name="language">Ngôn ngữ</string>
 </resources>

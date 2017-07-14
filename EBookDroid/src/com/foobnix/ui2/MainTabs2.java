@@ -287,31 +287,30 @@ public class MainTabs2 extends FragmentActivity {
                 intent.setData(Uri.fromFile(new File(meta.getPath())));
                 startActivity(intent);
             }
-        }
+        } else if (!AppState.getInstance().isOpenLastBook) {
+            LOG.d("lasta", AppState.get().lastA);
+            if (HorizontalViewActivity.class.getSimpleName().equals(AppState.get().lastA)) {
 
-        LOG.d("lasta", AppState.get().lastA);
-        if (HorizontalViewActivity.class.getSimpleName().equals(AppState.get().lastA)) {
+                FileMeta meta = AppDB.get().getRecentLast();
+                if (meta != null) {
+                    Intent intent = new Intent(this, HorizontalViewActivity.class);
+                    intent.setData(Uri.fromFile(new File(meta.getPath())));
+                    startActivity(intent);
+                    LOG.d("Start lasta", AppState.get().lastA);
+                }
+            } else if (ViewerActivity.class.getSimpleName().equals(AppState.get().lastA)) {
+                FileMeta meta = AppDB.get().getRecentLast();
+                if (meta != null) {
+                    Intent intent = new Intent(this, ViewerActivity.class);
+                    intent.setData(Uri.fromFile(new File(meta.getPath())));
+                    startActivity(intent);
+                    LOG.d("Start lasta", AppState.get().lastA);
+                }
 
-            FileMeta meta = AppDB.get().getRecentLast();
-            if (meta != null) {
-                Intent intent = new Intent(this, HorizontalViewActivity.class);
-                intent.setData(Uri.fromFile(new File(meta.getPath())));
-                startActivity(intent);
-                LOG.d("Start lasta", AppState.get().lastA);
             }
-        } else if (ViewerActivity.class.getSimpleName().equals(AppState.get().lastA)) {
-            FileMeta meta = AppDB.get().getRecentLast();
-            if (meta != null) {
-                Intent intent = new Intent(this, ViewerActivity.class);
-                intent.setData(Uri.fromFile(new File(meta.getPath())));
-                startActivity(intent);
-                LOG.d("Start lasta", AppState.get().lastA);
-            }
-
         }
 
         checkGoToPage(getIntent());
-
 
     }
 

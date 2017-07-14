@@ -58,6 +58,7 @@ public class FileInformationDialog {
 		((TextView) dialog.findViewById(R.id.size)).setText(fileMeta.getSizeTxt());
 		((TextView) dialog.findViewById(R.id.mimeType)).setText("" + ExtUtils.getMimeType(file));
 
+
 		// ((TextView)
 		// dialog.findViewById(R.id.metaTitle)).setText(fileMeta.getTitle());
 		// ((TextView)
@@ -70,6 +71,8 @@ public class FileInformationDialog {
 		} else {
 			infoView.setText(bookOverview);
 		}
+        // ((TextView) dialog.findViewById(R.id.langTest)).setText("[" +
+        // StopWords.guess(bookOverview) + "]");
 
 		String sequence = fileMeta.getSequence();
 		if (TxtUtils.isNotEmpty(sequence)) {

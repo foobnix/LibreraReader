@@ -202,6 +202,16 @@
                 android:layout_gravity="center_vertical"
                 android:background="?android:attr/selectableItemBackground"
                 android:src="@drawable/star_1" />
+            
+            
+            <TextView
+                    android:id="@+id/langTest"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="4dip"
+                    android:text="Lang"
+                    android:textSize="@dimen/text_subtitle"
+                    android:textStyle="bold" />
         </LinearLayout>
     </LinearLayout>
 

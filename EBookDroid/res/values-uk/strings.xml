@@ -362,4 +362,5 @@
    <string name="close_application">Закрити додаток</string>
    <string name="go_to_the_library">Йти до бібліотеки</string>
    <string name="book_styles">Стилі книги</string>
+   <string name="language">Мова</string>
 </resources>

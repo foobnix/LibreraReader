@@ -77,7 +77,8 @@ public class CloseAppDialog {
                 c.getString(R.string.close_book), //
                 c.getString(R.string.go_to_the_library), //
                 c.getString(R.string.hide_app), //
-                c.getString(R.string.close_application));//
+                c.getString(R.string.close_application) //
+        );//
 
         final DialogInterface.OnClickListener listener = new DialogInterface.OnClickListener() {
 
@@ -91,7 +92,6 @@ public class CloseAppDialog {
                 } else if (which == i++) {
                     c.onCloseActivity();
                     MainTabs2.startActivity(a, UITab.getCurrentTabIndex(UITab.SearchFragment2));
-
 
                 } else if (which == i++) {
                     Apps.showDesctop(a);
@@ -108,6 +108,13 @@ public class CloseAppDialog {
         if (v == null) {
             AlertDialog.Builder dialog = new AlertDialog.Builder(a);
             dialog.setItems(items.toArray(new String[items.size()]), listener);
+            dialog.setNegativeButton(R.string.cancel, new OnClickListener() {
+
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    dialog.dismiss();
+                }
+            });
             dialog.show();
         } else {
             final PopupMenu popupMenu = new PopupMenu(a, v);

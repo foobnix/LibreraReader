@@ -416,7 +416,6 @@ public class Fb2Extractor extends BaseExtractor {
         HypenUtils.applyLanguage(BookCSS.get().hypenLang);
 
         while ((line = input.readLine()) != null) {
-
             String subLine[] = line.split("</");
 
             for (int i = 0; i < subLine.length; i++) {

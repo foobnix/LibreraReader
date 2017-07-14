@@ -131,12 +131,21 @@
             android:src="@drawable/glyphicons_208_remove_2" />
     </LinearLayout>
 
+    <com.foobnix.pdf.info.view.ProgressDraw
+        android:id="@+id/progressDraw"
+        android:layout_width="wrap_content"
+        android:layout_height="2dip"
+        android:layout_alignParentBottom="true"
+        android:layout_margin="2dip"
+        android:background="@color/alpa_10" />
+
     <TextView
         android:id="@+id/pagesTime"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_alignParentLeft="true"
+        android:layout_marginBottom="2dip"
         android:layout_marginLeft="10dip"
         android:text="--:--"
         android:textColor="@color/tint_gray"
@@ -148,6 +157,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
+        android:layout_marginBottom="2dip"
         android:text="-/-"
         android:textColor="@color/tint_gray"
         android:textSize="12sp" />
@@ -157,6 +167,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
+        android:layout_marginBottom="2dip"
         android:layout_marginLeft="10dip"
         android:layout_toRightOf="@+id/pagesCountIndicator"
         android:text="{10}"
@@ -170,7 +181,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_alignParentRight="true"
-        android:layout_marginBottom="1dip"
+        android:layout_marginBottom="2dip"
         android:layout_marginRight="10dip"
         android:background="@drawable/bg_rect_power"
         android:drawablePadding="0dip"
@@ -179,17 +190,17 @@
         android:textSize="9sp" />
 
     <LinearLayout
-        android:clickable="true"
         android:id="@+id/bottomBar"
         android:layout_width="match_parent"
         android:layout_height="48dp"
         android:layout_alignParentBottom="true"
         android:background="#96aa39"
+        android:clickable="true"
         android:focusableInTouchMode="false"
         android:gravity="center_vertical"
         android:paddingLeft="2dip"
         android:paddingRight="2dip"
-        android:visibility="visible" >
+        android:visibility="gone" >
 
         <ImageView
             android:id="@+id/linkHistory"
@@ -229,14 +240,14 @@
             android:src="@drawable/glyphicons_115_list1" />
 
         <LinearLayout
-            android:clickable="true"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:focusableInTouchMode="false"
-            android:orientation="horizontal"
             android:layout_marginLeft="4dip"
-            android:layout_marginRight="4dip" >
+            android:layout_marginRight="4dip"
+            android:layout_weight="1"
+            android:clickable="true"
+            android:focusableInTouchMode="false"
+            android:orientation="horizontal" >
 
             <TextView
                 android:id="@+id/currentSeek"

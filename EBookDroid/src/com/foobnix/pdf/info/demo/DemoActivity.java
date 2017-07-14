@@ -5,7 +5,6 @@ import com.foobnix.pdf.info.wrapper.DocumentWrapperUI;
 
 import android.app.Activity;
 import android.os.Bundle;
-import android.view.KeyEvent;
 import android.view.Window;
 
 public class DemoActivity extends Activity {
@@ -23,10 +22,6 @@ public class DemoActivity extends Activity {
         // wrapperUIControlls.updateUI();
 	}
 
-	@Override
-	public boolean dispatchKeyEvent(final KeyEvent event) {
-		return wrapperUIControlls.dispatchKeyEvent(event);
-	}
 
 	@Override
 	protected void onDestroy() {

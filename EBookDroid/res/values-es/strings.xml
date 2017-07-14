@@ -362,4 +362,5 @@
    <string name="close_application">Cierra la aplicación</string>
    <string name="go_to_the_library">Ir a la biblioteca</string>
    <string name="book_styles">Estilos de libros</string>
+   <string name="language">Idioma</string>
 </resources>

@@ -362,4 +362,5 @@
    <string name="close_application">بستن برنامه</string>
    <string name="go_to_the_library">برو به کتابخانه</string>
    <string name="book_styles">سبک های کتاب</string>
+   <string name="language">زبان</string>
 </resources>

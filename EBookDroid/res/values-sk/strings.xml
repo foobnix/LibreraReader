@@ -362,4 +362,5 @@
    <string name="close_application">Zatvorte aplikáciu</string>
    <string name="go_to_the_library">Ísť do knižnice</string>
    <string name="book_styles">Štýly kníh</string>
+   <string name="language">Jazyk</string>
 </resources>

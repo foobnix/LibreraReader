@@ -362,4 +362,5 @@
    <string name="close_application">Sulje sovellus</string>
    <string name="go_to_the_library">Mene kirjastoon</string>
    <string name="book_styles">Kirja tyylit</string>
+   <string name="language">Kieli</string>
 </resources>

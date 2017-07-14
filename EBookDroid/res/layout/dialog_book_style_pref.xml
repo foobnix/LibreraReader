@@ -89,29 +89,7 @@
                 android:text="@string/left" />
         </LinearLayout>
 
-        <LinearLayout
-            android:gravity="center_vertical"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" >
-
-            <CheckBox
-                android:layout_weight="1"
-                android:id="@+id/isAutoHypens"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="10dip"
-                android:text="@string/automatic_hyphenation" />
-
-            <TextView
-                android:layout_weight="0"
-                android:id="@+id/hypenLang"
-                style="@style/textLink"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="15dip"
-                android:minWidth="50dip"
-                android:text="Russian" />
-        </LinearLayout>
+        
 
         <com.foobnix.pdf.info.view.CustomSeek
             android:id="@+id/fontInterval"

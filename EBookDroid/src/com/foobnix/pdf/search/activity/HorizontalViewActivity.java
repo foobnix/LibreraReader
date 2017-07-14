@@ -1,6 +1,7 @@
 package com.foobnix.pdf.search.activity;
 
 import java.io.File;
+import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 import org.ebookdroid.droids.mupdf.codec.exceptions.MuPdfPasswordException;
@@ -9,6 +10,7 @@ import org.greenrobot.eventbus.Subscribe;
 
 import com.foobnix.android.utils.Dips;
 import com.foobnix.android.utils.LOG;
+import com.foobnix.android.utils.ResultResponse;
 import com.foobnix.android.utils.TxtUtils;
 import com.foobnix.pdf.CopyAsyncTask;
 import com.foobnix.pdf.info.ADS;
@@ -23,9 +25,11 @@ import com.foobnix.pdf.info.TTSModule;
 import com.foobnix.pdf.info.TintUtil;
 import com.foobnix.pdf.info.UiSystemUtils;
 import com.foobnix.pdf.info.model.BookCSS;
+import com.foobnix.pdf.info.model.OutlineLinkWrapper;
 import com.foobnix.pdf.info.view.AlertDialogs;
 import com.foobnix.pdf.info.view.DragingDialogs;
 import com.foobnix.pdf.info.view.DragingPopup;
+import com.foobnix.pdf.info.view.ProgressDraw;
 import com.foobnix.pdf.info.widget.FileInformationDialog;
 import com.foobnix.pdf.info.widget.RecentUpates;
 import com.foobnix.pdf.info.widget.ShareDialog;
@@ -101,6 +105,8 @@ public class HorizontalViewActivity extends FragmentActivity {
 
     Dialog rotatoinDialog;
     volatile Boolean isInitPosistion = null;
+
+    ProgressDraw progressDraw;
 
     @Override
     protected void onNewIntent(final Intent intent) {
@@ -184,6 +190,8 @@ public class HorizontalViewActivity extends FragmentActivity {
         viewPager = (VerticalViewPager) findViewById(R.id.pager);
         viewPager.setOffscreenPageLimit(AppState.get().pagesInMemory);
         LOG.d("setOffscreenPageLimit", AppState.get().pagesInMemory);
+
+        progressDraw = (ProgressDraw) findViewById(R.id.progressDraw);
 
         actionBar = findViewById(R.id.actionBar);
         bottomBar = findViewById(R.id.bottomBar);
@@ -642,6 +650,7 @@ public class HorizontalViewActivity extends FragmentActivity {
         pagesTime.setVisibility(isVisible);
         pagesCountIndicator.setVisibility(isVisible);
         pagesPower.setVisibility(isVisible);
+        progressDraw.setVisibility(isVisible);
     }
 
     private void showSearchDialog() {
@@ -950,6 +959,18 @@ public class HorizontalViewActivity extends FragmentActivity {
         tinUI();
 
         onViewPagerChangeListener.onPageSelected(documentController.getCurentPage());
+
+
+        progressDraw.updatePageCount(documentController.getPageCount());
+        documentController.getOutline(new ResultResponse<List<OutlineLinkWrapper>>() {
+
+            @Override
+            public boolean onResultRecive(List<OutlineLinkWrapper> result) {
+                progressDraw.updateDivs(result);
+                return false;
+            }
+        });
+
     }
 
     private void tinUI() {
@@ -1008,6 +1029,8 @@ public class HorizontalViewActivity extends FragmentActivity {
 
             }
             LOG.d("onPageSelected", pos);
+
+            progressDraw.updateProgress(pos);
         }
 
         @Override

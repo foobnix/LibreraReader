@@ -42,6 +42,7 @@ public class MobiContext extends PdfContext {
                 FooterNote extract = MobiExtract.extract(fileName, CacheZipUtils.CACHE_BOOK_DIR.getPath(), outName + "");
                 fileNameEpub = extract.path;
                 if (BookCSS.get().isAutoHypens) {
+
                     EpubExtractor.proccessHypens(fileNameEpub, cacheFile.getPath());
                     fileNameEpub = cacheFile.getPath();
                 }

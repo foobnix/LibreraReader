@@ -212,7 +212,22 @@ public class DocumentWrapperUI {
         return true;
     }
 
-    public boolean dispatchKeyEvent(final KeyEvent event) {
+    public boolean dispatchKeyEventUp(final KeyEvent event) {
+        int keyCode = event.getKeyCode();
+        if (keyCode == 0) {
+            keyCode = event.getScanCode();
+        }
+
+        if (KeyEvent.KEYCODE_MENU == keyCode || KeyEvent.KEYCODE_M == keyCode) {
+            doShowHideWrapperControlls();
+            return true;
+        }
+
+        return false;
+
+    }
+
+    public boolean dispatchKeyEventDown(final KeyEvent event) {
         int keyCode = event.getKeyCode();
         if (keyCode == 0) {
             keyCode = event.getScanCode();
@@ -227,10 +242,7 @@ public class DocumentWrapperUI {
             return true;
         }
 
-        if (KeyEvent.KEYCODE_MENU == keyCode || KeyEvent.KEYCODE_M == keyCode) {
-            doShowHideWrapperControlls();
-            return true;
-        }
+
         if (KeyEvent.KEYCODE_F == keyCode) {
             controller.alignDocument();
             return true;

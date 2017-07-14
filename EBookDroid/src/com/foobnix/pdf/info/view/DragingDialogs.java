@@ -2390,6 +2390,7 @@ public class DragingDialogs {
 
                 // end styles
 
+
                 // rotate
 
                 final TextView rotateViewPager = (TextView) inflate.findViewById(R.id.rotateViewPager);
@@ -2692,62 +2693,7 @@ public class DragingDialogs {
 
                     }
                 });
-                // hypens
-                boolean isSupportHypens = controller.isTextFormat();
 
-                CheckBox isPreText = (CheckBox) inflate.findViewById(R.id.isAutoHypens);
-                isPreText.setVisibility(isSupportHypens ? View.VISIBLE : View.GONE);
-
-                isPreText.setChecked(BookCSS.get().isAutoHypens);
-                isPreText.setOnCheckedChangeListener(new OnCheckedChangeListener() {
-
-                    @Override
-                    public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                        BookCSS.get().isAutoHypens = isChecked;
-                    }
-                });
-
-                //
-
-                final TextView hypenLang = (TextView) inflate.findViewById(R.id.hypenLang);
-                hypenLang.setVisibility(isSupportHypens ? View.VISIBLE : View.GONE);
-
-                hypenLang.setText(DialogTranslateFromTo.getLanuageByCode(BookCSS.get().hypenLang) + " (" + BookCSS.get().hypenLang + ")");
-                TxtUtils.underlineTextView(hypenLang);
-
-                hypenLang.setOnClickListener(new OnClickListener() {
-
-                    @Override
-                    public void onClick(View v) {
-
-                        final PopupMenu popupMenu = new PopupMenu(anchor.getContext(), hypenLang);
-
-                        HyphenPattern[] values = HyphenPattern.values();
-
-                        List<String> all = new ArrayList<String>();
-                        for (HyphenPattern p : values) {
-                            all.add(p.lang);
-                        }
-                        Collections.sort(all);
-
-                        for (final String lang : all) {
-
-                            final String titleLang = DialogTranslateFromTo.getLanuageByCode(lang) + " (" + lang + ")";
-                            popupMenu.getMenu().add(titleLang).setOnMenuItemClickListener(new OnMenuItemClickListener() {
-
-                                @Override
-                                public boolean onMenuItemClick(MenuItem item) {
-                                    BookCSS.get().hypenLang = lang;
-                                    hypenLang.setText(titleLang);
-                                    TxtUtils.underlineTextView(hypenLang);
-                                    return false;
-                                }
-                            });
-                        }
-                        popupMenu.show();
-
-                    }
-                });
                 // link color
                 final CustomColorView linkColorDay = (CustomColorView) inflate.findViewById(R.id.linkColorDay);
                 linkColorDay.init(Color.parseColor(BookCSS.get().linkColorDay));
@@ -3116,6 +3062,61 @@ public class DragingDialogs {
                         });
                     }
                 });
+
+                // hypens
+                boolean isSupportHypens = controller.isTextFormat();
+
+                CheckBox isAutoHypens = (CheckBox) inflate.findViewById(R.id.isAutoHypens);
+                isAutoHypens.setVisibility(isSupportHypens ? View.VISIBLE : View.GONE);
+
+                isAutoHypens.setChecked(BookCSS.get().isAutoHypens);
+                isAutoHypens.setOnCheckedChangeListener(new OnCheckedChangeListener() {
+
+                    @Override
+                    public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                        BookCSS.get().isAutoHypens = isChecked;
+                    }
+                });
+
+                final TextView hypenLang = (TextView) inflate.findViewById(R.id.hypenLang);
+                hypenLang.setVisibility(isSupportHypens ? View.VISIBLE : View.GONE);
+                hypenLang.setText(DialogTranslateFromTo.getLanuageByCode(BookCSS.get().hypenLang) + " (" + BookCSS.get().hypenLang + ")");
+                TxtUtils.underlineTextView(hypenLang);
+
+                hypenLang.setOnClickListener(new OnClickListener() {
+
+                    @Override
+                    public void onClick(View v) {
+
+                        final PopupMenu popupMenu = new PopupMenu(anchor.getContext(), hypenLang);
+
+                        HyphenPattern[] values = HyphenPattern.values();
+
+                        List<String> all = new ArrayList<String>();
+                        for (HyphenPattern p : values) {
+                            all.add(p.lang);
+                        }
+                        Collections.sort(all);
+
+                        for (final String lang : all) {
+
+                            final String titleLang = DialogTranslateFromTo.getLanuageByCode(lang) + " (" + lang + ")";
+                            popupMenu.getMenu().add(titleLang).setOnMenuItemClickListener(new OnMenuItemClickListener() {
+
+                                @Override
+                                public boolean onMenuItemClick(MenuItem item) {
+                                    BookCSS.get().hypenLang = lang;
+                                    hypenLang.setText(titleLang);
+                                    TxtUtils.underlineTextView(hypenLang);
+                                    return false;
+                                }
+                            });
+                        }
+                        popupMenu.show();
+
+                    }
+                });
+                // - hypens
 
                 CheckBox autoSettings = (CheckBox) inflate.findViewById(R.id.autoSettings);
 
