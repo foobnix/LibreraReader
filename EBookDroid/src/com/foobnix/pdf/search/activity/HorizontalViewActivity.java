@@ -27,9 +27,11 @@ import com.foobnix.pdf.info.UiSystemUtils;
 import com.foobnix.pdf.info.model.BookCSS;
 import com.foobnix.pdf.info.model.OutlineLinkWrapper;
 import com.foobnix.pdf.info.view.AlertDialogs;
+import com.foobnix.pdf.info.view.BrigtnessDraw;
 import com.foobnix.pdf.info.view.DragingDialogs;
 import com.foobnix.pdf.info.view.DragingPopup;
 import com.foobnix.pdf.info.view.ProgressDraw;
+import com.foobnix.pdf.info.view.ProgressSeekTouchEventListener;
 import com.foobnix.pdf.info.widget.FileInformationDialog;
 import com.foobnix.pdf.info.widget.RecentUpates;
 import com.foobnix.pdf.info.widget.ShareDialog;
@@ -44,6 +46,7 @@ import com.foobnix.pdf.search.view.CloseAppDialog;
 import com.foobnix.pdf.search.view.VerticalViewPager;
 import com.foobnix.sys.ClickUtils;
 import com.foobnix.sys.TempHolder;
+import com.foobnix.ui2.MainTabs2;
 import com.google.android.gms.ads.AdListener;
 import com.google.android.gms.ads.AdView;
 import com.google.android.gms.ads.InterstitialAd;
@@ -90,7 +93,7 @@ public class HorizontalViewActivity extends FragmentActivity {
     VerticalViewPager viewPager;
     SeekBar seekBar;
     private TextView maxSeek, currentSeek, pagesCountIndicator, flippingIntervalView, pagesTime, pagesPower, titleTxt, chapterView;
-    View actionBar, adFrame, bottomBar, onPageFlip1;
+    View actionBar, adFrame, bottomBar, onPageFlip1, bottomIndicators;
     private FrameLayout anchor;
 
     private AdView adView;
@@ -107,6 +110,7 @@ public class HorizontalViewActivity extends FragmentActivity {
     volatile Boolean isInitPosistion = null;
 
     ProgressDraw progressDraw;
+    BrigtnessDraw brigtnessProgressView;
 
     @Override
     protected void onNewIntent(final Intent intent) {
@@ -192,9 +196,12 @@ public class HorizontalViewActivity extends FragmentActivity {
         LOG.d("setOffscreenPageLimit", AppState.get().pagesInMemory);
 
         progressDraw = (ProgressDraw) findViewById(R.id.progressDraw);
+        brigtnessProgressView = (BrigtnessDraw) findViewById(R.id.brigtnessProgressView);
+        brigtnessProgressView.setActivity(this);
 
         actionBar = findViewById(R.id.actionBar);
         bottomBar = findViewById(R.id.bottomBar);
+        bottomIndicators = findViewById(R.id.bottomIndicators);
         adFrame = findViewById(R.id.adFrame);
         anchor = (FrameLayout) findViewById(R.id.anchor);
 
@@ -241,6 +248,8 @@ public class HorizontalViewActivity extends FragmentActivity {
 
         // ADS.activate(this, adView);
         ADS.activateNative(this, adViewNative);
+
+
 
         onPageFlip1 = findViewById(R.id.onPageFlip1);
         onPageFlip1.setOnClickListener(new OnClickListener() {
@@ -477,6 +486,8 @@ public class HorizontalViewActivity extends FragmentActivity {
                     EventBus.getDefault().post(new MessageAutoFit(documentController.getPageFromUri()));
                     AppState.get().isEditMode = true;
                     seekBar.setOnSeekBarChangeListener(onSeek);
+                    bottomIndicators.setOnTouchListener(new ProgressSeekTouchEventListener(onSeek, documentController.getPageCount(), false));
+                    progressDraw.setOnTouchListener(new ProgressSeekTouchEventListener(onSeek, documentController.getPageCount(), true));
                     RecentUpates.updateAll(HorizontalViewActivity.this);
                     showHideInfoToolBar();
 
@@ -543,6 +554,7 @@ public class HorizontalViewActivity extends FragmentActivity {
         pagesTime.setTextSize(AppState.get().statusBarTextSizeEasy);
         pagesCountIndicator.setTextSize(AppState.get().statusBarTextSizeEasy);
         flippingIntervalView.setTextSize(AppState.get().statusBarTextSizeEasy);
+        progressDraw.updateColor(TintUtil.getStatusBarColor());
     }
 
     Runnable onRefresh = new Runnable() {
@@ -650,7 +662,9 @@ public class HorizontalViewActivity extends FragmentActivity {
         pagesTime.setVisibility(isVisible);
         pagesCountIndicator.setVisibility(isVisible);
         pagesPower.setVisibility(isVisible);
-        progressDraw.setVisibility(isVisible);
+
+        progressDraw.setVisibility(AppState.get().isShowReadingProgress ? View.VISIBLE : View.GONE);
+
     }
 
     private void showSearchDialog() {
@@ -694,6 +708,8 @@ public class HorizontalViewActivity extends FragmentActivity {
         Analytics.onStart(this);
         EventBus.getDefault().register(this);
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
+
+        handler.removeCallbacks(closeRunnable);
     }
 
     @Override
@@ -705,7 +721,22 @@ public class HorizontalViewActivity extends FragmentActivity {
         if (flippingHandler != null) {
             flippingHandler.removeCallbacksAndMessages(null);
         }
+        handler.postDelayed(closeRunnable, TimeUnit.MINUTES.toMillis(2));
     }
+
+    Runnable closeRunnable = new Runnable() {
+
+        @Override
+        public void run() {
+            LOG.d("Close App");
+            if (documentController != null) {
+                documentController.onCloseActivity();
+            } else {
+                finish();
+            }
+            MainTabs2.closeApp(HorizontalViewActivity.this);
+        }
+    };
 
     @Override
     protected void onDestroy() {
@@ -757,6 +788,7 @@ public class HorizontalViewActivity extends FragmentActivity {
         if (documentController != null) {
             documentController.onResume();
         }
+
     }
 
     @Override
@@ -769,6 +801,7 @@ public class HorizontalViewActivity extends FragmentActivity {
         }
         AppState.get().save(this);
         TempHolder.isSeaching = false;
+
     }
 
     public void nextPage() {
@@ -959,7 +992,6 @@ public class HorizontalViewActivity extends FragmentActivity {
         tinUI();
 
         onViewPagerChangeListener.onPageSelected(documentController.getCurentPage());
-
 
         progressDraw.updatePageCount(documentController.getPageCount());
         documentController.getOutline(new ResultResponse<List<OutlineLinkWrapper>>() {
@@ -1181,6 +1213,8 @@ public class HorizontalViewActivity extends FragmentActivity {
 
         };
         viewPager.setAdapter(pagerAdapter);
+        viewPager.setSaveEnabled(false);
+        viewPager.setSaveFromParentEnabled(false);
     }
 
     public boolean prev = true;
@@ -1330,8 +1364,6 @@ public class HorizontalViewActivity extends FragmentActivity {
                     isMyKey = true;
                     return true;
                 }
-                // viewPager.setCurrentItem(documentController.getCurentPage() +
-                // 1, AppState.get().isScrollAnimation);
                 nextPage();
                 flippingTimer = 0;
                 isMyKey = true;
@@ -1342,8 +1374,6 @@ public class HorizontalViewActivity extends FragmentActivity {
                     isMyKey = true;
                     return true;
                 }
-                // viewPager.setCurrentItem(documentController.getCurentPage() -
-                // 1, AppState.get().isScrollAnimation);
                 prevPage();
                 flippingTimer = 0;
                 isMyKey = true;

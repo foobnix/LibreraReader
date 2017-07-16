@@ -154,7 +154,7 @@ public class OutlineAdapter extends BaseAdapter {
 		final View space = container.findViewById(R.id.outline_space);
 
 		final OutlineLinkWrapper item = getItem(position);
-		view.setText(item.title.trim());
+        view.setText(item.getTitleAsString().trim());
 		num.setText(String.valueOf(item.targetPage));
 
 		if (item.targetPage != -1) {

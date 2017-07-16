@@ -363,4 +363,5 @@
    <string name="go_to_the_library">Ísť do knižnice</string>
    <string name="book_styles">Štýly kníh</string>
    <string name="language">Jazyk</string>
+   <string name="show_progress_of_reading">Zobraziť postup čítania</string>
 </resources>

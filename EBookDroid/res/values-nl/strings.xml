@@ -363,4 +363,5 @@
    <string name="go_to_the_library">Ga naar de bibliotheek</string>
    <string name="book_styles">Boekstijlen</string>
    <string name="language">Taal</string>
+   <string name="show_progress_of_reading">Toon vooruitgang met lezen</string>
 </resources>

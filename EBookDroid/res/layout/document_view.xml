@@ -66,6 +66,13 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:visibility="gone" />
+    
+    
+    <com.foobnix.pdf.info.view.BrigtnessDraw
+        android:id="@+id/brigtnessProgressView"
+        android:layout_width="@dimen/brigtness"
+        android:layout_height="match_parent"
+        android:layout_alignParentLeft="true" />
 
     <include
         android:id="@+id/document_title_bar"

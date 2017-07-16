@@ -363,4 +363,5 @@
    <string name="go_to_the_library">Kütüphaneye git</string>
    <string name="book_styles">Kitap stilleri</string>
    <string name="language">Dil</string>
+   <string name="show_progress_of_reading">Okuma ilerlemesini göster</string>
 </resources>

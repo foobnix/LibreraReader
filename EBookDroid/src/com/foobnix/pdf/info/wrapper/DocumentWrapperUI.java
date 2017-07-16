@@ -22,9 +22,13 @@ import com.foobnix.pdf.info.TTSModule;
 import com.foobnix.pdf.info.TintUtil;
 import com.foobnix.pdf.info.UiSystemUtils;
 import com.foobnix.pdf.info.model.BookCSS;
+import com.foobnix.pdf.info.model.OutlineLinkWrapper;
+import com.foobnix.pdf.info.view.BrigtnessDraw;
 import com.foobnix.pdf.info.view.DragingDialogs;
 import com.foobnix.pdf.info.view.DragingPopup;
 import com.foobnix.pdf.info.view.DrawView;
+import com.foobnix.pdf.info.view.ProgressDraw;
+import com.foobnix.pdf.info.view.ProgressSeekTouchEventListener;
 import com.foobnix.pdf.info.widget.ShareDialog;
 import com.foobnix.pdf.search.view.CloseAppDialog;
 import com.foobnix.ui2.MainTabs2;
@@ -47,7 +51,6 @@ import android.view.MenuItem;
 import android.view.MenuItem.OnMenuItemClickListener;
 import android.view.MotionEvent;
 import android.view.View;
-import android.view.ViewGroup.LayoutParams;
 import android.view.ViewTreeObserver.OnGlobalLayoutListener;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
@@ -86,7 +89,7 @@ public class DocumentWrapperUI {
     private ImageView lockUnlock;
     private ImageView lockUnlockTop, textToSpeachTop, clockIcon, batteryIcon;
     private ImageView showSearch;
-    private View underProgress, underLayout;
+    ProgressDraw progressDraw;
     private ImageView nextScreenType, crop, cut, autoScroll, textToSpeach;
     private SeekBar speedSeekBar;
     private View seekSpeedLayot, zoomPlus, zoomMinus;
@@ -98,6 +101,7 @@ public class DocumentWrapperUI {
     private View line1, line2, lineFirst, lineClose, closeTop;
     private ImageView goToPage1, goToPage1Top;
     private TextView reverseKeysIndicator;
+    private BrigtnessDraw brigtnessProgressView;
 
     private final Handler handler = new Handler();
 
@@ -241,7 +245,6 @@ public class DocumentWrapperUI {
             controller.toPageDialog();
             return true;
         }
-
 
         if (KeyEvent.KEYCODE_F == keyCode) {
             controller.alignDocument();
@@ -392,17 +395,13 @@ public class DocumentWrapperUI {
         final DisplayMetrics metrics = new DisplayMetrics();
         a.getWindowManager().getDefaultDisplay().getMetrics(metrics);
 
-        final int width = metrics.widthPixels;
-        final LayoutParams layoutParams = underProgress.getLayoutParams();
-        if (max >= 1 && current >= 1) {
-            layoutParams.width = width * current / max;
-            underProgress.setLayoutParams(layoutParams);
-        }
-
         seekBar.setOnSeekBarChangeListener(null);
         seekBar.setMax(max);
         seekBar.setProgress(current);
         seekBar.setOnSeekBarChangeListener(onSeek);
+        // progressDraw.setOnSeekBarChangeListener(onSeek);
+        progressDraw.setOnTouchListener(new ProgressSeekTouchEventListener(onSeek, max + 1, false));
+        titleBar.setOnTouchListener(new ProgressSeekTouchEventListener(onSeek, max + 1, false));
 
         speedSeekBar.setOnSeekBarChangeListener(null);
         speedSeekBar.setMax(AppState.MAX_SPEED);
@@ -429,8 +428,10 @@ public class DocumentWrapperUI {
 
         if (AppState.getInstance().isInvert) {
             titleBar.setBackgroundColor(ColorUtils.setAlphaComponent(Color.WHITE, TRANSPARENT_UI));
+            progressDraw.setBackgroundColor(ColorUtils.setAlphaComponent(Color.WHITE, TRANSPARENT_UI));
         } else {
             titleBar.setBackgroundColor(ColorUtils.setAlphaComponent(Color.BLACK, TRANSPARENT_UI));
+            progressDraw.setBackgroundColor(ColorUtils.setAlphaComponent(Color.BLACK, TRANSPARENT_UI));
         }
 
         reverseKeysIndicator.setVisibility(AppState.get().isReverseKeys ? View.VISIBLE : View.GONE);
@@ -461,11 +462,12 @@ public class DocumentWrapperUI {
             TintUtil.setTintImage(cut, Color.WHITE);
         }
 
+        progressDraw.updateProgress(current);
     }
 
     public void showChapter() {
         if (TxtUtils.isNotEmpty(controller.getCurrentChapter())) {
-            bookName.setText(bookTitle + " \"" + controller.getCurrentChapter().trim() + "\"");
+            bookName.setText(bookTitle + " – " + controller.getCurrentChapter().trim());
         } else {
             bookName.setText(bookTitle);
 
@@ -547,6 +549,9 @@ public class DocumentWrapperUI {
 
         titleBar = a.findViewById(R.id.linearMenuLayout);
         titleBar.setOnClickListener(onMenu);
+
+        brigtnessProgressView = (BrigtnessDraw) a.findViewById(R.id.brigtnessProgressView);
+        brigtnessProgressView.setActivity(a);
 
         reverseKeysIndicator = (TextView) a.findViewById(R.id.reverseKeysIndicator);
         // reverseKeysIndicator.setOnClickListener(onReverseKeys);
@@ -688,8 +693,7 @@ public class DocumentWrapperUI {
         View itemMenu = a.findViewById(R.id.itemMenu);
         itemMenu.setOnClickListener(onItemMenu);
 
-        underProgress = a.findViewById(R.id.underProgress);
-        underLayout = a.findViewById(R.id.underLayout);
+        progressDraw = (ProgressDraw) a.findViewById(R.id.progressDraw);
 
         if (!appConfig.isContentEnable()) {
             onDocDontext.setVisibility(View.GONE);
@@ -739,7 +743,6 @@ public class DocumentWrapperUI {
 
         int color = AppState.get().isInvert ? MagicHelper.darkerColor2(MagicHelper.getBgColor()) : MagicHelper.ligherColor2(MagicHelper.getBgColor());
 
-        TintUtil.setTintBgSimple(underProgress, TRANSPARENT_UI, color);
         TintUtil.setTintBgSimple(a.findViewById(R.id.menuLayout), TRANSPARENT_UI);
         TintUtil.setTintBgSimple(a.findViewById(R.id.document_footer), TRANSPARENT_UI);
         TintUtil.setBackgroundFillColorBottomRight(lirbiLogo, ColorUtils.setAlphaComponent(TintUtil.color, TRANSPARENT_UI));
@@ -767,10 +770,16 @@ public class DocumentWrapperUI {
 
             reverseKeysIndicator.setVisibility(View.GONE);
             textToSpeachTop.setVisibility(View.GONE);
+            progressDraw.setVisibility(View.GONE);
+            brigtnessProgressView.setVisibility(View.GONE);
         }
+
     }
 
     public void updateSeekBarColorAndSize() {
+
+        progressDraw.updateColor(TintUtil.getStatusBarColor());
+
         TintUtil.setTintText(bookName, TintUtil.getStatusBarColor());
         TintUtil.setTintImage(textToSpeachTop, TintUtil.getStatusBarColor());
         TintUtil.setTintImage(lockUnlockTop, TintUtil.getStatusBarColor());
@@ -932,7 +941,6 @@ public class DocumentWrapperUI {
         AppState.getInstance().isEditMode = !AppState.getInstance().isEditMode;
         showHide();
 
-
     }
 
     public void showHideHavigationBar() {
@@ -987,6 +995,8 @@ public class DocumentWrapperUI {
         } else {
             titleBar.setVisibility(View.GONE);
         }
+
+        progressDraw.setVisibility(AppState.get().isShowReadingProgress ? View.VISIBLE : View.GONE);
 
         toolBarButton.setVisibility(View.VISIBLE);
 
@@ -1452,6 +1462,7 @@ public class DocumentWrapperUI {
         if (controller != null && controller.getCurrentBook() != null && !controller.getCurrentBook().getName().toLowerCase(Locale.US).endsWith(".pdf")) {
             editTop2.setVisibility(View.GONE);
         }
+
     }
 
     public void nextPage() {
@@ -1488,6 +1499,22 @@ public class DocumentWrapperUI {
 
     public DrawView getDrawView() {
         return drawView;
+    }
+
+    public void showOutline(final List<OutlineLinkWrapper> list, final int count) {
+        try {
+            controller.activity.runOnUiThread(new Runnable() {
+
+                @Override
+                public void run() {
+                    progressDraw.updateDivs(list);
+                    progressDraw.updatePageCount(controller.getPageCount());
+                }
+            });
+        } catch (Exception e) {
+            LOG.e(e);
+        }
+
     }
 
 }

@@ -363,4 +363,5 @@
    <string name="go_to_the_library">Pergi ke perpustakaan</string>
    <string name="book_styles">Gaya buku</string>
    <string name="language">Bahasa</string>
+   <string name="show_progress_of_reading">Tampilkan kemajuan membaca</string>
 </resources>

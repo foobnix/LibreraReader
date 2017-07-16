@@ -204,6 +204,7 @@ public class PageImaveView extends View {
         public boolean onTouchEvent(final MotionEvent event) {
             final int action = event.getAction() & MotionEvent.ACTION_MASK;
 
+
             if (action == MotionEvent.ACTION_DOWN) {
                 AppState.get().selectedText = null;
                 LOG.d("TEST", "action ACTION_DOWN");

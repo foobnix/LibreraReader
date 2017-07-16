@@ -137,7 +137,7 @@ public abstract class DocumentControllerHorizontalView extends DocumentControlle
         generadDocInterface.addToRecent(activity, activity.getIntent().getData());
         getPageFromUri();
 
-        loadOutline();
+        loadOutline(null);
     }
 
     public int getCurrentPage() {

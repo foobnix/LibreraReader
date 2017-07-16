@@ -1,6 +1,7 @@
 package org.ebookdroid.ui.viewer;
 
 import java.io.File;
+import java.util.List;
 import java.util.concurrent.atomic.AtomicReference;
 
 import org.ebookdroid.BookType;
@@ -34,6 +35,7 @@ import com.foobnix.android.utils.ResultResponse;
 import com.foobnix.android.utils.TxtUtils;
 import com.foobnix.pdf.info.ExtUtils;
 import com.foobnix.pdf.info.R;
+import com.foobnix.pdf.info.model.OutlineLinkWrapper;
 import com.foobnix.pdf.info.wrapper.AppState;
 import com.foobnix.pdf.info.wrapper.DocumentWrapperUI;
 import com.foobnix.sys.AdvModeController;
@@ -225,7 +227,14 @@ public class ViewerActivityController extends ActionController<ViewerActivity> i
                     controller.onGoToPage(pageIntent);
                 }
 
-                controller.loadOutline();
+                controller.loadOutline(new ResultResponse<List<OutlineLinkWrapper>>() {
+
+                    @Override
+                    public boolean onResultRecive(List<OutlineLinkWrapper> result) {
+                        wrapperControlls.showOutline(result, controller.getPageCount());
+                        return false;
+                    }
+                });
 
                 AppState.get().lastA = ViewerActivity.class.getSimpleName();
                 AppState.get().lastMode = ViewerActivity.class.getSimpleName();

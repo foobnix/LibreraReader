@@ -363,4 +363,5 @@
    <string name="go_to_the_library">Nenda kwenye maktaba</string>
    <string name="book_styles">Mitindo ya vitabu</string>
    <string name="language">Lugha</string>
+   <string name="show_progress_of_reading">Onyesha maendeleo ya kusoma</string>
 </resources>

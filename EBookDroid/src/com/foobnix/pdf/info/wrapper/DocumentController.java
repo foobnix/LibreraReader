@@ -171,12 +171,15 @@ public abstract class DocumentController {
         return TxtUtils.getFileMetaBookName(getBookFileMeta());
     }
 
-    public void loadOutline() {
+    public void loadOutline(final ResultResponse<List<OutlineLinkWrapper>> resultTop) {
         getOutline(new ResultResponse<List<OutlineLinkWrapper>>() {
 
             @Override
             public boolean onResultRecive(List<OutlineLinkWrapper> result) {
                 outline = result;
+                if (resultTop != null) {
+                    resultTop.onResultRecive(result);
+                }
                 return false;
             }
         });
@@ -195,7 +198,7 @@ public abstract class DocumentController {
         int root = OutlineHelper.getRootItemByPageNumber(outline, getCurentPageFirst1());
         if (outline.size() > root) {
             OutlineLinkWrapper item = outline.get(root);
-            return item.title;
+            return item.getTitleAsString();
         } else {
             return null;
         }
@@ -275,7 +278,7 @@ public abstract class DocumentController {
     public static void applyBrigtness(final Activity a) {
         final float brightness = AppState.getInstance().brightness;
         final WindowManager.LayoutParams lp = a.getWindow().getAttributes();
-        if (brightness >= 0.01) {
+        if (brightness >= 0) {
             lp.screenBrightness = brightness;
             a.getWindow().setAttributes(lp);
         } else {
@@ -283,6 +286,7 @@ public abstract class DocumentController {
             a.getWindow().setAttributes(lp);
         }
     }
+
 
     public static float getSystemBrigtness(final Activity a) {
         try {

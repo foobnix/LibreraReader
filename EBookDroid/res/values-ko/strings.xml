@@ -363,4 +363,5 @@
    <string name="go_to_the_library">도서관에 가라.</string>
    <string name="book_styles">책 스타일</string>
    <string name="language">언어</string>
+   <string name="show_progress_of_reading">독서의 진행 상황을 보여 준다.</string>
 </resources>

@@ -22,9 +22,9 @@
                 android:adjustViewBounds="true"
                 android:background="?android:attr/selectableItemBackground"
                 android:cropToPadding="true"
-                android:scaleType="centerInside"
                 android:gravity="center_vertical"
                 android:padding="4dip"
+                android:scaleType="centerInside"
                 android:src="@drawable/glyphicons_517_menu_hamburger"
                 android:tint="@color/white" />
 
@@ -38,11 +38,22 @@
             </com.foobnix.pdf.SlidingTabLayout>
         </LinearLayout>
 
-        <android.support.v4.view.ViewPager
-            android:id="@+id/pager"
+        <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_weight="1" />
+            android:layout_weight="1" >
+
+            <android.support.v4.view.ViewPager
+                android:id="@+id/pager"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+
+            <com.foobnix.pdf.info.view.BrigtnessDraw
+                android:id="@+id/brigtnessProgressView"
+                android:layout_width="@dimen/brigtness"
+                android:layout_height="match_parent"
+                android:layout_alignParentLeft="true" />
+        </RelativeLayout>
 
         <FrameLayout
             android:id="@+id/adFrame"

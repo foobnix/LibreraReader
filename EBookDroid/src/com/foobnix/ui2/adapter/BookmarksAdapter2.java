@@ -86,15 +86,6 @@ public class BookmarksAdapter2 extends AppRecycleAdapter<AppBookmark, BookmarksV
             }
         });
 
-        holder.title.setOnClickListener(new OnClickListener() {
-
-            @Override
-            public void onClick(View v) {
-                if (onBookTitleClickListener != null) {
-                    onBookTitleClickListener.onResultRecive(item);
-                }
-            }
-        });
         if (!AppState.get().isBorderAndShadow) {
             holder.parent.setBackgroundColor(Color.TRANSPARENT);
         }
@@ -106,13 +97,9 @@ public class BookmarksAdapter2 extends AppRecycleAdapter<AppBookmark, BookmarksV
         this.onDeleteClickListener = onDeleteClickListener;
     }
 
-    public void setOnBookTitleClickListener(ResultResponse<AppBookmark> onBookTitleClickListener) {
-        this.onBookTitleClickListener = onBookTitleClickListener;
-    }
 
     private ResultResponse<AppBookmark> onDeleteClickListener;
 
-    private ResultResponse<AppBookmark> onBookTitleClickListener;
 
     public boolean withTitle = true;
     public boolean withPageNumber = true;

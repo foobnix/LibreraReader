@@ -363,4 +363,5 @@
    <string name="go_to_the_library">Pójść do biblioteki</string>
    <string name="book_styles">Styl książek</string>
    <string name="language">Język</string>
+   <string name="show_progress_of_reading">Pokaż postęp czytania</string>
 </resources>

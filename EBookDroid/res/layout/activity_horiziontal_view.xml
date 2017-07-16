@@ -133,61 +133,76 @@
 
     <com.foobnix.pdf.info.view.ProgressDraw
         android:id="@+id/progressDraw"
-        android:layout_width="wrap_content"
-        android:layout_height="2dip"
-        android:layout_alignParentBottom="true"
-        android:layout_margin="2dip"
-        android:background="@color/alpa_10" />
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/progress"
+        android:layout_alignParentBottom="true" />
 
-    <TextView
-        android:id="@+id/pagesTime"
-        android:layout_width="wrap_content"
+    <com.foobnix.pdf.info.view.BrigtnessDraw
+        android:id="@+id/brigtnessProgressView"
+        android:layout_width="@dimen/brigtness"
+        android:layout_height="match_parent"
+        android:layout_alignParentLeft="true" />
+
+    <LinearLayout
+        android:id="@+id/bottomIndicators"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:layout_alignParentLeft="true"
-        android:layout_marginBottom="2dip"
-        android:layout_marginLeft="10dip"
-        android:text="--:--"
-        android:textColor="@color/tint_gray"
-        android:textSize="9sp" />
+        android:clickable="true"
+        android:gravity="bottom"
+        android:orientation="horizontal" >
 
-    <TextView
-        android:id="@+id/pagesCountIndicator"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="2dip"
-        android:text="-/-"
-        android:textColor="@color/tint_gray"
-        android:textSize="12sp" />
+        <TextView
+            android:id="@+id/pagesTime"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dip"
+            android:layout_weight="1"
+            android:paddingBottom="2dip"
+            android:text="--:--"
+            android:textColor="@color/tint_gray"
+            android:textSize="9sp" />
 
-    <TextView
-        android:id="@+id/flippingIntervalView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_marginBottom="2dip"
-        android:layout_marginLeft="10dip"
-        android:layout_toRightOf="@+id/pagesCountIndicator"
-        android:text="{10}"
-        android:textColor="@color/tint_gray"
-        android:textSize="12sp"
-        android:visibility="gone" />
+        <TextView
+            android:id="@+id/pagesCountIndicator"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/progressDraw"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:paddingBottom="2dip"
+            android:text="-/-"
+            android:textColor="@color/tint_gray"
+            android:textSize="12sp" />
 
-    <TextView
-        android:id="@+id/pagesPower"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentRight="true"
-        android:layout_marginBottom="2dip"
-        android:layout_marginRight="10dip"
-        android:background="@drawable/bg_rect_power"
-        android:drawablePadding="0dip"
-        android:text="--%"
-        android:textColor="@color/tint_gray"
-        android:textSize="9sp" />
+        <TextView
+            android:id="@+id/flippingIntervalView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_marginLeft="10dip"
+            android:layout_toRightOf="@+id/pagesCountIndicator"
+            android:paddingBottom="2dip"
+            android:text="{10}"
+            android:textColor="@color/tint_gray"
+            android:textSize="12sp"
+            android:visibility="gone" />
+
+        <TextView
+            android:id="@+id/pagesPower"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="10dip"
+            android:layout_weight="1"
+            android:drawablePadding="0dip"
+            android:gravity="right"
+            android:paddingBottom="2dip"
+            android:text="--%"
+            android:textColor="@color/tint_gray"
+            android:textSize="9sp" />
+    </LinearLayout>
 
     <LinearLayout
         android:id="@+id/bottomBar"
@@ -200,7 +215,7 @@
         android:gravity="center_vertical"
         android:paddingLeft="2dip"
         android:paddingRight="2dip"
-        android:visibility="gone" >
+        android:visibility="visible" >
 
         <ImageView
             android:id="@+id/linkHistory"

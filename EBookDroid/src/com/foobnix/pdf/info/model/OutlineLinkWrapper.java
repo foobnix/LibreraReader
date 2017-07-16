@@ -1,16 +1,17 @@
 package com.foobnix.pdf.info.model;
 
+import com.foobnix.ext.Fb2Extractor;
+
 import android.graphics.RectF;
 
 public class OutlineLinkWrapper implements CharSequence {
 
-    public final String title;
+    private final String title;
     public final int level;
 
     public String targetUrl;
     public int targetPage = -1;
     public RectF targetRect;
-
 
     public OutlineLinkWrapper(final String title, final String link, final int level) {
         this.title = title;
@@ -29,6 +30,14 @@ public class OutlineLinkWrapper implements CharSequence {
         }
     }
 
+    public String getTitleRaw() {
+        return title;
+
+    }
+
+    public String getTitleAsString() {
+        return title.replace(Fb2Extractor.FOOTER_AFTRER_BOODY, "");
+    }
 
     /**
      * {@inheritDoc}

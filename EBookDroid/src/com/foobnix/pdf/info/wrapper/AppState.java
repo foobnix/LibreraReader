@@ -188,6 +188,8 @@ public class AppState {
     public String ttsSpeakPath = TTSModule.speakToPath;
 
     public boolean isShowToolBar = true;
+    public boolean isShowReadingProgress = true;
+
     public int nextScreenScrollBy = NEXT_SCREEN_SCROLL_BY_PAGES;// 0 by
                                                                 // pages,
                                                                 // 25 - 25%
@@ -464,6 +466,7 @@ public class AppState {
         notificationOngoing = sp.getBoolean("notificationOngoing", notificationOngoing);
         ttsReplacement = sp.getBoolean("ttsReplacement", ttsReplacement);
         isShowToolBar = sp.getBoolean("isShowToolBar", isShowToolBar);
+        isShowReadingProgress = sp.getBoolean("isShowReadingProgress", isShowReadingProgress);
         isWhiteTheme = sp.getBoolean("isWhiteTheme", isWhiteTheme);
         isOpenLastBook = sp.getBoolean("isOpenLastBook", isOpenLastBook);
         orientation = sp.getInt("orientation", orientation);
@@ -666,6 +669,7 @@ public class AppState {
         editor.putBoolean("notificationOngoing", notificationOngoing);
         editor.putBoolean("ttsReplacement", ttsReplacement);
         editor.putBoolean("isShowToolBar", isShowToolBar);
+        editor.putBoolean("isShowReadingProgress", isShowReadingProgress);
         editor.putBoolean("isWhiteTheme", isWhiteTheme);
         editor.putBoolean("isOpenLastBook", isOpenLastBook);
         editor.putBoolean("isRememberMode", isRememberMode);

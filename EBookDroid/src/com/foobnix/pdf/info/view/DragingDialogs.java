@@ -1396,7 +1396,7 @@ public class DragingDialogs {
         final AppBookmark bookmark = new AppBookmark(controller.getCurrentBook().getPath(), controller.getString(R.string.page) + " " + page, page, controller.getTitle());
         AppSharedPreferences.get().addBookMark(bookmark);
 
-        String TEXT = controller.getString(R.string.fast_bookmark) + " \"" + controller.getString(R.string.page) + " " + page + "\"";
+        String TEXT = controller.getString(R.string.fast_bookmark) + " «" + controller.getString(R.string.page) + " " + page + "»";
         Toast.makeText(controller.getActivity(), TEXT, Toast.LENGTH_SHORT).show();
 
     }
@@ -1815,7 +1815,7 @@ public class DragingDialogs {
 
     public static DragingPopup statusBarSettings(final FrameLayout anchor, final DocumentController controller, final Runnable onRefresh, final Runnable updateUIRefresh) {
 
-        DragingPopup dialog = new DragingPopup(R.string.status_bar, anchor, 330, 240) {
+        DragingPopup dialog = new DragingPopup(R.string.status_bar, anchor, 330, 280) {
 
             @Override
             public View getContentView(final LayoutInflater inflater) {
@@ -1828,6 +1828,22 @@ public class DragingDialogs {
                         preferences(anchor, controller, onRefresh, updateUIRefresh);
                     }
                 });
+
+                final CheckBox isShowReadingProgress = (CheckBox) inflate.findViewById(R.id.isShowReadingProgress);
+                isShowReadingProgress.setOnCheckedChangeListener(new OnCheckedChangeListener() {
+
+                    @Override
+                    public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                        AppState.get().isShowReadingProgress = isChecked;
+                        AppState.get().isEditMode = false;
+                        if (onRefresh != null) {
+                            onRefresh.run();
+                        }
+                    }
+                });
+                isShowReadingProgress.setChecked(AppState.get().isShowReadingProgress);
+
+                // status bar
 
                 final CheckBox isShowSatusBar = (CheckBox) inflate.findViewById(R.id.isShowSatusBar);
                 isShowSatusBar.setOnCheckedChangeListener(new OnCheckedChangeListener() {
@@ -2978,7 +2994,7 @@ public class DragingDialogs {
                 });
 
                 final CustomSeek fontSizeSp = (CustomSeek) inflate.findViewById(R.id.fontSizeSp);
-                fontSizeSp.init(10, 40, AppState.getInstance().fontSizeSp);
+                fontSizeSp.init(10, 70, AppState.getInstance().fontSizeSp);
                 fontSizeSp.setOnSeekChanged(new IntegerResponse() {
 
                     @Override

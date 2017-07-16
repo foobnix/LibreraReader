@@ -33,7 +33,8 @@ import com.foobnix.pdf.info.wrapper.AppState;
 import android.util.Base64;
 
 public class Fb2Extractor extends BaseExtractor {
-    private static final String FOOTER_NOTES_SIGN = "***";
+    public static final String FOOTER_NOTES_SIGN = "***";
+    public static final String FOOTER_AFTRER_BOODY = "[!]";
 
     public static final String DIVIDER = "~@~";
 
@@ -468,7 +469,11 @@ public class Fb2Extractor extends BaseExtractor {
             } else if (eventType == XmlPullParser.END_TAG) {
                 if (xpp.getName().equals("title") || xpp.getName().equals("subtitle")) {
                     isTitle = false;
-                    titles.add(section + DIVIDER + title);
+                    if (isFirstEndBody) {
+                        titles.add(section + DIVIDER + title + FOOTER_AFTRER_BOODY);
+                    } else {
+                        titles.add(section + DIVIDER + title);
+                    }
                     title = "";
                     if (section == dividerSection) {
                         titles.remove(dividerLine);

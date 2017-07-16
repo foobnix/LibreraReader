@@ -16,6 +16,7 @@ public class TempHolder {
     public boolean isTextFormat;
     public boolean isTextForamtButNotTxt;
 
+
     public int linkPage = -1;
 
     public static int listHash = 0;

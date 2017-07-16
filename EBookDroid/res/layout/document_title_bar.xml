@@ -36,9 +36,9 @@
             android:id="@+id/linearMenuLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingTop="1dip"
             android:layout_toRightOf="@+id/lirbiLogo"
             android:gravity="center_vertical"
+            android:paddingTop="1dip"
             android:visibility="visible" >
 
             <ImageView
@@ -55,9 +55,9 @@
                 android:id="@+id/bookName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:gravity="center_vertical"
                 android:layout_marginLeft="2dip"
                 android:layout_weight="1"
+                android:gravity="center_vertical"
                 android:singleLine="true"
                 android:text="Book Name.pdf"
                 android:textSize="29sp" />
@@ -174,8 +174,8 @@
                 android:layout_marginLeft="5dip"
                 android:layout_marginRight="5dip"
                 android:layout_weight="0"
-                android:padding="1dip"
                 android:background="?android:attr/selectableItemBackground"
+                android:padding="1dip"
                 android:src="@drawable/glyphicons_200_ban"
                 android:tint="@color/tint_gray" />
 
@@ -183,20 +183,19 @@
                 android:id="@+id/closeTop"
                 android:layout_width="@dimen/title_wh_button"
                 android:layout_height="@dimen/title_wh_button"
-                android:layout_weight="0"
-                android:padding="1dip"
                 android:layout_marginLeft="2dip"
                 android:layout_marginRight="5dip"
+                android:layout_weight="0"
                 android:background="?android:attr/selectableItemBackground"
+                android:padding="1dip"
                 android:src="@drawable/glyphicons_208_remove_2"
                 android:tint="@color/tint_gray" />
         </LinearLayout>
 
-        <View
-            android:id="@+id/underProgress"
-            android:layout_width="200dp"
-            android:layout_height="2dp"
-            android:background="#8b8989" />
+        <com.foobnix.pdf.info.view.ProgressDraw
+            android:id="@+id/progressDraw"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/progress" />
     </RelativeLayout>
 
 </LinearLayout>

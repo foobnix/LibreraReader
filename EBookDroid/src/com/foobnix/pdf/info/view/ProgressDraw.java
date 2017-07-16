@@ -3,55 +3,74 @@ package com.foobnix.pdf.info.view;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.foobnix.pdf.info.TintUtil;
+import com.foobnix.android.utils.Dips;
+import com.foobnix.android.utils.LOG;
+import com.foobnix.ext.Fb2Extractor;
 import com.foobnix.pdf.info.model.OutlineLinkWrapper;
+import com.foobnix.pdf.info.wrapper.MagicHelper;
 
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Paint.Style;
+import android.support.v4.graphics.ColorUtils;
 import android.util.AttributeSet;
 import android.view.View;
 
 public class ProgressDraw extends View {
 
+    private static final int ALPHA = 200;
     Paint paint = new Paint();
     {
         paint.setColor(Color.DKGRAY);
         paint.setStyle(Style.FILL);
+        paint.setStrokeWidth(Dips.dpToPx(1));
+        paint.setAntiAlias(true);
+        paint.setDither(true);
     }
 
-    Paint paintRadius = new Paint();
-    {
-        paintRadius.setColor(Color.parseColor("#8b0000"));
-        paintRadius.setStyle(Style.FILL);
-    }
 
     List<OutlineLinkWrapper> dividers = new ArrayList<OutlineLinkWrapper>();
     int pageCount;
     int progress;
+    int color = Color.BLACK;
 
     public ProgressDraw(Context context, AttributeSet attrs) {
         super(context, attrs);
     }
 
-    public ProgressDraw(Context context) {
-        super(context);
-    }
+    int level0count = 0;
 
     public void updateDivs(List<OutlineLinkWrapper> dividers) {
         this.dividers = dividers;
+        level0count = 0;
+        if (dividers == null) {
+            return;
+        }
+        for (OutlineLinkWrapper link : dividers) {
+            if (link.level == 0) {
+                level0count++;
+            }
+        }
+
         invalidate();
     }
 
     public void updateProgress(int progress) {
-        this.progress = progress + 1;
+        LOG.d("updateProgress", progress);
+        this.progress = progress;
         invalidate();
     }
 
     public void updatePageCount(int pageCount) {
-        this.pageCount = pageCount;
+        LOG.d("updatePageCount", pageCount);
+        this.pageCount = pageCount - 1;
+        invalidate();
+    }
+
+    public void updateColor(int color) {
+        this.color = ColorUtils.setAlphaComponent(color, ALPHA);
         invalidate();
     }
 
@@ -59,25 +78,33 @@ public class ProgressDraw extends View {
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
         canvas.save();
+        canvas.drawColor(MagicHelper.darkerColor(MagicHelper.getBgColor()));
 
-        paint.setColor(TintUtil.color);
+        paint.setColor(color);
 
         float k = (float) getWidth() / pageCount;
         int h = getHeight();
+        int w = getWidth();
         int currentChapter = 0;
-        for (OutlineLinkWrapper item : dividers) {
-            int pos = item.targetPage;
-            if (pos < 0) {
-                continue;
-            }
-            canvas.drawLine(pos * k, 0, pos * k, h, paint);
-            if (pos <= progress) {
-                currentChapter = pos;
+        if (dividers != null && !dividers.isEmpty()) {
+            int firstLevel = dividers.get(0).level;
+            int deep = (level0count == 1 ? 3 : 2);
+            for (OutlineLinkWrapper item : dividers) {
+                int pos = item.targetPage - 1;
+                if (pos < 0 || item.level >= (deep + firstLevel) || item.getTitleRaw().endsWith(Fb2Extractor.FOOTER_AFTRER_BOODY)) {
+                    continue;
+                }
+
+                if (pos <= progress) {
+                    currentChapter = pos;
+                } else {
+                    canvas.drawLine(pos * k, 0, pos * k, h, paint);
+                }
             }
         }
 
-        canvas.drawLine(0, h / 2, progress * k, h / 2, paint);
-        canvas.drawCircle(currentChapter * k, h / 2, h / 2, paintRadius);
+        canvas.drawRect(0, 0, progress * k, h, paint);
+        canvas.drawLine(currentChapter * k, 0, currentChapter * k, h, paint);
 
         canvas.restore();
     }
