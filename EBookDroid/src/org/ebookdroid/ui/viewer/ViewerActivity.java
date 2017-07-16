@@ -1,5 +1,7 @@
 package org.ebookdroid.ui.viewer;
 
+import java.util.concurrent.TimeUnit;
+
 import org.ebookdroid.common.settings.AppSettings;
 import org.ebookdroid.common.settings.SettingsManager;
 import org.ebookdroid.common.settings.books.BookSettings;
@@ -23,6 +25,7 @@ import com.foobnix.pdf.info.wrapper.DocumentController;
 import com.foobnix.pdf.search.view.CloseAppDialog;
 import com.foobnix.sys.TempHolder;
 import com.foobnix.ui2.FileMetaCore;
+import com.foobnix.ui2.MainTabs2;
 import com.google.android.gms.ads.AdView;
 import com.google.android.gms.ads.NativeExpressAdView;
 
@@ -33,6 +36,7 @@ import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.DisplayMetrics;
 import android.view.KeyEvent;
 import android.view.MotionEvent;
@@ -74,6 +78,7 @@ public class ViewerActivity extends AbstractActionActivity<ViewerActivity, Viewe
 
     private AdView adView;
     private NativeExpressAdView adViewNative;
+    private Handler handler;
 
     /**
      * Called when the activity is first created.
@@ -129,6 +134,8 @@ public class ViewerActivity extends AbstractActionActivity<ViewerActivity, Viewe
 
         RecentUpates.updateAll(this);
 
+        handler = new Handler();
+
     }
 
     @Override
@@ -181,16 +188,30 @@ public class ViewerActivity extends AbstractActionActivity<ViewerActivity, Viewe
             AppState.get().isAutoScroll = true;
             getController().getListener().onAutoScroll();
         }
+        handler.removeCallbacks(closeRunnable);
     }
 
     @Override
     protected void onStop() {
         super.onStop();
         Analytics.onStop(this);
+        handler.postDelayed(closeRunnable, TimeUnit.MINUTES.toMillis(2));
     }
+
+    Runnable closeRunnable = new Runnable() {
+
+        @Override
+        public void run() {
+            LOG.d("Close App");
+            // AppState.get().lastA = ViewerActivity.class.getSimpleName();
+            getController().closeActivity(null);
+            MainTabs2.closeApp(ViewerActivity.this);
+        }
+    };
 
     @Override
     protected void onDestroy() {
+        handler.removeCallbacksAndMessages(null);
         if (AppState.getInstance().isRememberMode && AppState.getInstance().isAlwaysOpenAsMagazine) {
             super.onDestroy();
         } else {

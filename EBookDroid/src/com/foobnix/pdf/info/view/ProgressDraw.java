@@ -30,7 +30,6 @@ public class ProgressDraw extends View {
         paint.setDither(true);
     }
 
-
     List<OutlineLinkWrapper> dividers = new ArrayList<OutlineLinkWrapper>();
     int pageCount;
     int progress;
@@ -40,17 +39,21 @@ public class ProgressDraw extends View {
         super(context, attrs);
     }
 
-    int level0count = 0;
+    int level0count, level1count = 0;
 
     public void updateDivs(List<OutlineLinkWrapper> dividers) {
         this.dividers = dividers;
         level0count = 0;
+        level1count = 0;
         if (dividers == null) {
             return;
         }
         for (OutlineLinkWrapper link : dividers) {
             if (link.level == 0) {
                 level0count++;
+            }
+            if (link.level == 1) {
+                level1count++;
             }
         }
 
@@ -87,11 +90,11 @@ public class ProgressDraw extends View {
         int w = getWidth();
         int currentChapter = 0;
         if (dividers != null && !dividers.isEmpty()) {
-            int firstLevel = dividers.get(0).level;
-            int deep = (level0count == 1 ? 3 : 2);
+            int deep = (level0count == 1 ? level1count >= 10 ? 2 : 3 : 2);
+            LOG.d("Deep count", deep);
             for (OutlineLinkWrapper item : dividers) {
                 int pos = item.targetPage - 1;
-                if (pos < 0 || item.level >= (deep + firstLevel) || item.getTitleRaw().endsWith(Fb2Extractor.FOOTER_AFTRER_BOODY)) {
+                if (pos < 0 || item.level >= deep || item.getTitleRaw().endsWith(Fb2Extractor.FOOTER_AFTRER_BOODY)) {
                     continue;
                 }
 

@@ -46,6 +46,7 @@ public final class PdfSurfaceView extends android.view.SurfaceView implements IV
     // private int sleepTime = 1000 * 5;
     private boolean isKeep = false;
 
+
     public PdfSurfaceView(final IActivityController baseActivity) {
         super(baseActivity.getContext());
         this.base = baseActivity;

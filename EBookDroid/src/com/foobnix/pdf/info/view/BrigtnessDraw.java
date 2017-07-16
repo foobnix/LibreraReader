@@ -1,6 +1,7 @@
 package com.foobnix.pdf.info.view;
 
 import com.foobnix.android.utils.Dips;
+import com.foobnix.android.utils.LOG;
 import com.foobnix.pdf.info.R;
 import com.foobnix.pdf.info.TintUtil;
 import com.foobnix.pdf.info.wrapper.AppState;
@@ -44,18 +45,20 @@ public class BrigtnessDraw extends View {
 
     float y, x;
     int distance = Dips.dpToPx(5);
+    int border = Dips.dpToPx(30);
 
     private Activity activity;
     private TextView textView;
     Toast toast;
-
-
 
     @Override
     public boolean onTouchEvent(MotionEvent event) {
         if (activity == null) {
             return false;
         }
+
+        LOG.d("BrigtnessDraw", event);
+
         final int action = event.getAction() & MotionEvent.ACTION_MASK;
 
         if (action == MotionEvent.ACTION_DOWN) {
@@ -65,6 +68,7 @@ public class BrigtnessDraw extends View {
 
         if (action == MotionEvent.ACTION_MOVE) {
             if (Math.abs(y - event.getY()) >= distance) {
+                LOG.d("BrigtnessDraw", event.getX(), border);
                 float dy = (y - event.getY());
                 if (dy > 0) {
                     AppState.getInstance().brightness += 0.005;
@@ -84,7 +88,6 @@ public class BrigtnessDraw extends View {
                 showToast();
             }
         }
-
         return true;
     }
 
