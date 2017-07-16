@@ -29,7 +29,7 @@ public class BrigtnessDraw extends View {
         textView.setTextSize(16);
 
         Drawable icon = ContextCompat.getDrawable(context, R.drawable.glyphicons_190_brightness_increase);
-        TintUtil.setDrawableTint(icon, Color.WHITE);
+        TintUtil.setDrawableTint(icon.getCurrent(), Color.WHITE);
 
         textView.setCompoundDrawablesWithIntrinsicBounds(icon, null, null, null);
         textView.setCompoundDrawablePadding(Dips.dpToPx(10));
@@ -48,6 +48,8 @@ public class BrigtnessDraw extends View {
     private Activity activity;
     private TextView textView;
     Toast toast;
+
+
 
     @Override
     public boolean onTouchEvent(MotionEvent event) {
@@ -73,17 +75,38 @@ public class BrigtnessDraw extends View {
                 if (AppState.getInstance().brightness <= 0) {
                     AppState.getInstance().brightness = 0;
                 }
+
                 if (AppState.getInstance().brightness >= 1) {
                     AppState.getInstance().brightness = 1f;
                 }
                 DocumentController.applyBrigtness(activity);
                 y = event.getY();
-                textView.setText("" + (int) (AppState.getInstance().brightness * 100));
-                toast.show();
+                showToast();
             }
         }
 
         return true;
+    }
+
+    @Override
+    public void setOnClickListener(OnClickListener l) {
+        this.onClickListener = l;
+    }
+
+    OnClickListener onClickListener;
+
+    public void showToast() {
+        if (AppState.getInstance().brightness == -1) {
+            textView.setText(R.string.automatic);
+        } else {
+            textView.setText("" + (int) (AppState.getInstance().brightness * 100));
+        }
+        toast.show();
+    }
+
+    public void showToast(String text) {
+        textView.setText(text);
+        toast.show();
     }
 
     public void setActivity(Activity activity) {

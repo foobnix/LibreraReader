@@ -364,4 +364,5 @@
    <string name="book_styles">Bokstilar</string>
    <string name="language">Språk</string>
    <string name="show_progress_of_reading">Visa läsningens framsteg</string>
+   <string name="line_height">Radavstånd</string>
 </resources>

@@ -364,4 +364,5 @@
    <string name="book_styles">Štýly kníh</string>
    <string name="language">Jazyk</string>
    <string name="show_progress_of_reading">Zobraziť postup čítania</string>
+   <string name="line_height">Výška linky</string>
 </resources>

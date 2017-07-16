@@ -364,4 +364,5 @@
    <string name="book_styles">Stiluri de carte</string>
    <string name="language">Limba</string>
    <string name="show_progress_of_reading">Afișați progresul citirii</string>
+   <string name="line_height">Inaltimea liniei</string>
 </resources>

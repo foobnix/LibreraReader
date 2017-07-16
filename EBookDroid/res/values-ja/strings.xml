@@ -364,4 +364,5 @@
    <string name="book_styles">ブックスタイル</string>
    <string name="language">言語</string>
    <string name="show_progress_of_reading">読書の進捗状況を示す</string>
+   <string name="line_height">行の高さ</string>
 </resources>

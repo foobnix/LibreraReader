@@ -364,4 +364,5 @@
    <string name="book_styles">Bestill stiler</string>
    <string name="language">Språk</string>
    <string name="show_progress_of_reading">Vis fremdrift av lesing</string>
+   <string name="line_height">Linjehøyde</string>
 </resources>

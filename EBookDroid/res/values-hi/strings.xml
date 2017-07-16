@@ -364,4 +364,5 @@
    <string name="book_styles">पुस्तक शैलियों</string>
    <string name="language">भाषा</string>
    <string name="show_progress_of_reading">पढ़ने की प्रगति दिखाएं</string>
+   <string name="line_height">रेख की ऊंचाई</string>
 </resources>

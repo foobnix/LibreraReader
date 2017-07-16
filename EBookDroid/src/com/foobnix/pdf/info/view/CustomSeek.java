@@ -32,16 +32,16 @@ public class CustomSeek extends FrameLayout {
         a.recycle();
 
         View inflate = LayoutInflater.from(context).inflate(R.layout.custom_seek, this, false);
-        TextView txt = (TextView) inflate.findViewById(R.id.name);
-        txt.setText(name);
+        titleText = (TextView) inflate.findViewById(R.id.name);
+        titleText.setText(name);
         if (TxtUtils.isEmpty(name)) {
-            txt.setVisibility(View.GONE);
+            titleText.setVisibility(View.GONE);
         }
 
         textCurerntValue = (TextView) inflate.findViewById(R.id.value);
 
         if (TxtUtils.isNotEmpty(textColor)) {
-            txt.setTextColor(Color.parseColor(textColor));
+            titleText.setTextColor(Color.parseColor(textColor));
             textCurerntValue.setTextColor(Color.parseColor(textColor));
         }
 
@@ -73,6 +73,10 @@ public class CustomSeek extends FrameLayout {
         });
 
         addView(inflate);
+    }
+
+    public void setTitleTextWidth(int width) {
+        titleText.getLayoutParams().width = width;
     }
 
     @Override
@@ -146,6 +150,7 @@ public class CustomSeek extends FrameLayout {
     IntegerResponse integerResponse;
     private View plus;
     private View minus;
+    private TextView titleText;
 
     public void setValueText(String text) {
         textCurerntValue.setText(text);

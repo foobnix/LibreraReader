@@ -553,6 +553,7 @@ public class DocumentWrapperUI {
         brigtnessProgressView = (BrigtnessDraw) a.findViewById(R.id.brigtnessProgressView);
         brigtnessProgressView.setActivity(a);
 
+
         reverseKeysIndicator = (TextView) a.findViewById(R.id.reverseKeysIndicator);
         // reverseKeysIndicator.setOnClickListener(onReverseKeys);
         reverseKeysIndicator.setTypeface(BookCSS.getNormalTypeFace());
@@ -779,6 +780,8 @@ public class DocumentWrapperUI {
     public void updateSeekBarColorAndSize() {
 
         progressDraw.updateColor(TintUtil.getStatusBarColor());
+        progressDraw.getLayoutParams().height = Dips.dpToPx(AppState.get().progressLineHeight);
+        progressDraw.requestLayout();
 
         TintUtil.setTintText(bookName, TintUtil.getStatusBarColor());
         TintUtil.setTintImage(textToSpeachTop, TintUtil.getStatusBarColor());

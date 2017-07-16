@@ -364,4 +364,5 @@
    <string name="book_styles">Gaya buku</string>
    <string name="language">Bahasa</string>
    <string name="show_progress_of_reading">Tampilkan kemajuan membaca</string>
+   <string name="line_height">Tinggi garis</string>
 </resources>

@@ -364,4 +364,5 @@
    <string name="book_styles">سبک های کتاب</string>
    <string name="language">زبان</string>
    <string name="show_progress_of_reading">نمایش پیشرفت خواندن</string>
+   <string name="line_height">ارتفاع خط</string>
 </resources>

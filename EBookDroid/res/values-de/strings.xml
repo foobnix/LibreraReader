@@ -364,4 +364,5 @@
    <string name="book_styles">Bucharten</string>
    <string name="language">Sprache</string>
    <string name="show_progress_of_reading">Zeigen Sie den Fortschritt des Lesens</string>
+   <string name="line_height">Zeilenhöhe</string>
 </resources>

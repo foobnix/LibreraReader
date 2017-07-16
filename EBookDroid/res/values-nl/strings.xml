@@ -364,4 +364,5 @@
    <string name="book_styles">Boekstijlen</string>
    <string name="language">Taal</string>
    <string name="show_progress_of_reading">Toon vooruitgang met lezen</string>
+   <string name="line_height">Lijnhoogte</string>
 </resources>

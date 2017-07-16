@@ -1233,7 +1233,7 @@ public class PrefFragment2 extends UIFragment {
 
     public void initBrigtness() {
         float curBr = AppState.getInstance().brightness;
-        if (curBr == 0.0) {
+        if (curBr == -1) {
             curBr = DocumentController.getSystemBrigtness(getActivity());
             bar.setEnabled(false);
             autoSettings.setChecked(true);
@@ -1337,7 +1337,7 @@ public class PrefFragment2 extends UIFragment {
             bar.setProgress((int) (val * 100));
             bar.setOnSeekBarChangeListener(null);
             bar.setEnabled(false);
-            AppState.getInstance().brightness = 0;
+            AppState.getInstance().brightness = -1;
             DocumentController.applyBrigtness(getActivity());
         } else {
             bar.setEnabled(true);
@@ -1374,9 +1374,9 @@ public class PrefFragment2 extends UIFragment {
 
         @Override
         public void onProgressChanged(final SeekBar seekBar, final int progress, final boolean fromUser) {
-            final float f = (float) progress / 100;
-            if (f <= 0.01) {
-                return;
+            float f = (float) progress / 100;
+            if (f <= 0) {
+                f = 0;
             }
             AppState.getInstance().brightness = f;
             DocumentController.applyBrigtness(getActivity());

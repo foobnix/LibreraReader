@@ -364,4 +364,5 @@
    <string name="book_styles">Book styles</string>
    <string name="language">Language</string>
    <string name="show_progress_of_reading">Show progress of reading</string>
+   <string name="line_height">Line height</string>
 </resources>

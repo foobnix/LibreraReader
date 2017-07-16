@@ -364,4 +364,5 @@
    <string name="book_styles">סגנונות ספרים</string>
    <string name="language">שפה</string>
    <string name="show_progress_of_reading">הצג התקדמות בקריאה</string>
+   <string name="line_height">גובה קו</string>
 </resources>

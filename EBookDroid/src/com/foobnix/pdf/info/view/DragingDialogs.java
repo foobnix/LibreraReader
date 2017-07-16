@@ -1815,7 +1815,7 @@ public class DragingDialogs {
 
     public static DragingPopup statusBarSettings(final FrameLayout anchor, final DocumentController controller, final Runnable onRefresh, final Runnable updateUIRefresh) {
 
-        DragingPopup dialog = new DragingPopup(R.string.status_bar, anchor, 330, 280) {
+        DragingPopup dialog = new DragingPopup(R.string.status_bar, anchor, 330, 320) {
 
             @Override
             public View getContentView(final LayoutInflater inflater) {
@@ -1861,6 +1861,8 @@ public class DragingDialogs {
                 /// asd
 
                 final CustomSeek statusBarTextSize = (CustomSeek) inflate.findViewById(R.id.statusBarTextSize);
+                statusBarTextSize.setTitleTextWidth(Dips.dpToPx(100));
+
                 statusBarTextSize.init(5, 30, controller.isEasyMode() ? AppState.get().statusBarTextSizeEasy : AppState.get().statusBarTextSizeAdv);
                 statusBarTextSize.setOnSeekChanged(new IntegerResponse() {
 
@@ -1872,6 +1874,22 @@ public class DragingDialogs {
                         } else {
                             AppState.get().statusBarTextSizeAdv = result;
                         }
+                        AppState.get().isEditMode = false;
+                        if (onRefresh != null) {
+                            onRefresh.run();
+                        }
+                        return false;
+                    }
+                });
+
+                final CustomSeek progressLineHeight = (CustomSeek) inflate.findViewById(R.id.progressLineHeight);
+                progressLineHeight.setTitleTextWidth(Dips.dpToPx(100));
+                progressLineHeight.init(1, 10, AppState.get().progressLineHeight);
+                progressLineHeight.setOnSeekChanged(new IntegerResponse() {
+
+                    @Override
+                    public boolean onResultRecive(int result) {
+                        AppState.get().progressLineHeight = result;
                         AppState.get().isEditMode = false;
                         if (onRefresh != null) {
                             onRefresh.run();
@@ -2405,7 +2423,6 @@ public class DragingDialogs {
                 });
 
                 // end styles
-
 
                 // rotate
 
@@ -3136,19 +3153,22 @@ public class DragingDialogs {
 
                 CheckBox autoSettings = (CheckBox) inflate.findViewById(R.id.autoSettings);
 
+                final BrigtnessDraw brigtnessDraw = (BrigtnessDraw) controller.getActivity().findViewById(R.id.brigtnessProgressView);
+
                 final CustomSeek customBrightness = (CustomSeek) inflate.findViewById(R.id.customBrightness);
-                customBrightness.init(1, 100, 1);
+                customBrightness.init(0, 100, -1);
                 customBrightness.setOnSeekChanged(new IntegerResponse() {
 
                     @Override
                     public boolean onResultRecive(int result) {
-                        final float f = (float) result / 100;
-                        if (f <= 0.01) {
-                            return false;
+                        float f = (float) result / 100;
+                        if (f <= 0) {
+                            f = 0;
                         }
                         AppState.getInstance().brightness = f;
                         DocumentController.applyBrigtness(controller.getActivity());
                         customBrightness.setValueText("" + result);
+                        brigtnessDraw.showToast();
                         return false;
                     }
                 });
@@ -3157,12 +3177,16 @@ public class DragingDialogs {
 
                     @Override
                     public void onCheckedChanged(final CompoundButton buttonView, final boolean isChecked) {
+                        if (!buttonView.isPressed()) {
+                            return;
+                        }
                         if (isChecked) {// auto
                             final float val = DocumentController.getSystemBrigtness(controller.getActivity());
                             customBrightness.reset((int) (val * 100));
                             customBrightness.setEnabled(false);
-                            AppState.getInstance().brightness = 0;
+                            AppState.getInstance().brightness = -1;
                             DocumentController.applyBrigtness(controller.getActivity());
+                            brigtnessDraw.showToast(controller.getString(R.string.automatic));
                         } else {
                             customBrightness.setEnabled(true);
                         }
@@ -3170,9 +3194,10 @@ public class DragingDialogs {
                         if (controller.getActivity() != null) {
                             AppState.getInstance().save(controller.getActivity());
                         }
+
                     }
                 });
-                if (AppState.getInstance().brightness == 0 || AppState.getInstance().brightness == 0.0) {
+                if (AppState.getInstance().brightness == -1) {
                     autoSettings.setChecked(true);
                     customBrightness.reset((int) (100 * DocumentController.getSystemBrigtness(controller.getActivity())));
                 } else {

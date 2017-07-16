@@ -364,4 +364,5 @@
    <string name="book_styles">Kirja tyylit</string>
    <string name="language">Kieli</string>
    <string name="show_progress_of_reading">Näytä lukemisen edistyminen</string>
+   <string name="line_height">Viivankorkeus</string>
 </resources>

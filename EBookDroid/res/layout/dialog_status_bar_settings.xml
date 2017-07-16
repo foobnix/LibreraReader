@@ -26,7 +26,6 @@
             android:layout_weight="1"
             android:text="@string/show_status_bar" />
         
-        
         <CheckBox
             android:id="@+id/isShowReadingProgress"
             android:layout_width="wrap_content"
@@ -34,13 +33,22 @@
             android:layout_marginLeft="10dip"
             android:layout_weight="1"
             android:text="@string/show_progress_of_reading" />
-
+        
+        
         <com.foobnix.pdf.info.view.CustomSeek
             android:id="@+id/statusBarTextSize"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="5dip"
             myseek:text="@string/text_size" >
+        </com.foobnix.pdf.info.view.CustomSeek>
+        
+        <com.foobnix.pdf.info.view.CustomSeek
+            android:id="@+id/progressLineHeight"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dip"
+            myseek:text="@string/line_height" >
         </com.foobnix.pdf.info.view.CustomSeek>
 
         <com.foobnix.pdf.info.view.CustomColorView
@@ -56,6 +64,12 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="5dip"
             myseek:text="@string/text_color_night" />
+        
+        
+        
+        
+        
+        
     </LinearLayout>
 
 </ScrollView>

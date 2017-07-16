@@ -203,7 +203,7 @@ public class AppState {
     public int sortByBrowse = BR_SORT_BY_PATH;
     public boolean sortByReverse = false;
 
-    public float brightness = 0f;
+    public float brightness = -1f;
     public float cropTolerance = 0.5f;
 
     public float ttsSpeed = 1.0f;
@@ -314,6 +314,7 @@ public class AppState {
     public volatile int fontSizeSp = 22;
     public volatile int statusBarTextSizeAdv = 14;
     public volatile int statusBarTextSizeEasy = 10;
+    public volatile int progressLineHeight = 3;
 
     public String lastA;
     public String lastMode;
@@ -479,7 +480,7 @@ public class AppState {
         pagesInMemory = sp.getInt("pagesInMemory", pagesInMemory);
 
         pageQuality = getAsFloatOrInt(sp, "pageQuality", pageQuality);
-        brightness = getAsFloatOrInt(sp, "brightness", brightness);
+        brightness = getAsFloatOrInt(sp, "brightness1", brightness);
         cropTolerance = getAsFloatOrInt(sp, "cropTolerance", cropTolerance);
         ttsSpeed = getAsFloatOrInt(sp, "ttsSpeed", ttsSpeed);
         ttsPitch = getAsFloatOrInt(sp, "ttsPitch", ttsPitch);
@@ -545,6 +546,7 @@ public class AppState {
         fontSizeSp = sp.getInt("fontSizeSp", fontSizeSp);
         statusBarTextSizeAdv = sp.getInt("statusBarTextSizeAdv", statusBarTextSizeAdv);
         statusBarTextSizeEasy = sp.getInt("statusBarTextSizeEasy", statusBarTextSizeEasy);
+        progressLineHeight = sp.getInt("progressLineHeight", progressLineHeight);
 
         doubleClickAction = sp.getInt("doubleClickAction", doubleClickAction);
         inactivityTime = sp.getInt("inactivityTime", inactivityTime);
@@ -709,7 +711,7 @@ public class AppState {
 
         editor.putInt("sortBy", sortBy);
         editor.putInt("sortByBrowse", sortByBrowse);
-        editor.putFloat("brightness", brightness);
+        editor.putFloat("brightness1", brightness);
         editor.putFloat("cropTolerance", cropTolerance);
         editor.putFloat("ttsSpeed", ttsSpeed);
         editor.putFloat("ttsPitch", ttsPitch);
@@ -746,6 +748,7 @@ public class AppState {
         editor.putInt("fontSizeSp", fontSizeSp);
         editor.putInt("statusBarTextSizeAdv", statusBarTextSizeAdv);
         editor.putInt("statusBarTextSizeEasy", statusBarTextSizeEasy);
+        editor.putInt("progressLineHeight", progressLineHeight);
         editor.putInt("doubleClickAction", doubleClickAction);
         editor.putInt("inactivityTime", inactivityTime);
         editor.putInt("remindRestTime", remindRestTime);

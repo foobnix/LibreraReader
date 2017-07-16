@@ -364,4 +364,5 @@
    <string name="book_styles">Mitindo ya vitabu</string>
    <string name="language">Lugha</string>
    <string name="show_progress_of_reading">Onyesha maendeleo ya kusoma</string>
+   <string name="line_height">Urefu wa mstari</string>
 </resources>

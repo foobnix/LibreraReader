@@ -199,6 +199,7 @@ public class HorizontalViewActivity extends FragmentActivity {
         brigtnessProgressView = (BrigtnessDraw) findViewById(R.id.brigtnessProgressView);
         brigtnessProgressView.setActivity(this);
 
+
         actionBar = findViewById(R.id.actionBar);
         bottomBar = findViewById(R.id.bottomBar);
         bottomIndicators = findViewById(R.id.bottomIndicators);
@@ -555,6 +556,10 @@ public class HorizontalViewActivity extends FragmentActivity {
         pagesCountIndicator.setTextSize(AppState.get().statusBarTextSizeEasy);
         flippingIntervalView.setTextSize(AppState.get().statusBarTextSizeEasy);
         progressDraw.updateColor(TintUtil.getStatusBarColor());
+
+        progressDraw.getLayoutParams().height = Dips.dpToPx(AppState.get().progressLineHeight);
+        progressDraw.requestLayout();
+
     }
 
     Runnable onRefresh = new Runnable() {
@@ -946,7 +951,7 @@ public class HorizontalViewActivity extends FragmentActivity {
         } else {
             currentSeek.setText("" + (page + 1));
         }
-        pagesCountIndicator.setText((page + 1) + "/" + documentController.getPageCount());
+        pagesCountIndicator.setText((page + 1) + "∕" + documentController.getPageCount());
         seekBar.setProgress(page);
         if (documentController != null) {
             documentController.currentPage = page;
