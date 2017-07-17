@@ -664,6 +664,7 @@ public class HorizontalViewActivity extends FragmentActivity {
         pagesTime.setVisibility(isVisible);
         pagesCountIndicator.setVisibility(isVisible);
         pagesPower.setVisibility(isVisible);
+        bottomIndicators.setVisibility(isVisible);
 
         progressDraw.setVisibility(AppState.get().isShowReadingProgress ? View.VISIBLE : View.GONE);
 
@@ -711,7 +712,7 @@ public class HorizontalViewActivity extends FragmentActivity {
         EventBus.getDefault().register(this);
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
 
-        handler.removeCallbacks(closeRunnable);
+
     }
 
     @Override
@@ -723,7 +724,7 @@ public class HorizontalViewActivity extends FragmentActivity {
         if (flippingHandler != null) {
             flippingHandler.removeCallbacksAndMessages(null);
         }
-        handler.postDelayed(closeRunnable, TimeUnit.MINUTES.toMillis(2));
+
     }
 
     Runnable closeRunnable = new Runnable() {
@@ -790,7 +791,7 @@ public class HorizontalViewActivity extends FragmentActivity {
         if (documentController != null) {
             documentController.onResume();
         }
-
+        handler.removeCallbacks(closeRunnable);
     }
 
     @Override
@@ -803,6 +804,8 @@ public class HorizontalViewActivity extends FragmentActivity {
         }
         AppState.get().save(this);
         TempHolder.isSeaching = false;
+
+        handler.postDelayed(closeRunnable, TimeUnit.MINUTES.toMillis(2));
 
     }
 

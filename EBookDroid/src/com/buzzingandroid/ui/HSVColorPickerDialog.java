@@ -11,7 +11,6 @@ import android.content.DialogInterface;
 import android.graphics.Color;
 import android.view.Gravity;
 import android.view.View;
-import android.view.ViewGroup.LayoutParams;
 import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
@@ -54,19 +53,9 @@ public class HSVColorPickerDialog extends AlertDialog {
         int padding = (int) (context.getResources().getDisplayMetrics().density * PADDING_DP);
         int borderSize = (int) (context.getResources().getDisplayMetrics().density * BORDER_DP);
         LinearLayout layout = new LinearLayout(context);
-        layout.setMinimumWidth(Dips.dpToPx(1000));
-        layout.setMinimumHeight(Dips.dpToPx(1000));
+        // layout.setMinimumWidth(Dips.dpToPx(1000));
+        // layout.setMinimumHeight(Dips.dpToPx(1000));
 
-        if (Dips.screenWidth() > Dips.screenHeight()) {
-            layout.setOrientation(LinearLayout.HORIZONTAL);
-        } else {
-            layout.setOrientation(LinearLayout.VERTICAL);
-
-        }
-
-        LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT);
-
-        lp.bottomMargin = (int) (context.getResources().getDisplayMetrics().density * CONTROL_SPACING_DP);
         colorWheel.setListener(new OnColorSelectedListener() {
             @Override
             public void colorSelected(Integer color) {
@@ -74,20 +63,12 @@ public class HSVColorPickerDialog extends AlertDialog {
             }
         });
         colorWheel.setColor(initialColor);
-        colorWheel.setId(1);
-        layout.addView(colorWheel, lp);
 
         int selectedColorHeight = (int) (context.getResources().getDisplayMetrics().density * SELECTED_COLOR_HEIGHT_DP);
 
         FrameLayout valueSliderBorder = new FrameLayout(context);
         valueSliderBorder.setBackgroundColor(BORDER_COLOR);
         valueSliderBorder.setPadding(borderSize, borderSize, borderSize, borderSize);
-        valueSliderBorder.setId(2);
-        lp = new LinearLayout.LayoutParams(LayoutParams.MATCH_PARENT, selectedColorHeight + 2 * borderSize);
-        // lp.bottomMargin = (int)
-        // (context.getResources().getDisplayMetrics().density *
-        // CONTROL_SPACING_DP);
-        // lp.addRule(RelativeLayout.BELOW, 1);
 
         valueSlider.setColor(initialColor, false);
         valueSlider.setListener(new OnColorSelectedListener() {
@@ -102,10 +83,8 @@ public class HSVColorPickerDialog extends AlertDialog {
 
         FrameLayout selectedColorborder = new FrameLayout(context);
         selectedColorborder.setBackgroundColor(BORDER_COLOR);
-        lp = new LinearLayout.LayoutParams(LayoutParams.MATCH_PARENT, selectedColorHeight + 2 * borderSize);
-        lp.topMargin = Dips.dpToPx(10);
+
         selectedColorborder.setPadding(borderSize, borderSize, borderSize, borderSize);
-        // lp.addRule(RelativeLayout.BELOW, 2);
 
         selectedColorView = new TextView(context);
         selectedColorView.setBackgroundColor(selectedColor);
@@ -114,13 +93,21 @@ public class HSVColorPickerDialog extends AlertDialog {
         selectedColorView.setGravity(Gravity.CENTER);
         selectedColorView.setTextSize(24);
 
-        LinearLayout childs = new LinearLayout(context);
-        childs.setOrientation(LinearLayout.VERTICAL);
 
-        childs.addView(valueSliderBorder, lp);
-        childs.addView(selectedColorborder, lp);
+        LinearLayout.LayoutParams cLP = new LinearLayout.LayoutParams(Dips.dpToPx(220), Dips.dpToPx(40));
+        cLP.topMargin = Dips.dpToPx(6);
+        cLP.gravity = Gravity.CENTER;
 
-        layout.addView(childs);
+        LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(Dips.dpToPx(220), Dips.dpToPx(220));
+        lp.gravity = Gravity.CENTER;
+
+
+        layout.setOrientation(LinearLayout.VERTICAL);
+
+        layout.addView(colorWheel, lp);
+        layout.addView(valueSliderBorder, cLP);
+        layout.addView(selectedColorborder, cLP);
+
 
         selectedColorView.setOnClickListener(new View.OnClickListener() {
 

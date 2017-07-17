@@ -154,7 +154,7 @@ public class ViewerActivity extends AbstractActionActivity<ViewerActivity, Viewe
             Keyboards.hideNavigation(this);
         }
         getController().onResume();
-
+        handler.removeCallbacks(closeRunnable);
     }
 
     @Override
@@ -178,6 +178,7 @@ public class ViewerActivity extends AbstractActionActivity<ViewerActivity, Viewe
         AppState.get().isAutoScroll = false;
         AppState.get().save(this);
         TempHolder.isSeaching = false;
+        handler.postDelayed(closeRunnable, TimeUnit.MINUTES.toMillis(2));
     }
 
     @Override
@@ -188,14 +189,14 @@ public class ViewerActivity extends AbstractActionActivity<ViewerActivity, Viewe
             AppState.get().isAutoScroll = true;
             getController().getListener().onAutoScroll();
         }
-        handler.removeCallbacks(closeRunnable);
+
     }
 
     @Override
     protected void onStop() {
         super.onStop();
         Analytics.onStop(this);
-        handler.postDelayed(closeRunnable, TimeUnit.MINUTES.toMillis(2));
+
     }
 
     Runnable closeRunnable = new Runnable() {
