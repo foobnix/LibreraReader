@@ -128,14 +128,14 @@ public class BookCSS {
     public void resetToDefault(Context c) {
         textAlign = TEXT_ALIGN_JUSTIFY;
 
-        marginTop = 6;
-        marginRight = 5;
+        marginTop = 9;
+        marginRight = 8;
         marginBottom = 6;
-        marginLeft = 5;
+        marginLeft = 8;
 
         emptyLine = 5;
 
-        lineHeight = 13;
+        lineHeight = 14;
         textIndent = 10;
         fontWeight = 400;
 
@@ -464,6 +464,8 @@ public class BookCSS {
                 builder.append("title   {font-size:1.2em; font-weight: bold; font-family: " + headersFont + ";}");
                 builder.append("subtitle{font-size:1.0em; font-weight: bold; font-family: " + headersFont + ";}");
             }
+
+            builder.append("h1,h2,h3,h4,h5,h6,img {text-indent:0px !important; text-align: center;}");
 
             // FONTS END
 

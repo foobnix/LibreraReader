@@ -133,8 +133,8 @@ public class AppState {
     public String tabsOrder = DEFAULTS_TABS_ORDER;
 
     public int tintColor = Color.parseColor(STYLE_COLORS.get(1));
-    public int statusBarColorDay = tintColor;
-    public int statusBarColorNight = tintColor;
+    public int statusBarColorDay = Color.parseColor("#199c33");
+    public int statusBarColorNight = Color.parseColor("#45d91c");
     // public int tintColor =
     // Color.parseColor(STYLE_COLORS.get(STYLE_COLORS.size() - 2));
     public int userColor = Color.MAGENTA;
@@ -312,10 +312,10 @@ public class AppState {
 
     public int cutP = 50;
 
-    public volatile int fontSizeSp = 22;
+    public volatile int fontSizeSp = 24;
     public volatile int statusBarTextSizeAdv = 14;
     public volatile int statusBarTextSizeEasy = 12;
-    public volatile int progressLineHeight = 4;
+    public volatile int progressLineHeight = 5;
 
     public String lastA;
     public String lastMode;

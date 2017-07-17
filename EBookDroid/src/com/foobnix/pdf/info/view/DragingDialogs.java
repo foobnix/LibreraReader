@@ -1972,6 +1972,7 @@ public class DragingDialogs {
         final boolean isCustomizeBgAndColorsInit = AppState.get().isCustomizeBgAndColors;
         final boolean selectingByLettersInit = AppState.getInstance().selectingByLetters;
         final boolean isCutRTLInit = AppState.getInstance().isCutRTL;
+        final int cssHash = BookCSS.get().toCssString().hashCode();
 
         DragingPopup dialog = new DragingPopup(R.string.advanced_settings, anchor, 330, 520) {
 
@@ -2544,7 +2545,8 @@ public class DragingDialogs {
                 AppState.get().selectingByLetters != selectingByLettersInit || //
                 AppState.get().isCutRTL != isCutRTLInit || //
                 !AppState.get().imageFormat.equals(imageFormatInt) || //
-                AppState.get().allocatedMemorySize != allocatedMemorySizeInit //
+                AppState.get().allocatedMemorySize != allocatedMemorySizeInit || //
+                (controller.isTextFormat() && cssHash != BookCSS.get().toCssString().hashCode()) //
                 ) {
 
                     if (!AppState.get().imageFormat.equals(imageFormatInt)) {
