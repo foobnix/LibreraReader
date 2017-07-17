@@ -7,6 +7,7 @@ import com.foobnix.android.utils.Dips;
 import com.foobnix.android.utils.LOG;
 import com.foobnix.ext.Fb2Extractor;
 import com.foobnix.pdf.info.model.OutlineLinkWrapper;
+import com.foobnix.pdf.info.wrapper.AppState;
 import com.foobnix.pdf.info.wrapper.MagicHelper;
 
 import android.content.Context;
@@ -30,6 +31,15 @@ public class ProgressDraw extends View {
         paint.setDither(true);
     }
 
+    Paint paint1 = new Paint();
+    {
+        paint1.setColor(Color.DKGRAY);
+        paint1.setStyle(Style.FILL);
+        paint1.setStrokeWidth(Dips.dpToPx(1));
+        paint1.setAntiAlias(true);
+        paint1.setDither(true);
+    }
+
     List<OutlineLinkWrapper> dividers = new ArrayList<OutlineLinkWrapper>();
     int pageCount;
     int progress;
@@ -37,6 +47,7 @@ public class ProgressDraw extends View {
 
     public ProgressDraw(Context context, AttributeSet attrs) {
         super(context, attrs);
+        setClickable(true);
     }
 
     int level0count, level1count = 0;
@@ -81,15 +92,18 @@ public class ProgressDraw extends View {
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
         canvas.save();
-        canvas.drawColor(MagicHelper.darkerColor(MagicHelper.getBgColor()));
+
+        int bgColor = MagicHelper.darkerColor(MagicHelper.getBgColor());
+        canvas.drawColor(bgColor);
 
         paint.setColor(color);
+        paint1.setColor(bgColor);
 
         float k = (float) getWidth() / pageCount;
         int h = getHeight();
         int w = getWidth();
         int currentChapter = 0;
-        if (dividers != null && !dividers.isEmpty()) {
+        if (AppState.get().isShowChaptersOnProgress && dividers != null && !dividers.isEmpty()) {
             int deep = (level0count == 1 ? level1count >= 10 ? 2 : 3 : 2);
             LOG.d("Deep count", deep);
             for (OutlineLinkWrapper item : dividers) {
@@ -107,7 +121,7 @@ public class ProgressDraw extends View {
         }
 
         canvas.drawRect(0, 0, progress * k, h, paint);
-        canvas.drawLine(currentChapter * k, 0, currentChapter * k, h, paint);
+        canvas.drawLine(currentChapter * k, 0, currentChapter * k, h, paint1);
 
         canvas.restore();
     }

@@ -1843,6 +1843,20 @@ public class DragingDialogs {
                 });
                 isShowReadingProgress.setChecked(AppState.get().isShowReadingProgress);
 
+                final CheckBox isShowChaptersOnProgress = (CheckBox) inflate.findViewById(R.id.isShowChaptersOnProgress);
+                isShowChaptersOnProgress.setOnCheckedChangeListener(new OnCheckedChangeListener() {
+
+                    @Override
+                    public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                        AppState.get().isShowChaptersOnProgress = isChecked;
+                        AppState.get().isEditMode = false;
+                        if (onRefresh != null) {
+                            onRefresh.run();
+                        }
+                    }
+                });
+                isShowChaptersOnProgress.setChecked(AppState.get().isShowChaptersOnProgress);
+
                 // status bar
 
                 final CheckBox isShowSatusBar = (CheckBox) inflate.findViewById(R.id.isShowSatusBar);
@@ -3197,7 +3211,7 @@ public class DragingDialogs {
 
                     }
                 });
-                if (AppState.getInstance().brightness == -1) {
+                if (AppState.getInstance().brightness < 0) {
                     autoSettings.setChecked(true);
                     customBrightness.reset((int) (100 * DocumentController.getSystemBrigtness(controller.getActivity())));
                 } else {

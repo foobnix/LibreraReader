@@ -28,7 +28,7 @@
     <dimen name="dv">4dip</dimen>
     <dimen name="radius">1dip</dimen>
     
-    <dimen name="brigtness">30dip</dimen>
+    <dimen name="brigtness">15dip</dimen>
     <dimen name="progress">2dip</dimen>
     
     

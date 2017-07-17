@@ -365,4 +365,5 @@
    <string name="language">Bahasa</string>
    <string name="show_progress_of_reading">Tampilkan kemajuan membaca</string>
    <string name="line_height">Tinggi garis</string>
+   <string name="display_chapters_on_the_progress_line">Tampilkan bab pada baris kemajuan</string>
 </resources>

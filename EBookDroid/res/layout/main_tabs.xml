@@ -38,22 +38,11 @@
             </com.foobnix.pdf.SlidingTabLayout>
         </LinearLayout>
 
-        <RelativeLayout
+        <android.support.v4.view.ViewPager
+            android:id="@+id/pager"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_weight="1" >
-
-            <android.support.v4.view.ViewPager
-                android:id="@+id/pager"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent" />
-
-            <com.foobnix.pdf.info.view.BrigtnessDraw
-                android:id="@+id/brigtnessProgressView"
-                android:layout_width="@dimen/brigtness"
-                android:layout_height="match_parent"
-                android:layout_alignParentLeft="true" />
-        </RelativeLayout>
+            android:layout_weight="1" />
 
         <FrameLayout
             android:id="@+id/adFrame"

@@ -365,4 +365,5 @@
    <string name="language">Мова</string>
    <string name="show_progress_of_reading">Показати прогрес читання</string>
    <string name="line_height">Висота лінії</string>
+   <string name="display_chapters_on_the_progress_line">Відображати глави на лінії прогресу</string>
 </resources>

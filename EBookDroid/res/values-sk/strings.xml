@@ -365,4 +365,5 @@
    <string name="language">Jazyk</string>
    <string name="show_progress_of_reading">Zobraziť postup čítania</string>
    <string name="line_height">Výška linky</string>
+   <string name="display_chapters_on_the_progress_line">Zobrazte kapitoly na riadku pokroku</string>
 </resources>

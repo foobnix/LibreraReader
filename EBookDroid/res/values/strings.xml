@@ -365,4 +365,5 @@
    <string name="language">Language</string>
    <string name="show_progress_of_reading">Show progress of reading</string>
    <string name="line_height">Line height</string>
+   <string name="display_chapters_on_the_progress_line">Display chapters on the progress line</string>
 </resources>

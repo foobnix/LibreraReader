@@ -365,4 +365,5 @@
    <string name="language">भाषा</string>
    <string name="show_progress_of_reading">पढ़ने की प्रगति दिखाएं</string>
    <string name="line_height">रेख की ऊंचाई</string>
+   <string name="display_chapters_on_the_progress_line">प्रगति लाइन पर प्रदर्शन अध्याय</string>
 </resources>

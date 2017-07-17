@@ -189,6 +189,7 @@ public class AppState {
 
     public boolean isShowToolBar = true;
     public boolean isShowReadingProgress = true;
+    public boolean isShowChaptersOnProgress = true;
 
     public int nextScreenScrollBy = NEXT_SCREEN_SCROLL_BY_PAGES;// 0 by
                                                                 // pages,
@@ -313,8 +314,8 @@ public class AppState {
 
     public volatile int fontSizeSp = 22;
     public volatile int statusBarTextSizeAdv = 14;
-    public volatile int statusBarTextSizeEasy = 10;
-    public volatile int progressLineHeight = 3;
+    public volatile int statusBarTextSizeEasy = 12;
+    public volatile int progressLineHeight = 4;
 
     public String lastA;
     public String lastMode;
@@ -468,6 +469,7 @@ public class AppState {
         ttsReplacement = sp.getBoolean("ttsReplacement", ttsReplacement);
         isShowToolBar = sp.getBoolean("isShowToolBar", isShowToolBar);
         isShowReadingProgress = sp.getBoolean("isShowReadingProgress", isShowReadingProgress);
+        isShowChaptersOnProgress = sp.getBoolean("isShowChaptersOnProgress", isShowChaptersOnProgress);
         isWhiteTheme = sp.getBoolean("isWhiteTheme", isWhiteTheme);
         isOpenLastBook = sp.getBoolean("isOpenLastBook", isOpenLastBook);
         orientation = sp.getInt("orientation", orientation);
@@ -672,6 +674,7 @@ public class AppState {
         editor.putBoolean("ttsReplacement", ttsReplacement);
         editor.putBoolean("isShowToolBar", isShowToolBar);
         editor.putBoolean("isShowReadingProgress", isShowReadingProgress);
+        editor.putBoolean("isShowChaptersOnProgress", isShowChaptersOnProgress);
         editor.putBoolean("isWhiteTheme", isWhiteTheme);
         editor.putBoolean("isOpenLastBook", isOpenLastBook);
         editor.putBoolean("isRememberMode", isRememberMode);

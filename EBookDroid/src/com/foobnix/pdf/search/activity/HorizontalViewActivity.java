@@ -199,7 +199,6 @@ public class HorizontalViewActivity extends FragmentActivity {
         brigtnessProgressView = (BrigtnessDraw) findViewById(R.id.brigtnessProgressView);
         brigtnessProgressView.setActivity(this);
 
-
         actionBar = findViewById(R.id.actionBar);
         bottomBar = findViewById(R.id.bottomBar);
         bottomIndicators = findViewById(R.id.bottomIndicators);
@@ -249,8 +248,6 @@ public class HorizontalViewActivity extends FragmentActivity {
 
         // ADS.activate(this, adView);
         ADS.activateNative(this, adViewNative);
-
-
 
         onPageFlip1 = findViewById(R.id.onPageFlip1);
         onPageFlip1.setOnClickListener(new OnClickListener() {
@@ -488,7 +485,7 @@ public class HorizontalViewActivity extends FragmentActivity {
                     AppState.get().isEditMode = true;
                     seekBar.setOnSeekBarChangeListener(onSeek);
                     bottomIndicators.setOnTouchListener(new ProgressSeekTouchEventListener(onSeek, documentController.getPageCount(), false));
-                    progressDraw.setOnTouchListener(new ProgressSeekTouchEventListener(onSeek, documentController.getPageCount(), true));
+                    progressDraw.setOnTouchListener(new ProgressSeekTouchEventListener(onSeek, documentController.getPageCount(), false));
                     RecentUpates.updateAll(HorizontalViewActivity.this);
                     showHideInfoToolBar();
 

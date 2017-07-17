@@ -276,8 +276,11 @@ public abstract class DocumentController {
     }
 
     public static void applyBrigtness(final Activity a) {
-        final float brightness = AppState.getInstance().brightness;
+        float brightness = AppState.getInstance().brightness;
         final WindowManager.LayoutParams lp = a.getWindow().getAttributes();
+        if (brightness < 0) {
+            brightness = -1;
+        }
         lp.screenBrightness = brightness;
         a.getWindow().setAttributes(lp);
     }

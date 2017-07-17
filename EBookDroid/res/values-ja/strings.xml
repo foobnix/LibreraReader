@@ -365,4 +365,5 @@
    <string name="language">言語</string>
    <string name="show_progress_of_reading">読書の進捗状況を示す</string>
    <string name="line_height">行の高さ</string>
+   <string name="display_chapters_on_the_progress_line">進捗線に章を表示する</string>
 </resources>

@@ -44,7 +44,6 @@ import android.graphics.Color;
 import android.os.Build;
 import android.os.Handler;
 import android.support.v4.graphics.ColorUtils;
-import android.util.DisplayMetrics;
 import android.view.GestureDetector;
 import android.view.KeyEvent;
 import android.view.MenuItem;
@@ -392,16 +391,10 @@ public class DocumentWrapperUI {
         currentSeek.setText(String.valueOf(current));
         maxSeek.setText(String.valueOf(max));
 
-        final DisplayMetrics metrics = new DisplayMetrics();
-        a.getWindowManager().getDefaultDisplay().getMetrics(metrics);
-
         seekBar.setOnSeekBarChangeListener(null);
         seekBar.setMax(max);
         seekBar.setProgress(current);
         seekBar.setOnSeekBarChangeListener(onSeek);
-        // progressDraw.setOnSeekBarChangeListener(onSeek);
-        progressDraw.setOnTouchListener(new ProgressSeekTouchEventListener(onSeek, max + 1, false));
-        titleBar.setOnTouchListener(new ProgressSeekTouchEventListener(onSeek, max + 1, false));
 
         speedSeekBar.setOnSeekBarChangeListener(null);
         speedSeekBar.setMax(AppState.MAX_SPEED);
@@ -526,11 +519,7 @@ public class DocumentWrapperUI {
 
         }
 
-        // View doc = a.findViewById(R.id.documentView);
-        // documentGestureDetector = new DocumentGuestureDetector(doc,
-        // documentListener);
-        // gestureDetector = new GestureDetector(documentGestureDetector);
-        // doc.setOnTouchListener(new MyTouch());
+
 
         linkHistory = (ImageView) a.findViewById(R.id.linkHistory);
         linkHistory.setOnClickListener(onLinkHistory);
@@ -1512,6 +1501,8 @@ public class DocumentWrapperUI {
                 public void run() {
                     progressDraw.updateDivs(list);
                     progressDraw.updatePageCount(controller.getPageCount());
+                    titleBar.setOnTouchListener(new ProgressSeekTouchEventListener(onSeek, controller.getPageCount(), false));
+                    progressDraw.setOnTouchListener(new ProgressSeekTouchEventListener(onSeek, controller.getPageCount(), false));
                 }
             });
         } catch (Exception e) {

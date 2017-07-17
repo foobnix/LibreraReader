@@ -365,4 +365,5 @@
    <string name="language">لغة</string>
    <string name="show_progress_of_reading">عرض التقدم المحرز في القراءة</string>
    <string name="line_height">ارتفاع خط</string>
+   <string name="display_chapters_on_the_progress_line">عرض الفصول على خط التقدم</string>
 </resources>

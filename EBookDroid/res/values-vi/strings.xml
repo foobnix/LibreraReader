@@ -365,4 +365,5 @@
    <string name="language">Ngôn ngữ</string>
    <string name="show_progress_of_reading">Hiển thị tiến trình đọc</string>
    <string name="line_height">Chiều cao giữa các dòng</string>
+   <string name="display_chapters_on_the_progress_line">Hiển thị các chương trên dòng tiến trình</string>
 </resources>

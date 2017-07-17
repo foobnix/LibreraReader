@@ -365,4 +365,5 @@
    <string name="language">Sprache</string>
    <string name="show_progress_of_reading">Zeigen Sie den Fortschritt des Lesens</string>
    <string name="line_height">Zeilenhöhe</string>
+   <string name="display_chapters_on_the_progress_line">Zeigen Sie Kapitel auf der Fortschrittslinie an</string>
 </resources>

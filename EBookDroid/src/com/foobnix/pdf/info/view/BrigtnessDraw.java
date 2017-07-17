@@ -45,7 +45,6 @@ public class BrigtnessDraw extends View {
 
     float y, x;
     int distance = Dips.dpToPx(5);
-    int border = Dips.dpToPx(30);
 
     private Activity activity;
     private TextView textView;
@@ -68,7 +67,7 @@ public class BrigtnessDraw extends View {
 
         if (action == MotionEvent.ACTION_MOVE) {
             if (Math.abs(y - event.getY()) >= distance) {
-                LOG.d("BrigtnessDraw", event.getX(), border);
+                LOG.d("BrigtnessDraw", event.getX());
                 float dy = (y - event.getY());
                 if (dy > 0) {
                     AppState.getInstance().brightness += 0.005;
@@ -76,8 +75,8 @@ public class BrigtnessDraw extends View {
                     AppState.getInstance().brightness -= 0.005;
                 }
 
-                if (AppState.getInstance().brightness <= 0) {
-                    AppState.getInstance().brightness = 0;
+                if (AppState.getInstance().brightness <= -0.005) {
+                    AppState.getInstance().brightness = -0.005f;
                 }
 
                 if (AppState.getInstance().brightness >= 1) {
@@ -99,7 +98,7 @@ public class BrigtnessDraw extends View {
     OnClickListener onClickListener;
 
     public void showToast() {
-        if (AppState.getInstance().brightness == -1) {
+        if (AppState.getInstance().brightness < 0) {
             textView.setText(R.string.automatic);
         } else {
             textView.setText("" + (int) (AppState.getInstance().brightness * 100));

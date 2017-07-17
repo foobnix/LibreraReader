@@ -18,7 +18,6 @@ import com.foobnix.pdf.info.AppsConfig;
 import com.foobnix.pdf.info.FontExtractor;
 import com.foobnix.pdf.info.R;
 import com.foobnix.pdf.info.TintUtil;
-import com.foobnix.pdf.info.view.BrigtnessDraw;
 import com.foobnix.pdf.info.widget.RecentBooksWidget;
 import com.foobnix.pdf.info.wrapper.AppState;
 import com.foobnix.pdf.info.wrapper.DocumentController;
@@ -210,7 +209,8 @@ public class MainTabs2 extends FragmentActivity {
             imageMenu.setVisibility(View.VISIBLE);
         }
 
-        ((BrigtnessDraw) findViewById(R.id.brigtnessProgressView)).setActivity(this);
+        // ((BrigtnessDraw)
+        // findViewById(R.id.brigtnessProgressView)).setActivity(this);
 
         final TabsAdapter2 adapter = new TabsAdapter2(this, tabFragments);
 

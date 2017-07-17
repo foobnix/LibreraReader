@@ -365,4 +365,5 @@
    <string name="language">ภาษา</string>
    <string name="show_progress_of_reading">แสดงความก้าวหน้าในการอ่าน</string>
    <string name="line_height">ความสูงของเส้น</string>
+   <string name="display_chapters_on_the_progress_line">แสดงบทในบรรทัดความคืบหน้า</string>
 </resources>

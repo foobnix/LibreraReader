@@ -365,4 +365,5 @@
    <string name="language">Kieli</string>
    <string name="show_progress_of_reading">Näytä lukemisen edistyminen</string>
    <string name="line_height">Viivankorkeus</string>
+   <string name="display_chapters_on_the_progress_line">Näytä luvut edistysrivillä</string>
 </resources>

@@ -1233,7 +1233,7 @@ public class PrefFragment2 extends UIFragment {
 
     public void initBrigtness() {
         float curBr = AppState.getInstance().brightness;
-        if (curBr == -1) {
+        if (curBr < 0) {
             curBr = DocumentController.getSystemBrigtness(getActivity());
             bar.setEnabled(false);
             autoSettings.setChecked(true);

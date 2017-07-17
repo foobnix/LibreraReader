@@ -5,6 +5,11 @@
     android:layout_height="match_parent"
     android:orientation="vertical" >
 
+     <com.foobnix.pdf.info.view.ProgressDraw
+            android:id="@+id/progressDraw"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/progress" />
+     
     <RelativeLayout
         android:id="@+id/underLayout"
         android:layout_width="match_parent"
@@ -38,7 +43,6 @@
             android:layout_height="wrap_content"
             android:layout_toRightOf="@+id/lirbiLogo"
             android:gravity="center_vertical"
-            android:paddingTop="1dip"
             android:visibility="visible" >
 
             <ImageView
@@ -192,10 +196,7 @@
                 android:tint="@color/tint_gray" />
         </LinearLayout>
 
-        <com.foobnix.pdf.info.view.ProgressDraw
-            android:id="@+id/progressDraw"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/progress" />
+       
     </RelativeLayout>
 
 </LinearLayout>
