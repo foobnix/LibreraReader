@@ -2,6 +2,7 @@ package org.ebookdroid.common.bitmaps;
 
 import org.ebookdroid.BookType;
 
+import com.foobnix.android.utils.LOG;
 import com.foobnix.pdf.info.wrapper.AppState;
 import com.foobnix.pdf.info.wrapper.MagicHelper;
 import com.foobnix.sys.TempHolder;
@@ -85,7 +86,18 @@ public final class RawBitmap {
         }
     }
 
+    public static String jopa;
+
     public void invert() {
+        if (TempHolder.get().path != null) {
+            jopa = TempHolder.get().path;
+        }
+        if (TempHolder.get().path == null && jopa != null) {
+            TempHolder.get().path = jopa;
+        }
+
+        LOG.d("nativeInvert", TempHolder.get().path, BookType.DJVU.is(TempHolder.get().path));
+
         if (!MagicHelper.isNeedMagic() && BookType.DJVU.is(TempHolder.get().path)) {
             nativeInvert(pixels, width, height);
             return;
