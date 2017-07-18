@@ -1,6 +1,7 @@
-* Mange små forbedringer 
-* Faner i tilpasset rekkefølge 
+* Endre lysstyrken på venstre side av skjermen 
+* Kapitler er merket i fremdriftslinjen 
+* Egendefinert farge og størrelse på linjens fremdriftslinje 
 * Justere høyden på statuslinjen 
-* Muligheten til å automatisk åpne den siste boken 
+* Muligheten til automatisk å åpne den siste boken 
 * Forbedringer i PDF Viewer 
-* Takk for tilbakemeldingen og ideene, blir programmet bedre med hver oppdatering
+* Takk for tilbakemelding og ideer, programmet blir bedre med hver oppdatering

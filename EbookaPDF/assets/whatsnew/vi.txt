@@ -1,6 +1,7 @@
-* Nhiều cải tiến nhỏ 
-* Tab theo thứ tự tùy chỉnh 
+* Thay đổi độ sáng ở phía bên trái màn hình 
+* Các chương được đánh dấu trong dòng tiến trình 
+* Tùy chỉnh màu sắc và kích thước của đường tiến bộ đọc 
 * Điều chỉnh chiều cao của thanh trạng thái 
-* Khả năng tự động mở cuốn sách mới nhất 
-* Cải tiến trong PDF Viewer 
-* Cảm ơn các phản hồi và ý tưởng, chương trình đã trở nên tốt hơn với mọi cập nhật
+* Khả năng tự động mở cuốn sách cuối cùng 
+* Cải tiến trong PDF Người xem 
+* Cảm ơn phản hồi và ý tưởng, chương trình đang trở nên tốt hơn với mọi cập nhật

@@ -1,5 +1,6 @@
-* Veel kleine verbeteringen 
-* Tabs in aangepaste volgorde 
+* Verander de helderheid aan de linkerkant van het scherm 
+* Hoofdstukken zijn gemarkeerd in de voortgangsregel 
+* Aangepaste kleur en grootte van de leesprogressie lijn 
 * Aanpassen van de hoogte van de statusbalk 
 * Het vermogen om automatisch het laatste boek te openen 
 * Verbeteringen in PDF Viewer 

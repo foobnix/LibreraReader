@@ -1,6 +1,7 @@
-* Multe îmbunătățiri mici 
-* Tab-uri în ordine particularizată 
-* Ajustarea înălțimea barei de stare 
-* Abilitatea de a deschide automat ultima carte 
+* Modificați luminozitatea din partea stângă a ecranului 
+* Capitolele sunt marcate în linia de progres 
+* Culoarea personalizată și mărimea liniei progresului citirii 
+* Ajustarea înălțimii barei de stare 
+* Posibilitatea de a deschide automat ultima carte 
 * Îmbunătățiri în PDF Viewer 
 * Vă mulțumim pentru feedback și idei, programul se îmbunătățește cu fiecare actualizare

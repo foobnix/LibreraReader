@@ -1,6 +1,7 @@
-* Muitas pequenas melhorias 
-* Tabs na ordem personalizada 
+* Alterar o brilho no lado esquerdo da tela 
+* Os capítulos estão marcados na linha de progresso 
+* Cor personalizada e tamanho da linha de progresso de leitura 
 * Ajustar a altura da barra de status 
 * A capacidade de abrir automaticamente o último livro 
-* Melhorias no Visualizador de PDF 
-* Obrigado pelo feedback e idéias, o programa está melhorando com cada atualização
+* Melhorias em PDF Visualizador 
+* Obrigado pelos comentários e idéias, o programa está melhorando com cada atualização

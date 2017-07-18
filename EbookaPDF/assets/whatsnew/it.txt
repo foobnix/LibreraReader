@@ -1,6 +1,7 @@
-* Molti piccoli miglioramenti 
-* Tabulazioni in ordine personalizzato 
+* Modificare la luminosità sul lato sinistro dello schermo 
+* I capitoli sono contrassegnati nella riga di avanzamento 
+* Colore personalizzato e dimensioni della linea di avanzamento della lettura 
 * Regolazione dell’altezza della barra di stato 
 * Possibilità di aprire automaticamente l’ultimo libro 
 * Miglioramenti in PDF Viewer 
-* Grazie per i commenti e le idee, il programma sta migliorando con ogni aggiornamento
+* Grazie per il feedback e le idee, il programma sta migliorando con ogni aggiornamento

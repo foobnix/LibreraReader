@@ -1,34 +1,38 @@
 
 <vi>
-* Nhiều cải tiến nhỏ 
-* Tab theo thứ tự tùy chỉnh 
+* Thay đổi độ sáng ở phía bên trái màn hình 
+* Các chương được đánh dấu trong dòng tiến trình 
+* Tùy chỉnh màu sắc và kích thước của đường tiến bộ đọc 
 * Điều chỉnh chiều cao của thanh trạng thái 
-* Khả năng tự động mở cuốn sách mới nhất 
-* Cải tiến trong PDF Viewer 
-* Cảm ơn các phản hồi và ý tưởng, chương trình đã trở nên tốt hơn với mọi cập nhật
+* Khả năng tự động mở cuốn sách cuối cùng 
+* Cải tiến trong PDF Người xem 
+* Cảm ơn phản hồi và ý tưởng, chương trình đang trở nên tốt hơn với mọi cập nhật
 </vi>
 
 <no-NO>
-* Mange små forbedringer 
-* Faner i tilpasset rekkefølge 
+* Endre lysstyrken på venstre side av skjermen 
+* Kapitler er merket i fremdriftslinjen 
+* Egendefinert farge og størrelse på linjens fremdriftslinje 
 * Justere høyden på statuslinjen 
-* Muligheten til å automatisk åpne den siste boken 
+* Muligheten til automatisk å åpne den siste boken 
 * Forbedringer i PDF Viewer 
-* Takk for tilbakemeldingen og ideene, blir programmet bedre med hver oppdatering
+* Takk for tilbakemelding og ideer, programmet blir bedre med hver oppdatering
 </no-NO>
 
 <th>
-* ปรับปรุงขนาดเล็กหลาย 
-* แท็บในการสั่งซื้อที่กำหนดเอง 
+* เปลี่ยนความสว่างที่ด้านซ้ายของหน้าจอ 
+* บทที่มีการทำเครื่องหมายในเส้นความคืบหน้า 
+* สีที่กำหนดเองและขนาดของเส้นความคืบหน้าการอ่าน 
 * การปรับความสูงของแถบสถานะ 
-* ความสามารถในการเปิดหนังสือเล่มล่าสุดโดยอัตโนมัติ 
-* การปรับปรุงใน PDF Viewer 
-* ขอบคุณสำหรับข้อเสนอแนะและความคิดโปรแกรมจะเริ่มดีขึ้นกับการปรับปรุงทุก
+* ความสามารถในการเปิดโดยอัตโนมัติหนังสือเล่มล่าสุด 
+* การปรับปรุงในรูปแบบไฟล์ PDF Viewer 
+* ขอบคุณสำหรับข้อเสนอแนะและไอเดียโปรแกรมจะเริ่มดีขึ้นเมื่อมีการอัปเดตทุกครั้ง
 </th>
 
 <nl-NL>
-* Veel kleine verbeteringen 
-* Tabs in aangepaste volgorde 
+* Verander de helderheid aan de linkerkant van het scherm 
+* Hoofdstukken zijn gemarkeerd in de voortgangsregel 
+* Aangepaste kleur en grootte van de leesprogressie lijn 
 * Aanpassen van de hoogte van de statusbalk 
 * Het vermogen om automatisch het laatste boek te openen 
 * Verbeteringen in PDF Viewer 
@@ -36,206 +40,229 @@
 </nl-NL>
 
 <ro>
-* Multe îmbunătățiri mici 
-* Tab-uri în ordine particularizată 
-* Ajustarea înălțimea barei de stare 
-* Abilitatea de a deschide automat ultima carte 
+* Modificați luminozitatea din partea stângă a ecranului 
+* Capitolele sunt marcate în linia de progres 
+* Culoarea personalizată și mărimea liniei progresului citirii 
+* Ajustarea înălțimii barei de stare 
+* Posibilitatea de a deschide automat ultima carte 
 * Îmbunătățiri în PDF Viewer 
 * Vă mulțumim pentru feedback și idei, programul se îmbunătățește cu fiecare actualizare
 </ro>
 
 <hi-IN>
-* कई छोटे सुधार 
-* कस्टम ऑर्डर में टैब्स 
-* स्टेटस बार की ऊंचाई समायोजित करें 
+* स्क्रीन के बाईं ओर चमक बदलें 
+* अध्याय प्रगति रेखा में चिह्नित किए गए हैं 
+* पढ़ने की प्रगति लाइन के कस्टम रंग और आकार 
+* स्थिति पट्टी की ऊंचाई समायोजित करें 
 * स्वतः पिछली किताब खोलने की क्षमता 
-* पीडीएफ व्यूअर में सुधार 
+* पीडीएफ में सुधार दर्शक 
 * प्रतिक्रिया और विचारों के लिए धन्यवाद, कार्यक्रम हर अपडेट के साथ बेहतर हो रहा है
 </hi-IN>
 
 <es-ES>
-* Muchas pequeñas mejoras 
-* Tabs en el pedido personalizado 
-* Ajuste de la altura de la barra de estado 
+* Cambiar el brillo en el lado izquierdo de la pantalla 
+* Los capítulos están marcados en la línea de progreso 
+* El color personalizado y el tamaño de la línea de progreso de lectura 
+* Ajustar la altura de la barra de estado 
 * La capacidad de abrir automáticamente el último libro 
-* Mejoras en PDF Viewer 
+* Mejoras en PDF Visor 
 * Gracias por la retroalimentación y las ideas, el programa está mejorando con cada actualización
 </es-ES>
 
 <fr-FR>
-* De nombreuses petites améliorations 
-* Onglets en ordre personnalisé 
+* Changez la luminosité sur le côté gauche de l’écran 
+* Les chapitres sont marqués dans la ligne de progression 
+* Couleur et taille personnalisées de la ligne de progression de la lecture 
 * Réglage de la hauteur de la barre d’état 
-* La possibilité d’ouvrir automatiquement le dernier livre 
-* Améliorations dans la visionneuse PDF 
-* Merci pour les commentaires et les idées, le programme s’améliore avec toutes les mises à jour
+* Possibilité d’ouvrir automatiquement le dernier livre 
+* Améliorations en format PDF Viewer 
+* Merci pour les commentaires et les idées, le programme s’améliore avec chaque mise à jour
 </fr-FR>
 
 <tr-TR>
-* Birçok küçük iyileştirmeler 
-* Özel siparişlerdeki sekmeler 
-* Ayarlama çubuğunun durum çubuğunun yüksekliği 
-* Otomatik olarak son kitabı açma yeteneği 
-* PDF Görüntülemedeki iyileştirmeler 
-* Geri bildirim ve fikirler için teşekkürler, program her güncelleme ile daha da gelişiyor
+* Ekranın sol tarafındaki parlaklığı değiştirme 
+* Bölümler ilerleme çizgisinde işaretlenmiştir 
+* Özel renk ve okuma ilerleme çizgisinin boyutu 
+* Ayarlama çubuğunun yüksekliği 
+* Son kitabı otomatik olarak açma özelliği 
+* PDF’deki iyileştirmeler Viewer 
+* Geri bildirim ve fikirler için teşekkürler, program her güncelleme ile daha da gelişiyor.
 </tr-TR>
 
 <sv-SE>
-* Många små förbättringar 
-* Flikar i anpassad ordning 
+* Ändra ljusstyrkan på skärmens vänstra sida 
+* Kapitlarna är markerade i framstegslinjen. 
+* Anpassad färg och storlek på läsningslinjen. 
 * Justera höjden på statusfältet 
-* Möjligheten att automatiskt öppna den senaste boken 
+* Möjligheten att automatiskt öppna den sista boken. 
 * Förbättringar i PDF Viewer 
-* Tack för feedback och idéer blir programmet bättre med varje uppdatering
+* Tack för feedback och idéer, blir programmet bättre med varje uppdatering
 </sv-SE>
 
 <pl-PL>
-* Wiele małych ulepszeń 
-* Tabulatury w niestandardowym porządku 
-* Dostosowanie wysokości paska stanu 
+* Zmiana jasności po lewej stronie ekranu 
+* rozdziały są oznaczone na linii postępu 
+* Kolor i rozmiar niestandardowego wiersza postępu odczytu 
+* Dostosowywanie wysokości paska stanu 
 * Możliwość automatycznego otwierania ostatniej książki 
-* Ulepszenia w przeglądarce PDF 
-* Dzięki za opinie i pomysły program jest coraz lepiej z każdą aktualizacją
+* Udoskonalenia w formacie PDF Przeglądarka 
+* Dzięki za opinie i pomysły, program jest coraz lepiej z każdej aktualizacji
 </pl-PL>
 
 <pt-PT>
-* Muitas pequenas melhorias 
-* Tabs na ordem personalizada 
+* Alterar o brilho no lado esquerdo da tela 
+* Os capítulos estão marcados na linha de progresso 
+* Cor personalizada e tamanho da linha de progresso de leitura 
 * Ajustar a altura da barra de status 
 * A capacidade de abrir automaticamente o último livro 
-* Melhorias no Visualizador de PDF 
-* Obrigado pelo feedback e idéias, o programa está melhorando com cada atualização
+* Melhorias em PDF Visualizador 
+* Obrigado pelos comentários e idéias, o programa está melhorando com cada atualização
 </pt-PT>
 
 <iw-IL>
-* שיפורים קטנים רבים 
-* כרטיסיות בסדר מותאם אישית 
+* שנה את הבהירות בצד שמאל של המסך 
+* הפרקים מסומנים בקו ההתקדמות 
+* צבע וגודל מותאם אישית של קו התקדמות הקריאה 
 * התאמת גובה שורת המצב 
 * היכולת לפתוח באופן אוטומטי את הספר האחרון 
 * שיפורים ב- PDF Viewer 
-* תודה על המשוב ורעיונות, התוכנית משתפרת עם כל עדכון
+* תודה על המשוב והרעיונות, התוכנית משתפרת עם כל עדכון
 </iw-IL>
 
 <uk>
-* Безліч дрібних поліпшень 
-* Вкладка в довільному порядку 
-* Регулювання висоти рядка стану 
-* Можливість автоматичного відкриття останньої книги 
-* Покращення в PDF Viewer 
-* Дякую за відгуки та ідеї, програма стає все краще з кожним оновленням
+* Зміна яскравості в лівій частині екрана 
+* Розділи позначені у рядку проходження 
+* Користувацький колір і розмір лінії прогресу читання 
+* Налаштування висоти в рядку стану 
+* Можливість автоматично відкривати останню книгу 
+* Покращення у PDF Viewer 
+* Дякуємо за відгуки та ідеї, програма покращується з кожним оновленням
 </uk>
 
 <ja-JP>
-*多くの小さな改善
-*カスタムタブのタブ
-*ステータスバーの高さを調整
+*画面の左側の明るさを変更する
+*進行中の行には章が表示されます
+*読み取りの進行状況のカスタム色とサイズ
+*ステータスバーの高さを調整する
 *最後の本を自動的に開く機能
-* PDFビューアの改善
-*フィードバックとアイデアのおかげで、
+* PDFの改善ビューア
+*フィードバックとアイデアをお寄せいただきありがとうございます。
 </ja-JP>
 
 <id>
-* Banyak perbaikan kecil 
-* Tab dalam urutan khusus 
+* Ubah kecerahan di sisi kiri layar 
+* Bab ditandai di garis kemajuan 
+* Warna dan ukuran kustom dari garis kemajuan membaca 
 * Penyesuaian tinggi status bar 
 * Kemampuan untuk secara otomatis membuka buku terakhir 
-* Perbaikan PDF Viewer 
-* Terima kasih atas umpan balik dan gagasannya, program semakin membaik dengan setiap update.
+* Perbaikan dalam PDF Penampil 
+* Terima kasih untuk umpan balik dan gagasannya, program ini semakin baik dengan setiap pembaruan
 </id>
 
 <fa>
-* بسیاری از پیشرفت های کوچک 
-* زبانهها به منظور سفارشی 
+* روشنایی را در سمت چپ صفحه نمایش تغییر دهید 
+* فصل ها در خط پیشرفت مشخص شده 
+* رنگ سفارشی و اندازه خط پیشرفت خواندن 
 * تنظیم ارتفاع نوار وضعیت 
-* توانایی به طور خودکار آخرین کتاب باز 
-* بهبود در نمایشگر PDF 
-* با تشکر برای انتقادات و پیشنهادات و ایده ها، برنامه در حال بهتر شدن با هر بروز رسانی
+* توانایی به طور خودکار آخرین کتاب را باز کنید 
+* پیشرفت در PDF نمایشگر 
+* با تشکر از بازخورد و ایده ها، برنامه با هر بروز رسانی بهتر می شود
 </fa>
 
 <ar>
-* العديد من التحسينات الصغيرة 
-* علامات التبويب في ترتيب مخصص 
+* تغيير سطوع على الجانب الأيسر من الشاشة 
+* يتم وضع علامة الفصول في خط التقدم 
+* لون مخصص وحجم خط التقدم القراءة 
 * تعديل ارتفاع شريط الحالة 
-* القدرة على فتح تلقائيا الكتاب الأخير 
-* التحسينات في بدف عارض 
+* القدرة على فتح تلقائيا الكتاب الماضي 
+* تحسينات في بدف عارض 
 * شكرا على ردود الفعل والأفكار، البرنامج هو الحصول على أفضل مع كل تحديث
 </ar>
 
 <de-DE>
-* Viele kleine Verbesserungen 
-* Tabs in kundenspezifischer Reihenfolge 
+* Ändern Sie die Helligkeit auf der linken Seite des Bildschirms 
+* Die Kapitel sind in der Fortschrittslinie markiert 
+* Benutzerdefinierte Farbe und Größe der Lese-Fortschrittslinie 
 * Anpassung der Höhe der Statusleiste 
 * Die Möglichkeit, das letzte Buch automatisch zu öffnen 
-* Verbesserungen im PDF Viewer 
+* Verbesserungen in PDF Viewer 
 * Danke für das Feedback und die Ideen, das Programm wird bei jedem Update immer besser
 </de-DE>
 
 <sw>
-* Wengi maboresho madogo 
-* Tabs ili desturi 
-* Marekebisho urefu wa upau 
-* uwezo wa moja kwa moja kufungua kitabu mwisho 
-* Aidha, katika Viewer PDF 
-* Asante kwa maoni na mawazo, mpango ni kupata bora kwa kila update
+* Badilisha mwangaza upande wa kushoto wa skrini 
+* Sura zimewekwa kwenye mstari wa maendeleo 
+* Rangi ya kawaida na ukubwa wa mstari wa maendeleo ya kusoma 
+* Marekebisho urefu wa bar ya hali 
+* Uwezo wa kufungua kitabu cha mwisho 
+* Uboreshaji katika PDF Mtazamaji 
+* Shukrani kwa maoni na mawazo, mpango huo unafanikiwa na kila sasisho
 </sw>
 
 <ko-KR>
-* 많은 작은 개선 
-* 맞춤 탭의 탭 
+* 화면의 왼쪽에 밝기를 변경 
+* 진행 라인에 챕터가 표시됩니다 
+* 사용자 정의 색상과 읽기 진행 라인의 크기 
 * 상태 표시 줄의 높이 조정 
-* 마지막 책을 자동으로 열 수있는 기능 
-* PDF 뷰어의 향상된 기능 
-* 의견과 아이디어에 감사드립니다. 프로그램은 모든 업데이트와 함께 개선되고 있습니다.
+* 마지막 책을 자동으로 열 수있는 능력 
+* PDF의 향상된 기능 뷰어 
+* 의견 및 아이디어를 주셔서 감사합니다, 모든 업데이트와 함께 프로그램이 나아지고 있습니다
 </ko-KR>
 
 <fi-FI>
-* Monet pienet parannukset 
-* välilehdet järjestykseen 
-* Säätö korkeus palkki 
-* Kyky automaattisesti avaamaan viimeinen kirja 
-* Parannuksia PDF Viewer 
-* Kiitos palautteesta ja ideoita, ohjelma paranee jokaisen päivityksen
+* Muuta näytön vasemmalla puolella näkyvää kirkkautta 
+* Luokat on merkitty progress-rivillä 
+* Mukautetun värin ja koon lukeman etenemisrivi 
+* Säätö korkeus tilarivillä 
+* Mahdollisuus avata automaattisesti viimeinen kirja 
+* Parannukset PDF Viewer 
+* Kiitos palautteesta ja ideoista, ohjelma paranee jokaisen päivityksen yhteydessä
 </fi-FI>
 
 <zh-TW>
-*许多小改进
-*自定义顺序的标签
+*更改屏幕左侧的亮度
+*章节在进度行中标记
+*自定义颜色和读取进度线的大小
 *调整状态栏的高度
-*自动打开最后一本书的能力
-* PDF查看器的改进
-*感谢您的反馈和想法，该程序随着每个更新越来越好
+*自动打开上一本书的能力
+* PDF中的改进浏览器
+*感谢您的反馈和想法，每个更新程序越来越好
 </zh-TW>
 
 <it-IT>
-* Molti piccoli miglioramenti 
-* Tabulazioni in ordine personalizzato 
+* Modificare la luminosità sul lato sinistro dello schermo 
+* I capitoli sono contrassegnati nella riga di avanzamento 
+* Colore personalizzato e dimensioni della linea di avanzamento della lettura 
 * Regolazione dell’altezza della barra di stato 
 * Possibilità di aprire automaticamente l’ultimo libro 
 * Miglioramenti in PDF Viewer 
-* Grazie per i commenti e le idee, il programma sta migliorando con ogni aggiornamento
+* Grazie per il feedback e le idee, il programma sta migliorando con ogni aggiornamento
 </it-IT>
 
 <ru-RU>
-* Много мелких улучшений 
-* Вкладки в пользовательском порядке 
+* Изменение яркости в левой части экрана 
+* Главы отмечены в строке прогресса 
+* Пользовательский цвет и размер строки прогресса чтения 
 * Регулировка высоты строки состояния 
 * Возможность автоматического открытия последней книги 
-* Усовершенствования в PDF Viewer 
+* Улучшения в PDF Viewer 
 * Спасибо за отзывы и идеи, программа улучшается с каждым обновлением
 </ru-RU>
 
 <sk>
-* Veľa malých vylepšení 
-* Záložky vo vlastnom poradí 
-* Nastavenie výšky stavového panela 
-* Možnosť automaticky otvoriť poslednú knihu 
+* Zmeniť jas na ľavej strane obrazovky 
+* Kapitoly sú označené v riadku postupu 
+* Vlastné farby a veľkosť čítania priebehu riadku 
+* Nastavenie výšky stavovej lišty 
+* Schopnosť automaticky otvoriť poslednú knihu 
 * Vylepšenia v PDF Viewer 
-* Vďaka za spätnú väzbu a nápady, program sa zlepšuje s každou aktualizáciou
+* Vďaka za spätnú väzbu a nápady, program sa zlepšuje pri každej aktualizácii
 </sk>
 
 <en-US>
-* Many small improvements
-* Tabs in custom order
+* Change the brightness on the left side of the screen
+* Chapters are marked in the progress line
+* Custom color and size of the reading progress line
 * Adjustment the height of the status bar
 * The ability to automatically open the last book
 * Improvements in PDF Viewer

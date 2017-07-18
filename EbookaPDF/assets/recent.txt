@@ -1,5 +1,6 @@
-* Many small improvements
-* Tabs in custom order
+* Change the brightness on the left side of the screen
+* Chapters are marked in the progress line
+* Custom color and size of the reading progress line
 * Adjustment the height of the status bar
 * The ability to automatically open the last book
 * Improvements in PDF Viewer

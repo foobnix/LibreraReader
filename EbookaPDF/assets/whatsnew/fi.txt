@@ -1,6 +1,7 @@
-* Monet pienet parannukset 
-* välilehdet järjestykseen 
-* Säätö korkeus palkki 
-* Kyky automaattisesti avaamaan viimeinen kirja 
-* Parannuksia PDF Viewer 
-* Kiitos palautteesta ja ideoita, ohjelma paranee jokaisen päivityksen
+* Muuta näytön vasemmalla puolella näkyvää kirkkautta 
+* Luokat on merkitty progress-rivillä 
+* Mukautetun värin ja koon lukeman etenemisrivi 
+* Säätö korkeus tilarivillä 
+* Mahdollisuus avata automaattisesti viimeinen kirja 
+* Parannukset PDF Viewer 
+* Kiitos palautteesta ja ideoista, ohjelma paranee jokaisen päivityksen yhteydessä

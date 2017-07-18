@@ -1,6 +1,7 @@
-* Viele kleine Verbesserungen 
-* Tabs in kundenspezifischer Reihenfolge 
+* Ändern Sie die Helligkeit auf der linken Seite des Bildschirms 
+* Die Kapitel sind in der Fortschrittslinie markiert 
+* Benutzerdefinierte Farbe und Größe der Lese-Fortschrittslinie 
 * Anpassung der Höhe der Statusleiste 
 * Die Möglichkeit, das letzte Buch automatisch zu öffnen 
-* Verbesserungen im PDF Viewer 
+* Verbesserungen in PDF Viewer 
 * Danke für das Feedback und die Ideen, das Programm wird bei jedem Update immer besser

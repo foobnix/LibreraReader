@@ -1,6 +1,7 @@
-* Wiele małych ulepszeń 
-* Tabulatury w niestandardowym porządku 
-* Dostosowanie wysokości paska stanu 
+* Zmiana jasności po lewej stronie ekranu 
+* rozdziały są oznaczone na linii postępu 
+* Kolor i rozmiar niestandardowego wiersza postępu odczytu 
+* Dostosowywanie wysokości paska stanu 
 * Możliwość automatycznego otwierania ostatniej książki 
-* Ulepszenia w przeglądarce PDF 
-* Dzięki za opinie i pomysły program jest coraz lepiej z każdą aktualizacją
+* Udoskonalenia w formacie PDF Przeglądarka 
+* Dzięki za opinie i pomysły, program jest coraz lepiej z każdej aktualizacji

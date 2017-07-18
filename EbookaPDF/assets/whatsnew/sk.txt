@@ -1,6 +1,7 @@
-* Veľa malých vylepšení 
-* Záložky vo vlastnom poradí 
-* Nastavenie výšky stavového panela 
-* Možnosť automaticky otvoriť poslednú knihu 
+* Zmeniť jas na ľavej strane obrazovky 
+* Kapitoly sú označené v riadku postupu 
+* Vlastné farby a veľkosť čítania priebehu riadku 
+* Nastavenie výšky stavovej lišty 
+* Schopnosť automaticky otvoriť poslednú knihu 
 * Vylepšenia v PDF Viewer 
-* Vďaka za spätnú väzbu a nápady, program sa zlepšuje s každou aktualizáciou
+* Vďaka za spätnú väzbu a nápady, program sa zlepšuje pri každej aktualizácii

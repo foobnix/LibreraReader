@@ -1,6 +1,7 @@
-* Wengi maboresho madogo 
-* Tabs ili desturi 
-* Marekebisho urefu wa upau 
-* uwezo wa moja kwa moja kufungua kitabu mwisho 
-* Aidha, katika Viewer PDF 
-* Asante kwa maoni na mawazo, mpango ni kupata bora kwa kila update
+* Badilisha mwangaza upande wa kushoto wa skrini 
+* Sura zimewekwa kwenye mstari wa maendeleo 
+* Rangi ya kawaida na ukubwa wa mstari wa maendeleo ya kusoma 
+* Marekebisho urefu wa bar ya hali 
+* Uwezo wa kufungua kitabu cha mwisho 
+* Uboreshaji katika PDF Mtazamaji 
+* Shukrani kwa maoni na mawazo, mpango huo unafanikiwa na kila sasisho

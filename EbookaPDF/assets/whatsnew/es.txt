@@ -1,6 +1,7 @@
-* Muchas pequeñas mejoras 
-* Tabs en el pedido personalizado 
-* Ajuste de la altura de la barra de estado 
+* Cambiar el brillo en el lado izquierdo de la pantalla 
+* Los capítulos están marcados en la línea de progreso 
+* El color personalizado y el tamaño de la línea de progreso de lectura 
+* Ajustar la altura de la barra de estado 
 * La capacidad de abrir automáticamente el último libro 
-* Mejoras en PDF Viewer 
+* Mejoras en PDF Visor 
 * Gracias por la retroalimentación y las ideas, el programa está mejorando con cada actualización

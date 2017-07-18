@@ -1,6 +1,7 @@
-* Birçok küçük iyileştirmeler 
-* Özel siparişlerdeki sekmeler 
-* Ayarlama çubuğunun durum çubuğunun yüksekliği 
-* Otomatik olarak son kitabı açma yeteneği 
-* PDF Görüntülemedeki iyileştirmeler 
-* Geri bildirim ve fikirler için teşekkürler, program her güncelleme ile daha da gelişiyor
+* Ekranın sol tarafındaki parlaklığı değiştirme 
+* Bölümler ilerleme çizgisinde işaretlenmiştir 
+* Özel renk ve okuma ilerleme çizgisinin boyutu 
+* Ayarlama çubuğunun yüksekliği 
+* Son kitabı otomatik olarak açma özelliği 
+* PDF’deki iyileştirmeler Viewer 
+* Geri bildirim ve fikirler için teşekkürler, program her güncelleme ile daha da gelişiyor.
