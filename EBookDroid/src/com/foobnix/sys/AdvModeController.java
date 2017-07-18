@@ -56,7 +56,6 @@ public class AdvModeController extends DocumentController {
 
     private final ViewerActivityController ctr;
 
-    private final int PAGE_SCROL_VALUE;
     private static final double ZOOM_VALUE = 0.05;
 
     Handler handler;
@@ -65,7 +64,6 @@ public class AdvModeController extends DocumentController {
         super(activity);
         this.ctr = ctr;
         AppSettings.getInstance().fullScreen = AppState.getInstance().isFullScrean();
-        PAGE_SCROL_VALUE = Dips.dpToPx(10);
         handler = new Handler();
 
         TTSModule.getInstanceInit(activity, this);
@@ -427,10 +425,17 @@ public class AdvModeController extends DocumentController {
     }
 
     public int getScrollValue() {
-        int value = ctr.getDocumentController().getView().getHeight() - PAGE_SCROL_VALUE;
-        if (activity.findViewById(R.id.titleBar).getVisibility() == View.VISIBLE) {
-            value = value - activity.findViewById(R.id.titleBar).getHeight();
+        int value = ctr.getDocumentController().getView().getHeight() - Dips.dpToPx(5);
+
+        View titleBar = activity.findViewById(R.id.titleBar);
+        if (titleBar.getVisibility() == View.VISIBLE) {
+            value = value - titleBar.getHeight();
         }
+        View progress = activity.findViewById(R.id.progressDraw);
+        if (progress.getVisibility() == View.VISIBLE) {
+            value = value - progress.getHeight();
+        }
+
         return value;
     }
 

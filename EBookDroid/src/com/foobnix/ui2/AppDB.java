@@ -241,7 +241,11 @@ public class AppDB {
     }
 
     public long getCount() {
-        return fileMetaDao.queryBuilder().count();
+        try {
+            return fileMetaDao.queryBuilder().count();
+        } catch (Exception e) {
+            return 0;
+        }
     }
 
     public FileMeta getOrCreate(String path) {
@@ -335,11 +339,15 @@ public class AppDB {
     }
 
     public boolean isStarFolder(String path) {
-        FileMeta load = fileMetaDao.load(path);
-        if (load == null) {
+        try {
+            FileMeta load = fileMetaDao.load(path);
+            if (load == null) {
+                return false;
+            }
+            return load != null && load.getIsStar();
+        } catch (Exception e) {
             return false;
         }
-        return load != null && load.getIsStar();
     }
 
     public void clearAllRecent() {

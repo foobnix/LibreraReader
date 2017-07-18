@@ -71,13 +71,14 @@ public class ChooserDialogFragment extends DialogFragment {
         fr.setOnPositiveAction(new ResultResponse<String>() {
             @Override
             public boolean onResultRecive(String result) {
-                onSelectListener.onResultRecive(result, getDialog());
+                if (onSelectListener != null && result != null && getDialog() != null) {
+                    onSelectListener.onResultRecive(result, getDialog());
+                }
                 return false;
             }
         });
 
         getDialog().setTitle(R.string.choose_);
-
 
         return frame;
     };
@@ -91,7 +92,6 @@ public class ChooserDialogFragment extends DialogFragment {
 
         super.onResume();
     }
-
 
     public void setOnSelectListener(ResultResponse2<String, Dialog> onSelectListener) {
         this.onSelectListener = onSelectListener;
