@@ -1815,7 +1815,7 @@ public class DragingDialogs {
 
     public static DragingPopup statusBarSettings(final FrameLayout anchor, final DocumentController controller, final Runnable onRefresh, final Runnable updateUIRefresh) {
 
-        DragingPopup dialog = new DragingPopup(R.string.status_bar, anchor, 330, 380) {
+        DragingPopup dialog = new DragingPopup(R.string.status_bar, anchor, 360, 380) {
 
             @Override
             public View getContentView(final LayoutInflater inflater) {
@@ -1917,6 +1917,7 @@ public class DragingDialogs {
                 });
 
                 final CustomColorView statusBarColorDay = (CustomColorView) inflate.findViewById(R.id.statusBarColorDay);
+                statusBarColorDay.withDefaultColors(AppState.TEXT_COLOR_DAY, AppState.get().tintColor);
                 statusBarColorDay.init(AppState.get().statusBarColorDay);
                 statusBarColorDay.setOnColorChanged(new StringResponse() {
 
@@ -1934,6 +1935,7 @@ public class DragingDialogs {
                 });
 
                 final CustomColorView statusBarColorNight = (CustomColorView) inflate.findViewById(R.id.statusBarColorNight);
+                statusBarColorNight.withDefaultColors(AppState.TEXT_COLOR_NIGHT, AppState.get().tintColor);
                 statusBarColorNight.init(AppState.get().statusBarColorNight);
                 statusBarColorNight.setOnColorChanged(new StringResponse() {
 
@@ -2749,6 +2751,7 @@ public class DragingDialogs {
 
                 // link color
                 final CustomColorView linkColorDay = (CustomColorView) inflate.findViewById(R.id.linkColorDay);
+                linkColorDay.withDefaultColors(Color.parseColor(BookCSS.LINK_COLOR_DAY), Color.parseColor(BookCSS.LINK_COLOR_UNIVERSAL));
                 linkColorDay.init(Color.parseColor(BookCSS.get().linkColorDay));
                 linkColorDay.setOnColorChanged(new StringResponse() {
 
@@ -2760,6 +2763,7 @@ public class DragingDialogs {
                 });
 
                 final CustomColorView linkColorNight = (CustomColorView) inflate.findViewById(R.id.linkColorNight);
+                linkColorNight.withDefaultColors(Color.parseColor(BookCSS.LINK_COLOR_NIGHT), Color.parseColor(BookCSS.LINK_COLOR_UNIVERSAL));
                 linkColorNight.init(Color.parseColor(BookCSS.get().linkColorNight));
                 linkColorNight.setOnColorChanged(new StringResponse() {
 
@@ -3579,6 +3583,9 @@ public class DragingDialogs {
 
                                 TintUtil.setTintImage(onDayColorImage, AppState.get().colorDayText);
                                 TintUtil.setTintImage(onNigthColorImage, AppState.get().colorNigthText);
+
+                                AppState.get().statusBarColorDay = AppState.TEXT_COLOR_DAY;
+                                AppState.get().statusBarColorNight = AppState.TEXT_COLOR_NIGHT;
 
                                 isChangedColor = true;
 

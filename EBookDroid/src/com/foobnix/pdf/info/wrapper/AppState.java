@@ -31,6 +31,9 @@ import android.view.KeyEvent;
 
 public class AppState {
 
+    public static final int TEXT_COLOR_DAY = Color.parseColor("#5b5b5b");
+    public static final int TEXT_COLOR_NIGHT = Color.parseColor("#8e8e8e");
+
     public static final long APP_CLOSE_AUTOMATIC = TimeUnit.MINUTES.toMillis(2);
     // public static final long APP_CLOSE_AUTOMATIC =
     // TimeUnit.SECONDS.toMillis(5);
@@ -138,8 +141,8 @@ public class AppState {
 
     public int tintColor = Color.parseColor(STYLE_COLORS.get(1));
 
-    public int statusBarColorDay = Color.parseColor("#5b5b5b");
-    public int statusBarColorNight = Color.parseColor("#8e8e8e");
+    public int statusBarColorDay = TEXT_COLOR_DAY;
+    public int statusBarColorNight = TEXT_COLOR_NIGHT;
     // public int tintColor =
     // Color.parseColor(STYLE_COLORS.get(STYLE_COLORS.size() - 2));
     public int userColor = Color.MAGENTA;

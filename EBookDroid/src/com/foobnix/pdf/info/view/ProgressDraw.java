@@ -21,6 +21,7 @@ import android.view.View;
 
 public class ProgressDraw extends View {
 
+    private static final int max_count = 4;
     private static final int ALPHA = 200;
     Paint paint = new Paint();
     {
@@ -75,11 +76,11 @@ public class ProgressDraw extends View {
             }
         }
 
-        if (level0count >= 5) {
+        if (level0count >= max_count) {
             deep = 0;
-        } else if (level1count >= 5) {
+        } else if (level1count >= max_count) {
             deep = 1;
-        } else if (level2count >= 5) {
+        } else if (level2count >= max_count) {
             deep = 2;
         } else {
             deep = 3;
@@ -112,7 +113,7 @@ public class ProgressDraw extends View {
         super.onDraw(canvas);
         canvas.save();
 
-        int bgColor = MagicHelper.darkerColor(MagicHelper.getBgColor());
+        int bgColor = MagicHelper.otherColor(MagicHelper.getBgColor(), 0.05f);
         canvas.drawColor(bgColor);
 
         paint.setColor(color);
@@ -138,7 +139,9 @@ public class ProgressDraw extends View {
         }
 
         canvas.drawRect(0, 0, progress * k, h, paint);
-        canvas.drawLine(currentChapter * k, 0, currentChapter * k, h, paint1);
+        if (currentChapter != 0) {
+            canvas.drawLine(currentChapter * k, 0, currentChapter * k, h, paint1);
+        }
 
         canvas.restore();
     }

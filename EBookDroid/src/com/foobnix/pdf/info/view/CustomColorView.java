@@ -3,6 +3,7 @@ package com.foobnix.pdf.info.view;
 import com.buzzingandroid.ui.HSVColorPickerDialog;
 import com.buzzingandroid.ui.HSVColorPickerDialog.OnColorSelectedListener;
 import com.foobnix.StringResponse;
+import com.foobnix.android.utils.Dips;
 import com.foobnix.pdf.info.R;
 import com.foobnix.pdf.info.wrapper.MagicHelper;
 
@@ -12,6 +13,7 @@ import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.FrameLayout;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 public class CustomColorView extends FrameLayout {
@@ -20,6 +22,9 @@ public class CustomColorView extends FrameLayout {
     StringResponse stringResponse;
     private int initColor;
     private TextView text1;
+    private LinearLayout defaultValues;
+
+    int dp25 = Dips.dpToPx(25);
 
     public CustomColorView(Context context, AttributeSet attrs) {
         super(context, attrs);
@@ -29,6 +34,10 @@ public class CustomColorView extends FrameLayout {
         a.recycle();
 
         View inflate = LayoutInflater.from(context).inflate(R.layout.custom_color_view, this, false);
+
+        defaultValues = (LinearLayout) inflate.findViewById(R.id.defaultValues);
+        defaultValues.setVisibility(View.GONE);
+
         text1 = (TextView) inflate.findViewById(R.id.text1);
         text2 = (TextView) inflate.findViewById(R.id.text2);
 
@@ -52,6 +61,29 @@ public class CustomColorView extends FrameLayout {
         });
 
         addView(inflate);
+    }
+
+    public void withDefaultColors(int... colors) {
+        defaultValues.removeAllViews();
+        defaultValues.setVisibility(View.VISIBLE);
+
+        for (final int color : colors) {
+            TextView t = new TextView(getContext());
+            t.setBackgroundColor(color);
+            t.setOnClickListener(new OnClickListener() {
+
+                @Override
+                public void onClick(View v) {
+                    init(color);
+                    stringResponse.onResultRecive(MagicHelper.colorToString(color));
+                }
+            });
+            LinearLayout.LayoutParams p = new LinearLayout.LayoutParams(dp25, dp25);
+            p.leftMargin = Dips.dpToPx(6);
+            defaultValues.addView(t, p);
+
+        }
+
     }
 
     public TextView getText1() {

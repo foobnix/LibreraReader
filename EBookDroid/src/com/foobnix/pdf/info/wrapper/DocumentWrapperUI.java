@@ -392,8 +392,8 @@ public class DocumentWrapperUI {
         maxSeek.setText(String.valueOf(max));
 
         seekBar.setOnSeekBarChangeListener(null);
-        seekBar.setMax(max);
-        seekBar.setProgress(current);
+        seekBar.setMax(max - 1);
+        seekBar.setProgress(current - 1);
         seekBar.setOnSeekBarChangeListener(onSeek);
 
         speedSeekBar.setOnSeekBarChangeListener(null);
@@ -447,7 +447,7 @@ public class DocumentWrapperUI {
             TintUtil.setTintImage(cut, Color.WHITE);
         }
 
-        progressDraw.updateProgress(current);
+        progressDraw.updateProgress(current - 1);
     }
 
     public void showChapter() {
@@ -777,7 +777,7 @@ public class DocumentWrapperUI {
         int titleColor = AppState.get().isInvert ? MagicHelper.otherColor(AppState.get().colorDayBg, -0.05f) : MagicHelper.otherColor(AppState.get().colorNigthBg, 0.05f);
         titleBar.setBackgroundColor(titleColor);
 
-        int progressColor = AppState.get().isInvert ? MagicHelper.otherColor(AppState.get().statusBarColorDay, -0.2f) : MagicHelper.otherColor(AppState.get().statusBarColorNight, +0.2f);
+        int progressColor = AppState.get().isInvert ? AppState.get().statusBarColorDay : MagicHelper.otherColor(AppState.get().statusBarColorNight, +0.2f);
         progressDraw.updateColor(progressColor);
         progressDraw.getLayoutParams().height = Dips.dpToPx(AppState.get().progressLineHeight);
         progressDraw.requestLayout();
@@ -881,7 +881,7 @@ public class DocumentWrapperUI {
 
         @Override
         public void onProgressChanged(final SeekBar seekBar, final int progress, final boolean fromUser) {
-            controller.onGoToPage(progress);
+            controller.onGoToPage(progress + 1);
             updateUI();
         }
     };
@@ -1494,7 +1494,7 @@ public class DocumentWrapperUI {
                 @Override
                 public void run() {
                     progressDraw.updateDivs(list);
-                    progressDraw.updatePageCount(controller.getPageCount());
+                    progressDraw.updatePageCount(controller.getPageCount() - 1);
                     titleBar.setOnTouchListener(new ProgressSeekTouchEventListener(onSeek, controller.getPageCount(), false));
                     progressDraw.setOnTouchListener(new ProgressSeekTouchEventListener(onSeek, controller.getPageCount(), false));
                 }

@@ -37,6 +37,7 @@ import com.foobnix.pdf.info.widget.RecentUpates;
 import com.foobnix.pdf.info.widget.ShareDialog;
 import com.foobnix.pdf.info.wrapper.AppState;
 import com.foobnix.pdf.info.wrapper.DocumentController;
+import com.foobnix.pdf.info.wrapper.MagicHelper;
 import com.foobnix.pdf.search.activity.msg.FlippingStart;
 import com.foobnix.pdf.search.activity.msg.FlippingStop;
 import com.foobnix.pdf.search.activity.msg.InvalidateMessage;
@@ -552,7 +553,9 @@ public class HorizontalViewActivity extends FragmentActivity {
         pagesTime.setTextSize(AppState.get().statusBarTextSizeEasy);
         pagesCountIndicator.setTextSize(AppState.get().statusBarTextSizeEasy);
         flippingIntervalView.setTextSize(AppState.get().statusBarTextSizeEasy);
-        progressDraw.updateColor(TintUtil.getStatusBarColor());
+
+        int progressColor = AppState.get().isInvert ? AppState.get().statusBarColorDay : MagicHelper.otherColor(AppState.get().statusBarColorNight, +0.2f);
+        progressDraw.updateColor(progressColor);
 
         progressDraw.getLayoutParams().height = Dips.dpToPx(AppState.get().progressLineHeight);
         progressDraw.requestLayout();

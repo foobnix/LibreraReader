@@ -16,16 +16,35 @@
         android:text="Custom long text" />
 
     <TextView
-        android:layout_marginLeft="10dip"
         android:id="@+id/text2"
         android:layout_width="80dip"
-        android:gravity="center"
         android:layout_height="25dip"
+        android:layout_marginLeft="10dip"
         android:layout_weight="0"
-        android:textSize="14sp"
-        android:textStyle="bold"
-        android:textColor="@color/white"
         android:background="#FF0000"
-        android:text="#FF0000" />
+        android:gravity="center"
+        android:text="#FF0000"
+        android:textColor="@color/white"
+        android:textSize="14sp"
+        android:textStyle="bold" />
+
+    <LinearLayout
+          android:layout_marginLeft="6dip"
+        android:id="@+id/defaultValues"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" >
+
+        <View
+            android:layout_marginLeft="6dip"
+            android:layout_width="25dip"
+            android:layout_height="25dip"
+            android:background="#FFFF00" />
+        
+         <View
+            android:layout_marginLeft="6dip"
+            android:layout_width="25dip"
+            android:layout_height="25dip"
+            android:background="#FF00FF" />
+    </LinearLayout>
 
 </LinearLayout>

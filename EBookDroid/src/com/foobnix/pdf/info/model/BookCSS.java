@@ -25,6 +25,10 @@ import android.graphics.Typeface;
 
 public class BookCSS {
 
+    public static final String LINK_COLOR_NIGHT = "#876f52";
+    public static final String LINK_COLOR_DAY = "#8c1908";
+    public static final String LINK_COLOR_UNIVERSAL = "#0066cc";
+
     public static final String FONTS_DIR = "Fonts";
 
     public static final int TEXT_ALIGN_JUSTIFY = 0;
@@ -150,7 +154,8 @@ public class BookCSS {
         isAutoHypens = Arrays.asList("ru", "uk", "tr").contains(Urls.getLangCode());
         hypenLang = "ru";
 
-        linkColorDay = linkColorNight = "#0066cc";
+        linkColorDay = LINK_COLOR_DAY;
+        linkColorNight = LINK_COLOR_NIGHT;
 
     }
 
