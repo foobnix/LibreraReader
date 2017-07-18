@@ -805,7 +805,7 @@ public class HorizontalViewActivity extends FragmentActivity {
         AppState.get().save(this);
         TempHolder.isSeaching = false;
 
-        handler.postDelayed(closeRunnable, TimeUnit.MINUTES.toMillis(2));
+        handler.postDelayed(closeRunnable, AppState.APP_CLOSE_AUTOMATIC);
 
     }
 

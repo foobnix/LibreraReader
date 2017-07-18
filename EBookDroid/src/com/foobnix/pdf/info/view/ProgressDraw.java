@@ -50,23 +50,42 @@ public class ProgressDraw extends View {
         setClickable(true);
     }
 
-    int level0count, level1count = 0;
+    int level0count, level1count, level2count, deep = 0;
 
     public void updateDivs(List<OutlineLinkWrapper> dividers) {
         this.dividers = dividers;
         level0count = 0;
         level1count = 0;
-        if (dividers == null) {
+        if (dividers == null || dividers.isEmpty()) {
             return;
         }
+
+        int first = dividers.get(0).level;
+        LOG.d("deep first", first);
+
         for (OutlineLinkWrapper link : dividers) {
-            if (link.level == 0) {
+            if (link.level == 0 + first) {
                 level0count++;
             }
-            if (link.level == 1) {
+            if (link.level == 1 + first) {
                 level1count++;
             }
+            if (link.level == 2 + first) {
+                level2count++;
+            }
         }
+
+        if (level0count >= 5) {
+            deep = 0;
+        } else if (level1count >= 5) {
+            deep = 1;
+        } else if (level2count >= 5) {
+            deep = 2;
+        } else {
+            deep = 3;
+        }
+
+        deep += first;
 
         invalidate();
     }
@@ -101,14 +120,12 @@ public class ProgressDraw extends View {
 
         float k = (float) getWidth() / pageCount;
         int h = getHeight();
-        int w = getWidth();
         int currentChapter = 0;
         if (AppState.get().isShowChaptersOnProgress && dividers != null && !dividers.isEmpty()) {
-            int deep = (level0count == 1 ? level1count >= 10 ? 2 : 3 : 2);
-            LOG.d("Deep count", deep);
+            LOG.d("deep level", deep);
             for (OutlineLinkWrapper item : dividers) {
                 int pos = item.targetPage - 1;
-                if (pos < 0 || item.level >= deep || item.getTitleRaw().endsWith(Fb2Extractor.FOOTER_AFTRER_BOODY)) {
+                if (pos < 0 || item.level > deep || item.getTitleRaw().endsWith(Fb2Extractor.FOOTER_AFTRER_BOODY)) {
                     continue;
                 }
 

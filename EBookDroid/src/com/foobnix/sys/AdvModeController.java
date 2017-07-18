@@ -428,8 +428,8 @@ public class AdvModeController extends DocumentController {
 
     public int getScrollValue() {
         int value = ctr.getDocumentController().getView().getHeight() - PAGE_SCROL_VALUE;
-        if (activity.findViewById(R.id.linearMenuLayout).getVisibility() == View.VISIBLE) {
-            value = value - activity.findViewById(R.id.linearMenuLayout).getHeight();
+        if (activity.findViewById(R.id.titleBar).getVisibility() == View.VISIBLE) {
+            value = value - activity.findViewById(R.id.titleBar).getHeight();
         }
         return value;
     }

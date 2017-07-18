@@ -11,5 +11,7 @@ ant x86 classic
 ./remove_all.sh
 ./install_all.sh
 
+sh ninja-adb.sh shell pm clear classic.pdf.reader.viewer.djvu.epub.fb2.txt.mobi.book.reader.lirbi.libri
+
 ./link_lang.sh
 ./zip-source.sh

@@ -1,7 +1,5 @@
 package org.ebookdroid.ui.viewer;
 
-import java.util.concurrent.TimeUnit;
-
 import org.ebookdroid.common.settings.AppSettings;
 import org.ebookdroid.common.settings.SettingsManager;
 import org.ebookdroid.common.settings.books.BookSettings;
@@ -178,7 +176,7 @@ public class ViewerActivity extends AbstractActionActivity<ViewerActivity, Viewe
         AppState.get().isAutoScroll = false;
         AppState.get().save(this);
         TempHolder.isSeaching = false;
-        handler.postDelayed(closeRunnable, TimeUnit.MINUTES.toMillis(2));
+        handler.postDelayed(closeRunnable, AppState.APP_CLOSE_AUTOMATIC);
     }
 
     @Override

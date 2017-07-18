@@ -1815,7 +1815,7 @@ public class DragingDialogs {
 
     public static DragingPopup statusBarSettings(final FrameLayout anchor, final DocumentController controller, final Runnable onRefresh, final Runnable updateUIRefresh) {
 
-        DragingPopup dialog = new DragingPopup(R.string.status_bar, anchor, 330, 320) {
+        DragingPopup dialog = new DragingPopup(R.string.status_bar, anchor, 330, 380) {
 
             @Override
             public View getContentView(final LayoutInflater inflater) {
@@ -1852,6 +1852,9 @@ public class DragingDialogs {
                         AppState.get().isEditMode = false;
                         if (onRefresh != null) {
                             onRefresh.run();
+                        }
+                        if (isChecked) {
+                            isShowReadingProgress.setChecked(true);
                         }
                     }
                 });
@@ -1903,6 +1906,7 @@ public class DragingDialogs {
 
                     @Override
                     public boolean onResultRecive(int result) {
+                        isShowReadingProgress.setChecked(true);
                         AppState.get().progressLineHeight = result;
                         AppState.get().isEditMode = false;
                         if (onRefresh != null) {

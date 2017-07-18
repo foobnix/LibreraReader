@@ -419,14 +419,6 @@ public class DocumentWrapperUI {
         showHideHistory();
         updateLock();
 
-        if (AppState.getInstance().isInvert) {
-            titleBar.setBackgroundColor(ColorUtils.setAlphaComponent(Color.WHITE, TRANSPARENT_UI));
-            progressDraw.setBackgroundColor(ColorUtils.setAlphaComponent(Color.WHITE, TRANSPARENT_UI));
-        } else {
-            titleBar.setBackgroundColor(ColorUtils.setAlphaComponent(Color.BLACK, TRANSPARENT_UI));
-            progressDraw.setBackgroundColor(ColorUtils.setAlphaComponent(Color.BLACK, TRANSPARENT_UI));
-        }
-
         reverseKeysIndicator.setVisibility(AppState.get().isReverseKeys ? View.VISIBLE : View.GONE);
         if (true || AppState.get().isMusicianMode) {
             reverseKeysIndicator.setVisibility(View.GONE);
@@ -519,8 +511,6 @@ public class DocumentWrapperUI {
 
         }
 
-
-
         linkHistory = (ImageView) a.findViewById(R.id.linkHistory);
         linkHistory.setOnClickListener(onLinkHistory);
 
@@ -536,12 +526,11 @@ public class DocumentWrapperUI {
         seekSpeedLayot = a.findViewById(R.id.seekSpeedLayot);
         anchor = (FrameLayout) a.findViewById(R.id.anchor);
 
-        titleBar = a.findViewById(R.id.linearMenuLayout);
+        titleBar = a.findViewById(R.id.titleBar);
         titleBar.setOnClickListener(onMenu);
 
         brigtnessProgressView = (BrigtnessDraw) a.findViewById(R.id.brigtnessProgressView);
         brigtnessProgressView.setActivity(a);
-
 
         reverseKeysIndicator = (TextView) a.findViewById(R.id.reverseKeysIndicator);
         // reverseKeysIndicator.setOnClickListener(onReverseKeys);
@@ -731,7 +720,6 @@ public class DocumentWrapperUI {
         // bottom 1
         TintUtil.setStatusBarColor(a);
 
-        int color = AppState.get().isInvert ? MagicHelper.darkerColor2(MagicHelper.getBgColor()) : MagicHelper.ligherColor2(MagicHelper.getBgColor());
 
         TintUtil.setTintBgSimple(a.findViewById(R.id.menuLayout), TRANSPARENT_UI);
         TintUtil.setTintBgSimple(a.findViewById(R.id.document_footer), TRANSPARENT_UI);
@@ -768,9 +756,7 @@ public class DocumentWrapperUI {
 
     public void updateSeekBarColorAndSize() {
 
-        progressDraw.updateColor(TintUtil.getStatusBarColor());
-        progressDraw.getLayoutParams().height = Dips.dpToPx(AppState.get().progressLineHeight);
-        progressDraw.requestLayout();
+
 
         TintUtil.setTintText(bookName, TintUtil.getStatusBarColor());
         TintUtil.setTintImage(textToSpeachTop, TintUtil.getStatusBarColor());
@@ -787,6 +773,14 @@ public class DocumentWrapperUI {
         TintUtil.setTintImage(toolBarButton, TintUtil.getStatusBarColor());
         TintUtil.setTintImage(clockIcon, TintUtil.getStatusBarColor()).setAlpha(200);
         TintUtil.setTintImage(batteryIcon, TintUtil.getStatusBarColor()).setAlpha(200);
+
+        int titleColor = AppState.get().isInvert ? MagicHelper.otherColor(AppState.get().colorDayBg, -0.05f) : MagicHelper.otherColor(AppState.get().colorNigthBg, 0.05f);
+        titleBar.setBackgroundColor(titleColor);
+
+        int progressColor = AppState.get().isInvert ? MagicHelper.otherColor(AppState.get().statusBarColorDay, -0.2f) : MagicHelper.otherColor(AppState.get().statusBarColorNight, +0.2f);
+        progressDraw.updateColor(progressColor);
+        progressDraw.getLayoutParams().height = Dips.dpToPx(AppState.get().progressLineHeight);
+        progressDraw.requestLayout();
 
         // textSize
         bookName.setTextSize(AppState.get().statusBarTextSizeAdv);

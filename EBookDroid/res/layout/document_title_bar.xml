@@ -38,7 +38,7 @@
             android:textStyle="bold|italic" />
 
         <LinearLayout
-            android:id="@+id/linearMenuLayout"
+            android:id="@+id/titleBar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_toRightOf="@+id/lirbiLogo"

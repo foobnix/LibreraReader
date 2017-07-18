@@ -6,6 +6,7 @@ import java.util.Collections;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.TimeUnit;
 
 import com.foobnix.android.utils.Apps;
 import com.foobnix.android.utils.Dips;
@@ -30,6 +31,9 @@ import android.view.KeyEvent;
 
 public class AppState {
 
+    public static final long APP_CLOSE_AUTOMATIC = TimeUnit.MINUTES.toMillis(2);
+    // public static final long APP_CLOSE_AUTOMATIC =
+    // TimeUnit.SECONDS.toMillis(5);
     public static final int DAY_TRANSPARENCY = 200;
     public static final int NIGHT_TRANSPARENCY = 160;
     public static Map<String, String[]> CONVERTERS = new LinkedHashMap<String, String[]>();
@@ -133,8 +137,9 @@ public class AppState {
     public String tabsOrder = DEFAULTS_TABS_ORDER;
 
     public int tintColor = Color.parseColor(STYLE_COLORS.get(1));
-    public int statusBarColorDay = Color.parseColor("#199c33");
-    public int statusBarColorNight = Color.parseColor("#45d91c");
+
+    public int statusBarColorDay = Color.parseColor("#5b5b5b");
+    public int statusBarColorNight = Color.parseColor("#8e8e8e");
     // public int tintColor =
     // Color.parseColor(STYLE_COLORS.get(STYLE_COLORS.size() - 2));
     public int userColor = Color.MAGENTA;
@@ -820,7 +825,6 @@ public class AppState {
         LOG.d("Save AppState", "coverSmallSize", coverSmallSize);
         LOG.d("AppState Save lasta", lastA, a.getClass());
     }
-
 
     public boolean isFullScrean() {
         return isFullScreen;

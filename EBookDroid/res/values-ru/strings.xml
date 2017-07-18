@@ -118,7 +118,7 @@
    <string name="pdf_mode">Режим PDF</string>
    <string name="expiremental_features">Комментирование и рисование (в тестировании; может повредить некоторые файлы)</string>
    <string name="remember_my_choose">Запомнить режим просмотра</string>
-   <string name="customize_font_background_colors">Отображать доп. настройки смены фона (эффект застаривания и др.)</string>
+   <string name="customize_font_background_colors">Отображать доп. настройки смены шрифтов и фонов (эффект застаривания и др.)</string>
    <string name="day">День</string>
    <string name="nigth">Ночь</string>
    <string name="restore_defaults">Вернуть настройки по умолчанию</string>
@@ -188,8 +188,8 @@
    <string name="horizontal">Горизонтальное</string>
    <string name="vertical">Вертикальное</string>
    <string name="direction_of_scrolling">Направление прокрутки</string>
-   <string name="rotate_page">Поворот страниц</string>
-   <string name="advanced_settings">Расширенные наст-ки</string>
+   <string name="rotate_page">Угол поворота страниц</string>
+   <string name="advanced_settings">Расширенные настройки</string>
    <string name="more">Больше</string>
    <string name="font_name">Шрифт</string>
    <string name="tap_zone_size">Размер зон листаний</string>
@@ -230,7 +230,7 @@
    <string name="book_settings">Настройки чтения</string>
    <string name="back">Назад</string>
    <string name="open_web_page">Открыть веб-страницу</string>
-   <string name="split_in_half_right_page_then_left_page_rtl_mode_">При делении на части сначала показывать правую страницу, а затем левую (режим RTL)</string>
+   <string name="split_in_half_right_page_then_left_page_rtl_mode_">При делении на части сначала отображать правую страницу, а затем левую (режим RTL)</string>
    <string name="starred">Избранные</string>
    <string name="clear_all_recent">Очистить все недавние</string>
    <string name="clear_all_bookmars">Очистить все закладки</string>
@@ -330,7 +330,7 @@
    <string name="incorrect_value">Неверное значение</string>
    <string name="search_in_the_subfolders">Искать в подпапках</string>
    <string name="document_converter_online_">Онлайн-конвертация файлов</string>
-   <string name="in_the_author_s_name_first_the_surname">Отображать сперва фамилию автора, затем имя</string>
+   <string name="in_the_author_s_name_first_the_surname">Отображать сначала фамилию автора, затем имя</string>
    <string name="remind_about_rest_every">Увед-е об отдыхе каждые</string>
    <string name="minutes">Минут</string>
    <string name="seconds">Секунд</string>
@@ -361,9 +361,9 @@
    <string name="hide_app">Свернуть приложение</string>
    <string name="close_application">Закрыть приложение</string>
    <string name="go_to_the_library">Перейти в библиотеку</string>
-   <string name="book_styles">Стили книги</string>
+   <string name="book_styles">Стили книг</string>
    <string name="language">Язык</string>
-   <string name="show_progress_of_reading">Показывать ход чтения</string>
-   <string name="line_height">Высота линии</string>
-   <string name="display_chapters_on_the_progress_line">Отображать главы в строке прогресса</string>
+   <string name="show_progress_of_reading">Отображать полосу прогресса</string>
+   <string name="line_height">Толщина полосы прогресса</string>
+   <string name="display_chapters_on_the_progress_line">Показывать засечки глав в полосе прогресса</string>
 </resources>
