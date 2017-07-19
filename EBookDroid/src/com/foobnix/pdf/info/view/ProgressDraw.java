@@ -21,7 +21,7 @@ import android.view.View;
 
 public class ProgressDraw extends View {
 
-    private static final int max_count = 4;
+    private static final int max_count = 5;
     private static final int ALPHA = 200;
     Paint paint = new Paint();
     {
@@ -113,11 +113,11 @@ public class ProgressDraw extends View {
         super.onDraw(canvas);
         canvas.save();
 
-        int bgColor = MagicHelper.otherColor(MagicHelper.getBgColor(), 0.05f);
-        canvas.drawColor(bgColor);
+        int titleColor = AppState.get().isInvert ? MagicHelper.otherColor(AppState.get().colorDayBg, -0.05f) : MagicHelper.otherColor(AppState.get().colorNigthBg, 0.05f);
+        canvas.drawColor(titleColor);
 
         paint.setColor(color);
-        paint1.setColor(bgColor);
+        paint1.setColor(titleColor);
 
         float k = (float) getWidth() / pageCount;
         int h = getHeight();

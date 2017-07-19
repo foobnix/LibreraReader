@@ -720,7 +720,6 @@ public class DocumentWrapperUI {
         // bottom 1
         TintUtil.setStatusBarColor(a);
 
-
         TintUtil.setTintBgSimple(a.findViewById(R.id.menuLayout), TRANSPARENT_UI);
         TintUtil.setTintBgSimple(a.findViewById(R.id.document_footer), TRANSPARENT_UI);
         TintUtil.setBackgroundFillColorBottomRight(lirbiLogo, ColorUtils.setAlphaComponent(TintUtil.color, TRANSPARENT_UI));
@@ -755,8 +754,6 @@ public class DocumentWrapperUI {
     }
 
     public void updateSeekBarColorAndSize() {
-
-
 
         TintUtil.setTintText(bookName, TintUtil.getStatusBarColor());
         TintUtil.setTintImage(textToSpeachTop, TintUtil.getStatusBarColor());
