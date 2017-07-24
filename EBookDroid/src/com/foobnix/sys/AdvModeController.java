@@ -334,7 +334,11 @@ public class AdvModeController extends DocumentController {
         final int last = ctr.getDocumentController().getLastVisiblePage();
         for (int i = first; i < last + 1; i++) {
             final Page page = ctr.getDocumentModel().getPageByDocIndex(i);
+            if (page == null || page.selectedText == null) {
+                continue;
+            }
             List<TextWord> texts = page.selectedText;
+
             final ArrayList<PointF> quadPoints = new ArrayList<PointF>();
 
             for (TextWord text : texts) {

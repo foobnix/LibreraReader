@@ -29,7 +29,9 @@ public abstract class AppRecycleAdapter<K, T extends RecyclerView.ViewHolder> ex
 
     public void clearItems() {
         ImageLoader.getInstance().stop();
-        items.clear();
+        if (items != null) {
+            items.clear();
+        }
     }
 
     @Override

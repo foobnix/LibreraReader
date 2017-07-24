@@ -51,9 +51,13 @@ public class GeneralDocInterfaceImpl implements GeneralDocInterface {
 
     @Override
     public String getPageHTML(String path, int number) {
-        CodecPage page = ImageExtractor.getCodecContext(path, "", 0, 0).getPage(number);
-        if (!page.isRecycled()) {
-            return page.getPageHTML();
+        try {
+            CodecPage page = ImageExtractor.getCodecContext(path, "", 0, 0).getPage(number);
+            if (!page.isRecycled()) {
+                return page.getPageHTML();
+            }
+        } catch (Exception e) {
+            LOG.e(e);
         }
         return "";
     }
@@ -66,9 +70,7 @@ public class GeneralDocInterfaceImpl implements GeneralDocInterface {
                 TextWord[][] text = page.getText();
                 return text;
             }
-        } catch (
-
-        Exception e) {
+        } catch (Exception e) {
             LOG.e(e);
         }
         return null;

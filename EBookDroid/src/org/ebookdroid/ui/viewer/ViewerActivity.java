@@ -96,10 +96,12 @@ public class ViewerActivity extends AbstractActionActivity<ViewerActivity, Viewe
             if (getIntent().getData() != null) {
                 final BookSettings bs = SettingsManager.getBookSettings(getIntent().getData().getPath());
                 // AppState.getInstance().setNextScreen(bs.isNextScreen);
-                AppState.getInstance().isLocked = bs.isLocked;
-                AppState.getInstance().autoScrollSpeed = bs.speed;
-                AppState.get().isCut = bs.splitPages;
-                AppState.get().isCrop = bs.cropPages;
+                if (bs != null) {
+                    AppState.getInstance().isLocked = bs.isLocked;
+                    AppState.getInstance().autoScrollSpeed = bs.speed;
+                    AppState.get().isCut = bs.splitPages;
+                    AppState.get().isCrop = bs.cropPages;
+                }
             }
 
             getController().beforeCreate(this);
@@ -210,7 +212,9 @@ public class ViewerActivity extends AbstractActionActivity<ViewerActivity, Viewe
 
     @Override
     protected void onDestroy() {
-        handler.removeCallbacksAndMessages(null);
+        if (handler != null) {
+            handler.removeCallbacksAndMessages(null);
+        }
         if (AppState.getInstance().isRememberMode && AppState.getInstance().isAlwaysOpenAsMagazine) {
             super.onDestroy();
         } else {
