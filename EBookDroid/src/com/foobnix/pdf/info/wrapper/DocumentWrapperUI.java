@@ -27,8 +27,8 @@ import com.foobnix.pdf.info.view.BrigtnessDraw;
 import com.foobnix.pdf.info.view.DragingDialogs;
 import com.foobnix.pdf.info.view.DragingPopup;
 import com.foobnix.pdf.info.view.DrawView;
+import com.foobnix.pdf.info.view.HorizontallSeekTouchEventListener;
 import com.foobnix.pdf.info.view.ProgressDraw;
-import com.foobnix.pdf.info.view.ProgressSeekTouchEventListener;
 import com.foobnix.pdf.info.widget.ShareDialog;
 import com.foobnix.pdf.search.view.CloseAppDialog;
 import com.foobnix.ui2.MainTabs2;
@@ -980,6 +980,7 @@ public class DocumentWrapperUI {
         }
 
         progressDraw.setVisibility(AppState.get().isShowReadingProgress ? View.VISIBLE : View.GONE);
+        brigtnessProgressView.setVisibility(AppState.get().isBrighrnessEnable ? View.VISIBLE : View.GONE);
 
         toolBarButton.setVisibility(View.VISIBLE);
 
@@ -1492,8 +1493,8 @@ public class DocumentWrapperUI {
                 public void run() {
                     progressDraw.updateDivs(list);
                     progressDraw.updatePageCount(controller.getPageCount() - 1);
-                    titleBar.setOnTouchListener(new ProgressSeekTouchEventListener(onSeek, controller.getPageCount(), false));
-                    progressDraw.setOnTouchListener(new ProgressSeekTouchEventListener(onSeek, controller.getPageCount(), false));
+                    titleBar.setOnTouchListener(new HorizontallSeekTouchEventListener(onSeek, controller.getPageCount(), false));
+                    progressDraw.setOnTouchListener(new HorizontallSeekTouchEventListener(onSeek, controller.getPageCount(), false));
                 }
             });
         } catch (Exception e) {

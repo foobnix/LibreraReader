@@ -366,4 +366,5 @@
    <string name="show_progress_of_reading">Hiển thị tiến trình đọc</string>
    <string name="line_height">Chiều cao giữa các dòng</string>
    <string name="display_chapters_on_the_progress_line">Hiển thị các chương trên dòng tiến trình</string>
+   <string name="enable_brightness_adjustment_on_the_left_of_the_screen">Bật điều chỉnh độ sáng ở bên trái màn hình</string>
 </resources>

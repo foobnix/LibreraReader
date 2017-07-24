@@ -392,9 +392,6 @@ public class Fb2Extractor extends BaseExtractor {
                     if (!isFindBodyEnd) {
                         line = line.replace("&nbsp;", " ");
                         line = HypenUtils.applyHypnes(line);
-                        // line = line.trim();
-                        LOG.d("HHH", line);
-
                     }
                 }
                 writer.print(line);

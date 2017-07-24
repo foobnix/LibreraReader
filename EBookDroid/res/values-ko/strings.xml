@@ -366,4 +366,5 @@
    <string name="show_progress_of_reading">독서의 진행 상황을 보여 준다.</string>
    <string name="line_height">라인 높이</string>
    <string name="display_chapters_on_the_progress_line">진행률 줄에 챕터 표시</string>
+   <string name="enable_brightness_adjustment_on_the_left_of_the_screen">화면 왼쪽에서 밝기 조정 사용</string>
 </resources>

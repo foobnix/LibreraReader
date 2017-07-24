@@ -269,8 +269,14 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dip"
-            android:singleLine="true"
             android:text="@string/loop_autoplay" />
+        
+        <CheckBox
+            android:id="@+id/isBrighrnessEnable"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dip"
+            android:text="@string/enable_brightness_adjustment_on_the_left_of_the_screen" />
 
         <LinearLayout
             android:layout_width="match_parent"

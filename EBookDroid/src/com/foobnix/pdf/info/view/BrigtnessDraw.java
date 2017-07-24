@@ -52,7 +52,7 @@ public class BrigtnessDraw extends View {
 
     @Override
     public boolean onTouchEvent(MotionEvent event) {
-        if (activity == null) {
+        if (activity == null || !AppState.get().isBrighrnessEnable) {
             return false;
         }
 

@@ -22,7 +22,6 @@ import org.ebookdroid.BookType;
 import org.ebookdroid.common.cache.CacheManager;
 import org.ebookdroid.core.codec.CodecDocument;
 import org.ebookdroid.core.codec.CodecPage;
-import org.ebookdroid.droids.mupdf.codec.PdfContext;
 import org.ebookdroid.ui.viewer.ViewerActivity;
 import org.json.JSONObject;
 import org.mozilla.universalchardet.UniversalDetector;
@@ -914,7 +913,7 @@ public class ExtUtils {
 
     public static File openPDFInTextReflowAsync(Activity a, File file, Handler dialog) {
         try {
-            CodecDocument doc = new PdfContext().openDocument(file.getPath(), "");
+            CodecDocument doc = BookType.getCodecContextByPath(file.getPath()).openDocument(file.getPath(), "");
 
             File dir = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS), LIRBI);
             dir.mkdirs();

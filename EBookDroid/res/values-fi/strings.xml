@@ -366,4 +366,5 @@
    <string name="show_progress_of_reading">Näytä lukemisen edistyminen</string>
    <string name="line_height">Viivankorkeus</string>
    <string name="display_chapters_on_the_progress_line">Näytä luvut edistysrivillä</string>
+   <string name="enable_brightness_adjustment_on_the_left_of_the_screen">Ota kirkkauden säätö näytön vasemmalla puolella</string>
 </resources>

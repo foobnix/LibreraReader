@@ -366,4 +366,5 @@
    <string name="show_progress_of_reading">Mostra il progresso della lettura</string>
    <string name="line_height">Altezza della linea</string>
    <string name="display_chapters_on_the_progress_line">Visualizza i capitoli sulla linea di avanzamento</string>
+   <string name="enable_brightness_adjustment_on_the_left_of_the_screen">Attiva la regolazione della luminosità a sinistra dello schermo</string>
 </resources>

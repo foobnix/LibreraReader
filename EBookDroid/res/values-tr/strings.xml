@@ -366,4 +366,5 @@
    <string name="show_progress_of_reading">Okuma ilerlemesini göster</string>
    <string name="line_height">Satır yüksekliği</string>
    <string name="display_chapters_on_the_progress_line">İlerleme çizgisindeki bölümleri görüntüleme</string>
+   <string name="enable_brightness_adjustment_on_the_left_of_the_screen">Ekranın solundaki parlaklık ayarını etkinleştir</string>
 </resources>

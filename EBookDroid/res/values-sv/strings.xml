@@ -366,4 +366,5 @@
    <string name="show_progress_of_reading">Visa läsningens framsteg</string>
    <string name="line_height">Radavstånd</string>
    <string name="display_chapters_on_the_progress_line">Visa kapitel på framstegslinjen</string>
+   <string name="enable_brightness_adjustment_on_the_left_of_the_screen">Aktivera ljusstyrkan justering till vänster på skärmen</string>
 </resources>

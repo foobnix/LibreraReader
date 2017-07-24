@@ -212,6 +212,8 @@ public class AppState {
     public int sortByBrowse = BR_SORT_BY_PATH;
     public boolean sortByReverse = false;
 
+    public boolean isBrighrnessEnable = true;
+
     public float brightness = -1f;
     public float cropTolerance = 0.5f;
 
@@ -498,6 +500,7 @@ public class AppState {
 
         isSortAsc = sp.getBoolean("isSortAsc", isSortAsc);
         sortByReverse = sp.getBoolean("sortByReverse", sortByReverse);
+        isBrighrnessEnable = sp.getBoolean("isBrighrnessEnable", isBrighrnessEnable);
         isLocked = sp.getBoolean("isLocked", isLocked);
         isReverseKeys = sp.getBoolean("isReverseKeys", isReverseKeys);
         isUseVolumeKeys = sp.getBoolean("isUseVolumeKeys", isUseVolumeKeys);
@@ -702,6 +705,7 @@ public class AppState {
 
         editor.putBoolean("isSortAsc", isSortAsc);
         editor.putBoolean("sortByReverse", sortByReverse);
+        editor.putBoolean("isBrighrnessEnable", isBrighrnessEnable);
         editor.putBoolean("isReverseKeys", isReverseKeys);
         editor.putBoolean("isUseVolumeKeys", isUseVolumeKeys);
 

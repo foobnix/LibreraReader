@@ -366,4 +366,5 @@
    <string name="show_progress_of_reading">Toon vooruitgang met lezen</string>
    <string name="line_height">Lijnhoogte</string>
    <string name="display_chapters_on_the_progress_line">Toon hoofdstukken op de voortgangslijn</string>
+   <string name="enable_brightness_adjustment_on_the_left_of_the_screen">Schakel de helderheidsinstelling aan de linkerkant van het scherm aan</string>
 </resources>

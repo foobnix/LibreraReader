@@ -213,7 +213,7 @@ public class DragingDialogs {
 
                     @Override
                     public void onClick(View v) {
-                        PopupMenu menu = new PopupMenu(activity, textEngine);
+                        PopupMenu menu = new PopupMenu(v.getContext(), v);
                         List<EngineInfo> engines = ttsModule.getDefaultTTS().getEngines();
                         for (final EngineInfo eInfo : engines) {
                             final String name = TTSModule.engineToString(eInfo);
@@ -789,7 +789,7 @@ public class DragingDialogs {
 
                     @Override
                     public void onClick(View v) {
-                        PopupMenu menu = new PopupMenu(controller.getActivity(), onAddCustom);
+                        PopupMenu menu = new PopupMenu(v.getContext(), v);
 
                         Drawable highlight = controller.getActivity().getResources().getDrawable(R.drawable.glyphicons_607_te_background);
                         highlight.setColorFilter(Color.parseColor(AppState.getInstance().annotationTextColor), Mode.SRC_ATOP);
@@ -874,7 +874,7 @@ public class DragingDialogs {
 
                         anchor.removeAllViews();
 
-                        final PopupMenu popupMenu = new PopupMenu(anchor.getContext(), onTranslate);
+                        final PopupMenu popupMenu = new PopupMenu(v.getContext(), v);
 
                         final Map<String, String> providers = AppState.getDictionaries(editText.getText().toString().trim());
 
@@ -1757,6 +1757,7 @@ public class DragingDialogs {
                     }
                 });
 
+
                 CheckBox isShowToolBar = (CheckBox) inflate.findViewById(R.id.isShowToolBar);
                 isShowToolBar.setChecked(AppState.getInstance().isShowToolBar);
                 isShowToolBar.setOnCheckedChangeListener(new OnCheckedChangeListener() {
@@ -2004,6 +2005,16 @@ public class DragingDialogs {
                     }
                 });
 
+                CheckBox isBrighrnessEnable = (CheckBox) inflate.findViewById(R.id.isBrighrnessEnable);
+                isBrighrnessEnable.setChecked(AppState.getInstance().isBrighrnessEnable);
+                isBrighrnessEnable.setOnCheckedChangeListener(new OnCheckedChangeListener() {
+
+                    @Override
+                    public void onCheckedChanged(final CompoundButton buttonView, final boolean isChecked) {
+                        AppState.getInstance().isBrighrnessEnable = isChecked;
+                    }
+                });
+
                 final SeekBar mouseSpeed = (SeekBar) inflate.findViewById(R.id.seekWheelSpeed);
                 mouseSpeed.setMax(200);
                 mouseSpeed.setProgress(AppState.getInstance().mouseWheelSpeed);
@@ -2129,7 +2140,7 @@ public class DragingDialogs {
                     @TargetApi(Build.VERSION_CODES.HONEYCOMB)
                     @Override
                     public void onClick(View v) {
-                        final PopupMenu popupMenu = new PopupMenu(pageQuality.getContext(), pageQuality);
+                        final PopupMenu popupMenu = new PopupMenu(v.getContext(), v);
                         for (float i = 0.5f; i < 2.1f; i += 0.1f) {
                             final float quality = i;
                             popupMenu.getMenu().add((int) (i * 100) + "%").setOnMenuItemClickListener(new OnMenuItemClickListener() {
@@ -2157,7 +2168,7 @@ public class DragingDialogs {
 
                     @Override
                     public void onClick(View v) {
-                        final PopupMenu popupMenu = new PopupMenu(pagesInMemory.getContext(), pagesInMemory);
+                        final PopupMenu popupMenu = new PopupMenu(v.getContext(), v);
                         for (int i = 0; i <= 2f; i++) {
                             final int number = i;
                             popupMenu.getMenu().add("" + i).setOnMenuItemClickListener(new OnMenuItemClickListener() {
@@ -2184,7 +2195,7 @@ public class DragingDialogs {
 
                     @Override
                     public void onClick(View v) {
-                        final PopupMenu popupMenu = new PopupMenu(pagesInMemory.getContext(), pagesInMemory);
+                        final PopupMenu popupMenu = new PopupMenu(v.getContext(), v);
                         for (int i = 1; i <= 10; i++) {
                             final int number = i;
                             popupMenu.getMenu().add("" + i).setOnMenuItemClickListener(new OnMenuItemClickListener() {
@@ -2234,7 +2245,7 @@ public class DragingDialogs {
                     @SuppressLint("NewApi")
                     @Override
                     public void onClick(View v) {
-                        final PopupMenu popupMenu = new PopupMenu(tapzoneSize.getContext(), tapzoneSize);
+                        final PopupMenu popupMenu = new PopupMenu(v.getContext(), v);
                         for (int i = 0; i <= 45f; i += 5) {
                             final int number = i;
                             popupMenu.getMenu().add("" + i + "%").setOnMenuItemClickListener(new OnMenuItemClickListener() {
@@ -2315,7 +2326,7 @@ public class DragingDialogs {
                     @SuppressLint("NewApi")
                     @Override
                     public void onClick(View v) {
-                        final PopupMenu popupMenu = new PopupMenu(allocatedMemorySize.getContext(), allocatedMemorySize);
+                        final PopupMenu popupMenu = new PopupMenu(v.getContext(), v);
                         for (int i = 16; i <= 512 && i < MemoryUtils.MAX_MEMORY_SIZE; i += i) {
                             final int number = i;
                             popupMenu.getMenu().add("" + i + "Mb").setOnMenuItemClickListener(new OnMenuItemClickListener() {
@@ -2346,7 +2357,7 @@ public class DragingDialogs {
                     @SuppressLint("NewApi")
                     @Override
                     public void onClick(View v) {
-                        final PopupMenu popupMenu = new PopupMenu(imageFormat.getContext(), imageFormat);
+                        final PopupMenu popupMenu = new PopupMenu(v.getContext(), v);
                         popupMenu.getMenu().add(AppState.PNG).setOnMenuItemClickListener(new OnMenuItemClickListener() {
 
                             @Override
@@ -2456,7 +2467,7 @@ public class DragingDialogs {
                     @SuppressLint("NewApi")
                     @Override
                     public void onClick(View v) {
-                        final PopupMenu popupMenu = new PopupMenu(rotateViewPager.getContext(), rotateViewPager);
+                        final PopupMenu popupMenu = new PopupMenu(v.getContext(), v);
                         popupMenu.getMenu().add(R.string.horizontal).setOnMenuItemClickListener(new OnMenuItemClickListener() {
 
                             @Override
@@ -2495,7 +2506,7 @@ public class DragingDialogs {
                     @TargetApi(Build.VERSION_CODES.HONEYCOMB)
                     @Override
                     public void onClick(View v) {
-                        final PopupMenu popupMenu = new PopupMenu(rtlText.getContext(), rtlText);
+                        final PopupMenu popupMenu = new PopupMenu(v.getContext(), v);
                         popupMenu.getMenu().add(R.string.left_to_rigth).setOnMenuItemClickListener(new OnMenuItemClickListener() {
 
                             @Override
@@ -2731,7 +2742,7 @@ public class DragingDialogs {
                             return;
                         }
 
-                        final PopupMenu popupMenu = new PopupMenu(textAlign.getContext(), textAlign);
+                        final PopupMenu popupMenu = new PopupMenu(v.getContext(), v);
                         for (final int key : alignConst.keySet()) {
                             String name = alignConst.get(key);
                             popupMenu.getMenu().add(name).setOnMenuItemClickListener(new OnMenuItemClickListener() {
@@ -3135,6 +3146,9 @@ public class DragingDialogs {
                     }
                 });
 
+                final TextView hypenLangLabel = (TextView) inflate.findViewById(R.id.hypenLangLabel);
+                hypenLangLabel.setVisibility(isSupportHypens ? View.VISIBLE : View.GONE);
+
                 final TextView hypenLang = (TextView) inflate.findViewById(R.id.hypenLang);
                 hypenLang.setVisibility(isSupportHypens ? View.VISIBLE : View.GONE);
                 hypenLang.setText(DialogTranslateFromTo.getLanuageByCode(BookCSS.get().hypenLang) + " (" + BookCSS.get().hypenLang + ")");
@@ -3145,7 +3159,7 @@ public class DragingDialogs {
                     @Override
                     public void onClick(View v) {
 
-                        final PopupMenu popupMenu = new PopupMenu(anchor.getContext(), hypenLang);
+                        final PopupMenu popupMenu = new PopupMenu(v.getContext(), v);
 
                         HyphenPattern[] values = HyphenPattern.values();
 

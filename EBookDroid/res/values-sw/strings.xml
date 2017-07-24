@@ -366,4 +366,5 @@
    <string name="show_progress_of_reading">Onyesha maendeleo ya kusoma</string>
    <string name="line_height">Urefu wa mstari</string>
    <string name="display_chapters_on_the_progress_line">Onyesha sura kwenye mstari wa maendeleo</string>
+   <string name="enable_brightness_adjustment_on_the_left_of_the_screen">Wezesha marekebisho ya mwangaza upande wa kushoto wa skrini</string>
 </resources>

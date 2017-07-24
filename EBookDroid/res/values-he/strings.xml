@@ -366,4 +366,5 @@
    <string name="show_progress_of_reading">הצג התקדמות בקריאה</string>
    <string name="line_height">גובה קו</string>
    <string name="display_chapters_on_the_progress_line">הצגת פרקים על קו ההתקדמות</string>
+   <string name="enable_brightness_adjustment_on_the_left_of_the_screen">הפעל התאמת בהירות בצד שמאל של המסך</string>
 </resources>

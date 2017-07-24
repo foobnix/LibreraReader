@@ -8,15 +8,16 @@ import android.view.View;
 import android.view.View.OnTouchListener;
 import android.widget.SeekBar;
 
-public class ProgressSeekTouchEventListener implements OnTouchListener {
+public class HorizontallSeekTouchEventListener implements OnTouchListener {
 
     SeekBar.OnSeekBarChangeListener onSeekBarChangeListener;
     int pages;
     boolean isProccessClick;
     int distance = Dips.dpToPx(5);
+    int delta = Dips.dpToPx(40);
     volatile boolean isMyAction;
 
-    public ProgressSeekTouchEventListener(SeekBar.OnSeekBarChangeListener onSeekBarChangeListener, int pages, boolean isProccessClick) {
+    public HorizontallSeekTouchEventListener(SeekBar.OnSeekBarChangeListener onSeekBarChangeListener, int pages, boolean isProccessClick) {
         this.onSeekBarChangeListener = onSeekBarChangeListener;
         this.pages = pages;
         this.isProccessClick = isProccessClick;
@@ -44,7 +45,7 @@ public class ProgressSeekTouchEventListener implements OnTouchListener {
         }
         if (action == MotionEvent.ACTION_MOVE) {
             if (onSeekBarChangeListener != null) {
-                if (Math.abs(x - event.getX()) >= distance || (Math.abs(y - event.getY()) >= distance)) {
+                if (Math.abs(x - event.getX()) >= distance && (Math.abs(y - event.getY()) <= delta)) {
                     int progress = (int) (event.getX() * pages / Dips.screenWidth());
                     onSeekBarChangeListener.onProgressChanged(null, progress, true);
                     isMyAction = true;

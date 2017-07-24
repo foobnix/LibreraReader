@@ -366,4 +366,5 @@
    <string name="show_progress_of_reading">Vis fremdrift av lesing</string>
    <string name="line_height">Linjehøyde</string>
    <string name="display_chapters_on_the_progress_line">Vis kapitler på fremdriftslinjen</string>
+   <string name="enable_brightness_adjustment_on_the_left_of_the_screen">Aktiver lysstyrkejustering til venstre på skjermen</string>
 </resources>

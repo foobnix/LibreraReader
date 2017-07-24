@@ -49,7 +49,6 @@ import java.util.Map;
 
 public class DefaultHyphenator {
 
-
     private TrieNode trie;
     private int leftMin;
     private int rightMin;
@@ -62,7 +61,6 @@ public class DefaultHyphenator {
         this.leftMin = pattern.leftMin;
         this.rightMin = pattern.rightMin;
     }
-
 
     private TrieNode createTrie(Map<Integer, String> patternObject) {
 
@@ -121,6 +119,7 @@ public class DefaultHyphenator {
     }
 
     public List<String> hyphenate(String word) {
+        List<String> result = new ArrayList<String>();
 
         word = "_" + word + "_";
         String lowercase = word.toLowerCase();
@@ -153,7 +152,7 @@ public class DefaultHyphenator {
             }
         }
 
-        List<String> result = new ArrayList<String>();
+
         int start = 1;
         for (int i = 1; i < wordLength - 1; i++) {
             if (i > this.leftMin && i < (wordLength - this.rightMin) && points[i] % 2 > 0) {
@@ -196,8 +195,6 @@ public class DefaultHyphenator {
      * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
      * POSSIBILITY OF SUCH DAMAGE.
      */
-
-
 
     private class TrieNode {
         Map<Integer, TrieNode> codePoint = new HashMap<Integer, TrieNode>();

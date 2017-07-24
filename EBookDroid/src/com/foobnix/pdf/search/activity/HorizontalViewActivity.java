@@ -30,8 +30,8 @@ import com.foobnix.pdf.info.view.AlertDialogs;
 import com.foobnix.pdf.info.view.BrigtnessDraw;
 import com.foobnix.pdf.info.view.DragingDialogs;
 import com.foobnix.pdf.info.view.DragingPopup;
+import com.foobnix.pdf.info.view.HorizontallSeekTouchEventListener;
 import com.foobnix.pdf.info.view.ProgressDraw;
-import com.foobnix.pdf.info.view.ProgressSeekTouchEventListener;
 import com.foobnix.pdf.info.widget.FileInformationDialog;
 import com.foobnix.pdf.info.widget.RecentUpates;
 import com.foobnix.pdf.info.widget.ShareDialog;
@@ -485,8 +485,8 @@ public class HorizontalViewActivity extends FragmentActivity {
                     EventBus.getDefault().post(new MessageAutoFit(documentController.getPageFromUri()));
                     AppState.get().isEditMode = true;
                     seekBar.setOnSeekBarChangeListener(onSeek);
-                    bottomIndicators.setOnTouchListener(new ProgressSeekTouchEventListener(onSeek, documentController.getPageCount(), false));
-                    progressDraw.setOnTouchListener(new ProgressSeekTouchEventListener(onSeek, documentController.getPageCount(), false));
+                    bottomIndicators.setOnTouchListener(new HorizontallSeekTouchEventListener(onSeek, documentController.getPageCount(), false));
+                    progressDraw.setOnTouchListener(new HorizontallSeekTouchEventListener(onSeek, documentController.getPageCount(), false));
                     RecentUpates.updateAll(HorizontalViewActivity.this);
                     showHideInfoToolBar();
 
@@ -671,6 +671,8 @@ public class HorizontalViewActivity extends FragmentActivity {
 
         progressDraw.setVisibility(AppState.get().isShowReadingProgress ? View.VISIBLE : View.GONE);
 
+        brigtnessProgressView.setVisibility(AppState.get().isBrighrnessEnable ? View.VISIBLE : View.GONE);
+
     }
 
     private void showSearchDialog() {
@@ -714,7 +716,6 @@ public class HorizontalViewActivity extends FragmentActivity {
         Analytics.onStart(this);
         EventBus.getDefault().register(this);
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
-
 
     }
 

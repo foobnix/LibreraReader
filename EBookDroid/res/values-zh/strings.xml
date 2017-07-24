@@ -366,4 +366,5 @@
    <string name="show_progress_of_reading">显示阅读进度</string>
    <string name="line_height">线高度</string>
    <string name="display_chapters_on_the_progress_line">在进度行上显示章节</string>
+   <string name="enable_brightness_adjustment_on_the_left_of_the_screen">启用屏幕左侧的亮度调节</string>
 </resources>

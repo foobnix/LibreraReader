@@ -38,7 +38,7 @@ public class HypenUtils {
                 continue;
             }
 
-            if (w.contains("<") || w.contains(">") || w.contains("=")) {
+            if (w.contains("<") || w.contains(">") || w.contains("=") || w.contains("[") || w.contains("{")) {
                 res.append(w);
                 continue;
             }
@@ -62,15 +62,23 @@ public class HypenUtils {
             boolean endWithOther2 = false;
             char last2 = ' ';
             if (endWithOther) {
-                last2 = w.charAt(w.length() - 2);
+                last2 = w.charAt(w.length() - 1);
                 if (w.length() != 0 && !Character.isLetter(last2)) {
                     endWithOther2 = true;
                     w = w.substring(0, w.length() - 1);
                 }
+
             }
 
-            List<String> hyphenate = instance.hyphenate(w);
-            String result = join(hyphenate, SHY);
+            String result = null;
+            if (w.contains("-")) {
+                int find = w.indexOf("-");
+                String p1 = w.substring(0, find);
+                String p2 = w.substring(find + 1, w.length());
+                result = join(instance.hyphenate(p1), SHY) + "-" + SHY + join(instance.hyphenate(p2), SHY);
+            } else {
+                result = join(instance.hyphenate(w), SHY);
+            }
 
             if (startWithOther) {
                 result = String.valueOf(first) + result;
@@ -84,10 +92,11 @@ public class HypenUtils {
                 result = result + String.valueOf(last);
             }
             res.append(result);
+
         }
 
         String result = res.toString();
-        result = result.replace(" <", "<").replace("> ", ">").replace("-" + SHY, "-");
+        result = result.replace(" <", "<").replace("> ", ">");
         return result;
     }
 
@@ -100,6 +109,7 @@ public class HypenUtils {
             result.append(delimiter).append(list.get(i));
         }
         String string = result.toString();
-        return string.replace(SHY + SHY, SHY);
+        return string;
+        // return string.replace(SHY + SHY, SHY);
     }
 }

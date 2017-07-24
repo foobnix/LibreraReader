@@ -366,4 +366,5 @@
    <string name="show_progress_of_reading">Afișați progresul citirii</string>
    <string name="line_height">Inaltimea liniei</string>
    <string name="display_chapters_on_the_progress_line">Afișează capitole pe linia de progres</string>
+   <string name="enable_brightness_adjustment_on_the_left_of_the_screen">Activați ajustarea luminozității din partea stângă a ecranului</string>
 </resources>
