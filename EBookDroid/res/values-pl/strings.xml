@@ -367,4 +367,5 @@
    <string name="line_height">Wysokość linii</string>
    <string name="display_chapters_on_the_progress_line">Wyświetl rozdziały w linii postępu</string>
    <string name="enable_brightness_adjustment_on_the_left_of_the_screen">Włącz ustawienie jasności po lewej stronie ekranu</string>
+   <string name="enable_rewind_of_pages_using_the_read_progress_line">Włącz przewijanie stron za pomocą linii postępu odczytu</string>
 </resources>

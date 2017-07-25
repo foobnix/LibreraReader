@@ -367,4 +367,5 @@
    <string name="line_height">Zeilenhöhe</string>
    <string name="display_chapters_on_the_progress_line">Zeigen Sie Kapitel auf der Fortschrittslinie an</string>
    <string name="enable_brightness_adjustment_on_the_left_of_the_screen">Aktivieren Sie die Helligkeitseinstellung auf der linken Seite des Bildschirms</string>
+   <string name="enable_rewind_of_pages_using_the_read_progress_line">Aktivieren Sie das Zurückspulen von Seiten mit der Lese-Fortschrittslinie</string>
 </resources>

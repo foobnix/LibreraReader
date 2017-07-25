@@ -367,4 +367,5 @@
    <string name="line_height">行の高さ</string>
    <string name="display_chapters_on_the_progress_line">進捗線に章を表示する</string>
    <string name="enable_brightness_adjustment_on_the_left_of_the_screen">画面の左側で明るさの調整を有効にする</string>
+   <string name="enable_rewind_of_pages_using_the_read_progress_line">読み込んだ進行状況行を使用してページの巻き戻しを有効にする</string>
 </resources>

@@ -214,19 +214,20 @@ public class HorizontalViewActivity extends FragmentActivity {
         pagesPower = (TextView) findViewById(R.id.pagesPower);
         linkHistory = (ImageView) findViewById(R.id.linkHistory);
 
-        currentSeek.setTypeface(BookCSS.getNormalTypeFace());
-        maxSeek.setTypeface(BookCSS.getNormalTypeFace());
-        pagesCountIndicator.setTypeface(BookCSS.getNormalTypeFace());
-        pagesTime.setTypeface(BookCSS.getNormalTypeFace());
-        pagesPower.setTypeface(BookCSS.getNormalTypeFace());
-
         updateSeekBarColorAndSize();
 
         titleTxt = (TextView) findViewById(R.id.title);
         chapterView = (TextView) findViewById(R.id.chapter);
 
-        titleTxt.setTypeface(BookCSS.getNormalTypeFace());
-        chapterView.setTypeface(BookCSS.getNormalTypeFace());
+        if (AppState.get().isUseTypeFace) {
+            currentSeek.setTypeface(BookCSS.getNormalTypeFace());
+            maxSeek.setTypeface(BookCSS.getNormalTypeFace());
+            pagesCountIndicator.setTypeface(BookCSS.getNormalTypeFace());
+            pagesTime.setTypeface(BookCSS.getNormalTypeFace());
+            pagesPower.setTypeface(BookCSS.getNormalTypeFace());
+            titleTxt.setTypeface(BookCSS.getNormalTypeFace());
+            chapterView.setTypeface(BookCSS.getNormalTypeFace());
+        }
 
         linkHistory.setOnClickListener(new OnClickListener() {
 

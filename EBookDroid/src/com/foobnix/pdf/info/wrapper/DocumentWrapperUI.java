@@ -534,7 +534,6 @@ public class DocumentWrapperUI {
 
         reverseKeysIndicator = (TextView) a.findViewById(R.id.reverseKeysIndicator);
         // reverseKeysIndicator.setOnClickListener(onReverseKeys);
-        reverseKeysIndicator.setTypeface(BookCSS.getNormalTypeFace());
 
         zoomPlus = a.findViewById(R.id.zoomPlus);
         zoomPlus.setOnClickListener(onPlus);
@@ -659,12 +658,15 @@ public class DocumentWrapperUI {
         currentTime = (TextView) a.findViewById(R.id.currentTime);
         batteryLevel = (TextView) a.findViewById(R.id.currentBattery);
 
-        bookName.setTypeface(BookCSS.getNormalTypeFace());
-        currentSeek.setTypeface(BookCSS.getNormalTypeFace());
-        currentPageIndex.setTypeface(BookCSS.getNormalTypeFace());
-        maxSeek.setTypeface(BookCSS.getNormalTypeFace());
-        currentTime.setTypeface(BookCSS.getNormalTypeFace());
-        batteryLevel.setTypeface(BookCSS.getNormalTypeFace());
+        if (AppState.get().isUseTypeFace) {
+            reverseKeysIndicator.setTypeface(BookCSS.getNormalTypeFace());
+            bookName.setTypeface(BookCSS.getNormalTypeFace());
+            currentSeek.setTypeface(BookCSS.getNormalTypeFace());
+            currentPageIndex.setTypeface(BookCSS.getNormalTypeFace());
+            maxSeek.setTypeface(BookCSS.getNormalTypeFace());
+            currentTime.setTypeface(BookCSS.getNormalTypeFace());
+            batteryLevel.setTypeface(BookCSS.getNormalTypeFace());
+        }
 
         View thumbnail = a.findViewById(R.id.thumbnail);
         thumbnail.setOnClickListener(onThumbnail);
@@ -990,7 +992,10 @@ public class DocumentWrapperUI {
         if (AppState.get().nextScreenScrollBy == AppState.NEXT_SCREEN_SCROLL_BY_PAGES) {
             nextTypeBootom.setText(R.string.by_pages);
             nextScreenType.setImageResource(R.drawable.glyphicons_full_page);
-            nextTypeBootom.setTypeface(BookCSS.getNormalTypeFace());
+
+            if (AppState.get().isUseTypeFace) {
+                nextTypeBootom.setTypeface(BookCSS.getNormalTypeFace());
+            }
         } else {
             if (AppState.get().nextScreenScrollBy == 100) {
                 nextTypeBootom.setText(controller.getString(R.string.by_screans));
@@ -998,7 +1003,10 @@ public class DocumentWrapperUI {
                 nextTypeBootom.setText(AppState.get().nextScreenScrollBy + "% " + controller.getString(R.string.of_screen));
             }
             nextScreenType.setImageResource(R.drawable.glyphicons_halp_page);
-            nextTypeBootom.setTypeface(BookCSS.getNormalTypeFace());
+
+            if (AppState.get().isUseTypeFace) {
+                nextTypeBootom.setTypeface(BookCSS.getNormalTypeFace());
+            }
         }
 
     }

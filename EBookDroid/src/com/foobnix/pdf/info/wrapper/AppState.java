@@ -72,6 +72,8 @@ public class AppState {
     public static int TAP_PREV_PAGE = 1;
     public static int TAP_DO_NOTHING = 2;
 
+    public boolean isUseTypeFace = false;
+
     public static List<Integer> NEXT_KEYS = Arrays.asList(//
             KeyEvent.KEYCODE_VOLUME_UP, //
             KeyEvent.KEYCODE_PAGE_UP, //
@@ -213,6 +215,7 @@ public class AppState {
     public boolean sortByReverse = false;
 
     public boolean isBrighrnessEnable = true;
+    public boolean isRewindEnable = true;
 
     public float brightness = -1f;
     public float cropTolerance = 0.5f;
@@ -501,6 +504,7 @@ public class AppState {
         isSortAsc = sp.getBoolean("isSortAsc", isSortAsc);
         sortByReverse = sp.getBoolean("sortByReverse", sortByReverse);
         isBrighrnessEnable = sp.getBoolean("isBrighrnessEnable", isBrighrnessEnable);
+        isRewindEnable = sp.getBoolean("isRewindEnable", isRewindEnable);
         isLocked = sp.getBoolean("isLocked", isLocked);
         isReverseKeys = sp.getBoolean("isReverseKeys", isReverseKeys);
         isUseVolumeKeys = sp.getBoolean("isUseVolumeKeys", isUseVolumeKeys);
@@ -706,6 +710,7 @@ public class AppState {
         editor.putBoolean("isSortAsc", isSortAsc);
         editor.putBoolean("sortByReverse", sortByReverse);
         editor.putBoolean("isBrighrnessEnable", isBrighrnessEnable);
+        editor.putBoolean("isRewindEnable", isRewindEnable);
         editor.putBoolean("isReverseKeys", isReverseKeys);
         editor.putBoolean("isUseVolumeKeys", isUseVolumeKeys);
 

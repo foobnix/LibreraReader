@@ -2015,6 +2015,16 @@ public class DragingDialogs {
                     }
                 });
 
+                CheckBox isRewindEnable = (CheckBox) inflate.findViewById(R.id.isRewindEnable);
+                isRewindEnable.setChecked(AppState.getInstance().isRewindEnable);
+                isRewindEnable.setOnCheckedChangeListener(new OnCheckedChangeListener() {
+
+                    @Override
+                    public void onCheckedChanged(final CompoundButton buttonView, final boolean isChecked) {
+                        AppState.getInstance().isRewindEnable = isChecked;
+                    }
+                });
+
                 final SeekBar mouseSpeed = (SeekBar) inflate.findViewById(R.id.seekWheelSpeed);
                 mouseSpeed.setMax(200);
                 mouseSpeed.setProgress(AppState.getInstance().mouseWheelSpeed);

@@ -367,4 +367,5 @@
    <string name="line_height">Linjehøyde</string>
    <string name="display_chapters_on_the_progress_line">Vis kapitler på fremdriftslinjen</string>
    <string name="enable_brightness_adjustment_on_the_left_of_the_screen">Aktiver lysstyrkejustering til venstre på skjermen</string>
+   <string name="enable_rewind_of_pages_using_the_read_progress_line">Aktiver tilbakespoling av sider ved hjelp av lesefremdriftslinjen</string>
 </resources>

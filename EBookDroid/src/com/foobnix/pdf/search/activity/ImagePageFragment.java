@@ -4,6 +4,7 @@ import com.foobnix.android.utils.LOG;
 import com.foobnix.pdf.info.IMG;
 import com.foobnix.pdf.info.R;
 import com.foobnix.pdf.info.model.BookCSS;
+import com.foobnix.pdf.info.wrapper.AppState;
 import com.foobnix.pdf.info.wrapper.MagicHelper;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.assist.FailReason;
@@ -38,7 +39,9 @@ public class ImagePageFragment extends Fragment {
         path = getArguments().getString(PAGE_PATH);
 
         text = (TextView) view.findViewById(R.id.text1);
-        text.setTypeface(BookCSS.getNormalTypeFace());
+        if (AppState.get().isUseTypeFace) {
+            text.setTypeface(BookCSS.getNormalTypeFace());
+        }
         image = (PageImaveView) view.findViewById(R.id.myImage1);
 
         image.setPageNumber(page);
@@ -80,7 +83,6 @@ public class ImagePageFragment extends Fragment {
     }
 
     int loadImageId;
-
 
     public void loadImage() {
         if (getPriority() > 2) {
@@ -143,11 +145,13 @@ public class ImagePageFragment extends Fragment {
         });
     }
 
-    Runnable callback=new Runnable(){
+    Runnable callback = new Runnable() {
 
-    @Override public void run(){
+        @Override
+        public void run() {
 
-    loadImage();}
+            loadImage();
+        }
 
     };
     private String path;

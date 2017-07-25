@@ -367,4 +367,5 @@
    <string name="line_height">ارتفاع خط</string>
    <string name="display_chapters_on_the_progress_line">عرض الفصول على خط التقدم</string>
    <string name="enable_brightness_adjustment_on_the_left_of_the_screen">تمكين تعديل السطوع على يمين الشاشة</string>
+   <string name="enable_rewind_of_pages_using_the_read_progress_line">تمكين ترجيع الصفحات باستخدام سطر تقدم القراءة</string>
 </resources>

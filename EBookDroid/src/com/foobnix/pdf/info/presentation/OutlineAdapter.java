@@ -6,6 +6,7 @@ import com.foobnix.pdf.info.R;
 import com.foobnix.pdf.info.TintUtil;
 import com.foobnix.pdf.info.model.BookCSS;
 import com.foobnix.pdf.info.model.OutlineLinkWrapper;
+import com.foobnix.pdf.info.wrapper.AppState;
 
 import android.content.Context;
 import android.graphics.Color;
@@ -26,244 +27,246 @@ import android.widget.TextView;
 
 public class OutlineAdapter extends BaseAdapter {
 
-	private int spaceWidth;
+    private int spaceWidth;
 
-	private final VoidListener voidListener = new VoidListener();
-	private final ItemListener itemListener = new ItemListener();
-	private final CollapseListener collapseListener = new CollapseListener();
+    private final VoidListener voidListener = new VoidListener();
+    private final ItemListener itemListener = new ItemListener();
+    private final CollapseListener collapseListener = new CollapseListener();
 
-	private final Context context;
-	private final OutlineLinkWrapper[] objects;
-	private final OutlineItemState[] states;
-	private final SparseIntArray mapping = new SparseIntArray();
-	private int currentId;
+    private final Context context;
+    private final OutlineLinkWrapper[] objects;
+    private final OutlineItemState[] states;
+    private final SparseIntArray mapping = new SparseIntArray();
+    private int currentId;
 
-	public OutlineAdapter(final Context context, final List<OutlineLinkWrapper> objects,
-			final OutlineLinkWrapper current) {
-		this.context = context;
-		this.objects = objects.toArray(new OutlineLinkWrapper[objects.size()]);
-		this.states = new OutlineItemState[this.objects.length];
+    public OutlineAdapter(final Context context, final List<OutlineLinkWrapper> objects, final OutlineLinkWrapper current) {
+        this.context = context;
+        this.objects = objects.toArray(new OutlineLinkWrapper[objects.size()]);
+        this.states = new OutlineItemState[this.objects.length];
 
-		boolean treeFound = false;
-		for (int i = 0; i < this.objects.length; i++) {
-			mapping.put(i, i);
-			final int next = i + 1;
-			if (next < this.objects.length && this.objects[i].level < this.objects[next].level) {
-				states[i] = OutlineItemState.COLLAPSED;
-				treeFound = true;
-			} else {
-				states[i] = OutlineItemState.LEAF;
-			}
-		}
+        boolean treeFound = false;
+        for (int i = 0; i < this.objects.length; i++) {
+            mapping.put(i, i);
+            final int next = i + 1;
+            if (next < this.objects.length && this.objects[i].level < this.objects[next].level) {
+                states[i] = OutlineItemState.COLLAPSED;
+                treeFound = true;
+            } else {
+                states[i] = OutlineItemState.LEAF;
+            }
+        }
 
-		currentId = current != null ? objects.indexOf(current) : 1;
+        currentId = current != null ? objects.indexOf(current) : 1;
 
-		if (treeFound) {
-			for (int parent = getParentId(currentId); parent != -1; parent = getParentId(parent)) {
-				states[parent] = OutlineItemState.EXPANDED;
-			}
-			rebuild();
-			if (getCount() == 1 && states[0] == OutlineItemState.COLLAPSED) {
-				states[0] = OutlineItemState.EXPANDED;
-				rebuild();
-			}
-		}
+        if (treeFound) {
+            for (int parent = getParentId(currentId); parent != -1; parent = getParentId(parent)) {
+                states[parent] = OutlineItemState.EXPANDED;
+            }
+            rebuild();
+            if (getCount() == 1 && states[0] == OutlineItemState.COLLAPSED) {
+                states[0] = OutlineItemState.EXPANDED;
+                rebuild();
+            }
+        }
 
-	}
+    }
 
-	public int getParentId(final int id) {
-		final int level = objects[id].level;
-		for (int i = id - 1; i >= 0; i--) {
-			if (objects[i].level < level) {
-				return i;
-			}
-		}
-		return -1;
-	}
+    public int getParentId(final int id) {
+        final int level = objects[id].level;
+        for (int i = id - 1; i >= 0; i--) {
+            if (objects[i].level < level) {
+                return i;
+            }
+        }
+        return -1;
+    }
 
-	protected void rebuild() {
-		mapping.clear();
-		int pos = 0;
-		int level = Integer.MAX_VALUE;
-		for (int cid = 0; cid < objects.length; cid++) {
-			if (objects[cid].level <= level) {
-				mapping.put(pos++, cid);
-				if (states[cid] == OutlineItemState.COLLAPSED) {
-					level = objects[cid].level;
-				} else {
-					level = Integer.MAX_VALUE;
-				}
-			}
-		}
-	}
+    protected void rebuild() {
+        mapping.clear();
+        int pos = 0;
+        int level = Integer.MAX_VALUE;
+        for (int cid = 0; cid < objects.length; cid++) {
+            if (objects[cid].level <= level) {
+                mapping.put(pos++, cid);
+                if (states[cid] == OutlineItemState.COLLAPSED) {
+                    level = objects[cid].level;
+                } else {
+                    level = Integer.MAX_VALUE;
+                }
+            }
+        }
+    }
 
-	@Override
-	public boolean hasStableIds() {
-		return false;
-	}
+    @Override
+    public boolean hasStableIds() {
+        return false;
+    }
 
-	@Override
-	public int getCount() {
-		return mapping.size();
-	}
+    @Override
+    public int getCount() {
+        return mapping.size();
+    }
 
-	@Override
-	public OutlineLinkWrapper getItem(final int position) {
-		final int id = mapping.get(position, -1);
-		return id >= 0 && id < objects.length ? objects[id] : null;
-	}
+    @Override
+    public OutlineLinkWrapper getItem(final int position) {
+        final int id = mapping.get(position, -1);
+        return id >= 0 && id < objects.length ? objects[id] : null;
+    }
 
-	@Override
-	public long getItemId(final int position) {
-		return mapping.get(position, -1);
-	}
+    @Override
+    public long getItemId(final int position) {
+        return mapping.get(position, -1);
+    }
 
-	public int getItemPosition(final OutlineLinkWrapper item) {
-		for (int i = 0, n = getCount(); i < n; i++) {
-			if (item == getItem(i)) {
-				return i;
-			}
-		}
-		return -1;
-	}
+    public int getItemPosition(final OutlineLinkWrapper item) {
+        for (int i = 0, n = getCount(); i < n; i++) {
+            if (item == getItem(i)) {
+                return i;
+            }
+        }
+        return -1;
+    }
 
-	public int getItemId(final OutlineLinkWrapper item) {
-		for (int i = 0, n = objects.length; i < n; i++) {
-			if (item == objects[i]) {
-				return i;
-			}
-		}
-		return -1;
-	}
+    public int getItemId(final OutlineLinkWrapper item) {
+        for (int i = 0, n = objects.length; i < n; i++) {
+            if (item == objects[i]) {
+                return i;
+            }
+        }
+        return -1;
+    }
 
-	@Override
-	public View getView(final int position, final View convertView, final ViewGroup parent) {
-		final int id = (int) getItemId(position);
-		View container = null;
-		boolean firstTime = false;
-		if (convertView == null) {
-			container = LayoutInflater.from(context).inflate(R.layout.outline_item, parent, false);
-			firstTime = true;
-		} else {
-			container = convertView;
-		}
-		final TextView view = (TextView) container.findViewById(R.id.outline_title);
-		final TextView num = (TextView) container.findViewById(R.id.pageNumber);
-		num.setTypeface(BookCSS.getNormalTypeFace());
-		final ImageView btn = (ImageView) container.findViewById(R.id.outline_collapse);
-		final View space = container.findViewById(R.id.outline_space);
+    @Override
+    public View getView(final int position, final View convertView, final ViewGroup parent) {
+        final int id = (int) getItemId(position);
+        View container = null;
+        boolean firstTime = false;
+        if (convertView == null) {
+            container = LayoutInflater.from(context).inflate(R.layout.outline_item, parent, false);
+            firstTime = true;
+        } else {
+            container = convertView;
+        }
+        final TextView view = (TextView) container.findViewById(R.id.outline_title);
+        final TextView num = (TextView) container.findViewById(R.id.pageNumber);
+        if (AppState.get().isUseTypeFace) {
+            num.setTypeface(BookCSS.getNormalTypeFace());
+        }
+        final ImageView btn = (ImageView) container.findViewById(R.id.outline_collapse);
+        final View space = container.findViewById(R.id.outline_space);
 
-		final OutlineLinkWrapper item = getItem(position);
+        final OutlineLinkWrapper item = getItem(position);
         view.setText(item.getTitleAsString().trim());
-		num.setText(String.valueOf(item.targetPage));
+        num.setText(String.valueOf(item.targetPage));
 
-		if (item.targetPage != -1) {
-			num.setVisibility(View.VISIBLE);
-		} else {
-			num.setVisibility(View.INVISIBLE);
-		}
-		if (currentId == id) {
+        if (item.targetPage != -1) {
+            num.setVisibility(View.VISIBLE);
+        } else {
+            num.setVisibility(View.INVISIBLE);
+        }
+        if (currentId == id) {
             container.setBackgroundResource(R.color.tint_blue);
-		} else {
-			container.setBackgroundColor(Color.TRANSPARENT);
-		}
+        } else {
+            container.setBackgroundColor(Color.TRANSPARENT);
+        }
 
-		view.setTag(position);
-		btn.setTag(position);
+        view.setTag(position);
+        btn.setTag(position);
 
-		// container.setBackgroundColor(id == currentId ? this.selected :
-		// this.background);
-		// container.setBackgroundColor(id == currentId ? Color.argb(100, 0, 0,
-		// 0) : Color.argb(60, 0, 0, 0));
+        // container.setBackgroundColor(id == currentId ? this.selected :
+        // this.background);
+        // container.setBackgroundColor(id == currentId ? Color.argb(100, 0, 0,
+        // 0) : Color.argb(60, 0, 0, 0));
 
-		if (firstTime) {
-			final RelativeLayout.LayoutParams btnParams = (LayoutParams) btn.getLayoutParams();
-			spaceWidth = btnParams.width / 2;
-			container.setOnClickListener(voidListener);
-			view.setOnClickListener(itemListener);
-		}
+        if (firstTime) {
+            final RelativeLayout.LayoutParams btnParams = (LayoutParams) btn.getLayoutParams();
+            spaceWidth = btnParams.width / 2;
+            container.setOnClickListener(voidListener);
+            view.setOnClickListener(itemListener);
+        }
 
-		final RelativeLayout.LayoutParams sl = (LayoutParams) space.getLayoutParams();
-		sl.width = Math.min(5, item.level) * spaceWidth;
-		space.setLayoutParams(sl);
+        final RelativeLayout.LayoutParams sl = (LayoutParams) space.getLayoutParams();
+        sl.width = Math.min(5, item.level) * spaceWidth;
+        space.setLayoutParams(sl);
 
-		if (states[id] == OutlineItemState.LEAF) {
-			btn.setOnClickListener(voidListener);
-			// btn.setBackgroundColor(Color.TRANSPARENT);
-			btn.setImageDrawable(null);
-			view.setTypeface(BookCSS.getNormalTypeFace(), Typeface.NORMAL);
-		} else {
-			btn.setOnClickListener(collapseListener);
+        if (states[id] == OutlineItemState.LEAF) {
+            btn.setOnClickListener(voidListener);
+            // btn.setBackgroundColor(Color.TRANSPARENT);
+            btn.setImageDrawable(null);
+            if (AppState.get().isUseTypeFace) {
+                view.setTypeface(BookCSS.getNormalTypeFace(), Typeface.NORMAL);
+            }
+        } else {
+            btn.setOnClickListener(collapseListener);
 
-			btn.setImageResource(states[id] == OutlineItemState.EXPANDED ? R.drawable.screen_zoom_out_dark
-					: R.drawable.screen_zoom_in_dark);
+            btn.setImageResource(states[id] == OutlineItemState.EXPANDED ? R.drawable.screen_zoom_out_dark : R.drawable.screen_zoom_in_dark);
             TintUtil.setTintImage(btn, view.getCurrentTextColor());
+            if (AppState.get().isUseTypeFace) {
+                view.setTypeface(BookCSS.getNormalTypeFace(), Typeface.BOLD);
+            }
 
-			view.setTypeface(BookCSS.getNormalTypeFace(), Typeface.BOLD);
+        }
 
-		}
+        return container;
+    }
 
-		return container;
-	}
+    public int getCurrentId() {
+        return currentId;
+    }
 
-	public int getCurrentId() {
-		return currentId;
-	}
+    private static enum OutlineItemState {
+        LEAF, EXPANDED, COLLAPSED;
+    }
 
-	private static enum OutlineItemState {
-		LEAF, EXPANDED, COLLAPSED;
-	}
+    private final class CollapseListener implements OnClickListener {
 
-	private final class CollapseListener implements OnClickListener {
+        @Override
+        public void onClick(final View v) {
+            {
+                currentId = -1;
+                final int position = ((Integer) v.getTag()).intValue();
+                final int id = (int) getItemId(position);
+                final OutlineItemState newState = states[id] == OutlineItemState.EXPANDED ? OutlineItemState.COLLAPSED : OutlineItemState.EXPANDED;
+                states[id] = newState;
+            }
+            rebuild();
 
-		@Override
-		public void onClick(final View v) {
-			{
-				currentId = -1;
-				final int position = ((Integer) v.getTag()).intValue();
-				final int id = (int) getItemId(position);
-				final OutlineItemState newState = states[id] == OutlineItemState.EXPANDED ? OutlineItemState.COLLAPSED
-						: OutlineItemState.EXPANDED;
-				states[id] = newState;
-			}
-			rebuild();
+            v.post(new Runnable() {
 
-			v.post(new Runnable() {
+                @Override
+                public void run() {
+                    notifyDataSetChanged();
+                }
+            });
+        }
+    }
 
-				@Override
-				public void run() {
-					notifyDataSetChanged();
-				}
-			});
-		}
-	}
+    class ItemListener implements OnClickListener {
 
-	class ItemListener implements OnClickListener {
+        @Override
+        public void onClick(final View v) {
+            for (ViewParent p = v.getParent(); p != null; p = p.getParent()) {
+                if (p instanceof ListView) {
+                    final ListView list = (ListView) p;
+                    final OnItemClickListener l = list.getOnItemClickListener();
+                    if (l != null) {
+                        int position = ((Integer) v.getTag()).intValue();
+                        l.onItemClick(list, v, position, 0);
+                        currentId = (int) getItemId(position);
+                        ((OutlineAdapter) list.getAdapter()).notifyDataSetChanged();
+                    }
+                    return;
+                }
+            }
 
-		@Override
-		public void onClick(final View v) {
-			for (ViewParent p = v.getParent(); p != null; p = p.getParent()) {
-				if (p instanceof ListView) {
-					final ListView list = (ListView) p;
-					final OnItemClickListener l = list.getOnItemClickListener();
-					if (l != null) {
-						int position = ((Integer) v.getTag()).intValue();
-						l.onItemClick(list, v, position, 0);
-						currentId = (int) getItemId(position);
-						((OutlineAdapter) list.getAdapter()).notifyDataSetChanged();
-					}
-					return;
-				}
-			}
+        }
+    }
 
-		}
-	}
+    private static final class VoidListener implements OnClickListener {
 
-	private static final class VoidListener implements OnClickListener {
-
-		@Override
-		public void onClick(final View v) {
-		}
-	}
+        @Override
+        public void onClick(final View v) {
+        }
+    }
 
 }

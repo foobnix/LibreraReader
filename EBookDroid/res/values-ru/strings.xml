@@ -366,5 +366,6 @@
    <string name="show_progress_of_reading">Отображать полосу прогресса</string>
    <string name="line_height">Толщина полосы прогресса</string>
    <string name="display_chapters_on_the_progress_line">Показывать засечки глав в полосе прогресса</string>
-   <string name="enable_brightness_adjustment_on_the_left_of_the_screen">Включить регулировку яркости в левой части экрана.</string>
+   <string name="enable_brightness_adjustment_on_the_left_of_the_screen">Включить регулировку яркости в левой части экрана</string>
+   <string name="enable_rewind_of_pages_using_the_read_progress_line">Включить перемотку страниц с использованием строки прогресса чтения</string>
 </resources>

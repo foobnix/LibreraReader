@@ -69,10 +69,22 @@ public class BrigtnessDraw extends View {
             if (Math.abs(y - event.getY()) >= distance) {
                 LOG.d("BrigtnessDraw", event.getX());
                 float dy = (y - event.getY());
+                double fast = 0.03;
+                double slow = 0.005;
                 if (dy > 0) {
-                    AppState.getInstance().brightness += 0.005;
+
+                    if (AppState.getInstance().brightness > 0.1) {
+                        AppState.getInstance().brightness += fast;
+                    } else {
+                        AppState.getInstance().brightness += slow;
+                    }
                 } else {
-                    AppState.getInstance().brightness -= 0.005;
+
+                    if (AppState.getInstance().brightness < 0.1) {
+                        AppState.getInstance().brightness -= slow;
+                    } else {
+                        AppState.getInstance().brightness -= fast;
+                    }
                 }
 
                 if (AppState.getInstance().brightness <= -0.005) {

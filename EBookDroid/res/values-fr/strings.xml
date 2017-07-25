@@ -367,4 +367,5 @@
    <string name="line_height">Hauteur de la ligne</string>
    <string name="display_chapters_on_the_progress_line">Afficher les chapitres sur la ligne de progression</string>
    <string name="enable_brightness_adjustment_on_the_left_of_the_screen">Activer le réglage de la luminosité à gauche de l\'écran</string>
+   <string name="enable_rewind_of_pages_using_the_read_progress_line">Activer le rembobinage des pages en utilisant la ligne de progression de lecture</string>
 </resources>

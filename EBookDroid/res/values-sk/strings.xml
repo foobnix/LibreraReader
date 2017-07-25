@@ -367,4 +367,5 @@
    <string name="line_height">Výška linky</string>
    <string name="display_chapters_on_the_progress_line">Zobrazte kapitoly na riadku pokroku</string>
    <string name="enable_brightness_adjustment_on_the_left_of_the_screen">Povoliť nastavenie jasu vľavo od obrazovky</string>
+   <string name="enable_rewind_of_pages_using_the_read_progress_line">Povoľte posun dozadu stránok pomocou riadku postupu prečítania</string>
 </resources>

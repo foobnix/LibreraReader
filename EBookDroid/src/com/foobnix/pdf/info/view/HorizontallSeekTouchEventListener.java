@@ -2,6 +2,7 @@ package com.foobnix.pdf.info.view;
 
 import com.foobnix.android.utils.Dips;
 import com.foobnix.android.utils.LOG;
+import com.foobnix.pdf.info.wrapper.AppState;
 
 import android.view.MotionEvent;
 import android.view.View;
@@ -14,7 +15,7 @@ public class HorizontallSeekTouchEventListener implements OnTouchListener {
     int pages;
     boolean isProccessClick;
     int distance = Dips.dpToPx(5);
-    int delta = Dips.dpToPx(40);
+    int delta = Dips.dpToPx(30);
     volatile boolean isMyAction;
 
     public HorizontallSeekTouchEventListener(SeekBar.OnSeekBarChangeListener onSeekBarChangeListener, int pages, boolean isProccessClick) {
@@ -27,6 +28,10 @@ public class HorizontallSeekTouchEventListener implements OnTouchListener {
 
     @Override
     public boolean onTouch(View v, MotionEvent event) {
+        if (!AppState.get().isRewindEnable) {
+            return false;
+        }
+
         final int action = event.getAction() & MotionEvent.ACTION_MASK;
 
         if (action == MotionEvent.ACTION_DOWN) {
