@@ -1,7 +1,5 @@
+* Forbedringer i visning av dokumenter og lesebøker 
 * Endre lysstyrken på venstre side av skjermen 
-* Kapitler er merket i fremdriftslinjen 
-* Egendefinert farge og størrelse på linjens fremdriftslinje 
-* Justere høyden på statuslinjen 
-* Muligheten til automatisk å åpne den siste boken 
-* Forbedringer i PDF Viewer 
-* Takk for tilbakemelding og ideer, programmet blir bedre med hver oppdatering
+* Forbedringer i PDF / DJVU-lesing 
+* Juster høyden på statuslinjen 
+* Takk for tilbakemeldingen og ideene, blir programmet bedre med hver oppdatering

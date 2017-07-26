@@ -1,7 +1,5 @@
+* Dokümanları görüntüleme ve kitap okumada iyileştirmeler 
 * Ekranın sol tarafındaki parlaklığı değiştirme 
-* Bölümler ilerleme çizgisinde işaretlenmiştir 
-* Özel renk ve okuma ilerleme çizgisinin boyutu 
-* Ayarlama çubuğunun yüksekliği 
-* Son kitabı otomatik olarak açma özelliği 
-* PDF’deki iyileştirmeler Viewer 
-* Geri bildirim ve fikirler için teşekkürler, program her güncelleme ile daha da gelişiyor.
+* PDF / DJVU Okumalarındaki iyileştirmeler 
+* Ayar çubuğunun durum çubuğunun yüksekliği 
+* Geri bildirim ve fikirler için teşekkürler, program her güncelleme ile daha iyi hale gelmektedir

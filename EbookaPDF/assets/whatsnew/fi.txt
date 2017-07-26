@@ -1,7 +1,5 @@
-* Muuta näytön vasemmalla puolella näkyvää kirkkautta 
-* Luokat on merkitty progress-rivillä 
-* Mukautetun värin ja koon lukeman etenemisrivi 
-* Säätö korkeus tilarivillä 
-* Mahdollisuus avata automaattisesti viimeinen kirja 
-* Parannukset PDF Viewer 
+* Parannukset asiakirjojen katselemisessa ja kirjojen lukemisessa 
+* Näytön vasemmalla puolella olevan kirkkauden muuttaminen 
+* PDF / DJVU-lukemisen parannukset 
+* Tilapalkin korkeuden säätö 
 * Kiitos palautteesta ja ideoista, ohjelma paranee jokaisen päivityksen yhteydessä

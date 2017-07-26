@@ -1,7 +1,5 @@
+* Ulepszenia w przeglądaniu dokumentów i czytaniu książek 
 * Zmiana jasności po lewej stronie ekranu 
-* rozdziały są oznaczone na linii postępu 
-* Kolor i rozmiar niestandardowego wiersza postępu odczytu 
-* Dostosowywanie wysokości paska stanu 
-* Możliwość automatycznego otwierania ostatniej książki 
-* Udoskonalenia w formacie PDF Przeglądarka 
-* Dzięki za opinie i pomysły, program jest coraz lepiej z każdej aktualizacji
+* Udoskonalenia w czytaniu plików PDF / DJVU 
+* Regulacja wysokości paska stanu 
+* Dzięki za opinie i pomysły, program jest coraz lepiej z każdą aktualizacją

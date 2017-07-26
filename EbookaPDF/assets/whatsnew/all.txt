@@ -1,270 +1,216 @@
 
 <vi>
-* Thay đổi độ sáng ở phía bên trái màn hình 
-* Các chương được đánh dấu trong dòng tiến trình 
-* Tùy chỉnh màu sắc và kích thước của đường tiến bộ đọc 
+* Cải tiến trong các tài liệu xem và đọc sách 
+* Thay đổi độ sáng ở phía bên trái của màn hình 
+* Cải tiến PDF / DJVU Đọc 
 * Điều chỉnh chiều cao của thanh trạng thái 
-* Khả năng tự động mở cuốn sách cuối cùng 
-* Cải tiến trong PDF Người xem 
-* Cảm ơn phản hồi và ý tưởng, chương trình đang trở nên tốt hơn với mọi cập nhật
+* Cảm ơn phản hồi và ý tưởng, chương trình đang nhận được tốt hơn với mọi cập nhật
 </vi>
 
 <no-NO>
+* Forbedringer i visning av dokumenter og lesebøker 
 * Endre lysstyrken på venstre side av skjermen 
-* Kapitler er merket i fremdriftslinjen 
-* Egendefinert farge og størrelse på linjens fremdriftslinje 
-* Justere høyden på statuslinjen 
-* Muligheten til automatisk å åpne den siste boken 
-* Forbedringer i PDF Viewer 
-* Takk for tilbakemelding og ideer, programmet blir bedre med hver oppdatering
+* Forbedringer i PDF / DJVU-lesing 
+* Juster høyden på statuslinjen 
+* Takk for tilbakemeldingen og ideene, blir programmet bedre med hver oppdatering
 </no-NO>
 
 <th>
-* เปลี่ยนความสว่างที่ด้านซ้ายของหน้าจอ 
-* บทที่มีการทำเครื่องหมายในเส้นความคืบหน้า 
-* สีที่กำหนดเองและขนาดของเส้นความคืบหน้าการอ่าน 
+* การปรับปรุงในการดูเอกสารและการอ่านหนังสือ 
+* เปลี่ยนความสว่างทางด้านซ้ายของหน้าจอ 
+* การปรับปรุง PDF / DJVU การอ่าน 
 * การปรับความสูงของแถบสถานะ 
-* ความสามารถในการเปิดโดยอัตโนมัติหนังสือเล่มล่าสุด 
-* การปรับปรุงในรูปแบบไฟล์ PDF Viewer 
-* ขอบคุณสำหรับข้อเสนอแนะและไอเดียโปรแกรมจะเริ่มดีขึ้นเมื่อมีการอัปเดตทุกครั้ง
+* ขอบคุณสำหรับข้อเสนอแนะและความคิดโปรแกรมจะเริ่มดีขึ้นเมื่อมีการอัปเดตทุกครั้ง
 </th>
 
 <nl-NL>
+* Verbeteringen in het bekijken van documenten en het lezen van boeken 
 * Verander de helderheid aan de linkerkant van het scherm 
-* Hoofdstukken zijn gemarkeerd in de voortgangsregel 
-* Aangepaste kleur en grootte van de leesprogressie lijn 
+* Verbeteringen in PDF / DJVU Lezen 
 * Aanpassen van de hoogte van de statusbalk 
-* Het vermogen om automatisch het laatste boek te openen 
-* Verbeteringen in PDF Viewer 
-* Bedankt voor de feedback en ideeën, wordt het programma beter met elke update
+* Dank u voor de feedback en de ideeën, wordt het programma beter met elke update
 </nl-NL>
 
 <ro>
-* Modificați luminozitatea din partea stângă a ecranului 
-* Capitolele sunt marcate în linia de progres 
-* Culoarea personalizată și mărimea liniei progresului citirii 
+* Îmbunătățiri în vizualizarea documentelor și citirea cărților 
+* Schimbarea luminozității din partea stângă a ecranului 
+* Îmbunătățiri în citirea PDF / DJVU 
 * Ajustarea înălțimii barei de stare 
-* Posibilitatea de a deschide automat ultima carte 
-* Îmbunătățiri în PDF Viewer 
 * Vă mulțumim pentru feedback și idei, programul se îmbunătățește cu fiecare actualizare
 </ro>
 
 <hi-IN>
-* स्क्रीन के बाईं ओर चमक बदलें 
-* अध्याय प्रगति रेखा में चिह्नित किए गए हैं 
-* पढ़ने की प्रगति लाइन के कस्टम रंग और आकार 
-* स्थिति पट्टी की ऊंचाई समायोजित करें 
-* स्वतः पिछली किताब खोलने की क्षमता 
-* पीडीएफ में सुधार दर्शक 
-* प्रतिक्रिया और विचारों के लिए धन्यवाद, कार्यक्रम हर अपडेट के साथ बेहतर हो रहा है
+* दस्तावेजों को देखने और किताबें पढ़ने में सुधार 
+* स्क्रीन के बाईं ओर चमक को बदलें 
+* पीडीएफ / डीएनवीयू पढ़ना में सुधार 
+* स्टेटस बार की ऊंचाई समायोजन 
+* फीडबैक और विचारों के लिए धन्यवाद, कार्यक्रम हर अपडेट के साथ बेहतर हो रहा है
 </hi-IN>
 
 <es-ES>
+* Mejoras en la visualización de documentos y libros de lectura 
 * Cambiar el brillo en el lado izquierdo de la pantalla 
-* Los capítulos están marcados en la línea de progreso 
-* El color personalizado y el tamaño de la línea de progreso de lectura 
-* Ajustar la altura de la barra de estado 
-* La capacidad de abrir automáticamente el último libro 
-* Mejoras en PDF Visor 
+* Mejoras en PDF / DJVU Lectura 
+* Ajuste de la altura de la barra de estado 
 * Gracias por la retroalimentación y las ideas, el programa está mejorando con cada actualización
 </es-ES>
 
 <fr-FR>
+* Amélioration de l’affichage des documents et de la lecture de livres 
 * Changez la luminosité sur le côté gauche de l’écran 
-* Les chapitres sont marqués dans la ligne de progression 
-* Couleur et taille personnalisées de la ligne de progression de la lecture 
+* Améliorations dans la lecture PDF / DJVU 
 * Réglage de la hauteur de la barre d’état 
-* Possibilité d’ouvrir automatiquement le dernier livre 
-* Améliorations en format PDF Viewer 
-* Merci pour les commentaires et les idées, le programme s’améliore avec chaque mise à jour
+* Merci pour les commentaires et les idées, le programme s’améliore à chaque mise à jour
 </fr-FR>
 
 <tr-TR>
+* Dokümanları görüntüleme ve kitap okumada iyileştirmeler 
 * Ekranın sol tarafındaki parlaklığı değiştirme 
-* Bölümler ilerleme çizgisinde işaretlenmiştir 
-* Özel renk ve okuma ilerleme çizgisinin boyutu 
-* Ayarlama çubuğunun yüksekliği 
-* Son kitabı otomatik olarak açma özelliği 
-* PDF’deki iyileştirmeler Viewer 
-* Geri bildirim ve fikirler için teşekkürler, program her güncelleme ile daha da gelişiyor.
+* PDF / DJVU Okumalarındaki iyileştirmeler 
+* Ayar çubuğunun durum çubuğunun yüksekliği 
+* Geri bildirim ve fikirler için teşekkürler, program her güncelleme ile daha iyi hale gelmektedir
 </tr-TR>
 
 <sv-SE>
+* Förbättringar av visning av dokument och läsning av böcker 
 * Ändra ljusstyrkan på skärmens vänstra sida 
-* Kapitlarna är markerade i framstegslinjen. 
-* Anpassad färg och storlek på läsningslinjen. 
+* Förbättringar i PDF / DJVU-läsning 
 * Justera höjden på statusfältet 
-* Möjligheten att automatiskt öppna den sista boken. 
-* Förbättringar i PDF Viewer 
-* Tack för feedback och idéer, blir programmet bättre med varje uppdatering
+* Tack för feedback och idéer blir programmet bättre med varje uppdatering
 </sv-SE>
 
 <pl-PL>
+* Ulepszenia w przeglądaniu dokumentów i czytaniu książek 
 * Zmiana jasności po lewej stronie ekranu 
-* rozdziały są oznaczone na linii postępu 
-* Kolor i rozmiar niestandardowego wiersza postępu odczytu 
-* Dostosowywanie wysokości paska stanu 
-* Możliwość automatycznego otwierania ostatniej książki 
-* Udoskonalenia w formacie PDF Przeglądarka 
-* Dzięki za opinie i pomysły, program jest coraz lepiej z każdej aktualizacji
+* Udoskonalenia w czytaniu plików PDF / DJVU 
+* Regulacja wysokości paska stanu 
+* Dzięki za opinie i pomysły, program jest coraz lepiej z każdą aktualizacją
 </pl-PL>
 
 <pt-PT>
+* Melhorias na visualização de documentos e leitura de livros 
 * Alterar o brilho no lado esquerdo da tela 
-* Os capítulos estão marcados na linha de progresso 
-* Cor personalizada e tamanho da linha de progresso de leitura 
+* Melhorias em PDF / DJVU Leitura 
 * Ajustar a altura da barra de status 
-* A capacidade de abrir automaticamente o último livro 
-* Melhorias em PDF Visualizador 
-* Obrigado pelos comentários e idéias, o programa está melhorando com cada atualização
+* Obrigado pelo feedback e idéias, o programa está melhorando com cada atualização
 </pt-PT>
 
 <iw-IL>
-* שנה את הבהירות בצד שמאל של המסך 
-* הפרקים מסומנים בקו ההתקדמות 
-* צבע וגודל מותאם אישית של קו התקדמות הקריאה 
+* שיפורים בהצגת מסמכים וקריאת ספרים 
+* שינוי בהירות בצד שמאל של המסך 
+* שיפורים ב- PDF / DJVU קריאה 
 * התאמת גובה שורת המצב 
-* היכולת לפתוח באופן אוטומטי את הספר האחרון 
-* שיפורים ב- PDF Viewer 
 * תודה על המשוב והרעיונות, התוכנית משתפרת עם כל עדכון
 </iw-IL>
 
 <uk>
+* Покращення перегляду документів і читання книг 
 * Зміна яскравості в лівій частині екрана 
-* Розділи позначені у рядку проходження 
-* Користувацький колір і розмір лінії прогресу читання 
-* Налаштування висоти в рядку стану 
-* Можливість автоматично відкривати останню книгу 
-* Покращення у PDF Viewer 
+* Покращення у читанні PDF / DJVU 
+* Налаштування висоти рядка стану 
 * Дякуємо за відгуки та ідеї, програма покращується з кожним оновленням
 </uk>
 
 <ja-JP>
-*画面の左側の明るさを変更する
-*進行中の行には章が表示されます
-*読み取りの進行状況のカスタム色とサイズ
-*ステータスバーの高さを調整する
-*最後の本を自動的に開く機能
-* PDFの改善ビューア
-*フィードバックとアイデアをお寄せいただきありがとうございます。
+*ドキュメントの閲覧や本の読書の改善
+*画面の左側の明るさの変更
+* PDF / DJVUの読み込みの改善
+*ステータスバーの高さの調整
+*フィードバックとアイデアのおかげで、
 </ja-JP>
 
 <id>
-* Ubah kecerahan di sisi kiri layar 
-* Bab ditandai di garis kemajuan 
-* Warna dan ukuran kustom dari garis kemajuan membaca 
-* Penyesuaian tinggi status bar 
-* Kemampuan untuk secara otomatis membuka buku terakhir 
-* Perbaikan dalam PDF Penampil 
-* Terima kasih untuk umpan balik dan gagasannya, program ini semakin baik dengan setiap pembaruan
+* Perbaikan dalam melihat dokumen dan membaca buku 
+* Mengubah kecerahan di sisi kiri layar 
+* Perbaikan dalam PDF / DJVU Reading 
+* Menyesuaikan ketinggian status bar 
+* Terima kasih atas umpan balik dan gagasannya, program semakin membaik setiap update.
 </id>
 
 <fa>
-* روشنایی را در سمت چپ صفحه نمایش تغییر دهید 
-* فصل ها در خط پیشرفت مشخص شده 
-* رنگ سفارشی و اندازه خط پیشرفت خواندن 
+* پیشرفت در مشاهده اسناد و خواندن کتاب ها 
+* تغییر روشنایی در سمت چپ صفحه نمایش 
+* پیشرفت در خواندن PDF / DJVU 
 * تنظیم ارتفاع نوار وضعیت 
-* توانایی به طور خودکار آخرین کتاب را باز کنید 
-* پیشرفت در PDF نمایشگر 
-* با تشکر از بازخورد و ایده ها، برنامه با هر بروز رسانی بهتر می شود
+* با تشکر از بازخورد و ایده ها، برنامه با هر بروز رسانی بهتر است
 </fa>
 
 <ar>
+* تحسينات في عرض الوثائق وقراءة الكتب 
 * تغيير سطوع على الجانب الأيسر من الشاشة 
-* يتم وضع علامة الفصول في خط التقدم 
-* لون مخصص وحجم خط التقدم القراءة 
+* تحسينات في بدف / دجفو القراءة 
 * تعديل ارتفاع شريط الحالة 
-* القدرة على فتح تلقائيا الكتاب الماضي 
-* تحسينات في بدف عارض 
 * شكرا على ردود الفعل والأفكار، البرنامج هو الحصول على أفضل مع كل تحديث
 </ar>
 
 <de-DE>
-* Ändern Sie die Helligkeit auf der linken Seite des Bildschirms 
-* Die Kapitel sind in der Fortschrittslinie markiert 
-* Benutzerdefinierte Farbe und Größe der Lese-Fortschrittslinie 
-* Anpassung der Höhe der Statusleiste 
-* Die Möglichkeit, das letzte Buch automatisch zu öffnen 
-* Verbesserungen in PDF Viewer 
+* Verbesserungen beim Betrachten von Dokumenten und beim Lesen von Büchern 
+* Ändern der Helligkeit auf der linken Seite des Bildschirms 
+* Verbesserungen im PDF / DJVU Lesen 
+* Anpassen der Höhe der Statusleiste 
 * Danke für das Feedback und die Ideen, das Programm wird bei jedem Update immer besser
 </de-DE>
 
 <sw>
+* Uboreshaji katika nyaraka za kutazama na vitabu vya kusoma 
 * Badilisha mwangaza upande wa kushoto wa skrini 
-* Sura zimewekwa kwenye mstari wa maendeleo 
-* Rangi ya kawaida na ukubwa wa mstari wa maendeleo ya kusoma 
+* Uboreshaji katika PDF / DJVU Kusoma 
 * Marekebisho urefu wa bar ya hali 
-* Uwezo wa kufungua kitabu cha mwisho 
-* Uboreshaji katika PDF Mtazamaji 
-* Shukrani kwa maoni na mawazo, mpango huo unafanikiwa na kila sasisho
+* Shukrani kwa maoni na mawazo, mpango huo unafanikiwa na kila update
 </sw>
 
 <ko-KR>
-* 화면의 왼쪽에 밝기를 변경 
-* 진행 라인에 챕터가 표시됩니다 
-* 사용자 정의 색상과 읽기 진행 라인의 크기 
+* 문서보기 및 책 읽기 향상 
+* 화면 왼쪽의 밝기 변경 
+* PDF / DJVU 읽기 개선 
 * 상태 표시 줄의 높이 조정 
-* 마지막 책을 자동으로 열 수있는 능력 
-* PDF의 향상된 기능 뷰어 
-* 의견 및 아이디어를 주셔서 감사합니다, 모든 업데이트와 함께 프로그램이 나아지고 있습니다
+* 의견 및 아이디어에 감사 드리며 모든 업데이트와 함께 프로그램이 개선되고 있습니다.
 </ko-KR>
 
 <fi-FI>
-* Muuta näytön vasemmalla puolella näkyvää kirkkautta 
-* Luokat on merkitty progress-rivillä 
-* Mukautetun värin ja koon lukeman etenemisrivi 
-* Säätö korkeus tilarivillä 
-* Mahdollisuus avata automaattisesti viimeinen kirja 
-* Parannukset PDF Viewer 
+* Parannukset asiakirjojen katselemisessa ja kirjojen lukemisessa 
+* Näytön vasemmalla puolella olevan kirkkauden muuttaminen 
+* PDF / DJVU-lukemisen parannukset 
+* Tilapalkin korkeuden säätö 
 * Kiitos palautteesta ja ideoista, ohjelma paranee jokaisen päivityksen yhteydessä
 </fi-FI>
 
 <zh-TW>
-*更改屏幕左侧的亮度
-*章节在进度行中标记
-*自定义颜色和读取进度线的大小
+*查看文档和阅读书籍的改进
+*改变屏幕左侧的亮度
+*改进PDF / DJVU阅读
 *调整状态栏的高度
-*自动打开上一本书的能力
-* PDF中的改进浏览器
-*感谢您的反馈和想法，每个更新程序越来越好
+*感谢您的反馈和想法，该程序每个更新都越来越好
 </zh-TW>
 
 <it-IT>
-* Modificare la luminosità sul lato sinistro dello schermo 
-* I capitoli sono contrassegnati nella riga di avanzamento 
-* Colore personalizzato e dimensioni della linea di avanzamento della lettura 
+* Miglioramenti nella visualizzazione di documenti e lettura di libri 
+* Modifica della luminosità sul lato sinistro dello schermo 
+* Miglioramenti nella lettura PDF / DJVU 
 * Regolazione dell’altezza della barra di stato 
-* Possibilità di aprire automaticamente l’ultimo libro 
-* Miglioramenti in PDF Viewer 
-* Grazie per il feedback e le idee, il programma sta migliorando con ogni aggiornamento
+* Grazie per i commenti e le idee, il programma sta migliorando con ogni aggiornamento
 </it-IT>
 
 <ru-RU>
+* Улучшение просмотра документов и чтения книг 
 * Изменение яркости в левой части экрана 
-* Главы отмечены в строке прогресса 
-* Пользовательский цвет и размер строки прогресса чтения 
+* Улучшения в чтении PDF / DJVU 
 * Регулировка высоты строки состояния 
-* Возможность автоматического открытия последней книги 
-* Улучшения в PDF Viewer 
 * Спасибо за отзывы и идеи, программа улучшается с каждым обновлением
 </ru-RU>
 
 <sk>
-* Zmeniť jas na ľavej strane obrazovky 
-* Kapitoly sú označené v riadku postupu 
-* Vlastné farby a veľkosť čítania priebehu riadku 
-* Nastavenie výšky stavovej lišty 
-* Schopnosť automaticky otvoriť poslednú knihu 
-* Vylepšenia v PDF Viewer 
-* Vďaka za spätnú väzbu a nápady, program sa zlepšuje pri každej aktualizácii
+* Zlepšenie zobrazovania dokumentov a čítania kníh 
+* Zmena jasu na ľavej strane obrazovky 
+* Zlepšenie v čítaní PDF / DJVU 
+* Nastavenie výšky stavového panela 
+* Vďaka za spätnú väzbu a nápady sa program zlepšuje s každou aktualizáciou
 </sk>
 
 <en-US>
+* Improvements in viewing documents and reading books
 * Change the brightness on the left side of the screen
-* Chapters are marked in the progress line
-* Custom color and size of the reading progress line
+* Improvements in PDF/DJVU Reading
 * Adjustment the height of the status bar
-* The ability to automatically open the last book
-* Improvements in PDF Viewer
 * Thanks for the feedback and ideas, the program is getting better with every update
 </en-US>

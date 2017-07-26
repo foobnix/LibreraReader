@@ -1,7 +1,5 @@
-* Modificare la luminosità sul lato sinistro dello schermo 
-* I capitoli sono contrassegnati nella riga di avanzamento 
-* Colore personalizzato e dimensioni della linea di avanzamento della lettura 
+* Miglioramenti nella visualizzazione di documenti e lettura di libri 
+* Modifica della luminosità sul lato sinistro dello schermo 
+* Miglioramenti nella lettura PDF / DJVU 
 * Regolazione dell’altezza della barra di stato 
-* Possibilità di aprire automaticamente l’ultimo libro 
-* Miglioramenti in PDF Viewer 
-* Grazie per il feedback e le idee, il programma sta migliorando con ogni aggiornamento
+* Grazie per i commenti e le idee, il programma sta migliorando con ogni aggiornamento

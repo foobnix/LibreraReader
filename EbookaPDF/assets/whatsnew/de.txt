@@ -1,7 +1,5 @@
-* Ändern Sie die Helligkeit auf der linken Seite des Bildschirms 
-* Die Kapitel sind in der Fortschrittslinie markiert 
-* Benutzerdefinierte Farbe und Größe der Lese-Fortschrittslinie 
-* Anpassung der Höhe der Statusleiste 
-* Die Möglichkeit, das letzte Buch automatisch zu öffnen 
-* Verbesserungen in PDF Viewer 
+* Verbesserungen beim Betrachten von Dokumenten und beim Lesen von Büchern 
+* Ändern der Helligkeit auf der linken Seite des Bildschirms 
+* Verbesserungen im PDF / DJVU Lesen 
+* Anpassen der Höhe der Statusleiste 
 * Danke für das Feedback und die Ideen, das Programm wird bei jedem Update immer besser

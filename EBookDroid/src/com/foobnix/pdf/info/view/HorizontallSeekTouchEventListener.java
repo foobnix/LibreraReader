@@ -50,7 +50,9 @@ public class HorizontallSeekTouchEventListener implements OnTouchListener {
         }
         if (action == MotionEvent.ACTION_MOVE) {
             if (onSeekBarChangeListener != null) {
-                if (Math.abs(x - event.getX()) >= distance && (Math.abs(y - event.getY()) <= delta)) {
+                float dx = Math.abs(x - event.getX());
+                float dy = Math.abs(y - event.getY());
+                if (dx >= distance && dy <= delta && dx > dy) {
                     int progress = (int) (event.getX() * pages / Dips.screenWidth());
                     onSeekBarChangeListener.onProgressChanged(null, progress, true);
                     isMyAction = true;

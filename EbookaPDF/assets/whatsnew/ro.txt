@@ -1,7 +1,5 @@
-* Modificați luminozitatea din partea stângă a ecranului 
-* Capitolele sunt marcate în linia de progres 
-* Culoarea personalizată și mărimea liniei progresului citirii 
+* Îmbunătățiri în vizualizarea documentelor și citirea cărților 
+* Schimbarea luminozității din partea stângă a ecranului 
+* Îmbunătățiri în citirea PDF / DJVU 
 * Ajustarea înălțimii barei de stare 
-* Posibilitatea de a deschide automat ultima carte 
-* Îmbunătățiri în PDF Viewer 
 * Vă mulțumim pentru feedback și idei, programul se îmbunătățește cu fiecare actualizare

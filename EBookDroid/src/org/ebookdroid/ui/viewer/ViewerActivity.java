@@ -203,6 +203,11 @@ public class ViewerActivity extends AbstractActionActivity<ViewerActivity, Viewe
 
         @Override
         public void run() {
+            if (TTSModule.getInstance().isPlaying()) {
+                LOG.d("TTS is playing");
+                return;
+            }
+
             LOG.d("Close App");
             // AppState.get().lastA = ViewerActivity.class.getSimpleName();
             getController().closeActivity(null);

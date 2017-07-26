@@ -26,7 +26,7 @@
    <string name="edit">Редактировать</string>
    <string name="enable_swipe_gesture_with_lock">Вкл. листание жестами</string>
    <string name="exit">Выход</string>
-   <string name="export_">Экспорт...</string>
+   <string name="export_">Экспорт</string>
    <string name="export_bookmarks">Экспорт закладок</string>
    <string name="fail">Сбой</string>
    <string name="filter">Фильтр</string>
@@ -37,7 +37,7 @@
    <string name="go_to_page_dialog">Перейти на страницу</string>
    <string name="help_us_translate">Помочь с переводом</string>
    <string name="how_to_remove_ads_">Как убрать рекламу?</string>
-   <string name="import_">Импорт...</string>
+   <string name="import_">Импорт</string>
    <string name="invert_colors">Инвертировать цвета</string>
    <string name="keys">Клавиши</string>
    <string name="landscape">Горизонтальная</string>
@@ -118,7 +118,7 @@
    <string name="pdf_mode">Режим PDF</string>
    <string name="expiremental_features">Комментирование и рисование (в тестировании; может повредить некоторые файлы)</string>
    <string name="remember_my_choose">Запомнить режим просмотра</string>
-   <string name="customize_font_background_colors">Отображать доп. настройки смены шрифтов и фонов (эффект застаривания и др.)</string>
+   <string name="customize_font_background_colors">Применить расширенную настройку смены шрифтов и фонов</string>
    <string name="day">День</string>
    <string name="nigth">Ночь</string>
    <string name="restore_defaults">Вернуть настройки по умолчанию</string>
@@ -147,7 +147,7 @@
    <string name="send_file">Отправить файл</string>
    <string name="file_info">Информация о файле</string>
    <string name="open_file">Открыть файл</string>
-   <string name="make_text_reflow">Перекомпоновка в текстовый формат (text reflow)</string>
+   <string name="make_text_reflow">Перекомпоновка в текстовый формат (функция «Text reflow»)</string>
    <string name="search_not_supported_formats">Поиск неподдерживаемых форматов</string>
    <string name="search_in_google">Поиск в Google</string>
    <string name="reading_the_text_by_voice">Чтение текста голосом</string>
@@ -341,7 +341,7 @@
    <string name="interval_sec_">Интервал (в секундах)</string>
    <string name="library_settings">Настройки библиотеки</string>
    <string name="by_name">Имя</string>
-   <string name="opening_the_last_book_when_the_application_starts">Открывать последнюю книгу при запуске приложения</string>
+   <string name="opening_the_last_book_when_the_application_starts">Открывать последнюю книгу в том же режиме чтения при запуске приложения</string>
    <string name="links_color_day">Цвет ссылок (День)</string>
    <string name="links_color_night">Цвет ссылок (Ночь)</string>
    <string name="status_bar">Строка состояния</string>
@@ -365,7 +365,7 @@
    <string name="language">Язык</string>
    <string name="show_progress_of_reading">Отображать полосу прогресса</string>
    <string name="line_height">Толщина полосы прогресса</string>
-   <string name="display_chapters_on_the_progress_line">Показывать засечки глав в полосе прогресса</string>
-   <string name="enable_brightness_adjustment_on_the_left_of_the_screen">Включить регулировку яркости в левой части экрана</string>
-   <string name="enable_rewind_of_pages_using_the_read_progress_line">Включить перемотку страниц с использованием строки прогресса чтения</string>
-</resources>
+   <string name="display_chapters_on_the_progress_line">Ставить засечки глав в полосе прогресса</string>
+   <string name="enable_brightness_adjustment_on_the_left_of_the_screen">Включить регулировку яркости свайпом от левой границы экрана</string>
+   <string name="enable_rewind_of_pages_using_the_read_progress_line">Перематывать страницы скольжением пальца по строке состояния</string>
+   </resources>

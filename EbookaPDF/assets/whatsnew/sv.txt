@@ -1,7 +1,5 @@
+* Förbättringar av visning av dokument och läsning av böcker 
 * Ändra ljusstyrkan på skärmens vänstra sida 
-* Kapitlarna är markerade i framstegslinjen. 
-* Anpassad färg och storlek på läsningslinjen. 
+* Förbättringar i PDF / DJVU-läsning 
 * Justera höjden på statusfältet 
-* Möjligheten att automatiskt öppna den sista boken. 
-* Förbättringar i PDF Viewer 
-* Tack för feedback och idéer, blir programmet bättre med varje uppdatering
+* Tack för feedback och idéer blir programmet bättre med varje uppdatering

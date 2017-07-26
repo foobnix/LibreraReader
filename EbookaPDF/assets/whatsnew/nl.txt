@@ -1,7 +1,5 @@
+* Verbeteringen in het bekijken van documenten en het lezen van boeken 
 * Verander de helderheid aan de linkerkant van het scherm 
-* Hoofdstukken zijn gemarkeerd in de voortgangsregel 
-* Aangepaste kleur en grootte van de leesprogressie lijn 
+* Verbeteringen in PDF / DJVU Lezen 
 * Aanpassen van de hoogte van de statusbalk 
-* Het vermogen om automatisch het laatste boek te openen 
-* Verbeteringen in PDF Viewer 
-* Bedankt voor de feedback en ideeën, wordt het programma beter met elke update
+* Dank u voor de feedback en de ideeën, wordt het programma beter met elke update

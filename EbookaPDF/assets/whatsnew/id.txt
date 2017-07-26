@@ -1,7 +1,5 @@
-* Ubah kecerahan di sisi kiri layar 
-* Bab ditandai di garis kemajuan 
-* Warna dan ukuran kustom dari garis kemajuan membaca 
-* Penyesuaian tinggi status bar 
-* Kemampuan untuk secara otomatis membuka buku terakhir 
-* Perbaikan dalam PDF Penampil 
-* Terima kasih untuk umpan balik dan gagasannya, program ini semakin baik dengan setiap pembaruan
+* Perbaikan dalam melihat dokumen dan membaca buku 
+* Mengubah kecerahan di sisi kiri layar 
+* Perbaikan dalam PDF / DJVU Reading 
+* Menyesuaikan ketinggian status bar 
+* Terima kasih atas umpan balik dan gagasannya, program semakin membaik setiap update.

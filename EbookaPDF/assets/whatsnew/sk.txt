@@ -1,7 +1,5 @@
-* Zmeniť jas na ľavej strane obrazovky 
-* Kapitoly sú označené v riadku postupu 
-* Vlastné farby a veľkosť čítania priebehu riadku 
-* Nastavenie výšky stavovej lišty 
-* Schopnosť automaticky otvoriť poslednú knihu 
-* Vylepšenia v PDF Viewer 
-* Vďaka za spätnú väzbu a nápady, program sa zlepšuje pri každej aktualizácii
+* Zlepšenie zobrazovania dokumentov a čítania kníh 
+* Zmena jasu na ľavej strane obrazovky 
+* Zlepšenie v čítaní PDF / DJVU 
+* Nastavenie výšky stavového panela 
+* Vďaka za spätnú väzbu a nápady sa program zlepšuje s každou aktualizáciou

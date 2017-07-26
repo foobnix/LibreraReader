@@ -1,7 +1,5 @@
+* Uboreshaji katika nyaraka za kutazama na vitabu vya kusoma 
 * Badilisha mwangaza upande wa kushoto wa skrini 
-* Sura zimewekwa kwenye mstari wa maendeleo 
-* Rangi ya kawaida na ukubwa wa mstari wa maendeleo ya kusoma 
+* Uboreshaji katika PDF / DJVU Kusoma 
 * Marekebisho urefu wa bar ya hali 
-* Uwezo wa kufungua kitabu cha mwisho 
-* Uboreshaji katika PDF Mtazamaji 
-* Shukrani kwa maoni na mawazo, mpango huo unafanikiwa na kila sasisho
+* Shukrani kwa maoni na mawazo, mpango huo unafanikiwa na kila update

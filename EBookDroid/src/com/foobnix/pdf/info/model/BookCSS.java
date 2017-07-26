@@ -154,8 +154,8 @@ public class BookCSS {
         isAutoHypens = Arrays.asList("ru", "uk", "tr").contains(Urls.getLangCode());
         hypenLang = "ru";
 
-        linkColorDay = LINK_COLOR_DAY;
-        linkColorNight = LINK_COLOR_NIGHT;
+        linkColorDay = LINK_COLOR_UNIVERSAL;
+        linkColorNight = LINK_COLOR_UNIVERSAL;
 
     }
 

@@ -1,7 +1,5 @@
-* Thay đổi độ sáng ở phía bên trái màn hình 
-* Các chương được đánh dấu trong dòng tiến trình 
-* Tùy chỉnh màu sắc và kích thước của đường tiến bộ đọc 
+* Cải tiến trong các tài liệu xem và đọc sách 
+* Thay đổi độ sáng ở phía bên trái của màn hình 
+* Cải tiến PDF / DJVU Đọc 
 * Điều chỉnh chiều cao của thanh trạng thái 
-* Khả năng tự động mở cuốn sách cuối cùng 
-* Cải tiến trong PDF Người xem 
-* Cảm ơn phản hồi và ý tưởng, chương trình đang trở nên tốt hơn với mọi cập nhật
+* Cảm ơn phản hồi và ý tưởng, chương trình đang nhận được tốt hơn với mọi cập nhật

@@ -73,6 +73,7 @@ public class MainTabs2 extends FragmentActivity {
     InterstitialAd mInterstitialAd;
     public static volatile boolean isInStack;
 
+
     ImageView imageMenu;
 
     @Override

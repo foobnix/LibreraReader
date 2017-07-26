@@ -1,7 +1,5 @@
+* Mejoras en la visualización de documentos y libros de lectura 
 * Cambiar el brillo en el lado izquierdo de la pantalla 
-* Los capítulos están marcados en la línea de progreso 
-* El color personalizado y el tamaño de la línea de progreso de lectura 
-* Ajustar la altura de la barra de estado 
-* La capacidad de abrir automáticamente el último libro 
-* Mejoras en PDF Visor 
+* Mejoras en PDF / DJVU Lectura 
+* Ajuste de la altura de la barra de estado 
 * Gracias por la retroalimentación y las ideas, el programa está mejorando con cada actualización

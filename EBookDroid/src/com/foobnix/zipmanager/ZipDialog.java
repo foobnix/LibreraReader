@@ -35,7 +35,15 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 public class ZipDialog {
-    private static final String CP1251 = "CP866";
+    public static String CP1251 = "CP866";
+
+    static {
+        try {
+            java.nio.charset.Charset.forName(CP1251);
+        } catch (Exception e) {
+            CP1251 = "cp1251";
+        }
+    }
 
     static AlertDialog create;
 

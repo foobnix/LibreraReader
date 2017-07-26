@@ -276,7 +276,7 @@
                 android:minWidth="32dip"
                 android:text="--"
                 android:textColor="#ffffff"
-                android:textStyle="bold" />
+                android:textStyle="normal" />
 
             <SeekBar
                 android:id="@+id/seekBar"
@@ -299,7 +299,7 @@
                 android:minWidth="32dip"
                 android:text="--"
                 android:textColor="#ffffff"
-                android:textStyle="bold" />
+                android:textStyle="normal" />
         </LinearLayout>
 
         <ImageView
