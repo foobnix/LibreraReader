@@ -132,6 +132,7 @@ public class AdvModeController extends DocumentController {
     @Override
     public void onCrop() {
         try {
+            AppState.get().isCrop = !AppState.get().isCrop;
             ctr.toggleCrop();
         } catch (final Exception e) {
             e.printStackTrace();

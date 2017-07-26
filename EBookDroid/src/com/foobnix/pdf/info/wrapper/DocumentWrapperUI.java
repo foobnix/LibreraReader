@@ -1281,7 +1281,6 @@ public class DocumentWrapperUI {
 
         @Override
         public void onClick(final View arg0) {
-            AppState.get().isCrop = !AppState.get().isCrop;
             controller.onCrop();
             updateUI();
 

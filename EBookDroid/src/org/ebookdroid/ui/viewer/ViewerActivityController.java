@@ -434,6 +434,7 @@ public class ViewerActivityController extends ActionController<ViewerActivity> i
 
         currentPageChanged(PageIndex.NULL, documentModel.getCurrentIndex(), -1);
 
+
     }
 
     /**
