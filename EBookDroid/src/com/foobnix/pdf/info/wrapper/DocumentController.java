@@ -205,7 +205,11 @@ public abstract class DocumentController {
     }
 
     public boolean isTextFormat() {
-        return ExtUtils.isTextFomat(getCurrentBook().getPath());
+        try {
+            return ExtUtils.isTextFomat(getCurrentBook().getPath());
+        } catch (Exception e) {
+            return false;
+        }
     }
 
     public abstract boolean isCropCurrentBook();

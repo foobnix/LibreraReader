@@ -22,7 +22,6 @@ import com.foobnix.pdf.info.widget.ColorsDialog;
 import com.foobnix.pdf.info.widget.ColorsDialog.ColorsDialogResult;
 import com.foobnix.pdf.info.widget.DialogTranslateFromTo;
 import com.foobnix.pdf.info.widget.PrefDialogs;
-import com.foobnix.pdf.info.widget.RecentUpates;
 import com.foobnix.pdf.info.widget.ShareDialog;
 import com.foobnix.pdf.info.wrapper.AppState;
 import com.foobnix.pdf.info.wrapper.DocumentController;
@@ -1317,15 +1316,7 @@ public class PrefFragment2 extends UIFragment {
 
     }
 
-    @Override
-    public void onPause() {
-        super.onPause();
-        try {
-            RecentUpates.updateAll(getActivity());
-        } catch (final Exception e) {
-            e.printStackTrace();
-        }
-    }
+
 
     public void onColorChoose() {
 

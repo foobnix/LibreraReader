@@ -479,11 +479,11 @@ public class ExtUtils {
         return uri != null && isValidFile(uri.getPath());
     }
 
-    public static boolean showDocument(final Activity c, final File file) {
+    public static boolean showDocument(final Context c, final File file) {
         return showDocument(c, file, -1);
     }
 
-    public static boolean showDocument(final Activity c, final File file, final int page) {
+    public static boolean showDocument(final Context c, final File file, final int page) {
         if (AppState.getInstance().isRememberMode) {
             showDocumentWithoutDialog(c, file, page);
             return true;
@@ -539,7 +539,7 @@ public class ExtUtils {
 
     }
 
-    public static boolean showDocumentWithoutDialog(final Activity c, final File file, final int page) {
+    public static boolean showDocumentWithoutDialog(final Context c, final File file, final int page) {
         return showDocument(c, Uri.fromFile(file), page);
     }
 
@@ -552,7 +552,7 @@ public class ExtUtils {
         return showDocument(c, new File(filePath), -1);
     }
 
-    public static boolean showDocument(final Activity c, final Uri uri, final int page) {
+    public static boolean showDocument(final Context c, final Uri uri, final int page) {
         if (!isValidFile(uri)) {
             Toast.makeText(c, R.string.file_not_found, Toast.LENGTH_LONG).show();
             return false;
@@ -575,7 +575,7 @@ public class ExtUtils {
         return true;
     }
 
-    private static void openHorizontalView(final Activity c, final File file, final int page) {
+    private static void openHorizontalView(final Context c, final File file, final int page) {
         if (file == null) {
             Toast.makeText(c, R.string.file_not_found, Toast.LENGTH_LONG).show();
             return;

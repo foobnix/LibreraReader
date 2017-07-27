@@ -19,6 +19,7 @@ import com.foobnix.pdf.info.FontExtractor;
 import com.foobnix.pdf.info.R;
 import com.foobnix.pdf.info.TintUtil;
 import com.foobnix.pdf.info.widget.RecentBooksWidget;
+import com.foobnix.pdf.info.widget.RecentUpates;
 import com.foobnix.pdf.info.wrapper.AppState;
 import com.foobnix.pdf.info.wrapper.DocumentController;
 import com.foobnix.pdf.info.wrapper.UITab;
@@ -73,7 +74,6 @@ public class MainTabs2 extends FragmentActivity {
     InterstitialAd mInterstitialAd;
     public static volatile boolean isInStack;
 
-
     ImageView imageMenu;
 
     @Override
@@ -117,6 +117,7 @@ public class MainTabs2 extends FragmentActivity {
             }
 
         }
+
     }
 
     @Override
@@ -356,6 +357,8 @@ public class MainTabs2 extends FragmentActivity {
         ADS.onPauseNative(adViewNative);
         AppState.getInstance().save(this);
         LocalBroadcastManager.getInstance(this).unregisterReceiver(broadcastReceiver);
+        RecentUpates.updateAll(this);
+
     };
 
     @Override
