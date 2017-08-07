@@ -308,6 +308,9 @@ public class TxtUtils {
         if (TxtUtils.isEmpty(txt)) {
             return txt;
         }
+        if (txt.trim().contains(" ")) {
+            return txt;
+        }
 
         String regexp = "[^\\w\\[\\]\\{\\}’']+";
         String replaceAll = txt.trim().replace("   ", " ").replace("  ", " ").replaceAll("\\s", " ").trim().replaceAll(regexp + "$", "").replaceAll("^" + regexp, "");
