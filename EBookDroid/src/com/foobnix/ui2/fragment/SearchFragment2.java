@@ -15,6 +15,7 @@ import com.foobnix.dao2.FileMeta;
 import com.foobnix.pdf.info.AppsConfig;
 import com.foobnix.pdf.info.R;
 import com.foobnix.pdf.info.TintUtil;
+import com.foobnix.pdf.info.fragment.KeyCodeDialog;
 import com.foobnix.pdf.info.widget.PrefDialogs;
 import com.foobnix.pdf.info.wrapper.AppState;
 import com.foobnix.pdf.info.wrapper.DocumentController;
@@ -61,6 +62,7 @@ public class SearchFragment2 extends UIFragment<FileMeta> {
     private static final String CMD_LONG_TAP_OFF = "@cmd_long_tap_off";
     private static final String CMD_LONG_TAP_ON = "@cmd_long_tap_on";
     private static final String CMD_FULLSCREEN_ON = "@cmd_fullscreen_on";
+    private static final String CMD_KEYCODE = "@cmd_keycode_config";
 
     public static int NONE = -1;
 
@@ -128,6 +130,7 @@ public class SearchFragment2 extends UIFragment<FileMeta> {
         autocomplitions.add(CMD_FULLSCREEN_ON);
         autocomplitions.add(CMD_LONG_TAP_OFF);
         autocomplitions.add(CMD_LONG_TAP_ON);
+        autocomplitions.add(CMD_KEYCODE);
 
         updateFilterListAdapter();
     }
@@ -397,6 +400,12 @@ public class SearchFragment2 extends UIFragment<FileMeta> {
         if (CMD_LONG_TAP_OFF.equals(txt)) {
             AppState.get().longTapEnable = false;
             Toast.makeText(getContext(), CMD_LONG_TAP_OFF, Toast.LENGTH_SHORT);
+            searchEditText.setText("");
+        }
+
+        if (CMD_KEYCODE.equals(txt)) {
+            Toast.makeText(getContext(), CMD_KEYCODE, Toast.LENGTH_SHORT);
+            new KeyCodeDialog(getActivity(), null);
             searchEditText.setText("");
         }
 

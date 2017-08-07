@@ -74,7 +74,6 @@ public class PrefFragment2 extends UIFragment {
     private static final String WWW_ARCHIVE_SITE = "http://archive.lirbi.com";
     private SearchFragment searchFragmet;
     private TextView curBrightness;
-    private KeyCodeDialog keyCodeDialog;
     private CheckBox isRememberDictionary;
 
     @Override
@@ -360,7 +359,7 @@ public class PrefFragment2 extends UIFragment {
 
             @Override
             public void onClick(final View v) {
-                keyCodeDialog = new KeyCodeDialog(getActivity(), onCloseDialog);
+                new KeyCodeDialog(getActivity(), onCloseDialog);
             }
         });
         final View theme = inflate.findViewById(R.id.themeColor);

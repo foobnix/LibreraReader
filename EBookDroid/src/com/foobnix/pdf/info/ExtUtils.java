@@ -193,13 +193,17 @@ public class ExtUtils {
     public static String getMimeTypeByUri(Uri uri) {
         String mimeType = null;
 
-        if (uri.getScheme().equals(ContentResolver.SCHEME_CONTENT)) {
-            ContentResolver cr = context.getContentResolver();
-            mimeType = cr.getType(uri);
-        }
-        if (mimeType == null) {
-            String fileExtension = MimeTypeMap.getFileExtensionFromUrl(uri.getPath());
-            mimeType = MimeTypeMap.getSingleton().getMimeTypeFromExtension(fileExtension);
+        try {
+            if (uri.getScheme().equals(ContentResolver.SCHEME_CONTENT) && context != null) {
+                ContentResolver cr = context.getContentResolver();
+                mimeType = cr.getType(uri);
+            }
+            if (mimeType == null) {
+                String fileExtension = MimeTypeMap.getFileExtensionFromUrl(uri.getPath());
+                mimeType = MimeTypeMap.getSingleton().getMimeTypeFromExtension(fileExtension);
+            }
+        } catch (Exception e) {
+            LOG.e(e);
         }
 
         return mimeType;

@@ -11,9 +11,9 @@ public class XmlParser {
 	public static XmlPullParser buildPullParser() throws XmlPullParserException {
 		XmlPullParserFactory factory = XmlPullParserFactory.newInstance();
 		factory.setValidating(false);
-		factory.setFeature(Xml.FEATURE_RELAXED, true);
-		// factory.setFeature(XmlPullParser.FEATURE_PROCESS_DOCDECL, false);
-		// factory.setFeature(XmlPullParser.FEATURE_VALIDATION, false);
+        factory.setFeature(Xml.FEATURE_RELAXED, true);
+        // factory.setFeature(XmlPullParser.FEATURE_PROCESS_DOCDECL, false);
+        // factory.setFeature(XmlPullParser.FEATURE_VALIDATION, false);
 		return factory.newPullParser();
 	}
 

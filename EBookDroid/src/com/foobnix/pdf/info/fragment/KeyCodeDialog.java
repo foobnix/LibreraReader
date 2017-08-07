@@ -36,7 +36,9 @@ public class KeyCodeDialog {
                 AppState.getInstance().nextKeys = AppState.stringToKyes(keyNext.getText().toString());
                 AppState.getInstance().prevKeys = AppState.stringToKyes(keyPrev.getText().toString());
                 AppState.getInstance().save(a);
-                onClose.run();
+                if (onClose != null) {
+                    onClose.run();
+                }
             }
         });
 

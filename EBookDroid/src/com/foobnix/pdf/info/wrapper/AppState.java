@@ -80,7 +80,8 @@ public class AppState {
             // KeyEvent.KEYCODE_DPAD_UP,//
             KeyEvent.KEYCODE_DPAD_RIGHT, //
             94, //
-            105//
+            105, //
+            KeyEvent.KEYCODE_DEL//
     );
 
     public static List<Integer> PREV_KEYS = Arrays.asList(//
@@ -89,7 +90,9 @@ public class AppState {
             // KeyEvent.KEYCODE_DPAD_DOWN, //
             KeyEvent.KEYCODE_DPAD_LEFT, //
             95, //
-            106//
+            106, //
+            KeyEvent.KEYCODE_ENTER //
+
     );
 
     public List<String> COLORS = Arrays.asList(//
