@@ -34,6 +34,7 @@ public class CacheZipUtils {
     public static File CACHE_ZIP_DIR;
     public static File CACHE_UN_ZIP_DIR;
     public static File CACHE_BOOK_DIR;
+    public static File CACHE_WEB;
     public static File ATTACHMENTS_CACHE_DIR;
     public static String TEMP_FILE_NAME = "";
     public static String APP_CACHE_DIR;
@@ -54,6 +55,7 @@ public class CacheZipUtils {
         CACHE_ZIP_DIR = new File(externalCacheDir, "Zip");
         CACHE_UN_ZIP_DIR = new File(externalCacheDir, "UnZip");
         ATTACHMENTS_CACHE_DIR = new File(externalCacheDir, "Attachments");
+        CACHE_WEB = new File(externalCacheDir, "WEB");
         APP_CACHE_DIR = externalCacheDir.getPath();
         CacheZipUtils.createAllCacheDirs();
     }
@@ -67,6 +69,9 @@ public class CacheZipUtils {
         }
         if (!ATTACHMENTS_CACHE_DIR.exists()) {
             ATTACHMENTS_CACHE_DIR.mkdirs();
+        }
+        if (!CACHE_WEB.exists()) {
+            CACHE_WEB.mkdirs();
         }
     }
 

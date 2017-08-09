@@ -1,6 +1,7 @@
 package com.foobnix.ui2.fragment;
 
 import java.util.List;
+import java.util.Stack;
 
 import com.foobnix.android.utils.LOG;
 import com.foobnix.android.utils.ResultResponse;
@@ -39,6 +40,7 @@ public class OpdsFragment2 extends UIFragment<Entry> {
 
     String url = FLIBUSTA + "/opds";
     String title;
+    Stack<String> stack = new Stack<String>();
 
     public OpdsFragment2() {
         super();
@@ -99,7 +101,7 @@ public class OpdsFragment2 extends UIFragment<Entry> {
 
             @Override
             public void onClick(View v) {
-                populate();
+                onBackAction();
             }
         });
 
@@ -107,7 +109,8 @@ public class OpdsFragment2 extends UIFragment<Entry> {
 
             @Override
             public void onClick(View v) {
-                url = FLIBUSTA + "/opds";
+                stack.clear();
+                url = getHome();
                 populate();
             }
         });
@@ -118,6 +121,29 @@ public class OpdsFragment2 extends UIFragment<Entry> {
         return view;
     }
 
+    public boolean onBackAction() {
+        String last = popStack();
+
+        if (last.equals(url)) {
+            last = popStack();// two times
+        }
+        url = last;
+
+        populate();
+        return !getHome().equals(url);
+    }
+
+    public String popStack() {
+        if (stack.isEmpty()) {
+            return getHome();
+        }
+        return stack.pop();
+    }
+
+    public String getHome() {
+        return FLIBUSTA + "/opds";
+    }
+
     public void onClickLink(Link link) {
         if (link.isDisabled()) {
             Toast.makeText(getActivity(), R.string.can_t_download, Toast.LENGTH_SHORT).show();
@@ -125,6 +151,7 @@ public class OpdsFragment2 extends UIFragment<Entry> {
             Urls.open(getActivity(), link.href);
         } else if (link.isOpdsLink()) {
             url = link.href;
+            stack.push(url);
             populate();
         } else if (link.isImageLink()) {
         } else {
@@ -168,9 +195,7 @@ public class OpdsFragment2 extends UIFragment<Entry> {
         titleView.setText("" + title);
     }
 
-    public boolean onBackAction() {
-        return false;
-    }
+
 
     public void onGridList() {
         if (searchAdapter == null) {

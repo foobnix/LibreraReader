@@ -99,7 +99,7 @@ public class EntryAdapter extends AppRecycleAdapter<Entry, RecyclerView.ViewHold
         holder.links.removeAllViews();
 
         TintUtil.setTintImage(holder.image);
-        holder.image.setVisibility(entry.links.size() <= 2 ? View.VISIBLE : View.GONE);
+        holder.image.setVisibility(entry.links.size() <= 3 ? View.VISIBLE : View.GONE);
 
         String imgLink = "";
         for (final Link link : entry.links) {
