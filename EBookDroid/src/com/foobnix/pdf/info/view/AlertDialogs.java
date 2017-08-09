@@ -47,4 +47,27 @@ public class AlertDialogs {
         builder.show();
     }
 
+    public static void showDialog(final Context c, final String message, String okButton, final Runnable action) {
+        final AlertDialog.Builder builder = new AlertDialog.Builder(c);
+        builder.setMessage(message);
+        builder.setPositiveButton(okButton, new DialogInterface.OnClickListener() {
+
+            @Override
+            public void onClick(final DialogInterface dialog, final int id) {
+                if (action != null) {
+                    action.run();
+                }
+
+            }
+        });
+        builder.setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
+
+            @Override
+            public void onClick(final DialogInterface dialog, final int id) {
+
+            }
+        });
+        builder.show();
+    }
+
 }

@@ -10,7 +10,6 @@ import com.foobnix.opds.Entry;
 import com.foobnix.opds.Link;
 import com.foobnix.pdf.info.IMG;
 import com.foobnix.pdf.info.R;
-import com.foobnix.pdf.info.TintUtil;
 import com.foobnix.ui2.AppRecycleAdapter;
 import com.nostra13.universalimageloader.core.ImageLoader;
 
@@ -59,7 +58,7 @@ public class EntryAdapter extends AppRecycleAdapter<Entry, RecyclerView.ViewHold
         final Entry entry = getItem(position);
         final EntryViewHolder holder = (EntryViewHolder) holderAll;
         holder.title.setText("" + entry.title);
-        if (entry.content != null) {
+        if (TxtUtils.isNotEmpty(entry.content)) {
             holder.content.setVisibility(View.VISIBLE);
             String text = Jsoup.clean(entry.content, Whitelist.simpleText());
             holder.content.setText("(" + Html.fromHtml(text) + ")");
@@ -98,8 +97,10 @@ public class EntryAdapter extends AppRecycleAdapter<Entry, RecyclerView.ViewHold
 
         holder.links.removeAllViews();
 
-        TintUtil.setTintImage(holder.image);
-        holder.image.setVisibility(entry.links.size() <= 3 ? View.VISIBLE : View.GONE);
+        // TintUtil.setTintImage(holder.image);
+        // holder.image.setVisibility(entry.links.size() == 1 ? View.VISIBLE :
+        // View.GONE);
+        holder.image.setVisibility(View.GONE);
 
         String imgLink = "";
         for (final Link link : entry.links) {
@@ -111,7 +112,7 @@ public class EntryAdapter extends AppRecycleAdapter<Entry, RecyclerView.ViewHold
                     holder.links.addView(img);
                     imgLink = link.href;
                 }
-            } else if (!link.isOpdsLink()) {
+            } else {
                 TextView t = new TextView(holder.parent.getContext());
                 t.setTextAppearance(t.getContext(), R.style.textLinkStyle);
                 t.setPadding(PD, PD, PD, PD);

@@ -283,6 +283,7 @@ public final class TTSModule {
                 LOG.d("KeyValue", key, value, "|");
 
             }
+            input.close();
 
         } catch (IOException e) {
             LOG.e(e);

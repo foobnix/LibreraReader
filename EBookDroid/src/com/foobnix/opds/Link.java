@@ -11,11 +11,16 @@ public class Link {
     public static final String DISABLED = "disabled/";
 
     public String href;
-    public String type;
+    public String type = "";
     public String rel;
     public String title;
 
     public String parentTitle;
+
+    public Link(String href) {
+        type = ATOM_XML;
+        this.href = href;
+    }
 
     public Link(XmlPullParser xpp) {
         href = xpp.getAttributeValue(null, "href");
@@ -23,6 +28,7 @@ public class Link {
         type = xpp.getAttributeValue(null, "type");
         title = xpp.getAttributeValue(null, "title");
     }
+
 
     public boolean isOpdsLink() {
         return type.startsWith(ATOM_XML);
@@ -33,7 +39,7 @@ public class Link {
     }
 
     public boolean isImageLink() {
-        return IMG_LINK_JPG.equals(type) || IMG_LINK_PNG.equals(type);
+        return IMG_LINK_JPG.equals(type) || IMG_LINK_PNG.equals(type) || "image/gif".equals(type) || "image/jpg".equals(type);
     }
 
     public boolean isWebLink() {
@@ -41,6 +47,13 @@ public class Link {
     }
 
     public String getDownloadName() {
+        if ("application/epub+zip".equals(type)) {
+            return parentTitle + ".epub";
+        }
+        if ("application/fb-ebook".equals(type)) {
+            return parentTitle + ".fb2";
+
+        }
         if ("application/x-mobipocket-ebook".equals(type)) {
             return parentTitle + ".mobi";
         }

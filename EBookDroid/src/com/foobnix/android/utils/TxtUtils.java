@@ -20,8 +20,30 @@ import android.widget.TextView;
 
 public class TxtUtils {
 
+    public static String getHostUrl(String url) {
+        int indexOf = url.indexOf("/", 10);
+        if (indexOf > 0) {
+            return url.substring(0, indexOf);
+        }
+        return url;
+
+    }
+
+    public static String getHostLongUrl(String url) {
+        int indexOf = url.lastIndexOf("/");
+        if (indexOf > 10) {
+            return url.substring(0, indexOf);
+        }
+        return url;
+
+    }
+
     public static String replaceLast(String input, String from, String to) {
         return input.replaceAll(from + "$", to);
+    }
+
+    public static String replaceFirst(String input, String from, String to) {
+        return input.replaceAll("^" + from, to);
     }
 
     public static String getFileMetaBookName(FileMeta fileMeta) {

@@ -1,0 +1,27 @@
+arXiv: http://arxiv.maplepop.com/catalog/
+ePubBud Children's books: http://www.epubbud.com/feeds/catalog.atom
+Feedbooks: http://www.feedbooks.com/catalog.atom
+GitBook: https://www.gitbook.com/api/opds/catalog.atom
+Internet Archive: http://bookserver.archive.org/catalog/
+ManyBooks: http://www.manybooks.net/opds/index.php
+O'Reilly: http://opds.oreilly.com/opds/
+PragPub Magazine | The Pragmatic Bookshelf: http://pragprog.com/magazines.opds
+Project Gutenberg: http://m.gutenberg.org/ebooks.opds/
+The anarchist library: https://theanarchistlibrary.org/opds
+Читанка (free Bulgarian books): http://chitanka.info/catalog.opds
+Gallica: http://gallica.bnf.fr/opds
+OpenEdition (Livres et Revues): http://opds.openedition.org/
+Atramenta: http://www.atramenta.net/opds/catalog.atom
+YouScribe: http://opds.youscribe.com/Catalog/catalog.xml
+eForge: http://eforge.eu/OPDS/_catalog/index.xml
+Atoll Digital Library: http://atoll-digital-library.org/opds/
+Hungarian Electronic Library (Hungarian): http://bookserver.mek.oszk.hu
+Tatsu-zine (Japanese): http://tatsu-zine.com/catalogs.opds
+Wolne Lektury Internet Library: http://www.wolnelektury.pl/opds
+Полнотекстовый поиск книг FBSearch: http://fbsearch.ru/opds/
+Электронные книги на русском: http://iknigi.net/opds
+Флибуста Книжное братство (EmerCoin, Tor): http://flibusta.is/opds
+ePubBooks.ru (Русские электронные книги): http://www.epubbooks.ru/index.xml
+zone4iPhone.ru (Русские электронные книги): http://www.zone4iphone.ru/catalog.php
+КулЛиб (Русские электронные книги): http://coollib.net/opds
+maxima-library.org: http://maxima-library.org/opds

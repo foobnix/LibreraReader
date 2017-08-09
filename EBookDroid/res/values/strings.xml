@@ -370,4 +370,5 @@
    <string name="enable_rewind_of_pages_using_the_read_progress_line">Enable rewind of pages using the read progress line</string>
    <string name="catalogs">Catalogs</string>
    <string name="can_t_download">Can\'t download</string>
+   <string name="download">Download</string>
 </resources>

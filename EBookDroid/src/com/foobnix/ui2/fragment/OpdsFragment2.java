@@ -1,17 +1,28 @@
 package com.foobnix.ui2.fragment;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Stack;
 
 import com.foobnix.android.utils.LOG;
 import com.foobnix.android.utils.ResultResponse;
+import com.foobnix.android.utils.TxtUtils;
 import com.foobnix.opds.Entry;
 import com.foobnix.opds.Feed;
 import com.foobnix.opds.Link;
 import com.foobnix.opds.OPDS;
 import com.foobnix.pdf.info.ExtUtils;
+import com.foobnix.pdf.info.FontExtractor;
 import com.foobnix.pdf.info.R;
+import com.foobnix.pdf.info.TTSModule;
 import com.foobnix.pdf.info.Urls;
+import com.foobnix.pdf.info.view.AlertDialogs;
 import com.foobnix.ui2.adapter.EntryAdapter;
 import com.foobnix.ui2.fast.FastScrollRecyclerView;
 
@@ -33,12 +44,13 @@ import android.widget.Toast;
 
 public class OpdsFragment2 extends UIFragment<Entry> {
 
-    private static final String FLIBUSTA = "http://flibusta.is";
     EntryAdapter searchAdapter;
     private FastScrollRecyclerView recyclerView;
     TextView titleView;
 
-    String url = FLIBUSTA + "/opds";
+    String url = "/";
+    String urlRoot = "";
+
     String title;
     Stack<String> stack = new Stack<String>();
 
@@ -50,6 +62,39 @@ public class OpdsFragment2 extends UIFragment<Entry> {
         OpdsFragment2 br = new OpdsFragment2();
         br.setArguments(bundle);
         return br;
+    }
+
+    public List<Entry> getAllCatalogs() {
+
+        if (false) {
+            String test = "https://atoll-digital-library.org/opds/feed.php";
+            return Arrays.asList(new Entry(test, test));
+        }
+
+        try {
+            InputStream open = new FileInputStream(new File(FontExtractor.getFontsDir(getActivity(), TTSModule.DICT_FOLDER), "catalogs.txt"));
+            List<Entry> list = new ArrayList<Entry>();
+
+            BufferedReader input = new BufferedReader(new InputStreamReader(open));
+            String line;
+            while ((line = input.readLine()) != null) {
+                if (line.contains(": ")) {
+                    String[] v = line.split(": ");
+                    LOG.d(v[0], v[1]);
+                    list.add(new Entry(v[1].trim(), v[0].trim()));
+                }
+            }
+            input.close();
+            return list;
+        } catch (Exception e) {
+            LOG.e(e);
+            return Arrays.asList(new Entry("http://flibusta.is/opds", "Flibusta"), //
+                    new Entry("https://www.gitbook.com/api/opds/catalog.atom", "GitBook"), //
+                    new Entry("http://bookserver.archive.org/catalog/", "Internet Archive"), //
+                    new Entry("http://manybooks.net/opds/index.php", "Manybooks")//
+            );
+        }
+
     }
 
     @Override
@@ -111,6 +156,7 @@ public class OpdsFragment2 extends UIFragment<Entry> {
             public void onClick(View v) {
                 stack.clear();
                 url = getHome();
+                urlRoot = "";
                 populate();
             }
         });
@@ -141,48 +187,83 @@ public class OpdsFragment2 extends UIFragment<Entry> {
     }
 
     public String getHome() {
-        return FLIBUSTA + "/opds";
+        return "/";
     }
 
-    public void onClickLink(Link link) {
+    public void onClickLink(final Link link) {
         if (link.isDisabled()) {
             Toast.makeText(getActivity(), R.string.can_t_download, Toast.LENGTH_SHORT).show();
         } else if (link.isWebLink()) {
             Urls.open(getActivity(), link.href);
         } else if (link.isOpdsLink()) {
+            if (url.equals("/")) {
+                urlRoot = link.href;
+            }
             url = link.href;
             stack.push(url);
             populate();
+
         } else if (link.isImageLink()) {
         } else {
-            final DownloadManager dm = (DownloadManager) getActivity().getSystemService(Context.DOWNLOAD_SERVICE);
-            Request request = new Request(Uri.parse(link.href));
-            request.setNotificationVisibility(Request.VISIBILITY_VISIBLE_NOTIFY_COMPLETED);
-            String subPath = ExtUtils.LIRBI + "/" + link.getDownloadName();
-            LOG.d("Download to:", subPath);
-            request.setDestinationInExternalPublicDir(Environment.DIRECTORY_DOWNLOADS, subPath);
-            dm.enqueue(request);
+            LOG.d("Download >>", link.href);
+            AlertDialogs.showDialog(getActivity(), link.getDownloadName(), getActivity().getString(R.string.download), new Runnable() {
+
+                @Override
+                public void run() {
+
+                    final DownloadManager dm = (DownloadManager) getActivity().getSystemService(Context.DOWNLOAD_SERVICE);
+                    Request request = new Request(Uri.parse(link.href));
+                    request.setNotificationVisibility(Request.VISIBILITY_VISIBLE_NOTIFY_COMPLETED);
+                    LOG.d("Download to:", ExtUtils.LIRBI + "/" + link.getDownloadName());
+
+                    File root = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS), ExtUtils.LIRBI);
+                    root.mkdirs();
+
+                    File file = new File(root, link.getDownloadName());
+                    file.delete();
+
+                    request.setDestinationUri(Uri.fromFile(file));
+                    dm.enqueue(request);
+                }
+            });
+
         }
     }
 
     @Override
     public List<Entry> prepareDataInBackground() {
-        LOG.d("Load: >>>", url);
+        if ("/".equals(url)) {
+            title = getString(R.string.catalogs);
+            return getAllCatalogs();
+        }
+
         Feed feed = OPDS.getFeed(url);
-        updateLinks(feed.title, feed.links);
+
+        LOG.d("Load: >>>", feed.title, url);
+
+        updateLinks(feed.title, urlRoot, feed.links);
         for (Entry e : feed.entries) {
-            updateLinks(e.getTitle(), e.links);
+            updateLinks(e.getTitle(), urlRoot, e.links);
         }
         title = feed.title;
         return feed.entries;
     }
 
-    public void updateLinks(String parentTitle, List<Link> links) {
+    public void updateLinks(String parentTitle, String homeUrl, List<Link> links) {
         for (Link l : links) {
-            if (!l.href.startsWith("http")) {
-                l.href = FLIBUSTA + l.href;
-                l.parentTitle = parentTitle;
+            if (l.href.startsWith("//")) {
+                l.href = "http:" + l.href;
             }
+
+            if (!l.href.startsWith("http")) {
+                if (l.href.startsWith("/")) {
+                    l.href = TxtUtils.getHostUrl(homeUrl) + l.href;
+                } else {
+                    l.href = TxtUtils.getHostLongUrl(homeUrl) + "/" + l.href;
+                }
+            }
+
+            l.parentTitle = parentTitle;
         }
     }
 
@@ -192,10 +273,10 @@ public class OpdsFragment2 extends UIFragment<Entry> {
         searchAdapter.getItemsList().addAll(items);
         recyclerView.setAdapter(searchAdapter);
 
-        titleView.setText("" + title);
+        if (title != null) {
+            titleView.setText("" + title);
+        }
     }
-
-
 
     public void onGridList() {
         if (searchAdapter == null) {

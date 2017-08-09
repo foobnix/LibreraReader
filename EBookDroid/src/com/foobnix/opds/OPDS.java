@@ -55,6 +55,7 @@ public class OPDS {
 
         boolean isEntry = false;
         boolean isAuthor = false;
+        boolean isContent = false, isTitle = false;
         while (eventType != XmlPullParser.END_DOCUMENT) {
             if (eventType == XmlPullParser.START_TAG) {
                 if (!isEntry) {
@@ -79,6 +80,12 @@ public class OPDS {
                 if ("author".equals(xpp.getName())) {
                     isAuthor = true;
                 }
+                if (isEntry && "content".equals(xpp.getName())) {
+                    isContent = true;
+                }
+                if (isEntry && "title".equals(xpp.getName())) {
+                    isTitle = true;
+                }
 
                 if (isEntry) {
                     if ("updated".equals(xpp.getName())) {
@@ -87,24 +94,26 @@ public class OPDS {
                     if ("id".equals(xpp.getName())) {
                         entry.id = xpp.nextText();
                     }
-                    if ("title".equals(xpp.getName())) {
-                        entry.title = xpp.nextText();
-                    }
                     if (isAuthor && "name".equals(xpp.getName())) {
                         entry.author = xpp.nextText();
                     }
                     if ("category".equals(xpp.getName())) {
-                        entry.category = entry.category + " " + xpp.getAttributeValue(0);
+                        entry.category = entry.category + " " + xpp.getAttributeValue(null, "term");
                     }
 
-                    if ("content".equals(xpp.getName())) {
-                        entry.content = xpp.nextText();
-                    }
                     if ("link".equals(xpp.getName())) {
                         entry.links.add(new Link(xpp));
                     }
                 }
 
+            }
+            if (eventType == XmlPullParser.TEXT) {
+                if (isContent) {
+                    entry.content += xpp.getText();
+                }
+                if (isTitle) {
+                    entry.title += xpp.getText();
+                }
             }
             if (eventType == XmlPullParser.END_TAG) {
                 if ("entry".equals(xpp.getName())) {
@@ -113,6 +122,12 @@ public class OPDS {
                 }
                 if ("author".equals(xpp.getName())) {
                     isAuthor = false;
+                }
+                if ("content".equals(xpp.getName())) {
+                    isContent = false;
+                }
+                if ("title".equals(xpp.getName())) {
+                    isTitle = false;
                 }
             }
 
