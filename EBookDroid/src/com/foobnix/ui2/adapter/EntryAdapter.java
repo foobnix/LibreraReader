@@ -105,6 +105,11 @@ public class EntryAdapter extends AppRecycleAdapter<Entry, RecyclerView.ViewHold
         String imgLink = "";
         for (final Link link : entry.links) {
             if (link.isImageLink()) {
+                if (TxtUtils.isNotEmpty(imgLink)) {
+                    if (link.rel.contains("thumbnail")) {
+                        continue;
+                    }
+                }
                 if (!link.href.equals(imgLink)) {
                     ImageView img = new ImageView(holder.parent.getContext());
                     img.setPadding(PD, PD, PD, PD);
@@ -112,6 +117,7 @@ public class EntryAdapter extends AppRecycleAdapter<Entry, RecyclerView.ViewHold
                     holder.links.addView(img);
                     imgLink = link.href;
                 }
+
             } else {
                 TextView t = new TextView(holder.parent.getContext());
                 t.setTextAppearance(t.getContext(), R.style.textLinkStyle);

@@ -44,6 +44,7 @@ import android.graphics.Bitmap.CompressFormat;
 import android.graphics.Matrix;
 import android.graphics.Rect;
 import android.graphics.RectF;
+import android.util.Base64;
 
 public class ImageExtractor implements ImageDownloader {
 
@@ -269,6 +270,17 @@ public class ImageExtractor implements ImageDownloader {
     @Override
     public synchronized InputStream getStream(final String imageUri, final Object extra) throws IOException {
         LOG.d("TEST", "url: " + imageUri);
+
+        if (imageUri.startsWith("data:")) {
+            String uri = imageUri;
+            // uri = uri.replace("data:image/png;base64,", "");
+            // uri = uri.replace("data:image/jpeg;base64,", "");
+            // uri = uri.replace("data:image/jpg;base64,", "");
+            // uri = uri.replace("data:image/gif;base64,", "");
+            uri = uri.substring(uri.indexOf(",") + 1);
+            LOG.d("Load image data ", uri);
+            return new ByteArrayInputStream(Base64.decode(uri, Base64.DEFAULT));
+        }
 
         if (!imageUri.startsWith("{")) {
             return baseImage.getStream(imageUri, extra);

@@ -39,6 +39,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -54,6 +55,8 @@ public class OpdsFragment2 extends UIFragment<Entry> {
     String title;
     Stack<String> stack = new Stack<String>();
 
+    ImageView onPlus;
+
     public OpdsFragment2() {
         super();
     }
@@ -67,7 +70,7 @@ public class OpdsFragment2 extends UIFragment<Entry> {
     public List<Entry> getAllCatalogs() {
 
         if (false) {
-            String test = "https://atoll-digital-library.org/opds/feed.php";
+            String test = "http://www.epubbud.com/feeds/beginner.atom";
             return Arrays.asList(new Entry(test, test));
         }
 
@@ -113,6 +116,15 @@ public class OpdsFragment2 extends UIFragment<Entry> {
         recyclerView = (FastScrollRecyclerView) view.findViewById(R.id.recyclerView);
 
         titleView = (TextView) view.findViewById(R.id.titleView);
+        onPlus = (ImageView) view.findViewById(R.id.onPlus);
+
+        onPlus.setOnClickListener(new OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(getContext(), "Not implemented yet", Toast.LENGTH_SHORT).show();
+            }
+        });
 
         searchAdapter = new EntryAdapter();
 
@@ -122,7 +134,11 @@ public class OpdsFragment2 extends UIFragment<Entry> {
 
             @Override
             public boolean onResultRecive(Entry result) {
-                onClickLink(result.links.get(0));
+                for (Link link : result.links) {
+                    if (link.isOpdsLink()) {
+                        onClickLink(link);
+                    }
+                }
                 return false;
             }
         });
@@ -251,6 +267,10 @@ public class OpdsFragment2 extends UIFragment<Entry> {
 
     public void updateLinks(String parentTitle, String homeUrl, List<Link> links) {
         for (Link l : links) {
+            if (l.href.startsWith("data:image")) {
+                continue;
+            }
+
             if (l.href.startsWith("//")) {
                 l.href = "http:" + l.href;
             }
@@ -276,6 +296,8 @@ public class OpdsFragment2 extends UIFragment<Entry> {
         if (title != null) {
             titleView.setText("" + title);
         }
+        // onPlus.setVisibility(url == "/" ? View.VISIBLE : View.GONE);
+        onPlus.setImageResource(url == "/" ? R.drawable.glyphicons_433_plus : R.drawable.glyphicons_28_search);
     }
 
     public void onGridList() {

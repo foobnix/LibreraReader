@@ -52,6 +52,19 @@
             android:layout_height="@dimen/wh_button"
             android:layout_weight="0"
             android:src="@drawable/glyphicons_21_home" />
+        
+        <View
+            android:layout_width="1dip"
+            android:layout_height="match_parent"
+            android:background="@color/tint_divider" />
+
+        <ImageView
+            android:id="@+id/onPlus"
+            style="@style/buttonWhite"
+            android:layout_width="@dimen/wh_button"
+            android:layout_height="@dimen/wh_button"
+            android:layout_weight="0"
+            android:src="@drawable/glyphicons_433_plus" />
 
     </LinearLayout>
 
