@@ -368,4 +368,5 @@
    <string name="display_chapters_on_the_progress_line">Hiển thị các chương trên dòng tiến trình</string>
    <string name="enable_brightness_adjustment_on_the_left_of_the_screen">Bật điều chỉnh độ sáng ở bên trái màn hình</string>
    <string name="enable_rewind_of_pages_using_the_read_progress_line">Bật tua lại trang bằng cách sử dụng dòng tiến trình đọc</string>
+   <string name="catalogs">Catalogs</string>
 </resources>

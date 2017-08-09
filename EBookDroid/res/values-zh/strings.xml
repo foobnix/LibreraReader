@@ -368,4 +368,5 @@
    <string name="display_chapters_on_the_progress_line">在进度行上显示章节</string>
    <string name="enable_brightness_adjustment_on_the_left_of_the_screen">启用屏幕左侧的亮度调节</string>
    <string name="enable_rewind_of_pages_using_the_read_progress_line">使用读取的进度行启用页面的后退</string>
+   <string name="catalogs">产品目录</string>
 </resources>

@@ -368,4 +368,5 @@
    <string name="display_chapters_on_the_progress_line">Onyesha sura kwenye mstari wa maendeleo</string>
    <string name="enable_brightness_adjustment_on_the_left_of_the_screen">Wezesha marekebisho ya mwangaza upande wa kushoto wa skrini</string>
    <string name="enable_rewind_of_pages_using_the_read_progress_line">Wezesha upya wa kurasa kwa kutumia mstari wa maendeleo unaoisoma</string>
+   <string name="catalogs">Catalogs</string>
 </resources>

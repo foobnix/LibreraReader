@@ -16,6 +16,8 @@ public class Urls {
         a.startActivity(browserIntent);
     }
 
+
+
     public static void openPdfPro(Context a) {
         try {
             open(a, "market://details?id=com.foobnix.pro.pdf.reader");

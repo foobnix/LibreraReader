@@ -368,4 +368,5 @@
    <string name="display_chapters_on_the_progress_line">Visualizza i capitoli sulla linea di avanzamento</string>
    <string name="enable_brightness_adjustment_on_the_left_of_the_screen">Attiva la regolazione della luminosità a sinistra dello schermo</string>
    <string name="enable_rewind_of_pages_using_the_read_progress_line">Abilitare il riavvolgimento delle pagine utilizzando la linea di avanzamento della lettura</string>
+   <string name="catalogs">Cataloghi</string>
 </resources>

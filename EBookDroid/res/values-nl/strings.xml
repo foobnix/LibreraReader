@@ -368,4 +368,5 @@
    <string name="display_chapters_on_the_progress_line">Toon hoofdstukken op de voortgangslijn</string>
    <string name="enable_brightness_adjustment_on_the_left_of_the_screen">Schakel de helderheidsinstelling aan de linkerkant van het scherm aan</string>
    <string name="enable_rewind_of_pages_using_the_read_progress_line">Activeer terugspoelen van pagina\'s met behulp van de leesprogressie</string>
+   <string name="catalogs">Catalogi</string>
 </resources>

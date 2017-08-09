@@ -7,6 +7,8 @@ import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserException;
 import org.xmlpull.v1.XmlPullParserFactory;
 
+import com.foobnix.android.utils.LOG;
+
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
@@ -26,12 +28,14 @@ public class OPDS {
         try {
             return getFeedByXml(getHttpUrl(url));
         } catch (Exception e) {
+            LOG.e(e);
         }
         return null;
 
     }
 
     public static Feed getFeedByXml(String xmlString) throws Exception {
+        LOG.d(xmlString);
 
         XmlPullParser xpp = buildPullParser();
         xpp.setInput(new StringReader(xmlString));
@@ -43,6 +47,7 @@ public class OPDS {
         Entry entry = null;
 
         boolean isEntry = false;
+        boolean isAuthor = false;
         while (eventType != XmlPullParser.END_DOCUMENT) {
             if (eventType == XmlPullParser.START_TAG) {
                 if (!isEntry) {
@@ -64,6 +69,9 @@ public class OPDS {
                     entry = new Entry();
                     isEntry = true;
                 }
+                if ("author".equals(xpp.getName())) {
+                    isAuthor = true;
+                }
 
                 if (isEntry) {
                     if ("updated".equals(xpp.getName())) {
@@ -75,6 +83,13 @@ public class OPDS {
                     if ("title".equals(xpp.getName())) {
                         entry.title = xpp.nextText();
                     }
+                    if (isAuthor && "name".equals(xpp.getName())) {
+                        entry.author = xpp.nextText();
+                    }
+                    if ("category".equals(xpp.getName())) {
+                        entry.category = entry.category + " " + xpp.getAttributeValue(0);
+                    }
+
                     if ("content".equals(xpp.getName())) {
                         entry.content = xpp.nextText();
                     }
@@ -88,6 +103,9 @@ public class OPDS {
                 if ("entry".equals(xpp.getName())) {
                     isEntry = false;
                     feed.entries.add(entry);
+                }
+                if ("author".equals(xpp.getName())) {
+                    isAuthor = false;
                 }
             }
 

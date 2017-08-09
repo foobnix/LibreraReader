@@ -368,4 +368,5 @@
    <string name="display_chapters_on_the_progress_line">Näytä luvut edistysrivillä</string>
    <string name="enable_brightness_adjustment_on_the_left_of_the_screen">Ota kirkkauden säätö näytön vasemmalla puolella</string>
    <string name="enable_rewind_of_pages_using_the_read_progress_line">Ota käyttöön sivujen kelautuminen eteenpäin lukuarvon viivalla</string>
+   <string name="catalogs">Luettelot</string>
 </resources>

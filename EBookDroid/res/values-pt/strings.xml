@@ -368,4 +368,5 @@
    <string name="display_chapters_on_the_progress_line">Exibir capítulos na linha de progresso</string>
    <string name="enable_brightness_adjustment_on_the_left_of_the_screen">Ative o ajuste de brilho à esquerda da tela</string>
    <string name="enable_rewind_of_pages_using_the_read_progress_line">Habilite o rebobinamento de páginas usando a linha de progresso de leitura</string>
+   <string name="catalogs">Catálogos</string>
 </resources>

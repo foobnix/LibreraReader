@@ -368,4 +368,5 @@
    <string name="display_chapters_on_the_progress_line">Ставить засечки глав в полосе прогресса</string>
    <string name="enable_brightness_adjustment_on_the_left_of_the_screen">Включить регулировку яркости свайпом от левой границы экрана</string>
    <string name="enable_rewind_of_pages_using_the_read_progress_line">Перематывать страницы скольжением пальца по строке состояния</string>
-   </resources>
+   <string name="catalogs">Каталоги</string>
+</resources>

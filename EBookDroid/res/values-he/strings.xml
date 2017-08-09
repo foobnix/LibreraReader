@@ -368,4 +368,5 @@
    <string name="display_chapters_on_the_progress_line">הצגת פרקים על קו ההתקדמות</string>
    <string name="enable_brightness_adjustment_on_the_left_of_the_screen">הפעל התאמת בהירות בצד שמאל של המסך</string>
    <string name="enable_rewind_of_pages_using_the_read_progress_line">אפשר הרצה אחורה של דפים באמצעות קו התקדמות הקריאה</string>
+   <string name="catalogs">קטלוגים</string>
 </resources>

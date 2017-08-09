@@ -368,4 +368,5 @@
    <string name="display_chapters_on_the_progress_line">진행률 줄에 챕터 표시</string>
    <string name="enable_brightness_adjustment_on_the_left_of_the_screen">화면 왼쪽에서 밝기 조정 사용</string>
    <string name="enable_rewind_of_pages_using_the_read_progress_line">읽기 진행 줄을 사용하여 페이지 되감기 사용</string>
+   <string name="catalogs">카탈로그</string>
 </resources>
