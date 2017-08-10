@@ -72,8 +72,6 @@ public class ExtUtils {
 
     public static ExecutorService ES = Executors.newFixedThreadPool(4);
 
-    public static final String LIRBI = "Lirbi";
-
     public final static List<String> otherExts = Arrays.asList(AppState.OTHER_BOOK_EXT);
     public final static List<String> lirbeExt = Arrays.asList(AppState.LIBRE_EXT);
     public final static List<String> imageExts = Arrays.asList(".png", ".jpg", ".jpeg");
@@ -919,10 +917,8 @@ public class ExtUtils {
         try {
             CodecDocument doc = BookType.getCodecContextByPath(file.getPath()).openDocument(file.getPath(), "");
 
-            File dir = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS), LIRBI);
-            dir.mkdirs();
 
-            final File filefb2 = new File(dir, file.getName() + REFLOW_FB2);
+            final File filefb2 = new File(CacheZipUtils.LIRBI_DOWNLOAD_DIR, file.getName() + REFLOW_FB2);
             try {
                 FileWriter fout = new FileWriter(filefb2);
                 BufferedWriter out = new BufferedWriter(fout);

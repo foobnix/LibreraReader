@@ -13,6 +13,7 @@ import java.util.Stack;
 
 import com.foobnix.android.utils.LOG;
 import com.foobnix.android.utils.ResultResponse;
+import com.foobnix.ext.CacheZipUtils;
 import com.foobnix.opds.Entry;
 import com.foobnix.opds.Feed;
 import com.foobnix.opds.Hrefs;
@@ -28,11 +29,9 @@ import com.foobnix.ui2.adapter.EntryAdapter;
 import com.foobnix.ui2.fast.FastScrollRecyclerView;
 
 import android.app.DownloadManager;
-import android.app.DownloadManager.Request;
 import android.content.Context;
-import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.Bundle;
-import android.os.Environment;
 import android.support.v4.util.Pair;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -44,6 +43,10 @@ import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
+import okhttp3.Response;
+import okio.BufferedSink;
+import okio.BufferedSource;
+import okio.Okio;
 
 public class OpdsFragment2 extends UIFragment<Entry> {
 
@@ -58,6 +61,8 @@ public class OpdsFragment2 extends UIFragment<Entry> {
     Stack<String> stack = new Stack<String>();
 
     ImageView onPlus, onSearch;
+    DownloadManager dm;
+    long enqueue;
 
     public OpdsFragment2() {
         super();
@@ -121,6 +126,8 @@ public class OpdsFragment2 extends UIFragment<Entry> {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_opds2, container, false);
+
+        dm = (DownloadManager) getActivity().getSystemService(Context.DOWNLOAD_SERVICE);
 
         recyclerView = (FastScrollRecyclerView) view.findViewById(R.id.recyclerView);
 
@@ -228,7 +235,9 @@ public class OpdsFragment2 extends UIFragment<Entry> {
     }
 
     public void onClickLink(final Link link) {
-        if (link.isDisabled()) {
+        if (link.filePath != null) {
+            ExtUtils.openFile(getActivity(), new File(link.filePath));
+        } else if (link.isDisabled()) {
             Toast.makeText(getActivity(), R.string.can_t_download, Toast.LENGTH_SHORT).show();
         } else if (link.isWebLink()) {
             Urls.open(getActivity(), link.href);
@@ -247,25 +256,70 @@ public class OpdsFragment2 extends UIFragment<Entry> {
 
                 @Override
                 public void run() {
-
-                    final DownloadManager dm = (DownloadManager) getActivity().getSystemService(Context.DOWNLOAD_SERVICE);
-                    Request request = new Request(Uri.parse(link.href));
-                    request.setNotificationVisibility(Request.VISIBILITY_VISIBLE_NOTIFY_COMPLETED);
-                    LOG.d("Download to:", ExtUtils.LIRBI + "/" + link.getDownloadName());
-
-                    File root = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS), ExtUtils.LIRBI);
-                    root.mkdirs();
-
-                    File file = new File(root, link.getDownloadName());
+                    final File file = new File(CacheZipUtils.LIRBI_DOWNLOAD_DIR, link.getDownloadName());
                     file.delete();
 
-                    request.setDestinationUri(Uri.fromFile(file));
-                    dm.enqueue(request);
+                    new AsyncTask() {
+
+                        @Override
+                        protected Object doInBackground(Object... params) {
+                            try {
+                                okhttp3.Request request = new okhttp3.Request.Builder()//
+                                        .url(link.href)//
+                                        .build();//
+
+                                Response response = OPDS.client//
+                                        .newCall(request)//
+                                        .execute();
+                                BufferedSource source = response.body().source();
+
+                                BufferedSink sink = Okio.buffer(Okio.sink(file));
+                                sink.writeAll(response.body().source());
+                                sink.close();
+
+                            } catch (Exception e) {
+                                return false;
+                            }
+                            return true;
+
+                        }
+
+                        @Override
+                        protected void onPreExecute() {
+                            progressBar.setVisibility(View.VISIBLE);
+                        };
+
+                        @Override
+                        protected void onPostExecute(Object result) {
+                            progressBar.setVisibility(View.GONE);
+                            if ((boolean) result == false) {
+                                Toast.makeText(getContext(), R.string.loading_error, Toast.LENGTH_LONG).show();
+                            } else {
+                                link.filePath = file.getPath();
+                            }
+                            clearEmpty();
+                        };
+
+                    }.execute();
+
                 }
             });
 
         }
     }
+
+    public void clearEmpty() {
+        for (String file : CacheZipUtils.LIRBI_DOWNLOAD_DIR.list()) {
+            File f = new File(CacheZipUtils.LIRBI_DOWNLOAD_DIR, file);
+            if (f.length() == 0) {
+                LOG.d("Delete file", f.getPath());
+                f.delete();
+            }
+        }
+
+        searchAdapter.notifyDataSetChanged();
+    }
+
 
     @Override
     public List<Entry> prepareDataInBackground() {
@@ -292,6 +346,11 @@ public class OpdsFragment2 extends UIFragment<Entry> {
         for (Link l : links) {
             Hrefs.fixHref(l, homeUrl);
             l.parentTitle = parentTitle;
+            File book = new File(CacheZipUtils.LIRBI_DOWNLOAD_DIR, l.getDownloadName());
+            if (book.isFile()) {
+                l.filePath = book.getPath();
+            }
+
         }
     }
 

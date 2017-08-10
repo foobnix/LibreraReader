@@ -38,7 +38,7 @@ public class CacheZipUtils {
     public static File ATTACHMENTS_CACHE_DIR;
     public static String TEMP_FILE_NAME = "";
     public static String APP_CACHE_DIR;
-
+    public static File LIRBI_DOWNLOAD_DIR;
     public static final Lock cacheLock = new ReentrantLock();
 
     public static void init(Context c) {
@@ -57,6 +57,8 @@ public class CacheZipUtils {
         ATTACHMENTS_CACHE_DIR = new File(externalCacheDir, "Attachments");
         CACHE_WEB = new File(externalCacheDir, "WEB");
         APP_CACHE_DIR = externalCacheDir.getPath();
+        LIRBI_DOWNLOAD_DIR = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS), "Lirbi");
+        
         CacheZipUtils.createAllCacheDirs();
     }
 
@@ -72,6 +74,9 @@ public class CacheZipUtils {
         }
         if (!CACHE_WEB.exists()) {
             CACHE_WEB.mkdirs();
+        }
+        if (!LIRBI_DOWNLOAD_DIR.exists()) {
+            LIRBI_DOWNLOAD_DIR.mkdirs();
         }
     }
 
@@ -228,57 +233,57 @@ public class CacheZipUtils {
         out.close();
     }
 
-	static public void zipFolder(String srcFolder, String destZipFile) throws Exception {
-		ZipOutputStream zip = null;
-		FileOutputStream fileWriter = null;
+    static public void zipFolder(String srcFolder, String destZipFile) throws Exception {
+        ZipOutputStream zip = null;
+        FileOutputStream fileWriter = null;
 
-		fileWriter = new FileOutputStream(destZipFile);
-		zip = new ZipOutputStream(fileWriter);
-		zip.setLevel(0);
+        fileWriter = new FileOutputStream(destZipFile);
+        zip = new ZipOutputStream(fileWriter);
+        zip.setLevel(0);
 
-		addFolderToZip("", srcFolder, zip);
-		zip.flush();
-		zip.close();
-	}
+        addFolderToZip("", srcFolder, zip);
+        zip.flush();
+        zip.close();
+    }
 
-	static private void addFileToZip(String path, String srcFile, ZipOutputStream zip) throws Exception {
+    static private void addFileToZip(String path, String srcFile, ZipOutputStream zip) throws Exception {
 
-		File folder = new File(srcFile);
-		if (folder.isDirectory()) {
-			addFolderToZip(path, srcFile, zip);
-		} else {
+        File folder = new File(srcFile);
+        if (folder.isDirectory()) {
+            addFolderToZip(path, srcFile, zip);
+        } else {
             byte[] buf = new byte[BUFFER_SIZE];
-			int len;
-			FileInputStream in = new FileInputStream(srcFile);
-			zip.putNextEntry(new ZipEntry(path + "/" + folder.getName()));
-			while ((len = in.read(buf)) > 0) {
-				zip.write(buf, 0, len);
-			}
-			in.close();
-		}
-	}
+            int len;
+            FileInputStream in = new FileInputStream(srcFile);
+            zip.putNextEntry(new ZipEntry(path + "/" + folder.getName()));
+            while ((len = in.read(buf)) > 0) {
+                zip.write(buf, 0, len);
+            }
+            in.close();
+        }
+    }
 
-	static private void addFolderToZip(String path, String srcFolder, ZipOutputStream zip) throws Exception {
-		File folder = new File(srcFolder);
+    static private void addFolderToZip(String path, String srcFolder, ZipOutputStream zip) throws Exception {
+        File folder = new File(srcFolder);
 
-		for (String fileName : folder.list()) {
-			if (path.equals("")) {
-				addFileToZip(folder.getName(), srcFolder + "/" + fileName, zip);
-			} else {
-				addFileToZip(path + "/" + folder.getName(), srcFolder + "/" + fileName, zip);
-			}
-		}
-	}
+        for (String fileName : folder.list()) {
+            if (path.equals("")) {
+                addFileToZip(folder.getName(), srcFolder + "/" + fileName, zip);
+            } else {
+                addFileToZip(path + "/" + folder.getName(), srcFolder + "/" + fileName, zip);
+            }
+        }
+    }
 
-	public static void deleteDir(File file) {
-		File[] contents = file.listFiles();
-		if (contents != null) {
-			for (File f : contents) {
-				deleteDir(f);
-			}
-		}
-		file.delete();
-	}
+    public static void deleteDir(File file) {
+        File[] contents = file.listFiles();
+        if (contents != null) {
+            for (File f : contents) {
+                deleteDir(f);
+            }
+        }
+        file.delete();
+    }
 
     public static void copyFile(File source, File dest) throws IOException {
         InputStream is = null;

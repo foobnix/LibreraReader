@@ -15,6 +15,8 @@ import com.foobnix.ui2.AppRecycleAdapter;
 import com.nostra13.universalimageloader.core.ImageLoader;
 
 import android.content.Context;
+import android.graphics.drawable.Drawable;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager.LayoutParams;
 import android.text.Html;
@@ -178,6 +180,18 @@ public class EntryAdapter extends AppRecycleAdapter<Entry, RecyclerView.ViewHold
                     t.setGravity(Gravity.CENTER);
                     t.setBackgroundResource(R.drawable.bg_border_blue_entry);
                     t.setMinimumWidth(Dips.dpToPx(40));
+
+
+                    if (link.filePath != null) {
+
+                        Drawable d = ContextCompat.getDrawable(context, R.drawable.glyphicons_2_book_open);
+                        TintUtil.setDrawableTint(d, t.getCurrentTextColor());
+
+                        t.setCompoundDrawablePadding(Dips.dpToPx(6));
+                        t.setCompoundDrawablesWithIntrinsicBounds(d, null, null, null);
+
+                        t.setActivated(true);
+                    }
 
                     android.widget.LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);
                     lp.setMargins(0, 0, Dips.dpToPx(4), 0);

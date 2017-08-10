@@ -17,7 +17,8 @@ import okhttp3.Response;
 
 public class OPDS {
     static Cache cache = new Cache(CacheZipUtils.CACHE_WEB, 10 * 1024 * 1024);
-    static OkHttpClient client = new OkHttpClient.Builder().cache(cache).build();
+    public static OkHttpClient client = new OkHttpClient.Builder().cache(cache).build();
+
 
     public static String getHttpUrl(String url) throws IOException {
         Request request = new Request.Builder()//

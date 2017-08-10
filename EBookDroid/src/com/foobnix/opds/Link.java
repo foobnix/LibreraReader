@@ -23,6 +23,7 @@ public class Link {
     public String title;
 
     public String parentTitle;
+    public String filePath;
 
     static Map<String, String> map = new HashMap<String, String>();
     {

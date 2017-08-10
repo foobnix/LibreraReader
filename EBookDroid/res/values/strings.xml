@@ -371,4 +371,5 @@
    <string name="catalogs">Catalogs</string>
    <string name="can_t_download">Can\'t download</string>
    <string name="download">Download</string>
+   <string name="loading_error">Loading error</string>
 </resources>
