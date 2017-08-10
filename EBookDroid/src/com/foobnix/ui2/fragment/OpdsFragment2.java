@@ -165,6 +165,7 @@ public class OpdsFragment2 extends UIFragment<Entry> {
                 for (Link link : result.links) {
                     if (link.isOpdsLink()) {
                         onClickLink(link);
+                        break;
                     }
                 }
                 return false;
@@ -252,10 +253,16 @@ public class OpdsFragment2 extends UIFragment<Entry> {
         } else if (link.isImageLink()) {
         } else {
             LOG.d("Download >>", link.href);
+            if (isInProgress()) {
+                Toast.makeText(getContext(), R.string.please_wait, Toast.LENGTH_SHORT).show();
+                return;
+            }
+
             AlertDialogs.showDialog(getActivity(), link.getDownloadName(), getActivity().getString(R.string.download), new Runnable() {
 
                 @Override
                 public void run() {
+
                     final File file = new File(CacheZipUtils.LIRBI_DOWNLOAD_DIR, link.getDownloadName());
                     file.delete();
 
@@ -293,7 +300,7 @@ public class OpdsFragment2 extends UIFragment<Entry> {
                         @Override
                         protected void onPostExecute(Object result) {
                             progressBar.setVisibility(View.GONE);
-                            if ((boolean) result == false) {
+                            if ((Boolean) result == false) {
                                 Toast.makeText(getContext(), R.string.loading_error, Toast.LENGTH_LONG).show();
                             } else {
                                 link.filePath = file.getPath();
@@ -320,7 +327,6 @@ public class OpdsFragment2 extends UIFragment<Entry> {
 
         searchAdapter.notifyDataSetChanged();
     }
-
 
     @Override
     public List<Entry> prepareDataInBackground() {

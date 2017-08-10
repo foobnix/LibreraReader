@@ -8,6 +8,7 @@ import org.greenrobot.eventbus.Subscribe;
 
 import com.foobnix.android.utils.LOG;
 import com.foobnix.android.utils.TxtUtils;
+import com.foobnix.pdf.info.R;
 import com.foobnix.pdf.search.activity.msg.OpenDirMessage;
 import com.foobnix.sys.TempHolder;
 import com.foobnix.ui2.MainTabs2;
@@ -26,12 +27,13 @@ import android.support.v4.content.LocalBroadcastManager;
 import android.support.v4.util.Pair;
 import android.view.View;
 import android.widget.ProgressBar;
+import android.widget.Toast;
 
 public abstract class UIFragment<T> extends Fragment {
     public static String INTENT_TINT_CHANGE = "INTENT_TINT_CHANGE";
 
     Handler handler;
-    protected ProgressBar progressBar;
+    protected volatile ProgressBar progressBar;
 
     public abstract Pair<Integer, Integer> getNameAndIconRes();
 
@@ -40,7 +42,6 @@ public abstract class UIFragment<T> extends Fragment {
         super.onAttach(context);
         handler = new Handler();
     }
-
 
     @Override
     public void onDetach() {
@@ -102,7 +103,6 @@ public abstract class UIFragment<T> extends Fragment {
         onSelectFragment();
     }
 
-
     @Override
     public void onResume() {
         super.onResume();
@@ -144,9 +144,17 @@ public abstract class UIFragment<T> extends Fragment {
 
     }
 
+    public boolean isInProgress() {
+        return progressBar != null && progressBar.getVisibility() == View.VISIBLE;
+    }
+
     AsyncTask<Object, Object, List<T>> execute;
 
     public void populate() {
+        if (isInProgress()) {
+            Toast.makeText(getContext(), R.string.please_wait, Toast.LENGTH_SHORT).show();
+            return;
+        }
         if (execute == null || execute.getStatus() == AsyncTask.Status.FINISHED) {
             execute = new AsyncTask<Object, Object, List<T>>() {
                 @Override

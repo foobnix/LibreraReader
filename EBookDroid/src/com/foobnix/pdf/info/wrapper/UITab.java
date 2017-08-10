@@ -19,8 +19,8 @@ public enum UITab {
     BrowseFragment2(1, R.string.folders, R.drawable.glyphicons_145_folder_open, BrowseFragment2.class, true), //
     RecentFragment2(2, R.string.recent, R.drawable.glyphicons_72_book, RecentFragment2.class, true), //
     BookmarksFragment2(3, R.string.bookmarks, R.drawable.glyphicons_73_bookmark, BookmarksFragment2.class, true), //
-    PrefFragment2(4, R.string.preferences, R.drawable.glyphicons_281_settings, PrefFragment2.class, true), //
-    OpdsFragment2(5, R.string.catalogs, R.drawable.glyphicons_281_settings, OpdsFragment2.class, true);//
+    OpdsFragment2(4, R.string.catalogs, R.drawable.glyphicons_281_settings, OpdsFragment2.class, true), //
+    PrefFragment2(5, R.string.preferences, R.drawable.glyphicons_281_settings, PrefFragment2.class, true); //
 
     private int index;
     private int name;
@@ -90,7 +90,7 @@ public enum UITab {
     }
 
     public static boolean isShowPreferences() {
-        return AppState.get().tabsOrder.contains("4#1");
+        return AppState.get().tabsOrder.contains("5#1");
     }
 
     public boolean isVisible() {

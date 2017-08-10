@@ -96,6 +96,7 @@ public class EntryAdapter extends AppRecycleAdapter<Entry, RecyclerView.ViewHold
             holder.category.setVisibility(View.GONE);
         }
 
+
         holder.category.setOnClickListener(new OnClickListener() {
 
             @Override

@@ -141,7 +141,7 @@ public class AppState {
 
     public String readColors = READ_COLORS_DEAFAUL;
 
-    public static String DEFAULTS_TABS_ORDER = "0#1,1#1,2#1,3#1,4#0,5#1";
+    public static String DEFAULTS_TABS_ORDER = "0#1,1#1,2#1,3#1,4#1,5#0";
     public String tabsOrder = DEFAULTS_TABS_ORDER;
 
     public int tintColor = Color.parseColor(STYLE_COLORS.get(1));
@@ -619,7 +619,7 @@ public class AppState {
         texturePath = sp.getString("texturePath", texturePath);
         ttsSpeakPath = sp.getString("ttsSpeakPath", ttsSpeakPath);
         readColors = sp.getString("readColors", readColors);
-        tabsOrder = sp.getString("tabsOrder", tabsOrder);
+        tabsOrder = sp.getString("tabsOrder1", tabsOrder);
 
         bgImageDayTransparency = sp.getInt("bgImageDayTransparency", bgImageDayTransparency);
         bgImageNightTransparency = sp.getInt("bgImageNightTransparency", bgImageNightTransparency);
@@ -821,7 +821,7 @@ public class AppState {
         editor.putString("texturePath", texturePath);
         editor.putString("ttsSpeakPath", ttsSpeakPath);
         editor.putString("readColors", readColors);
-        editor.putString("tabsOrder", tabsOrder);
+        editor.putString("tabsOrder1", tabsOrder);
 
         editor.putInt("bgImageDayTransparency", bgImageDayTransparency);
         editor.putInt("bgImageNightTransparency", bgImageNightTransparency);
