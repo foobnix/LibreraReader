@@ -369,4 +369,9 @@
    <string name="enable_brightness_adjustment_on_the_left_of_the_screen">Wezesha marekebisho ya mwangaza upande wa kushoto wa skrini</string>
    <string name="enable_rewind_of_pages_using_the_read_progress_line">Wezesha upya wa kurasa kwa kutumia mstari wa maendeleo unaoisoma</string>
    <string name="catalogs">Catalogs</string>
+   <string name="can_t_download">Haiwezi kupakuliwa</string>
+   <string name="download">Pakua</string>
+   <string name="loading_error">Inapakia kosa</string>
+   <string name="please_wait">Tafadhali subiri</string>
+   <string name="add_network_catalog">Ongeza orodha ya mtandao</string>
 </resources>

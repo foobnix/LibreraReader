@@ -369,4 +369,9 @@
    <string name="enable_brightness_adjustment_on_the_left_of_the_screen">Povoliť nastavenie jasu vľavo od obrazovky</string>
    <string name="enable_rewind_of_pages_using_the_read_progress_line">Povoľte posun dozadu stránok pomocou riadku postupu prečítania</string>
    <string name="catalogs">Katalógy</string>
+   <string name="can_t_download">Nemožno stiahnuť</string>
+   <string name="download">Stiahnuť ▼</string>
+   <string name="loading_error">Chyba načítania</string>
+   <string name="please_wait">Prosím čakajte</string>
+   <string name="add_network_catalog">Pridajte katalóg siete</string>
 </resources>

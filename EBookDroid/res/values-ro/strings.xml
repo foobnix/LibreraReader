@@ -369,4 +369,9 @@
    <string name="enable_brightness_adjustment_on_the_left_of_the_screen">Activați ajustarea luminozității din partea stângă a ecranului</string>
    <string name="enable_rewind_of_pages_using_the_read_progress_line">Activați derularea înapoi a paginilor utilizând linia progresului citirii</string>
    <string name="catalogs">Cataloage</string>
+   <string name="can_t_download">Nu se poate descărca</string>
+   <string name="download">Descarca</string>
+   <string name="loading_error">Eroare de încărcare</string>
+   <string name="please_wait">Te rog asteapta</string>
+   <string name="add_network_catalog">Adăugați catalogul de rețea</string>
 </resources>

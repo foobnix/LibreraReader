@@ -67,6 +67,9 @@ public class OPDS {
                     if ("title".equals(xpp.getName())) {
                         feed.title = xpp.nextText();
                     }
+                    if ("subtitle".equals(xpp.getName())) {
+                        feed.subtitle = xpp.nextText();
+                    }
                     if ("updated".equals(xpp.getName())) {
                         feed.updated = xpp.nextText();
                     }

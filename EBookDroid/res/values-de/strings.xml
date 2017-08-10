@@ -369,4 +369,9 @@
    <string name="enable_brightness_adjustment_on_the_left_of_the_screen">Aktivieren Sie die Helligkeitseinstellung auf der linken Seite des Bildschirms</string>
    <string name="enable_rewind_of_pages_using_the_read_progress_line">Aktivieren Sie das Zurückspulen von Seiten mit der Lese-Fortschrittslinie</string>
    <string name="catalogs">Kataloge</string>
+   <string name="can_t_download">Kann nicht heruntergeladen werden</string>
+   <string name="download">Herunterladen</string>
+   <string name="loading_error">Ladefehler</string>
+   <string name="please_wait">Warten Sie mal</string>
+   <string name="add_network_catalog">Netzwerkkatalog hinzufügen</string>
 </resources>

@@ -22,4 +22,23 @@ public class Hrefs {
         }
     }
 
+    public static String fixHref(String url, String homeUrl) {
+        if (url.startsWith("data:image")) {
+            return url;
+        }
+
+        if (url.startsWith("//")) {
+            url = "http:" + url;
+        }
+
+        if (!url.startsWith("http")) {
+            if (url.startsWith("/")) {
+                url = TxtUtils.getHostUrl(homeUrl) + url;
+            } else {
+                url = TxtUtils.getHostLongUrl(homeUrl) + "/" + url;
+            }
+        }
+        return url;
+    }
+
 }

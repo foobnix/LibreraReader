@@ -369,4 +369,9 @@
    <string name="enable_brightness_adjustment_on_the_left_of_the_screen">Aktivera ljusstyrkan justering till vänster på skärmen</string>
    <string name="enable_rewind_of_pages_using_the_read_progress_line">Aktivera spolning av sidor med hjälp av läsningslinjen</string>
    <string name="catalogs">Kataloger</string>
+   <string name="can_t_download">Det går inte att ladda ner</string>
+   <string name="download">Ladda ner</string>
+   <string name="loading_error">Laddar fel</string>
+   <string name="please_wait">Vänta</string>
+   <string name="add_network_catalog">Lägg till nätverkskatalog</string>
 </resources>

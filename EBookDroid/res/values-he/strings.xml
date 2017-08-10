@@ -369,4 +369,9 @@
    <string name="enable_brightness_adjustment_on_the_left_of_the_screen">הפעל התאמת בהירות בצד שמאל של המסך</string>
    <string name="enable_rewind_of_pages_using_the_read_progress_line">אפשר הרצה אחורה של דפים באמצעות קו התקדמות הקריאה</string>
    <string name="catalogs">קטלוגים</string>
+   <string name="can_t_download">לא ניתן להוריד</string>
+   <string name="download">הורד</string>
+   <string name="loading_error">שגיאת טעינה</string>
+   <string name="please_wait">המתן בבקשה</string>
+   <string name="add_network_catalog">הוסף קטלוג רשת</string>
 </resources>

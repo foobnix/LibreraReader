@@ -369,4 +369,9 @@
    <string name="enable_brightness_adjustment_on_the_left_of_the_screen">Włącz ustawienie jasności po lewej stronie ekranu</string>
    <string name="enable_rewind_of_pages_using_the_read_progress_line">Włącz przewijanie stron za pomocą linii postępu odczytu</string>
    <string name="catalogs">Katalogi</string>
+   <string name="can_t_download">Nie można pobrać</string>
+   <string name="download">Pobieranie</string>
+   <string name="loading_error">Błąd ładowania</string>
+   <string name="please_wait">Proszę czekać</string>
+   <string name="add_network_catalog">Dodaj katalog sieciowy</string>
 </resources>

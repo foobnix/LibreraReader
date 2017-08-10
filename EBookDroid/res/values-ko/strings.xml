@@ -369,4 +369,9 @@
    <string name="enable_brightness_adjustment_on_the_left_of_the_screen">화면 왼쪽에서 밝기 조정 사용</string>
    <string name="enable_rewind_of_pages_using_the_read_progress_line">읽기 진행 줄을 사용하여 페이지 되감기 사용</string>
    <string name="catalogs">카탈로그</string>
+   <string name="can_t_download">다운로드 할 수 없음</string>
+   <string name="download">다운로드</string>
+   <string name="loading_error">로딩 오류</string>
+   <string name="please_wait">기다려주십시오.</string>
+   <string name="add_network_catalog">네트워크 카탈로그 추가</string>
 </resources>

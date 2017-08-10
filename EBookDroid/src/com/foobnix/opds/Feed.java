@@ -9,6 +9,7 @@ public class Feed {
     public String title;
     public String updated;
     public String icon;
+    public String subtitle;
 
     public List<Link> links = new ArrayList<Link>();
 

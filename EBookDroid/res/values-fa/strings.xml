@@ -369,4 +369,9 @@
    <string name="enable_brightness_adjustment_on_the_left_of_the_screen">تنظیم روشنایی در سمت چپ صفحه را فعال کنید</string>
    <string name="enable_rewind_of_pages_using_the_read_progress_line">بازخوانی صفحات با استفاده از خط پیشرفت خواندن را فعال کنید</string>
    <string name="catalogs">کاتالوگ ها</string>
+   <string name="can_t_download">نمیتوانید دانلود کنید</string>
+   <string name="download">دانلود</string>
+   <string name="loading_error">خطا در حال بارگذاری</string>
+   <string name="please_wait">لطفا صبر کنید</string>
+   <string name="add_network_catalog">افزودن کاتالوگ شبکه</string>
 </resources>

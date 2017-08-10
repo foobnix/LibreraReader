@@ -369,4 +369,9 @@
    <string name="enable_brightness_adjustment_on_the_left_of_the_screen">画面の左側で明るさの調整を有効にする</string>
    <string name="enable_rewind_of_pages_using_the_read_progress_line">読み込んだ進行状況行を使用してページの巻き戻しを有効にする</string>
    <string name="catalogs">カタログ</string>
+   <string name="can_t_download">ダウンロードできません</string>
+   <string name="download">ダウンロード</string>
+   <string name="loading_error">読み込みエラー</string>
+   <string name="please_wait">お待ちください</string>
+   <string name="add_network_catalog">ネットワークカタログを追加する</string>
 </resources>

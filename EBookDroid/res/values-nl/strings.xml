@@ -369,4 +369,9 @@
    <string name="enable_brightness_adjustment_on_the_left_of_the_screen">Schakel de helderheidsinstelling aan de linkerkant van het scherm aan</string>
    <string name="enable_rewind_of_pages_using_the_read_progress_line">Activeer terugspoelen van pagina\'s met behulp van de leesprogressie</string>
    <string name="catalogs">Catalogi</string>
+   <string name="can_t_download">Kan niet downloaden</string>
+   <string name="download">Download</string>
+   <string name="loading_error">Laadfout</string>
+   <string name="please_wait">Even geduld aub</string>
+   <string name="add_network_catalog">Voeg netwerkcatalogus toe</string>
 </resources>

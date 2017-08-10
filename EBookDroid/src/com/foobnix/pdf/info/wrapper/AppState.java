@@ -128,6 +128,14 @@ public class AppState {
 
     );
 
+    public final static String OPDS_DEFAULT = "" + //
+            "http://flibusta.is/opds,Flibusta,Книжное братство,http://flibusta.is/favicon.ico;" + //
+            "https://www.gitbook.com/api/opds/catalog.atom,GitBook,Public books are always free.,https://www.gitbook.com/assets/images/logo/128.png;" + //
+            "http://m.gutenberg.org/ebooks.opds/,Project Gutenberg,Free ebooks since 1971,http://m.gutenberg.org/pics/favicon.png;" + //
+            "http://manybooks.net/opds/index.php,Manybooks,Online Catalog for Manybooks.net,http://manybooks.net/sites/all/themes/manybooks/images/library-books-icon.png;"; //
+
+    public String myOPDS = OPDS_DEFAULT;
+
     public final static String READ_COLORS_DEAFAUL =
             // (name),(bg),(text),(0-day 1-nigth)
             "" + //
@@ -619,6 +627,7 @@ public class AppState {
         texturePath = sp.getString("texturePath", texturePath);
         ttsSpeakPath = sp.getString("ttsSpeakPath", ttsSpeakPath);
         readColors = sp.getString("readColors", readColors);
+        myOPDS = sp.getString("myOPDS", myOPDS);
         tabsOrder = sp.getString("tabsOrder1", tabsOrder);
 
         bgImageDayTransparency = sp.getInt("bgImageDayTransparency", bgImageDayTransparency);
@@ -821,6 +830,7 @@ public class AppState {
         editor.putString("texturePath", texturePath);
         editor.putString("ttsSpeakPath", ttsSpeakPath);
         editor.putString("readColors", readColors);
+        editor.putString("myOPDS", myOPDS);
         editor.putString("tabsOrder1", tabsOrder);
 
         editor.putInt("bgImageDayTransparency", bgImageDayTransparency);

@@ -13,6 +13,7 @@ import java.util.Stack;
 
 import com.foobnix.android.utils.LOG;
 import com.foobnix.android.utils.ResultResponse;
+import com.foobnix.android.utils.TxtUtils;
 import com.foobnix.ext.CacheZipUtils;
 import com.foobnix.opds.Entry;
 import com.foobnix.opds.Feed;
@@ -25,6 +26,8 @@ import com.foobnix.pdf.info.R;
 import com.foobnix.pdf.info.TTSModule;
 import com.foobnix.pdf.info.Urls;
 import com.foobnix.pdf.info.view.AlertDialogs;
+import com.foobnix.pdf.info.widget.AddCatalogDialog;
+import com.foobnix.pdf.info.wrapper.AppState;
 import com.foobnix.ui2.adapter.EntryAdapter;
 import com.foobnix.ui2.fast.FastScrollRecyclerView;
 
@@ -38,6 +41,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.View.OnLongClickListener;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
@@ -76,12 +80,25 @@ public class OpdsFragment2 extends UIFragment<Entry> {
 
     public List<Entry> getAllCatalogs() {
 
+        if (true) {
+            String[] list = AppState.get().myOPDS.split(";");
+            List<Entry> res = new ArrayList<Entry>();
+            for (String line : list) {
+                if (TxtUtils.isEmpty(line)) {
+                    continue;
+                }
+                String[] it = line.split(",");
+                res.add(new Entry(it[0], it[1], it[2], it[3]));
+            }
+            return res;
+        }
+
         if (false) {
             String test = "http://flibusta.is/opds/authorsequence/88428/8457";
             return Arrays.asList(new Entry(test, test));
         }
 
-        if (true) {
+        if (false) {
             return Arrays.asList(
                     //
                     new Entry("http://flibusta.is/opds", "Flibusta", "Книжное братство", "http://flibusta.is/favicon.ico"), //
@@ -141,7 +158,13 @@ public class OpdsFragment2 extends UIFragment<Entry> {
 
             @Override
             public void onClick(View v) {
-                Toast.makeText(getContext(), "Not implemented yet", Toast.LENGTH_SHORT).show();
+                AddCatalogDialog.showDialog(getActivity(), new Runnable() {
+
+                    @Override
+                    public void run() {
+                        populate();
+                    }
+                });
             }
         });
 
@@ -171,6 +194,24 @@ public class OpdsFragment2 extends UIFragment<Entry> {
                 return false;
             }
         });
+
+        searchAdapter.setOnRemoveLinkClickListener(new ResultResponse<Entry>() {
+
+            @Override
+            public boolean onResultRecive(final Entry result) {
+                AlertDialogs.showOkDialog(getActivity(), getActivity().getString(R.string.do_you_want_to_delete_), new Runnable() {
+
+                    @Override
+                    public void run() {
+                        AppState.get().myOPDS = AppState.get().myOPDS.replace(result.appState, "");
+                        populate();
+                    }
+                });
+
+                return false;
+            }
+        });
+
         searchAdapter.setOnLinkClickListener(new ResultResponse<Link>() {
 
             @Override
@@ -203,6 +244,22 @@ public class OpdsFragment2 extends UIFragment<Entry> {
                 url = getHome();
                 urlRoot = "";
                 populate();
+            }
+        });
+
+        view.findViewById(R.id.onHome).setOnLongClickListener(new OnLongClickListener() {
+
+            @Override
+            public boolean onLongClick(View v) {
+                AlertDialogs.showOkDialog(getActivity(), getActivity().getString(R.string.restore_defaults), new Runnable() {
+
+                    @Override
+                    public void run() {
+                        AppState.get().myOPDS = AppState.OPDS_DEFAULT;
+                        populate();
+                    }
+                });
+                return true;
             }
         });
 

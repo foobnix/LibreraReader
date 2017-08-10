@@ -37,18 +37,19 @@ public class EntryAdapter extends AppRecycleAdapter<Entry, RecyclerView.ViewHold
     public class EntryViewHolder extends RecyclerView.ViewHolder {
         public TextView title, content, author, category;
         public View parent;
-        public ImageView image;
+        public ImageView image, remove;
         public LinearLayout links, downloadLinks;
 
         public EntryViewHolder(View view) {
             super(view);
             title = (TextView) view.findViewById(R.id.title);
             author = (TextView) view.findViewById(R.id.author);
-            category = (TextView) view.findViewById(R.id.category);
             content = (TextView) view.findViewById(R.id.content);
+            category = (TextView) view.findViewById(R.id.category);
             links = (LinearLayout) view.findViewById(R.id.links);
             downloadLinks = (LinearLayout) view.findViewById(R.id.downloadLinks);
             image = (ImageView) view.findViewById(R.id.image);
+            remove = (ImageView) view.findViewById(R.id.remove);
 
             parent = view;
         }
@@ -82,6 +83,19 @@ public class EntryAdapter extends AppRecycleAdapter<Entry, RecyclerView.ViewHold
             holder.content.setVisibility(View.GONE);
         }
 
+        if (entry.appState != null) {
+            holder.remove.setVisibility(View.VISIBLE);
+            holder.remove.setOnClickListener(new OnClickListener() {
+
+                @Override
+                public void onClick(View v) {
+                    onRemoveLinkClickListener.onResultRecive(entry);
+                }
+            });
+        } else {
+            holder.remove.setVisibility(View.GONE);
+        }
+
         if (TxtUtils.isNotEmpty(entry.author)) {
             holder.author.setText(entry.author);
             holder.author.setVisibility(View.VISIBLE);
@@ -95,7 +109,6 @@ public class EntryAdapter extends AppRecycleAdapter<Entry, RecyclerView.ViewHold
         } else {
             holder.category.setVisibility(View.GONE);
         }
-
 
         holder.category.setOnClickListener(new OnClickListener() {
 
@@ -182,7 +195,6 @@ public class EntryAdapter extends AppRecycleAdapter<Entry, RecyclerView.ViewHold
                     t.setBackgroundResource(R.drawable.bg_border_blue_entry);
                     t.setMinimumWidth(Dips.dpToPx(40));
 
-
                     if (link.filePath != null) {
 
                         Drawable d = ContextCompat.getDrawable(context, R.drawable.glyphicons_2_book_open);
@@ -228,6 +240,11 @@ public class EntryAdapter extends AppRecycleAdapter<Entry, RecyclerView.ViewHold
         this.onLinkClickListener = onLinkClickListener;
     }
 
+    public void setOnRemoveLinkClickListener(ResultResponse<Entry> onLinkClickListener) {
+        this.onRemoveLinkClickListener = onLinkClickListener;
+    }
+
     private ResultResponse<Link> onLinkClickListener;
+    private ResultResponse<Entry> onRemoveLinkClickListener;
 
 }

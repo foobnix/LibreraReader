@@ -369,4 +369,9 @@
    <string name="enable_brightness_adjustment_on_the_left_of_the_screen">स्क्रीन के बाईं ओर चमक समायोजन सक्षम करें</string>
    <string name="enable_rewind_of_pages_using_the_read_progress_line">पढ़ने की प्रगति लाइन का उपयोग करके पृष्ठों का रिवाइंड सक्षम करें</string>
    <string name="catalogs">कैटलॉग</string>
+   <string name="can_t_download">डाउनलोड नहीं कर सकता</string>
+   <string name="download">डाउनलोड</string>
+   <string name="loading_error">लोडिंग त्रुटि</string>
+   <string name="please_wait">कृपया प्रतीक्षा करें</string>
+   <string name="add_network_catalog">नेटवर्क कैटलॉग जोड़ें</string>
 </resources>

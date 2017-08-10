@@ -30,6 +30,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
             android:layout_marginLeft="4dip"
+            android:layout_weight="1"
             android:orientation="vertical" >
 
             <TextView
@@ -59,9 +60,9 @@
                 android:textColor="@color/tint_blue" />
 
             <HorizontalScrollView
-                android:scrollbars="none"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content" >
+                android:layout_height="wrap_content"
+                android:scrollbars="none" >
 
                 <LinearLayout
                     android:id="@+id/downloadLinks"
@@ -87,6 +88,17 @@
                 android:orientation="vertical" >
             </LinearLayout>
         </LinearLayout>
+
+        <ImageView
+            android:id="@+id/remove"
+            android:layout_width="@dimen/wh_button_small"
+            android:layout_height="@dimen/wh_button_small"
+            android:layout_gravity="center_vertical"
+            android:layout_weight="0"
+            android:background="?android:attr/selectableItemBackground"
+            android:padding="6dip"
+            android:src="@drawable/glyphicons_208_remove_2"
+            android:tint="@color/lt_grey_dima" />
     </LinearLayout>
 
 </android.support.v7.widget.CardView>

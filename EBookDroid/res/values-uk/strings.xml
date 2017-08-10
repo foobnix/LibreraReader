@@ -369,4 +369,9 @@
    <string name="enable_brightness_adjustment_on_the_left_of_the_screen">Увімкніть регулювання яскравості ліворуч від екрана</string>
    <string name="enable_rewind_of_pages_using_the_read_progress_line">Увімкнути перемотування сторінок за допомогою рядка читання</string>
    <string name="catalogs">Каталоги</string>
+   <string name="can_t_download">Не можна завантажити</string>
+   <string name="download">Завантажити</string>
+   <string name="loading_error">Помилка завантаження</string>
+   <string name="please_wait">Будь ласка, зачекайте</string>
+   <string name="add_network_catalog">Додати мережевий каталог</string>
 </resources>

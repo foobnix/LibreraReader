@@ -1,0 +1,153 @@
+package com.foobnix.pdf.info.widget;
+
+import com.foobnix.android.utils.AsyncTasks;
+import com.foobnix.android.utils.LOG;
+import com.foobnix.android.utils.TxtUtils;
+import com.foobnix.opds.Entry;
+import com.foobnix.opds.Feed;
+import com.foobnix.opds.Hrefs;
+import com.foobnix.opds.OPDS;
+import com.foobnix.pdf.info.IMG;
+import com.foobnix.pdf.info.R;
+import com.foobnix.pdf.info.wrapper.AppState;
+import com.nostra13.universalimageloader.core.ImageLoader;
+
+import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
+import android.os.AsyncTask;
+import android.text.Editable;
+import android.text.TextWatcher;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.ProgressBar;
+import android.widget.Toast;
+
+public class AddCatalogDialog {
+
+    public static void showDialog(final Activity a, final Runnable onRefresh) {
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(a);
+
+        View dialog = LayoutInflater.from(a).inflate(R.layout.dialog_add_catalog, null, false);
+
+        final EditText url = (EditText) dialog.findViewById(R.id.url);
+
+        url.setText("http://m.gutenberg.org/ebooks.opds/");
+
+        url.setSelection(url.getText().length());
+
+        final EditText name = (EditText) dialog.findViewById(R.id.name);
+        final EditText description = (EditText) dialog.findViewById(R.id.description);
+        final ProgressBar progressBar = (ProgressBar) dialog.findViewById(R.id.progressBar);
+        final ImageView image = (ImageView) dialog.findViewById(R.id.image);
+
+        progressBar.setVisibility(View.GONE);
+        image.setVisibility(View.GONE);
+
+        builder.setView(dialog);
+        builder.setTitle(R.string.add_network_catalog);
+
+        builder.setPositiveButton(R.string.add, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int id) {
+
+            }
+        });
+
+        builder.setNegativeButton(R.string.close, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int id) {
+
+            }
+        });
+
+        final AlertDialog infoDialog = builder.create();
+        infoDialog.show();
+
+        url.addTextChangedListener(new TextWatcher() {
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                infoDialog.getButton(AlertDialog.BUTTON_POSITIVE).setText(R.string.add);
+            }
+
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+                // TODO Auto-generated method stub
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                // TODO Auto-generated method stub
+
+            }
+        });
+
+        infoDialog.getButton(AlertDialog.BUTTON_POSITIVE).setOnClickListener(new View.OnClickListener() {
+            AsyncTask asyncTask;
+
+            @Override
+            public void onClick(View v) {
+                final String feedUrl = url.getText().toString();
+                if (infoDialog.getButton(AlertDialog.BUTTON_POSITIVE).getText().equals(a.getString(R.string.ok))) {
+                    Entry entry = new Entry();
+                    entry.setAppState(feedUrl, name.getText().toString(), description.getText().toString(), image.getTag().toString());
+                    AppState.get().myOPDS += entry.appState;
+                    onRefresh.run();
+                    infoDialog.dismiss();
+                }
+
+                if (AsyncTasks.isRunning(asyncTask)) {
+                    AsyncTasks.toastPleaseWait(a);
+                    return;
+                }
+
+                asyncTask = new AsyncTask() {
+                    @Override
+                    protected Object doInBackground(Object... params) {
+                        return OPDS.getFeed(feedUrl);
+                    }
+
+                    @Override
+                    protected void onPreExecute() {
+                        progressBar.setVisibility(View.VISIBLE);
+                        image.setVisibility(View.GONE);
+                    };
+
+                    @Override
+                    protected void onPostExecute(Object result) {
+                        try {
+                            progressBar.setVisibility(View.GONE);
+                            if (result == null || ((Feed) result).entries.isEmpty()) {
+                                Toast.makeText(a, "Invalid catalog " + feedUrl, Toast.LENGTH_LONG).show();
+                                infoDialog.getButton(AlertDialog.BUTTON_POSITIVE).setText(R.string.add);
+                                return;
+                            }
+                            Feed feed = (Feed) result;
+                            name.setText(TxtUtils.nullToEmpty(feed.title));
+                            description.setText(TxtUtils.nullToEmpty(feed.subtitle));
+
+                            if (feed.icon != null) {
+                                image.setVisibility(View.VISIBLE);
+                                feed.icon = Hrefs.fixHref(feed.icon, feedUrl);
+                                image.setTag(feed.icon);
+                                ImageLoader.getInstance().displayImage(feed.icon, image, IMG.displayImageOptions);
+                            }
+
+                            infoDialog.getButton(AlertDialog.BUTTON_POSITIVE).setText(R.string.ok);
+                        } catch (Exception e) {
+                            LOG.e(e);
+                        }
+
+                    }
+                }.execute();
+
+            }
+        });
+    }
+
+}

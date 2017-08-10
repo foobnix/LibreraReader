@@ -369,4 +369,9 @@
    <string name="enable_brightness_adjustment_on_the_left_of_the_screen">Ekranın solundaki parlaklık ayarını etkinleştir</string>
    <string name="enable_rewind_of_pages_using_the_read_progress_line">Oku ilerleme çizgisini kullanarak sayfaların geri sarılmasını etkinleştir</string>
    <string name="catalogs">Kataloglar</string>
+   <string name="can_t_download">İndiremez</string>
+   <string name="download">İndir</string>
+   <string name="loading_error">Yükleme hatası</string>
+   <string name="please_wait">Lütfen bekle</string>
+   <string name="add_network_catalog">Ağ kataloğu ekle</string>
 </resources>
