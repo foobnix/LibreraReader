@@ -1107,7 +1107,7 @@ public class DragingDialogs {
         new DragingPopup(R.string.go_to_page_dialog, anchor, 300, 400) {
             @Override
             public View getContentView(LayoutInflater inflater) {
-                View view = inflater.inflate(R.layout.thumb_dialog, null, false);
+                View view = inflater.inflate(R.layout.dialog_go_to_page, null, false);
 
                 final EditText number = (EditText) view.findViewById(R.id.edit1);
                 number.clearFocus();

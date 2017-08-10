@@ -7,14 +7,15 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 import java.util.Stack;
 
 import com.foobnix.android.utils.LOG;
 import com.foobnix.android.utils.ResultResponse;
-import com.foobnix.android.utils.TxtUtils;
 import com.foobnix.opds.Entry;
 import com.foobnix.opds.Feed;
+import com.foobnix.opds.Hrefs;
 import com.foobnix.opds.Link;
 import com.foobnix.opds.OPDS;
 import com.foobnix.pdf.info.ExtUtils;
@@ -40,6 +41,7 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -55,7 +57,7 @@ public class OpdsFragment2 extends UIFragment<Entry> {
     String title;
     Stack<String> stack = new Stack<String>();
 
-    ImageView onPlus;
+    ImageView onPlus, onSearch;
 
     public OpdsFragment2() {
         super();
@@ -70,8 +72,18 @@ public class OpdsFragment2 extends UIFragment<Entry> {
     public List<Entry> getAllCatalogs() {
 
         if (false) {
-            String test = "http://www.epubbud.com/feeds/beginner.atom";
+            String test = "http://flibusta.is/opds/authorsequence/88428/8457";
             return Arrays.asList(new Entry(test, test));
+        }
+
+        if (true) {
+            return Arrays.asList(
+                    //
+                    new Entry("http://flibusta.is/opds", "Flibusta", "Книжное братство", "http://flibusta.is/favicon.ico"), //
+                    new Entry("https://www.gitbook.com/api/opds/catalog.atom", "GitBook", "Public books are always free.", "https://www.gitbook.com/assets/images/logo/128.png"), //
+                    new Entry("http://m.gutenberg.org/ebooks.opds/", "Project Gutenberg", "Free ebooks since 1971", "http://m.gutenberg.org/pics/favicon.png"), //
+                    new Entry("http://manybooks.net/opds/index.php", "Manybooks", "Online Catalog for Manybooks.net", "http://manybooks.net/sites/all/themes/manybooks/images/library-books-icon.png")//
+            );
         }
 
         try {
@@ -91,12 +103,9 @@ public class OpdsFragment2 extends UIFragment<Entry> {
             return list;
         } catch (Exception e) {
             LOG.e(e);
-            return Arrays.asList(new Entry("http://flibusta.is/opds", "Flibusta"), //
-                    new Entry("https://www.gitbook.com/api/opds/catalog.atom", "GitBook"), //
-                    new Entry("http://bookserver.archive.org/catalog/", "Internet Archive"), //
-                    new Entry("http://manybooks.net/opds/index.php", "Manybooks")//
-            );
+
         }
+        return Collections.EMPTY_LIST;
 
     }
 
@@ -117,6 +126,9 @@ public class OpdsFragment2 extends UIFragment<Entry> {
 
         titleView = (TextView) view.findViewById(R.id.titleView);
         onPlus = (ImageView) view.findViewById(R.id.onPlus);
+        onSearch = (ImageView) view.findViewById(R.id.onSearch);
+        progressBar = (ProgressBar) view.findViewById(R.id.progressBar);
+        progressBar.setVisibility(View.GONE);
 
         onPlus.setOnClickListener(new OnClickListener() {
 
@@ -125,6 +137,15 @@ public class OpdsFragment2 extends UIFragment<Entry> {
                 Toast.makeText(getContext(), "Not implemented yet", Toast.LENGTH_SHORT).show();
             }
         });
+
+        onSearch.setOnClickListener(new OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
+        onSearch.setVisibility(View.GONE);
 
         searchAdapter = new EntryAdapter();
 
@@ -257,6 +278,8 @@ public class OpdsFragment2 extends UIFragment<Entry> {
 
         LOG.d("Load: >>>", feed.title, url);
 
+        feed.updateLinksForUI();
+
         updateLinks(feed.title, urlRoot, feed.links);
         for (Entry e : feed.entries) {
             updateLinks(e.getTitle(), urlRoot, e.links);
@@ -267,37 +290,21 @@ public class OpdsFragment2 extends UIFragment<Entry> {
 
     public void updateLinks(String parentTitle, String homeUrl, List<Link> links) {
         for (Link l : links) {
-            if (l.href.startsWith("data:image")) {
-                continue;
-            }
-
-            if (l.href.startsWith("//")) {
-                l.href = "http:" + l.href;
-            }
-
-            if (!l.href.startsWith("http")) {
-                if (l.href.startsWith("/")) {
-                    l.href = TxtUtils.getHostUrl(homeUrl) + l.href;
-                } else {
-                    l.href = TxtUtils.getHostLongUrl(homeUrl) + "/" + l.href;
-                }
-            }
-
+            Hrefs.fixHref(l, homeUrl);
             l.parentTitle = parentTitle;
         }
     }
 
     @Override
-    public void populateDataInUI(List<Entry> items) {
+    public void populateDataInUI(List<Entry> entries) {
         searchAdapter.clearItems();
-        searchAdapter.getItemsList().addAll(items);
+        searchAdapter.getItemsList().addAll(entries);
         recyclerView.setAdapter(searchAdapter);
 
         if (title != null) {
             titleView.setText("" + title);
         }
-        // onPlus.setVisibility(url == "/" ? View.VISIBLE : View.GONE);
-        onPlus.setImageResource(url == "/" ? R.drawable.glyphicons_433_plus : R.drawable.glyphicons_28_search);
+        onPlus.setVisibility(url == "/" ? View.VISIBLE : View.GONE);
     }
 
     public void onGridList() {

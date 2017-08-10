@@ -24,11 +24,14 @@ import android.os.Handler;
 import android.support.v4.app.Fragment;
 import android.support.v4.content.LocalBroadcastManager;
 import android.support.v4.util.Pair;
+import android.view.View;
+import android.widget.ProgressBar;
 
 public abstract class UIFragment<T> extends Fragment {
     public static String INTENT_TINT_CHANGE = "INTENT_TINT_CHANGE";
 
     Handler handler;
+    protected ProgressBar progressBar;
 
     public abstract Pair<Integer, Integer> getNameAndIconRes();
 
@@ -37,6 +40,7 @@ public abstract class UIFragment<T> extends Fragment {
         super.onAttach(context);
         handler = new Handler();
     }
+
 
     @Override
     public void onDetach() {
@@ -156,7 +160,17 @@ public abstract class UIFragment<T> extends Fragment {
                 }
 
                 @Override
+                protected void onPreExecute() {
+                    if (progressBar != null) {
+                        progressBar.setVisibility(View.VISIBLE);
+                    }
+                };
+
+                @Override
                 protected void onPostExecute(List<T> result) {
+                    if (progressBar != null) {
+                        progressBar.setVisibility(View.GONE);
+                    }
                     if (getActivity() != null) {
                         try {
                             populateDataInUI(result);

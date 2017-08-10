@@ -39,6 +39,11 @@
             android:text="@string/catalogs"
             android:textColor="@color/white" />
 
+        <ProgressBar
+            android:id="@+id/progressBar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="0" />
 
         <View
             android:layout_width="1dip"
@@ -65,6 +70,19 @@
             android:layout_height="@dimen/wh_button"
             android:layout_weight="0"
             android:src="@drawable/glyphicons_433_plus" />
+        
+        <View
+            android:layout_width="1dip"
+            android:layout_height="match_parent"
+            android:background="@color/tint_divider" />
+
+        <ImageView
+            android:id="@+id/onSearch"
+            style="@style/buttonWhite"
+            android:layout_width="@dimen/wh_button"
+            android:layout_height="@dimen/wh_button"
+            android:layout_weight="0"
+            android:src="@drawable/glyphicons_28_search" />
 
     </LinearLayout>
 
