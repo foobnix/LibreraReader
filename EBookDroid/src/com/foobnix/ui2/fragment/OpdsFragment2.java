@@ -278,6 +278,7 @@ public class OpdsFragment2 extends UIFragment<Entry> {
                                 sink.close();
 
                             } catch (Exception e) {
+                                LOG.e(e);
                                 return false;
                             }
                             return true;

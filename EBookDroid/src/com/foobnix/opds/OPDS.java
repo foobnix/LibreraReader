@@ -2,6 +2,7 @@ package com.foobnix.opds;
 
 import java.io.IOException;
 import java.io.StringReader;
+import java.util.concurrent.TimeUnit;
 
 import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserException;
@@ -17,8 +18,11 @@ import okhttp3.Response;
 
 public class OPDS {
     static Cache cache = new Cache(CacheZipUtils.CACHE_WEB, 10 * 1024 * 1024);
-    public static OkHttpClient client = new OkHttpClient.Builder().cache(cache).build();
-
+    public static OkHttpClient client = new OkHttpClient.Builder()//
+            .connectTimeout(15, TimeUnit.SECONDS)//
+            .writeTimeout(15, TimeUnit.SECONDS)//
+            .readTimeout(30, TimeUnit.SECONDS)//
+            .cache(cache).build();//
 
     public static String getHttpUrl(String url) throws IOException {
         Request request = new Request.Builder()//

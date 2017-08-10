@@ -99,17 +99,13 @@ public class Link {
     }
 
     public String getDownloadName() {
-        if ("application/epub+zip".equals(type)) {
-            return parentTitle + ".epub";
+        String name = parentTitle.replace("/", "");
+        String ext = getDownloadDisplayFormat();
+        if (ext != null) {
+            return name + "." + ext;
         }
-        if ("application/fb-ebook".equals(type)) {
-            return parentTitle + ".fb2";
 
-        }
-        if ("application/x-mobipocket-ebook".equals(type)) {
-            return parentTitle + ".mobi";
-        }
-        return parentTitle + type.replace("application/", ".").replace("disabled/", ".").replace("+", ".");
+        return name + type.replace("application/", ".").replace("+", ".");
     }
 
 }
