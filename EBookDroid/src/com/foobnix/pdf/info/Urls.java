@@ -1,6 +1,10 @@
 package com.foobnix.pdf.info;
 
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
 import java.util.Locale;
+
+import com.foobnix.android.utils.LOG;
 
 import android.content.Context;
 import android.content.Intent;
@@ -10,13 +14,20 @@ import android.support.v4.view.ViewCompat;
 
 public class Urls {
 
+    public static String encode(String string) {
+        try {
+            return URLEncoder.encode(string, "UTF-8");
+        } catch (UnsupportedEncodingException e) {
+            LOG.e(e);
+            return URLEncoder.encode(string);
+        }
+    }
+
     public static void open(Context a, String url) {
         Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
         browserIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         a.startActivity(browserIntent);
     }
-
-
 
     public static void openPdfPro(Context a) {
         try {

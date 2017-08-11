@@ -9,6 +9,7 @@ import org.xmlpull.v1.XmlPullParserException;
 import org.xmlpull.v1.XmlPullParserFactory;
 
 import com.foobnix.android.utils.LOG;
+import com.foobnix.android.utils.TxtUtils;
 import com.foobnix.ext.CacheZipUtils;
 
 import okhttp3.Cache;
@@ -106,7 +107,7 @@ public class OPDS {
                         entry.author = xpp.nextText();
                     }
                     if ("category".equals(xpp.getName())) {
-                        entry.category = entry.category + " " + xpp.getAttributeValue(null, "term");
+                        entry.category += " " + xpp.getAttributeValue(null, "term");
                     }
 
                     if ("link".equals(xpp.getName())) {
@@ -117,10 +118,14 @@ public class OPDS {
             }
             if (eventType == XmlPullParser.TEXT) {
                 if (isContent) {
-                    entry.content += xpp.getText();
+                    String text = xpp.getText();
+                    if (TxtUtils.isNotEmpty(text) && !text.equals("\n") && !text.equals("\r")) {
+                        text = text.replace(":\n", ":");
+                        entry.content += text + "\n";
+                    }
                 }
                 if (isTitle) {
-                    entry.title += xpp.getText();
+                    entry.title += " " + xpp.getText();
                 }
             }
             if (eventType == XmlPullParser.END_TAG) {

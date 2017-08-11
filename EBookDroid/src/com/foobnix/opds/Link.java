@@ -99,6 +99,9 @@ public class Link {
     }
 
     public String getDownloadName() {
+        if (parentTitle == null) {
+            return "";
+        }
         String name = parentTitle.replace("/", "");
         String ext = getDownloadDisplayFormat();
         if (ext != null) {

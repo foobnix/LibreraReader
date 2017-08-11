@@ -1,8 +1,5 @@
 package com.foobnix.ui2.adapter;
 
-import org.jsoup.Jsoup;
-import org.jsoup.safety.Whitelist;
-
 import com.foobnix.android.utils.Dips;
 import com.foobnix.android.utils.ResultResponse;
 import com.foobnix.android.utils.TxtUtils;
@@ -11,6 +8,8 @@ import com.foobnix.opds.Link;
 import com.foobnix.pdf.info.IMG;
 import com.foobnix.pdf.info.R;
 import com.foobnix.pdf.info.TintUtil;
+import com.foobnix.pdf.info.Urls;
+import com.foobnix.pdf.info.view.ScaledImageView;
 import com.foobnix.ui2.AppRecycleAdapter;
 import com.nostra13.universalimageloader.core.ImageLoader;
 
@@ -19,7 +18,6 @@ import android.graphics.drawable.Drawable;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager.LayoutParams;
-import android.text.Html;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -35,7 +33,7 @@ public class EntryAdapter extends AppRecycleAdapter<Entry, RecyclerView.ViewHold
     private static final int PD = Dips.dpToPx(4);
 
     public class EntryViewHolder extends RecyclerView.ViewHolder {
-        public TextView title, content, author, category;
+        public TextView title, content, author, category, expand;
         public View parent;
         public ImageView image, remove;
         public LinearLayout links, downloadLinks;
@@ -46,6 +44,7 @@ public class EntryAdapter extends AppRecycleAdapter<Entry, RecyclerView.ViewHold
             author = (TextView) view.findViewById(R.id.author);
             content = (TextView) view.findViewById(R.id.content);
             category = (TextView) view.findViewById(R.id.category);
+            expand = (TextView) view.findViewById(R.id.expand);
             links = (LinearLayout) view.findViewById(R.id.links);
             downloadLinks = (LinearLayout) view.findViewById(R.id.downloadLinks);
             image = (ImageView) view.findViewById(R.id.image);
@@ -77,10 +76,25 @@ public class EntryAdapter extends AppRecycleAdapter<Entry, RecyclerView.ViewHold
 
         if (TxtUtils.isNotEmpty(entry.content)) {
             holder.content.setVisibility(View.VISIBLE);
-            String text = Jsoup.clean(entry.content, Whitelist.simpleText());
-            holder.content.setText("(" + Html.fromHtml(text) + ")");
+            String text = TxtUtils.replaceLast(entry.content, "\n", "");
+            holder.content.setText("(" + text + ")");
+
+            if (entry.content.length() >= 200) {
+                holder.expand.setVisibility(View.VISIBLE);
+                holder.expand.setOnClickListener(new OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        holder.expand.setVisibility(View.GONE);
+                        holder.content.setMaxLines(100);
+                    }
+                });
+            } else {
+                holder.expand.setVisibility(View.GONE);
+            }
+
         } else {
             holder.content.setVisibility(View.GONE);
+            holder.expand.setVisibility(View.GONE);
         }
 
         if (entry.appState != null) {
@@ -140,6 +154,7 @@ public class EntryAdapter extends AppRecycleAdapter<Entry, RecyclerView.ViewHold
                 search.setHint(R.string.search);
 
                 ImageView button = new ImageView(context);
+                button.setMinimumWidth(Dips.dpToPx(42));
                 button.setImageResource(R.drawable.glyphicons_28_search);
                 TintUtil.setTintImage(button);
 
@@ -150,7 +165,7 @@ public class EntryAdapter extends AppRecycleAdapter<Entry, RecyclerView.ViewHold
 
                     @Override
                     public void onClick(View v) {
-                        Link l = new Link(link.href.replace("{searchTerms}", search.getText().toString()));
+                        Link l = new Link(link.href.replace("{searchTerms}", Urls.encode(search.getText().toString())));
                         onLinkClickListener.onResultRecive(l);
                     }
                 });
@@ -164,14 +179,14 @@ public class EntryAdapter extends AppRecycleAdapter<Entry, RecyclerView.ViewHold
                     }
                 }
                 if (!link.href.equals(imgLink)) {
-                    ImageView img = new ImageView(holder.parent.getContext());
+                    ScaledImageView img = new ScaledImageView(holder.parent.getContext());
                     img.setPadding(PD, PD, PD, PD);
                     ImageLoader.getInstance().displayImage(link.href, img, IMG.displayImageOptions);
-                    holder.links.addView(img);
+                    holder.links.addView(img, new LinearLayout.LayoutParams(Dips.screenWidth() / 2, LayoutParams.WRAP_CONTENT));
                     imgLink = link.href;
                 }
 
-            } else if (link.type.equals(Link.APPLICATION_ATOM_XML) || (link.type.startsWith(Link.APPLICATION_ATOM_XML_PROFILE) && link.title == null)) {
+            } else if (link.type.equals(Link.APPLICATION_ATOM_XML) || (link.type.contains(";profile") && link.title == null)) {
                 continue;
             } else if (link.isDisabled()) {
                 continue;

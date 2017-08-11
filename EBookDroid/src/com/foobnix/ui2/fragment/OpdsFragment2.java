@@ -78,6 +78,11 @@ public class OpdsFragment2 extends UIFragment<Entry> {
 
     public List<Entry> getAllCatalogs() {
 
+        if (false) {
+            String test = "http://m.gutenberg.org/ebooks/1342.opds";
+            return Arrays.asList(new Entry(test, test));
+        }
+
         if (true) {
             String[] list = AppState.get().myOPDS.split(";");
             List<Entry> res = new ArrayList<Entry>();
@@ -91,15 +96,10 @@ public class OpdsFragment2 extends UIFragment<Entry> {
             return res;
         }
 
-        if (false) {
-            String test = "http://flibusta.is/opds/authorsequence/88428/8457";
-            return Arrays.asList(new Entry(test, test));
-        }
+
 
         if (false) {
             return Arrays.asList(
-                    //
-                    new Entry("http://flibusta.is/opds", "Flibusta", "Книжное братство", "http://flibusta.is/favicon.ico"), //
                     new Entry("https://www.gitbook.com/api/opds/catalog.atom", "GitBook", "Public books are always free.", "https://www.gitbook.com/assets/images/logo/128.png"), //
                     new Entry("http://m.gutenberg.org/ebooks.opds/", "Project Gutenberg", "Free ebooks since 1971", "http://m.gutenberg.org/pics/favicon.png"), //
                     new Entry("http://manybooks.net/opds/index.php", "Manybooks", "Online Catalog for Manybooks.net", "http://manybooks.net/sites/all/themes/manybooks/images/library-books-icon.png")//

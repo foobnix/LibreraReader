@@ -25,7 +25,10 @@ public class TxtUtils {
     }
 
     public static String fixAppState(String text) {
-        return text.trim().replace(",", "");
+        if (text == null) {
+            return "";
+        }
+        return text.trim().replace(",", "").replace(";", "");
     }
 
     public static String getHostUrl(String url) {

@@ -13,16 +13,16 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="?android:attr/selectableItemBackground"
+        android:minHeight="42dip"
         android:orientation="horizontal"
         android:padding="4dip" >
 
-        <ImageView
+        <com.foobnix.pdf.info.view.ScaledImageView
             android:id="@+id/image"
-            android:layout_width="42dp"
-            android:layout_height="42dp"
+            android:layout_width="42dip"
+            android:layout_height="wrap_content"
             android:layout_margin="4dip"
             android:layout_weight="0"
-            android:scaleType="centerCrop"
             android:src="@drawable/glyphicons_441_folder_closed" />
 
         <LinearLayout
@@ -38,8 +38,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="4dip"
-                android:text="author"
-                android:textColor="@color/tint_blue" />
+                android:text="author" />
 
             <TextView
                 android:id="@+id/title"
@@ -57,7 +56,7 @@
                 android:layout_gravity="right"
                 android:singleLine="true"
                 android:text="category"
-                android:textColor="@color/tint_blue" />
+                android:textColor="@color/tint_gray" />
 
             <HorizontalScrollView
                 android:layout_width="wrap_content"
@@ -74,19 +73,35 @@
 
             <TextView
                 android:id="@+id/content"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="4dip"
                 android:ellipsize="end"
                 android:maxLines="4"
-                android:text="Content ...." />
+                android:text="Content ....Content ....Content ....Content ....Content ....Content ....Content ....Content ....Content ....Content ....Content ....Content ....Content ....Content ....Content ....Content ....Content ....Content ....Content ....Content ....Content ...." />
 
-            <LinearLayout
-                android:id="@+id/links"
+            <RelativeLayout
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="vertical" >
-            </LinearLayout>
+                android:layout_height="wrap_content" >
+
+                <LinearLayout
+                    android:id="@+id/links"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_toLeftOf="@+id/expand"
+                    android:orientation="vertical" >
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/expand"
+                    style="@style/textLink"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:gravity="right"
+                    android:text="@string/more"
+                    android:textSize="10sp" />
+            </RelativeLayout>
         </LinearLayout>
 
         <ImageView
