@@ -374,4 +374,5 @@
    <string name="loading_error">Memuat kesalahan</string>
    <string name="please_wait">Mohon tunggu</string>
    <string name="add_network_catalog">Tambahkan katalog jaringan</string>
+   <string name="do_you_want_to_delete_">Apakah kamu ingin menghapus?</string>
 </resources>

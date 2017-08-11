@@ -374,4 +374,5 @@
    <string name="loading_error">Eroare de încărcare</string>
    <string name="please_wait">Te rog asteapta</string>
    <string name="add_network_catalog">Adăugați catalogul de rețea</string>
+   <string name="do_you_want_to_delete_">Doriți să ștergeți?</string>
 </resources>

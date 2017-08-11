@@ -374,4 +374,5 @@
    <string name="loading_error">שגיאת טעינה</string>
    <string name="please_wait">המתן בבקשה</string>
    <string name="add_network_catalog">הוסף קטלוג רשת</string>
+   <string name="do_you_want_to_delete_">האם ברצונך למחוק?</string>
 </resources>

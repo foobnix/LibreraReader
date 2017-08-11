@@ -374,4 +374,5 @@
    <string name="loading_error">Yükleme hatası</string>
    <string name="please_wait">Lütfen bekle</string>
    <string name="add_network_catalog">Ağ kataloğu ekle</string>
+   <string name="do_you_want_to_delete_">Silmek istiyor musun</string>
 </resources>

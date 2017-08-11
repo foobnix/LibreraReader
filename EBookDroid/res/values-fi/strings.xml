@@ -374,4 +374,5 @@
    <string name="loading_error">Latausvirhe</string>
    <string name="please_wait">Odota</string>
    <string name="add_network_catalog">Lisää verkkoluettelo</string>
+   <string name="do_you_want_to_delete_">Haluatko poistaa?</string>
 </resources>

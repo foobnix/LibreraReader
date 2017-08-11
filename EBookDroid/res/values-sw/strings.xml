@@ -374,4 +374,5 @@
    <string name="loading_error">Inapakia kosa</string>
    <string name="please_wait">Tafadhali subiri</string>
    <string name="add_network_catalog">Ongeza orodha ya mtandao</string>
+   <string name="do_you_want_to_delete_">Unataka kufuta?</string>
 </resources>

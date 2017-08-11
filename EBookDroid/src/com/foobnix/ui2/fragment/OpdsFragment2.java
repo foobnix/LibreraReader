@@ -31,8 +31,6 @@ import com.foobnix.pdf.info.wrapper.AppState;
 import com.foobnix.ui2.adapter.EntryAdapter;
 import com.foobnix.ui2.fast.FastScrollRecyclerView;
 
-import android.app.DownloadManager;
-import android.content.Context;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.util.Pair;
@@ -47,6 +45,7 @@ import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
+import okhttp3.CacheControl;
 import okhttp3.Response;
 import okio.BufferedSink;
 import okio.BufferedSource;
@@ -65,7 +64,6 @@ public class OpdsFragment2 extends UIFragment<Entry> {
     Stack<String> stack = new Stack<String>();
 
     ImageView onPlus, onSearch;
-    DownloadManager dm;
     long enqueue;
 
     public OpdsFragment2() {
@@ -133,7 +131,7 @@ public class OpdsFragment2 extends UIFragment<Entry> {
 
     @Override
     public Pair<Integer, Integer> getNameAndIconRes() {
-        return new Pair<Integer, Integer>(R.string.catalogs, R.drawable.glyphicons_145_folder_open);
+        return new Pair<Integer, Integer>(R.string.network, R.drawable.glyphicons_2_global);
     }
 
     @Override
@@ -144,7 +142,6 @@ public class OpdsFragment2 extends UIFragment<Entry> {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_opds2, container, false);
 
-        dm = (DownloadManager) getActivity().getSystemService(Context.DOWNLOAD_SERVICE);
 
         recyclerView = (FastScrollRecyclerView) view.findViewById(R.id.recyclerView);
 
@@ -329,6 +326,7 @@ public class OpdsFragment2 extends UIFragment<Entry> {
                         protected Object doInBackground(Object... params) {
                             try {
                                 okhttp3.Request request = new okhttp3.Request.Builder()//
+                                        .cacheControl(new CacheControl.Builder().noCache().build())
                                         .url(link.href)//
                                         .build();//
 

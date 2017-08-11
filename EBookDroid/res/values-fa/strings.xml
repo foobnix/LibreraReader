@@ -374,4 +374,5 @@
    <string name="loading_error">خطا در حال بارگذاری</string>
    <string name="please_wait">لطفا صبر کنید</string>
    <string name="add_network_catalog">افزودن کاتالوگ شبکه</string>
+   <string name="do_you_want_to_delete_">میخواهید حذف کنید؟</string>
 </resources>

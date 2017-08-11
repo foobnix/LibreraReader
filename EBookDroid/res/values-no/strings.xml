@@ -374,4 +374,5 @@
    <string name="loading_error">Laster feil</string>
    <string name="please_wait">Vennligst vent</string>
    <string name="add_network_catalog">Legg til nettkatalog</string>
+   <string name="do_you_want_to_delete_">Vil du slette?</string>
 </resources>

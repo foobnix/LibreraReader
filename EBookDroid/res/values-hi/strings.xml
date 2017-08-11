@@ -374,4 +374,5 @@
    <string name="loading_error">लोडिंग त्रुटि</string>
    <string name="please_wait">कृपया प्रतीक्षा करें</string>
    <string name="add_network_catalog">नेटवर्क कैटलॉग जोड़ें</string>
+   <string name="do_you_want_to_delete_">क्या आप हटाना चाहते हैं?</string>
 </resources>

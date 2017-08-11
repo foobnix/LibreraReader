@@ -374,4 +374,5 @@
    <string name="loading_error">로딩 오류</string>
    <string name="please_wait">기다려주십시오.</string>
    <string name="add_network_catalog">네트워크 카탈로그 추가</string>
+   <string name="do_you_want_to_delete_">삭제 하시겠습니까?</string>
 </resources>

@@ -374,4 +374,5 @@
    <string name="loading_error">加载错误</string>
    <string name="please_wait">请稍候</string>
    <string name="add_network_catalog">添加网络目录</string>
+   <string name="do_you_want_to_delete_">要删除吗？</string>
 </resources>

@@ -374,4 +374,5 @@
    <string name="loading_error">Erro de carregamento</string>
    <string name="please_wait">Por favor, espere</string>
    <string name="add_network_catalog">Adicionar catálogo de rede</string>
+   <string name="do_you_want_to_delete_">Você quer deletar?</string>
 </resources>
