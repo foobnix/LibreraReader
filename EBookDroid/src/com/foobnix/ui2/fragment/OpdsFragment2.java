@@ -63,7 +63,8 @@ public class OpdsFragment2 extends UIFragment<Entry> {
     String title;
     Stack<String> stack = new Stack<String>();
 
-    ImageView onPlus, onSearch;
+    ImageView onPlus;
+    View onPlusView;
     long enqueue;
 
     public OpdsFragment2() {
@@ -143,7 +144,7 @@ public class OpdsFragment2 extends UIFragment<Entry> {
 
         titleView = (TextView) view.findViewById(R.id.titleView);
         onPlus = (ImageView) view.findViewById(R.id.onPlus);
-        onSearch = (ImageView) view.findViewById(R.id.onSearch);
+        onPlusView = view.findViewById(R.id.onPlusView);
         progressBar = (ProgressBar) view.findViewById(R.id.progressBar);
         progressBar.setVisibility(View.GONE);
 
@@ -161,14 +162,7 @@ public class OpdsFragment2 extends UIFragment<Entry> {
             }
         });
 
-        onSearch.setOnClickListener(new OnClickListener() {
 
-            @Override
-            public void onClick(View v) {
-
-            }
-        });
-        onSearch.setVisibility(View.GONE);
 
         searchAdapter = new EntryAdapter();
 
@@ -417,6 +411,11 @@ public class OpdsFragment2 extends UIFragment<Entry> {
 
     @Override
     public void populateDataInUI(List<Entry> entries) {
+        if (entries == null || entries.isEmpty()) {
+            Urls.open(getActivity(), url);
+            return;
+        }
+
         searchAdapter.clearItems();
         searchAdapter.getItemsList().addAll(entries);
         recyclerView.setAdapter(searchAdapter);
@@ -425,6 +424,7 @@ public class OpdsFragment2 extends UIFragment<Entry> {
             titleView.setText("" + title);
         }
         onPlus.setVisibility(url == "/" ? View.VISIBLE : View.GONE);
+        onPlusView.setVisibility(url == "/" ? View.VISIBLE : View.GONE);
     }
 
     public void onGridList() {

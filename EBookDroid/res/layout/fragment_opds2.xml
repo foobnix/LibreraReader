@@ -10,7 +10,9 @@
         android:id="@+id/pathContainer"
         android:layout_width="match_parent"
         android:layout_height="@dimen/wh_button"
-        android:layout_margin="4dp"
+        android:layout_marginTop="4dp"
+        android:layout_marginLeft="4dp"
+        android:layout_marginRight="4dp"
         android:background="@drawable/bg_search_second"
         android:gravity="center_vertical"
         android:orientation="horizontal"
@@ -42,6 +44,7 @@
             android:textColor="@color/white" />
 
         <ProgressBar
+            android:progressTint="@color/white"
             android:id="@+id/progressBar"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -61,6 +64,7 @@
             android:src="@drawable/glyphicons_21_home" />
         
         <View
+             android:id="@+id/onPlusView"
             android:layout_width="1dip"
             android:layout_height="match_parent"
             android:background="@color/tint_divider" />
@@ -73,84 +77,9 @@
             android:layout_weight="0"
             android:src="@drawable/glyphicons_433_plus" />
         
-        <View
-            android:layout_width="1dip"
-            android:layout_height="match_parent"
-            android:background="@color/tint_divider" />
-
-        <ImageView
-            android:id="@+id/onSearch"
-            style="@style/buttonWhite"
-            android:layout_width="@dimen/wh_button"
-            android:layout_height="@dimen/wh_button"
-            android:layout_weight="0"
-            android:src="@drawable/glyphicons_28_search" />
-
+       
     </LinearLayout>
 
-    <LinearLayout
-        android:id="@+id/filterLayout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="4dip"
-        android:layout_marginRight="4dip"
-        android:layout_marginTop="4dip"
-        android:gravity="center_vertical"
-        android:orientation="horizontal" >
-
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/wh_button"
-            android:layout_marginRight="4dip"
-            android:layout_weight="1"
-            android:focusableInTouchMode="true"
-            android:visibility="gone" >
-
-            <AutoCompleteTextView
-                android:id="@+id/filterLine"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_centerVertical="true"
-                android:layout_margin="0dip"
-                android:background="@drawable/bg_search_edit"
-                android:ellipsize="end"
-                android:hint="@string/search"
-                android:imeOptions="actionDone"
-                android:inputType="textEmailAddress"
-                android:paddingBottom="0dip"
-                android:paddingLeft="10dip"
-                android:paddingRight="50dip"
-                android:paddingTop="0dip"
-                android:singleLine="true"
-                android:textColor="@color/tint_gray"
-                android:textColorHint="@color/tint_gray"
-                android:textSize="14sp"
-                android:textStyle="bold" />
-
-            <TextView
-                android:id="@+id/countBooks"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentRight="true"
-                android:layout_centerVertical="true"
-                android:layout_marginRight="4dip"
-                android:gravity="center"
-                android:text="0"
-                android:textColor="@color/tint_gray"
-                android:textSize="14sp"
-                android:textStyle="bold" />
-
-            <ImageView
-                android:id="@+id/cleanFilter"
-                style="@style/buttonClear"
-                android:layout_width="@dimen/wh_button_small"
-                android:layout_height="@dimen/wh_button_small"
-                android:layout_centerVertical="true"
-                android:layout_toLeftOf="@+id/countBooks"
-                android:layout_weight="0"
-                android:src="@drawable/glyphicons_208_remove_2" />
-        </RelativeLayout>
-    </LinearLayout>
 
 
     <FrameLayout

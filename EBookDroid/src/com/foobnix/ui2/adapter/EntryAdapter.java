@@ -9,6 +9,7 @@ import com.foobnix.pdf.info.IMG;
 import com.foobnix.pdf.info.R;
 import com.foobnix.pdf.info.TintUtil;
 import com.foobnix.pdf.info.Urls;
+import com.foobnix.pdf.info.view.EditTextHelper;
 import com.foobnix.pdf.info.view.ScaledImageView;
 import com.foobnix.ui2.AppRecycleAdapter;
 import com.nostra13.universalimageloader.core.ImageLoader;
@@ -166,7 +167,7 @@ public class EntryAdapter extends AppRecycleAdapter<Entry, RecyclerView.ViewHold
                 search.setMinimumWidth(Dips.dpToPx(400));
                 search.setHint(R.string.search);
 
-                ImageView button = new ImageView(context);
+                final ImageView button = new ImageView(context);
                 button.setMinimumWidth(Dips.dpToPx(42));
                 button.setImageResource(R.drawable.glyphicons_28_search);
                 TintUtil.setTintImage(button);
@@ -180,6 +181,14 @@ public class EntryAdapter extends AppRecycleAdapter<Entry, RecyclerView.ViewHold
                     public void onClick(View v) {
                         Link l = new Link(link.href.replace("{searchTerms}", Urls.encode(search.getText().toString())));
                         onLinkClickListener.onResultRecive(l);
+                    }
+                });
+
+                EditTextHelper.enableKeyboardSearch(search, new Runnable() {
+
+                    @Override
+                    public void run() {
+                        button.performClick();
                     }
                 });
 

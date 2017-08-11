@@ -59,7 +59,7 @@ public class Link {
     }
 
     public boolean isThumbnail() {
-        return rel != null && (rel.equals(REL_THUMBNAIL1) || rel.equals(REL_THUMBNAIL2));
+        return rel != null && rel.contains("thumbnail");
     }
 
     public boolean isSearchLink() {

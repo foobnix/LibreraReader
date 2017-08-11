@@ -535,29 +535,14 @@ public class DragingDialogs {
                 final View onSearch = view.findViewById(R.id.onSearch);
                 TintUtil.setTintBg(onSearch);
 
-                searchEdit.setOnEditorActionListener(new OnEditorActionListener() {
+                EditTextHelper.enableKeyboardSearch(searchEdit, new Runnable() {
+
                     @Override
-                    public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
-                        boolean handled = false;
-                        if (actionId == EditorInfo.IME_ACTION_SEARCH) {
-                            onSearch.performClick();
-                            handled = true;
-                        }
-                        return handled;
+                    public void run() {
+                        onSearch.performClick();
                     }
                 });
 
-                searchEdit.setOnKeyListener(new OnKeyListener() {
-
-                    @Override
-                    public boolean onKey(View v, int keyCode, KeyEvent event) {
-                        if (keyCode == KeyEvent.KEYCODE_ENTER) {
-                            onSearch.performClick();
-                            return true;
-                        }
-                        return false;
-                    }
-                });
 
                 final String searchingString = anchor.getContext().getString(R.string.searching_please_wait_);
                 final int count = controller.getPageCount();
