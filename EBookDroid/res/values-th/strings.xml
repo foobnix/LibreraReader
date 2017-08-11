@@ -375,4 +375,5 @@
    <string name="please_wait">โปรดรอ</string>
    <string name="add_network_catalog">เพิ่มแคตาล็อกเครือข่าย</string>
    <string name="do_you_want_to_delete_">คุณต้องการลบหรือไม่?</string>
+   <string name="network">เครือข่าย</string>
 </resources>

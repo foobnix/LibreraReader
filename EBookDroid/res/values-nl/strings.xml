@@ -375,4 +375,5 @@
    <string name="please_wait">Even geduld aub</string>
    <string name="add_network_catalog">Voeg netwerkcatalogus toe</string>
    <string name="do_you_want_to_delete_">Wilt u verwijderen?</string>
+   <string name="network">Netwerk</string>
 </resources>

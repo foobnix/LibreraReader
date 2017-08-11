@@ -96,11 +96,8 @@ public class OpdsFragment2 extends UIFragment<Entry> {
             return res;
         }
 
-
-
         if (false) {
-            return Arrays.asList(
-                    new Entry("https://www.gitbook.com/api/opds/catalog.atom", "GitBook", "Public books are always free.", "https://www.gitbook.com/assets/images/logo/128.png"), //
+            return Arrays.asList(new Entry("https://www.gitbook.com/api/opds/catalog.atom", "GitBook", "Public books are always free.", "https://www.gitbook.com/assets/images/logo/128.png"), //
                     new Entry("http://m.gutenberg.org/ebooks.opds/", "Project Gutenberg", "Free ebooks since 1971", "http://m.gutenberg.org/pics/favicon.png"), //
                     new Entry("http://manybooks.net/opds/index.php", "Manybooks", "Online Catalog for Manybooks.net", "http://manybooks.net/sites/all/themes/manybooks/images/library-books-icon.png")//
             );
@@ -141,7 +138,6 @@ public class OpdsFragment2 extends UIFragment<Entry> {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_opds2, container, false);
-
 
         recyclerView = (FastScrollRecyclerView) view.findViewById(R.id.recyclerView);
 
@@ -290,6 +286,7 @@ public class OpdsFragment2 extends UIFragment<Entry> {
     }
 
     public void onClickLink(final Link link) {
+        LOG.d("onClickLink", link.type, link.href);
         if (link.filePath != null) {
             ExtUtils.openFile(getActivity(), new File(link.filePath));
         } else if (link.isDisabled()) {
@@ -326,8 +323,7 @@ public class OpdsFragment2 extends UIFragment<Entry> {
                         protected Object doInBackground(Object... params) {
                             try {
                                 okhttp3.Request request = new okhttp3.Request.Builder()//
-                                        .cacheControl(new CacheControl.Builder().noCache().build())
-                                        .url(link.href)//
+                                        .cacheControl(new CacheControl.Builder().noCache().build()).url(link.href)//
                                         .build();//
 
                                 Response response = OPDS.client//
@@ -399,8 +395,11 @@ public class OpdsFragment2 extends UIFragment<Entry> {
         updateLinks(feed.title, urlRoot, feed.links);
         for (Entry e : feed.entries) {
             updateLinks(e.getTitle(), urlRoot, e.links);
+            if (e.authorUrl != null) {
+                e.authorUrl = Hrefs.fixHref(e.authorUrl, urlRoot);
+            }
         }
-        title = feed.title;
+        title = TxtUtils.nullToEmpty(feed.title).trim();
         return feed.entries;
     }
 

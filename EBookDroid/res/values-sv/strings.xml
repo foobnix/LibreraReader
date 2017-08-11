@@ -375,4 +375,5 @@
    <string name="please_wait">Vänta</string>
    <string name="add_network_catalog">Lägg till nätverkskatalog</string>
    <string name="do_you_want_to_delete_">Vill du radera?</string>
+   <string name="network">Nätverk</string>
 </resources>

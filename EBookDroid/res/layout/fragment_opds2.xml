@@ -36,6 +36,8 @@
             android:layout_marginLeft="4dip"
             android:layout_weight="1"
             android:gravity="left"
+            android:ellipsize="end"
+            android:maxLines="2"
             android:text="@string/catalogs"
             android:textColor="@color/white" />
 

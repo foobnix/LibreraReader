@@ -375,4 +375,5 @@
    <string name="please_wait">Por favor espera</string>
    <string name="add_network_catalog">Agregar catálogo de la red</string>
    <string name="do_you_want_to_delete_">¿Quieres borrar?</string>
+   <string name="network">Red</string>
 </resources>

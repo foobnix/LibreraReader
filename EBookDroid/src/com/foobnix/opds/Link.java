@@ -62,10 +62,9 @@ public class Link {
         return rel != null && (rel.equals(REL_THUMBNAIL1) || rel.equals(REL_THUMBNAIL2));
     }
 
-    public boolean isSearchLink(){
+    public boolean isSearchLink() {
         return "search".equals(rel) && APPLICATION_ATOM_XML.equals(type);
     }
-
 
     public boolean isOpdsLink() {
         return type.startsWith(APPLICATION_ATOM_XML);
@@ -84,6 +83,9 @@ public class Link {
     }
 
     public String getDownloadDisplayFormat() {
+        if (type == null) {
+            return null;
+        }
         for (String item : map.keySet()) {
             if (item.equals(type)) {
                 return map.get(item);
@@ -106,6 +108,9 @@ public class Link {
         String ext = getDownloadDisplayFormat();
         if (ext != null) {
             return name + "." + ext;
+        }
+        if (type == null) {
+            return name;
         }
 
         return name + type.replace("application/", ".").replace("+", ".");

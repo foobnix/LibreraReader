@@ -12,7 +12,9 @@ public class Entry {
     public String title = "";
     public String content = "";
     public String author;
+    public String authorUrl;
     public String category = "";
+    public String summary = "";
 
     public List<Link> links = new ArrayList<Link>();
 

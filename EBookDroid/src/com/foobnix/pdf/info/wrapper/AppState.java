@@ -130,6 +130,7 @@ public class AppState {
 
     public final static String OPDS_DEFAULT = "" + //
             "http://flibusta.is/opds,Flibusta,Книжное братство,http://flibusta.is/favicon.ico;" + //
+            "http://opds.litres.ru,Litres.ru,Библиотека электронных книг,http://www.litres.ru/static/new/favicon.ico;" + //
             "https://www.gitbook.com/api/opds/catalog.atom,GitBook,Public books are always free.,https://www.gitbook.com/assets/images/logo/128.png;" + //
             "http://m.gutenberg.org/ebooks.opds/,Project Gutenberg,Free ebooks since 1971,http://m.gutenberg.org/pics/favicon.png;" + //
             "http://manybooks.net/opds/index.php,Manybooks,Online Catalog for Manybooks.net,http://manybooks.net/sites/all/themes/manybooks/images/library-books-icon.png;"; //

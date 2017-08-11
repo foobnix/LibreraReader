@@ -376,4 +376,6 @@
    <string name="add_network_catalog">Add network catalog</string>
    <string name="do_you_want_to_delete_">Do you want to delete?</string>
    <string name="network">Network</string>
+   <string name="name">Name</string>
+   <string name="description">Description</string>
 </resources>

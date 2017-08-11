@@ -97,6 +97,9 @@ public class OPDS {
                 }
 
                 if (isEntry) {
+                    if ("summary".equals(xpp.getName())) {
+                        entry.summary = xpp.nextText();
+                    }
                     if ("updated".equals(xpp.getName())) {
                         entry.updated = xpp.nextText();
                     }
@@ -105,6 +108,9 @@ public class OPDS {
                     }
                     if (isAuthor && "name".equals(xpp.getName())) {
                         entry.author = xpp.nextText();
+                    }
+                    if (isAuthor && "uri".equals(xpp.getName())) {
+                        entry.authorUrl = xpp.nextText();
                     }
                     if ("category".equals(xpp.getName())) {
                         entry.category += " " + xpp.getAttributeValue(null, "term");

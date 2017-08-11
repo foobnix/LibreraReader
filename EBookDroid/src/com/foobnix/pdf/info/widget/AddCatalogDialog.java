@@ -35,7 +35,7 @@ public class AddCatalogDialog {
 
         final EditText url = (EditText) dialog.findViewById(R.id.url);
 
-        url.setText("http://m.gutenberg.org/ebooks.opds/");
+        url.setText("http://");
 
         url.setSelection(url.getText().length());
 
@@ -99,6 +99,8 @@ public class AddCatalogDialog {
                     AppState.get().myOPDS += entry.appState;
                     onRefresh.run();
                     infoDialog.dismiss();
+                    AppState.get().save(a);
+
                 }
 
                 if (AsyncTasks.isRunning(asyncTask)) {
@@ -123,7 +125,7 @@ public class AddCatalogDialog {
                         try {
                             progressBar.setVisibility(View.GONE);
                             if (result == null || ((Feed) result).entries.isEmpty()) {
-                                Toast.makeText(a, "Invalid catalog " + feedUrl, Toast.LENGTH_LONG).show();
+                                Toast.makeText(a, a.getString(R.string.incorrect_value) + " " + feedUrl, Toast.LENGTH_LONG).show();
                                 infoDialog.getButton(AlertDialog.BUTTON_POSITIVE).setText(R.string.add);
                                 return;
                             }

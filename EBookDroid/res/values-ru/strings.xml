@@ -375,4 +375,5 @@
    <string name="please_wait">Пожалуйста, подождите</string>
    <string name="add_network_catalog">Добавить сетевой каталог</string>
    <string name="do_you_want_to_delete_">Вы хотите удалить?</string>
+   <string name="network">Сеть</string>
 </resources>

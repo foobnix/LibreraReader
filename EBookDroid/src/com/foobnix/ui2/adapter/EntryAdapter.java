@@ -75,12 +75,13 @@ public class EntryAdapter extends AppRecycleAdapter<Entry, RecyclerView.ViewHold
             holder.title.setVisibility(View.GONE);
         }
 
-        if (TxtUtils.isNotEmpty(entry.content)) {
+        String body = entry.content + entry.summary;
+        if (TxtUtils.isNotEmpty(body)) {
             holder.content.setVisibility(View.VISIBLE);
-            String text = TxtUtils.replaceLast(entry.content, "\n", "");
+            String text = TxtUtils.replaceLast(body, "\n", "");
             holder.content.setText(Html.fromHtml(text));
 
-            if (entry.content.length() >= 200) {
+            if (body.length() >= 200) {
                 holder.expand.setVisibility(View.VISIBLE);
                 holder.expand.setOnClickListener(new OnClickListener() {
                     @Override
@@ -114,6 +115,17 @@ public class EntryAdapter extends AppRecycleAdapter<Entry, RecyclerView.ViewHold
         if (TxtUtils.isNotEmpty(entry.author)) {
             holder.author.setText(entry.author);
             holder.author.setVisibility(View.VISIBLE);
+            if (TxtUtils.isNotEmpty(entry.authorUrl)) {
+                holder.author.setTextColor(ContextCompat.getColor(context, R.color.tint_blue));
+                holder.author.setOnClickListener(new OnClickListener() {
+
+                    @Override
+                    public void onClick(View v) {
+                        onLinkClickListener.onResultRecive(new Link(entry.authorUrl));
+                    }
+                });
+            } else {
+            }
         } else {
             holder.author.setVisibility(View.GONE);
         }
@@ -236,13 +248,6 @@ public class EntryAdapter extends AppRecycleAdapter<Entry, RecyclerView.ViewHold
             }
         }
 
-        holder.author.setOnClickListener(new OnClickListener() {
-
-            @Override
-            public void onClick(View v) {
-
-            }
-        });
 
         bindItemClickAndLongClickListeners(holder.parent, entry);
     }
