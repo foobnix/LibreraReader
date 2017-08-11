@@ -72,13 +72,13 @@
             </HorizontalScrollView>
 
             <TextView
+                android:layout_margin="2dip"
                 android:id="@+id/content"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="4dip"
                 android:ellipsize="end"
-                android:maxLines="4"
-                android:text="Content ....Content ....Content ....Content ....Content ....Content ....Content ....Content ....Content ....Content ....Content ....Content ....Content ....Content ....Content ....Content ....Content ....Content ....Content ....Content ....Content ...." />
+                android:maxLines="5"
+                android:text="Content ...." />
 
             <RelativeLayout
                 android:layout_width="wrap_content"

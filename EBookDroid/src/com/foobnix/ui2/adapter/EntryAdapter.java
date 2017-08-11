@@ -18,6 +18,7 @@ import android.graphics.drawable.Drawable;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager.LayoutParams;
+import android.text.Html;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -77,7 +78,7 @@ public class EntryAdapter extends AppRecycleAdapter<Entry, RecyclerView.ViewHold
         if (TxtUtils.isNotEmpty(entry.content)) {
             holder.content.setVisibility(View.VISIBLE);
             String text = TxtUtils.replaceLast(entry.content, "\n", "");
-            holder.content.setText("(" + text + ")");
+            holder.content.setText(Html.fromHtml(text));
 
             if (entry.content.length() >= 200) {
                 holder.expand.setVisibility(View.VISIBLE);

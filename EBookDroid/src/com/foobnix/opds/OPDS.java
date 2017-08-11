@@ -120,8 +120,8 @@ public class OPDS {
                 if (isContent) {
                     String text = xpp.getText();
                     if (TxtUtils.isNotEmpty(text) && !text.equals("\n") && !text.equals("\r")) {
-                        text = text.replace(":\n", ":");
-                        entry.content += text + "\n";
+                        text = text.replace(":\n", ":").trim();
+                        entry.content += text + "<br/>";
                     }
                 }
                 if (isTitle) {
