@@ -254,7 +254,7 @@ public class FileInformationDialog {
 
             }
         });
-        ImageLoader.getInstance().displayImage(path + "?big=true", imageView, IMG.ExportOptions);
+        ImageLoader.getInstance().displayImage(path, imageView, IMG.displayImageOptions);
 
         RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
         builder.addContentView(imageView, params);
