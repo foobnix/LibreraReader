@@ -13,6 +13,7 @@ import com.foobnix.pdf.info.TintUtil;
 import com.foobnix.pdf.info.Urls;
 import com.foobnix.pdf.info.view.EditTextHelper;
 import com.foobnix.pdf.info.view.ScaledImageView;
+import com.foobnix.pdf.info.widget.FileInformationDialog;
 import com.foobnix.ui2.AppRecycleAdapter;
 import com.nostra13.universalimageloader.core.ImageLoader;
 
@@ -214,6 +215,15 @@ public class EntryAdapter extends AppRecycleAdapter<Entry, RecyclerView.ViewHold
                     ImageLoader.getInstance().displayImage(link.href, img, IMG.displayImageOptions);
                     holder.links.addView(img, new LinearLayout.LayoutParams(Dips.screenWidth() / 2, LayoutParams.WRAP_CONTENT));
                     imgLink = link.href;
+
+                    img.setOnClickListener(new OnClickListener() {
+
+                        @Override
+                        public void onClick(View v) {
+                            FileInformationDialog.showImage1(context, link.href);
+
+                        }
+                    });
                 }
 
             } else if (link.type.equals(Link.APPLICATION_ATOM_XML) || (link.type.contains(";profile") && link.title == null)) {

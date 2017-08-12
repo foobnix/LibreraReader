@@ -157,6 +157,7 @@ public class IMG {
             // .displayer(new FadeInBitmapDisplayer(200))//
             .build();//
 
+
     public static DisplayImageOptions displayImageOptionsNoDiscCache = new DisplayImageOptions.Builder() //
             .showImageOnFail(COLOR_DRAWABLE)//
             .showImageForEmptyUri(COLOR_DRAWABLE)//
@@ -176,7 +177,6 @@ public class IMG {
             .cacheInMemory(MemoryUtils.IS_BIG_MEMORY_SIZE)//
             .cacheOnDisk(false)//
             .considerExifParams(false)//
-            .imageScaleType(ImageScaleType.EXACTLY)//
             .imageScaleType(ImageScaleType.NONE)//
             .resetViewBeforeLoading(RESET_VIEW_BEFORE_LOADING)//
             .bitmapConfig(BMP_CFG)//
@@ -188,7 +188,6 @@ public class IMG {
             .showImageOnFail(COLOR_DRAWABLE)//
             .cacheInMemory(false)//
             .considerExifParams(false)//
-            .imageScaleType(ImageScaleType.EXACTLY)//
             .cacheOnDisk(false)//
             .imageScaleType(ImageScaleType.NONE)//
             .resetViewBeforeLoading(RESET_VIEW_BEFORE_LOADING)//

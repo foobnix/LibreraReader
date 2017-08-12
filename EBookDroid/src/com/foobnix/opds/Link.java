@@ -33,6 +33,7 @@ public class Link {
         map.put("text/download", "txt");
         map.put("application/rtf", "rtf");
         map.put("application/msword", "doc");
+        map.put("application/docx", "docx");
         map.put("application/pdf", "pdf");
         map.put("application/pdb", "pdb");
         map.put("application/djvu", "djvu");

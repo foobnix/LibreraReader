@@ -123,9 +123,9 @@ public class OPDS {
                         String label = xpp.getAttributeValue(null, "label");
                         String term = xpp.getAttributeValue(null, "term");
                         if (TxtUtils.isNotEmpty(label)) {
-                            entry.category += " " + label;
+                            entry.category += ", " + label;
                         } else if (TxtUtils.isNotEmpty(term)) {
-                            entry.category += " " + term;
+                            entry.category += ", " + term;
                         }
                     }
 
@@ -150,6 +150,7 @@ public class OPDS {
             if (eventType == XmlPullParser.END_TAG) {
                 if ("entry".equals(xpp.getName())) {
                     isEntry = false;
+                    entry.category = TxtUtils.replaceFirst(entry.category, ", ", "");
                     feed.entries.add(entry);
                 }
                 if ("author".equals(xpp.getName())) {

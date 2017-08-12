@@ -53,10 +53,11 @@
                 android:id="@+id/category"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="right"
-                android:singleLine="true"
+                android:layout_marginLeft="4dip"
+                android:maxLines="2"
                 android:text="category"
-                android:textColor="@color/tint_gray" />
+                android:textColor="@color/tint_gray"
+                android:textSize="@dimen/text_subtitle" />
 
             <HorizontalScrollView
                 android:layout_width="wrap_content"
@@ -72,10 +73,10 @@
             </HorizontalScrollView>
 
             <TextView
-                android:layout_margin="2dip"
                 android:id="@+id/content"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_margin="2dip"
                 android:ellipsize="end"
                 android:maxLines="5"
                 android:text="Content ...." />
