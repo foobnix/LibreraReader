@@ -5,6 +5,8 @@ import java.util.Map;
 
 import org.xmlpull.v1.XmlPullParser;
 
+import com.foobnix.android.utils.TxtUtils;
+
 public class Link {
 
     public static final String APPLICATION_ATOM_XML = "application/atom+xml";
@@ -28,10 +30,15 @@ public class Link {
     static Map<String, String> map = new HashMap<String, String>();
     {
         map.put("text/html", "web");
+        map.put("text/download", "txt");
+        map.put("application/rtf", "rtf");
+        map.put("application/msword", "doc");
         map.put("application/pdf", "pdf");
+        map.put("application/pdb", "pdb");
         map.put("application/djvu", "djvu");
         map.put("application/epub+zip", "epub");
         map.put("application/fb-ebook", "fb2");
+        map.put("application/x-sony-bbeb", "lrf");
         map.put("application/x-mobipocket-ebook", "mobi");
     }
 
@@ -104,7 +111,7 @@ public class Link {
         if (parentTitle == null) {
             return "";
         }
-        String name = parentTitle.replace("/", "");
+        String name = TxtUtils.sanitizeFilename(parentTitle);
         String ext = getDownloadDisplayFormat();
         if (ext != null) {
             return name + "." + ext;

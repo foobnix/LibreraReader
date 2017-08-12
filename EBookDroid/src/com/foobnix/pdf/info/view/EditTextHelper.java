@@ -15,12 +15,11 @@ public class EditTextHelper {
         searchEdit.setOnEditorActionListener(new OnEditorActionListener() {
             @Override
             public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
-                boolean handled = false;
                 if (actionId == EditorInfo.IME_ACTION_SEARCH) {
-                    handled = true;
                     action.run();
+                    return true;
                 }
-                return handled;
+                return false;
             }
         });
 

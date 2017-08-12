@@ -113,7 +113,13 @@ public class OPDS {
                         entry.authorUrl = xpp.nextText();
                     }
                     if ("category".equals(xpp.getName())) {
-                        entry.category += " " + xpp.getAttributeValue(null, "term");
+                        String label = xpp.getAttributeValue(null, "label");
+                        String term = xpp.getAttributeValue(null, "term");
+                        if (TxtUtils.isNotEmpty(label)) {
+                            entry.category += " " + label;
+                        } else if (TxtUtils.isNotEmpty(term)) {
+                            entry.category += " " + term;
+                        }
                     }
 
                     if ("link".equals(xpp.getName())) {

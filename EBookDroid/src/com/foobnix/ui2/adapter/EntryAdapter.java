@@ -1,5 +1,7 @@
 package com.foobnix.ui2.adapter;
 
+import java.util.Locale;
+
 import com.foobnix.android.utils.Dips;
 import com.foobnix.android.utils.ResultResponse;
 import com.foobnix.android.utils.TxtUtils;
@@ -179,7 +181,9 @@ public class EntryAdapter extends AppRecycleAdapter<Entry, RecyclerView.ViewHold
 
                     @Override
                     public void onClick(View v) {
-                        Link l = new Link(link.href.replace("{searchTerms}", Urls.encode(search.getText().toString())));
+                        String encode = Urls.encode(search.getText().toString());
+                        String replace = link.href.toLowerCase(Locale.US).replace("{searchterms}", encode);
+                        Link l = new Link(replace);
                         onLinkClickListener.onResultRecive(l);
                     }
                 });
@@ -209,6 +213,8 @@ public class EntryAdapter extends AppRecycleAdapter<Entry, RecyclerView.ViewHold
                 }
 
             } else if (link.type.equals(Link.APPLICATION_ATOM_XML) || (link.type.contains(";profile") && link.title == null)) {
+                continue;
+            } else if (link.isWebLink() && TxtUtils.isEmpty(link.title)) {
                 continue;
             } else if (link.isDisabled()) {
                 continue;
@@ -256,7 +262,6 @@ public class EntryAdapter extends AppRecycleAdapter<Entry, RecyclerView.ViewHold
 
             }
         }
-
 
         bindItemClickAndLongClickListeners(holder.parent, entry);
     }

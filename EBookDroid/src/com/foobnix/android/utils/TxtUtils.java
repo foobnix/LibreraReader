@@ -20,6 +20,10 @@ import android.widget.TextView;
 
 public class TxtUtils {
 
+    public static String sanitizeFilename(String name) {
+        return name.replaceAll("[:\\\\/*?|<>]", "_");
+    }
+
     public static String fixAppState(TextView text) {
         return text.getText().toString().trim().replace(",", "");
     }

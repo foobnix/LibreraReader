@@ -259,13 +259,15 @@ public class OpdsFragment2 extends UIFragment<Entry> {
     public boolean onBackAction() {
         String last = popStack();
 
+        boolean res = !getHome().equals(last);
+
         if (last.equals(url)) {
             last = popStack();// two times
         }
         url = last;
 
         populate();
-        return !getHome().equals(url);
+        return res;
     }
 
     public String popStack() {
@@ -393,7 +395,7 @@ public class OpdsFragment2 extends UIFragment<Entry> {
                 e.authorUrl = Hrefs.fixHref(e.authorUrl, urlRoot);
             }
         }
-        title = TxtUtils.nullToEmpty(feed.title).trim();
+        title = TxtUtils.nullToEmpty(feed.title).replace("\n", "").replace("\r", "").trim();
         return feed.entries;
     }
 
