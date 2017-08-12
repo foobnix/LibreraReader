@@ -691,7 +691,6 @@ public class DragingDialogs {
         }.show("footNotes", true);
     }
 
-    @TargetApi(Build.VERSION_CODES.HONEYCOMB)
     public static DragingPopup selectTextMenu(final FrameLayout anchor, final DocumentController controller, final boolean withAnnotation) {
 
         return new DragingPopup(R.string.text, anchor, 200, 400) {
@@ -948,7 +947,7 @@ public class DragingDialogs {
                 dictLayout.removeAllViews();
 
                 final Intent intentProccessText = new Intent();
-                intentProccessText.setAction(Intent.ACTION_PROCESS_TEXT);
+                intentProccessText.setAction("android.intent.action.PROCESS_TEXT");
                 intentProccessText.setType("text/plain");
 
                 final Intent intentSearch = new Intent();

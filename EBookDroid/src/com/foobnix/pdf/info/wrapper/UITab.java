@@ -16,10 +16,10 @@ import com.foobnix.ui2.fragment.UIFragment;
 public enum UITab {
 
     SearchFragment2(0, R.string.library, R.drawable.glyphicons_2_book_open, SearchFragment2.class, true), //
-    BrowseFragment2(1, R.string.folders, R.drawable.glyphicons_145_folder_open, BrowseFragment2.class, true), //
-    RecentFragment2(2, R.string.recent, R.drawable.glyphicons_72_book, RecentFragment2.class, true), //
-    BookmarksFragment2(3, R.string.bookmarks, R.drawable.glyphicons_73_bookmark, BookmarksFragment2.class, true), //
-    OpdsFragment2(4, R.string.network, R.drawable.glyphicons_2_global, OpdsFragment2.class, true), //
+    OpdsFragment2(1, R.string.network, R.drawable.glyphicons_2_global, OpdsFragment2.class, true), //
+    BrowseFragment2(2, R.string.folders, R.drawable.glyphicons_145_folder_open, BrowseFragment2.class, true), //
+    RecentFragment2(3, R.string.recent, R.drawable.glyphicons_72_book, RecentFragment2.class, true), //
+    BookmarksFragment2(4, R.string.bookmarks, R.drawable.glyphicons_73_bookmark, BookmarksFragment2.class, true), //
     PrefFragment2(5, R.string.preferences, R.drawable.glyphicons_281_settings, PrefFragment2.class, true); //
 
     private int index;

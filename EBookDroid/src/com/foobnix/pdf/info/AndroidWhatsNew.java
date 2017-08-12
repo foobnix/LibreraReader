@@ -121,6 +121,8 @@ public class AndroidWhatsNew {
     public static boolean isEqualsFirstSecondDigit(String first, String second) {
         try {
             LOG.d("Compare first second", first, second);
+            first = first.replace("beta:", "");
+            first = second.replace("beta:", "");
             String[] splitFist = first.split(Pattern.quote("."));
             String[] splitSecond = second.split(Pattern.quote("."));
 

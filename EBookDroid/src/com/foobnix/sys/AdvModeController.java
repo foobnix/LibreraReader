@@ -430,7 +430,7 @@ public class AdvModeController extends DocumentController {
     }
 
     public int getScrollValue() {
-        int value = ctr.getDocumentController().getView().getHeight() - Dips.dpToPx(5);
+        int value = ctr.getDocumentController().getView().getHeight() - Dips.dpToPx(4);
 
         View titleBar = activity.findViewById(R.id.titleBar);
         if (titleBar.getVisibility() == View.VISIBLE) {
