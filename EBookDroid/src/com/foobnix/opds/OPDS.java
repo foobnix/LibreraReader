@@ -13,6 +13,7 @@ import com.foobnix.android.utils.TxtUtils;
 import com.foobnix.ext.CacheZipUtils;
 
 import okhttp3.Cache;
+import okhttp3.CacheControl;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
@@ -27,6 +28,9 @@ public class OPDS {
 
     public static String getHttpUrl(String url) throws IOException {
         Request request = new Request.Builder()//
+                .cacheControl(new CacheControl.Builder()//
+                        .maxAge(1, TimeUnit.DAYS)//
+                        .build())//
                 .url(url)//
                 .build();//
 
@@ -99,6 +103,9 @@ public class OPDS {
                 if (isEntry) {
                     if ("summary".equals(xpp.getName())) {
                         entry.summary = xpp.nextText();
+                    }
+                    if ("dc:issued".equals(xpp.getName())) {
+                        entry.year = xpp.nextText();
                     }
                     if ("updated".equals(xpp.getName())) {
                         entry.updated = xpp.nextText();

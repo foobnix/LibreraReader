@@ -442,6 +442,10 @@ public class OpdsFragment2 extends UIFragment<Entry> {
 
     @Override
     public boolean isBackPressed() {
+        if (isInProgress()) {
+            Toast.makeText(getContext(), R.string.please_wait, Toast.LENGTH_SHORT).show();
+            return true;
+        }
         return onBackAction();
     }
 

@@ -15,6 +15,7 @@ public class Entry {
     public String authorUrl;
     public String category = "";
     public String summary = "";
+    public String year;
 
     public List<Link> links = new ArrayList<Link>();
 

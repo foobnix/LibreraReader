@@ -78,7 +78,7 @@ public class Link {
     }
 
     public boolean isDisabled() {
-        return type.startsWith(DISABLED);
+        return type.startsWith(DISABLED) || type.equals("image/");
     }
 
     public boolean isImageLink() {

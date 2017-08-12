@@ -72,7 +72,11 @@ public class EntryAdapter extends AppRecycleAdapter<Entry, RecyclerView.ViewHold
         final Context context = holder.parent.getContext();
 
         if (TxtUtils.isNotEmpty(entry.title)) {
-            holder.title.setText("" + entry.title.trim());
+            String trim = entry.title.trim();
+            if (TxtUtils.isNotEmpty(entry.year)) {
+                trim += " (" + entry.year + ")";
+            }
+            holder.title.setText("" + trim);
             holder.title.setVisibility(View.VISIBLE);
         } else {
             holder.title.setVisibility(View.GONE);

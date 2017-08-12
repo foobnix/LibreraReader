@@ -21,6 +21,8 @@ import android.widget.TextView;
 
 public class AndroidWhatsNew {
 
+    private static final String BETA = "beta-";
+
     public static void show(final Context c) {
         String versionName = Apps.getVersionName(c);
         View inflate = LayoutInflater.from(c).inflate(R.layout.whatsnew, null, false);
@@ -121,8 +123,8 @@ public class AndroidWhatsNew {
     public static boolean isEqualsFirstSecondDigit(String first, String second) {
         try {
             LOG.d("Compare first second", first, second);
-            first = first.replace("beta:", "");
-            first = second.replace("beta:", "");
+            first = first.replace(BETA, "");
+            second = second.replace(BETA, "");
             String[] splitFist = first.split(Pattern.quote("."));
             String[] splitSecond = second.split(Pattern.quote("."));
 
