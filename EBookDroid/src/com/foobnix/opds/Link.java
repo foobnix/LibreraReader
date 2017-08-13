@@ -33,6 +33,7 @@ public class Link {
         map.put("text/download", "txt");
         map.put("application/rtf", "rtf");
         map.put("application/msword", "doc");
+        map.put("application/doc", "doc");
         map.put("application/docx", "docx");
         map.put("application/pdf", "pdf");
         map.put("application/pdb", "pdb");
@@ -100,7 +101,7 @@ public class Link {
             }
         }
 
-        if (type.contains("+zip")) {
+        if (type.contains("+zip") || type.contains("+rar")) {
             return type.replace("application/", "").replace("+", ".");
         }
 

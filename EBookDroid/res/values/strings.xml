@@ -378,4 +378,7 @@
    <string name="network">Network</string>
    <string name="name">Name</string>
    <string name="description">Description</string>
+   <string name="authentication_required">Authentication Required</string>
+   <string name="user_name">User Name</string>
+   <string name="password">Password</string>
 </resources>

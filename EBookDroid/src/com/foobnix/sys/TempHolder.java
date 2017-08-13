@@ -16,6 +16,8 @@ public class TempHolder {
     public boolean isTextFormat;
     public boolean isTextForamtButNotTxt;
 
+    public String login = "", password = "";
+
 
     public int linkPage = -1;
 

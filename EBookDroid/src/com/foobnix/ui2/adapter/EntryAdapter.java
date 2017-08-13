@@ -1,7 +1,5 @@
 package com.foobnix.ui2.adapter;
 
-import java.util.Locale;
-
 import com.foobnix.android.utils.Dips;
 import com.foobnix.android.utils.ResultResponse;
 import com.foobnix.android.utils.TxtUtils;
@@ -32,6 +30,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class EntryAdapter extends AppRecycleAdapter<Entry, RecyclerView.ViewHolder> {
 
@@ -186,10 +185,14 @@ public class EntryAdapter extends AppRecycleAdapter<Entry, RecyclerView.ViewHold
 
                     @Override
                     public void onClick(View v) {
-                        String encode = Urls.encode(search.getText().toString());
-                        String replace = link.href.toLowerCase(Locale.US).replace("{searchterms}", encode);
-                        Link l = new Link(replace);
-                        onLinkClickListener.onResultRecive(l);
+                        if (TxtUtils.isNotEmpty(search.toString())) {
+                            String encode = Urls.encode(search.getText().toString());
+                            String replace = link.href.replace("{searchterms}", encode).replace("{searchTerms}", encode);
+                            Link l = new Link(replace);
+                            onLinkClickListener.onResultRecive(l);
+                        } else {
+                            Toast.makeText(context, R.string.incorrect_value, Toast.LENGTH_SHORT).show();
+                        }
                     }
                 });
 

@@ -15,6 +15,8 @@ public class Feed {
 
     public List<Entry> entries = new ArrayList<Entry>();
 
+    public boolean isNeedLoginPassword;
+
     public Feed(List<Entry> entries) {
         this.entries = entries;
     }

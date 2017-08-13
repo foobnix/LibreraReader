@@ -162,8 +162,6 @@ public class OpdsFragment2 extends UIFragment<Entry> {
             }
         });
 
-
-
         searchAdapter = new EntryAdapter();
 
         onGridList();
@@ -375,6 +373,8 @@ public class OpdsFragment2 extends UIFragment<Entry> {
         searchAdapter.notifyDataSetChanged();
     }
 
+    boolean isNeedLoginPassword = false;
+
     @Override
     public List<Entry> prepareDataInBackground() {
         if ("/".equals(url)) {
@@ -383,6 +383,9 @@ public class OpdsFragment2 extends UIFragment<Entry> {
         }
 
         Feed feed = OPDS.getFeed(url);
+        if (isNeedLoginPassword = feed.isNeedLoginPassword) {
+            return Collections.emptyList();
+        }
 
         LOG.d("Load: >>>", feed.title, url);
 
@@ -413,6 +416,17 @@ public class OpdsFragment2 extends UIFragment<Entry> {
 
     @Override
     public void populateDataInUI(List<Entry> entries) {
+        if (isNeedLoginPassword) {
+            AddCatalogDialog.showDialogLogin(getActivity(), new Runnable() {
+
+                @Override
+                public void run() {
+                    populate();
+                }
+            });
+            return;
+        }
+
         if (entries == null || entries.isEmpty()) {
             Urls.open(getActivity(), url);
             return;

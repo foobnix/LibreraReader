@@ -11,25 +11,29 @@ import org.xmlpull.v1.XmlPullParserFactory;
 import com.foobnix.android.utils.LOG;
 import com.foobnix.android.utils.TxtUtils;
 import com.foobnix.ext.CacheZipUtils;
+import com.foobnix.sys.TempHolder;
 
 import okhttp3.Cache;
 import okhttp3.CacheControl;
+import okhttp3.Credentials;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
 
 public class OPDS {
-    static Cache cache = new Cache(CacheZipUtils.CACHE_WEB, 10 * 1024 * 1024);
+    public static final String CODE_401 = "401";
+    static Cache cache = new Cache(CacheZipUtils.CACHE_WEB, 5 * 1024 * 1024);
     public static OkHttpClient client = new OkHttpClient.Builder()//
             .connectTimeout(15, TimeUnit.SECONDS)//
             .writeTimeout(15, TimeUnit.SECONDS)//
             .readTimeout(30, TimeUnit.SECONDS)//
             .cache(cache).build();//
 
-    public static String getHttpUrl(String url) throws IOException {
+    public static String getHttpResponse(String url) throws IOException {
+
         Request request = new Request.Builder()//
                 .cacheControl(new CacheControl.Builder()//
-                        .maxAge(1, TimeUnit.DAYS)//
+                        .maxAge(10, TimeUnit.MINUTES)//
                         .build())//
                 .url(url)//
                 .build();//
@@ -37,13 +41,41 @@ public class OPDS {
         Response response = client//
                 .newCall(request)//
                 .execute();
+
+        LOG.d("Header: >>", url);
+        LOG.d("Header: Status code:", response.code());
+
+        for (int i = 0; i < response.headers().size(); i++) {
+            String name = response.headers().name(i);
+            String value = response.headers().value(i);
+            LOG.d("Header: ", name, value);
+        }
+
+        if (response.code() == 401 && TxtUtils.isEmpty(TempHolder.get().login)) {
+            return CODE_401;
+        } else {
+            LOG.d("Header:", "try to login");
+            String credential = Credentials.basic(TempHolder.get().login, TempHolder.get().password);
+            request = response.request().newBuilder().header("Authorization", credential).build();
+            response = client.newCall(request).execute();
+            if (response.code() == 401) {
+                return CODE_401;
+            }
+        }
+
         String string = response.body().string();
         return string;
     }
 
     public static Feed getFeed(String url) {
         try {
-            return getFeedByXml(getHttpUrl(url));
+            String res = getHttpResponse(url);
+            if (res.equals(CODE_401)) {
+                Feed feed = new Feed();
+                feed.isNeedLoginPassword = true;
+                return feed;
+            }
+            return getFeedByXml(res);
         } catch (Exception e) {
             LOG.e(e);
         }

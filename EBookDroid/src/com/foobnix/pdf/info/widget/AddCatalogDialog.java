@@ -10,6 +10,7 @@ import com.foobnix.opds.OPDS;
 import com.foobnix.pdf.info.IMG;
 import com.foobnix.pdf.info.R;
 import com.foobnix.pdf.info.wrapper.AppState;
+import com.foobnix.sys.TempHolder;
 import com.nostra13.universalimageloader.core.ImageLoader;
 
 import android.app.Activity;
@@ -20,12 +21,64 @@ import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
 public class AddCatalogDialog {
+
+    public static void showDialogLogin(final Activity a, final Runnable onRefresh) {
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(a);
+
+        builder.setTitle(R.string.authentication_required);
+        View dialog = LayoutInflater.from(a).inflate(R.layout.dialog_add_catalog_login, null, false);
+
+        final EditText login = (EditText) dialog.findViewById(R.id.login);
+        final EditText password = (EditText) dialog.findViewById(R.id.password);
+
+        login.setText(TempHolder.get().login);
+        password.setText(TempHolder.get().password);
+
+        builder.setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int id) {
+
+            }
+        });
+
+        builder.setNegativeButton(R.string.close, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int id) {
+
+            }
+        });
+
+        builder.setView(dialog);
+        final AlertDialog infoDialog = builder.create();
+        infoDialog.show();
+        infoDialog.getButton(AlertDialog.BUTTON_POSITIVE).setOnClickListener(new OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                String l = login.getText().toString().trim();
+                String p = password.getText().toString().trim();
+                if (TxtUtils.isEmpty(l) || TxtUtils.isEmpty(p)) {
+                    Toast.makeText(a, R.string.incorrect_value, Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
+                TempHolder.get().login = l;
+                TempHolder.get().password = p;
+                infoDialog.dismiss();
+                onRefresh.run();
+            }
+
+        });
+
+    }
 
     public static void showDialog(final Activity a, final Runnable onRefresh) {
 
