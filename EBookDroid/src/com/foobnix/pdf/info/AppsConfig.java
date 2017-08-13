@@ -1,7 +1,6 @@
 package com.foobnix.pdf.info;
 
 import com.foobnix.android.utils.Apps;
-import com.foobnix.android.utils.LOG;
 
 import android.content.Context;
 import android.content.pm.PackageManager;
@@ -29,6 +28,7 @@ public class AppsConfig {
 
     public static String APP_NAME;
     public static String APP_PACKAGE;
+    public static boolean IS_BETA;
 
     public static void init(final Context a) {
         final String packageName = a.getPackageName();
@@ -45,10 +45,6 @@ public class AppsConfig {
             return;
         }
 
-        if (LOG.isEnable && Apps.getVersionName(a).contains("beta")) {
-            ADMOB_CLASSIC = null;
-            return;
-        }
 
         if (PDF_READER_LIRBI.equals(packageName)) {
             ANALYTICS_ID = "UA-36581296-2";
@@ -75,6 +71,13 @@ public class AppsConfig {
             ADMOB_FULLSCREEN/*  */ = "ca-app-pub-8347903083053959/7763820878";
             ADMOB_NATIVE_BIG/*  */ = "ca-app-pub-8347903083053959/8961352478";
             ADMOB_NATIVE_SMALL/**/ = "ca-app-pub-8347903083053959/8572902871";
+        }
+
+        IS_BETA = Apps.getVersionName(a).contains("beta");
+        if (IS_BETA) {
+            ANALYTICS_ID = "UA-36581296-9";
+            ADMOB_CLASSIC = ADMOB_FULLSCREEN = ADMOB_NATIVE_BIG = ADMOB_NATIVE_SMALL = null;
+            return;
         }
 
     }

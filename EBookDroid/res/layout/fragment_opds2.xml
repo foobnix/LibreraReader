@@ -10,9 +10,9 @@
         android:id="@+id/pathContainer"
         android:layout_width="match_parent"
         android:layout_height="@dimen/wh_button"
-        android:layout_marginTop="4dp"
         android:layout_marginLeft="4dp"
         android:layout_marginRight="4dp"
+        android:layout_marginTop="4dp"
         android:background="@drawable/bg_search_second"
         android:gravity="center_vertical"
         android:orientation="horizontal"
@@ -37,18 +37,18 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="4dip"
             android:layout_weight="1"
-            android:gravity="left"
             android:ellipsize="end"
+            android:gravity="left"
             android:maxLines="2"
             android:text="@string/catalogs"
             android:textColor="@color/white" />
 
         <ProgressBar
-            android:progressTint="@color/white"
             android:id="@+id/progressBar"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="0" />
+            android:layout_weight="0"
+            android:progressTint="@color/white" />
 
         <View
             android:layout_width="1dip"
@@ -62,9 +62,9 @@
             android:layout_height="@dimen/wh_button"
             android:layout_weight="0"
             android:src="@drawable/glyphicons_21_home" />
-        
+
         <View
-             android:id="@+id/onPlusView"
+            android:id="@+id/onPlusView"
             android:layout_width="1dip"
             android:layout_height="match_parent"
             android:background="@color/tint_divider" />
@@ -76,11 +76,7 @@
             android:layout_height="@dimen/wh_button"
             android:layout_weight="0"
             android:src="@drawable/glyphicons_433_plus" />
-        
-       
     </LinearLayout>
-
-
 
     <FrameLayout
         android:layout_width="match_parent"
@@ -95,5 +91,22 @@
         </com.foobnix.ui2.fast.FastScrollRecyclerView>
     </FrameLayout>
 
+    <TextView
+        android:id="@+id/defaults"
+        style="@style/textLink"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="2dip"
+        android:text="@string/restore_defaults"
+        android:textSize="12sp" />
+
+    <TextView
+        android:id="@+id/faq"
+        style="@style/textLink"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="2dip"
+        android:text="@string/what_is_the_opds_online_catalog_"
+        android:textSize="12sp" />
 
 </LinearLayout>

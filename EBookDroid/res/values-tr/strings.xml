@@ -376,4 +376,10 @@
    <string name="add_network_catalog">Ağ kataloğu ekle</string>
    <string name="do_you_want_to_delete_">Silmek istiyor musun</string>
    <string name="network">Ağ</string>
+   <string name="name">Isim</string>
+   <string name="description">Açıklama</string>
+   <string name="authentication_required">Doğrulama Gerekli</string>
+   <string name="user_name">Kullanıcı adı</string>
+   <string name="password">Parola</string>
+   <string name="what_is_the_opds_online_catalog_">OPDS çevrimiçi kataloğu nedir?</string>
 </resources>

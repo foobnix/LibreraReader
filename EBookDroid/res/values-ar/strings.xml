@@ -376,4 +376,10 @@
    <string name="add_network_catalog">إضافة كتالوج الشبكة</string>
    <string name="do_you_want_to_delete_">هل تريد أن تحذف؟</string>
    <string name="network">شبكة الاتصال</string>
+   <string name="name">اسم</string>
+   <string name="description">وصف</string>
+   <string name="authentication_required">يستلزم التوثيق</string>
+   <string name="user_name">اسم المستخدم</string>
+   <string name="password">كلمه السر</string>
+   <string name="what_is_the_opds_online_catalog_">ما هو كتالوج أوبدس على الانترنت؟</string>
 </resources>

@@ -299,7 +299,13 @@ public class HorizontalViewActivity extends FragmentActivity {
 
             @Override
             public void onClick(final View v) {
-                DragingDialogs.addBookmarks(anchor, documentController);
+                DragingDialogs.addBookmarks(anchor, documentController, new Runnable() {
+                    
+                    @Override
+                    public void run() {
+                        showHideHistory();
+                    }
+                });
             }
         });
         findViewById(R.id.bookmarks).setOnLongClickListener(new View.OnLongClickListener() {
@@ -660,7 +666,8 @@ public class HorizontalViewActivity extends FragmentActivity {
     }
 
     public void showHideHistory() {
-        linkHistory.setVisibility(documentController.getLinkHistory().isEmpty() ? View.GONE : View.VISIBLE);
+        linkHistory.setVisibility(!documentController.getLinkHistory().isEmpty() ? View.VISIBLE : View.GONE);
+
     }
 
     public void showHideInfoToolBar() {

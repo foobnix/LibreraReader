@@ -376,4 +376,10 @@
    <string name="add_network_catalog">Ongeza orodha ya mtandao</string>
    <string name="do_you_want_to_delete_">Unataka kufuta?</string>
    <string name="network">Mtandao</string>
+   <string name="name">Jina</string>
+   <string name="description">Maelezo</string>
+   <string name="authentication_required">Uthibitishaji Unahitajika</string>
+   <string name="user_name">Jina la mtumiaji</string>
+   <string name="password">Nenosiri</string>
+   <string name="what_is_the_opds_online_catalog_">Je, ni orodha gani ya mtandao wa OPDS?</string>
 </resources>

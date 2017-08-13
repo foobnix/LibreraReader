@@ -376,4 +376,10 @@
    <string name="add_network_catalog">Thêm danh mục mạng</string>
    <string name="do_you_want_to_delete_">Bạn có muốn xóa không?</string>
    <string name="network">Mạng</string>
+   <string name="name">Tên</string>
+   <string name="description">Sự miêu tả</string>
+   <string name="authentication_required">Yêu cầu xác thực</string>
+   <string name="user_name">Tên người dùng</string>
+   <string name="password">Mật khẩu</string>
+   <string name="what_is_the_opds_online_catalog_">Danh mục trực tuyến OPDS là gì?</string>
 </resources>

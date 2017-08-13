@@ -376,4 +376,10 @@
    <string name="add_network_catalog">افزودن کاتالوگ شبکه</string>
    <string name="do_you_want_to_delete_">میخواهید حذف کنید؟</string>
    <string name="network">شبکه</string>
+   <string name="name">نام</string>
+   <string name="description">شرح</string>
+   <string name="authentication_required">احراز هویت مورد نیاز است</string>
+   <string name="user_name">نام کاربری</string>
+   <string name="password">کلمه عبور</string>
+   <string name="what_is_the_opds_online_catalog_">کاتالوگ آنلاین OPDS چیست؟</string>
 </resources>

@@ -376,4 +376,10 @@
    <string name="add_network_catalog">नेटवर्क कैटलॉग जोड़ें</string>
    <string name="do_you_want_to_delete_">क्या आप हटाना चाहते हैं?</string>
    <string name="network">नेटवर्क</string>
+   <string name="name">नाम</string>
+   <string name="description">विवरण</string>
+   <string name="authentication_required">प्रमाणीकरण आवश्यक</string>
+   <string name="user_name">उपयोगकर्ता नाम</string>
+   <string name="password">पासवर्ड</string>
+   <string name="what_is_the_opds_online_catalog_">ओपीडीएस ऑनलाइन कैटलॉग क्या है?</string>
 </resources>

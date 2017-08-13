@@ -376,4 +376,10 @@
    <string name="add_network_catalog">Lägg till nätverkskatalog</string>
    <string name="do_you_want_to_delete_">Vill du radera?</string>
    <string name="network">Nätverk</string>
+   <string name="name">Namn</string>
+   <string name="description">Beskrivning</string>
+   <string name="authentication_required">Autentisering krävs</string>
+   <string name="user_name">Användarnamn</string>
+   <string name="password">Lösenord</string>
+   <string name="what_is_the_opds_online_catalog_">Vad är OPDS online katalog?</string>
 </resources>

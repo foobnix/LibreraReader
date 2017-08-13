@@ -10,6 +10,7 @@ import org.ebookdroid.core.codec.Annotation;
 import org.ebookdroid.core.codec.PageLink;
 
 import com.foobnix.android.utils.Keyboards;
+import com.foobnix.android.utils.LOG;
 import com.foobnix.android.utils.ResultResponse;
 import com.foobnix.android.utils.TxtUtils;
 import com.foobnix.dao2.FileMeta;
@@ -243,6 +244,7 @@ public abstract class DocumentController {
         if (!getLinkHistory().isEmpty()) {
             final int last = getLinkHistory().removeLast();
             onScrollY(last);
+            LOG.d("onLinkHistory", last);
 
         }
     }

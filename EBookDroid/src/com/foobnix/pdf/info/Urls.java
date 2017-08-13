@@ -24,6 +24,9 @@ public class Urls {
     }
 
     public static void open(Context a, String url) {
+        if (a == null || url == null) {
+            return;
+        }
         Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
         browserIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         a.startActivity(browserIntent);

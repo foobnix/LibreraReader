@@ -376,4 +376,10 @@
    <string name="add_network_catalog">添加网络目录</string>
    <string name="do_you_want_to_delete_">要删除吗？</string>
    <string name="network">网络</string>
+   <string name="name">名称</string>
+   <string name="description">描述</string>
+   <string name="authentication_required">需要验证</string>
+   <string name="user_name">用户名</string>
+   <string name="password">密码</string>
+   <string name="what_is_the_opds_online_catalog_">什么是OPDS在线目录？</string>
 </resources>

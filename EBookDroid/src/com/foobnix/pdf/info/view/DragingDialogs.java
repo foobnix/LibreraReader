@@ -543,7 +543,6 @@ public class DragingDialogs {
                     }
                 });
 
-
                 final String searchingString = anchor.getContext().getString(R.string.searching_please_wait_);
                 final int count = controller.getPageCount();
 
@@ -1385,7 +1384,7 @@ public class DragingDialogs {
 
     }
 
-    public static void addBookmarks(final FrameLayout anchor, final DocumentController controller) {
+    public static void addBookmarks(final FrameLayout anchor, final DocumentController controller, final Runnable onRefeshUI) {
         final List<AppBookmark> objects = new ArrayList<AppBookmark>();
         final BookmarksAdapter bookmarksAdapter = new BookmarksAdapter(anchor.getContext(), objects, true);
 
@@ -1401,8 +1400,20 @@ public class DragingDialogs {
         final OnItemClickListener onItem = new OnItemClickListener() {
             @Override
             public void onItemClick(final AdapterView<?> parent, final View view, final int position, final long id) {
+
                 final AppBookmark appBookmark = objects.get(position);
-                controller.onGoToPage(AppState.get().isCut ? appBookmark.getPage() * 2 : appBookmark.getPage());
+                int page = AppState.get().isCut ? appBookmark.getPage() * 2 : appBookmark.getPage();
+
+                if (page != controller.getCurentPageFirst1()) {
+                    final Integer offsetY = Integer.valueOf((int) controller.getOffsetY());
+                    LOG.d("onItemClick: Bookmark", offsetY);
+                    controller.getLinkHistory().clear();
+                    controller.getLinkHistory().add(offsetY);
+                }
+
+                controller.onGoToPage(page);
+
+                onRefeshUI.run();
             }
         };
 
@@ -1740,7 +1751,6 @@ public class DragingDialogs {
                         AppState.getInstance().isLoopAutoplay = isChecked;
                     }
                 });
-
 
                 CheckBox isShowToolBar = (CheckBox) inflate.findViewById(R.id.isShowToolBar);
                 isShowToolBar.setChecked(AppState.getInstance().isShowToolBar);

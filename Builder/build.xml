@@ -335,7 +335,7 @@
 
 
 
-	<!-- PRO -->
+	<!-- PRO pro-replace -->
 	<target name="pro">
 
 
@@ -347,7 +347,7 @@
 		<property name="pdf.export.name" value="${name.pro}-PRO" />
 
 		<antcall target="prepare-packages" />
-		<antcall target="pro-replace" />
+		<antcall target="free-replace" />
 
 		<!-- -->
 

@@ -376,4 +376,10 @@
    <string name="add_network_catalog">Adicionar catálogo de rede</string>
    <string name="do_you_want_to_delete_">Você quer deletar?</string>
    <string name="network">Rede</string>
+   <string name="name">Nome</string>
+   <string name="description">Descrição</string>
+   <string name="authentication_required">Autentificação requerida</string>
+   <string name="user_name">Nome de usuário</string>
+   <string name="password">Senha</string>
+   <string name="what_is_the_opds_online_catalog_">O que é o catálogo online OPDS?</string>
 </resources>

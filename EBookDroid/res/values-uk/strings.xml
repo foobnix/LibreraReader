@@ -376,4 +376,10 @@
    <string name="add_network_catalog">Додати мережевий каталог</string>
    <string name="do_you_want_to_delete_">Ви хочете видалити?</string>
    <string name="network">Мережа</string>
+   <string name="name">Ім\'я</string>
+   <string name="description">Опис</string>
+   <string name="authentication_required">Аутентифікація обов\'язкова</string>
+   <string name="user_name">Ім\'я користувача</string>
+   <string name="password">Пароль</string>
+   <string name="what_is_the_opds_online_catalog_">Що таке онлайновий каталог OPDS?</string>
 </resources>

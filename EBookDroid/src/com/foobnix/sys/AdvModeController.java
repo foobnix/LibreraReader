@@ -427,6 +427,7 @@ public class AdvModeController extends DocumentController {
     public void onScrollY(final int value) {
         final int x = ctr.getDocumentController().getView().getScrollX();
         ctr.getDocumentController().getView().scrollTo(x, value);
+        LOG.d("onScrollY", value);
     }
 
     public int getScrollValue() {

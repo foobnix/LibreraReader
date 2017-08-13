@@ -376,4 +376,10 @@
    <string name="add_network_catalog">เพิ่มแคตาล็อกเครือข่าย</string>
    <string name="do_you_want_to_delete_">คุณต้องการลบหรือไม่?</string>
    <string name="network">เครือข่าย</string>
+   <string name="name">ชื่อ</string>
+   <string name="description">ลักษณะ</string>
+   <string name="authentication_required">ต้องการการตรวจสอบสิทธิ์</string>
+   <string name="user_name">ชื่อผู้ใช้</string>
+   <string name="password">รหัสผ่าน</string>
+   <string name="what_is_the_opds_online_catalog_">แคตตาล็อกออนไลน์ของ OPDS คืออะไร?</string>
 </resources>

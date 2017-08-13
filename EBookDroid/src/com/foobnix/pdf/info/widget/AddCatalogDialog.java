@@ -80,7 +80,7 @@ public class AddCatalogDialog {
 
     }
 
-    public static void showDialog(final Activity a, final Runnable onRefresh) {
+    public static void showDialog(final Activity a, final Runnable onRefresh, final Entry e) {
 
         AlertDialog.Builder builder = new AlertDialog.Builder(a);
 
@@ -96,6 +96,14 @@ public class AddCatalogDialog {
         final EditText description = (EditText) dialog.findViewById(R.id.description);
         final ProgressBar progressBar = (ProgressBar) dialog.findViewById(R.id.progressBar);
         final ImageView image = (ImageView) dialog.findViewById(R.id.image);
+        final String editAppState = e != null ? e.appState : null;
+        if (editAppState != null) {
+            String line[] = e.appState.replace(";", "").split(",");
+            url.setText(line[0]);
+            name.setText(line[1]);
+            description.setText(line[2]);
+            ImageLoader.getInstance().displayImage(line[3], image, IMG.displayImageOptions);
+        }
 
         progressBar.setVisibility(View.GONE);
         image.setVisibility(View.GONE);
@@ -149,7 +157,10 @@ public class AddCatalogDialog {
                 if (infoDialog.getButton(AlertDialog.BUTTON_POSITIVE).getText().equals(a.getString(R.string.ok))) {
                     Entry entry = new Entry();
                     entry.setAppState(feedUrl, name.getText().toString(), description.getText().toString(), image.getTag().toString());
-                    AppState.get().myOPDS += entry.appState;
+                    if (editAppState != null) {
+                        AppState.get().myOPDS = AppState.get().myOPDS.replace(editAppState, "");
+                    }
+                    AppState.get().myOPDS = entry.appState + AppState.get().myOPDS;
                     onRefresh.run();
                     infoDialog.dismiss();
                     AppState.get().save(a);
@@ -184,7 +195,9 @@ public class AddCatalogDialog {
                             }
                             Feed feed = (Feed) result;
                             name.setText(TxtUtils.nullToEmpty(feed.title));
-                            description.setText(TxtUtils.nullToEmpty(feed.subtitle));
+                            if (TxtUtils.isNotEmpty(feed.subtitle)) {
+                                description.setText(TxtUtils.nullToEmpty(feed.subtitle));
+                            }
 
                             if (feed.icon != null) {
                                 image.setVisibility(View.VISIBLE);

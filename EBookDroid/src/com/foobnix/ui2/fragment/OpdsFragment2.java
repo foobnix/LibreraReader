@@ -1,10 +1,6 @@
 package com.foobnix.ui2.fragment;
 
-import java.io.BufferedReader;
 import java.io.File;
-import java.io.FileInputStream;
-import java.io.InputStream;
-import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -21,9 +17,7 @@ import com.foobnix.opds.Hrefs;
 import com.foobnix.opds.Link;
 import com.foobnix.opds.OPDS;
 import com.foobnix.pdf.info.ExtUtils;
-import com.foobnix.pdf.info.FontExtractor;
 import com.foobnix.pdf.info.R;
-import com.foobnix.pdf.info.TTSModule;
 import com.foobnix.pdf.info.Urls;
 import com.foobnix.pdf.info.view.AlertDialogs;
 import com.foobnix.pdf.info.widget.AddCatalogDialog;
@@ -66,6 +60,7 @@ public class OpdsFragment2 extends UIFragment<Entry> {
     ImageView onPlus;
     View onPlusView;
     long enqueue;
+    TextView defaults, faq;
 
     public OpdsFragment2() {
         super();
@@ -84,46 +79,16 @@ public class OpdsFragment2 extends UIFragment<Entry> {
             return Arrays.asList(new Entry(test, test));
         }
 
-        if (true) {
-            String[] list = AppState.get().myOPDS.split(";");
-            List<Entry> res = new ArrayList<Entry>();
-            for (String line : list) {
-                if (TxtUtils.isEmpty(line)) {
-                    continue;
-                }
-                String[] it = line.split(",");
-                res.add(new Entry(it[0], it[1], it[2], it[3]));
+        String[] list = AppState.get().myOPDS.split(";");
+        List<Entry> res = new ArrayList<Entry>();
+        for (String line : list) {
+            if (TxtUtils.isEmpty(line)) {
+                continue;
             }
-            return res;
+            String[] it = line.split(",");
+            res.add(new Entry(it[0], it[1], it[2], it[3]));
         }
-
-        if (false) {
-            return Arrays.asList(new Entry("https://www.gitbook.com/api/opds/catalog.atom", "GitBook", "Public books are always free.", "https://www.gitbook.com/assets/images/logo/128.png"), //
-                    new Entry("http://m.gutenberg.org/ebooks.opds/", "Project Gutenberg", "Free ebooks since 1971", "http://m.gutenberg.org/pics/favicon.png"), //
-                    new Entry("http://manybooks.net/opds/index.php", "Manybooks", "Online Catalog for Manybooks.net", "http://manybooks.net/sites/all/themes/manybooks/images/library-books-icon.png")//
-            );
-        }
-
-        try {
-            InputStream open = new FileInputStream(new File(FontExtractor.getFontsDir(getActivity(), TTSModule.DICT_FOLDER), "catalogs.txt"));
-            List<Entry> list = new ArrayList<Entry>();
-
-            BufferedReader input = new BufferedReader(new InputStreamReader(open));
-            String line;
-            while ((line = input.readLine()) != null) {
-                if (line.contains(": ")) {
-                    String[] v = line.split(": ");
-                    LOG.d(v[0], v[1]);
-                    list.add(new Entry(v[1].trim(), v[0].trim()));
-                }
-            }
-            input.close();
-            return list;
-        } catch (Exception e) {
-            LOG.e(e);
-
-        }
-        return Collections.EMPTY_LIST;
+        return res;
 
     }
 
@@ -158,11 +123,37 @@ public class OpdsFragment2 extends UIFragment<Entry> {
                     public void run() {
                         populate();
                     }
-                });
+                }, null);
             }
         });
 
         searchAdapter = new EntryAdapter();
+
+        defaults = (TextView) view.findViewById(R.id.defaults);
+        faq = (TextView) view.findViewById(R.id.faq);
+        defaults.setOnClickListener(new OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                AlertDialogs.showOkDialog(getActivity(), getActivity().getString(R.string.restore_defaults), new Runnable() {
+
+                    @Override
+                    public void run() {
+                        AppState.get().myOPDS = AppState.OPDS_DEFAULT;
+                        populate();
+                    }
+                });
+
+            }
+        });
+        faq.setOnClickListener(new OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                Urls.open(getActivity(), "https://wiki.mobileread.com/wiki/OPDS");
+
+            }
+        });
 
         onGridList();
 
@@ -209,6 +200,15 @@ public class OpdsFragment2 extends UIFragment<Entry> {
         searchAdapter.setOnItemLongClickListener(new ResultResponse<Entry>() {
             @Override
             public boolean onResultRecive(Entry result) {
+                if (url.equals("/")) {
+                    AddCatalogDialog.showDialog(getActivity(), new Runnable() {
+
+                        @Override
+                        public void run() {
+                            populate();
+                        }
+                    }, result);
+                }
                 return false;
             }
         });
@@ -439,8 +439,11 @@ public class OpdsFragment2 extends UIFragment<Entry> {
         if (title != null) {
             titleView.setText("" + title);
         }
-        onPlus.setVisibility(url == "/" ? View.VISIBLE : View.GONE);
-        onPlusView.setVisibility(url == "/" ? View.VISIBLE : View.GONE);
+        int isHomeVisible = url == "/" ? View.VISIBLE : View.GONE;
+        onPlus.setVisibility(isHomeVisible);
+        onPlusView.setVisibility(isHomeVisible);
+        defaults.setVisibility(isHomeVisible);
+        faq.setVisibility(isHomeVisible);
     }
 
     public void onGridList() {

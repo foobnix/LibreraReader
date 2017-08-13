@@ -1176,7 +1176,13 @@ public class DocumentWrapperUI {
 
         @Override
         public void onClick(final View arg0) {
-            DragingDialogs.addBookmarks(anchor, controller);
+            DragingDialogs.addBookmarks(anchor, controller, new Runnable() {
+
+                @Override
+                public void run() {
+                    showHideHistory();
+                }
+            });
         }
     };
     public View.OnLongClickListener onBookmarksLong = new View.OnLongClickListener() {

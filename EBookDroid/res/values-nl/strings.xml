@@ -376,4 +376,10 @@
    <string name="add_network_catalog">Voeg netwerkcatalogus toe</string>
    <string name="do_you_want_to_delete_">Wilt u verwijderen?</string>
    <string name="network">Netwerk</string>
+   <string name="name">Naam</string>
+   <string name="description">Beschrijving</string>
+   <string name="authentication_required">Verificatie vereist</string>
+   <string name="user_name">Gebruikersnaam</string>
+   <string name="password">Wachtwoord</string>
+   <string name="what_is_the_opds_online_catalog_">Wat is de OPDS online catalogus?</string>
 </resources>

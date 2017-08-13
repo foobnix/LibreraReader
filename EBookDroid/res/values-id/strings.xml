@@ -376,4 +376,10 @@
    <string name="add_network_catalog">Tambahkan katalog jaringan</string>
    <string name="do_you_want_to_delete_">Apakah kamu ingin menghapus?</string>
    <string name="network">Jaringan</string>
+   <string name="name">Nama</string>
+   <string name="description">Deskripsi</string>
+   <string name="authentication_required">Diperlukan Otentikasi</string>
+   <string name="user_name">Nama pengguna</string>
+   <string name="password">Kata sandi</string>
+   <string name="what_is_the_opds_online_catalog_">Apakah katalog online OPDS itu?</string>
 </resources>

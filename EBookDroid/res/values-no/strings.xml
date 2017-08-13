@@ -376,4 +376,10 @@
    <string name="add_network_catalog">Legg til nettkatalog</string>
    <string name="do_you_want_to_delete_">Vil du slette?</string>
    <string name="network">Network</string>
+   <string name="name">Navn</string>
+   <string name="description">Beskrivelse</string>
+   <string name="authentication_required">Godkjenning er nødvendig</string>
+   <string name="user_name">Brukernavn</string>
+   <string name="password">Passord</string>
+   <string name="what_is_the_opds_online_catalog_">Hva er OPDS online katalog?</string>
 </resources>

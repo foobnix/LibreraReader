@@ -376,4 +376,10 @@
    <string name="add_network_catalog">Lisää verkkoluettelo</string>
    <string name="do_you_want_to_delete_">Haluatko poistaa?</string>
    <string name="network">Verkko</string>
+   <string name="name">Nimi</string>
+   <string name="description">Kuvaus</string>
+   <string name="authentication_required">Todennus vaaditaan</string>
+   <string name="user_name">Käyttäjänimi</string>
+   <string name="password">Salasana</string>
+   <string name="what_is_the_opds_online_catalog_">Mikä on OPDS-verkkoluettelo?</string>
 </resources>

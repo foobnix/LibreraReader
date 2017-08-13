@@ -381,4 +381,5 @@
    <string name="authentication_required">Authentication Required</string>
    <string name="user_name">User Name</string>
    <string name="password">Password</string>
+   <string name="what_is_the_opds_online_catalog_">What is the OPDS online catalog?</string>
 </resources>

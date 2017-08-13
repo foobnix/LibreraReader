@@ -376,4 +376,10 @@
    <string name="add_network_catalog">הוסף קטלוג רשת</string>
    <string name="do_you_want_to_delete_">האם ברצונך למחוק?</string>
    <string name="network">רֶשֶׁת</string>
+   <string name="name">שֵׁם</string>
+   <string name="description">תאור</string>
+   <string name="authentication_required">נדרש אימות</string>
+   <string name="user_name">שם משתמש</string>
+   <string name="password">סיסמה</string>
+   <string name="what_is_the_opds_online_catalog_">מהו הקטלוג המקוון של OPDS?</string>
 </resources>

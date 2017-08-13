@@ -376,4 +376,10 @@
    <string name="add_network_catalog">Pridajte katalóg siete</string>
    <string name="do_you_want_to_delete_">Chcete odstrániť?</string>
    <string name="network">Sieť</string>
+   <string name="name">Názov</string>
+   <string name="description">Popis</string>
+   <string name="authentication_required">Potrebné overenie</string>
+   <string name="user_name">Používateľské meno</string>
+   <string name="password">Heslo</string>
+   <string name="what_is_the_opds_online_catalog_">Čo je online katalóg OPDS?</string>
 </resources>
