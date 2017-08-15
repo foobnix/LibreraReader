@@ -48,6 +48,7 @@ import android.widget.PopupMenu;
 import android.widget.TextView;
 
 public class BrowseFragment2 extends UIFragment<FileMeta> {
+    public static final Pair<Integer, Integer> PAIR = new Pair<Integer, Integer>(R.string.folders, R.drawable.glyphicons_145_folder_open);
     public static final String EXTRA_INIT_PATH = "EXTRA_PATH";
     public static final String EXTRA_TYPE = "EXTRA_TYPE";
     public static final String EXTRA_TEXT = "EXTRA_TEXT";
@@ -82,7 +83,7 @@ public class BrowseFragment2 extends UIFragment<FileMeta> {
 
     @Override
     public Pair<Integer, Integer> getNameAndIconRes() {
-        return new Pair<Integer, Integer>(R.string.folders, R.drawable.glyphicons_145_folder_open);
+        return PAIR;
     }
 
     private ResultResponse<String> onPositiveAction;

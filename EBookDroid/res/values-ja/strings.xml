@@ -382,4 +382,5 @@
    <string name="user_name">ユーザー名</string>
    <string name="password">パスワード</string>
    <string name="what_is_the_opds_online_catalog_">OPDSオンラインカタログとは何ですか？</string>
+   <string name="books">書籍</string>
 </resources>

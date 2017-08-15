@@ -68,6 +68,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 public class PrefFragment2 extends UIFragment {
+    public static final Pair<Integer, Integer> PAIR = new Pair<Integer, Integer>(R.string.preferences, R.drawable.glyphicons_281_settings);
 
     private static final String WWW_SITE = "http://lirbi.com";
     private static final String WWW_BETA_SITE = "http://beta.lirbi.com";
@@ -78,7 +79,7 @@ public class PrefFragment2 extends UIFragment {
 
     @Override
     public Pair<Integer, Integer> getNameAndIconRes() {
-        return new Pair<Integer, Integer>(R.string.preferences, R.drawable.glyphicons_281_settings);
+        return PAIR;
     }
 
     @Override
@@ -1411,14 +1412,14 @@ public class PrefFragment2 extends UIFragment {
 
     public void onTheme() {
         getActivity().finish();
-        MainTabs2.startActivity(getActivity(), UITab.getCurrentTabIndex(UITab.PrefFragment2));
+        MainTabs2.startActivity(getActivity(), UITab.getCurrentTabIndex(UITab.PrefFragment));
     }
 
     public void onScan() {
         getActivity().startService(new Intent(getActivity(), BooksService.class).setAction(BooksService.ACTION_SEARCH_ALL));
 
         Intent intent = new Intent(UIFragment.INTENT_TINT_CHANGE)//
-                .putExtra(MainTabs2.EXTRA_PAGE_NUMBER, UITab.getCurrentTabIndex(UITab.SearchFragment2));//
+                .putExtra(MainTabs2.EXTRA_PAGE_NUMBER, UITab.getCurrentTabIndex(UITab.SearchFragment));//
 
         LocalBroadcastManager.getInstance(getActivity()).sendBroadcast(intent);
     }

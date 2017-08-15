@@ -123,7 +123,7 @@ public class ShareDialog {
                         }
                         if (isLibrary && which == i++) {
                             a.finish();
-                            MainTabs2.startActivity(a, UITab.getCurrentTabIndex(UITab.SearchFragment2));
+                            MainTabs2.startActivity(a, UITab.getCurrentTabIndex(UITab.SearchFragment));
                         }
                         if (which == i++) {
                             if (a instanceof ViewerActivity || a instanceof HorizontalViewActivity) {

@@ -382,4 +382,5 @@
    <string name="user_name">שם משתמש</string>
    <string name="password">סיסמה</string>
    <string name="what_is_the_opds_online_catalog_">מהו הקטלוג המקוון של OPDS?</string>
+   <string name="books">ספרים</string>
 </resources>

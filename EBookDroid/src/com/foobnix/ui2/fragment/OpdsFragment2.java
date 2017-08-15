@@ -46,7 +46,7 @@ import okio.BufferedSource;
 import okio.Okio;
 
 public class OpdsFragment2 extends UIFragment<Entry> {
-
+    public static final Pair<Integer, Integer> PAIR = new Pair<Integer, Integer>(R.string.network, R.drawable.glyphicons_2_global);
     EntryAdapter searchAdapter;
     private FastScrollRecyclerView recyclerView;
     TextView titleView;
@@ -94,7 +94,7 @@ public class OpdsFragment2 extends UIFragment<Entry> {
 
     @Override
     public Pair<Integer, Integer> getNameAndIconRes() {
-        return new Pair<Integer, Integer>(R.string.network, R.drawable.glyphicons_2_global);
+        return PAIR;
     }
 
     @Override

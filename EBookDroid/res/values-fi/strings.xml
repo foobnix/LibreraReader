@@ -382,4 +382,5 @@
    <string name="user_name">Käyttäjänimi</string>
    <string name="password">Salasana</string>
    <string name="what_is_the_opds_online_catalog_">Mikä on OPDS-verkkoluettelo?</string>
+   <string name="books">Kirjat</string>
 </resources>

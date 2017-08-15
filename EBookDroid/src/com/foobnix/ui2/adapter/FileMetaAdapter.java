@@ -39,6 +39,9 @@ public class FileMetaAdapter extends AppRecycleAdapter<FileMeta, RecyclerView.Vi
     public static final int DISPLAY_TYPE_DIRECTORY = 3;
     public static final int DISPALY_TYPE_LAYOUT_STARS = 4;
 
+    public static final int DISPALY_TYPE_LAYOUT_TITLE_FOLDERS = 5;
+    public static final int DISPALY_TYPE_LAYOUT_TITLE_BOOKS = 6;
+
     public static final int ADAPTER_LIST = 0;
     public static final int ADAPTER_GRID = 1;
     public static final int ADAPTER_COVERS = 3;
@@ -104,12 +107,22 @@ public class FileMetaAdapter extends AppRecycleAdapter<FileMeta, RecyclerView.Vi
         public StarsLayoutViewHolder(View view) {
             super(view);
             recyclerView = (RecyclerView) view.findViewById(R.id.recyclerViewStars);
-            clearAllRecent = (TextView) view.findViewById(R.id.clearAllRecent);
-            clearAllStars = (TextView) view.findViewById(R.id.clearAllStars);
             starredName = (TextView) view.findViewById(R.id.starredName);
             recentName = (TextView) view.findViewById(R.id.recentName);
             panelStars = view.findViewById(R.id.panelStars);
             panelRecent = view.findViewById(R.id.panelRecent);
+        }
+    }
+
+    public class StarsTitleViewHolder extends RecyclerView.ViewHolder {
+        public TextView clearAllFolders, clearAllBooks;
+        public View parent;
+
+        public StarsTitleViewHolder(View view) {
+            super(view);
+            clearAllFolders = (TextView) view.findViewById(R.id.clearAllFolders);
+            clearAllBooks = (TextView) view.findViewById(R.id.clearAllBooks);
+            parent = view.findViewById(R.id.parent);
         }
     }
 
@@ -120,6 +133,16 @@ public class FileMetaAdapter extends AppRecycleAdapter<FileMeta, RecyclerView.Vi
         if (viewType == DISPALY_TYPE_LAYOUT_STARS) {
             itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.layout_stars, parent, false);
             return new StarsLayoutViewHolder(itemView);
+        }
+
+        if (viewType == DISPALY_TYPE_LAYOUT_TITLE_FOLDERS) {
+            itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.fragment_starred_title_folders, parent, false);
+            return new StarsTitleViewHolder(itemView);
+        }
+
+        if (viewType == DISPALY_TYPE_LAYOUT_TITLE_BOOKS) {
+            itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.fragment_starred_title_books, parent, false);
+            return new StarsTitleViewHolder(itemView);
         }
 
         if (viewType == DISPLAY_TYPE_DIRECTORY) {
@@ -152,6 +175,30 @@ public class FileMetaAdapter extends AppRecycleAdapter<FileMeta, RecyclerView.Vi
     public void onBindViewHolder(final RecyclerView.ViewHolder holderAll, final int position) {
         final FileMeta fileMeta = getItem(position);
 
+        if (holderAll instanceof StarsTitleViewHolder) {
+            final StarsTitleViewHolder holder = (StarsTitleViewHolder) holderAll;
+            if (holder.clearAllFolders != null) {
+                TxtUtils.underlineTextView(holder.clearAllFolders).setOnClickListener(new OnClickListener() {
+
+                    @Override
+                    public void onClick(View v) {
+                        clearAllStarredFolders.run();
+                    }
+                });
+            }
+
+            if (holder.clearAllBooks != null) {
+                TxtUtils.underlineTextView(holder.clearAllBooks).setOnClickListener(new OnClickListener() {
+
+                    @Override
+                    public void onClick(View v) {
+                        clearAllStarredBooks.run();
+                    }
+                });
+            }
+
+            TintUtil.setBackgroundFillColor(holder.parent, TintUtil.color);
+        }
         if (holderAll instanceof FileMetaViewHolder) {
             final FileMetaViewHolder holder = (FileMetaViewHolder) holderAll;
             bindFileMetaView(holder, position);
@@ -235,30 +282,6 @@ public class FileMetaAdapter extends AppRecycleAdapter<FileMeta, RecyclerView.Vi
             TintUtil.setBackgroundFillColor(holder.panelRecent, TintUtil.color);
             TintUtil.setBackgroundFillColor(holder.panelStars, TintUtil.color);
 
-            if (clearAllRecent == null) {
-                holder.clearAllRecent.setVisibility(View.GONE);
-            } else {
-                holder.clearAllRecent.setVisibility(View.VISIBLE);
-                TxtUtils.underlineTextView(holder.clearAllRecent).setOnClickListener(new OnClickListener() {
-
-                    @Override
-                    public void onClick(View v) {
-                        clearAllRecent.run();
-                    }
-                });
-            }
-            if (clearAllStars == null) {
-                holder.clearAllStars.setVisibility(View.GONE);
-            } else {
-                holder.clearAllStars.setVisibility(View.VISIBLE);
-                TxtUtils.underlineTextView(holder.clearAllStars).setOnClickListener(new OnClickListener() {
-
-                    @Override
-                    public void onClick(View v) {
-                        clearAllStars.run();
-                    }
-                });
-            }
             holder.starredName.setText(holder.starredName.getContext().getString(R.string.starred) + " (" + allStars.size() + ")");
             holder.recentName.setText(holder.starredName.getContext().getString(R.string.recent) + " (" + (getItemCount() - 1) + ")");
         }
@@ -476,7 +499,6 @@ public class FileMetaAdapter extends AppRecycleAdapter<FileMeta, RecyclerView.Vi
         return " " + (position + 1) + " ";
     }
 
-
     @Override
     public int getItemViewType(int position) {
         Integer cusType = getItem(position).getCusType();
@@ -510,12 +532,12 @@ public class FileMetaAdapter extends AppRecycleAdapter<FileMeta, RecyclerView.Vi
         this.onStarClickListener = onStarClickListener;
     }
 
-    public void setClearAllRecent(Runnable clearAllRecent) {
-        this.clearAllRecent = clearAllRecent;
+    public void setClearAllStarredFolders(Runnable clearAllStarredFolders) {
+        this.clearAllStarredFolders = clearAllStarredFolders;
     }
 
-    public void setClearAllStars(Runnable clearAllStars) {
-        this.clearAllStars = clearAllStars;
+    public void setClearAllStarredBooks(Runnable clearAllStarredBooks) {
+        this.clearAllStarredBooks = clearAllStarredBooks;
     }
 
     private ResultResponse<FileMeta> onMenuClickListener;
@@ -523,7 +545,7 @@ public class FileMetaAdapter extends AppRecycleAdapter<FileMeta, RecyclerView.Vi
     private ResultResponse<String> onAuthorClickListener;
     private ResultResponse<String> onSeriesClickListener;
     private ResultResponse2<FileMeta, FileMetaAdapter> onStarClickListener;
-    private Runnable clearAllRecent;
-    private Runnable clearAllStars;
+    private Runnable clearAllStarredFolders;
+    private Runnable clearAllStarredBooks;
 
 }

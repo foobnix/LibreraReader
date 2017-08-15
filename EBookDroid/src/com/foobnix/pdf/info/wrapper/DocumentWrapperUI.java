@@ -335,7 +335,7 @@ public class DocumentWrapperUI {
             controller.onCloseActivity();
 
             if (isLong && !MainTabs2.isInStack) {
-                MainTabs2.startActivity(a, UITab.getCurrentTabIndex(UITab.SearchFragment2));
+                MainTabs2.startActivity(a, UITab.getCurrentTabIndex(UITab.SearchFragment));
             }
         }
     }

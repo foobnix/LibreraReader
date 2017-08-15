@@ -33,13 +33,6 @@
             android:textColor="@color/white"
             android:textStyle="normal" />
 
-        <TextView
-            android:id="@+id/clearAllStars"
-            style="@style/textLinkWhite"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="0"
-            android:text="@string/clear_all" />
     </LinearLayout>
 
     <android.support.v7.widget.RecyclerView
@@ -78,13 +71,6 @@
             android:textColor="@color/white"
             android:textStyle="normal" />
 
-        <TextView
-            android:id="@+id/clearAllRecent"
-            style="@style/textLinkWhite"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="0"
-            android:text="@string/clear_all" />
     </LinearLayout>
 
 </LinearLayout>

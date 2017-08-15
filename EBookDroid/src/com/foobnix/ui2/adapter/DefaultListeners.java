@@ -44,7 +44,7 @@ public class DefaultListeners {
                 File item = new File(result.getPath());
                 if (item.isDirectory()) {
                     Intent intent = new Intent(UIFragment.INTENT_TINT_CHANGE)//
-                            .putExtra(MainTabs2.EXTRA_PAGE_NUMBER, UITab.getCurrentTabIndex(UITab.BrowseFragment2));//
+                            .putExtra(MainTabs2.EXTRA_PAGE_NUMBER, UITab.getCurrentTabIndex(UITab.BrowseFragment));//
                     LocalBroadcastManager.getInstance(a).sendBroadcast(intent);
 
                     EventBus.getDefault().post(new OpenDirMessage(result.getPath()));
@@ -66,7 +66,7 @@ public class DefaultListeners {
 
                 if (item.isDirectory()) {
                     Intent intent = new Intent(UIFragment.INTENT_TINT_CHANGE)//
-                            .putExtra(MainTabs2.EXTRA_PAGE_NUMBER, UITab.getCurrentTabIndex(UITab.BrowseFragment2));//
+                            .putExtra(MainTabs2.EXTRA_PAGE_NUMBER, UITab.getCurrentTabIndex(UITab.BrowseFragment));//
                     LocalBroadcastManager.getInstance(a).sendBroadcast(intent);
 
                     EventBus.getDefault().post(new OpenDirMessage(result.getPath()));
@@ -132,7 +132,7 @@ public class DefaultListeners {
 
                 Intent intent = new Intent(UIFragment.INTENT_TINT_CHANGE)//
                         .putExtra(MainTabs2.EXTRA_SEACH_TEXT, result)//
-                        .putExtra(MainTabs2.EXTRA_PAGE_NUMBER, UITab.getCurrentTabIndex(UITab.SearchFragment2));//
+                        .putExtra(MainTabs2.EXTRA_PAGE_NUMBER, UITab.getCurrentTabIndex(UITab.SearchFragment));//
 
                 LocalBroadcastManager.getInstance(a).sendBroadcast(intent);
                 return false;
@@ -150,7 +150,7 @@ public class DefaultListeners {
 
                 Intent intent = new Intent(UIFragment.INTENT_TINT_CHANGE)//
                         .putExtra(MainTabs2.EXTRA_SEACH_TEXT, result)//
-                        .putExtra(MainTabs2.EXTRA_PAGE_NUMBER, UITab.getCurrentTabIndex(UITab.SearchFragment2));//
+                        .putExtra(MainTabs2.EXTRA_PAGE_NUMBER, UITab.getCurrentTabIndex(UITab.SearchFragment));//
 
                 LocalBroadcastManager.getInstance(a).sendBroadcast(intent);
                 return false;

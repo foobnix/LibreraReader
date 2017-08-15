@@ -382,4 +382,5 @@
    <string name="user_name">اسم المستخدم</string>
    <string name="password">كلمه السر</string>
    <string name="what_is_the_opds_online_catalog_">ما هو كتالوج أوبدس على الانترنت؟</string>
+   <string name="books">كتب</string>
 </resources>

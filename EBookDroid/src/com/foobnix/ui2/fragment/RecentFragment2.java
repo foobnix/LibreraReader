@@ -1,13 +1,17 @@
 package com.foobnix.ui2.fragment;
 
-import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import com.foobnix.android.utils.Dips;
 import com.foobnix.android.utils.ResultResponse;
+import com.foobnix.android.utils.TxtUtils;
 import com.foobnix.dao2.FileMeta;
 import com.foobnix.pdf.info.R;
+import com.foobnix.pdf.info.TintUtil;
+import com.foobnix.pdf.info.view.AlertDialogs;
 import com.foobnix.pdf.info.wrapper.AppState;
+import com.foobnix.pdf.info.wrapper.PopupHelper;
 import com.foobnix.ui2.AppDB;
 import com.foobnix.ui2.adapter.FileMetaAdapter;
 
@@ -17,16 +21,24 @@ import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
+import android.view.MenuItem.OnMenuItemClickListener;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.PopupMenu;
+import android.widget.TextView;
 
 public class RecentFragment2 extends UIFragment<FileMeta> {
+    public static final Pair<Integer, Integer> PAIR = new Pair<Integer, Integer>(R.string.recent, R.drawable.glyphicons_72_book);
     FileMetaAdapter recentAdapter;
     private RecyclerView recyclerView;
+    ImageView onListGrid;
 
     @Override
     public Pair<Integer, Integer> getNameAndIconRes() {
-        return new Pair<Integer, Integer>(R.string.recent, R.drawable.glyphicons_72_book);
+        return PAIR;
     }
 
     @Override
@@ -35,6 +47,30 @@ public class RecentFragment2 extends UIFragment<FileMeta> {
 
         recyclerView = (RecyclerView) view.findViewById(R.id.recyclerView);
 
+        onListGrid = (ImageView) view.findViewById(R.id.onListGrid);
+        onListGrid.setOnClickListener(new OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                popupMenu(onListGrid);
+            }
+        });
+
+        TxtUtils.underlineTextView((TextView) view.findViewById(R.id.clearAllRecent)).setOnClickListener(new OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                AlertDialogs.showDialog(getActivity(), getString(R.string.clear_all_recent), getString(R.string.ok), new Runnable() {
+
+                    @Override
+                    public void run() {
+                        clearAllRecent.run();
+                    }
+                });
+
+            }
+        });
+
         recentAdapter = new FileMetaAdapter();
         recentAdapter.tempValue = FileMetaAdapter.TEMP_VALUE_FOLDER_PATH;
         bindAdapter(recentAdapter);
@@ -42,8 +78,6 @@ public class RecentFragment2 extends UIFragment<FileMeta> {
 
         recentAdapter.setOnDeleteClickListener(onDeleteRecentClick);
 
-        recentAdapter.setClearAllRecent(clearAllRecent);
-        recentAdapter.setClearAllStars(clearAllStars);
 
         AppState.get().recentMode = AppState.MODE_LIST;
         onGridList();
@@ -78,13 +112,6 @@ public class RecentFragment2 extends UIFragment<FileMeta> {
         }
     };
 
-    Runnable clearAllStars = new Runnable() {
-        @Override
-        public void run() {
-            AppDB.get().clearAllStars();
-            populate();
-        }
-    };
 
     public boolean onBackAction() {
         return false;
@@ -97,17 +124,7 @@ public class RecentFragment2 extends UIFragment<FileMeta> {
 
     @Override
     public List<FileMeta> prepareDataInBackground() {
-        List<FileMeta> all = new ArrayList<FileMeta>();
-
-        all.addAll(AppDB.get().getStarsFolder());
-
-        FileMeta stars = new FileMeta();
-        stars.setCusType(FileMetaAdapter.DISPALY_TYPE_LAYOUT_STARS);
-        all.add(stars);
-
-        all.addAll(AppDB.get().getAllRecentWithProgress());
-
-        return all;
+        return AppDB.get().getAllRecentWithProgress();
     }
 
     @Override
@@ -144,6 +161,32 @@ public class RecentFragment2 extends UIFragment<FileMeta> {
             recyclerView.setAdapter(recentAdapter);
         }
 
+
+    }
+
+    private void popupMenu(final ImageView onGridList) {
+        PopupMenu p = new PopupMenu(getActivity(), onGridList);
+        List<Integer> names = Arrays.asList(R.string.list, R.string.grid, R.string.cover);
+        final List<Integer> icons = Arrays.asList(R.drawable.glyphicons_114_justify, R.drawable.glyphicons_156_show_big_thumbnails, R.drawable.glyphicons_157_show_thumbnails);
+        final List<Integer> actions = Arrays.asList(AppState.MODE_LIST, AppState.MODE_GRID, AppState.MODE_COVERS);
+
+        for (int i = 0; i < names.size(); i++) {
+            final int index = i;
+            p.getMenu().add(names.get(i)).setIcon(icons.get(i)).setOnMenuItemClickListener(new OnMenuItemClickListener() {
+
+                @Override
+                public boolean onMenuItemClick(MenuItem item) {
+                    AppState.getInstance().recentMode = actions.get(index);
+                    onGridList.setImageResource(icons.get(index));
+                    onGridList();
+                    return false;
+                }
+            });
+        }
+
+        p.show();
+
+        PopupHelper.initIcons(p, TintUtil.color);
     }
 
     @Override

@@ -40,6 +40,7 @@ import android.widget.PopupMenu;
 import android.widget.TextView;
 
 public class BookmarksFragment2 extends UIFragment<AppBookmark> {
+    public static final Pair<Integer, Integer> PAIR = new Pair<Integer, Integer>(R.string.bookmarks, R.drawable.glyphicons_73_bookmark);
     private static final String BOOK_PREFIX = "@book";
     RecyclerView recyclerView;
     BookmarksAdapter2 bookmarksAdapter;
@@ -50,7 +51,7 @@ public class BookmarksFragment2 extends UIFragment<AppBookmark> {
 
     @Override
     public Pair<Integer, Integer> getNameAndIconRes() {
-        return new Pair<Integer, Integer>(R.string.bookmarks, R.drawable.glyphicons_73_bookmark);
+        return PAIR;
     }
 
     @Override

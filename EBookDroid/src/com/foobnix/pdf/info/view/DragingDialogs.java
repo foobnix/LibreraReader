@@ -946,7 +946,9 @@ public class DragingDialogs {
                 dictLayout.removeAllViews();
 
                 final Intent intentProccessText = new Intent();
-                intentProccessText.setAction("android.intent.action.PROCESS_TEXT");
+                if (Build.VERSION.SDK_INT >= 23) {
+                    intentProccessText.setAction(Intent.ACTION_PROCESS_TEXT);
+                }
                 intentProccessText.setType("text/plain");
 
                 final Intent intentSearch = new Intent();
@@ -963,7 +965,9 @@ public class DragingDialogs {
                 final List<ResolveInfo> sendList = pm.queryIntentActivities(intentSend, 0);
 
                 final List<ResolveInfo> all = new ArrayList<ResolveInfo>();
-                all.addAll(proccessTextList);
+                if (Build.VERSION.SDK_INT >= 23) {
+                    all.addAll(proccessTextList);
+                }
                 all.addAll(searchList);
                 all.addAll(sendList);
 

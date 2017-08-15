@@ -382,4 +382,5 @@
    <string name="user_name">Nome de usuário</string>
    <string name="password">Senha</string>
    <string name="what_is_the_opds_online_catalog_">O que é o catálogo online OPDS?</string>
+   <string name="books">Livros</string>
 </resources>

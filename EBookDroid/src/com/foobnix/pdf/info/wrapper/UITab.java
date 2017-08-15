@@ -11,16 +11,18 @@ import com.foobnix.ui2.fragment.OpdsFragment2;
 import com.foobnix.ui2.fragment.PrefFragment2;
 import com.foobnix.ui2.fragment.RecentFragment2;
 import com.foobnix.ui2.fragment.SearchFragment2;
+import com.foobnix.ui2.fragment.StarsFragment2;
 import com.foobnix.ui2.fragment.UIFragment;
 
 public enum UITab {
 
-    SearchFragment2(0, R.string.library, R.drawable.glyphicons_2_book_open, SearchFragment2.class, true), //
-    OpdsFragment2(1, R.string.network, R.drawable.glyphicons_2_global, OpdsFragment2.class, true), //
-    BrowseFragment2(2, R.string.folders, R.drawable.glyphicons_145_folder_open, BrowseFragment2.class, true), //
-    RecentFragment2(3, R.string.recent, R.drawable.glyphicons_72_book, RecentFragment2.class, true), //
-    BookmarksFragment2(4, R.string.bookmarks, R.drawable.glyphicons_73_bookmark, BookmarksFragment2.class, true), //
-    PrefFragment2(5, R.string.preferences, R.drawable.glyphicons_281_settings, PrefFragment2.class, true); //
+    SearchFragment(0, R.string.library, R.drawable.glyphicons_2_book_open, SearchFragment2.class, true), //
+    OpdsFragment(1, OpdsFragment2.PAIR.first, OpdsFragment2.PAIR.second, OpdsFragment2.class, true), //
+    BrowseFragment(2, BrowseFragment2.PAIR.first, BrowseFragment2.PAIR.second, BrowseFragment2.class, true), //
+    RecentFragment(3, RecentFragment2.PAIR.first, RecentFragment2.PAIR.second, RecentFragment2.class, true), //
+    StarsFragment(4, StarsFragment2.PAIR.first, StarsFragment2.PAIR.second, StarsFragment2.class, true), //
+    BookmarksFragment(5, BookmarksFragment2.PAIR.first, BookmarksFragment2.PAIR.second, BookmarksFragment2.class, true), //
+    PrefFragment(6, PrefFragment2.PAIR.first, PrefFragment2.PAIR.second, PrefFragment2.class, true); //
 
     private int index;
     private int name;
@@ -58,7 +60,7 @@ public enum UITab {
                 return tab;
             }
         }
-        return SearchFragment2;
+        return SearchFragment;
     }
 
     public static List<UITab> getOrdered(String input) {

@@ -382,4 +382,5 @@
    <string name="user_name">Gebruikersnaam</string>
    <string name="password">Wachtwoord</string>
    <string name="what_is_the_opds_online_catalog_">Wat is de OPDS online catalogus?</string>
+   <string name="books">Boeken</string>
 </resources>

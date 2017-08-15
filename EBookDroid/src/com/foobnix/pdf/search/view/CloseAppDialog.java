@@ -91,7 +91,7 @@ public class CloseAppDialog {
 
                 } else if (which == i++) {
                     c.onCloseActivity();
-                    MainTabs2.startActivity(a, UITab.getCurrentTabIndex(UITab.SearchFragment2));
+                    MainTabs2.startActivity(a, UITab.getCurrentTabIndex(UITab.SearchFragment));
 
                 } else if (which == i++) {
                     Apps.showDesctop(a);

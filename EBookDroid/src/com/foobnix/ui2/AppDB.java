@@ -262,7 +262,11 @@ public class AppDB {
     }
 
     public void update(FileMeta meta) {
-        fileMetaDao.update(meta);
+        try {
+            fileMetaDao.update(meta);
+        } catch (Exception e) {
+            LOG.e(e);
+        }
     }
 
     public void updateOrSave(FileMeta meta) {
