@@ -6,6 +6,7 @@ import org.ebookdroid.BookType;
 import org.ebookdroid.core.codec.CodecDocument;
 
 import com.foobnix.pdf.info.ExtUtils;
+import com.foobnix.pdf.info.wrapper.UITab;
 
 public class TempHolder {
     public static final ReentrantLock lock = new ReentrantLock();
@@ -20,6 +21,7 @@ public class TempHolder {
 
 
     public int linkPage = -1;
+    public int currentTab = UITab.SearchFragment.index;
 
     public static int listHash = 0;
 

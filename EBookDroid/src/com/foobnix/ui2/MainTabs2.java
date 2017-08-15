@@ -387,6 +387,7 @@ public class MainTabs2 extends FragmentActivity {
         @Override
         public void onPageSelected(int pos) {
             tabFragments.get(pos).onSelectFragment();
+            TempHolder.get().currentTab = pos;
         }
 
         @Override

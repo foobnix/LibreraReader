@@ -1410,7 +1410,7 @@ public class PrefFragment2 extends UIFragment {
 
     public void onTheme() {
         getActivity().finish();
-        MainTabs2.startActivity(getActivity(), UITab.getCurrentTabIndex(UITab.PrefFragment));
+        MainTabs2.startActivity(getActivity(), TempHolder.get().currentTab);
     }
 
     public void onScan() {

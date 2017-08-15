@@ -35,6 +35,7 @@ public class RecentFragment2 extends UIFragment<FileMeta> {
     FileMetaAdapter recentAdapter;
     private RecyclerView recyclerView;
     ImageView onListGrid;
+    View panelRecent;
 
     @Override
     public Pair<Integer, Integer> getNameAndIconRes() {
@@ -46,6 +47,7 @@ public class RecentFragment2 extends UIFragment<FileMeta> {
         View view = inflater.inflate(R.layout.fragment_recent, container, false);
 
         recyclerView = (RecyclerView) view.findViewById(R.id.recyclerView);
+        panelRecent = view.findViewById(R.id.panelRecent);
 
         onListGrid = (ImageView) view.findViewById(R.id.onListGrid);
         onListGrid.setOnClickListener(new OnClickListener() {
@@ -83,13 +85,14 @@ public class RecentFragment2 extends UIFragment<FileMeta> {
         onGridList();
 
         populate();
+        TintUtil.setBackgroundFillColor(panelRecent, TintUtil.color);
 
         return view;
     }
 
     @Override
     public void onTintChanged() {
-        recentAdapter.notifyDataSetChanged();
+        TintUtil.setBackgroundFillColor(panelRecent, TintUtil.color);
     }
 
     ResultResponse<FileMeta> onDeleteRecentClick = new ResultResponse<FileMeta>() {

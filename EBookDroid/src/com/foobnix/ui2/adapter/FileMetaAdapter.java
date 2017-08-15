@@ -462,6 +462,8 @@ public class FileMetaAdapter extends AppRecycleAdapter<FileMeta, RecyclerView.Vi
             }
         }
 
+
+
         holder.menu.setOnClickListener(new OnClickListener() {
 
             @Override

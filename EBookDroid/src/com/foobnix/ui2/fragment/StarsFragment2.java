@@ -3,7 +3,6 @@ package com.foobnix.ui2.fragment;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.foobnix.android.utils.ResultResponse;
 import com.foobnix.dao2.FileMeta;
 import com.foobnix.pdf.info.R;
 import com.foobnix.pdf.info.view.AlertDialogs;
@@ -40,7 +39,6 @@ public class StarsFragment2 extends UIFragment<FileMeta> {
         bindAdapter(recentAdapter);
         bindAuthorsSeriesAdapter(recentAdapter);
 
-        recentAdapter.setOnDeleteClickListener(onDeleteRecentClick);
 
         recentAdapter.setClearAllStarredFolders(new Runnable() {
 
@@ -91,16 +89,6 @@ public class StarsFragment2 extends UIFragment<FileMeta> {
         recentAdapter.notifyDataSetChanged();
     }
 
-    ResultResponse<FileMeta> onDeleteRecentClick = new ResultResponse<FileMeta>() {
-
-        @Override
-        public boolean onResultRecive(FileMeta result) {
-            result.setIsRecent(false);
-            AppDB.get().update(result);
-            populate();
-            return false;
-        }
-    };
 
 
 
