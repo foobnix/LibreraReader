@@ -14,6 +14,7 @@ import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
 import android.support.v4.content.ContextCompat;
 import android.util.AttributeSet;
+import android.view.GestureDetector;
 import android.view.Gravity;
 import android.view.MotionEvent;
 import android.view.View;
@@ -50,11 +51,25 @@ public class BrigtnessDraw extends View {
     private TextView textView;
     Toast toast;
 
+    private GestureDetector gestureDetector = new GestureDetector(getContext(), new GestureDetector.SimpleOnGestureListener() {
+
+        @Override
+        public boolean onSingleTapUp(MotionEvent e) {
+            if (onSingleClickListener != null) {
+                onSingleClickListener.onClick(BrigtnessDraw.this);
+            }
+            return true;
+        };
+    });
+
+    private OnClickListener onSingleClickListener;
+
     @Override
     public boolean onTouchEvent(MotionEvent event) {
         if (activity == null || !AppState.get().isBrighrnessEnable) {
             return false;
         }
+        gestureDetector.onTouchEvent(event);
 
         LOG.d("BrigtnessDraw", event);
 
@@ -125,6 +140,10 @@ public class BrigtnessDraw extends View {
 
     public void setActivity(Activity activity) {
         this.activity = activity;
+    }
+
+    public void setOnSingleClickListener(OnClickListener onSingleClickListener) {
+        this.onSingleClickListener = onSingleClickListener;
     }
 
 }

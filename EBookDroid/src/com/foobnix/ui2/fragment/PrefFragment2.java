@@ -164,15 +164,15 @@ public class PrefFragment2 extends UIFragment {
         });
 
         final CheckBox isshowPrefAsMenu = (CheckBox) inflate.findViewById(R.id.isshowPrefAsMenu);
-        isshowPrefAsMenu.setChecked(AppState.get().tabsOrder.contains("4#0"));
+        isshowPrefAsMenu.setChecked(AppState.get().tabsOrder.contains(UITab.PrefFragment.index + "#0"));
         isshowPrefAsMenu.setOnCheckedChangeListener(new OnCheckedChangeListener() {
 
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (isChecked) {
-                    AppState.get().tabsOrder = AppState.get().tabsOrder.replace("4#1", "4#0");
+                    AppState.get().tabsOrder = AppState.get().tabsOrder.replace(UITab.PrefFragment.index + "#1", UITab.PrefFragment.index + "#0");
                 } else {
-                    AppState.get().tabsOrder = AppState.get().tabsOrder.replace("4#0", "4#1");
+                    AppState.get().tabsOrder = AppState.get().tabsOrder.replace(UITab.PrefFragment.index + "#0", UITab.PrefFragment.index + "#1");
                 }
 
                 dragLinear.run();
@@ -1315,8 +1315,6 @@ public class PrefFragment2 extends UIFragment {
         initBrigtness();
 
     }
-
-
 
     public void onColorChoose() {
 

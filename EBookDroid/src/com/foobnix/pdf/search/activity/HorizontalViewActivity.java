@@ -199,6 +199,17 @@ public class HorizontalViewActivity extends FragmentActivity {
         progressDraw = (ProgressDraw) findViewById(R.id.progressDraw);
         brigtnessProgressView = (BrigtnessDraw) findViewById(R.id.brigtnessProgressView);
         brigtnessProgressView.setActivity(this);
+        brigtnessProgressView.setOnSingleClickListener(new OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                if (AppState.get().tapZoneLeft == AppState.TAP_PREV_PAGE) {
+                    prevPage();
+                } else {
+                    nextPage();
+                }
+            }
+        });
 
         actionBar = findViewById(R.id.actionBar);
         bottomBar = findViewById(R.id.bottomBar);

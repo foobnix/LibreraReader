@@ -24,7 +24,7 @@ public enum UITab {
     BookmarksFragment(5, BookmarksFragment2.PAIR.first, BookmarksFragment2.PAIR.second, BookmarksFragment2.class, true), //
     PrefFragment(6, PrefFragment2.PAIR.first, PrefFragment2.PAIR.second, PrefFragment2.class, true); //
 
-    private int index;
+    public int index;
     private int name;
     private int icon;
     private Class<? extends UIFragment> clazz;
@@ -88,11 +88,11 @@ public enum UITab {
     }
 
     public static boolean isShowRecent() {
-        return AppState.get().tabsOrder.contains("2#1");
+        return AppState.get().tabsOrder.contains(UITab.RecentFragment.index + "#1");
     }
 
     public static boolean isShowPreferences() {
-        return AppState.get().tabsOrder.contains("5#1");
+        return AppState.get().tabsOrder.contains(UITab.PrefFragment.index + "#1");
     }
 
     public boolean isVisible() {

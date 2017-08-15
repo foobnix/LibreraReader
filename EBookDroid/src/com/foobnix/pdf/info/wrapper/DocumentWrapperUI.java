@@ -50,6 +50,7 @@ import android.view.MenuItem;
 import android.view.MenuItem.OnMenuItemClickListener;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.ViewTreeObserver.OnGlobalLayoutListener;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
@@ -531,6 +532,13 @@ public class DocumentWrapperUI {
 
         brigtnessProgressView = (BrigtnessDraw) a.findViewById(R.id.brigtnessProgressView);
         brigtnessProgressView.setActivity(a);
+        brigtnessProgressView.setOnSingleClickListener(new OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                controller.onLeftPress();
+            }
+        });
 
         reverseKeysIndicator = (TextView) a.findViewById(R.id.reverseKeysIndicator);
         // reverseKeysIndicator.setOnClickListener(onReverseKeys);
@@ -752,6 +760,11 @@ public class DocumentWrapperUI {
             progressDraw.setVisibility(View.GONE);
             brigtnessProgressView.setVisibility(View.GONE);
         }
+
+        textToSpeachTop.setVisibility(View.GONE);
+        lockUnlockTop.setVisibility(View.GONE);
+        nextScreenType.setVisibility(View.GONE);
+        goToPage1Top.setVisibility(View.GONE);
 
     }
 

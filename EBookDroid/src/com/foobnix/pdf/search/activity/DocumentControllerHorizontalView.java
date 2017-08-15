@@ -345,6 +345,7 @@ public abstract class DocumentControllerHorizontalView extends DocumentControlle
 
     }
 
+
     @Override
     public int getCurentPage() {
         LOG.d("_PAGE", "getCurentPage", currentPage);

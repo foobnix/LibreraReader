@@ -111,38 +111,42 @@ public class ProgressDraw extends View {
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
+
         canvas.save();
+        try {
+            int titleColor = AppState.get().isInvert ? MagicHelper.otherColor(AppState.get().colorDayBg, -0.05f) : MagicHelper.otherColor(AppState.get().colorNigthBg, 0.05f);
+            canvas.drawColor(titleColor);
 
-        int titleColor = AppState.get().isInvert ? MagicHelper.otherColor(AppState.get().colorDayBg, -0.05f) : MagicHelper.otherColor(AppState.get().colorNigthBg, 0.05f);
-        canvas.drawColor(titleColor);
+            paint.setColor(color);
+            paint1.setColor(titleColor);
 
-        paint.setColor(color);
-        paint1.setColor(titleColor);
+            float k = (float) getWidth() / pageCount;
+            int h = getHeight();
+            int currentChapter = 0;
+            if (AppState.get().isShowChaptersOnProgress && dividers != null && !dividers.isEmpty()) {
+                LOG.d("deep level", deep);
+                for (OutlineLinkWrapper item : dividers) {
+                    int pos = item.targetPage - 1;
+                    if (pos < 0 || item.level > deep || item.getTitleRaw().endsWith(Fb2Extractor.FOOTER_AFTRER_BOODY)) {
+                        continue;
+                    }
 
-        float k = (float) getWidth() / pageCount;
-        int h = getHeight();
-        int currentChapter = 0;
-        if (AppState.get().isShowChaptersOnProgress && dividers != null && !dividers.isEmpty()) {
-            LOG.d("deep level", deep);
-            for (OutlineLinkWrapper item : dividers) {
-                int pos = item.targetPage - 1;
-                if (pos < 0 || item.level > deep || item.getTitleRaw().endsWith(Fb2Extractor.FOOTER_AFTRER_BOODY)) {
-                    continue;
-                }
-
-                if (pos <= progress) {
-                    currentChapter = pos;
-                } else {
-                    canvas.drawLine(pos * k, 0, pos * k, h, paint);
+                    if (pos <= progress) {
+                        currentChapter = pos;
+                    } else {
+                        canvas.drawLine(pos * k, 0, pos * k, h, paint);
+                    }
                 }
             }
-        }
 
-        canvas.drawRect(0, 0, progress * k, h, paint);
-        if (currentChapter != 0) {
-            canvas.drawLine(currentChapter * k, 0, currentChapter * k, h, paint1);
-        }
+            canvas.drawRect(0, 0, progress * k, h, paint);
+            if (currentChapter != 0) {
+                canvas.drawLine(currentChapter * k, 0, currentChapter * k, h, paint1);
+            }
 
+        } catch (Exception e) {
+            LOG.e(e);
+        }
         canvas.restore();
     }
 
