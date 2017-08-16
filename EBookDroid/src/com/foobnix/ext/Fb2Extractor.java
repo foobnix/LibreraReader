@@ -249,31 +249,23 @@ public class Fb2Extractor extends BaseExtractor {
 
             String sectionId = null;
             StringBuilder text = null;
+            boolean isLink = false;
+            String link = null;
+            String key = "";
+
             while (eventType != XmlPullParser.END_DOCUMENT) {
                 if (eventType == XmlPullParser.START_TAG) {
                     if (xpp.getName().equals("a")) {
-                        String link = xpp.getAttributeValue(null, "l:href");
+                        link = xpp.getAttributeValue(null, "l:href");
                         String type = xpp.getAttributeValue(null, "type");
                         if ("note".equals(type)) {
-                            try {
-                                String key = xpp.nextText();// may crash
-                                if (!TxtUtils.isFooterNote(key)) {
-                                    continue;
-                                }
+                            isLink = true;
 
-                                link = link.replace("#", "");
-                                map.put(key, link);
-                                LOG.d("getFooterNotes", key, " >", link);
-                            } catch (Exception e) {
-                                LOG.e(e);
-                            }
                         }
                     } else if (xpp.getName().equals("section")) {
                         sectionId = xpp.getAttributeValue(null, "id");
                         text = new StringBuilder();
-
                     }
-
                 } else if (eventType == XmlPullParser.TEXT) {
                     if (sectionId != null) {
                         String trim = xpp.getText().trim();
@@ -281,15 +273,31 @@ public class Fb2Extractor extends BaseExtractor {
                             text.append(trim + " ");
                         }
                     }
-                    // LOG.d("TEXT", xpp.getText());
-
+                    if (isLink) {
+                        key = key + " " + xpp.getText();
+                        LOG.d("key", key);
+                    }
                 } else if (eventType == XmlPullParser.END_TAG) {
                     if (sectionId != null && xpp.getName().equals("section")) {
-                        String key = StreamUtils.getKeyByValue(map, sectionId);
-                        map.put(key, text.toString());
-                        LOG.d("getFooterNotes section", sectionId, key, ">", text.toString());
+                        String keyEnd = StreamUtils.getKeyByValue(map, sectionId);
+                        map.put(keyEnd, text.toString());
+                        LOG.d("getFooterNotes section", sectionId, keyEnd, ">", text.toString());
                         sectionId = null;
                         text = null;
+                    } else if (xpp.getName().equals("a")) {
+
+                        if (isLink) {
+                            key = key.trim();
+                            if (!TxtUtils.isFooterNote(key)) {
+                                key = "[" + link + "]";
+                            }
+                            link = link.replace("#", "");
+                            map.put(key, link);
+                            LOG.d("getFooterNotes", key, ">", link);
+
+                            isLink = false;
+                            key = "";
+                        }
                     }
                 }
 
