@@ -46,7 +46,6 @@ public class FileInformationDialog {
         final FileMeta fileMeta = AppDB.get().getOrCreate(file.getPath());
 
         View dialog = LayoutInflater.from(a).inflate(R.layout.dialog_file_info, null, false);
-        dialog.setMinimumWidth(Dips.dpToPx(1000));
 
         TextView title = (TextView) dialog.findViewById(R.id.title);
         final TextView bookmarks = (TextView) dialog.findViewById(R.id.bookmarks);
@@ -61,10 +60,13 @@ public class FileInformationDialog {
 
         List<AppBookmark> objects = AppSharedPreferences.get().getBookmarksByBook(file);
         StringBuilder lines = new StringBuilder();
+        String fast = a.getString(R.string.fast_bookmark);
         if (TxtUtils.isNotEmpty(objects)) {
             for (AppBookmark b : objects) {
-                lines.append(b.getPage() + ": " + b.getText());
-                lines.append("\n");
+                if (!fast.equals(b.getText())) {
+                    lines.append(b.getPage() + ": " + b.getText());
+                    lines.append("\n");
+                }
             }
         }
         bookmarks.setText(TxtUtils.replaceLast(lines.toString(), "\n", ""));
@@ -77,18 +79,9 @@ public class FileInformationDialog {
             }
         });
 
-        // ((TextView)
-        // dialog.findViewById(R.id.metaTitle)).setText(fileMeta.getTitle());
-        // ((TextView)
-        // dialog.findViewById(R.id.metaAuthor)).setText(fileMeta.getAuthor());
-
         final TextView infoView = (TextView) dialog.findViewById(R.id.metaInfo);
         String bookOverview = FileMetaCore.getBookOverview(file.getPath());
-        if (TxtUtils.isEmpty(bookOverview)) {
-            ((View) infoView.getParent()).setVisibility(View.GONE);
-        } else {
-            infoView.setText(bookOverview);
-        }
+        infoView.setText(TxtUtils.nullToEmpty(bookOverview));
 
         infoView.setOnClickListener(new OnClickListener() {
 
@@ -97,9 +90,6 @@ public class FileInformationDialog {
                 AlertDialogs.showOkDialog(infoView.getContext(), infoView.getText().toString(), null);
             }
         });
-
-        // ((TextView) dialog.findViewById(R.id.langTest)).setText("[" +
-        // StopWords.guess(bookOverview) + "]");
 
         String sequence = fileMeta.getSequence();
         if (TxtUtils.isNotEmpty(sequence)) {

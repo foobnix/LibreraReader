@@ -632,6 +632,7 @@ public class DragingDialogs {
                 View inflate = inflater.inflate(R.layout.dialog_footer_notes, null, false);
                 final int page = TempHolder.get().linkPage + 1;
                 String selectedText = AppState.get().selectedText;
+
                 final int currentPage = controller.getCurentPageFirst1();
 
                 TextView goTo = (TextView) inflate.findViewById(R.id.goTo);
@@ -847,7 +848,13 @@ public class DragingDialogs {
                 }
 
                 final EditText editText = (EditText) view.findViewById(R.id.editText);
-                editText.setText(AppState.get().selectedText.toString());
+                String selectedText = AppState.get().selectedText;
+                if (selectedText != null) {
+                    selectedText = selectedText.replace("  ", " ").replace("  ", " ");
+                } else {
+                    selectedText = "";
+                }
+                editText.setText(selectedText);
 
                 final View onTranslate = view.findViewById(R.id.onTranslate);
                 onTranslate.setOnClickListener(new View.OnClickListener() {
