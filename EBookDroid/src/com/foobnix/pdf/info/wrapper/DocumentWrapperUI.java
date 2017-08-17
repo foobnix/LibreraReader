@@ -32,6 +32,7 @@ import com.foobnix.pdf.info.view.ProgressDraw;
 import com.foobnix.pdf.info.widget.ShareDialog;
 import com.foobnix.pdf.search.view.CloseAppDialog;
 import com.foobnix.ui2.MainTabs2;
+import com.foobnix.ui2.TTSService;
 import com.google.android.gms.ads.AdListener;
 import com.google.android.gms.ads.InterstitialAd;
 
@@ -1387,6 +1388,11 @@ public class DocumentWrapperUI {
 
         @Override
         public void onClick(final View arg0) {
+
+            if (true) {
+                controller.getActivity().startService(new Intent(controller.getActivity(), TTSService.class).setAction(TTSService.ACTION_GET_PAGE_COUNT));
+                return;
+            }
             controller.alignDocument();
         }
     };

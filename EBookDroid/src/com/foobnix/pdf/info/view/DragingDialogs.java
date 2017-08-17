@@ -63,6 +63,7 @@ import com.foobnix.pdf.search.activity.msg.InvalidateMessage;
 import com.foobnix.pdf.search.menu.MenuBuilderM;
 import com.foobnix.sys.TempHolder;
 import com.foobnix.ui2.AppDB;
+import com.foobnix.ui2.TTSService;
 import com.foobnix.ui2.adapter.DefaultListeners;
 import com.foobnix.ui2.adapter.FileMetaAdapter;
 import com.nostra13.universalimageloader.core.ImageLoader;
@@ -897,7 +898,8 @@ public class DragingDialogs {
 
                     @Override
                     public void onClick(View v) {
-                        TTSModule.getInstance().playOnce(editText.getText().toString().trim());
+                        // TTSModule.getInstance().playOnce(editText.getText().toString().trim());
+                        TTSService.readText(controller.getActivity(), editText.getText().toString().trim());
                     }
                 });
                 view.findViewById(R.id.readTTSNext).setOnClickListener(new View.OnClickListener() {

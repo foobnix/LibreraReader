@@ -137,6 +137,10 @@
             android:name="com.foobnix.ui2.BooksService"
             android:exported="false" >
         </service>
+         <service
+            android:name="com.foobnix.ui2.TTSService"
+            android:exported="false" >
+        </service>
 
         <activity
             android:resizeableActivity="true"
