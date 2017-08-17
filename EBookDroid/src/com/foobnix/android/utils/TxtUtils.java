@@ -9,6 +9,7 @@ import java.util.regex.Pattern;
 
 import com.foobnix.dao2.FileMeta;
 import com.foobnix.pdf.info.ExtUtils;
+import com.foobnix.pdf.info.wrapper.AppBookmark;
 import com.foobnix.pdf.info.wrapper.AppState;
 
 import android.annotation.TargetApi;
@@ -492,6 +493,10 @@ public class TxtUtils {
 
     public static boolean isEmailValid(String email) {
         return SIMPLE_EMAIL_PATTERN.matcher(email).matches();
+    }
+
+    public static boolean isNotEmpty(List<AppBookmark> objects) {
+        return objects != null && objects.size() >= 1;
     }
 
 }

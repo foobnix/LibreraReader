@@ -1,15 +1,19 @@
 package com.foobnix.pdf.info.widget;
 
 import java.io.File;
+import java.util.List;
 
 import com.foobnix.android.utils.Dips;
 import com.foobnix.android.utils.TxtUtils;
 import com.foobnix.dao2.FileMeta;
+import com.foobnix.pdf.info.AppSharedPreferences;
 import com.foobnix.pdf.info.ExtUtils;
 import com.foobnix.pdf.info.IMG;
 import com.foobnix.pdf.info.R;
 import com.foobnix.pdf.info.TintUtil;
+import com.foobnix.pdf.info.view.AlertDialogs;
 import com.foobnix.pdf.info.view.ScaledImageView;
+import com.foobnix.pdf.info.wrapper.AppBookmark;
 import com.foobnix.pdf.info.wrapper.AppState;
 import com.foobnix.ui2.AppDB;
 import com.foobnix.ui2.FileMetaCore;
@@ -42,7 +46,10 @@ public class FileInformationDialog {
         final FileMeta fileMeta = AppDB.get().getOrCreate(file.getPath());
 
         View dialog = LayoutInflater.from(a).inflate(R.layout.dialog_file_info, null, false);
+        dialog.setMinimumWidth(Dips.dpToPx(1000));
+
         TextView title = (TextView) dialog.findViewById(R.id.title);
+        final TextView bookmarks = (TextView) dialog.findViewById(R.id.bookmarks);
 
         title.setText(TxtUtils.getFileMetaBookName(fileMeta));
 
@@ -51,6 +58,24 @@ public class FileInformationDialog {
         ((TextView) dialog.findViewById(R.id.mimeExt)).setText(fileMeta.getExt());
         ((TextView) dialog.findViewById(R.id.size)).setText(fileMeta.getSizeTxt());
         ((TextView) dialog.findViewById(R.id.mimeType)).setText("" + ExtUtils.getMimeType(file));
+
+        List<AppBookmark> objects = AppSharedPreferences.get().getBookmarksByBook(file);
+        StringBuilder lines = new StringBuilder();
+        if (TxtUtils.isNotEmpty(objects)) {
+            for (AppBookmark b : objects) {
+                lines.append(b.getPage() + ": " + b.getText());
+                lines.append("\n");
+            }
+        }
+        bookmarks.setText(TxtUtils.replaceLast(lines.toString(), "\n", ""));
+
+        bookmarks.setOnClickListener(new OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                AlertDialogs.showOkDialog(bookmarks.getContext(), bookmarks.getText().toString(), null);
+            }
+        });
 
         // ((TextView)
         // dialog.findViewById(R.id.metaTitle)).setText(fileMeta.getTitle());
@@ -64,6 +89,15 @@ public class FileInformationDialog {
         } else {
             infoView.setText(bookOverview);
         }
+
+        infoView.setOnClickListener(new OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                AlertDialogs.showOkDialog(infoView.getContext(), infoView.getText().toString(), null);
+            }
+        });
+
         // ((TextView) dialog.findViewById(R.id.langTest)).setText("[" +
         // StopWords.guess(bookOverview) + "]");
 
@@ -95,6 +129,7 @@ public class FileInformationDialog {
         });
         convertFile.setText(TxtUtils.underline(a.getString(R.string.convert_to) + " EPUB"));
         convertFile.setVisibility(ExtUtils.isImageOrEpub(file) ? View.GONE : View.VISIBLE);
+        convertFile.setVisibility(View.GONE);
 
         TxtUtils.underlineTextView((TextView) dialog.findViewById(R.id.openWith)).setOnClickListener(new OnClickListener() {
 
@@ -155,7 +190,8 @@ public class FileInformationDialog {
             }
         });
 
-        ImageView coverImage = (ImageView) dialog.findViewById(R.id.image);
+        final ScaledImageView coverImage = (ScaledImageView) dialog.findViewById(R.id.image);
+        coverImage.getLayoutParams().width = Dips.screenWidth() / 3;
 
         IMG.getCoverPage(coverImage, file.getPath(), IMG.getImageSize());
 
@@ -182,7 +218,7 @@ public class FileInformationDialog {
                 } else {
                     starIcon.setImageResource(R.drawable.star_1);
                 }
-                TintUtil.setTintImage(starIcon, TintUtil.color);
+                TintUtil.setTintImage(starIcon, TintUtil.color).setAlpha(255);
 
             }
         });

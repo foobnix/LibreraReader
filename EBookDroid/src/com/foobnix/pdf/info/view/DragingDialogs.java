@@ -1380,7 +1380,7 @@ public class DragingDialogs {
             }
         }
 
-        final AppBookmark bookmark = new AppBookmark(controller.getCurrentBook().getPath(), controller.getString(R.string.page) + " " + page, page, controller.getTitle());
+        final AppBookmark bookmark = new AppBookmark(controller.getCurrentBook().getPath(), controller.getString(R.string.fast_bookmark), page, controller.getTitle());
         AppSharedPreferences.get().addBookMark(bookmark);
 
         String TEXT = controller.getString(R.string.fast_bookmark) + " «" + controller.getString(R.string.page) + " " + page + "»";
@@ -1457,7 +1457,7 @@ public class DragingDialogs {
                             }
                         }
 
-                        final AppBookmark bookmark = new AppBookmark(controller.getCurrentBook().getPath(), controller.getString(R.string.page) + " " + page, page, controller.getTitle());
+                        final AppBookmark bookmark = new AppBookmark(controller.getCurrentBook().getPath(), controller.getString(R.string.fast_bookmark), page, controller.getTitle());
                         AppSharedPreferences.get().addBookMark(bookmark);
 
                         objects.clear();

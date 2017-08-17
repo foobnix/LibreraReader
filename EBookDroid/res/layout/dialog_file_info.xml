@@ -26,70 +26,52 @@
         android:textSize="10sp" />
 
     <View
-        android:visibility="gone"
         android:layout_width="match_parent"
         android:layout_height="1dip"
         android:layout_margin="4dip"
-        android:background="@color/lt_grey" />
+        android:background="@color/lt_grey"
+        android:visibility="gone" />
 
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="80dip"
-        android:padding="4dip" >
-
-        <TextView
-            android:id="@+id/metaInfo"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/msg_loading"
-            android:textIsSelectable="true"
-            android:textSize="13sp" />
-    </ScrollView>
+    <TextView
+        android:id="@+id/metaInfo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:maxLines="4"
+        android:text="@string/msg_loading" />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:minHeight="200dip"
         android:orientation="horizontal" >
 
-        <LinearLayout
-            android:id="@+id/imageParent"
+        <RelativeLayout
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="4dip"
-            android:orientation="vertical" >
+            android:layout_height="wrap_content" >
 
-            <FrameLayout
-                android:layout_width="140dp"
-                android:layout_height="210dp"
-                android:padding="4dip" >
+            <com.foobnix.pdf.info.view.ScaledImageView
+                android:id="@+id/image"
+                android:layout_width="100dip"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dip"
+                android:src="@drawable/icon_pdf_pro" />
 
-                <android.support.v7.widget.CardView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_margin="@dimen/dv"
-                    android:padding="0dip"
-                    card_view:cardCornerRadius="0dip"
-                    card_view:cardElevation="@dimen/dv"
-                    card_view:cardPreventCornerOverlap="true" >
-
-                    <ImageView
-                        android:id="@+id/image"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:adjustViewBounds="true"
-                        android:cropToPadding="true"
-                        android:src="@drawable/icon_pdf_pro" />
-                </android.support.v7.widget.CardView>
-            </FrameLayout>
-        </LinearLayout>
+            <ImageView
+                android:id="@+id/starIcon"
+                android:layout_width="20dip"
+                android:layout_height="20dip"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentTop="true"
+                android:layout_gravity="center_vertical"
+                android:layout_margin="5dip"
+                android:background="?android:attr/selectableItemBackground"
+                android:src="@drawable/star_1" />
+        </RelativeLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
+            android:layout_gravity="top"
+            android:layout_marginTop="8dip"
             android:orientation="vertical" >
 
             <TextView
@@ -130,7 +112,8 @@
                 style="@style/textLink"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/convert_to" />
+                android:text="@string/convert_to"
+                android:visibility="gone" />
 
             <TextView
                 android:id="@+id/openWith"
@@ -151,7 +134,8 @@
                 style="@style/textLink"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/delete" />
+                android:text="@string/delete"
+                android:visibility="gone" />
 
             <TextView
                 android:id="@+id/mimeType"
@@ -194,18 +178,15 @@
                     android:textSize="@dimen/text_subtitle"
                     android:textStyle="bold" />
             </LinearLayout>
-
-            <ImageView
-                android:id="@+id/starIcon"
-                android:layout_width="20dip"
-                android:layout_height="20dip"
-                android:layout_gravity="center_vertical"
-                android:background="?android:attr/selectableItemBackground"
-                android:src="@drawable/star_1" />
-            
-            
         </LinearLayout>
     </LinearLayout>
+
+    <TextView
+        android:id="@+id/bookmarks"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:maxLines="4"
+        android:textSize="12sp" />
 
     <TextView
         android:id="@+id/openFile"
@@ -215,9 +196,9 @@
         android:layout_gravity="center_horizontal"
         android:layout_marginLeft="12dip"
         android:layout_marginTop="4dip"
-        android:minWidth="150dip"
-        android:gravity="center"
         android:background="@drawable/bg_search_second"
+        android:gravity="center"
+        android:minWidth="150dip"
         android:padding="10dip"
         android:text="@string/read_a_book"
         android:textSize="16sp"
