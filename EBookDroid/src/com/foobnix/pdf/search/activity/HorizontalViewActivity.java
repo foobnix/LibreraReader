@@ -21,7 +21,6 @@ import com.foobnix.pdf.info.DictsHelper;
 import com.foobnix.pdf.info.ExtUtils;
 import com.foobnix.pdf.info.IMG;
 import com.foobnix.pdf.info.R;
-import com.foobnix.pdf.info.TTSModule;
 import com.foobnix.pdf.info.TintUtil;
 import com.foobnix.pdf.info.UiSystemUtils;
 import com.foobnix.pdf.info.model.BookCSS;
@@ -47,6 +46,8 @@ import com.foobnix.pdf.search.view.CloseAppDialog;
 import com.foobnix.pdf.search.view.VerticalViewPager;
 import com.foobnix.sys.ClickUtils;
 import com.foobnix.sys.TempHolder;
+import com.foobnix.tts.MessagePageNumber;
+import com.foobnix.tts.TTSEngine;
 import com.foobnix.ui2.MainTabs2;
 import com.google.android.gms.ads.AdListener;
 import com.google.android.gms.ads.AdView;
@@ -311,7 +312,7 @@ public class HorizontalViewActivity extends FragmentActivity {
             @Override
             public void onClick(final View v) {
                 DragingDialogs.addBookmarks(anchor, documentController, new Runnable() {
-                    
+
                     @Override
                     public void run() {
                         showHideHistory();
@@ -337,7 +338,6 @@ public class HorizontalViewActivity extends FragmentActivity {
         });
 
         View tts = findViewById(R.id.bookTTS);
-        tts.setVisibility(TTSModule.isAvailableTTS() ? View.VISIBLE : View.GONE);
         tts.setOnClickListener(new View.OnClickListener() {
 
             @Override
@@ -595,6 +595,20 @@ public class HorizontalViewActivity extends FragmentActivity {
     };
 
     @Subscribe
+    public void onPageNumber(final MessagePageNumber event) {
+        if (documentController != null) {
+            documentController.getActivity().runOnUiThread(new Runnable() {
+
+                @Override
+                public void run() {
+                    documentController.onGoToPage(event.getPage() + 1);
+                }
+            });
+        }
+
+    }
+
+    @Subscribe
     public void onFlippingStart(FlippingStart event) {
         flippingTimer = 0;
         flippingHandler.removeCallbacks(flippingRunnable);
@@ -754,7 +768,7 @@ public class HorizontalViewActivity extends FragmentActivity {
 
         @Override
         public void run() {
-            if (TTSModule.getInstance().isPlaying()) {
+            if (TTSEngine.get().isPlaying()) {
                 LOG.d("TTS is playing");
                 return;
             }
@@ -789,9 +803,6 @@ public class HorizontalViewActivity extends FragmentActivity {
         ADS.destory(adView);
         ADS.destoryNative(adViewNative);
         // AppState.get().isCut = false;
-        if (TTSModule.getInstance() != null) {
-            TTSModule.getInstance().shutdownTTS();
-        }
         PageImageState.get().clearResouces();
 
     }
@@ -1381,10 +1392,10 @@ public class HorizontalViewActivity extends FragmentActivity {
         if (AppState.get().isUseVolumeKeys) {
 
             if (AppState.get().isUseVolumeKeys && KeyEvent.KEYCODE_HEADSETHOOK == keyCode) {
-                if (TTSModule.getInstance().isPlaying()) {
-                    TTSModule.getInstance().stop();
+                if (TTSEngine.get().isPlaying()) {
+                    TTSEngine.get().stop();
                 } else {
-                    TTSModule.getInstance().play();
+                    TTSEngine.get().playCurrent();
                     anchor.setTag("");
                 }
                 DragingDialogs.textToSpeachDialog(anchor, documentController);

@@ -7,6 +7,7 @@ import org.ebookdroid.core.codec.CodecDocument;
 
 import com.foobnix.pdf.info.ExtUtils;
 import com.foobnix.pdf.info.wrapper.UITab;
+import com.foobnix.tts.TTSEngine;
 
 public class TempHolder {
     public static final ReentrantLock lock = new ReentrantLock();
@@ -19,15 +20,12 @@ public class TempHolder {
 
     public String login = "", password = "";
 
-
     public int linkPage = -1;
     public int currentTab = UITab.SearchFragment.index;
 
     public static int listHash = 0;
 
     public static volatile boolean isSeaching = false;
-
-
 
     public static TempHolder get() {
         return inst;
@@ -41,8 +39,10 @@ public class TempHolder {
     }
 
     public void clear() {
+        TTSEngine.get().stop();
         codecDocument = null;
         path = null;
+
     }
 
     private boolean isTextForamtInner() {

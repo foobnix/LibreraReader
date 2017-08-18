@@ -18,7 +18,6 @@ public class FontExtractor {
             @Override
             public void run() {
                 extractInside(c, "fonts", BookCSS.FONTS_DIR);
-                extractInside(c, "dict", TTSModule.DICT_FOLDER);
             };
         }.start();
 

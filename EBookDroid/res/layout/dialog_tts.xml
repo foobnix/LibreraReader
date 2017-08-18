@@ -136,11 +136,6 @@
             android:layout_height="wrap_content"
             android:text="@string/ongoing_notification" />
 
-        <CheckBox
-            android:id="@+id/ttsReplacement"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/apply_text_replacement_dictionary1" />
 
         <LinearLayout
             android:layout_width="match_parent"

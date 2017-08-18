@@ -34,7 +34,6 @@ import com.foobnix.pdf.info.ExtUtils;
 import com.foobnix.pdf.info.IMG;
 import com.foobnix.pdf.info.OutlineHelper;
 import com.foobnix.pdf.info.R;
-import com.foobnix.pdf.info.TTSModule;
 import com.foobnix.pdf.info.TintUtil;
 import com.foobnix.pdf.info.Urls;
 import com.foobnix.pdf.info.model.AnnotationType;
@@ -62,8 +61,9 @@ import com.foobnix.pdf.search.activity.msg.FlippingStop;
 import com.foobnix.pdf.search.activity.msg.InvalidateMessage;
 import com.foobnix.pdf.search.menu.MenuBuilderM;
 import com.foobnix.sys.TempHolder;
+import com.foobnix.tts.TTSEngine;
+import com.foobnix.tts.TTSService;
 import com.foobnix.ui2.AppDB;
-import com.foobnix.ui2.TTSService;
 import com.foobnix.ui2.adapter.DefaultListeners;
 import com.foobnix.ui2.adapter.FileMetaAdapter;
 import com.nostra13.universalimageloader.core.ImageLoader;
@@ -92,8 +92,8 @@ import android.media.AudioManager;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Handler;
-import android.speech.tts.TextToSpeech;
 import android.speech.tts.TextToSpeech.EngineInfo;
+import android.speech.tts.TextToSpeech.OnInitListener;
 import android.support.v4.app.FragmentActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -137,28 +137,16 @@ public class DragingDialogs {
 
     public static final String EDIT_COLORS_PANEL = "editColorsPanel";
 
-    static TextToSpeech ttsEngine;
-    static boolean isPrefclicked = false;
-    static boolean isFistTime = false;
-    static String readingTExt = "";
-    static int attempt = 0;
-
     public static void textToSpeachDialog(final FrameLayout anchor, final DocumentController controller) {
         textToSpeachDialog(anchor, controller, "");
     }
 
     public static void textToSpeachDialog(final FrameLayout anchor, final DocumentController controller, final String textToRead) {
 
-        isPrefclicked = false;
-        attempt = 0;
-        readingTExt = "";
-
-        if (TTSModule.getInstance().hasNoEngines()) {
+        if (TTSEngine.get().hasNoEngines()) {
             Urls.openTTS(controller.getActivity());
             return;
         }
-
-        TTSModule.getInstance().showNotification();
 
         DragingPopup dialog = new DragingPopup(R.string.text_to_speech, anchor, 300, 440) {
 
@@ -171,68 +159,43 @@ public class DragingDialogs {
 
                 final TextView ttsPage = (TextView) view.findViewById(R.id.ttsPage);
                 ttsPage.setText(activity.getString(R.string.page) + " " + controller.getCurentPageFirst1());
+                ttsPage.setVisibility(View.GONE);
 
                 final TextView textEngine = (TextView) view.findViewById(R.id.ttsEngine);
                 final TextView textDebug = (TextView) view.findViewById(R.id.textDebug);
 
-                final TTSModule ttsModule = TTSModule.getInstance();
-
-                textEngine.setText(ttsModule.getDefaultEngineName());
-                TxtUtils.underlineTextView(textEngine);
-
-                ttsModule.setOnCompleteListener(new Runnable() {
+                TTSEngine.get().getTTS(new OnInitListener() {
 
                     @Override
-                    public void run() {
-                        readingTExt = "";
-                        if (attempt >= 3) {
-                            return;
-                        }
-                        if (controller.getCurentPageFirst1() + 1 > controller.getPageCount()) {
-                            ttsModule.bookIsOver();
-                            return;
-                        }
-                        controller.onGoToPage(controller.getCurentPageFirst1() + 1);
-                        String text = controller.getTextForPage(controller.getCurentPageFirst1() - 1);
-                        if (TxtUtils.isEmpty(text)) {
-                            attempt++;
-                            ttsModule.complete();
-                            textDebug.setText("");
-                        } else {
-                            attempt = 0;
-                            textDebug.setText(text);
-                            TTSModule.getInstance().play(text);
-                            ttsPage.setText(activity.getString(R.string.page) + " " + controller.getCurentPageFirst1());
-                        }
-
-                        TTSModule.getInstance().showNotification();
-
+                    public void onInit(int status) {
+                        textEngine.setText(TTSEngine.get().getCurrentEngineName());
+                        TxtUtils.underlineTextView(textEngine);
                     }
                 });
+                textEngine.setText(TTSEngine.get().getCurrentEngineName());
+
+                TxtUtils.underlineTextView(textEngine);
 
                 textEngine.setOnClickListener(new OnClickListener() {
 
                     @Override
                     public void onClick(View v) {
                         PopupMenu menu = new PopupMenu(v.getContext(), v);
-                        List<EngineInfo> engines = ttsModule.getDefaultTTS().getEngines();
+                        List<EngineInfo> engines = TTSEngine.get().getTTS().getEngines();
                         for (final EngineInfo eInfo : engines) {
-                            final String name = TTSModule.engineToString(eInfo);
+                            final String name = TTSEngine.engineToString(eInfo);
                             menu.getMenu().add(name).setOnMenuItemClickListener(new OnMenuItemClickListener() {
 
                                 @Override
                                 public boolean onMenuItemClick(MenuItem item) {
                                     textEngine.setText(name);
-                                    TTSModule.getInstance().engine = eInfo.name;
-                                    TTSModule.getInstance().init(controller.getActivity(), eInfo.name);
-
+                                    TTSEngine.get().getTTSWithEngine(eInfo.name);
                                     TxtUtils.underlineTextView(textEngine);
                                     return false;
                                 }
                             });
                         }
                         menu.show();
-
                     }
                 });
 
@@ -240,9 +203,8 @@ public class DragingDialogs {
 
                     @Override
                     public void onClick(View v) {
-                        isPrefclicked = true;
                         try {
-                            TTSModule.getInstance().stop();
+                            TTSEngine.get().stop();
                             Intent intent = new Intent();
                             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                             if (Build.VERSION.SDK_INT >= 14) {
@@ -259,50 +221,11 @@ public class DragingDialogs {
                     }
                 });
 
-                if (TxtUtils.isNotEmpty(textToRead)) {
-                    String text = controller.getTextForPage(controller.getCurentPageFirst1() - 1);
-                    int indexOf = text.indexOf(textToRead.trim());
-                    if (indexOf >= 0) {
-                        text = text.substring(indexOf);
-                        readingTExt = text;
-                        // Toast.makeText(activity, "Read:" + text + " | " +
-                        // textToRead, Toast.LENGTH_LONG).show();
-                        textDebug.setText(readingTExt);
-                        TTSModule.getInstance().play(readingTExt);
-
-                    } else {
-                        Toast.makeText(activity, R.string.msg_no_text_found, Toast.LENGTH_LONG).show();
-                        readingTExt = "";
-                        TTSModule.getInstance().stop();
-                        textDebug.setText("");
-                    }
-                }
-
                 view.findViewById(R.id.onPlay).setOnClickListener(new OnClickListener() {
 
                     @Override
                     public void onClick(View v) {
-
-                        if (isPrefclicked || isFistTime) {
-                            isPrefclicked = false;
-                            isFistTime = false;
-                            TTSModule.getInstance().engine = TTSModule.getInstance().getDefaultEngineName();
-                            TTSModule.getInstance().init(controller.getActivity(), TTSModule.getInstance().engine);
-                        }
-
-                        ttsPage.setText(activity.getString(R.string.page) + " " + controller.getCurentPageFirst1());
-
-                        if (TxtUtils.isNotEmpty(readingTExt)) {
-                            textDebug.setText(readingTExt);
-                            TTSModule.getInstance().play(readingTExt);
-
-                        } else {
-                            String text = controller.getTextForPage(controller.getCurentPageFirst1() - 1);
-                            textDebug.setText(text);
-                            TTSModule.getInstance().play(text);
-                        }
-
-                        TTSModule.getInstance().showNotification();
+                        TTSService.playBookPage(controller.getCurentPageFirst1() - 1);
 
                     }
                 });
@@ -310,8 +233,7 @@ public class DragingDialogs {
 
                     @Override
                     public void onClick(View v) {
-                        TTSModule.getInstance().stop();
-                        AppState.getInstance().ttsSkeakToFile = false;
+                        TTSEngine.get().stop();
                     }
                 });
 
@@ -398,10 +320,10 @@ public class DragingDialogs {
                         AppState.get().ttsPitch = (float) 1.0;
                         AppState.get().ttsSpeed = (float) 1.0;
 
-                        TTSModule.getInstance().engine = TTSModule.getInstance().getDefaultEngineName();
-                        TTSModule.getInstance().init(controller.getActivity(), TTSModule.getInstance().engine);
+                        TTSEngine.get().shutdown();
+                        TTSEngine.get().getTTS();
 
-                        textEngine.setText(ttsModule.getDefaultEngineName());
+                        textEngine.setText(TTSEngine.get().getCurrentEngineName());
                         TxtUtils.underlineTextView(textEngine);
                     }
                 });
@@ -414,27 +336,15 @@ public class DragingDialogs {
                     @Override
                     public void onCheckedChanged(final CompoundButton buttonView, final boolean isChecked) {
                         AppState.getInstance().notificationOngoing = isChecked;
-                        TTSModule.getInstance().showNotification();
                     }
                 });
 
-                CheckBox ttsReplacement = (CheckBox) view.findViewById(R.id.ttsReplacement);
-                ttsReplacement.setChecked(AppState.getInstance().ttsReplacement);
-                ttsReplacement.setOnCheckedChangeListener(new OnCheckedChangeListener() {
-
-                    @Override
-                    public void onCheckedChanged(final CompoundButton buttonView, final boolean isChecked) {
-                        AppState.getInstance().ttsReplacement = isChecked;
-                    }
-                });
-
-                View ttsSkeakToFile = view.findViewById(R.id.ttsSkeakToFile);
-                ttsSkeakToFile.setOnClickListener(new OnClickListener() {
+                view.findViewById(R.id.ttsSkeakToFile).setOnClickListener(new OnClickListener() {
 
                     @Override
                     public void onClick(View v) {
-                        AppState.getInstance().ttsSkeakToFile = true;
-                        view.findViewById(R.id.onPlay).performClick();
+                        Toast.makeText(controller.getActivity(), R.string.please_wait, Toast.LENGTH_LONG).show();
+                        TTSEngine.get().speakToFile(controller);
 
                     }
                 });
@@ -898,8 +808,7 @@ public class DragingDialogs {
 
                     @Override
                     public void onClick(View v) {
-                        // TTSModule.getInstance().playOnce(editText.getText().toString().trim());
-                        TTSService.readText(controller.getActivity(), editText.getText().toString().trim());
+                        TTSEngine.get().speek(editText.getText().toString().trim());
                     }
                 });
                 view.findViewById(R.id.readTTSNext).setOnClickListener(new View.OnClickListener() {
@@ -2974,7 +2883,6 @@ public class DragingDialogs {
                     }
                 });
                 View tts = inflate.findViewById(R.id.onTTS);
-                tts.setVisibility(TTSModule.isAvailableTTS() ? View.VISIBLE : View.GONE);
                 tts.setOnClickListener(new View.OnClickListener() {
 
                     @Override

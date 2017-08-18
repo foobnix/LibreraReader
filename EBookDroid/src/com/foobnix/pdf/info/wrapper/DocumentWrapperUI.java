@@ -9,6 +9,8 @@ import java.util.Locale;
 
 import org.ebookdroid.common.settings.SettingsManager;
 import org.ebookdroid.common.settings.books.BookSettings;
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
 
 import com.foobnix.android.utils.Dips;
 import com.foobnix.android.utils.Keyboards;
@@ -18,7 +20,6 @@ import com.foobnix.pdf.info.ADS;
 import com.foobnix.pdf.info.AppsConfig;
 import com.foobnix.pdf.info.DictsHelper;
 import com.foobnix.pdf.info.R;
-import com.foobnix.pdf.info.TTSModule;
 import com.foobnix.pdf.info.TintUtil;
 import com.foobnix.pdf.info.UiSystemUtils;
 import com.foobnix.pdf.info.model.BookCSS;
@@ -31,8 +32,9 @@ import com.foobnix.pdf.info.view.HorizontallSeekTouchEventListener;
 import com.foobnix.pdf.info.view.ProgressDraw;
 import com.foobnix.pdf.info.widget.ShareDialog;
 import com.foobnix.pdf.search.view.CloseAppDialog;
+import com.foobnix.tts.MessagePageNumber;
+import com.foobnix.tts.TTSEngine;
 import com.foobnix.ui2.MainTabs2;
-import com.foobnix.ui2.TTSService;
 import com.google.android.gms.ads.AdListener;
 import com.google.android.gms.ads.InterstitialAd;
 
@@ -140,6 +142,15 @@ public class DocumentWrapperUI {
             }
 
         };
+        EventBus.getDefault().register(this);
+
+    }
+
+    @Subscribe
+    public void onPageNumber(MessagePageNumber event) {
+        if (controller != null) {
+            controller.onGoToPage(event.getPage() + 1);
+        }
 
     }
 
@@ -289,10 +300,10 @@ public class DocumentWrapperUI {
         }
 
         if (AppState.get().isUseVolumeKeys && KeyEvent.KEYCODE_HEADSETHOOK == keyCode) {
-            if (TTSModule.getInstance().isPlaying()) {
-                TTSModule.getInstance().stop();
+            if (TTSEngine.get().isPlaying()) {
+                TTSEngine.get().stop();
             } else {
-                TTSModule.getInstance().play();
+                TTSEngine.get().playCurrent();
                 anchor.setTag("");
             }
             DragingDialogs.textToSpeachDialog(anchor, controller);
@@ -323,6 +334,7 @@ public class DocumentWrapperUI {
     }
 
     public void closeAndRunList(final boolean isLong) {
+        EventBus.getDefault().unregister(this);
         AppState.get().lastA = null;
         if (handler != null) {
             handler.removeCallbacksAndMessages(null);
@@ -644,14 +656,12 @@ public class DocumentWrapperUI {
 
         textToSpeachTop = (ImageView) a.findViewById(R.id.textToSpeachTop);
         textToSpeachTop.setOnClickListener(onTextToSpeach);
-        textToSpeachTop.setVisibility(TTSModule.isAvailableTTS() ? View.VISIBLE : View.GONE);
 
         batteryIcon = (ImageView) a.findViewById(R.id.batteryIcon);
         clockIcon = (ImageView) a.findViewById(R.id.clockIcon);
 
         textToSpeach = (ImageView) a.findViewById(R.id.textToSpeach);
         textToSpeach.setOnClickListener(onTextToSpeach);
-        textToSpeach.setVisibility(TTSModule.isAvailableTTS() ? View.VISIBLE : View.GONE);
 
         drawView = (DrawView) a.findViewById(R.id.drawView);
 
@@ -743,7 +753,6 @@ public class DocumentWrapperUI {
         goToPage1.setVisibility(View.GONE);
         goToPage1Top.setVisibility(View.GONE);
         closeTop.setVisibility(View.GONE);
-        textToSpeachTop.setVisibility(TTSModule.isAvailableTTS() ? View.VISIBLE : View.GONE);
 
         if (AppState.get().isMusicianMode) {
             AppState.get().isEditMode = false;
@@ -1388,11 +1397,6 @@ public class DocumentWrapperUI {
 
         @Override
         public void onClick(final View arg0) {
-
-            if (true) {
-                controller.getActivity().startService(new Intent(controller.getActivity(), TTSService.class).setAction(TTSService.ACTION_GET_PAGE_COUNT));
-                return;
-            }
             controller.alignDocument();
         }
     };

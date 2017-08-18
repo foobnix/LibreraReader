@@ -18,7 +18,6 @@ import com.foobnix.pdf.CopyAsyncTask;
 import com.foobnix.pdf.GeneralDocInterface;
 import com.foobnix.pdf.info.ExtUtils;
 import com.foobnix.pdf.info.PageUrl;
-import com.foobnix.pdf.info.TTSModule;
 import com.foobnix.pdf.info.model.AnnotationType;
 import com.foobnix.pdf.info.model.OutlineLinkWrapper;
 import com.foobnix.pdf.info.wrapper.AppState;
@@ -74,7 +73,6 @@ public abstract class DocumentControllerHorizontalView extends DocumentControlle
             AppState.get().isCut = false;
             AppState.get().isLocked = true;
         }
-        TTSModule.getInstanceInit(activity, this);
     }
 
     @Override
@@ -229,7 +227,7 @@ public abstract class DocumentControllerHorizontalView extends DocumentControlle
     @Override
     public String getTextForPage(int page) {
         String pageHTML = generadDocInterface.getPageHTML(getBookPath(), page);
-        pageHTML = TTSModule.replaceHTML(pageHTML);
+        pageHTML = TxtUtils.replaceHTMLforTTS(pageHTML);
         return pageHTML;
     }
 

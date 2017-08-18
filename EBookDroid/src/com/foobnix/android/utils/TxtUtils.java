@@ -21,6 +21,40 @@ import android.widget.TextView;
 
 public class TxtUtils {
 
+    static List<String> partsDivs = Arrays.asList(",", ".", "!", ";", "?", ":");
+
+    public static String[] getParts(String text) {
+        int max = -1;
+        for (String ch : partsDivs) {
+            int last = text.lastIndexOf(ch);
+            if (last > max) {
+                max = last;
+            }
+        }
+
+        String firstPart = max > 0 ? text.substring(0, max + 1) : text;
+        String secondPart = max > 0 ? text.substring(max + 1) : "";
+
+        return new String[] { firstPart, secondPart };
+
+    }
+
+    public static String replaceHTMLforTTS(String pageHTML) {
+        if (pageHTML == null) {
+            return "";
+        }
+        pageHTML = pageHTML.replace("<b>", " ").replace("</b>", " ").replace("<i>", " ").replace("</i>", " ");
+        pageHTML = pageHTML.replace("<br/>", " ");
+        pageHTML = pageHTML.replace("<p>", " ").replace("</p>", ". ");
+        pageHTML = pageHTML.replace("&nbsp;", " ");
+        pageHTML = pageHTML.replaceAll("<end/>$", " ").replace("<end/>", ".");
+        pageHTML = pageHTML.replace("'", "");
+        pageHTML = pageHTML.replace("  ", " ").replace("  ", " ");
+        pageHTML = pageHTML.replace(".", ". ").replace(" .", ".").replace(" .", ".");
+        pageHTML = pageHTML.replaceAll("(?u)(\\w+)(-\\s)", "$1");
+        return pageHTML;
+    }
+
     public static String sanitizeFilename(String name) {
         return name.replaceAll("[:\\\\/*?|<>]", "_");
     }

@@ -26,10 +26,10 @@ import org.ebookdroid.ui.viewer.ViewerActivityController;
 import com.foobnix.android.utils.Dips;
 import com.foobnix.android.utils.LOG;
 import com.foobnix.android.utils.ResultResponse;
+import com.foobnix.android.utils.TxtUtils;
 import com.foobnix.pdf.info.ExtUtils;
 import com.foobnix.pdf.info.PageUrl;
 import com.foobnix.pdf.info.R;
-import com.foobnix.pdf.info.TTSModule;
 import com.foobnix.pdf.info.model.AnnotationType;
 import com.foobnix.pdf.info.model.OutlineLinkWrapper;
 import com.foobnix.pdf.info.widget.PrefDialogs;
@@ -66,7 +66,6 @@ public class AdvModeController extends DocumentController {
         AppSettings.getInstance().fullScreen = AppState.getInstance().isFullScrean();
         handler = new Handler();
 
-        TTSModule.getInstanceInit(activity, this);
         initHandler();
     }
 
@@ -314,9 +313,7 @@ public class AdvModeController extends DocumentController {
     @Override
     public String getTextForPage(int page) {
         String pageHTML = ctr.getDecodeService().getPageHTML(page);
-
-        pageHTML = TTSModule.replaceHTML(pageHTML);
-
+        pageHTML = TxtUtils.replaceHTMLforTTS(pageHTML);
         return pageHTML;
     }
 

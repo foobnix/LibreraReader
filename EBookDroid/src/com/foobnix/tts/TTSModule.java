@@ -1,4 +1,4 @@
-package com.foobnix.pdf.info;
+package com.foobnix.tts;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -16,6 +16,8 @@ import com.foobnix.android.utils.Apps;
 import com.foobnix.android.utils.LOG;
 import com.foobnix.android.utils.TxtUtils;
 import com.foobnix.dao2.FileMeta;
+import com.foobnix.pdf.info.FontExtractor;
+import com.foobnix.pdf.info.R;
 import com.foobnix.pdf.info.wrapper.AppState;
 import com.foobnix.pdf.info.wrapper.DocumentController;
 import com.foobnix.ui2.AppDB;
@@ -26,7 +28,6 @@ import android.app.Activity;
 import android.app.Notification;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
-import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
@@ -43,7 +44,7 @@ import android.support.v4.app.NotificationCompat;
 import android.widget.Toast;
 
 @TargetApi(Build.VERSION_CODES.ICE_CREAM_SANDWICH)
-public final class TTSModule {
+final class TTSModule {
 
     private static final File DW = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS);
 
@@ -61,7 +62,6 @@ public final class TTSModule {
     TextToSpeech ttsEngine;
     Activity activity;
 
-    private static TTSModule INSTANCE;
 
     public String engine;
 
@@ -69,28 +69,9 @@ public final class TTSModule {
 
     static HashMap<String, String> map = new HashMap<String, String>();
 
-    public static TTSModule getInstance() {
-        return INSTANCE;
-    }
 
     private static DocumentController controller;
 
-    BroadcastReceiver broadcastReceiver = new BroadcastReceiver() {
-
-        @Override
-        public void onReceive(Context context, Intent intent) {
-            if (TTS_READ.equals(intent.getAction())) {
-                play();
-            }
-            if (TTS_STOP.equals(intent.getAction())) {
-                stop();
-            }
-            if (TTS_NEXT.equals(intent.getAction())) {
-                next();
-            }
-
-        }
-    };
 
     public void hideNotification() {
         if (activity == null) {
@@ -147,19 +128,6 @@ public final class TTSModule {
         play(readingText);
     }
 
-    public static String replaceHTML(String pageHTML) {
-        if (pageHTML == null) {
-            return "";
-        }
-        pageHTML = pageHTML.replace("<b>", " ").replace("</b>", " ").replace("<i>", " ").replace("</i>", " ");
-        pageHTML = pageHTML.replace("<br/>", " ");
-        pageHTML = pageHTML.replace("<p>", " ").replace("</p>", ". ");
-        pageHTML = pageHTML.replace("&nbsp;", " ");
-        pageHTML = pageHTML.replaceAll("<end/>$", " ").replace("<end/>", ".");
-        pageHTML = pageHTML.replace(".", ". ").replace(" .", ".").replace(" .", ".");
-        pageHTML = pageHTML.replaceAll("(?u)(\\w+)(-\\s)", "$1");
-        return pageHTML;
-    }
 
     public void bookIsOver() {
         try {
@@ -180,7 +148,6 @@ public final class TTSModule {
                     LOG.d("overString", ". . . . " + overString);
                     play(overString, true);
 
-                    AppState.getInstance().ttsSkeakToFile = false;
                 }
             }, 2000);
         } catch (Exception e) {
@@ -224,11 +191,7 @@ public final class TTSModule {
     }
 
     @SuppressLint("NewApi")
-    public static TTSModule getInstanceInit(final Activity activity, DocumentController dc) {
-        if (INSTANCE != null) {
-            INSTANCE.shutdownTTS();
-        }
-        INSTANCE = new TTSModule(activity);
+    private static TTSModule getInstanceInit(final Activity activity, DocumentController dc) {
         controller = dc;
 
         IntentFilter filter = new IntentFilter();
@@ -236,9 +199,9 @@ public final class TTSModule {
         filter.addAction(TTS_NEXT);
         filter.addAction(TTS_READ);
 
-        activity.registerReceiver(INSTANCE.broadcastReceiver, filter);
+        // activity.registerReceiver(INSTANCE.broadcastReceiver, filter);
+        return new TTSModule(null);
 
-        return INSTANCE;
     }
 
     static Map<String, String> hashMap = new HashMap<String, String>();
@@ -250,7 +213,7 @@ public final class TTSModule {
         text = text.replace("?", "?.");
         text = text.replace("!", "!.");
 
-        if (!AppState.getInstance().ttsReplacement) {
+        if (false) {
             return text;
         }
         if (hashMap.isEmpty()) {
@@ -410,10 +373,6 @@ public final class TTSModule {
                 LOG.d("Text is Empty");
                 return;
             }
-            if (!AppState.get().ttsSkeakToFile && System.currentTimeMillis() - timeout < 1000) {
-                LOG.d("Skip play");
-                return;
-            }
             timeout = System.currentTimeMillis();
             stop();
             if (ttsEngine == null) {
@@ -432,7 +391,7 @@ public final class TTSModule {
 
             text = applyReplacement(text);
 
-            if (AppState.getInstance().ttsSkeakToFile) {
+            if (false) {
                 File dirFolder = new File(AppState.get().ttsSpeakPath, "TTS_" + controller.getCurrentBook().getName());
                 if (!dirFolder.exists()) {
                     dirFolder.mkdirs();
@@ -475,27 +434,6 @@ public final class TTSModule {
         }
     }
 
-    public void shutdownTTS() {
-        if (!isAvailableTTS()) {
-            return;
-        }
-        try {
-            if (ttsEngine != null) {
-                stop();
-                ttsEngine.shutdown();
-                // ttsEngine = null;
-            }
-            hideNotification();
-            if (activity != null) {
-                activity.unregisterReceiver(broadcastReceiver);
-            }
-            controller = null;
-            activity = null;
-            hashMap.clear();
-        } catch (Exception e) {
-            LOG.e(e);
-        }
-    }
 
     public boolean isPlaying() {
         if (ttsEngine == null) {

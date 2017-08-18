@@ -16,12 +16,12 @@ import com.foobnix.pdf.info.Analytics;
 import com.foobnix.pdf.info.Android6;
 import com.foobnix.pdf.info.ExtUtils;
 import com.foobnix.pdf.info.R;
-import com.foobnix.pdf.info.TTSModule;
 import com.foobnix.pdf.info.widget.RecentUpates;
 import com.foobnix.pdf.info.wrapper.AppState;
 import com.foobnix.pdf.info.wrapper.DocumentController;
 import com.foobnix.pdf.search.view.CloseAppDialog;
 import com.foobnix.sys.TempHolder;
+import com.foobnix.tts.TTSEngine;
 import com.foobnix.ui2.FileMetaCore;
 import com.foobnix.ui2.MainTabs2;
 import com.google.android.gms.ads.AdView;
@@ -203,7 +203,7 @@ public class ViewerActivity extends AbstractActionActivity<ViewerActivity, Viewe
 
         @Override
         public void run() {
-            if (TTSModule.getInstance().isPlaying()) {
+            if (TTSEngine.get().isPlaying()) {
                 LOG.d("TTS is playing");
                 return;
             }
@@ -229,9 +229,6 @@ public class ViewerActivity extends AbstractActionActivity<ViewerActivity, Viewe
             ADS.destory(adView);
             ADS.destoryNative(adViewNative);
             getController().getListener().onDestroy();
-        }
-        if (TTSModule.getInstance() != null) {
-            TTSModule.getInstance().shutdownTTS();
         }
     }
 

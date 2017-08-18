@@ -138,7 +138,7 @@
             android:exported="false" >
         </service>
          <service
-            android:name="com.foobnix.ui2.TTSService"
+            android:name="com.foobnix.tts.TTSService"
             android:exported="false" >
         </service>
 

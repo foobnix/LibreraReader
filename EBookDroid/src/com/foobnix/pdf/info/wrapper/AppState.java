@@ -14,10 +14,10 @@ import com.foobnix.android.utils.LOG;
 import com.foobnix.android.utils.MemoryUtils;
 import com.foobnix.pdf.info.AppsConfig;
 import com.foobnix.pdf.info.ExportSettingsManager;
-import com.foobnix.pdf.info.TTSModule;
 import com.foobnix.pdf.info.Urls;
 import com.foobnix.pdf.info.model.BookCSS;
 import com.foobnix.pdf.info.view.DragingPopup;
+import com.foobnix.tts.TTSEngine;
 import com.foobnix.ui2.AppDB;
 
 import android.content.Context;
@@ -206,10 +206,8 @@ public class AppState {
     public boolean isFullScreen = true;
     public boolean isAutoFit = false;
     public boolean notificationOngoing = false;
-    public boolean ttsReplacement = false;
-    public boolean ttsSkeakToFile = false;
 
-    public String ttsSpeakPath = TTSModule.speakToPath;
+    public String ttsSpeakPath = TTSEngine.speakToPath;
 
     public boolean isShowToolBar = true;
     public boolean isShowReadingProgress = true;
@@ -493,7 +491,6 @@ public class AppState {
         isRecentGrid = sp.getBoolean("isRecentGrid", isRecentGrid);
         isFullScreen = sp.getBoolean("isFullScrean", isFullScreen);
         notificationOngoing = sp.getBoolean("notificationOngoing", notificationOngoing);
-        ttsReplacement = sp.getBoolean("ttsReplacement", ttsReplacement);
         isShowToolBar = sp.getBoolean("isShowToolBar", isShowToolBar);
         isShowReadingProgress = sp.getBoolean("isShowReadingProgress", isShowReadingProgress);
         isShowChaptersOnProgress = sp.getBoolean("isShowChaptersOnProgress", isShowChaptersOnProgress);
@@ -701,7 +698,6 @@ public class AppState {
         editor.putBoolean("isEditMode", isEditMode);
         editor.putBoolean("isFullScrean", isFullScreen);
         editor.putBoolean("notificationOngoing", notificationOngoing);
-        editor.putBoolean("ttsReplacement", ttsReplacement);
         editor.putBoolean("isShowToolBar", isShowToolBar);
         editor.putBoolean("isShowReadingProgress", isShowReadingProgress);
         editor.putBoolean("isShowChaptersOnProgress", isShowChaptersOnProgress);
