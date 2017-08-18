@@ -48,6 +48,7 @@ import com.foobnix.sys.ClickUtils;
 import com.foobnix.sys.TempHolder;
 import com.foobnix.tts.MessagePageNumber;
 import com.foobnix.tts.TTSEngine;
+import com.foobnix.tts.TTSNotification;
 import com.foobnix.ui2.MainTabs2;
 import com.google.android.gms.ads.AdListener;
 import com.google.android.gms.ads.AdView;
@@ -116,6 +117,10 @@ public class HorizontalViewActivity extends FragmentActivity {
 
     @Override
     protected void onNewIntent(final Intent intent) {
+
+        if (TTSNotification.ACTION_TTS.equals(intent.getAction())) {
+            return;
+        }
 
         if (!intent.filterEquals(getIntent())) {
             finish();

@@ -62,6 +62,7 @@ import com.foobnix.pdf.search.activity.msg.InvalidateMessage;
 import com.foobnix.pdf.search.menu.MenuBuilderM;
 import com.foobnix.sys.TempHolder;
 import com.foobnix.tts.TTSEngine;
+import com.foobnix.tts.TTSNotification;
 import com.foobnix.tts.TTSService;
 import com.foobnix.ui2.AppDB;
 import com.foobnix.ui2.adapter.DefaultListeners;
@@ -225,7 +226,7 @@ public class DragingDialogs {
 
                     @Override
                     public void onClick(View v) {
-                        TTSService.playBookPage(controller.getCurentPageFirst1() - 1);
+                        TTSService.playBookPage(controller.getCurentPageFirst1() - 1, controller.getCurrentBook().getPath());
 
                     }
                 });
@@ -336,6 +337,7 @@ public class DragingDialogs {
                     @Override
                     public void onCheckedChanged(final CompoundButton buttonView, final boolean isChecked) {
                         AppState.getInstance().notificationOngoing = isChecked;
+                        TTSNotification.hideNotification();
                     }
                 });
 

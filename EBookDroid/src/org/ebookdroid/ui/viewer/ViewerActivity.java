@@ -22,6 +22,7 @@ import com.foobnix.pdf.info.wrapper.DocumentController;
 import com.foobnix.pdf.search.view.CloseAppDialog;
 import com.foobnix.sys.TempHolder;
 import com.foobnix.tts.TTSEngine;
+import com.foobnix.tts.TTSNotification;
 import com.foobnix.ui2.FileMetaCore;
 import com.foobnix.ui2.MainTabs2;
 import com.google.android.gms.ads.AdView;
@@ -57,6 +58,9 @@ public class ViewerActivity extends AbstractActionActivity<ViewerActivity, Viewe
 
     @Override
     protected void onNewIntent(final Intent intent) {
+        if (TTSNotification.ACTION_TTS.equals(intent.getAction())) {
+            return;
+        }
         if (!intent.filterEquals(getIntent())) {
             finish();
             startActivity(intent);

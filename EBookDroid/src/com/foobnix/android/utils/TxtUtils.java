@@ -21,7 +21,9 @@ import android.widget.TextView;
 
 public class TxtUtils {
 
-    static List<String> partsDivs = Arrays.asList(",", ".", "!", ";", "?", ":");
+    // static List<String> partsDivs = Arrays.asList(",", ".", "!", ";", "?",
+    // ":");
+    static List<String> partsDivs = Arrays.asList(".", "!", ";", "?", ":");
 
     public static String[] getParts(String text) {
         int max = -1;

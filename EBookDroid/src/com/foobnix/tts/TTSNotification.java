@@ -26,6 +26,8 @@ import android.support.v4.app.NotificationCompat;
 
 public class TTSNotification {
 
+    public static final String ACTION_TTS = "TTSNotification_TTS";
+
     public static final String TTS_READ = "TTS_READ";
     public static final String TTS_STOP = "TTS_STOP";
     public static final String TTS_NEXT = "TTS_NEXT";
@@ -42,19 +44,20 @@ public class TTSNotification {
 
             FileMeta fileMeta = AppDB.get().getOrCreate(bookPath);
 
-            Intent intent = new Intent(c, HorizontalViewActivity.class.getSimpleName().equals(AppState.get().lastA) ? HorizontalViewActivity.class : ViewerActivity.class);
+            Intent intent = new Intent(c, HorizontalViewActivity.class.getSimpleName().equals(AppState.get().lastMode) ? HorizontalViewActivity.class : ViewerActivity.class);
+            intent.setAction(ACTION_TTS);
             intent.setData(Uri.fromFile(new File(bookPath)));
             if (page > 0) {
-                intent.putExtra("page", page);
+                intent.putExtra("page", page - 1);
             }
 
-            PendingIntent contentIntent = PendingIntent.getActivity(c, 0, intent, PendingIntent.FLAG_NO_CREATE);
+            PendingIntent contentIntent = PendingIntent.getActivity(c, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
 
             PendingIntent stop = PendingIntent.getService(c, 0, new Intent(TTS_STOP, null, c, TTSService.class), PendingIntent.FLAG_UPDATE_CURRENT);
             PendingIntent read = PendingIntent.getService(c, 0, new Intent(TTS_READ, null, c, TTSService.class), PendingIntent.FLAG_UPDATE_CURRENT);
             PendingIntent next = PendingIntent.getService(c, 0, new Intent(TTS_NEXT, null, c, TTSService.class), PendingIntent.FLAG_UPDATE_CURRENT);
 
-            builder.setContentIntent(null) //
+            builder.setContentIntent(contentIntent) //
                     .setSmallIcon(R.drawable.glyphicons_185_volume_up) //
                     .setLargeIcon(getBookImage(bookPath)) //
                     .setTicker(c.getString(R.string.app_name)) //
@@ -74,7 +77,7 @@ public class TTSNotification {
         }
     }
 
-    public void hideNotification() {
+    public static void hideNotification() {
         NotificationManager nm = (NotificationManager) LirbiApp.context.getSystemService(Context.NOTIFICATION_SERVICE);
         nm.cancel(NOT_ID);
     }

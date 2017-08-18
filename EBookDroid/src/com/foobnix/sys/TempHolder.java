@@ -7,7 +7,6 @@ import org.ebookdroid.core.codec.CodecDocument;
 
 import com.foobnix.pdf.info.ExtUtils;
 import com.foobnix.pdf.info.wrapper.UITab;
-import com.foobnix.tts.TTSEngine;
 
 public class TempHolder {
     public static final ReentrantLock lock = new ReentrantLock();
@@ -39,10 +38,8 @@ public class TempHolder {
     }
 
     public void clear() {
-        TTSEngine.get().stop();
         codecDocument = null;
         path = null;
-
     }
 
     private boolean isTextForamtInner() {

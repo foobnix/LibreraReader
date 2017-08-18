@@ -156,6 +156,7 @@ public class ImageExtractor implements ImageDownloader {
         }
     }
 
+
     public Bitmap proccessOtherPage(PageUrl pageUrl) {
         int page = pageUrl.getPage();
         String path = pageUrl.getPath();

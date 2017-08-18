@@ -9,9 +9,11 @@ import com.foobnix.android.utils.LOG;
 import com.foobnix.android.utils.TxtUtils;
 import com.foobnix.dao2.FileMeta;
 import com.foobnix.pdf.info.IMG;
+import com.foobnix.pdf.info.R;
 import com.foobnix.pdf.info.wrapper.AppState;
 import com.foobnix.pdf.search.activity.HorizontalViewActivity;
 import com.foobnix.sys.ImageExtractor;
+import com.foobnix.tts.TTSActivity;
 import com.foobnix.ui2.AppDB;
 import com.nostra13.universalimageloader.core.ImageLoader;
 
@@ -28,7 +30,7 @@ import android.os.Build;
 public class RecentUpates {
 
     @TargetApi(25)
-    public static void updateAll(Context c) {
+    public static void updateAll(final Context c) {
         if (c == null) {
             return;
         }
@@ -63,7 +65,17 @@ public class RecentUpates {
                             .setIntent(lastBookIntent)//
                             .build();//
 
-                    shortcutManager.setDynamicShortcuts(Arrays.asList(shortcut));
+                    Intent tTSIntent = new Intent(c, TTSActivity.class);
+                    tTSIntent.setAction(Intent.ACTION_VIEW);
+
+                    ShortcutInfo tts = new ShortcutInfo.Builder(c, "tts")//
+                            .setShortLabel(c.getString(R.string.reading_out_loud))//
+                            .setLongLabel(c.getString(R.string.reading_out_loud))//
+                            .setIcon(Icon.createWithBitmap(image))//
+                            .setIntent(tTSIntent)//
+                            .build();//
+
+                    shortcutManager.setDynamicShortcuts(Arrays.asList(tts, shortcut));
                 }
             } catch (Exception e) {
                 LOG.e(e);

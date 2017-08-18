@@ -77,9 +77,14 @@ public class TTSEngine {
 
     }
 
+    @TargetApi(Build.VERSION_CODES.ICE_CREAM_SANDWICH_MR1)
     public void stop() {
         if (ttsEngine != null) {
-            ttsEngine.setOnUtteranceCompletedListener(null);
+            if (Build.VERSION.SDK_INT >= 15) {
+                ttsEngine.setOnUtteranceProgressListener(null);
+            } else {
+                ttsEngine.setOnUtteranceCompletedListener(null);
+            }
             ttsEngine.stop();
         }
     }

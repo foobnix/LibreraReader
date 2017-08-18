@@ -305,6 +305,8 @@ public class AppState {
     public String searchPaths = Environment.getExternalStorageDirectory() == null ? "/" : Environment.getExternalStorageDirectory().getPath();
 
     public String fileToDelete;
+    public String lastBookPath;
+    public int lastBookPage;
 
     public int colorDayText = COLOR_BLACK;
     public int colorDayBg = COLOR_WHITE;
@@ -557,6 +559,8 @@ public class AppState {
         rememberDict = sp.getString("rememberDict", rememberDict);
 
         fileToDelete = sp.getString("fileToDelete", fileToDelete);
+        lastBookPath = sp.getString("lastBookPath", lastBookPath);
+        lastBookPage = sp.getInt("lastBookPage", lastBookPage);
         lastA = sp.getString("lastA", lastA);
         lastMode = sp.getString("lastMode", lastMode);
         dirLastPath = sp.getString("dirLastPath", dirLastPath);
@@ -761,6 +765,8 @@ public class AppState {
         editor.putString("rememberDict", rememberDict);
         editor.putString("recurcive", null);
         editor.putString("fileToDelete", fileToDelete);
+        editor.putString("lastBookPath", lastBookPath);
+        editor.putInt("lastBookPage", lastBookPage);
         editor.putString("lastA", lastA);
         editor.putString("lastMode", lastMode);
         editor.putString("dirLastPath", dirLastPath);
