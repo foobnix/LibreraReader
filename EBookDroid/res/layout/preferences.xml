@@ -1140,7 +1140,7 @@
                 style="@style/textLink"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="http://lirbi.com" />
+                android:text="http://librera.mobi" />
         </LinearLayout>
 
         <LinearLayout
@@ -1159,7 +1159,7 @@
                 style="@style/textLink"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="http://beta.lirbi.com" />
+                android:text="http://beta.librera.mobi" />
         </LinearLayout>
 
         <LinearLayout
@@ -1178,7 +1178,7 @@
                 style="@style/textLink"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="http://archive.lirbi.com" />
+                android:text="http://archive.librera.mobi" />
         </LinearLayout>
 
         <TextView

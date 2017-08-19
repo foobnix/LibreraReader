@@ -70,9 +70,9 @@ import android.widget.Toast;
 public class PrefFragment2 extends UIFragment {
     public static final Pair<Integer, Integer> PAIR = new Pair<Integer, Integer>(R.string.preferences, R.drawable.glyphicons_281_settings);
 
-    private static final String WWW_SITE = "http://lirbi.com";
-    private static final String WWW_BETA_SITE = "http://beta.lirbi.com";
-    private static final String WWW_ARCHIVE_SITE = "http://archive.lirbi.com";
+    private static final String WWW_SITE = "http://librera.mobi";
+    private static final String WWW_BETA_SITE = "http://beta.librera.mobi";
+    private static final String WWW_ARCHIVE_SITE = "http://archive.librera.mobi";
     private SearchFragment searchFragmet;
     private TextView curBrightness;
     private CheckBox isRememberDictionary;
