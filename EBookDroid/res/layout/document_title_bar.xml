@@ -25,7 +25,6 @@
             android:background="@drawable/bg_search_second_clickable"
             android:cropToPadding="true"
             android:elevation="8dip"
-            android:gravity="center"
             android:paddingBottom="0dip"
             android:paddingLeft="20dip"
             android:paddingRight="20dip"
@@ -33,8 +32,9 @@
             android:singleLine="true"
             android:src="@drawable/lirbi_text"
             android:text="Music"
+            android:gravity="center"
             android:textColor="@color/white"
-            android:textSize="18sp"
+            android:textSize="16sp"
             android:textStyle="italic" />
 
         <LinearLayout

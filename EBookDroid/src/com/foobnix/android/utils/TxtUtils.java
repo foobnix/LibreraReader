@@ -429,14 +429,14 @@ public class TxtUtils {
         if (TxtUtils.isEmpty(txt)) {
             return txt;
         }
-        if (txt.trim().contains(" ")) {
-            return txt;
-        }
 
-        String regexp = "[^\\w\\[\\]\\{\\}’']+";
-        String replaceAll = txt.trim().replace("   ", " ").replace("  ", " ").replaceAll("\\s", " ").trim().replaceAll(regexp + "$", "").replaceAll("^" + regexp, "");
-        replaceAll = replaceAll.replaceAll("(?u)(\\w+)(-\\s)", "$1");// remove
-                                                                     // hyphen
+        String replaceAll = txt.trim().replace("   ", " ").replace("  ", " ").replaceAll("\\s", " ").trim();
+        replaceAll = replaceAll.replaceAll("(?u)(\\w+)(-\\s)", "$1").trim();
+
+        if (!replaceAll.contains(" ")) {
+            String regexp = "[^\\w\\[\\]\\{\\}’']+";
+            replaceAll = replaceAll.replaceAll(regexp + "$", "").replaceAll("^" + regexp, "");
+        }
         return replaceAll.trim();
     }
 

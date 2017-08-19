@@ -763,11 +763,7 @@ public class DragingDialogs {
 
                 final EditText editText = (EditText) view.findViewById(R.id.editText);
                 String selectedText = AppState.get().selectedText;
-                if (selectedText != null) {
-                    selectedText = selectedText.replace("  ", " ").replace("  ", " ");
-                } else {
-                    selectedText = "";
-                }
+
                 editText.setText(selectedText);
 
                 final View onTranslate = view.findViewById(R.id.onTranslate);
@@ -811,10 +807,10 @@ public class DragingDialogs {
 
                     @Override
                     public void onClick(View v) {
+                        TTSEngine.get().stop();
                         TTSEngine.get().speek(editText.getText().toString().trim());
                     }
                 });
-
 
                 view.findViewById(R.id.onShare).setOnClickListener(new View.OnClickListener() {
 
@@ -1392,7 +1388,7 @@ public class DragingDialogs {
 
                 return a;
             }
-        }.show("addBookmarks");
+        }.show("addBookmarks", false, true);
     }
 
     public static void showContent(final FrameLayout anchor, final DocumentController controller) {

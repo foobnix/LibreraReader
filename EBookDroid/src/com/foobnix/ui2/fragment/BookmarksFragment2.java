@@ -17,6 +17,7 @@ import com.foobnix.pdf.info.AppSharedPreferences;
 import com.foobnix.pdf.info.ExtUtils;
 import com.foobnix.pdf.info.R;
 import com.foobnix.pdf.info.TintUtil;
+import com.foobnix.pdf.info.widget.FileInformationDialog;
 import com.foobnix.pdf.info.wrapper.AppBookmark;
 import com.foobnix.pdf.info.wrapper.AppState;
 import com.foobnix.pdf.info.wrapper.PopupHelper;
@@ -87,7 +88,14 @@ public class BookmarksFragment2 extends UIFragment<AppBookmark> {
         bookmarksAdapter.setOnDeleteClickListener(onDeleteResponse);
 
         bookmarksAdapter.setOnItemClickListener(onItemClickListener);
-        // bookmarksAdapter.setOnBookTitleClickListener(onTitleClickListener);
+        bookmarksAdapter.setOnItemLongClickListener(new ResultResponse<AppBookmark>() {
+
+            @Override
+            public boolean onResultRecive(AppBookmark result) {
+                FileInformationDialog.showFileInfoDialog(getActivity(), new File(result.getPath()), null);
+                return true;
+            }
+        });
 
         onListGrid.setOnClickListener(new OnClickListener() {
 
