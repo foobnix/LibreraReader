@@ -21,8 +21,6 @@ import android.widget.TextView;
 
 public class TxtUtils {
 
-    // static List<String> partsDivs = Arrays.asList(",", ".", "!", ";", "?",
-    // ":");
     static List<String> partsDivs = Arrays.asList(".", "!", ";", "?", ":");
 
     public static String[] getParts(String text) {
@@ -32,6 +30,9 @@ public class TxtUtils {
             if (last > max) {
                 max = last;
             }
+        }
+        if (max == -1) {
+            max = text.lastIndexOf(",");
         }
 
         String firstPart = max > 0 ? text.substring(0, max + 1) : text;
@@ -50,6 +51,8 @@ public class TxtUtils {
         pageHTML = pageHTML.replace("<p>", " ").replace("</p>", ". ");
         pageHTML = pageHTML.replace("&nbsp;", " ");
         pageHTML = pageHTML.replaceAll("<end/>$", " ").replace("<end/>", ".");
+        pageHTML = pageHTML.replace("'", "");
+        pageHTML = pageHTML.replace("*", "");
         pageHTML = pageHTML.replace("'", "");
         pageHTML = pageHTML.replace("  ", " ").replace("  ", " ");
         pageHTML = pageHTML.replace(".", ". ").replace(" .", ".").replace(" .", ".");
