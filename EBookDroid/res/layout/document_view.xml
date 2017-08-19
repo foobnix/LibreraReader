@@ -66,8 +66,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:visibility="gone" />
-    
-    
+
     <com.foobnix.pdf.info.view.BrigtnessDraw
         android:id="@+id/brigtnessProgressView"
         android:layout_width="@dimen/brigtness"
@@ -81,6 +80,20 @@
         android:layout_alignParentTop="true"
         layout="@layout/document_title_bar"
         android:elevation="2dip" />
+
+    <ImageView
+        android:id="@+id/ttsActive"
+        style="@style/buttonWhite"
+        android:layout_width="@dimen/wh_button"
+        android:layout_height="@dimen/wh_button"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/document_title_bar"
+        android:layout_margin="0dip"
+        android:background="@drawable/bg_search_second_clickable"
+        android:contentDescription="read aloudW"
+        android:padding="7dip"
+        android:src="@drawable/glyphicons_185_volume_up"
+        android:tint="@color/white" />
 
     <include
         android:id="@+id/menuLayout"

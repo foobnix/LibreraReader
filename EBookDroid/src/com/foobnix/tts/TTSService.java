@@ -127,6 +127,8 @@ public class TTSService extends Service {
                 }
                 TTSEngine.get().getTTS().setOnUtteranceCompletedListener(null);
                 TTSEngine.get().speek(LirbiApp.context.getString(R.string.the_book_is_over));
+
+                EventBus.getDefault().post(new TtsStatus());
                 return;
             }
 
@@ -134,6 +136,12 @@ public class TTSService extends Service {
             String pageHTML = page.getPageHTML();
             pageHTML = TxtUtils.replaceHTMLforTTS(pageHTML);
             LOG.d(TAG, pageHTML);
+
+            if (TxtUtils.isEmpty(pageHTML)) {
+                LOG.d("empty page play next one");
+                playPage("", AppState.get().lastBookPage + 1);
+                return;
+            }
 
             String[] parts = TxtUtils.getParts(pageHTML);
             String firstPart = parts[0];
@@ -177,6 +185,7 @@ public class TTSService extends Service {
 
             TTSNotification.show(TempHolder.get().path, pageNumber + 1);
             TTSEngine.get().speek(firstPart);
+            EventBus.getDefault().post(new TtsStatus());
 
         }
 
