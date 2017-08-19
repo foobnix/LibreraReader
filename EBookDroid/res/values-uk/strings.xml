@@ -383,4 +383,5 @@
    <string name="password">Пароль</string>
    <string name="what_is_the_opds_online_catalog_">Що таке онлайновий каталог OPDS?</string>
    <string name="books">Книги</string>
+   <string name="reading_out_loud">Читання голосно</string>
 </resources>

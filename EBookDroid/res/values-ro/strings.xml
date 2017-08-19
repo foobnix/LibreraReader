@@ -383,4 +383,5 @@
    <string name="password">Parola</string>
    <string name="what_is_the_opds_online_catalog_">Ce este catalogul online OPDS?</string>
    <string name="books">Cărți</string>
+   <string name="reading_out_loud">Citirea cu voce tare</string>
 </resources>

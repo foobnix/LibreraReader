@@ -11,6 +11,8 @@ public class TTSActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        AppState.get().lastBookPath = getIntent().getData().getPath();
+        
         TTSService.playBookPage(AppState.get().lastBookPage, AppState.get().lastBookPath);
         new Handler().postDelayed(new Runnable() {
 

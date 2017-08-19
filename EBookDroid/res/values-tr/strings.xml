@@ -383,4 +383,5 @@
    <string name="password">Parola</string>
    <string name="what_is_the_opds_online_catalog_">OPDS çevrimiçi kataloğu nedir?</string>
    <string name="books">Kitaplar</string>
+   <string name="reading_out_loud">Yüksek sesle okuma</string>
 </resources>

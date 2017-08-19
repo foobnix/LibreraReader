@@ -383,4 +383,5 @@
    <string name="password">Kata sandi</string>
    <string name="what_is_the_opds_online_catalog_">Apakah katalog online OPDS itu?</string>
    <string name="books">Buku</string>
+   <string name="reading_out_loud">Membaca dengan suara keras</string>
 </resources>

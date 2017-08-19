@@ -383,4 +383,5 @@
    <string name="password">암호</string>
    <string name="what_is_the_opds_online_catalog_">OPDS 온라인 카탈로그 란 무엇입니까?</string>
    <string name="books">서적</string>
+   <string name="reading_out_loud">소리내어 읽기</string>
 </resources>

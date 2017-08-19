@@ -383,4 +383,5 @@
    <string name="password">密码</string>
    <string name="what_is_the_opds_online_catalog_">什么是OPDS在线目录？</string>
    <string name="books">图书</string>
+   <string name="reading_out_loud">大声朗读</string>
 </resources>

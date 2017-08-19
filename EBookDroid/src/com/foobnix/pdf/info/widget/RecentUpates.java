@@ -66,6 +66,7 @@ public class RecentUpates {
                             .build();//
 
                     Intent tTSIntent = new Intent(c, TTSActivity.class);
+                    tTSIntent.setData(Uri.fromFile(new File(recentLast.getPath())));
                     tTSIntent.setAction(Intent.ACTION_VIEW);
 
                     ShortcutInfo tts = new ShortcutInfo.Builder(c, "tts")//

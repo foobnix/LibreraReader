@@ -383,4 +383,5 @@
    <string name="password">Passord</string>
    <string name="what_is_the_opds_online_catalog_">Hva er OPDS online katalog?</string>
    <string name="books">Bøker</string>
+   <string name="reading_out_loud">Leser høyt</string>
 </resources>

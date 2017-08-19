@@ -383,4 +383,5 @@
    <string name="password">Salasana</string>
    <string name="what_is_the_opds_online_catalog_">Mikä on OPDS-verkkoluettelo?</string>
    <string name="books">Kirjat</string>
+   <string name="reading_out_loud">Lukeminen ääneen</string>
 </resources>

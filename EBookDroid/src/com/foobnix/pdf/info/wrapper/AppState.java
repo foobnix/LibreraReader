@@ -306,7 +306,7 @@ public class AppState {
 
     public String fileToDelete;
     public String lastBookPath;
-    public int lastBookPage;
+    public int lastBookPage = 0;
 
     public int colorDayText = COLOR_BLACK;
     public int colorDayBg = COLOR_WHITE;

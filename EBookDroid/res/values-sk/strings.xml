@@ -383,4 +383,5 @@
    <string name="password">Heslo</string>
    <string name="what_is_the_opds_online_catalog_">Čo je online katalóg OPDS?</string>
    <string name="books">Knihy</string>
+   <string name="reading_out_loud">Čítanie nahlas</string>
 </resources>
