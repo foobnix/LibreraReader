@@ -6,6 +6,7 @@ import java.util.HashMap;
 import java.util.List;
 
 import org.ebookdroid.LirbiApp;
+import org.greenrobot.eventbus.EventBus;
 
 import com.foobnix.android.utils.LOG;
 import com.foobnix.android.utils.TxtUtils;
@@ -15,7 +16,6 @@ import com.foobnix.pdf.info.wrapper.DocumentController;
 
 import android.annotation.TargetApi;
 import android.os.Build;
-import android.os.Environment;
 import android.speech.tts.TextToSpeech;
 import android.speech.tts.TextToSpeech.EngineInfo;
 import android.speech.tts.TextToSpeech.OnInitListener;
@@ -24,8 +24,6 @@ import android.widget.Toast;
 
 public class TTSEngine {
 
-    private static final File DW = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS);
-    public static String speakToPath = DW != null ? DW.getPath() : Environment.getExternalStorageDirectory().getPath();
 
     private static final String UTTERANCE_ID = "LirbiReader";
     private static final String TAG = "TTSEngine";
@@ -87,6 +85,7 @@ public class TTSEngine {
             }
             ttsEngine.stop();
         }
+        EventBus.getDefault().post(new TtsStatus());
     }
 
     public TextToSpeech getTTSWithEngine(String engine) {

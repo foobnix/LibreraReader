@@ -34,6 +34,7 @@ import com.foobnix.pdf.info.widget.ShareDialog;
 import com.foobnix.pdf.search.view.CloseAppDialog;
 import com.foobnix.tts.MessagePageNumber;
 import com.foobnix.tts.TTSEngine;
+import com.foobnix.tts.TtsStatus;
 import com.foobnix.ui2.MainTabs2;
 import com.google.android.gms.ads.AdListener;
 import com.google.android.gms.ads.InterstitialAd;
@@ -93,7 +94,7 @@ public class DocumentWrapperUI {
     private ImageView lockUnlockTop, textToSpeachTop, clockIcon, batteryIcon;
     private ImageView showSearch;
     ProgressDraw progressDraw;
-    private ImageView nextScreenType, crop, cut, autoScroll, textToSpeach;
+    private ImageView nextScreenType, crop, cut, autoScroll, textToSpeach, ttsActive;
     private SeekBar speedSeekBar;
     private View seekSpeedLayot, zoomPlus, zoomMinus;
     private FrameLayout anchor;
@@ -151,6 +152,11 @@ public class DocumentWrapperUI {
         if (controller != null) {
             controller.onGoToPage(event.getPage() + 1);
         }
+    }
+
+    @Subscribe
+    public void onTTSStatus(TtsStatus status) {
+        ttsActive.setVisibility(TTSEngine.get().isPlaying() ? View.VISIBLE : View.GONE);
 
     }
 
@@ -657,6 +663,10 @@ public class DocumentWrapperUI {
         textToSpeachTop = (ImageView) a.findViewById(R.id.textToSpeachTop);
         textToSpeachTop.setOnClickListener(onTextToSpeach);
 
+        ttsActive = (ImageView) a.findViewById(R.id.ttsActive);
+        onTTSStatus(null);
+        ttsActive.setOnClickListener(onTextToSpeach);
+
         batteryIcon = (ImageView) a.findViewById(R.id.batteryIcon);
         clockIcon = (ImageView) a.findViewById(R.id.clockIcon);
 
@@ -769,6 +779,7 @@ public class DocumentWrapperUI {
             textToSpeachTop.setVisibility(View.GONE);
             progressDraw.setVisibility(View.GONE);
             brigtnessProgressView.setVisibility(View.GONE);
+            textToSpeach.setVisibility(View.GONE);
         }
 
         textToSpeachTop.setVisibility(View.GONE);
@@ -779,6 +790,7 @@ public class DocumentWrapperUI {
     }
 
     public void updateSeekBarColorAndSize() {
+        TintUtil.setBackgroundFillColorBottomRight(ttsActive, ColorUtils.setAlphaComponent(TintUtil.color, 230));
 
         TintUtil.setTintText(bookName, TintUtil.getStatusBarColor());
         TintUtil.setTintImage(textToSpeachTop, TintUtil.getStatusBarColor());

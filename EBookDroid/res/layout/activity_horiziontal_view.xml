@@ -11,6 +11,19 @@
         android:layout_height="match_parent"
         android:layout_centerInParent="false" />
 
+    <ImageView
+        android:tint="@color/white"
+        android:id="@+id/ttsActive"
+        style="@style/buttonWhite"
+        android:layout_width="@dimen/wh_button"
+        android:layout_height="@dimen/wh_button"
+        android:layout_margin="0dip"
+        android:layout_alignParentLeft="true"
+        android:background="@drawable/bg_search_second_clickable"
+        android:contentDescription="read aloudW"
+        android:padding="7dip"
+        android:src="@drawable/glyphicons_185_volume_up" />
+
     <FrameLayout
         android:id="@+id/adFrame"
         android:layout_width="match_parent"
@@ -31,7 +44,8 @@
         android:clickable="true"
         android:gravity="center_vertical"
         android:paddingLeft="2dip"
-        android:paddingRight="2dip" >
+        android:paddingRight="2dip"
+        android:visibility="visible" >
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -147,8 +161,8 @@
             android:id="@+id/bottomIndicators"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:clickable="true"
             android:layout_marginBottom="-1dip"
+            android:clickable="true"
             android:orientation="horizontal" >
 
             <TextView
@@ -200,10 +214,10 @@
         </LinearLayout>
 
         <com.foobnix.pdf.info.view.ProgressDraw
-            android:background="#ff0000"
             android:id="@+id/progressDraw"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/progress" />
+            android:layout_height="@dimen/progress"
+            android:background="#ff0000" />
     </LinearLayout>
 
     <LinearLayout

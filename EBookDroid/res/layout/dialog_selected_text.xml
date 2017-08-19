@@ -110,16 +110,17 @@
 
         <ImageView
             android:id="@+id/readTTS"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:padding="4dip"
+            android:layout_width="@dimen/wh_button_small"
+            android:layout_height="@dimen/wh_button_small"
             android:layout_weight="0"
             android:adjustViewBounds="true"
             android:background="@drawable/bg_clickable"
-            android:padding="8dip"
             android:src="@drawable/glyphicons_184_volume_down"
             android:tint="@color/tint_gray" />
 
         <ImageView
+            android:visibility="gone"
             android:id="@+id/readTTSNext"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

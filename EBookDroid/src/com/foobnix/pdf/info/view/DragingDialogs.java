@@ -235,6 +235,7 @@ public class DragingDialogs {
                     @Override
                     public void onClick(View v) {
                         TTSEngine.get().stop();
+                        TTSNotification.hideNotification();
                     }
                 });
 
@@ -813,15 +814,7 @@ public class DragingDialogs {
                         TTSEngine.get().speek(editText.getText().toString().trim());
                     }
                 });
-                view.findViewById(R.id.readTTSNext).setOnClickListener(new View.OnClickListener() {
 
-                    @Override
-                    public void onClick(View v) {
-                        closeDialog();
-                        textToSpeachDialog(anchor, controller, editText.getText().toString().trim());
-
-                    }
-                });
 
                 view.findViewById(R.id.onShare).setOnClickListener(new View.OnClickListener() {
 

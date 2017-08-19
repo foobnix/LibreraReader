@@ -17,7 +17,6 @@ import com.foobnix.pdf.info.ExportSettingsManager;
 import com.foobnix.pdf.info.Urls;
 import com.foobnix.pdf.info.model.BookCSS;
 import com.foobnix.pdf.info.view.DragingPopup;
-import com.foobnix.tts.TTSEngine;
 import com.foobnix.ui2.AppDB;
 
 import android.content.Context;
@@ -207,7 +206,7 @@ public class AppState {
     public boolean isAutoFit = false;
     public boolean notificationOngoing = false;
 
-    public String ttsSpeakPath = TTSEngine.speakToPath;
+
 
     public boolean isShowToolBar = true;
     public boolean isShowReadingProgress = true;
@@ -255,7 +254,6 @@ public class AppState {
     public boolean isUseBGImageNight = false;
     public String bgImageDayPath = MagicHelper.IMAGE_BG_1;
     public String bgImageNightPath = MagicHelper.IMAGE_BG_1;
-    public String texturePath = Environment.getExternalStorageDirectory().getPath();
     public int bgImageDayTransparency = DAY_TRANSPARENCY;
     public int bgImageNightTransparency = NIGHT_TRANSPARENCY;
 
@@ -303,6 +301,8 @@ public class AppState {
     public boolean isRecentGrid = false;
 
     public String searchPaths = Environment.getExternalStorageDirectory() == null ? "/" : Environment.getExternalStorageDirectory().getPath();
+    public String texturePath = Environment.getExternalStorageDirectory().getPath();
+    public String ttsSpeakPath = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS).getPath();
 
     public String fileToDelete;
     public String lastBookPath;

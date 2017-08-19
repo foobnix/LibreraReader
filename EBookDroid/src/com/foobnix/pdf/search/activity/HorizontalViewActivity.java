@@ -49,6 +49,7 @@ import com.foobnix.sys.TempHolder;
 import com.foobnix.tts.MessagePageNumber;
 import com.foobnix.tts.TTSEngine;
 import com.foobnix.tts.TTSNotification;
+import com.foobnix.tts.TtsStatus;
 import com.foobnix.ui2.MainTabs2;
 import com.google.android.gms.ads.AdListener;
 import com.google.android.gms.ads.AdView;
@@ -70,6 +71,7 @@ import android.os.Handler;
 import android.os.Parcelable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
+import android.support.v4.graphics.ColorUtils;
 import android.support.v4.view.ViewPager.OnPageChangeListener;
 import android.text.InputType;
 import android.view.KeyEvent;
@@ -102,7 +104,7 @@ public class HorizontalViewActivity extends FragmentActivity {
     private AdView adView;
     private NativeExpressAdView adViewNative;
 
-    ImageView lockModelImage, linkHistory;
+    ImageView lockModelImage, linkHistory, ttsActive;
 
     DocumentControllerHorizontalView documentController;
 
@@ -231,6 +233,7 @@ public class HorizontalViewActivity extends FragmentActivity {
         pagesPower = (TextView) findViewById(R.id.pagesPower);
         linkHistory = (ImageView) findViewById(R.id.linkHistory);
 
+
         updateSeekBarColorAndSize();
 
         titleTxt = (TextView) findViewById(R.id.title);
@@ -342,8 +345,16 @@ public class HorizontalViewActivity extends FragmentActivity {
             }
         });
 
-        View tts = findViewById(R.id.bookTTS);
-        tts.setOnClickListener(new View.OnClickListener() {
+        findViewById(R.id.bookTTS).setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(final View v) {
+                DragingDialogs.textToSpeachDialog(anchor, documentController);
+            }
+        });
+        ttsActive = (ImageView) findViewById(R.id.ttsActive);
+        onTTSStatus(null);
+        ttsActive.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(final View v) {
@@ -598,6 +609,12 @@ public class HorizontalViewActivity extends FragmentActivity {
 
         }
     };
+
+    @Subscribe
+    public void onTTSStatus(TtsStatus status) {
+        ttsActive.setVisibility(TTSEngine.get().isPlaying() ? View.VISIBLE : View.GONE);
+
+    }
 
     @Subscribe
     public void onPageNumber(final MessagePageNumber event) {
@@ -1058,6 +1075,7 @@ public class HorizontalViewActivity extends FragmentActivity {
         TintUtil.setTintBgSimple(actionBar, 230);
         TintUtil.setTintBgSimple(bottomBar, 230);
         TintUtil.setStatusBarColor(this);
+        TintUtil.setBackgroundFillColorBottomRight(ttsActive, ColorUtils.setAlphaComponent(TintUtil.color, 230));
     }
 
     OnPageChangeListener onViewPagerChangeListener = new OnPageChangeListener() {
