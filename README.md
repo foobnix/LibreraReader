@@ -1,19 +1,19 @@
-# Lirbi Reader
+# Librera Reader
 
-Lirbi Reader is a book reader and PDF Redaer for Android 
+Librera Reader is a book reader and PDF Redaer for Android 
 Supprt formats PDF, EPUB, MOBI, DjVu, FB2, TXT, RTF, AZW, AZW3, HTML, CBZ, CBR
 
-Web: [http://lirbireader.com/](http://lirbireader.com/)
+Web: [http://librera.mobi/](http://librera.mobi/)
 
 Android Play market apps:
 
-[Lirbi Readear](https://play.google.com/store/apps/details?id=com.foobnix.pdf.reader)
-[PRO Lirbi Readear](https://play.google.com/store/apps/details?id=com.foobnix.pro.pdf.reader)
+[Librera Readear](https://play.google.com/store/apps/details?id=com.foobnix.pdf.reader)
+[PRO Librera Readear](https://play.google.com/store/apps/details?id=com.foobnix.pro.pdf.reader)
 [PDF Reader Clasic](https://play.google.com/store/apps/details?id=classic.pdf.reader.viewer.djvu.epub.fb2.txt.mobi.book.reader.lirbi.libri)
 
 ## How to install
 
-Lirbi is developed on Eclise with ADT
+Librera is developed on Eclise with ADT
 
 INSTALL IDE
 
@@ -23,7 +23,7 @@ INSTALL IDE
 4) Install JAVA
 5) Install ANT
 
-DOWNLOAD LIRBI SOURCE CODE from GITHUB
+DOWNLOAD Librera SOURCE CODE from GITHUB
 
 1) git clone https://github.com/foobnix/LirbiReader.git
 
@@ -44,20 +44,20 @@ Specify you project path and MUPDF path
 MUPDF=/dev/mupdf-test/platform/java
 MY=/home/ivan-dev/git/LirbiReader
 
-2) To build Lirbi reader
+2) To build Librera Reader
 ./LirbiReader/Builder/all-lirbi-free.sh
 
-3) To build Lirbi PRO
+3) To build Librera PRO
 ./LirbiReader/Builder/all-pro.sh
 
 4) To build PDF Classic
 ./LirbiReader/Builder/all-classic.sh
 
-## Lirbi depend on
+## Librera depend on
 
 MuPDF - (AGPL License) http://git.ghostscript.com/?p=mupdf.git;a=commit;h=0628a0b3d166543dbc1c346790014ff39ccf76b8
 
-Lirbi Patch ./LirbiReader/Builder/jni/MupdfPatch.txt
+Librera Patch ./LirbiReader/Builder/jni/MupdfPatch.txt
 
 Mupdf patch source ./LirbiReader/mupdf-source.tar.gz
 
@@ -75,7 +75,7 @@ jsoup
 juniversalchardet
 rtfparserkit
 
-Lirbi is distributed under the GPL
+Librera is distributed under the GPL
 
 ## License
 
