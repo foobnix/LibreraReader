@@ -64,7 +64,6 @@
    <string name="orientation">Mwelekeo</string>
    <string name="outline_missed">Hati bila Outline</string>
    <string name="page">Kwanza</string>
-   <string name="please_buy_pro_version_to_use_this_setting">Tafadhali kununua toleo PRO kutumia mazingira haya</string>
    <string name="please_rate">Tafadhali Kiwango</string>
    <string name="portrait">Taswira</string>
    <string name="preferences">Mapendekezo</string>
@@ -167,7 +166,6 @@
    <string name="enter_password">Weka Nenosiri</string>
    <string name="text_to_speech">Nakala ya hotuba</string>
    <string name="application_user_guide_">Guide mtumiaji</string>
-   <string name="if_you_buy1">PRO Lirbi eBook Reader maombi ni toleo la kulipwa wa maombi haya. Bila matangazo, bila ya kupata internet, chini ya kawaida na kasi kidogo. Matangazo pia hupotea katika maombi haya.</string>
    <string name="you_need_grant_permission">Unahitaji kutoa ruhusa ya hifadhi ya nje kwa ajili ya maombi hii</string>
    <string name="db_auto_alignemnt">Auto alignment</string>
    <string name="db_auto_scroll">Auto kitabu</string>
@@ -278,7 +276,6 @@
    <string name="banner_slogan_PRO_LIRBI_READER_1">Toleo la kulipwa wa bora eBook msomaji mpango</string>
    <string name="banner_slogan_EPUB_READER">Msomaji rahisi zaidi kwa ajili kusoma vitabu vya elektroniki</string>
    <string name="banner_slogan_PDF_READER">Rahisi zaidi "PDF Reader" kwa kusoma hati za elektroniki</string>
-   <string name="remove_ads_install_lirbi_pro_version_">Kuondoa matangazo. Kufunga Lirbi toleo PRO.</string>
    <string name="next_page">Ukurasa wa pili</string>
    <string name="previous_page">Kwanza uliopita</string>
    <string name="customize">Customize</string>
@@ -356,7 +353,6 @@
    <string name="tabs_position">Tabs nafasi</string>
    <string name="visible">Inaonekana</string>
    <string name="show_preferences_tab_in_the_left_menu">Onyesha mapendekezo tab katika orodha ya kushoto</string>
-   <string name="buy_pro_lirbi_reader_and_remove_ads">Kununua PRO Lirbi Reader (bila matangazo)</string>
    <string name="theme">Theme</string>
    <string name="hide_app">Ficha programu</string>
    <string name="close_application">Close maombi</string>
@@ -384,4 +380,6 @@
    <string name="what_is_the_opds_online_catalog_">Je, ni orodha gani ya mtandao wa OPDS?</string>
    <string name="books">Vitabu</string>
    <string name="reading_out_loud">Kusoma kwa sauti kubwa</string>
+   <string name="reader_pro_without_ads_">Reader PRO (bila matangazo)</string>
+   <string name="book_reader_pro_no_ads_">Kitabu Reader PRO (hakuna matangazo)</string>
 </resources>

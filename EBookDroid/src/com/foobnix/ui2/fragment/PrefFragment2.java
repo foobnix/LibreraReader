@@ -399,12 +399,7 @@ public class PrefFragment2 extends UIFragment {
             @Override
 
             public void onClick(final View v) {
-                if (AppsConfig.checkIsProInstalled(getActivity())) {
-                    onEmail();
-                } else {
-                    Toast.makeText(getContext(), R.string.please_buy_pro_version_to_use_this_setting, Toast.LENGTH_LONG).show();
-                }
-
+                onEmail();
             }
         });
 
@@ -1067,7 +1062,7 @@ public class PrefFragment2 extends UIFragment {
 
         TextView proText = (TextView) inflate.findViewById(R.id.downloadPRO);
         TxtUtils.underlineTextView(proText);
-        proText.setOnClickListener(new OnClickListener() {
+        ((View) proText.getParent()).setOnClickListener(new OnClickListener() {
 
             @Override
             public void onClick(final View v) {

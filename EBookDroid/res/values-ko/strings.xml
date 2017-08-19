@@ -64,7 +64,6 @@
    <string name="orientation">맞춤</string>
    <string name="outline_missed">요약이 없슴</string>
    <string name="page">페이지</string>
-   <string name="please_buy_pro_version_to_use_this_setting">이 설정을 사용하기위하여 프로버전을 구매해 주십시요.</string>
    <string name="please_rate">평가 부탁드립니다</string>
    <string name="portrait">수직</string>
    <string name="preferences">환경 설정</string>
@@ -167,7 +166,6 @@
    <string name="enter_password">암호 입력</string>
    <string name="text_to_speech">음성 읽기</string>
    <string name="application_user_guide_">사용자 설명서</string>
-   <string name="if_you_buy1">PRO Lirbi는 유료 버전입니다. 인터넷 접속이 더 빠르고 사이즈도 적으며 또 모든 광고가 제거됩니다.</string>
    <string name="you_need_grant_permission">이 응용 프로그램에 외부 저장소의 사용권한의 부여가 필요합니다</string>
    <string name="db_auto_alignemnt">자동 정렬</string>
    <string name="db_auto_scroll">자동 스크롤</string>
@@ -278,7 +276,6 @@
    <string name="banner_slogan_PRO_LIRBI_READER_1">최고의 전자 책 리더 프로그램의 유료 버전</string>
    <string name="banner_slogan_EPUB_READER">전자 책을 읽기위한 가장 편리한 리더</string>
    <string name="banner_slogan_PDF_READER">전자 문서를 읽기위한 가장 편리한 "PDF 리더"</string>
-   <string name="remove_ads_install_lirbi_pro_version_">광고를 제거하고 Lirbi PRO 버전을 설치합니다.</string>
    <string name="next_page">다음 페이지</string>
    <string name="previous_page">이전 페이지</string>
    <string name="customize">사용자 정의</string>
@@ -356,7 +353,6 @@
    <string name="tabs_position">탭 위치</string>
    <string name="visible">명백한</string>
    <string name="show_preferences_tab_in_the_left_menu">왼쪽 메뉴에 환경 설정 탭 표시</string>
-   <string name="buy_pro_lirbi_reader_and_remove_ads">PRO Lirbi Reader (광고없이) 구입</string>
    <string name="theme">테마</string>
    <string name="hide_app">응용 프로그램 숨기기</string>
    <string name="close_application">응용 프로그램 닫기</string>
@@ -384,4 +380,6 @@
    <string name="what_is_the_opds_online_catalog_">OPDS 온라인 카탈로그 란 무엇입니까?</string>
    <string name="books">서적</string>
    <string name="reading_out_loud">소리내어 읽기</string>
+   <string name="reader_pro_without_ads_">리더 PRO (광고 제외)</string>
+   <string name="book_reader_pro_no_ads_">도서 리더 PRO (광고 없음)</string>
 </resources>

@@ -8,9 +8,8 @@ ant clean-apk
 
 ./remove_all.sh
 
-#ant x86 pro
-#ant armeabi pro
 ant armeabi-v7a pdf
+ant x86 pdf
 
 ./install_all.sh
 ./link_lang.sh

@@ -1,5 +1,5 @@
-* Mejoras en la visualización de documentos y libros de lectura 
-* Cambiar el brillo en el lado izquierdo de la pantalla 
-* Mejoras en PDF / DJVU Lectura 
-* Ajuste de la altura de la barra de estado 
-* Gracias por la retroalimentación y las ideas, el programa está mejorando con cada actualización
+* Nuevo nombre de la aplicaciónLibrera (espero que les guste) 
+* Agregó los catálogos en línea de OPDS 
+* Mejora de texto a voz (TTS) 
+* Mejora de la interfaz de usuario para una mejor experiencia de lectura 
+* Muchas gracias por usar mi aplicación y ayudar con ideas

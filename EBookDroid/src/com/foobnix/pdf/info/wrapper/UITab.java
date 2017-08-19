@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.foobnix.android.utils.LOG;
-import com.foobnix.pdf.info.R;
 import com.foobnix.ui2.fragment.BookmarksFragment2;
 import com.foobnix.ui2.fragment.BrowseFragment2;
 import com.foobnix.ui2.fragment.OpdsFragment2;
@@ -16,7 +15,7 @@ import com.foobnix.ui2.fragment.UIFragment;
 
 public enum UITab {
 
-    SearchFragment(0, R.string.library, R.drawable.glyphicons_2_book_open, SearchFragment2.class, true), //
+    SearchFragment(0, SearchFragment2.PAIR.first, SearchFragment2.PAIR.second, SearchFragment2.class, true), //
     OpdsFragment(1, OpdsFragment2.PAIR.first, OpdsFragment2.PAIR.second, OpdsFragment2.class, true), //
     BrowseFragment(2, BrowseFragment2.PAIR.first, BrowseFragment2.PAIR.second, BrowseFragment2.class, true), //
     RecentFragment(3, RecentFragment2.PAIR.first, RecentFragment2.PAIR.second, RecentFragment2.class, true), //

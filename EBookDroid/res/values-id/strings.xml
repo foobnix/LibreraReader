@@ -64,7 +64,6 @@
    <string name="orientation">Orientasi</string>
    <string name="outline_missed">Dokumen tanpa garis besar</string>
    <string name="page">Halaman</string>
-   <string name="please_buy_pro_version_to_use_this_setting">Silakan membeli versi PRO untuk menggunakan pengaturan ini</string>
    <string name="please_rate">Silakan Rate</string>
    <string name="portrait">Potret</string>
    <string name="preferences">Preferensi</string>
@@ -168,7 +167,6 @@
    <string name="enter_password">Masukkan kata kunci</string>
    <string name="text_to_speech">Teks pidato</string>
    <string name="application_user_guide_">Panduan pengguna</string>
-   <string name="if_you_buy1">Aplikasi PRO Lirbi eBook Reader adalah versi berbayar dari aplikasi ini tanpa iklan, tanpa akses ke internet, ukurannya kurang dan sedikit lebih cepat. Iklan juga akan hilang dalam aplikasi ini.</string>
    <string name="you_need_grant_permission">Anda memerlukan izin dari penyimpanan eksternal untuk aplikasi ini</string>
    <string name="db_auto_alignemnt">Penyelarasan otomatis</string>
    <string name="db_auto_scroll">Gulir otomatis</string>
@@ -280,7 +278,6 @@
    <string name="banner_slogan_PRO_LIRBI_READER_1">Versi berbayar dari program pembaca ebook terbaik</string>
    <string name="banner_slogan_EPUB_READER">Pembaca yang paling nyaman untuk membaca buku elektronik</string>
    <string name="banner_slogan_PDF_READER">Yang paling mudah "PDF Reader" untuk membaca dokumen elektronik</string>
-   <string name="remove_ads_install_lirbi_pro_version_">Hapus versi adsInstall Lirbi PRO.</string>
    <string name="next_page">Halaman selanjutnya</string>
    <string name="previous_page">Halaman sebelumnya</string>
    <string name="customize">Sesuaikan</string>
@@ -357,7 +354,6 @@
    <string name="tabs_position">Posisi tab</string>
    <string name="visible">Terlihat</string>
    <string name="show_preferences_tab_in_the_left_menu">Tampilkan tab preferensi di menu sebelah kiri</string>
-   <string name="buy_pro_lirbi_reader_and_remove_ads">Beli PRO Lirbi Reader (tanpa iklan)</string>
    <string name="hide_app">Sembunyikan aplikasi</string>
    <string name="close_application">Tutup aplikasi</string>
    <string name="go_to_the_library">Pergi ke perpustakaan</string>
@@ -384,4 +380,6 @@
    <string name="what_is_the_opds_online_catalog_">Apakah katalog online OPDS itu?</string>
    <string name="books">Buku</string>
    <string name="reading_out_loud">Membaca dengan suara keras</string>
+   <string name="reader_pro_without_ads_">Pembaca PRO (tanpa iklan)</string>
+   <string name="book_reader_pro_no_ads_">Pembaca Buku PRO (tidak ada iklan)</string>
 </resources>

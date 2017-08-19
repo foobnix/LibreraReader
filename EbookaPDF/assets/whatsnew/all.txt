@@ -1,216 +1,216 @@
 
 <vi>
-* Cải tiến trong các tài liệu xem và đọc sách 
-* Thay đổi độ sáng ở phía bên trái của màn hình 
-* Cải tiến PDF / DJVU Đọc 
-* Điều chỉnh chiều cao của thanh trạng thái 
-* Cảm ơn phản hồi và ý tưởng, chương trình đang nhận được tốt hơn với mọi cập nhật
+* Tên ứng dụng mớiLibrera (Tôi hy vọng bạn thích nó) 
+* Thêm OPDS Online Catalogs 
+* Cải thiện giao diện người dùng (TTS) 
+* Cải thiện giao diện người dùng cho trải nghiệm đọc tốt hơn 
+* Cảm ơn bạn rất nhiều vì đã sử dụng ứng dụng của tôi và giúp đỡ các ý tưởng
 </vi>
 
 <no-NO>
-* Forbedringer i visning av dokumenter og lesebøker 
-* Endre lysstyrken på venstre side av skjermen 
-* Forbedringer i PDF / DJVU-lesing 
-* Juster høyden på statuslinjen 
-* Takk for tilbakemeldingen og ideene, blir programmet bedre med hver oppdatering
+* Ny applikasjonsnavnLibrera (Jeg håper du liker det) 
+* Lagt til OPDS Online Catalogs 
+* Forbedret tekst til tale (TTS) 
+* Forbedret brukergrensesnitt for bedre leseopplevelse 
+* Mange takk for bruk av søknaden min og hjelp med ideer
 </no-NO>
 
 <th>
-* การปรับปรุงในการดูเอกสารและการอ่านหนังสือ 
-* เปลี่ยนความสว่างทางด้านซ้ายของหน้าจอ 
-* การปรับปรุง PDF / DJVU การอ่าน 
-* การปรับความสูงของแถบสถานะ 
-* ขอบคุณสำหรับข้อเสนอแนะและความคิดโปรแกรมจะเริ่มดีขึ้นเมื่อมีการอัปเดตทุกครั้ง
+* ชื่อโปรแกรมใหม่Librera (ฉันหวังว่าคุณจะชอบ) 
+* เพิ่ม OPDS Online Catalogs 
+* ปรับปรุงข้อความเป็นคำพูด (TTS) 
+* UI ที่ดีขึ้นเพื่อการอ่านที่ดียิ่งขึ้น 
+* ขอบคุณมากสำหรับการใช้แอพพลิเคชั่นและความช่วยเหลือของฉันด้วยไอเดีย
 </th>
 
 <nl-NL>
-* Verbeteringen in het bekijken van documenten en het lezen van boeken 
-* Verander de helderheid aan de linkerkant van het scherm 
-* Verbeteringen in PDF / DJVU Lezen 
-* Aanpassen van de hoogte van de statusbalk 
-* Dank u voor de feedback en de ideeën, wordt het programma beter met elke update
+* Nieuwe applicatie naamLibrera (ik hoop dat je het leuk vindt) 
+* OPDS Online Catalogs toegevoegd 
+* Verbeterde tekst-naar-spraak (TTS) 
+* Verbeterde gebruikersinterface voor een betere leeservaring 
+* Hartelijk dank voor het gebruik van mijn applicatie en hulp bij ideeën
 </nl-NL>
 
 <ro>
-* Îmbunătățiri în vizualizarea documentelor și citirea cărților 
-* Schimbarea luminozității din partea stângă a ecranului 
-* Îmbunătățiri în citirea PDF / DJVU 
-* Ajustarea înălțimii barei de stare 
-* Vă mulțumim pentru feedback și idei, programul se îmbunătățește cu fiecare actualizare
+* Noul nume de aplicație Librera (sper că vă place) 
+* A fost adăugat catalogul OPDS Online 
+* TTS îmbunătățit 
+* UI îmbunătățită pentru o mai bună experiență de lectură 
+* Vă mulțumesc foarte mult pentru folosirea aplicației și pentru a vă ajuta în idei
 </ro>
 
 <hi-IN>
-* दस्तावेजों को देखने और किताबें पढ़ने में सुधार 
-* स्क्रीन के बाईं ओर चमक को बदलें 
-* पीडीएफ / डीएनवीयू पढ़ना में सुधार 
-* स्टेटस बार की ऊंचाई समायोजन 
-* फीडबैक और विचारों के लिए धन्यवाद, कार्यक्रम हर अपडेट के साथ बेहतर हो रहा है
+* नया आवेदन नामलिब्रेरा (मुझे आशा है कि आप इसे पसंद करेंगे) 
+* ओपीडीएस ऑनलाइन कैटलॉग जोड़ा गया 
+* बेहतर टेक्स्ट-टू-स्पीच (टीटीएस) 
+* बेहतर पठन अनुभव के लिए बेहतर UI 
+* मेरे आवेदन का उपयोग करने और विचारों के साथ मदद के लिए बहुत बहुत धन्यवाद
 </hi-IN>
 
 <es-ES>
-* Mejoras en la visualización de documentos y libros de lectura 
-* Cambiar el brillo en el lado izquierdo de la pantalla 
-* Mejoras en PDF / DJVU Lectura 
-* Ajuste de la altura de la barra de estado 
-* Gracias por la retroalimentación y las ideas, el programa está mejorando con cada actualización
+* Nuevo nombre de la aplicaciónLibrera (espero que les guste) 
+* Agregó los catálogos en línea de OPDS 
+* Mejora de texto a voz (TTS) 
+* Mejora de la interfaz de usuario para una mejor experiencia de lectura 
+* Muchas gracias por usar mi aplicación y ayudar con ideas
 </es-ES>
 
 <fr-FR>
-* Amélioration de l’affichage des documents et de la lecture de livres 
-* Changez la luminosité sur le côté gauche de l’écran 
-* Améliorations dans la lecture PDF / DJVU 
-* Réglage de la hauteur de la barre d’état 
-* Merci pour les commentaires et les idées, le programme s’améliore à chaque mise à jour
+* Nouveau nom de l’applicationLibrera (J’espère que vous l’aimez) 
+* Ajout des catalogues en ligne OPDS 
+* Amélioration du texte à la parole (TTS) 
+* UI améliorée pour une meilleure expérience de lecture 
+* Merci beaucoup d’utiliser ma demande et d’aider avec des idées
 </fr-FR>
 
 <tr-TR>
-* Dokümanları görüntüleme ve kitap okumada iyileştirmeler 
-* Ekranın sol tarafındaki parlaklığı değiştirme 
-* PDF / DJVU Okumalarındaki iyileştirmeler 
-* Ayar çubuğunun durum çubuğunun yüksekliği 
-* Geri bildirim ve fikirler için teşekkürler, program her güncelleme ile daha iyi hale gelmektedir
+* Yeni uygulama adıLibrera (Umarım beğenirsiniz) 
+* OPDS Çevrimiçi Kataloglar 
+* Geliştirilmiş konuşma metni (TTS) 
+* Daha iyi okuma deneyimi için iyileştirilmiş UI 
+* Uygulamamı kullanırken ve fikirlerle yardım ettiğiniz için çok teşekkür ederim
 </tr-TR>
 
 <sv-SE>
-* Förbättringar av visning av dokument och läsning av böcker 
-* Ändra ljusstyrkan på skärmens vänstra sida 
-* Förbättringar i PDF / DJVU-läsning 
-* Justera höjden på statusfältet 
-* Tack för feedback och idéer blir programmet bättre med varje uppdatering
+* Ny applikationsnamnLibrera (Jag hoppas du gillar det) 
+* Tillagt OPDS Online Catalogs 
+* Förbättrad text-till-tal (TTS) 
+* Förbättrat användargränssnitt för bättre läsupplevelse 
+* Tack så mycket för att du använder min ansökan och hjälp med idéer
 </sv-SE>
 
 <pl-PL>
-* Ulepszenia w przeglądaniu dokumentów i czytaniu książek 
-* Zmiana jasności po lewej stronie ekranu 
-* Udoskonalenia w czytaniu plików PDF / DJVU 
-* Regulacja wysokości paska stanu 
-* Dzięki za opinie i pomysły, program jest coraz lepiej z każdą aktualizacją
+* Nowa nazwa aplikacjiLibrera (mam nadzieję, że to się spodoba) 
+* Dodano katalogi OPDS Online 
+* Udoskonalono obsługę tekstu na mowę (TTS) 
+* Ulepszony interfejs użytkownika dla lepszego czytania 
+* Dziękujemy za korzystanie z mojej aplikacji i pomocy z pomysłami
 </pl-PL>
 
 <pt-PT>
-* Melhorias na visualização de documentos e leitura de livros 
-* Alterar o brilho no lado esquerdo da tela 
-* Melhorias em PDF / DJVU Leitura 
-* Ajustar a altura da barra de status 
-* Obrigado pelo feedback e idéias, o programa está melhorando com cada atualização
+* Novo nome do aplicativoLibrera (eu espero que você goste) 
+* Adicionado Catalogos on-line da OPDS 
+* Melhor texto de fala (TTS) 
+* UI aprimorada para uma melhor experiência de leitura 
+* Muito obrigado por usar meu aplicativo e ajudar com idéias
 </pt-PT>
 
 <iw-IL>
-* שיפורים בהצגת מסמכים וקריאת ספרים 
-* שינוי בהירות בצד שמאל של המסך 
-* שיפורים ב- PDF / DJVU קריאה 
-* התאמת גובה שורת המצב 
-* תודה על המשוב והרעיונות, התוכנית משתפרת עם כל עדכון
+* שם יישום חדשLibrera (אני מקווה שאתה אוהב את זה) 
+* נוספה OPDS קטלוגים מקוונים 
+* שיפור טקסט לדיבור (TTS) 
+* ממשק משתמש משופר לחוויית קריאה טובה יותר 
+* תודה רבה על השימוש ביישום שלי ולעזור עם רעיונות
 </iw-IL>
 
 <uk>
-* Покращення перегляду документів і читання книг 
-* Зміна яскравості в лівій частині екрана 
-* Покращення у читанні PDF / DJVU 
-* Налаштування висоти рядка стану 
-* Дякуємо за відгуки та ідеї, програма покращується з кожним оновленням
+* Нова назва програмиLibrera (я сподіваюся, вам це сподобається) 
+* Додані OPDS Online Каталоги 
+* Покращений текст-до-мовлення (TTS) 
+* Покращений інтерфейс для кращого читання 
+* Велике спасибі за використання моєї програми та допомоги з ідеями
 </uk>
 
 <ja-JP>
-*ドキュメントの閲覧や本の読書の改善
-*画面の左側の明るさの変更
-* PDF / DJVUの読み込みの改善
-*ステータスバーの高さの調整
-*フィードバックとアイデアのおかげで、
+*新しいアプリケーション名Librera（あなたが好きだと願っています）
+* OPDS Online Catalogsを追加
+* TTS（Text-to-Speech）を改善
+*読解力を向上させるUIを改善
+*
 </ja-JP>
 
 <id>
-* Perbaikan dalam melihat dokumen dan membaca buku 
-* Mengubah kecerahan di sisi kiri layar 
-* Perbaikan dalam PDF / DJVU Reading 
-* Menyesuaikan ketinggian status bar 
-* Terima kasih atas umpan balik dan gagasannya, program semakin membaik setiap update.
+* Aplikasi baru namaLibrera (semoga anda menyukainya) 
+* Ditambahkan OPDS Online Catalogs 
+* Peningkatan text-to-speech (TTS) 
+* Peningkatan UI untuk pengalaman membaca yang lebih baik 
+* Terimakasih banyak atas penggunaan aplikasi dan bantuan saya dengan ide.
 </id>
 
 <fa>
-* پیشرفت در مشاهده اسناد و خواندن کتاب ها 
-* تغییر روشنایی در سمت چپ صفحه نمایش 
-* پیشرفت در خواندن PDF / DJVU 
-* تنظیم ارتفاع نوار وضعیت 
-* با تشکر از بازخورد و ایده ها، برنامه با هر بروز رسانی بهتر است
+* نام برنامه جدیدLibrera (من امیدوارم که آن را دوست دارید) 
+* اضافه شده OPDS آنلاین کاتالوگ 
+* بهبود متن به گفتار (TTS) 
+* UI بهبود یافته برای تجربه بهتر خواندن 
+* بسیار سپاسگزارم برای استفاده از برنامه من و کمک به ایده ها
 </fa>
 
 <ar>
-* تحسينات في عرض الوثائق وقراءة الكتب 
-* تغيير سطوع على الجانب الأيسر من الشاشة 
-* تحسينات في بدف / دجفو القراءة 
-* تعديل ارتفاع شريط الحالة 
-* شكرا على ردود الفعل والأفكار، البرنامج هو الحصول على أفضل مع كل تحديث
+* اسم التطبيق الجديدليبريرا (آمل أن تكونوا مثل ذلك) 
+* وأضاف أوبدس الكتالوجات على الانترنت 
+* تحسين النص إلى كلام (تس) 
+* تحسين واجهة المستخدم لتجربة القراءة أفضل 
+* شكرا جزيلا لاستخدام طلبي والمساعدة في الأفكار
 </ar>
 
 <de-DE>
-* Verbesserungen beim Betrachten von Dokumenten und beim Lesen von Büchern 
-* Ändern der Helligkeit auf der linken Seite des Bildschirms 
-* Verbesserungen im PDF / DJVU Lesen 
-* Anpassen der Höhe der Statusleiste 
-* Danke für das Feedback und die Ideen, das Programm wird bei jedem Update immer besser
+* Neue ApplikationsnameLibrera (ich hoffe es gefällt euch) 
+* Added OPDS Online Kataloge 
+* Verbesserte Text-to-Speech (TTS) 
+* Verbesserte Benutzeroberfläche für bessere Leseerfahrung 
+* Vielen Dank für die Anwendung meiner Bewerbung und Hilfe bei Ideen
 </de-DE>
 
 <sw>
-* Uboreshaji katika nyaraka za kutazama na vitabu vya kusoma 
-* Badilisha mwangaza upande wa kushoto wa skrini 
-* Uboreshaji katika PDF / DJVU Kusoma 
-* Marekebisho urefu wa bar ya hali 
-* Shukrani kwa maoni na mawazo, mpango huo unafanikiwa na kila update
+* Mpya jina la maombiLibrera (Natumaini unapenda) 
+* Aliongeza Catalogue za OPDS Online 
+* Kuboresha maandishi-kwa-hotuba (TTS) 
+* Uboreshaji wa UI kwa uzoefu bora wa kusoma 
+* Asante sana kwa kutumia maombi yangu na msaada na mawazo
 </sw>
 
 <ko-KR>
-* 문서보기 및 책 읽기 향상 
-* 화면 왼쪽의 밝기 변경 
-* PDF / DJVU 읽기 개선 
-* 상태 표시 줄의 높이 조정 
-* 의견 및 아이디어에 감사 드리며 모든 업데이트와 함께 프로그램이 개선되고 있습니다.
+* 새로운 응용 프로그램 이름Librera(당신이 맘에 들었 으면 좋겠다.) 
+* OPDS Online Catalogs 추가 
+* TTS (text-to-speech) 개선 
+* 더 나은 독서 경험을위한 향상된 UI 
+* 내 응용 프로그램을 사용하고 아이디어에 도움을 주셔서 대단히 감사합니다
 </ko-KR>
 
 <fi-FI>
-* Parannukset asiakirjojen katselemisessa ja kirjojen lukemisessa 
-* Näytön vasemmalla puolella olevan kirkkauden muuttaminen 
-* PDF / DJVU-lukemisen parannukset 
-* Tilapalkin korkeuden säätö 
-* Kiitos palautteesta ja ideoista, ohjelma paranee jokaisen päivityksen yhteydessä
+* Uusi sovellusnimiLibrera (toivottavasti pidät siitä) 
+* Lisätty OPDS Online -luettelot 
+* Parannettu teksti-puheeksi (TTS) 
+* Parannettu käyttöliittymä paremman lukukokemuksen 
+* Kiitos paljon sovelluksestani ja apuideoiden ansiosta
 </fi-FI>
 
 <zh-TW>
-*查看文档和阅读书籍的改进
-*改变屏幕左侧的亮度
-*改进PDF / DJVU阅读
-*调整状态栏的高度
-*感谢您的反馈和想法，该程序每个更新都越来越好
+*新应用程序名称“Librera”（希望你喜欢）
+*添加OPDS在线目录
+*改进的文本到语音（TTS）
+*改进的UI，更好的阅读体验
+*非常感谢使用我的应用程序和帮助想法
 </zh-TW>
 
 <it-IT>
-* Miglioramenti nella visualizzazione di documenti e lettura di libri 
-* Modifica della luminosità sul lato sinistro dello schermo 
-* Miglioramenti nella lettura PDF / DJVU 
-* Regolazione dell’altezza della barra di stato 
-* Grazie per i commenti e le idee, il programma sta migliorando con ogni aggiornamento
+* Nuovo nome dell’applicazioneLibrera (mi auguro che ti piace) 
+* Aggiunto cataloghi OPDS Online 
+* Migliorato testo-to-speech (TTS) 
+* Migliorato l’interfaccia utente per una migliore esperienza di lettura 
+* Grazie molto per l’utilizzo della mia applicazione e aiuto con le idee
 </it-IT>
 
 <ru-RU>
-* Улучшение просмотра документов и чтения книг 
-* Изменение яркости в левой части экрана 
-* Улучшения в чтении PDF / DJVU 
-* Регулировка высоты строки состояния 
-* Спасибо за отзывы и идеи, программа улучшается с каждым обновлением
+* Новое имя приложения «Librera» (надеюсь, вам понравилось) 
+* Добавлены онлайн-каталоги OPDS 
+* Улучшенное преобразование текста в речь (TTS) 
+* Улучшен интерфейс для лучшего чтения 
+* Большое спасибо за использование моего приложения и помощь с идеями
 </ru-RU>
 
 <sk>
-* Zlepšenie zobrazovania dokumentov a čítania kníh 
-* Zmena jasu na ľavej strane obrazovky 
-* Zlepšenie v čítaní PDF / DJVU 
-* Nastavenie výšky stavového panela 
-* Vďaka za spätnú väzbu a nápady sa program zlepšuje s každou aktualizáciou
+* Nový názov aplikácieLibrera (Dúfam, že sa vám to páči) 
+* Pridaný katalóg OPDS Online 
+* Vylepšený textový prenos (TTS) 
+* Vylepšené používateľské rozhranie pre lepšiu čitateľskú skúsenosť 
+* Ďakujem veľmi pekne, že ste použili svoju aplikáciu a pomohli vám s nápadmi
 </sk>
 
 <en-US>
-* Improvements in viewing documents and reading books
-* Change the brightness on the left side of the screen
-* Improvements in PDF/DJVU Reading
-* Adjustment the height of the status bar
-* Thanks for the feedback and ideas, the program is getting better with every update
+* New application name "Librera" (I hope you like it)
+* Added OPDS Online Catalogs
+* Improved  text-to-speech (TTS)
+* Improved UI for better reading experience
+* Thank you very much for using my application and help with ideas
 </en-US>

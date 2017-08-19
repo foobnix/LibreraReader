@@ -1,5 +1,5 @@
-* Îmbunătățiri în vizualizarea documentelor și citirea cărților 
-* Schimbarea luminozității din partea stângă a ecranului 
-* Îmbunătățiri în citirea PDF / DJVU 
-* Ajustarea înălțimii barei de stare 
-* Vă mulțumim pentru feedback și idei, programul se îmbunătățește cu fiecare actualizare
+* Noul nume de aplicație Librera (sper că vă place) 
+* A fost adăugat catalogul OPDS Online 
+* TTS îmbunătățit 
+* UI îmbunătățită pentru o mai bună experiență de lectură 
+* Vă mulțumesc foarte mult pentru folosirea aplicației și pentru a vă ajuta în idei

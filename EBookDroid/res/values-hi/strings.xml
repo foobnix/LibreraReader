@@ -64,7 +64,6 @@
    <string name="orientation">अभिविन्यास</string>
    <string name="outline_missed">रूपरेखा के बिना दस्तावेज़</string>
    <string name="page">पृष्ठ</string>
-   <string name="please_buy_pro_version_to_use_this_setting">इस सेटिंग का उपयोग करने के लिए प्रो संस्करण खरीद कृपया</string>
    <string name="please_rate">कृपया अंक \'प्रदान करे</string>
    <string name="portrait">चित्र</string>
    <string name="preferences">पसंद</string>
@@ -248,7 +247,6 @@
    <string name="genre">शैली</string>
    <string name="series">शृंखला</string>
    <string name="rate_pdf_reader1">आपकी प्रतिक्रिया के बारे में है और यह हमारे लिए बहुत महत्वपूर्ण है गूगल प्ले पर हमें कृपया दर</string>
-   <string name="if_you_buy1">प्रो Lirbi eBook रीडर आवेदन इस आवेदन का भुगतान किया संस्करण है। विज्ञापनों के बिना, इंटरनेट, कम आकार और करने के लिए उपयोग किए बिना छोटे से तेजी से। विज्ञापन भी इस आवेदन में गायब हो जाएगा।</string>
    <string name="enable_effect_of_the_book_cover">पुस्तक कवर के प्रभाव को सक्षम</string>
    <string name="archive_files">संग्रह फ़ाइलें</string>
    <string name="column_count">स्तंभ गिनती</string>
@@ -274,7 +272,6 @@
    <string name="all_bookmarks">सभी बुकमार्क</string>
    <string name="bookmark_by_date">तिथि के अनुसार</string>
    <string name="bookmark_by_book">द्वारा पुस्तक</string>
-   <string name="remove_ads_install_lirbi_pro_version_">विज्ञापन हटाएँ। Lirbi प्रो संस्करण को स्थापित करें।</string>
    <string name="banner_slogan_LIRBI_READER">सभी पुस्तकों को पढ़ने के लिए विश्वसनीय और पेशेवर कार्यक्रम</string>
    <string name="banner_slogan_EPUB_READER">इलेक्ट्रॉनिक किताबें पढ़ने के लिए सबसे सुविधाजनक पाठक</string>
    <string name="banner_slogan_PDF_READER">इलेक्ट्रॉनिक दस्तावेजों को पढ़ने के लिए सबसे सुविधाजनक "पीडीएफ रीडर"</string>
@@ -356,7 +353,6 @@
    <string name="tabs_position">टैब्स की स्थिति</string>
    <string name="visible">दर्शनीय</string>
    <string name="show_preferences_tab_in_the_left_menu">बाएं मेनू में प्राथमिकताएं टैब दिखाएं</string>
-   <string name="buy_pro_lirbi_reader_and_remove_ads">प्रो Lirbi रीडर खरीदें (विज्ञापन के बिना)</string>
    <string name="theme">विषय</string>
    <string name="hide_app">एप्लिकेशन छिपाएं</string>
    <string name="close_application">एप्लिकेशन बंद करो</string>
@@ -384,4 +380,6 @@
    <string name="what_is_the_opds_online_catalog_">ओपीडीएस ऑनलाइन कैटलॉग क्या है?</string>
    <string name="books">पुस्तकें</string>
    <string name="reading_out_loud">ज़ोर से पढ़ना</string>
+   <string name="reader_pro_without_ads_">रीडर प्रो (विज्ञापन के बिना)</string>
+   <string name="book_reader_pro_no_ads_">पुस्तक रीडर प्रो (कोई विज्ञापन नहीं)</string>
 </resources>

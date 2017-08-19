@@ -1,5 +1,5 @@
-* Dokümanları görüntüleme ve kitap okumada iyileştirmeler 
-* Ekranın sol tarafındaki parlaklığı değiştirme 
-* PDF / DJVU Okumalarındaki iyileştirmeler 
-* Ayar çubuğunun durum çubuğunun yüksekliği 
-* Geri bildirim ve fikirler için teşekkürler, program her güncelleme ile daha iyi hale gelmektedir
+* Yeni uygulama adıLibrera (Umarım beğenirsiniz) 
+* OPDS Çevrimiçi Kataloglar 
+* Geliştirilmiş konuşma metni (TTS) 
+* Daha iyi okuma deneyimi için iyileştirilmiş UI 
+* Uygulamamı kullanırken ve fikirlerle yardım ettiğiniz için çok teşekkür ederim

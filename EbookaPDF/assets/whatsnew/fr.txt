@@ -1,5 +1,5 @@
-* Amélioration de l’affichage des documents et de la lecture de livres 
-* Changez la luminosité sur le côté gauche de l’écran 
-* Améliorations dans la lecture PDF / DJVU 
-* Réglage de la hauteur de la barre d’état 
-* Merci pour les commentaires et les idées, le programme s’améliore à chaque mise à jour
+* Nouveau nom de l’applicationLibrera (J’espère que vous l’aimez) 
+* Ajout des catalogues en ligne OPDS 
+* Amélioration du texte à la parole (TTS) 
+* UI améliorée pour une meilleure expérience de lecture 
+* Merci beaucoup d’utiliser ma demande et d’aider avec des idées

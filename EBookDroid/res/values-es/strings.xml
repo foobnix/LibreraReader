@@ -64,7 +64,6 @@
    <string name="orientation">Orientación</string>
    <string name="outline_missed">Documento sin índice</string>
    <string name="page">Página</string>
-   <string name="please_buy_pro_version_to_use_this_setting">Por favor, compre la versión PRO para utilizar esta opción</string>
    <string name="please_rate">Please Rate</string>
    <string name="portrait">Vertical</string>
    <string name="preferences">Preferencias</string>
@@ -248,7 +247,6 @@
    <string name="genre">Género</string>
    <string name="series">Serie</string>
    <string name="rate_pdf_reader1">Por favor, escriba sus comentarios y nos clasificaría en Google Play es muy importante para nosotros</string>
-   <string name="if_you_buy1">PRO aplicación Lirbi lector de libros electrónicos es la versión de pago de esta aplicación. Sin anuncios, sin acceso a Internet, de menos tamaño y poco más rápido. La publicidad también desaparecerá en esta aplicación.</string>
    <string name="enable_effect_of_the_book_cover">Habilitar el efecto de la portada del libro</string>
    <string name="archive_files">Los archivos de almacenamiento</string>
    <string name="column_count">El número de columnas</string>
@@ -274,7 +272,6 @@
    <string name="all_bookmarks">Todos los marcadores</string>
    <string name="bookmark_by_date">Por fecha</string>
    <string name="bookmark_by_book">Por el libro</string>
-   <string name="remove_ads_install_lirbi_pro_version_">Quitar anuncios. Instalar Lirbi versión PRO.</string>
    <string name="banner_slogan_LIRBI_READER">Programa confiable y profesional para la lectura de todos los libros</string>
    <string name="banner_slogan_EPUB_READER">El lector más conveniente para la lectura de libros electrónicos</string>
    <string name="banner_slogan_PDF_READER">La forma más conveniente "PDF Reader" para leer documentos electrónicos</string>
@@ -356,7 +353,6 @@
    <string name="tabs_position">Posición de pestañas</string>
    <string name="visible">Visible</string>
    <string name="show_preferences_tab_in_the_left_menu">Mostrar la pestaña de preferencias en el menú de la izquierda</string>
-   <string name="buy_pro_lirbi_reader_and_remove_ads">Comprar PRO Lirbi Reader (sin anuncios)</string>
    <string name="theme">Tema</string>
    <string name="hide_app">Ocultar aplicación</string>
    <string name="close_application">Cierra la aplicación</string>
@@ -384,4 +380,6 @@
    <string name="what_is_the_opds_online_catalog_">¿Qué es el catálogo en línea de OPDS?</string>
    <string name="books">Libros</string>
    <string name="reading_out_loud">Leyendo en voz alta</string>
+   <string name="reader_pro_without_ads_">Reader PRO (sin anuncios)</string>
+   <string name="book_reader_pro_no_ads_">Book Reader PRO (sin anuncios)</string>
 </resources>

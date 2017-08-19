@@ -64,7 +64,6 @@
    <string name="orientation">屏显方向</string>
    <string name="outline_missed">文档无概要</string>
    <string name="page">页</string>
-   <string name="please_buy_pro_version_to_use_this_setting">要启用该选项请购买高级版</string>
    <string name="please_rate">请打分</string>
    <string name="portrait">竖屏模式</string>
    <string name="preferences">首选项</string>
@@ -248,7 +247,6 @@
    <string name="genre">类型</string>
    <string name="series">系列</string>
    <string name="rate_pdf_reader1">请填写您的反馈，并在谷歌评级我们玩这对我们来说是非常重要的</string>
-   <string name="if_you_buy1">PRO Lirbi电子书阅读器应用程序是这个应用程序的付费版本。没有广告，没有接入互联网，尺寸更小，更快一点。广告也将在本申请中消失。</string>
    <string name="enable_effect_of_the_book_cover">启用书籍封面的效果</string>
    <string name="archive_files">档案文件</string>
    <string name="column_count">列数</string>
@@ -274,7 +272,6 @@
    <string name="all_bookmarks">所有书签</string>
    <string name="bookmark_by_date">按日期</string>
    <string name="bookmark_by_book">通过本书</string>
-   <string name="remove_ads_install_lirbi_pro_version_">移除广告。安装Lirbi PRO版本。</string>
    <string name="banner_slogan_LIRBI_READER">可靠和专业的程序阅读所有书籍</string>
    <string name="banner_slogan_EPUB_READER">最方便读者阅读电子图书</string>
    <string name="banner_slogan_PDF_READER">最方便的“PDF阅读器”阅读电子文档</string>
@@ -356,7 +353,6 @@
    <string name="tabs_position">标签位置</string>
    <string name="visible">可见</string>
    <string name="show_preferences_tab_in_the_left_menu">显示左侧菜单中的首选项选项卡</string>
-   <string name="buy_pro_lirbi_reader_and_remove_ads">购买PRO Lirbi Reader（无广告）</string>
    <string name="theme">主题</string>
    <string name="hide_app">隐藏应用程序</string>
    <string name="close_application">关闭应用程序</string>
@@ -384,4 +380,6 @@
    <string name="what_is_the_opds_online_catalog_">什么是OPDS在线目录？</string>
    <string name="books">图书</string>
    <string name="reading_out_loud">大声朗读</string>
+   <string name="reader_pro_without_ads_">读者专业版（无广告）</string>
+   <string name="book_reader_pro_no_ads_">Book Reader PRO（无广告）</string>
 </resources>

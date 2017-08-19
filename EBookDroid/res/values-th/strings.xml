@@ -64,7 +64,6 @@
    <string name="orientation">ปฐมนิเทศ</string>
    <string name="outline_missed">เอกสารโดยไม่มีเค้าร่าง</string>
    <string name="page">หน้า</string>
-   <string name="please_buy_pro_version_to_use_this_setting">โปรดซื้อเวอร์ชัน PRO เพื่อใช้การตั้งค่านี้</string>
    <string name="please_rate">โปรดให้คะแนน</string>
    <string name="portrait">ภาพเหมือน</string>
    <string name="preferences">การตั้งค่า</string>
@@ -168,7 +167,6 @@
    <string name="enter_password">ใส่รหัสผ่าน</string>
    <string name="text_to_speech">ข้อความเป็นคำพูด</string>
    <string name="application_user_guide_">คู่มือผู้ใช้</string>
-   <string name="if_you_buy1">แอปพลิเคชัน PRO Lirbi eBook Reader เป็นแอปพลิเคชันแบบจ่ายเงินที่เรียกชำระแล้วนี้โดยไม่ต้องเข้าถึงอินเทอร์เน็ตขนาดที่น้อยลงและการแสดงโฆษณาที่รวดเร็วยิ่งขึ้นนอกจากนี้ยังจะหายไปในแอปพลิเคชันนี้</string>
    <string name="you_need_grant_permission">คุณต้องได้รับอนุญาตจากที่เก็บข้อมูลภายนอกสำหรับแอปพลิเคชันนี้</string>
    <string name="db_auto_alignemnt">จัดตำแหน่งอัตโนมัติ</string>
    <string name="db_auto_scroll">เลื่อนอัตโนมัติ</string>
@@ -280,7 +278,6 @@
    <string name="banner_slogan_PRO_LIRBI_READER_1">รุ่นที่เรียกชำระแล้วของโปรแกรมอ่าน eBook ที่ดีที่สุด</string>
    <string name="banner_slogan_EPUB_READER">เครื่องอ่านที่สะดวกที่สุดสำหรับการอ่านหนังสืออิเล็กทรอนิกส์</string>
    <string name="banner_slogan_PDF_READER">"PDF Reader" ที่สะดวกที่สุดในการอ่านเอกสารอิเล็กทรอนิกส์</string>
-   <string name="remove_ads_install_lirbi_pro_version_">ลบโฆษณารุ่น Lirbi PRO ที่ติดตั้ง</string>
    <string name="next_page">หน้าต่อไป</string>
    <string name="previous_page">หน้าก่อนหน้า</string>
    <string name="customize">ปรับแต่ง</string>
@@ -357,7 +354,6 @@
    <string name="tabs_position">ตำแหน่งแท็บ</string>
    <string name="visible">มองเห็นได้</string>
    <string name="show_preferences_tab_in_the_left_menu">แสดงแท็บค่ากำหนดในเมนูด้านซ้าย</string>
-   <string name="buy_pro_lirbi_reader_and_remove_ads">ซื้อ PRO Lirbi Reader (ไม่มีโฆษณา)</string>
    <string name="hide_app">ซ่อนแอปพลิเคชัน</string>
    <string name="close_application">ปิดแอปพลิเคชัน</string>
    <string name="go_to_the_library">ไปที่ห้องสมุด</string>
@@ -384,4 +380,6 @@
    <string name="what_is_the_opds_online_catalog_">แคตตาล็อกออนไลน์ของ OPDS คืออะไร?</string>
    <string name="books">หนังสือ</string>
    <string name="reading_out_loud">อ่านออกมาดัง ๆ</string>
+   <string name="reader_pro_without_ads_">Reader PRO (ไม่มีโฆษณา)</string>
+   <string name="book_reader_pro_no_ads_">Book Reader PRO (ไม่มีโฆษณา)</string>
 </resources>

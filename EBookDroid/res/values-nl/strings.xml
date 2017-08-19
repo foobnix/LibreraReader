@@ -64,7 +64,6 @@
    <string name="orientation">Oriëntering</string>
    <string name="outline_missed">Document zonder Outline</string>
    <string name="page">Pagina</string>
-   <string name="please_buy_pro_version_to_use_this_setting">Gelieve te kopen PRO versie van deze instelling te gebruiken</string>
    <string name="please_rate">Gelieve Beoordeel</string>
    <string name="portrait">Portret</string>
    <string name="preferences">Voorkeuren</string>
@@ -167,7 +166,6 @@
    <string name="enter_password">Voer wachtwoord in</string>
    <string name="text_to_speech">Tekst naar spraak</string>
    <string name="application_user_guide_">Gebruikershandleiding</string>
-   <string name="if_you_buy1">PRO Lirbi eBook Reader applicatie is de betaalde versie van deze applicatie. Zonder advertenties, zonder toegang tot het internet, minder grootte en beetje sneller. Reclame zal ook verdwijnen in deze toepassing.</string>
    <string name="you_need_grant_permission">U hebt toestemming nodig van externe opslag te verlenen voor deze toepassing</string>
    <string name="db_auto_alignemnt">Auto alignment</string>
    <string name="db_auto_scroll">Auto scroll</string>
@@ -278,7 +276,6 @@
    <string name="banner_slogan_PRO_LIRBI_READER_1">De betaalde versie van de beste ebook reader-programma</string>
    <string name="banner_slogan_EPUB_READER">De meest geschikte lezer voor het lezen van elektronische boeken</string>
    <string name="banner_slogan_PDF_READER">De meest handige "PDF Reader" voor het lezen van elektronische documenten</string>
-   <string name="remove_ads_install_lirbi_pro_version_">Verwijder advertenties. Installeer Lirbi PRO versie.</string>
    <string name="next_page">Volgende bladzijde</string>
    <string name="previous_page">Vorige bladzijde</string>
    <string name="customize">Aanpassen</string>
@@ -356,7 +353,6 @@
    <string name="tabs_position">Tabs positie</string>
    <string name="visible">Zichtbaar</string>
    <string name="show_preferences_tab_in_the_left_menu">Toon het tabblad voorkeuren in het linker menu</string>
-   <string name="buy_pro_lirbi_reader_and_remove_ads">Koop PRO Lirbi Reader (zonder advertenties)</string>
    <string name="theme">Thema</string>
    <string name="hide_app">Verberg applicatie</string>
    <string name="close_application">Dichte toepassing</string>
@@ -384,4 +380,6 @@
    <string name="what_is_the_opds_online_catalog_">Wat is de OPDS online catalogus?</string>
    <string name="books">Boeken</string>
    <string name="reading_out_loud">Hardop lezen</string>
+   <string name="reader_pro_without_ads_">Reader PRO (zonder advertenties)</string>
+   <string name="book_reader_pro_no_ads_">Book Reader PRO (geen advertenties)</string>
 </resources>

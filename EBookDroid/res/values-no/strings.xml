@@ -64,7 +64,6 @@
    <string name="orientation">Orientering</string>
    <string name="outline_missed">Dokument uten oversikt</string>
    <string name="page">Side</string>
-   <string name="please_buy_pro_version_to_use_this_setting">Vennligst kjøp PRO-versjonen for å bruke denne innstillingen</string>
    <string name="please_rate">Vennligst rate</string>
    <string name="portrait">Portrett</string>
    <string name="preferences">Preferanser</string>
@@ -168,7 +167,6 @@
    <string name="enter_password">Oppgi passord</string>
    <string name="text_to_speech">Tekst til tale</string>
    <string name="application_user_guide_">Brukerhåndboken</string>
-   <string name="if_you_buy1">PRO Lirbi eBook Reader-applikasjonen er den betalte versjonen av denne applikasjonen. Uten annonser, uten tilgang til internett, vil mindre størrelse og lite raskereAdvertising også forsvinne i dette programmet.</string>
    <string name="you_need_grant_permission">Du må gi tillatelse til ekstern lagring for dette programmet</string>
    <string name="db_auto_alignemnt">Automatisk justering</string>
    <string name="db_auto_scroll">Automatisk rulling</string>
@@ -280,7 +278,6 @@
    <string name="banner_slogan_PRO_LIRBI_READER_1">Den betalte versjonen av det beste ebook-leserprogrammet</string>
    <string name="banner_slogan_EPUB_READER">Den mest praktiske leseren for lesing av elektroniske bøker</string>
    <string name="banner_slogan_PDF_READER">Den mest praktiske "PDF Reader" for å lese elektroniske dokumenter</string>
-   <string name="remove_ads_install_lirbi_pro_version_">Fjern annonserInstall Lirbi PRO versjon.</string>
    <string name="next_page">Neste side</string>
    <string name="previous_page">Forrige side</string>
    <string name="customize">Tilpass</string>
@@ -357,7 +354,6 @@
    <string name="tabs_position">Tabs posisjon</string>
    <string name="visible">Synlig</string>
    <string name="show_preferences_tab_in_the_left_menu">Vis fanen Innstillinger i venstre meny</string>
-   <string name="buy_pro_lirbi_reader_and_remove_ads">Kjøp PRO Lirbi Reader (uten annonser)</string>
    <string name="hide_app">Skjul søknad</string>
    <string name="close_application">Lukk søknad</string>
    <string name="go_to_the_library">Gå til biblioteket</string>
@@ -384,4 +380,6 @@
    <string name="what_is_the_opds_online_catalog_">Hva er OPDS online katalog?</string>
    <string name="books">Bøker</string>
    <string name="reading_out_loud">Leser høyt</string>
+   <string name="reader_pro_without_ads_">Reader PRO (uten annonser)</string>
+   <string name="book_reader_pro_no_ads_">Book Reader PRO (ingen annonser)</string>
 </resources>

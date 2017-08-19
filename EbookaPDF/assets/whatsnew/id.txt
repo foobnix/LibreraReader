@@ -1,5 +1,5 @@
-* Perbaikan dalam melihat dokumen dan membaca buku 
-* Mengubah kecerahan di sisi kiri layar 
-* Perbaikan dalam PDF / DJVU Reading 
-* Menyesuaikan ketinggian status bar 
-* Terima kasih atas umpan balik dan gagasannya, program semakin membaik setiap update.
+* Aplikasi baru namaLibrera (semoga anda menyukainya) 
+* Ditambahkan OPDS Online Catalogs 
+* Peningkatan text-to-speech (TTS) 
+* Peningkatan UI untuk pengalaman membaca yang lebih baik 
+* Terimakasih banyak atas penggunaan aplikasi dan bantuan saya dengan ide.

@@ -64,7 +64,6 @@
    <string name="orientation">Orientation</string>
    <string name="outline_missed">Document without Outline</string>
    <string name="page">Page</string>
-   <string name="please_buy_pro_version_to_use_this_setting">Please buy PRO version to use this setting</string>
    <string name="please_rate">Please Rate</string>
    <string name="portrait">Portrait</string>
    <string name="preferences">Preferences</string>
@@ -168,7 +167,6 @@
    <string name="enter_password">Enter Password</string>
    <string name="text_to_speech">Text to speech</string>
    <string name="application_user_guide_">User Guide</string>
-   <string name="if_you_buy1">PRO Lirbi eBook Reader application is the paid version of this applicationWithout ads, without access to the internet, less size and little fasterAdvertising also will disappear in this application.</string>
    <string name="you_need_grant_permission">You need grant permission of external storage for this application</string>
    <string name="db_auto_alignemnt">Auto alignment</string>
    <string name="db_auto_scroll">Auto scroll</string>
@@ -280,7 +278,6 @@
    <string name="banner_slogan_PRO_LIRBI_READER_1">The paid version of the best ebook reader program</string>
    <string name="banner_slogan_EPUB_READER">The most convenient reader for reading electronic books</string>
    <string name="banner_slogan_PDF_READER">The most convenient "PDF Reader" for reading electronic documents</string>
-   <string name="remove_ads_install_lirbi_pro_version_">Remove adsInstall Lirbi PRO version.</string>
    <string name="next_page">Next page</string>
    <string name="previous_page">Previous Page</string>
    <string name="customize">Customize</string>
@@ -357,7 +354,6 @@
    <string name="tabs_position">Tabs position</string>
    <string name="visible">Visible</string>
    <string name="show_preferences_tab_in_the_left_menu">Show the preferences tab in the left menu</string>
-   <string name="buy_pro_lirbi_reader_and_remove_ads">Buy PRO Lirbi Reader (without ads)</string>
    <string name="hide_app">Hide application</string>
    <string name="close_application">Close application</string>
    <string name="go_to_the_library">Go to the library</string>
@@ -384,4 +380,6 @@
    <string name="what_is_the_opds_online_catalog_">What is the OPDS online catalog?</string>
    <string name="books">Books</string>
    <string name="reading_out_loud">Reading out loud</string>
+   <string name="reader_pro_without_ads_">Reader PRO (without ads)</string>
+   <string name="book_reader_pro_no_ads_">Book Reader PRO (no ads)</string>
 </resources>

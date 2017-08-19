@@ -12,7 +12,6 @@ import com.foobnix.android.utils.LOG;
 import com.foobnix.android.utils.ResultResponse;
 import com.foobnix.android.utils.TxtUtils;
 import com.foobnix.dao2.FileMeta;
-import com.foobnix.pdf.info.AppsConfig;
 import com.foobnix.pdf.info.R;
 import com.foobnix.pdf.info.TintUtil;
 import com.foobnix.pdf.info.fragment.KeyCodeDialog;
@@ -59,6 +58,7 @@ import android.widget.Toast;
 
 public class SearchFragment2 extends UIFragment<FileMeta> {
 
+    public static final Pair<Integer, Integer> PAIR = new Pair<Integer, Integer>(R.string.library, R.drawable.glyphicons_2_book_open);
     private static final String CMD_LONG_TAP_OFF = "@cmd_long_tap_off";
     private static final String CMD_LONG_TAP_ON = "@cmd_long_tap_on";
     private static final String CMD_FULLSCREEN_ON = "@cmd_fullscreen_on";
@@ -85,8 +85,7 @@ public class SearchFragment2 extends UIFragment<FileMeta> {
 
     @Override
     public Pair<Integer, Integer> getNameAndIconRes() {
-        int resID = (AppsConfig.PDF_READER_LIRBI.equals(AppsConfig.APP_PACKAGE) || AppsConfig.PRO_PDF_READER.equals(AppsConfig.APP_PACKAGE)) ? R.drawable.lirbi_text : R.drawable.glyphicons_2_book_open;
-        return new Pair<Integer, Integer>(R.string.library, resID);
+        return PAIR;
     }
 
     @Override

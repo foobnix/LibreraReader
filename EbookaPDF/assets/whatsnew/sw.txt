@@ -1,5 +1,5 @@
-* Uboreshaji katika nyaraka za kutazama na vitabu vya kusoma 
-* Badilisha mwangaza upande wa kushoto wa skrini 
-* Uboreshaji katika PDF / DJVU Kusoma 
-* Marekebisho urefu wa bar ya hali 
-* Shukrani kwa maoni na mawazo, mpango huo unafanikiwa na kila update
+* Mpya jina la maombiLibrera (Natumaini unapenda) 
+* Aliongeza Catalogue za OPDS Online 
+* Kuboresha maandishi-kwa-hotuba (TTS) 
+* Uboreshaji wa UI kwa uzoefu bora wa kusoma 
+* Asante sana kwa kutumia maombi yangu na msaada na mawazo

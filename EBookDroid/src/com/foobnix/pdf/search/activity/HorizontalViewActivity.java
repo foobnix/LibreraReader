@@ -7,6 +7,7 @@ import java.util.concurrent.TimeUnit;
 import org.ebookdroid.droids.mupdf.codec.exceptions.MuPdfPasswordException;
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
 
 import com.foobnix.android.utils.Dips;
 import com.foobnix.android.utils.LOG;
@@ -232,7 +233,6 @@ public class HorizontalViewActivity extends FragmentActivity {
         pagesTime = (TextView) findViewById(R.id.pagesTime);
         pagesPower = (TextView) findViewById(R.id.pagesPower);
         linkHistory = (ImageView) findViewById(R.id.linkHistory);
-
 
         updateSeekBarColorAndSize();
 
@@ -606,28 +606,20 @@ public class HorizontalViewActivity extends FragmentActivity {
             showHideInfoToolBar();
             updateSeekBarColorAndSize();
             hideShow();
+            TTSEngine.get().stop();
 
         }
     };
 
-    @Subscribe
+    @Subscribe(threadMode = ThreadMode.MAIN)
     public void onTTSStatus(TtsStatus status) {
         ttsActive.setVisibility(TTSEngine.get().isPlaying() ? View.VISIBLE : View.GONE);
-
     }
 
-    @Subscribe
+    @Subscribe(threadMode = ThreadMode.MAIN)
     public void onPageNumber(final MessagePageNumber event) {
-        if (documentController != null) {
-            documentController.getActivity().runOnUiThread(new Runnable() {
-
-                @Override
-                public void run() {
-                    documentController.onGoToPage(event.getPage() + 1);
-                }
-            });
-        }
-
+        ttsActive.setVisibility(View.VISIBLE);
+        documentController.onGoToPage(event.getPage() + 1);
     }
 
     @Subscribe
@@ -1032,6 +1024,7 @@ public class HorizontalViewActivity extends FragmentActivity {
             chapterView.setVisibility(View.GONE);
         }
 
+        onTTSStatus(null);
         LOG.d("_PAGE", "Update UI", page);
     }
 

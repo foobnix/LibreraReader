@@ -1,5 +1,5 @@
-* Improvements in viewing documents and reading books
-* Change the brightness on the left side of the screen
-* Improvements in PDF/DJVU Reading
-* Adjustment the height of the status bar
-* Thanks for the feedback and ideas, the program is getting better with every update
+* New application name "Librera" (I hope you like it)
+* Added OPDS Online Catalogs
+* Improved  text-to-speech (TTS)
+* Improved UI for better reading experience
+* Thank you very much for using my application and help with ideas

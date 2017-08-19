@@ -1,5 +1,5 @@
-* Miglioramenti nella visualizzazione di documenti e lettura di libri 
-* Modifica della luminosità sul lato sinistro dello schermo 
-* Miglioramenti nella lettura PDF / DJVU 
-* Regolazione dell’altezza della barra di stato 
-* Grazie per i commenti e le idee, il programma sta migliorando con ogni aggiornamento
+* Nuovo nome dell’applicazioneLibrera (mi auguro che ti piace) 
+* Aggiunto cataloghi OPDS Online 
+* Migliorato testo-to-speech (TTS) 
+* Migliorato l’interfaccia utente per una migliore esperienza di lettura 
+* Grazie molto per l’utilizzo della mia applicazione e aiuto con le idee

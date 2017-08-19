@@ -64,7 +64,6 @@
    <string name="orientation">گرایش</string>
    <string name="outline_missed">سند و بدون طرح</string>
    <string name="page">صفحه</string>
-   <string name="please_buy_pro_version_to_use_this_setting">لطفا برای خرید نسخه PRO به استفاده از این تنظیمات</string>
    <string name="please_rate">لطفا سرعت</string>
    <string name="portrait">پرتره</string>
    <string name="preferences">تنظیمات</string>
@@ -248,7 +247,6 @@
    <string name="genre">ژانر</string>
    <string name="series">سلسله</string>
    <string name="rate_pdf_reader1">لطفا انتقادات و پیشنهادات خود را ارسال و امتیاز دادن به ما در گوگل بازی آن را برای ما بسیار مهم است</string>
-   <string name="if_you_buy1">نرم افزار نرم افزار Lirbi کتاب خوان نسخه پرداخت شده از این نرم افزار است. بدون تبلیغات، بدون دسترسی به اینترنت، اندازه کمتر و کمی سریع تر. تبلیغات نیز در این نرم افزار ناپدید می شوند.</string>
    <string name="enable_effect_of_the_book_cover">فعال کردن اثر از جلد کتاب</string>
    <string name="archive_files">فایل های آرشیو</string>
    <string name="column_count">تعداد ستون</string>
@@ -274,7 +272,6 @@
    <string name="all_bookmarks">تمام بوک مارک</string>
    <string name="bookmark_by_date">بر اساس تاریخ</string>
    <string name="bookmark_by_book">کتاب</string>
-   <string name="remove_ads_install_lirbi_pro_version_">حذف تبلیغات. نصب Lirbi نسخه PRO.</string>
    <string name="banner_slogan_LIRBI_READER">برنامه قابل اعتماد و حرفه ای برای خواندن همه کتاب</string>
    <string name="banner_slogan_EPUB_READER">خواننده راحت ترین برای خواندن کتاب های الکترونیکی</string>
    <string name="banner_slogan_PDF_READER">راحت ترین "PDF خوان" برای خواندن اسناد الکترونیکی</string>
@@ -356,7 +353,6 @@
    <string name="tabs_position">موقعیت زبانهها</string>
    <string name="visible">قابل رویت</string>
    <string name="show_preferences_tab_in_the_left_menu">نشان دادن برگه تنظیمات در منوی سمت چپ</string>
-   <string name="buy_pro_lirbi_reader_and_remove_ads">خرید PRO Lirbi خواننده (بدون تبلیغات)</string>
    <string name="theme">موضوع</string>
    <string name="hide_app">مخفی کردن برنامه</string>
    <string name="close_application">بستن برنامه</string>
@@ -384,4 +380,6 @@
    <string name="what_is_the_opds_online_catalog_">کاتالوگ آنلاین OPDS چیست؟</string>
    <string name="books">کتاب ها</string>
    <string name="reading_out_loud">خواندن با صدای بلند</string>
+   <string name="reader_pro_without_ads_">Reader PRO (بدون تبلیغات)</string>
+   <string name="book_reader_pro_no_ads_">کتاب خوان PRO (بدون تبلیغات)</string>
 </resources>

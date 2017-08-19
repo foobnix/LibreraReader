@@ -64,7 +64,6 @@
    <string name="orientation">Orientation</string>
    <string name="outline_missed">アウトラインがありません</string>
    <string name="page">1ページ</string>
-   <string name="please_buy_pro_version_to_use_this_setting">この設定をご利用になるには、Pro版を購入してください</string>
    <string name="please_rate">Please Rate</string>
    <string name="portrait">縦</string>
    <string name="preferences">設定</string>
@@ -248,7 +247,6 @@
    <string name="genre">ジャンル</string>
    <string name="series">シリーズ</string>
    <string name="rate_pdf_reader1">ご意見を書いてください、それは我々にとって非常に重要ではGoogle Play上で私たちを評価</string>
-   <string name="if_you_buy1">PRO LirbiのeBook Readerアプリケーションは、このアプリケーションの有料版です。広告なし、インターネットにアクセスすることなく、より少ないサイズと少し速く。広告はまた、このアプリケーションでは表示されなくなります。</string>
    <string name="enable_effect_of_the_book_cover">ブックカバーの効果を有効にします</string>
    <string name="archive_files">アーカイブファイル</string>
    <string name="column_count">列カウント</string>
@@ -274,7 +272,6 @@
    <string name="all_bookmarks">すべてのブックマーク</string>
    <string name="bookmark_by_date">日付順</string>
    <string name="bookmark_by_book">本を読んで</string>
-   <string name="remove_ads_install_lirbi_pro_version_">広告を削除。 Lirbi PROバージョンをインストールします。</string>
    <string name="banner_slogan_LIRBI_READER">すべての書籍を読むための信頼性と専門的プログラム</string>
    <string name="banner_slogan_EPUB_READER">電子書籍を読むための最も便利なリーダー</string>
    <string name="banner_slogan_PDF_READER">電子文書を読み取るための最も便利な「PDFリーダー」</string>
@@ -356,7 +353,6 @@
    <string name="tabs_position">タブの位置</string>
    <string name="visible">見える</string>
    <string name="show_preferences_tab_in_the_left_menu">左メニューに環境設定タブを表示する</string>
-   <string name="buy_pro_lirbi_reader_and_remove_ads">PRO Lirbi Readerを購入する（広告なし）</string>
    <string name="theme">テーマ</string>
    <string name="hide_app">アプリケーションを非表示にする</string>
    <string name="close_application">アプリケーションを閉じる</string>
@@ -384,4 +380,6 @@
    <string name="what_is_the_opds_online_catalog_">OPDSオンラインカタログとは何ですか？</string>
    <string name="books">書籍</string>
    <string name="reading_out_loud">大声で読む</string>
+   <string name="reader_pro_without_ads_">Reader PRO（広告なし）</string>
+   <string name="book_reader_pro_no_ads_">ブックリーダーPRO（広告なし）</string>
 </resources>

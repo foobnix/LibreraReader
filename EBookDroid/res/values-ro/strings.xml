@@ -64,7 +64,6 @@
    <string name="orientation">Orientare</string>
    <string name="outline_missed">Document fără contur</string>
    <string name="page">Pagină</string>
-   <string name="please_buy_pro_version_to_use_this_setting">Vă rugăm să cumpărați versiunea PRO pentru a utiliza această setare</string>
    <string name="please_rate">Vă rugăm să evaluați</string>
    <string name="portrait">Portret</string>
    <string name="preferences">Preferințe</string>
@@ -166,7 +165,6 @@
    <string name="enter_password">Introduceți parola</string>
    <string name="text_to_speech">Text de vorbire</string>
    <string name="application_user_guide_">Manualul utilizatorului</string>
-   <string name="if_you_buy1">PRO aplicație Lirbi eBook Reader este versiunea plătită a acestei cereri. Fără anunțuri, fără acces la internet, dimensiune mai mică și puțin mai repede. De asemenea, publicitatea va dispărea în această aplicație.</string>
    <string name="you_need_grant_permission">Aveți nevoie să acordați permisiunea de stocare externă pentru această aplicație</string>
    <string name="db_auto_alignemnt">Aliniere automată</string>
    <string name="db_auto_scroll">Parcurgere automată</string>
@@ -274,7 +272,6 @@
    <string name="all_bookmarks">Toate marcajele</string>
    <string name="bookmark_by_date">Până la data</string>
    <string name="bookmark_by_book">Prin carte</string>
-   <string name="remove_ads_install_lirbi_pro_version_">Elimina anunțurile. Instala Lirbi versiunea PRO.</string>
    <string name="banner_slogan_LIRBI_READER">Program de încredere și profesionale pentru a citi toate cărțile</string>
    <string name="banner_slogan_EPUB_READER">Cititorul cel mai convenabil pentru citirea cărților electronice</string>
    <string name="banner_slogan_PDF_READER">Cel mai convenabil "PDF Reader" pentru citirea documentelor electronice</string>
@@ -356,7 +353,6 @@
    <string name="tabs_position">Pozițiile filelor</string>
    <string name="visible">Vizibil</string>
    <string name="show_preferences_tab_in_the_left_menu">Afișați fila Preferințe din meniul din stânga</string>
-   <string name="buy_pro_lirbi_reader_and_remove_ads">Cumpărați PRO Lirbi Reader (fără anunțuri)</string>
    <string name="theme">Temă</string>
    <string name="hide_app">Ascundeți aplicația</string>
    <string name="close_application">Închideți aplicația</string>
@@ -384,4 +380,6 @@
    <string name="what_is_the_opds_online_catalog_">Ce este catalogul online OPDS?</string>
    <string name="books">Cărți</string>
    <string name="reading_out_loud">Citirea cu voce tare</string>
+   <string name="reader_pro_without_ads_">Reader PRO (fără anunțuri)</string>
+   <string name="book_reader_pro_no_ads_">Book Reader PRO (fără anunțuri)</string>
 </resources>

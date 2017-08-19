@@ -64,7 +64,6 @@
    <string name="orientation">Sự định hướng</string>
    <string name="outline_missed">Tài liệu mà không Outline</string>
    <string name="page">Trang</string>
-   <string name="please_buy_pro_version_to_use_this_setting">Xin vui lòng mua phiên bản PRO để sử dụng thiết lập này</string>
    <string name="please_rate">Vui lòng đánh giá</string>
    <string name="portrait">Chân dung</string>
    <string name="preferences">Sở thích</string>
@@ -167,7 +166,6 @@
    <string name="enter_password">Nhập mật khẩu</string>
    <string name="text_to_speech">Văn bản để nói</string>
    <string name="application_user_guide_">Hướng dẫn sử dụng</string>
-   <string name="if_you_buy1">PRO ứng dụng Lirbi eBook Reader là phiên bản trả tiền của ứng dụng này. Nếu không có quảng cáo, không được tiếp cận với internet, có kích thước nhỏ hơn và nhanh hơn chút. Quảng cáo cũng sẽ biến mất trong ứng dụng này.</string>
    <string name="you_need_grant_permission">Bạn cần phải cấp phép của lưu trữ ngoài cho ứng dụng này</string>
    <string name="db_auto_alignemnt">Liên kết tự động</string>
    <string name="db_auto_scroll">Tự động cuộn</string>
@@ -278,7 +276,6 @@
    <string name="banner_slogan_PRO_LIRBI_READER_1">Các phiên bản trả tiền của chương trình đọc ebook tốt nhất</string>
    <string name="banner_slogan_EPUB_READER">Người đọc thuận tiện nhất cho việc đọc sách điện tử</string>
    <string name="banner_slogan_PDF_READER">Thuận tiện nhất "PDF Reader" để đọc tài liệu điện tử</string>
-   <string name="remove_ads_install_lirbi_pro_version_">Loại bỏ các quảng cáo. Cài đặt Lirbi phiên bản PRO.</string>
    <string name="next_page">Trang tiếp theo</string>
    <string name="previous_page">Trang trước</string>
    <string name="customize">Tùy chỉnh</string>
@@ -356,7 +353,6 @@
    <string name="tabs_position">Vị trí tab</string>
    <string name="visible">Có thể nhìn thấy</string>
    <string name="show_preferences_tab_in_the_left_menu">Hiển thị tab tuỳ chọn ở trình đơn bên trái</string>
-   <string name="buy_pro_lirbi_reader_and_remove_ads">Mua PRO Lirbi Reader (không có quảng cáo)</string>
    <string name="theme">Chủ đề</string>
    <string name="hide_app">Ẩn ứng dụng</string>
    <string name="close_application">Đóng ứng dụng</string>
@@ -384,4 +380,6 @@
    <string name="what_is_the_opds_online_catalog_">Danh mục trực tuyến OPDS là gì?</string>
    <string name="books">Sách</string>
    <string name="reading_out_loud">Đọc to</string>
+   <string name="reader_pro_without_ads_">Reader PRO (không có quảng cáo)</string>
+   <string name="book_reader_pro_no_ads_">Sách Reader PRO (không có quảng cáo)</string>
 </resources>

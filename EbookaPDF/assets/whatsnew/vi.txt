@@ -1,5 +1,5 @@
-* Cải tiến trong các tài liệu xem và đọc sách 
-* Thay đổi độ sáng ở phía bên trái của màn hình 
-* Cải tiến PDF / DJVU Đọc 
-* Điều chỉnh chiều cao của thanh trạng thái 
-* Cảm ơn phản hồi và ý tưởng, chương trình đang nhận được tốt hơn với mọi cập nhật
+* Tên ứng dụng mớiLibrera (Tôi hy vọng bạn thích nó) 
+* Thêm OPDS Online Catalogs 
+* Cải thiện giao diện người dùng (TTS) 
+* Cải thiện giao diện người dùng cho trải nghiệm đọc tốt hơn 
+* Cảm ơn bạn rất nhiều vì đã sử dụng ứng dụng của tôi và giúp đỡ các ý tưởng

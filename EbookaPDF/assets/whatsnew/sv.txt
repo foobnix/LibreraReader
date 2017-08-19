@@ -1,5 +1,5 @@
-* Förbättringar av visning av dokument och läsning av böcker 
-* Ändra ljusstyrkan på skärmens vänstra sida 
-* Förbättringar i PDF / DJVU-läsning 
-* Justera höjden på statusfältet 
-* Tack för feedback och idéer blir programmet bättre med varje uppdatering
+* Ny applikationsnamnLibrera (Jag hoppas du gillar det) 
+* Tillagt OPDS Online Catalogs 
+* Förbättrad text-till-tal (TTS) 
+* Förbättrat användargränssnitt för bättre läsupplevelse 
+* Tack så mycket för att du använder min ansökan och hjälp med idéer

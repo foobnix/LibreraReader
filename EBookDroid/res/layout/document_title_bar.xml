@@ -15,7 +15,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content" >
 
-        <ImageView
+        <TextView
             android:id="@+id/lirbiLogo"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -32,10 +32,10 @@
             android:paddingTop="0dip"
             android:singleLine="true"
             android:src="@drawable/lirbi_text"
-            android:text="Lirbi - musician"
+            android:text="Music"
             android:textColor="@color/white"
-            android:textSize="14sp"
-            android:textStyle="bold|italic" />
+            android:textSize="18sp"
+            android:textStyle="italic" />
 
         <LinearLayout
             android:id="@+id/titleBar"

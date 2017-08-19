@@ -56,7 +56,7 @@
             android:fadingEdge="horizontal"
             android:maxLines="3"
             android:scrollHorizontally="true"
-            android:text="@string/if_you_buy1"
+            android:text="@string/book_reader_pro_no_ads_"
             android:textSize="12sp" />
 
         <TextView
@@ -65,7 +65,7 @@
             android:layout_height="wrap_content"
             android:padding="0dip"
             android:singleLine="true"
-            android:text="@string/remove_ads_install_lirbi_pro_version_"
+            android:text="@string/book_reader_pro_no_ads_"
             android:textSize="13sp" />
     </LinearLayout>
 

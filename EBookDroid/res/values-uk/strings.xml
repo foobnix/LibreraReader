@@ -64,7 +64,6 @@
    <string name="orientation">Орієнтація</string>
    <string name="outline_missed">Відсутній зміст в документі</string>
    <string name="page">Сторінка</string>
-   <string name="please_buy_pro_version_to_use_this_setting">Будь-ласка, купіть PRO версію щоб користуватися цим функціоналом</string>
    <string name="please_rate">Оцінити програму</string>
    <string name="portrait">Вертикально</string>
    <string name="preferences">Налаштування</string>
@@ -248,7 +247,6 @@
    <string name="genre">Жанр</string>
    <string name="series">Серія</string>
    <string name="rate_pdf_reader1">Будь ласка, напишіть свій відгук і оцініть нас на Google Play. Це дуже важливо для нас.</string>
-   <string name="if_you_buy1">PRO додаток Lirbi для читання електронних книг є платною версією цього додатка. Без реклами, без доступу до Інтернету, меншого розміру і трохи швидше. Реклама також зникне в цьому додатку.</string>
    <string name="enable_effect_of_the_book_cover">Включити ефект обкладинки книги</string>
    <string name="archive_files">Архівні файли</string>
    <string name="column_count">Кількість стовпців</string>
@@ -274,7 +272,6 @@
    <string name="all_bookmarks">Всі закладки</string>
    <string name="bookmark_by_date">За датою</string>
    <string name="bookmark_by_book">За книгою</string>
-   <string name="remove_ads_install_lirbi_pro_version_">Видалення оголошень. Встановити Lirbi PRO версію.</string>
    <string name="banner_slogan_LIRBI_READER">Надійна і професійна програма для читання всіх книг</string>
    <string name="banner_slogan_EPUB_READER">Найзручніший рідер для читання електронних книг</string>
    <string name="banner_slogan_PDF_READER">Найзручніший "PDF Reader" для читання електронних документів</string>
@@ -356,7 +353,6 @@
    <string name="tabs_position">Позиції вкладок</string>
    <string name="visible">Видимий</string>
    <string name="show_preferences_tab_in_the_left_menu">Показувати вкладку налаштувань в меню зліва</string>
-   <string name="buy_pro_lirbi_reader_and_remove_ads">Купити PRO Lirbi Reader (без реклами)</string>
    <string name="theme">Тема</string>
    <string name="hide_app">Приховати додаток</string>
    <string name="close_application">Закрити додаток</string>
@@ -384,4 +380,6 @@
    <string name="what_is_the_opds_online_catalog_">Що таке онлайновий каталог OPDS?</string>
    <string name="books">Книги</string>
    <string name="reading_out_loud">Читання голосно</string>
+   <string name="reader_pro_without_ads_">Reader PRO (без оголошень)</string>
+   <string name="book_reader_pro_no_ads_">Book Reader PRO (без реклами)</string>
 </resources>

@@ -1,5 +1,5 @@
-* Zlepšenie zobrazovania dokumentov a čítania kníh 
-* Zmena jasu na ľavej strane obrazovky 
-* Zlepšenie v čítaní PDF / DJVU 
-* Nastavenie výšky stavového panela 
-* Vďaka za spätnú väzbu a nápady sa program zlepšuje s každou aktualizáciou
+* Nový názov aplikácieLibrera (Dúfam, že sa vám to páči) 
+* Pridaný katalóg OPDS Online 
+* Vylepšený textový prenos (TTS) 
+* Vylepšené používateľské rozhranie pre lepšiu čitateľskú skúsenosť 
+* Ďakujem veľmi pekne, že ste použili svoju aplikáciu a pomohli vám s nápadmi

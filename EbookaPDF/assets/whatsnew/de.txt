@@ -1,5 +1,5 @@
-* Verbesserungen beim Betrachten von Dokumenten und beim Lesen von Büchern 
-* Ändern der Helligkeit auf der linken Seite des Bildschirms 
-* Verbesserungen im PDF / DJVU Lesen 
-* Anpassen der Höhe der Statusleiste 
-* Danke für das Feedback und die Ideen, das Programm wird bei jedem Update immer besser
+* Neue ApplikationsnameLibrera (ich hoffe es gefällt euch) 
+* Added OPDS Online Kataloge 
+* Verbesserte Text-to-Speech (TTS) 
+* Verbesserte Benutzeroberfläche für bessere Leseerfahrung 
+* Vielen Dank für die Anwendung meiner Bewerbung und Hilfe bei Ideen

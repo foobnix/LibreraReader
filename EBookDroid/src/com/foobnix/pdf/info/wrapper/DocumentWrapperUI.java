@@ -11,6 +11,7 @@ import org.ebookdroid.common.settings.SettingsManager;
 import org.ebookdroid.common.settings.books.BookSettings;
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
 
 import com.foobnix.android.utils.Dips;
 import com.foobnix.android.utils.Keyboards;
@@ -100,7 +101,8 @@ public class DocumentWrapperUI {
     private FrameLayout anchor;
     private TextView batteryLevel;
 
-    private ImageView editTop2, lirbiLogo;
+    private ImageView editTop2;
+    private View lirbiLogo;
     private DrawView drawView;
     private View line1, line2, lineFirst, lineClose, closeTop;
     private ImageView goToPage1, goToPage1Top;
@@ -147,14 +149,15 @@ public class DocumentWrapperUI {
 
     }
 
-    @Subscribe
+    @Subscribe(threadMode = ThreadMode.MAIN)
     public void onPageNumber(MessagePageNumber event) {
         if (controller != null) {
             controller.onGoToPage(event.getPage() + 1);
+            ttsActive.setVisibility(View.VISIBLE);
         }
     }
 
-    @Subscribe
+    @Subscribe(threadMode = ThreadMode.MAIN)
     public void onTTSStatus(TtsStatus status) {
         ttsActive.setVisibility(TTSEngine.get().isPlaying() ? View.VISIBLE : View.GONE);
 
@@ -584,7 +587,7 @@ public class DocumentWrapperUI {
         lineFirst = a.findViewById(R.id.lineFirst);
         lineFirst.setOnClickListener(onGoToPAge1);
 
-        lirbiLogo = (ImageView) a.findViewById(R.id.lirbiLogo);
+        lirbiLogo = a.findViewById(R.id.lirbiLogo);
         // lirbiLogo.setText("Lirbi " + a.getString(R.string.musician));
         lirbiLogo.setOnClickListener(onLirbiLogoClick);
 
@@ -1369,6 +1372,7 @@ public class DocumentWrapperUI {
                     initToolBarPlusMinus();
                     updateSeekBarColorAndSize();
                     showHide();
+                    TTSEngine.get().stop();
                 }
             }, new Runnable() {
 

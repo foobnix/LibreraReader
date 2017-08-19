@@ -64,7 +64,6 @@
    <string name="orientation">Suuntautuminen</string>
    <string name="outline_missed">Asiakirjaa pääpiirteet</string>
    <string name="page">Sivu</string>
-   <string name="please_buy_pro_version_to_use_this_setting">Ostakaa PRO-versio käyttää tätä asetusta</string>
    <string name="please_rate">Arvioi</string>
    <string name="portrait">Muotokuva</string>
    <string name="preferences">Asetukset</string>
@@ -168,7 +167,6 @@
    <string name="enter_password">Kirjoita salasana</string>
    <string name="text_to_speech">Teksti puheeksi</string>
    <string name="application_user_guide_">Käyttöohjeet</string>
-   <string name="if_you_buy1">PRO Lirbi eBook Reader on maksettu versio tästä applicationWithout mainoksia, ei ole pääsyä internetiin, vähemmän koko ja vähäinen fasterAdvertising myös häviää tässä sovelluksessa.</string>
    <string name="you_need_grant_permission">Tarvitset myönnettävä lupa ulkoisia tallennuslaitteita tähän sovellukseen</string>
    <string name="db_auto_alignemnt">Auto linjaus</string>
    <string name="db_auto_scroll">Automaattinen vieritys</string>
@@ -280,7 +278,6 @@
    <string name="banner_slogan_PRO_LIRBI_READER_1">Maksettu versio paras e-kirjan lukija ohjelma</string>
    <string name="banner_slogan_EPUB_READER">Kätevin lukijan luettavuutta elektronisia kirjoja</string>
    <string name="banner_slogan_PDF_READER">Kätevin "PDF Reader" lukemiseen sähköisiä asiakirjoja</string>
-   <string name="remove_ads_install_lirbi_pro_version_">Poista adsInstall Lirbi PRO-versio.</string>
    <string name="next_page">Seuraava sivu</string>
    <string name="previous_page">Edellinen sivu</string>
    <string name="customize">Muokata</string>
@@ -357,7 +354,6 @@
    <string name="tabs_position">Välilehdet asema</string>
    <string name="visible">Näkyvä</string>
    <string name="show_preferences_tab_in_the_left_menu">Näytä mieltymykset välilehden vasemmassa valikossa</string>
-   <string name="buy_pro_lirbi_reader_and_remove_ads">Ostaa PRO Lirbi Reader (ilman mainoksia)</string>
    <string name="hide_app">Piilota sovellus</string>
    <string name="close_application">Sulje sovellus</string>
    <string name="go_to_the_library">Mene kirjastoon</string>
@@ -384,4 +380,6 @@
    <string name="what_is_the_opds_online_catalog_">Mikä on OPDS-verkkoluettelo?</string>
    <string name="books">Kirjat</string>
    <string name="reading_out_loud">Lukeminen ääneen</string>
+   <string name="reader_pro_without_ads_">Reader PRO (ilman mainoksia)</string>
+   <string name="book_reader_pro_no_ads_">Book Reader PRO (ei mainoksia)</string>
 </resources>

@@ -64,7 +64,6 @@
    <string name="orientation">Orientacja</string>
    <string name="outline_missed">Dokument bez Outline</string>
    <string name="page">Strona</string>
-   <string name="please_buy_pro_version_to_use_this_setting">Proszę kupić wersję Pro, aby skorzystać z tego ustawienia</string>
    <string name="please_rate">Oceń aplikację</string>
    <string name="portrait">Tryb portretowy</string>
    <string name="preferences">Preferencje</string>
@@ -248,7 +247,6 @@
    <string name="genre">Gatunek</string>
    <string name="series">Seria</string>
    <string name="rate_pdf_reader1">Prosimy, napisz swoją opinię i oceń nas na Google Play, to dla nas bardzo ważne!</string>
-   <string name="if_you_buy1">Lirbi eBook Reader w wersji Pro nie zawiera reklam, nie wymaga dostępu do internetu, a także zajmuje mniej miejsca oraz działa nieco szybciej.</string>
    <string name="enable_effect_of_the_book_cover">Włącz efekt okładki</string>
    <string name="archive_files">Pliki archiwum</string>
    <string name="column_count">Liczba kolumn</string>
@@ -274,7 +272,6 @@
    <string name="all_bookmarks">Wszystkie zakładki</string>
    <string name="bookmark_by_date">Według daty</string>
    <string name="bookmark_by_book">Według książki</string>
-   <string name="remove_ads_install_lirbi_pro_version_">Usuń reklamy. Zainstaluj Lirbi w wersji Pro.</string>
    <string name="banner_slogan_LIRBI_READER">Niezawodny i profesjonalny program do czytania wszystkich książek</string>
    <string name="banner_slogan_EPUB_READER">Najwygodniejszy czytnik do czytania książek elektronicznych</string>
    <string name="banner_slogan_PDF_READER">Najwygodniejszy "PDF Reader" do czytania dokumentów elektronicznych</string>
@@ -356,7 +353,6 @@
    <string name="tabs_position">Położenie kart</string>
    <string name="visible">Widoczny</string>
    <string name="show_preferences_tab_in_the_left_menu">Pokaż kartę preferencji w menu po lewej stronie</string>
-   <string name="buy_pro_lirbi_reader_and_remove_ads">Kupuj czytnik PRO Lirbi (bez reklam)</string>
    <string name="theme">Motyw</string>
    <string name="hide_app">Ukryj aplikację</string>
    <string name="close_application">Zamknij aplikację</string>
@@ -384,4 +380,6 @@
    <string name="what_is_the_opds_online_catalog_">Czym jest katalog internetowy OPDS?</string>
    <string name="books">Książki</string>
    <string name="reading_out_loud">Czytanie głośno</string>
+   <string name="reader_pro_without_ads_">Czytnik PRO (bez reklam)</string>
+   <string name="book_reader_pro_no_ads_">Book Reader PRO (bez reklam)</string>
 </resources>

@@ -1,5 +1,5 @@
-* Verbeteringen in het bekijken van documenten en het lezen van boeken 
-* Verander de helderheid aan de linkerkant van het scherm 
-* Verbeteringen in PDF / DJVU Lezen 
-* Aanpassen van de hoogte van de statusbalk 
-* Dank u voor de feedback en de ideeën, wordt het programma beter met elke update
+* Nieuwe applicatie naamLibrera (ik hoop dat je het leuk vindt) 
+* OPDS Online Catalogs toegevoegd 
+* Verbeterde tekst-naar-spraak (TTS) 
+* Verbeterde gebruikersinterface voor een betere leeservaring 
+* Hartelijk dank voor het gebruik van mijn applicatie en hulp bij ideeën

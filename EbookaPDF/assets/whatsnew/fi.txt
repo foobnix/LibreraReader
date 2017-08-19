@@ -1,5 +1,5 @@
-* Parannukset asiakirjojen katselemisessa ja kirjojen lukemisessa 
-* Näytön vasemmalla puolella olevan kirkkauden muuttaminen 
-* PDF / DJVU-lukemisen parannukset 
-* Tilapalkin korkeuden säätö 
-* Kiitos palautteesta ja ideoista, ohjelma paranee jokaisen päivityksen yhteydessä
+* Uusi sovellusnimiLibrera (toivottavasti pidät siitä) 
+* Lisätty OPDS Online -luettelot 
+* Parannettu teksti-puheeksi (TTS) 
+* Parannettu käyttöliittymä paremman lukukokemuksen 
+* Kiitos paljon sovelluksestani ja apuideoiden ansiosta

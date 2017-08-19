@@ -64,7 +64,6 @@
    <string name="orientation">توجيه</string>
    <string name="outline_missed">مستند بلا عناوين</string>
    <string name="page">صفحة</string>
-   <string name="please_buy_pro_version_to_use_this_setting">يرجى شراء النسخة المدفوعة لاستخدام هذا الإعداد</string>
    <string name="please_rate">يرجى التقييم</string>
    <string name="portrait">شاقولي</string>
    <string name="preferences">الإعدادات</string>
@@ -248,7 +247,6 @@
    <string name="genre">نوع أدبي</string>
    <string name="series">سلسلة</string>
    <string name="rate_pdf_reader1">يرجى إرسال ملاحظاتك ومعدل لنا في Google Play من المهم جدا بالنسبة لنا</string>
-   <string name="if_you_buy1">PRO تطبيق Lirbi قارئ الكتاب هو النسخة المدفوعة من هذا التطبيق. بدون إعلانات، دون الوصول إلى الإنترنت، وأقل حجم وأسرع قليلا. الإعلان أيضا سوف تختفي في هذا التطبيق.</string>
    <string name="enable_effect_of_the_book_cover">تمكين تأثير غلاف الكتاب</string>
    <string name="archive_files">ملفات الأرشيف</string>
    <string name="column_count">عدد الأعمدة</string>
@@ -274,7 +272,6 @@
    <string name="all_bookmarks">كل الإشارات المرجعية</string>
    <string name="bookmark_by_date">حسب التاريخ</string>
    <string name="bookmark_by_book">من خلال كتاب</string>
-   <string name="remove_ads_install_lirbi_pro_version_">ازالة الاعلانات. تثبيت Lirbi نسخة للمحترفين.</string>
    <string name="banner_slogan_LIRBI_READER">برنامج موثوق بها والمهنية لقراءة جميع الكتب</string>
    <string name="banner_slogan_EPUB_READER">القارئ الأكثر ملاءمة لقراءة الكتب الإلكترونية</string>
    <string name="banner_slogan_PDF_READER">الأكثر ملاءمة "ريدر" لقراءة الوثائق الإلكترونية</string>
@@ -356,7 +353,6 @@
    <string name="tabs_position">موضع علامات التبويب</string>
    <string name="visible">مرئي</string>
    <string name="show_preferences_tab_in_the_left_menu">عرض علامة التبويب التفضيلات في القائمة اليمنى</string>
-   <string name="buy_pro_lirbi_reader_and_remove_ads">شراء برو ليربي القارئ (بدون إعلانات)</string>
    <string name="theme">المقدمة</string>
    <string name="hide_app">إخفاء التطبيق</string>
    <string name="close_application">تطبيق وثيقة</string>
@@ -384,4 +380,6 @@
    <string name="what_is_the_opds_online_catalog_">ما هو كتالوج أوبدس على الانترنت؟</string>
    <string name="books">كتب</string>
    <string name="reading_out_loud">قراءة بصوت عال</string>
+   <string name="reader_pro_without_ads_">قارئ برو (بدون إعلانات)</string>
+   <string name="book_reader_pro_no_ads_">كتاب قارئ برو (أي إعلانات)</string>
 </resources>

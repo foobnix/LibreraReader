@@ -64,7 +64,6 @@
    <string name="orientation">נטייה</string>
    <string name="outline_missed">מסמך ללא מתאר</string>
    <string name="page">עמוד</string>
-   <string name="please_buy_pro_version_to_use_this_setting">נא לקנות גרסת PRO כדי להשתמש בהגדרה זו</string>
    <string name="please_rate">דרג בבקשה</string>
    <string name="portrait">דְיוֹקָן</string>
    <string name="preferences">העדפות</string>
@@ -167,7 +166,6 @@
    <string name="enter_password">הזן את הסיסמה</string>
    <string name="text_to_speech">טקסט לדיבור</string>
    <string name="application_user_guide_">מדריך למשתמש</string>
-   <string name="if_you_buy1">יישום Lirbi eBook Reader PRO הוא הגרסה בתשלום של יישום זה. ללא מודעות, ללא גישה לאינטרנט, גודל פחות קצת יותר מהר. פרסום גם ייעלם בבקשה זו.</string>
    <string name="you_need_grant_permission">אתה צריך לתת להם את האישורים של אחסון חיצוני עבור יישום זה</string>
    <string name="db_auto_alignemnt">יישור אוטומטי</string>
    <string name="db_auto_scroll">גלילה אוטומטית</string>
@@ -278,7 +276,6 @@
    <string name="banner_slogan_PRO_LIRBI_READER_1">הגרסה בתשלום של תכנית קורא ebook הטובה ביותר</string>
    <string name="banner_slogan_EPUB_READER">הקורא הנוח ביותר לקריאת ספרים אלקטרוניים</string>
    <string name="banner_slogan_PDF_READER">את "קורא PDF" הנוח ביותר עבור קריאת מסמכים אלקטרוניים</string>
-   <string name="remove_ads_install_lirbi_pro_version_">הסר פרסומות. התקן Lirbi גרסת PRO.</string>
    <string name="next_page">עמוד הבא</string>
    <string name="previous_page">עמוד קודם</string>
    <string name="customize">התאמה אישית</string>
@@ -356,7 +353,6 @@
    <string name="tabs_position">מיקום הכרטיסיות</string>
    <string name="visible">נִרְאֶה</string>
    <string name="show_preferences_tab_in_the_left_menu">הצג את הכרטיסייה העדפות בתפריט השמאלי</string>
-   <string name="buy_pro_lirbi_reader_and_remove_ads">קנה Pro Lirbi Reader (ללא מודעות)</string>
    <string name="theme">נושא</string>
    <string name="hide_app">הסתר את היישום</string>
    <string name="close_application">סגור את היישום</string>
@@ -384,4 +380,6 @@
    <string name="what_is_the_opds_online_catalog_">מהו הקטלוג המקוון של OPDS?</string>
    <string name="books">ספרים</string>
    <string name="reading_out_loud">קורא בקול רם</string>
+   <string name="reader_pro_without_ads_">Reader Pro (ללא מודעות)</string>
+   <string name="book_reader_pro_no_ads_">קורא ספרים PRO (ללא מודעות)</string>
 </resources>

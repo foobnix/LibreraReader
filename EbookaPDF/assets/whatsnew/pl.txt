@@ -1,5 +1,5 @@
-* Ulepszenia w przeglądaniu dokumentów i czytaniu książek 
-* Zmiana jasności po lewej stronie ekranu 
-* Udoskonalenia w czytaniu plików PDF / DJVU 
-* Regulacja wysokości paska stanu 
-* Dzięki za opinie i pomysły, program jest coraz lepiej z każdą aktualizacją
+* Nowa nazwa aplikacjiLibrera (mam nadzieję, że to się spodoba) 
+* Dodano katalogi OPDS Online 
+* Udoskonalono obsługę tekstu na mowę (TTS) 
+* Ulepszony interfejs użytkownika dla lepszego czytania 
+* Dziękujemy za korzystanie z mojej aplikacji i pomocy z pomysłami
