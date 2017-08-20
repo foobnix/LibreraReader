@@ -45,7 +45,7 @@
    <string name="licence_gnu_gpl_v3_0">Лицензия: GNU GPL v3.0</string>
    <string name="light">Cветлая</string>
    <string name="loading_failed">Ошибка загрузки страницы</string>
-   <string name="loop_autoplay">Бесконечная автопрокрутка</string>
+   <string name="loop_autoplay">Возобновлять автопрокрутку текста с начала после ее завершения</string>
    <string name="mouse_scroll_speed">Скорость прокрутки колесиком мышки</string>
    <string name="msg_loading">Открывается...</string>
    <string name="msg_no_text_found">Текст не найден</string>
@@ -117,7 +117,7 @@
    <string name="pdf_mode">Режим PDF</string>
    <string name="expiremental_features">Комментирование и рисование (в тестировании; может повредить некоторые файлы)</string>
    <string name="remember_my_choose">Запомнить режим просмотра</string>
-   <string name="customize_font_background_colors">Применить расширенную настройку смены шрифтов и фонов</string>
+   <string name="customize_font_background_colors">Применять расширенный алгоритм смены шрифтов и фонов</string>
    <string name="day">День</string>
    <string name="nigth">Ночь</string>
    <string name="restore_defaults">Вернуть настройки по умолчанию</string>
@@ -147,7 +147,7 @@
    <string name="file_info">Информация о файле</string>
    <string name="open_file">Открыть файл</string>
    <string name="make_text_reflow">Перекомпоновка в текстовый формат (функция «Text reflow»)</string>
-   <string name="search_not_supported_formats">Поиск неподдерживаемых форматов</string>
+   <string name="search_not_supported_formats">Поиск среди неподдерживаемых форматов</string>
    <string name="search_in_google">Поиск в Google</string>
    <string name="reading_the_text_by_voice">Чтение текста голосом</string>
    <string name="sound_volume">Громкость</string>
@@ -208,7 +208,7 @@
    <string name="empty_line">Пустая строка</string>
    <string name="apply_styles_from_the_document">Применить встроенные стили</string>
    <string name="customize_background_color">Настройка цвета фона</string>
-   <string name="enable_vibration_for_some_actions">Вибрировать при некоторых действиях</string>
+   <string name="enable_vibration_for_some_actions">Включить виброотклик для некоторых действий</string>
    <string name="center">По центру</string>
    <string name="width">По ширине</string>
    <string name="text_align">Выравнивание текста</string>
@@ -244,7 +244,7 @@
    <string name="application_cannot_open_the_book">Приложение не может открыть файл</string>
    <string name="genre">Жанр</string>
    <string name="series">Серии</string>
-   <string name="rate_pdf_reader1">Пожалуйста, напишите свой отзыв и оцените нас на Google Play. Это очень важно для нас</string>
+   <string name="rate_pdf_reader1">Пожалуйста, напишите свой отзыв и оцените нас на Google Play. Это очень важно для развития приложения.</string>
    <string name="enable_effect_of_the_book_cover">Эффект реалистичных книжных обложек</string>
    <string name="archive_files">Файл(ы) в архиве</string>
    <string name="column_count">Количество столбцов:</string>
@@ -317,7 +317,7 @@
    <string name="zoom_in_zoom_out">Увеличить/уменьшить масштаб</string>
    <string name="automatic_hyphenation">Авторасстановка переносов</string>
    <string name="bookmark_for_this_page_already_exists">Закладка для этой страницы уже существует</string>
-   <string name="bookmark_with_text">Текстовая закладка</string>
+   <string name="bookmark_with_text">Закладка с названием</string>
    <string name="fast_bookmark">Быстрая закладка</string>
    <string name="reading_settings">Настройки чтения</string>
    <string name="db_auto_center_horizontally">Выровнить по горизонтали</string>
@@ -362,15 +362,15 @@
    <string name="show_progress_of_reading">Отображать полосу прогресса</string>
    <string name="line_height">Толщина полосы прогресса</string>
    <string name="display_chapters_on_the_progress_line">Ставить засечки глав в полосе прогресса</string>
-   <string name="enable_brightness_adjustment_on_the_left_of_the_screen">Включить регулировку яркости свайпом от левой границы экрана</string>
-   <string name="enable_rewind_of_pages_using_the_read_progress_line">Перематывать страницы скольжением пальца по строке состояния</string>
+   <string name="enable_brightness_adjustment_on_the_left_of_the_screen">Регулировать яркость подсветки свайпом от левой границы экрана</string>
+   <string name="enable_rewind_of_pages_using_the_read_progress_line">Переходить между страницами скольжением пальца по строке состояния</string>
    <string name="catalogs">Каталоги</string>
-   <string name="can_t_download">Не можете скачать</string>
+   <string name="can_t_download">Нельзя скачать</string>
    <string name="download">Скачать</string>
    <string name="loading_error">Ошибка загрузки</string>
    <string name="please_wait">Пожалуйста, подождите</string>
    <string name="add_network_catalog">Добавить сетевой каталог</string>
-   <string name="do_you_want_to_delete_">Вы хотите удалить?</string>
+   <string name="do_you_want_to_delete_">Хотите удалить?</string>
    <string name="network">Сеть</string>
    <string name="name">Имя</string>
    <string name="description">Описание</string>

@@ -17,6 +17,8 @@ import android.annotation.TargetApi;
 import android.app.Service;
 import android.content.Context;
 import android.content.Intent;
+import android.media.AudioManager;
+import android.media.AudioManager.OnAudioFocusChangeListener;
 import android.os.Build;
 import android.os.IBinder;
 import android.os.Vibrator;
@@ -37,11 +39,34 @@ public class TTSService extends Service {
 
     }
 
+    AudioManager mAudioManager;
+
     @Override
     public void onCreate() {
         LOG.d(TAG, "Create");
         AppState.get().load(getApplicationContext());
+        mAudioManager = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
+        mAudioManager.requestAudioFocus(listener, AudioManager.STREAM_VOICE_CALL, AudioManager.AUDIOFOCUS_GAIN);
     }
+
+    boolean isPlaying;
+    OnAudioFocusChangeListener listener = new OnAudioFocusChangeListener() {
+
+        @Override
+        public void onAudioFocusChange(int focusChange) {
+            LOG.d("onAudioFocusChange", focusChange);
+            if (focusChange < 0) {
+                isPlaying = TTSEngine.get().isPlaying();
+                LOG.d("onAudioFocusChange", "Is playing", isPlaying);
+                TTSEngine.get().stop();
+            } else {
+                if (isPlaying) {
+                    playPage("", AppState.get().lastBookPage);
+                }
+            }
+        }
+
+    };
 
     @Override
     public IBinder onBind(Intent intent) {
