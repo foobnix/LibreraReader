@@ -3,7 +3,6 @@
 ant clean-apk
 
 ant x86 pro
-#ant armeabi pro
 ant armeabi-v7a pro
 
 ./remove_all.sh

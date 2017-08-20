@@ -204,6 +204,8 @@ public class AddCatalogDialog {
                                 feed.icon = Hrefs.fixHref(feed.icon, feedUrl);
                                 image.setTag(feed.icon);
                                 ImageLoader.getInstance().displayImage(feed.icon, image, IMG.displayImageOptions);
+                            } else {
+                                image.setTag("assets://web.png");
                             }
 
                             infoDialog.getButton(AlertDialog.BUTTON_POSITIVE).setText(R.string.ok);

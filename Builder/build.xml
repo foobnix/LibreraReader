@@ -150,12 +150,6 @@
 		<replaceregexp file="../EbookaPDF/AndroidManifest.xml"
 			match='&lt;meta-data android:name="com.google.android.gms.version" android:value="@integer/google_play_services_version"/>'
 			replace="" />
-		<replaceregexp file="../EbookaPDF/AndroidManifest.xml"
-			match='&lt;uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" /&gt;'
-			replace="" />
-		<replaceregexp file="../EbookaPDF/AndroidManifest.xml"
-			match='&lt;uses-permission android:name="android.permission.INTERNET" /&gt;'
-			replace="" />
 
 		<replaceregexp file="../EBookDroid/project.properties"
 			match='android.library.reference.1=../my-google-play-services-lib'
@@ -347,7 +341,7 @@
 		<property name="pdf.export.name" value="${name.pro}-PRO" />
 
 		<antcall target="prepare-packages" />
-		<antcall target="free-replace" />
+		<antcall target="pro-replace" />
 
 		<!-- -->
 
