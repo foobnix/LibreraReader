@@ -161,7 +161,7 @@ public class EntryAdapter extends AppRecycleAdapter<Entry, RecyclerView.ViewHold
         for (final Link link : entry.links) {
             if (link.TYPE_LOGO.equals(link.type) || link.isThumbnail()) {
                 holder.image.setVisibility(View.VISIBLE);
-                ImageLoader.getInstance().displayImage(link.href, holder.image, IMG.displayImageOptions);
+                ImageLoader.getInstance().displayImage(link.href, holder.image, IMG.displayOPDSOptions);
             } else if (link.isSearchLink()) {
                 LinearLayout l = new LinearLayout(context);
                 l.setOrientation(LinearLayout.HORIZONTAL);

@@ -380,6 +380,5 @@
    <string name="what_is_the_opds_online_catalog_">Що таке онлайновий каталог OPDS?</string>
    <string name="books">Книги</string>
    <string name="reading_out_loud">Читання голосно</string>
-   <string name="reader_pro_without_ads_">Reader PRO (без оголошень)</string>
-   <string name="book_reader_pro_no_ads_">Book Reader PRO (без реклами)</string>
+   <string name="librera_pro_no_ads_leading_book_reader_and_pdf">Librera PRO (без реклами) провідний читач книг і PDF</string>
 </resources>

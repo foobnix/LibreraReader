@@ -130,12 +130,12 @@ public class AppState {
     public final static String OPDS_DEFAULT = "" + //
     // "http://flibusta.is/opds,Flibusta,Книжное
     // братство,http://flibusta.is/favicon.ico;" + //
-            "http://opds.litres.ru,Litres,Библиотека электронных книг,http://www.litres.ru/static/new/favicon.ico;" + //
-            "https://www.gitbook.com/api/opds/catalog.atom,GitBook,Public books are always free.,https://www.gitbook.com/assets/images/logo/128.png;" + //
-            "http://m.gutenberg.org/ebooks.opds/,Project Gutenberg,Free ebooks since 1971,http://m.gutenberg.org/pics/favicon.png;" + //
-            "http://manybooks.net/opds/index.php,Manybooks,Online Catalog for Manybooks.net,http://manybooks.net/sites/all/themes/manybooks/images/library-books-icon.png;" + //
-            "https://www.smashwords.com/atom,Smashwords,Online Catalog,https://www.smashwords.com/static/img/swlogo48x48.png;" + //
-            "http://www.feedbooks.com/publicdomain/catalog.atom,Feedbooks,Free ebooks,http://assets0.feedbooks.net/images/favicon.ico;"; //
+            "http://opds.litres.ru,Litres,Библиотека электронных книг,assets://opds/litres.ico;" + //
+            "https://www.gitbook.com/api/opds/catalog.atom,GitBook,Public books are always free.,assets://opds/gitbook.png;" + //
+            "http://m.gutenberg.org/ebooks.opds/,Project Gutenberg,Free ebooks since 1971,assets://opds/gutenberg.png;" + //
+            "http://manybooks.net/opds/index.php,Manybooks,Online Catalog for Manybooks.net,assets://opds/manybooks.png;" + //
+            "https://www.smashwords.com/atom,Smashwords,Online Catalog,assets://opds/smashwords.png;" + //
+            "http://www.feedbooks.com/publicdomain/catalog.atom,Feedbooks,Free ebooks,assets://opds/feedbooks.ico;"; //
 
     public String myOPDS = OPDS_DEFAULT;
 

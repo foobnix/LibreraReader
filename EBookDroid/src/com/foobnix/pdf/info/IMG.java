@@ -157,6 +157,19 @@ public class IMG {
             // .displayer(new FadeInBitmapDisplayer(200))//
             .build();//
 
+    public static DisplayImageOptions displayOPDSOptions = new DisplayImageOptions.Builder() //
+            .showImageOnFail(R.drawable.web)//
+            .showImageForEmptyUri(R.drawable.web)//
+            .showImageOnFail(R.drawable.web)//
+            .cacheInMemory(MemoryUtils.IS_BIG_MEMORY_SIZE)//
+            .cacheOnDisk(true)//
+            .considerExifParams(false)//
+            .imageScaleType(ImageScaleType.IN_SAMPLE_POWER_OF_2)//
+            .resetViewBeforeLoading(RESET_VIEW_BEFORE_LOADING)//
+            .bitmapConfig(BMP_CFG)//
+            // .displayer(new FadeInBitmapDisplayer(200))//
+            .build();//
+
 
     public static DisplayImageOptions displayImageOptionsNoDiscCache = new DisplayImageOptions.Builder() //
             .showImageOnFail(COLOR_DRAWABLE)//

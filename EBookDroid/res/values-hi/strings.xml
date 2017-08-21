@@ -380,6 +380,5 @@
    <string name="what_is_the_opds_online_catalog_">ओपीडीएस ऑनलाइन कैटलॉग क्या है?</string>
    <string name="books">पुस्तकें</string>
    <string name="reading_out_loud">ज़ोर से पढ़ना</string>
-   <string name="reader_pro_without_ads_">रीडर प्रो (विज्ञापन के बिना)</string>
-   <string name="book_reader_pro_no_ads_">पुस्तक रीडर प्रो (कोई विज्ञापन नहीं)</string>
+   <string name="librera_pro_no_ads_leading_book_reader_and_pdf">लिब्रेरा प्रो (कोई विज्ञापन नहीं) प्रमुख पुस्तक रीडर और पीडीएफ</string>
 </resources>

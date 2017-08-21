@@ -380,6 +380,5 @@
    <string name="what_is_the_opds_online_catalog_">Ce este catalogul online OPDS?</string>
    <string name="books">Cărți</string>
    <string name="reading_out_loud">Citirea cu voce tare</string>
-   <string name="reader_pro_without_ads_">Reader PRO (fără anunțuri)</string>
-   <string name="book_reader_pro_no_ads_">Book Reader PRO (fără anunțuri)</string>
+   <string name="librera_pro_no_ads_leading_book_reader_and_pdf">Librera PRO (fără anunțuri) Cititor de cărți și PDF</string>
 </resources>

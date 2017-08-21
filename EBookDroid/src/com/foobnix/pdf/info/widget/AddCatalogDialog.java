@@ -205,7 +205,7 @@ public class AddCatalogDialog {
                                 image.setTag(feed.icon);
                                 ImageLoader.getInstance().displayImage(feed.icon, image, IMG.displayImageOptions);
                             } else {
-                                image.setTag("assets://web.png");
+                                image.setTag("assets://opds/web.png");
                             }
 
                             infoDialog.getButton(AlertDialog.BUTTON_POSITIVE).setText(R.string.ok);

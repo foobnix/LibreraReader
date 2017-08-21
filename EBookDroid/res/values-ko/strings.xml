@@ -380,6 +380,5 @@
    <string name="what_is_the_opds_online_catalog_">OPDS 온라인 카탈로그 란 무엇입니까?</string>
    <string name="books">서적</string>
    <string name="reading_out_loud">소리내어 읽기</string>
-   <string name="reader_pro_without_ads_">리더 PRO (광고 제외)</string>
-   <string name="book_reader_pro_no_ads_">도서 리더 PRO (광고 없음)</string>
+   <string name="librera_pro_no_ads_leading_book_reader_and_pdf">Librera PRO (광고 없음) 선도적 인 독서기 및 PDF</string>
 </resources>

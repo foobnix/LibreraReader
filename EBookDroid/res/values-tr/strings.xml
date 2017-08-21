@@ -380,6 +380,5 @@
    <string name="what_is_the_opds_online_catalog_">OPDS çevrimiçi kataloğu nedir?</string>
    <string name="books">Kitaplar</string>
    <string name="reading_out_loud">Yüksek sesle okuma</string>
-   <string name="reader_pro_without_ads_">Reader PRO (reklamlar olmadan)</string>
-   <string name="book_reader_pro_no_ads_">Kitap Okuyucu PRO (reklam yok)</string>
+   <string name="librera_pro_no_ads_leading_book_reader_and_pdf">Librera PRO (reklam yok) Öncü kitap okuyucu ve PDF</string>
 </resources>

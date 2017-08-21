@@ -380,6 +380,5 @@
    <string name="what_is_the_opds_online_catalog_">מהו הקטלוג המקוון של OPDS?</string>
    <string name="books">ספרים</string>
    <string name="reading_out_loud">קורא בקול רם</string>
-   <string name="reader_pro_without_ads_">Reader Pro (ללא מודעות)</string>
-   <string name="book_reader_pro_no_ads_">קורא ספרים PRO (ללא מודעות)</string>
+   <string name="librera_pro_no_ads_leading_book_reader_and_pdf">Librera PRO (ללא מודעות) קורא ספרים מובילים PDF</string>
 </resources>

@@ -380,6 +380,5 @@
    <string name="what_is_the_opds_online_catalog_">ما هو كتالوج أوبدس على الانترنت؟</string>
    <string name="books">كتب</string>
    <string name="reading_out_loud">قراءة بصوت عال</string>
-   <string name="reader_pro_without_ads_">قارئ برو (بدون إعلانات)</string>
-   <string name="book_reader_pro_no_ads_">كتاب قارئ برو (أي إعلانات)</string>
+   <string name="librera_pro_no_ads_leading_book_reader_and_pdf">ليبريرا برو (لا إعلانات) الرائدة قارئ الكتاب و بدف</string>
 </resources>

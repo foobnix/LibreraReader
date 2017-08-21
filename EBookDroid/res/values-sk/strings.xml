@@ -380,6 +380,5 @@
    <string name="what_is_the_opds_online_catalog_">Čo je online katalóg OPDS?</string>
    <string name="books">Knihy</string>
    <string name="reading_out_loud">Čítanie nahlas</string>
-   <string name="reader_pro_without_ads_">Reader PRO (bez reklám)</string>
-   <string name="book_reader_pro_no_ads_">Book Reader PRO (žiadne reklamy)</string>
+   <string name="librera_pro_no_ads_leading_book_reader_and_pdf">Librera PRO (žiadne reklamy) Najdôležitejšia čítačka kníh a PDF</string>
 </resources>

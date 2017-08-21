@@ -380,6 +380,5 @@
    <string name="what_is_the_opds_online_catalog_">Czym jest katalog internetowy OPDS?</string>
    <string name="books">Książki</string>
    <string name="reading_out_loud">Czytanie głośno</string>
-   <string name="reader_pro_without_ads_">Czytnik PRO (bez reklam)</string>
-   <string name="book_reader_pro_no_ads_">Book Reader PRO (bez reklam)</string>
+   <string name="librera_pro_no_ads_leading_book_reader_and_pdf">Librera PRO (brak reklam) Wiodący czytnik książek i plik PDF</string>
 </resources>

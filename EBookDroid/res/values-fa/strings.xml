@@ -380,6 +380,5 @@
    <string name="what_is_the_opds_online_catalog_">کاتالوگ آنلاین OPDS چیست؟</string>
    <string name="books">کتاب ها</string>
    <string name="reading_out_loud">خواندن با صدای بلند</string>
-   <string name="reader_pro_without_ads_">Reader PRO (بدون تبلیغات)</string>
-   <string name="book_reader_pro_no_ads_">کتاب خوان PRO (بدون تبلیغات)</string>
+   <string name="librera_pro_no_ads_leading_book_reader_and_pdf">Librera PRO (بدون تبلیغات) خواننده کتاب پیشرو و PDF</string>
 </resources>

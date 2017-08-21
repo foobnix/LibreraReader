@@ -380,6 +380,5 @@
    <string name="what_is_the_opds_online_catalog_">Hva er OPDS online katalog?</string>
    <string name="books">Bøker</string>
    <string name="reading_out_loud">Leser høyt</string>
-   <string name="reader_pro_without_ads_">Reader PRO (uten annonser)</string>
-   <string name="book_reader_pro_no_ads_">Book Reader PRO (ingen annonser)</string>
+   <string name="librera_pro_no_ads_leading_book_reader_and_pdf">Librera PRO (ingen annonser) Ledende bokleser og PDF</string>
 </resources>

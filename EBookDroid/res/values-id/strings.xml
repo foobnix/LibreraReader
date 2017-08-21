@@ -380,6 +380,5 @@
    <string name="what_is_the_opds_online_catalog_">Apakah katalog online OPDS itu?</string>
    <string name="books">Buku</string>
    <string name="reading_out_loud">Membaca dengan suara keras</string>
-   <string name="reader_pro_without_ads_">Pembaca PRO (tanpa iklan)</string>
-   <string name="book_reader_pro_no_ads_">Pembaca Buku PRO (tidak ada iklan)</string>
+   <string name="librera_pro_no_ads_leading_book_reader_and_pdf">Librera PRO (no ads) Memimpin pembaca buku dan PDF</string>
 </resources>

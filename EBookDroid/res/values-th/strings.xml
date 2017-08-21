@@ -380,6 +380,5 @@
    <string name="what_is_the_opds_online_catalog_">แคตตาล็อกออนไลน์ของ OPDS คืออะไร?</string>
    <string name="books">หนังสือ</string>
    <string name="reading_out_loud">อ่านออกมาดัง ๆ</string>
-   <string name="reader_pro_without_ads_">Reader PRO (ไม่มีโฆษณา)</string>
-   <string name="book_reader_pro_no_ads_">Book Reader PRO (ไม่มีโฆษณา)</string>
+   <string name="librera_pro_no_ads_leading_book_reader_and_pdf">Librera PRO (ไม่มีโฆษณา) เครื่องอ่านหนังสือและ PDF ชั้นนำ</string>
 </resources>

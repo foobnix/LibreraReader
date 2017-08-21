@@ -32,9 +32,10 @@
                 android:id="@+id/downloadPRO"
                 style="@style/textLink"
                 android:layout_width="wrap_content"
+                android:singleLine="false"
                 android:layout_height="60dip"
                 android:gravity="center"
-                android:text="@string/book_reader_pro_no_ads_" />
+                android:text="@string/librera_pro_no_ads_leading_book_reader_and_pdf" />
         </LinearLayout>
 
         <TextView

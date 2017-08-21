@@ -380,6 +380,5 @@
    <string name="what_is_the_opds_online_catalog_">Danh mục trực tuyến OPDS là gì?</string>
    <string name="books">Sách</string>
    <string name="reading_out_loud">Đọc to</string>
-   <string name="reader_pro_without_ads_">Reader PRO (không có quảng cáo)</string>
-   <string name="book_reader_pro_no_ads_">Sách Reader PRO (không có quảng cáo)</string>
+   <string name="librera_pro_no_ads_leading_book_reader_and_pdf">Librera PRO (không có quảng cáo) Trình đọc sách hàng đầu và PDF</string>
 </resources>

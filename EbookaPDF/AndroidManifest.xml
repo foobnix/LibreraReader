@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.foobnix.pro.pdf.reader"
+    package="classic.pdf.reader.viewer.djvu.epub.fb2.txt.mobi.book.reader.lirbi.libri"
     android:installLocation="auto"
-    android:versionCode="456"
+    android:versionCode="457"
     android:versionName="7.0.25" >
 
     <uses-sdk
@@ -12,21 +12,21 @@
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.VIBRATE" />
 
-    <!-- ACCESS_NETWORK_STATE --><uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <!-- ACCESS_NETWORK_STATE --><uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" /><uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" /><uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" /><uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" /><uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" /><uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" /><uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     
-    <!-- INTERNET --><uses-permission android:name="android.permission.INTERNET" />
+    <!-- INTERNET --><uses-permission android:name="android.permission.INTERNET" /><uses-permission android:name="android.permission.INTERNET" /><uses-permission android:name="android.permission.INTERNET" /><uses-permission android:name="android.permission.INTERNET" /><uses-permission android:name="android.permission.INTERNET" /><uses-permission android:name="android.permission.INTERNET" /><uses-permission android:name="android.permission.INTERNET" />
     
 
     <!-- android:name="com.foobnix.pdf.info.TestAppName" -->
     <application
         android:name="org.ebookdroid.LirbiApp"
-        android:icon="@drawable/icon_pdf_pro"
+        android:icon="@drawable/icon_pdf_classic"
         android:label="@string/app_name"
         android:largeHeap="true"
         android:theme="@style/StyledIndicatorsWhite" >
         <provider
             android:name="android.support.v4.content.FileProvider"
-            android:authorities="com.foobnix.pro.pdf.reader.provider"
+            android:authorities="classic.pdf.reader.viewer.djvu.epub.fb2.txt.mobi.book.reader.lirbi.libri.provider"
             android:exported="false"
             android:grantUriPermissions="true" >
             <meta-data
@@ -191,7 +191,7 @@
             android:screenOrientation="behind" >
         </activity>
 
-        <!-- PLAY_SERVICE -->
+        <!-- PLAY_SERVICE --><meta-data android:name="com.google.android.gms.version" android:value="@integer/google_play_services_version"/>
         <meta-data
             android:name="com.google.android.gms.version"
             android:value="@integer/google_play_services_version" />
