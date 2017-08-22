@@ -381,4 +381,5 @@
    <string name="books">Libri</string>
    <string name="reading_out_loud">Lettura forte</string>
    <string name="librera_pro_no_ads_leading_book_reader_and_pdf">Libreria PRO (nessun annuncio) Lettore di libri leader e PDF</string>
+   <string name="custom_text">Testo personalizzato</string>
 </resources>

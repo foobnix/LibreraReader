@@ -381,4 +381,5 @@
    <string name="books">Cărți</string>
    <string name="reading_out_loud">Citirea cu voce tare</string>
    <string name="librera_pro_no_ads_leading_book_reader_and_pdf">Librera PRO (fără anunțuri) Cititor de cărți și PDF</string>
+   <string name="custom_text">Text personalizat</string>
 </resources>

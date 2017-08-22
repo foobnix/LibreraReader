@@ -1738,6 +1738,8 @@ public class DragingDialogs {
                 });
 
                 final CheckBox isShowReadingProgress = (CheckBox) inflate.findViewById(R.id.isShowReadingProgress);
+                final CheckBox isShowChaptersOnProgress = (CheckBox) inflate.findViewById(R.id.isShowChaptersOnProgress);
+
                 isShowReadingProgress.setOnCheckedChangeListener(new OnCheckedChangeListener() {
 
                     @Override
@@ -1747,11 +1749,12 @@ public class DragingDialogs {
                         if (onRefresh != null) {
                             onRefresh.run();
                         }
+                        isShowChaptersOnProgress.setChecked(isChecked);
+                        isShowChaptersOnProgress.setEnabled(isChecked);
                     }
                 });
                 isShowReadingProgress.setChecked(AppState.get().isShowReadingProgress);
 
-                final CheckBox isShowChaptersOnProgress = (CheckBox) inflate.findViewById(R.id.isShowChaptersOnProgress);
                 isShowChaptersOnProgress.setOnCheckedChangeListener(new OnCheckedChangeListener() {
 
                     @Override
@@ -1767,6 +1770,22 @@ public class DragingDialogs {
                     }
                 });
                 isShowChaptersOnProgress.setChecked(AppState.get().isShowChaptersOnProgress);
+                isShowChaptersOnProgress.setEnabled(AppState.get().isShowReadingProgress);
+
+                final EditText musicText = (EditText) inflate.findViewById(R.id.musicText);
+                musicText.setText(AppState.get().musicText);
+                ((View) musicText.getParent()).setVisibility(AppState.get().isMusicianMode ? View.VISIBLE : View.GONE);
+                inflate.findViewById(R.id.musicTextOk).setOnClickListener(new OnClickListener() {
+
+                    @Override
+                    public void onClick(View v) {
+                        AppState.get().musicText = musicText.getText().toString();
+                        if (onRefresh != null) {
+                            onRefresh.run();
+                        }
+
+                    }
+                });
 
                 // status bar
 

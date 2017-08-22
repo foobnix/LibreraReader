@@ -11,6 +11,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="8dip"
+        android:layout_weight="0"
         android:gravity="center_horizontal"
         android:text="Author - Title"
         android:textIsSelectable="true"
@@ -21,6 +22,7 @@
         android:id="@+id/path"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_weight="0"
         android:text="Path"
         android:textIsSelectable="true"
         android:textSize="10sp" />
@@ -29,6 +31,7 @@
         android:layout_width="match_parent"
         android:layout_height="1dip"
         android:layout_margin="4dip"
+        android:layout_weight="0"
         android:background="@color/lt_grey"
         android:visibility="gone" />
 
@@ -36,13 +39,15 @@
         android:id="@+id/metaInfo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:maxLines="4"
+        android:layout_weight="0"
         android:ellipsize="end"
+        android:maxLines="4"
         android:text="@string/msg_loading" />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_weight="1"
         android:orientation="horizontal" >
 
         <RelativeLayout
@@ -55,17 +60,6 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="5dip"
                 android:src="@drawable/icon_pdf_pro" />
-
-            <ImageView
-                android:id="@+id/starIcon"
-                android:layout_width="20dip"
-                android:layout_height="20dip"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentTop="true"
-                android:layout_gravity="center_vertical"
-                android:layout_margin="5dip"
-                android:background="?android:attr/selectableItemBackground"
-                android:src="@drawable/star_1" />
         </RelativeLayout>
 
         <LinearLayout
@@ -186,24 +180,41 @@
         android:id="@+id/bookmarks"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:maxLines="4"
+        android:layout_weight="0"
         android:ellipsize="end"
+        android:maxLines="4"
         android:textSize="12sp" />
 
-    <TextView
-        android:id="@+id/openFile"
-        style="@style/textLinkWhite"
+    <RelativeLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginLeft="12dip"
-        android:layout_marginTop="4dip"
-        android:background="@drawable/bg_search_second"
-        android:gravity="center"
-        android:minWidth="150dip"
-        android:padding="10dip"
-        android:text="@string/read_a_book"
-        android:textSize="16sp"
-        android:textStyle="bold" />
+        android:layout_gravity="center_horizontal" >
+
+        <TextView
+            android:id="@+id/openFile"
+            style="@style/textLinkWhite"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:background="@drawable/bg_search_second"
+            android:gravity="center"
+            android:minWidth="200dip"
+            android:padding="10dip"
+            android:text="@string/read_a_book"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+
+        <ImageView
+            android:id="@+id/starIcon"
+            android:tint="@color/white"
+            android:layout_width="40dip"
+            android:layout_height="40dip"
+            android:padding="8dip"
+            android:layout_alignLeft="@+id/openFile"
+            android:layout_centerVertical="true"
+            android:background="?android:attr/selectableItemBackground"
+            android:src="@drawable/star_1" />
+
+    </RelativeLayout>
 
 </LinearLayout>

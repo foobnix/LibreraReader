@@ -381,4 +381,5 @@
    <string name="books">Книги</string>
    <string name="reading_out_loud">Чтение вслух</string>
    <string name="librera_pro_no_ads_leading_book_reader_and_pdf">Librera PRO (без рекламы) Ведущая читалка книг и PDF</string>
+   <string name="custom_text">Пользовательский текст</string>
 </resources>

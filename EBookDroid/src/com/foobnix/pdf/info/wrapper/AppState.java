@@ -240,6 +240,7 @@ public class AppState {
     public boolean isUseVolumeKeys = true;
     public boolean isReverseKeys = Dips.isSmallScreen();
     public boolean isMusicianMode = false;
+    public String musicText = "Musician";
 
     public boolean isCrop = false;
     public boolean isCut = false;
@@ -566,6 +567,7 @@ public class AppState {
         lastMode = sp.getString("lastMode", lastMode);
         dirLastPath = sp.getString("dirLastPath", dirLastPath);
         versionNew = sp.getString("versionNew", versionNew);
+        musicText = sp.getString("musicText", musicText);
 
         colorDayText = sp.getInt("colorDayText", colorDayText);
         colorDayBg = sp.getInt("colorDayBg", colorDayBg);
@@ -772,6 +774,7 @@ public class AppState {
         editor.putString("lastMode", lastMode);
         editor.putString("dirLastPath", dirLastPath);
         editor.putString("versionNew", versionNew);
+        editor.putString("musicText", musicText);
 
         editor.putInt("colorDayBg", colorDayBg);
         editor.putInt("colorDayText", colorDayText);

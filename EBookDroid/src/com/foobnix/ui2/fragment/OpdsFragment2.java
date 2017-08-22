@@ -362,6 +362,10 @@ public class OpdsFragment2 extends UIFragment<Entry> {
     }
 
     public void clearEmpty() {
+        if (CacheZipUtils.LIRBI_DOWNLOAD_DIR == null) {
+            return;
+        }
+
         for (String file : CacheZipUtils.LIRBI_DOWNLOAD_DIR.list()) {
             File f = new File(CacheZipUtils.LIRBI_DOWNLOAD_DIR, file);
             if (f.length() == 0) {

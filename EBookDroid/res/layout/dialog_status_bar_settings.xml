@@ -25,7 +25,7 @@
             android:layout_marginLeft="10dip"
             android:layout_weight="1"
             android:text="@string/show_status_bar" />
-        
+
         <CheckBox
             android:id="@+id/isShowReadingProgress"
             android:layout_width="wrap_content"
@@ -33,7 +33,7 @@
             android:layout_marginLeft="10dip"
             android:layout_weight="1"
             android:text="@string/show_progress_of_reading" />
-        
+
         <CheckBox
             android:id="@+id/isShowChaptersOnProgress"
             android:layout_width="wrap_content"
@@ -41,8 +41,38 @@
             android:layout_marginLeft="10dip"
             android:layout_weight="1"
             android:text="@string/display_chapters_on_the_progress_line" />
-        
-        
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dip"
+            android:orientation="horizontal" >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="0"
+                android:text="@string/custom_text" />
+
+            <EditText
+                android:id="@+id/musicText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dip"
+                android:layout_weight="1"
+                android:text="@string/musician" />
+
+            <ImageView
+                android:id="@+id/musicTextOk"
+                android:layout_width="@dimen/wh_button"
+                android:layout_height="@dimen/wh_button"
+                android:layout_alignParentRight="true"
+                android:background="@drawable/bg_border_ltgray"
+                android:padding="8dip"
+                android:src="@drawable/glyphicons_207_ok"
+                android:tint="@color/tint_gray" />
+        </LinearLayout>
+
         <com.foobnix.pdf.info.view.CustomSeek
             android:id="@+id/statusBarTextSize"
             android:layout_width="match_parent"
@@ -50,7 +80,7 @@
             android:layout_marginTop="5dip"
             myseek:text="@string/text_size" >
         </com.foobnix.pdf.info.view.CustomSeek>
-        
+
         <com.foobnix.pdf.info.view.CustomSeek
             android:id="@+id/progressLineHeight"
             android:layout_width="match_parent"
@@ -65,20 +95,13 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="5dip"
             myseek:text="@string/text_color_day" />
-        
+
         <com.foobnix.pdf.info.view.CustomColorView
             android:id="@+id/statusBarColorNight"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="5dip"
             myseek:text="@string/text_color_night" />
-        
-        
-        
-        
-        
-        
-        
     </LinearLayout>
 
 </ScrollView>

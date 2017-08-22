@@ -381,4 +381,5 @@
    <string name="books">Kirjat</string>
    <string name="reading_out_loud">Lukeminen ääneen</string>
    <string name="librera_pro_no_ads_leading_book_reader_and_pdf">Librera PRO (ei mainoksia) Johtava kirjan lukija ja PDF</string>
+   <string name="custom_text">Mukautettu teksti</string>
 </resources>

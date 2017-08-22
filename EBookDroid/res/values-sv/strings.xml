@@ -381,4 +381,5 @@
    <string name="books">Böcker</string>
    <string name="reading_out_loud">Läser högt</string>
    <string name="librera_pro_no_ads_leading_book_reader_and_pdf">Librera PRO (inga annonser) Ledande bokläsare och PDF</string>
+   <string name="custom_text">Anpassad text</string>
 </resources>

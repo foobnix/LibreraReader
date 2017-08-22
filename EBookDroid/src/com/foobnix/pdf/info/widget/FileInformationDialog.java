@@ -25,6 +25,7 @@ import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -208,7 +209,7 @@ public class FileInformationDialog {
                 } else {
                     starIcon.setImageResource(R.drawable.star_1);
                 }
-                TintUtil.setTintImage(starIcon, TintUtil.color).setAlpha(255);
+                TintUtil.setTintImage(starIcon, Color.WHITE);
 
             }
         });
@@ -218,7 +219,7 @@ public class FileInformationDialog {
         } else {
             starIcon.setImageResource(R.drawable.star_1);
         }
-        TintUtil.setTintImage(starIcon, TintUtil.color);
+        TintUtil.setTintImage(starIcon, Color.WHITE);
         TintUtil.setBackgroundFillColor(openFile, TintUtil.color);
 
         // builder.setTitle(R.string.file_info);

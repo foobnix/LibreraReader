@@ -381,4 +381,5 @@
    <string name="books">서적</string>
    <string name="reading_out_loud">소리내어 읽기</string>
    <string name="librera_pro_no_ads_leading_book_reader_and_pdf">Librera PRO (광고 없음) 선도적 인 독서기 및 PDF</string>
+   <string name="custom_text">사용자 정의 텍스트</string>
 </resources>

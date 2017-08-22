@@ -381,4 +381,5 @@
    <string name="books">書籍</string>
    <string name="reading_out_loud">大声で読む</string>
    <string name="librera_pro_no_ads_leading_book_reader_and_pdf">Librera PRO（広告なし）主要な書籍リーダーとPDF</string>
+   <string name="custom_text">カスタムテキスト</string>
 </resources>

@@ -381,4 +381,5 @@
    <string name="books">Boeken</string>
    <string name="reading_out_loud">Hardop lezen</string>
    <string name="librera_pro_no_ads_leading_book_reader_and_pdf">Librera PRO (geen advertenties) Leidende boeklezer en PDF</string>
+   <string name="custom_text">Aangepaste tekst</string>
 </resources>

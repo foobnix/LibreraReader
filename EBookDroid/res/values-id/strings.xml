@@ -381,4 +381,5 @@
    <string name="books">Buku</string>
    <string name="reading_out_loud">Membaca dengan suara keras</string>
    <string name="librera_pro_no_ads_leading_book_reader_and_pdf">Librera PRO (no ads) Memimpin pembaca buku dan PDF</string>
+   <string name="custom_text">Teks khusus</string>
 </resources>

@@ -381,4 +381,5 @@
    <string name="books">หนังสือ</string>
    <string name="reading_out_loud">อ่านออกมาดัง ๆ</string>
    <string name="librera_pro_no_ads_leading_book_reader_and_pdf">Librera PRO (ไม่มีโฆษณา) เครื่องอ่านหนังสือและ PDF ชั้นนำ</string>
+   <string name="custom_text">ข้อความที่กำหนดเอง</string>
 </resources>

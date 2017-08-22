@@ -381,4 +381,5 @@
    <string name="books">کتاب ها</string>
    <string name="reading_out_loud">خواندن با صدای بلند</string>
    <string name="librera_pro_no_ads_leading_book_reader_and_pdf">Librera PRO (بدون تبلیغات) خواننده کتاب پیشرو و PDF</string>
+   <string name="custom_text">متن سفارشی</string>
 </resources>

@@ -381,4 +381,5 @@
    <string name="books">Sách</string>
    <string name="reading_out_loud">Đọc to</string>
    <string name="librera_pro_no_ads_leading_book_reader_and_pdf">Librera PRO (không có quảng cáo) Trình đọc sách hàng đầu và PDF</string>
+   <string name="custom_text">Văn bản tùy chỉnh</string>
 </resources>

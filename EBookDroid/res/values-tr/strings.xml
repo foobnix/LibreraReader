@@ -381,4 +381,5 @@
    <string name="books">Kitaplar</string>
    <string name="reading_out_loud">Yüksek sesle okuma</string>
    <string name="librera_pro_no_ads_leading_book_reader_and_pdf">Librera PRO (reklam yok) Öncü kitap okuyucu ve PDF</string>
+   <string name="custom_text">Özel metin</string>
 </resources>

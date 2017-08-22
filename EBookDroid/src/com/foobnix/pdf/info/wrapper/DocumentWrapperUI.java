@@ -102,7 +102,7 @@ public class DocumentWrapperUI {
     private TextView batteryLevel;
 
     private ImageView editTop2;
-    private View lirbiLogo;
+    private TextView lirbiLogo;
     private DrawView drawView;
     private View line1, line2, lineFirst, lineClose, closeTop;
     private ImageView goToPage1, goToPage1Top;
@@ -587,8 +587,8 @@ public class DocumentWrapperUI {
         lineFirst = a.findViewById(R.id.lineFirst);
         lineFirst.setOnClickListener(onGoToPAge1);
 
-        lirbiLogo = a.findViewById(R.id.lirbiLogo);
-        // lirbiLogo.setText("Lirbi " + a.getString(R.string.musician));
+        lirbiLogo = (TextView) a.findViewById(R.id.lirbiLogo);
+        lirbiLogo.setText(AppState.get().musicText);
         lirbiLogo.setOnClickListener(onLirbiLogoClick);
 
         editTop2 = (ImageView) a.findViewById(R.id.editTop2);
@@ -793,6 +793,7 @@ public class DocumentWrapperUI {
     }
 
     public void updateSeekBarColorAndSize() {
+        lirbiLogo.setText(AppState.get().musicText);
         TintUtil.setBackgroundFillColorBottomRight(ttsActive, ColorUtils.setAlphaComponent(TintUtil.color, 230));
 
         TintUtil.setTintText(bookName, TintUtil.getStatusBarColor());

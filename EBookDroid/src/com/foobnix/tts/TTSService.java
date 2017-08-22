@@ -123,7 +123,12 @@ public class TTSService extends Service {
     }
 
     public CodecDocument getDC() {
-        return ImageExtractor.getCodecContext(AppState.get().lastBookPath, "", Dips.screenWidth(), Dips.screenHeight());
+        try {
+            return ImageExtractor.getCodecContext(AppState.get().lastBookPath, "", Dips.screenWidth(), Dips.screenHeight());
+        } catch (Exception e) {
+            LOG.e(e);
+            return null;
+        }
     }
 
     @TargetApi(Build.VERSION_CODES.ICE_CREAM_SANDWICH_MR1)
