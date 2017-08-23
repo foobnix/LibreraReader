@@ -2890,6 +2890,12 @@ public class DragingDialogs {
                     public void onClick(final View v) {
                         AppState.get().isFullScreen = !AppState.get().isFullScreen;
                         DocumentController.chooseFullScreen(controller.getActivity(), AppState.get().isFullScreen);
+                        if (controller.isTextFormat()) {
+                            if (onRefresh != null) {
+                                onRefresh.run();
+                            }
+                            controller.restartActivity();
+                        }
                     }
                 });
                 View tts = inflate.findViewById(R.id.onTTS);

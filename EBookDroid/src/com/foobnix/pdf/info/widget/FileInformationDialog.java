@@ -181,10 +181,12 @@ public class FileInformationDialog {
             }
         });
 
-        final ScaledImageView coverImage = (ScaledImageView) dialog.findViewById(R.id.image);
-        coverImage.getLayoutParams().width = Dips.screenWidth() / 3;
+        final ImageView coverImage = (ImageView) dialog.findViewById(R.id.image);
+        coverImage.setMaxWidth(Dips.screenWidth() / 3);
+        // coverImage.getLayoutParams().width = Dips.screenWidth() / 3;
 
         IMG.getCoverPage(coverImage, file.getPath(), IMG.getImageSize());
+        
 
         coverImage.setOnClickListener(new OnClickListener() {
 
@@ -257,7 +259,7 @@ public class FileInformationDialog {
         });
         ImageLoader.getInstance().displayImage(IMG.toUrl(path, -2, Dips.screenWidth()), imageView, IMG.ExportOptions);
 
-        RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
+        RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams((int) (Dips.screenWidth() * 0.9), (int) (Dips.screenHeight() * 0.9));
         builder.addContentView(imageView, params);
         builder.show();
     }

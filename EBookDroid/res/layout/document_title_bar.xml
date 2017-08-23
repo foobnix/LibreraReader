@@ -26,6 +26,7 @@
             android:cropToPadding="true"
             android:elevation="8dip"
             android:paddingBottom="0dip"
+            android:ellipsize="end"
             android:paddingLeft="20dip"
             android:paddingRight="20dip"
             android:paddingTop="0dip"
@@ -35,7 +36,7 @@
             android:gravity="center"
             android:textColor="@color/white"
             android:textSize="16sp"
-            android:textStyle="italic" />
+            android:textStyle="normal" />
 
         <LinearLayout
             android:id="@+id/titleBar"

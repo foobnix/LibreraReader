@@ -1,7 +1,5 @@
 package org.ebookdroid.common.cache;
 
-import org.ebookdroid.core.codec.CodecPageInfo;
-
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.EOFException;
@@ -11,10 +9,11 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 
+import org.ebookdroid.core.codec.CodecPageInfo;
+
 public class PageCacheFile extends File {
 
     private static final long serialVersionUID = 6836895806027391288L;
-
 
     PageCacheFile(final File dir, final String name) {
         super(dir, name);

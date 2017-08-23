@@ -422,15 +422,24 @@ public class HorizontalViewActivity extends FragmentActivity {
             protected void onPreExecute() {
                 dialog = ProgressDialog.show(HorizontalViewActivity.this, "", getString(R.string.msg_loading));
                 dialog.getWindow().clearFlags(WindowManager.LayoutParams.FLAG_DIM_BEHIND);
+
             };
 
             @Override
             protected Object doInBackground(Object... params) {
                 try {
-                    initAsync();
+                    while (viewPager.getHeight() == 0) {
+                        try {
+                            Thread.sleep(250);
+                        } catch (InterruptedException e) {
+                        }
+                        LOG.d("viewPager", viewPager.getHeight());
+                    }
+                    initAsync(viewPager.getWidth(), viewPager.getHeight());
                 } catch (MuPdfPasswordException e) {
                     return -1;
                 } catch (RuntimeException e) {
+                    LOG.e(e);
                     return -2;
                 }
                 return 0;
@@ -975,8 +984,8 @@ public class HorizontalViewActivity extends FragmentActivity {
         }
     };
 
-    public void initAsync() {
-        documentController = new DocumentControllerHorizontalView(this) {
+    public void initAsync(int w, int h) {
+        documentController = new DocumentControllerHorizontalView(this, w, h) {
             @Override
             public void onGoToPageImpl(int page) {
                 updateUI(page);
@@ -1210,7 +1219,7 @@ public class HorizontalViewActivity extends FragmentActivity {
         AppState.get().save(this);
         if (ExtUtils.isTextFomat(getIntent())) {
             updateReadPercent();
-            recreate();
+            documentController.restartActivity();
         } else {
             PageImageState.get().isAutoFit = true;
             if (viewPager != null) {

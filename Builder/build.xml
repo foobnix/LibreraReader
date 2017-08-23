@@ -162,13 +162,6 @@
 		<replaceregexp file="../EbookaPDF/AndroidManifest.xml"
 			match='&lt;!-- PLAY_SERVICE -->'
 			replace='&lt;!-- PLAY_SERVICE -->&lt;meta-data android:name="com.google.android.gms.version" android:value="@integer/google_play_services_version"/>' />
-		<replaceregexp file="../EbookaPDF/AndroidManifest.xml"
-			match='&lt;!-- ACCESS_NETWORK_STATE -->'
-			replace='&lt;!-- ACCESS_NETWORK_STATE -->&lt;uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />' />
-		<replaceregexp file="../EbookaPDF/AndroidManifest.xml"
-			match='&lt;!-- INTERNET -->'
-			replace='&lt;!-- INTERNET -->&lt;uses-permission android:name="android.permission.INTERNET" />' />
-
 		<replaceregexp file="../EBookDroid/project.properties"
 			match='android.library.reference.1=../my-google-play-services-fake'
 			replace='android.library.reference.1=../my-google-play-services-lib' />

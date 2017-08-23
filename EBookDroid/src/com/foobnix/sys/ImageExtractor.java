@@ -156,7 +156,6 @@ public class ImageExtractor implements ImageDownloader {
         }
     }
 
-
     public Bitmap proccessOtherPage(PageUrl pageUrl) {
         int page = pageUrl.getPage();
         String path = pageUrl.getPath();
@@ -203,6 +202,9 @@ public class ImageExtractor implements ImageDownloader {
         final float k = (float) pageInfo.height / pageInfo.width;
         int width = pageUrl.getWidth();
         int height = (int) (pageUrl.getWidth() * k);
+
+        LOG.d("Bitmap", width, height);
+        LOG.d("Bitmap pageInfo.height", pageInfo.width, pageInfo.height);
 
         BitmapRef bitmapRef = null;
         if (pageUrl.getNumber() == 0) {
@@ -380,10 +382,12 @@ public class ImageExtractor implements ImageDownloader {
         if (path.equals(TempHolder.get().path) && TempHolder.get().codecDocument != null) {
             return TempHolder.get().codecDocument;
         }
-        if (ExtUtils.isTextFomat(path)) {
+        LOG.d("getCodecContext before", w, h);
+        if (w <= 0 || h <= 0) {
             w = Dips.screenWidth();
             h = Dips.screenHeight();
         }
+        LOG.d("getCodecContext after", w, h);
 
         CodecContext ctx = BookType.getCodecContextByPath(path);
 

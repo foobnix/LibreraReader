@@ -3,7 +3,7 @@
     package="com.foobnix.pdf.reader"
     android:installLocation="auto"
     android:versionCode="457"
-    android:versionName="beta-7.0.30" >
+    android:versionName="beta-7.0.37" >
 
     <uses-sdk
         android:minSdkVersion="14"
@@ -12,10 +12,8 @@
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.VIBRATE" />
 
-    <!-- ACCESS_NETWORK_STATE --><uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" /><uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" /><uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" /><uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" /><uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" /><uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" /><uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" /><uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" /><uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" /><uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" /><uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" /><uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" /><uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" /><uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" /><uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" /><uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" /><uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-    
-    <!-- INTERNET --><uses-permission android:name="android.permission.INTERNET" /><uses-permission android:name="android.permission.INTERNET" /><uses-permission android:name="android.permission.INTERNET" /><uses-permission android:name="android.permission.INTERNET" /><uses-permission android:name="android.permission.INTERNET" /><uses-permission android:name="android.permission.INTERNET" /><uses-permission android:name="android.permission.INTERNET" /><uses-permission android:name="android.permission.INTERNET" /><uses-permission android:name="android.permission.INTERNET" /><uses-permission android:name="android.permission.INTERNET" /><uses-permission android:name="android.permission.INTERNET" /><uses-permission android:name="android.permission.INTERNET" /><uses-permission android:name="android.permission.INTERNET" /><uses-permission android:name="android.permission.INTERNET" /><uses-permission android:name="android.permission.INTERNET" /><uses-permission android:name="android.permission.INTERNET" /><uses-permission android:name="android.permission.INTERNET" />
-    
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <!-- android:name="com.foobnix.pdf.info.TestAppName" -->
     <application
@@ -138,7 +136,24 @@
             android:name="com.foobnix.tts.TTSService"
             android:enabled="true"
             android:exported="false" >
+            <intent-filter>
+                <action android:name="android.intent.action.MEDIA_BUTTON" />
+            </intent-filter>
         </service>
+        <service
+            android:name="com.foobnix.tts.TTSService"
+            android:enabled="true"
+            android:exported="false" >
+            <intent-filter>
+                <action android:name="android.intent.action.MEDIA_BUTTON" />
+            </intent-filter>
+        </service>
+        
+        <receiver android:name="android.support.v4.media.session.MediaButtonReceiver" >
+            <intent-filter>
+                <action android:name="android.intent.action.MEDIA_BUTTON" />
+            </intent-filter>
+        </receiver>
 
         <activity
             android:name="com.foobnix.tts.TTSActivity"
@@ -150,8 +165,8 @@
         </activity>
         <activity
             android:name="com.foobnix.ui2.MainTabs2"
-            android:configChanges="orientation|screenSize|keyboard|keyboardHidden"
             android:exported="true"
+                android:configChanges="orientation|screenSize|keyboard|keyboardHidden"
             android:launchMode="singleTop"
             android:resizeableActivity="true"
             android:screenOrientation="behind"
@@ -192,6 +207,9 @@
         </activity>
 
         <!-- PLAY_SERVICE --><meta-data android:name="com.google.android.gms.version" android:value="@integer/google_play_services_version"/>
+        <meta-data
+            android:name="com.google.android.gms.version"
+            android:value="@integer/google_play_services_version" />
         <meta-data
             android:name="com.google.android.gms.version"
             android:value="@integer/google_play_services_version" />

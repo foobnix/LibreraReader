@@ -16,6 +16,7 @@ import org.emdev.utils.StringUtils;
 
 import com.foobnix.android.utils.LOG;
 import com.foobnix.pdf.info.ExtUtils;
+import com.foobnix.pdf.info.wrapper.AppState;
 
 import android.app.Activity;
 import android.content.Context;
@@ -83,7 +84,7 @@ public class CacheManager {
 
     public static PageCacheFile getPageFile(final String path, int pages) {
         long lastModified = new File(path).lastModified();
-        final String md5 = StringUtils.md5(path + lastModified + pages);
+        final String md5 = StringUtils.md5(path + lastModified + pages + AppState.get().isFullScreen);
         LOG.d("TEST", "LAST" + md5);
         final File cacheDir = s_context.getFilesDir();
         return new PageCacheFile(cacheDir, md5 + ".cache");

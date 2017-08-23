@@ -133,8 +133,18 @@ public class ViewerActivityController extends ActionController<ViewerActivity> i
             File file = null;
             if (scheme.equals("content")) {
                 bookTitle = CacheManager.getFilePathFromAttachmentIfNeed(getActivity());
-                codecType = BookType.getByMimeType(ExtUtils.getMimeTypeByUri(intent.getData()));
-                file = new File(bookTitle);
+                if (BookType.isSupportedExtByPath(bookTitle)) {
+                    codecType = BookType.getByUri(bookTitle);
+                    file = new File(bookTitle);
+                    bookTitle = AppDB.get().getOrCreate(bookTitle).getTitle();
+                    LOG.d("codecType 0", codecType);
+                }
+                if (codecType == null) {
+                    codecType = BookType.getByMimeType(ExtUtils.getMimeTypeByUri(intent.getData()));
+                    file = new File(bookTitle);
+                }
+
+                LOG.d("codecType1", codecType);
             }
             if (codecType == null) {
                 bookTitle = LengthUtils.safeString(data.getLastPathSegment(), E_MAIL_ATTACHMENT);
@@ -148,6 +158,7 @@ public class ViewerActivityController extends ActionController<ViewerActivity> i
                         codecType = BookType.getByMimeType(type);
                     }
                 }
+                LOG.d("codecType2", codecType);
             }
             if (file == null) {
                 file = new File(intent.getData().getPath());
@@ -161,6 +172,7 @@ public class ViewerActivityController extends ActionController<ViewerActivity> i
                 return;
             }
 
+            LOG.d("codecType last", codecType);
             documentModel = new DocumentModel(codecType);
             documentModel.addListener(ViewerActivityController.this);
             progressModel = new DecodingProgressModel();
@@ -362,10 +374,16 @@ public class ViewerActivityController extends ActionController<ViewerActivity> i
     }
 
     public void createWrapper(Activity a) {
-        if (ExtUtils.isTextFomat(a.getIntent())) {
-            AppState.get().isLocked = true;
-        } else if (AppState.get().isLockPDF) {
-            AppState.get().isLocked = true;
+        try {
+            String file = CacheManager.getFilePathFromAttachmentIfNeed(a);
+            LOG.d("createWrapper", file);
+            if (ExtUtils.isTextFomat(TxtUtils.isNotEmpty(file) ? file : a.getIntent().getData().getPath())) {
+                AppState.get().isLocked = true;
+            } else if (AppState.get().isLockPDF) {
+                AppState.get().isLocked = true;
+            }
+        } catch (Exception e) {
+            LOG.e(e);
         }
 
         wrapperControlls.initUI(a);
@@ -433,7 +451,6 @@ public class ViewerActivityController extends ActionController<ViewerActivity> i
         newDc.show();
 
         currentPageChanged(PageIndex.NULL, documentModel.getCurrentIndex(), -1);
-
 
     }
 

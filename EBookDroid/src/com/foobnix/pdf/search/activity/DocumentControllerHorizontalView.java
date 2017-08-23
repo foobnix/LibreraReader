@@ -53,7 +53,7 @@ public abstract class DocumentControllerHorizontalView extends DocumentControlle
     int imageWidth, imageHeight;
     private SharedPreferences matrixSP;
 
-    public DocumentControllerHorizontalView(Activity activity) {
+    public DocumentControllerHorizontalView(Activity activity, int w, int h) {
         super(activity);
         matrixSP = activity.getSharedPreferences("matrix", Context.MODE_PRIVATE);
         LOG.d("DocumentControllerHorizontalView", "begin");
@@ -64,9 +64,11 @@ public abstract class DocumentControllerHorizontalView extends DocumentControlle
             Toast.makeText(activity, "Erorr ...", Toast.LENGTH_LONG).show();
         }
         LOG.d("DocumentControllerHorizontalView", "end");
+
         isTextFormat = ExtUtils.isTextFomat(activity.getIntent());
-        imageWidth = isTextFormat ? Dips.screenWidth() : (int) (Dips.screenWidth() * AppState.get().pageQuality);
-        imageHeight = isTextFormat ? Dips.screenHeight() : (int) (Dips.screenHeight() * AppState.get().pageQuality);
+
+        imageWidth = isTextFormat ? w : (int) (Dips.screenWidth() * AppState.get().pageQuality);
+        imageHeight = isTextFormat ? h : (int) (Dips.screenHeight() * AppState.get().pageQuality);
 
         if (isTextFormat) {
             AppState.get().isCrop = false;
@@ -126,7 +128,7 @@ public abstract class DocumentControllerHorizontalView extends DocumentControlle
         }
 
         FileMetaCore.checkOrCreateMetaInfo(activity);
-
+        LOG.d("pagesCount", "init", imageWidth, imageHeight);
         pagesCount = generadDocInterface.getPageCount(getBookPath(), activity.getIntent().getStringExtra(PASSWORD_EXTRA), imageWidth, imageHeight, AppState.get().fontSizeSp);
         if (pagesCount == -1) {
             throw new IllegalArgumentException("Pages count = -1");
@@ -223,14 +225,12 @@ public abstract class DocumentControllerHorizontalView extends DocumentControlle
         return generadDocInterface.getPageText(getBookPath(), page);
     }
 
-
     @Override
     public String getTextForPage(int page) {
         String pageHTML = generadDocInterface.getPageHTML(getBookPath(), page);
         pageHTML = TxtUtils.replaceHTMLforTTS(pageHTML);
         return pageHTML;
     }
-
 
     @Override
     public List<PageLink> getLinksForPage(int page) {
@@ -342,7 +342,6 @@ public abstract class DocumentControllerHorizontalView extends DocumentControlle
         throw new RuntimeException("Not Implemented");
 
     }
-
 
     @Override
     public int getCurentPage() {

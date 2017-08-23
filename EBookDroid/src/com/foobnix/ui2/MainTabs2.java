@@ -74,6 +74,7 @@ public class MainTabs2 extends FragmentActivity {
     private NativeExpressAdView adViewNative;
     InterstitialAd mInterstitialAd;
     public static volatile boolean isInStack;
+    TabsAdapter2 adapter;
 
     ImageView imageMenu;
 
@@ -216,9 +217,10 @@ public class MainTabs2 extends FragmentActivity {
         // ((BrigtnessDraw)
         // findViewById(R.id.brigtnessProgressView)).setActivity(this);
 
-        final TabsAdapter2 adapter = new TabsAdapter2(this, tabFragments);
+        adapter = new TabsAdapter2(this, tabFragments);
+        pager = (ViewPager)
 
-        pager = (ViewPager) findViewById(R.id.pager);
+        findViewById(R.id.pager);
         pager.setAdapter(adapter);
         pager.setOffscreenPageLimit(5);
         pager.addOnPageChangeListener(onPageChangeListener);
@@ -375,6 +377,9 @@ public class MainTabs2 extends FragmentActivity {
     public void onConfigurationChanged(final Configuration newConfig) {
         super.onConfigurationChanged(newConfig);
         ADS.activateNative(this, adViewNative);
+        if (pager != null) {
+            pager.setAdapter(adapter);
+        }
     }
 
     @Override

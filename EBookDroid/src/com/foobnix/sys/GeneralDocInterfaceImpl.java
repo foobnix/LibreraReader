@@ -31,6 +31,7 @@ public class GeneralDocInterfaceImpl implements GeneralDocInterface {
         try {
             pasw = TxtUtils.nullToEmpty(pasw);
             TempHolder.get().clear();
+            LOG.d("getPageCount", w, h);
             return ImageExtractor.getCodecContext(path, pasw, w, h).getPageCount();
         } catch (MuPdfPasswordException e) {
             throw e;

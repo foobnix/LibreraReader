@@ -14,6 +14,7 @@ import com.foobnix.sys.ImageExtractor;
 import com.foobnix.sys.TempHolder;
 
 import android.annotation.TargetApi;
+import android.app.PendingIntent;
 import android.app.Service;
 import android.content.Context;
 import android.content.Intent;
@@ -24,6 +25,9 @@ import android.os.IBinder;
 import android.os.Vibrator;
 import android.speech.tts.TextToSpeech.OnUtteranceCompletedListener;
 import android.speech.tts.UtteranceProgressListener;
+import android.support.v4.media.session.MediaButtonReceiver;
+import android.support.v4.media.session.MediaSessionCompat;
+import android.view.KeyEvent;
 
 public class TTSService extends Service {
 
@@ -40,6 +44,8 @@ public class TTSService extends Service {
     }
 
     AudioManager mAudioManager;
+    MediaSessionCompat mMediaSessionCompat;
+    boolean isActivated;
 
     @Override
     public void onCreate() {
@@ -47,6 +53,35 @@ public class TTSService extends Service {
         AppState.get().load(getApplicationContext());
         mAudioManager = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
         mAudioManager.requestAudioFocus(listener, AudioManager.STREAM_VOICE_CALL, AudioManager.AUDIOFOCUS_GAIN);
+
+        mMediaSessionCompat = new MediaSessionCompat(getApplicationContext(), "Tag");
+        mMediaSessionCompat.setFlags(MediaSessionCompat.FLAG_HANDLES_MEDIA_BUTTONS | MediaSessionCompat.FLAG_HANDLES_TRANSPORT_CONTROLS);
+        mMediaSessionCompat.setCallback(new MediaSessionCompat.Callback() {
+            @Override
+            public boolean onMediaButtonEvent(Intent intent) {
+                LOG.d(TAG, "onMediaButtonEvent", isActivated, intent);
+                if (isActivated) {
+                    KeyEvent event = (KeyEvent) intent.getExtras().get(Intent.EXTRA_KEY_EVENT);
+                    if (KeyEvent.ACTION_UP == event.getAction() && KeyEvent.KEYCODE_HEADSETHOOK == event.getKeyCode()) {
+                        LOG.d(TAG, "onStartStop", "KEYCODE_HEADSETHOOK");
+                        boolean isPlaying = TTSEngine.get().isPlaying();
+                        if (isPlaying) {
+                            TTSEngine.get().stop();
+                        } else {
+                            playPage("", AppState.get().lastBookPage);
+                        }
+                    }
+                }
+                return isActivated;
+            }
+
+        });
+
+        Intent mediaButtonIntent = new Intent(Intent.ACTION_MEDIA_BUTTON);
+        mediaButtonIntent.setClass(this, MediaButtonReceiver.class);
+        PendingIntent pendingIntent = PendingIntent.getBroadcast(this, 0, mediaButtonIntent, 0);
+        mMediaSessionCompat.setMediaButtonReceiver(pendingIntent);
+
     }
 
     boolean isPlaying;
@@ -65,7 +100,6 @@ public class TTSService extends Service {
                 }
             }
         }
-
     };
 
     @Override
@@ -79,6 +113,7 @@ public class TTSService extends Service {
         Intent intent = playBookIntent(page, path);
 
         LirbiApp.context.startService(intent);
+
     }
 
     public static Intent playBookIntent(int page, String path) {
@@ -92,10 +127,17 @@ public class TTSService extends Service {
     @TargetApi(Build.VERSION_CODES.ICE_CREAM_SANDWICH_MR1)
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
+        MediaButtonReceiver.handleIntent(mMediaSessionCompat, intent);
+        LOG.d(TAG, "onStartCommand");
         if (intent == null) {
             return START_STICKY;
         }
-        LOG.d(TAG, intent.getAction(), intent.getExtras());
+        LOG.d(TAG, "onStartCommand", intent.getAction());
+        if (intent.getExtras() != null) {
+            LOG.d(TAG, "onStartCommand", intent.getAction(), intent.getExtras());
+            for (String key : intent.getExtras().keySet())
+                LOG.d(TAG, key, "=>", intent.getExtras().get(key));
+        }
 
         if (TTSNotification.TTS_STOP.equals(intent.getAction())) {
             TTSEngine.get().stop();
@@ -110,6 +152,8 @@ public class TTSService extends Service {
         }
 
         if (ACTION_PLAY_CURRENT_PAGE.equals(intent.getAction())) {
+            mMediaSessionCompat.setActive(true);
+            isActivated = true;
             int pageNumber = intent.getIntExtra(EXTRA_INT, -1);
             AppState.get().lastBookPath = intent.getStringExtra(EXTRA_PATH);
 
@@ -210,6 +254,7 @@ public class TTSService extends Service {
                         playPage(secondPart, AppState.get().lastBookPage + 1);
 
                     }
+
                 });
             }
 
@@ -224,6 +269,8 @@ public class TTSService extends Service {
     @Override
     public void onDestroy() {
         super.onDestroy();
+        isActivated = false;
+        mMediaSessionCompat.setActive(false);
         LOG.d(TAG, "onDestroy");
     }
 

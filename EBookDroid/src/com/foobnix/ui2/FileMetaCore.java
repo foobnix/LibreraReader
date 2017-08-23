@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.util.Locale;
 
 import org.ebookdroid.BookType;
+import org.ebookdroid.common.cache.CacheManager;
 import org.jsoup.Jsoup;
 import org.jsoup.safety.Whitelist;
 
@@ -32,7 +33,12 @@ public class FileMetaCore {
 
     public static void checkOrCreateMetaInfo(Activity a) {
         try {
-            String path = a.getIntent().getData().getPath();
+
+            String path = CacheManager.getFilePathFromAttachmentIfNeed(a);
+            if (!BookType.isSupportedExtByPath(path)) {
+                path = a.getIntent().getData().getPath();
+            }
+
             LOG.d("checkOrCreateMetaInfo", path);
             if (new File(path).isFile()) {
                 FileMeta fileMeta = AppDB.get().getOrCreate(path);
