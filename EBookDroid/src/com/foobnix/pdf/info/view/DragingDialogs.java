@@ -1016,6 +1016,7 @@ public class DragingDialogs {
                     grid.setAdapter(new PageThumbnailAdapter(anchor.getContext(), currentBook.getPath(), controller.getPageCount(), controller.getCurentPageFirst1() - 1) {
                         @Override
                         public String getPageUrl(int page) {
+                            LOG.d("getPageUrl", page);
                             return controller.getPagePath(page);
                         };
                     });

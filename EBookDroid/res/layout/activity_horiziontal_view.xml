@@ -89,6 +89,36 @@
             android:contentDescription="change day or night"
             android:src="@drawable/glyphicons_174_play"
             android:visibility="gone" />
+        
+        <ImageView
+            android:id="@+id/onCrop"
+            style="@style/buttonWhite"
+            android:layout_width="@dimen/wh_button"
+            android:layout_height="@dimen/wh_button"
+            android:layout_weight="0"
+            android:padding="8dip"
+            android:src="@drawable/glyphicons_94_crop" />
+        
+        
+        <ImageView
+            android:id="@+id/onCutPage"
+            style="@style/buttonWhite"
+            android:layout_width="@dimen/wh_button"
+            android:layout_height="@dimen/wh_button"
+            android:layout_weight="0"
+            android:padding="8dip"
+            android:src="@drawable/glyphicons_page_split" />
+        
+        <ImageView
+            android:id="@+id/onDoublePage"
+            style="@style/buttonWhite"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/wh_button"
+            android:layout_weight="0"
+            android:padding="0dip"
+            android:cropToPadding="true"
+            android:adjustViewBounds="true"
+            android:src="@drawable/glyphicons_two_pages" />
 
         <ImageView
             android:id="@+id/bookNight"

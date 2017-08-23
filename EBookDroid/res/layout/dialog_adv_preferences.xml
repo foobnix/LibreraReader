@@ -42,10 +42,10 @@
         </LinearLayout>
 
         <LinearLayout
-            android:layout_marginLeft="15dip"
             android:id="@+id/documentStyleLayout"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="15dip"
             android:layout_marginRight="@dimen/wh_button"
             android:gravity="center_vertical"
             android:orientation="horizontal" >
@@ -60,11 +60,10 @@
 
             <TextView
                 android:id="@+id/documentStyle"
-                 style="@style/textLink"
+                style="@style/textLink"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/document_styles"
-                 />
+                android:text="@string/document_styles" />
         </LinearLayout>
 
         <LinearLayout
@@ -106,6 +105,13 @@
                 android:layout_height="wrap_content"
                 android:text="@string/left_to_rigth" />
         </LinearLayout>
+
+        <CheckBox
+            android:id="@+id/isCutRTL"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dip"
+            android:text="@string/right_page_then_left_page_rtl_" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -258,26 +264,19 @@
             android:text="@string/selecting_text_by_letters" />
 
         <CheckBox
-            android:id="@+id/isCutRTL"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="10dip"
-            android:text="@string/split_in_half_right_page_then_left_page_rtl_mode_" />
-
-        <CheckBox
             android:id="@+id/isLoopAutoplay"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dip"
             android:text="@string/loop_autoplay" />
-        
+
         <CheckBox
             android:id="@+id/isBrighrnessEnable"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dip"
             android:text="@string/enable_brightness_adjustment_on_the_left_of_the_screen" />
-        
+
         <CheckBox
             android:id="@+id/isRewindEnable"
             android:layout_width="match_parent"

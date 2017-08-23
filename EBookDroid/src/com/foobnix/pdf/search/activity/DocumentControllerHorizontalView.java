@@ -70,6 +70,10 @@ public abstract class DocumentControllerHorizontalView extends DocumentControlle
         imageWidth = isTextFormat ? w : (int) (Dips.screenWidth() * AppState.get().pageQuality);
         imageHeight = isTextFormat ? h : (int) (Dips.screenHeight() * AppState.get().pageQuality);
 
+        if (AppState.get().isDouble) {
+            imageWidth = imageWidth / 2;
+        }
+
         if (isTextFormat) {
             AppState.get().isCrop = false;
             AppState.get().isCut = false;
@@ -199,6 +203,10 @@ public abstract class DocumentControllerHorizontalView extends DocumentControlle
             } else {
                 url.setNumber(page % 2 == 0 ? 1 : 2);
             }
+        }
+        if (AppState.get().isDouble) {
+            // url.setWidth(url.getWidth() / 2);
+            url.setPage(page * 2);
         }
 
         return url.toString();
@@ -353,6 +361,9 @@ public abstract class DocumentControllerHorizontalView extends DocumentControlle
     public int getPageCount() {
         if (AppState.get().isCut) {
             return pagesCount * 2;
+        }
+        if (AppState.get().isDouble) {
+            return (pagesCount % 2 == 0 ? 0 : 1) + pagesCount / 2;
         }
         return pagesCount;
     }

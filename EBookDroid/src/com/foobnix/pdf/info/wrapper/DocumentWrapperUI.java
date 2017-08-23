@@ -826,6 +826,7 @@ public class DocumentWrapperUI {
         currentTime.setTextSize(AppState.get().statusBarTextSizeAdv);
         batteryLevel.setTextSize(AppState.get().statusBarTextSizeAdv);
         reverseKeysIndicator.setTextSize(AppState.get().statusBarTextSizeAdv);
+        lirbiLogo.setTextSize(AppState.get().statusBarTextSizeAdv);
 
         int iconSize = Dips.spToPx(AppState.get().statusBarTextSizeAdv);
         int smallIconSize = iconSize - Dips.dpToPx(5);
@@ -841,7 +842,7 @@ public class DocumentWrapperUI {
         clockIcon.getLayoutParams().height = clockIcon.getLayoutParams().width = smallIconSize;
         batteryIcon.getLayoutParams().height = batteryIcon.getLayoutParams().width = smallIconSize;
 
-        lirbiLogo.getLayoutParams().height = panelSize;
+        // lirbiLogo.getLayoutParams().height = panelSize;
 
     }
 

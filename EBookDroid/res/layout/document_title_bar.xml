@@ -10,15 +10,16 @@
             android:layout_width="match_parent"
             android:layout_height="@dimen/progress" />
      
-    <RelativeLayout
+    <LinearLayout
         android:id="@+id/underLayout"
+        android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" >
 
         <TextView
             android:id="@+id/lirbiLogo"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_alignParentLeft="true"
             android:layout_weight="0"
             android:adjustViewBounds="true"
@@ -198,6 +199,6 @@
         </LinearLayout>
 
        
-    </RelativeLayout>
+    </LinearLayout>
 
 </LinearLayout>

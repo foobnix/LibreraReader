@@ -187,8 +187,6 @@ public class DocumentModel extends ListenerProxy {
             final CodecPageInfo[] infos = retrievePagesInfo(base, bs, task);
 
             for (int docIndex = 0; docIndex < infos.length; docIndex++) {
-                // if (!bs.splitPages || infos[docIndex] == null ||
-                // (infos[docIndex].width < infos[docIndex].height)) {
                 if (!AppState.get().isCut) {
                     CodecPageInfo cpi = infos[docIndex] != null ? infos[docIndex] : defCpi;
 

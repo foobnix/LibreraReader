@@ -366,7 +366,7 @@ public class DecodeServiceBase implements DecodeService {
             MagicHelper.isNeedMagic = true;
             // TempHolder.lock.unlock();
 
-            root.croppedBounds = PageCropper.getCropBounds(rootBitmap, rootRect, new RectF(0, 0, 1f, 1f));
+            root.croppedBounds = PageCropper.getCropBounds(rootBitmap.getBitmap(), rootRect, new RectF(0, 0, 1f, 1f));
 
             BitmapManager.release(rootBitmap);
 

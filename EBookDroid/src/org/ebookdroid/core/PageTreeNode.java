@@ -42,8 +42,6 @@ public class PageTreeNode implements DecodeService.DecodeCallback {
     RectF croppedBounds = null;
 
     PageTreeNode(final Page page) {
-        assert page != null;
-
         this.page = page;
         this.parent = null;
         this.id = 0;
@@ -55,10 +53,6 @@ public class PageTreeNode implements DecodeService.DecodeCallback {
     }
 
     PageTreeNode(final Page page, final PageTreeNode parent, final int id, final RectF localPageSliceBounds) {
-        assert id != 0;
-        assert page != null;
-        assert parent != null;
-
         this.page = page;
         this.parent = parent;
         this.id = id;
@@ -116,29 +110,6 @@ public class PageTreeNode implements DecodeService.DecodeCallback {
                 });
                 return;
             }
-
-			// final BookSettings bs = SettingsManager.getBookSettings();
-			// if (bs != null) {
-			// final boolean correctContrast = bs.contrast !=
-			// AppSettings.getInstance().contrast;
-			// final boolean correctExposure = bs.exposure !=
-			// AppSettings.getInstance().exposure;
-			//
-			// if (correctContrast || correctExposure || bs.autoLevels) {
-			// final Bitmap origBitmap = bitmap.getBitmap();
-			// final RawBitmap bmp = new RawBitmap(origBitmap, bitmapBounds);
-			// if (correctContrast) {
-			// bmp.contrast(bs.contrast);
-			// }
-			// if (correctExposure) {
-			// bmp.exposure(bs.exposure - AppSettings.getInstance().exposure);
-			// }
-			// if (bs.autoLevels) {
-			// bmp.autoLevels();
-			// }
-			// bmp.toBitmap(origBitmap);
-			// }
-			// }
 
             final Bitmaps bitmaps = holder.reuse(fullId, bitmap, bitmapBounds);
 

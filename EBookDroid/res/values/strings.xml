@@ -236,7 +236,6 @@
    <string name="book_settings">Book Settings</string>
    <string name="back">Back</string>
    <string name="open_web_page">Open Web Page</string>
-   <string name="split_in_half_right_page_then_left_page_rtl_mode_">Split in half, Right page then Left page (RTL mode)</string>
    <string name="starred">Starred</string>
    <string name="clear_all_marked">Clear all marked</string>
    <string name="enable_volume_keys">Enable volume keys</string>
@@ -382,4 +381,5 @@
    <string name="reading_out_loud">Reading out loud</string>
    <string name="librera_pro_no_ads_leading_book_reader_and_pdf">Librera PRO (no ads) Leading Book Reader and  PDF</string>
    <string name="custom_text">Custom text</string>
+   <string name="right_page_then_left_page_rtl_">Right page then left page (RTL)</string>
 </resources>

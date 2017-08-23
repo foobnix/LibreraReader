@@ -244,6 +244,7 @@ public class AppState {
 
     public boolean isCrop = false;
     public boolean isCut = false;
+    public boolean isDouble = false;
 
     public boolean isInvert = true;
 

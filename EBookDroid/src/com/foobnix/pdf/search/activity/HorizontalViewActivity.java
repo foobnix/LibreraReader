@@ -4,6 +4,7 @@ import java.io.File;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
+import org.ebookdroid.common.settings.SettingsManager;
 import org.ebookdroid.droids.mupdf.codec.exceptions.MuPdfPasswordException;
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
@@ -105,7 +106,7 @@ public class HorizontalViewActivity extends FragmentActivity {
     private AdView adView;
     private NativeExpressAdView adViewNative;
 
-    ImageView lockModelImage, linkHistory, ttsActive;
+    ImageView lockModelImage, linkHistory, ttsActive, onCutPage, onDoublePage;
 
     DocumentControllerHorizontalView documentController;
 
@@ -359,6 +360,41 @@ public class HorizontalViewActivity extends FragmentActivity {
             @Override
             public void onClick(final View v) {
                 DragingDialogs.textToSpeachDialog(anchor, documentController);
+            }
+        });
+
+        onCutPage = (ImageView) findViewById(R.id.onCutPage);
+        onCutPage.setOnClickListener(new OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                AppState.get().isCut = !AppState.get().isCut;
+                AppState.get().isDouble = false;
+
+                reloadDoc.run();
+
+            }
+        });
+
+        onDoublePage = (ImageView) findViewById(R.id.onDoublePage);
+        onDoublePage.setOnClickListener(new OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                AppState.get().isCut = false;
+                AppState.get().isDouble = !AppState.get().isDouble;
+                // reloadDoc.run();
+                documentController.restartActivity();
+            }
+        });
+        final ImageView isCrop = (ImageView) findViewById(R.id.onCrop);
+        isCrop.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(final View v) {
+                AppState.get().isCrop = !AppState.get().isCrop;
+                SettingsManager.getBookSettings().cropPages = AppState.get().isCrop;
+                reloadDoc.run();
             }
         });
 

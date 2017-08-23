@@ -55,6 +55,7 @@ import android.os.Build;
 import android.os.Environment;
 import android.os.Handler;
 import android.support.v4.app.FragmentActivity;
+import android.support.v4.content.ContextCompat;
 import android.support.v4.content.FileProvider;
 import android.support.v4.os.EnvironmentCompat;
 import android.text.format.DateFormat;
@@ -917,7 +918,6 @@ public class ExtUtils {
         try {
             CodecDocument doc = BookType.getCodecContextByPath(file.getPath()).openDocument(file.getPath(), "");
 
-
             final File filefb2 = new File(CacheZipUtils.LIRBI_DOWNLOAD_DIR, file.getName() + REFLOW_FB2);
             try {
                 FileWriter fout = new FileWriter(filefb2);
@@ -960,19 +960,28 @@ public class ExtUtils {
 
     }
 
+    public static List<String> getExternalStorageDirectories1(Context c) {
+
+        File[] list = ContextCompat.getExternalFilesDirs(c, null);
+        List<String> res = new ArrayList<String>();
+        for (File f : list) {
+            if (f != null && !f.getPath().endsWith("files")) {
+                res.add(f.getPath());
+            }
+        }
+
+        return res;
+    }
+
     @TargetApi(Build.VERSION_CODES.LOLLIPOP)
     public static List<String> getExternalStorageDirectories(Context c) {
 
         List<String> results = new ArrayList<String>();
         try {
 
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) { // Method
-                                                                       // 1
-                                                                       // for
-                                                                       // KitKat
-                                                                       // &
-                                                                       // above
-                File[] externalDirs = c.getExternalFilesDirs(null);
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+
+                File[] externalDirs = ContextCompat.getExternalFilesDirs(c, null);
 
                 for (File file : externalDirs) {
                     String path = file.getPath().split("/Android")[0];
@@ -991,9 +1000,7 @@ public class ExtUtils {
                 }
             }
 
-            if (results.isEmpty()) { // Method 2 for all versions
-                // better variation of:
-                // http://stackoverflow.com/a/40123073/5002496
+            if (results.isEmpty()) {
                 String output = "";
                 try {
                     final Process process = new ProcessBuilder().command("mount | grep /dev/block/vold").redirectErrorStream(true).start();
@@ -1015,9 +1022,6 @@ public class ExtUtils {
                 }
             }
 
-            // Below few lines is to remove paths which may not be external
-            // memory
-            // card, like OTG (feel free to comment them out)
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
                 for (int i = 0; i < results.size(); i++) {
                     if (!results.get(i).toLowerCase(Locale.US).matches(".*[0-9a-f]{4}[-][0-9a-f]{4}")) {

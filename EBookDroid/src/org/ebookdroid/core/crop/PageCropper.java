@@ -1,7 +1,5 @@
 package org.ebookdroid.core.crop;
 
-import org.ebookdroid.common.bitmaps.BitmapRef;
-
 import com.foobnix.android.utils.LOG;
 import com.foobnix.pdf.info.wrapper.MagicHelper;
 
@@ -15,13 +13,13 @@ public class PageCropper {
     public static final int BMP_SIZE = 800;
     private static final Rect RECT = new Rect(0, 0, BMP_SIZE, BMP_SIZE);
 
-    public static RectF getCropBounds(final BitmapRef bitmapRef, final Rect bitmapBounds, final RectF pageSliceBounds) {
+    public static RectF getCropBounds(final Bitmap bitmap, final Rect bitmapBounds, final RectF pageSliceBounds) {
 
         Bitmap source = Bitmap.createBitmap(BMP_SIZE, BMP_SIZE, Bitmap.Config.RGB_565);
         // Bitmap source = Bitmap.createBitmap(bitmapRef.getBitmap());
 
         final Canvas c = new Canvas(source);
-        c.drawBitmap(bitmapRef.getBitmap(), bitmapBounds, RECT, null);
+        c.drawBitmap(bitmap, bitmapBounds, RECT, null);
 
         int firstColor = source.getPixel(0, 0);
         int baseColor = !MagicHelper.isColorDarkSimple(firstColor) ? firstColor : Color.WHITE;

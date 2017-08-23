@@ -41,10 +41,13 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.Bitmap.CompressFormat;
+import android.graphics.Canvas;
+import android.graphics.Color;
 import android.graphics.Matrix;
 import android.graphics.Rect;
 import android.graphics.RectF;
 import android.util.Base64;
+import android.util.Pair;
 
 public class ImageExtractor implements ImageDownloader {
 
@@ -169,7 +172,7 @@ public class ImageExtractor implements ImageDownloader {
             page = 0;
         }
         if (pageUrl.isCrop()) {
-            isNeedDisableMagicInPDFDjvu = true;
+            // isNeedDisableMagicInPDFDjvu = true;
         }
 
         CodecDocument codecDocumentLocal = null;
@@ -219,6 +222,7 @@ public class ImageExtractor implements ImageDownloader {
                 MagicHelper.isNeedMagic = true;
             }
             bitmap = bitmapRef.getBitmap();
+
         } else if (pageUrl.getNumber() == 1) {
             float right = (float) pageUrl.getCutp() / 100;
             rectF = new RectF(0, 0, right, 1f);
@@ -233,17 +237,7 @@ public class ImageExtractor implements ImageDownloader {
         }
 
         if (pageUrl.isCrop()) {
-            final Rect rootRect = new Rect(0, 0, bitmap.getWidth(), bitmap.getHeight());
-
-            rectF = PageCropper.getCropBounds(bitmapRef, rootRect, rectF);
-
-            float nWidth = bitmap.getWidth() - bitmap.getWidth() * (rectF.left + (1 - rectF.right));
-            float nHeiht = bitmap.getHeight() - bitmap.getHeight() * (rectF.top + (1 - rectF.bottom));
-
-            bitmapRef.getBitmap().recycle();
-            codecDocumentLocal.getPage(page).recycle();
-            bitmap = codecDocumentLocal.getPage(page).renderBitmap((int) nWidth, (int) nHeiht, rectF).getBitmap();
-
+            bitmap = getCroppedPage(codecDocumentLocal, page, bitmap).first;
         }
 
         if (pageUrl.isInvert()) {
@@ -268,6 +262,22 @@ public class ImageExtractor implements ImageDownloader {
         }
 
         return bitmap;
+    }
+
+    public Pair<Bitmap, RectF> getCroppedPage(CodecDocument codecDocumentLocal, int page, Bitmap bitmap) {
+        RectF rectF = new RectF(0, 0, 1f, 1f);
+        final Rect rootRect = new Rect(0, 0, bitmap.getWidth(), bitmap.getHeight());
+
+        rectF = PageCropper.getCropBounds(bitmap, rootRect, rectF);
+
+        float nWidth = bitmap.getWidth() - bitmap.getWidth() * (rectF.left + (1 - rectF.right));
+        float nHeiht = bitmap.getHeight() - bitmap.getHeight() * (rectF.top + (1 - rectF.bottom));
+
+        bitmap.recycle();
+        codecDocumentLocal.getPage(page).recycle();
+        Bitmap result = codecDocumentLocal.getPage(page).renderBitmap((int) nWidth, (int) nHeiht, rectF).getBitmap();
+        return new Pair<Bitmap, RectF>(result, rectF);
+
     }
 
     @Override
@@ -331,6 +341,40 @@ public class ImageExtractor implements ImageDownloader {
             } else if (page == COVER_PAGE_NO_EFFECT) {
                 return bitmapToStream(proccessCoverPage(pageUrl));
             } else {
+                if (AppState.get().isDouble) {
+                    LOG.d("isDouble", pageUrl.getHeight(), pageUrl.getWidth());
+                    Bitmap bitmap1 = proccessOtherPage(pageUrl);
+                    pageUrl.setPage(pageUrl.getPage() + 1);
+
+                    Bitmap bitmap2 = null;
+                    if (pageUrl.getPage() + 1 < pageCount) {
+                        bitmap2 = proccessOtherPage(pageUrl);
+                    } else {
+                        bitmap2 = Bitmap.createBitmap(bitmap1);
+                        Canvas canvas = new Canvas(bitmap2);
+                        canvas.drawColor(Color.WHITE);
+                    }
+
+                    Bitmap bitmap = Bitmap.createBitmap(bitmap1.getWidth() + bitmap2.getWidth(), bitmap1.getHeight(), Bitmap.Config.RGB_565);
+                    Canvas canvas = new Canvas(bitmap);
+                    canvas.drawColor(MagicHelper.getBgColor());
+
+                    int maxH = Math.max(bitmap1.getHeight(), bitmap2.getHeight());
+
+                    if (AppState.get().isCutRTL) {
+                        canvas.drawBitmap(bitmap2, 0, (maxH - bitmap2.getHeight()) / 2, null);
+                        canvas.drawBitmap(bitmap1, bitmap2.getWidth(), (maxH - bitmap1.getHeight()) / 2, null);
+                    } else {
+                        canvas.drawBitmap(bitmap1, 0, (maxH - bitmap1.getHeight()) / 2, null);
+                        canvas.drawBitmap(bitmap2, bitmap1.getWidth(), (maxH - bitmap2.getHeight()) / 2, null);
+                    }
+
+                    bitmap1.recycle();
+                    bitmap2.recycle();
+                    return bitmapToStreamRAW(bitmap);
+
+                }
+
                 return bitmapToStreamRAW(proccessOtherPage(pageUrl));
             }
 
@@ -378,6 +422,8 @@ public class ImageExtractor implements ImageDownloader {
         }
     }
 
+    static int pageCount = 0;
+
     public static CodecDocument getCodecContext(final String path, String passw, int w, int h) {
         if (path.equals(TempHolder.get().path) && TempHolder.get().codecDocument != null) {
             return TempHolder.get().codecDocument;
@@ -403,7 +449,7 @@ public class ImageExtractor implements ImageDownloader {
             CacheZipUtils.cacheLock.unlock();
         }
 
-        openDocument.getPageCount(w, h, AppState.get().fontSizeSp);
+        pageCount = openDocument.getPageCount(w, h, AppState.get().fontSizeSp);
 
         TempHolder.get().init(openDocument, path);
         return openDocument;
