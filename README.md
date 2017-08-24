@@ -11,9 +11,9 @@ Android Play market apps:
 
 [Librera PRO](https://play.google.com/store/apps/details?id=com.foobnix.pro.pdf.reader)
 
-[Arhive .apk][http://archive.librera.mobi]
+[Arhive .apk](http://archive.librera.mobi)
 
-[Beta(latest) .apk][http://beta.librera.mobi]
+[Beta(latest) .apk](http://beta.librera.mobi)
 
 ## How to install
 
