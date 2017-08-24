@@ -231,7 +231,6 @@
    <string name="book_settings">إعدادات كتاب</string>
    <string name="back">الى الخلف</string>
    <string name="open_web_page">فتح صفحة ويب</string>
-   <string name="split_in_half_right_page_then_left_page_rtl_mode_">انقسام في نصف، الصفحة اليمنى الصفحة ثم الأيسر (وضع RTL)</string>
    <string name="starred">تألق</string>
    <string name="clear_all_recent">مسح جميع الأخيرة</string>
    <string name="clear_all_bookmars">مسح جميع المواقع المفضلة</string>
@@ -382,4 +381,9 @@
    <string name="reading_out_loud">قراءة بصوت عال</string>
    <string name="librera_pro_no_ads_leading_book_reader_and_pdf">ليبريرا برو (لا إعلانات) الرائدة قارئ الكتاب و بدف</string>
    <string name="custom_text">نص مخصص</string>
+   <string name="right_page_then_left_page_rtl_">الصفحة اليمنى ثم الصفحة اليسرى (رتل)</string>
+   <string name="one_page">صفحة واحدة</string>
+   <string name="two_pages">صفحتين</string>
+   <string name="half_page">نصف صفحة</string>
+   <string name="trim_borders">تقليم الحدود</string>
 </resources>

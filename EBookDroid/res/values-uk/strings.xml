@@ -231,7 +231,6 @@
    <string name="book_settings">Налаштування книги</string>
    <string name="back">Назад</string>
    <string name="open_web_page">Відкрити веб-сторінку</string>
-   <string name="split_in_half_right_page_then_left_page_rtl_mode_">Розділити навпіл, Права сторінка потім ліва сторінка (режим RTL)</string>
    <string name="starred">Помічені</string>
    <string name="clear_all_recent">Очистити всі останні</string>
    <string name="clear_all_bookmars">Очистити всі закладки</string>
@@ -382,4 +381,9 @@
    <string name="reading_out_loud">Читання голосно</string>
    <string name="librera_pro_no_ads_leading_book_reader_and_pdf">Librera PRO (без реклами) провідний читач книг і PDF</string>
    <string name="custom_text">Користувацький текст</string>
+   <string name="right_page_then_left_page_rtl_">Праворуч сторінка, потім ліва сторінка (RTL)</string>
+   <string name="one_page">Одна сторінка</string>
+   <string name="two_pages">Дві сторінки</string>
+   <string name="half_page">Половина сторінки</string>
+   <string name="trim_borders">Обрізати кордони</string>
 </resources>

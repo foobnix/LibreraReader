@@ -236,7 +236,6 @@
    <string name="book_settings">Knygos nustatymai</string>
    <string name="back">Atgal</string>
    <string name="open_web_page">Atidaryti internetinį puslapį</string>
-   <string name="split_in_half_right_page_then_left_page_rtl_mode_">Padalinti pusiau, iš pradžių dešinįjį puslapį, tada kairįjį (RTL mode)</string>
    <string name="starred">Pamėgtieji</string>
    <string name="clear_all_marked">Išvalyti visus  žymėjimus</string>
    <string name="enable_volume_keys">Leisti garso klavišus</string>
@@ -382,4 +381,9 @@
    <string name="reading_out_loud">Skaitoma balsu</string>
    <string name="librera_pro_no_ads_leading_book_reader_and_pdf">Librera PRO (be skelbimų) Leader Book Reader ir PDF</string>
    <string name="custom_text">Tinkintas tekstas</string>
+   <string name="right_page_then_left_page_rtl_">Dešiniuoju pelės klavišu kairėje pusėje (RTL)</string>
+   <string name="one_page">Vienas puslapis</string>
+   <string name="two_pages">Du puslapiai</string>
+   <string name="half_page">Pusė puslapio</string>
+   <string name="trim_borders">Trim sienas</string>
 </resources>

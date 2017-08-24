@@ -231,7 +231,6 @@
    <string name="book_settings">Ajustes de agenda</string>
    <string name="back">Espalda</string>
    <string name="open_web_page">Abrir página Web</string>
-   <string name="split_in_half_right_page_then_left_page_rtl_mode_">Partido por la mitad, página Página derecha, luego la izquierda (modo RTL)</string>
    <string name="starred">Sembrado de estrellas</string>
    <string name="clear_all_recent">Borrar todos reciente</string>
    <string name="clear_all_bookmars">Borrar todos los marcadores</string>
@@ -382,4 +381,9 @@
    <string name="reading_out_loud">Leyendo en voz alta</string>
    <string name="librera_pro_no_ads_leading_book_reader_and_pdf">Librera PRO (sin anuncios) Lector de libros líder y PDF</string>
    <string name="custom_text">Texto personalizado</string>
+   <string name="right_page_then_left_page_rtl_">Página derecha y izquierda (RTL)</string>
+   <string name="one_page">Una página</string>
+   <string name="two_pages">Dos paginas</string>
+   <string name="half_page">Media página</string>
+   <string name="trim_borders">Recortar bordes</string>
 </resources>

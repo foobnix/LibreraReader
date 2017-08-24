@@ -231,7 +231,6 @@
    <string name="book_settings">Bucheinstellungen</string>
    <string name="back">Zurück</string>
    <string name="open_web_page">Web-Seite öffnen</string>
-   <string name="split_in_half_right_page_then_left_page_rtl_mode_">Split in der Hälfte, der rechten Seite dann Linke Seite (RTL-Modus)</string>
    <string name="starred">Favoriten</string>
    <string name="clear_all_recent">Alle löschen jüngsten</string>
    <string name="clear_all_bookmars">Alle Lesezeichen löschen</string>
@@ -382,4 +381,9 @@
    <string name="reading_out_loud">Liest laut aus</string>
    <string name="librera_pro_no_ads_leading_book_reader_and_pdf">Librera PRO (keine Anzeigen) Führender Buchleser und PDF</string>
    <string name="custom_text">Kundenspezifischer Text</string>
+   <string name="right_page_then_left_page_rtl_">Rechte Seite dann linke Seite (RTL)</string>
+   <string name="one_page">Eine Seite</string>
+   <string name="two_pages">Zwei Seiten</string>
+   <string name="half_page">Halbe Seite</string>
+   <string name="trim_borders">Trimmgrenzen</string>
 </resources>

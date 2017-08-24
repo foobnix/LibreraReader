@@ -231,7 +231,6 @@
    <string name="book_settings">Configurações do Catálogo</string>
    <string name="back">Costas</string>
    <string name="open_web_page">Abrir página da Web</string>
-   <string name="split_in_half_right_page_then_left_page_rtl_mode_">Dividida ao meio, página Página direita, depois à esquerda (modo RTL)</string>
    <string name="starred">Estrelou</string>
    <string name="clear_all_recent">Limpar recente</string>
    <string name="clear_all_bookmars">Limpar todos os marcadores</string>
@@ -382,4 +381,9 @@
    <string name="reading_out_loud">Leitura em voz alta</string>
    <string name="librera_pro_no_ads_leading_book_reader_and_pdf">Librera PRO (sem anúncios) Leitor de livros e PDF</string>
    <string name="custom_text">Texto personalizado</string>
+   <string name="right_page_then_left_page_rtl_">Página direita e página esquerda (RTL)</string>
+   <string name="one_page">Uma página</string>
+   <string name="two_pages">Duas páginas</string>
+   <string name="half_page">Meia página</string>
+   <string name="trim_borders">Trim borders</string>
 </resources>

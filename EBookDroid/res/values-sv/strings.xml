@@ -235,7 +235,6 @@
    <string name="book_settings">Bokinställningar</string>
    <string name="back">Tillbaka</string>
    <string name="open_web_page">Öppna webbsida</string>
-   <string name="split_in_half_right_page_then_left_page_rtl_mode_">Kluvna, Höger sida sedan vänster sida (RTL-läge)</string>
    <string name="starred">Medverkade</string>
    <string name="clear_all_marked">Rensa alla märkta</string>
    <string name="enable_volume_keys">Aktivera volymknapparna</string>
@@ -382,4 +381,9 @@
    <string name="reading_out_loud">Läser högt</string>
    <string name="librera_pro_no_ads_leading_book_reader_and_pdf">Librera PRO (inga annonser) Ledande bokläsare och PDF</string>
    <string name="custom_text">Anpassad text</string>
+   <string name="right_page_then_left_page_rtl_">Höger sida sedan vänster sida (RTL)</string>
+   <string name="one_page">En sida</string>
+   <string name="two_pages">Två sidor</string>
+   <string name="half_page">Halv sida</string>
+   <string name="trim_borders">Trimma gränserna</string>
 </resources>

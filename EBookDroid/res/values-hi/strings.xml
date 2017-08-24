@@ -231,7 +231,6 @@
    <string name="book_settings">पुस्तक सेटिंग</string>
    <string name="back">वापस</string>
    <string name="open_web_page">वेब पेज खोलने</string>
-   <string name="split_in_half_right_page_then_left_page_rtl_mode_">आधे में विभाजित, सही पृष्ठ तो वाम पेज (आरटीएल मोड)</string>
    <string name="starred">तारांकित</string>
    <string name="clear_all_recent">सभी साफ़ हाल</string>
    <string name="clear_all_bookmars">सभी बुकमार्क साफ़</string>
@@ -382,4 +381,9 @@
    <string name="reading_out_loud">ज़ोर से पढ़ना</string>
    <string name="librera_pro_no_ads_leading_book_reader_and_pdf">लिब्रेरा प्रो (कोई विज्ञापन नहीं) प्रमुख पुस्तक रीडर और पीडीएफ</string>
    <string name="custom_text">प्रचलित पाठ</string>
+   <string name="right_page_then_left_page_rtl_">दायां पृष्ठ तब बाएं पेज (आरटीएल)</string>
+   <string name="one_page">एक पेज</string>
+   <string name="two_pages">दो पृष्ठ</string>
+   <string name="half_page">आधा पृष्ठ</string>
+   <string name="trim_borders">ट्रिम सीमाएं</string>
 </resources>

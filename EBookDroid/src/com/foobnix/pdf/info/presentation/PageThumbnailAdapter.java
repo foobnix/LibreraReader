@@ -61,12 +61,9 @@ public class PageThumbnailAdapter extends BaseAdapter {
         ImageView img = (ImageView) view.findViewById(R.id.image1);
         IMG.updateImageSizeSmall(img);
 
-        if (AppState.get().isCut) {
+        if (AppState.get().isCut || AppState.get().isDouble) {
             IMG.displayPageUrl(c, getPageUrl(position), img, null);
         } else {
-            if (AppState.get().isDouble) {
-                position = position * 2;
-            }
             IMG.display(c, path, img, Dips.dpToPx(AppState.get().coverSmallSize), position, null, IMG.displayImageOptionsNoDiscCache);
         }
 

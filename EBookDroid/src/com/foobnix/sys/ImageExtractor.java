@@ -223,21 +223,29 @@ public class ImageExtractor implements ImageDownloader {
             }
             bitmap = bitmapRef.getBitmap();
 
+            if (pageUrl.isCrop()) {
+                bitmap = getCroppedPage(codecDocumentLocal, page, bitmap).first;
+            }
+
         } else if (pageUrl.getNumber() == 1) {
             float right = (float) pageUrl.getCutp() / 100;
             rectF = new RectF(0, 0, right, 1f);
             bitmapRef = codecDocumentLocal.getPage(page).renderBitmap((int) (width * right), height, rectF);
             bitmap = bitmapRef.getBitmap();
 
+            if (pageUrl.isCrop()) {
+                bitmap = cropBitmap(bitmap);
+            }
+
         } else if (pageUrl.getNumber() == 2) {
             float right = (float) pageUrl.getCutp() / 100;
             rectF = new RectF(right, 0, 1f, 1f);
             bitmapRef = codecDocumentLocal.getPage(page).renderBitmap((int) (width * (1 - right)), height, rectF);
             bitmap = bitmapRef.getBitmap();
-        }
 
-        if (pageUrl.isCrop()) {
-            bitmap = getCroppedPage(codecDocumentLocal, page, bitmap).first;
+            if (pageUrl.isCrop()) {
+                bitmap = cropBitmap(bitmap);
+            }
         }
 
         if (pageUrl.isInvert()) {
@@ -262,6 +270,18 @@ public class ImageExtractor implements ImageDownloader {
         }
 
         return bitmap;
+    }
+
+    public Bitmap cropBitmap(Bitmap bitmap) {
+        final Rect rootRect = new Rect(0, 0, bitmap.getWidth(), bitmap.getHeight());
+        RectF rectCrop = PageCropper.getCropBounds(bitmap, rootRect, new RectF(0, 0, 1f, 1f));
+        int x = (int) (bitmap.getWidth() * rectCrop.left);
+        int y = (int) (bitmap.getHeight() * rectCrop.top);
+        int w = (int) (bitmap.getWidth() * rectCrop.width());
+        int h = (int) (bitmap.getHeight() * rectCrop.height());
+        Bitmap bitmap1 = Bitmap.createBitmap(bitmap, x, y, w, h);
+        bitmap.recycle();
+        return bitmap1;
     }
 
     public Pair<Bitmap, RectF> getCroppedPage(CodecDocument codecDocumentLocal, int page, Bitmap bitmap) {
@@ -341,7 +361,7 @@ public class ImageExtractor implements ImageDownloader {
             } else if (page == COVER_PAGE_NO_EFFECT) {
                 return bitmapToStream(proccessCoverPage(pageUrl));
             } else {
-                if (AppState.get().isDouble) {
+                if (pageUrl.isDouble()) {
                     LOG.d("isDouble", pageUrl.getHeight(), pageUrl.getWidth());
                     Bitmap bitmap1 = proccessOtherPage(pageUrl);
                     pageUrl.setPage(pageUrl.getPage() + 1);
@@ -355,11 +375,11 @@ public class ImageExtractor implements ImageDownloader {
                         canvas.drawColor(Color.WHITE);
                     }
 
-                    Bitmap bitmap = Bitmap.createBitmap(bitmap1.getWidth() + bitmap2.getWidth(), bitmap1.getHeight(), Bitmap.Config.RGB_565);
+                    int maxH = Math.max(bitmap1.getHeight(), bitmap2.getHeight());
+                    Bitmap bitmap = Bitmap.createBitmap(bitmap1.getWidth() + bitmap2.getWidth(), maxH, Bitmap.Config.RGB_565);
                     Canvas canvas = new Canvas(bitmap);
                     canvas.drawColor(MagicHelper.getBgColor());
 
-                    int maxH = Math.max(bitmap1.getHeight(), bitmap2.getHeight());
 
                     if (AppState.get().isCutRTL) {
                         canvas.drawBitmap(bitmap2, 0, (maxH - bitmap2.getHeight()) / 2, null);

@@ -231,7 +231,6 @@
    <string name="book_settings">图书设置</string>
    <string name="back">背部</string>
    <string name="open_web_page">打开网页</string>
-   <string name="split_in_half_right_page_then_left_page_rtl_mode_">劈成两半，右页则左页（RTL模式）</string>
    <string name="starred">主演</string>
    <string name="clear_all_recent">删除所有近期</string>
    <string name="clear_all_bookmars">清除所有书签</string>
@@ -382,4 +381,9 @@
    <string name="reading_out_loud">大声朗读</string>
    <string name="librera_pro_no_ads_leading_book_reader_and_pdf">Librera PRO（无广告）领先的书籍阅读器和PDF</string>
    <string name="custom_text">自定义文本</string>
+   <string name="right_page_then_left_page_rtl_">右页然后左页（RTL）</string>
+   <string name="one_page">一页</string>
+   <string name="two_pages">两页</string>
+   <string name="half_page">半页</string>
+   <string name="trim_borders">修剪边框</string>
 </resources>

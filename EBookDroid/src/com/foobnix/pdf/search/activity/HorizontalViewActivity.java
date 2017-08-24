@@ -39,6 +39,7 @@ import com.foobnix.pdf.info.widget.ShareDialog;
 import com.foobnix.pdf.info.wrapper.AppState;
 import com.foobnix.pdf.info.wrapper.DocumentController;
 import com.foobnix.pdf.info.wrapper.MagicHelper;
+import com.foobnix.pdf.info.wrapper.PopupHelper;
 import com.foobnix.pdf.search.activity.msg.FlippingStart;
 import com.foobnix.pdf.search.activity.msg.FlippingStop;
 import com.foobnix.pdf.search.activity.msg.InvalidateMessage;
@@ -77,6 +78,8 @@ import android.support.v4.graphics.ColorUtils;
 import android.support.v4.view.ViewPager.OnPageChangeListener;
 import android.text.InputType;
 import android.view.KeyEvent;
+import android.view.MenuItem;
+import android.view.MenuItem.OnMenuItemClickListener;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.View.OnLongClickListener;
@@ -89,6 +92,7 @@ import android.view.animation.TranslateAnimation;
 import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
+import android.widget.PopupMenu;
 import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -106,7 +110,7 @@ public class HorizontalViewActivity extends FragmentActivity {
     private AdView adView;
     private NativeExpressAdView adViewNative;
 
-    ImageView lockModelImage, linkHistory, ttsActive, onCutPage, onDoublePage;
+    ImageView lockModelImage, linkHistory, ttsActive, onModeChange;
 
     DocumentControllerHorizontalView documentController;
 
@@ -363,40 +367,71 @@ public class HorizontalViewActivity extends FragmentActivity {
             }
         });
 
-        onCutPage = (ImageView) findViewById(R.id.onCutPage);
-        onCutPage.setOnClickListener(new OnClickListener() {
+        onModeChange = (ImageView) findViewById(R.id.onModeChange);
+        onModeChange.setOnClickListener(new OnClickListener() {
 
             @Override
             public void onClick(View v) {
-                AppState.get().isCut = !AppState.get().isCut;
-                AppState.get().isDouble = false;
+                PopupMenu p = new PopupMenu(v.getContext(), v);
 
-                reloadDoc.run();
+                p.getMenu().add(R.string.one_page).setIcon(R.drawable.glyphicons_full_page).setOnMenuItemClickListener(new OnMenuItemClickListener() {
 
+                    @Override
+                    public boolean onMenuItemClick(MenuItem item) {
+                        onModeChange.setImageResource(R.drawable.glyphicons_full_page);
+                        AppState.get().isDouble = false;
+                        AppState.get().isCut = false;
+                        documentController.cleanImageMatrix();
+                        documentController.restartActivity();
+                        return false;
+                    }
+                });
+                p.getMenu().add(R.string.two_pages).setIcon(R.drawable.glyphicons_two_pages).setOnMenuItemClickListener(new OnMenuItemClickListener() {
+
+                    @Override
+                    public boolean onMenuItemClick(MenuItem item) {
+                        onModeChange.setImageResource(R.drawable.glyphicons_two_pages);
+                        AppState.get().isDouble = true;
+                        AppState.get().isCut = false;
+                        documentController.cleanImageMatrix();
+                        documentController.restartActivity();
+                        return false;
+                    }
+                });
+                p.getMenu().add(R.string.half_page).setIcon(R.drawable.glyphicons_page_split).setOnMenuItemClickListener(new OnMenuItemClickListener() {
+
+                    @Override
+                    public boolean onMenuItemClick(MenuItem item) {
+                        onModeChange.setImageResource(R.drawable.glyphicons_page_split);
+                        AppState.get().isDouble = false;
+                        AppState.get().isCut = true;
+                        AppState.get().isCrop = false;
+                        documentController.cleanImageMatrix();
+                        reloadDoc.run();
+                        return false;
+                    }
+                });
+                p.getMenu().add(R.string.crop_white_borders).setIcon(R.drawable.glyphicons_94_crop).setOnMenuItemClickListener(new OnMenuItemClickListener() {
+
+                    @Override
+                    public boolean onMenuItemClick(MenuItem item) {
+                        AppState.get().isCrop = !AppState.get().isCrop;
+                        SettingsManager.getBookSettings().cropPages = AppState.get().isCrop;
+                        reloadDoc.run();
+                        return false;
+                    }
+                });
+                p.show();
+                PopupHelper.initIcons(p, TintUtil.color);
             }
         });
-
-        onDoublePage = (ImageView) findViewById(R.id.onDoublePage);
-        onDoublePage.setOnClickListener(new OnClickListener() {
-
-            @Override
-            public void onClick(View v) {
-                AppState.get().isCut = false;
-                AppState.get().isDouble = !AppState.get().isDouble;
-                // reloadDoc.run();
-                documentController.restartActivity();
-            }
-        });
-        final ImageView isCrop = (ImageView) findViewById(R.id.onCrop);
-        isCrop.setOnClickListener(new View.OnClickListener() {
-
-            @Override
-            public void onClick(final View v) {
-                AppState.get().isCrop = !AppState.get().isCrop;
-                SettingsManager.getBookSettings().cropPages = AppState.get().isCrop;
-                reloadDoc.run();
-            }
-        });
+        if (AppState.get().isDouble) {
+            onModeChange.setImageResource(R.drawable.glyphicons_two_pages);
+        } else if (AppState.get().isCut) {
+            onModeChange.setImageResource(R.drawable.glyphicons_page_split);
+        } else {
+            onModeChange.setImageResource(R.drawable.glyphicons_full_page);
+        }
 
         findViewById(R.id.bookMenu).setOnClickListener(new View.OnClickListener() {
 
@@ -1210,6 +1245,7 @@ public class HorizontalViewActivity extends FragmentActivity {
     @Override
     public void onConfigurationChanged(final Configuration newConfig) {
         super.onConfigurationChanged(newConfig);
+        clickUtils.init();
         if (isInitPosistion == null) {
             return;
         }

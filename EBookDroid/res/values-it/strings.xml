@@ -231,7 +231,6 @@
    <string name="book_settings">Impostazioni libro</string>
    <string name="back">Indietro</string>
    <string name="open_web_page">Apri pagina Web</string>
-   <string name="split_in_half_right_page_then_left_page_rtl_mode_">Dividi a metà, pagina destra, poi pagina sinistra (modalità RTL)</string>
    <string name="starred">Preferito</string>
    <string name="clear_all_recent">Cancella tutti i recenti</string>
    <string name="clear_all_bookmars">Cancella tutti i segnalibri</string>
@@ -382,4 +381,9 @@
    <string name="reading_out_loud">Lettura forte</string>
    <string name="librera_pro_no_ads_leading_book_reader_and_pdf">Libreria PRO (nessun annuncio) Lettore di libri leader e PDF</string>
    <string name="custom_text">Testo personalizzato</string>
+   <string name="right_page_then_left_page_rtl_">Pagina a destra, quindi pagina a sinistra (RTL)</string>
+   <string name="one_page">Una pagina</string>
+   <string name="two_pages">Due pagine</string>
+   <string name="half_page">Mezza pagina</string>
+   <string name="trim_borders">Trim confini</string>
 </resources>

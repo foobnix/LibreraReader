@@ -231,7 +231,6 @@
    <string name="book_settings">تنظیمات کتاب</string>
    <string name="back">بازگشت</string>
    <string name="open_web_page">باز کردن صفحه وب</string>
-   <string name="split_in_half_right_page_then_left_page_rtl_mode_">در نیمه تقسیم، صفحه سمت راست صفحه و سپس سمت چپ (در حالت RTL)</string>
    <string name="starred">ستاره دار</string>
    <string name="clear_all_recent">پاک کردن تمام اخیر</string>
    <string name="clear_all_bookmars">پاک کردن تمام بوک مارک ها</string>
@@ -382,4 +381,9 @@
    <string name="reading_out_loud">خواندن با صدای بلند</string>
    <string name="librera_pro_no_ads_leading_book_reader_and_pdf">Librera PRO (بدون تبلیغات) خواننده کتاب پیشرو و PDF</string>
    <string name="custom_text">متن سفارشی</string>
+   <string name="right_page_then_left_page_rtl_">صفحه سمت راست و سپس صفحه را ترک کرد (RTL)</string>
+   <string name="one_page">یک صفحه</string>
+   <string name="two_pages">دو صفحه</string>
+   <string name="half_page">نیمی از صفحه</string>
+   <string name="trim_borders">اصلاح مرزها</string>
 </resources>

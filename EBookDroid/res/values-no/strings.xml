@@ -236,7 +236,6 @@
    <string name="book_settings">Bokinnstillinger</string>
    <string name="back">Tilbake</string>
    <string name="open_web_page">Åpne webside</string>
-   <string name="split_in_half_right_page_then_left_page_rtl_mode_">Del i halvparten, høyre side og venstre side (RTL-modus)</string>
    <string name="starred">Stjernet</string>
    <string name="clear_all_marked">Fjern alt merket</string>
    <string name="enable_volume_keys">Aktiver volumtaster</string>
@@ -382,4 +381,9 @@
    <string name="reading_out_loud">Leser høyt</string>
    <string name="librera_pro_no_ads_leading_book_reader_and_pdf">Librera PRO (ingen annonser) Ledende bokleser og PDF</string>
    <string name="custom_text">Egendefinert tekst</string>
+   <string name="right_page_then_left_page_rtl_">Høyre side deretter venstre side (RTL)</string>
+   <string name="one_page">En side</string>
+   <string name="two_pages">To sider</string>
+   <string name="half_page">Halv side</string>
+   <string name="trim_borders">Trim grenser</string>
 </resources>

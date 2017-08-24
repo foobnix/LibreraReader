@@ -235,7 +235,6 @@
    <string name="book_settings">Boekinstellingen</string>
    <string name="back">Terug</string>
    <string name="open_web_page">Webpagina openen</string>
-   <string name="split_in_half_right_page_then_left_page_rtl_mode_">Split in de helft, rechts dan links pagina (RTL-modus)</string>
    <string name="starred">Starred</string>
    <string name="clear_all_marked">Allemaal duidelijk gemarkeerd</string>
    <string name="enable_volume_keys">Inschakelen volumetoetsen</string>
@@ -382,4 +381,9 @@
    <string name="reading_out_loud">Hardop lezen</string>
    <string name="librera_pro_no_ads_leading_book_reader_and_pdf">Librera PRO (geen advertenties) Leidende boeklezer en PDF</string>
    <string name="custom_text">Aangepaste tekst</string>
+   <string name="right_page_then_left_page_rtl_">Rechter pagina dan links pagina (RTL)</string>
+   <string name="one_page">Een pagina</string>
+   <string name="two_pages">Twee pagina\'s</string>
+   <string name="half_page">Halve pagina</string>
+   <string name="trim_borders">Trim grenzen</string>
 </resources>

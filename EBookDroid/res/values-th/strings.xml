@@ -236,7 +236,6 @@
    <string name="book_settings">การตั้งค่าหนังสือ</string>
    <string name="back">กลับ</string>
    <string name="open_web_page">เปิดเว็บเพจ</string>
-   <string name="split_in_half_right_page_then_left_page_rtl_mode_">แบ่งครึ่งหน้าขวาแล้วคลิกซ้าย (โหมด RTL)</string>
    <string name="starred">ติดดาว</string>
    <string name="clear_all_marked">ล้างเครื่องหมายทั้งหมด</string>
    <string name="enable_volume_keys">เปิดใช้ปุ่มปรับระดับเสียง</string>
@@ -382,4 +381,9 @@
    <string name="reading_out_loud">อ่านออกมาดัง ๆ</string>
    <string name="librera_pro_no_ads_leading_book_reader_and_pdf">Librera PRO (ไม่มีโฆษณา) เครื่องอ่านหนังสือและ PDF ชั้นนำ</string>
    <string name="custom_text">ข้อความที่กำหนดเอง</string>
+   <string name="right_page_then_left_page_rtl_">หน้าขวาจากนั้นคลิกซ้าย (RTL)</string>
+   <string name="one_page">หนึ่งหน้า</string>
+   <string name="two_pages">สองหน้า</string>
+   <string name="half_page">ครึ่งหน้า</string>
+   <string name="trim_borders">ตัดแต่งเส้นขอบ</string>
 </resources>

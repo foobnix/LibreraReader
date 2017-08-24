@@ -205,8 +205,8 @@ public abstract class DocumentControllerHorizontalView extends DocumentControlle
             }
         }
         if (AppState.get().isDouble) {
-            // url.setWidth(url.getWidth() / 2);
             url.setPage(page * 2);
+            url.setDouble(AppState.get().isDouble);
         }
 
         return url.toString();

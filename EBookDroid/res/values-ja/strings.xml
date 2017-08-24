@@ -231,7 +231,6 @@
    <string name="book_settings">書籍設定</string>
    <string name="back">バック</string>
    <string name="open_web_page">Webページを開きます</string>
-   <string name="split_in_half_right_page_then_left_page_rtl_mode_">半分に分割、右ページ、左ページ（RTLモード）</string>
    <string name="starred">スター付き</string>
    <string name="clear_all_recent">最近のすべてをクリア</string>
    <string name="clear_all_bookmars">すべてのブックマークをクリア</string>
@@ -382,4 +381,9 @@
    <string name="reading_out_loud">大声で読む</string>
    <string name="librera_pro_no_ads_leading_book_reader_and_pdf">Librera PRO（広告なし）主要な書籍リーダーとPDF</string>
    <string name="custom_text">カスタムテキスト</string>
+   <string name="right_page_then_left_page_rtl_">右ページ→左ページ（RTL）</string>
+   <string name="one_page">1ページ</string>
+   <string name="two_pages">2ページ</string>
+   <string name="half_page">半ページ</string>
+   <string name="trim_borders">ボーダーをトリムする</string>
 </resources>

@@ -236,7 +236,6 @@
    <string name="book_settings">Teosasetukset</string>
    <string name="back">Takaisin</string>
    <string name="open_web_page">Avaa Web-sivu</string>
-   <string name="split_in_half_right_page_then_left_page_rtl_mode_">Jaettu kahtia, Oikea sitten vasen sivu sivu (RTL-tila)</string>
    <string name="starred">Näytteli</string>
    <string name="clear_all_marked">Tyhjennä kaikki merkityt</string>
    <string name="enable_volume_keys">Ota äänenvoimakkuusnäppäimiä</string>
@@ -382,4 +381,9 @@
    <string name="reading_out_loud">Lukeminen ääneen</string>
    <string name="librera_pro_no_ads_leading_book_reader_and_pdf">Librera PRO (ei mainoksia) Johtava kirjan lukija ja PDF</string>
    <string name="custom_text">Mukautettu teksti</string>
+   <string name="right_page_then_left_page_rtl_">Oikea sivu sitten vasen sivu (RTL)</string>
+   <string name="one_page">Yksi sivu</string>
+   <string name="two_pages">Kaksi sivua</string>
+   <string name="half_page">Puoli sivua</string>
+   <string name="trim_borders">Rajoita reunoja</string>
 </resources>

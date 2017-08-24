@@ -235,7 +235,6 @@
    <string name="book_settings">예약 설정</string>
    <string name="back">뒤로</string>
    <string name="open_web_page">웹 페이지 열기</string>
-   <string name="split_in_half_right_page_then_left_page_rtl_mode_">반으로 분할, 오른쪽 페이지 다음 왼쪽 페이지 (RTL 모드)</string>
    <string name="starred">별표</string>
    <string name="clear_all_marked">마크된 것들 모두 지우기</string>
    <string name="enable_volume_keys">볼륨 키 사용</string>
@@ -382,4 +381,9 @@
    <string name="reading_out_loud">소리내어 읽기</string>
    <string name="librera_pro_no_ads_leading_book_reader_and_pdf">Librera PRO (광고 없음) 선도적 인 독서기 및 PDF</string>
    <string name="custom_text">사용자 정의 텍스트</string>
+   <string name="right_page_then_left_page_rtl_">오른쪽 페이지, 왼쪽 페이지 (RTL)</string>
+   <string name="one_page">한 페이지</string>
+   <string name="two_pages">두 페이지</string>
+   <string name="half_page">절반 페이지</string>
+   <string name="trim_borders">테두리 다듬기</string>
 </resources>

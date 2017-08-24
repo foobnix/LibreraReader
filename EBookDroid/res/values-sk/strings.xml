@@ -231,7 +231,6 @@
    <string name="book_settings">Nastavenie Book</string>
    <string name="back">Späť</string>
    <string name="open_web_page">Otvoriť webové stránky</string>
-   <string name="split_in_half_right_page_then_left_page_rtl_mode_">Rozdeliť na dve polovice, Pravá strana, potom ľavá strana (režim RTL)</string>
    <string name="starred">Hral</string>
    <string name="clear_all_recent">Vymazať všetko nedávny</string>
    <string name="clear_all_bookmars">Zrušte všetky záložky</string>
@@ -382,4 +381,9 @@
    <string name="reading_out_loud">Čítanie nahlas</string>
    <string name="librera_pro_no_ads_leading_book_reader_and_pdf">Librera PRO (žiadne reklamy) Najdôležitejšia čítačka kníh a PDF</string>
    <string name="custom_text">Vlastný text</string>
+   <string name="right_page_then_left_page_rtl_">Pravá stránka a potom ľavá stránka (RTL)</string>
+   <string name="one_page">Jedna stránka</string>
+   <string name="two_pages">Dve strany</string>
+   <string name="half_page">Polovica stránky</string>
+   <string name="trim_borders">Orezanie okrajov</string>
 </resources>

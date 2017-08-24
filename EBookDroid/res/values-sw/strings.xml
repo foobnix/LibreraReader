@@ -235,7 +235,6 @@
    <string name="book_settings">Mazingira kitabu</string>
    <string name="back">Back</string>
    <string name="open_web_page">Open Mtandao wa Kwanza</string>
-   <string name="split_in_half_right_page_then_left_page_rtl_mode_">Kugawanyika katika nusu, Right ukurasa kisha kushoto ukurasa (RTL mode)</string>
    <string name="starred">Hoja</string>
    <string name="clear_all_marked">Wazi kila alama</string>
    <string name="enable_volume_keys">Kuwawezesha funguo kiasi</string>
@@ -382,4 +381,9 @@
    <string name="reading_out_loud">Kusoma kwa sauti kubwa</string>
    <string name="librera_pro_no_ads_leading_book_reader_and_pdf">Librera PRO (hakuna matangazo) Msomaji wa kitabu cha kuongoza na PDF</string>
    <string name="custom_text">Maandishi maalum</string>
+   <string name="right_page_then_left_page_rtl_">Ukurasa wa kulia basi ukurasa wa kushoto (RTL)</string>
+   <string name="one_page">Ukurasa mmoja</string>
+   <string name="two_pages">Kurasa mbili</string>
+   <string name="half_page">Ukurasa wa nusu</string>
+   <string name="trim_borders">Mpaka wa mipaka</string>
 </resources>

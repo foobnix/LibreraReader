@@ -229,7 +229,6 @@
    <string name="book_settings">Настройки чтения</string>
    <string name="back">Назад</string>
    <string name="open_web_page">Открыть веб-страницу</string>
-   <string name="split_in_half_right_page_then_left_page_rtl_mode_">При делении на части сначала отображать правую страницу, а затем левую (режим RTL)</string>
    <string name="starred">Избранные</string>
    <string name="clear_all_recent">Очистить все недавние</string>
    <string name="clear_all_bookmars">Очистить все закладки</string>
@@ -382,4 +381,9 @@
    <string name="reading_out_loud">Чтение вслух</string>
    <string name="librera_pro_no_ads_leading_book_reader_and_pdf">Librera PRO (без рекламы) Ведущая читалка книг и PDF</string>
    <string name="custom_text">Пользовательский текст</string>
+   <string name="right_page_then_left_page_rtl_">Правая страница, затем левая страница (RTL)</string>
+   <string name="one_page">Одна страница</string>
+   <string name="two_pages">Две страницы</string>
+   <string name="half_page">Половина страницы</string>
+   <string name="trim_borders">Границы обрезки</string>
 </resources>

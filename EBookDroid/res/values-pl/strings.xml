@@ -231,7 +231,6 @@
    <string name="book_settings">Ustawienia czytania</string>
    <string name="back">Wstecz</string>
    <string name="open_web_page">Otwórz stronę internetową</string>
-   <string name="split_in_half_right_page_then_left_page_rtl_mode_">Podział na pół, z prawej strony, a następnie z lewej strony (tryb RTL)</string>
    <string name="starred">Ulubione</string>
    <string name="clear_all_recent">Usuń ostatnie</string>
    <string name="clear_all_bookmars">Usuń zakładki</string>
@@ -382,4 +381,9 @@
    <string name="reading_out_loud">Czytanie głośno</string>
    <string name="librera_pro_no_ads_leading_book_reader_and_pdf">Librera PRO (brak reklam) Wiodący czytnik książek i plik PDF</string>
    <string name="custom_text">Własny tekst</string>
+   <string name="right_page_then_left_page_rtl_">Prawa strona, a następnie strona lewa (RTL)</string>
+   <string name="one_page">Jedna strona</string>
+   <string name="two_pages">Dwie strony</string>
+   <string name="half_page">Połowa strony</string>
+   <string name="trim_borders">Granice przycinania</string>
 </resources>

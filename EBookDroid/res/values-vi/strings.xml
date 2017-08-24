@@ -235,7 +235,6 @@
    <string name="book_settings">Cài đặt Sách</string>
    <string name="back">Trở lại</string>
    <string name="open_web_page">Mở trang web</string>
-   <string name="split_in_half_right_page_then_left_page_rtl_mode_">Chia một nửa, trang Ngay sau đó trái trang (chế độ RTL)</string>
    <string name="starred">Đóng vai chính</string>
    <string name="clear_all_marked">Xóa tất cả đánh dấu</string>
    <string name="enable_volume_keys">Bật phím âm lượng</string>
@@ -382,4 +381,9 @@
    <string name="reading_out_loud">Đọc to</string>
    <string name="librera_pro_no_ads_leading_book_reader_and_pdf">Librera PRO (không có quảng cáo) Trình đọc sách hàng đầu và PDF</string>
    <string name="custom_text">Văn bản tùy chỉnh</string>
+   <string name="right_page_then_left_page_rtl_">Trang bên phải trang sau đó (RTL)</string>
+   <string name="one_page">Một trang</string>
+   <string name="two_pages">Hai trang</string>
+   <string name="half_page">Nửa trang</string>
+   <string name="trim_borders">Cắt biên</string>
 </resources>

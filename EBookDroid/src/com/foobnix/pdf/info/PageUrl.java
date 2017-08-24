@@ -18,6 +18,7 @@ public class PageUrl {
     private int unic;
     private int cutp;
     private int position;
+    private boolean isDouble;
 
     public boolean tempWithWatermakr = false;
 
@@ -64,6 +65,7 @@ public class PageUrl {
             obj.put("cutp", cutp);
             obj.put("m", MagicHelper.hash());
             obj.put("p", position);
+            obj.put("isDouble", isDouble);
             return obj.toString();
         } catch (final Exception e) {
             return "";
@@ -85,6 +87,7 @@ public class PageUrl {
             url.unic = obj.optInt("unic");
             url.cutp = obj.optInt("cutp");
             url.position = obj.optInt("p");
+            url.isDouble = obj.optBoolean("isDouble");
             return url;
         } catch (final Exception e) {
 
@@ -175,6 +178,14 @@ public class PageUrl {
 
     public void setPosition(int position) {
         this.position = position;
+    }
+
+    public boolean isDouble() {
+        return isDouble;
+    }
+
+    public void setDouble(boolean isDouble) {
+        this.isDouble = isDouble;
     }
 
 }

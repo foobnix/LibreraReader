@@ -236,7 +236,6 @@
    <string name="book_settings">Pengaturan Buku</string>
    <string name="back">Kembali</string>
    <string name="open_web_page">Buka Halaman Web</string>
-   <string name="split_in_half_right_page_then_left_page_rtl_mode_">Split menjadi dua, Right page lalu Left page (mode RTL)</string>
    <string name="starred">Dibintangi</string>
    <string name="clear_all_marked">Hapus semua ditandai</string>
    <string name="enable_volume_keys">Aktifkan tombol volume</string>
@@ -382,4 +381,9 @@
    <string name="reading_out_loud">Membaca dengan suara keras</string>
    <string name="librera_pro_no_ads_leading_book_reader_and_pdf">Librera PRO (no ads) Memimpin pembaca buku dan PDF</string>
    <string name="custom_text">Teks khusus</string>
+   <string name="right_page_then_left_page_rtl_">Kanan halaman kemudian kiri halaman (RTL)</string>
+   <string name="one_page">Satu halaman</string>
+   <string name="two_pages">Dua halaman</string>
+   <string name="half_page">Setengah halaman</string>
+   <string name="trim_borders">Potong batas</string>
 </resources>

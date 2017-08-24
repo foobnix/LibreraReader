@@ -231,7 +231,6 @@
    <string name="book_settings">Kitap Ayarları</string>
    <string name="back">Arka</string>
    <string name="open_web_page">Açık Web Sayfası</string>
-   <string name="split_in_half_right_page_then_left_page_rtl_mode_">Yarısında Split, sağ sayfa sonra Sol sayfası (RTL modu)</string>
    <string name="starred">Yıldızlı</string>
    <string name="clear_all_recent">Son tüm açık</string>
    <string name="clear_all_bookmars">Tüm yer imlerini temizleyin</string>
@@ -382,4 +381,9 @@
    <string name="reading_out_loud">Yüksek sesle okuma</string>
    <string name="librera_pro_no_ads_leading_book_reader_and_pdf">Librera PRO (reklam yok) Öncü kitap okuyucu ve PDF</string>
    <string name="custom_text">Özel metin</string>
+   <string name="right_page_then_left_page_rtl_">Sağ sayfa sonra sol sayfa (RTL)</string>
+   <string name="one_page">Bir sayfa</string>
+   <string name="two_pages">İki sayfa</string>
+   <string name="half_page">Yarım sayfa</string>
+   <string name="trim_borders">Kenarları düzelt</string>
 </resources>

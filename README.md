@@ -7,9 +7,13 @@ Web: [http://librera.mobi/](http://librera.mobi/)
 
 Android Play market apps:
 
-[Librera Readear](https://play.google.com/store/apps/details?id=com.foobnix.pdf.reader)
-[PRO Librera Readear](https://play.google.com/store/apps/details?id=com.foobnix.pro.pdf.reader)
-[PDF Reader Clasic](https://play.google.com/store/apps/details?id=classic.pdf.reader.viewer.djvu.epub.fb2.txt.mobi.book.reader.lirbi.libri)
+[Librera](https://play.google.com/store/apps/details?id=com.foobnix.pdf.reader)
+
+[Librera PRO](https://play.google.com/store/apps/details?id=com.foobnix.pro.pdf.reader)
+
+[Arhive .apk][http://archive.librera.mobi]
+
+[Beta(latest) .apk][http://beta.librera.mobi]
 
 ## How to install
 

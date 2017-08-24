@@ -234,7 +234,6 @@
    <string name="book_settings">Setări de carte</string>
    <string name="back">Înapoi</string>
    <string name="open_web_page">Deschideți pagina web</string>
-   <string name="split_in_half_right_page_then_left_page_rtl_mode_">Împărțită în jumătate, pagina dreaptă apoi pagina stângă (modul RTL)</string>
    <string name="starred">Steluță</string>
    <string name="clear_all_marked">Ștergeți toate marcate</string>
    <string name="enable_volume_keys">Activați tastele de volum</string>
@@ -382,4 +381,9 @@
    <string name="reading_out_loud">Citirea cu voce tare</string>
    <string name="librera_pro_no_ads_leading_book_reader_and_pdf">Librera PRO (fără anunțuri) Cititor de cărți și PDF</string>
    <string name="custom_text">Text personalizat</string>
+   <string name="right_page_then_left_page_rtl_">Pagina dreapta, apoi pagina stanga (RTL)</string>
+   <string name="one_page">O pagina</string>
+   <string name="two_pages">Două pagini</string>
+   <string name="half_page">Pe jumătate de pagină</string>
+   <string name="trim_borders">Aranjați marginile</string>
 </resources>

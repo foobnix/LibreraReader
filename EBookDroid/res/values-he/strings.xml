@@ -235,7 +235,6 @@
    <string name="book_settings">הגדרות ספר</string>
    <string name="back">חזור</string>
    <string name="open_web_page">פתח דף אינטרנט</string>
-   <string name="split_in_half_right_page_then_left_page_rtl_mode_">לשניים, דף בדיוק אז עמוד שמאלי (מצב RTL)</string>
    <string name="starred">כיכב</string>
    <string name="clear_all_marked">נקה את כל המסומנות</string>
    <string name="enable_volume_keys">אפשר מקשי עוצמת הקול</string>
@@ -382,4 +381,9 @@
    <string name="reading_out_loud">קורא בקול רם</string>
    <string name="librera_pro_no_ads_leading_book_reader_and_pdf">Librera PRO (ללא מודעות) קורא ספרים מובילים PDF</string>
    <string name="custom_text">טקסט מותאם אישית</string>
+   <string name="right_page_then_left_page_rtl_">דף מימין ולאחר מכן דף שמאלי (RTL)</string>
+   <string name="one_page">עמוד אחד</string>
+   <string name="two_pages">שני עמודים</string>
+   <string name="half_page">חצי עמוד</string>
+   <string name="trim_borders">חתוך גבולות</string>
 </resources>

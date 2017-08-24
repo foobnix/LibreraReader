@@ -231,7 +231,6 @@
    <string name="book_settings">Réglages Réserver</string>
    <string name="back">Arrière</string>
    <string name="open_web_page">Ouvrir une page Web</string>
-   <string name="split_in_half_right_page_then_left_page_rtl_mode_">Split en demi-page Page droite puis gauche (mode RTL)</string>
    <string name="starred">Suivis</string>
    <string name="clear_all_recent">Effacer tout récent</string>
    <string name="clear_all_bookmars">Effacer tous les signets</string>
@@ -382,4 +381,9 @@
    <string name="reading_out_loud">Lecture à haute voix</string>
    <string name="librera_pro_no_ads_leading_book_reader_and_pdf">Librera PRO (aucune publicité) Lecteur de livres et PDF</string>
    <string name="custom_text">Texte personnalisé</string>
+   <string name="right_page_then_left_page_rtl_">La page droite, puis la page de gauche (RTL)</string>
+   <string name="one_page">Une page</string>
+   <string name="two_pages">Deux pages</string>
+   <string name="half_page">Demi-page</string>
+   <string name="trim_borders">Couper les bordures</string>
 </resources>
