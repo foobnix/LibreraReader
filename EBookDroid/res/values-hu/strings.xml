@@ -386,4 +386,5 @@
    <string name="two_pages">Két oldal</string>
    <string name="half_page">Fél oldal</string>
    <string name="trim_borders">Vágja el a határokat</string>
+   <string name="stop_reading_timer_">Az olvasás leállítása (időzítő)</string>
 </resources>

@@ -58,7 +58,6 @@ public class BrowseFragment2 extends UIFragment<FileMeta> {
     public static int TYPE_CREATE_FILE = 3;
 
     FileMetaAdapter searchAdapter;
-    private FastScrollRecyclerView recyclerView;
 
     private LinearLayout paths;
     HorizontalScrollView scroller;
@@ -503,7 +502,7 @@ public class BrowseFragment2 extends UIFragment<FileMeta> {
             recyclerView.setAdapter(searchAdapter);
         }
 
-        recyclerView.myConfiguration();
+        ((FastScrollRecyclerView) recyclerView).myConfiguration();
     }
 
     private void popupMenu(final ImageView onGridList) {

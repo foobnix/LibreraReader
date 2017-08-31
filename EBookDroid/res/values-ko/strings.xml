@@ -386,4 +386,5 @@
    <string name="two_pages">두 페이지</string>
    <string name="half_page">절반 페이지</string>
    <string name="trim_borders">테두리 다듬기</string>
+   <string name="stop_reading_timer_">독서 중지 (타이머)</string>
 </resources>

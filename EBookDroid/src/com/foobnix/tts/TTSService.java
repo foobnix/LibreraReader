@@ -190,6 +190,8 @@ public class TTSService extends Service {
             if (pageNumber >= dc.getPageCount()) {
                 LOG.d(TAG, "CodecDocument", "is NULL");
 
+                TempHolder.get().timerFinishTime = 0;
+
                 Vibrator v = (Vibrator) LirbiApp.context.getSystemService(Context.VIBRATOR_SERVICE);
                 if (AppState.get().isVibration) {
                     v.vibrate(1000);
@@ -241,6 +243,12 @@ public class TTSService extends Service {
                     @Override
                     public void onDone(String utteranceId) {
                         LOG.d(TAG, "onUtteranceCompleted");
+                        if (System.currentTimeMillis() > TempHolder.get().timerFinishTime) {
+                            LOG.d(TAG, "Timer");
+                            TempHolder.get().timerFinishTime = 0;
+                            return;
+                        }
+
                         playPage(secondPart, AppState.get().lastBookPage + 1);
 
                     }
@@ -251,6 +259,11 @@ public class TTSService extends Service {
                     @Override
                     public void onUtteranceCompleted(String utteranceId) {
                         LOG.d(TAG, "onUtteranceCompleted");
+                        if (System.currentTimeMillis() > TempHolder.get().timerFinishTime) {
+                            LOG.d(TAG, "Timer");
+                            TempHolder.get().timerFinishTime = 0;
+                            return;
+                        }
                         playPage(secondPart, AppState.get().lastBookPage + 1);
 
                     }
@@ -270,6 +283,7 @@ public class TTSService extends Service {
     public void onDestroy() {
         super.onDestroy();
         isActivated = false;
+        TempHolder.get().timerFinishTime = 0;
         mMediaSessionCompat.setActive(false);
         LOG.d(TAG, "onDestroy");
     }

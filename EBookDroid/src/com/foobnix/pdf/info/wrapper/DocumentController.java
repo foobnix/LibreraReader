@@ -17,6 +17,7 @@ import com.foobnix.dao2.FileMeta;
 import com.foobnix.pdf.info.ExtUtils;
 import com.foobnix.pdf.info.IMG;
 import com.foobnix.pdf.info.OutlineHelper;
+import com.foobnix.pdf.info.PageUrl;
 import com.foobnix.pdf.info.R;
 import com.foobnix.pdf.info.model.AnnotationType;
 import com.foobnix.pdf.info.model.OutlineLinkWrapper;
@@ -124,7 +125,7 @@ public abstract class DocumentController {
 
     public abstract List<String> getMediaAttachments();
 
-    public abstract String getPagePath(int page);
+    public abstract PageUrl getPageUrl(int page);
 
     public abstract void saveAnnotationsToFile();
 

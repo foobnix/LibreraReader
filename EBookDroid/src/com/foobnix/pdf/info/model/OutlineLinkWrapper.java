@@ -1,6 +1,7 @@
 package com.foobnix.pdf.info.model;
 
 import com.foobnix.ext.Fb2Extractor;
+import com.foobnix.pdf.info.PageUrl;
 
 import android.graphics.RectF;
 
@@ -21,6 +22,8 @@ public class OutlineLinkWrapper implements CharSequence {
             if (link.startsWith("#")) {
                 try {
                     targetPage = Integer.parseInt(link.substring(1).replace(" ", ""));
+                    targetPage = PageUrl.realToFake(targetPage);
+
                 } catch (final Exception e) {
                     e.printStackTrace();
                 }

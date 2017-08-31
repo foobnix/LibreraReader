@@ -386,4 +386,5 @@
    <string name="two_pages">Du puslapiai</string>
    <string name="half_page">Pusė puslapio</string>
    <string name="trim_borders">Trim sienas</string>
+   <string name="stop_reading_timer_">Nustoti skaityti (laikmatis)</string>
 </resources>

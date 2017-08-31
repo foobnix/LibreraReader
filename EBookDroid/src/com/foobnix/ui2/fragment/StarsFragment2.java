@@ -21,7 +21,6 @@ public class StarsFragment2 extends UIFragment<FileMeta> {
     public static final Pair<Integer, Integer> PAIR = new Pair<Integer, Integer>(R.string.starred, R.drawable.glyphicons_50_star);
 
     FileMetaAdapter recentAdapter;
-    private RecyclerView recyclerView;
 
     @Override
     public Pair<Integer, Integer> getNameAndIconRes() {

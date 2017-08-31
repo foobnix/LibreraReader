@@ -368,6 +368,9 @@ public class MainTabs2 extends FragmentActivity {
     @Override
     public void onDestroy() {
         super.onDestroy();
+        if (pager != null) {
+            pager.setAdapter(null);
+        }
         Analytics.onStop(this);
         ADS.destoryNative(adViewNative);
         isInStack = false;
@@ -378,7 +381,9 @@ public class MainTabs2 extends FragmentActivity {
         super.onConfigurationChanged(newConfig);
         ADS.activateNative(this, adViewNative);
         if (pager != null) {
+            int currentItem = pager.getCurrentItem();
             pager.setAdapter(adapter);
+            pager.setCurrentItem(currentItem);
         }
     }
 

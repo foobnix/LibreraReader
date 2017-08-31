@@ -106,21 +106,8 @@ public class AdvModeController extends DocumentController {
     }
 
     @Override
-    public String getPagePath(int page) {
-        PageUrl url = new PageUrl();
-        url.setPath(getCurrentBook().getPath());
-        url.setPage(AppState.get().isCut ? page / 2 : page);
-        url.setWidth(Dips.dpToPx(80));
-        url.setHeight(Dips.dpToPx(120));
-        url.setInvert(!AppState.get().isInvert);
-        url.setCrop(AppState.get().isCrop);
-        url.setCutp(AppState.get().cutP);
-
-        if (AppState.get().isCut) {
-            url.setNumber(page % 2 == 0 ? 1 : 2);
-        }
-
-        return url.toString();
+    public PageUrl getPageUrl(int page) {
+        return PageUrl.buildSmall(getCurrentBook().getPath(), page);
     }
 
     @Override

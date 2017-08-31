@@ -386,4 +386,5 @@
    <string name="two_pages">To sider</string>
    <string name="half_page">Halv side</string>
    <string name="trim_borders">Trim grenser</string>
+   <string name="stop_reading_timer_">Stopp lesing (timer)</string>
 </resources>

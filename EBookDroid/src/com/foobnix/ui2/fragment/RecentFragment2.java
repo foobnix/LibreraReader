@@ -33,7 +33,6 @@ import android.widget.TextView;
 public class RecentFragment2 extends UIFragment<FileMeta> {
     public static final Pair<Integer, Integer> PAIR = new Pair<Integer, Integer>(R.string.recent, R.drawable.glyphicons_72_book);
     FileMetaAdapter recentAdapter;
-    private RecyclerView recyclerView;
     ImageView onListGrid;
     View panelRecent;
 

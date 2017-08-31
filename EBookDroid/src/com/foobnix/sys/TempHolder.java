@@ -26,6 +26,8 @@ public class TempHolder {
 
     public static volatile boolean isSeaching = false;
 
+    public long timerFinishTime = 0;
+
     public static TempHolder get() {
         return inst;
     }

@@ -386,4 +386,5 @@
    <string name="two_pages">Dve strany</string>
    <string name="half_page">Polovica stránky</string>
    <string name="trim_borders">Orezanie okrajov</string>
+   <string name="stop_reading_timer_">Zastaviť čítanie (časovač)</string>
 </resources>

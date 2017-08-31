@@ -386,4 +386,5 @@
    <string name="two_pages">Kaksi sivua</string>
    <string name="half_page">Puoli sivua</string>
    <string name="trim_borders">Rajoita reunoja</string>
+   <string name="stop_reading_timer_">Lopeta lukeminen (ajastin)</string>
 </resources>

@@ -1,9 +1,9 @@
 package com.foobnix.pdf.info.presentation;
 
-import com.foobnix.android.utils.Dips;
 import com.foobnix.pdf.info.IMG;
+import com.foobnix.pdf.info.PageUrl;
 import com.foobnix.pdf.info.R;
-import com.foobnix.pdf.info.wrapper.AppState;
+import com.nostra13.universalimageloader.core.ImageLoader;
 
 import android.content.Context;
 import android.graphics.Color;
@@ -23,9 +23,8 @@ public class PageThumbnailAdapter extends BaseAdapter {
     private Context c;
     private int currentPage;
 
-    public PageThumbnailAdapter(Context c, String path, int pageCount, int currentPage) {
+    public PageThumbnailAdapter(Context c, int pageCount, int currentPage) {
         this.c = c;
-        this.path = path;
         this.pageCount = pageCount;
         this.currentPage = currentPage;
         inflater = LayoutInflater.from(c);
@@ -61,11 +60,11 @@ public class PageThumbnailAdapter extends BaseAdapter {
         ImageView img = (ImageView) view.findViewById(R.id.image1);
         IMG.updateImageSizeSmall(img);
 
-        if (AppState.get().isCut || AppState.get().isDouble) {
-            IMG.displayPageUrl(c, getPageUrl(position), img, null);
-        } else {
-            IMG.display(c, path, img, Dips.dpToPx(AppState.get().coverSmallSize), position, null, IMG.displayImageOptionsNoDiscCache);
-        }
+
+
+        PageUrl pageUrl = getPageUrl(position);
+        final String url = pageUrl.toString();
+        ImageLoader.getInstance().displayImage(url, img, IMG.displayImageOptionsNoDiscCache);
 
         TextView txt = (TextView) view.findViewById(R.id.text1);
         txt.setText("" + (position + 1));
@@ -76,8 +75,8 @@ public class PageThumbnailAdapter extends BaseAdapter {
         return view;
     }
 
-    public String getPageUrl(int page) {
-        return path;
+    public PageUrl getPageUrl(int page) {
+        return null;
     }
 
     public int getCurrentPage() {

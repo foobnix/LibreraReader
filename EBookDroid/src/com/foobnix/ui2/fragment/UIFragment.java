@@ -25,6 +25,7 @@ import android.os.Handler;
 import android.support.v4.app.Fragment;
 import android.support.v4.content.LocalBroadcastManager;
 import android.support.v4.util.Pair;
+import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.ProgressBar;
 
@@ -33,6 +34,7 @@ public abstract class UIFragment<T> extends Fragment {
 
     Handler handler;
     protected volatile ProgressBar progressBar;
+    protected RecyclerView recyclerView;
 
     public abstract Pair<Integer, Integer> getNameAndIconRes();
 
@@ -125,6 +127,15 @@ public abstract class UIFragment<T> extends Fragment {
     public void onReviceOpenDir(String path) {
 
     }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        if (recyclerView != null) {
+            recyclerView.setAdapter(null);
+        }
+    }
+
 
     BroadcastReceiver broadcastReceiver = new BroadcastReceiver() {
 

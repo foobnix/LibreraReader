@@ -386,4 +386,5 @@
    <string name="two_pages">صفحتين</string>
    <string name="half_page">نصف صفحة</string>
    <string name="trim_borders">تقليم الحدود</string>
+   <string name="stop_reading_timer_">إيقاف القراءة (مؤقت)</string>
 </resources>

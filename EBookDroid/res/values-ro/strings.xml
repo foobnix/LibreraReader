@@ -386,4 +386,5 @@
    <string name="two_pages">Două pagini</string>
    <string name="half_page">Pe jumătate de pagină</string>
    <string name="trim_borders">Aranjați marginile</string>
+   <string name="stop_reading_timer_">Opriți citirea (temporizator)</string>
 </resources>

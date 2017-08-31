@@ -18,7 +18,6 @@ import com.foobnix.android.utils.LOG;
 import com.foobnix.android.utils.TxtUtils;
 import com.foobnix.pdf.GeneralDocInterface;
 import com.foobnix.pdf.info.model.OutlineLinkWrapper;
-import com.foobnix.pdf.info.wrapper.AppState;
 import com.foobnix.ui2.AppDB;
 
 import android.content.Context;
@@ -104,18 +103,12 @@ public class GeneralDocInterfaceImpl implements GeneralDocInterface {
     @Override
     public void setCurrentPage(String path, int pageNumber, int pages) {
         try {
+            if (pageNumber > pages) {
+                pageNumber = pages;
+            }
             BookSettings bookSettings = SettingsManager.getBookSettings(path);
             PageIndex page = bookSettings.getCurrentPage();
-
-            int docIndex = pageNumber;
-            int viewIndex = pageNumber;
-            if (AppState.get().isCut) {
-                docIndex = pageNumber / 2;
-                viewIndex = pageNumber;
-            }
-
-            PageIndex current = new PageIndex(docIndex, viewIndex);
-
+            PageIndex current = new PageIndex(pageNumber, pageNumber);
             bookSettings.currentPageChanged(page, current, pages);
 
             SettingsManager.storeBookSettings();

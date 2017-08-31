@@ -32,6 +32,7 @@ import com.foobnix.pdf.info.view.DrawView;
 import com.foobnix.pdf.info.view.HorizontallSeekTouchEventListener;
 import com.foobnix.pdf.info.view.ProgressDraw;
 import com.foobnix.pdf.info.widget.ShareDialog;
+import com.foobnix.pdf.search.activity.DocumentControllerHorizontalView;
 import com.foobnix.pdf.search.view.CloseAppDialog;
 import com.foobnix.tts.MessagePageNumber;
 import com.foobnix.tts.TTSEngine;
@@ -222,6 +223,7 @@ public class DocumentWrapperUI {
 
         if (KeyEvent.KEYCODE_BACK == keyCode) {
             if (anchor.getChildCount() > 0 && anchor.getVisibility() == View.VISIBLE) {
+                controller.clearSelectedText();
                 anchor.setTag("backSpace");
                 anchor.removeAllViews();
                 anchor.setVisibility(View.GONE);
@@ -1369,7 +1371,7 @@ public class DocumentWrapperUI {
                 @Override
                 public void run() {
                     double value = (getController().getCurentPage() + 0.0001) / getController().getPageCount();
-                    a.getIntent().putExtra("percent", value);
+                    a.getIntent().putExtra(DocumentControllerHorizontalView.PERCENT_EXTRA, value);
                     // titleBar.setBackgroundColor(MagicHelper.getBgColor());
                     initToolBarPlusMinus();
                     updateSeekBarColorAndSize();

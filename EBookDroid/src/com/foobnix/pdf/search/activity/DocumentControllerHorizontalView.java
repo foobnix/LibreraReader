@@ -41,7 +41,7 @@ import android.widget.Toast;
 public abstract class DocumentControllerHorizontalView extends DocumentController {
     public static final String PASSWORD_EXTRA = "password";
     public static final String PAGE = "page";
-    private static final String PERCENT_EXTRA = "percent";
+    public static final String PERCENT_EXTRA = "percent";
 
     private GeneralDocInterface generadDocInterface;
     private int pagesCount;
@@ -148,6 +148,10 @@ public abstract class DocumentControllerHorizontalView extends DocumentControlle
         return currentPage;
     }
 
+    public void setCurrentPage(int page) {
+        currentPage = page;
+    }
+
     @Override
     public int getCurentPageFirst1() {
         return currentPage + 1;
@@ -162,18 +166,24 @@ public abstract class DocumentControllerHorizontalView extends DocumentControlle
             number = (int) (pagesCount * percent);
         }
 
+        LOG.d("getPageFromUri", "number by percent", percent, number);
+
         if (number > 0) {
             currentPage = number;
         } else {
             currentPage = generadDocInterface.getCurrentPage(getBookPath());
+            currentPage = PageUrl.realToFake(currentPage);
         }
+
         LOG.d("_PAGE", "LOAD currentPage", currentPage, getBookPath());
         return currentPage;
     }
 
     public void saveCurrentPage() {
-        LOG.d("_PAGE", "Save current page", currentPage);
-        generadDocInterface.setCurrentPage(getBookPath(), currentPage, pagesCount);
+        int page = PageUrl.fakeToReal(currentPage);
+        int pages = pagesCount;
+        LOG.d("_PAGE", "saveCurrentPage", page, pages);
+        generadDocInterface.setCurrentPage(getBookPath(), page, pages);
 
     }
 
@@ -181,35 +191,9 @@ public abstract class DocumentControllerHorizontalView extends DocumentControlle
         return currentPage;
     }
 
-    public String getCurrentPagePath() {
-        return getPagePath(currentPage);
-    }
-
     @Override
-    public String getPagePath(int page) {
-        PageUrl url = new PageUrl();
-        url.setPath(getBookPath());
-        url.setPage(AppState.get().isCut ? page / 2 : page);
-        url.setWidth(AppState.get().isCut ? (int) (imageWidth * 1.5) : imageWidth);
-        url.setHeight(AppState.get().isCut ? (int) (imageHeight * 1.5) : imageHeight);
-        url.setInvert(!AppState.get().isInvert);
-        url.setCrop(AppState.get().isCrop);
-        url.setRotate(AppState.get().rotate);
-        url.setCutp(AppState.get().cutP);
-
-        if (AppState.get().isCut) {
-            if (AppState.get().isCutRTL) {
-                url.setNumber(page % 2 == 0 ? 2 : 1);
-            } else {
-                url.setNumber(page % 2 == 0 ? 1 : 2);
-            }
-        }
-        if (AppState.get().isDouble) {
-            url.setPage(page * 2);
-            url.setDouble(AppState.get().isDouble);
-        }
-
-        return url.toString();
+    public PageUrl getPageUrl(int page) {
+        return PageUrl.build(getBookPath(), page, imageWidth, imageHeight);
     }
 
     public abstract void onGoToPageImpl(int page);
@@ -359,13 +343,7 @@ public abstract class DocumentControllerHorizontalView extends DocumentControlle
 
     @Override
     public int getPageCount() {
-        if (AppState.get().isCut) {
-            return pagesCount * 2;
-        }
-        if (AppState.get().isDouble) {
-            return (pagesCount % 2 == 0 ? 0 : 1) + pagesCount / 2;
-        }
-        return pagesCount;
+        return PageUrl.realToFake(pagesCount);
     }
 
     @Override
@@ -407,14 +385,6 @@ public abstract class DocumentControllerHorizontalView extends DocumentControlle
     @Override
     public void getOutline(com.foobnix.android.utils.ResultResponse<List<OutlineLinkWrapper>> outline) {
         List<OutlineLinkWrapper> outlineRes = generadDocInterface.getOutline(getCurrentBook().getPath(), "");
-        if (AppState.get().isCut && outlineRes != null) {
-            for (OutlineLinkWrapper item : outlineRes) {
-                if (item != null) {
-                    item.targetPage = item.targetPage * 2 - 1;
-                }
-            }
-
-        }
         setOutline(outlineRes);
         if (outline != null) {
             outline.onResultRecive(outlineRes);

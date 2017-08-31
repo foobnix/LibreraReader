@@ -386,4 +386,5 @@
    <string name="two_pages">Дві сторінки</string>
    <string name="half_page">Половина сторінки</string>
    <string name="trim_borders">Обрізати кордони</string>
+   <string name="stop_reading_timer_">Зупинити читання (таймер)</string>
 </resources>

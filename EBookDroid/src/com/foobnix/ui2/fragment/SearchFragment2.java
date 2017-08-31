@@ -66,8 +66,6 @@ public class SearchFragment2 extends UIFragment<FileMeta> {
 
     public static int NONE = -1;
 
-    FastScrollRecyclerView recyclerView;
-
     FileMetaAdapter searchAdapter;
     AuthorsAdapter2 authorsAdapter;
 
@@ -117,7 +115,7 @@ public class SearchFragment2 extends UIFragment<FileMeta> {
             recyclerView.setAdapter(authorsAdapter);
         }
 
-        recyclerView.myConfiguration();
+        ((FastScrollRecyclerView) recyclerView).myConfiguration();
     }
 
     public void initAutocomplition() {
@@ -161,9 +159,9 @@ public class SearchFragment2 extends UIFragment<FileMeta> {
         sortBy = (TextView) view.findViewById(R.id.sortBy);
         sortOrder = (ImageView) view.findViewById(R.id.sortOrder);
         searchEditText = (AutoCompleteTextView) view.findViewById(R.id.filterLine);
-        recyclerView = (FastScrollRecyclerView) view.findViewById(R.id.recyclerView);
+        recyclerView = (RecyclerView) view.findViewById(R.id.recyclerView);
 
-        recyclerView.setFastScrollStateChangeListener(new FastScrollStateChangeListener() {
+        ((FastScrollRecyclerView) recyclerView).setFastScrollStateChangeListener(new FastScrollStateChangeListener() {
 
             @Override
             public void onFastScrollStop() {
@@ -274,7 +272,6 @@ public class SearchFragment2 extends UIFragment<FileMeta> {
         super.onResume();
         LocalBroadcastManager.getInstance(getActivity()).registerReceiver(broadcastReceiver, new IntentFilter(BooksService.INTENT_NAME));
     }
-
 
     @Override
     public void onPause() {

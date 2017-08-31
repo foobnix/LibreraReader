@@ -199,6 +199,7 @@ public class AppState {
     public int inactivityTime = 2;
     public int remindRestTime = 60;
     public int flippingInterval = 10;
+    public int ttsTimer = 60;
 
     public boolean longTapEnable = true;
 
@@ -588,6 +589,7 @@ public class AppState {
         inactivityTime = sp.getInt("inactivityTime", inactivityTime);
         remindRestTime = sp.getInt("remindRestTime", remindRestTime);
         flippingInterval = sp.getInt("flippingInterval", flippingInterval);
+        ttsTimer = sp.getInt("ttsTimer", ttsTimer);
 
         supportPDF = sp.getBoolean("supportPDF", supportPDF);
         supportDJVU = sp.getBoolean("supportDJVU", supportDJVU);
@@ -795,6 +797,7 @@ public class AppState {
         editor.putInt("inactivityTime", inactivityTime);
         editor.putInt("remindRestTime", remindRestTime);
         editor.putInt("flippingInterval", flippingInterval);
+        editor.putInt("ttsTimer", ttsTimer);
 
         editor.putBoolean("supportPDF", supportPDF);
         editor.putBoolean("supportDJVU", supportDJVU);

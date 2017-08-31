@@ -43,7 +43,7 @@ import android.widget.TextView;
 public class BookmarksFragment2 extends UIFragment<AppBookmark> {
     public static final Pair<Integer, Integer> PAIR = new Pair<Integer, Integer>(R.string.bookmarks, R.drawable.glyphicons_73_bookmark);
     private static final String BOOK_PREFIX = "@book";
-    RecyclerView recyclerView;
+
     BookmarksAdapter2 bookmarksAdapter;
     View bookmarksSearchContainer, bookmarksClearFilter, topPanel;
     TextView exportBookmarks, importBookmarks, search, allBookmarks;
@@ -109,6 +109,7 @@ public class BookmarksFragment2 extends UIFragment<AppBookmark> {
         onTintChanged();
         return view;
     }
+
 
     private void popupMenu(final ImageView onGridList) {
         PopupMenu p = new PopupMenu(getActivity(), onGridList);

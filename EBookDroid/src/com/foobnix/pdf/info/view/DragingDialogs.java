@@ -33,6 +33,7 @@ import com.foobnix.pdf.info.AppSharedPreferences;
 import com.foobnix.pdf.info.ExtUtils;
 import com.foobnix.pdf.info.IMG;
 import com.foobnix.pdf.info.OutlineHelper;
+import com.foobnix.pdf.info.PageUrl;
 import com.foobnix.pdf.info.R;
 import com.foobnix.pdf.info.TintUtil;
 import com.foobnix.pdf.info.Urls;
@@ -98,6 +99,7 @@ import android.speech.tts.TextToSpeech.OnInitListener;
 import android.support.v4.app.FragmentActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.format.DateFormat;
 import android.view.Gravity;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
@@ -159,11 +161,54 @@ public class DragingDialogs {
                 final View view = inflater.inflate(R.layout.dialog_tts, null, false);
 
                 final TextView ttsPage = (TextView) view.findViewById(R.id.ttsPage);
-                ttsPage.setText(activity.getString(R.string.page) + " " + controller.getCurentPageFirst1());
-                ttsPage.setVisibility(View.GONE);
+                // ttsPage.setText(activity.getString(R.string.page) + " " +
+                // controller.getCurentPageFirst1());
 
                 final TextView textEngine = (TextView) view.findViewById(R.id.ttsEngine);
                 final TextView textDebug = (TextView) view.findViewById(R.id.textDebug);
+
+                final TextView timerTime = (TextView) view.findViewById(R.id.timerTime);
+                final TextView timerStart = (TextView) view.findViewById(R.id.timerStart);
+
+                timerTime.setText(AppState.get().ttsTimer + "" + controller.getString(R.string.minutes));
+                timerTime.setOnClickListener(new OnClickListener() {
+
+                    @Override
+                    public void onClick(View v) {
+                        final PopupMenu popupMenu = new PopupMenu(v.getContext(), v);
+                        for (int i = 15; i <= 300; i += 15) {
+                            final int number = i;
+                            popupMenu.getMenu().add("" + i).setOnMenuItemClickListener(new OnMenuItemClickListener() {
+
+                                @Override
+                                public boolean onMenuItemClick(MenuItem item) {
+                                    AppState.get().ttsTimer = number;
+                                    timerTime.setText(AppState.get().ttsTimer + "" + controller.getString(R.string.minutes));
+                                    return false;
+                                }
+                            });
+                        }
+                        popupMenu.show();
+                    }
+                });
+
+                timerStart.setOnClickListener(new OnClickListener() {
+
+                    @Override
+                    public void onClick(View v) {
+                        if (TempHolder.get().timerFinishTime == 0) {
+                            TempHolder.get().timerFinishTime = System.currentTimeMillis() + AppState.get().ttsTimer * 60 * 1000;
+                        } else {
+                            TempHolder.get().timerFinishTime = 0;
+                        }
+
+                        timerStart.setText(TempHolder.get().timerFinishTime == 0 ? R.string.start : R.string.cancel);
+                        ttsPage.setText(TempHolder.get().timerFinishTime == 0 ? "" : controller.getString(R.string.stop_reading_timer_) + " " + DateFormat.getTimeFormat(activity).format(TempHolder.get().timerFinishTime));
+                    }
+                });
+
+                timerStart.setText(TempHolder.get().timerFinishTime == 0 ? R.string.start : R.string.cancel);
+                ttsPage.setText(TempHolder.get().timerFinishTime == 0 ? "" : controller.getString(R.string.stop_reading_timer_) + " " + DateFormat.getTimeFormat(activity).format(TempHolder.get().timerFinishTime));
 
                 TTSEngine.get().getTTS(new OnInitListener() {
 
@@ -190,7 +235,7 @@ public class DragingDialogs {
                                 @Override
                                 public boolean onMenuItemClick(MenuItem item) {
                                     textEngine.setText(name);
-                                    TTSEngine.get().getTTSWithEngine(eInfo.name);
+                                    TTSEngine.get().setTTSWithEngine(eInfo.name);
                                     TxtUtils.underlineTextView(textEngine);
                                     return false;
                                 }
@@ -1023,13 +1068,12 @@ public class DragingDialogs {
                 final GridView grid = (GridView) view.findViewById(R.id.grid1);
                 grid.setColumnWidth(Dips.dpToPx(AppState.get().coverSmallSize));
 
-                File currentBook = controller.getCurrentBook();
+                final File currentBook = controller.getCurrentBook();
                 if (ExtUtils.isValidFile(currentBook)) {
-                    grid.setAdapter(new PageThumbnailAdapter(anchor.getContext(), currentBook.getPath(), controller.getPageCount(), controller.getCurentPageFirst1() - 1) {
+                    grid.setAdapter(new PageThumbnailAdapter(anchor.getContext(), controller.getPageCount(), controller.getCurentPageFirst1() - 1) {
                         @Override
-                        public String getPageUrl(int page) {
-                            LOG.d("getPageUrl", page);
-                            return controller.getPagePath(page);
+                        public PageUrl getPageUrl(int page) {
+                            return PageUrl.buildSmall(currentBook.getPath(), page);
                         };
                     });
                 }
@@ -1293,7 +1337,7 @@ public class DragingDialogs {
 
     public static void addBookmarksLong(final FrameLayout anchor, final DocumentController controller) {
         List<AppBookmark> objects = AppSharedPreferences.get().getBookmarksByBook(controller.getCurrentBook());
-        int page = controller.getCurentPageFirst1();
+        int page = PageUrl.fakeToReal(controller.getCurentPageFirst1());
 
         for (AppBookmark all : objects) {
             if (all.getPage() == page) {
@@ -1328,7 +1372,7 @@ public class DragingDialogs {
             public void onItemClick(final AdapterView<?> parent, final View view, final int position, final long id) {
 
                 final AppBookmark appBookmark = objects.get(position);
-                int page = AppState.get().isCut ? appBookmark.getPage() * 2 : appBookmark.getPage();
+                int page = PageUrl.realToFake(appBookmark.getPage());
 
                 if (page != controller.getCurentPageFirst1()) {
                     final Integer offsetY = Integer.valueOf((int) controller.getOffsetY());
@@ -1370,7 +1414,7 @@ public class DragingDialogs {
 
                     @Override
                     public void onClick(final View v) {
-                        int page = controller.getCurentPageFirst1();
+                        int page = PageUrl.fakeToReal(controller.getCurentPageFirst1());
 
                         for (AppBookmark all : objects) {
                             if (all.getPage() == page) {

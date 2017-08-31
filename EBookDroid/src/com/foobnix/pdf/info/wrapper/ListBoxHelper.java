@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.foobnix.android.utils.Keyboards;
 import com.foobnix.pdf.info.AppSharedPreferences;
+import com.foobnix.pdf.info.PageUrl;
 import com.foobnix.pdf.info.R;
 import com.foobnix.pdf.info.presentation.BookmarksAdapter;
 
@@ -20,7 +21,7 @@ public class ListBoxHelper {
         final Activity a = controller.getActivity();
 
         final AlertDialog.Builder builder = new AlertDialog.Builder(a);
-        final int curentPageFirst1 = AppState.get().isCut ? controller.getCurentPageFirst1() / 2 + controller.getCurentPageFirst1() % 2 : controller.getCurentPageFirst1();
+        final int curentPageFirst1 = PageUrl.fakeToReal(controller.getCurentPageFirst1());
 
         if (AppState.get().isCut) {
             builder.setTitle(a.getString(R.string.bookmark_on_page_) + " " + curentPageFirst1 + " (" + controller.getCurentPageFirst1() + ")");

@@ -88,7 +88,7 @@ public class TTSEngine {
         EventBus.getDefault().post(new TtsStatus());
     }
 
-    public TextToSpeech getTTSWithEngine(String engine) {
+    public TextToSpeech setTTSWithEngine(String engine) {
         shutdown();
         ttsEngine = new TextToSpeech(LirbiApp.context, listener, engine);
         return ttsEngine;

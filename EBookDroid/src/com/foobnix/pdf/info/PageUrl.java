@@ -3,6 +3,7 @@ package com.foobnix.pdf.info;
 import org.json.JSONObject;
 
 import com.foobnix.android.utils.Dips;
+import com.foobnix.pdf.info.wrapper.AppState;
 import com.foobnix.pdf.info.wrapper.MagicHelper;
 
 public class PageUrl {
@@ -47,6 +48,57 @@ public class PageUrl {
 
     public PageUrl() {
         unic = Dips.screenWidth();
+    }
+
+    public static PageUrl buildSmall(String path, int page) {
+        int w = Dips.dpToPx(AppState.get().coverSmallSize);
+        int h = (int) (w * 1.5);
+        return build(path, page, Dips.dpToPx(w), h);
+    }
+
+    public static int realToFake(int page) {
+        if (AppState.get().isCut)
+            return page * 2;
+
+        if (AppState.get().isDouble)
+            return page / 2 + page % 2;
+        return page;
+    }
+
+    public static int fakeToReal(int page) {
+        if (AppState.get().isCut)
+            return page / 2 + page % 2;
+
+        if (AppState.get().isDouble)
+            return page * 2;
+
+        return page;
+    }
+
+    public static PageUrl build(String path, int page, int w, int h) {
+        PageUrl url = new PageUrl();
+        url.setPath(path);
+        url.setPage(AppState.get().isCut ? page / 2 : page);
+        url.setWidth(AppState.get().isCut ? (int) (w * 1.5) : h);
+        url.setHeight(AppState.get().isCut ? (int) (w * 1.5) : h);
+        url.setInvert(!AppState.get().isInvert);
+        url.setCrop(AppState.get().isCrop);
+        url.setRotate(AppState.get().rotate);
+        url.setCutp(AppState.get().cutP);
+
+        if (AppState.get().isCut) {
+            if (AppState.get().isCutRTL) {
+                url.setNumber(page % 2 == 0 ? 2 : 1);
+            } else {
+                url.setNumber(page % 2 == 0 ? 1 : 2);
+            }
+        }
+        if (AppState.get().isDouble) {
+            url.setPage(page * 2);
+            url.setDouble(AppState.get().isDouble);
+        }
+        return url;
+
     }
 
     @Override

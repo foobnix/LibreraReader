@@ -386,4 +386,5 @@
    <string name="two_pages">Due pagine</string>
    <string name="half_page">Mezza pagina</string>
    <string name="trim_borders">Trim confini</string>
+   <string name="stop_reading_timer_">Stop lettura (timer)</string>
 </resources>

@@ -894,6 +894,10 @@ public class HorizontalViewActivity extends FragmentActivity {
         if (flippingHandler != null) {
             flippingHandler.removeCallbacksAndMessages(null);
         }
+        if (viewPager != null) {
+            viewPager.setAdapter(null);
+        }
+
         ADS.destory(adView);
         ADS.destoryNative(adViewNative);
         // AppState.get().isCut = false;
@@ -1311,6 +1315,7 @@ public class HorizontalViewActivity extends FragmentActivity {
 
     public void createAdapter() {
         IMG.clearMemoryCache();
+        viewPager.setAdapter(null);
         pagerAdapter = null;
         pagerAdapter = new UpdatableFragmentPagerAdapter(getSupportFragmentManager()) {
 
@@ -1325,7 +1330,7 @@ public class HorizontalViewActivity extends FragmentActivity {
 
                 final Bundle b = new Bundle();
                 b.putInt(ImagePageFragment.POS, position);
-                b.putString(ImagePageFragment.PAGE_PATH, documentController.getPagePath(position));
+                b.putString(ImagePageFragment.PAGE_PATH, documentController.getPageUrl(position).toString());
 
                 imageFragment.setArguments(b);
                 return imageFragment;
@@ -1537,6 +1542,7 @@ public class HorizontalViewActivity extends FragmentActivity {
     @Override
     public void onBackPressed() {
         if (anchor != null && anchor.getChildCount() > 0 && anchor.getVisibility() == View.VISIBLE) {
+            documentController.clearSelectedText();
             anchor.setVisibility(View.GONE);
             anchor.setTag("backGo");
             anchor.removeAllViews();

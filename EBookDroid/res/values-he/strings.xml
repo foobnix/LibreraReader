@@ -386,4 +386,5 @@
    <string name="two_pages">שני עמודים</string>
    <string name="half_page">חצי עמוד</string>
    <string name="trim_borders">חתוך גבולות</string>
+   <string name="stop_reading_timer_">הפסק לקרוא (טיימר)</string>
 </resources>
