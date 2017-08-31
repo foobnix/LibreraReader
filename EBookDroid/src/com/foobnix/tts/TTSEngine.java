@@ -196,7 +196,7 @@ public class TTSEngine {
         } catch (Exception e) {
             LOG.e(e);
         }
-        return "no engine";
+        return "---";
     }
 
     public static String engineToString(EngineInfo info) {

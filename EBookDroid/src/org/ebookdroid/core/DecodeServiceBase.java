@@ -316,7 +316,6 @@ public class DecodeServiceBase implements DecodeService {
             finishDecoding(task, vuPage, bitmap, r, croppedPageBounds);
 
         } catch (final OutOfMemoryError ex) {
-
             for (int i = 0; i <= AppSettings.getInstance().pagesInMemory; i++) {
                 getPages().put(Integer.MAX_VALUE - i, null);
             }

@@ -380,7 +380,6 @@ public class ImageExtractor implements ImageDownloader {
                     Canvas canvas = new Canvas(bitmap);
                     canvas.drawColor(MagicHelper.getBgColor());
 
-
                     if (AppState.get().isCutRTL) {
                         canvas.drawBitmap(bitmap2, 0, (maxH - bitmap2.getHeight()) / 2, null);
                         canvas.drawBitmap(bitmap1, bitmap2.getWidth(), (maxH - bitmap1.getHeight()) / 2, null);
@@ -402,6 +401,9 @@ public class ImageExtractor implements ImageDownloader {
             return messageFile("#password", file.getName());
         } catch (final Exception e) {
             LOG.e(e);
+            return messageFile("#error", "");
+        } catch (OutOfMemoryError e2) {
+            AppState.outOfMemoryHack();
             return messageFile("#error", "");
         } finally {
             sp.edit().remove("" + imageUri.hashCode()).commit();

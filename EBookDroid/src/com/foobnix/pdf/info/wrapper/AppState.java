@@ -872,4 +872,11 @@ public class AppState {
         this.isFullScreen = isFullScrean;
     }
 
+    public static void outOfMemoryHack() {
+        AppState.get().pagesInMemory--;
+        if (AppState.get().pagesInMemory < 0) {
+            AppState.get().pagesInMemory = 0;
+        }
+    }
+
 }
