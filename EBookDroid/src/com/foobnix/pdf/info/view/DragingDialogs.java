@@ -602,7 +602,13 @@ public class DragingDialogs {
 
                 return inflate;
             }
-        }.show("footNotes", true);
+        }.show("footNotes", true).setOnCloseListener(new Runnable() {
+
+            @Override
+            public void run() {
+                controller.clearSelectedText();
+            }
+        });
     }
 
     public static DragingPopup selectTextMenu(final FrameLayout anchor, final DocumentController controller, final boolean withAnnotation) {
@@ -995,7 +1001,13 @@ public class DragingDialogs {
                 return view;
             }
 
-        }.show("text", true);
+        }.show("text", true).setOnCloseListener(new Runnable() {
+
+            @Override
+            public void run() {
+                controller.clearSelectedText();
+            }
+        });
 
     }
 
