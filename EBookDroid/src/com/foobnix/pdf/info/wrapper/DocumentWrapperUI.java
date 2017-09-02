@@ -769,6 +769,11 @@ public class DocumentWrapperUI {
         goToPage1Top.setVisibility(View.GONE);
         closeTop.setVisibility(View.GONE);
 
+        textToSpeachTop.setVisibility(View.GONE);
+        lockUnlockTop.setVisibility(View.GONE);
+        nextScreenType.setVisibility(View.GONE);
+        goToPage1Top.setVisibility(View.GONE);
+
         if (AppState.get().isMusicianMode) {
             AppState.get().isEditMode = false;
             line1.setVisibility(View.VISIBLE);
@@ -778,6 +783,7 @@ public class DocumentWrapperUI {
 
             goToPage1.setVisibility(View.VISIBLE);
             goToPage1Top.setVisibility(View.VISIBLE);
+            lockUnlockTop.setVisibility(View.VISIBLE);
             closeTop.setVisibility(View.VISIBLE);
 
             reverseKeysIndicator.setVisibility(View.GONE);
@@ -787,10 +793,7 @@ public class DocumentWrapperUI {
             textToSpeach.setVisibility(View.GONE);
         }
 
-        textToSpeachTop.setVisibility(View.GONE);
-        lockUnlockTop.setVisibility(View.GONE);
-        nextScreenType.setVisibility(View.GONE);
-        goToPage1Top.setVisibility(View.GONE);
+
 
     }
 

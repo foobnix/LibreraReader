@@ -18,6 +18,7 @@ import com.foobnix.dao2.DaoMaster;
 import com.foobnix.dao2.DaoSession;
 import com.foobnix.dao2.FileMeta;
 import com.foobnix.dao2.FileMetaDao;
+import com.foobnix.pdf.info.ExtUtils;
 import com.foobnix.pdf.info.R;
 import com.foobnix.pdf.info.wrapper.AppState;
 import com.foobnix.pdf.info.wrapper.UITab;
@@ -230,6 +231,7 @@ public class AppDB {
         }
         LOG.d("addStarFile", path);
         FileMeta load = getOrCreate(path);
+        load.setPathTxt(ExtUtils.getFileName(path));
         load.setIsStar(true);
         load.setIsStarTime(System.currentTimeMillis());
         load.setCusType(FileMetaAdapter.DISPLAY_TYPE_DIRECTORY);

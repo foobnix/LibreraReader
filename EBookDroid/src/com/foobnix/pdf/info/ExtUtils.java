@@ -530,7 +530,9 @@ public class ExtUtils {
                 dialog.dismiss();
             }
         });
-        ((CheckBox) view.findViewById(R.id.checkBoxRemember)).setOnCheckedChangeListener(new OnCheckedChangeListener() {
+        CheckBox checkBox = (CheckBox) view.findViewById(R.id.checkBoxRemember);
+        checkBox.setVisibility(View.GONE);
+        checkBox.setOnCheckedChangeListener(new OnCheckedChangeListener() {
 
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {

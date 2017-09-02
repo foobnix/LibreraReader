@@ -8,6 +8,7 @@ import java.io.InputStream;
 
 import org.ebookdroid.LirbiApp;
 
+import com.foobnix.android.utils.Dips;
 import com.foobnix.android.utils.LOG;
 import com.foobnix.android.utils.TxtUtils;
 import com.foobnix.pdf.info.IMG;
@@ -58,7 +59,6 @@ public class MagicHelper {
         hsv[2] -= value;
         return Color.HSVToColor(hsv);
     }
-
 
     public static ByteArrayInputStream scaleCenterCrop(byte[] source, int w, int h) {
         Bitmap decodeStream = BitmapFactory.decodeStream(new ByteArrayInputStream(source));
@@ -282,6 +282,41 @@ public class MagicHelper {
         m.setScale(sx, sy);
         canvas.drawBitmap(bgBitmap, m, new Paint());
         canvas.drawBitmap(bitmap, 0, 0, p);
+
+        bitmap.recycle();
+        bitmap = null;
+        return result;
+    }
+
+    public static Bitmap updateWithBackground_customBG(Bitmap bitmap, int alpha, Bitmap bgBitmap) {
+        Paint p = new Paint();
+        p.setAlpha(255 - alpha);
+
+        float k1 = (float) bitmap.getHeight() / bitmap.getWidth();
+        float k2 = (float) Dips.screenHeight() / Dips.screenWidth();
+
+        float k = Math.max(k1, k2);
+
+        Bitmap result = Bitmap.createBitmap(bitmap.getWidth(), (int) (bitmap.getWidth() * k), bitmap.getConfig());
+        Canvas canvas = new Canvas(result);
+        canvas.drawColor(Color.WHITE);
+
+        // for PDF only
+        Matrix m = new Matrix();
+        float sx = (float) result.getWidth() / bgBitmap.getWidth();
+        float sy = (float) result.getHeight() / bgBitmap.getHeight();
+        m.setScale(sx, sy);
+        int h = (result.getHeight() - bitmap.getHeight()) / 2;
+
+        canvas.drawBitmap(bitmap, 0, h, new Paint());
+        canvas.drawBitmap(bgBitmap, m, p);
+
+        Paint p1 = new Paint();
+        p1.setColor(Color.WHITE);
+        p1.setAlpha(alpha);
+        // canvas.drawRect(0, 0, result.getWidth(), h, p1);
+        // canvas.drawRect(0, result.getHeight() - h, result.getWidth(),
+        // result.getHeight(), p1);
 
         bitmap.recycle();
         bitmap = null;

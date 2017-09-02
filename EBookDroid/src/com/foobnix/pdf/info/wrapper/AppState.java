@@ -358,8 +358,8 @@ public class AppState {
     public boolean isCutRTL = Urls.isRtl();
 
     // perofrmance
-    public int pagesInMemory = Build.VERSION.SDK_INT >= Build.VERSION_CODES.ICE_CREAM_SANDWICH ? 2 : MemoryUtils.IS_SMALL_MEMORY_SIZE ? 0 : 1;
-    public float pageQuality = MemoryUtils.IS_SMALL_MEMORY_SIZE ? 1f : 1.2f;
+    public int pagesInMemory = 1;
+    public float pageQuality = 1.2f;
     public int rotate = 0;
     public int rotateViewPager = 0;
 

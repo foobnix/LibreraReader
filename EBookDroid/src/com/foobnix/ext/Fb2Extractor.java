@@ -358,8 +358,8 @@ public class Fb2Extractor extends BaseExtractor {
 
         while ((line = input.readLine()) != null) {
 
-            if (!isEncoding && line.contains("windows-1251")) {
-                line = line.replace("windows-1251", "utf-8");
+            if (!isEncoding && line.toLowerCase(Locale.US).contains("windows-1251")) {
+                line = line.toLowerCase(Locale.US).replace("windows-1251", "utf-8");
                 isEncoding = true;
             }
 
