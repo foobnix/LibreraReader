@@ -17,6 +17,7 @@ public class BookSettings implements CurrentPageListener {
     public boolean splitPages = false;
     public DocumentViewMode viewMode = DocumentViewMode.VERTICALL_SCROLL;
     public boolean cropPages = false;
+    public boolean doublePages = false;
 
     public float offsetX;
     public float offsetY;
@@ -33,6 +34,12 @@ public class BookSettings implements CurrentPageListener {
         this.currentPage = PageIndex.FIRST;
     }
 
+    public void updateFromAppState() {
+        cropPages = AppState.get().isCrop;
+        doublePages = AppState.get().isDouble;
+        splitPages = AppState.get().isCut;
+    }
+
     BookSettings(final JSONObject object) throws JSONException {
         this.fileName = object.getString("fileName");
         this.currentPage = new PageIndex(object.getJSONObject("currentPage"));
@@ -42,6 +49,7 @@ public class BookSettings implements CurrentPageListener {
         this.autoLevels = object.getBoolean("autoLevels");
         this.isLocked = object.getBoolean("isLocked");
         this.cropPages = object.getBoolean("cropPages");
+        this.doublePages = object.getBoolean("doublePages");
         this.splitPages = object.getBoolean("splitPages");
         this.speed = object.getInt("speed");
         this.pages = object.optInt("pages");
@@ -57,6 +65,7 @@ public class BookSettings implements CurrentPageListener {
         obj.put("autoLevels", autoLevels);
         obj.put("isLocked", isLocked);
         obj.put("cropPages", cropPages);
+        obj.put("doublePages", doublePages);
         obj.put("splitPages", splitPages);
         obj.put("speed", speed);
         obj.put("pages", pages);

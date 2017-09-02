@@ -7,6 +7,7 @@ import java.util.Locale;
 
 import org.ebookdroid.common.cache.CacheManager;
 import org.ebookdroid.common.settings.SettingsManager;
+import org.ebookdroid.common.settings.books.BookSettings;
 import org.ebookdroid.core.codec.PageLink;
 import org.ebookdroid.droids.mupdf.codec.TextWord;
 import org.greenrobot.eventbus.EventBus;
@@ -127,8 +128,13 @@ public abstract class DocumentControllerHorizontalView extends DocumentControlle
 
             LOG.d("MATRIX", "READ", bookPath.hashCode() + "", PageImageState.get().getMatrixAsString());
 
-            AppState.get().isCut = SettingsManager.getBookSettings(bookPath).splitPages;
-            AppState.get().isCrop = SettingsManager.getBookSettings(bookPath).cropPages;
+        }
+
+        BookSettings bs = SettingsManager.getBookSettings(bookPath);
+        if (bs != null) {
+            AppState.get().isCut = bs.splitPages;
+            AppState.get().isCrop = bs.cropPages;
+            AppState.get().isDouble = bs.doublePages;
         }
 
         FileMetaCore.checkOrCreateMetaInfo(activity);

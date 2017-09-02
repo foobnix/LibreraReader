@@ -7,6 +7,7 @@ import android.graphics.RectF;
 public class TextWord extends RectF {
     public String w;
     private RectF original;
+    public int number;
 
     public TextWord() {
         super();

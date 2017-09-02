@@ -527,7 +527,10 @@ public class AppState {
         isUseVolumeKeys = sp.getBoolean("isUseVolumeKeys", isUseVolumeKeys);
         isRememberMode = sp.getBoolean("isRememberMode", isRememberMode);
 
-        isCrop = sp.getBoolean("isCrop", isCrop);
+        // isCrop = sp.getBoolean("isCrop", isCrop);
+        // isCut = sp.getBoolean("isCut", isCut);
+        // isDouble = sp.getBoolean("isDouble", isDouble);
+
         isInvert = sp.getBoolean("isInvert", isInvert);
 
         isLoopAutoplay = sp.getBoolean("isLoopAutoplay", isLoopAutoplay);
@@ -735,7 +738,10 @@ public class AppState {
         editor.putBoolean("isReverseKeys", isReverseKeys);
         editor.putBoolean("isUseVolumeKeys", isUseVolumeKeys);
 
-        editor.putBoolean("isCrop", isCrop);
+        // editor.putBoolean("isCrop", isCrop);
+        // editor.putBoolean("isCut", isCut);
+        // editor.putBoolean("isDouble", isDouble);
+
         editor.putBoolean("isInvert", isInvert);
 
         editor.putBoolean("isLoopAutoplay", isLoopAutoplay);

@@ -75,8 +75,51 @@ public class PageImaveView extends View {
         clickUtils = new ClickUtils();
     }
 
-    public TextWord[][] getPageText() {
-        return PageImageState.get().pagesText.get(pageNumber);
+    public RectF transform(RectF origin, int number) {
+        RectF r = new RectF(origin);
+        r.left = r.left * drawableWidth;
+        r.right = r.right * drawableWidth;
+
+        r.top = r.top * drawableHeight;
+        r.bottom = r.bottom * drawableHeight;
+
+        if (number == 1) {
+            r.left = r.left / 2;
+            r.right = r.right / 2;
+        } else if (number == 2) {
+            r.left = drawableWidth / 2 + r.left / 2;
+            r.right = drawableWidth / 2 + r.right / 2;
+        }
+
+        return r;
+    }
+
+    public TextWord[][] getPageText(int number) {
+        try {
+            if (AppState.get().isDouble && number != 0) {
+                TextWord[][] t = null;
+                if (number == 1) {
+                    t = PageImageState.get().pagesText.get(pageNumber * 2);
+                } else if (number == 2) {
+                    t = PageImageState.get().pagesText.get(pageNumber * 2 + 1);
+                }
+
+                for (int i = 0; i < t.length; i++) {
+                    for (int j = 0; j < t[i].length; j++) {
+                        TextWord textWord = t[i][j];
+                        textWord.number = number;
+                        t[i][j] = textWord;
+                    }
+                }
+
+                return t;
+            } else {
+                return PageImageState.get().pagesText.get(pageNumber);
+            }
+        } catch (Exception e) {
+            LOG.e(e);
+            return null;
+        }
     }
 
     public List<PageLink> getPageLinks() {
@@ -505,18 +548,8 @@ public class PageImaveView extends View {
 
     }
 
-    public RectF transform(RectF origin) {
-        RectF r = new RectF(origin);
-        r.left = r.left * drawableWidth;
-        r.right = r.right * drawableWidth;
-
-        r.top = r.top * drawableHeight;
-        r.bottom = r.bottom * drawableHeight;
-        return r;
-    }
-
     public void drawWord(Canvas c, TextWord t) {
-        RectF o = transform(t);
+        RectF o = transform(t, t.number);
         c.drawRect(o, paintWrods);
     }
 
@@ -548,7 +581,7 @@ public class PageImaveView extends View {
             if (link == null) {
                 continue;
             }
-            RectF wordRect = transform(link.sourceRect);
+            RectF wordRect = transform(link.sourceRect, 0);
             boolean intersects = RectF.intersects(wordRect, tapRect);
             if (intersects) {
                 return link;
@@ -560,7 +593,7 @@ public class PageImaveView extends View {
     }
 
     public String selectText(float x1, float y1, float xInit, float yInit) {
-        if (getPageText() == null) {
+        if (!AppState.get().isDouble && getPageText(0) == null) {
             LOG.d("get pag No page text", pageNumber);
             return null;
         }
@@ -598,14 +631,31 @@ public class PageImaveView extends View {
 
         boolean isHyphenWorld = false;
         TextWord prevWord = null;
-        for (TextWord line[] : getPageText()) {
+
+        int firstNumber = 0;
+        if (AppState.get().isDouble) {
+            firstNumber = xInit < drawableWidth / 2 ? 1 : 2;
+        }
+
+        LOG.d("firstNumber", firstNumber);
+        TextWord[][] pageText = getPageText(firstNumber);
+        if (pageText == null) {
+            return null;
+        }
+        for (TextWord line[] : pageText) {
+            if (line == null) {
+                continue;
+            }
             final TextWord current[] = line;
             for (TextWord textWord : current) {
+                if (textWord == null) {
+                    continue;
+                }
                 if (textWord.left <= 0 || textWord.top <= 0) {
                     continue;
                 }
 
-                RectF wordRect = transform(textWord);
+                RectF wordRect = transform(textWord, firstNumber);
                 if (single) {
                     boolean intersects = RectF.intersects(wordRect, tapRect);
                     if (intersects || isHyphenWorld) {

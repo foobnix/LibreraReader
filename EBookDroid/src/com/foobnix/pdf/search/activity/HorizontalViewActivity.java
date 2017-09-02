@@ -381,6 +381,7 @@ public class HorizontalViewActivity extends FragmentActivity {
                         onModeChange.setImageResource(R.drawable.glyphicons_full_page);
                         AppState.get().isDouble = false;
                         AppState.get().isCut = false;
+                        SettingsManager.getBookSettings().updateFromAppState();
                         documentController.cleanImageMatrix();
                         documentController.restartActivity();
                         return false;
@@ -393,6 +394,7 @@ public class HorizontalViewActivity extends FragmentActivity {
                         onModeChange.setImageResource(R.drawable.glyphicons_two_pages);
                         AppState.get().isDouble = true;
                         AppState.get().isCut = false;
+                        SettingsManager.getBookSettings().updateFromAppState();
                         documentController.cleanImageMatrix();
                         documentController.restartActivity();
                         return false;
@@ -406,6 +408,7 @@ public class HorizontalViewActivity extends FragmentActivity {
                         AppState.get().isDouble = false;
                         AppState.get().isCut = true;
                         AppState.get().isCrop = false;
+                        SettingsManager.getBookSettings().updateFromAppState();
                         documentController.cleanImageMatrix();
                         reloadDoc.run();
                         return false;
@@ -1174,8 +1177,19 @@ public class HorizontalViewActivity extends FragmentActivity {
                         new Thread() {
                             @Override
                             public void run() {
-                                PageImageState.get().pagesText.put(pos, documentController.getPageText(pos));
-                                PageImageState.get().pagesLinks.put(pos, documentController.getLinksForPage(pos));
+                                if (AppState.get().isDouble) {
+                                    int page1 = pos * 2;
+                                    int page2 = pos * 2 + 1;
+                                    PageImageState.get().pagesText.put(page1, documentController.getPageText(page1));
+                                    PageImageState.get().pagesLinks.put(page1, documentController.getLinksForPage(page1));
+
+                                    PageImageState.get().pagesText.put(page2, documentController.getPageText(page2));
+                                    PageImageState.get().pagesLinks.put(page2, documentController.getLinksForPage(page2));
+
+                                } else {
+                                    PageImageState.get().pagesText.put(pos, documentController.getPageText(pos));
+                                    PageImageState.get().pagesLinks.put(pos, documentController.getLinksForPage(pos));
+                                }
                                 LOG.d("onPageSelected", "load", pos);
                             };
                         }.start();

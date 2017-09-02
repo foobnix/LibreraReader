@@ -105,6 +105,7 @@ public class ViewerActivity extends AbstractActionActivity<ViewerActivity, Viewe
                     AppState.getInstance().autoScrollSpeed = bs.speed;
                     AppState.get().isCut = bs.splitPages;
                     AppState.get().isCrop = bs.cropPages;
+                    AppState.get().isDouble = bs.doublePages;
                 }
             }
 

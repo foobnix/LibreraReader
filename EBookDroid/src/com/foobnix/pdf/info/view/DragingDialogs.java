@@ -1666,9 +1666,8 @@ public class DragingDialogs {
                         PageImageState.get().isShowCuttingLine = false;
                         AppState.get().isCut = true;
                         AppState.get().isCrop = false;
-                        SettingsManager.getBookSettings().cropPages = false;
                         boolean init = SettingsManager.getBookSettings().splitPages;
-                        SettingsManager.getBookSettings().splitPages = true;
+                        SettingsManager.getBookSettings().updateFromAppState();
                         onRefreshDoc.run();
                         closeDialog();
                         if (!init) {
@@ -2913,7 +2912,7 @@ public class DragingDialogs {
                     @Override
                     public void onClick(final View v) {
                         AppState.get().isCrop = !AppState.get().isCrop;
-                        SettingsManager.getBookSettings().cropPages = AppState.get().isCrop;
+                        SettingsManager.getBookSettings().updateFromAppState();
                         TintUtil.setTintImage(isCrop, !AppState.get().isCrop ? TintUtil.COLOR_TINT_GRAY : Color.LTGRAY);
                         updateUIRefresh.run();
                     }
@@ -2932,7 +2931,7 @@ public class DragingDialogs {
                             @Override
                             public boolean onResultRecive(Integer result) {
                                 TintUtil.setTintImage(bookCut, !AppState.get().isCut ? TintUtil.COLOR_TINT_GRAY : Color.LTGRAY);
-                                SettingsManager.getBookSettings().splitPages = AppState.get().isCut;
+                                SettingsManager.getBookSettings().updateFromAppState();
                                 EventBus.getDefault().post(new InvalidateMessage());
                                 return false;
                             }
