@@ -194,7 +194,6 @@ public class HorizontalViewActivity extends FragmentActivity {
 
         super.onCreate(savedInstanceState);
 
-
         clickUtils = new ClickUtils();
 
         AppState.get().load(this);
@@ -389,13 +388,28 @@ public class HorizontalViewActivity extends FragmentActivity {
                         return false;
                     }
                 });
-                p.getMenu().add(R.string.two_pages).setIcon(R.drawable.glyphicons_two_pages).setOnMenuItemClickListener(new OnMenuItemClickListener() {
+                p.getMenu().add(R.string.two_pages).setIcon(R.drawable.glyphicons_two_pages_12).setOnMenuItemClickListener(new OnMenuItemClickListener() {
 
                     @Override
                     public boolean onMenuItemClick(MenuItem item) {
-                        onModeChange.setImageResource(R.drawable.glyphicons_two_pages);
+                        onModeChange.setImageResource(R.drawable.glyphicons_two_pages_12);
                         AppState.get().isDouble = true;
                         AppState.get().isCut = false;
+                        AppState.get().isDoubleCoverAlone = false;
+                        SettingsManager.getBookSettings().updateFromAppState();
+                        documentController.cleanImageMatrix();
+                        documentController.restartActivity();
+                        return false;
+                    }
+                });
+                p.getMenu().add(R.string.two_pages_cover).setIcon(R.drawable.glyphicons_two_pages_23).setOnMenuItemClickListener(new OnMenuItemClickListener() {
+
+                    @Override
+                    public boolean onMenuItemClick(MenuItem item) {
+                        onModeChange.setImageResource(R.drawable.glyphicons_two_pages_23);
+                        AppState.get().isDouble = true;
+                        AppState.get().isCut = false;
+                        AppState.get().isDoubleCoverAlone = true;
                         SettingsManager.getBookSettings().updateFromAppState();
                         documentController.cleanImageMatrix();
                         documentController.restartActivity();
@@ -430,7 +444,6 @@ public class HorizontalViewActivity extends FragmentActivity {
                 PopupHelper.initIcons(p, TintUtil.color);
             }
         });
-
 
         findViewById(R.id.bookMenu).setOnClickListener(new View.OnClickListener() {
 
@@ -610,7 +623,11 @@ public class HorizontalViewActivity extends FragmentActivity {
                     isInitPosistion = Dips.screenHeight() > Dips.screenWidth();
 
                     if (AppState.get().isDouble) {
-                        onModeChange.setImageResource(R.drawable.glyphicons_two_pages);
+                        if (AppState.get().isDoubleCoverAlone) {
+                            onModeChange.setImageResource(R.drawable.glyphicons_two_pages_23);
+                        } else {
+                            onModeChange.setImageResource(R.drawable.glyphicons_two_pages_12);
+                        }
                     } else if (AppState.get().isCut) {
                         onModeChange.setImageResource(R.drawable.glyphicons_page_split);
                     } else {
@@ -655,7 +672,6 @@ public class HorizontalViewActivity extends FragmentActivity {
                 }
             }
         });
-
 
     }
 
@@ -1187,6 +1203,12 @@ public class HorizontalViewActivity extends FragmentActivity {
                                 if (AppState.get().isDouble) {
                                     int page1 = pos * 2;
                                     int page2 = pos * 2 + 1;
+
+                                    if (AppState.get().isDoubleCoverAlone && pos >= 1) {
+                                        page1--;
+                                        page2--;
+                                    }
+
                                     PageImageState.get().pagesText.put(page1, documentController.getPageText(page1));
                                     PageImageState.get().pagesLinks.put(page1, documentController.getLinksForPage(page1));
 

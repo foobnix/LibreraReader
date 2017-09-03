@@ -363,11 +363,15 @@ public class ImageExtractor implements ImageDownloader {
             } else {
                 if (pageUrl.isDouble()) {
                     LOG.d("isDouble", pageUrl.getHeight(), pageUrl.getWidth());
+                    if (AppState.get().isDoubleCoverAlone) {
+                        pageUrl.setPage(pageUrl.getPage() - 1);
+                    }
+
                     Bitmap bitmap1 = proccessOtherPage(pageUrl);
                     pageUrl.setPage(pageUrl.getPage() + 1);
 
                     Bitmap bitmap2 = null;
-                    if (pageUrl.getPage() + 1 < pageCount) {
+                    if (pageUrl.getPage() < pageCount) {
                         bitmap2 = proccessOtherPage(pageUrl);
                     } else {
                         bitmap2 = Bitmap.createBitmap(bitmap1);

@@ -246,6 +246,7 @@ public class AppState {
     public boolean isCrop = false;
     public boolean isCut = false;
     public boolean isDouble = false;
+    public boolean isDoubleCoverAlone = false;
 
     public boolean isInvert = true;
 
@@ -525,7 +526,7 @@ public class AppState {
         isLocked = sp.getBoolean("isLocked", isLocked);
         isReverseKeys = sp.getBoolean("isReverseKeys", isReverseKeys);
         isUseVolumeKeys = sp.getBoolean("isUseVolumeKeys", isUseVolumeKeys);
-        isRememberMode = sp.getBoolean("isRememberMode", isRememberMode);
+        isRememberMode = sp.getBoolean("isRememberMode1", isRememberMode);
 
         // isCrop = sp.getBoolean("isCrop", isCrop);
         // isCut = sp.getBoolean("isCut", isCut);
@@ -716,7 +717,7 @@ public class AppState {
         editor.putBoolean("isShowChaptersOnProgress", isShowChaptersOnProgress);
         editor.putBoolean("isWhiteTheme", isWhiteTheme);
         editor.putBoolean("isOpenLastBook", isOpenLastBook);
-        editor.putBoolean("isRememberMode", isRememberMode);
+        editor.putBoolean("isRememberMode1", isRememberMode);
         editor.putBoolean("isBrowseGrid", isBrowseGrid);
         editor.putBoolean("isRecentGrid", isRecentGrid);
 

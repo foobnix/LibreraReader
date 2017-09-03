@@ -387,4 +387,5 @@
    <string name="half_page">Połowa strony</string>
    <string name="trim_borders">Granice przycinania</string>
    <string name="stop_reading_timer_">Zatrzymaj czytanie (timer)</string>
+   <string name="two_pages_cover">Okładka, dwie strony</string>
 </resources>

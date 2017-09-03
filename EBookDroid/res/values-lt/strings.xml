@@ -379,7 +379,7 @@
    <string name="what_is_the_opds_online_catalog_">Kas yra OPDS internetinis katalogas?</string>
    <string name="books">Knygos</string>
    <string name="reading_out_loud">Skaitoma balsu</string>
-   <string name="librera_pro_no_ads_leading_book_reader_and_pdf">&quot;Librera PRO&quot; (be skelbimų) &quot;Leader Book Reader&quot; ir PDF</string>
+   <string name="librera_pro_no_ads_leading_book_reader_and_pdf">"Librera PRO" (be skelbimų) "Leader Book Reader" ir PDF</string>
    <string name="custom_text">Tinkintas tekstas</string>
    <string name="right_page_then_left_page_rtl_">Dešiniuoju pelės klavišu kairėje pusėje (RTL)</string>
    <string name="one_page">Vienas puslapis</string>
@@ -387,4 +387,5 @@
    <string name="half_page">Pusė puslapio</string>
    <string name="trim_borders">Trim sienas</string>
    <string name="stop_reading_timer_">Nustoti skaityti (laikmatis)</string>
+   <string name="two_pages_cover">Viršelis, du puslapiai</string>
 </resources>

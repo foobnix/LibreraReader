@@ -60,8 +60,10 @@ public class PageUrl {
         if (AppState.get().isCut)
             return page * 2;
 
-        if (AppState.get().isDouble)
-            return page / 2 + page % 2;
+        if (AppState.get().isDouble) {
+            int i = page / 2 + page % 2;
+            return i;
+        }
         return page;
     }
 
@@ -93,7 +95,8 @@ public class PageUrl {
                 url.setNumber(page % 2 == 0 ? 1 : 2);
             }
         }
-        if (AppState.get().isDouble) {
+
+        if (AppState.get().isDouble && !(AppState.get().isDoubleCoverAlone && page == 0)) {
             url.setPage(page * 2);
             url.setDouble(AppState.get().isDouble);
         }

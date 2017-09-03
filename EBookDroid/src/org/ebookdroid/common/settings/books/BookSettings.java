@@ -10,7 +10,7 @@ import com.foobnix.pdf.info.wrapper.AppState;
 
 public class BookSettings implements CurrentPageListener {
 
-    public  String fileName;
+    public String fileName;
     public PageIndex currentPage;
     public int zoom = 100;
 
@@ -18,10 +18,10 @@ public class BookSettings implements CurrentPageListener {
     public DocumentViewMode viewMode = DocumentViewMode.VERTICALL_SCROLL;
     public boolean cropPages = false;
     public boolean doublePages = false;
+    public boolean doublePagesCover = false;
 
     public float offsetX;
     public float offsetY;
-
 
     public int speed = AppState.getInstance().autoScrollSpeed;
 
@@ -38,6 +38,7 @@ public class BookSettings implements CurrentPageListener {
         cropPages = AppState.get().isCrop;
         doublePages = AppState.get().isDouble;
         splitPages = AppState.get().isCut;
+        doublePagesCover = AppState.get().isDoubleCoverAlone;
     }
 
     BookSettings(final JSONObject object) throws JSONException {
@@ -50,6 +51,7 @@ public class BookSettings implements CurrentPageListener {
         this.isLocked = object.getBoolean("isLocked");
         this.cropPages = object.getBoolean("cropPages");
         this.doublePages = object.getBoolean("doublePages");
+        this.doublePagesCover = object.getBoolean("doublePagesCover");
         this.splitPages = object.getBoolean("splitPages");
         this.speed = object.getInt("speed");
         this.pages = object.optInt("pages");
@@ -66,12 +68,12 @@ public class BookSettings implements CurrentPageListener {
         obj.put("isLocked", isLocked);
         obj.put("cropPages", cropPages);
         obj.put("doublePages", doublePages);
+        obj.put("doublePagesCover", doublePagesCover);
         obj.put("splitPages", splitPages);
         obj.put("speed", speed);
         obj.put("pages", pages);
         return obj;
     }
-
 
     @Override
     public void currentPageChanged(final PageIndex oldIndex, final PageIndex newIndex, int pages) {

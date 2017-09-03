@@ -90,6 +90,7 @@
             android:src="@drawable/glyphicons_174_play"
             android:visibility="gone" />
         
+        
         <ImageView
             android:id="@+id/onModeChange"
             style="@style/buttonWhite"

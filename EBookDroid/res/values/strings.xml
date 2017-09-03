@@ -384,6 +384,7 @@
    <string name="right_page_then_left_page_rtl_">Right page then left page (RTL)</string>
    <string name="one_page">One page</string>
    <string name="two_pages">Two pages</string>
+   <string name="two_pages_cover">Cover, Two pages</string>
    <string name="half_page">Half page</string>
    <string name="trim_borders">Trim borders</string>
    <string name="stop_reading_timer_">Stop reading (timer)</string>

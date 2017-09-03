@@ -387,4 +387,5 @@
    <string name="half_page">半ページ</string>
    <string name="trim_borders">ボーダーをトリムする</string>
    <string name="stop_reading_timer_">読書を止める（タイマー）</string>
+   <string name="two_pages_cover">カバー、2ページ</string>
 </resources>

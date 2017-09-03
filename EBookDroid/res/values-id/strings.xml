@@ -387,4 +387,5 @@
    <string name="half_page">Setengah halaman</string>
    <string name="trim_borders">Potong batas</string>
    <string name="stop_reading_timer_">Berhenti membaca (timer)</string>
+   <string name="two_pages_cover">Tutup, Dua halaman</string>
 </resources>

@@ -387,4 +387,5 @@
    <string name="half_page">半页</string>
    <string name="trim_borders">修剪边框</string>
    <string name="stop_reading_timer_">停止阅读（定时器）</string>
+   <string name="two_pages_cover">封面，两页</string>
 </resources>

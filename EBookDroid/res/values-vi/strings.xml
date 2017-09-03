@@ -387,4 +387,5 @@
    <string name="half_page">Nửa trang</string>
    <string name="trim_borders">Cắt biên</string>
    <string name="stop_reading_timer_">Ngừng đọc (hẹn giờ)</string>
+   <string name="two_pages_cover">Trang bìa, hai trang</string>
 </resources>

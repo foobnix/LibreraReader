@@ -387,4 +387,5 @@
    <string name="half_page">Yarım sayfa</string>
    <string name="trim_borders">Kenarları düzelt</string>
    <string name="stop_reading_timer_">Okumayı durdur (zamanlayıcı)</string>
+   <string name="two_pages_cover">Kapak, İki sayfa</string>
 </resources>

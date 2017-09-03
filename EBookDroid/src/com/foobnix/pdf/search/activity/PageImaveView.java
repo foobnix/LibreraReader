@@ -97,11 +97,17 @@ public class PageImaveView extends View {
     public TextWord[][] getPageText(int number) {
         try {
             if (AppState.get().isDouble && number != 0) {
+
+                int page = pageNumber * 2;
+                if (AppState.get().isDoubleCoverAlone) {
+                    page--;
+                }
+
                 TextWord[][] t = null;
                 if (number == 1) {
-                    t = PageImageState.get().pagesText.get(pageNumber * 2);
+                    t = PageImageState.get().pagesText.get(page);
                 } else if (number == 2) {
-                    t = PageImageState.get().pagesText.get(pageNumber * 2 + 1);
+                    t = PageImageState.get().pagesText.get(page + 1);
                 }
 
                 for (int i = 0; i < t.length; i++) {

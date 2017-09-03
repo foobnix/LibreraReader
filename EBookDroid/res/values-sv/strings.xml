@@ -387,4 +387,5 @@
    <string name="half_page">Halv sida</string>
    <string name="trim_borders">Trimma gränserna</string>
    <string name="stop_reading_timer_">Sluta läsa (timer)</string>
+   <string name="two_pages_cover">Omslag, två sidor</string>
 </resources>

@@ -71,7 +71,6 @@ public abstract class DocumentControllerHorizontalView extends DocumentControlle
         imageWidth = isTextFormat ? w : (int) (Dips.screenWidth() * AppState.get().pageQuality);
         imageHeight = isTextFormat ? h : (int) (Dips.screenHeight() * AppState.get().pageQuality);
 
-
         if (isTextFormat) {
             AppState.get().isCrop = false;
             AppState.get().isCut = false;
@@ -132,6 +131,7 @@ public abstract class DocumentControllerHorizontalView extends DocumentControlle
             AppState.get().isCut = bs.splitPages;
             AppState.get().isCrop = bs.cropPages;
             AppState.get().isDouble = bs.doublePages;
+            AppState.get().isDoubleCoverAlone = bs.doublePagesCover;
         }
 
         if (AppState.get().isDouble) {

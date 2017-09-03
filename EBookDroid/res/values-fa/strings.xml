@@ -387,4 +387,5 @@
    <string name="half_page">نیمی از صفحه</string>
    <string name="trim_borders">اصلاح مرزها</string>
    <string name="stop_reading_timer_">توقف خواندن (تایمر)</string>
+   <string name="two_pages_cover">پوشش دو صفحه</string>
 </resources>

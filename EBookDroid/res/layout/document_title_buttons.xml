@@ -88,7 +88,7 @@
         android:layout_width="@dimen/wh_button"
         android:layout_height="@dimen/wh_button"
         android:layout_weight="0"
-        android:src="@drawable/glyphicons_166_iphone_exchange" />
+        android:src="@drawable/glyphicons_page_split" />
 
     <ImageView
         android:contentDescription="@string/fullscreen"

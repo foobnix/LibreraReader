@@ -387,4 +387,5 @@
    <string name="half_page">Demi-page</string>
    <string name="trim_borders">Couper les bordures</string>
    <string name="stop_reading_timer_">Arrêtez la lecture (minuterie)</string>
+   <string name="two_pages_cover">Couverture, deux pages</string>
 </resources>

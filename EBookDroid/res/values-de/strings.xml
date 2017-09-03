@@ -387,4 +387,5 @@
    <string name="half_page">Halbe Seite</string>
    <string name="trim_borders">Trimmgrenzen</string>
    <string name="stop_reading_timer_">Stoppen des Lesens (Timer)</string>
+   <string name="two_pages_cover">Cover, zwei Seiten</string>
 </resources>
