@@ -11,6 +11,7 @@ import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
 
 import com.foobnix.android.utils.Dips;
+import com.foobnix.android.utils.Keyboards;
 import com.foobnix.android.utils.LOG;
 import com.foobnix.android.utils.ResultResponse;
 import com.foobnix.android.utils.TxtUtils;
@@ -192,6 +193,7 @@ public class HorizontalViewActivity extends FragmentActivity {
         }
 
         super.onCreate(savedInstanceState);
+
 
         clickUtils = new ClickUtils();
 
@@ -428,13 +430,7 @@ public class HorizontalViewActivity extends FragmentActivity {
                 PopupHelper.initIcons(p, TintUtil.color);
             }
         });
-        if (AppState.get().isDouble) {
-            onModeChange.setImageResource(R.drawable.glyphicons_two_pages);
-        } else if (AppState.get().isCut) {
-            onModeChange.setImageResource(R.drawable.glyphicons_page_split);
-        } else {
-            onModeChange.setImageResource(R.drawable.glyphicons_full_page);
-        }
+
 
         findViewById(R.id.bookMenu).setOnClickListener(new View.OnClickListener() {
 
@@ -488,15 +484,17 @@ public class HorizontalViewActivity extends FragmentActivity {
             }
         });
 
+        Keyboards.hideNavigationOnCreate(HorizontalViewActivity.this);
+
         loadinAsyncTask = new CopyAsyncTask() {
             ProgressDialog dialog;
             private boolean isCancelled = false;
 
             @Override
             protected void onPreExecute() {
+
                 dialog = ProgressDialog.show(HorizontalViewActivity.this, "", getString(R.string.msg_loading));
                 dialog.getWindow().clearFlags(WindowManager.LayoutParams.FLAG_DIM_BEHIND);
-
             };
 
             @Override
@@ -507,8 +505,8 @@ public class HorizontalViewActivity extends FragmentActivity {
                             Thread.sleep(250);
                         } catch (InterruptedException e) {
                         }
-                        LOG.d("viewPager", viewPager.getHeight());
                     }
+                    LOG.d("viewPager", viewPager.getHeight() + "x" + viewPager.getWidth());
                     initAsync(viewPager.getWidth(), viewPager.getHeight());
                 } catch (MuPdfPasswordException e) {
                     return -1;
@@ -611,6 +609,14 @@ public class HorizontalViewActivity extends FragmentActivity {
 
                     isInitPosistion = Dips.screenHeight() > Dips.screenWidth();
 
+                    if (AppState.get().isDouble) {
+                        onModeChange.setImageResource(R.drawable.glyphicons_two_pages);
+                    } else if (AppState.get().isCut) {
+                        onModeChange.setImageResource(R.drawable.glyphicons_page_split);
+                    } else {
+                        onModeChange.setImageResource(R.drawable.glyphicons_full_page);
+                    }
+
                 }
 
             };
@@ -649,6 +655,7 @@ public class HorizontalViewActivity extends FragmentActivity {
                 }
             }
         });
+
 
     }
 

@@ -98,7 +98,7 @@
             android:layout_weight="0"
             android:cropToPadding="true"
             android:padding="6dip"
-            android:src="@drawable/glyphicons_page_split" />
+            android:src="@drawable/glyphicons_full_page" />
         
         <ImageView
             android:id="@+id/bookNight"
