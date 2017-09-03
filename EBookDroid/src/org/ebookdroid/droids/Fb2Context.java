@@ -15,14 +15,37 @@ import com.foobnix.pdf.info.model.BookCSS;
 
 public class Fb2Context extends PdfContext {
 
-    File cacheFile;
+    File cacheFile, cacheFile1;
 
     @Override
     public File getCacheFileName(String fileNameOriginal) {
         fileNameOriginal = fileNameOriginal + BookCSS.get().isAutoHypens + BookCSS.get().hypenLang;
         cacheFile = new File(CacheZipUtils.CACHE_BOOK_DIR, fileNameOriginal.hashCode() + ".epub");
+        cacheFile1 = new File(CacheZipUtils.CACHE_BOOK_DIR, fileNameOriginal.hashCode() + ".epub.fb2");
         return cacheFile;
     }
+
+    public CodecDocument openDocumentInner1(final String fileName, String password) {
+        final MuPdfDocument muPdfDocument = new MuPdfDocument(this, MuPdfDocument.FORMAT_PDF, fileName, password);
+
+        Fb2Extractor.get().convertFB2(fileName, cacheFile.getPath());
+
+        final File jsonFile = new File(cacheFile + ".json");
+        new Thread() {
+            @Override
+            public void run() {
+                Map<String, String> notes = Fb2Extractor.get().getFooterNotes(cacheFile.getPath());
+                muPdfDocument.setFootNotes(notes);
+                JsonHelper.mapToFile(jsonFile, notes);
+                LOG.d("save notes to file", jsonFile);
+            };
+        }.start();
+
+        return muPdfDocument;
+
+    }
+
+    MuPdfDocument muPdfDocument;
 
     @Override
     public CodecDocument openDocumentInner(final String fileName, String password) {
@@ -31,17 +54,33 @@ public class Fb2Context extends PdfContext {
             return new HtmlContext().openDocument(fileName, password);
         }
 
-        String outName;
+        String outName = null;
         if (cacheFile.isFile()) {
             outName = cacheFile.getPath();
-        } else {
+        } else if (cacheFile1.isFile()) {
+            outName = cacheFile1.getPath();
+        }
+
+        if (outName == null) {
             outName = cacheFile.getPath();
             Fb2Extractor.get().convert(fileName, outName);
+            LOG.d("Fb2Context create", outName);
         }
 
         LOG.d("Fb2Context open", outName);
 
-        final MuPdfDocument muPdfDocument = new MuPdfDocument(this, MuPdfDocument.FORMAT_PDF, outName, password);
+        try {
+            muPdfDocument = new MuPdfDocument(this, MuPdfDocument.FORMAT_PDF, outName, password);
+        } catch (Exception e) {
+            LOG.e(e);
+            if (cacheFile.isFile()) {
+                cacheFile.delete();
+            }
+            outName = cacheFile1.getPath();
+            Fb2Extractor.get().convertFB2(fileName, outName);
+            muPdfDocument = new MuPdfDocument(this, MuPdfDocument.FORMAT_PDF, outName, password);
+            LOG.d("Fb2Context create", outName);
+        }
 
         final File jsonFile = new File(cacheFile + ".json");
         if (jsonFile.isFile()) {

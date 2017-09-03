@@ -309,6 +309,21 @@ public class Fb2Extractor extends BaseExtractor {
         return map;
     }
 
+    public boolean convertFB2(String inputFile, String toName) {
+        try {
+            String encoding = findHeaderEncoding(inputFile);
+            ByteArrayOutputStream generateFb2File = generateFb2File(inputFile, encoding);
+            FileOutputStream out = new FileOutputStream(toName);
+            out.write(generateFb2File.toByteArray());
+            out.close();
+        } catch (Exception e) {
+            LOG.e(e);
+            return false;
+        }
+        return true;
+
+    }
+
     @Override
     public boolean convert(String inputFile, String toName) {
 
@@ -358,6 +373,7 @@ public class Fb2Extractor extends BaseExtractor {
 
         while ((line = input.readLine()) != null) {
 
+
             if (!isEncoding && line.toLowerCase(Locale.US).contains("windows-1251")) {
                 line = line.toLowerCase(Locale.US).replace("windows-1251", "utf-8");
                 isEncoding = true;
@@ -402,7 +418,7 @@ public class Fb2Extractor extends BaseExtractor {
                         line = HypenUtils.applyHypnes(line);
                     }
                 }
-                writer.print(line);
+                writer.println(line);
             }
 
         }
