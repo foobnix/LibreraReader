@@ -204,7 +204,7 @@ public class ImageExtractor implements ImageDownloader {
         RectF rectF = new RectF(0, 0, 1f, 1f);
         final float k = (float) pageInfo.height / pageInfo.width;
         int width = pageUrl.getWidth();
-        int height = (int) (pageUrl.getWidth() * k);
+        int height = (int) (width * k);
 
         LOG.d("Bitmap", width, height);
         LOG.d("Bitmap pageInfo.height", pageInfo.width, pageInfo.height);

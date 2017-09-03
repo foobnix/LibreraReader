@@ -68,8 +68,8 @@ public abstract class DocumentControllerHorizontalView extends DocumentControlle
 
         isTextFormat = ExtUtils.isTextFomat(activity.getIntent());
 
-        imageWidth = isTextFormat ? w : (int) (Dips.screenWidth() * AppState.get().pageQuality);
-        imageHeight = isTextFormat ? h : (int) (Dips.screenHeight() * AppState.get().pageQuality);
+        imageWidth = isTextFormat ? w : (int) (Math.min(Dips.screenWidth(), Dips.screenHeight()) * AppState.get().pageQuality);
+        imageHeight = isTextFormat ? h : (int) (Math.max(Dips.screenWidth(), Dips.screenHeight()) * AppState.get().pageQuality);
 
         if (isTextFormat) {
             AppState.get().isCrop = false;
@@ -135,7 +135,7 @@ public abstract class DocumentControllerHorizontalView extends DocumentControlle
         }
 
         if (AppState.get().isDouble) {
-            imageWidth = imageWidth / 2;
+            imageWidth = (int) (Dips.screenWidth() * AppState.get().pageQuality / 2);
         }
 
         FileMetaCore.checkOrCreateMetaInfo(activity);
