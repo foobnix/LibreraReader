@@ -12,17 +12,17 @@
         android:layout_centerInParent="false" />
 
     <ImageView
-        android:tint="@color/white"
         android:id="@+id/ttsActive"
         style="@style/buttonWhite"
         android:layout_width="@dimen/wh_button"
         android:layout_height="@dimen/wh_button"
-        android:layout_margin="0dip"
         android:layout_alignParentLeft="true"
+        android:layout_margin="0dip"
         android:background="@drawable/bg_search_second_clickable"
         android:contentDescription="read aloudW"
         android:padding="7dip"
-        android:src="@drawable/glyphicons_185_volume_up" />
+        android:src="@drawable/glyphicons_185_volume_up"
+        android:tint="@color/white" />
 
     <FrameLayout
         android:id="@+id/adFrame"
@@ -38,122 +38,143 @@
     <LinearLayout
         android:id="@+id/actionBar"
         android:layout_width="match_parent"
-        android:layout_height="?android:attr/actionBarSize"
-        android:layout_weight="0"
+        android:layout_height="wrap_content"
         android:background="#96aa39"
         android:clickable="true"
-        android:gravity="center_vertical"
+        android:gravity="center"
+        android:orientation="vertical"
         android:paddingLeft="2dip"
         android:paddingRight="2dip"
         android:visibility="visible" >
 
         <LinearLayout
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:orientation="vertical" >
+            android:gravity="center"
+            android:orientation="horizontal" >
 
-            <TextView
-                android:id="@+id/title"
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:gravity="center_vertical"
-                android:paddingLeft="15dip"
-                android:singleLine="true"
-                android:text="@string/msg_loading"
-                android:textColor="#ffffff"
-                android:textSize="16sp"
-                android:textStyle="normal" >
-            </TextView>
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical" >
 
-            <TextView
-                android:id="@+id/chapter"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:gravity="center_vertical"
-                android:paddingLeft="15dip"
-                android:singleLine="true"
-                android:text="@string/msg_loading"
-                android:textColor="#ffffff"
-                android:textSize="12sp"
-                android:visibility="gone" >
-            </TextView>
+                <TextView
+                    android:id="@+id/title"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:singleLine="true"
+                    android:text="@string/msg_loading"
+                    android:textColor="#ffffff"
+                    android:textSize="16sp"
+                    android:textStyle="normal" >
+                </TextView>
+
+                <TextView
+                    android:id="@+id/chapter"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:paddingLeft="15dip"
+                    android:singleLine="true"
+                    android:text="@string/msg_loading"
+                    android:textColor="#ffffff"
+                    android:textSize="12sp"
+                    android:visibility="gone" >
+                </TextView>
+            </LinearLayout>
+
+            <ImageView
+                android:id="@+id/bookClose"
+                style="@style/buttonWhiteClose"
+                android:layout_width="@dimen/wh_button"
+                android:layout_height="@dimen/wh_button"
+                android:layout_weight="0"
+                android:contentDescription="@string/close_book"
+                android:src="@drawable/glyphicons_208_remove_2" />
         </LinearLayout>
 
-        <ImageView
-            android:id="@+id/onPageFlip1"
-            style="@style/buttonWhite"
-            android:layout_width="@dimen/wh_button"
-            android:layout_height="@dimen/wh_button"
-            android:layout_weight="0"
-            android:contentDescription="change day or night"
-            android:src="@drawable/glyphicons_174_play"
-            android:visibility="gone" />
-        
-        
-        <ImageView
-            android:id="@+id/onModeChange"
-            style="@style/buttonWhite"
-            android:layout_width="@dimen/wh_button"
-            android:layout_height="@dimen/wh_button"
-            android:layout_weight="0"
-            android:cropToPadding="true"
-            android:padding="6dip"
-            android:src="@drawable/glyphicons_full_page" />
-        
-        <ImageView
-            android:id="@+id/bookNight"
-            style="@style/buttonWhite"
-            android:layout_width="@dimen/wh_button"
-            android:layout_height="@dimen/wh_button"
-            android:layout_weight="0"
-            android:contentDescription="change day or night"
-            android:src="@drawable/glyphicons_232_sun" />
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="48dp"
+            android:gravity="center"
+            android:orientation="horizontal" >
 
-        <ImageView
-            android:id="@+id/bookRecent"
-            style="@style/buttonWhite"
-            android:layout_width="@dimen/wh_button"
-            android:layout_height="@dimen/wh_button"
-            android:layout_weight="0"
-            android:contentDescription="@string/recent"
-            android:src="@drawable/glyphicons_72_book1" />
+            <ImageView
+                android:id="@+id/onPageFlip1"
+                style="@style/buttonWhite"
+                android:layout_width="@dimen/wh_button"
+                android:layout_height="@dimen/wh_button"
+                android:layout_weight="0"
+                android:contentDescription="change day or night"
+                android:src="@drawable/glyphicons_174_play"
+                android:visibility="gone" />
 
-        <ImageView
-            android:id="@+id/bookTTS"
-            style="@style/buttonWhite"
-            android:layout_width="@dimen/wh_button"
-            android:layout_height="@dimen/wh_button"
-            android:layout_weight="0"
-            android:contentDescription="read aloud TTS"
-            android:src="@drawable/glyphicons_185_volume_up" />
+            <ImageView
+                android:id="@+id/onModeChange"
+                style="@style/buttonWhite"
+                android:layout_width="@dimen/wh_button"
+                android:layout_height="@dimen/wh_button"
+                android:layout_weight="0"
+                android:cropToPadding="true"
+                android:padding="6dip"
+                android:src="@drawable/glyphicons_full_page" />
 
-        <ImageView
-            android:id="@+id/bookPref"
-            style="@style/buttonWhite"
-            android:layout_width="@dimen/wh_button"
-            android:layout_height="@dimen/wh_button"
-            android:layout_weight="0"
-            android:contentDescription="@string/preferences"
-            android:src="@drawable/glyphicons_137_cogwheel" />
+            <ImageView
+                android:id="@+id/moveCenter"
+                style="@style/buttonWhite"
+                android:layout_width="@dimen/wh_button"
+                android:layout_height="@dimen/wh_button"
+                android:layout_weight="0"
+                android:contentDescription="align document"
+                android:src="@drawable/glyphicons_114_justify" />
 
-        <ImageView
-            android:id="@+id/bookMenu"
-            style="@style/buttonWhite"
-            android:layout_width="@dimen/wh_button"
-            android:layout_height="@dimen/wh_button"
-            android:layout_weight="0"
-            android:contentDescription="@string/menu"
-            android:src="@drawable/glyphicons_518_option_vertical" />
+            <ImageView
+                android:id="@+id/bookNight"
+                style="@style/buttonWhite"
+                android:layout_width="@dimen/wh_button"
+                android:layout_height="@dimen/wh_button"
+                android:layout_weight="0"
+                android:contentDescription="change day or night"
+                android:src="@drawable/glyphicons_232_sun" />
 
-        <ImageView
-            android:id="@+id/bookClose"
-            style="@style/buttonWhiteClose"
-            android:layout_width="@dimen/wh_button"
-            android:layout_height="@dimen/wh_button"
-            android:layout_weight="0"
-            android:contentDescription="@string/close_book"
-            android:src="@drawable/glyphicons_208_remove_2" />
+            <ImageView
+                android:id="@+id/bookRecent"
+                style="@style/buttonWhite"
+                android:layout_width="@dimen/wh_button"
+                android:layout_height="@dimen/wh_button"
+                android:layout_weight="0"
+                android:contentDescription="@string/recent"
+                android:src="@drawable/glyphicons_72_book1" />
+
+            <ImageView
+                android:id="@+id/bookTTS"
+                style="@style/buttonWhite"
+                android:layout_width="@dimen/wh_button"
+                android:layout_height="@dimen/wh_button"
+                android:layout_weight="0"
+                android:contentDescription="read aloud TTS"
+                android:src="@drawable/glyphicons_185_volume_up" />
+
+            <ImageView
+                android:id="@+id/bookPref"
+                style="@style/buttonWhite"
+                android:layout_width="@dimen/wh_button"
+                android:layout_height="@dimen/wh_button"
+                android:layout_weight="0"
+                android:contentDescription="@string/preferences"
+                android:src="@drawable/glyphicons_137_cogwheel" />
+
+            <ImageView
+                android:id="@+id/bookMenu"
+                style="@style/buttonWhite"
+                android:layout_width="@dimen/wh_button"
+                android:layout_height="@dimen/wh_button"
+                android:layout_weight="0"
+                android:contentDescription="@string/menu"
+                android:src="@drawable/glyphicons_518_option_vertical" />
+        </LinearLayout>
     </LinearLayout>
 
     <com.foobnix.pdf.info.view.BrigtnessDraw

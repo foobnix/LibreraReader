@@ -321,6 +321,7 @@ public abstract class DocumentController {
     }
 
     public void restartActivity() {
+        IMG.clearMemoryCache();
         saveAppState();
         activity.finish();
         activity.startActivity(activity.getIntent());

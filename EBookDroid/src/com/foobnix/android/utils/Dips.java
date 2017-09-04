@@ -77,4 +77,8 @@ public class Dips {
         return Dips.screenMinWH() < Dips.dpToPx(450);
     }
 
+    public static boolean isSmallWidth() {
+        return screenWidth() < Dips.dpToPx(450);
+    }
+
 }

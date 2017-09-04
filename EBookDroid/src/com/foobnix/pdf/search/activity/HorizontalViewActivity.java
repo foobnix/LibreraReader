@@ -93,6 +93,7 @@ import android.view.animation.TranslateAnimation;
 import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.PopupMenu;
 import android.widget.SeekBar;
 import android.widget.TextView;
@@ -105,7 +106,8 @@ public class HorizontalViewActivity extends FragmentActivity {
     VerticalViewPager viewPager;
     SeekBar seekBar;
     private TextView maxSeek, currentSeek, pagesCountIndicator, flippingIntervalView, pagesTime, pagesPower, titleTxt, chapterView;
-    View actionBar, adFrame, bottomBar, onPageFlip1, bottomIndicators;
+    View adFrame, bottomBar, onPageFlip1, bottomIndicators, moveCenter;
+    LinearLayout actionBar;
     private FrameLayout anchor;
 
     private AdView adView;
@@ -226,11 +228,13 @@ public class HorizontalViewActivity extends FragmentActivity {
             }
         });
 
-        actionBar = findViewById(R.id.actionBar);
+        actionBar = (LinearLayout) findViewById(R.id.actionBar);
+
         bottomBar = findViewById(R.id.bottomBar);
         bottomIndicators = findViewById(R.id.bottomIndicators);
         adFrame = findViewById(R.id.adFrame);
         anchor = (FrameLayout) findViewById(R.id.anchor);
+        moveCenter = findViewById(R.id.moveCenter);
 
         currentSeek = (TextView) findViewById(R.id.currentSeek);
         maxSeek = (TextView) findViewById(R.id.maxSeek);
@@ -295,7 +299,17 @@ public class HorizontalViewActivity extends FragmentActivity {
                 documentController.restartActivity();
             }
         });
+
         dayNightButton.setImageResource(!AppState.get().isInvert ? R.drawable.glyphicons_232_sun : R.drawable.glyphicons_2_moon);
+
+        moveCenter.setOnClickListener(new OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                PageImageState.get().isAutoFit = true;
+                EventBus.getDefault().post(new MessageAutoFit(viewPager.getCurrentItem()));
+            }
+        });
 
         findViewById(R.id.thumbnail).setOnClickListener(new View.OnClickListener() {
 
@@ -334,6 +348,7 @@ public class HorizontalViewActivity extends FragmentActivity {
                 });
             }
         });
+
         findViewById(R.id.bookmarks).setOnLongClickListener(new View.OnLongClickListener() {
 
             @Override
@@ -383,7 +398,6 @@ public class HorizontalViewActivity extends FragmentActivity {
                         AppState.get().isDouble = false;
                         AppState.get().isCut = false;
                         SettingsManager.getBookSettings().updateFromAppState();
-                        documentController.cleanImageMatrix();
                         documentController.restartActivity();
                         return false;
                     }
@@ -397,7 +411,6 @@ public class HorizontalViewActivity extends FragmentActivity {
                         AppState.get().isCut = false;
                         AppState.get().isDoubleCoverAlone = false;
                         SettingsManager.getBookSettings().updateFromAppState();
-                        documentController.cleanImageMatrix();
                         documentController.restartActivity();
                         return false;
                     }
@@ -411,7 +424,6 @@ public class HorizontalViewActivity extends FragmentActivity {
                         AppState.get().isCut = false;
                         AppState.get().isDoubleCoverAlone = true;
                         SettingsManager.getBookSettings().updateFromAppState();
-                        documentController.cleanImageMatrix();
                         documentController.restartActivity();
                         return false;
                     }
@@ -425,7 +437,6 @@ public class HorizontalViewActivity extends FragmentActivity {
                         AppState.get().isCut = true;
                         AppState.get().isCrop = false;
                         SettingsManager.getBookSettings().updateFromAppState();
-                        documentController.cleanImageMatrix();
                         reloadDoc.run();
                         return false;
                     }
@@ -602,7 +613,9 @@ public class HorizontalViewActivity extends FragmentActivity {
 
                     if (ExtUtils.isTextFomat(getIntent())) {
                         PageImageState.get().isAutoFit = true;
+                        moveCenter.setVisibility(View.GONE);
                     } else if (AppState.get().isLockPDF) {
+                        moveCenter.setVisibility(View.VISIBLE);
                         AppState.get().isLocked = true;
                     }
 
@@ -1289,6 +1302,7 @@ public class HorizontalViewActivity extends FragmentActivity {
         }
     };
 
+
     // @Override
     @Override
     public void onConfigurationChanged(final Configuration newConfig) {
@@ -1297,6 +1311,7 @@ public class HorizontalViewActivity extends FragmentActivity {
         if (isInitPosistion == null) {
             return;
         }
+        handler.removeCallbacksAndMessages(null);
 
         if (ExtUtils.isTextFomat(getIntent())) {
 
@@ -1325,10 +1340,12 @@ public class HorizontalViewActivity extends FragmentActivity {
                 rotatoinDialog = dialog.show();
             }
         } else {
+            Keyboards.hideNavigationOnCreate(this);
+            documentController.udpateImageSize(viewPager.getWidth(), viewPager.getHeight());
             onRotateScreen();
         }
 
-        handler.removeCallbacksAndMessages(null);
+
     }
 
     @TargetApi(Build.VERSION_CODES.HONEYCOMB)
@@ -1341,13 +1358,13 @@ public class HorizontalViewActivity extends FragmentActivity {
             updateReadPercent();
             documentController.restartActivity();
         } else {
-            PageImageState.get().isAutoFit = true;
             if (viewPager != null) {
                 handler.postDelayed(new Runnable() {
 
                     @Override
                     public void run() {
-                        EventBus.getDefault().post(new MessageAutoFit(documentController.currentPage));
+                        PageImageState.get().isAutoFit = true;
+                        EventBus.getDefault().post(new MessageAutoFit(viewPager.getCurrentItem()));
                     }
                 }, 50);
 
