@@ -1948,20 +1948,8 @@ public class DragingDialogs {
     }
 
     public static DragingPopup performanceSettings(final FrameLayout anchor, final DocumentController controller, final Runnable onRefresh, final Runnable updateUIRefresh) {
-
-        final float pageQualityInit = AppState.get().pageQuality;
-        final int pagesInMemoryInit = AppState.get().pagesInMemory;
-        final int rotateInit = AppState.get().rotate;
-        final int rotateViewPagerInit = AppState.get().rotateViewPager;
-        final boolean isRTLInit = AppState.get().isRTL;
-
-        final int allocatedMemorySizeInit = AppState.get().allocatedMemorySize;
-        final int tapzoneSizeInit = AppState.get().tapzoneSize;
-        final String imageFormatInt = AppState.get().imageFormat;
-        final boolean isCustomizeBgAndColorsInit = AppState.get().isCustomizeBgAndColors;
-        final boolean selectingByLettersInit = AppState.getInstance().selectingByLetters;
-        final boolean isCutRTLInit = AppState.getInstance().isCutRTL;
         final int cssHash = BookCSS.get().toCssString().hashCode();
+        final int appHash = AppState.get().hashCode();
 
         DragingPopup dialog = new DragingPopup(R.string.advanced_settings, anchor, 330, 520) {
 
@@ -2056,6 +2044,17 @@ public class DragingDialogs {
                         AppState.getInstance().isVibration = isChecked;
                     }
                 });
+
+                CheckBox isOLED = (CheckBox) inflate.findViewById(R.id.isOLED);
+                isOLED.setChecked(AppState.getInstance().isOLED);
+                isOLED.setOnCheckedChangeListener(new OnCheckedChangeListener() {
+
+                    @Override
+                    public void onCheckedChanged(final CompoundButton buttonView, final boolean isChecked) {
+                        AppState.getInstance().isOLED = isChecked;
+                    }
+                });
+
                 CheckBox isLockPDF = (CheckBox) inflate.findViewById(R.id.isLockPDF);
                 isLockPDF.setChecked(AppState.getInstance().isLockPDF);
                 isLockPDF.setOnCheckedChangeListener(new OnCheckedChangeListener() {
@@ -2543,27 +2542,10 @@ public class DragingDialogs {
 
             @Override
             public void run() {
-                if (//
-                AppState.get().pagesInMemory != pagesInMemoryInit || //
-                AppState.get().pageQuality != pageQualityInit || //
-                AppState.get().rotate != rotateInit || //
-                AppState.get().rotateViewPager != rotateViewPagerInit || //
-                AppState.get().isRTL != isRTLInit || //
-                AppState.get().isCustomizeBgAndColors != isCustomizeBgAndColorsInit || //
-                AppState.get().tapzoneSize != tapzoneSizeInit || //
-                AppState.get().selectingByLetters != selectingByLettersInit || //
-                AppState.get().isCutRTL != isCutRTLInit || //
-                !AppState.get().imageFormat.equals(imageFormatInt) || //
-                AppState.get().allocatedMemorySize != allocatedMemorySizeInit || //
-                (controller.isTextFormat() && cssHash != BookCSS.get().toCssString().hashCode()) //
-                ) {
-
-                    if (!AppState.get().imageFormat.equals(imageFormatInt)) {
-                        ImageLoader.getInstance().clearMemoryCache();
-                    }
-
-                    AppState.get().save(controller.getActivity());
-
+                AppState.get().save(controller.getActivity());
+                boolean one = appHash != AppState.get().hashCode();
+                boolean two = controller.isTextFormat() && cssHash != BookCSS.get().toCssString().hashCode();
+                if (one || two) {
                     if (onRefresh != null) {
                         onRefresh.run();
                     }

@@ -1,5 +1,3 @@
-* Tên ứng dụng mớiLibrera (Tôi hy vọng bạn thích nó) 
-* Thêm OPDS Online Catalogs 
-* Cải thiện giao diện người dùng (TTS) 
-* Cải thiện giao diện người dùng cho trải nghiệm đọc tốt hơn 
-* Cảm ơn bạn rất nhiều vì đã sử dụng ứng dụng của tôi và giúp đỡ các ý tưởng
+* Cải thiện khả năng đọc PDF và xem DJVU 
+* Cải thiện thiết kếChế độ Dễ dàng 
+* Hai trang trên màn hình ở chế độDễ dàng Chia tách trang thành hai phần trong chế độ Dễ dàng Nhiều cải tiến nhỏ theo phản hồi của bạn

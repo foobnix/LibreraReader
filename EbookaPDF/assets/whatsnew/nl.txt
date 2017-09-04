@@ -1,5 +1,5 @@
-* Nieuwe applicatie naamLibrera (ik hoop dat je het leuk vindt) 
-* OPDS Online Catalogs toegevoegd 
-* Verbeterde tekst-naar-spraak (TTS) 
-* Verbeterde gebruikersinterface voor een betere leeservaring 
-* Hartelijk dank voor het gebruik van mijn applicatie en hulp bij ideeën
+* Verbeterde PDF-lezen en DJVU-weergave 
+* VerbeterdeEasy mode -design 
+* Twee pagina’s op het scherm inEasy mode 
+* De pagina splitsen in twee delen in deEasy mode 
+* Vele kleine verbeteringen door uw feedback

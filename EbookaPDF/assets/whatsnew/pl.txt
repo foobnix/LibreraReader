@@ -1,5 +1,5 @@
-* Nowa nazwa aplikacjiLibrera (mam nadzieję, że to się spodoba) 
-* Dodano katalogi OPDS Online 
-* Udoskonalono obsługę tekstu na mowę (TTS) 
-* Ulepszony interfejs użytkownika dla lepszego czytania 
-* Dziękujemy za korzystanie z mojej aplikacji i pomocy z pomysłami
+* Ulepszone funkcje odczytu plików PDF i DJVU 
+* Ulepszony projektEasy mode 
+* Dwie strony na ekranie w trybieEasy 
+* Dzielenie strony na dwie części w trybieŁatwy 
+* Wiele drobnych poprawek dzięki Twojej opinii

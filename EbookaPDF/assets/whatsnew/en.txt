@@ -1,5 +1,5 @@
-* New application name "Librera" (I hope you like it)
-* Added OPDS Online Catalogs
-* Improved  text-to-speech (TTS)
-* Improved UI for better reading experience
-* Thank you very much for using my application and help with ideas
+* Improved PDF Reading and DJVU viewing
+* Improved "Easy mode" design
+* Two pages on the screen in "Easy mode"
+* Splitting the page into two parts in the "Easy mode"
+* Many small improvements by your feedback

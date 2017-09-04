@@ -388,4 +388,5 @@
    <string name="half_page">Half page</string>
    <string name="trim_borders">Trim borders</string>
    <string name="stop_reading_timer_">Stop reading (timer)</string>
+   <string name="enhancements_for_oled_display">Enhancements for OLED display</string>
 </resources>

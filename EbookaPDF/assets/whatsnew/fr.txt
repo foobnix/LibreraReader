@@ -1,5 +1,5 @@
-* Nouveau nom de l’applicationLibrera (J’espère que vous l’aimez) 
-* Ajout des catalogues en ligne OPDS 
-* Amélioration du texte à la parole (TTS) 
-* UI améliorée pour une meilleure expérience de lecture 
-* Merci beaucoup d’utiliser ma demande et d’aider avec des idées
+* Lecture améliorée de PDF et visualisation de DJVU 
+* Conception amélioréeMode facile 
+* Deux pages sur l’écran enMode facile 
+* Diviser la page en deux parties en modeFacile 
+* De nombreuses petites améliorations par vos commentaires

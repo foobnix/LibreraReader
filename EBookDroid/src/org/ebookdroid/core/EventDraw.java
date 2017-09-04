@@ -63,7 +63,12 @@ public class EventDraw implements IEvent {
     @Override
     public ViewState process() {
         try {
-            viewState.paint.backgroundFillPaint.setColor(MagicHelper.ligtherColor(MagicHelper.getBgColor()));
+
+            if (AppState.get().isOLED && !AppState.get().isInvert) {
+                viewState.paint.backgroundFillPaint.setColor(Color.BLACK);
+            } else {
+                viewState.paint.backgroundFillPaint.setColor(MagicHelper.ligtherColor(MagicHelper.getBgColor()));
+            }
             canvas.drawRect(canvas.getClipBounds(), viewState.paint.backgroundFillPaint);
 
             viewState.ctrl.drawView(this);
@@ -164,8 +169,6 @@ public class EventDraw implements IEvent {
 
         final String text = LirbiApp.context.getString(R.string.text_page) + " " + (page.index.viewIndex + 1);
         canvas.drawText(text, fixedPageBounds.centerX(), fixedPageBounds.centerY(), textPaint);
-
-
 
     }
 

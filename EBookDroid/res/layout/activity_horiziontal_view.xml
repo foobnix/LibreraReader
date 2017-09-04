@@ -47,15 +47,19 @@
         android:paddingRight="2dip"
         android:visibility="visible" >
 
-        <LinearLayout
+        <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
             android:gravity="center"
             android:orientation="horizontal" >
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:layout_marginLeft="30dip"
+                android:layout_marginRight="30dip"
                 android:layout_weight="1"
                 android:orientation="vertical" >
 
@@ -76,7 +80,6 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:gravity="center"
-                    android:paddingLeft="15dip"
                     android:singleLine="true"
                     android:text="@string/msg_loading"
                     android:textColor="#ffffff"
@@ -90,10 +93,12 @@
                 style="@style/buttonWhiteClose"
                 android:layout_width="@dimen/wh_button"
                 android:layout_height="@dimen/wh_button"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
                 android:layout_weight="0"
                 android:contentDescription="@string/close_book"
                 android:src="@drawable/glyphicons_208_remove_2" />
-        </LinearLayout>
+        </RelativeLayout>
 
         <LinearLayout
             android:layout_width="wrap_content"

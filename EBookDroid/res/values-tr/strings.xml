@@ -388,4 +388,5 @@
    <string name="trim_borders">Kenarları düzelt</string>
    <string name="stop_reading_timer_">Okumayı durdur (zamanlayıcı)</string>
    <string name="two_pages_cover">Kapak, İki sayfa</string>
+   <string name="enhancements_for_oled_display">OLED ekran için geliştirmeler</string>
 </resources>

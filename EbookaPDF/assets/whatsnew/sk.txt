@@ -1,5 +1,5 @@
-* Nový názov aplikácieLibrera (Dúfam, že sa vám to páči) 
-* Pridaný katalóg OPDS Online 
-* Vylepšený textový prenos (TTS) 
-* Vylepšené používateľské rozhranie pre lepšiu čitateľskú skúsenosť 
-* Ďakujem veľmi pekne, že ste použili svoju aplikáciu a pomohli vám s nápadmi
+* Vylepšené čítanie PDF a prezeranie DJVU 
+* Vylepšený dizajnJednoduchý režim 
+* Dve strany na obrazovke v režimeJednoduché 
+* Rozdelenie stránky na dve časti v režimeJednoduchý režim 
+* Veľa malých vylepšení vašou spätnou väzbou

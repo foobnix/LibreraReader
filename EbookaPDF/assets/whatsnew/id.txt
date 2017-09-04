@@ -1,5 +1,5 @@
-* Aplikasi baru namaLibrera (semoga anda menyukainya) 
-* Ditambahkan OPDS Online Catalogs 
-* Peningkatan text-to-speech (TTS) 
-* Peningkatan UI untuk pengalaman membaca yang lebih baik 
-* Terimakasih banyak atas penggunaan aplikasi dan bantuan saya dengan ide.
+* Peningkatan PDF Reading dan DJVU viewing 
+* ImprovedEasy mode design 
+* Dua halaman di layar dalamEasy mode 
+* Memisahkan halaman menjadi dua bagian dalam modeMudah 
+* Banyak perbaikan kecil oleh umpan balik Anda.

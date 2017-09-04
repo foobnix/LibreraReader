@@ -1,5 +1,5 @@
-* Nuevo nombre de la aplicaciónLibrera (espero que les guste) 
-* Agregó los catálogos en línea de OPDS 
-* Mejora de texto a voz (TTS) 
-* Mejora de la interfaz de usuario para una mejor experiencia de lectura 
-* Muchas gracias por usar mi aplicación y ayudar con ideas
+* Mejora de la lectura de PDF y la visualización de DJVU 
+* Mejoradomodo fácil de diseño 
+* Dos páginas en la pantalla enmodo fácil 
+* División de la página en dos partes en elmodo fácil 
+* Muchas pequeñas mejoras por sus comentarios

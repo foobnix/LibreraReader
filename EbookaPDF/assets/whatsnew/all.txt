@@ -1,216 +1,230 @@
 
 <vi>
-* Tên ứng dụng mớiLibrera (Tôi hy vọng bạn thích nó) 
-* Thêm OPDS Online Catalogs 
-* Cải thiện giao diện người dùng (TTS) 
-* Cải thiện giao diện người dùng cho trải nghiệm đọc tốt hơn 
-* Cảm ơn bạn rất nhiều vì đã sử dụng ứng dụng của tôi và giúp đỡ các ý tưởng
+* Cải thiện khả năng đọc PDF và xem DJVU 
+* Cải thiện thiết kếChế độ Dễ dàng 
+* Hai trang trên màn hình ở chế độDễ dàng Chia tách trang thành hai phần trong chế độ Dễ dàng Nhiều cải tiến nhỏ theo phản hồi của bạn
 </vi>
 
 <no-NO>
-* Ny applikasjonsnavnLibrera (Jeg håper du liker det) 
-* Lagt til OPDS Online Catalogs 
-* Forbedret tekst til tale (TTS) 
-* Forbedret brukergrensesnitt for bedre leseopplevelse 
-* Mange takk for bruk av søknaden min og hjelp med ideer
+* Forbedret PDF-lesing og DJVU visning 
+* ForbedretEnkel modus design 
+* To sider på skjermen iEnkel modus 
+* Splitting siden i to deler iEnkel modus 
+* Mange små forbedringer ved tilbakemelding
 </no-NO>
 
 <th>
-* ชื่อโปรแกรมใหม่Librera (ฉันหวังว่าคุณจะชอบ) 
-* เพิ่ม OPDS Online Catalogs 
-* ปรับปรุงข้อความเป็นคำพูด (TTS) 
-* UI ที่ดีขึ้นเพื่อการอ่านที่ดียิ่งขึ้น 
-* ขอบคุณมากสำหรับการใช้แอพพลิเคชั่นและความช่วยเหลือของฉันด้วยไอเดีย
+* การปรับปรุงการอ่าน PDF และการดู DJVU 
+* การออกแบบโหมดที่ง่ายขึ้น ที่ดีขึ้น 
+* หน้าสองหน้าจอในโหมดง่าย 
+* แบ่งหน้าออกเป็นสองส่วนในโหมดง่าย 
+* การปรับปรุงขนาดเล็กจำนวนมากตามความคิดเห็นของคุณ
 </th>
 
 <nl-NL>
-* Nieuwe applicatie naamLibrera (ik hoop dat je het leuk vindt) 
-* OPDS Online Catalogs toegevoegd 
-* Verbeterde tekst-naar-spraak (TTS) 
-* Verbeterde gebruikersinterface voor een betere leeservaring 
-* Hartelijk dank voor het gebruik van mijn applicatie en hulp bij ideeën
+* Verbeterde PDF-lezen en DJVU-weergave 
+* VerbeterdeEasy mode -design 
+* Twee pagina’s op het scherm inEasy mode 
+* De pagina splitsen in twee delen in deEasy mode 
+* Vele kleine verbeteringen door uw feedback
 </nl-NL>
 
 <ro>
-* Noul nume de aplicație Librera (sper că vă place) 
-* A fost adăugat catalogul OPDS Online 
-* TTS îmbunătățit 
-* UI îmbunătățită pentru o mai bună experiență de lectură 
-* Vă mulțumesc foarte mult pentru folosirea aplicației și pentru a vă ajuta în idei
+* Îmbunătățirea citirii PDF și vizualizarea DJVU 
+* Îmbunătățirea moduluiEasy design 
+* Două pagini pe ecran înEasy mode 
+* Împărțirea paginii în două părți înEasy mode 
+* Multe îmbunătățiri mici de feedback-ul dvs.
 </ro>
 
+<lt>
+* Patobulintas PDF skaitymas ir DJVU peržiūra 
+* PatobulintasEasy mode dizainas 
+* Du puslapiai ekraneEasy mode 
+* Puslapio suskaidymas į dvi dalisEasy mode 
+* Daugybė mažų patobulinimų jūsų atsiliepimai
+</lt>
+
 <hi-IN>
-* नया आवेदन नामलिब्रेरा (मुझे आशा है कि आप इसे पसंद करेंगे) 
-* ओपीडीएस ऑनलाइन कैटलॉग जोड़ा गया 
-* बेहतर टेक्स्ट-टू-स्पीच (टीटीएस) 
-* बेहतर पठन अनुभव के लिए बेहतर UI 
-* मेरे आवेदन का उपयोग करने और विचारों के साथ मदद के लिए बहुत बहुत धन्यवाद
+* बेहतर पीडीएफ रीडिंग और डीजेवीयू देखने 
+* बेहतरआराम से मोड डिजाइन 
+* स्क्रीन परआराम से मोड में दो पृष्ठ 
+*आसान मोड में दो हिस्सों में पेज को विभाजित करना 
+* आपके फ़ीडबैक से कई छोटे सुधार
 </hi-IN>
 
 <es-ES>
-* Nuevo nombre de la aplicaciónLibrera (espero que les guste) 
-* Agregó los catálogos en línea de OPDS 
-* Mejora de texto a voz (TTS) 
-* Mejora de la interfaz de usuario para una mejor experiencia de lectura 
-* Muchas gracias por usar mi aplicación y ayudar con ideas
+* Mejora de la lectura de PDF y la visualización de DJVU 
+* Mejoradomodo fácil de diseño 
+* Dos páginas en la pantalla enmodo fácil 
+* División de la página en dos partes en elmodo fácil 
+* Muchas pequeñas mejoras por sus comentarios
 </es-ES>
 
 <fr-FR>
-* Nouveau nom de l’applicationLibrera (J’espère que vous l’aimez) 
-* Ajout des catalogues en ligne OPDS 
-* Amélioration du texte à la parole (TTS) 
-* UI améliorée pour une meilleure expérience de lecture 
-* Merci beaucoup d’utiliser ma demande et d’aider avec des idées
+* Lecture améliorée de PDF et visualisation de DJVU 
+* Conception amélioréeMode facile 
+* Deux pages sur l’écran enMode facile 
+* Diviser la page en deux parties en modeFacile 
+* De nombreuses petites améliorations par vos commentaires
 </fr-FR>
 
 <tr-TR>
-* Yeni uygulama adıLibrera (Umarım beğenirsiniz) 
-* OPDS Çevrimiçi Kataloglar 
-* Geliştirilmiş konuşma metni (TTS) 
-* Daha iyi okuma deneyimi için iyileştirilmiş UI 
-* Uygulamamı kullanırken ve fikirlerle yardım ettiğiniz için çok teşekkür ederim
+* Geliştirilmiş PDF Okuma ve DJVU görüntüleme 
+* GeliştirilmişKolay mod tasarımı 
+*Kolay mod da ekranda iki sayfa 
+* SayfayıKolay mod da iki parçaya bölme 
+* Geri bildirimlerinizle birçok küçük iyileştirme
 </tr-TR>
 
 <sv-SE>
-* Ny applikationsnamnLibrera (Jag hoppas du gillar det) 
-* Tillagt OPDS Online Catalogs 
-* Förbättrad text-till-tal (TTS) 
-* Förbättrat användargränssnitt för bättre läsupplevelse 
-* Tack så mycket för att du använder min ansökan och hjälp med idéer
+* Förbättrad PDF-läsning och DJVU-visning 
+* Förbättrad design medEnkelt läge 
+* Två sidor på skärmen iEnkelt läge 
+* Splitting sidan i två delar iEasy mode 
+* Många små förbättringar genom din feedback
 </sv-SE>
 
 <pl-PL>
-* Nowa nazwa aplikacjiLibrera (mam nadzieję, że to się spodoba) 
-* Dodano katalogi OPDS Online 
-* Udoskonalono obsługę tekstu na mowę (TTS) 
-* Ulepszony interfejs użytkownika dla lepszego czytania 
-* Dziękujemy za korzystanie z mojej aplikacji i pomocy z pomysłami
+* Ulepszone funkcje odczytu plików PDF i DJVU 
+* Ulepszony projektEasy mode 
+* Dwie strony na ekranie w trybieEasy 
+* Dzielenie strony na dwie części w trybieŁatwy 
+* Wiele drobnych poprawek dzięki Twojej opinii
 </pl-PL>
 
 <pt-PT>
-* Novo nome do aplicativoLibrera (eu espero que você goste) 
-* Adicionado Catalogos on-line da OPDS 
-* Melhor texto de fala (TTS) 
-* UI aprimorada para uma melhor experiência de leitura 
-* Muito obrigado por usar meu aplicativo e ajudar com idéias
+* Leitura de PDF aprimorada e visualização de DJVU 
+* Design aprimorado deModo fácil 
+* Duas páginas na tela emModo fácil 
+* Divisão da página em duas partes noModo fácil 
+* Muitas pequenas melhorias por seus comentários
 </pt-PT>
 
 <iw-IL>
-* שם יישום חדשLibrera (אני מקווה שאתה אוהב את זה) 
-* נוספה OPDS קטלוגים מקוונים 
-* שיפור טקסט לדיבור (TTS) 
-* ממשק משתמש משופר לחוויית קריאה טובה יותר 
-* תודה רבה על השימוש ביישום שלי ולעזור עם רעיונות
+* שיפור קריאה PDF ו DJVU צפייה 
+* שיפורמצב קל עיצוב 
+* שני עמודים על המסך במצב קל 
+* פיצול הדף לשני חלקים במצבקל 
+* שיפורים קטנים רבים על ידי המשוב שלך
 </iw-IL>
 
 <uk>
-* Нова назва програмиLibrera (я сподіваюся, вам це сподобається) 
-* Додані OPDS Online Каталоги 
-* Покращений текст-до-мовлення (TTS) 
-* Покращений інтерфейс для кращого читання 
-* Велике спасибі за використання моєї програми та допомоги з ідеями
+* Покращено читання PDF-файлів і перегляду DJVU 
+* Покращений дизайнЛегкий режим 
+* Дві сторінки на екрані в режиміЛегкий режим 
+* Розбиття сторінки на дві частини в режиміЛегкий 
+* Багато невеликих покращень у вашому відгуку
 </uk>
 
 <ja-JP>
-*新しいアプリケーション名Librera（あなたが好きだと願っています）
-* OPDS Online Catalogsを追加
-* TTS（Text-to-Speech）を改善
-*読解力を向上させるUIを改善
-*
+* PDF読み込みとDJVU表示の改善
+*「イージーモード」デザインの改善
+*「イージーモード」で画面上の2ページ
+*「イージーモード」でページを2つに分割
+*あなたのフィードバックによる多くの小さな改善
 </ja-JP>
 
 <id>
-* Aplikasi baru namaLibrera (semoga anda menyukainya) 
-* Ditambahkan OPDS Online Catalogs 
-* Peningkatan text-to-speech (TTS) 
-* Peningkatan UI untuk pengalaman membaca yang lebih baik 
-* Terimakasih banyak atas penggunaan aplikasi dan bantuan saya dengan ide.
+* Peningkatan PDF Reading dan DJVU viewing 
+* ImprovedEasy mode design 
+* Dua halaman di layar dalamEasy mode 
+* Memisahkan halaman menjadi dua bagian dalam modeMudah 
+* Banyak perbaikan kecil oleh umpan balik Anda.
 </id>
 
 <fa>
-* نام برنامه جدیدLibrera (من امیدوارم که آن را دوست دارید) 
-* اضافه شده OPDS آنلاین کاتالوگ 
-* بهبود متن به گفتار (TTS) 
-* UI بهبود یافته برای تجربه بهتر خواندن 
-* بسیار سپاسگزارم برای استفاده از برنامه من و کمک به ایده ها
+* بهبود PDF خواندن و مشاهده DJVU 
+* بهبود حالتحالت آسان 
+* دو صفحه در صفحه نمایش درحالت آسان 
+* تقسیم صفحه به دو قسمت در حالتآسان 
+* بسیاری از پیشرفت های کوچک با نظرات شما
 </fa>
 
+<hu>
+* Továbbfejlesztett PDF olvasás és DJVU megtekintés 
+* TovábbfejlesztettEasy mode design 
+* Két oldal a képernyőnEasy módban 
+* Az oldal két részre osztása azEasy módban 
+* Sok kis javulás visszajelzésével
+</hu>
+
 <ar>
-* اسم التطبيق الجديدليبريرا (آمل أن تكونوا مثل ذلك) 
-* وأضاف أوبدس الكتالوجات على الانترنت 
-* تحسين النص إلى كلام (تس) 
-* تحسين واجهة المستخدم لتجربة القراءة أفضل 
-* شكرا جزيلا لاستخدام طلبي والمساعدة في الأفكار
+* تحسين بدف القراءة و دجفو عرض 
+* تحسينوضع سهل تصميم 
+* صفحتين على الشاشة فيوضع سهل 
+* تقسيم الصفحة إلى قسمين فيطريقة سهلة 
+* العديد من التحسينات الصغيرة من ملاحظاتك
 </ar>
 
 <de-DE>
-* Neue ApplikationsnameLibrera (ich hoffe es gefällt euch) 
-* Added OPDS Online Kataloge 
-* Verbesserte Text-to-Speech (TTS) 
-* Verbesserte Benutzeroberfläche für bessere Leseerfahrung 
-* Vielen Dank für die Anwendung meiner Bewerbung und Hilfe bei Ideen
+* Verbesserte PDF-Lesung und DJVU-Anzeige 
+* VerbesserteEasy-Mode -Design 
+* Zwei Seiten auf dem Bildschirm inEasy-Modus 
+* Aufteilung der Seite in zwei Teile imEasy-Modus 
+* Viele kleine Verbesserungen durch Ihr Feedback
 </de-DE>
 
 <sw>
-* Mpya jina la maombiLibrera (Natumaini unapenda) 
-* Aliongeza Catalogue za OPDS Online 
-* Kuboresha maandishi-kwa-hotuba (TTS) 
-* Uboreshaji wa UI kwa uzoefu bora wa kusoma 
-* Asante sana kwa kutumia maombi yangu na msaada na mawazo
+* Kuboresha Kusoma PDF na DJVU Kuangalia 
+* KuboreshaEasy Mode kubuni 
+* Kurasa mbili kwenye skrini katikaRahisi mode 
+* Kupiga ukurasa katika sehemu mbili katikaRahisi mode 
+* Maboresho mengi ndogo na maoni yako
 </sw>
 
 <ko-KR>
-* 새로운 응용 프로그램 이름Librera(당신이 맘에 들었 으면 좋겠다.) 
-* OPDS Online Catalogs 추가 
-* TTS (text-to-speech) 개선 
-* 더 나은 독서 경험을위한 향상된 UI 
-* 내 응용 프로그램을 사용하고 아이디어에 도움을 주셔서 대단히 감사합니다
+* 향상된 PDF 읽기 및 DJVU보기 
+* 개선 된쉬운 모드디자인 
+*쉬운 모드에서 화면의 2 페이지 
+*쉬운 모드에서 두 부분으로 페이지 나누기 
+* 피드백으로 많은 작은 개선
 </ko-KR>
 
 <fi-FI>
-* Uusi sovellusnimiLibrera (toivottavasti pidät siitä) 
-* Lisätty OPDS Online -luettelot 
-* Parannettu teksti-puheeksi (TTS) 
-* Parannettu käyttöliittymä paremman lukukokemuksen 
-* Kiitos paljon sovelluksestani ja apuideoiden ansiosta
+* Parannettu PDF-lukeminen ja DJVU-katselu 
+* ParannettuEasy mode -ominaisuus 
+* Kaksi sivua näytöllä Easy-tilassa 
+* Sivun jakaminen kahteen osaan Easy-tilassa 
+* Paljon pieniä parannuksia palautteen avulla
 </fi-FI>
 
 <zh-TW>
-*新应用程序名称“Librera”（希望你喜欢）
-*添加OPDS在线目录
-*改进的文本到语音（TTS）
-*改进的UI，更好的阅读体验
-*非常感谢使用我的应用程序和帮助想法
+*改进的PDF阅读和DJVU观看
+*改进的“简易模式”设计
+*屏幕上的“简单模式”两页
+*在“简易模式”中将页面分为两部分
+*您的反馈有很多改进
 </zh-TW>
 
 <it-IT>
-* Nuovo nome dell’applicazioneLibrera (mi auguro che ti piace) 
-* Aggiunto cataloghi OPDS Online 
-* Migliorato testo-to-speech (TTS) 
-* Migliorato l’interfaccia utente per una migliore esperienza di lettura 
-* Grazie molto per l’utilizzo della mia applicazione e aiuto con le idee
+* Miglioramento della lettura PDF e del DJVU 
+* Miglioramento del designEasy mode 
+* Due pagine sullo schermo in modalitàFacile 
+* Scorrimento della pagina in due parti inEasy mode 
+* Molti piccoli miglioramenti grazie ai tuoi feedback
 </it-IT>
 
 <ru-RU>
-* Новое имя приложения «Librera» (надеюсь, вам понравилось) 
-* Добавлены онлайн-каталоги OPDS 
-* Улучшенное преобразование текста в речь (TTS) 
-* Улучшен интерфейс для лучшего чтения 
-* Большое спасибо за использование моего приложения и помощь с идеями
+* Улучшенное чтение PDF и просмотр DJVU 
+* Улучшен дизайн «Простой режим» 
+* Две страницы на экране в «Простом режиме» 
+* Разделение страницы на две части в «Легком режиме» 
+* Множество небольших улучшений благодаря вашей обратной связи
 </ru-RU>
 
 <sk>
-* Nový názov aplikácieLibrera (Dúfam, že sa vám to páči) 
-* Pridaný katalóg OPDS Online 
-* Vylepšený textový prenos (TTS) 
-* Vylepšené používateľské rozhranie pre lepšiu čitateľskú skúsenosť 
-* Ďakujem veľmi pekne, že ste použili svoju aplikáciu a pomohli vám s nápadmi
+* Vylepšené čítanie PDF a prezeranie DJVU 
+* Vylepšený dizajnJednoduchý režim 
+* Dve strany na obrazovke v režimeJednoduché 
+* Rozdelenie stránky na dve časti v režimeJednoduchý režim 
+* Veľa malých vylepšení vašou spätnou väzbou
 </sk>
 
 <en-US>
-* New application name "Librera" (I hope you like it)
-* Added OPDS Online Catalogs
-* Improved  text-to-speech (TTS)
-* Improved UI for better reading experience
-* Thank you very much for using my application and help with ideas
+* Improved PDF Reading and DJVU viewing
+* Improved "Easy mode" design
+* Two pages on the screen in "Easy mode"
+* Splitting the page into two parts in the "Easy mode"
+* Many small improvements by your feedback
 </en-US>

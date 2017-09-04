@@ -1,5 +1,5 @@
-* Ny applikasjonsnavnLibrera (Jeg håper du liker det) 
-* Lagt til OPDS Online Catalogs 
-* Forbedret tekst til tale (TTS) 
-* Forbedret brukergrensesnitt for bedre leseopplevelse 
-* Mange takk for bruk av søknaden min og hjelp med ideer
+* Forbedret PDF-lesing og DJVU visning 
+* ForbedretEnkel modus design 
+* To sider på skjermen iEnkel modus 
+* Splitting siden i to deler iEnkel modus 
+* Mange små forbedringer ved tilbakemelding

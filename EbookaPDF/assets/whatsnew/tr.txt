@@ -1,5 +1,5 @@
-* Yeni uygulama adıLibrera (Umarım beğenirsiniz) 
-* OPDS Çevrimiçi Kataloglar 
-* Geliştirilmiş konuşma metni (TTS) 
-* Daha iyi okuma deneyimi için iyileştirilmiş UI 
-* Uygulamamı kullanırken ve fikirlerle yardım ettiğiniz için çok teşekkür ederim
+* Geliştirilmiş PDF Okuma ve DJVU görüntüleme 
+* GeliştirilmişKolay mod tasarımı 
+*Kolay mod da ekranda iki sayfa 
+* SayfayıKolay mod da iki parçaya bölme 
+* Geri bildirimlerinizle birçok küçük iyileştirme

@@ -388,4 +388,5 @@
    <string name="trim_borders">테두리 다듬기</string>
    <string name="stop_reading_timer_">독서 중지 (타이머)</string>
    <string name="two_pages_cover">표지, 2 페이지</string>
+   <string name="enhancements_for_oled_display">OLED 디스플레이 향상</string>
 </resources>

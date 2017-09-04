@@ -213,6 +213,13 @@
                 android:layout_weight="0"
                 android:gravity="center" />
         </LinearLayout>
+        
+        <CheckBox
+            android:id="@+id/isOLED"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dip"
+            android:text="@string/enhancements_for_oled_display" />
 
         <CheckBox
             android:id="@+id/isVibration"

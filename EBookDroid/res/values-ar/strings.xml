@@ -388,4 +388,5 @@
    <string name="trim_borders">تقليم الحدود</string>
    <string name="stop_reading_timer_">إيقاف القراءة (مؤقت)</string>
    <string name="two_pages_cover">الغلاف، صفحتان</string>
+   <string name="enhancements_for_oled_display">تحسينات لشاشة أوليد</string>
 </resources>

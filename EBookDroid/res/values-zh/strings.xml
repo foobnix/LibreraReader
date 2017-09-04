@@ -388,4 +388,5 @@
    <string name="trim_borders">修剪边框</string>
    <string name="stop_reading_timer_">停止阅读（定时器）</string>
    <string name="two_pages_cover">封面，两页</string>
+   <string name="enhancements_for_oled_display">OLED显示屏的增强功能</string>
 </resources>

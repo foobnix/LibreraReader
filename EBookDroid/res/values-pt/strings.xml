@@ -388,4 +388,5 @@
    <string name="trim_borders">Trim borders</string>
    <string name="stop_reading_timer_">Parar a leitura (temporizador)</string>
    <string name="two_pages_cover">Capa, duas páginas</string>
+   <string name="enhancements_for_oled_display">Aprimoramentos para tela OLED</string>
 </resources>

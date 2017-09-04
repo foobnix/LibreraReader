@@ -207,8 +207,6 @@ public class AppState {
     public boolean isAutoFit = false;
     public boolean notificationOngoing = false;
 
-
-
     public boolean isShowToolBar = true;
     public boolean isShowReadingProgress = true;
     public boolean isShowChaptersOnProgress = true;
@@ -338,6 +336,7 @@ public class AppState {
     public boolean isShowCloseAppDialog = true;
 
     public boolean isFirstSurname = false;
+    public boolean isOLED = false;
 
     public int cutP = 50;
 
@@ -620,6 +619,7 @@ public class AppState {
         isShowWhatIsNewDialog = sp.getBoolean("isShowWhatIsNewDialog", isShowWhatIsNewDialog);
         isShowCloseAppDialog = sp.getBoolean("isShowCloseAppDialog", isShowCloseAppDialog);
         isFirstSurname = sp.getBoolean("isFirstSurname", isFirstSurname);
+        isOLED = sp.getBoolean("isOLED", isOLED);
 
         imageFormat = sp.getString("imageFormat", imageFormat);
         fromLang = sp.getString("fromLang", fromLang);
@@ -685,6 +685,17 @@ public class AppState {
             DragingPopup.saveCache(a);
         } catch (Exception e) {
             LOG.e(e);
+        }
+    }
+
+    @Override
+    public int hashCode() {
+        try {
+            int hashCode = sp.getAll().hashCode();
+            LOG.d("AppState hash", hashCode);
+            return hashCode;
+        } catch (Exception e) {
+            return 0;
         }
     }
 
@@ -830,6 +841,7 @@ public class AppState {
         editor.putBoolean("isShowWhatIsNewDialog", isShowWhatIsNewDialog);
         editor.putBoolean("isShowCloseAppDialog", isShowCloseAppDialog);
         editor.putBoolean("isFirstSurname", isFirstSurname);
+        editor.putBoolean("isOLED", isOLED);
 
         editor.putString("imageFormat", imageFormat);
 

@@ -1,5 +1,5 @@
-* Noul nume de aplicație Librera (sper că vă place) 
-* A fost adăugat catalogul OPDS Online 
-* TTS îmbunătățit 
-* UI îmbunătățită pentru o mai bună experiență de lectură 
-* Vă mulțumesc foarte mult pentru folosirea aplicației și pentru a vă ajuta în idei
+* Îmbunătățirea citirii PDF și vizualizarea DJVU 
+* Îmbunătățirea moduluiEasy design 
+* Două pagini pe ecran înEasy mode 
+* Împărțirea paginii în două părți înEasy mode 
+* Multe îmbunătățiri mici de feedback-ul dvs.

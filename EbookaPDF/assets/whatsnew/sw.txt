@@ -1,5 +1,5 @@
-* Mpya jina la maombiLibrera (Natumaini unapenda) 
-* Aliongeza Catalogue za OPDS Online 
-* Kuboresha maandishi-kwa-hotuba (TTS) 
-* Uboreshaji wa UI kwa uzoefu bora wa kusoma 
-* Asante sana kwa kutumia maombi yangu na msaada na mawazo
+* Kuboresha Kusoma PDF na DJVU Kuangalia 
+* KuboreshaEasy Mode kubuni 
+* Kurasa mbili kwenye skrini katikaRahisi mode 
+* Kupiga ukurasa katika sehemu mbili katikaRahisi mode 
+* Maboresho mengi ndogo na maoni yako

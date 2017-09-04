@@ -1,0 +1,5 @@
+* Továbbfejlesztett PDF olvasás és DJVU megtekintés 
+* TovábbfejlesztettEasy mode design 
+* Két oldal a képernyőnEasy módban 
+* Az oldal két részre osztása azEasy módban 
+* Sok kis javulás visszajelzésével
