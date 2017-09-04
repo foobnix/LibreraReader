@@ -24,7 +24,6 @@ import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
 import android.graphics.Color;
 import android.net.Uri;
-import android.os.Build;
 import android.os.Environment;
 import android.view.KeyEvent;
 
@@ -117,10 +116,10 @@ public class AppState {
     );
 
     public static final List<String> STYLE_COLORS = Arrays.asList(//
-            // "#3949AB", //
-            "#2a56c6", //
+            "#3949AB", //
+            // "#2a56c6", //
             // "#E6A639", //
-            "#395B9C", //
+            // "#395B9C", //
             "#EA5964", //
             "#00897B", //
             "#000000" //
@@ -155,7 +154,7 @@ public class AppState {
     public static String DEFAULTS_TABS_ORDER = "0#1,1#1,2#1,3#1,4#1,5#1,6#0";
     public String tabsOrder = DEFAULTS_TABS_ORDER;
 
-    public int tintColor = Color.parseColor(STYLE_COLORS.get(1));
+    public int tintColor = Color.parseColor(STYLE_COLORS.get(0));
 
     public int statusBarColorDay = TEXT_COLOR_DAY;
     public int statusBarColorNight = TEXT_COLOR_NIGHT;
@@ -320,9 +319,7 @@ public class AppState {
     public int colorNigthBg = COLOR_BLACK;
 
     public boolean supportPDF = true;
-    // need to fix on Android 7 Nexus 5
-    public boolean supportDJVU = Build.VERSION.SDK_INT >= 24 ? false : true;
-    // public boolean supportDJVU = true;
+    public boolean supportDJVU = true;
     public boolean supportEPUB = true;
     public boolean supportFB2 = true;
     public boolean supportRTF = false;

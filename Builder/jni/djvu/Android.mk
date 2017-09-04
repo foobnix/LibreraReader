@@ -1,12 +1,76 @@
 LOCAL_PATH := $(call my-dir)
 
 include $(CLEAR_VARS)
-LOCAL_ARM_MODE := $(MY_ARM_MODE)
+
 LOCAL_MODULE    := djvu
-LOCAL_CFLAGS    += -I$(MUPDF_ROOT)/thirdparty/libjpeg -fexceptions -DHAVE_CONFIG_H  -DTHREADMODEL=POSIXTHREADS
 
-LOCAL_CFLAGS += $(MY_O)
+LOCAL_CFLAGS    := $(APP_CFLAGS)  -D__APPLE__ -fexceptions -DHAVE_CONFIG_H -std=c++11
+LOCAL_CPPFLAGS  := $(APP_CPPFLAGS)
+LOCAL_ARM_MODE  := $(APP_ARM_MODE)
 
-LOCAL_SRC_FILES := Arrays.cpp BSByteStream.cpp BSEncodeByteStream.cpp ByteStream.cpp DataPool.cpp DjVmDir.cpp DjVmDir0.cpp DjVmDoc.cpp DjVmNav.cpp DjVuAnno.cpp DjVuDocument.cpp DjVuDumpHelper.cpp DjVuErrorList.cpp DjVuFile.cpp DjVuFileCache.cpp DjVuGlobal.cpp DjVuGlobalMemory.cpp DjVuImage.cpp DjVuInfo.cpp DjVuMessage.cpp DjVuMessageLite.cpp DjVuNavDir.cpp DjVuPalette.cpp DjVuPort.cpp DjVuText.cpp GBitmap.cpp GContainer.cpp GException.cpp GIFFManager.cpp GMapAreas.cpp GOS.cpp GPixmap.cpp GRect.cpp GScaler.cpp GSmartPointer.cpp GString.cpp GThreads.cpp GURL.cpp GUnicode.cpp IFFByteStream.cpp IW44Image.cpp IW44EncodeCodec.cpp JB2Image.cpp JPEGDecoder.cpp MMRDecoder.cpp MMX.cpp UnicodeByteStream.cpp XMLParser.cpp XMLTags.cpp ZPCodec.cpp atomic.cpp debug.cpp ddjvuapi.cpp miniexp.cpp
+
+
+LOCAL_C_INCLUDES := \
+	$(LOCAL_PATH)/include \
+	$(LOCAL_PATH)/../jpeg-turbo/include	
+
+LOCAL_SRC_FILES :=  \
+	src/Arrays.cpp \
+	src/BSByteStream.cpp \
+	src/BSEncodeByteStream.cpp \
+	src/ByteStream.cpp \
+	src/DataPool.cpp \
+	src/DjVmDir.cpp \
+	src/DjVmDir0.cpp \
+	src/DjVmDoc.cpp \
+	src/DjVmNav.cpp \
+	src/DjVuAnno.cpp \
+	src/DjVuDocument.cpp \
+	src/DjVuDumpHelper.cpp \
+	src/DjVuErrorList.cpp \
+	src/DjVuFile.cpp \
+	src/DjVuFileCache.cpp \
+	src/DjVuGlobal.cpp \
+	src/DjVuGlobalMemory.cpp \
+	src/DjVuImage.cpp \
+	src/DjVuInfo.cpp \
+	src/DjVuMessage.cpp \
+	src/DjVuMessageLite.cpp \
+	src/DjVuNavDir.cpp \
+	src/DjVuPalette.cpp \
+	src/DjVuPort.cpp \
+	src/DjVuText.cpp \
+	src/GBitmap.cpp \
+	src/GContainer.cpp \
+	src/GException.cpp \
+	src/GIFFManager.cpp \
+	src/GMapAreas.cpp \
+	src/GOS.cpp \
+	src/GPixmap.cpp \
+	src/GRect.cpp \
+	src/GScaler.cpp \
+	src/GSmartPointer.cpp \
+	src/GString.cpp \
+	src/GThreads.cpp \
+	src/GURL.cpp \
+	src/GUnicode.cpp \
+	src/IFFByteStream.cpp \
+	src/IW44Image.cpp \
+	src/IW44EncodeCodec.cpp \
+	src/JB2Image.cpp \
+	src/JPEGDecoder.cpp \
+	src/MMRDecoder.cpp \
+	src/MMX.cpp \
+	src/UnicodeByteStream.cpp \
+	src/XMLParser.cpp \
+	src/XMLTags.cpp \
+	src/ZPCodec.cpp \
+	src/atomic.cpp \
+	src/debug.cpp \
+	src/ddjvuapi.cpp \
+	src/miniexp.cpp
+
+LOCAL_STATIC_LIBRARIES := jpeg-turbo
+LOCAL_LDLIBS := -llog
 
 include $(BUILD_STATIC_LIBRARY)

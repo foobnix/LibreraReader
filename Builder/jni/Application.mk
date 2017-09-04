@@ -14,5 +14,7 @@ APP_OPTIM := release
 APP_CFLAGS := -O2
 
 APP_CFLAGS += $(MY_O)
+APP_STL := gnustl_static #need for djvuLibre
+
 
 #NDK_TOOLCHAIN_VERSION=4.9

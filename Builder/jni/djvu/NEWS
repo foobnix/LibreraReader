@@ -1,0 +1,212 @@
+NEW SINCE VERSION 3.5.26
+------------------------
+
+
+NEW IN VERSION 3.5.26
+------------------------
+- Thread safe miniexp
+- Now using the standard autotools approach (thanks to Vincent Torri).
+- New windows installer (thanks to Konstantin Kravtsov).
+- Fixed Russian code page issues in windows.
+- General speedup thanks to lock-free smart pointers.
+- ddjvu can produce one file per page.
+- djvused can now set the default page orientation.
+- Bug fixes all around.
+
+
+NEW IN VERSION 3.5.25
+---------------------
+- Removed the deprecated djview3 code.
+- Removed the deprecated cothreads code.
+- Removed the unmaintained japanese man pages.
+- Added ddjvu option to skip corrupted pages.
+- Miniexp API is now reentrant.
+- Bug fixes all around.
+
+
+NEW IN VERSION 3.5.24
+---------------------
+- Set ddjvuapi_version to 20.
+- Added ddjvuapi support for changing the white point.
+- Added option "-u" in djvused.
+- Added option "-o djvufile" in djvuxmlparser.
+- Added support for <CHARACTER> tag in djvuxmlparser.
+- Added print-xmp, set-xmp, remove-smp in djvused.
+
+
+NEW IN VERSION 3.5.23
+---------------------
+- Djview3 has been deprecated by djview4 whose source comes in 
+  its own tarball. Use configure option --enable-djview to force
+  the compilation of djview3.
+- Set ddjvuapi_version to 19.
+- Added ddjvu_document_create_by_filename_utf8
+- Generate icons with rsvg rather than imagemagick.
+- djvused: correctly outputs escape characters.
+- djvumake: added options to generate foreground colors.
+- Various bug fixes.
+
+NEW IN VERSION 3.5.22
+---------------------
+- Probably the last release before djvulibre-4
+- Backported djview4 version of nsdejavu.so 
+- Various bug fixes
+
+NEW IN VERSION 3.5.21
+---------------------
+- Speed improvement on multicore platforms
+- Ddjvu now can produce pdf output.
+- Various bug fixes
+
+NEW IN VERSION 3.5.20
+---------------------
+- Csepdjvu handle gsdjvu hyperlink comments.
+- Djvudigital therefore handles hyperlinks.
+
+NEW IN VERSION 3.5.19
+---------------------
+- License change. Starting with version 3.5.19, 
+  DjVuLibre is distributed under either version 2 of the GPL
+  or (at your option) any later version.
+  Previous versions were released strictly under 
+  the GPL version 2.
+
+NEW IN VERSION 3.5.18
+---------------------
+- Renamed djview as djview3.
+- Various enhancement of DDJVUAPI.
+- Partial support for page titles instead of page numbers.
+- Clarification of metadata information.
+- Fixed djvumake mask separation feature.
+- Complain when given a so-called "secure" djvu file.
+- Fixed handling of urls with cgi arguments
+- Fixed bug related to caching and ddjvuapi
+- Reorganized ${datadir}/djvu
+- Provide scripts in ${datadir}/djvu/*/desktop to register
+  the djvu mime types and the djview menu entries.
+
+NEW IN VERSION 3.5.17
+---------------------
+- Various enhancement of DDJVUAPI
+- Compiles with GCC-4.1.
+- Compiles with the SunCC compiler.
+- Command line utilities compile under WIN32 
+  using MSVC using the provided project files.
+- Minor bug fixes in csepdjvu text extraction.
+- Fixed leak in csepdjvu, cpaldjvu and cjb2.
+
+NEW IN VERSION 3.5.16
+---------------------
+- Shared library build system updates.
+
+NEW IN VERSION 3.5.15
+---------------------
+- Fixes for compilation with GCC-4.0.
+
+NEW IN VERSION 3.5.14
+---------------------
+- Fixes for compilation with GCC-3.4.
+- Cjb2 lossy mode vastly improved (thanks to Ilya Mezhirov)
+- Revamped install for desktop information files
+- Compilation uses libtool and makes shared libs on more platforms.
+- Uniform decoding api ddjvuapi.h.
+- Enhanced ddjvu based on ddjvuapi.
+- ddjvu can produce tiff files.
+
+NEW IN VERSION 3.5.13
+---------------------
+- Navigation history in djview.
+- New option -fullscreen in djview.
+- Silently processes files up to version 25.
+- Only produces files with version 24.
+- French and Japanese localization.
+- Japanese man pages.
+- Fixes for MacOS.
+- Compilation of XMLTools enabled by default.
+- KDE and GNOME integration
+- CJB2 now handles tiff files.
+
+NEW IN VERSION 3.5.12
+---------------------
+- Improved color quantization (fix cpaldjvu artifacts)
+- Fixed handling of non latin characters.
+- Worked around problems with gcc-3.3.1.
+
+NEW IN VERSION 3.5.11
+---------------------
+- All private symbols in DJVU namespace
+- Fixed keyboard focus in kde-3.1.1
+- Fixed toolbar control arguments.
+- Incremented djvuversion to 24 (LT again)
+- Fixed djvm.
+
+NEW IN VERSION 3.5.10
+---------------------
+- Added support for mouse wheel.
+- Added support for LT toolbar control args.
+- Added DESTDIR in Makefiles.
+- Incremented djvuversion to 23.
+- Djview key space now does continuous reading
+- Fixed thumbnail generation on empty pages.
+- Improved csepdjvu option -bgwhite.
+- Djview and djvups now can print booklets.
+- Djview main dialogs have a help button.
+- Annotation strings now recognize C escape sequences.
+
+NEW IN VERSION 3.5.9
+--------------------
+- Fix for gcc-3.2.
+- Fix for broken command ddjvu.
+- Modified IW44 for ARM processors.
+- Modified RPM spec file for Mozilla-1.1+.
+
+NEW IN VERSION 3.5.8
+--------------------
+- Fixed printing of b&w documents (broken since 3.5.6)
+- Fixed menu problem on rh7.3
+- Included fixes for gcc-3.1.
+
+NEW IN VERSION 3.5.7
+--------------------
+- Fixes for cygwin
+- Fixes for configuration script
+- Updated copyright notices with clarified
+  patent statement from Lizardtech.
+
+NEW IN VERSION 3.5.6
+--------------------
+- Fixes for gcc-3.1 and qt3
+- Fixes for macosx compilation
+- Added option -bgwhite in cpaldjvu
+
+NEW IN VERSION 3.5.5
+--------------------
+- Removed annoying flicker with djview/Qt3.
+- Simplified the use of djvuserve.
+- Fixes to the tools build with CYGWIN.
+- Added the lizardtech XML tools (use --enable-xmltools to compile).
+- Fixed show stopper in djvused.
+
+NEW IN VERSION 3.5.4
+--------------------
+- Fixed bug in djview print dialog.
+- Fixed bug in djvused.
+- Added CGI program djvuserve.
+
+NEW IN VERSION 3.5.3
+--------------------
+- Support for QT2 and QT3
+- Removed lots of QT1 specific hacks.
+- Added command djvups.
+
+NEW IN VERSION 3.5.2
+--------------------
+- Added support for image/vnd.djvu mime type.
+- Configure changes for FreeBSD.
+- Bug fixes in djvused.
+
+NEW IN VERSION 3.5.1
+--------------------
+- Initial release with:
+  man pages, bug fixes, autoconf based build system,
+  more portable browser plugin, djvused, etc.

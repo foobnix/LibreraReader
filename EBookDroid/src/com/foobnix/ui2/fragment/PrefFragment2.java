@@ -277,7 +277,7 @@ public class PrefFragment2 extends UIFragment {
         }
 
         TextView onCloseApp = (TextView) inflate.findViewById(R.id.onCloseApp);
-        onCloseApp.setText(Html.fromHtml("<u>" + getString(R.string.close) + "</u"));
+        TxtUtils.underlineTextView(onCloseApp);
         onCloseApp.setOnClickListener(new OnClickListener() {
 
             @Override
@@ -285,13 +285,7 @@ public class PrefFragment2 extends UIFragment {
                 ((MainTabs2) getActivity()).closeActivity();
             }
         });
-        inflate.findViewById(R.id.onImageClose).setOnClickListener(new OnClickListener() {
 
-            @Override
-            public void onClick(View v) {
-                ((MainTabs2) getActivity()).closeActivity();
-            }
-        });
 
         inflate.findViewById(R.id.onFullScreen).setOnClickListener(new OnClickListener() {
 

@@ -81,8 +81,8 @@ public class PageUrl {
         PageUrl url = new PageUrl();
         url.setPath(path);
         url.setPage(AppState.get().isCut ? page / 2 : page);
-        url.setWidth(AppState.get().isCut ? (int) (w * 1.5) : w);
-        url.setHeight(AppState.get().isCut ? (int) (h * 1.5) : h);
+        url.setWidth(AppState.get().isCut ? (int) (w * 2) : w);
+        url.setHeight(AppState.get().isCut ? (int) (h * 2) : h);
         url.setInvert(!AppState.get().isInvert);
         url.setCrop(AppState.get().isCrop);
         url.setRotate(AppState.get().rotate);

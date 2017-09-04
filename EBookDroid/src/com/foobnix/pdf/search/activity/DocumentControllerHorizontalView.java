@@ -135,7 +135,11 @@ public abstract class DocumentControllerHorizontalView extends DocumentControlle
         }
 
         if (AppState.get().isDouble) {
-            imageWidth = (int) (Dips.screenWidth() * AppState.get().pageQuality / 2);
+            if (isTextFormat) {
+                imageWidth = Dips.screenWidth() / 2;
+            } else {
+                imageWidth = (int) (Dips.screenWidth() * AppState.get().pageQuality / 2);
+            }
         }
 
         FileMetaCore.checkOrCreateMetaInfo(activity);

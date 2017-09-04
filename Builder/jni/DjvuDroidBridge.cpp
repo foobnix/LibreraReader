@@ -543,9 +543,12 @@ extern "C" jboolean Java_org_ebookdroid_droids_djvu_codec_DjvuPage_renderPage(JN
 
     char *pBuffer = (char *) env->GetPrimitiveArrayCritical(buffer, 0);
 
-    while (!ddjvu_page_decoding_done(page))
+    while (ddjvu_page_decoding_status(page) < DDJVU_JOB_OK)
     {
-        waitAndHandleMessages(env, contextHandle);
+       
+        DEBUG_WRITE("Rendering status 1 ... ");
+        waitAndHandleMessages(env, contextHandle);        
+        DEBUG_WRITE("Rendering status 2 ... ");
     }
 
     jboolean result = ddjvu_page_render(page, (ddjvu_render_mode_t) rendermode, &pageRect, &targetRect, pixelFormat,

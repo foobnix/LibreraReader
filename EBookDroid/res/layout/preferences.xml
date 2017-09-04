@@ -14,7 +14,6 @@
         android:padding="3dip" >
 
         <LinearLayout
-            
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:gravity="center"
@@ -32,27 +31,25 @@
                 android:id="@+id/downloadPRO"
                 style="@style/textLink"
                 android:layout_width="wrap_content"
-                android:singleLine="false"
                 android:layout_height="60dip"
                 android:gravity="center"
+                android:singleLine="false"
                 android:text="@string/librera_pro_no_ads_leading_book_reader_and_pdf" />
         </LinearLayout>
 
-        <TextView
-            android:id="@+id/section1"
-            style="@style/textLinkWhite"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@drawable/bg_search_second"
-            android:text="@string/library_settings" />
-
         <LinearLayout
+            android:id="@+id/section1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="5dip"
-            android:gravity="center_vertical"
-            android:orientation="horizontal"
-            android:padding="3dip" >
+            android:background="@drawable/bg_search_second" >
+
+            <TextView
+                
+                style="@style/textLinkWhite"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/library_settings" />
 
             <TextView
                 android:id="@+id/onCloseApp"
@@ -60,19 +57,11 @@
                 android:layout_height="match_parent"
                 android:layout_marginRight="5dip"
                 android:layout_weight="0"
-                android:text="close"
-                android:visibility="gone" />
-
-            <ImageView
-                android:id="@+id/onImageClose"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="1dip"
-                android:layout_weight="0"
-                android:padding="2dip"
-                android:src="@drawable/glyphicons_208_remove_2"
-                android:tint="@color/tint_gray"
-                android:visibility="gone" />
+                android:gravity="center"
+                style="@style/textLinkStyle"
+                android:textSize="@dimen/text_subtitle"
+                android:text="@string/close_application"
+                android:visibility="visible" />
         </LinearLayout>
 
         <LinearLayout
