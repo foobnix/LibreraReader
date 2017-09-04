@@ -1361,6 +1361,10 @@ public class DocumentWrapperUI {
 
             updateUI();
 
+            progressDraw.updatePageCount(controller.getPageCount() - 1);
+            titleBar.setOnTouchListener(new HorizontallSeekTouchEventListener(onSeek, controller.getPageCount(), false));
+            progressDraw.setOnTouchListener(new HorizontallSeekTouchEventListener(onSeek, controller.getPageCount(), false));
+
         }
     };
 

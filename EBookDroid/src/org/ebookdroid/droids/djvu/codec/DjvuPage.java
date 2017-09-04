@@ -67,6 +67,7 @@ public class DjvuPage extends AbstractCodecPage {
 
     @Override
     public BitmapRef renderBitmap(final int width, final int height, final RectF pageSliceBounds) {
+        LOG.d("Render DJVU Page", width, height, pageSliceBounds);
         final int renderMode = AppSettings.getInstance().djvuRenderingMode;
         BitmapRef bmp = null;
         if (width > 0 && height > 0) {
@@ -118,7 +119,7 @@ public class DjvuPage extends AbstractCodecPage {
 
     @Override
     protected void finalize() throws Throwable {
-        // recycle();
+        recycle();
         super.finalize();
     }
 

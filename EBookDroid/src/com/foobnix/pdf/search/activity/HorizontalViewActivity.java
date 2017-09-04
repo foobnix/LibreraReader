@@ -613,8 +613,6 @@ public class HorizontalViewActivity extends FragmentActivity {
                     EventBus.getDefault().post(new MessageAutoFit(documentController.getPageFromUri()));
                     AppState.get().isEditMode = true;
                     seekBar.setOnSeekBarChangeListener(onSeek);
-                    bottomIndicators.setOnTouchListener(new HorizontallSeekTouchEventListener(onSeek, documentController.getPageCount(), false));
-                    progressDraw.setOnTouchListener(new HorizontallSeekTouchEventListener(onSeek, documentController.getPageCount(), false));
                     RecentUpates.updateAll(HorizontalViewActivity.this);
                     showHideInfoToolBar();
 
@@ -1148,6 +1146,9 @@ public class HorizontalViewActivity extends FragmentActivity {
         seekBar.setMax(documentController.getPageCount() - 1);
         seekBar.setProgress(documentController.getCurentPage());
 
+        bottomIndicators.setOnTouchListener(new HorizontallSeekTouchEventListener(onSeek, documentController.getPageCount(), false));
+        progressDraw.setOnTouchListener(new HorizontallSeekTouchEventListener(onSeek, documentController.getPageCount(), false));
+
         currentSeek.setText("" + (documentController.getCurentPage() + 1));
         maxSeek.setText("" + documentController.getPageCount());
 
@@ -1215,7 +1216,7 @@ public class HorizontalViewActivity extends FragmentActivity {
                                     PageImageState.get().pagesText.put(page2, documentController.getPageText(page2));
                                     PageImageState.get().pagesLinks.put(page2, documentController.getLinksForPage(page2));
 
-                                } else {
+                                } else if (!AppState.get().isCut) {
                                     PageImageState.get().pagesText.put(pos, documentController.getPageText(pos));
                                     PageImageState.get().pagesLinks.put(pos, documentController.getLinksForPage(pos));
                                 }

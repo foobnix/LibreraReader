@@ -8,6 +8,7 @@ import org.ebookdroid.core.codec.OutlineLink;
 import org.ebookdroid.core.codec.PageTextBox;
 import org.emdev.utils.LengthUtils;
 
+import com.foobnix.android.utils.LOG;
 import com.foobnix.sys.TempHolder;
 
 import android.graphics.RectF;
@@ -26,7 +27,13 @@ public class DjvuDocument extends AbstractCodecDocument {
 
     @Override
     public DjvuPage getPage(final int pageNumber) {
-        return new DjvuPage(context.getContextHandle(), documentHandle, getPage(documentHandle, pageNumber), pageNumber);
+        TempHolder.lock.lock();
+        try {
+            LOG.d("DjvuPage_getPage", pageNumber);
+            return new DjvuPage(context.getContextHandle(), documentHandle, getPage(documentHandle, pageNumber), pageNumber);
+        } finally {
+            TempHolder.lock.unlock();
+        }
     }
 
     @Override

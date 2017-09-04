@@ -224,7 +224,9 @@ public class ImageExtractor implements ImageDownloader {
             bitmap = bitmapRef.getBitmap();
 
             if (pageUrl.isCrop()) {
-                bitmap = getCroppedPage(codecDocumentLocal, page, bitmap).first;
+                // bitmap = getCroppedPage(codecDocumentLocal, page,
+                // bitmap).first;
+                bitmap = cropBitmap(bitmap);
             }
 
         } else if (pageUrl.getNumber() == 1) {
