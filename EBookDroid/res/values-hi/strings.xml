@@ -286,25 +286,6 @@
    <string name="right_side">दाईं ओर</string>
    <string name="text_without_line_break">लाइन ब्रेक के बिना पाठ</string>
    <string name="apply_a_new_screen_orientation_">एक नए स्क्रीन अभिविन्यास लागू करें?</string>
-   <string name="screenshot1">पुस्तकालय में सभी पुस्तकों की व्यवस्था करें</string>
-   <string name="screenshot2">पूर्वावलोकन के साथ फ़ाइल प्रबंधक</string>
-   <string name="screenshot3">तारांकित और एक ही स्थान पर पिछले किताबें</string>
-   <string name="screenshot4">कस्टम रंग के साथ नाइट मोड</string>
-   <string name="screenshot5">कागज के एक किताब की तरह एक विशेष पृष्ठभूमि</string>
-   <string name="screenshot6">एक छोटे आकार के रूप में पृष्ठों देखें</string>
-   <string name="screenshot7">सामग्री। वर्तमान अध्याय हाइलाइट किया गया है</string>
-   <string name="screenshot8">सभी पुस्तक सेटिंग आसानी से उपलब्ध हैं</string>
-   <string name="screenshot9">ड्राइंग और पीडीएफ में व्याख्या जोड़ना</string>
-   <string name="screenshot10">संगीतकार। एक दिया गति से संगीत नोटों स्क्रॉल</string>
-   <string name="screenshot11">कस्टम विषयों और रात मोड</string>
-   <string name="screenshot12">रात मोड में एक सूची के रूप लाइब्रेरी</string>
-   <string name="screenshot13">शब्दों का अनुवाद एक शब्दकोश में या ऑनलाइन</string>
-   <string name="screenshot14">पाठ पढ़ें जोर से, लेख से बोली (टीटीएस)</string>
-   <string name="screenshot15">एक किताब पढ़ के लिए अतिरिक्त सेटिंग</string>
-   <string name="screenshot16">पुस्तक के बारे में जानकारी के साथ संवाद बॉक्स</string>
-   <string name="screenshot17">पुस्तकालय में सभी लेखक</string>
-   <string name="screenshot18">पुस्तकालय में सभी शैलियों</string>
-   <string name="screenshot19">पुस्तकालय में पुस्तकों के लिए आसान खोज</string>
    <string name="styles">शैलियाँ</string>
    <string name="document_styles">दस्तावेज़ शैलियाँ</string>
    <string name="user_styles">उपयोगकर्ता शैलियों</string>
@@ -389,4 +370,5 @@
    <string name="stop_reading_timer_">पढ़ना बंद करें (टाइमर)</string>
    <string name="two_pages_cover">कवर, दो पृष्ठ</string>
    <string name="enhancements_for_oled_display">ओएलईडी डिस्प्ले के लिए एन्हांसमेंट</string>
+   <string name="reading_will_be_stopped">पढ़ना बंद कर दिया जाएगा</string>
 </resources>

@@ -286,25 +286,6 @@
    <string name="right_side">Bên phải</string>
    <string name="text_without_line_break">Văn bản mà không ngắt dòng</string>
    <string name="apply_a_new_screen_orientation_">Áp dụng một hướng màn hình mới?</string>
-   <string name="screenshot1">Quản lý tất cả các sách trong thư viện</string>
-   <string name="screenshot2">Quản lý tập tin với xem trước</string>
-   <string name="screenshot3">Đóng vai chính và sổ sách cuối cùng ở một nơi</string>
-   <string name="screenshot4">Chế độ ban đêm với màu sắc tùy chỉnh</string>
-   <string name="screenshot5">Một nền đặc biệt như một cuốn sách giấy</string>
-   <string name="screenshot6">Xem trang như một kích thước nhỏ</string>
-   <string name="screenshot7">Nội dung. Chương hiện nay được đánh dấu</string>
-   <string name="screenshot8">Tất cả các cài đặt sách có thể dễ dàng tiếp cận</string>
-   <string name="screenshot9">Vẽ và thêm chú thích sang PDF</string>
-   <string name="screenshot10">Nhạc sĩ. Di chuyển nốt nhạc với tốc độ trao</string>
-   <string name="screenshot11">Chủ đề tùy chỉnh và chế độ ban đêm</string>
-   <string name="screenshot12">Thư viện như một danh sách trong chế độ ban đêm</string>
-   <string name="screenshot13">Dịch từ trong từ điển hoặc trực tuyến</string>
-   <string name="screenshot14">Đọc văn bản to, văn bản thành giọng nói (TTS)</string>
-   <string name="screenshot15">Cài đặt bổ sung cho việc đọc một cuốn sách</string>
-   <string name="screenshot16">Hộp thoại với thông tin về cuốn sách</string>
-   <string name="screenshot17">Tất cả các tác giả trong thư viện</string>
-   <string name="screenshot18">Tất cả thể loại trong thư viện</string>
-   <string name="screenshot19">Dễ dàng tìm kiếm cho cuốn sách trong thư viện</string>
    <string name="styles">Styles</string>
    <string name="document_styles">Kiểu tài liệu</string>
    <string name="user_styles">Phong cách người dùng</string>
@@ -389,4 +370,5 @@
    <string name="stop_reading_timer_">Ngừng đọc (hẹn giờ)</string>
    <string name="two_pages_cover">Trang bìa, hai trang</string>
    <string name="enhancements_for_oled_display">Cải tiến cho màn hình OLED</string>
+   <string name="reading_will_be_stopped">Đọc sẽ được dừng lại</string>
 </resources>

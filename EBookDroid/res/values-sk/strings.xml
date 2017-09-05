@@ -286,25 +286,6 @@
    <string name="right_side">Pravá strana</string>
    <string name="text_without_line_break">Text bez zalomenie riadku</string>
    <string name="apply_a_new_screen_orientation_">Aplikovať nové orientácie obrazovky?</string>
-   <string name="screenshot1">Spravovať všetky knihy v knižnici</string>
-   <string name="screenshot2">Správca súborov s náhľadom</string>
-   <string name="screenshot3">Hral a poslednej knihy na jednom mieste</string>
-   <string name="screenshot4">Nočný režim s vlastnou farbu</string>
-   <string name="screenshot5">Zvláštne pozadí ako kniha papiera</string>
-   <string name="screenshot6">Prezerať stránky ako malé veľkosti</string>
-   <string name="screenshot7">Obsah. Aktuálny kapitola je zvýraznená</string>
-   <string name="screenshot8">Všetky nastavenia kníh sú ľahko prístupné</string>
-   <string name="screenshot9">Kreslenie a pridávanie poznámok do PDF</string>
-   <string name="screenshot10">Hudobník. Rolovanie noty pri danej rýchlosti</string>
-   <string name="screenshot11">Vlastné motívy a nočný režim</string>
-   <string name="screenshot12">Knižnica podľa zoznamu v nočnom režime</string>
-   <string name="screenshot13">Prekladať slová v slovníku, alebo on-line</string>
-   <string name="screenshot14">Prečítať text nahlas, prevod textu na reč (TTS)</string>
-   <string name="screenshot15">Dodatočné nastavenie pre čítanie kníh</string>
-   <string name="screenshot16">Dialógové okno s informáciami o knihe</string>
-   <string name="screenshot17">Všetci autori v knižnici</string>
-   <string name="screenshot18">Všetky žánre v knižnici</string>
-   <string name="screenshot19">Jednoduché vyhľadávanie kníh v knižnici</string>
    <string name="styles">Štýly</string>
    <string name="document_styles">Štýly dokumentu</string>
    <string name="user_styles">Štýly užívateľských</string>
@@ -389,4 +370,5 @@
    <string name="stop_reading_timer_">Zastaviť čítanie (časovač)</string>
    <string name="two_pages_cover">Obálka, dve strany</string>
    <string name="enhancements_for_oled_display">Vylepšenia pre OLED displej</string>
+   <string name="reading_will_be_stopped">Čítanie bude zastavené</string>
 </resources>

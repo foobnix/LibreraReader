@@ -288,25 +288,6 @@
    <string name="customize_tap_zones">กำหนดโซนการแตะ</string>
    <string name="text_without_line_break">ข้อความที่ไม่มีตัวแบ่งบรรทัด</string>
    <string name="apply_a_new_screen_orientation_">ใช้การวางแนวหน้าจอใหม่หรือไม่?</string>
-   <string name="screenshot1">สร้างและจัดการไลบรารีของคุณเอง</string>
-   <string name="screenshot2">ระบุหนังสือของคุณได้อย่างง่ายดายด้วยตัวอย่างภาพกราฟิก</string>
-   <string name="screenshot3">รายการโปรดและหนังสือล่าสุดในที่เดียวที่สะดวก</string>
-   <string name="screenshot4">กำหนดสีโหมดกลางคืนของคุณเอง</string>
-   <string name="screenshot5">ปรับแต่งพื้นหลังของคุณ</string>
-   <string name="screenshot6">หน้าจอแสดงผลแต่ละส่วนเพื่อความสะดวกในการใช้งาน</string>
-   <string name="screenshot7">เข้าถึงสารบัญได้อย่างง่ายดาย</string>
-   <string name="screenshot8">เข้าถึง Quick Settings ได้อย่างสะดวก</string>
-   <string name="screenshot9">วาดบนและใส่คำอธิบายประกอบไฟล์ PDF</string>
-   <string name="screenshot10">การเลื่อนเอกสารอัตโนมัติด้วยความเร็วที่กำหนดเอง</string>
-   <string name="screenshot11">กำหนดธีมและเลือกโหมดวันหรือคืน</string>
-   <string name="screenshot12">เลือกระหว่างรายการและโหมดกริด</string>
-   <string name="screenshot13">แปลและค้นหาคำทั้งในและออฟไลน์</string>
-   <string name="screenshot14">เพลิดเพลินไปกับการอ่านด้วย TTS (Text to Speech)</string>
-   <string name="screenshot15">การตั้งค่าหลายอย่างเพื่อปรับแต่งประสบการณ์การอ่านของคุณ</string>
-   <string name="screenshot16">สรุปหนังสือสำหรับการอ้างอิงอย่างรวดเร็ว</string>
-   <string name="screenshot17">กรองตามผู้แต่ง</string>
-   <string name="screenshot18">กรองตามประเภท</string>
-   <string name="screenshot19">ค้นหาห้องสมุดได้ง่าย</string>
    <string name="styles">รูปแบบ</string>
    <string name="document_styles">รูปแบบเอกสาร</string>
    <string name="user_styles">สไตล์ผู้ใช้</string>
@@ -389,4 +370,5 @@
    <string name="stop_reading_timer_">หยุดอ่าน (จับเวลา)</string>
    <string name="two_pages_cover">ปก 2 หน้า</string>
    <string name="enhancements_for_oled_display">การเพิ่มประสิทธิภาพสำหรับการแสดงผล OLED</string>
+   <string name="reading_will_be_stopped">การอ่านจะหยุดลง</string>
 </resources>

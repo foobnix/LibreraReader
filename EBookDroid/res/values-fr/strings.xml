@@ -286,25 +286,6 @@
    <string name="right_side">Côté droit</string>
    <string name="text_without_line_break">Texte sans saut de ligne</string>
    <string name="apply_a_new_screen_orientation_">Appliquer une nouvelle orientation de l\'écran?</string>
-   <string name="screenshot1">Gérer tous les livres dans la bibliothèque</string>
-   <string name="screenshot2">Gestionnaire de fichiers avec prévisualisation</string>
-   <string name="screenshot3">Suivis et derniers livres en un seul endroit</string>
-   <string name="screenshot4">Mode nuit avec couleur personnalisée</string>
-   <string name="screenshot5">Un fond spécial comme un livre de papier</string>
-   <string name="screenshot6">Voir pages comme une petite taille</string>
-   <string name="screenshot7">Contenu. Le chapitre en cours est mise en surbrillance</string>
-   <string name="screenshot8">Tous les paramètres du livre sont facilement accessibles</string>
-   <string name="screenshot9">Dessin et l\'ajout d\'annotations au format PDF</string>
-   <string name="screenshot10">Musicien. Faire défiler les notes de musique à une vitesse donnée</string>
-   <string name="screenshot11">Thèmes personnalisés et mode nuit</string>
-   <string name="screenshot12">Bibliothèque comme une liste dans le mode nuit</string>
-   <string name="screenshot13">Traduire des mots dans un dictionnaire ou en ligne</string>
-   <string name="screenshot14">Lisez le texte à haute voix, texte à la parole (TTS)</string>
-   <string name="screenshot15">Paramètres supplémentaires pour la lecture d\'un livre</string>
-   <string name="screenshot16">Boîte de dialogue avec des informations sur le livre</string>
-   <string name="screenshot17">Tous les auteurs de la bibliothèque</string>
-   <string name="screenshot18">Tous les genres dans la bibliothèque</string>
-   <string name="screenshot19">Recherche facile pour les livres dans la bibliothèque</string>
    <string name="styles">Modes</string>
    <string name="document_styles">Styles de document</string>
    <string name="user_styles">Styles utilisateur</string>
@@ -389,4 +370,5 @@
    <string name="stop_reading_timer_">Arrêtez la lecture (minuterie)</string>
    <string name="two_pages_cover">Couverture, deux pages</string>
    <string name="enhancements_for_oled_display">Améliorations pour l\'affichage OLED</string>
+   <string name="reading_will_be_stopped">La lecture sera arrêtée</string>
 </resources>

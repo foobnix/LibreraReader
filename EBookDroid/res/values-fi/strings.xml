@@ -288,25 +288,6 @@
    <string name="customize_tap_zones">Muokata napautusalueita</string>
    <string name="text_without_line_break">Teksti ilman rivinvaihto</string>
    <string name="apply_a_new_screen_orientation_">Levitä uusi näytön suunnan?</string>
-   <string name="screenshot1">Voit luoda ja hallita oma kirjasto</string>
-   <string name="screenshot2">Tunnistamalla kirjojen graafisen kansi esikatselun</string>
-   <string name="screenshot3">Suosikit ja viime kirjat yhteen paikkaan</string>
-   <string name="screenshot4">Custom sinun Yökuuntelutila väri</string>
-   <string name="screenshot5">Muokkaa taustaa</string>
-   <string name="screenshot6">Yksittäisen sivun näyttö helpottaa navigointia</string>
-   <string name="screenshot7">Helposti Sisällys</string>
-   <string name="screenshot8">Kätevä pääsy pika-asetukset</string>
-   <string name="screenshot9">Piirtää, ja muistiinpanoja, PDF</string>
-   <string name="screenshot10">Automaattinen asiakirjojen vieritys Custom nopeuksilla</string>
-   <string name="screenshot11">Muokata teemoja ja valitse päivä tai yö-tilassa</string>
-   <string name="screenshot12">Valitse joko Lista ja grid-tilat</string>
-   <string name="screenshot13">Käännä ja etsiä sanoja niin ja offline</string>
-   <string name="screenshot14">Nauttivat lukea kanssa TTS (Text to Speech)</string>
-   <string name="screenshot15">Monet asetukset muokata lukukokemustasi</string>
-   <string name="screenshot16">Kirja yhteenveto pikaopas</string>
-   <string name="screenshot17">Suodatin kirjailija</string>
-   <string name="screenshot18">Suodatin tyylilajin</string>
-   <string name="screenshot19">Helppo kirjaston haut</string>
    <string name="styles">Tyylit</string>
    <string name="document_styles">Asiakirjan tyylit</string>
    <string name="user_styles">Käyttäjän tyylit</string>
@@ -389,4 +370,5 @@
    <string name="stop_reading_timer_">Lopeta lukeminen (ajastin)</string>
    <string name="two_pages_cover">Cover, kaksi sivua</string>
    <string name="enhancements_for_oled_display">OLED-näytön lisälaitteet</string>
+   <string name="reading_will_be_stopped">Lukeminen pysähtyy</string>
 </resources>

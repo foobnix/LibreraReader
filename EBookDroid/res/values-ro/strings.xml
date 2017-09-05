@@ -286,25 +286,6 @@
    <string name="right_side">Partea dreapta</string>
    <string name="text_without_line_break">Text fără pauză linie</string>
    <string name="apply_a_new_screen_orientation_">Aplicați o nouă orientare ecran?</string>
-   <string name="screenshot1">Gestionați toate cărțile din bibliotecă</string>
-   <string name="screenshot2">Manager de fișiere cu previzualizare</string>
-   <string name="screenshot3">Steluță și ultimele cărți într-un singur loc</string>
-   <string name="screenshot4">Mod de noapte cu culoare personalizată</string>
-   <string name="screenshot5">Un fond special ca o carte de hârtie</string>
-   <string name="screenshot6">Vezi pagini ca dimensiune mică</string>
-   <string name="screenshot7">Cuprins. Capitolul curent este evidențiat</string>
-   <string name="screenshot8">Toate setările de carte sunt ușor accesibile</string>
-   <string name="screenshot9">Desen și adăugarea de adnotări în PDF</string>
-   <string name="screenshot10">Muzician. Scrolling note muzicale la o anumită viteză</string>
-   <string name="screenshot11">Teme personalizate și modul de noapte</string>
-   <string name="screenshot12">Biblioteca ca o listă în modul de noapte</string>
-   <string name="screenshot13">Traduceți cuvinte într-un dicționar sau on-line</string>
-   <string name="screenshot14">Citiți textul cu voce tare, text la vorbire (TTS)</string>
-   <string name="screenshot15">Setări suplimentare pentru a citi o carte</string>
-   <string name="screenshot16">Caseta de dialog cu informații despre carte</string>
-   <string name="screenshot17">Toți autorii din bibliotecă</string>
-   <string name="screenshot18">Toate genurile în bibliotecă</string>
-   <string name="screenshot19">Căutare ușoară pentru cărți în bibliotecă</string>
    <string name="styles">Stiluri</string>
    <string name="document_styles">Stilurile documentului</string>
    <string name="user_styles">Stiluri de utilizare</string>
@@ -389,4 +370,5 @@
    <string name="stop_reading_timer_">Opriți citirea (temporizator)</string>
    <string name="two_pages_cover">Copertă, Două pagini</string>
    <string name="enhancements_for_oled_display">Îmbunătățiri pentru afișarea pe OLED</string>
+   <string name="reading_will_be_stopped">Citirea va fi oprită</string>
 </resources>

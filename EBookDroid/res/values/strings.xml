@@ -288,25 +288,6 @@
    <string name="customize_tap_zones">Customize tap zones</string>
    <string name="text_without_line_break">Text without line break</string>
    <string name="apply_a_new_screen_orientation_">Apply a new screen orientation?</string>
-   <string name="screenshot1">Create and manage your own library</string>
-   <string name="screenshot2">Easily identify your books with graphic cover previews</string>
-   <string name="screenshot3">Favorites and recent books in one convenient location</string>
-   <string name="screenshot4">Custom your Night Mode color</string>
-   <string name="screenshot5">Customize your background</string>
-   <string name="screenshot6">Individual page display for easy navigation</string>
-   <string name="screenshot7">Easily accessed Table of Contents</string>
-   <string name="screenshot8">Convenient access to Quick Settings</string>
-   <string name="screenshot9">Draw on, and annotate, PDFs</string>
-   <string name="screenshot10">Automatic document scrolling at custom speeds</string>
-   <string name="screenshot11">Customize themes and choose day or night mode</string>
-   <string name="screenshot12">Choose between List and Grid modes</string>
-   <string name="screenshot13">Translate and look up words both on and offline</string>
-   <string name="screenshot14">Enjoy being read to with TTS (Text to Speech)</string>
-   <string name="screenshot15">Many settings to customize your reading experience</string>
-   <string name="screenshot16">Book summary for quick reference</string>
-   <string name="screenshot17">Filter by author</string>
-   <string name="screenshot18">Filter by genre</string>
-   <string name="screenshot19">Easy library searches</string>
    <string name="styles">Styles</string>
    <string name="document_styles">Document styles</string>
    <string name="user_styles">User styles</string>
@@ -388,5 +369,6 @@
    <string name="half_page">Half page</string>
    <string name="trim_borders">Trim borders</string>
    <string name="stop_reading_timer_">Stop reading (timer)</string>
+   <string name="reading_will_be_stopped">Reading will be stopped</string>
    <string name="enhancements_for_oled_display">Enhancements for OLED display</string>
 </resources>

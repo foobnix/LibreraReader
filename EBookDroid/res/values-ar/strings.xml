@@ -286,25 +286,6 @@
    <string name="right_side">الجانب الأيمن</string>
    <string name="text_without_line_break">النص دون انقطاع الخط</string>
    <string name="apply_a_new_screen_orientation_">تطبيق اتجاه الشاشة الجديد؟</string>
-   <string name="screenshot1">إدارة جميع الكتب في المكتبة</string>
-   <string name="screenshot2">مدير الملفات مع المعاينة</string>
-   <string name="screenshot3">تألق والكتب الماضية في مكان واحد</string>
-   <string name="screenshot4">الوضع الليلي مع لون مخصص</string>
-   <string name="screenshot5">خلفية خاصة مثل كتاب من الورق</string>
-   <string name="screenshot6">عرض صفحات مثل حجم صغير</string>
-   <string name="screenshot7">محتويات. ويبرز الفصل الحالي</string>
-   <string name="screenshot8">كافة الإعدادات كتاب يمكن الوصول إليها بسهولة</string>
-   <string name="screenshot9">رسم وإضافة شروح PDF</string>
-   <string name="screenshot10">موسيقي او عازف. التمرير تلاحظ الموسيقى في سرعة معينة</string>
-   <string name="screenshot11">العرف المواضيع والوضع الليلي</string>
-   <string name="screenshot12">مكتبة على شكل قائمة في الوضع الليلي</string>
-   <string name="screenshot13">ترجمة الكلمات في القاموس أو عبر الإنترنت</string>
-   <string name="screenshot14">قراءة النص بصوت عال، النص إلى كلام (TTS)</string>
-   <string name="screenshot15">إعدادات إضافية لقراءة كتاب</string>
-   <string name="screenshot16">مربع حوار مع معلومات حول الكتاب</string>
-   <string name="screenshot17">كل الكتاب في المكتبة</string>
-   <string name="screenshot18">جميع الأنواع في المكتبة</string>
-   <string name="screenshot19">من السهل البحث عن الكتب في المكتبة</string>
    <string name="styles">الأنماط</string>
    <string name="document_styles">أنماط المستند</string>
    <string name="user_styles">أساليب العضو</string>
@@ -389,4 +370,5 @@
    <string name="stop_reading_timer_">إيقاف القراءة (مؤقت)</string>
    <string name="two_pages_cover">الغلاف، صفحتان</string>
    <string name="enhancements_for_oled_display">تحسينات لشاشة أوليد</string>
+   <string name="reading_will_be_stopped">سيتم إيقاف القراءة</string>
 </resources>

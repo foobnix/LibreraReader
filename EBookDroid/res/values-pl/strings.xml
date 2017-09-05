@@ -286,25 +286,6 @@
    <string name="right_side">Prawa strona</string>
    <string name="text_without_line_break">Tekst bez rozdzielania linii</string>
    <string name="apply_a_new_screen_orientation_">Nałożyć nową orientację ekranu?</string>
-   <string name="screenshot1">Zarządzanie wszystkie książki w bibliotece</string>
-   <string name="screenshot2">Menedżer plików z podglądem</string>
-   <string name="screenshot3">Ulubione i ostatnie książki w jednym miejscu</string>
-   <string name="screenshot4">Tryb nocny z niestandardowym kolorze</string>
-   <string name="screenshot5">Specjalny tło jak książka papieru</string>
-   <string name="screenshot6">Zobacz strony jak małym rozmiarze</string>
-   <string name="screenshot7">Zawartość. Obecny rozdział zostanie podświetlony</string>
-   <string name="screenshot8">Wszystkie ustawienia książce są łatwo dostępne</string>
-   <string name="screenshot9">Rysowanie i dodawanie adnotacji do PDF</string>
-   <string name="screenshot10">Muzyk. Przewijanie nut przy danej prędkości</string>
-   <string name="screenshot11">Motywy niestandardowe i tryb nocny</string>
-   <string name="screenshot12">Biblioteka jako listy w trybie nocnym</string>
-   <string name="screenshot13">Tłumaczyć słowa w słowniku lub w Internecie</string>
-   <string name="screenshot14">Przeczytaj tekst na głos, tekst na mowę (TTS)</string>
-   <string name="screenshot15">Dodatkowe ustawienia czyta książkę</string>
-   <string name="screenshot16">Okno dialogowe z informacją o książce</string>
-   <string name="screenshot17">Wszyscy autorzy w bibliotece</string>
-   <string name="screenshot18">Wszystkie gatunki w bibliotece</string>
-   <string name="screenshot19">Łatwe wyszukiwanie książek w bibliotece</string>
    <string name="styles">Style</string>
    <string name="document_styles">Style Dokumentu</string>
    <string name="user_styles">Style użytkownika</string>
@@ -389,4 +370,5 @@
    <string name="stop_reading_timer_">Zatrzymaj czytanie (timer)</string>
    <string name="two_pages_cover">Okładka, dwie strony</string>
    <string name="enhancements_for_oled_display">Udoskonalenia wyświetlacza OLED</string>
+   <string name="reading_will_be_stopped">Czytanie zostanie przerwane</string>
 </resources>

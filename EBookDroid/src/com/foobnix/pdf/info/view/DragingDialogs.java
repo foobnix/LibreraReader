@@ -203,12 +203,12 @@ public class DragingDialogs {
                         }
 
                         timerStart.setText(TempHolder.get().timerFinishTime == 0 ? R.string.start : R.string.cancel);
-                        ttsPage.setText(TempHolder.get().timerFinishTime == 0 ? "" : controller.getString(R.string.stop_reading_timer_) + " " + DateFormat.getTimeFormat(activity).format(TempHolder.get().timerFinishTime));
+                        ttsPage.setText(TempHolder.get().timerFinishTime == 0 ? "" : controller.getString(R.string.reading_will_be_stopped) + " " + DateFormat.getTimeFormat(activity).format(TempHolder.get().timerFinishTime));
                     }
                 });
 
                 timerStart.setText(TempHolder.get().timerFinishTime == 0 ? R.string.start : R.string.cancel);
-                ttsPage.setText(TempHolder.get().timerFinishTime == 0 ? "" : controller.getString(R.string.stop_reading_timer_) + " " + DateFormat.getTimeFormat(activity).format(TempHolder.get().timerFinishTime));
+                ttsPage.setText(TempHolder.get().timerFinishTime == 0 ? "" : controller.getString(R.string.reading_will_be_stopped) + " " + DateFormat.getTimeFormat(activity).format(TempHolder.get().timerFinishTime));
 
                 TTSEngine.get().getTTS(new OnInitListener() {
 

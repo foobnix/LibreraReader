@@ -254,7 +254,7 @@
             android:id="@+id/progressDraw"
             android:layout_width="match_parent"
             android:layout_height="@dimen/progress"
-            android:background="#ff0000" />
+             />
     </LinearLayout>
 
     <LinearLayout

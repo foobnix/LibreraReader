@@ -288,25 +288,6 @@
    <string name="customize_tap_zones">Sesuaikan zona ketuk</string>
    <string name="text_without_line_break">Teks tanpa jeda baris</string>
    <string name="apply_a_new_screen_orientation_">Terapkan orientasi layar baru?</string>
-   <string name="screenshot1">Buat dan kelola perpustakaan Anda sendiri</string>
-   <string name="screenshot2">Mudah mengidentifikasi buku Anda dengan preview cover grafis</string>
-   <string name="screenshot3">Favorit dan buku terbaru di satu lokasi yang mudah ditemukan</string>
-   <string name="screenshot4">Custom warna Night Mode Anda</string>
-   <string name="screenshot5">Sesuaikan latar belakang Anda</string>
-   <string name="screenshot6">Tampilan halaman individu untuk memudahkan navigasi</string>
-   <string name="screenshot7">Mudah diakses Daftar Isi</string>
-   <string name="screenshot8">Akses mudah ke Setelan Cepat</string>
-   <string name="screenshot9">Gambarlah, dan anotasi, PDF</string>
-   <string name="screenshot10">Menggulir dokumen otomatis pada kecepatan kustom</string>
-   <string name="screenshot11">Sesuaikan tema dan pilih mode siang atau malam</string>
-   <string name="screenshot12">Pilih antara mode List dan Grid</string>
-   <string name="screenshot13">Terjemahkan dan cari kata-kata sekaligus dan offline</string>
-   <string name="screenshot14">Nikmati dibacakan dengan TTS (Text to Speech)</string>
-   <string name="screenshot15">Banyak pengaturan untuk menyesuaikan pengalaman membaca Anda</string>
-   <string name="screenshot16">Ringkasan buku untuk referensi cepat</string>
-   <string name="screenshot17">Filter oleh penulis</string>
-   <string name="screenshot18">Filter menurut genre</string>
-   <string name="screenshot19">Pencarian perpustakaan yang mudah</string>
    <string name="styles">Gaya</string>
    <string name="document_styles">Gaya dokumen</string>
    <string name="user_styles">Gaya pengguna</string>
@@ -389,4 +370,5 @@
    <string name="stop_reading_timer_">Berhenti membaca (timer)</string>
    <string name="two_pages_cover">Tutup, Dua halaman</string>
    <string name="enhancements_for_oled_display">Perangkat tambahan untuk tampilan OLED</string>
+   <string name="reading_will_be_stopped">Membaca akan dihentikan</string>
 </resources>

@@ -286,25 +286,6 @@
    <string name="right_side">Höger sida</string>
    <string name="text_without_line_break">Texten utom radbrytning</string>
    <string name="apply_a_new_screen_orientation_">Applicera en ny skärm läggning?</string>
-   <string name="screenshot1">Hantera alla böcker i biblioteket</string>
-   <string name="screenshot2">Filhanteraren med förhandsvisning</string>
-   <string name="screenshot3">Stjärnmärkt och senaste boken på ett ställe</string>
-   <string name="screenshot4">Nattläge med egen färg</string>
-   <string name="screenshot5">En särskild bakgrund som en bok av papper</string>
-   <string name="screenshot6">Visa sidor som en liten storlek</string>
-   <string name="screenshot7">Innehåll. Det aktuella kapitlet markerat</string>
-   <string name="screenshot8">Alla bokinställningar är lättillgängliga</string>
-   <string name="screenshot9">Rita och lägga anteckningar till PDF</string>
-   <string name="screenshot10">Musiker. Rullning noter vid en given hastighet</string>
-   <string name="screenshot11">Anpassade teman och nattläge</string>
-   <string name="screenshot12">Bibliotek som en lista i nattläge</string>
-   <string name="screenshot13">Översätta ord i en ordbok eller online</string>
-   <string name="screenshot14">Läs texten högt, text till tal (TTS)</string>
-   <string name="screenshot15">Ytterligare inställningar för att läsa en bok</string>
-   <string name="screenshot16">Dialogruta med information om boken</string>
-   <string name="screenshot17">Alla författare i biblioteket</string>
-   <string name="screenshot18">Alla genrer i biblioteket</string>
-   <string name="screenshot19">Lätt söka böcker i biblioteket</string>
    <string name="styles">Styles</string>
    <string name="document_styles">Dokument~~POS=TRUNC stilar</string>
    <string name="user_styles">Användar stilar</string>
@@ -389,4 +370,5 @@
    <string name="stop_reading_timer_">Sluta läsa (timer)</string>
    <string name="two_pages_cover">Omslag, två sidor</string>
    <string name="enhancements_for_oled_display">Förbättringar för OLED-skärm</string>
+   <string name="reading_will_be_stopped">Läsningen stoppas</string>
 </resources>

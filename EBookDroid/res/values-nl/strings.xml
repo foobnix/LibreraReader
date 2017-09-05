@@ -286,25 +286,6 @@
    <string name="right_side">Rechter zijde</string>
    <string name="text_without_line_break">Tekst zonder regeleinde</string>
    <string name="apply_a_new_screen_orientation_">Breng een nieuwe oriëntatie van het scherm?</string>
-   <string name="screenshot1">Beheer alle boeken in de bibliotheek</string>
-   <string name="screenshot2">Bestandsbeheer met preview</string>
-   <string name="screenshot3">Met ster en de laatste boeken op één plek</string>
-   <string name="screenshot4">Night mode met aangepaste kleur</string>
-   <string name="screenshot5">Een speciale achtergrond als een boek van papier</string>
-   <string name="screenshot6">Bekijk pagina\'s als een klein formaat</string>
-   <string name="screenshot7">Inhoud. Het huidige hoofdstuk wordt gemarkeerd</string>
-   <string name="screenshot8">Alle boeken instellingen zijn gemakkelijk bereikbaar</string>
-   <string name="screenshot9">Tekenen en annotaties toe te voegen aan PDF</string>
-   <string name="screenshot10">Musicus. Scrollen muziek notities op een bepaalde snelheid</string>
-   <string name="screenshot11">Aangepaste thema\'s en nachtmodus</string>
-   <string name="screenshot12">Bibliotheek als een lijst in de nachtmodus</string>
-   <string name="screenshot13">Vertaal woorden in een woordenboek of online</string>
-   <string name="screenshot14">Lees de tekst hardop, tekst-naar-spraak (TTS)</string>
-   <string name="screenshot15">Extra instellingen voor het lezen van een boek</string>
-   <string name="screenshot16">Dialoogvenster weer met informatie over het boek</string>
-   <string name="screenshot17">Alle auteurs in de bibliotheek</string>
-   <string name="screenshot18">Alle genres in de bibliotheek</string>
-   <string name="screenshot19">Gemakkelijk zoeken naar boeken in de bibliotheek</string>
    <string name="styles">Stijlen</string>
    <string name="document_styles">Document stijlen</string>
    <string name="user_styles">Gebruiker stijlen</string>
@@ -389,4 +370,5 @@
    <string name="stop_reading_timer_">Stop met lezen (timer)</string>
    <string name="two_pages_cover">Cover, Twee pagina\'s</string>
    <string name="enhancements_for_oled_display">Verbeteringen voor OLED-weergave</string>
+   <string name="reading_will_be_stopped">Het lezen wordt gestopt</string>
 </resources>

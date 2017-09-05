@@ -288,25 +288,6 @@
    <string name="customize_tap_zones">Redaguoti pasirinkimo vietas</string>
    <string name="text_without_line_break">Tekstas be puslapio lūžio</string>
    <string name="apply_a_new_screen_orientation_">Taikyti naują ekrano poziciją?</string>
-   <string name="screenshot1">Sukurkite ir kontroliuokite nuosavą biblioteką</string>
-   <string name="screenshot2">Lengvai atpažinkite knygas pagal viršelius</string>
-   <string name="screenshot3">Mėgstamos ir naujausios knygos vienoje vietoje</string>
-   <string name="screenshot4">Pasirinkite nakties režimo spalvą</string>
-   <string name="screenshot5">Pasirinkite foną</string>
-   <string name="screenshot6">Atskira kiekvieno puslapio peržiūra lengvai paieškai</string>
-   <string name="screenshot7">Lengvai pasiekite knygos turinys</string>
-   <string name="screenshot8">Lengvai pereikite į svarbiausius nustatymus</string>
-   <string name="screenshot9">Žymėkite, kurkite pastabas PDF dokumentuose</string>
-   <string name="screenshot10">Automatinis dokumento slinkimas įvairiais greičiais</string>
-   <string name="screenshot11">Pasirinkite temas ir nustatykite dienos ar nakties režimą</string>
-   <string name="screenshot12">Pasirinkite tarp sąrašo ir tinklelio režimų</string>
-   <string name="screenshot13">Išverskite ir ieškokite žodžių esant interneto ryšiui ar be jo</string>
-   <string name="screenshot14">Mėgaukitės klausydami balsu skaitomą knygą (Tekstas į kalbą)</string>
-   <string name="screenshot15">Daugybė nustatymų, palengvinačių knygos skaitymą</string>
-   <string name="screenshot16">Knygos anotacija padės išsirinkti tinkamiausią knygą</string>
-   <string name="screenshot17">Ieškokite pagal autorių</string>
-   <string name="screenshot18">Ieškokite pagal žanrą</string>
-   <string name="screenshot19">Lengva paieška bibliotekoje</string>
    <string name="styles">Stiliai</string>
    <string name="document_styles">Dokumento</string>
    <string name="user_styles">Vartotojo</string>
@@ -389,4 +370,5 @@
    <string name="stop_reading_timer_">Nustoti skaityti (laikmatis)</string>
    <string name="two_pages_cover">Viršelis, du puslapiai</string>
    <string name="enhancements_for_oled_display">OLED ekrano priedai</string>
+   <string name="reading_will_be_stopped">Skaitymas bus sustabdytas</string>
 </resources>

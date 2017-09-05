@@ -43,25 +43,25 @@ public class ScreenActivity extends Activity {
         } else {
             Map<Integer, Integer> ids = new HashMap<Integer, Integer>();
             ids.put(-1, R.string.app_name);
-            ids.put(1, R.string.screenshot1);
-            ids.put(2, R.string.screenshot2);
-            ids.put(3, R.string.screenshot3);
-            ids.put(4, R.string.screenshot4);
-            ids.put(5, R.string.screenshot5);
-            ids.put(6, R.string.screenshot6);
-            ids.put(7, R.string.screenshot7);
-            ids.put(8, R.string.screenshot8);
-            ids.put(9, R.string.screenshot9);
-            ids.put(10, R.string.screenshot10);
-            ids.put(11, R.string.screenshot11);
-            ids.put(12, R.string.screenshot12);
-            ids.put(13, R.string.screenshot13);
-            ids.put(14, R.string.screenshot14);
-            ids.put(15, R.string.screenshot15);
-            ids.put(16, R.string.screenshot16);
-            ids.put(17, R.string.screenshot17);
-            ids.put(18, R.string.screenshot18);
-            ids.put(19, R.string.screenshot19);
+            // ids.put(1, R.string.screenshot1);
+            // ids.put(2, R.string.screenshot2);
+            // ids.put(3, R.string.screenshot3);
+            // ids.put(4, R.string.screenshot4);
+            // ids.put(5, R.string.screenshot5);
+            // ids.put(6, R.string.screenshot6);
+            // ids.put(7, R.string.screenshot7);
+            // ids.put(8, R.string.screenshot8);
+            // ids.put(9, R.string.screenshot9);
+            // ids.put(10, R.string.screenshot10);
+            // ids.put(11, R.string.screenshot11);
+            // ids.put(12, R.string.screenshot12);
+            // ids.put(13, R.string.screenshot13);
+            // ids.put(14, R.string.screenshot14);
+            // ids.put(15, R.string.screenshot15);
+            // ids.put(16, R.string.screenshot16);
+            // ids.put(17, R.string.screenshot17);
+            // ids.put(18, R.string.screenshot18);
+            // ids.put(19, R.string.screenshot19);
             try {
                 text1.setText(ids.get(num));
             } catch (Exception e) {

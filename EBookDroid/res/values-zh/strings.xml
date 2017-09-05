@@ -286,25 +286,6 @@
    <string name="right_side">右边</string>
    <string name="text_without_line_break">文字不换行</string>
    <string name="apply_a_new_screen_orientation_">应用新的屏幕方向？</string>
-   <string name="screenshot1">管理所有图书在图书馆</string>
-   <string name="screenshot2">与预览文件管理器</string>
-   <string name="screenshot3">在一个地方主演和最后的书</string>
-   <string name="screenshot4">夜间模式与自定义颜色</string>
-   <string name="screenshot5">一个特殊的背景就像一本书的纸</string>
-   <string name="screenshot6">查看页面作为小尺寸</string>
-   <string name="screenshot7">内容。当前章节高亮显示</string>
-   <string name="screenshot8">所有图书设置都很方便</string>
-   <string name="screenshot9">绘制和添加注释PDF</string>
-   <string name="screenshot10">音乐家。在给定的速度滚动音符</string>
-   <string name="screenshot11">自定义主题和夜间模式</string>
-   <string name="screenshot12">图书馆在夜间模式列表</string>
-   <string name="screenshot13">翻译单词在字典或在线</string>
-   <string name="screenshot14">阅读文本朗读，文字转语音（TTS）</string>
-   <string name="screenshot15">读书的其他设置</string>
-   <string name="screenshot16">有关于这本书的信息对话框</string>
-   <string name="screenshot17">库中的所有作者</string>
-   <string name="screenshot18">库中的所有流派</string>
-   <string name="screenshot19">在图书搜索方便</string>
    <string name="styles">样式</string>
    <string name="document_styles">文档样式</string>
    <string name="user_styles">用户样式</string>
@@ -389,4 +370,5 @@
    <string name="stop_reading_timer_">停止阅读（定时器）</string>
    <string name="two_pages_cover">封面，两页</string>
    <string name="enhancements_for_oled_display">OLED显示屏的增强功能</string>
+   <string name="reading_will_be_stopped">阅读将被停止</string>
 </resources>

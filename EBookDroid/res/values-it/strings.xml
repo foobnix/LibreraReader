@@ -286,25 +286,6 @@
    <string name="right_side">Lato destro</string>
    <string name="text_without_line_break">Testo senza interruzione di riga</string>
    <string name="apply_a_new_screen_orientation_">Applicare un nuovo orientamento dello schermo?</string>
-   <string name="screenshot1">Gestire tutti i libri della biblioteca</string>
-   <string name="screenshot2">File manager con anteprima</string>
-   <string name="screenshot3">Michelin e ultimi libri in un unico luogo</string>
-   <string name="screenshot4">Modalità notturna con colore personalizzato</string>
-   <string name="screenshot5">Un fondo speciale come un libro di carta</string>
-   <string name="screenshot6">Visualizza le pagine come una piccola dimensione</string>
-   <string name="screenshot7">Contenuto. Il capitolo corrente viene evidenziata</string>
-   <string name="screenshot8">Tutte le impostazioni del libro sono facilmente accessibili</string>
-   <string name="screenshot9">Disegno e l\'aggiunta di annotazioni in PDF</string>
-   <string name="screenshot10">Musicista. Scorrimento note musicali ad una data velocità</string>
-   <string name="screenshot11">Temi personalizzati e modalità notte</string>
-   <string name="screenshot12">Library come un elenco nella modalità notturna</string>
-   <string name="screenshot13">Tradurre le parole in un dizionario o on-line</string>
-   <string name="screenshot14">Leggere il testo ad alta voce, text to speech (TTS)</string>
-   <string name="screenshot15">Altre impostazioni per la lettura di un libro</string>
-   <string name="screenshot16">Finestra di dialogo con informazioni sul libro</string>
-   <string name="screenshot17">Tutti gli autori nella libreria</string>
-   <string name="screenshot18">Tutti i generi nella libreria</string>
-   <string name="screenshot19">Facile ricerca per libri in biblioteca</string>
    <string name="styles">Stili</string>
    <string name="document_styles">Stili del documento</string>
    <string name="user_styles">Stili utente</string>
@@ -389,4 +370,5 @@
    <string name="stop_reading_timer_">Stop lettura (timer)</string>
    <string name="two_pages_cover">Copertina, Due pagine</string>
    <string name="enhancements_for_oled_display">Miglioramenti per l\'esposizione OLED</string>
+   <string name="reading_will_be_stopped">La lettura verrà interrotta</string>
 </resources>

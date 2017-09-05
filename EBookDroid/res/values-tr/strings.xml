@@ -286,25 +286,6 @@
    <string name="right_side">Sağ taraf</string>
    <string name="text_without_line_break">Hat ara vermeden Metin</string>
    <string name="apply_a_new_screen_orientation_">Yeni ekran yönü uygulansın mı?</string>
-   <string name="screenshot1">Kütüphanedeki tüm kitapları yönetme</string>
-   <string name="screenshot2">Önizleme ile Dosya yöneticisi</string>
-   <string name="screenshot3">Tek bir yerde yıldızlılar ve geçen kitaplar</string>
-   <string name="screenshot4">Özel renk ile gece modu</string>
-   <string name="screenshot5">Kağıdın bir kitap gibi özel bir arka plan</string>
-   <string name="screenshot6">Küçük bir boyutu olarak görüntüle sayfalar</string>
-   <string name="screenshot7">İçindekiler. Geçerli bölüm vurgulanır</string>
-   <string name="screenshot8">Tüm kitap ayarları kolayca erişilebilir</string>
-   <string name="screenshot9">Çizim ve PDF ek açıklamalar ekleyerek</string>
-   <string name="screenshot10">Müzisyen. Belirli bir hızda müzik Kaydırma notları</string>
-   <string name="screenshot11">Özel temalar ve gece modu</string>
-   <string name="screenshot12">Gece modunda bir liste olarak Kütüphanesi</string>
-   <string name="screenshot13">Bir sözlükle veya online kelimeleri çevirin</string>
-   <string name="screenshot14">Metni okuyun yüksek sesle, konuşma metni (TTS)</string>
-   <string name="screenshot15">Bir kitap okumak için ek ayarlar</string>
-   <string name="screenshot16">Kitap hakkında bilgilerle İletişim kutusu</string>
-   <string name="screenshot17">Kütüphanede tüm yazarlar</string>
-   <string name="screenshot18">Kütüphanede Tüm türler</string>
-   <string name="screenshot19">Kütüphanedeki kitapların için kolay arama</string>
    <string name="styles">Stiller</string>
    <string name="document_styles">Doküman stilleri</string>
    <string name="user_styles">Kullanıcı stilleri</string>
@@ -389,4 +370,5 @@
    <string name="stop_reading_timer_">Okumayı durdur (zamanlayıcı)</string>
    <string name="two_pages_cover">Kapak, İki sayfa</string>
    <string name="enhancements_for_oled_display">OLED ekran için geliştirmeler</string>
+   <string name="reading_will_be_stopped">Okuma duracak</string>
 </resources>

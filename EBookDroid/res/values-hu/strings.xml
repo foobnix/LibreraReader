@@ -288,25 +288,6 @@
    <string name="customize_tap_zones">Érintési zónák testreszabása</string>
    <string name="text_without_line_break">Szöveg sortörés nélkül</string>
    <string name="apply_a_new_screen_orientation_">Alkalmazza az új képernyő tájolást?</string>
-   <string name="screenshot1">Hozza létre és kezelje saját könyvtárát</string>
-   <string name="screenshot2">Könnyen azonosíthatja könyveit a borítók alapján</string>
-   <string name="screenshot3">Kedvencek és újabb könyvek egyetlen kényelmes helyről</string>
-   <string name="screenshot4">Egyéni éjszakai üzemmód szín</string>
-   <string name="screenshot5">Háttér testreszabása</string>
-   <string name="screenshot6">Egyedi oldal megjelenítés az egyszerű navigálás céljából</string>
-   <string name="screenshot7">Könnyen elérhető tartalomjegyzék</string>
-   <string name="screenshot8">Kényelmes hozzáférés a gyorsbeállításokhoz</string>
-   <string name="screenshot9">PDF rajzok és jegyzetek</string>
-   <string name="screenshot10">Automatikus dokumentum lapozás egyéni sebességekkel</string>
-   <string name="screenshot11">Témák testreszabása és nappali vagy éjszakai üzemmód kiválasztása</string>
-   <string name="screenshot12">Lista és rács módok közti választás</string>
-   <string name="screenshot13">Szavak fordítása és keresése online és offline módban</string>
-   <string name="screenshot14">Élvezze az olvasását a TTS modullal (szövegfelolvasó)</string>
-   <string name="screenshot15">Számos olvasási élmény beállítás testreszabása</string>
-   <string name="screenshot16">Könyv összefoglaló a gyors áttekintéshez</string>
-   <string name="screenshot17">Szűrés szerző szerint</string>
-   <string name="screenshot18">Szűrés műfaj szerint</string>
-   <string name="screenshot19">Egyszerű könyvtári keresések</string>
    <string name="styles">Stílusok</string>
    <string name="document_styles">Dokumentum stílusok</string>
    <string name="user_styles">Felhasználói stílusok</string>
@@ -389,4 +370,5 @@
    <string name="stop_reading_timer_">Az olvasás leállítása (időzítő)</string>
    <string name="two_pages_cover">Fedél, Két oldal</string>
    <string name="enhancements_for_oled_display">Az OLED kijelzők fejlesztései</string>
+   <string name="reading_will_be_stopped">Az olvasás leáll</string>
 </resources>

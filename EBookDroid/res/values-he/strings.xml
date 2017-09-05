@@ -286,25 +286,6 @@
    <string name="right_side">צד ימין</string>
    <string name="text_without_line_break">טקסט ללא מעבר שורה</string>
    <string name="apply_a_new_screen_orientation_">החלת כיוון מסך חדש?</string>
-   <string name="screenshot1">נהל את כל הספרים בספרייה</string>
-   <string name="screenshot2">מנהל קבצים עם תצוגה מקדימה</string>
-   <string name="screenshot3">מסומן בכוכבית והספרים אחרונים במקום אחד</string>
-   <string name="screenshot4">מצב לילה עם צבע מותאם אישית</string>
-   <string name="screenshot5">רקע מיוחד כמו ספר של נייר</string>
-   <string name="screenshot6">דפים צפו כמו גודל קטן</string>
-   <string name="screenshot7">תוכן. הפרק הנוכחי מודגש</string>
-   <string name="screenshot8">כל הגדרות הספר נגישות</string>
-   <string name="screenshot9">ציור הוספת הערות ל- PDF</string>
-   <string name="screenshot10">מוּסִיקָאִי. גלילה הערות מוסיקה במהירות נתונה</string>
-   <string name="screenshot11">ערכות נושא מותאמות אישית ומצב לילה</string>
-   <string name="screenshot12">ספרייה כרשימה במצב הלילה</string>
-   <string name="screenshot13">תרגום מילים במילון או באינטרנט</string>
-   <string name="screenshot14">קראו את הטקסט בקול רם, טקסט לדיבור (TTS)</string>
-   <string name="screenshot15">הגדרות נוספות עבור קריאת ספר</string>
-   <string name="screenshot16">תיבת דו-שיח עם מידע על הספר</string>
-   <string name="screenshot17">כל המחברים בספרייה</string>
-   <string name="screenshot18">כל הז\'אנרים בספרייה</string>
-   <string name="screenshot19">חיפוש קל עבור ספרים בספרייה</string>
    <string name="styles">סגנונות</string>
    <string name="document_styles">סגנונות מסמך</string>
    <string name="user_styles">סגנונות משתמש</string>
@@ -389,4 +370,5 @@
    <string name="stop_reading_timer_">הפסק לקרוא (טיימר)</string>
    <string name="two_pages_cover">כריכה, שני עמודים</string>
    <string name="enhancements_for_oled_display">שיפורים לתצוגה OLED</string>
+   <string name="reading_will_be_stopped">הקריאה תיעצר</string>
 </resources>

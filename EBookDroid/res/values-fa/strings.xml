@@ -286,25 +286,6 @@
    <string name="right_side">سمت راست</string>
    <string name="text_without_line_break">متن بدون خط</string>
    <string name="apply_a_new_screen_orientation_">درخواست یک جهت گیری روی صفحه نمایش جدید؟</string>
-   <string name="screenshot1">مدیریت تمام کتاب را در کتابخانه</string>
-   <string name="screenshot2">مدیریت فایل ها با پیش نمایش</string>
-   <string name="screenshot3">کتاب آخرین ستاره دار و در یک مکان</string>
-   <string name="screenshot4">حالت شب با رنگ سفارشی</string>
-   <string name="screenshot5">یک پس زمینه ویژه مانند یک کتاب از کاغذ</string>
-   <string name="screenshot6">نمایش صفحه به صورت یک اندازه کوچک</string>
-   <string name="screenshot7">فهرست. فصل جاری هایلایت شده است.</string>
-   <string name="screenshot8">همه تنظیمات کتاب به راحتی در دسترس</string>
-   <string name="screenshot9">نقشه کشی و اضافه کردن حاشیه نویسی به PDF</string>
-   <string name="screenshot10">نوازنده. پیمایش یادداشت موسیقی با سرعت داده</string>
-   <string name="screenshot11">تم های سفارشی و حالت شب</string>
-   <string name="screenshot12">کتابخانه به عنوان یک لیست در حالت شب</string>
-   <string name="screenshot13">ترجمه کلمات در یک فرهنگ لغت یا آنلاین</string>
-   <string name="screenshot14">خواندن متن با صدای بلند، متن به گفتار (TTS)</string>
-   <string name="screenshot15">تنظیمات اضافی برای خواندن یک کتاب</string>
-   <string name="screenshot16">کادر محاوره ای با اطلاعات در مورد کتاب</string>
-   <string name="screenshot17">همه نویسندگان در کتابخانه</string>
-   <string name="screenshot18">همه ژانرها را در کتابخانه</string>
-   <string name="screenshot19">جستجوی آسان برای کتاب را در کتابخانه</string>
    <string name="styles">سبک</string>
    <string name="document_styles">سبک های سند</string>
    <string name="user_styles">سبک های کاربر</string>
@@ -389,4 +370,5 @@
    <string name="stop_reading_timer_">توقف خواندن (تایمر)</string>
    <string name="two_pages_cover">پوشش دو صفحه</string>
    <string name="enhancements_for_oled_display">پیشرفت صفحه نمایش OLED</string>
+   <string name="reading_will_be_stopped">خواندن متوقف خواهد شد</string>
 </resources>

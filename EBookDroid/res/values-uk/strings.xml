@@ -286,25 +286,6 @@
    <string name="right_side">Права сторона</string>
    <string name="text_without_line_break">Текст без розриву рядка</string>
    <string name="apply_a_new_screen_orientation_">Застосувати нову орієнтацію екрану?</string>
-   <string name="screenshot1">Управління всіма книгами в бібліотеці</string>
-   <string name="screenshot2">Файловий менеджер з попереднім переглядом</string>
-   <string name="screenshot3">Помічені і останні книги в одному місці</string>
-   <string name="screenshot4">Нічний режим з призначеним для користувача кольором</string>
-   <string name="screenshot5">Особливий фон як книга з паперу</string>
-   <string name="screenshot6">Перегляд сторінок у вигляді невеликого розміру</string>
-   <string name="screenshot7">Зміст. Поточна глава виділена</string>
-   <string name="screenshot8">Всі настройки книги легко доступні</string>
-   <string name="screenshot9">Малювання і додавання анотацій в PDF</string>
-   <string name="screenshot10">Музикант. Прокрутка музичних нот із заданою швидкістю</string>
-   <string name="screenshot11">Призначені для користувача теми і нічний режим</string>
-   <string name="screenshot12">Бібліотека як список в нічному режимі</string>
-   <string name="screenshot13">Перекласти слова в словнику або в Інтернеті</string>
-   <string name="screenshot14">Прочитайте текст вголос, перетворення тексту в мову (TTS)</string>
-   <string name="screenshot15">Додаткові настройки для читання книги</string>
-   <string name="screenshot16">Діалогове вікно з інформацією про книгу</string>
-   <string name="screenshot17">Всі автори в бібліотеці</string>
-   <string name="screenshot18">Всі жанри в бібліотеці</string>
-   <string name="screenshot19">Легкий пошук книг в бібліотеці</string>
    <string name="styles">Стилі</string>
    <string name="document_styles">Стилі документа</string>
    <string name="user_styles">Стилі користувача</string>
@@ -389,4 +370,5 @@
    <string name="stop_reading_timer_">Зупинити читання (таймер)</string>
    <string name="two_pages_cover">Обкладинка, дві сторінки</string>
    <string name="enhancements_for_oled_display">Підтримка OLED-дисплея</string>
+   <string name="reading_will_be_stopped">Читання буде зупинено</string>
 </resources>

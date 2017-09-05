@@ -286,25 +286,6 @@
    <string name="right_side">오른쪽</string>
    <string name="text_without_line_break">줄 바꿈없는 텍스트</string>
    <string name="apply_a_new_screen_orientation_">새로운 화면 방향을 적용?</string>
-   <string name="screenshot1">도서관에있는 모든 책 관리</string>
-   <string name="screenshot2">미리보기 파일 관리자</string>
-   <string name="screenshot3">한 곳에서 별표와 마지막 책</string>
-   <string name="screenshot4">사용자 정의 색상과 야간 모드</string>
-   <string name="screenshot5">종이 책과 같은 특별한 배경</string>
-   <string name="screenshot6">작은 크기로보기 페이지</string>
-   <string name="screenshot7">내용. 현재의 장은 강조</string>
-   <string name="screenshot8">모든 책 설정은 쉽게 접근 할 수</string>
-   <string name="screenshot9">그리기 및 PDF에 주석을 추가</string>
-   <string name="screenshot10">음악가. 주어진 속도로 음악 노트 스크롤</string>
-   <string name="screenshot11">사용자 정의 테마와 야간 모드</string>
-   <string name="screenshot12">야간 모드에서 목록으로 도서관</string>
-   <string name="screenshot13">사전에 또는 온라인 단어를 번역</string>
-   <string name="screenshot14">텍스트를 소리내어 읽기, 텍스트 음성 변환 (TTS)</string>
-   <string name="screenshot15">책을 읽고에 대한 추가 설정</string>
-   <string name="screenshot16">이 책에 대한 정보 대화 상자</string>
-   <string name="screenshot17">라이브러리에있는 모든 저자</string>
-   <string name="screenshot18">라이브러리의 모든 장르</string>
-   <string name="screenshot19">도서관에서 책에 대한 쉬운 검색</string>
    <string name="styles">스타일</string>
    <string name="document_styles">문서 스타일</string>
    <string name="user_styles">사용자 스타일</string>
@@ -389,4 +370,5 @@
    <string name="stop_reading_timer_">독서 중지 (타이머)</string>
    <string name="two_pages_cover">표지, 2 페이지</string>
    <string name="enhancements_for_oled_display">OLED 디스플레이 향상</string>
+   <string name="reading_will_be_stopped">독서가 중단됩니다.</string>
 </resources>

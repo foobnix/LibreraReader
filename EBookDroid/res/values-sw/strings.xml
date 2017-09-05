@@ -286,25 +286,6 @@
    <string name="right_side">Upande wa kulia</string>
    <string name="text_without_line_break">Nakala bila line mapumziko</string>
    <string name="apply_a_new_screen_orientation_">Weka mpya screen Mwelekeo?</string>
-   <string name="screenshot1">Kusimamia vitabu vyote katika maktaba</string>
-   <string name="screenshot2">Meneja faili na hakikisho</string>
-   <string name="screenshot3">Zenye nyota na vitabu mwisho katika sehemu moja</string>
-   <string name="screenshot4">Night mode na rangi desturi</string>
-   <string name="screenshot5">Background maalum kama kitabu cha karatasi</string>
-   <string name="screenshot6">View kurasa ndogo</string>
-   <string name="screenshot7">Yaliyomo. sura ya sasa ni yalionyesha</string>
-   <string name="screenshot8">Mazingira yote kitabu ni urahisi</string>
-   <string name="screenshot9">Kuchora na kuongeza ufafanuzi kwa PDF</string>
-   <string name="screenshot10">Mwanamuziki. Scrolling muziki maelezo kwa kasi kutokana na</string>
-   <string name="screenshot11">Mandhari maalum na hali ya usiku</string>
-   <string name="screenshot12">Library kama orodha katika hali ya usiku</string>
-   <string name="screenshot13">Tafsiri maneno katika kamusi au online</string>
-   <string name="screenshot14">Kusoma maandishi kwa sauti, maandishi na hotuba (TTS)</string>
-   <string name="screenshot15">Mipangilio ya ziada kwa ajili ya kusoma kitabu</string>
-   <string name="screenshot16">Dialog sanduku na maelezo kuhusu kitabu</string>
-   <string name="screenshot17">Waandishi wote katika maktaba</string>
-   <string name="screenshot18">Aina zote katika maktaba</string>
-   <string name="screenshot19">Search rahisi kwa ajili ya vitabu katika maktaba</string>
    <string name="styles">Styles</string>
    <string name="document_styles">Mitindo Document</string>
    <string name="user_styles">Mitindo user</string>
@@ -389,4 +370,5 @@
    <string name="stop_reading_timer_">Acha kusoma (timer)</string>
    <string name="two_pages_cover">Funika, kurasa mbili</string>
    <string name="enhancements_for_oled_display">Maandamano ya kuonyesha OLED</string>
+   <string name="reading_will_be_stopped">Kusoma kusimamishwa</string>
 </resources>

@@ -288,25 +288,6 @@
    <string name="customize_tap_zones">Tilpass trykksone</string>
    <string name="text_without_line_break">Tekst uten linjeskift</string>
    <string name="apply_a_new_screen_orientation_">Bruk en ny skjermretning?</string>
-   <string name="screenshot1">Opprett og administrer ditt eget bibliotek</string>
-   <string name="screenshot2">Identifiser bøkene dine enkelt med forhåndsvisning av grafikkdekselet</string>
-   <string name="screenshot3">Favoritter og nylige bøker på en enkel plassering</string>
-   <string name="screenshot4">Tilpass din nattmodusfarge</string>
-   <string name="screenshot5">Tilpass bakgrunnen din</string>
-   <string name="screenshot6">Individuell sidevisning for enkel navigering</string>
-   <string name="screenshot7">Lett tilgjengelig Innholdsfortegnelse</string>
-   <string name="screenshot8">Praktisk tilgang til Hurtige innstillinger</string>
-   <string name="screenshot9">Tegn på og kommentér PDF-filer</string>
-   <string name="screenshot10">Automatisk dokumentrulling ved egendefinerte hastigheter</string>
-   <string name="screenshot11">Tilpass temaer og velg dag eller natt modus</string>
-   <string name="screenshot12">Velg mellom Liste og Grid-modus</string>
-   <string name="screenshot13">Oversett og slå opp ord både på og offline</string>
-   <string name="screenshot14">Nyt å bli lest med TTS (Tekst til tale)</string>
-   <string name="screenshot15">Mange innstillinger for å tilpasse leseopplevelsen din</string>
-   <string name="screenshot16">Boksammendrag for rask referanse</string>
-   <string name="screenshot17">Filtrer etter forfatter</string>
-   <string name="screenshot18">Filtrer etter sjanger</string>
-   <string name="screenshot19">Enkle bibliotekssøk</string>
    <string name="styles">Styles</string>
    <string name="document_styles">Dokumentstiler</string>
    <string name="user_styles">Brukerstiler</string>
@@ -389,4 +370,5 @@
    <string name="stop_reading_timer_">Stopp lesing (timer)</string>
    <string name="two_pages_cover">Dekk, To sider</string>
    <string name="enhancements_for_oled_display">Forbedringer for OLED-skjerm</string>
+   <string name="reading_will_be_stopped">Lesingen stoppes</string>
 </resources>

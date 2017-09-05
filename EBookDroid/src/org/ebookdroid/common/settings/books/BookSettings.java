@@ -44,17 +44,17 @@ public class BookSettings implements CurrentPageListener {
     BookSettings(final JSONObject object) throws JSONException {
         this.fileName = object.getString("fileName");
         this.currentPage = new PageIndex(object.getJSONObject("currentPage"));
-        this.zoom = object.getInt("zoom");
-        this.offsetX = (float) object.getDouble("offsetX");
-        this.offsetY = (float) object.getDouble("offsetY");
-        this.autoLevels = object.getBoolean("autoLevels");
-        this.isLocked = object.getBoolean("isLocked");
-        this.cropPages = object.getBoolean("cropPages");
-        this.doublePages = object.getBoolean("doublePages");
-        this.doublePagesCover = object.getBoolean("doublePagesCover");
-        this.splitPages = object.getBoolean("splitPages");
-        this.speed = object.getInt("speed");
-        this.pages = object.optInt("pages");
+        this.zoom = object.optInt("zoom", zoom);
+        this.offsetX = (float) object.optDouble("offsetX", offsetX);
+        this.offsetY = (float) object.optDouble("offsetY", offsetY);
+        this.autoLevels = object.optBoolean("autoLevels", autoLevels);
+        this.isLocked = object.optBoolean("isLocked", isLocked);
+        this.cropPages = object.optBoolean("cropPages", cropPages);
+        this.doublePages = object.optBoolean("doublePages", doublePages);
+        this.doublePagesCover = object.optBoolean("doublePagesCover", doublePagesCover);
+        this.splitPages = object.optBoolean("splitPages", splitPages);
+        this.speed = object.optInt("speed", speed);
+        this.pages = object.optInt("pages", pages);
     }
 
     JSONObject toJSON() throws JSONException {

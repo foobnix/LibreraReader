@@ -286,25 +286,6 @@
    <string name="right_side">右側</string>
    <string name="text_without_line_break">改行なしのテキスト</string>
    <string name="apply_a_new_screen_orientation_">新しい画面の向きを適用しますか？</string>
-   <string name="screenshot1">ライブラリ内のすべての書籍を管理します</string>
-   <string name="screenshot2">プレビューでのファイルマネージャ</string>
-   <string name="screenshot3">一つの場所に主演し、最後の本</string>
-   <string name="screenshot4">カスタムカラーとナイトモード</string>
-   <string name="screenshot5">紙の書籍のような特殊な背景</string>
-   <string name="screenshot6">小さいサイズとして表示ページ</string>
-   <string name="screenshot7">内容。現在の章が強調表示されます</string>
-   <string name="screenshot8">すべての書籍の設定は簡単にアクセスできます</string>
-   <string name="screenshot9">図面やPDFに注釈を追加します</string>
-   <string name="screenshot10">ミュージシャン。所定の速度で音楽ノートをスクロール</string>
-   <string name="screenshot11">カスタムテーマとナイトモード</string>
-   <string name="screenshot12">夜間モードでのリストとして図書館</string>
-   <string name="screenshot13">辞書やオンラインでの単語を翻訳</string>
-   <string name="screenshot14">声を出してテキストを読んで、スピーチへのテキスト（TTS）</string>
-   <string name="screenshot15">本を読むための追加設定</string>
-   <string name="screenshot16">書籍に関する情報をダイアログボックス</string>
-   <string name="screenshot17">ライブラリのすべての著者</string>
-   <string name="screenshot18">ライブラリのすべてのジャンル</string>
-   <string name="screenshot19">図書館の本のための簡単検索</string>
    <string name="styles">スタイル</string>
    <string name="document_styles">文書のスタイル</string>
    <string name="user_styles">ユーザーのスタイル</string>
@@ -389,4 +370,5 @@
    <string name="stop_reading_timer_">読書を止める（タイマー）</string>
    <string name="two_pages_cover">カバー、2ページ</string>
    <string name="enhancements_for_oled_display">OLEDディスプレイの機能拡張</string>
+   <string name="reading_will_be_stopped">読書が中止される</string>
 </resources>
