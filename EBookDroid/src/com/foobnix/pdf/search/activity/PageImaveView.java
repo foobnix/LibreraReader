@@ -26,6 +26,7 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Matrix;
 import android.graphics.Paint;
+import android.graphics.Paint.Style;
 import android.graphics.RectF;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
@@ -446,11 +447,20 @@ public class PageImaveView extends View {
         return true;
     }
 
+    static Paint rect = new Paint();
+    static {
+        rect.setColor(Color.DKGRAY);
+        rect.setStrokeWidth(Dips.dpToPx(1));
+        rect.setStyle(Style.STROKE);
+
+    }
+    int dp1 = Dips.dpToPx(1);
+
     @Override
     protected void onDraw(final Canvas canvas) {
         super.onDraw(canvas);
         try {
-            if (AppState.get().isOLED && !AppState.get().isInvert) {
+            if (AppState.get().isOLED) {
                 canvas.drawColor(Color.BLACK);
             } else {
                 canvas.drawColor(MagicHelper.ligtherColor(MagicHelper.getBgColor()));
@@ -475,6 +485,10 @@ public class PageImaveView extends View {
                 for (TextWord tw : selectedWords) {
                     drawWord(canvas, tw);
                 }
+            }
+
+            if (AppState.get().isOLED && !AppState.get().isInvert && !TempHolder.get().isTextFormat) {
+                canvas.drawRect(-dp1, 0, drawableWidth + dp1, drawableHeight, rect);
             }
 
             canvas.restoreToCount(saveCount);
