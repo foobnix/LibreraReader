@@ -1694,7 +1694,7 @@ public class DragingDialogs {
 
     public static void pageFlippingDialog(final FrameLayout anchor, final DocumentController controller, final Runnable onRefresh) {
 
-        new DragingPopup(anchor.getContext().getString(R.string.automatic_page_flipping), anchor, 300, 260) {
+        new DragingPopup(anchor.getContext().getString(R.string.automatic_page_flipping), anchor, 300, 300) {
 
             @Override
             public View getContentView(LayoutInflater inflater) {

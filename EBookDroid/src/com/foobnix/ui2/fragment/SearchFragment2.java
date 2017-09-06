@@ -7,7 +7,6 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-import com.foobnix.android.utils.Dips;
 import com.foobnix.android.utils.LOG;
 import com.foobnix.android.utils.ResultResponse;
 import com.foobnix.android.utils.TxtUtils;
@@ -38,7 +37,6 @@ import android.os.Handler;
 import android.support.v4.content.LocalBroadcastManager;
 import android.support.v4.util.Pair;
 import android.support.v7.widget.DefaultItemAnimator;
-import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.Editable;
@@ -93,29 +91,7 @@ public class SearchFragment2 extends UIFragment<FileMeta> {
     }
 
     public void onGridList() {
-        PopupHelper.updateGridOrListIcon(onGridlList, AppState.get().libraryMode);
-
-        if (AppState.get().libraryMode == AppState.MODE_LIST) {
-            RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getActivity());
-            recyclerView.setLayoutManager(mLayoutManager);
-            searchAdapter.setAdapterType(FileMetaAdapter.ADAPTER_LIST);
-            recyclerView.setAdapter(searchAdapter);
-
-        } else if (AppState.get().libraryMode == AppState.MODE_COVERS || AppState.get().libraryMode == AppState.MODE_GRID) {
-            int num = Math.max(1, Dips.screenWidthDP() / AppState.get().coverBigSize);
-            RecyclerView.LayoutManager mGridManager = new GridLayoutManager(getActivity(), num);
-            recyclerView.setLayoutManager(mGridManager);
-
-            searchAdapter.setAdapterType(AppState.get().libraryMode == AppState.MODE_COVERS ? FileMetaAdapter.ADAPTER_COVERS : FileMetaAdapter.ADAPTER_GRID);
-            recyclerView.setAdapter(searchAdapter);
-
-        } else if (Arrays.asList(AppState.MODE_AUTHORS, AppState.MODE_SERIES, AppState.MODE_GENRE).contains(AppState.get().libraryMode)) {
-            RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getActivity());
-            recyclerView.setLayoutManager(mLayoutManager);
-            recyclerView.setAdapter(authorsAdapter);
-        }
-
-        ((FastScrollRecyclerView) recyclerView).myConfiguration();
+        onGridList(AppState.get().libraryMode, onGridlList, searchAdapter, authorsAdapter);
     }
 
     public void initAutocomplition() {
@@ -365,7 +341,7 @@ public class SearchFragment2 extends UIFragment<FileMeta> {
     @Override
     public List<FileMeta> prepareDataInBackground() {
         String txt = searchEditText.getText().toString().trim();
-        if (Arrays.asList(AppState.MODE_GRID, AppState.MODE_COVERS, AppState.MODE_LIST).contains(AppState.get().libraryMode)) {
+        if (Arrays.asList(AppState.MODE_GRID, AppState.MODE_COVERS, AppState.MODE_LIST, AppState.MODE_LIST_COMPACT).contains(AppState.get().libraryMode)) {
             return AppDB.get().searchBy(txt, SORT_BY.getByID(AppState.get().sortBy), AppState.getInstance().isSortAsc);
         } else {
             return null;
@@ -411,7 +387,7 @@ public class SearchFragment2 extends UIFragment<FileMeta> {
             cleanFilter.setVisibility(View.VISIBLE);
         }
 
-        if (Arrays.asList(AppState.MODE_GRID, AppState.MODE_COVERS, AppState.MODE_LIST).contains(AppState.get().libraryMode)) {
+        if (Arrays.asList(AppState.MODE_GRID, AppState.MODE_COVERS, AppState.MODE_LIST, AppState.MODE_LIST_COMPACT).contains(AppState.get().libraryMode)) {
             prevLibModeFileMeta = AppState.get().libraryMode;
             searchEditText.setEnabled(true);
             sortBy.setEnabled(true);
@@ -490,6 +466,7 @@ public class SearchFragment2 extends UIFragment<FileMeta> {
             if (//
             AppState.get().libraryMode == AppState.MODE_GRID || //
             AppState.get().libraryMode == AppState.MODE_LIST || //
+            AppState.get().libraryMode == AppState.MODE_LIST_COMPACT || //
             AppState.get().libraryMode == AppState.MODE_COVERS//
             ) {
                 handler.removeCallbacks(sortAndSeach);
@@ -528,10 +505,22 @@ public class SearchFragment2 extends UIFragment<FileMeta> {
 
     private void popupMenu(final ImageView onGridList) {
         PopupMenu p = new PopupMenu(getActivity(), onGridList);
-        List<Integer> names = Arrays.asList(R.string.list, R.string.grid, R.string.cover, R.string.author, R.string.genre, R.string.series);
-        final List<Integer> icons = Arrays.asList(R.drawable.glyphicons_114_justify, R.drawable.glyphicons_156_show_big_thumbnails, R.drawable.glyphicons_157_show_thumbnails, R.drawable.glyphicons_4_user, R.drawable.glyphicons_66_tag,
+        List<Integer> names = Arrays.asList(R.string.list, //
+                R.string.compact, //
+                R.string.grid, //
+                R.string.cover, //
+                R.string.author, //
+                R.string.genre, //
+                R.string.series);
+
+        final List<Integer> icons = Arrays.asList(R.drawable.glyphicons_114_justify, //
+                R.drawable.glyphicons_114_justify_compact, //
+                R.drawable.glyphicons_156_show_big_thumbnails, //
+                R.drawable.glyphicons_157_show_thumbnails, //
+                R.drawable.glyphicons_4_user, //
+                R.drawable.glyphicons_66_tag, //
                 R.drawable.glyphicons_710_list_numbered);
-        final List<Integer> actions = Arrays.asList(AppState.MODE_LIST, AppState.MODE_GRID, AppState.MODE_COVERS, AppState.MODE_AUTHORS, AppState.MODE_GENRE, AppState.MODE_SERIES);
+        final List<Integer> actions = Arrays.asList(AppState.MODE_LIST, AppState.MODE_LIST_COMPACT, AppState.MODE_GRID, AppState.MODE_COVERS, AppState.MODE_AUTHORS, AppState.MODE_GENRE, AppState.MODE_SERIES);
 
         for (int i = 0; i < names.size(); i++) {
             final int index = i;

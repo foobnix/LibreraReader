@@ -17,16 +17,16 @@
         android:orientation="vertical" >
 
         <FrameLayout
-            android:background="@color/transparent"
             android:layout_width="100dip"
             android:layout_height="150dip"
-            android:layout_gravity="center" >
+            android:layout_gravity="center"
+            android:background="@color/transparent" >
 
             <android.support.v7.widget.CardView
                 android:layout_width="wrap_content"
-                android:layout_margin="2dip"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
+                android:layout_margin="2dip"
                 android:padding="0dip"
                 card_view:cardBackgroundColor="@color/transparent"
                 card_view:cardCornerRadius="@dimen/radius"
@@ -34,16 +34,21 @@
                 card_view:cardPreventCornerOverlap="true" >
 
                 <ImageView
-                    android:layout_margin="0dip"
-                    android:padding="0dip"
                     android:id="@+id/browserItemIcon"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
+                    android:layout_margin="0dip"
                     android:adjustViewBounds="true"
-                    android:cropToPadding="true" />
+                    android:cropToPadding="true"
+                    android:padding="0dip" />
             </android.support.v7.widget.CardView>
         </FrameLayout>
+
+        <FrameLayout
+            android:id="@+id/title2Parent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
 
         <LinearLayout
             android:id="@+id/layoutBootom"
@@ -54,10 +59,10 @@
 
             <TextView
                 android:id="@+id/title1"
-                android:layout_weight="1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dip"
+                android:layout_weight="1"
                 android:ellipsize="end"
                 android:gravity="top"
                 android:lineSpacingExtra="4dip"
@@ -78,10 +83,10 @@
                 android:textSize="12sp" />
 
             <LinearLayout
-                android:layout_gravity="bottom"
                 android:id="@+id/infoLayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_gravity="bottom"
                 android:gravity="bottom"
                 android:orientation="horizontal" >
 

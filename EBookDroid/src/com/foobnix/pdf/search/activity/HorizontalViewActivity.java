@@ -510,6 +510,7 @@ public class HorizontalViewActivity extends FragmentActivity {
 
         Keyboards.hideNavigationOnCreate(HorizontalViewActivity.this);
 
+        titleTxt.setText(DocumentControllerHorizontalView.getTempTitle(this));
         loadinAsyncTask = new CopyAsyncTask() {
             ProgressDialog dialog;
             private boolean isCancelled = false;
@@ -932,7 +933,11 @@ public class HorizontalViewActivity extends FragmentActivity {
             flippingHandler.removeCallbacksAndMessages(null);
         }
         if (viewPager != null) {
-            viewPager.setAdapter(null);
+            try {
+                viewPager.setAdapter(null);
+            } catch (Exception e) {
+                LOG.e(e);
+            }
         }
 
         ADS.destory(adView);
@@ -1302,7 +1307,6 @@ public class HorizontalViewActivity extends FragmentActivity {
         }
     };
 
-
     // @Override
     @Override
     public void onConfigurationChanged(final Configuration newConfig) {
@@ -1344,7 +1348,6 @@ public class HorizontalViewActivity extends FragmentActivity {
             documentController.udpateImageSize(viewPager.getWidth(), viewPager.getHeight());
             onRotateScreen();
         }
-
 
     }
 

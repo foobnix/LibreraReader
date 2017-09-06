@@ -19,26 +19,19 @@ public class PopupHelper {
         }
         if (libraryMode == AppState.MODE_LIST) {
             gridList.setImageResource(R.drawable.glyphicons_114_justify);
-        }
-        if (libraryMode == AppState.MODE_GRID) {
+        } else if (libraryMode == AppState.MODE_LIST_COMPACT) {
+            gridList.setImageResource(R.drawable.glyphicons_114_justify_compact);
+        } else if (libraryMode == AppState.MODE_GRID) {
             gridList.setImageResource(R.drawable.glyphicons_156_show_big_thumbnails);
-        }
-        if (libraryMode == AppState.MODE_COVERS) {
+        } else if (libraryMode == AppState.MODE_COVERS) {
             gridList.setImageResource(R.drawable.glyphicons_157_show_thumbnails);
-        }
-
-        if (libraryMode == AppState.MODE_AUTHORS) {
+        } else if (libraryMode == AppState.MODE_AUTHORS) {
             gridList.setImageResource(R.drawable.glyphicons_4_user);
-        }
-
-        if (libraryMode == AppState.MODE_SERIES) {
+        } else if (libraryMode == AppState.MODE_SERIES) {
             gridList.setImageResource(R.drawable.glyphicons_710_list_numbered);
-        }
-
-        if (libraryMode == AppState.MODE_GENRE) {
+        } else if (libraryMode == AppState.MODE_GENRE) {
             gridList.setImageResource(R.drawable.glyphicons_66_tag);
         }
-
     }
 
     public static void initIcons(final PopupMenu menu, int color) {

@@ -369,7 +369,11 @@ public class MainTabs2 extends FragmentActivity {
     public void onDestroy() {
         super.onDestroy();
         if (pager != null) {
-            pager.setAdapter(null);
+            try {
+                pager.setAdapter(null);
+            } catch (Exception e) {
+                LOG.e(e);
+            }
         }
         Analytics.onStop(this);
         ADS.destoryNative(adViewNative);

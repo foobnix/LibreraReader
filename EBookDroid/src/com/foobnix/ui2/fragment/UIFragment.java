@@ -1,19 +1,25 @@
 package com.foobnix.ui2.fragment;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 
 import com.foobnix.android.utils.AsyncTasks;
+import com.foobnix.android.utils.Dips;
 import com.foobnix.android.utils.LOG;
 import com.foobnix.android.utils.TxtUtils;
+import com.foobnix.pdf.info.wrapper.AppState;
+import com.foobnix.pdf.info.wrapper.PopupHelper;
 import com.foobnix.pdf.search.activity.msg.OpenDirMessage;
 import com.foobnix.sys.TempHolder;
 import com.foobnix.ui2.MainTabs2;
+import com.foobnix.ui2.adapter.AuthorsAdapter2;
 import com.foobnix.ui2.adapter.DefaultListeners;
 import com.foobnix.ui2.adapter.FileMetaAdapter;
+import com.foobnix.ui2.fast.FastScrollRecyclerView;
 
 import android.content.BroadcastReceiver;
 import android.content.Context;
@@ -25,8 +31,11 @@ import android.os.Handler;
 import android.support.v4.app.Fragment;
 import android.support.v4.content.LocalBroadcastManager;
 import android.support.v4.util.Pair;
+import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.ProgressBar;
 
 public abstract class UIFragment<T> extends Fragment {
@@ -132,10 +141,13 @@ public abstract class UIFragment<T> extends Fragment {
     public void onDestroy() {
         super.onDestroy();
         if (recyclerView != null) {
-            recyclerView.setAdapter(null);
+            try {
+                recyclerView.setAdapter(null);
+            } catch (Exception e) {
+                LOG.e(e);
+            }
         }
     }
-
 
     BroadcastReceiver broadcastReceiver = new BroadcastReceiver() {
 
@@ -200,6 +212,44 @@ public abstract class UIFragment<T> extends Fragment {
             }.execute(AsyncTask.THREAD_POOL_EXECUTOR);
         } else {
             LOG.d("SKIP task");
+        }
+    }
+
+    public void onGridList(int mode, ImageView onGridlList, FileMetaAdapter searchAdapter, AuthorsAdapter2 authorsAdapter) {
+        if (searchAdapter == null) {
+            return;
+        }
+        PopupHelper.updateGridOrListIcon(onGridlList, mode);
+
+        if (mode == AppState.MODE_LIST) {
+            RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getActivity());
+            recyclerView.setLayoutManager(mLayoutManager);
+            searchAdapter.setAdapterType(FileMetaAdapter.ADAPTER_LIST);
+            recyclerView.setAdapter(searchAdapter);
+
+        } else if (mode == AppState.MODE_COVERS || mode == AppState.MODE_GRID) {
+            int num = Math.max(1, Dips.screenWidthDP() / AppState.get().coverBigSize);
+            RecyclerView.LayoutManager mGridManager = new GridLayoutManager(getActivity(), num);
+            recyclerView.setLayoutManager(mGridManager);
+
+            searchAdapter.setAdapterType(mode == AppState.MODE_COVERS ? FileMetaAdapter.ADAPTER_COVERS : FileMetaAdapter.ADAPTER_GRID);
+            recyclerView.setAdapter(searchAdapter);
+
+        } else if (Arrays.asList(AppState.MODE_AUTHORS, AppState.MODE_SERIES, AppState.MODE_GENRE).contains(mode)) {
+            RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getActivity());
+            recyclerView.setLayoutManager(mLayoutManager);
+            recyclerView.setAdapter(authorsAdapter);
+        }
+        if (mode == AppState.MODE_LIST_COMPACT) {
+            int num = Math.max(2, Dips.screenWidthDP() / AppState.get().coverBigSize / 2);
+            RecyclerView.LayoutManager mGridManager = new GridLayoutManager(getActivity(), num);
+            recyclerView.setLayoutManager(mGridManager);
+            searchAdapter.setAdapterType(FileMetaAdapter.ADAPTER_LIST);
+            recyclerView.setAdapter(searchAdapter);
+        }
+
+        if (recyclerView instanceof FastScrollRecyclerView) {
+            ((FastScrollRecyclerView) recyclerView).myConfiguration();
         }
     }
 

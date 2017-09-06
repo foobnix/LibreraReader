@@ -104,16 +104,30 @@ public abstract class DocumentControllerHorizontalView extends DocumentControlle
     public void saveAnnotationsToFile() {
     }
 
+    public static String getBookPathFromActivity(Activity a) {
+        String bookPath = CacheManager.getFilePathFromAttachmentIfNeed(a);
+        if (TxtUtils.isEmpty(bookPath)) {
+            bookPath = a.getIntent().getData().getPath();
+        }
+        return bookPath;
+    }
+
+    public static String getTempTitle(Activity a) {
+        try {
+            return getTitle(getBookPathFromActivity(a));
+        } catch (Exception e) {
+            LOG.e(e);
+            return "";
+        }
+    }
+
     public void init(final Activity activity) {
         PageImageState.get().cleanSelectedWords();
         PageImageState.get().pagesText.clear();
 
         LOG.d("DocumentControllerHorizontalView", "init begin");
 
-        bookPath = CacheManager.getFilePathFromAttachmentIfNeed(activity);
-        if (TxtUtils.isEmpty(bookPath)) {
-            bookPath = activity.getIntent().getData().getPath();
-        }
+        bookPath = getBookPathFromActivity(activity);
 
         if (TxtUtils.isNotEmpty(bookPath) && !ExtUtils.isTextFomat(bookPath)) {
             String string = matrixSP.getString(bookPath.hashCode() + "", "");
@@ -526,10 +540,14 @@ public abstract class DocumentControllerHorizontalView extends DocumentControlle
 
     @Override
     public String getTitle() {
-        if (ExtUtils.isTextFomat(getBookPath())) {
-            return AppDB.get().getOrCreate(getBookPath()).getTitle();
+        return getTitle(getBookPath());
+    }
+
+    public static String getTitle(String path) {
+        if (ExtUtils.isTextFomat(path)) {
+            return AppDB.get().getOrCreate(path).getTitle();
         }
-        return getCurrentBook().getName();
+        return new File(path).getName();
     }
 
     @Override
