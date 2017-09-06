@@ -8,15 +8,17 @@ import android.content.Context;
 import android.content.res.Resources;
 import android.graphics.Point;
 import android.os.Build;
+import android.view.Display;
 import android.view.WindowManager;
 
 public class Dips {
     private static WindowManager wm;
+    static Context context;
 
     public static void init(Context context) {
+        Dips.context = context;
         wm = (WindowManager) context.getSystemService(Context.WINDOW_SERVICE);
     }
-
 
     public static int spToPx(final int dp) {
         return (int) (dp * Resources.getSystem().getDisplayMetrics().scaledDensity);
@@ -43,6 +45,18 @@ public class Dips {
         } else {
             return Resources.getSystem().getDisplayMetrics().widthPixels;
         }
+    }
+
+    public static float getRefreshRate(Context context) {
+        final WindowManager wm = (WindowManager) context.getSystemService(Context.WINDOW_SERVICE);
+        final Display display = wm.getDefaultDisplay();
+        float refreshRate = display.getRefreshRate();
+        LOG.d("getRefreshRate", refreshRate);
+        return refreshRate;
+    }
+
+    public static boolean isEInk(Context context) {
+        return getRefreshRate(context) < 10.0;
     }
 
     @TargetApi(Build.VERSION_CODES.JELLY_BEAN_MR1)

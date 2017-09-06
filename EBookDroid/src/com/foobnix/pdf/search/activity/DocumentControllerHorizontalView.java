@@ -115,19 +115,23 @@ public abstract class DocumentControllerHorizontalView extends DocumentControlle
             bookPath = activity.getIntent().getData().getPath();
         }
 
-        if (TxtUtils.isNotEmpty(bookPath) && !ExtUtils.isTextFomat(bookPath)) {
-            String string = matrixSP.getString(bookPath.hashCode() + "", "");
-            LOG.d("MATRIX", "READ STR", string);
-            if (TxtUtils.isNotEmpty(string)) {
-                PageImageState.get().needAutoFit = false;
-            } else {
-                PageImageState.get().needAutoFit = true;
+        if (true) {
+            PageImageState.get().needAutoFit = true;
+        } else {
+            if (TxtUtils.isNotEmpty(bookPath) && !ExtUtils.isTextFomat(bookPath)) {
+                String string = matrixSP.getString(bookPath.hashCode() + "", "");
+                LOG.d("MATRIX", "READ STR", string);
+                if (TxtUtils.isNotEmpty(string)) {
+                    PageImageState.get().needAutoFit = false;
+                } else {
+                    PageImageState.get().needAutoFit = true;
+                }
+                Matrix matrix = PageImageState.fromString(string);
+                PageImageState.get().getMatrix().set(matrix);
+
+                LOG.d("MATRIX", "READ", bookPath.hashCode() + "", PageImageState.get().getMatrixAsString());
+
             }
-            Matrix matrix = PageImageState.fromString(string);
-            PageImageState.get().getMatrix().set(matrix);
-
-            LOG.d("MATRIX", "READ", bookPath.hashCode() + "", PageImageState.get().getMatrixAsString());
-
         }
 
         BookSettings bs = SettingsManager.getBookSettings(bookPath);

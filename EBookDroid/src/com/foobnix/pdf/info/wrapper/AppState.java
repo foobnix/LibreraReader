@@ -457,9 +457,14 @@ public class AppState {
 
     private boolean isLoaded = false;
 
+    public void defaults(Context c) {
+        isScrollAnimation = !Dips.isEInk(c);
+    }
+
     public void load(final Context a) {
         try {
             if (!isLoaded) {
+                defaults(a);
                 loadIn(a);
                 BookCSS.get().load(a);
                 DragingPopup.loadCache(a);

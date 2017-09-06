@@ -173,7 +173,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:minEms="2"
-                android:text="120min" />
+                android:text="120 Min" />
 
             <TextView
                 android:id="@+id/timerStart"

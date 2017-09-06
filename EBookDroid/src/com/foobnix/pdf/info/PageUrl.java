@@ -62,6 +62,9 @@ public class PageUrl {
 
         if (AppState.get().isDouble) {
             int i = page / 2 + page % 2;
+            if (AppState.get().isDoubleCoverAlone && page % 2 == 0) {
+                i++;
+            }
             return i;
         }
         return page;
