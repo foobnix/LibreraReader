@@ -46,13 +46,14 @@ public class TintUtil {
         try {
             hash = Math.abs(hash);
             String num = "" + hash;
-            float a = Integer.parseInt(num.substring(0, 1)) + 1;
-            float b = Integer.parseInt(num.substring(1, 2)) + 1;
-            float c = Integer.parseInt(num.substring(2, 3)) + 1;
+            float hue = 360f * Float.parseFloat(num.substring(0, 2)) / 100f;
+            float sat = Float.parseFloat(num.substring(1, 3)) / 100f;
+            float value = Integer.parseInt(num.substring(2, 4)) / 100f;
 
-            LOG.d("randomColor", a, b, c);
-            return Color.HSVToColor(new float[] { 360 * a / 10f, b / 10f, Math.max(Math.min(0.2f, c / 10f), 0.5f) });
+            LOG.d("randomColor", hash, hue, sat, value);
+            return Color.HSVToColor(new float[] { hue, sat, Math.max(Math.min(0.1f, value), 0.5f) });
         } catch (Exception e) {
+            LOG.e(e);
             return tintRandomColor();
         }
     }
