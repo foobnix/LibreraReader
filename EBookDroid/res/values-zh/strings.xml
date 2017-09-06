@@ -371,4 +371,5 @@
    <string name="two_pages_cover">封面，两页</string>
    <string name="enhancements_for_oled_display">OLED显示屏的增强功能</string>
    <string name="reading_will_be_stopped">阅读将被停止</string>
+   <string name="compact">紧凑</string>
 </resources>

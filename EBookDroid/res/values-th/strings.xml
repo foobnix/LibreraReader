@@ -371,4 +371,5 @@
    <string name="two_pages_cover">ปก 2 หน้า</string>
    <string name="enhancements_for_oled_display">การเพิ่มประสิทธิภาพสำหรับการแสดงผล OLED</string>
    <string name="reading_will_be_stopped">การอ่านจะหยุดลง</string>
+   <string name="compact">กะทัดรัด</string>
 </resources>

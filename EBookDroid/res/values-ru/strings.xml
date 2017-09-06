@@ -371,4 +371,5 @@
    <string name="two_pages_cover">Обложка, две страницы</string>
    <string name="enhancements_for_oled_display">Улучшения для OLED-дисплея</string>
    <string name="reading_will_be_stopped">Чтение будет остановлено</string>
+   <string name="compact">Компактный</string>
 </resources>

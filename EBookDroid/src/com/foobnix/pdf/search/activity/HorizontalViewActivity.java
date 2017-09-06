@@ -370,6 +370,10 @@ public class HorizontalViewActivity extends FragmentActivity {
 
             @Override
             public void onClick(final View v) {
+                if (AppState.get().isDoubleCoverAlone || AppState.get().isDouble || AppState.get().isCut) {
+                    modeOnePage();
+                    return;
+                }
                 DragingDialogs.textToSpeachDialog(anchor, documentController);
             }
         });
@@ -394,11 +398,7 @@ public class HorizontalViewActivity extends FragmentActivity {
 
                     @Override
                     public boolean onMenuItemClick(MenuItem item) {
-                        onModeChange.setImageResource(R.drawable.glyphicons_full_page);
-                        AppState.get().isDouble = false;
-                        AppState.get().isCut = false;
-                        SettingsManager.getBookSettings().updateFromAppState();
-                        documentController.restartActivity();
+                        modeOnePage();
                         return false;
                     }
                 });
@@ -685,6 +685,14 @@ public class HorizontalViewActivity extends FragmentActivity {
             }
         });
 
+    }
+
+    public void modeOnePage() {
+        onModeChange.setImageResource(R.drawable.glyphicons_full_page);
+        AppState.get().isDouble = false;
+        AppState.get().isCut = false;
+        SettingsManager.getBookSettings().updateFromAppState();
+        documentController.restartActivity();
     }
 
     public void updateSeekBarColorAndSize() {

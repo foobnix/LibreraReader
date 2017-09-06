@@ -371,4 +371,5 @@
    <string name="two_pages_cover">Copertă, Două pagini</string>
    <string name="enhancements_for_oled_display">Îmbunătățiri pentru afișarea pe OLED</string>
    <string name="reading_will_be_stopped">Citirea va fi oprită</string>
+   <string name="compact">Compact</string>
 </resources>

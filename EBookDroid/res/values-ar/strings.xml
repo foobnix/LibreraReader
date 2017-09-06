@@ -371,4 +371,5 @@
    <string name="two_pages_cover">الغلاف، صفحتان</string>
    <string name="enhancements_for_oled_display">تحسينات لشاشة أوليد</string>
    <string name="reading_will_be_stopped">سيتم إيقاف القراءة</string>
+   <string name="compact">المدمج</string>
 </resources>

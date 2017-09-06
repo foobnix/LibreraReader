@@ -371,4 +371,5 @@
    <string name="two_pages_cover">Omslag, två sidor</string>
    <string name="enhancements_for_oled_display">Förbättringar för OLED-skärm</string>
    <string name="reading_will_be_stopped">Läsningen stoppas</string>
+   <string name="compact">Kompakt</string>
 </resources>
