@@ -170,7 +170,7 @@ public class DragingDialogs {
                 final TextView timerTime = (TextView) view.findViewById(R.id.timerTime);
                 final TextView timerStart = (TextView) view.findViewById(R.id.timerStart);
 
-                timerTime.setText(AppState.get().ttsTimer + "" + controller.getString(R.string.minutes));
+                timerTime.setText(AppState.get().ttsTimer + " " + controller.getString(R.string.minutes));
                 timerTime.setOnClickListener(new OnClickListener() {
 
                     @Override
@@ -183,7 +183,7 @@ public class DragingDialogs {
                                 @Override
                                 public boolean onMenuItemClick(MenuItem item) {
                                     AppState.get().ttsTimer = number;
-                                    timerTime.setText(AppState.get().ttsTimer + "" + controller.getString(R.string.minutes));
+                                    timerTime.setText(AppState.get().ttsTimer + " " + controller.getString(R.string.minutes));
                                     return false;
                                 }
                             });
