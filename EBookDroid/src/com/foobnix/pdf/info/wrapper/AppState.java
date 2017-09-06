@@ -640,7 +640,7 @@ public class AppState {
         ttsSpeakPath = sp.getString("ttsSpeakPath", ttsSpeakPath);
         readColors = sp.getString("readColors", readColors);
         myOPDS = sp.getString("myOPDS", myOPDS);
-        tabsOrder = sp.getString("tabsOrder1", tabsOrder);
+        tabsOrder = sp.getString("tabsOrder2", tabsOrder);
 
         bgImageDayTransparency = sp.getInt("bgImageDayTransparency", bgImageDayTransparency);
         bgImageNightTransparency = sp.getInt("bgImageNightTransparency", bgImageNightTransparency);
@@ -861,7 +861,7 @@ public class AppState {
         editor.putString("ttsSpeakPath", ttsSpeakPath);
         editor.putString("readColors", readColors);
         editor.putString("myOPDS", myOPDS);
-        editor.putString("tabsOrder1", tabsOrder);
+        editor.putString("tabsOrder2", tabsOrder);
 
         editor.putInt("bgImageDayTransparency", bgImageDayTransparency);
         editor.putInt("bgImageNightTransparency", bgImageNightTransparency);
