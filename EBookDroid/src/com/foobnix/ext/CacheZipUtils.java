@@ -57,7 +57,7 @@ public class CacheZipUtils {
         ATTACHMENTS_CACHE_DIR = new File(externalCacheDir, "Attachments");
         CACHE_WEB = new File(externalCacheDir, "WEB");
         APP_CACHE_DIR = externalCacheDir.getPath();
-        LIRBI_DOWNLOAD_DIR = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS), "Lirbi");
+        LIRBI_DOWNLOAD_DIR = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS), "Librera");
         
         CacheZipUtils.createAllCacheDirs();
     }
@@ -74,9 +74,6 @@ public class CacheZipUtils {
         }
         if (!CACHE_WEB.exists()) {
             CACHE_WEB.mkdirs();
-        }
-        if (!LIRBI_DOWNLOAD_DIR.exists()) {
-            LIRBI_DOWNLOAD_DIR.mkdirs();
         }
     }
 

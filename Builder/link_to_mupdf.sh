@@ -1,4 +1,4 @@
-MUPDF=/home/ivan-dev/dev/mupdf-test/platform/java
+MUPDF=/home/ivan-dev/dev/mupdf-android-viewer-mini/libmupdf/platform/librera
 MY=/home/ivan-dev/git/LirbiReader
 
 rm -rf  $MUPDF/jni
@@ -19,6 +19,8 @@ mkdir $X86
 ln -s $MUPDF/libs $ALL
 ln -s $MUPDF/libs/armeabi-v7a $ARM_V7/armeabi-v7a
 ln -s $MUPDF/libs/x86 $X86/x86
+
+echo $MUPDF ">>>" $MY
 
 cd $MUPDF
 #ndk-build

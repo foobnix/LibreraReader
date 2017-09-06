@@ -371,4 +371,5 @@
    <string name="two_pages_cover">Fedél, Két oldal</string>
    <string name="enhancements_for_oled_display">Az OLED kijelzők fejlesztései</string>
    <string name="reading_will_be_stopped">Az olvasás leáll</string>
+   <string name="compact">Kompakt</string>
 </resources>

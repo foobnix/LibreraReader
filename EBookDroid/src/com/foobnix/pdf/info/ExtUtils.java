@@ -918,6 +918,10 @@ public class ExtUtils {
 
     public static File openPDFInTextReflowAsync(Activity a, File file, Handler dialog) {
         try {
+            if (!CacheZipUtils.LIRBI_DOWNLOAD_DIR.exists()) {
+                CacheZipUtils.LIRBI_DOWNLOAD_DIR.mkdirs();
+            }
+
             CodecDocument doc = BookType.getCodecContextByPath(file.getPath()).openDocument(file.getPath(), "");
 
             final File filefb2 = new File(CacheZipUtils.LIRBI_DOWNLOAD_DIR, file.getName() + REFLOW_FB2);

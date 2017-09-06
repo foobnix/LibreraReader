@@ -371,4 +371,5 @@
    <string name="two_pages_cover">Trang bìa, hai trang</string>
    <string name="enhancements_for_oled_display">Cải tiến cho màn hình OLED</string>
    <string name="reading_will_be_stopped">Đọc sẽ được dừng lại</string>
+   <string name="compact">Gọn nhẹ</string>
 </resources>

@@ -5,7 +5,6 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
-import com.foobnix.android.utils.Dips;
 import com.foobnix.android.utils.LOG;
 import com.foobnix.android.utils.ResultResponse;
 import com.foobnix.android.utils.TxtUtils;
@@ -27,9 +26,7 @@ import android.graphics.Typeface;
 import android.os.Bundle;
 import android.os.Environment;
 import android.support.v4.util.Pair;
-import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.util.TypedValue;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -471,45 +468,15 @@ public class BrowseFragment2 extends UIFragment<FileMeta> {
     }
 
     public void onGridList() {
-        if (searchAdapter == null) {
-            return;
-        }
-        PopupHelper.updateGridOrListIcon(onListGrid, AppState.get().broseMode);
+        onGridList(AppState.get().broseMode, onListGrid, searchAdapter, null);
 
-        if (AppState.get().broseMode == AppState.MODE_LIST) {
-            RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getActivity());
-            recyclerView.setLayoutManager(mLayoutManager);
-            searchAdapter.setAdapterType(FileMetaAdapter.ADAPTER_LIST);
-            recyclerView.setAdapter(searchAdapter);
-
-        }
-
-        if (AppState.get().broseMode == AppState.MODE_COVERS) {
-            int num = Math.max(1,Dips.screenWidthDP() / AppState.get().coverBigSize);
-            RecyclerView.LayoutManager mGridManager = new GridLayoutManager(getActivity(), num);
-            recyclerView.setLayoutManager(mGridManager);
-
-            searchAdapter.setAdapterType(FileMetaAdapter.ADAPTER_COVERS);
-            recyclerView.setAdapter(searchAdapter);
-        }
-
-        if (AppState.get().broseMode == AppState.MODE_GRID) {
-            int num = Math.max(1, Dips.screenWidthDP() / AppState.get().coverBigSize);
-            RecyclerView.LayoutManager mGridManager = new GridLayoutManager(getActivity(), num);
-            recyclerView.setLayoutManager(mGridManager);
-
-            searchAdapter.setAdapterType(FileMetaAdapter.ADAPTER_GRID);
-            recyclerView.setAdapter(searchAdapter);
-        }
-
-        ((FastScrollRecyclerView) recyclerView).myConfiguration();
     }
 
     private void popupMenu(final ImageView onGridList) {
         PopupMenu p = new PopupMenu(getActivity(), onGridList);
-        List<Integer> names = Arrays.asList(R.string.list, R.string.grid, R.string.cover);
-        final List<Integer> icons = Arrays.asList(R.drawable.glyphicons_114_justify, R.drawable.glyphicons_156_show_big_thumbnails, R.drawable.glyphicons_157_show_thumbnails);
-        final List<Integer> actions = Arrays.asList(AppState.MODE_LIST, AppState.MODE_GRID, AppState.MODE_COVERS);
+        List<Integer> names = Arrays.asList(R.string.list, R.string.compact, R.string.grid, R.string.cover);
+        final List<Integer> icons = Arrays.asList(R.drawable.glyphicons_114_justify, R.drawable.glyphicons_114_justify_compact, R.drawable.glyphicons_156_show_big_thumbnails, R.drawable.glyphicons_157_show_thumbnails);
+        final List<Integer> actions = Arrays.asList(AppState.MODE_LIST, AppState.MODE_LIST_COMPACT, AppState.MODE_GRID, AppState.MODE_COVERS);
 
         for (int i = 0; i < names.size(); i++) {
             final int index = i;

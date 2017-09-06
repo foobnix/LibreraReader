@@ -371,4 +371,5 @@
    <string name="stop_reading_timer_">Stop reading (timer)</string>
    <string name="reading_will_be_stopped">Reading will be stopped</string>
    <string name="enhancements_for_oled_display">Enhancements for OLED display</string>
+   <string name="compact">Compact</string>
 </resources>

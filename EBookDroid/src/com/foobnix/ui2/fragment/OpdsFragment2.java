@@ -306,6 +306,9 @@ public class OpdsFragment2 extends UIFragment<Entry> {
 
                 @Override
                 public void run() {
+                    if (!CacheZipUtils.LIRBI_DOWNLOAD_DIR.exists()) {
+                        CacheZipUtils.LIRBI_DOWNLOAD_DIR.mkdirs();
+                    }
 
                     final File file = new File(CacheZipUtils.LIRBI_DOWNLOAD_DIR, link.getDownloadName());
                     file.delete();
@@ -363,6 +366,10 @@ public class OpdsFragment2 extends UIFragment<Entry> {
     public void clearEmpty() {
         if (CacheZipUtils.LIRBI_DOWNLOAD_DIR == null) {
             return;
+        }
+
+        if (!CacheZipUtils.LIRBI_DOWNLOAD_DIR.exists()) {
+            CacheZipUtils.LIRBI_DOWNLOAD_DIR.mkdirs();
         }
 
         for (String file : CacheZipUtils.LIRBI_DOWNLOAD_DIR.list()) {

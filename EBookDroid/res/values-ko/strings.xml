@@ -371,4 +371,5 @@
    <string name="two_pages_cover">표지, 2 페이지</string>
    <string name="enhancements_for_oled_display">OLED 디스플레이 향상</string>
    <string name="reading_will_be_stopped">독서가 중단됩니다.</string>
+   <string name="compact">콤팩트</string>
 </resources>

@@ -371,4 +371,5 @@
    <string name="two_pages_cover">Viršelis, du puslapiai</string>
    <string name="enhancements_for_oled_display">OLED ekrano priedai</string>
    <string name="reading_will_be_stopped">Skaitymas bus sustabdytas</string>
+   <string name="compact">Kompaktiška</string>
 </resources>

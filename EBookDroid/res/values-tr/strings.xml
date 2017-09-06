@@ -371,4 +371,5 @@
    <string name="two_pages_cover">Kapak, İki sayfa</string>
    <string name="enhancements_for_oled_display">OLED ekran için geliştirmeler</string>
    <string name="reading_will_be_stopped">Okuma duracak</string>
+   <string name="compact">Kompakt</string>
 </resources>

@@ -177,6 +177,7 @@ public class AppState {
     public final static int MODE_AUTHORS = 4;
     public final static int MODE_GENRE = 5;
     public final static int MODE_SERIES = 6;
+    public final static int MODE_LIST_COMPACT = 7;
 
     public final static int BOOKMARK_MODE_BY_DATE = 1;
     public final static int BOOKMARK_MODE_BY_BOOK = 2;
@@ -644,7 +645,7 @@ public class AppState {
         ttsSpeakPath = sp.getString("ttsSpeakPath", ttsSpeakPath);
         readColors = sp.getString("readColors", readColors);
         myOPDS = sp.getString("myOPDS", myOPDS);
-        tabsOrder = sp.getString("tabsOrder1", tabsOrder);
+        tabsOrder = sp.getString("tabsOrder2", tabsOrder);
 
         bgImageDayTransparency = sp.getInt("bgImageDayTransparency", bgImageDayTransparency);
         bgImageNightTransparency = sp.getInt("bgImageNightTransparency", bgImageNightTransparency);
@@ -865,7 +866,7 @@ public class AppState {
         editor.putString("ttsSpeakPath", ttsSpeakPath);
         editor.putString("readColors", readColors);
         editor.putString("myOPDS", myOPDS);
-        editor.putString("tabsOrder1", tabsOrder);
+        editor.putString("tabsOrder2", tabsOrder);
 
         editor.putInt("bgImageDayTransparency", bgImageDayTransparency);
         editor.putInt("bgImageNightTransparency", bgImageNightTransparency);

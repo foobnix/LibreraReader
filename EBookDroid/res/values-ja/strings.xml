@@ -371,4 +371,5 @@
    <string name="two_pages_cover">カバー、2ページ</string>
    <string name="enhancements_for_oled_display">OLEDディスプレイの機能拡張</string>
    <string name="reading_will_be_stopped">読書が中止される</string>
+   <string name="compact">コンパクト</string>
 </resources>

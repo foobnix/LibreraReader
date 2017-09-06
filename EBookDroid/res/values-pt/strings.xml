@@ -371,4 +371,5 @@
    <string name="two_pages_cover">Capa, duas páginas</string>
    <string name="enhancements_for_oled_display">Aprimoramentos para tela OLED</string>
    <string name="reading_will_be_stopped">A leitura será interrompida</string>
+   <string name="compact">Compactar</string>
 </resources>

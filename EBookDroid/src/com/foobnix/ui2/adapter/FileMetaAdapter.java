@@ -56,12 +56,13 @@ public class FileMetaAdapter extends AppRecycleAdapter<FileMeta, RecyclerView.Vi
     public class FileMetaViewHolder extends RecyclerView.ViewHolder {
         public TextView title, author, path, ext, size, date, series, idPercentText;
         public ImageView image, star, menu;
-        public View progresLayout, parent, remove, layoutBootom, infoLayout, idProgressColor;
+        public View authorParent, progresLayout, parent, remove, layoutBootom, infoLayout, idProgressColor;
 
         public FileMetaViewHolder(View view) {
             super(view);
             title = (TextView) view.findViewById(R.id.title1);
             author = (TextView) view.findViewById(R.id.title2);
+            authorParent = view.findViewById(R.id.title2Parent);
             path = (TextView) view.findViewById(R.id.browserPath);
             size = (TextView) view.findViewById(R.id.browserSize);
             ext = (TextView) view.findViewById(R.id.browserExt);
@@ -200,7 +201,9 @@ public class FileMetaAdapter extends AppRecycleAdapter<FileMeta, RecyclerView.Vi
             TintUtil.setBackgroundFillColor(holder.parent, TintUtil.color);
         }
         if (holderAll instanceof FileMetaViewHolder) {
+
             final FileMetaViewHolder holder = (FileMetaViewHolder) holderAll;
+
             bindFileMetaView(holder, position);
 
             IMG.getCoverPageWithEffectPos(holder.image, fileMeta.getPath(), IMG.getImageSize(), position, new SimpleImageLoadingListener() {
@@ -224,7 +227,9 @@ public class FileMetaAdapter extends AppRecycleAdapter<FileMeta, RecyclerView.Vi
                 }
 
             });
-        } else if (holderAll instanceof DirectoryViewHolder) {
+        } else if (holderAll instanceof DirectoryViewHolder)
+
+        {
             final DirectoryViewHolder holder = (DirectoryViewHolder) holderAll;
             holder.title.setText(fileMeta.getPathTxt());
             holder.path.setText(fileMeta.getPath());
@@ -363,7 +368,9 @@ public class FileMetaAdapter extends AppRecycleAdapter<FileMeta, RecyclerView.Vi
                     onStarClickListener.onResultRecive(fileMeta, FileMetaAdapter.this);
                 }
             });
-        } else {
+        } else
+
+        {
         }
 
         bindItemClickAndLongClickListeners(holder.parent, fileMeta);
@@ -426,17 +433,19 @@ public class FileMetaAdapter extends AppRecycleAdapter<FileMeta, RecyclerView.Vi
                 holder.infoLayout.setVisibility(View.VISIBLE);
             }
         }
-
-        if (adapterType == ADAPTER_LIST && AppState.get().coverSmallSize >= IMG.TWO_LINE_COVER_SIZE) {
-            holder.title.setSingleLine(false);
-            holder.title.setLines(2);
-            holder.path.setVisibility(View.VISIBLE);
-        } else if (adapterType == ADAPTER_LIST) {
-            holder.title.setSingleLine(true);
-            holder.title.setLines(1);
-            holder.path.setVisibility(View.GONE);
-            if (AppState.get().coverSmallSize <= IMG.TWO_LINE_COVER_SIZE) {
-                holder.infoLayout.setVisibility(View.GONE);
+        holder.authorParent.setVisibility(View.VISIBLE);
+        if (adapterType == ADAPTER_LIST) {
+            if (AppState.get().coverSmallSize >= IMG.TWO_LINE_COVER_SIZE) {
+                holder.title.setSingleLine(false);
+                holder.title.setLines(2);
+                holder.path.setVisibility(View.VISIBLE);
+            } else {
+                holder.title.setSingleLine(false);
+                holder.title.setLines(2);
+                holder.authorParent.setVisibility(View.GONE);
+                holder.path.setVisibility(View.GONE);
+                holder.infoLayout.setVisibility(View.VISIBLE);
+                holder.title.setText(fileMeta.getPathTxt());
             }
         }
 
@@ -461,8 +470,6 @@ public class FileMetaAdapter extends AppRecycleAdapter<FileMeta, RecyclerView.Vi
                 holder.remove.setVisibility(View.GONE);
             }
         }
-
-
 
         holder.menu.setOnClickListener(new OnClickListener() {
 

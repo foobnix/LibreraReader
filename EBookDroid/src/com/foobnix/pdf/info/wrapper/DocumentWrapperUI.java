@@ -793,8 +793,6 @@ public class DocumentWrapperUI {
             textToSpeach.setVisibility(View.GONE);
         }
 
-
-
     }
 
     public void updateSeekBarColorAndSize() {
@@ -901,6 +899,10 @@ public class DocumentWrapperUI {
 
         @Override
         public void onClick(final View v) {
+            if (AppState.get().isCut) {
+                onCut.onClick(null);
+                return;
+            }
             DragingDialogs.textToSpeachDialog(anchor, controller);
         }
     };

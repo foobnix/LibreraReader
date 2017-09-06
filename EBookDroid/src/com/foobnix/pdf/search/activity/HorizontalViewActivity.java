@@ -370,6 +370,11 @@ public class HorizontalViewActivity extends FragmentActivity {
 
             @Override
             public void onClick(final View v) {
+                LOG.d("bookTTS", AppState.get().isDoubleCoverAlone, AppState.get().isDouble, AppState.get().isCut);
+                if (AppState.get().isDouble || AppState.get().isCut) {
+                    modeOnePage();
+                    return;
+                }
                 DragingDialogs.textToSpeachDialog(anchor, documentController);
             }
         });
@@ -394,11 +399,7 @@ public class HorizontalViewActivity extends FragmentActivity {
 
                     @Override
                     public boolean onMenuItemClick(MenuItem item) {
-                        onModeChange.setImageResource(R.drawable.glyphicons_full_page);
-                        AppState.get().isDouble = false;
-                        AppState.get().isCut = false;
-                        SettingsManager.getBookSettings().updateFromAppState();
-                        documentController.restartActivity();
+                        modeOnePage();
                         return false;
                     }
                 });
@@ -437,6 +438,7 @@ public class HorizontalViewActivity extends FragmentActivity {
                         AppState.get().isCut = true;
                         AppState.get().isCrop = false;
                         SettingsManager.getBookSettings().updateFromAppState();
+                        TTSEngine.get().stop();
                         reloadDoc.run();
                         return false;
                     }
@@ -510,6 +512,7 @@ public class HorizontalViewActivity extends FragmentActivity {
 
         Keyboards.hideNavigationOnCreate(HorizontalViewActivity.this);
 
+        titleTxt.setText(DocumentControllerHorizontalView.getTempTitle(this));
         loadinAsyncTask = new CopyAsyncTask() {
             ProgressDialog dialog;
             private boolean isCancelled = false;
@@ -684,6 +687,15 @@ public class HorizontalViewActivity extends FragmentActivity {
             }
         });
 
+    }
+
+    public void modeOnePage() {
+        onModeChange.setImageResource(R.drawable.glyphicons_full_page);
+        AppState.get().isDouble = false;
+        AppState.get().isDoubleCoverAlone = false;
+        AppState.get().isCut = false;
+        SettingsManager.getBookSettings().updateFromAppState();
+        documentController.restartActivity();
     }
 
     public void updateSeekBarColorAndSize() {
@@ -932,7 +944,11 @@ public class HorizontalViewActivity extends FragmentActivity {
             flippingHandler.removeCallbacksAndMessages(null);
         }
         if (viewPager != null) {
-            viewPager.setAdapter(null);
+            try {
+                viewPager.setAdapter(null);
+            } catch (Exception e) {
+                LOG.e(e);
+            }
         }
 
         ADS.destory(adView);
@@ -1302,7 +1318,6 @@ public class HorizontalViewActivity extends FragmentActivity {
         }
     };
 
-
     // @Override
     @Override
     public void onConfigurationChanged(final Configuration newConfig) {
@@ -1344,7 +1359,6 @@ public class HorizontalViewActivity extends FragmentActivity {
             documentController.udpateImageSize(viewPager.getWidth(), viewPager.getHeight());
             onRotateScreen();
         }
-
 
     }
 

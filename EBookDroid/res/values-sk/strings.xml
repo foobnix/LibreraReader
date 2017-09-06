@@ -371,4 +371,5 @@
    <string name="two_pages_cover">Obálka, dve strany</string>
    <string name="enhancements_for_oled_display">Vylepšenia pre OLED displej</string>
    <string name="reading_will_be_stopped">Čítanie bude zastavené</string>
+   <string name="compact">Kompaktný</string>
 </resources>

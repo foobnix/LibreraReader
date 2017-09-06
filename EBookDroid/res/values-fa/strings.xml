@@ -371,4 +371,5 @@
    <string name="two_pages_cover">پوشش دو صفحه</string>
    <string name="enhancements_for_oled_display">پیشرفت صفحه نمایش OLED</string>
    <string name="reading_will_be_stopped">خواندن متوقف خواهد شد</string>
+   <string name="compact">فشرده</string>
 </resources>

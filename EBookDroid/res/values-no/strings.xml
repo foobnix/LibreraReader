@@ -371,4 +371,5 @@
    <string name="two_pages_cover">Dekk, To sider</string>
    <string name="enhancements_for_oled_display">Forbedringer for OLED-skjerm</string>
    <string name="reading_will_be_stopped">Lesingen stoppes</string>
+   <string name="compact">Kompakt</string>
 </resources>
