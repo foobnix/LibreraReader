@@ -23,6 +23,7 @@ import com.foobnix.pdf.info.model.AnnotationType;
 import com.foobnix.pdf.info.model.OutlineLinkWrapper;
 import com.foobnix.pdf.info.view.AlertDialogs;
 import com.foobnix.sys.ImageExtractor;
+import com.foobnix.tts.TTSEngine;
 import com.foobnix.ui2.AppDB;
 import com.nostra13.universalimageloader.core.ImageLoader;
 
@@ -323,6 +324,7 @@ public abstract class DocumentController {
     public void restartActivity() {
         IMG.clearMemoryCache();
         saveAppState();
+        TTSEngine.get().stop();
         activity.finish();
         activity.startActivity(activity.getIntent());
     }

@@ -370,7 +370,8 @@ public class HorizontalViewActivity extends FragmentActivity {
 
             @Override
             public void onClick(final View v) {
-                if (AppState.get().isDoubleCoverAlone || AppState.get().isDouble || AppState.get().isCut) {
+                LOG.d("bookTTS", AppState.get().isDoubleCoverAlone, AppState.get().isDouble, AppState.get().isCut);
+                if (AppState.get().isDouble || AppState.get().isCut) {
                     modeOnePage();
                     return;
                 }
@@ -437,6 +438,7 @@ public class HorizontalViewActivity extends FragmentActivity {
                         AppState.get().isCut = true;
                         AppState.get().isCrop = false;
                         SettingsManager.getBookSettings().updateFromAppState();
+                        TTSEngine.get().stop();
                         reloadDoc.run();
                         return false;
                     }
@@ -690,6 +692,7 @@ public class HorizontalViewActivity extends FragmentActivity {
     public void modeOnePage() {
         onModeChange.setImageResource(R.drawable.glyphicons_full_page);
         AppState.get().isDouble = false;
+        AppState.get().isDoubleCoverAlone = false;
         AppState.get().isCut = false;
         SettingsManager.getBookSettings().updateFromAppState();
         documentController.restartActivity();
