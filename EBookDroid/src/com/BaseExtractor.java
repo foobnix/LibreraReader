@@ -60,7 +60,7 @@ public abstract class BaseExtractor {
         Bitmap bitmap = Bitmap.createBitmap(w, h, Bitmap.Config.ARGB_8888);
         Canvas c = new Canvas(bitmap);
         c.save();
-        c.drawColor(TintUtil.randomColor());
+        c.drawColor(TintUtil.randomColor(title.hashCode()));
 
         int margin = Dips.dpToPx(10);
         StaticLayout mTextLayout = new StaticLayout(title, pBold, c.getWidth() - margin * 2, Alignment.ALIGN_CENTER, 1.0f, 0.0f, false);

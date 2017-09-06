@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Random;
 
 import com.foobnix.android.utils.Dips;
+import com.foobnix.android.utils.LOG;
 import com.foobnix.pdf.info.wrapper.AppState;
 import com.foobnix.pdf.info.wrapper.MagicHelper;
 
@@ -39,6 +40,21 @@ public class TintUtil {
 
     public static int randomColor() {
         return Color.HSVToColor(new float[] { random.nextInt(360), random.nextFloat(), (3f + random.nextInt(4)) / 10f });
+    }
+
+    public static int randomColor(int hash) {
+        try {
+            hash = Math.abs(hash);
+            String num = "" + hash;
+            float a = Integer.parseInt(num.substring(0, 1)) + 1;
+            float b = Integer.parseInt(num.substring(1, 2)) + 1;
+            float c = Integer.parseInt(num.substring(2, 3)) + 1;
+
+            LOG.d("randomColor", a, b, c);
+            return Color.HSVToColor(new float[] { 360 * a / 10f, b / 10f, Math.max(Math.min(0.2f, c / 10f), 0.5f) });
+        } catch (Exception e) {
+            return tintRandomColor();
+        }
     }
 
     public static int getStatusBarColor() {

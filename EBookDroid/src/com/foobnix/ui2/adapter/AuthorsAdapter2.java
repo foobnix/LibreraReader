@@ -46,7 +46,7 @@ public class AuthorsAdapter2 extends AppRecycleAdapter<String, AuthorViewHolder>
         holder.letter.setText(TxtUtils.getFirstLetter(string));
 
         if (holder.letter.getTag() == null) {
-            holder.letter.setTag(TintUtil.randomColor());
+            holder.letter.setTag(TintUtil.randomColor(string.hashCode()));
         }
 
         GradientDrawable background = (GradientDrawable) holder.letter.getBackground();
