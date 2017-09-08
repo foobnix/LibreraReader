@@ -134,6 +134,16 @@
                 android:layout_weight="0"
                 android:contentDescription="align document"
                 android:src="@drawable/glyphicons_114_justify" />
+            
+            <ImageView
+                android:visibility="gone"
+                android:id="@+id/onCrop"
+                style="@style/buttonWhite"
+                android:layout_width="@dimen/wh_button"
+                android:layout_height="@dimen/wh_button"
+                android:layout_weight="0"
+                android:contentDescription="align document"
+                android:src="@drawable/glyphicons_94_crop" />
 
             <ImageView
                 android:id="@+id/bookNight"

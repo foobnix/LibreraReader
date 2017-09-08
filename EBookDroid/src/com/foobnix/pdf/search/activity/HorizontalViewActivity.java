@@ -443,20 +443,40 @@ public class HorizontalViewActivity extends FragmentActivity {
                         return false;
                     }
                 });
-                p.getMenu().add(R.string.crop_white_borders).setIcon(R.drawable.glyphicons_94_crop).setOnMenuItemClickListener(new OnMenuItemClickListener() {
+                if (false) {
+                    p.getMenu().add(R.string.crop_white_borders).setIcon(R.drawable.glyphicons_94_crop).setOnMenuItemClickListener(new OnMenuItemClickListener() {
 
-                    @Override
-                    public boolean onMenuItemClick(MenuItem item) {
-                        AppState.get().isCrop = !AppState.get().isCrop;
-                        SettingsManager.getBookSettings().cropPages = AppState.get().isCrop;
-                        reloadDoc.run();
-                        return false;
-                    }
-                });
+                        @Override
+                        public boolean onMenuItemClick(MenuItem item) {
+                            AppState.get().isCrop = !AppState.get().isCrop;
+                            SettingsManager.getBookSettings().cropPages = AppState.get().isCrop;
+                            reloadDoc.run();
+                            return false;
+                        }
+                    });
+                }
                 p.show();
                 PopupHelper.initIcons(p, TintUtil.color);
             }
         });
+
+        final ImageView onCrop = (ImageView) findViewById(R.id.onCrop);
+        onCrop.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                AppState.get().isCrop = !AppState.get().isCrop;
+                SettingsManager.getBookSettings().cropPages = AppState.get().isCrop;
+                reloadDoc.run();
+                if (AppState.get().isCrop) {
+                    TintUtil.setTintImage(onCrop, Color.LTGRAY);
+                } else {
+                    TintUtil.setTintImage(onCrop, Color.WHITE);
+                }
+            }
+        });
+
+
 
         findViewById(R.id.bookMenu).setOnClickListener(new View.OnClickListener() {
 
@@ -646,6 +666,12 @@ public class HorizontalViewActivity extends FragmentActivity {
                         onModeChange.setImageResource(R.drawable.glyphicons_page_split);
                     } else {
                         onModeChange.setImageResource(R.drawable.glyphicons_full_page);
+                    }
+                    onCrop.setVisibility(documentController.isTextFormat() ? View.GONE : View.VISIBLE);
+                    if (AppState.get().isCrop) {
+                        TintUtil.setTintImage(onCrop, Color.LTGRAY);
+                    } else {
+                        TintUtil.setTintImage(onCrop, Color.WHITE);
                     }
 
                 }

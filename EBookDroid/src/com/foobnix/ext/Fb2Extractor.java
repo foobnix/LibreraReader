@@ -89,17 +89,27 @@ public class Fb2Extractor extends BaseExtractor {
 
             int eventType = xpp.getEventType();
             String imageID = null;
+            String imageCover = null;
             while (eventType != XmlPullParser.END_DOCUMENT) {
                 if (eventType == XmlPullParser.START_TAG) {
 
-                    if (imageID == null && xpp.getName().equals("image")) {
-                        imageID = xpp.getAttributeValue(0);
-
-                        if (TxtUtils.isNotEmpty(imageID)) {
-                            imageID = imageID.replace("#", "");
+                    if (xpp.getName().equals("image")) {
+                        if (imageID == null) {
+                            imageID = xpp.getAttributeValue(0);
+                            if (TxtUtils.isNotEmpty(imageID)) {
+                                imageID = imageID.replace("#", "");
+                            }
                         }
-
+                        if (imageCover == null) {
+                            imageCover = xpp.getAttributeValue(0);
+                            if (TxtUtils.isNotEmpty(imageCover) && imageCover.toLowerCase(Locale.US).contains("cover")) {
+                                imageCover = imageID = imageCover.replace("#", "");
+                            } else {
+                                imageCover = null;
+                            }
+                        }
                     }
+
                     if (imageID != null && xpp.getName().equals("binary") && imageID.equals(xpp.getAttributeValue(null, "id"))) {
                         decode = Base64.decode(xpp.nextText(), Base64.DEFAULT);
                         break;
@@ -108,7 +118,7 @@ public class Fb2Extractor extends BaseExtractor {
                 eventType = xpp.next();
             }
         } catch (Exception e) {
-            LOG.e(e);
+            LOG.e(e, path);
         }
         return decode;
     }
@@ -124,16 +134,18 @@ public class Fb2Extractor extends BaseExtractor {
             boolean findAnnotation = false;
             while (eventType != XmlPullParser.END_DOCUMENT) {
                 if (eventType == XmlPullParser.START_TAG) {
-                    if (findAnnotation) {
-                        info = info + " " + xpp.nextText();
-                    }
-
                     if ("annotation".equals(xpp.getName())) {
                         findAnnotation = true;
                     }
                     if ("body".equals(xpp.getName())) {
                         break;
                     }
+                }
+                if (eventType == XmlPullParser.TEXT) {
+                    if (findAnnotation) {
+                        info = info + " " + xpp.getText();
+                    }
+
                 }
                 if (eventType == XmlPullParser.END_TAG) {
                     if ("annotation".equals(xpp.getName())) {
@@ -372,7 +384,6 @@ public class Fb2Extractor extends BaseExtractor {
         boolean titleBegin = false;
 
         while ((line = input.readLine()) != null) {
-
 
             if (!isEncoding && line.toLowerCase(Locale.US).contains("windows-1251")) {
                 line = line.toLowerCase(Locale.US).replace("windows-1251", "utf-8");
