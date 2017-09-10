@@ -32,6 +32,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.content.LocalBroadcastManager;
 import android.support.v4.util.Pair;
 import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.GridLayoutManager.SpanSizeLookup;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
@@ -215,11 +216,13 @@ public abstract class UIFragment<T> extends Fragment {
         }
     }
 
-    public void onGridList(int mode, ImageView onGridlList, FileMetaAdapter searchAdapter, AuthorsAdapter2 authorsAdapter) {
+    public void onGridList(int mode, ImageView onGridlList, final FileMetaAdapter searchAdapter, AuthorsAdapter2 authorsAdapter) {
         if (searchAdapter == null) {
             return;
         }
-        PopupHelper.updateGridOrListIcon(onGridlList, mode);
+        if (onGridlList != null) {
+            PopupHelper.updateGridOrListIcon(onGridlList, mode);
+        }
 
         if (mode == AppState.MODE_LIST) {
             RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getActivity());
@@ -228,8 +231,21 @@ public abstract class UIFragment<T> extends Fragment {
             recyclerView.setAdapter(searchAdapter);
 
         } else if (mode == AppState.MODE_COVERS || mode == AppState.MODE_GRID) {
-            int num = Math.max(1, Dips.screenWidthDP() / AppState.get().coverBigSize);
-            RecyclerView.LayoutManager mGridManager = new GridLayoutManager(getActivity(), num);
+            final int num = Math.max(1, Dips.screenWidthDP() / AppState.get().coverBigSize);
+
+            GridLayoutManager mGridManager = new GridLayoutManager(getActivity(), num);
+            mGridManager.setSpanSizeLookup(new SpanSizeLookup() {
+
+                @Override
+                public int getSpanSize(int pos) {
+                    int type = searchAdapter.getItemViewType(pos);
+                    if (type == FileMetaAdapter.DISPALY_TYPE_LAYOUT_TITLE_FOLDERS) {
+                        return num;
+                    }
+                    return (type == FileMetaAdapter.DISPALY_TYPE_LAYOUT_TITLE_BOOKS) ? num : 1;
+                }
+            });
+
             recyclerView.setLayoutManager(mGridManager);
 
             searchAdapter.setAdapterType(mode == AppState.MODE_COVERS ? FileMetaAdapter.ADAPTER_COVERS : FileMetaAdapter.ADAPTER_GRID);
@@ -241,8 +257,20 @@ public abstract class UIFragment<T> extends Fragment {
             recyclerView.setAdapter(authorsAdapter);
         }
         if (mode == AppState.MODE_LIST_COMPACT) {
-            int num = Math.max(2, Dips.screenWidthDP() / AppState.get().coverBigSize / 2);
-            RecyclerView.LayoutManager mGridManager = new GridLayoutManager(getActivity(), num);
+            final int num = Math.max(2, Dips.screenWidthDP() / AppState.get().coverBigSize / 2);
+            GridLayoutManager mGridManager = new GridLayoutManager(getActivity(), num);
+            mGridManager.setSpanSizeLookup(new SpanSizeLookup() {
+
+                @Override
+                public int getSpanSize(int pos) {
+                    int type = searchAdapter.getItemViewType(pos);
+                    if (type == FileMetaAdapter.DISPALY_TYPE_LAYOUT_TITLE_FOLDERS) {
+                        return num;
+                    }
+                    return (type == FileMetaAdapter.DISPALY_TYPE_LAYOUT_TITLE_BOOKS) ? num : 1;
+                }
+            });
+
             recyclerView.setLayoutManager(mGridManager);
             searchAdapter.setAdapterType(FileMetaAdapter.ADAPTER_LIST);
             recyclerView.setAdapter(searchAdapter);

@@ -26,6 +26,20 @@
         android:textAllCaps="false"
         android:textColor="@color/white"
         android:textStyle="normal" />
+    
+    <ImageView
+        android:id="@+id/onGridList"
+        style="@style/buttonWhite"
+        android:layout_width="@dimen/wh_button"
+        android:layout_height="@dimen/wh_button"
+        android:layout_weight="0"
+        android:src="@drawable/glyphicons_114_justify" />
+
+    <View
+        android:layout_width="1dip"
+        android:layout_height="match_parent"
+        android:background="@color/tint_divider" />
+    
 
     <TextView
         android:id="@+id/clearAllFolders"

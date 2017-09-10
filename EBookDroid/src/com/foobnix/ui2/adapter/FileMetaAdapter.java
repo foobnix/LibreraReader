@@ -12,6 +12,7 @@ import com.foobnix.pdf.info.IMG;
 import com.foobnix.pdf.info.R;
 import com.foobnix.pdf.info.TintUtil;
 import com.foobnix.pdf.info.wrapper.AppState;
+import com.foobnix.pdf.info.wrapper.PopupHelper;
 import com.foobnix.ui2.AppDB;
 import com.foobnix.ui2.AppRecycleAdapter;
 import com.foobnix.ui2.fast.FastScroller;
@@ -118,11 +119,13 @@ public class FileMetaAdapter extends AppRecycleAdapter<FileMeta, RecyclerView.Vi
     public class StarsTitleViewHolder extends RecyclerView.ViewHolder {
         public TextView clearAllFolders, clearAllBooks;
         public View parent;
+        public ImageView onGridList;
 
         public StarsTitleViewHolder(View view) {
             super(view);
             clearAllFolders = (TextView) view.findViewById(R.id.clearAllFolders);
             clearAllBooks = (TextView) view.findViewById(R.id.clearAllBooks);
+            onGridList = (ImageView) view.findViewById(R.id.onGridList);
             parent = view.findViewById(R.id.parent);
         }
     }
@@ -194,6 +197,17 @@ public class FileMetaAdapter extends AppRecycleAdapter<FileMeta, RecyclerView.Vi
                     @Override
                     public void onClick(View v) {
                         clearAllStarredBooks.run();
+                    }
+                });
+            }
+
+            if (holder.onGridList != null) {
+                PopupHelper.updateGridOrListIcon(holder.onGridList, AppState.get().starsMode);
+                holder.onGridList.setOnClickListener(new OnClickListener() {
+
+                    @Override
+                    public void onClick(View v) {
+                        onGridOrList.onResultRecive(holder.onGridList);
                     }
                 });
             }
@@ -548,6 +562,10 @@ public class FileMetaAdapter extends AppRecycleAdapter<FileMeta, RecyclerView.Vi
         this.clearAllStarredBooks = clearAllStarredBooks;
     }
 
+    public void setOnGridOrList(ResultResponse<ImageView> onGridOrList) {
+        this.onGridOrList = onGridOrList;
+    }
+
     private ResultResponse<FileMeta> onMenuClickListener;
     private ResultResponse<FileMeta> onDeleteClickListener;
     private ResultResponse<String> onAuthorClickListener;
@@ -555,5 +573,6 @@ public class FileMetaAdapter extends AppRecycleAdapter<FileMeta, RecyclerView.Vi
     private ResultResponse2<FileMeta, FileMetaAdapter> onStarClickListener;
     private Runnable clearAllStarredFolders;
     private Runnable clearAllStarredBooks;
+    private ResultResponse<ImageView> onGridOrList;
 
 }

@@ -299,6 +299,7 @@ public class AppState {
     public int broseMode = MODE_LIST;
     public int recentMode = MODE_GRID;
     public int bookmarksMode = BOOKMARK_MODE_BY_DATE;
+    public int starsMode = MODE_LIST;
 
     public boolean isBrowseGrid = false;
     public boolean isRecentGrid = false;
@@ -551,6 +552,7 @@ public class AppState {
         cpBGBlack = sp.getInt("cpBGBlack", cpBGBlack);
 
         libraryMode = sp.getInt("libraryMode", libraryMode);
+        starsMode = sp.getInt("starsMode", starsMode);
         broseMode = sp.getInt("broseMode", broseMode);
         recentMode = sp.getInt("recentMode", recentMode);
         bookmarksMode = sp.getInt("bookmarksMode", bookmarksMode);
@@ -762,6 +764,7 @@ public class AppState {
         editor.putBoolean("isLoopAutoplay", isLoopAutoplay);
         editor.putBoolean("isBookCoverEffect", isBookCoverEffect);
         editor.putInt("libraryMode", libraryMode);
+        editor.putInt("starsMode", starsMode);
         editor.putInt("broseMode", broseMode);
         editor.putInt("recentMode", recentMode);
         editor.putInt("bookmarksMode", bookmarksMode);
