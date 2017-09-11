@@ -372,4 +372,19 @@
    <string name="enhancements_for_oled_display">Підтримка OLED-дисплея</string>
    <string name="reading_will_be_stopped">Читання буде зупинено</string>
    <string name="compact">Компактний</string>
+   <string name="cd_search_books_in_the_library">Пошук книг у бібліотеці</string>
+   <string name="cd_clear_search_reasult">Очистити пошук за замовчуванням</string>
+   <string name="cd_sort_results">Сортувати результати</string>
+   <string name="cd_sort_order">Порядок сортування</string>
+   <string name="cd_update_search_search_for_new_books_on_sd_card">Оновити пошук, пошук нових книг на SD-карті</string>
+   <string name="cd_show_results_as_a_list_or_grid">Показати результати як список або сітку</string>
+   <string name="cd_return_to_the_parent_folder">Повернутися до батьківської теки</string>
+   <string name="cd_back_to_sd_card">Повернутися на карту SD</string>
+   <string name="cd_clear_all">Очистити все</string>
+   <string name="cd_search_in_bookmarks">Пошук у закладок</string>
+   <string name="cd_export">Експорт</string>
+   <string name="cd_import">Імпортувати</string>
+   <string name="cd_back_to_parent">Повернутися до батьківського</string>
+   <string name="cd_back_to_all_catalogs">Повернутися до всіх каталогів</string>
+   <string name="cd_add_new_opds_catalog">Додати новий каталог OPDS</string>
 </resources>

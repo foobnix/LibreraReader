@@ -2,15 +2,15 @@ package com.foobnix.opds;
 
 import java.io.IOException;
 import java.io.StringReader;
+import java.util.Random;
 import java.util.concurrent.TimeUnit;
 
 import org.xmlpull.v1.XmlPullParser;
-import org.xmlpull.v1.XmlPullParserException;
-import org.xmlpull.v1.XmlPullParserFactory;
 
 import com.foobnix.android.utils.LOG;
 import com.foobnix.android.utils.TxtUtils;
 import com.foobnix.ext.CacheZipUtils;
+import com.foobnix.ext.XmlParser;
 import com.foobnix.sys.TempHolder;
 
 import okhttp3.Cache;
@@ -29,9 +29,12 @@ public class OPDS {
             .readTimeout(30, TimeUnit.SECONDS)//
             .cache(cache).build();//
 
+    public static int random = new Random().nextInt();
+
     public static String getHttpResponse(String url) throws IOException {
 
         Request request = new Request.Builder()//
+                .header("User-Agent", "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/57.0.2987." + random + " Safari/537.36")
                 .cacheControl(new CacheControl.Builder()//
                         .maxAge(10, TimeUnit.MINUTES)//
                         .build())//
@@ -86,7 +89,7 @@ public class OPDS {
     public static Feed getFeedByXml(String xmlString) throws Exception {
         LOG.d(xmlString);
 
-        XmlPullParser xpp = buildPullParser();
+        XmlPullParser xpp = XmlParser.buildPullParser();
         xpp.setInput(new StringReader(xmlString));
 
         int eventType = xpp.getEventType();
@@ -202,10 +205,5 @@ public class OPDS {
 
     }
 
-    public static XmlPullParser buildPullParser() throws XmlPullParserException {
-        XmlPullParserFactory factory = XmlPullParserFactory.newInstance();
-        factory.setValidating(false);
-        return factory.newPullParser();
-    }
 
 }

@@ -372,4 +372,19 @@
    <string name="enhancements_for_oled_display">OLEDディスプレイの機能拡張</string>
    <string name="reading_will_be_stopped">読書が中止される</string>
    <string name="compact">コンパクト</string>
+   <string name="cd_search_books_in_the_library">図書館で書籍を検索する</string>
+   <string name="cd_clear_search_reasult">検索の再考をクリア</string>
+   <string name="cd_sort_results">結果を並べ替える</string>
+   <string name="cd_sort_order">ソート順</string>
+   <string name="cd_update_search_search_for_new_books_on_sd_card">SDカードで検索を更新し、新しい本を検索する</string>
+   <string name="cd_show_results_as_a_list_or_grid">結果をリストまたはグリッドとして表示する</string>
+   <string name="cd_return_to_the_parent_folder">親フォルダに戻る</string>
+   <string name="cd_back_to_sd_card">SDカードに戻る</string>
+   <string name="cd_clear_all">すべてクリア</string>
+   <string name="cd_search_in_bookmarks">ブックマークで検索</string>
+   <string name="cd_export">輸出する</string>
+   <string name="cd_import">インポート</string>
+   <string name="cd_back_to_parent">親に戻る</string>
+   <string name="cd_back_to_all_catalogs">すべてのカタログに戻る</string>
+   <string name="cd_add_new_opds_catalog">新しいOPDSカタログを追加する</string>
 </resources>

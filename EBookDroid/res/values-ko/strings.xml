@@ -372,4 +372,19 @@
    <string name="enhancements_for_oled_display">OLED 디스플레이 향상</string>
    <string name="reading_will_be_stopped">독서가 중단됩니다.</string>
    <string name="compact">콤팩트</string>
+   <string name="cd_search_books_in_the_library">도서관에서 책 검색</string>
+   <string name="cd_clear_search_reasult">검색 재검색 지우기</string>
+   <string name="cd_sort_results">결과 정렬</string>
+   <string name="cd_sort_order">정렬 순서</string>
+   <string name="cd_update_search_search_for_new_books_on_sd_card">SD 카드로 검색을 업데이트하고 새 책을 검색합니다.</string>
+   <string name="cd_show_results_as_a_list_or_grid">결과를 목록 또는 표로 표시</string>
+   <string name="cd_return_to_the_parent_folder">상위 폴더로 돌아 가기</string>
+   <string name="cd_back_to_sd_card">SD 카드로 돌아 가기</string>
+   <string name="cd_clear_all">모두 지우기</string>
+   <string name="cd_search_in_bookmarks">북마크에서 검색</string>
+   <string name="cd_export">수출</string>
+   <string name="cd_import">수입</string>
+   <string name="cd_back_to_parent">상위로 돌아 가기</string>
+   <string name="cd_back_to_all_catalogs">모든 카탈로그로 돌아 가기</string>
+   <string name="cd_add_new_opds_catalog">새로운 OPDS 카탈로그 추가</string>
 </resources>

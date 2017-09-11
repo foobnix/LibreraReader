@@ -372,4 +372,19 @@
    <string name="reading_will_be_stopped">Reading will be stopped</string>
    <string name="enhancements_for_oled_display">Enhancements for OLED display</string>
    <string name="compact">Compact</string>
+   <string name="cd_search_books_in_the_library">Search books in the library</string>
+   <string name="cd_clear_search_reasult">Clear search reasult</string>
+   <string name="cd_sort_results">Sort Results</string>
+   <string name="cd_sort_order">Sort order</string>
+   <string name="cd_update_search_search_for_new_books_on_sd_card">Update search, search for new books on SD card</string>
+   <string name="cd_show_results_as_a_list_or_grid">Show results as a list or grid</string>
+   <string name="cd_return_to_the_parent_folder">Return to the parent folder</string>
+   <string name="cd_back_to_sd_card">Back to SD card</string>
+   <string name="cd_clear_all">Clear all</string>
+   <string name="cd_search_in_bookmarks">Search in bookmarks</string>
+   <string name="cd_export">Export</string>
+   <string name="cd_import">Import</string>
+   <string name="cd_back_to_parent">Back to parent</string>
+   <string name="cd_back_to_all_catalogs">Back to all catalogs</string>
+   <string name="cd_add_new_opds_catalog">Add new OPDS catalog</string>
 </resources>

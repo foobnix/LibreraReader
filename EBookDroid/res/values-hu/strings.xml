@@ -372,4 +372,19 @@
    <string name="enhancements_for_oled_display">Az OLED kijelzők fejlesztései</string>
    <string name="reading_will_be_stopped">Az olvasás leáll</string>
    <string name="compact">Kompakt</string>
+   <string name="cd_search_books_in_the_library">Könyveket keres a könyvtárban</string>
+   <string name="cd_clear_search_reasult">Törölje a keresést</string>
+   <string name="cd_sort_results">Eredmények rendezése</string>
+   <string name="cd_sort_order">Sorrend</string>
+   <string name="cd_update_search_search_for_new_books_on_sd_card">Frissítse a keresést, keressen új könyveket az SD-kártyán</string>
+   <string name="cd_show_results_as_a_list_or_grid">Az eredmények megjelenítése listáként vagy rácsként</string>
+   <string name="cd_return_to_the_parent_folder">Visszatérés a szülõmappába</string>
+   <string name="cd_back_to_sd_card">Vissza az SD kártyára</string>
+   <string name="cd_clear_all">Kitörölni mindent</string>
+   <string name="cd_search_in_bookmarks">Könyvjelzők keresése</string>
+   <string name="cd_export">Export</string>
+   <string name="cd_import">Import</string>
+   <string name="cd_back_to_parent">Vissza a szülőhöz</string>
+   <string name="cd_back_to_all_catalogs">Vissza az összes katalógusba</string>
+   <string name="cd_add_new_opds_catalog">Adjon hozzá új OPDS katalógust</string>
 </resources>

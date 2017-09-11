@@ -372,4 +372,19 @@
    <string name="enhancements_for_oled_display">ओएलईडी डिस्प्ले के लिए एन्हांसमेंट</string>
    <string name="reading_will_be_stopped">पढ़ना बंद कर दिया जाएगा</string>
    <string name="compact">सघन</string>
+   <string name="cd_search_books_in_the_library">लाइब्रेरी में पुस्तकें खोजें</string>
+   <string name="cd_clear_search_reasult">खोज रिसाल्ट साफ़ करें</string>
+   <string name="cd_sort_results">परिणाम क्रमित करें</string>
+   <string name="cd_sort_order">क्रमबद्ध आदेश</string>
+   <string name="cd_update_search_search_for_new_books_on_sd_card">खोज अपडेट करें, एसडी कार्ड पर नई पुस्तकें खोजें</string>
+   <string name="cd_show_results_as_a_list_or_grid">एक सूची या ग्रिड के रूप में परिणाम दिखाएं</string>
+   <string name="cd_return_to_the_parent_folder">मूल फ़ोल्डर पर लौटें</string>
+   <string name="cd_back_to_sd_card">एसडी कार्ड पर वापस जाएं</string>
+   <string name="cd_clear_all">सभी साफ करें</string>
+   <string name="cd_search_in_bookmarks">बुकमार्क्स में खोजें</string>
+   <string name="cd_export">निर्यात</string>
+   <string name="cd_import">आयात</string>
+   <string name="cd_back_to_parent">माता-पिता पर वापस जाएं</string>
+   <string name="cd_back_to_all_catalogs">सभी कैटलॉग पर वापस जाएं</string>
+   <string name="cd_add_new_opds_catalog">नई ओपीडीएस कैटलॉग जोड़ें</string>
 </resources>

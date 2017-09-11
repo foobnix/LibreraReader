@@ -208,6 +208,7 @@ public class AppState {
     public boolean isAutoFit = false;
     public boolean notificationOngoing = false;
 
+    public boolean isShowImages = true;
     public boolean isShowToolBar = true;
     public boolean isShowReadingProgress = true;
     public boolean isShowChaptersOnProgress = true;
@@ -502,6 +503,7 @@ public class AppState {
         isFullScreen = sp.getBoolean("isFullScrean", isFullScreen);
         notificationOngoing = sp.getBoolean("notificationOngoing", notificationOngoing);
         isShowToolBar = sp.getBoolean("isShowToolBar", isShowToolBar);
+        isShowImages = sp.getBoolean("isShowImages", isShowImages);
         isShowReadingProgress = sp.getBoolean("isShowReadingProgress", isShowReadingProgress);
         isShowChaptersOnProgress = sp.getBoolean("isShowChaptersOnProgress", isShowChaptersOnProgress);
         isWhiteTheme = sp.getBoolean("isWhiteTheme", isWhiteTheme);
@@ -729,6 +731,7 @@ public class AppState {
         editor.putBoolean("isFullScrean", isFullScreen);
         editor.putBoolean("notificationOngoing", notificationOngoing);
         editor.putBoolean("isShowToolBar", isShowToolBar);
+        editor.putBoolean("isShowImages", isShowImages);
         editor.putBoolean("isShowReadingProgress", isShowReadingProgress);
         editor.putBoolean("isShowChaptersOnProgress", isShowChaptersOnProgress);
         editor.putBoolean("isWhiteTheme", isWhiteTheme);

@@ -372,4 +372,19 @@
    <string name="enhancements_for_oled_display">Vylepšenia pre OLED displej</string>
    <string name="reading_will_be_stopped">Čítanie bude zastavené</string>
    <string name="compact">Kompaktný</string>
+   <string name="cd_search_books_in_the_library">Vyhľadajte knihy v knižnici</string>
+   <string name="cd_clear_search_reasult">Vymazať vyhľadávanie</string>
+   <string name="cd_sort_results">Zoradiť výsledky</string>
+   <string name="cd_sort_order">Zoradiť poradie</string>
+   <string name="cd_update_search_search_for_new_books_on_sd_card">Aktualizujte vyhľadávanie a vyhľadajte nové knihy na SD karte</string>
+   <string name="cd_show_results_as_a_list_or_grid">Zobraziť výsledky ako zoznam alebo mriežka</string>
+   <string name="cd_return_to_the_parent_folder">Vráťte sa do nadradeného priečinka</string>
+   <string name="cd_back_to_sd_card">Späť na kartu SD</string>
+   <string name="cd_clear_all">Zmazať všetko</string>
+   <string name="cd_search_in_bookmarks">Vyhľadávanie v záložkách</string>
+   <string name="cd_export">Export</string>
+   <string name="cd_import">Import</string>
+   <string name="cd_back_to_parent">Späť na nadradený</string>
+   <string name="cd_back_to_all_catalogs">Späť na všetky katalógy</string>
+   <string name="cd_add_new_opds_catalog">Pridajte nový katalóg OPDS</string>
 </resources>

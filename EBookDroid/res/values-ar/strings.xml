@@ -372,4 +372,19 @@
    <string name="enhancements_for_oled_display">تحسينات لشاشة أوليد</string>
    <string name="reading_will_be_stopped">سيتم إيقاف القراءة</string>
    <string name="compact">المدمج</string>
+   <string name="cd_search_books_in_the_library">البحث في الكتب في المكتبة</string>
+   <string name="cd_clear_search_reasult">مسح البحث رياسولت</string>
+   <string name="cd_sort_results">فرز النتائج</string>
+   <string name="cd_sort_order">امر ترتيب</string>
+   <string name="cd_update_search_search_for_new_books_on_sd_card">تحديث البحث، والبحث عن كتب جديدة على بطاقة سد</string>
+   <string name="cd_show_results_as_a_list_or_grid">عرض النتائج كقائمة أو شبكة</string>
+   <string name="cd_return_to_the_parent_folder">ارجع إلى المجلد الأصل</string>
+   <string name="cd_back_to_sd_card">العودة إلى بطاقة سد</string>
+   <string name="cd_clear_all">امسح الكل</string>
+   <string name="cd_search_in_bookmarks">البحث في الإشارات المرجعية</string>
+   <string name="cd_export">تصدير</string>
+   <string name="cd_import">استيراد</string>
+   <string name="cd_back_to_parent">العودة إلى الأصل</string>
+   <string name="cd_back_to_all_catalogs">عودة إلى جميع الكتالوجات</string>
+   <string name="cd_add_new_opds_catalog">إضافة كتالوج أوبدس جديد</string>
 </resources>

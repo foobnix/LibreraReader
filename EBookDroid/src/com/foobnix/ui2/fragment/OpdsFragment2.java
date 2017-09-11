@@ -402,6 +402,14 @@ public class OpdsFragment2 extends UIFragment<Entry> {
         feed.updateLinksForUI();
 
         updateLinks(feed.title, urlRoot, feed.links);
+
+        for (Link link : feed.links) {
+            if ("next".equals(link.rel)) {
+                feed.entries.add(new Entry("Next", link));
+                break;
+            }
+        }
+
         for (Entry e : feed.entries) {
             updateLinks(e.getTitle(), urlRoot, e.links);
             if (e.authorUrl != null) {

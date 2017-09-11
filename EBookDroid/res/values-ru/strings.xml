@@ -371,5 +371,20 @@
    <string name="two_pages_cover">Обложка и 2 стр.</string>
    <string name="enhancements_for_oled_display">Улучшить отображение фонов для OLED-дисплеев</string>
    <string name="reading_will_be_stopped">Чтение остановится в</string>
-    <string name="compact">Компактный</string>
+   <string name="compact">Компактный</string>
+   <string name="cd_search_books_in_the_library">Поиск книг в библиотеке</string>
+   <string name="cd_clear_search_reasult">Очистить поиск</string>
+   <string name="cd_sort_results">Сортировать результаты</string>
+   <string name="cd_sort_order">Порядок сортировки</string>
+   <string name="cd_update_search_search_for_new_books_on_sd_card">Обновить поиск, поиск новых книг на SD-карте</string>
+   <string name="cd_show_results_as_a_list_or_grid">Показывать результаты как список или сетку</string>
+   <string name="cd_return_to_the_parent_folder">Вернитесь в родительскую папку</string>
+   <string name="cd_back_to_sd_card">Назад на SD-карту</string>
+   <string name="cd_clear_all">Очистить все</string>
+   <string name="cd_search_in_bookmarks">Поиск в закладках</string>
+   <string name="cd_export">Экспорт</string>
+   <string name="cd_import">Импортировать</string>
+   <string name="cd_back_to_parent">Вернуться к родительскому</string>
+   <string name="cd_back_to_all_catalogs">Вернуться ко всем каталогам</string>
+   <string name="cd_add_new_opds_catalog">Добавить новый каталог OPDS</string>
 </resources>

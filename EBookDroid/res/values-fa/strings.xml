@@ -372,4 +372,19 @@
    <string name="enhancements_for_oled_display">پیشرفت صفحه نمایش OLED</string>
    <string name="reading_will_be_stopped">خواندن متوقف خواهد شد</string>
    <string name="compact">فشرده</string>
+   <string name="cd_search_books_in_the_library">کتابهای جستجو در کتابخانه</string>
+   <string name="cd_clear_search_reasult">پاک کردن جستجوی جستجو</string>
+   <string name="cd_sort_results">نتایج مرتب سازی</string>
+   <string name="cd_sort_order">ترتیب مرتب سازی</string>
+   <string name="cd_update_search_search_for_new_books_on_sd_card">به روز رسانی جستجو، جستجوی کتاب های جدید در کارت SD</string>
+   <string name="cd_show_results_as_a_list_or_grid">نمایش نتایج به عنوان یک لیست یا شبکه</string>
+   <string name="cd_return_to_the_parent_folder">بازگشت به پوشه والدین</string>
+   <string name="cd_back_to_sd_card">بازگشت به کارت SD</string>
+   <string name="cd_clear_all">همه را پاک کن</string>
+   <string name="cd_search_in_bookmarks">جستجو در بوک مارک ها</string>
+   <string name="cd_export">صادرات</string>
+   <string name="cd_import">وارد كردن</string>
+   <string name="cd_back_to_parent">بازگشت به پدر و مادر</string>
+   <string name="cd_back_to_all_catalogs">بازگشت به همه کاتالوگها</string>
+   <string name="cd_add_new_opds_catalog">اضافه کردن کاتولوگ OPDS جدید</string>
 </resources>

@@ -28,6 +28,7 @@
         android:textStyle="normal" />
     
     <ImageView
+        android:contentDescription="@string/cd_show_results_as_a_list_or_grid"
         android:id="@+id/onGridList"
         style="@style/buttonWhite"
         android:layout_width="@dimen/wh_button"
@@ -42,6 +43,7 @@
     
 
     <TextView
+        android:contentDescription="@string/cd_clear_all"
         android:id="@+id/clearAllFolders"
         style="@style/textLinkWhite"
         android:layout_width="wrap_content"

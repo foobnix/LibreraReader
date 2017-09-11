@@ -372,4 +372,19 @@
    <string name="enhancements_for_oled_display">Îmbunătățiri pentru afișarea pe OLED</string>
    <string name="reading_will_be_stopped">Citirea va fi oprită</string>
    <string name="compact">Compact</string>
+   <string name="cd_search_books_in_the_library">Căutați cărți în bibliotecă</string>
+   <string name="cd_clear_search_reasult">Renunțați la căutare</string>
+   <string name="cd_sort_results">Sortați rezultatele</string>
+   <string name="cd_sort_order">Ordinea de sortare</string>
+   <string name="cd_update_search_search_for_new_books_on_sd_card">Actualizați căutarea, căutați cărți noi pe cardul SD</string>
+   <string name="cd_show_results_as_a_list_or_grid">Afișați rezultatele ca listă sau grilă</string>
+   <string name="cd_return_to_the_parent_folder">Reveniți la dosarul părinte</string>
+   <string name="cd_back_to_sd_card">Înapoi la cardul SD</string>
+   <string name="cd_clear_all">Curata tot</string>
+   <string name="cd_search_in_bookmarks">Căutați în marcaje</string>
+   <string name="cd_export">Export</string>
+   <string name="cd_import">Import</string>
+   <string name="cd_back_to_parent">Înapoi la părinte</string>
+   <string name="cd_back_to_all_catalogs">Înapoi la toate cataloagele</string>
+   <string name="cd_add_new_opds_catalog">Adăugați un nou catalog OPDS</string>
 </resources>

@@ -372,4 +372,19 @@
    <string name="enhancements_for_oled_display">OLED ekran için geliştirmeler</string>
    <string name="reading_will_be_stopped">Okuma duracak</string>
    <string name="compact">Kompakt</string>
+   <string name="cd_search_books_in_the_library">Kütüphanede kitap ara</string>
+   <string name="cd_clear_search_reasult">Aramayı Temizle Başarı</string>
+   <string name="cd_sort_results">Sonuçları Sırala</string>
+   <string name="cd_sort_order">Sıralama düzeni</string>
+   <string name="cd_update_search_search_for_new_books_on_sd_card">SD kartta arama güncelleme, yeni kitap ara</string>
+   <string name="cd_show_results_as_a_list_or_grid">Sonuçları bir liste veya tablo olarak göster</string>
+   <string name="cd_return_to_the_parent_folder">Üst klasöre dönün</string>
+   <string name="cd_back_to_sd_card">SD karta geri dön</string>
+   <string name="cd_clear_all">Hepsini temizle</string>
+   <string name="cd_search_in_bookmarks">Yer imlerinde ara</string>
+   <string name="cd_export">İhracat</string>
+   <string name="cd_import">İthalat</string>
+   <string name="cd_back_to_parent">Ebeveynine dön</string>
+   <string name="cd_back_to_all_catalogs">Tüm kataloglara dön</string>
+   <string name="cd_add_new_opds_catalog">Yeni OPDS kataloğu ekle</string>
 </resources>

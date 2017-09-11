@@ -36,6 +36,7 @@
         
         
         <TextView
+            android:contentDescription="@string/cd_search_in_bookmarks"
             android:id="@+id/search"
             style="@style/textLinkWhite"
             android:layout_width="wrap_content"
@@ -50,6 +51,7 @@
             android:textSize="14sp" />
 
         <TextView
+            android:contentDescription="@string/cd_export"
             android:id="@+id/exportBookmarks"
             style="@style/textLinkWhite"
             android:layout_width="wrap_content"
@@ -66,6 +68,7 @@
             android:textSize="14sp" />
 
         <TextView
+            android:contentDescription="@string/cd_import"
             android:id="@+id/importBookmarks"
             style="@style/textLinkWhite"
             android:layout_width="wrap_content"
@@ -90,6 +93,7 @@
             android:background="@color/tint_divider" />
 
         <ImageView
+            android:contentDescription="@string/cd_show_results_as_a_list_or_grid"
             android:id="@+id/onListGrid"
             style="@style/buttonWhite"
             android:layout_width="@dimen/wh_button"

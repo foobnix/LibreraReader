@@ -372,4 +372,19 @@
    <string name="enhancements_for_oled_display">Miglioramenti per l\'esposizione OLED</string>
    <string name="reading_will_be_stopped">La lettura verrà interrotta</string>
    <string name="compact">Compatto</string>
+   <string name="cd_search_books_in_the_library">Cerca libri nella biblioteca</string>
+   <string name="cd_clear_search_reasult">Cancellare la ricerca</string>
+   <string name="cd_sort_results">Ordina risultati</string>
+   <string name="cd_sort_order">Ordinamento</string>
+   <string name="cd_update_search_search_for_new_books_on_sd_card">Aggiorna la ricerca, cerca nuovi libri sulla scheda SD</string>
+   <string name="cd_show_results_as_a_list_or_grid">Mostra i risultati come un elenco o una griglia</string>
+   <string name="cd_return_to_the_parent_folder">Ritorna alla cartella principale</string>
+   <string name="cd_back_to_sd_card">Torna alla scheda SD</string>
+   <string name="cd_clear_all">Cancella tutto</string>
+   <string name="cd_search_in_bookmarks">Cerca nei segnalibri</string>
+   <string name="cd_export">Esportare</string>
+   <string name="cd_import">Importare</string>
+   <string name="cd_back_to_parent">Torna al genitore</string>
+   <string name="cd_back_to_all_catalogs">Torna a tutti i cataloghi</string>
+   <string name="cd_add_new_opds_catalog">Aggiungere un nuovo catalogo OPDS</string>
 </resources>

@@ -57,7 +57,7 @@ public class FileMetaAdapter extends AppRecycleAdapter<FileMeta, RecyclerView.Vi
     public class FileMetaViewHolder extends RecyclerView.ViewHolder {
         public TextView title, author, path, ext, size, date, series, idPercentText;
         public ImageView image, star, menu;
-        public View authorParent, progresLayout, parent, remove, layoutBootom, infoLayout, idProgressColor;
+        public View authorParent, progresLayout, parent, remove, layoutBootom, infoLayout, idProgressColor, imageParent;
 
         public FileMetaViewHolder(View view) {
             super(view);
@@ -75,6 +75,7 @@ public class FileMetaAdapter extends AppRecycleAdapter<FileMeta, RecyclerView.Vi
             star = (ImageView) view.findViewById(R.id.starIcon);
             idProgressColor = view.findViewById(R.id.idProgressColor);
             infoLayout = view.findViewById(R.id.infoLayout);
+            imageParent = view.findViewById(R.id.imageParent);
 
             progresLayout = view.findViewById(R.id.progresLayout);
             layoutBootom = view.findViewById(R.id.layoutBootom);
@@ -241,6 +242,9 @@ public class FileMetaAdapter extends AppRecycleAdapter<FileMeta, RecyclerView.Vi
                 }
 
             });
+
+            holder.imageParent.setVisibility(AppState.get().isShowImages ? View.VISIBLE : View.GONE);
+
         } else if (holderAll instanceof DirectoryViewHolder)
 
         {
@@ -248,11 +252,7 @@ public class FileMetaAdapter extends AppRecycleAdapter<FileMeta, RecyclerView.Vi
             holder.title.setText(fileMeta.getPathTxt());
             holder.path.setText(fileMeta.getPath());
 
-            if (tempValue == TEMP_VALUE_FOLDER_PATH) {
-                holder.path.setVisibility(View.VISIBLE);
-            } else {
-                holder.path.setVisibility(View.GONE);
-            }
+
 
             TintUtil.setTintImage(holder.image);
             bindItemClickAndLongClickListeners(holder.parent, fileMeta);
@@ -275,6 +275,17 @@ public class FileMetaAdapter extends AppRecycleAdapter<FileMeta, RecyclerView.Vi
                         onStarClickListener.onResultRecive(fileMeta, FileMetaAdapter.this);
                     }
                 });
+            }
+            if (adapterType == ADAPTER_GRID || adapterType == ADAPTER_COVERS) {
+                holder.image.setVisibility(View.GONE);
+                holder.path.setVisibility(View.GONE);
+            } else {
+                holder.image.setVisibility(View.VISIBLE);
+                if (tempValue == TEMP_VALUE_FOLDER_PATH) {
+                    holder.path.setVisibility(View.VISIBLE);
+                } else {
+                    holder.path.setVisibility(View.GONE);
+                }
             }
 
         } else if (holderAll instanceof StarsLayoutViewHolder) {

@@ -372,4 +372,19 @@
    <string name="enhancements_for_oled_display">OLED-näytön lisälaitteet</string>
    <string name="reading_will_be_stopped">Lukeminen pysähtyy</string>
    <string name="compact">Kompakti</string>
+   <string name="cd_search_books_in_the_library">Hae kirjoja kirjastosta</string>
+   <string name="cd_clear_search_reasult">Tyhjennä haku uudelleen</string>
+   <string name="cd_sort_results">Lajittele tulokset</string>
+   <string name="cd_sort_order">Lajittelujärjestys</string>
+   <string name="cd_update_search_search_for_new_books_on_sd_card">Päivitä haku, etsi uusia kirjoja SD-kortilla</string>
+   <string name="cd_show_results_as_a_list_or_grid">Näytä tulokset luettelona tai verkostona</string>
+   <string name="cd_return_to_the_parent_folder">Palaa pääkansioon</string>
+   <string name="cd_back_to_sd_card">Takaisin SD-kortille</string>
+   <string name="cd_clear_all">Tyhjennä</string>
+   <string name="cd_search_in_bookmarks">Etsi kirjanmerkkeihin</string>
+   <string name="cd_export">Viedä</string>
+   <string name="cd_import">Tuonti</string>
+   <string name="cd_back_to_parent">Takaisin vanhempiin</string>
+   <string name="cd_back_to_all_catalogs">Takaisin kaikkiin luetteloihin</string>
+   <string name="cd_add_new_opds_catalog">Lisää uusi OPDS-luettelo</string>
 </resources>

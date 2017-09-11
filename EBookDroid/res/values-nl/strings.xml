@@ -372,4 +372,19 @@
    <string name="enhancements_for_oled_display">Verbeteringen voor OLED-weergave</string>
    <string name="reading_will_be_stopped">Het lezen wordt gestopt</string>
    <string name="compact">Compact</string>
+   <string name="cd_search_books_in_the_library">Zoek boeken in de bibliotheek</string>
+   <string name="cd_clear_search_reasult">Verwijder zoekresultaat</string>
+   <string name="cd_sort_results">Sorteer resultaten</string>
+   <string name="cd_sort_order">Sorteervolgorde</string>
+   <string name="cd_update_search_search_for_new_books_on_sd_card">Zoek bijwerken, zoek naar nieuwe boeken op SD-kaart</string>
+   <string name="cd_show_results_as_a_list_or_grid">Toon resultaten als een lijst of een raster</string>
+   <string name="cd_return_to_the_parent_folder">Ga terug naar de bovenliggende map</string>
+   <string name="cd_back_to_sd_card">Terug naar SD-kaart</string>
+   <string name="cd_clear_all">Wis alles</string>
+   <string name="cd_search_in_bookmarks">Zoek in bladwijzers</string>
+   <string name="cd_export">Exporteren</string>
+   <string name="cd_import">Importeren</string>
+   <string name="cd_back_to_parent">Terug naar de ouder</string>
+   <string name="cd_back_to_all_catalogs">Terug naar alle catalogi</string>
+   <string name="cd_add_new_opds_catalog">Voeg een nieuwe OPDS-catalogus toe</string>
 </resources>

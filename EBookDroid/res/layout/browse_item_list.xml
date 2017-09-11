@@ -23,6 +23,8 @@
             android:orientation="horizontal" >
 
             <FrameLayout
+                             android:id="@+id/imageParent"
+                
                 android:layout_width="100dip"
                 android:layout_height="150dip"
                 android:layout_gravity="center"
@@ -56,15 +58,14 @@
                 android:layout_marginLeft="3dip"
                 android:layout_marginTop="4dip"
                 android:layout_weight="1"
-                
                 android:gravity="center_vertical"
                 android:orientation="vertical" >
 
                 <LinearLayout
+                    android:id="@+id/title2Parent"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="0"
-                    android:id="@+id/title2Parent"
                     android:orientation="horizontal" >
 
                     <TextView
@@ -83,17 +84,29 @@
                         android:visibility="visible" />
 
                     <TextView
-                        android:layout_weight="1"
                         android:id="@+id/series"
-                        android:gravity="right"
                         style="@style/textLink"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_weight="1"
                         android:ellipsize="end"
+                        android:gravity="right"
                         android:padding="3dip"
                         android:singleLine="true"
                         android:text=""
                         android:textSize="@dimen/text_subtitle"
+                        android:visibility="visible" />
+
+                    <ImageView
+                        android:id="@+id/delete"
+                        android:layout_width="@dimen/wh_button_small"
+                        android:layout_height="@dimen/wh_button_small"
+                        android:layout_alignParentTop="true"
+                        android:layout_weight="0"
+                        android:background="?android:attr/selectableItemBackground"
+                        android:padding="6dip"
+                        android:src="@drawable/glyphicons_208_remove_2"
+                        android:tint="@color/lt_grey_dima1"
                         android:visibility="visible" />
                 </LinearLayout>
 
@@ -102,6 +115,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="3dip"
+                    android:layout_marginRight="2dip"
                     android:layout_weight="0"
                     android:ellipsize="end"
                     android:gravity="center_vertical"
@@ -116,6 +130,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="bottom"
                     android:layout_marginLeft="3dip"
+                    android:layout_marginRight="2dip"
                     android:layout_marginTop="4dip"
                     android:layout_weight="0"
                     android:ellipsize="end"
@@ -177,6 +192,19 @@
                         android:singleLine="true"
                         android:text="123 Kb"
                         android:textSize="@dimen/text_subtitle" />
+
+                    <ImageView
+                        android:id="@+id/itemMenu"
+                        android:layout_width="@dimen/wh_button_small"
+                        android:layout_height="@dimen/wh_button_small"
+                        android:layout_weight="0"
+                        android:background="?android:attr/selectableItemBackground"
+                        android:padding="5dip"
+                         android:layout_marginBottom="-3dip"
+                        android:singleLine="true"
+                        android:src="@drawable/glyphicons_518_option_vertical"
+                        android:tint="@color/tint_gray"
+                        android:visibility="visible" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -219,44 +247,10 @@
                         android:ems="3"
                         android:gravity="bottom"
                         android:text="10%"
-                        android:visibility="gone"
-                        android:textSize="11sp" />
+                        android:textSize="11sp"
+                        android:visibility="gone" />
                 </LinearLayout>
             </LinearLayout>
-
-            <RelativeLayout
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_marginBottom="4dip"
-                android:layout_marginRight="8dip"
-                android:layout_marginTop="4dip"
-                android:layout_weight="0" >
-
-                <ImageView
-                    android:id="@+id/delete"
-                    android:layout_width="@dimen/wh_button_small"
-                    android:layout_height="@dimen/wh_button_small"
-                    android:layout_alignParentTop="true"
-                    android:layout_weight="0"
-                    android:background="?android:attr/selectableItemBackground"
-                    android:padding="6dip"
-                    android:src="@drawable/glyphicons_208_remove_2"
-                    android:tint="@color/lt_grey_dima1"
-                    android:visibility="visible" />
-
-                <ImageView
-                    android:id="@+id/itemMenu"
-                    android:layout_width="@dimen/wh_button_small"
-                    android:layout_height="@dimen/wh_button_small"
-                    android:layout_alignParentBottom="true"
-                    android:layout_weight="0"
-                    android:background="?android:attr/selectableItemBackground"
-                    android:padding="5dip"
-                    android:singleLine="true"
-                    android:src="@drawable/glyphicons_518_option_vertical"
-                    android:tint="@color/tint_gray"
-                    android:visibility="visible" />
-            </RelativeLayout>
         </LinearLayout>
 
         <View

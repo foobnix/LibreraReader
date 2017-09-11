@@ -372,4 +372,19 @@
    <string name="enhancements_for_oled_display">การเพิ่มประสิทธิภาพสำหรับการแสดงผล OLED</string>
    <string name="reading_will_be_stopped">การอ่านจะหยุดลง</string>
    <string name="compact">กะทัดรัด</string>
+   <string name="cd_search_books_in_the_library">ค้นหาหนังสือในห้องสมุด</string>
+   <string name="cd_clear_search_reasult">ล้างการค้นหาเพิ่มเติม</string>
+   <string name="cd_sort_results">จัดเรียงผลลัพธ์</string>
+   <string name="cd_sort_order">เรียงลำดับ</string>
+   <string name="cd_update_search_search_for_new_books_on_sd_card">อัปเดตค้นหาค้นหาหนังสือใหม่ในการ์ด SD</string>
+   <string name="cd_show_results_as_a_list_or_grid">แสดงผลลัพธ์เป็นรายการหรือตาราง</string>
+   <string name="cd_return_to_the_parent_folder">กลับไปที่โฟลเดอร์หลัก</string>
+   <string name="cd_back_to_sd_card">กลับไปที่ SD card</string>
+   <string name="cd_clear_all">ลบทั้งหมด</string>
+   <string name="cd_search_in_bookmarks">ค้นหาในบุ๊กมาร์ก</string>
+   <string name="cd_export">ส่งออก</string>
+   <string name="cd_import">นำเข้า</string>
+   <string name="cd_back_to_parent">กลับไปที่ผู้ปกครอง</string>
+   <string name="cd_back_to_all_catalogs">กลับไปที่แคตตาล็อกทั้งหมด</string>
+   <string name="cd_add_new_opds_catalog">เพิ่มแคตตาล็อก OPDS ใหม่</string>
 </resources>

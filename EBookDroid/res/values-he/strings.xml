@@ -372,4 +372,19 @@
    <string name="enhancements_for_oled_display">שיפורים לתצוגה OLED</string>
    <string name="reading_will_be_stopped">הקריאה תיעצר</string>
    <string name="compact">קוֹמפָּקטִי</string>
+   <string name="cd_search_books_in_the_library">חיפוש בספריה</string>
+   <string name="cd_clear_search_reasult">נקה חיפוש חוזר</string>
+   <string name="cd_sort_results">תוצאות מיון</string>
+   <string name="cd_sort_order">סדר המיון</string>
+   <string name="cd_update_search_search_for_new_books_on_sd_card">עדכן חיפוש, חפש ספרים חדשים בכרטיס SD</string>
+   <string name="cd_show_results_as_a_list_or_grid">הצג תוצאות כרשימה או רשת</string>
+   <string name="cd_return_to_the_parent_folder">חזור לתיקיית האב</string>
+   <string name="cd_back_to_sd_card">חזרה לכרטיס SD</string>
+   <string name="cd_clear_all">נקה הכל</string>
+   <string name="cd_search_in_bookmarks">חפש בסימניות</string>
+   <string name="cd_export">יְצוּא</string>
+   <string name="cd_import">יְבוּא</string>
+   <string name="cd_back_to_parent">חזרה להורה</string>
+   <string name="cd_back_to_all_catalogs">חזרה לכל הקטלוגים</string>
+   <string name="cd_add_new_opds_catalog">הוסף קטלוג OPDS חדש</string>
 </resources>

@@ -372,4 +372,19 @@
    <string name="enhancements_for_oled_display">Cải tiến cho màn hình OLED</string>
    <string name="reading_will_be_stopped">Đọc sẽ được dừng lại</string>
    <string name="compact">Gọn nhẹ</string>
+   <string name="cd_search_books_in_the_library">Tìm sách trong thư viện</string>
+   <string name="cd_clear_search_reasult">Xóa tìm kiếm reasult</string>
+   <string name="cd_sort_results">Sắp xếp kết quả</string>
+   <string name="cd_sort_order">Thứ tự sắp xếp</string>
+   <string name="cd_update_search_search_for_new_books_on_sd_card">Cập nhật tìm kiếm, tìm kiếm sách mới trên thẻ SD</string>
+   <string name="cd_show_results_as_a_list_or_grid">Hiển thị kết quả dưới dạng danh sách hoặc lưới</string>
+   <string name="cd_return_to_the_parent_folder">Quay trở lại thư mục gốc</string>
+   <string name="cd_back_to_sd_card">Quay lại thẻ SD</string>
+   <string name="cd_clear_all">Làm sạch tất cả</string>
+   <string name="cd_search_in_bookmarks">Tìm kiếm trong dấu trang</string>
+   <string name="cd_export">Xuất khẩu</string>
+   <string name="cd_import">Nhập khẩu</string>
+   <string name="cd_back_to_parent">Trở lại với cha mẹ</string>
+   <string name="cd_back_to_all_catalogs">Quay lại tất cả danh mục</string>
+   <string name="cd_add_new_opds_catalog">Thêm danh mục mới OPDS</string>
 </resources>

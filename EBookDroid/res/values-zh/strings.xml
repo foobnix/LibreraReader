@@ -372,4 +372,19 @@
    <string name="enhancements_for_oled_display">OLED显示屏的增强功能</string>
    <string name="reading_will_be_stopped">阅读将被停止</string>
    <string name="compact">紧凑</string>
+   <string name="cd_search_books_in_the_library">在图书馆搜索书籍</string>
+   <string name="cd_clear_search_reasult">清除搜索结果</string>
+   <string name="cd_sort_results">排序结果</string>
+   <string name="cd_sort_order">排序</string>
+   <string name="cd_update_search_search_for_new_books_on_sd_card">更新搜索，在SD卡上搜索新书</string>
+   <string name="cd_show_results_as_a_list_or_grid">将结果显示为列表或网格</string>
+   <string name="cd_return_to_the_parent_folder">返回到父文件夹</string>
+   <string name="cd_back_to_sd_card">回到SD卡</string>
+   <string name="cd_clear_all">全部清除</string>
+   <string name="cd_search_in_bookmarks">在书签中搜索</string>
+   <string name="cd_export">出口</string>
+   <string name="cd_import">进口</string>
+   <string name="cd_back_to_parent">回到父母</string>
+   <string name="cd_back_to_all_catalogs">返回所有目录</string>
+   <string name="cd_add_new_opds_catalog">添加新的OPDS目录</string>
 </resources>

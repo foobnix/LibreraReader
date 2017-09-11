@@ -27,6 +27,7 @@
             android:textStyle="normal" />
 
         <TextView
+            android:contentDescription="@string/cd_clear_all"
             android:id="@+id/clearAllRecent"
             style="@style/textLinkWhite"
             android:layout_width="wrap_content"
@@ -40,6 +41,7 @@
             android:background="@color/tint_divider" />
 
         <ImageView
+            android:contentDescription="@string/cd_show_results_as_a_list_or_grid"
             android:id="@+id/onListGrid"
             style="@style/buttonWhite"
             android:layout_width="@dimen/wh_button"

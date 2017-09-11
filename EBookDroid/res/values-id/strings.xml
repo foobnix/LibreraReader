@@ -372,4 +372,19 @@
    <string name="enhancements_for_oled_display">Perangkat tambahan untuk tampilan OLED</string>
    <string name="reading_will_be_stopped">Membaca akan dihentikan</string>
    <string name="compact">Kompak</string>
+   <string name="cd_search_books_in_the_library">Cari buku di perpustakaan</string>
+   <string name="cd_clear_search_reasult">Hapus pencarian ulang</string>
+   <string name="cd_sort_results">Urutkan Hasil</string>
+   <string name="cd_sort_order">Urut pesanan</string>
+   <string name="cd_update_search_search_for_new_books_on_sd_card">Perbarui pencarian, cari buku baru di kartu SD</string>
+   <string name="cd_show_results_as_a_list_or_grid">Tampilkan hasilnya sebagai daftar atau grid</string>
+   <string name="cd_return_to_the_parent_folder">Kembali ke folder induk</string>
+   <string name="cd_back_to_sd_card">Kembali ke kartu SD</string>
+   <string name="cd_clear_all">Bersihkan semua</string>
+   <string name="cd_search_in_bookmarks">Cari di bookmark</string>
+   <string name="cd_export">Ekspor</string>
+   <string name="cd_import">Impor</string>
+   <string name="cd_back_to_parent">Kembali ke orang tua</string>
+   <string name="cd_back_to_all_catalogs">Kembali ke semua katalog</string>
+   <string name="cd_add_new_opds_catalog">Tambahkan katalog OPDS baru</string>
 </resources>

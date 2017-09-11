@@ -372,4 +372,19 @@
    <string name="enhancements_for_oled_display">Förbättringar för OLED-skärm</string>
    <string name="reading_will_be_stopped">Läsningen stoppas</string>
    <string name="compact">Kompakt</string>
+   <string name="cd_search_books_in_the_library">Sök böcker i biblioteket</string>
+   <string name="cd_clear_search_reasult">Rensa sökreparation</string>
+   <string name="cd_sort_results">Sortera resultat</string>
+   <string name="cd_sort_order">Sorteringsordning</string>
+   <string name="cd_update_search_search_for_new_books_on_sd_card">Uppdatera sökning, sök efter nya böcker på SD-kort</string>
+   <string name="cd_show_results_as_a_list_or_grid">Visa resultat som en lista eller ett nät</string>
+   <string name="cd_return_to_the_parent_folder">Återgå till föräldermappen</string>
+   <string name="cd_back_to_sd_card">Tillbaka till SD-kort</string>
+   <string name="cd_clear_all">Rensa alla</string>
+   <string name="cd_search_in_bookmarks">Sök i bokmärken</string>
+   <string name="cd_export">Exportera</string>
+   <string name="cd_import">Importera</string>
+   <string name="cd_back_to_parent">Tillbaka till föräldern</string>
+   <string name="cd_back_to_all_catalogs">Tillbaka till alla kataloger</string>
+   <string name="cd_add_new_opds_catalog">Lägg till en ny OPDS-katalog</string>
 </resources>

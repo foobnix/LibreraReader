@@ -19,6 +19,7 @@
         android:visibility="visible" >
 
         <ImageView
+            android:contentDescription="@string/cd_back_to_parent"
             android:id="@+id/onBack"
             style="@style/buttonWhite"
             android:layout_width="@dimen/wh_button"
@@ -56,6 +57,7 @@
             android:background="@color/tint_divider" />
 
         <ImageView
+            android:contentDescription="@string/cd_back_to_all_catalogs"
             android:id="@+id/onHome"
             style="@style/buttonWhite"
             android:layout_width="@dimen/wh_button"
@@ -70,6 +72,7 @@
             android:background="@color/tint_divider" />
 
         <ImageView
+            android:contentDescription="@string/cd_add_new_opds_catalog"
             android:id="@+id/onPlus"
             style="@style/buttonWhite"
             android:layout_width="@dimen/wh_button"

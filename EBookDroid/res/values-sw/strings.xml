@@ -372,4 +372,19 @@
    <string name="enhancements_for_oled_display">Maandamano ya kuonyesha OLED</string>
    <string name="reading_will_be_stopped">Kusoma kusimamishwa</string>
    <string name="compact">Inakabiliwa</string>
+   <string name="cd_search_books_in_the_library">Tafuta vitabu kwenye maktaba</string>
+   <string name="cd_clear_search_reasult">Futa utafutaji upya</string>
+   <string name="cd_sort_results">Matokeo ya aina</string>
+   <string name="cd_sort_order">Panga utaratibu</string>
+   <string name="cd_update_search_search_for_new_books_on_sd_card">Sasisha utafutaji, tafuta vitabu vipya kwenye kadi ya SD</string>
+   <string name="cd_show_results_as_a_list_or_grid">Onyesha matokeo kama orodha au gridi</string>
+   <string name="cd_return_to_the_parent_folder">Rudi kwenye folda ya mzazi</string>
+   <string name="cd_back_to_sd_card">Rudi kwenye kadi ya SD</string>
+   <string name="cd_clear_all">Futa yote</string>
+   <string name="cd_search_in_bookmarks">Utafute katika alama za alama</string>
+   <string name="cd_export">Tuma nje</string>
+   <string name="cd_import">Ingiza</string>
+   <string name="cd_back_to_parent">Rudi kwa mzazi</string>
+   <string name="cd_back_to_all_catalogs">Rudi kwenye orodha zote</string>
+   <string name="cd_add_new_opds_catalog">Ongeza orodha mpya ya OPDS</string>
 </resources>

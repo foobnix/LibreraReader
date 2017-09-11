@@ -81,7 +81,9 @@ public class BrigtnessDraw extends View {
         }
 
         if (action == MotionEvent.ACTION_MOVE) {
-            if (Math.abs(y - event.getY()) >= distance) {
+            float dy1 = Math.abs(y - event.getY());
+            float dx1 = Math.abs(x - event.getX());
+            if (dy1 >= distance) {
                 LOG.d("BrigtnessDraw", event.getX());
                 float dy = (y - event.getY());
                 double fast = 0.03;
