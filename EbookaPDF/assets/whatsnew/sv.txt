@@ -1,5 +1,5 @@
 * Förbättrad PDF-läsning och DJVU-visning 
 * Förbättrad design medEnkelt läge 
-* Två sidor på skärmen iEnkelt läge 
+* Två sidor på skärmen iLätt läge 
 * Splitting sidan i två delar iEasy mode 
 * Många små förbättringar genom din feedback

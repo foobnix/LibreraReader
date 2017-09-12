@@ -16,13 +16,13 @@ public class WhatsNewUpdateTexts {
         codes.put("en", "en-US");
         codes.put("de", "de-DE");
         codes.put("es", "es-ES");
-        codes.put("fr", "fr-FR");
+        codes.put("fr", "fr-FR,fr-CA");
         codes.put("hi", "hi-IN");
         codes.put("it", "it-IT");
         codes.put("he", "iw-IL");
         codes.put("ja", "ja-JP");
         codes.put("ko", "ko-KR");
-        codes.put("pt", "pt-PT");
+        codes.put("pt", "pt-PT,pt-BR");
         codes.put("ru", "ru-RU");
         codes.put("tr", "tr-TR");
         codes.put("zh", "zh-TW");
@@ -32,11 +32,12 @@ public class WhatsNewUpdateTexts {
         codes.put("pl", "pl-PL");
         codes.put("sv", "sv-SE");
         codes.put("fi", "fi-FI");
+        codes.put("hu", "hu-HU");
 
     }
 
-    public static String ln(String code) {
-        return codes.get(code) != null ? codes.get(code) : code;
+    public static String[] ln(String code) {
+        return codes.get(code) != null ? codes.get(code).split(",") : new String[] { code };
     }
 
     public static void main(String[] args) throws IOException {
@@ -63,18 +64,23 @@ public class WhatsNewUpdateTexts {
             translation = SyncTranslations.upperCase(recentTR);
             Files.write(Paths.get(outRecnet), recentTR.getBytes());
 
-            res.append("\n<" + ln(ex) + ">\n");
-            res.append(translation);
-            res.append("\n</" + ln(ex) + ">\n");
+            String[] lnx = ln(ex);
+            for (String ln : lnx) {
+                res.append("\n<" + ln + ">\n");
+                res.append(translation);
+                res.append("\n</" + ln + ">\n");
+            }
         }
 
         recentEN = recentEN.replace("_", "");
         Files.write(Paths.get(RECENT_PATH + "en" + ".txt"), recentEN.getBytes());
 
-        String ex = "en";
-        res.append("\n<" + ln(ex) + ">\n");
-        res.append(recentEN);
-        res.append("\n</" + ln(ex) + ">\n");
+        String[] lnx = ln("en");
+        for (String ln : lnx) {
+            res.append("\n<" + ln + ">\n");
+            res.append(recentEN);
+            res.append("\n</" + ln + ">\n");
+        }
 
         System.out.println("=======");
         System.out.println(res.toString());

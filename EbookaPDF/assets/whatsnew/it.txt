@@ -1,5 +1,5 @@
-* Miglioramento della lettura PDF e del DJVU 
+* Miglioramento della lettura PDF e DJVU 
 * Miglioramento del designEasy mode 
-* Due pagine sullo schermo in modalitàFacile 
+* Due pagine sullo schermo in modalitàEasy 
 * Scorrimento della pagina in due parti inEasy mode 
-* Molti piccoli miglioramenti grazie ai tuoi feedback
+* Molti piccoli miglioramenti grazie alle vostre risposte

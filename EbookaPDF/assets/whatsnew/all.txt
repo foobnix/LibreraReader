@@ -1,6 +1,6 @@
 
 <vi>
-* Cải thiện khả năng đọc PDF và xem DJVU 
+* Cải thiện khả năng đọc PDF và DJVU 
 * Cải thiện thiết kếChế độ Dễ dàng 
 * Hai trang trên màn hình ở chế độDễ dàng Chia tách trang thành hai phần trong chế độ Dễ dàng Nhiều cải tiến nhỏ theo phản hồi của bạn
 </vi>
@@ -14,15 +14,15 @@
 </no-NO>
 
 <th>
-* การปรับปรุงการอ่าน PDF และการดู DJVU 
-* การออกแบบโหมดที่ง่ายขึ้น ที่ดีขึ้น 
-* หน้าสองหน้าจอในโหมดง่าย 
+* ปรับปรุงการอ่าน PDF และการดู DJVU 
+* ปรับปรุงการออกแบบโหมดง่าย 
+* หน้าจอสองหน้าจอในโหมดง่าย 
 * แบ่งหน้าออกเป็นสองส่วนในโหมดง่าย 
 * การปรับปรุงขนาดเล็กจำนวนมากตามความคิดเห็นของคุณ
 </th>
 
 <nl-NL>
-* Verbeterde PDF-lezen en DJVU-weergave 
+* Verbeterde PDF-weergave en DJVU-weergave 
 * VerbeterdeEasy mode -design 
 * Twee pagina’s op het scherm inEasy mode 
 * De pagina splitsen in twee delen in deEasy mode 
@@ -48,26 +48,34 @@
 <hi-IN>
 * बेहतर पीडीएफ रीडिंग और डीजेवीयू देखने 
 * बेहतरआराम से मोड डिजाइन 
-* स्क्रीन परआराम से मोड में दो पृष्ठ 
-*आसान मोड में दो हिस्सों में पेज को विभाजित करना 
-* आपके फ़ीडबैक से कई छोटे सुधार
+*आसान मोड में स्क्रीन पर दो पृष्ठ 
+*आसान मोड में दो भागों में पेज को छूने से 
+* आपके फ़ीडबैक के द्वारा कई छोटे सुधार
 </hi-IN>
 
 <es-ES>
-* Mejora de la lectura de PDF y la visualización de DJVU 
-* Mejoradomodo fácil de diseño 
-* Dos páginas en la pantalla enmodo fácil 
+* Mejora de lectura de PDF y visualización de DJVU 
+* Mejora el diseño demodo fácil 
+* Dos páginas en la pantalla enModo fácil 
 * División de la página en dos partes en elmodo fácil 
 * Muchas pequeñas mejoras por sus comentarios
 </es-ES>
 
 <fr-FR>
 * Lecture améliorée de PDF et visualisation de DJVU 
-* Conception amélioréeMode facile 
-* Deux pages sur l’écran enMode facile 
+* Amélioration du designMode facile 
+* Deux pages sur l’écran en modeFacile 
 * Diviser la page en deux parties en modeFacile 
 * De nombreuses petites améliorations par vos commentaires
 </fr-FR>
+
+<fr-CA>
+* Lecture améliorée de PDF et visualisation de DJVU 
+* Amélioration du designMode facile 
+* Deux pages sur l’écran en modeFacile 
+* Diviser la page en deux parties en modeFacile 
+* De nombreuses petites améliorations par vos commentaires
+</fr-CA>
 
 <tr-TR>
 * Geliştirilmiş PDF Okuma ve DJVU görüntüleme 
@@ -80,7 +88,7 @@
 <sv-SE>
 * Förbättrad PDF-läsning och DJVU-visning 
 * Förbättrad design medEnkelt läge 
-* Två sidor på skärmen iEnkelt läge 
+* Två sidor på skärmen iLätt läge 
 * Splitting sidan i två delar iEasy mode 
 * Många små förbättringar genom din feedback
 </sv-SE>
@@ -94,23 +102,31 @@
 </pl-PL>
 
 <pt-PT>
-* Leitura de PDF aprimorada e visualização de DJVU 
-* Design aprimorado deModo fácil 
+* Melhor leitura de PDF e visualização de DJVU 
+* Design melhorado deModo fácil 
 * Duas páginas na tela emModo fácil 
-* Divisão da página em duas partes noModo fácil 
+* Divisão da página em duas partes noModo Fácil 
 * Muitas pequenas melhorias por seus comentários
 </pt-PT>
+
+<pt-BR>
+* Melhor leitura de PDF e visualização de DJVU 
+* Design melhorado deModo fácil 
+* Duas páginas na tela emModo fácil 
+* Divisão da página em duas partes noModo Fácil 
+* Muitas pequenas melhorias por seus comentários
+</pt-BR>
 
 <iw-IL>
 * שיפור קריאה PDF ו DJVU צפייה 
 * שיפורמצב קל עיצוב 
-* שני עמודים על המסך במצב קל 
+* שני עמודים על המסך במצבקל 
 * פיצול הדף לשני חלקים במצבקל 
 * שיפורים קטנים רבים על ידי המשוב שלך
 </iw-IL>
 
 <uk>
-* Покращено читання PDF-файлів і перегляду DJVU 
+* Покращений просмотр PDF-файлів і перегляду DJVU 
 * Покращений дизайнЛегкий режим 
 * Дві сторінки на екрані в режиміЛегкий режим 
 * Розбиття сторінки на дві частини в режиміЛегкий 
@@ -120,7 +136,7 @@
 <ja-JP>
 * PDF読み込みとDJVU表示の改善
 *「イージーモード」デザインの改善
-*「イージーモード」で画面上の2ページ
+*「イージーモード」での画面上の2ページ
 *「イージーモード」でページを2つに分割
 *あなたのフィードバックによる多くの小さな改善
 </ja-JP>
@@ -141,13 +157,13 @@
 * بسیاری از پیشرفت های کوچک با نظرات شما
 </fa>
 
-<hu>
+<hu-HU>
 * Továbbfejlesztett PDF olvasás és DJVU megtekintés 
 * TovábbfejlesztettEasy mode design 
 * Két oldal a képernyőnEasy módban 
 * Az oldal két részre osztása azEasy módban 
 * Sok kis javulás visszajelzésével
-</hu>
+</hu-HU>
 
 <ar>
 * تحسين بدف القراءة و دجفو عرض 
@@ -167,7 +183,7 @@
 
 <sw>
 * Kuboresha Kusoma PDF na DJVU Kuangalia 
-* KuboreshaEasy Mode kubuni 
+* KuboreshaEasy mode kubuni 
 * Kurasa mbili kwenye skrini katikaRahisi mode 
 * Kupiga ukurasa katika sehemu mbili katikaRahisi mode 
 * Maboresho mengi ndogo na maoni yako
@@ -190,24 +206,24 @@
 </fi-FI>
 
 <zh-TW>
-*改进的PDF阅读和DJVU观看
+*改进的PDF阅读和DJVU查看
 *改进的“简易模式”设计
-*屏幕上的“简单模式”两页
-*在“简易模式”中将页面分为两部分
-*您的反馈有很多改进
+*屏幕上的“简易模式”两页
+*将页面分为两个部分在“简单模式”
+*许多小的改进，通过您的反馈
 </zh-TW>
 
 <it-IT>
-* Miglioramento della lettura PDF e del DJVU 
+* Miglioramento della lettura PDF e DJVU 
 * Miglioramento del designEasy mode 
-* Due pagine sullo schermo in modalitàFacile 
+* Due pagine sullo schermo in modalitàEasy 
 * Scorrimento della pagina in due parti inEasy mode 
-* Molti piccoli miglioramenti grazie ai tuoi feedback
+* Molti piccoli miglioramenti grazie alle vostre risposte
 </it-IT>
 
 <ru-RU>
 * Улучшенное чтение PDF и просмотр DJVU 
-* Улучшен дизайн «Простой режим» 
+* Улучшен дизайн «Легкий режим» 
 * Две страницы на экране в «Простом режиме» 
 * Разделение страницы на две части в «Легком режиме» 
 * Множество небольших улучшений благодаря вашей обратной связи

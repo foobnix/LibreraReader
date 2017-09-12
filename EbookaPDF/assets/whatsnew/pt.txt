@@ -1,5 +1,5 @@
-* Leitura de PDF aprimorada e visualização de DJVU 
-* Design aprimorado deModo fácil 
+* Melhor leitura de PDF e visualização de DJVU 
+* Design melhorado deModo fácil 
 * Duas páginas na tela emModo fácil 
-* Divisão da página em duas partes noModo fácil 
+* Divisão da página em duas partes noModo Fácil 
 * Muitas pequenas melhorias por seus comentários

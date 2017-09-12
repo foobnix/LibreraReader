@@ -1,4 +1,4 @@
-* Verbeterde PDF-lezen en DJVU-weergave 
+* Verbeterde PDF-weergave en DJVU-weergave 
 * VerbeterdeEasy mode -design 
 * Twee pagina’s op het scherm inEasy mode 
 * De pagina splitsen in twee delen in deEasy mode 
