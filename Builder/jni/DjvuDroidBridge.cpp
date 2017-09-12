@@ -234,7 +234,7 @@ jobject get_djvu_hyperlink_mapping(JNIEnv *jenv, ddjvu_document_t* djvu_document
         return hl;
     }
 
-    jmethodID plInitMethodId = jenv->GetMethodID(pagelinkClass, "<init>", "(Ljava/lang/String;I[I)V");
+    jmethodID plInitMethodId = jenv->GetMethodID(pagelinkClass, "<init>", "(Ljava/lang/String;[I)V");
     if (!plInitMethodId)
     {
         delete[] data;

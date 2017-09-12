@@ -469,7 +469,7 @@ public class HorizontalViewActivity extends FragmentActivity {
                 SettingsManager.getBookSettings().cropPages = AppState.get().isCrop;
                 reloadDoc.run();
                 if (AppState.get().isCrop) {
-                    TintUtil.setTintImage(onCrop, Color.LTGRAY);
+                    TintUtil.setTintImage(onCrop, TintUtil.COLOR_ORANGE);
                 } else {
                     TintUtil.setTintImage(onCrop, Color.WHITE);
                 }
@@ -669,7 +669,7 @@ public class HorizontalViewActivity extends FragmentActivity {
                     }
                     onCrop.setVisibility(documentController.isTextFormat() ? View.GONE : View.VISIBLE);
                     if (AppState.get().isCrop) {
-                        TintUtil.setTintImage(onCrop, Color.LTGRAY);
+                        TintUtil.setTintImage(onCrop, TintUtil.COLOR_ORANGE);
                     } else {
                         TintUtil.setTintImage(onCrop, Color.WHITE);
                     }

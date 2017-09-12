@@ -26,10 +26,12 @@
             android:background="@color/lt_grey_alpha" />
 
         <TextView
-             style="@style/textLink"
             android:id="@+id/textRateIt"
+            style="@style/textLink"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:drawableLeft="@drawable/glyphicons_4_thumbs_up"
+            android:drawablePadding="10dip"
             android:gravity="center"
             android:singleLine="false"
             android:text="@string/rate_pdf_reader1"

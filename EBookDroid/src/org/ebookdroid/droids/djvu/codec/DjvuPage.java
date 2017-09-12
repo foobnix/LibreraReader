@@ -148,24 +148,29 @@ public class DjvuPage extends AbstractCodecPage {
     }
 
     public List<PageLink> getPageLinks1() {
-        final List<PageLink> links = getPageLinks(docHandle, pageNo);
-        if (links != null) {
-            final float width = getWidth();
-            final float height = getHeight();
-            for (final PageLink link : links) {
-                normalize(link.sourceRect, width, height);
+        TempHolder.lock.lock();
+        try {
+            final List<PageLink> links = getPageLinks(docHandle, pageNo);
+            if (links != null) {
+                final float width = getWidth();
+                final float height = getHeight();
+                for (final PageLink link : links) {
+                    normalize(link.sourceRect, width, height);
 
-                if (link.url != null && link.url.startsWith("#")) {
-                    try {
-                        link.targetPage = Integer.parseInt(link.url.substring(1)) - 1;
-                        link.url = null;
-                    } catch (final NumberFormatException ex) {
-                        ex.printStackTrace();
+                    if (link.url != null && link.url.startsWith("#")) {
+                        try {
+                            link.targetPage = Integer.parseInt(link.url.substring(1)) - 1;
+                            link.url = null;
+                        } catch (final NumberFormatException ex) {
+                            ex.printStackTrace();
+                        }
                     }
                 }
-            }
 
-            return links;
+                return links;
+            }
+        } finally {
+            TempHolder.lock.unlock();
         }
         return Collections.emptyList();
     }

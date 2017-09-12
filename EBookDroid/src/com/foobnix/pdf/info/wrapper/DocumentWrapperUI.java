@@ -461,13 +461,13 @@ public class DocumentWrapperUI {
         }
 
         if (AppState.get().isCrop) {
-            TintUtil.setTintImage(crop, Color.LTGRAY);
+            TintUtil.setTintImage(crop, TintUtil.COLOR_ORANGE);
         } else {
             TintUtil.setTintImage(crop, Color.WHITE);
         }
 
         if (AppState.get().isCut) {
-            TintUtil.setTintImage(cut, Color.LTGRAY);
+            TintUtil.setTintImage(cut, TintUtil.COLOR_ORANGE);
         } else {
             TintUtil.setTintImage(cut, Color.WHITE);
         }
@@ -1349,7 +1349,7 @@ public class DocumentWrapperUI {
 
             BookSettings bookSettings = SettingsManager.getBookSettings();
             if (bookSettings != null) {
-                bookSettings.splitPages = AppState.get().isCut;
+                bookSettings.updateFromAppState();
             }
             SettingsManager.storeBookSettings();
 

@@ -10,7 +10,7 @@
     <bool name="ga_reportUncaughtExceptions">true</bool>
 	<bool name="is_log_enable">true</bool>
 	
-	<string name="my_email">ideas@librera.mobi</string>
+	<string name="my_email">librera.reader@gmail.com</string>
     <string name="my_site"><![CDATA[<u>http://librera.mobi</u>]]></string>
 	
 </resources>

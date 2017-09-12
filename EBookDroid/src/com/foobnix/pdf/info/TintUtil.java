@@ -35,6 +35,7 @@ public class TintUtil {
     private static List<View> drawables1 = new ArrayList<View>();
 
     public static int COLOR_TINT_GRAY = Color.parseColor("#009688");
+    public static int COLOR_ORANGE = Color.parseColor("#FF8C00");
 
     static Random random = new Random();
 

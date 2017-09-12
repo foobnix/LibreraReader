@@ -1949,6 +1949,7 @@ public class DragingDialogs {
     }
 
     public static DragingPopup performanceSettings(final FrameLayout anchor, final DocumentController controller, final Runnable onRefresh, final Runnable updateUIRefresh) {
+        AppState.get().saveIn(controller.getActivity());
         final int cssHash = BookCSS.get().toCssString().hashCode();
         final int appHash = AppState.get().hashCode();
 
