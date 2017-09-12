@@ -25,17 +25,30 @@
             android:layout_marginTop="2dip"
             android:background="@color/lt_grey_alpha" />
 
-        <TextView
-            android:id="@+id/textRateIt"
-            style="@style/textLink"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:drawableLeft="@drawable/glyphicons_4_thumbs_up"
-            android:drawablePadding="10dip"
-            android:gravity="center"
-            android:singleLine="false"
-            android:text="@string/rate_pdf_reader1"
-            android:textSize="14sp" />
+            android:gravity="center_vertical"
+            android:orientation="horizontal" >
+
+            <ImageView
+                android:id="@+id/imageView1"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:src="@drawable/glyphicons_4_thumbs_up"
+                android:tint="@color/tint_blue" />
+
+            <TextView
+                android:id="@+id/textRateIt"
+                style="@style/textLink"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="4dip"
+                android:gravity="center"
+                android:singleLine="false"
+                android:text="@string/rate_pdf_reader1"
+                android:textSize="14sp" />
+        </LinearLayout>
     </LinearLayout>
 
 </ScrollView>
