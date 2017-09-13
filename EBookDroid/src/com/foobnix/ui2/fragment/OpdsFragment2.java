@@ -18,6 +18,7 @@ import com.foobnix.opds.Link;
 import com.foobnix.opds.OPDS;
 import com.foobnix.pdf.info.ExtUtils;
 import com.foobnix.pdf.info.R;
+import com.foobnix.pdf.info.TintUtil;
 import com.foobnix.pdf.info.Urls;
 import com.foobnix.pdf.info.view.AlertDialogs;
 import com.foobnix.pdf.info.widget.AddCatalogDialog;
@@ -57,7 +58,7 @@ public class OpdsFragment2 extends UIFragment<Entry> {
     Stack<String> stack = new Stack<String>();
 
     ImageView onPlus;
-    View onPlusView;
+    View onPlusView, pathContainer;
     long enqueue;
     TextView defaults, faq;
 
@@ -98,6 +99,7 @@ public class OpdsFragment2 extends UIFragment<Entry> {
 
     @Override
     public void onTintChanged() {
+        TintUtil.setBackgroundFillColor(pathContainer, TintUtil.color);
     }
 
     @Override
@@ -109,6 +111,7 @@ public class OpdsFragment2 extends UIFragment<Entry> {
         titleView = (TextView) view.findViewById(R.id.titleView);
         onPlus = (ImageView) view.findViewById(R.id.onPlus);
         onPlusView = view.findViewById(R.id.onPlusView);
+        pathContainer = view.findViewById(R.id.pathContainer);
         progressBar = (ProgressBar) view.findViewById(R.id.progressBar);
         progressBar.setVisibility(View.GONE);
 

@@ -255,12 +255,18 @@ public abstract class DocumentController {
     }
 
     public static void runFullScreen(final Activity a) {
+        if (a == null) {
+            return;
+        }
         a.getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
         a.getWindow().clearFlags(WindowManager.LayoutParams.FLAG_FORCE_NOT_FULLSCREEN);
         Keyboards.hideNavigation(a);
     }
 
     public static void runNormalScreen(final Activity a) {
+        if (a == null) {
+            return;
+        }
         a.getWindow().addFlags(WindowManager.LayoutParams.FLAG_FORCE_NOT_FULLSCREEN);
         a.getWindow().clearFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
 

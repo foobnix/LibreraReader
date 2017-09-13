@@ -1065,7 +1065,8 @@ public class PrefFragment2 extends UIFragment {
         });
 
         if (AppsConfig.checkIsProInstalled(getActivity())) {
-            proText.setVisibility(View.GONE);
+            ((View) proText.getParent()).setVisibility(View.GONE);
+
         }
 
         inflate.findViewById(R.id.cleanRecent).setOnClickListener(new View.OnClickListener() {

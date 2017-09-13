@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">PDF Reader</string>
+    <string name="app_name">Librera</string>
     <string name="app_name_pro">PRO Lirbi Reader</string>
 
 
     <bool name="ga_ENABLE">true</bool>
     <bool name="ga_autoActivityTracking">true</bool>
     <bool name="ga_reportUncaughtExceptions">true</bool>
-	<bool name="is_log_enable">false</bool>
+	<bool name="is_log_enable">true</bool>
 	
 	<string name="my_email">librera.reader@gmail.com</string>
     <string name="my_site"><![CDATA[<u>http://librera.mobi</u>]]></string>

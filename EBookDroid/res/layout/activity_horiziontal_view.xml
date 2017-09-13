@@ -11,18 +11,7 @@
         android:layout_height="match_parent"
         android:layout_centerInParent="false" />
 
-    <ImageView
-        android:id="@+id/ttsActive"
-        style="@style/buttonWhite"
-        android:layout_width="@dimen/wh_button"
-        android:layout_height="@dimen/wh_button"
-        android:layout_alignParentLeft="true"
-        android:layout_margin="0dip"
-        android:background="@drawable/bg_search_second_clickable"
-        android:contentDescription="read aloudW"
-        android:padding="7dip"
-        android:src="@drawable/glyphicons_185_volume_up"
-        android:tint="@color/white" />
+    
 
     <FrameLayout
         android:id="@+id/adFrame"
@@ -31,7 +20,7 @@
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:layout_gravity="center_horizontal"
-        android:layout_marginTop="80dip"
+        android:layout_marginTop="90dip"
         android:layout_weight="0" >
     </FrameLayout>
 
@@ -266,6 +255,20 @@
             android:layout_height="@dimen/progress"
              />
     </LinearLayout>
+    
+    
+    <ImageView
+        android:id="@+id/ttsActive"
+        style="@style/buttonWhite"
+        android:layout_width="@dimen/wh_button"
+        android:layout_height="@dimen/wh_button"
+        android:layout_alignParentLeft="true"
+        android:layout_margin="0dip"
+        android:background="@drawable/bg_search_second_clickable"
+        android:contentDescription="read aloudW"
+        android:padding="7dip"
+        android:src="@drawable/glyphicons_185_volume_up"
+        android:tint="@color/white" />
 
     <LinearLayout
         android:id="@+id/bottomBar"

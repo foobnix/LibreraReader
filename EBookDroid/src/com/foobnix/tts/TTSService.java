@@ -243,7 +243,7 @@ public class TTSService extends Service {
                     @Override
                     public void onDone(String utteranceId) {
                         LOG.d(TAG, "onUtteranceCompleted");
-                        if (System.currentTimeMillis() > TempHolder.get().timerFinishTime) {
+                        if (TempHolder.get().timerFinishTime != 0 && System.currentTimeMillis() > TempHolder.get().timerFinishTime) {
                             LOG.d(TAG, "Timer");
                             TempHolder.get().timerFinishTime = 0;
                             return;
@@ -259,7 +259,7 @@ public class TTSService extends Service {
                     @Override
                     public void onUtteranceCompleted(String utteranceId) {
                         LOG.d(TAG, "onUtteranceCompleted");
-                        if (System.currentTimeMillis() > TempHolder.get().timerFinishTime) {
+                        if (TempHolder.get().timerFinishTime != 0 && System.currentTimeMillis() > TempHolder.get().timerFinishTime) {
                             LOG.d(TAG, "Timer");
                             TempHolder.get().timerFinishTime = 0;
                             return;
