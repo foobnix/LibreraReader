@@ -387,4 +387,5 @@
    <string name="cd_back_to_parent">بازگشت به پدر و مادر</string>
    <string name="cd_back_to_all_catalogs">بازگشت به همه کاتالوگها</string>
    <string name="cd_add_new_opds_catalog">اضافه کردن کاتولوگ OPDS جدید</string>
+   <string name="new_beta_version_available">نسخه بتا جدید موجود است</string>
 </resources>

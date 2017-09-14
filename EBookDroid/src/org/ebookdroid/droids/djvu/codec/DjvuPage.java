@@ -119,7 +119,7 @@ public class DjvuPage extends AbstractCodecPage {
 
     @Override
     protected void finalize() throws Throwable {
-        recycle();
+        // recycle();
         super.finalize();
     }
 

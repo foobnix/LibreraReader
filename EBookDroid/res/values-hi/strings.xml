@@ -387,4 +387,5 @@
    <string name="cd_back_to_parent">माता-पिता पर वापस जाएं</string>
    <string name="cd_back_to_all_catalogs">सभी कैटलॉग पर वापस जाएं</string>
    <string name="cd_add_new_opds_catalog">नई ओपीडीएस कैटलॉग जोड़ें</string>
+   <string name="new_beta_version_available">नया बीटा संस्करण उपलब्ध है</string>
 </resources>

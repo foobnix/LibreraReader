@@ -387,4 +387,5 @@
    <string name="cd_back_to_parent">Späť na nadradený</string>
    <string name="cd_back_to_all_catalogs">Späť na všetky katalógy</string>
    <string name="cd_add_new_opds_catalog">Pridajte nový katalóg OPDS</string>
+   <string name="new_beta_version_available">Nová beta verzia je k dispozícii</string>
 </resources>

@@ -7,14 +7,17 @@ import java.io.InputStreamReader;
 import java.util.regex.Pattern;
 
 import com.foobnix.android.utils.Apps;
+import com.foobnix.android.utils.Https;
 import com.foobnix.android.utils.LOG;
 import com.foobnix.android.utils.TxtUtils;
+import com.foobnix.pdf.info.view.AlertDialogs;
 import com.foobnix.pdf.info.wrapper.AppState;
 
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.DialogInterface.OnClickListener;
+import android.os.AsyncTask;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.TextView;
@@ -28,6 +31,7 @@ public class AndroidWhatsNew {
         View inflate = LayoutInflater.from(c).inflate(R.layout.whatsnew, null, false);
 
         TextView notes = (TextView) inflate.findViewById(R.id.textNotes);
+        View fontSectionDivider = inflate.findViewById(R.id.fontSectionDivider);
         TextView textRateIt = (TextView) inflate.findViewById(R.id.textRateIt);
         TxtUtils.underlineTextView(textRateIt);
         textRateIt.setOnClickListener(new View.OnClickListener() {
@@ -37,6 +41,12 @@ public class AndroidWhatsNew {
                 rateIT(c);
             }
         });
+
+        if (AppsConfig.IS_BETA) {
+            ((View) textRateIt.getParent()).setVisibility(View.GONE);
+            fontSectionDivider.setVisibility(View.GONE);
+        }
+
         String textNotes = "loading...";
         try {
             String langCode = Urls.getLangCode();
@@ -63,20 +73,57 @@ public class AndroidWhatsNew {
             }
         });
 
-        builder.setPositiveButton(R.string.write_feedback, new OnClickListener() {
+        if (!AppsConfig.IS_BETA) {
+            builder.setPositiveButton(R.string.write_feedback, new OnClickListener() {
 
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                rateIT(c);
-            }
-        });
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    rateIT(c);
+                }
+            });
+        }
 
         builder.show();
     }
 
     public static String getWhatsNew(Context c, String langCode) throws IOException {
+        if (AppsConfig.IS_BETA) {
+            return steamToString(c.getResources().getAssets().open("beta.txt"));
+        }
         InputStream input = c.getResources().getAssets().open("whatsnew/" + langCode + ".txt");
         return steamToString(input);
+
+    }
+
+    public static void checkForNewBeta(final Context c) {
+        if (!AppsConfig.IS_BETA) {
+            return;
+        }
+
+        final String url = "https://www.dropbox.com/s/gom54hvrhei3o85/version.txt?raw=1";
+
+        new AsyncTask() {
+            @Override
+            protected Object doInBackground(Object... params) {
+                return Https.getUrlContents(url);
+            }
+
+            @Override
+            protected void onPostExecute(Object result) {
+                final String my = Apps.getVersionName(c);
+                if (my.equals(result)) {
+                    return;
+                }
+
+                AlertDialogs.showDialog(c, c.getString(R.string.new_beta_version_available) + "\n" + result, c.getString(R.string.open_in_browser), new Runnable() {
+
+                    @Override
+                    public void run() {
+                        Urls.open(c, "http://beta.librera.mobi");
+                    }
+                });
+            }
+        }.execute();
 
     }
 

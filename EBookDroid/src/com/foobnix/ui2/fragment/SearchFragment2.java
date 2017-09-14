@@ -59,7 +59,7 @@ public class SearchFragment2 extends UIFragment<FileMeta> {
     public static final Pair<Integer, Integer> PAIR = new Pair<Integer, Integer>(R.string.library, R.drawable.glyphicons_2_book_open);
     private static final String CMD_KEYCODE = "@cmd_keycode_config";
     private static final String CMD_LONG_TAP_ON_OFF = "@cmd_long_tap_on_off";
-    private static final String CMD_FULLSCREEN_ON_OFF = "@cmd_fullscreen_on";
+    private static final String CMD_FULLSCREEN_ON_OFF = "@cmd_fullscreen_on_off";
     private static final String CMD_IMAGES_ON_OFF = "@cmd_covers_on_off";
 
     public static int NONE = -1;
@@ -353,6 +353,10 @@ public class SearchFragment2 extends UIFragment<FileMeta> {
         searchAndOrderSync(items);
     }
 
+    public void toastState(String command, boolean state) {
+        Toast.makeText(getContext(), command + " [" + (state ? "ON" : "OFF") + "]", Toast.LENGTH_LONG).show();
+    }
+
     public void searchAndOrderSync(List<FileMeta> loadingResults) {
         handler.removeCallbacks(sortAndSeach);
 
@@ -367,18 +371,17 @@ public class SearchFragment2 extends UIFragment<FileMeta> {
 
         if (CMD_FULLSCREEN_ON_OFF.equals(txt)) {
             DocumentController.chooseFullScreen(getActivity(), true);
-            Toast.makeText(getContext(), CMD_FULLSCREEN_ON_OFF, Toast.LENGTH_SHORT);
             searchEditText.setText("");
         }
         if (CMD_LONG_TAP_ON_OFF.equals(txt)) {
             AppState.get().longTapEnable = !AppState.get().longTapEnable;
-            Toast.makeText(getContext(), CMD_LONG_TAP_ON_OFF, Toast.LENGTH_SHORT);
+            toastState(CMD_LONG_TAP_ON_OFF, AppState.get().longTapEnable);
             searchEditText.setText("");
         }
 
         if (CMD_IMAGES_ON_OFF.equals(txt)) {
-            Toast.makeText(getContext(), CMD_IMAGES_ON_OFF, Toast.LENGTH_SHORT);
             AppState.get().isShowImages = !AppState.get().isShowImages;
+            toastState(CMD_IMAGES_ON_OFF, AppState.get().isShowImages);
             searchEditText.setText("");
             onGridList();
         }

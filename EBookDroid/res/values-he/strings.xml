@@ -387,4 +387,5 @@
    <string name="cd_back_to_parent">חזרה להורה</string>
    <string name="cd_back_to_all_catalogs">חזרה לכל הקטלוגים</string>
    <string name="cd_add_new_opds_catalog">הוסף קטלוג OPDS חדש</string>
+   <string name="new_beta_version_available">גרסת ביתא חדשה זמינה</string>
 </resources>

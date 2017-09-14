@@ -387,4 +387,5 @@
    <string name="cd_back_to_parent">กลับไปที่ผู้ปกครอง</string>
    <string name="cd_back_to_all_catalogs">กลับไปที่แคตตาล็อกทั้งหมด</string>
    <string name="cd_add_new_opds_catalog">เพิ่มแคตตาล็อก OPDS ใหม่</string>
+   <string name="new_beta_version_available">มีเวอร์ชันเบต้าใหม่แล้ว</string>
 </resources>

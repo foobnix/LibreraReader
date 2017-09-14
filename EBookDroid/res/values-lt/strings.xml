@@ -387,4 +387,5 @@
    <string name="cd_back_to_parent">Atgal į tėvą</string>
    <string name="cd_back_to_all_catalogs">Atgal į visus katalogus</string>
    <string name="cd_add_new_opds_catalog">Pridėti naują OPDS katalogą</string>
+   <string name="new_beta_version_available">Yra nauja beta versijos versija</string>
 </resources>

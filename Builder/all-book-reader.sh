@@ -12,5 +12,7 @@ rm /home/ivan-dev/Dropbox/FREE_PDF_APK/testing/*.apk
 ant armeabi-v7a pdf
 ant x86 pdf
 
+ant version
+
 ./remove_all.sh
 ./install_all.sh

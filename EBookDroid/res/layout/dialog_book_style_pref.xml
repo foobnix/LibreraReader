@@ -90,6 +90,14 @@
         </LinearLayout>
 
         
+        <com.foobnix.pdf.info.view.CustomSeek
+            android:id="@+id/figureFontSize"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dip"
+            myseek:text="[code] font size" >
+        </com.foobnix.pdf.info.view.CustomSeek>
+        
 
         <com.foobnix.pdf.info.view.CustomSeek
             android:id="@+id/fontInterval"

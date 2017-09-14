@@ -2588,6 +2588,17 @@ public class DragingDialogs {
                 });
                 fontWeight.setValueText("" + BookCSS.get().fontWeight);
 
+                final CustomSeek figureFontSize = (CustomSeek) inflate.findViewById(R.id.figureFontSize);
+                figureFontSize.init(1, 14, BookCSS.get().figureFontSize);
+                figureFontSize.setOnSeekChanged(new IntegerResponse() {
+
+                    @Override
+                    public boolean onResultRecive(int result) {
+                        BookCSS.get().figureFontSize = result;
+                        return false;
+                    }
+                });
+
                 final CustomSeek fontInterval = (CustomSeek) inflate.findViewById(R.id.fontInterval);
                 fontInterval.init(1, 30, BookCSS.get().lineHeight);
                 fontInterval.setOnSeekChanged(new IntegerResponse() {
@@ -2598,6 +2609,7 @@ public class DragingDialogs {
                         return false;
                     }
                 });
+
                 final CustomSeek fontParagraph = (CustomSeek) inflate.findViewById(R.id.fontParagraph);
                 fontParagraph.init(1, 30, BookCSS.get().textIndent);
                 fontParagraph.setOnSeekChanged(new IntegerResponse() {

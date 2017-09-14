@@ -14,6 +14,7 @@ import com.foobnix.pdf.SlidingTabLayout;
 import com.foobnix.pdf.info.ADS;
 import com.foobnix.pdf.info.Analytics;
 import com.foobnix.pdf.info.Android6;
+import com.foobnix.pdf.info.AndroidWhatsNew;
 import com.foobnix.pdf.info.AppsConfig;
 import com.foobnix.pdf.info.FontExtractor;
 import com.foobnix.pdf.info.R;
@@ -164,11 +165,14 @@ public class MainTabs2 extends FragmentActivity {
         }
 
         TintUtil.setStatusBarColor(this);
-        DocumentController.chooseFullScreen(this, false);
+        // DocumentController.chooseFullScreen(this, false);
         DocumentController.applyBrigtness(this);
         DocumentController.doRotation(this);
 
         setContentView(R.layout.main_tabs);
+
+        imageMenu = (ImageView) findViewById(R.id.imageMenu);
+        findViewById(R.id.imageParent).setBackgroundColor(TintUtil.color);
 
         tabFragments = new ArrayList<UIFragment>();
 
@@ -189,9 +193,6 @@ public class MainTabs2 extends FragmentActivity {
             tabFragments.add(new PrefFragment2());
         }
         getSupportFragmentManager().beginTransaction().replace(R.id.left_drawer, new PrefFragment2()).commit();
-
-        imageMenu = (ImageView) findViewById(R.id.imageMenu);
-        ((ViewGroup) imageMenu.getParent()).setBackgroundColor(TintUtil.color);
 
         final DrawerLayout drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
 
@@ -321,6 +322,8 @@ public class MainTabs2 extends FragmentActivity {
 
         checkGoToPage(getIntent());
 
+        AndroidWhatsNew.checkForNewBeta(this);
+
     }
 
     BroadcastReceiver broadcastReceiver = new BroadcastReceiver() {
@@ -349,7 +352,7 @@ public class MainTabs2 extends FragmentActivity {
     protected void onResume() {
         super.onResume();
         ADS.onResumeNative(adViewNative);
-        DocumentController.chooseFullScreen(this, false);
+        // DocumentController.chooseFullScreen(this, false);
         TintUtil.updateAll();
         AppState.get().lastA = MainTabs2.class.getSimpleName();
         LocalBroadcastManager.getInstance(this).registerReceiver(broadcastReceiver, new IntentFilter(UIFragment.INTENT_TINT_CHANGE));

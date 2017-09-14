@@ -387,4 +387,5 @@
    <string name="cd_back_to_parent">回到父母</string>
    <string name="cd_back_to_all_catalogs">返回所有目录</string>
    <string name="cd_add_new_opds_catalog">添加新的OPDS目录</string>
+   <string name="new_beta_version_available">新的beta版本可用</string>
 </resources>

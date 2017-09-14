@@ -387,4 +387,5 @@
    <string name="cd_back_to_parent">Rudi kwa mzazi</string>
    <string name="cd_back_to_all_catalogs">Rudi kwenye orodha zote</string>
    <string name="cd_add_new_opds_catalog">Ongeza orodha mpya ya OPDS</string>
+   <string name="new_beta_version_available">Toleo jipya la beta linapatikana</string>
 </resources>

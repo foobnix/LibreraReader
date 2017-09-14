@@ -387,4 +387,5 @@
    <string name="cd_back_to_parent">Вернуться к родительскому</string>
    <string name="cd_back_to_all_catalogs">Вернуться ко всем каталогам</string>
    <string name="cd_add_new_opds_catalog">Добавить новый каталог OPDS</string>
+   <string name="new_beta_version_available">Доступна новая бета-версия</string>
 </resources>
