@@ -36,7 +36,6 @@ public class CacheZipUtils {
     public static File CACHE_BOOK_DIR;
     public static File CACHE_WEB;
     public static File ATTACHMENTS_CACHE_DIR;
-    public static String TEMP_FILE_NAME = "";
     public static String APP_CACHE_DIR;
     public static File LIRBI_DOWNLOAD_DIR;
     public static final Lock cacheLock = new ReentrantLock();

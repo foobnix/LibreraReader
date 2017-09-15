@@ -12,6 +12,7 @@ import org.apache.commons.compress.archivers.zip.ZipArchiveInputStream;
 import org.ebookdroid.BookType;
 
 import com.foobnix.android.utils.LOG;
+import com.foobnix.pdf.info.ExtUtils;
 
 import junrar.Archive;
 import junrar.rarfile.FileHeader;
@@ -45,8 +46,10 @@ public class CbzCbrExtractor {
 
                 List<String> names = new ArrayList<String>();
                 while ((nextEntry = zipInputStream.getNextZipEntry()) != null) {
-                    if (nextEntry.getName().endsWith(".jpg") || nextEntry.getName().endsWith(".jpeg")) {
-                        names.add(nextEntry.getName());
+                    String name = nextEntry.getName();
+                    LOG.d("Name", name);
+                    if (ExtUtils.isImagePath(name)) {
+                        names.add(name);
                     }
                 }
                 zipInputStream.close();
