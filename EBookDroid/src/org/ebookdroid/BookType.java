@@ -26,6 +26,7 @@ import android.content.Intent;
 public enum BookType {
 
     PDF(PdfContext.class, Arrays.asList("pdf", "xps"), Arrays.asList("application/pdf")),
+    TIFF(PdfContext.class, Arrays.asList("tiff", "tif"), Arrays.asList("image/tiff")),
 
     CBZ(PdfContext.class, Arrays.asList("cbz"), Arrays.asList("application/x-cbz")),
 	CBR(CbrContext.class, Arrays.asList("cbr"), Arrays.asList("application/x-cbr")),

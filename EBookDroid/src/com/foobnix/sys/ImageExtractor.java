@@ -3,12 +3,9 @@ package com.foobnix.sys;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Locale;
-import java.util.zip.ZipOutputStream;
 
 import org.ebookdroid.BookType;
 import org.ebookdroid.common.bitmaps.BitmapRef;
@@ -113,7 +110,7 @@ public class ImageExtractor implements ImageDownloader {
             cover = BaseExtractor.arrayToBitmap(MobiExtract.getBookCover(unZipPath), pageUrl.getWidth());
         } else if (BookType.RTF.is(unZipPath)) {
             cover = BaseExtractor.arrayToBitmap(RtfExtract.getImageCover(unZipPath), pageUrl.getWidth());
-        } else if (BookType.PDF.is(unZipPath) || BookType.DJVU.is(unZipPath)) {
+        } else if (BookType.PDF.is(unZipPath) || BookType.DJVU.is(unZipPath) || BookType.TIFF.is(unZipPath)) {
             cover = proccessOtherPage(pageUrl);
         } else if (BookType.CBZ.is(unZipPath) || BookType.CBR.is(unZipPath)) {
             cover = BaseExtractor.arrayToBitmap(CbzCbrExtractor.getBookCover(unZipPath), pageUrl.getWidth());
@@ -334,23 +331,12 @@ public class ImageExtractor implements ImageDownloader {
         File file = new File(path);
         try {
 
-            if (ExtUtils.isTiffFile(file)) {
-                FileMeta fileMeta = AppDB.get().getOrCreate(path);
-                FileMetaCore.get().upadteBasicMeta(fileMeta, new File(path));
-                AppDB.get().update(fileMeta);
-
-                File tiffTemp = new File(CacheZipUtils.CACHE_ZIP_DIR, path.hashCode() + ".cbz");
-                ZipOutputStream zos = new ZipOutputStream(new FileOutputStream(tiffTemp));
-                zos.setLevel(0);
-                FileInputStream stream = new FileInputStream(file);
-                Fb2Extractor.writeToZip(zos, "1.tiff", stream);
-                stream.close();
-                zos.close();
-                pageUrl.setPath(tiffTemp.getPath());
-                ByteArrayInputStream result = bitmapToStream(proccessOtherPage(pageUrl));
-                tiffTemp.delete();
-                return result;
-            }
+            // if (ExtUtils.isTiffFile(file)) {
+            // FileMeta fileMeta = AppDB.get().getOrCreate(path);
+            // FileMetaCore.get().upadteBasicMeta(fileMeta, new File(path));
+            // AppDB.get().update(fileMeta);
+            // return bitmapToStream(proccessOtherPage(pageUrl));
+            // }
 
             if (ExtUtils.isImageFile(file)) {
                 FileMeta fileMeta = AppDB.get().getOrCreate(path);

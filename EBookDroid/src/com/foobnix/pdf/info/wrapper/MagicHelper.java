@@ -364,8 +364,8 @@ public class MagicHelper {
         return (float) (0.2126 * R + 0.7152 * G + 0.0722 * B);
     }
 
-    static int colorCacheInput = Color.WHITE;
-    static int colorCache = Color.WHITE;
+    static int colorCacheInput = Color.TRANSPARENT;
+    static int colorCache = Color.TRANSPARENT;
 
     public static int ligtherColor(int color) {
         if (color == colorCacheInput) {

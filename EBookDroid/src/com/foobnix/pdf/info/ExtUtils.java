@@ -76,7 +76,6 @@ public class ExtUtils {
     public final static List<String> otherExts = Arrays.asList(AppState.OTHER_BOOK_EXT);
     public final static List<String> lirbeExt = Arrays.asList(AppState.LIBRE_EXT);
     public final static List<String> imageExts = Arrays.asList(".png", ".jpg", ".jpeg");
-    public final static List<String> tiffExts = Arrays.asList(".tiff", ".tif");
     public final static List<String> archiveExts = Arrays.asList(AppState.OTHER_ARCH_EXT);
     public final static List<String> browseExts = BookType.getAllSupportedExtensions();
     public static Map<String, String> mimeCache = new HashMap<String, String>();
@@ -84,7 +83,6 @@ public class ExtUtils {
         browseExts.addAll(otherExts);
         browseExts.addAll(archiveExts);
         browseExts.addAll(imageExts);
-        browseExts.addAll(tiffExts);
         browseExts.addAll(lirbeExt);
         browseExts.add(".json");
         browseExts.addAll(BookCSS.fontExts);
@@ -184,7 +182,7 @@ public class ExtUtils {
     }
 
     public static boolean isNotSupportedFile(File file) {
-        return !BookType.isSupportedExtByPath(file.getPath()) && (isLibreFile(file) || isImageFile(file) || isTiffFile(file) || isOtherFile(file) || isFileArchive(file));
+        return !BookType.isSupportedExtByPath(file.getPath()) && (isLibreFile(file) || isImageFile(file) || isOtherFile(file) || isFileArchive(file));
     }
 
     public static boolean isImageOrEpub(File file) {
@@ -227,22 +225,6 @@ public class ExtUtils {
         return false;
     }
 
-    public static boolean isTiffFile(File file) {
-        if (file != null && file.isFile()) {
-            return isTiffPath(file.getName());
-        }
-        return false;
-    }
-
-    public static boolean isTiffPath(String path) {
-        String name = path.toLowerCase(Locale.US);
-        for (String ext : tiffExts) {
-            if (name.endsWith(ext)) {
-                return true;
-            }
-        }
-        return false;
-    }
 
     public static boolean isLibreFile(File file) {
         if (file != null && file.isFile()) {
