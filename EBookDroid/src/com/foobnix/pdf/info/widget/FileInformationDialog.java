@@ -62,7 +62,7 @@ public class FileInformationDialog {
         List<AppBookmark> objects = AppSharedPreferences.get().getBookmarksByBook(file);
         StringBuilder lines = new StringBuilder();
         String fast = a.getString(R.string.fast_bookmark);
-        if (TxtUtils.isNotEmpty(objects)) {
+        if (TxtUtils.isListNotEmpty(objects)) {
             for (AppBookmark b : objects) {
                 if (!fast.equals(b.getText())) {
                     lines.append(b.getPage() + ": " + b.getText());

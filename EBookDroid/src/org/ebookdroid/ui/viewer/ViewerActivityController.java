@@ -39,7 +39,6 @@ import com.foobnix.pdf.info.model.OutlineLinkWrapper;
 import com.foobnix.pdf.info.wrapper.AppState;
 import com.foobnix.pdf.info.wrapper.DocumentWrapperUI;
 import com.foobnix.sys.AdvModeController;
-import com.foobnix.sys.VuDroidConfig;
 import com.foobnix.ui2.AppDB;
 
 import android.app.Activity;
@@ -95,7 +94,7 @@ public class ViewerActivityController extends ActionController<ViewerActivity> i
         SettingsManager.addListener(this);
 
         controller = new AdvModeController(activity, this);
-        wrapperControlls = new DocumentWrapperUI(new VuDroidConfig(), controller);
+        wrapperControlls = new DocumentWrapperUI(controller);
     }
 
     @Override
@@ -259,7 +258,7 @@ public class ViewerActivityController extends ActionController<ViewerActivity> i
         BookSettings bs = SettingsManager.getBookSettings();
         if (bs != null) {
             // bs.isNextScreen = AppState.getInstance().isNextScreen();
-            bs.isLocked = AppState.getInstance().isLocked;
+            // bs.isLocked = AppState.getInstance().isLocked;
         }
 
         SettingsManager.storeBookSettings();
@@ -381,6 +380,8 @@ public class ViewerActivityController extends ActionController<ViewerActivity> i
                 AppState.get().isLocked = true;
             } else if (AppState.get().isLockPDF) {
                 AppState.get().isLocked = true;
+            } else {
+                AppState.get().isLocked = false;
             }
         } catch (Exception e) {
             LOG.e(e);

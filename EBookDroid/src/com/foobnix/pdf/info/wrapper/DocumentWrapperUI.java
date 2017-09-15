@@ -84,13 +84,12 @@ public class DocumentWrapperUI {
     private Activity a;
     private String bookTitle;
     private DocumentGestureListener documentListener;
-    private View onDocDontext;
+    private ImageView onDocDontext;
     private ImageView toolBarButton;
     private View titleBar;
     private TextView nextTypeBootom;
     private DocumentGuestureDetector documentGestureDetector;
     private GestureDetector gestureDetector;
-    private final AppConfig appConfig;
     private ImageView linkHistory;
     private ImageView lockUnlock;
     private ImageView lockUnlockTop, textToSpeachTop, clockIcon, batteryIcon;
@@ -114,11 +113,10 @@ public class DocumentWrapperUI {
 
     InterstitialAd mInterstitialAd;
 
-    public DocumentWrapperUI(final AppConfig appConfig, final DocumentController controller) {
+    public DocumentWrapperUI(final DocumentController controller) {
         AppState.getInstance().annotationDrawColor = "";
         AppState.getInstance().editWith = AppState.EDIT_NONE;
 
-        this.appConfig = appConfig;
         this.controller = controller;
         controller.setUi(this);
 
@@ -657,7 +655,7 @@ public class DocumentWrapperUI {
         nextScreenType = ((ImageView) a.findViewById(R.id.imageNextScreen));
         nextScreenType.setOnClickListener(onNextType);
 
-        onDocDontext = a.findViewById(R.id.onDocDontext);
+        onDocDontext = (ImageView) a.findViewById(R.id.onDocDontext);
         onDocDontext.setOnClickListener(onShowContext);
 
         lockUnlock = (ImageView) a.findViewById(R.id.lockUnlock);
@@ -710,15 +708,6 @@ public class DocumentWrapperUI {
 
         progressDraw = (ProgressDraw) a.findViewById(R.id.progressDraw);
 
-        if (!appConfig.isContentEnable()) {
-            onDocDontext.setVisibility(View.GONE);
-        }
-        if (!appConfig.isSearchEnable()) {
-            a.findViewById(R.id.onShowSearch).setVisibility(View.GONE);
-        }
-        if (!appConfig.isDayNightModeEnable()) {
-            a.findViewById(R.id.brightness).setVisibility(View.GONE);
-        }
         AppState.getInstance().isAutoScroll = false;
 
         ImageView recent = (ImageView) a.findViewById(R.id.onRecent);
@@ -1560,6 +1549,10 @@ public class DocumentWrapperUI {
                     progressDraw.updatePageCount(controller.getPageCount() - 1);
                     titleBar.setOnTouchListener(new HorizontallSeekTouchEventListener(onSeek, controller.getPageCount(), false));
                     progressDraw.setOnTouchListener(new HorizontallSeekTouchEventListener(onSeek, controller.getPageCount(), false));
+                    if (TxtUtils.isListEmpty(list)) {
+                        TintUtil.setTintImage(onDocDontext, Color.LTGRAY);
+                    }
+
                 }
             });
         } catch (Exception e) {

@@ -113,7 +113,7 @@ public class HorizontalViewActivity extends FragmentActivity {
     private AdView adView;
     private NativeExpressAdView adViewNative;
 
-    ImageView lockModelImage, linkHistory, ttsActive, onModeChange;
+    ImageView lockModelImage, linkHistory, ttsActive, onModeChange, outline;
 
     DocumentControllerHorizontalView documentController;
 
@@ -328,7 +328,8 @@ public class HorizontalViewActivity extends FragmentActivity {
 
         });
 
-        findViewById(R.id.content).setOnClickListener(new View.OnClickListener() {
+        outline = (ImageView) findViewById(R.id.content);
+        outline.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(final View v) {
@@ -475,8 +476,6 @@ public class HorizontalViewActivity extends FragmentActivity {
                 }
             }
         });
-
-
 
         findViewById(R.id.bookMenu).setOnClickListener(new View.OnClickListener() {
 
@@ -1224,6 +1223,9 @@ public class HorizontalViewActivity extends FragmentActivity {
             @Override
             public boolean onResultRecive(List<OutlineLinkWrapper> result) {
                 progressDraw.updateDivs(result);
+                if (TxtUtils.isListEmpty(result)) {
+                    TintUtil.setTintImage(outline, Color.LTGRAY);
+                }
                 return false;
             }
         });

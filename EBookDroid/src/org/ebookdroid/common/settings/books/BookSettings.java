@@ -26,7 +26,6 @@ public class BookSettings implements CurrentPageListener {
     public int speed = AppState.getInstance().autoScrollSpeed;
 
     public boolean autoLevels;
-    public boolean isLocked;
     private int pages;
 
     public BookSettings(final String fileName) {
@@ -48,7 +47,6 @@ public class BookSettings implements CurrentPageListener {
         this.offsetX = (float) object.optDouble("offsetX", offsetX);
         this.offsetY = (float) object.optDouble("offsetY", offsetY);
         this.autoLevels = object.optBoolean("autoLevels", autoLevels);
-        this.isLocked = object.optBoolean("isLocked", isLocked);
         this.cropPages = object.optBoolean("cropPages", cropPages);
         this.doublePages = object.optBoolean("doublePages", doublePages);
         this.doublePagesCover = object.optBoolean("doublePagesCover", doublePagesCover);
@@ -65,7 +63,6 @@ public class BookSettings implements CurrentPageListener {
         obj.put("offsetX", offsetX);
         obj.put("offsetY", offsetY);
         obj.put("autoLevels", autoLevels);
-        obj.put("isLocked", isLocked);
         obj.put("cropPages", cropPages);
         obj.put("doublePages", doublePages);
         obj.put("doublePagesCover", doublePagesCover);

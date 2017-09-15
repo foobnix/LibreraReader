@@ -1,6 +1,6 @@
+Table of content icon disabled if not table of content
 Custom user CSS styles
 Added image TIFF support
 Show command state in the Toast (for example @cmd_long_tap_on_off "ON")
 Check for a new beta version at startup 
-Test [code] option to change <code> blocks font size
 Updated Hungarian translation

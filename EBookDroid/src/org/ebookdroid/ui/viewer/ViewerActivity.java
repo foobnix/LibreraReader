@@ -101,7 +101,7 @@ public class ViewerActivity extends AbstractActionActivity<ViewerActivity, Viewe
                 final BookSettings bs = SettingsManager.getBookSettings(getIntent().getData().getPath());
                 // AppState.getInstance().setNextScreen(bs.isNextScreen);
                 if (bs != null) {
-                    AppState.getInstance().isLocked = bs.isLocked;
+                    // AppState.getInstance().isLocked = bs.isLocked;
                     AppState.getInstance().autoScrollSpeed = bs.speed;
                     AppState.get().isCut = bs.splitPages;
                     AppState.get().isCrop = bs.cropPages;

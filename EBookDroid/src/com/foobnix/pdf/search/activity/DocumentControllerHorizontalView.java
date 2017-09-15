@@ -74,6 +74,8 @@ public abstract class DocumentControllerHorizontalView extends DocumentControlle
             AppState.get().isCrop = false;
             AppState.get().isCut = false;
             AppState.get().isLocked = true;
+        } else {
+            AppState.get().isLocked = false;
         }
     }
 
