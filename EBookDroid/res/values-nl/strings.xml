@@ -388,4 +388,6 @@
    <string name="cd_back_to_all_catalogs">Terug naar alle catalogi</string>
    <string name="cd_add_new_opds_catalog">Voeg een nieuwe OPDS-catalogus toe</string>
    <string name="new_beta_version_available">Nieuwe beta versie beschikbaar</string>
+   <string name="custom_css">Aangepaste CSS</string>
+   <string name="detailed_changelog">Gedetailleerde Changelog</string>
 </resources>

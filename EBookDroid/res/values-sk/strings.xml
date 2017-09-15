@@ -388,4 +388,6 @@
    <string name="cd_back_to_all_catalogs">Späť na všetky katalógy</string>
    <string name="cd_add_new_opds_catalog">Pridajte nový katalóg OPDS</string>
    <string name="new_beta_version_available">Nová beta verzia je k dispozícii</string>
+   <string name="custom_css">Vlastné CSS</string>
+   <string name="detailed_changelog">Podrobné zmeny</string>
 </resources>

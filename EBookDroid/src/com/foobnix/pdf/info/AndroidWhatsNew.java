@@ -30,7 +30,7 @@ public class AndroidWhatsNew {
         String versionName = Apps.getVersionName(c);
         View inflate = LayoutInflater.from(c).inflate(R.layout.whatsnew, null, false);
 
-        TextView notes = (TextView) inflate.findViewById(R.id.textNotes);
+        final TextView notes = (TextView) inflate.findViewById(R.id.textNotes);
         View fontSectionDivider = inflate.findViewById(R.id.fontSectionDivider);
         TextView textRateIt = (TextView) inflate.findViewById(R.id.textRateIt);
         TxtUtils.underlineTextView(textRateIt);
@@ -39,6 +39,20 @@ public class AndroidWhatsNew {
             @Override
             public void onClick(View v) {
                 rateIT(c);
+            }
+        });
+
+        TextView detailedChangelog = (TextView) inflate.findViewById(R.id.detailedChangelog);
+        TxtUtils.underlineTextView(detailedChangelog);
+        detailedChangelog.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                try {
+                    notes.setText(steamToString(c.getResources().getAssets().open("beta.txt")));
+                } catch (Exception e) {
+                    LOG.e(e);
+                }
             }
         });
 

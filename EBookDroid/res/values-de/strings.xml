@@ -388,4 +388,6 @@
    <string name="cd_back_to_all_catalogs">Zurück zu allen Katalogen</string>
    <string name="cd_add_new_opds_catalog">Neuen OPDS-Katalog hinzufügen</string>
    <string name="new_beta_version_available">Neue Beta-Version verfügbar</string>
+   <string name="custom_css">Benutzerdefinierte CSS</string>
+   <string name="detailed_changelog">Detailliertes Changelog</string>
 </resources>

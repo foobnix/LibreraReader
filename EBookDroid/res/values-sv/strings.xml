@@ -388,4 +388,6 @@
    <string name="cd_back_to_all_catalogs">Tillbaka till alla kataloger</string>
    <string name="cd_add_new_opds_catalog">Lägg till en ny OPDS-katalog</string>
    <string name="new_beta_version_available">Ny betaversion tillgänglig</string>
+   <string name="custom_css">Anpassad CSS</string>
+   <string name="detailed_changelog">Detaljerad Changelog</string>
 </resources>

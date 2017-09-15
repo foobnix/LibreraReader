@@ -388,4 +388,6 @@
    <string name="cd_back_to_all_catalogs">모든 카탈로그로 돌아 가기</string>
    <string name="cd_add_new_opds_catalog">새로운 OPDS 카탈로그 추가</string>
    <string name="new_beta_version_available">새로운 베타 버전 사용 가능</string>
+   <string name="custom_css">맞춤 CSS</string>
+   <string name="detailed_changelog">세부 변경 내역</string>
 </resources>

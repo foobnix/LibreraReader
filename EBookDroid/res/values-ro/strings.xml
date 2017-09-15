@@ -388,4 +388,6 @@
    <string name="cd_back_to_all_catalogs">Înapoi la toate cataloagele</string>
    <string name="cd_add_new_opds_catalog">Adăugați un nou catalog OPDS</string>
    <string name="new_beta_version_available">Noua versiune beta disponibilă</string>
+   <string name="custom_css">CSS personalizat</string>
+   <string name="detailed_changelog">Modificări detaliate</string>
 </resources>

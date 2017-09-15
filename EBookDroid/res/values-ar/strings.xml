@@ -388,4 +388,6 @@
    <string name="cd_back_to_all_catalogs">عودة إلى جميع الكتالوجات</string>
    <string name="cd_add_new_opds_catalog">إضافة كتالوج أوبدس جديد</string>
    <string name="new_beta_version_available">النسخة التجريبية الجديدة المتاحة</string>
+   <string name="custom_css">لغة تنسيق ويب حسب الطلب</string>
+   <string name="detailed_changelog">تشانجيلوغ مفصل</string>
 </resources>

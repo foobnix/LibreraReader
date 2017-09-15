@@ -66,7 +66,7 @@ public class BookCSS {
     public int lineHeight;
     public int textIndent;
     public int fontWeight;
-    public int figureFontSize;
+    public String customCSS;
 
     public int textAlign;
 
@@ -106,7 +106,7 @@ public class BookCSS {
         marginBottom = sp.getInt("marginBottom", marginBottom);
         marginLeft = sp.getInt("marginLeft", marginLeft);
         emptyLine = sp.getInt("emptyLine", emptyLine);
-        emptyLine = sp.getInt("figureFontSize", figureFontSize);
+        customCSS = sp.getString("customCSS", customCSS);
 
         lineHeight = sp.getInt("lineHeight", lineHeight);
         textIndent = sp.getInt("textIndent", textIndent);
@@ -158,7 +158,8 @@ public class BookCSS {
 
         linkColorDay = LINK_COLOR_UNIVERSAL;
         linkColorNight = LINK_COLOR_UNIVERSAL;
-        figureFontSize = 6;
+        customCSS = "pre {white-space: pre} /* pre, normal*/ \n" + //
+                "figure>* {font-size: 0.6em}";
 
     }
 
@@ -186,7 +187,7 @@ public class BookCSS {
         edit.putInt("marginBottom", marginBottom);
         edit.putInt("marginLeft", marginLeft);
         edit.putInt("emptyLine", emptyLine);
-        edit.putInt("figureFontSize", figureFontSize);
+        edit.putString("customCSS", customCSS);
 
         edit.putInt("lineHeight", lineHeight);
         edit.putInt("textIndent", textIndent);
@@ -504,7 +505,7 @@ public class BookCSS {
                 builder.append("i{font-family:" + italicFont + "; font-style: italic, oblique;}");
             }
             builder.append("body,p,b,i,em{font-size:medium !important;}");
-            builder.append("figure>* {font-size:" + em(figureFontSize) + " !important;}");
+            builder.append(customCSS.replace("\n", ""));
 
         }
 

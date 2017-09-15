@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fillViewport="true"
-    android:minHeight="250dip" >
+    android:orientation="vertical" >
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -11,23 +11,43 @@
         android:orientation="vertical"
         android:padding="8dip" >
 
+        <ScrollView
+            android:layout_width="fill_parent"
+            android:layout_height="140dp"
+            android:fillViewport="true"
+            android:scrollbars="vertical" >
+
+            <TextView
+                android:id="@+id/textNotes"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:scrollbars="vertical"
+                android:textSize="14sp" />
+        </ScrollView>
+
         <TextView
-            android:id="@+id/textNotes"
-            android:layout_width="wrap_content"
+            android:id="@+id/detailedChangelog"
+            style="@style/textLink"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text=""
-            android:textSize="14sp" />
+            android:layout_marginLeft="4dip"
+            android:layout_weight="0"
+            android:gravity="center"
+            android:singleLine="false"
+            android:text="@string/detailed_changelog" />
 
         <View
             android:id="@+id/fontSectionDivider"
             android:layout_width="match_parent"
             android:layout_height="1dp"
             android:layout_marginTop="2dip"
+            android:layout_weight="0"
             android:background="@color/lt_grey_alpha" />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_weight="0"
             android:gravity="center_vertical"
             android:orientation="horizontal" >
 
@@ -51,4 +71,4 @@
         </LinearLayout>
     </LinearLayout>
 
-</ScrollView>
+</LinearLayout>

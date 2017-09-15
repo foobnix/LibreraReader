@@ -388,4 +388,6 @@
    <string name="cd_back_to_all_catalogs">Kembali ke semua katalog</string>
    <string name="cd_add_new_opds_catalog">Tambahkan katalog OPDS baru</string>
    <string name="new_beta_version_available">Versi beta baru tersedia</string>
+   <string name="custom_css">CSS khusus</string>
+   <string name="detailed_changelog">Detil Changelog</string>
 </resources>

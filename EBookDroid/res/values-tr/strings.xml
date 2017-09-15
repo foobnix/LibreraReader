@@ -388,4 +388,6 @@
    <string name="cd_back_to_all_catalogs">Tüm kataloglara dön</string>
    <string name="cd_add_new_opds_catalog">Yeni OPDS kataloğu ekle</string>
    <string name="new_beta_version_available">Yeni beta sürümü mevcut</string>
+   <string name="custom_css">Özel CSS</string>
+   <string name="detailed_changelog">Ayrıntılı Değişiklik Takvimi</string>
 </resources>

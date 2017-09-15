@@ -388,4 +388,6 @@
    <string name="cd_back_to_all_catalogs">Takaisin kaikkiin luetteloihin</string>
    <string name="cd_add_new_opds_catalog">Lisää uusi OPDS-luettelo</string>
    <string name="new_beta_version_available">Uusi beta-versio saatavilla</string>
+   <string name="custom_css">Custom CSS</string>
+   <string name="detailed_changelog">Yksityiskohtainen muutos</string>
 </resources>

@@ -388,4 +388,6 @@
    <string name="cd_back_to_all_catalogs">Повернутися до всіх каталогів</string>
    <string name="cd_add_new_opds_catalog">Додати новий каталог OPDS</string>
    <string name="new_beta_version_available">Доступна нова бета-версія</string>
+   <string name="custom_css">Користувацький CSS</string>
+   <string name="detailed_changelog">Детальний журнал змін</string>
 </resources>

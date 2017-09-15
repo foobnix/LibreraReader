@@ -388,4 +388,6 @@
    <string name="cd_back_to_all_catalogs">Quay lại tất cả danh mục</string>
    <string name="cd_add_new_opds_catalog">Thêm danh mục mới OPDS</string>
    <string name="new_beta_version_available">Phiên bản beta mới có sẵn</string>
+   <string name="custom_css">CSS tùy chỉnh</string>
+   <string name="detailed_changelog">Changelog chi tiết</string>
 </resources>

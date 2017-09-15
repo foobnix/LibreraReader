@@ -388,4 +388,6 @@
    <string name="cd_back_to_all_catalogs">Vissza az összes katalógusba</string>
    <string name="cd_add_new_opds_catalog">Új OPDS katalógus hozzáadása</string>
    <string name="new_beta_version_available">Új bétaverzió áll rendelkezésre</string>
+   <string name="custom_css">Egyéni CSS</string>
+   <string name="detailed_changelog">Részletes változat</string>
 </resources>

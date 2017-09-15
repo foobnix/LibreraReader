@@ -41,30 +41,7 @@
                 android:textStyle="bold" />
         </LinearLayout>
 
-        <LinearLayout
-            android:id="@+id/documentStyleLayout"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="15dip"
-            android:layout_marginRight="@dimen/wh_button"
-            android:gravity="center_vertical"
-            android:orientation="horizontal" >
-
-            <TextView
-                android:layout_width="100dip"
-                android:layout_height="wrap_content"
-                android:layout_weight="0"
-                android:singleLine="true"
-                android:text="@string/book_styles"
-                android:textStyle="bold" />
-
-            <TextView
-                android:id="@+id/documentStyle"
-                style="@style/textLink"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/document_styles" />
-        </LinearLayout>
+        
 
         <LinearLayout
             android:layout_width="match_parent"

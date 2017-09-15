@@ -255,24 +255,26 @@ public abstract class DocumentController {
     }
 
     public static void runFullScreen(final Activity a) {
-        if (a == null) {
-            return;
+        try {
+            a.getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
+            a.getWindow().clearFlags(WindowManager.LayoutParams.FLAG_FORCE_NOT_FULLSCREEN);
+            Keyboards.hideNavigation(a);
+        } catch (Exception e) {
+            LOG.e(e);
         }
-        a.getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
-        a.getWindow().clearFlags(WindowManager.LayoutParams.FLAG_FORCE_NOT_FULLSCREEN);
-        Keyboards.hideNavigation(a);
     }
 
     public static void runNormalScreen(final Activity a) {
-        if (a == null) {
-            return;
-        }
-        a.getWindow().addFlags(WindowManager.LayoutParams.FLAG_FORCE_NOT_FULLSCREEN);
-        a.getWindow().clearFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
+        try {
+            a.getWindow().addFlags(WindowManager.LayoutParams.FLAG_FORCE_NOT_FULLSCREEN);
+            a.getWindow().clearFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
-        final View decorView = a.getWindow().getDecorView();
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.ICE_CREAM_SANDWICH) {
-            decorView.setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_STABLE);
+            final View decorView = a.getWindow().getDecorView();
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.ICE_CREAM_SANDWICH) {
+                decorView.setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_STABLE);
+            }
+        } catch (Exception e) {
+            LOG.e(e);
         }
     }
 

@@ -184,7 +184,7 @@ public class DragingDialogs {
                                 public boolean onMenuItemClick(MenuItem item) {
                                     AppState.get().ttsTimer = number;
                                     timerTime.setText(AppState.get().ttsTimer + " " + controller.getString(R.string.minutes).toLowerCase(Locale.US));
-                                    
+
                                     return false;
                                 }
                             });
@@ -2406,48 +2406,6 @@ public class DragingDialogs {
                     }
                 });
 
-                // begin styles
-                final List<String> docStyles = Arrays.asList(//
-                        controller.getString(R.string.document_styles) + " + " + controller.getString(R.string.user_styles), //
-                        controller.getString(R.string.document_styles), //
-                        controller.getString(R.string.user_styles));
-
-                final TextView docStyle = (TextView) inflate.findViewById(R.id.documentStyle);
-
-                docStyle.setText(docStyles.get(BookCSS.get().documentStyle));
-                TxtUtils.underlineTextView(docStyle);
-
-                inflate.findViewById(R.id.documentStyleLayout).setVisibility(ExtUtils.isTextFomat(controller.getCurrentBook().getPath()) ? View.VISIBLE : View.GONE);
-
-                docStyle.setOnClickListener(new OnClickListener() {
-
-                    @SuppressLint("NewApi")
-                    @Override
-                    public void onClick(View v) {
-                        final PopupMenu popupMenu = new PopupMenu(v.getContext(), v);
-                        for (int i = 0; i < docStyles.size(); i++) {
-                            String type = docStyles.get(i);
-                            final int j = i;
-
-                            popupMenu.getMenu().add(type).setOnMenuItemClickListener(new OnMenuItemClickListener() {
-
-                                @Override
-                                public boolean onMenuItemClick(MenuItem item) {
-                                    BookCSS.get().documentStyle = j;
-                                    docStyle.setText(docStyles.get(BookCSS.get().documentStyle));
-                                    TxtUtils.underlineTextView(docStyle);
-
-                                    return false;
-                                }
-                            });
-                        }
-
-                        popupMenu.show();
-
-                    }
-                });
-
-                // end styles
 
                 // rotate
 
@@ -2588,14 +2546,74 @@ public class DragingDialogs {
                 });
                 fontWeight.setValueText("" + BookCSS.get().fontWeight);
 
-                final CustomSeek figureFontSize = (CustomSeek) inflate.findViewById(R.id.figureFontSize);
-                figureFontSize.init(1, 14, BookCSS.get().figureFontSize);
-                figureFontSize.setOnSeekChanged(new IntegerResponse() {
+                // begin styles
+                final List<String> docStyles = Arrays.asList(//
+                        controller.getString(R.string.document_styles) + " + " + controller.getString(R.string.user_styles), //
+                        controller.getString(R.string.document_styles), //
+                        controller.getString(R.string.user_styles));
+
+                final TextView docStyle = (TextView) inflate.findViewById(R.id.documentStyle);
+
+                docStyle.setText(docStyles.get(BookCSS.get().documentStyle));
+                TxtUtils.underlineTextView(docStyle);
+
+                inflate.findViewById(R.id.documentStyleLayout).setVisibility(ExtUtils.isTextFomat(controller.getCurrentBook().getPath()) ? View.VISIBLE : View.GONE);
+
+                docStyle.setOnClickListener(new OnClickListener() {
+
+                    @SuppressLint("NewApi")
+                    @Override
+                    public void onClick(View v) {
+                        final PopupMenu popupMenu = new PopupMenu(v.getContext(), v);
+                        for (int i = 0; i < docStyles.size(); i++) {
+                            String type = docStyles.get(i);
+                            final int j = i;
+
+                            popupMenu.getMenu().add(type).setOnMenuItemClickListener(new OnMenuItemClickListener() {
+
+                                @Override
+                                public boolean onMenuItemClick(MenuItem item) {
+                                    BookCSS.get().documentStyle = j;
+                                    docStyle.setText(docStyles.get(BookCSS.get().documentStyle));
+                                    TxtUtils.underlineTextView(docStyle);
+
+                                    return false;
+                                }
+                            });
+                        }
+
+                        popupMenu.show();
+
+                    }
+                });
+
+                // end styles
+
+                TextView customCSS = (TextView) inflate.findViewById(R.id.customCSS);
+                TxtUtils.underlineTextView(customCSS);
+                customCSS.setOnClickListener(new OnClickListener() {
 
                     @Override
-                    public boolean onResultRecive(int result) {
-                        BookCSS.get().figureFontSize = result;
-                        return false;
+                    public void onClick(final View v) {
+                        final AlertDialog.Builder builder = new AlertDialog.Builder(v.getContext());
+                        builder.setTitle(R.string.custom_css);
+                        final EditText edit = new EditText(v.getContext());
+                        edit.setMinWidth(Dips.dpToPx(1000));
+                        edit.setLines(8);
+                        edit.setGravity(Gravity.TOP);
+                        edit.setText(BookCSS.get().customCSS);
+                        builder.setView(edit);
+
+                        builder.setPositiveButton(R.string.save, new DialogInterface.OnClickListener() {
+
+                            @Override
+                            public void onClick(final DialogInterface dialog, final int id) {
+                                BookCSS.get().customCSS = edit.getText().toString();
+                                BookCSS.get().save(v.getContext());
+                            }
+                        });
+                        builder.show();
+
                     }
                 });
 
