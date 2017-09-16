@@ -98,13 +98,14 @@ public class IMG {
         lp.height = (int) (widht * 1.5);
     }
 
-    public static void updateImageSizeSmall(View imageView) {
+    public static LayoutParams updateImageSizeSmall(View imageView) {
         if (imageView == null || imageView.getLayoutParams() == null) {
-            return;
+            return null;
         }
         LayoutParams lp = imageView.getLayoutParams();
         lp.width = Dips.dpToPx(AppState.get().coverSmallSize);
         lp.height = (int) (lp.width * 1.5);
+        return lp;
     }
 
     public static void updateImageSizeBig(View imageView) {

@@ -1067,14 +1067,20 @@ public class DragingDialogs {
                 number.clearFocus();
                 number.setText("" + controller.getCurentPageFirst1());
                 final GridView grid = (GridView) view.findViewById(R.id.grid1);
-                grid.setColumnWidth(Dips.dpToPx(AppState.get().coverSmallSize));
+                int dpToPx = Dips.dpToPx(AppState.get().coverSmallSize);
+
+                if (AppState.get().isDouble && Dips.isHorizontal()) {
+                    dpToPx = dpToPx * 2;
+                }
+                grid.setColumnWidth(dpToPx);
 
                 final File currentBook = controller.getCurrentBook();
                 if (ExtUtils.isValidFile(currentBook)) {
                     grid.setAdapter(new PageThumbnailAdapter(anchor.getContext(), controller.getPageCount(), controller.getCurentPageFirst1() - 1) {
                         @Override
                         public PageUrl getPageUrl(int page) {
-                            return PageUrl.buildSmall(currentBook.getPath(), page);
+                            PageUrl buildSmall = PageUrl.buildSmall(currentBook.getPath(), page);
+                            return buildSmall;
                         };
                     });
                 }
@@ -1462,8 +1468,8 @@ public class DragingDialogs {
                         Toast.makeText(anchor.getContext(), "no", Toast.LENGTH_SHORT).show();
                     } else {
                         controller.onGoToPage(link.targetPage);
-                        ((ListView) parent).requestFocusFromTouch();
-                        ((ListView) parent).setSelection(position);
+                        // ((ListView) parent).requestFocusFromTouch();
+                        // ((ListView) parent).setSelection(position);
 
                     }
                     return;
@@ -1537,6 +1543,7 @@ public class DragingDialogs {
                 }
 
                 final ListView contentList = (ListView) view.findViewById(R.id.contentList);
+                contentList.setSelector(android.R.color.transparent);
                 contentList.setVerticalScrollBarEnabled(false);
                 controller.getOutline(new ResultResponse<List<OutlineLinkWrapper>>() {
                     @Override
@@ -1546,7 +1553,7 @@ public class DragingDialogs {
                             @Override
                             public void run() {
                                 if (outline != null && outline.size() > 0) {
-                                    contentList.setChoiceMode(ListView.CHOICE_MODE_SINGLE);
+                                    contentList.clearChoices();
                                     OutlineLinkWrapper currentByPageNumber = OutlineHelper.getCurrentByPageNumber(outline, controller.getCurentPageFirst1());
                                     final OutlineAdapter adapter = new OutlineAdapter(controller.getActivity(), outline, currentByPageNumber);
                                     contentList.setAdapter(adapter);
@@ -2405,7 +2412,6 @@ public class DragingDialogs {
 
                     }
                 });
-
 
                 // rotate
 

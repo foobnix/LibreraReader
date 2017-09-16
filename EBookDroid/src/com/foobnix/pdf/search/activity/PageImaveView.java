@@ -460,7 +460,7 @@ public class PageImaveView extends View {
     protected void onDraw(final Canvas canvas) {
         super.onDraw(canvas);
         try {
-            if (AppState.get().isOLED) {
+            if (AppState.get().isOLED && !AppState.get().isInvert) {
                 canvas.drawColor(Color.BLACK);
             } else {
                 canvas.drawColor(MagicHelper.ligtherColor(MagicHelper.getBgColor()));

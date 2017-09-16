@@ -141,7 +141,7 @@ public class BookCSS {
 
         emptyLine = 5;
 
-        lineHeight = 14;
+        lineHeight = 13;
         textIndent = 10;
         fontWeight = 400;
 

@@ -25,9 +25,6 @@ import android.widget.TextView;
 
 public class OutlineAdapter extends BaseAdapter {
 
-    private int spaceWidth;
-
-    private final VoidListener voidListener = new VoidListener();
     private final ItemListener itemListener = new ItemListener();
     private final CollapseListener collapseListener = new CollapseListener();
 
@@ -138,10 +135,8 @@ public class OutlineAdapter extends BaseAdapter {
     public View getView(final int position, final View convertView, final ViewGroup parent) {
         final int id = (int) getItemId(position);
         View container = null;
-        boolean firstTime = false;
         if (convertView == null) {
             container = LayoutInflater.from(context).inflate(R.layout.outline_item, parent, false);
-            firstTime = true;
         } else {
             container = convertView;
         }
@@ -167,18 +162,19 @@ public class OutlineAdapter extends BaseAdapter {
             container.setBackgroundColor(Color.TRANSPARENT);
         }
 
+        container.setTag(position);
         view.setTag(position);
         btn.setTag(position);
 
-        view.setOnClickListener(itemListener);
+        container.setOnClickListener(itemListener);
 
         if (states[id] == OutlineItemState.LEAF) {
-            btn.setOnClickListener(voidListener);
             // btn.setBackgroundColor(Color.TRANSPARENT);
             btn.setImageDrawable(null);
             if (AppState.get().isUseTypeFace) {
                 view.setTypeface(BookCSS.getNormalTypeFace(), Typeface.NORMAL);
             }
+            btn.setOnClickListener(itemListener);
         } else {
             btn.setOnClickListener(collapseListener);
 
@@ -242,13 +238,6 @@ public class OutlineAdapter extends BaseAdapter {
                 }
             }
 
-        }
-    }
-
-    private static final class VoidListener implements OnClickListener {
-
-        @Override
-        public void onClick(final View v) {
         }
     }
 

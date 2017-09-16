@@ -1,8 +1,10 @@
 package com.foobnix.pdf.info.presentation;
 
+import com.foobnix.android.utils.Dips;
 import com.foobnix.pdf.info.IMG;
 import com.foobnix.pdf.info.PageUrl;
 import com.foobnix.pdf.info.R;
+import com.foobnix.pdf.info.wrapper.AppState;
 import com.nostra13.universalimageloader.core.ImageLoader;
 
 import android.content.Context;
@@ -10,6 +12,7 @@ import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.ViewGroup.LayoutParams;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -58,9 +61,10 @@ public class PageThumbnailAdapter extends BaseAdapter {
         }
 
         ImageView img = (ImageView) view.findViewById(R.id.image1);
-        IMG.updateImageSizeSmall(img);
-
-
+        LayoutParams lp = IMG.updateImageSizeSmall(img);
+        if (AppState.get().isDouble && Dips.isHorizontal()) {
+            lp.width = lp.width * 2;
+        }
 
         PageUrl pageUrl = getPageUrl(position);
         final String url = pageUrl.toString();

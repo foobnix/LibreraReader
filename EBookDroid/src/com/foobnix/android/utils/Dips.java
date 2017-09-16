@@ -95,4 +95,8 @@ public class Dips {
         return screenWidth() < Dips.dpToPx(450);
     }
 
+    public static boolean isHorizontal() {
+        return screenWidth() > screenHeight();
+    }
+
 }

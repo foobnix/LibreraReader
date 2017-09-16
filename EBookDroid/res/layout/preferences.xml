@@ -44,7 +44,6 @@
             android:background="@drawable/bg_search_second" >
 
             <TextView
-                
                 style="@style/textLinkWhite"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -53,14 +52,16 @@
 
             <TextView
                 android:id="@+id/onCloseApp"
+                style="@style/textLinkWhite"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_marginRight="5dip"
                 android:layout_weight="0"
+                android:ellipsize="end"
                 android:gravity="center"
-                style="@style/textLinkStyle"
-                android:textSize="@dimen/text_subtitle"
+                android:singleLine="true"
                 android:text="@string/close_application"
+                android:textSize="@dimen/text_subtitle"
                 android:visibility="visible" />
         </LinearLayout>
 
