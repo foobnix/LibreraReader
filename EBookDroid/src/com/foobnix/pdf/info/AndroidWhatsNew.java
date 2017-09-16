@@ -10,6 +10,7 @@ import com.foobnix.android.utils.Apps;
 import com.foobnix.android.utils.Https;
 import com.foobnix.android.utils.LOG;
 import com.foobnix.android.utils.TxtUtils;
+import com.foobnix.pdf.CopyAsyncTask;
 import com.foobnix.pdf.info.view.AlertDialogs;
 import com.foobnix.pdf.info.wrapper.AppState;
 
@@ -17,7 +18,6 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.DialogInterface.OnClickListener;
-import android.os.AsyncTask;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.TextView;
@@ -116,7 +116,7 @@ public class AndroidWhatsNew {
 
         final String url = "https://www.dropbox.com/s/gom54hvrhei3o85/version.txt?raw=1";
 
-        new AsyncTask() {
+        new CopyAsyncTask() {
             @Override
             protected Object doInBackground(Object... params) {
                 return Https.getUrlContents(url);
@@ -124,6 +124,9 @@ public class AndroidWhatsNew {
 
             @Override
             protected void onPostExecute(Object result) {
+                if (result == null || TxtUtils.isEmpty("" + result)) {
+                    return;
+                }
                 final String my = Apps.getVersionName(c);
                 if (my.equals(result)) {
                     return;
