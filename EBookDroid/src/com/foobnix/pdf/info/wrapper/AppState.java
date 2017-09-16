@@ -346,7 +346,7 @@ public class AppState {
     public volatile int fontSizeSp = 24;
     public volatile int statusBarTextSizeAdv = 14;
     public volatile int statusBarTextSizeEasy = 12;
-    public volatile int progressLineHeight = 5;
+    public volatile int progressLineHeight = 4;
 
     public String lastA;
     public String lastMode;

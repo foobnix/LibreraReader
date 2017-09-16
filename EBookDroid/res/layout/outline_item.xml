@@ -1,48 +1,42 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="fill_parent"
-    android:layout_height="52dip"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
     android:background="@android:drawable/list_selector_background"
-    android:orientation="horizontal" >
-
-    <LinearLayout
-        android:id="@+id/outline_space"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal" />
+    android:orientation="horizontal"
+    android:padding="2dip" >
 
     <ImageView
         android:id="@+id/outline_collapse"
         android:layout_width="@dimen/wh_button_small"
         android:layout_height="@dimen/wh_button_small"
-        android:layout_margin="5dip"
         android:layout_centerVertical="true"
-        android:layout_toRightOf="@id/outline_space"
-        android:src="@drawable/screen_zoom_out_dark"
-        android:tint="#FF0000"
-        android:padding="3dip"
+        android:layout_margin="5dip"
+        android:layout_weight="0"
         android:orientation="horizontal"
-         />
+        android:padding="3dip"
+        android:src="@drawable/screen_zoom_out_dark"
+        android:tint="#FF0000" />
 
     <TextView
         android:id="@+id/outline_title"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_toLeftOf="@+id/pageNumber"
-        android:layout_toRightOf="@id/outline_collapse"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
+        android:layout_marginLeft="4dip"
+        android:layout_weight="1"
         android:gravity="center_vertical"
-        android:text="text"
         android:maxLines="3"
-         />
+        android:text="text" />
 
     <TextView
         android:id="@+id/pageNumber"
         android:layout_width="30dip"
         android:layout_height="fill_parent"
-        android:layout_alignParentRight="true"
         android:layout_marginRight="2dip"
-        android:gravity="right|center_vertical"
+        android:layout_weight="0"
+        android:gravity="center_vertical"
         android:text="123"
         android:textSize="12sp" />
 
-</RelativeLayout>
+</LinearLayout>

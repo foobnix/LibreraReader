@@ -21,8 +21,6 @@ import android.widget.AdapterView.OnItemClickListener;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.ListView;
-import android.widget.RelativeLayout;
-import android.widget.RelativeLayout.LayoutParams;
 import android.widget.TextView;
 
 public class OutlineAdapter extends BaseAdapter {
@@ -153,7 +151,6 @@ public class OutlineAdapter extends BaseAdapter {
             num.setTypeface(BookCSS.getNormalTypeFace());
         }
         final ImageView btn = (ImageView) container.findViewById(R.id.outline_collapse);
-        final View space = container.findViewById(R.id.outline_space);
 
         final OutlineLinkWrapper item = getItem(position);
         view.setText(item.getTitleAsString().trim());
@@ -173,21 +170,7 @@ public class OutlineAdapter extends BaseAdapter {
         view.setTag(position);
         btn.setTag(position);
 
-        // container.setBackgroundColor(id == currentId ? this.selected :
-        // this.background);
-        // container.setBackgroundColor(id == currentId ? Color.argb(100, 0, 0,
-        // 0) : Color.argb(60, 0, 0, 0));
-
-        if (firstTime) {
-            final RelativeLayout.LayoutParams btnParams = (LayoutParams) btn.getLayoutParams();
-            spaceWidth = btnParams.width / 2;
-            container.setOnClickListener(voidListener);
-            view.setOnClickListener(itemListener);
-        }
-
-        final RelativeLayout.LayoutParams sl = (LayoutParams) space.getLayoutParams();
-        sl.width = Math.min(5, item.level) * spaceWidth;
-        space.setLayoutParams(sl);
+        view.setOnClickListener(itemListener);
 
         if (states[id] == OutlineItemState.LEAF) {
             btn.setOnClickListener(voidListener);

@@ -33,6 +33,8 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="8dip"
             android:layout_weight="1"
+            android:singleLine="true"
+            android:ellipsize="end"
             android:text="Lirbary"
             android:textAllCaps="true"
              />
