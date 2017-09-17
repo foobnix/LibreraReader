@@ -24,6 +24,13 @@ source/html/css-apply.c
 
 		return make_number(x, N_SCALE);
 		
+		
+//auto
+
+if (!strcmp(value->data, "auto"))
+			return make_number(0, N_LENGTH);		
+		
+		
 //noto.c
 //#define NOTO_SMALL
 

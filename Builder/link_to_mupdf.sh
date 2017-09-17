@@ -1,4 +1,5 @@
-MUPDF=/home/ivan-dev/dev/mupdf-android-viewer-mini/libmupdf/platform/java
+#MUPDF=/home/ivan-dev/dev/mupdf-android-viewer-mini/libmupdf/platform/java
+MUPDF=/home/ivan-dev/dev/mupdf-test/platform/java
 MY=/home/ivan-dev/git/LirbiReader
 
 rm -rf  $MUPDF/jni

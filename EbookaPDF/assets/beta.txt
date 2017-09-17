@@ -1,3 +1,6 @@
+*** 7.1.35 ***
+Fixed EPUB missing images
+Fixed PDF text selection
 Table of content icon can be marked as disabled 
 Custom user CSS styles
 Added image TIFF support
