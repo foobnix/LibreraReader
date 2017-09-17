@@ -76,6 +76,10 @@ public class HypenUtils {
                 String p1 = w.substring(0, find);
                 String p2 = w.substring(find + 1, w.length());
                 result = join(instance.hyphenate(p1), SHY) + "-" + join(instance.hyphenate(p2), SHY);
+                if (p2.contains("-")) {
+                    result = result.replace("-" + SHY, "-");
+                }
+
             } else {
                 result = join(instance.hyphenate(w), SHY);
             }

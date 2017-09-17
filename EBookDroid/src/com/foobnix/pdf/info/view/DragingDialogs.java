@@ -565,7 +565,6 @@ public class DragingDialogs {
                         adapter.notifyDataSetChanged();
 
                         Keyboards.close(searchEdit);
-
                         hMessage.removeCallbacksAndMessages(null);
                         controller.doSearch(searchString, new ResultResponse<Integer>() {
                             @Override

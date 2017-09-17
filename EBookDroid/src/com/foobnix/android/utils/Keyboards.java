@@ -33,6 +33,7 @@ public class Keyboards {
             if (!AppState.get().isFullScreen) {
                 return;
             }
+
             final View decorView = a.getWindow().getDecorView();
             decorView.postDelayed(new Runnable() {
 
