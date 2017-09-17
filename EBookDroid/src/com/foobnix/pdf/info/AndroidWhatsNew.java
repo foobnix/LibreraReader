@@ -24,6 +24,7 @@ import android.widget.TextView;
 
 public class AndroidWhatsNew {
 
+    private static final String BETA_TXT = "changelog.txt";
     private static final String BETA = "beta-";
 
     public static void show(final Context c) {
@@ -49,7 +50,7 @@ public class AndroidWhatsNew {
             @Override
             public void onClick(View v) {
                 try {
-                    notes.setText(steamToString(c.getResources().getAssets().open("beta.txt")));
+                    notes.setText(steamToString(c.getResources().getAssets().open(BETA_TXT)));
                 } catch (Exception e) {
                     LOG.e(e);
                 }
@@ -102,7 +103,7 @@ public class AndroidWhatsNew {
 
     public static String getWhatsNew(Context c, String langCode) throws IOException {
         if (AppsConfig.IS_BETA) {
-            return steamToString(c.getResources().getAssets().open("beta.txt"));
+            return steamToString(c.getResources().getAssets().open(BETA_TXT));
         }
         InputStream input = c.getResources().getAssets().open("whatsnew/" + langCode + ".txt");
         return steamToString(input);
@@ -127,6 +128,7 @@ public class AndroidWhatsNew {
                 if (result == null || TxtUtils.isEmpty("" + result)) {
                     return;
                 }
+
                 final String my = Apps.getVersionName(c);
                 if (my.equals(result)) {
                     return;

@@ -404,6 +404,7 @@ public class DocumentWrapperUI {
         } else {
             currentPageIndex.setText(String.format("%s/%s", current, max));
         }
+        currentPageIndex.setVisibility(max == 0 ? View.GONE : View.VISIBLE);
     }
 
     public void updateUI() {

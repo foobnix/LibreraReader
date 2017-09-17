@@ -1,7 +1,5 @@
 package com.foobnix.pdf.info;
 
-import com.foobnix.android.utils.Apps;
-
 import android.content.Context;
 import android.content.pm.PackageManager;
 import android.content.pm.PackageManager.NameNotFoundException;
@@ -73,7 +71,7 @@ public class AppsConfig {
             ADMOB_NATIVE_SMALL/**/ = "ca-app-pub-8347903083053959/8572902871";
         }
 
-        IS_BETA = Apps.getVersionName(a).contains("beta");
+        IS_BETA = APP_NAME.contains("Beta");
         if (IS_BETA) {
             ANALYTICS_ID = "UA-36581296-9";
             ADMOB_CLASSIC = ADMOB_FULLSCREEN = ADMOB_NATIVE_BIG = ADMOB_NATIVE_SMALL = null;

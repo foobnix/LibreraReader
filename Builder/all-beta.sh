@@ -3,28 +3,16 @@
 #PATH=/home/papa/dev/android-sdk-linux/platform-tools:$PATH
 
 ./inc-index.sh
-
+./link_lang.sh
 
 ant clean-apk
 
-ant x86 droid
-ant armeabi-v7a droid
+rm /home/ivan-dev/Dropbox/FREE_PDF_APK/testing/*.apk
 
-
-ant x86 pro
-ant armeabi-v7a pro
-
-ant x86 pdf
-ant armeabi-v7a pdf
-
-ant armeabi-v7a classic
-ant x86 classic
+ant armeabi-v7a pdf-beta
+ant x86 pdf-beta
 
 ant version
 
 ./remove_all.sh
 ./install_all.sh
-
-
-./link_lang.sh
-./zip-source.sh

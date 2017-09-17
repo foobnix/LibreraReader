@@ -29,6 +29,15 @@ public class Apps {
         return context.getPackageManager().getApplicationIcon(context.getApplicationInfo());
     }
 
+    public static String getApplicationName(Context context) {
+        try {
+            return (String) context.getPackageManager().getApplicationLabel(context.getApplicationInfo());
+        } catch (Exception e) {
+            LOG.e(e);
+        }
+        return "";
+    }
+
     public static String getVersionName(Context context) {
         try {
             PackageInfo pInfo = context.getPackageManager().getPackageInfo(context.getPackageName(), 0);

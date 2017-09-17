@@ -1,9 +1,10 @@
-*** 7.1.35 ***
+*** 7.1.xx ***
+Fixed word hyphenation with double hyphen
 Fixed EPUB missing images
 Fixed PDF text selection
-Table of content icon can be marked as disabled 
+Table of content icon marked grey if no content 
 Custom user CSS styles
 Added image TIFF support
-Show command state in the Toast (for example @cmd_long_tap_on_off "ON")
+Show command state in the toast
 Check for a new beta version at startup 
 Updated Hungarian translation

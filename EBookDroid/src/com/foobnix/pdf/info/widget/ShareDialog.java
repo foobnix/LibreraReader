@@ -108,7 +108,7 @@ public class ShareDialog {
         items.add(a.getString(R.string.send_file));
         items.add(a.getString(R.string.export_bookmarks));
         items.add(a.getString(R.string.delete));
-        items.add(a.getString(R.string.send_snapshot_of_the_page) + " (" + (Math.max(page, 0) + 1) + ")");
+        items.add(a.getString(R.string.send_snapshot_of_the_page) + " " + (Math.max(page, 0) + 1) + "");
         items.add(a.getString(R.string.file_info));
 
         final AlertDialog.Builder builder = new AlertDialog.Builder(a);

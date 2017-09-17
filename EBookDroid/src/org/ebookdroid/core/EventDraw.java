@@ -67,7 +67,7 @@ public class EventDraw implements IEvent {
     public ViewState process() {
         try {
 
-            if (AppState.get().isOLED && !AppState.get().isInvert) {
+            if (AppState.get().isOLED && MagicHelper.getBgColor() == Color.BLACK) {
                 viewState.paint.backgroundFillPaint.setColor(Color.BLACK);
             } else {
                 viewState.paint.backgroundFillPaint.setColor(MagicHelper.ligtherColor(MagicHelper.getBgColor()));

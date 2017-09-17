@@ -43,6 +43,9 @@
 
 		<replaceregexp file="../EbookaPDF/AndroidManifest.xml"
 			match='android:icon="@drawable/test"' replace='android:icon="${pdf.icon}"' />
+		
+		<replaceregexp file="../EBookDroid/res/values/config.xml"
+			match='Librera Beta' replace='Librera' />
 
 		<replaceregexp file="../EBookDroid/res/values/config.xml"
 			match='&lt;string name="app_name">${name.pro}&lt;/string>' replace='&lt;string name="app_name">${pdf.app.name}&lt;/string>' />
@@ -205,16 +208,40 @@
 
 	<!-- pdf -->
 	<target name="pdf">
-
-
-
-
 		<antcall target="clean-all" />
 
 		<property name="pdf.package" value="com.foobnix.pdf.reader" />
 		<property name="pdf.icon" value="@drawable/icon_pdf_reader" />
 		<property name="pdf.app.name" value="${name.pdf}" />
 		<property name="pdf.export.name" value="${name.pdf}" />
+
+		<antcall target="prepare-packages" />
+		<antcall target="free-replace" />
+
+		<!-- -->
+		<subant target="release">
+			<fileset dir="../EbookaPDF/" includes="build.xml" />
+		</subant>
+
+		<antcall target="copy" inheritAll="true" />
+		<copy file="../EbookaPDF/bin/EbookaPDF-release.apk"
+			tofile="${dropbox}/${pdf.export.name}-${version.code}.${version.code.index}-c${pdf.reader.code}-${pdf.app.platform}.apk"
+			overwrite="true" />
+
+		<copy file="../EbookaPDF/bin/EbookaPDF-release.apk"
+			tofile="${dropbox.root}/${version.code}.${version.code.index}/${pdf.export.name}-${version.code}.${version.code.index}-c${pdf.reader.code}-${pdf.app.platform}.apk"
+			overwrite="true" />
+		
+		<echo file="${dropbox}" append="false">${version.code}.${version.code.index}</echo>
+
+	</target>
+	<target name="pdf-beta">
+		<antcall target="clean-all" />
+
+		<property name="pdf.package" value="com.foobnix.pdf.reader" />
+		<property name="pdf.icon" value="@drawable/icon_pdf_reader" />
+		<property name="pdf.app.name" value="${name.pdf} Beta" />
+		<property name="pdf.export.name" value="${name.pdf} Beta" />
 
 		<antcall target="prepare-packages" />
 		<antcall target="free-replace" />

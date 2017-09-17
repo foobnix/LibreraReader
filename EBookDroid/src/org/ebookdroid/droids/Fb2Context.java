@@ -25,26 +25,6 @@ public class Fb2Context extends PdfContext {
         return cacheFile;
     }
 
-    public CodecDocument openDocumentInner1(final String fileName, String password) {
-        final MuPdfDocument muPdfDocument = new MuPdfDocument(this, MuPdfDocument.FORMAT_PDF, fileName, password);
-
-        Fb2Extractor.get().convertFB2(fileName, cacheFile.getPath());
-
-        final File jsonFile = new File(cacheFile + ".json");
-        new Thread() {
-            @Override
-            public void run() {
-                Map<String, String> notes = Fb2Extractor.get().getFooterNotes(cacheFile.getPath());
-                muPdfDocument.setFootNotes(notes);
-                JsonHelper.mapToFile(jsonFile, notes);
-                LOG.d("save notes to file", jsonFile);
-            };
-        }.start();
-
-        return muPdfDocument;
-
-    }
-
     MuPdfDocument muPdfDocument;
 
     @Override
