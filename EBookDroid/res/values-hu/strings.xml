@@ -390,4 +390,5 @@
    <string name="new_beta_version_available">Új bétaverzió áll rendelkezésre</string>
    <string name="custom_css">Egyéni CSS</string>
    <string name="detailed_changelog">Részletes változat</string>
+   <string name="show_book_covers">Könyvborítók megjelenítése</string>
 </resources>

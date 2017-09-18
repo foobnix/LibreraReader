@@ -390,4 +390,5 @@
    <string name="new_beta_version_available">Uusi beta-versio saatavilla</string>
    <string name="custom_css">Custom CSS</string>
    <string name="detailed_changelog">Yksityiskohtainen muutos</string>
+   <string name="show_book_covers">Näytä kirjan kannet</string>
 </resources>

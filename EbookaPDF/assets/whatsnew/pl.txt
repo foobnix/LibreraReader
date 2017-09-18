@@ -1,5 +1,5 @@
-* Ulepszone funkcje odczytu plików PDF i DJVU 
-* Ulepszony projektEasy mode 
-* Dwie strony na ekranie w trybieEasy 
-* Dzielenie strony na dwie części w trybieŁatwy 
-* Wiele drobnych poprawek dzięki Twojej opinii
+* Poprawa czytania plików PDF, DJVU, EPUB 
+* Ulepszony interfejs czytania 
+* Nowe sposoby czytania: dwie strony, okładka + dwie strony, pół strony, pojedyncza strona 
+* Wsparcie dla obrazów i książek TIFF 
+*

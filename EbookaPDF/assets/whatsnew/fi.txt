@@ -1,5 +1,5 @@
-* Parannettu PDF-lukeminen ja DJVU-katselu 
-* ParannettuEasy mode -ominaisuus 
-* Kaksi sivua näytöllä Easy-tilassa 
-* Sivun jakaminen kahteen osaan Easy-tilassa 
-* Paljon pieniä parannuksia palautteen avulla
+* Parannuksia PDF, DJVU, EPUB 
+* Parannettu lukukäyttöliittymä 
+* Uusia lukemamalleja: kaksi sivua, kansi + kaksi sivua, puoli sivua, yksi sivu 
+* TIFF-kuvien ja kirjojen tuki 
+* paljon parannuksia palautteen avulla

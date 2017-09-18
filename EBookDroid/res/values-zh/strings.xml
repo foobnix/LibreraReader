@@ -390,4 +390,5 @@
    <string name="new_beta_version_available">新的beta版本可用</string>
    <string name="custom_css">自定义CSS</string>
    <string name="detailed_changelog">详细的变更日志</string>
+   <string name="show_book_covers">显示书籍封面</string>
 </resources>

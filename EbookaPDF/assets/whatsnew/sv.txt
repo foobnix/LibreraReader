@@ -1,5 +1,5 @@
-* Förbättrad PDF-läsning och DJVU-visning 
-* Förbättrad design medEnkelt läge 
-* Två sidor på skärmen iLätt läge 
-* Splitting sidan i två delar iEasy mode 
-* Många små förbättringar genom din feedback
+* Förbättringar av läsning av PDF, DJVU, EPUB 
+* Förbättrat läsgränssnitt 
+* Nya lägen av läsning: Två sidor, Omslag + två sidor, halv sida, enkel sida 
+* Stöd för TIFF-bilder och böcker 
+* Många förbättringar genom din feedback

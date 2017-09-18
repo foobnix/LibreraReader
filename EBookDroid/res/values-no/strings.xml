@@ -390,4 +390,5 @@
    <string name="new_beta_version_available">Ny betaversjon tilgjengelig</string>
    <string name="custom_css">Tilpasset CSS</string>
    <string name="detailed_changelog">Detaljert Changelog</string>
+   <string name="show_book_covers">Vis bokomslag</string>
 </resources>

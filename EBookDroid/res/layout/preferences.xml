@@ -971,6 +971,12 @@
                 android:text="2"
                 android:textAllCaps="true" />
         </LinearLayout>
+        
+        <CheckBox
+            android:id="@+id/isShowImages"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/show_book_covers" />
 
         <CheckBox
             android:id="@+id/isBookCoverEffect"

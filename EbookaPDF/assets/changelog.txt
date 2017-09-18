@@ -1,4 +1,4 @@
-*** 7.1.xx ***
+Possibility to hide/show book covers
 Fixed word hyphenation with double hyphen
 Fixed EPUB missing images
 Fixed PDF text selection

@@ -390,4 +390,5 @@
    <string name="new_beta_version_available">Nieuwe beta versie beschikbaar</string>
    <string name="custom_css">Aangepaste CSS</string>
    <string name="detailed_changelog">Gedetailleerde Changelog</string>
+   <string name="show_book_covers">Toon boekomslag</string>
 </resources>

@@ -390,4 +390,5 @@
    <string name="new_beta_version_available">Nouvelle version bêta disponible</string>
    <string name="custom_css">CSS personnalisé</string>
    <string name="detailed_changelog">Changement de trajet détaillé</string>
+   <string name="show_book_covers">Afficher les couvertures de livres</string>
 </resources>

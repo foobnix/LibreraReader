@@ -390,4 +390,5 @@
    <string name="new_beta_version_available">نسخه بتا جدید موجود است</string>
    <string name="custom_css">CSS سفارشی</string>
    <string name="detailed_changelog">تغییرات جزئی</string>
+   <string name="show_book_covers">نمایش جلد کتاب</string>
 </resources>

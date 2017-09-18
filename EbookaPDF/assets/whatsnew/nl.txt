@@ -1,5 +1,5 @@
-* Verbeterde PDF-weergave en DJVU-weergave 
-* VerbeterdeEasy mode -design 
-* Twee pagina’s op het scherm inEasy mode 
-* De pagina splitsen in twee delen in deEasy mode 
-* Vele kleine verbeteringen door uw feedback
+* Verbeteringen in het lezen van PDF, DJVU, EPUB 
+* Verbeterde leesinterface 
+* Nieuwe leestoestellen: Twee pagina’s, Cover + twee pagina’s, halfpagina, enkele pagina 
+* Ondersteuning voor TIFF-afbeeldingen en boeken 
+* Veel verbeteringen door uw feedback

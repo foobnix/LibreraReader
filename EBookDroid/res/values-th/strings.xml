@@ -390,4 +390,5 @@
    <string name="new_beta_version_available">มีเวอร์ชันเบต้าใหม่แล้ว</string>
    <string name="custom_css">Custom CSS</string>
    <string name="detailed_changelog">Changelog รายละเอียด</string>
+   <string name="show_book_covers">แสดงปกหนังสือ</string>
 </resources>

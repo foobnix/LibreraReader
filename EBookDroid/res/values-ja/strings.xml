@@ -390,4 +390,5 @@
    <string name="new_beta_version_available">利用可能な新しいベータ版</string>
    <string name="custom_css">カスタムCSS</string>
    <string name="detailed_changelog">詳細な変更履歴</string>
+   <string name="show_book_covers">ブックカバーを表示する</string>
 </resources>

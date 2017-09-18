@@ -60,7 +60,6 @@ public class SearchFragment2 extends UIFragment<FileMeta> {
     private static final String CMD_KEYCODE = "@cmd_keycode_config";
     private static final String CMD_LONG_TAP_ON_OFF = "@cmd_long_tap_on_off";
     private static final String CMD_FULLSCREEN_ON_OFF = "@cmd_fullscreen_on_off";
-    private static final String CMD_IMAGES_ON_OFF = "@cmd_covers_on_off";
 
     public static int NONE = -1;
 
@@ -103,7 +102,6 @@ public class SearchFragment2 extends UIFragment<FileMeta> {
         autocomplitions.add(CMD_FULLSCREEN_ON_OFF);
         autocomplitions.add(CMD_LONG_TAP_ON_OFF);
         autocomplitions.add(CMD_KEYCODE);
-        autocomplitions.add(CMD_IMAGES_ON_OFF);
 
         updateFilterListAdapter();
     }
@@ -379,12 +377,6 @@ public class SearchFragment2 extends UIFragment<FileMeta> {
             searchEditText.setText("");
         }
 
-        if (CMD_IMAGES_ON_OFF.equals(txt)) {
-            AppState.get().isShowImages = !AppState.get().isShowImages;
-            toastState(CMD_IMAGES_ON_OFF, AppState.get().isShowImages);
-            searchEditText.setText("");
-            onGridList();
-        }
 
         if (TxtUtils.isEmpty(txt)) {
             cleanFilter.setVisibility(View.GONE);

@@ -1,5 +1,5 @@
-* Vylepšené čítanie PDF a prezeranie DJVU 
-* Vylepšený dizajnJednoduchý režim 
-* Dve strany na obrazovke v režimeJednoduché 
-* Rozdelenie stránky na dve časti v režimeJednoduchý režim 
-* Veľa malých vylepšení vašou spätnou väzbou
+* Zlepšenie čítania PDF, DJVU, EPUB 
+* Vylepšené rozhranie pre čítanie 
+* Nové spôsoby čítania: Dve strany, Obálka + dve strany, pol strany, jedna strana 
+* Podpora obrázkov TIFF a kníh 
+*

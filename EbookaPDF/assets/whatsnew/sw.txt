@@ -1,5 +1,5 @@
-* Kuboresha Kusoma PDF na DJVU Kuangalia 
-* KuboreshaEasy mode kubuni 
-* Kurasa mbili kwenye skrini katikaRahisi mode 
-* Kupiga ukurasa katika sehemu mbili katikaRahisi mode 
-* Maboresho mengi ndogo na maoni yako
+* Uboreshwaji wa kusoma PDF, DJVU, EPUB 
+* Kuboresha interface ya kusoma 
+* Njia mpya za kusoma: Kurasa mbili, Funika + kurasa mbili, ukurasa nusu, ukurasa mmoja 
+* Usaidizi wa picha za TIFF na vitabu 
+* Maboresho mengi kwa maoni yako

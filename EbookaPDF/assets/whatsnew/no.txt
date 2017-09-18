@@ -1,5 +1,5 @@
-* Forbedret PDF-lesing og DJVU visning 
-* ForbedretEnkel modus design 
-* To sider på skjermen iEnkel modus 
-* Splitting siden i to deler iEnkel modus 
-* Mange små forbedringer ved tilbakemelding
+* Forbedringer i lesing av PDF, DJVU, EPUB 
+* Forbedret lesegrensesnitt 
+* Nye måter å lese på: To sider, Cover + to sider, halv side, enkelt side 
+* Støtte for TIFF-bilder og bøker 
+* Mange forbedringer ved tilbakemelding

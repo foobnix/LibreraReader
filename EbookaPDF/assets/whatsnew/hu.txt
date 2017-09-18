@@ -1,5 +1,5 @@
-* Továbbfejlesztett PDF olvasás és DJVU megtekintés 
-* TovábbfejlesztettEasy mode design 
-* Két oldal a képernyőnEasy módban 
-* Az oldal két részre osztása azEasy módban 
-* Sok kis javulás visszajelzésével
+* Fejlesztések PDF, DJVU, EPUB 
+* Jobb olvasási felület 
+* Új olvasási módok: Két oldal, Cover + két oldal, fél oldal, egyoldalas 
+* TIFF képek és könyvek támogatása 
+*

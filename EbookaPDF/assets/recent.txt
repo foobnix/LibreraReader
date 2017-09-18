@@ -1,5 +1,5 @@
-* Improved PDF Reading and DJVU viewing
-* Improved "Easy mode" design
-* Two pages on the screen in "Easy mode"
-* Splitting the page into two parts in the "Easy mode"
-* Many small improvements by your feedback
+* Improvements in reading PDF, DJVU, EPUB 
+* Improved reading interface
+* New modes of reading: Two pages, Cover + two pages, half page, single page 
+* Support for TIFF images and books
+* Many improvements by your feedback

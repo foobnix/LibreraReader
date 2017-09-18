@@ -390,4 +390,5 @@
    <string name="new_beta_version_available">גרסת ביתא חדשה זמינה</string>
    <string name="custom_css">CSS מותאם אישית</string>
    <string name="detailed_changelog">Changelog מפורט</string>
+   <string name="show_book_covers">הצג כריכות ספרים</string>
 </resources>

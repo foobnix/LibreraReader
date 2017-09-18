@@ -522,6 +522,8 @@ public class PrefFragment2 extends UIFragment {
 
         checkOpenWithSpinner();
 
+
+
         final CheckBox isCropBookCovers = (CheckBox) inflate.findViewById(R.id.isCropBookCovers);
         isCropBookCovers.setOnCheckedChangeListener(null);
         isCropBookCovers.setChecked(AppState.getInstance().isCropBookCovers);
@@ -535,7 +537,7 @@ public class PrefFragment2 extends UIFragment {
             }
         });
 
-        CheckBox isBookCoverEffect = (CheckBox) inflate.findViewById(R.id.isBookCoverEffect);
+        final CheckBox isBookCoverEffect = (CheckBox) inflate.findViewById(R.id.isBookCoverEffect);
         isBookCoverEffect.setOnCheckedChangeListener(null);
         isBookCoverEffect.setChecked(AppState.getInstance().isBookCoverEffect);
         isBookCoverEffect.setOnCheckedChangeListener(new OnCheckedChangeListener() {
@@ -567,6 +569,25 @@ public class PrefFragment2 extends UIFragment {
 
             }
         });
+
+        final CheckBox isShowImages = (CheckBox) inflate.findViewById(R.id.isShowImages);
+        isShowImages.setOnCheckedChangeListener(null);
+        isShowImages.setChecked(AppState.getInstance().isShowImages);
+        isShowImages.setOnCheckedChangeListener(new OnCheckedChangeListener() {
+
+            @Override
+            public void onCheckedChanged(final CompoundButton buttonView, final boolean isChecked) {
+                AppState.getInstance().isShowImages = isChecked;
+                TempHolder.listHash++;
+                isCropBookCovers.setEnabled(AppState.getInstance().isShowImages);
+                isBookCoverEffect.setEnabled(AppState.getInstance().isShowImages);
+                isBorderAndShadow.setEnabled(AppState.getInstance().isShowImages);
+
+            }
+        });
+        isCropBookCovers.setEnabled(AppState.getInstance().isShowImages);
+        isBookCoverEffect.setEnabled(AppState.getInstance().isShowImages);
+        isBorderAndShadow.setEnabled(AppState.getInstance().isShowImages);
 
         CheckBox isLoopAutoplay = (CheckBox) inflate.findViewById(R.id.isLoopAutoplay);
         isLoopAutoplay.setChecked(AppState.getInstance().isLoopAutoplay);
@@ -1133,7 +1154,7 @@ public class PrefFragment2 extends UIFragment {
         tutorialLayout.setVisibility(containsKey ? View.VISIBLE : View.GONE);
         section5.setVisibility(containsKey ? View.VISIBLE : View.GONE);
 
-        final String web = "http://" + displayLanguage + ".lirbi.com";
+        final String web = "http://" + displayLanguage + ".librera.mobi";
         tutorialLink.setText(web);
 
         tutorialLink.setOnClickListener(new OnClickListener() {

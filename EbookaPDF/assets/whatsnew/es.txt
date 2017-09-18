@@ -1,5 +1,5 @@
-* Mejora de lectura de PDF y visualización de DJVU 
-* Mejora el diseño demodo fácil 
-* Dos páginas en la pantalla enModo fácil 
-* División de la página en dos partes en elmodo fácil 
-* Muchas pequeñas mejoras por sus comentarios
+* Mejoras en la lectura de PDF, DJVU, EPUB 
+* Mejora de la interfaz de lectura 
+* Nuevos modos de lectura: Dos páginas, Cover + dos páginas, media página, una sola página 
+* Soporte para imágenes TIFF y libros 
+*

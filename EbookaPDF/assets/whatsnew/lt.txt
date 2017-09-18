@@ -1,5 +1,5 @@
-* Patobulintas PDF skaitymas ir DJVU peržiūra 
-* PatobulintasEasy mode dizainas 
-* Du puslapiai ekraneEasy mode 
-* Puslapio suskaidymas į dvi dalisEasy mode 
-* Daugybė mažų patobulinimų jūsų atsiliepimai
+* PDF, DJVU, EPUB skaitymo patobulinimai 
+* Patobulinta skaitymo sąsaja 
+* Nauji skaitymo būdai: du puslapiai, Cover + du puslapiai, pusė puslapio, vieno puslapio 
+* TIFF atvaizdų ir knygų palaikymas 
+* Daugybė patobulinimų jūsų atsiliepimų

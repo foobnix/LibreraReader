@@ -532,7 +532,6 @@ public class ExtUtils {
             }
         });
         CheckBox checkBox = (CheckBox) view.findViewById(R.id.checkBoxRemember);
-        checkBox.setVisibility(View.GONE);
         checkBox.setOnCheckedChangeListener(new OnCheckedChangeListener() {
 
             @Override

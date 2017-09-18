@@ -219,6 +219,10 @@ public class FileMetaAdapter extends AppRecycleAdapter<FileMeta, RecyclerView.Vi
 
             final FileMetaViewHolder holder = (FileMetaViewHolder) holderAll;
 
+            if (!AppState.get().isShowImages && adapterType == ADAPTER_COVERS) {
+                adapterType = ADAPTER_GRID;
+            }
+
             bindFileMetaView(holder, position);
 
             IMG.getCoverPageWithEffectPos(holder.image, fileMeta.getPath(), IMG.getImageSize(), position, new SimpleImageLoadingListener() {
@@ -251,8 +255,6 @@ public class FileMetaAdapter extends AppRecycleAdapter<FileMeta, RecyclerView.Vi
             final DirectoryViewHolder holder = (DirectoryViewHolder) holderAll;
             holder.title.setText(fileMeta.getPathTxt());
             holder.path.setText(fileMeta.getPath());
-
-
 
             TintUtil.setTintImage(holder.image);
             bindItemClickAndLongClickListeners(holder.parent, fileMeta);

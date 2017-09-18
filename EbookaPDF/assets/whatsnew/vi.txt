@@ -1,3 +1,5 @@
-* Cải thiện khả năng đọc PDF và DJVU 
-* Cải thiện thiết kếChế độ Dễ dàng 
-* Hai trang trên màn hình ở chế độDễ dàng Chia tách trang thành hai phần trong chế độ Dễ dàng Nhiều cải tiến nhỏ theo phản hồi của bạn
+* Cải thiện đọc PDF, DJVU, EPUB 
+* Cải thiện giao diện đọc 
+* Các chế độ đọc mới: Hai trang, Trang bìa + hai trang, nửa trang, trang đơn 
+* Hỗ trợ hình ảnh và sách TIFF 
+* Nhiều cải tiến theo phản hồi của bạn

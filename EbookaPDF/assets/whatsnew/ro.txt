@@ -1,5 +1,5 @@
-* Îmbunătățirea citirii PDF și vizualizarea DJVU 
-* Îmbunătățirea moduluiEasy design 
-* Două pagini pe ecran înEasy mode 
-* Împărțirea paginii în două părți înEasy mode 
-* Multe îmbunătățiri mici de feedback-ul dvs.
+* Îmbunătățiri în lectură PDF, DJVU, EPUB 
+* Interfață îmbunătățită de citire 
+* Moduri noi de citire: Două pagini, Copertă + două pagini, jumătate pagină, o singură pagină 
+* Suport pentru imagini și cărți TIFF 
+* Multe îmbunătățiri prin feedback

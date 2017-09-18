@@ -1,5 +1,4 @@
-* Geliştirilmiş PDF Okuma ve DJVU görüntüleme 
-* GeliştirilmişKolay mod tasarımı 
-*Kolay mod da ekranda iki sayfa 
-* SayfayıKolay mod da iki parçaya bölme 
-* Geri bildirimlerinizle birçok küçük iyileştirme
+PDF, DJVU, EPUB okuma Geliştirme 
+* Geliştirilmiş okuma arayüzü 
+* Okuma yeni modları: İki sayfa, Kapak + iki sayfa, yarım sayfa, tek sayfa 
+* TIFF görüntüleri ve kitaplar için destek Geribildiriminiz sayesinde birçok iyileştirme

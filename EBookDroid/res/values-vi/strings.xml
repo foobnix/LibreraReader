@@ -390,4 +390,5 @@
    <string name="new_beta_version_available">Phiên bản beta mới có sẵn</string>
    <string name="custom_css">CSS tùy chỉnh</string>
    <string name="detailed_changelog">Changelog chi tiết</string>
+   <string name="show_book_covers">Hiển thị bìa sách</string>
 </resources>

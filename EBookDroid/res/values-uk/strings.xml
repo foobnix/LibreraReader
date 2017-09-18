@@ -390,4 +390,5 @@
    <string name="new_beta_version_available">Доступна нова бета-версія</string>
    <string name="custom_css">Користувацький CSS</string>
    <string name="detailed_changelog">Детальний журнал змін</string>
+   <string name="show_book_covers">Показати обкладинки для книг</string>
 </resources>

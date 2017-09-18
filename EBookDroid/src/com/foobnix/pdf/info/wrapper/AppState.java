@@ -14,6 +14,7 @@ import com.foobnix.android.utils.LOG;
 import com.foobnix.android.utils.MemoryUtils;
 import com.foobnix.pdf.info.AppsConfig;
 import com.foobnix.pdf.info.ExportSettingsManager;
+import com.foobnix.pdf.info.R;
 import com.foobnix.pdf.info.Urls;
 import com.foobnix.pdf.info.model.BookCSS;
 import com.foobnix.pdf.info.view.DragingPopup;
@@ -462,6 +463,7 @@ public class AppState {
 
     public void defaults(Context c) {
         isScrollAnimation = !Dips.isEInk(c);
+        musicText = c.getString(R.string.musician);
     }
 
     public void load(final Context a) {
