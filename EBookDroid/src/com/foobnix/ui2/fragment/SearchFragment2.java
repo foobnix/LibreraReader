@@ -57,9 +57,9 @@ import android.widget.Toast;
 public class SearchFragment2 extends UIFragment<FileMeta> {
 
     public static final Pair<Integer, Integer> PAIR = new Pair<Integer, Integer>(R.string.library, R.drawable.glyphicons_2_book_open);
-    private static final String CMD_KEYCODE = "@cmd_keycode_config";
-    private static final String CMD_LONG_TAP_ON_OFF = "@cmd_long_tap_on_off";
-    private static final String CMD_FULLSCREEN_ON_OFF = "@cmd_fullscreen_on_off";
+    private static final String CMD_KEYCODE = "@_keycode_config";
+    private static final String CMD_LONG_TAP_ON_OFF = "@_long_tap_on_off";
+    private static final String CMD_FULLSCREEN_ON_OFF = "@_fullscreen_on_off";
 
     public static int NONE = -1;
 
@@ -340,7 +340,34 @@ public class SearchFragment2 extends UIFragment<FileMeta> {
     public List<FileMeta> prepareDataInBackground() {
         String txt = searchEditText.getText().toString().trim();
         if (Arrays.asList(AppState.MODE_GRID, AppState.MODE_COVERS, AppState.MODE_LIST, AppState.MODE_LIST_COMPACT).contains(AppState.get().libraryMode)) {
-            return AppDB.get().searchBy(txt, SORT_BY.getByID(AppState.get().sortBy), AppState.getInstance().isSortAsc);
+
+            List<FileMeta> searchBy = AppDB.get().searchBy(txt, SORT_BY.getByID(AppState.get().sortBy), AppState.getInstance().isSortAsc);
+
+            List<String> result = new ArrayList<String>();
+            if (txt.startsWith(SEARCH_IN.GENRE.getDotPrefix())) {
+                boolean hasEmpySeries = false;
+                for (FileMeta it : searchBy) {
+                    String sequence = it.getSequence();
+                    TxtUtils.addFilteredGenreSeries(sequence, result);
+                    if (!hasEmpySeries && TxtUtils.isEmpty(sequence)) {
+                        hasEmpySeries = true;
+                    }
+                }
+                Collections.reverse(result);
+                for (String it : result) {
+                    FileMeta fm = new FileMeta(FileMetaAdapter.DISPALY_TYPE_SERIES);
+                    fm.setSequence(it);
+                    searchBy.add(0, fm);
+                }
+                if (hasEmpySeries) {
+                    FileMeta fm = new FileMeta(FileMetaAdapter.DISPALY_TYPE_SERIES);
+                    String withoutSeries = getActivity().getString(R.string.without_series);
+                    fm.setSequence(txt + ":" + withoutSeries);
+                    searchBy.add(result.size(), fm);
+                }
+            }
+
+            return searchBy;
         } else {
             return null;
         }
@@ -376,7 +403,6 @@ public class SearchFragment2 extends UIFragment<FileMeta> {
             toastState(CMD_LONG_TAP_ON_OFF, AppState.get().longTapEnable);
             searchEditText.setText("");
         }
-
 
         if (TxtUtils.isEmpty(txt)) {
             cleanFilter.setVisibility(View.GONE);

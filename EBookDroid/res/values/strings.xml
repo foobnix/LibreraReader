@@ -391,4 +391,5 @@
    <string name="custom_css">Custom CSS</string>
    <string name="detailed_changelog">Detailed Changelog</string>
    <string name="show_book_covers">Show book covers</string>
+   <string name="without_series">Without series</string>
 </resources>

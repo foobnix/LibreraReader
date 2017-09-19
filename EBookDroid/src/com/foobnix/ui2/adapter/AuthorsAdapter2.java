@@ -31,6 +31,24 @@ public class AuthorsAdapter2 extends AppRecycleAdapter<String, AuthorViewHolder>
             text = (TextView) view.findViewById(R.id.text1);
             parent = view;
         }
+
+        public void onBindViewHolder(final AuthorViewHolder holder, String string) {
+            holder.text.setText(string);
+            holder.letter.setText(TxtUtils.getFirstLetter(string));
+
+            if (holder.letter.getTag() == null) {
+                holder.letter.setTag(TintUtil.randomColor(string.hashCode()));
+            }
+
+            GradientDrawable background = (GradientDrawable) holder.letter.getBackground();
+            background.setColor((Integer) holder.letter.getTag());
+
+            bindItemClickAndLongClickListeners(holder.parent, string);
+            if (!AppState.get().isBorderAndShadow) {
+                holder.parent.setBackgroundColor(Color.TRANSPARENT);
+            }
+        }
+
     }
 
     @Override
@@ -42,21 +60,7 @@ public class AuthorsAdapter2 extends AppRecycleAdapter<String, AuthorViewHolder>
     @Override
     public void onBindViewHolder(final AuthorViewHolder holder, final int position) {
         final String string = getItem(position);
-        holder.text.setText(string);
-        holder.letter.setText(TxtUtils.getFirstLetter(string));
-
-        if (holder.letter.getTag() == null) {
-            holder.letter.setTag(TintUtil.randomColor(string.hashCode()));
-        }
-
-        GradientDrawable background = (GradientDrawable) holder.letter.getBackground();
-        background.setColor((Integer) holder.letter.getTag());
-
-        bindItemClickAndLongClickListeners(holder.parent, string);
-        if (!AppState.get().isBorderAndShadow) {
-            holder.parent.setBackgroundColor(Color.TRANSPARENT);
-        }
-
+        holder.onBindViewHolder(holder, string);
     }
 
     @Override

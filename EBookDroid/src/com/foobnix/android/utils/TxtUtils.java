@@ -10,6 +10,7 @@ import java.util.regex.Pattern;
 import com.foobnix.dao2.FileMeta;
 import com.foobnix.pdf.info.ExtUtils;
 import com.foobnix.pdf.info.wrapper.AppState;
+import com.foobnix.ui2.TagMeta;
 
 import android.annotation.TargetApi;
 import android.os.Build;
@@ -19,6 +20,28 @@ import android.text.Spanned;
 import android.widget.TextView;
 
 public class TxtUtils {
+
+    public static void addFilteredGenreSeries(String item, List<String> result) {
+        if (item.contains(",") || item.contains(";") || item.contains(".")) {
+            String[] split = item.split("[.,;]");
+            for (String txt : split) {
+                if (TxtUtils.isNotEmpty(txt)) {
+                    txt = txt.trim();
+                    if (!result.contains(txt)) {
+                        result.add(txt);
+                    }
+                }
+            }
+        } else {
+            String trim = item.trim();
+            if (TxtUtils.isNotEmpty(trim)) {
+                if (!result.contains(trim)) {
+                    result.add(trim);
+                }
+            }
+        }
+
+    }
 
     static List<String> partsDivs = Arrays.asList(".", "!", ";", "?", ":");
 

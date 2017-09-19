@@ -23,8 +23,7 @@
             android:orientation="horizontal" >
 
             <FrameLayout
-                             android:id="@+id/imageParent"
-                
+                android:id="@+id/imageParent"
                 android:layout_width="100dip"
                 android:layout_height="150dip"
                 android:layout_gravity="center"
@@ -96,18 +95,6 @@
                         android:text=""
                         android:textSize="@dimen/text_subtitle"
                         android:visibility="visible" />
-
-                    <ImageView
-                        android:id="@+id/delete"
-                        android:layout_width="@dimen/wh_button_small"
-                        android:layout_height="@dimen/wh_button_small"
-                        android:layout_alignParentTop="true"
-                        android:layout_weight="0"
-                        android:background="?android:attr/selectableItemBackground"
-                        android:padding="6dip"
-                        android:src="@drawable/glyphicons_208_remove_2"
-                        android:tint="@color/lt_grey_dima1"
-                        android:visibility="visible" />
                 </LinearLayout>
 
                 <TextView
@@ -140,7 +127,7 @@
 
                 <LinearLayout
                     android:id="@+id/infoLayout"
-                    android:layout_width="fill_parent"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="0"
                     android:gravity="center_vertical"
@@ -194,13 +181,26 @@
                         android:textSize="@dimen/text_subtitle" />
 
                     <ImageView
+                        android:id="@+id/delete"
+                        android:layout_width="@dimen/wh_button_small"
+                        android:layout_height="@dimen/wh_button_small"
+                        android:layout_alignParentTop="true"
+                        android:layout_marginBottom="-1dip"
+                        android:layout_weight="0"
+                        android:background="?android:attr/selectableItemBackground"
+                        android:padding="6dip"
+                        android:src="@drawable/glyphicons_208_remove_2"
+                        android:tint="@color/lt_grey_dima1"
+                        android:visibility="visible" />
+
+                    <ImageView
                         android:id="@+id/itemMenu"
                         android:layout_width="@dimen/wh_button_small"
                         android:layout_height="@dimen/wh_button_small"
+                        android:layout_marginBottom="-1dip"
                         android:layout_weight="0"
                         android:background="?android:attr/selectableItemBackground"
                         android:padding="5dip"
-                         android:layout_marginBottom="-3dip"
                         android:singleLine="true"
                         android:src="@drawable/glyphicons_518_option_vertical"
                         android:tint="@color/tint_gray"

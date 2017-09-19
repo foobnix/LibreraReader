@@ -242,6 +242,9 @@ public abstract class UIFragment<T> extends Fragment {
                     if (type == FileMetaAdapter.DISPALY_TYPE_LAYOUT_TITLE_FOLDERS) {
                         return num;
                     }
+                    if (type == FileMetaAdapter.DISPALY_TYPE_SERIES) {
+                        return num;
+                    }
                     return (type == FileMetaAdapter.DISPALY_TYPE_LAYOUT_TITLE_BOOKS) ? num : 1;
                 }
             });

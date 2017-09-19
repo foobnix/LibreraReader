@@ -157,7 +157,7 @@ public class OutlineAdapter extends BaseAdapter {
             num.setVisibility(View.INVISIBLE);
         }
         if (currentId == id) {
-            container.setBackgroundResource(R.color.tint_blue);
+            container.setBackgroundResource(R.color.tint_blue_alpha);
         } else {
             container.setBackgroundColor(Color.TRANSPARENT);
         }

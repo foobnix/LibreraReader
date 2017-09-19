@@ -308,22 +308,7 @@ public class AppDB {
                     if (item == null || TxtUtils.isEmpty(item)) {
                         continue;
                     }
-                    if (item.contains(",") || item.contains(";")) {
-                        String[] split = item.split("[,;]");
-                        for (String txt : split) {
-                            if (TxtUtils.isNotEmpty(txt)) {
-                                txt = txt.trim();
-                                if (!result.contains(txt)) {
-                                    result.add(txt);
-                                }
-                            }
-                        }
-                    } else {
-                        String trim = item.trim();
-                        if (!result.contains(trim)) {
-                            result.add(trim);
-                        }
-                    }
+                    TxtUtils.addFilteredGenreSeries(item, result);
                 } while (c.moveToNext());
             }
         } finally {

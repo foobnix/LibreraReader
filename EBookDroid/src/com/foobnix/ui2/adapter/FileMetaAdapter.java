@@ -15,6 +15,7 @@ import com.foobnix.pdf.info.wrapper.AppState;
 import com.foobnix.pdf.info.wrapper.PopupHelper;
 import com.foobnix.ui2.AppDB;
 import com.foobnix.ui2.AppRecycleAdapter;
+import com.foobnix.ui2.adapter.AuthorsAdapter2.AuthorViewHolder;
 import com.foobnix.ui2.fast.FastScroller;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.listener.SimpleImageLoadingListener;
@@ -42,6 +43,8 @@ public class FileMetaAdapter extends AppRecycleAdapter<FileMeta, RecyclerView.Vi
 
     public static final int DISPALY_TYPE_LAYOUT_TITLE_FOLDERS = 5;
     public static final int DISPALY_TYPE_LAYOUT_TITLE_BOOKS = 6;
+
+    public static final int DISPALY_TYPE_SERIES = 7;
 
     public static final int ADAPTER_LIST = 0;
     public static final int ADAPTER_GRID = 1;
@@ -135,6 +138,10 @@ public class FileMetaAdapter extends AppRecycleAdapter<FileMeta, RecyclerView.Vi
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View itemView;
 
+        if (viewType == DISPALY_TYPE_SERIES) {
+            return new AuthorsAdapter2().onCreateViewHolder(parent, viewType);
+        }
+
         if (viewType == DISPALY_TYPE_LAYOUT_STARS) {
             itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.layout_stars, parent, false);
             return new StarsLayoutViewHolder(itemView);
@@ -148,6 +155,11 @@ public class FileMetaAdapter extends AppRecycleAdapter<FileMeta, RecyclerView.Vi
         if (viewType == DISPALY_TYPE_LAYOUT_TITLE_BOOKS) {
             itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.fragment_starred_title_books, parent, false);
             return new StarsTitleViewHolder(itemView);
+        }
+
+        if (viewType == DISPLAY_TYPE_DIRECTORY) {
+            itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.browse_dir, parent, false);
+            return new DirectoryViewHolder(itemView);
         }
 
         if (viewType == DISPLAY_TYPE_DIRECTORY) {
@@ -316,6 +328,19 @@ public class FileMetaAdapter extends AppRecycleAdapter<FileMeta, RecyclerView.Vi
 
             holder.starredName.setText(holder.starredName.getContext().getString(R.string.starred) + " (" + allStars.size() + ")");
             holder.recentName.setText(holder.starredName.getContext().getString(R.string.recent) + " (" + (getItemCount() - 1) + ")");
+
+        } else if (holderAll instanceof AuthorViewHolder) {
+            AuthorViewHolder aHolder = (AuthorViewHolder) holderAll;
+            aHolder.onBindViewHolder(aHolder, fileMeta.getSequence());
+            aHolder.parent.setOnClickListener(new OnClickListener() {
+
+                @Override
+                public void onClick(View v) {
+                    if (onSeriesClickListener != null) {
+                        onSeriesClickListener.onResultRecive(fileMeta.getSequence());
+                    }
+                }
+            });
         }
 
     }
@@ -466,9 +491,11 @@ public class FileMetaAdapter extends AppRecycleAdapter<FileMeta, RecyclerView.Vi
                 holder.title.setSingleLine(false);
                 holder.title.setLines(2);
                 holder.path.setVisibility(View.VISIBLE);
+                holder.title.setTextSize(16);
             } else {
                 holder.title.setSingleLine(false);
                 holder.title.setLines(2);
+                holder.title.setTextSize(14);
                 holder.authorParent.setVisibility(View.GONE);
                 holder.path.setVisibility(View.GONE);
                 holder.infoLayout.setVisibility(View.VISIBLE);
