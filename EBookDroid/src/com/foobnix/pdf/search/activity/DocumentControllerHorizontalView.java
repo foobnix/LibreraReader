@@ -74,8 +74,6 @@ public abstract class DocumentControllerHorizontalView extends DocumentControlle
             AppState.get().isCrop = false;
             AppState.get().isCut = false;
             AppState.get().isLocked = true;
-        } else {
-            AppState.get().isLocked = false;
         }
     }
 
@@ -156,6 +154,7 @@ public abstract class DocumentControllerHorizontalView extends DocumentControlle
             AppState.get().isCrop = bs.cropPages;
             AppState.get().isDouble = bs.doublePages;
             AppState.get().isDoubleCoverAlone = bs.doublePagesCover;
+            AppState.get().isLocked = bs.isLocked;
         }
 
         if (AppState.get().isDouble) {
@@ -219,6 +218,12 @@ public abstract class DocumentControllerHorizontalView extends DocumentControlle
         int pages = pagesCount;
         LOG.d("_PAGE", "saveCurrentPage", page, pages);
         generadDocInterface.setCurrentPage(getBookPath(), page, pages);
+
+        BookSettings bs = SettingsManager.getBookSettings();
+        if (bs != null) {
+            bs.updateFromAppState();
+        }
+        SettingsManager.storeBookSettings();
 
     }
 

@@ -390,5 +390,5 @@
    <string name="new_beta_version_available">Доступна новая бета-версия</string>
    <string name="custom_css">Пользовательские CSS</string>
    <string name="detailed_changelog">Подробный список изменений</string>
-   <string name="show_book_covers">Показать обложки книг</string>
+   <string name="show_book_covers">Показывать обложки книг</string>
 </resources>

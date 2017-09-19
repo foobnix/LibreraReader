@@ -255,12 +255,10 @@ public class ViewerActivityController extends ActionController<ViewerActivity> i
     }
 
     public void afterPause() {
-        BookSettings bs = SettingsManager.getBookSettings();
-        if (bs != null) {
-            // bs.isNextScreen = AppState.getInstance().isNextScreen();
-            // bs.isLocked = AppState.getInstance().isLocked;
+        BookSettings bookSettings = SettingsManager.getBookSettings();
+        if (bookSettings != null) {
+            bookSettings.updateFromAppState();
         }
-
         SettingsManager.storeBookSettings();
     }
 
@@ -380,8 +378,6 @@ public class ViewerActivityController extends ActionController<ViewerActivity> i
                 AppState.get().isLocked = true;
             } else if (AppState.get().isLockPDF) {
                 AppState.get().isLocked = true;
-            } else {
-                AppState.get().isLocked = false;
             }
         } catch (Exception e) {
             LOG.e(e);

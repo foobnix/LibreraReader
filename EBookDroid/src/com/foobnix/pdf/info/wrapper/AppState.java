@@ -530,7 +530,6 @@ public class AppState {
         sortByReverse = sp.getBoolean("sortByReverse", sortByReverse);
         isBrighrnessEnable = sp.getBoolean("isBrighrnessEnable", isBrighrnessEnable);
         isRewindEnable = sp.getBoolean("isRewindEnable", isRewindEnable);
-        isLocked = sp.getBoolean("isLocked", isLocked);
         isReverseKeys = sp.getBoolean("isReverseKeys", isReverseKeys);
         isUseVolumeKeys = sp.getBoolean("isUseVolumeKeys", isUseVolumeKeys);
         isRememberMode = sp.getBoolean("isRememberMode1", isRememberMode);

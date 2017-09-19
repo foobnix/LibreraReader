@@ -107,6 +107,7 @@ public class ViewerActivity extends AbstractActionActivity<ViewerActivity, Viewe
                     AppState.get().isCrop = bs.cropPages;
                     AppState.get().isDouble = bs.doublePages;
                     AppState.get().isDoubleCoverAlone = bs.doublePagesCover;
+                    AppState.get().isLocked = bs.isLocked;
                 }
             }
 

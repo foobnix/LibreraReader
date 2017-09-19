@@ -6,6 +6,7 @@ import org.ebookdroid.core.events.CurrentPageListener;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import com.foobnix.pdf.info.ExtUtils;
 import com.foobnix.pdf.info.wrapper.AppState;
 
 public class BookSettings implements CurrentPageListener {
@@ -19,6 +20,7 @@ public class BookSettings implements CurrentPageListener {
     public boolean cropPages = false;
     public boolean doublePages = false;
     public boolean doublePagesCover = false;
+    public Boolean isLocked = null;
 
     public float offsetX;
     public float offsetY;
@@ -31,6 +33,9 @@ public class BookSettings implements CurrentPageListener {
     public BookSettings(final String fileName) {
         this.fileName = fileName;
         this.currentPage = PageIndex.FIRST;
+        if (isLocked == null) {
+            isLocked = ExtUtils.isTextFomat(fileName);
+        }
     }
 
     public void updateFromAppState() {
@@ -38,6 +43,7 @@ public class BookSettings implements CurrentPageListener {
         doublePages = AppState.get().isDouble;
         splitPages = AppState.get().isCut;
         doublePagesCover = AppState.get().isDoubleCoverAlone;
+        isLocked = AppState.get().isLocked;
     }
 
     BookSettings(final JSONObject object) throws JSONException {
@@ -50,6 +56,7 @@ public class BookSettings implements CurrentPageListener {
         this.cropPages = object.optBoolean("cropPages", cropPages);
         this.doublePages = object.optBoolean("doublePages", doublePages);
         this.doublePagesCover = object.optBoolean("doublePagesCover", doublePagesCover);
+        this.isLocked = object.optBoolean("isLocked", true);
         this.splitPages = object.optBoolean("splitPages", splitPages);
         this.speed = object.optInt("speed", speed);
         this.pages = object.optInt("pages", pages);
@@ -65,6 +72,7 @@ public class BookSettings implements CurrentPageListener {
         obj.put("autoLevels", autoLevels);
         obj.put("cropPages", cropPages);
         obj.put("doublePages", doublePages);
+        obj.put("isLocked", isLocked);
         obj.put("doublePagesCover", doublePagesCover);
         obj.put("splitPages", splitPages);
         obj.put("speed", speed);
