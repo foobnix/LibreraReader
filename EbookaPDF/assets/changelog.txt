@@ -1,3 +1,5 @@
+Fixed book delete within app
+Show all series by genre
 Fixed lock\unlock for same doc
 Possibility to hide/show book covers
 Fixed word hyphenation with double hyphen

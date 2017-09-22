@@ -60,7 +60,6 @@ import android.view.Gravity;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.Toast;
 
@@ -78,6 +77,7 @@ public class MainTabs2 extends FragmentActivity {
     TabsAdapter2 adapter;
 
     ImageView imageMenu;
+    View imageMenuParent;
 
     @Override
     protected void onNewIntent(final Intent intent) {
@@ -171,8 +171,9 @@ public class MainTabs2 extends FragmentActivity {
 
         setContentView(R.layout.main_tabs);
 
-        imageMenu = (ImageView) findViewById(R.id.imageMenu);
-        findViewById(R.id.imageParent).setBackgroundColor(TintUtil.color);
+        imageMenu = (ImageView) findViewById(R.id.imageMenu1);
+        imageMenuParent = findViewById(R.id.imageParent1);
+        imageMenuParent.setBackgroundColor(TintUtil.color);
 
         tabFragments = new ArrayList<UIFragment>();
 
@@ -335,7 +336,7 @@ public class MainTabs2 extends FragmentActivity {
                 pager.setCurrentItem(pos);
             } else {
                 indicator.setBackgroundColor(TintUtil.color);
-                ((ViewGroup) imageMenu.getParent()).setBackgroundColor(TintUtil.color);
+                imageMenuParent.setBackgroundColor(TintUtil.color);
             }
         }
 
@@ -356,6 +357,12 @@ public class MainTabs2 extends FragmentActivity {
         TintUtil.updateAll();
         AppState.get().lastA = MainTabs2.class.getSimpleName();
         LocalBroadcastManager.getInstance(this).registerReceiver(broadcastReceiver, new IntentFilter(UIFragment.INTENT_TINT_CHANGE));
+
+        try {
+            tabFragments.get(pager.getCurrentItem()).onSelectFragment();
+        } catch (Exception e) {
+            LOG.e(e);
+        }
     };
 
     @Override

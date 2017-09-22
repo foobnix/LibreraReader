@@ -391,4 +391,5 @@
    <string name="custom_css">कस्टम सीएसएस</string>
    <string name="detailed_changelog">विस्तृत चैंज</string>
    <string name="show_book_covers">पुस्तक कवर दिखाएं</string>
+   <string name="without_series">श्रृंखला के बिना</string>
 </resources>

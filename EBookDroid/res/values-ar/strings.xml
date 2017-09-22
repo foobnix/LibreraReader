@@ -391,4 +391,5 @@
    <string name="custom_css">لغة تنسيق ويب حسب الطلب</string>
    <string name="detailed_changelog">تشانجيلوغ مفصل</string>
    <string name="show_book_covers">عرض أغلفة الكتب</string>
+   <string name="without_series">بدون سلسلة</string>
 </resources>

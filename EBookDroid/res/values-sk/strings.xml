@@ -391,4 +391,5 @@
    <string name="custom_css">Vlastné CSS</string>
    <string name="detailed_changelog">Podrobné zmeny</string>
    <string name="show_book_covers">Zobraziť obaly kníh</string>
+   <string name="without_series">Bez série</string>
 </resources>

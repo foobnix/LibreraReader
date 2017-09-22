@@ -14,8 +14,6 @@ import com.foobnix.pdf.info.wrapper.AppState;
 
 public class MobiExtract {
 
-    private static MobiParser parse;
-
     public static FooterNote extract(String inputPath, final String outputDir, String hashCode) throws IOException {
         try {
             LibMobi.convertToEpub(inputPath, new File(outputDir, hashCode + "").getPath());
@@ -32,7 +30,7 @@ public class MobiExtract {
         try {
             byte[] raw = IOUtils.toByteArray(new FileInputStream(file));
 
-            parse = new MobiParser(raw);
+            MobiParser parse = new MobiParser(raw);
             String title = parse.getTitle();
             String author = parse.getAuthor();
             String subject = parse.getSubject();
@@ -65,7 +63,7 @@ public class MobiExtract {
             File file = new File(path);
             byte[] raw = IOUtils.toByteArray(new FileInputStream(file));
 
-            parse = new MobiParser(raw);
+            MobiParser parse = new MobiParser(raw);
             info = parse.getDescription();
 
         } catch (Throwable e) {
@@ -77,9 +75,17 @@ public class MobiExtract {
     public static byte[] getBookCover(String path) {
         try {
             File file = new File(path);
-            byte[] raw = IOUtils.toByteArray(new FileInputStream(file));
-            parse = new MobiParser(raw);
-            return parse.getCoverOrThumb();
+            FileInputStream fileInputStream = new FileInputStream(file);
+            try {
+                byte[] raw = IOUtils.toByteArray(fileInputStream);
+                MobiParser parse = new MobiParser(raw);
+                byte[] coverOrThumb = parse.getCoverOrThumb();
+                parse = null;
+                raw = null;
+                return coverOrThumb;
+            } finally {
+                fileInputStream.close();
+            }
         } catch (Throwable e) {
             LOG.e(e);
         }

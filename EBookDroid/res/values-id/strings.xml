@@ -391,4 +391,5 @@
    <string name="custom_css">CSS khusus</string>
    <string name="detailed_changelog">Detil Changelog</string>
    <string name="show_book_covers">Tampilkan sampul buku</string>
+   <string name="without_series">Tanpa seri</string>
 </resources>

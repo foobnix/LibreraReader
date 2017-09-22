@@ -391,4 +391,5 @@
    <string name="custom_css">Tinkintas CSS</string>
    <string name="detailed_changelog">Išsamios keitimo istorijos</string>
    <string name="show_book_covers">Rodyti knygų viršelius</string>
+   <string name="without_series">Be serijos</string>
 </resources>

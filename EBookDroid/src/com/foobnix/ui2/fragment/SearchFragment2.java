@@ -3,9 +3,12 @@ package com.foobnix.ui2.fragment;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.EmptyStackException;
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
+import java.util.Stack;
 
 import com.foobnix.android.utils.LOG;
 import com.foobnix.android.utils.ResultResponse;
@@ -56,10 +59,11 @@ import android.widget.Toast;
 
 public class SearchFragment2 extends UIFragment<FileMeta> {
 
+    private String NO_SERIES = ":no-series";
     public static final Pair<Integer, Integer> PAIR = new Pair<Integer, Integer>(R.string.library, R.drawable.glyphicons_2_book_open);
-    private static final String CMD_KEYCODE = "@_keycode_config";
-    private static final String CMD_LONG_TAP_ON_OFF = "@_long_tap_on_off";
-    private static final String CMD_FULLSCREEN_ON_OFF = "@_fullscreen_on_off";
+    private static final String CMD_KEYCODE = "@@keycode_config";
+    private static final String CMD_LONG_TAP_ON_OFF = "@@long_tap_on_off";
+    private static final String CMD_FULLSCREEN_ON_OFF = "@@fullscreen_on_off";
 
     public static int NONE = -1;
 
@@ -77,6 +81,8 @@ public class SearchFragment2 extends UIFragment<FileMeta> {
     public int prevLibModeFileMeta = AppState.MODE_GRID;
     public int prevLibModeAuthors = NONE;
     public int rememberPos = 0;
+
+    private Stack<String> prevText = new Stack<String>();
 
     @Override
     public Pair<Integer, Integer> getNameAndIconRes() {
@@ -122,6 +128,8 @@ public class SearchFragment2 extends UIFragment<FileMeta> {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_search2, container, false);
+
+        NO_SERIES = " (" + getString(R.string.without_series) + ")";
 
         handler = new Handler();
 
@@ -245,6 +253,7 @@ public class SearchFragment2 extends UIFragment<FileMeta> {
     public void onResume() {
         super.onResume();
         LocalBroadcastManager.getInstance(getActivity()).registerReceiver(broadcastReceiver, new IntentFilter(BooksService.INTENT_NAME));
+
     }
 
     @Override
@@ -276,6 +285,7 @@ public class SearchFragment2 extends UIFragment<FileMeta> {
     };
 
     private void onMetaInfoClick(SEARCH_IN mode, String result) {
+
         searchEditText.setText(mode.getDotPrefix() + " " + result);
         AppState.get().libraryMode = prevLibModeFileMeta;
         onGridList();
@@ -305,7 +315,11 @@ public class SearchFragment2 extends UIFragment<FileMeta> {
 
         @Override
         public boolean onResultRecive(String result) {
-            onMetaInfoClick(SEARCH_IN.SERIES, result);
+            if (result.contains(NO_SERIES)) {
+                onMetaInfoClick(SEARCH_IN.GENRE, result);
+            } else {
+                onMetaInfoClick(SEARCH_IN.SERIES, result);
+            }
             return false;
         }
     };
@@ -341,28 +355,50 @@ public class SearchFragment2 extends UIFragment<FileMeta> {
         String txt = searchEditText.getText().toString().trim();
         if (Arrays.asList(AppState.MODE_GRID, AppState.MODE_COVERS, AppState.MODE_LIST, AppState.MODE_LIST_COMPACT).contains(AppState.get().libraryMode)) {
 
+            if (!prevText.contains(txt)) {
+                prevText.push(txt);
+            }
+            if (TxtUtils.isEmpty(txt)) {
+                prevText.clear();
+            }
+
+            boolean isSearchOnlyEmpy = txt.contains(NO_SERIES);
+            if (isSearchOnlyEmpy) {
+                txt = txt.replace(NO_SERIES, "");
+            }
+
             List<FileMeta> searchBy = AppDB.get().searchBy(txt, SORT_BY.getByID(AppState.get().sortBy), AppState.getInstance().isSortAsc);
 
             List<String> result = new ArrayList<String>();
             if (txt.startsWith(SEARCH_IN.GENRE.getDotPrefix())) {
+                if (isSearchOnlyEmpy) {
+                    Iterator<FileMeta> iterator = searchBy.iterator();
+                    while (iterator.hasNext()) {
+                        if (TxtUtils.isNotEmpty(iterator.next().getSequence())) {
+                            iterator.remove();
+                        }
+                    }
+                    return searchBy;
+                }
+
                 boolean hasEmpySeries = false;
                 for (FileMeta it : searchBy) {
                     String sequence = it.getSequence();
-                    TxtUtils.addFilteredGenreSeries(sequence, result);
+                    TxtUtils.addFilteredGenreSeries(sequence, result, true);
                     if (!hasEmpySeries && TxtUtils.isEmpty(sequence)) {
                         hasEmpySeries = true;
                     }
                 }
                 Collections.reverse(result);
+                String genreName = txt.replace("@genre ", "");
                 for (String it : result) {
                     FileMeta fm = new FileMeta(FileMetaAdapter.DISPALY_TYPE_SERIES);
                     fm.setSequence(it);
                     searchBy.add(0, fm);
                 }
-                if (hasEmpySeries) {
+                if (hasEmpySeries && !result.isEmpty()) {
                     FileMeta fm = new FileMeta(FileMetaAdapter.DISPALY_TYPE_SERIES);
-                    String withoutSeries = getActivity().getString(R.string.without_series);
-                    fm.setSequence(txt + ":" + withoutSeries);
+                    fm.setSequence(genreName + NO_SERIES);
                     searchBy.add(result.size(), fm);
                 }
             }
@@ -585,6 +621,21 @@ public class SearchFragment2 extends UIFragment<FileMeta> {
                 return false;
             }
 
+            if (searchText.startsWith("@")) {
+                try {
+                    prevText.pop();
+                    String pop = prevText.pop();
+                    LOG.d("pop", pop);
+                    if (TxtUtils.isNotEmpty(pop)) {
+                        searchEditText.setText(pop);
+                        searchAndOrderAsync();
+                        return true;
+                    }
+                } catch (EmptyStackException e) {
+                    LOG.e(e);
+                }
+            }
+
             searchEditText.setText("");
             if (prevLibModeAuthors == NONE) {
                 prevLibModeAuthors = prevLibModeFileMeta;
@@ -612,6 +663,7 @@ public class SearchFragment2 extends UIFragment<FileMeta> {
     @Override
     public void resetFragment() {
         onGridList();
+        searchAndOrderAsync();
     }
 
 }

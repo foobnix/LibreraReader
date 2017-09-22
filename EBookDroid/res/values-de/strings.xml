@@ -391,4 +391,5 @@
    <string name="custom_css">Benutzerdefinierte CSS</string>
    <string name="detailed_changelog">Detailliertes Changelog</string>
    <string name="show_book_covers">Buchdeckel anzeigen</string>
+   <string name="without_series">Ohne Serien</string>
 </resources>

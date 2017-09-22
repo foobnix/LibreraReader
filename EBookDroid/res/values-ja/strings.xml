@@ -391,4 +391,5 @@
    <string name="custom_css">カスタムCSS</string>
    <string name="detailed_changelog">詳細な変更履歴</string>
    <string name="show_book_covers">ブックカバーを表示する</string>
+   <string name="without_series">シリーズなし</string>
 </resources>

@@ -391,4 +391,5 @@
    <string name="custom_css">CSS personalizzato</string>
    <string name="detailed_changelog">Changelog dettagliato</string>
    <string name="show_book_covers">Mostra copertine per libri</string>
+   <string name="without_series">Senza serie</string>
 </resources>

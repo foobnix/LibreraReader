@@ -391,4 +391,5 @@
    <string name="custom_css">Desturi CSS</string>
    <string name="detailed_changelog">Mabadiliko ya kina</string>
    <string name="show_book_covers">Onyesha inashughulikia kitabu</string>
+   <string name="without_series">Bila mfululizo</string>
 </resources>

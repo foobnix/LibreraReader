@@ -391,4 +391,5 @@
    <string name="custom_css">Tilpasset CSS</string>
    <string name="detailed_changelog">Detaljert Changelog</string>
    <string name="show_book_covers">Vis bokomslag</string>
+   <string name="without_series">Uten serie</string>
 </resources>

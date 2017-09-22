@@ -391,4 +391,5 @@
    <string name="custom_css">Custom CSS</string>
    <string name="detailed_changelog">Changelog รายละเอียด</string>
    <string name="show_book_covers">แสดงปกหนังสือ</string>
+   <string name="without_series">ไม่มีชุด</string>
 </resources>

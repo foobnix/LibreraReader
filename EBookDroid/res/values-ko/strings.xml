@@ -391,4 +391,5 @@
    <string name="custom_css">맞춤 CSS</string>
    <string name="detailed_changelog">세부 변경 내역</string>
    <string name="show_book_covers">책 표지보기</string>
+   <string name="without_series">시리즈 없음</string>
 </resources>

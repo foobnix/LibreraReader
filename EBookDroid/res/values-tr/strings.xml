@@ -391,4 +391,5 @@
    <string name="custom_css">Özel CSS</string>
    <string name="detailed_changelog">Ayrıntılı Değişiklik Takvimi</string>
    <string name="show_book_covers">Kitap kapakları göster</string>
+   <string name="without_series">Serisi olmadan</string>
 </resources>

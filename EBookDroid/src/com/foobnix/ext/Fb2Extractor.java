@@ -201,9 +201,6 @@ public class Fb2Extractor extends BaseExtractor {
                         } else if (xpp.getName().equals("genre")) {
                             genre = xpp.nextText() + "," + genre;
                         } else if (xpp.getName().equals("sequence")) {
-                            // sequence = xpp.getAttributeValue(null, "name") +
-                            // ","
-                            // + sequence;
                             sequence = xpp.getAttributeValue(null, "name");
                             String current = xpp.getAttributeValue(null, "number");
                             if (current != null && !("0".equals(current) || "00".equals(current))) {
@@ -385,8 +382,11 @@ public class Fb2Extractor extends BaseExtractor {
 
         while ((line = input.readLine()) != null) {
 
-            if (!isEncoding && line.toLowerCase(Locale.US).contains("windows-1251")) {
-                line = line.toLowerCase(Locale.US).replace("windows-1251", "utf-8");
+            if (!isEncoding && line.contains("windows-1251")) {
+                line = line.replace("windows-1251", "utf-8");
+                isEncoding = true;
+            } else if (!isEncoding && line.contains("Windows-1251")) {
+                line = line.replace("Windows-1251", "utf-8");
                 isEncoding = true;
             }
 

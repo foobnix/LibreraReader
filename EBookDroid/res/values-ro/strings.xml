@@ -391,4 +391,5 @@
    <string name="custom_css">CSS personalizat</string>
    <string name="detailed_changelog">Modificări detaliate</string>
    <string name="show_book_covers">Arătați cărțile</string>
+   <string name="without_series">Fără serii</string>
 </resources>

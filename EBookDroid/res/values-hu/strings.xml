@@ -391,4 +391,5 @@
    <string name="custom_css">Egyéni CSS</string>
    <string name="detailed_changelog">Részletes változat</string>
    <string name="show_book_covers">Könyvborítók megjelenítése</string>
+   <string name="without_series">Sorozat nélkül</string>
 </resources>

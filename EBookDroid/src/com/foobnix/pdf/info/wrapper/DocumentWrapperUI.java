@@ -34,9 +34,11 @@ import com.foobnix.pdf.info.view.ProgressDraw;
 import com.foobnix.pdf.info.widget.ShareDialog;
 import com.foobnix.pdf.search.activity.DocumentControllerHorizontalView;
 import com.foobnix.pdf.search.view.CloseAppDialog;
+import com.foobnix.sys.TempHolder;
 import com.foobnix.tts.MessagePageNumber;
 import com.foobnix.tts.TTSEngine;
 import com.foobnix.tts.TtsStatus;
+import com.foobnix.ui2.AppDB;
 import com.foobnix.ui2.MainTabs2;
 import com.google.android.gms.ads.AdListener;
 import com.google.android.gms.ads.InterstitialAd;
@@ -870,6 +872,8 @@ public class DocumentWrapperUI {
                 @Override
                 public void run() {
                     if (controller.getCurrentBook().delete()) {
+                        TempHolder.listHash++;
+                        AppDB.get().deleteBy(controller.getCurrentBook().getPath());
                         controller.getActivity().finish();
                     }
                 }

@@ -10,7 +10,6 @@ import java.util.regex.Pattern;
 import com.foobnix.dao2.FileMeta;
 import com.foobnix.pdf.info.ExtUtils;
 import com.foobnix.pdf.info.wrapper.AppState;
-import com.foobnix.ui2.TagMeta;
 
 import android.annotation.TargetApi;
 import android.os.Build;
@@ -21,12 +20,26 @@ import android.widget.TextView;
 
 public class TxtUtils {
 
-    public static void addFilteredGenreSeries(String item, List<String> result) {
+    public static void addFilteredGenreSeries(String item, List<String> result, boolean simpleAdd) {
+        if (TxtUtils.isEmpty(item)) {
+            return;
+        }
+        if (simpleAdd) {
+            item = TxtUtils.firstUppercase(item.trim());
+            if (!result.contains(item)) {
+                result.add(item);
+            }
+            return;
+        }
+
         if (item.contains(",") || item.contains(";") || item.contains(".")) {
+
             String[] split = item.split("[.,;]");
+
             for (String txt : split) {
                 if (TxtUtils.isNotEmpty(txt)) {
                     txt = txt.trim();
+                    txt = TxtUtils.firstUppercase(txt);
                     if (!result.contains(txt)) {
                         result.add(txt);
                     }
@@ -35,6 +48,7 @@ public class TxtUtils {
         } else {
             String trim = item.trim();
             if (TxtUtils.isNotEmpty(trim)) {
+                trim = TxtUtils.firstUppercase(trim);
                 if (!result.contains(trim)) {
                     result.add(trim);
                 }
@@ -208,7 +222,7 @@ public class TxtUtils {
     }
 
     public static String firstUppercase(String str) {
-        if (isEmpty(str)) {
+        if (isEmpty(str) || str.length() <= 1) {
             return str;
         }
         return str.substring(0, 1).toUpperCase() + str.substring(1);

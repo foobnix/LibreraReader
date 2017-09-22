@@ -391,4 +391,5 @@
    <string name="custom_css">Користувацький CSS</string>
    <string name="detailed_changelog">Детальний журнал змін</string>
    <string name="show_book_covers">Показати обкладинки для книг</string>
+   <string name="without_series">Без серії</string>
 </resources>

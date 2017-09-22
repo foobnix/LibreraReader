@@ -13,11 +13,11 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="#0000ff"
-             android:id="@+id/imageParent"
+             android:id="@+id/imageParent1"
             android:orientation="horizontal" >
 
             <ImageView
-                android:id="@+id/imageMenu"
+                android:id="@+id/imageMenu1"
                 android:layout_width="40dip"
                 android:layout_height="match_parent"
                 android:adjustViewBounds="true"

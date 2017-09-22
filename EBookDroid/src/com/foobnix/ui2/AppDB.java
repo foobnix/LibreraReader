@@ -153,6 +153,10 @@ public class AppDB {
         fileMetaDao.delete(meta);
     }
 
+    public void deleteBy(String metaByPath) {
+        fileMetaDao.deleteByKey(metaByPath);
+    }
+
     public List<FileMeta> getRecent() {
         List<FileMeta> list = fileMetaDao.queryBuilder().where(FileMetaDao.Properties.IsRecent.eq(1)).orderDesc(FileMetaDao.Properties.IsRecentTime).list();
         return removeNotExist(list);
@@ -308,7 +312,7 @@ public class AppDB {
                     if (item == null || TxtUtils.isEmpty(item)) {
                         continue;
                     }
-                    TxtUtils.addFilteredGenreSeries(item, result);
+                    TxtUtils.addFilteredGenreSeries(item, result, in == SEARCH_IN.SERIES);
                 } while (c.moveToNext());
             }
         } finally {
