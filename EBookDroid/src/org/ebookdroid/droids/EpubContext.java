@@ -8,7 +8,6 @@ import org.ebookdroid.droids.mupdf.codec.MuPdfDocument;
 import org.ebookdroid.droids.mupdf.codec.PdfContext;
 
 import com.foobnix.android.utils.LOG;
-import com.foobnix.android.utils.MemoryUtils;
 import com.foobnix.ext.CacheZipUtils;
 import com.foobnix.ext.EpubExtractor;
 import com.foobnix.pdf.info.JsonHelper;
@@ -39,28 +38,26 @@ public class EpubContext extends PdfContext {
         if (jsonFile.isFile()) {
             muPdfDocument.setFootNotes(JsonHelper.fileToMap(jsonFile));
             LOG.d("Load notes from file", jsonFile);
-        } else {
-            if (!MemoryUtils.IS_SMALL_MEMORY_SIZE) {
-                new Thread() {
-                    @Override
-                    public void run() {
-                        Map<String, String> notes = null;
-                        try {
-                            muPdfDocument.setMediaAttachment(EpubExtractor.getAttachments(fileName));
-                            if (!jsonFile.isFile()) {
-                                notes = EpubExtractor.get().getFooterNotes(fileName);
-                                muPdfDocument.setFootNotes(notes);
-
-                                JsonHelper.mapToFile(jsonFile, notes);
-                                LOG.d("save notes to file", jsonFile);
-                            }
-                        } catch (Exception e) {
-                            LOG.e(e);
-                        }
-                    };
-                }.start();
-            }
         }
+
+        new Thread() {
+            @Override
+            public void run() {
+                Map<String, String> notes = null;
+                try {
+                    muPdfDocument.setMediaAttachment(EpubExtractor.getAttachments(fileName));
+                    if (!jsonFile.isFile()) {
+                        notes = EpubExtractor.get().getFooterNotes(fileName);
+                        muPdfDocument.setFootNotes(notes);
+
+                        JsonHelper.mapToFile(jsonFile, notes);
+                        LOG.d("save notes to file", jsonFile);
+                    }
+                } catch (Exception e) {
+                    LOG.e(e);
+                }
+            };
+        }.start();
 
         return muPdfDocument;
     }

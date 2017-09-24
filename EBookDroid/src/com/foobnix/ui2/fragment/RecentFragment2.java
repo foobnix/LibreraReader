@@ -76,7 +76,6 @@ public class RecentFragment2 extends UIFragment<FileMeta> {
 
         recentAdapter.setOnDeleteClickListener(onDeleteRecentClick);
 
-        AppState.get().recentMode = AppState.MODE_LIST;
         onGridList();
 
         populate();

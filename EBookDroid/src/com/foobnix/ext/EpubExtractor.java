@@ -355,8 +355,8 @@ public class EpubExtractor extends BaseExtractor {
             ZipInputStream zipInputStream = new ZipInputStream(in);
             while ((nextEntry = zipInputStream.getNextEntry()) != null) {
                 String name = nextEntry.getName();
+                LOG.d("getAttachments", name);
                 if (ExtUtils.isMediaContent(name)) {
-                    LOG.d("IS MEDIA", name);
                     if (nextEntry.getSize() > 0) {
                         name = name + "," + nextEntry.getSize();
                     } else if (nextEntry.getCompressedSize() > 0) {

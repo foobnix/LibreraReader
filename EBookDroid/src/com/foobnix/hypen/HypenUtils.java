@@ -38,36 +38,27 @@ public class HypenUtils {
                 continue;
             }
 
-            if (w.contains("<") || w.contains(">") || w.contains("=") || w.contains("[") || w.contains("{")) {
+            if (w.contains("<") || w.contains(">") || w.contains("=")) {
                 res.append(w);
                 continue;
             }
 
-            char last = w.charAt(w.length() - 1);
-
             char first = w.charAt(0);
-
             boolean startWithOther = false;
             if (!Character.isLetter(first)) {
                 startWithOther = true;
                 w = w.substring(1, w.length());
             }
 
-            boolean endWithOther = false;
-            if (w.length() != 0 && !Character.isLetter(last)) {
-                endWithOther = true;
-                w = w.substring(0, w.length() - 1);
-            }
-
-            boolean endWithOther2 = false;
-            char last2 = ' ';
-            if (endWithOther) {
-                last2 = w.charAt(w.length() - 1);
-                if (w.length() != 0 && !Character.isLetter(last2)) {
-                    endWithOther2 = true;
-                    w = w.substring(0, w.length() - 1);
+            int endIndex = -1;
+            String last = "";
+            for (int i = w.length() / 2 + 1; i < w.length(); i++) {
+                if (!Character.isLetter(w.charAt(i))) {
+                    endIndex = i;
+                    last = w.substring(endIndex);
+                    w = w.substring(0, endIndex);
+                    break;
                 }
-
             }
 
             String result = null;
@@ -88,12 +79,8 @@ public class HypenUtils {
                 result = String.valueOf(first) + result;
             }
 
-            if (endWithOther2) {
-                result = result + String.valueOf(last2);
-            }
-
-            if (endWithOther) {
-                result = result + String.valueOf(last);
+            if (endIndex > 1) {
+                result = result + last;
             }
             res.append(result);
 

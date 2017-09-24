@@ -389,6 +389,7 @@ public class SearchFragment2 extends UIFragment<FileMeta> {
                         hasEmpySeries = true;
                     }
                 }
+                Collections.sort(result, String.CASE_INSENSITIVE_ORDER);
                 Collections.reverse(result);
                 String genreName = txt.replace("@genre ", "");
                 for (String it : result) {
