@@ -321,7 +321,7 @@ public class Fb2Extractor extends BaseExtractor {
     public boolean convertFB2(String inputFile, String toName) {
         try {
             String encoding = findHeaderEncoding(inputFile);
-            ByteArrayOutputStream generateFb2File = generateFb2File(inputFile, encoding);
+            ByteArrayOutputStream generateFb2File = generateFb2File(inputFile, encoding, true);
             FileOutputStream out = new FileOutputStream(toName);
             out.write(generateFb2File.toByteArray());
             out.close();
@@ -350,7 +350,7 @@ public class Fb2Extractor extends BaseExtractor {
             String ncx = genetateNCX(titles);
             writeToZip(zos, "OEBPS/fb2.ncx", ncx);
 
-            ByteArrayOutputStream generateFb2File = generateFb2File(inputFile, encoding);
+            ByteArrayOutputStream generateFb2File = generateFb2File(inputFile, encoding, false);
             writeToZip(zos, "OEBPS/fb2.fb2", new ByteArrayInputStream(generateFb2File.toByteArray()));
             LOG.d("Fb2Context convert true");
             zos.close();
@@ -363,7 +363,7 @@ public class Fb2Extractor extends BaseExtractor {
         return false;
     }
 
-    public ByteArrayOutputStream generateFb2File(String fb2, String encoding) throws Exception {
+    public ByteArrayOutputStream generateFb2File(String fb2, String encoding, boolean fixXML) throws Exception {
         BufferedReader input = new BufferedReader(new InputStreamReader(new FileInputStream(fb2), encoding));
 
         ByteArrayOutputStream out = new ByteArrayOutputStream();
@@ -388,6 +388,10 @@ public class Fb2Extractor extends BaseExtractor {
             } else if (!isEncoding && line.contains("Windows-1251")) {
                 line = line.replace("Windows-1251", "utf-8");
                 isEncoding = true;
+            }
+
+            if (fixXML) {
+                line = line.replace("l:href==", "l:href=");
             }
 
             String subLine[] = line.split("</");
@@ -429,6 +433,7 @@ public class Fb2Extractor extends BaseExtractor {
                         line = HypenUtils.applyHypnes(line);
                     }
                 }
+
                 writer.println(line);
             }
 

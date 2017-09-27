@@ -299,7 +299,7 @@ public class AppState {
 
     public int libraryMode = MODE_GRID;
     public int broseMode = MODE_LIST;
-    public int recentMode = MODE_GRID;
+    public int recentMode = MODE_LIST;
     public int bookmarksMode = BOOKMARK_MODE_BY_DATE;
     public int starsMode = MODE_LIST;
 

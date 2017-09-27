@@ -18,6 +18,13 @@ git clone https://github.com/dandar3/android-support-annotations
 git clone https://github.com/dandar3/android-support-v7-recyclerview
 git clone https://github.com/dandar3/android-support-v7-cardview
 
+
+git clone https://github.com/dandar3/android-support-design
+git clone https://github.com/dandar3/android-support-v7-appcompat
+git clone https://github.com/dandar3/android-support-transition
+git clone https://github.com/dandar3/android-support-vector-drawable
+git clone https://github.com/dandar3/android-support-animated-vector-drawable
+
 for d in * ; do
 if [[ -d $d ]]; then
     echo "$d"

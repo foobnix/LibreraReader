@@ -391,5 +391,5 @@
    <string name="custom_css">Пользовательские CSS</string>
    <string name="detailed_changelog">Подробный список изменений</string>
    <string name="show_book_covers">Показывать обложки книг</string>
-   <string name="without_series">Без серии</string>
+   <string name="without_series">Вне серий</string>
 </resources>
