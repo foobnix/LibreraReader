@@ -392,4 +392,5 @@
    <string name="detailed_changelog">详细的变更日志</string>
    <string name="show_book_covers">显示书籍封面</string>
    <string name="without_series">没有系列</string>
+   <string name="add_as_a_web_site">添加为WEB站点</string>
 </resources>

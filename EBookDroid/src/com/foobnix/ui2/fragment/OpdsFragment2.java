@@ -16,6 +16,7 @@ import com.foobnix.opds.Feed;
 import com.foobnix.opds.Hrefs;
 import com.foobnix.opds.Link;
 import com.foobnix.opds.OPDS;
+import com.foobnix.opds.SamlibOPDS;
 import com.foobnix.pdf.info.ExtUtils;
 import com.foobnix.pdf.info.R;
 import com.foobnix.pdf.info.TintUtil;
@@ -263,6 +264,9 @@ public class OpdsFragment2 extends UIFragment<Entry> {
 
         if (last.equals(url)) {
             last = popStack();// two times
+            if (last.startsWith("http")) {
+                last = popStack();
+            }
         }
         url = last;
 
@@ -390,9 +394,18 @@ public class OpdsFragment2 extends UIFragment<Entry> {
 
     @Override
     public List<Entry> prepareDataInBackground() {
+        LOG.d("OPDS URL", url);
         if ("/".equals(url)) {
             title = getString(R.string.catalogs);
             return getAllCatalogs();
+        }
+
+        if (SamlibOPDS.isSamlibUrl(url)) {
+            List<Entry> samlibResult = SamlibOPDS.getSamlibResult(url);
+            if (samlibResult != null && samlibResult.size() >= 1) {
+                // title = samlibResult.get(0).title;
+            }
+            return samlibResult;
         }
 
         Feed feed = OPDS.getFeed(url);

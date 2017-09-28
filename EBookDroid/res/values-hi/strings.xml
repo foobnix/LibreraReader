@@ -392,4 +392,5 @@
    <string name="detailed_changelog">विस्तृत चैंज</string>
    <string name="show_book_covers">पुस्तक कवर दिखाएं</string>
    <string name="without_series">श्रृंखला के बिना</string>
+   <string name="add_as_a_web_site">वेब साइट के रूप में जोड़ें</string>
 </resources>

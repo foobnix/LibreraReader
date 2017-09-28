@@ -392,4 +392,5 @@
    <string name="detailed_changelog">Detil Changelog</string>
    <string name="show_book_covers">Tampilkan sampul buku</string>
    <string name="without_series">Tanpa seri</string>
+   <string name="add_as_a_web_site">Tambahkan sebagai situs WEB</string>
 </resources>

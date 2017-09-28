@@ -392,4 +392,5 @@
    <string name="detailed_changelog">Yksityiskohtainen muutos</string>
    <string name="show_book_covers">Näytä kirjan kannet</string>
    <string name="without_series">Ilman sarjaa</string>
+   <string name="add_as_a_web_site">Lisää WEB-sivustoina</string>
 </resources>

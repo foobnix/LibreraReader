@@ -11,6 +11,7 @@ public class Link {
 
     public static final String APPLICATION_ATOM_XML = "application/atom+xml";
     public static final String APPLICATION_ATOM_XML_PROFILE = "application/atom+xml;profile";
+    public static final String APPLICATION_ATOM_XML_SUBLINE = "application/atom+xml;subline";
     public static final String IMG_LINK_JPG = "image/jpeg";
     public static final String IMG_LINK_PNG = "image/png";
     public static final String WEB_LINK = "text/html";
@@ -40,6 +41,7 @@ public class Link {
         map.put("application/djvu", "djvu");
         map.put("application/epub+zip", "epub");
         map.put("application/fb-ebook", "fb2");
+        map.put("application/fb-ebook+zip", "fb2.zip");
         map.put("application/x-sony-bbeb", "lrf");
         map.put("application/x-mobipocket-ebook", "mobi");
     }

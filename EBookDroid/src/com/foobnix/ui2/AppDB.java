@@ -68,6 +68,15 @@ public class AppDB {
             return SEARCH_IN.AUTHOR;
         }
 
+        public static SEARCH_IN getByPrefix(String string) {
+            for (SEARCH_IN sortBy : values()) {
+                if (string.startsWith(sortBy.getDotPrefix())) {
+                    return sortBy;
+                }
+            }
+            return SEARCH_IN.PATH;
+        }
+
         public int getMode() {
             return mode;
         }

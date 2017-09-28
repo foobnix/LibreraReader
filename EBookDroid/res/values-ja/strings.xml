@@ -392,4 +392,5 @@
    <string name="detailed_changelog">詳細な変更履歴</string>
    <string name="show_book_covers">ブックカバーを表示する</string>
    <string name="without_series">シリーズなし</string>
+   <string name="add_as_a_web_site">WEBサイトとして追加</string>
 </resources>

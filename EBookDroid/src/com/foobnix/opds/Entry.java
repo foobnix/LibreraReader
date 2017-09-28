@@ -31,7 +31,6 @@ public class Entry {
 
     }
 
-
     public Entry(String homeUrl, String title, String subtitle, String logo) {
 
         setAppState(homeUrl, title, subtitle, logo);
@@ -51,14 +50,15 @@ public class Entry {
 
     }
 
-
     public void setAppState(String homeUrl, String title, String subtitle, String logo) {
         appState = homeUrl + "," + TxtUtils.fixAppState(title) + "," + TxtUtils.fixAppState(subtitle) + "," + logo + ";";
     }
 
-    public Entry(String title, Link link) {
+    public Entry(String title, Link... items) {
         this.title = title;
-        links.add(link);
+        for (Link link : items) {
+            links.add(link);
+        }
     }
 
     public String getTitle() {

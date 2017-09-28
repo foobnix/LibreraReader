@@ -316,7 +316,7 @@ public class SearchFragment2 extends UIFragment<FileMeta> {
         @Override
         public boolean onResultRecive(String result) {
             if (result.contains(NO_SERIES)) {
-                onMetaInfoClick(SEARCH_IN.GENRE, result);
+                onMetaInfoClick(SEARCH_IN.getByPrefix(searchEditText.getText().toString()), result);
             } else {
                 onMetaInfoClick(SEARCH_IN.SERIES, result);
             }
@@ -370,7 +370,9 @@ public class SearchFragment2 extends UIFragment<FileMeta> {
             List<FileMeta> searchBy = AppDB.get().searchBy(txt, SORT_BY.getByID(AppState.get().sortBy), AppState.getInstance().isSortAsc);
 
             List<String> result = new ArrayList<String>();
-            if (txt.startsWith(SEARCH_IN.GENRE.getDotPrefix())) {
+            boolean byGenre = txt.startsWith(SEARCH_IN.GENRE.getDotPrefix());
+            boolean byAuthor = txt.startsWith(SEARCH_IN.AUTHOR.getDotPrefix());
+            if (byGenre || byAuthor) {
                 if (isSearchOnlyEmpy) {
                     Iterator<FileMeta> iterator = searchBy.iterator();
                     while (iterator.hasNext()) {
@@ -391,7 +393,7 @@ public class SearchFragment2 extends UIFragment<FileMeta> {
                 }
                 Collections.sort(result, String.CASE_INSENSITIVE_ORDER);
                 Collections.reverse(result);
-                String genreName = txt.replace("@genre ", "");
+                String genreName = txt.replace(byGenre ? "@genre " : "@author ", "");
                 for (String it : result) {
                     FileMeta fm = new FileMeta(FileMetaAdapter.DISPALY_TYPE_SERIES);
                     fm.setSequence(it);

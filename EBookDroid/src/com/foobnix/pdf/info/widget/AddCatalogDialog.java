@@ -22,6 +22,7 @@ import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
@@ -96,6 +97,8 @@ public class AddCatalogDialog {
         final EditText description = (EditText) dialog.findViewById(R.id.description);
         final ProgressBar progressBar = (ProgressBar) dialog.findViewById(R.id.progressBar);
         final ImageView image = (ImageView) dialog.findViewById(R.id.image);
+        final CheckBox addAsWEb = (CheckBox) dialog.findViewById(R.id.addAsWEb);
+        addAsWEb.setVisibility(View.GONE);
         final String editAppState = e != null ? e.appState : null;
         if (editAppState != null) {
             String line[] = e.appState.replace(";", "").split(",");
@@ -154,7 +157,7 @@ public class AddCatalogDialog {
             @Override
             public void onClick(View v) {
                 final String feedUrl = url.getText().toString();
-                if (infoDialog.getButton(AlertDialog.BUTTON_POSITIVE).getText().equals(a.getString(R.string.ok))) {
+                if (infoDialog.getButton(AlertDialog.BUTTON_POSITIVE).getText().equals(a.getString(R.string.ok)) || addAsWEb.isChecked()) {
                     Entry entry = new Entry();
                     entry.setAppState(feedUrl, name.getText().toString(), description.getText().toString(), image.getTag().toString());
                     if (editAppState != null) {
@@ -189,8 +192,10 @@ public class AddCatalogDialog {
                         try {
                             progressBar.setVisibility(View.GONE);
                             if (result == null || ((Feed) result).entries.isEmpty()) {
-                                Toast.makeText(a, a.getString(R.string.incorrect_value) + " " + feedUrl, Toast.LENGTH_LONG).show();
+                                Toast.makeText(a, a.getString(R.string.incorrect_value) + " OPDS " + feedUrl, Toast.LENGTH_LONG).show();
                                 infoDialog.getButton(AlertDialog.BUTTON_POSITIVE).setText(R.string.add);
+                                addAsWEb.setVisibility(View.VISIBLE);
+                                image.setTag("assets://opds/web.png");
                                 return;
                             }
                             Feed feed = (Feed) result;

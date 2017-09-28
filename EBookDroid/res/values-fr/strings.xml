@@ -392,4 +392,5 @@
    <string name="detailed_changelog">Changement de trajet détaillé</string>
    <string name="show_book_covers">Afficher les couvertures de livres</string>
    <string name="without_series">Sans série</string>
+   <string name="add_as_a_web_site">Ajouter en tant que site WEB</string>
 </resources>

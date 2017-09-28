@@ -392,4 +392,5 @@
    <string name="detailed_changelog">تشانجيلوغ مفصل</string>
    <string name="show_book_covers">عرض أغلفة الكتب</string>
    <string name="without_series">بدون سلسلة</string>
+   <string name="add_as_a_web_site">إضافة كموقع ويب</string>
 </resources>

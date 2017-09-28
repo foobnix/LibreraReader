@@ -392,4 +392,5 @@
    <string name="detailed_changelog">Changelog מפורט</string>
    <string name="show_book_covers">הצג כריכות ספרים</string>
    <string name="without_series">ללא סדרה</string>
+   <string name="add_as_a_web_site">הוסף כאתר אינטרנט</string>
 </resources>

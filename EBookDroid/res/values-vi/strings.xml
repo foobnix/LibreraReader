@@ -392,4 +392,5 @@
    <string name="detailed_changelog">Changelog chi tiết</string>
    <string name="show_book_covers">Hiển thị bìa sách</string>
    <string name="without_series">Không có hàng loạt</string>
+   <string name="add_as_a_web_site">Thêm dưới dạng trang WEB</string>
 </resources>

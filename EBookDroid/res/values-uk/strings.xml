@@ -392,4 +392,5 @@
    <string name="detailed_changelog">Детальний журнал змін</string>
    <string name="show_book_covers">Показати обкладинки для книг</string>
    <string name="without_series">Без серії</string>
+   <string name="add_as_a_web_site">Додати як веб-сайт</string>
 </resources>
