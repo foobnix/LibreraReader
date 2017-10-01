@@ -264,9 +264,6 @@ public class OpdsFragment2 extends UIFragment<Entry> {
 
         if (last.equals(url)) {
             last = popStack();// two times
-            if (last.startsWith("http")) {
-                last = popStack();
-            }
         }
         url = last;
 
