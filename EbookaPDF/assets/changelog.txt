@@ -1,3 +1,4 @@
+Remove deleted books from the Library 
 Usefull links and samlib
 Show all series by Author
 Fixed book delete within app

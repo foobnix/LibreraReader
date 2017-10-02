@@ -239,6 +239,7 @@ public class SearchFragment2 extends UIFragment<FileMeta> {
         if (AppDB.get().getCount() == 0) {
             seachAll();
         } else {
+            checkForDeleteBooks();
             searchAndOrderAsync();
         }
 
@@ -328,6 +329,10 @@ public class SearchFragment2 extends UIFragment<FileMeta> {
         searchAdapter.clearItems();
         searchAdapter.notifyDataSetChanged();
         getActivity().startService(new Intent(getActivity(), BooksService.class).setAction(BooksService.ACTION_SEARCH_ALL));
+    }
+
+    public void checkForDeleteBooks() {
+        getActivity().startService(new Intent(getActivity(), BooksService.class).setAction(BooksService.ACTION_REMOVE_DELETED));
     }
 
     @Override

@@ -36,6 +36,7 @@ public class BooksService extends IntentService {
 
     public static String INTENT_NAME = "BooksServiceIntent";
     public static String ACTION_SEARCH_ALL = "ACTION_SEARCH_ALL";
+    public static String ACTION_REMOVE_DELETED = "ACTION_REMOVE_DELETED";
 
     public static String RESULT_SEARCH_FINISH = "RESULT_SEARCH_FINISH";
     public static String RESULT_BUILD_LIBRARY = "RESULT_BUILD_LIBRARY";
@@ -48,7 +49,20 @@ public class BooksService extends IntentService {
         if (intent == null) {
             return;
         }
-        if (ACTION_SEARCH_ALL.equals(intent.getAction())) {
+        LOG.d("BooksService", "Action", intent.getAction());
+
+        if (ACTION_REMOVE_DELETED.equals(intent.getAction())) {
+            List<FileMeta> list = AppDB.get().getAll();
+            for (FileMeta meta : list) {
+                File bookFile = new File(meta.getPath());
+                if (!bookFile.exists()) {
+                    AppDB.get().delete(meta);
+                    LOG.d("Delete meta", meta);
+                }
+            }
+            sendFinishMessage();
+
+        } else if (ACTION_SEARCH_ALL.equals(intent.getAction())) {
             LOG.d(ACTION_SEARCH_ALL);
 
             IMG.clearDiscCache();

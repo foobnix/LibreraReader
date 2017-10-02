@@ -263,6 +263,14 @@ public class AppDB {
         }
     }
 
+    public List<FileMeta> getAll() {
+        try {
+            return fileMetaDao.queryBuilder().list();
+        } catch (Exception e) {
+            return Collections.emptyList();
+        }
+    }
+
     public FileMeta getOrCreate(String path) {
         FileMeta load = fileMetaDao.load(path);
         try {
