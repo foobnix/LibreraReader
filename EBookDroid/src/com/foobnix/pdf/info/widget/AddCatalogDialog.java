@@ -81,7 +81,7 @@ public class AddCatalogDialog {
 
     }
 
-    public static void showDialog(final Activity a, final Runnable onRefresh, final Entry e) {
+    public static void showDialog(final Activity a, final Runnable onRefresh, final Entry e, final boolean validate) {
 
         AlertDialog.Builder builder = new AlertDialog.Builder(a);
 
@@ -92,6 +92,7 @@ public class AddCatalogDialog {
         url.setText("http://");
 
         url.setSelection(url.getText().length());
+        url.setEnabled(validate);
 
         final EditText name = (EditText) dialog.findViewById(R.id.name);
         final EditText description = (EditText) dialog.findViewById(R.id.description);
@@ -106,13 +107,17 @@ public class AddCatalogDialog {
             name.setText(line[1]);
             description.setText(line[2]);
             ImageLoader.getInstance().displayImage(line[3], image, IMG.displayImageOptions);
+
+            if (e.logo != null) {
+                image.setTag(e.logo);
+            }
         }
 
         progressBar.setVisibility(View.GONE);
         image.setVisibility(View.GONE);
 
         builder.setView(dialog);
-        builder.setTitle(R.string.add_network_catalog);
+        builder.setTitle(R.string.add_catalog);
 
         builder.setPositiveButton(R.string.add, new DialogInterface.OnClickListener() {
             @Override
@@ -157,7 +162,7 @@ public class AddCatalogDialog {
             @Override
             public void onClick(View v) {
                 final String feedUrl = url.getText().toString();
-                if (infoDialog.getButton(AlertDialog.BUTTON_POSITIVE).getText().equals(a.getString(R.string.ok)) || addAsWEb.isChecked()) {
+                if (infoDialog.getButton(AlertDialog.BUTTON_POSITIVE).getText().equals(a.getString(R.string.ok)) || addAsWEb.isChecked() || !validate) {
                     Entry entry = new Entry();
                     entry.setAppState(feedUrl, name.getText().toString(), description.getText().toString(), image.getTag().toString());
                     if (editAppState != null) {
@@ -167,6 +172,7 @@ public class AddCatalogDialog {
                     onRefresh.run();
                     infoDialog.dismiss();
                     AppState.get().save(a);
+                    return;
 
                 }
 

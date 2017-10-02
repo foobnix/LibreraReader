@@ -27,6 +27,7 @@ import com.foobnix.pdf.info.wrapper.AppState;
 import com.foobnix.ui2.adapter.EntryAdapter;
 import com.foobnix.ui2.fast.FastScrollRecyclerView;
 
+import android.graphics.Color;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.util.Pair;
@@ -62,6 +63,7 @@ public class OpdsFragment2 extends UIFragment<Entry> {
     View onPlusView, pathContainer;
     long enqueue;
     TextView defaults, faq;
+    ImageView starIcon;
 
     public OpdsFragment2() {
         super();
@@ -76,7 +78,7 @@ public class OpdsFragment2 extends UIFragment<Entry> {
     public List<Entry> getAllCatalogs() {
 
         if (false) {
-            String test = "http://m.gutenberg.org/ebooks/1342.opds";
+            String test = "http://samlib.ru/k/karina_d/indexvote.shtml?AUTHORS_BOOKS";
             return Arrays.asList(new Entry(test, test));
         }
 
@@ -111,6 +113,7 @@ public class OpdsFragment2 extends UIFragment<Entry> {
 
         titleView = (TextView) view.findViewById(R.id.titleView);
         onPlus = (ImageView) view.findViewById(R.id.onPlus);
+        starIcon = (ImageView) view.findViewById(R.id.starIcon);
         onPlusView = view.findViewById(R.id.onPlusView);
         pathContainer = view.findViewById(R.id.pathContainer);
         progressBar = (ProgressBar) view.findViewById(R.id.progressBar);
@@ -126,7 +129,7 @@ public class OpdsFragment2 extends UIFragment<Entry> {
                     public void run() {
                         populate();
                     }
-                }, null);
+                }, null, true);
             }
         });
 
@@ -210,9 +213,45 @@ public class OpdsFragment2 extends UIFragment<Entry> {
                         public void run() {
                             populate();
                         }
-                    }, result);
+                    }, result, true);
                 }
                 return false;
+            }
+        });
+
+        starIcon.setOnClickListener(new OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                final Entry entry = new Entry();
+                String url2 = url;
+                if (url2.contains("?")) {
+                    url2 = url2.substring(0, url2.indexOf("?"));
+                }
+                entry.setAppState(url, title, url2, "assets://opds/star_1.png");
+
+                if (!AppState.get().myOPDS.contains(url)) {
+
+                    AddCatalogDialog.showDialog(getActivity(), new Runnable() {
+
+                        @Override
+                        public void run() {
+                            starIcon.setImageResource(R.drawable.star_1);
+                            TintUtil.setTintImage(starIcon, Color.WHITE);
+                        }
+                    }, entry, false);
+                } else {
+                    AlertDialogs.showOkDialog(getActivity(), getActivity().getString(R.string.do_you_want_to_delete_), new Runnable() {
+
+                        @Override
+                        public void run() {
+                            AppState.get().myOPDS = AppState.get().myOPDS.replace(entry.appState, "");
+                            starIcon.setImageResource(R.drawable.star_2);
+                            TintUtil.setTintImage(starIcon, Color.WHITE);
+                        }
+                    });
+                }
+
             }
         });
 
@@ -404,10 +443,9 @@ public class OpdsFragment2 extends UIFragment<Entry> {
         }
 
         if (SamlibOPDS.isSamlibUrl(url)) {
-            List<Entry> samlibResult = SamlibOPDS.getSamlibResult(url);
-            if (samlibResult != null && samlibResult.size() >= 1) {
-                title = SamlibOPDS.getTitle(url);
-            }
+            Pair<List<Entry>, String> pair = SamlibOPDS.getSamlibResult(url);
+            List<Entry> samlibResult = pair.first;
+            title = pair.second;
             return samlibResult;
         }
 
@@ -466,6 +504,7 @@ public class OpdsFragment2 extends UIFragment<Entry> {
 
         if (entries == null || entries.isEmpty()) {
             Urls.open(getActivity(), url);
+            popStack();
             return;
         }
 
@@ -481,6 +520,14 @@ public class OpdsFragment2 extends UIFragment<Entry> {
         onPlusView.setVisibility(isHomeVisible);
         defaults.setVisibility(isHomeVisible);
         faq.setVisibility(isHomeVisible);
+        starIcon.setVisibility(url == "/" ? View.GONE : View.VISIBLE);
+
+        if (AppState.get().myOPDS.contains(url)) {
+            starIcon.setImageResource(R.drawable.star_1);
+        } else {
+            starIcon.setImageResource(R.drawable.star_2);
+        }
+        TintUtil.setTintImage(starIcon, Color.WHITE);
     }
 
     public void onGridList() {

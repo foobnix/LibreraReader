@@ -7,15 +7,19 @@ import java.util.List;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
+import org.jsoup.parser.Tag;
 import org.jsoup.select.Elements;
 
 import com.foobnix.ext.CacheZipUtils;
+
+import android.support.v4.util.Pair;
 
 public class SamlibOPDS {
 
     public static final String LIBRERA_MOBI = "?from=librera.mobi";
     private static final String AUTHORS = "?authors";
-    private static final String AUTHORS_LIST = "?AUTHORS_LIST" + LIBRERA_MOBI.replace("?", "&");
+    private static final String AUTHORS_LIST = "?AUTHORS_LIST";
+    private static final String AUTHORS_BOOKS = "?AUTHORS_BOOKS";
     private static final String FORM = "?form";
     private static final String GENRE = "?genre";
     private static final String BOOK = "?BOOK";
@@ -56,6 +60,16 @@ public class SamlibOPDS {
             return ROOT_AWARDS;
         }
         for (Entry e : getHome()) {
+            if (url.equals(e.homeUrl)) {
+                return e.title;
+            }
+        }
+        for (Entry e : getForms()) {
+            if (url.equals(e.homeUrl)) {
+                return e.title;
+            }
+        }
+        for (Entry e : getGenres()) {
             if (url.equals(e.homeUrl)) {
                 return e.title;
             }
@@ -201,61 +215,108 @@ public class SamlibOPDS {
         return list;
     }
 
-    public static List<Entry> getSamlibResult(String url) {
+    public static Pair<List<Entry>, String> getSamlibResult(String url) {
         if (ROOT.equals(url)) {
-            return getHome();
+            return Pair.create(getHome(), getTitle(url));
         }
         if (ROOT_AWARDS.equals(url)) {
-            return getHomeAwards();
+            return Pair.create(getHomeAwards(), getTitle(url));
         }
         if (url.endsWith(GENRE)) {
-            return getGenres();
+            return Pair.create(getGenres(), getTitle(url));
         }
         if (url.endsWith(FORM)) {
-            return getForms();
+            return Pair.create(getForms(), getTitle(url));
         }
         if (url.endsWith(AUTHORS)) {
-            return getAuthors();
+            return Pair.create(getAuthors(), getTitle(url));
         }
 
         if ("http://samlib.ru/short.shtml".equals(url)) {
-            return parseShort(url);
+            return Pair.create(parseShort(url), getTitle(url));
         }
         if ("http://samlib.ru/long.shtml".equals(url)) {
-            return parseShort(url);
+            return Pair.create(parseShort(url), getTitle(url));
         }
         if ("http://samlib.ru/rating/top40/".equals(url)) {
-            return parseShort(url);
+            return Pair.create(parseShort(url), getTitle(url));
         }
         if ("http://samlib.ru/rating/top100/".equals(url)) {
-            return parseShort(url);
+            return Pair.create(parseShort(url), getTitle(url));
         }
         if ("http://samlib.ru/rating/expert/".equals(url)) {
             List<Entry> parseRating = parseRating(url, 0);
             parseRating.add(new Entry("http://samlib.ru/rating/expert/index-2.shtml", "Страница 2"));
-            return parseRating;
+            return Pair.create(parseRating, getTitle(url));
         }
         if ("http://samlib.ru/rating/expert/index-2.shtml".equals(url)) {
-            return parseRating(url, 0);
+            return Pair.create(parseRating(url, 0), getTitle(url));
         }
-        
-        
+
         if ("http://samlib.ru/r/redaktor/rating1.shtml".equals(url)) {
-            return parseRating(url, 0);
+            return Pair.create(parseRating(url, 0), getTitle(url));
         }
 
         if (url.contains("/janr/") || url.contains("/type/")) {
-            return parseRating(url, -1);
+            return Pair.create(parseRating(url, -1), getTitle(url));
         }
 
         if (url.endsWith(BOOK)) {
             return parseBook(url);
         }
         if (url.endsWith(AUTHORS_LIST)) {
-            return parseAuthors(url);
+            return Pair.create(parseAuthors(url), getTitle(url));
+        }
+
+        if (url.endsWith(AUTHORS_BOOKS)) {
+            return parseAuthorBooks(url);
         }
 
         return null;
+
+    }
+
+    private static Pair<List<Entry>, String> parseAuthorBooks(String url) {
+        List<Entry> list = new ArrayList<Entry>();
+        String res = getHTTP(url);
+        Document doc = Jsoup.parse(res, "koi8");
+        Elements items = doc.select("li");
+
+        String authorName = doc.select("h3").first().ownText().replace(":", "");
+        Element author = new Element(Tag.valueOf("a"), "");
+        author.text(authorName);
+        author.attr("href", url);
+
+        for (int i = 0; i < items.size(); i++) {
+            Element root = items.get(i);
+            if (root.select("b").first() != null && root.select("small").first() != null) {
+                Element book = root.select("a").first();
+
+                String bookLink = book.attr("href");
+
+                String replace = url.replace(AUTHORS_BOOKS, "");
+                if (replace.endsWith(".shtml")) {
+                    replace = replace.substring(0, replace.lastIndexOf("/") + 1);
+                }
+                book.attr("href", replace + bookLink);
+
+                String size = root.select("a + b").first().ownText();
+                Elements select = root.select("dd");
+                String annotation = "";
+                if (select != null) {
+                    annotation = select.text();
+                }
+                String genre = root.select("small").first().ownText().replace("\"", "");
+
+                Entry makeEntry = makeEntry(book, author);
+                makeEntry.content += "<b>Размер:</b> " + size + "<br/>";
+                makeEntry.content += "<b>Жанр: </b>" + genre + "<br/>";
+                makeEntry.content += annotation;
+
+                list.add(makeEntry);
+            }
+        }
+        return Pair.create(list, authorName);
 
     }
 
@@ -290,7 +351,7 @@ public class SamlibOPDS {
             Element root = items.get(i);
             Elements author = root.select("a");
 
-            Link link = new Link(ROOT + author.attr("href") + LIBRERA_MOBI, Link.APPLICATION_ATOM_XML);
+            Link link = new Link(ROOT + author.attr("href") + AUTHORS_BOOKS, Link.APPLICATION_ATOM_XML);
 
             Entry entry = new Entry(author.text(), link);
             entry.content = root.text();
@@ -301,7 +362,7 @@ public class SamlibOPDS {
 
     }
 
-    public static List<Entry> parseBook(String url) {
+    public static Pair<List<Entry>, String> parseBook(String url) {
         List<Entry> list = new ArrayList<Entry>();
 
         String res = getHTTP(url);
@@ -339,7 +400,7 @@ public class SamlibOPDS {
 
         list.add(entry);
 
-        return list;
+        return Pair.create(list, title);
 
     }
 
@@ -386,19 +447,23 @@ public class SamlibOPDS {
         return new Link(ROOT + url, Link.APPLICATION_ATOM_XML_SUBLINE, text);
     }
 
-    public static Entry makeEntry(Element title, Element author) {
-        String aURL = author.attr("href");
-        String tURL = title.attr("href");
+    public static Entry makeEntry(Element bookItem, Element author) {
+        String aURL = author.attr("href") + AUTHORS_BOOKS;
+
+        String tURL = bookItem.attr("href");
+        tURL = tURL.startsWith("http") ? tURL : ROOT + tURL;
+
         String authorTxt = author.text().replace("\"", "");
-        String titleTxt = title.text().replace("\"", "");
+        String titleTxt = bookItem.text().replace("\"", "");
 
-        Link link1 = new Link(ROOT + tURL + BOOK);
-        Link link2 = new Link(ROOT + aURL, Link.APPLICATION_ATOM_XML_SUBLINE, authorTxt);
+        Link link1 = new Link(tURL + BOOK);
 
-        Link download = new Link(ROOT + tURL.replace(".shtml", ".fb2.zip"), "application/fb-ebook+zip", "Скачать FB2");
+        Link link2 = new Link(aURL.startsWith("http") ? aURL : ROOT + aURL, Link.APPLICATION_ATOM_XML_SUBLINE, authorTxt);
+
+        Link download = new Link(tURL.replace(".shtml", ".fb2.zip"), "application/fb-ebook+zip", "Скачать FB2");
         download.parentTitle = filterAuthror(authorTxt + " - " + titleTxt);
 
-        Link web = new Link(ROOT + tURL + LIBRERA_MOBI, Link.WEB_LINK, "WEB");
+        Link web = new Link(tURL + LIBRERA_MOBI, Link.WEB_LINK, "WEB");
 
         File book = new File(CacheZipUtils.LIRBI_DOWNLOAD_DIR, download.getDownloadName());
         if (book.isFile()) {

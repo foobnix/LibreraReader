@@ -17,6 +17,7 @@ public class Entry {
     public String summary = "";
     public String year;
     public String homeUrl;
+    public String logo;
 
     public List<Link> links = new ArrayList<Link>();
 
@@ -64,6 +65,7 @@ public class Entry {
 
     public void setAppState(String homeUrl, String title, String subtitle, String logo) {
         appState = homeUrl + "," + TxtUtils.fixAppState(title) + "," + TxtUtils.fixAppState(subtitle) + "," + logo + ";";
+        this.logo = logo;
     }
 
     public Entry(String title, Link... items) {

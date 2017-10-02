@@ -393,4 +393,5 @@
    <string name="show_book_covers">Show book covers</string>
    <string name="without_series">Without series</string>
    <string name="add_as_a_web_site">Add as a WEB site</string>
+   <string name="add_catalog">Add catalog</string>
 </resources>
