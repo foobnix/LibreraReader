@@ -72,6 +72,9 @@ public class OPDS {
 
     public static Feed getFeed(String url) {
         try {
+            if (url.endsWith(SamlibOPDS.LIBRERA_MOBI)) {
+                return null;
+            }
             String res = getHttpResponse(url);
             if (res.equals(CODE_401)) {
                 Feed feed = new Feed();
@@ -204,6 +207,5 @@ public class OPDS {
         return feed;
 
     }
-
 
 }

@@ -87,7 +87,7 @@ public class OpdsFragment2 extends UIFragment<Entry> {
                 continue;
             }
             String[] it = line.split(",");
-            res.add(new Entry(it[0], it[1], it[2], it[3]));
+            res.add(new Entry(it[0], it[1], it[2], it[3], true));
         }
         return res;
 
@@ -406,7 +406,7 @@ public class OpdsFragment2 extends UIFragment<Entry> {
         if (SamlibOPDS.isSamlibUrl(url)) {
             List<Entry> samlibResult = SamlibOPDS.getSamlibResult(url);
             if (samlibResult != null && samlibResult.size() >= 1) {
-                // title = samlibResult.get(0).title;
+                title = SamlibOPDS.getTitle(url);
             }
             return samlibResult;
         }

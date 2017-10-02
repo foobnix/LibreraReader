@@ -1,3 +1,4 @@
+Usefull links and samlib
 Show all series by Author
 Fixed book delete within app
 Show all series by Genre

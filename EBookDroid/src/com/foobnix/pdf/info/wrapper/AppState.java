@@ -12,6 +12,7 @@ import com.foobnix.android.utils.Apps;
 import com.foobnix.android.utils.Dips;
 import com.foobnix.android.utils.LOG;
 import com.foobnix.android.utils.MemoryUtils;
+import com.foobnix.opds.SamlibOPDS;
 import com.foobnix.pdf.info.AppsConfig;
 import com.foobnix.pdf.info.ExportSettingsManager;
 import com.foobnix.pdf.info.R;
@@ -130,6 +131,7 @@ public class AppState {
     public final static String OPDS_DEFAULT = "" + //
     // "http://flibusta.is/opds,Flibusta,Книжное
     // братство,http://flibusta.is/favicon.ico;" + //
+            SamlibOPDS.ROOT_AWARDS + ",Usefull links: The Awards and Top Books - Награды и премии, Complete award winners listing,assets://opds/rating.png;" + //
             "http://opds.litres.ru,Litres,Библиотека электронных книг,assets://opds/litres.ico;" + //
             "https://www.gitbook.com/api/opds/catalog.atom,GitBook,Public books are always free.,assets://opds/gitbook.png;" + //
             "http://m.gutenberg.org/ebooks.opds/,Project Gutenberg,Free ebooks since 1971,assets://opds/gutenberg.png;" + //

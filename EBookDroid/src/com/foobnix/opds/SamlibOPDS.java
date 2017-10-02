@@ -1,5 +1,6 @@
 package com.foobnix.opds;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -8,30 +9,58 @@ import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
+import com.foobnix.ext.CacheZipUtils;
+
 public class SamlibOPDS {
 
+    public static final String LIBRERA_MOBI = "?from=librera.mobi";
     private static final String AUTHORS = "?authors";
-    private static final String AUTHORS_LIST = "?AUTHORS_LIST";
+    private static final String AUTHORS_LIST = "?AUTHORS_LIST" + LIBRERA_MOBI.replace("?", "&");
     private static final String FORM = "?form";
     private static final String GENRE = "?genre";
     private static final String BOOK = "?BOOK";
     private static final String ROOT = "http://samlib.ru";
+    public static final String ROOT_AWARDS = "Awards";
 
     public static boolean isSamlibUrl(String url) {
-        return url.startsWith(ROOT);
+        return url.startsWith(ROOT) || url.startsWith(ROOT_AWARDS);
+    }
+
+    private static List<Entry> getHomeAwards() {
+        List<Entry> list = new ArrayList<Entry>();
+        list.add(Entry.Home("https://www.worldswithoutend.com/books.asp", "Book Awards"));
+        list.add(Entry.Home("https://www.worldswithoutend.com/lists.asp", "Book Lists"));
+        list.add(Entry.Home("http://fantlab.ru/awards", "Награды и премии"));
+        list.add(Entry.Home("https://www.goodreads.com/shelf/show/top-rated", "Popular Top Rated Books"));
+        list.add(Entry.Home("https://www.amazon.com/b?node=8192263011", "100 Books to Read in a Lifetime from Amazon"));
+        list.add(Entry.Home("https://issuu.com/", "All World Magazines "));
+        return list;
     }
 
     private static List<Entry> getHome() {
         List<Entry> list = new ArrayList<Entry>();
-        list.add(new Entry("http://samlib.ru/?from=Librera", "Переход на сайт", "http://samlib.ru", null));
+        list.add(new Entry("http://samlib.ru/" + LIBRERA_MOBI, "Переход на сайт", "http://samlib.ru", null));
         list.add(new Entry("http://samlib.ru/rating/expert/", "Избранное", "Рейтинг экспертов", null));
-        list.add(new Entry("http://samlib.ru/rating/top40/", "Топ-40", "Рейтинг по оценкам", null));
+        list.add(new Entry("http://samlib.ru/rating/top40/", "Рейтинг Топ-40", "Рейтинг по оценкам", null));
+        list.add(new Entry("http://samlib.ru/rating/top100/", "Рейтинг Топ-100", "Рейтинг по оценкам", null));
         list.add(new Entry("http://samlib.ru/r/redaktor/rating1.shtml", "Топ-30 Редактора", "Список лучших работ", null));
         list.add(new Entry("http://samlib.ru/short.shtml", "Последние поступления", "7 дней", null));
         list.add(new Entry("http://samlib.ru/" + GENRE, "Жанры", "Все жанры", null));
         list.add(new Entry("http://samlib.ru/" + FORM, "Формы", "Все формы", null));
         list.add(new Entry("http://samlib.ru/" + AUTHORS, "Авторы", "Все авторы", null));
         return list;
+    }
+
+    public static String getTitle(String url) {
+        if (url.startsWith(ROOT_AWARDS)) {
+            return ROOT_AWARDS;
+        }
+        for (Entry e : getHome()) {
+            if (url.equals(e.homeUrl)) {
+                return e.title;
+            }
+        }
+        return "Samlib.ru";
     }
 
     private static List<Entry> getGenres() {
@@ -176,6 +205,9 @@ public class SamlibOPDS {
         if (ROOT.equals(url)) {
             return getHome();
         }
+        if (ROOT_AWARDS.equals(url)) {
+            return getHomeAwards();
+        }
         if (url.endsWith(GENRE)) {
             return getGenres();
         }
@@ -195,9 +227,19 @@ public class SamlibOPDS {
         if ("http://samlib.ru/rating/top40/".equals(url)) {
             return parseShort(url);
         }
+        if ("http://samlib.ru/rating/top100/".equals(url)) {
+            return parseShort(url);
+        }
         if ("http://samlib.ru/rating/expert/".equals(url)) {
+            List<Entry> parseRating = parseRating(url, 0);
+            parseRating.add(new Entry("http://samlib.ru/rating/expert/index-2.shtml", "Страница 2"));
+            return parseRating;
+        }
+        if ("http://samlib.ru/rating/expert/index-2.shtml".equals(url)) {
             return parseRating(url, 0);
         }
+        
+        
         if ("http://samlib.ru/r/redaktor/rating1.shtml".equals(url)) {
             return parseRating(url, 0);
         }
@@ -248,7 +290,7 @@ public class SamlibOPDS {
             Element root = items.get(i);
             Elements author = root.select("a");
 
-            Link link = new Link(ROOT + author.attr("href"), Link.APPLICATION_ATOM_XML);
+            Link link = new Link(ROOT + author.attr("href") + LIBRERA_MOBI, Link.APPLICATION_ATOM_XML);
 
             Entry entry = new Entry(author.text(), link);
             entry.content = root.text();
@@ -270,7 +312,7 @@ public class SamlibOPDS {
 
         Element authorElement = doc.select("li:contains(Copyright)").first();
 
-        Link link1 = new Link(url, Link.WEB_LINK);
+        Link link1 = new Link(url + LIBRERA_MOBI, Link.WEB_LINK);
         Link link2 = new Link(url, Link.APPLICATION_ATOM_XML_PROFILE, filterAuthror(authorElement.text()));
 
         Entry entry = new Entry(title, link1, link2);
@@ -293,7 +335,7 @@ public class SamlibOPDS {
         link.parentTitle = authorTxt + " - " + title;
 
         entry.links.add(link);
-        entry.links.add(new Link(authorTxt, Link.WEB_LINK, "WEB"));
+        entry.links.add(new Link(authorTxt + LIBRERA_MOBI, Link.WEB_LINK, "WEB"));
 
         list.add(entry);
 
@@ -356,7 +398,12 @@ public class SamlibOPDS {
         Link download = new Link(ROOT + tURL.replace(".shtml", ".fb2.zip"), "application/fb-ebook+zip", "Скачать FB2");
         download.parentTitle = filterAuthror(authorTxt + " - " + titleTxt);
 
-        Link web = new Link(ROOT + tURL, Link.WEB_LINK, "WEB");
+        Link web = new Link(ROOT + tURL + LIBRERA_MOBI, Link.WEB_LINK, "WEB");
+
+        File book = new File(CacheZipUtils.LIRBI_DOWNLOAD_DIR, download.getDownloadName());
+        if (book.isFile()) {
+            download.filePath = book.getPath();
+        }
 
         return new Entry(titleTxt, link1, link2, download, web);
     }

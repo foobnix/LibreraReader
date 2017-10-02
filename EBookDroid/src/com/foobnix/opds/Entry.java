@@ -16,6 +16,7 @@ public class Entry {
     public String category = "";
     public String summary = "";
     public String year;
+    public String homeUrl;
 
     public List<Link> links = new ArrayList<Link>();
 
@@ -27,13 +28,24 @@ public class Entry {
     public String tempLogo;
 
     public Entry(String homeUrl, String title) {
-        this(homeUrl, title, null, null);
+        this(homeUrl, title, null, null, false);
 
     }
 
-    public Entry(String homeUrl, String title, String subtitle, String logo) {
+    public static Entry Home(String url, String title) {
+        String homeUrl2 = url + (url.contains("?") ? SamlibOPDS.LIBRERA_MOBI.replace("?", "&") : SamlibOPDS.LIBRERA_MOBI);
+        return new Entry(homeUrl2, title, url, null, false);
+    }
 
-        setAppState(homeUrl, title, subtitle, logo);
+    public Entry(String homeUrl, String title, String subtitle, String logo) {
+        this(homeUrl, title, subtitle, logo, false);
+    }
+
+    public Entry(String homeUrl, String title, String subtitle, String logo, boolean isRemovable) {
+        this.homeUrl = homeUrl;
+        if (isRemovable) {
+            setAppState(homeUrl, title, subtitle, logo);
+        }
 
         this.title = title;
 
