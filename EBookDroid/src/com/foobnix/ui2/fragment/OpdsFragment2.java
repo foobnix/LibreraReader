@@ -230,6 +230,7 @@ public class OpdsFragment2 extends UIFragment<Entry> {
             public void onClick(View v) {
                 stack.clear();
                 url = getHome();
+                LOG.d("URLAction", "ADD", url);
                 urlRoot = "";
                 populate();
             }
@@ -262,10 +263,14 @@ public class OpdsFragment2 extends UIFragment<Entry> {
 
         boolean res = !getHome().equals(last);
 
+        LOG.d("URLAction", last, url);
+
         if (last.equals(url)) {
             last = popStack();// two times
         }
         url = last;
+        stack.push(url);
+        LOG.d("URLAction", "ADD", url);
 
         populate();
         return res;
@@ -296,6 +301,7 @@ public class OpdsFragment2 extends UIFragment<Entry> {
             }
             url = link.href;
             stack.push(url);
+            LOG.d("URLAction", "ADD", url);
             populate();
 
         } else if (link.isImageLink()) {

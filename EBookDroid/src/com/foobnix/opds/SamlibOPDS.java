@@ -23,6 +23,7 @@ public class SamlibOPDS {
 
     private static List<Entry> getHome() {
         List<Entry> list = new ArrayList<Entry>();
+        list.add(new Entry("http://samlib.ru/?from=Librera", "Переход на сайт", "http://samlib.ru", null));
         list.add(new Entry("http://samlib.ru/rating/expert/", "Избранное", "Рейтинг экспертов", null));
         list.add(new Entry("http://samlib.ru/rating/top40/", "Топ-40", "Рейтинг по оценкам", null));
         list.add(new Entry("http://samlib.ru/r/redaktor/rating1.shtml", "Топ-30 Редактора", "Список лучших работ", null));

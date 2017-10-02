@@ -28,7 +28,6 @@ import android.speech.tts.UtteranceProgressListener;
 import android.support.v4.media.session.MediaButtonReceiver;
 import android.support.v4.media.session.MediaSessionCompat;
 import android.view.KeyEvent;
-import android.view.accessibility.AccessibilityManager;
 
 public class TTSService extends Service {
 
@@ -83,8 +82,6 @@ public class TTSService extends Service {
         PendingIntent pendingIntent = PendingIntent.getBroadcast(this, 0, mediaButtonIntent, 0);
         mMediaSessionCompat.setMediaButtonReceiver(pendingIntent);
 
-        accessibilityManager = (AccessibilityManager) getSystemService(ACCESSIBILITY_SERVICE);
-
     }
 
     boolean isPlaying;
@@ -93,10 +90,6 @@ public class TTSService extends Service {
         @Override
         public void onAudioFocusChange(int focusChange) {
             LOG.d("onAudioFocusChange", focusChange);
-            if (accessibilityManager.isEnabled()) {
-                LOG.d("Skip onAudioFocusChange", focusChange);
-                return;
-            }
             if (focusChange < 0) {
                 isPlaying = TTSEngine.get().isPlaying();
                 LOG.d("onAudioFocusChange", "Is playing", isPlaying);
@@ -108,7 +101,6 @@ public class TTSService extends Service {
             }
         }
     };
-    private AccessibilityManager accessibilityManager;
 
     @Override
     public IBinder onBind(Intent intent) {
