@@ -57,7 +57,7 @@ public class BooksService extends IntentService {
                 File bookFile = new File(meta.getPath());
                 if (!bookFile.exists()) {
                     AppDB.get().delete(meta);
-                    LOG.d("Delete meta", meta);
+                    LOG.d("Delete meta", meta.getPath());
                 }
             }
             sendFinishMessage();
