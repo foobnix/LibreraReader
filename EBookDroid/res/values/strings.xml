@@ -394,4 +394,6 @@
    <string name="without_series">Without series</string>
    <string name="add_as_a_web_site">Add as a WEB site</string>
    <string name="add_catalog">Add catalog</string>
+   <string name="favorites">Favorites</string>
+   <string name="my_favorites_links">My favorites links</string>
 </resources>

@@ -10,7 +10,9 @@ import org.jsoup.nodes.Element;
 import org.jsoup.parser.Tag;
 import org.jsoup.select.Elements;
 
+import com.foobnix.android.utils.TxtUtils;
 import com.foobnix.ext.CacheZipUtils;
+import com.foobnix.pdf.info.wrapper.AppState;
 
 import android.support.v4.util.Pair;
 
@@ -25,9 +27,10 @@ public class SamlibOPDS {
     private static final String BOOK = "?BOOK";
     private static final String ROOT = "http://samlib.ru";
     public static final String ROOT_AWARDS = "Awards";
+    public static final String ROOT_FAVORITES = "Favorites";
 
     public static boolean isSamlibUrl(String url) {
-        return url.startsWith(ROOT) || url.startsWith(ROOT_AWARDS);
+        return url.startsWith(ROOT) || url.startsWith(ROOT_AWARDS) || url.startsWith(ROOT_FAVORITES);
     }
 
     private static List<Entry> getHomeAwards() {
@@ -222,6 +225,22 @@ public class SamlibOPDS {
         if (ROOT_AWARDS.equals(url)) {
             return Pair.create(getHomeAwards(), getTitle(url));
         }
+        if (ROOT_FAVORITES.equals(url)) {
+            String[] list = AppState.get().myOPDS.split(";");
+            List<Entry> res = new ArrayList<Entry>();
+            for (String line : list) {
+                if (TxtUtils.isEmpty(line)) {
+                    continue;
+                }
+                if (line.contains("star_1.png")) {
+                    String[] it = line.split(",");
+                    res.add(new Entry(it[0], it[1], it[2], it[3], true));
+                }
+            }
+            return Pair.create(res, ROOT_FAVORITES);
+
+        }
+
         if (url.endsWith(GENRE)) {
             return Pair.create(getGenres(), getTitle(url));
         }
@@ -393,10 +412,16 @@ public class SamlibOPDS {
         if (authorTxt.contains("(")) {
             authorTxt = authorTxt.substring(0, authorTxt.indexOf("("));
         }
-        link.parentTitle = authorTxt + " - " + title;
+
+        link.parentTitle = authorTxt.trim() + " - " + title.trim();
+
+        File book = new File(CacheZipUtils.LIRBI_DOWNLOAD_DIR, link.getDownloadName());
+        if (book.isFile()) {
+            link.filePath = book.getPath();
+        }
 
         entry.links.add(link);
-        entry.links.add(new Link(authorTxt + LIBRERA_MOBI, Link.WEB_LINK, "WEB"));
+        entry.links.add(new Link(url, Link.WEB_LINK, "WEB"));
 
         list.add(entry);
 
@@ -461,7 +486,7 @@ public class SamlibOPDS {
         Link link2 = new Link(aURL.startsWith("http") ? aURL : ROOT + aURL, Link.APPLICATION_ATOM_XML_SUBLINE, authorTxt);
 
         Link download = new Link(tURL.replace(".shtml", ".fb2.zip"), "application/fb-ebook+zip", "Скачать FB2");
-        download.parentTitle = filterAuthror(authorTxt + " - " + titleTxt);
+        download.parentTitle = filterAuthror(authorTxt.trim() + " - " + titleTxt.trim());
 
         Link web = new Link(tURL + LIBRERA_MOBI, Link.WEB_LINK, "WEB");
 

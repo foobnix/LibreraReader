@@ -629,6 +629,17 @@ public class PrefFragment2 extends UIFragment {
                 ExtUtils.updateSearchExts();
             }
         });
+
+        ((CheckBox) inflate.findViewById(R.id.supportXPS)).setChecked(AppState.getInstance().supportXPS);
+        ((CheckBox) inflate.findViewById(R.id.supportXPS)).setOnCheckedChangeListener(new OnCheckedChangeListener() {
+
+            @Override
+            public void onCheckedChanged(final CompoundButton buttonView, final boolean isChecked) {
+                AppState.getInstance().supportXPS = isChecked;
+                ExtUtils.updateSearchExts();
+            }
+        });
+
         ((CheckBox) inflate.findViewById(R.id.supportDJVU)).setChecked(AppState.getInstance().supportDJVU);
         ((CheckBox) inflate.findViewById(R.id.supportDJVU)).setOnCheckedChangeListener(new OnCheckedChangeListener() {
 

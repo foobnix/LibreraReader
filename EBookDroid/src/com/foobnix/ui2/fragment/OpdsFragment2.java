@@ -78,18 +78,26 @@ public class OpdsFragment2 extends UIFragment<Entry> {
     public List<Entry> getAllCatalogs() {
 
         if (false) {
-            String test = "http://samlib.ru/k/karina_d/indexvote.shtml?AUTHORS_BOOKS";
+            String test = "https://books.fbreader.org/opds";
             return Arrays.asList(new Entry(test, test));
         }
 
         String[] list = AppState.get().myOPDS.split(";");
         List<Entry> res = new ArrayList<Entry>();
+        boolean hasStars = false;
         for (String line : list) {
             if (TxtUtils.isEmpty(line)) {
                 continue;
             }
+            if (line.contains("star_1.png")) {
+                hasStars = true;
+                continue;
+            }
             String[] it = line.split(",");
             res.add(new Entry(it[0], it[1], it[2], it[3], true));
+        }
+        if (hasStars) {
+            res.add(0, new Entry(SamlibOPDS.ROOT_FAVORITES, getString(R.string.favorites), getString(R.string.my_favorites_links), "assets://opds/star_1.png", true));
         }
         return res;
 
@@ -503,7 +511,7 @@ public class OpdsFragment2 extends UIFragment<Entry> {
         }
 
         if (entries == null || entries.isEmpty()) {
-            Urls.open(getActivity(), url);
+            Urls.openWevView(getActivity(), url);
             popStack();
             return;
         }

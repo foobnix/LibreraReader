@@ -393,4 +393,7 @@
    <string name="show_book_covers">Visa bokomslag</string>
    <string name="without_series">Utan serie</string>
    <string name="add_as_a_web_site">Lägg till som WEB-webbplats</string>
+   <string name="add_catalog">Lägg till katalog</string>
+   <string name="favorites">Favoriter</string>
+   <string name="my_favorites_links">Mina favoriter länkar</string>
 </resources>

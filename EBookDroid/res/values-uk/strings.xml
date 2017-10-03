@@ -393,4 +393,7 @@
    <string name="show_book_covers">Показати обкладинки для книг</string>
    <string name="without_series">Без серії</string>
    <string name="add_as_a_web_site">Додати як веб-сайт</string>
+   <string name="add_catalog">Додати каталог</string>
+   <string name="favorites">Вибране</string>
+   <string name="my_favorites_links">Посилання на мої закладки</string>
 </resources>

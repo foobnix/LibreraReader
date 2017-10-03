@@ -131,14 +131,18 @@ public class AppState {
     public final static String OPDS_DEFAULT = "" + //
     // "http://flibusta.is/opds,Flibusta,Книжное
     // братство,http://flibusta.is/favicon.ico;" + //
-            SamlibOPDS.ROOT_AWARDS + ",Usefull links: The Awards and Top Books - Награды и премии, Complete award winners listing,assets://opds/rating.png;" + //
             "http://opds.litres.ru,Litres,Библиотека электронных книг,assets://opds/litres.ico;" + //
+            "https://books.fbreader.org/opds,FBReader,My personal catalogue,assets://opds/fbreader.png;" + //
             "https://www.gitbook.com/api/opds/catalog.atom,GitBook,Public books are always free.,assets://opds/gitbook.png;" + //
             "http://m.gutenberg.org/ebooks.opds/,Project Gutenberg,Free ebooks since 1971,assets://opds/gutenberg.png;" + //
             "http://manybooks.net/opds/index.php,Manybooks,Online Catalog for Manybooks.net,assets://opds/manybooks.png;" + //
             "https://www.smashwords.com/atom,Smashwords,Online Catalog,assets://opds/smashwords.png;" + //
             "http://www.feedbooks.com/publicdomain/catalog.atom,Feedbooks,Free ebooks,assets://opds/feedbooks.ico;" + //
-            "http://samlib.ru,Журнал Самиздат (samlib.ru),Cовременная литература при библиотеке Мошкова,assets://opds/web.png;"; //
+            "http://samlib.ru,Журнал Самиздат (samlib.ru),Cовременная литература при библиотеке Мошкова,assets://opds/web.png;" + //
+            SamlibOPDS.ROOT_AWARDS + ",Usefull links: The Awards and Top Books - Награды и премии, Complete award winners listing,assets://opds/rating.png;" //
+    // end
+    ;
+    // end
 
     public String myOPDS = OPDS_DEFAULT;
 
@@ -324,6 +328,7 @@ public class AppState {
     public int colorNigthBg = COLOR_BLACK;
 
     public boolean supportPDF = true;
+    public boolean supportXPS = false;
     public boolean supportDJVU = true;
     public boolean supportEPUB = true;
     public boolean supportFB2 = true;
@@ -606,6 +611,7 @@ public class AppState {
         ttsTimer = sp.getInt("ttsTimer", ttsTimer);
 
         supportPDF = sp.getBoolean("supportPDF", supportPDF);
+        supportXPS = sp.getBoolean("supportXPS", supportXPS);
         supportDJVU = sp.getBoolean("supportDJVU", supportDJVU);
         supportEPUB = sp.getBoolean("supportEPUB", supportEPUB);
         supportFB2 = sp.getBoolean("supportFB2", supportFB2);
@@ -831,6 +837,7 @@ public class AppState {
         editor.putInt("ttsTimer", ttsTimer);
 
         editor.putBoolean("supportPDF", supportPDF);
+        editor.putBoolean("supportXPS", supportXPS);
         editor.putBoolean("supportDJVU", supportDJVU);
         editor.putBoolean("supportEPUB", supportEPUB);
         editor.putBoolean("supportFB2", supportFB2);

@@ -393,4 +393,7 @@
    <string name="show_book_covers">पुस्तक कवर दिखाएं</string>
    <string name="without_series">श्रृंखला के बिना</string>
    <string name="add_as_a_web_site">वेब साइट के रूप में जोड़ें</string>
+   <string name="add_catalog">कैटलॉग जोड़ें</string>
+   <string name="favorites">पसंदीदा</string>
+   <string name="my_favorites_links">मेरे पसंदीदा लिंक</string>
 </resources>

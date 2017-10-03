@@ -393,4 +393,7 @@
    <string name="show_book_covers">แสดงปกหนังสือ</string>
    <string name="without_series">ไม่มีชุด</string>
    <string name="add_as_a_web_site">เพิ่มเป็นเว็บไซต์ของเวบไซต์</string>
+   <string name="add_catalog">เพิ่มแคตตาล็อก</string>
+   <string name="favorites">รายการโปรด</string>
+   <string name="my_favorites_links">ลิงก์รายการโปรดของฉัน</string>
 </resources>

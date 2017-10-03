@@ -75,7 +75,8 @@ public class ExtUtils {
 
     public final static List<String> otherExts = Arrays.asList(AppState.OTHER_BOOK_EXT);
     public final static List<String> lirbeExt = Arrays.asList(AppState.LIBRE_EXT);
-    public final static List<String> imageExts = Arrays.asList(".png", ".jpg", ".jpeg");
+    public final static List<String> imageExts = Arrays.asList(".png", ".jpg", ".jpeg", ".gif");
+    public final static List<String> imageMimes = Arrays.asList("image/png", "image/jpg", "image/jpeg", "image/gif");
     public final static List<String> archiveExts = Arrays.asList(AppState.OTHER_ARCH_EXT);
     public final static List<String> browseExts = BookType.getAllSupportedExtensions();
     public static Map<String, String> mimeCache = new HashMap<String, String>();
@@ -225,6 +226,15 @@ public class ExtUtils {
         return false;
     }
 
+    public static boolean isImageMime(String mime) {
+        mime = mime.toLowerCase(Locale.US);
+        for (String ext : imageMimes) {
+            if (ext.equals(mime)) {
+                return true;
+            }
+        }
+        return false;
+    }
 
     public static boolean isLibreFile(File file) {
         if (file != null && file.isFile()) {
@@ -336,8 +346,11 @@ public class ExtUtils {
 
         if (AppState.get().supportPDF) {
             result.add(".pdf");
+        }
+        if (AppState.get().supportXPS) {
             result.add(".xps");
         }
+
         if (AppState.get().supportEPUB) {
             result.add(".epub");
         }

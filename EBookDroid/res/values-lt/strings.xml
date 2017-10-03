@@ -393,4 +393,7 @@
    <string name="show_book_covers">Rodyti knygų viršelius</string>
    <string name="without_series">Be serijos</string>
    <string name="add_as_a_web_site">Pridėti kaip svetainę</string>
+   <string name="add_catalog">Pridėti katalogą</string>
+   <string name="favorites">Favoritai</string>
+   <string name="my_favorites_links">Mano mėgstamiausių nuorodos</string>
 </resources>

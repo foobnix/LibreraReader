@@ -393,4 +393,7 @@
    <string name="show_book_covers">Könyvborítók megjelenítése</string>
    <string name="without_series">Sorozat nélkül</string>
    <string name="add_as_a_web_site">Webhelyként való hozzáadása</string>
+   <string name="add_catalog">Katalógus hozzáadása</string>
+   <string name="favorites">Érdekes</string>
+   <string name="my_favorites_links">Kedvenc linkek</string>
 </resources>

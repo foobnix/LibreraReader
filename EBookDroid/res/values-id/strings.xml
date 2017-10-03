@@ -393,4 +393,7 @@
    <string name="show_book_covers">Tampilkan sampul buku</string>
    <string name="without_series">Tanpa seri</string>
    <string name="add_as_a_web_site">Tambahkan sebagai situs WEB</string>
+   <string name="add_catalog">Tambahkan katalog</string>
+   <string name="favorites">Favorit</string>
+   <string name="my_favorites_links">Link favorit saya</string>
 </resources>

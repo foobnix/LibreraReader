@@ -393,4 +393,7 @@
    <string name="show_book_covers">Arătați cărțile</string>
    <string name="without_series">Fără serii</string>
    <string name="add_as_a_web_site">Adăugați ca un site WEB</string>
+   <string name="add_catalog">Adăugați catalog</string>
+   <string name="favorites">Favorite</string>
+   <string name="my_favorites_links">Link-urile mele favorite</string>
 </resources>

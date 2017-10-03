@@ -393,4 +393,7 @@
    <string name="show_book_covers">显示书籍封面</string>
    <string name="without_series">没有系列</string>
    <string name="add_as_a_web_site">添加为WEB站点</string>
+   <string name="add_catalog">添加目录</string>
+   <string name="favorites">最爱</string>
+   <string name="my_favorites_links">我的最爱链接</string>
 </resources>

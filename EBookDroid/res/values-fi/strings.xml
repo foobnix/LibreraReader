@@ -393,4 +393,7 @@
    <string name="show_book_covers">Näytä kirjan kannet</string>
    <string name="without_series">Ilman sarjaa</string>
    <string name="add_as_a_web_site">Lisää WEB-sivustoina</string>
+   <string name="add_catalog">Lisää luettelo</string>
+   <string name="favorites">Suosikit</string>
+   <string name="my_favorites_links">Suosikkilinkit</string>
 </resources>

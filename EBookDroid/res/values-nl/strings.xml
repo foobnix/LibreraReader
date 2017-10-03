@@ -393,4 +393,7 @@
    <string name="show_book_covers">Toon boekomslag</string>
    <string name="without_series">Zonder serie</string>
    <string name="add_as_a_web_site">Voeg toe als WEB-site</string>
+   <string name="add_catalog">Voeg catalogus toe</string>
+   <string name="favorites">Favorieten</string>
+   <string name="my_favorites_links">Mijn favorieten links</string>
 </resources>

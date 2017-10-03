@@ -24,17 +24,20 @@ public class OPDS {
     public static final String CODE_401 = "401";
     static Cache cache = new Cache(CacheZipUtils.CACHE_WEB, 5 * 1024 * 1024);
     public static OkHttpClient client = new OkHttpClient.Builder()//
+            .cookieJar(new WebviewCookieHandler())//
             .connectTimeout(15, TimeUnit.SECONDS)//
             .writeTimeout(15, TimeUnit.SECONDS)//
             .readTimeout(30, TimeUnit.SECONDS)//
             .cache(cache).build();//
 
     public static int random = new Random().nextInt();
+    public static final String USER_AGENT = "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/57.0.2987." + random + " Safari/537.36";
 
     public static String getHttpResponse(String url) throws IOException {
 
         Request request = new Request.Builder()//
-                .header("User-Agent", "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/57.0.2987." + random + " Safari/537.36")
+                .header("User-Agent", USER_AGENT)
+
                 .cacheControl(new CacheControl.Builder()//
                         .maxAge(10, TimeUnit.MINUTES)//
                         .build())//

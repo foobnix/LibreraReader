@@ -393,4 +393,7 @@
    <string name="show_book_covers">Onyesha inashughulikia kitabu</string>
    <string name="without_series">Bila mfululizo</string>
    <string name="add_as_a_web_site">Ongeza kama tovuti ya WEB</string>
+   <string name="add_catalog">Ongeza orodha</string>
+   <string name="favorites">Mapendeleo</string>
+   <string name="my_favorites_links">Viungo vyangu vya kupendeza</string>
 </resources>

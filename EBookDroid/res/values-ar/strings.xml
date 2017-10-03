@@ -393,4 +393,7 @@
    <string name="show_book_covers">عرض أغلفة الكتب</string>
    <string name="without_series">بدون سلسلة</string>
    <string name="add_as_a_web_site">إضافة كموقع ويب</string>
+   <string name="add_catalog">إضافة كتالوج</string>
+   <string name="favorites">المفضلة</string>
+   <string name="my_favorites_links">الروابط المفضلة</string>
 </resources>

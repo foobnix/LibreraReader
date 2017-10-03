@@ -393,4 +393,7 @@
    <string name="show_book_covers">Buchdeckel anzeigen</string>
    <string name="without_series">Ohne Serien</string>
    <string name="add_as_a_web_site">Als WEB-Site hinzufügen</string>
+   <string name="add_catalog">Katalog hinzufügen</string>
+   <string name="favorites">Favoriten</string>
+   <string name="my_favorites_links">Meine Favoriten Links</string>
 </resources>

@@ -27,6 +27,7 @@ import com.foobnix.ext.EpubExtractor;
 import com.foobnix.ext.Fb2Extractor;
 import com.foobnix.ext.MobiExtract;
 import com.foobnix.ext.RtfExtract;
+import com.foobnix.opds.OPDS;
 import com.foobnix.pdf.info.ExtUtils;
 import com.foobnix.pdf.info.IMG;
 import com.foobnix.pdf.info.PageUrl;
@@ -48,6 +49,7 @@ import android.graphics.Rect;
 import android.graphics.RectF;
 import android.util.Base64;
 import android.util.Pair;
+import okhttp3.Request;
 
 public class ImageExtractor implements ImageDownloader {
 
@@ -305,6 +307,17 @@ public class ImageExtractor implements ImageDownloader {
     @Override
     public synchronized InputStream getStream(final String imageUri, final Object extra) throws IOException {
         LOG.d("TEST", "url: " + imageUri);
+
+        if (imageUri.startsWith("https")) {
+
+            Request request = new Request.Builder()//
+                    .header("User-Agent", OPDS.USER_AGENT)
+                    .url(imageUri)//
+                    .build();//
+
+            LOG.d("https!!!",imageUri);
+            return OPDS.client.newCall(request).execute().body().byteStream();
+        }
 
         if (imageUri.startsWith("data:")) {
             String uri = imageUri;

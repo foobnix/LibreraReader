@@ -393,4 +393,7 @@
    <string name="show_book_covers">הצג כריכות ספרים</string>
    <string name="without_series">ללא סדרה</string>
    <string name="add_as_a_web_site">הוסף כאתר אינטרנט</string>
+   <string name="add_catalog">הוסף קטלוג</string>
+   <string name="favorites">מועדפים</string>
+   <string name="my_favorites_links">הקישורים המועדפים שלי</string>
 </resources>

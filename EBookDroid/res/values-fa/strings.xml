@@ -393,4 +393,7 @@
    <string name="show_book_covers">نمایش جلد کتاب</string>
    <string name="without_series">بدون سری</string>
    <string name="add_as_a_web_site">به عنوان یک وب سایت اضافه کنید</string>
+   <string name="add_catalog">اضافه کردن کاتالوگ</string>
+   <string name="favorites">مورد علاقه های شما</string>
+   <string name="my_favorites_links">پیوندهای مورد علاقه من</string>
 </resources>

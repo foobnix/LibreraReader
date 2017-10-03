@@ -5,12 +5,17 @@ import java.net.URLEncoder;
 import java.util.Locale;
 
 import com.foobnix.android.utils.LOG;
+import com.foobnix.opds.OPDS;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
 import android.support.v4.text.TextUtilsCompat;
 import android.support.v4.view.ViewCompat;
+import android.webkit.WebView;
+import android.webkit.WebViewClient;
 
 public class Urls {
 
@@ -30,6 +35,33 @@ public class Urls {
         Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
         browserIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         a.startActivity(browserIntent);
+    }
+
+    public static void openWevView(Context a, String url) {
+        AlertDialog.Builder alert = new AlertDialog.Builder(a);
+        alert.setTitle(url);
+        WebView wv = new WebView(a);
+        wv.getSettings().setUserAgentString(OPDS.USER_AGENT);
+        wv.getSettings().setJavaScriptEnabled(true);
+        wv.loadUrl(url);
+        wv.setWebViewClient(new WebViewClient() {
+            @Override
+            public boolean shouldOverrideUrlLoading(WebView view, String url) {
+                view.loadUrl(url);
+                return true;
+            }
+        });
+
+        alert.setView(wv);
+        alert.setNegativeButton(R.string.close, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int id) {
+                dialog.dismiss();
+            }
+        });
+        alert.show();
+
+
     }
 
     public static void openPdfPro(Context a) {

@@ -393,4 +393,7 @@
    <string name="show_book_covers">Mostrar portadas del libro</string>
    <string name="without_series">Sin series</string>
    <string name="add_as_a_web_site">Agregar como un sitio WEB</string>
+   <string name="add_catalog">Añadir catálogo</string>
+   <string name="favorites">Favoritos</string>
+   <string name="my_favorites_links">Mis enlaces favoritos</string>
 </resources>

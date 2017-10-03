@@ -393,4 +393,7 @@
    <string name="show_book_covers">Kitap kapakları göster</string>
    <string name="without_series">Serisi olmadan</string>
    <string name="add_as_a_web_site">WEB sitesi olarak ekle</string>
+   <string name="add_catalog">Katalog ekle</string>
+   <string name="favorites">Favoriler</string>
+   <string name="my_favorites_links">Favorilerim bağlantılar</string>
 </resources>

@@ -393,4 +393,7 @@
    <string name="show_book_covers">책 표지보기</string>
    <string name="without_series">시리즈 없음</string>
    <string name="add_as_a_web_site">웹 사이트로 추가</string>
+   <string name="add_catalog">카탈로그 추가</string>
+   <string name="favorites">즐겨 찾기</string>
+   <string name="my_favorites_links">내 즐겨 찾기 링크</string>
 </resources>

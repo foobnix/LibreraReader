@@ -1,5 +1,8 @@
+Integration with "My personal FBReader catalogue"
+Support XPS
+Favorites OPDS links
 Clear books library
-Usefull links and samlib
+Usefull links and Samlib.ru
 Show all series by Author
 Fixed book delete within app
 Show all series by Genre
