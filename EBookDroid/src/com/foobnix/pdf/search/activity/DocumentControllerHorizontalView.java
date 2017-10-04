@@ -343,9 +343,13 @@ public abstract class DocumentControllerHorizontalView extends DocumentControlle
     @Override
     public void onCloseActivity() {
         isClosed = true;
-        if (!ExtUtils.isTextFomat(bookPath)) {
-            matrixSP.edit().putString(bookPath.hashCode() + "", PageImageState.get().getMatrixAsString()).commit();
-            LOG.d("MATRIX", "SAVE", bookPath.hashCode() + "", PageImageState.get().getMatrixAsString());
+        try {
+            if (!ExtUtils.isTextFomat(bookPath)) {
+                matrixSP.edit().putString(bookPath.hashCode() + "", PageImageState.get().getMatrixAsString()).commit();
+                LOG.d("MATRIX", "SAVE", bookPath.hashCode() + "", PageImageState.get().getMatrixAsString());
+            }
+        } catch (Exception e) {
+            LOG.e(e);
         }
 
         saveCurrentPage();

@@ -147,6 +147,12 @@ public class MainTabs2 extends FragmentActivity {
 
         isInStack = true;
 
+        TintUtil.setStatusBarColor(this);
+        DocumentController.applyBrigtness(this);
+        DocumentController.doRotation(this);
+
+        setContentView(R.layout.main_tabs);
+
         if (!AppsConfig.checkIsProInstalled(this) && AppsConfig.ADMOB_FULLSCREEN != null) {
             mInterstitialAd = new InterstitialAd(this);
             mInterstitialAd.setAdUnitId(AppsConfig.ADMOB_FULLSCREEN);
@@ -164,16 +170,11 @@ public class MainTabs2 extends FragmentActivity {
             }
         }
 
-        TintUtil.setStatusBarColor(this);
-        // DocumentController.chooseFullScreen(this, false);
-        DocumentController.applyBrigtness(this);
-        DocumentController.doRotation(this);
-
-        setContentView(R.layout.main_tabs);
-
         imageMenu = (ImageView) findViewById(R.id.imageMenu1);
         imageMenuParent = findViewById(R.id.imageParent1);
-        imageMenuParent.setBackgroundColor(TintUtil.color);
+        if (imageMenuParent != null) {
+            imageMenuParent.setBackgroundColor(TintUtil.color);
+        }
 
         tabFragments = new ArrayList<UIFragment>();
 

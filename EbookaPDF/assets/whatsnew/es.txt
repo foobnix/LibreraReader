@@ -1,5 +1,7 @@
-* Mejoras en la lectura de PDF, DJVU, EPUB 
-* Mejora de la interfaz de lectura 
-* Nuevos modos de lectura: Dos páginas, Cover + dos páginas, media página, una sola página 
-* Soporte para imágenes TIFF y libros 
-*
+* Libros gratuitos en catálogos 
+* Añadir enlaces a los favoritos del catálogo 
+* Cifra automática para el lenguaje del libro 
+* Lista de premios del libro y listas de libros superiores 
+* Apoyar el catálogo personal de FBReader 
+* Mostrar todas las series por autor, por género 
+* Muchas mejoras y pequeñas correcciones por sus comentarios

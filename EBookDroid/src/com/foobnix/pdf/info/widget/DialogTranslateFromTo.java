@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Map;
 
 import com.foobnix.android.utils.BaseItemLayoutAdapter;
+import com.foobnix.android.utils.TxtUtils;
 import com.foobnix.android.utils.Views;
 import com.foobnix.pdf.info.DictsHelper;
 import com.foobnix.pdf.info.DictsHelper.DictItem;
@@ -43,7 +44,7 @@ public class DialogTranslateFromTo {
         langs.put("Catalan", "ca");
         langs.put("Cebuano", "ceb");
         langs.put("Chichewa", "ny");
-        langs.put("Chinese Simplified", "zh-CN");
+        langs.put("Chinese", "zh");
         langs.put("Chinese Traditional", "zh-TW");
         langs.put("Croatian", "hr");
         langs.put("Czech", "cs");
@@ -124,8 +125,11 @@ public class DialogTranslateFromTo {
     }
 
     public static String getLanuageByCode(String code) {
-        if (code.contains("_")) {
-            code = code.split("_")[0];
+        if (TxtUtils.isEmpty(code)) {
+            return "";
+        }
+        if (code.length() > 2) {
+            code = code.substring(0, 2);
         }
         for (String key : langs.keySet()) {
             String value = langs.get(key);

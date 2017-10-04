@@ -295,13 +295,17 @@ public abstract class DocumentController {
     }
 
     public static void applyBrigtness(final Activity a) {
-        float brightness = AppState.getInstance().brightness;
-        final WindowManager.LayoutParams lp = a.getWindow().getAttributes();
-        if (brightness < 0) {
-            brightness = -1;
+        try {
+            float brightness = AppState.getInstance().brightness;
+            final WindowManager.LayoutParams lp = a.getWindow().getAttributes();
+            if (brightness < 0) {
+                brightness = -1;
+            }
+            lp.screenBrightness = brightness;
+            a.getWindow().setAttributes(lp);
+        } catch (Exception e) {
+            LOG.e(e);
         }
-        lp.screenBrightness = brightness;
-        a.getWindow().setAttributes(lp);
     }
 
     public static float getSystemBrigtness(final Activity a) {
@@ -342,7 +346,11 @@ public abstract class DocumentController {
     }
 
     public static void doRotation(final Activity a) {
-        a.setRequestedOrientation(AppState.getInstance().orientation);
+        try {
+            a.setRequestedOrientation(AppState.getInstance().orientation);
+        } catch (Exception e) {
+            LOG.e(e);
+        }
     }
 
     public void onLeftPress() {

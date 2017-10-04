@@ -400,12 +400,14 @@ public class SearchFragment2 extends UIFragment<FileMeta> {
                 Collections.reverse(result);
                 String genreName = txt.replace(byGenre ? "@genre " : "@author ", "");
                 for (String it : result) {
-                    FileMeta fm = new FileMeta(FileMetaAdapter.DISPALY_TYPE_SERIES);
+                    FileMeta fm = new FileMeta();
+                    fm.setCusType(FileMetaAdapter.DISPALY_TYPE_SERIES);
                     fm.setSequence(it);
                     searchBy.add(0, fm);
                 }
                 if (hasEmpySeries && !result.isEmpty()) {
-                    FileMeta fm = new FileMeta(FileMetaAdapter.DISPALY_TYPE_SERIES);
+                    FileMeta fm = new FileMeta();
+                    fm.setCusType(FileMetaAdapter.DISPALY_TYPE_SERIES);
                     fm.setSequence(genreName + NO_SERIES);
                     searchBy.add(result.size(), fm);
                 }

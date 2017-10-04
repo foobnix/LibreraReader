@@ -1,5 +1,7 @@
-* PDF, DJVU, EPUB skaitymo patobulinimai 
-* Patobulinta skaitymo sąsaja 
-* Nauji skaitymo būdai: du puslapiai, Cover + du puslapiai, pusė puslapio, vieno puslapio 
-* TIFF atvaizdų ir knygų palaikymas 
-* Daugybė patobulinimų jūsų atsiliepimų
+* Nemokamos knygos kataloguose 
+* Pridėti katalogų nuorodas į mėgstamiausius 
+* Automatinis pertraukėlė už knygos kalbą 
+* Knygų apdovanojimų sąrašai ir viršutinių knygų sąrašai 
+* Parama asmeniniam FBReader katalogui 
+* Rodyti visas serijas pagal Autorius pagal žanrą 
+* Daugybė patobulinimų ir nedidelių pataisymų jūsų atsiliepimai

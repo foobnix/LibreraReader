@@ -141,6 +141,7 @@ public class EpubExtractor extends BaseExtractor {
             String subject = "";
             String series = null;
             String number = null;
+            String lang = null;
 
             while ((nextEntry = zipInputStream.getNextEntry()) != null) {
                 String name = nextEntry.getName().toLowerCase();
@@ -163,6 +164,10 @@ public class EpubExtractor extends BaseExtractor {
 
                             if ("dc:subject".equals(xpp.getName()) || "dcns:subjectr".equals(xpp.getName())) {
                                 subject = xpp.nextText() + "," + subject;
+                            }
+
+                            if (lang == null && ("dc:language".equals(xpp.getName()) || "dcns:language".equals(xpp.getName()))) {
+                                lang = xpp.nextText();
                             }
 
                             if ("meta".equals(xpp.getName())) {
@@ -201,6 +206,7 @@ public class EpubExtractor extends BaseExtractor {
             } catch (Exception e) {
                 LOG.d(e);
             }
+            ebookMeta.setLang(lang);
             return ebookMeta;
         } catch (
 

@@ -1,5 +1,7 @@
-* Miglioramenti nella lettura di PDF, DJVU, EPUB 
-* Migliorata interfaccia di lettura 
-* Nuovi modi di lettura: due pagine, copertina + due pagine, mezza pagina, singola pagina 
-* Supporto per immagini e libri TIFF 
-* Molti miglioramenti grazie ai tuoi feedback
+* Libri gratuiti nei cataloghi 
+* Aggiungi link del catalogo ai preferiti 
+* Sillabazione automatica per il linguaggio del libro 
+* Elenchi dei premi dei libri e liste dei migliori libri 
+* Supporto del catalogo personale FBReader 
+* Mostra tutta la serie per autore, per genre 
+* Molti miglioramenti e piccole correzioni dai tuoi feedback

@@ -1,3 +1,4 @@
+Automatic hyphenation
 Integration with "My personal FBReader catalogue"
 Support XPS
 Favorites OPDS links

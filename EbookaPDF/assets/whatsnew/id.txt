@@ -1,5 +1,7 @@
-* Perbaikan membaca PDF, DJVU, EPUB 
-* Antarmuka baca yang disempurnakan 
-* Mode bacaan baru: Dua halaman, Cover + dua halaman, setengah halaman, satu halaman 
-* Dukungan untuk gambar dan buku TIFF 
-* Banyak perbaikan oleh umpan balik Anda.
+* Buku gratis di katalog 
+* Tambahkan link katalog ke favorit 
+* Tanda penghubung otomatis untuk bahasa buku 
+* Daftar penghargaan buku dan daftar buku terlaris 
+* Dukung katalog FBReader pribadi 
+* Tampilkan semua seri oleh Pengarang, oleh Genre 
+* Banyak perbaikan dan perbaikan kecil oleh umpan balik Anda.

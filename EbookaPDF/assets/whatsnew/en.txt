@@ -1,5 +1,7 @@
-* Improvements in reading PDF, DJVU, EPUB 
-* Improved reading interface
-* New modes of reading: Two pages, Cover + two pages, half page, single page 
-* Support for TIFF images and books
-* Many improvements by your feedback
+* Free books in catalogs
+* Add catalog links to favorites
+* Automatic hyphenation for book language
+* Book awards lists and top books lists
+* Support personal FBReader catalog 
+* Show all series by Author, by Genre
+* Many improvements and small fixes by your feedback

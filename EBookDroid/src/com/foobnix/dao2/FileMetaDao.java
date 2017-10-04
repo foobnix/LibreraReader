@@ -43,6 +43,7 @@ public class FileMetaDao extends AbstractDao<FileMeta, String> {
         public final static Property IsRecentTime = new Property(18, Long.class, "isRecentTime", false, "IS_RECENT_TIME");
         public final static Property IsRecentProgress = new Property(19, Float.class, "isRecentProgress", false, "IS_RECENT_PROGRESS");
         public final static Property IsSearchBook = new Property(20, Boolean.class, "isSearchBook", false, "IS_SEARCH_BOOK");
+        public final static Property Lang = new Property(21, String.class, "lang", false, "LANG");
     }
 
 
@@ -78,7 +79,8 @@ public class FileMetaDao extends AbstractDao<FileMeta, String> {
                 "\"IS_RECENT\" INTEGER," + // 17: isRecent
                 "\"IS_RECENT_TIME\" INTEGER," + // 18: isRecentTime
                 "\"IS_RECENT_PROGRESS\" REAL," + // 19: isRecentProgress
-                "\"IS_SEARCH_BOOK\" INTEGER);"); // 20: isSearchBook
+                "\"IS_SEARCH_BOOK\" INTEGER," + // 20: isSearchBook
+                "\"LANG\" TEXT);"); // 21: lang
         // Add Indexes
         db.execSQL("CREATE UNIQUE INDEX " + constraint + "path_asc ON FILE_META" +
                 " (\"PATH\" ASC);");
@@ -220,6 +222,11 @@ public class FileMetaDao extends AbstractDao<FileMeta, String> {
         if (isSearchBook != null) {
             stmt.bindLong(21, isSearchBook ? 1L: 0L);
         }
+ 
+        String lang = entity.getLang();
+        if (lang != null) {
+            stmt.bindString(22, lang);
+        }
     }
 
     @Override
@@ -330,6 +337,11 @@ public class FileMetaDao extends AbstractDao<FileMeta, String> {
         if (isSearchBook != null) {
             stmt.bindLong(21, isSearchBook ? 1L: 0L);
         }
+ 
+        String lang = entity.getLang();
+        if (lang != null) {
+            stmt.bindString(22, lang);
+        }
     }
 
     @Override
@@ -360,7 +372,8 @@ public class FileMetaDao extends AbstractDao<FileMeta, String> {
             cursor.isNull(offset + 17) ? null : cursor.getShort(offset + 17) != 0, // isRecent
             cursor.isNull(offset + 18) ? null : cursor.getLong(offset + 18), // isRecentTime
             cursor.isNull(offset + 19) ? null : cursor.getFloat(offset + 19), // isRecentProgress
-            cursor.isNull(offset + 20) ? null : cursor.getShort(offset + 20) != 0 // isSearchBook
+            cursor.isNull(offset + 20) ? null : cursor.getShort(offset + 20) != 0, // isSearchBook
+            cursor.isNull(offset + 21) ? null : cursor.getString(offset + 21) // lang
         );
         return entity;
     }
@@ -388,6 +401,7 @@ public class FileMetaDao extends AbstractDao<FileMeta, String> {
         entity.setIsRecentTime(cursor.isNull(offset + 18) ? null : cursor.getLong(offset + 18));
         entity.setIsRecentProgress(cursor.isNull(offset + 19) ? null : cursor.getFloat(offset + 19));
         entity.setIsSearchBook(cursor.isNull(offset + 20) ? null : cursor.getShort(offset + 20) != 0);
+        entity.setLang(cursor.isNull(offset + 21) ? null : cursor.getString(offset + 21));
      }
     
     @Override

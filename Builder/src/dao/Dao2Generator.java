@@ -4,17 +4,17 @@ import java.io.IOException;
 
 import org.greenrobot.greendao.generator.DaoGenerator;
 import org.greenrobot.greendao.generator.Entity;
-import org.greenrobot.greendao.generator.Property.PropertyBuilder;
 import org.greenrobot.greendao.generator.Schema;
 
 public class Dao2Generator {
 
     public static void main(String[] args) throws IOException, Exception {
 
-        Schema schema = new Schema(2, "com.foobnix.dao2");
+        Schema schema = new Schema(3, "com.foobnix.dao2");
 
         Entity note = schema.addEntity("FileMeta");
-        PropertyBuilder pk = note.addStringProperty("path").primaryKey().indexAsc("path_asc", true).indexDesc("path_desc", true);
+
+        note.addStringProperty("path").primaryKey().indexAsc("path_asc", true).indexDesc("path_desc", true);
         note.addStringProperty("title").indexAsc("title_asc", false).indexDesc("title_desc", false);
         note.addStringProperty("author").indexAsc("author_asc", false).indexDesc("author_desc", false);
         note.addStringProperty("sequence");
@@ -40,18 +40,11 @@ public class Dao2Generator {
         note.addLongProperty("isRecentTime");
         note.addFloatProperty("isRecentProgress");
         note.addBooleanProperty("isSearchBook");
+        note.addStringProperty("lang");
 
 
-        // Entity bookmark = schema.addEntity("Bookmark");
-        // bookmark.addLongProperty("id").primaryKey().autoincrement();
-        // bookmark.addStringProperty("path");
-        // bookmark.addStringProperty("text");
-        // bookmark.addIntProperty("page");
-        // bookmark.addLongProperty("time");
-        // bookmark.addIntProperty("type");
-        // bookmark.addStringProperty("color");
 
-        new DaoGenerator().generateAll(schema, "/home/ivan-dev/git/pdf4/EBookDroid/src");
+        new DaoGenerator().generateAll(schema, "/home/ivan-dev/git/LirbiReader/EBookDroid/src");
     }
 
 }

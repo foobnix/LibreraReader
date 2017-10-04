@@ -21,6 +21,7 @@ public class MobiParser {
     public int mobiType;
     public String encoding;
     public String fullName;
+    public String locale;
     private byte[] raw;
     public int firstImageIndex;
     public int lastContentIndex;
@@ -154,6 +155,8 @@ public class MobiParser {
         int fullNameLen = asInt(raw, mobiOffset + 88, 4);
         fullName = asString(raw, mobiOffset + fullNameOffset, fullNameLen);
 
+        locale = asString(raw, mobiOffset + 92, 4);
+
         // int huffmanRecord = asInt(raw, mobiOffset + 112, 4);
         // int huffmanCount = asInt(raw, mobiOffset + 116, 4);
         // int huffmanOffset = asInt(raw, mobiOffset + 120, 4);
@@ -250,6 +253,10 @@ public class MobiParser {
         return fullName;
     }
 
+    public String getLocale() {
+        return locale;
+    }
+
     public String getAuthor() {
         byte[] bytes = exth.headers.get(100);
         if (bytes == null) {
@@ -260,6 +267,14 @@ public class MobiParser {
 
     public String getSubject() {
         byte[] bytes = exth.headers.get(105);
+        if (bytes == null) {
+            return null;
+        }
+        return new String(bytes);
+    }
+
+    public String getLanguage() {
+        byte[] bytes = exth.headers.get(524);
         if (bytes == null) {
             return null;
         }

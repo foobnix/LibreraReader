@@ -210,7 +210,7 @@
                 <LinearLayout
                     android:id="@+id/progresLayout"
                     android:layout_width="wrap_content"
-                    android:layout_height="10dip"
+                    android:layout_height="11dip"
                     android:layout_marginLeft="6dip"
                     android:gravity="bottom"
                     android:orientation="horizontal" >
@@ -242,11 +242,11 @@
                     <TextView
                         android:id="@+id/idPercentText"
                         android:layout_width="wrap_content"
-                        android:layout_height="12dip"
+                        android:layout_height="14dip"
                         android:layout_marginLeft="2dip"
                         android:gravity="center"
                         android:text="10%"
-                        android:textSize="8sp"
+                        android:textSize="10sp"
                         android:visibility="visible" />
                 </LinearLayout>
             </LinearLayout>

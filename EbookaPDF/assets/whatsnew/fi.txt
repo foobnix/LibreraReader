@@ -1,5 +1,7 @@
-* Parannuksia PDF, DJVU, EPUB 
-* Parannettu lukukäyttöliittymä 
-* Uusia lukemamalleja: kaksi sivua, kansi + kaksi sivua, puoli sivua, yksi sivu 
-* TIFF-kuvien ja kirjojen tuki 
-* paljon parannuksia palautteen avulla
+* Vapaa kirjoja luetteloissa 
+* Lisää linkkejä suosikkeihin 
+* Automaattinen tavutuskirja kirjakieliä varten 
+* Kirjapalkintoluettelot ja ylimmäiset kirjaluettelot 
+* Henkilökohtaisen FBReader-luettelon tukeminen 
+* Näytä kaikki sarjat tekijän mukaan lajityypin mukaan 
+* Paljon parannuksia ja pieniä korjauksia palautteen perusteella

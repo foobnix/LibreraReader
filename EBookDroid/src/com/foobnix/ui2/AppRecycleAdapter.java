@@ -16,6 +16,9 @@ public abstract class AppRecycleAdapter<K, T extends RecyclerView.ViewHolder> ex
     protected final List<K> items = new ArrayList<K>();
 
     public K getItem(int pos) {
+        if (items == null || items.isEmpty()) {
+            return null;
+        }
         if (items.size() - 1 >= pos) {
             return items.get(pos);
         } else {

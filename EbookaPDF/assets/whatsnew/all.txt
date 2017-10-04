@@ -1,247 +1,311 @@
 
 <vi>
-* Cải thiện đọc PDF, DJVU, EPUB 
-* Cải thiện giao diện đọc 
-* Các chế độ đọc mới: Hai trang, Trang bìa + hai trang, nửa trang, trang đơn 
-* Hỗ trợ hình ảnh và sách TIFF 
-* Nhiều cải tiến theo phản hồi của bạn
+* Miễn phí sách trong catalogue 
+* Thêm các liên kết vào danh mục yêu thích 
+* Dấu cách tự động cho ngôn ngữ của sách 
+* Danh sách sách giải thưởng và danh sách sách hàng đầu 
+* Hỗ trợ danh mục cá nhân của FBReader 
+* Hiển thị tất cả các chuỗi theo tác giả, theo thể loại 
+* Nhiều cải tiến và sửa lỗi nhỏ theo phản hồi của bạn
 </vi>
 
 <no-NO>
-* Forbedringer i lesing av PDF, DJVU, EPUB 
-* Forbedret lesegrensesnitt 
-* Nye måter å lese på: To sider, Cover + to sider, halv side, enkelt side 
-* Støtte for TIFF-bilder og bøker 
-* Mange forbedringer ved tilbakemelding
+* Gratis bøker i kataloger 
+* Legg til katalogkoblinger til favoritter 
+* Automatisk bindestrek for bokspråk 
+* Bestill prislister og toppbøker lister 
+* Støt personlig FBReader katalog 
+* Vis alle serier etter forfatter, etter sjanger 
+* Mange forbedringer og små reparasjoner ved tilbakemelding
 </no-NO>
 
 <th>
-* ปรับปรุงการอ่าน PDF, DJVU, EPUB 
-* อินเทอร์เฟซการอ่านที่ดียิ่งขึ้น 
-* โหมดอ่านใหม่: สองหน้าปก + สองหน้าครึ่งหน้าหน้าเดียว 
-* รองรับรูปและไฟล์ TIFF 
-*
+* หนังสือฟรีในแคตตาล็อก 
+* เพิ่มลิงก์ในรายการโปรด 
+* ยัติภพอัตโนมัติสำหรับภาษาหนังสือ 
+* รายการรางวัลหนังสือและรายการหนังสือด้านบน 
+* สนับสนุนแคตตาล็อก FBReader ส่วนบุคคล 
+* แสดงชุดทั้งหมดโดยผู้แต่งตามประเภท 
+* การปรับปรุงและแก้ไขปัญหาเล็ก ๆ ตามความคิดเห็นของคุณ
 </th>
 
 <nl-NL>
-* Verbeteringen in het lezen van PDF, DJVU, EPUB 
-* Verbeterde leesinterface 
-* Nieuwe leestoestellen: Twee pagina’s, Cover + twee pagina’s, halfpagina, enkele pagina 
-* Ondersteuning voor TIFF-afbeeldingen en boeken 
-* Veel verbeteringen door uw feedback
+* Gratis boeken in catalogi 
+* Voeg catalogus links toe aan favorieten 
+* Automatische koppeling voor boektaal 
+* Prijsuitreikingslijsten en topboeklijsten 
+* Ondersteun persoonlijke FBReader catalogus 
+* Toon alle series per auteur, per genre 
+* Veel verbeteringen en kleine fixes door uw feedback
 </nl-NL>
 
 <ro>
-* Îmbunătățiri în lectură PDF, DJVU, EPUB 
-* Interfață îmbunătățită de citire 
-* Moduri noi de citire: Două pagini, Copertă + două pagini, jumătate pagină, o singură pagină 
-* Suport pentru imagini și cărți TIFF 
-* Multe îmbunătățiri prin feedback
+* Cărți gratuite în cataloage 
+* Adăugați link-uri de catalog la favorite 
+* Distribuție automată pentru limbi de carte 
+* Cumpărați liste de premii și liste de cărți de sus 
+* Sprijiniți catalogul FBReader personal 
+* Arătați toate seriile după Autor, după Gen 
+* Multe îmbunătățiri și corecții mici prin feedbackul dvs.
 </ro>
 
 <lt>
-* PDF, DJVU, EPUB skaitymo patobulinimai 
-* Patobulinta skaitymo sąsaja 
-* Nauji skaitymo būdai: du puslapiai, Cover + du puslapiai, pusė puslapio, vieno puslapio 
-* TIFF atvaizdų ir knygų palaikymas 
-* Daugybė patobulinimų jūsų atsiliepimų
+* Nemokamos knygos kataloguose 
+* Pridėti katalogų nuorodas į mėgstamiausius 
+* Automatinis pertraukėlė už knygos kalbą 
+* Knygų apdovanojimų sąrašai ir viršutinių knygų sąrašai 
+* Parama asmeniniam FBReader katalogui 
+* Rodyti visas serijas pagal Autorius pagal žanrą 
+* Daugybė patobulinimų ir nedidelių pataisymų jūsų atsiliepimai
 </lt>
 
 <hi-IN>
-* पीडीएफ पढ़ने में सुधार, डीजेवीयू, ईपीबीबी 
-* बेहतर पढ़ना इंटरफ़ेस 
-* पढ़ने के नए तरीके: दो पृष्ठ, कवर + दो पृष्ठ, आधा पृष्ठ, एकल पृष्ठ 
-* टीआईएफएफ छवियों और पुस्तकों के लिए समर्थन 
-* आपके फ़ीडबैक से कई सुधार
+* कैटलॉग में मुफ्त किताबें 
+* पसंदीदा के लिए कैटलॉग लिंक जोड़ें 
+* पुस्तक की भाषा के लिए स्वत: हायफ़नेशन 
+* बुक पुरस्कार सूची और शीर्ष पुस्तकों की सूची 
+* व्यक्तिगत एफबीआरडर सूची का समर्थन करें 
+* लेखक द्वारा सभी श्रृंखला दिखाएँ, शैली के द्वारा 
+* आपके सुझाव द्वारा कई सुधार और छोटे सुधार
 </hi-IN>
 
 <es-ES>
-* Mejoras en la lectura de PDF, DJVU, EPUB 
-* Mejora de la interfaz de lectura 
-* Nuevos modos de lectura: Dos páginas, Cover + dos páginas, media página, una sola página 
-* Soporte para imágenes TIFF y libros 
-*
+* Libros gratuitos en catálogos 
+* Añadir enlaces a los favoritos del catálogo 
+* Cifra automática para el lenguaje del libro 
+* Lista de premios del libro y listas de libros superiores 
+* Apoyar el catálogo personal de FBReader 
+* Mostrar todas las series por autor, por género 
+* Muchas mejoras y pequeñas correcciones por sus comentarios
 </es-ES>
 
 <fr-FR>
-* Améliorations dans la lecture de PDF, DJVU, EPUB 
-* Interface de lecture améliorée 
-* Nouveaux modes de lecture: Deux pages, Couverture + deux pages, demi-page, page unique 
-* Prise en charge des images TIFF et des livres 
-* De nombreuses améliorations par vos commentaires
+* Livres gratuits dans les catalogues 
+* Ajouter des liens de catalogue aux favoris 
+* Coupure automatique pour la langue du livre 
+* Listes de prix de livres et listes de livres supérieures 
+* Support du catalogue personnel FBReader 
+* Afficher toutes les séries par auteur, par genre 
+* Beaucoup d’améliorations et de petites corrections par vos commentaires
 </fr-FR>
 
 <fr-CA>
-* Améliorations dans la lecture de PDF, DJVU, EPUB 
-* Interface de lecture améliorée 
-* Nouveaux modes de lecture: Deux pages, Couverture + deux pages, demi-page, page unique 
-* Prise en charge des images TIFF et des livres 
-* De nombreuses améliorations par vos commentaires
+* Livres gratuits dans les catalogues 
+* Ajouter des liens de catalogue aux favoris 
+* Coupure automatique pour la langue du livre 
+* Listes de prix de livres et listes de livres supérieures 
+* Support du catalogue personnel FBReader 
+* Afficher toutes les séries par auteur, par genre 
+* Beaucoup d’améliorations et de petites corrections par vos commentaires
 </fr-CA>
 
 <tr-TR>
-PDF, DJVU, EPUB okuma Geliştirme 
-* Geliştirilmiş okuma arayüzü 
-* Okuma yeni modları: İki sayfa, Kapak + iki sayfa, yarım sayfa, tek sayfa 
-* TIFF görüntüleri ve kitaplar için destek Geribildiriminiz sayesinde birçok iyileştirme
+* Kataloglarda ücretsiz kitaplar 
+* Favorilere katalog bağlantıları ekleme 
+* Kitap dili için otomatik tireleme 
+* Kitap ödül listeleri ve en iyi kitap listeleri 
+* Kişisel FBReader kataloğunu destekleme 
+* Yazara göre Yazar tarafından tüm serileri göster 
+* Geri bildirimlerinizle birçok iyileştirme ve küçük düzeltmeler
 </tr-TR>
 
 <sv-SE>
-* Förbättringar av läsning av PDF, DJVU, EPUB 
-* Förbättrat läsgränssnitt 
-* Nya lägen av läsning: Två sidor, Omslag + två sidor, halv sida, enkel sida 
-* Stöd för TIFF-bilder och böcker 
-* Många förbättringar genom din feedback
+* Gratis böcker i kataloger 
+* Lägg till kataloglänkar till favoriter 
+* Automatisk bindning för bokspråk 
+* Bokmärkelsearter och toppböcker listar 
+* Stöd personliga FBReader katalog 
+* Visa alla serier enligt författare, efter genre 
+* Många förbättringar och små fixar genom din feedback
 </sv-SE>
 
 <pl-PL>
-* Poprawa czytania plików PDF, DJVU, EPUB 
-* Ulepszony interfejs czytania 
-* Nowe sposoby czytania: dwie strony, okładka + dwie strony, pół strony, pojedyncza strona 
-* Wsparcie dla obrazów i książek TIFF 
-*
+* Bezpłatne książki w katalogach 
+* Dodaj linki katalogowe do ulubionych 
+* Automatyczne dzielenie na język książki 
+* Listy nagród książek i listy książek na górze 
+* Wsparcie osobistego katalogu FBReader 
+* Pokaż wszystkie sekcje według autora, wg gatunku 
+* Wiele udoskonaleń i małych poprawek dzięki Twojej opinii
 </pl-PL>
 
 <pt-PT>
-* Melhorias na leitura de PDF, DJVU, EPUB 
-* Interface de leitura aprimorada 
-* Novos modos de leitura: duas páginas, capa + duas páginas, meia página, página única 
-* Suporte para imagens TIFF e livros 
-* Muitas melhorias por seus comentários
+* Livros gratuitos em catálogos 
+* Adicionar links de catálogo aos favoritos 
+* Separação automática para linguagem de livro 
+* Listas de prêmios de livros e listas de livros topo 
+* Suporte catálogo pessoal de FBReader 
+* Mostrar todas as séries por Autor, por Género 
+* Muitas melhorias e pequenas correções por seu feedback
 </pt-PT>
 
 <pt-BR>
-* Melhorias na leitura de PDF, DJVU, EPUB 
-* Interface de leitura aprimorada 
-* Novos modos de leitura: duas páginas, capa + duas páginas, meia página, página única 
-* Suporte para imagens TIFF e livros 
-* Muitas melhorias por seus comentários
+* Livros gratuitos em catálogos 
+* Adicionar links de catálogo aos favoritos 
+* Separação automática para linguagem de livro 
+* Listas de prêmios de livros e listas de livros topo 
+* Suporte catálogo pessoal de FBReader 
+* Mostrar todas as séries por Autor, por Género 
+* Muitas melhorias e pequenas correções por seu feedback
 </pt-BR>
 
 <iw-IL>
-* שיפורים בקריאת PDF, DJVU, EPUB 
-* ממשק קריאה משופר 
-* מצבי קריאה חדשים: שני עמודים, כריכה + שני עמודים, חצי עמוד, עמוד יחיד 
-* תמיכה בתמונות TIFF ובספרים 
-* שיפורים רבים לפי המשוב שלך
+* ספרים חינם קטלוגים 
+* הוסף קטלוג קישורים למועדפים 
+* מקף אוטומטי עבור שפת הספר 
+* ספר פרסים רשימות רשימות ספרים העליון 
+* תמיכה קטלוג אישי FBReader 
+* הצג את כל הסידורים לפי מחבר, לפי ז’אנר 
+* שיפורים רבים ותיקונים קטנים על ידי המשוב שלך
 </iw-IL>
 
 <uk>
-* Покращення у читанні PDF, DJVU, EPUB 
-* Покращений інтерфейс читання 
-* Нові режими читання: Дві сторінки, Cover + дві сторінки, половина сторінки, одна сторінка 
-* Підтримка зображень і книг TIFF 
-* Багато вдосконалень у вашому відгуку
+* Безкоштовні книги в каталогах 
+* Додайте посилання на каталоги у вибране 
+* Автоматичне дефісі за мовою книги 
+* Надрукуйте списки нагород і списки топ-книг 
+* Підтримка персонального каталогу FBReader 
+* Показувати всі серії за автором, по жанру 
+* Багато покращень та невеликих виправлень за відгуками
 </uk>
 
 <ja-JP>
-* PDF、DJVU、EPUBを読むことの改善
-*読書インターフェイスの改善
-*新しい読書モード：2ページ、カバー+2ページ、半ページ、単一ページ
-* TIFFイメージおよび本のサポート
-*あなたのフィードバックによる多くの改善
+*カタログの無料書籍
+*お気に入りへのカタログリンクの追加
+*書籍言語の自動ハイフネーション
+*賞品リストやトップの書籍リストのサポート
+*個人的なカタログのサポート
+*著者による全シリーズの表示
+*ジャンル別
+*多くの改善と小さな修正
 </ja-JP>
 
 <id>
-* Perbaikan membaca PDF, DJVU, EPUB 
-* Antarmuka baca yang disempurnakan 
-* Mode bacaan baru: Dua halaman, Cover + dua halaman, setengah halaman, satu halaman 
-* Dukungan untuk gambar dan buku TIFF 
-* Banyak perbaikan oleh umpan balik Anda.
+* Buku gratis di katalog 
+* Tambahkan link katalog ke favorit 
+* Tanda penghubung otomatis untuk bahasa buku 
+* Daftar penghargaan buku dan daftar buku terlaris 
+* Dukung katalog FBReader pribadi 
+* Tampilkan semua seri oleh Pengarang, oleh Genre 
+* Banyak perbaikan dan perbaikan kecil oleh umpan balik Anda.
 </id>
 
 <fa>
-* بهبود در خواندن PDF، DJVU، EPUB 
-* رابط خواندن بهبود یافته 
-* حالت های جدید خواندن: دو صفحه، جلد + دو صفحه، نیم صفحه، یک صفحه 
-* پشتیبانی از تصاویر و کتاب TIFF 
-* بسیاری از بهبود با نظرات شما
+* کتاب های رایگان در کاتالوگ 
+* اضافه کردن لینک های کاتالوگ به علاقه مندی ها 
+* خطمشی خودکار برای زبان کتاب 
+* لیست کتاب کتاب و لیست کتاب های برتر 
+* پشتیبانی از کاتولوگ FBReader شخصی 
+* نمایش تمام سری توسط نویسنده، توسط ژانر 
+* بسیاری از پیشرفت و رفع کوچک توسط نظرات شما
 </fa>
 
 <hu-HU>
-* Fejlesztések PDF, DJVU, EPUB 
-* Jobb olvasási felület 
-* Új olvasási módok: Két oldal, Cover + két oldal, fél oldal, egyoldalas 
-* TIFF képek és könyvek támogatása 
-*
+* Ingyenes könyvek a katalógusokban 
+* Katalóguslinkek hozzáadása a kedvencekhez 
+* Automatikus elválasztás a könyvnyelvhez 
+* Könyvajánlatok listák és a legfontosabb könyvek listája 
+* Támogatjuk a személyes FBReader katalógust 
+* Az összes sorozatot a szerző írja műfaj szerint 
+* Számos javítás és kis javítás a visszajelzés alapján
 </hu-HU>
 
 <ar>
-* تحسينات في قراءة بدف، دجفو، إبوب 
-* تحسين واجهة القراءة 
-* وسائط جديدة من القراءة: صفحتين، غطاء + صفحتين، نصف صفحة، صفحة واحدة 
-* تقديم الدعم للصور تيف والكتب 
-* العديد من التحسينات من قبل ملاحظاتك
+* كتب مجانية في كتالوجات 
+* إضافة كتالوج الروابط إلى المفضلة 
+* الواصلة التلقائية للغة الكتاب 
+* قوائم الجوائز كتاب وقوائم الكتب العليا 
+* دعم كتالوج فبريدر الشخصية 
+* عرض كل سلسلة من قبل المؤلف، حسب النوع 
+* العديد من التحسينات والإصلاحات الصغيرة من ملاحظاتك
 </ar>
 
 <de-DE>
-* Verbesserungen beim Lesen von PDF, DJVU, EPUB 
-* Verbesserte Leserschnittstelle 
-* Neue Lesemodi: Zwei Seiten, Cover + zwei Seiten, halbe Seite, einseitig 
-* Unterstützung für TIFF Bilder und Bücher 
-* Viele Verbesserungen durch Ihr Feedback
+* Kostenlose Bücher in Katalogen 
+* Hinzufügen von Katalog Links zu Favoriten 
+* Automatische Silbentrennung für Buchsprache 
+* Buchlisten und Top-Bücherlisten 
+* Unterstützung persönlicher FBReader Katalog 
+* Alle Serien von Autor, nach Genre anzeigen 
+* Viele Verbesserungen und kleine Korrekturen durch Ihr Feedback
 </de-DE>
 
 <sw>
-* Uboreshwaji wa kusoma PDF, DJVU, EPUB 
-* Kuboresha interface ya kusoma 
-* Njia mpya za kusoma: Kurasa mbili, Funika + kurasa mbili, ukurasa nusu, ukurasa mmoja 
-* Usaidizi wa picha za TIFF na vitabu 
-* Maboresho mengi kwa maoni yako
+* Vitabu vya bure kwenye orodha ya vitabu 
+* Ongeza viungo vya catalog kwenye favorites 
+* Hifadhi ya kichapishaji kwa lugha ya kitabu 
+* Orodha ya tuzo za orodha na orodha ya vitabu vya juu 
+* Tunga orodha ya kibinafsi ya FBReader 
+* Onyesha mfululizo wa Mwandishi, kwa Genre 
+* Maboresho mengi na marekebisho madogo kwa maoni yako
 </sw>
 
 <ko-KR>
-* PDF, DJVU, EPUB 읽기 향상 
-* 읽기 인터페이스 향상 
-* 새로운 독서 모드 : 2 페이지, 표지 +2 페이지, 절반 페이지, 단일 페이지 
-* TIFF 이미지 및 도서 지원 
-* 피드백으로 많은 개선
+* 카탈로그의 무료 도서 
+* 즐겨 찾기에 카탈로그 링크 추가 
+* 도서 언어에 대한 자동 하이픈 
+* 도서 목록 및 상위 도서 목록 도서 
+* 개인 FBReader 카탈로그 지원 
+* 장르별 작성자 별 전체 시리즈보기 
+* 많은 개선 및 소액 수정
 </ko-KR>
 
 <fi-FI>
-* Parannuksia PDF, DJVU, EPUB 
-* Parannettu lukukäyttöliittymä 
-* Uusia lukemamalleja: kaksi sivua, kansi + kaksi sivua, puoli sivua, yksi sivu 
-* TIFF-kuvien ja kirjojen tuki 
-* paljon parannuksia palautteen avulla
+* Vapaa kirjoja luetteloissa 
+* Lisää linkkejä suosikkeihin 
+* Automaattinen tavutuskirja kirjakieliä varten 
+* Kirjapalkintoluettelot ja ylimmäiset kirjaluettelot 
+* Henkilökohtaisen FBReader-luettelon tukeminen 
+* Näytä kaikki sarjat tekijän mukaan lajityypin mukaan 
+* Paljon parannuksia ja pieniä korjauksia palautteen perusteella
 </fi-FI>
 
 <zh-TW>
-*阅读PDF，DJVU，EPUB的改进
-*改进的阅读界面
-*新的阅读模式：两页，封面+两页，半页，单页
-*支持TIFF图像和书籍
-*您的反馈有很多改进
+*目录中的免费书籍
+*添加目录链接到收藏夹
+*书籍语言的自动连字
+*书籍奖励列表和顶级图书列表
+*支持个人FBReader目录
+*按作者，类型显示所有系列
+*您的反馈有很多改进和小修复
 </zh-TW>
 
 <it-IT>
-* Miglioramenti nella lettura di PDF, DJVU, EPUB 
-* Migliorata interfaccia di lettura 
-* Nuovi modi di lettura: due pagine, copertina + due pagine, mezza pagina, singola pagina 
-* Supporto per immagini e libri TIFF 
-* Molti miglioramenti grazie ai tuoi feedback
+* Libri gratuiti nei cataloghi 
+* Aggiungi link del catalogo ai preferiti 
+* Sillabazione automatica per il linguaggio del libro 
+* Elenchi dei premi dei libri e liste dei migliori libri 
+* Supporto del catalogo personale FBReader 
+* Mostra tutta la serie per autore, per genre 
+* Molti miglioramenti e piccole correzioni dai tuoi feedback
 </it-IT>
 
 <ru-RU>
-* Улучшения в чтении PDF, DJVU, EPUB 
-* Улучшенный интерфейс чтения 
-* Новые режимы чтения: две страницы, обложка + две страницы, половина страницы, одна страница 
-* Поддержка TIFF-изображений и книг 
-* Множество улучшений благодаря вашей обратной связи
+* Бесплатные книги в каталогах 
+* Добавление ссылок каталога в избранное 
+* Автоматическая расстановка переносов для языка книги 
+* Списки книг и списки лучших книг 
+* Поддержка личного каталога FBReader 
+* Показать все серии по автору, по жанру 
+* Множество улучшений и небольших исправлений по вашим отзывам
 </ru-RU>
 
 <sk>
-* Zlepšenie čítania PDF, DJVU, EPUB 
-* Vylepšené rozhranie pre čítanie 
-* Nové spôsoby čítania: Dve strany, Obálka + dve strany, pol strany, jedna strana 
-* Podpora obrázkov TIFF a kníh 
-*
+* Bezplatné knihy v katalógoch 
+* Pridať katalógové odkazy na obľúbené 
+* Automatické rozdelenie pre knihový jazyk 
+* Rezervovať zoznamy ocenení a zoznamy najlepších kníh 
+* Podporovať osobné katalógy FBReaderu 
+* Zobraziť všetky série Autor, podľa žánru 
+* Veľa vylepšení a malých oprav od vašej spätnej väzby
 </sk>
 
 <en-US>
-* Improvements in reading PDF, DJVU, EPUB 
-* Improved reading interface
-* New modes of reading: Two pages, Cover + two pages, half page, single page 
-* Support for TIFF images and books
-* Many improvements by your feedback
+* Free books in catalogs
+* Add catalog links to favorites
+* Automatic hyphenation for book language
+* Book awards lists and top books lists
+* Support personal FBReader catalog 
+* Show all series by Author, by Genre
+* Many improvements and small fixes by your feedback
 </en-US>

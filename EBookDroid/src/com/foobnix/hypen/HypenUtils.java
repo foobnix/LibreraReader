@@ -1,7 +1,11 @@
 package com.foobnix.hypen;
 
 import java.util.List;
+import java.util.Locale;
 import java.util.StringTokenizer;
+
+import com.foobnix.android.utils.LOG;
+import com.foobnix.pdf.info.model.BookCSS;
 
 public class HypenUtils {
 
@@ -9,11 +13,26 @@ public class HypenUtils {
     private static DefaultHyphenator instance = new DefaultHyphenator(HyphenPattern.ru);
 
     public static void applyLanguage(String lang) {
-        HyphenPattern pattern = HyphenPattern.valueOf(lang);
-
-        if (instance.pattern != pattern) {
-            instance = new DefaultHyphenator(pattern);
+        if (lang == null) {
+            return;
         }
+        try {
+            if (lang.length() > 2) {
+                LOG.d("LANG: before", lang);
+                lang = lang.substring(0, 2).toLowerCase(Locale.US);
+                LOG.d("LANG: after", lang);
+            }
+            LOG.d("LANG: after", lang);
+
+            HyphenPattern pattern = HyphenPattern.valueOf(lang);
+            if (instance.pattern != pattern) {
+                instance = new DefaultHyphenator(pattern);
+            }
+        } catch (Exception e) {
+            BookCSS.get().isAutoHypens = false;
+            LOG.e(e);
+        }
+
     }
 
     public static String applyHypnes(String input) {

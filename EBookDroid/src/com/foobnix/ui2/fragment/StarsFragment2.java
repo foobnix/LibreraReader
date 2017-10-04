@@ -152,9 +152,17 @@ public class StarsFragment2 extends UIFragment<FileMeta> {
     @Override
     public List<FileMeta> prepareDataInBackground() {
         List<FileMeta> all = new ArrayList<FileMeta>();
-        all.add(new FileMeta(FileMetaAdapter.DISPALY_TYPE_LAYOUT_TITLE_FOLDERS));
+
+        FileMeta folders = new FileMeta();
+        folders.setCusType(FileMetaAdapter.DISPALY_TYPE_LAYOUT_TITLE_FOLDERS);
+        all.add(folders);
+
         all.addAll(AppDB.get().getStarsFolder());
-        all.add(new FileMeta(FileMetaAdapter.DISPALY_TYPE_LAYOUT_TITLE_BOOKS));
+
+        FileMeta books = new FileMeta();
+        books.setCusType(FileMetaAdapter.DISPALY_TYPE_LAYOUT_TITLE_BOOKS);
+        all.add(books);
+
         all.addAll(AppDB.get().getStarsFiles());
         return all;
     }

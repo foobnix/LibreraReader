@@ -1,5 +1,7 @@
-* Verbesserungen beim Lesen von PDF, DJVU, EPUB 
-* Verbesserte Leserschnittstelle 
-* Neue Lesemodi: Zwei Seiten, Cover + zwei Seiten, halbe Seite, einseitig 
-* Unterstützung für TIFF Bilder und Bücher 
-* Viele Verbesserungen durch Ihr Feedback
+* Kostenlose Bücher in Katalogen 
+* Hinzufügen von Katalog Links zu Favoriten 
+* Automatische Silbentrennung für Buchsprache 
+* Buchlisten und Top-Bücherlisten 
+* Unterstützung persönlicher FBReader Katalog 
+* Alle Serien von Autor, nach Genre anzeigen 
+* Viele Verbesserungen und kleine Korrekturen durch Ihr Feedback

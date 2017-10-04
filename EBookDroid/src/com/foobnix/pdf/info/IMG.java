@@ -4,6 +4,7 @@ import java.io.File;
 import java.util.regex.Pattern;
 
 import com.foobnix.android.utils.Dips;
+import com.foobnix.android.utils.LOG;
 import com.foobnix.android.utils.MemoryUtils;
 import com.foobnix.pdf.info.model.BookCSS;
 import com.foobnix.pdf.info.wrapper.AppState;
@@ -66,7 +67,7 @@ public class IMG {
         builder.decodingOptions(new Options());
 
         final ImageLoaderConfiguration config = new ImageLoaderConfiguration.Builder(context)//
-				.threadPoolSize(1)//
+                .threadPoolSize(1)//
                 .threadPriority(Thread.NORM_PRIORITY)//
                 .defaultDisplayImageOptions(builder.build())//
                 .diskCache(new UnlimitedDiskCache(new File(context.getExternalCacheDir(), "Images-1")))//
@@ -171,7 +172,6 @@ public class IMG {
             // .displayer(new FadeInBitmapDisplayer(200))//
             .build();//
 
-
     public static DisplayImageOptions displayImageOptionsNoDiscCache = new DisplayImageOptions.Builder() //
             .showImageOnFail(COLOR_DRAWABLE)//
             .showImageForEmptyUri(COLOR_DRAWABLE)//
@@ -246,11 +246,19 @@ public class IMG {
     }
 
     public static void clearMemoryCache() {
-        ImageLoader.getInstance().clearMemoryCache();
+        try {
+            ImageLoader.getInstance().clearMemoryCache();
+        } catch (Exception e) {
+            LOG.e(e);
+        }
     }
 
     public static void clearDiscCache() {
-        ImageLoader.getInstance().clearDiskCache();
+        try {
+            ImageLoader.getInstance().clearDiskCache();
+        } catch (Exception e) {
+            LOG.e(e);
+        }
     }
 
     private static String pattern = Pattern.quote("||");

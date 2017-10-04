@@ -14,8 +14,11 @@ import android.content.Intent;
 import android.net.Uri;
 import android.support.v4.text.TextUtilsCompat;
 import android.support.v4.view.ViewCompat;
+import android.view.View;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
+import android.widget.EditText;
+import android.widget.LinearLayout;
 
 public class Urls {
 
@@ -28,7 +31,7 @@ public class Urls {
         }
     }
 
-    public static void open(Context a, String url) {
+    public static void open(final Context a, String url) {
         if (a == null || url == null) {
             return;
         }
@@ -37,22 +40,34 @@ public class Urls {
         a.startActivity(browserIntent);
     }
 
-    public static void openWevView(Context a, String url) {
+    public static void openWevView(final Context a, String url) {
         AlertDialog.Builder alert = new AlertDialog.Builder(a);
         alert.setTitle(url);
-        WebView wv = new WebView(a);
+
+        LinearLayout wrapper = new LinearLayout(a);
+        EditText keyboardHack = new EditText(a);
+        keyboardHack.setVisibility(View.GONE);
+
+        final WebView wv = new WebView(a);
         wv.getSettings().setUserAgentString(OPDS.USER_AGENT);
         wv.getSettings().setJavaScriptEnabled(true);
         wv.loadUrl(url);
+        wv.setFocusable(true);
         wv.setWebViewClient(new WebViewClient() {
             @Override
             public boolean shouldOverrideUrlLoading(WebView view, String url) {
                 view.loadUrl(url);
                 return true;
             }
+
         });
 
-        alert.setView(wv);
+
+
+        wrapper.setOrientation(LinearLayout.VERTICAL);
+        wrapper.addView(wv, LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.MATCH_PARENT);
+        wrapper.addView(keyboardHack, LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+        alert.setView(wrapper);
         alert.setNegativeButton(R.string.close, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int id) {

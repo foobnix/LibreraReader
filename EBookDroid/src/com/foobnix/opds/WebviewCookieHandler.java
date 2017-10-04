@@ -32,7 +32,7 @@ public final class WebviewCookieHandler implements CookieJar {
             // that match the url and haven't expired, so the cookie attributes
             // aren't included
             String[] cookieHeaders = cookiesString.split(";");
-            List<Cookie> cookies = new ArrayList<>(cookieHeaders.length);
+            List<Cookie> cookies = new ArrayList<Cookie>(cookieHeaders.length);
 
             for (String header : cookieHeaders) {
                 cookies.add(Cookie.parse(url, header));

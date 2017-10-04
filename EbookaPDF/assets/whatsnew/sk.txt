@@ -1,5 +1,7 @@
-* Zlepšenie čítania PDF, DJVU, EPUB 
-* Vylepšené rozhranie pre čítanie 
-* Nové spôsoby čítania: Dve strany, Obálka + dve strany, pol strany, jedna strana 
-* Podpora obrázkov TIFF a kníh 
-*
+* Bezplatné knihy v katalógoch 
+* Pridať katalógové odkazy na obľúbené 
+* Automatické rozdelenie pre knihový jazyk 
+* Rezervovať zoznamy ocenení a zoznamy najlepších kníh 
+* Podporovať osobné katalógy FBReaderu 
+* Zobraziť všetky série Autor, podľa žánru 
+* Veľa vylepšení a malých oprav od vašej spätnej väzby

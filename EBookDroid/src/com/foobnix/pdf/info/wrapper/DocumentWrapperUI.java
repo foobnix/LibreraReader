@@ -1337,7 +1337,7 @@ public class DocumentWrapperUI {
 
         @Override
         public void onClick(final View arg0) {
-            AppState.get().isCrop = false;
+            AppState.get().isCrop = true;
             AppState.get().cutP = 50;
             AppState.get().isCut = !AppState.get().isCut;
 
@@ -1351,7 +1351,7 @@ public class DocumentWrapperUI {
 
             SettingsManager.toggleCropMode(true);
 
-            controller.onCrop();
+            controller.onCrop();// crop false
             controller.updateRendering();
             controller.alignDocument();
 

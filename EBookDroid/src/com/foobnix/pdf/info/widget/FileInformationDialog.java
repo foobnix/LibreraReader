@@ -59,6 +59,12 @@ public class FileInformationDialog {
         ((TextView) dialog.findViewById(R.id.size)).setText(fileMeta.getSizeTxt());
         ((TextView) dialog.findViewById(R.id.mimeType)).setText("" + ExtUtils.getMimeType(file));
 
+        final TextView hypenLang = (TextView) dialog.findViewById(R.id.hypenLang);
+        hypenLang.setText(DialogTranslateFromTo.getLanuageByCode(fileMeta.getLang()));
+        if (fileMeta.getLang() == null) {
+            ((View) hypenLang.getParent()).setVisibility(View.GONE);
+        }
+
         List<AppBookmark> objects = AppSharedPreferences.get().getBookmarksByBook(file);
         StringBuilder lines = new StringBuilder();
         String fast = a.getString(R.string.fast_bookmark);
@@ -186,7 +192,6 @@ public class FileInformationDialog {
         // coverImage.getLayoutParams().width = Dips.screenWidth() / 3;
 
         IMG.getCoverPage(coverImage, file.getPath(), IMG.getImageSize());
-        
 
         coverImage.setOnClickListener(new OnClickListener() {
 

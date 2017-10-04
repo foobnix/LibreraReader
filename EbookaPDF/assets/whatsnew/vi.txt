@@ -1,5 +1,7 @@
-* Cải thiện đọc PDF, DJVU, EPUB 
-* Cải thiện giao diện đọc 
-* Các chế độ đọc mới: Hai trang, Trang bìa + hai trang, nửa trang, trang đơn 
-* Hỗ trợ hình ảnh và sách TIFF 
-* Nhiều cải tiến theo phản hồi của bạn
+* Miễn phí sách trong catalogue 
+* Thêm các liên kết vào danh mục yêu thích 
+* Dấu cách tự động cho ngôn ngữ của sách 
+* Danh sách sách giải thưởng và danh sách sách hàng đầu 
+* Hỗ trợ danh mục cá nhân của FBReader 
+* Hiển thị tất cả các chuỗi theo tác giả, theo thể loại 
+* Nhiều cải tiến và sửa lỗi nhỏ theo phản hồi của bạn

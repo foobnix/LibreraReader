@@ -34,6 +34,7 @@ public class MobiExtract {
             String title = parse.getTitle();
             String author = parse.getAuthor();
             String subject = parse.getSubject();
+            String lang = parse.getLanguage();
 
             if (TxtUtils.isEmpty(title)) {
                 title = file.getName();
@@ -49,6 +50,7 @@ public class MobiExtract {
 
             EbookMeta ebookMeta = new EbookMeta(title, author, decode);
             ebookMeta.setGenre(subject);
+            ebookMeta.setLang(lang);
             return ebookMeta;
 
         } catch (Throwable e) {

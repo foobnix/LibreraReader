@@ -563,7 +563,11 @@ public class FileMetaAdapter extends AppRecycleAdapter<FileMeta, RecyclerView.Vi
 
     @Override
     public int getItemViewType(int position) {
-        Integer cusType = getItem(position).getCusType();
+        FileMeta item = getItem(position);
+        if (item == null) {
+            return DISPLAY_TYPE_FILE;
+        }
+        Integer cusType = item.getCusType();
         if (cusType == null) {
             return DISPLAY_TYPE_FILE;
         }

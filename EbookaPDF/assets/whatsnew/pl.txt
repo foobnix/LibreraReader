@@ -1,5 +1,7 @@
-* Poprawa czytania plików PDF, DJVU, EPUB 
-* Ulepszony interfejs czytania 
-* Nowe sposoby czytania: dwie strony, okładka + dwie strony, pół strony, pojedyncza strona 
-* Wsparcie dla obrazów i książek TIFF 
-*
+* Bezpłatne książki w katalogach 
+* Dodaj linki katalogowe do ulubionych 
+* Automatyczne dzielenie na język książki 
+* Listy nagród książek i listy książek na górze 
+* Wsparcie osobistego katalogu FBReader 
+* Pokaż wszystkie sekcje według autora, wg gatunku 
+* Wiele udoskonaleń i małych poprawek dzięki Twojej opinii

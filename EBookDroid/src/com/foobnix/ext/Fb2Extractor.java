@@ -179,6 +179,7 @@ public class Fb2Extractor extends BaseExtractor {
             String sequence = "";
             String genre = "";
             String number = "";
+            String lang = "";
 
             boolean titleInfo = false;
 
@@ -194,6 +195,8 @@ public class Fb2Extractor extends BaseExtractor {
                     if (titleInfo) {
                         if (xpp.getName().equals("book-title")) {
                             bookTitle = xpp.nextText();
+                        } else if (xpp.getName().equals("lang")) {
+                            lang = xpp.nextText();
                         } else if (firstName == null && xpp.getName().equals("first-name")) {
                             firstName = xpp.nextText();
                         } else if (lastName == null && xpp.getName().equals("last-name")) {
@@ -234,12 +237,15 @@ public class Fb2Extractor extends BaseExtractor {
                 String index = number.replaceAll("^,", "");
                 EbookMeta ebookMeta = new EbookMeta(bookTitle, firstName + " " + lastName, sequence, genre);
                 try {
+                    ebookMeta.setLang(lang);
                     ebookMeta.setsIndex(Integer.parseInt(index));
                 } catch (Exception e) {
                 }
                 return ebookMeta;
             } else {
-                return new EbookMeta(bookTitle, firstName + " " + lastName, sequence, genre);
+                EbookMeta ebookMeta = new EbookMeta(bookTitle, firstName + " " + lastName, sequence, genre);
+                ebookMeta.setLang(lang);
+                return ebookMeta;
             }
         } catch (Exception e) {
             LOG.e(e, "!!!!", inputFile);

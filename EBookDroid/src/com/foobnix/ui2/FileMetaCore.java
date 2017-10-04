@@ -139,6 +139,9 @@ public class FileMetaCore {
             } else if (BookType.MOBI.is(path)) {
                 info = MobiExtract.getBookOverview(path);
             }
+            if (TxtUtils.isEmpty(info)) {
+                return "";
+            }
             info = Jsoup.clean(info, Whitelist.none());
             info = info.replace("&nbsp;", " ");
         } catch (Exception e) {
@@ -155,6 +158,7 @@ public class FileMetaCore {
         fileMeta.setAnnotation(meta.getAnnotation());
         fileMeta.setSIndex(meta.getsIndex());
         fileMeta.setChild(ExtUtils.getFileExtension(meta.getUnzipPath()));
+        fileMeta.setLang(meta.getLang());
 
     }
 

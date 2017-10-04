@@ -2,6 +2,7 @@ package com.foobnix.pdf.search.activity;
 
 import java.io.File;
 import java.util.List;
+import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
 
 import org.ebookdroid.common.settings.SettingsManager;
@@ -680,7 +681,7 @@ public class HorizontalViewActivity extends FragmentActivity {
 
             };
         };
-        loadinAsyncTask.execute();
+        loadinAsyncTask.executeOnExecutor(Executors.newSingleThreadExecutor());
 
         //
         tinUI();

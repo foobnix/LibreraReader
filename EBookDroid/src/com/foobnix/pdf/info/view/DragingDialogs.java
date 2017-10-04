@@ -3167,7 +3167,8 @@ public class DragingDialogs {
 
                 final TextView hypenLang = (TextView) inflate.findViewById(R.id.hypenLang);
                 hypenLang.setVisibility(isSupportHypens ? View.VISIBLE : View.GONE);
-                hypenLang.setText(DialogTranslateFromTo.getLanuageByCode(BookCSS.get().hypenLang) + " (" + BookCSS.get().hypenLang + ")");
+
+                hypenLang.setText(DialogTranslateFromTo.getLanuageByCode(BookCSS.get().hypenLang));
                 TxtUtils.underlineTextView(hypenLang);
 
                 hypenLang.setOnClickListener(new OnClickListener() {

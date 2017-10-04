@@ -1,4 +1,7 @@
-PDF, DJVU, EPUB okuma Geliştirme 
-* Geliştirilmiş okuma arayüzü 
-* Okuma yeni modları: İki sayfa, Kapak + iki sayfa, yarım sayfa, tek sayfa 
-* TIFF görüntüleri ve kitaplar için destek Geribildiriminiz sayesinde birçok iyileştirme
+* Kataloglarda ücretsiz kitaplar 
+* Favorilere katalog bağlantıları ekleme 
+* Kitap dili için otomatik tireleme 
+* Kitap ödül listeleri ve en iyi kitap listeleri 
+* Kişisel FBReader kataloğunu destekleme 
+* Yazara göre Yazar tarafından tüm serileri göster 
+* Geri bildirimlerinizle birçok iyileştirme ve küçük düzeltmeler

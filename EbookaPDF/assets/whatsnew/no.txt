@@ -1,5 +1,7 @@
-* Forbedringer i lesing av PDF, DJVU, EPUB 
-* Forbedret lesegrensesnitt 
-* Nye måter å lese på: To sider, Cover + to sider, halv side, enkelt side 
-* Støtte for TIFF-bilder og bøker 
-* Mange forbedringer ved tilbakemelding
+* Gratis bøker i kataloger 
+* Legg til katalogkoblinger til favoritter 
+* Automatisk bindestrek for bokspråk 
+* Bestill prislister og toppbøker lister 
+* Støt personlig FBReader katalog 
+* Vis alle serier etter forfatter, etter sjanger 
+* Mange forbedringer og små reparasjoner ved tilbakemelding

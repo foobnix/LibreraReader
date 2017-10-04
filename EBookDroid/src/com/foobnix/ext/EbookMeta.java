@@ -10,6 +10,7 @@ public class EbookMeta {
     private String annotation;
     private String unzipPath;
     private Integer sIndex;
+    private String lang;
 
     public EbookMeta(String title, String author, byte[] coverImage) {
         this.title = updateString(title);
@@ -101,6 +102,14 @@ public class EbookMeta {
 
     public void setsIndex(Integer sIndex) {
         this.sIndex = sIndex;
+    }
+
+    public String getLang() {
+        return lang;
+    }
+
+    public void setLang(String lang) {
+        this.lang = lang;
     }
 
 }
