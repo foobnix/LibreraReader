@@ -396,4 +396,5 @@
    <string name="add_catalog">เพิ่มแคตตาล็อก</string>
    <string name="favorites">รายการโปรด</string>
    <string name="my_favorites_links">ลิงก์รายการโปรดของฉัน</string>
+   <string name="contrast">ความแตกต่าง</string>
 </resources>

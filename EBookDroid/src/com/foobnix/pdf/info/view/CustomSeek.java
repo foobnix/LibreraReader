@@ -20,18 +20,14 @@ public class CustomSeek extends FrameLayout {
     private TextView textCurerntValue;
     private SeekBar seek;
 
-    public CustomSeek(Context context, AttributeSet attrs) {
-        super(context, attrs);
+    public CustomSeek(Context context) {
+        super(context);
 
-        TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.CustomSeek);
+    }
 
-        String name = a.getString(R.styleable.CustomSeek_text);
+    public void initWith(String name, String textColor) {
 
-        String textColor = a.getString(R.styleable.CustomSeek_textColor);
-
-        a.recycle();
-
-        View inflate = LayoutInflater.from(context).inflate(R.layout.custom_seek, this, false);
+        View inflate = LayoutInflater.from(getContext()).inflate(R.layout.custom_seek, this, false);
         titleText = (TextView) inflate.findViewById(R.id.name);
         titleText.setText(name);
         if (TxtUtils.isEmpty(name)) {
@@ -73,6 +69,21 @@ public class CustomSeek extends FrameLayout {
         });
 
         addView(inflate);
+    }
+
+    public CustomSeek(Context context, AttributeSet attrs) {
+        super(context, attrs);
+
+        TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.CustomSeek);
+
+        String name = a.getString(R.styleable.CustomSeek_text);
+
+        String textColor = a.getString(R.styleable.CustomSeek_textColor);
+
+        a.recycle();
+
+        initWith(name, textColor);
+
     }
 
     public void setTitleTextWidth(int width) {

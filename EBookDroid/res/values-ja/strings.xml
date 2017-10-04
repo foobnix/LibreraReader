@@ -396,4 +396,5 @@
    <string name="add_catalog">カタログを追加</string>
    <string name="favorites">お気に入り</string>
    <string name="my_favorites_links">私のお気に入りのリンク</string>
+   <string name="contrast">コントラスト</string>
 </resources>

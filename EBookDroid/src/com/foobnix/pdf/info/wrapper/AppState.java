@@ -237,6 +237,7 @@ public class AppState {
     public boolean isBrighrnessEnable = true;
     public boolean isRewindEnable = true;
 
+    public int contrast = 0;
     public float brightness = -1f;
     public float cropTolerance = 0.5f;
 
@@ -578,6 +579,7 @@ public class AppState {
 
         sortBy = sp.getInt("sortBy", SORT_BY_PATH);
         sortByBrowse = sp.getInt("sortByBrowse", SORT_BY_PATH);
+        contrast = sp.getInt("contrast", contrast);
         searchPaths = sp.getString("searchPaths", searchPaths);
         rememberDict = sp.getString("rememberDict", rememberDict);
 
@@ -789,6 +791,7 @@ public class AppState {
 
         editor.putInt("sortBy", sortBy);
         editor.putInt("sortByBrowse", sortByBrowse);
+        editor.putInt("contrast", contrast);
         editor.putFloat("brightness1", brightness);
         editor.putFloat("cropTolerance", cropTolerance);
         editor.putFloat("ttsSpeed", ttsSpeed);

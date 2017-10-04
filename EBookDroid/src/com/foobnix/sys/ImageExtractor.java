@@ -269,6 +269,10 @@ public class ImageExtractor implements ImageDownloader {
 
         codecDocumentLocal.getPage(page).recycle();
 
+        if (AppState.get().contrast != 0) {
+            bitmap = MagicHelper.createContrast(bitmap, AppState.get().contrast);
+        }
+
         if (!isNeedDisableMagicInPDFDjvu && MagicHelper.isNeedBookBackgroundImage()) {
             bitmap = MagicHelper.updateWithBackground(bitmap);
         }
@@ -311,11 +315,10 @@ public class ImageExtractor implements ImageDownloader {
         if (imageUri.startsWith("https")) {
 
             Request request = new Request.Builder()//
-                    .header("User-Agent", OPDS.USER_AGENT)
-                    .url(imageUri)//
+                    .header("User-Agent", OPDS.USER_AGENT).url(imageUri)//
                     .build();//
 
-            LOG.d("https!!!",imageUri);
+            LOG.d("https!!!", imageUri);
             return OPDS.client.newCall(request).execute().body().byteStream();
         }
 
