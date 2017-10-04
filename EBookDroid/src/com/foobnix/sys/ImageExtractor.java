@@ -492,6 +492,7 @@ public class ImageExtractor implements ImageDownloader {
         CacheZipUtils.cacheLock.lock();
         try {
             String zipPath = CacheZipUtils.extracIfNeed(path).unZipPath;
+            LOG.d("getCodecContext", zipPath);
             openDocument = ctx.openDocument(zipPath, passw);
         } finally {
             CacheZipUtils.cacheLock.unlock();

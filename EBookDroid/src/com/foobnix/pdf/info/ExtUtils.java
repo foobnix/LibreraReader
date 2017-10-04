@@ -575,6 +575,8 @@ public class ExtUtils {
             Toast.makeText(c, R.string.file_not_found, Toast.LENGTH_LONG).show();
             return false;
         }
+        LOG.d("showDocument", uri.getPath());
+
         if (AppState.getInstance().isAlwaysOpenAsMagazine) {
             openHorizontalView(c, new File(uri.getPath()), page - 1);
             return true;
@@ -589,6 +591,8 @@ public class ExtUtils {
 
         c.startActivity(intent);
         // FileMetaDB.get().addRecent(uri.getPath());
+        
+
 
         return true;
     }

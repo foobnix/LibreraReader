@@ -34,7 +34,7 @@ public class AlertDialogs {
     public static void showOkDialog(final Context c, final String message, final Runnable action) {
         final AlertDialog.Builder builder = new AlertDialog.Builder(c);
         builder.setMessage(message);
-        builder.setCancelable(false);
+        builder.setCancelable(true);
         builder.setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
 
             @Override

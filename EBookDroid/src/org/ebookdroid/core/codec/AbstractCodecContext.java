@@ -38,6 +38,10 @@ public abstract class AbstractCodecContext implements CodecContext {
     @Override
     public CodecDocument openDocument(String fileNameOriginal, String password) {
         LOG.d("Open Document", fileNameOriginal);
+        if (ExtUtils.isZip(fileNameOriginal)) {
+            LOG.d("Open Document ZIP", fileNameOriginal);
+            return openDocumentInner(fileNameOriginal, password);
+        }
 
         EbookMeta ebookMeta = FileMetaCore.get().getEbookMeta(fileNameOriginal);
 
