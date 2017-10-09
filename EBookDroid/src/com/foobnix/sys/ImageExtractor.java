@@ -269,10 +269,6 @@ public class ImageExtractor implements ImageDownloader {
 
         codecDocumentLocal.getPage(page).recycle();
 
-        if (AppState.get().contrast != 0) {
-            bitmap = MagicHelper.createContrast(bitmap, AppState.get().contrast);
-        }
-
         if (!isNeedDisableMagicInPDFDjvu && MagicHelper.isNeedBookBackgroundImage()) {
             bitmap = MagicHelper.updateWithBackground(bitmap);
         }

@@ -16,6 +16,7 @@ import org.emdev.utils.LengthUtils;
 
 import com.foobnix.android.utils.LOG;
 import com.foobnix.pdf.info.model.AnnotationType;
+import com.foobnix.pdf.info.wrapper.AppState;
 import com.foobnix.pdf.info.wrapper.MagicHelper;
 import com.foobnix.sys.TempHolder;
 
@@ -74,6 +75,11 @@ public class DjvuPage extends AbstractCodecPage {
             bmp = BitmapManager.getBitmap("Djvu page", width, height, Bitmap.Config.RGB_565);
             final int[] buffer = new int[width * height];
             renderPageWrapper(pageHandle, contextHandle, width, height, pageSliceBounds.left, pageSliceBounds.top, pageSliceBounds.width(), pageSliceBounds.height(), buffer, renderMode);
+
+            if (AppState.get().contrast != 0) {
+                MagicHelper.quickContrast1(buffer, AppState.get().contrast);
+            }
+
             MagicHelper.udpateColorsMagic(buffer);
             bmp.getBitmap().setPixels(buffer, 0, width, 0, 0, width, height);
             return bmp;

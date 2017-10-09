@@ -444,7 +444,10 @@ public class SearchFragment2 extends UIFragment<FileMeta> {
         }
 
         if (CMD_CONTRAST.equals(txt)) {
-            Dialogs.showContrastDialog(getActivity(), getActivity().getString(R.string.contrast), new Runnable() {
+            List<FileMeta> searchBy = AppDB.get().searchBy("", SORT_BY.getByID(AppState.get().sortBy), AppState.getInstance().isSortAsc);
+            String path = searchBy.get(0).getPath();
+
+            Dialogs.showContrastDialogByUrl(getActivity(), path, new Runnable() {
 
                 @Override
                 public void run() {

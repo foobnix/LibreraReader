@@ -766,4 +766,77 @@ public class MagicHelper {
         return bmOut;
     }
 
+    public static Bitmap createQuickContrast(Bitmap src, double value) {
+        int[] arr = new int[src.getWidth() * src.getHeight()];
+        src.getPixels(arr, 0, src.getWidth(), 0, 0, src.getWidth(), src.getHeight());
+        quickContrast1(arr, value);
+        Bitmap bmOut = Bitmap.createBitmap(src.getWidth(), src.getHeight(), src.getConfig());
+        bmOut.setPixels(arr, 0, src.getWidth(), 0, 0, src.getWidth(), src.getHeight());
+        return bmOut;
+
+    }
+
+    public static void quickContrast1(int[] arr, double light) {
+        double contrast = Math.pow((100 + light) / 100, 2);
+        int R;
+        for (int i = 0; i < arr.length; i++) {
+            int pixel = arr[i];
+
+            if (pixel == Color.WHITE) {
+                continue;
+            }
+            if (pixel == Color.BLACK) {
+                continue;
+            }
+            R = Color.red(pixel);
+            R = (int) (((((R / 255.0) - 0.5) * contrast) + 0.5) * 255.0);
+            if (R < 0) {
+                R = 0;
+            } else if (R > 255) {
+                R = 255;
+            }
+            arr[i] = Color.rgb(R, R, R);
+        }
+
+    }
+
+    public static void quickContrast(int[] arr, boolean half_contrast, int light) {
+        if (half_contrast) {
+            // # 1.5x contrast
+            int threshold_lower = 0x2A + light;
+            int threshold_upper = threshold_lower + 0xAA;
+
+            for (int i = 0; i < arr.length; i++) {
+                int pixel = (arr[i] & 0x00FF0000) >> 16;
+
+                if (pixel > threshold_upper) {
+                    arr[i] = 0xFFFFFF;
+                } else if (pixel < threshold_lower) {
+                    arr[i] = 0;
+                } else {
+                    pixel = pixel - threshold_lower;
+                    pixel = ((pixel << 1) + pixel) >> 1;
+                    arr[i] = (pixel << 16) + (pixel << 8) + pixel;
+                }
+            }
+        } else {
+            // # 2x contrast
+            int threshold_lower = 0x40 + light;
+            int threshold_upper = threshold_lower + 0x7F;
+
+            for (int i = 0; i < arr.length; i++) {
+                int pixel = (arr[i] & 0x00FF0000) >> 16;
+
+                if (pixel > threshold_upper) {
+                    arr[i] = 0xFFFFFF;
+                } else if (pixel < threshold_lower) {
+                    arr[i] = 0;
+                } else {
+                    pixel = (pixel - threshold_lower) << 1;
+                    arr[i] = (pixel << 16) + (pixel << 8) + pixel;
+                }
+            }
+        }
+    }
+
 }
