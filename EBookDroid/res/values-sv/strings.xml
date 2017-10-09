@@ -397,4 +397,5 @@
    <string name="favorites">Favoriter</string>
    <string name="my_favorites_links">Mina favoriter länkar</string>
    <string name="contrast">Kontrast</string>
+   <string name="can_t_delete_file">Det går inte att ta bort filen</string>
 </resources>

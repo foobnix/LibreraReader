@@ -397,4 +397,5 @@
    <string name="favorites">المفضلة</string>
    <string name="my_favorites_links">الروابط المفضلة</string>
    <string name="contrast">تناقض</string>
+   <string name="can_t_delete_file">لا يمكن حذف الملف</string>
 </resources>

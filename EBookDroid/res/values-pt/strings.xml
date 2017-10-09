@@ -397,4 +397,5 @@
    <string name="favorites">Favoritos</string>
    <string name="my_favorites_links">Meus links favoritos</string>
    <string name="contrast">Contraste</string>
+   <string name="can_t_delete_file">Não pode excluir o arquivo</string>
 </resources>

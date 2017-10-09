@@ -41,6 +41,7 @@ public class Urls {
     }
 
     public static void openWevView(final Context a, String url) {
+
         AlertDialog.Builder alert = new AlertDialog.Builder(a);
         alert.setTitle(url);
 

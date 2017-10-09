@@ -43,7 +43,7 @@ public class IMG {
     public static boolean RESET_VIEW_BEFORE_LOADING = true;
     public static Drawable bookBGWithMark;
     public static Drawable bookBGNoMark;
-    private static Context context;
+    public static Context context;
 
     public static void init(Context context) {
         IMG.context = context;

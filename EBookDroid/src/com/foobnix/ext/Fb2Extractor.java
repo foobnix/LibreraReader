@@ -430,7 +430,7 @@ public class Fb2Extractor extends BaseExtractor {
                     line = line.replace("</body>", "<a id=\"" + count + "\"></a></body>");
                 }
 
-                if (!titleBegin && BookCSS.get().isAutoHypens) {
+                if ((AppState.get().isDouble || !titleBegin) && BookCSS.get().isAutoHypens) {
                     if (!isFindBodyEnd && line.contains("</body>")) {
                         isFindBodyEnd = true;
                     }

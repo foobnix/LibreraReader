@@ -397,4 +397,5 @@
    <string name="favorites">Вибране</string>
    <string name="my_favorites_links">Посилання на мої закладки</string>
    <string name="contrast">Контрастність</string>
+   <string name="can_t_delete_file">Не можна видалити файл</string>
 </resources>

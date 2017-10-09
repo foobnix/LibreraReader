@@ -1,6 +1,7 @@
 package com.foobnix.tts;
 
 import org.ebookdroid.LirbiApp;
+import org.ebookdroid.common.settings.SettingsManager;
 import org.ebookdroid.core.codec.CodecDocument;
 import org.ebookdroid.core.codec.CodecPage;
 import org.greenrobot.eventbus.EventBus;
@@ -250,6 +251,7 @@ public class TTSService extends Service {
                         }
 
                         playPage(secondPart, AppState.get().lastBookPage + 1);
+                        SettingsManager.updateTempPage(AppState.get().lastBookPath, AppState.get().lastBookPage + 1);
 
                     }
                 });
@@ -265,6 +267,7 @@ public class TTSService extends Service {
                             return;
                         }
                         playPage(secondPart, AppState.get().lastBookPage + 1);
+                        SettingsManager.updateTempPage(AppState.get().lastBookPath, AppState.get().lastBookPage + 1);
 
                     }
 

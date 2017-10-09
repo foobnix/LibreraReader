@@ -535,6 +535,10 @@ public class HorizontalViewActivity extends FragmentActivity {
 
         Keyboards.hideNavigationOnCreate(HorizontalViewActivity.this);
 
+        currentSeek.setVisibility(View.GONE);
+        maxSeek.setVisibility(View.GONE);
+        seekBar.setVisibility(View.INVISIBLE);
+
         titleTxt.setText(DocumentControllerHorizontalView.getTempTitle(this));
         loadinAsyncTask = new CopyAsyncTask() {
             ProgressDialog dialog;
@@ -629,6 +633,11 @@ public class HorizontalViewActivity extends FragmentActivity {
                     AlertDialog show = dialog.show();
 
                 } else {
+
+                    currentSeek.setVisibility(View.VISIBLE);
+                    maxSeek.setVisibility(View.VISIBLE);
+                    seekBar.setVisibility(View.VISIBLE);
+
                     documentController.initHandler();
                     AppState.get().lastA = HorizontalViewActivity.class.getSimpleName();
                     AppState.get().lastMode = HorizontalViewActivity.class.getSimpleName();

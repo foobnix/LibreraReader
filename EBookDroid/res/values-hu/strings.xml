@@ -397,4 +397,5 @@
    <string name="favorites">Érdekes</string>
    <string name="my_favorites_links">Kedvenc linkek</string>
    <string name="contrast">Kontraszt</string>
+   <string name="can_t_delete_file">Nem törölheti a fájlt</string>
 </resources>

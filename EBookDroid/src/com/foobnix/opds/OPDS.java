@@ -27,7 +27,7 @@ public class OPDS {
             .cookieJar(new WebviewCookieHandler())//
             .connectTimeout(15, TimeUnit.SECONDS)//
             .writeTimeout(15, TimeUnit.SECONDS)//
-            .readTimeout(30, TimeUnit.SECONDS)//
+            .readTimeout(15, TimeUnit.SECONDS)//
             .cache(cache).build();//
 
     public static int random = new Random().nextInt();

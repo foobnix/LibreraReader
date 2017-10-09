@@ -105,7 +105,11 @@ public class SearchFragment2 extends UIFragment<FileMeta> {
     public void initAutocomplition() {
         autocomplitions.clear();
         for (SEARCH_IN search : AppDB.SEARCH_IN.values()) {
-            autocomplitions.add(search.getDotPrefix() + " ");
+            if (search == SEARCH_IN.SERIES) {
+                autocomplitions.add(search.getDotPrefix() + " *");
+            } else {
+                autocomplitions.add(search.getDotPrefix());
+            }
         }
 
         autocomplitions.add(CMD_FULLSCREEN_ON_OFF);

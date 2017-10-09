@@ -46,6 +46,18 @@ public class SettingsManager {
         }
     }
 
+    public static void updateTempPage(String fileName, int pageNumber) {
+        try {
+            BookSettings bookSettings = getTempBookSettings(fileName);
+            bookSettings.currentPage = new PageIndex(pageNumber, pageNumber);
+            db.storeBookSettings(bookSettings);
+            LOG.d("updateTempPage", fileName, pageNumber);
+        } catch (Exception e) {
+            LOG.e(e);
+        }
+
+    }
+
     public static BookSettings getTempBookSettings(final String fileName) {
         lock.writeLock().lock();
         try {

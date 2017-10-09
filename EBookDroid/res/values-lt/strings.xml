@@ -397,4 +397,5 @@
    <string name="favorites">Favoritai</string>
    <string name="my_favorites_links">Mano mėgstamiausių nuorodos</string>
    <string name="contrast">Kontrastas</string>
+   <string name="can_t_delete_file">Negalima ištrinti failo</string>
 </resources>

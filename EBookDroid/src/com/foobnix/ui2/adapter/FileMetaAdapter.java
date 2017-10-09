@@ -391,18 +391,32 @@ public class FileMetaAdapter extends AppRecycleAdapter<FileMeta, RecyclerView.Vi
         holder.path.setText(fileMeta.getPathTxt());
         holder.ext.setText(fileMeta.getChild() != null ? fileMeta.getChild() : fileMeta.getExt());
         holder.size.setText(fileMeta.getSizeTxt());
-        holder.date.setText(fileMeta.getDateTxt());
+        if (holder.date != null) {
+            holder.date.setText(fileMeta.getDateTxt());
+        }
 
-        if (holder.idProgressColor != null && fileMeta.getIsRecentProgress() != null) {
+        double recentProgress = (fileMeta.getIsRecentProgress() != null && fileMeta.getIsRecentProgress() < 1.0) ? fileMeta.getIsRecentProgress() : 0;
+
+        if (holder.idProgressColor != null && recentProgress > 0) {
             if (fileMeta.getIsRecentProgress() > 1) {
                 fileMeta.setIsRecentProgress(1f);
             }
             holder.progresLayout.setVisibility(View.VISIBLE);
             holder.idProgressColor.setBackgroundColor(TintUtil.color);
-            holder.idProgressColor.getLayoutParams().width = Dips.dpToPx((int) (200 * fileMeta.getIsRecentProgress()));
-            holder.idPercentText.setText("" + (int) (100 * fileMeta.getIsRecentProgress()) + "%");
+            holder.idProgressColor.getLayoutParams().width = Dips.dpToPx((int) (200 * recentProgress));
+            holder.idPercentText.setText("" + (int) (100 * recentProgress) + "%");
         } else if (holder.progresLayout != null) {
             holder.progresLayout.setVisibility(View.GONE);
+        }
+
+        if (adapterType == ADAPTER_GRID && recentProgress > 0) {
+            holder.idPercentText.setText("" + (int) (100 * recentProgress) + "%");
+            if (AppState.get().coverBigSize < IMG.TWO_LINE_COVER_SIZE * 2) {
+                holder.ext.setVisibility(View.GONE);
+            }
+        } else if (adapterType == ADAPTER_GRID) {
+            holder.idPercentText.setText("");
+            holder.ext.setVisibility(View.VISIBLE);
         }
 
         if (fileMeta.getIsStar() == null || fileMeta.getIsStar() == false) {
@@ -501,12 +515,6 @@ public class FileMetaAdapter extends AppRecycleAdapter<FileMeta, RecyclerView.Vi
                 holder.infoLayout.setVisibility(View.VISIBLE);
                 holder.title.setText(fileMeta.getPathTxt());
             }
-        }
-
-        if (adapterType == ADAPTER_GRID && AppState.get().coverBigSize <= IMG.TWO_LINE_COVER_SIZE * 2) {
-            holder.date.setVisibility(View.GONE);
-        } else {
-            holder.date.setVisibility(View.VISIBLE);
         }
 
         TintUtil.setTintImage(holder.menu);

@@ -32,9 +32,9 @@ public class TxtUtils {
             return;
         }
 
-        if (item.contains(",") || item.contains(";") || item.contains(".")) {
+        if (item.contains(",") || item.contains(";")) {
 
-            String[] split = item.split("[.,;]");
+            String[] split = item.split("[,;]");
 
             for (String txt : split) {
                 if (TxtUtils.isNotEmpty(txt)) {
@@ -226,6 +226,13 @@ public class TxtUtils {
             return str;
         }
         return str.substring(0, 1).toUpperCase() + str.substring(1);
+    }
+
+    public static String firstLowerCase(String str) {
+        if (isEmpty(str) || str.length() <= 1) {
+            return str;
+        }
+        return str.substring(0, 1).toLowerCase() + str.substring(1);
     }
 
     public static String filterDoubleSpaces(String str) {

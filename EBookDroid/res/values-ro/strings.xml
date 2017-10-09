@@ -397,4 +397,5 @@
    <string name="favorites">Favorite</string>
    <string name="my_favorites_links">Link-urile mele favorite</string>
    <string name="contrast">Contrast</string>
+   <string name="can_t_delete_file">Nu se poate șterge fișierul</string>
 </resources>

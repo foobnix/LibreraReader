@@ -110,7 +110,6 @@ import android.view.View.OnClickListener;
 import android.view.View.OnKeyListener;
 import android.view.View.OnLongClickListener;
 import android.view.ViewGroup;
-import android.view.ViewGroup.LayoutParams;
 import android.view.inputmethod.EditorInfo;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
@@ -946,8 +945,7 @@ public class DragingDialogs {
                             LOG.d("Add APP", app.activityInfo.name);
                             try {
                                 ImageView image = new ImageView(anchor.getContext());
-                                image.setAdjustViewBounds(true);
-                                LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);
+                                LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(Dips.dpToPx(42), Dips.dpToPx(42));
                                 layoutParams.rightMargin = Dips.dpToPx(4);
                                 image.setLayoutParams(layoutParams);
                                 Drawable icon = anchor.getContext().getPackageManager().getApplicationIcon(app.activityInfo.packageName);
@@ -3163,10 +3161,16 @@ public class DragingDialogs {
                 });
 
                 final TextView hypenLangLabel = (TextView) inflate.findViewById(R.id.hypenLangLabel);
-                hypenLangLabel.setVisibility(isSupportHypens ? View.VISIBLE : View.GONE);
 
                 final TextView hypenLang = (TextView) inflate.findViewById(R.id.hypenLang);
-                hypenLang.setVisibility(isSupportHypens ? View.VISIBLE : View.GONE);
+
+                // hypenLang.setVisibility(isSupportHypens ? View.VISIBLE :
+                // View.GONE);
+                // hypenLangLabel.setVisibility(isSupportHypens ? View.VISIBLE :
+                // View.GONE);
+
+                hypenLang.setVisibility(View.GONE);
+                hypenLangLabel.setVisibility(View.GONE);
 
                 hypenLang.setText(DialogTranslateFromTo.getLanuageByCode(BookCSS.get().hypenLang));
                 TxtUtils.underlineTextView(hypenLang);

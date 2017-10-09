@@ -1,4 +1,4 @@
-﻿<resources>
+<resources>
    <string name="apply">Uygula</string>
    <string name="auto_fit">Otomatik Sığdır</string>
    <string name="automatic">Otomatik</string>
@@ -396,4 +396,6 @@
    <string name="add_catalog">Katalog ekle</string>
    <string name="favorites">Favoriler</string>
    <string name="my_favorites_links">Favori bağlantıları</string>
+   <string name="contrast">Kontrast</string>
+   <string name="can_t_delete_file">Dosya silinemiyor</string>
 </resources>

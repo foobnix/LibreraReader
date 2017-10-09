@@ -397,4 +397,5 @@
    <string name="favorites">즐겨 찾기</string>
    <string name="my_favorites_links">내 즐겨 찾기 링크</string>
    <string name="contrast">대조</string>
+   <string name="can_t_delete_file">파일을 삭제할 수 없습니다.</string>
 </resources>

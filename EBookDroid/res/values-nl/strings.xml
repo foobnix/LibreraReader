@@ -397,4 +397,5 @@
    <string name="favorites">Favorieten</string>
    <string name="my_favorites_links">Mijn favorieten links</string>
    <string name="contrast">Contrast</string>
+   <string name="can_t_delete_file">Kan het bestand niet verwijderen</string>
 </resources>

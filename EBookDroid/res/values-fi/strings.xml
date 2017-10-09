@@ -397,4 +397,5 @@
    <string name="favorites">Suosikit</string>
    <string name="my_favorites_links">Suosikkilinkit</string>
    <string name="contrast">Kontrasti</string>
+   <string name="can_t_delete_file">Et voi poistaa tiedostoa</string>
 </resources>

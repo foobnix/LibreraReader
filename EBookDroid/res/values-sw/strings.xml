@@ -397,4 +397,5 @@
    <string name="favorites">Mapendeleo</string>
    <string name="my_favorites_links">Viungo vyangu vya kupendeza</string>
    <string name="contrast">Tofauti</string>
+   <string name="can_t_delete_file">Haiwezi kufuta faili</string>
 </resources>

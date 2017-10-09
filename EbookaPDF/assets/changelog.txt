@@ -1,3 +1,6 @@
+Search in series
+Delete files fix
+Progress of reading in grid mode
 Automatic hyphenation
 Integration with "My personal FBReader catalogue"
 Support XPS

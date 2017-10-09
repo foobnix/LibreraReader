@@ -392,17 +392,21 @@ public class AppDB {
                 }
             }
 
-            if (TxtUtils.isNotEmpty(str)) {
-                str = str.replace(" ", "%");
-                String string = "%" + str + "%";
-                if (searchIn != null) {
-                    where = where.where(searchIn.getProperty().like(string));
-                } else {
-                    where = where.whereOr(//
-                            FileMetaDao.Properties.PathTxt.like(string), //
-                            FileMetaDao.Properties.Title.like(string), //
-                            FileMetaDao.Properties.Author.like(string)//
-                    );
+            if (searchIn == SEARCH_IN.SERIES && !str.contains("*")) {
+                where = where.where(searchIn.getProperty().eq(str));
+            } else {
+                if (TxtUtils.isNotEmpty(str)) {
+                    str = str.replace(" ", "%").replace("*", "%");
+                    String string = "%" + str + "%";
+                    if (searchIn != null) {
+                        where = where.where(searchIn.getProperty().like(string));
+                    } else {
+                        where = where.whereOr(//
+                                FileMetaDao.Properties.PathTxt.like(string), //
+                                FileMetaDao.Properties.Title.like(string), //
+                                FileMetaDao.Properties.Author.like(string)//
+                        );
+                    }
                 }
             }
             where = where.where(FileMetaDao.Properties.IsSearchBook.eq(1));

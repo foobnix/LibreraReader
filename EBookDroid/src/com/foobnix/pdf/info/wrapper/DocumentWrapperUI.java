@@ -785,6 +785,10 @@ public class DocumentWrapperUI {
             textToSpeach.setVisibility(View.GONE);
         }
 
+        currentSeek.setVisibility(View.GONE);
+        maxSeek.setVisibility(View.GONE);
+        seekBar.setVisibility(View.INVISIBLE);
+
     }
 
     public void updateSeekBarColorAndSize() {
@@ -1557,6 +1561,10 @@ public class DocumentWrapperUI {
                     if (TxtUtils.isListEmpty(list)) {
                         TintUtil.setTintImage(onDocDontext, Color.LTGRAY);
                     }
+
+                    currentSeek.setVisibility(View.VISIBLE);
+                    maxSeek.setVisibility(View.VISIBLE);
+                    seekBar.setVisibility(View.VISIBLE);
 
                 }
             });
