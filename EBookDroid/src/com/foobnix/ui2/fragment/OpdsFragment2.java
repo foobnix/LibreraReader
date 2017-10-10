@@ -444,45 +444,51 @@ public class OpdsFragment2 extends UIFragment<Entry> {
 
     @Override
     public List<Entry> prepareDataInBackground() {
-        LOG.d("OPDS URL", url);
-        if ("/".equals(url)) {
-            title = getString(R.string.catalogs);
-            return getAllCatalogs();
-        }
+        try {
+            LOG.d("OPDS URL", url);
+            if ("/".equals(url)) {
+                title = getString(R.string.catalogs);
+                return getAllCatalogs();
+            }
 
-        if (SamlibOPDS.isSamlibUrl(url)) {
-            Pair<List<Entry>, String> pair = SamlibOPDS.getSamlibResult(url);
-            List<Entry> samlibResult = pair.first;
-            title = pair.second;
-            return samlibResult;
-        }
+            if (SamlibOPDS.isSamlibUrl(url)) {
+                Pair<List<Entry>, String> pair = SamlibOPDS.getSamlibResult(url);
+                List<Entry> samlibResult = pair.first;
+                title = pair.second;
+                return samlibResult;
+            }
 
-        Feed feed = OPDS.getFeed(url);
-        if (isNeedLoginPassword = feed.isNeedLoginPassword) {
+            Feed feed = OPDS.getFeed(url);
+            if (isNeedLoginPassword = feed.isNeedLoginPassword) {
+                return Collections.emptyList();
+            }
+
+            LOG.d("Load: >>>", feed.title, url);
+
+            feed.updateLinksForUI();
+
+            updateLinks(feed.title, urlRoot, feed.links);
+
+            for (Link link : feed.links) {
+                if ("next".equals(link.rel)) {
+                    feed.entries.add(new Entry("Next", link));
+                    break;
+                }
+            }
+
+            for (Entry e : feed.entries) {
+                updateLinks(e.getTitle(), urlRoot, e.links);
+                if (e.authorUrl != null) {
+                    e.authorUrl = Hrefs.fixHref(e.authorUrl, urlRoot);
+                }
+            }
+            title = TxtUtils.nullToEmpty(feed.title).replace("\n", "").replace("\r", "").trim();
+            return feed.entries;
+        } catch (Exception e) {
+            LOG.e(e);
             return Collections.emptyList();
+
         }
-
-        LOG.d("Load: >>>", feed.title, url);
-
-        feed.updateLinksForUI();
-
-        updateLinks(feed.title, urlRoot, feed.links);
-
-        for (Link link : feed.links) {
-            if ("next".equals(link.rel)) {
-                feed.entries.add(new Entry("Next", link));
-                break;
-            }
-        }
-
-        for (Entry e : feed.entries) {
-            updateLinks(e.getTitle(), urlRoot, e.links);
-            if (e.authorUrl != null) {
-                e.authorUrl = Hrefs.fixHref(e.authorUrl, urlRoot);
-            }
-        }
-        title = TxtUtils.nullToEmpty(feed.title).replace("\n", "").replace("\r", "").trim();
-        return feed.entries;
     }
 
     public void updateLinks(String parentTitle, String homeUrl, List<Link> links) {

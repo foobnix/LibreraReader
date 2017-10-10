@@ -217,6 +217,9 @@ public class ExtUtils {
     }
 
     public static boolean isImagePath(String path) {
+        if (path == null) {
+            return false;
+        }
         String name = path.toLowerCase(Locale.US);
         for (String ext : imageExts) {
             if (name.endsWith(ext)) {
@@ -227,6 +230,9 @@ public class ExtUtils {
     }
 
     public static boolean isImageMime(String mime) {
+        if (mime == null) {
+            return false;
+        }
         mime = mime.toLowerCase(Locale.US);
         for (String ext : imageMimes) {
             if (ext.equals(mime)) {
@@ -591,8 +597,6 @@ public class ExtUtils {
 
         c.startActivity(intent);
         // FileMetaDB.get().addRecent(uri.getPath());
-        
-
 
         return true;
     }

@@ -229,7 +229,7 @@ public class EntryAdapter extends AppRecycleAdapter<Entry, RecyclerView.ViewHold
                     });
                 }
 
-            } else if (link.type.equals(Link.APPLICATION_ATOM_XML) || (link.type.contains(";profile") && link.title == null)) {
+            } else if (link.type == null || link.type.equals(Link.APPLICATION_ATOM_XML) || (link.type.contains(";profile") && link.title == null)) {
                 continue;
             } else if (link.isWebLink() && TxtUtils.isEmpty(link.title)) {
                 continue;

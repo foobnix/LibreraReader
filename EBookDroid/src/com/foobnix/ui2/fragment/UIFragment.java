@@ -210,7 +210,7 @@ public abstract class UIFragment<T> extends Fragment {
                         }
                     }
                 }
-            }.executeOnExecutor(AsyncTask.SERIAL_EXECUTOR);
+            }.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
         } else {
             LOG.d("SKIP task");
         }
