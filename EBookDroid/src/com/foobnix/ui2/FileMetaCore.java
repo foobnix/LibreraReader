@@ -153,7 +153,7 @@ public class FileMetaCore {
     public void udpateFullMeta(FileMeta fileMeta, EbookMeta meta) {
         fileMeta.setAuthor(meta.getAuthor());
         fileMeta.setTitle(meta.getTitle());
-        fileMeta.setSequence(meta.getSequence());
+        fileMeta.setSequence(TxtUtils.firstUppercase(meta.getSequence()));
         fileMeta.setGenre(meta.getGenre());
         fileMeta.setAnnotation(meta.getAnnotation());
         fileMeta.setSIndex(meta.getsIndex());

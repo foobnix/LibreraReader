@@ -1,5 +1,7 @@
 package com.foobnix.pdf.info;
 
+import com.foobnix.android.utils.LOG;
+
 import android.content.Context;
 import android.content.pm.PackageManager;
 import android.content.pm.PackageManager.NameNotFoundException;
@@ -26,10 +28,11 @@ public class AppsConfig {
 
     public static String APP_NAME;
     public static String APP_PACKAGE;
-    public static boolean IS_BETA;
+    public static boolean IS_BETA, IS_CLASSIC;
 
     public static void init(final Context a) {
         final String packageName = a.getPackageName();
+        LOG.d("init packageName", packageName);
 
         APP_NAME = a.getString(R.string.app_name);
         APP_PACKAGE = packageName;
@@ -54,6 +57,7 @@ public class AppsConfig {
         }
 
         if (CLASSIC_READER_PKG.equals(packageName)) {
+            IS_CLASSIC = true;
             ANALYTICS_ID = "UA-36581296-6";
 
             ADMOB_CLASSIC/*     */ = "ca-app-pub-8347903083053959/5364245672";
@@ -75,7 +79,6 @@ public class AppsConfig {
         if (IS_BETA) {
             ANALYTICS_ID = "UA-36581296-9";
             ADMOB_CLASSIC = ADMOB_FULLSCREEN = ADMOB_NATIVE_BIG = ADMOB_NATIVE_SMALL = null;
-            return;
         }
 
     }

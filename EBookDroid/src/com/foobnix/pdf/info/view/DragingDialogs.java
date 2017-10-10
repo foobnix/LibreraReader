@@ -945,8 +945,8 @@ public class DragingDialogs {
                             LOG.d("Add APP", app.activityInfo.name);
                             try {
                                 ImageView image = new ImageView(anchor.getContext());
-                                LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(Dips.dpToPx(42), Dips.dpToPx(42));
-                                layoutParams.rightMargin = Dips.dpToPx(4);
+                                LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(Dips.dpToPx(44), Dips.dpToPx(44));
+                                layoutParams.rightMargin = Dips.dpToPx(8);
                                 image.setLayoutParams(layoutParams);
                                 Drawable icon = anchor.getContext().getPackageManager().getApplicationIcon(app.activityInfo.packageName);
                                 image.setImageDrawable(icon);

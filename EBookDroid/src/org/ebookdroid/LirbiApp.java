@@ -55,6 +55,7 @@ public class LirbiApp extends Application {
         }
 
         context = getApplicationContext();
+        AppsConfig.init(getApplicationContext());
         Dips.init(context);
         AppDB.get().open(this);
         AppState.getInstance().load(this);
@@ -62,7 +63,7 @@ public class LirbiApp extends Application {
         CacheZipUtils.init(context);
         ExtUtils.init(getApplicationContext());
         IMG.init(getApplicationContext());
-        AppsConfig.init(getApplicationContext());
+
         LOG.isEnable = getResources().getBoolean(R.bool.is_log_enable);
 
         TintUtil.init();

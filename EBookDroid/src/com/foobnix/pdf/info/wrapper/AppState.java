@@ -473,6 +473,10 @@ public class AppState {
     public void defaults(Context c) {
         isScrollAnimation = !Dips.isEInk(c);
         musicText = c.getString(R.string.musician);
+        if (AppsConfig.IS_CLASSIC) {
+            AppState.get().tabsOrder = DEFAULTS_TABS_ORDER.replace(UITab.OpdsFragment.index + "#1", UITab.OpdsFragment.index + "#0");
+        }
+        LOG.d("defaults", AppsConfig.IS_CLASSIC, AppState.get().tabsOrder);
     }
 
     public void load(final Context a) {

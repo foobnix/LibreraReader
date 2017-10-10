@@ -1,9 +1,9 @@
-<resources>
+﻿<resources>
    <string name="apply">Uygula</string>
    <string name="auto_fit">Otomatik Sığdır</string>
    <string name="automatic">Otomatik</string>
    <string name="autor_ivan_ivanenko">Tasarım: İvan İvanenko</string>
-   <string name="black">Siyah</string>
+   <string name="black">Koyu</string>
    <string name="book_is_loading_or_no_content">Kitap yükleniyor veya içerik yok</string>
    <string name="bookmark_on_page_">Favorilerime Ekle</string>
    <string name="bookmarks">Favoriler</string>
@@ -16,7 +16,7 @@
    <string name="close_book">Kitabı kapat</string>
    <string name="close_dialog">Dialoğu kapat</string>
    <string name="content">İçindekiler</string>
-   <string name="content_of_book">______İÇİNDEKİLER</string>
+   <string name="content_of_book">İÇİNDEKİLER</string>
    <string name="crop_white_borders">Beyaz kenarları kes</string>
    <string name="delete">Sil</string>
    <string name="delete_book_">SD karttan sil?</string>
@@ -43,7 +43,7 @@
    <string name="landscape">Yatay</string>
    <string name="library">Kütüphane</string>
    <string name="licence_gnu_gpl_v3_0">Lisans: GNU GPL v3.0</string>
-   <string name="light">Açik</string>
+   <string name="light">Açık</string>
    <string name="loading_failed">Sayfa yüklemede hata</string>
    <string name="loop_autoplay">Otomatik sayfa değiştir</string>
    <string name="mouse_scroll_speed">Fare roler hızı</string>
@@ -148,7 +148,7 @@
    <string name="send_file">Dosya Gönder</string>
    <string name="file_info">Dosya Bilgileri</string>
    <string name="open_file">Açık dosya</string>
-   <string name="make_text_reflow">Yeniden metni akıt</string>
+   <string name="make_text_reflow">Metni yeniden akıt</string>
    <string name="search_not_supported_formats">Desteklenmeyen Arama Formatı</string>
    <string name="search_in_google">Google Arama</string>
    <string name="reading_the_text_by_voice">Metni sesli oku</string>
@@ -318,7 +318,7 @@
    <string name="start">Başlama</string>
    <string name="show_bottom_panel">Alt paneli göster</string>
    <string name="interval_sec_">Aralık (sn)</string>
-   <string name="library_settings">Kütüphane ayarları</string>
+   <string name="library_settings">Kütüphane Ayarları</string>
    <string name="by_name">Isim</string>
    <string name="opening_the_last_book_when_the_application_starts">Uygulama başladığında son kitabı aç</string>
    <string name="links_color_day">Bağlantı renkleri (gün)</string>
@@ -330,7 +330,7 @@
    <string name="text_color_day">Metin rengi (gün)</string>
    <string name="text_color_night">Metin rengi (gece)</string>
    <string name="show_application_close_dialog_every_time">Her seferinde uygulama kapat iletişim kutusunu göster</string>
-   <string name="tabs_position">Sekmeler konumu</string>
+   <string name="tabs_position">Sekmeler Konumu</string>
    <string name="visible">Gözle görülür</string>
    <string name="show_preferences_tab_in_the_left_menu">Sol menüde tercihler sekmesini göster</string>
    <string name="theme">Tema</string>
