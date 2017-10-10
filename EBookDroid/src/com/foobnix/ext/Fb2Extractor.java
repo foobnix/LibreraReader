@@ -386,6 +386,8 @@ public class Fb2Extractor extends BaseExtractor {
         boolean isFindBodyEnd = false;
         boolean titleBegin = false;
 
+        long init = System.currentTimeMillis();
+
         while ((line = input.readLine()) != null) {
 
             if (!isEncoding && line.contains("windows-1251")) {
@@ -439,6 +441,7 @@ public class Fb2Extractor extends BaseExtractor {
                             line = line.replace("&nbsp;", " ");
                         }
                         line = HypenUtils.applyHypnes(line);
+                        // line = HypenUtils.applyHypnesOld(line);
                     }
                 }
 
@@ -446,6 +449,8 @@ public class Fb2Extractor extends BaseExtractor {
             }
 
         }
+        long delta = System.currentTimeMillis() - init;
+        LOG.d("generateFb2File", delta / 1000.0);
         input.close();
         writer.close();
 

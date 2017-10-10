@@ -42,7 +42,7 @@ public class Fb2Context extends PdfContext {
             outName = cacheFile1.getPath();
         }
 
-        if (outName == null) {
+        if (true || outName == null) {
             outName = cacheFile.getPath();
             Fb2Extractor.get().convert(fileName, outName);
             LOG.d("Fb2Context create", outName);

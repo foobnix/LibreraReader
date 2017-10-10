@@ -2,6 +2,9 @@ package com.foobnix.hypen;
 
 import java.util.List;
 import java.util.Locale;
+import java.util.StringTokenizer;
+
+import com.foobnix.pdf.info.model.BookCSS;
 
 public class HypenUtils {
 
@@ -22,9 +25,85 @@ public class HypenUtils {
                 instance = new DefaultHyphenator(pattern);
             }
         } catch (Exception e) {
-            // BookCSS.get().isAutoHypens = false;
+            BookCSS.get().isAutoHypens = false;
         }
 
+    }
+
+    @Deprecated
+    public static String applyHypnesOld(String input) {
+        if (input == null || input.length() == 0) {
+            return "";
+        }
+        input = input.replace("<", " <").replace(">", "> ").replace("\u00A0", " ");
+
+        StringTokenizer split = new StringTokenizer(input, " ", true);
+        StringBuilder res = new StringBuilder();
+
+        while (split.hasMoreTokens()) {
+            String w = split.nextToken();
+
+            if (w.equals(" ")) {
+                res.append(" ");
+                continue;
+            }
+
+            if (w.length() <= 3) {
+                res.append(w);
+                continue;
+            }
+
+            if (w.contains("<") || w.contains(">") || w.contains("=")) {
+                res.append(w);
+                continue;
+            }
+
+            char first = w.charAt(0);
+            boolean startWithOther = false;
+            if (!Character.isLetter(first)) {
+                startWithOther = true;
+                w = w.substring(1, w.length());
+            }
+
+            int endIndex = -1;
+            String last = "";
+            for (int i = w.length() / 2 + 1; i < w.length(); i++) {
+                if (!Character.isLetter(w.charAt(i))) {
+                    endIndex = i;
+                    last = w.substring(endIndex);
+                    w = w.substring(0, endIndex);
+                    break;
+                }
+            }
+
+            String result = null;
+            if (w.contains("-")) {
+                int find = w.indexOf("-");
+                String p1 = w.substring(0, find);
+                String p2 = w.substring(find + 1, w.length());
+                result = join(instance.hyphenate(p1), SHY) + "-" + join(instance.hyphenate(p2), SHY);
+                if (p2.contains("-")) {
+                    result = result.replace("-" + SHY, "-");
+                }
+
+            } else {
+                result = join(instance.hyphenate(w), SHY);
+            }
+
+            if (startWithOther) {
+                result = String.valueOf(first) + result;
+            }
+
+            if (endIndex > 1) {
+                result = result + last;
+            }
+            res.append(result);
+
+        }
+
+        String result = res.toString();
+        result = result.replace(" <", "<").replace("> ", ">");
+        return result;
     }
 
     public static String applyHypnes(String input) {
