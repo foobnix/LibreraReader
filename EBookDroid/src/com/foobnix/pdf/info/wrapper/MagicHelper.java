@@ -718,16 +718,20 @@ public class MagicHelper {
 
     }
 
+    static int pixedCache = Color.WHITE;
+    static int pixedResultCache = Color.WHITE;
+
     public static void quickContrast1(int[] arr, double light) {
         double contrast = Math.pow((100 + light) / 100, 2);
         int R;
         for (int i = 0; i < arr.length; i++) {
             int pixel = arr[i];
 
-            if (pixel == Color.WHITE) {
+            if (pixel == Color.WHITE || pixel == Color.BLACK) {
                 continue;
             }
-            if (pixel == Color.BLACK) {
+            if (pixel == pixedCache) {
+                arr[i] = pixedResultCache;
                 continue;
             }
             R = Color.red(pixel);
@@ -737,7 +741,9 @@ public class MagicHelper {
             } else if (R > 255) {
                 R = 255;
             }
-            arr[i] = Color.rgb(R, R, R);
+
+            pixedCache = pixel;
+            pixedResultCache = arr[i] = Color.rgb(R, R, R);
         }
 
     }
