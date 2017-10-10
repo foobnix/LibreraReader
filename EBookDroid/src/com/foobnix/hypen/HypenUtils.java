@@ -4,8 +4,6 @@ import java.util.List;
 import java.util.Locale;
 import java.util.StringTokenizer;
 
-import com.foobnix.pdf.info.model.BookCSS;
-
 public class HypenUtils {
 
     private static final String SHY = "&shy;";
@@ -25,12 +23,11 @@ public class HypenUtils {
                 instance = new DefaultHyphenator(pattern);
             }
         } catch (Exception e) {
-            BookCSS.get().isAutoHypens = false;
+            // BookCSS.get().isAutoHypens = false;
         }
 
     }
 
-    @Deprecated
     public static String applyHypnesOld(String input) {
         if (input == null || input.length() == 0) {
             return "";
@@ -111,62 +108,73 @@ public class HypenUtils {
             return "";
         }
 
+        // input = input.replace("\u00A0", " ");
+
         StringBuilder res = new StringBuilder();
         String tokens[] = input.split("(?=<)|(?<=>)");
 
         for (int j = 0; j < tokens.length; j++) {
-            String w = tokens[j];
+            String token = tokens[j];
 
-            if (w.length() <= 3) {
-                res.append(w);
+            if (token.length() <= 3) {
+                res.append(token);
                 continue;
             }
 
-            if (w.contains("<") || w.contains(">") || w.contains("=")) {
-                res.append(w);
+            if (token.contains("<") || token.contains(">") || token.contains("=")) {
+                res.append(token);
                 continue;
             }
 
-            char first = w.charAt(0);
-            boolean startWithOther = false;
-            if (!Character.isLetter(first)) {
-                startWithOther = true;
-                w = w.substring(1, w.length());
-            }
-
-            int endIndex = -1;
-            String last = "";
-            for (int i = w.length() / 2 + 1; i < w.length(); i++) {
-                if (!Character.isLetter(w.charAt(i))) {
-                    endIndex = i;
-                    last = w.substring(endIndex);
-                    w = w.substring(0, endIndex);
-                    break;
-                }
-            }
-
-            String result = null;
-            if (w.contains("-")) {
-                int find = w.indexOf("-");
-                String p1 = w.substring(0, find);
-                String p2 = w.substring(find + 1, w.length());
-                result = join(instance.hyphenate(p1), SHY) + "-" + join(instance.hyphenate(p2), SHY);
-                if (p2.contains("-")) {
-                    result = result.replace("-" + SHY, "-");
+            String[] words = token.split(" ");
+            for (int n = 0; n < words.length; n++) {
+                String w = words[n];
+                if (w.length() <= 3) {
+                    res.append(w + " ");
+                    continue;
                 }
 
-            } else {
-                result = join(instance.hyphenate(w), SHY);
-            }
+                char first = w.charAt(0);
+                boolean startWithOther = false;
+                if (!Character.isLetter(first)) {
+                    startWithOther = true;
+                    w = w.substring(1, w.length());
+                }
 
-            if (startWithOther) {
-                result = String.valueOf(first) + result;
-            }
+                int endIndex = -1;
+                String last = "";
+                for (int i = w.length() / 2 + 1; i < w.length(); i++) {
+                    if (!Character.isLetter(w.charAt(i))) {
+                        endIndex = i;
+                        last = w.substring(endIndex);
+                        w = w.substring(0, endIndex);
+                        break;
+                    }
+                }
 
-            if (endIndex > 1) {
-                result = result + last;
+                String result = null;
+                if (w.contains("-")) {
+                    int find = w.indexOf("-");
+                    String p1 = w.substring(0, find);
+                    String p2 = w.substring(find + 1, w.length());
+                    result = join(instance.hyphenate(p1), SHY) + "-" + join(instance.hyphenate(p2), SHY);
+                    if (p2.contains("-")) {
+                        result = result.replace("-" + SHY, "-");
+                    }
+
+                } else {
+                    result = join(instance.hyphenate(w), SHY);
+                }
+
+                if (startWithOther) {
+                    result = String.valueOf(first) + result;
+                }
+
+                if (endIndex > 1) {
+                    result = result + last;
+                }
+                res.append(result + " ");
             }
-            res.append(result);
 
         }
 

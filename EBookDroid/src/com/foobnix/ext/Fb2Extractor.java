@@ -440,8 +440,8 @@ public class Fb2Extractor extends BaseExtractor {
                         if (line.contains("&")) {
                             line = line.replace("&nbsp;", " ");
                         }
-                        line = HypenUtils.applyHypnes(line);
-                        // line = HypenUtils.applyHypnesOld(line);
+                        // line = HypenUtils.applyHypnes(line);
+                        line = HypenUtils.applyHypnesOld(line);
                     }
                 }
 
