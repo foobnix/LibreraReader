@@ -4,6 +4,8 @@ import java.util.List;
 import java.util.Locale;
 import java.util.StringTokenizer;
 
+import com.foobnix.pdf.info.model.BookCSS;
+
 public class HypenUtils {
 
     private static final String SHY = "&shy;";
@@ -23,7 +25,7 @@ public class HypenUtils {
                 instance = new DefaultHyphenator(pattern);
             }
         } catch (Exception e) {
-            // BookCSS.get().isAutoHypens = false;
+            BookCSS.get().isAutoHypens = false;
         }
 
     }
