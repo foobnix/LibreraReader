@@ -383,6 +383,7 @@ public class AppState {
     public boolean selectingByLetters = Arrays.asList("ja", "zh", "ko", "vi").contains(Urls.getLangCode());
 
     public long installationDate = System.currentTimeMillis();
+    public long searchDate = 0;
 
     public String customConfigColors = "";
 
@@ -654,6 +655,7 @@ public class AppState {
         customConfigColors = sp.getString("customConfigColors", customConfigColors);
 
         installationDate = sp.getLong("installationDate", installationDate);
+        searchDate = sp.getLong("searchDate", searchDate);
 
         // custom bgs
         isUseBGImageDay = sp.getBoolean("isUseBGImageDay", isUseBGImageDay);
@@ -879,6 +881,7 @@ public class AppState {
         editor.putString("toLang", toLang);
         editor.putString("customConfigColors", customConfigColors);
         editor.putLong("installationDate", installationDate);
+        editor.putLong("searchDate", searchDate);
 
         // custom bgs
         editor.putBoolean("isUseBGImageDay", isUseBGImageDay);

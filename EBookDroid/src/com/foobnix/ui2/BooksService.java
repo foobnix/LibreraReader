@@ -62,6 +62,38 @@ public class BooksService extends IntentService {
             }
             sendFinishMessage();
 
+            LOG.d("BooksService , searchDate", AppState.get().searchDate);
+            if (AppState.get().searchDate != 0) {
+
+                List<FileMeta> localMeta = new LinkedList<FileMeta>();
+
+                for (final String path : AppState.get().searchPaths.split(",")) {
+                    if (path != null && path.trim().length() > 0) {
+                        final File root = new File(path);
+                        if (root.isDirectory()) {
+                            LOG.d("Searcin in " + root.getPath());
+                            SearchCore.search(localMeta, root, ExtUtils.seachExts);
+                        }
+                    }
+                }
+
+
+                for (FileMeta meta : localMeta) {
+                    File file = new File(meta.getPath());
+                    if (file.lastModified() >= AppState.get().searchDate) {
+                        FileMetaCore.get().upadteBasicMeta(meta, file);
+                        EbookMeta ebookMeta = FileMetaCore.get().getEbookMeta(meta.getPath());
+                        FileMetaCore.get().udpateFullMeta(meta, ebookMeta);
+
+                        meta.setIsSearchBook(true);
+                        AppDB.get().updateOrSave(meta);
+                        LOG.d("BooksService", "insert", meta.getPath());
+                    }
+                }
+                AppState.get().searchDate = System.currentTimeMillis();
+                sendFinishMessage();
+            }
+
         } else if (ACTION_SEARCH_ALL.equals(intent.getAction())) {
             LOG.d(ACTION_SEARCH_ALL);
 
@@ -102,6 +134,8 @@ public class BooksService extends IntentService {
                     }
                 }
             }
+            AppState.get().searchDate = System.currentTimeMillis();
+
             for (FileMeta meta : itemsMeta) {
                 meta.setIsSearchBook(true);
             }

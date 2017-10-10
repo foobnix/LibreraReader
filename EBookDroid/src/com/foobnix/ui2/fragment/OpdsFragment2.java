@@ -189,7 +189,7 @@ public class OpdsFragment2 extends UIFragment<Entry> {
 
             @Override
             public boolean onResultRecive(final Entry result) {
-                AlertDialogs.showOkDialog(getActivity(), getActivity().getString(R.string.do_you_want_to_delete_), new Runnable() {
+                AlertDialogs.showDialog(getActivity(), getActivity().getString(R.string.do_you_want_to_delete_), getString(R.string.delete), new Runnable() {
 
                     @Override
                     public void run() {
