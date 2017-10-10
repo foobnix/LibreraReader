@@ -2,10 +2,6 @@ package com.foobnix.hypen;
 
 import java.util.List;
 import java.util.Locale;
-import java.util.StringTokenizer;
-
-import com.foobnix.android.utils.LOG;
-import com.foobnix.pdf.info.model.BookCSS;
 
 public class HypenUtils {
 
@@ -18,19 +14,15 @@ public class HypenUtils {
         }
         try {
             if (lang.length() > 2) {
-                LOG.d("LANG: before", lang);
                 lang = lang.substring(0, 2).toLowerCase(Locale.US);
-                LOG.d("LANG: after", lang);
             }
-            LOG.d("LANG: after", lang);
 
             HyphenPattern pattern = HyphenPattern.valueOf(lang);
             if (instance.pattern != pattern) {
                 instance = new DefaultHyphenator(pattern);
             }
         } catch (Exception e) {
-            BookCSS.get().isAutoHypens = false;
-            LOG.e(e);
+            // BookCSS.get().isAutoHypens = false;
         }
 
     }
@@ -39,18 +31,12 @@ public class HypenUtils {
         if (input == null || input.length() == 0) {
             return "";
         }
-        input = input.replace("<", " <").replace(">", "> ").replace("\u00A0", " ");
 
-        StringTokenizer split = new StringTokenizer(input, " ", true);
         StringBuilder res = new StringBuilder();
+        String tokens[] = input.split("(?=<)|(?<=>)");
 
-        while (split.hasMoreTokens()) {
-            String w = split.nextToken();
-
-            if (w.equals(" ")) {
-                res.append(" ");
-                continue;
-            }
+        for (int j = 0; j < tokens.length; j++) {
+            String w = tokens[j];
 
             if (w.length() <= 3) {
                 res.append(w);
@@ -105,9 +91,7 @@ public class HypenUtils {
 
         }
 
-        String result = res.toString();
-        result = result.replace(" <", "<").replace("> ", ">");
-        return result;
+        return res.toString();
     }
 
     public static String join(List<String> list, String delimiter) {

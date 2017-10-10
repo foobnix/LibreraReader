@@ -435,7 +435,9 @@ public class Fb2Extractor extends BaseExtractor {
                         isFindBodyEnd = true;
                     }
                     if (!isFindBodyEnd) {
-                        line = line.replace("&nbsp;", " ");
+                        if (line.contains("&")) {
+                            line = line.replace("&nbsp;", " ");
+                        }
                         line = HypenUtils.applyHypnes(line);
                     }
                 }
@@ -473,7 +475,9 @@ public class Fb2Extractor extends BaseExtractor {
                     line = "</" + subLine[i];
                 }
 
-                line = line.replace("&nbsp;", " ");
+                if (line.contains("&")) {
+                    line = line.replace("&nbsp;", " ");
+                }
                 line = HypenUtils.applyHypnes(line);
                 writer.print(line);
             }
