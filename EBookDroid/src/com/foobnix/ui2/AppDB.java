@@ -135,7 +135,8 @@ public class AppDB {
     private DaoSession daoSession;
 
     public void open(Context c) {
-        DaoMaster.DevOpenHelper helper = new DaoMaster.DevOpenHelper(c, DB_NAME, null);
+        DatabaseUpgradeHelper helper = new DatabaseUpgradeHelper(c, DB_NAME);
+
         SQLiteDatabase writableDatabase = helper.getWritableDatabase();
         DaoMaster daoMaster = new DaoMaster(writableDatabase);
 
