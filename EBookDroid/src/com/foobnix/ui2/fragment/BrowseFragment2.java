@@ -61,7 +61,7 @@ public class BrowseFragment2 extends UIFragment<FileMeta> {
     private TextView stub;
     private ImageView onListGrid, starIcon, onSort;
     private EditText editPath;
-    private View pathContainer;
+    private View pathContainer, onClose, onAction;
 
     private int fragmentType = TYPE_DEFAULT;
     private String fragmentText = "";
@@ -88,6 +88,8 @@ public class BrowseFragment2 extends UIFragment<FileMeta> {
     @Override
     public void onTintChanged() {
         TintUtil.setBackgroundFillColor(pathContainer, TintUtil.color);
+        TintUtil.setBackgroundFillColor(onClose, TintUtil.color);
+        TintUtil.setBackgroundFillColor(onAction, TintUtil.color);
     }
 
     @Override
@@ -98,7 +100,7 @@ public class BrowseFragment2 extends UIFragment<FileMeta> {
 
         pathContainer = view.findViewById(R.id.pathContainer);
         View onCloseActionPaner = view.findViewById(R.id.onCloseActionPaner);
-        View onClose = view.findViewById(R.id.onClose);
+        onClose = view.findViewById(R.id.onClose);
 
         starIcon = (ImageView) view.findViewById(R.id.starIcon);
         onSort = (ImageView) view.findViewById(R.id.onSort);
@@ -116,7 +118,7 @@ public class BrowseFragment2 extends UIFragment<FileMeta> {
 
         onSort.setImageResource(AppState.get().sortByReverse ? R.drawable.glyphicons_410_sort_by_attributes_alt : R.drawable.glyphicons_409_sort_by_attributes);
 
-        TextView onAction = (TextView) view.findViewById(R.id.onAction);
+        onAction = view.findViewById(R.id.onAction);
         editPath = (EditText) view.findViewById(R.id.editPath);
 
         fragmentType = TYPE_DEFAULT;
