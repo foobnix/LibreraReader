@@ -186,10 +186,9 @@ public class TTSService extends Service {
                 LOG.d(TAG, "CodecDocument", "is NULL");
                 return;
             }
-            AppState.get().save(getApplicationContext());
 
+            LOG.d(TAG, "CodecDocument", pageNumber, dc.getPageCount());
             if (pageNumber >= dc.getPageCount()) {
-                LOG.d(TAG, "CodecDocument", "is NULL");
 
                 TempHolder.get().timerFinishTime = 0;
 
@@ -208,6 +207,8 @@ public class TTSService extends Service {
                 EventBus.getDefault().post(new TtsStatus());
                 return;
             }
+
+
 
             CodecPage page = dc.getPage(pageNumber);
             String pageHTML = page.getPageHTML();
@@ -277,6 +278,7 @@ public class TTSService extends Service {
             TTSNotification.show(TempHolder.get().path, pageNumber + 1);
             TTSEngine.get().speek(firstPart);
             EventBus.getDefault().post(new TtsStatus());
+            AppState.get().save(getApplicationContext());
 
         }
 

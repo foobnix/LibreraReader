@@ -706,7 +706,7 @@ public class AppState {
         return res;
     }
 
-    public void save(final Context a) {
+    public synchronized void save(final Context a) {
         try {
             saveIn(a);
             BookCSS.get().save(a);
