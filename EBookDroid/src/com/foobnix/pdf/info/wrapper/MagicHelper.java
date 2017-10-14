@@ -706,7 +706,8 @@ public class MagicHelper {
         // extra_contrast=100 = 2x contrast
         double contrast = (100 + extra_contrast) / 100.0;
 
-        if (simpleHash != extra_contrast * 3 + delta_brightness * 2) {
+        int hash = extra_contrast * 3 + delta_brightness * 2;
+        if (simpleHash != hash) {
             // each of the 256 values we can read is mapped to the output values
             // we
             // will write
@@ -722,7 +723,7 @@ public class MagicHelper {
                 brightnessContrastMap[i] = (lum << 16) + (lum << 8) + lum; // compose
                                                                            // greyscale
             }
-            simpleHash = extra_contrast * 3 + delta_brightness * 2;
+            simpleHash = hash;
         }
 
         // process the real image
