@@ -35,12 +35,14 @@ public class Urls {
         if (a == null || url == null) {
             return;
         }
+        LOG.d(">>> open", url);
         Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
         browserIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         a.startActivity(browserIntent);
     }
 
     public static void openWevView(final Context a, String url) {
+        LOG.d(">>> open WevView", url);
 
         AlertDialog.Builder alert = new AlertDialog.Builder(a);
         alert.setTitle(url);

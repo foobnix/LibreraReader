@@ -20,8 +20,6 @@ import android.graphics.Bitmap.Config;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Color;
-import android.graphics.ColorMatrix;
-import android.graphics.ColorMatrixColorFilter;
 import android.graphics.Matrix;
 import android.graphics.Paint;
 import android.graphics.RectF;
@@ -681,110 +679,61 @@ public class MagicHelper {
         }
     }
 
-    /**
-     * 
-     * @param bmp
-     *            input bitmap
-     * @param contrast
-     *            0..10 1 is default
-     * @param brightness
-     *            -255..255 0 is default
-     * @return new bitmap
-     */
-    public static Bitmap changeBitmapContrastBrightness(Bitmap bmp, float contrast, float brightness) {
-        ColorMatrix cm = new ColorMatrix(new float[] { contrast, 0, 0, 0, brightness, 0, contrast, 0, 0, brightness, 0, 0, contrast, 0, brightness, 0, 0, 0, 1, 0 });
-
-        Bitmap ret = Bitmap.createBitmap(bmp.getWidth(), bmp.getHeight(), bmp.getConfig());
-
-        Canvas canvas = new Canvas(ret);
-
-        Paint paint = new Paint();
-        paint.setColorFilter(new ColorMatrixColorFilter(cm));
-        paint.setAntiAlias(true);
-        paint.setDither(true);
-        canvas.drawBitmap(bmp, 0, 0, paint);
-
-        return ret;
-    }
-
-    public static Bitmap createQuickContrast(Bitmap src, double value) {
+    public static Bitmap createQuickContrastAndBrightness(Bitmap src, int contrast, int brigtness) {
         int[] arr = new int[src.getWidth() * src.getHeight()];
         src.getPixels(arr, 0, src.getWidth(), 0, 0, src.getWidth(), src.getHeight());
-        // quickContrast(arr, false, 24);
-        quickContrast1(arr, value);
+        quickContrast3(arr, contrast, brigtness);
         Bitmap bmOut = Bitmap.createBitmap(src.getWidth(), src.getHeight(), src.getConfig());
         bmOut.setPixels(arr, 0, src.getWidth(), 0, 0, src.getWidth(), src.getHeight());
         return bmOut;
 
     }
 
-    static int pixedCache = Color.WHITE;
-    static int pixedResultCache = Color.WHITE;
-
-    public static void quickContrast1(int[] arr, double light) {
-        double contrast = Math.pow((100 + light) / 100, 2);
-        int R;
-        for (int i = 0; i < arr.length; i++) {
-            int pixel = arr[i];
-
-            if (pixel == Color.WHITE || pixel == Color.BLACK) {
-                continue;
-            }
-            if (pixel == pixedCache) {
-                arr[i] = pixedResultCache;
-                continue;
-            }
-            R = Color.red(pixel);
-            R = (int) (((((R / 255.0) - 0.5) * contrast) + 0.5) * 255.0);
-            if (R < 0) {
-                R = 0;
-            } else if (R > 255) {
-                R = 255;
-            }
-
-            pixedCache = pixel;
-            pixedResultCache = arr[i] = Color.rgb(R, R, R);
+    public static void applyQuickContrastAndBrightness(int[] arr) {
+        if (AppState.get().contrastImage == 0 && AppState.get().brigtnessImage == 0) {
+            return;
         }
-
+        quickContrast3(arr, AppState.get().contrastImage, AppState.get().brigtnessImage * -1);
     }
 
-    public static void quickContrast(int[] arr, boolean half_contrast, int light) {
-        if (half_contrast) {
-            // # 1.5x contrast
-            int threshold_lower = 0x2A + light;
-            int threshold_upper = threshold_lower + 0xAA;
+    static int[] brightnessContrastMap = new int[256];
+    static int simpleHash = 0;
 
-            for (int i = 0; i < arr.length; i++) {
-                int pixel = (arr[i] & 0x00FF0000) >> 16;
+    public static void quickContrast3(int[] arr, int extra_contrast, int delta_brightness) {
+        int lum;
 
-                if (pixel > threshold_upper) {
-                    arr[i] = 0xFFFFFF;
-                } else if (pixel < threshold_lower) {
-                    arr[i] = 0;
-                } else {
-                    pixel = pixel - threshold_lower;
-                    pixel = ((pixel << 1) + pixel) >> 1;
-                    arr[i] = (pixel << 16) + (pixel << 8) + pixel;
+        // Use linear contrast variation; extra_contrast=0 = no change,
+        // extra_contrast=100 = 2x contrast
+        double contrast = (100 + extra_contrast) / 100.0;
+
+        if (simpleHash != extra_contrast * 3 + delta_brightness * 2) {
+            // each of the 256 values we can read is mapped to the output values
+            // we
+            // will write
+            for (int i = 0; i < 256; i++) {
+                lum = i; // take the input
+                lum = lum - delta_brightness; // apply brightness variation
+                lum = (int) (((lum - 128) * contrast) + 128); // apply contrast
+                if (lum < 0) { // flatten excess
+                    lum = 0;
+                } else if (lum > 255) {
+                    lum = 255;
                 }
+                brightnessContrastMap[i] = (lum << 16) + (lum << 8) + lum; // compose
+                                                                           // greyscale
             }
-        } else {
-            // # 2x contrast
-            int threshold_lower = 0x40 + light;
-            int threshold_upper = threshold_lower + 0x7F;
-
-            for (int i = 0; i < arr.length; i++) {
-                int pixel = (arr[i] & 0x00FF0000) >> 16;
-
-                if (pixel > threshold_upper) {
-                    arr[i] = 0xFFFFFF;
-                } else if (pixel < threshold_lower) {
-                    arr[i] = 0;
-                } else {
-                    pixel = (pixel - threshold_lower) << 1;
-                    arr[i] = (pixel << 16) + (pixel << 8) + pixel;
-                }
-            }
+            simpleHash = extra_contrast * 3 + delta_brightness * 2;
         }
+
+        // process the real image
+        for (int i = 0; i < arr.length; i++) {
+            // Get luminosity. Also use G and B, with 2x R
+            int temp = arr[i];
+            lum = ((temp & 0x00FF0000) >> 17) + ((temp & 0x0000FF00) >> 10) + ((temp & 0x000000FF) >> 2);
+            // retrieve output from map
+            arr[i] = brightnessContrastMap[lum];
+        }
+
     }
 
 }

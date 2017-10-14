@@ -204,9 +204,7 @@ public class MuPdfPage extends AbstractCodecPage {
             TempHolder.lock.unlock();
         }
 
-        if (AppState.get().contrast != 0) {
-            MagicHelper.quickContrast1(bufferarray, AppState.get().contrast);
-        }
+        MagicHelper.applyQuickContrastAndBrightness(bufferarray);
 
         final BitmapRef b = BitmapManager.getBitmap("PDF page", width, height, Config.RGB_565);
         b.getBitmap().setPixels(bufferarray, 0, width, 0, 0, width, height);

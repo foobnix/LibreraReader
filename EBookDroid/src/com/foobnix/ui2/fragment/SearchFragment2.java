@@ -66,7 +66,7 @@ public class SearchFragment2 extends UIFragment<FileMeta> {
     private static final String CMD_KEYCODE = "@@keycode_config";
     private static final String CMD_LONG_TAP_ON_OFF = "@@long_tap_on_off";
     private static final String CMD_FULLSCREEN_ON_OFF = "@@fullscreen_on_off";
-    private static final String CMD_CONTRAST = "@@contrast";
+    private static final String CMD_CONTRAST = "@@contrast_brightness";
 
     public static int NONE = -1;
 
