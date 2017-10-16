@@ -14,8 +14,10 @@ import com.foobnix.android.utils.LOG;
 import com.foobnix.android.utils.ResultResponse;
 import com.foobnix.android.utils.TxtUtils;
 import com.foobnix.dao2.FileMeta;
+import com.foobnix.pdf.info.AppsConfig;
 import com.foobnix.pdf.info.R;
 import com.foobnix.pdf.info.TintUtil;
+import com.foobnix.pdf.info.Urls;
 import com.foobnix.pdf.info.fragment.KeyCodeDialog;
 import com.foobnix.pdf.info.view.Dialogs;
 import com.foobnix.pdf.info.widget.PrefDialogs;
@@ -615,6 +617,17 @@ public class SearchFragment2 extends UIFragment<FileMeta> {
                 R.drawable.glyphicons_66_tag, //
                 R.drawable.glyphicons_710_list_numbered);
         final List<Integer> actions = Arrays.asList(AppState.MODE_LIST, AppState.MODE_LIST_COMPACT, AppState.MODE_GRID, AppState.MODE_COVERS, AppState.MODE_AUTHORS, AppState.MODE_GENRE, AppState.MODE_SERIES);
+
+        if (!AppsConfig.checkIsProInstalled(getActivity())) {
+            p.getMenu().add("Librera PRO").setIcon(R.drawable.icon_pdf_pro).setOnMenuItemClickListener(new OnMenuItemClickListener() {
+
+                @Override
+                public boolean onMenuItemClick(MenuItem item) {
+                    Urls.openPdfPro(getActivity());
+                    return false;
+                }
+            });
+        }
 
         for (int i = 0; i < names.size(); i++) {
             final int index = i;

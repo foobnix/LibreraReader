@@ -1096,10 +1096,9 @@ public class PrefFragment2 extends UIFragment {
             }
         });
 
-        if (AppsConfig.checkIsProInstalled(getActivity())) {
-            ((View) proText.getParent()).setVisibility(View.GONE);
-
-        }
+        // if (AppsConfig.checkIsProInstalled(getActivity())) {
+        // ((View) proText.getParent()).setVisibility(View.GONE);
+        // }
 
         inflate.findViewById(R.id.cleanRecent).setOnClickListener(new View.OnClickListener() {
 

@@ -113,7 +113,7 @@
                 android:layout_weight="0"
                 android:cropToPadding="true"
                 android:padding="6dip"
-                android:src="@drawable/glyphicons_full_page" />
+                 />
 
             <ImageView
                 android:id="@+id/moveCenter"

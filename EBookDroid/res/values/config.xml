@@ -2,7 +2,7 @@
 <resources>
 
     <string name="app_name">Librera Beta</string>
-    <string name="app_name_pro">PRO Lirbi Reader</string>
+    <string name="app_name_pro">Librera PRO</string>
 
 
     <bool name="ga_ENABLE">true</bool>

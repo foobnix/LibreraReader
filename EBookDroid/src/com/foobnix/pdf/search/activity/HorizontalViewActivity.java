@@ -398,7 +398,7 @@ public class HorizontalViewActivity extends FragmentActivity {
             public void onClick(View v) {
                 PopupMenu p = new PopupMenu(v.getContext(), v);
 
-                p.getMenu().add(R.string.one_page).setIcon(R.drawable.glyphicons_full_page).setOnMenuItemClickListener(new OnMenuItemClickListener() {
+                p.getMenu().add(R.string.one_page).setIcon(R.drawable.glyphicons_two_page_one).setOnMenuItemClickListener(new OnMenuItemClickListener() {
 
                     @Override
                     public boolean onMenuItemClick(MenuItem item) {
@@ -677,7 +677,7 @@ public class HorizontalViewActivity extends FragmentActivity {
                     } else if (AppState.get().isCut) {
                         onModeChange.setImageResource(R.drawable.glyphicons_page_split);
                     } else {
-                        onModeChange.setImageResource(R.drawable.glyphicons_full_page);
+                        onModeChange.setImageResource(R.drawable.glyphicons_two_page_one);
                     }
                     onCrop.setVisibility(documentController.isTextFormat() ? View.GONE : View.VISIBLE);
                     if (AppState.get().isCrop) {
@@ -728,7 +728,7 @@ public class HorizontalViewActivity extends FragmentActivity {
     }
 
     public void modeOnePage() {
-        onModeChange.setImageResource(R.drawable.glyphicons_full_page);
+        onModeChange.setImageResource(R.drawable.glyphicons_two_page_one);
         AppState.get().isDouble = false;
         AppState.get().isDoubleCoverAlone = false;
         AppState.get().isCut = false;

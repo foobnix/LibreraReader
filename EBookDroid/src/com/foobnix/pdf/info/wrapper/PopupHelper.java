@@ -51,6 +51,9 @@ public class PopupHelper {
 
             for (int i = 0; i < menu.getMenu().size(); i++) {
                 MenuItem item = menu.getMenu().getItem(i);
+                if (item.getTitle().toString().contains("Librera")) {
+                    continue;
+                }
                 Drawable icon = item.getIcon().getConstantState().newDrawable();
                 icon = icon.mutate();
                 icon.setColorFilter(color, Mode.SRC_ATOP);
