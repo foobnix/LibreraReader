@@ -64,7 +64,7 @@ public class Fb2Context extends PdfContext {
         }
 
         final File jsonFile = new File(cacheFile + ".json");
-        if (false && jsonFile.isFile()) {
+        if (jsonFile.isFile()) {
             muPdfDocument.setFootNotes(JsonHelper.fileToMap(jsonFile));
             LOG.d("Load notes from file", jsonFile);
         } else {
