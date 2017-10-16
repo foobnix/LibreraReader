@@ -313,8 +313,8 @@
    <string name="document_converter_online_">Dokumentum átalakító (online)</string>
    <string name="in_the_author_s_name_first_the_surname">A szerző nevében először a vezetéknevet</string>
    <string name="remind_about_rest_every">Emlékeztessen a pihenésre</string>
-   <string name="minutes">Percben</string>
-   <string name="seconds">Másodpercben</string>
+   <string name="minutes">percben</string>
+   <string name="seconds">másodpercben</string>
    <string name="remind_msg">Kérjük, pihentesse szemeit és tartson egy kis szünetet.</string>
    <string name="automatic_page_flipping">Automatikus lapozás</string>
    <string name="start">Indítás</string>
@@ -387,15 +387,15 @@
    <string name="cd_back_to_parent">Vissza a szülőbe</string>
    <string name="cd_back_to_all_catalogs">Vissza az összes katalógusba</string>
    <string name="cd_add_new_opds_catalog">Új OPDS katalógus hozzáadása</string>
-   <string name="new_beta_version_available">Új bétaverzió áll rendelkezésre</string>
+   <string name="new_beta_version_available">Az új béta verzió érhető el</string>
    <string name="custom_css">Egyéni CSS</string>
-   <string name="detailed_changelog">Részletes változat</string>
+   <string name="detailed_changelog">Részletes változásnapló</string>
    <string name="show_book_covers">Könyvborítók megjelenítése</string>
-   <string name="without_series">Sorozat nélkül</string>
-   <string name="add_as_a_web_site">Webhelyként való hozzáadása</string>
+   <string name="without_series">Sorozatok nélkül</string>
+   <string name="add_as_a_web_site">Hozzáadás weboldalként</string>
    <string name="add_catalog">Katalógus hozzáadása</string>
-   <string name="favorites">Érdekes</string>
-   <string name="my_favorites_links">Kedvenc linkek</string>
+   <string name="favorites">Kedvencek</string>
+   <string name="my_favorites_links">Kedvenc linkjeim</string>
    <string name="contrast">Kontraszt</string>
-   <string name="can_t_delete_file">Nem törölheti a fájlt</string>
+   <string name="can_t_delete_file">Nem lehet törölni a fájlt</string>
 </resources>

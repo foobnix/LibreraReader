@@ -272,6 +272,9 @@ public class Fb2Extractor extends BaseExtractor {
                 if (eventType == XmlPullParser.START_TAG) {
                     if (xpp.getName().equals("a")) {
                         link = xpp.getAttributeValue(null, "l:href");
+                        if (link == null) {
+                            link = xpp.getAttributeValue(null, "xlink:href");
+                        }
                         String type = xpp.getAttributeValue(null, "type");
                         if ("note".equals(type)) {
                             isLink = true;
@@ -301,7 +304,7 @@ public class Fb2Extractor extends BaseExtractor {
                         text = null;
                     } else if (xpp.getName().equals("a")) {
 
-                        if (isLink) {
+                        if (isLink && link != null) {
                             key = key.trim();
                             if (!TxtUtils.isFooterNote(key)) {
                                 key = "[" + link + "]";
