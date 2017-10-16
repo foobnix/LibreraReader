@@ -100,7 +100,7 @@ public class AppsConfig {
             ADMOB_NATIVE_BIG = null;
             ADMOB_NATIVE_SMALL = null;
         }
-        return is_pro;
+        return is_pro || IS_BETA;
     }
 
     public static boolean isPackageExisted(final Context a, final String targetPackage) {

@@ -101,6 +101,8 @@ public class StarsFragment2 extends UIFragment<FileMeta> {
 
     private void popupMenu(final ImageView image) {
         PopupMenu p = new PopupMenu(getActivity(), image);
+        PopupHelper.addPROIcon(p, getActivity());
+
         List<Integer> names = Arrays.asList(R.string.list, //
                 R.string.compact, //
                 R.string.grid, //

@@ -3,11 +3,15 @@ package com.foobnix.pdf.info.wrapper;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 
+import com.foobnix.pdf.info.AppsConfig;
 import com.foobnix.pdf.info.R;
+import com.foobnix.pdf.info.Urls;
 
+import android.content.Context;
 import android.graphics.PorterDuff.Mode;
 import android.graphics.drawable.Drawable;
 import android.view.MenuItem;
+import android.view.MenuItem.OnMenuItemClickListener;
 import android.widget.ImageView;
 import android.widget.PopupMenu;
 
@@ -31,6 +35,19 @@ public class PopupHelper {
             gridList.setImageResource(R.drawable.glyphicons_710_list_numbered);
         } else if (libraryMode == AppState.MODE_GENRE) {
             gridList.setImageResource(R.drawable.glyphicons_66_tag);
+        }
+    }
+
+    public static void addPROIcon(final PopupMenu menu, final Context c) {
+        if (!AppsConfig.checkIsProInstalled(c)) {
+            menu.getMenu().add("Librera PRO").setIcon(R.drawable.icon_pdf_pro).setOnMenuItemClickListener(new OnMenuItemClickListener() {
+
+                @Override
+                public boolean onMenuItemClick(MenuItem item) {
+                    Urls.openPdfPro(c);
+                    return false;
+                }
+            });
         }
     }
 
