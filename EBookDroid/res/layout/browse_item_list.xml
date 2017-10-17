@@ -142,9 +142,9 @@
                         android:id="@+id/starIcon"
                         android:layout_width="@dimen/wh_button_small"
                         android:layout_height="@dimen/wh_button_small"
-                        android:layout_gravity="bottom"
-                        android:layout_marginBottom="-5dip"
-                        android:layout_marginRight="4dip"
+                        android:layout_gravity="center"
+                        android:layout_marginRight="2dip"
+                        android:layout_marginBottom="0dip"
                         android:layout_weight="0"
                         android:background="?android:attr/selectableItemBackground"
                         android:padding="4dip"
@@ -155,7 +155,7 @@
                         android:id="@+id/browseDate"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_gravity="bottom"
+                        android:layout_gravity="center_vertical"
                         android:layout_marginRight="6dip"
                         android:layout_weight="0"
                         android:singleLine="true"
@@ -166,9 +166,8 @@
                         android:id="@+id/browserExt"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_gravity="bottom"
-                        android:layout_marginRight="6dip"
-                        android:layout_weight="0"
+                        android:layout_gravity="center_vertical"
+                     
                         android:singleLine="true"
                         android:text="PDF"
                         android:textAllCaps="true"
@@ -176,14 +175,20 @@
                         android:textStyle="bold" />
 
                     <TextView
+                           android:layout_marginLeft="6dip"
                         android:id="@+id/browserSize"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_gravity="bottom"
-                        android:layout_weight="1"
+                        android:layout_gravity="center_vertical"
+                        android:layout_weight="0"
                         android:singleLine="true"
                         android:text="123 Kb"
                         android:textSize="@dimen/text_subtitle" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.1" />
 
                     <ImageView
                         android:id="@+id/delete"
@@ -217,6 +222,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="6dip"
+                    android:layout_marginTop="-8dip"
                     android:gravity="bottom"
                     android:orientation="horizontal" >
 
@@ -249,7 +255,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="14dip"
                         android:layout_marginLeft="4dip"
-                        android:gravity="center"
+                        android:layout_marginRight="20dip"
+                        android:gravity="bottom"
                         android:text="10%"
                         android:textSize="10sp"
                         android:visibility="visible" />

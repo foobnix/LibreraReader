@@ -271,13 +271,14 @@ public class Fb2Extractor extends BaseExtractor {
             while (eventType != XmlPullParser.END_DOCUMENT) {
                 if (eventType == XmlPullParser.START_TAG) {
                     if (xpp.getName().equals("a")) {
-                        link = xpp.getAttributeValue(null, "l:href");
-                        if (link == null) {
-                            link = xpp.getAttributeValue(null, "xlink:href");
-                        }
                         String type = xpp.getAttributeValue(null, "type");
                         if ("note".equals(type)) {
                             isLink = true;
+
+                            link = xpp.getAttributeValue(null, "l:href");
+                            if (link == null) {
+                                link = xpp.getAttributeValue(null, "xlink:href");
+                            }
 
                         }
                     } else if (xpp.getName().equals("section")) {

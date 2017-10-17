@@ -395,6 +395,7 @@ public class FileMetaAdapter extends AppRecycleAdapter<FileMeta, RecyclerView.Vi
             holder.date.setText(fileMeta.getDateTxt());
         }
 
+
         double recentProgress = (fileMeta.getIsRecentProgress() != null && fileMeta.getIsRecentProgress() < 1.0) ? fileMeta.getIsRecentProgress() : 0;
 
         if (holder.idProgressColor != null && recentProgress > 0) {
@@ -475,6 +476,16 @@ public class FileMetaAdapter extends AppRecycleAdapter<FileMeta, RecyclerView.Vi
             } else {
                 lp.height = LayoutParams.WRAP_CONTENT;
             }
+        }
+        int width = holder.itemView.getWidth();
+        if (adapterType == ADAPTER_LIST && width <= Dips.dpToPx(200)) {
+            holder.date.setVisibility(View.GONE);
+            // holder.ext.setVisibility(View.GONE);
+            holder.size.setVisibility(View.GONE);
+        } else {
+            holder.date.setVisibility(View.VISIBLE);
+            // holder.ext.setVisibility(View.VISIBLE);
+            holder.size.setVisibility(View.VISIBLE);
         }
 
         if (AppState.get().isBorderAndShadow) {

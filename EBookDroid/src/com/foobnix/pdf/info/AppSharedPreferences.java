@@ -200,23 +200,27 @@ public class AppSharedPreferences {
     }
 
     public List<Uri> getByPrefix(String prefix) {
-        TreeMap<Long, Uri> treeMap = new TreeMap<Long, Uri>();
-        for (String key : bookmarkPreferences.getAll().keySet()) {
-            if (key.startsWith(prefix)) {
-                String uriPlusDate = bookmarkPreferences.getString(key, null);
-                String[] uriThenDate = uriPlusDate.split("\n");
-                Uri parse = Uri.parse(uriThenDate[0]);
-                if (parse.getPath() != null && new File(parse.getPath()).exists()) {
-                    treeMap.put(Long.parseLong(uriThenDate.length > 1 ? uriThenDate[1] : "0"), parse);
-                } else {
-                    removeRecent(parse);
-                    removeStar(parse.getPath());
+        try {
+            TreeMap<Long, Uri> treeMap = new TreeMap<Long, Uri>();
+            for (String key : bookmarkPreferences.getAll().keySet()) {
+                if (key.startsWith(prefix)) {
+                    String uriPlusDate = bookmarkPreferences.getString(key, null);
+                    String[] uriThenDate = uriPlusDate.split("\n");
+                    Uri parse = Uri.parse(uriThenDate[0]);
+                    if (parse.getPath() != null && new File(parse.getPath()).exists()) {
+                        treeMap.put(Long.parseLong(uriThenDate.length > 1 ? uriThenDate[1] : "0"), parse);
+                    } else {
+                        removeRecent(parse);
+                        removeStar(parse.getPath());
+                    }
                 }
             }
+            ArrayList<Uri> list = new ArrayList<Uri>(treeMap.values());
+            Collections.reverse(list);
+            return list;
+        } catch (Exception e) {
+            return Collections.emptyList();
         }
-        ArrayList<Uri> list = new ArrayList<Uri>(treeMap.values());
-        Collections.reverse(list);
-        return list;
     }
 
     public void cleanRecent() {
