@@ -6,6 +6,7 @@ import java.util.List;
 
 import org.ebookdroid.BookType;
 import org.ebookdroid.ui.viewer.ViewerActivity;
+import org.greenrobot.eventbus.EventBus;
 
 import com.foobnix.pdf.info.ExtUtils;
 import com.foobnix.pdf.info.R;
@@ -14,6 +15,8 @@ import com.foobnix.pdf.info.wrapper.AppState;
 import com.foobnix.pdf.info.wrapper.DocumentWrapperUI;
 import com.foobnix.pdf.info.wrapper.UITab;
 import com.foobnix.pdf.search.activity.HorizontalViewActivity;
+import com.foobnix.pdf.search.activity.msg.UpdateAllFragments;
+import com.foobnix.ui2.AppDB;
 import com.foobnix.ui2.MainTabs2;
 
 import android.app.Activity;
@@ -108,6 +111,7 @@ public class ShareDialog {
         items.add(a.getString(R.string.send_file));
         items.add(a.getString(R.string.export_bookmarks));
         items.add(a.getString(R.string.delete));
+        items.add(a.getString(R.string.remove_from_library));
         items.add(a.getString(R.string.send_snapshot_of_the_page) + " " + (Math.max(page, 0) + 1) + "");
         items.add(a.getString(R.string.file_info));
 
@@ -158,6 +162,9 @@ public class ShareDialog {
                             ExtUtils.sendBookmarksTo(a, file);
                         } else if (which == i++) {
                             FileInformationDialog.dialogDelete(a, file, onDeleteAction);
+                        } else if (which == i++) {
+                            AppDB.get().deleteBy(file.getPath());
+                            EventBus.getDefault().post(new UpdateAllFragments());
                         } else if (which == i++) {
                             ExtUtils.sharePage(a, file, page);
                         } else if (which == i++) {

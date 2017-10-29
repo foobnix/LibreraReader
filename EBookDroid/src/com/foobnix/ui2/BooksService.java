@@ -16,6 +16,7 @@ import com.foobnix.sys.ImageExtractor;
 import com.foobnix.ui2.adapter.FileMetaAdapter;
 
 import android.app.IntentService;
+import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Handler;
@@ -190,8 +191,11 @@ public class BooksService extends IntentService {
     };
 
     private void sendFinishMessage() {
+        sendFinishMessage(this);
+    }
+    public static void sendFinishMessage(Context c) {
         Intent intent = new Intent(INTENT_NAME).putExtra(Intent.EXTRA_TEXT, RESULT_SEARCH_FINISH);
-        LocalBroadcastManager.getInstance(this).sendBroadcast(intent);
+        LocalBroadcastManager.getInstance(c).sendBroadcast(intent);
     }
 
     private void sendProggressMessage() {

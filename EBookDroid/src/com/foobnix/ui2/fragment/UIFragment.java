@@ -14,6 +14,7 @@ import com.foobnix.android.utils.TxtUtils;
 import com.foobnix.pdf.info.wrapper.AppState;
 import com.foobnix.pdf.info.wrapper.PopupHelper;
 import com.foobnix.pdf.search.activity.msg.OpenDirMessage;
+import com.foobnix.pdf.search.activity.msg.UpdateAllFragments;
 import com.foobnix.sys.TempHolder;
 import com.foobnix.ui2.MainTabs2;
 import com.foobnix.ui2.adapter.AuthorsAdapter2;
@@ -70,6 +71,7 @@ public abstract class UIFragment<T> extends Fragment {
 
     int listHash = 0;
 
+
     public void onSelectFragment() {
         if (getActivity() == null) {
             return;
@@ -80,6 +82,12 @@ public abstract class UIFragment<T> extends Fragment {
             notifyFragment();
             listHash = TempHolder.listHash;
         }
+    }
+
+    @Subscribe
+    public void notifyUpdateFragment(UpdateAllFragments event) {
+        TempHolder.listHash++;
+        onSelectFragment();
     }
 
     public void bindAdapter(FileMetaAdapter searchAdapter) {
