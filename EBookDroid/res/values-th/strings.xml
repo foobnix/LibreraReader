@@ -398,4 +398,5 @@
    <string name="my_favorites_links">ลิงก์รายการโปรดของฉัน</string>
    <string name="contrast">ความแตกต่าง</string>
    <string name="can_t_delete_file">ไม่สามารถลบไฟล์ได้</string>
+   <string name="remove_from_library">นำออกจากห้องสมุด</string>
 </resources>

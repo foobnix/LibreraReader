@@ -398,4 +398,5 @@
    <string name="my_favorites_links">Moje obľúbené odkazy</string>
    <string name="contrast">Kontrastovať</string>
    <string name="can_t_delete_file">Nemožno súbor odstrániť</string>
+   <string name="remove_from_library">Odstrániť z knižnice</string>
 </resources>

@@ -398,4 +398,5 @@
    <string name="my_favorites_links">Мои избранные ссылки</string>
    <string name="contrast">Контраст</string>
    <string name="can_t_delete_file">Не удалять файл</string>
+   <string name="remove_from_library">Удалить из библиотеки</string>
 </resources>

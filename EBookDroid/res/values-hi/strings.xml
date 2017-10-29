@@ -398,4 +398,5 @@
    <string name="my_favorites_links">मेरे पसंदीदा लिंक</string>
    <string name="contrast">विरोध</string>
    <string name="can_t_delete_file">फ़ाइल मिटा नहीं सकते</string>
+   <string name="remove_from_library">लाइब्रेरी से निकालें</string>
 </resources>

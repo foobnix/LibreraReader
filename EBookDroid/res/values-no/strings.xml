@@ -398,4 +398,5 @@
    <string name="my_favorites_links">Mine favoritter lenker</string>
    <string name="contrast">Kontrast</string>
    <string name="can_t_delete_file">Kan ikke slette fil</string>
+   <string name="remove_from_library">Fjern fra biblioteket</string>
 </resources>

@@ -398,4 +398,5 @@
    <string name="my_favorites_links">Kedvenc linkjeim</string>
    <string name="contrast">Kontraszt</string>
    <string name="can_t_delete_file">Nem lehet törölni a fájlt</string>
+   <string name="remove_from_library">Vegye ki a könyvtárból</string>
 </resources>

@@ -398,4 +398,5 @@
    <string name="my_favorites_links">I miei link preferiti</string>
    <string name="contrast">Contrasto</string>
    <string name="can_t_delete_file">Non può eliminare il file</string>
+   <string name="remove_from_library">Rimuovi dalla libreria</string>
 </resources>

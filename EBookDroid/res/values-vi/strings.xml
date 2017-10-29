@@ -398,4 +398,5 @@
    <string name="my_favorites_links">Liên kết ưa thích của tôi</string>
    <string name="contrast">Tương phản</string>
    <string name="can_t_delete_file">Không thể xóa tập tin</string>
+   <string name="remove_from_library">Xóa khỏi Thư viện</string>
 </resources>

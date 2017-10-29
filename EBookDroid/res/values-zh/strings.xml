@@ -398,4 +398,5 @@
    <string name="my_favorites_links">我的最爱链接</string>
    <string name="contrast">对比</string>
    <string name="can_t_delete_file">不能删除文件</string>
+   <string name="remove_from_library">从图书馆删除</string>
 </resources>

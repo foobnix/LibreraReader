@@ -398,4 +398,5 @@
    <string name="my_favorites_links">私のお気に入りのリンク</string>
    <string name="contrast">コントラスト</string>
    <string name="can_t_delete_file">ファイルを削除できません</string>
+   <string name="remove_from_library">ライブラリから削除</string>
 </resources>

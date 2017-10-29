@@ -398,4 +398,5 @@
    <string name="my_favorites_links">Favori bağlantıları</string>
    <string name="contrast">Kontrast</string>
    <string name="can_t_delete_file">Dosya silinemiyor</string>
+   <string name="remove_from_library">Kütüphaneden kaldır</string>
 </resources>

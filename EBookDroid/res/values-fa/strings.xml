@@ -398,4 +398,5 @@
    <string name="my_favorites_links">پیوندهای مورد علاقه من</string>
    <string name="contrast">تضاد</string>
    <string name="can_t_delete_file">فایل را نمیتوان حذف کرد</string>
+   <string name="remove_from_library">حذف از کتابخانه</string>
 </resources>
