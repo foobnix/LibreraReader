@@ -96,6 +96,7 @@ public class ShareDialog {
         final boolean isPDF = BookType.PDF.is(file.getPath());
         final boolean isLibrary = false;// a instanceof MainTabs2 ? false :
                                         // true;
+        final boolean isMainTabs = a instanceof MainTabs2;
 
         List<String> items = new ArrayList<String>();
         if (isPDF) {
@@ -110,9 +111,13 @@ public class ShareDialog {
         items.add(a.getString(R.string.open_with));
         items.add(a.getString(R.string.send_file));
         items.add(a.getString(R.string.export_bookmarks));
-        items.add(a.getString(R.string.delete));
-        items.add(a.getString(R.string.remove_from_library));
-        items.add(a.getString(R.string.send_snapshot_of_the_page) + " " + (Math.max(page, 0) + 1) + "");
+        if (isMainTabs) {
+            items.add(a.getString(R.string.delete));
+            items.add(a.getString(R.string.remove_from_library));
+        }
+        if (!isMainTabs) {
+            items.add(a.getString(R.string.send_snapshot_of_the_page) + " " + (Math.max(page, 0) + 1) + "");
+        }
         items.add(a.getString(R.string.file_info));
 
         final AlertDialog.Builder builder = new AlertDialog.Builder(a);
@@ -160,12 +165,12 @@ public class ShareDialog {
                             ExtUtils.sendFileTo(a, file);
                         } else if (which == i++) {
                             ExtUtils.sendBookmarksTo(a, file);
-                        } else if (which == i++) {
+                        } else if (isMainTabs && which == i++) {
                             FileInformationDialog.dialogDelete(a, file, onDeleteAction);
-                        } else if (which == i++) {
+                        } else if (isMainTabs && which == i++) {
                             AppDB.get().deleteBy(file.getPath());
                             EventBus.getDefault().post(new UpdateAllFragments());
-                        } else if (which == i++) {
+                        } else if (!isMainTabs && which == i++) {
                             ExtUtils.sharePage(a, file, page);
                         } else if (which == i++) {
                             FileInformationDialog.showFileInfoDialog(a, file, onDeleteAction);
