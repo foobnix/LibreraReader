@@ -118,6 +118,7 @@ public class TTSEngine {
             AppState.get().ttsSpeed = 0.01f;
         }
         ttsEngine.setSpeechRate(AppState.get().ttsSpeed);
+        LOG.d(TAG, "Speek speed", AppState.get().ttsSpeed);
         ttsEngine.speak(text, TextToSpeech.QUEUE_FLUSH, map);
     }
 

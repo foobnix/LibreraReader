@@ -68,7 +68,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:max="200"
+                android:max="400"
                 android:progress="100" />
 
             <SeekBar

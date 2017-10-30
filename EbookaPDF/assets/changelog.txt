@@ -1,3 +1,4 @@
+Set max speech speed to 4x
 Remove book from Library
 Sync files in folders
 Search in series
