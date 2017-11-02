@@ -243,7 +243,7 @@
                         <View
                             android:id="@+id/idProgressColor"
                             android:layout_width="100dip"
-                            android:layout_height="2dip"
+                            android:layout_height="4dip"
                             android:layout_alignParentLeft="true"
                             android:layout_centerVertical="true"
                             android:layout_marginRight="4dip"

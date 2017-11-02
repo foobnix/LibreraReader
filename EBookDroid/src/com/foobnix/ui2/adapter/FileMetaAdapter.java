@@ -8,6 +8,7 @@ import com.foobnix.android.utils.ResultResponse;
 import com.foobnix.android.utils.ResultResponse2;
 import com.foobnix.android.utils.TxtUtils;
 import com.foobnix.dao2.FileMeta;
+import com.foobnix.pdf.info.AppsConfig;
 import com.foobnix.pdf.info.IMG;
 import com.foobnix.pdf.info.R;
 import com.foobnix.pdf.info.TintUtil;
@@ -354,6 +355,12 @@ public class FileMetaAdapter extends AppRecycleAdapter<FileMeta, RecyclerView.Vi
         holder.title.setText(fileMeta.getTitle());
 
         holder.author.setText(fileMeta.getAuthor());
+        if (AppsConfig.IS_EINK) {
+            holder.author.setTextColor(Color.BLACK);
+            if (holder.series != null) {
+            holder.series.setTextColor(Color.BLACK);
+            }
+        }
 
         if (TxtUtils.isEmpty(fileMeta.getAuthor())) {
             holder.title.setSingleLine(false);
@@ -405,6 +412,7 @@ public class FileMetaAdapter extends AppRecycleAdapter<FileMeta, RecyclerView.Vi
             holder.idProgressColor.setBackgroundColor(TintUtil.color);
             holder.idProgressColor.getLayoutParams().width = Dips.dpToPx((int) (200 * recentProgress));
             holder.idPercentText.setText("" + (int) (100 * recentProgress) + "%");
+
         } else if (holder.progresLayout != null) {
             holder.progresLayout.setVisibility(View.GONE);
         }

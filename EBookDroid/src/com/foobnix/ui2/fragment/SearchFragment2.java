@@ -10,7 +10,6 @@ import java.util.List;
 import java.util.Set;
 import java.util.Stack;
 
-import com.foobnix.android.utils.Dips;
 import com.foobnix.android.utils.LOG;
 import com.foobnix.android.utils.ResultResponse;
 import com.foobnix.android.utils.TxtUtils;
@@ -122,25 +121,6 @@ public class SearchFragment2 extends UIFragment<FileMeta> {
         updateFilterListAdapter();
     }
 
-    @Override
-    public boolean onKeyDown(int keyCode) {
-        View childAt = recyclerView.getChildAt(0);
-        if (childAt == null) {
-            return false;
-        }
-        int size = childAt.getHeight() + childAt.getPaddingTop() + Dips.dpToPx(2);
-
-        if (AppState.get().getNextKeys().contains(keyCode)) {
-            recyclerView.scrollBy(0, size);
-            return true;
-
-        }
-        if (AppState.get().getPrevKeys().contains(keyCode)) {
-            recyclerView.scrollBy(0, size * -1);
-            return true;
-        }
-        return super.onKeyDown(keyCode);
-    }
 
 
     public void updateFilterListAdapter() {

@@ -47,7 +47,7 @@
    <string name="loading_failed">Page Loading Failed</string>
    <string name="loop_autoplay">Looping auto scroll</string>
    <string name="mouse_scroll_speed">Mouse scroll speed</string>
-   <string name="msg_loading">Loading..Please wait</string>
+   <string name="msg_loading">Loading... Please wait</string>
    <string name="msg_no_text_found">Text not found</string>
    <string name="msg_password_required">Enter password</string>
    <string name="msg_search_text_on_page">Searching on page</string>

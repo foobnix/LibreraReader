@@ -37,8 +37,6 @@ public class AppsConfig {
         APP_NAME = a.getString(R.string.app_name);
         APP_PACKAGE = packageName;
 
-        IS_EINK = true;// Dips.isEInk(a); // check eink
-
         IS_APP_WITH_ANALITICS = true;
 
         if (PRO_PDF_READER.equals(packageName)) {
@@ -47,7 +45,6 @@ public class AppsConfig {
             IS_APP_WITH_ANALITICS = false;
             return;
         }
-
 
         if (PDF_READER_LIRBI.equals(packageName)) {
             ANALYTICS_ID = "UA-36581296-2";
@@ -81,6 +78,11 @@ public class AppsConfig {
         if (IS_BETA) {
             ANALYTICS_ID = "UA-36581296-9";
             ADMOB_CLASSIC = ADMOB_FULLSCREEN = ADMOB_NATIVE_BIG = ADMOB_NATIVE_SMALL = null;
+        }
+
+        IS_EINK = true;// Dips.isEInk(a); // check eink
+        if (IS_EINK) {
+            ADMOB_FULLSCREEN = null;
         }
 
     }

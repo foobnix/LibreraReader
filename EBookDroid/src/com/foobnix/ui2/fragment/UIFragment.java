@@ -293,8 +293,22 @@ public abstract class UIFragment<T> extends Fragment {
     }
 
     public boolean onKeyDown(int keyCode) {
-        return false;
+        View childAt = recyclerView.getChildAt(0);
+        if (childAt == null) {
+            return false;
+        }
+        int size = childAt.getHeight() + childAt.getPaddingTop() + Dips.dpToPx(2);
 
+        if (AppState.get().getNextKeys().contains(keyCode)) {
+            recyclerView.scrollBy(0, size);
+            return true;
+
+        }
+        if (AppState.get().getPrevKeys().contains(keyCode)) {
+            recyclerView.scrollBy(0, size * -1);
+            return true;
+        }
+        return false;
     }
 
 }

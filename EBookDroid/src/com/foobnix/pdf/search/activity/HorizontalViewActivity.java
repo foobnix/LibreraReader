@@ -549,13 +549,19 @@ public class HorizontalViewActivity extends FragmentActivity {
         titleTxt.setText(DocumentControllerHorizontalView.getTempTitle(this));
         loadinAsyncTask = new CopyAsyncTask() {
             ProgressDialog dialog;
+            Dialog simpleDialog;
             private boolean isCancelled = false;
 
             @Override
             protected void onPreExecute() {
+                if (AppsConfig.IS_EINK) {
+                    simpleDialog = new AlertDialog.Builder(HorizontalViewActivity.this).setMessage(R.string.msg_loading).setCancelable(false).show();
+                    simpleDialog.getWindow().clearFlags(WindowManager.LayoutParams.FLAG_DIM_BEHIND);
+                } else {
+                    dialog = ProgressDialog.show(HorizontalViewActivity.this, "", getString(R.string.msg_loading, false, false));
+                    dialog.getWindow().clearFlags(WindowManager.LayoutParams.FLAG_DIM_BEHIND);
+                }
 
-                dialog = ProgressDialog.show(HorizontalViewActivity.this, "", getString(R.string.msg_loading));
-                dialog.getWindow().clearFlags(WindowManager.LayoutParams.FLAG_DIM_BEHIND);
             };
 
             @Override
@@ -581,7 +587,12 @@ public class HorizontalViewActivity extends FragmentActivity {
             @Override
             protected void onCancelled() {
                 try {
-                    dialog.dismiss();
+                    if (dialog != null) {
+                        dialog.dismiss();
+                    }
+                    if (simpleDialog != null) {
+                        simpleDialog.dismiss();
+                    }
                 } catch (Exception e) {
                 }
                 isCancelled = true;
@@ -591,7 +602,12 @@ public class HorizontalViewActivity extends FragmentActivity {
             protected void onPostExecute(Object result) {
                 try {
                     LOG.d("RESULT", result);
-                    dialog.dismiss();
+                    if (dialog != null) {
+                        dialog.dismiss();
+                    }
+                    if (simpleDialog != null) {
+                        simpleDialog.dismiss();
+                    }
                 } catch (Exception e) {
                 }
                 if (isCancelled) {
