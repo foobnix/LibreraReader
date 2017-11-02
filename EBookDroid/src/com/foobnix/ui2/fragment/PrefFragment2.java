@@ -271,7 +271,7 @@ public class PrefFragment2 extends UIFragment {
 
         try {
             PackageInfo packageInfo = getActivity().getPackageManager().getPackageInfo(getActivity().getPackageName(), 0);
-            final String version = packageInfo.versionName;
+            final String version = packageInfo.versionName + getFullDeviceInfo();
             final int code = packageInfo.versionCode;
             ((TextView) inflate.findViewById(R.id.pVersion)).setText(String.format("%s: %s-%s", getString(R.string.version), version, code));
         } catch (final NameNotFoundException e) {
@@ -369,7 +369,18 @@ public class PrefFragment2 extends UIFragment {
                     @Override
                     public boolean onMenuItemClick(MenuItem item) {
                         AppState.getInstance().isWhiteTheme = true;
+                        AppState.get().isInkMode = false;
+
+                        AppState.get().tintColor = Color.parseColor(AppState.STYLE_COLORS.get(0));
+                        AppState.getInstance().contrastImage = 0;
+                        TintUtil.color = AppState.get().tintColor;
+
+                        AppState.get().save(getActivity());
+
+                        IMG.clearDiscCache();
+                        IMG.clearMemoryCache();
                         onTheme();
+
                         return false;
                     }
                 });
@@ -378,7 +389,30 @@ public class PrefFragment2 extends UIFragment {
                     @Override
                     public boolean onMenuItemClick(MenuItem item) {
                         AppState.getInstance().isWhiteTheme = false;
+                        AppState.get().isInkMode = false;
+
+                        AppState.get().tintColor = Color.parseColor(AppState.STYLE_COLORS.get(0));
+                        AppState.getInstance().contrastImage = 0;
+                        TintUtil.color = AppState.get().tintColor;
+
+                        AppState.get().save(getActivity());
+
+                        IMG.clearDiscCache();
+                        IMG.clearMemoryCache();
+
                         onTheme();
+                        return false;
+                    }
+                });
+                p.getMenu().add(R.string.e_ink).setOnMenuItemClickListener(new OnMenuItemClickListener() {
+
+                    @Override
+                    public boolean onMenuItemClick(MenuItem item) {
+
+                        IMG.clearDiscCache();
+                        IMG.clearMemoryCache();
+
+                        onEink();
                         return false;
                     }
                 });
@@ -991,31 +1025,6 @@ public class PrefFragment2 extends UIFragment {
                 TempHolder.listHash++;
             }
         });
-        inflate.findViewById(R.id.inkMode).setOnClickListener(new OnClickListener() {
-
-            @Override
-            public void onClick(View v) {
-                AppState.get().isInkMode = !AppState.get().isInkMode;
-                AppState.get().defaults(getActivity());
-                if (!AppState.get().isInkMode) {
-                    AppState.get().tintColor = Color.parseColor(AppState.STYLE_COLORS.get(0));
-                    AppState.getInstance().contrastImage = 0;
-                }
-                TintUtil.color = AppState.get().tintColor;
-
-                IMG.clearDiscCache();
-                IMG.clearMemoryCache();
-                TempHolder.listHash++;
-
-                onTintChanged();
-                sendNotifyTintChanged();
-
-                AppState.get().save(getActivity());
-
-                getActivity().finish();
-                MainTabs2.startActivity(getActivity(), TempHolder.get().currentTab);
-            }
-        });
 
         LinearLayout colorsLine = (LinearLayout) inflate.findViewById(R.id.colorsLine);
         colorsLine.removeAllViews();
@@ -1263,6 +1272,22 @@ public class PrefFragment2 extends UIFragment {
 
     }
 
+    private void onEink() {
+        AppState.get().isInkMode = true;
+        AppState.getInstance().isWhiteTheme = true;
+        AppState.get().defaults(getActivity());
+        TintUtil.color = AppState.get().tintColor;
+
+        onTintChanged();
+        sendNotifyTintChanged();
+
+        AppState.get().save(getActivity());
+
+        getActivity().finish();
+        MainTabs2.startActivity(getActivity(), TempHolder.get().currentTab);
+
+    }
+
     OnCheckedChangeListener reverseListener = new OnCheckedChangeListener() {
 
         @Override
@@ -1441,7 +1466,7 @@ public class PrefFragment2 extends UIFragment {
         String string = getResources().getString(R.string.my_email).replace("<u>", "").replace("</u>", "");
         final String aEmailList[] = { string };
         emailIntent.putExtra(android.content.Intent.EXTRA_EMAIL, aEmailList);
-        emailIntent.putExtra(android.content.Intent.EXTRA_SUBJECT, AppsConfig.APP_NAME + " " + Apps.getVersionName(getContext()) + "-" + System.getProperty("os.arch"));
+        emailIntent.putExtra(android.content.Intent.EXTRA_SUBJECT, AppsConfig.APP_NAME + " " + Apps.getVersionName(getContext()) + "-" + System.getProperty("os.arch") + getFullDeviceInfo());
         emailIntent.setType("plain/text");
         emailIntent.putExtra(android.content.Intent.EXTRA_TEXT, "Hi Support, ");
 
@@ -1450,6 +1475,10 @@ public class PrefFragment2 extends UIFragment {
         } catch (android.content.ActivityNotFoundException ex) {
             Toast.makeText(getContext(), R.string.there_are_no_email_applications_installed_, Toast.LENGTH_SHORT).show();
         }
+    }
+
+    public String getFullDeviceInfo(){
+        return "(" + Build.BRAND + "|" + Build.MODEL + ")";
     }
 
     public void onTheme() {
@@ -1496,7 +1525,10 @@ public class PrefFragment2 extends UIFragment {
         fullScreenText();
         rotationText();
         TextView theme = (TextView) getActivity().findViewById(R.id.themeColor);
-        if (AppState.getInstance().isWhiteTheme) {
+
+        if (AppState.get().isInkMode) {
+            theme.setText(TxtUtils.underline(getString(R.string.e_ink)));
+        } else if (AppState.getInstance().isWhiteTheme) {
             theme.setText(TxtUtils.underline(getString(R.string.light)));
         } else {
             theme.setText(TxtUtils.underline(getString(R.string.black)));

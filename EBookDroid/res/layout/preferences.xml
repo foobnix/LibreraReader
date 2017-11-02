@@ -117,6 +117,7 @@
                 android:orientation="horizontal" >
 
                 <CheckBox
+                    android:paddingLeft="2dip"
                     android:id="@+id/supportPDF"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -124,6 +125,8 @@
                     android:textSize="12sp" />
 
                 <CheckBox
+                    android:layout_marginLeft="2dip"
+                    android:paddingLeft="2dip"
                     android:id="@+id/supportDJVU"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -131,6 +134,8 @@
                     android:textSize="12sp" />
 
                 <CheckBox
+                    android:layout_marginLeft="2dip"
+                    android:paddingLeft="2dip"
                     android:id="@+id/supportFB2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -144,6 +149,7 @@
                 android:orientation="horizontal" >
 
                 <CheckBox
+                    android:paddingLeft="2dip"
                     android:id="@+id/supportMOBI"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -151,6 +157,8 @@
                     android:textSize="12sp" />
 
                 <CheckBox
+                    android:layout_marginLeft="4dip"
+                    android:paddingLeft="2dip"
                     android:id="@+id/supportEPUB"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -158,6 +166,8 @@
                     android:textSize="12sp" />
 
                 <CheckBox
+                    android:layout_marginLeft="4dip"
+                    android:paddingLeft="2dip"
                     android:id="@+id/supportRTF"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -171,6 +181,7 @@
                 android:orientation="horizontal" >
 
                 <CheckBox
+                    android:paddingLeft="2dip"
                     android:id="@+id/supportCBZ"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -178,6 +189,8 @@
                     android:textSize="12sp" />
 
                 <CheckBox
+                    android:layout_marginLeft="2dip"
+                    android:paddingLeft="2dip"
                     android:id="@+id/supportTXT"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -185,6 +198,8 @@
                     android:textSize="12sp" />
 
                 <CheckBox
+                    android:layout_marginLeft="2dip"
+                    android:paddingLeft="2dip"
                     android:id="@+id/supportXPS"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -211,6 +226,7 @@
                 android:orientation="horizontal" >
 
                 <CheckBox
+                    android:paddingLeft="2dip"
                     android:id="@+id/supportZIP"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -218,6 +234,8 @@
                     android:textSize="12sp" />
 
                 <CheckBox
+                    android:layout_marginLeft="4dip"
+                    android:paddingLeft="2dip"
                     android:id="@+id/supportOther"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -291,15 +309,6 @@
                 android:src="@drawable/glyphicons_748_synchronization"
                 android:tint="@color/tint_gray" />
 
-            <TextView
-                android:id="@+id/inkMode"
-                android:layout_marginRight="4dip"
-                android:layout_width="wrap_content"
-                android:layout_height="25dip"
-                android:padding="4dip"
-                android:background="@drawable/bg_border_ltgray"
-                android:text="ink"
-                android:textStyle="bold" />
 
             <LinearLayout
                 android:id="@+id/colorsLine"
@@ -882,30 +891,6 @@
                 android:text="@string/clear_all_bookmars" />
         </LinearLayout>
 
-        <TextView
-            android:id="@+id/section7"
-            style="@style/textLinkWhite"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@drawable/bg_search_second"
-            android:text="@string/tabs_position" />
-
-        <CheckBox
-            android:id="@+id/isshowPrefAsMenu"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/show_preferences_tab_in_the_left_menu" />
-
-        <com.jmedeisis.draglinearlayout.DragLinearLayout
-            android:id="@+id/dragLinearLayout"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" >
-
-            <include layout="@layout/item_tab_line" />
-
-            <include layout="@layout/item_tab_line" />
-        </com.jmedeisis.draglinearlayout.DragLinearLayout>
-
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -1003,6 +988,32 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/borders_and_shadow_around_the_book_cover" />
+        
+        
+         <TextView
+            android:id="@+id/section7"
+            style="@style/textLinkWhite"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bg_search_second"
+            android:text="@string/tabs_position" />
+
+        <CheckBox
+            android:id="@+id/isshowPrefAsMenu"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/show_preferences_tab_in_the_left_menu" />
+
+        <com.jmedeisis.draglinearlayout.DragLinearLayout
+            android:id="@+id/dragLinearLayout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" >
+
+            <include layout="@layout/item_tab_line" />
+
+            <include layout="@layout/item_tab_line" />
+        </com.jmedeisis.draglinearlayout.DragLinearLayout>
+        
 
         <TextView
             android:id="@+id/section5"

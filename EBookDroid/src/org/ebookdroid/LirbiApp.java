@@ -73,6 +73,11 @@ public class LirbiApp extends Application {
         Analytics.setContext(this);
 
         LOG.d("MEMORY SIZE", "isBig:", MemoryUtils.IS_BIG_MEMORY_SIZE, "is Small: " + MemoryUtils.IS_SMALL_MEMORY_SIZE, "Size: ", MemoryUtils.RECOMENDED_MEMORY_SIZE);
+        LOG.d("Build", "Build.MANUFACTURER", Build.MANUFACTURER);
+        LOG.d("Build", "Build.PRODUCT", Build.PRODUCT);
+        LOG.d("Build", "Build.DEVICE", Build.DEVICE);
+        LOG.d("Build", "Build.BRAND", Build.BRAND);
+        LOG.d("Build", "Build.MODEL", Build.MODEL);
 
     }
 

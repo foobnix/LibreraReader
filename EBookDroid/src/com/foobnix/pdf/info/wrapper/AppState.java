@@ -24,6 +24,7 @@ import com.foobnix.ui2.AppDB;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
+import android.content.res.Configuration;
 import android.graphics.Color;
 import android.net.Uri;
 import android.os.Environment;
@@ -283,7 +284,7 @@ public class AppState {
 
     public boolean isAlwaysOpenAsMagazine = false;
     public boolean isRememberMode = false;
-    public boolean isInkMode = false;
+    public boolean isInkMode = true;
 
     public volatile boolean isAutoScroll = false;
     public int autoScrollSpeed = 120;
@@ -488,7 +489,7 @@ public class AppState {
             AppState.getInstance().isAlwaysOpenAsMagazine = true;
             AppState.getInstance().isMusicianMode = false;
             AppState.getInstance().isReverseKeys = true;
-            AppState.getInstance().fontSizeSp = 30;
+            AppState.getInstance().fontSizeSp = 36;
             AppState.getInstance().statusBarTextSizeEasy = 16;
             AppState.getInstance().progressLineHeight = 8;
             AppState.getInstance().isScrollAnimation = false;
@@ -503,6 +504,14 @@ public class AppState {
     public void load(final Context a) {
         try {
             if (!isLoaded) {
+                AppState.get().isInkMode = Dips.isEInk(a);
+                int size = a.getResources().getConfiguration().screenLayout & Configuration.SCREENLAYOUT_SIZE_MASK;
+                if (size == Configuration.SCREENLAYOUT_SIZE_LARGE || size == Configuration.SCREENLAYOUT_SIZE_XLARGE) {
+                    AppState.get().coverBigSize = (int) (((Dips.screenWidthDP() / (Dips.screenWidthDP() / 120)) - 8) * 1.5f);
+                    LOG.d("SIZE coverBigSize", coverBigSize);
+
+                }
+                LOG.d("SIZE", "LARGE", size == Configuration.SCREENLAYOUT_SIZE_LARGE, "XLARGE", size == Configuration.SCREENLAYOUT_SIZE_XLARGE);
                 defaults(a);
                 loadIn(a);
                 BookCSS.get().load(a);

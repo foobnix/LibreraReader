@@ -3,6 +3,8 @@
  */
 package com.foobnix.android.utils;
 
+import java.util.Locale;
+
 import android.annotation.TargetApi;
 import android.content.Context;
 import android.content.res.Resources;
@@ -56,7 +58,13 @@ public class Dips {
     }
 
     public static boolean isEInk(Context context) {
-        return getRefreshRate(context) < 10.0;
+        boolean isEink = getRefreshRate(context) < 25.0;
+        if (!isEink) {
+            if (("" + Build.BRAND.toLowerCase(Locale.US)).contains("onyx")) {
+                return true;
+            }
+        }
+        return isEink;
     }
 
     @TargetApi(Build.VERSION_CODES.JELLY_BEAN_MR1)

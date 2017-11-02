@@ -399,4 +399,5 @@
    <string name="contrast">Contrast</string>
    <string name="can_t_delete_file">Can\'t delete file</string>
    <string name="remove_from_library">Remove from Library</string>
+   <string name="e_ink">E-Ink</string>
 </resources>
