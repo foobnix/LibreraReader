@@ -2,8 +2,8 @@ package com.foobnix.pdf;
 
 import com.foobnix.android.utils.Dips;
 import com.foobnix.android.utils.LOG;
-import com.foobnix.pdf.info.AppsConfig;
 import com.foobnix.pdf.info.TintUtil;
+import com.foobnix.pdf.info.wrapper.AppState;
 import com.foobnix.ui2.adapter.TabsAdapter2;
 
 import android.content.Context;
@@ -211,7 +211,7 @@ public class SlidingTabLayout extends HorizontalScrollView {
 
             if (tabView == null) {
                 tabView = createDefaultTabView(getContext());
-                if (AppsConfig.IS_EINK) {
+                if (AppState.get().isInkMode) {
                     ((TextView) tabView).setTextSize(16);
                 }
             }
@@ -228,7 +228,7 @@ public class SlidingTabLayout extends HorizontalScrollView {
                 tabTitleView.setCompoundDrawablesWithIntrinsicBounds(drawable, null, null, null);
                 tabTitleView.setCompoundDrawablePadding(Dips.dpToPx(5));
 
-                if (AppsConfig.IS_EINK) {
+                if (AppState.get().isInkMode) {
                     // TintUtil.setDrawableTint(drawable, Color.BLACK);
                     tabTitleView.setTextColor(Color.BLACK);
                 } else {
@@ -339,7 +339,7 @@ public class SlidingTabLayout extends HorizontalScrollView {
             TextView childAt = (TextView) getmTabStrip().getChildAt(i);
             int myColor = i == position ? Color.WHITE : TintUtil.colorSecondTab;
             Drawable drawable = childAt.getCompoundDrawables()[0];
-            if (AppsConfig.IS_EINK) {
+            if (AppState.get().isInkMode) {
                 TintUtil.setDrawableTint(drawable, Color.BLACK);
                 childAt.setTextColor(Color.BLACK);
             } else {

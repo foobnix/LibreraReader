@@ -8,7 +8,6 @@ import com.foobnix.android.utils.ResultResponse;
 import com.foobnix.android.utils.ResultResponse2;
 import com.foobnix.android.utils.TxtUtils;
 import com.foobnix.dao2.FileMeta;
-import com.foobnix.pdf.info.AppsConfig;
 import com.foobnix.pdf.info.IMG;
 import com.foobnix.pdf.info.R;
 import com.foobnix.pdf.info.TintUtil;
@@ -355,7 +354,7 @@ public class FileMetaAdapter extends AppRecycleAdapter<FileMeta, RecyclerView.Vi
         holder.title.setText(fileMeta.getTitle());
 
         holder.author.setText(fileMeta.getAuthor());
-        if (AppsConfig.IS_EINK) {
+        if (AppState.get().isInkMode) {
             holder.author.setTextColor(Color.BLACK);
             if (holder.series != null) {
             holder.series.setTextColor(Color.BLACK);

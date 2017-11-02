@@ -28,7 +28,7 @@ public class AppsConfig {
 
     public static String APP_NAME;
     public static String APP_PACKAGE;
-    public static boolean IS_BETA, IS_CLASSIC, IS_EINK;
+    public static boolean IS_BETA, IS_CLASSIC;
 
     public static void init(final Context a) {
         final String packageName = a.getPackageName();
@@ -80,10 +80,6 @@ public class AppsConfig {
             ADMOB_CLASSIC = ADMOB_FULLSCREEN = ADMOB_NATIVE_BIG = ADMOB_NATIVE_SMALL = null;
         }
 
-        IS_EINK = true;// Dips.isEInk(a); // check eink
-        if (IS_EINK) {
-            ADMOB_FULLSCREEN = null;
-        }
 
     }
 

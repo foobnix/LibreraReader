@@ -11,6 +11,7 @@ import com.foobnix.pdf.info.AndroidWhatsNew;
 import com.foobnix.pdf.info.AppSharedPreferences;
 import com.foobnix.pdf.info.AppsConfig;
 import com.foobnix.pdf.info.ExtUtils;
+import com.foobnix.pdf.info.IMG;
 import com.foobnix.pdf.info.R;
 import com.foobnix.pdf.info.TintUtil;
 import com.foobnix.pdf.info.Urls;
@@ -286,7 +287,6 @@ public class PrefFragment2 extends UIFragment {
             }
         });
 
-
         inflate.findViewById(R.id.onFullScreen).setOnClickListener(new OnClickListener() {
 
             @Override
@@ -521,8 +521,6 @@ public class PrefFragment2 extends UIFragment {
         });
 
         checkOpenWithSpinner();
-
-
 
         final CheckBox isCropBookCovers = (CheckBox) inflate.findViewById(R.id.isCropBookCovers);
         isCropBookCovers.setOnCheckedChangeListener(null);
@@ -991,6 +989,31 @@ public class PrefFragment2 extends UIFragment {
                 AppState.get().save(getActivity());
 
                 TempHolder.listHash++;
+            }
+        });
+        inflate.findViewById(R.id.inkMode).setOnClickListener(new OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                AppState.get().isInkMode = !AppState.get().isInkMode;
+                AppState.get().defaults(getActivity());
+                if (!AppState.get().isInkMode) {
+                    AppState.get().tintColor = Color.parseColor(AppState.STYLE_COLORS.get(0));
+                    AppState.getInstance().contrastImage = 0;
+                }
+                TintUtil.color = AppState.get().tintColor;
+
+                IMG.clearDiscCache();
+                IMG.clearMemoryCache();
+                TempHolder.listHash++;
+
+                onTintChanged();
+                sendNotifyTintChanged();
+
+                AppState.get().save(getActivity());
+
+                getActivity().finish();
+                MainTabs2.startActivity(getActivity(), TempHolder.get().currentTab);
             }
         });
 

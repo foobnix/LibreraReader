@@ -162,7 +162,7 @@ public class AppState {
     public static String DEFAULTS_TABS_ORDER = "0#1,1#1,2#1,3#1,4#1,5#1,6#0";
     public String tabsOrder = DEFAULTS_TABS_ORDER;
 
-    public int tintColor = AppsConfig.IS_EINK ? Color.BLACK : Color.parseColor(STYLE_COLORS.get(0));
+    public int tintColor = Color.parseColor(STYLE_COLORS.get(0));
 
     public int statusBarColorDay = TEXT_COLOR_DAY;
     public int statusBarColorNight = TEXT_COLOR_NIGHT;
@@ -283,6 +283,7 @@ public class AppState {
 
     public boolean isAlwaysOpenAsMagazine = false;
     public boolean isRememberMode = false;
+    public boolean isInkMode = false;
 
     public volatile boolean isAutoScroll = false;
     public int autoScrollSpeed = 120;
@@ -477,11 +478,13 @@ public class AppState {
         if (AppsConfig.IS_CLASSIC) {
             AppState.get().tabsOrder = DEFAULTS_TABS_ORDER.replace(UITab.OpdsFragment.index + "#1", UITab.OpdsFragment.index + "#0");
         }
-        if (AppsConfig.IS_EINK) {
+        if (AppState.get().isInkMode) {
             // AppState.get().tabsOrder =
             // DEFAULTS_TABS_ORDER.replace(UITab.PrefFragment.index + "#0",
             // UITab.PrefFragment.index + "#1");
-            AppState.get().isRememberMode = true;
+            AppsConfig.ADMOB_FULLSCREEN = null;
+            AppState.getInstance().isEditMode = true;
+            AppState.getInstance().isRememberMode = true;
             AppState.getInstance().isAlwaysOpenAsMagazine = true;
             AppState.getInstance().isMusicianMode = false;
             AppState.getInstance().isReverseKeys = true;
@@ -491,6 +494,7 @@ public class AppState {
             AppState.getInstance().isScrollAnimation = false;
             AppState.getInstance().statusBarColorDay = Color.BLACK;
             AppState.getInstance().contrastImage = 25;
+            AppState.getInstance().tintColor = Color.BLACK;
 
         }
         LOG.d("defaults", AppsConfig.IS_CLASSIC, AppState.get().tabsOrder);
@@ -563,6 +567,7 @@ public class AppState {
         isReverseKeys = sp.getBoolean("isReverseKeys", isReverseKeys);
         isUseVolumeKeys = sp.getBoolean("isUseVolumeKeys", isUseVolumeKeys);
         isRememberMode = sp.getBoolean("isRememberMode1", isRememberMode);
+        isInkMode = sp.getBoolean("isInkMode", isInkMode);
 
         // isCrop = sp.getBoolean("isCrop", isCrop);
         // isCut = sp.getBoolean("isCut", isCut);
@@ -772,6 +777,7 @@ public class AppState {
         editor.putBoolean("isWhiteTheme", isWhiteTheme);
         editor.putBoolean("isOpenLastBook", isOpenLastBook);
         editor.putBoolean("isRememberMode1", isRememberMode);
+        editor.putBoolean("isInkMode", isInkMode);
         editor.putBoolean("isBrowseGrid", isBrowseGrid);
         editor.putBoolean("isRecentGrid", isRecentGrid);
 

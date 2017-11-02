@@ -14,12 +14,12 @@
         android:padding="3dip" >
 
         <LinearLayout
-            android:visibility="gone"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:gravity="center"
             android:orientation="horizontal"
-            android:padding="3dip" >
+            android:padding="3dip"
+            android:visibility="gone" >
 
             <ImageView
                 android:id="@+id/imageView1"
@@ -183,7 +183,7 @@
                     android:layout_height="wrap_content"
                     android:text="HTML/TXT"
                     android:textSize="12sp" />
-                
+
                 <CheckBox
                     android:id="@+id/supportXPS"
                     android:layout_width="wrap_content"
@@ -281,6 +281,7 @@
             </LinearLayout>
 
             <ImageView
+                android:visibility="gone"
                 android:id="@+id/iconRandom"
                 android:layout_width="30dip"
                 android:layout_height="30dip"
@@ -289,6 +290,16 @@
                 android:padding="4dip"
                 android:src="@drawable/glyphicons_748_synchronization"
                 android:tint="@color/tint_gray" />
+
+            <TextView
+                android:id="@+id/inkMode"
+                android:layout_marginRight="4dip"
+                android:layout_width="wrap_content"
+                android:layout_height="25dip"
+                android:padding="4dip"
+                android:background="@drawable/bg_border_ltgray"
+                android:text="ink"
+                android:textStyle="bold" />
 
             <LinearLayout
                 android:id="@+id/colorsLine"
@@ -968,7 +979,7 @@
                 android:text="2"
                 android:textAllCaps="true" />
         </LinearLayout>
-        
+
         <CheckBox
             android:id="@+id/isShowImages"
             android:layout_width="match_parent"

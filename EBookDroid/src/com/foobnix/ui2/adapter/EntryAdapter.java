@@ -5,7 +5,6 @@ import com.foobnix.android.utils.ResultResponse;
 import com.foobnix.android.utils.TxtUtils;
 import com.foobnix.opds.Entry;
 import com.foobnix.opds.Link;
-import com.foobnix.pdf.info.AppsConfig;
 import com.foobnix.pdf.info.IMG;
 import com.foobnix.pdf.info.R;
 import com.foobnix.pdf.info.TintUtil;
@@ -13,6 +12,7 @@ import com.foobnix.pdf.info.Urls;
 import com.foobnix.pdf.info.view.EditTextHelper;
 import com.foobnix.pdf.info.view.ScaledImageView;
 import com.foobnix.pdf.info.widget.FileInformationDialog;
+import com.foobnix.pdf.info.wrapper.AppState;
 import com.foobnix.ui2.AppRecycleAdapter;
 import com.nostra13.universalimageloader.core.ImageLoader;
 
@@ -103,7 +103,7 @@ public class EntryAdapter extends AppRecycleAdapter<Entry, RecyclerView.ViewHold
                 holder.expand.setVisibility(View.GONE);
             }
 
-            if (AppsConfig.IS_EINK) {
+            if (AppState.get().isInkMode) {
                 holder.expand.setTextColor(Color.GRAY);
             }
 
@@ -139,7 +139,7 @@ public class EntryAdapter extends AppRecycleAdapter<Entry, RecyclerView.ViewHold
                 });
             } else {
             }
-            if (AppsConfig.IS_EINK) {
+            if (AppState.get().isInkMode) {
                 holder.author.setTextColor(Color.GRAY);
             }
         } else {
@@ -171,7 +171,7 @@ public class EntryAdapter extends AppRecycleAdapter<Entry, RecyclerView.ViewHold
             if (link.TYPE_LOGO.equals(link.type) || link.isThumbnail()) {
                 holder.image.setVisibility(View.VISIBLE);
                 ImageLoader.getInstance().displayImage(link.href, holder.image, IMG.displayOPDSOptions);
-                if (AppsConfig.IS_EINK) {
+                if (AppState.get().isInkMode) {
                 TintUtil.grayScaleImageView(holder.image);
                 }
             } else if (link.isSearchLink()) {
@@ -228,7 +228,7 @@ public class EntryAdapter extends AppRecycleAdapter<Entry, RecyclerView.ViewHold
                     ScaledImageView img = new ScaledImageView(holder.parent.getContext());
                     img.setPadding(PD, PD, PD, PD);
                     ImageLoader.getInstance().displayImage(link.href, img, IMG.displayImageOptions);
-                    if (AppsConfig.IS_EINK) {
+                    if (AppState.get().isInkMode) {
                         TintUtil.grayScaleImageView(img);
                     }
                     holder.links.addView(img, new LinearLayout.LayoutParams(Dips.screenWidth() / 2, LayoutParams.WRAP_CONTENT));
@@ -289,7 +289,7 @@ public class EntryAdapter extends AppRecycleAdapter<Entry, RecyclerView.ViewHold
                     t.setText(link.title != null ? link.title : link.type);
                     t.setTextColor(context.getResources().getColor(R.color.tint_blue));
                     t.setBackgroundResource(R.drawable.bg_clickable);
-                    if (AppsConfig.IS_EINK) {
+                    if (AppState.get().isInkMode) {
                         t.setTextColor(Color.GRAY);
                     }
                     holder.links.addView(t);

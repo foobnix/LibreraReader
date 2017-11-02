@@ -259,7 +259,7 @@ public class MainTabs2 extends FragmentActivity {
         indicator.setSelectedIndicatorColors(Color.WHITE);
         indicator.setBackgroundColor(TintUtil.color);
 
-        if (AppsConfig.IS_EINK) {
+        if (AppState.get().isInkMode) {
             TintUtil.setTintImageNoAlpha(imageMenu, Color.BLACK);
             indicator.setSelectedIndicatorColors(Color.BLACK);
             indicator.setDividerColors(Color.BLACK);
@@ -348,7 +348,7 @@ public class MainTabs2 extends FragmentActivity {
             if (pos != -1) {
                 pager.setCurrentItem(pos);
             } else {
-                if (!AppsConfig.IS_EINK) {
+                if (!AppState.get().isInkMode) {
                     indicator.setBackgroundColor(TintUtil.color);
                     imageMenuParent.setBackgroundColor(TintUtil.color);
                 }

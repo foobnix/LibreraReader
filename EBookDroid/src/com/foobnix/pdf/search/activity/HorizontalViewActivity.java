@@ -508,7 +508,7 @@ public class HorizontalViewActivity extends FragmentActivity {
         });
 
         View onClose = findViewById(R.id.bookClose);
-        if (AppsConfig.IS_EINK) {
+        if (AppState.get().isInkMode) {
             onClose.getLayoutParams().width = Dips.dpToPx(40);
             onClose.getLayoutParams().height = Dips.dpToPx(40);
             ((RelativeLayout.LayoutParams) onClose.getLayoutParams()).rightMargin = Dips.dpToPx(10);
@@ -554,7 +554,7 @@ public class HorizontalViewActivity extends FragmentActivity {
 
             @Override
             protected void onPreExecute() {
-                if (AppsConfig.IS_EINK) {
+                if (AppState.get().isInkMode) {
                     simpleDialog = new AlertDialog.Builder(HorizontalViewActivity.this).setMessage(R.string.msg_loading).setCancelable(false).show();
                     simpleDialog.getWindow().clearFlags(WindowManager.LayoutParams.FLAG_DIM_BEHIND);
                 } else {
