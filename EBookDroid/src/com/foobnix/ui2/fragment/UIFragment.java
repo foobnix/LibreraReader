@@ -292,4 +292,9 @@ public abstract class UIFragment<T> extends Fragment {
         }
     }
 
+    public boolean onKeyDown(int keyCode) {
+        return false;
+
+    }
+
 }

@@ -2,6 +2,7 @@ package com.foobnix.pdf;
 
 import com.foobnix.android.utils.Dips;
 import com.foobnix.android.utils.LOG;
+import com.foobnix.pdf.info.AppsConfig;
 import com.foobnix.pdf.info.TintUtil;
 import com.foobnix.ui2.adapter.TabsAdapter2;
 
@@ -210,6 +211,9 @@ public class SlidingTabLayout extends HorizontalScrollView {
 
             if (tabView == null) {
                 tabView = createDefaultTabView(getContext());
+                if (AppsConfig.IS_EINK) {
+                    ((TextView) tabView).setTextSize(16);
+                }
             }
 
             if (tabTitleView == null && TextView.class.isInstance(tabView)) {
@@ -221,12 +225,20 @@ public class SlidingTabLayout extends HorizontalScrollView {
                 // TintUtil.addTextView(tabTitleView);
 
                 Drawable drawable = getContext().getResources().getDrawable(adapter.getIconResId(i));
-                TintUtil.setDrawableTint(drawable, Color.WHITE);
                 tabTitleView.setCompoundDrawablesWithIntrinsicBounds(drawable, null, null, null);
                 tabTitleView.setCompoundDrawablePadding(Dips.dpToPx(5));
-                tabTitleView.setTextColor(Color.WHITE);
+
+                if (AppsConfig.IS_EINK) {
+                    // TintUtil.setDrawableTint(drawable, Color.BLACK);
+                    tabTitleView.setTextColor(Color.BLACK);
+                } else {
+                    TintUtil.setDrawableTint(drawable, Color.WHITE);
+                    tabTitleView.setTextColor(Color.WHITE);
+                }
 
                 tabView.setOnClickListener(tabClickListener);
+
+                
 
                 getmTabStrip().addView(tabView);
             }
@@ -326,9 +338,14 @@ public class SlidingTabLayout extends HorizontalScrollView {
         for (int i = 0; i < getmTabStrip().getChildCount(); i++) {
             TextView childAt = (TextView) getmTabStrip().getChildAt(i);
             int myColor = i == position ? Color.WHITE : TintUtil.colorSecondTab;
-            childAt.setTextColor(myColor);
             Drawable drawable = childAt.getCompoundDrawables()[0];
-            TintUtil.setDrawableTint(drawable, myColor);
+            if (AppsConfig.IS_EINK) {
+                TintUtil.setDrawableTint(drawable, Color.BLACK);
+                childAt.setTextColor(Color.BLACK);
+            } else {
+                childAt.setTextColor(myColor);
+                TintUtil.setDrawableTint(drawable, myColor);
+            }
         }
     }
 

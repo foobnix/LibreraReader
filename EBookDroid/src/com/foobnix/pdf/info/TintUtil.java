@@ -163,6 +163,11 @@ public class TintUtil {
         return img;
     }
 
+    public static ImageView setTintImageNoAlpha(ImageView img, int color) {
+        img.setColorFilter(color, Mode.SRC_ATOP);
+        return img;
+    }
+
     public static void setTintText(TextView img) {
         img.setTextColor(color);
     }

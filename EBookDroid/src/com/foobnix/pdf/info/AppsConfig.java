@@ -28,7 +28,7 @@ public class AppsConfig {
 
     public static String APP_NAME;
     public static String APP_PACKAGE;
-    public static boolean IS_BETA, IS_CLASSIC;
+    public static boolean IS_BETA, IS_CLASSIC, IS_EINK;
 
     public static void init(final Context a) {
         final String packageName = a.getPackageName();
@@ -36,6 +36,8 @@ public class AppsConfig {
 
         APP_NAME = a.getString(R.string.app_name);
         APP_PACKAGE = packageName;
+
+        IS_EINK = true;// Dips.isEInk(a); // check eink
 
         IS_APP_WITH_ANALITICS = true;
 

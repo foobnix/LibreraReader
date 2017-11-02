@@ -51,7 +51,7 @@ public class Dips {
         final WindowManager wm = (WindowManager) context.getSystemService(Context.WINDOW_SERVICE);
         final Display display = wm.getDefaultDisplay();
         float refreshRate = display.getRefreshRate();
-        LOG.d("getRefreshRate", refreshRate);
+        LOG.d("RefreshRate", refreshRate);
         return refreshRate;
     }
 

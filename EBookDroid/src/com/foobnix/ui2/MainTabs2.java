@@ -7,6 +7,7 @@ import java.util.List;
 
 import org.ebookdroid.ui.viewer.ViewerActivity;
 
+import com.foobnix.android.utils.Dips;
 import com.foobnix.android.utils.LOG;
 import com.foobnix.android.utils.TxtUtils;
 import com.foobnix.dao2.FileMeta;
@@ -61,6 +62,7 @@ import android.view.KeyEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 
 @SuppressLint("NewApi")
@@ -172,9 +174,7 @@ public class MainTabs2 extends FragmentActivity {
 
         imageMenu = (ImageView) findViewById(R.id.imageMenu1);
         imageMenuParent = findViewById(R.id.imageParent1);
-        if (imageMenuParent != null) {
-            imageMenuParent.setBackgroundColor(TintUtil.color);
-        }
+        imageMenuParent.setBackgroundColor(TintUtil.color);
 
         tabFragments = new ArrayList<UIFragment>();
 
@@ -259,6 +259,18 @@ public class MainTabs2 extends FragmentActivity {
         indicator.setSelectedIndicatorColors(Color.WHITE);
         indicator.setBackgroundColor(TintUtil.color);
 
+        if (AppsConfig.IS_EINK) {
+            TintUtil.setTintImageNoAlpha(imageMenu, Color.BLACK);
+            indicator.setSelectedIndicatorColors(Color.BLACK);
+            indicator.setDividerColors(Color.BLACK);
+            indicator.setBackground(null);
+            imageMenuParent.setBackground(null);
+
+            // imageMenu.getLayoutParams().width = Dips.dpToPx(50);
+            // imageMenu.getLayoutParams().height = Dips.dpToPx(50);
+            ((LinearLayout.LayoutParams) imageMenu.getLayoutParams()).leftMargin = Dips.dpToPx(10);
+        }
+
         Android6.checkPermissions(this);
         Analytics.onStart(this);
         ADS.activateNative(this, adViewNative);
@@ -336,8 +348,10 @@ public class MainTabs2 extends FragmentActivity {
             if (pos != -1) {
                 pager.setCurrentItem(pos);
             } else {
-                indicator.setBackgroundColor(TintUtil.color);
-                imageMenuParent.setBackgroundColor(TintUtil.color);
+                if (!AppsConfig.IS_EINK) {
+                    indicator.setBackgroundColor(TintUtil.color);
+                    imageMenuParent.setBackgroundColor(TintUtil.color);
+                }
             }
         }
 
@@ -365,6 +379,31 @@ public class MainTabs2 extends FragmentActivity {
             LOG.e(e);
         }
     };
+
+    boolean isMyKey = false;
+    @Override
+    public boolean onKeyDown(int keyCode1, KeyEvent event) {
+        int keyCode = event.getKeyCode();
+        if (keyCode == 0) {
+            keyCode = event.getScanCode();
+        }
+        isMyKey = false;
+        if (tabFragments.get(pager.getCurrentItem()).onKeyDown(keyCode)) {
+            isMyKey = true;
+            return true;
+        }
+
+        return super.onKeyDown(keyCode, event);
+    }
+
+    @Override
+    public boolean onKeyUp(int keyCode, KeyEvent event) {
+        if (isMyKey) {
+            return true;
+        }
+        // TODO Auto-generated method stub
+        return super.onKeyUp(keyCode, event);
+    }
 
     @Override
     protected void onPause() {

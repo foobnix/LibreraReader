@@ -97,6 +97,7 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.PopupMenu;
+import android.widget.RelativeLayout;
 import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -507,6 +508,12 @@ public class HorizontalViewActivity extends FragmentActivity {
         });
 
         View onClose = findViewById(R.id.bookClose);
+        if (AppsConfig.IS_EINK) {
+            onClose.getLayoutParams().width = Dips.dpToPx(40);
+            onClose.getLayoutParams().height = Dips.dpToPx(40);
+            ((RelativeLayout.LayoutParams) onClose.getLayoutParams()).rightMargin = Dips.dpToPx(10);
+        }
+
         onClose.setOnClickListener(new View.OnClickListener() {
 
             @Override
