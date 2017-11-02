@@ -378,6 +378,9 @@ public class ImageExtractor implements ImageDownloader {
 
             if (page == COVER_PAGE || page == COVER_PAGE_WITH_EFFECT) {
                 Bitmap proccessCoverPage = proccessCoverPage(pageUrl);
+                if (AppState.get().contrastImage != 0 || AppState.get().brigtnessImage != 0) {
+                    proccessCoverPage = MagicHelper.createQuickContrastAndBrightness(proccessCoverPage, AppState.get().contrastImage, AppState.get().brigtnessImage * -1);
+                }
                 return generalCoverWithEffect(pageUrl, proccessCoverPage);
             } else if (page == COVER_PAGE_NO_EFFECT) {
                 return bitmapToStream(proccessCoverPage(pageUrl));

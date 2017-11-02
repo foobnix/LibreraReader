@@ -490,6 +490,7 @@ public class AppState {
             AppState.getInstance().progressLineHeight = 8;
             AppState.getInstance().isScrollAnimation = false;
             AppState.getInstance().statusBarColorDay = Color.BLACK;
+            AppState.getInstance().contrastImage = 25;
 
         }
         LOG.d("defaults", AppsConfig.IS_CLASSIC, AppState.get().tabsOrder);
@@ -600,7 +601,7 @@ public class AppState {
         sortBy = sp.getInt("sortBy", SORT_BY_PATH);
         sortByBrowse = sp.getInt("sortByBrowse", SORT_BY_PATH);
         contrastImage = sp.getInt("contrastImage", contrastImage);
-        contrastImage = sp.getInt("contrastImage", brigtnessImage);
+        brigtnessImage = sp.getInt("brigtnessImage", brigtnessImage);
         searchPaths = sp.getString("searchPaths", searchPaths);
         rememberDict = sp.getString("rememberDict", rememberDict);
 

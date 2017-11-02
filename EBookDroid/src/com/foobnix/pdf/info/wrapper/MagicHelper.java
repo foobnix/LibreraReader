@@ -683,7 +683,8 @@ public class MagicHelper {
         int[] arr = new int[src.getWidth() * src.getHeight()];
         src.getPixels(arr, 0, src.getWidth(), 0, 0, src.getWidth(), src.getHeight());
         quickContrast3(arr, contrast, brigtness);
-        Bitmap bmOut = Bitmap.createBitmap(src.getWidth(), src.getHeight(), src.getConfig());
+        Bitmap bmOut = Bitmap.createBitmap(src.getWidth(), src.getHeight(), Config.RGB_565);
+        LOG.d("Bitmap config", "RGB_565", src.getConfig() == Config.RGB_565, "ARGB_8888", src.getConfig() == Config.ARGB_8888);
         bmOut.setPixels(arr, 0, src.getWidth(), 0, 0, src.getWidth(), src.getHeight());
         return bmOut;
 
@@ -730,6 +731,9 @@ public class MagicHelper {
         for (int i = 0; i < arr.length; i++) {
             // Get luminosity. Also use G and B, with 2x R
             int temp = arr[i];
+            if (temp == Color.WHITE || temp == Color.BLACK) {
+                continue;
+            }
             lum = ((temp & 0x00FF0000) >> 17) + ((temp & 0x0000FF00) >> 10) + ((temp & 0x000000FF) >> 2);
             // retrieve output from map
             arr[i] = brightnessContrastMap[lum];
