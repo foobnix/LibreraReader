@@ -239,7 +239,7 @@
 		<antcall target="clean-all" />
 
 		<property name="pdf.package" value="com.foobnix.pdf.reader" />
-		<property name="pdf.icon" value="@drawable/icon_pdf_reader1" />
+		<property name="pdf.icon" value="@drawable/icon_pdf_reader_ink" />
 		<property name="pdf.app.name" value="${name.pdf} Beta" />
 		<property name="pdf.export.name" value="${name.pdf} Beta" />
 
