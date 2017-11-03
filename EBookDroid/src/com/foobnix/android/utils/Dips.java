@@ -58,11 +58,10 @@ public class Dips {
     }
 
     public static boolean isEInk(Context context) {
-        boolean isEink = getRefreshRate(context) < 25.0;
-        if (!isEink) {
-            if (("" + Build.BRAND.toLowerCase(Locale.US)).contains("onyx")) {
+        boolean isEink = getRefreshRate(context) < 30.0;
+        String brand = Build.BRAND.toLowerCase(Locale.US);
+        if (!isEink && (brand.contains("onyx") || brand.contains("icarus"))) {
                 return true;
-            }
         }
         return isEink;
     }

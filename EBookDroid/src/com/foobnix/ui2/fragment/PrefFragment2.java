@@ -271,9 +271,8 @@ public class PrefFragment2 extends UIFragment {
 
         try {
             PackageInfo packageInfo = getActivity().getPackageManager().getPackageInfo(getActivity().getPackageName(), 0);
-            final String version = packageInfo.versionName + getFullDeviceInfo();
-            final int code = packageInfo.versionCode;
-            ((TextView) inflate.findViewById(R.id.pVersion)).setText(String.format("%s: %s-%s", getString(R.string.version), version, code));
+            final String version = packageInfo.versionName;
+            ((TextView) inflate.findViewById(R.id.pVersion)).setText(String.format("%s: %s-%s %s", getString(R.string.version), version, System.getProperty("os.arch"), getFullDeviceInfo()));
         } catch (final NameNotFoundException e) {
         }
 
@@ -1478,7 +1477,7 @@ public class PrefFragment2 extends UIFragment {
     }
 
     public String getFullDeviceInfo(){
-        return "(" + Build.BRAND + "|" + Build.MODEL + ")";
+        return "(" + Build.BRAND + ", " + Build.MODEL + ", " + android.os.Build.VERSION.RELEASE + ")";
     }
 
     public void onTheme() {

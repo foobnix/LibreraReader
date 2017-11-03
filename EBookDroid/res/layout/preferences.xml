@@ -117,7 +117,7 @@
                 android:orientation="horizontal" >
 
                 <CheckBox
-                    android:paddingLeft="2dip"
+                    
                     android:id="@+id/supportPDF"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -126,7 +126,7 @@
 
                 <CheckBox
                     android:layout_marginLeft="2dip"
-                    android:paddingLeft="2dip"
+                    
                     android:id="@+id/supportDJVU"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -135,7 +135,7 @@
 
                 <CheckBox
                     android:layout_marginLeft="2dip"
-                    android:paddingLeft="2dip"
+                    
                     android:id="@+id/supportFB2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -149,7 +149,7 @@
                 android:orientation="horizontal" >
 
                 <CheckBox
-                    android:paddingLeft="2dip"
+                    
                     android:id="@+id/supportMOBI"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -158,7 +158,7 @@
 
                 <CheckBox
                     android:layout_marginLeft="4dip"
-                    android:paddingLeft="2dip"
+                    
                     android:id="@+id/supportEPUB"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -167,7 +167,7 @@
 
                 <CheckBox
                     android:layout_marginLeft="4dip"
-                    android:paddingLeft="2dip"
+                    
                     android:id="@+id/supportRTF"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -181,7 +181,7 @@
                 android:orientation="horizontal" >
 
                 <CheckBox
-                    android:paddingLeft="2dip"
+                    
                     android:id="@+id/supportCBZ"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -190,7 +190,7 @@
 
                 <CheckBox
                     android:layout_marginLeft="2dip"
-                    android:paddingLeft="2dip"
+                    
                     android:id="@+id/supportTXT"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -199,7 +199,7 @@
 
                 <CheckBox
                     android:layout_marginLeft="2dip"
-                    android:paddingLeft="2dip"
+                    
                     android:id="@+id/supportXPS"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -226,7 +226,7 @@
                 android:orientation="horizontal" >
 
                 <CheckBox
-                    android:paddingLeft="2dip"
+                    
                     android:id="@+id/supportZIP"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -235,7 +235,7 @@
 
                 <CheckBox
                     android:layout_marginLeft="4dip"
-                    android:paddingLeft="2dip"
+                    
                     android:id="@+id/supportOther"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
