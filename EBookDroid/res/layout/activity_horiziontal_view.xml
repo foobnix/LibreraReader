@@ -101,6 +101,7 @@
                 android:layout_width="@dimen/wh_button"
                 android:layout_height="@dimen/wh_button"
                 android:layout_weight="0"
+                android:visibility="gone"
                 android:contentDescription="Move and zoom in/out page"
                 android:src="@drawable/glyphicons_187_move" />
 
