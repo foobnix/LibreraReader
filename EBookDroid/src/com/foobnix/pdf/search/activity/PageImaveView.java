@@ -537,21 +537,6 @@ public class PageImaveView extends View {
 
             canvas.restoreToCount(saveCount);
 
-            final float values[] = new float[9];
-            imageMatrix().getValues(values);
-            float mScale = values[Matrix.MSCALE_X];
-
-            int dx = (int) values[Matrix.MTRANS_X];
-            int dy = (int) values[Matrix.MTRANS_Y];
-
-            int cW = dx + (int) (drawableWidth * mScale) / 2;
-            int cY = dy + (int) (drawableHeight * mScale) / 2;
-
-            // canvas.drawLine(dx, dy, drawableWidth * mScale + dx,
-            // drawableHeight * mScale + dy, paintWrods);
-
-            canvas.drawLine(dx, dy, cW, cY, paintWrods);
-
         } catch (Exception e) {
             LOG.e(e);
         }
