@@ -60,6 +60,7 @@ import com.foobnix.pdf.search.activity.PageImageState;
 import com.foobnix.pdf.search.activity.msg.FlippingStart;
 import com.foobnix.pdf.search.activity.msg.FlippingStop;
 import com.foobnix.pdf.search.activity.msg.InvalidateMessage;
+import com.foobnix.pdf.search.activity.msg.MovePageAction;
 import com.foobnix.pdf.search.menu.MenuBuilderM;
 import com.foobnix.sys.TempHolder;
 import com.foobnix.tts.TTSEngine;
@@ -138,6 +139,118 @@ import android.widget.Toast;
 public class DragingDialogs {
 
     public static final String EDIT_COLORS_PANEL = "editColorsPanel";
+
+    public static void samble(final FrameLayout anchor, final DocumentController controller) {
+
+        DragingPopup dialog = new DragingPopup(R.string.loading_failed, anchor, 300, 440) {
+
+            @Override
+            @SuppressLint("NewApi")
+            public View getContentView(LayoutInflater inflater) {
+                final Activity activity = controller.getActivity();
+                final View view = inflater.inflate(R.layout.dialog_tts, null, false);
+                return view;
+            }
+        };
+        dialog.setOnCloseListener(new Runnable() {
+
+            @Override
+            public void run() {
+                AppState.get().save(controller.getActivity());
+
+            }
+        });
+        dialog.show("Sample");
+
+    }
+
+    public static void onMoveDialog(final FrameLayout anchor, final DocumentController controller, final Runnable onRefresh, final Runnable updateUIRefresh) {
+
+        DragingPopup dialog = new DragingPopup(R.string.manually_move_the_page, anchor, 250, 310) {
+
+            @Override
+            @SuppressLint("NewApi")
+            public View getContentView(LayoutInflater inflater) {
+                final Activity activity = controller.getActivity();
+                final View view = inflater.inflate(R.layout.dialog_move_manually, null, false);
+                ImageView onUp = (ImageView) view.findViewById(R.id.onUp);
+                ImageView onDonw = (ImageView) view.findViewById(R.id.onDown);
+                ImageView onLeft = (ImageView) view.findViewById(R.id.onLeft);
+                ImageView onRight = (ImageView) view.findViewById(R.id.onRight);
+                ImageView onPlus = (ImageView) view.findViewById(R.id.onPlus);
+                ImageView onMinus = (ImageView) view.findViewById(R.id.onMinus);
+                ImageView onCenter = (ImageView) view.findViewById(R.id.onCenter);
+                ImageView onCrop = (ImageView) view.findViewById(R.id.onCrop);
+
+                TintUtil.setTintImage(onUp);
+                TintUtil.setTintImage(onDonw);
+                TintUtil.setTintImage(onLeft);
+                TintUtil.setTintImage(onRight);
+                TintUtil.setTintImage(onPlus);
+                TintUtil.setTintImage(onMinus);
+                TintUtil.setTintImage(onCenter);
+                TintUtil.setTintImage(onCrop);
+
+                onCrop.setOnClickListener(new OnClickListener() {
+
+                    @Override
+                    public void onClick(View v) {
+                        AppState.get().isCrop = !AppState.get().isCrop;
+                        SettingsManager.getBookSettings().updateFromAppState();
+                        updateUIRefresh.run();
+                    }
+                });
+
+                OnClickListener listner = new OnClickListener() {
+
+                    @Override
+                    public void onClick(View v) {
+                        int id = v.getId();
+                        int aciton = -1;
+
+                        if (id == R.id.onUp) {
+                            aciton = MovePageAction.UP;
+                        } else if (id == R.id.onDown) {
+                            aciton = MovePageAction.DOWN;
+                        } else if (id == R.id.onLeft) {
+                            aciton = MovePageAction.LEFT;
+                        } else if (id == R.id.onRight) {
+                            aciton = MovePageAction.RIGHT;
+                        } else if (id == R.id.onPlus) {
+                            aciton = MovePageAction.ZOOM_PLUS;
+                        } else if (id == R.id.onMinus) {
+                            aciton = MovePageAction.ZOOM_MINUS;
+                        } else if (id == R.id.onCenter) {
+                            aciton = MovePageAction.CENTER;
+                        }
+                        EventBus.getDefault().post(new MovePageAction(aciton, controller.getCurentPage()));
+
+                    }
+                };
+
+                onUp.setOnClickListener(listner);
+                onDonw.setOnClickListener(listner);
+                onLeft.setOnClickListener(listner);
+                onRight.setOnClickListener(listner);
+                onPlus.setOnClickListener(listner);
+                onMinus.setOnClickListener(listner);
+                onCenter.setOnClickListener(listner);
+
+                return view;
+            }
+        };
+        dialog.setOnCloseListener(new Runnable() {
+
+            @Override
+            public void run() {
+                AppState.get().save(controller.getActivity());
+
+            }
+
+        });
+        dialog.show("MovePage");
+
+    }
 
     public static void textToSpeachDialog(final FrameLayout anchor, final DocumentController controller) {
         textToSpeachDialog(anchor, controller, "");

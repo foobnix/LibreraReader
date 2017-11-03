@@ -400,4 +400,5 @@
    <string name="can_t_delete_file">Can\'t delete file</string>
    <string name="remove_from_library">Remove from Library</string>
    <string name="e_ink">E-Ink</string>
+   <string name="manually_move_the_page">Manually move the page</string>
 </resources>

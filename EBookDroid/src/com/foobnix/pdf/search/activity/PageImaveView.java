@@ -16,6 +16,7 @@ import com.foobnix.pdf.search.activity.msg.InvalidateMessage;
 import com.foobnix.pdf.search.activity.msg.MessageAutoFit;
 import com.foobnix.pdf.search.activity.msg.MessageCenterHorizontally;
 import com.foobnix.pdf.search.activity.msg.MessageEvent;
+import com.foobnix.pdf.search.activity.msg.MovePageAction;
 import com.foobnix.pdf.search.activity.msg.TextWordsMessage;
 import com.foobnix.sys.ClickUtils;
 import com.foobnix.sys.TempHolder;
@@ -155,6 +156,49 @@ public class PageImaveView extends View {
             invalidate();
             isFirstZoomInOut = true;
         }
+    }
+
+    @Subscribe
+    public void onMovePage(MovePageAction event) {
+        if (pageNumber != event.getPage()) {
+            return;
+        }
+        int k = Dips.dpToPx(1);
+        float scale = 0.01f;
+
+        final float values[] = new float[9];
+        imageMatrix().getValues(values);
+        float mScale = values[Matrix.MSCALE_X];
+
+
+        int w = (drawableWidth) / 2;
+        int h = (drawableHeight) / 2;
+
+        if(MovePageAction.CENTER == event.getAction()){
+            LOG.d("Action center", event.getPage());
+            PageImageState.get().isAutoFit = true;
+            onAutoFit(new MessageAutoFit(event.getPage()));
+            return;
+        }
+
+        if (MovePageAction.LEFT == event.getAction()) {
+            imageMatrix().postTranslate(-1 * k, 0);
+        } else if (MovePageAction.RIGHT == event.getAction()) {
+            imageMatrix().postTranslate(k, 0);
+        } else if (MovePageAction.UP == event.getAction()) {
+            imageMatrix().postTranslate(0, k * -1);
+        } else if (MovePageAction.DOWN == event.getAction()) {
+            imageMatrix().postTranslate(0, k);
+        } else if (MovePageAction.ZOOM_PLUS == event.getAction()) {
+            imageMatrix().postScale(1 + scale, 1 + scale, w, h);
+        } else if (MovePageAction.ZOOM_MINUS == event.getAction()) {
+            imageMatrix().postScale(1 - scale, 1 - scale, w, h);
+        }
+        LOG.d("MMM SCALE", mScale);
+
+        PageImageState.get().isAutoFit = false;
+        invalidateAndMsg();
+
     }
 
     @Subscribe
@@ -492,6 +536,22 @@ public class PageImaveView extends View {
             }
 
             canvas.restoreToCount(saveCount);
+
+            final float values[] = new float[9];
+            imageMatrix().getValues(values);
+            float mScale = values[Matrix.MSCALE_X];
+
+            int dx = (int) values[Matrix.MTRANS_X];
+            int dy = (int) values[Matrix.MTRANS_Y];
+
+            int cW = dx + (int) (drawableWidth * mScale) / 2;
+            int cY = dy + (int) (drawableHeight * mScale) / 2;
+
+            // canvas.drawLine(dx, dy, drawableWidth * mScale + dx,
+            // drawableHeight * mScale + dy, paintWrods);
+
+            canvas.drawLine(dx, dy, cW, cY, paintWrods);
+
         } catch (Exception e) {
             LOG.e(e);
         }

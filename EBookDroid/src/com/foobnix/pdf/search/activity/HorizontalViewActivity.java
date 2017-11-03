@@ -116,7 +116,7 @@ public class HorizontalViewActivity extends FragmentActivity {
     private AdView adView;
     private NativeExpressAdView adViewNative;
 
-    ImageView lockModelImage, linkHistory, ttsActive, onModeChange, outline;
+    ImageView lockModelImage, linkHistory, ttsActive, onModeChange, outline, onMove;
 
     DocumentControllerHorizontalView documentController;
 
@@ -246,6 +246,17 @@ public class HorizontalViewActivity extends FragmentActivity {
         pagesTime = (TextView) findViewById(R.id.pagesTime);
         pagesPower = (TextView) findViewById(R.id.pagesPower);
         linkHistory = (ImageView) findViewById(R.id.linkHistory);
+        onMove = (ImageView) findViewById(R.id.onMove);
+        onMove.setVisibility(AppState.get().isInkMode ? View.VISIBLE : View.GONE);
+        onMove.setOnClickListener(new OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                AppState.get().isEditMode = false;
+                hideShow();
+                DragingDialogs.onMoveDialog(anchor, documentController, onRefresh, reloadDoc);
+            }
+        });
 
         updateSeekBarColorAndSize();
 
@@ -703,6 +714,9 @@ public class HorizontalViewActivity extends FragmentActivity {
                         onModeChange.setImageResource(R.drawable.glyphicons_two_page_one);
                     }
                     onCrop.setVisibility(documentController.isTextFormat() ? View.GONE : View.VISIBLE);
+                    if (documentController.isTextFormat()) {
+                        onMove.setVisibility(View.GONE);
+                    }
                     if (AppState.get().isCrop) {
                         TintUtil.setTintImage(onCrop, TintUtil.COLOR_ORANGE);
                     } else {
