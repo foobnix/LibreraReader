@@ -14,10 +14,10 @@ import android.widget.TextView;
 
 public class Dialogs {
 
-    public static void showContrastDialogByUrl(final Context c, String url, final Runnable action) {
+    public static void showContrastDialogByUrl(final Context c, final Runnable action) {
         final AlertDialog.Builder builder = new AlertDialog.Builder(c);
         builder.setCancelable(true);
-        builder.setMessage("");
+        builder.setTitle(R.string.contrast_and_brightness);
 
         LinearLayout l = new LinearLayout(c);
         l.setOrientation(LinearLayout.VERTICAL);

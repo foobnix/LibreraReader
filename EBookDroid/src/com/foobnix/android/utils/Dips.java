@@ -7,6 +7,7 @@ import java.util.Locale;
 
 import android.annotation.TargetApi;
 import android.content.Context;
+import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.graphics.Point;
 import android.os.Build;
@@ -104,6 +105,13 @@ public class Dips {
 
     public static boolean isHorizontal() {
         return screenWidth() > screenHeight();
+    }
+
+    public static boolean isLargeScreen() {
+        int size = Resources.getSystem().getConfiguration().screenLayout & Configuration.SCREENLAYOUT_SIZE_MASK;
+        LOG.d("SIZE", "LARGE", size == Configuration.SCREENLAYOUT_SIZE_LARGE, "XLARGE", size == Configuration.SCREENLAYOUT_SIZE_XLARGE);
+        return size == Configuration.SCREENLAYOUT_SIZE_LARGE || size == Configuration.SCREENLAYOUT_SIZE_XLARGE;
+
     }
 
 }

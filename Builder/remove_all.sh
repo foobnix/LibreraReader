@@ -3,6 +3,7 @@ sh ninja-adb.sh uninstall com.foobnix.pro.pdf.reader
 sh ninja-adb.sh uninstall com.foobnix.pdf.reader
 sh ninja-adb.sh uninstall droid.reader.book.epub.mobi.pdf.djvu.fb2.txt.azw.azw3
 sh ninja-adb.sh uninstall com.example.zcontentintent
+sh ninja-adb.sh uninstall mobi.librera.book.reader
 
 
 

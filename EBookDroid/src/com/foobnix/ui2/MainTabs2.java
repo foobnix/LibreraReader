@@ -263,8 +263,8 @@ public class MainTabs2 extends FragmentActivity {
             TintUtil.setTintImageNoAlpha(imageMenu, Color.BLACK);
             indicator.setSelectedIndicatorColors(Color.BLACK);
             indicator.setDividerColors(Color.BLACK);
-            indicator.setBackground(null);
-            imageMenuParent.setBackground(null);
+            indicator.setBackgroundColor(Color.TRANSPARENT);
+            imageMenuParent.setBackgroundColor(Color.TRANSPARENT);
 
             // imageMenu.getLayoutParams().width = Dips.dpToPx(50);
             // imageMenu.getLayoutParams().height = Dips.dpToPx(50);

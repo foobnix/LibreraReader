@@ -16,6 +16,8 @@ public class AppsConfig {
 
     public static final String DROID_READER_PKG = "droid.reader.book.epub.mobi.pdf.djvu.fb2.txt.azw.azw3";
 
+    public static final String LIBRERA_INK = "mobi.librera.book.reader";
+
     public static String ADMOB_CLASSIC;
 
     public static String ADMOB_FULLSCREEN;
@@ -28,7 +30,7 @@ public class AppsConfig {
 
     public static String APP_NAME;
     public static String APP_PACKAGE;
-    public static boolean IS_BETA, IS_CLASSIC;
+    public static boolean IS_BETA, IS_CLASSIC, IS_INK;
 
     public static void init(final Context a) {
         final String packageName = a.getPackageName();
@@ -67,9 +69,17 @@ public class AppsConfig {
 
         if (DROID_READER_PKG.equals(packageName)) {
             ANALYTICS_ID = "UA-36581296-8";
-
             ADMOB_CLASSIC/*     */ = "ca-app-pub-8347903083053959/5364245672";
             ADMOB_FULLSCREEN/*  */ = "ca-app-pub-8347903083053959/7763820878";
+            ADMOB_NATIVE_BIG/*  */ = "ca-app-pub-8347903083053959/8961352478";
+            ADMOB_NATIVE_SMALL/**/ = "ca-app-pub-8347903083053959/8572902871";
+        }
+        if (LIBRERA_INK.equals(packageName)) {
+            IS_INK = true;
+            ANALYTICS_ID = "UA-36581296-8";
+
+            ADMOB_CLASSIC/*     */ = "ca-app-pub-8347903083053959/5364245672";
+            ADMOB_FULLSCREEN/*  */ = null;
             ADMOB_NATIVE_BIG/*  */ = "ca-app-pub-8347903083053959/8961352478";
             ADMOB_NATIVE_SMALL/**/ = "ca-app-pub-8347903083053959/8572902871";
         }
@@ -79,7 +89,6 @@ public class AppsConfig {
             ANALYTICS_ID = "UA-36581296-9";
             ADMOB_CLASSIC = ADMOB_FULLSCREEN = ADMOB_NATIVE_BIG = ADMOB_NATIVE_SMALL = null;
         }
-
 
     }
 

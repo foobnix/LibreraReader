@@ -117,7 +117,6 @@
                 android:orientation="horizontal" >
 
                 <CheckBox
-                    
                     android:id="@+id/supportPDF"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -125,20 +124,18 @@
                     android:textSize="12sp" />
 
                 <CheckBox
-                    android:layout_marginLeft="2dip"
-                    
                     android:id="@+id/supportDJVU"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginLeft="2dip"
                     android:text="DJVU"
                     android:textSize="12sp" />
 
                 <CheckBox
-                    android:layout_marginLeft="2dip"
-                    
                     android:id="@+id/supportFB2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginLeft="2dip"
                     android:text="FB2"
                     android:textSize="12sp" />
             </LinearLayout>
@@ -149,7 +146,6 @@
                 android:orientation="horizontal" >
 
                 <CheckBox
-                    
                     android:id="@+id/supportMOBI"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -157,20 +153,18 @@
                     android:textSize="12sp" />
 
                 <CheckBox
-                    android:layout_marginLeft="4dip"
-                    
                     android:id="@+id/supportEPUB"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginLeft="4dip"
                     android:text="EPUB"
                     android:textSize="12sp" />
 
                 <CheckBox
-                    android:layout_marginLeft="4dip"
-                    
                     android:id="@+id/supportRTF"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginLeft="4dip"
                     android:text="RTF"
                     android:textSize="12sp" />
             </LinearLayout>
@@ -181,7 +175,6 @@
                 android:orientation="horizontal" >
 
                 <CheckBox
-                    
                     android:id="@+id/supportCBZ"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -189,20 +182,18 @@
                     android:textSize="12sp" />
 
                 <CheckBox
-                    android:layout_marginLeft="2dip"
-                    
                     android:id="@+id/supportTXT"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginLeft="2dip"
                     android:text="HTML/TXT"
                     android:textSize="12sp" />
 
                 <CheckBox
-                    android:layout_marginLeft="2dip"
-                    
                     android:id="@+id/supportXPS"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginLeft="2dip"
                     android:text="XPS"
                     android:textSize="12sp" />
             </LinearLayout>
@@ -226,7 +217,6 @@
                 android:orientation="horizontal" >
 
                 <CheckBox
-                    
                     android:id="@+id/supportZIP"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -234,11 +224,10 @@
                     android:textSize="12sp" />
 
                 <CheckBox
-                    android:layout_marginLeft="4dip"
-                    
                     android:id="@+id/supportOther"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginLeft="4dip"
                     android:ellipsize="end"
                     android:text="DOC/DOCX/CHM"
                     android:textSize="12sp" />
@@ -299,7 +288,6 @@
             </LinearLayout>
 
             <ImageView
-                android:visibility="gone"
                 android:id="@+id/iconRandom"
                 android:layout_width="30dip"
                 android:layout_height="30dip"
@@ -307,8 +295,8 @@
                 android:background="@drawable/bg_border_ltgray"
                 android:padding="4dip"
                 android:src="@drawable/glyphicons_748_synchronization"
-                android:tint="@color/tint_gray" />
-
+                android:tint="@color/tint_gray"
+                android:visibility="gone" />
 
             <LinearLayout
                 android:id="@+id/colorsLine"
@@ -920,7 +908,28 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="10dip"
             android:background="@drawable/bg_search_second"
-            android:text="@string/cover_image_size" />
+            android:text="@string/book_covers" />
+
+        <TextView
+            android:id="@+id/onContrast"
+            style="@style/textLink"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/contrast_and_brightness" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginBottom="1dip"
+            android:layout_marginTop="1dip"
+            android:background="@color/lt_grey_alpha" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dip"
+            android:text="@string/cover_image_size"
+            android:textStyle="bold" />
 
         <com.foobnix.pdf.info.view.CustomSeek
             android:id="@+id/coverSmallSize"
@@ -951,7 +960,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="8dip"
+                android:layout_marginLeft="4dip"
                 android:singleLine="true"
                 android:text="@string/column_count" />
 
@@ -964,6 +973,13 @@
                 android:text="2"
                 android:textAllCaps="true" />
         </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginBottom="1dip"
+            android:layout_marginTop="1dip"
+            android:background="@color/lt_grey_alpha" />
 
         <CheckBox
             android:id="@+id/isShowImages"
@@ -988,9 +1004,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/borders_and_shadow_around_the_book_cover" />
-        
-        
-         <TextView
+
+        <TextView
             android:id="@+id/section7"
             style="@style/textLinkWhite"
             android:layout_width="match_parent"
@@ -1013,7 +1028,6 @@
 
             <include layout="@layout/item_tab_line" />
         </com.jmedeisis.draglinearlayout.DragLinearLayout>
-        
 
         <TextView
             android:id="@+id/section5"

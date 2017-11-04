@@ -24,7 +24,6 @@ import com.foobnix.ui2.AppDB;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
-import android.content.res.Configuration;
 import android.graphics.Color;
 import android.net.Uri;
 import android.os.Environment;
@@ -356,10 +355,10 @@ public class AppState {
 
     public int cutP = 50;
 
-    public volatile int fontSizeSp = 24;
-    public volatile int statusBarTextSizeAdv = 14;
-    public volatile int statusBarTextSizeEasy = 12;
-    public volatile int progressLineHeight = 4;
+    public volatile int fontSizeSp = Dips.isLargeScreen() ? 36 : 24;
+    public volatile int statusBarTextSizeAdv = Dips.isLargeScreen() ? 16 : 14;
+    public volatile int statusBarTextSizeEasy = Dips.isLargeScreen() ? 16 : 12;
+    public volatile int progressLineHeight = Dips.isLargeScreen() ? 8 : 4;
 
     public String lastA;
     public String lastMode;
@@ -397,7 +396,7 @@ public class AppState {
 
     public boolean isBrowseImages = false;
 
-    public int coverBigSize = (Dips.screenWidthDP() / (Dips.screenWidthDP() / 120)) - 8;
+    public int coverBigSize = ((Dips.screenWidthDP() / (Dips.screenWidthDP() / 120)) - 8) * (int) (Dips.isLargeScreen() ? 1.5f : 1);
     public int coverSmallSize = 80;
 
     public int tapZoneTop = TAP_PREV_PAGE;
@@ -479,19 +478,13 @@ public class AppState {
         if (AppsConfig.IS_CLASSIC) {
             AppState.get().tabsOrder = DEFAULTS_TABS_ORDER.replace(UITab.OpdsFragment.index + "#1", UITab.OpdsFragment.index + "#0");
         }
-        if (AppState.get().isInkMode) {
-            // AppState.get().tabsOrder =
-            // DEFAULTS_TABS_ORDER.replace(UITab.PrefFragment.index + "#0",
-            // UITab.PrefFragment.index + "#1");
+        if (AppState.get().isInkMode || AppsConfig.IS_INK) {
             AppsConfig.ADMOB_FULLSCREEN = null;
             AppState.getInstance().isEditMode = true;
             AppState.getInstance().isRememberMode = true;
             AppState.getInstance().isAlwaysOpenAsMagazine = true;
             AppState.getInstance().isMusicianMode = false;
             AppState.getInstance().isReverseKeys = true;
-            AppState.getInstance().fontSizeSp = 36;
-            AppState.getInstance().statusBarTextSizeEasy = 16;
-            AppState.getInstance().progressLineHeight = 8;
             AppState.getInstance().isScrollAnimation = false;
             AppState.getInstance().statusBarColorDay = Color.BLACK;
             AppState.getInstance().contrastImage = 25;
@@ -505,13 +498,6 @@ public class AppState {
         try {
             if (!isLoaded) {
                 AppState.get().isInkMode = Dips.isEInk(a);
-                int size = a.getResources().getConfiguration().screenLayout & Configuration.SCREENLAYOUT_SIZE_MASK;
-                if (size == Configuration.SCREENLAYOUT_SIZE_LARGE || size == Configuration.SCREENLAYOUT_SIZE_XLARGE) {
-                    AppState.get().coverBigSize = (int) (((Dips.screenWidthDP() / (Dips.screenWidthDP() / 120)) - 8) * 1.5f);
-                    LOG.d("SIZE coverBigSize", coverBigSize);
-
-                }
-                LOG.d("SIZE", "LARGE", size == Configuration.SCREENLAYOUT_SIZE_LARGE, "XLARGE", size == Configuration.SCREENLAYOUT_SIZE_XLARGE);
                 defaults(a);
                 loadIn(a);
                 BookCSS.get().load(a);

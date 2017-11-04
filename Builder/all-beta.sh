@@ -12,6 +12,9 @@ rm /home/ivan-dev/Dropbox/FREE_PDF_APK/testing/*.apk
 ant armeabi-v7a pdf-beta
 ant x86 pdf-beta
 
+ant armeabi-v7a pdf-ink
+ant x86 pdf-ink
+
 ant version
 
 ./remove_all.sh

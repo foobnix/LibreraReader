@@ -166,7 +166,7 @@ public class DragingDialogs {
 
     public static void onMoveDialog(final FrameLayout anchor, final DocumentController controller, final Runnable onRefresh, final Runnable updateUIRefresh) {
 
-        DragingPopup dialog = new DragingPopup(R.string.manually_move_the_page, anchor, 250, 310) {
+        DragingPopup dialog = new DragingPopup(R.string.manually_move_the_page, anchor, 280, 250) {
 
             @Override
             @SuppressLint("NewApi")

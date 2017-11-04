@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.foobnix.pdf.reader"
+    package="mobi.librera.book.reader"
     android:installLocation="auto"
     android:versionCode="469"
-    android:versionName="7.2.28" >
+    android:versionName="7.2.30" >
 
     <uses-sdk
         android:minSdkVersion="14"
@@ -24,7 +24,7 @@
         android:theme="@style/StyledIndicatorsWhite" >
         <provider
             android:name="android.support.v4.content.FileProvider"
-            android:authorities="com.foobnix.pdf.reader.provider"
+            android:authorities="mobi.librera.book.reader.epaper.ink.provider"
             android:exported="false"
             android:grantUriPermissions="true" >
             <meta-data

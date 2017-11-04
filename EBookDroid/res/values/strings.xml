@@ -401,4 +401,6 @@
    <string name="remove_from_library">Remove from Library</string>
    <string name="e_ink">E-Ink</string>
    <string name="manually_move_the_page">Manually move the page</string>
+   <string name="contrast_and_brightness">Contrast and Brightness</string>
+   <string name="book_covers">Book covers</string>
 </resources>
