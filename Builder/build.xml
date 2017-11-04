@@ -4,6 +4,7 @@
 
 	<target name="prepare-packages">
 
+	    <!-- section 1 -->
 		<replaceregexp file="../EbookaPDF/AndroidManifest.xml"
 			match='package="com.foobnix.pro.pdf.reader"' replace='package="${pdf.package}"' />
 		<replaceregexp file="../EbookaPDF/AndroidManifest.xml"
@@ -12,7 +13,10 @@
 			match='package="${package.classic}"' replace='package="${pdf.package}"' />
 		<replaceregexp file="../EbookaPDF/AndroidManifest.xml"
 			match='package="${package.droid}"' replace='package="${pdf.package}"' />
+		<replaceregexp file="../EbookaPDF/AndroidManifest.xml"
+			match='package="${package.ink}"' replace='package="${pdf.package}"' />
 
+		<!-- section 2 -->
 		<replaceregexp file="../EbookaPDF/AndroidManifest.xml"
 			match='android:authorities="com.foobnix.pro.pdf.reader.provider"'
 			replace='android:authorities="${pdf.package}.provider"' />
@@ -23,11 +27,10 @@
 			match='android:authorities="${package.classic}.provider"' replace='android:authorities="${pdf.package}.provider"' />
 		<replaceregexp file="../EbookaPDF/AndroidManifest.xml"
 			match='android:authorities="${package.droid}.provider"' replace='android:authorities="${pdf.package}.provider"' />
-
-
-
-
-
+		<replaceregexp file="../EbookaPDF/AndroidManifest.xml"
+			match='android:authorities="${package.ink}.provider"' replace='android:authorities="${pdf.package}.provider"' />
+		
+	<!-- section 3 -->
 		<replaceregexp file="../EbookaPDF/AndroidManifest.xml"
 			match='android:icon="@drawable/icon_pdf_classic"' replace='android:icon="${pdf.icon}"' />
 
@@ -38,14 +41,15 @@
 			match='android:icon="@drawable/icon_pdf_reader"' replace='android:icon="${pdf.icon}"' />
 		
 		<replaceregexp file="../EbookaPDF/AndroidManifest.xml"
+			match='android:icon="@drawable/icon_pdf_droid"' replace='android:icon="${pdf.icon}"' />
+	
+	    <replaceregexp file="../EbookaPDF/AndroidManifest.xml"
 			match='android:icon="@drawable/icon_pdf_reader_ink"' replace='android:icon="${pdf.icon}"' />
 
 		<replaceregexp file="../EbookaPDF/AndroidManifest.xml"
-			match='android:icon="@drawable/icon_pdf_droid"' replace='android:icon="${pdf.icon}"' />
-
-
-		<replaceregexp file="../EbookaPDF/AndroidManifest.xml"
 			match='android:icon="@drawable/test"' replace='android:icon="${pdf.icon}"' />
+
+	<!-- section 4 -->
 		
 		<replaceregexp file="../EBookDroid/res/values/config.xml"
 			match='Librera Beta' replace='Librera' />
@@ -62,7 +66,13 @@
 
 		<replaceregexp file="../EBookDroid/res/values/config.xml"
 			match='&lt;string name="app_name">${name.droid}&lt;/string>' replace='&lt;string name="app_name">${pdf.app.name}&lt;/string>' />
+		
+		<replaceregexp file="../EBookDroid/res/values/config.xml"
+			match='&lt;string name="app_name">${name.ink}&lt;/string>' replace='&lt;string name="app_name">${pdf.app.name}&lt;/string>' />
+		
 
+		<!-- section 5 -->
+		
 		<replaceregexp file="../EBookDroid/res/values/config.xml"
 			match='&lt;bool name="is_log_enable">true&lt;/bool>' replace='&lt;bool name="is_log_enable">false&lt;/bool>' />
 

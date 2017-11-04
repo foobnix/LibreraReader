@@ -1,4 +1,5 @@
-E-ink theme (adaptation for e-ink eReaders)
+Change Contrast and Brightness
+e-ink theme (adaptation for e-ink eReaders)
 Set max speech speed to 4x
 Remove book from Library
 Sync files in folders

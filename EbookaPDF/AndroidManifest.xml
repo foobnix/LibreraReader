@@ -3,7 +3,7 @@
     package="mobi.librera.book.reader"
     android:installLocation="auto"
     android:versionCode="469"
-    android:versionName="7.2.30" >
+    android:versionName="7.2.33" >
 
     <uses-sdk
         android:minSdkVersion="14"
@@ -24,7 +24,7 @@
         android:theme="@style/StyledIndicatorsWhite" >
         <provider
             android:name="android.support.v4.content.FileProvider"
-            android:authorities="mobi.librera.book.reader.epaper.ink.provider"
+            android:authorities="mobi.librera.book.reader.provider"
             android:exported="false"
             android:grantUriPermissions="true" >
             <meta-data

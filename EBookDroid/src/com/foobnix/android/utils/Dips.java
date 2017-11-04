@@ -109,7 +109,6 @@ public class Dips {
 
     public static boolean isLargeScreen() {
         int size = Resources.getSystem().getConfiguration().screenLayout & Configuration.SCREENLAYOUT_SIZE_MASK;
-        LOG.d("SIZE", "LARGE", size == Configuration.SCREENLAYOUT_SIZE_LARGE, "XLARGE", size == Configuration.SCREENLAYOUT_SIZE_XLARGE);
         return size == Configuration.SCREENLAYOUT_SIZE_LARGE || size == Configuration.SCREENLAYOUT_SIZE_XLARGE;
 
     }
