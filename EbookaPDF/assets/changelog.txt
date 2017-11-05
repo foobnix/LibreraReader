@@ -1,3 +1,5 @@
+Disable animatin in e-ink mode
+Move page in easy mode
 Change Contrast and Brightness
 e-ink theme (adaptation for e-ink eReaders)
 Set max speech speed to 4x

@@ -7,7 +7,6 @@ import java.util.List;
 
 import org.ebookdroid.ui.viewer.ViewerActivity;
 
-import com.foobnix.android.utils.Dips;
 import com.foobnix.android.utils.LOG;
 import com.foobnix.android.utils.TxtUtils;
 import com.foobnix.dao2.FileMeta;
@@ -62,7 +61,6 @@ import android.view.KeyEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.Toast;
 
 @SuppressLint("NewApi")
@@ -260,15 +258,12 @@ public class MainTabs2 extends FragmentActivity {
         indicator.setBackgroundColor(TintUtil.color);
 
         if (AppState.get().isInkMode) {
-            TintUtil.setTintImageNoAlpha(imageMenu, Color.BLACK);
-            indicator.setSelectedIndicatorColors(Color.BLACK);
-            indicator.setDividerColors(Color.BLACK);
+            TintUtil.setTintImageNoAlpha(imageMenu, TintUtil.color);
+            indicator.setSelectedIndicatorColors(TintUtil.color);
+            indicator.setDividerColors(TintUtil.color);
             indicator.setBackgroundColor(Color.TRANSPARENT);
             imageMenuParent.setBackgroundColor(Color.TRANSPARENT);
 
-            // imageMenu.getLayoutParams().width = Dips.dpToPx(50);
-            // imageMenu.getLayoutParams().height = Dips.dpToPx(50);
-            ((LinearLayout.LayoutParams) imageMenu.getLayoutParams()).leftMargin = Dips.dpToPx(10);
         }
 
         Android6.checkPermissions(this);
@@ -348,7 +343,12 @@ public class MainTabs2 extends FragmentActivity {
             if (pos != -1) {
                 pager.setCurrentItem(pos);
             } else {
-                if (!AppState.get().isInkMode) {
+                if (AppState.get().isInkMode) {
+                    TintUtil.setTintImageNoAlpha(imageMenu, TintUtil.color);
+                    indicator.setSelectedIndicatorColors(TintUtil.color);
+                    indicator.setDividerColors(TintUtil.color);
+                    indicator.updateIcons(pager.getCurrentItem());
+                } else {
                     indicator.setBackgroundColor(TintUtil.color);
                     imageMenuParent.setBackgroundColor(TintUtil.color);
                 }

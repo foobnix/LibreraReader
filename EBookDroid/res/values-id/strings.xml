@@ -399,4 +399,8 @@
    <string name="contrast">Kontras</string>
    <string name="can_t_delete_file">Tidak bisa menghapus file</string>
    <string name="remove_from_library">Hapus dari Perpustakaan</string>
+   <string name="e_ink">E-Ink</string>
+   <string name="contrast_and_brightness">Kontras dan Kecerahan</string>
+   <string name="book_covers">Sampul buku</string>
+   <string name="page_position">Posisi halaman</string>
 </resources>

@@ -399,4 +399,8 @@
    <string name="contrast">对比</string>
    <string name="can_t_delete_file">不能删除文件</string>
    <string name="remove_from_library">从图书馆删除</string>
+   <string name="e_ink">电子墨水</string>
+   <string name="contrast_and_brightness">对比度和亮度</string>
+   <string name="book_covers">书的封面</string>
+   <string name="page_position">页面位置</string>
 </resources>

@@ -399,4 +399,8 @@
    <string name="contrast">コントラスト</string>
    <string name="can_t_delete_file">ファイルを削除できません</string>
    <string name="remove_from_library">ライブラリから削除</string>
+   <string name="e_ink">Eインク</string>
+   <string name="contrast_and_brightness">コントラストと明るさ</string>
+   <string name="book_covers">ブックカバー</string>
+   <string name="page_position">ページの位置</string>
 </resources>

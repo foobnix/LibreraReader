@@ -399,4 +399,8 @@
    <string name="contrast">Contraste</string>
    <string name="can_t_delete_file">Ne supprime pas le fichier</string>
    <string name="remove_from_library">Supprimer de la bibliothèque</string>
+   <string name="e_ink">E-Ink</string>
+   <string name="contrast_and_brightness">Contraste et luminosité</string>
+   <string name="book_covers">Couvertures de livre</string>
+   <string name="page_position">Position de la page</string>
 </resources>

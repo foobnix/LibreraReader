@@ -399,4 +399,8 @@
    <string name="contrast">대조</string>
    <string name="can_t_delete_file">파일을 삭제할 수 없습니다.</string>
    <string name="remove_from_library">라이브러리에서 제거</string>
+   <string name="e_ink">전자 잉크</string>
+   <string name="contrast_and_brightness">대비 및 밝기</string>
+   <string name="book_covers">도서 표지</string>
+   <string name="page_position">페이지 위치</string>
 </resources>

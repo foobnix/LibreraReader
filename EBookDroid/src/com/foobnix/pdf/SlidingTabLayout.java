@@ -62,7 +62,7 @@ public class SlidingTabLayout extends HorizontalScrollView {
 
     private static final int TITLE_OFFSET_DIPS = 24;
     private static final int TAB_VIEW_PADDING_DIPS = 16;
-    private static final int TAB_VIEW_TEXT_SIZE_SP = 12;
+    private static final int TAB_VIEW_TEXT_SIZE_SP = 13;
 
     private int mTitleOffset;
 
@@ -230,7 +230,7 @@ public class SlidingTabLayout extends HorizontalScrollView {
 
                 if (AppState.get().isInkMode) {
                     // TintUtil.setDrawableTint(drawable, Color.BLACK);
-                    tabTitleView.setTextColor(Color.BLACK);
+                    tabTitleView.setTextColor(TintUtil.color);
                 } else {
                     TintUtil.setDrawableTint(drawable, Color.WHITE);
                     tabTitleView.setTextColor(Color.WHITE);
@@ -334,14 +334,14 @@ public class SlidingTabLayout extends HorizontalScrollView {
 
     }
 
-    private void updateIcons(int position) {
+    public void updateIcons(int position) {
         for (int i = 0; i < getmTabStrip().getChildCount(); i++) {
             TextView childAt = (TextView) getmTabStrip().getChildAt(i);
             int myColor = i == position ? Color.WHITE : TintUtil.colorSecondTab;
             Drawable drawable = childAt.getCompoundDrawables()[0];
             if (AppState.get().isInkMode) {
-                TintUtil.setDrawableTint(drawable, Color.BLACK);
-                childAt.setTextColor(Color.BLACK);
+                TintUtil.setDrawableTint(drawable, TintUtil.color);
+                childAt.setTextColor(TintUtil.color);
             } else {
                 childAt.setTextColor(myColor);
                 TintUtil.setDrawableTint(drawable, myColor);
@@ -354,7 +354,7 @@ public class SlidingTabLayout extends HorizontalScrollView {
         public void onClick(View v) {
             for (int i = 0; i < getmTabStrip().getChildCount(); i++) {
                 if (v == getmTabStrip().getChildAt(i)) {
-                    mViewPager.setCurrentItem(i);
+                    mViewPager.setCurrentItem(i, !AppState.get().isInkMode);
                     return;
                 }
             }

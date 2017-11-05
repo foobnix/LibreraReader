@@ -4,6 +4,8 @@
     <dimen name="wh_button">40dp</dimen>
     <dimen name="wh_button_small">30dp</dimen>
     
+    <dimen name="wh_button_big">40dp</dimen>
+    
      
        <dimen name="title_wh_button">30sp</dimen>
        <dimen name="title_wh_padding">6sp</dimen>

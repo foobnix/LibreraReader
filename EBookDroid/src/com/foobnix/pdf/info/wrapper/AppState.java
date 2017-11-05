@@ -480,14 +480,13 @@ public class AppState {
         }
         if (AppState.get().isInkMode || AppsConfig.IS_INK) {
             AppsConfig.ADMOB_FULLSCREEN = null;
+            AppState.getInstance().isInkMode = true;
             AppState.getInstance().isEditMode = true;
             AppState.getInstance().isRememberMode = true;
             AppState.getInstance().isAlwaysOpenAsMagazine = true;
             AppState.getInstance().isMusicianMode = false;
             AppState.getInstance().isReverseKeys = true;
             AppState.getInstance().isScrollAnimation = false;
-            AppState.getInstance().statusBarColorDay = Color.BLACK;
-            AppState.getInstance().contrastImage = 25;
             AppState.getInstance().tintColor = Color.BLACK;
 
         }

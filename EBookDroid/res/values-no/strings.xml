@@ -399,4 +399,8 @@
    <string name="contrast">Kontrast</string>
    <string name="can_t_delete_file">Kan ikke slette fil</string>
    <string name="remove_from_library">Fjern fra biblioteket</string>
+   <string name="e_ink">E-Ink</string>
+   <string name="contrast_and_brightness">Kontrast og lysstyrke</string>
+   <string name="book_covers">Bokomslag</string>
+   <string name="page_position">Sidestilling</string>
 </resources>

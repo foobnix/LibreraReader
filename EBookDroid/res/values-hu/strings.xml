@@ -399,4 +399,8 @@
    <string name="contrast">Kontraszt</string>
    <string name="can_t_delete_file">Nem lehet törölni a fájlt</string>
    <string name="remove_from_library">Vegye ki a könyvtárból</string>
+   <string name="e_ink">E-Ink</string>
+   <string name="contrast_and_brightness">Kontraszt és fényerő</string>
+   <string name="book_covers">Könyvborítók</string>
+   <string name="page_position">Az oldal pozíciója</string>
 </resources>

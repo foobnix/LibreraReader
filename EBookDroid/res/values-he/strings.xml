@@ -399,4 +399,8 @@
    <string name="contrast">בניגוד</string>
    <string name="can_t_delete_file">לא ניתן למחוק את הקובץ</string>
    <string name="remove_from_library">הסר מהספרייה</string>
+   <string name="e_ink">E-Ink</string>
+   <string name="contrast_and_brightness">ניגודיות ובהירות</string>
+   <string name="book_covers">כריכת ספרים</string>
+   <string name="page_position">מיקום הדף</string>
 </resources>

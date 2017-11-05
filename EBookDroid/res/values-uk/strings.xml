@@ -399,4 +399,8 @@
    <string name="contrast">Контрастність</string>
    <string name="can_t_delete_file">Не можна видалити файл</string>
    <string name="remove_from_library">Видалити з бібліотеки</string>
+   <string name="e_ink">E-Ink</string>
+   <string name="contrast_and_brightness">Контрастність та яскравість</string>
+   <string name="book_covers">Книжкові обкладинки</string>
+   <string name="page_position">Позиція сторінки</string>
 </resources>

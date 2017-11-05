@@ -399,4 +399,8 @@
    <string name="contrast">विरोध</string>
    <string name="can_t_delete_file">फ़ाइल मिटा नहीं सकते</string>
    <string name="remove_from_library">लाइब्रेरी से निकालें</string>
+   <string name="e_ink">ई-इंक</string>
+   <string name="contrast_and_brightness">कॉन्ट्रास्ट और ब्राइटनेस</string>
+   <string name="book_covers">बुक कवर</string>
+   <string name="page_position">पेज की स्थिति</string>
 </resources>

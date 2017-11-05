@@ -399,4 +399,8 @@
    <string name="contrast">Kontrastas</string>
    <string name="can_t_delete_file">Negalima ištrinti failo</string>
    <string name="remove_from_library">Pašalinti iš bibliotekos</string>
+   <string name="e_ink">E-Ink</string>
+   <string name="contrast_and_brightness">Kontrastas ir ryškumas</string>
+   <string name="book_covers">Knygų viršeliai</string>
+   <string name="page_position">Puslapio pozicija</string>
 </resources>

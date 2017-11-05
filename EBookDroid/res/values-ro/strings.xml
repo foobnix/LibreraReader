@@ -399,4 +399,8 @@
    <string name="contrast">Contrast</string>
    <string name="can_t_delete_file">Nu se poate șterge fișierul</string>
    <string name="remove_from_library">Eliminați din Bibliotecă</string>
+   <string name="e_ink">E-Ink</string>
+   <string name="contrast_and_brightness">Contrast și Luminozitate</string>
+   <string name="book_covers">Coperți de cărți</string>
+   <string name="page_position">Poziția paginii</string>
 </resources>

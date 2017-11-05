@@ -399,4 +399,8 @@
    <string name="contrast">Contrast</string>
    <string name="can_t_delete_file">Kan het bestand niet verwijderen</string>
    <string name="remove_from_library">Verwijder uit de bibliotheek</string>
+   <string name="e_ink">E-Ink</string>
+   <string name="contrast_and_brightness">Contrast en helderheid</string>
+   <string name="book_covers">Boekomslagen</string>
+   <string name="page_position">Pagina positie</string>
 </resources>

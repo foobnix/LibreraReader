@@ -166,7 +166,7 @@ public class DragingDialogs {
 
     public static void onMoveDialog(final FrameLayout anchor, final DocumentController controller, final Runnable onRefresh, final Runnable updateUIRefresh) {
 
-        DragingPopup dialog = new DragingPopup(R.string.manually_move_the_page, anchor, 280, 250) {
+        DragingPopup dialog = new DragingPopup(controller.getString(R.string.page_position), anchor, 280, 250) {
 
             @Override
             @SuppressLint("NewApi")
@@ -180,7 +180,7 @@ public class DragingDialogs {
                 ImageView onPlus = (ImageView) view.findViewById(R.id.onPlus);
                 ImageView onMinus = (ImageView) view.findViewById(R.id.onMinus);
                 ImageView onCenter = (ImageView) view.findViewById(R.id.onCenter);
-                ImageView onCrop = (ImageView) view.findViewById(R.id.onCrop);
+                final ImageView onCrop = (ImageView) view.findViewById(R.id.onCrop);
 
                 TintUtil.setTintImage(onUp);
                 TintUtil.setTintImage(onDonw);
@@ -198,8 +198,20 @@ public class DragingDialogs {
                         AppState.get().isCrop = !AppState.get().isCrop;
                         SettingsManager.getBookSettings().updateFromAppState();
                         updateUIRefresh.run();
+
+                        if (AppState.get().isCrop) {
+                            TintUtil.setTintImage(onCrop, TintUtil.COLOR_ORANGE);
+                        } else {
+                            TintUtil.setTintImage(onCrop);
+                        }
                     }
                 });
+
+                if (AppState.get().isCrop) {
+                    TintUtil.setTintImage(onCrop, TintUtil.COLOR_ORANGE);
+                } else {
+                    TintUtil.setTintImage(onCrop);
+                }
 
                 OnClickListener listner = new OnClickListener() {
 

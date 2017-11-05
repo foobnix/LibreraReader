@@ -97,7 +97,6 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.PopupMenu;
-import android.widget.RelativeLayout;
 import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -247,7 +246,6 @@ public class HorizontalViewActivity extends FragmentActivity {
         pagesPower = (TextView) findViewById(R.id.pagesPower);
         linkHistory = (ImageView) findViewById(R.id.linkHistory);
         onMove = (ImageView) findViewById(R.id.onMove);
-        onMove.setVisibility(AppState.get().isInkMode ? View.VISIBLE : View.GONE);
         onMove.setOnClickListener(new OnClickListener() {
 
             @Override
@@ -519,11 +517,6 @@ public class HorizontalViewActivity extends FragmentActivity {
         });
 
         View onClose = findViewById(R.id.bookClose);
-        if (AppState.get().isInkMode) {
-            onClose.getLayoutParams().width = Dips.dpToPx(40);
-            onClose.getLayoutParams().height = Dips.dpToPx(40);
-            ((RelativeLayout.LayoutParams) onClose.getLayoutParams()).rightMargin = Dips.dpToPx(10);
-        }
 
         onClose.setOnClickListener(new View.OnClickListener() {
 
@@ -684,7 +677,7 @@ public class HorizontalViewActivity extends FragmentActivity {
                         PageImageState.get().isAutoFit = true;
                         moveCenter.setVisibility(View.GONE);
                     } else if (AppState.get().isLockPDF) {
-                        moveCenter.setVisibility(View.VISIBLE);
+                        // moveCenter.setVisibility(View.VISIBLE);
                         AppState.get().isLocked = true;
                     }
 
@@ -713,10 +706,14 @@ public class HorizontalViewActivity extends FragmentActivity {
                     } else {
                         onModeChange.setImageResource(R.drawable.glyphicons_two_page_one);
                     }
-                    onCrop.setVisibility(documentController.isTextFormat() ? View.GONE : View.VISIBLE);
-                    if (documentController.isTextFormat()) {
-                        onMove.setVisibility(View.GONE);
-                    }
+                    // onCrop.setVisibility(documentController.isTextFormat() ?
+                    // View.GONE : View.VISIBLE);
+                    onMove.setVisibility(documentController.isTextFormat() ? View.GONE : View.VISIBLE);
+                    // onMove.setVisibility(AppState.get().isInkMode ?
+                    // View.VISIBLE : View.GONE);
+                    // if (documentController.isTextFormat()) {
+                    // onMove.setVisibility(View.GONE);
+                    // }
                     if (AppState.get().isCrop) {
                         TintUtil.setTintImage(onCrop, TintUtil.COLOR_ORANGE);
                     } else {
@@ -1523,6 +1520,15 @@ public class HorizontalViewActivity extends FragmentActivity {
             return;
         }
         prev = AppState.get().isEditMode;
+
+        if (AppState.get().isInkMode) {
+            actionBar.setVisibility(AppState.get().isEditMode ? View.VISIBLE : View.GONE);
+            bottomBar.setVisibility(AppState.get().isEditMode ? View.VISIBLE : View.GONE);
+            adFrame.setVisibility(AppState.get().isEditMode ? View.VISIBLE : View.GONE);
+
+            DocumentController.chooseFullScreen(this, AppState.get().isFullScreen);
+            return;
+        }
 
         final TranslateAnimation hideActionBar = new TranslateAnimation(0, 0, 0, -actionBar.getHeight());
         final TranslateAnimation hideBottomBar = new TranslateAnimation(0, 0, 0, bottomBar.getHeight());
