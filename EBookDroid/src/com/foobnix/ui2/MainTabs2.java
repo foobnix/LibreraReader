@@ -201,9 +201,9 @@ public class MainTabs2 extends FragmentActivity {
             @Override
             public void onClick(View v) {
                 if (drawerLayout.isDrawerOpen(Gravity.START))
-                    drawerLayout.closeDrawer(Gravity.START);
+                    drawerLayout.closeDrawer(Gravity.START, !AppState.get().isInkMode);
                 else
-                    drawerLayout.openDrawer(Gravity.START);
+                    drawerLayout.openDrawer(Gravity.START, !AppState.get().isInkMode);
 
             }
         });
