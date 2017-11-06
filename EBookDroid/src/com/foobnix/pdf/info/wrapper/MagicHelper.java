@@ -691,8 +691,11 @@ public class MagicHelper {
     }
 
     public static void applyQuickContrastAndBrightness(int[] arr) {
-        if (AppState.get().contrastImage == 0 && AppState.get().brigtnessImage == 0) {
+        if (!AppState.getInstance().bolderTextOnImage && AppState.get().contrastImage == 0 && AppState.get().brigtnessImage == 0) {
             return;
+        }
+        if (AppState.getInstance().bolderTextOnImage) {
+            embolden(arr);
         }
         quickContrast3(arr, AppState.get().contrastImage, AppState.get().brigtnessImage * -1);
     }
@@ -701,6 +704,7 @@ public class MagicHelper {
     static int simpleHash = 0;
 
     public static void quickContrast3(int[] arr, int extra_contrast, int delta_brightness) {
+
         int lum;
 
         // Use linear contrast variation; extra_contrast=0 = no change,
@@ -737,6 +741,31 @@ public class MagicHelper {
             lum = ((temp & 0x00FF0000) >> 17) + ((temp & 0x0000FF00) >> 10) + ((temp & 0x000000FF) >> 2);
             // retrieve output from map
             arr[i] = brightnessContrastMap[lum];
+        }
+
+    }
+
+    public static void embolden(int[] arr) {
+        int lum;
+
+        int[] sharpenMap = new int[256];
+
+        for (int i = 0; i < 256; i++) {
+            lum = 256 - ((256 - i) * (256 - i) / 256); // inv-mult map (to a
+            sharpenMap[i] = (lum << 16) + (lum << 8) + lum;
+        }
+
+        int lum_this = arr[0] & 0x000000FF; // lazy read for the first pixel
+        for (int i = 0; i < arr.length - 1; i++) {
+            int temp = arr[i + 1];
+            int lum_next = ((temp & 0x00FF0000) >> 17) + ((temp & 0x0000FF00) >> 10) + ((temp & 0x000000FF) >> 2);
+
+            lum = (lum_this * lum_next) >> 8; // multiply with offset
+
+            arr[i] = sharpenMap[lum];
+
+            lum_this = lum_next;
+
         }
 
     }

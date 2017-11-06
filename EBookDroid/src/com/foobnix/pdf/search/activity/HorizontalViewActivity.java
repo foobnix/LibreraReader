@@ -311,6 +311,22 @@ public class HorizontalViewActivity extends FragmentActivity {
                 documentController.restartActivity();
             }
         });
+        if (Dips.isEInk(this)) {
+            dayNightButton.setVisibility(View.GONE);
+            AppState.get().isInvert = true;
+        }
+
+        ImageView onBC = (ImageView) findViewById(R.id.onBC);
+        onBC.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(final View v) {
+                AppState.get().isEditMode = false;
+                hideShow();
+
+                DragingDialogs.contrastAndBrigtness(anchor, documentController, reloadDoc);
+            }
+        });
 
         dayNightButton.setImageResource(!AppState.get().isInvert ? R.drawable.glyphicons_232_sun : R.drawable.glyphicons_2_moon);
 

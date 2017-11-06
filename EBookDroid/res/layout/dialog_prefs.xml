@@ -82,6 +82,7 @@
                 android:tint="@color/tint_gray" />
 
             <ImageView
+                android:visibility="gone"
                 android:id="@+id/bookCut"
                 android:layout_width="@dimen/wh_button"
                 android:layout_height="@dimen/wh_button"
@@ -95,6 +96,7 @@
                 android:tint="@color/tint_gray" />
 
             <ImageView
+                android:visibility="gone"
                 android:id="@+id/onRotate"
                 android:layout_width="@dimen/wh_button"
                 android:layout_height="@dimen/wh_button"
@@ -119,6 +121,7 @@
                 android:visibility="gone" />
 
             <ImageView
+                android:visibility="gone"
                 android:id="@+id/onCrop"
                 android:layout_width="@dimen/wh_button"
                 android:layout_height="@dimen/wh_button"
@@ -153,6 +156,7 @@
                 android:visibility="gone" />
 
             <ImageView
+                android:visibility="gone"
                 android:id="@+id/onPin"
                 android:layout_width="@dimen/wh_button"
                 android:layout_height="@dimen/wh_button"

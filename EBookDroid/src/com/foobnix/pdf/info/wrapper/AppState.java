@@ -239,6 +239,8 @@ public class AppState {
 
     public int contrastImage = 0;
     public int brigtnessImage = 0;
+    public boolean bolderTextOnImage = false;
+
     public float brightness = -1f;
     public float cropTolerance = 0.5f;
 
@@ -481,6 +483,7 @@ public class AppState {
         if (AppState.get().isInkMode || AppsConfig.IS_INK) {
             AppsConfig.ADMOB_FULLSCREEN = null;
             AppState.getInstance().isInkMode = true;
+            AppState.getInstance().isInvert = true;
             AppState.getInstance().isEditMode = true;
             AppState.getInstance().isRememberMode = true;
             AppState.getInstance().isAlwaysOpenAsMagazine = true;

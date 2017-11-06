@@ -164,6 +164,21 @@ public class DragingDialogs {
 
     }
 
+    public static void contrastAndBrigtness(final FrameLayout anchor, final DocumentController controller, final Runnable onRealod) {
+
+        DragingPopup dialog = new DragingPopup(R.string.contrast_and_brightness, anchor, 300, 240) {
+
+            @Override
+            @SuppressLint("NewApi")
+            public View getContentView(LayoutInflater inflater) {
+                final Activity c = controller.getActivity();
+                return Dialogs.getBCView(c, onRealod);
+            }
+        };
+        dialog.show("contrastAndBrigtness");
+
+    }
+
     public static void onMoveDialog(final FrameLayout anchor, final DocumentController controller, final Runnable onRefresh, final Runnable updateUIRefresh) {
 
         DragingPopup dialog = new DragingPopup(controller.getString(R.string.page_position), anchor, 280, 250) {
