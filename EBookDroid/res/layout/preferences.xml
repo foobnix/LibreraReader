@@ -891,6 +891,7 @@
             android:text="@string/book_covers" />
 
         <TextView
+            android:visibility="gone"
             android:id="@+id/onContrast"
             style="@style/textLink"
             android:layout_width="wrap_content"
@@ -898,6 +899,7 @@
             android:text="@string/contrast_and_brightness" />
 
         <View
+            android:visibility="gone"
             android:layout_width="match_parent"
             android:layout_height="1dp"
             android:layout_marginBottom="1dip"

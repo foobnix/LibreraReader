@@ -373,6 +373,8 @@ public class PrefFragment2 extends UIFragment {
 
                         AppState.get().tintColor = Color.parseColor(AppState.STYLE_COLORS.get(0));
                         AppState.getInstance().contrastImage = 0;
+                        AppState.getInstance().brigtnessImage = 0;
+                        AppState.getInstance().bolderTextOnImage = false;
                         TintUtil.color = AppState.get().tintColor;
 
                         AppState.get().save(getActivity());
@@ -393,6 +395,8 @@ public class PrefFragment2 extends UIFragment {
 
                         AppState.get().tintColor = Color.parseColor(AppState.STYLE_COLORS.get(0));
                         AppState.getInstance().contrastImage = 0;
+                        AppState.getInstance().brigtnessImage = 0;
+                        AppState.getInstance().bolderTextOnImage = false;
                         TintUtil.color = AppState.get().tintColor;
 
                         AppState.get().save(getActivity());

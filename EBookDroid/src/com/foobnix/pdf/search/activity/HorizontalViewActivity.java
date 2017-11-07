@@ -115,7 +115,7 @@ public class HorizontalViewActivity extends FragmentActivity {
     private AdView adView;
     private NativeExpressAdView adViewNative;
 
-    ImageView lockModelImage, linkHistory, ttsActive, onModeChange, outline, onMove;
+    ImageView lockModelImage, linkHistory, ttsActive, onModeChange, outline, onMove, onBC;
 
     DocumentControllerHorizontalView documentController;
 
@@ -198,7 +198,6 @@ public class HorizontalViewActivity extends FragmentActivity {
 
         }
 
-
         clickUtils = new ClickUtils();
 
         AppState.get().load(this);
@@ -251,8 +250,6 @@ public class HorizontalViewActivity extends FragmentActivity {
 
             @Override
             public void onClick(View v) {
-                AppState.get().isEditMode = false;
-                hideShow();
                 DragingDialogs.onMoveDialog(anchor, documentController, onRefresh, reloadDoc);
             }
         });
@@ -317,14 +314,11 @@ public class HorizontalViewActivity extends FragmentActivity {
             AppState.get().isInvert = true;
         }
 
-        ImageView onBC = (ImageView) findViewById(R.id.onBC);
+        onBC = (ImageView) findViewById(R.id.onBC);
         onBC.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(final View v) {
-                AppState.get().isEditMode = false;
-                hideShow();
-
                 DragingDialogs.contrastAndBrigtness(anchor, documentController, reloadDoc);
             }
         });
@@ -723,14 +717,11 @@ public class HorizontalViewActivity extends FragmentActivity {
                     } else {
                         onModeChange.setImageResource(R.drawable.glyphicons_two_page_one);
                     }
-                    // onCrop.setVisibility(documentController.isTextFormat() ?
-                    // View.GONE : View.VISIBLE);
-                    onMove.setVisibility(documentController.isTextFormat() ? View.GONE : View.VISIBLE);
-                    // onMove.setVisibility(AppState.get().isInkMode ?
-                    // View.VISIBLE : View.GONE);
-                    // if (documentController.isTextFormat()) {
-                    // onMove.setVisibility(View.GONE);
-                    // }
+
+                    onCrop.setVisibility(documentController.isTextFormat() ? View.GONE : View.VISIBLE);
+                    onMove.setVisibility(AppState.get().isInkMode && !documentController.isTextFormat() ? View.VISIBLE : View.GONE);
+                    onBC.setVisibility(AppState.get().isInkMode ? View.VISIBLE : View.GONE);
+
                     if (AppState.get().isCrop) {
                         TintUtil.setTintImage(onCrop, TintUtil.COLOR_ORANGE);
                     } else {

@@ -135,7 +135,6 @@
             <ImageView
                 android:id="@+id/moveCenter"
                 style="@style/buttonWhite"
-                android:visibility="gone"
                 android:layout_width="@dimen/wh_button"
                 android:layout_height="@dimen/wh_button"
                 android:layout_weight="0"
@@ -143,8 +142,8 @@
                 android:src="@drawable/glyphicons_114_justify" />
             
             <ImageView
-                android:visibility="gone"
                 android:id="@+id/onCrop"
+                android:visibility="gone"
                 style="@style/buttonWhite"
                 android:layout_width="@dimen/wh_button"
                 android:layout_height="@dimen/wh_button"
