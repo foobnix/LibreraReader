@@ -691,15 +691,14 @@ public class MagicHelper {
     }
 
     public static void applyQuickContrastAndBrightness(int[] arr, int w, int h) {
-        if (!AppState.getInstance().bolderTextOnImage && AppState.get().contrastImage == 0 && AppState.get().brigtnessImage == 0) {
-            return;
-        }
-        if (AppState.getInstance().bolderTextOnImage) {
-            fastblur(arr, w, h, 1);
-            //embolden(arr);
-        }
-        quickContrast3(arr, AppState.get().contrastImage, AppState.get().brigtnessImage * -1);
+        if (AppState.getInstance().bolderTextOnImage || AppState.get().contrastImage != 0 || AppState.get().brigtnessImage != 0) {
 
+            if (AppState.getInstance().bolderTextOnImage) {
+                embolden(arr);
+            }
+            quickContrast3(arr, AppState.get().contrastImage, AppState.get().brigtnessImage * -1);
+
+        }
 
     }
 
@@ -754,8 +753,8 @@ public class MagicHelper {
 
         int[] sharpenMap = new int[256];
 
-        for (int i = 0; i < 256; i++) {
-            lum = 256 - ((256 - i) * (256 - i) / 256); // inv-mult map (to a
+        for (int i = 0; i <= 255; i++) {
+            lum = 255 - ((255 - i) * (255 - i) / 255); // inv-mult map (to a
             sharpenMap[i] = (lum << 16) + (lum << 8) + lum;
         }
 
@@ -957,7 +956,6 @@ public class MagicHelper {
                 yi += w;
             }
         }
-
 
     }
 

@@ -161,6 +161,19 @@ public class HorizontalViewActivity extends FragmentActivity {
         flippingHandler = new Handler();
         flippingTimer = 0;
 
+        long crateBegin = System.currentTimeMillis();
+
+        requestWindowFeature(Window.FEATURE_NO_TITLE);
+        DocumentController.applyBrigtness(this);
+
+        if (AppState.getInstance().isInvert) {
+            setTheme(R.style.StyledIndicatorsWhite);
+        } else {
+            setTheme(R.style.StyledIndicatorsBlack);
+        }
+
+        super.onCreate(savedInstanceState);
+
         if (!AppsConfig.checkIsProInstalled(this) && AppsConfig.ADMOB_FULLSCREEN != null) {
             handler.postDelayed(new Runnable() {
 
@@ -185,18 +198,6 @@ public class HorizontalViewActivity extends FragmentActivity {
 
         }
 
-        long crateBegin = System.currentTimeMillis();
-
-        requestWindowFeature(Window.FEATURE_NO_TITLE);
-        DocumentController.applyBrigtness(this);
-
-        if (AppState.getInstance().isInvert) {
-            setTheme(R.style.StyledIndicatorsWhite);
-        } else {
-            setTheme(R.style.StyledIndicatorsBlack);
-        }
-
-        super.onCreate(savedInstanceState);
 
         clickUtils = new ClickUtils();
 

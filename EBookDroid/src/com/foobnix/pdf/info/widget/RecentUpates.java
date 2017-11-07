@@ -36,11 +36,15 @@ public class RecentUpates {
         }
 
         LOG.d("RecentUpates", "update widgets");
+        try {
 
         {
             Intent intent = new Intent(c, RecentBooksWidget.class);
             intent.setAction("android.appwidget.action.APPWIDGET_UPDATE");
             c.sendBroadcast(intent);
+        }
+        } catch (Exception e) {
+            LOG.e(e);
         }
 
         if (Build.VERSION.SDK_INT >= 25) {
