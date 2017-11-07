@@ -14,9 +14,6 @@ public class CustomViewPager extends RtlViewPager {
 
     @Override
     public boolean onTouchEvent(MotionEvent event) {
-        if (AppState.get().isInkMode) {
-            return false;
-        }
         if (event.getPointerCount() == 1 && AppState.get().selectedText == null) {
             try {
                 return super.onTouchEvent(event);
@@ -29,10 +26,6 @@ public class CustomViewPager extends RtlViewPager {
 
     @Override
     public boolean onInterceptTouchEvent(MotionEvent event) {
-        if (AppState.get().isInkMode) {
-            return false;
-        }
-
         if (event.getPointerCount() == 1 && AppState.get().selectedText == null) {
             try {
                 return super.onInterceptTouchEvent(event);

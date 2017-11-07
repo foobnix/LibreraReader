@@ -31,6 +31,7 @@ import android.widget.TextView;
 public class MagicHelper {
 
     public static boolean isNeedMagic = true;
+    public static boolean isNeedBC = true;
 
     public static int hash() {
         StringBuilder builder = new StringBuilder();
@@ -747,15 +748,18 @@ public class MagicHelper {
 
     }
 
+    static int[] sharpenMap = null;
+
     public static void embolden(int[] arr) {
 
         int lum;
 
-        int[] sharpenMap = new int[256];
-
-        for (int i = 0; i <= 255; i++) {
-            lum = 255 - ((255 - i) * (255 - i) / 255); // inv-mult map (to a
-            sharpenMap[i] = (lum << 16) + (lum << 8) + lum;
+        if (sharpenMap == null) {
+            sharpenMap = new int[256];
+            for (int i = 0; i <= 255; i++) {
+                lum = 255 - ((255 - i) * (255 - i) / 255); // inv-mult map (to a
+                sharpenMap[i] = (lum << 16) + (lum << 8) + lum;
+            }
         }
 
         int lum_this = arr[0] & 0x000000FF; // lazy read for the first pixel
