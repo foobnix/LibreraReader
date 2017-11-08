@@ -239,123 +239,119 @@
                 android:layout_height="wrap_content"
                 android:text="@string/in_the_author_s_name_first_the_surname" />
         </LinearLayout>
+        
+         <TextView
+                android:id="@+id/section2"
+                style="@style/textLinkWhite"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_search_second"
+                android:layout_marginTop="4dip"
+                android:text="@string/preferences" />
 
-        <TextView
-            android:id="@+id/section2"
-            style="@style/textLinkWhite"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="4dip"
-            android:layout_weight="1"
-            android:background="@drawable/bg_search_second"
-            android:text="@string/preferences" />
+        
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="5dip"
-            android:clickable="true"
-            android:gravity="center_vertical"
+            android:layout_marginLeft="5dip" >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Language"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/appLang"
+                style="@style/textLink"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Russian" />
+        </LinearLayout>
+        
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dip" >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Font size"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/appFontScale"
+                style="@style/textLink"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Normal" />
+        </LinearLayout>
+        
+         <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dip"
+             >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Theme"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/themeColor"
+                style="@style/textLink"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/light" />
+            
+            <LinearLayout
+            android:id="@+id/colorsLine"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="bottom"
             android:orientation="horizontal" >
 
-            <ImageView
-                android:id="@+id/iconRestart"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:padding="5dip"
-                android:src="@drawable/glyphicons_366_restart"
-                android:tint="@color/tint_gray" />
+            <include
+                android:id="@+id/color1"
+                android:layout_width="25dip"
+                android:layout_height="25dip"
+                android:layout_margin="1dip"
+                layout="@layout/item_color" />
 
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginRight="5dip"
-                android:orientation="vertical" >
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="5dip"
-                    android:text="@string/theme"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:id="@+id/themeColor"
-                    style="@style/textLink"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/light" />
-            </LinearLayout>
-
-            <ImageView
-                android:id="@+id/iconRandom"
-                android:layout_width="30dip"
-                android:layout_height="30dip"
-                android:layout_marginRight="2dip"
-                android:background="@drawable/bg_border_ltgray"
-                android:padding="4dip"
-                android:src="@drawable/glyphicons_748_synchronization"
-                android:tint="@color/tint_gray"
-                android:visibility="gone" />
-
-            <LinearLayout
-                android:id="@+id/colorsLine"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="bottom"
-                android:orientation="horizontal" >
-
-                <include
-                    android:id="@+id/color1"
-                    android:layout_width="25dip"
-                    android:layout_height="25dip"
-                    android:layout_margin="1dip"
-                    layout="@layout/item_color" />
-
-                <include
-                    android:id="@+id/color2"
-                    android:layout_width="25dip"
-                    android:layout_height="25dip"
-                    android:layout_margin="1dip"
-                    layout="@layout/item_color" />
-            </LinearLayout>
+            <include
+                android:id="@+id/color2"
+                android:layout_width="25dip"
+                android:layout_height="25dip"
+                android:layout_margin="1dip"
+                layout="@layout/item_color" />
+        </LinearLayout>
         </LinearLayout>
 
         <LinearLayout
-            android:id="@+id/onScreenMode"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="5dip"
-            android:clickable="true"
-            android:gravity="center_vertical" >
+            android:layout_marginLeft="5dip" >
 
-            <ImageView
+            <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:padding="5dip"
-                android:src="@drawable/glyphicons_489_multiple_displays"
-                android:tint="@color/tint_gray" />
+                android:text="@string/screen_orientation"
+                android:textStyle="bold" />
 
-            <LinearLayout
-                android:layout_width="match_parent"
+            <TextView
+                android:id="@+id/screenModeType"
+                style="@style/textLink"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="vertical" >
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="5dip"
-                    android:text="@string/screen_orientation"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:id="@+id/screenModeType"
-                    style="@style/textLink"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/automatic" />
-            </LinearLayout>
+                android:text="@string/automatic" />
         </LinearLayout>
+
+       
+
 
         <LinearLayout
             android:id="@+id/onFullScreen"
@@ -879,8 +875,6 @@
                 android:text="@string/clear_all_bookmars" />
         </LinearLayout>
 
-       
-
         <TextView
             android:id="@+id/section4"
             style="@style/textLinkWhite"
@@ -891,20 +885,20 @@
             android:text="@string/book_covers" />
 
         <TextView
-            android:visibility="gone"
             android:id="@+id/onContrast"
             style="@style/textLink"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/contrast_and_brightness" />
+            android:text="@string/contrast_and_brightness"
+            android:visibility="gone" />
 
         <View
-            android:visibility="gone"
             android:layout_width="match_parent"
             android:layout_height="1dp"
             android:layout_marginBottom="1dip"
             android:layout_marginTop="1dip"
-            android:background="@color/lt_grey_alpha" />
+            android:background="@color/lt_grey_alpha"
+            android:visibility="gone" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -1010,8 +1004,8 @@
 
             <include layout="@layout/item_tab_line" />
         </com.jmedeisis.draglinearlayout.DragLinearLayout>
-        
-         <LinearLayout
+
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal" >

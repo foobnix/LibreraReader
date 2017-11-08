@@ -130,6 +130,11 @@ public class MainTabs2 extends FragmentActivity {
     }
 
     @Override
+    protected void attachBaseContext(Context context) {
+        super.attachBaseContext(MyContextWrapper.wrap(context, AppState.get().appLang, AppState.get().appFontScale));
+    }
+
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         if (AppState.getInstance().isWhiteTheme) {
             setTheme(R.style.StyledIndicatorsWhite);
@@ -137,7 +142,7 @@ public class MainTabs2 extends FragmentActivity {
             setTheme(R.style.StyledIndicatorsBlack);
         }
         super.onCreate(savedInstanceState);
-        // test
+
 
         LOG.d("EXTRA_EXIT", EXTRA_EXIT);
         if (getIntent().getBooleanExtra(EXTRA_EXIT, false)) {
@@ -381,6 +386,7 @@ public class MainTabs2 extends FragmentActivity {
     };
 
     boolean isMyKey = false;
+
     @Override
     public boolean onKeyDown(int keyCode1, KeyEvent event) {
         int keyCode = event.getKeyCode();
