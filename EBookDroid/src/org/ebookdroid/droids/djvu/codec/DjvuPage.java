@@ -75,7 +75,9 @@ public class DjvuPage extends AbstractCodecPage {
             final int[] buffer = new int[width * height];
             renderPageWrapper(pageHandle, contextHandle, width, height, pageSliceBounds.left, pageSliceBounds.top, pageSliceBounds.width(), pageSliceBounds.height(), buffer, renderMode);
 
+            if (MagicHelper.isNeedBC) {
             MagicHelper.applyQuickContrastAndBrightness(buffer, width, height);
+            }
 
             MagicHelper.udpateColorsMagic(buffer);
             bmp.getBitmap().setPixels(buffer, 0, width, 0, 0, width, height);

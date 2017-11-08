@@ -273,6 +273,9 @@ public class AppState {
     public int bgImageDayTransparency = DAY_TRANSPARENCY;
     public int bgImageNightTransparency = NIGHT_TRANSPARENCY;
 
+    public String appLang = Urls.getLangCode();
+    public float appFontScale = 1.0f;
+
     public boolean isLocked = false;
     public boolean isLoopAutoplay = false;
     public boolean isBookCoverEffect = false;
@@ -556,6 +559,7 @@ public class AppState {
         ttsSpeed = getAsFloatOrInt(sp, "ttsSpeed", ttsSpeed);
         ttsPitch = getAsFloatOrInt(sp, "ttsPitch", ttsPitch);
         editLineWidth = getAsFloatOrInt(sp, "editLineWidth", editLineWidth);
+        appFontScale = getAsFloatOrInt(sp, "appFontScale", appFontScale);
 
         isSortAsc = sp.getBoolean("isSortAsc", isSortAsc);
         sortByReverse = sp.getBoolean("sortByReverse", sortByReverse);
@@ -670,6 +674,7 @@ public class AppState {
         imageFormat = sp.getString("imageFormat", imageFormat);
         fromLang = sp.getString("fromLang", fromLang);
         toLang = sp.getString("toLang", toLang);
+        appLang = sp.getString("appLang", appLang);
 
         customConfigColors = sp.getString("customConfigColors", customConfigColors);
 
@@ -788,6 +793,7 @@ public class AppState {
         editor.putInt("pagesInMemory", pagesInMemory);
         editor.putFloat("pageQuality", pageQuality);
         editor.putFloat("editLineWidth", editLineWidth);
+        editor.putFloat("appFontScale", appFontScale);
 
         editor.putBoolean("isSortAsc", isSortAsc);
         editor.putBoolean("sortByReverse", sortByReverse);
@@ -900,6 +906,7 @@ public class AppState {
 
         editor.putString("fromLang", fromLang);
         editor.putString("toLang", toLang);
+        editor.putString("appLang", appLang);
         editor.putString("customConfigColors", customConfigColors);
         editor.putLong("installationDate", installationDate);
         editor.putLong("searchDate", searchDate);

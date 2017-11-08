@@ -1,5 +1,8 @@
 package com.foobnix.ui2.fragment;
 
+import java.util.Arrays;
+import java.util.List;
+
 import com.buzzingandroid.ui.HSVColorPickerDialog;
 import com.buzzingandroid.ui.HSVColorPickerDialog.OnColorSelectedListener;
 import com.foobnix.android.utils.Apps;
@@ -76,7 +79,7 @@ public class PrefFragment2 extends UIFragment {
     private static final String WWW_BETA_SITE = "http://beta.librera.mobi";
     private static final String WWW_ARCHIVE_SITE = "http://archive.librera.mobi";
     private SearchFragment searchFragmet;
-    private TextView curBrightness;
+    private TextView curBrightness, themeColor;
     private CheckBox isRememberDictionary;
 
     @Override
@@ -298,7 +301,7 @@ public class PrefFragment2 extends UIFragment {
             }
         });
 
-        final View onScreenMode = inflate.findViewById(R.id.onScreenMode);
+        final View onScreenMode = inflate.findViewById(R.id.screenModeType);
         onScreenMode.setOnClickListener(new OnClickListener() {
 
             @Override
@@ -357,13 +360,14 @@ public class PrefFragment2 extends UIFragment {
                 new KeyCodeDialog(getActivity(), onCloseDialog);
             }
         });
-        final View theme = inflate.findViewById(R.id.themeColor);
-        theme.setOnClickListener(new OnClickListener() {
+
+        themeColor = (TextView) inflate.findViewById(R.id.themeColor);
+        themeColor.setOnClickListener(new OnClickListener() {
 
             @Override
             public void onClick(final View v) {
 
-                PopupMenu p = new PopupMenu(getContext(), theme);
+                PopupMenu p = new PopupMenu(getContext(), themeColor);
                 p.getMenu().add(R.string.light).setOnMenuItemClickListener(new OnMenuItemClickListener() {
 
                     @Override
@@ -408,7 +412,7 @@ public class PrefFragment2 extends UIFragment {
                         return false;
                     }
                 });
-                p.getMenu().add(R.string.e_ink).setOnMenuItemClickListener(new OnMenuItemClickListener() {
+                p.getMenu().add("e-" + getContext().getString(R.string.paper)).setOnMenuItemClickListener(new OnMenuItemClickListener() {
 
                     @Override
                     public boolean onMenuItemClick(MenuItem item) {
@@ -421,6 +425,63 @@ public class PrefFragment2 extends UIFragment {
                     }
                 });
                 p.show();
+            }
+        });
+
+        final TextView hypenLang = (TextView) inflate.findViewById(R.id.appLang);
+        hypenLang.setText(DialogTranslateFromTo.getLanuageByCode(AppState.get().appLang));
+        TxtUtils.underlineTextView(hypenLang);
+
+        hypenLang.setOnClickListener(new OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+
+                final PopupMenu popupMenu = new PopupMenu(v.getContext(), v);
+
+                List<String> all = Arrays.asList("ar", "de", "es", "fa", "fi", "fr", "he", "hi", "hu", "id", "it", "ja", "ko", "lt", "nl", "no", "pl", "pt", "ro", "ru", "sk", "sv", "sw", "th", "tr", "uk", "vi", "zh");
+
+                for (final String lang : all) {
+                    final String titleLang = DialogTranslateFromTo.getLanuageByCode(lang);
+                    popupMenu.getMenu().add(titleLang).setOnMenuItemClickListener(new OnMenuItemClickListener() {
+
+                        @Override
+                        public boolean onMenuItemClick(MenuItem item) {
+                            AppState.get().appLang = lang;
+                            TxtUtils.underlineTextView(hypenLang);
+                            AppState.get().save(getActivity());
+                            onTheme();
+                            return false;
+                        }
+                    });
+                }
+                popupMenu.show();
+
+            }
+        });
+
+        final TextView appFontScale = (TextView) inflate.findViewById(R.id.appFontScale);
+        appFontScale.setText(getFontName(AppState.get().appFontScale));
+        TxtUtils.underlineTextView(appFontScale);
+        appFontScale.setOnClickListener(new OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                final PopupMenu popupMenu = new PopupMenu(v.getContext(), v);
+                for (float i = 0.7f; i < 2.1f; i += 0.1) {
+                    final float number = i;
+                    popupMenu.getMenu().add(getFontName(number)).setOnMenuItemClickListener(new OnMenuItemClickListener() {
+
+                        @Override
+                        public boolean onMenuItemClick(MenuItem item) {
+                            AppState.get().appFontScale = number;
+                            AppState.get().save(getActivity());
+                            onTheme();
+                            return false;
+                        }
+                    });
+                }
+                popupMenu.show();
             }
         });
 
@@ -1016,20 +1077,6 @@ public class PrefFragment2 extends UIFragment {
             }
         });
 
-        inflate.findViewById(R.id.iconRandom).setOnClickListener(new OnClickListener() {
-
-            @Override
-            public void onClick(View v) {
-                TintUtil.tintRandomColor();
-                onTintChanged();
-                sendNotifyTintChanged();
-
-                AppState.get().save(getActivity());
-
-                TempHolder.listHash++;
-            }
-        });
-
         LinearLayout colorsLine = (LinearLayout) inflate.findViewById(R.id.colorsLine);
         colorsLine.removeAllViews();
 
@@ -1499,7 +1546,7 @@ public class PrefFragment2 extends UIFragment {
         }
     }
 
-    public String getFullDeviceInfo(){
+    public String getFullDeviceInfo() {
         return "(" + Build.BRAND + ", " + Build.MODEL + ", " + android.os.Build.VERSION.RELEASE + ", " + Dips.screenWidthDP() + "dp" + ")";
     }
 
@@ -1546,14 +1593,13 @@ public class PrefFragment2 extends UIFragment {
         super.onActivityCreated(savedInstanceState);
         fullScreenText();
         rotationText();
-        TextView theme = (TextView) getActivity().findViewById(R.id.themeColor);
 
         if (AppState.get().isInkMode) {
-            theme.setText(TxtUtils.underline(getString(R.string.e_ink)));
+            themeColor.setText(TxtUtils.underline("e-" + getContext().getString(R.string.paper)));
         } else if (AppState.getInstance().isWhiteTheme) {
-            theme.setText(TxtUtils.underline(getString(R.string.light)));
+            themeColor.setText(TxtUtils.underline(getString(R.string.light)));
         } else {
-            theme.setText(TxtUtils.underline(getString(R.string.black)));
+            themeColor.setText(TxtUtils.underline(getString(R.string.black)));
         }
     }
 
@@ -1576,6 +1622,18 @@ public class PrefFragment2 extends UIFragment {
         if (getActivity() != null) {
             AppState.get().save(getActivity());
         }
+    }
+
+    public String getFontName(float number) {
+        String prefix = "Normal";
+        float f1 = (number - 1f) * 10;
+        float f2 = (1f - number) * 10 + 0.01f;
+        if (number < 1) {
+            prefix = "Small" + " (-" + (int) f2 + ")";
+        } else if (number > 1) {
+            prefix = "Large" + " (+" + (int) f1 + ")";
+        }
+        return prefix;
     }
 
 }

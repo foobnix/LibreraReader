@@ -3,6 +3,7 @@ package com.foobnix.pdf.info.widget;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 
 import com.foobnix.android.utils.BaseItemLayoutAdapter;
@@ -125,6 +126,12 @@ public class DialogTranslateFromTo {
     }
 
     public static String getLanuageByCode(String code) {
+        try {
+            Locale l = new Locale(code);
+            return TxtUtils.firstUppercase(l.getDisplayLanguage(l));
+        } catch (Exception e) {
+        }
+
         if (TxtUtils.isEmpty(code)) {
             return "";
         }
@@ -137,7 +144,7 @@ public class DialogTranslateFromTo {
                 return key;
             }
         }
-        return "";
+        return code;
     }
 
     public static Spanned getSelectedDictionaryUnderline() {

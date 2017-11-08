@@ -403,4 +403,5 @@
    <string name="contrast_and_brightness">Contrast and Brightness</string>
    <string name="book_covers">Book covers</string>
    <string name="page_position">Page position</string>
+   <string name="paper">Paper</string>
 </resources>
