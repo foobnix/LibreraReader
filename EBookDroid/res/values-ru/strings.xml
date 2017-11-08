@@ -403,4 +403,9 @@
    <string name="contrast_and_brightness">Контрастность и яркость</string>
    <string name="book_covers">Обложки книг</string>
    <string name="page_position">Позиционирование страницы</string>
+   <string name="paper">Бумага</string>
+   <string name="normal">Нормальный</string>
+   <string name="small">Маленький</string>
+   <string name="large">Большой</string>
+   <string name="make_text_bold">Сделать текст полужирным шрифтом</string>
 </resources>

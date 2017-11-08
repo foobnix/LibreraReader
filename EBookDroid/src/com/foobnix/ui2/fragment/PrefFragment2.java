@@ -1,6 +1,8 @@
 package com.foobnix.ui2.fragment;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 import com.buzzingandroid.ui.HSVColorPickerDialog;
@@ -439,15 +441,22 @@ public class PrefFragment2 extends UIFragment {
 
                 final PopupMenu popupMenu = new PopupMenu(v.getContext(), v);
 
-                List<String> all = Arrays.asList("ar", "de", "es", "fa", "fi", "fr", "he", "hi", "hu", "id", "it", "ja", "ko", "lt", "nl", "no", "pl", "pt", "ro", "ru", "sk", "sv", "sw", "th", "tr", "uk", "vi", "zh");
+                final List<String> codes = Arrays.asList("en", "ar", "de", "es", "fa", "fi", "fr", "he", "hi", "hu", "id", "it", "ja", "ko", "lt", "nl", "no", "pl", "pt", "ro", "ru", "sk", "sv", "sw", "th", "tr", "uk", "vi", "zh");
+                List<String> langs = new ArrayList<String>();
+                for (String code : codes) {
+                    langs.add(DialogTranslateFromTo.getLanuageByCode(code) + ":" + code);
+                }
+                Collections.sort(langs);
 
-                for (final String lang : all) {
-                    final String titleLang = DialogTranslateFromTo.getLanuageByCode(lang);
-                    popupMenu.getMenu().add(titleLang).setOnMenuItemClickListener(new OnMenuItemClickListener() {
+                for (int i = 0; i < langs.size(); i++) {
+                    String all[] = langs.get(i).split(":");
+                    final String name = all[0];
+                    final String code = all[1];
+                    popupMenu.getMenu().add(name).setOnMenuItemClickListener(new OnMenuItemClickListener() {
 
                         @Override
                         public boolean onMenuItemClick(MenuItem item) {
-                            AppState.get().appLang = lang;
+                            AppState.get().appLang = code;
                             TxtUtils.underlineTextView(hypenLang);
                             AppState.get().save(getActivity());
                             onTheme();
@@ -1625,13 +1634,13 @@ public class PrefFragment2 extends UIFragment {
     }
 
     public String getFontName(float number) {
-        String prefix = "Normal";
+        String prefix = getActivity().getString(R.string.normal);
         float f1 = (number - 1f) * 10;
         float f2 = (1f - number) * 10 + 0.01f;
         if (number < 1) {
-            prefix = "Small" + " (-" + (int) f2 + ")";
+            prefix = getActivity().getString(R.string.small) + " (-" + (int) f2 + ")";
         } else if (number > 1) {
-            prefix = "Large" + " (+" + (int) f1 + ")";
+            prefix = getActivity().getString(R.string.large) + " (+" + (int) f1 + ")";
         }
         return prefix;
     }

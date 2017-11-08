@@ -403,4 +403,9 @@
    <string name="contrast_and_brightness">Contrast și Luminozitate</string>
    <string name="book_covers">Coperți de cărți</string>
    <string name="page_position">Poziția paginii</string>
+   <string name="paper">Hârtie</string>
+   <string name="normal">Normal</string>
+   <string name="small">Mic</string>
+   <string name="large">Mare</string>
+   <string name="make_text_bold">Faceți textul îngroșat</string>
 </resources>

@@ -403,4 +403,9 @@
    <string name="contrast_and_brightness">ความคมชัดและความสว่าง</string>
    <string name="book_covers">ปกหนังสือ</string>
    <string name="page_position">ตำแหน่งหน้าเว็บ</string>
+   <string name="paper">กระดาษ</string>
+   <string name="normal">ปกติ</string>
+   <string name="small">เล็ก</string>
+   <string name="large">ใหญ่</string>
+   <string name="make_text_bold">ทำให้ข้อความเป็นตัวหนา</string>
 </resources>

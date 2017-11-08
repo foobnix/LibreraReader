@@ -72,12 +72,15 @@ public class Dialogs {
         });
 
         final CheckBox bolderText = new CheckBox(c);
-        bolderText.setText("Make text bold");
+        bolderText.setText(R.string.make_text_bold);
         bolderText.setChecked(AppState.getInstance().bolderTextOnImage);
         bolderText.setOnCheckedChangeListener(new OnCheckedChangeListener() {
 
             @Override
             public void onCheckedChanged(final CompoundButton buttonView, final boolean isChecked) {
+                if (contrastSeek.getCurrentValue() == 0) {
+                    contrastSeek.reset(25);
+                }
                 AppState.getInstance().bolderTextOnImage = isChecked;
                 action.run();
             }

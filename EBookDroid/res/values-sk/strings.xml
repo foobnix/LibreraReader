@@ -403,4 +403,9 @@
    <string name="contrast_and_brightness">Kontrast a jas</string>
    <string name="book_covers">Obaly kníh</string>
    <string name="page_position">Pozícia stránky</string>
+   <string name="paper">Papier</string>
+   <string name="normal">Normálne</string>
+   <string name="small">Malý</string>
+   <string name="large">Veľký</string>
+   <string name="make_text_bold">Vytvorte text tučným písmom</string>
 </resources>

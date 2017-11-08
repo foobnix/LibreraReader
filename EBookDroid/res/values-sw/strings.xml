@@ -403,4 +403,9 @@
    <string name="contrast_and_brightness">Tofauti na Ukali</string>
    <string name="book_covers">Kitabu kinashughulikia</string>
    <string name="page_position">Msimamo wa ukurasa</string>
+   <string name="paper">Karatasi</string>
+   <string name="normal">Kawaida</string>
+   <string name="small">Ndogo</string>
+   <string name="large">Kubwa</string>
+   <string name="make_text_bold">Fanya maandishi kwa ujasiri</string>
 </resources>

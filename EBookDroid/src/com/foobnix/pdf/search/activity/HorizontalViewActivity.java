@@ -57,6 +57,7 @@ import com.foobnix.tts.TTSNotification;
 import com.foobnix.tts.TtsStatus;
 import com.foobnix.ui2.AppDB;
 import com.foobnix.ui2.MainTabs2;
+import com.foobnix.ui2.MyContextWrapper;
 import com.google.android.gms.ads.AdListener;
 import com.google.android.gms.ads.AdView;
 import com.google.android.gms.ads.InterstitialAd;
@@ -66,6 +67,7 @@ import android.annotation.TargetApi;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.res.Configuration;
@@ -767,6 +769,11 @@ public class HorizontalViewActivity extends FragmentActivity {
             }
         });
 
+    }
+
+    @Override
+    protected void attachBaseContext(Context context) {
+        super.attachBaseContext(MyContextWrapper.wrap(context));
     }
 
     public void modeOnePage() {

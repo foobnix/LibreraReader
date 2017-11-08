@@ -3,7 +3,7 @@
     package="mobi.librera.book.reader"
     android:installLocation="auto"
     android:versionCode="469"
-    android:versionName="7.3.5" >
+    android:versionName="7.3.7" >
 
     <uses-sdk
         android:minSdkVersion="14"

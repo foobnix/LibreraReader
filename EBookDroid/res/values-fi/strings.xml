@@ -403,4 +403,9 @@
    <string name="contrast_and_brightness">Kontrasti ja kirkkaus</string>
    <string name="book_covers">Kirja kattaa</string>
    <string name="page_position">Sivuasema</string>
+   <string name="paper">Paperi</string>
+   <string name="normal">Normaali</string>
+   <string name="small">Pieni</string>
+   <string name="large">Suuri</string>
+   <string name="make_text_bold">Tee teksti lihavoituna</string>
 </resources>

@@ -403,4 +403,9 @@
    <string name="contrast_and_brightness">کنتراست و روشنایی</string>
    <string name="book_covers">کتاب پوشش می دهد</string>
    <string name="page_position">موقعیت صفحه</string>
+   <string name="paper">کاغذ</string>
+   <string name="normal">طبیعی</string>
+   <string name="small">کوچک</string>
+   <string name="large">بزرگ</string>
+   <string name="make_text_bold">متن را به صورت جسورانه</string>
 </resources>

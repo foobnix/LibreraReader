@@ -403,4 +403,9 @@
    <string name="contrast_and_brightness">Kontrastas ir ryškumas</string>
    <string name="book_covers">Knygų viršeliai</string>
    <string name="page_position">Puslapio pozicija</string>
+   <string name="paper">Popierius</string>
+   <string name="normal">Normalus</string>
+   <string name="small">Mažas</string>
+   <string name="large">Didelis</string>
+   <string name="make_text_bold">Teksto paryškinimas</string>
 </resources>

@@ -403,4 +403,9 @@
    <string name="contrast_and_brightness">コントラストと明るさ</string>
    <string name="book_covers">ブックカバー</string>
    <string name="page_position">ページの位置</string>
+   <string name="paper">紙</string>
+   <string name="normal">ノーマル</string>
+   <string name="small">小さい</string>
+   <string name="large">大</string>
+   <string name="make_text_bold">テキストを太字にする</string>
 </resources>

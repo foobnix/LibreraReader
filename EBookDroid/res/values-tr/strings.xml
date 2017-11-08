@@ -403,4 +403,9 @@
    <string name="contrast_and_brightness">Kontrast ve Parlaklık</string>
    <string name="book_covers">Kitap kapakları</string>
    <string name="page_position">Sayfa konumu</string>
+   <string name="paper">Kâğıt</string>
+   <string name="normal">Normal</string>
+   <string name="small">Küçük</string>
+   <string name="large">Geniş</string>
+   <string name="make_text_bold">Metni kalın yapın</string>
 </resources>

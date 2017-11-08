@@ -403,4 +403,9 @@
    <string name="contrast_and_brightness">对比度和亮度</string>
    <string name="book_covers">书的封面</string>
    <string name="page_position">页面位置</string>
+   <string name="paper">纸</string>
+   <string name="normal">正常</string>
+   <string name="small">小</string>
+   <string name="large">大</string>
+   <string name="make_text_bold">使文字加粗</string>
 </resources>

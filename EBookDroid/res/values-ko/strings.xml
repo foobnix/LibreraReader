@@ -403,4 +403,9 @@
    <string name="contrast_and_brightness">대비 및 밝기</string>
    <string name="book_covers">도서 표지</string>
    <string name="page_position">페이지 위치</string>
+   <string name="paper">종이</string>
+   <string name="normal">표준</string>
+   <string name="small">작은</string>
+   <string name="large">큰</string>
+   <string name="make_text_bold">텍스트를 굵게 표시</string>
 </resources>

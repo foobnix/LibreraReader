@@ -403,4 +403,9 @@
    <string name="contrast_and_brightness">التباين والسطوع</string>
    <string name="book_covers">أغلفة الكتب</string>
    <string name="page_position">موضع الصفحة</string>
+   <string name="paper">ورقة</string>
+   <string name="normal">عادي</string>
+   <string name="small">صغير</string>
+   <string name="large">كبير</string>
+   <string name="make_text_bold">جعل النص غامق</string>
 </resources>

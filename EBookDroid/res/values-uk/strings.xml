@@ -403,4 +403,9 @@
    <string name="contrast_and_brightness">Контрастність та яскравість</string>
    <string name="book_covers">Книжкові обкладинки</string>
    <string name="page_position">Позиція сторінки</string>
+   <string name="paper">Папір</string>
+   <string name="normal">Нормальний</string>
+   <string name="small">Малий</string>
+   <string name="large">Великий</string>
+   <string name="make_text_bold">Текст напівжирним шрифтом</string>
 </resources>

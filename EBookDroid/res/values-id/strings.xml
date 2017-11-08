@@ -403,4 +403,9 @@
    <string name="contrast_and_brightness">Kontras dan Kecerahan</string>
    <string name="book_covers">Sampul buku</string>
    <string name="page_position">Posisi halaman</string>
+   <string name="paper">Kertas</string>
+   <string name="normal">Normal</string>
+   <string name="small">Kecil</string>
+   <string name="large">Besar</string>
+   <string name="make_text_bold">Buat teks tebal</string>
 </resources>

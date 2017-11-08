@@ -259,7 +259,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Language"
+                android:text="@string/language"
                 android:textStyle="bold" />
 
             <TextView
@@ -278,7 +278,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Font size"
+                android:text="@string/font_size"
                 android:textStyle="bold" />
 
             <TextView
@@ -298,7 +298,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Theme"
+                android:text="@string/theme"
                 android:textStyle="bold" />
 
             <TextView

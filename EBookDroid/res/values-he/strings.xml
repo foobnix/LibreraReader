@@ -403,4 +403,9 @@
    <string name="contrast_and_brightness">ניגודיות ובהירות</string>
    <string name="book_covers">כריכת ספרים</string>
    <string name="page_position">מיקום הדף</string>
+   <string name="paper">עיתון</string>
+   <string name="normal">נוֹרמָלִי</string>
+   <string name="small">קָטָן</string>
+   <string name="large">גָדוֹל</string>
+   <string name="make_text_bold">הפוך טקסט מודגש</string>
 </resources>

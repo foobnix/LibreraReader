@@ -403,4 +403,9 @@
    <string name="contrast_and_brightness">Kontrast und Helligkeit</string>
    <string name="book_covers">Buchumschläge</string>
    <string name="page_position">Seitenposition</string>
+   <string name="paper">Papier</string>
+   <string name="normal">Normal</string>
+   <string name="small">Klein</string>
+   <string name="large">Groß</string>
+   <string name="make_text_bold">Text fett machen</string>
 </resources>

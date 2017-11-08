@@ -131,7 +131,7 @@ public class MainTabs2 extends FragmentActivity {
 
     @Override
     protected void attachBaseContext(Context context) {
-        super.attachBaseContext(MyContextWrapper.wrap(context, AppState.get().appLang, AppState.get().appFontScale));
+        super.attachBaseContext(MyContextWrapper.wrap(context));
     }
 
     @Override
@@ -142,7 +142,6 @@ public class MainTabs2 extends FragmentActivity {
             setTheme(R.style.StyledIndicatorsBlack);
         }
         super.onCreate(savedInstanceState);
-
 
         LOG.d("EXTRA_EXIT", EXTRA_EXIT);
         if (getIntent().getBooleanExtra(EXTRA_EXIT, false)) {
@@ -440,11 +439,20 @@ public class MainTabs2 extends FragmentActivity {
     public void onConfigurationChanged(final Configuration newConfig) {
         super.onConfigurationChanged(newConfig);
         ADS.activateNative(this, adViewNative);
+
+        String language = newConfig.locale.getLanguage();
+        float fontScale = newConfig.fontScale;
+
+        LOG.d("ContextWrapper ConfigChanged", language, fontScale);
+
         if (pager != null) {
             int currentItem = pager.getCurrentItem();
             pager.setAdapter(adapter);
             pager.setCurrentItem(currentItem);
         }
+
+
+
     }
 
     @Override
@@ -529,3 +537,4 @@ public class MainTabs2 extends FragmentActivity {
     }
 
 }
+

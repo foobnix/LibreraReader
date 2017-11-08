@@ -403,4 +403,9 @@
    <string name="contrast_and_brightness">कॉन्ट्रास्ट और ब्राइटनेस</string>
    <string name="book_covers">बुक कवर</string>
    <string name="page_position">पेज की स्थिति</string>
+   <string name="paper">कागज़</string>
+   <string name="normal">साधारण</string>
+   <string name="small">छोटा</string>
+   <string name="large">विशाल</string>
+   <string name="make_text_bold">पाठ को बोल्ड बनाएं</string>
 </resources>

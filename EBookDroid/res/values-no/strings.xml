@@ -403,4 +403,9 @@
    <string name="contrast_and_brightness">Kontrast og lysstyrke</string>
    <string name="book_covers">Bokomslag</string>
    <string name="page_position">Sidestilling</string>
+   <string name="paper">Papir</string>
+   <string name="normal">Normal</string>
+   <string name="small">Liten</string>
+   <string name="large">Stor</string>
+   <string name="make_text_bold">Gjør tekst fet skrift</string>
 </resources>
