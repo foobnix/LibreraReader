@@ -1655,6 +1655,7 @@ public class HorizontalViewActivity extends FragmentActivity {
         if (keyCode == 0) {
             keyCode = event.getScanCode();
         }
+        LOG.d("onKeyDown", keyCode);
 
         isMyKey = false;
 
