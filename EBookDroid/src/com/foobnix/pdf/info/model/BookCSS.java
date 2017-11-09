@@ -14,7 +14,6 @@ import com.foobnix.android.utils.TxtUtils;
 import com.foobnix.pdf.info.ExportSettingsManager;
 import com.foobnix.pdf.info.ExtUtils;
 import com.foobnix.pdf.info.FontExtractor;
-import com.foobnix.pdf.info.Urls;
 import com.foobnix.pdf.info.wrapper.AppState;
 import com.foobnix.pdf.info.wrapper.MagicHelper;
 
@@ -153,7 +152,7 @@ public class BookCSS {
         headersFont = DEFAULT_FONT;
 
         documentStyle = STYLES_DOC_AND_USER;
-        isAutoHypens = Arrays.asList("ru", "uk", "tr").contains(Urls.getLangCode());
+        isAutoHypens = true;
         hypenLang = "ru";
 
         linkColorDay = LINK_COLOR_UNIVERSAL;
