@@ -10,7 +10,6 @@ import java.util.Stack;
 import com.foobnix.android.utils.LOG;
 import com.foobnix.android.utils.ResultResponse;
 import com.foobnix.android.utils.TxtUtils;
-import com.foobnix.ext.CacheZipUtils;
 import com.foobnix.opds.Entry;
 import com.foobnix.opds.Feed;
 import com.foobnix.opds.Hrefs;
@@ -363,11 +362,12 @@ public class OpdsFragment2 extends UIFragment<Entry> {
 
                 @Override
                 public void run() {
-                    if (!CacheZipUtils.LIRBI_DOWNLOAD_DIR.exists()) {
-                        CacheZipUtils.LIRBI_DOWNLOAD_DIR.mkdirs();
+                    File LIRBI_DOWNLOAD_DIR = new File(AppState.get().downlodsPath);
+                    if (!LIRBI_DOWNLOAD_DIR.exists()) {
+                        LIRBI_DOWNLOAD_DIR.mkdirs();
                     }
 
-                    final File file = new File(CacheZipUtils.LIRBI_DOWNLOAD_DIR, link.getDownloadName());
+                    final File file = new File(LIRBI_DOWNLOAD_DIR, link.getDownloadName());
                     file.delete();
 
                     new AsyncTask() {
@@ -421,16 +421,14 @@ public class OpdsFragment2 extends UIFragment<Entry> {
     }
 
     public void clearEmpty() {
-        if (CacheZipUtils.LIRBI_DOWNLOAD_DIR == null) {
-            return;
+        File LIRBI_DOWNLOAD_DIR = new File(AppState.get().downlodsPath);
+
+        if (!LIRBI_DOWNLOAD_DIR.exists()) {
+            LIRBI_DOWNLOAD_DIR.mkdirs();
         }
 
-        if (!CacheZipUtils.LIRBI_DOWNLOAD_DIR.exists()) {
-            CacheZipUtils.LIRBI_DOWNLOAD_DIR.mkdirs();
-        }
-
-        for (String file : CacheZipUtils.LIRBI_DOWNLOAD_DIR.list()) {
-            File f = new File(CacheZipUtils.LIRBI_DOWNLOAD_DIR, file);
+        for (String file : LIRBI_DOWNLOAD_DIR.list()) {
+            File f = new File(LIRBI_DOWNLOAD_DIR, file);
             if (f.length() == 0) {
                 LOG.d("Delete file", f.getPath());
                 f.delete();
@@ -495,7 +493,7 @@ public class OpdsFragment2 extends UIFragment<Entry> {
         for (Link l : links) {
             Hrefs.fixHref(l, homeUrl);
             l.parentTitle = parentTitle;
-            File book = new File(CacheZipUtils.LIRBI_DOWNLOAD_DIR, l.getDownloadName());
+            File book = new File(AppState.get().downlodsPath, l.getDownloadName());
             if (book.isFile()) {
                 l.filePath = book.getPath();
             }

@@ -412,4 +412,5 @@
    <string name="layout">ख़ाका</string>
    <string name="number_of_books">पुस्तकों की संख्या</string>
    <string name="show">दिखाना</string>
+   <string name="folder_for_downloaded_books">डाउनलोड की गई पुस्तकों के लिए फ़ोल्डर</string>
 </resources>

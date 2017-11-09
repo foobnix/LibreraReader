@@ -11,7 +11,6 @@ import org.jsoup.parser.Tag;
 import org.jsoup.select.Elements;
 
 import com.foobnix.android.utils.TxtUtils;
-import com.foobnix.ext.CacheZipUtils;
 import com.foobnix.pdf.info.wrapper.AppState;
 
 import android.support.v4.util.Pair;
@@ -415,7 +414,7 @@ public class SamlibOPDS {
 
         link.parentTitle = authorTxt.trim() + " - " + title.trim();
 
-        File book = new File(CacheZipUtils.LIRBI_DOWNLOAD_DIR, link.getDownloadName());
+        File book = new File(AppState.get().downlodsPath, link.getDownloadName());
         if (book.isFile()) {
             link.filePath = book.getPath();
         }
@@ -490,7 +489,7 @@ public class SamlibOPDS {
 
         Link web = new Link(tURL + LIBRERA_MOBI, Link.WEB_LINK, "WEB");
 
-        File book = new File(CacheZipUtils.LIRBI_DOWNLOAD_DIR, download.getDownloadName());
+        File book = new File(AppState.get().downlodsPath, download.getDownloadName());
         if (book.isFile()) {
             download.filePath = book.getPath();
         }

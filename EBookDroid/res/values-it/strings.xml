@@ -412,4 +412,5 @@
    <string name="layout">Disposizione</string>
    <string name="number_of_books">Numero di libri</string>
    <string name="show">Mostrare</string>
+   <string name="folder_for_downloaded_books">Cartella per i libri scaricati</string>
 </resources>

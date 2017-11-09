@@ -412,4 +412,5 @@
    <string name="layout">Disposition</string>
    <string name="number_of_books">Nombre de livres</string>
    <string name="show">Montrer</string>
+   <string name="folder_for_downloaded_books">Dossier pour les livres téléchargés</string>
 </resources>

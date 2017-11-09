@@ -412,4 +412,5 @@
    <string name="layout">Diseño</string>
    <string name="number_of_books">Cantidad de libros</string>
    <string name="show">Espectáculo</string>
+   <string name="folder_for_downloaded_books">Carpeta para libros descargados</string>
 </resources>
