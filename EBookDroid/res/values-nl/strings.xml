@@ -403,4 +403,13 @@
    <string name="contrast_and_brightness">Contrast en helderheid</string>
    <string name="book_covers">Boekomslagen</string>
    <string name="page_position">Pagina positie</string>
+   <string name="paper">Papier</string>
+   <string name="normal">Normaal</string>
+   <string name="small">Klein</string>
+   <string name="large">Groot</string>
+   <string name="make_text_bold">Maak tekst vetgedrukt</string>
+   <string name="show_books">Toon boeken</string>
+   <string name="layout">Lay-out</string>
+   <string name="number_of_books">Aantal boeken</string>
+   <string name="show">Tonen</string>
 </resources>

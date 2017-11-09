@@ -1,6 +1,8 @@
 package com.foobnix.ui2.fragment;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 import com.buzzingandroid.ui.HSVColorPickerDialog;
@@ -65,7 +67,6 @@ import android.widget.CompoundButton.OnCheckedChangeListener;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.PopupMenu;
-import android.widget.RadioButton;
 import android.widget.ScrollView;
 import android.widget.SeekBar;
 import android.widget.SeekBar.OnSeekBarChangeListener;
@@ -439,15 +440,22 @@ public class PrefFragment2 extends UIFragment {
 
                 final PopupMenu popupMenu = new PopupMenu(v.getContext(), v);
 
-                List<String> all = Arrays.asList("ar", "de", "es", "fa", "fi", "fr", "he", "hi", "hu", "id", "it", "ja", "ko", "lt", "nl", "no", "pl", "pt", "ro", "ru", "sk", "sv", "sw", "th", "tr", "uk", "vi", "zh");
+                final List<String> codes = Arrays.asList("en", "ar", "de", "es", "fa", "fi", "fr", "he", "hi", "hu", "id", "it", "ja", "ko", "lt", "nl", "no", "pl", "pt", "ro", "ru", "sk", "sv", "sw", "th", "tr", "uk", "vi", "zh");
+                List<String> langs = new ArrayList<String>();
+                for (String code : codes) {
+                    langs.add(DialogTranslateFromTo.getLanuageByCode(code) + ":" + code);
+                }
+                Collections.sort(langs);
 
-                for (final String lang : all) {
-                    final String titleLang = DialogTranslateFromTo.getLanuageByCode(lang);
-                    popupMenu.getMenu().add(titleLang).setOnMenuItemClickListener(new OnMenuItemClickListener() {
+                for (int i = 0; i < langs.size(); i++) {
+                    String all[] = langs.get(i).split(":");
+                    final String name = all[0];
+                    final String code = all[1];
+                    popupMenu.getMenu().add(name).setOnMenuItemClickListener(new OnMenuItemClickListener() {
 
                         @Override
                         public boolean onMenuItemClick(MenuItem item) {
-                            AppState.get().appLang = lang;
+                            AppState.get().appLang = code;
                             TxtUtils.underlineTextView(hypenLang);
                             AppState.get().save(getActivity());
                             onTheme();
@@ -527,45 +535,6 @@ public class PrefFragment2 extends UIFragment {
             }
         });
 
-        final TextView widgetForRecent = (TextView) inflate.findViewById(R.id.widgetForRecent);
-        widgetForRecent.setText(AppState.get().isStarsInWidget ? R.string.starred : R.string.recent);
-        TxtUtils.underlineTextView(widgetForRecent);
-
-        widgetForRecent.setOnClickListener(new OnClickListener() {
-
-            @Override
-            public void onClick(View v) {
-                final PopupMenu popupMenu = new PopupMenu(widgetForRecent.getContext(), widgetForRecent);
-
-                final MenuItem recent = popupMenu.getMenu().add(R.string.recent);
-                recent.setOnMenuItemClickListener(new OnMenuItemClickListener() {
-
-                    @Override
-                    public boolean onMenuItemClick(final MenuItem item) {
-                        AppState.get().isStarsInWidget = false;
-                        widgetForRecent.setText(AppState.get().isStarsInWidget ? R.string.starred : R.string.recent);
-                        TxtUtils.underlineTextView(widgetForRecent);
-                        return false;
-                    }
-                });
-
-                final MenuItem starred = popupMenu.getMenu().add(R.string.starred);
-                starred.setOnMenuItemClickListener(new OnMenuItemClickListener() {
-
-                    @Override
-                    public boolean onMenuItemClick(final MenuItem item) {
-                        AppState.get().isStarsInWidget = true;
-                        widgetForRecent.setText(AppState.get().isStarsInWidget ? R.string.starred : R.string.recent);
-                        TxtUtils.underlineTextView(widgetForRecent);
-                        return false;
-                    }
-                });
-
-                popupMenu.show();
-
-            }
-
-        });
 
         selectedOpenMode = (TextView) inflate.findViewById(R.id.selectedOpenMode);
         selectedOpenMode.setOnClickListener(new OnClickListener() {
@@ -922,33 +891,85 @@ public class PrefFragment2 extends UIFragment {
         });
 
         // Widget Configuration
+        
+        final TextView widgetLayout = (TextView) inflate.findViewById(R.id.widgetLayout);
+        widgetLayout.setText(AppState.getInstance().widgetType == AppState.WIDGET_LIST ? R.string.list : R.string.grid);
+        TxtUtils.underlineTextView(widgetLayout);
 
-        final RadioButton widgetList = (RadioButton) inflate.findViewById(R.id.checkBoxWigetList);
-        final RadioButton widgetGrid = (RadioButton) inflate.findViewById(R.id.checkBoxWidgetGrid);
-
-        if (Build.VERSION.SDK_INT <= 15) {
-            widgetGrid.setVisibility(View.GONE);
-        }
-        widgetList.setChecked(AppState.getInstance().widgetType == AppState.WIDGET_LIST);
-        widgetList.setOnCheckedChangeListener(new OnCheckedChangeListener() {
+        widgetLayout.setOnClickListener(new OnClickListener() {
 
             @Override
-            public void onCheckedChanged(final CompoundButton buttonView, final boolean isChecked) {
-                if (isChecked) {
-                    AppState.getInstance().widgetType = AppState.WIDGET_LIST;
-                }
+            public void onClick(View v) {
+                final PopupMenu popupMenu = new PopupMenu(v.getContext(), v);
+
+                final MenuItem recent = popupMenu.getMenu().add(R.string.list);
+                recent.setOnMenuItemClickListener(new OnMenuItemClickListener() {
+
+                    @Override
+                    public boolean onMenuItemClick(final MenuItem item) {
+                        AppState.getInstance().widgetType = AppState.WIDGET_LIST;
+                        widgetLayout.setText(R.string.list);
+                        TxtUtils.underlineTextView(widgetLayout);
+                        return false;
+                    }
+                });
+
+                final MenuItem starred = popupMenu.getMenu().add(R.string.grid);
+                starred.setOnMenuItemClickListener(new OnMenuItemClickListener() {
+
+                    @Override
+                    public boolean onMenuItemClick(final MenuItem item) {
+                        AppState.getInstance().widgetType = AppState.WIDGET_GRID;
+                        widgetLayout.setText(R.string.grid);
+                        TxtUtils.underlineTextView(widgetLayout);
+                        return false;
+                    }
+                });
+
+                popupMenu.show();
+
             }
+
         });
+        
+        final TextView widgetForRecent = (TextView) inflate.findViewById(R.id.widgetForRecent);
+        widgetForRecent.setText(AppState.get().isStarsInWidget ? R.string.starred : R.string.recent);
+        TxtUtils.underlineTextView(widgetForRecent);
 
-        widgetGrid.setChecked(AppState.getInstance().widgetType == AppState.WIDGET_GRID);
-        widgetGrid.setOnCheckedChangeListener(new OnCheckedChangeListener() {
+        widgetForRecent.setOnClickListener(new OnClickListener() {
 
             @Override
-            public void onCheckedChanged(final CompoundButton buttonView, final boolean isChecked) {
-                if (isChecked) {
-                    AppState.getInstance().widgetType = AppState.WIDGET_GRID;
-                }
+            public void onClick(View v) {
+                final PopupMenu popupMenu = new PopupMenu(widgetForRecent.getContext(), widgetForRecent);
+
+                final MenuItem recent = popupMenu.getMenu().add(R.string.recent);
+                recent.setOnMenuItemClickListener(new OnMenuItemClickListener() {
+
+                    @Override
+                    public boolean onMenuItemClick(final MenuItem item) {
+                        AppState.get().isStarsInWidget = false;
+                        widgetForRecent.setText(AppState.get().isStarsInWidget ? R.string.starred : R.string.recent);
+                        TxtUtils.underlineTextView(widgetForRecent);
+                        return false;
+                    }
+                });
+
+                final MenuItem starred = popupMenu.getMenu().add(R.string.starred);
+                starred.setOnMenuItemClickListener(new OnMenuItemClickListener() {
+
+                    @Override
+                    public boolean onMenuItemClick(final MenuItem item) {
+                        AppState.get().isStarsInWidget = true;
+                        widgetForRecent.setText(AppState.get().isStarsInWidget ? R.string.starred : R.string.recent);
+                        TxtUtils.underlineTextView(widgetForRecent);
+                        return false;
+                    }
+                });
+
+                popupMenu.show();
+
             }
+
         });
 
         final TextView widgetItemsCount = (TextView) inflate.findViewById(R.id.widgetItemsCount);
@@ -979,17 +1000,6 @@ public class PrefFragment2 extends UIFragment {
         });
 
         // dictionary
-        widgetGrid.setChecked(AppState.getInstance().widgetType == AppState.WIDGET_GRID);
-        widgetGrid.setOnCheckedChangeListener(new OnCheckedChangeListener() {
-
-            @Override
-            public void onCheckedChanged(final CompoundButton buttonView, final boolean isChecked) {
-                if (isChecked) {
-                    AppState.getInstance().widgetType = AppState.WIDGET_GRID;
-                }
-            }
-        });
-
         isRememberDictionary = (CheckBox) inflate.findViewById(R.id.isRememberDictionary);
         isRememberDictionary.setChecked(AppState.getInstance().isRememberDictionary);
         isRememberDictionary.setOnCheckedChangeListener(new OnCheckedChangeListener() {
@@ -1625,13 +1635,13 @@ public class PrefFragment2 extends UIFragment {
     }
 
     public String getFontName(float number) {
-        String prefix = "Normal";
+        String prefix = getActivity().getString(R.string.normal);
         float f1 = (number - 1f) * 10;
         float f2 = (1f - number) * 10 + 0.01f;
         if (number < 1) {
-            prefix = "Small" + " (-" + (int) f2 + ")";
+            prefix = getActivity().getString(R.string.small) + " (-" + (int) f2 + ")";
         } else if (number > 1) {
-            prefix = "Large" + " (+" + (int) f1 + ")";
+            prefix = getActivity().getString(R.string.large) + " (+" + (int) f1 + ")";
         }
         return prefix;
     }

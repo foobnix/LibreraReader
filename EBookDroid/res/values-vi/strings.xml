@@ -403,4 +403,13 @@
    <string name="contrast_and_brightness">Độ tương phản và độ sáng</string>
    <string name="book_covers">Bao gồm sách</string>
    <string name="page_position">Vị trí trang</string>
+   <string name="paper">Giấy</string>
+   <string name="normal">Bình thường</string>
+   <string name="small">Nhỏ bé</string>
+   <string name="large">Lớn</string>
+   <string name="make_text_bold">Làm văn bản đậm</string>
+   <string name="show_books">Hiển thị sách</string>
+   <string name="layout">Bố trí</string>
+   <string name="number_of_books">Số lượng sách</string>
+   <string name="show">Chỉ</string>
 </resources>

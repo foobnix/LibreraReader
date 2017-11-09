@@ -1,3 +1,7 @@
+Sort by series index in series by default
+Make font bold for e-ink screens
+Change app language from the app
+Change font size from the app
 Disable animatin in e-ink mode
 Move page in easy mode
 Change Contrast and Brightness

@@ -25,11 +25,13 @@ import com.foobnix.tts.TTSEngine;
 import com.foobnix.tts.TTSNotification;
 import com.foobnix.ui2.FileMetaCore;
 import com.foobnix.ui2.MainTabs2;
+import com.foobnix.ui2.MyContextWrapper;
 import com.google.android.gms.ads.AdView;
 import com.google.android.gms.ads.NativeExpressAdView;
 
 import android.app.AlertDialog;
 import android.app.Dialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.res.Configuration;
@@ -143,6 +145,11 @@ public class ViewerActivity extends AbstractActionActivity<ViewerActivity, Viewe
 
         handler = new Handler();
 
+    }
+
+    @Override
+    protected void attachBaseContext(Context context) {
+        super.attachBaseContext(MyContextWrapper.wrap(context));
     }
 
     @Override

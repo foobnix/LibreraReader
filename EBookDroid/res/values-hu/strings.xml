@@ -403,4 +403,13 @@
    <string name="contrast_and_brightness">Kontraszt és fényerő</string>
    <string name="book_covers">Könyvborítók</string>
    <string name="page_position">Az oldal pozíciója</string>
+   <string name="paper">Papír</string>
+   <string name="normal">Normál</string>
+   <string name="small">Kicsi</string>
+   <string name="large">Nagy</string>
+   <string name="make_text_bold">Húzza meg a szöveget</string>
+   <string name="show_books">Könyvek megjelenítése</string>
+   <string name="layout">Elrendezés</string>
+   <string name="number_of_books">Könyvek száma</string>
+   <string name="show">Előadás</string>
 </resources>

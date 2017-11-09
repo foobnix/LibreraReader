@@ -395,6 +395,8 @@ public class AppDB {
 
             if (searchIn == SEARCH_IN.SERIES && !str.contains("*")) {
                 where = where.where(searchIn.getProperty().eq(str));
+                where = where.where(FileMetaDao.Properties.IsSearchBook.eq(1));
+                return where.orderAsc(SORT_BY.SERIES_INDEX.getProperty()).list();
             } else {
                 if (TxtUtils.isNotEmpty(str)) {
                     str = str.replace(" ", "%").replace("*", "%");

@@ -403,4 +403,13 @@
    <string name="contrast_and_brightness">Kontrast och ljusstyrka</string>
    <string name="book_covers">Bokomslag</string>
    <string name="page_position">Sidposition</string>
+   <string name="paper">Papper</string>
+   <string name="normal">Vanligt</string>
+   <string name="small">Små</string>
+   <string name="large">Stor</string>
+   <string name="make_text_bold">Gör texten djärv</string>
+   <string name="show_books">Visa böcker</string>
+   <string name="layout">Layout</string>
+   <string name="number_of_books">Antal böcker</string>
+   <string name="show">Show</string>
 </resources>
