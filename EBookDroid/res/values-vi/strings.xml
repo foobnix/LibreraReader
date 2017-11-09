@@ -408,4 +408,8 @@
    <string name="small">Nhỏ bé</string>
    <string name="large">Lớn</string>
    <string name="make_text_bold">Làm văn bản đậm</string>
+   <string name="show_books">Hiển thị sách</string>
+   <string name="layout">Bố trí</string>
+   <string name="number_of_books">Số lượng sách</string>
+   <string name="show">Chỉ</string>
 </resources>

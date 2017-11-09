@@ -408,4 +408,8 @@
    <string name="small">קָטָן</string>
    <string name="large">גָדוֹל</string>
    <string name="make_text_bold">הפוך טקסט מודגש</string>
+   <string name="show_books">הצג ספרים</string>
+   <string name="layout">מַעֲרָך</string>
+   <string name="number_of_books">מספר ספרים</string>
+   <string name="show">לְהַצִיג</string>
 </resources>

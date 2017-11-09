@@ -408,4 +408,8 @@
    <string name="small">Ndogo</string>
    <string name="large">Kubwa</string>
    <string name="make_text_bold">Fanya maandishi kwa ujasiri</string>
+   <string name="show_books">Onyesha vitabu</string>
+   <string name="layout">Mpangilio</string>
+   <string name="number_of_books">Idadi ya vitabu</string>
+   <string name="show">Onyesha</string>
 </resources>

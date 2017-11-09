@@ -408,4 +408,8 @@
    <string name="small">小さい</string>
    <string name="large">大</string>
    <string name="make_text_bold">テキストを太字にする</string>
+   <string name="show_books">本を表示する</string>
+   <string name="layout">レイアウト</string>
+   <string name="number_of_books">書籍数</string>
+   <string name="show">ショー</string>
 </resources>

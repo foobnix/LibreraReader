@@ -408,4 +408,8 @@
    <string name="small">Kecil</string>
    <string name="large">Besar</string>
    <string name="make_text_bold">Buat teks tebal</string>
+   <string name="show_books">Tampilkan buku</string>
+   <string name="layout">Layout</string>
+   <string name="number_of_books">Jumlah buku</string>
+   <string name="show">Menunjukkan</string>
 </resources>

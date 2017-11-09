@@ -408,4 +408,8 @@
    <string name="small">Küçük</string>
    <string name="large">Geniş</string>
    <string name="make_text_bold">Metni kalın yapın</string>
+   <string name="show_books">Kitapları göster</string>
+   <string name="layout">Düzen</string>
+   <string name="number_of_books">Kitap sayısı</string>
+   <string name="show">Göstermek</string>
 </resources>

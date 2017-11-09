@@ -408,4 +408,8 @@
    <string name="small">छोटा</string>
    <string name="large">विशाल</string>
    <string name="make_text_bold">पाठ को बोल्ड बनाएं</string>
+   <string name="show_books">किताबें दिखाएं</string>
+   <string name="layout">ख़ाका</string>
+   <string name="number_of_books">पुस्तकों की संख्या</string>
+   <string name="show">दिखाना</string>
 </resources>

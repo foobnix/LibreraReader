@@ -408,4 +408,8 @@
    <string name="small">Pequeña</string>
    <string name="large">Grande</string>
    <string name="make_text_bold">Hacer texto en negrita</string>
+   <string name="show_books">Mostrar libros</string>
+   <string name="layout">Diseño</string>
+   <string name="number_of_books">Cantidad de libros</string>
+   <string name="show">Espectáculo</string>
 </resources>

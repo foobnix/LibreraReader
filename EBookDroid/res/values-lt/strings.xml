@@ -408,4 +408,8 @@
    <string name="small">Mažas</string>
    <string name="large">Didelis</string>
    <string name="make_text_bold">Teksto paryškinimas</string>
+   <string name="show_books">Rodyti knygas</string>
+   <string name="layout">Maketas</string>
+   <string name="number_of_books">Knygų skaičius</string>
+   <string name="show">Rodyti</string>
 </resources>

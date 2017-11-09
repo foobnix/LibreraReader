@@ -408,4 +408,8 @@
    <string name="small">Small</string>
    <string name="large">Large</string>
    <string name="make_text_bold">Make text bold</string>
+   <string name="show_books">Show books</string>
+   <string name="layout">Layout</string>
+   <string name="number_of_books">Number of books</string>
+   <string name="show">Show</string>
 </resources>

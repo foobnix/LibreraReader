@@ -408,4 +408,8 @@
    <string name="small">Kicsi</string>
    <string name="large">Nagy</string>
    <string name="make_text_bold">Húzza meg a szöveget</string>
+   <string name="show_books">Könyvek megjelenítése</string>
+   <string name="layout">Elrendezés</string>
+   <string name="number_of_books">Könyvek száma</string>
+   <string name="show">Előadás</string>
 </resources>

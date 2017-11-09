@@ -408,4 +408,8 @@
    <string name="small">작은</string>
    <string name="large">큰</string>
    <string name="make_text_bold">텍스트를 굵게 표시</string>
+   <string name="show_books">책보기</string>
+   <string name="layout">형세</string>
+   <string name="number_of_books">도서 수</string>
+   <string name="show">보여 주다</string>
 </resources>

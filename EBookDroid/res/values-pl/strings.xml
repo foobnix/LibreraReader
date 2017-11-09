@@ -408,4 +408,8 @@
    <string name="small">Mały</string>
    <string name="large">Duży</string>
    <string name="make_text_bold">Utwórz pogrubiony tekst</string>
+   <string name="show_books">Pokaż książki</string>
+   <string name="layout">Układ</string>
+   <string name="number_of_books">Liczba książek</string>
+   <string name="show">Pokazać</string>
 </resources>

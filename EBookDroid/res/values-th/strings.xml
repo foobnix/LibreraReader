@@ -408,4 +408,8 @@
    <string name="small">เล็ก</string>
    <string name="large">ใหญ่</string>
    <string name="make_text_bold">ทำให้ข้อความเป็นตัวหนา</string>
+   <string name="show_books">แสดงหนังสือ</string>
+   <string name="layout">แบบ</string>
+   <string name="number_of_books">จำนวนหนังสือ</string>
+   <string name="show">แสดง</string>
 </resources>
