@@ -695,9 +695,63 @@ public class MagicHelper {
         if (AppState.getInstance().bolderTextOnImage || AppState.get().contrastImage != 0 || AppState.get().brigtnessImage != 0) {
 
             if (AppState.getInstance().bolderTextOnImage) {
-                embolden(arr);
+                // embolden(arr);
             }
-            quickContrast3(arr, AppState.get().contrastImage, AppState.get().brigtnessImage * -1);
+            // quickContrast3(arr, AppState.get().contrastImage,
+            // AppState.get().brigtnessImage * -1);
+            ivanContrast(arr, AppState.get().contrastImage, AppState.get().brigtnessImage * -1);
+
+        }
+
+    }
+
+    public static void ivanContrast(int[] arr, int extra_contrast, int delta_brightness) {
+        int prevSum = 0;
+        for (int i = 0; i < arr.length; i++) {
+            int color = arr[i];
+            if (color == Color.BLACK) {
+                prevSum = 0;
+                continue;
+            }
+            if (color == Color.WHITE) {
+                arr[i] = Color.rgb(prevSum, prevSum, prevSum);
+                prevSum = 255;
+                continue;
+            }
+
+            int r = Color.red(color);
+            int g = Color.green(color);
+            int b = Color.blue(color);
+
+
+            int sum = (r + g + b) / 3;
+
+            sum = sum + delta_brightness; // make darker
+
+            if (sum > 128) {
+                sum = sum + extra_contrast;
+            } else {
+                sum = sum - extra_contrast;
+            }
+
+
+
+            if (sum > 255) {
+                sum = 255;
+            } else if (sum < 0) {
+                sum = 0;
+            }
+
+            int nexSum = sum;
+            if (AppState.getInstance().bolderTextOnImage) {
+                if (i > 1) {
+                    nexSum = Math.min(prevSum, sum);
+                }
+            }
+
+            prevSum = sum;
+
+            arr[i] = Color.rgb(nexSum, nexSum, nexSum);
 
         }
 

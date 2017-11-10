@@ -819,6 +819,7 @@ public class HorizontalViewActivity extends FragmentActivity {
             documentController.getOutline(null);
             updateReadPercent();
 
+            updateUI(viewPager.getCurrentItem());
             showHideInfoToolBar();
             updateSeekBarColorAndSize();
             hideShow();
@@ -902,7 +903,7 @@ public class HorizontalViewActivity extends FragmentActivity {
         }
 
         if (getIntent().hasExtra("id4")) {
-            DragingDialogs.selectTextMenu(anchor, documentController, true);
+            DragingDialogs.selectTextMenu(anchor, documentController, true, onRefresh);
         }
 
         if (getIntent().hasExtra("id5")) {
@@ -1153,7 +1154,7 @@ public class HorizontalViewActivity extends FragmentActivity {
                 if (AppState.get().isRememberDictionary) {
                     DictsHelper.runIntent(anchor.getContext(), AppState.get().selectedText);
                 } else {
-                    DragingDialogs.selectTextMenu(anchor, documentController, true);
+                    DragingDialogs.selectTextMenu(anchor, documentController, true, onRefresh);
                 }
             }
         } else if (ev.getMessage().equals(MessageEvent.MESSAGE_GOTO_PAGE)) {
@@ -1223,12 +1224,13 @@ public class HorizontalViewActivity extends FragmentActivity {
             viewPager.setCurrentItem(page, false);
         }
 
+        String textPage = TxtUtils.deltaPage(page + 1);
         if (AppState.get().isRTL) {
-            maxSeek.setText("" + (page + 1));
+            maxSeek.setText("" + textPage);
         } else {
-            currentSeek.setText("" + (page + 1));
+            currentSeek.setText("" + textPage);
         }
-        pagesCountIndicator.setText((page + 1) + "∕" + documentController.getPageCount());
+        pagesCountIndicator.setText(textPage + "∕" + documentController.getPageCount());
         seekBar.setProgress(page);
         if (documentController != null) {
             documentController.currentPage = page;

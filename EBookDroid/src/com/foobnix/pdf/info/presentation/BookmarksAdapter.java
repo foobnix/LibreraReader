@@ -2,6 +2,7 @@ package com.foobnix.pdf.info.presentation;
 
 import java.util.List;
 
+import com.foobnix.android.utils.TxtUtils;
 import com.foobnix.pdf.info.AppSharedPreferences;
 import com.foobnix.pdf.info.R;
 import com.foobnix.pdf.info.wrapper.AppBookmark;
@@ -50,7 +51,7 @@ public class BookmarksAdapter extends BaseAdapter {
         view.setBackgroundColor(Color.TRANSPARENT);
 
 
-        String pageNumber = "" + (AppState.get().isCut ? bookmark.getPage() * 2 : bookmark.getPage());
+        String pageNumber = TxtUtils.deltaPage(AppState.get().isCut ? bookmark.getPage() * 2 : bookmark.getPage());
         titleView.setVisibility(View.GONE);
         textView.setText(pageNumber + ": " + bookmark.getText());
         pageView.setText(pageNumber);

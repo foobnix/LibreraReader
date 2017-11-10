@@ -196,13 +196,21 @@ public class DocumentWrapperUI {
             if (AppState.get().isRememberDictionary) {
                 DictsHelper.runIntent(anchor.getContext(), AppState.get().selectedText);
             } else {
-                DragingDialogs.selectTextMenu(anchor, controller, true);
+                DragingDialogs.selectTextMenu(anchor, controller, true, updateUIRunnable);
             }
         }
     }
 
+    Runnable updateUIRunnable = new Runnable() {
+
+        @Override
+        public void run() {
+            updateUI();
+        }
+    };
+
     public void showSelectTextMenu() {
-        DragingDialogs.selectTextMenu(anchor, controller, true);
+        DragingDialogs.selectTextMenu(anchor, controller, true, updateUIRunnable);
     }
 
     public boolean checkBack(final KeyEvent event) {
@@ -399,7 +407,9 @@ public class DocumentWrapperUI {
 
     public void updateSpeedLabel() {
         final int max = controller.getPageCount();
-        final int current = controller.getCurentPage();
+        final int currentNumber = controller.getCurentPage();
+
+        String current = TxtUtils.deltaPage(currentNumber);
 
         if (AppState.getInstance().isAutoScroll) {
             currentPageIndex.setText(String.format("{%s} %s/%s", AppState.getInstance().autoScrollSpeed, current, max));
@@ -414,7 +424,7 @@ public class DocumentWrapperUI {
         final int current = controller.getCurentPage();
 
         updateSpeedLabel();
-        currentSeek.setText(String.valueOf(current));
+        currentSeek.setText(TxtUtils.deltaPage(current));
         maxSeek.setText(String.valueOf(max));
 
         seekBar.setOnSeekBarChangeListener(null);

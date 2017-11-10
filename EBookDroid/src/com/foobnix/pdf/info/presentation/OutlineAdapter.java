@@ -2,6 +2,7 @@ package com.foobnix.pdf.info.presentation;
 
 import java.util.List;
 
+import com.foobnix.android.utils.TxtUtils;
 import com.foobnix.pdf.info.R;
 import com.foobnix.pdf.info.TintUtil;
 import com.foobnix.pdf.info.model.BookCSS;
@@ -149,7 +150,7 @@ public class OutlineAdapter extends BaseAdapter {
 
         final OutlineLinkWrapper item = getItem(position);
         view.setText(item.getTitleAsString().trim());
-        num.setText(String.valueOf(item.targetPage));
+        num.setText(TxtUtils.deltaPage(item.targetPage));
 
         if (item.targetPage != -1) {
             num.setVisibility(View.VISIBLE);

@@ -110,17 +110,16 @@
 
         <ImageView
             android:id="@+id/readTTS"
-            android:padding="4dip"
             android:layout_width="@dimen/wh_button_small"
             android:layout_height="@dimen/wh_button_small"
             android:layout_weight="0"
             android:adjustViewBounds="true"
             android:background="@drawable/bg_clickable"
+            android:padding="4dip"
             android:src="@drawable/glyphicons_184_volume_down"
             android:tint="@color/tint_gray" />
 
         <ImageView
-            android:visibility="gone"
             android:id="@+id/readTTSNext"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -129,7 +128,8 @@
             android:background="@drawable/bg_clickable"
             android:padding="8dip"
             android:src="@drawable/glyphicons_177_forward"
-            android:tint="@color/tint_gray" />
+            android:tint="@color/tint_gray"
+            android:visibility="gone" />
     </LinearLayout>
 
     <TextView
@@ -182,15 +182,16 @@
 
     <TextView
         android:id="@+id/onTranslate"
+        style="@style/textLink"
         android:layout_width="match_parent"
         android:layout_height="35dip"
         android:background="@android:drawable/list_selector_background"
         android:gravity="center_vertical"
         android:paddingLeft="10dip"
         android:singleLine="true"
-         style="@style/textLink"
         android:text="@string/web_dict"
         android:textSize="15sp" />
+
 
     <HorizontalScrollView
         android:layout_width="match_parent"

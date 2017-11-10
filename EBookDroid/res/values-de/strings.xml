@@ -413,4 +413,5 @@
    <string name="number_of_books">Anzahl der Bücher</string>
    <string name="show">Show</string>
    <string name="folder_for_downloaded_books">Ordner für heruntergeladene Bücher</string>
+   <string name="set_the_current_page_number">Setzt die aktuelle Seitenzahl</string>
 </resources>
