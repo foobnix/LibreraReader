@@ -714,6 +714,7 @@ public class MagicHelper {
                 continue;
             }
             if (color == Color.WHITE) {
+                arr[i] = Color.rgb(prevSum, prevSum, prevSum);
                 prevSum = 255;
                 continue;
             }
