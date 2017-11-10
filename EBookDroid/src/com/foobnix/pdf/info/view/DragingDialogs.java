@@ -797,6 +797,22 @@ public class DragingDialogs {
 
     public static DragingPopup selectTextMenu(final FrameLayout anchor, final DocumentController controller, final boolean withAnnotation, final Runnable reloadUI) {
 
+        try {
+            final int parseInt = Integer.parseInt(AppState.get().selectedText);
+            String txt = controller.getString(R.string.set_the_current_page_number);
+
+            AlertDialogs.showDialog(anchor.getContext(), txt + " [" + parseInt + "]", controller.getString(R.string.ok), new Runnable() {
+
+                @Override
+                public void run() {
+                    TempHolder.get().pageDelta = parseInt - controller.getCurentPageFirst1();
+                    reloadUI.run();
+                }
+            });
+            return null;
+        } catch (Exception e) {
+        }
+
         return new DragingPopup(R.string.text, anchor, 260, 400) {
             @Override
             public View getContentView(LayoutInflater inflater) {
@@ -1015,22 +1031,7 @@ public class DragingDialogs {
                     }
                 });
 
-                final TextView deltaPage = (TextView) view.findViewById(R.id.deltaPage);
-                try {
-                    final int parseInt = Integer.parseInt(selectedText);
-                    String txt = controller.getString(R.string.set_the_current_page_number);
-                    deltaPage.setText(txt + " [" + parseInt + "]");
 
-                    deltaPage.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-                            TempHolder.get().pageDelta = parseInt - controller.getCurentPageFirst1();
-                            reloadUI.run();
-                        }
-                    });
-                } catch (Exception e) {
-                    deltaPage.setVisibility(View.GONE);
-                }
 
                 view.findViewById(R.id.onCopy).setOnClickListener(new View.OnClickListener() {
 

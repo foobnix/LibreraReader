@@ -192,17 +192,6 @@
         android:text="@string/web_dict"
         android:textSize="15sp" />
 
-    <TextView
-        android:id="@+id/deltaPage"
-        style="@style/textLink"
-        android:layout_width="match_parent"
-        android:layout_height="35dip"
-        android:background="@android:drawable/list_selector_background"
-        android:gravity="center_vertical"
-        android:paddingLeft="10dip"
-        android:singleLine="true"
-        android:text="@string/set_the_current_page_number"
-        android:textSize="12sp" />
 
     <HorizontalScrollView
         android:layout_width="match_parent"
