@@ -709,7 +709,12 @@ public class MagicHelper {
         int prevSum = 0;
         for (int i = 0; i < arr.length; i++) {
             int color = arr[i];
-            if (color == Color.BLACK || color == Color.WHITE) {
+            if (color == Color.BLACK) {
+                prevSum = 0;
+                continue;
+            }
+            if (color == Color.WHITE) {
+                prevSum = 255;
                 continue;
             }
 
@@ -720,13 +725,15 @@ public class MagicHelper {
 
             int sum = (r + g + b) / 3;
 
+            sum = sum + delta_brightness; // make darker
+
             if (sum > 128) {
                 sum = sum + extra_contrast;
             } else {
                 sum = sum - extra_contrast;
             }
 
-            sum = sum + delta_brightness; // make darker
+
 
             if (sum > 255) {
                 sum = 255;
