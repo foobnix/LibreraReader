@@ -79,7 +79,7 @@ public class Dialogs {
             @Override
             public void onCheckedChanged(final CompoundButton buttonView, final boolean isChecked) {
                 if (contrastSeek.getCurrentValue() == 0) {
-                    contrastSeek.reset(25);
+                    // contrastSeek.reset(25);
                 }
                 AppState.getInstance().bolderTextOnImage = isChecked;
                 action.run();
