@@ -53,7 +53,7 @@
         <LinearLayout
             android:id="@+id/layoutBootom"
             android:layout_width="match_parent"
-            android:layout_height="80dip"
+            android:layout_height="wrap_content"
             android:orientation="vertical"
             android:padding="2dip" >
 

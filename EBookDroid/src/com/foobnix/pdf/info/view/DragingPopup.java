@@ -101,8 +101,8 @@ public abstract class DragingPopup {
     public DragingPopup(String title, final FrameLayout anchor, int width, int heigth) {
         this.anchor = anchor;
         if (Dips.isLargeScreen()) {
-            width = width * 2;
-            heigth = heigth * 2;
+            width = (int) (width * 1.5);
+            heigth = (int) (heigth * 1.5);
         }
         if (Dips.screenWidth() > Dips.screenHeight()) {
             width = (int) (width * 1.25);
