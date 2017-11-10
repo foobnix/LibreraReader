@@ -412,4 +412,5 @@
    <string name="layout">Bố trí</string>
    <string name="number_of_books">Số lượng sách</string>
    <string name="show">Chỉ</string>
+   <string name="folder_for_downloaded_books">Thư mục cho sách đã tải xuống</string>
 </resources>

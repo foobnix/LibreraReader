@@ -412,4 +412,5 @@
    <string name="layout">レイアウト</string>
    <string name="number_of_books">書籍数</string>
    <string name="show">ショー</string>
+   <string name="folder_for_downloaded_books">ダウンロードした書籍のフォルダ</string>
 </resources>

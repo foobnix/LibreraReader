@@ -1,5 +1,6 @@
 package com.foobnix.pdf.info.wrapper;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -324,6 +325,7 @@ public class AppState {
     public String searchPaths = Environment.getExternalStorageDirectory() == null ? "/" : Environment.getExternalStorageDirectory().getPath();
     public String texturePath = Environment.getExternalStorageDirectory().getPath();
     public String ttsSpeakPath = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS).getPath();
+    public String downlodsPath = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS), "Librera").getPath();
 
     public String fileToDelete;
     public String lastBookPath;
@@ -689,6 +691,7 @@ public class AppState {
         bgImageNightPath = sp.getString("bgImageNightPath", bgImageNightPath);
         texturePath = sp.getString("texturePath", texturePath);
         ttsSpeakPath = sp.getString("ttsSpeakPath", ttsSpeakPath);
+        downlodsPath = sp.getString("downlodsPath", downlodsPath);
         readColors = sp.getString("readColors", readColors);
         myOPDS = sp.getString("myOPDS", myOPDS);
         tabsOrder = sp.getString("tabsOrder2", tabsOrder);
@@ -919,6 +922,7 @@ public class AppState {
         editor.putString("bgImageNightPath", bgImageNightPath);
         editor.putString("texturePath", texturePath);
         editor.putString("ttsSpeakPath", ttsSpeakPath);
+        editor.putString("downlodsPath", downlodsPath);
         editor.putString("readColors", readColors);
         editor.putString("myOPDS", myOPDS);
         editor.putString("tabsOrder2", tabsOrder);

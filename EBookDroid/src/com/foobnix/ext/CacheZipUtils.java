@@ -37,7 +37,6 @@ public class CacheZipUtils {
     public static File CACHE_WEB;
     public static File ATTACHMENTS_CACHE_DIR;
     public static String APP_CACHE_DIR;
-    public static File LIRBI_DOWNLOAD_DIR;
     public static final Lock cacheLock = new ReentrantLock();
 
     public static void init(Context c) {
@@ -56,7 +55,6 @@ public class CacheZipUtils {
         ATTACHMENTS_CACHE_DIR = new File(externalCacheDir, "Attachments");
         CACHE_WEB = new File(externalCacheDir, "WEB");
         APP_CACHE_DIR = externalCacheDir.getPath();
-        LIRBI_DOWNLOAD_DIR = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS), "Librera");
         
         CacheZipUtils.createAllCacheDirs();
     }

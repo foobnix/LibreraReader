@@ -939,13 +939,14 @@ public class ExtUtils {
 
     public static File openPDFInTextReflowAsync(Activity a, File file, Handler dialog) {
         try {
-            if (!CacheZipUtils.LIRBI_DOWNLOAD_DIR.exists()) {
-                CacheZipUtils.LIRBI_DOWNLOAD_DIR.mkdirs();
+            File LIRBI_DOWNLOAD_DIR = new File(AppState.get().downlodsPath);
+            if (!LIRBI_DOWNLOAD_DIR.exists()) {
+                LIRBI_DOWNLOAD_DIR.mkdirs();
             }
 
             CodecDocument doc = BookType.getCodecContextByPath(file.getPath()).openDocument(file.getPath(), "");
 
-            final File filefb2 = new File(CacheZipUtils.LIRBI_DOWNLOAD_DIR, file.getName() + REFLOW_FB2);
+            final File filefb2 = new File(LIRBI_DOWNLOAD_DIR, file.getName() + REFLOW_FB2);
             try {
                 FileWriter fout = new FileWriter(filefb2);
                 BufferedWriter out = new BufferedWriter(fout);

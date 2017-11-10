@@ -412,4 +412,5 @@
    <string name="layout">Maketas</string>
    <string name="number_of_books">Knygų skaičius</string>
    <string name="show">Rodyti</string>
+   <string name="folder_for_downloaded_books">Katalogas atsisiųstoms knygoms</string>
 </resources>

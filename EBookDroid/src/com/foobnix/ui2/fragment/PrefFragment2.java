@@ -11,6 +11,7 @@ import com.foobnix.android.utils.Apps;
 import com.foobnix.android.utils.Dips;
 import com.foobnix.android.utils.IntegerResponse;
 import com.foobnix.android.utils.LOG;
+import com.foobnix.android.utils.ResultResponse2;
 import com.foobnix.android.utils.TxtUtils;
 import com.foobnix.pdf.info.AndroidWhatsNew;
 import com.foobnix.pdf.info.AppSharedPreferences;
@@ -25,6 +26,7 @@ import com.foobnix.pdf.info.fragment.SearchFragment;
 import com.foobnix.pdf.info.view.CustomSeek;
 import com.foobnix.pdf.info.view.Dialogs;
 import com.foobnix.pdf.info.view.MultyDocSearchDialog;
+import com.foobnix.pdf.info.widget.ChooserDialogFragment;
 import com.foobnix.pdf.info.widget.ColorsDialog;
 import com.foobnix.pdf.info.widget.ColorsDialog.ColorsDialogResult;
 import com.foobnix.pdf.info.widget.DialogTranslateFromTo;
@@ -41,6 +43,7 @@ import com.nostra13.universalimageloader.core.ImageLoader;
 
 import android.annotation.SuppressLint;
 import android.app.AlertDialog;
+import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
@@ -535,7 +538,6 @@ public class PrefFragment2 extends UIFragment {
             }
         });
 
-
         selectedOpenMode = (TextView) inflate.findViewById(R.id.selectedOpenMode);
         selectedOpenMode.setOnClickListener(new OnClickListener() {
 
@@ -873,6 +875,25 @@ public class PrefFragment2 extends UIFragment {
                 onFolderConfigDialog();
             }
         });
+        final TextView downlodsPath = (TextView) inflate.findViewById(R.id.downlodsPath);
+        downlodsPath.setText(ExtUtils.getFileName(AppState.getInstance().downlodsPath));
+        TxtUtils.underlineTextView(downlodsPath);
+        downlodsPath.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(final View v) {
+                ChooserDialogFragment.chooseFolder(getActivity(), AppState.getInstance().downlodsPath).setOnSelectListener(new ResultResponse2<String, Dialog>() {
+                    @Override
+                    public boolean onResultRecive(String nPath, Dialog dialog) {
+                        AppState.getInstance().downlodsPath = nPath;
+                        downlodsPath.setText(ExtUtils.getFileName(AppState.getInstance().downlodsPath));
+                        TxtUtils.underlineTextView(downlodsPath);
+                        dialog.dismiss();
+                        return false;
+                    }
+                });
+            }
+        });
 
         TxtUtils.underlineTextView((TextView) inflate.findViewById(R.id.importButton)).setOnClickListener(new View.OnClickListener() {
 
@@ -891,7 +912,7 @@ public class PrefFragment2 extends UIFragment {
         });
 
         // Widget Configuration
-        
+
         final TextView widgetLayout = (TextView) inflate.findViewById(R.id.widgetLayout);
         widgetLayout.setText(AppState.getInstance().widgetType == AppState.WIDGET_LIST ? R.string.list : R.string.grid);
         TxtUtils.underlineTextView(widgetLayout);
@@ -931,7 +952,7 @@ public class PrefFragment2 extends UIFragment {
             }
 
         });
-        
+
         final TextView widgetForRecent = (TextView) inflate.findViewById(R.id.widgetForRecent);
         widgetForRecent.setText(AppState.get().isStarsInWidget ? R.string.starred : R.string.recent);
         TxtUtils.underlineTextView(widgetForRecent);
