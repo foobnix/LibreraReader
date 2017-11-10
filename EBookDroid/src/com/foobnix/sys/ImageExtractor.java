@@ -376,11 +376,15 @@ public class ImageExtractor implements ImageDownloader {
                 pageUrl.setHeight((int) (pageUrl.getWidth() * 1.5));
             }
 
-            MagicHelper.isNeedBC = true;
+
             if (page == COVER_PAGE || page == COVER_PAGE_WITH_EFFECT) {
-                MagicHelper.isNeedBC = false;
-                Bitmap proccessCoverPage = proccessCoverPage(pageUrl);
-                return generalCoverWithEffect(pageUrl, proccessCoverPage);
+                try {
+                    MagicHelper.isNeedBC = false;
+                    Bitmap proccessCoverPage = proccessCoverPage(pageUrl);
+                    return generalCoverWithEffect(pageUrl, proccessCoverPage);
+                } finally {
+                    MagicHelper.isNeedBC = true;
+                }
             } else if (page == COVER_PAGE_NO_EFFECT) {
                 return bitmapToStream(proccessCoverPage(pageUrl));
             } else {

@@ -129,6 +129,7 @@ public class ViewerActivity extends AbstractActionActivity<ViewerActivity, Viewe
 
         Android6.checkPermissions(this);
 
+
         getController().createWrapper(this);
         frameLayout = (FrameLayout) findViewById(R.id.documentView);
 

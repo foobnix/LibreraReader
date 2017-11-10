@@ -490,13 +490,20 @@ public class AppState {
             AppState.getInstance().isInkMode = true;
             AppState.getInstance().isInvert = true;
             AppState.getInstance().isEditMode = true;
-            AppState.getInstance().isRememberMode = true;
-            AppState.getInstance().isAlwaysOpenAsMagazine = true;
-            AppState.getInstance().isMusicianMode = false;
+            AppState.getInstance().isRememberMode = false;
+            // AppState.getInstance().isAlwaysOpenAsMagazine = true;
+            // AppState.getInstance().isMusicianMode = false;
             AppState.getInstance().isReverseKeys = true;
             AppState.getInstance().isScrollAnimation = false;
             AppState.getInstance().tintColor = Color.BLACK;
 
+        }
+        if (Dips.isEInk(c)) {
+            bolderTextOnImage = true;
+            AppState.getInstance().appFontScale = 1.3f;
+            if (Dips.isLargeScreen()) {
+                AppState.getInstance().appFontScale = 1.5f;
+            }
         }
         LOG.d("defaults", AppsConfig.IS_CLASSIC, AppState.get().tabsOrder);
     }
@@ -567,6 +574,7 @@ public class AppState {
         sortByReverse = sp.getBoolean("sortByReverse", sortByReverse);
         isBrighrnessEnable = sp.getBoolean("isBrighrnessEnable", isBrighrnessEnable);
         isRewindEnable = sp.getBoolean("isRewindEnable", isRewindEnable);
+        bolderTextOnImage = sp.getBoolean("bolderTextOnImage", bolderTextOnImage);
         isReverseKeys = sp.getBoolean("isReverseKeys", isReverseKeys);
         isUseVolumeKeys = sp.getBoolean("isUseVolumeKeys", isUseVolumeKeys);
         isRememberMode = sp.getBoolean("isRememberMode1", isRememberMode);
@@ -802,6 +810,7 @@ public class AppState {
         editor.putBoolean("sortByReverse", sortByReverse);
         editor.putBoolean("isBrighrnessEnable", isBrighrnessEnable);
         editor.putBoolean("isRewindEnable", isRewindEnable);
+        editor.putBoolean("bolderTextOnImage", bolderTextOnImage);
         editor.putBoolean("isReverseKeys", isReverseKeys);
         editor.putBoolean("isUseVolumeKeys", isUseVolumeKeys);
 

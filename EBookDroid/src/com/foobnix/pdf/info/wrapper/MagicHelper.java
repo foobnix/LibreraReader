@@ -30,8 +30,8 @@ import android.widget.TextView;
 
 public class MagicHelper {
 
-    public static boolean isNeedMagic = true;
-    public static boolean isNeedBC = true;
+    public static volatile boolean isNeedMagic = true;
+    public static volatile boolean isNeedBC = true;
 
     public static int hash() {
         StringBuilder builder = new StringBuilder();
@@ -664,7 +664,7 @@ public class MagicHelper {
 
     public static boolean isColorDarkSimple(int color) {
         int k = Color.red(color) + Color.green(color) + Color.blue(color);
-        if (k > 550) {// 350
+        if (k > 550) {// 550
             return false;
         } else {
             return true;
@@ -697,7 +697,6 @@ public class MagicHelper {
         }
         if (AppState.getInstance().bolderTextOnImage) {
             ivanEbolden(arr);
-            // ivanContrast(arr, 0, 0);
         }
 
     }

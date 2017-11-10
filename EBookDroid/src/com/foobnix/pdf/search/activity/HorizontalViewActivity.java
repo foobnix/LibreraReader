@@ -566,18 +566,12 @@ public class HorizontalViewActivity extends FragmentActivity {
         titleTxt.setText(DocumentControllerHorizontalView.getTempTitle(this));
         loadinAsyncTask = new CopyAsyncTask() {
             ProgressDialog dialog;
-            Dialog simpleDialog;
             private boolean isCancelled = false;
 
             @Override
             protected void onPreExecute() {
-                if (AppState.get().isInkMode) {
-                    simpleDialog = new AlertDialog.Builder(HorizontalViewActivity.this).setMessage(R.string.msg_loading).setCancelable(false).show();
-                    simpleDialog.getWindow().clearFlags(WindowManager.LayoutParams.FLAG_DIM_BEHIND);
-                } else {
                     dialog = ProgressDialog.show(HorizontalViewActivity.this, "", getString(R.string.msg_loading, false, false));
                     dialog.getWindow().clearFlags(WindowManager.LayoutParams.FLAG_DIM_BEHIND);
-                }
 
             };
 
@@ -607,9 +601,6 @@ public class HorizontalViewActivity extends FragmentActivity {
                     if (dialog != null) {
                         dialog.dismiss();
                     }
-                    if (simpleDialog != null) {
-                        simpleDialog.dismiss();
-                    }
                 } catch (Exception e) {
                 }
                 isCancelled = true;
@@ -621,9 +612,6 @@ public class HorizontalViewActivity extends FragmentActivity {
                     LOG.d("RESULT", result);
                     if (dialog != null) {
                         dialog.dismiss();
-                    }
-                    if (simpleDialog != null) {
-                        simpleDialog.dismiss();
                     }
                 } catch (Exception e) {
                 }

@@ -630,6 +630,11 @@ public class DocumentWrapperUI {
         ImageView brightness = (ImageView) a.findViewById(R.id.brightness);
         brightness.setOnClickListener(onSun);
         brightness.setImageResource(!AppState.get().isInvert ? R.drawable.glyphicons_232_sun : R.drawable.glyphicons_2_moon);
+        brightness.setVisibility(AppState.get().isInkMode ? View.GONE : View.VISIBLE);
+
+        ImageView onBC = (ImageView) a.findViewById(R.id.onBC);
+        onBC.setOnClickListener(onBCclick);
+        onBC.setVisibility(AppState.get().isInkMode ? View.VISIBLE : View.GONE);
 
         a.findViewById(R.id.toPage).setOnClickListener(toPage);
 
@@ -1319,6 +1324,20 @@ public class DocumentWrapperUI {
         public void onClick(final View arg0) {
             a.finish();
             a.startActivity(a.getIntent());
+        }
+    };
+
+    public View.OnClickListener onBCclick = new View.OnClickListener() {
+
+        @Override
+        public void onClick(final View arg0) {
+            DragingDialogs.contrastAndBrigtness(anchor, controller, new Runnable() {
+
+                @Override
+                public void run() {
+                    controller.updateRendering();
+                }
+            });
         }
     };
 

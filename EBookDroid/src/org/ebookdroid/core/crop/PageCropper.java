@@ -21,9 +21,10 @@ public class PageCropper {
         final Canvas c = new Canvas(source);
         c.drawBitmap(bitmap, bitmapBounds, RECT, null);
 
-        int firstColor = source.getPixel(0, 0);
+        int firstColor = source.getPixel(1, 1);
         int baseColor = !MagicHelper.isColorDarkSimple(firstColor) ? firstColor : Color.WHITE;
-        LOG.d("First color is ligth", !MagicHelper.isColorDarkSimple(firstColor), firstColor);
+        int firstColorValue = Color.red(firstColor) + Color.green(firstColor) + Color.blue(firstColor);
+        LOG.d("First color is ligth", !MagicHelper.isColorDarkSimple(firstColor), firstColor, firstColorValue);
 
         int width = source.getWidth();
         int height = source.getHeight();
@@ -33,8 +34,8 @@ public class PageCropper {
         int bottomY = 0;
         int bottomX = 0;
 
-        for (int y = 0; y < height; y++) {
-            for (int x = 0; x < width; x++) {
+        for (int y = 1; y < height; y++) {
+            for (int x = 1; x < width; x++) {
                 int pixel = source.getPixel(x, y);
                 if (baseColor == pixel) {
                     continue;
