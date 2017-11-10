@@ -591,7 +591,7 @@ public class DragingDialogs {
 
                     @Override
                     public void populateView(View inflate, int arg1, Integer arg2) {
-                        final TextView text = Views.text(inflate, android.R.id.text1, "" + (arg2 + 1));
+                        final TextView text = Views.text(inflate, android.R.id.text1, TxtUtils.deltaPage(arg2 + 1));
                         text.setGravity(Gravity.CENTER);
                         text.setTypeface(Typeface.DEFAULT, Typeface.BOLD);
                     }
@@ -795,9 +795,9 @@ public class DragingDialogs {
         });
     }
 
-    public static DragingPopup selectTextMenu(final FrameLayout anchor, final DocumentController controller, final boolean withAnnotation) {
+    public static DragingPopup selectTextMenu(final FrameLayout anchor, final DocumentController controller, final boolean withAnnotation, final Runnable reloadUI) {
 
-        return new DragingPopup(R.string.text, anchor, 200, 400) {
+        return new DragingPopup(R.string.text, anchor, 260, 400) {
             @Override
             public View getContentView(LayoutInflater inflater) {
                 final View view = inflater.inflate(R.layout.dialog_selected_text, null, false);
@@ -1014,6 +1014,23 @@ public class DragingDialogs {
                         controller.getActivity().startActivity(intent);
                     }
                 });
+
+                final TextView deltaPage = (TextView) view.findViewById(R.id.deltaPage);
+                try {
+                    final int parseInt = Integer.parseInt(selectedText);
+                    String txt = controller.getString(R.string.set_the_current_page_number);
+                    deltaPage.setText(txt + " [" + parseInt + "]");
+
+                    deltaPage.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            TempHolder.get().pageDelta = parseInt - controller.getCurentPageFirst1();
+                            reloadUI.run();
+                        }
+                    });
+                } catch (Exception e) {
+                    deltaPage.setVisibility(View.GONE);
+                }
 
                 view.findViewById(R.id.onCopy).setOnClickListener(new View.OnClickListener() {
 

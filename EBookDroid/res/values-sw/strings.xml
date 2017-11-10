@@ -413,4 +413,5 @@
    <string name="number_of_books">Idadi ya vitabu</string>
    <string name="show">Onyesha</string>
    <string name="folder_for_downloaded_books">Folda kwa vitabu vilivyopakuliwa</string>
+   <string name="set_the_current_page_number">Weka nambari ya ukurasa wa sasa</string>
 </resources>

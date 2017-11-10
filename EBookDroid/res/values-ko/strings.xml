@@ -413,4 +413,5 @@
    <string name="number_of_books">도서 수</string>
    <string name="show">보여 주다</string>
    <string name="folder_for_downloaded_books">다운로드 한 책의 폴더</string>
+   <string name="set_the_current_page_number">현재 페이지 번호 설정</string>
 </resources>

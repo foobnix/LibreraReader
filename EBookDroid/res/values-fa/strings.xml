@@ -413,4 +413,5 @@
    <string name="number_of_books">تعداد کتاب ها</string>
    <string name="show">نمایش</string>
    <string name="folder_for_downloaded_books">پوشه برای کتابهای دانلود شده</string>
+   <string name="set_the_current_page_number">شماره صفحه فعلی را تنظیم کنید</string>
 </resources>

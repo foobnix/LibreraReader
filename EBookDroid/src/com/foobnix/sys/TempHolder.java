@@ -28,6 +28,8 @@ public class TempHolder {
 
     public long timerFinishTime = 0;
 
+    public int pageDelta = 0;
+
     public static TempHolder get() {
         return inst;
     }
@@ -37,11 +39,13 @@ public class TempHolder {
         path = pathI;
         isTextFormat = isTextForamtInner();
         isTextForamtButNotTxt = isTextForamtButNotTxt();
+        pageDelta = 0;
     }
 
     public void clear() {
         codecDocument = null;
         path = null;
+        pageDelta = 0;
     }
 
     private boolean isTextForamtInner() {

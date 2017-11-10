@@ -413,4 +413,5 @@
    <string name="number_of_books">书的数量</string>
    <string name="show">显示</string>
    <string name="folder_for_downloaded_books">下载的书籍的文件夹</string>
+   <string name="set_the_current_page_number">设置当前页码</string>
 </resources>

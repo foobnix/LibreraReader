@@ -413,4 +413,5 @@
    <string name="number_of_books">מספר ספרים</string>
    <string name="show">לְהַצִיג</string>
    <string name="folder_for_downloaded_books">תיקייה עבור ספרים שהורדו</string>
+   <string name="set_the_current_page_number">הגדר את מספר הדף הנוכחי</string>
 </resources>

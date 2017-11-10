@@ -413,4 +413,5 @@
    <string name="number_of_books">عدد الكتب</string>
    <string name="show">تبين</string>
    <string name="folder_for_downloaded_books">مجلد للكتب التي تم تنزيلها</string>
+   <string name="set_the_current_page_number">تعيين رقم الصفحة الحالية</string>
 </resources>

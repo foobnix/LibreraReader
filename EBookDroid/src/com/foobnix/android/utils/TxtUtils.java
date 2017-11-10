@@ -10,6 +10,7 @@ import java.util.regex.Pattern;
 import com.foobnix.dao2.FileMeta;
 import com.foobnix.pdf.info.ExtUtils;
 import com.foobnix.pdf.info.wrapper.AppState;
+import com.foobnix.sys.TempHolder;
 
 import android.annotation.TargetApi;
 import android.os.Build;
@@ -19,6 +20,13 @@ import android.text.Spanned;
 import android.widget.TextView;
 
 public class TxtUtils {
+
+    public static String deltaPage(int current) {
+        if (TempHolder.get().pageDelta == 0) {
+            return "" + current;
+        }
+        return "[" + (current + TempHolder.get().pageDelta) + "]";
+    }
 
     public static void addFilteredGenreSeries(String item, List<String> result, boolean simpleAdd) {
         if (TxtUtils.isEmpty(item)) {

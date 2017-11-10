@@ -1,6 +1,7 @@
 package com.foobnix.pdf.info.presentation;
 
 import com.foobnix.android.utils.Dips;
+import com.foobnix.android.utils.TxtUtils;
 import com.foobnix.pdf.info.IMG;
 import com.foobnix.pdf.info.PageUrl;
 import com.foobnix.pdf.info.R;
@@ -71,7 +72,7 @@ public class PageThumbnailAdapter extends BaseAdapter {
         ImageLoader.getInstance().displayImage(url, img, IMG.displayImageOptionsNoDiscCache);
 
         TextView txt = (TextView) view.findViewById(R.id.text1);
-        txt.setText("" + (position + 1));
+        txt.setText(TxtUtils.deltaPage((position + 1)));
 
         txt.setVisibility(View.VISIBLE);
         img.setVisibility(View.VISIBLE);
