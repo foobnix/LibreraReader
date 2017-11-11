@@ -204,6 +204,8 @@ public class EpubExtractor extends BaseExtractor {
                     ebookMeta.setsIndex(Integer.parseInt(number));
                 }
             } catch (Exception e) {
+                title = title + " [" + number + "]";
+                ebookMeta.setTitle(title);
                 LOG.d(e);
             }
             ebookMeta.setLang(lang);

@@ -31,6 +31,7 @@ import com.foobnix.pdf.info.model.BookCSS;
 import com.foobnix.pdf.info.model.OutlineLinkWrapper;
 import com.foobnix.pdf.info.view.AlertDialogs;
 import com.foobnix.pdf.info.view.BrigtnessDraw;
+import com.foobnix.pdf.info.view.Dialogs;
 import com.foobnix.pdf.info.view.DragingDialogs;
 import com.foobnix.pdf.info.view.DragingPopup;
 import com.foobnix.pdf.info.view.HorizontallSeekTouchEventListener;
@@ -253,6 +254,15 @@ public class HorizontalViewActivity extends FragmentActivity {
             @Override
             public void onClick(View v) {
                 DragingDialogs.onMoveDialog(anchor, documentController, onRefresh, reloadDoc);
+            }
+        });
+
+        currentSeek.setOnLongClickListener(new OnLongClickListener() {
+
+            @Override
+            public boolean onLongClick(View v) {
+                Dialogs.showDeltaPage(anchor, documentController, documentController.getCurentPageFirst1(), onRefresh);
+                return true;
             }
         });
 
@@ -570,8 +580,8 @@ public class HorizontalViewActivity extends FragmentActivity {
 
             @Override
             protected void onPreExecute() {
-                    dialog = ProgressDialog.show(HorizontalViewActivity.this, "", getString(R.string.msg_loading, false, false));
-                    dialog.getWindow().clearFlags(WindowManager.LayoutParams.FLAG_DIM_BEHIND);
+                dialog = ProgressDialog.show(HorizontalViewActivity.this, "", getString(R.string.msg_loading, false, false));
+                dialog.getWindow().clearFlags(WindowManager.LayoutParams.FLAG_DIM_BEHIND);
 
             };
 

@@ -26,6 +26,7 @@ import com.foobnix.pdf.info.UiSystemUtils;
 import com.foobnix.pdf.info.model.BookCSS;
 import com.foobnix.pdf.info.model.OutlineLinkWrapper;
 import com.foobnix.pdf.info.view.BrigtnessDraw;
+import com.foobnix.pdf.info.view.Dialogs;
 import com.foobnix.pdf.info.view.DragingDialogs;
 import com.foobnix.pdf.info.view.DragingPopup;
 import com.foobnix.pdf.info.view.DrawView;
@@ -59,6 +60,7 @@ import android.view.MenuItem.OnMenuItemClickListener;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.View.OnLongClickListener;
 import android.view.ViewTreeObserver.OnGlobalLayoutListener;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
@@ -717,6 +719,15 @@ public class DocumentWrapperUI {
             currentTime.setTypeface(BookCSS.getNormalTypeFace());
             batteryLevel.setTypeface(BookCSS.getNormalTypeFace());
         }
+
+        currentSeek.setOnLongClickListener(new OnLongClickListener() {
+
+            @Override
+            public boolean onLongClick(View v) {
+                Dialogs.showDeltaPage(anchor, controller, controller.getCurentPageFirst1(), updateUIRunnable);
+                return true;
+            }
+        });
 
         View thumbnail = a.findViewById(R.id.thumbnail);
         thumbnail.setOnClickListener(onThumbnail);
