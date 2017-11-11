@@ -49,6 +49,15 @@ public class Dialogs {
                 reloadUI.run();
             }
         });
+        builder.setNeutralButton(R.string.restore_defaults, new DialogInterface.OnClickListener() {
+
+            @Override
+            public void onClick(final DialogInterface dialog, final int id) {
+                TempHolder.get().pageDelta = 0;
+                reloadUI.run();
+
+            }
+        });
         builder.setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
 
             @Override

@@ -8,6 +8,7 @@ import org.json.JSONObject;
 
 import com.foobnix.pdf.info.ExtUtils;
 import com.foobnix.pdf.info.wrapper.AppState;
+import com.foobnix.sys.TempHolder;
 
 public class BookSettings implements CurrentPageListener {
 
@@ -29,6 +30,7 @@ public class BookSettings implements CurrentPageListener {
 
     public boolean autoLevels;
     private int pages;
+    public int pageDelta = 0;
 
     public BookSettings(final String fileName) {
         this.fileName = fileName;
@@ -44,6 +46,7 @@ public class BookSettings implements CurrentPageListener {
         splitPages = AppState.get().isCut;
         doublePagesCover = AppState.get().isDoubleCoverAlone;
         isLocked = AppState.get().isLocked;
+        pageDelta = TempHolder.get().pageDelta;
     }
 
     BookSettings(final JSONObject object) throws JSONException {
@@ -60,6 +63,7 @@ public class BookSettings implements CurrentPageListener {
         this.splitPages = object.optBoolean("splitPages", splitPages);
         this.speed = object.optInt("speed", speed);
         this.pages = object.optInt("pages", pages);
+        this.pageDelta = object.optInt("pageDelta", pageDelta);
     }
 
     JSONObject toJSON() throws JSONException {
@@ -77,6 +81,7 @@ public class BookSettings implements CurrentPageListener {
         obj.put("splitPages", splitPages);
         obj.put("speed", speed);
         obj.put("pages", pages);
+        obj.put("pageDelta", pageDelta);
         return obj;
     }
 
