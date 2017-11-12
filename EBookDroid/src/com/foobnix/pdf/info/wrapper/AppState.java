@@ -446,7 +446,8 @@ public class AppState {
         providers.put("1tudien", "http://www.1tudien.com/?w=" + text);
         providers.put("Vdict", String.format("http://vdict.com/%s,1,0,0.html", text));
         providers.put("Google Search", String.format("http://www.google.com/search?q=%s", text));
-        providers.put("Wikipedia", String.format("https://%s.wikipedia.org/wiki/%s", from, text));
+        providers.put("Wikipedia", String.format("https://%s.m.wikipedia.org/wiki/%s", from, text));
+        providers.put("Wiktionary", String.format("https://%s.m.wiktionary.org/wiki/%s", from, text));
         return providers;
     }
 
