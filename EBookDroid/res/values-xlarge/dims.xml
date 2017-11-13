@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <dimen name="wh_button">40dp</dimen>
-    <dimen name="wh_button_small">30dp</dimen>
+    <dimen name="wh_button">45dp</dimen>
+    <dimen name="wh_button_small">35dp</dimen>
     
-    <dimen name="wh_button_big">40dp</dimen>
+    <dimen name="wh_button_big">50dp</dimen>
     
      
        <dimen name="title_wh_button">30sp</dimen>

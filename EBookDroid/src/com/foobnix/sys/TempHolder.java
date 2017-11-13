@@ -39,13 +39,11 @@ public class TempHolder {
         path = pathI;
         isTextFormat = isTextForamtInner();
         isTextForamtButNotTxt = isTextForamtButNotTxt();
-        pageDelta = 0;
     }
 
     public void clear() {
         codecDocument = null;
         path = null;
-        pageDelta = 0;
     }
 
     private boolean isTextForamtInner() {

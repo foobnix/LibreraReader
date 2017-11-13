@@ -540,6 +540,7 @@ public class ExtUtils {
                 dialog.dismiss();
             }
         });
+
         view.findViewById(R.id.music).setOnClickListener(new View.OnClickListener() {
 
             @Override
@@ -550,6 +551,9 @@ public class ExtUtils {
                 dialog.dismiss();
             }
         });
+        if (AppState.get().isInkMode) {
+            view.findViewById(R.id.music).setVisibility(View.GONE);
+        }
         CheckBox checkBox = (CheckBox) view.findViewById(R.id.checkBoxRemember);
         checkBox.setOnCheckedChangeListener(new OnCheckedChangeListener() {
 

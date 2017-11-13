@@ -110,6 +110,7 @@ public class ViewerActivity extends AbstractActionActivity<ViewerActivity, Viewe
                     AppState.get().isDouble = bs.doublePages;
                     AppState.get().isDoubleCoverAlone = bs.doublePagesCover;
                     AppState.get().isLocked = bs.isLocked;
+                    TempHolder.get().pageDelta = bs.pageDelta;
                 }
             }
 
@@ -128,6 +129,7 @@ public class ViewerActivity extends AbstractActionActivity<ViewerActivity, Viewe
         setContentView(R.layout.document_view);
 
         Android6.checkPermissions(this);
+
 
         getController().createWrapper(this);
         frameLayout = (FrameLayout) findViewById(R.id.documentView);

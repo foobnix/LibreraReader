@@ -11,7 +11,7 @@
         android:clickable="true"
         android:id="@+id/lineNavgination"
         android:layout_width="match_parent"
-        android:layout_height="40dip"
+        android:layout_height="wrap_content"
         android:layout_marginTop="2dip"
         android:gravity="center"
         android:visibility="visible" >
@@ -109,8 +109,9 @@
         android:focusableInTouchMode="true"
         android:clickable="true"
         android:id="@+id/pagsLayout"
+        android:padding="2dip"
         android:layout_width="match_parent"
-        android:layout_height="42dp"
+        android:layout_height="wrap_content"
         android:gravity="center_vertical" >
 
         <ImageView

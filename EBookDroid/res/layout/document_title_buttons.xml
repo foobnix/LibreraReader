@@ -64,6 +64,16 @@
         android:layout_weight="0"
         android:contentDescription="zoom out"
         android:src="@drawable/glyphicons_191_circle_plus" />
+    
+    
+    
+    <ImageView
+        android:id="@+id/onBC"
+        style="@style/buttonWhite"
+        android:layout_width="@dimen/wh_button"
+        android:layout_height="@dimen/wh_button"
+        android:layout_weight="0"
+        android:src="@drawable/glyphicons_190_brightness_my" />
 
     <ImageView
         android:id="@+id/brightness"
@@ -117,6 +127,7 @@
         android:contentDescription="@string/close"
         android:id="@+id/close"
         style="@style/buttonWhiteClose"
+        android:layout_marginRight="2dip"
         android:layout_width="@dimen/wh_button"
         android:layout_height="@dimen/wh_button"
         android:layout_weight="0"

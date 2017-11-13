@@ -93,7 +93,8 @@
 
         <LinearLayout
             android:layout_width="wrap_content"
-            android:layout_height="48dp"
+            android:layout_height="wrap_content"
+            android:padding="2dip"
             android:gravity="center"
             android:orientation="horizontal" >
             
@@ -301,14 +302,13 @@
     <LinearLayout
         android:id="@+id/bottomBar"
         android:layout_width="match_parent"
-        android:layout_height="48dp"
+        android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:background="#96aa39"
         android:clickable="true"
         android:focusableInTouchMode="false"
         android:gravity="center_vertical"
-        android:paddingLeft="2dip"
-        android:paddingRight="2dip"
+        android:padding="2dip"
         android:visibility="visible" >
 
         <ImageView

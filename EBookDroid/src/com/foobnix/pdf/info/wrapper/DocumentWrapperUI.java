@@ -26,6 +26,7 @@ import com.foobnix.pdf.info.UiSystemUtils;
 import com.foobnix.pdf.info.model.BookCSS;
 import com.foobnix.pdf.info.model.OutlineLinkWrapper;
 import com.foobnix.pdf.info.view.BrigtnessDraw;
+import com.foobnix.pdf.info.view.Dialogs;
 import com.foobnix.pdf.info.view.DragingDialogs;
 import com.foobnix.pdf.info.view.DragingPopup;
 import com.foobnix.pdf.info.view.DrawView;
@@ -59,6 +60,7 @@ import android.view.MenuItem.OnMenuItemClickListener;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.View.OnLongClickListener;
 import android.view.ViewTreeObserver.OnGlobalLayoutListener;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
@@ -630,6 +632,11 @@ public class DocumentWrapperUI {
         ImageView brightness = (ImageView) a.findViewById(R.id.brightness);
         brightness.setOnClickListener(onSun);
         brightness.setImageResource(!AppState.get().isInvert ? R.drawable.glyphicons_232_sun : R.drawable.glyphicons_2_moon);
+        brightness.setVisibility(AppState.get().isInkMode ? View.GONE : View.VISIBLE);
+
+        ImageView onBC = (ImageView) a.findViewById(R.id.onBC);
+        onBC.setOnClickListener(onBCclick);
+        onBC.setVisibility(AppState.get().isInkMode ? View.VISIBLE : View.GONE);
 
         a.findViewById(R.id.toPage).setOnClickListener(toPage);
 
@@ -712,6 +719,15 @@ public class DocumentWrapperUI {
             currentTime.setTypeface(BookCSS.getNormalTypeFace());
             batteryLevel.setTypeface(BookCSS.getNormalTypeFace());
         }
+
+        currentSeek.setOnLongClickListener(new OnLongClickListener() {
+
+            @Override
+            public boolean onLongClick(View v) {
+                Dialogs.showDeltaPage(anchor, controller, controller.getCurentPageFirst1(), updateUIRunnable);
+                return true;
+            }
+        });
 
         View thumbnail = a.findViewById(R.id.thumbnail);
         thumbnail.setOnClickListener(onThumbnail);
@@ -1319,6 +1335,20 @@ public class DocumentWrapperUI {
         public void onClick(final View arg0) {
             a.finish();
             a.startActivity(a.getIntent());
+        }
+    };
+
+    public View.OnClickListener onBCclick = new View.OnClickListener() {
+
+        @Override
+        public void onClick(final View arg0) {
+            DragingDialogs.contrastAndBrigtness(anchor, controller, new Runnable() {
+
+                @Override
+                public void run() {
+                    controller.updateRendering();
+                }
+            });
         }
     };
 

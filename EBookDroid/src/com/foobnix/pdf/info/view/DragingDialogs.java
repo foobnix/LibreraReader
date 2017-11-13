@@ -798,17 +798,8 @@ public class DragingDialogs {
     public static DragingPopup selectTextMenu(final FrameLayout anchor, final DocumentController controller, final boolean withAnnotation, final Runnable reloadUI) {
 
         try {
-            final int parseInt = Integer.parseInt(AppState.get().selectedText);
-            String txt = controller.getString(R.string.set_the_current_page_number);
-
-            AlertDialogs.showDialog(anchor.getContext(), txt + " [" + parseInt + "]", controller.getString(R.string.ok), new Runnable() {
-
-                @Override
-                public void run() {
-                    TempHolder.get().pageDelta = parseInt - controller.getCurentPageFirst1();
-                    reloadUI.run();
-                }
-            });
+            int number = Integer.parseInt(AppState.get().selectedText);
+            Dialogs.showDeltaPage(anchor, controller, number, reloadUI);
             return null;
         } catch (Exception e) {
         }

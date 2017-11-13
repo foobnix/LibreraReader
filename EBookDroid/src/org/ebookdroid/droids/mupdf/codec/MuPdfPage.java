@@ -205,7 +205,7 @@ public class MuPdfPage extends AbstractCodecPage {
         }
 
         if (MagicHelper.isNeedBC) {
-        MagicHelper.applyQuickContrastAndBrightness(bufferarray, width, height);
+            MagicHelper.applyQuickContrastAndBrightness(bufferarray, width, height);
         }
 
         final BitmapRef b = BitmapManager.getBitmap("PDF page", width, height, Config.RGB_565);

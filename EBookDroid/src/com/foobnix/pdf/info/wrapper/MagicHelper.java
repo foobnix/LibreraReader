@@ -30,8 +30,8 @@ import android.widget.TextView;
 
 public class MagicHelper {
 
-    public static boolean isNeedMagic = true;
-    public static boolean isNeedBC = true;
+    public static volatile boolean isNeedMagic = true;
+    public static volatile boolean isNeedBC = true;
 
     public static int hash() {
         StringBuilder builder = new StringBuilder();
@@ -664,7 +664,7 @@ public class MagicHelper {
 
     public static boolean isColorDarkSimple(int color) {
         int k = Color.red(color) + Color.green(color) + Color.blue(color);
-        if (k > 550) {// 350
+        if (k > 550) {// 550
             return false;
         } else {
             return true;
@@ -692,15 +692,41 @@ public class MagicHelper {
     }
 
     public static void applyQuickContrastAndBrightness(int[] arr, int w, int h) {
-        if (AppState.getInstance().bolderTextOnImage || AppState.get().contrastImage != 0 || AppState.get().brigtnessImage != 0) {
+        if (AppState.get().contrastImage != 0 || AppState.get().brigtnessImage != 0) {
+            quickContrast3(arr, AppState.get().contrastImage, AppState.get().brigtnessImage * -1);
+        }
+        if (AppState.getInstance().bolderTextOnImage) {
+            ivanEbolden(arr);
+        }
 
-            if (AppState.getInstance().bolderTextOnImage) {
-                // embolden(arr);
+    }
+
+    public static void ivanEbolden(int[] arr) {
+        int prevSum = 0;
+        for (int i = 0; i < arr.length; i++) {
+            int color = arr[i];
+            if (color == Color.BLACK) {
+                prevSum = 0;
+                continue;
             }
-            // quickContrast3(arr, AppState.get().contrastImage,
-            // AppState.get().brigtnessImage * -1);
-            ivanContrast(arr, AppState.get().contrastImage, AppState.get().brigtnessImage * -1);
+            if (color == Color.WHITE) {
+                arr[i] = Color.rgb(prevSum, prevSum, prevSum);
+                prevSum = 255;
+                continue;
+            }
 
+            int r = Color.red(color);
+            int g = Color.green(color);
+            int b = Color.blue(color);
+
+            int sum = (r + g + b) / 3;
+
+            int nexSum = sum;
+            if (i > 1) {
+                nexSum = Math.min(prevSum, sum);
+            }
+            prevSum = sum;
+            arr[i] = Color.rgb(nexSum, nexSum, nexSum);
         }
 
     }
@@ -723,7 +749,6 @@ public class MagicHelper {
             int g = Color.green(color);
             int b = Color.blue(color);
 
-
             int sum = (r + g + b) / 3;
 
             sum = sum + delta_brightness; // make darker
@@ -733,8 +758,6 @@ public class MagicHelper {
             } else {
                 sum = sum - extra_contrast;
             }
-
-
 
             if (sum > 255) {
                 sum = 255;

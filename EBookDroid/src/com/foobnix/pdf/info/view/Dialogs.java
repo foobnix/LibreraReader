@@ -1,21 +1,72 @@
 package com.foobnix.pdf.info.view;
 
+import com.foobnix.android.utils.Dips;
 import com.foobnix.android.utils.IntegerResponse;
 import com.foobnix.android.utils.TxtUtils;
 import com.foobnix.pdf.info.R;
 import com.foobnix.pdf.info.wrapper.AppState;
+import com.foobnix.pdf.info.wrapper.DocumentController;
+import com.foobnix.sys.TempHolder;
 
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.text.InputType;
 import android.view.View;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.CompoundButton.OnCheckedChangeListener;
+import android.widget.EditText;
+import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
 public class Dialogs {
+
+    public static void showDeltaPage(final FrameLayout anchor, final DocumentController controller, final int pageNumber, final Runnable reloadUI) {
+
+        String txt = controller.getString(R.string.set_the_current_page_number);
+
+        final AlertDialog.Builder builder = new AlertDialog.Builder(anchor.getContext());
+        builder.setMessage(txt);
+
+        final EditText edit = new EditText(anchor.getContext());
+        edit.setInputType(InputType.TYPE_CLASS_NUMBER);
+        edit.setMaxWidth(Dips.dpToPx(100));
+        edit.setText("" + pageNumber);
+
+        builder.setView(edit);
+        builder.setCancelable(false);
+        builder.setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
+
+            @Override
+            public void onClick(final DialogInterface dialog, final int id) {
+                try {
+                    TempHolder.get().pageDelta = Integer.parseInt(edit.getText().toString()) - controller.getCurentPageFirst1();
+                } catch (Exception e) {
+                    TempHolder.get().pageDelta = 0;
+                }
+                reloadUI.run();
+            }
+        });
+        builder.setNeutralButton(R.string.restore_defaults, new DialogInterface.OnClickListener() {
+
+            @Override
+            public void onClick(final DialogInterface dialog, final int id) {
+                TempHolder.get().pageDelta = 0;
+                reloadUI.run();
+
+            }
+        });
+        builder.setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
+
+            @Override
+            public void onClick(final DialogInterface dialog, final int id) {
+
+            }
+        });
+        builder.show();
+    }
 
     public static void showContrastDialogByUrl(final Context c, final Runnable action) {
         final AlertDialog.Builder builder = new AlertDialog.Builder(c);
@@ -41,7 +92,6 @@ public class Dialogs {
     public static LinearLayout getBCView(final Context c, final Runnable action) {
         LinearLayout l = new LinearLayout(c);
         l.setOrientation(LinearLayout.VERTICAL);
-
 
         final CustomSeek contrastSeek = new CustomSeek(c);
         contrastSeek.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT, 0));
