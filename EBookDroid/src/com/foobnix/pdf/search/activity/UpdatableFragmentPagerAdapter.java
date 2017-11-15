@@ -1,5 +1,7 @@
 package com.foobnix.pdf.search.activity;
 
+import com.foobnix.android.utils.LOG;
+
 import android.os.Bundle;
 import android.os.Parcelable;
 import android.support.annotation.NonNull;
@@ -93,7 +95,9 @@ public abstract class UpdatableFragmentPagerAdapter extends PagerAdapter {
         fragment.setMenuVisibility(false);
         fragment.setUserVisibleHint(false);
         mFragments.put(tag, fragment);
-        mCurTransaction.add(container.getId(), fragment, "f" + tag);
+        String string = "f" + tag;
+        LOG.d("TEMP_TAG", string);
+        mCurTransaction.add(container.getId(), fragment, string);
 
         return fragment;
     }

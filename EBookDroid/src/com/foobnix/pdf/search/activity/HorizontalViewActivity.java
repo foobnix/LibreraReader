@@ -973,6 +973,12 @@ public class HorizontalViewActivity extends FragmentActivity {
 
         @Override
         public void run() {
+            if (true) {
+                IMG.clearMemoryCache();
+                ImagePageFragment imageFragment = (ImagePageFragment) getSupportFragmentManager().findFragmentByTag("f" + viewPager.getCurrentItem());
+                imageFragment.loadImage();
+                return;
+            }
             documentController.getOutline(null);
             documentController.saveCurrentPage();
             createAdapter();
@@ -1501,6 +1507,7 @@ public class HorizontalViewActivity extends FragmentActivity {
             @Override
             public Fragment getItem(final int position) {
                 final ImagePageFragment imageFragment = new ImagePageFragment();
+
 
                 final Bundle b = new Bundle();
                 b.putInt(ImagePageFragment.POS, position);

@@ -72,6 +72,7 @@ public class ImagePageFragment extends Fragment {
         return view;
     }
 
+
     @Override
     public void onResume() {
         super.onResume();
@@ -86,7 +87,7 @@ public class ImagePageFragment extends Fragment {
 
     public void loadImage() {
         if (getPriority() > 2) {
-            LOG.d("ImagePageFragment1  skip loading page ", page, "getPriority", getPriority());
+            LOG.d("ImagePageFragment1  skip loading page ", page, "getPriority", getPriority(), "page");
             return;
         }
 
