@@ -53,6 +53,7 @@ public class EpubContext extends PdfContext {
                         JsonHelper.mapToFile(jsonFile, notes);
                         LOG.d("save notes to file", jsonFile);
                     }
+                    removeTempFiles();
                 } catch (Exception e) {
                     LOG.e(e);
                 }

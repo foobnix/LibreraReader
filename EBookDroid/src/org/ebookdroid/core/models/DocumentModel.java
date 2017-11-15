@@ -83,9 +83,10 @@ public class DocumentModel extends ListenerProxy {
         return LengthUtils.length(pages);
     }
 
-    public void recycle() {
+    public boolean recycle() {
         decodeService.recycle();
         recyclePages();
+        return pages == EMPTY_PAGES;
     }
 
     public void recyclePages() {

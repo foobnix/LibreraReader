@@ -2,8 +2,10 @@ package com.foobnix.pdf.info.view;
 
 import com.foobnix.android.utils.Dips;
 import com.foobnix.android.utils.IntegerResponse;
+import com.foobnix.android.utils.LOG;
 import com.foobnix.android.utils.TxtUtils;
 import com.foobnix.pdf.info.R;
+import com.foobnix.pdf.info.TintUtil;
 import com.foobnix.pdf.info.wrapper.AppState;
 import com.foobnix.pdf.info.wrapper.DocumentController;
 import com.foobnix.sys.TempHolder;
@@ -12,16 +14,43 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.text.InputType;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.View.OnClickListener;
+import android.view.WindowManager;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.CompoundButton.OnCheckedChangeListener;
 import android.widget.EditText;
 import android.widget.FrameLayout;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
 public class Dialogs {
+
+    public static AlertDialog loadingBook(Context c, final Runnable onCancel, boolean cancalable) {
+        final AlertDialog.Builder builder = new AlertDialog.Builder(c);
+        View view = LayoutInflater.from(c).inflate(R.layout.dialog_loading_book, null, false);
+        ImageView image = (ImageView) view.findViewById(R.id.onCancel);
+        image.setVisibility(cancalable ? View.VISIBLE : View.GONE);
+        TintUtil.setTintImage(image);
+        image.setOnClickListener(new OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                LOG.d("loadingBook Cancel");
+                onCancel.run();
+            }
+        });
+        builder.setView(view);
+        builder.setCancelable(false);
+
+        AlertDialog dialog = builder.show();
+        dialog.getWindow().clearFlags(WindowManager.LayoutParams.FLAG_DIM_BEHIND);
+        return dialog;
+
+    }
 
     public static void showDeltaPage(final FrameLayout anchor, final DocumentController controller, final int pageNumber, final Runnable reloadUI) {
 

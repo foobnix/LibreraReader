@@ -504,7 +504,6 @@ public class ImageExtractor implements ImageDownloader {
         }
 
         pageCount = openDocument.getPageCount(w, h, AppState.get().fontSizeSp);
-
         TempHolder.get().init(openDocument, path);
         return openDocument;
     }

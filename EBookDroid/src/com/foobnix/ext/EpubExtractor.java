@@ -35,6 +35,7 @@ import com.foobnix.android.utils.LOG;
 import com.foobnix.android.utils.TxtUtils;
 import com.foobnix.pdf.info.ExtUtils;
 import com.foobnix.pdf.info.wrapper.AppState;
+import com.foobnix.sys.TempHolder;
 
 public class EpubExtractor extends BaseExtractor {
 
@@ -61,6 +62,9 @@ public class EpubExtractor extends BaseExtractor {
             zos.setLevel(0);
 
             while ((nextEntry = zipInputStream.getNextEntry()) != null) {
+                if (TempHolder.get().loadingCancelled) {
+                    break;
+                }
                 String name = nextEntry.getName();
                 String nameLow = name.toLowerCase();
 
@@ -362,6 +366,9 @@ public class EpubExtractor extends BaseExtractor {
             ZipEntry nextEntry = null;
             ZipInputStream zipInputStream = new ZipInputStream(in);
             while ((nextEntry = zipInputStream.getNextEntry()) != null) {
+                if (TempHolder.get().loadingCancelled) {
+                    break;
+                }
                 String name = nextEntry.getName();
                 LOG.d("getAttachments", name);
                 if (ExtUtils.isMediaContent(name)) {
@@ -397,6 +404,9 @@ public class EpubExtractor extends BaseExtractor {
                 CacheZipUtils.removeFiles(CacheZipUtils.ATTACHMENTS_CACHE_DIR.listFiles());
 
                 while ((nextEntry = zipInputStream.getNextEntry()) != null) {
+                    if (TempHolder.get().loadingCancelled) {
+                        break;
+                    }
                     String name = nextEntry.getName();
                     String nameLow = name.toLowerCase();
                     if (nameLow.endsWith("html") || nameLow.endsWith("htm") || nameLow.endsWith("xml")) {
@@ -441,8 +451,12 @@ public class EpubExtractor extends BaseExtractor {
                 zipInputStream = new ZipInputStream(in);
 
                 while ((nextEntry = zipInputStream.getNextEntry()) != null) {
+                    if (TempHolder.get().loadingCancelled) {
+                        break;
+                    }
                     String name = nextEntry.getName();
                     for (String fileName : files) {
+
                         if (name.endsWith(fileName)) {
                             LOG.d("PARSE FILE NAME", name);
                             // System.out.println("file: " + name);

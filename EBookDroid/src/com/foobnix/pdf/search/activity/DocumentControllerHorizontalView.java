@@ -57,6 +57,7 @@ public abstract class DocumentControllerHorizontalView extends DocumentControlle
     public DocumentControllerHorizontalView(Activity activity, int w, int h) {
         super(activity);
         matrixSP = activity.getSharedPreferences("matrix", Context.MODE_PRIVATE);
+
         LOG.d("DocumentControllerHorizontalView", "begin");
         try {
             generadDocInterface = new GeneralDocInterfaceImpl();
@@ -66,6 +67,7 @@ public abstract class DocumentControllerHorizontalView extends DocumentControlle
         }
         LOG.d("DocumentControllerHorizontalView", "end");
 
+        TempHolder.get().loadingCancelled = false;
         isTextFormat = ExtUtils.isTextFomat(activity.getIntent());
 
         udpateImageSize(w, h);

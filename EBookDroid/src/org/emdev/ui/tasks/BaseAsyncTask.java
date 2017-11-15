@@ -6,12 +6,12 @@ import org.emdev.utils.LengthUtils;
 
 import com.foobnix.android.utils.LOG;
 import com.foobnix.pdf.CopyAsyncTask;
+import com.foobnix.pdf.info.view.Dialogs;
 
-import android.app.ProgressDialog;
+import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.DialogInterface.OnCancelListener;
-import android.view.WindowManager;
 
 public abstract class BaseAsyncTask<Params, Result> extends CopyAsyncTask<Params, String, Result> implements OnCancelListener {
 
@@ -19,7 +19,7 @@ public abstract class BaseAsyncTask<Params, Result> extends CopyAsyncTask<Params
     protected final int startProgressStringId;
     protected final boolean cancellable;
     protected final AtomicBoolean continueFlag = new AtomicBoolean(true);
-    protected ProgressDialog progressDialog;
+    protected AlertDialog progressDialog;
 
     public BaseAsyncTask(Context context, int startProgressStringId, boolean cancellable) {
         this.context = context;
@@ -65,13 +65,13 @@ public abstract class BaseAsyncTask<Params, Result> extends CopyAsyncTask<Params
         try {
             final String last = values[length - 1];
             if (progressDialog == null || !progressDialog.isShowing()) {
-                progressDialog = ProgressDialog.show(context, "", last, true);
-                progressDialog.getWindow().clearFlags(WindowManager.LayoutParams.FLAG_DIM_BEHIND);
-                if (cancellable) {
-                    progressDialog.setCancelable(true);
-                    progressDialog.setCanceledOnTouchOutside(true);
-                    progressDialog.setOnCancelListener(this);
-                }
+                progressDialog = Dialogs.loadingBook(context, new Runnable() {
+
+                    @Override
+                    public void run() {
+                        onCancel(null);
+                    }
+                }, false);
             } else {
                 progressDialog.setMessage(last);
             }

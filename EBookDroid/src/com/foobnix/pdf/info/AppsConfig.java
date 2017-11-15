@@ -82,6 +82,10 @@ public class AppsConfig {
             ADMOB_FULLSCREEN/*  */ = null;
             ADMOB_NATIVE_BIG/*  */ = "ca-app-pub-8347903083053959/8961352478";
             ADMOB_NATIVE_SMALL/**/ = "ca-app-pub-8347903083053959/8572902871";
+
+            ADMOB_CLASSIC = null;
+            ANALYTICS_ID = null;
+            IS_APP_WITH_ANALITICS = false;
         }
 
         IS_BETA = APP_NAME.contains("Beta");

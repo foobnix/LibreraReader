@@ -16,6 +16,7 @@ import com.foobnix.android.utils.Keyboards;
 import com.foobnix.android.utils.LOG;
 import com.foobnix.android.utils.ResultResponse;
 import com.foobnix.android.utils.TxtUtils;
+import com.foobnix.ext.CacheZipUtils;
 import com.foobnix.pdf.CopyAsyncTask;
 import com.foobnix.pdf.info.ADS;
 import com.foobnix.pdf.info.Analytics;
@@ -67,7 +68,6 @@ import com.google.android.gms.ads.NativeExpressAdView;
 import android.annotation.TargetApi;
 import android.app.AlertDialog;
 import android.app.Dialog;
-import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -575,14 +575,21 @@ public class HorizontalViewActivity extends FragmentActivity {
 
         titleTxt.setText(DocumentControllerHorizontalView.getTempTitle(this));
         loadinAsyncTask = new CopyAsyncTask() {
-            ProgressDialog dialog;
+            AlertDialog dialog;
             private boolean isCancelled = false;
 
             @Override
             protected void onPreExecute() {
-                dialog = ProgressDialog.show(HorizontalViewActivity.this, "", getString(R.string.msg_loading, false, false));
-                dialog.getWindow().clearFlags(WindowManager.LayoutParams.FLAG_DIM_BEHIND);
-
+                dialog = Dialogs.loadingBook(HorizontalViewActivity.this, new Runnable() {
+                    
+                    @Override
+                    public void run() {
+                        isCancelled = true;
+                        TempHolder.get().loadingCancelled = true;
+                        finish();
+                        CacheZipUtils.removeFiles(CacheZipUtils.CACHE_BOOK_DIR.listFiles());
+                    }
+                }, true);
             };
 
             @Override
@@ -626,6 +633,8 @@ public class HorizontalViewActivity extends FragmentActivity {
                 } catch (Exception e) {
                 }
                 if (isCancelled) {
+                    LOG.d("Cancelled");
+                    finish();
                     return;
                 }
                 if ((Integer) result == -2) {

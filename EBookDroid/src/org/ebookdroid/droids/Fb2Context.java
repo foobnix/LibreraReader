@@ -76,9 +76,11 @@ public class Fb2Context extends PdfContext {
                     muPdfDocument.setFootNotes(notes);
                     JsonHelper.mapToFile(jsonFile, notes);
                     LOG.d("save notes to file", jsonFile);
+                    removeTempFiles();
                 };
             }.start();
         }
+
 
         return muPdfDocument;
     }

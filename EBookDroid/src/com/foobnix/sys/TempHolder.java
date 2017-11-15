@@ -30,6 +30,8 @@ public class TempHolder {
 
     public int pageDelta = 0;
 
+    public volatile boolean loadingCancelled = false;
+
     public static TempHolder get() {
         return inst;
     }

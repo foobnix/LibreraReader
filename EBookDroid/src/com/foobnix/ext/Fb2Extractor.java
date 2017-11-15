@@ -29,6 +29,7 @@ import com.foobnix.hypen.HypenUtils;
 import com.foobnix.pdf.info.ExtUtils;
 import com.foobnix.pdf.info.model.BookCSS;
 import com.foobnix.pdf.info.wrapper.AppState;
+import com.foobnix.sys.TempHolder;
 
 import android.util.Base64;
 
@@ -269,6 +270,9 @@ public class Fb2Extractor extends BaseExtractor {
             String key = "";
 
             while (eventType != XmlPullParser.END_DOCUMENT) {
+                if (TempHolder.get().loadingCancelled) {
+                    break;
+                }
                 if (eventType == XmlPullParser.START_TAG) {
                     if (xpp.getName().equals("a")) {
                         String type = xpp.getAttributeValue(null, "type");
@@ -393,6 +397,9 @@ public class Fb2Extractor extends BaseExtractor {
         long init = System.currentTimeMillis();
 
         while ((line = input.readLine()) != null) {
+            if (TempHolder.get().loadingCancelled) {
+                break;
+            }
 
             if (!isEncoding && line.contains("windows-1251")) {
                 line = line.replace("windows-1251", "utf-8");
@@ -471,6 +478,9 @@ public class Fb2Extractor extends BaseExtractor {
         HypenUtils.applyLanguage(BookCSS.get().hypenLang);
 
         while ((line = input.readLine()) != null) {
+            if (TempHolder.get().loadingCancelled) {
+                break;
+            }
             if (!line.endsWith(" ")) {
                 line = line + " ";
             }
@@ -518,6 +528,9 @@ public class Fb2Extractor extends BaseExtractor {
         int dividerSection = -1;
         String dividerLine = null;
         while (eventType != XmlPullParser.END_DOCUMENT) {
+            if (TempHolder.get().loadingCancelled) {
+                break;
+            }
             if (eventType == XmlPullParser.START_TAG) {
                 if (xpp.getName().equals("section") || xpp.getName().equals("subtitle")) {
                     section++;

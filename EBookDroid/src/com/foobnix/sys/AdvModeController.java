@@ -65,7 +65,7 @@ public class AdvModeController extends DocumentController {
         this.ctr = ctr;
         AppSettings.getInstance().fullScreen = AppState.getInstance().isFullScrean();
         handler = new Handler();
-
+        TempHolder.get().loadingCancelled = false;
         initHandler();
     }
 

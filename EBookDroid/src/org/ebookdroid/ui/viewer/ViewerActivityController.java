@@ -620,10 +620,10 @@ public class ViewerActivityController extends ActionController<ViewerActivity> i
             } catch (final MuPdfPasswordException pex) {
                 return pex;
             } catch (final Exception e) {
-                e.printStackTrace();
+                LOG.e(e);
                 return e;
             } catch (final Throwable th) {
-                th.printStackTrace();
+                LOG.e(th);
                 return th;
             } finally {
             }
@@ -632,6 +632,11 @@ public class ViewerActivityController extends ActionController<ViewerActivity> i
         @Override
         protected void onPostExecute(Throwable result) {
             try {
+                if(isCancelled()){
+                    closeProgressDialog();
+                    closeActivity(null);
+                    return;
+                }
                 if (result == null) {
                     try {
                         getDocumentController().show();
@@ -658,7 +663,7 @@ public class ViewerActivityController extends ActionController<ViewerActivity> i
                     showErrorDlg(R.string.msg_unexpected_error, msg);
                 }
             } catch (final Throwable th) {
-                th.printStackTrace();
+                LOG.e(th);
             }
 
         }

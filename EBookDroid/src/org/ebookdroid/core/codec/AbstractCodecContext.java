@@ -14,6 +14,7 @@ import com.foobnix.ext.CacheZipUtils;
 import com.foobnix.ext.EbookMeta;
 import com.foobnix.pdf.info.ExtUtils;
 import com.foobnix.pdf.info.model.BookCSS;
+import com.foobnix.sys.TempHolder;
 import com.foobnix.ui2.FileMetaCore;
 
 import android.graphics.Bitmap;
@@ -35,12 +36,30 @@ public abstract class AbstractCodecContext implements CodecContext {
 
     public abstract CodecDocument openDocumentInner(String fileName, String password);
 
+    public CodecDocument openDocumentInnerCanceled(String fileName, String password) {
+        CodecDocument openDocument = openDocumentInner(fileName, password);
+        LOG.d("removeTempFiles1", TempHolder.get().loadingCancelled);
+        if (TempHolder.get().loadingCancelled) {
+            removeTempFiles();
+            return null;
+        }
+        return openDocument;
+    }
+
+    public void removeTempFiles() {
+        LOG.d("removeTempFiles2", TempHolder.get().loadingCancelled);
+        if (TempHolder.get().loadingCancelled) {
+            recycle();
+            CacheZipUtils.removeFiles(CacheZipUtils.CACHE_BOOK_DIR.listFiles());
+        }
+    }
+
     @Override
     public CodecDocument openDocument(String fileNameOriginal, String password) {
         LOG.d("Open Document", fileNameOriginal);
         if (ExtUtils.isZip(fileNameOriginal)) {
             LOG.d("Open Document ZIP", fileNameOriginal);
-            return openDocumentInner(fileNameOriginal, password);
+            return openDocumentInnerCanceled(fileNameOriginal, password);
         }
 
         EbookMeta ebookMeta = FileMetaCore.get().getEbookMeta(fileNameOriginal);
@@ -57,7 +76,7 @@ public abstract class AbstractCodecContext implements CodecContext {
 
         if (cacheFileName != null && cacheFileName.isFile()) {
             LOG.d("Open Document from cache", fileNameOriginal);
-            return openDocumentInner(fileNameOriginal, password);
+            return openDocumentInnerCanceled(fileNameOriginal, password);
         }
 
         CacheZipUtils.cacheLock.lock();
@@ -69,7 +88,7 @@ public abstract class AbstractCodecContext implements CodecContext {
                 return null;
             }
             try {
-                return openDocumentInner(fileName, password);
+                return openDocumentInnerCanceled(fileName, password);
             } catch (MuPdfPasswordException e) {
                 throw new MuPdfPasswordRequiredException();
             } catch (Throwable e) {
