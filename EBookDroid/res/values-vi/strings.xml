@@ -414,4 +414,5 @@
    <string name="show">Chỉ</string>
    <string name="folder_for_downloaded_books">Thư mục cho sách đã tải xuống</string>
    <string name="set_the_current_page_number">Đặt số trang hiện tại</string>
+   <string name="search_in_document">Tìm kiếm trong Tài liệu</string>
 </resources>

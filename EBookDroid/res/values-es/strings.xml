@@ -414,4 +414,5 @@
    <string name="show">Espectáculo</string>
    <string name="folder_for_downloaded_books">Carpeta para libros descargados</string>
    <string name="set_the_current_page_number">Establecer el número de página actual</string>
+   <string name="search_in_document">Buscar en el documento</string>
 </resources>

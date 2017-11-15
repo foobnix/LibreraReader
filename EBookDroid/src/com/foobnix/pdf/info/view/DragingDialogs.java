@@ -574,13 +574,14 @@ public class DragingDialogs {
 
     }
 
-    public static void searchMenu(final FrameLayout anchor, final DocumentController controller) {
+    public static void searchMenu(final FrameLayout anchor, final DocumentController controller, final String text) {
         DragingPopup dialog = new DragingPopup(R.string.search, anchor, 250, 150) {
             @Override
             public View getContentView(LayoutInflater inflater) {
                 final View view = inflater.inflate(R.layout.search_dialog, null, false);
 
                 final EditText searchEdit = (EditText) view.findViewById(R.id.edit1);
+                searchEdit.setText(text);
 
                 final ProgressBar progressBar = (ProgressBar) view.findViewById(R.id.progressBar1);
                 final TextView searchingMsg = (TextView) view.findViewById(R.id.searching);
@@ -641,6 +642,16 @@ public class DragingDialogs {
                         onSearch.performClick();
                     }
                 });
+                if (TxtUtils.isNotEmpty(text)) {
+                    onSearch.postDelayed(new Runnable() {
+
+                        @Override
+                        public void run() {
+                            onSearch.performClick();
+                        }
+                    }, 250);
+
+                }
 
                 final String searchingString = anchor.getContext().getString(R.string.searching_please_wait_);
                 final int count = controller.getPageCount();
@@ -1022,8 +1033,6 @@ public class DragingDialogs {
                     }
                 });
 
-
-
                 view.findViewById(R.id.onCopy).setOnClickListener(new View.OnClickListener() {
 
                     @Override
@@ -1047,6 +1056,18 @@ public class DragingDialogs {
                     public void onClick(View v) {
                         closeDialog();
                         Urls.open(anchor.getContext(), "http://www.google.com/search?q=" + editText.getText().toString().trim());
+                    }
+                });
+
+                TextView onBookSearch = (TextView) view.findViewById(R.id.onBookSearch);
+                // onBookSearch.setText(controller.getString(R.string.search_in_the_book)
+                // + " \"" + AppState.get().selectedText + "\"");
+                onBookSearch.setVisibility(AppState.get().selectedText.contains(" ") ? View.GONE : View.VISIBLE);
+                onBookSearch.setOnClickListener(new View.OnClickListener() {
+
+                    @Override
+                    public void onClick(View v) {
+                        searchMenu(anchor, controller, AppState.get().selectedText);
                     }
                 });
 
@@ -2212,6 +2233,7 @@ public class DragingDialogs {
 
                 CheckBox isLockPDF = (CheckBox) inflate.findViewById(R.id.isLockPDF);
                 isLockPDF.setChecked(AppState.getInstance().isLockPDF);
+                isLockPDF.setVisibility(controller.isTextFormat() ? View.GONE : View.VISIBLE);
                 isLockPDF.setOnCheckedChangeListener(new OnCheckedChangeListener() {
 
                     @Override
@@ -2220,8 +2242,20 @@ public class DragingDialogs {
                     }
                 });
 
+                CheckBox isCropPDF = (CheckBox) inflate.findViewById(R.id.isCropPDF);
+                isCropPDF.setChecked(AppState.getInstance().isCropPDF);
+                isCropPDF.setVisibility(controller.isTextFormat() ? View.GONE : View.VISIBLE);
+                isCropPDF.setOnCheckedChangeListener(new OnCheckedChangeListener() {
+
+                    @Override
+                    public void onCheckedChanged(final CompoundButton buttonView, final boolean isChecked) {
+                        AppState.getInstance().isCropPDF = isChecked;
+                    }
+                });
+
                 CheckBox isCustomizeBgAndColors = (CheckBox) inflate.findViewById(R.id.isCustomizeBgAndColors);
-                isCustomizeBgAndColors.setVisibility(controller.isTextFormat() ? View.GONE : View.VISIBLE);
+                // isCustomizeBgAndColors.setVisibility(controller.isTextFormat()
+                // ? View.GONE : View.VISIBLE);
                 isCustomizeBgAndColors.setChecked(AppState.getInstance().isCustomizeBgAndColors);
                 isCustomizeBgAndColors.setOnCheckedChangeListener(new OnCheckedChangeListener() {
 

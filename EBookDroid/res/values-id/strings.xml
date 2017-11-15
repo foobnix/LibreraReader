@@ -414,4 +414,5 @@
    <string name="show">Menunjukkan</string>
    <string name="folder_for_downloaded_books">Folder untuk buku yang didownload</string>
    <string name="set_the_current_page_number">Setel nomor halaman saat ini</string>
+   <string name="search_in_document">Cari di Dokumen</string>
 </resources>

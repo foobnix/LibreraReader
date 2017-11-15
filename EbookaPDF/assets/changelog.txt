@@ -1,3 +1,5 @@
+Search text in the book
+Cancel book loading for easy mode
 Set current page number like in book
 Sort by series index in series by default
 Make font bold for e-ink screens

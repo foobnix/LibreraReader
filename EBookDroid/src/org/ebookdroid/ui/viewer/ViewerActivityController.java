@@ -376,8 +376,10 @@ public class ViewerActivityController extends ActionController<ViewerActivity> i
             LOG.d("createWrapper", file);
             if (ExtUtils.isTextFomat(TxtUtils.isNotEmpty(file) ? file : a.getIntent().getData().getPath())) {
                 AppState.get().isLocked = true;
-            } else if (AppState.get().isLockPDF) {
-                AppState.get().isLocked = true;
+            } else {
+                if (AppState.get().isLockPDF) {
+                    AppState.get().isLocked = true;
+                }
             }
         } catch (Exception e) {
             LOG.e(e);
@@ -632,7 +634,7 @@ public class ViewerActivityController extends ActionController<ViewerActivity> i
         @Override
         protected void onPostExecute(Throwable result) {
             try {
-                if(isCancelled()){
+                if (isCancelled()) {
                     closeProgressDialog();
                     closeActivity(null);
                     return;

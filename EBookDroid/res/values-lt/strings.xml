@@ -414,4 +414,5 @@
    <string name="show">Rodyti</string>
    <string name="folder_for_downloaded_books">Katalogas atsisiųstoms knygoms</string>
    <string name="set_the_current_page_number">Nustatykite dabartinį puslapio numerį</string>
+   <string name="search_in_document">Ieškoti dokumente</string>
 </resources>

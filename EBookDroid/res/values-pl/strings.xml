@@ -414,4 +414,5 @@
    <string name="show">Pokazać</string>
    <string name="folder_for_downloaded_books">Folder do pobranych książek</string>
    <string name="set_the_current_page_number">Ustaw bieżący numer strony</string>
+   <string name="search_in_document">Wyszukaj w dokumencie</string>
 </resources>

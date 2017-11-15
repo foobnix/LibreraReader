@@ -414,4 +414,7 @@
    <string name="show">Show</string>
    <string name="folder_for_downloaded_books">Folder for downloaded books</string>
    <string name="set_the_current_page_number">Set the current page number</string>
+   <string name="search_in_document">Search in Document</string>
+   <string name="opening_book_with_losed_lock">Opening book with сlosed lock</string>
+   <string name="opening_book_with_cropped_borders">Opening book with cropped borders</string>
 </resources>

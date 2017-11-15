@@ -389,6 +389,7 @@ public class AppState {
     public boolean isCustomizeBgAndColors = false;
     public boolean isVibration = true;
     public boolean isLockPDF = false;
+    public boolean isCropPDF = false;
     public boolean selectingByLetters = Arrays.asList("ja", "zh", "ko", "vi").contains(Urls.getLangCode());
 
     public long installationDate = System.currentTimeMillis();
@@ -672,6 +673,7 @@ public class AppState {
         isCustomizeBgAndColors = sp.getBoolean("isCustomizeBgAndColors", isCustomizeBgAndColors);
         isVibration = sp.getBoolean("isVibration", isVibration);
         isLockPDF = sp.getBoolean("isLockPDF", isLockPDF);
+        isCropPDF = sp.getBoolean("isCropPDF", isCropPDF);
         selectingByLetters = sp.getBoolean("selectingByLetters", selectingByLetters);
         isStarsInWidget = sp.getBoolean("isStarsInWidget", isStarsInWidget);
 
@@ -906,6 +908,7 @@ public class AppState {
         editor.putBoolean("isCustomizeBgAndColors", isCustomizeBgAndColors);
         editor.putBoolean("isVibration", isVibration);
         editor.putBoolean("isLockPDF", isLockPDF);
+        editor.putBoolean("isCropPDF", isCropPDF);
         editor.putBoolean("selectingByLetters", selectingByLetters);
         editor.putBoolean("isStarsInWidget", isStarsInWidget);
         editor.putBoolean("isIgnoreAnnotatations", isIgnoreAnnotatations);

@@ -952,7 +952,7 @@ public class HorizontalViewActivity extends FragmentActivity {
             AppState.get().isCut = false;
             reloadDoc.run();
         }
-        DragingDialogs.searchMenu(anchor, documentController);
+        DragingDialogs.searchMenu(anchor, documentController, "");
     }
 
     @Override

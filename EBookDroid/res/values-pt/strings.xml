@@ -414,4 +414,5 @@
    <string name="show">Exposição</string>
    <string name="folder_for_downloaded_books">Pasta para livros baixados</string>
    <string name="set_the_current_page_number">Defina o número da página atual</string>
+   <string name="search_in_document">Pesquisar no documento</string>
 </resources>

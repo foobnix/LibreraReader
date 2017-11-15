@@ -179,6 +179,18 @@
         android:singleLine="true"
         android:text="@string/search_in_google"
         android:textSize="15sp" />
+    
+    <TextView
+        android:id="@+id/onBookSearch"
+        style="@style/textLink"
+        android:layout_width="match_parent"
+        android:layout_height="35dip"
+        android:background="@android:drawable/list_selector_background"
+        android:gravity="center_vertical"
+        android:paddingLeft="10dip"
+        android:singleLine="true"
+        android:text="@string/search_in_document"
+        android:textSize="15sp" />
 
     <TextView
         android:id="@+id/onTranslate"

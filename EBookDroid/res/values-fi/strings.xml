@@ -414,4 +414,5 @@
    <string name="show">Show</string>
    <string name="folder_for_downloaded_books">Kansio ladattaville kirjoille</string>
    <string name="set_the_current_page_number">Aseta nykyinen sivunumero</string>
+   <string name="search_in_document">Hae asiakirjasta</string>
 </resources>

@@ -414,4 +414,5 @@
    <string name="show">تبين</string>
    <string name="folder_for_downloaded_books">مجلد للكتب التي تم تنزيلها</string>
    <string name="set_the_current_page_number">تعيين رقم الصفحة الحالية</string>
+   <string name="search_in_document">البحث في المستند</string>
 </resources>

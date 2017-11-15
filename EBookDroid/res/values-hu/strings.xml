@@ -414,4 +414,5 @@
    <string name="show">Előadás</string>
    <string name="folder_for_downloaded_books">Mappa letölthető könyvekhez</string>
    <string name="set_the_current_page_number">Állítsa be az aktuális oldalszámot</string>
+   <string name="search_in_document">Keresés a dokumentumban</string>
 </resources>

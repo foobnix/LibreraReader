@@ -414,4 +414,5 @@
    <string name="show">ショー</string>
    <string name="folder_for_downloaded_books">ダウンロードした書籍のフォルダ</string>
    <string name="set_the_current_page_number">現在のページ番号を設定する</string>
+   <string name="search_in_document">ドキュメントで検索</string>
 </resources>

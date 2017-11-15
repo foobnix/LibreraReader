@@ -19,6 +19,7 @@
             android:text="@string/preferences" />
 
         <LinearLayout
+            android:visibility="gone"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center_vertical" >
@@ -157,6 +158,26 @@
                 android:layout_height="wrap_content"
                 android:text="120 min" />
         </LinearLayout>
+        
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dip" >
+
+            <TextView
+                android:layout_width="180dip"
+                android:layout_height="wrap_content"
+                android:singleLine="true"
+                android:text="@string/page_quality"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/pageQuality"
+                style="@style/textLink"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="1.2" />
+        </LinearLayout>
 
         <LinearLayout
             android:id="@+id/onDoubleTapLayout"
@@ -192,25 +213,37 @@
         </LinearLayout>
         
         <CheckBox
+            android:id="@+id/isLockPDF"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dip"
+            android:text="@string/opening_book_with_losed_lock" />
+        
+         <CheckBox
+            android:id="@+id/isCropPDF"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dip"
+            android:text="@string/opening_book_with_cropped_borders" />
+        
+        <CheckBox
             android:id="@+id/isOLED"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dip"
             android:text="@string/enhancements_for_oled_display" />
 
+        
+        
         <CheckBox
             android:id="@+id/isVibration"
+            android:visibility="gone"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dip"
             android:text="@string/enable_vibration_for_some_actions" />
 
-        <CheckBox
-            android:id="@+id/isLockPDF"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="10dip"
-            android:text="@string/lock_for_pdf_and_djvu_when_opening" />
+        
 
         <CheckBox
             android:id="@+id/isScrollAnimation"
@@ -220,6 +253,7 @@
             android:text="@string/simple_scroll_animation" />
 
         <CheckBox
+            android:visibility="gone"
             android:id="@+id/isCustomizeBgAndColors"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -248,6 +282,7 @@
             android:text="@string/selecting_text_by_letters" />
 
         <CheckBox
+            android:visibility="gone"
             android:id="@+id/isLoopAutoplay"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -289,6 +324,7 @@
         </LinearLayout>
 
         <LinearLayout
+            android:visibility="gone"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="5dip"
@@ -333,25 +369,7 @@
                 android:textAllCaps="true" />
         </LinearLayout>
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="15dip" >
-
-            <TextView
-                android:layout_width="180dip"
-                android:layout_height="wrap_content"
-                android:singleLine="true"
-                android:text="@string/page_quality"
-                android:textStyle="bold" />
-
-            <TextView
-                android:id="@+id/pageQuality"
-                style="@style/textLink"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="1.2" />
-        </LinearLayout>
+        
 
         <LinearLayout
             android:layout_width="match_parent"

@@ -414,4 +414,5 @@
    <string name="show">Показать</string>
    <string name="folder_for_downloaded_books">Папка для загруженных книг</string>
    <string name="set_the_current_page_number">Установите текущий номер страницы</string>
+   <string name="search_in_document">Поиск в документе</string>
 </resources>

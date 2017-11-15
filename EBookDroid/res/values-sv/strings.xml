@@ -414,4 +414,5 @@
    <string name="show">Show</string>
    <string name="folder_for_downloaded_books">Mapp för nedladdade böcker</string>
    <string name="set_the_current_page_number">Ställ in det aktuella sidnumret</string>
+   <string name="search_in_document">Sök i dokumentet</string>
 </resources>

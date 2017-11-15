@@ -158,6 +158,10 @@ public abstract class DocumentControllerHorizontalView extends DocumentControlle
             AppState.get().isDoubleCoverAlone = bs.doublePagesCover;
             AppState.get().isLocked = bs.isLocked;
             TempHolder.get().pageDelta = bs.pageDelta;
+
+            if (AppState.get().isCropPDF) {
+                AppState.get().isCrop = true;
+            }
         }
 
         if (AppState.get().isDouble) {

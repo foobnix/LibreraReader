@@ -1181,7 +1181,7 @@ public class DocumentWrapperUI {
     };
 
     public void showSearchDialog() {
-        DragingDialogs.searchMenu(anchor, controller);
+        DragingDialogs.searchMenu(anchor, controller, "");
     }
 
     public View.OnClickListener onAutoScroll = new View.OnClickListener() {
