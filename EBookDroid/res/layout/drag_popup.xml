@@ -40,6 +40,22 @@
                 android:visibility="gone" />
 
             <TextView
+                android:id="@+id/onTitleAction"
+                style="@style/textLink"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="0"
+                android:text="@string/preferences" />
+
+            <TextView
+                android:id="@+id/onTitleAction1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="0"
+                android:text=">"
+                android:textColor="@color/white" />
+
+            <TextView
                 android:id="@+id/dialogTitle"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -62,11 +78,11 @@
 
         <FrameLayout
             android:id="@+id/popupContent"
-            android:clickable="true"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_below="@+id/topLayout"
             android:layout_centerHorizontal="true"
+            android:clickable="true"
             android:padding="2dip" >
         </FrameLayout>
 

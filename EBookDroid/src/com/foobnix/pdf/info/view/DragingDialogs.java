@@ -1957,16 +1957,21 @@ public class DragingDialogs {
         DragingPopup dialog = new DragingPopup(R.string.status_bar, anchor, 360, 380) {
 
             @Override
+            public void beforeCreate() {
+                titleAction = controller.getString(R.string.preferences);
+                titleRunnable = new Runnable() {
+
+                    @Override
+                    public void run() {
+                        preferences(anchor, controller, onRefresh, updateUIRefresh);
+                    }
+                };
+            }
+
+            @Override
             public View getContentView(final LayoutInflater inflater) {
                 View inflate = inflater.inflate(R.layout.dialog_status_bar_settings, null, false);
 
-                TxtUtils.underlineTextView(((TextView) inflate.findViewById(R.id.onBack))).setOnClickListener(new OnClickListener() {
-
-                    @Override
-                    public void onClick(View v) {
-                        preferences(anchor, controller, onRefresh, updateUIRefresh);
-                    }
-                });
 
                 final CheckBox isShowReadingProgress = (CheckBox) inflate.findViewById(R.id.isShowReadingProgress);
                 final CheckBox isShowChaptersOnProgress = (CheckBox) inflate.findViewById(R.id.isShowChaptersOnProgress);
@@ -2130,16 +2135,20 @@ public class DragingDialogs {
         DragingPopup dialog = new DragingPopup(R.string.advanced_settings, anchor, 330, 520) {
 
             @Override
-            public View getContentView(final LayoutInflater inflater) {
-                View inflate = inflater.inflate(R.layout.dialog_adv_preferences, null, false);
-
-                TxtUtils.underlineTextView(((TextView) inflate.findViewById(R.id.onBack))).setOnClickListener(new OnClickListener() {
+            public void beforeCreate() {
+                titleAction = controller.getString(R.string.preferences);
+                titleRunnable = new Runnable() {
 
                     @Override
-                    public void onClick(View v) {
+                    public void run() {
                         preferences(anchor, controller, onRefresh, updateUIRefresh);
                     }
-                });
+                };
+            }
+
+            @Override
+            public View getContentView(final LayoutInflater inflater) {
+                View inflate = inflater.inflate(R.layout.dialog_adv_preferences, null, false);
 
                 CheckBox isLoopAutoplay = (CheckBox) inflate.findViewById(R.id.isLoopAutoplay);
                 isLoopAutoplay.setChecked(AppState.getInstance().isLoopAutoplay);
@@ -2708,16 +2717,21 @@ public class DragingDialogs {
         DragingPopup dialog = new DragingPopup(R.string.more_reading_settings, anchor, 330, 520) {
 
             @Override
+            public void beforeCreate() {
+                titleAction = controller.getString(R.string.preferences);
+                titleRunnable = new Runnable() {
+
+                    @Override
+                    public void run() {
+                        preferences(anchor, controller, onRefresh, updateUIRefresh);
+                    }
+                };
+            }
+
+            @Override
             public View getContentView(final LayoutInflater inflater) {
                 View inflate = inflater.inflate(R.layout.dialog_book_style_pref, null, false);
 
-                TxtUtils.underlineTextView(((TextView) inflate.findViewById(R.id.onBack))).setOnClickListener(new OnClickListener() {
-
-                    @Override
-                    public void onClick(View v) {
-                        preferences(anchor, controller, onRefresh, updateUIRefresh);
-                    }
-                });
 
                 final CustomSeek fontWeight = (CustomSeek) inflate.findViewById(R.id.fontWeight);
                 fontWeight.init(1, 9, BookCSS.get().fontWeight / 100);

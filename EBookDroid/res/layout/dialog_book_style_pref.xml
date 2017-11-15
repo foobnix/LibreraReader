@@ -10,14 +10,6 @@
         android:orientation="vertical"
         android:padding="2dip" >
 
-        <TextView
-            android:id="@+id/onBack"
-            style="@style/textLink"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="0"
-            android:text="@string/preferences" />
-
         <LinearLayout
             android:id="@+id/fontSizeLayout"
             android:layout_width="match_parent"
