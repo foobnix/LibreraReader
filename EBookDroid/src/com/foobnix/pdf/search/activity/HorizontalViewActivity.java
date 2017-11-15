@@ -331,7 +331,7 @@ public class HorizontalViewActivity extends FragmentActivity {
 
             @Override
             public void onClick(final View v) {
-                DragingDialogs.contrastAndBrigtness(anchor, documentController, reloadDoc);
+                DragingDialogs.contrastAndBrigtness(anchor, documentController, reloadDocBrigntness);
             }
         });
 
@@ -581,7 +581,7 @@ public class HorizontalViewActivity extends FragmentActivity {
             @Override
             protected void onPreExecute() {
                 dialog = Dialogs.loadingBook(HorizontalViewActivity.this, new Runnable() {
-                    
+
                     @Override
                     public void run() {
                         isCancelled = true;
@@ -973,17 +973,32 @@ public class HorizontalViewActivity extends FragmentActivity {
 
         @Override
         public void run() {
-            if (true) {
-                IMG.clearMemoryCache();
-                ImagePageFragment imageFragment = (ImagePageFragment) getSupportFragmentManager().findFragmentByTag("f" + viewPager.getCurrentItem());
-                imageFragment.loadImage();
-                return;
-            }
+
             documentController.getOutline(null);
             documentController.saveCurrentPage();
             createAdapter();
 
             loadUI();
+        }
+    };
+    Runnable reloadDocBrigntness = new Runnable() {
+
+        @Override
+        public void run() {
+            IMG.clearMemoryCache();
+            ImagePageFragment f1 = (ImagePageFragment) getSupportFragmentManager().findFragmentByTag("f" + (viewPager.getCurrentItem() - 1));
+            ImagePageFragment f2 = (ImagePageFragment) getSupportFragmentManager().findFragmentByTag("f" + (viewPager.getCurrentItem()));
+            ImagePageFragment f3 = (ImagePageFragment) getSupportFragmentManager().findFragmentByTag("f" + (viewPager.getCurrentItem() + 1));
+            if (f1 != null) {
+                f1.loadImage();
+            }
+            if (f2 != null) {
+                f2.loadImage();
+            }
+            if (f3 != null) {
+                f3.loadImage();
+            }
+            return;
         }
     };
 
@@ -1507,7 +1522,6 @@ public class HorizontalViewActivity extends FragmentActivity {
             @Override
             public Fragment getItem(final int position) {
                 final ImagePageFragment imageFragment = new ImagePageFragment();
-
 
                 final Bundle b = new Bundle();
                 b.putInt(ImagePageFragment.POS, position);

@@ -13,6 +13,7 @@ import com.foobnix.sys.TempHolder;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.os.Handler;
 import android.text.InputType;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -122,6 +123,17 @@ public class Dialogs {
         LinearLayout l = new LinearLayout(c);
         l.setOrientation(LinearLayout.VERTICAL);
 
+        final Handler handler = new Handler();
+
+        final Runnable actionWrapper = new Runnable() {
+
+            @Override
+            public void run() {
+                handler.removeCallbacks(action);
+                handler.postDelayed(action, 250);
+            }
+        };
+
         final CustomSeek contrastSeek = new CustomSeek(c);
         contrastSeek.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT, 0));
         contrastSeek.initWith("", "");
@@ -131,7 +143,7 @@ public class Dialogs {
             @Override
             public boolean onResultRecive(int result) {
                 AppState.get().contrastImage = result;
-                action.run();
+                actionWrapper.run();
                 return false;
             }
         });
@@ -145,7 +157,7 @@ public class Dialogs {
             @Override
             public boolean onResultRecive(int result) {
                 AppState.get().brigtnessImage = result;
-                action.run();
+                actionWrapper.run();
                 return false;
             }
         });
@@ -161,7 +173,7 @@ public class Dialogs {
                     // contrastSeek.reset(25);
                 }
                 AppState.getInstance().bolderTextOnImage = isChecked;
-                action.run();
+                actionWrapper.run();
             }
         });
 
@@ -193,7 +205,7 @@ public class Dialogs {
                 brightnesSeek.reset(AppState.get().brigtnessImage);
                 contrastSeek.reset(AppState.get().contrastImage);
 
-                action.run();
+                actionWrapper.run();
 
             }
         });
