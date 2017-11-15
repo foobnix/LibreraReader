@@ -32,6 +32,7 @@ import com.foobnix.pdf.info.view.DragingPopup;
 import com.foobnix.pdf.info.view.DrawView;
 import com.foobnix.pdf.info.view.HorizontallSeekTouchEventListener;
 import com.foobnix.pdf.info.view.ProgressDraw;
+import com.foobnix.pdf.info.view.UnderlineImageView;
 import com.foobnix.pdf.info.widget.ShareDialog;
 import com.foobnix.pdf.search.activity.DocumentControllerHorizontalView;
 import com.foobnix.pdf.search.view.CloseAppDialog;
@@ -99,7 +100,8 @@ public class DocumentWrapperUI {
     private ImageView lockUnlockTop, textToSpeachTop, clockIcon, batteryIcon;
     private ImageView showSearch;
     ProgressDraw progressDraw;
-    private ImageView nextScreenType, crop, cut, autoScroll, textToSpeach, ttsActive;
+    private ImageView nextScreenType, autoScroll, textToSpeach, ttsActive;
+    private UnderlineImageView crop, cut;
     private SeekBar speedSeekBar;
     private View seekSpeedLayot, zoomPlus, zoomMinus;
     private FrameLayout anchor;
@@ -243,7 +245,8 @@ public class DocumentWrapperUI {
             } else if (!controller.getLinkHistory().isEmpty()) {
                 controller.onLinkHistory();
             } else {
-                closeAndRunList(false);
+                // closeAndRunList(false);
+                CloseAppDialog.showOnLongClickDialog(getController().getActivity(), null, controller);
             }
         }
         return true;
@@ -473,17 +476,8 @@ public class DocumentWrapperUI {
             cut.setVisibility(View.GONE);
         }
 
-        if (AppState.get().isCrop) {
-            TintUtil.setTintImage(crop, TintUtil.COLOR_ORANGE);
-        } else {
-            TintUtil.setTintImage(crop, Color.WHITE);
-        }
-
-        if (AppState.get().isCut) {
-            TintUtil.setTintImage(cut, TintUtil.COLOR_ORANGE);
-        } else {
-            TintUtil.setTintImage(cut, Color.WHITE);
-        }
+        crop.underline(AppState.get().isCrop);
+        cut.underline(AppState.get().isCut);
 
         progressDraw.updateProgress(current - 1);
     }
@@ -640,14 +634,14 @@ public class DocumentWrapperUI {
 
         a.findViewById(R.id.toPage).setOnClickListener(toPage);
 
-        crop = (ImageView) a.findViewById(R.id.crop);
+        crop = (UnderlineImageView) a.findViewById(R.id.crop);
         crop.setOnClickListener(onCrop);
 
         if (AppState.get().isCut) {
             crop.setVisibility(View.GONE);
         }
 
-        cut = (ImageView) a.findViewById(R.id.cut);
+        cut = (UnderlineImageView) a.findViewById(R.id.cut);
         cut.setOnClickListener(onCut);
 
         View prefTop = a.findViewById(R.id.prefTop);
@@ -1348,7 +1342,7 @@ public class DocumentWrapperUI {
                 public void run() {
                     controller.updateRendering();
                 }
-            });
+            }, null);
         }
     };
 

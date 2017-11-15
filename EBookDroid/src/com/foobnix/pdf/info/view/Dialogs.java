@@ -130,7 +130,7 @@ public class Dialogs {
             @Override
             public void run() {
                 handler.removeCallbacks(action);
-                handler.postDelayed(action, 250);
+                handler.postDelayed(action, 100);
             }
         };
 

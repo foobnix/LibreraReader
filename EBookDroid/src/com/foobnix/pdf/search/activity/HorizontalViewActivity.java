@@ -37,6 +37,7 @@ import com.foobnix.pdf.info.view.DragingDialogs;
 import com.foobnix.pdf.info.view.DragingPopup;
 import com.foobnix.pdf.info.view.HorizontallSeekTouchEventListener;
 import com.foobnix.pdf.info.view.ProgressDraw;
+import com.foobnix.pdf.info.view.UnderlineImageView;
 import com.foobnix.pdf.info.widget.FileInformationDialog;
 import com.foobnix.pdf.info.widget.RecentUpates;
 import com.foobnix.pdf.info.widget.ShareDialog;
@@ -331,7 +332,7 @@ public class HorizontalViewActivity extends FragmentActivity {
 
             @Override
             public void onClick(final View v) {
-                DragingDialogs.contrastAndBrigtness(anchor, documentController, reloadDocBrigntness);
+                DragingDialogs.contrastAndBrigtness(anchor, documentController, reloadDocBrigntness, reloadDoc);
             }
         });
 
@@ -496,7 +497,7 @@ public class HorizontalViewActivity extends FragmentActivity {
             }
         });
 
-        final ImageView onCrop = (ImageView) findViewById(R.id.onCrop);
+        final UnderlineImageView onCrop = (UnderlineImageView) findViewById(R.id.onCrop);
         onCrop.setOnClickListener(new View.OnClickListener() {
 
             @Override
@@ -504,11 +505,7 @@ public class HorizontalViewActivity extends FragmentActivity {
                 AppState.get().isCrop = !AppState.get().isCrop;
                 SettingsManager.getBookSettings().cropPages = AppState.get().isCrop;
                 reloadDoc.run();
-                if (AppState.get().isCrop) {
-                    TintUtil.setTintImage(onCrop, TintUtil.COLOR_ORANGE);
-                } else {
-                    TintUtil.setTintImage(onCrop, Color.WHITE);
-                }
+                onCrop.underline(AppState.get().isCrop);
             }
         });
 
@@ -731,11 +728,8 @@ public class HorizontalViewActivity extends FragmentActivity {
                     onMove.setVisibility(AppState.get().isInkMode && !documentController.isTextFormat() ? View.VISIBLE : View.GONE);
                     onBC.setVisibility(AppState.get().isInkMode ? View.VISIBLE : View.GONE);
 
-                    if (AppState.get().isCrop) {
-                        TintUtil.setTintImage(onCrop, TintUtil.COLOR_ORANGE);
-                    } else {
-                        TintUtil.setTintImage(onCrop, Color.WHITE);
-                    }
+                    onCrop.underline(AppState.get().isCrop);
+                    onCrop.invalidate();
 
                 }
 
@@ -986,17 +980,9 @@ public class HorizontalViewActivity extends FragmentActivity {
         @Override
         public void run() {
             IMG.clearMemoryCache();
-            ImagePageFragment f1 = (ImagePageFragment) getSupportFragmentManager().findFragmentByTag("f" + (viewPager.getCurrentItem() - 1));
             ImagePageFragment f2 = (ImagePageFragment) getSupportFragmentManager().findFragmentByTag("f" + (viewPager.getCurrentItem()));
-            ImagePageFragment f3 = (ImagePageFragment) getSupportFragmentManager().findFragmentByTag("f" + (viewPager.getCurrentItem() + 1));
-            if (f1 != null) {
-                f1.loadImage();
-            }
             if (f2 != null) {
                 f2.loadImage();
-            }
-            if (f3 != null) {
-                f3.loadImage();
             }
             return;
         }
@@ -1737,7 +1723,7 @@ public class HorizontalViewActivity extends FragmentActivity {
 
     @Override
     public boolean onKeyLongPress(final int keyCode, final KeyEvent event) {
-        if (CloseAppDialog.checkLongPress(this, event)) {
+        if (false && CloseAppDialog.checkLongPress(this, event)) {
             CloseAppDialog.showOnLongClickDialog(HorizontalViewActivity.this, null, documentController);
             return true;
         }
@@ -1760,7 +1746,8 @@ public class HorizontalViewActivity extends FragmentActivity {
             return;
         }
 
-        closeActivity();
+        CloseAppDialog.showOnLongClickDialog(HorizontalViewActivity.this, null, documentController);
+        // closeActivity();
     }
 
     public void closeActivity() {

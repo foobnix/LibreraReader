@@ -159,7 +159,7 @@ public abstract class DocumentControllerHorizontalView extends DocumentControlle
             AppState.get().isLocked = bs.isLocked;
             TempHolder.get().pageDelta = bs.pageDelta;
 
-            if (AppState.get().isCropPDF) {
+            if (AppState.get().isCropPDF && !isTextFormat) {
                 AppState.get().isCrop = true;
             }
         }

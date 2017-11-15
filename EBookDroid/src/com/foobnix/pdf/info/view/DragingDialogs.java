@@ -164,7 +164,7 @@ public class DragingDialogs {
 
     }
 
-    public static void contrastAndBrigtness(final FrameLayout anchor, final DocumentController controller, final Runnable onRealod) {
+    public static void contrastAndBrigtness(final FrameLayout anchor, final DocumentController controller, final Runnable onRealod, final Runnable onRestart) {
 
         DragingPopup dialog = new DragingPopup(R.string.contrast_and_brightness, anchor, 300, 240) {
 
@@ -175,6 +175,9 @@ public class DragingDialogs {
                 return Dialogs.getBCView(c, onRealod);
             }
         };
+        if (onRestart != null) {
+        dialog.setOnCloseListener(onRestart);
+        }
         dialog.show("contrastAndBrigtness");
 
     }

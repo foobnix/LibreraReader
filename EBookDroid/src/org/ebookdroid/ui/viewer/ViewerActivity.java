@@ -111,7 +111,7 @@ public class ViewerActivity extends AbstractActionActivity<ViewerActivity, Viewe
                     AppState.get().isDoubleCoverAlone = bs.doublePagesCover;
                     AppState.get().isLocked = bs.isLocked;
                     TempHolder.get().pageDelta = bs.pageDelta;
-                    if (AppState.get().isCropPDF) {
+                    if (AppState.get().isCropPDF && !bs.isTextFormat()) {
                         AppState.get().isCrop = true;
                     }
                 }
@@ -383,11 +383,12 @@ public class ViewerActivity extends AbstractActionActivity<ViewerActivity, Viewe
 
     @Override
     public boolean onKeyLongPress(final int keyCode, final KeyEvent event) {
-        if (CloseAppDialog.checkLongPress(this, event)) {
+        if (false && CloseAppDialog.checkLongPress(this, event)) {
             CloseAppDialog.showOnLongClickDialog(getController().getActivity(), null, getController().getListener());
             return true;
         }
         return super.onKeyLongPress(keyCode, event);
     }
+
 
 }

@@ -11,8 +11,6 @@
         android:layout_height="match_parent"
         android:layout_centerInParent="false" />
 
-    
-
     <FrameLayout
         android:id="@+id/adFrame"
         android:layout_width="match_parent"
@@ -80,12 +78,12 @@
             <ImageView
                 android:id="@+id/bookClose"
                 style="@style/buttonWhiteClose"
-                android:layout_marginRight="10dip"
-                android:layout_marginTop="10dip"
                 android:layout_width="@dimen/wh_button"
                 android:layout_height="@dimen/wh_button"
                 android:layout_alignParentRight="true"
                 android:layout_centerVertical="true"
+                android:layout_marginRight="10dip"
+                android:layout_marginTop="10dip"
                 android:layout_weight="0"
                 android:contentDescription="@string/close_book"
                 android:src="@drawable/glyphicons_208_remove_2" />
@@ -94,11 +92,9 @@
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:padding="2dip"
             android:gravity="center"
-            android:orientation="horizontal" >
-            
-            
+            android:orientation="horizontal"
+            android:padding="2dip" >
 
             <ImageView
                 android:id="@+id/onPageFlip1"
@@ -109,8 +105,6 @@
                 android:contentDescription="change day or night"
                 android:src="@drawable/glyphicons_174_play"
                 android:visibility="gone" />
-            
-             
 
             <ImageView
                 android:id="@+id/onModeChange"
@@ -119,19 +113,17 @@
                 android:layout_height="@dimen/wh_button"
                 android:layout_weight="0"
                 android:cropToPadding="true"
-                android:padding="6dip"
-                 />
-            
-            
+                android:padding="6dip" />
+
             <ImageView
                 android:id="@+id/onMove"
                 style="@style/buttonWhite"
                 android:layout_width="@dimen/wh_button"
                 android:layout_height="@dimen/wh_button"
                 android:layout_weight="0"
-                android:visibility="gone"
                 android:contentDescription="Move and zoom in/out page"
-                android:src="@drawable/glyphicons_187_move" />
+                android:src="@drawable/glyphicons_187_move"
+                android:visibility="gone" />
 
             <ImageView
                 android:id="@+id/moveCenter"
@@ -141,17 +133,17 @@
                 android:layout_weight="0"
                 android:contentDescription="align document"
                 android:src="@drawable/glyphicons_114_justify" />
-            
-            <ImageView
+
+            <com.foobnix.pdf.info.view.UnderlineImageView
                 android:id="@+id/onCrop"
-                android:visibility="gone"
                 style="@style/buttonWhite"
                 android:layout_width="@dimen/wh_button"
                 android:layout_height="@dimen/wh_button"
                 android:layout_weight="0"
                 android:contentDescription="align document"
-                android:src="@drawable/glyphicons_94_crop" />
-            
+                android:src="@drawable/glyphicons_94_crop"
+                android:visibility="visible" />
+
             <ImageView
                 android:id="@+id/onBC"
                 style="@style/buttonWhite"
@@ -159,9 +151,9 @@
                 android:layout_height="@dimen/wh_button"
                 android:layout_weight="0"
                 android:cropToPadding="true"
-                android:src="@drawable/glyphicons_190_brightness_my"
                 android:padding="6dip"
-                 />
+                android:src="@drawable/glyphicons_190_brightness_my"
+                android:visibility="gone" />
 
             <ImageView
                 android:id="@+id/bookNight"
@@ -281,11 +273,9 @@
         <com.foobnix.pdf.info.view.ProgressDraw
             android:id="@+id/progressDraw"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/progress"
-             />
+            android:layout_height="@dimen/progress" />
     </LinearLayout>
-    
-    
+
     <ImageView
         android:id="@+id/ttsActive"
         style="@style/buttonWhite"

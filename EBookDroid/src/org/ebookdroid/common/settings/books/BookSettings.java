@@ -32,12 +32,17 @@ public class BookSettings implements CurrentPageListener {
     private int pages;
     public int pageDelta = 0;
 
+
     public BookSettings(final String fileName) {
         this.fileName = fileName;
         this.currentPage = PageIndex.FIRST;
         if (isLocked == null) {
             isLocked = ExtUtils.isTextFomat(fileName);
         }
+    }
+
+    public boolean isTextFormat() {
+        return ExtUtils.isTextFomat(fileName);
     }
 
     public void updateFromAppState() {

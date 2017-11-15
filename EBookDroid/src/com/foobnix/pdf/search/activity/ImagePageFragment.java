@@ -72,11 +72,11 @@ public class ImagePageFragment extends Fragment {
         return view;
     }
 
-
     @Override
     public void onResume() {
         super.onResume();
         image.clickUtils.init();
+        LOG.d("fonResume", page);
     }
 
     public int getPriority() {
