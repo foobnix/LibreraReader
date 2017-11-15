@@ -415,4 +415,6 @@
    <string name="folder_for_downloaded_books">Cartella per i libri scaricati</string>
    <string name="set_the_current_page_number">Impostare il numero della pagina corrente</string>
    <string name="search_in_document">Cerca nel documento</string>
+   <string name="opening_book_with_losed_lock">Libro di apertura con serratura chiusa</string>
+   <string name="opening_book_with_cropped_borders">Libro di apertura con bordi ritagliati</string>
 </resources>

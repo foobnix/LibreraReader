@@ -415,4 +415,6 @@
    <string name="folder_for_downloaded_books">İndirilen kitapların klasörü</string>
    <string name="set_the_current_page_number">Geçerli sayfa numarasını ayarla</string>
    <string name="search_in_document">Belgede ara</string>
+   <string name="opening_book_with_losed_lock">Kilitli kilitli açılış kitabı</string>
+   <string name="opening_book_with_cropped_borders">Kırpılmış kenarlı kitap açma</string>
 </resources>

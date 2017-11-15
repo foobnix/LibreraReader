@@ -415,4 +415,6 @@
    <string name="folder_for_downloaded_books">Priečinok pre prevzaté knihy</string>
    <string name="set_the_current_page_number">Nastavte aktuálne číslo stránky</string>
    <string name="search_in_document">Vyhľadávanie v dokumente</string>
+   <string name="opening_book_with_losed_lock">Otvára knihu s uzamknutým zámkom</string>
+   <string name="opening_book_with_cropped_borders">Otváranie knihy s orezanými okrajmi</string>
 </resources>

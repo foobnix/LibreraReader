@@ -415,4 +415,6 @@
    <string name="folder_for_downloaded_books">Kansio ladattaville kirjoille</string>
    <string name="set_the_current_page_number">Aseta nykyinen sivunumero</string>
    <string name="search_in_document">Hae asiakirjasta</string>
+   <string name="opening_book_with_losed_lock">Avaustila suljetulla lukolla</string>
+   <string name="opening_book_with_cropped_borders">Avaava kirja rajatulla reunalla</string>
 </resources>

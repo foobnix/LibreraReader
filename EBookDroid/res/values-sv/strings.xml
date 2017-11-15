@@ -415,4 +415,6 @@
    <string name="folder_for_downloaded_books">Mapp för nedladdade böcker</string>
    <string name="set_the_current_page_number">Ställ in det aktuella sidnumret</string>
    <string name="search_in_document">Sök i dokumentet</string>
+   <string name="opening_book_with_losed_lock">Öppningsbok med stängt lås</string>
+   <string name="opening_book_with_cropped_borders">Öppningsbok med beskurna gränser</string>
 </resources>

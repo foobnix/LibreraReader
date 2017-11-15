@@ -415,4 +415,6 @@
    <string name="folder_for_downloaded_books">Katalogas atsisiųstoms knygoms</string>
    <string name="set_the_current_page_number">Nustatykite dabartinį puslapio numerį</string>
    <string name="search_in_document">Ieškoti dokumente</string>
+   <string name="opening_book_with_losed_lock">Knygos atidarymas su užrakinta spyna</string>
+   <string name="opening_book_with_cropped_borders">Knygos atidarymas su apkarpytais kraštais</string>
 </resources>

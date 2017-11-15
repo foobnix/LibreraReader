@@ -415,4 +415,6 @@
    <string name="folder_for_downloaded_books">پوشه برای کتابهای دانلود شده</string>
    <string name="set_the_current_page_number">شماره صفحه فعلی را تنظیم کنید</string>
    <string name="search_in_document">جستجو در سند</string>
+   <string name="opening_book_with_losed_lock">افتتاح کتاب با قفل خالی</string>
+   <string name="opening_book_with_cropped_borders">کتاب افتتاحیه با مرزهای بریده شده</string>
 </resources>

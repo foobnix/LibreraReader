@@ -415,4 +415,6 @@
    <string name="folder_for_downloaded_books">Dossier pour les livres téléchargés</string>
    <string name="set_the_current_page_number">Définir le numéro de la page en cours</string>
    <string name="search_in_document">Rechercher dans le document</string>
+   <string name="opening_book_with_losed_lock">Livre d\'ouverture avec serrure fermée</string>
+   <string name="opening_book_with_cropped_borders">Livre d\'ouverture avec des bordures recadrées</string>
 </resources>

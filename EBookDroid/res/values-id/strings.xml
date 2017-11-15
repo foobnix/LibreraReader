@@ -415,4 +415,6 @@
    <string name="folder_for_downloaded_books">Folder untuk buku yang didownload</string>
    <string name="set_the_current_page_number">Setel nomor halaman saat ini</string>
    <string name="search_in_document">Cari di Dokumen</string>
+   <string name="opening_book_with_losed_lock">Membuka buku dengan kunci kosong</string>
+   <string name="opening_book_with_cropped_borders">Membuka buku dengan batas yang dipotong</string>
 </resources>

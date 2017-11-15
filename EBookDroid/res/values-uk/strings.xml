@@ -415,4 +415,6 @@
    <string name="folder_for_downloaded_books">Папка для завантажених книг</string>
    <string name="set_the_current_page_number">Встановити поточний номер сторінки</string>
    <string name="search_in_document">Пошук у документі</string>
+   <string name="opening_book_with_losed_lock">Відкриття книги з замкненим замком</string>
+   <string name="opening_book_with_cropped_borders">Відкриття книги з обрізаними кордонами</string>
 </resources>

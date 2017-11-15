@@ -415,4 +415,6 @@
    <string name="folder_for_downloaded_books">Dosar pentru cărți descărcate</string>
    <string name="set_the_current_page_number">Setați numărul paginii curente</string>
    <string name="search_in_document">Căutarea în document</string>
+   <string name="opening_book_with_losed_lock">Deschiderea cărții cu încuietoare închisă</string>
+   <string name="opening_book_with_cropped_borders">Deschiderea cărții cu margini tăiate</string>
 </resources>

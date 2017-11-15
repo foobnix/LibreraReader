@@ -415,4 +415,6 @@
    <string name="folder_for_downloaded_books">डाउनलोड की गई पुस्तकों के लिए फ़ोल्डर</string>
    <string name="set_the_current_page_number">वर्तमान पेज नंबर सेट करें</string>
    <string name="search_in_document">दस्तावेज़ में खोजें</string>
+   <string name="opening_book_with_losed_lock">सोलट लॉक के साथ पुस्तक खोलना</string>
+   <string name="opening_book_with_cropped_borders">फसल वाली सीमाओं के साथ पुस्तक खोलना</string>
 </resources>

@@ -415,4 +415,6 @@
    <string name="folder_for_downloaded_books">Map voor gedownloade boeken</string>
    <string name="set_the_current_page_number">Stel het huidige paginanummer in</string>
    <string name="search_in_document">Zoeken in document</string>
+   <string name="opening_book_with_losed_lock">Openingsboek met gesloten slot</string>
+   <string name="opening_book_with_cropped_borders">Openingsboek met bijgesneden randen</string>
 </resources>

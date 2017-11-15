@@ -415,4 +415,6 @@
    <string name="folder_for_downloaded_books">Folder do pobranych książek</string>
    <string name="set_the_current_page_number">Ustaw bieżący numer strony</string>
    <string name="search_in_document">Wyszukaj w dokumencie</string>
+   <string name="opening_book_with_losed_lock">Otwieranie książki z с zamkniętą blokadą</string>
+   <string name="opening_book_with_cropped_borders">Otwieranie książki z przyciętymi granicami</string>
 </resources>

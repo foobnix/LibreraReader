@@ -415,4 +415,6 @@
    <string name="folder_for_downloaded_books">Mappa letölthető könyvekhez</string>
    <string name="set_the_current_page_number">Állítsa be az aktuális oldalszámot</string>
    <string name="search_in_document">Keresés a dokumentumban</string>
+   <string name="opening_book_with_losed_lock">Nyitott könyv zárt zárral</string>
+   <string name="opening_book_with_cropped_borders">A könyv megnyitása vágott szegélyekkel</string>
 </resources>

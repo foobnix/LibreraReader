@@ -415,4 +415,6 @@
    <string name="folder_for_downloaded_books">다운로드 한 책의 폴더</string>
    <string name="set_the_current_page_number">현재 페이지 번호 설정</string>
    <string name="search_in_document">문서에서 검색</string>
+   <string name="opening_book_with_losed_lock">잠금 장치가있는 책 열기</string>
+   <string name="opening_book_with_cropped_borders">자른 테두리가있는 책 열기</string>
 </resources>

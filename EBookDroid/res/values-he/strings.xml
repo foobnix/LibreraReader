@@ -415,4 +415,6 @@
    <string name="folder_for_downloaded_books">תיקייה עבור ספרים שהורדו</string>
    <string name="set_the_current_page_number">הגדר את מספר הדף הנוכחי</string>
    <string name="search_in_document">חפש במסמך</string>
+   <string name="opening_book_with_losed_lock">פתיחת ספר עם מנעול סגור</string>
+   <string name="opening_book_with_cropped_borders">ספר פתיחה עם גבולות קצוצים</string>
 </resources>

@@ -415,4 +415,6 @@
    <string name="folder_for_downloaded_books">مجلد للكتب التي تم تنزيلها</string>
    <string name="set_the_current_page_number">تعيين رقم الصفحة الحالية</string>
    <string name="search_in_document">البحث في المستند</string>
+   <string name="opening_book_with_losed_lock">كتاب الافتتاح مع قفل فلوسيد</string>
+   <string name="opening_book_with_cropped_borders">فتح الكتاب مع الحدود اقتصاص</string>
 </resources>
