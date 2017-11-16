@@ -84,7 +84,7 @@
             android:contentDescription="Scroll by pages or by screen"
             android:id="@+id/nextTypeBootom"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="@dimen/wh_button_big"
             android:layout_margin="4dip"
             android:layout_weight="0"
             android:background="@drawable/bg_border_white"
