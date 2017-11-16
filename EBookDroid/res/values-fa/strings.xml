@@ -417,4 +417,5 @@
    <string name="search_in_document">جستجو در سند</string>
    <string name="opening_book_with_losed_lock">افتتاح کتاب با قفل خالی</string>
    <string name="opening_book_with_cropped_borders">کتاب افتتاحیه با مرزهای بریده شده</string>
+   <string name="do_you_want_to_clear_everything_">آیا می خواهید همه چیز را پاک کنید؟</string>
 </resources>

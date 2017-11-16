@@ -91,6 +91,20 @@
                 android:orientation="horizontal" >
 
                 <TextView
+                    android:id="@+id/browserExt"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="2dip"
+                    android:layout_marginRight="2dip"
+                    android:layout_marginLeft="1dip"
+                    android:layout_weight="0"
+                    android:singleLine="true"
+                    android:text="PDF"
+                    android:textAllCaps="true"
+                    android:textSize="@dimen/text_subtitle"
+                    android:textStyle="bold" />
+                
+                <TextView
                     android:id="@+id/idPercentText"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -101,20 +115,6 @@
                     android:layout_marginLeft="4dip"
                     android:text="20%"
                     android:textSize="@dimen/text_subtitle" />
-
-                <TextView
-                    android:id="@+id/browserExt"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="2dip"
-                    android:layout_marginLeft="4dip"
-                    android:layout_marginRight="2dip"
-                    android:layout_weight="0"
-                    android:singleLine="true"
-                    android:text="PDF"
-                    android:textAllCaps="true"
-                    android:textSize="@dimen/text_subtitle"
-                    android:textStyle="bold" />
                
                  <TextView     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" android:layout_weight="1"/>

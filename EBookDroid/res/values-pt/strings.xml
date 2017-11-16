@@ -417,4 +417,5 @@
    <string name="search_in_document">Pesquisar no documento</string>
    <string name="opening_book_with_losed_lock">Livro de abertura com bloqueio encerrado</string>
    <string name="opening_book_with_cropped_borders">Livro de abertura com bordas cortadas</string>
+   <string name="do_you_want_to_clear_everything_">Você quer limpar tudo?</string>
 </resources>

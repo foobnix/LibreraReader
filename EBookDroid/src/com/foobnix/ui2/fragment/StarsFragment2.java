@@ -50,7 +50,7 @@ public class StarsFragment2 extends UIFragment<FileMeta> {
 
             @Override
             public void run() {
-                AlertDialogs.showDialog(getActivity(), getString(R.string.clear_all), getString(R.string.ok), new Runnable() {
+                AlertDialogs.showDialog(getActivity(), getString(R.string.do_you_want_to_clear_everything_), getString(R.string.ok), new Runnable() {
 
                     @Override
                     public void run() {
@@ -68,7 +68,7 @@ public class StarsFragment2 extends UIFragment<FileMeta> {
 
             @Override
             public void run() {
-                AlertDialogs.showDialog(getActivity(), getString(R.string.clear_all), getString(R.string.ok), new Runnable() {
+                AlertDialogs.showDialog(getActivity(), getString(R.string.do_you_want_to_clear_everything_), getString(R.string.ok), new Runnable() {
 
                     @Override
                     public void run() {

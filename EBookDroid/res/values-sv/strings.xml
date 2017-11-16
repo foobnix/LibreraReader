@@ -417,4 +417,5 @@
    <string name="search_in_document">Sök i dokumentet</string>
    <string name="opening_book_with_losed_lock">Öppningsbok med stängt lås</string>
    <string name="opening_book_with_cropped_borders">Öppningsbok med beskurna gränser</string>
+   <string name="do_you_want_to_clear_everything_">Vill du rensa allt?</string>
 </resources>

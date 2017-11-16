@@ -58,7 +58,7 @@ public class RecentFragment2 extends UIFragment<FileMeta> {
 
             @Override
             public void onClick(View v) {
-                AlertDialogs.showDialog(getActivity(), getString(R.string.clear_all_recent), getString(R.string.ok), new Runnable() {
+                AlertDialogs.showDialog(getActivity(), getString(R.string.do_you_want_to_clear_everything_), getString(R.string.ok), new Runnable() {
 
                     @Override
                     public void run() {

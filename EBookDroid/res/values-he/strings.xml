@@ -417,4 +417,5 @@
    <string name="search_in_document">חפש במסמך</string>
    <string name="opening_book_with_losed_lock">פתיחת ספר עם מנעול סגור</string>
    <string name="opening_book_with_cropped_borders">ספר פתיחה עם גבולות קצוצים</string>
+   <string name="do_you_want_to_clear_everything_">אתה רוצה לנקות הכל?</string>
 </resources>

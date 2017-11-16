@@ -417,4 +417,5 @@
    <string name="search_in_document">Vyhľadávanie v dokumente</string>
    <string name="opening_book_with_losed_lock">Otvára knihu s uzamknutým zámkom</string>
    <string name="opening_book_with_cropped_borders">Otváranie knihy s orezanými okrajmi</string>
+   <string name="do_you_want_to_clear_everything_">Chcete vymazať všetko?</string>
 </resources>

@@ -417,4 +417,5 @@
    <string name="search_in_document">Keresés a dokumentumban</string>
    <string name="opening_book_with_losed_lock">Nyitott könyv zárt zárral</string>
    <string name="opening_book_with_cropped_borders">A könyv megnyitása vágott szegélyekkel</string>
+   <string name="do_you_want_to_clear_everything_">Szeretné tisztázni mindent?</string>
 </resources>

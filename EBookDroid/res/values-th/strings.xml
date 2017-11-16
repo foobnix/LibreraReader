@@ -417,4 +417,5 @@
    <string name="search_in_document">ค้นหาในเอกสาร</string>
    <string name="opening_book_with_losed_lock">หนังสือเปิดพร้อมล็อคเกลียว</string>
    <string name="opening_book_with_cropped_borders">หนังสือเปิดที่มีขอบตัด</string>
+   <string name="do_you_want_to_clear_everything_">คุณต้องการล้างทุกอย่างหรือไม่?</string>
 </resources>
