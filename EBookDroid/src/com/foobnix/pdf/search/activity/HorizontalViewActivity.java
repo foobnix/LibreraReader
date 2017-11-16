@@ -112,7 +112,7 @@ public class HorizontalViewActivity extends FragmentActivity {
     VerticalViewPager viewPager;
     SeekBar seekBar;
     private TextView maxSeek, currentSeek, pagesCountIndicator, flippingIntervalView, pagesTime, pagesPower, titleTxt, chapterView;
-    View adFrame, bottomBar, onPageFlip1, bottomIndicators, moveCenter;
+    View adFrame, bottomBar, onPageFlip1, bottomIndicators, moveCenter, onClose;
     LinearLayout actionBar;
     private FrameLayout anchor;
 
@@ -536,7 +536,8 @@ public class HorizontalViewActivity extends FragmentActivity {
             }
         });
 
-        View onClose = findViewById(R.id.bookClose);
+        onClose = findViewById(R.id.bookClose);
+        onClose.setVisibility(View.GONE);
 
         onClose.setOnClickListener(new View.OnClickListener() {
 
@@ -568,7 +569,8 @@ public class HorizontalViewActivity extends FragmentActivity {
 
         currentSeek.setVisibility(View.GONE);
         maxSeek.setVisibility(View.GONE);
-        seekBar.setVisibility(View.INVISIBLE);
+        seekBar.setVisibility(View.GONE);
+        bottomIndicators.setVisibility(View.GONE);
 
         titleTxt.setText(DocumentControllerHorizontalView.getTempTitle(this));
         loadinAsyncTask = new CopyAsyncTask() {
@@ -623,6 +625,7 @@ public class HorizontalViewActivity extends FragmentActivity {
             @Override
             protected void onPostExecute(Object result) {
                 try {
+                    onClose.setVisibility(View.VISIBLE);
                     LOG.d("RESULT", result);
                     if (dialog != null) {
                         dialog.dismiss();
@@ -681,6 +684,7 @@ public class HorizontalViewActivity extends FragmentActivity {
                     currentSeek.setVisibility(View.VISIBLE);
                     maxSeek.setVisibility(View.VISIBLE);
                     seekBar.setVisibility(View.VISIBLE);
+                    bottomIndicators.setVisibility(View.VISIBLE);
 
                     documentController.initHandler();
                     AppState.get().lastA = HorizontalViewActivity.class.getSimpleName();
