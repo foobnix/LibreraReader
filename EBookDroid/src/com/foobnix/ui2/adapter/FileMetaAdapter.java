@@ -510,10 +510,10 @@ public class FileMetaAdapter extends AppRecycleAdapter<FileMeta, RecyclerView.Vi
         }
 
         if (holder.layoutBootom != null) {
-            if (adapterType == ADAPTER_COVERS || adapterType == ADAPTER_LIST) {
+            if (adapterType == ADAPTER_COVERS) {
                 holder.layoutBootom.setVisibility(View.GONE);
                 holder.infoLayout.setVisibility(View.GONE);
-            } else if (adapterType == ADAPTER_GRID) {
+            } else {
                 holder.layoutBootom.setVisibility(View.VISIBLE);
                 holder.infoLayout.setVisibility(View.VISIBLE);
             }

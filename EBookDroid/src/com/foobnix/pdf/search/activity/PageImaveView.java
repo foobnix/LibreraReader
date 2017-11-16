@@ -163,8 +163,8 @@ public class PageImaveView extends View {
         if (pageNumber != event.getPage()) {
             return;
         }
-        int k = Dips.dpToPx(1);
-        float scale = 0.01f;
+        int k = Dips.dpToPx(3);
+        float scale = 0.03f;
 
         final float values[] = new float[9];
         imageMatrix().getValues(values);
