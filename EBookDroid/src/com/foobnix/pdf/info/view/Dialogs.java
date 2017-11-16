@@ -121,6 +121,7 @@ public class Dialogs {
 
     public static LinearLayout getBCView(final Context c, final Runnable action) {
         LinearLayout l = new LinearLayout(c);
+        l.setPadding(Dips.dpToPx(5), Dips.dpToPx(5), Dips.dpToPx(5), Dips.dpToPx(5));
         l.setOrientation(LinearLayout.VERTICAL);
 
         final Handler handler = new Handler();
