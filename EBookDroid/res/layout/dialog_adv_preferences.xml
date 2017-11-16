@@ -8,7 +8,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        android:padding="4dip" >
+        android:padding="6dip" >
 
 
         <LinearLayout
@@ -40,7 +40,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="15dip" >
+             >
 
             <TextView
                 android:layout_width="180dip"
@@ -60,7 +60,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="15dip" >
+             >
 
             <TextView
                 android:layout_width="180dip"
@@ -81,13 +81,12 @@
             android:id="@+id/isCutRTL"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="10dip"
             android:text="@string/right_page_then_left_page_rtl_" />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="15dip" >
+             >
 
             <TextView
                 android:layout_width="180dip"
@@ -107,7 +106,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="15dip" >
+             >
 
             <TextView
                 android:layout_width="180dip"
@@ -135,7 +134,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="15dip" >
+             >
 
             <TextView
                 android:layout_width="180dip"
@@ -155,7 +154,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="15dip" >
+             >
 
             <TextView
                 android:layout_width="180dip"
@@ -209,21 +208,21 @@
             android:id="@+id/isLockPDF"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="10dip"
+            
             android:text="@string/opening_book_with_losed_lock" />
         
          <CheckBox
             android:id="@+id/isCropPDF"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="10dip"
+            
             android:text="@string/opening_book_with_cropped_borders" />
         
         <CheckBox
             android:id="@+id/isOLED"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="10dip"
+            
             android:text="@string/enhancements_for_oled_display" />
 
         
@@ -233,7 +232,7 @@
             android:visibility="gone"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="10dip"
+            
             android:text="@string/enable_vibration_for_some_actions" />
 
         
@@ -242,7 +241,7 @@
             android:id="@+id/isScrollAnimation"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="10dip"
+            
             android:text="@string/simple_scroll_animation" />
 
         <CheckBox
@@ -250,28 +249,28 @@
             android:id="@+id/isCustomizeBgAndColors"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="10dip"
+            
             android:text="@string/customize_font_background_colors" />
 
         <CheckBox
             android:id="@+id/isIgnoreAnnotatations"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="10dip"
+            
             android:text="@string/ignore_annotations_on_click" />
 
         <CheckBox
             android:id="@+id/isSaveAnnotatationsAutomatically"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="10dip"
+            
             android:text="@string/save_new_annotations_automatically" />
 
         <CheckBox
             android:id="@+id/highlightByLetters"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="10dip"
+            
             android:text="@string/selecting_text_by_letters" />
 
         <CheckBox
@@ -279,28 +278,27 @@
             android:id="@+id/isLoopAutoplay"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="10dip"
+            
             android:text="@string/loop_autoplay" />
 
         <CheckBox
             android:id="@+id/isBrighrnessEnable"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="10dip"
+            
             android:text="@string/enable_brightness_adjustment_on_the_left_of_the_screen" />
 
         <CheckBox
             android:id="@+id/isRewindEnable"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="10dip"
+            
             android:text="@string/enable_rewind_of_pages_using_the_read_progress_line" />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
-            android:layout_marginLeft="20dip"
             android:layout_marginTop="4dip" >
 
             <TextView
@@ -313,7 +311,7 @@
                 android:id="@+id/seekWheelSpeed"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="10dip" />
+                 />
         </LinearLayout>
 
         <LinearLayout
@@ -344,7 +342,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="15dip" >
+             >
 
             <TextView
                 android:layout_width="180dip"
@@ -367,7 +365,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="15dip" >
+             >
 
             <TextView
                 android:layout_width="180dip"
@@ -387,7 +385,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="15dip"
+            
             android:gravity="center_vertical" >
 
             <TextView
@@ -407,7 +405,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="15dip"
+            
             android:visibility="gone" >
 
             <TextView

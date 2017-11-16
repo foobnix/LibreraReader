@@ -151,9 +151,8 @@
                 android:layout_height="@dimen/wh_button"
                 android:layout_weight="0"
                 android:cropToPadding="true"
-                android:padding="6dip"
                 android:src="@drawable/glyphicons_190_brightness_my"
-                android:visibility="gone" />
+                android:visibility="visible" />
 
             <ImageView
                 android:id="@+id/bookNight"
