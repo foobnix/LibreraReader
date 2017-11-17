@@ -46,7 +46,8 @@
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
                 android:layout_marginLeft="40dip"
-                android:layout_toLeftOf="@+id/bookClose"
+                android:layout_marginRight="40dip"
+                
                 android:layout_weight="1"
                 android:orientation="vertical" >
 

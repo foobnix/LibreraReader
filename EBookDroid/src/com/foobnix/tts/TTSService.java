@@ -176,6 +176,8 @@ public class TTSService extends Service {
         }
     }
 
+    int emptyPageCount = 0;
+
     @TargetApi(Build.VERSION_CODES.ICE_CREAM_SANDWICH_MR1)
     private void playPage(String preText, int pageNumber) {
         if (pageNumber != -1) {
@@ -208,18 +210,20 @@ public class TTSService extends Service {
                 return;
             }
 
-
-
             CodecPage page = dc.getPage(pageNumber);
             String pageHTML = page.getPageHTML();
             pageHTML = TxtUtils.replaceHTMLforTTS(pageHTML);
             LOG.d(TAG, pageHTML);
 
             if (TxtUtils.isEmpty(pageHTML)) {
-                LOG.d("empty page play next one");
-                playPage("", AppState.get().lastBookPage + 1);
+                LOG.d("empty page play next one", emptyPageCount);
+                emptyPageCount++;
+                if (emptyPageCount < 3) {
+                    playPage("", AppState.get().lastBookPage + 1);
+                }
                 return;
             }
+            emptyPageCount = 0;
 
             String[] parts = TxtUtils.getParts(pageHTML);
             String firstPart = parts[0];
