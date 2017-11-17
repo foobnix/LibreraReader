@@ -437,6 +437,7 @@ public class HorizontalViewActivity extends FragmentActivity {
                     @Override
                     public boolean onMenuItemClick(MenuItem item) {
                         modeOnePage();
+                        documentController.cleanImageMatrix();
                         return false;
                     }
                 });
@@ -450,6 +451,7 @@ public class HorizontalViewActivity extends FragmentActivity {
                         AppState.get().isDoubleCoverAlone = false;
                         SettingsManager.getBookSettings().updateFromAppState();
                         documentController.restartActivity();
+                        documentController.cleanImageMatrix();
                         return false;
                     }
                 });
@@ -463,6 +465,7 @@ public class HorizontalViewActivity extends FragmentActivity {
                         AppState.get().isDoubleCoverAlone = true;
                         SettingsManager.getBookSettings().updateFromAppState();
                         documentController.restartActivity();
+                        documentController.cleanImageMatrix();
                         return false;
                     }
                 });

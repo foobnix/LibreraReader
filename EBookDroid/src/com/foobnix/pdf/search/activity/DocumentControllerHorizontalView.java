@@ -99,7 +99,7 @@ public abstract class DocumentControllerHorizontalView extends DocumentControlle
 
     @Override
     public void cleanImageMatrix() {
-        matrixSP.edit().remove(bookPath).commit();
+        matrixSP.edit().remove("" + bookPath.hashCode()).commit();
     }
 
     @Override
@@ -131,7 +131,7 @@ public abstract class DocumentControllerHorizontalView extends DocumentControlle
 
         bookPath = getBookPathFromActivity(activity);
 
-        if (true) {
+        if (false) {
             PageImageState.get().needAutoFit = true;
         } else {
             if (TxtUtils.isNotEmpty(bookPath) && !ExtUtils.isTextFomat(bookPath)) {
