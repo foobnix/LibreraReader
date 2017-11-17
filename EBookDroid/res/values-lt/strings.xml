@@ -129,7 +129,6 @@
    <string name="customize_background_color">Redaguoti fono spalvą</string>
    <string name="day">Diena</string>
    <string name="nigth">Naktis</string>
-   <string name="restore_defaults">Atstatyti</string>
    <string name="font">Šriftas</string>
    <string name="background">Fonas</string>
    <string name="ok">Gerai</string>
@@ -418,4 +417,6 @@
    <string name="opening_book_with_losed_lock">Knygos atidarymas su užrakinta spyna</string>
    <string name="opening_book_with_cropped_borders">Knygos atidarymas su apkarpytais kraštais</string>
    <string name="do_you_want_to_clear_everything_">Ar norite išvalyti viską?</string>
+   <string name="restore_defaults_full">Ar norite atstatyti numatytas vertes?</string>
+   <string name="restore_defaults_short">Atkurti į pradinius nustatymus</string>
 </resources>

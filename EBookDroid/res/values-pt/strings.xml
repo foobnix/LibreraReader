@@ -122,7 +122,6 @@
    <string name="customize_font_background_colors">Personalize tipo de letra e cores de fundo</string>
    <string name="day">Dia</string>
    <string name="nigth">Noite</string>
-   <string name="restore_defaults">Restaurar padrões</string>
    <string name="font">Fonte</string>
    <string name="background">Antecedentes</string>
    <string name="ok">Está bem</string>
@@ -418,4 +417,6 @@
    <string name="opening_book_with_losed_lock">Livro de abertura com bloqueio encerrado</string>
    <string name="opening_book_with_cropped_borders">Livro de abertura com bordas cortadas</string>
    <string name="do_you_want_to_clear_everything_">Você quer limpar tudo?</string>
+   <string name="restore_defaults_full">Deseja restaurar os valores padrão?</string>
+   <string name="restore_defaults_short">Restaurar padrão</string>
 </resources>

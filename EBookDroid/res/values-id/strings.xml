@@ -129,7 +129,6 @@
    <string name="customize_background_color">Sesuaikan warna latar belakang</string>
    <string name="day">Hari</string>
    <string name="nigth">Malam</string>
-   <string name="restore_defaults">Kembalikan default</string>
    <string name="font">Font</string>
    <string name="background">Latar Belakang</string>
    <string name="ok">Baik</string>
@@ -418,4 +417,6 @@
    <string name="opening_book_with_losed_lock">Membuka buku dengan kunci kosong</string>
    <string name="opening_book_with_cropped_borders">Membuka buku dengan batas yang dipotong</string>
    <string name="do_you_want_to_clear_everything_">Apakah Anda ingin menghapus semuanya?</string>
+   <string name="restore_defaults_full">Apakah Anda ingin mengembalikan nilai default?</string>
+   <string name="restore_defaults_short">Kembali ke awal</string>
 </resources>

@@ -120,7 +120,6 @@
    <string name="customize_font_background_colors">Применять особый алгоритм цветовой подстройки шрифтов и фонов</string>
    <string name="day">День</string>
    <string name="nigth">Ночь</string>
-   <string name="restore_defaults">Вернуть настройки по умолчанию</string>
    <string name="font">Шрифт</string>
    <string name="background">Фон</string>
    <string name="ok">Ok</string>
@@ -418,4 +417,6 @@
    <string name="opening_book_with_losed_lock">Открытие книги с закрытым замком</string>
    <string name="opening_book_with_cropped_borders">Открытие книги с обрезанными границами</string>
    <string name="do_you_want_to_clear_everything_">Вы хотите очистить все?</string>
+   <string name="restore_defaults_full">Вы хотите восстановить значения по умолчанию?</string>
+   <string name="restore_defaults_short">Сброс настроек</string>
 </resources>

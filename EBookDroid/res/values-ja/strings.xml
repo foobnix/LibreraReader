@@ -122,7 +122,6 @@
    <string name="customize_font_background_colors">フォントや背景色をカスタマイズ</string>
    <string name="day">日</string>
    <string name="nigth">夜</string>
-   <string name="restore_defaults">デフォルトに戻す</string>
    <string name="font">フォント</string>
    <string name="background">バックグラウンド</string>
    <string name="ok">OK</string>
@@ -418,4 +417,6 @@
    <string name="opening_book_with_losed_lock">閉鎖ロック付きオープニングブック</string>
    <string name="opening_book_with_cropped_borders">切り取った罫線のある本を開く</string>
    <string name="do_you_want_to_clear_everything_">すべてをクリアしますか？</string>
+   <string name="restore_defaults_full">デフォルト値を復元しますか？</string>
+   <string name="restore_defaults_short">デフォルトを復元</string>
 </resources>

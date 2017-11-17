@@ -86,7 +86,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="0"
-            android:text="@string/restore_defaults" />
+            android:text="@string/restore_defaults_short" />
 
         <TextView
             android:layout_width="wrap_content"

@@ -128,7 +128,6 @@
    <string name="customize_background_color">Tùy chỉnh màu nền</string>
    <string name="day">Ngày</string>
    <string name="nigth">Đêm</string>
-   <string name="restore_defaults">Khôi phục mặc định</string>
    <string name="font">Phông chữ</string>
    <string name="background">Lý lịch</string>
    <string name="ok">Được</string>
@@ -418,4 +417,6 @@
    <string name="opening_book_with_losed_lock">Mở sổ sách có khóa khóa</string>
    <string name="opening_book_with_cropped_borders">Mở sách với biên giới cắt xén</string>
    <string name="do_you_want_to_clear_everything_">Bạn có muốn làm rõ mọi thứ không?</string>
+   <string name="restore_defaults_full">Bạn có muốn khôi phục các giá trị mặc định?</string>
+   <string name="restore_defaults_short">Khôi phục lại mặc định</string>
 </resources>

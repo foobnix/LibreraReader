@@ -129,7 +129,8 @@
    <string name="customize_background_color">Customize background color</string>
    <string name="day">Day</string>
    <string name="nigth">Night</string>
-   <string name="restore_defaults">Restore defaults</string>
+   <string name="restore_defaults_full">Do you want to restore the default values?</string>
+   <string name="restore_defaults_short">Restore default</string>
    <string name="font">Font</string>
    <string name="background">Background</string>
    <string name="ok">Ok</string>

@@ -214,7 +214,7 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dip"
             android:layout_weight="0"
-            android:text="@string/restore_defaults" />
+            android:text="@string/restore_defaults_short" />
     </LinearLayout>
 
 </ScrollView>

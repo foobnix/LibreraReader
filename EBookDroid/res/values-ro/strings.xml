@@ -127,7 +127,6 @@
    <string name="customize_font_background_colors">Personalizați culorile de font și de fundal</string>
    <string name="customize_background_color">Personalizați culoarea de fundal</string>
    <string name="day">Zi</string>
-   <string name="restore_defaults">Restabiliți setările de bază</string>
    <string name="font">Font</string>
    <string name="background">Fundal</string>
    <string name="ok">OK</string>
@@ -418,4 +417,6 @@
    <string name="opening_book_with_losed_lock">Deschiderea cărții cu încuietoare închisă</string>
    <string name="opening_book_with_cropped_borders">Deschiderea cărții cu margini tăiate</string>
    <string name="do_you_want_to_clear_everything_">Vrei să ștergi totul?</string>
+   <string name="restore_defaults_full">Doriți să restaurați valorile implicite?</string>
+   <string name="restore_defaults_short">Restabili implicit</string>
 </resources>

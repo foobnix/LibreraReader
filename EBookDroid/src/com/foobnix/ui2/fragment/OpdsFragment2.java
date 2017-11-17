@@ -148,7 +148,7 @@ public class OpdsFragment2 extends UIFragment<Entry> {
 
             @Override
             public void onClick(View v) {
-                AlertDialogs.showOkDialog(getActivity(), getActivity().getString(R.string.restore_defaults), new Runnable() {
+                AlertDialogs.showOkDialog(getActivity(), getActivity().getString(R.string.restore_defaults_full), new Runnable() {
 
                     @Override
                     public void run() {
@@ -286,7 +286,7 @@ public class OpdsFragment2 extends UIFragment<Entry> {
 
             @Override
             public boolean onLongClick(View v) {
-                AlertDialogs.showOkDialog(getActivity(), getActivity().getString(R.string.restore_defaults), new Runnable() {
+                AlertDialogs.showOkDialog(getActivity(), getActivity().getString(R.string.restore_defaults_full), new Runnable() {
 
                     @Override
                     public void run() {

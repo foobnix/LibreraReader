@@ -129,7 +129,6 @@
    <string name="customize_background_color">Háttérszín testreszabása</string>
    <string name="day">Nappal</string>
    <string name="nigth">Éjszaka</string>
-   <string name="restore_defaults">Alapértelmezések visszaállítása</string>
    <string name="font">Betűtípus</string>
    <string name="background">Háttér</string>
    <string name="ok">Ok</string>
@@ -418,4 +417,6 @@
    <string name="opening_book_with_losed_lock">Nyitott könyv zárt zárral</string>
    <string name="opening_book_with_cropped_borders">A könyv megnyitása vágott szegélyekkel</string>
    <string name="do_you_want_to_clear_everything_">Szeretné tisztázni mindent?</string>
+   <string name="restore_defaults_full">Szeretné visszaállítani az alapértelmezett értékeket?</string>
+   <string name="restore_defaults_short">Alapértelmezett visszaállítása</string>
 </resources>

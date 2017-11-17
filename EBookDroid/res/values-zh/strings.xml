@@ -122,7 +122,6 @@
    <string name="customize_font_background_colors">自定义字体和背景颜色</string>
    <string name="day">日</string>
    <string name="nigth">晚</string>
-   <string name="restore_defaults">恢复默认值</string>
    <string name="font">字形</string>
    <string name="background">背景</string>
    <string name="ok">好</string>
@@ -418,4 +417,6 @@
    <string name="opening_book_with_losed_lock">打开书与锁闭</string>
    <string name="opening_book_with_cropped_borders">打开带有裁剪边框的书</string>
    <string name="do_you_want_to_clear_everything_">你想清除一切吗？</string>
+   <string name="restore_defaults_full">你想恢复默认值吗？</string>
+   <string name="restore_defaults_short">恢复默认</string>
 </resources>

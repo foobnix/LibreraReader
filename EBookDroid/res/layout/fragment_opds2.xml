@@ -112,7 +112,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:padding="2dip"
-        android:text="@string/restore_defaults"
+        android:text="@string/restore_defaults_short"
         android:textSize="12sp" />
 
     <TextView

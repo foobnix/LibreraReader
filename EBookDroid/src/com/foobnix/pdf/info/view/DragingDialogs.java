@@ -3779,7 +3779,7 @@ public class DragingDialogs {
                     @Override
                     public void onClick(View v) {
                         AlertDialog.Builder alert = new AlertDialog.Builder(controller.getActivity());
-                        alert.setMessage(R.string.restore_defaults);
+                        alert.setMessage(R.string.restore_defaults_full);
 
                         alert.setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
                             @Override

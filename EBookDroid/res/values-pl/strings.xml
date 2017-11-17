@@ -127,7 +127,6 @@
    <string name="customize_font_background_colors">Dostosuj czcionki i tła</string>
    <string name="day">Dzienny</string>
    <string name="nigth">Nocny</string>
-   <string name="restore_defaults">Przywróć domyślne</string>
    <string name="font">Czcionka</string>
    <string name="background">Tło</string>
    <string name="ok">Ok</string>
@@ -418,4 +417,6 @@
    <string name="opening_book_with_losed_lock">Otwieranie książki z с zamkniętą blokadą</string>
    <string name="opening_book_with_cropped_borders">Otwieranie książki z przyciętymi granicami</string>
    <string name="do_you_want_to_clear_everything_">Czy chcesz wszystko wyczyścić?</string>
+   <string name="restore_defaults_full">Czy chcesz przywrócić wartości domyślne?</string>
+   <string name="restore_defaults_short">Przywróć wartości domyślne</string>
 </resources>

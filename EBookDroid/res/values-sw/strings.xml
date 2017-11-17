@@ -128,7 +128,6 @@
    <string name="customize_background_color">Customize rangi ya asili</string>
    <string name="day">Siku</string>
    <string name="nigth">Night</string>
-   <string name="restore_defaults">Rejesha kwa chaguo</string>
    <string name="font">Font</string>
    <string name="background">Background</string>
    <string name="ok">Sawa</string>
@@ -418,4 +417,6 @@
    <string name="opening_book_with_losed_lock">Kitabu cha ufunguzi kwa lock iliyofungwa</string>
    <string name="opening_book_with_cropped_borders">Kitabu cha kufungua na mipaka iliyopigwa</string>
    <string name="do_you_want_to_clear_everything_">Je, unataka kufuta kila kitu?</string>
+   <string name="restore_defaults_full">Unataka kurejesha maadili ya msingi?</string>
+   <string name="restore_defaults_short">Rudisha default</string>
 </resources>

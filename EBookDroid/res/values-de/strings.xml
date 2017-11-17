@@ -123,7 +123,6 @@
    <string name="customize_font_background_colors">Schriftart und Hintergrundfarbe anpassen</string>
    <string name="day">Tag</string>
    <string name="nigth">Nacht</string>
-   <string name="restore_defaults">Standardeinstellungen wiederherstellen</string>
    <string name="font">Schriftart</string>
    <string name="background">Hintergrund</string>
    <string name="ok">OK</string>
@@ -418,4 +417,6 @@
    <string name="opening_book_with_losed_lock">Eröffnungsbuch mit geschlossenem Schloss</string>
    <string name="opening_book_with_cropped_borders">Eröffnungsbuch mit abgeschnittenen Rändern</string>
    <string name="do_you_want_to_clear_everything_">Willst du alles löschen?</string>
+   <string name="restore_defaults_full">Möchten Sie die Standardwerte wiederherstellen?</string>
+   <string name="restore_defaults_short">Standard wiederherstellen</string>
 </resources>

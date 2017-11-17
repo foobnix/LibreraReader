@@ -79,7 +79,7 @@ public class Dialogs {
                 reloadUI.run();
             }
         });
-        builder.setNeutralButton(R.string.restore_defaults, new DialogInterface.OnClickListener() {
+        builder.setNeutralButton(R.string.restore_defaults_short, new DialogInterface.OnClickListener() {
 
             @Override
             public void onClick(final DialogInterface dialog, final int id) {
@@ -192,7 +192,7 @@ public class Dialogs {
 
         TextView defaults = new TextView(c);
         defaults.setTextAppearance(c, R.style.textLinkStyle);
-        defaults.setText(R.string.restore_defaults);
+        defaults.setText(R.string.restore_defaults_short);
         TxtUtils.underlineTextView(defaults);
         defaults.setOnClickListener(new View.OnClickListener() {
 

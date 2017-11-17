@@ -258,6 +258,6 @@
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="5dip"
         android:layout_weight="0"
-        android:text="@string/restore_defaults" />
+        android:text="@string/restore_defaults_short" />
 
 </LinearLayout>

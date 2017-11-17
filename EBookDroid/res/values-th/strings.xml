@@ -129,7 +129,6 @@
    <string name="customize_background_color">กำหนดสีพื้นหลัง</string>
    <string name="day">วัน</string>
    <string name="nigth">กลางคืน</string>
-   <string name="restore_defaults">เรียกคืนค่าเริ่มต้น</string>
    <string name="font">ตัวอักษร</string>
    <string name="background">พื้นหลัง</string>
    <string name="ok">ตกลง</string>
@@ -418,4 +417,6 @@
    <string name="opening_book_with_losed_lock">หนังสือเปิดพร้อมล็อคเกลียว</string>
    <string name="opening_book_with_cropped_borders">หนังสือเปิดที่มีขอบตัด</string>
    <string name="do_you_want_to_clear_everything_">คุณต้องการล้างทุกอย่างหรือไม่?</string>
+   <string name="restore_defaults_full">คุณต้องการคืนค่าเริ่มต้นหรือไม่?</string>
+   <string name="restore_defaults_short">เรียกคืนค่าเริ่มต้น</string>
 </resources>

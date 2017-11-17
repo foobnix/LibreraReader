@@ -812,7 +812,7 @@
                     android:ellipsize="end"
                     android:padding="5dip"
                     android:singleLine="true"
-                    android:text="@string/restore_defaults"
+                    android:text="@string/restore_defaults_short"
                     android:textSize="12sp" />
             </LinearLayout>
         </LinearLayout>
@@ -1046,7 +1046,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="@string/restore_defaults" />
+                android:text="@string/restore_defaults_short" />
 
             <TextView
                 android:id="@+id/tabsApply"

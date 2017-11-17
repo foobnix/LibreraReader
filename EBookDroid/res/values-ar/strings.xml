@@ -122,7 +122,6 @@
    <string name="customize_font_background_colors">تخصيص الخط ولون الخلفية</string>
    <string name="day">يوم</string>
    <string name="nigth">ليل</string>
-   <string name="restore_defaults">استعادة الافتراضات</string>
    <string name="font">الخط</string>
    <string name="background">خلفية</string>
    <string name="ok">حسنا</string>
@@ -418,4 +417,6 @@
    <string name="opening_book_with_losed_lock">كتاب الافتتاح مع قفل فلوسيد</string>
    <string name="opening_book_with_cropped_borders">فتح الكتاب مع الحدود اقتصاص</string>
    <string name="do_you_want_to_clear_everything_">هل تريد مسح كل شيء؟</string>
+   <string name="restore_defaults_full">هل تريد استعادة القيم الافتراضية؟</string>
+   <string name="restore_defaults_short">استعادة الافتراضي</string>
 </resources>

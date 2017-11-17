@@ -128,7 +128,6 @@
    <string name="customize_background_color">Pas achtergrondkleur</string>
    <string name="day">Dag</string>
    <string name="nigth">Nacht</string>
-   <string name="restore_defaults">Defaults te herstellen</string>
    <string name="font">Doopvont</string>
    <string name="background">Achtergrond</string>
    <string name="ok">OK</string>
@@ -418,4 +417,6 @@
    <string name="opening_book_with_losed_lock">Openingsboek met gesloten slot</string>
    <string name="opening_book_with_cropped_borders">Openingsboek met bijgesneden randen</string>
    <string name="do_you_want_to_clear_everything_">Wil je alles opruimen?</string>
+   <string name="restore_defaults_full">Wilt u de standaardwaarden herstellen?</string>
+   <string name="restore_defaults_short">Standaard herstellen</string>
 </resources>

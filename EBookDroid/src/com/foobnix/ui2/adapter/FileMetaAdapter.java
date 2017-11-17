@@ -484,15 +484,12 @@ public class FileMetaAdapter extends AppRecycleAdapter<FileMeta, RecyclerView.Vi
             }
         }
         if (holder.date != null) {
+            holder.date.setVisibility(View.VISIBLE);
+            holder.size.setVisibility(View.VISIBLE);
             int width = holder.itemView.getWidth();
             if (adapterType == ADAPTER_LIST && width <= Dips.dpToPx(200)) {
                 holder.date.setVisibility(View.GONE);
-                // holder.ext.setVisibility(View.GONE);
                 holder.size.setVisibility(View.GONE);
-            } else {
-                holder.date.setVisibility(View.VISIBLE);
-                // holder.ext.setVisibility(View.VISIBLE);
-                holder.size.setVisibility(View.VISIBLE);
             }
         }
 

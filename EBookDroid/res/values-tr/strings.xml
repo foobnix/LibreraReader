@@ -122,7 +122,6 @@
    <string name="customize_font_background_colors">Yazı ve Arka Plan Renklerini Özelleştir</string>
    <string name="day">Gün</string>
    <string name="nigth">Gece</string>
-   <string name="restore_defaults">Varsayılanları geri yükle</string>
    <string name="font">Yazı</string>
    <string name="background">Geçmiş</string>
    <string name="ok">Tamam</string>
@@ -418,4 +417,6 @@
    <string name="opening_book_with_losed_lock">Kilitli kilitli açılış kitabı</string>
    <string name="opening_book_with_cropped_borders">Kırpılmış kenarlı kitap açma</string>
    <string name="do_you_want_to_clear_everything_">Her şeyi silmek istiyor musun</string>
+   <string name="restore_defaults_full">Varsayılan değerleri geri yüklemek istiyor musunuz?</string>
+   <string name="restore_defaults_short">Varsayılana döndür</string>
 </resources>

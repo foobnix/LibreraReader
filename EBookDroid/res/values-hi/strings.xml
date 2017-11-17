@@ -126,7 +126,6 @@
    <string name="customize_font_background_colors">अनुकूलित फ़ॉन्ट और पृष्ठभूमि रंग</string>
    <string name="day">दिन</string>
    <string name="nigth">रात</string>
-   <string name="restore_defaults">डिफॉल्ट्स का पुनःस्थापन</string>
    <string name="font">फ़ॉन्ट</string>
    <string name="background">पृष्ठभूमि</string>
    <string name="ok">ठीक</string>
@@ -418,4 +417,6 @@
    <string name="opening_book_with_losed_lock">सोलट लॉक के साथ पुस्तक खोलना</string>
    <string name="opening_book_with_cropped_borders">फसल वाली सीमाओं के साथ पुस्तक खोलना</string>
    <string name="do_you_want_to_clear_everything_">क्या आप सब कुछ साफ़ करना चाहते हैं?</string>
+   <string name="restore_defaults_full">क्या आप डिफ़ॉल्ट मान को पुनर्स्थापित करना चाहते हैं?</string>
+   <string name="restore_defaults_short">पहले जैसा कर देना</string>
 </resources>
