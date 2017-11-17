@@ -62,7 +62,7 @@ public class Dips {
         boolean isEink = getRefreshRate(context) < 30.0;
         String brand = Build.BRAND.toLowerCase(Locale.US);
         if (!isEink && (brand.contains("onyx") || brand.contains("icarus") || brand.contains("yota") || brand.contains("nook"))) {
-                return true;
+            return true;
         }
         return isEink;
     }
@@ -109,7 +109,9 @@ public class Dips {
 
     public static boolean isLargeScreen() {
         int size = Resources.getSystem().getConfiguration().screenLayout & Configuration.SCREENLAYOUT_SIZE_MASK;
-        return size == Configuration.SCREENLAYOUT_SIZE_LARGE || size == Configuration.SCREENLAYOUT_SIZE_XLARGE;
+        // return size == Configuration.SCREENLAYOUT_SIZE_LARGE || size ==
+        // Configuration.SCREENLAYOUT_SIZE_XLARGE;
+        return size == Configuration.SCREENLAYOUT_SIZE_XLARGE;
 
     }
 

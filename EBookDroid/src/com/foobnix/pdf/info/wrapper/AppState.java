@@ -362,7 +362,7 @@ public class AppState {
 
     public int cutP = 50;
 
-    public volatile int fontSizeSp = Dips.isLargeScreen() ? 36 : 24;
+    public volatile int fontSizeSp = Dips.isLargeScreen() ? 32 : 24;
     public volatile int statusBarTextSizeAdv = Dips.isLargeScreen() ? 16 : 14;
     public volatile int statusBarTextSizeEasy = Dips.isLargeScreen() ? 16 : 12;
     public volatile int progressLineHeight = Dips.isLargeScreen() ? 8 : 4;
@@ -382,7 +382,7 @@ public class AppState {
     public int rotate = 0;
     public int rotateViewPager = 0;
 
-    public int tapzoneSize = Dips.isLargeScreen() ? 10 : 15;
+    public int tapzoneSize = Dips.isLargeScreen() ? 15 : 25;
     public int allocatedMemorySize = (int) MemoryUtils.RECOMENDED_MEMORY_SIZE;
     public boolean isScrollAnimation = true;
     public String imageFormat = PNG;

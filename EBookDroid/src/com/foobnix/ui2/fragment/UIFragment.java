@@ -71,7 +71,6 @@ public abstract class UIFragment<T> extends Fragment {
 
     int listHash = 0;
 
-
     public void onSelectFragment() {
         if (getActivity() == null) {
             return;
@@ -266,8 +265,7 @@ public abstract class UIFragment<T> extends Fragment {
             RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getActivity());
             recyclerView.setLayoutManager(mLayoutManager);
             recyclerView.setAdapter(authorsAdapter);
-        }
-        if (mode == AppState.MODE_LIST_COMPACT) {
+        } else if (mode == AppState.MODE_LIST_COMPACT) {
             final int num = Math.max(2, Dips.screenWidthDP() / AppState.get().coverBigSize / 2);
             GridLayoutManager mGridManager = new GridLayoutManager(getActivity(), num);
             mGridManager.setSpanSizeLookup(new SpanSizeLookup() {
@@ -283,7 +281,7 @@ public abstract class UIFragment<T> extends Fragment {
             });
 
             recyclerView.setLayoutManager(mGridManager);
-            searchAdapter.setAdapterType(FileMetaAdapter.ADAPTER_LIST);
+            searchAdapter.setAdapterType(FileMetaAdapter.ADAPTER_LIST_COMPACT);
             recyclerView.setAdapter(searchAdapter);
         }
 

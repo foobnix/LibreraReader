@@ -49,6 +49,7 @@ public class FileMetaAdapter extends AppRecycleAdapter<FileMeta, RecyclerView.Vi
     public static final int ADAPTER_LIST = 0;
     public static final int ADAPTER_GRID = 1;
     public static final int ADAPTER_COVERS = 3;
+    public static final int ADAPTER_LIST_COMPACT = 4;
 
     private int adapterType = ADAPTER_LIST;
 
@@ -168,7 +169,7 @@ public class FileMetaAdapter extends AppRecycleAdapter<FileMeta, RecyclerView.Vi
         }
 
         if (viewType == DISPLAY_TYPE_FILE) {
-            if (adapterType == ADAPTER_LIST) {
+            if (adapterType == ADAPTER_LIST || adapterType == ADAPTER_LIST_COMPACT) {
                 itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.browse_item_list, parent, false);
             } else {
                 itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.browse_item_grid, parent, false);
@@ -486,8 +487,7 @@ public class FileMetaAdapter extends AppRecycleAdapter<FileMeta, RecyclerView.Vi
         if (holder.date != null) {
             holder.date.setVisibility(View.VISIBLE);
             holder.size.setVisibility(View.VISIBLE);
-            int width = holder.itemView.getWidth();
-            if (adapterType == ADAPTER_LIST && width <= Dips.dpToPx(200)) {
+            if (adapterType == ADAPTER_LIST_COMPACT) {
                 holder.date.setVisibility(View.GONE);
                 holder.size.setVisibility(View.GONE);
             }
@@ -516,7 +516,7 @@ public class FileMetaAdapter extends AppRecycleAdapter<FileMeta, RecyclerView.Vi
             }
         }
         holder.authorParent.setVisibility(View.VISIBLE);
-        if (adapterType == ADAPTER_LIST) {
+        if (adapterType == ADAPTER_LIST || adapterType == ADAPTER_LIST_COMPACT) {
             if (AppState.get().coverSmallSize >= IMG.TWO_LINE_COVER_SIZE) {
                 holder.title.setSingleLine(false);
                 holder.title.setLines(2);
