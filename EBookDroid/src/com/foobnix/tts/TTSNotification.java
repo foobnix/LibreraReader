@@ -34,9 +34,13 @@ public class TTSNotification {
 
     private static final int NOT_ID = 123123;
 
+    static String bookPath1;
+    static int page1;
+
     public static void show(String bookPath, int page) {
         Context c = LirbiApp.context;
-
+        bookPath1 = bookPath;
+        page1 = page;
         try {
             NotificationManager nm = (NotificationManager) c.getSystemService(Context.NOTIFICATION_SERVICE);
 
@@ -80,6 +84,10 @@ public class TTSNotification {
     public static void hideNotification() {
         NotificationManager nm = (NotificationManager) LirbiApp.context.getSystemService(Context.NOTIFICATION_SERVICE);
         nm.cancel(NOT_ID);
+    }
+
+    public static void showLast() {
+        show(bookPath1, page1);
     }
 
     public static Bitmap getBookImage(String path) {

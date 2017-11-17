@@ -535,6 +535,7 @@ public class DragingDialogs {
                     public void onCheckedChanged(final CompoundButton buttonView, final boolean isChecked) {
                         AppState.getInstance().notificationOngoing = isChecked;
                         TTSNotification.hideNotification();
+                        TTSNotification.showLast();
                     }
                 });
 
