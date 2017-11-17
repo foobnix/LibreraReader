@@ -16,6 +16,7 @@ import org.ebookdroid.ui.viewer.IActivityController;
 import org.emdev.utils.MathUtils;
 import org.emdev.utils.MatrixUtils;
 
+import com.foobnix.android.utils.TxtUtils;
 import com.foobnix.pdf.info.wrapper.AppState;
 
 import android.graphics.Matrix;
@@ -104,6 +105,9 @@ public class Page {
                     nextWorld = false;
                     firstWord = null;
                     firstPart = "";
+                } else if (nextWorld && TxtUtils.isNotEmpty(word.w)) {
+                    nextWorld = false;
+                    firstWord = null;
                 }
             }
         }

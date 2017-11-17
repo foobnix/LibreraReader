@@ -176,7 +176,7 @@ public class DragingDialogs {
             }
         };
         if (onRestart != null) {
-        dialog.setOnCloseListener(onRestart);
+            dialog.setOnCloseListener(onRestart);
         }
         dialog.show("contrastAndBrigtness");
 
@@ -1984,7 +1984,6 @@ public class DragingDialogs {
             public View getContentView(final LayoutInflater inflater) {
                 View inflate = inflater.inflate(R.layout.dialog_status_bar_settings, null, false);
 
-
                 final CheckBox isShowReadingProgress = (CheckBox) inflate.findViewById(R.id.isShowReadingProgress);
                 final CheckBox isShowChaptersOnProgress = (CheckBox) inflate.findViewById(R.id.isShowChaptersOnProgress);
 
@@ -2744,7 +2743,6 @@ public class DragingDialogs {
             public View getContentView(final LayoutInflater inflater) {
                 View inflate = inflater.inflate(R.layout.dialog_book_style_pref, null, false);
 
-
                 final CustomSeek fontWeight = (CustomSeek) inflate.findViewById(R.id.fontWeight);
                 fontWeight.init(1, 9, BookCSS.get().fontWeight / 100);
                 fontWeight.setOnSeekChanged(new IntegerResponse() {
@@ -3009,26 +3007,34 @@ public class DragingDialogs {
 
                     @Override
                     public void onClick(View v) {
-                        BookCSS.get().resetToDefault(controller.getActivity());
 
-                        fontsFolder.setText(TxtUtils.underline(BookCSS.get().fontFolder));
-                        textAlign.setText(TxtUtils.underline(alignConst.get(BookCSS.get().textAlign)));
+                        AlertDialogs.showOkDialog(v.getContext(), controller.getString(R.string.restore_defaults_full), new Runnable() {
 
-                        fontWeight.reset(BookCSS.get().fontWeight / 100);
-                        fontWeight.setValueText("" + BookCSS.get().fontWeight);
+                            @Override
+                            public void run() {
+                                BookCSS.get().resetToDefault(controller.getActivity());
 
-                        fontInterval.reset(BookCSS.get().lineHeight);
-                        fontParagraph.reset(BookCSS.get().textIndent);
-                        //
-                        marginTop.reset(BookCSS.get().marginTop);
-                        marginBottom.reset(BookCSS.get().marginBottom);
-                        marginLeft.reset(BookCSS.get().marginLeft);
-                        marginRight.reset(BookCSS.get().marginRight);
+                                fontsFolder.setText(TxtUtils.underline(BookCSS.get().fontFolder));
+                                textAlign.setText(TxtUtils.underline(alignConst.get(BookCSS.get().textAlign)));
 
-                        emptyLine.reset(BookCSS.get().emptyLine);
+                                fontWeight.reset(BookCSS.get().fontWeight / 100);
+                                fontWeight.setValueText("" + BookCSS.get().fontWeight);
 
-                        linkColorDay.init(Color.parseColor(BookCSS.get().linkColorDay));
-                        linkColorNight.init(Color.parseColor(BookCSS.get().linkColorNight));
+                                fontInterval.reset(BookCSS.get().lineHeight);
+                                fontParagraph.reset(BookCSS.get().textIndent);
+                                //
+                                marginTop.reset(BookCSS.get().marginTop);
+                                marginBottom.reset(BookCSS.get().marginBottom);
+                                marginLeft.reset(BookCSS.get().marginLeft);
+                                marginRight.reset(BookCSS.get().marginRight);
+
+                                emptyLine.reset(BookCSS.get().emptyLine);
+
+                                linkColorDay.init(Color.parseColor(BookCSS.get().linkColorDay));
+                                linkColorNight.init(Color.parseColor(BookCSS.get().linkColorNight));
+                            }
+                        });
+
                     }
                 });
 
@@ -3787,20 +3793,11 @@ public class DragingDialogs {
 
                     @Override
                     public void onClick(View v) {
-                        AlertDialog.Builder alert = new AlertDialog.Builder(controller.getActivity());
-                        alert.setMessage(R.string.restore_defaults_full);
 
-                        alert.setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int which) {
-
-                            }
-                        });
-
-                        alert.setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
+                        AlertDialogs.showOkDialog(v.getContext(), controller.getString(R.string.restore_defaults_full), new Runnable() {
 
                             @Override
-                            public void onClick(DialogInterface dialog, int which) {
+                            public void run() {
                                 AppState.get().readColors = AppState.READ_COLORS_DEAFAUL;
                                 AppState.get().isUseBGImageDay = false;
                                 AppState.get().isUseBGImageNight = false;
@@ -3835,9 +3832,7 @@ public class DragingDialogs {
 
                                 colorsLine.run();
                             }
-
                         });
-                        alert.show();
 
                     }
                 });

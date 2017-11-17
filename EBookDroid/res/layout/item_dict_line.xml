@@ -18,7 +18,7 @@
 
     <TextView
         android:id="@+id/text1"
-        android:textSize="14sp"
+        android:textSize="15sp"
         android:layout_marginLeft="8dip"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

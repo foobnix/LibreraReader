@@ -509,6 +509,7 @@ public abstract class DocumentControllerHorizontalView extends DocumentControlle
                                     }
 
                                 } else if (word.w.toLowerCase(Locale.US).contains(textLowCase)) {
+                                    LOG.d("Contains 1", word.w);
                                     if (prev != i) {
                                         result.onResultRecive(i);
                                         prev = i;
@@ -519,6 +520,7 @@ public abstract class DocumentControllerHorizontalView extends DocumentControlle
                                     firstWord = word;
                                     firstPart = word.w.replace("-", "");
                                 } else if (nextWorld && (firstPart + word.w.toLowerCase(Locale.US)).contains(text)) {
+                                    LOG.d("Contains 2", firstPart, word.w, text);
                                     PageImageState.get().addWord(i, firstWord);
                                     PageImageState.get().addWord(i, word);
                                     nextWorld = false;
@@ -529,6 +531,9 @@ public abstract class DocumentControllerHorizontalView extends DocumentControlle
                                         prev = i;
                                     }
 
+                                } else if (nextWorld && TxtUtils.isNotEmpty(word.w)) {
+                                    nextWorld = false;
+                                    firstWord = null;
                                 }
                             }
                         }
