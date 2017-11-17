@@ -504,17 +504,25 @@ public class DragingDialogs {
 
                     @Override
                     public void onClick(View v) {
-                        seekBarPitch.setProgress(100);
-                        seekBarSpeed.setProgress(100);
 
-                        AppState.get().ttsPitch = (float) 1.0;
-                        AppState.get().ttsSpeed = (float) 1.0;
+                        AlertDialogs.showOkDialog(v.getContext(), controller.getString(R.string.restore_defaults_full), new Runnable() {
 
-                        TTSEngine.get().shutdown();
-                        TTSEngine.get().getTTS();
+                            @Override
+                            public void run() {
+                                seekBarPitch.setProgress(100);
+                                seekBarSpeed.setProgress(100);
 
-                        textEngine.setText(TTSEngine.get().getCurrentEngineName());
-                        TxtUtils.underlineTextView(textEngine);
+                                AppState.get().ttsPitch = (float) 1.0;
+                                AppState.get().ttsSpeed = (float) 1.0;
+
+                                TTSEngine.get().shutdown();
+                                TTSEngine.get().getTTS();
+
+                                textEngine.setText(TTSEngine.get().getCurrentEngineName());
+                                TxtUtils.underlineTextView(textEngine);
+                            }
+                        });
+
                     }
                 });
                 //

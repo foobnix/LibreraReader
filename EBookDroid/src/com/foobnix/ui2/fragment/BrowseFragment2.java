@@ -14,6 +14,7 @@ import com.foobnix.pdf.info.FileMetaComparators;
 import com.foobnix.pdf.info.R;
 import com.foobnix.pdf.info.TintUtil;
 import com.foobnix.pdf.info.io.SearchCore;
+import com.foobnix.pdf.info.view.MyPopupMenu;
 import com.foobnix.pdf.info.wrapper.AppState;
 import com.foobnix.pdf.info.wrapper.PopupHelper;
 import com.foobnix.ui2.AppDB;
@@ -180,7 +181,7 @@ public class BrowseFragment2 extends UIFragment<FileMeta> {
                 List<String> externalStorageDirectories = ExtUtils.getExternalStorageDirectories(getActivity());
                 if (externalStorageDirectories != null && !externalStorageDirectories.isEmpty()) {
                     externalStorageDirectories.add(0, Environment.getExternalStorageDirectory().getPath());
-                    PopupMenu menu = new PopupMenu(getActivity(), onHome);
+                    MyPopupMenu menu = new MyPopupMenu(getActivity(), onHome);
                     for (final String info : externalStorageDirectories) {
                         menu.getMenu().add(new File(info).getName()).setOnMenuItemClickListener(new OnMenuItemClickListener() {
 
@@ -257,7 +258,7 @@ public class BrowseFragment2 extends UIFragment<FileMeta> {
                         AppState.BR_SORT_BY_SIZE //
                 );//
 
-                PopupMenu menu = new PopupMenu(getActivity(), v);
+                MyPopupMenu menu = new MyPopupMenu(getActivity(), v);
                 for (int i = 0; i < names.size(); i++) {
                     String name = names.get(i);
                     final int j = i;

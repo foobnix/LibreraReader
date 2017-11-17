@@ -23,6 +23,7 @@ import com.foobnix.pdf.info.TintUtil;
 import com.foobnix.pdf.info.Urls;
 import com.foobnix.pdf.info.fragment.KeyCodeDialog;
 import com.foobnix.pdf.info.fragment.SearchFragment;
+import com.foobnix.pdf.info.view.AlertDialogs;
 import com.foobnix.pdf.info.view.CustomSeek;
 import com.foobnix.pdf.info.view.Dialogs;
 import com.foobnix.pdf.info.view.MultyDocSearchDialog;
@@ -193,9 +194,16 @@ public class PrefFragment2 extends UIFragment {
 
             @Override
             public void onClick(View v) {
-                AppState.get().tabsOrder = AppState.DEFAULTS_TABS_ORDER;
-                isshowPrefAsMenu.setChecked(false);
-                dragLinear.run();
+                AlertDialogs.showOkDialog(getActivity(), getActivity().getString(R.string.restore_defaults_full), new Runnable() {
+
+                    @Override
+                    public void run() {
+                        AppState.get().tabsOrder = AppState.DEFAULTS_TABS_ORDER;
+                        isshowPrefAsMenu.setChecked(false);
+                        dragLinear.run();
+                    }
+                });
+
             }
         });
 

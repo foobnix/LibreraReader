@@ -7,6 +7,8 @@
     android:padding="4dip" >
 
     <ImageView
+        android:layout_marginLeft="8dip"
+        android:layout_marginRight="8dip"
         android:id="@+id/image1"
         android:adjustViewBounds="true"
         android:cropToPadding="true"

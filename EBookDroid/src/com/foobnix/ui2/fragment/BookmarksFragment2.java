@@ -17,6 +17,7 @@ import com.foobnix.pdf.info.AppSharedPreferences;
 import com.foobnix.pdf.info.ExtUtils;
 import com.foobnix.pdf.info.R;
 import com.foobnix.pdf.info.TintUtil;
+import com.foobnix.pdf.info.view.MyPopupMenu;
 import com.foobnix.pdf.info.widget.FileInformationDialog;
 import com.foobnix.pdf.info.wrapper.AppBookmark;
 import com.foobnix.pdf.info.wrapper.AppState;
@@ -112,7 +113,7 @@ public class BookmarksFragment2 extends UIFragment<AppBookmark> {
 
 
     private void popupMenu(final ImageView onGridList) {
-        PopupMenu p = new PopupMenu(getActivity(), onGridList);
+        MyPopupMenu p = new MyPopupMenu(getActivity(), onGridList);
         PopupHelper.addPROIcon(p, getActivity());
 
         List<Integer> names = Arrays.asList(R.string.bookmark_by_date, R.string.bookmark_by_book);
@@ -135,7 +136,6 @@ public class BookmarksFragment2 extends UIFragment<AppBookmark> {
             });
         }
         p.show();
-        PopupHelper.initIcons(p, TintUtil.color);
     }
 
     @Override

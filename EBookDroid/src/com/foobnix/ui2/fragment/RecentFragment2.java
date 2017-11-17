@@ -9,6 +9,7 @@ import com.foobnix.dao2.FileMeta;
 import com.foobnix.pdf.info.R;
 import com.foobnix.pdf.info.TintUtil;
 import com.foobnix.pdf.info.view.AlertDialogs;
+import com.foobnix.pdf.info.view.MyPopupMenu;
 import com.foobnix.pdf.info.wrapper.AppState;
 import com.foobnix.pdf.info.wrapper.PopupHelper;
 import com.foobnix.ui2.AppDB;
@@ -24,7 +25,6 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.PopupMenu;
 import android.widget.TextView;
 
 public class RecentFragment2 extends UIFragment<FileMeta> {
@@ -135,7 +135,7 @@ public class RecentFragment2 extends UIFragment<FileMeta> {
     }
 
     private void popupMenu(final ImageView onGridList) {
-        PopupMenu p = new PopupMenu(getActivity(), onGridList);
+        MyPopupMenu p = new MyPopupMenu(getActivity(), onGridList);
         PopupHelper.addPROIcon(p, getActivity());
 
         List<Integer> names = Arrays.asList(R.string.list, R.string.compact, R.string.grid, R.string.cover);
@@ -157,8 +157,6 @@ public class RecentFragment2 extends UIFragment<FileMeta> {
         }
 
         p.show();
-
-        PopupHelper.initIcons(p, TintUtil.color);
     }
 
     @Override

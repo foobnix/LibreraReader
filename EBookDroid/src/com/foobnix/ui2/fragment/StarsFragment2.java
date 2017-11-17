@@ -7,8 +7,8 @@ import java.util.List;
 import com.foobnix.android.utils.ResultResponse;
 import com.foobnix.dao2.FileMeta;
 import com.foobnix.pdf.info.R;
-import com.foobnix.pdf.info.TintUtil;
 import com.foobnix.pdf.info.view.AlertDialogs;
+import com.foobnix.pdf.info.view.MyPopupMenu;
 import com.foobnix.pdf.info.wrapper.AppState;
 import com.foobnix.pdf.info.wrapper.PopupHelper;
 import com.foobnix.ui2.AppDB;
@@ -23,7 +23,6 @@ import android.view.MenuItem.OnMenuItemClickListener;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.PopupMenu;
 
 public class StarsFragment2 extends UIFragment<FileMeta> {
     public static final Pair<Integer, Integer> PAIR = new Pair<Integer, Integer>(R.string.starred, R.drawable.glyphicons_50_star);
@@ -100,7 +99,7 @@ public class StarsFragment2 extends UIFragment<FileMeta> {
     }
 
     private void popupMenu(final ImageView image) {
-        PopupMenu p = new PopupMenu(getActivity(), image);
+        MyPopupMenu p = new MyPopupMenu(getActivity(), image);
         PopupHelper.addPROIcon(p, getActivity());
 
         List<Integer> names = Arrays.asList(R.string.list, //
@@ -134,7 +133,6 @@ public class StarsFragment2 extends UIFragment<FileMeta> {
 
         p.show();
 
-        PopupHelper.initIcons(p, TintUtil.color);
     }
 
     @Override

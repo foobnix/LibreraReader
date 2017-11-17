@@ -36,6 +36,7 @@ import com.foobnix.pdf.info.view.Dialogs;
 import com.foobnix.pdf.info.view.DragingDialogs;
 import com.foobnix.pdf.info.view.DragingPopup;
 import com.foobnix.pdf.info.view.HorizontallSeekTouchEventListener;
+import com.foobnix.pdf.info.view.MyPopupMenu;
 import com.foobnix.pdf.info.view.ProgressDraw;
 import com.foobnix.pdf.info.view.UnderlineImageView;
 import com.foobnix.pdf.info.widget.FileInformationDialog;
@@ -44,7 +45,6 @@ import com.foobnix.pdf.info.widget.ShareDialog;
 import com.foobnix.pdf.info.wrapper.AppState;
 import com.foobnix.pdf.info.wrapper.DocumentController;
 import com.foobnix.pdf.info.wrapper.MagicHelper;
-import com.foobnix.pdf.info.wrapper.PopupHelper;
 import com.foobnix.pdf.search.activity.msg.FlippingStart;
 import com.foobnix.pdf.search.activity.msg.FlippingStop;
 import com.foobnix.pdf.search.activity.msg.InvalidateMessage;
@@ -100,7 +100,6 @@ import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.PopupMenu;
 import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -430,7 +429,7 @@ public class HorizontalViewActivity extends FragmentActivity {
 
             @Override
             public void onClick(View v) {
-                PopupMenu p = new PopupMenu(v.getContext(), v);
+                MyPopupMenu p = new MyPopupMenu(v.getContext(), v);
 
                 p.getMenu().add(R.string.one_page).setIcon(R.drawable.glyphicons_two_page_one).setOnMenuItemClickListener(new OnMenuItemClickListener() {
 
@@ -496,7 +495,6 @@ public class HorizontalViewActivity extends FragmentActivity {
                     });
                 }
                 p.show();
-                PopupHelper.initIcons(p, TintUtil.color);
             }
         });
 
@@ -688,6 +686,7 @@ public class HorizontalViewActivity extends FragmentActivity {
                     maxSeek.setVisibility(View.VISIBLE);
                     seekBar.setVisibility(View.VISIBLE);
                     bottomIndicators.setVisibility(View.VISIBLE);
+                    onModeChange.setVisibility(View.VISIBLE);
 
                     documentController.initHandler();
                     AppState.get().lastA = HorizontalViewActivity.class.getSimpleName();

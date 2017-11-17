@@ -83,8 +83,15 @@ public class Dialogs {
 
             @Override
             public void onClick(final DialogInterface dialog, final int id) {
-                TempHolder.get().pageDelta = 0;
-                reloadUI.run();
+
+                AlertDialogs.showOkDialog(controller.getActivity(), controller.getString(R.string.restore_defaults_full), new Runnable() {
+
+                    @Override
+                    public void run() {
+                        TempHolder.get().pageDelta = 0;
+                        reloadUI.run();
+                    }
+                });
 
             }
         });
@@ -198,15 +205,22 @@ public class Dialogs {
 
             @Override
             public void onClick(View v) {
-                AppState.get().brigtnessImage = 0;
-                AppState.get().contrastImage = 0;
-                AppState.getInstance().bolderTextOnImage = false;
-                bolderText.setChecked(AppState.getInstance().bolderTextOnImage);
 
-                brightnesSeek.reset(AppState.get().brigtnessImage);
-                contrastSeek.reset(AppState.get().contrastImage);
+                AlertDialogs.showOkDialog(c, c.getString(R.string.restore_defaults_full), new Runnable() {
 
-                actionWrapper.run();
+                    @Override
+                    public void run() {
+                        AppState.get().brigtnessImage = 0;
+                        AppState.get().contrastImage = 0;
+                        AppState.getInstance().bolderTextOnImage = false;
+                        bolderText.setChecked(AppState.getInstance().bolderTextOnImage);
+
+                        brightnesSeek.reset(AppState.get().brigtnessImage);
+                        contrastSeek.reset(AppState.get().contrastImage);
+
+                        actionWrapper.run();
+                    }
+                });
 
             }
         });

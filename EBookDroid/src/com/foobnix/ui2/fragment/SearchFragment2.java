@@ -18,6 +18,7 @@ import com.foobnix.pdf.info.R;
 import com.foobnix.pdf.info.TintUtil;
 import com.foobnix.pdf.info.fragment.KeyCodeDialog;
 import com.foobnix.pdf.info.view.Dialogs;
+import com.foobnix.pdf.info.view.MyPopupMenu;
 import com.foobnix.pdf.info.widget.PrefDialogs;
 import com.foobnix.pdf.info.wrapper.AppState;
 import com.foobnix.pdf.info.wrapper.DocumentController;
@@ -120,8 +121,6 @@ public class SearchFragment2 extends UIFragment<FileMeta> {
 
         updateFilterListAdapter();
     }
-
-
 
     public void updateFilterListAdapter() {
         try {
@@ -605,9 +604,9 @@ public class SearchFragment2 extends UIFragment<FileMeta> {
     }
 
     private void popupMenu(final ImageView onGridList) {
-        PopupMenu p = new PopupMenu(getActivity(), onGridList);
-        PopupHelper.addPROIcon(p, getActivity());
 
+        MyPopupMenu p = new MyPopupMenu(getActivity(), onGridList);
+        PopupHelper.addPROIcon(p, getActivity());
         List<Integer> names = Arrays.asList(R.string.list, //
                 R.string.compact, //
                 R.string.grid, //
@@ -624,8 +623,6 @@ public class SearchFragment2 extends UIFragment<FileMeta> {
                 R.drawable.glyphicons_66_tag, //
                 R.drawable.glyphicons_710_list_numbered);
         final List<Integer> actions = Arrays.asList(AppState.MODE_LIST, AppState.MODE_LIST_COMPACT, AppState.MODE_GRID, AppState.MODE_COVERS, AppState.MODE_AUTHORS, AppState.MODE_GENRE, AppState.MODE_SERIES);
-
-
 
         for (int i = 0; i < names.size(); i++) {
             final int index = i;
@@ -648,8 +645,8 @@ public class SearchFragment2 extends UIFragment<FileMeta> {
         }
 
         p.show();
+        return;
 
-        PopupHelper.initIcons(p, TintUtil.color);
     }
 
     public void showBookCount() {
