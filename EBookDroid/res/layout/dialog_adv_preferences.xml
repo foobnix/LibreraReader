@@ -245,11 +245,9 @@
             android:text="@string/simple_scroll_animation" />
 
         <CheckBox
-            android:visibility="gone"
             android:id="@+id/isCustomizeBgAndColors"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            
             android:text="@string/customize_font_background_colors" />
 
         <CheckBox

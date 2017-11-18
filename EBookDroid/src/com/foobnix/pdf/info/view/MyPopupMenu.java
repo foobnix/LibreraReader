@@ -10,10 +10,15 @@ import com.foobnix.pdf.info.R;
 import com.foobnix.pdf.info.TintUtil;
 
 import android.content.Context;
+import android.util.TypedValue;
 import android.view.MenuItem.OnMenuItemClickListener;
 import android.view.View;
+import android.view.View.MeasureSpec;
 import android.view.View.OnClickListener;
+import android.view.ViewGroup;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
+import android.widget.ListAdapter;
 import android.widget.ListPopupWindow;
 import android.widget.PopupWindow.OnDismissListener;
 import android.widget.TextView;
@@ -71,7 +76,9 @@ public class MyPopupMenu {
         BaseItemLayoutAdapter<Menu> a = new BaseItemLayoutAdapter<Menu>(c, R.layout.item_dict_line, list) {
             @Override
             public void populateView(View layout, int position, final Menu item) {
-                ((TextView) layout.findViewById(R.id.text1)).setText(item.stringRes);
+                TextView textView = (TextView) layout.findViewById(R.id.text1);
+                textView.setText(item.stringRes);
+                textView.setTextSize(TypedValue.COMPLEX_UNIT_SP, 20);
                 ImageView imageView = (ImageView) layout.findViewById(R.id.image1);
                 if (item.iconRes != 0) {
                     imageView.setImageResource(item.iconRes);
@@ -91,26 +98,53 @@ public class MyPopupMenu {
                         }
                     }
                 });
+
             }
         };
 
-        int size = 0;
-        for (Menu m : list) {
-            TextView t = new TextView(c);
-            t.setText(m.stringRes);
-            t.setTextSize(14);
-            t.measure(0, 0);
-            if (t.getMeasuredWidth() > size) {
-                size = t.getMeasuredWidth();
-            }
-            LOG.d("getMeasuredWidth", m.stringRes, size);
-        }
-
         p1.setAnchorView(anchor);
         p1.setAdapter(a);
-        p1.setWidth(size + Dips.dpToPx(80));
+        try {
+            p1.setWidth(measureContentWidth(a, c) + Dips.dpToPx(20));
+        } catch (Exception e) {
+            p1.setWidth(200);
+        }
         p1.show();
 
+    }
+
+    private int measureContentWidth(ListAdapter listAdapter, Context mContext) {
+        ViewGroup mMeasureParent = null;
+        int maxWidth = 0;
+        View itemView = null;
+        int itemType = 0;
+
+        final ListAdapter adapter = listAdapter;
+        final int widthMeasureSpec = MeasureSpec.makeMeasureSpec(0, MeasureSpec.UNSPECIFIED);
+        final int heightMeasureSpec = MeasureSpec.makeMeasureSpec(0, MeasureSpec.UNSPECIFIED);
+        final int count = adapter.getCount();
+        for (int i = 0; i < count; i++) {
+            final int positionType = adapter.getItemViewType(i);
+            if (positionType != itemType) {
+                itemType = positionType;
+                itemView = null;
+            }
+
+            if (mMeasureParent == null) {
+                mMeasureParent = new FrameLayout(mContext);
+            }
+
+            itemView = adapter.getView(i, itemView, mMeasureParent);
+            itemView.measure(widthMeasureSpec, heightMeasureSpec);
+
+            final int itemWidth = itemView.getMeasuredWidth();
+
+            if (itemWidth > maxWidth) {
+                maxWidth = itemWidth;
+            }
+        }
+
+        return maxWidth;
     }
 
     public Menu getMenu() {
