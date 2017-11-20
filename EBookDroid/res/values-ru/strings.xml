@@ -240,8 +240,8 @@
    <string name="close_application_">Закрыть приложение?</string>
    <string name="cover">Обложки</string>
    <string name="application_cannot_open_the_book">Приложение не может открыть файл</string>
-   <string name="genre">Жанры</string>
-   <string name="series">Серии</string>
+   <string name="genre">Жанр</string>
+   <string name="series">Серия</string>
    <string name="rate_pdf_reader1">Пожалуйста, напишите свой отзыв и оцените нас на Google Play. Это очень важно для развития приложения.</string>
    <string name="enable_effect_of_the_book_cover">Сделать книжные обложки реалистичными</string>
    <string name="archive_files">Файл(ы) в архиве</string>

@@ -127,7 +127,7 @@ public class AppSettings {
         /* =============== Tap & Scroll settings =============== */
         tapsEnabled = true;
         scrollHeight = Dips.dpToPx(10);
-        touchProcessingDelay = 60;
+        touchProcessingDelay = 50;
         animateScrolling = true;
         /* =============== Tap & Keyboard settings =============== */
         tapProfiles = "";

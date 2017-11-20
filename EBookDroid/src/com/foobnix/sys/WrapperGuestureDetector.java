@@ -224,7 +224,7 @@ public class WrapperGuestureDetector extends SimpleOnGestureListener implements 
             return false;
         }
         final Rect l = avc.getScrollLimits();
-        float x = vX, y = vY;
+        float x = vX / 2, y = vY / 2;
         if (Math.abs(vX / vY) < 0.5) {
             x = 0;
         }
@@ -303,11 +303,17 @@ public class WrapperGuestureDetector extends SimpleOnGestureListener implements 
      *      float)
      */
 
+    long time = 0;
+
     @Override
     public void onTwoFingerPinch(final MotionEvent e, final float oldDistance, final float newDistance) {
         final float factor = (float) Math.sqrt(newDistance / oldDistance);
         if (isNoLock()) {
-            avc.base.getZoomModel().scaleZoom(factor);
+            long delta = System.currentTimeMillis() - time;
+            if (delta > 50) {
+                time = System.currentTimeMillis();
+                avc.base.getZoomModel().scaleZoom(factor);
+            }
         }
     }
 
