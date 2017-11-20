@@ -55,7 +55,6 @@ import com.foobnix.pdf.info.wrapper.DocumentController;
 import com.foobnix.pdf.info.wrapper.ListBoxHelper;
 import com.foobnix.pdf.info.wrapper.MagicHelper;
 import com.foobnix.pdf.info.wrapper.PopupHelper;
-import com.foobnix.pdf.search.activity.DocumentControllerHorizontalView;
 import com.foobnix.pdf.search.activity.PageImageState;
 import com.foobnix.pdf.search.activity.msg.FlippingStart;
 import com.foobnix.pdf.search.activity.msg.FlippingStop;
@@ -3092,7 +3091,9 @@ public class DragingDialogs {
                 // TOP panel start
                 View topPanelLine = inflate.findViewById(R.id.topPanelLine);
                 View topPanelLineDiv = inflate.findViewById(R.id.topPanelLineDiv);
-                topPanelLine.setVisibility(controller instanceof DocumentControllerHorizontalView ? View.VISIBLE : View.GONE);
+                // topPanelLine.setVisibility(controller instanceof
+                // DocumentControllerHorizontalView ? View.VISIBLE : View.GONE);
+                topPanelLine.setVisibility(View.GONE);
                 topPanelLineDiv.setVisibility(controller.isTextFormat() ? View.VISIBLE : View.GONE);
 
                 View onRecent = inflate.findViewById(R.id.onRecent);

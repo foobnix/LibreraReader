@@ -31,6 +31,7 @@ import com.foobnix.pdf.info.view.DragingDialogs;
 import com.foobnix.pdf.info.view.DragingPopup;
 import com.foobnix.pdf.info.view.DrawView;
 import com.foobnix.pdf.info.view.HorizontallSeekTouchEventListener;
+import com.foobnix.pdf.info.view.MyPopupMenu;
 import com.foobnix.pdf.info.view.ProgressDraw;
 import com.foobnix.pdf.info.view.UnderlineImageView;
 import com.foobnix.pdf.info.widget.ShareDialog;
@@ -100,7 +101,7 @@ public class DocumentWrapperUI {
     private ImageView lockUnlockTop, textToSpeachTop, clockIcon, batteryIcon;
     private ImageView showSearch;
     ProgressDraw progressDraw;
-    private ImageView nextScreenType, autoScroll, textToSpeach, ttsActive;
+    private ImageView nextScreenType, autoScroll, textToSpeach, ttsActive, onModeChange;
     private UnderlineImageView crop, cut;
     private SeekBar speedSeekBar;
     private View seekSpeedLayot, zoomPlus, zoomMinus;
@@ -643,6 +644,11 @@ public class DocumentWrapperUI {
 
         cut = (UnderlineImageView) a.findViewById(R.id.cut);
         cut.setOnClickListener(onCut);
+        cut.setVisibility(View.GONE);
+
+        onModeChange = (ImageView) a.findViewById(R.id.onModeChange);
+        onModeChange.setOnClickListener(onModeChangeClick);
+        onModeChange.setImageResource(AppState.get().isCut ? R.drawable.glyphicons_page_split : R.drawable.glyphicons_two_page_one);
 
         View prefTop = a.findViewById(R.id.prefTop);
         prefTop.setOnClickListener(onPrefTop);
@@ -1368,6 +1374,37 @@ public class DocumentWrapperUI {
         public void onClick(final View arg0) {
             controller.onCrop();
             updateUI();
+
+        }
+    };
+
+    public View.OnClickListener onModeChangeClick = new View.OnClickListener() {
+
+        @Override
+        public void onClick(final View v) {
+            MyPopupMenu p = new MyPopupMenu(v.getContext(), v);
+
+            p.getMenu().add(R.string.one_page).setIcon(R.drawable.glyphicons_two_page_one).setOnMenuItemClickListener(new OnMenuItemClickListener() {
+
+                @Override
+                public boolean onMenuItemClick(MenuItem item) {
+                    onModeChange.setImageResource(R.drawable.glyphicons_two_page_one);
+                    AppState.get().isCut = !false;
+                    onCut.onClick(null);
+                    return false;
+                }
+            });
+            p.getMenu().add(R.string.half_page).setIcon(R.drawable.glyphicons_page_split).setOnMenuItemClickListener(new OnMenuItemClickListener() {
+
+                @Override
+                public boolean onMenuItemClick(MenuItem item) {
+                    onModeChange.setImageResource(R.drawable.glyphicons_page_split);
+                    AppState.get().isCut = !true;
+                    onCut.onClick(null);
+                    return false;
+                }
+            });
+            p.show();
 
         }
     };

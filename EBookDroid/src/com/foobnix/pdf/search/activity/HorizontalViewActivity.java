@@ -289,6 +289,7 @@ public class HorizontalViewActivity extends FragmentActivity {
                 showHideHistory();
             }
         });
+        linkHistory.setVisibility(View.GONE);
 
         seekBar = (SeekBar) findViewById(R.id.seekBar);
 
@@ -303,12 +304,27 @@ public class HorizontalViewActivity extends FragmentActivity {
         // ADS.activate(this, adView);
         ADS.activateNative(this, adViewNative);
 
-        onPageFlip1 = findViewById(R.id.onPageFlip1);
+        onPageFlip1 = findViewById(R.id.onPageFlip);
         onPageFlip1.setOnClickListener(new OnClickListener() {
 
             @Override
             public void onClick(View v) {
                 DragingDialogs.pageFlippingDialog(anchor, documentController, onRefresh);
+            }
+        });
+
+        findViewById(R.id.onFullScreen).setOnClickListener(new OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                AppState.get().isFullScreen = !AppState.get().isFullScreen;
+                DocumentController.chooseFullScreen(HorizontalViewActivity.this, AppState.get().isFullScreen);
+                if (documentController.isTextFormat()) {
+                    if (onRefresh != null) {
+                        onRefresh.run();
+                    }
+                    documentController.restartActivity();
+                }
             }
         });
 
