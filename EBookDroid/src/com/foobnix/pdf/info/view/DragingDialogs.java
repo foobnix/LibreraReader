@@ -1659,6 +1659,7 @@ public class DragingDialogs {
             }
         };
         new DragingPopup(anchor.getContext().getString(R.string.content_of_book), anchor, 300, 400) {
+
             @Override
             public View getContentView(LayoutInflater inflater) {
                 View view = inflater.inflate(R.layout.dialog_recent_books, null, false);
@@ -1726,26 +1727,58 @@ public class DragingDialogs {
                 final ListView contentList = (ListView) view.findViewById(R.id.contentList);
                 contentList.setSelector(android.R.color.transparent);
                 contentList.setVerticalScrollBarEnabled(false);
-                controller.getOutline(new ResultResponse<List<OutlineLinkWrapper>>() {
-                    @Override
-                    public boolean onResultRecive(final List<OutlineLinkWrapper> outline) {
-                        contentList.post(new Runnable() {
 
+                final Runnable showOutline = new Runnable() {
+
+                    @Override
+                    public void run() {
+                        controller.getOutline(new ResultResponse<List<OutlineLinkWrapper>>() {
                             @Override
-                            public void run() {
-                                if (outline != null && outline.size() > 0) {
-                                    contentList.clearChoices();
-                                    OutlineLinkWrapper currentByPageNumber = OutlineHelper.getCurrentByPageNumber(outline, controller.getCurentPageFirst1());
-                                    final OutlineAdapter adapter = new OutlineAdapter(controller.getActivity(), outline, currentByPageNumber);
-                                    contentList.setAdapter(adapter);
-                                    contentList.setOnItemClickListener(onClickContent);
-                                    contentList.setSelection(adapter.getItemPosition(currentByPageNumber) - 3);
-                                }
+                            public boolean onResultRecive(final List<OutlineLinkWrapper> outline) {
+                                contentList.post(new Runnable() {
+
+                                    @Override
+                                    public void run() {
+                                        if (outline != null && outline.size() > 0) {
+                                            contentList.clearChoices();
+                                            OutlineLinkWrapper currentByPageNumber = OutlineHelper.getCurrentByPageNumber(outline, controller.getCurentPageFirst1());
+                                            final OutlineAdapter adapter = new OutlineAdapter(controller.getActivity(), outline, currentByPageNumber);
+                                            contentList.setAdapter(adapter);
+                                            contentList.setOnItemClickListener(onClickContent);
+                                            contentList.setSelection(adapter.getItemPosition(currentByPageNumber) - 3);
+                                        }
+                                    }
+                                });
+                                return false;
                             }
                         });
-                        return false;
+
                     }
-                });
+                };
+                showOutline.run();
+
+                if (BookType.FB2.is(controller.getCurrentBook().getPath())) {
+                    setTitlePopupIcon(AppState.getInstance().outlineMode == AppState.OUTLINE_HEADERS_AND_SUBHEADERES ? R.drawable.glyphicons_114_justify : R.drawable.glyphicons_157_1_show_thumbnails);
+                    titlePopupMenu = new MyPopupMenu(controller.getActivity(), null);
+
+                    List<Integer> names = Arrays.asList(R.string.heading_and_subheadings, R.string.headings_only);
+                    final List<Integer> icons = Arrays.asList(R.drawable.glyphicons_114_justify, R.drawable.glyphicons_157_1_show_thumbnails);
+                    final List<Integer> actions = Arrays.asList(AppState.OUTLINE_HEADERS_AND_SUBHEADERES, AppState.OUTLINE_ONLY_HEADERS);
+
+                    for (int i = 0; i < names.size(); i++) {
+                        final int index = i;
+                        titlePopupMenu.getMenu().add(names.get(i)).setIcon(icons.get(i)).setOnMenuItemClickListener(new OnMenuItemClickListener() {
+
+                            @Override
+                            public boolean onMenuItemClick(MenuItem item) {
+                                AppState.getInstance().outlineMode = actions.get(index);
+                                setTitlePopupIcon(icons.get(index));
+                                showOutline.run();
+                                return false;
+                            }
+                        });
+                    }
+                }
 
                 return view;
             }

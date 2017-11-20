@@ -419,4 +419,6 @@
    <string name="do_you_want_to_clear_everything_">क्या आप सब कुछ साफ़ करना चाहते हैं?</string>
    <string name="restore_defaults_full">क्या आप डिफ़ॉल्ट मान को पुनर्स्थापित करना चाहते हैं?</string>
    <string name="restore_defaults_short">पहले जैसा कर देना</string>
+   <string name="heading_and_subheadings">शीर्षकों और उपशीर्षक</string>
+   <string name="headings_only">केवल हेडिंग्स</string>
 </resources>

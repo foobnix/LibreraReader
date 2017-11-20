@@ -419,4 +419,6 @@
    <string name="do_you_want_to_clear_everything_">آیا می خواهید همه چیز را پاک کنید؟</string>
    <string name="restore_defaults_full">میخواهید مقادیر پیشفرض را بازگردانید؟</string>
    <string name="restore_defaults_short">بازیابی پیش فرض</string>
+   <string name="heading_and_subheadings">عنوان ها و زیرمجموعه ها</string>
+   <string name="headings_only">فقط عنوان ها</string>
 </resources>

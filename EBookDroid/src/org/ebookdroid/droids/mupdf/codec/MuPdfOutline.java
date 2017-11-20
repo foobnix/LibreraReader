@@ -7,6 +7,7 @@ import org.ebookdroid.core.codec.OutlineLink;
 
 import com.foobnix.android.utils.LOG;
 import com.foobnix.ext.Fb2Extractor;
+import com.foobnix.pdf.info.wrapper.AppState;
 import com.foobnix.sys.TempHolder;
 
 public class MuPdfOutline {
@@ -37,15 +38,15 @@ public class MuPdfOutline {
             final String link = getLink(outline, docHandle);
             if (title != null) {
                 final OutlineLink outlineLink = new OutlineLink(title, link, level);
-                // if (outlineLink.targetPage != -1) {
-                // int flags = fillLinkTargetPoint(outline, temp);
-                // outlineLink.targetRect = new RectF();
-                // outlineLink.targetRect.left = temp[0];
-                // outlineLink.targetRect.top = temp[1];
-                // MuPdfDocument.normalizeLinkTargetRect(docHandle,
-                // outlineLink.targetPage, outlineLink.targetRect,
-                // flags);
-                // }
+
+                boolean toAdd = true;
+                if (AppState.get().outlineMode == AppState.OUTLINE_ONLY_HEADERS) {
+                    if (outlineLink.getTitle().contains("[subtitle]")) {
+                        toAdd = false;
+                    }
+                }
+                outlineLink.setTitle(outlineLink.getTitle().replace("[title]", "").replace("[subtitle]", ""));
+
                 if (outlineLink.getTitle().contains(Fb2Extractor.DIVIDER)) {
                     try {
                         String[] split = outlineLink.getTitle().split(Fb2Extractor.DIVIDER);
@@ -57,7 +58,9 @@ public class MuPdfOutline {
                     }
                 }
 
-                ls.add(outlineLink);
+                if (toAdd) {
+                    ls.add(outlineLink);
+                }
             }
 
             final long child = getChild(outline);

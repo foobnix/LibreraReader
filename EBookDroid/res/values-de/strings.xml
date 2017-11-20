@@ -419,4 +419,6 @@
    <string name="do_you_want_to_clear_everything_">Willst du alles löschen?</string>
    <string name="restore_defaults_full">Möchten Sie die Standardwerte wiederherstellen?</string>
    <string name="restore_defaults_short">Standard wiederherstellen</string>
+   <string name="heading_and_subheadings">Überschriften und Unterpositionen</string>
+   <string name="headings_only">Nur Überschriften</string>
 </resources>

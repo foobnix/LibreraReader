@@ -419,4 +419,6 @@
    <string name="do_you_want_to_clear_everything_">모든 걸 정리 하시겠습니까?</string>
    <string name="restore_defaults_full">기본값을 복원 하시겠습니까?</string>
    <string name="restore_defaults_short">기본값 복원</string>
+   <string name="heading_and_subheadings">제목 및 부제목</string>
+   <string name="headings_only">제목 만</string>
 </resources>

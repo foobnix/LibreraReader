@@ -419,4 +419,6 @@
    <string name="do_you_want_to_clear_everything_">Уверены, что хотите всё очистить?</string>
    <string name="restore_defaults_full">Действительно хотите вернуть значения по умолчанию?</string>
    <string name="restore_defaults_short">Вернуть значения по умолчанию</string>
+   <string name="heading_and_subheadings">Заголовки и подзаголовки</string>
+   <string name="headings_only">Только заголовки</string>
 </resources>

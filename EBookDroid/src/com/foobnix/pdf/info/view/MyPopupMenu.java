@@ -25,7 +25,7 @@ import android.widget.TextView;
 
 public class MyPopupMenu {
     Context c;
-    View anchor;
+    private View anchor;
     List<Menu> list = new ArrayList<Menu>();
 
     public MyPopupMenu(Context c, View anchor) {
@@ -151,6 +151,10 @@ public class MyPopupMenu {
         Menu m = new Menu();
         list.add(m);
         return m;
+    }
+
+    public void setAnchor(View anchor) {
+        this.anchor = anchor;
     }
 
 }

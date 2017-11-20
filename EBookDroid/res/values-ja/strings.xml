@@ -419,4 +419,6 @@
    <string name="do_you_want_to_clear_everything_">すべてをクリアしますか？</string>
    <string name="restore_defaults_full">デフォルト値を復元しますか？</string>
    <string name="restore_defaults_short">デフォルトを復元</string>
+   <string name="heading_and_subheadings">見出しと小見出し</string>
+   <string name="headings_only">見出しのみ</string>
 </resources>

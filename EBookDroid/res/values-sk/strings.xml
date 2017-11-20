@@ -419,4 +419,6 @@
    <string name="do_you_want_to_clear_everything_">Chcete vymazať všetko?</string>
    <string name="restore_defaults_full">Chcete obnoviť predvolené hodnoty?</string>
    <string name="restore_defaults_short">Obnoviť predvolené</string>
+   <string name="heading_and_subheadings">Nadpisy a podpoložky</string>
+   <string name="headings_only">Iba názvy</string>
 </resources>

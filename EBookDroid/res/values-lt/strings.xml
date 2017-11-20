@@ -419,4 +419,6 @@
    <string name="do_you_want_to_clear_everything_">Ar norite išvalyti viską?</string>
    <string name="restore_defaults_full">Ar norite atstatyti numatytas vertes?</string>
    <string name="restore_defaults_short">Atkurti į pradinius nustatymus</string>
+   <string name="heading_and_subheadings">Antraštės ir subpozicijos</string>
+   <string name="headings_only">Tik antraštės</string>
 </resources>

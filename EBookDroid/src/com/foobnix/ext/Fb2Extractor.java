@@ -542,6 +542,7 @@ public class Fb2Extractor extends BaseExtractor {
             } else if (eventType == XmlPullParser.END_TAG) {
                 if (xpp.getName().equals("title") || xpp.getName().equals("subtitle")) {
                     isTitle = false;
+                    title = "[" + xpp.getName() + "]" + title;
                     if (isFirstEndBody) {
                         titles.add(section + DIVIDER + title + FOOTER_AFTRER_BOODY);
                     } else {

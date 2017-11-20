@@ -205,11 +205,16 @@ public class AppState {
 
     public final static int NEXT_SCREEN_SCROLL_BY_PAGES = 0;
 
+    public final static int OUTLINE_HEADERS_AND_SUBHEADERES = 0;
+    public final static int OUTLINE_ONLY_HEADERS = 1;
+
     public int doubleClickAction = DOUBLE_CLICK_ZOOM_IN_OUT;
     public int inactivityTime = 2;
     public int remindRestTime = 60;
     public int flippingInterval = 10;
     public int ttsTimer = 60;
+
+    public int outlineMode = OUTLINE_HEADERS_AND_SUBHEADERES;
 
     public boolean longTapEnable = true;
 
@@ -652,6 +657,7 @@ public class AppState {
         remindRestTime = sp.getInt("remindRestTime", remindRestTime);
         flippingInterval = sp.getInt("flippingInterval", flippingInterval);
         ttsTimer = sp.getInt("ttsTimer", ttsTimer);
+        outlineMode = sp.getInt("outlineMode", outlineMode);
 
         supportPDF = sp.getBoolean("supportPDF", supportPDF);
         supportXPS = sp.getBoolean("supportXPS", supportXPS);
@@ -887,6 +893,7 @@ public class AppState {
         editor.putInt("remindRestTime", remindRestTime);
         editor.putInt("flippingInterval", flippingInterval);
         editor.putInt("ttsTimer", ttsTimer);
+        editor.putInt("outlineMode", outlineMode);
 
         editor.putBoolean("supportPDF", supportPDF);
         editor.putBoolean("supportXPS", supportXPS);

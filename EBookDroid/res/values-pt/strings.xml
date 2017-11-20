@@ -419,4 +419,6 @@
    <string name="do_you_want_to_clear_everything_">Você quer limpar tudo?</string>
    <string name="restore_defaults_full">Deseja restaurar os valores padrão?</string>
    <string name="restore_defaults_short">Restaurar padrão</string>
+   <string name="heading_and_subheadings">Rubricas e subposições</string>
+   <string name="headings_only">Somente títulos</string>
 </resources>

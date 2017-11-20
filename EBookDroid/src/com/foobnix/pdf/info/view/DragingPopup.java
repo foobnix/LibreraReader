@@ -42,6 +42,9 @@ public abstract class DragingPopup {
     protected String titleAction;
     protected Runnable titleRunnable;
 
+    protected int titlePopupIcon;
+    protected MyPopupMenu titlePopupMenu;
+
     public void beforeCreate() {
 
     }
@@ -125,14 +128,6 @@ public abstract class DragingPopup {
         ImageView appLogo = (ImageView) popupView.findViewById(R.id.droid);
         appLogo.setVisibility(View.GONE);
 
-        if (false) {
-            try {
-                appLogo.setImageDrawable(anchor.getContext().getPackageManager().getApplicationIcon(anchor.getContext().getApplicationInfo()));
-            } catch (Exception e) {
-                LOG.e(e);
-            }
-        }
-
         View findViewById = popupView.findViewById(R.id.topLayout);
         TintUtil.setTintBgSimple(findViewById, 230);
 
@@ -189,6 +184,16 @@ public abstract class DragingPopup {
         return this;
     }
 
+    public void realod() {
+        popupContent.removeAllViews();
+        popupContent.addView(getContentView(inflater));
+    }
+
+    public void setTitlePopupIcon(int icon) {
+        ImageView onIconAction = (ImageView) popupView.findViewById(R.id.onIconAction);
+        onIconAction.setImageResource(icon);
+    }
+
     public DragingPopup show(String tag, boolean always, boolean update) {
         if (tag != null) {
             if (!always) {
@@ -230,6 +235,22 @@ public abstract class DragingPopup {
         }
 
         popupContent.addView(getContentView(inflater));
+
+        ImageView onIconAction = (ImageView) popupView.findViewById(R.id.onIconAction);
+        if (titlePopupMenu == null) {
+            onIconAction.setVisibility(View.GONE);
+            onIconAction.setImageResource(titlePopupIcon);
+        } else {
+            onIconAction.setVisibility(View.VISIBLE);
+            onIconAction.setOnClickListener(new OnClickListener() {
+
+                @Override
+                public void onClick(View v) {
+                    titlePopupMenu.setAnchor(v);
+                    titlePopupMenu.show();
+                }
+            });
+        }
 
         anchor.setVisibility(View.VISIBLE);
         anchor.removeAllViews();

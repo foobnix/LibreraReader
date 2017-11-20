@@ -419,4 +419,6 @@
    <string name="do_you_want_to_clear_everything_">אתה רוצה לנקות הכל?</string>
    <string name="restore_defaults_full">האם ברצונך לשחזר את ערכי ברירת המחדל?</string>
    <string name="restore_defaults_short">להחזיר לברירת מחדל</string>
+   <string name="heading_and_subheadings">כותרות וכותרות משנה</string>
+   <string name="headings_only">כותרות בלבד</string>
 </resources>

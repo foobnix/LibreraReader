@@ -419,4 +419,6 @@
    <string name="opening_book_with_losed_lock">Opening book with сlosed lock</string>
    <string name="opening_book_with_cropped_borders">Opening book with cropped borders</string>
    <string name="do_you_want_to_clear_everything_">Do you want to clear everything?</string>
+   <string name="heading_and_subheadings">Headings and subheadings</string>
+   <string name="headings_only">Headings only</string>
 </resources>

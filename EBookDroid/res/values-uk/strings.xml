@@ -419,4 +419,6 @@
    <string name="do_you_want_to_clear_everything_">Ви хочете очистити все?</string>
    <string name="restore_defaults_full">Ви хочете відновити значення за замовчуванням?</string>
    <string name="restore_defaults_short">Відновити значення за замовчуванням</string>
+   <string name="heading_and_subheadings">Рубрики та підзаголовки</string>
+   <string name="headings_only">Тільки заголовки</string>
 </resources>

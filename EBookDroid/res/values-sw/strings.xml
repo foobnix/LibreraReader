@@ -419,4 +419,6 @@
    <string name="do_you_want_to_clear_everything_">Je, unataka kufuta kila kitu?</string>
    <string name="restore_defaults_full">Unataka kurejesha maadili ya msingi?</string>
    <string name="restore_defaults_short">Rudisha default</string>
+   <string name="heading_and_subheadings">Vichwa na vichwa vya chini</string>
+   <string name="headings_only">Inazungumzia tu</string>
 </resources>

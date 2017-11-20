@@ -419,4 +419,6 @@
    <string name="do_you_want_to_clear_everything_">Vill du rensa allt?</string>
    <string name="restore_defaults_full">Vill du återställa standardvärdena?</string>
    <string name="restore_defaults_short">Återställa standard</string>
+   <string name="heading_and_subheadings">Rubrik och underrubriker</string>
+   <string name="headings_only">Endast rubriker</string>
 </resources>

@@ -419,4 +419,6 @@
    <string name="do_you_want_to_clear_everything_">Apakah Anda ingin menghapus semuanya?</string>
    <string name="restore_defaults_full">Apakah Anda ingin mengembalikan nilai default?</string>
    <string name="restore_defaults_short">Kembali ke awal</string>
+   <string name="heading_and_subheadings">Judul dan subpos</string>
+   <string name="headings_only">Judul saja</string>
 </resources>

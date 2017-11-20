@@ -419,4 +419,6 @@
    <string name="do_you_want_to_clear_everything_">هل تريد مسح كل شيء؟</string>
    <string name="restore_defaults_full">هل تريد استعادة القيم الافتراضية؟</string>
    <string name="restore_defaults_short">استعادة الافتراضي</string>
+   <string name="heading_and_subheadings">العناوين والعناوين الفرعية</string>
+   <string name="headings_only">العناوين فقط</string>
 </resources>

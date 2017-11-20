@@ -419,4 +419,6 @@
    <string name="do_you_want_to_clear_everything_">Bạn có muốn làm rõ mọi thứ không?</string>
    <string name="restore_defaults_full">Bạn có muốn khôi phục các giá trị mặc định?</string>
    <string name="restore_defaults_short">Khôi phục lại mặc định</string>
+   <string name="heading_and_subheadings">Tiêu đề và phân nhóm phụ</string>
+   <string name="headings_only">Chỉ tiêu đề</string>
 </resources>

@@ -419,4 +419,6 @@
    <string name="do_you_want_to_clear_everything_">Szeretné tisztázni mindent?</string>
    <string name="restore_defaults_full">Szeretné visszaállítani az alapértelmezett értékeket?</string>
    <string name="restore_defaults_short">Alapértelmezett visszaállítása</string>
+   <string name="heading_and_subheadings">Fejezetek és alszámok</string>
+   <string name="headings_only">Csak a fejlécek</string>
 </resources>

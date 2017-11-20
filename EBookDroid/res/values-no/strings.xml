@@ -419,4 +419,6 @@
    <string name="do_you_want_to_clear_everything_">Vil du fjerne alt?</string>
    <string name="restore_defaults_full">Vil du gjenopprette standardverdiene?</string>
    <string name="restore_defaults_short">Gjenopprette standard</string>
+   <string name="heading_and_subheadings">Overskrifter og underposisjoner</string>
+   <string name="headings_only">Bare overskrifter</string>
 </resources>

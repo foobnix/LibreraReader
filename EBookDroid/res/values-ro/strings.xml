@@ -419,4 +419,6 @@
    <string name="do_you_want_to_clear_everything_">Vrei să ștergi totul?</string>
    <string name="restore_defaults_full">Doriți să restaurați valorile implicite?</string>
    <string name="restore_defaults_short">Restabili implicit</string>
+   <string name="heading_and_subheadings">Rubricile și subpozițiile</string>
+   <string name="headings_only">Numai titlurile</string>
 </resources>

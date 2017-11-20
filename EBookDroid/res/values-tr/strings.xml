@@ -419,4 +419,6 @@
    <string name="do_you_want_to_clear_everything_">Her şeyi silmek istiyor musun</string>
    <string name="restore_defaults_full">Varsayılan değerleri geri yüklemek istiyor musunuz?</string>
    <string name="restore_defaults_short">Varsayılana döndür</string>
+   <string name="heading_and_subheadings">Başlıklar ve alt başlıklar</string>
+   <string name="headings_only">Yalnızca başlıklar</string>
 </resources>

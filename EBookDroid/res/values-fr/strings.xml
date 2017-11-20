@@ -419,4 +419,6 @@
    <string name="do_you_want_to_clear_everything_">Voulez-vous tout effacer?</string>
    <string name="restore_defaults_full">Voulez-vous restaurer les valeurs par défaut?</string>
    <string name="restore_defaults_short">Restaurer par défaut</string>
+   <string name="heading_and_subheadings">Rubriques et sous-rubriques</string>
+   <string name="headings_only">Titres seulement</string>
 </resources>
