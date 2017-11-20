@@ -3141,7 +3141,8 @@ public class DragingDialogs {
                 brightness.setImageResource(!AppState.get().isInvert ? R.drawable.glyphicons_232_sun : R.drawable.glyphicons_2_moon);
 
                 final ImageView isCrop = (ImageView) inflate.findViewById(R.id.onCrop);
-                isCrop.setVisibility(controller.isTextFormat() || AppState.get().isCut ? View.GONE : View.VISIBLE);
+                // isCrop.setVisibility(controller.isTextFormat() ||
+                // AppState.get().isCut ? View.GONE : View.VISIBLE);
                 isCrop.setOnClickListener(new View.OnClickListener() {
 
                     @Override
@@ -3155,7 +3156,8 @@ public class DragingDialogs {
                 TintUtil.setTintImage(isCrop, !AppState.get().isCrop ? TintUtil.COLOR_TINT_GRAY : Color.LTGRAY);
 
                 final ImageView bookCut = (ImageView) inflate.findViewById(R.id.bookCut);
-                bookCut.setVisibility(controller.isTextFormat() ? View.GONE : View.VISIBLE);
+                // bookCut.setVisibility(controller.isTextFormat() ? View.GONE :
+                // View.VISIBLE);
                 bookCut.setOnClickListener(new View.OnClickListener() {
 
                     @Override
