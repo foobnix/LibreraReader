@@ -3096,6 +3096,8 @@ public class DragingDialogs {
                 topPanelLine.setVisibility(View.GONE);
                 topPanelLineDiv.setVisibility(controller.isTextFormat() ? View.VISIBLE : View.GONE);
 
+                inflate.findViewById(R.id.allBGConfig).setVisibility(Dips.isEInk(inflate.getContext()) ? View.GONE : View.VISIBLE);
+
                 View onRecent = inflate.findViewById(R.id.onRecent);
                 onRecent.setOnClickListener(new OnClickListener() {
 
