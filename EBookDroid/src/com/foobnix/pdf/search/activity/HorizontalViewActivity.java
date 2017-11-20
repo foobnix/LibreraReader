@@ -313,11 +313,13 @@ public class HorizontalViewActivity extends FragmentActivity {
             }
         });
 
-        findViewById(R.id.onFullScreen).setOnClickListener(new OnClickListener() {
+        final ImageView onFullScreen = (ImageView) findViewById(R.id.onFullScreen);
+        onFullScreen.setOnClickListener(new OnClickListener() {
 
             @Override
             public void onClick(View v) {
                 AppState.get().isFullScreen = !AppState.get().isFullScreen;
+                onFullScreen.setImageResource(AppState.get().isFullScreen ? R.drawable.glyphicons_487_fit_frame_to_image : R.drawable.glyphicons_488_fit_image_to_frame);
                 DocumentController.chooseFullScreen(HorizontalViewActivity.this, AppState.get().isFullScreen);
                 if (documentController.isTextFormat()) {
                     if (onRefresh != null) {
@@ -327,6 +329,7 @@ public class HorizontalViewActivity extends FragmentActivity {
                 }
             }
         });
+        onFullScreen.setImageResource(AppState.get().isFullScreen ? R.drawable.glyphicons_487_fit_frame_to_image : R.drawable.glyphicons_488_fit_image_to_frame);
 
         ImageView dayNightButton = (ImageView) findViewById(R.id.bookNight);
         dayNightButton.setOnClickListener(new View.OnClickListener() {

@@ -653,8 +653,9 @@ public class DocumentWrapperUI {
         View prefTop = a.findViewById(R.id.prefTop);
         prefTop.setOnClickListener(onPrefTop);
 
-        View fullscreen = a.findViewById(R.id.fullscreen);
+        ImageView fullscreen = (ImageView) a.findViewById(R.id.fullscreen);
         fullscreen.setOnClickListener(onFull);
+        fullscreen.setImageResource(AppState.get().isFullScreen ? R.drawable.glyphicons_487_fit_frame_to_image : R.drawable.glyphicons_488_fit_image_to_frame);
 
         View close = a.findViewById(R.id.close);
         close.setOnClickListener(onClose);
@@ -1324,9 +1325,15 @@ public class DocumentWrapperUI {
     public View.OnClickListener onFull = new View.OnClickListener() {
 
         @Override
-        public void onClick(final View arg0) {
+        public void onClick(final View v) {
             AppState.getInstance().setFullScrean(!AppState.getInstance().isFullScrean());
+            ((ImageView) v).setImageResource(AppState.get().isFullScreen ? R.drawable.glyphicons_487_fit_frame_to_image : R.drawable.glyphicons_488_fit_image_to_frame);
             DocumentController.chooseFullScreen(a, AppState.getInstance().isFullScrean());
+
+            // if (controller.isTextFormat()) {
+            // onRefresh.run();
+            // controller.restartActivity();
+            // }
         }
     };
     public View.OnClickListener onScreenMode = new View.OnClickListener() {
@@ -1444,19 +1451,7 @@ public class DocumentWrapperUI {
 
         @Override
         public void onClick(final View arg0) {
-            prefDialog = DragingDialogs.preferences(anchor, controller, new Runnable() {
-
-                @Override
-                public void run() {
-                    double value = (getController().getCurentPage() + 0.0001) / getController().getPageCount();
-                    a.getIntent().putExtra(DocumentControllerHorizontalView.PERCENT_EXTRA, value);
-                    // titleBar.setBackgroundColor(MagicHelper.getBgColor());
-                    initToolBarPlusMinus();
-                    updateSeekBarColorAndSize();
-                    showHide();
-                    TTSEngine.get().stop();
-                }
-            }, new Runnable() {
+            prefDialog = DragingDialogs.preferences(anchor, controller, onRefresh, new Runnable() {
 
                 @Override
                 public void run() {
@@ -1464,6 +1459,20 @@ public class DocumentWrapperUI {
 
                 }
             });
+        }
+    };
+
+    Runnable onRefresh = new Runnable() {
+
+        @Override
+        public void run() {
+            double value = (getController().getCurentPage() + 0.0001) / getController().getPageCount();
+            a.getIntent().putExtra(DocumentControllerHorizontalView.PERCENT_EXTRA, value);
+            // titleBar.setBackgroundColor(MagicHelper.getBgColor());
+            initToolBarPlusMinus();
+            updateSeekBarColorAndSize();
+            showHide();
+            TTSEngine.get().stop();
         }
     };
 
