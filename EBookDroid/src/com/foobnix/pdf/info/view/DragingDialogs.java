@@ -138,6 +138,9 @@ import android.widget.Toast;
 
 public class DragingDialogs {
 
+    public final static int PREF_WIDTH = 330;
+    public final static int PREF_HEIGHT = 550;
+
     public static final String EDIT_COLORS_PANEL = "editColorsPanel";
 
     public static void samble(final FrameLayout anchor, final DocumentController controller) {
@@ -1494,7 +1497,7 @@ public class DragingDialogs {
     }
 
     public static void recentBooks(final FrameLayout anchor, final DocumentController controller) {
-        new DragingPopup(R.string.recent, anchor, 330, 520) {
+        new DragingPopup(R.string.recent, anchor, PREF_WIDTH, PREF_HEIGHT) {
 
             @Override
             public View getContentView(final LayoutInflater inflater) {
@@ -1966,7 +1969,7 @@ public class DragingDialogs {
 
     public static DragingPopup statusBarSettings(final FrameLayout anchor, final DocumentController controller, final Runnable onRefresh, final Runnable updateUIRefresh) {
 
-        DragingPopup dialog = new DragingPopup(R.string.status_bar, anchor, 360, 380) {
+        DragingPopup dialog = new DragingPopup(R.string.status_bar, anchor, PREF_WIDTH, PREF_HEIGHT) {
 
             @Override
             public void beforeCreate() {
@@ -2133,7 +2136,7 @@ public class DragingDialogs {
             }
         };
 
-        dialog.show("statusBarSettings");
+        dialog.show(DragingPopup.PREF + "_statusBarSettings");
 
         return dialog;
     }
@@ -2143,7 +2146,7 @@ public class DragingDialogs {
         final int cssHash = BookCSS.get().toCssString().hashCode();
         final int appHash = AppState.get().hashCode();
 
-        DragingPopup dialog = new DragingPopup(R.string.advanced_settings, anchor, 330, 520) {
+        DragingPopup dialog = new DragingPopup(R.string.advanced_settings, anchor, PREF_WIDTH, PREF_HEIGHT) {
 
             @Override
             public void beforeCreate() {
@@ -2703,7 +2706,7 @@ public class DragingDialogs {
                 return inflate;
             }
         };
-        dialog.show("performanceSettings");
+        dialog.show(DragingPopup.PREF + "_performanceSettings");
         dialog.setOnCloseListener(new Runnable() {
 
             @Override
@@ -2725,7 +2728,7 @@ public class DragingDialogs {
     public static DragingPopup moreBookSettings(final FrameLayout anchor, final DocumentController controller, final Runnable onRefresh, final Runnable updateUIRefresh) {
         final int initCssHash = BookCSS.get().toCssString().hashCode();
 
-        DragingPopup dialog = new DragingPopup(R.string.more_reading_settings, anchor, 330, 520) {
+        DragingPopup dialog = new DragingPopup(R.string.reading_settings, anchor, PREF_WIDTH, PREF_HEIGHT) {
 
             @Override
             public void beforeCreate() {
@@ -3041,7 +3044,7 @@ public class DragingDialogs {
                 return inflate;
             }
         };
-        dialog.show("moreBookSettings");
+        dialog.show(DragingPopup.PREF + "_moreBookSettings");
         dialog.setOnCloseListener(new Runnable() {
 
             @Override
@@ -3068,7 +3071,7 @@ public class DragingDialogs {
         isChangedPreFormatting = false;
 
         if (ExtUtils.isNotValidFile(controller.getCurrentBook())) {
-            DragingPopup dialog = new DragingPopup(R.string.preferences, anchor, 330, 520) {
+            DragingPopup dialog = new DragingPopup(R.string.preferences, anchor, PREF_WIDTH, PREF_HEIGHT) {
 
                 @Override
                 public View getContentView(final LayoutInflater inflater) {
@@ -3080,7 +3083,7 @@ public class DragingDialogs {
             return dialog;
         }
 
-        DragingPopup dialog = new DragingPopup(R.string.preferences, anchor, 330, 520) {
+        DragingPopup dialog = new DragingPopup(R.string.preferences, anchor, PREF_WIDTH, PREF_HEIGHT) {
 
             @Override
             public View getContentView(final LayoutInflater inflater) {
@@ -3243,6 +3246,7 @@ public class DragingDialogs {
 
                 TextView moreSettings = (TextView) inflate.findViewById(R.id.moreSettings);
                 moreSettings.setVisibility(controller.isTextFormat() ? View.VISIBLE : View.GONE);
+                inflate.findViewById(R.id.moreSettingsDiv).setVisibility(controller.isTextFormat() ? View.VISIBLE : View.GONE);
 
                 // View moreSettingsImage =
                 // inflate.findViewById(R.id.moreSettingsImage);
@@ -3957,7 +3961,7 @@ public class DragingDialogs {
                 return inflate;
 
             }
-        }.show("preferences").setOnCloseListener(new Runnable() {
+        }.show(DragingPopup.PREF + "_preferences").setOnCloseListener(new Runnable() {
 
             @Override
             public void run() {

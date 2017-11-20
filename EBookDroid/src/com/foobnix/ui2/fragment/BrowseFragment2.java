@@ -249,13 +249,15 @@ public class BrowseFragment2 extends UIFragment<FileMeta> {
                 List<String> names = Arrays.asList(//
                         getActivity().getString(R.string.by_file_name), //
                         getActivity().getString(R.string.by_date), //
-                        getActivity().getString(R.string.by_size) //
+                        getActivity().getString(R.string.by_size), //
+                        getActivity().getString(R.string.by_number) //
                 );//
 
                 final List<Integer> ids = Arrays.asList(//
                         AppState.BR_SORT_BY_PATH, //
                         AppState.BR_SORT_BY_DATE, //
-                        AppState.BR_SORT_BY_SIZE //
+                        AppState.BR_SORT_BY_SIZE, //
+                        AppState.BR_SORT_BY_NUMBER //
                 );//
 
                 MyPopupMenu menu = new MyPopupMenu(getActivity(), v);
@@ -394,6 +396,8 @@ public class BrowseFragment2 extends UIFragment<FileMeta> {
             Collections.sort(items, FileMetaComparators.BY_DATE);
         } else if (AppState.get().sortByBrowse == AppState.BR_SORT_BY_SIZE) {
             Collections.sort(items, FileMetaComparators.BY_SIZE);
+        } else if (AppState.get().sortByBrowse == AppState.BR_SORT_BY_NUMBER) {
+            Collections.sort(items, FileMetaComparators.BR_BY_NUMBER);
         }
         if (AppState.get().sortByReverse) {
             Collections.reverse(items);

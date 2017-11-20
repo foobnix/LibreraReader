@@ -27,6 +27,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 public abstract class DragingPopup {
+    protected static final String PREF = "PREF";
     private static final String DRAGGING_POPUPS = "DraggingPopups";
     private static int MIN_WH = Dips.dpToPx(50);
     private FrameLayout anchor;
@@ -154,7 +155,7 @@ public abstract class DragingPopup {
     }
 
     public void initState() {
-        String tag = anchor.getTag().toString() + Dips.screenWidth();
+        String tag = getTAG() + Dips.screenWidth();
         if (cache.containsKey(tag)) {
             Place place = cache.get(tag);
             AnchorHelper.setXY(anchor, place.x, place.y);
@@ -347,12 +348,21 @@ public abstract class DragingPopup {
             place.width = popupView.getLayoutParams().width;
             place.height = popupView.getLayoutParams().height;
 
-            String tag = anchor.getTag().toString() + Dips.screenWidth();
+            String tag = getTAG() + Dips.screenWidth();
             cache.put(tag, place);
             LOG.d("Anchor Save", tag, place.x, place.y, place.width, place.height);
         } catch (Exception e) {
             LOG.e(e);
         }
+    }
+
+    public String getTAG() {
+        String tag = anchor.getTag().toString();
+        if (tag.contains(PREF)) {
+            tag = PREF;
+        }
+        return tag;
+
     }
 
     public DragingPopup setOnCloseListener(Runnable onCloseListener) {

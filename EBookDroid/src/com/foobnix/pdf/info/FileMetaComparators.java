@@ -28,6 +28,19 @@ public class FileMetaComparators {
         }
     };
 
+    public static Comparator<FileMeta> BR_BY_NUMBER = new Comparator<FileMeta>() {
+
+        @Override
+        public int compare(FileMeta o1, FileMeta o2) {
+            return extractInt(o1.getPath()) - extractInt(o2.getPath());
+        }
+
+        int extractInt(String s) {
+            String num = s.replaceAll("\\D", "");
+            return num.isEmpty() ? 0 : Integer.parseInt(num);
+        }
+    };
+
     public static Comparator<FileMeta> DIRS = new Comparator<FileMeta>() {
         @Override
         public int compare(FileMeta o1, FileMeta o2) {
