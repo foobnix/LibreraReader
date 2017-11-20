@@ -120,7 +120,7 @@ public abstract class DocumentController {
 
     public abstract void underlineText(int color, float width, AnnotationType type);
 
-    public abstract void getOutline(ResultResponse<List<OutlineLinkWrapper>> outline);
+    public abstract void getOutline(ResultResponse<List<OutlineLinkWrapper>> outline, boolean forse);
 
     public abstract String getFootNote(String text);
 
@@ -185,7 +185,7 @@ public abstract class DocumentController {
                 }
                 return false;
             }
-        });
+        }, false);
     }
 
     List<OutlineLinkWrapper> outline;

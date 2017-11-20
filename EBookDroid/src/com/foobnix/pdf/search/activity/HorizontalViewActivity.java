@@ -842,7 +842,7 @@ public class HorizontalViewActivity extends FragmentActivity {
 
         @Override
         public void run() {
-            documentController.getOutline(null);
+            documentController.getOutline(null, false);
             updateReadPercent();
 
             updateUI(viewPager.getCurrentItem());
@@ -993,7 +993,7 @@ public class HorizontalViewActivity extends FragmentActivity {
         @Override
         public void run() {
 
-            documentController.getOutline(null);
+            documentController.getOutline(null, false);
             documentController.saveCurrentPage();
             createAdapter();
 
@@ -1331,7 +1331,7 @@ public class HorizontalViewActivity extends FragmentActivity {
                 }
                 return false;
             }
-        });
+        }, false);
 
     }
 

@@ -1751,7 +1751,7 @@ public class DragingDialogs {
                                 });
                                 return false;
                             }
-                        });
+                        }, true);
 
                     }
                 };

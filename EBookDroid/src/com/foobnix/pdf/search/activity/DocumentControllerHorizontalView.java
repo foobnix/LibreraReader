@@ -434,7 +434,7 @@ public abstract class DocumentControllerHorizontalView extends DocumentControlle
     }
 
     @Override
-    public void getOutline(com.foobnix.android.utils.ResultResponse<List<OutlineLinkWrapper>> outline) {
+    public void getOutline(com.foobnix.android.utils.ResultResponse<List<OutlineLinkWrapper>> outline, boolean forse) {
         List<OutlineLinkWrapper> outlineRes = generadDocInterface.getOutline(getCurrentBook().getPath(), "");
         setOutline(outlineRes);
         if (outline != null) {

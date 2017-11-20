@@ -723,8 +723,8 @@ public class AdvModeController extends DocumentController {
     List<OutlineLinkWrapper> outline;
 
     @Override
-    public synchronized void getOutline(final ResultResponse<List<OutlineLinkWrapper>> resultWrapper) {
-        if (outline != null) {
+    public synchronized void getOutline(final ResultResponse<List<OutlineLinkWrapper>> resultWrapper, boolean forseRealod) {
+        if (!forseRealod && outline != null) {
             resultWrapper.onResultRecive(outline);
             return;
         }
