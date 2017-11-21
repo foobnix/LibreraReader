@@ -365,6 +365,9 @@ public class HorizontalViewActivity extends FragmentActivity {
             }
         });
 
+        onMove.setVisibility(AppState.get().isInkMode ? View.VISIBLE : View.GONE);
+        onBC.setVisibility(AppState.get().isInkMode ? View.VISIBLE : View.GONE);
+
         findViewById(R.id.thumbnail).setOnClickListener(new View.OnClickListener() {
 
             @Override
