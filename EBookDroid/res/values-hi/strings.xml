@@ -238,12 +238,9 @@
    <string name="open_in_the_dictionary">शब्दकोश में खोलें</string>
    <string name="lock_for_pdf_and_djvu_when_opening">पीडीएफ और DjVu के लिए ताला खोलने</string>
    <string name="cover_image_size">कवर छवि का आकार</string>
-   <string name="author">लेखक</string>
    <string name="close_application_">एप्लिकेशन बंद करो?</string>
    <string name="cover">आवरण</string>
    <string name="application_cannot_open_the_book">आवेदन किताब नहीं खोल सकता</string>
-   <string name="genre">शैली</string>
-   <string name="series">शृंखला</string>
    <string name="rate_pdf_reader1">आपकी प्रतिक्रिया के बारे में है और यह हमारे लिए बहुत महत्वपूर्ण है गूगल प्ले पर हमें कृपया दर</string>
    <string name="enable_effect_of_the_book_cover">पुस्तक कवर के प्रभाव को सक्षम</string>
    <string name="archive_files">संग्रह फ़ाइलें</string>
@@ -421,4 +418,7 @@
    <string name="restore_defaults_short">पहले जैसा कर देना</string>
    <string name="heading_and_subheadings">शीर्षकों और उपशीर्षक</string>
    <string name="headings_only">केवल हेडिंग्स</string>
+   <string name="genre">शैली</string>
+   <string name="author">लेखक</string>
+   <string name="serie">सेरी</string>
 </resources>

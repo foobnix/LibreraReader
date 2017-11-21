@@ -238,12 +238,9 @@
    <string name="open_in_the_dictionary">打开字典中的</string>
    <string name="lock_for_pdf_and_djvu_when_opening">当打开锁定的PDF和DJVU</string>
    <string name="cover_image_size">封面图片大小</string>
-   <string name="author">作者</string>
    <string name="close_application_">关闭应用程序？</string>
    <string name="cover">盖</string>
    <string name="application_cannot_open_the_book">应用程序无法打开的书</string>
-   <string name="genre">类型</string>
-   <string name="series">系列</string>
    <string name="rate_pdf_reader1">请填写您的反馈，并在谷歌评级我们玩这对我们来说是非常重要的</string>
    <string name="enable_effect_of_the_book_cover">启用书籍封面的效果</string>
    <string name="archive_files">档案文件</string>
@@ -421,4 +418,7 @@
    <string name="restore_defaults_short">恢复默认</string>
    <string name="heading_and_subheadings">标题和小标题</string>
    <string name="headings_only">只有标题</string>
+   <string name="genre">类型</string>
+   <string name="author">作者</string>
+   <string name="serie">意甲</string>
 </resources>

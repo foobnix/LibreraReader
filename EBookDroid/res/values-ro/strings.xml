@@ -238,12 +238,9 @@
    <string name="enable_volume_keys">Activați tastele de volum</string>
    <string name="lock_for_pdf_and_djvu_when_opening">Blocare pentru PDF și DjVu atunci când se  deschide</string>
    <string name="cover_image_size">Dimensiunea imaginii copertă</string>
-   <string name="author">Autor</string>
    <string name="close_application_">Închideți aplicația?</string>
    <string name="cover">Acoperiți</string>
    <string name="application_cannot_open_the_book">Cererea nu poate deschide cartea</string>
-   <string name="genre">Gen literar</string>
-   <string name="series">Serie</string>
    <string name="nigth">Noapte</string>
    <string name="enable_effect_of_the_book_cover">Activați efectul de coperta cărții</string>
    <string name="archive_files">Fişierele arhivă</string>
@@ -421,4 +418,7 @@
    <string name="restore_defaults_short">Restabili implicit</string>
    <string name="heading_and_subheadings">Rubricile și subpozițiile</string>
    <string name="headings_only">Numai titlurile</string>
+   <string name="genre">Gen literar</string>
+   <string name="author">Autor</string>
+   <string name="serie">Serie</string>
 </resources>

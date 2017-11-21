@@ -239,12 +239,9 @@
    <string name="enable_volume_keys">אפשר מקשי עוצמת הקול</string>
    <string name="lock_for_pdf_and_djvu_when_opening">נעל למשך PDF ו- DjVu בעת פתיחת</string>
    <string name="cover_image_size">כיסוי תמונה בגודל</string>
-   <string name="author">מְחַבֵּר</string>
    <string name="close_application_">קרוב יישום?</string>
    <string name="cover">כיסוי</string>
    <string name="application_cannot_open_the_book">היישום אינו יכול לפתוח את הספר</string>
-   <string name="genre">ז\'ָאנר</string>
-   <string name="series">סִדרָה</string>
    <string name="extracting_information_from_books">להוציא מידע מתוך ספרים</string>
    <string name="enable_effect_of_the_book_cover">אפשר השפעת עטיפת הספר</string>
    <string name="archive_files">קבצי ארכיון</string>
@@ -421,4 +418,7 @@
    <string name="restore_defaults_short">להחזיר לברירת מחדל</string>
    <string name="heading_and_subheadings">כותרות וכותרות משנה</string>
    <string name="headings_only">כותרות בלבד</string>
+   <string name="genre">ז\'ָאנר</string>
+   <string name="author">מְחַבֵּר</string>
+   <string name="serie">סיד</string>
 </resources>

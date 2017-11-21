@@ -239,12 +239,9 @@
    <string name="enable_volume_keys">Kuwawezesha funguo kiasi</string>
    <string name="lock_for_pdf_and_djvu_when_opening">Kufuli kwa PDF na DjVu wakati wa kufungua</string>
    <string name="cover_image_size">Ukubwa cover picha</string>
-   <string name="author">Mwandishi</string>
    <string name="close_application_">Karibu maombi?</string>
    <string name="cover">Jalada</string>
    <string name="application_cannot_open_the_book">Maombi hawezi kufungua kitabu</string>
-   <string name="genre">Ghana</string>
-   <string name="series">Mfululizo</string>
    <string name="extracting_information_from_books">Kuchimba habari kutoka vitabu</string>
    <string name="enable_effect_of_the_book_cover">Kuwawezesha athari za kitabu cover</string>
    <string name="archive_files">Files archive</string>
@@ -421,4 +418,7 @@
    <string name="restore_defaults_short">Rudisha default</string>
    <string name="heading_and_subheadings">Vichwa na vichwa vya chini</string>
    <string name="headings_only">Inazungumzia tu</string>
+   <string name="genre">Aina</string>
+   <string name="author">Mwandishi</string>
+   <string name="serie">Serie</string>
 </resources>

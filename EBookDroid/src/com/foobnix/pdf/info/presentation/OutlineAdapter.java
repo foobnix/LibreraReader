@@ -2,6 +2,7 @@ package com.foobnix.pdf.info.presentation;
 
 import java.util.List;
 
+import com.foobnix.android.utils.Dips;
 import com.foobnix.android.utils.TxtUtils;
 import com.foobnix.pdf.info.R;
 import com.foobnix.pdf.info.TintUtil;
@@ -21,6 +22,7 @@ import android.view.ViewParent;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -166,6 +168,8 @@ public class OutlineAdapter extends BaseAdapter {
         container.setTag(position);
         view.setTag(position);
         btn.setTag(position);
+
+        ((LinearLayout.LayoutParams) btn.getLayoutParams()).leftMargin = item.level * Dips.dpToPx(20);
 
         container.setOnClickListener(itemListener);
 

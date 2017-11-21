@@ -1755,15 +1755,15 @@ public class DragingDialogs {
 
                     }
                 };
-                showOutline.run();
+                contentList.postDelayed(showOutline, 50);
 
                 if (BookType.FB2.is(controller.getCurrentBook().getPath())) {
-                    setTitlePopupIcon(AppState.getInstance().outlineMode == AppState.OUTLINE_HEADERS_AND_SUBHEADERES ? R.drawable.glyphicons_114_justify : R.drawable.glyphicons_157_1_show_thumbnails);
+                    setTitlePopupIcon(AppState.getInstance().outlineMode == AppState.OUTLINE_ONLY_HEADERS ? R.drawable.glyphicons_114_justify : R.drawable.glyphicons_114_justify_sub);
                     titlePopupMenu = new MyPopupMenu(controller.getActivity(), null);
 
-                    List<Integer> names = Arrays.asList(R.string.heading_and_subheadings, R.string.headings_only);
-                    final List<Integer> icons = Arrays.asList(R.drawable.glyphicons_114_justify, R.drawable.glyphicons_157_1_show_thumbnails);
-                    final List<Integer> actions = Arrays.asList(AppState.OUTLINE_HEADERS_AND_SUBHEADERES, AppState.OUTLINE_ONLY_HEADERS);
+                    List<Integer> names = Arrays.asList(R.string.headings_only, R.string.heading_and_subheadings);
+                    final List<Integer> icons = Arrays.asList(R.drawable.glyphicons_114_justify, R.drawable.glyphicons_114_justify_sub);
+                    final List<Integer> actions = Arrays.asList(AppState.OUTLINE_ONLY_HEADERS, AppState.OUTLINE_HEADERS_AND_SUBHEADERES);
 
                     for (int i = 0; i < names.size(); i++) {
                         final int index = i;

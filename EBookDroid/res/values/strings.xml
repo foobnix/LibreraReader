@@ -242,12 +242,9 @@
    <string name="enable_volume_keys">Enable volume keys</string>
    <string name="lock_for_pdf_and_djvu_when_opening">Lock for PDF and DJVU when opening</string>
    <string name="cover_image_size">Cover image size</string>
-   <string name="author">Author</string>
    <string name="close_application_">Close application?</string>
    <string name="cover">Cover</string>
    <string name="application_cannot_open_the_book">Application cannot open the book</string>
-   <string name="genre">Genre</string>
-   <string name="series">Series</string>
    <string name="extracting_information_from_books">Extracting information from books</string>
    <string name="enable_effect_of_the_book_cover">Enable effect of the book cover</string>
    <string name="archive_files">Archive files</string>
@@ -421,4 +418,7 @@
    <string name="do_you_want_to_clear_everything_">Do you want to clear everything?</string>
    <string name="heading_and_subheadings">Headings and subheadings</string>
    <string name="headings_only">Headings only</string>
+   <string name="genre">Genre</string>
+   <string name="author">Author</string>
+   <string name="serie">Serie</string>
 </resources>

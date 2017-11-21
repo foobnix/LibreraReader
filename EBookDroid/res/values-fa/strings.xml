@@ -238,12 +238,9 @@
    <string name="open_in_the_dictionary">گسترش در فرهنگ لغت</string>
    <string name="lock_for_pdf_and_djvu_when_opening">قفل برای PDF و DJVU در هنگام باز کردن</string>
    <string name="cover_image_size">اندازه تصویر جلد</string>
-   <string name="author">نویسنده</string>
    <string name="close_application_">بستن برنامه؟</string>
    <string name="cover">پوشش</string>
    <string name="application_cannot_open_the_book">نرم افزار می توانید کتاب را باز کرد</string>
-   <string name="genre">ژانر</string>
-   <string name="series">سلسله</string>
    <string name="rate_pdf_reader1">لطفا انتقادات و پیشنهادات خود را ارسال و امتیاز دادن به ما در گوگل بازی آن را برای ما بسیار مهم است</string>
    <string name="enable_effect_of_the_book_cover">فعال کردن اثر از جلد کتاب</string>
    <string name="archive_files">فایل های آرشیو</string>
@@ -421,4 +418,7 @@
    <string name="restore_defaults_short">بازیابی پیش فرض</string>
    <string name="heading_and_subheadings">عنوان ها و زیرمجموعه ها</string>
    <string name="headings_only">فقط عنوان ها</string>
+   <string name="genre">ژانر</string>
+   <string name="author">نویسنده</string>
+   <string name="serie">سریال</string>
 </resources>

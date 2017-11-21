@@ -524,7 +524,7 @@ public class SearchFragment2 extends UIFragment<FileMeta> {
             if (AppState.get().libraryMode == AppState.MODE_AUTHORS) {
                 searchEditText.setHint(R.string.author);
             } else if (AppState.get().libraryMode == AppState.MODE_SERIES) {
-                searchEditText.setHint(R.string.series);
+                searchEditText.setHint(R.string.serie);
             } else if (AppState.get().libraryMode == AppState.MODE_GENRE) {
                 searchEditText.setHint(R.string.genre);
             }
@@ -613,7 +613,7 @@ public class SearchFragment2 extends UIFragment<FileMeta> {
                 R.string.cover, //
                 R.string.author, //
                 R.string.genre, //
-                R.string.series);
+                R.string.serie);
 
         final List<Integer> icons = Arrays.asList(R.drawable.glyphicons_114_justify, //
                 R.drawable.glyphicons_114_justify_compact, //

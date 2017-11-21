@@ -240,12 +240,9 @@
    <string name="enable_volume_keys">Ota äänenvoimakkuusnäppäimiä</string>
    <string name="lock_for_pdf_and_djvu_when_opening">Lukko PDF ja DJVU avattaessa</string>
    <string name="cover_image_size">Cover kuvakoko</string>
-   <string name="author">Kirjailija</string>
    <string name="close_application_">Sulje sovellus?</string>
    <string name="cover">Peite</string>
    <string name="application_cannot_open_the_book">Sovellus voi avata kirjan</string>
-   <string name="genre">Laji</string>
-   <string name="series">Sarja</string>
    <string name="extracting_information_from_books">Tiedon keruuseen kirjoista</string>
    <string name="enable_effect_of_the_book_cover">Mahdollistavat vaikutus kirjan kansi</string>
    <string name="archive_files">Arkistoja</string>
@@ -421,4 +418,7 @@
    <string name="restore_defaults_short">Palauta oletusarvot</string>
    <string name="heading_and_subheadings">Otsakkeet ja alanimikkeet</string>
    <string name="headings_only">Vain otsakkeissa</string>
+   <string name="genre">Laji</string>
+   <string name="author">Kirjailija</string>
+   <string name="serie">Serie</string>
 </resources>

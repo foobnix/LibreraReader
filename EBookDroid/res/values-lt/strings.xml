@@ -240,12 +240,9 @@
    <string name="enable_volume_keys">Leisti garso klavišus</string>
    <string name="lock_for_pdf_and_djvu_when_opening">Užraktas PDF ir DJVU failams</string>
    <string name="cover_image_size">Knygos viršelio atvaizdo dydis</string>
-   <string name="author">Autorius</string>
    <string name="close_application_">Užverti programą?</string>
    <string name="cover">Viršelis</string>
    <string name="application_cannot_open_the_book">Programa negali atidaryti šios knygos</string>
-   <string name="genre">Žanras</string>
-   <string name="series">Serija</string>
    <string name="extracting_information_from_books">Išskleidžiama knygų informacija</string>
    <string name="enable_effect_of_the_book_cover">Knygos viršelio efektas</string>
    <string name="archive_files">Archyvuoti failus</string>
@@ -421,4 +418,7 @@
    <string name="restore_defaults_short">Atkurti į pradinius nustatymus</string>
    <string name="heading_and_subheadings">Antraštės ir subpozicijos</string>
    <string name="headings_only">Tik antraštės</string>
+   <string name="genre">Žanras</string>
+   <string name="author">Autorius</string>
+   <string name="serie">Serija</string>
 </resources>

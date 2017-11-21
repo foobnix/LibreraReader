@@ -238,12 +238,9 @@
    <string name="open_in_the_dictionary">Apri nel dizionario</string>
    <string name="lock_for_pdf_and_djvu_when_opening">Blocco pagina automatico per PDF e DJVU</string>
    <string name="cover_image_size">Dimensioni Immagine di copertina</string>
-   <string name="author">Autore</string>
    <string name="close_application_">Chiudi applicazione?</string>
    <string name="cover">Copertina</string>
    <string name="application_cannot_open_the_book">L\'applicazione non può aprire il libro</string>
-   <string name="genre">Genere</string>
-   <string name="series">Serie</string>
    <string name="rate_pdf_reader1">Si prega di votare e scrivere i vostri commenti su Google Play, è molto importante per noi</string>
    <string name="enable_effect_of_the_book_cover">Usa effetto copertina</string>
    <string name="crop_images_in_the_book_cover">Ritagliare le immagini della copertina</string>
@@ -421,4 +418,7 @@
    <string name="restore_defaults_short">Ripristino predefinito</string>
    <string name="heading_and_subheadings">Intestazioni e sottotitoli</string>
    <string name="headings_only">Solo titoli</string>
+   <string name="genre">Genere</string>
+   <string name="author">Autore</string>
+   <string name="serie">Serie</string>
 </resources>

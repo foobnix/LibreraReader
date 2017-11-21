@@ -339,7 +339,7 @@ public class SearchFragment extends BaseListFragment {
                     }
                 });
 
-                p.getMenu().add(R.string.series).setIcon(R.drawable.glyphicons_710_list_numbered).setOnMenuItemClickListener(new OnMenuItemClickListener() {
+                p.getMenu().add(R.string.serie).setIcon(R.drawable.glyphicons_710_list_numbered).setOnMenuItemClickListener(new OnMenuItemClickListener() {
 
                     @Override
                     public boolean onMenuItemClick(MenuItem item) {
@@ -450,7 +450,7 @@ public class SearchFragment extends BaseListFragment {
 
             if (AppState.get().libraryMode == AppState.MODE_SERIES) {
                 gridList.setImageResource(R.drawable.glyphicons_710_list_numbered);
-                filterLine.setHint(R.string.series);
+                filterLine.setHint(R.string.serie);
                 filterLine.setTag(AppState.MODE_SERIES);
 
                 if (seriesMetaItems.isEmpty()) {

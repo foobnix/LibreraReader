@@ -238,12 +238,9 @@
    <string name="open_in_the_dictionary">辞書で開きます</string>
    <string name="lock_for_pdf_and_djvu_when_opening">開いたときにPDFとDJVUのためのロック</string>
    <string name="cover_image_size">カバー画像サイズ</string>
-   <string name="author">著者</string>
    <string name="close_application_">閉じるアプリケーション？</string>
    <string name="cover">カバー</string>
    <string name="application_cannot_open_the_book">本を開くことができませんアプリケーション</string>
-   <string name="genre">ジャンル</string>
-   <string name="series">シリーズ</string>
    <string name="rate_pdf_reader1">ご意見を書いてください、それは我々にとって非常に重要ではGoogle Play上で私たちを評価</string>
    <string name="enable_effect_of_the_book_cover">ブックカバーの効果を有効にします</string>
    <string name="archive_files">アーカイブファイル</string>
@@ -421,4 +418,7 @@
    <string name="restore_defaults_short">デフォルトを復元</string>
    <string name="heading_and_subheadings">見出しと小見出し</string>
    <string name="headings_only">見出しのみ</string>
+   <string name="genre">ジャンル</string>
+   <string name="author">著者</string>
+   <string name="serie">セリエ</string>
 </resources>

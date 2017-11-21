@@ -214,7 +214,7 @@ public class AppState {
     public int flippingInterval = 10;
     public int ttsTimer = 60;
 
-    public int outlineMode = OUTLINE_HEADERS_AND_SUBHEADERES;
+    public int outlineMode = OUTLINE_ONLY_HEADERS;
 
     public boolean longTapEnable = true;
 

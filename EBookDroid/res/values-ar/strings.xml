@@ -238,12 +238,9 @@
    <string name="open_in_the_dictionary">فتح في القاموس</string>
    <string name="lock_for_pdf_and_djvu_when_opening">قفل لقوات الدفاع الشعبي وDJVU عند فتح</string>
    <string name="cover_image_size">حجم صورة الغلاف</string>
-   <string name="author">مؤلف</string>
    <string name="close_application_">انهيار الطلب؟</string>
    <string name="cover">غطاء، يغطي</string>
    <string name="application_cannot_open_the_book">التطبيق لا يمكن فتح الكتاب</string>
-   <string name="genre">نوع أدبي</string>
-   <string name="series">سلسلة</string>
    <string name="rate_pdf_reader1">يرجى إرسال ملاحظاتك ومعدل لنا في Google Play من المهم جدا بالنسبة لنا</string>
    <string name="enable_effect_of_the_book_cover">تمكين تأثير غلاف الكتاب</string>
    <string name="archive_files">ملفات الأرشيف</string>
@@ -421,4 +418,7 @@
    <string name="restore_defaults_short">استعادة الافتراضي</string>
    <string name="heading_and_subheadings">العناوين والعناوين الفرعية</string>
    <string name="headings_only">العناوين فقط</string>
+   <string name="genre">نوع أدبي</string>
+   <string name="author">مؤلف</string>
+   <string name="serie">الدوري الايطالي</string>
 </resources>

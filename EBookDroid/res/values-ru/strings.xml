@@ -236,12 +236,9 @@
    <string name="open_in_the_dictionary">Открывать выдел. текст в словаре</string>
    <string name="lock_for_pdf_and_djvu_when_opening">Всегда блокировать изменение ширины страниц и их смещения в стороны при открытии PDF/DJVU</string>
    <string name="cover_image_size">Размер обложек</string>
-   <string name="author">Авторы</string>
    <string name="close_application_">Закрыть приложение?</string>
    <string name="cover">Обложки</string>
    <string name="application_cannot_open_the_book">Приложение не может открыть файл</string>
-   <string name="genre">Жанр</string>
-   <string name="series">Серия</string>
    <string name="rate_pdf_reader1">Пожалуйста, напишите свой отзыв и оцените нас на Google Play. Это очень важно для развития приложения.</string>
    <string name="enable_effect_of_the_book_cover">Сделать книжные обложки реалистичными</string>
    <string name="archive_files">Файл(ы) в архиве</string>
@@ -421,4 +418,7 @@
    <string name="restore_defaults_short">Вернуть значения по умолчанию</string>
    <string name="heading_and_subheadings">Заголовки и подзаголовки</string>
    <string name="headings_only">Только заголовки</string>
+   <string name="genre">Жанр</string>
+   <string name="author">Автор</string>
+   <string name="serie">Серия</string>
 </resources>

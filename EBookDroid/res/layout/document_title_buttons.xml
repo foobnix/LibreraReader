@@ -95,6 +95,7 @@
      <com.foobnix.pdf.info.view.UnderlineImageView
         android:id="@+id/cut"
         style="@style/buttonWhite"
+        android:visibility="gone"
         android:contentDescription="cut pages into two"
         android:layout_width="@dimen/wh_button"
         android:layout_height="@dimen/wh_button"

@@ -238,12 +238,9 @@
    <string name="open_in_the_dictionary">Відкрити в словнику</string>
    <string name="lock_for_pdf_and_djvu_when_opening">Замок для PDF і DJVU при відкритті</string>
    <string name="cover_image_size">Розмір зображення обкладинки</string>
-   <string name="author">Автор</string>
    <string name="close_application_">Закрити додаток?</string>
    <string name="cover">Обкладинка</string>
    <string name="application_cannot_open_the_book">Додаток не може відкрити книгу</string>
-   <string name="genre">Жанр</string>
-   <string name="series">Серія</string>
    <string name="rate_pdf_reader1">Будь ласка, напишіть свій відгук і оцініть нас на Google Play. Це дуже важливо для нас.</string>
    <string name="enable_effect_of_the_book_cover">Включити ефект обкладинки книги</string>
    <string name="archive_files">Архівні файли</string>
@@ -421,4 +418,7 @@
    <string name="restore_defaults_short">Відновити значення за замовчуванням</string>
    <string name="heading_and_subheadings">Рубрики та підзаголовки</string>
    <string name="headings_only">Тільки заголовки</string>
+   <string name="genre">Жанр</string>
+   <string name="author">Автор</string>
+   <string name="serie">Серія</string>
 </resources>

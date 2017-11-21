@@ -239,12 +239,9 @@
    <string name="enable_volume_keys">Inschakelen volumetoetsen</string>
    <string name="lock_for_pdf_and_djvu_when_opening">Slot voor PDF en DJVU bij het openen</string>
    <string name="cover_image_size">Cover image size</string>
-   <string name="author">Auteur</string>
    <string name="close_application_">Sluit de toepassing?</string>
    <string name="cover">Deksel</string>
    <string name="application_cannot_open_the_book">De toepassing kan het boek niet openen</string>
-   <string name="genre">Genre</string>
-   <string name="series">Serie</string>
    <string name="extracting_information_from_books">Extraheren van informatie uit boeken</string>
    <string name="enable_effect_of_the_book_cover">Inschakelen effect van de cover van het boek</string>
    <string name="archive_files">Archiefbestanden</string>
@@ -421,4 +418,7 @@
    <string name="restore_defaults_short">Standaard herstellen</string>
    <string name="heading_and_subheadings">Koppen en subkoppen</string>
    <string name="headings_only">Alleen rubrieken</string>
+   <string name="genre">Genre</string>
+   <string name="author">Auteur</string>
+   <string name="serie">Serie</string>
 </resources>

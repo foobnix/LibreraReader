@@ -238,12 +238,9 @@
    <string name="open_in_the_dictionary">Otvorená v slovníku</string>
    <string name="lock_for_pdf_and_djvu_when_opening">Lock pre PDF a DJVU pri otváraní</string>
    <string name="cover_image_size">Veľkosť Cover image</string>
-   <string name="author">Autor</string>
    <string name="close_application_">Close aplikácie?</string>
    <string name="cover">Veko</string>
    <string name="application_cannot_open_the_book">Aplikácia nemôže otvoriť knihu</string>
-   <string name="genre">Štýl</string>
-   <string name="series">Séria</string>
    <string name="rate_pdf_reader1">Prosím, napíšte svoj názor a hodnotiť nám na Google Play je to pre nás veľmi dôležité,</string>
    <string name="enable_effect_of_the_book_cover">Umožňujú účinok obalu knihy</string>
    <string name="archive_files">Archívne súbory</string>
@@ -421,4 +418,7 @@
    <string name="restore_defaults_short">Obnoviť predvolené</string>
    <string name="heading_and_subheadings">Nadpisy a podpoložky</string>
    <string name="headings_only">Iba názvy</string>
+   <string name="genre">Štýl</string>
+   <string name="author">Autor</string>
+   <string name="serie">Serie</string>
 </resources>

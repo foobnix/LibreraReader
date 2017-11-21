@@ -239,12 +239,9 @@
    <string name="enable_volume_keys">Aktivera volymknapparna</string>
    <string name="lock_for_pdf_and_djvu_when_opening">Lås för PDF och DjVu när du öppnar</string>
    <string name="cover_image_size">Cover bildstorlek</string>
-   <string name="author">Författare</string>
    <string name="close_application_">Stäng programmet?</string>
    <string name="cover">Omslag</string>
    <string name="application_cannot_open_the_book">Ansökan kan inte öppna boken</string>
-   <string name="genre">Genre</string>
-   <string name="series">Serier</string>
    <string name="extracting_information_from_books">Extrahera information från böcker</string>
    <string name="enable_effect_of_the_book_cover">Aktivera effekten av bokomslaget</string>
    <string name="archive_files">Arkiv~~POS=TRUNC filer~~POS=HEADCOMP</string>
@@ -421,4 +418,7 @@
    <string name="restore_defaults_short">Återställa standard</string>
    <string name="heading_and_subheadings">Rubrik och underrubriker</string>
    <string name="headings_only">Endast rubriker</string>
+   <string name="genre">Genre</string>
+   <string name="author">Författare</string>
+   <string name="serie">Serie</string>
 </resources>

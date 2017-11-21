@@ -238,12 +238,9 @@
    <string name="open_in_the_dictionary">Otwórz w słowniku</string>
    <string name="lock_for_pdf_and_djvu_when_opening">Blokada dla PDF i DjVu przy otwieraniu</string>
    <string name="cover_image_size">Rozmiar okładki</string>
-   <string name="author">Autor</string>
    <string name="close_application_">Zamknąć program?</string>
    <string name="cover">Okładka</string>
    <string name="application_cannot_open_the_book">Aplikacja nie może otworzyć książki</string>
-   <string name="genre">Gatunek</string>
-   <string name="series">Seria</string>
    <string name="rate_pdf_reader1">Prosimy, napisz swoją opinię i oceń nas na Google Play, to dla nas bardzo ważne!</string>
    <string name="enable_effect_of_the_book_cover">Włącz efekt okładki</string>
    <string name="archive_files">Pliki archiwum</string>
@@ -421,4 +418,7 @@
    <string name="restore_defaults_short">Przywróć wartości domyślne</string>
    <string name="heading_and_subheadings">Pozycje i podpozycje</string>
    <string name="headings_only">Tylko nagłówki</string>
+   <string name="genre">Gatunek muzyczny</string>
+   <string name="author">Autor</string>
+   <string name="serie">Serie</string>
 </resources>

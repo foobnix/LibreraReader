@@ -238,12 +238,9 @@
    <string name="open_in_the_dictionary">Abrir no dicionário</string>
    <string name="lock_for_pdf_and_djvu_when_opening">Fechadura para PDF e DJVU ao abrir</string>
    <string name="cover_image_size">Tamanho imagem da capa</string>
-   <string name="author">Autor</string>
    <string name="close_application_">Fechar aplicação?</string>
    <string name="cover">Cobrir</string>
    <string name="application_cannot_open_the_book">Aplicativo não pode abrir o livro</string>
-   <string name="genre">Gênero</string>
-   <string name="series">Série</string>
    <string name="rate_pdf_reader1">Por favor, escreva o seu feedback e avaliar-nos no Google Play é muito importante para nós</string>
    <string name="enable_effect_of_the_book_cover">Ativar efeito da capa do livro</string>
    <string name="archive_files">Os ficheiros de arquivo</string>
@@ -421,4 +418,7 @@
    <string name="restore_defaults_short">Restaurar padrão</string>
    <string name="heading_and_subheadings">Rubricas e subposições</string>
    <string name="headings_only">Somente títulos</string>
+   <string name="genre">Gênero</string>
+   <string name="author">Autor</string>
+   <string name="serie">Série</string>
 </resources>

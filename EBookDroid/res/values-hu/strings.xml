@@ -240,12 +240,9 @@
    <string name="enable_volume_keys">Hangerő gombok engedélyezése</string>
    <string name="lock_for_pdf_and_djvu_when_opening">PDF és DJVU zárolás megnyitáskor</string>
    <string name="cover_image_size">Borító képmérete</string>
-   <string name="author">Szerző</string>
    <string name="close_application_">Bezárja az alkalmazást?</string>
    <string name="cover">Borító</string>
    <string name="application_cannot_open_the_book">Az alkalmazás nem tudja megnyitni a könyvet</string>
-   <string name="genre">Műfaj</string>
-   <string name="series">Sorozatok</string>
    <string name="extracting_information_from_books">Információ kinyerése a könyvekből</string>
    <string name="enable_effect_of_the_book_cover">Könyvborító effekt engedélyezése</string>
    <string name="archive_files">Archív fájlok</string>
@@ -421,4 +418,7 @@
    <string name="restore_defaults_short">Alapértelmezett visszaállítása</string>
    <string name="heading_and_subheadings">Fejezetek és alszámok</string>
    <string name="headings_only">Csak a fejlécek</string>
+   <string name="genre">Műfaj</string>
+   <string name="author">Szerző</string>
+   <string name="serie">Serie</string>
 </resources>

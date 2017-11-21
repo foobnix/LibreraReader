@@ -238,12 +238,9 @@
    <string name="open_in_the_dictionary">Öffnen Sie im Wörterbuch</string>
    <string name="lock_for_pdf_and_djvu_when_opening">Schloss für PDF und DJVU beim Öffnen</string>
    <string name="cover_image_size">Titelbildgröße</string>
-   <string name="author">Autor</string>
    <string name="close_application_">Close-Anwendung?</string>
    <string name="cover">Abdeckung</string>
    <string name="application_cannot_open_the_book">Die Anwendung kann das Buch nicht öffnen</string>
-   <string name="genre">Genre</string>
-   <string name="series">Serie</string>
    <string name="rate_pdf_reader1">Bitte schreiben Sie Ihre Meinung und bewerten Sie uns auf Google Play ist es für uns sehr wichtig ist,</string>
    <string name="enable_effect_of_the_book_cover">Aktivieren Wirkung des Buchdeckels</string>
    <string name="archive_files">Archivdateien</string>
@@ -421,4 +418,7 @@
    <string name="restore_defaults_short">Standard wiederherstellen</string>
    <string name="heading_and_subheadings">Überschriften und Unterpositionen</string>
    <string name="headings_only">Nur Überschriften</string>
+   <string name="genre">Genre</string>
+   <string name="author">Autor</string>
+   <string name="serie">Serie</string>
 </resources>

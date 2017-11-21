@@ -239,12 +239,9 @@
    <string name="enable_volume_keys">Bật phím âm lượng</string>
    <string name="lock_for_pdf_and_djvu_when_opening">Khóa cho PDF và DjVu khi mở</string>
    <string name="cover_image_size">Kích thước ảnh bìa</string>
-   <string name="author">Tác giả</string>
    <string name="close_application_">Đóng ứng dụng?</string>
    <string name="cover">Che</string>
    <string name="application_cannot_open_the_book">Ứng dụng không thể mở quyển sách</string>
-   <string name="genre">Thể loại nhạc</string>
-   <string name="series">Loạt</string>
    <string name="extracting_information_from_books">Trích xuất thông tin từ sách</string>
    <string name="enable_effect_of_the_book_cover">Kích hoạt tính năng tác dụng của bìa sách</string>
    <string name="archive_files">Lưu trữ file</string>
@@ -421,4 +418,7 @@
    <string name="restore_defaults_short">Khôi phục lại mặc định</string>
    <string name="heading_and_subheadings">Tiêu đề và phân nhóm phụ</string>
    <string name="headings_only">Chỉ tiêu đề</string>
+   <string name="genre">Thể loại</string>
+   <string name="author">Tác giả</string>
+   <string name="serie">Serie</string>
 </resources>
