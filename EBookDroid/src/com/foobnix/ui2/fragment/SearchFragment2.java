@@ -17,13 +17,11 @@ import com.foobnix.dao2.FileMeta;
 import com.foobnix.pdf.info.R;
 import com.foobnix.pdf.info.TintUtil;
 import com.foobnix.pdf.info.fragment.KeyCodeDialog;
-import com.foobnix.pdf.info.view.Dialogs;
 import com.foobnix.pdf.info.view.MyPopupMenu;
 import com.foobnix.pdf.info.widget.PrefDialogs;
 import com.foobnix.pdf.info.wrapper.AppState;
 import com.foobnix.pdf.info.wrapper.DocumentController;
 import com.foobnix.pdf.info.wrapper.PopupHelper;
-import com.foobnix.sys.TempHolder;
 import com.foobnix.ui2.AppDB;
 import com.foobnix.ui2.AppDB.SEARCH_IN;
 import com.foobnix.ui2.AppDB.SORT_BY;
@@ -68,7 +66,6 @@ public class SearchFragment2 extends UIFragment<FileMeta> {
     private static final String CMD_KEYCODE = "@@keycode_config";
     private static final String CMD_LONG_TAP_ON_OFF = "@@long_tap_on_off";
     private static final String CMD_FULLSCREEN_ON_OFF = "@@fullscreen_on_off";
-    private static final String CMD_CONTRAST = "@@contrast_brightness";
 
     public static int NONE = -1;
 
@@ -117,7 +114,6 @@ public class SearchFragment2 extends UIFragment<FileMeta> {
         autocomplitions.add(CMD_FULLSCREEN_ON_OFF);
         autocomplitions.add(CMD_LONG_TAP_ON_OFF);
         autocomplitions.add(CMD_KEYCODE);
-        autocomplitions.add(CMD_CONTRAST);
 
         updateFilterListAdapter();
     }
@@ -452,22 +448,6 @@ public class SearchFragment2 extends UIFragment<FileMeta> {
 
         if (CMD_KEYCODE.equals(txt)) {
             new KeyCodeDialog(getActivity(), null);
-            searchEditText.setText("");
-        }
-
-        if (CMD_CONTRAST.equals(txt)) {
-
-            Dialogs.showContrastDialogByUrl(getActivity(), new Runnable() {
-
-                @Override
-                public void run() {
-                    ImageLoader.getInstance().clearDiskCache();
-                    ImageLoader.getInstance().clearMemoryCache();
-                    TempHolder.listHash++;
-                    notifyFragment();
-
-                }
-            });
             searchEditText.setText("");
         }
 
