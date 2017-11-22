@@ -660,7 +660,7 @@ public class DocumentWrapperUI {
         onCloseBook = a.findViewById(R.id.close);
         onCloseBook.setOnClickListener(onClose);
         onCloseBook.setOnLongClickListener(onCloseLongClick);
-        onCloseBook.setVisibility(View.GONE);
+        onCloseBook.setVisibility(View.INVISIBLE);
 
         showSearch = (ImageView) a.findViewById(R.id.onShowSearch);
         showSearch.setOnClickListener(onShowSearch);
@@ -910,6 +910,7 @@ public class DocumentWrapperUI {
                     }
                 }
             }, controller.getCurentPage() - 1, DocumentWrapperUI.this);
+            Keyboards.hideNavigation(a);
         }
     };
 

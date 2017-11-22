@@ -549,6 +549,7 @@ public class HorizontalViewActivity extends FragmentActivity {
                         }
                     }
                 }, documentController.getCurentPage(), null);
+                Keyboards.hideNavigation(HorizontalViewActivity.this);
 
             }
         });
