@@ -39,6 +39,7 @@ import com.foobnix.pdf.info.model.OutlineLinkWrapper;
 import com.foobnix.pdf.info.wrapper.AppState;
 import com.foobnix.pdf.info.wrapper.DocumentWrapperUI;
 import com.foobnix.sys.AdvModeController;
+import com.foobnix.sys.TempHolder;
 import com.foobnix.ui2.AppDB;
 
 import android.app.Activity;
@@ -598,7 +599,7 @@ public class ViewerActivityController extends ActionController<ViewerActivity> i
         private final Runnable onBookLoaded;
 
         public BookLoadTask(final String fileName, final String password, Runnable onBookLoaded) {
-            super(getManagedComponent(), R.string.msg_loading, false);
+            super(getManagedComponent());
             m_fileName = fileName;
             m_password = password;
             this.onBookLoaded = onBookLoaded;
@@ -606,7 +607,14 @@ public class ViewerActivityController extends ActionController<ViewerActivity> i
 
         @Override
         public void run() {
-            execute(" ");
+            execute();
+        }
+
+        @Override
+        public void onBookCancel() {
+            super.onBookCancel();
+            LOG.d("onBookCancel");
+            closeActivity(null);
         }
 
         @Override
@@ -634,8 +642,9 @@ public class ViewerActivityController extends ActionController<ViewerActivity> i
         @Override
         protected void onPostExecute(Throwable result) {
             try {
-                if (isCancelled()) {
-                    closeProgressDialog();
+                LOG.d("onPostExecute");
+                if (TempHolder.get().loadingCancelled) {
+                    super.onPostExecute(result);
                     closeActivity(null);
                     return;
                 }

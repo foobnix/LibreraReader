@@ -326,6 +326,9 @@ public class EpubExtractor extends BaseExtractor {
 
             ZipEntry nextEntry = null;
             while ((nextEntry = zipInputStream.getNextEntry()) != null) {
+                if (TempHolder.get().loadingCancelled) {
+                    break;
+                }
                 if (nextEntry.getName().equals(attachmentName)) {
                     if (attachmentName.contains("/")) {
                         attachmentName = attachmentName.substring(attachmentName.lastIndexOf("/") + 1);
