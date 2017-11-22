@@ -1412,6 +1412,7 @@ public class DocumentWrapperUI {
                 }
             });
             p.show();
+            Keyboards.hideNavigation(controller.getActivity());
 
         }
     };

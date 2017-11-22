@@ -5,12 +5,10 @@ import java.util.List;
 
 import com.foobnix.android.utils.BaseItemLayoutAdapter;
 import com.foobnix.android.utils.Dips;
-import com.foobnix.android.utils.Keyboards;
 import com.foobnix.android.utils.LOG;
 import com.foobnix.pdf.info.R;
 import com.foobnix.pdf.info.TintUtil;
 
-import android.app.Activity;
 import android.content.Context;
 import android.util.TypedValue;
 import android.view.MenuItem.OnMenuItemClickListener;
@@ -112,7 +110,6 @@ public class MyPopupMenu {
             p1.setWidth(200);
         }
         p1.show();
-        Keyboards.hideNavigation((Activity) c);
 
     }
 

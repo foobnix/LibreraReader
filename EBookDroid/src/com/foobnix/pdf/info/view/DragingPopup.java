@@ -248,6 +248,7 @@ public abstract class DragingPopup {
                 public void onClick(View v) {
                     titlePopupMenu.setAnchor(v);
                     titlePopupMenu.show();
+
                 }
             });
         }
