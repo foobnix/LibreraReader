@@ -804,14 +804,16 @@ public class PrefFragment2 extends UIFragment {
             }
         });
         // What is new
-        ((CheckBox) inflate.findViewById(R.id.isShowWhatIsNewDialog)).setChecked(AppState.getInstance().isShowWhatIsNewDialog);
-        ((CheckBox) inflate.findViewById(R.id.isShowWhatIsNewDialog)).setOnCheckedChangeListener(new OnCheckedChangeListener() {
+        CheckBox showWhatIsNew = (CheckBox) inflate.findViewById(R.id.isShowWhatIsNewDialog);
+        showWhatIsNew.setChecked(AppState.getInstance().isShowWhatIsNewDialog);
+        showWhatIsNew.setOnCheckedChangeListener(new OnCheckedChangeListener() {
 
             @Override
             public void onCheckedChanged(final CompoundButton buttonView, final boolean isChecked) {
                 AppState.getInstance().isShowWhatIsNewDialog = isChecked;
             }
         });
+
         final TextView whatIsNew = (TextView) inflate.findViewById(R.id.whatIsNew);
         TxtUtils.underlineTextView(whatIsNew);
         whatIsNew.setOnClickListener(new View.OnClickListener() {

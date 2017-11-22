@@ -12,6 +12,7 @@ import com.foobnix.ext.CacheZipUtils;
 import com.foobnix.ext.EpubExtractor;
 import com.foobnix.pdf.info.JsonHelper;
 import com.foobnix.pdf.info.model.BookCSS;
+import com.foobnix.sys.TempHolder;
 
 public class EpubContext extends PdfContext {
 
@@ -29,6 +30,10 @@ public class EpubContext extends PdfContext {
 
         if (BookCSS.get().isAutoHypens && !cacheFile.isFile()) {
             EpubExtractor.proccessHypens(fileName, cacheFile.getPath());
+        }
+        if (TempHolder.get().loadingCancelled) {
+            removeTempFiles();
+            return null;
         }
 
         String bookPath = BookCSS.get().isAutoHypens ? cacheFile.getPath() : fileName;

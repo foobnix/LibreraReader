@@ -614,6 +614,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="0"
+                    android:singleLine="false"
+                    android:maxLines="2"
                     android:text="@string/restore_defaults_short" />
             </LinearLayout>
 

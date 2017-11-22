@@ -77,7 +77,7 @@ import android.widget.TextView;
 public class DocumentWrapperUI {
 
     private static final int TRANSPARENT_UI = 240;
-    View menuLayout, moveLeft, moveRight, pages, lineNavgination;
+    View menuLayout, moveLeft, moveRight, pages, lineNavgination, onCloseBook;
     ImageView imageMenuArrow;
     View adFrame;
     SeekBar seekBar;
@@ -657,9 +657,10 @@ public class DocumentWrapperUI {
         fullscreen.setOnClickListener(onFull);
         fullscreen.setImageResource(AppState.get().isFullScreen ? R.drawable.glyphicons_487_fit_frame_to_image : R.drawable.glyphicons_488_fit_image_to_frame);
 
-        View close = a.findViewById(R.id.close);
-        close.setOnClickListener(onClose);
-        close.setOnLongClickListener(onCloseLongClick);
+        onCloseBook = a.findViewById(R.id.close);
+        onCloseBook.setOnClickListener(onClose);
+        onCloseBook.setOnLongClickListener(onCloseLongClick);
+        onCloseBook.setVisibility(View.GONE);
 
         showSearch = (ImageView) a.findViewById(R.id.onShowSearch);
         showSearch.setOnClickListener(onShowSearch);
@@ -1646,6 +1647,8 @@ public class DocumentWrapperUI {
                     currentSeek.setVisibility(View.VISIBLE);
                     maxSeek.setVisibility(View.VISIBLE);
                     seekBar.setVisibility(View.VISIBLE);
+
+                    onCloseBook.setVisibility(View.VISIBLE);
 
                 }
             });

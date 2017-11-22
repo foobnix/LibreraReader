@@ -187,7 +187,7 @@
    <string name="vertical">Вертикальное</string>
    <string name="direction_of_scrolling">Направление прокрутки</string>
    <string name="rotate_page">Угол поворота страниц</string>
-   <string name="advanced_settings">Расширенные настройки</string>
+   <string name="advanced_settings">Расширенные функции</string>
    <string name="more">Больше</string>
    <string name="font_name">Шрифт</string>
    <string name="tap_zone_size">Размер зон листаний</string>
@@ -240,7 +240,7 @@
    <string name="cover">Обложки</string>
    <string name="application_cannot_open_the_book">Приложение не может открыть файл</string>
    <string name="rate_pdf_reader1">Пожалуйста, напишите свой отзыв и оцените нас на Google Play. Это очень важно для развития приложения.</string>
-   <string name="enable_effect_of_the_book_cover">Сделать книжные обложки реалистичными</string>
+   <string name="enable_effect_of_the_book_cover">Придать обложкам реалистичности</string>
    <string name="archive_files">Файл(ы) в архиве</string>
    <string name="column_count">Количество столбцов:</string>
    <string name="crop_images_in_the_book_cover">Кадрировать обложки книг</string>
@@ -310,7 +310,7 @@
    <string name="remind_msg">Пожалуйста, сделайте перерыв и дайте глазам немного отдохнуть</string>
    <string name="automatic_page_flipping">Автоперелистывание страниц</string>
    <string name="start">Начать</string>
-   <string name="show_bottom_panel">Показывать строку состояния</string>
+   <string name="show_bottom_panel">Отображать строку состояния</string>
    <string name="interval_sec_">Интервал (в секундах)</string>
    <string name="library_settings">Настройки библиотеки</string>
    <string name="by_name">Имя</string>
@@ -335,7 +335,7 @@
    <string name="go_to_the_library">Перейти в библиотеку</string>
    <string name="book_styles">Стили книг</string>
    <string name="language">Язык:</string>
-   <string name="show_progress_of_reading">Отображать полосу прогресса</string>
+   <string name="show_progress_of_reading">Показывать полосу прогресса</string>
    <string name="line_height">Толщина полосы прогресса</string>
    <string name="display_chapters_on_the_progress_line">Делать засечки глав в полосе прогресса</string>
    <string name="enable_brightness_adjustment_on_the_left_of_the_screen">Регулировать яркость подсветки свайпом от левой границы экрана</string>
@@ -401,8 +401,8 @@
    <string name="page_position">Позиционирование страницы</string>
    <string name="paper">Бумага</string>
    <string name="normal">Нормальный</string>
-   <string name="small">Маленький</string>
-   <string name="large">Большой</string>
+   <string name="small">Мелкий</string>
+   <string name="large">Крупный</string>
    <string name="make_text_bold">Сделать шрифт текста полужирным</string>
    <string name="show_books">Показывать книги</string>
    <string name="layout">Вид</string>
@@ -414,7 +414,7 @@
    <string name="opening_book_with_losed_lock">Всегда блокировать смещения страниц и изменение их ширины при открытии PDF/DJVU</string>
    <string name="opening_book_with_cropped_borders">Активировать автообрезку пустых полей при каждом открытии PDF/DJVU</string>
    <string name="do_you_want_to_clear_everything_">Уверены, что хотите всё очистить?</string>
-   <string name="restore_defaults_full">Действительно хотите вернуть значения по умолчанию?</string>
+   <string name="restore_defaults_full">Хотите вернуть значения по умолчанию?</string>
    <string name="restore_defaults_short">Вернуть значения по умолчанию</string>
    <string name="heading_and_subheadings">Заголовки и подзаголовки</string>
    <string name="headings_only">Только заголовки</string>

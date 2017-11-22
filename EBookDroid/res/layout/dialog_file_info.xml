@@ -41,7 +41,7 @@
         android:layout_height="wrap_content"
         android:layout_weight="0"
         android:ellipsize="end"
-        android:maxLines="4"
+        android:maxLines="3"
         android:text="@string/msg_loading" />
 
     <LinearLayout
