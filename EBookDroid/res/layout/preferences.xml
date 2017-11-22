@@ -605,9 +605,9 @@
                 android:text="@string/recent" />
 
             <TextView
-                android:layout_marginLeft="10dip"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="10dip"
                 android:text="@string/layout" />
 
             <TextView
@@ -656,15 +656,19 @@
             <CheckBox
                 android:id="@+id/isRememberMode"
                 android:layout_width="wrap_content"
+                android:maxLines="2"
+                android:layout_weight="1"
                 android:layout_height="wrap_content"
                 android:text="@string/remember_my_choose" />
 
             <TextView
+                android:layout_weight="1"
                 android:id="@+id/selectedOpenMode"
                 style="@style/textLink"
-                android:layout_width="wrap_content"
+                android:singleLine="false"
+                android:maxLines="2"
+                android:layout_width="150dip"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="10dip"
                 android:text="@string/music_mode" />
         </LinearLayout>
 
@@ -721,16 +725,18 @@
                 android:id="@+id/isShowWhatIsNewDialog"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="0"
+                android:layout_weight="1"
+                android:maxLines="2"
                 android:text="@string/show_the_dialog_what_is_new_for_updates" />
 
             <TextView
+                  android:layout_weight="1"
                 android:id="@+id/whatIsNew"
                 style="@style/textLink"
-                android:layout_width="wrap_content"
+                android:singleLine="false"
+                android:maxLines="2"
+                android:layout_width="150dip"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="10dip"
-                android:layout_weight="0"
                 android:text="@string/what_is_new" />
         </LinearLayout>
 
@@ -816,7 +822,7 @@
                     android:textSize="12sp" />
             </LinearLayout>
         </LinearLayout>
-        
+
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -835,8 +841,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="8dip"
-                android:text="Dowloads/Librera"
-                 />
+                android:text="Dowloads/Librera" />
         </LinearLayout>
 
         <LinearLayout
