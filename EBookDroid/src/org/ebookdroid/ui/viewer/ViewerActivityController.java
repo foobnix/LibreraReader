@@ -614,6 +614,7 @@ public class ViewerActivityController extends ActionController<ViewerActivity> i
         public void onBookCancel() {
             super.onBookCancel();
             LOG.d("onBookCancel");
+            TempHolder.get().loadingCancelled = true;
             closeActivity(null);
         }
 
