@@ -805,7 +805,7 @@ public class ExtUtils {
                         jsonObject = jsonObject.getJSONObject(ExportSettingsManager.PREFIX_BOOKMARKS_PREFERENCES);
                     }
 
-                    ExportSettingsManager.importFromJSon(jsonObject, AppSharedPreferences.get().getBookmarkPreferences(), null);
+                    ExportSettingsManager.importFromJSon(jsonObject, AppSharedPreferences.get().getBookmarkPreferences());
                     Toast.makeText(a, R.string.success, Toast.LENGTH_LONG).show();
                     onSuccess.run();
                 } catch (Exception e) {

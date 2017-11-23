@@ -517,6 +517,8 @@ public class HorizontalViewActivity extends FragmentActivity {
                     });
                 }
                 p.show();
+                Keyboards.hideNavigation(HorizontalViewActivity.this);
+
             }
         });
 
@@ -547,6 +549,7 @@ public class HorizontalViewActivity extends FragmentActivity {
                         }
                     }
                 }, documentController.getCurentPage(), null);
+                Keyboards.hideNavigation(HorizontalViewActivity.this);
 
             }
         });

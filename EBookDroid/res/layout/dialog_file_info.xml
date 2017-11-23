@@ -206,35 +206,36 @@
         android:maxLines="4"
         android:textSize="12sp" />
 
-    <RelativeLayout
+    <LinearLayout
+        android:id="@+id/openFile"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal" >
-
-        <TextView
-            android:id="@+id/openFile"
-            style="@style/textLinkWhite"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:background="@drawable/bg_search_second"
-            android:gravity="center"
-            android:minWidth="200dip"
-            android:padding="10dip"
-            android:text="@string/read_a_book"
-            android:textSize="16sp"
-            android:textStyle="bold" />
+        android:layout_gravity="center"
+        android:background="@drawable/bg_search_second" >
 
         <ImageView
             android:id="@+id/starIcon"
             android:layout_width="40dip"
             android:layout_height="40dip"
             android:layout_alignLeft="@+id/openFile"
-            android:layout_centerVertical="true"
             android:background="?android:attr/selectableItemBackground"
             android:padding="8dip"
+            android:layout_gravity="center_vertical"
             android:src="@drawable/star_1"
             android:tint="@color/white" />
-    </RelativeLayout>
+
+        <TextView
+            
+            android:textColor="#ccffffff"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:gravity="center"
+            android:minWidth="100dip"
+            android:padding="10dip"
+            android:text="@string/read_a_book"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+    </LinearLayout>
 
 </LinearLayout>

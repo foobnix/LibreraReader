@@ -8,7 +8,6 @@ import org.ebookdroid.BookType;
 import org.ebookdroid.ui.viewer.ViewerActivity;
 import org.greenrobot.eventbus.EventBus;
 
-import com.foobnix.android.utils.Keyboards;
 import com.foobnix.pdf.info.ExtUtils;
 import com.foobnix.pdf.info.R;
 import com.foobnix.pdf.info.Urls;
@@ -180,7 +179,6 @@ public class ShareDialog {
                     }
                 });
         builder.show();
-        Keyboards.hideNavigation(a);
     };
 
 }

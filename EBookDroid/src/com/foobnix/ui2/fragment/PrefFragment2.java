@@ -424,7 +424,7 @@ public class PrefFragment2 extends UIFragment {
                         return false;
                     }
                 });
-                p.getMenu().add("e-" + getContext().getString(R.string.paper)).setOnMenuItemClickListener(new OnMenuItemClickListener() {
+                p.getMenu().add("Ink").setOnMenuItemClickListener(new OnMenuItemClickListener() {
 
                     @Override
                     public boolean onMenuItemClick(MenuItem item) {
@@ -1636,7 +1636,7 @@ public class PrefFragment2 extends UIFragment {
         rotationText();
 
         if (AppState.get().isInkMode) {
-            themeColor.setText(TxtUtils.underline("e-" + getContext().getString(R.string.paper)));
+            themeColor.setText(TxtUtils.underline("Ink"));
         } else if (AppState.getInstance().isWhiteTheme) {
             themeColor.setText(TxtUtils.underline(getString(R.string.light)));
         } else {

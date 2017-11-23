@@ -172,7 +172,7 @@ public class FileInformationDialog {
             }
         });
 
-        TextView openFile = TxtUtils.underlineTextView((TextView) dialog.findViewById(R.id.openFile));
+        View openFile = dialog.findViewById(R.id.openFile);
         openFile.setVisibility(ExtUtils.isNotSupportedFile(file) ? View.GONE : View.VISIBLE);
         openFile.setOnClickListener(new OnClickListener() {
 

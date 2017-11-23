@@ -109,6 +109,8 @@
             <TextView
                 android:id="@+id/documentStyle"
                 style="@style/textLink"
+                android:singleLine="false"
+                android:maxLines="2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/document_styles" />
