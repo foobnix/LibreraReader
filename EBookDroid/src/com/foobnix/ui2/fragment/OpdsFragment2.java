@@ -515,6 +515,9 @@ public class OpdsFragment2 extends UIFragment<Entry> {
         }
 
         if (entries == null || entries.isEmpty()) {
+            if ("/".equals(url)) {
+                return;
+            }
             Urls.openWevView(getActivity(), url);
             popStack();
             return;
