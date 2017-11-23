@@ -20,6 +20,7 @@ import com.foobnix.android.utils.TxtUtils;
 import com.foobnix.pdf.info.ADS;
 import com.foobnix.pdf.info.AppsConfig;
 import com.foobnix.pdf.info.DictsHelper;
+import com.foobnix.pdf.info.ExtUtils;
 import com.foobnix.pdf.info.R;
 import com.foobnix.pdf.info.TintUtil;
 import com.foobnix.pdf.info.UiSystemUtils;
@@ -691,6 +692,7 @@ public class DocumentWrapperUI {
         ttsActive = (ImageView) a.findViewById(R.id.ttsActive);
         onTTSStatus(null);
         ttsActive.setOnClickListener(onTextToSpeach);
+
 
         batteryIcon = (ImageView) a.findViewById(R.id.batteryIcon);
         clockIcon = (ImageView) a.findViewById(R.id.clockIcon);
@@ -1643,6 +1645,13 @@ public class DocumentWrapperUI {
                     progressDraw.setOnTouchListener(new HorizontallSeekTouchEventListener(onSeek, controller.getPageCount(), false));
                     if (TxtUtils.isListEmpty(list)) {
                         TintUtil.setTintImage(onDocDontext, Color.LTGRAY);
+                    }
+
+                    if (ExtUtils.isNoTextLayerForamt(controller.getCurrentBook().getPath())) {
+                        TintUtil.setTintImage(textToSpeach, Color.LTGRAY);
+                    }
+                    if (controller.isTextFormat()) {
+                        TintUtil.setTintImage(lockUnlock, Color.LTGRAY);
                     }
 
                     currentSeek.setVisibility(View.VISIBLE);

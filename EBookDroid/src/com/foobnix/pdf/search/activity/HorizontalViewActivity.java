@@ -118,7 +118,7 @@ public class HorizontalViewActivity extends FragmentActivity {
     private AdView adView;
     private NativeExpressAdView adViewNative;
 
-    ImageView lockModelImage, linkHistory, ttsActive, onModeChange, outline, onMove, onBC;
+    ImageView lockModelImage, linkHistory, ttsActive, onModeChange, outline, onMove, onBC, textToSpeach;
 
     DocumentControllerHorizontalView documentController;
 
@@ -424,7 +424,8 @@ public class HorizontalViewActivity extends FragmentActivity {
             }
         });
 
-        findViewById(R.id.bookTTS).setOnClickListener(new View.OnClickListener() {
+        textToSpeach = (ImageView) findViewById(R.id.bookTTS);
+        textToSpeach.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(final View v) {
@@ -727,6 +728,13 @@ public class HorizontalViewActivity extends FragmentActivity {
                     } else if (AppState.get().isLockPDF) {
                         // moveCenter.setVisibility(View.VISIBLE);
                         AppState.get().isLocked = true;
+                    }
+
+                    if (ExtUtils.isNoTextLayerForamt(documentController.getCurrentBook().getPath())) {
+                        TintUtil.setTintImage(textToSpeach, Color.LTGRAY);
+                    }
+                    if (documentController.isTextFormat()) {
+                        TintUtil.setTintImage(lockModelImage, Color.LTGRAY);
                     }
 
                     loadUI();

@@ -190,6 +190,10 @@ public class ExtUtils {
         return ExtUtils.isImageFile(file) || ExtUtils.isFileArchive(file) || BookType.EPUB.is(file.getPath());
     }
 
+    public static boolean isNoTextLayerForamt(String name) {
+        return BookType.DJVU.is(name) || BookType.CBR.is(name) || BookType.CBZ.is(name) || BookType.TIFF.is(name);
+    }
+
     public static String getMimeTypeByUri(Uri uri) {
         String mimeType = null;
 
