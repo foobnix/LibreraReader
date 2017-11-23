@@ -3585,6 +3585,8 @@ public class DragingDialogs {
                                 @Override
                                 public boolean onMenuItemClick(MenuItem item) {
                                     AppState.getInstance().orientation = orIds.get(j);
+                                    screenOrientation.setText(orientations.get(j));
+                                    TxtUtils.underlineTextView(screenOrientation);
                                     controller.doRotation(controller.getActivity());
                                     return false;
                                 }
