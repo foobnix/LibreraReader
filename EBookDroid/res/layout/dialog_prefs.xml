@@ -556,7 +556,7 @@
                         android:layout_height="@dimen/wh_button"
                         android:background="#FFFFFF"
                         android:gravity="center"
-                        android:paddingLeft="30dip"
+                        android:paddingLeft="25dip"
                         android:text="@string/day"
                         android:textColor="#000000"
                         android:textStyle="bold" />
@@ -582,7 +582,7 @@
                         android:layout_height="@dimen/wh_button"
                         android:background="#000000"
                         android:gravity="center"
-                        android:paddingLeft="30dip"
+                        android:paddingLeft="25dip"
                         android:text="@string/nigth"
                         android:textColor="#FFFFFF"
                         android:textStyle="bold" />
