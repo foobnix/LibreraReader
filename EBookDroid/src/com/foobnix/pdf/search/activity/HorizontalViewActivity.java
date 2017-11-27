@@ -532,6 +532,9 @@ public class HorizontalViewActivity extends FragmentActivity {
                 SettingsManager.getBookSettings().cropPages = AppState.get().isCrop;
                 reloadDoc.run();
                 onCrop.underline(AppState.get().isCrop);
+
+                PageImageState.get().isAutoFit = true;
+                EventBus.getDefault().post(new MessageAutoFit(viewPager.getCurrentItem()));
             }
         });
 
@@ -734,7 +737,7 @@ public class HorizontalViewActivity extends FragmentActivity {
                         TintUtil.setTintImage(textToSpeach, Color.LTGRAY);
                     }
                     if (documentController.isTextFormat()) {
-                        TintUtil.setTintImage(lockModelImage, Color.LTGRAY);
+                        // TintUtil.setTintImage(lockModelImage, Color.LTGRAY);
                     }
 
                     loadUI();

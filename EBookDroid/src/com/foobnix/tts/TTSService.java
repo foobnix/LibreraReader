@@ -33,6 +33,7 @@ import android.view.KeyEvent;
 public class TTSService extends Service {
 
     public static final String EXTRA_PATH = "EXTRA_PATH";
+    public static final String EXTRA_ANCHOR = "EXTRA_ANCHOR";
     public static final String EXTRA_INT = "INT";
 
     private static final String TAG = "TTSService";
@@ -69,7 +70,7 @@ public class TTSService extends Service {
                         if (isPlaying) {
                             TTSEngine.get().stop();
                         } else {
-                            playPage("", AppState.get().lastBookPage);
+                            playPage("", AppState.get().lastBookPage, null);
                         }
                     }
                 }
@@ -97,7 +98,7 @@ public class TTSService extends Service {
                 TTSEngine.get().stop();
             } else {
                 if (isPlaying) {
-                    playPage("", AppState.get().lastBookPage);
+                    playPage("", AppState.get().lastBookPage, null);
                 }
             }
         }
@@ -108,20 +109,21 @@ public class TTSService extends Service {
         return null;
     }
 
-    public static void playBookPage(int page, String path) {
+    public static void playBookPage(int page, String path, String anchor) {
         TTSEngine.get().stop();
 
-        Intent intent = playBookIntent(page, path);
+        Intent intent = playBookIntent(page, path, anchor);
 
         LirbiApp.context.startService(intent);
 
     }
 
-    public static Intent playBookIntent(int page, String path) {
+    public static Intent playBookIntent(int page, String path, String anchor) {
         Intent intent = new Intent(LirbiApp.context, TTSService.class);
         intent.setAction(TTSService.ACTION_PLAY_CURRENT_PAGE);
         intent.putExtra(EXTRA_INT, page);
         intent.putExtra(EXTRA_PATH, path);
+        intent.putExtra(EXTRA_ANCHOR, anchor);
         return intent;
     }
 
@@ -145,11 +147,11 @@ public class TTSService extends Service {
         }
         if (TTSNotification.TTS_READ.equals(intent.getAction())) {
             TTSEngine.get().stop();
-            playPage("", AppState.get().lastBookPage);
+            playPage("", AppState.get().lastBookPage, null);
         }
         if (TTSNotification.TTS_NEXT.equals(intent.getAction())) {
             TTSEngine.get().stop();
-            playPage("", AppState.get().lastBookPage + 1);
+            playPage("", AppState.get().lastBookPage + 1, null);
         }
 
         if (ACTION_PLAY_CURRENT_PAGE.equals(intent.getAction())) {
@@ -157,9 +159,10 @@ public class TTSService extends Service {
             isActivated = true;
             int pageNumber = intent.getIntExtra(EXTRA_INT, -1);
             AppState.get().lastBookPath = intent.getStringExtra(EXTRA_PATH);
+            String anchor = intent.getStringExtra(EXTRA_ANCHOR);
 
             if (pageNumber != -1) {
-                playPage("", pageNumber);
+                playPage("", pageNumber, anchor);
             }
 
         }
@@ -179,7 +182,7 @@ public class TTSService extends Service {
     int emptyPageCount = 0;
 
     @TargetApi(Build.VERSION_CODES.ICE_CREAM_SANDWICH_MR1)
-    private void playPage(String preText, int pageNumber) {
+    private void playPage(String preText, int pageNumber, String anchor) {
         if (pageNumber != -1) {
             EventBus.getDefault().post(new MessagePageNumber(pageNumber));
             AppState.get().lastBookPage = pageNumber;
@@ -213,13 +216,22 @@ public class TTSService extends Service {
             CodecPage page = dc.getPage(pageNumber);
             String pageHTML = page.getPageHTML();
             pageHTML = TxtUtils.replaceHTMLforTTS(pageHTML);
+
+            if (TxtUtils.isNotEmpty(anchor)) {
+                int indexOf = pageHTML.indexOf(anchor);
+                if (indexOf > 0) {
+                    pageHTML = pageHTML.substring(indexOf);
+                    LOG.d("find anchor new text", pageHTML);
+                }
+            }
+
             LOG.d(TAG, pageHTML);
 
             if (TxtUtils.isEmpty(pageHTML)) {
                 LOG.d("empty page play next one", emptyPageCount);
                 emptyPageCount++;
                 if (emptyPageCount < 3) {
-                    playPage("", AppState.get().lastBookPage + 1);
+                    playPage("", AppState.get().lastBookPage + 1, null);
                 }
                 return;
             }
@@ -255,7 +267,7 @@ public class TTSService extends Service {
                             return;
                         }
 
-                        playPage(secondPart, AppState.get().lastBookPage + 1);
+                        playPage(secondPart, AppState.get().lastBookPage + 1, null);
                         SettingsManager.updateTempPage(AppState.get().lastBookPath, AppState.get().lastBookPage + 1);
 
                     }
@@ -271,7 +283,7 @@ public class TTSService extends Service {
                             TempHolder.get().timerFinishTime = 0;
                             return;
                         }
-                        playPage(secondPart, AppState.get().lastBookPage + 1);
+                        playPage(secondPart, AppState.get().lastBookPage + 1, null);
                         SettingsManager.updateTempPage(AppState.get().lastBookPath, AppState.get().lastBookPage + 1);
 
                     }

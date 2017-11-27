@@ -291,6 +291,9 @@ public abstract class UIFragment<T> extends Fragment {
     }
 
     public boolean onKeyDown(int keyCode) {
+        if (recyclerView == null) {
+            return false;
+        }
         View childAt = recyclerView.getChildAt(0);
         if (childAt == null) {
             return false;

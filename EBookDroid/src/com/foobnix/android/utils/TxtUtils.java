@@ -90,6 +90,7 @@ public class TxtUtils {
         if (pageHTML == null) {
             return "";
         }
+        LOG.d("pageHTML", pageHTML);
         pageHTML = pageHTML.replace("<b>", " ").replace("</b>", " ").replace("<i>", " ").replace("</i>", " ");
         pageHTML = pageHTML.replace("<br/>", " ");
         pageHTML = pageHTML.replace("<p>", " ").replace("</p>", ". ");

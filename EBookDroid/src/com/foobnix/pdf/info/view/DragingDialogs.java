@@ -416,7 +416,7 @@ public class DragingDialogs {
 
                     @Override
                     public void onClick(View v) {
-                        TTSService.playBookPage(controller.getCurentPageFirst1() - 1, controller.getCurrentBook().getPath());
+                        TTSService.playBookPage(controller.getCurentPageFirst1() - 1, controller.getCurrentBook().getPath(), "");
 
                     }
                 });
@@ -1031,6 +1031,14 @@ public class DragingDialogs {
                     public void onClick(View v) {
                         TTSEngine.get().stop();
                         TTSEngine.get().speek(editText.getText().toString().trim());
+                    }
+                });
+                view.findViewById(R.id.readTTSNext).setOnClickListener(new View.OnClickListener() {
+
+                    @Override
+                    public void onClick(View v) {
+                        TTSEngine.get().stop();
+                        TTSService.playBookPage(controller.getCurentPageFirst1() - 1, controller.getCurrentBook().getPath(), editText.getText().toString().trim());
                     }
                 });
 
@@ -2863,7 +2871,7 @@ public class DragingDialogs {
                 });
 
                 final CustomSeek fontInterval = (CustomSeek) inflate.findViewById(R.id.fontInterval);
-                fontInterval.init(1, 30, BookCSS.get().lineHeight);
+                fontInterval.init(0, 30, BookCSS.get().lineHeight);
                 fontInterval.setOnSeekChanged(new IntegerResponse() {
 
                     @Override
@@ -2874,7 +2882,7 @@ public class DragingDialogs {
                 });
 
                 final CustomSeek fontParagraph = (CustomSeek) inflate.findViewById(R.id.fontParagraph);
-                fontParagraph.init(1, 30, BookCSS.get().textIndent);
+                fontParagraph.init(0, 30, BookCSS.get().textIndent);
                 fontParagraph.setOnSeekChanged(new IntegerResponse() {
 
                     @Override
@@ -2890,7 +2898,7 @@ public class DragingDialogs {
                 BookType.TXT.is(controller.getCurrentBook().getPath());//
 
                 emptyLine.setVisibility(isShow ? View.VISIBLE : View.GONE);
-                emptyLine.init(1, 30, BookCSS.get().emptyLine);
+                emptyLine.init(0, 30, BookCSS.get().emptyLine);
                 emptyLine.setOnSeekChanged(new IntegerResponse() {
 
                     @Override

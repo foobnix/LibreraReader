@@ -96,7 +96,6 @@
             android:orientation="horizontal"
             android:padding="2dip" >
 
-
             <ImageView
                 android:id="@+id/moveCenter"
                 style="@style/buttonWhite"
@@ -115,9 +114,8 @@
                 android:contentDescription="Move and zoom in/out page"
                 android:src="@drawable/glyphicons_187_move"
                 android:visibility="visible" />
-            
-            
-              <ImageView
+
+            <ImageView
                 android:id="@+id/onBC"
                 style="@style/buttonWhite"
                 android:layout_width="@dimen/wh_button"
@@ -136,8 +134,6 @@
                 android:contentDescription="align document"
                 android:src="@drawable/glyphicons_94_crop"
                 android:visibility="visible" />
-
-          
 
             <ImageView
                 android:id="@+id/bookNight"
@@ -273,7 +269,7 @@
             android:layout_height="wrap_content"
             android:gravity="center_horizontal"
             android:visibility="visible" >
-            
+
             <ImageView
                 android:id="@+id/linkHistory"
                 style="@style/buttonWhite"
@@ -328,16 +324,15 @@
                 android:layout_weight="0"
                 android:contentDescription="@string/content_of_book"
                 android:src="@drawable/glyphicons_115_list1" />
-            
-            
-               <ImageView
+
+            <ImageView
                 android:id="@+id/onModeChange"
                 style="@style/buttonWhite"
-                android:layout_width="@dimen/wh_button"
-                android:layout_height="@dimen/wh_button"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/wh_button_big"
                 android:layout_weight="0"
                 android:cropToPadding="true"
-                  android:src="@drawable/glyphicons_two_page_one" 
+                android:src="@drawable/glyphicons_two_page_one"
                 android:visibility="visible" />
         </LinearLayout>
 
@@ -346,7 +341,6 @@
             android:layout_height="wrap_content"
             android:gravity="center_vertical"
             android:visibility="visible" >
-
 
             <LinearLayout
                 android:layout_width="match_parent"

@@ -1651,7 +1651,7 @@ public class DocumentWrapperUI {
                         TintUtil.setTintImage(textToSpeach, Color.LTGRAY);
                     }
                     if (controller.isTextFormat()) {
-                        TintUtil.setTintImage(lockUnlock, Color.LTGRAY);
+                        // TintUtil.setTintImage(lockUnlock, Color.LTGRAY);
                     }
 
                     currentSeek.setVisibility(View.VISIBLE);
