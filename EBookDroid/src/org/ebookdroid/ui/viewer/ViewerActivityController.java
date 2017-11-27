@@ -107,7 +107,6 @@ public class ViewerActivityController extends ActionController<ViewerActivity> i
         if (getManagedComponent() != activity) {
             setManagedComponent(activity);
         }
-
     }
 
     public void afterCreate(ViewerActivity a) {
@@ -255,12 +254,22 @@ public class ViewerActivityController extends ActionController<ViewerActivity> i
         }));
     }
 
-    public void afterPause() {
+    public void onPause() {
+        if (wrapperControlls != null) {
+            wrapperControlls.onPause();
+        }
+
         BookSettings bookSettings = SettingsManager.getBookSettings();
         if (bookSettings != null) {
             bookSettings.updateFromAppState();
         }
         SettingsManager.storeBookSettings();
+    }
+
+    public void onDestroy() {
+        if (wrapperControlls != null) {
+            wrapperControlls.onDestroy();
+        }
     }
 
     public void beforeDestroy() {
@@ -389,11 +398,14 @@ public class ViewerActivityController extends ActionController<ViewerActivity> i
         wrapperControlls.initUI(a);
     }
 
+
     public void onResume() {
         if (controller != null) {
             controller.onResume();
         }
-
+        if (wrapperControlls != null) {
+            wrapperControlls.onResume();
+        }
     }
 
     public void setWindowTitle() {
@@ -685,5 +697,7 @@ public class ViewerActivityController extends ActionController<ViewerActivity> i
             publishProgress(getManagedComponent().getString(resourceID, args));
         }
     }
+
+
 
 }

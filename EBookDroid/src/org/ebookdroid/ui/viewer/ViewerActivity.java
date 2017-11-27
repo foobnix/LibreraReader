@@ -174,6 +174,7 @@ public class ViewerActivity extends AbstractActionActivity<ViewerActivity, Viewe
         }
         getController().onResume();
         handler.removeCallbacks(closeRunnable);
+
     }
 
     @Override
@@ -192,7 +193,7 @@ public class ViewerActivity extends AbstractActionActivity<ViewerActivity, Viewe
         LOG.d("onPause", this.getClass());
         ADS.onPause(adView);
         ADS.onPauseNative(adViewNative);
-        getController().afterPause();
+        getController().onPause();
         needToRestore = AppState.get().isAutoScroll;
         AppState.get().isAutoScroll = false;
         AppState.get().save(this);
@@ -239,6 +240,8 @@ public class ViewerActivity extends AbstractActionActivity<ViewerActivity, Viewe
         if (handler != null) {
             handler.removeCallbacksAndMessages(null);
         }
+        getController().onDestroy();
+
         if (AppState.getInstance().isRememberMode && AppState.getInstance().isAlwaysOpenAsMagazine) {
             super.onDestroy();
         } else {

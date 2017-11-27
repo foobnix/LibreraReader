@@ -49,9 +49,6 @@ import com.google.android.gms.ads.InterstitialAd;
 
 import android.annotation.TargetApi;
 import android.app.Activity;
-import android.app.AlertDialog;
-import android.content.DialogInterface;
-import android.content.Intent;
 import android.graphics.Color;
 import android.os.Build;
 import android.os.Handler;
@@ -118,6 +115,7 @@ public class DocumentWrapperUI {
     private BrigtnessDraw brigtnessProgressView;
 
     private final Handler handler = new Handler();
+    private final Handler handlerTimer = new Handler();
 
     InterstitialAd mInterstitialAd;
 
@@ -380,37 +378,6 @@ public class DocumentWrapperUI {
         }
     }
 
-    private void closeAndRunList1(final boolean isLong) {
-        if (!MainTabs2.isInStack) {
-            AlertDialog.Builder dialog = new AlertDialog.Builder(a);
-            CharSequence items[] = new CharSequence[] { "Return to PDF", "Return to app" };
-            dialog.setItems(items, new DialogInterface.OnClickListener() {
-
-                @Override
-                public void onClick(DialogInterface dialog, int which) {
-                    if (which == 0) {
-                        titleBar.removeCallbacks(null);
-                        controller.onCloseActivity();
-
-                        final Intent intent = new Intent(a, MainTabs2.class);
-                        a.startActivity(intent);
-                        a.overridePendingTransition(0, 0);
-                    }
-                    if (which == 1) {
-                        titleBar.removeCallbacks(null);
-                        controller.onCloseActivity();
-                    }
-
-                }
-            });
-            dialog.show();
-
-        } else {
-
-            titleBar.removeCallbacks(null);
-            controller.onCloseActivity();
-        }
-    }
 
     public void updateSpeedLabel() {
         final int max = controller.getPageCount();
@@ -516,8 +483,29 @@ public class DocumentWrapperUI {
         linkHistory.setVisibility(controller.getLinkHistory().isEmpty() ? View.GONE : View.VISIBLE);
     }
 
+    Runnable updateTimePower = new Runnable() {
+
+        @Override
+        public void run() {
+            try {
+            if (currentTime != null) {
+                currentTime.setText(UiSystemUtils.getSystemTime(controller.getActivity()));
+
+                int myLevel = UiSystemUtils.getPowerLevel(controller.getActivity());
+                batteryLevel.setText(myLevel + "%");
+            }
+            } catch (Exception e) {
+                LOG.e(e);
+            }
+            LOG.d("Update time and power");
+            handlerTimer.postDelayed(updateTimePower, AppState.APP_UPDATE_TIME_IN_UI);
+
+        }
+    };
+
     public void initUI(final Activity a) {
         this.a = a;
+
 
         // AppState.get().isMusicianMode &&
         if (!AppsConfig.checkIsProInstalled(a) && AppsConfig.ADMOB_FULLSCREEN != null) {
@@ -1665,6 +1653,24 @@ public class DocumentWrapperUI {
         } catch (Exception e) {
             LOG.e(e);
         }
+
+    }
+
+    public void onResume() {
+        LOG.d("DocumentWrapperUI", "onResume");
+        handlerTimer.post(updateTimePower);
+    }
+
+    public void onPause() {
+        LOG.d("DocumentWrapperUI", "onPause");
+        handlerTimer.removeCallbacks(updateTimePower);
+
+    }
+
+    public void onDestroy() {
+        LOG.d("DocumentWrapperUI", "onDestroy");
+        handlerTimer.removeCallbacksAndMessages(null);
+        handler.removeCallbacksAndMessages(null);
 
     }
 

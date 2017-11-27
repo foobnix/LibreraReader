@@ -122,7 +122,7 @@ public class HorizontalViewActivity extends FragmentActivity {
 
     DocumentControllerHorizontalView documentController;
 
-    Handler handler;
+    Handler handler, handlerTimer;
     CopyAsyncTask loadinAsyncTask;
 
     Dialog rotatoinDialog;
@@ -161,6 +161,7 @@ public class HorizontalViewActivity extends FragmentActivity {
     protected void onCreate(final Bundle savedInstanceState) {
         DocumentController.doRotation(this);
         handler = new Handler();
+        handlerTimer = new Handler();
         flippingHandler = new Handler();
         flippingTimer = 0;
 
@@ -1126,6 +1127,7 @@ public class HorizontalViewActivity extends FragmentActivity {
             documentController.onResume();
         }
         handler.removeCallbacks(closeRunnable);
+        handlerTimer.post(updateTimePower);
     }
 
     @Override
@@ -1140,6 +1142,7 @@ public class HorizontalViewActivity extends FragmentActivity {
         TempHolder.isSeaching = false;
 
         handler.postDelayed(closeRunnable, AppState.APP_CLOSE_AUTOMATIC);
+        handlerTimer.removeCallbacks(updateTimePower);
 
     }
 
@@ -1270,6 +1273,26 @@ public class HorizontalViewActivity extends FragmentActivity {
         };
         documentController.init(this);
     }
+
+    Runnable updateTimePower = new Runnable() {
+
+        @Override
+        public void run() {
+            try {
+                if (pagesTime != null) {
+                    pagesTime.setText(UiSystemUtils.getSystemTime(HorizontalViewActivity.this));
+
+                    int myLevel = UiSystemUtils.getPowerLevel(HorizontalViewActivity.this);
+                    pagesPower.setText(myLevel + "%");
+                }
+            } catch (Exception e) {
+                LOG.e(e);
+            }
+            LOG.d("Update time and power");
+            handlerTimer.postDelayed(updateTimePower, AppState.APP_UPDATE_TIME_IN_UI);
+
+        }
+    };
 
     public void updateUI(int page) {
         if (documentController == null) {

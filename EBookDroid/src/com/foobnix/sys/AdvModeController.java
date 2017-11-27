@@ -156,7 +156,7 @@ public class AdvModeController extends DocumentController {
 
     @Override
     public void saveSettings() {
-        ctr.afterPause();
+        ctr.onPause();
     }
 
     @Override
