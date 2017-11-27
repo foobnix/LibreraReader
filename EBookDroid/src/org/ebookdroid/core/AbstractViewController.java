@@ -35,7 +35,7 @@ import com.foobnix.pdf.info.R;
 import com.foobnix.pdf.info.view.AlertDialogs;
 import com.foobnix.pdf.info.wrapper.AppState;
 import com.foobnix.sys.TempHolder;
-import com.foobnix.sys.WrapperGuestureDetector;
+import com.foobnix.sys.AdvGuestureDetector;
 
 import android.graphics.PointF;
 import android.graphics.Rect;
@@ -96,7 +96,7 @@ public abstract class AbstractViewController extends AbstractComponentController
     }
 
     protected List<IGestureDetector> initGestureDetectors(final List<IGestureDetector> list) {
-        final WrapperGuestureDetector listener = new WrapperGuestureDetector(this, base.getListener());
+        final AdvGuestureDetector listener = new AdvGuestureDetector(this, base.getListener());
         list.add(listener.innerDetector);
         list.add(new MultiTouchGestureDetector(listener));
         list.add(new DefaultGestureDetector(base.getContext(), listener));

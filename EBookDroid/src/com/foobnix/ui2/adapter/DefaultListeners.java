@@ -4,6 +4,7 @@ import java.io.File;
 
 import org.greenrobot.eventbus.EventBus;
 
+import com.foobnix.android.utils.LOG;
 import com.foobnix.android.utils.ResultResponse;
 import com.foobnix.android.utils.ResultResponse2;
 import com.foobnix.dao2.FileMeta;
@@ -100,6 +101,9 @@ public class DefaultListeners {
         if (!delete) {
             delete = delete(a, file);
         }
+
+        LOG.d("Delete file", file.getPath(), delete);
+
         if (delete) {
             TempHolder.listHash++;
             AppDB.get().delete(result);

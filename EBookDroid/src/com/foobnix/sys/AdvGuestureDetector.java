@@ -22,7 +22,7 @@ import android.os.Vibrator;
 import android.view.GestureDetector.SimpleOnGestureListener;
 import android.view.MotionEvent;
 
-public class WrapperGuestureDetector extends SimpleOnGestureListener implements IMultiTouchListener {
+public class AdvGuestureDetector extends SimpleOnGestureListener implements IMultiTouchListener {
 
     private final AbstractViewController avc;
     private final DocumentController docCtrl;
@@ -32,7 +32,7 @@ public class WrapperGuestureDetector extends SimpleOnGestureListener implements 
 
     ClickUtils clickUtils;
 
-    public WrapperGuestureDetector(final AbstractViewController avc, final DocumentController listener) {
+    public AdvGuestureDetector(final AbstractViewController avc, final DocumentController listener) {
         this.avc = avc;
 
         this.docCtrl = listener;
@@ -280,11 +280,12 @@ public class WrapperGuestureDetector extends SimpleOnGestureListener implements 
      */
     @Override
     public void onLongPress(final MotionEvent e) {
-        isLongMovement = true;
 
         if (!AppState.get().longTapEnable) {
             return;
         }
+
+        isLongMovement = true;
 
         if (SettingsManager.getBookSettings() != null && SettingsManager.getBookSettings().cropPages) {
             docCtrl.onCrop();

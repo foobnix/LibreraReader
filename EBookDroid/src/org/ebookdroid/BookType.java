@@ -33,19 +33,20 @@ public enum BookType {
 
     EPUB(EpubContext.class, Arrays.asList("epub"), Arrays.asList("application/epub+zip")),
 
-    FB2(Fb2Context.class, Arrays.asList("fb2"), Arrays.asList("application/x-fictionbook+xml", "application/x-fictionbook", "application/fb2", "application/x-fb2", "application/fb2+zip", "application/fb2.zip", "application/x-zip-compressed-fb2")),
+    FB2(Fb2Context.class, Arrays.asList("fb2"),
+            Arrays.asList("application/fb2", "application/x-fictionbook", "application/x-fictionbook+xml", "application/x-fb2", "application/fb2+zip", "application/fb2.zip", "application/x-zip-compressed-fb2")),
 
     MOBI(MobiContext.class, Arrays.asList("mobi", "azw", "azw3", "azw4", "pdb", "prc"), Arrays.asList("application/x-mobipocket-ebook", "application/x-palm-database")),
 
     TXT(TxtContext.class, Arrays.asList("txt"), Arrays.asList("text/plain")),
 
-    HTML(HtmlContext.class, Arrays.asList("html", "htm", "xhtml", "xhtm", "mht", "mhtml"), Arrays.asList("text/html")),
+    HTML(HtmlContext.class, Arrays.asList("html", "htm", "xhtml", "xhtm", "mht", "mhtml"), Arrays.asList("text/html", "text/xml")),
 
     RTF(RtfContext.class, Arrays.asList("rtf"), Arrays.asList("application/rtf", "application/x-rtf", "text/rtf", "text/richtext")),
 
-    DJVU(DjvuContext.class, Arrays.asList("djvu"), Arrays.asList("image/djvu", "image/vnd.djvu", "image/x-djvu")),
+    DJVU(DjvuContext.class, Arrays.asList("djvu"), Arrays.asList("image/vnd.djvu", "image/djvu", "image/x-djvu")),
 
-    ZIP(ZipContext.class, Arrays.asList("zip"), Arrays.asList("application/x-compressed", "application/x-compressed-zip", "application/x-zip-compressed", "application/zip"));
+    ZIP(ZipContext.class, Arrays.asList("zip"), Arrays.asList("application/zip", "application/x-compressed", "application/x-compressed-zip", "application/x-zip-compressed"));
 
     private final static Map<String, BookType> extensionToActivity;
 

@@ -46,7 +46,6 @@ public abstract class UIFragment<T> extends Fragment {
     Handler handler;
     protected volatile ProgressBar progressBar;
     protected RecyclerView recyclerView;
-
     public abstract Pair<Integer, Integer> getNameAndIconRes();
 
     @Override

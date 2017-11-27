@@ -684,20 +684,23 @@ public class ExtUtils {
     }
 
     public static String getMimeType(File file) {
+        String mime = "";
         try {
             String name = file.getName().toLowerCase();
             String ext = getFileExtension(name);
 
             String mimeType = mimeCache.get("." + ext);
             if (mimeType != null) {
-                return mimeType;
+                mime = mimeType;
+            } else {
+                BookType codecType = BookType.getByUri(name);
+                mime = codecType.getFirstMimeTime();
             }
-
-            BookType codecType = BookType.getByUri(name);
-            return codecType.getFirstMimeTime();
         } catch (Exception e) {
-            return "application/" + ExtUtils.getFileExtension(file);
+            mime = "application/" + ExtUtils.getFileExtension(file);
         }
+        LOG.d("getMimeType", mime);
+        return mime;
     }
 
     public static void sharePage(final Activity a, final File file, int page) {
