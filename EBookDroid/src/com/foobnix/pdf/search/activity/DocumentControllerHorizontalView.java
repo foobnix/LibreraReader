@@ -221,6 +221,10 @@ public abstract class DocumentControllerHorizontalView extends DocumentControlle
     }
 
     public void saveCurrentPage() {
+        if (TempHolder.get().loadingCancelled) {
+            LOG.d("Loading cancelled");
+            return;
+        }
         int page = PageUrl.fakeToReal(currentPage);
         int pages = pagesCount;
         LOG.d("_PAGE", "saveCurrentPage", page, pages);
