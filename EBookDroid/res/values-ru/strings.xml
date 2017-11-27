@@ -19,7 +19,7 @@
    <string name="content_of_book">Содержание</string>
    <string name="crop_white_borders">Обрезать пустые поля</string>
    <string name="delete">Удалить</string>
-   <string name="delete_book_">Удалить файл с карты SD?</string>
+   <string name="delete_book_">Удалить файл с карты памяти?</string>
    <string name="dialog_color_picker">Выбор цвета</string>
    <string name="Document_is_corrupted">Файл поврежден</string>
    <string name="downloading">Скачивание</string>
@@ -393,14 +393,14 @@
    <string name="favorites">Избранные</string>
    <string name="my_favorites_links">Мои избранные ссылки</string>
    <string name="contrast">Контрастность</string>
-   <string name="can_t_delete_file">Не удалять файл</string>
+   <string name="can_t_delete_file">Не удалось удалить файл</string>
    <string name="remove_from_library">Удалить из библиотеки</string>
    <string name="e_ink">E-Ink</string>
    <string name="contrast_and_brightness">Контрастность и яркость</string>
    <string name="book_covers">Обложки книг</string>
    <string name="page_position">Позиционирование страницы</string>
    <string name="paper">Бумага</string>
-   <string name="normal">Нормальный</string>
+   <string name="normal">Обычный</string>
    <string name="small">Мелкий</string>
    <string name="large">Крупный</string>
    <string name="make_text_bold">Сделать шрифт текста полужирным</string>

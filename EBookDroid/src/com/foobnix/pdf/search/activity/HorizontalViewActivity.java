@@ -459,6 +459,7 @@ public class HorizontalViewActivity extends FragmentActivity {
 
                     @Override
                     public boolean onMenuItemClick(MenuItem item) {
+                        onModeChange.setImageResource(R.drawable.glyphicons_two_page_one);
                         modeOnePage();
                         documentController.cleanImageMatrix();
                         return false;
