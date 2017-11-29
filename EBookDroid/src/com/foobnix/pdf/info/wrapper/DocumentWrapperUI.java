@@ -553,6 +553,7 @@ public class DocumentWrapperUI {
 
         brigtnessProgressView = (BrigtnessDraw) a.findViewById(R.id.brigtnessProgressView);
         brigtnessProgressView.setActivity(a);
+        brigtnessProgressView.setOverlay(a.findViewById(R.id.overlay));
         brigtnessProgressView.setOnSingleClickListener(new OnClickListener() {
 
             @Override

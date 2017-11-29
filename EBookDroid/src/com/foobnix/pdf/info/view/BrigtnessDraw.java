@@ -22,6 +22,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 public class BrigtnessDraw extends View {
+    private View overlay;
 
     public BrigtnessDraw(Context context, AttributeSet attrs) {
         super(context, attrs);
@@ -104,14 +105,16 @@ public class BrigtnessDraw extends View {
                     }
                 }
 
-                if (AppState.getInstance().brightness <= -0.005) {
-                    AppState.getInstance().brightness = -0.005f;
+                if (AppState.getInstance().brightness <= -1) {
+                    AppState.getInstance().brightness = -1;
                 }
 
                 if (AppState.getInstance().brightness >= 1) {
                     AppState.getInstance().brightness = 1f;
                 }
-                DocumentController.applyBrigtness(activity);
+                if (false) {
+                    DocumentController.applyBrigtness(activity);
+                }
                 y = event.getY();
                 showToast();
             }
@@ -127,10 +130,21 @@ public class BrigtnessDraw extends View {
     OnClickListener onClickListener;
 
     public void showToast() {
-        if (AppState.getInstance().brightness < 0) {
-            textView.setText(R.string.automatic);
-        } else {
+        LOG.d("showToast", AppState.getInstance().brightness);
+        if (AppState.getInstance().brightness < -0.02) {
+            float br = 255 * AppState.getInstance().brightness * -1 * 5;
+            if (br > 200) {
+                br = 200;
+            }
+            if (br < 0) {
+                br = 0;
+            }
+            // overlay.setBackgroundColor(Color.argb((int) br, 0, 0, 0));
             textView.setText("" + (int) (AppState.getInstance().brightness * 100));
+        } else if (AppState.getInstance().brightness > 0) {
+            textView.setText("" + (int) (AppState.getInstance().brightness * 100));
+        } else {
+            textView.setText(getContext().getString(R.string.automatic) + "" + AppState.getInstance().brightness);
         }
         toast.show();
     }
@@ -146,6 +160,10 @@ public class BrigtnessDraw extends View {
 
     public void setOnSingleClickListener(OnClickListener onSingleClickListener) {
         this.onSingleClickListener = onSingleClickListener;
+    }
+
+    public void setOverlay(View overlay) {
+        this.overlay = overlay;
     }
 
 }

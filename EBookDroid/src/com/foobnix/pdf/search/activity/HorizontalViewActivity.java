@@ -222,6 +222,7 @@ public class HorizontalViewActivity extends FragmentActivity {
         progressDraw = (ProgressDraw) findViewById(R.id.progressDraw);
         brigtnessProgressView = (BrigtnessDraw) findViewById(R.id.brigtnessProgressView);
         brigtnessProgressView.setActivity(this);
+        brigtnessProgressView.setOverlay(findViewById(R.id.overlay));
         brigtnessProgressView.setOnSingleClickListener(new OnClickListener() {
 
             @Override
@@ -454,7 +455,6 @@ public class HorizontalViewActivity extends FragmentActivity {
             @Override
             public void onClick(View v) {
                 MyPopupMenu p = new MyPopupMenu(v.getContext(), v);
-
                 p.getMenu().add(R.string.one_page).setIcon(R.drawable.glyphicons_two_page_one).setOnMenuItemClickListener(new OnMenuItemClickListener() {
 
                     @Override
