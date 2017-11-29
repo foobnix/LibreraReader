@@ -1,10 +1,12 @@
 package com.foobnix.pdf.search.view;
 
+import com.foobnix.android.utils.LOG;
 import com.foobnix.pdf.info.wrapper.AppState;
 
 import android.annotation.TargetApi;
 import android.content.Context;
 import android.os.Build;
+import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
@@ -68,6 +70,15 @@ public class VerticalViewPager extends CustomViewPager {
     @Override
     public boolean onTouchEvent(MotionEvent ev) {
         return super.onTouchEvent(swapXY(ev));
+    }
+
+    @Override
+    public void setAdapter(PagerAdapter adapter) {
+        try {
+            super.setAdapter(adapter);
+        } catch (Exception e) {
+            LOG.e(e);
+        }
     }
 
 }

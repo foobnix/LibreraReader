@@ -45,8 +45,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
-                android:layout_marginLeft="40dip"
-                android:layout_marginRight="40dip"
+                android:layout_marginLeft="45dip"
+                android:layout_marginRight="45dip"
                 android:layout_weight="1"
                 android:orientation="vertical" >
 
@@ -273,8 +273,8 @@
             <ImageView
                 android:id="@+id/linkHistory"
                 style="@style/buttonWhite"
-                android:layout_width="@dimen/wh_button_big"
-                android:layout_height="@dimen/wh_button_big"
+                android:layout_width="@dimen/wh_button"
+                android:layout_height="@dimen/wh_button"
                 android:layout_weight="0"
                 android:src="@drawable/glyphicons_173_rewind"
                 android:tint="@color/tint_white"
@@ -283,8 +283,8 @@
             <ImageView
                 android:id="@+id/search"
                 style="@style/buttonWhite"
-                android:layout_width="@dimen/wh_button_big"
-                android:layout_height="@dimen/wh_button_big"
+                android:layout_width="@dimen/wh_button"
+                android:layout_height="@dimen/wh_button"
                 android:layout_weight="0"
                 android:contentDescription="@string/search"
                 android:src="@drawable/glyphicons_28_search1" />
@@ -301,8 +301,8 @@
             <ImageView
                 android:id="@+id/thumbnail"
                 style="@style/buttonWhite"
-                android:layout_width="@dimen/wh_button_big"
-                android:layout_height="@dimen/wh_button_big"
+                android:layout_width="@dimen/wh_button"
+                android:layout_height="@dimen/wh_button"
                 android:layout_weight="0"
                 android:contentDescription="@string/go_to_page_dialog"
                 android:src="@drawable/glyphicons_37_file" />
@@ -310,8 +310,8 @@
             <ImageView
                 android:id="@+id/bookmarks"
                 style="@style/buttonWhite"
-                android:layout_width="@dimen/wh_button_big"
-                android:layout_height="@dimen/wh_button_big"
+                android:layout_width="@dimen/wh_button"
+                android:layout_height="@dimen/wh_button"
                 android:layout_weight="0"
                 android:contentDescription="@string/bookmarks"
                 android:src="@drawable/glyphicons_73_bookmark1" />
@@ -319,8 +319,8 @@
             <ImageView
                 android:id="@+id/content"
                 style="@style/buttonWhite"
-                android:layout_width="@dimen/wh_button_big"
-                android:layout_height="@dimen/wh_button_big"
+                android:layout_width="@dimen/wh_button"
+                android:layout_height="@dimen/wh_button"
                 android:layout_weight="0"
                 android:contentDescription="@string/content_of_book"
                 android:src="@drawable/glyphicons_115_list1" />
@@ -329,7 +329,7 @@
                 android:id="@+id/onModeChange"
                 style="@style/buttonWhite"
                 android:layout_width="wrap_content"
-                android:layout_height="@dimen/wh_button_big"
+                android:layout_height="@dimen/wh_button"
                 android:layout_weight="0"
                 android:cropToPadding="true"
                 android:src="@drawable/glyphicons_two_page_one"
@@ -355,8 +355,8 @@
                 <ImageView
                     android:id="@+id/onPageFlip"
                     style="@style/buttonWhite"
-                    android:layout_width="@dimen/wh_button_big"
-                    android:layout_height="@dimen/wh_button_big"
+                    android:layout_width="@dimen/wh_button"
+                    android:layout_height="@dimen/wh_button"
                     android:layout_weight="0"
                     android:contentDescription="@string/go_to_page_dialog"
                     android:src="@drawable/glyphicons_174_play" />
@@ -418,8 +418,8 @@
             <ImageView
                 android:id="@+id/lockMode"
                 style="@style/buttonWhite"
-                android:layout_width="@dimen/wh_button_big"
-                android:layout_height="@dimen/wh_button_big"
+                android:layout_width="@dimen/wh_button"
+                android:layout_height="@dimen/wh_button"
                 android:layout_weight="0"
                 android:contentDescription="Lock unlock the document"
                 android:src="@drawable/glyphicons_205_unlock" />

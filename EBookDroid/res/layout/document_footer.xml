@@ -85,8 +85,7 @@
             android:id="@+id/onModeChange"
             style="@style/buttonWhite"
             android:layout_width="wrap_content"
-            android:cropToPadding="true"
-            android:layout_height="@dimen/wh_button_big"
+            android:layout_height="@dimen/wh_button"
             android:layout_weight="0"
             android:contentDescription="@string/content_of_book"
             android:src="@drawable/glyphicons_two_page_one" />
@@ -95,7 +94,7 @@
             android:contentDescription="Scroll by pages or by screen"
             android:id="@+id/nextTypeBootom"
             android:layout_width="wrap_content"
-            android:layout_height="@dimen/wh_button_big"
+            android:layout_height="@dimen/wh_button"
             android:layout_margin="4dip"
             android:layout_weight="0"
             android:background="@drawable/bg_border_white"
