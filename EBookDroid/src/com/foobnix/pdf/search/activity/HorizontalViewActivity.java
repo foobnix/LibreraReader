@@ -756,17 +756,7 @@ public class HorizontalViewActivity extends FragmentActivity {
 
                     isInitPosistion = Dips.screenHeight() > Dips.screenWidth();
 
-                    if (AppState.get().isDouble) {
-                        if (AppState.get().isDoubleCoverAlone) {
-                            onModeChange.setImageResource(R.drawable.glyphicons_two_pages_23);
-                        } else {
-                            onModeChange.setImageResource(R.drawable.glyphicons_two_pages_12);
-                        }
-                    } else if (AppState.get().isCut) {
-                        onModeChange.setImageResource(R.drawable.glyphicons_page_split);
-                    } else {
-                        onModeChange.setImageResource(R.drawable.glyphicons_two_page_one);
-                    }
+                    updateIconMode();
 
                     onCrop.setVisibility(documentController.isTextFormat() ? View.GONE : View.VISIBLE);
                     onMove.setVisibility(AppState.get().isInkMode && !documentController.isTextFormat() ? View.VISIBLE : View.GONE);
@@ -780,6 +770,7 @@ public class HorizontalViewActivity extends FragmentActivity {
             };
         };
         loadinAsyncTask.executeOnExecutor(Executors.newSingleThreadExecutor());
+        updateIconMode();
 
         //
         tinUI();
@@ -814,6 +805,20 @@ public class HorizontalViewActivity extends FragmentActivity {
             }
         });
 
+    }
+
+    public void updateIconMode() {
+        if (AppState.get().isDouble) {
+            if (AppState.get().isDoubleCoverAlone) {
+                onModeChange.setImageResource(R.drawable.glyphicons_two_pages_23);
+            } else {
+                onModeChange.setImageResource(R.drawable.glyphicons_two_pages_12);
+            }
+        } else if (AppState.get().isCut) {
+            onModeChange.setImageResource(R.drawable.glyphicons_page_split);
+        } else {
+            onModeChange.setImageResource(R.drawable.glyphicons_two_page_one);
+        }
     }
 
     @Override
