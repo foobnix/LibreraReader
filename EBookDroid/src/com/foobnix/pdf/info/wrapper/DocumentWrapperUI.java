@@ -90,7 +90,7 @@ public class DocumentWrapperUI {
     private DocumentGestureListener documentListener;
     private ImageView onDocDontext;
     private ImageView toolBarButton;
-    private View titleBar;
+    private View titleBar, overlay;
     private TextView nextTypeBootom;
     private DocumentGuestureDetector documentGestureDetector;
     private GestureDetector gestureDetector;
@@ -378,7 +378,6 @@ public class DocumentWrapperUI {
         }
     }
 
-
     public void updateSpeedLabel() {
         final int max = controller.getPageCount();
         final int currentNumber = controller.getCurentPage();
@@ -488,12 +487,12 @@ public class DocumentWrapperUI {
         @Override
         public void run() {
             try {
-            if (currentTime != null) {
-                currentTime.setText(UiSystemUtils.getSystemTime(controller.getActivity()));
+                if (currentTime != null) {
+                    currentTime.setText(UiSystemUtils.getSystemTime(controller.getActivity()));
 
-                int myLevel = UiSystemUtils.getPowerLevel(controller.getActivity());
-                batteryLevel.setText(myLevel + "%");
-            }
+                    int myLevel = UiSystemUtils.getPowerLevel(controller.getActivity());
+                    batteryLevel.setText(myLevel + "%");
+                }
             } catch (Exception e) {
                 LOG.e(e);
             }
@@ -505,7 +504,6 @@ public class DocumentWrapperUI {
 
     public void initUI(final Activity a) {
         this.a = a;
-
 
         // AppState.get().isMusicianMode &&
         if (!AppsConfig.checkIsProInstalled(a) && AppsConfig.ADMOB_FULLSCREEN != null) {
@@ -551,9 +549,9 @@ public class DocumentWrapperUI {
         titleBar = a.findViewById(R.id.titleBar);
         titleBar.setOnClickListener(onMenu);
 
+        overlay = a.findViewById(R.id.overlay);
         brigtnessProgressView = (BrigtnessDraw) a.findViewById(R.id.brigtnessProgressView);
         brigtnessProgressView.setActivity(a);
-        brigtnessProgressView.setOverlay(a.findViewById(R.id.overlay));
         brigtnessProgressView.setOnSingleClickListener(new OnClickListener() {
 
             @Override
@@ -682,7 +680,6 @@ public class DocumentWrapperUI {
         onTTSStatus(null);
         ttsActive.setOnClickListener(onTextToSpeach);
 
-
         batteryIcon = (ImageView) a.findViewById(R.id.batteryIcon);
         clockIcon = (ImageView) a.findViewById(R.id.clockIcon);
 
@@ -763,6 +760,7 @@ public class DocumentWrapperUI {
 
         });
         updateSeekBarColorAndSize();
+        updateOverlay();
 
         // bottom 1
         TintUtil.setStatusBarColor(a);
@@ -1050,6 +1048,15 @@ public class DocumentWrapperUI {
         brigtnessProgressView.setVisibility(AppState.get().isBrighrnessEnable ? View.VISIBLE : View.GONE);
 
         toolBarButton.setVisibility(View.VISIBLE);
+
+    }
+
+    public void updateOverlay() {
+        if (AppState.get().blueLightAlpha != 0) {
+            overlay.setBackgroundColor(ColorUtils.setAlphaComponent(AppState.get().blueLightColor, 230 * AppState.get().blueLightAlpha / 100));
+        } else {
+            overlay.setBackgroundColor(Color.TRANSPARENT);
+        }
 
     }
 
@@ -1467,6 +1474,7 @@ public class DocumentWrapperUI {
             updateSeekBarColorAndSize();
             showHide();
             TTSEngine.get().stop();
+            updateOverlay();
         }
     };
 
@@ -1660,6 +1668,10 @@ public class DocumentWrapperUI {
     public void onResume() {
         LOG.d("DocumentWrapperUI", "onResume");
         handlerTimer.post(updateTimePower);
+        
+        if (controller != null && TTSEngine.get().isPlaying()) {
+            controller.onGoToPage(AppState.get().lastBookPage);
+        }
     }
 
     public void onPause() {

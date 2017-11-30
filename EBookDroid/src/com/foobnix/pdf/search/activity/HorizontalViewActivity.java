@@ -111,7 +111,7 @@ public class HorizontalViewActivity extends FragmentActivity {
     VerticalViewPager viewPager;
     SeekBar seekBar;
     private TextView maxSeek, currentSeek, pagesCountIndicator, flippingIntervalView, pagesTime, pagesPower, titleTxt, chapterView;
-    View adFrame, bottomBar, onPageFlip1, bottomIndicators, moveCenter, onClose;
+    View adFrame, bottomBar, onPageFlip1, bottomIndicators, moveCenter, onClose, overlay;
     LinearLayout actionBar;
     private FrameLayout anchor;
 
@@ -219,10 +219,11 @@ public class HorizontalViewActivity extends FragmentActivity {
         viewPager.setOffscreenPageLimit(AppState.get().pagesInMemory);
         LOG.d("setOffscreenPageLimit", AppState.get().pagesInMemory);
 
+        overlay = findViewById(R.id.overlay);
+
         progressDraw = (ProgressDraw) findViewById(R.id.progressDraw);
         brigtnessProgressView = (BrigtnessDraw) findViewById(R.id.brigtnessProgressView);
         brigtnessProgressView.setActivity(this);
-        brigtnessProgressView.setOverlay(findViewById(R.id.overlay));
         brigtnessProgressView.setOnSingleClickListener(new OnClickListener() {
 
             @Override
@@ -771,6 +772,7 @@ public class HorizontalViewActivity extends FragmentActivity {
         };
         loadinAsyncTask.executeOnExecutor(Executors.newSingleThreadExecutor());
         updateIconMode();
+        updateOverlay();
 
         //
         tinUI();
@@ -859,6 +861,14 @@ public class HorizontalViewActivity extends FragmentActivity {
 
         progressDraw.getLayoutParams().height = Dips.dpToPx(AppState.get().progressLineHeight);
         progressDraw.requestLayout();
+    }
+
+    public void updateOverlay() {
+        if (AppState.get().blueLightAlpha != 0) {
+            overlay.setBackgroundColor(ColorUtils.setAlphaComponent(AppState.get().blueLightColor, 230 * AppState.get().blueLightAlpha / 100));
+        } else {
+            overlay.setBackgroundColor(Color.TRANSPARENT);
+        }
 
     }
 
@@ -872,6 +882,7 @@ public class HorizontalViewActivity extends FragmentActivity {
             updateUI(viewPager.getCurrentItem());
             showHideInfoToolBar();
             updateSeekBarColorAndSize();
+            updateOverlay();
             hideShow();
             TTSEngine.get().stop();
 
@@ -1132,6 +1143,11 @@ public class HorizontalViewActivity extends FragmentActivity {
         if (documentController != null) {
             documentController.onResume();
         }
+
+        if (documentController != null && TTSEngine.get().isPlaying()) {
+            documentController.onGoToPage(AppState.get().lastBookPage + 1);
+        }
+
         handler.removeCallbacks(closeRunnable);
         handlerTimer.post(updateTimePower);
     }

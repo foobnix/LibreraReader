@@ -421,4 +421,6 @@
    <string name="genre">Gatunek muzyczny</string>
    <string name="author">Autor</string>
    <string name="serie">Serie</string>
+   <string name="switch_off">Wyłączyć</string>
+   <string name="blue_filter">Niebieski filtr</string>
 </resources>

@@ -421,4 +421,6 @@
    <string name="genre">Laji</string>
    <string name="author">Kirjailija</string>
    <string name="serie">Serie</string>
+   <string name="switch_off">Kytke pois päältä</string>
+   <string name="blue_filter">Sininen suodatin</string>
 </resources>

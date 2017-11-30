@@ -13,6 +13,7 @@ import com.foobnix.pdf.info.wrapper.AppState;
 import com.foobnix.sys.TempHolder;
 
 import android.annotation.TargetApi;
+import android.graphics.Typeface;
 import android.os.Build;
 import android.support.v4.util.Pair;
 import android.text.Html;
@@ -592,6 +593,11 @@ public class TxtUtils {
 
     public static boolean isListEmpty(List<?> objects) {
         return objects == null || objects.size() <= 1;
+    }
+
+    public static void bold(TextView text) {
+        text.setTypeface(Typeface.DEFAULT_BOLD, Typeface.BOLD);
+
     }
 
 }

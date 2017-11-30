@@ -2784,7 +2784,7 @@ public class DragingDialogs {
 
             @Override
             public View getContentView(final LayoutInflater inflater) {
-                View inflate = inflater.inflate(R.layout.dialog_book_style_pref, null, false);
+                View inflate = inflater.inflate(R.layout.dialog_reading_pref, null, false);
 
                 final CustomSeek fontWeight = (CustomSeek) inflate.findViewById(R.id.fontWeight);
                 fontWeight.init(1, 9, BookCSS.get().fontWeight / 100);
@@ -3128,6 +3128,56 @@ public class DragingDialogs {
             @Override
             public View getContentView(final LayoutInflater inflater) {
                 View inflate = inflater.inflate(R.layout.dialog_prefs, null, false);
+
+                /** Blue Light Color start **/
+                final CustomColorView blueLightColor = (CustomColorView) inflate.findViewById(R.id.blueLightColor);
+                TxtUtils.bold(blueLightColor.getText1());
+                blueLightColor.withDefaultColors(Color.BLUE, Color.BLACK);
+                blueLightColor.init(AppState.get().blueLightColor);
+                blueLightColor.setOnColorChanged(new StringResponse() {
+
+                    @Override
+                    public boolean onResultRecive(String string) {
+                        AppState.get().blueLightColor = Color.parseColor(string);
+                        if (onRefresh != null) {
+                            onRefresh.run();
+                        }
+                        Keyboards.hideNavigation(controller.getActivity());
+                        return false;
+                    }
+                });
+
+                final CustomSeek blueLightAlpha = (CustomSeek) inflate.findViewById(R.id.blueLightAlpha);
+                blueLightAlpha.init(0, 99, AppState.getInstance().blueLightAlpha);
+                blueLightAlpha.setOnSeekChanged(new IntegerResponse() {
+
+                    @Override
+                    public boolean onResultRecive(int result) {
+                        AppState.get().blueLightAlpha = result;
+                        blueLightAlpha.setValueText("" + AppState.getInstance().blueLightAlpha + "%");
+                        if (onRefresh != null) {
+                            onRefresh.run();
+                        }
+                        return false;
+                    }
+                });
+                blueLightAlpha.setValueText("" + AppState.getInstance().blueLightAlpha + "%");
+
+                TextView blueLightOff = (TextView) inflate.findViewById(R.id.blueLightOff);
+                TxtUtils.underlineTextView(blueLightOff);
+                blueLightOff.setOnClickListener(new OnClickListener() {
+
+                    @Override
+                    public void onClick(View v) {
+                        AppState.get().blueLightAlpha = 0;
+                        blueLightAlpha.reset(0);
+                        if (onRefresh != null) {
+                            onRefresh.run();
+                        }
+                    }
+                });
+
+                /** Blue Light Color end **/
 
                 // TOP panel start
                 View topPanelLine = inflate.findViewById(R.id.topPanelLine);

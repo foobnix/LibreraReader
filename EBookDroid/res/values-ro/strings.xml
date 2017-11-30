@@ -421,4 +421,6 @@
    <string name="genre">Gen literar</string>
    <string name="author">Autor</string>
    <string name="serie">Serie</string>
+   <string name="switch_off">Opriți-vă</string>
+   <string name="blue_filter">Filtru albastru</string>
 </resources>

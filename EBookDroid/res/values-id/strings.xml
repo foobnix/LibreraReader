@@ -421,4 +421,6 @@
    <string name="genre">Aliran</string>
    <string name="author">Penulis</string>
    <string name="serie">Serie</string>
+   <string name="switch_off">Mematikan</string>
+   <string name="blue_filter">Filter biru</string>
 </resources>

@@ -311,8 +311,8 @@
    <string name="document_converter_online_">Dokumentum átalakító (online)</string>
    <string name="in_the_author_s_name_first_the_surname">A szerző nevében először a vezetéknevet</string>
    <string name="remind_about_rest_every">Emlékeztessen a pihenésre</string>
-   <string name="minutes">percben</string>
-   <string name="seconds">másodpercben</string>
+   <string name="minutes">Percben</string>
+   <string name="seconds">Másodpercben</string>
    <string name="remind_msg">Kérjük, pihentesse szemeit és tartson egy kis szünetet.</string>
    <string name="automatic_page_flipping">Automatikus lapozás</string>
    <string name="start">Indítás</string>
@@ -421,4 +421,6 @@
    <string name="genre">Műfaj</string>
    <string name="author">Szerző</string>
    <string name="serie">Sorozat</string>
+   <string name="switch_off">Kikapcsol</string>
+   <string name="blue_filter">Kék szűrő</string>
 </resources>

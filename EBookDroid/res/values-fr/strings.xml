@@ -421,4 +421,6 @@
    <string name="genre">Genre</string>
    <string name="author">Auteur</string>
    <string name="serie">Serie</string>
+   <string name="switch_off">Éteindre</string>
+   <string name="blue_filter">Filtre bleu</string>
 </resources>

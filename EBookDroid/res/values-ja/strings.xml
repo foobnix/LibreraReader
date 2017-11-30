@@ -421,4 +421,6 @@
    <string name="genre">ジャンル</string>
    <string name="author">著者</string>
    <string name="serie">セリエ</string>
+   <string name="switch_off">スイッチオフ</string>
+   <string name="blue_filter">ブルーフィルター</string>
 </resources>

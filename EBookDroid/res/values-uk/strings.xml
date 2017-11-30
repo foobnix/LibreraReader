@@ -421,4 +421,6 @@
    <string name="genre">Жанр</string>
    <string name="author">Автор</string>
    <string name="serie">Серія</string>
+   <string name="switch_off">Виключити</string>
+   <string name="blue_filter">Синій фільтр</string>
 </resources>

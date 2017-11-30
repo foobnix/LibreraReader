@@ -419,6 +419,9 @@ public class AppState {
     public int tapZoneLeft = TAP_PREV_PAGE;
     public int tapZoneRight = TAP_NEXT_PAGE;
 
+    public int blueLightColor = Color.BLUE;
+    public int blueLightAlpha = 0;
+
     public List<Integer> getNextKeys() {
         return isReverseKeys ? prevKeys : nextKeys;
     }
@@ -727,6 +730,9 @@ public class AppState {
         tapZoneRight = sp.getInt("tapZoneRight", tapZoneRight);
         nextScreenScrollBy = sp.getInt("nextScreenScrollBy", nextScreenScrollBy);
 
+        blueLightColor = sp.getInt("blueLightColor", blueLightColor);
+        blueLightAlpha = sp.getInt("blueLightAlpha", blueLightAlpha);
+
         LOG.d("LOAD AppState", "coverSmallSize", coverSmallSize);
     }
 
@@ -960,6 +966,9 @@ public class AppState {
         editor.putInt("tapZoneLeft", tapZoneLeft);
         editor.putInt("tapZoneRight", tapZoneRight);
         editor.putInt("nextScreenScrollBy", nextScreenScrollBy);
+
+        editor.putInt("blueLightColor", blueLightColor);
+        editor.putInt("blueLightAlpha", blueLightAlpha);
 
         editor.commit();
 

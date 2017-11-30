@@ -421,4 +421,6 @@
    <string name="genre">Štýl</string>
    <string name="author">Autor</string>
    <string name="serie">Serie</string>
+   <string name="switch_off">Vypnúť</string>
+   <string name="blue_filter">Modrý filter</string>
 </resources>

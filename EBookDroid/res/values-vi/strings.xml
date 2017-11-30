@@ -421,4 +421,6 @@
    <string name="genre">Thể loại</string>
    <string name="author">Tác giả</string>
    <string name="serie">Serie</string>
+   <string name="switch_off">Tăt</string>
+   <string name="blue_filter">Bộ lọc màu xanh lam</string>
 </resources>

@@ -61,6 +61,7 @@ public class CustomColorView extends FrameLayout {
         });
 
         addView(inflate);
+
     }
 
     public void withDefaultColors(int... colors) {
@@ -79,7 +80,7 @@ public class CustomColorView extends FrameLayout {
                 }
             });
             LinearLayout.LayoutParams p = new LinearLayout.LayoutParams(dp25, dp25);
-            p.leftMargin = Dips.dpToPx(6);
+            p.leftMargin = Dips.dpToPx(4);
             defaultValues.addView(t, p);
 
         }

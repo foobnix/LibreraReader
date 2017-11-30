@@ -421,4 +421,6 @@
    <string name="genre">유형</string>
    <string name="author">저자</string>
    <string name="serie">세리에</string>
+   <string name="switch_off">끄다</string>
+   <string name="blue_filter">블루 필터</string>
 </resources>

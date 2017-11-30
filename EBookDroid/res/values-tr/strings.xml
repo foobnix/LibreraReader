@@ -421,4 +421,6 @@
    <string name="genre">Tür</string>
    <string name="author">Yazar</string>
    <string name="serie">Serie</string>
+   <string name="switch_off">Kapatmak</string>
+   <string name="blue_filter">Mavi filtre</string>
 </resources>

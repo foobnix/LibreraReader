@@ -421,4 +421,6 @@
    <string name="genre">ז\'ָאנר</string>
    <string name="author">מְחַבֵּר</string>
    <string name="serie">סיד</string>
+   <string name="switch_off">לכבות</string>
+   <string name="blue_filter">מסנן כחול</string>
 </resources>

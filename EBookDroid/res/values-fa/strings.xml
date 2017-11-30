@@ -421,4 +421,6 @@
    <string name="genre">ژانر</string>
    <string name="author">نویسنده</string>
    <string name="serie">سریال</string>
+   <string name="switch_off">خاموش کن</string>
+   <string name="blue_filter">فیلتر آبی</string>
 </resources>

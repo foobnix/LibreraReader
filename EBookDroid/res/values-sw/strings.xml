@@ -421,4 +421,6 @@
    <string name="genre">Aina</string>
    <string name="author">Mwandishi</string>
    <string name="serie">Serie</string>
+   <string name="switch_off">Ondoka</string>
+   <string name="blue_filter">Chujio cha Bluu</string>
 </resources>
