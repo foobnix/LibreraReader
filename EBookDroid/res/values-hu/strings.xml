@@ -422,5 +422,5 @@
    <string name="author">Szerző</string>
    <string name="serie">Sorozat</string>
    <string name="switch_off">Kikapcsol</string>
-   <string name="blue_filter">Kék szűrő</string>
+   <string name="blueligth_filter">BlueLight szűrő</string>
 </resources>

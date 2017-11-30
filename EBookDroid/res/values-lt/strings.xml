@@ -422,5 +422,5 @@
    <string name="author">Autorius</string>
    <string name="serie">Serija</string>
    <string name="switch_off">Išjungti</string>
-   <string name="blue_filter">Mėlynas filtras</string>
+   <string name="blueligth_filter">BlueLight filtras</string>
 </resources>

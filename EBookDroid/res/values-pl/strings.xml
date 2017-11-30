@@ -422,5 +422,5 @@
    <string name="author">Autor</string>
    <string name="serie">Serie</string>
    <string name="switch_off">Wyłączyć</string>
-   <string name="blue_filter">Niebieski filtr</string>
+   <string name="blueligth_filter">Filtr BlueLight</string>
 </resources>

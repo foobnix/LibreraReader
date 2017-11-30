@@ -422,5 +422,5 @@
    <string name="author">نویسنده</string>
    <string name="serie">سریال</string>
    <string name="switch_off">خاموش کن</string>
-   <string name="blue_filter">فیلتر آبی</string>
+   <string name="blueligth_filter">فیلتر BlueLight</string>
 </resources>

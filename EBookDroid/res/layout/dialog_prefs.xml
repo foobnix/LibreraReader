@@ -699,7 +699,7 @@
                 android:id="@+id/blueLightColor"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                myseek:text="@string/blue_filter" />
+                myseek:text="@string/blueligth_filter" />
 
             <TextView
                 android:id="@+id/blueLightOff"

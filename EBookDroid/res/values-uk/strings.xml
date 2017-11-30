@@ -422,5 +422,5 @@
    <string name="author">Автор</string>
    <string name="serie">Серія</string>
    <string name="switch_off">Виключити</string>
-   <string name="blue_filter">Синій фільтр</string>
+   <string name="blueligth_filter">Фільтр BlueLight</string>
 </resources>

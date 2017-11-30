@@ -422,5 +422,5 @@
    <string name="author">作者</string>
    <string name="serie">意甲</string>
    <string name="switch_off">关掉</string>
-   <string name="blue_filter">蓝色过滤器</string>
+   <string name="blueligth_filter">BlueLight过滤器</string>
 </resources>

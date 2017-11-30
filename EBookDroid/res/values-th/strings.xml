@@ -422,5 +422,5 @@
    <string name="author">ผู้เขียน</string>
    <string name="serie">กัลโช่</string>
    <string name="switch_off">ปิดสวิตช์</string>
-   <string name="blue_filter">ฟิลเตอร์สีน้ำเงิน</string>
+   <string name="blueligth_filter">ตัวกรอง BlueLight</string>
 </resources>
