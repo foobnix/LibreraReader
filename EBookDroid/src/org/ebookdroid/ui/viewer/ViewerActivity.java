@@ -268,14 +268,15 @@ public class ViewerActivity extends AbstractActionActivity<ViewerActivity, Viewe
 
     Dialog rotatoinDialog;
     boolean isInitPosistion;
+    int isInitOrientation;
 
     @Override
     public void onConfigurationChanged(final Configuration newConfig) {
         super.onConfigurationChanged(newConfig);
+        final boolean currentPosistion = Dips.screenHeight() > Dips.screenWidth();
 
-        if (ExtUtils.isTextFomat(getIntent())) {
+        if (ExtUtils.isTextFomat(getIntent()) && isInitOrientation == AppState.getInstance().orientation) {
 
-            final boolean currentPosistion = Dips.screenHeight() > Dips.screenWidth();
 
             if (rotatoinDialog != null) {
                 try {
@@ -303,6 +304,8 @@ public class ViewerActivity extends AbstractActionActivity<ViewerActivity, Viewe
             doConifChange();
         }
 
+
+        isInitOrientation = AppState.getInstance().orientation;
     }
 
     public void doConifChange() {
@@ -340,7 +343,7 @@ public class ViewerActivity extends AbstractActionActivity<ViewerActivity, Viewe
         super.onPostCreate(savedInstanceState);
         getController().afterPostCreate();
         isInitPosistion = Dips.screenHeight() > Dips.screenWidth();
-
+        isInitOrientation = AppState.getInstance().orientation;
     }
 
     @Override

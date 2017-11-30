@@ -127,6 +127,7 @@ public class HorizontalViewActivity extends FragmentActivity {
 
     Dialog rotatoinDialog;
     volatile Boolean isInitPosistion = null;
+    volatile int isInitOrientation;
 
     ProgressDraw progressDraw;
     BrigtnessDraw brigtnessProgressView;
@@ -756,6 +757,7 @@ public class HorizontalViewActivity extends FragmentActivity {
                     testScreenshots();
 
                     isInitPosistion = Dips.screenHeight() > Dips.screenWidth();
+                    isInitOrientation = AppState.getInstance().orientation;
 
                     updateIconMode();
 
@@ -1521,9 +1523,8 @@ public class HorizontalViewActivity extends FragmentActivity {
         }
         handler.removeCallbacksAndMessages(null);
 
-        if (ExtUtils.isTextFomat(getIntent())) {
-
-            final boolean currentPosistion = Dips.screenHeight() > Dips.screenWidth();
+        final boolean currentPosistion = Dips.screenHeight() > Dips.screenWidth();
+        if (ExtUtils.isTextFomat(getIntent()) && isInitOrientation == AppState.getInstance().orientation) {
 
             if (rotatoinDialog != null) {
                 try {
@@ -1552,6 +1553,9 @@ public class HorizontalViewActivity extends FragmentActivity {
             documentController.udpateImageSize(viewPager.getWidth(), viewPager.getHeight());
             onRotateScreen();
         }
+
+
+        isInitOrientation = AppState.getInstance().orientation;
 
     }
 
