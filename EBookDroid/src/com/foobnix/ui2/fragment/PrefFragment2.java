@@ -458,6 +458,19 @@ public class PrefFragment2 extends UIFragment {
                 }
                 Collections.sort(langs);
 
+                popupMenu.getMenu().add(R.string.my_language).setOnMenuItemClickListener(new OnMenuItemClickListener() {
+
+                    @Override
+                    public boolean onMenuItemClick(MenuItem item) {
+                        AppState.get().appLang = AppState.MY_SYSTEM_LANG;
+                        AppState.get().appFontScale = 1.0f;
+                        TxtUtils.underlineTextView(hypenLang);
+                        AppState.get().save(getActivity());
+                        onTheme();
+                        return false;
+                    }
+                });
+
                 for (int i = 0; i < langs.size(); i++) {
                     String all[] = langs.get(i).split(":");
                     final String name = all[0];

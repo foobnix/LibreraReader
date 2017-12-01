@@ -423,4 +423,5 @@
    <string name="serie">กัลโช่</string>
    <string name="switch_off">ปิดสวิตช์</string>
    <string name="blueligth_filter">ตัวกรอง BlueLight</string>
+   <string name="my_language">ภาษาของฉัน</string>
 </resources>
