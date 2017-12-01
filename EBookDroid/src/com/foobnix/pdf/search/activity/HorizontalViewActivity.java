@@ -1589,11 +1589,12 @@ public class HorizontalViewActivity extends FragmentActivity {
         IMG.clearMemoryCache();
         viewPager.setAdapter(null);
         pagerAdapter = null;
+        final int count = documentController.getPageCount();
         pagerAdapter = new UpdatableFragmentPagerAdapter(getSupportFragmentManager()) {
 
             @Override
             public int getCount() {
-                return documentController.getPageCount();
+                return count;
             }
 
             @Override
