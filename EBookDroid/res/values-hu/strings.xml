@@ -423,5 +423,5 @@
    <string name="serie">Sorozat</string>
    <string name="switch_off">Kikapcsol</string>
    <string name="blueligth_filter">BlueLight szűrő</string>
-   <string name="my_language">A nyelvem</string>
+   <string name="system_language">Rendszer nyelv</string>
 </resources>

@@ -423,5 +423,5 @@
    <string name="serie">Serie</string>
    <string name="switch_off">Kapatmak</string>
    <string name="blueligth_filter">Mavi Işık Filtresi</string>
-   <string name="my_language">Benim dilim</string>
+   <string name="system_language">Sistem dili</string>
 </resources>

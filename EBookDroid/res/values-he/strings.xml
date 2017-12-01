@@ -423,5 +423,5 @@
    <string name="serie">סיד</string>
    <string name="switch_off">לכבות</string>
    <string name="blueligth_filter">מסנן</string>
-   <string name="my_language">השפה שלי</string>
+   <string name="system_language">שפת מערכת</string>
 </resources>

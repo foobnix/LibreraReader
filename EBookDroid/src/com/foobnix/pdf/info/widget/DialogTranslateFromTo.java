@@ -129,7 +129,7 @@ public class DialogTranslateFromTo {
 
     public static String getLanuageByCode(String code) {
         if (AppState.MY_SYSTEM_LANG.equals(code)) {
-            return LirbiApp.context.getString(R.string.my_language);
+            return LirbiApp.context.getString(R.string.system_language);
         }
         try {
             Locale l = new Locale(code);

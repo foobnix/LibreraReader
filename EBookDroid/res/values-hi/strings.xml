@@ -423,5 +423,5 @@
    <string name="serie">सेरी</string>
    <string name="switch_off">बंद करना</string>
    <string name="blueligth_filter">ब्लूलाइट फिल्टर</string>
-   <string name="my_language">मेरी भाषा</string>
+   <string name="system_language">सिस्टम भाषा</string>
 </resources>

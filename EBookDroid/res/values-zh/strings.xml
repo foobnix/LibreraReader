@@ -423,5 +423,5 @@
    <string name="serie">意甲</string>
    <string name="switch_off">关掉</string>
    <string name="blueligth_filter">BlueLight过滤器</string>
-   <string name="my_language">我的语言</string>
+   <string name="system_language">系统语言</string>
 </resources>

@@ -39,6 +39,7 @@ import com.foobnix.pdf.info.wrapper.UITab;
 import com.foobnix.sys.TempHolder;
 import com.foobnix.ui2.BooksService;
 import com.foobnix.ui2.MainTabs2;
+import com.foobnix.ui2.MyContextWrapper;
 import com.jmedeisis.draglinearlayout.DragLinearLayout;
 import com.nostra13.universalimageloader.core.ImageLoader;
 
@@ -458,12 +459,13 @@ public class PrefFragment2 extends UIFragment {
                 }
                 Collections.sort(langs);
 
-                popupMenu.getMenu().add(R.string.my_language).setOnMenuItemClickListener(new OnMenuItemClickListener() {
+                popupMenu.getMenu().add(R.string.system_language).setOnMenuItemClickListener(new OnMenuItemClickListener() {
 
                     @Override
                     public boolean onMenuItemClick(MenuItem item) {
-                        AppState.get().appLang = AppState.MY_SYSTEM_LANG;
                         TxtUtils.underlineTextView(hypenLang);
+                        AppState.get().appLang = AppState.MY_SYSTEM_LANG;
+                        MyContextWrapper.wrap(getContext());
                         AppState.get().save(getActivity());
                         onTheme();
                         return false;

@@ -262,8 +262,8 @@ public class ViewerActivityController extends ActionController<ViewerActivity> i
         BookSettings bookSettings = SettingsManager.getBookSettings();
         if (bookSettings != null) {
             bookSettings.updateFromAppState();
+            bookSettings.save();
         }
-        bookSettings.save();
     }
 
     public void onDestroy() {
