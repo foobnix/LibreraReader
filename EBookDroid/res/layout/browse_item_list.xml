@@ -175,7 +175,7 @@
                         android:textStyle="bold" />
 
                     <TextView
-                           android:layout_marginLeft="6dip"
+                        android:layout_marginLeft="6dip"
                         android:id="@+id/browserSize"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"

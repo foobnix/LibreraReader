@@ -3195,6 +3195,9 @@ public class DragingDialogs {
                 View inflate = inflater.inflate(R.layout.dialog_prefs, null, false);
 
                 /** Blue Light Color start **/
+
+                inflate.findViewById(R.id.blueLightLayout).setVisibility(AppState.get().isInkMode ? View.GONE : View.VISIBLE);
+
                 final CustomColorView blueLightColor = (CustomColorView) inflate.findViewById(R.id.blueLightColor);
                 TxtUtils.bold(blueLightColor.getText1());
                 blueLightColor.withDefaultColors(AppState.BLUE_FILTER_DEFAULT_COLOR, Color.BLACK);
@@ -3524,7 +3527,6 @@ public class DragingDialogs {
                         });
                     }
                 });
-
 
                 CheckBox autoSettings = (CheckBox) inflate.findViewById(R.id.autoSettings);
 
