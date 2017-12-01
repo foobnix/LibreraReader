@@ -82,7 +82,12 @@ public class MyPopupMenu {
                 ImageView imageView = (ImageView) layout.findViewById(R.id.image1);
                 if (item.iconRes != 0) {
                     imageView.setImageResource(item.iconRes);
-                    TintUtil.setTintImage(imageView);
+                    if (item.iconRes == R.drawable.icon_pdf_pro) {
+                        TintUtil.setNoTintImage(imageView);
+                    } else {
+                        TintUtil.setTintImage(imageView);
+
+                    }
                 } else {
                     imageView.setVisibility(View.GONE);
                 }

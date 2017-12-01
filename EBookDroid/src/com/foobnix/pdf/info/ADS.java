@@ -1,7 +1,13 @@
 package com.foobnix.pdf.info;
 
+import java.util.HashMap;
 import java.util.concurrent.TimeUnit;
 
+import com.adclient.android.sdk.listeners.ClientAdListener;
+import com.adclient.android.sdk.type.AdType;
+import com.adclient.android.sdk.type.ParamsType;
+import com.adclient.android.sdk.view.AbstractAdClientView;
+import com.adclient.android.sdk.view.AdClientView;
 import com.foobnix.android.utils.Dips;
 import com.foobnix.android.utils.LOG;
 import com.foobnix.android.utils.TxtUtils;
@@ -41,6 +47,7 @@ public class ADS {
     public static AdRequest adRequest = new AdRequest.Builder()//
             .addTestDevice(AdRequest.DEVICE_ID_EMULATOR)//
             .addTestDevice("E0A9E8CB1E71AE8C3F6F64D692E914DB")//
+            .addTestDevice("465253044271C009F461C81CFAC406BA")//
             .addTestDevice("ECC8DAFFDFD6BE5A3C799695FC4853E8")//
             .build();//
 
@@ -66,6 +73,63 @@ public class ADS {
             AppsConfig.checkIsProInstalled(adView.getContext());
             adView.resume();
         }
+    }
+
+    public static void onResumeEP(final AdClientView adClientView) {
+        if (adClientView != null) {
+            adClientView.resume();
+        }
+    }
+
+    public static void onPauseEP(final AdClientView adClientView) {
+        if (adClientView != null) {
+            adClientView.pause();
+        }
+    }
+
+    public static void activateEP(final Activity a, AdClientView adViewNative) {
+        AdClientView adClientView = a.findViewById(R.id.adClientView);
+
+        if (!AppsConfig.IS_EP) {
+            adClientView.setVisibility(View.GONE);
+            adClientView = null;
+            return;
+        }
+
+        HashMap<ParamsType, Object> configuration = new HashMap<ParamsType, Object>();
+        configuration.put(ParamsType.AD_PLACEMENT_KEY, "58296e9c9472044364aa6770d8409ede");
+        configuration.put(ParamsType.ADTYPE, AdType.BANNER_320X50.toString());
+        configuration.put(ParamsType.AD_SERVER_URL, "http://appservestar.com/");
+        adClientView.setConfiguration(configuration);
+
+        adClientView.addClientAdListener(new ClientAdListener() {
+            @Override
+            public void onReceivedAd(AbstractAdClientView adClientView) {
+                Log.d("TestApp", "--> Ad received callback.");
+            }
+
+            @Override
+            public void onFailedToReceiveAd(AbstractAdClientView adClientView) {
+                Log.d("TestApp", "--> Ad failed to be received callback.");
+            }
+
+            @Override
+            public void onClickedAd(AbstractAdClientView adClientView) {
+                Log.d("TestApp", "--> Ad clicked callback.");
+            }
+
+            @Override
+            public void onLoadingAd(AbstractAdClientView adClientView, String message) {
+                Log.d("TestApp", "--> Ad loaded callback.");
+            }
+
+            @Override
+            public void onClosedAd(AbstractAdClientView adClientView) {
+                Log.d("TestApp", "--> Ad closed callback.");
+            }
+        });
+        adClientView.load();
+
     }
 
     public static void activateNative(final Activity a, NativeExpressAdView adViewNative) {

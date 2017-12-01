@@ -159,6 +159,11 @@ public class TintUtil {
         return img;
     }
 
+    public static ImageView setNoTintImage(ImageView img) {
+        img.setColorFilter(null);
+        return img;
+    }
+
     public static ImageView setTintImage(ImageView img, int color) {
         img.setColorFilter(color, Mode.SRC_ATOP);
         img.setAlpha(230);

@@ -7,6 +7,7 @@ import java.util.List;
 
 import org.ebookdroid.ui.viewer.ViewerActivity;
 
+import com.adclient.android.sdk.view.AdClientView;
 import com.foobnix.android.utils.LOG;
 import com.foobnix.android.utils.TxtUtils;
 import com.foobnix.dao2.FileMeta;
@@ -72,6 +73,7 @@ public class MainTabs2 extends FragmentActivity {
     ViewPager pager;
     List<UIFragment> tabFragments;
     private NativeExpressAdView adViewNative;
+    private AdClientView adClientView;
     InterstitialAd mInterstitialAd;
     public static volatile boolean isInStack;
     TabsAdapter2 adapter;
@@ -273,6 +275,7 @@ public class MainTabs2 extends FragmentActivity {
         Android6.checkPermissions(this);
         Analytics.onStart(this);
         ADS.activateNative(this, adViewNative);
+        ADS.activateEP(this, adClientView);
         FontExtractor.extractFonts(this);
 
         List<String> actions = Arrays.asList("android.intent.action.PROCESS_TEXT", "android.intent.action.SEARCH", "android.intent.action.SEND");
@@ -337,6 +340,8 @@ public class MainTabs2 extends FragmentActivity {
 
         AndroidWhatsNew.checkForNewBeta(this);
 
+
+
     }
 
     BroadcastReceiver broadcastReceiver = new BroadcastReceiver() {
@@ -372,6 +377,7 @@ public class MainTabs2 extends FragmentActivity {
     protected void onResume() {
         super.onResume();
         ADS.onResumeNative(adViewNative);
+        ADS.onResumeEP(adClientView);
         // DocumentController.chooseFullScreen(this, false);
         TintUtil.updateAll();
         AppState.get().lastA = MainTabs2.class.getSimpleName();
@@ -414,6 +420,7 @@ public class MainTabs2 extends FragmentActivity {
     protected void onPause() {
         super.onPause();
         ADS.onPauseNative(adViewNative);
+        ADS.onPauseEP(adClientView);
         AppState.getInstance().save(this);
         LocalBroadcastManager.getInstance(this).unregisterReceiver(broadcastReceiver);
         RecentUpates.updateAll(this);
@@ -439,6 +446,7 @@ public class MainTabs2 extends FragmentActivity {
     public void onConfigurationChanged(final Configuration newConfig) {
         super.onConfigurationChanged(newConfig);
         ADS.activateNative(this, adViewNative);
+        ADS.activateEP(this, adClientView);
 
         String language = newConfig.locale.getLanguage();
         float fontScale = newConfig.fontScale;

@@ -30,7 +30,7 @@ public class AppsConfig {
 
     public static String APP_NAME;
     public static String APP_PACKAGE;
-    public static boolean IS_BETA, IS_CLASSIC, IS_INK;
+    public static boolean IS_BETA, IS_CLASSIC, IS_INK, IS_EP;
 
     public static void init(final Context a) {
         final String packageName = a.getPackageName();
@@ -93,6 +93,7 @@ public class AppsConfig {
             ANALYTICS_ID = "UA-36581296-9";
             ADMOB_CLASSIC = ADMOB_FULLSCREEN = ADMOB_NATIVE_BIG = ADMOB_NATIVE_SMALL = null;
         }
+        IS_EP = false;
 
     }
 

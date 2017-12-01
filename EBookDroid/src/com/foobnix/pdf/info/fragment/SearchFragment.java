@@ -21,7 +21,6 @@ import com.foobnix.pdf.info.Analytics;
 import com.foobnix.pdf.info.ExtUtils;
 import com.foobnix.pdf.info.IMG;
 import com.foobnix.pdf.info.R;
-import com.foobnix.pdf.info.TintUtil;
 import com.foobnix.pdf.info.Urls;
 import com.foobnix.pdf.info.io.SearchCore;
 import com.foobnix.pdf.info.presentation.AuthorsAdapter;
@@ -29,7 +28,6 @@ import com.foobnix.pdf.info.presentation.SearchAdapter;
 import com.foobnix.pdf.info.widget.FileInformationDialog;
 import com.foobnix.pdf.info.widget.ShareDialog;
 import com.foobnix.pdf.info.wrapper.AppState;
-import com.foobnix.pdf.info.wrapper.PopupHelper;
 import com.foobnix.sys.TempHolder;
 import com.foobnix.ui2.AppDB;
 
@@ -355,7 +353,6 @@ public class SearchFragment extends BaseListFragment {
 
                 p.show();
 
-                PopupHelper.initIcons(p, TintUtil.color);
 
             }
         });

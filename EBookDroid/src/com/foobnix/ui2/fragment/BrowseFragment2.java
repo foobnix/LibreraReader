@@ -42,7 +42,6 @@ import android.widget.HorizontalScrollView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.LinearLayout.LayoutParams;
-import android.widget.PopupMenu;
 import android.widget.TextView;
 
 public class BrowseFragment2 extends UIFragment<FileMeta> {
@@ -480,7 +479,7 @@ public class BrowseFragment2 extends UIFragment<FileMeta> {
     }
 
     private void popupMenu(final ImageView onGridList) {
-        PopupMenu p = new PopupMenu(getActivity(), onGridList);
+        MyPopupMenu p = new MyPopupMenu(getActivity(), onGridList);
         PopupHelper.addPROIcon(p, getActivity());
 
         List<Integer> names = Arrays.asList(R.string.list, R.string.compact, R.string.grid, R.string.cover);
@@ -503,7 +502,6 @@ public class BrowseFragment2 extends UIFragment<FileMeta> {
 
         p.show();
 
-        PopupHelper.initIcons(p, TintUtil.color);
     }
 
     @Override

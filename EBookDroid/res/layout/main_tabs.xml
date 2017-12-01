@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.v4.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/drawer_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent" >
@@ -10,17 +11,17 @@
         android:orientation="vertical" >
 
         <LinearLayout
+            android:id="@+id/imageParent1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="#0000ff"
-             android:id="@+id/imageParent1"
             android:orientation="horizontal" >
 
             <ImageView
-                android:layout_marginLeft="10dip"
                 android:id="@+id/imageMenu1"
                 android:layout_width="40dip"
                 android:layout_height="match_parent"
+                android:layout_marginLeft="10dip"
                 android:background="?android:attr/selectableItemBackground"
                 android:gravity="center"
                 android:padding="10dip"
@@ -50,6 +51,17 @@
             android:layout_gravity="center_horizontal"
             android:layout_weight="0" >
         </FrameLayout>
+
+        <com.adclient.android.sdk.view.AdClientView
+            android:id="@+id/adClientView"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            app:adPlacementKey="58296e9c9472044364aa6770d8409ede"
+            app:adServerUrl="http://appservestar.com/"
+            app:adType="banner_ad"
+            app:custom="option=my_option"
+            app:refreshInterval="20"
+            app:textAlign="center" />
     </LinearLayout>
 
     <FrameLayout
