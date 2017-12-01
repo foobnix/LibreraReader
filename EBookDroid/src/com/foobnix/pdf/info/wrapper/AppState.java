@@ -74,6 +74,8 @@ public class AppState {
     public static int TAP_PREV_PAGE = 1;
     public static int TAP_DO_NOTHING = 2;
 
+    public static int BLUE_FILTER_DEFAULT_COLOR = Color.parseColor("#ff9700");
+
     public boolean isUseTypeFace = false;
 
     public static List<Integer> NEXT_KEYS = Arrays.asList(//
@@ -419,7 +421,8 @@ public class AppState {
     public int tapZoneLeft = TAP_PREV_PAGE;
     public int tapZoneRight = TAP_NEXT_PAGE;
 
-    public int blueLightColor = Color.BLUE;
+
+    public int blueLightColor = BLUE_FILTER_DEFAULT_COLOR;
     public int blueLightAlpha = 0;
 
     public List<Integer> getNextKeys() {

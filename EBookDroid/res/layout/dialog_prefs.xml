@@ -298,35 +298,7 @@
                 android:tint="@color/tint_gray" />
         </LinearLayout>
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center_vertical" >
-
-            <CheckBox
-                android:id="@+id/isAutoHypens"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="@string/automatic_hyphenation" />
-
-            <TextView
-                android:id="@+id/hypenLangLabel"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="15dip"
-                android:layout_weight="0"
-                android:text="@string/language" />
-
-            <TextView
-                android:id="@+id/hypenLang"
-                style="@style/textLink"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="0"
-                android:minWidth="50dip"
-                android:text="Russian" />
-        </LinearLayout>
+       
 
         <View
             android:id="@+id/topPanelLineDiv"

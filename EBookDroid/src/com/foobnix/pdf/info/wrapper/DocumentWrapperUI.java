@@ -1053,7 +1053,7 @@ public class DocumentWrapperUI {
 
     public void updateOverlay() {
         if (AppState.get().blueLightAlpha != 0) {
-            overlay.setBackgroundColor(ColorUtils.setAlphaComponent(AppState.get().blueLightColor, 230 * AppState.get().blueLightAlpha / 100));
+            overlay.setBackgroundColor(ColorUtils.setAlphaComponent(AppState.get().blueLightColor, 220 * AppState.get().blueLightAlpha / 100));
         } else {
             overlay.setBackgroundColor(Color.TRANSPARENT);
         }

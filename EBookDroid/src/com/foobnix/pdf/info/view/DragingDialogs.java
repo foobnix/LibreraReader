@@ -138,7 +138,7 @@ import android.widget.Toast;
 public class DragingDialogs {
 
     public final static int PREF_WIDTH = 330;
-    public final static int PREF_HEIGHT = 550;
+    public final static int PREF_HEIGHT = 560;
 
     public static final String EDIT_COLORS_PANEL = "editColorsPanel";
 
@@ -2842,6 +2842,71 @@ public class DragingDialogs {
 
                 // end styles
 
+                // hypens
+                boolean isSupportHypens = controller.isTextFormat();
+
+                CheckBox isAutoHypens = (CheckBox) inflate.findViewById(R.id.isAutoHypens);
+                isAutoHypens.setVisibility(isSupportHypens ? View.VISIBLE : View.GONE);
+
+                isAutoHypens.setChecked(BookCSS.get().isAutoHypens);
+                isAutoHypens.setOnCheckedChangeListener(new OnCheckedChangeListener() {
+
+                    @Override
+                    public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                        BookCSS.get().isAutoHypens = isChecked;
+                    }
+                });
+
+                final TextView hypenLangLabel = (TextView) inflate.findViewById(R.id.hypenLangLabel);
+
+                final TextView hypenLang = (TextView) inflate.findViewById(R.id.hypenLang);
+
+                // hypenLang.setVisibility(isSupportHypens ? View.VISIBLE :
+                // View.GONE);
+                // hypenLangLabel.setVisibility(isSupportHypens ? View.VISIBLE :
+                // View.GONE);
+
+                hypenLang.setVisibility(View.GONE);
+                hypenLangLabel.setVisibility(View.GONE);
+
+                hypenLang.setText(DialogTranslateFromTo.getLanuageByCode(BookCSS.get().hypenLang));
+                TxtUtils.underlineTextView(hypenLang);
+
+                hypenLang.setOnClickListener(new OnClickListener() {
+
+                    @Override
+                    public void onClick(View v) {
+
+                        final PopupMenu popupMenu = new PopupMenu(v.getContext(), v);
+
+                        HyphenPattern[] values = HyphenPattern.values();
+
+                        List<String> all = new ArrayList<String>();
+                        for (HyphenPattern p : values) {
+                            all.add(p.lang);
+                        }
+                        Collections.sort(all);
+
+                        for (final String lang : all) {
+
+                            final String titleLang = DialogTranslateFromTo.getLanuageByCode(lang) + " (" + lang + ")";
+                            popupMenu.getMenu().add(titleLang).setOnMenuItemClickListener(new OnMenuItemClickListener() {
+
+                                @Override
+                                public boolean onMenuItemClick(MenuItem item) {
+                                    BookCSS.get().hypenLang = lang;
+                                    hypenLang.setText(titleLang);
+                                    TxtUtils.underlineTextView(hypenLang);
+                                    return false;
+                                }
+                            });
+                        }
+                        popupMenu.show();
+
+                    }
+                });
+                // - hypens
+
                 TextView customCSS = (TextView) inflate.findViewById(R.id.customCSS);
                 TxtUtils.underlineTextView(customCSS);
                 customCSS.setOnClickListener(new OnClickListener() {
@@ -3132,7 +3197,7 @@ public class DragingDialogs {
                 /** Blue Light Color start **/
                 final CustomColorView blueLightColor = (CustomColorView) inflate.findViewById(R.id.blueLightColor);
                 TxtUtils.bold(blueLightColor.getText1());
-                blueLightColor.withDefaultColors(Color.BLUE, Color.BLACK);
+                blueLightColor.withDefaultColors(AppState.BLUE_FILTER_DEFAULT_COLOR, Color.BLACK);
                 blueLightColor.init(AppState.get().blueLightColor);
                 blueLightColor.setOnColorChanged(new StringResponse() {
 
@@ -3460,70 +3525,6 @@ public class DragingDialogs {
                     }
                 });
 
-                // hypens
-                boolean isSupportHypens = controller.isTextFormat();
-
-                CheckBox isAutoHypens = (CheckBox) inflate.findViewById(R.id.isAutoHypens);
-                isAutoHypens.setVisibility(isSupportHypens ? View.VISIBLE : View.GONE);
-
-                isAutoHypens.setChecked(BookCSS.get().isAutoHypens);
-                isAutoHypens.setOnCheckedChangeListener(new OnCheckedChangeListener() {
-
-                    @Override
-                    public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                        BookCSS.get().isAutoHypens = isChecked;
-                    }
-                });
-
-                final TextView hypenLangLabel = (TextView) inflate.findViewById(R.id.hypenLangLabel);
-
-                final TextView hypenLang = (TextView) inflate.findViewById(R.id.hypenLang);
-
-                // hypenLang.setVisibility(isSupportHypens ? View.VISIBLE :
-                // View.GONE);
-                // hypenLangLabel.setVisibility(isSupportHypens ? View.VISIBLE :
-                // View.GONE);
-
-                hypenLang.setVisibility(View.GONE);
-                hypenLangLabel.setVisibility(View.GONE);
-
-                hypenLang.setText(DialogTranslateFromTo.getLanuageByCode(BookCSS.get().hypenLang));
-                TxtUtils.underlineTextView(hypenLang);
-
-                hypenLang.setOnClickListener(new OnClickListener() {
-
-                    @Override
-                    public void onClick(View v) {
-
-                        final PopupMenu popupMenu = new PopupMenu(v.getContext(), v);
-
-                        HyphenPattern[] values = HyphenPattern.values();
-
-                        List<String> all = new ArrayList<String>();
-                        for (HyphenPattern p : values) {
-                            all.add(p.lang);
-                        }
-                        Collections.sort(all);
-
-                        for (final String lang : all) {
-
-                            final String titleLang = DialogTranslateFromTo.getLanuageByCode(lang) + " (" + lang + ")";
-                            popupMenu.getMenu().add(titleLang).setOnMenuItemClickListener(new OnMenuItemClickListener() {
-
-                                @Override
-                                public boolean onMenuItemClick(MenuItem item) {
-                                    BookCSS.get().hypenLang = lang;
-                                    hypenLang.setText(titleLang);
-                                    TxtUtils.underlineTextView(hypenLang);
-                                    return false;
-                                }
-                            });
-                        }
-                        popupMenu.show();
-
-                    }
-                });
-                // - hypens
 
                 CheckBox autoSettings = (CheckBox) inflate.findViewById(R.id.autoSettings);
 
