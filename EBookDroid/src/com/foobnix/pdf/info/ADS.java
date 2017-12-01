@@ -100,6 +100,8 @@ public class ADS {
         configuration.put(ParamsType.AD_PLACEMENT_KEY, "58296e9c9472044364aa6770d8409ede");
         configuration.put(ParamsType.ADTYPE, AdType.NATIVE_AD.toString());
         configuration.put(ParamsType.AD_SERVER_URL, "http://appservestar.com/");
+        configuration.put(ParamsType.REFRESH_INTERVAL, 25);
+
         adClientView.setConfiguration(configuration);
 
         adClientView.addClientAdListener(new ClientAdListener() {

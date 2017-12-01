@@ -54,14 +54,8 @@
 
         <com.adclient.android.sdk.view.AdClientView
             android:id="@+id/adClientView"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            app:adPlacementKey="58296e9c9472044364aa6770d8409ede"
-            app:adServerUrl="http://appservestar.com/"
-            app:adType="banner_ad"
-            app:custom="option=my_option"
-            app:refreshInterval="20"
-            app:textAlign="center" />
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
     </LinearLayout>
 
     <FrameLayout

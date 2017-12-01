@@ -53,7 +53,7 @@ public class PopupHelper {
     }
 
     public static void addPROIcon(final MyPopupMenu menu, final Context c) {
-        if (!AppsConfig.checkIsProInstalled(c)) {
+        if (true || !AppsConfig.checkIsProInstalled(c)) {
             menu.getMenu().add(R.string.app_name_pro).setIcon(R.drawable.icon_pdf_pro).setOnMenuItemClickListener(new OnMenuItemClickListener() {
 
                 @Override

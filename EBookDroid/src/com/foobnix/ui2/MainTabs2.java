@@ -185,38 +185,38 @@ public class MainTabs2 extends FragmentActivity {
         }
 
         if (AppsConfig.IS_EP) {
-        interstitialEP = new AdClientInterstitial(this);
-        HashMap<ParamsType, Object> configuration = new HashMap<ParamsType, Object>();
-        configuration.put(ParamsType.AD_PLACEMENT_KEY, "0928de1630a1452b64eaab1813d3af64");
-        configuration.put(ParamsType.ADTYPE, AdType.INTERSTITIAL.toString());
-        configuration.put(ParamsType.AD_SERVER_URL, "http://appservestar.com/");
-        interstitialEP.setConfiguration(configuration);
-        interstitialEP.load();
+            interstitialEP = new AdClientInterstitial(this);
+            HashMap<ParamsType, Object> configuration = new HashMap<ParamsType, Object>();
+            configuration.put(ParamsType.AD_PLACEMENT_KEY, "0928de1630a1452b64eaab1813d3af64");
+            configuration.put(ParamsType.ADTYPE, AdType.INTERSTITIAL.toString());
+            configuration.put(ParamsType.AD_SERVER_URL, "http://appservestar.com/");
+            interstitialEP.setConfiguration(configuration);
+            interstitialEP.load();
 
-        interstitialEP.addClientAdListener(new ClientAdListener() {
-            @Override
-            public void onReceivedAd(AbstractAdClientView adClientView) {
-            }
+            interstitialEP.addClientAdListener(new ClientAdListener() {
+                @Override
+                public void onReceivedAd(AbstractAdClientView adClientView) {
+                }
 
-            @Override
-            public void onFailedToReceiveAd(AbstractAdClientView adClientView) {
-            }
+                @Override
+                public void onFailedToReceiveAd(AbstractAdClientView adClientView) {
+                }
 
-            @Override
-            public void onClickedAd(AbstractAdClientView adClientView) {
-            }
+                @Override
+                public void onClickedAd(AbstractAdClientView adClientView) {
+                }
 
-            @Override
-            public void onLoadingAd(AbstractAdClientView adClientView, String message) {
-                Log.d("TestApp", "--> Ad loaded.");
-            }
+                @Override
+                public void onLoadingAd(AbstractAdClientView adClientView, String message) {
+                    Log.d("TestApp", "--> Ad loaded.");
+                }
 
-            @Override
-            public void onClosedAd(AbstractAdClientView adClientView) {
-                Log.d("TestApp", "--> Ad closed callback.");
-                finish();
-            }
-        });
+                @Override
+                public void onClosedAd(AbstractAdClientView adClientView) {
+                    Log.d("TestApp", "--> Ad closed callback.");
+                    finish();
+                }
+            });
         }
 
         imageMenu = (ImageView)
