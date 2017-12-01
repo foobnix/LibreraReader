@@ -463,7 +463,6 @@ public class PrefFragment2 extends UIFragment {
                     @Override
                     public boolean onMenuItemClick(MenuItem item) {
                         AppState.get().appLang = AppState.MY_SYSTEM_LANG;
-                        AppState.get().appFontScale = 1.0f;
                         TxtUtils.underlineTextView(hypenLang);
                         AppState.get().save(getActivity());
                         onTheme();

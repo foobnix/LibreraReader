@@ -284,7 +284,7 @@ public class AppState {
     public int bgImageDayTransparency = DAY_TRANSPARENCY;
     public int bgImageNightTransparency = NIGHT_TRANSPARENCY;
 
-    public String appLang = Urls.getLangCode();
+    public String appLang = AppState.MY_SYSTEM_LANG;
     public float appFontScale = 1.0f;
 
     public boolean isLocked = false;
