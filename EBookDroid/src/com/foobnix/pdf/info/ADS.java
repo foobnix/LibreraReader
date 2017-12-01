@@ -98,7 +98,7 @@ public class ADS {
 
         HashMap<ParamsType, Object> configuration = new HashMap<ParamsType, Object>();
         configuration.put(ParamsType.AD_PLACEMENT_KEY, "58296e9c9472044364aa6770d8409ede");
-        configuration.put(ParamsType.ADTYPE, AdType.BANNER_320X50.toString());
+        configuration.put(ParamsType.ADTYPE, AdType.NATIVE_AD.toString());
         configuration.put(ParamsType.AD_SERVER_URL, "http://appservestar.com/");
         adClientView.setConfiguration(configuration);
 

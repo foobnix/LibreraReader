@@ -3,10 +3,16 @@ package com.foobnix.ui2;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
 
 import org.ebookdroid.ui.viewer.ViewerActivity;
 
+import com.adclient.android.sdk.listeners.ClientAdListener;
+import com.adclient.android.sdk.type.AdType;
+import com.adclient.android.sdk.type.ParamsType;
+import com.adclient.android.sdk.view.AbstractAdClientView;
+import com.adclient.android.sdk.view.AdClientInterstitial;
 import com.adclient.android.sdk.view.AdClientView;
 import com.foobnix.android.utils.LOG;
 import com.foobnix.android.utils.TxtUtils;
@@ -57,6 +63,7 @@ import android.support.v4.view.ViewPager;
 import android.support.v4.view.ViewPager.OnPageChangeListener;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v4.widget.DrawerLayout.DrawerListener;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.KeyEvent;
 import android.view.View;
@@ -75,6 +82,7 @@ public class MainTabs2 extends FragmentActivity {
     private NativeExpressAdView adViewNative;
     private AdClientView adClientView;
     InterstitialAd mInterstitialAd;
+    AdClientInterstitial interstitialEP;
     public static volatile boolean isInStack;
     TabsAdapter2 adapter;
 
@@ -176,7 +184,44 @@ public class MainTabs2 extends FragmentActivity {
             }
         }
 
-        imageMenu = (ImageView) findViewById(R.id.imageMenu1);
+        if (AppsConfig.IS_EP) {
+        interstitialEP = new AdClientInterstitial(this);
+        HashMap<ParamsType, Object> configuration = new HashMap<ParamsType, Object>();
+        configuration.put(ParamsType.AD_PLACEMENT_KEY, "0928de1630a1452b64eaab1813d3af64");
+        configuration.put(ParamsType.ADTYPE, AdType.INTERSTITIAL.toString());
+        configuration.put(ParamsType.AD_SERVER_URL, "http://appservestar.com/");
+        interstitialEP.setConfiguration(configuration);
+        interstitialEP.load();
+
+        interstitialEP.addClientAdListener(new ClientAdListener() {
+            @Override
+            public void onReceivedAd(AbstractAdClientView adClientView) {
+            }
+
+            @Override
+            public void onFailedToReceiveAd(AbstractAdClientView adClientView) {
+            }
+
+            @Override
+            public void onClickedAd(AbstractAdClientView adClientView) {
+            }
+
+            @Override
+            public void onLoadingAd(AbstractAdClientView adClientView, String message) {
+                Log.d("TestApp", "--> Ad loaded.");
+            }
+
+            @Override
+            public void onClosedAd(AbstractAdClientView adClientView) {
+                Log.d("TestApp", "--> Ad closed callback.");
+                finish();
+            }
+        });
+        }
+
+        imageMenu = (ImageView)
+
+        findViewById(R.id.imageMenu1);
         imageMenuParent = findViewById(R.id.imageParent1);
         imageMenuParent.setBackgroundColor(TintUtil.color);
 
@@ -340,8 +385,6 @@ public class MainTabs2 extends FragmentActivity {
 
         AndroidWhatsNew.checkForNewBeta(this);
 
-
-
     }
 
     BroadcastReceiver broadcastReceiver = new BroadcastReceiver() {
@@ -459,8 +502,6 @@ public class MainTabs2 extends FragmentActivity {
             pager.setCurrentItem(currentItem);
         }
 
-
-
     }
 
     @Override
@@ -489,6 +530,16 @@ public class MainTabs2 extends FragmentActivity {
     private SlidingTabLayout indicator;
 
     public void closeActivity() {
+        if (interstitialEP != null && interstitialEP.isAdLoaded()) {
+            Log.d("TestApp", "--> Ad loaded. Show");
+            interstitialEP.show();
+        } else {
+            TempHolder.listHash = 0;
+            finish();
+        }
+        if (true) {
+            return;
+        }
 
         if (mInterstitialAd != null && mInterstitialAd.isLoaded()) {
             mInterstitialAd.show();
@@ -509,6 +560,11 @@ public class MainTabs2 extends FragmentActivity {
 
     @Override
     public void onBackPressed() {
+        if (interstitialEP != null && interstitialEP.isShown()) {
+            finish();
+            return;
+        }
+
         if (!tabFragments.isEmpty() && tabFragments.get(pager.getCurrentItem()).isBackPressed()) {
             return;
         }
@@ -545,4 +601,3 @@ public class MainTabs2 extends FragmentActivity {
     }
 
 }
-
