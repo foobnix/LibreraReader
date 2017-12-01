@@ -136,10 +136,9 @@ public class DocumentModel extends ListenerProxy {
     public void setCurrentPageIndex(final PageIndex newIndex, int pages) {
         if (!CompareUtils.equals(currentIndex, newIndex)) {
 
-            final PageIndex oldIndex = this.currentIndex;
             this.currentIndex = newIndex;
 
-            this.<CurrentPageListener> getListener().currentPageChanged(oldIndex, newIndex, pages);
+            this.<CurrentPageListener>getListener().currentPageChanged(newIndex, pages);
         }
     }
 

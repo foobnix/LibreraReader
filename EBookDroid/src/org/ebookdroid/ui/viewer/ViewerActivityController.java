@@ -263,7 +263,7 @@ public class ViewerActivityController extends ActionController<ViewerActivity> i
         if (bookSettings != null) {
             bookSettings.updateFromAppState();
         }
-        SettingsManager.storeBookSettings();
+        bookSettings.save();
     }
 
     public void onDestroy() {
@@ -366,14 +366,14 @@ public class ViewerActivityController extends ActionController<ViewerActivity> i
     }
 
     @Override
-    public void currentPageChanged(final PageIndex oldIndex, final PageIndex newIndex, int pages) {
+    public void currentPageChanged(final PageIndex newIndex, int pages) {
         final int pageCount = documentModel.getPageCount();
         String pageText = "";
         if (pageCount > 0) {
             pageText = (newIndex.viewIndex + 1) + "/" + pageCount;
         }
         getManagedComponent().currentPageChanged(pageText, bookTitle);
-        SettingsManager.currentPageChanged(oldIndex, newIndex, pageCount);
+        SettingsManager.currentPageChanged(newIndex, pageCount);
 
         wrapperControlls.updateUI();
         wrapperControlls.setTitle(bookTitle);
@@ -397,7 +397,6 @@ public class ViewerActivityController extends ActionController<ViewerActivity> i
 
         wrapperControlls.initUI(a);
     }
-
 
     public void onResume() {
         if (controller != null) {
@@ -451,7 +450,7 @@ public class ViewerActivityController extends ActionController<ViewerActivity> i
 
     public void toggleNightMode() {
         getDocumentController().toggleRenderingEffects();
-        currentPageChanged(PageIndex.NULL, documentModel.getCurrentIndex(), -1);
+        currentPageChanged(documentModel.getCurrentIndex(), -1);
     }
 
     public void toggleCrop() {
@@ -462,7 +461,7 @@ public class ViewerActivityController extends ActionController<ViewerActivity> i
         newDc.init(null);
         newDc.show();
 
-        currentPageChanged(PageIndex.NULL, documentModel.getCurrentIndex(), -1);
+        currentPageChanged(documentModel.getCurrentIndex(), -1);
 
     }
 
@@ -534,7 +533,7 @@ public class ViewerActivityController extends ActionController<ViewerActivity> i
         if (temporaryBook) {
             SettingsManager.removeCurrentBookSettings();
         } else {
-            SettingsManager.clearCurrentBookSettings();
+            SettingsManager.storeBookSettings1();
         }
         LOG.d("closeActivity 3");
         getManagedComponent().finish();
@@ -548,7 +547,7 @@ public class ViewerActivityController extends ActionController<ViewerActivity> i
         if (temporaryBook) {
             SettingsManager.removeCurrentBookSettings();
         } else {
-            SettingsManager.clearCurrentBookSettings();
+            SettingsManager.storeBookSettings1();
         }
         getManagedComponent().finish();
 
@@ -596,7 +595,7 @@ public class ViewerActivityController extends ActionController<ViewerActivity> i
         }
 
         // currentPageChanged(PageIndex.NULL, documentModel.getCurrentIndex());
-        currentPageChanged(PageIndex.NULL, newSettings.currentPage, -1);
+        currentPageChanged(newSettings.currentPage, -1);
 
     }
 
@@ -666,7 +665,7 @@ public class ViewerActivityController extends ActionController<ViewerActivity> i
                         getDocumentController().show();
 
                         final DocumentModel dm = getDocumentModel();
-                        currentPageChanged(PageIndex.NULL, dm.getCurrentIndex(), -1);
+                        currentPageChanged(dm.getCurrentIndex(), -1);
                         onBookLoaded.run();
 
                     } catch (final Throwable th) {
@@ -697,7 +696,5 @@ public class ViewerActivityController extends ActionController<ViewerActivity> i
             publishProgress(getManagedComponent().getString(resourceID, args));
         }
     }
-
-
 
 }

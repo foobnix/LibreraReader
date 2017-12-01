@@ -5,8 +5,6 @@ import java.util.Collections;
 import java.util.List;
 
 import org.ebookdroid.common.settings.SettingsManager;
-import org.ebookdroid.common.settings.books.BookSettings;
-import org.ebookdroid.core.PageIndex;
 import org.ebookdroid.core.codec.CodecDocument;
 import org.ebookdroid.core.codec.CodecPage;
 import org.ebookdroid.core.codec.OutlineLink;
@@ -100,23 +98,6 @@ public class GeneralDocInterfaceImpl implements GeneralDocInterface {
         return SettingsManager.getBookSettings(path).getCurrentPage().viewIndex;
     }
 
-    @Override
-    public void setCurrentPage(String path, int pageNumber, int pages) {
-        try {
-            if (pageNumber > pages) {
-                pageNumber = pages;
-            }
-            BookSettings bookSettings = SettingsManager.getBookSettings(path);
-            PageIndex page = bookSettings.getCurrentPage();
-            PageIndex current = new PageIndex(pageNumber, pageNumber);
-            bookSettings.currentPageChanged(page, current, pages);
-
-            SettingsManager.storeBookSettings();
-        } catch (Exception e) {
-            LOG.e(e);
-        }
-
-    }
 
     @Override
     public void addToRecent(Context a, Uri path) {

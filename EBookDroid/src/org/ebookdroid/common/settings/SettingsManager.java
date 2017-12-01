@@ -16,9 +16,9 @@ import android.content.Context;
 public class SettingsManager {
 
     static final ReentrantReadWriteLock lock = new ReentrantReadWriteLock();
-    private static SharedDB db;
-    private static BookSettings current;
-    private static String currentPath;
+    public static SharedDB db;
+    private volatile static BookSettings current;
+    private volatile static String currentPath;
     static ListenerProxy listeners = new ListenerProxy(IBookSettingsChangeListener.class);
 
     public static void init(final Context context) {
@@ -68,10 +68,10 @@ public class SettingsManager {
         }
     }
 
-    public static void clearCurrentBookSettings() {
+    public static void clearCurrentBookSettings2() {
         lock.writeLock().lock();
         try {
-            storeBookSettings();
+            storeBookSettings1();
         } finally {
             lock.writeLock().unlock();
         }
@@ -140,11 +140,11 @@ public class SettingsManager {
         return current.cropPages;
     }
 
-    public static void currentPageChanged(final PageIndex oldIndex, final PageIndex newIndex, int pages) {
+    public static void currentPageChanged(final PageIndex newIndex, int pages) {
         lock.readLock().lock();
         try {
             if (current != null) {
-                current.currentPageChanged(oldIndex, newIndex, pages);
+                current.currentPageChanged(newIndex, pages);
             }
         } finally {
             lock.readLock().unlock();
@@ -174,7 +174,7 @@ public class SettingsManager {
         }
     }
 
-    public static void storeBookSettings() {
+    public static void storeBookSettings1() {
         lock.readLock().lock();
         try {
             if (current != null) {
@@ -185,14 +185,6 @@ public class SettingsManager {
             lock.readLock().unlock();
         }
     }
-
-    // public static void applyBookSettingsChanges(final BookSettings
-    // oldSettings, final BookSettings newSettings) {
-    // final BookSettings.Diff diff = new BookSettings.Diff(oldSettings,
-    // newSettings);
-    // final IBookSettingsChangeListener l = listeners.getListener();
-    // l.onBookSettingsChanged(oldSettings, newSettings, diff);
-    // }
 
     public static void addListener(final Object l) {
         listeners.addListener(l);
