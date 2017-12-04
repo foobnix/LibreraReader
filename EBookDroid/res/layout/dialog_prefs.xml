@@ -346,7 +346,7 @@
                         style="@style/textLink"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@string/bluelight_color_filter" />
+                        android:text="@string/bluelight_filter" />
                 </LinearLayout>
                 
                 

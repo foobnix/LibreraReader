@@ -423,5 +423,5 @@
    <string name="serie">Serie</string>
    <string name="switch_off">Uitzetten</string>
    <string name="system_language">Systeemtaal</string>
-   <string name="bluelight_color_filter">BlueLight kleurenfilter</string>
+   <string name="bluelight_filter">BlueLight-filter</string>
 </resources>

@@ -423,5 +423,5 @@
    <string name="serie">Serie</string>
    <string name="switch_off">Vypnúť</string>
    <string name="system_language">Jazyk systému</string>
-   <string name="bluelight_color_filter">BlueLight farebný filter</string>
+   <string name="bluelight_filter">BlueLight filter</string>
 </resources>

@@ -423,5 +423,5 @@
    <string name="serie">Serie</string>
    <string name="switch_off">Ondoka</string>
    <string name="system_language">Lugha ya mfumo</string>
-   <string name="bluelight_color_filter">Chujio cha rangi ya BlueLight</string>
+   <string name="bluelight_filter">Chujio cha BlueLight</string>
 </resources>

@@ -423,5 +423,5 @@
    <string name="serie">Serie</string>
    <string name="switch_off">Stäng av</string>
    <string name="system_language">Systemets språk</string>
-   <string name="bluelight_color_filter">BlueLight färgfilter</string>
+   <string name="bluelight_filter">BlueLight-filter</string>
 </resources>

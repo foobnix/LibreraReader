@@ -168,7 +168,7 @@ public class DragingDialogs {
 
     public static void dialogBlueLight(final FrameLayout anchor, final DocumentController controller, final Runnable onRefresh, final Runnable updateUIRefresh) {
 
-        DragingPopup dialog = new DragingPopup(R.string.bluelight_color_filter, anchor, PREF_WIDTH, PREF_HEIGHT) {
+        DragingPopup dialog = new DragingPopup(R.string.bluelight_filter, anchor, PREF_WIDTH, PREF_HEIGHT) {
 
             @Override
             public void beforeCreate() {

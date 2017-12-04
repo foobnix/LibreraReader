@@ -423,5 +423,5 @@
    <string name="serie">Serie</string>
    <string name="switch_off">Kytke pois päältä</string>
    <string name="system_language">Järjestelmäkieli</string>
-   <string name="bluelight_color_filter">BlueLight-värisuodatin</string>
+   <string name="bluelight_filter">BlueLight-suodatin</string>
 </resources>

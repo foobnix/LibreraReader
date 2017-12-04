@@ -423,5 +423,5 @@
    <string name="serie">سریال</string>
    <string name="switch_off">خاموش کن</string>
    <string name="system_language">زبان سیستم</string>
-   <string name="bluelight_color_filter">فیلتر رنگ BlueLight</string>
+   <string name="bluelight_filter">فیلتر BlueLight</string>
 </resources>

@@ -423,5 +423,5 @@
    <string name="serie">Serie</string>
    <string name="switch_off">Tăt</string>
    <string name="system_language">Ngôn ngữ hệ thống</string>
-   <string name="bluelight_color_filter">Bộ lọc màu BlueLight</string>
+   <string name="bluelight_filter">Bộ lọc BlueLight</string>
 </resources>

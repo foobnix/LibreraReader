@@ -423,5 +423,5 @@
    <string name="serie">الدوري الايطالي</string>
    <string name="switch_off">اطفيء</string>
    <string name="system_language">لغة النظام</string>
-   <string name="bluelight_color_filter">بلويليت تصفية اللون</string>
+   <string name="bluelight_filter">مرشح بلليت</string>
 </resources>

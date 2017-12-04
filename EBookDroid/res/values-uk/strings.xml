@@ -423,5 +423,5 @@
    <string name="serie">Серія</string>
    <string name="switch_off">Виключити</string>
    <string name="system_language">Системна мова</string>
-   <string name="bluelight_color_filter">Колірний фільтр BlueLight</string>
+   <string name="bluelight_filter">Фільтр BlueLight</string>
 </resources>
