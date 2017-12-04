@@ -194,6 +194,7 @@
                         android:text="10%"
                         android:textStyle="normal"
                         android:layout_marginLeft="4dip"
+                        android:singleLine="true"
                         android:textSize="@dimen/text_subtitle"
                         android:visibility="visible" />
 

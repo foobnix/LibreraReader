@@ -297,7 +297,7 @@ public class PrefFragment2 extends UIFragment {
 
             @Override
             public void onClick(View v) {
-                getActivity().finish();
+                ((MainTabs2) getActivity()).showInterstial();
             }
         });
 
