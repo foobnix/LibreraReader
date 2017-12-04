@@ -84,7 +84,7 @@
         <ImageView
             android:id="@+id/onModeChange"
             style="@style/buttonWhite"
-            android:layout_width="wrap_content"
+            android:layout_width="@dimen/wh_button"
             android:layout_height="@dimen/wh_button"
             android:layout_weight="0"
             android:contentDescription="@string/content_of_book"
