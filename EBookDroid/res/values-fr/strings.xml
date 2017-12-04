@@ -422,6 +422,6 @@
    <string name="author">Auteur</string>
    <string name="serie">Serie</string>
    <string name="switch_off">Éteindre</string>
-   <string name="blueligth_filter">Filtre BlueLight</string>
    <string name="system_language">Langue du système</string>
+   <string name="bluelight_color_filter">Filtre de couleur BlueLight</string>
 </resources>

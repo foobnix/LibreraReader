@@ -2,6 +2,7 @@ package com.foobnix.tts;
 
 import org.ebookdroid.LirbiApp;
 import org.ebookdroid.common.settings.SettingsManager;
+import org.ebookdroid.common.settings.books.BookSettings;
 import org.ebookdroid.core.codec.CodecDocument;
 import org.ebookdroid.core.codec.CodecPage;
 import org.greenrobot.eventbus.EventBus;
@@ -295,6 +296,16 @@ public class TTSService extends Service {
             TTSEngine.get().speek(firstPart);
             EventBus.getDefault().post(new TtsStatus());
             AppState.get().save(getApplicationContext());
+
+            try {
+                BookSettings bs = SettingsManager.getBookSettings(TempHolder.get().path);
+                bs.currentPageChanged(pageNumber);
+                bs.save();
+                LOG.d(TAG, "currentPageChanged ", pageNumber, TempHolder.get().path);
+            } catch (Exception e) {
+                LOG.e(e);
+            }
+
 
         }
 

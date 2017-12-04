@@ -101,6 +101,10 @@ public class BookSettings implements CurrentPageListener {
         this.pages = pages;
     }
 
+    public void currentPageChanged(final int page) {
+        this.currentPage = new PageIndex(page, page);
+    }
+
     public PageIndex getCurrentPage() {
         return currentPage;
     }

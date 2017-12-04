@@ -22,6 +22,7 @@ import android.widget.TextView;
 
 public class TxtUtils {
 
+
     public static String deltaPage(int current) {
         if (TempHolder.get().pageDelta == 0) {
             return "" + current;

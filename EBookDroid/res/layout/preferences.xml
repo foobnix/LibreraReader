@@ -445,47 +445,24 @@
                 android:layout_marginLeft="5dip"
                 android:text="@string/brightness"
                 android:textStyle="bold" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_gravity="center_vertical"
-            android:layout_marginLeft="5dip" >
-
-            <TextView
-                android:id="@+id/curBrigtness"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_weight="0"
-                android:gravity="center"
-                android:padding="1dip"
-                android:text="0" />
-
-            <SeekBar
-                android:id="@+id/seekBrightness"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1" />
-
-            <TextView
-                android:id="@+id/textView4"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_weight="0"
-                android:gravity="center"
-                android:padding="1dip"
-                android:text="100" />
 
             <CheckBox
                 android:id="@+id/autoSettings"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="0"
+                android:layout_marginLeft="4dip"
                 android:singleLine="true"
                 android:text="@string/automatic"
                 android:textSize="12sp" />
         </LinearLayout>
+
+        <com.foobnix.pdf.info.view.CustomSeek
+            android:id="@+id/customBrightness"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" >
+        </com.foobnix.pdf.info.view.CustomSeek>
 
         <LinearLayout
             android:id="@+id/onKeyCode"
@@ -656,19 +633,19 @@
             <CheckBox
                 android:id="@+id/isRememberMode"
                 android:layout_width="wrap_content"
-                android:maxLines="2"
-                android:layout_weight="1"
                 android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:maxLines="2"
                 android:text="@string/remember_my_choose" />
 
             <TextView
-                android:layout_weight="1"
                 android:id="@+id/selectedOpenMode"
                 style="@style/textLink"
-                android:singleLine="false"
-                android:maxLines="2"
                 android:layout_width="150dip"
                 android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:maxLines="2"
+                android:singleLine="false"
                 android:text="@string/music_mode" />
         </LinearLayout>
 
@@ -730,13 +707,13 @@
                 android:text="@string/show_the_dialog_what_is_new_for_updates" />
 
             <TextView
-                  android:layout_weight="1"
                 android:id="@+id/whatIsNew"
                 style="@style/textLink"
-                android:singleLine="false"
-                android:maxLines="2"
                 android:layout_width="150dip"
                 android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:maxLines="2"
+                android:singleLine="false"
                 android:text="@string/what_is_new" />
         </LinearLayout>
 

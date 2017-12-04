@@ -422,6 +422,6 @@
    <string name="author">Автор</string>
    <string name="serie">Серия</string>
    <string name="switch_off">Выключить</string>
-   <string name="blueligth_filter">BlueLight фильтр</string>
    <string name="system_language">Язык системы</string>
+   <string name="bluelight_color_filter">Цветовой фильтр BlueLight</string>
 </resources>

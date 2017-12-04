@@ -541,15 +541,6 @@ public class PrefFragment2 extends UIFragment {
             }
         });
 
-        autoSettings = (CheckBox) inflate.findViewById(R.id.autoSettings);
-        autoSettings.setOnCheckedChangeListener(new OnCheckedChangeListener() {
-
-            @Override
-            public void onCheckedChanged(final CompoundButton buttonView, final boolean isChecked) {
-                onDefaultBr(isChecked);
-                saveChanges();
-            }
-        });
 
         rememberMode = (CheckBox) inflate.findViewById(R.id.isRememberMode);
         rememberMode.setChecked(AppState.getInstance().isRememberMode);
@@ -862,10 +853,51 @@ public class PrefFragment2 extends UIFragment {
             }
         });
 
-        curBrightness = (TextView) inflate.findViewById(R.id.curBrigtness);
-        bar = (SeekBar) inflate.findViewById(R.id.seekBrightness);
+        /** customBrightness start **/
+        CheckBox autoSettings = (CheckBox) inflate.findViewById(R.id.autoSettings);
+        final CustomSeek customBrightness = (CustomSeek) inflate.findViewById(R.id.customBrightness);
+        customBrightness.init(0, 100, -1);
+        customBrightness.setOnSeekChanged(new IntegerResponse() {
 
-        initBrigtness();
+            @Override
+            public boolean onResultRecive(int result) {
+                float f = (float) result / 100;
+                if (f <= 0) {
+                    f = 0;
+                }
+                AppState.getInstance().brightness = f;
+                DocumentController.applyBrigtness(getActivity());
+                customBrightness.setValueText("" + result);
+                return false;
+            }
+        });
+
+        autoSettings.setOnCheckedChangeListener(new OnCheckedChangeListener() {
+
+            @Override
+            public void onCheckedChanged(final CompoundButton buttonView, final boolean isChecked) {
+                if (!buttonView.isPressed()) {
+                    return;
+                }
+                if (isChecked) {// auto
+                    final float val = DocumentController.getSystemBrigtness(getActivity());
+                    customBrightness.reset((int) (val * 100));
+                    customBrightness.setEnabled(false);
+                    AppState.getInstance().brightness = -1;
+                    DocumentController.applyBrigtness(getActivity());
+                } else {
+                    customBrightness.setEnabled(true);
+                }
+            }
+        });
+        if (AppState.getInstance().brightness < 0) {
+            autoSettings.setChecked(true);
+            customBrightness.reset((int) (100 * DocumentController.getSystemBrigtness(getActivity())));
+        } else {
+            autoSettings.setChecked(false);
+            customBrightness.reset((int) (100 * AppState.getInstance().brightness));
+        }
+        /** customBrightness end **/
 
         nextKeys = (TextView) inflate.findViewById(R.id.textNextKeys);
         prevKeys = (TextView) inflate.findViewById(R.id.textPrevKeys);
@@ -1425,23 +1457,6 @@ public class PrefFragment2 extends UIFragment {
         }
     };
 
-    public void initBrigtness() {
-        float curBr = AppState.getInstance().brightness;
-        if (curBr < 0) {
-            curBr = DocumentController.getSystemBrigtness(getActivity());
-            bar.setEnabled(false);
-            autoSettings.setChecked(true);
-        } else {
-            autoSettings.setChecked(false);
-            bar.setOnSeekBarChangeListener(onSeek);
-            bar.setEnabled(true);
-        }
-
-        bar.setMax(100);
-        final int intBrightness = (int) (curBr * 100);
-        bar.setProgress(intBrightness);
-        curBrightness.setText("" + intBrightness);
-    }
 
     public View underline(View text) {
         CharSequence myText = ((TextView) text).getText();
@@ -1507,7 +1522,6 @@ public class PrefFragment2 extends UIFragment {
         isRememberDictionary.setChecked(AppState.getInstance().isRememberDictionary);
         selectedDictionaly.setText(DialogTranslateFromTo.getSelectedDictionaryUnderline());
 
-        initBrigtness();
 
     }
 
@@ -1515,19 +1529,6 @@ public class PrefFragment2 extends UIFragment {
 
     }
 
-    public void onDefaultBr(final boolean isAuto) {
-        if (isAuto) {
-            final float val = DocumentController.getSystemBrigtness(getActivity());
-            bar.setProgress((int) (val * 100));
-            bar.setOnSeekBarChangeListener(null);
-            bar.setEnabled(false);
-            AppState.getInstance().brightness = -1;
-            DocumentController.applyBrigtness(getActivity());
-        } else {
-            bar.setEnabled(true);
-            bar.setOnSeekBarChangeListener(onSeek);
-        }
-    }
 
     public void initKeys() {
         nextKeys.setText(String.format("%s: %s", getActivity().getString(R.string.next_keys), AppState.keyToString(AppState.getInstance().nextKeys)));
@@ -1542,32 +1543,7 @@ public class PrefFragment2 extends UIFragment {
         }
     };
 
-    OnSeekBarChangeListener onSeek = new OnSeekBarChangeListener() {
 
-        @Override
-        public void onStopTrackingTouch(final SeekBar seekBar) {
-            // TODO Auto-generated method stub
-
-        }
-
-        @Override
-        public void onStartTrackingTouch(final SeekBar seekBar) {
-            // TODO Auto-generated method stub
-
-        }
-
-        @Override
-        public void onProgressChanged(final SeekBar seekBar, final int progress, final boolean fromUser) {
-            float f = (float) progress / 100;
-            if (f <= 0) {
-                f = 0;
-            }
-            AppState.getInstance().brightness = f;
-            DocumentController.applyBrigtness(getActivity());
-            curBrightness.setText("" + progress);
-
-        }
-    };
     private TextView nextKeys;
     private TextView prevKeys;
     private SeekBar bar;

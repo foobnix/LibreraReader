@@ -422,6 +422,6 @@
    <string name="author">Autor</string>
    <string name="serie">Serie</string>
    <string name="switch_off">Opriți-vă</string>
-   <string name="blueligth_filter">Filtru BlueLight</string>
    <string name="system_language">Limbajul sistemului</string>
+   <string name="bluelight_color_filter">Filtru de culoare BlueLight</string>
 </resources>

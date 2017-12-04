@@ -422,6 +422,6 @@
    <string name="author">Tác giả</string>
    <string name="serie">Serie</string>
    <string name="switch_off">Tăt</string>
-   <string name="blueligth_filter">Bộ lọc BlueLight</string>
    <string name="system_language">Ngôn ngữ hệ thống</string>
+   <string name="bluelight_color_filter">Bộ lọc màu BlueLight</string>
 </resources>

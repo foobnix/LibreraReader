@@ -422,6 +422,6 @@
    <string name="author">लेखक</string>
    <string name="serie">सेरी</string>
    <string name="switch_off">बंद करना</string>
-   <string name="blueligth_filter">ब्लूलाइट फिल्टर</string>
    <string name="system_language">सिस्टम भाषा</string>
+   <string name="bluelight_color_filter">ब्लूलाइट रंग फिल्टर</string>
 </resources>

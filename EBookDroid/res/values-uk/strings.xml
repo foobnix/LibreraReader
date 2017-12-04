@@ -6,7 +6,7 @@
    <string name="black">Темна</string>
    <string name="book_is_loading_or_no_content">Книга завантажується або немає змісту</string>
    <string name="bookmark_on_page_">Закладка на сторінку</string>
-   <string name="bookmarks">Закладка</string>
+   <string name="bookmarks">Закладки</string>
    <string name="brightness">Яскравість</string>
    <string name="browse">Перегляд</string>
    <string name="buy">Купити</string>
@@ -27,7 +27,7 @@
    <string name="enable_swipe_gesture_with_lock">Вкл. гортання жестами коли замок</string>
    <string name="exit">Вихід</string>
    <string name="export_">Експорт ...</string>
-   <string name="export_bookmarks">Експортувати замітки</string>
+   <string name="export_bookmarks">Експорт закладок</string>
    <string name="fail">Помилка</string>
    <string name="filter">Фільтр</string>
    <string name="filter_pro_feature_">Фільтр (Pro функціонал)</string>
@@ -230,7 +230,7 @@
    <string name="book_settings">Налаштування книги</string>
    <string name="back">Назад</string>
    <string name="open_web_page">Відкрити веб-сторінку</string>
-   <string name="starred">Помічені</string>
+   <string name="starred">Вибрані</string>
    <string name="clear_all_recent">Очистити всі останні</string>
    <string name="clear_all_bookmars">Очистити всі закладки</string>
    <string name="clear_all_marked">Очистити всі відмічені</string>
@@ -305,7 +305,7 @@
    <string name="incorrect_value">Некоректна</string>
    <string name="search_in_the_subfolders">Пошук у вкладених папках</string>
    <string name="document_converter_online_">Конвертер документів (онлайн)</string>
-   <string name="in_the_author_s_name_first_the_surname">В імені автора спочатку прізвище</string>
+   <string name="in_the_author_s_name_first_the_surname">Спочатку прізвище, потім ім\'я автора</string>
    <string name="remind_about_rest_every">Нагадайте про відпочинок кожні</string>
    <string name="minutes">Хвилин</string>
    <string name="seconds">Секунд</string>
@@ -314,7 +314,7 @@
    <string name="start">Початок</string>
    <string name="show_bottom_panel">Показати нижню панель</string>
    <string name="interval_sec_">Інтервал (сек)</string>
-   <string name="library_settings">Бібліотека настройки</string>
+   <string name="library_settings">Налаштування бібліотеки</string>
    <string name="by_name">Ім\'я</string>
    <string name="opening_the_last_book_when_the_application_starts">Відкриття останньої книги під час запуску програми</string>
    <string name="links_color_day">Колір посилання (день)</string>
@@ -337,9 +337,9 @@
    <string name="language">Мова</string>
    <string name="show_progress_of_reading">Показати прогрес читання</string>
    <string name="line_height">Висота лінії</string>
-   <string name="display_chapters_on_the_progress_line">Відображати глави на лінії прогресу</string>
-   <string name="enable_brightness_adjustment_on_the_left_of_the_screen">Увімкніть регулювання яскравості ліворуч від екрана</string>
-   <string name="enable_rewind_of_pages_using_the_read_progress_line">Увімкнути перемотування сторінок за допомогою рядка читання</string>
+   <string name="display_chapters_on_the_progress_line">Відображати розділи на лінії прогресу</string>
+   <string name="enable_brightness_adjustment_on_the_left_of_the_screen">Увімкнути регулювання яскравості ліворуч від екрана</string>
+   <string name="enable_rewind_of_pages_using_the_read_progress_line">Увімкнути гортання сторінок за допомогою рядка читання</string>
    <string name="catalogs">Каталоги</string>
    <string name="can_t_download">Не можна завантажити</string>
    <string name="download">Завантажити</string>
@@ -358,7 +358,7 @@
    <string name="reading_out_loud">Читання голосно</string>
    <string name="librera_pro_no_ads_leading_book_reader_and_pdf">Librera PRO (без реклами) провідний читач книг і PDF</string>
    <string name="custom_text">Користувацький текст</string>
-   <string name="right_page_then_left_page_rtl_">Праворуч сторінка, потім ліва сторінка (RTL)</string>
+   <string name="right_page_then_left_page_rtl_">Спочатку права, потім ліва сторінка (RTL)</string>
    <string name="one_page">Одна сторінка</string>
    <string name="two_pages">Дві сторінки</string>
    <string name="half_page">Половина сторінки</string>
@@ -422,6 +422,6 @@
    <string name="author">Автор</string>
    <string name="serie">Серія</string>
    <string name="switch_off">Виключити</string>
-   <string name="blueligth_filter">Фільтр BlueLight</string>
    <string name="system_language">Системна мова</string>
+   <string name="bluelight_color_filter">Колірний фільтр BlueLight</string>
 </resources>

@@ -422,6 +422,6 @@
    <string name="author">著者</string>
    <string name="serie">セリエ</string>
    <string name="switch_off">スイッチオフ</string>
-   <string name="blueligth_filter">BlueLightフィルター</string>
    <string name="system_language">システム言語</string>
+   <string name="bluelight_color_filter">BlueLightカラーフィルター</string>
 </resources>

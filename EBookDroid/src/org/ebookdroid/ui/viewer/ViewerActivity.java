@@ -21,7 +21,6 @@ import com.foobnix.pdf.info.wrapper.AppState;
 import com.foobnix.pdf.info.wrapper.DocumentController;
 import com.foobnix.pdf.search.view.CloseAppDialog;
 import com.foobnix.sys.TempHolder;
-import com.foobnix.tts.TTSEngine;
 import com.foobnix.tts.TTSNotification;
 import com.foobnix.ui2.FileMetaCore;
 import com.foobnix.ui2.MainTabs2;
@@ -223,11 +222,6 @@ public class ViewerActivity extends AbstractActionActivity<ViewerActivity, Viewe
 
         @Override
         public void run() {
-            if (TTSEngine.get().isPlaying()) {
-                LOG.d("TTS is playing");
-                return;
-            }
-
             LOG.d("Close App");
             // AppState.get().lastA = ViewerActivity.class.getSimpleName();
             getController().closeActivity(null);

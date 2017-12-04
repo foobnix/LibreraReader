@@ -166,6 +166,96 @@ public class DragingDialogs {
 
     }
 
+    public static void dialogBlueLight(final FrameLayout anchor, final DocumentController controller, final Runnable onRefresh, final Runnable updateUIRefresh) {
+
+        DragingPopup dialog = new DragingPopup(R.string.bluelight_color_filter, anchor, PREF_WIDTH, PREF_HEIGHT) {
+
+            @Override
+            public void beforeCreate() {
+                titleAction = controller.getString(R.string.preferences);
+                titleRunnable = new Runnable() {
+
+                    @Override
+                    public void run() {
+                        preferences(anchor, controller, onRefresh, updateUIRefresh);
+                    }
+                };
+            }
+
+            @Override
+            @SuppressLint("NewApi")
+            public View getContentView(LayoutInflater inflater) {
+                final Activity activity = controller.getActivity();
+                final View inflate = inflater.inflate(R.layout.dialog_bluelight, null, false);
+
+                /** Blue Light Color start **/
+
+                inflate.findViewById(R.id.blueLightLayout).setVisibility(AppState.get().isInkMode ? View.GONE : View.VISIBLE);
+
+                final CustomColorView blueLightColor = (CustomColorView) inflate.findViewById(R.id.blueLightColor);
+                TxtUtils.bold(blueLightColor.getText1());
+                blueLightColor.withDefaultColors(AppState.BLUE_FILTER_DEFAULT_COLOR, Color.BLACK, Color.YELLOW, Color.GREEN);
+                blueLightColor.init(AppState.get().blueLightColor);
+                blueLightColor.setOnColorChanged(new StringResponse() {
+
+                    @Override
+                    public boolean onResultRecive(String string) {
+                        AppState.get().blueLightColor = Color.parseColor(string);
+                        if (onRefresh != null) {
+                            onRefresh.run();
+                        }
+                        Keyboards.hideNavigation(controller.getActivity());
+                        return false;
+                    }
+                });
+
+                final CustomSeek blueLightAlpha = (CustomSeek) inflate.findViewById(R.id.blueLightAlpha);
+                blueLightAlpha.init(0, 99, AppState.getInstance().blueLightAlpha);
+                blueLightAlpha.setOnSeekChanged(new IntegerResponse() {
+
+                    @Override
+                    public boolean onResultRecive(int result) {
+                        AppState.get().blueLightAlpha = result;
+                        blueLightAlpha.setValueText("" + AppState.getInstance().blueLightAlpha + "%");
+                        if (onRefresh != null) {
+                            onRefresh.run();
+                        }
+                        return false;
+                    }
+                });
+                blueLightAlpha.setValueText("" + AppState.getInstance().blueLightAlpha + "%");
+
+                TextView blueLightOff = (TextView) inflate.findViewById(R.id.blueLightOff);
+                TxtUtils.underlineTextView(blueLightOff);
+                blueLightOff.setOnClickListener(new OnClickListener() {
+
+                    @Override
+                    public void onClick(View v) {
+                        AppState.get().blueLightAlpha = 0;
+                        blueLightAlpha.reset(0);
+                        if (onRefresh != null) {
+                            onRefresh.run();
+                        }
+                    }
+                });
+
+                /** Blue Light Color end **/
+
+                return inflate;
+            }
+        };
+        dialog.setOnCloseListener(new Runnable() {
+
+            @Override
+            public void run() {
+                AppState.get().save(controller.getActivity());
+
+            }
+        });
+        dialog.show(DragingPopup.PREF + "_blueLightFilter");
+
+    }
+
     public static void contrastAndBrigtness(final FrameLayout anchor, final DocumentController controller, final Runnable onRealod, final Runnable onRestart) {
 
         DragingPopup dialog = new DragingPopup(R.string.contrast_and_brightness, anchor, 300, 230) {
@@ -3194,58 +3284,6 @@ public class DragingDialogs {
             public View getContentView(final LayoutInflater inflater) {
                 View inflate = inflater.inflate(R.layout.dialog_prefs, null, false);
 
-                /** Blue Light Color start **/
-
-                inflate.findViewById(R.id.blueLightLayout).setVisibility(AppState.get().isInkMode ? View.GONE : View.VISIBLE);
-
-                final CustomColorView blueLightColor = (CustomColorView) inflate.findViewById(R.id.blueLightColor);
-                TxtUtils.bold(blueLightColor.getText1());
-                blueLightColor.withDefaultColors(AppState.BLUE_FILTER_DEFAULT_COLOR, Color.BLACK);
-                blueLightColor.init(AppState.get().blueLightColor);
-                blueLightColor.setOnColorChanged(new StringResponse() {
-
-                    @Override
-                    public boolean onResultRecive(String string) {
-                        AppState.get().blueLightColor = Color.parseColor(string);
-                        if (onRefresh != null) {
-                            onRefresh.run();
-                        }
-                        Keyboards.hideNavigation(controller.getActivity());
-                        return false;
-                    }
-                });
-
-                final CustomSeek blueLightAlpha = (CustomSeek) inflate.findViewById(R.id.blueLightAlpha);
-                blueLightAlpha.init(0, 99, AppState.getInstance().blueLightAlpha);
-                blueLightAlpha.setOnSeekChanged(new IntegerResponse() {
-
-                    @Override
-                    public boolean onResultRecive(int result) {
-                        AppState.get().blueLightAlpha = result;
-                        blueLightAlpha.setValueText("" + AppState.getInstance().blueLightAlpha + "%");
-                        if (onRefresh != null) {
-                            onRefresh.run();
-                        }
-                        return false;
-                    }
-                });
-                blueLightAlpha.setValueText("" + AppState.getInstance().blueLightAlpha + "%");
-
-                TextView blueLightOff = (TextView) inflate.findViewById(R.id.blueLightOff);
-                TxtUtils.underlineTextView(blueLightOff);
-                blueLightOff.setOnClickListener(new OnClickListener() {
-
-                    @Override
-                    public void onClick(View v) {
-                        AppState.get().blueLightAlpha = 0;
-                        blueLightAlpha.reset(0);
-                        if (onRefresh != null) {
-                            onRefresh.run();
-                        }
-                    }
-                });
-
-                /** Blue Light Color end **/
 
                 // TOP panel start
                 View topPanelLine = inflate.findViewById(R.id.topPanelLine);
@@ -3632,6 +3670,16 @@ public class DragingDialogs {
                 }
 
                 TxtUtils.underlineTextView(screenOrientation);
+
+                final TextView onBlueFilter = (TextView) inflate.findViewById(R.id.onBlueFilter);
+                TxtUtils.underlineTextView(onBlueFilter);
+                onBlueFilter.setOnClickListener(new OnClickListener() {
+
+                    @Override
+                    public void onClick(View v) {
+                        dialogBlueLight(anchor, controller, onRefresh, updateUIRefresh);
+                    }
+                });
 
                 screenOrientation.setOnClickListener(new OnClickListener() {
 

@@ -422,6 +422,6 @@
    <string name="author">Autor</string>
    <string name="serie">Serie</string>
    <string name="switch_off">Vypnúť</string>
-   <string name="blueligth_filter">BlueLight filter</string>
    <string name="system_language">Jazyk systému</string>
+   <string name="bluelight_color_filter">BlueLight farebný filter</string>
 </resources>

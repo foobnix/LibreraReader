@@ -1076,11 +1076,6 @@ public class HorizontalViewActivity extends FragmentActivity {
 
         @Override
         public void run() {
-            if (TTSEngine.get().isPlaying()) {
-                LOG.d("TTS is playing");
-                return;
-            }
-
             LOG.d("Close App");
             if (documentController != null) {
                 documentController.onCloseActivity();
