@@ -51,7 +51,7 @@ public class MyADSProvider {
 
         if (AppsConfig.IS_EP) {
             interstitialEP = new AdClientInterstitial(a);
-            interstitialEP.setConfiguration(ADS.interstial);
+            interstitialEP.setConfiguration(ADS.interstitial);
 
             interstitialEP.addClientAdListener(new ClientAdListener() {
                 @Override

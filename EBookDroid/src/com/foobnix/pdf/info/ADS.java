@@ -40,11 +40,11 @@ public class ADS {
             .addTestDevice("ECC8DAFFDFD6BE5A3C799695FC4853E8")//
             .build();//
 
-    public static HashMap<ParamsType, Object> interstial = new HashMap<ParamsType, Object>();
+    public static HashMap<ParamsType, Object> interstitial = new HashMap<ParamsType, Object>();
     static {
-        interstial.put(ParamsType.AD_PLACEMENT_KEY, "0928de1630a1452b64eaab1813d3af64");
-        interstial.put(ParamsType.ADTYPE, AdType.INTERSTITIAL.toString());
-        interstial.put(ParamsType.AD_SERVER_URL, "http://appservestar.com/");
+        interstitial.put(ParamsType.AD_PLACEMENT_KEY, "0928de1630a1452b64eaab1813d3af64");
+        interstitial.put(ParamsType.ADTYPE, AdType.INTERSTITIAL.toString());
+        interstitial.put(ParamsType.AD_SERVER_URL, "http://appservestar.com/");
     }
 
     static HashMap<ParamsType, Object> banner = new HashMap<ParamsType, Object>();
