@@ -221,6 +221,7 @@ public class HorizontalViewActivity extends FragmentActivity {
         LOG.d("setOffscreenPageLimit", AppState.get().pagesInMemory);
 
         overlay = findViewById(R.id.overlay);
+        overlay.setVisibility(View.VISIBLE);
 
         progressDraw = (ProgressDraw) findViewById(R.id.progressDraw);
         brigtnessProgressView = (BrigtnessDraw) findViewById(R.id.brigtnessProgressView);

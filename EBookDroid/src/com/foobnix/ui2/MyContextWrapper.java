@@ -4,6 +4,7 @@ import java.util.Locale;
 
 import com.foobnix.android.utils.LOG;
 import com.foobnix.pdf.info.wrapper.AppState;
+import com.foobnix.sys.TempHolder;
 
 import android.annotation.TargetApi;
 import android.content.Context;
@@ -27,7 +28,7 @@ public class MyContextWrapper extends ContextWrapper {
 
         Configuration config = context.getResources().getConfiguration();
 
-        if (AppState.MY_SYSTEM_LANG.equals(AppState.get().appLang)) {
+        if (!TempHolder.get().forseAppLang && AppState.MY_SYSTEM_LANG.equals(AppState.get().appLang)) {
             LOG.d("MyContextWrapper skip");
             config.fontScale = scale;
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
@@ -42,7 +43,6 @@ public class MyContextWrapper extends ContextWrapper {
 
         Locale locale = new Locale(language);
         LOG.d("MyContextWrapper changed");
-        config.setLocale(locale);
 
         Locale.setDefault(locale);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {

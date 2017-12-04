@@ -59,7 +59,7 @@ public class FileMetaAdapter extends AppRecycleAdapter<FileMeta, RecyclerView.Vi
     public int tempValue = TEMP_VALUE_NONE;
 
     public class FileMetaViewHolder extends RecyclerView.ViewHolder {
-        public TextView title, author, path, ext, size, date, series, idPercentText;
+        public TextView title, author, path, browserExt, size, date, series, idPercentText;
         public ImageView image, star, menu;
         public View authorParent, progresLayout, parent, remove, layoutBootom, infoLayout, idProgressColor, imageParent;
 
@@ -70,7 +70,7 @@ public class FileMetaAdapter extends AppRecycleAdapter<FileMeta, RecyclerView.Vi
             authorParent = view.findViewById(R.id.title2Parent);
             path = (TextView) view.findViewById(R.id.browserPath);
             size = (TextView) view.findViewById(R.id.browserSize);
-            ext = (TextView) view.findViewById(R.id.browserExt);
+            browserExt = (TextView) view.findViewById(R.id.browserExt);
             date = (TextView) view.findViewById(R.id.browseDate);
             series = (TextView) view.findViewById(R.id.series);
             idPercentText = (TextView) view.findViewById(R.id.idPercentText);
@@ -396,7 +396,7 @@ public class FileMetaAdapter extends AppRecycleAdapter<FileMeta, RecyclerView.Vi
         });
 
         holder.path.setText(fileMeta.getPathTxt());
-        holder.ext.setText(fileMeta.getChild() != null ? fileMeta.getChild() : fileMeta.getExt());
+        holder.browserExt.setText(fileMeta.getChild() != null ? fileMeta.getChild() : fileMeta.getExt());
         holder.size.setText(fileMeta.getSizeTxt());
         if (holder.date != null) {
             holder.date.setText(fileMeta.getDateTxt());
@@ -409,22 +409,26 @@ public class FileMetaAdapter extends AppRecycleAdapter<FileMeta, RecyclerView.Vi
                 fileMeta.setIsRecentProgress(1f);
             }
             holder.progresLayout.setVisibility(View.VISIBLE);
+            holder.idPercentText.setVisibility(View.VISIBLE);
             holder.idProgressColor.setBackgroundColor(TintUtil.color);
             holder.idProgressColor.getLayoutParams().width = Dips.dpToPx((int) (200 * recentProgress));
             holder.idPercentText.setText("" + (int) (100 * recentProgress) + "%");
 
         } else if (holder.progresLayout != null) {
             holder.progresLayout.setVisibility(View.GONE);
+            holder.idPercentText.setVisibility(View.GONE);
         }
 
         if (adapterType == ADAPTER_GRID && recentProgress > 0) {
             holder.idPercentText.setText("" + (int) (100 * recentProgress) + "%");
-            if (AppState.get().coverBigSize < IMG.TWO_LINE_COVER_SIZE * 2) {
-                holder.ext.setVisibility(View.GONE);
+            if (AppState.get().coverBigSize < IMG.TWO_LINE_COVER_SIZE) {
+                holder.browserExt.setVisibility(View.GONE);
+            } else {
+                holder.browserExt.setVisibility(View.VISIBLE);
             }
         } else if (adapterType == ADAPTER_GRID) {
             holder.idPercentText.setText("");
-            holder.ext.setVisibility(View.VISIBLE);
+            holder.browserExt.setVisibility(View.VISIBLE);
         }
 
         if (fileMeta.getIsStar() == null || fileMeta.getIsStar() == false) {

@@ -325,13 +325,13 @@
                 android:contentDescription="@string/content_of_book"
                 android:src="@drawable/glyphicons_115_list1" />
 
-            <ImageView
+            <com.foobnix.pdf.search.view.HeightImageView
                 android:id="@+id/onModeChange"
                 style="@style/buttonWhite"
                 android:layout_width="wrap_content"
                 android:layout_height="@dimen/wh_button"
                 android:layout_weight="0"
-                android:cropToPadding="true"
+                android:scaleType="fitCenter"
                 android:src="@drawable/glyphicons_two_page_one"
                 android:visibility="visible" />
         </LinearLayout>
@@ -436,6 +436,7 @@
         android:visibility="gone" />
 
     <FrameLayout
+        android:visibility="gone"
         android:id="@+id/overlay"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />

@@ -465,6 +465,7 @@ public class PrefFragment2 extends UIFragment {
                     public boolean onMenuItemClick(MenuItem item) {
                         TxtUtils.underlineTextView(hypenLang);
                         AppState.get().appLang = AppState.MY_SYSTEM_LANG;
+                        TempHolder.get().forseAppLang = true;
                         MyContextWrapper.wrap(getContext());
                         AppState.get().save(getActivity());
                         onTheme();

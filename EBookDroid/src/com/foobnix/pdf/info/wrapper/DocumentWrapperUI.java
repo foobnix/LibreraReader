@@ -550,6 +550,7 @@ public class DocumentWrapperUI {
         titleBar.setOnClickListener(onMenu);
 
         overlay = a.findViewById(R.id.overlay);
+        overlay.setVisibility(View.VISIBLE);
         brigtnessProgressView = (BrigtnessDraw) a.findViewById(R.id.brigtnessProgressView);
         brigtnessProgressView.setActivity(a);
         brigtnessProgressView.setOnSingleClickListener(new OnClickListener() {
