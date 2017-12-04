@@ -893,7 +893,9 @@ public class PrefFragment2 extends UIFragment {
         if (AppState.getInstance().brightness < 0) {
             autoSettings.setChecked(true);
             customBrightness.reset((int) (100 * DocumentController.getSystemBrigtness(getActivity())));
+            customBrightness.setEnabled(false);
         } else {
+            customBrightness.setEnabled(true);
             autoSettings.setChecked(false);
             customBrightness.reset((int) (100 * AppState.getInstance().brightness));
         }
