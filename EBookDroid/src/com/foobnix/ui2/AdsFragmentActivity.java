@@ -9,18 +9,29 @@ import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 
 @TargetApi(Build.VERSION_CODES.JELLY_BEAN)
-public class AdsFragmentActivity extends FragmentActivity {
+public abstract class AdsFragmentActivity extends FragmentActivity {
 
     private final MyADSProvider myAds = new MyADSProvider();
+
+    public abstract void onFinishActivity();
+
+    Runnable onFinish = new Runnable() {
+
+        @Override
+        public void run() {
+            onFinishActivity();
+        }
+    };
+        
 
     @Override
     protected void onPostCreate(Bundle savedInstanceState) {
         super.onPostCreate(savedInstanceState);
-        myAds.activate(this);
+        myAds.activate(this, onFinish);
     }
 
     public void activateAds() {
-        myAds.activate(this);
+        myAds.activate(this, onFinish);
     }
 
     @Override
@@ -44,17 +55,16 @@ public class AdsFragmentActivity extends FragmentActivity {
     @Override
     public void onConfigurationChanged(Configuration newConfig) {
         super.onConfigurationChanged(newConfig);
-        myAds.activate(this);
+        myAds.activate(this, onFinish);
     }
 
-    public void closeActivity() {
-        if (!myAds.canShowInterstial()) {
-            finish();
+    public void showInterstial() {
+        if (myAds.showInterstial()) {
+            // ok
+        } else {
+            onFinish.run();
         }
-    }
 
-    public boolean canShowInterstial() {
-        return myAds.canShowInterstial();
     }
 
     public boolean isInterstialShown() {

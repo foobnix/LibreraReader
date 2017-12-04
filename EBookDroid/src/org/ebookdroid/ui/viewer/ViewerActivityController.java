@@ -86,11 +86,14 @@ public class ViewerActivityController extends ActionController<ViewerActivity> i
 
     private AdvModeController controller;
 
+    ViewerActivity viewerActivity;
+
     /**
      * Instantiates a new base viewer activity.
      */
     public ViewerActivityController(final ViewerActivity activity) {
         super(activity);
+        this.viewerActivity = activity;
         this.intent = activity.getIntent();
         SettingsManager.addListener(this);
 
@@ -524,6 +527,10 @@ public class ViewerActivityController extends ActionController<ViewerActivity> i
     }
 
     public void closeActivity(final ActionEx action) {
+        viewerActivity.showInterstial();
+    }
+
+    public void closeActivityFinal(final ActionEx action) {
 
         LOG.d("closeActivity 1");
         if (documentModel != null) {

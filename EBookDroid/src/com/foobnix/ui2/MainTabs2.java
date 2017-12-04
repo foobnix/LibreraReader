@@ -461,9 +461,14 @@ public class MainTabs2 extends AdsFragmentActivity {
     }
 
     @Override
+    public void onFinishActivity() {
+        finish();
+    }
+
+    @Override
     public void onBackPressed() {
         if (isInterstialShown()) {
-            finish();
+            onFinishActivity();
             return;
         }
 
@@ -478,8 +483,7 @@ public class MainTabs2 extends AdsFragmentActivity {
 
         @Override
         public void run() {
-            closeActivity();
-
+            showInterstial();
         }
     };
 

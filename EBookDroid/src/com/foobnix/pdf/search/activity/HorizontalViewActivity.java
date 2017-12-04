@@ -538,7 +538,7 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
 
             @Override
             public void onClick(final View v) {
-                closeActivity();
+                showInterstial();
             }
         });
         onClose.setOnLongClickListener(new OnLongClickListener() {
@@ -652,7 +652,7 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
                             dialog.dismiss();
-                            closeActivity();
+                            onFinishActivity();
                         }
 
                     });
@@ -663,12 +663,12 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
                             String txt = input.getText().toString();
                             if (TxtUtils.isNotEmpty(txt)) {
                                 dialog.dismiss();
-                                closeActivity();
+                                onFinishActivity();
 
                                 getIntent().putExtra(DocumentControllerHorizontalView.PASSWORD_EXTRA, txt);
                                 startActivity(getIntent());
                             } else {
-                                closeActivity();
+                                onFinishActivity();
                             }
                         }
                     });
@@ -1774,7 +1774,8 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
     @Override
     public void onBackPressed() {
         if (isInterstialShown()) {
-            finish();
+            onFinishActivity();
+            return;
         }
 
         if (anchor != null && anchor.getChildCount() > 0 && anchor.getVisibility() == View.VISIBLE) {
@@ -1792,19 +1793,15 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
         }
 
         CloseAppDialog.showOnLongClickDialog(HorizontalViewActivity.this, null, documentController);
-        // closeActivity();
     }
 
     @Override
-    public void closeActivity() {
+    public void onFinishActivity() {
         AppState.get().lastA = null;
         if (handler != null) {
             handler.removeCallbacksAndMessages(null);
         }
-
-        if (!canShowInterstial()) {
-            finish();
-        }
+        documentController.onCloseActivity();
 
     }
 

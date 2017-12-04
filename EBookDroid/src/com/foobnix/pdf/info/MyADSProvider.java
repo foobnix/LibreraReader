@@ -1,11 +1,7 @@
 package com.foobnix.pdf.info;
 
-import java.util.HashMap;
-
 import com.adclient.android.sdk.listeners.ClientAdListener;
 import com.adclient.android.sdk.nativeads.AdClientNativeAd;
-import com.adclient.android.sdk.type.AdType;
-import com.adclient.android.sdk.type.ParamsType;
 import com.adclient.android.sdk.view.AbstractAdClientView;
 import com.adclient.android.sdk.view.AdClientInterstitial;
 import com.foobnix.android.utils.LOG;
@@ -24,8 +20,11 @@ public class MyADSProvider {
     InterstitialAd mInterstitialAd;
     AdClientInterstitial interstitialEP;
 
-    public void activate(final Activity a) {
+    Runnable finish;
+
+    public void activate(final Activity a, Runnable finish) {
         this.a = a;
+        this.finish = finish;
 
         if (AppsConfig.IS_EP) {
             ADS.activateEP(a, adClientView);
@@ -52,11 +51,7 @@ public class MyADSProvider {
 
         if (AppsConfig.IS_EP) {
             interstitialEP = new AdClientInterstitial(a);
-            HashMap<ParamsType, Object> configuration = new HashMap<ParamsType, Object>();
-            configuration.put(ParamsType.AD_PLACEMENT_KEY, ADS.EP_INTERSTITIAL);
-            configuration.put(ParamsType.ADTYPE, AdType.INTERSTITIAL.toString());
-            configuration.put(ParamsType.AD_SERVER_URL, "http://appservestar.com/");
-            interstitialEP.setConfiguration(configuration);
+            interstitialEP.setConfiguration(ADS.interstial);
 
             interstitialEP.addClientAdListener(new ClientAdListener() {
                 @Override
@@ -90,7 +85,7 @@ public class MyADSProvider {
         }
     }
 
-    public boolean canShowInterstial() {
+    public boolean showInterstial() {
         if (AppsConfig.IS_EP) {
             if (interstitialEP != null && interstitialEP.isAdLoaded()) {
                 interstitialEP.show();

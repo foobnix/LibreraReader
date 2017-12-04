@@ -11,6 +11,7 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
@@ -22,7 +23,6 @@ import org.apache.commons.compress.archivers.zip.ZipArchiveInputStream;
 import org.ebookdroid.BookType;
 
 import com.foobnix.android.utils.LOG;
-import com.foobnix.pdf.info.fragment.SearchFragment;
 
 import android.content.Context;
 import android.os.Environment;
@@ -74,6 +74,13 @@ public class CacheZipUtils {
         }
     }
 
+    public static class FilerByDate implements Comparator<File> {
+        @Override
+        public int compare(final File lhs, final File rhs) {
+            return new Long(lhs.lastModified()).compareTo(new Long(rhs.lastModified()));
+        }
+    }
+
     public static void clearBookDir() {
         List<File> asList = Arrays.asList(CACHE_BOOK_DIR.listFiles());
 
@@ -82,7 +89,7 @@ public class CacheZipUtils {
             return;
         }
 
-        Collections.sort(asList, new SearchFragment.FilerByDate());
+        Collections.sort(asList, new FilerByDate());
 
         for (int i = cacheSize; i < asList.size(); i++) {
             File file = asList.get(i);

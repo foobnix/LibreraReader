@@ -16,6 +16,7 @@ import com.foobnix.android.utils.TxtUtils;
 import com.foobnix.dao2.FileMeta;
 import com.foobnix.pdf.info.ExtUtils;
 import com.foobnix.pdf.info.IMG;
+import com.foobnix.pdf.info.MyADSProvider;
 import com.foobnix.pdf.info.OutlineHelper;
 import com.foobnix.pdf.info.PageUrl;
 import com.foobnix.pdf.info.R;
@@ -132,6 +133,10 @@ public abstract class DocumentController {
 
     public void saveSettings() {
 
+    }
+
+    public MyADSProvider getAdsProvider() {
+        return null;
     }
 
     public void updateRendering() {

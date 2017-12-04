@@ -9,6 +9,7 @@ import java.util.Locale;
 
 import org.ebookdroid.common.settings.SettingsManager;
 import org.ebookdroid.common.settings.books.BookSettings;
+import org.ebookdroid.ui.viewer.ViewerActivity;
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
@@ -239,8 +240,11 @@ public class DocumentWrapperUI {
             } else if (!controller.getLinkHistory().isEmpty()) {
                 controller.onLinkHistory();
             } else {
-                // closeAndRunList(false);
-                CloseAppDialog.showOnLongClickDialog(getController().getActivity(), null, controller);
+                if (((ViewerActivity) getController().getActivity()).isInterstialShown()) {
+                    return false;
+                }else{
+                    CloseAppDialog.showOnLongClickDialog(getController().getActivity(), null, controller);
+                }
             }
         }
         return true;

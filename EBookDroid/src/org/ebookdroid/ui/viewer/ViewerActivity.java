@@ -341,7 +341,9 @@ public class ViewerActivity extends AbstractActionActivity<ViewerActivity, Viewe
     public boolean onKeyUp(final int keyCode, final KeyEvent event) {
         LOG.d("onKeyUp");
         if (keyCode == KeyEvent.KEYCODE_BACK && event.isTracking() && !event.isCanceled()) {
-            getController().getWrapperControlls().checkBack(event);
+            if (!getController().getWrapperControlls().checkBack(event)) {
+                onFinishActivity();
+            }
             return true;
         }
 
@@ -353,6 +355,14 @@ public class ViewerActivity extends AbstractActionActivity<ViewerActivity, Viewe
     }
 
     private boolean isMyKey = false;
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        if (isInterstialShown()) {
+            getController().closeActivityFinal(null);
+        }
+    }
 
     @Override
     public boolean onKeyDown(final int keyCode, final KeyEvent event) {
@@ -378,6 +388,13 @@ public class ViewerActivity extends AbstractActionActivity<ViewerActivity, Viewe
         }
         return super.onKeyLongPress(keyCode, event);
     }
+
+    @Override
+    public void onFinishActivity() {
+        getController().closeActivityFinal(null);
+
+    }
+
 
 
 }

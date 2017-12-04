@@ -1,7 +1,5 @@
 package org.emdev.ui.actions;
 
-import android.app.Activity;
-
 /**
  * This class defines base features for action controller.
  * 
@@ -10,7 +8,6 @@ import android.app.Activity;
  */
 public class ActionController<ManagedComponent> extends AbstractComponentController<ManagedComponent> {
 
-    private Activity activity;
     /**
      * Constructor
      * 
@@ -33,11 +30,5 @@ public class ActionController<ManagedComponent> extends AbstractComponentControl
         super(parent, managedComponent);
     }
 
-    public Activity getActivity() {
-        return activity;
-    }
 
-    public void setActivity(Activity activity) {
-        this.activity = activity;
-    }
 }

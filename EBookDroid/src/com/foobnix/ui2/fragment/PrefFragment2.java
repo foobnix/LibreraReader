@@ -22,7 +22,6 @@ import com.foobnix.pdf.info.R;
 import com.foobnix.pdf.info.TintUtil;
 import com.foobnix.pdf.info.Urls;
 import com.foobnix.pdf.info.fragment.KeyCodeDialog;
-import com.foobnix.pdf.info.fragment.SearchFragment;
 import com.foobnix.pdf.info.view.AlertDialogs;
 import com.foobnix.pdf.info.view.CustomSeek;
 import com.foobnix.pdf.info.view.Dialogs;
@@ -84,7 +83,6 @@ public class PrefFragment2 extends UIFragment {
     private static final String WWW_SITE = "http://librera.mobi";
     private static final String WWW_BETA_SITE = "http://beta.librera.mobi";
     private static final String WWW_ARCHIVE_SITE = "http://archive.librera.mobi";
-    private SearchFragment searchFragmet;
     private TextView curBrightness, themeColor;
     private CheckBox isRememberDictionary;
 
@@ -299,7 +297,7 @@ public class PrefFragment2 extends UIFragment {
 
             @Override
             public void onClick(View v) {
-                ((MainTabs2) getActivity()).closeActivity();
+                getActivity().finish();
             }
         });
 
@@ -1645,13 +1643,6 @@ public class PrefFragment2 extends UIFragment {
 
     }
 
-    public SearchFragment getSearchFragmet() {
-        return searchFragmet;
-    }
-
-    public void setSearchFragmet(final SearchFragment searchFragmet) {
-        this.searchFragmet = searchFragmet;
-    }
 
     private void saveChanges() {
         if (getActivity() != null) {
