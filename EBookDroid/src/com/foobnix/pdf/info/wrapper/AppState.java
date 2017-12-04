@@ -74,7 +74,8 @@ public class AppState {
     public static int TAP_PREV_PAGE = 1;
     public static int TAP_DO_NOTHING = 2;
 
-    public static int BLUE_FILTER_DEFAULT_COLOR = Color.parseColor("#ff9700");
+    public static int BLUE_FILTER_DEFAULT_COLOR = Color.parseColor("#FFE500");
+    public static String MY_SYSTEM_LANG = "my";
 
     public boolean isUseTypeFace = false;
 
@@ -283,7 +284,7 @@ public class AppState {
     public int bgImageDayTransparency = DAY_TRANSPARENCY;
     public int bgImageNightTransparency = NIGHT_TRANSPARENCY;
 
-    public String appLang = Urls.getLangCode();
+    public String appLang = AppState.MY_SYSTEM_LANG;
     public float appFontScale = 1.0f;
 
     public boolean isLocked = false;

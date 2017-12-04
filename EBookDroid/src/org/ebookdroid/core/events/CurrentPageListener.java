@@ -4,5 +4,5 @@ import org.ebookdroid.core.PageIndex;
 
 public interface CurrentPageListener {
 
-    void currentPageChanged(PageIndex oldIndex, PageIndex newIndex, int pages);
+    void currentPageChanged(PageIndex newIndex, int pages);
 }

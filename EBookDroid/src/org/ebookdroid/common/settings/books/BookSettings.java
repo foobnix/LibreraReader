@@ -1,5 +1,6 @@
 package org.ebookdroid.common.settings.books;
 
+import org.ebookdroid.common.settings.SettingsManager;
 import org.ebookdroid.common.settings.types.DocumentViewMode;
 import org.ebookdroid.core.PageIndex;
 import org.ebookdroid.core.events.CurrentPageListener;
@@ -54,6 +55,10 @@ public class BookSettings implements CurrentPageListener {
         pageDelta = TempHolder.get().pageDelta;
     }
 
+    public void save() {
+        SettingsManager.db.storeBookSettings(this);
+    }
+
     BookSettings(final JSONObject object) throws JSONException {
         this.fileName = object.getString("fileName");
         this.currentPage = new PageIndex(object.getJSONObject("currentPage"));
@@ -91,7 +96,7 @@ public class BookSettings implements CurrentPageListener {
     }
 
     @Override
-    public void currentPageChanged(final PageIndex oldIndex, final PageIndex newIndex, int pages) {
+    public void currentPageChanged(final PageIndex newIndex, int pages) {
         this.currentPage = newIndex;
         this.pages = pages;
     }

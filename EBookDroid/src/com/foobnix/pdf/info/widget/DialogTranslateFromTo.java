@@ -6,6 +6,8 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 
+import org.ebookdroid.LirbiApp;
+
 import com.foobnix.android.utils.BaseItemLayoutAdapter;
 import com.foobnix.android.utils.TxtUtils;
 import com.foobnix.android.utils.Views;
@@ -126,6 +128,9 @@ public class DialogTranslateFromTo {
     }
 
     public static String getLanuageByCode(String code) {
+        if (AppState.MY_SYSTEM_LANG.equals(code)) {
+            return LirbiApp.context.getString(R.string.system_language);
+        }
         try {
             Locale l = new Locale(code);
             return TxtUtils.firstUppercase(l.getDisplayLanguage(l));

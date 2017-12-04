@@ -8,6 +8,7 @@ import java.util.Locale;
 import org.ebookdroid.common.cache.CacheManager;
 import org.ebookdroid.common.settings.SettingsManager;
 import org.ebookdroid.common.settings.books.BookSettings;
+import org.ebookdroid.core.PageIndex;
 import org.ebookdroid.core.codec.PageLink;
 import org.ebookdroid.droids.mupdf.codec.TextWord;
 import org.greenrobot.eventbus.EventBus;
@@ -225,16 +226,16 @@ public abstract class DocumentControllerHorizontalView extends DocumentControlle
             LOG.d("Loading cancelled");
             return;
         }
-        int page = PageUrl.fakeToReal(currentPage);
-        int pages = pagesCount;
-        LOG.d("_PAGE", "saveCurrentPage", page, pages);
-        generadDocInterface.setCurrentPage(getBookPath(), page, pages);
-
-        BookSettings bs = SettingsManager.getBookSettings();
-        if (bs != null) {
+        // int page = PageUrl.fakeToReal(currentPage);
+        LOG.d("_PAGE", "saveCurrentPage", currentPage, pagesCount);
+        try {
+            BookSettings bs = SettingsManager.getBookSettings(getBookPath());
             bs.updateFromAppState();
+            bs.currentPageChanged(new PageIndex(currentPage, currentPage), pagesCount);
+            bs.save();
+        } catch (Exception e) {
+            LOG.e(e);
         }
-        SettingsManager.storeBookSettings();
 
     }
 

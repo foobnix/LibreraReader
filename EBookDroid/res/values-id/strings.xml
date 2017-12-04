@@ -423,4 +423,5 @@
    <string name="serie">Serie</string>
    <string name="switch_off">Mematikan</string>
    <string name="blueligth_filter">Filter BlueLight</string>
+   <string name="system_language">Bahasa sistem</string>
 </resources>

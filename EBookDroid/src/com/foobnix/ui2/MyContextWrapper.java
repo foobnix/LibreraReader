@@ -21,24 +21,29 @@ public class MyContextWrapper extends ContextWrapper {
     @SuppressWarnings("deprecation")
     public static ContextWrapper wrap(Context context) {
         AppState.get().load(context);
+
         final String language = AppState.get().appLang;
         final float scale = AppState.get().appFontScale;
 
         Configuration config = context.getResources().getConfiguration();
-        boolean isFontChanged = config.fontScale != scale;
-        LOG.d("ContextWrapper", language, scale, "config.fontScale = ", config.fontScale, "same size", isFontChanged);
-        config.fontScale = scale;
 
-        Locale sysLocale = null;
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-            sysLocale = getSystemLocale(config);
-        } else {
-            sysLocale = getSystemLocaleLegacy(config);
+        if (AppState.MY_SYSTEM_LANG.equals(AppState.get().appLang)) {
+            LOG.d("MyContextWrapper skip");
+            config.fontScale = scale;
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
+                context = context.createConfigurationContext(config);
+            } else {
+                context.getResources().updateConfiguration(config, context.getResources().getDisplayMetrics());
+            }
+            return new MyContextWrapper(context);
         }
 
-        LOG.d("ContextWrapper apply", language, scale);
+        config.fontScale = scale;
 
         Locale locale = new Locale(language);
+        LOG.d("MyContextWrapper changed");
+        config.setLocale(locale);
+
         Locale.setDefault(locale);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
             setSystemLocale(config, locale);

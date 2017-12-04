@@ -423,4 +423,5 @@
    <string name="serie">세리에</string>
    <string name="switch_off">끄다</string>
    <string name="blueligth_filter">BlueLight 필터</string>
+   <string name="system_language">시스템 언어</string>
 </resources>

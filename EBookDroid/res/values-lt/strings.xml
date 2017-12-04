@@ -423,4 +423,5 @@
    <string name="serie">Serija</string>
    <string name="switch_off">Išjungti</string>
    <string name="blueligth_filter">BlueLight filtras</string>
+   <string name="system_language">Sistemos kalba</string>
 </resources>

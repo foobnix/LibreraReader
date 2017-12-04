@@ -16,7 +16,6 @@ public interface GeneralDocInterface {
 
     public int getCurrentPage(String path);
 
-    public void setCurrentPage(String path, int page, int pages);
 
     public void addToRecent(Context a, Uri path);
 

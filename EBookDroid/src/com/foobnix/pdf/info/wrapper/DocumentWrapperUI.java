@@ -1427,8 +1427,8 @@ public class DocumentWrapperUI {
             BookSettings bookSettings = SettingsManager.getBookSettings();
             if (bookSettings != null) {
                 bookSettings.updateFromAppState();
+                bookSettings.save();
             }
-            SettingsManager.storeBookSettings();
 
             crop.setVisibility(AppState.get().isCut ? View.GONE : View.VISIBLE);
 
