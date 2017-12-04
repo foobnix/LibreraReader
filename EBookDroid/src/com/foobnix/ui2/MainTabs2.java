@@ -3,26 +3,17 @@ package com.foobnix.ui2;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.HashMap;
 import java.util.List;
 
 import org.ebookdroid.ui.viewer.ViewerActivity;
 
-import com.adclient.android.sdk.listeners.ClientAdListener;
-import com.adclient.android.sdk.type.AdType;
-import com.adclient.android.sdk.type.ParamsType;
-import com.adclient.android.sdk.view.AbstractAdClientView;
-import com.adclient.android.sdk.view.AdClientInterstitial;
-import com.adclient.android.sdk.view.AdClientView;
 import com.foobnix.android.utils.LOG;
 import com.foobnix.android.utils.TxtUtils;
 import com.foobnix.dao2.FileMeta;
 import com.foobnix.pdf.SlidingTabLayout;
-import com.foobnix.pdf.info.ADS;
 import com.foobnix.pdf.info.Analytics;
 import com.foobnix.pdf.info.Android6;
 import com.foobnix.pdf.info.AndroidWhatsNew;
-import com.foobnix.pdf.info.AppsConfig;
 import com.foobnix.pdf.info.FontExtractor;
 import com.foobnix.pdf.info.R;
 import com.foobnix.pdf.info.TintUtil;
@@ -42,9 +33,6 @@ import com.foobnix.ui2.fragment.PrefFragment2;
 import com.foobnix.ui2.fragment.RecentFragment2;
 import com.foobnix.ui2.fragment.SearchFragment2;
 import com.foobnix.ui2.fragment.UIFragment;
-import com.google.android.gms.ads.AdListener;
-import com.google.android.gms.ads.InterstitialAd;
-import com.google.android.gms.ads.NativeExpressAdView;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
@@ -57,13 +45,11 @@ import android.content.res.Configuration;
 import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
-import android.support.v4.app.FragmentActivity;
 import android.support.v4.content.LocalBroadcastManager;
 import android.support.v4.view.ViewPager;
 import android.support.v4.view.ViewPager.OnPageChangeListener;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v4.widget.DrawerLayout.DrawerListener;
-import android.util.Log;
 import android.view.Gravity;
 import android.view.KeyEvent;
 import android.view.View;
@@ -72,17 +58,14 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 @SuppressLint("NewApi")
-public class MainTabs2 extends FragmentActivity {
+public class MainTabs2 extends AdsFragmentActivity {
     public static final String EXTRA_EXIT = "EXTRA_EXIT";
     public static final String EXTRA_SHOW_TABS = "EXTRA_SHOW_TABS";
     public static String EXTRA_PAGE_NUMBER = "EXTRA_PAGE_NUMBER";
     public static String EXTRA_SEACH_TEXT = "EXTRA_SEACH_TEXT";
     ViewPager pager;
     List<UIFragment> tabFragments;
-    private NativeExpressAdView adViewNative;
-    private AdClientView adClientView;
-    InterstitialAd mInterstitialAd;
-    AdClientInterstitial interstitialEP;
+
     public static volatile boolean isInStack;
     TabsAdapter2 adapter;
 
@@ -166,58 +149,6 @@ public class MainTabs2 extends FragmentActivity {
         DocumentController.doRotation(this);
 
         setContentView(R.layout.main_tabs);
-
-        if (!AppsConfig.checkIsProInstalled(this) && AppsConfig.ADMOB_FULLSCREEN != null) {
-            mInterstitialAd = new InterstitialAd(this);
-            mInterstitialAd.setAdUnitId(AppsConfig.ADMOB_FULLSCREEN);
-            mInterstitialAd.setAdListener(new AdListener() {
-                @Override
-                public void onAdClosed() {
-                    finish();
-                }
-            });
-
-            try {
-                mInterstitialAd.loadAd(ADS.adRequest);
-            } catch (Exception e) {
-                LOG.e(e);
-            }
-        }
-
-        if (AppsConfig.IS_EP) {
-            interstitialEP = new AdClientInterstitial(this);
-            HashMap<ParamsType, Object> configuration = new HashMap<ParamsType, Object>();
-            configuration.put(ParamsType.AD_PLACEMENT_KEY, "0928de1630a1452b64eaab1813d3af64");
-            configuration.put(ParamsType.ADTYPE, AdType.INTERSTITIAL.toString());
-            configuration.put(ParamsType.AD_SERVER_URL, "http://appservestar.com/");
-            interstitialEP.setConfiguration(configuration);
-            interstitialEP.load();
-
-            interstitialEP.addClientAdListener(new ClientAdListener() {
-                @Override
-                public void onReceivedAd(AbstractAdClientView adClientView) {
-                }
-
-                @Override
-                public void onFailedToReceiveAd(AbstractAdClientView adClientView) {
-                }
-
-                @Override
-                public void onClickedAd(AbstractAdClientView adClientView) {
-                }
-
-                @Override
-                public void onLoadingAd(AbstractAdClientView adClientView, String message) {
-                    Log.d("TestApp", "--> Ad loaded.");
-                }
-
-                @Override
-                public void onClosedAd(AbstractAdClientView adClientView) {
-                    Log.d("TestApp", "--> Ad closed callback.");
-                    finish();
-                }
-            });
-        }
 
         imageMenu = (ImageView)
 
@@ -319,8 +250,6 @@ public class MainTabs2 extends FragmentActivity {
 
         Android6.checkPermissions(this);
         Analytics.onStart(this);
-        ADS.activateNative(this, adViewNative);
-        ADS.activateEP(this, adClientView);
         FontExtractor.extractFonts(this);
 
         List<String> actions = Arrays.asList("android.intent.action.PROCESS_TEXT", "android.intent.action.SEARCH", "android.intent.action.SEND");
@@ -419,8 +348,6 @@ public class MainTabs2 extends FragmentActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        ADS.onResumeNative(adViewNative);
-        ADS.onResumeEP(adClientView);
         // DocumentController.chooseFullScreen(this, false);
         TintUtil.updateAll();
         AppState.get().lastA = MainTabs2.class.getSimpleName();
@@ -462,8 +389,6 @@ public class MainTabs2 extends FragmentActivity {
     @Override
     protected void onPause() {
         super.onPause();
-        ADS.onPauseNative(adViewNative);
-        ADS.onPauseEP(adClientView);
         AppState.getInstance().save(this);
         LocalBroadcastManager.getInstance(this).unregisterReceiver(broadcastReceiver);
         RecentUpates.updateAll(this);
@@ -481,15 +406,12 @@ public class MainTabs2 extends FragmentActivity {
             }
         }
         Analytics.onStop(this);
-        ADS.destoryNative(adViewNative);
         isInStack = false;
     }
 
     @Override
     public void onConfigurationChanged(final Configuration newConfig) {
         super.onConfigurationChanged(newConfig);
-        ADS.activateNative(this, adViewNative);
-        ADS.activateEP(this, adClientView);
 
         String language = newConfig.locale.getLanguage();
         float fontScale = newConfig.fontScale;
@@ -529,26 +451,6 @@ public class MainTabs2 extends FragmentActivity {
     };
     private SlidingTabLayout indicator;
 
-    public void closeActivity() {
-        if (interstitialEP != null && interstitialEP.isAdLoaded()) {
-            Log.d("TestApp", "--> Ad loaded. Show");
-            interstitialEP.show();
-        } else {
-            TempHolder.listHash = 0;
-            finish();
-        }
-        if (true) {
-            return;
-        }
-
-        if (mInterstitialAd != null && mInterstitialAd.isLoaded()) {
-            mInterstitialAd.show();
-        } else {
-            TempHolder.listHash = 0;
-            finish();
-        }
-    }
-
     @Override
     public boolean onKeyLongPress(final int keyCode, final KeyEvent event) {
         if (CloseAppDialog.checkLongPress(this, event)) {
@@ -560,7 +462,7 @@ public class MainTabs2 extends FragmentActivity {
 
     @Override
     public void onBackPressed() {
-        if (interstitialEP != null && interstitialEP.isShown()) {
+        if (isInterstialShown()) {
             finish();
             return;
         }

@@ -17,8 +17,6 @@ import com.foobnix.android.utils.Dips;
 import com.foobnix.android.utils.Keyboards;
 import com.foobnix.android.utils.LOG;
 import com.foobnix.android.utils.TxtUtils;
-import com.foobnix.pdf.info.ADS;
-import com.foobnix.pdf.info.AppsConfig;
 import com.foobnix.pdf.info.DictsHelper;
 import com.foobnix.pdf.info.ExtUtils;
 import com.foobnix.pdf.info.R;
@@ -44,8 +42,6 @@ import com.foobnix.tts.TTSEngine;
 import com.foobnix.tts.TtsStatus;
 import com.foobnix.ui2.AppDB;
 import com.foobnix.ui2.MainTabs2;
-import com.google.android.gms.ads.AdListener;
-import com.google.android.gms.ads.InterstitialAd;
 
 import android.annotation.TargetApi;
 import android.app.Activity;
@@ -116,8 +112,6 @@ public class DocumentWrapperUI {
 
     private final Handler handler = new Handler();
     private final Handler handlerTimer = new Handler();
-
-    InterstitialAd mInterstitialAd;
 
     public DocumentWrapperUI(final DocumentController controller) {
         AppState.getInstance().annotationDrawColor = "";
@@ -364,17 +358,13 @@ public class DocumentWrapperUI {
             handler.removeCallbacksAndMessages(null);
         }
 
-        if (mInterstitialAd != null && mInterstitialAd.isLoaded()) {
-            mInterstitialAd.show();
-        } else {
-            if (titleBar != null) {
-                titleBar.removeCallbacks(null);
-            }
-            controller.onCloseActivity();
+        if (titleBar != null) {
+            titleBar.removeCallbacks(null);
+        }
+        controller.onCloseActivity();
 
-            if (isLong && !MainTabs2.isInStack) {
-                MainTabs2.startActivity(a, UITab.getCurrentTabIndex(UITab.SearchFragment));
-            }
+        if (isLong && !MainTabs2.isInStack) {
+            MainTabs2.startActivity(a, UITab.getCurrentTabIndex(UITab.SearchFragment));
         }
     }
 
@@ -504,32 +494,6 @@ public class DocumentWrapperUI {
 
     public void initUI(final Activity a) {
         this.a = a;
-
-        // AppState.get().isMusicianMode &&
-        if (!AppsConfig.checkIsProInstalled(a) && AppsConfig.ADMOB_FULLSCREEN != null) {
-            handler.postDelayed(new Runnable() {
-
-                @Override
-                public void run() {
-                    mInterstitialAd = new InterstitialAd(a);
-                    mInterstitialAd.setAdUnitId(AppsConfig.ADMOB_FULLSCREEN);
-                    mInterstitialAd.setAdListener(new AdListener() {
-                        @Override
-                        public void onAdClosed() {
-                            closeAndRunList(false);
-                        }
-                    });
-
-                    try {
-                        mInterstitialAd.loadAd(ADS.adRequest);
-                    } catch (Exception e) {
-                        LOG.e(e);
-                    }
-
-                }
-            }, ADS.FULL_SCREEN_TIMEOUT);
-
-        }
 
         linkHistory = (ImageView) a.findViewById(R.id.linkHistory);
         linkHistory.setOnClickListener(onLinkHistory);
@@ -1669,7 +1633,7 @@ public class DocumentWrapperUI {
     public void onResume() {
         LOG.d("DocumentWrapperUI", "onResume");
         handlerTimer.post(updateTimePower);
-        
+
         if (controller != null && TTSEngine.get().isPlaying()) {
             controller.onGoToPage(AppState.get().lastBookPage);
         }

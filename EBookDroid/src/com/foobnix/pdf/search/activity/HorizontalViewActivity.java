@@ -18,10 +18,8 @@ import com.foobnix.android.utils.ResultResponse;
 import com.foobnix.android.utils.TxtUtils;
 import com.foobnix.ext.CacheZipUtils;
 import com.foobnix.pdf.CopyAsyncTask;
-import com.foobnix.pdf.info.ADS;
 import com.foobnix.pdf.info.Analytics;
 import com.foobnix.pdf.info.Android6;
-import com.foobnix.pdf.info.AppsConfig;
 import com.foobnix.pdf.info.DictsHelper;
 import com.foobnix.pdf.info.ExtUtils;
 import com.foobnix.pdf.info.IMG;
@@ -58,13 +56,10 @@ import com.foobnix.tts.MessagePageNumber;
 import com.foobnix.tts.TTSEngine;
 import com.foobnix.tts.TTSNotification;
 import com.foobnix.tts.TtsStatus;
+import com.foobnix.ui2.AdsFragmentActivity;
 import com.foobnix.ui2.AppDB;
 import com.foobnix.ui2.MainTabs2;
 import com.foobnix.ui2.MyContextWrapper;
-import com.google.android.gms.ads.AdListener;
-import com.google.android.gms.ads.AdView;
-import com.google.android.gms.ads.InterstitialAd;
-import com.google.android.gms.ads.NativeExpressAdView;
 
 import android.annotation.TargetApi;
 import android.app.AlertDialog;
@@ -80,7 +75,6 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Parcelable;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentActivity;
 import android.support.v4.graphics.ColorUtils;
 import android.support.v4.view.ViewPager.OnPageChangeListener;
 import android.text.InputType;
@@ -104,7 +98,7 @@ import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
-public class HorizontalViewActivity extends FragmentActivity {
+public class HorizontalViewActivity extends AdsFragmentActivity {
     private static final String PAGE = "page";
     private static final String PERCENT_EXTRA = "percent";
 
@@ -114,9 +108,6 @@ public class HorizontalViewActivity extends FragmentActivity {
     View adFrame, bottomBar, onPageFlip1, bottomIndicators, moveCenter, onClose, overlay;
     LinearLayout actionBar;
     private FrameLayout anchor;
-
-    private AdView adView;
-    private NativeExpressAdView adViewNative;
 
     ImageView lockModelImage, linkHistory, ttsActive, onModeChange, outline, onMove, onBC, textToSpeach;
 
@@ -144,8 +135,6 @@ public class HorizontalViewActivity extends FragmentActivity {
             startActivity(intent);
         }
     }
-
-    InterstitialAd mInterstitialAd;
 
     ClickUtils clickUtils;
 
@@ -178,30 +167,6 @@ public class HorizontalViewActivity extends FragmentActivity {
         }
 
         super.onCreate(savedInstanceState);
-
-        if (!AppsConfig.checkIsProInstalled(this) && AppsConfig.ADMOB_FULLSCREEN != null) {
-            handler.postDelayed(new Runnable() {
-
-                @Override
-                public void run() {
-                    mInterstitialAd = new InterstitialAd(HorizontalViewActivity.this);
-                    mInterstitialAd.setAdUnitId(AppsConfig.ADMOB_FULLSCREEN);
-                    mInterstitialAd.setAdListener(new AdListener() {
-                        @Override
-                        public void onAdClosed() {
-                            closeActivity();
-                        }
-                    });
-
-                    try {
-                        mInterstitialAd.loadAd(ADS.adRequest);
-                    } catch (Exception e) {
-                        LOG.e(e);
-                    }
-                }
-            }, ADS.FULL_SCREEN_TIMEOUT);
-
-        }
 
         clickUtils = new ClickUtils();
 
@@ -303,11 +268,6 @@ public class HorizontalViewActivity extends FragmentActivity {
                 seekBar.setRotation(180);
             }
         }
-
-        // loaginTask.execute();
-
-        // ADS.activate(this, adView);
-        ADS.activateNative(this, adViewNative);
 
         onPageFlip1 = findViewById(R.id.onPageFlip);
         onPageFlip1.setOnClickListener(new OnClickListener() {
@@ -1111,8 +1071,6 @@ public class HorizontalViewActivity extends FragmentActivity {
             }
         }
 
-        ADS.destory(adView);
-        ADS.destoryNative(adViewNative);
         // AppState.get().isCut = false;
         PageImageState.get().clearResouces();
 
@@ -1129,8 +1087,6 @@ public class HorizontalViewActivity extends FragmentActivity {
     protected void onResume() {
         super.onResume();
 
-        ADS.onResume(adView);
-        ADS.onResumeNative(adViewNative);
         DocumentController.chooseFullScreen(this, AppState.get().isFullScreen);
         DocumentController.doRotation(this);
 
@@ -1153,8 +1109,6 @@ public class HorizontalViewActivity extends FragmentActivity {
     @Override
     protected void onPause() {
         super.onPause();
-        ADS.onPause(adView);
-        ADS.onPauseNative(adViewNative);
         if (documentController != null) {
             documentController.saveCurrentPage();
         }
@@ -1550,7 +1504,6 @@ public class HorizontalViewActivity extends FragmentActivity {
             onRotateScreen();
         }
 
-
         isInitOrientation = AppState.getInstance().orientation;
 
     }
@@ -1558,7 +1511,7 @@ public class HorizontalViewActivity extends FragmentActivity {
     @TargetApi(Build.VERSION_CODES.HONEYCOMB)
     public void onRotateScreen() {
         // ADS.activate(this, adView);
-        ADS.activateNative(this, adViewNative);
+        activateAds();
 
         AppState.get().save(this);
         if (ExtUtils.isTextFomat(getIntent())) {
@@ -1820,6 +1773,10 @@ public class HorizontalViewActivity extends FragmentActivity {
 
     @Override
     public void onBackPressed() {
+        if (isInterstialShown()) {
+            finish();
+        }
+
         if (anchor != null && anchor.getChildCount() > 0 && anchor.getVisibility() == View.VISIBLE) {
             documentController.clearSelectedText();
             anchor.setVisibility(View.GONE);
@@ -1838,20 +1795,15 @@ public class HorizontalViewActivity extends FragmentActivity {
         // closeActivity();
     }
 
+    @Override
     public void closeActivity() {
         AppState.get().lastA = null;
         if (handler != null) {
             handler.removeCallbacksAndMessages(null);
         }
 
-        if (mInterstitialAd != null && mInterstitialAd.isLoaded()) {
-            mInterstitialAd.show();
-        } else {
-            if (documentController != null) {
-                documentController.onCloseActivity();
-            } else {
-                finish();
-            }
+        if (!canShowInterstial()) {
+            finish();
         }
 
     }

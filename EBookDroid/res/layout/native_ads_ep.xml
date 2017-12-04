@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="?android:attr/colorBackground"
+    android:orientation="vertical"
+    android:paddingEnd="8dp"
+    android:paddingLeft="8dp"
+    android:paddingRight="8dp"
+    android:paddingStart="8dp" >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal" >
+
+        <ImageView
+            android:id="@+id/iconView"
+            android:layout_width="48dip"
+            android:layout_height="48dip"
+            android:layout_gravity="center_vertical" />
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dip"
+            android:layout_weight="1"
+            android:orientation="vertical" >
+
+            <TextView
+                android:id="@+id/headlineView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:gravity="center_vertical"
+                android:lines="1"
+                android:maxLines="1"
+                android:paddingRight="2dp"
+                android:text="Sample title"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/descriptionView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:gravity="center_vertical"
+                android:lines="1"
+                android:maxLines="1"
+                android:paddingRight="2dp"
+                android:text="Sample subtitle"
+                android:textSize="14sp" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:orientation="horizontal" >
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center_vertical"
+            android:orientation="horizontal" >
+
+            <TextView
+                android:id="@+id/sponsoredText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:text="Sponsored" />
+
+            <ImageView
+                android:id="@+id/sponsoredIcon"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:paddingLeft="10dp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal" >
+
+            <TextView
+                android:id="@+id/callToActionButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="OPEN" />
+        </LinearLayout>
+    </LinearLayout>
+
+</LinearLayout>

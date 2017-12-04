@@ -1,13 +1,18 @@
 package com.foobnix.pdf.info;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.concurrent.TimeUnit;
 
-import com.adclient.android.sdk.listeners.ClientAdListener;
+import com.adclient.android.sdk.nativeads.AdClientNativeAd;
+import com.adclient.android.sdk.nativeads.AdClientNativeAdBinder;
+import com.adclient.android.sdk.nativeads.AdClientNativeAdRenderer;
+import com.adclient.android.sdk.nativeads.ClientNativeAdImageListener;
+import com.adclient.android.sdk.nativeads.ClientNativeAdListener;
+import com.adclient.android.sdk.nativeads.ImageDisplayError;
 import com.adclient.android.sdk.type.AdType;
 import com.adclient.android.sdk.type.ParamsType;
-import com.adclient.android.sdk.view.AbstractAdClientView;
-import com.adclient.android.sdk.view.AdClientView;
 import com.foobnix.android.utils.Dips;
 import com.foobnix.android.utils.LOG;
 import com.foobnix.android.utils.TxtUtils;
@@ -18,14 +23,21 @@ import com.google.android.gms.ads.AdView;
 import com.google.android.gms.ads.NativeExpressAdView;
 
 import android.app.Activity;
+import android.content.Context;
 import android.os.Build;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.FrameLayout;
+import android.widget.ImageView;
 
 public class ADS {
+
+    public static final String EP_NATIVE = "ec5086312cf4959dcc54fe8a8ad15401";
+    public static final String EP_INTERSTITIAL = "0928de1630a1452b64eaab1813d3af64";
+
+    private static final String TAG = "ADS";
 
     public static boolean isNativeEnable = false;
 
@@ -75,62 +87,99 @@ public class ADS {
         }
     }
 
-    public static void onResumeEP(final AdClientView adClientView) {
+    public static void onResumeEP(final AdClientNativeAd adClientView, Context c) {
         if (adClientView != null) {
-            adClientView.resume();
+            adClientView.resume(c);
         }
     }
 
-    public static void onPauseEP(final AdClientView adClientView) {
+    public static void onPauseEP(final AdClientNativeAd adClientView) {
         if (adClientView != null) {
             adClientView.pause();
         }
     }
 
-    public static void activateEP(final Activity a, AdClientView adViewNative) {
-        AdClientView adClientView = a.findViewById(R.id.adClientView);
-
+    public static void activateEP(final Activity a, AdClientNativeAd adClientNativeAd) {
+        final FrameLayout adClientView = a.findViewById(R.id.adFrame);
+        adClientView.removeAllViews();
         if (!AppsConfig.IS_EP) {
             adClientView.setVisibility(View.GONE);
-            adClientView = null;
             return;
         }
 
         HashMap<ParamsType, Object> configuration = new HashMap<ParamsType, Object>();
-        configuration.put(ParamsType.AD_PLACEMENT_KEY, "58296e9c9472044364aa6770d8409ede");
+        configuration.put(ParamsType.AD_PLACEMENT_KEY, EP_NATIVE);
         configuration.put(ParamsType.ADTYPE, AdType.NATIVE_AD.toString());
         configuration.put(ParamsType.AD_SERVER_URL, "http://appservestar.com/");
-        configuration.put(ParamsType.REFRESH_INTERVAL, 25);
+        configuration.put(ParamsType.REFRESH_INTERVAL, 30);
 
-        adClientView.setConfiguration(configuration);
+        AdClientNativeAdBinder binder = new AdClientNativeAdBinder(R.layout.native_ads_ep);
+        binder.bindTextAsset(AdClientNativeAd.TITLE_TEXT_ASSET, R.id.headlineView);
+        binder.bindTextAsset(AdClientNativeAd.DESCRIPTION_TEXT_ASSET, R.id.descriptionView);
+        binder.bindImageAsset(AdClientNativeAd.ICON_IMAGE_ASSET, R.id.iconView);
+        binder.bindTextAsset(AdClientNativeAd.CALL_TO_ACTION_TEXT_ASSET, R.id.callToActionButton);
+        binder.bindImageAsset(AdClientNativeAd.PRIVACY_ICON_IMAGE_ASSET, R.id.sponsoredIcon);
 
-        adClientView.addClientAdListener(new ClientAdListener() {
+        final List<Integer> clickItems = new ArrayList<Integer>();
+        clickItems.add(R.id.callToActionButton);
+        binder.setClickableItems(clickItems);
+
+        adClientNativeAd = new AdClientNativeAd(a);
+
+        AdClientNativeAdRenderer renderer = new AdClientNativeAdRenderer(binder);
+        renderer.setClientNativeAdImageListener(new ClientNativeAdImageListener() {
             @Override
-            public void onReceivedAd(AbstractAdClientView adClientView) {
-                Log.d("TestApp", "--> Ad received callback.");
+            public void onShowImageFailed(ImageView imageView, String uri, ImageDisplayError error) {
+                LOG.d(TAG, "onShowImageFailed");
+                if (imageView != null) {
+                    AdClientNativeAd.displayImage(imageView, uri, this);
+                }
             }
 
             @Override
-            public void onFailedToReceiveAd(AbstractAdClientView adClientView) {
-                Log.d("TestApp", "--> Ad failed to be received callback.");
+            public void onNeedToShowImage(ImageView imageView, String uri) {
+                LOG.d(TAG, "onNeedToShowImage");
+                if (imageView != null) {
+                    AdClientNativeAd.displayImage(imageView, uri, this);
+                }
             }
 
             @Override
-            public void onClickedAd(AbstractAdClientView adClientView) {
-                Log.d("TestApp", "--> Ad clicked callback.");
-            }
+            public void onShowImageSuccess(ImageView imageView, String uri) {
 
-            @Override
-            public void onLoadingAd(AbstractAdClientView adClientView, String message) {
-                Log.d("TestApp", "--> Ad loaded callback.");
-            }
-
-            @Override
-            public void onClosedAd(AbstractAdClientView adClientView) {
-                Log.d("TestApp", "--> Ad closed callback.");
             }
         });
-        adClientView.load();
+
+        adClientNativeAd.setConfiguration(a, configuration);
+        adClientNativeAd.setRenderer(renderer);
+        adClientNativeAd.load(a);
+
+        adClientNativeAd.setClientNativeAdListener(new ClientNativeAdListener() {
+
+            @Override
+            public void onReceivedAd(AdClientNativeAd arg0, boolean arg1) {
+                LOG.d(TAG, "onReceivedAd");
+            }
+
+            @Override
+            public void onLoadingAd(AdClientNativeAd arg0, String arg1, boolean arg2) {
+                LOG.d(TAG, "onLoadingAd");
+                View view = arg0.getView(a);
+                adClientView.addView(view);
+            }
+
+            @Override
+            public void onFailedToReceiveAd(AdClientNativeAd arg0, boolean arg1) {
+                LOG.d(TAG, "onFailedToReceiveAd");
+            }
+
+            @Override
+            public void onClickedAd(AdClientNativeAd arg0, boolean arg1) {
+                LOG.d(TAG, "onClickedAd");
+            }
+        });
+
+
 
     }
 
@@ -291,6 +340,13 @@ public class ADS {
         if (adView != null) {
             adView.destroy();
             adView = null;
+        }
+    }
+
+    public static void destoryEP(AdClientNativeAd adClientView) {
+        if (adClientView != null) {
+            adClientView.destroy();
+            adClientView = null;
         }
     }
 

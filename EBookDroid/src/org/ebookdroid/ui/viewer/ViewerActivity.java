@@ -11,7 +11,6 @@ import org.emdev.utils.LengthUtils;
 import com.foobnix.android.utils.Dips;
 import com.foobnix.android.utils.Keyboards;
 import com.foobnix.android.utils.LOG;
-import com.foobnix.pdf.info.ADS;
 import com.foobnix.pdf.info.Analytics;
 import com.foobnix.pdf.info.Android6;
 import com.foobnix.pdf.info.ExtUtils;
@@ -25,8 +24,6 @@ import com.foobnix.tts.TTSNotification;
 import com.foobnix.ui2.FileMetaCore;
 import com.foobnix.ui2.MainTabs2;
 import com.foobnix.ui2.MyContextWrapper;
-import com.google.android.gms.ads.AdView;
-import com.google.android.gms.ads.NativeExpressAdView;
 
 import android.app.AlertDialog;
 import android.app.Dialog;
@@ -79,8 +76,6 @@ public class ViewerActivity extends AbstractActionActivity<ViewerActivity, Viewe
         return new ViewerActivityController(this);
     }
 
-    private AdView adView;
-    private NativeExpressAdView adViewNative;
     private Handler handler;
 
     /**
@@ -143,7 +138,6 @@ public class ViewerActivity extends AbstractActionActivity<ViewerActivity, Viewe
         getController().afterCreate(this);
 
         // ADS.activate(this, adView);
-        ADS.activateNative(this, adViewNative);
 
         RecentUpates.updateAll(this);
 
@@ -165,8 +159,6 @@ public class ViewerActivity extends AbstractActionActivity<ViewerActivity, Viewe
     protected void onResume() {
         super.onResume();
         DocumentController.doRotation(this);
-        ADS.onResume(adView);
-        ADS.onResumeNative(adViewNative);
 
         if (AppState.getInstance().isFullScrean()) {
             Keyboards.hideNavigation(this);
@@ -190,8 +182,6 @@ public class ViewerActivity extends AbstractActionActivity<ViewerActivity, Viewe
     protected void onPause() {
         super.onPause();
         LOG.d("onPause", this.getClass());
-        ADS.onPause(adView);
-        ADS.onPauseNative(adViewNative);
         getController().onPause();
         needToRestore = AppState.get().isAutoScroll;
         AppState.get().isAutoScroll = false;
@@ -229,11 +219,13 @@ public class ViewerActivity extends AbstractActionActivity<ViewerActivity, Viewe
         }
     };
 
+
     @Override
     protected void onDestroy() {
         if (handler != null) {
             handler.removeCallbacksAndMessages(null);
         }
+
         getController().onDestroy();
 
         if (AppState.getInstance().isRememberMode && AppState.getInstance().isAlwaysOpenAsMagazine) {
@@ -242,8 +234,6 @@ public class ViewerActivity extends AbstractActionActivity<ViewerActivity, Viewe
             getController().beforeDestroy();
             super.onDestroy();
             getController().afterDestroy(isFinishing());
-            ADS.destory(adView);
-            ADS.destoryNative(adViewNative);
             getController().getListener().onDestroy();
         }
     }
@@ -313,7 +303,6 @@ public class ViewerActivity extends AbstractActionActivity<ViewerActivity, Viewe
             return;
         }
 
-        ADS.activateNative(this, adViewNative);
         AppState.get().save(this);
 
         if (ExtUtils.isTextFomat(getIntent())) {

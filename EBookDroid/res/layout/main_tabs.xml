@@ -51,11 +51,7 @@
             android:layout_gravity="center_horizontal"
             android:layout_weight="0" >
         </FrameLayout>
-
-        <com.adclient.android.sdk.view.AdClientView
-            android:id="@+id/adClientView"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+        
     </LinearLayout>
 
     <FrameLayout
