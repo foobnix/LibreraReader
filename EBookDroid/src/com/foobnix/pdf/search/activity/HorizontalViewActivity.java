@@ -94,6 +94,7 @@ import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -728,6 +729,7 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
 
                     onCrop.underline(AppState.get().isCrop);
                     onCrop.invalidate();
+
 
                 }
 
@@ -1601,6 +1603,8 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
             DocumentController.chooseFullScreen(this, AppState.get().isFullScreen);
             return;
         }
+
+        ((RelativeLayout.LayoutParams) adFrame.getLayoutParams()).topMargin = actionBar.getHeight() + Dips.dpToPx(10);
 
         final TranslateAnimation hideActionBar = new TranslateAnimation(0, 0, 0, -actionBar.getHeight());
         final TranslateAnimation hideBottomBar = new TranslateAnimation(0, 0, 0, bottomBar.getHeight());
