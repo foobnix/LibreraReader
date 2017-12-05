@@ -7,21 +7,21 @@
     android:orientation="vertical" >
 
     <LinearLayout
-        android:focusableInTouchMode="true"
-        android:clickable="true"
         android:id="@+id/lineNavgination"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="2dip"
+        android:clickable="true"
+        android:focusableInTouchMode="true"
         android:gravity="center"
         android:visibility="visible" >
 
         <ImageView
             android:id="@+id/linkHistory"
-            android:contentDescription="return to page"
             style="@style/buttonWhite"
             android:layout_width="@dimen/wh_button"
             android:layout_height="@dimen/wh_button"
+            android:contentDescription="return to page"
             android:src="@drawable/glyphicons_173_rewind"
             android:visibility="visible" />
 
@@ -68,7 +68,7 @@
             android:layout_width="@dimen/wh_button"
             android:layout_height="@dimen/wh_button"
             android:layout_weight="0"
-             android:contentDescription="@string/bookmarks"
+            android:contentDescription="@string/bookmarks"
             android:src="@drawable/glyphicons_73_bookmark1" />
 
         <ImageView
@@ -79,8 +79,7 @@
             android:layout_weight="0"
             android:contentDescription="@string/content_of_book"
             android:src="@drawable/glyphicons_115_list1" />
-        
-        
+
         <ImageView
             android:id="@+id/onModeChange"
             style="@style/buttonWhite"
@@ -91,17 +90,15 @@
             android:src="@drawable/glyphicons_two_page_one" />
 
         <Button
-            android:contentDescription="Scroll by pages or by screen"
             android:id="@+id/nextTypeBootom"
             android:layout_width="wrap_content"
-            android:layout_height="@dimen/wh_button"
-            android:layout_margin="4dip"
+            android:layout_height="@dimen/wh_button_small"
+            android:layout_marginLeft="4dip"
             android:layout_weight="0"
             android:background="@drawable/bg_border_white"
-            android:drawablePadding="4dip"
+            android:contentDescription="Scroll by pages or by screen"
             android:gravity="center"
             android:minWidth="120dip"
-            android:padding="4dip"
             android:singleLine="true"
             android:text="@string/by_screans"
             android:textAllCaps="true"
@@ -116,12 +113,13 @@
         android:visibility="gone" />
 
     <LinearLayout
-        android:focusableInTouchMode="true"
-        android:clickable="true"
         android:id="@+id/pagsLayout"
-        android:padding="2dip"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginLeft="4dip"
+        android:layout_marginRight="4dip"
+        android:clickable="true"
+        android:focusableInTouchMode="true"
         android:gravity="center_vertical" >
 
         <ImageView
@@ -130,7 +128,6 @@
             android:layout_width="@dimen/wh_button"
             android:layout_height="@dimen/wh_button"
             android:layout_weight="0"
-            android:padding="7dip"
             android:contentDescription="Automatic scroll the document"
             android:src="@drawable/glyphicons_174_play" />
 
@@ -140,7 +137,6 @@
             android:layout_width="@dimen/wh_button"
             android:layout_height="@dimen/wh_button"
             android:layout_weight="0"
-            android:padding="7dip"
             android:contentDescription="read aloud TTS"
             android:src="@drawable/glyphicons_185_volume_up" />
 
@@ -150,7 +146,6 @@
             android:layout_width="@dimen/wh_button"
             android:layout_height="@dimen/wh_button"
             android:layout_weight="0"
-            android:padding="4dip"
             android:src="@drawable/document"
             android:visibility="gone" />
 
@@ -193,10 +188,10 @@
         <ImageView
             android:id="@+id/itemMenu"
             style="@style/buttonWhite"
-            android:contentDescription="@string/menu"
             android:layout_width="@dimen/wh_button"
             android:layout_height="@dimen/wh_button"
             android:layout_weight="0"
+            android:contentDescription="@string/menu"
             android:src="@drawable/glyphicons_518_option_vertical" />
 
         <ImageView
