@@ -32,6 +32,8 @@ public class ADS {
     private static final String TAG = "ADS";
     public static int FULL_SCREEN_TIMEOUT_SEC = 10;
 
+    public static boolean IS_TEST = false;
+
     public static AdRequest adRequest = new AdRequest.Builder()//
             .addTestDevice(AdRequest.DEVICE_ID_EMULATOR)//
             .addTestDevice("E0A9E8CB1E71AE8C3F6F64D692E914DB")//
@@ -41,14 +43,14 @@ public class ADS {
 
     public static HashMap<ParamsType, Object> interstitial = new HashMap<ParamsType, Object>();
     static {
-        interstitial.put(ParamsType.AD_PLACEMENT_KEY, "0928de1630a1452b64eaab1813d3af64");
+        interstitial.put(ParamsType.AD_PLACEMENT_KEY, IS_TEST ? "0928de1630a1452b64eaab1813d3af64" : "cd6563264b30c32814df5f0e1048079b");
         interstitial.put(ParamsType.ADTYPE, AdType.INTERSTITIAL.toString());
         interstitial.put(ParamsType.AD_SERVER_URL, "http://appservestar.com/");
     }
 
     static HashMap<ParamsType, Object> banner = new HashMap<ParamsType, Object>();
     static {
-        banner.put(ParamsType.AD_PLACEMENT_KEY, "ec5086312cf4959dcc54fe8a8ad15401");
+        banner.put(ParamsType.AD_PLACEMENT_KEY, IS_TEST ? "ec5086312cf4959dcc54fe8a8ad15401" : "9cf064256b16a112cc1fd3fb42487dbd");
         banner.put(ParamsType.ADTYPE, AdType.NATIVE_AD.toString());
         banner.put(ParamsType.AD_SERVER_URL, "http://appservestar.com/");
         banner.put(ParamsType.REFRESH_INTERVAL, 45);
