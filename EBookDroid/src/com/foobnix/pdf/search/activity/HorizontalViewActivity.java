@@ -18,6 +18,7 @@ import com.foobnix.android.utils.ResultResponse;
 import com.foobnix.android.utils.TxtUtils;
 import com.foobnix.ext.CacheZipUtils;
 import com.foobnix.pdf.CopyAsyncTask;
+import com.foobnix.pdf.info.ADS;
 import com.foobnix.pdf.info.Analytics;
 import com.foobnix.pdf.info.Android6;
 import com.foobnix.pdf.info.DictsHelper;
@@ -150,6 +151,7 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
 
     @Override
     protected void onCreate(final Bundle savedInstanceState) {
+        intetrstialTimeoutSec = ADS.FULL_SCREEN_TIMEOUT_SEC;
         DocumentController.doRotation(this);
         handler = new Handler();
         handlerTimer = new Handler();

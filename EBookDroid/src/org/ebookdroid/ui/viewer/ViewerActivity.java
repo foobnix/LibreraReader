@@ -11,6 +11,7 @@ import org.emdev.utils.LengthUtils;
 import com.foobnix.android.utils.Dips;
 import com.foobnix.android.utils.Keyboards;
 import com.foobnix.android.utils.LOG;
+import com.foobnix.pdf.info.ADS;
 import com.foobnix.pdf.info.Analytics;
 import com.foobnix.pdf.info.Android6;
 import com.foobnix.pdf.info.ExtUtils;
@@ -83,6 +84,7 @@ public class ViewerActivity extends AbstractActionActivity<ViewerActivity, Viewe
      */
     @Override
     public void onCreate(final Bundle savedInstanceState) {
+        intetrstialTimeoutSec = ADS.FULL_SCREEN_TIMEOUT_SEC;
         AppState.getInstance().load(this);
 
         FileMetaCore.checkOrCreateMetaInfo(this);

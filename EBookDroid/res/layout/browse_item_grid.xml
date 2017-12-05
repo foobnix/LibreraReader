@@ -109,17 +109,14 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="2dip"
-                    android:layout_weight="0"
                     android:ellipsize="end"
                     android:singleLine="true"
-                    android:layout_marginLeft="4dip"
+                     android:layout_weight="1"
+                    android:layout_marginLeft="2dip"
                     android:text="20%"
                      android:textStyle="normal"
                     android:textSize="@dimen/text_subtitle" />
                
-                 <TextView     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" android:layout_weight="1"/>
-                
                
                 <TextView
                     android:id="@+id/browserPath"

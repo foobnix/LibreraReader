@@ -89,16 +89,15 @@ public class AppsConfig {
         }
 
         IS_BETA = APP_NAME.contains("Beta");
+
+        IS_EP = true;
+        IS_BETA = false;
+
         if (IS_BETA) {
             ANALYTICS_ID = "UA-36581296-9";
             ADMOB_CLASSIC = ADMOB_FULLSCREEN = ADMOB_NATIVE_BIG = ADMOB_NATIVE_SMALL = null;
         }
 
-        IS_EP = true;
-
-        if (IS_EP) {
-            IS_BETA = false;
-        }
 
     }
 

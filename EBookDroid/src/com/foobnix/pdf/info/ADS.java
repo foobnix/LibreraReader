@@ -3,7 +3,6 @@ package com.foobnix.pdf.info;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import java.util.concurrent.TimeUnit;
 
 import com.adclient.android.sdk.nativeads.AdClientNativeAd;
 import com.adclient.android.sdk.nativeads.AdClientNativeAdBinder;
@@ -31,7 +30,7 @@ import android.widget.ImageView;
 
 public class ADS {
     private static final String TAG = "ADS";
-    public static long FULL_SCREEN_TIMEOUT = TimeUnit.SECONDS.toMillis(20);
+    public static int FULL_SCREEN_TIMEOUT_SEC = 10;
 
     public static AdRequest adRequest = new AdRequest.Builder()//
             .addTestDevice(AdRequest.DEVICE_ID_EMULATOR)//
@@ -98,10 +97,6 @@ public class ADS {
     public static void activateEP(final Activity a, AdClientNativeAd adClientNativeAd) {
         final FrameLayout adClientView = a.findViewById(R.id.adFrame);
         adClientView.removeAllViews();
-        if (!AppsConfig.IS_EP) {
-            adClientView.setVisibility(View.GONE);
-            return;
-        }
         adClientNativeAd = new AdClientNativeAd(a);
         adClientNativeAd.setConfiguration(a, banner);
         adClientNativeAd.setRenderer(renderer);
@@ -134,46 +129,39 @@ public class ADS {
         try {
 
             final FrameLayout frame = (FrameLayout) a.findViewById(R.id.adFrame);
-            if (!AppsConfig.checkIsProInstalled(a)) {
 
-                final String unitID = AppsConfig.ADMOB_NATIVE_SMALL;
+            final String unitID = AppsConfig.ADMOB_NATIVE_SMALL;
 
-                if (TxtUtils.isEmpty(unitID) || Build.VERSION.SDK_INT <= 9) {
-                    frame.setVisibility(View.GONE);
-                    return;
-                }
-
-                try {
-                    Class.forName("android.os.AsyncTask");
-                } catch (Throwable ignore) {
-                }
-
-                destoryNative(adViewNative);
-                adViewNative = new NativeExpressAdView(a);
-                adViewNative.setAdUnitId(unitID);
-                int adSizeHeight = Dips.screenHeightDP() / 8;
-                LOG.d("adSizeHeight", adSizeHeight);
-                adViewNative.setAdSize(new AdSize(AdSize.FULL_WIDTH, Math.max(82, adSizeHeight)));
-
-                adViewNative.loadAd(ADS.adRequest);
-
-                if (frame != null) {
-                    frame.setVisibility(View.VISIBLE);
-                    frame.removeAllViews();
-                    frame.addView(adViewNative);
-                }
-
-                adViewNative.setAdListener(new AdListener() {
-                    @Override
-                    public void onAdFailedToLoad(int arg0) {
-                        frame.removeAllViews();
-                        frame.setVisibility(View.GONE);
-                        // frame.addView(proAdsLayout(a));
-                    }
-                });
-            } else {
+            if (TxtUtils.isEmpty(unitID) || Build.VERSION.SDK_INT <= 9) {
                 frame.setVisibility(View.GONE);
+                return;
             }
+
+
+            destoryNative(adViewNative);
+            adViewNative = new NativeExpressAdView(a);
+            adViewNative.setAdUnitId(unitID);
+            int adSizeHeight = Dips.screenHeightDP() / 8;
+            LOG.d("adSizeHeight", adSizeHeight);
+            adViewNative.setAdSize(new AdSize(AdSize.FULL_WIDTH, Math.max(82, adSizeHeight)));
+
+            adViewNative.loadAd(ADS.adRequest);
+
+            if (frame != null) {
+                frame.setVisibility(View.VISIBLE);
+                frame.removeAllViews();
+                frame.addView(adViewNative);
+            }
+
+            adViewNative.setAdListener(new AdListener() {
+                @Override
+                public void onAdFailedToLoad(int arg0) {
+                    frame.removeAllViews();
+                    frame.setVisibility(View.GONE);
+                    // frame.addView(proAdsLayout(a));
+                }
+            });
+
         } catch (Exception e) {
             LOG.e(e);
         }

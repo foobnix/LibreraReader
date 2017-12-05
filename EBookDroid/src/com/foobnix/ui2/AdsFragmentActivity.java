@@ -15,6 +15,8 @@ public abstract class AdsFragmentActivity extends FragmentActivity {
 
     public abstract void onFinishActivity();
 
+    protected int intetrstialTimeoutSec = 0;
+
     Runnable onFinish = new Runnable() {
 
         @Override
@@ -22,11 +24,17 @@ public abstract class AdsFragmentActivity extends FragmentActivity {
             onFinishActivity();
         }
     };
-        
+
+    @Override
+    protected void onCreate(Bundle arg0) {
+        super.onCreate(arg0);
+        myAds.intetrstialTimeout = intetrstialTimeoutSec;
+    }
 
     @Override
     protected void onPostCreate(Bundle savedInstanceState) {
         super.onPostCreate(savedInstanceState);
+        myAds.createHandler();
         myAds.activate(this, onFinish);
     }
 

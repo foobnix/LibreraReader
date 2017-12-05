@@ -193,6 +193,7 @@
                         android:gravity="center_vertical"
                         android:text="10%"
                         android:textStyle="normal"
+                        android:layout_weight="1"
                         android:layout_marginLeft="4dip"
                         android:singleLine="true"
                         android:textSize="@dimen/text_subtitle"

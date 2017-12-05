@@ -61,7 +61,7 @@ public class FileMetaAdapter extends AppRecycleAdapter<FileMeta, RecyclerView.Vi
     public class FileMetaViewHolder extends RecyclerView.ViewHolder {
         public TextView title, author, path, browserExt, size, date, series, idPercentText;
         public ImageView image, star, menu;
-        public View authorParent, progresLayout, parent, remove, layoutBootom, infoLayout, idProgressColor, imageParent;
+        public View authorParent, progresLayout, parent, remove, layoutBootom, infoLayout, idProgressColor, idProgressBg, imageParent;
 
         public FileMetaViewHolder(View view) {
             super(view);
@@ -78,6 +78,7 @@ public class FileMetaAdapter extends AppRecycleAdapter<FileMeta, RecyclerView.Vi
             image = (ImageView) view.findViewById(R.id.browserItemIcon);
             star = (ImageView) view.findViewById(R.id.starIcon);
             idProgressColor = view.findViewById(R.id.idProgressColor);
+            idProgressBg = view.findViewById(R.id.idProgressBg);
             infoLayout = view.findViewById(R.id.infoLayout);
             imageParent = view.findViewById(R.id.imageParent);
 
@@ -358,7 +359,7 @@ public class FileMetaAdapter extends AppRecycleAdapter<FileMeta, RecyclerView.Vi
         if (AppState.get().isInkMode) {
             holder.author.setTextColor(Color.BLACK);
             if (holder.series != null) {
-            holder.series.setTextColor(Color.BLACK);
+                holder.series.setTextColor(Color.BLACK);
             }
         }
 
@@ -411,7 +412,9 @@ public class FileMetaAdapter extends AppRecycleAdapter<FileMeta, RecyclerView.Vi
             holder.progresLayout.setVisibility(View.VISIBLE);
             holder.idPercentText.setVisibility(View.VISIBLE);
             holder.idProgressColor.setBackgroundColor(TintUtil.color);
-            holder.idProgressColor.getLayoutParams().width = Dips.dpToPx((int) (200 * recentProgress));
+            int width = adapterType == ADAPTER_LIST_COMPACT ? Dips.dpToPx(80) : Dips.dpToPx(200);
+            holder.idProgressBg.getLayoutParams().width = width;
+            holder.idProgressColor.getLayoutParams().width = (int) (width * recentProgress);
             holder.idPercentText.setText("" + (int) (100 * recentProgress) + "%");
 
         } else if (holder.progresLayout != null) {

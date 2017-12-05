@@ -1,5 +1,7 @@
 package com.foobnix.pdf.info;
 
+import java.util.concurrent.TimeUnit;
+
 import com.adclient.android.sdk.listeners.ClientAdListener;
 import com.adclient.android.sdk.nativeads.AdClientNativeAd;
 import com.adclient.android.sdk.view.AbstractAdClientView;
@@ -10,6 +12,7 @@ import com.google.android.gms.ads.InterstitialAd;
 import com.google.android.gms.ads.NativeExpressAdView;
 
 import android.app.Activity;
+import android.os.Handler;
 
 public class MyADSProvider {
 
@@ -19,12 +22,25 @@ public class MyADSProvider {
 
     InterstitialAd mInterstitialAd;
     AdClientInterstitial interstitialEP;
+    public int intetrstialTimeout = 0;
 
-    Runnable finish;
+    Handler handler;
 
-    public void activate(final Activity a, Runnable finish) {
+    public void createHandler() {
+        handler = new Handler();
+        try {
+            Class.forName("android.os.AsyncTask");
+        } catch (Throwable ignore) {
+        }
+    }
+
+    public void activate(final Activity a, final Runnable finish) {
         this.a = a;
-        this.finish = finish;
+
+        if (AppsConfig.checkIsProInstalled(a)) {
+            LOG.d("PRO is installed or beta");
+            return;
+        }
 
         if (AppsConfig.IS_EP) {
             ADS.activateEP(a, adClientView);
@@ -32,57 +48,61 @@ public class MyADSProvider {
             ADS.activateNative(a, adViewNative);
         }
 
-        if (!AppsConfig.checkIsProInstalled(a) && AppsConfig.ADMOB_FULLSCREEN != null) {
-            mInterstitialAd = new InterstitialAd(a);
-            mInterstitialAd.setAdUnitId(AppsConfig.ADMOB_FULLSCREEN);
-            mInterstitialAd.setAdListener(new AdListener() {
-                @Override
-                public void onAdClosed() {
-                    a.finish();
-                }
-            });
+        handler.removeCallbacksAndMessages(null);
 
-            try {
-                mInterstitialAd.loadAd(ADS.adRequest);
-            } catch (Exception e) {
-                LOG.e(e);
+        Runnable r = new Runnable() {
+
+            @Override
+            public void run() {
+                try {
+                    if (AppsConfig.IS_EP) {
+                        interstitialEP = new AdClientInterstitial(a);
+                        interstitialEP.setConfiguration(ADS.interstitial);
+
+                        interstitialEP.addClientAdListener(new ClientAdListener() {
+                            @Override
+                            public void onReceivedAd(AbstractAdClientView adClientView) {
+                            }
+
+                            @Override
+                            public void onFailedToReceiveAd(AbstractAdClientView adClientView) {
+                            }
+
+                            @Override
+                            public void onClickedAd(AbstractAdClientView adClientView) {
+                            }
+
+                            @Override
+                            public void onLoadingAd(AbstractAdClientView adClientView, String message) {
+                                interstitialEP.isAdLoaded();
+                            }
+
+                            @Override
+                            public void onClosedAd(AbstractAdClientView adClientView) {
+                                finish.run();
+                            }
+                        });
+                        interstitialEP.load();
+                    } else {
+                        mInterstitialAd = new InterstitialAd(a);
+                        mInterstitialAd.setAdUnitId(AppsConfig.ADMOB_FULLSCREEN);
+                        mInterstitialAd.setAdListener(new AdListener() {
+                            @Override
+                            public void onAdClosed() {
+                                finish.run();
+                            }
+                        });
+                        mInterstitialAd.loadAd(ADS.adRequest);
+                    }
+                } catch (Exception e) {
+                    LOG.e(e);
+                }
             }
-        }
 
-        if (AppsConfig.IS_EP) {
-            interstitialEP = new AdClientInterstitial(a);
-            interstitialEP.setConfiguration(ADS.interstitial);
+        };
+        LOG.d("ADS post delay postDelayed", intetrstialTimeout);
+        handler.postDelayed(r, TimeUnit.SECONDS.toMillis(intetrstialTimeout));
 
-            interstitialEP.addClientAdListener(new ClientAdListener() {
-                @Override
-                public void onReceivedAd(AbstractAdClientView adClientView) {
-                    LOG.d("interstitialEP", "onReceivedAd");
-                }
-
-                @Override
-                public void onFailedToReceiveAd(AbstractAdClientView adClientView) {
-                    LOG.d("interstitialEP", "onFailedToReceiveAd");
-                }
-
-                @Override
-                public void onClickedAd(AbstractAdClientView adClientView) {
-                }
-
-                @Override
-                public void onLoadingAd(AbstractAdClientView adClientView, String message) {
-                    interstitialEP.isAdLoaded();
-                }
-
-                @Override
-                public void onClosedAd(AbstractAdClientView adClientView) {
-                    LOG.d("interstitialEP", "onClosedAd");
-                    a.finish();
-                }
-            });
-
-            interstitialEP.load();
-
-        }
     }
 
     public boolean showInterstial() {
