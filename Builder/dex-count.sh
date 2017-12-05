@@ -1,0 +1,1 @@
+cat ../EbookaPDF/bin/classes.dex | head -c 92 | tail -c 4 | hexdump -e '1/4 "%d\n"'
