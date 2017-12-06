@@ -3,8 +3,10 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="?android:attr/colorBackground"
-    android:orientation="horizontal"
-    android:padding="6dip" >
+    android:paddingLeft="4dip"
+    android:paddingRight="4dip"
+    android:paddingBottom="4dip"
+    android:orientation="horizontal" >
 
     <ImageView
         android:id="@+id/iconView"
@@ -15,10 +17,10 @@
         android:layout_weight="0" />
 
     <LinearLayout
-        android:layout_marginLeft="2dip"
-        android:layout_marginRight="2dip"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
+        android:layout_marginLeft="2dip"
+        android:layout_marginRight="2dip"
         android:layout_weight="1"
         android:gravity="center_vertical"
         android:orientation="vertical" >
@@ -67,6 +69,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="center_vertical"
+                android:layout_marginTop="-3dip"
                 android:text="Sponsored"
                 android:textColor="@color/lt_grey" />
 

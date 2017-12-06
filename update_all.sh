@@ -47,12 +47,13 @@ if [[ -d $d ]]; then
 
     <!-- quick check on sdk.dir -->
     <fail
-            message="sdk.dir is missing. Make sure to generate local.properties using 'android update project' or to inject it through an env var"
+            message="sdk.dir is missing. Make sure to generate local.properties using android update project or to inject it through an env var"
             unless="sdk.dir"
     />
     
     <import file="custom_rules.xml" optional="true" />
     <import file="${sdk.dir}/tools/ant/build.xml" />
+
 
 </project>
 

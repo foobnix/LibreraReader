@@ -41,6 +41,8 @@ public class AppsConfig {
 
         IS_APP_WITH_ANALITICS = true;
 
+        IS_EP = true;
+
         if (PRO_PDF_READER.equals(packageName)) {
             ADMOB_CLASSIC = null;
             ANALYTICS_ID = null;
@@ -73,6 +75,8 @@ public class AppsConfig {
             ADMOB_FULLSCREEN/*  */ = "ca-app-pub-8347903083053959/7763820878";
             ADMOB_NATIVE_BIG/*  */ = "ca-app-pub-8347903083053959/8961352478";
             ADMOB_NATIVE_SMALL/**/ = "ca-app-pub-8347903083053959/8572902871";
+
+            IS_EP = true;
         }
         if (LIBRERA_INK.equals(packageName)) {
             IS_INK = true;
@@ -86,11 +90,13 @@ public class AppsConfig {
             ADMOB_CLASSIC = null;
             ANALYTICS_ID = null;
             IS_APP_WITH_ANALITICS = false;
+
+            IS_EP = true;
         }
 
         IS_BETA = APP_NAME.contains("Beta");
 
-        IS_EP = true;
+
         IS_BETA = false;
 
         if (IS_BETA) {

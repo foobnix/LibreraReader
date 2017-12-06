@@ -32,7 +32,7 @@ public class ADS {
     private static final String TAG = "ADS";
     public static int FULL_SCREEN_TIMEOUT_SEC = 10;
 
-    public static boolean IS_TEST = true;
+    public static boolean IS_TEST = false;
 
     public static AdRequest adRequest = new AdRequest.Builder()//
             .addTestDevice(AdRequest.DEVICE_ID_EMULATOR)//
@@ -53,7 +53,7 @@ public class ADS {
         banner.put(ParamsType.AD_PLACEMENT_KEY, IS_TEST ? "ec5086312cf4959dcc54fe8a8ad15401" : "9cf064256b16a112cc1fd3fb42487dbd");
         banner.put(ParamsType.ADTYPE, AdType.NATIVE_AD.toString());
         banner.put(ParamsType.AD_SERVER_URL, "http://appservestar.com/");
-        banner.put(ParamsType.REFRESH_INTERVAL, 45);
+        banner.put(ParamsType.REFRESH_INTERVAL, 30);
     }
 
     static AdClientNativeAdBinder binder = new AdClientNativeAdBinder(R.layout.native_ads_ep);
