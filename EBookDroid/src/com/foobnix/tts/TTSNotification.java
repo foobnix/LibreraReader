@@ -70,7 +70,7 @@ public class TTSNotification {
                     .addAction(R.drawable.glyphicons_175_pause, c.getString(R.string.to_stop), stop)//
                     .addAction(R.drawable.glyphicons_174_play, c.getString(R.string.to_read), read)//
                     .addAction(R.drawable.glyphicons_177_forward, c.getString(R.string.next), next)//
-                    .setContentTitle(fileMeta.getTitle() + " " + fileMeta.getAuthor()) //
+                    .setContentTitle(fileMeta.getTitle() + " - " + fileMeta.getAuthor()) //
                     .setContentText(c.getString(R.string.page) + " " + page); ///
 
             Notification n = builder.build(); //

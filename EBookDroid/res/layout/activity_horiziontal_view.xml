@@ -30,8 +30,6 @@
         android:clickable="true"
         android:gravity="center"
         android:orientation="vertical"
-        android:paddingLeft="2dip"
-        android:paddingRight="2dip"
         android:visibility="visible" >
 
         <RelativeLayout
@@ -261,13 +259,13 @@
         android:focusableInTouchMode="false"
         android:gravity="center_vertical"
         android:orientation="vertical"
-        android:padding="2dip"
         android:visibility="visible" >
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center_horizontal"
+             android:padding="2dip"
             android:visibility="visible" >
 
             <ImageView
@@ -324,16 +322,17 @@
                 android:layout_weight="0"
                 android:contentDescription="@string/content_of_book"
                 android:src="@drawable/glyphicons_115_list1" />
-
+            
+            
             <com.foobnix.pdf.search.view.HeightImageView
                 android:id="@+id/onModeChange"
                 style="@style/buttonWhite"
                 android:layout_width="wrap_content"
                 android:layout_height="@dimen/wh_button"
                 android:layout_weight="0"
-                android:scaleType="fitCenter"
                 android:src="@drawable/glyphicons_two_page_one"
                 android:visibility="visible" />
+            
         </LinearLayout>
 
         <LinearLayout
@@ -343,10 +342,9 @@
             android:visibility="visible" >
 
             <LinearLayout
+                 android:padding="2dip"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="4dip"
-                android:layout_marginRight="4dip"
                 android:layout_weight="1"
                 android:clickable="true"
                 android:focusableInTouchMode="false"

@@ -19,7 +19,12 @@ public class HeightImageView extends ImageView {
             final Drawable d = this.getDrawable();
             if (d != null) {
                 int h = MeasureSpec.getSize(heightMeasureSpec);
-                int w = (int) Math.ceil(h * (float) d.getIntrinsicWidth() / d.getIntrinsicHeight());
+                int w = 0;
+                if (d.getIntrinsicWidth() > d.getIntrinsicHeight()) {
+                    w = (int) Math.ceil(h * d.getIntrinsicWidth() / d.getIntrinsicHeight());
+                } else {
+                    w = (int) Math.ceil(h * d.getIntrinsicHeight() / d.getIntrinsicWidth());
+                }
                 this.setMeasuredDimension(w, h);
             } else {
                 super.onMeasure(widthMeasureSpec, heightMeasureSpec);
