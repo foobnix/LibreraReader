@@ -20,12 +20,13 @@ import com.foobnix.pdf.info.TintUtil;
 import com.foobnix.pdf.info.wrapper.AppState;
 import com.foobnix.ui2.AppDB;
 
-import android.app.Application;
 import android.content.Context;
 import android.os.Build;
 import android.os.StrictMode;
+import android.support.multidex.MultiDex;
+import android.support.multidex.MultiDexApplication;
 
-public class LirbiApp extends Application {
+public class LirbiApp extends MultiDexApplication {
 
     static {
         System.loadLibrary("mypdf");
@@ -33,6 +34,11 @@ public class LirbiApp extends Application {
     }
 
     public static Context context;
+    
+    protected void attachBaseContext(Context base) {
+        super.attachBaseContext(base);
+        MultiDex.install(this);
+     }
 
     @Override
     public void onCreate() {
