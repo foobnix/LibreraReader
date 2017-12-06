@@ -57,6 +57,8 @@ public class AppsConfig {
             ADMOB_FULLSCREEN/*  */ = "ca-app-pub-8347903083053959/2769081274";
             ADMOB_NATIVE_BIG/*  */ = "ca-app-pub-8347903083053959/4245814471";
             ADMOB_NATIVE_SMALL/**/ = "ca-app-pub-8347903083053959/5722547677";
+            
+            IS_EP = false;
         }
 
         if (CLASSIC_READER_PKG.equals(packageName)) {

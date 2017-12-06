@@ -32,7 +32,7 @@ public class ADS {
     private static final String TAG = "ADS";
     public static int FULL_SCREEN_TIMEOUT_SEC = 10;
 
-    public static boolean IS_TEST = false;
+    public static boolean IS_TEST = true;
 
     public static AdRequest adRequest = new AdRequest.Builder()//
             .addTestDevice(AdRequest.DEVICE_ID_EMULATOR)//
