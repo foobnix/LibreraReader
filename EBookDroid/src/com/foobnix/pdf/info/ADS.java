@@ -163,7 +163,7 @@ public class ADS {
 
             adViewNative = new NativeExpressAdView(a);
             adViewNative.setAdUnitId(AppsConfig.ADMOB_NATIVE_SMALL);
-            int adSizeHeight = Dips.screenHeightDP() / 8;
+            int adSizeHeight = Dips.screenHeightDP() / 9;
             LOG.d("adSizeHeight", adSizeHeight);
             adViewNative.setAdSize(new AdSize(AdSize.FULL_WIDTH, Math.max(82, adSizeHeight)));
 
