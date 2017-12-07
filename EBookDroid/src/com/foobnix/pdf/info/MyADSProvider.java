@@ -1,5 +1,6 @@
 package com.foobnix.pdf.info;
 
+import java.util.Random;
 import java.util.concurrent.TimeUnit;
 
 import com.adclient.android.sdk.listeners.ClientAdListener;
@@ -8,6 +9,7 @@ import com.adclient.android.sdk.view.AbstractAdClientView;
 import com.adclient.android.sdk.view.AdClientInterstitial;
 import com.foobnix.android.utils.LOG;
 import com.google.android.gms.ads.AdListener;
+import com.google.android.gms.ads.AdView;
 import com.google.android.gms.ads.InterstitialAd;
 import com.google.android.gms.ads.NativeExpressAdView;
 
@@ -18,7 +20,10 @@ public class MyADSProvider {
 
     private NativeExpressAdView adViewNative;
     private AdClientNativeAd adClientView;
+    private AdView adView;
     private Activity a;
+
+    Random random = new Random();
 
     InterstitialAd mInterstitialAd;
     AdClientInterstitial interstitialEP;
@@ -45,7 +50,11 @@ public class MyADSProvider {
         if (AppsConfig.IS_EP) {
             ADS.activateEP(a, adClientView);
         } else {
-            ADS.activateNative(a, adViewNative);
+            if (random.nextBoolean()) {
+                ADS.activateAdmobNativeBanner(a, adViewNative);
+            } else {
+                ADS.activateAdmobSmartBanner(a, adView);
+            }
         }
 
         handler.removeCallbacksAndMessages(null);
@@ -128,18 +137,15 @@ public class MyADSProvider {
     }
 
     public void pause() {
-        ADS.onPauseNative(adViewNative);
-        ADS.onPauseEP(adClientView);
+        ADS.onPauseAll(adViewNative, adClientView, adView);
     }
 
     public void resume() {
-        ADS.onResumeNative(adViewNative);
-        ADS.onResumeEP(adClientView, a);
+        ADS.onResumeAll(a, adViewNative, adClientView, adView);
     }
 
     public void destroy() {
-        ADS.destoryNative(adViewNative);
-        ADS.destoryEP(adClientView);
+        ADS.destoryAll(adViewNative, adClientView, adView);
         a = null;
     }
 

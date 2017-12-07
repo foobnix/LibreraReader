@@ -32,6 +32,8 @@ public class AppsConfig {
     public static String APP_PACKAGE;
     public static boolean IS_BETA, IS_CLASSIC, IS_INK, IS_EP;
 
+    public static boolean IS_TEST_KEY_EP = false;
+
     public static void init(final Context a) {
         final String packageName = a.getPackageName();
         LOG.d("init packageName", packageName);
@@ -41,7 +43,7 @@ public class AppsConfig {
 
         IS_APP_WITH_ANALITICS = true;
 
-        IS_EP = true;
+        IS_EP = false;
 
         if (PRO_PDF_READER.equals(packageName)) {
             ADMOB_CLASSIC = null;

@@ -403,7 +403,7 @@ public class FileMetaAdapter extends AppRecycleAdapter<FileMeta, RecyclerView.Vi
             holder.date.setText(fileMeta.getDateTxt());
         }
 
-        double recentProgress = (fileMeta.getIsRecentProgress() != null && fileMeta.getIsRecentProgress() < 1.0) ? fileMeta.getIsRecentProgress() : 0;
+        double recentProgress = (fileMeta.getIsRecentProgress() != null && fileMeta.getIsRecentProgress() <= 1f) ? fileMeta.getIsRecentProgress() : 0;
 
         if (holder.idProgressColor != null && recentProgress > 0) {
             if (fileMeta.getIsRecentProgress() > 1) {

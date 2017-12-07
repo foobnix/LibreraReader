@@ -372,6 +372,7 @@ public abstract class DocumentControllerHorizontalView extends DocumentControlle
         activity.finish();
 
         // generadDocInterface.recyleDoc(bookPath);
+        TempHolder.listHash++;
         TempHolder.get().clear();
     }
 
