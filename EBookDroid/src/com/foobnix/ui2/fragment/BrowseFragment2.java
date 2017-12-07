@@ -513,7 +513,7 @@ public class BrowseFragment2 extends UIFragment<FileMeta> {
     public void notifyFragment() {
         if (searchAdapter != null) {
             searchAdapter.notifyDataSetChanged();
-            populate();
+            // populate();
         }
     }
 

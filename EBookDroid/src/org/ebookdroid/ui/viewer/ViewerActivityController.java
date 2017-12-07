@@ -547,7 +547,6 @@ public class ViewerActivityController extends ActionController<ViewerActivity> i
 
         System.gc();
         BitmapManager.clear("finish");
-        TempHolder.listHash++;
 
         LOG.d("closeActivity DONE");
     }

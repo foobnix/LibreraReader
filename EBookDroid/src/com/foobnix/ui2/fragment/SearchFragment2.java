@@ -676,6 +676,7 @@ public class SearchFragment2 extends UIFragment<FileMeta> {
         }
     }
 
+
     @Override
     public void notifyFragment() {
         if (searchAdapter != null) {

@@ -77,7 +77,6 @@ public abstract class UIFragment<T> extends Fragment {
         if (listHash != TempHolder.listHash) {
             LOG.d("TempHolder.listHash", listHash, TempHolder.listHash);
             resetFragment();
-            notifyFragment();
             listHash = TempHolder.listHash;
         }
     }
@@ -124,6 +123,7 @@ public abstract class UIFragment<T> extends Fragment {
     public void onResume() {
         super.onResume();
         onSelectFragment();
+        notifyFragment();
         LocalBroadcastManager.getInstance(getActivity()).registerReceiver(broadcastReceiver, new IntentFilter(INTENT_TINT_CHANGE));
         EventBus.getDefault().register(this);
     }

@@ -35,6 +35,7 @@ public class ADS {
             .addTestDevice("E0A9E8CB1E71AE8C3F6F64D692E914DB")//
             .addTestDevice("465253044271C009F461C81CFAC406BA")//
             .addTestDevice("ECC8DAFFDFD6BE5A3C799695FC4853E8")//
+            .addTestDevice("ECC8DAFFDFD6BE5A3C799695FC4853E8")//
             .build();//
 
     public static HashMap<ParamsType, Object> interstitial = new HashMap<ParamsType, Object>();
