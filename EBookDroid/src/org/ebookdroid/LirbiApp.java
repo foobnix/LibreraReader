@@ -10,7 +10,6 @@ import com.foobnix.android.utils.Dips;
 import com.foobnix.android.utils.LOG;
 import com.foobnix.android.utils.MemoryUtils;
 import com.foobnix.ext.CacheZipUtils;
-import com.foobnix.pdf.info.Analytics;
 import com.foobnix.pdf.info.AppSharedPreferences;
 import com.foobnix.pdf.info.AppsConfig;
 import com.foobnix.pdf.info.ExtUtils;
@@ -20,13 +19,12 @@ import com.foobnix.pdf.info.TintUtil;
 import com.foobnix.pdf.info.wrapper.AppState;
 import com.foobnix.ui2.AppDB;
 
+import android.app.Application;
 import android.content.Context;
 import android.os.Build;
 import android.os.StrictMode;
-import android.support.multidex.MultiDex;
-import android.support.multidex.MultiDexApplication;
 
-public class LirbiApp extends MultiDexApplication {
+public class LirbiApp extends Application {
 
     static {
         System.loadLibrary("mypdf");
@@ -35,10 +33,7 @@ public class LirbiApp extends MultiDexApplication {
 
     public static Context context;
     
-    protected void attachBaseContext(Context base) {
-        super.attachBaseContext(base);
-        MultiDex.install(this);
-     }
+
 
     @Override
     public void onCreate() {
@@ -76,7 +71,6 @@ public class LirbiApp extends MultiDexApplication {
 
         SettingsManager.init(this);
         CacheManager.init(this);
-        Analytics.setContext(this);
 
         LOG.d("MEMORY SIZE", "isBig:", MemoryUtils.IS_BIG_MEMORY_SIZE, "is Small: " + MemoryUtils.IS_SMALL_MEMORY_SIZE, "Size: ", MemoryUtils.RECOMENDED_MEMORY_SIZE);
         LOG.d("Build", "Build.MANUFACTURER", Build.MANUFACTURER);

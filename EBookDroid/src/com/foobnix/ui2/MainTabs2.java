@@ -11,7 +11,6 @@ import com.foobnix.android.utils.LOG;
 import com.foobnix.android.utils.TxtUtils;
 import com.foobnix.dao2.FileMeta;
 import com.foobnix.pdf.SlidingTabLayout;
-import com.foobnix.pdf.info.Analytics;
 import com.foobnix.pdf.info.Android6;
 import com.foobnix.pdf.info.AndroidWhatsNew;
 import com.foobnix.pdf.info.FontExtractor;
@@ -249,7 +248,7 @@ public class MainTabs2 extends AdsFragmentActivity {
         }
 
         Android6.checkPermissions(this);
-        Analytics.onStart(this);
+        // Analytics.onStart(this);
         FontExtractor.extractFonts(this);
 
         List<String> actions = Arrays.asList("android.intent.action.PROCESS_TEXT", "android.intent.action.SEARCH", "android.intent.action.SEND");
@@ -405,7 +404,7 @@ public class MainTabs2 extends AdsFragmentActivity {
                 LOG.e(e);
             }
         }
-        Analytics.onStop(this);
+        // Analytics.onStop(this);
         isInStack = false;
     }
 

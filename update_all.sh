@@ -1,36 +1,23 @@
-git clone https://github.com/dandar3/android-google-play-services-ads.git google-play-services-ads
-git clone https://github.com/dandar3/android-google-play-services-ads-lite google-play-services-ads-lite
-git clone https://github.com/dandar3/android-google-play-services-base google-play-services-base
-git clone https://github.com/dandar3/android-google-play-services-basement google-play-services-basement
-git clone https://github.com/dandar3/android-google-play-services-safetynet google-play-services-safetynet
-git clone https://github.com/dandar3/android-google-play-services-gass google-play-services-gass
-git clone https://github.com/dandar3/android-google-play-services-tasks google-play-services-tasks
-git clone https://github.com/dandar3/android-google-play-services-analytics google-play-services-analytics
-git clone https://github.com/dandar3/android-google-play-services-analytics-impl google-play-services-analytics-impl
-git clone https://github.com/dandar3/android-google-play-services-tagmanager-v4-impl google-play-services-tagmanager-v4-impl
 git clone https://github.com/dandar3/android-support-v4
 git clone https://github.com/dandar3/android-support-compat
-git clone https://github.com/dandar3/android-support-core-ui
-git clone https://github.com/dandar3/android-support-core-utils
-git clone https://github.com/dandar3/android-support-fragment
-git clone https://github.com/dandar3/android-support-media-compat
 git clone https://github.com/dandar3/android-support-annotations
-git clone https://github.com/dandar3/android-support-v7-recyclerview
-git clone https://github.com/dandar3/android-support-v7-cardview
-
-
-
-git clone https://github.com/dandar3/android-support-design
+git clone https://github.com/dandar3/android-arch-lifecycle-runtime
+git clone https://github.com/dandar3/android-arch-lifecycle-common
+git clone https://github.com/dandar3/android-arch-core-common
+git clone https://github.com/dandar3/android-support-media-compat
+git clone https://github.com/dandar3/android-support-core-utils
+git clone https://github.com/dandar3/android-support-core-ui
+git clone https://github.com/dandar3/android-support-fragment
 git clone https://github.com/dandar3/android-support-v7-appcompat
-git clone https://github.com/dandar3/android-support-transition
 git clone https://github.com/dandar3/android-support-vector-drawable
 git clone https://github.com/dandar3/android-support-animated-vector-drawable
-
-git clone https://github.com/dandar3/android-support-multidex
-git clone https://github.com/dandar3/android-arch-lifecycle-runtime
-git clone https://github.com/dandar3/android-arch-core-common
-git clone https://github.com/dandar3/android-arch-lifecycle-common
-
+git clone https://github.com/dandar3/android-support-v7-recyclerview
+git clone https://github.com/dandar3/android-support-v7-cardview
+git clone https://github.com/dandar3/android-google-play-services-ads
+git clone https://github.com/dandar3/android-google-play-services-ads-lite
+git clone https://github.com/dandar3/android-google-play-services-basement
+git clone https://github.com/dandar3/android-google-play-services-gass
+git clone https://github.com/dandar3/android-google-play-services-tasks
 for d in * ; do
 if [[ -d $d ]]; then
     echo "$d"

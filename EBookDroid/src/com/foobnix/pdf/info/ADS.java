@@ -97,6 +97,7 @@ public class ADS {
         final FrameLayout frame = a.findViewById(R.id.adFrame);
         frame.setVisibility(View.VISIBLE);
         frame.removeAllViews();
+
         adClientNativeAd = new AdClientNativeAd(a);
         adClientNativeAd.setConfiguration(a, banner);
         adClientNativeAd.setRenderer(renderer);
@@ -133,6 +134,10 @@ public class ADS {
             frame.setVisibility(View.VISIBLE);
             frame.removeAllViews();
 
+            if (adView != null) {
+                adView.destroy();
+                adView = null;
+            }
             adView = new AdView(a);
             adView.setAdSize(AdSize.SMART_BANNER);
             adView.setAdUnitId(AppsConfig.ADMOB_CLASSIC);
@@ -143,7 +148,7 @@ public class ADS {
                 @Override
                 public void onAdFailedToLoad(int arg0) {
                     frame.removeAllViews();
-                    frame.setVisibility(View.GONE);
+                    // frame.setVisibility(View.GONE);
                 }
             });
 
@@ -161,6 +166,11 @@ public class ADS {
             frame.removeAllViews();
             frame.setVisibility(View.VISIBLE);
 
+            if (adViewNative != null) {
+                adViewNative.destroy();
+                adViewNative = null;
+            }
+
             adViewNative = new NativeExpressAdView(a);
             adViewNative.setAdUnitId(AppsConfig.ADMOB_NATIVE_SMALL);
             int adSizeHeight = Dips.screenHeightDP() / 9;
@@ -173,7 +183,7 @@ public class ADS {
                 @Override
                 public void onAdFailedToLoad(int arg0) {
                     frame.removeAllViews();
-                    frame.setVisibility(View.GONE);
+                    // frame.setVisibility(View.GONE);
                 }
             });
 

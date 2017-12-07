@@ -19,7 +19,6 @@ import com.foobnix.android.utils.TxtUtils;
 import com.foobnix.ext.CacheZipUtils;
 import com.foobnix.pdf.CopyAsyncTask;
 import com.foobnix.pdf.info.ADS;
-import com.foobnix.pdf.info.Analytics;
 import com.foobnix.pdf.info.Android6;
 import com.foobnix.pdf.info.DictsHelper;
 import com.foobnix.pdf.info.ExtUtils;
@@ -1018,7 +1017,7 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
     @Override
     public void onStart() {
         super.onStart();
-        Analytics.onStart(this);
+        // Analytics.onStart(this);
         EventBus.getDefault().register(this);
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
 
@@ -1028,7 +1027,7 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
     public void onStop() {
         EventBus.getDefault().unregister(this);
         super.onStop();
-        Analytics.onStop(this);
+        // Analytics.onStop(this);
         getWindow().clearFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
         if (flippingHandler != null) {
             flippingHandler.removeCallbacksAndMessages(null);

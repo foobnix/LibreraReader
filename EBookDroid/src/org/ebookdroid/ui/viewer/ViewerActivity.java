@@ -12,7 +12,6 @@ import com.foobnix.android.utils.Dips;
 import com.foobnix.android.utils.Keyboards;
 import com.foobnix.android.utils.LOG;
 import com.foobnix.pdf.info.ADS;
-import com.foobnix.pdf.info.Analytics;
 import com.foobnix.pdf.info.Android6;
 import com.foobnix.pdf.info.ExtUtils;
 import com.foobnix.pdf.info.R;
@@ -195,7 +194,7 @@ public class ViewerActivity extends AbstractActionActivity<ViewerActivity, Viewe
     @Override
     protected void onStart() {
         super.onStart();
-        Analytics.onStart(this);
+        // Analytics.onStart(this);
         if (needToRestore) {
             AppState.get().isAutoScroll = true;
             getController().getListener().onAutoScroll();
@@ -206,7 +205,7 @@ public class ViewerActivity extends AbstractActionActivity<ViewerActivity, Viewe
     @Override
     protected void onStop() {
         super.onStop();
-        Analytics.onStop(this);
+        // Analytics.onStop(this);
 
     }
 
