@@ -372,10 +372,10 @@ public class AppState {
 
     public int cutP = 50;
 
-    public volatile int fontSizeSp = Dips.isLargeScreen() ? 32 : 24;
-    public volatile int statusBarTextSizeAdv = Dips.isLargeScreen() ? 16 : 14;
-    public volatile int statusBarTextSizeEasy = Dips.isLargeScreen() ? 16 : 12;
-    public volatile int progressLineHeight = Dips.isLargeScreen() ? 8 : 4;
+    public volatile int fontSizeSp = Dips.isXLargeScreen() ? 32 : 24;
+    public volatile int statusBarTextSizeAdv = Dips.isXLargeScreen() ? 16 : 14;
+    public volatile int statusBarTextSizeEasy = Dips.isXLargeScreen() ? 16 : 12;
+    public volatile int progressLineHeight = Dips.isXLargeScreen() ? 8 : 4;
 
     public String lastA;
     public String lastMode;
@@ -392,7 +392,7 @@ public class AppState {
     public int rotate = 0;
     public int rotateViewPager = 0;
 
-    public int tapzoneSize = Dips.isLargeScreen() ? 15 : 25;
+    public int tapzoneSize = Dips.isXLargeScreen() ? 15 : 25;
     public int allocatedMemorySize = (int) MemoryUtils.RECOMENDED_MEMORY_SIZE;
     public boolean isScrollAnimation = true;
     public String imageFormat = PNG;
@@ -414,7 +414,7 @@ public class AppState {
 
     public boolean isBrowseImages = false;
 
-    public int coverBigSize = (int) (((Dips.screenWidthDP() / (Dips.screenWidthDP() / 120)) - 8) * (Dips.isLargeScreen() ? 1.5f : 1));
+    public int coverBigSize = (int) (((Dips.screenWidthDP() / (Dips.screenWidthDP() / 120)) - 8) * (Dips.isLargeOrXLargeScreen() ? 1.5f : 1));
     public int coverSmallSize = 80;
 
     public int tapZoneTop = TAP_PREV_PAGE;
@@ -517,7 +517,7 @@ public class AppState {
         if (Dips.isEInk(c)) {
             bolderTextOnImage = true;
             AppState.getInstance().appFontScale = 1.3f;
-            if (Dips.isLargeScreen()) {
+            if (Dips.isXLargeScreen()) {
                 AppState.getInstance().appFontScale = 1.5f;
             }
         }

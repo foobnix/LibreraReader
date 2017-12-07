@@ -569,7 +569,7 @@ public class OpdsFragment2 extends UIFragment<Entry> {
     public void notifyFragment() {
         if (searchAdapter != null) {
             searchAdapter.notifyDataSetChanged();
-            populate();
+            // populate();
         }
     }
 

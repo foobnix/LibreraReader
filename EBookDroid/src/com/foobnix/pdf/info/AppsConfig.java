@@ -21,7 +21,6 @@ public class AppsConfig {
     public static String ADMOB_CLASSIC;
 
     public static String ADMOB_FULLSCREEN;
-    public static String ADMOB_NATIVE_BIG;
     public static String ADMOB_NATIVE_SMALL;
 
     public static String ANALYTICS_ID;
@@ -57,7 +56,6 @@ public class AppsConfig {
 
             ADMOB_CLASSIC/*     */ = "ca-app-pub-8347903083053959/4166397275";
             ADMOB_FULLSCREEN/*  */ = "ca-app-pub-8347903083053959/2769081274";
-            ADMOB_NATIVE_BIG/*  */ = "ca-app-pub-8347903083053959/4245814471";
             ADMOB_NATIVE_SMALL/**/ = "ca-app-pub-8347903083053959/5722547677";
             
             IS_EP = false;
@@ -69,7 +67,6 @@ public class AppsConfig {
 
             ADMOB_CLASSIC/*     */ = "ca-app-pub-8347903083053959/5364245672";
             ADMOB_FULLSCREEN/*  */ = "ca-app-pub-8347903083053959/7763820878";
-            ADMOB_NATIVE_BIG/*  */ = "ca-app-pub-8347903083053959/8961352478";
             ADMOB_NATIVE_SMALL/**/ = "ca-app-pub-8347903083053959/8572902871";
         }
 
@@ -77,7 +74,6 @@ public class AppsConfig {
             ANALYTICS_ID = "UA-36581296-8";
             ADMOB_CLASSIC/*     */ = "ca-app-pub-8347903083053959/5364245672";
             ADMOB_FULLSCREEN/*  */ = "ca-app-pub-8347903083053959/7763820878";
-            ADMOB_NATIVE_BIG/*  */ = "ca-app-pub-8347903083053959/8961352478";
             ADMOB_NATIVE_SMALL/**/ = "ca-app-pub-8347903083053959/8572902871";
 
             IS_EP = true;
@@ -88,7 +84,6 @@ public class AppsConfig {
 
             ADMOB_CLASSIC/*     */ = "ca-app-pub-8347903083053959/5364245672";
             ADMOB_FULLSCREEN/*  */ = null;
-            ADMOB_NATIVE_BIG/*  */ = "ca-app-pub-8347903083053959/8961352478";
             ADMOB_NATIVE_SMALL/**/ = "ca-app-pub-8347903083053959/8572902871";
 
             ADMOB_CLASSIC = null;
@@ -105,7 +100,7 @@ public class AppsConfig {
 
         if (IS_BETA) {
             ANALYTICS_ID = "UA-36581296-9";
-            ADMOB_CLASSIC = ADMOB_FULLSCREEN = ADMOB_NATIVE_BIG = ADMOB_NATIVE_SMALL = null;
+            ADMOB_CLASSIC = ADMOB_FULLSCREEN = ADMOB_NATIVE_SMALL = null;
         }
 
 
@@ -125,7 +120,6 @@ public class AppsConfig {
         if (is_pro) {
             ADMOB_CLASSIC = null;
             ADMOB_FULLSCREEN = null;
-            ADMOB_NATIVE_BIG = null;
             ADMOB_NATIVE_SMALL = null;
         }
         return is_pro || IS_BETA;

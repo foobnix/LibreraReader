@@ -107,12 +107,17 @@ public class Dips {
         return screenWidth() > screenHeight();
     }
 
-    public static boolean isLargeScreen() {
+    public static boolean isXLargeScreen() {
         int size = Resources.getSystem().getConfiguration().screenLayout & Configuration.SCREENLAYOUT_SIZE_MASK;
         // return size == Configuration.SCREENLAYOUT_SIZE_LARGE || size ==
         // Configuration.SCREENLAYOUT_SIZE_XLARGE;
         return size == Configuration.SCREENLAYOUT_SIZE_XLARGE;
 
+    }
+
+    public static boolean isLargeOrXLargeScreen() {
+        int size = Resources.getSystem().getConfiguration().screenLayout & Configuration.SCREENLAYOUT_SIZE_MASK;
+        return size == Configuration.SCREENLAYOUT_SIZE_LARGE || size == Configuration.SCREENLAYOUT_SIZE_XLARGE;
     }
 
 }

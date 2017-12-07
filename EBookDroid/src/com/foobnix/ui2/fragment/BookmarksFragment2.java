@@ -406,12 +406,12 @@ public class BookmarksFragment2 extends UIFragment<AppBookmark> {
 
     @Override
     public void notifyFragment() {
-        populate();
+
     }
 
     @Override
     public void resetFragment() {
-
+        populate();
     }
 
 }
