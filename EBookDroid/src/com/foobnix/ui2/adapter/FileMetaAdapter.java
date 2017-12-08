@@ -33,6 +33,7 @@ import android.view.ViewGroup.LayoutParams;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.ImageView.ScaleType;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 public class FileMetaAdapter extends AppRecycleAdapter<FileMeta, RecyclerView.ViewHolder> implements FastScroller.SectionIndexer {
@@ -174,6 +175,10 @@ public class FileMetaAdapter extends AppRecycleAdapter<FileMeta, RecyclerView.Vi
                 itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.browse_item_list, parent, false);
             } else {
                 itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.browse_item_grid, parent, false);
+                if (tempValue == TEMP_VALUE_STAR_GRID_ITEM) {
+                    itemView.getLayoutParams().width = Dips.dpToPx(AppState.get().coverBigSize);
+                    itemView.getLayoutParams().height = LinearLayout.LayoutParams.MATCH_PARENT;
+                }
             }
             return new FileMetaViewHolder(itemView);
         }

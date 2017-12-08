@@ -386,7 +386,7 @@ public class PrefFragment2 extends UIFragment {
                         AppState.getInstance().isWhiteTheme = true;
                         AppState.get().isInkMode = false;
 
-                        AppState.get().tintColor = Color.parseColor(AppState.STYLE_COLORS.get(0));
+
                         AppState.getInstance().contrastImage = 0;
                         AppState.getInstance().brigtnessImage = 0;
                         AppState.getInstance().bolderTextOnImage = false;
@@ -408,7 +408,7 @@ public class PrefFragment2 extends UIFragment {
                         AppState.getInstance().isWhiteTheme = false;
                         AppState.get().isInkMode = false;
 
-                        AppState.get().tintColor = Color.parseColor(AppState.STYLE_COLORS.get(0));
+
                         AppState.getInstance().contrastImage = 0;
                         AppState.getInstance().brigtnessImage = 0;
                         AppState.getInstance().bolderTextOnImage = false;

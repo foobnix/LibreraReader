@@ -47,7 +47,7 @@
    <string name="loading_failed">Ошибка загрузки страницы</string>
    <string name="loop_autoplay">Возобновлять автопрокрутку текста с самого начала после ее завершения</string>
    <string name="mouse_scroll_speed">Скорость прокрутки колесиком мыши</string>
-   <string name="msg_loading">Открывается...</string>
+   <string name="msg_loading">Создается...</string>
    <string name="msg_no_text_found">Текст не найден</string>
    <string name="msg_password_required">Введите пароль</string>
    <string name="msg_search_text_on_page">Поиск на странице</string>
@@ -145,7 +145,7 @@
    <string name="send_file">Отправить файл</string>
    <string name="file_info">Информация о файле</string>
    <string name="open_file">Открыть файл</string>
-   <string name="make_text_reflow">Перекомпоновка в текстовый формат (функция «Text reflow»)</string>
+   <string name="make_text_reflow">Перекомпоновка в FB2-формат (функция «Text reflow»)</string>
    <string name="search_not_supported_formats">Поиск среди неподдерживаемых форматов</string>
    <string name="search_in_google">Поиск в Google</string>
    <string name="reading_the_text_by_voice">Чтение текста голосом</string>
@@ -303,7 +303,7 @@
    <string name="incorrect_value">Неверное значение</string>
    <string name="search_in_the_subfolders">Искать в подпапках</string>
    <string name="document_converter_online_">Онлайн-конвертация файлов</string>
-   <string name="in_the_author_s_name_first_the_surname">Отображать сначала фамилию автора, затем имя</string>
+   <string name="in_the_author_s_name_first_the_surname">Сначала фамилия автора, а затем имя</string>
    <string name="remind_about_rest_every">Увед-е об отдыхе каждые</string>
    <string name="minutes">Минут</string>
    <string name="seconds">Секунд</string>
@@ -365,7 +365,7 @@
    <string name="trim_borders">Границы обрезки</string>
    <string name="stop_reading_timer_">Остановить чтение через</string>
    <string name="two_pages_cover">Обложка и 2 стр.</string>
-   <string name="enhancements_for_oled_display">Заполнять черным цветом фон вокруг страниц (для [AM]OLED-дисплеев)</string>
+   <string name="enhancements_for_oled_display">Использовать черный цвет для фона вокруг страниц ([AM]OLED-адаптация)</string>
    <string name="reading_will_be_stopped">Чтение остановится в</string>
    <string name="compact">Полусписок</string>
    <string name="cd_search_books_in_the_library">Поиск книг в библиотеке</string>

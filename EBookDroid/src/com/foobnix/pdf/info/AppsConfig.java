@@ -96,7 +96,7 @@ public class AppsConfig {
         IS_BETA = APP_NAME.contains("Beta");
 
 
-        IS_BETA = false;
+        IS_BETA = true;
 
         if (IS_BETA) {
             ANALYTICS_ID = "UA-36581296-9";
