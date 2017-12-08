@@ -22,9 +22,12 @@ import com.google.android.gms.ads.NativeExpressAdView;
 
 import android.app.Activity;
 import android.content.Context;
+import android.graphics.Color;
+import android.graphics.drawable.GradientDrawable;
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 public class ADS {
     private static final String TAG = "ADS";
@@ -98,6 +101,7 @@ public class ADS {
         frame.setVisibility(View.VISIBLE);
         frame.removeAllViews();
 
+
         adClientNativeAd = new AdClientNativeAd(a);
         adClientNativeAd.setConfiguration(a, banner);
         adClientNativeAd.setRenderer(renderer);
@@ -112,6 +116,10 @@ public class ADS {
             @Override
             public void onLoadingAd(AdClientNativeAd arg0, String arg1, boolean arg2) {
                 View view = arg0.getView(a);
+                TextView txt = (TextView) view.findViewById(R.id.callToActionButton);
+                GradientDrawable drawable = (GradientDrawable) txt.getBackground().getCurrent();
+                drawable.setColor(TintUtil.color);
+
                 frame.addView(view);
             }
 
@@ -232,6 +240,13 @@ public class ADS {
             adView.destroy();
             adView = null;
         }
+    }
+
+    {
+        GradientDrawable shape = new GradientDrawable();
+        shape.setShape(GradientDrawable.RECTANGLE);
+        shape.setCornerRadii(new float[] { 8, 8, 8, 8, 0, 0, 0, 0 });
+        shape.setColor(Color.RED);
     }
 
 }

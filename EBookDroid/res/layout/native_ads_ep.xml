@@ -89,8 +89,8 @@
             android:gravity="center"
             android:singleLine="true"
             android:text="OPEN"
-            android:paddingLeft="4dip"
-            android:paddingRight="4dip"
+            android:paddingLeft="8dip"
+            android:paddingRight="8dip"
             android:textColor="@color/white"
             android:textSize="14sp"
             android:textStyle="bold" />
