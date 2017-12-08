@@ -3,6 +3,7 @@ package com.foobnix.ui2;
 import java.util.Locale;
 
 import com.foobnix.android.utils.LOG;
+import com.foobnix.pdf.info.Urls;
 import com.foobnix.pdf.info.wrapper.AppState;
 import com.foobnix.sys.TempHolder;
 
@@ -10,7 +11,9 @@ import android.annotation.TargetApi;
 import android.content.Context;
 import android.content.ContextWrapper;
 import android.content.res.Configuration;
+import android.content.res.Resources;
 import android.os.Build;
+import android.os.LocaleList;
 
 public class MyContextWrapper extends ContextWrapper {
 
@@ -20,7 +23,7 @@ public class MyContextWrapper extends ContextWrapper {
 
     @TargetApi(Build.VERSION_CODES.JELLY_BEAN_MR1)
     @SuppressWarnings("deprecation")
-    public static ContextWrapper wrap(Context context) {
+    public static ContextWrapper wrap1(Context context) {
         AppState.get().load(context);
 
         final String language = AppState.get().appLang;
@@ -56,6 +59,42 @@ public class MyContextWrapper extends ContextWrapper {
             context.getResources().updateConfiguration(config, context.getResources().getDisplayMetrics());
         }
         return new MyContextWrapper(context);
+    }
+
+    @TargetApi(24)
+    public static ContextWrapper wrap(Context context) {
+        String language = AppState.get().appLang;
+        final float scale = AppState.get().appFontScale;
+
+        Resources res = context.getResources();
+        Configuration configuration = res.getConfiguration();
+        configuration.fontScale = scale;
+
+        if (AppState.MY_SYSTEM_LANG.equals(AppState.get().appLang)) {
+            language = Urls.getLangCode();
+        }
+
+        LOG.d("ContextWrapper language", language);
+
+        Locale newLocale = new Locale(language);
+
+        if (Build.VERSION.SDK_INT >= 24) {
+            configuration.setLocale(newLocale);
+            LocaleList localeList = new LocaleList(newLocale);
+            LocaleList.setDefault(localeList);
+            configuration.setLocales(localeList);
+
+            context = context.createConfigurationContext(configuration);
+
+        } else if (Build.VERSION.SDK_INT >= 17) {
+            configuration.setLocale(newLocale);
+            context = context.createConfigurationContext(configuration);
+        } else {
+            configuration.locale = newLocale;
+            res.updateConfiguration(configuration, res.getDisplayMetrics());
+        }
+
+        return new ContextWrapper(context);
     }
 
     @SuppressWarnings("deprecation")

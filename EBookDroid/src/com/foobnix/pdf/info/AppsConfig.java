@@ -96,9 +96,8 @@ public class AppsConfig {
         IS_BETA = APP_NAME.contains("Beta");
 
 
-        IS_BETA = false;
-
         if (IS_BETA) {
+            IS_EP = false;
             ANALYTICS_ID = "UA-36581296-9";
             ADMOB_CLASSIC = ADMOB_FULLSCREEN = ADMOB_NATIVE_SMALL = null;
         }
