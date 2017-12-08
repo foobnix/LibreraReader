@@ -13,11 +13,12 @@ git clone https://github.com/dandar3/android-support-vector-drawable
 git clone https://github.com/dandar3/android-support-animated-vector-drawable
 git clone https://github.com/dandar3/android-support-v7-recyclerview
 git clone https://github.com/dandar3/android-support-v7-cardview
-git clone https://github.com/dandar3/android-google-play-services-ads
-git clone https://github.com/dandar3/android-google-play-services-ads-lite
-git clone https://github.com/dandar3/android-google-play-services-basement
-git clone https://github.com/dandar3/android-google-play-services-gass
-git clone https://github.com/dandar3/android-google-play-services-tasks
+
+git clone https://github.com/dandar3/android-google-play-services-ads google-play-services-ads
+git clone https://github.com/dandar3/android-google-play-services-ads-lite google-play-services-ads-lite
+git clone https://github.com/dandar3/android-google-play-services-basement google-play-services-basement
+git clone https://github.com/dandar3/android-google-play-services-gass google-play-services-gass
+git clone https://github.com/dandar3/android-google-play-services-tasks google-play-services-tasks
 for d in * ; do
 if [[ -d $d ]]; then
     echo "$d"
