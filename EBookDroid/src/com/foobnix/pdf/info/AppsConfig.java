@@ -58,7 +58,7 @@ public class AppsConfig {
             ADMOB_FULLSCREEN/*  */ = "ca-app-pub-8347903083053959/2769081274";
             ADMOB_NATIVE_SMALL/**/ = "ca-app-pub-8347903083053959/5722547677";
             
-            IS_EP = false;
+            IS_EP = true;
         }
 
         if (CLASSIC_READER_PKG.equals(packageName)) {
@@ -96,7 +96,7 @@ public class AppsConfig {
         IS_BETA = APP_NAME.contains("Beta");
 
 
-        IS_BETA = true;
+        IS_BETA = false;
 
         if (IS_BETA) {
             ANALYTICS_ID = "UA-36581296-9";
