@@ -1,7 +1,5 @@
 package org.ebookdroid.common.settings;
 
-import org.ebookdroid.common.settings.types.DocumentViewMode;
-import org.ebookdroid.common.settings.types.PageAlign;
 import org.ebookdroid.common.settings.types.ToastPosition;
 
 import com.foobnix.android.utils.Dips;
@@ -54,18 +52,12 @@ public class AppSettings {
 
     public final boolean animateScrolling;
 
-    /* =============== Tap & Keyboard settings =============== */
-
-    public final String tapProfiles;
-
-    public final String keysBinding;
 
     /* =============== Performance settings =============== */
 
     public final int pagesInMemory;
 
 
-    public final int decodingThreads;
 
     public final int decodingThreadPriority;
 
@@ -89,15 +81,6 @@ public class AppSettings {
 
     public final int pdfStorageSize;
 
-    /* =============== Default rendering settings =============== */
-
-    public final boolean nightMode;
-
-    public boolean cropPages;
-
-    public final DocumentViewMode viewMode;
-
-    final PageAlign pageAlign;
 
     /* =============== DjVU Format-specific settings =============== */
 
@@ -129,16 +112,12 @@ public class AppSettings {
         scrollHeight = Dips.dpToPx(10);
         touchProcessingDelay = 50;
         animateScrolling = true;
-        /* =============== Tap & Keyboard settings =============== */
-        tapProfiles = "";
-        keysBinding = "";
         /* =============== Performance settings =============== */
 
 		pagesInMemory = 2;
-		decodingThreads = 1;
-        decodingThreadPriority = 7;
+        decodingThreadPriority = Thread.NORM_PRIORITY; // 7
+        drawThreadPriority = Thread.NORM_PRIORITY; // 6
 
-        drawThreadPriority = 6;
         hwaEnabled = false;
         bitmapSize = 9;// 6-64,7-128,8-256,9-512,10-1024
         bitmapFileringEnabled = false;
@@ -149,11 +128,6 @@ public class AppSettings {
         heapPreallocate = 0;// 0-256
         pdfStorageSize = 64;// 16-128
 
-        /* =============== Default rendering settings =============== */
-        nightMode = false;
-        cropPages = false;
-        viewMode = DocumentViewMode.VERTICALL_SCROLL;
-        pageAlign = PageAlign.AUTO;
         /* =============== DjVU Format-specific settings =============== */
         djvuRenderingMode = 0;// 0-color,1-black,2 color only, 3 mask, 4 backgroud, 5 foreground
     }

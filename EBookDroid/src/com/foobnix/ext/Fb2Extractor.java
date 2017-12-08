@@ -167,7 +167,7 @@ public class Fb2Extractor extends BaseExtractor {
     public EbookMeta getBookMetaInformation(String inputFile) {
         try {
             if (inputFile.contains(ExtUtils.REFLOW_FB2)) {
-                return new EbookMeta(new File(inputFile).getName().replace(ExtUtils.REFLOW_FB2, ""), "Lirbi Reflow", "Lirbi Reflow", "Lirbi Reflow");
+                return new EbookMeta(new File(inputFile).getName().replace(ExtUtils.REFLOW_FB2, ""), "Reflow", "", "");
             }
 
             XmlPullParser xpp = XmlParser.buildPullParser();
