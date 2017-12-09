@@ -123,7 +123,13 @@ public class MainTabs2 extends AdsFragmentActivity {
 
     @Override
     protected void attachBaseContext(Context context) {
-        super.attachBaseContext(MyContextWrapper.wrap(context));
+        if (AppState.MY_SYSTEM_LANG.equals(AppState.get().appLang) && AppState.get().appFontScale == 1.0f) {
+            LOG.d("attachBaseContext skip");
+            super.attachBaseContext(context);
+        } else {
+            LOG.d("attachBaseContext apply");
+            super.attachBaseContext(MyContextWrapper.wrap(context));
+        }
     }
 
     @Override

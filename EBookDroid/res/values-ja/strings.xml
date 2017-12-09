@@ -179,7 +179,6 @@
    <string name="web_dict">ウェブ辞書</string>
    <string name="left_to_rigth">左から右へ</string>
    <string name="right_to_left">右から左へ</string>
-   <string name="what_is_new">なにが新しい</string>
    <string name="show_the_dialog_what_is_new_for_updates">アップデートの新機能ダイアログを表示します</string>
    <string name="font_size">フォントサイズ</string>
    <string name="performance_settings">パフォーマンスの設定</string>
@@ -424,4 +423,5 @@
    <string name="switch_off">スイッチオフ</string>
    <string name="system_language">システム言語</string>
    <string name="bluelight_filter">BlueLightフィルター</string>
+   <string name="what_is_new_in">新機能</string>
 </resources>

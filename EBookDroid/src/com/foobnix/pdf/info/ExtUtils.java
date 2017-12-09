@@ -672,7 +672,7 @@ public class ExtUtils {
             intent.putExtra(Intent.EXTRA_STREAM, getUriProvider(a, file));
             intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
             intent.putExtra(Intent.EXTRA_SUBJECT, "");
-            intent.putExtra(Intent.EXTRA_TEXT, "" + file.getName() + "\n\n" + "Lirbi Reader");
+            intent.putExtra(Intent.EXTRA_TEXT, "" + file.getName() + "\n\n" + AppsConfig.APP_NAME);
 
             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 

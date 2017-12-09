@@ -179,7 +179,6 @@
    <string name="web_dict">Diccionario web</string>
    <string name="left_to_rigth">De izquierda a derecha</string>
    <string name="right_to_left">De derecha a izquierda</string>
-   <string name="what_is_new">Que es nuevo</string>
    <string name="show_the_dialog_what_is_new_for_updates">Mostrar el cuadro de diálogo ¿Cuál es nuevo para las actualizaciones</string>
    <string name="font_size">Tamaño de fuente</string>
    <string name="performance_settings">Configuración de rendimiento</string>
@@ -424,4 +423,5 @@
    <string name="switch_off">Apagar</string>
    <string name="system_language">Lenguaje del sistema</string>
    <string name="bluelight_filter">Filtro BlueLight</string>
+   <string name="what_is_new_in">Lo nuevo en</string>
 </resources>

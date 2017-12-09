@@ -179,7 +179,6 @@
    <string name="web_dict">Web sözlük</string>
    <string name="left_to_rigth">Soldan sağa</string>
    <string name="right_to_left">Sağdan sola</string>
-   <string name="what_is_new">Yenilikler</string>
    <string name="show_the_dialog_what_is_new_for_updates">Güncellemedeki yenilikleri göster</string>
    <string name="font_size">Yazı Boyutu</string>
    <string name="performance_settings">Performans Ayarları</string>
@@ -424,4 +423,5 @@
    <string name="switch_off">Kapatmak</string>
    <string name="system_language">Sistem dili</string>
    <string name="bluelight_filter">Mavi Işık Filtresi</string>
+   <string name="what_is_new_in">Içinde yenilikler</string>
 </resources>

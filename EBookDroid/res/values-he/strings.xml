@@ -185,7 +185,6 @@
    <string name="save_new_annotations_automatically">שמור הערות חדשות באופן אוטומטי</string>
    <string name="left_to_rigth">משמאל לימין</string>
    <string name="right_to_left">מימין לשמאל</string>
-   <string name="what_is_new">מה חדש</string>
    <string name="show_the_dialog_what_is_new_for_updates">הראה את הדו-שיח מה חדש עבור עדכוני</string>
    <string name="performance_settings">הגדרות ביצועים</string>
    <string name="page_quality">איכות דף</string>
@@ -424,4 +423,5 @@
    <string name="switch_off">לכבות</string>
    <string name="system_language">שפת מערכת</string>
    <string name="bluelight_filter">מסנן</string>
+   <string name="what_is_new_in">מה חדש ב</string>
 </resources>

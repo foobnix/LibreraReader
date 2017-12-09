@@ -185,7 +185,6 @@
    <string name="save_new_annotations_automatically">Bewaar nieuwe annotaties automatisch</string>
    <string name="left_to_rigth">Van links naar rechts</string>
    <string name="right_to_left">Rechts naar links</string>
-   <string name="what_is_new">Wat is nieuw</string>
    <string name="show_the_dialog_what_is_new_for_updates">Laat het dialoogvenster Wat is nieuw voor updates</string>
    <string name="performance_settings">Prestatie-instellingen</string>
    <string name="page_quality">De kwaliteit</string>
@@ -424,4 +423,5 @@
    <string name="switch_off">Uitzetten</string>
    <string name="system_language">Systeemtaal</string>
    <string name="bluelight_filter">BlueLight-filter</string>
+   <string name="what_is_new_in">Wat is nieuw in</string>
 </resources>

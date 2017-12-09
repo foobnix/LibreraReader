@@ -179,7 +179,6 @@
    <string name="web_dict">在线词典</string>
    <string name="left_to_rigth">左到右</string>
    <string name="right_to_left">右到左</string>
-   <string name="what_is_new">什么是新的</string>
    <string name="show_the_dialog_what_is_new_for_updates">显示对话框什么更新的新</string>
    <string name="font_size">字体大小</string>
    <string name="performance_settings">性能设置</string>
@@ -424,4 +423,5 @@
    <string name="switch_off">关掉</string>
    <string name="system_language">系统语言</string>
    <string name="bluelight_filter">BlueLight过滤器</string>
+   <string name="what_is_new_in">什么是新的</string>
 </resources>

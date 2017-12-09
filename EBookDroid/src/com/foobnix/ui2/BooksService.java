@@ -33,6 +33,8 @@ public class BooksService extends IntentService {
 
     }
 
+    public static String TAG = "BooksService";
+
     Handler handler;
 
     public static String INTENT_NAME = "BooksServiceIntent";
@@ -50,7 +52,8 @@ public class BooksService extends IntentService {
         if (intent == null) {
             return;
         }
-        LOG.d("BooksService", "Action", intent.getAction());
+
+        LOG.d(TAG, "BooksService", "Action", intent.getAction());
 
         if (ACTION_REMOVE_DELETED.equals(intent.getAction())) {
             List<FileMeta> list = AppDB.get().getAll();
@@ -58,7 +61,7 @@ public class BooksService extends IntentService {
                 File bookFile = new File(meta.getPath());
                 if (!bookFile.exists()) {
                     AppDB.get().delete(meta);
-                    LOG.d("Delete meta", meta.getPath());
+                    LOG.d(TAG, "Delete meta", meta.getPath());
                 }
             }
             sendFinishMessage();
@@ -72,24 +75,30 @@ public class BooksService extends IntentService {
                     if (path != null && path.trim().length() > 0) {
                         final File root = new File(path);
                         if (root.isDirectory()) {
-                            LOG.d("Searcin in " + root.getPath());
+                            LOG.d(TAG, "Searcin in " + root.getPath());
                             SearchCore.search(localMeta, root, ExtUtils.seachExts);
                         }
                     }
                 }
 
-
                 for (FileMeta meta : localMeta) {
+
                     File file = new File(meta.getPath());
                     if (file.lastModified() >= AppState.get().searchDate) {
+                        if (AppDB.get().getDao().hasKey(meta)) {
+                            LOG.d(TAG, "Skip book", file.getPath());
+                            continue;
+                        }
+
                         FileMetaCore.get().upadteBasicMeta(meta, file);
                         EbookMeta ebookMeta = FileMetaCore.get().getEbookMeta(meta.getPath());
                         FileMetaCore.get().udpateFullMeta(meta, ebookMeta);
 
                         meta.setIsSearchBook(true);
                         AppDB.get().updateOrSave(meta);
-                        LOG.d("BooksService", "insert", meta.getPath());
+                        LOG.d(TAG, "BooksService", "insert", meta.getPath());
                     }
+
                 }
                 AppState.get().searchDate = System.currentTimeMillis();
                 sendFinishMessage();
@@ -193,6 +202,7 @@ public class BooksService extends IntentService {
     private void sendFinishMessage() {
         sendFinishMessage(this);
     }
+
     public static void sendFinishMessage(Context c) {
         Intent intent = new Intent(INTENT_NAME).putExtra(Intent.EXTRA_TEXT, RESULT_SEARCH_FINISH);
         LocalBroadcastManager.getInstance(c).sendBroadcast(intent);

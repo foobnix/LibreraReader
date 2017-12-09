@@ -186,7 +186,6 @@
    <string name="save_new_annotations_automatically">บันทึกคำอธิบายประกอบใหม่โดยอัตโนมัติ</string>
    <string name="left_to_rigth">จากซ้ายไปขวา</string>
    <string name="right_to_left">จากขวาไปซ้าย</string>
-   <string name="what_is_new">อะไรใหม่</string>
    <string name="show_the_dialog_what_is_new_for_updates">แสดงกล่องโต้ตอบมีอะไรใหม่สำหรับการอัพเดต</string>
    <string name="performance_settings">การตั้งค่าประสิทธิภาพ</string>
    <string name="page_quality">คุณภาพหน้าเว็บ</string>
@@ -424,4 +423,5 @@
    <string name="switch_off">ปิดสวิตช์</string>
    <string name="system_language">ภาษาของระบบ</string>
    <string name="bluelight_filter">ตัวกรอง BlueLight</string>
+   <string name="what_is_new_in">มีอะไรใหม่ ๆ</string>
 </resources>

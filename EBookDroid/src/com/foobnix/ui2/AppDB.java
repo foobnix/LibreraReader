@@ -134,6 +134,10 @@ public class AppDB {
     private FileMetaDao fileMetaDao;
     private DaoSession daoSession;
 
+    public FileMetaDao getDao() {
+        return fileMetaDao;
+    }
+
     public void open(Context c) {
         DatabaseUpgradeHelper helper = new DatabaseUpgradeHelper(c, DB_NAME);
 
@@ -270,6 +274,10 @@ public class AppDB {
         } catch (Exception e) {
             return Collections.emptyList();
         }
+    }
+
+    public FileMeta load(String path) {
+        return fileMetaDao.load(path);
     }
 
     public FileMeta getOrCreate(String path) {

@@ -179,7 +179,6 @@
    <string name="web_dict">Веб-словник</string>
    <string name="left_to_rigth">Зліва направо</string>
    <string name="right_to_left">Справа наліво</string>
-   <string name="what_is_new">Що нового</string>
    <string name="show_the_dialog_what_is_new_for_updates">Показати діалог Що нового для оновлень</string>
    <string name="font_size">Розмір шрифту</string>
    <string name="performance_settings">Параметри продуктивності</string>
@@ -424,4 +423,5 @@
    <string name="switch_off">Виключити</string>
    <string name="system_language">Системна мова</string>
    <string name="bluelight_filter">Фільтр BlueLight</string>
+   <string name="what_is_new_in">Що нового в</string>
 </resources>

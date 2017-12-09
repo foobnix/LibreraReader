@@ -185,7 +185,6 @@
    <string name="save_new_annotations_automatically">Spara nya annoteringar automatiskt</string>
    <string name="left_to_rigth">Vänster till höger</string>
    <string name="right_to_left">Höger till vänster</string>
-   <string name="what_is_new">Vad är nytt</string>
    <string name="show_the_dialog_what_is_new_for_updates">Visa dialogrutan Vad är nytt för uppdateringar</string>
    <string name="performance_settings">Prestandainställningar</string>
    <string name="page_quality">Page kvalitet</string>
@@ -424,4 +423,5 @@
    <string name="switch_off">Stäng av</string>
    <string name="system_language">Systemets språk</string>
    <string name="bluelight_filter">BlueLight-filter</string>
+   <string name="what_is_new_in">Vad är nytt i</string>
 </resources>

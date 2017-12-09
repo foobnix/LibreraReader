@@ -48,6 +48,8 @@ public class AppsConfig {
             ADMOB_CLASSIC = null;
             ANALYTICS_ID = null;
             IS_APP_WITH_ANALITICS = false;
+
+            IS_EP = false;
             return;
         }
 
@@ -68,6 +70,8 @@ public class AppsConfig {
             ADMOB_CLASSIC/*     */ = "ca-app-pub-8347903083053959/5364245672";
             ADMOB_FULLSCREEN/*  */ = "ca-app-pub-8347903083053959/7763820878";
             ADMOB_NATIVE_SMALL/**/ = "ca-app-pub-8347903083053959/8572902871";
+
+            IS_EP = false;
         }
 
         if (DROID_READER_PKG.equals(packageName)) {
@@ -76,7 +80,7 @@ public class AppsConfig {
             ADMOB_FULLSCREEN/*  */ = "ca-app-pub-8347903083053959/7763820878";
             ADMOB_NATIVE_SMALL/**/ = "ca-app-pub-8347903083053959/8572902871";
 
-            IS_EP = true;
+            IS_EP = false;
         }
         if (LIBRERA_INK.equals(packageName)) {
             IS_INK = true;
@@ -86,11 +90,7 @@ public class AppsConfig {
             ADMOB_FULLSCREEN/*  */ = null;
             ADMOB_NATIVE_SMALL/**/ = "ca-app-pub-8347903083053959/8572902871";
 
-            ADMOB_CLASSIC = null;
-            ANALYTICS_ID = null;
-            IS_APP_WITH_ANALITICS = false;
-
-            IS_EP = true;
+            IS_EP = false;
         }
 
         IS_BETA = APP_NAME.contains("Beta");

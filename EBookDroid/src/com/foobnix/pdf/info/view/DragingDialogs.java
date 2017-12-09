@@ -1139,7 +1139,7 @@ public class DragingDialogs {
                         closeDialog();
                         final Intent intent = new Intent(Intent.ACTION_SEND);
                         intent.setType("text/plain");
-                        String txt = "\"" + editText.getText().toString().trim() + "\" " + controller.getBookFileMetaName();
+                        String txt = "\"" + editText.getText().toString().trim() + "\" (" + controller.getBookFileMetaName() + ")";
                         intent.putExtra(Intent.EXTRA_TEXT, txt);
                         controller.getActivity().startActivity(intent);
                     }
@@ -1717,7 +1717,7 @@ public class DragingDialogs {
                         bookmarksAdapter.notifyDataSetChanged();
 
                         closeDialog();
-                        String TEXT = controller.getString(R.string.fast_bookmark) + " \"" + controller.getString(R.string.page) + " " + page + "\"";
+                        String TEXT = controller.getString(R.string.fast_bookmark) + " – «" + controller.getString(R.string.page) + " " + page + "»";
                         Toast.makeText(controller.getActivity(), TEXT, Toast.LENGTH_SHORT).show();
 
                     }

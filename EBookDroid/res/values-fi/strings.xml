@@ -186,7 +186,6 @@
    <string name="save_new_annotations_automatically">Tallenna uudet merkinnät automaattisesti</string>
    <string name="left_to_rigth">Vasemmalta oikealle</string>
    <string name="right_to_left">Oikealta vasemmalle</string>
-   <string name="what_is_new">Mitä uutta</string>
    <string name="show_the_dialog_what_is_new_for_updates">Näytä valintaikkuna Mikä on uusi päivityksiä</string>
    <string name="performance_settings">Suorituskykyasetuksia</string>
    <string name="page_quality">Sivu laatu</string>
@@ -424,4 +423,5 @@
    <string name="switch_off">Kytke pois päältä</string>
    <string name="system_language">Järjestelmäkieli</string>
    <string name="bluelight_filter">BlueLight-suodatin</string>
+   <string name="what_is_new_in">Mikä on uutta</string>
 </resources>

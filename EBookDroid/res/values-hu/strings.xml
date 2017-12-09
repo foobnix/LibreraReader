@@ -188,7 +188,6 @@
    <string name="save_new_annotations_automatically">Az új széljegyzetek automatikus mentése</string>
    <string name="left_to_rigth">Balról jobbra</string>
    <string name="right_to_left">Jobbról balra</string>
-   <string name="what_is_new">Újdonságok</string>
    <string name="show_the_dialog_what_is_new_for_updates">Újdonságok ablak megjelenítése</string>
    <string name="performance_settings">Teljesítményt érintő beállítások</string>
    <string name="page_quality">Lapminőség</string>
@@ -424,4 +423,5 @@
    <string name="switch_off">Kikapcsol</string>
    <string name="system_language">Rendszer nyelv</string>
    <string name="bluelight_filter">BlueLight szűrő</string>
+   <string name="what_is_new_in">Újdonságok</string>
 </resources>

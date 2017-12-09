@@ -185,7 +185,6 @@
    <string name="save_new_annotations_automatically">Lưu chú thích tự động mới</string>
    <string name="left_to_rigth">Từ trái sang phải</string>
    <string name="right_to_left">Phải sang trái</string>
-   <string name="what_is_new">Cái gì mới</string>
    <string name="show_the_dialog_what_is_new_for_updates">Hiển thị hộp thoại là gì mới cập nhật</string>
    <string name="performance_settings">Thiết lập hiệu suất</string>
    <string name="page_quality">Chất lượng trang</string>
@@ -424,4 +423,5 @@
    <string name="switch_off">Tăt</string>
    <string name="system_language">Ngôn ngữ hệ thống</string>
    <string name="bluelight_filter">Bộ lọc BlueLight</string>
+   <string name="what_is_new_in">Có gì mới trong</string>
 </resources>

@@ -186,7 +186,6 @@
    <string name="save_new_annotations_automatically">Automatiškai išsaugoti naujas pastabas</string>
    <string name="left_to_rigth">Iš kairės į dešinę</string>
    <string name="right_to_left">Iš dešinės į kairę</string>
-   <string name="what_is_new">Kas naujo</string>
    <string name="show_the_dialog_what_is_new_for_updates">Atnaujinus programą rodyti langą "Kas naujo"</string>
    <string name="performance_settings">Našumo nustatymai</string>
    <string name="page_quality">Puslapio kokybė</string>
@@ -424,4 +423,5 @@
    <string name="switch_off">Išjungti</string>
    <string name="system_language">Sistemos kalba</string>
    <string name="bluelight_filter">BlueLight filtras</string>
+   <string name="what_is_new_in">Kas naujo</string>
 </resources>

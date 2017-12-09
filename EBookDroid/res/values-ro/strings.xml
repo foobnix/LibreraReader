@@ -184,7 +184,6 @@
    <string name="save_new_annotations_automatically">Salvați noi adnotări automat</string>
    <string name="left_to_rigth">De la stânga la dreapta</string>
    <string name="right_to_left">De la dreapta la stânga</string>
-   <string name="what_is_new">Ce mai e nou</string>
    <string name="show_the_dialog_what_is_new_for_updates">Afișați dialogul "Ce este nou pentru actualizări"</string>
    <string name="performance_settings">Setările de performanță</string>
    <string name="page_quality">Calitatea paginii de</string>
@@ -424,4 +423,5 @@
    <string name="switch_off">Opriți-vă</string>
    <string name="system_language">Limbajul sistemului</string>
    <string name="bluelight_filter">Filtru BlueLight</string>
+   <string name="what_is_new_in">Ce este nou în</string>
 </resources>

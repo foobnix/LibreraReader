@@ -158,6 +158,7 @@ public class BookCSS {
         linkColorDay = LINK_COLOR_UNIVERSAL;
         linkColorNight = LINK_COLOR_UNIVERSAL;
         customCSS = "pre {white-space: pre} /* pre, normal*/ \n" + //
+                "svg{display:block} \n" + //
                 "figure>* {font-size: 0.6em}";
 
     }

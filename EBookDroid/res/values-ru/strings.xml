@@ -177,7 +177,6 @@
    <string name="remember_dictionary">Запомнить словарь</string>
    <string name="left_to_rigth">Слева направо</string>
    <string name="right_to_left">Справа налево</string>
-   <string name="what_is_new">Что нового</string>
    <string name="show_the_dialog_what_is_new_for_updates">Показывать «Что нового?» при обновлениях</string>
    <string name="font_size">Размер шрифта</string>
    <string name="performance_settings">Параметры быстродействия</string>
@@ -424,4 +423,5 @@
    <string name="switch_off">Выключить</string>
    <string name="system_language">Системный</string>
    <string name="bluelight_filter">Фильтр синего цвета</string>
+   <string name="what_is_new_in">Что нового в</string>
 </resources>

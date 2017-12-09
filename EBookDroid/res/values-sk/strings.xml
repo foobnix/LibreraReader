@@ -179,7 +179,6 @@
    <string name="web_dict">Web slovník</string>
    <string name="left_to_rigth">Zľava doprava</string>
    <string name="right_to_left">Sprava doľava</string>
-   <string name="what_is_new">Čo je nové</string>
    <string name="show_the_dialog_what_is_new_for_updates">Zobraziť dialóg Čo je nové aktualizácií</string>
    <string name="font_size">Veľkosť písma</string>
    <string name="performance_settings">Nastavenie výkonu</string>
@@ -424,4 +423,5 @@
    <string name="switch_off">Vypnúť</string>
    <string name="system_language">Jazyk systému</string>
    <string name="bluelight_filter">BlueLight filter</string>
+   <string name="what_is_new_in">Čo je nové v</string>
 </resources>

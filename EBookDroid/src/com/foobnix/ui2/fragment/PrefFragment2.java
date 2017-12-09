@@ -819,6 +819,7 @@ public class PrefFragment2 extends UIFragment {
         });
 
         final TextView whatIsNew = (TextView) inflate.findViewById(R.id.whatIsNew);
+        whatIsNew.setText(getActivity().getString(R.string.what_is_new_in) + " " + Apps.getApplicationName(getActivity()) + " " + Apps.getVersionName(getActivity()));
         TxtUtils.underlineTextView(whatIsNew);
         whatIsNew.setOnClickListener(new View.OnClickListener() {
 

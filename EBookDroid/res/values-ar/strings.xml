@@ -179,7 +179,6 @@
    <string name="web_dict">قاموس على شبكة الإنترنت</string>
    <string name="left_to_rigth">من اليسار إلى اليمين</string>
    <string name="right_to_left">من اليمين الى اليسار</string>
-   <string name="what_is_new">ما الجديد</string>
    <string name="show_the_dialog_what_is_new_for_updates">عرض الحوار ما هو جديد للحصول على التحديثات</string>
    <string name="font_size">حجم الخط</string>
    <string name="performance_settings">إعدادات الأداء</string>
@@ -424,4 +423,5 @@
    <string name="switch_off">اطفيء</string>
    <string name="system_language">لغة النظام</string>
    <string name="bluelight_filter">مرشح بلليت</string>
+   <string name="what_is_new_in">ما هو الجديد في</string>
 </resources>

@@ -185,7 +185,6 @@
    <string name="save_new_annotations_automatically">자동으로 새 주석을 저장</string>
    <string name="left_to_rigth">왼쪽에서 오른쪽으로</string>
    <string name="right_to_left">오른쪽에서 왼쪽으로</string>
-   <string name="what_is_new">새로운 기능</string>
    <string name="show_the_dialog_what_is_new_for_updates">업데이트로 달라진 기능</string>
    <string name="performance_settings">성능 설정</string>
    <string name="page_quality">페이지 품질</string>
@@ -424,4 +423,5 @@
    <string name="switch_off">끄다</string>
    <string name="system_language">시스템 언어</string>
    <string name="bluelight_filter">BlueLight 필터</string>
+   <string name="what_is_new_in">무엇이 새로운가?</string>
 </resources>

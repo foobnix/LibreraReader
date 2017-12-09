@@ -179,7 +179,6 @@
    <string name="web_dict">वेब शब्दकोश</string>
    <string name="left_to_rigth">बाएं से दाएं</string>
    <string name="right_to_left">दाएं से बाएं</string>
-   <string name="what_is_new">नया क्या है</string>
    <string name="show_the_dialog_what_is_new_for_updates">संवाद क्या अपडेट के लिए नया है दिखाएँ</string>
    <string name="font_size">फ़ॉन्ट आकार</string>
    <string name="performance_settings">प्रदर्शन सेटिंग्स</string>
@@ -424,4 +423,5 @@
    <string name="switch_off">बंद करना</string>
    <string name="system_language">सिस्टम भाषा</string>
    <string name="bluelight_filter">ब्लूलाइट फिल्टर</string>
+   <string name="what_is_new_in">नया क्या है</string>
 </resources>

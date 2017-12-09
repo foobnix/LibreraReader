@@ -186,7 +186,6 @@
    <string name="save_new_annotations_automatically">Simpan anotasi baru secara otomatis</string>
    <string name="left_to_rigth">Kiri ke kanan</string>
    <string name="right_to_left">Kanan ke kiri</string>
-   <string name="what_is_new">Apa yang baru</string>
    <string name="show_the_dialog_what_is_new_for_updates">Tampilkan dialog Apa yang baru untuk pembaruan</string>
    <string name="performance_settings">Pengaturan kinerja</string>
    <string name="page_quality">Kualitas halaman</string>
@@ -424,4 +423,5 @@
    <string name="switch_off">Mematikan</string>
    <string name="system_language">Bahasa sistem</string>
    <string name="bluelight_filter">Filter BlueLight</string>
+   <string name="what_is_new_in">Apa yang baru</string>
 </resources>

@@ -185,7 +185,6 @@
    <string name="save_new_annotations_automatically">Ila annotations mpya moja kwa moja</string>
    <string name="left_to_rigth">Kushoto kwenda kulia</string>
    <string name="right_to_left">Haki ya kushoto</string>
-   <string name="what_is_new">Ni kitu gani kipya</string>
    <string name="show_the_dialog_what_is_new_for_updates">Kuonyesha dialog kitu gani kipya kwa updates</string>
    <string name="performance_settings">Mazingira ya utendaji</string>
    <string name="page_quality">Kwanza ubora</string>
@@ -424,4 +423,5 @@
    <string name="switch_off">Ondoka</string>
    <string name="system_language">Lugha ya mfumo</string>
    <string name="bluelight_filter">Chujio cha BlueLight</string>
+   <string name="what_is_new_in">Nini kipya ndani</string>
 </resources>
