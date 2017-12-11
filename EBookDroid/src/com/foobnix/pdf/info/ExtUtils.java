@@ -652,11 +652,14 @@ public class ExtUtils {
     }
 
     public static Uri getUriProvider(Context a, File file) {
-        if (false && Apps.getTargetSdkVersion(a) >= 24) {
-            return FileProvider.getUriForFile(a, Apps.getPackageName(a) + ".provider", file);
+        Uri uriForFile = null;
+        if (Apps.getTargetSdkVersion(a) >= 24) {
+            uriForFile = FileProvider.getUriForFile(a, Apps.getPackageName(a) + ".provider", file);
         } else {
-            return Uri.fromFile(file);
+            uriForFile = Uri.fromFile(file);
         }
+        LOG.d("getUriProvider", uriForFile);
+        return uriForFile;
     }
 
     public static void sendFileTo(final Activity a, final File file) {

@@ -1,7 +1,5 @@
 package org.ebookdroid;
 
-import java.lang.reflect.Method;
-
 import org.ebookdroid.common.bitmaps.BitmapManager;
 import org.ebookdroid.common.cache.CacheManager;
 import org.ebookdroid.common.settings.SettingsManager;
@@ -21,7 +19,7 @@ import com.foobnix.ui2.AppDB;
 import android.app.Application;
 import android.content.Context;
 import android.os.Build;
-import android.os.StrictMode;
+import android.os.Environment;
 
 public class LirbiApp extends Application {
 
@@ -47,8 +45,9 @@ public class LirbiApp extends Application {
                 String string = "DeathOn";
                 String string2 = "Exposure";
                 String string3 = "FileUri";
-                Method m = StrictMode.class.getMethod("disable" + string + string3 + string2);
-                m.invoke(null);
+                // Method m = StrictMode.class.getMethod("disable" + string + string3 +
+                // string2);
+                // m.invoke(null);
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -76,6 +75,12 @@ public class LirbiApp extends Application {
         LOG.d("Build", "Build.DEVICE", Build.DEVICE);
         LOG.d("Build", "Build.BRAND", Build.BRAND);
         LOG.d("Build", "Build.MODEL", Build.MODEL);
+        
+        LOG.d("Build.Context", "Context.getFilesDir()", getFilesDir());
+        LOG.d("Build.Context", "Context.getCacheDir()", getCacheDir());
+        LOG.d("Build.Context", "Context.getExternalCacheDir", getExternalCacheDir());
+        LOG.d("Build.Context", "Context.getExternalFilesDir(null)", getExternalFilesDir(null));
+        LOG.d("Build.Context", "Environment.getExternalStorageDirectory()", Environment.getExternalStorageDirectory());
 
     }
 
