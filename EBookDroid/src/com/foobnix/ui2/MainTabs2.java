@@ -33,6 +33,7 @@ import com.foobnix.ui2.fragment.RecentFragment2;
 import com.foobnix.ui2.fragment.SearchFragment2;
 import com.foobnix.ui2.fragment.UIFragment;
 
+import android.Manifest;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.SearchManager;
@@ -40,10 +41,13 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.content.pm.PackageManager;
 import android.content.res.Configuration;
 import android.graphics.Color;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
+import android.support.v4.content.ContextCompat;
 import android.support.v4.content.LocalBroadcastManager;
 import android.support.v4.view.ViewPager;
 import android.support.v4.view.ViewPager.OnPageChangeListener;
@@ -209,7 +213,13 @@ public class MainTabs2 extends AdsFragmentActivity {
         pager = (ViewPager)
 
         findViewById(R.id.pager);
-        pager.setAdapter(adapter);
+
+        if (Build.VERSION.SDK_INT >= 23 && ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED) {
+            pager.setAdapter(adapter);
+        } else if (Build.VERSION.SDK_INT < 23) {
+            pager.setAdapter(adapter);
+        }
+
         pager.setOffscreenPageLimit(5);
         pager.addOnPageChangeListener(onPageChangeListener);
 

@@ -46,6 +46,7 @@ public abstract class UIFragment<T> extends Fragment {
     Handler handler;
     protected volatile ProgressBar progressBar;
     protected RecyclerView recyclerView;
+
     public abstract Pair<Integer, Integer> getNameAndIconRes();
 
     @Override
@@ -180,6 +181,8 @@ public abstract class UIFragment<T> extends Fragment {
     AsyncTask<Object, Object, List<T>> execute;
 
     public void populate() {
+
+
         if (isInProgress()) {
             AsyncTasks.toastPleaseWait(getActivity());
             return;

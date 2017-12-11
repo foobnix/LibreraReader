@@ -514,13 +514,6 @@ public class AppState {
             AppState.getInstance().tintColor = Color.BLACK;
 
         }
-        if (Dips.isEInk(c)) {
-            bolderTextOnImage = true;
-            AppState.getInstance().appFontScale = 1.3f;
-            if (Dips.isXLargeScreen()) {
-                AppState.getInstance().appFontScale = 1.5f;
-            }
-        }
         LOG.d("defaults", AppsConfig.IS_CLASSIC, AppState.get().tabsOrder);
     }
 
