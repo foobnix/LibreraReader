@@ -144,7 +144,7 @@ public class BookCSS {
         textIndent = 10;
         fontWeight = 400;
 
-        fontFolder = FontExtractor.getFontsDir(c, FONTS_DIR).getPath();
+        fontFolder = DEFAULT_FOLDER(c);
         normalFont = DEFAULT_FONT;
         boldFont = DEFAULT_FONT;
         italicFont = DEFAULT_FONT;
@@ -160,6 +160,18 @@ public class BookCSS {
         customCSS = "pre {white-space: pre} /* pre, normal*/ \n" + //
                 "svg{display:block} \n" + //
                 "figure>* {font-size: 0.6em}";
+
+    }
+
+    private String DEFAULT_FOLDER(Context c) {
+        return FontExtractor.getFontsDir(c, FONTS_DIR).getPath();
+    }
+
+    public void checkBeforeExport(Context c) {
+        if (fontFolder.equals(DEFAULT_FOLDER(c))) {
+            fontFolder = null;
+            save(c);
+        }
 
     }
 

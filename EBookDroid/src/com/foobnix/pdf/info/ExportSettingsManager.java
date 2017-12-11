@@ -15,6 +15,7 @@ import org.json.JSONObject;
 import com.foobnix.android.utils.LOG;
 import com.foobnix.android.utils.ResultResponse;
 import com.foobnix.dao2.FileMeta;
+import com.foobnix.pdf.info.model.BookCSS;
 import com.foobnix.pdf.info.wrapper.AppState;
 import com.foobnix.ui2.AppDB;
 
@@ -68,8 +69,9 @@ public class ExportSettingsManager {
 
         try {
             AppState.get().save(c);
-            JSONObject root = new JSONObject();
+            BookCSS.get().checkBeforeExport(c);
 
+            JSONObject root = new JSONObject();
             root.put(PREFIX_PDF, exportToJSon(PREFIX_RESULTS, pdfSP, null));
             root.put(PREFIX_BOOKS, exportToJSon(PREFIX_BOOKS, booksSP, null));
             root.put(PREFIX_BOOKMARKS_PREFERENCES, exportToJSon(PREFIX_BOOKMARKS_PREFERENCES, viewerSP, null));
