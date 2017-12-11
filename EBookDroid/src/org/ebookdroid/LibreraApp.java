@@ -36,22 +36,6 @@ public class LibreraApp extends Application {
     public void onCreate() {
         super.onCreate();
 
-        // StrictMode.VmPolicy.Builder builder = new
-        // StrictMode.VmPolicy.Builder();
-        // StrictMode.setVmPolicy(builder.build());
-
-        if (Build.VERSION.SDK_INT >= 24) {
-            try {
-                String string = "DeathOn";
-                String string2 = "Exposure";
-                String string3 = "FileUri";
-                // Method m = StrictMode.class.getMethod("disable" + string + string3 +
-                // string2);
-                // m.invoke(null);
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        }
 
         context = getApplicationContext();
         AppsConfig.init(getApplicationContext());
