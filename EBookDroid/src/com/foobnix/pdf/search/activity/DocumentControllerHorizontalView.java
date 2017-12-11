@@ -449,6 +449,11 @@ public abstract class DocumentControllerHorizontalView extends DocumentControlle
     }
 
     @Override
+    public void recyclePage(int page) {
+        generadDocInterface.recylePage(bookPath, page);
+    }
+
+    @Override
     public void doSearch(final String text, final com.foobnix.android.utils.ResultResponse<Integer> result) {
         if (searchTask != null && searchTask.getStatus() != CopyAsyncTask.Status.FINISHED) {
             return;

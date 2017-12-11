@@ -91,7 +91,7 @@ public class BookCSS {
         resetToDefault(c);
 
         SharedPreferences sp = c.getSharedPreferences(ExportSettingsManager.PREFIX_BOOK_CSS, Context.MODE_PRIVATE);
-        fontFolder = sp.getString("fontFolder", fontFolder);
+        fontFolder = sp.getString("fontFolder1", fontFolder);
 
         normalFont = sp.getString("normalFont", normalFont);
         boldFont = sp.getString("boldFont", boldFont);
@@ -185,7 +185,7 @@ public class BookCSS {
         }
         SharedPreferences sp = c.getSharedPreferences(ExportSettingsManager.PREFIX_BOOK_CSS, Context.MODE_PRIVATE);
         Editor edit = sp.edit();
-        edit.putString("fontFolder", fontFolder);
+        edit.putString("fontFolder1", fontFolder);
 
         edit.putString("normalFont", normalFont);
         edit.putString("boldFont", boldFont);

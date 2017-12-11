@@ -731,7 +731,6 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
                     onCrop.underline(AppState.get().isCrop);
                     onCrop.invalidate();
 
-
                 }
 
             };

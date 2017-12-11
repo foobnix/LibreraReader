@@ -27,7 +27,7 @@ public abstract class AbstractCodecDocument implements CodecDocument {
 
     @Override
     public CodecPage getPage(int pageNuber) {
-        if (number == pageNuber && pageCodec != null && !isRecycled()) {
+        if (number == pageNuber && pageCodec != null && !pageCodec.isRecycled()) {
             LOG.d("CodecPage cache", pageNuber);
             return pageCodec;
         }

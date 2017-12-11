@@ -20,6 +20,7 @@ public class PageUrl {
     private int cutp;
     private int position;
     private boolean isDouble;
+    private boolean isRecycle = true;
 
     public boolean tempWithWatermakr = false;
 
@@ -124,6 +125,7 @@ public class PageUrl {
             obj.put("m", MagicHelper.hash());
             obj.put("p", position);
             obj.put("isDouble", isDouble);
+            obj.put("isRecycle", isRecycle);
             return obj.toString();
         } catch (final Exception e) {
             return "";
@@ -146,6 +148,7 @@ public class PageUrl {
             url.cutp = obj.optInt("cutp");
             url.position = obj.optInt("p");
             url.isDouble = obj.optBoolean("isDouble");
+            url.isRecycle = obj.optBoolean("isRecycle");
             return url;
         } catch (final Exception e) {
 
@@ -244,6 +247,14 @@ public class PageUrl {
 
     public void setDouble(boolean isDouble) {
         this.isDouble = isDouble;
+    }
+
+    public boolean isRecycle() {
+        return isRecycle;
+    }
+
+    public void setRecycle(boolean isRecycle) {
+        this.isRecycle = isRecycle;
     }
 
 }
