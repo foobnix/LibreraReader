@@ -173,7 +173,7 @@ public class TTSService extends Service {
 
     public CodecDocument getDC() {
         try {
-            return ImageExtractor.getCodecContext(AppState.get().lastBookPath, "", Dips.screenWidth(), Dips.screenHeight());
+            return ImageExtractor.getNewCodecContext(AppState.get().lastBookPath, "", Dips.screenWidth(), Dips.screenHeight());
         } catch (Exception e) {
             LOG.e(e);
             return null;

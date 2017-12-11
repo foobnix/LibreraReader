@@ -12,7 +12,6 @@ public class TempHolder {
     public static final ReentrantLock lock = new ReentrantLock();
     public static TempHolder inst = new TempHolder();
 
-    public CodecDocument codecDocument;
     public volatile String path;
     public boolean isTextFormat;
     public boolean isTextForamtButNotTxt;
@@ -38,14 +37,12 @@ public class TempHolder {
     }
 
     public void init(CodecDocument codecDocumentI, String pathI) {
-        codecDocument = codecDocumentI;
         path = pathI;
         isTextFormat = isTextForamtInner();
         isTextForamtButNotTxt = isTextForamtButNotTxt();
     }
 
     public void clear() {
-        codecDocument = null;
         path = null;
     }
 

@@ -29,7 +29,7 @@ public class GeneralDocInterfaceImpl implements GeneralDocInterface {
             pasw = TxtUtils.nullToEmpty(pasw);
             TempHolder.get().clear();
             LOG.d("getPageCount", w, h);
-            return ImageExtractor.getCodecContext(path, pasw, w, h).getPageCount();
+            return ImageExtractor.getNewCodecContext(path, pasw, w, h).getPageCount();
         } catch (MuPdfPasswordException e) {
             throw e;
         } catch (Exception e) {
@@ -40,7 +40,7 @@ public class GeneralDocInterfaceImpl implements GeneralDocInterface {
     @Override
     public List<PageLink> getLinksForPage(String path, int number) {
         try {
-            return ImageExtractor.getCodecContext(path, "", 0, 0).getPage(number).getPageLinks();
+            return ImageExtractor.getNewCodecContext(path, "", 0, 0).getPage(number).getPageLinks();
         } catch (Exception e) {
             LOG.e(e);
             return Collections.EMPTY_LIST;
@@ -50,7 +50,7 @@ public class GeneralDocInterfaceImpl implements GeneralDocInterface {
     @Override
     public String getPageHTML(String path, int number) {
         try {
-            CodecPage page = ImageExtractor.getCodecContext(path, "", 0, 0).getPage(number);
+            CodecPage page = ImageExtractor.getNewCodecContext(path, "", 0, 0).getPage(number);
             if (!page.isRecycled()) {
                 return page.getPageHTML();
             }
@@ -63,7 +63,7 @@ public class GeneralDocInterfaceImpl implements GeneralDocInterface {
     @Override
     public TextWord[][] getPageText(String path, int number) {
         try {
-            CodecPage page = ImageExtractor.getCodecContext(path, "", 0, 0).getPage(number);
+            CodecPage page = ImageExtractor.getNewCodecContext(path, "", 0, 0).getPage(number);
             if (!page.isRecycled()) {
                 TextWord[][] text = page.getText();
                 return text;
@@ -77,7 +77,7 @@ public class GeneralDocInterfaceImpl implements GeneralDocInterface {
     @Override
     public void recylePage(String path, int number) {
         try {
-            CodecPage page = ImageExtractor.getCodecContext(path, "", 0, 0).getPage(number);
+            CodecPage page = ImageExtractor.getNewCodecContext(path, "", 0, 0).getPage(number);
             page.recycle();
         } catch (Exception e) {
             LOG.e(e);
@@ -87,7 +87,7 @@ public class GeneralDocInterfaceImpl implements GeneralDocInterface {
     @Override
     public void recyleDoc(String path) {
         try {
-            ImageExtractor.getCodecContext(path, "", 0, 0).recycle();
+            ImageExtractor.getNewCodecContext(path, "", 0, 0).recycle();
         } catch (Exception e) {
             LOG.e(e);
         }
@@ -109,7 +109,7 @@ public class GeneralDocInterfaceImpl implements GeneralDocInterface {
     public List<OutlineLinkWrapper> getOutline(String path, String pwd) {
         List<OutlineLinkWrapper> outline = new ArrayList<OutlineLinkWrapper>();
         try {
-            CodecDocument codecContext = ImageExtractor.getCodecContext(path, "", 0, 0);
+            CodecDocument codecContext = ImageExtractor.getNewCodecContext(path, "", 0, 0);
             if (codecContext == null || codecContext.getOutline() == null) {
                 return outline;
             }
@@ -126,7 +126,7 @@ public class GeneralDocInterfaceImpl implements GeneralDocInterface {
     @Override
     public String getFooterNote(String path, String input) {
         try {
-            return TxtUtils.getFooterNote(input, ImageExtractor.getCodecContext(path, "", 0, 0).getFootNotes());
+            return TxtUtils.getFooterNote(input, ImageExtractor.getNewCodecContext(path, "", 0, 0).getFootNotes());
         } catch (Exception e) {
             LOG.e(e);
             return "";
@@ -136,7 +136,7 @@ public class GeneralDocInterfaceImpl implements GeneralDocInterface {
     @Override
     public List<String> getMediaAttachments(String path) {
         try {
-            return ImageExtractor.getCodecContext(path, "", 0, 0).getMediaAttachments();
+            return ImageExtractor.getNewCodecContext(path, "", 0, 0).getMediaAttachments();
         } catch (Exception e) {
             LOG.e(e);
             return Collections.EMPTY_LIST;

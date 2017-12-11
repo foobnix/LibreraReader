@@ -73,11 +73,11 @@ public class BitmapActivity extends Activity {
         ImageLoader.getInstance().clearMemoryCache();
 
         instance = ImageExtractor.getInstance(this);
-        instance.getCodecContext(path1, "", 100, 200);
-        instance.getCodecContext(path2, "", 100, 200);
-        instance.getCodecContext(path1, "", 100, 200);
-        instance.getCodecContext(path1, "", 100, 200);
-        instance.getCodecContext(path2, "", 100, 200);
+        instance.getNewCodecContext(path1, "", 100, 200);
+        instance.getNewCodecContext(path2, "", 100, 200);
+        instance.getNewCodecContext(path1, "", 100, 200);
+        instance.getNewCodecContext(path1, "", 100, 200);
+        instance.getNewCodecContext(path2, "", 100, 200);
 
         GridView grid = new GridView(this);
         grid.setNumColumns(3);
@@ -121,7 +121,7 @@ public class BitmapActivity extends Activity {
             inflater = LayoutInflater.from(getApplicationContext());
             pageTxt = getString(R.string.page);
             width = Dips.dpToPx(100);
-            codecDocument = instance.getCodecContext(path, "", 100, 200);
+            codecDocument = instance.getNewCodecContext(path, "", 100, 200);
         }
 
         @Override
