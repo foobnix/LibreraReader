@@ -644,7 +644,7 @@ public class ExtUtils {
             intent.setAction(android.content.Intent.ACTION_VIEW);
             intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
             intent.setDataAndType(getUriProvider(a, file), getMimeType(file));
-            a.startActivity(intent);
+            a.startActivity(Intent.createChooser(intent, a.getString(R.string.open_with)));
         } catch (Exception e) {
             LOG.e(e);
             Toast.makeText(a, "" + e.getMessage(), Toast.LENGTH_LONG).show();
@@ -679,7 +679,7 @@ public class ExtUtils {
 
             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 
-            a.startActivity(intent);
+            a.startActivity(Intent.createChooser(intent, a.getString(R.string.send_file_to)));
         } catch (Exception e) {
             LOG.e(e);
             Toast.makeText(a, "" + e.getMessage(), Toast.LENGTH_LONG).show();

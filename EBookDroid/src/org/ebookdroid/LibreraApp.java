@@ -21,7 +21,7 @@ import android.content.Context;
 import android.os.Build;
 import android.os.Environment;
 
-public class LirbiApp extends Application {
+public class LibreraApp extends Application {
 
     static {
         System.loadLibrary("mypdf");

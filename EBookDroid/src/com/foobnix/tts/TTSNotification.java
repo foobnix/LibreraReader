@@ -2,7 +2,7 @@ package com.foobnix.tts;
 
 import java.io.File;
 
-import org.ebookdroid.LirbiApp;
+import org.ebookdroid.LibreraApp;
 import org.ebookdroid.ui.viewer.ViewerActivity;
 
 import com.foobnix.android.utils.LOG;
@@ -38,7 +38,7 @@ public class TTSNotification {
     static int page1;
 
     public static void show(String bookPath, int page) {
-        Context c = LirbiApp.context;
+        Context c = LibreraApp.context;
         bookPath1 = bookPath;
         page1 = page;
         try {
@@ -82,7 +82,7 @@ public class TTSNotification {
     }
 
     public static void hideNotification() {
-        NotificationManager nm = (NotificationManager) LirbiApp.context.getSystemService(Context.NOTIFICATION_SERVICE);
+        NotificationManager nm = (NotificationManager) LibreraApp.context.getSystemService(Context.NOTIFICATION_SERVICE);
         nm.cancel(NOT_ID);
     }
 
