@@ -12,6 +12,7 @@ import org.ebookdroid.common.bitmaps.BitmapRef;
 import org.ebookdroid.common.bitmaps.RawBitmap;
 import org.ebookdroid.core.codec.CodecContext;
 import org.ebookdroid.core.codec.CodecDocument;
+import org.ebookdroid.core.codec.CodecPage;
 import org.ebookdroid.core.codec.CodecPageInfo;
 import org.ebookdroid.core.crop.PageCropper;
 import org.ebookdroid.droids.mupdf.codec.exceptions.MuPdfPasswordException;
@@ -212,13 +213,15 @@ public class ImageExtractor implements ImageDownloader {
         LOG.d("Bitmap pageInfo.height", pageInfo.width, pageInfo.height);
 
         BitmapRef bitmapRef = null;
+        CodecPage pageCodec = codecDocumentLocal.getPage(page);
+
         if (pageUrl.getNumber() == 0) {
             rectF = new RectF(0, 0, 1f, 1f);
             if (isNeedDisableMagicInPDFDjvu) {
                 MagicHelper.isNeedMagic = false;
             }
 
-            bitmapRef = codecDocumentLocal.getPage(page).renderBitmap(width, height, rectF);
+            bitmapRef = pageCodec.renderBitmap(width, height, rectF);
 
             if (isNeedDisableMagicInPDFDjvu) {
                 MagicHelper.isNeedMagic = true;
@@ -234,7 +237,7 @@ public class ImageExtractor implements ImageDownloader {
         } else if (pageUrl.getNumber() == 1) {
             float right = (float) pageUrl.getCutp() / 100;
             rectF = new RectF(0, 0, right, 1f);
-            bitmapRef = codecDocumentLocal.getPage(page).renderBitmap((int) (width * right), height, rectF);
+            bitmapRef = pageCodec.renderBitmap((int) (width * right), height, rectF);
             bitmap = bitmapRef.getBitmap();
 
             if (pageUrl.isCrop()) {
@@ -244,7 +247,7 @@ public class ImageExtractor implements ImageDownloader {
         } else if (pageUrl.getNumber() == 2) {
             float right = (float) pageUrl.getCutp() / 100;
             rectF = new RectF(right, 0, 1f, 1f);
-            bitmapRef = codecDocumentLocal.getPage(page).renderBitmap((int) (width * (1 - right)), height, rectF);
+            bitmapRef = pageCodec.renderBitmap((int) (width * (1 - right)), height, rectF);
             bitmap = bitmapRef.getBitmap();
 
             if (pageUrl.isCrop()) {
@@ -267,7 +270,7 @@ public class ImageExtractor implements ImageDownloader {
             bitmap = bitmap1;
         }
 
-        codecDocumentLocal.getPage(page).recycle();
+        pageCodec.recycle();
 
         if (!isNeedDisableMagicInPDFDjvu && MagicHelper.isNeedBookBackgroundImage()) {
             bitmap = MagicHelper.updateWithBackground(bitmap);
@@ -288,6 +291,7 @@ public class ImageExtractor implements ImageDownloader {
         return bitmap1;
     }
 
+    @Deprecated
     public Pair<Bitmap, RectF> getCroppedPage(CodecDocument codecDocumentLocal, int page, Bitmap bitmap) {
         RectF rectF = new RectF(0, 0, 1f, 1f);
         final Rect rootRect = new Rect(0, 0, bitmap.getWidth(), bitmap.getHeight());

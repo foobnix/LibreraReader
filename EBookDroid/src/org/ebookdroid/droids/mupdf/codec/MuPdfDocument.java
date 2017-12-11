@@ -56,9 +56,11 @@ public class MuPdfDocument extends AbstractCodecDocument {
         return ou.getOutline(documentHandle);
     }
 
+
     @Override
-    public CodecPage getPage(final int pageNumber) {
-        return MuPdfPage.createPage(documentHandle, pageNumber + 1);
+    public CodecPage getPageInner(final int pageNumber) {
+        MuPdfPage createPage = MuPdfPage.createPage(documentHandle, pageNumber + 1);
+        return createPage;
     }
 
     @Override

@@ -265,7 +265,7 @@ public abstract class UIFragment<T> extends Fragment {
             recyclerView.setLayoutManager(mLayoutManager);
             recyclerView.setAdapter(authorsAdapter);
         } else if (mode == AppState.MODE_LIST_COMPACT) {
-            final int num = Math.max(2, Dips.screenWidthDP() / Dips.dpToPx(200));
+            final int num = Math.max(2, Dips.screenWidthDP() / Dips.dpToPx(300));
             GridLayoutManager mGridManager = new GridLayoutManager(getActivity(), num);
             mGridManager.setSpanSizeLookup(new SpanSizeLookup() {
 

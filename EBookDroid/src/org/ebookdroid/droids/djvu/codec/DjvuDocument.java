@@ -26,7 +26,7 @@ public class DjvuDocument extends AbstractCodecDocument {
     }
 
     @Override
-    public DjvuPage getPage(final int pageNumber) {
+    public DjvuPage getPageInner(final int pageNumber) {
         TempHolder.lock.lock();
         try {
             LOG.d("DjvuPage_getPage", pageNumber);

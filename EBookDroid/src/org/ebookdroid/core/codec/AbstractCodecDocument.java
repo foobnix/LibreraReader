@@ -1,9 +1,10 @@
 package org.ebookdroid.core.codec;
 
-
 import java.util.Collections;
 import java.util.List;
 import java.util.Map;
+
+import com.foobnix.android.utils.LOG;
 
 import android.graphics.Bitmap;
 
@@ -16,6 +17,24 @@ public abstract class AbstractCodecDocument implements CodecDocument {
     protected AbstractCodecDocument(final CodecContext context, long documentHandle) {
         this.context = context;
         this.documentHandle = documentHandle;
+
+        number = -1;
+        pageCodec = null;
+    }
+
+    int number = -1;
+    CodecPage pageCodec = null;
+
+    @Override
+    public CodecPage getPage(int pageNuber) {
+        if (number == pageNuber && pageCodec != null && !isRecycled()) {
+            LOG.d("CodecPage cache", pageNuber);
+            return pageCodec;
+        }
+        CodecPage pageInner = getPageInner(pageNuber);
+        pageCodec = pageInner;
+        number = pageNuber;
+        return pageInner;
     }
 
     @Override
@@ -49,6 +68,8 @@ public abstract class AbstractCodecDocument implements CodecDocument {
         if (!isRecycled()) {
             context.recycle();
             freeDocument();
+            number = -1;
+            pageCodec = null;
         }
     }
 

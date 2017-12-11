@@ -88,7 +88,7 @@
    <string name="search_text">Поиск текста</string>
    <string name="searching_please_wait_">Ищется...</string>
    <string name="select">Выбрать</string>
-   <string name="send_file_to">Отправить файл</string>
+   <string name="send_file_to">Поделиться файлом</string>
    <string name="share">Поделиться</string>
    <string name="show_books_thumbnails_preview">Показывать обложки книг и миниатюры страниц</string>
    <string name="sorting">Сортировка</string>
@@ -145,7 +145,7 @@
    <string name="send_file">Отправить файл</string>
    <string name="file_info">Информация о файле</string>
    <string name="open_file">Открыть файл</string>
-   <string name="make_text_reflow">Перекомпоновка в FB2-формат (функция «Text reflow»)</string>
+   <string name="make_text_reflow">Перекомпоновать в FB2-формат (функция «Text reflow»)</string>
    <string name="search_not_supported_formats">Поиск среди неподдерживаемых форматов</string>
    <string name="search_in_google">Поиск в Google</string>
    <string name="reading_the_text_by_voice">Чтение текста голосом</string>
@@ -155,7 +155,7 @@
    <string name="to_stop">Остановить</string>
    <string name="to_read">Читать</string>
    <string name="enter_password">Введите пароль</string>
-   <string name="text_to_speech">Текст в речь</string>
+   <string name="text_to_speech">Преобразование текста в речь</string>
    <string name="application_user_guide_">Руководство пользователя</string>
    <string name="you_need_grant_permission">Вам необходимо предоставить приложению доступ к внешнему запоминающему устройству</string>
    <string name="db_auto_alignemnt">Вписать в ширину экрана</string>
@@ -177,7 +177,7 @@
    <string name="remember_dictionary">Запомнить словарь</string>
    <string name="left_to_rigth">Слева направо</string>
    <string name="right_to_left">Справа налево</string>
-   <string name="show_the_dialog_what_is_new_for_updates">Показывать «Что нового?» при обновлениях</string>
+   <string name="show_the_dialog_what_is_new_for_updates">Показывать окно «Что нового...» при обновлениях</string>
    <string name="font_size">Размер шрифта</string>
    <string name="performance_settings">Параметры быстродействия</string>
    <string name="page_quality">Качество страниц</string>
@@ -238,7 +238,7 @@
    <string name="close_application_">Закрыть приложение?</string>
    <string name="cover">Обложки</string>
    <string name="application_cannot_open_the_book">Приложение не может открыть файл</string>
-   <string name="rate_pdf_reader1">Пожалуйста, напишите свой отзыв и оцените нас на Google Play. Это очень важно для развития приложения.</string>
+   <string name="rate_pdf_reader1">Пожалуйста, напишите свой отзыв и оцените нас в Google Play. Это очень важно для развития приложения.</string>
    <string name="enable_effect_of_the_book_cover">Придать обложкам реалистичности</string>
    <string name="archive_files">Файл(ы) в архиве</string>
    <string name="column_count">Количество столбцов:</string>
@@ -285,7 +285,7 @@
    <string name="archive">Архив версий:</string>
    <string name="beta_version">Бета-версия:</string>
    <string name="of_screen">Экрана</string>
-   <string name="ongoing_notification">Закрепить уведомление в шторке</string>
+   <string name="ongoing_notification">Закреплять уведомление в шторке</string>
    <string name="apply_text_replacement_dictionary1">Применить словарь замен</string>
    <string name="speak_into_file_wav_">Начитать в файл (.wav)</string>
    <string name="the_book_is_over">Книга прочитана</string>
@@ -364,7 +364,7 @@
    <string name="trim_borders">Границы обрезки</string>
    <string name="stop_reading_timer_">Остановить чтение через</string>
    <string name="two_pages_cover">Обложка и 2 стр.</string>
-   <string name="enhancements_for_oled_display">Использовать черный цвет для фона вокруг страниц ([AM]OLED-адаптация)</string>
+   <string name="enhancements_for_oled_display">Использовать черный цвет для фона вокруг страниц (адаптация под [AM]OLED-экраны)</string>
    <string name="reading_will_be_stopped">Чтение остановится в</string>
    <string name="compact">Полусписок</string>
    <string name="cd_search_books_in_the_library">Поиск книг в библиотеке</string>
@@ -393,7 +393,7 @@
    <string name="my_favorites_links">Мои избранные ссылки</string>
    <string name="contrast">Контрастность</string>
    <string name="can_t_delete_file">Не получилось удалить файл</string>
-   <string name="remove_from_library">Удалить из библиотеки</string>
+   <string name="remove_from_library">Исключить из библиотеки</string>
    <string name="e_ink">E-Ink</string>
    <string name="contrast_and_brightness">Контрастность и яркость</string>
    <string name="book_covers">Обложки книг</string>
