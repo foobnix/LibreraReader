@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 
-import org.ebookdroid.LirbiApp;
+import org.ebookdroid.LibreraApp;
 
 import com.foobnix.android.utils.BaseItemLayoutAdapter;
 import com.foobnix.android.utils.TxtUtils;
@@ -129,7 +129,7 @@ public class DialogTranslateFromTo {
 
     public static String getLanuageByCode(String code) {
         if (AppState.MY_SYSTEM_LANG.equals(code)) {
-            return LirbiApp.context.getString(R.string.system_language);
+            return LibreraApp.context.getString(R.string.system_language);
         }
         try {
             Locale l = new Locale(code);

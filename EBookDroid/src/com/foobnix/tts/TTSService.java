@@ -1,6 +1,6 @@
 package com.foobnix.tts;
 
-import org.ebookdroid.LirbiApp;
+import org.ebookdroid.LibreraApp;
 import org.ebookdroid.common.settings.SettingsManager;
 import org.ebookdroid.common.settings.books.BookSettings;
 import org.ebookdroid.core.codec.CodecDocument;
@@ -115,12 +115,12 @@ public class TTSService extends Service {
 
         Intent intent = playBookIntent(page, path, anchor);
 
-        LirbiApp.context.startService(intent);
+        LibreraApp.context.startService(intent);
 
     }
 
     public static Intent playBookIntent(int page, String path, String anchor) {
-        Intent intent = new Intent(LirbiApp.context, TTSService.class);
+        Intent intent = new Intent(LibreraApp.context, TTSService.class);
         intent.setAction(TTSService.ACTION_PLAY_CURRENT_PAGE);
         intent.putExtra(EXTRA_INT, page);
         intent.putExtra(EXTRA_PATH, path);
@@ -173,7 +173,7 @@ public class TTSService extends Service {
 
     public CodecDocument getDC() {
         try {
-            return ImageExtractor.getCodecContext(AppState.get().lastBookPath, "", Dips.screenWidth(), Dips.screenHeight());
+            return ImageExtractor.getNewCodecContext(AppState.get().lastBookPath, "", Dips.screenWidth(), Dips.screenHeight());
         } catch (Exception e) {
             LOG.e(e);
             return null;
@@ -198,7 +198,7 @@ public class TTSService extends Service {
 
                 TempHolder.get().timerFinishTime = 0;
 
-                Vibrator v = (Vibrator) LirbiApp.context.getSystemService(Context.VIBRATOR_SERVICE);
+                Vibrator v = (Vibrator) LibreraApp.context.getSystemService(Context.VIBRATOR_SERVICE);
                 if (AppState.get().isVibration) {
                     v.vibrate(1000);
                 }
@@ -208,7 +208,7 @@ public class TTSService extends Service {
                 } catch (InterruptedException e) {
                 }
                 TTSEngine.get().getTTS().setOnUtteranceCompletedListener(null);
-                TTSEngine.get().speek(LirbiApp.context.getString(R.string.the_book_is_over));
+                TTSEngine.get().speek(LibreraApp.context.getString(R.string.the_book_is_over));
 
                 EventBus.getDefault().post(new TtsStatus());
                 return;

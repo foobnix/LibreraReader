@@ -3,7 +3,7 @@
     package="com.foobnix.pdf.reader"
     android:installLocation="auto"
     android:versionCode="470"
-    android:versionName="7.3.51" >
+    android:versionName="7.3.52" >
 
     <uses-sdk
         android:minSdkVersion="14"
@@ -18,7 +18,7 @@
 
     <!-- android:name="com.foobnix.pdf.info.TestAppName" -->
     <application
-        android:name="org.ebookdroid.LirbiApp"
+        android:name="org.ebookdroid.LibreraApp"
         android:icon="@drawable/icon_pdf_reader"
         android:label="@string/app_name"
         android:largeHeap="true"

@@ -5,7 +5,7 @@ import java.text.DecimalFormat;
 import java.util.HashMap;
 import java.util.List;
 
-import org.ebookdroid.LirbiApp;
+import org.ebookdroid.LibreraApp;
 import org.greenrobot.eventbus.EventBus;
 
 import com.foobnix.android.utils.LOG;
@@ -51,7 +51,7 @@ public class TTSEngine {
         public void onInit(int status) {
             LOG.d(TAG, "onInit", "SUCCESS", status == TextToSpeech.SUCCESS);
             if (status == TextToSpeech.ERROR) {
-                Toast.makeText(LirbiApp.context, R.string.msg_unexpected_error, Toast.LENGTH_LONG).show();
+                Toast.makeText(LibreraApp.context, R.string.msg_unexpected_error, Toast.LENGTH_LONG).show();
             }
 
         }
@@ -69,7 +69,7 @@ public class TTSEngine {
             onLisnter = listener;
         }
 
-        ttsEngine = new TextToSpeech(LirbiApp.context, onLisnter);
+        ttsEngine = new TextToSpeech(LibreraApp.context, onLisnter);
 
         return ttsEngine;
 
@@ -90,7 +90,7 @@ public class TTSEngine {
 
     public TextToSpeech setTTSWithEngine(String engine) {
         shutdown();
-        ttsEngine = new TextToSpeech(LirbiApp.context, listener, engine);
+        ttsEngine = new TextToSpeech(LibreraApp.context, listener, engine);
         return ttsEngine;
     }
 

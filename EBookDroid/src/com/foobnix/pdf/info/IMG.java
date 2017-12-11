@@ -5,7 +5,6 @@ import java.util.regex.Pattern;
 
 import com.foobnix.android.utils.Dips;
 import com.foobnix.android.utils.LOG;
-import com.foobnix.android.utils.MemoryUtils;
 import com.foobnix.pdf.info.model.BookCSS;
 import com.foobnix.pdf.info.wrapper.AppState;
 import com.foobnix.sys.ImageExtractor;
@@ -55,7 +54,7 @@ public class IMG {
         bookBGNoMark = context.getResources().getDrawable(R.drawable.bookeffect1);
 
         final Builder builder = new DisplayImageOptions.Builder();
-        builder.cacheInMemory(MemoryUtils.IS_BIG_MEMORY_SIZE);
+        builder.cacheInMemory(true);
         builder.cacheOnDisk(true);
         builder.showImageOnLoading(COLOR_DRAWABLE);
         builder.showImageOnFail(COLOR_DRAWABLE);
@@ -150,7 +149,7 @@ public class IMG {
             .showImageOnFail(COLOR_DRAWABLE)//
             .showImageForEmptyUri(COLOR_DRAWABLE)//
             .showImageOnFail(COLOR_DRAWABLE)//
-            .cacheInMemory(MemoryUtils.IS_BIG_MEMORY_SIZE)//
+            .cacheInMemory(true)//
             .cacheOnDisk(true)//
             .considerExifParams(false)//
             .imageScaleType(ImageScaleType.EXACTLY)//
@@ -163,7 +162,7 @@ public class IMG {
             .showImageOnFail(R.drawable.web)//
             .showImageForEmptyUri(R.drawable.web)//
             .showImageOnFail(R.drawable.web)//
-            .cacheInMemory(MemoryUtils.IS_BIG_MEMORY_SIZE)//
+            .cacheInMemory(true)//
             .cacheOnDisk(true)//
             .considerExifParams(false)//
             .imageScaleType(ImageScaleType.IN_SAMPLE_POWER_OF_2)//
@@ -176,7 +175,7 @@ public class IMG {
             .showImageOnFail(COLOR_DRAWABLE)//
             .showImageForEmptyUri(COLOR_DRAWABLE)//
             .showImageOnFail(COLOR_DRAWABLE)//
-            .cacheInMemory(MemoryUtils.IS_BIG_MEMORY_SIZE)//
+            .cacheInMemory(true)//
             .imageScaleType(ImageScaleType.EXACTLY)//
             .considerExifParams(false)//
             .cacheOnDisk(false)//
@@ -188,7 +187,7 @@ public class IMG {
             .showImageOnFail(COLOR_DRAWABLE)//
             .showImageForEmptyUri(COLOR_DRAWABLE)//
             .showImageOnFail(COLOR_DRAWABLE)//
-            .cacheInMemory(MemoryUtils.IS_BIG_MEMORY_SIZE)//
+            .cacheInMemory(true)//
             .cacheOnDisk(false)//
             .considerExifParams(false)//
             .imageScaleType(ImageScaleType.NONE)//
