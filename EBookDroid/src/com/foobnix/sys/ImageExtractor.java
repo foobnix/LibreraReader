@@ -48,6 +48,7 @@ import android.graphics.Color;
 import android.graphics.Matrix;
 import android.graphics.Rect;
 import android.graphics.RectF;
+import android.os.PowerManager;
 import android.util.Base64;
 import android.util.Pair;
 import okhttp3.Request;
@@ -66,11 +67,15 @@ public class ImageExtractor implements ImageDownloader {
     String pathCache;
     public static SharedPreferences sp;
 
+    public static PowerManager.WakeLock wl;
+
     public static synchronized ImageExtractor getInstance(final Context c) {
         if (instance == null) {
             instance = new ImageExtractor(c);
         }
         sp = c.getSharedPreferences("Errors", Context.MODE_PRIVATE);
+        PowerManager pm = (PowerManager) c.getSystemService(Context.POWER_SERVICE);
+        wl = pm.newWakeLock(PowerManager.PARTIAL_WAKE_LOCK, "ImageExtractor");
         return instance;
     }
 
@@ -344,12 +349,7 @@ public class ImageExtractor implements ImageDownloader {
         File file = new File(path);
         try {
 
-            // if (ExtUtils.isTiffFile(file)) {
-            // FileMeta fileMeta = AppDB.get().getOrCreate(path);
-            // FileMetaCore.get().upadteBasicMeta(fileMeta, new File(path));
-            // AppDB.get().update(fileMeta);
-            // return bitmapToStream(proccessOtherPage(pageUrl));
-            // }
+            wl.acquire();
 
             if (ExtUtils.isImageFile(file)) {
                 FileMeta fileMeta = AppDB.get().getOrCreate(path);
@@ -376,7 +376,6 @@ public class ImageExtractor implements ImageDownloader {
             if (pageUrl.getHeight() == 0) {
                 pageUrl.setHeight((int) (pageUrl.getWidth() * 1.5));
             }
-
 
             if (page == COVER_PAGE || page == COVER_PAGE_WITH_EFFECT) {
                 try {
@@ -439,6 +438,7 @@ public class ImageExtractor implements ImageDownloader {
             AppState.outOfMemoryHack();
             return messageFile("#error", "");
         } finally {
+            wl.release();
             sp.edit().remove("" + imageUri.hashCode()).commit();
         }
     }
