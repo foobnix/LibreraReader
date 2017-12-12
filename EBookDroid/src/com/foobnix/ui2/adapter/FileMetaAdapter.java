@@ -369,12 +369,8 @@ public class FileMetaAdapter extends AppRecycleAdapter<FileMeta, RecyclerView.Vi
         }
 
         if (TxtUtils.isEmpty(fileMeta.getAuthor())) {
-            holder.title.setSingleLine(false);
-            holder.title.setLines(2);
-            holder.author.setVisibility(View.GONE);
+            holder.author.setVisibility(View.INVISIBLE);
         } else {
-            holder.title.setSingleLine(true);
-            holder.title.setLines(1);
             holder.author.setVisibility(View.VISIBLE);
         }
 
