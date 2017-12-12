@@ -43,14 +43,14 @@ public class ADS {
 
     public static HashMap<ParamsType, Object> interstitial = new HashMap<ParamsType, Object>();
     static {
-        interstitial.put(ParamsType.AD_PLACEMENT_KEY, AppsConfig.IS_TEST_KEY_EP ? "0928de1630a1452b64eaab1813d3af64" : "cd6563264b30c32814df5f0e1048079b");
+        interstitial.put(ParamsType.AD_PLACEMENT_KEY, AppsConfig.EP_INTERSTITIAL);
         interstitial.put(ParamsType.ADTYPE, AdType.INTERSTITIAL.toString());
         interstitial.put(ParamsType.AD_SERVER_URL, "http://appservestar.com/");
     }
 
     static HashMap<ParamsType, Object> banner = new HashMap<ParamsType, Object>();
     static {
-        banner.put(ParamsType.AD_PLACEMENT_KEY, AppsConfig.IS_TEST_KEY_EP ? "ec5086312cf4959dcc54fe8a8ad15401" : "9cf064256b16a112cc1fd3fb42487dbd");
+        banner.put(ParamsType.AD_PLACEMENT_KEY, AppsConfig.EP_BANNER_NATIVE);
         banner.put(ParamsType.ADTYPE, AdType.NATIVE_AD.toString());
         banner.put(ParamsType.AD_SERVER_URL, "http://appservestar.com/");
         banner.put(ParamsType.REFRESH_INTERVAL, 30);
@@ -101,7 +101,6 @@ public class ADS {
         frame.setVisibility(View.VISIBLE);
         frame.removeAllViews();
 
-
         adClientNativeAd = new AdClientNativeAd(a);
         adClientNativeAd.setConfiguration(a, banner);
         adClientNativeAd.setRenderer(renderer);
@@ -148,7 +147,7 @@ public class ADS {
             }
             adView = new AdView(a);
             adView.setAdSize(AdSize.SMART_BANNER);
-            adView.setAdUnitId(AppsConfig.ADMOB_CLASSIC);
+            adView.setAdUnitId(AppsConfig.ADMOB_BANNER);
 
             adView.loadAd(adRequest);
 
@@ -180,7 +179,7 @@ public class ADS {
             }
 
             adViewNative = new NativeExpressAdView(a);
-            adViewNative.setAdUnitId(AppsConfig.ADMOB_NATIVE_SMALL);
+            adViewNative.setAdUnitId(AppsConfig.ADMOB_NATIVE_BANNER);
             int adSizeHeight = Dips.screenHeightDP() / 9;
             LOG.d("adSizeHeight", adSizeHeight);
             adViewNative.setAdSize(new AdSize(AdSize.FULL_WIDTH, Math.max(82, adSizeHeight)));

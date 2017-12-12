@@ -61,8 +61,8 @@ public class ADSRemote {
             @Override
             protected void onPostExecute(Object result) {
                 if (result == null) {
-                    LOG.d("No config result get default", AppsConfig.ADMOB_CLASSIC);
-                    idResponse.onResultRecive(AppsConfig.ADMOB_CLASSIC);
+                    LOG.d("No config result get default", AppsConfig.ADMOB_BANNER);
+                    idResponse.onResultRecive(AppsConfig.ADMOB_BANNER);
                     return;
                 }
                 try {
@@ -81,7 +81,7 @@ public class ADSRemote {
                     LOG.d("Finish");
                 } catch (Exception e) {
                     LOG.e(e);
-                    idResponse.onResultRecive(AppsConfig.ADMOB_CLASSIC);
+                    idResponse.onResultRecive(AppsConfig.ADMOB_BANNER);
                 }
             };
         }.execute();

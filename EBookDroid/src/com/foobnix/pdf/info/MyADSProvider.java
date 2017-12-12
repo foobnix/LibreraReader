@@ -50,7 +50,7 @@ public class MyADSProvider {
         if (AppsConfig.IS_EP) {
             ADS.activateEP(a, adClientView);
         } else {
-            if (random.nextBoolean()) {
+            if (AppsConfig.ADMOB_NATIVE_BANNER != null && random.nextBoolean()) {
                 ADS.activateAdmobNativeBanner(a, adViewNative);
             } else {
                 ADS.activateAdmobSmartBanner(a, adView);

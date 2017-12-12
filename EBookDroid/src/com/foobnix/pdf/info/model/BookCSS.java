@@ -168,7 +168,7 @@ public class BookCSS {
     }
 
     public void checkBeforeExport(Context c) {
-        if (fontFolder.equals(DEFAULT_FOLDER(c))) {
+        if (fontFolder != null && fontFolder.equals(DEFAULT_FOLDER(c))) {
             fontFolder = null;
             save(c);
         }

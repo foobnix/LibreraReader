@@ -1141,7 +1141,8 @@ public class DragingDialogs {
                         intent.setType("text/plain");
                         String txt = "\"" + editText.getText().toString().trim() + "\" (" + controller.getBookFileMetaName() + ")";
                         intent.putExtra(Intent.EXTRA_TEXT, txt);
-                        controller.getActivity().startActivity(intent);
+                        controller.getActivity().startActivity(Intent.createChooser(intent, controller.getString(R.string.share)));
+
                     }
                 });
 

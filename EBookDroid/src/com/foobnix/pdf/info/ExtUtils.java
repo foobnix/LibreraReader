@@ -686,6 +686,7 @@ public class ExtUtils {
         }
     }
 
+
     public static String getMimeType(File file) {
         String mime = "";
         try {
