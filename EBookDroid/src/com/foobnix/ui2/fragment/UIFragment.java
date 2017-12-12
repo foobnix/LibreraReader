@@ -29,6 +29,7 @@ import android.content.IntentFilter;
 import android.content.res.Configuration;
 import android.os.AsyncTask;
 import android.os.Handler;
+import android.os.PowerManager;
 import android.support.v4.app.Fragment;
 import android.support.v4.content.LocalBroadcastManager;
 import android.support.v4.util.Pair;
@@ -49,10 +50,15 @@ public abstract class UIFragment<T> extends Fragment {
 
     public abstract Pair<Integer, Integer> getNameAndIconRes();
 
+    public static PowerManager.WakeLock wl;
+
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
         handler = new Handler();
+
+        PowerManager pm = (PowerManager) getActivity().getSystemService(Context.POWER_SERVICE);
+        wl = pm.newWakeLock(PowerManager.PARTIAL_WAKE_LOCK, "UIFragment");
     }
 
     @Override
@@ -182,7 +188,6 @@ public abstract class UIFragment<T> extends Fragment {
 
     public void populate() {
 
-
         if (isInProgress()) {
             AsyncTasks.toastPleaseWait(getActivity());
             return;
@@ -192,7 +197,12 @@ public abstract class UIFragment<T> extends Fragment {
                 @Override
                 protected List<T> doInBackground(Object... params) {
                     try {
-                        return prepareDataInBackground();
+                        try {
+                            wl.acquire();
+                            return prepareDataInBackground();
+                        } finally {
+                            wl.release();
+                        }
                     } catch (Exception e) {
                         LOG.e(e);
                         return new ArrayList<T>();
