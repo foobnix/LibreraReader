@@ -92,7 +92,7 @@ public class MyADSProvider {
                             }
                         });
                         interstitialEP.load();
-                    } else {
+                    } else if (AppsConfig.ADMOB_FULLSCREEN != null) {
                         mInterstitialAd = new InterstitialAd(a);
                         mInterstitialAd.setAdUnitId(AppsConfig.ADMOB_FULLSCREEN);
                         mInterstitialAd.setAdListener(new AdListener() {

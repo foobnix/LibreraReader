@@ -50,7 +50,7 @@ public abstract class UIFragment<T> extends Fragment {
 
     public abstract Pair<Integer, Integer> getNameAndIconRes();
 
-    public static PowerManager.WakeLock wl;
+    private PowerManager.WakeLock wl;
 
     @Override
     public void onAttach(Context context) {
