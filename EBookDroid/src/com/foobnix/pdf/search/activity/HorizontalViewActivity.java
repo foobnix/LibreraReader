@@ -1368,62 +1368,28 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
             if (PageImageState.get().isAutoFit) {
                 EventBus.getDefault().post(new MessageAutoFit(pos));
             }
-            if (PageImageState.get().pagesText != null && PageImageState.get().pagesText.get(pos) == null) {
-                handler.removeCallbacksAndMessages(null);
-                handler.postDelayed(new Runnable() {
 
-                    @Override
-                    public void run() {
-                        new Thread() {
-                            @Override
-                            public void run() {
-                                if (AppState.get().isDouble) {
-                                    int page1 = pos * 2;
-                                    int page2 = pos * 2 + 1;
+            handler.postDelayed(new Runnable() {
 
-                                    if (AppState.get().isDoubleCoverAlone && pos >= 1) {
-                                        page1--;
-                                        page2--;
-                                    }
+                @Override
+                public void run() {
+                    documentController.saveCurrentPage();
+                    LOG.d("PAGE SAVED");
+                }
+            }, 2000);
 
-                                    PageImageState.get().pagesText.put(page1, documentController.getPageText(page1));
-                                    PageImageState.get().pagesLinks.put(page1, documentController.getLinksForPage(page1));
+            handler.postDelayed(new Runnable() {
 
-                                    PageImageState.get().pagesText.put(page2, documentController.getPageText(page2));
-                                    PageImageState.get().pagesLinks.put(page2, documentController.getLinksForPage(page2));
-
-                                } else if (!AppState.get().isCut) {
-                                    PageImageState.get().pagesText.put(pos, documentController.getPageText(pos));
-                                    PageImageState.get().pagesLinks.put(pos, documentController.getLinksForPage(pos));
-                                }
-                                LOG.d("onPageSelected", "load", pos);
-                            };
-                        }.start();
+                @Override
+                public void run() {
+                    try {
+                        getWindow().clearFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
+                    } catch (Exception e) {
+                        LOG.e(e);
                     }
-                }, 100);
+                }
+            }, TimeUnit.MINUTES.toMillis(AppState.get().inactivityTime));
 
-                handler.postDelayed(new Runnable() {
-
-                    @Override
-                    public void run() {
-                        documentController.saveCurrentPage();
-                        LOG.d("PAGE SAVED");
-                    }
-                }, 2000);
-
-                handler.postDelayed(new Runnable() {
-
-                    @Override
-                    public void run() {
-                        try {
-                            getWindow().clearFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
-                        } catch (Exception e) {
-                            LOG.e(e);
-                        }
-                    }
-                }, TimeUnit.MINUTES.toMillis(AppState.get().inactivityTime));
-
-            }
             LOG.d("onPageSelected", pos);
 
             progressDraw.updateProgress(pos);

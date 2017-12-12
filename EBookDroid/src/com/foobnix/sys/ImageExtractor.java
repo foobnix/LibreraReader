@@ -34,6 +34,7 @@ import com.foobnix.pdf.info.IMG;
 import com.foobnix.pdf.info.PageUrl;
 import com.foobnix.pdf.info.wrapper.AppState;
 import com.foobnix.pdf.info.wrapper.MagicHelper;
+import com.foobnix.pdf.search.activity.PageImageState;
 import com.foobnix.ui2.AppDB;
 import com.foobnix.ui2.FileMetaCore;
 import com.nostra13.universalimageloader.core.download.BaseImageDownloader;
@@ -258,9 +259,12 @@ public class ImageExtractor implements ImageDownloader {
             bitmap = bitmap1;
         }
 
-        // if (pageUrl.isRecycle()) {
-            pageCodec.recycle();
-        // }
+        if (pageUrl.isDoText()) {
+            PageImageState.get().pagesText.put(pageUrl.getPage(), pageCodec.getText());
+            PageImageState.get().pagesLinks.put(pageUrl.getPage(), pageCodec.getPageLinks());
+        }
+
+        pageCodec.recycle();
 
         if (!isNeedDisableMagicInPDFDjvu && MagicHelper.isNeedBookBackgroundImage()) {
             bitmap = MagicHelper.updateWithBackground(bitmap);

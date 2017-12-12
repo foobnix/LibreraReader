@@ -245,7 +245,9 @@ public abstract class DocumentControllerHorizontalView extends DocumentControlle
 
     @Override
     public PageUrl getPageUrl(int page) {
-        return PageUrl.build(getBookPath(), page, imageWidth, imageHeight);
+        PageUrl build = PageUrl.build(getBookPath(), page, imageWidth, imageHeight);
+        build.setDoText(true);
+        return build;
     }
 
     public abstract void onGoToPageImpl(int page);
