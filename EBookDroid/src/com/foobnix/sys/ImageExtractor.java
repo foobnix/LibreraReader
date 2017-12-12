@@ -264,7 +264,9 @@ public class ImageExtractor implements ImageDownloader {
             PageImageState.get().pagesLinks.put(pageUrl.getPage(), pageCodec.getPageLinks());
         }
 
-        pageCodec.recycle();
+        if (pageUrl.getNumber() != 1) {
+            pageCodec.recycle();
+        }
 
         if (!isNeedDisableMagicInPDFDjvu && MagicHelper.isNeedBookBackgroundImage()) {
             bitmap = MagicHelper.updateWithBackground(bitmap);
