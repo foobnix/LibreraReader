@@ -11,10 +11,8 @@
 
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.VIBRATE" />
-
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.INTERNET" />
-    
 
     <!-- android:name="com.foobnix.pdf.info.TestAppName" -->
     <application
@@ -149,7 +147,7 @@
                 <action android:name="android.intent.action.MEDIA_BUTTON" />
             </intent-filter>
         </service>
-        
+
         <receiver android:name="android.support.v4.media.session.MediaButtonReceiver" >
             <intent-filter>
                 <action android:name="android.intent.action.MEDIA_BUTTON" />
@@ -165,16 +163,28 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.foobnix.ui2.MainTabs2"
+            android:name="com.test.TestAdsActivity"
+            android:configChanges="orientation|screenSize|keyboard|keyboardHidden"
             android:exported="true"
-                android:configChanges="orientation|screenSize|keyboard|keyboardHidden"
+            android:launchMode="singleTop"
+            android:resizeableActivity="true"
+            android:screenOrientation="behind"
+            android:windowSoftInputMode="stateHidden" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN1" />
+                <category android:name="android.intent.category.LAUNCHER1" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="com.foobnix.ui2.MainTabs2"
+            android:configChanges="orientation|screenSize|keyboard|keyboardHidden"
+            android:exported="true"
             android:launchMode="singleTop"
             android:resizeableActivity="true"
             android:screenOrientation="behind"
             android:windowSoftInputMode="stateHidden" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.MULTIWINDOW_LAUNCHER" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
@@ -207,7 +217,10 @@
             android:screenOrientation="behind" >
         </activity>
 
-        <!-- PLAY_SERVICE --><meta-data android:name="com.google.android.gms.version" android:value="@integer/google_play_services_version"/>
+        <!-- PLAY_SERVICE -->
+        <meta-data
+            android:name="com.google.android.gms.version"
+            android:value="@integer/google_play_services_version" />
 
         <activity
             android:name="com.google.android.gms.ads.AdActivity"
@@ -258,27 +271,64 @@
         <meta-data
             android:name="com.sec.android.multiwindow.MINIMUM_SIZE_H"
             android:value="598.0dip" />
-        
-        
+
         <!-- EP -->
-        
-    <activity android:name="com.adclient.android.sdk.install.AdClientPopupActivity" xmlns:android="http://schemas.android.com/apk/res/android" android:theme="@android:style/Theme.Dialog"/>
-    <activity android:name="com.adclient.android.sdk.view.AdClientSdkActivity" xmlns:android="http://schemas.android.com/apk/res/android" android:configChanges="keyboardHidden|orientation|screenSize" android:theme="@android:style/Theme.Translucent.NoTitleBar.Fullscreen"/>
-    <activity android:name="com.adclient.android.sdk.inapp.landing.AdClientInAppLandingActivity" xmlns:android="http://schemas.android.com/apk/res/android" android:configChanges="keyboardHidden|orientation|screenSize"/>
-    <meta-data android:name="com.google.android.gms.version" xmlns:android="http://schemas.android.com/apk/res/android" android:value="@integer/google_play_services_version"/>
-    <receiver android:name="com.adclient.android.sdk.install.DownloadCompleteReceiver" xmlns:android="http://schemas.android.com/apk/res/android">
-      <intent-filter>
-        <action android:name="android.intent.action.DOWNLOAD_COMPLETE"/>
-      </intent-filter>
-    </receiver>
-    <service android:name="com.adclient.android.sdk.synchronization.AdClientSynchronizer" xmlns:android="http://schemas.android.com/apk/res/android"/>
-    <activity android:name="com.mopub.mobileads.MoPubActivity" xmlns:android="http://schemas.android.com/apk/res/android" android:configChanges="keyboardHidden|orientation|screenSize"/>
-    <activity android:name="com.mopub.mobileads.MraidActivity" xmlns:android="http://schemas.android.com/apk/res/android" android:configChanges="keyboardHidden|orientation|screenSize"/>
-    <activity android:name="com.mopub.common.MoPubBrowser" xmlns:android="http://schemas.android.com/apk/res/android" android:configChanges="keyboardHidden|orientation|screenSize"/>
-    <activity android:name="com.mopub.mobileads.MraidVideoPlayerActivity" xmlns:android="http://schemas.android.com/apk/res/android" android:configChanges="keyboardHidden|orientation|screenSize"/>
-    <activity android:name="com.mopub.mobileads.RewardedMraidActivity" xmlns:android="http://schemas.android.com/apk/res/android" android:configChanges="keyboardHidden|orientation|screenSize"/>
-    <activity android:name="com.facebook.ads.AudienceNetworkActivity" xmlns:android="http://schemas.android.com/apk/res/android" android:configChanges="keyboardHidden|orientation|screenSize"/>
- 
+
+        <activity
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            android:name="com.adclient.android.sdk.install.AdClientPopupActivity"
+            android:theme="@android:style/Theme.Dialog" />
+        <activity
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            android:name="com.adclient.android.sdk.view.AdClientSdkActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar.Fullscreen" />
+        <activity
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            android:name="com.adclient.android.sdk.inapp.landing.AdClientInAppLandingActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize" />
+
+        <meta-data
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            android:name="com.google.android.gms.version"
+            android:value="@integer/google_play_services_version" />
+
+        <receiver
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            android:name="com.adclient.android.sdk.install.DownloadCompleteReceiver" >
+            <intent-filter>
+                <action android:name="android.intent.action.DOWNLOAD_COMPLETE" />
+            </intent-filter>
+        </receiver>
+
+        <service
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            android:name="com.adclient.android.sdk.synchronization.AdClientSynchronizer" />
+
+        <activity
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            android:name="com.mopub.mobileads.MoPubActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize" />
+        <activity
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            android:name="com.mopub.mobileads.MraidActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize" />
+        <activity
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            android:name="com.mopub.common.MoPubBrowser"
+            android:configChanges="keyboardHidden|orientation|screenSize" />
+        <activity
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            android:name="com.mopub.mobileads.MraidVideoPlayerActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize" />
+        <activity
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            android:name="com.mopub.mobileads.RewardedMraidActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize" />
+        <activity
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            android:name="com.facebook.ads.AudienceNetworkActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize" />
     </application>
 
 </manifest>

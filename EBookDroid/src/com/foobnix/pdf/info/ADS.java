@@ -59,9 +59,12 @@ public class ADS {
     static {
         binder.bindTextAsset(AdClientNativeAd.TITLE_TEXT_ASSET, R.id.headlineView);
         binder.bindTextAsset(AdClientNativeAd.DESCRIPTION_TEXT_ASSET, R.id.descriptionView);
-        binder.bindImageAsset(AdClientNativeAd.ICON_IMAGE_ASSET, R.id.iconView);
         binder.bindTextAsset(AdClientNativeAd.CALL_TO_ACTION_TEXT_ASSET, R.id.callToActionButton);
+        binder.bindTextAsset(AdClientNativeAd.SPONSORED_ASSET, R.id.sponsoredText);
+
         binder.bindImageAsset(AdClientNativeAd.PRIVACY_ICON_IMAGE_ASSET, R.id.sponsoredIcon);
+        binder.bindImageAsset(AdClientNativeAd.ICON_IMAGE_ASSET, R.id.iconView);
+
     }
 
     static AdClientNativeAdRenderer renderer = new AdClientNativeAdRenderer(binder);
@@ -76,7 +79,7 @@ public class ADS {
             public void onShowImageFailed(ImageView imageView, String uri, ImageDisplayError error) {
                 LOG.d(TAG, "onShowImageFailed", uri, error.getMessage());
                 if (imageView != null) {
-                    imageView.setVisibility(View.GONE);
+                    // imageView.setVisibility(View.GONE);
                 }
             }
 
@@ -84,8 +87,8 @@ public class ADS {
             public void onNeedToShowImage(ImageView imageView, String uri) {
                 LOG.d(TAG, "onNeedToShowImage", uri);
                 if (imageView != null) {
-                    imageView.setVisibility(View.GONE);
-                    AdClientNativeAd.displayImage(imageView, uri, this);
+                    // imageView.setVisibility(View.GONE);
+                    // AdClientNativeAd.displayImage(imageView, uri, this);
                 }
             }
 
@@ -93,7 +96,7 @@ public class ADS {
             public void onShowImageSuccess(ImageView imageView, String uri) {
                 LOG.d(TAG, "onShowImageSuccess");
                 if (imageView != null) {
-                    imageView.setVisibility(View.VISIBLE);
+                    // imageView.setVisibility(View.VISIBLE);
                 }
 
             }
@@ -102,7 +105,6 @@ public class ADS {
 
     public static void activateEP(final Activity a, AdClientNativeAd adClientNativeAd) {
         final FrameLayout frame = a.findViewById(R.id.adFrame);
-        frame.setVisibility(View.VISIBLE);
         frame.removeAllViews();
 
         if (adClientNativeAd != null) {
@@ -115,6 +117,14 @@ public class ADS {
         adClientNativeAd.setRenderer(renderer);
         adClientNativeAd.load(a);
 
+        View view = adClientNativeAd.getView(a);
+        // view.setVisibility(View.GONE);
+        TextView txt = (TextView) view.findViewById(R.id.callToActionButton);
+        GradientDrawable drawable = (GradientDrawable) txt.getBackground().getCurrent();
+        drawable.setColor(TintUtil.color);
+
+        frame.addView(view);
+
         adClientNativeAd.setClientNativeAdListener(new ClientNativeAdListener() {
 
             @Override
@@ -125,20 +135,12 @@ public class ADS {
             @Override
             public void onLoadingAd(AdClientNativeAd adClient, String arg1, boolean arg2) {
                 LOG.d(TAG, "onLoadingAd", adClient.isAdLoaded(), arg1, arg2);
-                if (adClient.isAdLoaded()) {
-                    View view = adClient.getView(a);
-                    TextView txt = (TextView) view.findViewById(R.id.callToActionButton);
-                    GradientDrawable drawable = (GradientDrawable) txt.getBackground().getCurrent();
-                    drawable.setColor(TintUtil.color);
-                    frame.addView(view);
-                }
             }
 
             @Override
             public void onFailedToReceiveAd(AdClientNativeAd arg0, boolean arg1) {
                 LOG.d(TAG, "onFailedToReceiveAd", arg1);
                 frame.removeAllViews();
-                frame.setVisibility(View.GONE);
             }
 
             @Override
@@ -152,7 +154,6 @@ public class ADS {
     public static void activateAdmobSmartBanner(final Activity a, AdView adView) {
         try {
             final FrameLayout frame = (FrameLayout) a.findViewById(R.id.adFrame);
-            frame.setVisibility(View.VISIBLE);
             frame.removeAllViews();
 
             if (adView != null) {

@@ -9,7 +9,6 @@
     android:orientation="horizontal" >
 
     <ImageView
-        android:visibility="gone"
         android:id="@+id/iconView"
         android:layout_width="50dip"
         android:layout_height="50dip"

@@ -83,7 +83,7 @@ public class MyADSProvider {
 
                             @Override
                             public void onLoadingAd(AbstractAdClientView adClientView, String message) {
-                                interstitialEP.isAdLoaded();
+                                // interstitialEP.isAdLoaded();
                             }
 
                             @Override
