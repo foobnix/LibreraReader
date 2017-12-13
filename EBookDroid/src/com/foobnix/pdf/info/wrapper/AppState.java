@@ -521,6 +521,7 @@ public class AppState {
         try {
             if (!isLoaded) {
                 AppState.get().isInkMode = Dips.isEInk(a);
+                AppState.get().bolderTextOnImage = Dips.isEInk(a);
                 defaults(a);
                 loadIn(a);
                 BookCSS.get().load(a);

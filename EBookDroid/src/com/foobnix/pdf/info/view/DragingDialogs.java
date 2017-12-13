@@ -438,7 +438,8 @@ public class DragingDialogs {
                         }
 
                         timerStart.setText(TempHolder.get().timerFinishTime == 0 ? R.string.start : R.string.cancel);
-                        ttsPage.setText(TempHolder.get().timerFinishTime == 0 ? "" : controller.getString(R.string.reading_will_be_stopped) + " " + DateFormat.getTimeFormat(activity).format(TempHolder.get().timerFinishTime));
+                        ttsPage.setText(
+                                TempHolder.get().timerFinishTime == 0 ? "" : controller.getString(R.string.reading_will_be_stopped) + " " + DateFormat.getTimeFormat(activity).format(TempHolder.get().timerFinishTime));
                     }
                 });
 
@@ -3285,7 +3286,6 @@ public class DragingDialogs {
             public View getContentView(final LayoutInflater inflater) {
                 View inflate = inflater.inflate(R.layout.dialog_prefs, null, false);
 
-
                 // TOP panel start
                 View topPanelLine = inflate.findViewById(R.id.topPanelLine);
                 View topPanelLineDiv = inflate.findViewById(R.id.topPanelLineDiv);
@@ -3673,6 +3673,7 @@ public class DragingDialogs {
                 TxtUtils.underlineTextView(screenOrientation);
 
                 final TextView onBlueFilter = (TextView) inflate.findViewById(R.id.onBlueFilter);
+                onBlueFilter.setVisibility(Dips.isEInk(controller.getActivity()) ? View.GONE : View.VISIBLE);
                 TxtUtils.underlineTextView(onBlueFilter);
                 onBlueFilter.setOnClickListener(new OnClickListener() {
 
