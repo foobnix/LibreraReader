@@ -4,8 +4,6 @@ import java.io.File;
 import java.util.LinkedList;
 import java.util.List;
 
-import org.ebookdroid.LibreraApp;
-
 import com.foobnix.android.utils.LOG;
 import com.foobnix.dao2.FileMeta;
 import com.foobnix.ext.EbookMeta;
@@ -22,23 +20,17 @@ import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Handler;
-import android.os.PowerManager;
 import android.support.v4.content.LocalBroadcastManager;
 import android.support.v4.media.session.MediaSessionCompat;
 
 public class BooksService extends IntentService {
     private MediaSessionCompat mediaSessionCompat;
 
-    private PowerManager.WakeLock wl;
 
     public BooksService() {
         super("BooksService");
         AppState.get().load(this);
         handler = new Handler();
-
-        PowerManager pm = (PowerManager) LibreraApp.context.getSystemService(Context.POWER_SERVICE);
-        wl = pm.newWakeLock(PowerManager.PARTIAL_WAKE_LOCK, "BooksService");
-
     }
 
     public static String TAG = "BooksService";
@@ -61,8 +53,6 @@ public class BooksService extends IntentService {
             return;
         }
         try {
-            wl.acquire();
-
             LOG.d(TAG, "BooksService", "Action", intent.getAction());
 
             if (ACTION_REMOVE_DELETED.equals(intent.getAction())) {
@@ -190,7 +180,6 @@ public class BooksService extends IntentService {
             }
 
         } finally {
-            wl.release();
         }
 
     }

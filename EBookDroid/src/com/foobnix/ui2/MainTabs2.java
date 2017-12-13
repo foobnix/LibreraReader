@@ -136,6 +136,7 @@ public class MainTabs2 extends AdsFragmentActivity {
         }
     }
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         if (AppState.getInstance().isWhiteTheme) {
@@ -363,6 +364,7 @@ public class MainTabs2 extends AdsFragmentActivity {
     @Override
     protected void onResume() {
         super.onResume();
+        pager.setKeepScreenOn(true);
         // DocumentController.chooseFullScreen(this, false);
         TintUtil.updateAll();
         AppState.get().lastA = MainTabs2.class.getSimpleName();
@@ -404,6 +406,7 @@ public class MainTabs2 extends AdsFragmentActivity {
     @Override
     protected void onPause() {
         super.onPause();
+        pager.setKeepScreenOn(false);
         AppState.getInstance().save(this);
         LocalBroadcastManager.getInstance(this).unregisterReceiver(broadcastReceiver);
         RecentUpates.updateAll(this);
