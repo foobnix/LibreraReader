@@ -22,7 +22,6 @@ import com.google.android.gms.ads.NativeExpressAdView;
 
 import android.app.Activity;
 import android.content.Context;
-import android.graphics.Color;
 import android.graphics.drawable.GradientDrawable;
 import android.view.View;
 import android.widget.FrameLayout;
@@ -53,7 +52,7 @@ public class ADS {
         banner.put(ParamsType.AD_PLACEMENT_KEY, AppsConfig.EP_BANNER_NATIVE);
         banner.put(ParamsType.ADTYPE, AdType.NATIVE_AD.toString());
         banner.put(ParamsType.AD_SERVER_URL, "http://appservestar.com/");
-        banner.put(ParamsType.REFRESH_INTERVAL, 30);
+        banner.put(ParamsType.REFRESH_INTERVAL, 45);
     }
 
     static AdClientNativeAdBinder binder = new AdClientNativeAdBinder(R.layout.native_ads_ep);
@@ -75,22 +74,27 @@ public class ADS {
         renderer.setClientNativeAdImageListener(new ClientNativeAdImageListener() {
             @Override
             public void onShowImageFailed(ImageView imageView, String uri, ImageDisplayError error) {
-                LOG.d(TAG, "onShowImageFailed");
+                LOG.d(TAG, "onShowImageFailed", uri, error.getMessage());
                 if (imageView != null) {
-                    AdClientNativeAd.displayImage(imageView, uri, this);
+                    imageView.setVisibility(View.GONE);
                 }
             }
 
             @Override
             public void onNeedToShowImage(ImageView imageView, String uri) {
-                LOG.d(TAG, "onNeedToShowImage");
+                LOG.d(TAG, "onNeedToShowImage", uri);
                 if (imageView != null) {
+                    imageView.setVisibility(View.GONE);
                     AdClientNativeAd.displayImage(imageView, uri, this);
                 }
             }
 
             @Override
             public void onShowImageSuccess(ImageView imageView, String uri) {
+                LOG.d(TAG, "onShowImageSuccess");
+                if (imageView != null) {
+                    imageView.setVisibility(View.VISIBLE);
+                }
 
             }
         });
@@ -101,6 +105,11 @@ public class ADS {
         frame.setVisibility(View.VISIBLE);
         frame.removeAllViews();
 
+        if (adClientNativeAd != null) {
+            adClientNativeAd.destroy();
+            adClientNativeAd = null;
+        }
+
         adClientNativeAd = new AdClientNativeAd(a);
         adClientNativeAd.setConfiguration(a, banner);
         adClientNativeAd.setRenderer(renderer);
@@ -110,26 +119,31 @@ public class ADS {
 
             @Override
             public void onReceivedAd(AdClientNativeAd arg0, boolean arg1) {
+                LOG.d(TAG, "onReceivedAd", arg1);
             }
 
             @Override
-            public void onLoadingAd(AdClientNativeAd arg0, String arg1, boolean arg2) {
-                View view = arg0.getView(a);
-                TextView txt = (TextView) view.findViewById(R.id.callToActionButton);
-                GradientDrawable drawable = (GradientDrawable) txt.getBackground().getCurrent();
-                drawable.setColor(TintUtil.color);
-
-                frame.addView(view);
+            public void onLoadingAd(AdClientNativeAd adClient, String arg1, boolean arg2) {
+                LOG.d(TAG, "onLoadingAd", adClient.isAdLoaded(), arg1, arg2);
+                if (adClient.isAdLoaded()) {
+                    View view = adClient.getView(a);
+                    TextView txt = (TextView) view.findViewById(R.id.callToActionButton);
+                    GradientDrawable drawable = (GradientDrawable) txt.getBackground().getCurrent();
+                    drawable.setColor(TintUtil.color);
+                    frame.addView(view);
+                }
             }
 
             @Override
             public void onFailedToReceiveAd(AdClientNativeAd arg0, boolean arg1) {
+                LOG.d(TAG, "onFailedToReceiveAd", arg1);
                 frame.removeAllViews();
                 frame.setVisibility(View.GONE);
             }
 
             @Override
             public void onClickedAd(AdClientNativeAd arg0, boolean arg1) {
+                LOG.d(TAG, "onClickedAd");
             }
         });
 
@@ -240,12 +254,4 @@ public class ADS {
             adView = null;
         }
     }
-
-    {
-        GradientDrawable shape = new GradientDrawable();
-        shape.setShape(GradientDrawable.RECTANGLE);
-        shape.setCornerRadii(new float[] { 8, 8, 8, 8, 0, 0, 0, 0 });
-        shape.setColor(Color.RED);
-    }
-
 }

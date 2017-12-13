@@ -370,6 +370,7 @@ public class MainTabs2 extends AdsFragmentActivity {
         AppState.get().lastA = MainTabs2.class.getSimpleName();
         LocalBroadcastManager.getInstance(this).registerReceiver(broadcastReceiver, new IntentFilter(UIFragment.INTENT_TINT_CHANGE));
 
+
         try {
             tabFragments.get(pager.getCurrentItem()).onSelectFragment();
         } catch (Exception e) {

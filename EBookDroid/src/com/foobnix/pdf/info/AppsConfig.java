@@ -65,7 +65,7 @@ public class AppsConfig {
             EP_BANNER_NATIVE = "9cf064256b16a112cc1fd3fb42487dbd";
             EP_INTERSTITIAL = "cd6563264b30c32814df5f0e1048079b";
 
-            IS_EP = false;
+            IS_EP = true;
         }
 
         if (CLASSIC_PDF_READER.equals(packageName)) {
@@ -106,7 +106,7 @@ public class AppsConfig {
 
         IS_BETA = APP_NAME.contains("Beta");
 
-        // IS_BETA = false;
+        IS_BETA = false;
 
         if (IS_BETA) {
             IS_EP = false;
