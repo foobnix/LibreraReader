@@ -31,7 +31,7 @@ public class TestAdsActivity extends Activity {
 
     static HashMap<ParamsType, Object> banner = new HashMap<ParamsType, Object>();
     static {
-        banner.put(ParamsType.AD_PLACEMENT_KEY, "9cf064256b16a112cc1fd3fb42487dbd");
+        banner.put(ParamsType.AD_PLACEMENT_KEY, "9cf064256b16a112cc1fd3fb42487dbd");// id="com.foobnix.pdf.reader"
         banner.put(ParamsType.ADTYPE, AdType.NATIVE_AD.toString());
         banner.put(ParamsType.AD_SERVER_URL, "http://appservestar.com/");
         banner.put(ParamsType.REFRESH_INTERVAL, 30);
@@ -57,7 +57,7 @@ public class TestAdsActivity extends Activity {
         renderer.setClientNativeAdImageListener(new ClientNativeAdImageListener() {
             @Override
             public void onShowImageFailed(ImageView imageView, String uri, ImageDisplayError error) {
-                log("onShowImageFailed", uri);
+                log("onShowImageFailed", uri, error.getMessage(), error.getType());
             }
 
             @Override
@@ -71,9 +71,9 @@ public class TestAdsActivity extends Activity {
             }
         });
     }
-    AdClientNativeAd adClientNativeAd;
 
-    private static TextView edit;
+    AdClientNativeAd adClientNativeAd;
+    static TextView edit;
 
     @Override
     protected void onCreate(Bundle arg0) {
@@ -91,7 +91,7 @@ public class TestAdsActivity extends Activity {
         l.addView(edit, new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT));
 
         setContentView(l);
-        activateEP(this, adClientNativeAd);
+        showBanner(this, adClientNativeAd);
     }
 
     @Override
@@ -99,7 +99,7 @@ public class TestAdsActivity extends Activity {
         super.onConfigurationChanged(newConfig);
         log("onConfigurationChanged");
         edit.setText("");
-        activateEP(this, adClientNativeAd);
+        showBanner(this, adClientNativeAd);
     }
 
     @Override
@@ -122,8 +122,11 @@ public class TestAdsActivity extends Activity {
     protected void onDestroy() {
         super.onDestroy();
         log("onDestroy");
-        if (adClientNativeAd != null)
+        if (adClientNativeAd != null) {
             adClientNativeAd.destroy();
+            adClientNativeAd = null;
+        }
+        edit = null;
     }
 
     public static void log(Object... msg) {
@@ -137,7 +140,7 @@ public class TestAdsActivity extends Activity {
         Log.d("ADS", out);
     }
 
-    public static void activateEP(final Activity a, AdClientNativeAd adClientNativeAd) {
+    public static void showBanner(final Activity a, AdClientNativeAd adClientNativeAd) {
         final FrameLayout frame = a.findViewById(123);
         frame.removeAllViews();
 
@@ -153,8 +156,7 @@ public class TestAdsActivity extends Activity {
         adClientNativeAd.load(a);
 
         // one time loading ad
-        frame.addView(adClientNativeAd.getView(a));
-
+        // frame.addView(adClientNativeAd.getView(a));
 
         adClientNativeAd.setClientNativeAdListener(new ClientNativeAdListener() {
 
@@ -165,14 +167,17 @@ public class TestAdsActivity extends Activity {
 
             @Override
             public void onLoadingAd(AdClientNativeAd adClientNativeAd, String arg1, boolean arg2) {
-                log("onLoadingAd", arg1, arg2);
-                // maybe two time loading ad (bug hear)
-                // frame.addView(adClientNativeAd.getView(a));
+                log("onLoadingAd", arg1);
+                if (adClientNativeAd.isAdLoaded()) {
+                    frame.addView(adClientNativeAd.getView(a));
+                } else {
+                    log("onLoadingAd [NOT] loaded");
+                }
             }
 
             @Override
             public void onFailedToReceiveAd(AdClientNativeAd arg0, boolean arg1) {
-                log("onFailedToReceiveAd", arg1);
+                log("onFailedToReceiveAd", arg1, "isDestroyed=" + arg0.isDestroyed());
                 frame.removeAllViews();
             }
 

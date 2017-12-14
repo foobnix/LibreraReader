@@ -242,7 +242,7 @@ public class DocumentWrapperUI {
             } else {
                 if (((ViewerActivity) getController().getActivity()).isInterstialShown()) {
                     return false;
-                }else{
+                } else {
                     CloseAppDialog.showOnLongClickDialog(getController().getActivity(), null, controller);
                 }
             }
@@ -436,6 +436,7 @@ public class DocumentWrapperUI {
             zoomMinus.setVisibility(View.GONE);
             crop.setVisibility(View.GONE);
             cut.setVisibility(View.GONE);
+            onModeChange.setVisibility(View.GONE);
         }
 
         crop.underline(AppState.get().isCrop);
@@ -606,6 +607,7 @@ public class DocumentWrapperUI {
         onModeChange = (ImageView) a.findViewById(R.id.onModeChange);
         onModeChange.setOnClickListener(onModeChangeClick);
         onModeChange.setImageResource(AppState.get().isCut ? R.drawable.glyphicons_page_split : R.drawable.glyphicons_two_page_one);
+
 
         View prefTop = a.findViewById(R.id.prefTop);
         prefTop.setOnClickListener(onPrefTop);
@@ -792,7 +794,6 @@ public class DocumentWrapperUI {
 
         TintUtil.setTintImage(goToPage1Top, TintUtil.getStatusBarColor());
         TintUtil.setTintImage((ImageView) closeTop, TintUtil.getStatusBarColor());
-
         TintUtil.setTintImage(toolBarButton, TintUtil.getStatusBarColor());
         TintUtil.setTintImage(clockIcon, TintUtil.getStatusBarColor()).setAlpha(200);
         TintUtil.setTintImage(batteryIcon, TintUtil.getStatusBarColor()).setAlpha(200);

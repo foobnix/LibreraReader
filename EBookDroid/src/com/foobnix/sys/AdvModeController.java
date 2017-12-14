@@ -107,7 +107,7 @@ public class AdvModeController extends DocumentController {
 
     @Override
     public PageUrl getPageUrl(int page) {
-        return PageUrl.buildSmall(getCurrentBook().getPath(), page);
+        return PageUrl.build(getCurrentBook().getPath(), page, Dips.screenWidth(), Dips.screenHeight());
     }
 
     @Override

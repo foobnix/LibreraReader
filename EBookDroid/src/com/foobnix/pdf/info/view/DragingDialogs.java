@@ -1360,8 +1360,13 @@ public class DragingDialogs {
                     grid.setAdapter(new PageThumbnailAdapter(anchor.getContext(), controller.getPageCount(), controller.getCurentPageFirst1() - 1) {
                         @Override
                         public PageUrl getPageUrl(int page) {
-                            PageUrl buildSmall = PageUrl.buildSmall(currentBook.getPath(), page);
-                            return buildSmall;
+                            PageUrl pageUrl = null;
+                            if (controller.isTextFormat()) {
+                                pageUrl = controller.getPageUrl(page);
+                            } else {
+                                pageUrl = PageUrl.buildSmall(currentBook.getPath(), page);
+                            }
+                            return pageUrl;
                         };
                     });
                 }
