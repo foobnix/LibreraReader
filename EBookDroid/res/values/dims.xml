@@ -2,7 +2,7 @@
 <resources>
 
     <dimen name="wh_button">36dp</dimen>
-    <dimen name="wh_button_big">36dp</dimen>
+    <dimen name="wh_button_big">38dp</dimen>
     <dimen name="wh_button_small">25dp</dimen>
     <dimen name="text_title">14sp</dimen>
     <dimen name="text_title1">14sp</dimen>

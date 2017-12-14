@@ -581,7 +581,6 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
                     @Override
                     public void run() {
                         isCancelled = true;
-                        TempHolder.get().loadingCancelled = true;
                         finish();
                         CacheZipUtils.removeFiles(CacheZipUtils.CACHE_BOOK_DIR.listFiles());
                     }

@@ -32,6 +32,7 @@ public abstract class AbstractCodecContext implements CodecContext {
      */
     protected AbstractCodecContext() {
         this(SEQ.incrementAndGet());
+        TempHolder.get().loadingCancelled = false;
     }
 
     public abstract CodecDocument openDocumentInner(String fileName, String password);
@@ -40,6 +41,7 @@ public abstract class AbstractCodecContext implements CodecContext {
             CodecDocument openDocument = openDocumentInner(fileName, password);
             LOG.d("removeTempFiles1", TempHolder.get().loadingCancelled);
             if (TempHolder.get().loadingCancelled) {
+            TempHolder.get().clear();
                 removeTempFiles();
                 return null;
             }
@@ -57,6 +59,7 @@ public abstract class AbstractCodecContext implements CodecContext {
     @Override
     public CodecDocument openDocument(String fileNameOriginal, String password) {
         LOG.d("Open Document", fileNameOriginal);
+        // TempHolder.get().loadingCancelled = false;
         if (ExtUtils.isZip(fileNameOriginal)) {
             LOG.d("Open Document ZIP", fileNameOriginal);
             return openDocumentInnerCanceled(fileNameOriginal, password);

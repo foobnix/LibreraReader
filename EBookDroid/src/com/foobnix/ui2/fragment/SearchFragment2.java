@@ -65,7 +65,7 @@ public class SearchFragment2 extends UIFragment<FileMeta> {
     public static final Pair<Integer, Integer> PAIR = new Pair<Integer, Integer>(R.string.library, R.drawable.glyphicons_2_book_open);
     private static final String CMD_KEYCODE = "@@keycode_config";
     private static final String CMD_LONG_TAP_ON_OFF = "@@long_tap_on_off";
-    private static final String CMD_FULLSCREEN_ON_OFF = "@@fullscreen_on_off";
+    private static final String CMD_FULLSCREEN_ON = "@@fullscreen_on";
 
     public static int NONE = -1;
 
@@ -111,7 +111,7 @@ public class SearchFragment2 extends UIFragment<FileMeta> {
             }
         }
 
-        autocomplitions.add(CMD_FULLSCREEN_ON_OFF);
+        autocomplitions.add(CMD_FULLSCREEN_ON);
         autocomplitions.add(CMD_LONG_TAP_ON_OFF);
         autocomplitions.add(CMD_KEYCODE);
 
@@ -451,7 +451,7 @@ public class SearchFragment2 extends UIFragment<FileMeta> {
             searchEditText.setText("");
         }
 
-        if (CMD_FULLSCREEN_ON_OFF.equals(txt)) {
+        if (CMD_FULLSCREEN_ON.equals(txt)) {
             DocumentController.chooseFullScreen(getActivity(), true);
             searchEditText.setText("");
         }

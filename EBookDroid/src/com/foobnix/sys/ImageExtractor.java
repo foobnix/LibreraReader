@@ -65,7 +65,6 @@ public class ImageExtractor implements ImageDownloader {
 
     public static SharedPreferences sp;
 
-
     public static synchronized ImageExtractor getInstance(final Context c) {
         if (instance == null) {
             instance = new ImageExtractor(c);
@@ -339,7 +338,6 @@ public class ImageExtractor implements ImageDownloader {
         File file = new File(path);
         try {
 
-
             if (ExtUtils.isImageFile(file)) {
                 FileMeta fileMeta = AppDB.get().getOrCreate(path);
                 FileMetaCore.get().upadteBasicMeta(fileMeta, new File(path));
@@ -508,6 +506,10 @@ public class ImageExtractor implements ImageDownloader {
             openDocument = ctx.openDocument(zipPath, passw);
         } finally {
             CacheZipUtils.cacheLock.unlock();
+        }
+        if (openDocument == null) {
+            LOG.d("[Open doc is null]", path);
+            return null;
         }
 
         pageCount = openDocument.getPageCount(w, h, AppState.get().fontSizeSp);

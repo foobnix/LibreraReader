@@ -68,7 +68,6 @@ public abstract class DocumentControllerHorizontalView extends DocumentControlle
         }
         LOG.d("DocumentControllerHorizontalView", "end");
 
-        TempHolder.get().loadingCancelled = false;
         isTextFormat = ExtUtils.isTextFomat(activity.getIntent());
 
         udpateImageSize(w, h);
