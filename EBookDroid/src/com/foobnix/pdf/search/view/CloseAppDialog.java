@@ -8,6 +8,8 @@ import com.foobnix.pdf.info.R;
 import com.foobnix.pdf.info.wrapper.AppState;
 import com.foobnix.pdf.info.wrapper.DocumentController;
 import com.foobnix.pdf.info.wrapper.UITab;
+import com.foobnix.tts.TTSEngine;
+import com.foobnix.tts.TTSNotification;
 import com.foobnix.ui2.MainTabs2;
 
 import android.app.Activity;
@@ -84,6 +86,8 @@ public class CloseAppDialog {
 
             @Override
             public void onClick(DialogInterface dialog, int which) {
+                TTSNotification.hideNotification();
+                TTSEngine.get().shutdown();
                 int i = 0;
                 if (which == i++) {
 

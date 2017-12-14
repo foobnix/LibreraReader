@@ -24,7 +24,6 @@ import android.widget.Toast;
 
 public class TTSEngine {
 
-
     private static final String UTTERANCE_ID = "LirbiReader";
     private static final String TAG = "TTSEngine";
     TextToSpeech ttsEngine;
@@ -41,7 +40,9 @@ public class TTSEngine {
     }
 
     public void shutdown() {
-        ttsEngine.shutdown();
+        if (ttsEngine != null) {
+            ttsEngine.shutdown();
+        }
         ttsEngine = null;
     }
 

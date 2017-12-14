@@ -1771,7 +1771,6 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
             handler.removeCallbacksAndMessages(null);
         }
         documentController.onCloseActivity();
-
     }
 
     private void updateAnimation(final TranslateAnimation a) {

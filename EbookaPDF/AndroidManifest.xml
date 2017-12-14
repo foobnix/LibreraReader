@@ -3,7 +3,7 @@
     package="com.foobnix.pdf.reader"
     android:installLocation="auto"
     android:versionCode="470"
-    android:versionName="7.3.62" >
+    android:versionName="7.3.64" >
 
     <uses-sdk
         android:minSdkVersion="14"
@@ -189,22 +189,18 @@
                 <category android:name="android.intent.category.MULTIWINDOW_LAUNCHER" />
             </intent-filter>
             <intent-filter>
-                <action android:name="android.intent.action.PROCESS_TEXT" />
-
-                <category android:name="android.intent.category.DEFAULT" />
+                <action android:name="android.intent.action.PROCESS_TEXT1" />
+                <category android:name="android.intent.category.DEFAULT1" />
 
                 <data android:mimeType="text/plain" />
             </intent-filter>
             <intent-filter>
-                <action android:name="android.intent.action.SEARCH" />
-
-                <category android:name="android.intent.category.DEFAULT" />
+                <action android:name="android.intent.action.SEARCH1" />
+                <category android:name="android.intent.category.DEFAULT1" />
             </intent-filter>
             <intent-filter>
-                <action android:name="android.intent.action.SEND" />
-
-                <category android:name="android.intent.category.DEFAULT" />
-
+                <action android:name="android.intent.action.SEND1" />
+                <category android:name="android.intent.category.DEFAULT1" />
                 <data android:mimeType="text/plain" />
             </intent-filter>
         </activity>
@@ -217,7 +213,7 @@
             android:screenOrientation="behind" >
         </activity>
 
-        <!-- PLAY_SERVICE -->
+        <!-- PLAY_SERVICE --><meta-data android:name="com.google.android.gms.version" android:value="@integer/google_play_services_version"/>
         <meta-data
             android:name="com.google.android.gms.version"
             android:value="@integer/google_play_services_version" />

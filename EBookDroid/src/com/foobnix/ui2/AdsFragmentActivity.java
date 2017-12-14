@@ -1,6 +1,8 @@
 package com.foobnix.ui2;
 
 import com.foobnix.pdf.info.MyADSProvider;
+import com.foobnix.tts.TTSEngine;
+import com.foobnix.tts.TTSNotification;
 
 import android.annotation.TargetApi;
 import android.content.res.Configuration;
@@ -67,6 +69,8 @@ public abstract class AdsFragmentActivity extends FragmentActivity {
     }
 
     public void showInterstial() {
+        TTSNotification.hideNotification();
+        TTSEngine.get().shutdown();
         if (myAds.showInterstial()) {
             // ok
         } else {

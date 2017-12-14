@@ -214,8 +214,7 @@ public class ViewerActivity extends AbstractActionActivity<ViewerActivity, Viewe
         @Override
         public void run() {
             LOG.d("Close App");
-            // AppState.get().lastA = ViewerActivity.class.getSimpleName();
-            getController().closeActivity(null);
+            getController().closeActivityFinal(null);
             MainTabs2.closeApp(ViewerActivity.this);
         }
     };
