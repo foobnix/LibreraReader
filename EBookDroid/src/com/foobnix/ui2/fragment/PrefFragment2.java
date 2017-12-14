@@ -386,7 +386,6 @@ public class PrefFragment2 extends UIFragment {
                         AppState.getInstance().isWhiteTheme = true;
                         AppState.get().isInkMode = false;
 
-
                         AppState.getInstance().contrastImage = 0;
                         AppState.getInstance().brigtnessImage = 0;
                         AppState.getInstance().bolderTextOnImage = false;
@@ -407,7 +406,6 @@ public class PrefFragment2 extends UIFragment {
                     public boolean onMenuItemClick(MenuItem item) {
                         AppState.getInstance().isWhiteTheme = false;
                         AppState.get().isInkMode = false;
-
 
                         AppState.getInstance().contrastImage = 0;
                         AppState.getInstance().brigtnessImage = 0;
@@ -450,7 +448,8 @@ public class PrefFragment2 extends UIFragment {
 
                 final PopupMenu popupMenu = new PopupMenu(v.getContext(), v);
 
-                final List<String> codes = Arrays.asList("en", "ar", "de", "es", "fa", "fi", "fr", "he", "hi", "hu", "id", "it", "ja", "ko", "lt", "nl", "no", "pl", "pt", "ro", "ru", "sk", "sv", "sw", "th", "tr", "uk", "vi", "zh");
+                final List<String> codes = Arrays.asList("en", "ar", "de", "es", "fa", "fi", "fr", "he", "hi", "hu", "id", "it", "ja", "ko", "lt", "nl", "no", "pl", "pt", "ro", "ru", "sk", "sv", "sw", "th", "tr", "uk",
+                        "vi", "zh");
                 List<String> langs = new ArrayList<String>();
                 for (String code : codes) {
                     langs.add(DialogTranslateFromTo.getLanuageByCode(code) + ":" + code);
@@ -535,10 +534,18 @@ public class PrefFragment2 extends UIFragment {
             @Override
             public void onCheckedChanged(final CompoundButton buttonView, final boolean isChecked) {
                 AppState.get().isFirstSurname = isChecked;
+                if (isChecked) {
+                    AlertDialogs.showDialog(getActivity(), getActivity().getString(R.string.you_need_to_update_the_library), getString(R.string.ok), new Runnable() {
+
+                        @Override
+                        public void run() {
+                            onScan();
+                        }
+                    });
+                }
 
             }
         });
-
 
         rememberMode = (CheckBox) inflate.findViewById(R.id.isRememberMode);
         rememberMode.setChecked(AppState.getInstance().isRememberMode);
@@ -1458,7 +1465,6 @@ public class PrefFragment2 extends UIFragment {
         }
     };
 
-
     public View underline(View text) {
         CharSequence myText = ((TextView) text).getText();
         ((TextView) text).setText(Html.fromHtml("<u>" + myText + "</u>"));
@@ -1523,13 +1529,11 @@ public class PrefFragment2 extends UIFragment {
         isRememberDictionary.setChecked(AppState.getInstance().isRememberDictionary);
         selectedDictionaly.setText(DialogTranslateFromTo.getSelectedDictionaryUnderline());
 
-
     }
 
     public void onColorChoose() {
 
     }
-
 
     public void initKeys() {
         nextKeys.setText(String.format("%s: %s", getActivity().getString(R.string.next_keys), AppState.keyToString(AppState.getInstance().nextKeys)));
@@ -1543,7 +1547,6 @@ public class PrefFragment2 extends UIFragment {
             initKeys();
         }
     };
-
 
     private TextView nextKeys;
     private TextView prevKeys;
@@ -1643,7 +1646,6 @@ public class PrefFragment2 extends UIFragment {
         ((TextView) getActivity().findViewById(R.id.fullscreenOnOff)).setText(TxtUtils.underline(getString(textID)));
 
     }
-
 
     private void saveChanges() {
         if (getActivity() != null) {

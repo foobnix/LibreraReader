@@ -424,4 +424,5 @@
    <string name="system_language">सिस्टम भाषा</string>
    <string name="bluelight_filter">ब्लूलाइट फिल्टर</string>
    <string name="what_is_new_in">नया क्या है</string>
+   <string name="you_need_to_update_the_library">आपको पुस्तकालय को अपडेट करना होगा</string>
 </resources>

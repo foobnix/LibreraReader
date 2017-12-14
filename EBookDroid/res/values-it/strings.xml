@@ -424,4 +424,5 @@
    <string name="system_language">Linguaggio di sistema</string>
    <string name="bluelight_filter">Filtro BlueLight</string>
    <string name="what_is_new_in">Cosa c\'è di nuovo in</string>
+   <string name="you_need_to_update_the_library">È necessario aggiornare la libreria</string>
 </resources>

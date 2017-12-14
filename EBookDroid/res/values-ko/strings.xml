@@ -424,4 +424,5 @@
    <string name="system_language">시스템 언어</string>
    <string name="bluelight_filter">BlueLight 필터</string>
    <string name="what_is_new_in">무엇이 새로운가?</string>
+   <string name="you_need_to_update_the_library">라이브러리를 업데이트해야합니다.</string>
 </resources>

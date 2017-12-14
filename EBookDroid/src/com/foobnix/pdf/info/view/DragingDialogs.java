@@ -2414,8 +2414,7 @@ public class DragingDialogs {
                 });
 
                 CheckBox isCustomizeBgAndColors = (CheckBox) inflate.findViewById(R.id.isCustomizeBgAndColors);
-                // isCustomizeBgAndColors.setVisibility(controller.isTextFormat()
-                // ? View.GONE : View.VISIBLE);
+                isCustomizeBgAndColors.setVisibility(controller.isTextFormat() ? View.GONE : View.VISIBLE);
                 isCustomizeBgAndColors.setChecked(AppState.getInstance().isCustomizeBgAndColors);
                 isCustomizeBgAndColors.setOnCheckedChangeListener(new OnCheckedChangeListener() {
 

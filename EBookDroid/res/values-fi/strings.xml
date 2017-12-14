@@ -424,4 +424,5 @@
    <string name="system_language">Järjestelmäkieli</string>
    <string name="bluelight_filter">BlueLight-suodatin</string>
    <string name="what_is_new_in">Mikä on uutta</string>
+   <string name="you_need_to_update_the_library">Sinun on päivitettävä kirjasto</string>
 </resources>

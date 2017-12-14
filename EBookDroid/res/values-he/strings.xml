@@ -424,4 +424,5 @@
    <string name="system_language">שפת מערכת</string>
    <string name="bluelight_filter">מסנן</string>
    <string name="what_is_new_in">מה חדש ב</string>
+   <string name="you_need_to_update_the_library">עליך לעדכן את הספריה</string>
 </resources>
