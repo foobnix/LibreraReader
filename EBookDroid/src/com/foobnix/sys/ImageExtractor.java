@@ -370,10 +370,7 @@ public class ImageExtractor implements ImageDownloader {
                     Bitmap proccessCoverPage = proccessCoverPage(pageUrl);
                     return generalCoverWithEffect(pageUrl, proccessCoverPage);
                 } finally {
-                    if (codeCache != null) {
-                        codeCache.recycle();
-                        codeCache = null;
-                    }
+                    clearCache();
                     MagicHelper.isNeedBC = true;
                 }
             } else if (page == COVER_PAGE_NO_EFFECT) {
@@ -470,6 +467,13 @@ public class ImageExtractor implements ImageDownloader {
 
     static CodecDocument codeCache;
     static String pathCache;
+
+    public static void clearCache() {
+        if (codeCache != null) {
+            codeCache.recycle();
+            codeCache = null;
+        }
+    }
 
     public static CodecDocument getNewCodecContext(final String path, String passw, int w, int h) {
         if (path.equals(pathCache) && codeCache != null && !codeCache.isRecycled()) {

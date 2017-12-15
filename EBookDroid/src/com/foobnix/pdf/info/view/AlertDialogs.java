@@ -48,7 +48,11 @@ public class AlertDialogs {
         builder.show();
     }
 
-    public static void showDialog(final Context c, final String message, String okButton, final Runnable action) {
+    public static void showDialog(final Context c, final String message, String okButton, final Runnable onAction) {
+        showDialog(c, message, okButton, onAction, null);
+    }
+
+    public static void showDialog(final Context c, final String message, String okButton, final Runnable onAction, final Runnable onCancel) {
         final AlertDialog.Builder builder = new AlertDialog.Builder(c);
         builder.setMessage(message);
         builder.setCancelable(true);
@@ -56,8 +60,8 @@ public class AlertDialogs {
 
             @Override
             public void onClick(final DialogInterface dialog, final int id) {
-                if (action != null) {
-                    action.run();
+                if (onAction != null) {
+                    onAction.run();
                 }
 
             }
@@ -66,7 +70,9 @@ public class AlertDialogs {
 
             @Override
             public void onClick(final DialogInterface dialog, final int id) {
-
+                if (onCancel != null) {
+                    onCancel.run();
+                }
             }
         });
         builder.show();

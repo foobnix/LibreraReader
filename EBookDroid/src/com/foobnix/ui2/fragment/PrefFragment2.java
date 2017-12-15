@@ -96,9 +96,6 @@ public class PrefFragment2 extends UIFragment {
         return false;
     }
 
-    @Override
-    public void onSelectFragment() {
-    }
 
     @Override
     public void notifyFragment() {
@@ -527,7 +524,7 @@ public class PrefFragment2 extends UIFragment {
             }
         });
 
-        CheckBox isFirstSurname = (CheckBox) inflate.findViewById(R.id.isFirstSurname);
+        final CheckBox isFirstSurname = (CheckBox) inflate.findViewById(R.id.isFirstSurname);
         isFirstSurname.setChecked(AppState.get().isFirstSurname);
         isFirstSurname.setOnCheckedChangeListener(new OnCheckedChangeListener() {
 
@@ -540,6 +537,12 @@ public class PrefFragment2 extends UIFragment {
                         @Override
                         public void run() {
                             onScan();
+                        }
+                    }, new Runnable() {
+
+                        @Override
+                        public void run() {
+                            isFirstSurname.setChecked(false);
                         }
                     });
                 }

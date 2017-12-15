@@ -37,6 +37,7 @@ import com.foobnix.pdf.info.widget.ChooserDialogFragment;
 import com.foobnix.pdf.info.wrapper.AppBookmark;
 import com.foobnix.pdf.info.wrapper.AppState;
 import com.foobnix.pdf.search.activity.HorizontalViewActivity;
+import com.foobnix.sys.ImageExtractor;
 import com.foobnix.zipmanager.ZipDialog;
 import com.nostra13.universalimageloader.core.ImageLoader;
 
@@ -589,6 +590,7 @@ public class ExtUtils {
             Toast.makeText(c, R.string.file_not_found, Toast.LENGTH_LONG).show();
             return false;
         }
+        ImageExtractor.clearCache();
         LOG.d("showDocument", uri.getPath());
 
         if (AppState.getInstance().isAlwaysOpenAsMagazine) {

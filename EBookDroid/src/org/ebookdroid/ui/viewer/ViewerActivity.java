@@ -100,10 +100,10 @@ public class ViewerActivity extends AbstractActionActivity<ViewerActivity, Viewe
                 if (bs != null) {
                     // AppState.getInstance().isLocked = bs.isLocked;
                     AppState.getInstance().autoScrollSpeed = bs.speed;
-                    AppState.get().isCut = bs.splitPages;
+                    AppState.get().isCut = bs.isTextFormat() ? false : bs.splitPages;
                     AppState.get().isCrop = bs.cropPages;
-                    AppState.get().isDouble = bs.doublePages;
-                    AppState.get().isDoubleCoverAlone = bs.doublePagesCover;
+                    AppState.get().isDouble = false;
+                    AppState.get().isDoubleCoverAlone = false;
                     AppState.get().isLocked = bs.isLocked;
                     TempHolder.get().pageDelta = bs.pageDelta;
                     if (AppState.get().isCropPDF && !bs.isTextFormat()) {
@@ -127,7 +127,6 @@ public class ViewerActivity extends AbstractActionActivity<ViewerActivity, Viewe
         setContentView(R.layout.document_view);
 
         Android6.checkPermissions(this);
-
 
         getController().createWrapper(this);
         frameLayout = (FrameLayout) findViewById(R.id.documentView);
@@ -219,7 +218,6 @@ public class ViewerActivity extends AbstractActionActivity<ViewerActivity, Viewe
         }
     };
 
-
     @Override
     protected void onDestroy() {
         if (handler != null) {
@@ -261,7 +259,6 @@ public class ViewerActivity extends AbstractActionActivity<ViewerActivity, Viewe
 
         if (ExtUtils.isTextFomat(getIntent()) && isInitOrientation == AppState.getInstance().orientation) {
 
-
             if (rotatoinDialog != null) {
                 try {
                     rotatoinDialog.dismiss();
@@ -287,7 +284,6 @@ public class ViewerActivity extends AbstractActionActivity<ViewerActivity, Viewe
         } else {
             doConifChange();
         }
-
 
         isInitOrientation = AppState.getInstance().orientation;
     }
@@ -394,7 +390,5 @@ public class ViewerActivity extends AbstractActionActivity<ViewerActivity, Viewe
         getController().closeActivityFinal(null);
 
     }
-
-
 
 }

@@ -43,8 +43,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
-                android:layout_marginLeft="45dip"
-                android:layout_marginRight="45dip"
+                android:layout_marginLeft="50dip"
+                android:layout_marginRight="50dip"
                 android:layout_weight="1"
                 android:orientation="vertical" >
 

@@ -121,6 +121,7 @@ public class MuPdfDocument extends AbstractCodecDocument {
         TempHolder.lock.lock();
         try {
             free(documentHandle);
+            LOG.d("Mupdf freeDocument");
         } finally {
             TempHolder.lock.unlock();
         }
