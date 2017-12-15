@@ -7,7 +7,6 @@ import org.ebookdroid.core.codec.CodecDocument;
 import org.ebookdroid.core.codec.CodecPage;
 import org.greenrobot.eventbus.EventBus;
 
-import com.foobnix.android.utils.Dips;
 import com.foobnix.android.utils.LOG;
 import com.foobnix.android.utils.TxtUtils;
 import com.foobnix.android.utils.Vibro;
@@ -191,7 +190,7 @@ public class TTSService extends Service {
 
     public CodecDocument getDC() {
         try {
-            return ImageExtractor.getNewCodecContext(AppState.get().lastBookPath, "", Dips.screenWidth(), Dips.screenHeight());
+            return ImageExtractor.getNewCodecContext(AppState.get().lastBookPath, "", 0, 0);
         } catch (Exception e) {
             LOG.e(e);
             return null;
