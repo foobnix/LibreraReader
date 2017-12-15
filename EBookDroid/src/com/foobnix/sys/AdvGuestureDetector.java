@@ -280,8 +280,8 @@ public class AdvGuestureDetector extends SimpleOnGestureListener implements IMul
      */
     @Override
     public void onLongPress(final MotionEvent e) {
-
-        if (!AppState.get().longTapEnable) {
+        Vibro.vibrate();
+        if (!AppState.get().longTapEnable || AppState.get().isCut || AppState.get().isCrop) {
             return;
         }
 
@@ -291,7 +291,6 @@ public class AdvGuestureDetector extends SimpleOnGestureListener implements IMul
             docCtrl.onCrop();
         }
         AppState.get().selectedText = avc.processLongTap(true, e, e);
-        Vibro.vibrate();
     }
 
     /**

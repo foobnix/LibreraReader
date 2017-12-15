@@ -278,16 +278,15 @@ public class PageImaveView extends View {
 
         @Override
         public void onLongPress(MotionEvent e) {
-            if (!AppState.get().longTapEnable) {
+            Vibro.vibrate();
+            if (!AppState.get().longTapEnable || AppState.get().isCut || AppState.get().isCrop) {
                 return;
             }
             isLognPress = true;
             xInit = e.getX();
             yInit = e.getY();
             String selectText = selectText(xInit, yInit, e.getX(), e.getY());
-            if (TxtUtils.isNotEmpty(selectText)) {
-                Vibro.vibrate();
-            } else {
+            if (TxtUtils.isEmpty(selectText)) {
                 AppState.get().selectedText = null;
             }
         }
