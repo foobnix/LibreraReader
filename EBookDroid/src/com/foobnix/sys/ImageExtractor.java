@@ -467,6 +467,7 @@ public class ImageExtractor implements ImageDownloader {
 
     static CodecDocument codeCache;
     static String pathCache;
+    static int hCache;
 
     public static void clearCache() {
         if (codeCache != null) {
@@ -476,7 +477,7 @@ public class ImageExtractor implements ImageDownloader {
     }
 
     public static CodecDocument getNewCodecContext(final String path, String passw, int w, int h) {
-        if (path.equals(pathCache) && codeCache != null && !codeCache.isRecycled()) {
+        if (path.equals(pathCache) && hCache == h && codeCache != null && !codeCache.isRecycled()) {
             LOG.d("getNewCodecContext from cache");
             return codeCache;
         }
@@ -488,6 +489,7 @@ public class ImageExtractor implements ImageDownloader {
         pageCount = 0;
         pathCache = null;
         codeCache = null;
+        hCache = -1;
 
         LOG.d("getCodecContext before", w, h);
         if (w <= 0 || h <= 0) {
@@ -519,6 +521,7 @@ public class ImageExtractor implements ImageDownloader {
         pageCount = openDocument.getPageCount(w, h, AppState.get().fontSizeSp);
         pathCache = path;
         codeCache = openDocument;
+        hCache = h;
 
         TempHolder.get().init(openDocument, path);
         return openDocument;

@@ -13,6 +13,7 @@
     <uses-permission android:name="android.permission.VIBRATE" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
 
     <!-- android:name="com.foobnix.pdf.info.TestAppName" -->
     <application
@@ -21,6 +22,46 @@
         android:label="@string/app_name"
         android:largeHeap="true"
         android:theme="@style/StyledIndicatorsWhite" >
+        <!-- firebase start -->
+        <provider android:authorities="com.foobnix.pdf.reader.firebaseinitprovider" android:name="com.google.firebase.provider.FirebaseInitProvider" android:exported="false" android:initOrder="100"/>
+
+        
+        <receiver android:name="com.google.android.gms.measurement.AppMeasurementReceiver" android:enabled="true" android:exported="false">
+      </receiver>
+      <receiver android:name="com.google.android.gms.measurement.AppMeasurementInstallReferrerReceiver" android:permission="android.permission.INSTALL_PACKAGES" android:enabled="true" android:exported="true">
+          <intent-filter>
+              <action android:name="com.android.vending.INSTALL_REFERRER"/>
+          </intent-filter>
+      </receiver>
+      <service android:name="com.google.android.gms.measurement.AppMeasurementService" android:enabled="true" android:exported="false"/>
+      <service android:name="com.google.android.gms.measurement.AppMeasurementJobService" android:permission="android.permission.BIND_JOB_SERVICE" android:enabled="true" android:exported="false"/>
+ 
+      <receiver android:name="com.google.android.gms.measurement.AppMeasurementReceiver" android:enabled="true" android:exported="false">
+      </receiver>
+      <service android:name="com.google.android.gms.measurement.AppMeasurementService" android:enabled="true" android:exported="false"/>
+   
+       <receiver android:name="com.google.firebase.iid.FirebaseInstanceIdReceiver" android:exported="true" android:permission="com.google.android.c2dm.permission.SEND">
+            <intent-filter>
+                <action android:name="com.google.android.c2dm.intent.RECEIVE"/>
+                <category android:name="com.foobnix.pdf.reader"/>
+            </intent-filter>
+        </receiver>
+
+        <!-- Internal (not exported) receiver used by the app to start its own exported services
+             without risk of being spoofed. -->
+        <receiver android:name="com.google.firebase.iid.FirebaseInstanceIdInternalReceiver" android:exported="false"/>
+
+        <!-- FirebaseInstanceIdService performs security checks at runtime,
+             no need for explicit permissions despite exported="true" -->
+        <service android:name="com.google.firebase.iid.FirebaseInstanceIdService" android:exported="true">
+            <intent-filter android:priority="-500">
+                <action android:name="com.google.firebase.INSTANCE_ID_EVENT"/>
+            </intent-filter>
+        </service>
+  
+        
+        <!-- firebase end -->
+        
         <provider
             android:name="android.support.v4.content.FileProvider"
             android:authorities="com.foobnix.pdf.reader.provider"
@@ -172,6 +213,7 @@
             android:windowSoftInputMode="stateHidden" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN1" />
+
                 <category android:name="android.intent.category.LAUNCHER1" />
             </intent-filter>
         </activity>
@@ -185,22 +227,27 @@
             android:windowSoftInputMode="stateHidden" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
                 <category android:name="android.intent.category.MULTIWINDOW_LAUNCHER" />
             </intent-filter>
             <intent-filter>
                 <action android:name="android.intent.action.PROCESS_TEXT1" />
+
                 <category android:name="android.intent.category.DEFAULT1" />
 
                 <data android:mimeType="text/plain" />
             </intent-filter>
             <intent-filter>
                 <action android:name="android.intent.action.SEARCH1" />
+
                 <category android:name="android.intent.category.DEFAULT1" />
             </intent-filter>
             <intent-filter>
                 <action android:name="android.intent.action.SEND1" />
+
                 <category android:name="android.intent.category.DEFAULT1" />
+
                 <data android:mimeType="text/plain" />
             </intent-filter>
         </activity>
@@ -212,11 +259,6 @@
             android:resizeableActivity="true"
             android:screenOrientation="behind" >
         </activity>
-
-        <!-- PLAY_SERVICE --><meta-data android:name="com.google.android.gms.version" android:value="@integer/google_play_services_version"/>
-        <meta-data
-            android:name="com.google.android.gms.version"
-            android:value="@integer/google_play_services_version" />
 
         <activity
             android:name="com.google.android.gms.ads.AdActivity"

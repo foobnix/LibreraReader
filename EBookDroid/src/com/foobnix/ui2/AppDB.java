@@ -204,7 +204,14 @@ public class AppDB {
         for (FileMeta meta : list) {
             BookSettings bs = SettingsManager.getTempBookSettings(meta.getPath());
             try {
-                meta.setIsRecentProgress((float) (bs.currentPage.viewIndex + 1) / bs.getPages());
+                float isRecentProgress = (float) (bs.currentPage.viewIndex + 1) / bs.getPages();
+                if (isRecentProgress > 1) {
+                    isRecentProgress = 1;
+                }
+                if (isRecentProgress < 0) {
+                    isRecentProgress = 0;
+                }
+                meta.setIsRecentProgress(isRecentProgress);
             } catch (Exception e) {
                 meta.setIsRecentProgress(1f);
             }

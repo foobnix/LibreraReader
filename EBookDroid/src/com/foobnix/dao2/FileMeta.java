@@ -57,8 +57,8 @@ public class FileMeta {
     }
 
     @Generated
-    public FileMeta(String path, String title, String author, String sequence, String genre, String child, String annotation, Integer sIndex, Integer cusType, String ext, Long size, Long date, String dateTxt, String sizeTxt, String pathTxt,
-            Boolean isStar, Long isStarTime, Boolean isRecent, Long isRecentTime, Float isRecentProgress, Boolean isSearchBook, String lang) {
+    public FileMeta(String path, String title, String author, String sequence, String genre, String child, String annotation, Integer sIndex, Integer cusType, String ext, Long size, Long date, String dateTxt,
+            String sizeTxt, String pathTxt, Boolean isStar, Long isStarTime, Boolean isRecent, Long isRecentTime, Float isRecentProgress, Boolean isSearchBook, String lang) {
         this.path = path;
         this.title = title;
         this.author = author;
@@ -236,6 +236,9 @@ public class FileMeta {
     }
 
     public Float getIsRecentProgress() {
+        if (isRecentProgress == null) {
+            return 0f;
+        }
         return isRecentProgress;
     }
 

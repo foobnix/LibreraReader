@@ -404,19 +404,16 @@ public class FileMetaAdapter extends AppRecycleAdapter<FileMeta, RecyclerView.Vi
             holder.date.setText(fileMeta.getDateTxt());
         }
 
-        double recentProgress = (fileMeta.getIsRecentProgress() != null && fileMeta.getIsRecentProgress() <= 1f) ? fileMeta.getIsRecentProgress() : 0;
+        double recentProgress = fileMeta.getIsRecentProgress();
 
         if (holder.idProgressColor != null && recentProgress > 0) {
-            if (fileMeta.getIsRecentProgress() > 1) {
-                fileMeta.setIsRecentProgress(1f);
-            }
             holder.progresLayout.setVisibility(View.VISIBLE);
             holder.idPercentText.setVisibility(View.VISIBLE);
             holder.idProgressColor.setBackgroundColor(TintUtil.color);
             int width = adapterType == ADAPTER_LIST_COMPACT ? Dips.dpToPx(80) : Dips.dpToPx(200);
             holder.idProgressBg.getLayoutParams().width = width;
             holder.idProgressColor.getLayoutParams().width = (int) (width * recentProgress);
-            holder.idPercentText.setText("" + (int) (100 * recentProgress) + "%");
+            holder.idPercentText.setText("" + Math.round(100f * recentProgress) + "%");
 
         } else if (holder.progresLayout != null) {
             holder.progresLayout.setVisibility(View.GONE);

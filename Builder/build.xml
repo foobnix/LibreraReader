@@ -4,31 +4,22 @@
 
 	<target name="prepare-packages">
 
-	    <!-- section 1 -->
-		<replaceregexp file="../EbookaPDF/AndroidManifest.xml"
-			match='package="com.foobnix.pro.pdf.reader"' replace='package="${pdf.package}"' />
-		<replaceregexp file="../EbookaPDF/AndroidManifest.xml"
-			match='package="com.foobnix.pdf.reader"' replace='package="${pdf.package}"' />
-		<replaceregexp file="../EbookaPDF/AndroidManifest.xml"
-			match='package="${package.classic}"' replace='package="${pdf.package}"' />
-		<replaceregexp file="../EbookaPDF/AndroidManifest.xml"
-			match='package="${package.droid}"' replace='package="${pdf.package}"' />
-		<replaceregexp file="../EbookaPDF/AndroidManifest.xml"
-			match='package="${package.ink}"' replace='package="${pdf.package}"' />
-
-		<!-- section 2 -->
-		<replaceregexp file="../EbookaPDF/AndroidManifest.xml"
-			match='android:authorities="com.foobnix.pro.pdf.reader.provider"'
-			replace='android:authorities="${pdf.package}.provider"' />
-		<replaceregexp file="../EbookaPDF/AndroidManifest.xml"
-			match='android:authorities="com.foobnix.pdf.reader.provider"'
-			replace='android:authorities="${pdf.package}.provider"' />
-		<replaceregexp file="../EbookaPDF/AndroidManifest.xml"
-			match='android:authorities="${package.classic}.provider"' replace='android:authorities="${pdf.package}.provider"' />
-		<replaceregexp file="../EbookaPDF/AndroidManifest.xml"
-			match='android:authorities="${package.droid}.provider"' replace='android:authorities="${pdf.package}.provider"' />
-		<replaceregexp file="../EbookaPDF/AndroidManifest.xml"
-			match='android:authorities="${package.ink}.provider"' replace='android:authorities="${pdf.package}.provider"' />
+	   <!-- section 2 -->
+	
+	<replaceregexp file="../EbookaPDF/AndroidManifest.xml"
+		match='${package.pdf}"' replace='${pdf.package}' />
+	
+	<replaceregexp file="../EbookaPDF/AndroidManifest.xml"
+		match='${package.pro}' replace='${pdf.package}' />
+	
+	<replaceregexp file="../EbookaPDF/AndroidManifest.xml"
+		match='${package.classic}' replace='${pdf.package}' />
+	
+	<replaceregexp file="../EbookaPDF/AndroidManifest.xml"
+		match='${package.droid}' replace='${pdf.package}' />
+	
+	<replaceregexp file="../EbookaPDF/AndroidManifest.xml"
+		match='${package.ink}' replace='${pdf.package}' />
 		
 	<!-- section 3 -->
 		<replaceregexp file="../EbookaPDF/AndroidManifest.xml"
@@ -163,9 +154,6 @@
 
 
 	<target name="pro-replace">
-		<replaceregexp file="../EbookaPDF/AndroidManifest.xml"
-			match='&lt;meta-data android:name="com.google.android.gms.version" android:value="@integer/google_play_services_version"/>'
-			replace="" />
 
 		<replaceregexp file="../EBookDroid/project.properties"
 			match='android.library.reference.1=../my-google-play-services-lib'
@@ -175,9 +163,6 @@
 	</target>
 
 	<target name="free-replace" depends="pro-replace">
-		<replaceregexp file="../EbookaPDF/AndroidManifest.xml"
-			match='&lt;!-- PLAY_SERVICE -->'
-			replace='&lt;!-- PLAY_SERVICE -->&lt;meta-data android:name="com.google.android.gms.version" android:value="@integer/google_play_services_version"/>' />
 		<replaceregexp file="../EBookDroid/project.properties"
 			match='android.library.reference.1=../my-google-play-services-fake'
 			replace='android.library.reference.1=../my-google-play-services-lib' />
@@ -362,7 +347,7 @@
 
 		<antcall target="clean-all" />
 
-		<property name="pdf.package" value="com.foobnix.pro.pdf.reader" />
+		<property name="pdf.package" value="${package.pro}" />
 		<property name="pdf.icon" value="@drawable/icon_pdf_pro" />
 		<property name="pdf.app.name" value="${name.pro}" />
 		<property name="pdf.export.name" value="${name.pro}-PRO" />

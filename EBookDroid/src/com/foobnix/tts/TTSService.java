@@ -7,9 +7,9 @@ import org.ebookdroid.core.codec.CodecDocument;
 import org.ebookdroid.core.codec.CodecPage;
 import org.greenrobot.eventbus.EventBus;
 
-import com.foobnix.android.utils.Dips;
 import com.foobnix.android.utils.LOG;
 import com.foobnix.android.utils.TxtUtils;
+import com.foobnix.android.utils.Vibro;
 import com.foobnix.pdf.info.R;
 import com.foobnix.pdf.info.wrapper.AppState;
 import com.foobnix.sys.ImageExtractor;
@@ -24,7 +24,8 @@ import android.media.AudioManager;
 import android.media.AudioManager.OnAudioFocusChangeListener;
 import android.os.Build;
 import android.os.IBinder;
-import android.os.Vibrator;
+import android.os.PowerManager;
+import android.os.PowerManager.WakeLock;
 import android.speech.tts.TextToSpeech.OnUtteranceCompletedListener;
 import android.speech.tts.UtteranceProgressListener;
 import android.support.v4.media.session.MediaButtonReceiver;
@@ -40,10 +41,9 @@ public class TTSService extends Service {
     private static final String TAG = "TTSService";
 
     public static String ACTION_PLAY_CURRENT_PAGE = "ACTION_PLAY_CURRENT_PAGE";
-
+    private WakeLock wakeLock;
     public TTSService() {
         LOG.d(TAG, "Create constructor");
-
     }
 
     AudioManager mAudioManager;
@@ -53,6 +53,10 @@ public class TTSService extends Service {
     @Override
     public void onCreate() {
         LOG.d(TAG, "Create");
+
+        PowerManager powerManager = (PowerManager) getSystemService(POWER_SERVICE);
+        wakeLock = powerManager.newWakeLock(PowerManager.PARTIAL_WAKE_LOCK, "TTSService");
+
         AppState.get().load(getApplicationContext());
         mAudioManager = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
         mAudioManager.requestAudioFocus(listener, AudioManager.STREAM_VOICE_CALL, AudioManager.AUDIOFOCUS_GAIN);
@@ -132,7 +136,7 @@ public class TTSService extends Service {
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
         MediaButtonReceiver.handleIntent(mMediaSessionCompat, intent);
-        LOG.d(TAG, "onStartCommand");
+        LOG.d(TAG, "onStartCommand", intent);
         if (intent == null) {
             return START_STICKY;
         }
@@ -145,14 +149,23 @@ public class TTSService extends Service {
 
         if (TTSNotification.TTS_STOP.equals(intent.getAction())) {
             TTSEngine.get().stop();
+            if (wakeLock.isHeld()) {
+                wakeLock.release();
+            }
         }
         if (TTSNotification.TTS_READ.equals(intent.getAction())) {
             TTSEngine.get().stop();
             playPage("", AppState.get().lastBookPage, null);
+            if (!wakeLock.isHeld()) {
+                wakeLock.acquire();
+            }
         }
         if (TTSNotification.TTS_NEXT.equals(intent.getAction())) {
             TTSEngine.get().stop();
             playPage("", AppState.get().lastBookPage + 1, null);
+            if (!wakeLock.isHeld()) {
+                wakeLock.acquire();
+            }
         }
 
         if (ACTION_PLAY_CURRENT_PAGE.equals(intent.getAction())) {
@@ -165,6 +178,9 @@ public class TTSService extends Service {
             if (pageNumber != -1) {
                 playPage("", pageNumber, anchor);
             }
+            if (!wakeLock.isHeld()) {
+                wakeLock.acquire();
+            }
 
         }
 
@@ -173,7 +189,7 @@ public class TTSService extends Service {
 
     public CodecDocument getDC() {
         try {
-            return ImageExtractor.getNewCodecContext(AppState.get().lastBookPath, "", Dips.screenWidth(), Dips.screenHeight());
+            return ImageExtractor.getNewCodecContext(AppState.get().lastBookPath, "", 0, 0);
         } catch (Exception e) {
             LOG.e(e);
             return null;
@@ -181,6 +197,7 @@ public class TTSService extends Service {
     }
 
     int emptyPageCount = 0;
+
 
     @TargetApi(Build.VERSION_CODES.ICE_CREAM_SANDWICH_MR1)
     private void playPage(String preText, int pageNumber, String anchor) {
@@ -198,10 +215,7 @@ public class TTSService extends Service {
 
                 TempHolder.get().timerFinishTime = 0;
 
-                Vibrator v = (Vibrator) LibreraApp.context.getSystemService(Context.VIBRATOR_SERVICE);
-                if (AppState.get().isVibration) {
-                    v.vibrate(1000);
-                }
+                Vibro.vibrate(1000);
 
                 try {
                     Thread.sleep(2000);
@@ -306,7 +320,6 @@ public class TTSService extends Service {
                 LOG.e(e);
             }
 
-
         }
 
     }
@@ -314,6 +327,9 @@ public class TTSService extends Service {
     @Override
     public void onDestroy() {
         super.onDestroy();
+        if (wakeLock.isHeld()) {
+            wakeLock.release();
+        }
         isActivated = false;
         TempHolder.get().timerFinishTime = 0;
         mMediaSessionCompat.setActive(false);

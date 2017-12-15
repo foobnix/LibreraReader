@@ -40,6 +40,7 @@ public class TTSEngine {
     }
 
     public void shutdown() {
+        LOG.d(TAG, "shutdown");
         if (ttsEngine != null) {
             ttsEngine.shutdown();
         }
@@ -78,6 +79,7 @@ public class TTSEngine {
 
     @TargetApi(Build.VERSION_CODES.ICE_CREAM_SANDWICH_MR1)
     public void stop() {
+        LOG.d(TAG, "stop");
         if (ttsEngine != null) {
             if (Build.VERSION.SDK_INT >= 15) {
                 ttsEngine.setOnUtteranceProgressListener(null);

@@ -57,6 +57,7 @@ import android.view.Gravity;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.Toast;
 
@@ -364,7 +365,7 @@ public class MainTabs2 extends AdsFragmentActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        pager.setKeepScreenOn(true);
+        getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
         // DocumentController.chooseFullScreen(this, false);
         TintUtil.updateAll();
         AppState.get().lastA = MainTabs2.class.getSimpleName();
@@ -407,7 +408,7 @@ public class MainTabs2 extends AdsFragmentActivity {
     @Override
     protected void onPause() {
         super.onPause();
-        pager.setKeepScreenOn(false);
+        getWindow().clearFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
         AppState.getInstance().save(this);
         LocalBroadcastManager.getInstance(this).unregisterReceiver(broadcastReceiver);
         RecentUpates.updateAll(this);
