@@ -413,6 +413,7 @@ public class FileMetaAdapter extends AppRecycleAdapter<FileMeta, RecyclerView.Vi
             int width = adapterType == ADAPTER_LIST_COMPACT ? Dips.dpToPx(80) : Dips.dpToPx(200);
             holder.idProgressBg.getLayoutParams().width = width;
             holder.idProgressColor.getLayoutParams().width = (int) (width * recentProgress);
+            holder.idProgressColor.setLayoutParams(holder.idProgressColor.getLayoutParams());
             holder.idPercentText.setText("" + Math.round(100f * recentProgress) + "%");
 
         } else if (holder.progresLayout != null) {

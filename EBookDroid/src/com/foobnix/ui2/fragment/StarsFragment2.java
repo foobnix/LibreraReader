@@ -144,10 +144,6 @@ public class StarsFragment2 extends UIFragment<FileMeta> {
         return false;
     }
 
-    @Override
-    public void onSelectFragment() {
-        populate();
-    }
 
     @Override
     public List<FileMeta> prepareDataInBackground() {
@@ -179,6 +175,7 @@ public class StarsFragment2 extends UIFragment<FileMeta> {
 
     }
 
+
     @Override
     public void notifyFragment() {
         if (recentAdapter != null) {
@@ -188,7 +185,7 @@ public class StarsFragment2 extends UIFragment<FileMeta> {
 
     @Override
     public void resetFragment() {
-        onGridList();
+        populate();
     }
 
 }

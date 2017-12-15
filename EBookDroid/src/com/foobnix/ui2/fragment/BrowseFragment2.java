@@ -509,25 +509,24 @@ public class BrowseFragment2 extends UIFragment<FileMeta> {
         return onBackAction();
     }
 
-    @Override
-    public void notifyFragment() {
-        if (searchAdapter != null) {
-            searchAdapter.notifyDataSetChanged();
-            // populate();
-        }
-    }
-
-    @Override
-    public void resetFragment() {
-        onGridList();
-    }
-
     public void setOnPositiveAction(ResultResponse<String> onPositiveAction) {
         this.onPositiveAction = onPositiveAction;
     }
 
     public void setOnCloseAction(ResultResponse<String> onCloseAction) {
         this.onCloseAction = onCloseAction;
+    }
+
+    @Override
+    public void notifyFragment() {
+        if (searchAdapter != null) {
+            searchAdapter.notifyDataSetChanged();
+        }
+    }
+
+    @Override
+    public void resetFragment() {
+        populate();
     }
 
 }

@@ -686,8 +686,7 @@ public class SearchFragment2 extends UIFragment<FileMeta> {
 
     @Override
     public void resetFragment() {
-        onGridList();
-        searchAndOrderAsync();
+        populate();
     }
 
 }

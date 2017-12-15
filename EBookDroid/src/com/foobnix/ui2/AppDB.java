@@ -213,6 +213,7 @@ public class AppDB {
                 }
                 meta.setIsRecentProgress(isRecentProgress);
             } catch (Exception e) {
+                LOG.d(e);
                 meta.setIsRecentProgress(1f);
             }
         }

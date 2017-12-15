@@ -72,7 +72,7 @@ public abstract class UIFragment<T> extends Fragment {
 
     int listHash = 0;
 
-    public void onSelectFragment() {
+    public final void onSelectFragment() {
         if (getActivity() == null) {
             return;
         }
@@ -80,6 +80,8 @@ public abstract class UIFragment<T> extends Fragment {
             LOG.d("TempHolder.listHash", listHash, TempHolder.listHash);
             resetFragment();
             listHash = TempHolder.listHash;
+        } else {
+            notifyFragment();
         }
     }
 
@@ -124,7 +126,6 @@ public abstract class UIFragment<T> extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
-        onSelectFragment();
         notifyFragment();
         LocalBroadcastManager.getInstance(getActivity()).registerReceiver(broadcastReceiver, new IntentFilter(INTENT_TINT_CHANGE));
         EventBus.getDefault().register(this);
@@ -192,6 +193,7 @@ public abstract class UIFragment<T> extends Fragment {
                 @Override
                 protected List<T> doInBackground(Object... params) {
                     try {
+                        LOG.d("UIFragment", "prepareDataInBackground");
                         return prepareDataInBackground();
                     } catch (Exception e) {
                         LOG.e(e);

@@ -100,8 +100,8 @@ public class GeneralDocInterfaceImpl implements GeneralDocInterface {
 
 
     @Override
-    public void addToRecent(Context a, Uri path) {
-        AppDB.get().addRecent(path.getPath());
+    public void addToRecent(Context a, Uri uri) {
+        AppDB.get().addRecent(uri.getPath());
         // AppSharedPreferences.get().addRecent(path);
     }
 

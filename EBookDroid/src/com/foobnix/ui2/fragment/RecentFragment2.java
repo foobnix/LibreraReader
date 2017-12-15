@@ -3,6 +3,7 @@ package com.foobnix.ui2.fragment;
 import java.util.Arrays;
 import java.util.List;
 
+import com.foobnix.android.utils.LOG;
 import com.foobnix.android.utils.ResultResponse;
 import com.foobnix.android.utils.TxtUtils;
 import com.foobnix.dao2.FileMeta;
@@ -77,8 +78,8 @@ public class RecentFragment2 extends UIFragment<FileMeta> {
         recentAdapter.setOnDeleteClickListener(onDeleteRecentClick);
 
         onGridList();
-
         populate();
+
         TintUtil.setBackgroundFillColor(panelRecent, TintUtil.color);
 
         return view;
@@ -114,23 +115,21 @@ public class RecentFragment2 extends UIFragment<FileMeta> {
     }
 
     @Override
-    public void onSelectFragment() {
-        populate();
-    }
-
-    @Override
     public List<FileMeta> prepareDataInBackground() {
         return AppDB.get().getAllRecentWithProgress();
     }
 
     @Override
     public void populateDataInUI(List<FileMeta> items) {
-        recentAdapter.getItemsList().clear();
-        recentAdapter.getItemsList().addAll(items);
-        recentAdapter.notifyDataSetChanged();
+        if (recentAdapter != null) {
+            recentAdapter.getItemsList().clear();
+            recentAdapter.getItemsList().addAll(items);
+            recentAdapter.notifyDataSetChanged();
+        }
     }
 
     public void onGridList() {
+        LOG.d("onGridList");
         onGridList(AppState.get().recentMode, onListGrid, recentAdapter, null);
     }
 
@@ -161,14 +160,12 @@ public class RecentFragment2 extends UIFragment<FileMeta> {
 
     @Override
     public void notifyFragment() {
-        if (recentAdapter != null) {
-            recentAdapter.notifyDataSetChanged();
-        }
+        populate();
     }
 
     @Override
     public void resetFragment() {
-
+        populate();
     }
 
 }
