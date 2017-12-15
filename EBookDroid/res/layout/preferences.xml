@@ -118,26 +118,27 @@
 
                 <CheckBox
                     android:id="@+id/supportPDF"
-                    android:layout_width="wrap_content"
+                    android:layout_width="110dp"
                     android:layout_height="wrap_content"
+                    android:paddingLeft="2dip"
                     android:text="PDF"
-                    android:textSize="12sp" />
+                    android:textSize="11sp" />
 
                 <CheckBox
                     android:id="@+id/supportDJVU"
-                    android:layout_width="wrap_content"
+                    android:layout_width="110dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="2dip"
+                    android:paddingLeft="2dip"
                     android:text="DJVU"
-                    android:textSize="12sp" />
+                    android:textSize="11sp" />
 
                 <CheckBox
                     android:id="@+id/supportFB2"
-                    android:layout_width="wrap_content"
+                    android:layout_width="110dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="2dip"
+                    android:paddingLeft="2dip"
                     android:text="FB2"
-                    android:textSize="12sp" />
+                    android:textSize="11sp" />
             </LinearLayout>
 
             <LinearLayout
@@ -147,26 +148,27 @@
 
                 <CheckBox
                     android:id="@+id/supportMOBI"
-                    android:layout_width="wrap_content"
+                    android:layout_width="110dp"
                     android:layout_height="wrap_content"
+                    android:paddingLeft="2dip"
                     android:text="MOBI/AZW"
-                    android:textSize="12sp" />
+                    android:textSize="11sp" />
 
                 <CheckBox
                     android:id="@+id/supportEPUB"
-                    android:layout_width="wrap_content"
+                    android:layout_width="110dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="4dip"
+                    android:paddingLeft="2dip"
                     android:text="EPUB"
-                    android:textSize="12sp" />
+                    android:textSize="11sp" />
 
                 <CheckBox
                     android:id="@+id/supportRTF"
-                    android:layout_width="wrap_content"
+                    android:layout_width="110dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="4dip"
+                    android:paddingLeft="2dip"
                     android:text="RTF"
-                    android:textSize="12sp" />
+                    android:textSize="11sp" />
             </LinearLayout>
 
             <LinearLayout
@@ -176,26 +178,27 @@
 
                 <CheckBox
                     android:id="@+id/supportCBZ"
-                    android:layout_width="wrap_content"
+                    android:layout_width="110dp"
                     android:layout_height="wrap_content"
+                    android:paddingLeft="2dip"
                     android:text="CBZ/CBR"
-                    android:textSize="12sp" />
+                    android:textSize="11sp" />
 
                 <CheckBox
                     android:id="@+id/supportTXT"
-                    android:layout_width="wrap_content"
+                    android:layout_width="110dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="2dip"
+                    android:paddingLeft="2dip"
                     android:text="HTML/TXT"
-                    android:textSize="12sp" />
+                    android:textSize="11sp" />
 
                 <CheckBox
                     android:id="@+id/supportXPS"
-                    android:layout_width="wrap_content"
+                    android:layout_width="110dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="2dip"
+                    android:paddingLeft="2dip"
                     android:text="XPS"
-                    android:textSize="12sp" />
+                    android:textSize="11sp" />
             </LinearLayout>
         </LinearLayout>
 
@@ -218,19 +221,20 @@
 
                 <CheckBox
                     android:id="@+id/supportZIP"
-                    android:layout_width="wrap_content"
+                    android:layout_width="110dp"
                     android:layout_height="wrap_content"
+                    android:paddingLeft="2dip"
                     android:text="ZIP/RAR"
-                    android:textSize="12sp" />
+                    android:textSize="11sp" />
 
                 <CheckBox
                     android:id="@+id/supportOther"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="4dip"
                     android:ellipsize="end"
+                    android:paddingLeft="2dip"
                     android:text="DOC/DOCX/CHM"
-                    android:textSize="12sp" />
+                    android:textSize="11sp" />
             </LinearLayout>
 
             <CheckBox
@@ -265,6 +269,7 @@
                 style="@style/textLink"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:minWidth="100dip"
                 android:text="Russian" />
         </LinearLayout>
 
@@ -284,6 +289,7 @@
                 style="@style/textLink"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:minWidth="100dip"
                 android:text="Normal" />
         </LinearLayout>
 
@@ -303,6 +309,7 @@
                 style="@style/textLink"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:minWidth="100dip"
                 android:text="@string/light" />
 
             <LinearLayout
@@ -344,6 +351,7 @@
                 style="@style/textLink"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:minWidth="100dip"
                 android:text="@string/automatic" />
         </LinearLayout>
 
@@ -450,8 +458,8 @@
                 android:id="@+id/autoSettings"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="0"
                 android:layout_marginLeft="4dip"
+                android:layout_weight="0"
                 android:singleLine="true"
                 android:text="@string/automatic"
                 android:textSize="12sp" />
@@ -579,6 +587,7 @@
                 style="@style/textLink"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:minWidth="100dip"
                 android:text="@string/recent" />
 
             <TextView
@@ -592,6 +601,7 @@
                 style="@style/textLink"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:minWidth="100dip"
                 android:text="@string/grid" />
         </LinearLayout>
 
@@ -645,6 +655,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:maxLines="2"
+                android:minWidth="100dip"
                 android:singleLine="false"
                 android:text="@string/music_mode" />
         </LinearLayout>
@@ -705,16 +716,15 @@
                 android:layout_weight="1"
                 android:maxLines="2"
                 android:text="@string/show_the_dialog_what_is_new_for_updates" />
-
         </LinearLayout>
-        
+
         <TextView
-                android:id="@+id/whatIsNew"
-                style="@style/textLink"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:singleLine="true"
-                android:text="@string/what_is_new_in" />
+            android:id="@+id/whatIsNew"
+            style="@style/textLink"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:singleLine="true"
+            android:text="@string/what_is_new_in" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -817,6 +827,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="8dip"
+                android:minWidth="100dip"
                 android:text="Dowloads/Librera" />
         </LinearLayout>
 
@@ -957,6 +968,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="8dip"
+                android:minWidth="100dip"
                 android:text="2"
                 android:textAllCaps="true" />
         </LinearLayout>
@@ -1035,6 +1047,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:minWidth="100dip"
                 android:text="@string/apply" />
         </LinearLayout>
 
@@ -1083,6 +1096,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="0"
+                android:minWidth="100dip"
                 android:text="@string/import_" />
 
             <TextView
@@ -1092,6 +1106,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dip"
                 android:layout_weight="0"
+                android:minWidth="100dip"
                 android:text="@string/export_" />
         </LinearLayout>
 

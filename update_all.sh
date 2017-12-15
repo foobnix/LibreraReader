@@ -25,10 +25,12 @@ git clone https://github.com/dandar3/android-google-firebase-analytics-impl goog
 git clone https://github.com/dandar3/android-google-firebase-common google-firebase-common
 git clone https://github.com/dandar3/android-google-firebase-iid google-firebase-iid
 
-
 for d in * ; do
 if [[ -d $d ]]; then
-    echo "$d"
+  
+    if [[ $d == "google*" ]] || [[ $d == "android*" ]] ;     
+then
+    echo "[$d]"
     rm $d/build.xml
     #rm $d/proguard-project.txt
     sed -i -e 's/proguard.config/#proguard.config/g' $d/project.properties
@@ -55,6 +57,6 @@ if [[ -d $d ]]; then
 	' >> $d/build.xml 
   
   #git commit -am "init..."
-
+fi
   fi
 done

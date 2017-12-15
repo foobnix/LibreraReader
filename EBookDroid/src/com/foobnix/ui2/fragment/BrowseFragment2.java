@@ -526,6 +526,7 @@ public class BrowseFragment2 extends UIFragment<FileMeta> {
 
     @Override
     public void resetFragment() {
+        onGridList();
         populate();
     }
 

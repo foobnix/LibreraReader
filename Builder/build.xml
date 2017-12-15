@@ -7,7 +7,7 @@
 	   <!-- section 2 -->
 	
 	<replaceregexp file="../EbookaPDF/AndroidManifest.xml"
-		match='${package.pdf}"' replace='${pdf.package}' />
+		match='${package.pdf}' replace='${pdf.package}' />
 	
 	<replaceregexp file="../EbookaPDF/AndroidManifest.xml"
 		match='${package.pro}' replace='${pdf.package}' />
