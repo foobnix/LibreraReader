@@ -10,6 +10,7 @@ import org.greenrobot.eventbus.Subscribe;
 import com.foobnix.android.utils.Dips;
 import com.foobnix.android.utils.LOG;
 import com.foobnix.android.utils.TxtUtils;
+import com.foobnix.android.utils.Vibro;
 import com.foobnix.pdf.info.wrapper.AppState;
 import com.foobnix.pdf.info.wrapper.MagicHelper;
 import com.foobnix.pdf.search.activity.msg.InvalidateMessage;
@@ -33,7 +34,6 @@ import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.os.Handler;
-import android.os.Vibrator;
 import android.util.AttributeSet;
 import android.view.GestureDetector;
 import android.view.MotionEvent;
@@ -286,10 +286,7 @@ public class PageImaveView extends View {
             yInit = e.getY();
             String selectText = selectText(xInit, yInit, e.getX(), e.getY());
             if (TxtUtils.isNotEmpty(selectText)) {
-                if (AppState.get().isVibration) {
-                    Vibrator v = (Vibrator) getContext().getSystemService(Context.VIBRATOR_SERVICE);
-                    v.vibrate(50);
-                }
+                Vibro.vibrate();
             } else {
                 AppState.get().selectedText = null;
             }

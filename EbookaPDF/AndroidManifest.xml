@@ -3,7 +3,7 @@
     package="com.foobnix.pdf.reader"
     android:installLocation="auto"
     android:versionCode="470"
-    android:versionName="7.3.64" >
+    android:versionName="7.3.66" >
 
     <uses-sdk
         android:minSdkVersion="14"
@@ -13,6 +13,7 @@
     <uses-permission android:name="android.permission.VIBRATE" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
 
     <!-- android:name="com.foobnix.pdf.info.TestAppName" -->
     <application

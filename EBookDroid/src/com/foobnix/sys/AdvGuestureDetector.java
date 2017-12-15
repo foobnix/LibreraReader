@@ -11,6 +11,7 @@ import org.ebookdroid.core.codec.Annotation;
 import com.foobnix.android.utils.Dips;
 import com.foobnix.android.utils.LOG;
 import com.foobnix.android.utils.TxtUtils;
+import com.foobnix.android.utils.Vibro;
 import com.foobnix.pdf.info.ExtUtils;
 import com.foobnix.pdf.info.model.AnnotationType;
 import com.foobnix.pdf.info.wrapper.AppState;
@@ -18,7 +19,6 @@ import com.foobnix.pdf.info.wrapper.DocumentController;
 
 import android.content.Context;
 import android.graphics.Rect;
-import android.os.Vibrator;
 import android.view.GestureDetector.SimpleOnGestureListener;
 import android.view.MotionEvent;
 
@@ -291,10 +291,7 @@ public class AdvGuestureDetector extends SimpleOnGestureListener implements IMul
             docCtrl.onCrop();
         }
         AppState.get().selectedText = avc.processLongTap(true, e, e);
-        if (AppState.get().isVibration) {
-            Vibrator v = (Vibrator) avc.getBase().getContext().getSystemService(Context.VIBRATOR_SERVICE);
-            v.vibrate(50);
-        }
+        Vibro.vibrate();
     }
 
     /**
