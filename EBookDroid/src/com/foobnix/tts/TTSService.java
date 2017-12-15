@@ -56,7 +56,6 @@ public class TTSService extends Service {
 
         PowerManager powerManager = (PowerManager) getSystemService(POWER_SERVICE);
         wakeLock = powerManager.newWakeLock(PowerManager.PARTIAL_WAKE_LOCK, "TTSService");
-        wakeLock.acquire();
 
         AppState.get().load(getApplicationContext());
         mAudioManager = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
@@ -137,7 +136,7 @@ public class TTSService extends Service {
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
         MediaButtonReceiver.handleIntent(mMediaSessionCompat, intent);
-        LOG.d(TAG, "onStartCommand");
+        LOG.d(TAG, "onStartCommand", intent);
         if (intent == null) {
             return START_STICKY;
         }

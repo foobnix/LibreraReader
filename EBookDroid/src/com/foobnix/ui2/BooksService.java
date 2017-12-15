@@ -31,6 +31,13 @@ public class BooksService extends IntentService {
         super("BooksService");
         AppState.get().load(this);
         handler = new Handler();
+        LOG.d("BooksService", "Create");
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        LOG.d("BooksService", "onDestroy");
     }
 
     public static String TAG = "BooksService";
@@ -46,6 +53,7 @@ public class BooksService extends IntentService {
     public static String RESULT_SEARCH_COUNT = "RESULT_SEARCH_COUNT";
 
     private List<FileMeta> itemsMeta = new LinkedList<FileMeta>();
+
 
     @Override
     protected void onHandleIntent(Intent intent) {
