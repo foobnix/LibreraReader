@@ -4,6 +4,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import com.foobnix.android.utils.Apps;
+import com.foobnix.android.utils.Vibro;
 import com.foobnix.pdf.info.R;
 import com.foobnix.pdf.info.wrapper.AppState;
 import com.foobnix.pdf.info.wrapper.DocumentController;
@@ -75,6 +76,7 @@ public class CloseAppDialog {
     }
 
     public static void showOnLongClickDialog(final Activity a, View v, final DocumentController c) {
+        Vibro.vibrate();
         List<String> items = Arrays.asList(//
                 c.getString(R.string.close_book), //
                 c.getString(R.string.go_to_the_library), //

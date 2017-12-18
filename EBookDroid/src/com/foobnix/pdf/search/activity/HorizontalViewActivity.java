@@ -444,34 +444,38 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
                         return false;
                     }
                 });
-                p.getMenu().add(R.string.two_pages_cover).setIcon(R.drawable.glyphicons_two_pages_23).setOnMenuItemClickListener(new OnMenuItemClickListener() {
+                if (!documentController.isTextFormat()) {
+                    p.getMenu().add(R.string.two_pages_cover).setIcon(R.drawable.glyphicons_two_pages_23).setOnMenuItemClickListener(new OnMenuItemClickListener() {
 
-                    @Override
-                    public boolean onMenuItemClick(MenuItem item) {
-                        onModeChange.setImageResource(R.drawable.glyphicons_two_pages_23);
-                        AppState.get().isDouble = true;
-                        AppState.get().isCut = false;
-                        AppState.get().isDoubleCoverAlone = true;
-                        SettingsManager.getBookSettings().updateFromAppState();
-                        documentController.restartActivity();
-                        documentController.cleanImageMatrix();
-                        return false;
-                    }
-                });
-                p.getMenu().add(R.string.half_page).setIcon(R.drawable.glyphicons_page_split).setOnMenuItemClickListener(new OnMenuItemClickListener() {
+                        @Override
+                        public boolean onMenuItemClick(MenuItem item) {
+                            onModeChange.setImageResource(R.drawable.glyphicons_two_pages_23);
+                            AppState.get().isDouble = true;
+                            AppState.get().isCut = false;
+                            AppState.get().isDoubleCoverAlone = true;
+                            SettingsManager.getBookSettings().updateFromAppState();
+                            documentController.restartActivity();
+                            documentController.cleanImageMatrix();
+                            return false;
+                        }
+                    });
+                }
+                if (!documentController.isTextFormat()) {
+                    p.getMenu().add(R.string.half_page).setIcon(R.drawable.glyphicons_page_split).setOnMenuItemClickListener(new OnMenuItemClickListener() {
 
-                    @Override
-                    public boolean onMenuItemClick(MenuItem item) {
-                        onModeChange.setImageResource(R.drawable.glyphicons_page_split);
-                        AppState.get().isDouble = false;
-                        AppState.get().isCut = true;
-                        AppState.get().isCrop = false;
-                        SettingsManager.getBookSettings().updateFromAppState();
-                        TTSEngine.get().stop();
-                        reloadDoc.run();
-                        return false;
-                    }
-                });
+                        @Override
+                        public boolean onMenuItemClick(MenuItem item) {
+                            onModeChange.setImageResource(R.drawable.glyphicons_page_split);
+                            AppState.get().isDouble = false;
+                            AppState.get().isCut = true;
+                            AppState.get().isCrop = false;
+                            SettingsManager.getBookSettings().updateFromAppState();
+                            TTSEngine.get().stop();
+                            reloadDoc.run();
+                            return false;
+                        }
+                    });
+                }
                 if (false) {
                     p.getMenu().add(R.string.crop_white_borders).setIcon(R.drawable.glyphicons_94_crop).setOnMenuItemClickListener(new OnMenuItemClickListener() {
 

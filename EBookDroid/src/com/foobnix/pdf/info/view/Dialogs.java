@@ -4,6 +4,7 @@ import com.foobnix.android.utils.Dips;
 import com.foobnix.android.utils.IntegerResponse;
 import com.foobnix.android.utils.LOG;
 import com.foobnix.android.utils.TxtUtils;
+import com.foobnix.android.utils.Vibro;
 import com.foobnix.pdf.info.R;
 import com.foobnix.pdf.info.TintUtil;
 import com.foobnix.pdf.info.wrapper.AppState;
@@ -54,7 +55,7 @@ public class Dialogs {
     }
 
     public static void showDeltaPage(final FrameLayout anchor, final DocumentController controller, final int pageNumber, final Runnable reloadUI) {
-
+        Vibro.vibrate();
         String txt = controller.getString(R.string.set_the_current_page_number);
 
         final AlertDialog.Builder builder = new AlertDialog.Builder(anchor.getContext());

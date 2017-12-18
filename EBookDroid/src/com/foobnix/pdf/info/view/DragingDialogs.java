@@ -25,6 +25,7 @@ import com.foobnix.android.utils.MemoryUtils;
 import com.foobnix.android.utils.ResultResponse;
 import com.foobnix.android.utils.ResultResponse2;
 import com.foobnix.android.utils.TxtUtils;
+import com.foobnix.android.utils.Vibro;
 import com.foobnix.android.utils.Views;
 import com.foobnix.dao2.FileMeta;
 import com.foobnix.ext.EpubExtractor;
@@ -1629,6 +1630,7 @@ public class DragingDialogs {
     }
 
     public static void addBookmarksLong(final FrameLayout anchor, final DocumentController controller) {
+        Vibro.vibrate();
         List<AppBookmark> objects = AppSharedPreferences.get().getBookmarksByBook(controller.getCurrentBook());
         int page = PageUrl.fakeToReal(controller.getCurentPageFirst1());
 
