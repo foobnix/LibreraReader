@@ -736,7 +736,7 @@ public class ExtUtils {
             shareIntent.putExtra(Intent.EXTRA_STREAM, getUriProvider(a, oFile));
             shareIntent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
             shareIntent.setType("image/jpeg");
-            a.startActivity(shareIntent);
+            a.startActivity(Intent.createChooser(shareIntent, a.getString(R.string.send_snapshot_of_the_page)));
 
         } catch (Exception e) {
             Toast.makeText(a, R.string.msg_unexpected_error, Toast.LENGTH_LONG).show();
@@ -766,7 +766,7 @@ public class ExtUtils {
             intent.putExtra(Intent.EXTRA_TEXT, result.toString());
         }
 
-        a.startActivity(intent);
+        a.startActivity(Intent.createChooser(intent, a.getString(R.string.export_bookmarks)));
     }
 
     public static void exportAllBookmarksToFile(final FragmentActivity a) {
@@ -892,7 +892,7 @@ public class ExtUtils {
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         intent.setType("text/plain");
         intent.putExtra(Intent.EXTRA_TEXT, getAllExportString(a, AppSharedPreferences.get()));
-        a.startActivity(intent);
+        a.startActivity(Intent.createChooser(intent, a.getString(R.string.export_bookmarks)));
     }
 
     public static void openPDFInTextReflow(final Activity a, final File file, final int page) {

@@ -13,18 +13,18 @@ public class PageCropper {
     public static final int BMP_SIZE = 800;
     private static final Rect RECT = new Rect(0, 0, BMP_SIZE, BMP_SIZE);
 
-    public static RectF getCropBounds(final Bitmap bitmap, final Rect bitmapBounds, final RectF pageSliceBounds) {
+    public static RectF getCropBounds(Bitmap bitmap1, final Rect bitmapBounds, final RectF pageSliceBounds) {
 
         Bitmap source = Bitmap.createBitmap(BMP_SIZE, BMP_SIZE, Bitmap.Config.RGB_565);
         // Bitmap source = Bitmap.createBitmap(bitmapRef.getBitmap());
 
         final Canvas c = new Canvas(source);
-        c.drawBitmap(bitmap, bitmapBounds, RECT, null);
+        c.drawBitmap(bitmap1, bitmapBounds, RECT, null);
 
-        int firstColor = source.getPixel(1, 1);
-        int baseColor = !MagicHelper.isColorDarkSimple(firstColor) ? firstColor : Color.WHITE;
-        int firstColorValue = Color.red(firstColor) + Color.green(firstColor) + Color.blue(firstColor);
-        LOG.d("First color is ligth", !MagicHelper.isColorDarkSimple(firstColor), firstColor, firstColorValue);
+        int f = source.getPixel(0, 0);
+        int fR = Color.red(f);
+        int fG = Color.green(f);
+        int fB = Color.blue(f);
 
         int width = source.getWidth();
         int height = source.getHeight();
@@ -34,14 +34,17 @@ public class PageCropper {
         int bottomY = 0;
         int bottomX = 0;
 
-        for (int y = 1; y < height; y++) {
-            for (int x = 1; x < width; x++) {
-                int pixel = source.getPixel(x, y);
-                if (baseColor == pixel) {
-                    continue;
-                }
+        LOG.d("firstColor", MagicHelper.colorToString(f));
 
-                if (pixel == Color.BLACK || MagicHelper.isColorDarkSimple(pixel)) {
+        for (int y = 0; y < height; y++) {
+            for (int x = 0; x < width; x++) {
+                int p = source.getPixel(x, y);
+
+                int pR = Color.red(p);
+                int pG = Color.green(p);
+                int pB = Color.blue(p);
+
+                if (Math.abs(fR - pR) > 10 && Math.abs(fG - pG) > 10 && Math.abs(fB - pB) > 10) {
                     if (x < topX)
                         topX = x;
                     if (y < topY)
@@ -50,6 +53,8 @@ public class PageCropper {
                         bottomX = x;
                     if (y > bottomY)
                         bottomY = y;
+                } else {
+
                 }
             }
         }

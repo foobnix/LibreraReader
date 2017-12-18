@@ -375,7 +375,9 @@ public class FileMetaAdapter extends AppRecycleAdapter<FileMeta, RecyclerView.Vi
         }
 
         if (holder.series != null && onSeriesClickListener != null) {
-            holder.series.setText(fileMeta.getSequence());
+            String sequence = fileMeta.getSequence();
+            holder.series.setVisibility(TxtUtils.isNotEmpty(sequence) ? View.VISIBLE : View.GONE);
+            holder.series.setText(sequence);
             holder.series.setOnClickListener(new OnClickListener() {
 
                 @Override
@@ -386,6 +388,7 @@ public class FileMetaAdapter extends AppRecycleAdapter<FileMeta, RecyclerView.Vi
                 }
             });
         }
+
         holder.author.setOnClickListener(new OnClickListener() {
 
             @Override
@@ -410,7 +413,8 @@ public class FileMetaAdapter extends AppRecycleAdapter<FileMeta, RecyclerView.Vi
             holder.progresLayout.setVisibility(View.VISIBLE);
             holder.idPercentText.setVisibility(View.VISIBLE);
             holder.idProgressColor.setBackgroundColor(TintUtil.color);
-            int width = adapterType == ADAPTER_LIST_COMPACT ? Dips.dpToPx(80) : Dips.dpToPx(200);
+            int width = adapterType == ADAPTER_LIST_COMPACT ? Dips.dpToPx(100) : Dips.dpToPx(200);
+
             holder.idProgressBg.getLayoutParams().width = width;
             holder.idProgressColor.getLayoutParams().width = (int) (width * recentProgress);
             holder.idProgressColor.setLayoutParams(holder.idProgressColor.getLayoutParams());
