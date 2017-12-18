@@ -425,4 +425,5 @@
    <string name="bluelight_filter">BlueLight Filter</string>
    <string name="what_is_new_in">Was ist neu in</string>
    <string name="you_need_to_update_the_library">Sie müssen die Bibliothek aktualisieren</string>
+   <string name="theme_color">Thema Farbe</string>
 </resources>

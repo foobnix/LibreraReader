@@ -425,4 +425,5 @@
    <string name="bluelight_filter">Фильтр синего цвета</string>
    <string name="what_is_new_in">Что нового в</string>
    <string name="you_need_to_update_the_library">Вам необходимо обновить библиотеку</string>
+   <string name="theme_color">Цвет темы</string>
 </resources>

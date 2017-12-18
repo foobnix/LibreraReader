@@ -425,4 +425,5 @@
    <string name="bluelight_filter">Bộ lọc BlueLight</string>
    <string name="what_is_new_in">Có gì mới trong</string>
    <string name="you_need_to_update_the_library">Bạn cần cập nhật thư viện</string>
+   <string name="theme_color">Màu chủ đề</string>
 </resources>

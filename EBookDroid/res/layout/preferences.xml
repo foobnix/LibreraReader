@@ -118,25 +118,25 @@
 
                 <CheckBox
                     android:id="@+id/supportPDF"
-                    android:layout_width="110dp"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:paddingLeft="2dip"
+                    android:minWidth="110dp"
                     android:text="PDF"
                     android:textSize="11sp" />
 
                 <CheckBox
                     android:id="@+id/supportDJVU"
-                    android:layout_width="110dp"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:paddingLeft="2dip"
+                    android:minWidth="110dp"
                     android:text="DJVU"
                     android:textSize="11sp" />
 
                 <CheckBox
                     android:id="@+id/supportFB2"
-                    android:layout_width="110dp"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:paddingLeft="2dip"
+                    android:minWidth="110dp"
                     android:text="FB2"
                     android:textSize="11sp" />
             </LinearLayout>
@@ -148,25 +148,25 @@
 
                 <CheckBox
                     android:id="@+id/supportMOBI"
-                    android:layout_width="110dp"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:paddingLeft="2dip"
+                    android:minWidth="110dp"
                     android:text="MOBI/AZW"
                     android:textSize="11sp" />
 
                 <CheckBox
                     android:id="@+id/supportEPUB"
-                    android:layout_width="110dp"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:paddingLeft="2dip"
+                    android:minWidth="110dp"
                     android:text="EPUB"
                     android:textSize="11sp" />
 
                 <CheckBox
                     android:id="@+id/supportRTF"
-                    android:layout_width="110dp"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:paddingLeft="2dip"
+                    android:minWidth="110dp"
                     android:text="RTF"
                     android:textSize="11sp" />
             </LinearLayout>
@@ -178,25 +178,25 @@
 
                 <CheckBox
                     android:id="@+id/supportCBZ"
-                    android:layout_width="110dp"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:paddingLeft="2dip"
+                    android:minWidth="110dp"
                     android:text="CBZ/CBR"
                     android:textSize="11sp" />
 
                 <CheckBox
                     android:id="@+id/supportTXT"
-                    android:layout_width="110dp"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:paddingLeft="2dip"
+                    android:minWidth="110dp"
                     android:text="HTML/TXT"
                     android:textSize="11sp" />
 
                 <CheckBox
                     android:id="@+id/supportXPS"
-                    android:layout_width="110dp"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:paddingLeft="2dip"
+                    android:minWidth="110dp"
                     android:text="XPS"
                     android:textSize="11sp" />
             </LinearLayout>
@@ -221,9 +221,9 @@
 
                 <CheckBox
                     android:id="@+id/supportZIP"
-                    android:layout_width="110dp"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:paddingLeft="2dip"
+                    android:minWidth="110dp"
                     android:text="ZIP/RAR"
                     android:textSize="11sp" />
 
@@ -232,7 +232,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:ellipsize="end"
-                    android:paddingLeft="2dip"
+                    android:minWidth="110dp"
                     android:text="DOC/DOCX/CHM"
                     android:textSize="11sp" />
             </LinearLayout>
@@ -252,6 +252,28 @@
             android:layout_marginTop="4dip"
             android:background="@drawable/bg_search_second"
             android:text="@string/preferences" />
+        
+        
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dip" >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:minWidth="110dp"
+                android:text="@string/orientation"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/screenModeType"
+                style="@style/textLink"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:minWidth="100dip"
+                android:text="@string/automatic" />
+        </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -261,6 +283,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:minWidth="110dp"
                 android:text="@string/language"
                 android:textStyle="bold" />
 
@@ -281,6 +304,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:minWidth="110dp"
                 android:text="@string/font_size"
                 android:textStyle="bold" />
 
@@ -301,6 +325,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:minWidth="110dp"
                 android:text="@string/theme"
                 android:textStyle="bold" />
 
@@ -309,8 +334,21 @@
                 style="@style/textLink"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:minWidth="100dip"
                 android:text="@string/light" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:layout_marginLeft="5dip" >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:minWidth="110dp"
+                android:text="@string/theme_color"
+                android:textStyle="bold" />
 
             <LinearLayout
                 android:id="@+id/colorsLine"
@@ -335,25 +373,7 @@
             </LinearLayout>
         </LinearLayout>
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="5dip" >
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/screen_orientation"
-                android:textStyle="bold" />
-
-            <TextView
-                android:id="@+id/screenModeType"
-                style="@style/textLink"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:minWidth="100dip"
-                android:text="@string/automatic" />
-        </LinearLayout>
+        
 
         <LinearLayout
             android:id="@+id/onFullScreen"
@@ -441,18 +461,24 @@
             android:gravity="center_vertical"
             android:orientation="horizontal" >
 
-            <ImageView
+            <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/glyphicons_190_brightness_increase"
-                android:tint="@color/tint_gray" />
+                android:minWidth="100dp" >
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="5dip"
-                android:text="@string/brightness"
-                android:textStyle="bold" />
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/glyphicons_190_brightness_increase"
+                    android:tint="@color/tint_gray" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dip"
+                    android:text="@string/brightness"
+                    android:textStyle="bold" />
+            </LinearLayout>
 
             <CheckBox
                 android:id="@+id/autoSettings"
@@ -547,86 +573,113 @@
             android:layout_marginTop="3dip"
             android:background="@color/lt_grey_alpha" />
 
+        <!-- Prefs. > Preferences > Widget -->
+
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="5dip"
             android:layout_marginTop="4dip"
-            android:gravity="center_vertical"
+            android:gravity="top"
             android:orientation="horizontal" >
 
-            <ImageView
+            <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:src="@drawable/glyphicons_157_show_thumbnails"
-                android:tint="@color/tint_gray" />
+                android:gravity="center_vertical"
+                android:minWidth="100dp"
+                android:orientation="horizontal" >
 
-            <TextView
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:src="@drawable/glyphicons_157_show_thumbnails"
+                    android:tint="@color/tint_gray" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dip"
+                    android:text="@string/widget"
+                    android:textStyle="bold" />
+            </LinearLayout>
+
+            <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="5dip"
-                android:text="@string/widget"
-                android:textStyle="bold" />
+                android:gravity="center_vertical"
+                android:orientation="vertical" >
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dip"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal" >
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:minWidth="100dp"
+                        android:text="@string/show" />
+
+                    <TextView
+                        android:id="@+id/widgetForRecent"
+                        style="@style/textLink"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:minWidth="100dip"
+                        android:text="@string/recent" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dip"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal" >
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:minWidth="100dp"
+                        android:text="@string/layout" />
+
+                    <TextView
+                        android:id="@+id/widgetLayout"
+                        style="@style/textLink"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:minWidth="100dip"
+                        android:text="@string/grid" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dip"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal" >
+
+                    <TextView
+                        android:id="@+id/textView1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:minWidth="100dp"
+                        android:text="@string/number_of_books" />
+
+                    <TextView
+                        android:id="@+id/widgetItemsCount"
+                        style="@style/textLink"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="2"
+                        android:textAllCaps="true" />
+                </LinearLayout>
+            </LinearLayout>
         </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="5dip"
-            android:gravity="center_vertical"
-            android:orientation="horizontal" >
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/show" />
-
-            <TextView
-                android:id="@+id/widgetForRecent"
-                style="@style/textLink"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:minWidth="100dip"
-                android:text="@string/recent" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="10dip"
-                android:text="@string/layout" />
-
-            <TextView
-                android:id="@+id/widgetLayout"
-                style="@style/textLink"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:minWidth="100dip"
-                android:text="@string/grid" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="5dip"
-            android:gravity="center_vertical"
-            android:orientation="horizontal" >
-
-            <TextView
-                android:id="@+id/textView1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/number_of_books" />
-
-            <TextView
-                android:id="@+id/widgetItemsCount"
-                style="@style/textLink"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="8dip"
-                android:text="2"
-                android:textAllCaps="true" />
-        </LinearLayout>
+        <!-- end of  "Prefs. > Preferences > Widget" -->
 
         <View
             android:layout_width="match_parent"

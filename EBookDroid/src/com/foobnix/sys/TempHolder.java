@@ -44,7 +44,7 @@ public class TempHolder {
 
     public void clear() {
         path = null;
-        ImageExtractor.codeCache = null;
+        ImageExtractor.clearCache();
     }
 
     private boolean isTextForamtInner() {

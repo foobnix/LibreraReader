@@ -45,6 +45,12 @@ public class AlertDialogs {
 
             }
         });
+        builder.setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
+
+            @Override
+            public void onClick(final DialogInterface dialog, final int id) {
+            }
+        });
         builder.show();
     }
 

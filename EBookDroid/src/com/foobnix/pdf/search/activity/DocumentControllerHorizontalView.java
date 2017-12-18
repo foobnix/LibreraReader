@@ -2,6 +2,7 @@ package com.foobnix.pdf.search.activity;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Locale;
 
@@ -9,6 +10,9 @@ import org.ebookdroid.common.cache.CacheManager;
 import org.ebookdroid.common.settings.SettingsManager;
 import org.ebookdroid.common.settings.books.BookSettings;
 import org.ebookdroid.core.PageIndex;
+import org.ebookdroid.core.codec.CodecDocument;
+import org.ebookdroid.core.codec.CodecPage;
+import org.ebookdroid.core.codec.OutlineLink;
 import org.ebookdroid.core.codec.PageLink;
 import org.ebookdroid.droids.mupdf.codec.TextWord;
 import org.greenrobot.eventbus.EventBus;
@@ -17,7 +21,6 @@ import com.foobnix.android.utils.Dips;
 import com.foobnix.android.utils.LOG;
 import com.foobnix.android.utils.TxtUtils;
 import com.foobnix.pdf.CopyAsyncTask;
-import com.foobnix.pdf.GeneralDocInterface;
 import com.foobnix.pdf.info.ExtUtils;
 import com.foobnix.pdf.info.PageUrl;
 import com.foobnix.pdf.info.model.AnnotationType;
@@ -27,7 +30,7 @@ import com.foobnix.pdf.info.wrapper.DocumentController;
 import com.foobnix.pdf.search.activity.msg.InvalidateMessage;
 import com.foobnix.pdf.search.activity.msg.MessageAutoFit;
 import com.foobnix.pdf.search.activity.msg.MessageCenterHorizontally;
-import com.foobnix.sys.GeneralDocInterfaceImpl;
+import com.foobnix.sys.ImageExtractor;
 import com.foobnix.sys.TempHolder;
 import com.foobnix.ui2.AppDB;
 import com.foobnix.ui2.FileMetaCore;
@@ -38,19 +41,18 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Matrix;
 import android.graphics.PointF;
-import android.widget.Toast;
 
 public abstract class DocumentControllerHorizontalView extends DocumentController {
     public static final String PASSWORD_EXTRA = "password";
     public static final String PAGE = "page";
     public static final String PERCENT_EXTRA = "percent";
 
-    private GeneralDocInterface generadDocInterface;
     private int pagesCount;
     int currentPage;
     private CopyAsyncTask searchTask;
     private boolean isTextFormat = false;
     String bookPath;
+    CodecDocument codeDocument;
 
     int imageWidth, imageHeight;
     private SharedPreferences matrixSP;
@@ -60,12 +62,6 @@ public abstract class DocumentControllerHorizontalView extends DocumentControlle
         matrixSP = activity.getSharedPreferences("matrix", Context.MODE_PRIVATE);
 
         LOG.d("DocumentControllerHorizontalView", "begin");
-        try {
-            generadDocInterface = new GeneralDocInterfaceImpl();
-        } catch (Exception e) {
-            LOG.e(e);
-            Toast.makeText(activity, "Erorr ...", Toast.LENGTH_LONG).show();
-        }
         LOG.d("DocumentControllerHorizontalView", "end");
 
         isTextFormat = ExtUtils.isTextFomat(activity.getIntent());
@@ -174,12 +170,17 @@ public abstract class DocumentControllerHorizontalView extends DocumentControlle
 
         FileMetaCore.checkOrCreateMetaInfo(activity);
         LOG.d("pagesCount", "init", imageWidth, imageHeight);
-        pagesCount = generadDocInterface.getPageCount(getBookPath(), activity.getIntent().getStringExtra(PASSWORD_EXTRA), imageWidth, imageHeight, AppState.get().fontSizeSp);
+        String pasw = activity.getIntent().getStringExtra(PASSWORD_EXTRA);
+        pasw = TxtUtils.nullToEmpty(pasw);
+        TempHolder.get().clear();
+        codeDocument = ImageExtractor.getNewCodecContext(getBookPath(), pasw, imageWidth, imageHeight);
+        pagesCount = codeDocument.getPageCount();
+
         if (pagesCount == -1) {
             throw new IllegalArgumentException("Pages count = -1");
         }
 
-        generadDocInterface.addToRecent(activity, activity.getIntent().getData());
+        AppDB.get().addRecent(bookPath);
         getPageFromUri();
 
         loadOutline(null);
@@ -212,7 +213,7 @@ public abstract class DocumentControllerHorizontalView extends DocumentControlle
         if (number > 0) {
             currentPage = number;
         } else {
-            currentPage = generadDocInterface.getCurrentPage(getBookPath());
+            currentPage = SettingsManager.getBookSettings(getBookPath()).getCurrentPage().viewIndex;
             currentPage = PageUrl.realToFake(currentPage);
         }
 
@@ -265,21 +266,45 @@ public abstract class DocumentControllerHorizontalView extends DocumentControlle
         throw new RuntimeException("Not Implemented");
     }
 
-    public TextWord[][] getPageText(int page) {
-        LOG.d("Get page text for page", page);
-        return generadDocInterface.getPageText(getBookPath(), page);
+    public TextWord[][] getPageText(int number) {
+        LOG.d("Get page text for page", number);
+        try {
+            CodecPage page = codeDocument.getPage(number);
+            if (!page.isRecycled()) {
+                TextWord[][] text = page.getText();
+                return text;
+            }
+        } catch (Exception e) {
+            LOG.e(e);
+        }
+        return null;
     }
 
     @Override
     public String getTextForPage(int page) {
-        String pageHTML = generadDocInterface.getPageHTML(getBookPath(), page);
-        pageHTML = TxtUtils.replaceHTMLforTTS(pageHTML);
-        return pageHTML;
+        try {
+            CodecPage codecPage = codeDocument.getPage(page);
+            if (!codecPage.isRecycled()) {
+                String pageHTML = codecPage.getPageHTML();
+                pageHTML = TxtUtils.replaceHTMLforTTS(pageHTML);
+                return pageHTML;
+
+            }
+        } catch (Exception e) {
+            LOG.e(e);
+        }
+        return "";
+
     }
 
     @Override
     public List<PageLink> getLinksForPage(int page) {
-        return generadDocInterface.getLinksForPage(getBookPath(), page);
+        try {
+            return codeDocument.getPage(page).getPageLinks();
+        } catch (Exception e) {
+            LOG.e(e);
+            return Collections.EMPTY_LIST;
+        }
     }
 
     @Override
@@ -329,12 +354,22 @@ public abstract class DocumentControllerHorizontalView extends DocumentControlle
 
     @Override
     public String getFootNote(String text) {
-        return generadDocInterface.getFooterNote(getBookPath(), text);
+        try {
+            return TxtUtils.getFooterNote(text, codeDocument.getFootNotes());
+        } catch (Exception e) {
+            LOG.e(e);
+            return "";
+        }
     }
 
     @Override
     public List<String> getMediaAttachments() {
-        return generadDocInterface.getMediaAttachments(getBookPath());
+        try {
+            return codeDocument.getMediaAttachments();
+        } catch (Exception e) {
+            LOG.e(e);
+            return Collections.EMPTY_LIST;
+        }
     }
 
     @Override
@@ -356,6 +391,10 @@ public abstract class DocumentControllerHorizontalView extends DocumentControlle
     @Override
     public void onCloseActivity() {
         isClosed = true;
+        if (codeDocument != null) {
+            codeDocument.recycle();
+            codeDocument = null;
+        }
         try {
             if (!ExtUtils.isTextFomat(bookPath)) {
                 matrixSP.edit().putString(bookPath.hashCode() + "", PageImageState.get().getMatrixAsString()).commit();
@@ -441,16 +480,31 @@ public abstract class DocumentControllerHorizontalView extends DocumentControlle
 
     @Override
     public void getOutline(com.foobnix.android.utils.ResultResponse<List<OutlineLinkWrapper>> outline, boolean forse) {
-        List<OutlineLinkWrapper> outlineRes = generadDocInterface.getOutline(getCurrentBook().getPath(), "");
-        setOutline(outlineRes);
-        if (outline != null) {
-            outline.onResultRecive(outlineRes);
+
+        List<OutlineLinkWrapper> outlineRes = new ArrayList<OutlineLinkWrapper>();
+        try {
+            for (OutlineLink ol : codeDocument.getOutline()) {
+                outlineRes.add(new OutlineLinkWrapper(ol.getTitle(), ol.getLink(), ol.getLevel()));
+            }
+
+            setOutline(outlineRes);
+            if (outline != null) {
+                outline.onResultRecive(outlineRes);
+            }
+        } catch (Exception e) {
+            LOG.e(e);
         }
+
     }
 
     @Override
-    public void recyclePage(int page) {
-        generadDocInterface.recylePage(bookPath, page);
+    public void recyclePage(int number) {
+        try {
+            CodecPage page = codeDocument.getPage(number);
+            page.recycle();
+        } catch (Exception e) {
+            LOG.e(e);
+        }
     }
 
     @Override
@@ -487,8 +541,8 @@ public abstract class DocumentControllerHorizontalView extends DocumentControlle
                             result.onResultRecive(i * -1);
                         }
 
-                        TextWord[][] pageText = generadDocInterface.getPageText(bookPath, i);
-                        generadDocInterface.recylePage(bookPath, i);
+                        TextWord[][] pageText = getPageText(i);
+                        recyclePage(i);
                         if (pageText == null) {
                             continue;
                         }

@@ -465,7 +465,7 @@ public class ImageExtractor implements ImageDownloader {
 
     static int pageCount = 0;
 
-    static CodecDocument codeCache;
+    public static CodecDocument codeCache;
     static String pathCache;
     static int whCache;
 

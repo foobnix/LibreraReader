@@ -425,4 +425,5 @@
    <string name="bluelight_filter">Mavi Işık Filtresi</string>
    <string name="what_is_new_in">Içinde yenilikler</string>
    <string name="you_need_to_update_the_library">Kütüphaneyi güncellemeniz gerekiyor</string>
+   <string name="theme_color">Tema rengi</string>
 </resources>

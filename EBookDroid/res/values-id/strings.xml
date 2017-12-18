@@ -425,4 +425,5 @@
    <string name="bluelight_filter">Filter BlueLight</string>
    <string name="what_is_new_in">Apa yang baru</string>
    <string name="you_need_to_update_the_library">Anda perlu memperbarui perpustakaan</string>
+   <string name="theme_color">Warna tema</string>
 </resources>

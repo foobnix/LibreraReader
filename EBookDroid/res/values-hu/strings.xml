@@ -425,4 +425,5 @@
    <string name="bluelight_filter">BlueLight szűrő</string>
    <string name="what_is_new_in">Újdonságok</string>
    <string name="you_need_to_update_the_library">Frissítenie kell a könyvtárat</string>
+   <string name="theme_color">Téma színe</string>
 </resources>
