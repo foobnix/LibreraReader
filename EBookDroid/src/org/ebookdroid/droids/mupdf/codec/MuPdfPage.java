@@ -159,22 +159,23 @@ public class MuPdfPage extends AbstractCodecPage {
     }
 
     public BitmapRef render(final Rect viewbox, final float[] ctm) {
-        if (isRecycled()) {
-            throw new RuntimeException("The page has been recycled before: " + this);
-        }
-        final int[] mRect = new int[4];
-        mRect[0] = viewbox.left;
-        mRect[1] = viewbox.top;
-        mRect[2] = viewbox.right;
-        mRect[3] = viewbox.bottom;
-
-        final int width = viewbox.width();
-        final int height = viewbox.height();
-
-        final int[] bufferarray = new int[width * height];
-
-        TempHolder.lock.lock();
         try {
+            TempHolder.lock.lock();
+
+            if (isRecycled()) {
+                throw new RuntimeException("The page has been recycled before: " + this);
+            }
+            final int[] mRect = new int[4];
+            mRect[0] = viewbox.left;
+            mRect[1] = viewbox.top;
+            mRect[2] = viewbox.right;
+            mRect[3] = viewbox.bottom;
+
+            final int width = viewbox.width();
+            final int height = viewbox.height();
+
+            final int[] bufferarray = new int[width * height];
+
             if (TempHolder.get().isTextFormat) {
                 int color = MagicHelper.getBgColor();
                 int r = Color.red(color);
@@ -200,17 +201,17 @@ public class MuPdfPage extends AbstractCodecPage {
             } else {
                 renderPage(docHandle, pageHandle, mRect, ctm, bufferarray, -1, -1, -1);
             }
+
+            if (MagicHelper.isNeedBC) {
+                MagicHelper.applyQuickContrastAndBrightness(bufferarray, width, height);
+            }
+
+            final BitmapRef b = BitmapManager.getBitmap("PDF page", width, height, Config.RGB_565);
+            b.getBitmap().setPixels(bufferarray, 0, width, 0, 0, width, height);
+            return b;
         } finally {
             TempHolder.lock.unlock();
         }
-
-        if (MagicHelper.isNeedBC) {
-            MagicHelper.applyQuickContrastAndBrightness(bufferarray, width, height);
-        }
-
-        final BitmapRef b = BitmapManager.getBitmap("PDF page", width, height, Config.RGB_565);
-        b.getBitmap().setPixels(bufferarray, 0, width, 0, 0, width, height);
-        return b;
     }
 
     @Override

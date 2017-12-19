@@ -14,6 +14,7 @@ import com.foobnix.ext.CacheZipUtils;
 import com.foobnix.ext.EbookMeta;
 import com.foobnix.pdf.info.ExtUtils;
 import com.foobnix.pdf.info.model.BookCSS;
+import com.foobnix.sys.ImageExtractor;
 import com.foobnix.sys.TempHolder;
 import com.foobnix.ui2.FileMetaCore;
 
@@ -33,6 +34,7 @@ public abstract class AbstractCodecContext implements CodecContext {
     protected AbstractCodecContext() {
         this(SEQ.incrementAndGet());
         TempHolder.get().loadingCancelled = false;
+        ImageExtractor.clearCache();
     }
 
     public abstract CodecDocument openDocumentInner(String fileName, String password);

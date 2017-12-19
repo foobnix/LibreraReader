@@ -15,6 +15,7 @@ public class AdClientNativeAd {
     public static String ICON_IMAGE_ASSET = "";
     public static String CALL_TO_ACTION_TEXT_ASSET = "";
     public static String PRIVACY_ICON_IMAGE_ASSET = "";
+    public static String SPONSORED_ASSET = "";
 
     public AdClientNativeAd(Activity a) {
     }
@@ -33,6 +34,14 @@ public class AdClientNativeAd {
 
     public void setClientNativeAdListener(ClientNativeAdListener clientNativeAdListener) {
 
+    }
+
+    public boolean isAdLoaded() {
+        return false;
+    }
+
+    public boolean isDestroyed() {
+        return false;
     }
 
     public View getView(Activity a) {
