@@ -41,7 +41,7 @@ public class OPDS {
 
     public static OkHttpClient client = builder.build();//
 
-    final static Map<String, CachingAuthenticator> authCache = new ConcurrentHashMap<>();
+    final static Map<String, CachingAuthenticator> authCache = new ConcurrentHashMap<String, CachingAuthenticator>();
 
     public static int random = new Random().nextInt();
     public static final String USER_AGENT = "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/57.0.2987." + random + " Safari/537.36";
