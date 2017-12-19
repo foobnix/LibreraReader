@@ -11,7 +11,10 @@ import org.xmlpull.v1.XmlPullParser;
 
 import com.burgstaller.okhttp.AuthenticationCacheInterceptor;
 import com.burgstaller.okhttp.CachingAuthenticatorDecorator;
+import com.burgstaller.okhttp.DispatchingAuthenticator;
+import com.burgstaller.okhttp.basic.BasicAuthenticator;
 import com.burgstaller.okhttp.digest.CachingAuthenticator;
+import com.burgstaller.okhttp.digest.Credentials;
 import com.burgstaller.okhttp.digest.DigestAuthenticator;
 import com.foobnix.android.utils.LOG;
 import com.foobnix.android.utils.TxtUtils;
@@ -21,7 +24,6 @@ import com.foobnix.sys.TempHolder;
 
 import okhttp3.Cache;
 import okhttp3.CacheControl;
-import okhttp3.Credentials;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
@@ -29,12 +31,17 @@ import okhttp3.Response;
 public class OPDS {
     public static final String CODE_401 = "401";
     static Cache cache = new Cache(CacheZipUtils.CACHE_WEB, 5 * 1024 * 1024);
-    public static OkHttpClient client = new OkHttpClient.Builder()//
+
+    public static OkHttpClient.Builder builder = new OkHttpClient.Builder()//
             .cookieJar(new WebviewCookieHandler())//
             .connectTimeout(15, TimeUnit.SECONDS)//
             .writeTimeout(15, TimeUnit.SECONDS)//
             .readTimeout(15, TimeUnit.SECONDS)//
-            .cache(cache).build();//
+            .cache(cache);//
+
+    public static OkHttpClient client = builder.build();//
+
+    final static Map<String, CachingAuthenticator> authCache = new ConcurrentHashMap<>();
 
     public static int random = new Random().nextInt();
     public static final String USER_AGENT = "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/57.0.2987." + random + " Safari/537.36";
@@ -66,20 +73,25 @@ public class OPDS {
         if (response.code() == 401 && TxtUtils.isEmpty(TempHolder.get().login)) {
             return CODE_401;
         } else {
-            LOG.d("Header:", "try to login");
-            String credential = Credentials.basic(TempHolder.get().login, TempHolder.get().password);
-            request = response.request().newBuilder().header("Authorization", credential).build();
+
+            Credentials credentials = new Credentials(TempHolder.get().login, TempHolder.get().password);
+            final BasicAuthenticator basicAuthenticator = new BasicAuthenticator(credentials);
+            final DigestAuthenticator digestAuthenticator = new DigestAuthenticator(credentials);
+
+            DispatchingAuthenticator authenticator = new DispatchingAuthenticator.Builder()//
+                    .with("digest", digestAuthenticator)//
+                    .with("basic", basicAuthenticator)//
+                    .build();
+
+            client = builder //
+                    .authenticator(new CachingAuthenticatorDecorator(authenticator, authCache)) //
+                    .addInterceptor(new AuthenticationCacheInterceptor(authCache)) //
+                    .build();
+
             response = client.newCall(request).execute();
+
             if (response.code() == 401) {
-                LOG.d("Header:", "try to login digest");
-                com.burgstaller.okhttp.digest.Credentials credentials = new com.burgstaller.okhttp.digest.Credentials(TempHolder.get().login, TempHolder.get().password);
-                final DigestAuthenticator digestAuthenticator = new DigestAuthenticator(credentials);
-                final Map<String, CachingAuthenticator> authCache = new ConcurrentHashMap<String, CachingAuthenticator>();
-                client = new OkHttpClient.Builder().authenticator(new CachingAuthenticatorDecorator(digestAuthenticator, authCache)).addInterceptor(new AuthenticationCacheInterceptor(authCache)).build();
-                response = client.newCall(request).execute();
-                if (response.code() == 401) {
-                    return CODE_401;
-                }
+                return CODE_401;
             }
         }
 
