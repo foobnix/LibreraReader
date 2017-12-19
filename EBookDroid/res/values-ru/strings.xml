@@ -334,7 +334,7 @@
    <string name="go_to_the_library">Перейти в библиотеку</string>
    <string name="book_styles">Стили книг</string>
    <string name="language">Язык</string>
-   <string name="show_progress_of_reading">Рисовать полосу прогресса</string>
+   <string name="show_progress_of_reading">Отображать полосу прогресса</string>
    <string name="line_height">Толщина полосы прогресса</string>
    <string name="display_chapters_on_the_progress_line">Делать засечки глав в полосе прогресса</string>
    <string name="enable_brightness_adjustment_on_the_left_of_the_screen">Регулировать яркость подсветки свайпом от левой границы экрана</string>
@@ -364,7 +364,7 @@
    <string name="trim_borders">Границы обрезки</string>
    <string name="stop_reading_timer_">Остановить чтение через</string>
    <string name="two_pages_cover">Обложка и 2 стр.</string>
-   <string name="enhancements_for_oled_display">Заполнять черным цветом фон, образующийся вокруг страниц (AMOLED-адаптация)</string>
+   <string name="enhancements_for_oled_display">Заполнять черным цветом фон вокруг страниц (AMOLED-адаптация)</string>
    <string name="reading_will_be_stopped">Чтение остановится в</string>
    <string name="compact">Полусписок</string>
    <string name="cd_search_books_in_the_library">Поиск книг в библиотеке</string>
