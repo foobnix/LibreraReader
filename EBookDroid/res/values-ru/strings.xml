@@ -19,7 +19,7 @@
    <string name="content_of_book">Содержание</string>
    <string name="crop_white_borders">Обрезать пустые поля</string>
    <string name="delete">Удалить</string>
-   <string name="delete_book_">Удалить файл с карты памяти?</string>
+   <string name="delete_book_">Удалить безвозвратно этот файл?</string>
    <string name="dialog_color_picker">Выбор цвета</string>
    <string name="Document_is_corrupted">Файл поврежден</string>
    <string name="downloading">Скачивание</string>
@@ -45,7 +45,7 @@
    <string name="licence_gnu_gpl_v3_0">Лицензия: GNU GPL v3.0</string>
    <string name="light">Cветлая</string>
    <string name="loading_failed">Ошибка загрузки страницы</string>
-   <string name="loop_autoplay">Возобновлять автопрокрутку текста с самого начала после ее завершения</string>
+   <string name="loop_autoplay">Достигнув конца книги, переходить к ее началу и начинать заново</string>
    <string name="mouse_scroll_speed">Скорость прокрутки колесиком мыши</string>
    <string name="msg_loading">Создается...</string>
    <string name="msg_no_text_found">Текст не найден</string>
@@ -67,7 +67,7 @@
    <string name="please_rate">Оценить программу</string>
    <string name="portrait">Вертикальная</string>
    <string name="preferences">Настройки</string>
-   <string name="press_any_key">Нажмите любую клавишу</string>
+   <string name="press_any_key">Нажмите на любую клавишу</string>
    <string name="press_color_to_apply">Выберите цвет</string>
    <string name="prev">Предыдущая</string>
    <string name="prev_keys">Клавиши ПРЕД.:</string>
@@ -77,7 +77,7 @@
    <string name="recent">Недавние</string>
    <string name="rescan">Обновить поиск</string>
    <string name="restore_default_keys">Вернуть значения клавиш по умолчанию</string>
-   <string name="reverse_keys">Переназначить клавиши рег. громкости</string>
+   <string name="reverse_keys">Переназначить клавиши регул. громкости</string>
    <string name="rotate">Повернуть</string>
    <string name="rotate_default">По умолчанию</string>
    <string name="save">Сохранить</string>
@@ -104,7 +104,7 @@
    <string name="text">Текст</string>
    <string name="annotations_draw">Комментирование и рисование</string>
    <string name="copy">Скопировать</string>
-   <string name="save_changes">Сохранить изменения</string>
+   <string name="save_changes">Сохранить изменения?</string>
    <string name="yes">Да</string>
    <string name="no">Нет</string>
    <string name="rename">Переименовать</string>
@@ -112,7 +112,7 @@
    <string name="widget">Виджет</string>
    <string name="list">Список</string>
    <string name="grid">Сетка</string>
-   <string name="items_">Элементов:</string>
+   <string name="items_">Элементов</string>
    <string name="musician_performance">Режим «Музыкант»</string>
    <string name="pdf_mode">Режим PDF</string>
    <string name="expiremental_features">Комментирование и рисование (в тестировании; может повредить некоторые файлы)</string>
@@ -145,7 +145,7 @@
    <string name="send_file">Отправить файл</string>
    <string name="file_info">Информация о файле</string>
    <string name="open_file">Открыть файл</string>
-   <string name="make_text_reflow">Перекомпоновать в FB2-формат (функция «Text reflow»)</string>
+   <string name="make_text_reflow">Перекомпоновать в FB2-формат</string>
    <string name="search_not_supported_formats">Поиск среди неподдерживаемых форматов</string>
    <string name="search_in_google">Поиск в Google</string>
    <string name="reading_the_text_by_voice">Чтение текста голосом</string>
@@ -161,7 +161,7 @@
    <string name="db_auto_alignemnt">Вписать в ширину экрана</string>
    <string name="db_auto_scroll">Автопрокрутка</string>
    <string name="db_do_nothing">Ничего не делать</string>
-   <string name="action_on_double_tap">Двойное нажатие</string>
+   <string name="action_on_double_tap">Двойной клик</string>
    <string name="add_bookmark">Добавить закладку</string>
    <string name="add">Добавить</string>
    <string name="say_hello_my_name_is_droid_reader1">Здравствуйте, меня зовут Droid-ридер</string>
@@ -171,8 +171,8 @@
    <string name="convert_to_other_format_online_">Онлайн-преобразование в другой формат</string>
    <string name="invalid_color_value">Недопустимое значение цвета</string>
    <string name="books_not_found">Файлы не найдены</string>
-   <string name="ignore_annotations_on_click">Игнорировать комментарии при нажатиях</string>
-   <string name="save_new_annotations_automatically">Автоматически сохранять новые комментарии</string>
+   <string name="ignore_annotations_on_click">Игнорировать комментарии и пометки при нажатиях</string>
+   <string name="save_new_annotations_automatically">Автоматически сохранять новые комментарии и пометки</string>
    <string name="web_dict">Глянуть в веб-словаре</string>
    <string name="remember_dictionary">Запомнить словарь</string>
    <string name="left_to_rigth">Слева направо</string>
@@ -232,7 +232,7 @@
    <string name="clear_all_bookmars">Очистить все закладки?</string>
    <string name="clear_all_marked">Снять отметки со всех избранных</string>
    <string name="enable_volume_keys">Листать клавишами регул. громкости</string>
-   <string name="open_in_the_dictionary">Открывать выдел. текст в словаре</string>
+   <string name="open_in_the_dictionary">Открывать выделен. текст в словаре</string>
    <string name="lock_for_pdf_and_djvu_when_opening">Всегда блокировать изменение ширины страниц и их смещения в стороны при открытии PDF/DJVU</string>
    <string name="cover_image_size">Размер обложек</string>
    <string name="close_application_">Закрыть приложение?</string>
@@ -241,7 +241,7 @@
    <string name="rate_pdf_reader1">Пожалуйста, напишите свой отзыв и оцените нас в Google Play. Это очень важно для развития приложения.</string>
    <string name="enable_effect_of_the_book_cover">Придать обложкам реалистичности</string>
    <string name="archive_files">Файл(ы) в архиве</string>
-   <string name="column_count">Количество столбцов:</string>
+   <string name="column_count">Количество столбцов</string>
    <string name="crop_images_in_the_book_cover">Кадрировать обложки книг</string>
    <string name="by_screans">Экран</string>
    <string name="by_pages">Страница</string>
@@ -313,7 +313,7 @@
    <string name="interval_sec_">Интервал (в секундах)</string>
    <string name="library_settings">Настройки библиотеки</string>
    <string name="by_name">Имя</string>
-   <string name="opening_the_last_book_when_the_application_starts">При запуске приложения открывать последнюю книгу в том же режиме чтения</string>
+   <string name="opening_the_last_book_when_the_application_starts">При запуске прил-я открывать последнюю читавш. книгу в том же режиме чтения</string>
    <string name="links_color_day">Цвет ссылок (День)</string>
    <string name="links_color_night">Цвет ссылок (Ночь)</string>
    <string name="status_bar">Строка состояния</string>
@@ -333,8 +333,8 @@
    <string name="close_application">Закрыть приложение</string>
    <string name="go_to_the_library">Перейти в библиотеку</string>
    <string name="book_styles">Стили книг</string>
-   <string name="language">Язык:</string>
-   <string name="show_progress_of_reading">Показывать полосу прогресса</string>
+   <string name="language">Язык</string>
+   <string name="show_progress_of_reading">Отображать полосу прогресса</string>
    <string name="line_height">Толщина полосы прогресса</string>
    <string name="display_chapters_on_the_progress_line">Делать засечки глав в полосе прогресса</string>
    <string name="enable_brightness_adjustment_on_the_left_of_the_screen">Регулировать яркость подсветки свайпом от левой границы экрана</string>
@@ -364,7 +364,7 @@
    <string name="trim_borders">Границы обрезки</string>
    <string name="stop_reading_timer_">Остановить чтение через</string>
    <string name="two_pages_cover">Обложка и 2 стр.</string>
-   <string name="enhancements_for_oled_display">Использовать черный цвет для фона вокруг страниц (адаптация под [AM]OLED-экраны)</string>
+   <string name="enhancements_for_oled_display">Заполнять черным цветом фон вокруг страниц (AMOLED-адаптация)</string>
    <string name="reading_will_be_stopped">Чтение остановится в</string>
    <string name="compact">Полусписок</string>
    <string name="cd_search_books_in_the_library">Поиск книг в библиотеке</string>
@@ -424,8 +424,8 @@
    <string name="system_language">Системный</string>
    <string name="bluelight_filter">Фильтр синего цвета</string>
    <string name="what_is_new_in">Что нового в</string>
-   <string name="you_need_to_update_the_library">Вам необходимо обновить библиотеку</string>
+   <string name="you_need_to_update_the_library">Для этого нужно принудительно обновить библиотеку</string>
    <string name="theme_color">Цвет темы</string>
-   <string name="add_folder">Добавить папку</string>
-   <string name="selecting_text_in_this_mode_does_not_work">Выбор текста в этом режиме не работает</string>
+   <string name="add_folder">Добавить раздел/папку</string>
+   <string name="selecting_text_in_this_mode_does_not_work">В этом режиме текст выделить нельзя</string>
 </resources>
