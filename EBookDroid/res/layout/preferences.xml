@@ -432,43 +432,22 @@
             android:layout_marginTop="1dip"
             android:background="@color/lt_grey_alpha" />
 
-        <LinearLayout
+        <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="5dip"
-            android:layout_marginTop="4dip"
-            android:gravity="center_vertical"
-            android:orientation="horizontal" >
+            android:text="@string/brightness"
+            android:textStyle="bold" />
 
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:minWidth="100dp" >
-
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/glyphicons_190_brightness_increase"
-                    android:tint="@color/tint_gray" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="5dip"
-                    android:text="@string/brightness"
-                    android:textStyle="bold" />
-            </LinearLayout>
-
-            <CheckBox
-                android:id="@+id/autoSettings"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="4dip"
-                android:layout_weight="0"
-                android:singleLine="true"
-                android:text="@string/automatic"
-                android:textSize="12sp" />
-        </LinearLayout>
+        <CheckBox
+            android:id="@+id/autoSettings"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="4dip"
+            android:layout_weight="0"
+            android:singleLine="true"
+            android:text="@string/automatic"
+            android:textSize="12sp" />
 
         <com.foobnix.pdf.info.view.CustomSeek
             android:id="@+id/customBrightness"
