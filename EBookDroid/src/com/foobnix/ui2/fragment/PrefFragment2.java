@@ -936,7 +936,9 @@ public class PrefFragment2 extends UIFragment {
             }
         });
 
-        inflate.findViewById(R.id.onConfigPath).setOnClickListener(new View.OnClickListener() {
+        TextView addFolder = (TextView) inflate.findViewById(R.id.onConfigPath);
+        TxtUtils.underlineTextView(addFolder);
+        addFolder.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(final View v) {

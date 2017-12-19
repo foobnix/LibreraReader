@@ -101,14 +101,14 @@
                         android:text="/mnt/sdcard \r\n /emmc /n /sdcard1" />
                 </LinearLayout>
 
-                <Button
+                <TextView
                     android:id="@+id/onConfigPath"
-                    style="?android:attr/buttonStyleSmall"
+                      style="@style/textLink"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="top"
                     android:layout_weight="0"
-                    android:text=" ... " />
+                    android:text="@string/add_folder" />
             </LinearLayout>
 
             <LinearLayout
@@ -262,7 +262,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:minWidth="110dp"
+                android:minWidth="120dp"
                 android:text="@string/orientation"
                 android:textStyle="bold" />
 
@@ -283,7 +283,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:minWidth="110dp"
+                android:minWidth="120dp"
                 android:text="@string/language"
                 android:textStyle="bold" />
 
@@ -304,7 +304,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:minWidth="110dp"
+                android:minWidth="120dp"
                 android:text="@string/font_size"
                 android:textStyle="bold" />
 
@@ -325,7 +325,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:minWidth="110dp"
+                android:minWidth="120dp"
                 android:text="@string/theme"
                 android:textStyle="bold" />
 
@@ -346,7 +346,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:minWidth="110dp"
+                android:minWidth="120dp"
                 android:text="@string/theme_color"
                 android:textStyle="bold" />
 
@@ -575,27 +575,14 @@
 
         <!-- Prefs. > Preferences > Widget -->
 
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="5dip"
-            android:layout_marginTop="4dip"
-            android:gravity="top"
-            android:orientation="horizontal" >
-
-            <LinearLayout
+            
+            
+             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="center_vertical"
-                android:minWidth="100dp"
                 android:orientation="horizontal" >
 
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_vertical"
-                    android:src="@drawable/glyphicons_157_show_thumbnails"
-                    android:tint="@color/tint_gray" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -604,6 +591,8 @@
                     android:text="@string/widget"
                     android:textStyle="bold" />
             </LinearLayout>
+
+           
 
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -621,7 +610,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:minWidth="100dp"
+                        android:minWidth="120dp"
                         android:text="@string/show" />
 
                     <TextView
@@ -643,7 +632,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:minWidth="100dp"
+                        android:minWidth="120dp"
                         android:text="@string/layout" />
 
                     <TextView
@@ -666,7 +655,7 @@
                         android:id="@+id/textView1"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:minWidth="100dp"
+                        android:minWidth="120dp"
                         android:text="@string/number_of_books" />
 
                     <TextView
@@ -677,7 +666,6 @@
                         android:text="2"
                         android:textAllCaps="true" />
                 </LinearLayout>
-            </LinearLayout>
         </LinearLayout>
         <!-- end of  "Prefs. > Preferences > Widget" -->
 

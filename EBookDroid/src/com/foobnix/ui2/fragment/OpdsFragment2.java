@@ -153,6 +153,7 @@ public class OpdsFragment2 extends UIFragment<Entry> {
                     @Override
                     public void run() {
                         AppState.get().myOPDS = AppState.OPDS_DEFAULT;
+                        url = "/";
                         populate();
                     }
                 });
@@ -193,6 +194,7 @@ public class OpdsFragment2 extends UIFragment<Entry> {
                     @Override
                     public void run() {
                         AppState.get().myOPDS = AppState.get().myOPDS.replace(result.appState, "");
+                        url = "/";
                         populate();
                     }
                 });
@@ -255,6 +257,7 @@ public class OpdsFragment2 extends UIFragment<Entry> {
                             AppState.get().myOPDS = AppState.get().myOPDS.replace(entry.appState, "");
                             starIcon.setImageResource(R.drawable.star_2);
                             TintUtil.setTintImage(starIcon, Color.WHITE);
+                            url = "/";
                         }
                     });
                 }

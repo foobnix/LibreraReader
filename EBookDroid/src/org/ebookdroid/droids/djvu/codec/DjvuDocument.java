@@ -21,8 +21,13 @@ public class DjvuDocument extends AbstractCodecDocument {
 
     @Override
     public List<OutlineLink> getOutline() {
-        final DjvuOutline ou = new DjvuOutline();
-        return ou.getOutline(documentHandle);
+        TempHolder.lock.lock();
+        try {
+            final DjvuOutline ou = new DjvuOutline();
+            return ou.getOutline(documentHandle);
+        } finally {
+            TempHolder.lock.unlock();
+        }
     }
 
     @Override

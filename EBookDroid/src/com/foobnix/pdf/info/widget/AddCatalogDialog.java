@@ -198,10 +198,21 @@ public class AddCatalogDialog {
                         try {
                             progressBar.setVisibility(View.GONE);
                             if (result == null || ((Feed) result).entries.isEmpty()) {
-                                Toast.makeText(a, a.getString(R.string.incorrect_value) + " OPDS " + feedUrl, Toast.LENGTH_LONG).show();
-                                infoDialog.getButton(AlertDialog.BUTTON_POSITIVE).setText(R.string.add);
-                                addAsWEb.setVisibility(View.VISIBLE);
-                                image.setTag("assets://opds/web.png");
+                                if (((Feed) result).isNeedLoginPassword) {
+                                    AddCatalogDialog.showDialogLogin(a, new Runnable() {
+
+                                        @Override
+                                        public void run() {
+
+                                        }
+                                    });
+
+                                } else {
+                                    Toast.makeText(a, a.getString(R.string.incorrect_value) + " OPDS " + feedUrl, Toast.LENGTH_LONG).show();
+                                    infoDialog.getButton(AlertDialog.BUTTON_POSITIVE).setText(R.string.add);
+                                    addAsWEb.setVisibility(View.VISIBLE);
+                                    image.setTag("assets://opds/web.png");
+                                }
                                 return;
                             }
                             Feed feed = (Feed) result;

@@ -2,11 +2,17 @@ package com.foobnix.opds;
 
 import java.io.IOException;
 import java.io.StringReader;
+import java.util.Map;
 import java.util.Random;
+import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.TimeUnit;
 
 import org.xmlpull.v1.XmlPullParser;
 
+import com.burgstaller.okhttp.AuthenticationCacheInterceptor;
+import com.burgstaller.okhttp.CachingAuthenticatorDecorator;
+import com.burgstaller.okhttp.digest.CachingAuthenticator;
+import com.burgstaller.okhttp.digest.DigestAuthenticator;
 import com.foobnix.android.utils.LOG;
 import com.foobnix.android.utils.TxtUtils;
 import com.foobnix.ext.CacheZipUtils;
@@ -65,7 +71,15 @@ public class OPDS {
             request = response.request().newBuilder().header("Authorization", credential).build();
             response = client.newCall(request).execute();
             if (response.code() == 401) {
-                return CODE_401;
+                LOG.d("Header:", "try to login digest");
+                com.burgstaller.okhttp.digest.Credentials credentials = new com.burgstaller.okhttp.digest.Credentials(TempHolder.get().login, TempHolder.get().password);
+                final DigestAuthenticator digestAuthenticator = new DigestAuthenticator(credentials);
+                final Map<String, CachingAuthenticator> authCache = new ConcurrentHashMap<String, CachingAuthenticator>();
+                client = new OkHttpClient.Builder().authenticator(new CachingAuthenticatorDecorator(digestAuthenticator, authCache)).addInterceptor(new AuthenticationCacheInterceptor(authCache)).build();
+                response = client.newCall(request).execute();
+                if (response.code() == 401) {
+                    return CODE_401;
+                }
             }
         }
 
