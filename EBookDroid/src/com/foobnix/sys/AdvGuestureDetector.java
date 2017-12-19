@@ -1,6 +1,7 @@
 package com.foobnix.sys;
 
 import org.ebookdroid.BookType;
+import org.ebookdroid.LibreraApp;
 import org.ebookdroid.common.settings.SettingsManager;
 import org.ebookdroid.common.touch.IGestureDetector;
 import org.ebookdroid.common.touch.IMultiTouchListener;
@@ -13,6 +14,7 @@ import com.foobnix.android.utils.LOG;
 import com.foobnix.android.utils.TxtUtils;
 import com.foobnix.android.utils.Vibro;
 import com.foobnix.pdf.info.ExtUtils;
+import com.foobnix.pdf.info.R;
 import com.foobnix.pdf.info.model.AnnotationType;
 import com.foobnix.pdf.info.wrapper.AppState;
 import com.foobnix.pdf.info.wrapper.DocumentController;
@@ -21,6 +23,7 @@ import android.content.Context;
 import android.graphics.Rect;
 import android.view.GestureDetector.SimpleOnGestureListener;
 import android.view.MotionEvent;
+import android.widget.Toast;
 
 public class AdvGuestureDetector extends SimpleOnGestureListener implements IMultiTouchListener {
 
@@ -282,6 +285,7 @@ public class AdvGuestureDetector extends SimpleOnGestureListener implements IMul
     public void onLongPress(final MotionEvent e) {
         Vibro.vibrate();
         if (!AppState.get().longTapEnable || AppState.get().isCut || AppState.get().isCrop) {
+            Toast.makeText(LibreraApp.context, R.string.selecting_text_in_this_mode_does_not_work, Toast.LENGTH_LONG).show();
             return;
         }
 

@@ -426,4 +426,6 @@
    <string name="what_is_new_in">Kas naujo</string>
    <string name="you_need_to_update_the_library">Jums reikia atnaujinti biblioteką</string>
    <string name="theme_color">Temos spalva</string>
+   <string name="add_folder">Pridėti aplanką</string>
+   <string name="selecting_text_in_this_mode_does_not_work">Teksto pasirinkimas šiame režime neveikia</string>
 </resources>

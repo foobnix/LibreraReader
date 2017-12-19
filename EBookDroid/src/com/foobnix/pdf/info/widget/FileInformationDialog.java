@@ -300,7 +300,7 @@ public class FileInformationDialog {
             return;
         }
         final AlertDialog.Builder builder = new AlertDialog.Builder(a);
-        builder.setMessage(a.getString(R.string.delete_book_) + " " + file.getName()).setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+        builder.setMessage(a.getString(R.string.delete_book_) + "\n" + file.getName()).setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(final DialogInterface dialog, final int id) {
                 onDeleteAction.run();

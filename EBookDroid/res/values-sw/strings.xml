@@ -426,4 +426,6 @@
    <string name="what_is_new_in">Nini kipya ndani</string>
    <string name="you_need_to_update_the_library">Unahitaji kusasisha maktaba</string>
    <string name="theme_color">Mandhari ya rangi</string>
+   <string name="add_folder">Ongeza folda</string>
+   <string name="selecting_text_in_this_mode_does_not_work">Kuchagua maandishi katika hali hii haifanyi kazi</string>
 </resources>

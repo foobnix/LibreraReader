@@ -697,8 +697,8 @@ public class DragingDialogs {
                 final BaseItemLayoutAdapter<Integer> adapter = new BaseItemLayoutAdapter<Integer>(anchor.getContext(), android.R.layout.simple_spinner_dropdown_item) {
 
                     @Override
-                    public void populateView(View inflate, int arg1, Integer arg2) {
-                        final TextView text = Views.text(inflate, android.R.id.text1, TxtUtils.deltaPage(arg2 + 1));
+                    public void populateView(View inflate, int arg1, Integer page) {
+                        final TextView text = Views.text(inflate, android.R.id.text1, TxtUtils.deltaPage(page + 1));
                         text.setGravity(Gravity.CENTER);
                         text.setTypeface(Typeface.DEFAULT, Typeface.BOLD);
                     }
@@ -791,6 +791,7 @@ public class DragingDialogs {
                         }
 
                         if (pageNumber >= 0) {
+                            pageNumber = PageUrl.realToFake(pageNumber);
                             searchingMsg.setVisibility(View.VISIBLE);
                             adapter.getItems().add(pageNumber);
                             adapter.notifyDataSetChanged();
@@ -1644,7 +1645,7 @@ public class DragingDialogs {
         final AppBookmark bookmark = new AppBookmark(controller.getCurrentBook().getPath(), controller.getString(R.string.fast_bookmark), page, controller.getTitle());
         AppSharedPreferences.get().addBookMark(bookmark);
 
-        String TEXT = controller.getString(R.string.fast_bookmark) + " – «" + controller.getString(R.string.page) + " " + page + "»";
+        String TEXT = controller.getString(R.string.fast_bookmark) + " " + TxtUtils.LONG_DASH + " «" + controller.getString(R.string.page) + " " + page + "»";
         Toast.makeText(controller.getActivity(), TEXT, Toast.LENGTH_SHORT).show();
 
     }
@@ -1726,7 +1727,7 @@ public class DragingDialogs {
                         bookmarksAdapter.notifyDataSetChanged();
 
                         closeDialog();
-                        String TEXT = controller.getString(R.string.fast_bookmark) + " – «" + controller.getString(R.string.page) + " " + page + "»";
+                        String TEXT = controller.getString(R.string.fast_bookmark) + " " + TxtUtils.LONG_DASH + " «" + controller.getString(R.string.page) + " " + page + "»";
                         Toast.makeText(controller.getActivity(), TEXT, Toast.LENGTH_SHORT).show();
 
                     }

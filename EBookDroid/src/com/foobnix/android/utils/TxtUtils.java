@@ -22,6 +22,8 @@ import android.widget.TextView;
 
 public class TxtUtils {
 
+    public static String LONG_DASH = "–";
+    public static String SMALL_DASH = " - ";
 
     public static String deltaPage(int current) {
         if (TempHolder.get().pageDelta == 0) {
@@ -154,7 +156,7 @@ public class TxtUtils {
         }
 
         if (TxtUtils.isNotEmpty(fileMeta.getAuthor())) {
-            return fileMeta.getAuthor() + " - " + fileMeta.getTitle();
+            return fileMeta.getAuthor() + " " + LONG_DASH + " " + fileMeta.getTitle();
         } else {
             return fileMeta.getTitle();
         }

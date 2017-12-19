@@ -426,4 +426,6 @@
    <string name="what_is_new_in">Wat is nieuw in</string>
    <string name="you_need_to_update_the_library">U moet de bibliotheek bijwerken</string>
    <string name="theme_color">Thema kleur</string>
+   <string name="add_folder">Map toevoegen</string>
+   <string name="selecting_text_in_this_mode_does_not_work">Tekst selecteren in deze modus werkt niet</string>
 </resources>

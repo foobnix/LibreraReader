@@ -427,4 +427,5 @@
    <string name="you_need_to_update_the_library">You need to update the library</string>
    <string name="theme_color">Theme color</string>
    <string name="add_folder">Add folder</string>
+   <string name="selecting_text_in_this_mode_does_not_work">Selecting text in this mode does not work</string>
 </resources>

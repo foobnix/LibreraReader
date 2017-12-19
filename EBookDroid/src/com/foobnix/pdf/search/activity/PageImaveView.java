@@ -2,6 +2,7 @@ package com.foobnix.pdf.search.activity;
 
 import java.util.List;
 
+import org.ebookdroid.LibreraApp;
 import org.ebookdroid.core.codec.PageLink;
 import org.ebookdroid.droids.mupdf.codec.TextWord;
 import org.greenrobot.eventbus.EventBus;
@@ -11,6 +12,7 @@ import com.foobnix.android.utils.Dips;
 import com.foobnix.android.utils.LOG;
 import com.foobnix.android.utils.TxtUtils;
 import com.foobnix.android.utils.Vibro;
+import com.foobnix.pdf.info.R;
 import com.foobnix.pdf.info.wrapper.AppState;
 import com.foobnix.pdf.info.wrapper.MagicHelper;
 import com.foobnix.pdf.search.activity.msg.InvalidateMessage;
@@ -40,6 +42,7 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.animation.AccelerateDecelerateInterpolator;
 import android.widget.Scroller;
+import android.widget.Toast;
 
 public class PageImaveView extends View {
 
@@ -280,6 +283,7 @@ public class PageImaveView extends View {
         public void onLongPress(MotionEvent e) {
             Vibro.vibrate();
             if (!AppState.get().longTapEnable || AppState.get().isCut || AppState.get().isCrop) {
+                Toast.makeText(LibreraApp.context, R.string.selecting_text_in_this_mode_does_not_work, Toast.LENGTH_LONG).show();
                 return;
             }
             isLognPress = true;

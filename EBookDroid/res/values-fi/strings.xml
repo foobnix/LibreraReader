@@ -426,4 +426,6 @@
    <string name="what_is_new_in">Mikä on uutta</string>
    <string name="you_need_to_update_the_library">Sinun on päivitettävä kirjasto</string>
    <string name="theme_color">Teeman väri</string>
+   <string name="add_folder">Lisää kansio</string>
+   <string name="selecting_text_in_this_mode_does_not_work">Tekstin valinta tässä tilassa ei toimi</string>
 </resources>

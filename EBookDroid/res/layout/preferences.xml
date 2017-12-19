@@ -66,140 +66,122 @@
                 android:visibility="visible" />
         </LinearLayout>
 
-        <LinearLayout
-            android:layout_width="match_parent"
+        <TextView
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="vertical" >
+            android:layout_marginLeft="5dip"
+            android:singleLine="true"
+            android:text="@string/scan_device_for_new_books"
+            android:textStyle="bold" />
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal" >
+        <TextView
+            android:id="@+id/searchPaths"
+            style="@style/textLink"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dip"
+            android:padding="0dip"
+            android:singleLine="false"
+            android:text="/mnt/sdcard \r\n /emmc /n /sdcard1" />
 
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_vertical"
-                    android:layout_weight="1"
-                    android:orientation="vertical" >
+        <TextView
+            android:id="@+id/onConfigPath"
+            style="@style/textLink"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dip"
+            android:layout_weight="0"
+            android:padding="0dip"
+            android:text="@string/add_folder" />
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="5dip"
-                        android:singleLine="true"
-                        android:text="@string/scan_device_for_new_books"
-                        android:textStyle="bold" />
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal" >
 
-                    <TextView
-                        android:id="@+id/searchPaths"
-                        style="@style/textLink"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="5dip"
-                        android:singleLine="false"
-                        android:text="/mnt/sdcard \r\n /emmc /n /sdcard1" />
-                </LinearLayout>
-
-                <TextView
-                    android:id="@+id/onConfigPath"
-                      style="@style/textLink"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="top"
-                    android:layout_weight="0"
-                    android:text="@string/add_folder" />
-            </LinearLayout>
-
-            <LinearLayout
+            <CheckBox
+                android:id="@+id/supportPDF"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal" >
+                android:minWidth="110dp"
+                android:text="PDF"
+                android:textSize="11sp" />
 
-                <CheckBox
-                    android:id="@+id/supportPDF"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:minWidth="110dp"
-                    android:text="PDF"
-                    android:textSize="11sp" />
-
-                <CheckBox
-                    android:id="@+id/supportDJVU"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:minWidth="110dp"
-                    android:text="DJVU"
-                    android:textSize="11sp" />
-
-                <CheckBox
-                    android:id="@+id/supportFB2"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:minWidth="110dp"
-                    android:text="FB2"
-                    android:textSize="11sp" />
-            </LinearLayout>
-
-            <LinearLayout
+            <CheckBox
+                android:id="@+id/supportDJVU"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal" >
+                android:minWidth="110dp"
+                android:text="DJVU"
+                android:textSize="11sp" />
 
-                <CheckBox
-                    android:id="@+id/supportMOBI"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:minWidth="110dp"
-                    android:text="MOBI/AZW"
-                    android:textSize="11sp" />
-
-                <CheckBox
-                    android:id="@+id/supportEPUB"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:minWidth="110dp"
-                    android:text="EPUB"
-                    android:textSize="11sp" />
-
-                <CheckBox
-                    android:id="@+id/supportRTF"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:minWidth="110dp"
-                    android:text="RTF"
-                    android:textSize="11sp" />
-            </LinearLayout>
-
-            <LinearLayout
+            <CheckBox
+                android:id="@+id/supportFB2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal" >
+                android:minWidth="110dp"
+                android:text="FB2"
+                android:textSize="11sp" />
+        </LinearLayout>
 
-                <CheckBox
-                    android:id="@+id/supportCBZ"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:minWidth="110dp"
-                    android:text="CBZ/CBR"
-                    android:textSize="11sp" />
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal" >
 
-                <CheckBox
-                    android:id="@+id/supportTXT"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:minWidth="110dp"
-                    android:text="HTML/TXT"
-                    android:textSize="11sp" />
+            <CheckBox
+                android:id="@+id/supportMOBI"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:minWidth="110dp"
+                android:text="MOBI/AZW"
+                android:textSize="11sp" />
 
-                <CheckBox
-                    android:id="@+id/supportXPS"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:minWidth="110dp"
-                    android:text="XPS"
-                    android:textSize="11sp" />
-            </LinearLayout>
+            <CheckBox
+                android:id="@+id/supportEPUB"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:minWidth="110dp"
+                android:text="EPUB"
+                android:textSize="11sp" />
+
+            <CheckBox
+                android:id="@+id/supportRTF"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:minWidth="110dp"
+                android:text="RTF"
+                android:textSize="11sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal" >
+
+            <CheckBox
+                android:id="@+id/supportCBZ"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:minWidth="110dp"
+                android:text="CBZ/CBR"
+                android:textSize="11sp" />
+
+            <CheckBox
+                android:id="@+id/supportTXT"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:minWidth="110dp"
+                android:text="HTML/TXT"
+                android:textSize="11sp" />
+
+            <CheckBox
+                android:id="@+id/supportXPS"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:minWidth="110dp"
+                android:text="XPS"
+                android:textSize="11sp" />
         </LinearLayout>
 
         <LinearLayout
@@ -252,8 +234,7 @@
             android:layout_marginTop="4dip"
             android:background="@drawable/bg_search_second"
             android:text="@string/preferences" />
-        
-        
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -340,8 +321,8 @@
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:gravity="center_vertical"
-            android:layout_marginLeft="5dip" >
+            android:layout_marginLeft="5dip"
+            android:gravity="center_vertical" >
 
             <TextView
                 android:layout_width="wrap_content"
@@ -372,8 +353,6 @@
                     layout="@layout/item_color" />
             </LinearLayout>
         </LinearLayout>
-
-        
 
         <LinearLayout
             android:id="@+id/onFullScreen"
@@ -575,97 +554,92 @@
 
         <!-- Prefs. > Preferences > Widget -->
 
-            
-            
-             <LinearLayout
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal" >
+
+            <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:gravity="center_vertical"
-                android:orientation="horizontal" >
+                android:layout_marginLeft="5dip"
+                android:text="@string/widget"
+                android:textStyle="bold" />
+        </LinearLayout>
 
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="5dip"
-                    android:text="@string/widget"
-                    android:textStyle="bold" />
-            </LinearLayout>
-
-           
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="vertical" >
 
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="5dip"
                 android:gravity="center_vertical"
-                android:orientation="vertical" >
+                android:orientation="horizontal" >
 
-                <LinearLayout
+                <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="5dip"
-                    android:gravity="center_vertical"
-                    android:orientation="horizontal" >
+                    android:minWidth="120dp"
+                    android:text="@string/show" />
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:minWidth="120dp"
-                        android:text="@string/show" />
-
-                    <TextView
-                        android:id="@+id/widgetForRecent"
-                        style="@style/textLink"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:minWidth="100dip"
-                        android:text="@string/recent" />
-                </LinearLayout>
-
-                <LinearLayout
+                <TextView
+                    android:id="@+id/widgetForRecent"
+                    style="@style/textLink"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="5dip"
-                    android:gravity="center_vertical"
-                    android:orientation="horizontal" >
+                    android:minWidth="100dip"
+                    android:text="@string/recent" />
+            </LinearLayout>
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:minWidth="120dp"
-                        android:text="@string/layout" />
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dip"
+                android:gravity="center_vertical"
+                android:orientation="horizontal" >
 
-                    <TextView
-                        android:id="@+id/widgetLayout"
-                        style="@style/textLink"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:minWidth="100dip"
-                        android:text="@string/grid" />
-                </LinearLayout>
-
-                <LinearLayout
+                <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="5dip"
-                    android:gravity="center_vertical"
-                    android:orientation="horizontal" >
+                    android:minWidth="120dp"
+                    android:text="@string/layout" />
 
-                    <TextView
-                        android:id="@+id/textView1"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:minWidth="120dp"
-                        android:text="@string/number_of_books" />
+                <TextView
+                    android:id="@+id/widgetLayout"
+                    style="@style/textLink"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:minWidth="100dip"
+                    android:text="@string/grid" />
+            </LinearLayout>
 
-                    <TextView
-                        android:id="@+id/widgetItemsCount"
-                        style="@style/textLink"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="2"
-                        android:textAllCaps="true" />
-                </LinearLayout>
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dip"
+                android:gravity="center_vertical"
+                android:orientation="horizontal" >
+
+                <TextView
+                    android:id="@+id/textView1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:minWidth="120dp"
+                    android:text="@string/number_of_books" />
+
+                <TextView
+                    android:id="@+id/widgetItemsCount"
+                    style="@style/textLink"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="2"
+                    android:textAllCaps="true" />
+            </LinearLayout>
         </LinearLayout>
         <!-- end of  "Prefs. > Preferences > Widget" -->
 

@@ -426,4 +426,6 @@
    <string name="what_is_new_in">什么是新的</string>
    <string name="you_need_to_update_the_library">你需要更新库</string>
    <string name="theme_color">主题颜色</string>
+   <string name="add_folder">新增文件夹</string>
+   <string name="selecting_text_in_this_mode_does_not_work">在这种模式下选择文本不起作用</string>
 </resources>

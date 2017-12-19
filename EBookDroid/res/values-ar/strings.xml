@@ -426,4 +426,6 @@
    <string name="what_is_new_in">ما هو الجديد في</string>
    <string name="you_need_to_update_the_library">تحتاج إلى تحديث المكتبة</string>
    <string name="theme_color">لون الموضوع</string>
+   <string name="add_folder">أضف المجلد</string>
+   <string name="selecting_text_in_this_mode_does_not_work">لا يعمل تحديد النص في هذا الوضع</string>
 </resources>

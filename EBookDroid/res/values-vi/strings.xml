@@ -426,4 +426,6 @@
    <string name="what_is_new_in">Có gì mới trong</string>
    <string name="you_need_to_update_the_library">Bạn cần cập nhật thư viện</string>
    <string name="theme_color">Màu chủ đề</string>
+   <string name="add_folder">Thêm thư mục</string>
+   <string name="selecting_text_in_this_mode_does_not_work">Chọn văn bản trong chế độ này không hoạt động</string>
 </resources>

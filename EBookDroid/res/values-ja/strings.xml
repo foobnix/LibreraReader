@@ -426,4 +426,6 @@
    <string name="what_is_new_in">新機能</string>
    <string name="you_need_to_update_the_library">ライブラリを更新する必要があります</string>
    <string name="theme_color">テーマの色</string>
+   <string name="add_folder">フォルダーを追加</string>
+   <string name="selecting_text_in_this_mode_does_not_work">このモードでテキストを選択しても機能しません</string>
 </resources>

@@ -426,4 +426,6 @@
    <string name="what_is_new_in">Hva er nytt i</string>
    <string name="you_need_to_update_the_library">Du må oppdatere biblioteket</string>
    <string name="theme_color">Tema farge</string>
+   <string name="add_folder">Legg til mappe</string>
+   <string name="selecting_text_in_this_mode_does_not_work">Velger tekst i denne modusen virker ikke</string>
 </resources>

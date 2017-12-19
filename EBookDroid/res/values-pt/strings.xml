@@ -426,4 +426,6 @@
    <string name="what_is_new_in">O que há de novo em</string>
    <string name="you_need_to_update_the_library">Você precisa atualizar a biblioteca</string>
    <string name="theme_color">Cor do tema</string>
+   <string name="add_folder">Adicionar pasta</string>
+   <string name="selecting_text_in_this_mode_does_not_work">Selecionar texto neste modo não funciona</string>
 </resources>

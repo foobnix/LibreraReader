@@ -426,4 +426,6 @@
    <string name="what_is_new_in">Içinde yenilikler</string>
    <string name="you_need_to_update_the_library">Kütüphaneyi güncellemeniz gerekiyor</string>
    <string name="theme_color">Tema rengi</string>
+   <string name="add_folder">Klasörü eklemek</string>
+   <string name="selecting_text_in_this_mode_does_not_work">Bu modda metin seçmek işe yaramıyor</string>
 </resources>

@@ -426,4 +426,6 @@
    <string name="what_is_new_in">Čo je nové v</string>
    <string name="you_need_to_update_the_library">Je potrebné aktualizovať knižnicu</string>
    <string name="theme_color">Farba témy</string>
+   <string name="add_folder">Pridať priečinok</string>
+   <string name="selecting_text_in_this_mode_does_not_work">Výber textu v tomto režime nefunguje</string>
 </resources>

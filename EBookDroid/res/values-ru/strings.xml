@@ -426,4 +426,6 @@
    <string name="what_is_new_in">Что нового в</string>
    <string name="you_need_to_update_the_library">Вам необходимо обновить библиотеку</string>
    <string name="theme_color">Цвет темы</string>
+   <string name="add_folder">Добавить папку</string>
+   <string name="selecting_text_in_this_mode_does_not_work">Выбор текста в этом режиме не работает</string>
 </resources>
