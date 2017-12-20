@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Map;
 
 import com.foobnix.android.utils.LOG;
+import com.foobnix.sys.TempHolder;
 
 import android.graphics.Bitmap;
 
@@ -20,6 +21,8 @@ public abstract class AbstractCodecDocument implements CodecDocument {
 
         number = -1;
         pageCodec = null;
+
+        LOG.d("MUPDF! open document", documentHandle);
     }
 
     int number = -1;
@@ -28,8 +31,8 @@ public abstract class AbstractCodecDocument implements CodecDocument {
     @Override
     public CodecPage getPage(int pageNuber) {
         if (number == pageNuber && pageCodec != null && !pageCodec.isRecycled()) {
-            LOG.d("CodecPage cache", pageNuber);
-            return pageCodec;
+            LOG.d("MUPDF! CodecPage cache", pageNuber);
+            // return pageCodec;
         }
         CodecPage pageInner = getPageInner(pageNuber);
         pageCodec = pageInner;
@@ -65,11 +68,16 @@ public abstract class AbstractCodecDocument implements CodecDocument {
 
     @Override
     public final void recycle() {
-        if (!isRecycled()) {
-            context.recycle();
-            freeDocument();
-            number = -1;
-            pageCodec = null;
+        try {
+            TempHolder.lock.lock();
+            if (!isRecycled()) {
+                context.recycle();
+                number = -1;
+                pageCodec = null;
+                freeDocument();
+            }
+        } finally {
+            TempHolder.lock.unlock();
         }
     }
 

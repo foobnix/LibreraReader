@@ -76,6 +76,7 @@ public class DjvuDocument extends AbstractCodecDocument {
     @Override
     protected void freeDocument() {
         free(documentHandle);
+        LOG.d("MUPDF! recycle document", documentHandle);
     }
 
     private native static int getPageInfo(long docHandle, int pageNumber, long contextHandle, CodecPageInfo cpi);

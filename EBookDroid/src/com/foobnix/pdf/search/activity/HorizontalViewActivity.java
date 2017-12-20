@@ -16,6 +16,7 @@ import com.foobnix.android.utils.Keyboards;
 import com.foobnix.android.utils.LOG;
 import com.foobnix.android.utils.ResultResponse;
 import com.foobnix.android.utils.TxtUtils;
+import com.foobnix.android.utils.Vibro;
 import com.foobnix.ext.CacheZipUtils;
 import com.foobnix.pdf.CopyAsyncTask;
 import com.foobnix.pdf.info.ADS;
@@ -551,6 +552,7 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
 
             @Override
             public boolean onLongClick(final View v) {
+                Vibro.vibrate();
                 CloseAppDialog.showOnLongClickDialog(HorizontalViewActivity.this, v, documentController);
                 return false;
             }

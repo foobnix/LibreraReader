@@ -177,14 +177,14 @@ public class ImageExtractor implements ImageDownloader {
             // isNeedDisableMagicInPDFDjvu = true;
         }
 
-        CodecDocument codecDocumentLocal = getNewCodecContext(path, "", pageUrl.getWidth(), pageUrl.getHeight());
+        CodecDocument codecDocument = getNewCodecContext(path, "", pageUrl.getWidth(), pageUrl.getHeight());
 
-        if (codecDocumentLocal == null) {
+        if (codecDocument == null) {
             LOG.d("TEST", "codecDocument == null" + path);
             return null;
         }
 
-        final CodecPageInfo pageInfo = codecDocumentLocal.getPageInfo(page);
+        final CodecPageInfo pageInfo = codecDocument.getPageInfo(page);
 
         Bitmap bitmap = null;
 
@@ -197,12 +197,16 @@ public class ImageExtractor implements ImageDownloader {
         LOG.d("Bitmap pageInfo.height", pageInfo.width, pageInfo.height);
 
         BitmapRef bitmapRef = null;
-        CodecPage pageCodec = codecDocumentLocal.getPage(page);
+        CodecPage pageCodec = codecDocument.getPage(page);
 
         if (pageUrl.getNumber() == 0) {
             rectF = new RectF(0, 0, 1f, 1f);
             if (isNeedDisableMagicInPDFDjvu) {
                 MagicHelper.isNeedMagic = false;
+            }
+
+            if (codecDocument.isRecycled()) {
+                return null;
             }
 
             bitmapRef = pageCodec.renderBitmap(width, height, rectF);
@@ -254,9 +258,16 @@ public class ImageExtractor implements ImageDownloader {
             bitmap = bitmap1;
         }
 
+        if (codecDocument.isRecycled()) {
+            return null;
+        }
         if (pageUrl.isDoText() && !pageCodec.isRecycled()) {
             PageImageState.get().pagesText.put(pageUrl.getPage(), pageCodec.getText());
             PageImageState.get().pagesLinks.put(pageUrl.getPage(), pageCodec.getPageLinks());
+        }
+
+        if (codecDocument.isRecycled()) {
+            return null;
         }
 
         if (pageUrl.getNumber() != 1) {

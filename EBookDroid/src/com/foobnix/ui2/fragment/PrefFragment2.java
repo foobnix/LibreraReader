@@ -53,6 +53,7 @@ import android.content.pm.PackageManager.NameNotFoundException;
 import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v4.content.LocalBroadcastManager;
 import android.support.v4.util.Pair;
 import android.text.Html;
@@ -709,6 +710,22 @@ public class PrefFragment2 extends UIFragment {
             }
         });
 
+        final Handler handler = new Handler();
+        final Runnable ask = new Runnable() {
+
+            @Override
+            public void run() {
+                AlertDialogs.showDialog(getActivity(), getActivity().getString(R.string.you_need_to_update_the_library), getString(R.string.ok), new Runnable() {
+
+                    @Override
+                    public void run() {
+                        onScan();
+                    }
+                }, null);
+            }
+        };
+        final int timeout = 1000;
+
         ////
         ((CheckBox) inflate.findViewById(R.id.supportPDF)).setChecked(AppState.getInstance().supportPDF);
         ((CheckBox) inflate.findViewById(R.id.supportPDF)).setOnCheckedChangeListener(new OnCheckedChangeListener() {
@@ -717,6 +734,8 @@ public class PrefFragment2 extends UIFragment {
             public void onCheckedChanged(final CompoundButton buttonView, final boolean isChecked) {
                 AppState.getInstance().supportPDF = isChecked;
                 ExtUtils.updateSearchExts();
+                handler.removeCallbacks(ask);
+                handler.postDelayed(ask, timeout);
             }
         });
 
@@ -727,6 +746,8 @@ public class PrefFragment2 extends UIFragment {
             public void onCheckedChanged(final CompoundButton buttonView, final boolean isChecked) {
                 AppState.getInstance().supportXPS = isChecked;
                 ExtUtils.updateSearchExts();
+                handler.removeCallbacks(ask);
+                handler.postDelayed(ask, timeout);
             }
         });
 
@@ -737,6 +758,8 @@ public class PrefFragment2 extends UIFragment {
             public void onCheckedChanged(final CompoundButton buttonView, final boolean isChecked) {
                 AppState.getInstance().supportDJVU = isChecked;
                 ExtUtils.updateSearchExts();
+                handler.removeCallbacks(ask);
+                handler.postDelayed(ask, timeout);
             }
         });
         ((CheckBox) inflate.findViewById(R.id.supportEPUB)).setChecked(AppState.getInstance().supportEPUB);
@@ -746,6 +769,8 @@ public class PrefFragment2 extends UIFragment {
             public void onCheckedChanged(final CompoundButton buttonView, final boolean isChecked) {
                 AppState.getInstance().supportEPUB = isChecked;
                 ExtUtils.updateSearchExts();
+                handler.removeCallbacks(ask);
+                handler.postDelayed(ask, timeout);
             }
         });
         ((CheckBox) inflate.findViewById(R.id.supportFB2)).setChecked(AppState.getInstance().supportFB2);
@@ -755,6 +780,8 @@ public class PrefFragment2 extends UIFragment {
             public void onCheckedChanged(final CompoundButton buttonView, final boolean isChecked) {
                 AppState.getInstance().supportFB2 = isChecked;
                 ExtUtils.updateSearchExts();
+                handler.removeCallbacks(ask);
+                handler.postDelayed(ask, timeout);
             }
         });
 
@@ -765,6 +792,8 @@ public class PrefFragment2 extends UIFragment {
             public void onCheckedChanged(final CompoundButton buttonView, final boolean isChecked) {
                 AppState.getInstance().supportTXT = isChecked;
                 ExtUtils.updateSearchExts();
+                handler.removeCallbacks(ask);
+                handler.postDelayed(ask, timeout);
             }
         });
 
@@ -775,6 +804,8 @@ public class PrefFragment2 extends UIFragment {
             public void onCheckedChanged(final CompoundButton buttonView, final boolean isChecked) {
                 AppState.getInstance().supportMOBI = isChecked;
                 ExtUtils.updateSearchExts();
+                handler.removeCallbacks(ask);
+                handler.postDelayed(ask, timeout);
             }
         });
 
@@ -785,6 +816,8 @@ public class PrefFragment2 extends UIFragment {
             public void onCheckedChanged(final CompoundButton buttonView, final boolean isChecked) {
                 AppState.getInstance().supportRTF = isChecked;
                 ExtUtils.updateSearchExts();
+                handler.removeCallbacks(ask);
+                handler.postDelayed(ask, timeout);
             }
         });
 
@@ -795,6 +828,8 @@ public class PrefFragment2 extends UIFragment {
             public void onCheckedChanged(final CompoundButton buttonView, final boolean isChecked) {
                 AppState.getInstance().supportCBZ = isChecked;
                 ExtUtils.updateSearchExts();
+                handler.removeCallbacks(ask);
+                handler.postDelayed(ask, timeout);
             }
         });
 
@@ -805,6 +840,8 @@ public class PrefFragment2 extends UIFragment {
             public void onCheckedChanged(final CompoundButton buttonView, final boolean isChecked) {
                 AppState.getInstance().supportZIP = isChecked;
                 ExtUtils.updateSearchExts();
+                handler.removeCallbacks(ask);
+                handler.postDelayed(ask, timeout);
             }
         });
 
@@ -815,6 +852,8 @@ public class PrefFragment2 extends UIFragment {
             public void onCheckedChanged(final CompoundButton buttonView, final boolean isChecked) {
                 AppState.getInstance().supportOther = isChecked;
                 ExtUtils.updateSearchExts();
+                handler.removeCallbacks(ask);
+                handler.postDelayed(ask, timeout);
             }
         });
         // What is new

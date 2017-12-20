@@ -18,6 +18,7 @@ import com.foobnix.android.utils.Dips;
 import com.foobnix.android.utils.Keyboards;
 import com.foobnix.android.utils.LOG;
 import com.foobnix.android.utils.TxtUtils;
+import com.foobnix.android.utils.Vibro;
 import com.foobnix.pdf.info.DictsHelper;
 import com.foobnix.pdf.info.ExtUtils;
 import com.foobnix.pdf.info.R;
@@ -243,6 +244,7 @@ public class DocumentWrapperUI {
                 if (((ViewerActivity) getController().getActivity()).isInterstialShown()) {
                     return false;
                 } else {
+
                     CloseAppDialog.showOnLongClickDialog(getController().getActivity(), null, controller);
                 }
             }
@@ -1459,6 +1461,7 @@ public class DocumentWrapperUI {
 
         @Override
         public boolean onLongClick(final View v) {
+            Vibro.vibrate();
             CloseAppDialog.showOnLongClickDialog(a, v, getController());
             return true;
         };

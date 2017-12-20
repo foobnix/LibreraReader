@@ -118,13 +118,8 @@ public class MuPdfDocument extends AbstractCodecDocument {
 
     @Override
     protected void freeDocument() {
-        TempHolder.lock.lock();
-        try {
             free(documentHandle);
-            LOG.d("Mupdf freeDocument");
-        } finally {
-            TempHolder.lock.unlock();
-        }
+            LOG.d("MUPDF! recycle document", documentHandle);
     }
 
     static void normalizeLinkTargetRect(final long docHandle, final int targetPage, final RectF targetRect, final int flags) {

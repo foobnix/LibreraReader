@@ -112,6 +112,7 @@ public class AppsConfig {
             IS_EP = false;
             ANALYTICS_ID = "UA-36581296-9";
             ADMOB_BANNER = ADMOB_FULLSCREEN = ADMOB_NATIVE_BANNER = null;
+            LOG.isEnable = true;
         }
         if (IS_TEST_EP) {
             EP_INTERSTITIAL = "0928de1630a1452b64eaab1813d3af64";

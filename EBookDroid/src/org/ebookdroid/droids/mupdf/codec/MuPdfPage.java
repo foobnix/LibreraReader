@@ -131,6 +131,7 @@ public class MuPdfPage extends AbstractCodecPage {
             if (pageHandle != 0 && docHandle != 0) {
                 long p = pageHandle;
                 pageHandle = 0;
+                LOG.d("MUPDF! recycle page", docHandle, p);
                 free(docHandle, p);
             }
         } catch (final Exception e) {
