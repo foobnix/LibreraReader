@@ -1,7 +1,5 @@
-* Buku gratis di katalog 
-* Tambahkan link katalog ke favorit 
-* Tanda penghubung otomatis untuk bahasa buku 
-* Daftar penghargaan buku dan daftar buku terlaris 
-* Dukung katalog FBReader pribadi 
-* Tampilkan semua seri oleh Pengarang, oleh Genre 
-* Banyak perbaikan dan perbaikan kecil oleh umpan balik Anda.
+* Tema khusus untuk perangkat e-ink 
+* Ubah kontras dan kecerahan 
+* Bluelight filter 
+* Improved UI 
+* Banyak perbaikan dan perbaikan kecil oleh umpan balik.

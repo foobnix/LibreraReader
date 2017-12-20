@@ -1,7 +1,5 @@
-* Ingyenes könyvek a katalógusokban 
-* Katalóguslinkek hozzáadása a kedvencekhez 
-* Automatikus elválasztás a könyvnyelvhez 
-* Könyvajánlatok listák és a legfontosabb könyvek listája 
-* Támogatjuk a személyes FBReader katalógust 
-* Az összes sorozatot a szerző írja műfaj szerint 
-* Számos javítás és kis javítás a visszajelzés alapján
+* Speciális téma az e-tintaeszközökhöz 
+* A kontraszt és a fényerő megváltoztatása 
+* Bluelight szűrő 
+* Továbbfejlesztett felhasználói felület 
+* Sok javítás és kis javítás visszajelzés alapján

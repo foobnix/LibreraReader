@@ -50,21 +50,20 @@ public class AndroidWhatsNew {
             @Override
             public void onClick(View v) {
                 try {
-                    notes.setText(steamToString(c.getResources().getAssets().open(BETA_TXT)));
+                    // notes.setText(steamToString(c.getResources().getAssets().open(BETA_TXT)));
+                    Urls.open(c, "https://drive.google.com/file/d/1tXWLs11MaIcNUnZN84ofd4f6_clVvRTb/view");
                 } catch (Exception e) {
                     LOG.e(e);
                 }
             }
         });
 
-        if (AppsConfig.IS_BETA) {
-            ((View) textRateIt.getParent()).setVisibility(View.GONE);
-            fontSectionDivider.setVisibility(View.GONE);
-        }
+        ((View) textRateIt.getParent()).setVisibility(View.GONE);
+        fontSectionDivider.setVisibility(View.GONE);
 
         String textNotes = "loading...";
         try {
-            String langCode = Urls.getLangCode();
+            String langCode = AppState.get().appLang;
             textNotes = getWhatsNew(c, langCode);
         } catch (Exception e) {
             try {
@@ -88,7 +87,7 @@ public class AndroidWhatsNew {
             }
         });
 
-        if (!AppsConfig.IS_BETA) {
+        if (false) {
             builder.setPositiveButton(R.string.write_feedback, new OnClickListener() {
 
                 @Override
@@ -102,9 +101,6 @@ public class AndroidWhatsNew {
     }
 
     public static String getWhatsNew(Context c, String langCode) throws IOException {
-        if (AppsConfig.IS_BETA) {
-            return steamToString(c.getResources().getAssets().open(BETA_TXT));
-        }
         InputStream input = c.getResources().getAssets().open("whatsnew/" + langCode + ".txt");
         return steamToString(input);
 

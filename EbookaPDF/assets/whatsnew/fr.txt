@@ -1,7 +1,5 @@
-* Livres gratuits dans les catalogues 
-* Ajouter des liens de catalogue aux favoris 
-* Coupure automatique pour la langue du livre 
-* Listes de prix de livres et listes de livres supérieures 
-* Support du catalogue personnel FBReader 
-* Afficher toutes les séries par auteur, par genre 
-* Beaucoup d’améliorations et de petites corrections par vos commentaires
+* Thème spécial pour les appareils e-ink 
+* Changer le contraste et la luminosité 
+* Filtre Bluelight 
+* Amélioration de l’interface utilisateur 
+* De nombreuses améliorations et de petites corrections par rétroaction

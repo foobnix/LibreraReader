@@ -1,7 +1,5 @@
-* Gratis böcker i kataloger 
-* Lägg till kataloglänkar till favoriter 
-* Automatisk bindning för bokspråk 
-* Bokmärkelsearter och toppböcker listar 
-* Stöd personliga FBReader katalog 
-* Visa alla serier enligt författare, efter genre 
-* Många förbättringar och små fixar genom din feedback
+* Specialt tema för e-bläck enheter 
+* Ändra kontrast och ljusstyrka 
+* Bluelight filter 
+* Förbättrat användargränssnitt 
+* Många förbättringar och små fixar genom feedback

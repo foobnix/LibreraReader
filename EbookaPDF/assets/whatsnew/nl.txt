@@ -1,7 +1,5 @@
-* Gratis boeken in catalogi 
-* Voeg catalogus links toe aan favorieten 
-* Automatische koppeling voor boektaal 
-* Prijsuitreikingslijsten en topboeklijsten 
-* Ondersteun persoonlijke FBReader catalogus 
-* Toon alle series per auteur, per genre 
-* Veel verbeteringen en kleine fixes door uw feedback
+* Speciaal thema voor e-ink-apparaten 
+* Contrast en helderheid wijzigen 
+* Bluelight-filter 
+* Verbeterde gebruikersinterface 
+* Veel verbeteringen en kleine fixes door feedback

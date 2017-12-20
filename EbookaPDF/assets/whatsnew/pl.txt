@@ -1,7 +1,5 @@
-* Bezpłatne książki w katalogach 
-* Dodaj linki katalogowe do ulubionych 
-* Automatyczne dzielenie na język książki 
-* Listy nagród książek i listy książek na górze 
-* Wsparcie osobistego katalogu FBReader 
-* Pokaż wszystkie sekcje według autora, wg gatunku 
-* Wiele udoskonaleń i małych poprawek dzięki Twojej opinii
+* Specjalny motyw dla urządzeń z atramentem 
+* Zmiana kontrastu i jasności 
+* Filtr Bluelight 
+* Ulepszony interfejs użytkownika 
+* Wiele ulepszeń i drobnych poprawek za pomocą opinii

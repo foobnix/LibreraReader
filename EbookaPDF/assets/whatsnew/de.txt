@@ -1,7 +1,5 @@
-* Kostenlose Bücher in Katalogen 
-* Hinzufügen von Katalog Links zu Favoriten 
-* Automatische Silbentrennung für Buchsprache 
-* Buchlisten und Top-Bücherlisten 
-* Unterstützung persönlicher FBReader Katalog 
-* Alle Serien von Autor, nach Genre anzeigen 
-* Viele Verbesserungen und kleine Korrekturen durch Ihr Feedback
+* Spezielles Thema für E-Ink-Geräte 
+* Kontrast und Helligkeit ändern 
+* Bluelight-Filter 
+* Verbesserte Benutzeroberfläche 
+* Viele Verbesserungen und kleine Korrekturen durch Feedback

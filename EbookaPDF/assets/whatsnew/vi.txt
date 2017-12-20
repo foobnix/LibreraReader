@@ -1,7 +1,5 @@
-* Miễn phí sách trong catalogue 
-* Thêm các liên kết vào danh mục yêu thích 
-* Dấu cách tự động cho ngôn ngữ của sách 
-* Danh sách sách giải thưởng và danh sách sách hàng đầu 
-* Hỗ trợ danh mục cá nhân của FBReader 
-* Hiển thị tất cả các chuỗi theo tác giả, theo thể loại 
-* Nhiều cải tiến và sửa lỗi nhỏ theo phản hồi của bạn
+* Chủ đề đặc biệt cho các thiết bị mực điện tử 
+* Thay đổi độ tương phản và độ sáng 
+* Bộ lọc Bluelight 
+* Cải thiện giao diện người dùng 
+* Nhiều cải tiến và sửa lỗi nhỏ bằng phản hồi

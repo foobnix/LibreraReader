@@ -1,7 +1,5 @@
-* Livros gratuitos em catálogos 
-* Adicionar links de catálogo aos favoritos 
-* Separação automática para linguagem de livro 
-* Listas de prêmios de livros e listas de livros topo 
-* Suporte catálogo pessoal de FBReader 
-* Mostrar todas as séries por Autor, por Género 
-* Muitas melhorias e pequenas correções por seu feedback
+* Tema especial para dispositivos de tinta eletrônica 
+* Alterar contraste e brilho 
+* Filtro Bluelight 
+* UI aprimorada 
+* Muitas melhorias e pequenas correções por feedback

@@ -1,7 +1,5 @@
-* Nemokamos knygos kataloguose 
-* Pridėti katalogų nuorodas į mėgstamiausius 
-* Automatinis pertraukėlė už knygos kalbą 
-* Knygų apdovanojimų sąrašai ir viršutinių knygų sąrašai 
-* Parama asmeniniam FBReader katalogui 
-* Rodyti visas serijas pagal Autorius pagal žanrą 
-* Daugybė patobulinimų ir nedidelių pataisymų jūsų atsiliepimai
+* Speciali e-rašalo įrenginių tema 
+* Keisti kontrastą ir ryškumą 
+* Bluelight filtras 
+* Patobulintas vartotojo sąsajos 
+* Daugybė patobulinimų ir mažų pataisymų atsiliepimais

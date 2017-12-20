@@ -1,7 +1,5 @@
-* Vitabu vya bure kwenye orodha ya vitabu 
-* Ongeza viungo vya catalog kwenye favorites 
-* Hifadhi ya kichapishaji kwa lugha ya kitabu 
-* Orodha ya tuzo za orodha na orodha ya vitabu vya juu 
-* Tunga orodha ya kibinafsi ya FBReader 
-* Onyesha mfululizo wa Mwandishi, kwa Genre 
-* Maboresho mengi na marekebisho madogo kwa maoni yako
+* Mandhari maalum ya vifaa vya e-wino 
+* Badilisha tofauti na mwangaza 
+* Bluelight chujio 
+* Uboreshaji UI 
+* Maboresho mengi na marekebisho madogo kwa maoni

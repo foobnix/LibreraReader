@@ -1,7 +1,5 @@
-* Bezplatné knihy v katalógoch 
-* Pridať katalógové odkazy na obľúbené 
-* Automatické rozdelenie pre knihový jazyk 
-* Rezervovať zoznamy ocenení a zoznamy najlepších kníh 
-* Podporovať osobné katalógy FBReaderu 
-* Zobraziť všetky série Autor, podľa žánru 
-* Veľa vylepšení a malých oprav od vašej spätnej väzby
+* Špeciálna téma pre zariadenia s e-atramentom 
+* Zmena kontrastu a jasu 
+* Filter Bluelight 
+* Vylepšené užívateľské rozhranie 
+* Veľa vylepšení a malých opráv pomocou spätnej väzby

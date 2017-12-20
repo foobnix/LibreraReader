@@ -1,7 +1,5 @@
-* Kataloglarda ücretsiz kitaplar 
-* Favorilere katalog bağlantıları ekleme 
-* Kitap dili için otomatik tireleme 
-* Kitap ödül listeleri ve en iyi kitap listeleri 
-* Kişisel FBReader kataloğunu destekleme 
-* Yazara göre Yazar tarafından tüm serileri göster 
-* Geri bildirimlerinizle birçok iyileştirme ve küçük düzeltmeler
+* E-mürekkep cihazları için özel tema 
+* Kontrastı ve parlaklığı değiştirme 
+* Bluelight filtresi 
+* Geliştirilmiş UI 
+* Geri bildirimle birçok iyileştirme ve küçük düzeltmeler
