@@ -525,31 +525,7 @@ public class PrefFragment2 extends UIFragment {
             }
         });
 
-        final CheckBox isFirstSurname = (CheckBox) inflate.findViewById(R.id.isFirstSurname);
-        isFirstSurname.setChecked(AppState.get().isFirstSurname);
-        isFirstSurname.setOnCheckedChangeListener(new OnCheckedChangeListener() {
 
-            @Override
-            public void onCheckedChanged(final CompoundButton buttonView, final boolean isChecked) {
-                AppState.get().isFirstSurname = isChecked;
-                if (isChecked) {
-                    AlertDialogs.showDialog(getActivity(), getActivity().getString(R.string.you_need_to_update_the_library), getString(R.string.ok), new Runnable() {
-
-                        @Override
-                        public void run() {
-                            onScan();
-                        }
-                    }, new Runnable() {
-
-                        @Override
-                        public void run() {
-                            isFirstSurname.setChecked(false);
-                        }
-                    });
-                }
-
-            }
-        });
 
         rememberMode = (CheckBox) inflate.findViewById(R.id.isRememberMode);
         rememberMode.setChecked(AppState.getInstance().isRememberMode);
@@ -856,6 +832,19 @@ public class PrefFragment2 extends UIFragment {
                 handler.postDelayed(ask, timeout);
             }
         });
+
+        final CheckBox isFirstSurname = (CheckBox) inflate.findViewById(R.id.isFirstSurname);
+        isFirstSurname.setChecked(AppState.get().isFirstSurname);
+        isFirstSurname.setOnCheckedChangeListener(new OnCheckedChangeListener() {
+
+            @Override
+            public void onCheckedChanged(final CompoundButton buttonView, final boolean isChecked) {
+                AppState.get().isFirstSurname = isChecked;
+                handler.removeCallbacks(ask);
+                handler.postDelayed(ask, timeout);
+            }
+        });
+
         // What is new
         CheckBox showWhatIsNew = (CheckBox) inflate.findViewById(R.id.isShowWhatIsNewDialog);
         showWhatIsNew.setChecked(AppState.getInstance().isShowWhatIsNewDialog);

@@ -24,6 +24,7 @@ import android.widget.TextView;
 
 public class AndroidWhatsNew {
 
+    private static final String DETAIL_URL = "https://drive.google.com/file/d/1tXWLs11MaIcNUnZN84ofd4f6_clVvRTb/view";
     private static final String BETA_TXT = "changelog.txt";
     private static final String BETA = "beta-";
 
@@ -51,7 +52,7 @@ public class AndroidWhatsNew {
             public void onClick(View v) {
                 try {
                     // notes.setText(steamToString(c.getResources().getAssets().open(BETA_TXT)));
-                    Urls.open(c, "https://drive.google.com/file/d/1tXWLs11MaIcNUnZN84ofd4f6_clVvRTb/view");
+                    Urls.open(c, DETAIL_URL);
                 } catch (Exception e) {
                     LOG.e(e);
                 }
