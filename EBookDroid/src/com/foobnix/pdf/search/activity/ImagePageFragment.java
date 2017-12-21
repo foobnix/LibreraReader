@@ -150,8 +150,11 @@ public class ImagePageFragment extends Fragment {
 
         @Override
         public void run() {
-
-            loadImage();
+            if (!isDetached()) {
+                loadImage();
+            } else {
+                LOG.d("Image page is detached");
+            }
         }
 
     };

@@ -108,6 +108,7 @@ public class MuPdfPage extends AbstractCodecPage {
     static MuPdfPage createPage(final long dochandle, final int pageno) {
         TempHolder.lock.lock();
         try {
+            LOG.d("MUPDF! createPage", dochandle, pageno);
             final long open = open(dochandle, pageno);
             return new MuPdfPage(open, dochandle, pageno);
         } finally {

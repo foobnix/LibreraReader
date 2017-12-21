@@ -8,6 +8,8 @@ import android.graphics.RectF;
 
 public interface CodecDocument {
 
+    public long getDocumentHandle();
+
     int getPageCount();
 
     int getPageCount(int w, int h, int fsize);

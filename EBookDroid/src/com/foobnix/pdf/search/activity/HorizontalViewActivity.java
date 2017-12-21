@@ -1776,6 +1776,10 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
         if (handler != null) {
             handler.removeCallbacksAndMessages(null);
         }
+        anchor.setVisibility(View.GONE);
+        anchor.setTag("backGo");
+        anchor.removeAllViews();
+
         documentController.onCloseActivity();
     }
 

@@ -177,14 +177,14 @@ public class ImageExtractor implements ImageDownloader {
             // isNeedDisableMagicInPDFDjvu = true;
         }
 
-        CodecDocument codecDocument = getNewCodecContext(path, "", pageUrl.getWidth(), pageUrl.getHeight());
+        CodecDocument codeCache = getNewCodecContext(path, "", pageUrl.getWidth(), pageUrl.getHeight());
 
-        if (codecDocument == null) {
+        if (codeCache == null || codeCache.isRecycled() || codeCache.getDocumentHandle() == TempHolder.get().lastRecycledDocument) {
             LOG.d("TEST", "codecDocument == null" + path);
             return null;
         }
 
-        final CodecPageInfo pageInfo = codecDocument.getPageInfo(page);
+        final CodecPageInfo pageInfo = codeCache.getPageInfo(page);
 
         Bitmap bitmap = null;
 
@@ -197,16 +197,16 @@ public class ImageExtractor implements ImageDownloader {
         LOG.d("Bitmap pageInfo.height", pageInfo.width, pageInfo.height);
 
         BitmapRef bitmapRef = null;
-        CodecPage pageCodec = codecDocument.getPage(page);
+        CodecPage pageCodec = codeCache.getPage(page);
+
+        if (codeCache == null || codeCache.isRecycled() || pageCodec.isRecycled() || codeCache.getDocumentHandle() == TempHolder.get().lastRecycledDocument) {
+            return null;
+        }
 
         if (pageUrl.getNumber() == 0) {
             rectF = new RectF(0, 0, 1f, 1f);
             if (isNeedDisableMagicInPDFDjvu) {
                 MagicHelper.isNeedMagic = false;
-            }
-
-            if (codecDocument.isRecycled()) {
-                return null;
             }
 
             bitmapRef = pageCodec.renderBitmap(width, height, rectF);
@@ -258,19 +258,20 @@ public class ImageExtractor implements ImageDownloader {
             bitmap = bitmap1;
         }
 
-        if (codecDocument.isRecycled()) {
+        if (codeCache == null || codeCache.isRecycled() || pageCodec.isRecycled() || codeCache.getDocumentHandle() == TempHolder.get().lastRecycledDocument) {
             return null;
         }
-        if (pageUrl.isDoText() && !pageCodec.isRecycled()) {
+
+        if (pageUrl.isDoText()) {
             PageImageState.get().pagesText.put(pageUrl.getPage(), pageCodec.getText());
             PageImageState.get().pagesLinks.put(pageUrl.getPage(), pageCodec.getPageLinks());
         }
 
-        if (codecDocument.isRecycled()) {
+        if (codeCache == null || codeCache.isRecycled() || pageCodec.isRecycled() || codeCache.getDocumentHandle() == TempHolder.get().lastRecycledDocument) {
             return null;
         }
 
-        if (pageUrl.getNumber() != 1) {
+        if (pageUrl.getNumber() != 1 && codeCache.getDocumentHandle() != TempHolder.get().lastRecycledDocument) {
             pageCodec.recycle();
         }
 
@@ -381,11 +382,13 @@ public class ImageExtractor implements ImageDownloader {
                     Bitmap proccessCoverPage = proccessCoverPage(pageUrl);
                     return generalCoverWithEffect(pageUrl, proccessCoverPage);
                 } finally {
-                    clearCache();
+                    clearCodeDocument();
                     MagicHelper.isNeedBC = true;
                 }
             } else if (page == COVER_PAGE_NO_EFFECT) {
-                return bitmapToStream(proccessCoverPage(pageUrl));
+                ByteArrayInputStream bitmapToStream = bitmapToStream(proccessCoverPage(pageUrl));
+                clearCodeDocument();
+                return bitmapToStream;
             } else {
                 if (pageUrl.isDouble()) {
                     LOG.d("isDouble", pageUrl.getHeight(), pageUrl.getWidth());
@@ -476,25 +479,32 @@ public class ImageExtractor implements ImageDownloader {
 
     static int pageCount = 0;
 
-    public static CodecDocument codeCache;
-    static String pathCache;
+    public static volatile CodecDocument codeCache;
+    public static String pathCache;
     static int whCache;
 
-    public static void clearCache() {
+    public static void clearCodeDocument() {
         if (codeCache != null) {
             codeCache.recycle();
             codeCache = null;
+            pathCache = null;
             LOG.d("getNewCodecContext recycle");
         }
     }
 
+    public static void init(CodecDocument codec, String path) {
+        clearCodeDocument();
+        codeCache = codec;
+        pathCache = path;
+    }
+
     public static CodecDocument getNewCodecContext(final String path, String passw, int w, int h) {
-        if (path.equals(pathCache) && whCache == h + w && codeCache != null && !codeCache.isRecycled()) {
+        if (path.equals(pathCache) /* && whCache == h + w */ && codeCache != null && !codeCache.isRecycled()) {
             LOG.d("getNewCodecContext from cache");
             return codeCache;
         }
 
-        clearCache();
+        clearCodeDocument();
 
         pageCount = 0;
         pathCache = null;
@@ -514,27 +524,23 @@ public class ImageExtractor implements ImageDownloader {
             return null;
         }
 
-        CodecDocument openDocument = null;
         CacheZipUtils.cacheLock.lock();
         try {
             String zipPath = CacheZipUtils.extracIfNeed(path).unZipPath;
             LOG.d("getCodecContext", zipPath);
-            openDocument = ctx.openDocument(zipPath, passw);
+            codeCache = ctx.openDocument(zipPath, passw);
         } finally {
             CacheZipUtils.cacheLock.unlock();
         }
-        if (openDocument == null) {
+        if (codeCache == null) {
             LOG.d("[Open doc is null]", path);
             return null;
         }
 
-        pageCount = openDocument.getPageCount(w, h, AppState.get().fontSizeSp);
+        pageCount = codeCache.getPageCount(w, h, AppState.get().fontSizeSp);
         pathCache = path;
-        codeCache = openDocument;
         whCache = h + w;
-
-        TempHolder.get().init(openDocument, path);
-        return openDocument;
+        return codeCache;
     }
 
     private InputStream messageFile(String msg, String name) {

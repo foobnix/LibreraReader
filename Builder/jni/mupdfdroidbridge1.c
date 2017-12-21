@@ -484,7 +484,7 @@ Java_org_ebookdroid_droids_mupdf_codec_MuPdfPage_free(JNIEnv *env, jclass clazz,
 	renderdocument_t *doc = (renderdocument_t*) (long) dochandle;
 	renderpage_t *page = (renderpage_t*) (long) handle;
 
-	if (!doc || !doc->ctx || !page) {
+	if (!doc || !doc->ctx || !page || doc->ctx == NULL) {
 		DEBUG("No page to free");
 		return;
 	}

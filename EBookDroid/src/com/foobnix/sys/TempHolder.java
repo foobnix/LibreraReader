@@ -3,7 +3,6 @@ package com.foobnix.sys;
 import java.util.concurrent.locks.ReentrantLock;
 
 import org.ebookdroid.BookType;
-import org.ebookdroid.core.codec.CodecDocument;
 
 import com.foobnix.pdf.info.ExtUtils;
 import com.foobnix.pdf.info.wrapper.UITab;
@@ -32,11 +31,13 @@ public class TempHolder {
     public volatile boolean loadingCancelled = false;
     public boolean forseAppLang = false;
 
+    public volatile long lastRecycledDocument = 0;
+
     public static TempHolder get() {
         return inst;
     }
 
-    public void init(CodecDocument codecDocumentI, String pathI) {
+    public void init(String pathI) {
         path = pathI;
         isTextFormat = isTextForamtInner();
         isTextForamtButNotTxt = isTextForamtButNotTxt();
@@ -44,7 +45,6 @@ public class TempHolder {
 
     public void clear() {
         path = null;
-        ImageExtractor.clearCache();
     }
 
     private boolean isTextForamtInner() {

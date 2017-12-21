@@ -531,7 +531,6 @@ public class ViewerActivityController extends ActionController<ViewerActivity> i
     }
 
     public void closeActivityFinal(final ActionEx action) {
-
         LOG.d("closeActivity 1");
         if (documentModel != null) {
             documentModel.recycle();

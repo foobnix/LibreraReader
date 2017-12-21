@@ -32,6 +32,7 @@ import com.foobnix.ui2.fragment.PrefFragment2;
 import com.foobnix.ui2.fragment.RecentFragment2;
 import com.foobnix.ui2.fragment.SearchFragment2;
 import com.foobnix.ui2.fragment.UIFragment;
+import com.nostra13.universalimageloader.core.ImageLoader;
 
 import android.Manifest;
 import android.annotation.SuppressLint;
@@ -412,7 +413,7 @@ public class MainTabs2 extends AdsFragmentActivity {
         AppState.getInstance().save(this);
         LocalBroadcastManager.getInstance(this).unregisterReceiver(broadcastReceiver);
         RecentUpates.updateAll(this);
-
+        ImageLoader.getInstance().clearAllTasks();
     };
 
     @Override

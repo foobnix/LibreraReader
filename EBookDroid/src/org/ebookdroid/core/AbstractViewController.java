@@ -34,8 +34,8 @@ import com.foobnix.android.utils.TxtUtils;
 import com.foobnix.pdf.info.R;
 import com.foobnix.pdf.info.view.AlertDialogs;
 import com.foobnix.pdf.info.wrapper.AppState;
-import com.foobnix.sys.TempHolder;
 import com.foobnix.sys.AdvGuestureDetector;
+import com.foobnix.sys.TempHolder;
 
 import android.graphics.PointF;
 import android.graphics.Rect;
@@ -123,11 +123,6 @@ public abstract class AbstractViewController extends AbstractComponentController
         return base;
     }
 
-    /**
-     * {@inheritDoc}
-     * 
-     * @see org.ebookdroid.ui.viewer.IViewController#init(org.ebookdroid.ui.viewer.IActivityController.IBookLoadTask)
-     */
     @Override
     public final void init(final IProgressIndicator task) {
         if (!isInitialized) {

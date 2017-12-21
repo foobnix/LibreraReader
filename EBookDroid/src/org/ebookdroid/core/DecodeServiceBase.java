@@ -36,7 +36,9 @@ import com.foobnix.android.utils.TxtUtils;
 import com.foobnix.pdf.info.model.AnnotationType;
 import com.foobnix.pdf.info.wrapper.MagicHelper;
 import com.foobnix.sys.Colors;
+import com.foobnix.sys.ImageExtractor;
 import com.foobnix.sys.TempHolder;
+import com.nostra13.universalimageloader.core.ImageLoader;
 
 import android.graphics.Bitmap.Config;
 import android.graphics.PixelFormat;
@@ -133,8 +135,11 @@ public class DecodeServiceBase implements DecodeService {
 
     @Override
     public void open(final String fileName, final String password) {
+        ImageExtractor.clearCodeDocument();
         document = codecContext.openDocument(fileName, password);
-        TempHolder.get().init(document, fileName);
+        ImageExtractor.init(document, fileName);
+        TempHolder.get().init(fileName);
+
     }
 
     @Override
@@ -668,6 +673,7 @@ public class DecodeServiceBase implements DecodeService {
         }
 
         void shutdown() {
+            ImageLoader.getInstance().clearAllTasks();
             TempHolder.get().clear();
 
             LOG.d("Begin shutdown 1");
@@ -682,12 +688,17 @@ public class DecodeServiceBase implements DecodeService {
             LOG.d("Begin shutdown 3");
             if (document != null) {
                 document.recycle();
+                document = null;
             }
             LOG.d("Begin shutdown 4");
             codecContext.recycle();
             LOG.d("Begin shutdown 5");
             run.set(false);
             LOG.d("Begin shutdown 6");
+
+
+            ImageExtractor.clearCodeDocument();
+
         }
 
     }

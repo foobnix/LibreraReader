@@ -161,6 +161,7 @@ public class MuPdfDocument extends AbstractCodecDocument {
             final long open = open(allocatedMemory, format, fname, pwd, css, BookCSS.get().documentStyle == BookCSS.STYLES_ONLY_USER ? 0 : 1);
             LOG.d("TEST", "Open document " + fname + " " + open);
             LOG.d("TEST", "Open document css ", css);
+            LOG.d("MUPDF! open document", open, ExtUtils.getFileName(fname));
 
             if (open == -1) {
                 throw new RuntimeException("Document is corrupted");
