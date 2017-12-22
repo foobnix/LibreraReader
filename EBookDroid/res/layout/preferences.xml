@@ -215,7 +215,7 @@
                     android:layout_height="wrap_content"
                     android:ellipsize="end"
                     android:minWidth="110dp"
-                    android:text="DOC/DOCX/CHM"
+                    android:text="DOC/CHM"
                     android:textSize="11sp" />
             </LinearLayout>
 

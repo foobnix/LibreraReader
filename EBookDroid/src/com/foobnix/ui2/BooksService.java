@@ -6,6 +6,7 @@ import java.util.List;
 
 import com.foobnix.android.utils.LOG;
 import com.foobnix.dao2.FileMeta;
+import com.foobnix.ext.CacheZipUtils.CacheDir;
 import com.foobnix.ext.EbookMeta;
 import com.foobnix.pdf.info.AppSharedPreferences;
 import com.foobnix.pdf.info.ExtUtils;
@@ -99,7 +100,7 @@ public class BooksService extends IntentService {
                             }
 
                             FileMetaCore.get().upadteBasicMeta(meta, file);
-                            EbookMeta ebookMeta = FileMetaCore.get().getEbookMeta(meta.getPath());
+                            EbookMeta ebookMeta = FileMetaCore.get().getEbookMeta(meta.getPath(), CacheDir.ZipService);
                             FileMetaCore.get().udpateFullMeta(meta, ebookMeta);
 
                             meta.setIsSearchBook(true);
@@ -175,7 +176,7 @@ public class BooksService extends IntentService {
                 AppDB.get().updateAll(itemsMeta);
 
                 for (FileMeta meta : itemsMeta) {
-                    EbookMeta ebookMeta = FileMetaCore.get().getEbookMeta(meta.getPath());
+                    EbookMeta ebookMeta = FileMetaCore.get().getEbookMeta(meta.getPath(), CacheDir.ZipService);
                     FileMetaCore.get().udpateFullMeta(meta, ebookMeta);
                 }
 
@@ -185,6 +186,7 @@ public class BooksService extends IntentService {
 
                 handler.removeCallbacks(timer2);
                 sendFinishMessage();
+                CacheDir.ZipService.removeCacheContent();
             }
 
         } finally {

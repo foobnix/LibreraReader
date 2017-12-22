@@ -13,6 +13,7 @@ import com.foobnix.android.utils.LOG;
 import com.foobnix.android.utils.TxtUtils;
 import com.foobnix.dao2.FileMeta;
 import com.foobnix.ext.CacheZipUtils;
+import com.foobnix.ext.CacheZipUtils.CacheDir;
 import com.foobnix.ext.CacheZipUtils.UnZipRes;
 import com.foobnix.ext.CalirbeExtractor;
 import com.foobnix.ext.EbookMeta;
@@ -44,7 +45,7 @@ public class FileMetaCore {
                 FileMeta fileMeta = AppDB.get().getOrCreate(path);
                 if (TxtUtils.isEmpty(fileMeta.getTitle())) {
 
-                    EbookMeta ebookMeta = FileMetaCore.get().getEbookMeta(path);
+                    EbookMeta ebookMeta = FileMetaCore.get().getEbookMeta(path, CacheDir.ZipApp);
 
                     FileMetaCore.get().upadteBasicMeta(fileMeta, new File(path));
                     FileMetaCore.get().udpateFullMeta(fileMeta, ebookMeta);
@@ -60,13 +61,13 @@ public class FileMetaCore {
         }
     }
 
-    public EbookMeta getEbookMeta(String path) {
+    public EbookMeta getEbookMeta(String path, CacheDir folder) {
         EbookMeta ebookMeta = EbookMeta.Empty();
         try {
             if (path.toLowerCase(Locale.US).endsWith(".zip")) {
                 CacheZipUtils.cacheLock.lock();
                 try {
-                    UnZipRes res = CacheZipUtils.extracIfNeed(path);
+                    UnZipRes res = CacheZipUtils.extracIfNeed(path, folder);
                     ebookMeta = getEbookMeta(path, res.unZipPath, res.entryName);
                     ebookMeta.setUnzipPath(res.unZipPath);
                 } finally {
@@ -130,7 +131,7 @@ public class FileMetaCore {
                 return CalirbeExtractor.getBookOverview(path);
             }
 
-            path = CacheZipUtils.extracIfNeed(path).unZipPath;
+            path = CacheZipUtils.extracIfNeed(path, CacheDir.ZipApp).unZipPath;
 
             if (BookType.EPUB.is(path)) {
                 info = EpubExtractor.get().getBookOverview(path);

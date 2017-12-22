@@ -9,6 +9,7 @@ import org.ebookdroid.droids.mupdf.codec.PdfContext;
 
 import com.foobnix.android.utils.LOG;
 import com.foobnix.ext.CacheZipUtils;
+import com.foobnix.ext.CacheZipUtils.CacheDir;
 
 public class ZipContext extends PdfContext {
 
@@ -24,7 +25,7 @@ public class ZipContext extends PdfContext {
             return fb2Context.openDocumentInner(fileName, password);
         }
 
-        String path = CacheZipUtils.extracIfNeed(fileName).unZipPath;
+        String path = CacheZipUtils.extracIfNeed(fileName, CacheDir.ZipApp).unZipPath;
         if (path.endsWith("zip")) {
             return null;
         }

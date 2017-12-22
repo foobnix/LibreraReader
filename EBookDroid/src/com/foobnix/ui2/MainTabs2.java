@@ -10,6 +10,7 @@ import org.ebookdroid.ui.viewer.ViewerActivity;
 import com.foobnix.android.utils.LOG;
 import com.foobnix.android.utils.TxtUtils;
 import com.foobnix.dao2.FileMeta;
+import com.foobnix.ext.CacheZipUtils.CacheDir;
 import com.foobnix.pdf.SlidingTabLayout;
 import com.foobnix.pdf.info.Android6;
 import com.foobnix.pdf.info.AndroidWhatsNew;
@@ -428,6 +429,7 @@ public class MainTabs2 extends AdsFragmentActivity {
         }
         // Analytics.onStop(this);
         isInStack = false;
+        CacheDir.ZipApp.removeCacheContent();
     }
 
     @Override

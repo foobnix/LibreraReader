@@ -18,6 +18,7 @@ import com.foobnix.android.utils.ResultResponse2;
 import com.foobnix.android.utils.TxtUtils;
 import com.foobnix.dao2.FileMeta;
 import com.foobnix.ext.CacheZipUtils;
+import com.foobnix.ext.CacheZipUtils.CacheDir;
 import com.foobnix.pdf.info.ExtUtils;
 import com.foobnix.pdf.info.R;
 import com.foobnix.pdf.info.io.SearchCore;
@@ -291,7 +292,7 @@ public class MultyDocSearchDialog {
             CodecDocument openDocument = null;
             CacheZipUtils.cacheLock.lock();
             try {
-                String zipPath = CacheZipUtils.extracIfNeed(path).unZipPath;
+                String zipPath = CacheZipUtils.extracIfNeed(path, CacheDir.ZipApp).unZipPath;
                 openDocument = ctx.openDocument(zipPath, "");
             } finally {
                 CacheZipUtils.cacheLock.unlock();

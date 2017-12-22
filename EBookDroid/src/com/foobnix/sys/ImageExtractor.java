@@ -23,6 +23,7 @@ import com.foobnix.android.utils.LOG;
 import com.foobnix.android.utils.Safe;
 import com.foobnix.dao2.FileMeta;
 import com.foobnix.ext.CacheZipUtils;
+import com.foobnix.ext.CacheZipUtils.CacheDir;
 import com.foobnix.ext.CbzCbrExtractor;
 import com.foobnix.ext.EbookMeta;
 import com.foobnix.ext.EpubExtractor;
@@ -93,7 +94,7 @@ public class ImageExtractor implements ImageDownloader {
         }
 
         FileMeta fileMeta = AppDB.get().getOrCreate(path);
-        EbookMeta ebookMeta = FileMetaCore.get().getEbookMeta(path);
+        EbookMeta ebookMeta = FileMetaCore.get().getEbookMeta(path, CacheDir.ZipApp);
 
         FileMetaCore.get().upadteBasicMeta(fileMeta, new File(path));
         FileMetaCore.get().udpateFullMeta(fileMeta, ebookMeta);
@@ -532,7 +533,7 @@ public class ImageExtractor implements ImageDownloader {
 
         CacheZipUtils.cacheLock.lock();
         try {
-            String zipPath = CacheZipUtils.extracIfNeed(path).unZipPath;
+            String zipPath = CacheZipUtils.extracIfNeed(path, CacheDir.ZipApp).unZipPath;
             LOG.d("getCodecContext", zipPath);
             codeCache = ctx.openDocument(zipPath, passw);
         } finally {

@@ -11,6 +11,7 @@ import org.ebookdroid.ui.viewer.ViewerActivity;
 import com.foobnix.android.utils.LOG;
 import com.foobnix.android.utils.TxtUtils;
 import com.foobnix.ext.CacheZipUtils;
+import com.foobnix.ext.CacheZipUtils.CacheDir;
 import com.foobnix.ext.EbookMeta;
 import com.foobnix.pdf.info.ExtUtils;
 import com.foobnix.pdf.info.model.BookCSS;
@@ -65,7 +66,7 @@ public abstract class AbstractCodecContext implements CodecContext {
             return openDocumentInnerCanceled(fileNameOriginal, password);
         }
 
-        EbookMeta ebookMeta = FileMetaCore.get().getEbookMeta(fileNameOriginal);
+        EbookMeta ebookMeta = FileMetaCore.get().getEbookMeta(fileNameOriginal, CacheDir.ZipApp);
 
         String lang = ebookMeta.getLang();
         if (TxtUtils.isNotEmpty(lang)) {
@@ -85,7 +86,7 @@ public abstract class AbstractCodecContext implements CodecContext {
         CacheZipUtils.cacheLock.lock();
         CacheZipUtils.createAllCacheDirs();
         try {
-            String fileName = CacheZipUtils.extracIfNeed(fileNameOriginal).unZipPath;
+            String fileName = CacheZipUtils.extracIfNeed(fileNameOriginal, CacheDir.ZipApp).unZipPath;
             LOG.d("Open Document extract", fileName);
             if (!ExtUtils.isValidFile(fileName)) {
                 return null;

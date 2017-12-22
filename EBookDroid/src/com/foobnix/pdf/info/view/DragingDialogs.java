@@ -1364,10 +1364,10 @@ public class DragingDialogs {
                         public PageUrl getPageUrl(int page) {
                             PageUrl pageUrl = null;
                             if (controller.isTextFormat()) {
-                                pageUrl = controller.getPageUrl(page);
+                                // pageUrl = controller.getPageUrl(page);
                             } else {
-                                pageUrl = PageUrl.buildSmall(currentBook.getPath(), page);
                             }
+                            pageUrl = PageUrl.buildSmall(currentBook.getPath(), page);
                             return pageUrl;
                         };
                     });
