@@ -11,25 +11,34 @@ import com.foobnix.android.utils.LOG;
 import com.foobnix.ext.CacheZipUtils;
 import com.foobnix.ext.CacheZipUtils.CacheDir;
 
-public class ZipContext extends PdfContext {
+import android.support.v4.util.Pair;
 
+public class ZipContext extends PdfContext {
 
     @Override
     public CodecDocument openDocumentInner(String fileName, String password) {
-        LOG.d("ZipContext", fileName);
+        LOG.d("ZipContext begin", fileName);
 
-        Fb2Context fb2Context = new Fb2Context();
-        File cacheFileName = fb2Context.getCacheFileName(fileName);
-        if (cacheFileName.exists()) {
-            LOG.d("ZipContext", "FB2 cache exists");
-            return fb2Context.openDocumentInner(fileName, password);
+        Pair<Boolean, String> pack = CacheZipUtils.isSingleAndSupportEntryFile(new File(fileName));
+        if (pack.first) {
+            LOG.d("ZipContext", "Singe archive entry");
+            Fb2Context fb2Context = new Fb2Context();
+            String etryPath = pack.second;
+            File cacheFileName = fb2Context.getCacheFileName(new File(CacheDir.ZipApp.getDir(), etryPath).getPath());
+            LOG.d("ZipContext", etryPath, cacheFileName.getName());
+            if (cacheFileName.exists()) {
+                LOG.d("ZipContext", "FB2 cache exists");
+                return fb2Context.openDocumentInner(etryPath, password);
+            }
         }
+
 
         String path = CacheZipUtils.extracIfNeed(fileName, CacheDir.ZipApp).unZipPath;
         if (path.endsWith("zip")) {
             return null;
         }
         CodecContext ctx = BookType.getCodecContextByPath(path);
+        LOG.d("ZipContext", "open", path);
         return ctx.openDocument(path, password);
     }
 

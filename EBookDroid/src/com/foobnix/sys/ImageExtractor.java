@@ -22,7 +22,6 @@ import com.foobnix.android.utils.Dips;
 import com.foobnix.android.utils.LOG;
 import com.foobnix.android.utils.Safe;
 import com.foobnix.dao2.FileMeta;
-import com.foobnix.ext.CacheZipUtils;
 import com.foobnix.ext.CacheZipUtils.CacheDir;
 import com.foobnix.ext.CbzCbrExtractor;
 import com.foobnix.ext.EbookMeta;
@@ -531,14 +530,17 @@ public class ImageExtractor implements ImageDownloader {
             return null;
         }
 
-        CacheZipUtils.cacheLock.lock();
-        try {
-            String zipPath = CacheZipUtils.extracIfNeed(path, CacheDir.ZipApp).unZipPath;
-            LOG.d("getCodecContext", zipPath);
-            codeCache = ctx.openDocument(zipPath, passw);
-        } finally {
-            CacheZipUtils.cacheLock.unlock();
-        }
+        // CacheZipUtils.cacheLock.lock();
+        // try {
+        // String zipPath = CacheZipUtils.extracIfNeed(path, CacheDir.ZipApp).unZipPath;
+        // LOG.d("getCodecContext", zipPath);
+        // codeCache = ctx.openDocument(zipPath, passw);
+        // } finally {
+        // CacheZipUtils.cacheLock.unlock();
+        // }
+
+        codeCache = ctx.openDocument(path, passw);
+
         if (codeCache == null) {
             LOG.d("[Open doc is null]", path);
             return null;
