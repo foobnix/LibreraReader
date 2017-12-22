@@ -70,7 +70,7 @@ import android.widget.Toast;
 
 public class ExtUtils {
 
-    public static final String REFLOW_FB2 = "-reflow.fb2";
+    public static final String REFLOW_FB2 = "-text-reflow.fb2";
 
     public static ExecutorService ES = Executors.newFixedThreadPool(4);
 

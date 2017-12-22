@@ -428,4 +428,5 @@
    <string name="theme_color">テーマの色</string>
    <string name="add_folder">フォルダーを追加</string>
    <string name="selecting_text_in_this_mode_does_not_work">このモードでテキストを選択しても機能しません</string>
+   <string name="scroll_speed">スクロール速度</string>
 </resources>

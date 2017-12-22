@@ -76,7 +76,6 @@ import android.widget.LinearLayout;
 import android.widget.PopupMenu;
 import android.widget.ScrollView;
 import android.widget.SeekBar;
-import android.widget.SeekBar.OnSeekBarChangeListener;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -869,25 +868,6 @@ public class PrefFragment2 extends UIFragment {
 
         ///
 
-        final SeekBar mouseSpeed = (SeekBar) inflate.findViewById(R.id.seekWheelSpeed);
-        mouseSpeed.setMax(200);
-        mouseSpeed.setProgress(AppState.getInstance().mouseWheelSpeed);
-        mouseSpeed.setOnSeekBarChangeListener(new OnSeekBarChangeListener() {
-
-            @Override
-            public void onStopTrackingTouch(final SeekBar seekBar) {
-            }
-
-            @Override
-            public void onStartTrackingTouch(final SeekBar seekBar) {
-            }
-
-            @Override
-            public void onProgressChanged(final SeekBar seekBar, final int progress, final boolean fromUser) {
-                AppState.getInstance().mouseWheelSpeed = progress;
-                LOG.d("TEST", "SET speed" + progress);
-            }
-        });
 
         /** customBrightness start **/
         CheckBox autoSettings = (CheckBox) inflate.findViewById(R.id.autoSettings);

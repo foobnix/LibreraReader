@@ -428,4 +428,5 @@
    <string name="theme_color">สีธีม</string>
    <string name="add_folder">เพิ่มกล่องเก็บไฟล์</string>
    <string name="selecting_text_in_this_mode_does_not_work">การเลือกข้อความในโหมดนี้ไม่ทำงาน</string>
+   <string name="scroll_speed">เลื่อนความเร็ว</string>
 </resources>

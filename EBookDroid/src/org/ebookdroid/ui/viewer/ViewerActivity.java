@@ -220,19 +220,9 @@ public class ViewerActivity extends AbstractActionActivity<ViewerActivity, Viewe
 
     @Override
     protected void onDestroy() {
+        super.onDestroy();
         if (handler != null) {
             handler.removeCallbacksAndMessages(null);
-        }
-
-        getController().onDestroy();
-
-        if (AppState.getInstance().isRememberMode && AppState.getInstance().isAlwaysOpenAsMagazine) {
-            super.onDestroy();
-        } else {
-            getController().beforeDestroy();
-            super.onDestroy();
-            getController().afterDestroy(isFinishing());
-            getController().getListener().onDestroy();
         }
     }
 

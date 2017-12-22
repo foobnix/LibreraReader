@@ -428,4 +428,5 @@
    <string name="theme_color">테마 색</string>
    <string name="add_folder">폴더 추가</string>
    <string name="selecting_text_in_this_mode_does_not_work">이 모드에서 텍스트 선택이 작동하지 않습니다.</string>
+   <string name="scroll_speed">스크롤 속도</string>
 </resources>

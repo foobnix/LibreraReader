@@ -37,6 +37,7 @@ public class ZipContext extends PdfContext {
         if (path.endsWith("zip")) {
             return null;
         }
+
         CodecContext ctx = BookType.getCodecContextByPath(path);
         LOG.d("ZipContext", "open", path);
         return ctx.openDocument(path, password);

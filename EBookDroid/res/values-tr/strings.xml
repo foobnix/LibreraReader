@@ -428,4 +428,5 @@
    <string name="theme_color">Tema rengi</string>
    <string name="add_folder">Klasörü eklemek</string>
    <string name="selecting_text_in_this_mode_does_not_work">Bu modda metin seçmek işe yaramıyor</string>
+   <string name="scroll_speed">Kaydırma hızı</string>
 </resources>

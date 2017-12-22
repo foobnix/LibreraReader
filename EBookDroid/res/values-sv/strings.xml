@@ -428,4 +428,5 @@
    <string name="theme_color">Tema färg</string>
    <string name="add_folder">Lägg till mapp</string>
    <string name="selecting_text_in_this_mode_does_not_work">Val av text i det här läget fungerar inte</string>
+   <string name="scroll_speed">Scrollhastighet</string>
 </resources>

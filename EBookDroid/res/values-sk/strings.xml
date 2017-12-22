@@ -428,4 +428,5 @@
    <string name="theme_color">Farba témy</string>
    <string name="add_folder">Pridať priečinok</string>
    <string name="selecting_text_in_this_mode_does_not_work">Výber textu v tomto režime nefunguje</string>
+   <string name="scroll_speed">Rýchlosť rolovania</string>
 </resources>

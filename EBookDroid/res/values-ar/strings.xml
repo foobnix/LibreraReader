@@ -428,4 +428,5 @@
    <string name="theme_color">لون الموضوع</string>
    <string name="add_folder">أضف المجلد</string>
    <string name="selecting_text_in_this_mode_does_not_work">لا يعمل تحديد النص في هذا الوضع</string>
+   <string name="scroll_speed">سرعة التمرير</string>
 </resources>

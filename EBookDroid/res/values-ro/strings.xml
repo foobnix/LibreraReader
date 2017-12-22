@@ -428,4 +428,5 @@
    <string name="theme_color">Culoarea temei</string>
    <string name="add_folder">Adaugă folder</string>
    <string name="selecting_text_in_this_mode_does_not_work">Selectarea textului în acest mod nu funcționează</string>
+   <string name="scroll_speed">Scroll viteza</string>
 </resources>

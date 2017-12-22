@@ -428,4 +428,5 @@
    <string name="theme_color">Couleur du thème</string>
    <string name="add_folder">Ajouter le dossier</string>
    <string name="selecting_text_in_this_mode_does_not_work">La sélection de texte dans ce mode ne fonctionne pas</string>
+   <string name="scroll_speed">Vitesse de défilement</string>
 </resources>

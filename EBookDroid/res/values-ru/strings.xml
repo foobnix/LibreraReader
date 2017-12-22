@@ -428,4 +428,5 @@
    <string name="theme_color">Цвет темы</string>
    <string name="add_folder">Добавить раздел/папку</string>
    <string name="selecting_text_in_this_mode_does_not_work">В этом режиме текст выделить нельзя</string>
+   <string name="scroll_speed">Скорость прокрутки</string>
 </resources>

@@ -428,4 +428,5 @@
    <string name="theme_color">Temos spalva</string>
    <string name="add_folder">Pridėti aplanką</string>
    <string name="selecting_text_in_this_mode_does_not_work">Teksto pasirinkimas šiame režime neveikia</string>
+   <string name="scroll_speed">Slinkties greitis</string>
 </resources>

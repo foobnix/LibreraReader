@@ -428,4 +428,5 @@
    <string name="theme_color">Колір теми</string>
    <string name="add_folder">Додати папку</string>
    <string name="selecting_text_in_this_mode_does_not_work">Вибір тексту в цьому режимі не працює</string>
+   <string name="scroll_speed">Швидкість прокрутки</string>
 </resources>

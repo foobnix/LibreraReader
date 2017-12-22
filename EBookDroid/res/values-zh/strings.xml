@@ -428,4 +428,5 @@
    <string name="theme_color">主题颜色</string>
    <string name="add_folder">新增文件夹</string>
    <string name="selecting_text_in_this_mode_does_not_work">在这种模式下选择文本不起作用</string>
+   <string name="scroll_speed">滚动速度</string>
 </resources>

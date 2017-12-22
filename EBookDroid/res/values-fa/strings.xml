@@ -428,4 +428,5 @@
    <string name="theme_color">رنگ تم</string>
    <string name="add_folder">اضافه کردن پوشه</string>
    <string name="selecting_text_in_this_mode_does_not_work">انتخاب متن در این حالت کار نمی کند</string>
+   <string name="scroll_speed">سرعت حرکت</string>
 </resources>

@@ -2340,23 +2340,14 @@ public class DragingDialogs {
                     }
                 });
 
-                final SeekBar mouseSpeed = (SeekBar) inflate.findViewById(R.id.seekWheelSpeed);
-                mouseSpeed.setMax(200);
-                mouseSpeed.setProgress(AppState.getInstance().mouseWheelSpeed);
-                mouseSpeed.setOnSeekBarChangeListener(new OnSeekBarChangeListener() {
+                final CustomSeek mouseWheelSpeed = (CustomSeek) inflate.findViewById(R.id.seekWheelSpeed);
+                mouseWheelSpeed.init(1, 200, AppState.getInstance().mouseWheelSpeed);
+                mouseWheelSpeed.setOnSeekChanged(new IntegerResponse() {
 
                     @Override
-                    public void onStopTrackingTouch(final SeekBar seekBar) {
-                    }
-
-                    @Override
-                    public void onStartTrackingTouch(final SeekBar seekBar) {
-                    }
-
-                    @Override
-                    public void onProgressChanged(final SeekBar seekBar, final int progress, final boolean fromUser) {
-                        AppState.getInstance().mouseWheelSpeed = progress;
-                        LOG.d("TEST", "SET speed" + progress);
+                    public boolean onResultRecive(int result) {
+                        AppState.getInstance().mouseWheelSpeed = result;
+                        return false;
                     }
                 });
 

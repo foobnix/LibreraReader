@@ -720,26 +720,6 @@
             android:singleLine="true"
             android:text="@string/what_is_new_in" />
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
-            android:layout_marginLeft="35dip"
-            android:layout_marginTop="4dip"
-            android:visibility="gone" >
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/mouse_scroll_speed"
-                android:textSize="15sp" />
-
-            <SeekBar
-                android:id="@+id/seekWheelSpeed"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="10dip" />
-        </LinearLayout>
 
         <LinearLayout
             android:layout_width="wrap_content"

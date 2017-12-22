@@ -428,4 +428,5 @@
    <string name="theme_color">Tema farge</string>
    <string name="add_folder">Legg til mappe</string>
    <string name="selecting_text_in_this_mode_does_not_work">Velger tekst i denne modusen virker ikke</string>
+   <string name="scroll_speed">Rullehastighet</string>
 </resources>

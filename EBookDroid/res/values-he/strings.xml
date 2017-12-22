@@ -428,4 +428,5 @@
    <string name="theme_color">צבע ערכת נושא</string>
    <string name="add_folder">הוסף תיקיה</string>
    <string name="selecting_text_in_this_mode_does_not_work">בחירת טקסט במצב זה אינה פועלת</string>
+   <string name="scroll_speed">מהירות גלילה</string>
 </resources>

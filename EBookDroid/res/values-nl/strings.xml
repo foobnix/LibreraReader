@@ -428,4 +428,5 @@
    <string name="theme_color">Thema kleur</string>
    <string name="add_folder">Map toevoegen</string>
    <string name="selecting_text_in_this_mode_does_not_work">Tekst selecteren in deze modus werkt niet</string>
+   <string name="scroll_speed">Scrollsnelheid</string>
 </resources>

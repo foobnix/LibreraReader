@@ -428,4 +428,5 @@
    <string name="theme_color">Téma színe</string>
    <string name="add_folder">Mappa hozzáadása</string>
    <string name="selecting_text_in_this_mode_does_not_work">A szöveg kiválasztása ebben a módban nem működik</string>
+   <string name="scroll_speed">Görgetési sebesség</string>
 </resources>
