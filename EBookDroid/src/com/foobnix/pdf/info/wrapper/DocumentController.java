@@ -12,6 +12,7 @@ import org.ebookdroid.core.codec.PageLink;
 import com.foobnix.android.utils.Keyboards;
 import com.foobnix.android.utils.LOG;
 import com.foobnix.android.utils.ResultResponse;
+import com.foobnix.android.utils.Safe;
 import com.foobnix.android.utils.TxtUtils;
 import com.foobnix.dao2.FileMeta;
 import com.foobnix.pdf.info.ExtUtils;
@@ -342,8 +343,16 @@ public abstract class DocumentController {
         IMG.clearMemoryCache();
         saveAppState();
         TTSEngine.get().stop();
-        activity.finish();
-        activity.startActivity(activity.getIntent());
+
+        Safe.run(new Runnable() {
+
+            @Override
+            public void run() {
+                ImageExtractor.clearCodeDocument();
+                activity.finish();
+                activity.startActivity(activity.getIntent());
+            }
+        });
     }
 
     public void saveAppState() {

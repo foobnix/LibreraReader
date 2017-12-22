@@ -5,7 +5,6 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Locale;
-import java.util.Random;
 
 import org.ebookdroid.common.cache.CacheManager;
 import org.ebookdroid.common.settings.SettingsManager;
@@ -20,6 +19,7 @@ import org.greenrobot.eventbus.EventBus;
 
 import com.foobnix.android.utils.Dips;
 import com.foobnix.android.utils.LOG;
+import com.foobnix.android.utils.Safe;
 import com.foobnix.android.utils.TxtUtils;
 import com.foobnix.pdf.CopyAsyncTask;
 import com.foobnix.pdf.info.ExtUtils;
@@ -35,9 +35,6 @@ import com.foobnix.sys.ImageExtractor;
 import com.foobnix.sys.TempHolder;
 import com.foobnix.ui2.AppDB;
 import com.foobnix.ui2.FileMetaCore;
-import com.nostra13.universalimageloader.core.ImageLoader;
-import com.nostra13.universalimageloader.core.assist.FailReason;
-import com.nostra13.universalimageloader.core.listener.SimpleImageLoadingListener;
 
 import android.app.Activity;
 import android.content.Context;
@@ -45,7 +42,6 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Matrix;
 import android.graphics.PointF;
-import android.view.View;
 
 public abstract class DocumentControllerHorizontalView extends DocumentController {
     public static final String PASSWORD_EXTRA = "password";
@@ -397,12 +393,12 @@ public abstract class DocumentControllerHorizontalView extends DocumentControlle
 
     @Override
     public void onCloseActivity() {
-        ImageLoader.getInstance().clearAllTasks();
         TempHolder.get().clear();
 
-        ImageLoader.getInstance().loadImage("null" + new Random().nextInt(), new SimpleImageLoadingListener() {
+        Safe.run(new Runnable() {
+
             @Override
-            public void onLoadingFailed(String imageUri, View view, FailReason failReason) {
+            public void run() {
                 isClosed = true;
                 if (codeDocument != null) {
                     codeDocument.recycle();
@@ -424,10 +420,10 @@ public abstract class DocumentControllerHorizontalView extends DocumentControlle
                 activity.setResult(Activity.RESULT_OK, i);
                 activity.finish();
 
-
                 ImageExtractor.clearCodeDocument();
             }
         });
+
 
 
     }

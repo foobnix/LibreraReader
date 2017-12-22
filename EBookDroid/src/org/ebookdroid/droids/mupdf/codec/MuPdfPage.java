@@ -108,7 +108,7 @@ public class MuPdfPage extends AbstractCodecPage {
     static MuPdfPage createPage(final long dochandle, final int pageno) {
         TempHolder.lock.lock();
         try {
-            LOG.d("MUPDF! createPage", dochandle, pageno);
+            LOG.d("MUPDF! +create page", dochandle, pageno);
             final long open = open(dochandle, pageno);
             return new MuPdfPage(open, dochandle, pageno);
         } finally {
@@ -132,7 +132,7 @@ public class MuPdfPage extends AbstractCodecPage {
             if (pageHandle != 0 && docHandle != 0) {
                 long p = pageHandle;
                 pageHandle = 0;
-                LOG.d("MUPDF! recycle page", docHandle, p);
+                LOG.d("MUPDF! -recycle page", docHandle, pageNumber);
                 free(docHandle, p);
             }
         } catch (final Exception e) {

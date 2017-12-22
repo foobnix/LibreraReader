@@ -1,4 +1,4 @@
-* Specialt tema för e-bläck enheter 
+* Speciellt tema för e-bläck enheter 
 * Ändra kontrast och ljusstyrka 
 * Bluelight filter 
 * Förbättrat användargränssnitt 

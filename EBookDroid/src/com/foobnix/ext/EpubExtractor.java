@@ -69,11 +69,11 @@ public class EpubExtractor extends BaseExtractor {
                 String nameLow = name.toLowerCase();
 
                 if (!name.endsWith("container.xml") && (nameLow.endsWith("html") || nameLow.endsWith("htm") || nameLow.endsWith("xml"))) {
-                    LOG.d("nextEntry HTML", name);
+                    LOG.d("nextEntry HTML cancell", TempHolder.get().loadingCancelled, name);
                     ByteArrayOutputStream hStream = Fb2Extractor.generateHyphenFile(new InputStreamReader(zipInputStream), true);
                     Fb2Extractor.writeToZipNoClose(zos, name, new ByteArrayInputStream(hStream.toByteArray()));
                 } else {
-                    LOG.d("nextEntry", name);
+                    LOG.d("nextEntry cancell", TempHolder.get().loadingCancelled, name);
                     Fb2Extractor.writeToZipNoClose(zos, name, zipInputStream);
                 }
 

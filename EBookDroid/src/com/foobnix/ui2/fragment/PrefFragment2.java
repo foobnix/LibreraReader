@@ -56,7 +56,9 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.support.v4.content.LocalBroadcastManager;
 import android.support.v4.util.Pair;
+import android.support.v4.widget.DrawerLayout;
 import android.text.Html;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.MenuItem.OnMenuItemClickListener;
@@ -96,7 +98,6 @@ public class PrefFragment2 extends UIFragment {
     public boolean isBackPressed() {
         return false;
     }
-
 
     @Override
     public void notifyFragment() {
@@ -524,8 +525,6 @@ public class PrefFragment2 extends UIFragment {
                 onEmail();
             }
         });
-
-
 
         rememberMode = (CheckBox) inflate.findViewById(R.id.isRememberMode);
         rememberMode.setChecked(AppState.getInstance().isRememberMode);
@@ -1626,6 +1625,15 @@ public class PrefFragment2 extends UIFragment {
     }
 
     public void onScan() {
+        try {
+            final DrawerLayout drawerLayout = (DrawerLayout) getActivity().findViewById(R.id.drawer_layout);
+            if (drawerLayout.isDrawerOpen(Gravity.START)) {
+                drawerLayout.closeDrawer(Gravity.START, !AppState.get().isInkMode);
+            }
+        } catch (Exception e) {
+            LOG.e(e);
+        }
+
         getActivity().startService(new Intent(getActivity(), BooksService.class).setAction(BooksService.ACTION_SEARCH_ALL));
 
         Intent intent = new Intent(UIFragment.INTENT_TINT_CHANGE)//

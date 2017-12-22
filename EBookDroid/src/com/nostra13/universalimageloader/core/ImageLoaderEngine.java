@@ -194,6 +194,7 @@ class ImageLoaderEngine {
     void clearAllTasks() {
         cacheKeysForImageAwares.clear();
         uriLocks.clear();
+
     }
 
 	void fireCallback(Runnable r) {

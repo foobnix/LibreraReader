@@ -152,10 +152,9 @@ public class IMG {
             .cacheInMemory(true)//
             .cacheOnDisk(true)//
             .considerExifParams(false)//
-            .imageScaleType(ImageScaleType.EXACTLY)//
+            .imageScaleType(ImageScaleType.NONE)//
             .resetViewBeforeLoading(RESET_VIEW_BEFORE_LOADING)//
             .bitmapConfig(BMP_CFG)//
-            // .displayer(new FadeInBitmapDisplayer(200))//
             .build();//
 
     public static DisplayImageOptions displayOPDSOptions = new DisplayImageOptions.Builder() //
@@ -176,7 +175,7 @@ public class IMG {
             .showImageForEmptyUri(COLOR_DRAWABLE)//
             .showImageOnFail(COLOR_DRAWABLE)//
             .cacheInMemory(true)//
-            .imageScaleType(ImageScaleType.EXACTLY)//
+            .imageScaleType(ImageScaleType.NONE)//
             .considerExifParams(false)//
             .cacheOnDisk(false)//
             .resetViewBeforeLoading(RESET_VIEW_BEFORE_LOADING)//
@@ -283,25 +282,21 @@ public class IMG {
     }
 
     public static void getCoverPageWithEffect(ImageView img, String path, int width, ImageLoadingListener listener) {
-        ImageLoader.getInstance().displayImage(IMG.toUrl(path, ImageExtractor.COVER_PAGE, width), img, listener);
+        ImageLoader.getInstance().displayImage(IMG.toUrl(path, ImageExtractor.COVER_PAGE, width), img, IMG.displayImageOptions, listener);
     }
 
     public static void getCoverPageWithEffectPos(ImageView img, String path, int width, int pos, ImageLoadingListener listener) {
-        ImageLoader.getInstance().displayImage(IMG.toUrlPos(path, ImageExtractor.COVER_PAGE, width, pos), img, listener);
-    }
-
-    public static void getCoverPage(ImageView img, String path, int sizeDP, ImageLoadingListener listener) {
-        ImageLoader.getInstance().displayImage(IMG.toUrl(path, ImageExtractor.COVER_PAGE_NO_EFFECT, sizeDP), img, listener);
+        ImageLoader.getInstance().displayImage(IMG.toUrlPos(path, ImageExtractor.COVER_PAGE, width, pos), img, IMG.displayImageOptions, listener);
     }
 
     public static String toUrl(final String path, final int page, final int width) {
         PageUrl pdfUrl = new PageUrl(path, page, width, 0, false, false, 0);
+        pdfUrl.setUnic(0);
         return pdfUrl.toString();
     }
 
     public static String toUrlPos(final String path, final int page, final int width, int pos) {
         PageUrl pdfUrl = new PageUrl(path, page, width, 0, false, false, 0);
-        pdfUrl.setPosition(pos);
         return pdfUrl.toString();
     }
 

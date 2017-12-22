@@ -15,8 +15,12 @@ import android.graphics.RectF;
 
 public class DjvuDocument extends AbstractCodecDocument {
 
+    private String fileName;
+
     DjvuDocument(final DjvuContext djvuContext, final String fileName) {
         super(djvuContext, open(djvuContext.getContextHandle(), fileName));
+        this.fileName = fileName;
+        LOG.d("MUPDF! open document djvu", documentHandle, fileName);
     }
 
     @Override
@@ -76,7 +80,7 @@ public class DjvuDocument extends AbstractCodecDocument {
     @Override
     protected void freeDocument() {
         free(documentHandle);
-        LOG.d("MUPDF! recycle document", documentHandle);
+        LOG.d("MUPDF! recycle document djvu", documentHandle, fileName);
     }
 
     private native static int getPageInfo(long docHandle, int pageNumber, long contextHandle, CodecPageInfo cpi);

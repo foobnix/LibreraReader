@@ -32,6 +32,7 @@ import org.emdev.utils.MathUtils;
 
 import com.foobnix.android.utils.LOG;
 import com.foobnix.android.utils.ResultResponse;
+import com.foobnix.android.utils.Safe;
 import com.foobnix.android.utils.TxtUtils;
 import com.foobnix.pdf.info.model.AnnotationType;
 import com.foobnix.pdf.info.wrapper.MagicHelper;
@@ -319,6 +320,8 @@ public class DecodeServiceBase implements DecodeService {
             // TempHolder.lock.unlock();
 
             finishDecoding(task, vuPage, bitmap, r, croppedPageBounds);
+            // test
+            // vuPage.recycle();
 
         } catch (final OutOfMemoryError ex) {
             for (int i = 0; i <= AppSettings.getInstance().pagesInMemory; i++) {
@@ -442,7 +445,8 @@ public class DecodeServiceBase implements DecodeService {
 
         // Preventing problem inside the MuPDF
         if (!codecContext.isParallelPageAccessAvailable()) {
-            holder.getPage(taskId);
+            // holder.getPage(taskId);
+            // TODO TEST!!!
         }
         return holder;
     }
@@ -673,6 +677,16 @@ public class DecodeServiceBase implements DecodeService {
         }
 
         void shutdown() {
+            Safe.run(new Runnable() {
+
+                @Override
+                public void run() {
+                    shutdownInner();
+                }
+            });
+        }
+
+        private void shutdownInner() {
             ImageLoader.getInstance().clearAllTasks();
             TempHolder.get().clear();
 
@@ -681,7 +695,9 @@ public class DecodeServiceBase implements DecodeService {
             for (final CodecPageHolder ref : getPages().values()) {
                 ref.recycle(-3, true);
             }
+
             LOG.d("Begin shutdown 2");
+
 
             getPages().clear();
 
@@ -695,7 +711,6 @@ public class DecodeServiceBase implements DecodeService {
             LOG.d("Begin shutdown 5");
             run.set(false);
             LOG.d("Begin shutdown 6");
-
 
             ImageExtractor.clearCodeDocument();
 

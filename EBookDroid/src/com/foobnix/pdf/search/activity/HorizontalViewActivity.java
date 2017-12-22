@@ -587,6 +587,7 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
                     @Override
                     public void run() {
                         isCancelled = true;
+                        TempHolder.get().loadingCancelled = true;
                         finish();
                         CacheZipUtils.removeFiles(CacheZipUtils.CACHE_BOOK_DIR.listFiles());
                     }
@@ -1070,6 +1071,14 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
         if (flippingHandler != null) {
             flippingHandler.removeCallbacksAndMessages(null);
         }
+        nullAdapter();
+
+        // AppState.get().isCut = false;
+        PageImageState.get().clearResouces();
+
+    }
+
+    public void nullAdapter() {
         if (viewPager != null) {
             try {
                 viewPager.setAdapter(null);
@@ -1077,10 +1086,6 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
                 LOG.e(e);
             }
         }
-
-        // AppState.get().isCut = false;
-        PageImageState.get().clearResouces();
-
     }
 
     public void updateReadPercent() {
@@ -1509,7 +1514,7 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
 
     public void createAdapter() {
         IMG.clearMemoryCache();
-        viewPager.setAdapter(null);
+        nullAdapter();
         pagerAdapter = null;
         final int count = documentController.getPageCount();
         pagerAdapter = new UpdatableFragmentPagerAdapter(getSupportFragmentManager()) {
@@ -1652,6 +1657,7 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
         }
 
         DocumentController.chooseFullScreen(this, AppState.get().isFullScreen);
+        pagerAdapter.notifyDataSetChanged();
     }
 
     private boolean isMyKey = false;
@@ -1776,10 +1782,7 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
         if (handler != null) {
             handler.removeCallbacksAndMessages(null);
         }
-        anchor.setVisibility(View.GONE);
-        anchor.setTag("backGo");
-        anchor.removeAllViews();
-
+        nullAdapter();
         documentController.onCloseActivity();
     }
 

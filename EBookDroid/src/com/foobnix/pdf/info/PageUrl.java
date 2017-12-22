@@ -18,7 +18,6 @@ public class PageUrl {
     private int height;
     private int unic;
     private int cutp;
-    private int position;
     private boolean isDouble;
     private boolean doText;
 
@@ -123,7 +122,6 @@ public class PageUrl {
             obj.put("unic", unic);
             obj.put("cutp", cutp);
             obj.put("m", MagicHelper.hash());
-            obj.put("p", position);
             obj.put("isDouble", isDouble);
             obj.put("doText", doText);
             return obj.toString();
@@ -146,7 +144,6 @@ public class PageUrl {
             url.height = obj.optInt("height");
             url.unic = obj.optInt("unic");
             url.cutp = obj.optInt("cutp");
-            url.position = obj.optInt("p");
             url.isDouble = obj.optBoolean("isDouble");
             url.doText = obj.optBoolean("doText");
             return url;
@@ -233,13 +230,6 @@ public class PageUrl {
         this.unic = unic;
     }
 
-    public int getPosition() {
-        return position;
-    }
-
-    public void setPosition(int position) {
-        this.position = position;
-    }
 
     public boolean isDouble() {
         return isDouble;

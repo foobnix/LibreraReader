@@ -105,9 +105,10 @@ public class ShareDialog {
         if (isLibrary) {
             items.add(a.getString(R.string.library));
         }
-        items.add(a.getString(R.string.advanced_mode));
-        items.add(a.getString(R.string.easy_mode));
-        items.add(a.getString(R.string.music_mode));
+        // items.add(a.getString(R.string.advanced_mode));
+        // items.add(a.getString(R.string.easy_mode));
+        // items.add(a.getString(R.string.music_mode));
+
         items.add(a.getString(R.string.open_with));
         items.add(a.getString(R.string.send_file));
         items.add(a.getString(R.string.export_bookmarks));
@@ -134,32 +135,36 @@ public class ShareDialog {
                             a.finish();
                             MainTabs2.startActivity(a, UITab.getCurrentTabIndex(UITab.SearchFragment));
                         }
-                        if (which == i++) {
-                            if (a instanceof ViewerActivity || a instanceof HorizontalViewActivity) {
-                                a.finish();
+                        if (false) {
+                            if (which == i++) {
+                                if (a instanceof ViewerActivity || a instanceof HorizontalViewActivity) {
+                                    a.finish();
+                                }
+                                AppState.get().isMusicianMode = false;
+                                AppState.get().isAlwaysOpenAsMagazine = false;
+                                ExtUtils.showDocumentWithoutDialog(a, file, page + 1);
+                            } else if (which == i++) {
+                                if (a instanceof ViewerActivity || a instanceof HorizontalViewActivity) {
+                                    a.finish();
+                                }
+                                AppState.get().isMusicianMode = false;
+                                AppState.get().isAlwaysOpenAsMagazine = true;
+                                ExtUtils.showDocumentWithoutDialog(a, file, page + 1);
+                            } else if (which == i++) {
+                                if (a instanceof ViewerActivity || a instanceof HorizontalViewActivity) {
+                                    a.finish();
+                                }
+                                AppState.get().isAlwaysOpenAsMagazine = false;
+                                AppState.get().isMusicianMode = true;
+                                if (ui != null) {
+                                    ui.initUI(a);
+                                    ui.showHide();
+                                }
+                                ExtUtils.showDocumentWithoutDialog(a, file, page);
                             }
-                            AppState.get().isMusicianMode = false;
-                            AppState.get().isAlwaysOpenAsMagazine = false;
-                            ExtUtils.showDocumentWithoutDialog(a, file, page + 1);
-                        } else if (which == i++) {
-                            if (a instanceof ViewerActivity || a instanceof HorizontalViewActivity) {
-                                a.finish();
-                            }
-                            AppState.get().isMusicianMode = false;
-                            AppState.get().isAlwaysOpenAsMagazine = true;
-                            ExtUtils.showDocumentWithoutDialog(a, file, page + 1);
-                        } else if (which == i++) {
-                            if (a instanceof ViewerActivity || a instanceof HorizontalViewActivity) {
-                                a.finish();
-                            }
-                            AppState.get().isAlwaysOpenAsMagazine = false;
-                            AppState.get().isMusicianMode = true;
-                            if (ui != null) {
-                                ui.initUI(a);
-                                ui.showHide();
-                            }
-                            ExtUtils.showDocumentWithoutDialog(a, file, page);
-                        } else if (which == i++) {
+                        }
+
+                else if (which == i++) {
                             ExtUtils.openWith(a, file);
                         } else if (which == i++) {
                             ExtUtils.sendFileTo(a, file);

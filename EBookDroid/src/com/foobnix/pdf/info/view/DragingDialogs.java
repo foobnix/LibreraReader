@@ -1445,7 +1445,13 @@ public class DragingDialogs {
                 return view;
             }
 
-        }.show("thumbnailDialog", false, true);
+        }.show("thumbnailDialog", false, true).setOnCloseListener(new Runnable() {
+
+            @Override
+            public void run() {
+                // ImageLoader.getInstance().clearAllTasks();
+            }
+        });
 
     }
 

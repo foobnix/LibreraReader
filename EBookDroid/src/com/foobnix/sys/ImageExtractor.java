@@ -20,6 +20,7 @@ import org.ebookdroid.droids.mupdf.codec.exceptions.MuPdfPasswordException;
 import com.BaseExtractor;
 import com.foobnix.android.utils.Dips;
 import com.foobnix.android.utils.LOG;
+import com.foobnix.android.utils.Safe;
 import com.foobnix.dao2.FileMeta;
 import com.foobnix.ext.CacheZipUtils;
 import com.foobnix.ext.CbzCbrExtractor;
@@ -64,6 +65,7 @@ public class ImageExtractor implements ImageDownloader {
     private final Context c;
 
     public static SharedPreferences sp;
+
 
     public static synchronized ImageExtractor getInstance(final Context c) {
         if (instance == null) {
@@ -179,7 +181,7 @@ public class ImageExtractor implements ImageDownloader {
 
         CodecDocument codeCache = getNewCodecContext(path, "", pageUrl.getWidth(), pageUrl.getHeight());
 
-        if (codeCache == null || codeCache.isRecycled() || codeCache.getDocumentHandle() == TempHolder.get().lastRecycledDocument) {
+        if (codeCache == null) {
             LOG.d("TEST", "codecDocument == null" + path);
             return null;
         }
@@ -198,10 +200,6 @@ public class ImageExtractor implements ImageDownloader {
 
         BitmapRef bitmapRef = null;
         CodecPage pageCodec = codeCache.getPage(page);
-
-        if (codeCache == null || codeCache.isRecycled() || pageCodec.isRecycled() || codeCache.getDocumentHandle() == TempHolder.get().lastRecycledDocument) {
-            return null;
-        }
 
         if (pageUrl.getNumber() == 0) {
             rectF = new RectF(0, 0, 1f, 1f);
@@ -258,20 +256,17 @@ public class ImageExtractor implements ImageDownloader {
             bitmap = bitmap1;
         }
 
-        if (codeCache == null || codeCache.isRecycled() || pageCodec.isRecycled() || codeCache.getDocumentHandle() == TempHolder.get().lastRecycledDocument) {
-            return null;
-        }
+        // try {
+        // Thread.sleep(1000);// testing only
+        // } catch (InterruptedException e) {
+        // }
 
         if (pageUrl.isDoText()) {
             PageImageState.get().pagesText.put(pageUrl.getPage(), pageCodec.getText());
             PageImageState.get().pagesLinks.put(pageUrl.getPage(), pageCodec.getPageLinks());
         }
 
-        if (codeCache == null || codeCache.isRecycled() || pageCodec.isRecycled() || codeCache.getDocumentHandle() == TempHolder.get().lastRecycledDocument) {
-            return null;
-        }
-
-        if (pageUrl.getNumber() != 1 && codeCache.getDocumentHandle() != TempHolder.get().lastRecycledDocument) {
+        if (pageUrl.getNumber() != 1) {
             pageCodec.recycle();
         }
 
@@ -313,8 +308,19 @@ public class ImageExtractor implements ImageDownloader {
 
     @Override
     public synchronized InputStream getStream(final String imageUri, final Object extra) throws IOException {
+        try {
+            return getStreamInner(imageUri);
+        } finally {
+        }
+    }
+
+    public synchronized InputStream getStreamInner(final String imageUri) throws IOException {
         LOG.d("TEST", "url: " + imageUri);
 
+        if (imageUri.startsWith(Safe.TXT_SAFE_RUN)) {
+            LOG.d("MUPDF!", Safe.TXT_SAFE_RUN);
+            return null;
+        }
         if (imageUri.startsWith("https")) {
 
             Request request = new Request.Builder()//
@@ -337,7 +343,7 @@ public class ImageExtractor implements ImageDownloader {
         }
 
         if (!imageUri.startsWith("{")) {
-            return baseImage.getStream(imageUri, extra);
+            return baseImage.getStream(imageUri, null);
         }
         // if (sp.contains("" + imageUri.hashCode())) {
         // LOG.d("Error FILE", imageUri);

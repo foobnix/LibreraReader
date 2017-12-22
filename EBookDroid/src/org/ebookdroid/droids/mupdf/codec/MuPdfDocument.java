@@ -27,9 +27,11 @@ public class MuPdfDocument extends AbstractCodecDocument {
 
     private int pagesCount = -1;
     int w, h;
+    private String fname;
 
     public MuPdfDocument(final MuPdfContext context, final int format, final String fname, final String pwd) {
         super(context, openFile(format, fname, pwd, BookCSS.get().toCssString()));
+        this.fname = fname;
         isEpub = ExtUtils.isTextFomat(fname);
     }
 
@@ -119,7 +121,7 @@ public class MuPdfDocument extends AbstractCodecDocument {
     @Override
     protected void freeDocument() {
             free(documentHandle);
-            LOG.d("MUPDF! recycle document", documentHandle);
+        LOG.d("MUPDF! <<< recycle [document]", documentHandle, ExtUtils.getFileName(fname));
     }
 
     static void normalizeLinkTargetRect(final long docHandle, final int targetPage, final RectF targetRect, final int flags) {
@@ -161,7 +163,7 @@ public class MuPdfDocument extends AbstractCodecDocument {
             final long open = open(allocatedMemory, format, fname, pwd, css, BookCSS.get().documentStyle == BookCSS.STYLES_ONLY_USER ? 0 : 1);
             LOG.d("TEST", "Open document " + fname + " " + open);
             LOG.d("TEST", "Open document css ", css);
-            LOG.d("MUPDF! open document", open, ExtUtils.getFileName(fname));
+            LOG.d("MUPDF! >>> open [document]", open, ExtUtils.getFileName(fname));
 
             if (open == -1) {
                 throw new RuntimeException("Document is corrupted");

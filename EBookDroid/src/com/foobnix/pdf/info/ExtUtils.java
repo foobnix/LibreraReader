@@ -30,6 +30,7 @@ import com.foobnix.android.utils.Apps;
 import com.foobnix.android.utils.Dips;
 import com.foobnix.android.utils.LOG;
 import com.foobnix.android.utils.ResultResponse2;
+import com.foobnix.android.utils.Safe;
 import com.foobnix.android.utils.TxtUtils;
 import com.foobnix.ext.CacheZipUtils;
 import com.foobnix.pdf.info.model.BookCSS;
@@ -137,7 +138,17 @@ public class ExtUtils {
     static List<String> audio = Arrays.asList(".mp3", ".mp4", ".wav", ".ogg", ".m4a");
     static List<String> video = Arrays.asList(".webm", ".m3u8", ".ts", ".flv", ".mp4", ".3gp", ".mov", ".avi", ".wmv", ".mp4", ".m4v");
 
-    public static void openFile(Activity a, File file) {
+    public static void openFile(final Activity a, final File file) {
+        Safe.run(new Runnable() {
+
+            @Override
+            public void run() {
+                openFileInner(a, file);
+            }
+        });
+    }
+
+    private static void openFileInner(Activity a, File file) {
         if (ExtUtils.doifFileExists(a, file)) {
 
             if (ExtUtils.isZip(file)) {
@@ -685,7 +696,6 @@ public class ExtUtils {
             Toast.makeText(a, "" + e.getMessage(), Toast.LENGTH_LONG).show();
         }
     }
-
 
     public static String getMimeType(File file) {
         String mime = "";

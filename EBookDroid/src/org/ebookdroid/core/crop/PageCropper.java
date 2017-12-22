@@ -39,6 +39,9 @@ public class PageCropper {
         for (int y = 0; y < height; y++) {
             for (int x = 0; x < width; x++) {
                 int p = source.getPixel(x, y);
+                if (p == Color.WHITE || p == Color.BLACK) {
+                    continue;
+                }
 
                 int pR = Color.red(p);
                 int pG = Color.green(p);

@@ -48,7 +48,7 @@ public class DefaultListeners {
 
             @Override
             public boolean onResultRecive(FileMeta result) {
-                File item = new File(result.getPath());
+                final File item = new File(result.getPath());
                 if (item.isDirectory()) {
                     Intent intent = new Intent(UIFragment.INTENT_TINT_CHANGE)//
                             .putExtra(MainTabs2.EXTRA_PAGE_NUMBER, UITab.getCurrentTabIndex(UITab.BrowseFragment));//
