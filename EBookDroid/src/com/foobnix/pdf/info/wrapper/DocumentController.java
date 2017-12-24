@@ -47,10 +47,26 @@ import android.widget.Toast;
 @SuppressLint("NewApi")
 public abstract class DocumentController {
 
-    public static List<Integer> ROTATIONS = Arrays.asList(//
+    public final static List<Integer> orientationIds = Arrays.asList(//
             ActivityInfo.SCREEN_ORIENTATION_SENSOR, //
             ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE, //
-            ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+            ActivityInfo.SCREEN_ORIENTATION_PORTRAIT, //
+            ActivityInfo.SCREEN_ORIENTATION_SENSOR_LANDSCAPE, //
+            ActivityInfo.SCREEN_ORIENTATION_SENSOR_PORTRAIT//
+    );
+
+    public final static List<Integer> orientationTexts = Arrays.asList(//
+            R.string.automatic, //
+            R.string.landscape, //
+            R.string.portrait, //
+            R.string.landscape_180, //
+            R.string.portrait_180////
+    );
+
+    public static int getRotationText() {
+        return orientationTexts.get(orientationIds.indexOf(AppState.getInstance().orientation));
+    }
+
 
     protected final Activity activity;
     private DocumentWrapperUI ui;
@@ -324,25 +340,12 @@ public abstract class DocumentController {
         return 0.5f;
     }
 
-    public static void nextRotation() {
-        final int type = AppState.getInstance().orientation;
-        if (type == ROTATIONS.get(0)) {
-            AppState.getInstance().orientation = ROTATIONS.get(1);
-        }
-
-        else if (type == ROTATIONS.get(1)) {
-            AppState.getInstance().orientation = ROTATIONS.get(2);
-        }
-
-        else if (type == ROTATIONS.get(2)) {
-            AppState.getInstance().orientation = ROTATIONS.get(0);
-        }
-    }
 
     public void restartActivity() {
         IMG.clearMemoryCache();
         saveAppState();
         TTSEngine.get().stop();
+
 
         Safe.run(new Runnable() {
 

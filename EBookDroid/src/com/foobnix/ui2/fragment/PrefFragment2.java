@@ -47,7 +47,6 @@ import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.pm.ActivityInfo;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager.NameNotFoundException;
 import android.graphics.Color;
@@ -310,47 +309,34 @@ public class PrefFragment2 extends UIFragment {
             }
         });
 
-        final View onScreenMode = inflate.findViewById(R.id.screenModeType);
-        onScreenMode.setOnClickListener(new OnClickListener() {
+        screenOrientation = (TextView) inflate.findViewById(R.id.screenOrientation);
+        screenOrientation.setText(DocumentController.getRotationText());
+        TxtUtils.underlineTextView(screenOrientation);
+
+        screenOrientation.setOnClickListener(new OnClickListener() {
 
             @Override
-            public void onClick(final View v) {
-                PopupMenu p = new PopupMenu(getContext(), onScreenMode);
-                p.getMenu().add(R.string.automatic).setOnMenuItemClickListener(new OnMenuItemClickListener() {
+            public void onClick(View v) {
+                PopupMenu menu = new PopupMenu(v.getContext(), v);
+                for (int i = 0; i < DocumentController.orientationIds.size(); i++) {
+                    final int j = i;
+                    final int name = DocumentController.orientationTexts.get(i);
+                    menu.getMenu().add(name).setOnMenuItemClickListener(new OnMenuItemClickListener() {
 
-                    @Override
-                    public boolean onMenuItemClick(MenuItem item) {
-                        AppState.getInstance().orientation = ActivityInfo.SCREEN_ORIENTATION_SENSOR;
-                        rotationText();
-                        DocumentController.doRotation(getActivity());
-                        return false;
-                    }
-                });
-                p.getMenu().add(R.string.landscape).setOnMenuItemClickListener(new OnMenuItemClickListener() {
-
-                    @Override
-                    public boolean onMenuItemClick(MenuItem item) {
-                        AppState.getInstance().orientation = ActivityInfo.SCREEN_ORIENTATION_SENSOR_LANDSCAPE;
-                        rotationText();
-                        DocumentController.doRotation(getActivity());
-                        return false;
-                    }
-                });
-
-                p.getMenu().add(R.string.portrait).setOnMenuItemClickListener(new OnMenuItemClickListener() {
-
-                    @Override
-                    public boolean onMenuItemClick(MenuItem item) {
-                        AppState.getInstance().orientation = ActivityInfo.SCREEN_ORIENTATION_SENSOR_PORTRAIT;
-                        rotationText();
-                        DocumentController.doRotation(getActivity());
-                        return false;
-                    }
-                });
-                p.show();
-
+                        @Override
+                        public boolean onMenuItemClick(MenuItem item) {
+                            AppState.getInstance().orientation = DocumentController.orientationIds.get(j);
+                            screenOrientation.setText(DocumentController.orientationTexts.get(j));
+                            TxtUtils.underlineTextView(screenOrientation);
+                            DocumentController.doRotation(getActivity());
+                            return false;
+                        }
+                    });
+                }
+                menu.show();
             }
         });
+
 
         // inflate.findViewById(R.id.onHelpTranslate).setOnClickListener(new
         // OnClickListener() {
@@ -1573,6 +1559,8 @@ public class PrefFragment2 extends UIFragment {
     private TextView textDayColor;
     private TextView selectedDictionaly;
 
+    private TextView screenOrientation;
+
     @Override
     public void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -1632,17 +1620,8 @@ public class PrefFragment2 extends UIFragment {
     }
 
     public void rotationText() {
-        final int type = AppState.getInstance().orientation;
-        TextView screenType = (TextView) getActivity().findViewById(R.id.screenModeType);
-        if (type == ActivityInfo.SCREEN_ORIENTATION_SENSOR) {
-            screenType.setText(TxtUtils.underline(getString(R.string.automatic)));
-        }
-        if (type == ActivityInfo.SCREEN_ORIENTATION_SENSOR_LANDSCAPE) {
-            screenType.setText(TxtUtils.underline(getString(R.string.landscape)));
-        }
-        if (type == ActivityInfo.SCREEN_ORIENTATION_SENSOR_PORTRAIT) {
-            screenType.setText(TxtUtils.underline(getString(R.string.portrait)));
-        }
+        screenOrientation.setText(DocumentController.getRotationText());
+        TxtUtils.underlineTextView(screenOrientation);
         DocumentController.doRotation(getActivity());
     }
 

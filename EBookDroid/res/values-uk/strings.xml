@@ -429,4 +429,6 @@
    <string name="add_folder">Додати папку</string>
    <string name="selecting_text_in_this_mode_does_not_work">Вибір тексту в цьому режимі не працює</string>
    <string name="scroll_speed">Швидкість прокрутки</string>
+   <string name="landscape_180">Пейзаж (180)</string>
+   <string name="portrait_180">Портрет (180)</string>
 </resources>

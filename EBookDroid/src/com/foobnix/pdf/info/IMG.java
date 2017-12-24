@@ -206,6 +206,17 @@ public class IMG {
             .bitmapConfig(BMP_CFG)//
             .build();//
 
+    public static DisplayImageOptions noneOptions = new DisplayImageOptions.Builder() //
+            .showImageOnFail(COLOR_DRAWABLE)//
+            .showImageForEmptyUri(COLOR_DRAWABLE)//
+            .showImageOnFail(COLOR_DRAWABLE)//
+            .cacheInMemory(false)//
+            .cacheOnDisk(false)//
+            .considerExifParams(false)//
+            .imageScaleType(ImageScaleType.NONE)//
+            .bitmapConfig(BMP_CFG)//
+            .build();//
+
     public static void display(final Context c, final String path, final ImageView imageView, final int sizePx, final int page, ImageLoadingListener listener) {
         display(c, path, imageView, sizePx, page, listener, IMG.displayImageOptions);
 

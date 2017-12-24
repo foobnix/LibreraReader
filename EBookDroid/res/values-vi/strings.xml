@@ -429,4 +429,6 @@
    <string name="add_folder">Thêm thư mục</string>
    <string name="selecting_text_in_this_mode_does_not_work">Chọn văn bản trong chế độ này không hoạt động</string>
    <string name="scroll_speed">Tốc độ cuộn</string>
+   <string name="landscape_180">Phong cảnh (180)</string>
+   <string name="portrait_180">Chân dung (180)</string>
 </resources>

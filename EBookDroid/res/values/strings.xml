@@ -41,6 +41,8 @@
    <string name="invert_colors">Invert colors</string>
    <string name="keys">Keys</string>
    <string name="landscape">Landscape</string>
+   <string name="landscape_180">Landscape (180)</string>
+   <string name="portrait_180">Portrait (180)</string>
    <string name="library">Library</string>
    <string name="licence_gnu_gpl_v3_0">License: GNU GPL v3.0</string>
    <string name="light">Light</string>

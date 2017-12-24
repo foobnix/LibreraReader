@@ -293,6 +293,7 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
                     if (onRefresh != null) {
                         onRefresh.run();
                     }
+                    nullAdapter();
                     documentController.restartActivity();
                 }
             }
@@ -305,6 +306,7 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
             @Override
             public void onClick(final View v) {
                 AppState.get().isInvert = !AppState.get().isInvert;
+                nullAdapter();
                 documentController.restartActivity();
             }
         });
@@ -440,6 +442,7 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
                         AppState.get().isCut = false;
                         AppState.get().isDoubleCoverAlone = false;
                         SettingsManager.getBookSettings().updateFromAppState();
+                        nullAdapter();
                         documentController.restartActivity();
                         documentController.cleanImageMatrix();
                         return false;
@@ -455,6 +458,8 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
                             AppState.get().isCut = false;
                             AppState.get().isDoubleCoverAlone = true;
                             SettingsManager.getBookSettings().updateFromAppState();
+
+                            nullAdapter();
                             documentController.restartActivity();
                             documentController.cleanImageMatrix();
                             return false;
@@ -582,6 +587,7 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
 
             @Override
             protected void onPreExecute() {
+                TempHolder.get().loadingCancelled = false;
                 dialog = Dialogs.loadingBook(HorizontalViewActivity.this, new Runnable() {
 
                     @Override
@@ -805,6 +811,7 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
         AppState.get().isDoubleCoverAlone = false;
         AppState.get().isCut = false;
         SettingsManager.getBookSettings().updateFromAppState();
+        nullAdapter();
         documentController.restartActivity();
     }
 
@@ -1494,6 +1501,7 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
         AppState.get().save(this);
         if (ExtUtils.isTextFomat(getIntent())) {
             updateReadPercent();
+            nullAdapter();
             documentController.restartActivity();
         } else {
             if (viewPager != null) {
@@ -1513,7 +1521,7 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
     UpdatableFragmentPagerAdapter pagerAdapter;
 
     public void createAdapter() {
-        IMG.clearMemoryCache();
+        LOG.d("createAdapter");
         nullAdapter();
         pagerAdapter = null;
         final int count = documentController.getPageCount();

@@ -429,4 +429,6 @@
    <string name="add_folder">הוסף תיקיה</string>
    <string name="selecting_text_in_this_mode_does_not_work">בחירת טקסט במצב זה אינה פועלת</string>
    <string name="scroll_speed">מהירות גלילה</string>
+   <string name="landscape_180">נופים (180)</string>
+   <string name="portrait_180">דיוקן (180)</string>
 </resources>

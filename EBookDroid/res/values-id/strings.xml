@@ -429,4 +429,6 @@
    <string name="add_folder">Tambah Folder</string>
    <string name="selecting_text_in_this_mode_does_not_work">Memilih teks dalam mode ini tidak bekerja</string>
    <string name="scroll_speed">Kecepatan gulir</string>
+   <string name="landscape_180">Pemandangan (180)</string>
+   <string name="portrait_180">Potret (180)</string>
 </resources>

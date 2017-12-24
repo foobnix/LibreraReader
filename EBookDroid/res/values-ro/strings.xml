@@ -429,4 +429,6 @@
    <string name="add_folder">Adaugă folder</string>
    <string name="selecting_text_in_this_mode_does_not_work">Selectarea textului în acest mod nu funcționează</string>
    <string name="scroll_speed">Scroll viteza</string>
+   <string name="landscape_180">Peisaj (180)</string>
+   <string name="portrait_180">Portret (180)</string>
 </resources>

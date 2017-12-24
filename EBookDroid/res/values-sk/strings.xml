@@ -429,4 +429,6 @@
    <string name="add_folder">Pridať priečinok</string>
    <string name="selecting_text_in_this_mode_does_not_work">Výber textu v tomto režime nefunguje</string>
    <string name="scroll_speed">Rýchlosť rolovania</string>
+   <string name="landscape_180">Krajina (180)</string>
+   <string name="portrait_180">Portrét (180)</string>
 </resources>

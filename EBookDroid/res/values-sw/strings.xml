@@ -429,4 +429,6 @@
    <string name="add_folder">Ongeza folda</string>
    <string name="selecting_text_in_this_mode_does_not_work">Kuchagua maandishi katika hali hii haifanyi kazi</string>
    <string name="scroll_speed">Tembea kasi</string>
+   <string name="landscape_180">Mazingira (180)</string>
+   <string name="portrait_180">Picha (180)</string>
 </resources>

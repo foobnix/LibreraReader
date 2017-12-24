@@ -248,7 +248,7 @@
                 android:textStyle="bold" />
 
             <TextView
-                android:id="@+id/screenModeType"
+                android:id="@+id/screenOrientation"
                 style="@style/textLink"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

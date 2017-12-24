@@ -429,4 +429,6 @@
    <string name="add_folder">Agregar carpeta</string>
    <string name="selecting_text_in_this_mode_does_not_work">Seleccionar texto en este modo no funciona</string>
    <string name="scroll_speed">Velocidad de desplazamiento</string>
+   <string name="landscape_180">Paisaje (180)</string>
+   <string name="portrait_180">Retrato (180)</string>
 </resources>

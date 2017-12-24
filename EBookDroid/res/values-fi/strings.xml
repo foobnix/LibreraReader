@@ -429,4 +429,6 @@
    <string name="add_folder">Lisää kansio</string>
    <string name="selecting_text_in_this_mode_does_not_work">Tekstin valinta tässä tilassa ei toimi</string>
    <string name="scroll_speed">Vieritä nopeutta</string>
+   <string name="landscape_180">Maisema (180)</string>
+   <string name="portrait_180">Muotokuva (180)</string>
 </resources>

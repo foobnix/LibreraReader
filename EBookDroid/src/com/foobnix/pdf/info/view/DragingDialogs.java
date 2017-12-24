@@ -3662,19 +3662,38 @@ public class DragingDialogs {
                     }
                 });
 
-                // orientation
-                final List<String> orientations = Arrays.asList(controller.getString(R.string.automatic), controller.getString(R.string.landscape), controller.getString(R.string.portrait));
-                final List<Integer> orIds = Arrays.asList(ActivityInfo.SCREEN_ORIENTATION_SENSOR, ActivityInfo.SCREEN_ORIENTATION_SENSOR_LANDSCAPE, ActivityInfo.SCREEN_ORIENTATION_SENSOR_PORTRAIT);
+                // orientation begin
 
                 final TextView screenOrientation = (TextView) inflate.findViewById(R.id.screenOrientation);
-                try {
-                    screenOrientation.setText(orientations.get(orIds.indexOf(AppState.getInstance().orientation)));
-                } catch (Exception e) {
-                    AppState.getInstance().orientation = ActivityInfo.SCREEN_ORIENTATION_SENSOR;
-                    screenOrientation.setText(orientations.get(orIds.indexOf(AppState.getInstance().orientation)));
-                }
-
+                screenOrientation.setText(DocumentController.getRotationText());
                 TxtUtils.underlineTextView(screenOrientation);
+
+                screenOrientation.setOnClickListener(new OnClickListener() {
+
+                    @Override
+                    public void onClick(View v) {
+                        PopupMenu menu = new PopupMenu(v.getContext(), v);
+                        for (int i = 0; i < DocumentController.orientationIds.size(); i++) {
+                            final int j = i;
+                            final int name = DocumentController.orientationTexts.get(i);
+                            menu.getMenu().add(name).setOnMenuItemClickListener(new OnMenuItemClickListener() {
+
+                                @Override
+                                public boolean onMenuItemClick(MenuItem item) {
+                                    AppState.getInstance().orientation = DocumentController.orientationIds.get(j);
+                                    screenOrientation.setText(DocumentController.orientationTexts.get(j));
+                                    TxtUtils.underlineTextView(screenOrientation);
+                                    DocumentController.doRotation(controller.getActivity());
+                                    return false;
+                                }
+                            });
+                        }
+                        menu.show();
+                    }
+                });
+
+
+                // orientation end
 
                 final TextView onBlueFilter = (TextView) inflate.findViewById(R.id.onBlueFilter);
                 onBlueFilter.setVisibility(Dips.isEInk(controller.getActivity()) ? View.GONE : View.VISIBLE);
@@ -3684,31 +3703,6 @@ public class DragingDialogs {
                     @Override
                     public void onClick(View v) {
                         dialogBlueLight(anchor, controller, onRefresh, updateUIRefresh);
-                    }
-                });
-
-                screenOrientation.setOnClickListener(new OnClickListener() {
-
-                    @Override
-                    public void onClick(View v) {
-                        PopupMenu menu = new PopupMenu(v.getContext(), v);
-                        for (int i = 0; i < orientations.size(); i++) {
-                            final int j = i;
-                            final String name = orientations.get(i);
-                            menu.getMenu().add(name).setOnMenuItemClickListener(new OnMenuItemClickListener() {
-
-                                @Override
-                                public boolean onMenuItemClick(MenuItem item) {
-                                    AppState.getInstance().orientation = orIds.get(j);
-                                    screenOrientation.setText(orientations.get(j));
-                                    TxtUtils.underlineTextView(screenOrientation);
-                                    controller.doRotation(controller.getActivity());
-                                    return false;
-                                }
-                            });
-                        }
-                        menu.show();
-
                     }
                 });
 

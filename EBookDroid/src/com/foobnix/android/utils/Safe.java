@@ -2,10 +2,11 @@ package com.foobnix.android.utils;
 
 import java.util.Random;
 
+import com.foobnix.pdf.info.IMG;
 import com.nostra13.universalimageloader.core.ImageLoader;
-import com.nostra13.universalimageloader.core.assist.FailReason;
 import com.nostra13.universalimageloader.core.listener.SimpleImageLoadingListener;
 
+import android.graphics.Bitmap;
 import android.view.View;
 
 public class Safe {
@@ -17,9 +18,9 @@ public class Safe {
     public static void run(final Runnable action) {
         ImageLoader.getInstance().clearAllTasks();
 
-        ImageLoader.getInstance().loadImage(TXT_SAFE_RUN + r.nextInt(), new SimpleImageLoadingListener() {
+        ImageLoader.getInstance().loadImage("assets://opds/web.png", IMG.noneOptions, new SimpleImageLoadingListener() {
             @Override
-            public void onLoadingFailed(String imageUri, View view, FailReason failReason) {
+            public void onLoadingComplete(String imageUri, View view, Bitmap loadedImage) {
                 LOG.d(TXT_SAFE_RUN, "Safe run");
                 if (action != null) {
                     ImageLoader.getInstance().clearAllTasks();

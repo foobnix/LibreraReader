@@ -429,4 +429,6 @@
    <string name="add_folder">เพิ่มกล่องเก็บไฟล์</string>
    <string name="selecting_text_in_this_mode_does_not_work">การเลือกข้อความในโหมดนี้ไม่ทำงาน</string>
    <string name="scroll_speed">เลื่อนความเร็ว</string>
+   <string name="landscape_180">ภูมิทัศน์ (180)</string>
+   <string name="portrait_180">ถ่ายภาพบุคคล (180)</string>
 </resources>

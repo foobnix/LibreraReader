@@ -59,13 +59,11 @@ public class ImageExtractor implements ImageDownloader {
     public static final int COVER_PAGE_WITH_EFFECT = -3;
     public static final int COVER_PAGE_NO_EFFECT = -2;
     public static final int COVER_PAGE = -1;
-    private static final int FIRST_PAGE = 0;
     private static ImageExtractor instance;
     private final BaseImageDownloader baseImage;
     private final Context c;
 
     public static SharedPreferences sp;
-
 
     public static synchronized ImageExtractor getInstance(final Context c) {
         if (instance == null) {
@@ -256,10 +254,6 @@ public class ImageExtractor implements ImageDownloader {
             bitmap = bitmap1;
         }
 
-        // try {
-        // Thread.sleep(1000);// testing only
-        // } catch (InterruptedException e) {
-        // }
 
         if (pageUrl.isDoText()) {
             PageImageState.get().pagesText.put(pageUrl.getPage(), pageCodec.getText());
@@ -486,16 +480,22 @@ public class ImageExtractor implements ImageDownloader {
     static int pageCount = 0;
 
     public static volatile CodecDocument codeCache;
+    public static volatile CodecContext codecContex;
     public static String pathCache;
     static int whCache;
 
-    public static void clearCodeDocument() {
+    public static synchronized void clearCodeDocument() {
+        if (codecContex != null) {
+            codecContex.recycle();
+            codecContex = null;
+        }
         if (codeCache != null) {
             codeCache.recycle();
             codeCache = null;
             pathCache = null;
             LOG.d("getNewCodecContext recycle");
         }
+
     }
 
     public static void init(CodecDocument codec, String path) {
@@ -504,11 +504,13 @@ public class ImageExtractor implements ImageDownloader {
         pathCache = path;
     }
 
-    public static CodecDocument getNewCodecContext(final String path, String passw, int w, int h) {
+    public static synchronized CodecDocument getNewCodecContext(final String path, String passw, int w, int h) {
+
         if (path.equals(pathCache) /* && whCache == h + w */ && codeCache != null && !codeCache.isRecycled()) {
-            LOG.d("getNewCodecContext from cache");
+            LOG.d("getNewCodecContext cache", path, w, h);
             return codeCache;
         }
+        LOG.d("getNewCodecContext new", path, w, h);
 
         clearCodeDocument();
 
@@ -524,9 +526,11 @@ public class ImageExtractor implements ImageDownloader {
         }
         LOG.d("getCodecContext after", w, h);
 
-        CodecContext ctx = BookType.getCodecContextByPath(path);
+        codecContex = BookType.getCodecContextByPath(path);
 
-        if (ctx == null) {
+        LOG.d("CodecContext", codecContex);
+
+        if (codecContex == null) {
             return null;
         }
 
@@ -539,10 +543,9 @@ public class ImageExtractor implements ImageDownloader {
         // CacheZipUtils.cacheLock.unlock();
         // }
 
-        codeCache = ctx.openDocument(path, passw);
-
+        codeCache = codecContex.openDocument(path, passw);
         if (codeCache == null) {
-            LOG.d("[Open doc is null]", path);
+            LOG.d("[Open doc is null 1", path);
             return null;
         }
 
@@ -550,6 +553,7 @@ public class ImageExtractor implements ImageDownloader {
         pathCache = path;
         whCache = h + w;
         return codeCache;
+
     }
 
     private InputStream messageFile(String msg, String name) {

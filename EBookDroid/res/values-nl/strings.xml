@@ -429,4 +429,6 @@
    <string name="add_folder">Map toevoegen</string>
    <string name="selecting_text_in_this_mode_does_not_work">Tekst selecteren in deze modus werkt niet</string>
    <string name="scroll_speed">Scrollsnelheid</string>
+   <string name="landscape_180">Landschap (180)</string>
+   <string name="portrait_180">Portret (180)</string>
 </resources>

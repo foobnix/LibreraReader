@@ -429,4 +429,6 @@
    <string name="add_folder">Dodaj folder</string>
    <string name="selecting_text_in_this_mode_does_not_work">Wybór tekstu w tym trybie nie działa</string>
    <string name="scroll_speed">Prędkość przewijania</string>
+   <string name="landscape_180">Krajobraz (180)</string>
+   <string name="portrait_180">Portret (180)</string>
 </resources>
