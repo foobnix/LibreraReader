@@ -205,6 +205,12 @@
         </LinearLayout>
         
         <CheckBox
+            android:id="@+id/isCustomizeBgAndColors"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/background_color_on_images_the_same_as_page_background" />
+        
+        <CheckBox
             android:id="@+id/isLockPDF"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -237,18 +243,9 @@
 
         
 
-        <CheckBox
-            android:id="@+id/isScrollAnimation"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            
-            android:text="@string/simple_scroll_animation" />
+        
 
-        <CheckBox
-            android:id="@+id/isCustomizeBgAndColors"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/customize_font_background_colors" />
+        
 
         <CheckBox
             android:id="@+id/isIgnoreAnnotatations"
@@ -278,6 +275,13 @@
             android:layout_height="wrap_content"
             
             android:text="@string/loop_autoplay" />
+        
+        <CheckBox
+            android:id="@+id/isScrollAnimation"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            
+            android:text="@string/simple_scroll_animation" />
 
         <CheckBox
             android:id="@+id/isBrighrnessEnable"

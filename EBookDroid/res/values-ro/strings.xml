@@ -139,7 +139,6 @@
    <string name="menu">Meniu</string>
    <string name="font_size">Mărimea fontului</string>
    <string name="foot_notes">Notă de subsol</string>
-   <string name="plain_text_txt_preformatted">Text simplu (.txt) preformatate</string>
    <string name="dictionary">Dicționar</string>
    <string name="import_bookmarks">Importați marcaje</string>
    <string name="email">Email</string>
@@ -275,7 +274,6 @@
    <string name="direction_of_reading_rtl_">Direcția de citire (RTL)</string>
    <string name="customize_tap_zones">Personaliza apăsare zone</string>
    <string name="right_side">Partea dreapta</string>
-   <string name="text_without_line_break">Text fără pauză linie</string>
    <string name="apply_a_new_screen_orientation_">Aplicați o nouă orientare ecran?</string>
    <string name="styles">Stiluri</string>
    <string name="document_styles">Stilurile documentului</string>
@@ -429,8 +427,11 @@
    <string name="portrait_180">Portret (180)</string>
    <string name="full_list_of_changes_with_images_web_pdf_">Lista completă a modificărilor cu imagini (web, PDF)</string>
    <string name="select_the_reading_mode">Selectați modul de citire</string>
-   <string name="vertical_mode">Mod vertical</string>
-   <string name="horizontal_mode">Mod orizontal</string>
-   <string name="musician_mode">Mod muzical</string>
    <string name="remember_choice">Ține minte alegerea</string>
+   <string name="formatted_text">Textul formatat (pseudo grafică)</string>
+   <string name="continuous_text">Text continuu (fără rupere de linie)</string>
+   <string name="vertically">Vertical</string>
+   <string name="horizontally">Orizontal</string>
+   <string name="remember_reading_mode">Rețineți modul de citire</string>
+   <string name="background_color_on_images_the_same_as_page_background">Culoarea de fundal pe imagini este la fel ca fundalul paginii</string>
 </resources>

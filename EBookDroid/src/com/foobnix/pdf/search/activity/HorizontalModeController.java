@@ -128,7 +128,6 @@ public abstract class HorizontalModeController extends DocumentController {
 
         bookPath = getBookPathFromActivity(activity);
 
-
         BookSettings bs = SettingsManager.getBookSettings(bookPath);
         if (bs != null) {
             AppState.get().isCut = bs.splitPages;
@@ -142,7 +141,7 @@ public abstract class HorizontalModeController extends DocumentController {
                 AppState.get().isCrop = true;
             }
         }
-        
+
         if (false) {
             PageImageState.get().needAutoFit = true;
         } else {
@@ -391,9 +390,8 @@ public abstract class HorizontalModeController extends DocumentController {
 
     private volatile boolean isClosed = false;
 
-
     @Override
-    public void onCloseActivity() {
+    public void onCloseActivityFinal(final Runnable run) {
         TempHolder.get().clear();
 
         Safe.run(new Runnable() {
@@ -422,11 +420,16 @@ public abstract class HorizontalModeController extends DocumentController {
                 activity.finish();
 
                 ImageExtractor.clearCodeDocument();
+                if (run != null) {
+                    run.run();
+                }
             }
         });
+    }
 
-
-
+    @Override
+    public void onCloseActivity() {
+        onCloseActivityFinal(null);
     }
 
     @Override

@@ -12,7 +12,7 @@
         android:layout_weight="0"
         android:gravity="center_vertical"
         android:padding="15dip"
-        android:text="@string/vertical_mode"
+        android:text="@string/vertically"
          android:background="@android:drawable/list_selector_background"
         android:textSize="16sp" />
 
@@ -23,7 +23,7 @@
         android:layout_weight="0"
         android:background="@android:drawable/list_selector_background"
         android:padding="15dip"
-        android:text="@string/horizontal_mode"
+        android:text="@string/horizontally"
         android:textSize="16sp" />
 
     <TextView
@@ -33,7 +33,7 @@
         android:layout_weight="0"
         android:background="@android:drawable/list_selector_background"
         android:padding="15dip"
-        android:text="@string/musician_mode"
+        android:text="@string/musician"
         android:textSize="16sp" />
 
     <CheckBox

@@ -114,6 +114,8 @@ public abstract class DocumentController {
 
     public abstract void onCloseActivity();
 
+    public abstract void onCloseActivityFinal(Runnable run);
+
     public abstract void onNightMode();
 
     public abstract void onCrop();

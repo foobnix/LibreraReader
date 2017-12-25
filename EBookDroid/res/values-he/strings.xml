@@ -140,7 +140,6 @@
    <string name="menu">תַפרִיט</string>
    <string name="font_size">גודל גופן</string>
    <string name="foot_notes">הערת שוליים</string>
-   <string name="plain_text_txt_preformatted">טקסט רגיל (.txt) לפני עיצוב</string>
    <string name="dictionary">מילון</string>
    <string name="import_bookmarks">ייבואסימניות</string>
    <string name="email">אֶלֶקטרוֹנִי</string>
@@ -275,7 +274,6 @@
    <string name="direction_of_reading_rtl_">כיוון הקריאה (RTL)</string>
    <string name="customize_tap_zones">התאמה אישית של אזורים ברז</string>
    <string name="right_side">צד ימין</string>
-   <string name="text_without_line_break">טקסט ללא מעבר שורה</string>
    <string name="apply_a_new_screen_orientation_">החלת כיוון מסך חדש?</string>
    <string name="styles">סגנונות</string>
    <string name="document_styles">סגנונות מסמך</string>
@@ -429,8 +427,11 @@
    <string name="portrait_180">דיוקן (180)</string>
    <string name="full_list_of_changes_with_images_web_pdf_">רשימה מלאה של שינויים עם תמונות (אינטרנט, PDF)</string>
    <string name="select_the_reading_mode">בחר את מצב הקריאה</string>
-   <string name="vertical_mode">מצב אנכי</string>
-   <string name="horizontal_mode">מצב אופקי</string>
-   <string name="musician_mode">מצב מוזיקאי</string>
    <string name="remember_choice">זכור בחירה</string>
+   <string name="formatted_text">טקסט מעוצב (גרפיקה פסאודו)</string>
+   <string name="continuous_text">טקסט רציף (ללא הפסקה בשורה)</string>
+   <string name="vertically">בֵּמְאוּנָך</string>
+   <string name="horizontally">אופקית</string>
+   <string name="remember_reading_mode">זכור מצב קריאה</string>
+   <string name="background_color_on_images_the_same_as_page_background">צבע רקע על תמונות כמו רקע הדף</string>
 </resources>

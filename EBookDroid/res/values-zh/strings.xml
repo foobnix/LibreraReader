@@ -134,7 +134,6 @@
    <string name="import_or_export_application_settings_to_json_file">导入或导出应用程序设置JSON文件</string>
    <string name="menu">菜单</string>
    <string name="foot_notes">脚注</string>
-   <string name="plain_text_txt_preformatted">预格式化的纯文本（.txt）</string>
    <string name="dictionary">字典</string>
    <string name="import_bookmarks">导入书签</string>
    <string name="email">电子邮件</string>
@@ -275,7 +274,6 @@
    <string name="direction_of_reading_rtl_">阅读方向（RTL）</string>
    <string name="customize_tap_zones">自击区域</string>
    <string name="right_side">右边</string>
-   <string name="text_without_line_break">文字不换行</string>
    <string name="apply_a_new_screen_orientation_">应用新的屏幕方向？</string>
    <string name="styles">样式</string>
    <string name="document_styles">文档样式</string>
@@ -429,8 +427,11 @@
    <string name="portrait_180">肖像（180）</string>
    <string name="full_list_of_changes_with_images_web_pdf_">完整的图像列表（网页，PDF）</string>
    <string name="select_the_reading_mode">选择阅读模式</string>
-   <string name="vertical_mode">垂直模式</string>
-   <string name="horizontal_mode">水平模式</string>
-   <string name="musician_mode">音乐家模式</string>
    <string name="remember_choice">记住选择</string>
+   <string name="formatted_text">格式化文本（伪图形）</string>
+   <string name="continuous_text">连续文本（不换行）</string>
+   <string name="vertically">垂直</string>
+   <string name="horizontally">水平</string>
+   <string name="remember_reading_mode">请记住阅读模式</string>
+   <string name="background_color_on_images_the_same_as_page_background">图像上的背景颜色与页面背景相同</string>
 </resources>

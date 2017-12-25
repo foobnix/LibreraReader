@@ -108,9 +108,9 @@ public class ShareDialog {
         }
 
         if (a instanceof VerticalViewActivity) {
-            items.add(a.getString(R.string.horizontal_mode));
+            items.add(a.getString(R.string.horizontally));
         } else if (a instanceof HorizontalViewActivity) {
-            items.add(a.getString(R.string.vertical_mode));
+            items.add(a.getString(R.string.vertically));
         }
 
         items.add(a.getString(R.string.open_with));
@@ -133,7 +133,7 @@ public class ShareDialog {
                         int i = 0;
 
                         if (isPDF && which == i++) {
-                            ExtUtils.openPDFInTextReflow(a, file, page + 1);
+                            ExtUtils.openPDFInTextReflow(a, file, page + 1, dc);
                         }
                         if (isLibrary && which == i++) {
                             a.finish();
@@ -141,20 +141,28 @@ public class ShareDialog {
                         }
 
                         if (a instanceof HorizontalViewActivity && which == i++) {
-                            AppState.get().isMusicianMode = false;
-                            AppState.get().isAlwaysOpenAsMagazine = false;
-                            ExtUtils.showDocumentWithoutDialog(a, file, page + 1);
-                            if (dc != null) {
-                                dc.onCloseActivity();
-                            }
+                            dc.onCloseActivityFinal(new Runnable() {
+
+                                @Override
+                                public void run() {
+                                    AppState.get().isMusicianMode = false;
+                                    AppState.get().isAlwaysOpenAsMagazine = false;
+                                    ExtUtils.showDocumentWithoutDialog(a, file, page + 1);
+
+                                }
+                            });
 
                         } else if (a instanceof VerticalViewActivity && which == i++) {
-                            AppState.get().isMusicianMode = false;
-                            AppState.get().isAlwaysOpenAsMagazine = true;
-                            ExtUtils.showDocumentWithoutDialog(a, file, page + 1);
-
                             if (dc != null) {
-                                dc.onCloseActivity();
+                                dc.onCloseActivityFinal(new Runnable() {
+
+                                    @Override
+                                    public void run() {
+                                        AppState.get().isMusicianMode = false;
+                                        AppState.get().isAlwaysOpenAsMagazine = true;
+                                        ExtUtils.showDocumentWithoutDialog(a, file, page + 1);
+                                    }
+                                });
                             }
                         }
 

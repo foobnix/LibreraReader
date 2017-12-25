@@ -134,7 +134,6 @@
    <string name="import_or_export_application_settings_to_json_file">Importa o esporta le impostazioni in un file JSON</string>
    <string name="menu">Menu</string>
    <string name="foot_notes">Note a piè di pagina</string>
-   <string name="plain_text_txt_preformatted">Testo normale (.txt) preformattato</string>
    <string name="dictionary">Dizionario</string>
    <string name="import_bookmarks">Importa segnalibri</string>
    <string name="email">E-mail</string>
@@ -275,7 +274,6 @@
    <string name="direction_of_reading_rtl_">Direzione di lettura (RTL)</string>
    <string name="customize_tap_zones">Personalizzare zone rubinetto</string>
    <string name="right_side">Lato destro</string>
-   <string name="text_without_line_break">Testo senza interruzione di riga</string>
    <string name="apply_a_new_screen_orientation_">Applicare un nuovo orientamento dello schermo?</string>
    <string name="styles">Stili</string>
    <string name="document_styles">Stili del documento</string>
@@ -429,8 +427,11 @@
    <string name="portrait_180">Ritratto (180)</string>
    <string name="full_list_of_changes_with_images_web_pdf_">Elenco completo delle modifiche con immagini (web, PDF)</string>
    <string name="select_the_reading_mode">Seleziona la modalità di lettura</string>
-   <string name="vertical_mode">Modalità verticale</string>
-   <string name="horizontal_mode">Modalità orizzontale</string>
-   <string name="musician_mode">Modalità Musicista</string>
    <string name="remember_choice">Ricorda la scelta</string>
+   <string name="formatted_text">Testo formattato (grafica pseudo)</string>
+   <string name="continuous_text">Testo continuo (nessuna interruzione di riga)</string>
+   <string name="vertically">Verticalmente</string>
+   <string name="horizontally">Orizzontalmente</string>
+   <string name="remember_reading_mode">Ricorda la modalità di lettura</string>
+   <string name="background_color_on_images_the_same_as_page_background">Colore di sfondo sulle immagini come lo sfondo della pagina</string>
 </resources>

@@ -140,7 +140,6 @@
    <string name="menu">Menu</string>
    <string name="font_size">Lettertypegrootte</string>
    <string name="foot_notes">Voetnoot</string>
-   <string name="plain_text_txt_preformatted">Platte tekst (.txt) vooraf geformatteerd</string>
    <string name="dictionary">Woordenboek</string>
    <string name="import_bookmarks">Bladwijzers importeren</string>
    <string name="email">E-mail</string>
@@ -275,7 +274,6 @@
    <string name="direction_of_reading_rtl_">Richting van het lezen (RTL)</string>
    <string name="customize_tap_zones">Pas tap zones</string>
    <string name="right_side">Rechter zijde</string>
-   <string name="text_without_line_break">Tekst zonder regeleinde</string>
    <string name="apply_a_new_screen_orientation_">Breng een nieuwe oriëntatie van het scherm?</string>
    <string name="styles">Stijlen</string>
    <string name="document_styles">Document stijlen</string>
@@ -429,8 +427,11 @@
    <string name="portrait_180">Portret (180)</string>
    <string name="full_list_of_changes_with_images_web_pdf_">Volledige lijst met wijzigingen met afbeeldingen (web, PDF)</string>
    <string name="select_the_reading_mode">Selecteer de leesmodus</string>
-   <string name="vertical_mode">Verticale modus</string>
-   <string name="horizontal_mode">Horizontale modus</string>
-   <string name="musician_mode">Muzikant-modus</string>
    <string name="remember_choice">Onthoud de keuze</string>
+   <string name="formatted_text">Opgemaakte tekst (pseudo-afbeeldingen)</string>
+   <string name="continuous_text">Doorlopende tekst (geen regelafbreking)</string>
+   <string name="vertically">Verticaal</string>
+   <string name="horizontally">Horizontaal</string>
+   <string name="remember_reading_mode">Denk aan de leesmodus</string>
+   <string name="background_color_on_images_the_same_as_page_background">Achtergrondkleur op afbeeldingen gelijk aan pagina-achtergrond</string>
 </resources>

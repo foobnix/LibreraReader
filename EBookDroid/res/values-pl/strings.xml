@@ -135,7 +135,6 @@
    <string name="import_or_export_application_settings_to_json_file">Importuj lub eksportuj wszystkie ustawienia</string>
    <string name="menu">Menu</string>
    <string name="foot_notes">Notatka</string>
-   <string name="plain_text_txt_preformatted">Zwykły tekst (.txt) preformatowany</string>
    <string name="dictionary">Słownik</string>
    <string name="import_bookmarks">Importuj zakładki</string>
    <string name="email">E-mail</string>
@@ -275,7 +274,6 @@
    <string name="direction_of_reading_rtl_">Kierunek czytania (RTL)</string>
    <string name="customize_tap_zones">Dostosuj strefy tapnięć</string>
    <string name="right_side">Prawa strona</string>
-   <string name="text_without_line_break">Tekst bez rozdzielania linii</string>
    <string name="apply_a_new_screen_orientation_">Nałożyć nową orientację ekranu?</string>
    <string name="styles">Style</string>
    <string name="document_styles">Style Dokumentu</string>
@@ -429,8 +427,11 @@
    <string name="portrait_180">Portret (180)</string>
    <string name="full_list_of_changes_with_images_web_pdf_">Pełna lista zmian ze zdjęciami (www, PDF)</string>
    <string name="select_the_reading_mode">Wybierz tryb czytania</string>
-   <string name="vertical_mode">Tryb pionowy</string>
-   <string name="horizontal_mode">Tryb poziomy</string>
-   <string name="musician_mode">Tryb muzyczny</string>
    <string name="remember_choice">Zapamiętaj wybór</string>
+   <string name="formatted_text">Tekst sformatowany (pseudo grafika)</string>
+   <string name="continuous_text">Tekst ciągły (bez podziału wiersza)</string>
+   <string name="vertically">Pionowo</string>
+   <string name="horizontally">Poziomo</string>
+   <string name="remember_reading_mode">Zapamiętaj tryb czytania</string>
+   <string name="background_color_on_images_the_same_as_page_background">Kolor tła na obrazkach takich samych jak tło strony</string>
 </resources>

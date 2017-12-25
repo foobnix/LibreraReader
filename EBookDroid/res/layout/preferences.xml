@@ -640,7 +640,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:maxLines="2"
-                android:text="@string/remember_choice" />
+                android:text="@string/remember_reading_mode" />
 
             <TextView
                 android:id="@+id/selectedOpenMode"
@@ -651,7 +651,7 @@
                 android:maxLines="2"
                 android:minWidth="100dip"
                 android:singleLine="false"
-                android:text="@string/vertical_mode" />
+                android:text="@string/vertically" />
         </LinearLayout>
 
         <CheckBox

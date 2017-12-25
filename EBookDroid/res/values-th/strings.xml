@@ -141,7 +141,6 @@
    <string name="menu">เมนู</string>
    <string name="font_size">ขนาดตัวอักษร</string>
    <string name="foot_notes">เชิงอรรถ</string>
-   <string name="plain_text_txt_preformatted">ข้อความล้วน (.txt) ที่จัดรูปแบบไว้ล่วงหน้า</string>
    <string name="dictionary">พจนานุกรม</string>
    <string name="import_bookmarks">นำเข้าที่คั่นหน้าเว็บ</string>
    <string name="email">อีเมล์</string>
@@ -277,7 +276,6 @@
    <string name="bottom_side">ด้านล่าง</string>
    <string name="direction_of_reading_rtl_">ทิศทางการอ่าน (RTL)</string>
    <string name="customize_tap_zones">กำหนดโซนการแตะ</string>
-   <string name="text_without_line_break">ข้อความที่ไม่มีตัวแบ่งบรรทัด</string>
    <string name="apply_a_new_screen_orientation_">ใช้การวางแนวหน้าจอใหม่หรือไม่?</string>
    <string name="styles">รูปแบบ</string>
    <string name="document_styles">รูปแบบเอกสาร</string>
@@ -429,8 +427,11 @@
    <string name="portrait_180">ถ่ายภาพบุคคล (180)</string>
    <string name="full_list_of_changes_with_images_web_pdf_">รายการการเปลี่ยนแปลงทั้งหมดที่มีรูปภาพ (web, PDF)</string>
    <string name="select_the_reading_mode">เลือกโหมดการอ่าน</string>
-   <string name="vertical_mode">โหมดแนวตั้ง</string>
-   <string name="horizontal_mode">โหมดแนวนอน</string>
-   <string name="musician_mode">โหมดนักดนตรี</string>
    <string name="remember_choice">โปรดจำไว้ว่าทางเลือก</string>
+   <string name="formatted_text">รูปแบบข้อความ (กราฟิกหลอก)</string>
+   <string name="continuous_text">ข้อความต่อเนื่อง (ไม่แบ่งบรรทัด)</string>
+   <string name="vertically">ดิ่ง</string>
+   <string name="horizontally">แนวนอน</string>
+   <string name="remember_reading_mode">โปรดอ่านโหมดการอ่าน</string>
+   <string name="background_color_on_images_the_same_as_page_background">สีพื้นหลังในภาพเหมือนกับภาพพื้นหลัง</string>
 </resources>

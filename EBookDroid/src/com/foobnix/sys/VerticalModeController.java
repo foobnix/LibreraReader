@@ -547,6 +547,14 @@ public class VerticalModeController extends DocumentController {
     }
 
     @Override
+    public void onCloseActivityFinal(Runnable run) {
+        ctr.closeActivityFinal(null);
+        if (run != null) {
+            run.run();
+        }
+    }
+
+    @Override
     public void onCloseActivity() {
         handler.removeCallbacksAndMessages(null);
         if (ctr == null || ctr.getDecodeService() == null) {

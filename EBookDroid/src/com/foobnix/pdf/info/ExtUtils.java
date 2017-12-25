@@ -37,6 +37,7 @@ import com.foobnix.pdf.info.model.BookCSS;
 import com.foobnix.pdf.info.widget.ChooserDialogFragment;
 import com.foobnix.pdf.info.wrapper.AppBookmark;
 import com.foobnix.pdf.info.wrapper.AppState;
+import com.foobnix.pdf.info.wrapper.DocumentController;
 import com.foobnix.pdf.search.activity.HorizontalViewActivity;
 import com.foobnix.zipmanager.ZipDialog;
 import com.nostra13.universalimageloader.core.ImageLoader;
@@ -655,7 +656,9 @@ public class ExtUtils {
             intent.setAction(android.content.Intent.ACTION_VIEW);
             intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
             intent.setDataAndType(getUriProvider(a, file), getMimeType(file));
-            a.startActivity(Intent.createChooser(intent, a.getString(R.string.open_with)));
+            // a.startActivity(Intent.createChooser(intent,
+            // a.getString(R.string.open_with)));
+            a.startActivity(intent);
         } catch (Exception e) {
             LOG.e(e);
             Toast.makeText(a, "" + e.getMessage(), Toast.LENGTH_LONG).show();
@@ -907,7 +910,7 @@ public class ExtUtils {
         a.startActivity(Intent.createChooser(intent, a.getString(R.string.export_bookmarks)));
     }
 
-    public static void openPDFInTextReflow(final Activity a, final File file, final int page) {
+    public static void openPDFInTextReflow(final Activity a, final File file, final int page, final DocumentController dc) {
         if (ExtUtils.isNotValidFile(file)) {
             Toast.makeText(a, R.string.file_not_found, Toast.LENGTH_SHORT).show();
             return;
@@ -939,7 +942,7 @@ public class ExtUtils {
             };
 
             @Override
-            protected void onPostExecute(Object result) {
+            protected void onPostExecute(final Object result) {
                 if (dialog != null) {
                     try {
                         dialog.dismiss();
@@ -948,18 +951,26 @@ public class ExtUtils {
                     }
                 }
                 if (result != null) {
-                    if (a instanceof VerticalViewActivity) {
-                        AppState.getInstance().isAlwaysOpenAsMagazine = false;
-                        AppState.getInstance().isMusicianMode = false;
-                        showDocumentWithoutDialog(a, (File) result, page);
 
-                    } else if (a instanceof HorizontalViewActivity) {
-                        AppState.getInstance().isAlwaysOpenAsMagazine = true;
-                        AppState.getInstance().isMusicianMode = false;
-                        showDocumentWithoutDialog(a, (File) result, page);
-                    } else {
-                        showDocument(a, (File) result);
-                    }
+                    dc.onCloseActivityFinal(new Runnable() {
+
+                        @Override
+                        public void run() {
+                            if (a instanceof VerticalViewActivity) {
+                                AppState.getInstance().isAlwaysOpenAsMagazine = false;
+                                AppState.getInstance().isMusicianMode = false;
+                                showDocumentWithoutDialog(a, (File) result, page);
+
+                            } else if (a instanceof HorizontalViewActivity) {
+                                AppState.getInstance().isAlwaysOpenAsMagazine = true;
+                                AppState.getInstance().isMusicianMode = false;
+                                showDocumentWithoutDialog(a, (File) result, page);
+                            } else {
+                                showDocument(a, (File) result);
+                            }
+                        }
+                    });
+
                 }
             };
 
@@ -1000,6 +1011,8 @@ public class ExtUtils {
                     dialog.sendEmptyMessage(((i + 1) * 100) / pages);
 
                 }
+                doc.recycle();
+
                 out.write("</body></html>");
                 out.flush();
                 out.close();

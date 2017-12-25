@@ -134,7 +134,6 @@
    <string name="import_or_export_application_settings_to_json_file">JSONファイルのインポートまたはエクスポートするアプリケーションの設定</string>
    <string name="menu">メニュー</string>
    <string name="foot_notes">脚注</string>
-   <string name="plain_text_txt_preformatted">プリフォーマットプレーンテキスト（.txt）</string>
    <string name="dictionary">辞書</string>
    <string name="import_bookmarks">ブックマークのインポート</string>
    <string name="email">Eメール</string>
@@ -275,7 +274,6 @@
    <string name="direction_of_reading_rtl_">読書の方向（RTL）</string>
    <string name="customize_tap_zones">タップゾーンをカスタマイズします</string>
    <string name="right_side">右側</string>
-   <string name="text_without_line_break">改行なしのテキスト</string>
    <string name="apply_a_new_screen_orientation_">新しい画面の向きを適用しますか？</string>
    <string name="styles">スタイル</string>
    <string name="document_styles">文書のスタイル</string>
@@ -429,8 +427,11 @@
    <string name="portrait_180">ポートレート（180）</string>
    <string name="full_list_of_changes_with_images_web_pdf_">画像による変更の完全なリスト（Web、PDF）</string>
    <string name="select_the_reading_mode">読み取りモードを選択する</string>
-   <string name="vertical_mode">垂直モード</string>
-   <string name="horizontal_mode">水平モード</string>
-   <string name="musician_mode">ミュージシャンモード</string>
    <string name="remember_choice">選択肢を思い出して</string>
+   <string name="formatted_text">フォーマットされたテキスト（擬似グラフィックス）</string>
+   <string name="continuous_text">連続テキスト（改行なし）</string>
+   <string name="vertically">垂直に</string>
+   <string name="horizontally">水平に</string>
+   <string name="remember_reading_mode">読書モードを記憶する</string>
+   <string name="background_color_on_images_the_same_as_page_background">イメージの背景色はページの背景と同じです</string>
 </resources>

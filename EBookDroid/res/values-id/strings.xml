@@ -141,7 +141,6 @@
    <string name="menu">Menu</string>
    <string name="font_size">Ukuran huruf</string>
    <string name="foot_notes">Catatan kaki</string>
-   <string name="plain_text_txt_preformatted">Teks polos (.txt) telah terformat</string>
    <string name="dictionary">Kamus</string>
    <string name="import_bookmarks">Impor Bookmark</string>
    <string name="email">E-mail</string>
@@ -277,7 +276,6 @@
    <string name="bottom_side">Sisi bawah</string>
    <string name="direction_of_reading_rtl_">Arah membaca (RTL)</string>
    <string name="customize_tap_zones">Sesuaikan zona ketuk</string>
-   <string name="text_without_line_break">Teks tanpa jeda baris</string>
    <string name="apply_a_new_screen_orientation_">Terapkan orientasi layar baru?</string>
    <string name="styles">Gaya</string>
    <string name="document_styles">Gaya dokumen</string>
@@ -429,8 +427,11 @@
    <string name="portrait_180">Potret (180)</string>
    <string name="full_list_of_changes_with_images_web_pdf_">Daftar lengkap perubahan dengan gambar (web, PDF)</string>
    <string name="select_the_reading_mode">Pilih mode bacaan</string>
-   <string name="vertical_mode">Mode vertikal</string>
-   <string name="horizontal_mode">Mode horisontal</string>
-   <string name="musician_mode">Mode musisi</string>
    <string name="remember_choice">Ingat pilihan</string>
+   <string name="formatted_text">Teks terformat (grafis semu)</string>
+   <string name="continuous_text">Teks terus menerus (tanpa jeda baris)</string>
+   <string name="vertically">Vertikal</string>
+   <string name="horizontally">Horisontal</string>
+   <string name="remember_reading_mode">Ingat mode baca</string>
+   <string name="background_color_on_images_the_same_as_page_background">Warna background pada gambar sama dengan background halaman</string>
 </resources>

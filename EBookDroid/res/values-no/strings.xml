@@ -141,7 +141,6 @@
    <string name="menu">Meny</string>
    <string name="font_size">Skriftstørrelse</string>
    <string name="foot_notes">Fotnote</string>
-   <string name="plain_text_txt_preformatted">Vanlig tekst (.txt) forhåndsformatert</string>
    <string name="dictionary">Ordbok</string>
    <string name="import_bookmarks">Importer bokmerker</string>
    <string name="email">E-post</string>
@@ -277,7 +276,6 @@
    <string name="bottom_side">Under siden</string>
    <string name="direction_of_reading_rtl_">Retning av lesing (RTL)</string>
    <string name="customize_tap_zones">Tilpass trykksone</string>
-   <string name="text_without_line_break">Tekst uten linjeskift</string>
    <string name="apply_a_new_screen_orientation_">Bruk en ny skjermretning?</string>
    <string name="styles">Styles</string>
    <string name="document_styles">Dokumentstiler</string>
@@ -429,8 +427,11 @@
    <string name="portrait_180">Portrett (180)</string>
    <string name="full_list_of_changes_with_images_web_pdf_">Full liste over endringer med bilder (web, PDF)</string>
    <string name="select_the_reading_mode">Velg lesemodus</string>
-   <string name="vertical_mode">Vertikal modus</string>
-   <string name="horizontal_mode">Horisontal modus</string>
-   <string name="musician_mode">Musikkmodus</string>
    <string name="remember_choice">Husk valg</string>
+   <string name="formatted_text">Formatert tekst (pseudo grafikk)</string>
+   <string name="continuous_text">Kontinuerlig tekst (ingen linjeskift)</string>
+   <string name="vertically">Vertikalt</string>
+   <string name="horizontally">Horisontalt</string>
+   <string name="remember_reading_mode">Husk lesemodus</string>
+   <string name="background_color_on_images_the_same_as_page_background">Bakgrunnsfarge på bilder det samme som sidebakgrunn</string>
 </resources>

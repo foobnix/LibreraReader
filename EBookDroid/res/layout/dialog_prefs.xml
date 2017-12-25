@@ -204,14 +204,14 @@
             android:id="@+id/isPreText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/plain_text_txt_preformatted"
+            android:text="@string/formatted_text"
             android:visibility="gone" />
 
         <CheckBox
             android:id="@+id/isLineBreaksText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/text_without_line_break"
+            android:text="@string/continuous_text"
             android:visibility="gone" />
 
         <LinearLayout
@@ -304,8 +304,6 @@
             android:layout_height="1dp"
             android:layout_marginTop="2dip"
             android:background="@color/lt_grey_alpha" />
-        
-        
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -332,6 +330,7 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
                     android:orientation="horizontal" >
 
                     <TextView
@@ -340,17 +339,14 @@
                         android:text="@string/brightness"
                         android:textStyle="bold" />
 
-                    <TextView
-                        android:layout_marginLeft="8dip"
-                        android:id="@+id/onBlueFilter"
-                        style="@style/textLink"
+                    <CheckBox
+                        android:id="@+id/autoSettings"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@string/bluelight_filter" />
+                        android:layout_gravity="bottom"
+                        android:layout_weight="0"
+                        android:text="@string/automatic" />
                 </LinearLayout>
-                
-                
-                
 
                 <com.foobnix.pdf.info.view.CustomSeek
                     android:id="@+id/customBrightness"
@@ -359,14 +355,6 @@
                     android:layout_weight="1" >
                 </com.foobnix.pdf.info.view.CustomSeek>
             </LinearLayout>
-
-            <CheckBox
-                android:id="@+id/autoSettings"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="bottom"
-                android:layout_weight="0"
-                android:text="" />
         </LinearLayout>
 
         <LinearLayout
@@ -526,10 +514,17 @@
                 android:layout_marginTop="1dip"
                 android:background="@color/lt_grey_alpha" />
 
+            <TextView
+                android:id="@+id/onBlueFilter"
+                style="@style/textLink"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="4dip"
+                android:text="@string/bluelight_filter" />
+
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="2dip"
                 android:gravity="center_vertical"
                 android:orientation="horizontal" >
 
@@ -670,7 +665,6 @@
                     android:textStyle="bold" />
             </LinearLayout>
         </LinearLayout>
-
     </LinearLayout>
 
 </ScrollView>

@@ -140,7 +140,6 @@
    <string name="menu">메뉴</string>
    <string name="font_size">글꼴 크기</string>
    <string name="foot_notes">각주</string>
-   <string name="plain_text_txt_preformatted">기포맷된 일반 텍스트(.txt)</string>
    <string name="dictionary">사전</string>
    <string name="import_bookmarks">북마크 읽어오기</string>
    <string name="email">이메일</string>
@@ -275,7 +274,6 @@
    <string name="direction_of_reading_rtl_">독서의 방향 (RTL)</string>
    <string name="customize_tap_zones">탭 영역을 사용자 정의</string>
    <string name="right_side">오른쪽</string>
-   <string name="text_without_line_break">줄 바꿈없는 텍스트</string>
    <string name="apply_a_new_screen_orientation_">새로운 화면 방향을 적용?</string>
    <string name="styles">스타일</string>
    <string name="document_styles">문서 스타일</string>
@@ -429,8 +427,11 @@
    <string name="portrait_180">세로 방향 (180)</string>
    <string name="full_list_of_changes_with_images_web_pdf_">이미지로 변경된 전체 목록 (웹, PDF)</string>
    <string name="select_the_reading_mode">읽기 모드 선택</string>
-   <string name="vertical_mode">수직 모드</string>
-   <string name="horizontal_mode">수평 모드</string>
-   <string name="musician_mode">음악가 모드</string>
    <string name="remember_choice">선택 사항 기억하기</string>
+   <string name="formatted_text">서식있는 텍스트 (의사 그래픽)</string>
+   <string name="continuous_text">연속 텍스트 (줄 바꿈 없음)</string>
+   <string name="vertically">세로로</string>
+   <string name="horizontally">가로로</string>
+   <string name="remember_reading_mode">읽기 모드 기억하기</string>
+   <string name="background_color_on_images_the_same_as_page_background">이미지의 배경색은 페이지 배경과 동일합니다.</string>
 </resources>

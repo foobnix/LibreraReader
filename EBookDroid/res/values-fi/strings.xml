@@ -141,7 +141,6 @@
    <string name="menu">Valikko</string>
    <string name="font_size">Fonttikoko</string>
    <string name="foot_notes">Alaviite</string>
-   <string name="plain_text_txt_preformatted">Plain text (.txt) esialustettu</string>
    <string name="dictionary">Sanakirja</string>
    <string name="import_bookmarks">Tuo kirjanmerkit</string>
    <string name="email">Sähköposti</string>
@@ -277,7 +276,6 @@
    <string name="bottom_side">Pohja puoli</string>
    <string name="direction_of_reading_rtl_">Suunta lukemasta (RTL)</string>
    <string name="customize_tap_zones">Muokata napautusalueita</string>
-   <string name="text_without_line_break">Teksti ilman rivinvaihto</string>
    <string name="apply_a_new_screen_orientation_">Levitä uusi näytön suunnan?</string>
    <string name="styles">Tyylit</string>
    <string name="document_styles">Asiakirjan tyylit</string>
@@ -429,8 +427,11 @@
    <string name="portrait_180">Muotokuva (180)</string>
    <string name="full_list_of_changes_with_images_web_pdf_">Täydellinen luettelo kuvien muutoksista (web, PDF)</string>
    <string name="select_the_reading_mode">Valitse lukutila</string>
-   <string name="vertical_mode">Pystysuuntainen tila</string>
-   <string name="horizontal_mode">Vaakasuora tila</string>
-   <string name="musician_mode">Muusikkotila</string>
    <string name="remember_choice">Muista valinta</string>
+   <string name="formatted_text">Muotoiltu teksti (pseudografiikka)</string>
+   <string name="continuous_text">Jatkuva teksti (ei riviä)</string>
+   <string name="vertically">Pystysuoraan</string>
+   <string name="horizontally">Vaakasuunnassa</string>
+   <string name="remember_reading_mode">Muista lukutila</string>
+   <string name="background_color_on_images_the_same_as_page_background">Kuvien taustaväri on sama kuin sivun taustalla</string>
 </resources>

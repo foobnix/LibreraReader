@@ -140,7 +140,6 @@
    <string name="menu">Thực đơn</string>
    <string name="font_size">Cỡ chữ</string>
    <string name="foot_notes">Chú thích</string>
-   <string name="plain_text_txt_preformatted">Plain text (.txt) định dạng sẵn</string>
    <string name="dictionary">Tự điển</string>
    <string name="import_bookmarks">Import Bookmarks</string>
    <string name="email">E-mail</string>
@@ -275,7 +274,6 @@
    <string name="direction_of_reading_rtl_">Hướng đọc (RTL)</string>
    <string name="customize_tap_zones">Tùy chỉnh khu tap</string>
    <string name="right_side">Bên phải</string>
-   <string name="text_without_line_break">Văn bản mà không ngắt dòng</string>
    <string name="apply_a_new_screen_orientation_">Áp dụng một hướng màn hình mới?</string>
    <string name="styles">Styles</string>
    <string name="document_styles">Kiểu tài liệu</string>
@@ -429,8 +427,11 @@
    <string name="portrait_180">Chân dung (180)</string>
    <string name="full_list_of_changes_with_images_web_pdf_">Danh sách đầy đủ các thay đổi với hình ảnh (web, PDF)</string>
    <string name="select_the_reading_mode">Chọn chế độ đọc</string>
-   <string name="vertical_mode">Chế độ đứng</string>
-   <string name="horizontal_mode">Chế độ ngang</string>
-   <string name="musician_mode">Chế độ nhạc</string>
    <string name="remember_choice">Nhớ sự lựa chọn</string>
+   <string name="formatted_text">Văn bản định dạng (đồ hoạ giả)</string>
+   <string name="continuous_text">Văn bản liên tục (không bị ngắt dòng)</string>
+   <string name="vertically">Theo chiều dọc</string>
+   <string name="horizontally">Theo chiều ngang</string>
+   <string name="remember_reading_mode">Nhớ chế độ đọc</string>
+   <string name="background_color_on_images_the_same_as_page_background">Màu nền trên hình ảnh giống như nền trang</string>
 </resources>

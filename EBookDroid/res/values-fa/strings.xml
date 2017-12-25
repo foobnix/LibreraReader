@@ -134,7 +134,6 @@
    <string name="import_or_export_application_settings_to_json_file">واردات و یا صادرات نرم افزار تنظیمات به فایل JSON</string>
    <string name="menu">فهرست</string>
    <string name="foot_notes">پاورقی</string>
-   <string name="plain_text_txt_preformatted">متن ساده (.txt) تنظیم نشده</string>
    <string name="dictionary">فرهنگ لغت</string>
    <string name="import_bookmarks">وارد کردن نشانکها</string>
    <string name="email">پست الکترونیک</string>
@@ -275,7 +274,6 @@
    <string name="direction_of_reading_rtl_">جهت خواندن (RTL)</string>
    <string name="customize_tap_zones">سفارشی کردن مناطق شیر</string>
    <string name="right_side">سمت راست</string>
-   <string name="text_without_line_break">متن بدون خط</string>
    <string name="apply_a_new_screen_orientation_">درخواست یک جهت گیری روی صفحه نمایش جدید؟</string>
    <string name="styles">سبک</string>
    <string name="document_styles">سبک های سند</string>
@@ -429,8 +427,11 @@
    <string name="portrait_180">پرتره (180)</string>
    <string name="full_list_of_changes_with_images_web_pdf_">لیست کامل تغییرات با تصاویر (وب، PDF)</string>
    <string name="select_the_reading_mode">حالت خواندن را انتخاب کنید</string>
-   <string name="vertical_mode">حالت عمودی</string>
-   <string name="horizontal_mode">حالت افقی</string>
-   <string name="musician_mode">حالت موسیقیگر</string>
    <string name="remember_choice">به یاد داشته باشید انتخاب</string>
+   <string name="formatted_text">متن متنی (گرافیک شبه)</string>
+   <string name="continuous_text">متن پیوسته (بدون شکستن خط)</string>
+   <string name="vertically">عمودی</string>
+   <string name="horizontally">به صورت افقی</string>
+   <string name="remember_reading_mode">به یاد داشته باشید حالت خواندن</string>
+   <string name="background_color_on_images_the_same_as_page_background">رنگ پس زمینه در تصاویر همانند پس زمینه صفحه</string>
 </resources>

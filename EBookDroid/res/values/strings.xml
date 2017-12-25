@@ -145,7 +145,7 @@
    <string name="menu">Menu</string>
    <string name="font_size">Font size</string>
    <string name="foot_notes">Footnote</string>
-   <string name="plain_text_txt_preformatted">Plain text (.txt) preformatted</string>
+   <string name="formatted_text">Formatted text (pseudo graphics)</string>
    <string name="dictionary">Dictionary</string>
    <string name="import_bookmarks">Import Bookmarks</string>
    <string name="email">Email</string>
@@ -281,7 +281,7 @@
    <string name="bottom_side">Bottom side</string>
    <string name="direction_of_reading_rtl_">Direction of reading (RTL)</string>
    <string name="customize_tap_zones">Customize tap zones</string>
-   <string name="text_without_line_break">Text without line break</string>
+   <string name="continuous_text">Continuous text (no line break)</string>
    <string name="apply_a_new_screen_orientation_">Apply a new screen orientation?</string>
    <string name="styles">Styles</string>
    <string name="document_styles">Document styles</string>
@@ -429,8 +429,9 @@
    <string name="scroll_speed">Scroll speed</string>
    <string name="full_list_of_changes_with_images_web_pdf_">Full list of changes with images (web, PDF)</string>
    <string name="select_the_reading_mode">Select the reading mode</string>
-   <string name="vertical_mode">Vertical mode</string>
-   <string name="horizontal_mode">Horizontal mode</string>
-   <string name="musician_mode">Musician mode</string>
    <string name="remember_choice">Remember choice</string>
+   <string name="vertically">Vertically</string>
+   <string name="horizontally">Horizontally</string>
+   <string name="remember_reading_mode">Remember reading mode</string>
+   <string name="background_color_on_images_the_same_as_page_background">Background color on images the same as page background</string>
 </resources>

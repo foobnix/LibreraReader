@@ -141,7 +141,6 @@
    <string name="menu">Meniu</string>
    <string name="font_size">Šrifto dydis</string>
    <string name="foot_notes">Išnaša</string>
-   <string name="plain_text_txt_preformatted">Įprasto teksto (.txt) dokumento ruošinys</string>
    <string name="dictionary">Žodynas</string>
    <string name="import_bookmarks">Atkurti žymeles</string>
    <string name="email">Elektroninis paštas</string>
@@ -277,7 +276,6 @@
    <string name="bottom_side">Apačioje</string>
    <string name="direction_of_reading_rtl_">Skaitymo kryptis (RTL)</string>
    <string name="customize_tap_zones">Redaguoti pasirinkimo vietas</string>
-   <string name="text_without_line_break">Tekstas be puslapio lūžio</string>
    <string name="apply_a_new_screen_orientation_">Taikyti naują ekrano poziciją?</string>
    <string name="styles">Stiliai</string>
    <string name="document_styles">Dokumento</string>
@@ -429,8 +427,11 @@
    <string name="portrait_180">Portretas (180)</string>
    <string name="full_list_of_changes_with_images_web_pdf_">Visas su vaizdais susijusių pakeitimų sąrašas (žiniatinklis, PDF)</string>
    <string name="select_the_reading_mode">Pasirinkite skaitymo režimą</string>
-   <string name="vertical_mode">Vertikalus režimas</string>
-   <string name="horizontal_mode">Horizontalusis režimas</string>
-   <string name="musician_mode">Muzikinis režimas</string>
    <string name="remember_choice">Prisimink pasirinkimą</string>
+   <string name="formatted_text">Formatuotas tekstas (pseudo grafika)</string>
+   <string name="continuous_text">Nuolatinis tekstas (be eilučių)</string>
+   <string name="vertically">Vertikaliai</string>
+   <string name="horizontally">Horizontaliai</string>
+   <string name="remember_reading_mode">Prisiminti skaitymo režimą</string>
+   <string name="background_color_on_images_the_same_as_page_background">Fono spalva ant paveikslėlių yra tokia pati kaip puslapio fonas</string>
 </resources>

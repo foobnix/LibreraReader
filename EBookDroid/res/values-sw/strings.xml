@@ -140,7 +140,6 @@
    <string name="menu">Orodha</string>
    <string name="font_size">Ukubwa wa herufi</string>
    <string name="foot_notes">Tanbihi</string>
-   <string name="plain_text_txt_preformatted">Nakala wazi (txt) preformatted</string>
    <string name="dictionary">Dictionary</string>
    <string name="import_bookmarks">Import Bookmarks</string>
    <string name="email">Barua pepe</string>
@@ -275,7 +274,6 @@
    <string name="direction_of_reading_rtl_">Mwelekeo wa kusoma (RTL)</string>
    <string name="customize_tap_zones">Customize kanda bomba</string>
    <string name="right_side">Upande wa kulia</string>
-   <string name="text_without_line_break">Nakala bila line mapumziko</string>
    <string name="apply_a_new_screen_orientation_">Weka mpya screen Mwelekeo?</string>
    <string name="styles">Styles</string>
    <string name="document_styles">Mitindo Document</string>
@@ -429,8 +427,11 @@
    <string name="portrait_180">Picha (180)</string>
    <string name="full_list_of_changes_with_images_web_pdf_">Orodha kamili ya mabadiliko na picha (mtandao, PDF)</string>
    <string name="select_the_reading_mode">Chagua hali ya kusoma</string>
-   <string name="vertical_mode">Hali ya wima</string>
-   <string name="horizontal_mode">Hali ya usawa</string>
-   <string name="musician_mode">Hali ya waimbaji</string>
    <string name="remember_choice">Kumbuka uchaguzi</string>
+   <string name="formatted_text">Nakala iliyoboreshwa (graphics ya pseudo)</string>
+   <string name="continuous_text">Nakala inayoendelea (hakuna kuvunja mstari)</string>
+   <string name="vertically">Vima</string>
+   <string name="horizontally">Kwa usawa</string>
+   <string name="remember_reading_mode">Kumbuka kusoma mode</string>
+   <string name="background_color_on_images_the_same_as_page_background">Rangi ya asili kwenye picha sawa na background ya ukurasa</string>
 </resources>

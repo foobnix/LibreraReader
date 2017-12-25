@@ -227,7 +227,7 @@ public class AdvGuestureDetector extends SimpleOnGestureListener implements IMul
             return false;
         }
         final Rect l = avc.getScrollLimits();
-        float x = vX / 2, y = vY / 2;
+        float x = vX, y = vY;
         if (Math.abs(vX / vY) < 0.5) {
             x = 0;
         }

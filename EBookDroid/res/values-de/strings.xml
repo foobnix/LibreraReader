@@ -134,7 +134,6 @@
    <string name="import_or_export_application_settings_to_json_file">Importieren oder Exportieren von Anwendungseinstellungen zu JSON-Datei</string>
    <string name="menu">Menü</string>
    <string name="foot_notes">Fußnote</string>
-   <string name="plain_text_txt_preformatted">Plain Text (.txt) vorformatiert</string>
    <string name="dictionary">Wörterbuch</string>
    <string name="import_bookmarks">Lesezeichen importieren</string>
    <string name="email">Email</string>
@@ -275,7 +274,6 @@
    <string name="direction_of_reading_rtl_">Leserichtung (RTL)</string>
    <string name="customize_tap_zones">Passen Sie tippen Zonen</string>
    <string name="right_side">Rechte Seite</string>
-   <string name="text_without_line_break">Text ohne Zeilenumbruch</string>
    <string name="apply_a_new_screen_orientation_">Tragen Sie eine neue Bildschirmausrichtung?</string>
    <string name="styles">Styles</string>
    <string name="document_styles">Dokumentstile</string>
@@ -429,8 +427,11 @@
    <string name="portrait_180">Porträt (180)</string>
    <string name="full_list_of_changes_with_images_web_pdf_">Vollständige Liste der Änderungen mit Bildern (Web, PDF)</string>
    <string name="select_the_reading_mode">Wählen Sie den Lesemodus</string>
-   <string name="vertical_mode">Vertikaler Modus</string>
-   <string name="horizontal_mode">Horizontalmodus</string>
-   <string name="musician_mode">Musiker-Modus</string>
    <string name="remember_choice">Denken Sie an die Wahl</string>
+   <string name="formatted_text">Formatierter Text (Pseudo-Grafik)</string>
+   <string name="continuous_text">Durchgehender Text (keine Zeilenumbrüche)</string>
+   <string name="vertically">Vertikal</string>
+   <string name="horizontally">Horizontal</string>
+   <string name="remember_reading_mode">Merken Sie sich den Lesemodus</string>
+   <string name="background_color_on_images_the_same_as_page_background">Hintergrundfarbe auf Bildern entspricht dem Seitenhintergrund</string>
 </resources>

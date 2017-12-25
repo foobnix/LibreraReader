@@ -143,7 +143,6 @@
    <string name="menu">Menü</string>
    <string name="font_size">Betű mérete</string>
    <string name="foot_notes">Lábjegyzet</string>
-   <string name="plain_text_txt_preformatted">Egyszerű szöveg (.txt) formázva</string>
    <string name="dictionary">Szótár</string>
    <string name="import_bookmarks">Könyvjelzők importálása</string>
    <string name="email">E-mail</string>
@@ -279,7 +278,6 @@
    <string name="bottom_side">Alsó oldal</string>
    <string name="direction_of_reading_rtl_">Olvasási irány (RTL)</string>
    <string name="customize_tap_zones">Érintési zónák testreszabása</string>
-   <string name="text_without_line_break">Szöveg sortörés nélkül</string>
    <string name="apply_a_new_screen_orientation_">Alkalmazza az új képernyő tájolást?</string>
    <string name="styles">Stílusok</string>
    <string name="document_styles">Dokumentum stílusok</string>
@@ -429,8 +427,11 @@
    <string name="portrait_180">Portré (180)</string>
    <string name="full_list_of_changes_with_images_web_pdf_">A képek változásainak teljes listája (web, PDF)</string>
    <string name="select_the_reading_mode">Válassza ki az olvasási módot</string>
-   <string name="vertical_mode">Függőleges mód</string>
-   <string name="horizontal_mode">Vízszintes üzemmód</string>
-   <string name="musician_mode">Zenész mód</string>
    <string name="remember_choice">Ne feledje a választást</string>
+   <string name="formatted_text">Formázott szöveg (pszeudo grafikák)</string>
+   <string name="continuous_text">Folyamatos szöveg (nincs sortörés)</string>
+   <string name="vertically">Függőlegesen</string>
+   <string name="horizontally">Vízszintesen</string>
+   <string name="remember_reading_mode">Emlékezz az olvasási módra</string>
+   <string name="background_color_on_images_the_same_as_page_background">A kép háttérszíne megegyezik az oldal hátterével</string>
 </resources>

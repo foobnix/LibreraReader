@@ -134,7 +134,6 @@
    <string name="import_or_export_application_settings_to_json_file">Імпорт або експорт налаштувань додатка в файл JSon</string>
    <string name="menu">Меню</string>
    <string name="foot_notes">Виноска</string>
-   <string name="plain_text_txt_preformatted">Звичайний текст (.txt) відформатований</string>
    <string name="dictionary">Словник</string>
    <string name="import_bookmarks">Імпорт закладок</string>
    <string name="email">E-mail</string>
@@ -275,7 +274,6 @@
    <string name="direction_of_reading_rtl_">Напрямок читання (RTL)</string>
    <string name="customize_tap_zones">Параметри зон натискання</string>
    <string name="right_side">Права сторона</string>
-   <string name="text_without_line_break">Текст без розриву рядка</string>
    <string name="apply_a_new_screen_orientation_">Застосувати нову орієнтацію екрану?</string>
    <string name="styles">Стилі</string>
    <string name="document_styles">Стилі документа</string>
@@ -429,8 +427,11 @@
    <string name="portrait_180">Портрет (180)</string>
    <string name="full_list_of_changes_with_images_web_pdf_">Повний список змін з зображеннями (веб, PDF)</string>
    <string name="select_the_reading_mode">Виберіть режим читання</string>
-   <string name="vertical_mode">Вертикальний режим</string>
-   <string name="horizontal_mode">Горизонтальний режим</string>
-   <string name="musician_mode">Режим музиканта</string>
    <string name="remember_choice">Пам\'ятай вибір</string>
+   <string name="formatted_text">Форматований текст (псевдографічна графіка)</string>
+   <string name="continuous_text">Безперервний текст (без розриву рядків)</string>
+   <string name="vertically">Вертикально</string>
+   <string name="horizontally">Горизонтально</string>
+   <string name="remember_reading_mode">Запам\'ятати режим читання</string>
+   <string name="background_color_on_images_the_same_as_page_background">Колір тла на зображеннях такий же, як і фон сторінки</string>
 </resources>
