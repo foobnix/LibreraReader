@@ -35,8 +35,7 @@ public class AppState {
     public static final int TEXT_COLOR_DAY = Color.parseColor("#5b5b5b");
     public static final int TEXT_COLOR_NIGHT = Color.parseColor("#8e8e8e");
 
-    public static final long APP_CLOSE_AUTOMATIC = /** TimeUnit.MINUTES.toMillis(5); **/
-            TimeUnit.SECONDS.toMillis(5);
+    public static final long APP_CLOSE_AUTOMATIC = TimeUnit.MINUTES.toMillis(5);// SECONDS, MINUTES
     public static final long APP_UPDATE_TIME_IN_UI = TimeUnit.SECONDS.toMillis(10);
     // public static final long APP_CLOSE_AUTOMATIC =
     // TimeUnit.SECONDS.toMillis(5);
@@ -422,7 +421,6 @@ public class AppState {
     public int tapZoneBottom = TAP_NEXT_PAGE;
     public int tapZoneLeft = TAP_PREV_PAGE;
     public int tapZoneRight = TAP_NEXT_PAGE;
-
 
     public int blueLightColor = BLUE_FILTER_DEFAULT_COLOR;
     public int blueLightAlpha = 0;
