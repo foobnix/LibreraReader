@@ -18,7 +18,6 @@ import com.nostra13.universalimageloader.core.listener.ImageLoadingListener;
 
 import android.content.Context;
 import android.database.Cursor;
-import android.graphics.Bitmap;
 import android.graphics.Bitmap.Config;
 import android.graphics.BitmapFactory.Options;
 import android.graphics.Color;
@@ -33,8 +32,9 @@ import android.widget.ImageView;
 
 public class IMG {
 
+    public static final float WIDTH_DK = 1.4f;
+    public static final int DP5 = -Dips.dpToPx(40);
     private static final ColorDrawable COLOR_DRAWABLE = new ColorDrawable(Color.LTGRAY);
-    public static int W_WIDHT, W_HEIGHT;
 
     public static final Config BMP_CFG = Config.RGB_565;
     public static final int TWO_LINE_COVER_SIZE = 74;
@@ -47,8 +47,6 @@ public class IMG {
     public static void init(Context context) {
         IMG.context = context;
 
-        W_WIDHT = Dips.dpToPx(170);
-        W_HEIGHT = (int) (W_WIDHT * 1.5f);
 
         bookBGWithMark = context.getResources().getDrawable(R.drawable.bookeffect2);
         bookBGNoMark = context.getResources().getDrawable(R.drawable.bookeffect1);
@@ -86,7 +84,7 @@ public class IMG {
         }
         int widht = Dips.dpToPx(AppState.get().coverSmallSize);
         LayoutParams lp = imageView.getLayoutParams();
-        lp.height = (int) (widht * 1.5);
+        lp.height = (int) (widht * WIDTH_DK);
     }
 
     public static void updateLayoutHeightSizeBig(ViewGroup imageView) {
@@ -95,7 +93,7 @@ public class IMG {
         }
         int widht = Dips.dpToPx(AppState.get().coverBigSize);
         LayoutParams lp = imageView.getLayoutParams();
-        lp.height = (int) (widht * 1.5);
+        lp.height = (int) (widht * WIDTH_DK);
     }
 
     public static LayoutParams updateImageSizeSmall(View imageView) {
@@ -104,7 +102,7 @@ public class IMG {
         }
         LayoutParams lp = imageView.getLayoutParams();
         lp.width = Dips.dpToPx(AppState.get().coverSmallSize);
-        lp.height = (int) (lp.width * 1.5);
+        lp.height = (int) (lp.width * WIDTH_DK);
         return lp;
     }
 
@@ -115,7 +113,7 @@ public class IMG {
 
         LayoutParams lp = imageView.getLayoutParams();
         lp.width = Dips.dpToPx(AppState.get().coverBigSize);
-        lp.height = (int) (lp.width * 1.5);
+        lp.height = (int) (lp.width * WIDTH_DK);
     }
 
     public static void updateImageSizeBig(View imageView, int sizeDP) {
@@ -125,7 +123,7 @@ public class IMG {
 
         LayoutParams lp = imageView.getLayoutParams();
         lp.width = Dips.dpToPx(sizeDP);
-        lp.height = (int) (lp.width * 1.5);
+        lp.height = (int) (lp.width * WIDTH_DK);
     }
 
     public static int alphaColor(int persent, String color) {
@@ -284,9 +282,6 @@ public class IMG {
         }
     }
 
-    public static Bitmap getCoverPage(String path) {
-        return ImageLoader.getInstance().loadImageSync(IMG.toUrl(path, ImageExtractor.COVER_PAGE, IMG.W_WIDHT));
-    }
 
     public static void getCoverPage(ImageView img, String path, int width) {
         ImageLoader.getInstance().displayImage(IMG.toUrl(path, ImageExtractor.COVER_PAGE, width), img);
