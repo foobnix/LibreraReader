@@ -38,6 +38,7 @@ public class ADS {
             .addTestDevice("465253044271C009F461C81CFAC406BA")//
             .addTestDevice("ECC8DAFFDFD6BE5A3C799695FC4853E8")//
             .addTestDevice("ECC8DAFFDFD6BE5A3C799695FC4853E8")//
+            .addTestDevice("04CB89245EAA401BEB07B0719E8ECF05")//
             .build();//
 
     public static HashMap<ParamsType, Object> interstitial = new HashMap<ParamsType, Object>();
@@ -118,6 +119,9 @@ public class ADS {
         adClientNativeAd.load(a);
 
         View view = adClientNativeAd.getView(a);
+        if (view == null) {
+            return;
+        }
         // view.setVisibility(View.GONE);
         TextView txt = (TextView) view.findViewById(R.id.callToActionButton);
         GradientDrawable drawable = (GradientDrawable) txt.getBackground().getCurrent();

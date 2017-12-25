@@ -65,7 +65,7 @@ public class AppsConfig {
             EP_BANNER_NATIVE = "9cf064256b16a112cc1fd3fb42487dbd";
             EP_INTERSTITIAL = "cd6563264b30c32814df5f0e1048079b";
 
-            IS_EP = true;
+            IS_EP = false;
         }
 
         if (CLASSIC_PDF_READER.equals(packageName)) {
@@ -91,7 +91,8 @@ public class AppsConfig {
             EP_BANNER_NATIVE = "ec263d6b75792d1e566a53f78b297cfc";
             EP_INTERSTITIAL = "ff99040c9b6a825dbc8dfb56a8834225";
 
-            IS_EP = random.nextBoolean();
+            // IS_EP = random.nextBoolean();
+            IS_EP = false;
         }
         if (LIBRERA_INK_EDITION.equals(packageName)) {
             IS_INK = true;
@@ -106,7 +107,7 @@ public class AppsConfig {
 
         IS_BETA = APP_NAME.contains("Beta");
 
-        // IS_BETA = false;
+        IS_BETA = false;
 
         if (IS_BETA) {
             IS_EP = false;
