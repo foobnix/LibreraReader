@@ -128,24 +128,6 @@ public abstract class DocumentControllerHorizontalView extends DocumentControlle
 
         bookPath = getBookPathFromActivity(activity);
 
-        if (false) {
-            PageImageState.get().needAutoFit = true;
-        } else {
-            if (TxtUtils.isNotEmpty(bookPath) && !ExtUtils.isTextFomat(bookPath)) {
-                String string = matrixSP.getString(bookPath.hashCode() + "", "");
-                LOG.d("MATRIX", "READ STR", string);
-                if (TxtUtils.isNotEmpty(string)) {
-                    PageImageState.get().needAutoFit = false;
-                } else {
-                    PageImageState.get().needAutoFit = true;
-                }
-                Matrix matrix = PageImageState.fromString(string);
-                PageImageState.get().getMatrix().set(matrix);
-
-                LOG.d("MATRIX", "READ", bookPath.hashCode() + "", PageImageState.get().getMatrixAsString());
-
-            }
-        }
 
         BookSettings bs = SettingsManager.getBookSettings(bookPath);
         if (bs != null) {
@@ -158,6 +140,25 @@ public abstract class DocumentControllerHorizontalView extends DocumentControlle
 
             if (AppState.get().isCropPDF && !isTextFormat) {
                 AppState.get().isCrop = true;
+            }
+        }
+        
+        if (false) {
+            PageImageState.get().needAutoFit = true;
+        } else {
+            if (TxtUtils.isNotEmpty(bookPath) && !ExtUtils.isTextFomat(bookPath)) {
+                String string = matrixSP.getString(bookPath.hashCode() + "", "");
+                LOG.d("MATRIX", "READ STR", string);
+                if (TxtUtils.isEmpty(string) || AppState.get().isCut || AppState.get().isCrop) {
+                    PageImageState.get().needAutoFit = true;
+                } else {
+                    PageImageState.get().needAutoFit = false;
+                }
+                Matrix matrix = PageImageState.fromString(string);
+                PageImageState.get().getMatrix().set(matrix);
+
+                LOG.d("MATRIX", "READ", bookPath.hashCode() + "", PageImageState.get().getMatrixAsString());
+
             }
         }
 
