@@ -38,7 +38,7 @@ import com.foobnix.pdf.info.R;
 import com.foobnix.pdf.info.model.OutlineLinkWrapper;
 import com.foobnix.pdf.info.wrapper.AppState;
 import com.foobnix.pdf.info.wrapper.DocumentWrapperUI;
-import com.foobnix.sys.AdvModeController;
+import com.foobnix.sys.VerticalModeController;
 import com.foobnix.sys.TempHolder;
 import com.foobnix.ui2.AppDB;
 
@@ -56,7 +56,7 @@ import android.view.Window;
 import android.widget.EditText;
 import android.widget.Toast;
 
-public class ViewerActivityController extends ActionController<ViewerActivity> implements IActivityController, DecodingProgressListener, CurrentPageListener, IBookSettingsChangeListener {
+public class ViewerActivityController extends ActionController<VerticalViewActivity> implements IActivityController, DecodingProgressListener, CurrentPageListener, IBookSettingsChangeListener {
 
     private static final String E_MAIL_ATTACHMENT = "[E-mail Attachment]";
 
@@ -84,36 +84,36 @@ public class ViewerActivityController extends ActionController<ViewerActivity> i
 
     private DocumentWrapperUI wrapperControlls;
 
-    private AdvModeController controller;
+    private VerticalModeController controller;
 
-    ViewerActivity viewerActivity;
+    VerticalViewActivity viewerActivity;
 
     /**
      * Instantiates a new base viewer activity.
      */
-    public ViewerActivityController(final ViewerActivity activity) {
+    public ViewerActivityController(final VerticalViewActivity activity) {
         super(activity);
         this.viewerActivity = activity;
         this.intent = activity.getIntent();
         SettingsManager.addListener(this);
 
-        controller = new AdvModeController(activity, this);
+        controller = new VerticalModeController(activity, this);
         wrapperControlls = new DocumentWrapperUI(controller);
     }
 
     @Override
-    public AdvModeController getListener() {
+    public VerticalModeController getListener() {
         return controller;
     }
 
-    public void beforeCreate(final ViewerActivity activity) {
+    public void beforeCreate(final VerticalViewActivity activity) {
         if (getManagedComponent() != activity) {
             setManagedComponent(activity);
         }
     }
 
-    public void afterCreate(ViewerActivity a) {
-        final ViewerActivity activity = getManagedComponent();
+    public void afterCreate(VerticalViewActivity a) {
+        final VerticalViewActivity activity = getManagedComponent();
 
         IUIManager.setFullScreenMode(activity, getManagedComponent().view.getView(), AppState.getInstance().isFullScrean());
 
@@ -231,7 +231,7 @@ public class ViewerActivityController extends ActionController<ViewerActivity> i
             public void run() {
                 int pageIntent = intent.getIntExtra("page", 0);
 
-                double percent = getActivity().getIntent().getDoubleExtra(ViewerActivity.PERCENT_EXTRA, 0);
+                double percent = getActivity().getIntent().getDoubleExtra(VerticalViewActivity.PERCENT_EXTRA, 0);
                 if (percent > 0) {
                     LOG.d("Percent", percent, getDocumentModel().getPageCount());
                     pageIntent = (int) (getDocumentModel().getPageCount() * percent);
@@ -250,8 +250,8 @@ public class ViewerActivityController extends ActionController<ViewerActivity> i
                     }
                 });
 
-                AppState.get().lastA = ViewerActivity.class.getSimpleName();
-                AppState.get().lastMode = ViewerActivity.class.getSimpleName();
+                AppState.get().lastA = VerticalViewActivity.class.getSimpleName();
+                AppState.get().lastMode = VerticalViewActivity.class.getSimpleName();
                 LOG.d("lasta save", AppState.get().lastA);
             }
         }));
@@ -354,7 +354,7 @@ public class ViewerActivityController extends ActionController<ViewerActivity> i
 
     @Override
     public void decodingProgressChanged(final int currentlyDecoding) {
-        final ViewerActivity activity = getManagedComponent();
+        final VerticalViewActivity activity = getManagedComponent();
         activity.runOnUiThread(new Runnable() {
 
             @Override

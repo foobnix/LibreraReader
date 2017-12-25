@@ -118,10 +118,6 @@
    <string name="musician_performance">حالت نوازنده</string>
    <string name="pdf_mode">PDF حالت</string>
    <string name="expiremental_features">حاشیه نویسی و قرعه کشی (در آزمایش، ممکن است برخی از اسناد آسیب)</string>
-   <string name="easy_mode">حالت آسان</string>
-   <string name="music_mode">نوازنده</string>
-   <string name="advanced_mode">حالت پیشرفته</string>
-   <string name="remember_my_choose">به یاد داشته باشید حالت نمایش</string>
    <string name="remember_dictionary">به یاد داشته باشید واژه نامه</string>
    <string name="customize_font_background_colors">سفارشی کردن فونت و رنگ پس زمینه</string>
    <string name="day">روز</string>
@@ -431,4 +427,10 @@
    <string name="scroll_speed">سرعت حرکت</string>
    <string name="landscape_180">چشم انداز (180)</string>
    <string name="portrait_180">پرتره (180)</string>
+   <string name="full_list_of_changes_with_images_web_pdf_">لیست کامل تغییرات با تصاویر (وب، PDF)</string>
+   <string name="select_the_reading_mode">حالت خواندن را انتخاب کنید</string>
+   <string name="vertical_mode">حالت عمودی</string>
+   <string name="horizontal_mode">حالت افقی</string>
+   <string name="musician_mode">حالت موسیقیگر</string>
+   <string name="remember_choice">به یاد داشته باشید انتخاب</string>
 </resources>

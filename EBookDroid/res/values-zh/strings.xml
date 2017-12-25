@@ -117,7 +117,6 @@
    <string name="musician_performance">音乐家模式</string>
    <string name="pdf_mode">PDF模式</string>
    <string name="expiremental_features">注解和借鉴（在测试中，它可能会破坏一些文件）</string>
-   <string name="remember_my_choose">记住我的选择</string>
    <string name="remember_dictionary">记住字典</string>
    <string name="customize_font_background_colors">自定义字体和背景颜色</string>
    <string name="day">日</string>
@@ -135,9 +134,6 @@
    <string name="import_or_export_application_settings_to_json_file">导入或导出应用程序设置JSON文件</string>
    <string name="menu">菜单</string>
    <string name="foot_notes">脚注</string>
-   <string name="music_mode">音乐家</string>
-   <string name="advanced_mode">高级模式</string>
-   <string name="easy_mode">简易模式</string>
    <string name="plain_text_txt_preformatted">预格式化的纯文本（.txt）</string>
    <string name="dictionary">字典</string>
    <string name="import_bookmarks">导入书签</string>
@@ -431,4 +427,10 @@
    <string name="scroll_speed">滚动速度</string>
    <string name="landscape_180">景观（180）</string>
    <string name="portrait_180">肖像（180）</string>
+   <string name="full_list_of_changes_with_images_web_pdf_">完整的图像列表（网页，PDF）</string>
+   <string name="select_the_reading_mode">选择阅读模式</string>
+   <string name="vertical_mode">垂直模式</string>
+   <string name="horizontal_mode">水平模式</string>
+   <string name="musician_mode">音乐家模式</string>
+   <string name="remember_choice">记住选择</string>
 </resources>

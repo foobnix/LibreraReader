@@ -117,7 +117,6 @@
    <string name="musician_performance">Modo Músico</string>
    <string name="pdf_mode">Modo PDF</string>
    <string name="expiremental_features">Expiremental_features anotaciones y dibujar (En las pruebas, puede dañar algunos documentos)</string>
-   <string name="remember_my_choose">Recuerde mi elija</string>
    <string name="there_are_no_email_applications_installed_">Aplicación de correo electrónico no está instalado.</string>
    <string name="remember_dictionary">Recuerde Diccionario</string>
    <string name="customize_font_background_colors">Personaliza fuente y el fondo de colores</string>
@@ -135,9 +134,6 @@
    <string name="import_or_export_application_settings_to_json_file">Importación o exportación de aplicación a la configuración de archivo JSON</string>
    <string name="menu">Menú</string>
    <string name="foot_notes">Nota</string>
-   <string name="music_mode">Músico</string>
-   <string name="advanced_mode">Modo avanzado</string>
-   <string name="easy_mode">Modo fácil</string>
    <string name="plain_text_txt_preformatted">El texto plano (.txt) preformateado</string>
    <string name="dictionary">Diccionario</string>
    <string name="import_bookmarks">Importar marcadores</string>
@@ -431,4 +427,10 @@
    <string name="scroll_speed">Velocidad de desplazamiento</string>
    <string name="landscape_180">Paisaje (180)</string>
    <string name="portrait_180">Retrato (180)</string>
+   <string name="full_list_of_changes_with_images_web_pdf_">Lista completa de cambios con imágenes (web, PDF)</string>
+   <string name="select_the_reading_mode">Seleccione el modo de lectura</string>
+   <string name="vertical_mode">Modo vertical</string>
+   <string name="horizontal_mode">Modo horizontal</string>
+   <string name="musician_mode">Modo músico</string>
+   <string name="remember_choice">Recordar elección</string>
 </resources>

@@ -22,7 +22,7 @@ import org.ebookdroid.BookType;
 import org.ebookdroid.common.cache.CacheManager;
 import org.ebookdroid.core.codec.CodecDocument;
 import org.ebookdroid.core.codec.CodecPage;
-import org.ebookdroid.ui.viewer.ViewerActivity;
+import org.ebookdroid.ui.viewer.VerticalViewActivity;
 import org.json.JSONObject;
 import org.mozilla.universalchardet.UniversalDetector;
 
@@ -530,12 +530,12 @@ public class ExtUtils {
         View view = LayoutInflater.from(c).inflate(R.layout.choose_mode_dialog, null, false);
 
         AlertDialog.Builder builder = new AlertDialog.Builder(c);
-        builder.setTitle(R.string.choose_);
+        builder.setTitle(R.string.select_the_reading_mode);
         builder.setView(view);
         builder.setCancelable(true);
         final AlertDialog dialog = builder.show();
 
-        view.findViewById(R.id.advanced).setOnClickListener(new View.OnClickListener() {
+        view.findViewById(R.id.vertical).setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View v) {
@@ -545,7 +545,7 @@ public class ExtUtils {
                 dialog.dismiss();
             }
         });
-        view.findViewById(R.id.simple).setOnClickListener(new View.OnClickListener() {
+        view.findViewById(R.id.horizontal).setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View v) {
@@ -607,7 +607,7 @@ public class ExtUtils {
             return true;
         }
 
-        final Intent intent = new Intent(c, ViewerActivity.class);
+        final Intent intent = new Intent(c, VerticalViewActivity.class);
         intent.setData(uri);
 
         if (page > 0) {
@@ -944,7 +944,7 @@ public class ExtUtils {
                     }
                 }
                 if (result != null) {
-                    if (a instanceof ViewerActivity) {
+                    if (a instanceof VerticalViewActivity) {
                         AppState.getInstance().isAlwaysOpenAsMagazine = false;
                         AppState.getInstance().isMusicianMode = false;
                         showDocumentWithoutDialog(a, (File) result, page);

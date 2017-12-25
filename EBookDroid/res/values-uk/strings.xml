@@ -117,7 +117,6 @@
    <string name="musician_performance">Режим музичний</string>
    <string name="pdf_mode">Режим PDF</string>
    <string name="expiremental_features">Аннотація і малювання (В тестуванні, може пошкодити деякі файли)</string>
-   <string name="remember_my_choose">Запам’ятати мій вибір</string>
    <string name="customize_font_background_colors">Налаштувати колір тексту і фону</string>
    <string name="day">День</string>
    <string name="nigth">Ніч</string>
@@ -135,9 +134,6 @@
    <string name="import_or_export_application_settings_to_json_file">Імпорт або експорт налаштувань додатка в файл JSon</string>
    <string name="menu">Меню</string>
    <string name="foot_notes">Виноска</string>
-   <string name="music_mode">Музичний режим</string>
-   <string name="advanced_mode">Розширений режим</string>
-   <string name="easy_mode">Простий режим</string>
    <string name="plain_text_txt_preformatted">Звичайний текст (.txt) відформатований</string>
    <string name="dictionary">Словник</string>
    <string name="import_bookmarks">Імпорт закладок</string>
@@ -431,4 +427,10 @@
    <string name="scroll_speed">Швидкість прокрутки</string>
    <string name="landscape_180">Пейзаж (180)</string>
    <string name="portrait_180">Портрет (180)</string>
+   <string name="full_list_of_changes_with_images_web_pdf_">Повний список змін з зображеннями (веб, PDF)</string>
+   <string name="select_the_reading_mode">Виберіть режим читання</string>
+   <string name="vertical_mode">Вертикальний режим</string>
+   <string name="horizontal_mode">Горизонтальний режим</string>
+   <string name="musician_mode">Режим музиканта</string>
+   <string name="remember_choice">Пам\'ятай вибір</string>
 </resources>

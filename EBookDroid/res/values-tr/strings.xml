@@ -117,7 +117,6 @@
    <string name="musician_performance">Müzisyen Modu</string>
    <string name="pdf_mode">PDF Modu</string>
    <string name="expiremental_features">Test, bazı belgelere zarar verebilir</string>
-   <string name="remember_my_choose">Görünüm Modunu Hatırla</string>
    <string name="remember_dictionary">Sözlük Hatırla</string>
    <string name="customize_font_background_colors">Yazı ve Arka Plan Renklerini Özelleştir</string>
    <string name="day">Gün</string>
@@ -135,9 +134,6 @@
    <string name="import_or_export_application_settings_to_json_file">Json dosyası alma veya verme uygulama ayarları</string>
    <string name="menu">Menü</string>
    <string name="foot_notes">Dipnot</string>
-   <string name="music_mode">Müzisyen</string>
-   <string name="advanced_mode">Gelişmiş mod</string>
-   <string name="easy_mode">Kolay mod</string>
    <string name="plain_text_txt_preformatted">Önceden biçimlendirilmiş düz metin (.txt)</string>
    <string name="dictionary">Sözlük</string>
    <string name="import_bookmarks">İthalat imleri</string>
@@ -431,4 +427,10 @@
    <string name="scroll_speed">Kaydırma hızı</string>
    <string name="landscape_180">Manzara (180)</string>
    <string name="portrait_180">Portre (180)</string>
+   <string name="full_list_of_changes_with_images_web_pdf_">Resimlerle yapılan değişikliklerin tam listesi (web, PDF)</string>
+   <string name="select_the_reading_mode">Okuma modunu seçin</string>
+   <string name="vertical_mode">Dikey mod</string>
+   <string name="horizontal_mode">Yatay mod</string>
+   <string name="musician_mode">Müzisyen modu</string>
+   <string name="remember_choice">Seçimi hatırla</string>
 </resources>

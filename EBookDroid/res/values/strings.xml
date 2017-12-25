@@ -122,10 +122,6 @@
    <string name="musician_performance">Musician Mode</string>
    <string name="pdf_mode">PDF Mode</string>
    <string name="expiremental_features">Annotations and draw (In testing, it may damage some documents)</string>
-   <string name="easy_mode">Easy mode</string>
-   <string name="music_mode">Musician</string>
-   <string name="advanced_mode">Advanced mode</string>
-   <string name="remember_my_choose">Remember View Mode</string>
    <string name="remember_dictionary">Remember Dictionary</string>
    <string name="customize_font_background_colors">Customize Font and Background colors</string>
    <string name="customize_background_color">Customize background color</string>
@@ -431,4 +427,10 @@
    <string name="add_folder">Add folder</string>
    <string name="selecting_text_in_this_mode_does_not_work">Selecting text in this mode does not work</string>
    <string name="scroll_speed">Scroll speed</string>
+   <string name="full_list_of_changes_with_images_web_pdf_">Full list of changes with images (web, PDF)</string>
+   <string name="select_the_reading_mode">Select the reading mode</string>
+   <string name="vertical_mode">Vertical mode</string>
+   <string name="horizontal_mode">Horizontal mode</string>
+   <string name="musician_mode">Musician mode</string>
+   <string name="remember_choice">Remember choice</string>
 </resources>

@@ -117,7 +117,6 @@
    <string name="musician_performance">Hudobník Mode</string>
    <string name="pdf_mode">Mode PDF</string>
    <string name="expiremental_features">Anotácie a draw (Pri testovaní, môže dôjsť k poškodeniu niektorých dokumentov)</string>
-   <string name="remember_my_choose">Nezabudnite View Mode</string>
    <string name="remember_dictionary">Nezabudnite Slovník</string>
    <string name="customize_font_background_colors">Vlastné písma a farby pozadia</string>
    <string name="day">Day</string>
@@ -135,9 +134,6 @@
    <string name="import_or_export_application_settings_to_json_file">Import alebo export nastavenia aplikácie do súboru json</string>
    <string name="menu">Menu</string>
    <string name="foot_notes">Poznámka pod čiarou</string>
-   <string name="music_mode">Hudobník</string>
-   <string name="advanced_mode">Rozšírený režim</string>
-   <string name="easy_mode">Režim jednoduchého</string>
    <string name="plain_text_txt_preformatted">Obyčajný text (TXT) naformátovaný</string>
    <string name="dictionary">Slovník</string>
    <string name="import_bookmarks">Importovať záložky</string>
@@ -431,4 +427,10 @@
    <string name="scroll_speed">Rýchlosť rolovania</string>
    <string name="landscape_180">Krajina (180)</string>
    <string name="portrait_180">Portrét (180)</string>
+   <string name="full_list_of_changes_with_images_web_pdf_">Úplný zoznam zmien s obrázkami (web, PDF)</string>
+   <string name="select_the_reading_mode">Vyberte režim čítania</string>
+   <string name="vertical_mode">Vertikálny režim</string>
+   <string name="horizontal_mode">Horizontálny režim</string>
+   <string name="musician_mode">Režim hudobníka</string>
+   <string name="remember_choice">Pamätajte na výber</string>
 </resources>

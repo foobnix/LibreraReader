@@ -90,6 +90,10 @@ public class CustomSeek extends FrameLayout {
         titleText.getLayoutParams().width = width;
     }
 
+    public TextView getTitleText() {
+        return titleText;
+    }
+
     @Override
     public void setEnabled(boolean enabled) {
         seek.setEnabled(enabled);

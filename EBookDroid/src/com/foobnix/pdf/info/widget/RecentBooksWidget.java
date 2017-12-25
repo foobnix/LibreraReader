@@ -4,7 +4,7 @@ import java.io.File;
 import java.util.List;
 import java.util.Locale;
 
-import org.ebookdroid.ui.viewer.ViewerActivity;
+import org.ebookdroid.ui.viewer.VerticalViewActivity;
 
 import com.foobnix.android.utils.LOG;
 import com.foobnix.dao2.FileMeta;
@@ -242,7 +242,7 @@ public class RecentBooksWidget extends AppWidgetProvider {
 
 		if (intent.getAction().equals(ACTION_MY)) {
 
-			String className = ViewerActivity.class.getName();
+			String className = VerticalViewActivity.class.getName();
 			if (AppState.getInstance().isAlwaysOpenAsMagazine) {
 				className = HorizontalViewActivity.class.getName();
 			}
@@ -279,7 +279,7 @@ public class RecentBooksWidget extends AppWidgetProvider {
 	}
 
 	private void advMode(Context context, FileMeta meta, String id, boolean isEditMode) {
-		Intent intent2 = new Intent(context, ViewerActivity.class);
+		Intent intent2 = new Intent(context, VerticalViewActivity.class);
 		intent2.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
 		intent2.setData(Uri.fromFile(new File(meta.getPath())));
 		intent2.putExtra(id, true);
@@ -351,7 +351,7 @@ public class RecentBooksWidget extends AppWidgetProvider {
 			recent = AppDB.get().getRecent();
 		}
 
-		String className = ViewerActivity.class.getName();
+		String className = VerticalViewActivity.class.getName();
 		if (AppState.getInstance().isAlwaysOpenAsMagazine) {
 			className = HorizontalViewActivity.class.getName();
 		}

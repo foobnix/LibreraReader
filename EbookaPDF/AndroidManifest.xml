@@ -94,7 +94,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="org.ebookdroid.ui.viewer.ViewerActivity"
+            android:name="org.ebookdroid.ui.viewer.VerticalViewActivity"
             android:configChanges="orientation|screenSize|keyboard|keyboardHidden"
             android:exported="true"
             android:launchMode="singleTask"

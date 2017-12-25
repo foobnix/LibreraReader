@@ -120,10 +120,6 @@
    <string name="musician_performance">Zenész mód</string>
    <string name="pdf_mode">PDF mód</string>
    <string name="expiremental_features">Széljegyzetek és rajz (Tesztelés alatt, ez kárt okozhat egyes dokumentumokban)</string>
-   <string name="easy_mode">Egyszerű mód</string>
-   <string name="music_mode">Zene mód</string>
-   <string name="advanced_mode">Speciális mód</string>
-   <string name="remember_my_choose">Megjelenítési mód megjegyzése</string>
    <string name="remember_dictionary">Szótár megjegyzése</string>
    <string name="customize_font_background_colors">Betűtípus és háttérszínek testreszabása</string>
    <string name="customize_background_color">Háttérszín testreszabása</string>
@@ -431,4 +427,10 @@
    <string name="scroll_speed">Görgetési sebesség</string>
    <string name="landscape_180">Tájkép (180)</string>
    <string name="portrait_180">Portré (180)</string>
+   <string name="full_list_of_changes_with_images_web_pdf_">A képek változásainak teljes listája (web, PDF)</string>
+   <string name="select_the_reading_mode">Válassza ki az olvasási módot</string>
+   <string name="vertical_mode">Függőleges mód</string>
+   <string name="horizontal_mode">Vízszintes üzemmód</string>
+   <string name="musician_mode">Zenész mód</string>
+   <string name="remember_choice">Ne feledje a választást</string>
 </resources>

@@ -9,7 +9,7 @@ import java.util.Locale;
 
 import org.ebookdroid.common.settings.SettingsManager;
 import org.ebookdroid.common.settings.books.BookSettings;
-import org.ebookdroid.ui.viewer.ViewerActivity;
+import org.ebookdroid.ui.viewer.VerticalViewActivity;
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
@@ -36,7 +36,7 @@ import com.foobnix.pdf.info.view.MyPopupMenu;
 import com.foobnix.pdf.info.view.ProgressDraw;
 import com.foobnix.pdf.info.view.UnderlineImageView;
 import com.foobnix.pdf.info.widget.ShareDialog;
-import com.foobnix.pdf.search.activity.DocumentControllerHorizontalView;
+import com.foobnix.pdf.search.activity.HorizontalModeController;
 import com.foobnix.pdf.search.view.CloseAppDialog;
 import com.foobnix.sys.TempHolder;
 import com.foobnix.tts.MessagePageNumber;
@@ -241,7 +241,7 @@ public class DocumentWrapperUI {
             } else if (!controller.getLinkHistory().isEmpty()) {
                 controller.onLinkHistory();
             } else {
-                if (((ViewerActivity) getController().getActivity()).isInterstialShown()) {
+                if (((VerticalViewActivity) getController().getActivity()).isInterstialShown()) {
                     return false;
                 } else {
 
@@ -870,7 +870,7 @@ public class DocumentWrapperUI {
                         controller.getActivity().finish();
                     }
                 }
-            }, controller.getCurentPage() - 1, DocumentWrapperUI.this);
+            }, controller.getCurentPage() - 1, DocumentWrapperUI.this, controller);
             Keyboards.hideNavigation(a);
         }
     };
@@ -1440,7 +1440,7 @@ public class DocumentWrapperUI {
         @Override
         public void run() {
             double value = (getController().getCurentPage() + 0.0001) / getController().getPageCount();
-            a.getIntent().putExtra(DocumentControllerHorizontalView.PERCENT_EXTRA, value);
+            a.getIntent().putExtra(HorizontalModeController.PERCENT_EXTRA, value);
             // titleBar.setBackgroundColor(MagicHelper.getBgColor());
             initToolBarPlusMinus();
             updateSeekBarColorAndSize();

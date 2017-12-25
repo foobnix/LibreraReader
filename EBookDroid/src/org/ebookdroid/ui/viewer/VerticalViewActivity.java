@@ -39,7 +39,7 @@ import android.view.KeyEvent;
 import android.view.MotionEvent;
 import android.widget.FrameLayout;
 
-public class ViewerActivity extends AbstractActionActivity<ViewerActivity, ViewerActivityController> {
+public class VerticalViewActivity extends AbstractActionActivity<VerticalViewActivity, ViewerActivityController> {
     public static final String PERCENT_EXTRA = "percent";
     public static final DisplayMetrics DM = new DisplayMetrics();
 
@@ -50,7 +50,7 @@ public class ViewerActivity extends AbstractActionActivity<ViewerActivity, Viewe
     /**
      * Instantiates a new base viewer activity.
      */
-    public ViewerActivity() {
+    public VerticalViewActivity() {
         super();
     }
 
@@ -214,7 +214,7 @@ public class ViewerActivity extends AbstractActionActivity<ViewerActivity, Viewe
         public void run() {
             LOG.d("Close App");
             getController().closeActivityFinal(null);
-            MainTabs2.closeApp(ViewerActivity.this);
+            MainTabs2.closeApp(VerticalViewActivity.this);
         }
     };
 

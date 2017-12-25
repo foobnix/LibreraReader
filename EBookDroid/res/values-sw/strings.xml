@@ -119,10 +119,6 @@
    <string name="musician_performance">Mode mwanamuziki</string>
    <string name="pdf_mode">PDF Mode</string>
    <string name="expiremental_features">Annotations na sare (Katika kupima, inaweza kuharibu baadhi ya nyaraka)</string>
-   <string name="easy_mode">Mode Easy</string>
-   <string name="music_mode">Mwanamuziki</string>
-   <string name="advanced_mode">Mode ya juu</string>
-   <string name="remember_my_choose">Kumbuka View Mode</string>
    <string name="remember_dictionary">Kumbuka Dictionary</string>
    <string name="customize_font_background_colors">Customize herufi na Background rangi</string>
    <string name="customize_background_color">Customize rangi ya asili</string>
@@ -431,4 +427,10 @@
    <string name="scroll_speed">Tembea kasi</string>
    <string name="landscape_180">Mazingira (180)</string>
    <string name="portrait_180">Picha (180)</string>
+   <string name="full_list_of_changes_with_images_web_pdf_">Orodha kamili ya mabadiliko na picha (mtandao, PDF)</string>
+   <string name="select_the_reading_mode">Chagua hali ya kusoma</string>
+   <string name="vertical_mode">Hali ya wima</string>
+   <string name="horizontal_mode">Hali ya usawa</string>
+   <string name="musician_mode">Hali ya waimbaji</string>
+   <string name="remember_choice">Kumbuka uchaguzi</string>
 </resources>

@@ -119,10 +119,6 @@
    <string name="musician_performance">Musiker Läge</string>
    <string name="pdf_mode">PDF-läge</string>
    <string name="expiremental_features">Anteckningar och oavgjort (Vid testning, kan det skada vissa dokument)</string>
-   <string name="easy_mode">Enkelt läge</string>
-   <string name="music_mode">Musiker</string>
-   <string name="advanced_mode">Avancerat läge</string>
-   <string name="remember_my_choose">Kom ihåg visningsläge</string>
    <string name="remember_dictionary">Kom ihåg ordbok</string>
    <string name="customize_font_background_colors">Anpassa teckensnitt och bakgrundsfärger</string>
    <string name="customize_background_color">Skräddarsy bakgrundsfärg</string>
@@ -431,4 +427,10 @@
    <string name="scroll_speed">Scrollhastighet</string>
    <string name="landscape_180">Landskap (180)</string>
    <string name="portrait_180">Porträtt (180)</string>
+   <string name="full_list_of_changes_with_images_web_pdf_">Full lista över ändringar med bilder (web, PDF)</string>
+   <string name="select_the_reading_mode">Välj läsläge</string>
+   <string name="vertical_mode">Vertikalt läge</string>
+   <string name="horizontal_mode">Horisontellt läge</string>
+   <string name="musician_mode">Musikläge</string>
+   <string name="remember_choice">Kom ihåg valet</string>
 </resources>

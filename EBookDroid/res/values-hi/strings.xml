@@ -118,10 +118,6 @@
    <string name="musician_performance">संगीतकार मोड</string>
    <string name="pdf_mode">पीडीएफ मोड</string>
    <string name="expiremental_features">एनोटेशन और ड्रा (परीक्षण में, यह कुछ दस्तावेजों को नुकसान पहुंचा सकता है)</string>
-   <string name="easy_mode">सरल तरीक़ा</string>
-   <string name="music_mode">संगीतकार</string>
-   <string name="advanced_mode">उन्नत मोड</string>
-   <string name="remember_my_choose">याद रखें देखें मोड</string>
    <string name="remember_dictionary">शब्दकोश याद रखें</string>
    <string name="customize_font_background_colors">अनुकूलित फ़ॉन्ट और पृष्ठभूमि रंग</string>
    <string name="day">दिन</string>
@@ -431,4 +427,10 @@
    <string name="scroll_speed">स्क्रोल गति</string>
    <string name="landscape_180">लैंडस्केप (180)</string>
    <string name="portrait_180">पोर्ट्रेट (180)</string>
+   <string name="full_list_of_changes_with_images_web_pdf_">छवियों के साथ परिवर्तनों की पूरी सूची (वेब, पीडीएफ)</string>
+   <string name="select_the_reading_mode">रीडिंग मोड का चयन करें</string>
+   <string name="vertical_mode">कार्यक्षेत्र मोड</string>
+   <string name="horizontal_mode">क्षैतिज मोड</string>
+   <string name="musician_mode">संगीतकार मोड</string>
+   <string name="remember_choice">पसंद याद रखें</string>
 </resources>

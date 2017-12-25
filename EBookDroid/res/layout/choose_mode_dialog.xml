@@ -6,24 +6,24 @@
     android:padding="5dip" >
 
     <TextView
-        android:id="@+id/advanced"
+        android:id="@+id/vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight="0"
         android:gravity="center_vertical"
         android:padding="15dip"
-        android:text="@string/advanced_mode"
+        android:text="@string/vertical_mode"
          android:background="@android:drawable/list_selector_background"
         android:textSize="16sp" />
 
     <TextView
-        android:id="@+id/simple"
+        android:id="@+id/horizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight="0"
         android:background="@android:drawable/list_selector_background"
         android:padding="15dip"
-        android:text="@string/easy_mode"
+        android:text="@string/horizontal_mode"
         android:textSize="16sp" />
 
     <TextView
@@ -33,7 +33,7 @@
         android:layout_weight="0"
         android:background="@android:drawable/list_selector_background"
         android:padding="15dip"
-        android:text="@string/music_mode"
+        android:text="@string/musician_mode"
         android:textSize="16sp" />
 
     <CheckBox
@@ -42,7 +42,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_weight="0"
-        android:text="@string/remember_my_choose"
+        android:text="@string/remember_choice"
         android:textSize="16sp" />
 
 </LinearLayout>

@@ -148,7 +148,7 @@ public class DefaultListeners {
                 if (ExtUtils.isNotSupportedFile(file)) {
                     ShareDialog.showArchive(a, file, onDeleteAction);
                 } else {
-                    ShareDialog.show(a, file, onDeleteAction, -1, null);
+                    ShareDialog.show(a, file, onDeleteAction, -1, null, null);
                 }
 
                 return false;

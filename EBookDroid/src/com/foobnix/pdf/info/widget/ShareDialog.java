@@ -5,13 +5,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.ebookdroid.BookType;
-import org.ebookdroid.ui.viewer.ViewerActivity;
+import org.ebookdroid.ui.viewer.VerticalViewActivity;
 import org.greenrobot.eventbus.EventBus;
 
 import com.foobnix.pdf.info.ExtUtils;
 import com.foobnix.pdf.info.R;
 import com.foobnix.pdf.info.Urls;
 import com.foobnix.pdf.info.wrapper.AppState;
+import com.foobnix.pdf.info.wrapper.DocumentController;
 import com.foobnix.pdf.info.wrapper.DocumentWrapperUI;
 import com.foobnix.pdf.info.wrapper.UITab;
 import com.foobnix.pdf.search.activity.HorizontalViewActivity;
@@ -88,7 +89,7 @@ public class ShareDialog {
 
     }
 
-    public static void show(final Activity a, final File file, final Runnable onDeleteAction, final int page, final DocumentWrapperUI ui) {
+    public static void show(final Activity a, final File file, final Runnable onDeleteAction, final int page, final DocumentWrapperUI ui, final DocumentController dc) {
         if (ExtUtils.isNotValidFile(file)) {
             Toast.makeText(a, R.string.file_not_found, Toast.LENGTH_LONG).show();
             return;
@@ -105,9 +106,12 @@ public class ShareDialog {
         if (isLibrary) {
             items.add(a.getString(R.string.library));
         }
-        // items.add(a.getString(R.string.advanced_mode));
-        // items.add(a.getString(R.string.easy_mode));
-        // items.add(a.getString(R.string.music_mode));
+
+        if (a instanceof VerticalViewActivity) {
+            items.add(a.getString(R.string.horizontal_mode));
+        } else if (a instanceof HorizontalViewActivity) {
+            items.add(a.getString(R.string.vertical_mode));
+        }
 
         items.add(a.getString(R.string.open_with));
         items.add(a.getString(R.string.send_file));
@@ -135,36 +139,26 @@ public class ShareDialog {
                             a.finish();
                             MainTabs2.startActivity(a, UITab.getCurrentTabIndex(UITab.SearchFragment));
                         }
-                        if (false) {
-                            if (which == i++) {
-                                if (a instanceof ViewerActivity || a instanceof HorizontalViewActivity) {
-                                    a.finish();
-                                }
-                                AppState.get().isMusicianMode = false;
-                                AppState.get().isAlwaysOpenAsMagazine = false;
-                                ExtUtils.showDocumentWithoutDialog(a, file, page + 1);
-                            } else if (which == i++) {
-                                if (a instanceof ViewerActivity || a instanceof HorizontalViewActivity) {
-                                    a.finish();
-                                }
-                                AppState.get().isMusicianMode = false;
-                                AppState.get().isAlwaysOpenAsMagazine = true;
-                                ExtUtils.showDocumentWithoutDialog(a, file, page + 1);
-                            } else if (which == i++) {
-                                if (a instanceof ViewerActivity || a instanceof HorizontalViewActivity) {
-                                    a.finish();
-                                }
-                                AppState.get().isAlwaysOpenAsMagazine = false;
-                                AppState.get().isMusicianMode = true;
-                                if (ui != null) {
-                                    ui.initUI(a);
-                                    ui.showHide();
-                                }
-                                ExtUtils.showDocumentWithoutDialog(a, file, page);
+
+                        if (a instanceof HorizontalViewActivity && which == i++) {
+                            AppState.get().isMusicianMode = false;
+                            AppState.get().isAlwaysOpenAsMagazine = false;
+                            ExtUtils.showDocumentWithoutDialog(a, file, page + 1);
+                            if (dc != null) {
+                                dc.onCloseActivity();
+                            }
+
+                        } else if (a instanceof VerticalViewActivity && which == i++) {
+                            AppState.get().isMusicianMode = false;
+                            AppState.get().isAlwaysOpenAsMagazine = true;
+                            ExtUtils.showDocumentWithoutDialog(a, file, page + 1);
+
+                            if (dc != null) {
+                                dc.onCloseActivity();
                             }
                         }
 
-                else if (which == i++) {
+                        if (which == i++) {
                             ExtUtils.openWith(a, file);
                         } else if (which == i++) {
                             ExtUtils.sendFileTo(a, file);

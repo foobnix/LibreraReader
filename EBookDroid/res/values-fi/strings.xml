@@ -120,10 +120,6 @@
    <string name="musician_performance">Muusikko tila</string>
    <string name="pdf_mode">PDF-tila</string>
    <string name="expiremental_features">Merkinnät ja piirtää (Testauksessa se voi vahingoittaa joitakin asiakirjoja)</string>
-   <string name="easy_mode">Helppo tilassa</string>
-   <string name="music_mode">Muusikko</string>
-   <string name="advanced_mode">Lisäasetustilan</string>
-   <string name="remember_my_choose">Muista Katselutila</string>
    <string name="remember_dictionary">Muista sanakirja</string>
    <string name="customize_font_background_colors">Muokata Font ja Taustavärit</string>
    <string name="customize_background_color">Muokata taustaväri</string>
@@ -431,4 +427,10 @@
    <string name="scroll_speed">Vieritä nopeutta</string>
    <string name="landscape_180">Maisema (180)</string>
    <string name="portrait_180">Muotokuva (180)</string>
+   <string name="full_list_of_changes_with_images_web_pdf_">Täydellinen luettelo kuvien muutoksista (web, PDF)</string>
+   <string name="select_the_reading_mode">Valitse lukutila</string>
+   <string name="vertical_mode">Pystysuuntainen tila</string>
+   <string name="horizontal_mode">Vaakasuora tila</string>
+   <string name="musician_mode">Muusikkotila</string>
+   <string name="remember_choice">Muista valinta</string>
 </resources>

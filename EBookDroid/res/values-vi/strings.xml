@@ -119,10 +119,6 @@
    <string name="musician_performance">Chế độ nhạc sĩ</string>
    <string name="pdf_mode">Chế độ PDF</string>
    <string name="expiremental_features">Chú thích và rút ra (Trong thử nghiệm, nó có thể làm hỏng một số tài liệu)</string>
-   <string name="easy_mode">Chế độ dễ</string>
-   <string name="music_mode">Nhạc sĩ</string>
-   <string name="advanced_mode">Chế độ nâng cao</string>
-   <string name="remember_my_choose">Ghi View Mode</string>
    <string name="remember_dictionary">Ghi từ điển</string>
    <string name="customize_font_background_colors">Tùy chỉnh font chữ và nền màu sắc</string>
    <string name="customize_background_color">Tùy chỉnh màu nền</string>
@@ -431,4 +427,10 @@
    <string name="scroll_speed">Tốc độ cuộn</string>
    <string name="landscape_180">Phong cảnh (180)</string>
    <string name="portrait_180">Chân dung (180)</string>
+   <string name="full_list_of_changes_with_images_web_pdf_">Danh sách đầy đủ các thay đổi với hình ảnh (web, PDF)</string>
+   <string name="select_the_reading_mode">Chọn chế độ đọc</string>
+   <string name="vertical_mode">Chế độ đứng</string>
+   <string name="horizontal_mode">Chế độ ngang</string>
+   <string name="musician_mode">Chế độ nhạc</string>
+   <string name="remember_choice">Nhớ sự lựa chọn</string>
 </resources>

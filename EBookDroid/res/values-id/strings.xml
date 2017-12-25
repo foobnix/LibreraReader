@@ -120,10 +120,6 @@
    <string name="musician_performance">Mode Musisi</string>
    <string name="pdf_mode">Mode PDF</string>
    <string name="expiremental_features">Anotasi dan hasil imbang (Dalam pengujian, bisa merusak beberapa dokumen)</string>
-   <string name="easy_mode">Mode mudah</string>
-   <string name="music_mode">Pemusik</string>
-   <string name="advanced_mode">Mode lanjutan</string>
-   <string name="remember_my_choose">Ingat Mode Tampilan</string>
    <string name="remember_dictionary">Ingat Kamus</string>
    <string name="customize_font_background_colors">Sesuaikan warna Font dan Background</string>
    <string name="customize_background_color">Sesuaikan warna latar belakang</string>
@@ -431,4 +427,10 @@
    <string name="scroll_speed">Kecepatan gulir</string>
    <string name="landscape_180">Pemandangan (180)</string>
    <string name="portrait_180">Potret (180)</string>
+   <string name="full_list_of_changes_with_images_web_pdf_">Daftar lengkap perubahan dengan gambar (web, PDF)</string>
+   <string name="select_the_reading_mode">Pilih mode bacaan</string>
+   <string name="vertical_mode">Mode vertikal</string>
+   <string name="horizontal_mode">Mode horisontal</string>
+   <string name="musician_mode">Mode musisi</string>
+   <string name="remember_choice">Ingat pilihan</string>
 </resources>

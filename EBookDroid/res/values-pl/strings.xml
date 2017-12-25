@@ -119,10 +119,6 @@
    <string name="musician_performance">Tryb muzyka</string>
    <string name="pdf_mode">Tryb PDF</string>
    <string name="expiremental_features">Funkcje eksperymentalne</string>
-   <string name="easy_mode">Tryb uproszczony</string>
-   <string name="music_mode">Tryb muzyka</string>
-   <string name="advanced_mode">Tryb zaawansowany</string>
-   <string name="remember_my_choose">Zapamiętaj wybór</string>
    <string name="remember_dictionary">Zapamiętaj słownik</string>
    <string name="customize_font_background_colors">Dostosuj czcionki i tła</string>
    <string name="day">Dzienny</string>
@@ -431,4 +427,10 @@
    <string name="scroll_speed">Prędkość przewijania</string>
    <string name="landscape_180">Krajobraz (180)</string>
    <string name="portrait_180">Portret (180)</string>
+   <string name="full_list_of_changes_with_images_web_pdf_">Pełna lista zmian ze zdjęciami (www, PDF)</string>
+   <string name="select_the_reading_mode">Wybierz tryb czytania</string>
+   <string name="vertical_mode">Tryb pionowy</string>
+   <string name="horizontal_mode">Tryb poziomy</string>
+   <string name="musician_mode">Tryb muzyczny</string>
+   <string name="remember_choice">Zapamiętaj wybór</string>
 </resources>

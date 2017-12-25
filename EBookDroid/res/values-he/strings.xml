@@ -119,10 +119,6 @@
    <string name="musician_performance">מצב מוסיקאי</string>
    <string name="pdf_mode">מצב PDF</string>
    <string name="expiremental_features">ביאורים תיקו (בבדיקה, הדבר עלול לגרום נזק כמה מסמכים)</string>
-   <string name="easy_mode">מצב קל</string>
-   <string name="music_mode">מוּסִיקָאִי</string>
-   <string name="advanced_mode">מצב מתקדם</string>
-   <string name="remember_my_choose">זכור מצב תצוגה</string>
    <string name="remember_dictionary">זכור מילון</string>
    <string name="customize_font_background_colors">התאמה אישית של צבעי גופן ורקע</string>
    <string name="customize_background_color">התאמה אישית של צבע רקע</string>
@@ -431,4 +427,10 @@
    <string name="scroll_speed">מהירות גלילה</string>
    <string name="landscape_180">נופים (180)</string>
    <string name="portrait_180">דיוקן (180)</string>
+   <string name="full_list_of_changes_with_images_web_pdf_">רשימה מלאה של שינויים עם תמונות (אינטרנט, PDF)</string>
+   <string name="select_the_reading_mode">בחר את מצב הקריאה</string>
+   <string name="vertical_mode">מצב אנכי</string>
+   <string name="horizontal_mode">מצב אופקי</string>
+   <string name="musician_mode">מצב מוזיקאי</string>
+   <string name="remember_choice">זכור בחירה</string>
 </resources>

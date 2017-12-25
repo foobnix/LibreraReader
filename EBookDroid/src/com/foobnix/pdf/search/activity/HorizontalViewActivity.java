@@ -113,7 +113,7 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
 
     ImageView lockModelImage, linkHistory, ttsActive, onModeChange, outline, onMove, onBC, textToSpeach;
 
-    DocumentControllerHorizontalView documentController;
+    HorizontalModeController documentController;
 
     Handler handler, handlerTimer;
     CopyAsyncTask loadinAsyncTask;
@@ -529,7 +529,7 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
                             documentController.getActivity().finish();
                         }
                     }
-                }, documentController.getCurentPage(), null);
+                }, documentController.getCurentPage(), null, documentController);
                 Keyboards.hideNavigation(HorizontalViewActivity.this);
 
             }
@@ -580,7 +580,7 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
         seekBar.setVisibility(View.GONE);
         bottomIndicators.setVisibility(View.GONE);
 
-        titleTxt.setText(DocumentControllerHorizontalView.getTempTitle(this));
+        titleTxt.setText(HorizontalModeController.getTempTitle(this));
         loadinAsyncTask = new CopyAsyncTask() {
             AlertDialog dialog;
             private boolean isCancelled = false;
@@ -679,7 +679,7 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
                                 dialog.dismiss();
                                 onFinishActivity();
 
-                                getIntent().putExtra(DocumentControllerHorizontalView.PASSWORD_EXTRA, txt);
+                                getIntent().putExtra(HorizontalModeController.PASSWORD_EXTRA, txt);
                                 startActivity(getIntent());
                             } else {
                                 onFinishActivity();
@@ -1253,7 +1253,7 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
     };
 
     public void initAsync(int w, int h) {
-        documentController = new DocumentControllerHorizontalView(this, w, h) {
+        documentController = new HorizontalModeController(this, w, h) {
             @Override
             public void onGoToPageImpl(int page) {
                 updateUI(page);
@@ -1302,7 +1302,7 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
         } else {
             currentSeek.setText("" + textPage);
         }
-        pagesCountIndicator.setText(textPage + "∕" + documentController.getPageCount());
+        pagesCountIndicator.setText(textPage + " ∕ " + documentController.getPageCount());
         seekBar.setProgress(page);
         if (documentController != null) {
             documentController.currentPage = page;

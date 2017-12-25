@@ -3,7 +3,7 @@ package com.foobnix.pdf.info.widget;
 import java.io.File;
 import java.util.Arrays;
 
-import org.ebookdroid.ui.viewer.ViewerActivity;
+import org.ebookdroid.ui.viewer.VerticalViewActivity;
 
 import com.foobnix.android.utils.LOG;
 import com.foobnix.android.utils.TxtUtils;
@@ -55,7 +55,7 @@ public class RecentUpates {
                     String url = IMG.toUrl(recentLast.getPath(), ImageExtractor.COVER_PAGE_WITH_EFFECT, IMG.getImageSize());
                     Bitmap image = ImageLoader.getInstance().loadImageSync(url, IMG.displayImageOptions);
 
-                    Intent lastBookIntent = new Intent(c, ViewerActivity.class);
+                    Intent lastBookIntent = new Intent(c, VerticalViewActivity.class);
                     if (AppState.getInstance().isAlwaysOpenAsMagazine) {
                         lastBookIntent = new Intent(c, HorizontalViewActivity.class);
                     }

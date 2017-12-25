@@ -534,7 +534,7 @@ public class PrefFragment2 extends UIFragment {
                 }
                 final PopupMenu popupMenu = new PopupMenu(selectedOpenMode.getContext(), selectedOpenMode);
 
-                final MenuItem advanced_mode = popupMenu.getMenu().add(R.string.advanced_mode);
+                final MenuItem advanced_mode = popupMenu.getMenu().add(R.string.vertical_mode);
                 advanced_mode.setOnMenuItemClickListener(new OnMenuItemClickListener() {
 
                     @Override
@@ -546,7 +546,7 @@ public class PrefFragment2 extends UIFragment {
                     }
                 });
 
-                final MenuItem easy_mode = popupMenu.getMenu().add(R.string.easy_mode);
+                final MenuItem easy_mode = popupMenu.getMenu().add(R.string.horizontal_mode);
                 easy_mode.setOnMenuItemClickListener(new OnMenuItemClickListener() {
 
                     @Override
@@ -557,7 +557,7 @@ public class PrefFragment2 extends UIFragment {
                         return false;
                     }
                 });
-                final MenuItem music_mode = popupMenu.getMenu().add(R.string.music_mode);
+                final MenuItem music_mode = popupMenu.getMenu().add(R.string.musician_mode);
                 music_mode.setOnMenuItemClickListener(new OnMenuItemClickListener() {
 
                     @Override
@@ -1470,13 +1470,13 @@ public class PrefFragment2 extends UIFragment {
     }
 
     private void checkOpenWithSpinner() {
-        int modId = R.string.advanced_mode;
+        int modId = R.string.vertical_mode;
         if (AppState.getInstance().isMusicianMode) {
-            modId = R.string.music_mode;
+            modId = R.string.musician_mode;
         } else if (AppState.getInstance().isAlwaysOpenAsMagazine) {
-            modId = R.string.easy_mode;
+            modId = R.string.horizontal_mode;
         } else {
-            modId = R.string.advanced_mode;
+            modId = R.string.vertical_mode;
         }
 
         selectedOpenMode.setText(TxtUtils.underline(getString(modId)));

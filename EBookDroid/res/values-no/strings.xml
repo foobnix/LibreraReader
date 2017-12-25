@@ -120,10 +120,6 @@
    <string name="musician_performance">Musikkmodus</string>
    <string name="pdf_mode">PDF-modus</string>
    <string name="expiremental_features">Merknader og tegninger (Ved testing kan det skade noen dokumenter)</string>
-   <string name="easy_mode">Enkel modus</string>
-   <string name="music_mode">Musiker</string>
-   <string name="advanced_mode">Avansert modus</string>
-   <string name="remember_my_choose">Husk visningsmodus</string>
    <string name="remember_dictionary">Husk ordbok</string>
    <string name="customize_font_background_colors">Tilpass font- og bakgrunnsfarger</string>
    <string name="customize_background_color">Tilpass bakgrunnsfarge</string>
@@ -431,4 +427,10 @@
    <string name="scroll_speed">Rullehastighet</string>
    <string name="landscape_180">Landskap (180)</string>
    <string name="portrait_180">Portrett (180)</string>
+   <string name="full_list_of_changes_with_images_web_pdf_">Full liste over endringer med bilder (web, PDF)</string>
+   <string name="select_the_reading_mode">Velg lesemodus</string>
+   <string name="vertical_mode">Vertikal modus</string>
+   <string name="horizontal_mode">Horisontal modus</string>
+   <string name="musician_mode">Musikkmodus</string>
+   <string name="remember_choice">Husk valg</string>
 </resources>

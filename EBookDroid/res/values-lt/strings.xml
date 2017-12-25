@@ -120,10 +120,6 @@
    <string name="musician_performance">Slinkimas</string>
    <string name="pdf_mode">PDF režimas</string>
    <string name="expiremental_features">Pastabos ir piešimas (Bandoma, gali neveikti kai kuriuose dokumentuose)</string>
-   <string name="easy_mode">Įprastas</string>
-   <string name="music_mode">Slinkimas</string>
-   <string name="advanced_mode">Pažengęs</string>
-   <string name="remember_my_choose">Atsiminti peržiūros režimą</string>
    <string name="remember_dictionary">Atsiminti žodyną</string>
    <string name="customize_font_background_colors">Redaguoti šriftą ir fono spalvas</string>
    <string name="customize_background_color">Redaguoti fono spalvą</string>
@@ -431,4 +427,10 @@
    <string name="scroll_speed">Slinkties greitis</string>
    <string name="landscape_180">Kraštovaizdis (180)</string>
    <string name="portrait_180">Portretas (180)</string>
+   <string name="full_list_of_changes_with_images_web_pdf_">Visas su vaizdais susijusių pakeitimų sąrašas (žiniatinklis, PDF)</string>
+   <string name="select_the_reading_mode">Pasirinkite skaitymo režimą</string>
+   <string name="vertical_mode">Vertikalus režimas</string>
+   <string name="horizontal_mode">Horizontalusis režimas</string>
+   <string name="musician_mode">Muzikinis režimas</string>
+   <string name="remember_choice">Prisimink pasirinkimą</string>
 </resources>

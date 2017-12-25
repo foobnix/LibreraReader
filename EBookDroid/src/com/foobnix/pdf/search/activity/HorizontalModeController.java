@@ -43,7 +43,7 @@ import android.content.SharedPreferences;
 import android.graphics.Matrix;
 import android.graphics.PointF;
 
-public abstract class DocumentControllerHorizontalView extends DocumentController {
+public abstract class HorizontalModeController extends DocumentController {
     public static final String PASSWORD_EXTRA = "password";
     public static final String PAGE = "page";
     public static final String PERCENT_EXTRA = "percent";
@@ -58,7 +58,7 @@ public abstract class DocumentControllerHorizontalView extends DocumentControlle
     int imageWidth, imageHeight;
     private SharedPreferences matrixSP;
 
-    public DocumentControllerHorizontalView(Activity activity, int w, int h) {
+    public HorizontalModeController(Activity activity, int w, int h) {
         super(activity);
         matrixSP = activity.getSharedPreferences("matrix", Context.MODE_PRIVATE);
 

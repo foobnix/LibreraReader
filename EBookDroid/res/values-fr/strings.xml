@@ -117,7 +117,6 @@
    <string name="musician_performance">Mode Musicien</string>
    <string name="pdf_mode">PDF mode</string>
    <string name="expiremental_features">Annotations et tirage (Lors des essais, il peut endommager certains documents)</string>
-   <string name="remember_my_choose">Ne oubliez pas de mode d\'affichage</string>
    <string name="remember_dictionary">Rappelez Dictionnaire</string>
    <string name="customize_font_background_colors">Personnaliser la police et couleurs de fond</string>
    <string name="day">Jour</string>
@@ -135,9 +134,6 @@
    <string name="import_or_export_application_settings_to_json_file">Importation ou exportation d\'application des paramètres de fichier JSON</string>
    <string name="menu">Menu</string>
    <string name="foot_notes">Note de bas de page</string>
-   <string name="music_mode">Musicien</string>
-   <string name="advanced_mode">Mode avancé</string>
-   <string name="easy_mode">Mode facile</string>
    <string name="plain_text_txt_preformatted">Texte brut (.txt) préformaté</string>
    <string name="dictionary">Dictionnaire</string>
    <string name="import_bookmarks">Importer des signets</string>
@@ -431,4 +427,10 @@
    <string name="scroll_speed">Vitesse de défilement</string>
    <string name="landscape_180">Paysage (180)</string>
    <string name="portrait_180">Portrait (180)</string>
+   <string name="full_list_of_changes_with_images_web_pdf_">Liste complète des changements avec des images (web, PDF)</string>
+   <string name="select_the_reading_mode">Sélectionnez le mode de lecture</string>
+   <string name="vertical_mode">Mode vertical</string>
+   <string name="horizontal_mode">Mode horizontal</string>
+   <string name="musician_mode">Mode musicien</string>
+   <string name="remember_choice">Rappelez vous le choix</string>
 </resources>

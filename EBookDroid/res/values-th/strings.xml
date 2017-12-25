@@ -120,10 +120,6 @@
    <string name="musician_performance">Musician Mode</string>
    <string name="pdf_mode">โหมด PDF</string>
    <string name="expiremental_features">คำอธิบายประกอบและวาด (ในการทดสอบอาจทำให้เอกสารบางอย่างเสียหาย)</string>
-   <string name="easy_mode">โหมดง่าย</string>
-   <string name="music_mode">นักดนตรี</string>
-   <string name="advanced_mode">โหมดขั้นสูง</string>
-   <string name="remember_my_choose">จำโหมดดู</string>
    <string name="remember_dictionary">จดจำพจนานุกรม</string>
    <string name="customize_font_background_colors">กำหนดสีแบบอักษรและพื้นหลัง</string>
    <string name="customize_background_color">กำหนดสีพื้นหลัง</string>
@@ -431,4 +427,10 @@
    <string name="scroll_speed">เลื่อนความเร็ว</string>
    <string name="landscape_180">ภูมิทัศน์ (180)</string>
    <string name="portrait_180">ถ่ายภาพบุคคล (180)</string>
+   <string name="full_list_of_changes_with_images_web_pdf_">รายการการเปลี่ยนแปลงทั้งหมดที่มีรูปภาพ (web, PDF)</string>
+   <string name="select_the_reading_mode">เลือกโหมดการอ่าน</string>
+   <string name="vertical_mode">โหมดแนวตั้ง</string>
+   <string name="horizontal_mode">โหมดแนวนอน</string>
+   <string name="musician_mode">โหมดนักดนตรี</string>
+   <string name="remember_choice">โปรดจำไว้ว่าทางเลือก</string>
 </resources>

@@ -119,10 +119,6 @@
    <string name="musician_performance">Musicus Mode</string>
    <string name="pdf_mode">PDF Mode</string>
    <string name="expiremental_features">Annotaties en draw (Bij het testen, kan het aantal documenten beschadigen)</string>
-   <string name="easy_mode">Easy-modus</string>
-   <string name="music_mode">Musicus</string>
-   <string name="advanced_mode">Geavanceerde modus</string>
-   <string name="remember_my_choose">Onthoud View Mode</string>
    <string name="remember_dictionary">Onthoud Woordenboek</string>
    <string name="customize_font_background_colors">Pas lettertype en achtergrond kleuren</string>
    <string name="customize_background_color">Pas achtergrondkleur</string>
@@ -431,4 +427,10 @@
    <string name="scroll_speed">Scrollsnelheid</string>
    <string name="landscape_180">Landschap (180)</string>
    <string name="portrait_180">Portret (180)</string>
+   <string name="full_list_of_changes_with_images_web_pdf_">Volledige lijst met wijzigingen met afbeeldingen (web, PDF)</string>
+   <string name="select_the_reading_mode">Selecteer de leesmodus</string>
+   <string name="vertical_mode">Verticale modus</string>
+   <string name="horizontal_mode">Horizontale modus</string>
+   <string name="musician_mode">Muzikant-modus</string>
+   <string name="remember_choice">Onthoud de keuze</string>
 </resources>

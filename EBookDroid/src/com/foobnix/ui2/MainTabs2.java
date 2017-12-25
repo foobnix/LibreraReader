@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import org.ebookdroid.ui.viewer.ViewerActivity;
+import org.ebookdroid.ui.viewer.VerticalViewActivity;
 
 import com.foobnix.android.utils.LOG;
 import com.foobnix.android.utils.TxtUtils;
@@ -302,7 +302,7 @@ public class MainTabs2 extends AdsFragmentActivity {
 
             if (meta != null) {
                 boolean isEasyMode = HorizontalViewActivity.class.getSimpleName().equals(AppState.get().lastMode);
-                Intent intent = new Intent(this, isEasyMode ? HorizontalViewActivity.class : ViewerActivity.class);
+                Intent intent = new Intent(this, isEasyMode ? HorizontalViewActivity.class : VerticalViewActivity.class);
                 intent.setData(Uri.fromFile(new File(meta.getPath())));
                 startActivity(intent);
             }
@@ -317,10 +317,10 @@ public class MainTabs2 extends AdsFragmentActivity {
                     startActivity(intent);
                     LOG.d("Start lasta", AppState.get().lastA);
                 }
-            } else if (ViewerActivity.class.getSimpleName().equals(AppState.get().lastA)) {
+            } else if (VerticalViewActivity.class.getSimpleName().equals(AppState.get().lastA)) {
                 FileMeta meta = AppDB.get().getRecentLast();
                 if (meta != null) {
-                    Intent intent = new Intent(this, ViewerActivity.class);
+                    Intent intent = new Intent(this, VerticalViewActivity.class);
                     intent.setData(Uri.fromFile(new File(meta.getPath())));
                     startActivity(intent);
                     LOG.d("Start lasta", AppState.get().lastA);

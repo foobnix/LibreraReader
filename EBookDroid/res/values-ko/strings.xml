@@ -119,10 +119,6 @@
    <string name="musician_performance">뮤지션 모드</string>
    <string name="pdf_mode">PDF 모드</string>
    <string name="expiremental_features">실험적 기능</string>
-   <string name="easy_mode">쉬운 모드</string>
-   <string name="music_mode">음악가</string>
-   <string name="advanced_mode">고급 모드</string>
-   <string name="remember_my_choose">책보기 방법</string>
    <string name="remember_dictionary">사전 기억</string>
    <string name="customize_font_background_colors">글꼴의 배경색상 사용자 정의</string>
    <string name="customize_background_color">배경색상 사용자 정의</string>
@@ -431,4 +427,10 @@
    <string name="scroll_speed">스크롤 속도</string>
    <string name="landscape_180">풍경 (180)</string>
    <string name="portrait_180">세로 방향 (180)</string>
+   <string name="full_list_of_changes_with_images_web_pdf_">이미지로 변경된 전체 목록 (웹, PDF)</string>
+   <string name="select_the_reading_mode">읽기 모드 선택</string>
+   <string name="vertical_mode">수직 모드</string>
+   <string name="horizontal_mode">수평 모드</string>
+   <string name="musician_mode">음악가 모드</string>
+   <string name="remember_choice">선택 사항 기억하기</string>
 </resources>

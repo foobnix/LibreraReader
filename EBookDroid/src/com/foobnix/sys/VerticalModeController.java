@@ -52,7 +52,7 @@ import android.view.View.OnKeyListener;
 import android.widget.EditText;
 import android.widget.Toast;
 
-public class AdvModeController extends DocumentController {
+public class VerticalModeController extends DocumentController {
 
     private final ViewerActivityController ctr;
 
@@ -60,7 +60,7 @@ public class AdvModeController extends DocumentController {
 
     Handler handler;
 
-    public AdvModeController(final Activity activity, final ViewerActivityController ctr) {
+    public VerticalModeController(final Activity activity, final ViewerActivityController ctr) {
         super(activity);
         this.ctr = ctr;
         AppSettings.getInstance().fullScreen = AppState.getInstance().isFullScrean();
