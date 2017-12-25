@@ -170,7 +170,11 @@ public class ShareDialog {
                             AppDB.get().deleteBy(file.getPath());
                             EventBus.getDefault().post(new UpdateAllFragments());
                         } else if (!isMainTabs && which == i++) {
-                            ExtUtils.sharePage(a, file, page);
+                            if (dc != null) {
+                                ExtUtils.sharePage(a, file, page, dc.getPageUrl(page).toString());
+                            } else {
+                                ExtUtils.sharePage(a, file, page, null);
+                            }
                         } else if (which == i++) {
                             FileInformationDialog.showFileInfoDialog(a, file, onDeleteAction);
                         }

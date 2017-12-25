@@ -717,13 +717,17 @@ public class ExtUtils {
         return mime;
     }
 
-    public static void sharePage(final Activity a, final File file, int page) {
+    public static void sharePage(final Activity a, final File file, int page, String pageUrl) {
         try {
             if (AppState.get().fileToDelete != null) {
                 new File(AppState.get().fileToDelete).delete();
             }
-            String url = IMG.toUrlWithContext(file.getPath(), page, (int) (Dips.screenWidth() * 1.5));
-            Bitmap imageBitmap = ImageLoader.getInstance().loadImageSync(url, IMG.ExportOptions);
+
+            if (TxtUtils.isEmpty(pageUrl)) {
+                pageUrl = IMG.toUrlWithContext(file.getPath(), page, (int) (Dips.screenWidth() * 1.5));
+            }
+
+            Bitmap imageBitmap = ImageLoader.getInstance().loadImageSync(pageUrl, IMG.ExportOptions);
 
             String title = file.getName() + "." + (page + 1) + ".jpg";
 
