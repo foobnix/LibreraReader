@@ -299,6 +299,7 @@ public class MultyDocSearchDialog {
             }
 
             if (!Model.get().isSearcingRun) {
+                openDocument.recycle();
                 ctx.recycle();
                 return -1;
             }
@@ -309,6 +310,7 @@ public class MultyDocSearchDialog {
 
             for (int i = 0; i < pageCount; i++) {
                 if (!Model.get().isSearcingRun) {
+                    openDocument.recycle();
                     ctx.recycle();
                     return -1;
                 }
@@ -320,11 +322,12 @@ public class MultyDocSearchDialog {
                 update1.sendEmptyMessage(0);
 
                 if (!findText.isEmpty()) {
+                    openDocument.recycle();
                     ctx.recycle();
                     return i;
                 }
             }
-
+            openDocument.recycle();
             ctx.recycle();
         } catch (Exception e) {
             LOG.e(e);
