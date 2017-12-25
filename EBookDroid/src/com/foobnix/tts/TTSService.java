@@ -125,7 +125,7 @@ public class TTSService extends Service {
 
     }
 
-    public static Intent playBookIntent(int page, String path, String anchor) {
+    private static Intent playBookIntent(int page, String path, String anchor) {
         Intent intent = new Intent(LibreraApp.context, TTSService.class);
         intent.setAction(TTSService.ACTION_PLAY_CURRENT_PAGE);
         intent.putExtra(EXTRA_INT, page);

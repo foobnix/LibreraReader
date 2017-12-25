@@ -38,11 +38,11 @@ public class RecentUpates {
         LOG.d("RecentUpates", "update widgets");
         try {
 
-        {
-            Intent intent = new Intent(c, RecentBooksWidget.class);
-            intent.setAction("android.appwidget.action.APPWIDGET_UPDATE");
-            c.sendBroadcast(intent);
-        }
+            {
+                Intent intent = new Intent(c, RecentBooksWidget.class);
+                intent.setAction("android.appwidget.action.APPWIDGET_UPDATE");
+                c.sendBroadcast(intent);
+            }
         } catch (Exception e) {
             LOG.e(e);
         }
@@ -80,8 +80,8 @@ public class RecentUpates {
                             .setIntent(tTSIntent)//
                             .build();//
 
-                    // shortcutManager.setDynamicShortcuts(Arrays.asList(tts, shortcut));
-                    shortcutManager.setDynamicShortcuts(Arrays.asList(shortcut));
+                    shortcutManager.setDynamicShortcuts(Arrays.asList(tts, shortcut));
+                    // shortcutManager.setDynamicShortcuts(Arrays.asList(shortcut));
                 }
             } catch (Exception e) {
                 LOG.e(e);
