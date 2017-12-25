@@ -17,9 +17,8 @@ public class EditTextHelper {
             public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
                 if (actionId == EditorInfo.IME_ACTION_SEARCH) {
                     action.run();
-                    return true;
                 }
-                return false;
+                return true;
             }
         });
 
@@ -27,12 +26,14 @@ public class EditTextHelper {
 
             @Override
             public boolean onKey(View v, int keyCode, KeyEvent event) {
-                if (keyCode == KeyEvent.KEYCODE_ENTER) {
+                if ((event.getAction() == KeyEvent.ACTION_DOWN && keyCode == KeyEvent.KEYCODE_ENTER)) {
                     action.run();
                     return true;
+
                 }
                 return false;
             }
         });
+
     }
 }

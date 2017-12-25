@@ -39,8 +39,8 @@ public class AppDB {
         PATH(FileMetaDao.Properties.Path, -1), //
         SERIES(FileMetaDao.Properties.Sequence, AppState.MODE_SERIES), //
         GENRE(FileMetaDao.Properties.Genre, AppState.MODE_GENRE), //
-        AUTHOR(FileMetaDao.Properties.Author, AppState.MODE_AUTHORS), //
-        ANNOT(FileMetaDao.Properties.Annotation, -1); //
+        AUTHOR(FileMetaDao.Properties.Author, AppState.MODE_AUTHORS);
+        //ANNOT(FileMetaDao.Properties.Annotation, -1); //
         // REGEX(FileMetaDao.Properties.Path, -1);//
         //
         private final Property property;

@@ -863,7 +863,7 @@ public class DragingDialogs {
 
                 goTo.setText(controller.getString(R.string.go_to_page_dialog) + " " + page);
                 text.setText(controller.getFootNote(selectedText));
-                if (page == -1) {
+                if (page == -1 || page == 0) {
                     goTo.setVisibility(View.GONE);
                     goBack.setVisibility(View.GONE);
                 }

@@ -21,7 +21,6 @@
                 android:layout_alignParentLeft="true"
                 android:imeOptions="actionSearch"
                 android:singleLine="true"
-              
                 android:visibility="visible" >
             </EditText>
 

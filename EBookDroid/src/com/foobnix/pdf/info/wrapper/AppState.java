@@ -85,8 +85,8 @@ public class AppState {
             // KeyEvent.KEYCODE_DPAD_UP,//
             KeyEvent.KEYCODE_DPAD_RIGHT, //
             94, //
-            105, //
-            KeyEvent.KEYCODE_DEL//
+            105 //
+    // KeyEvent.KEYCODE_DEL//
     );
 
     public static List<Integer> PREV_KEYS = Arrays.asList(//
@@ -95,8 +95,8 @@ public class AppState {
             // KeyEvent.KEYCODE_DPAD_DOWN, //
             KeyEvent.KEYCODE_DPAD_LEFT, //
             95, //
-            106, //
-            KeyEvent.KEYCODE_ENTER //
+            106 //
+    // KeyEvent.KEYCODE_ENTER //
 
     );
 
@@ -602,8 +602,8 @@ public class AppState {
 
         isAlwaysOpenAsMagazine = sp.getBoolean("isOlwaysOpenAsMagazine", isAlwaysOpenAsMagazine);
 
-        nextKeys = stringToKyes(sp.getString("nextKeys1", keyToString(NEXT_KEYS)));
-        prevKeys = stringToKyes(sp.getString("prevKeys1", keyToString(PREV_KEYS)));
+        nextKeys = stringToKyes(sp.getString("nextKeys2", keyToString(NEXT_KEYS)));
+        prevKeys = stringToKyes(sp.getString("prevKeys2", keyToString(PREV_KEYS)));
 
         cpTextLight = sp.getInt("cpTextLight", cpTextLight);
         cpBGLight = sp.getInt("cpBGLight", cpBGLight);
@@ -857,8 +857,8 @@ public class AppState {
         editor.putFloat("ttsSpeed", ttsSpeed);
         editor.putFloat("ttsPitch", ttsPitch);
 
-        editor.putString("nextKeys1", keyToString(nextKeys));
-        editor.putString("prevKeys1", keyToString(prevKeys));
+        editor.putString("nextKeys2", keyToString(nextKeys));
+        editor.putString("prevKeys2", keyToString(prevKeys));
 
         editor.putInt("cpTextLight", cpTextLight);
         editor.putInt("cpBGLight", cpBGLight);

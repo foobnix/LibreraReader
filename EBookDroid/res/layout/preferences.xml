@@ -243,7 +243,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:minWidth="120dp"
+                android:minWidth="125dp"
                 android:text="@string/orientation"
                 android:textStyle="bold" />
 
@@ -264,7 +264,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:minWidth="120dp"
+                android:minWidth="125dp"
                 android:text="@string/language"
                 android:textStyle="bold" />
 
@@ -285,7 +285,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:minWidth="120dp"
+                android:minWidth="125dp"
                 android:text="@string/font_size"
                 android:textStyle="bold" />
 
@@ -306,7 +306,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:minWidth="120dp"
+                android:minWidth="125dp"
                 android:text="@string/theme"
                 android:textStyle="bold" />
 
@@ -327,7 +327,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:minWidth="120dp"
+                android:minWidth="125dp"
                 android:text="@string/theme_color"
                 android:textStyle="bold" />
 
@@ -563,7 +563,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:minWidth="120dp"
+                    android:minWidth="125dp"
                     android:text="@string/show" />
 
                 <TextView
@@ -585,7 +585,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:minWidth="120dp"
+                    android:minWidth="125dp"
                     android:text="@string/layout" />
 
                 <TextView
@@ -608,7 +608,7 @@
                     android:id="@+id/textView1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:minWidth="120dp"
+                    android:minWidth="125dp"
                     android:text="@string/number_of_books" />
 
                 <TextView

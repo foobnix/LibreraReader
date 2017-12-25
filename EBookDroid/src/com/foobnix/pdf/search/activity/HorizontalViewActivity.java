@@ -107,11 +107,11 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
     VerticalViewPager viewPager;
     SeekBar seekBar;
     private TextView maxSeek, currentSeek, pagesCountIndicator, flippingIntervalView, pagesTime, pagesPower, titleTxt, chapterView;
-    View adFrame, bottomBar, onPageFlip1, bottomIndicators, moveCenter, onClose, overlay;
+    View adFrame, bottomBar, bottomIndicators, moveCenter, onClose, overlay;
     LinearLayout actionBar;
     private FrameLayout anchor;
 
-    ImageView lockModelImage, linkHistory, ttsActive, onModeChange, outline, onMove, onBC, textToSpeach;
+    ImageView lockModelImage, linkHistory, ttsActive, onModeChange, outline, onMove, onBC, textToSpeach, onPageFlip1;
 
     HorizontalModeController documentController;
 
@@ -892,6 +892,7 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
         }
 
         onPageFlip1.setVisibility(View.VISIBLE);
+        onPageFlip1.setImageResource(R.drawable.glyphicons_175_pause);
     }
 
     @Subscribe
@@ -899,6 +900,8 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
         flippingHandler.removeCallbacks(flippingRunnable);
         flippingHandler.removeCallbacksAndMessages(null);
         flippingIntervalView.setVisibility(View.GONE);
+        onPageFlip1.setImageResource(R.drawable.glyphicons_174_play);
+
     }
 
     Runnable flippingRunnable = new Runnable() {
