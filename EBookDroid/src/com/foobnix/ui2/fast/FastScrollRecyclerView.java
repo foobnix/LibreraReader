@@ -34,6 +34,7 @@ public class FastScrollRecyclerView extends RecyclerView {
         super(context);
         layout(context, null);
         setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT));
+        setHasFixedSize(true);
     }
 
     public FastScrollRecyclerView(Context context, AttributeSet attrs) {
@@ -43,6 +44,7 @@ public class FastScrollRecyclerView extends RecyclerView {
     public FastScrollRecyclerView(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         layout(context, attrs);
+        setHasFixedSize(true);
     }
 
     @Override

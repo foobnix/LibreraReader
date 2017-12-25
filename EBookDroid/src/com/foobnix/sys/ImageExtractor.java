@@ -543,6 +543,7 @@ public class ImageExtractor implements ImageDownloader {
         // CacheZipUtils.cacheLock.unlock();
         // }
 
+        TempHolder.get().loadingCancelled = false;
         codeCache = codecContex.openDocument(path, passw);
         if (codeCache == null) {
             LOG.d("[Open doc is null 1", path);

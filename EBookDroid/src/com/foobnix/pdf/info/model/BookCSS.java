@@ -113,7 +113,7 @@ public class BookCSS {
         spinnerIndex = sp.getInt("spinnerIndex", spinnerIndex);
         documentStyle = sp.getInt("documentStyle", documentStyle);
 
-        isAutoHypens = sp.getBoolean("isAutoHypens", isAutoHypens);
+        isAutoHypens = sp.getBoolean("isAutoHypens1", isAutoHypens);
         hypenLang = sp.getString("hypenLang", hypenLang);
         linkColorDay = sp.getString("linkColorDay", linkColorDay);
         linkColorNight = sp.getString("linkColorNight", linkColorNight);
@@ -152,7 +152,7 @@ public class BookCSS {
         headersFont = DEFAULT_FONT;
 
         documentStyle = STYLES_DOC_AND_USER;
-        isAutoHypens = true;
+        isAutoHypens = false;
         hypenLang = "ru";
 
         linkColorDay = LINK_COLOR_UNIVERSAL;
@@ -206,7 +206,7 @@ public class BookCSS {
         edit.putInt("fontWeight", fontWeight);
         edit.putInt("spinnerIndex", spinnerIndex);
         edit.putInt("documentStyle", documentStyle);
-        edit.putBoolean("isAutoHypens", isAutoHypens);
+        edit.putBoolean("isAutoHypens1", isAutoHypens);
         edit.putString("hypenLang", hypenLang);
         edit.putString("linkColorDay", linkColorDay);
         edit.putString("linkColorNight", linkColorNight);
@@ -403,7 +403,7 @@ public class BookCSS {
         String textColor = MagicHelper.colorToString(MagicHelper.getTextColor());
 
         builder.append("documentStyle" + documentStyle + "{}");
-        builder.append("isAutoHypens" + isAutoHypens + hypenLang + "{}");
+        builder.append("isAutoHypens1" + isAutoHypens + hypenLang + "{}");
 
         // PAGE BEGIN
         builder.append("@page{");

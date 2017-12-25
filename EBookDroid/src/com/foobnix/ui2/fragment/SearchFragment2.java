@@ -40,7 +40,6 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.support.v4.content.LocalBroadcastManager;
 import android.support.v4.util.Pair;
-import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.RecyclerView.OnScrollListener;
@@ -167,9 +166,6 @@ public class SearchFragment2 extends UIFragment<FileMeta> {
         searchEditText.addTextChangedListener(filterTextWatcher);
         searchAdapter = new FileMetaAdapter();
         authorsAdapter = new AuthorsAdapter2();
-
-        recyclerView.setItemAnimator(new DefaultItemAnimator());
-        recyclerView.setHasFixedSize(true);
 
         onGridlList = (ImageView) view.findViewById(R.id.onGridList);
         onGridlList.setOnClickListener(new OnClickListener() {
