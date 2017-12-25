@@ -80,7 +80,8 @@ public class RecentUpates {
                             .setIntent(tTSIntent)//
                             .build();//
 
-                    shortcutManager.setDynamicShortcuts(Arrays.asList(tts, shortcut));
+                    // shortcutManager.setDynamicShortcuts(Arrays.asList(tts, shortcut));
+                    shortcutManager.setDynamicShortcuts(Arrays.asList(shortcut));
                 }
             } catch (Exception e) {
                 LOG.e(e);

@@ -519,12 +519,11 @@ public class ImageExtractor implements ImageDownloader {
         codeCache = null;
         whCache = -1;
 
-        LOG.d("getCodecContext before", w, h);
         if (w <= 0 || h <= 0) {
             w = Dips.screenWidth();
             h = Dips.screenHeight();
         }
-        LOG.d("getCodecContext after", w, h);
+        LOG.d("getNewCodecContext after", w, h);
 
         codecContex = BookType.getCodecContextByPath(path);
 

@@ -89,6 +89,8 @@ public class TTSService extends Service {
         PendingIntent pendingIntent = PendingIntent.getBroadcast(this, 0, mediaButtonIntent, 0);
         mMediaSessionCompat.setMediaButtonReceiver(pendingIntent);
 
+        TTSEngine.get().getTTS();
+
     }
 
     boolean isPlaying;
@@ -230,6 +232,7 @@ public class TTSService extends Service {
 
             CodecPage page = dc.getPage(pageNumber);
             String pageHTML = page.getPageHTML();
+            page.recycle();
             pageHTML = TxtUtils.replaceHTMLforTTS(pageHTML);
 
             if (TxtUtils.isNotEmpty(anchor)) {
@@ -306,16 +309,16 @@ public class TTSService extends Service {
                 });
             }
 
-            TTSNotification.show(TempHolder.get().path, pageNumber + 1);
+            TTSNotification.show(AppState.get().lastBookPath, pageNumber + 1);
             TTSEngine.get().speek(firstPart);
             EventBus.getDefault().post(new TtsStatus());
             AppState.get().save(getApplicationContext());
 
             try {
-                BookSettings bs = SettingsManager.getBookSettings(TempHolder.get().path);
+                BookSettings bs = SettingsManager.getBookSettings(AppState.get().lastBookPath);
                 bs.currentPageChanged(pageNumber);
                 bs.save();
-                LOG.d(TAG, "currentPageChanged ", pageNumber, TempHolder.get().path);
+                LOG.d(TAG, "currentPageChanged ", pageNumber, AppState.get().lastBookPath);
             } catch (Exception e) {
                 LOG.e(e);
             }
