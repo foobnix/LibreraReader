@@ -70,7 +70,7 @@ public abstract class AppRecycleAdapter<K, T extends RecyclerView.ViewHolder> ex
                 if (onItemLongClickListener != null) {
                     onItemLongClickListener.onResultRecive(item);
                 }
-                return false;
+                return true;
             }
         });
     }

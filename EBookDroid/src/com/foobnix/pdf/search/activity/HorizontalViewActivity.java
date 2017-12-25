@@ -559,7 +559,7 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
             public boolean onLongClick(final View v) {
                 Vibro.vibrate();
                 CloseAppDialog.showOnLongClickDialog(HorizontalViewActivity.this, v, documentController);
-                return false;
+                return true;
             }
         });
 
