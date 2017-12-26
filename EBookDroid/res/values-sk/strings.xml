@@ -114,7 +114,6 @@
    <string name="list">Zoznam</string>
    <string name="grid">Rošt</string>
    <string name="items_">Položky:</string>
-   <string name="musician_performance">Hudobník Mode</string>
    <string name="pdf_mode">Mode PDF</string>
    <string name="expiremental_features">Anotácie a draw (Pri testovaní, môže dôjsť k poškodeniu niektorých dokumentov)</string>
    <string name="remember_dictionary">Nezabudnite Slovník</string>
@@ -434,4 +433,5 @@
    <string name="horizontally">Vodorovne</string>
    <string name="remember_reading_mode">Pamätajte si režim čítania</string>
    <string name="background_color_on_images_the_same_as_page_background">Farba pozadia na obrázkoch je rovnaká ako pozadie stránky</string>
+   <string name="block_page_movement_horizontally">Blokovať pohyb stránky horizontálne</string>
 </resources>

@@ -119,7 +119,6 @@
    <string name="list">List</string>
    <string name="grid">Grid</string>
    <string name="items_">Items:</string>
-   <string name="musician_performance">Musician Mode</string>
    <string name="pdf_mode">PDF Mode</string>
    <string name="expiremental_features">Annotations and draw (In testing, it may damage some documents)</string>
    <string name="remember_dictionary">Remember Dictionary</string>
@@ -434,4 +433,5 @@
    <string name="horizontally">Horizontally</string>
    <string name="remember_reading_mode">Remember reading mode</string>
    <string name="background_color_on_images_the_same_as_page_background">Background color on images the same as page background</string>
+   <string name="block_page_movement_horizontally">Block page movement horizontally</string>
 </resources>

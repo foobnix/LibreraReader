@@ -114,7 +114,6 @@
    <string name="list">Список</string>
    <string name="grid">Сітка</string>
    <string name="items_">Элементи</string>
-   <string name="musician_performance">Режим музичний</string>
    <string name="pdf_mode">Режим PDF</string>
    <string name="expiremental_features">Аннотація і малювання (В тестуванні, може пошкодити деякі файли)</string>
    <string name="customize_font_background_colors">Налаштувати колір тексту і фону</string>
@@ -434,4 +433,5 @@
    <string name="horizontally">Горизонтально</string>
    <string name="remember_reading_mode">Запам\'ятати режим читання</string>
    <string name="background_color_on_images_the_same_as_page_background">Колір тла на зображеннях такий же, як і фон сторінки</string>
+   <string name="block_page_movement_horizontally">Блокування сторінки рухається горизонтально</string>
 </resources>

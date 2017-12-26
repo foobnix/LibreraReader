@@ -115,7 +115,6 @@
    <string name="list">सूची</string>
    <string name="grid">ग्रिड</string>
    <string name="items_">आइटम:</string>
-   <string name="musician_performance">संगीतकार मोड</string>
    <string name="pdf_mode">पीडीएफ मोड</string>
    <string name="expiremental_features">एनोटेशन और ड्रा (परीक्षण में, यह कुछ दस्तावेजों को नुकसान पहुंचा सकता है)</string>
    <string name="remember_dictionary">शब्दकोश याद रखें</string>
@@ -434,4 +433,5 @@
    <string name="horizontally">क्षैतिज</string>
    <string name="remember_reading_mode">पढ़ने मोड याद रखें</string>
    <string name="background_color_on_images_the_same_as_page_background">पृष्ठ पृष्ठभूमि के समान चित्रों का पृष्ठभूमि रंग</string>
+   <string name="block_page_movement_horizontally">ब्लॉक पृष्ठ आंदोलन क्षैतिज रूप से</string>
 </resources>

@@ -116,7 +116,6 @@
    <string name="list">Lijst</string>
    <string name="grid">Rooster</string>
    <string name="items_">Items:</string>
-   <string name="musician_performance">Musicus Mode</string>
    <string name="pdf_mode">PDF Mode</string>
    <string name="expiremental_features">Annotaties en draw (Bij het testen, kan het aantal documenten beschadigen)</string>
    <string name="remember_dictionary">Onthoud Woordenboek</string>
@@ -434,4 +433,5 @@
    <string name="horizontally">Horizontaal</string>
    <string name="remember_reading_mode">Denk aan de leesmodus</string>
    <string name="background_color_on_images_the_same_as_page_background">Achtergrondkleur op afbeeldingen gelijk aan pagina-achtergrond</string>
+   <string name="block_page_movement_horizontally">Blokkeer de paginabeweging horizontaal</string>
 </resources>

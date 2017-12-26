@@ -117,7 +117,6 @@
    <string name="list">Liste</string>
    <string name="grid">Nett</string>
    <string name="items_">Elementer:</string>
-   <string name="musician_performance">Musikkmodus</string>
    <string name="pdf_mode">PDF-modus</string>
    <string name="expiremental_features">Merknader og tegninger (Ved testing kan det skade noen dokumenter)</string>
    <string name="remember_dictionary">Husk ordbok</string>
@@ -434,4 +433,5 @@
    <string name="horizontally">Horisontalt</string>
    <string name="remember_reading_mode">Husk lesemodus</string>
    <string name="background_color_on_images_the_same_as_page_background">Bakgrunnsfarge på bilder det samme som sidebakgrunn</string>
+   <string name="block_page_movement_horizontally">Blokker sidebevegelsen horisontalt</string>
 </resources>

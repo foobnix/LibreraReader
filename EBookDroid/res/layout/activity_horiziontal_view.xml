@@ -419,7 +419,7 @@
                 android:layout_width="@dimen/wh_button"
                 android:layout_height="@dimen/wh_button"
                 android:layout_weight="0"
-                android:contentDescription="Lock unlock the document"
+                android:contentDescription="@string/block_page_movement_horizontally"
                 android:src="@drawable/glyphicons_205_unlock" />
         </LinearLayout>
     </LinearLayout>
@@ -438,5 +438,7 @@
         android:id="@+id/overlay"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
+    
+    
 
 </RelativeLayout>

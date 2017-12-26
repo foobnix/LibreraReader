@@ -17,6 +17,7 @@ import com.foobnix.android.utils.LOG;
 import com.foobnix.android.utils.ResultResponse;
 import com.foobnix.android.utils.TxtUtils;
 import com.foobnix.android.utils.Vibro;
+import com.foobnix.android.utils.Views;
 import com.foobnix.ext.CacheZipUtils;
 import com.foobnix.pdf.CopyAsyncTask;
 import com.foobnix.pdf.info.ADS;
@@ -706,7 +707,7 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
 
                     if (ExtUtils.isTextFomat(getIntent())) {
                         PageImageState.get().isAutoFit = true;
-                        moveCenter.setVisibility(View.GONE);
+                        // moveCenter.setVisibility(View.GONE);
                     } else if (AppState.get().isLockPDF) {
                         // moveCenter.setVisibility(View.VISIBLE);
                         AppState.get().isLocked = true;
@@ -1368,6 +1369,25 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
                 return false;
             }
         }, false);
+
+        showHelp();
+
+    }
+
+    public void showHelp() {
+        if (AppState.get().isFirstTimeHorizontal) {
+            handler.postDelayed(new Runnable() {
+
+                @Override
+                public void run() {
+                    AppState.get().isFirstTimeHorizontal = false;
+                    AppState.get().isEditMode = true;
+                    hideShow();
+                    Views.showHelpToast(lockModelImage);
+
+                }
+            }, 1000);
+        }
 
     }
 

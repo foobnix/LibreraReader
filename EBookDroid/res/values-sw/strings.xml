@@ -116,7 +116,6 @@
    <string name="list">Orodha</string>
    <string name="grid">Gridi</string>
    <string name="items_">Vitu:</string>
-   <string name="musician_performance">Mode mwanamuziki</string>
    <string name="pdf_mode">PDF Mode</string>
    <string name="expiremental_features">Annotations na sare (Katika kupima, inaweza kuharibu baadhi ya nyaraka)</string>
    <string name="remember_dictionary">Kumbuka Dictionary</string>
@@ -434,4 +433,5 @@
    <string name="horizontally">Kwa usawa</string>
    <string name="remember_reading_mode">Kumbuka kusoma mode</string>
    <string name="background_color_on_images_the_same_as_page_background">Rangi ya asili kwenye picha sawa na background ya ukurasa</string>
+   <string name="block_page_movement_horizontally">Zima harakati za ukurasa kwa usawa</string>
 </resources>

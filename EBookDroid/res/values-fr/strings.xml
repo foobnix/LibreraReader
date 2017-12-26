@@ -114,7 +114,6 @@
    <string name="list">Liste</string>
    <string name="grid">Grille</string>
    <string name="items_">Articles</string>
-   <string name="musician_performance">Mode Musicien</string>
    <string name="pdf_mode">PDF mode</string>
    <string name="expiremental_features">Annotations et tirage (Lors des essais, il peut endommager certains documents)</string>
    <string name="remember_dictionary">Rappelez Dictionnaire</string>
@@ -434,4 +433,5 @@
    <string name="horizontally">Horizontalement</string>
    <string name="remember_reading_mode">Se souvenir du mode de lecture</string>
    <string name="background_color_on_images_the_same_as_page_background">Couleur d\'arrière-plan sur les images de même que l\'arrière-plan de la page</string>
+   <string name="block_page_movement_horizontally">Bloquer le mouvement de la page horizontalement</string>
 </resources>

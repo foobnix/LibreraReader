@@ -4,7 +4,14 @@ import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.foobnix.pdf.info.TintUtil;
+
 import android.app.Activity;
+import android.content.Context;
+import android.graphics.Color;
+import android.graphics.Typeface;
+import android.graphics.drawable.Drawable;
+import android.support.v4.content.ContextCompat;
 import android.text.Html;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -14,11 +21,82 @@ import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.LinearLayout.LayoutParams;
 import android.widget.ListAdapter;
 import android.widget.ListView;
+import android.widget.PopupWindow;
+import android.widget.PopupWindow.OnDismissListener;
 import android.widget.TextView;
 
 public class Views {
+
+    public static void showHelpToast(final ImageView anchor) {
+        Context context = anchor.getContext();
+        TextView textView = new TextView(context);
+        textView.setTextColor(Color.WHITE);
+        // textView.setTypeface(Typeface.DEFAULT, Typeface.BOLD);
+        textView.setTextSize(16);
+        textView.setBackgroundResource(android.R.drawable.toast_frame);
+        textView.setText(anchor.getContentDescription());
+        textView.setFocusable(true);
+        textView.setFocusableInTouchMode(true);
+
+        TintUtil.setDrawableTint(anchor.getDrawable(), Color.RED);
+
+
+        // TintUtil.setDrawableTint(anchor.getDrawable(), Color.WHITE);
+
+        textView.setCompoundDrawablesWithIntrinsicBounds(anchor.getDrawable(), null, null, null);
+        int dp = Dips.dpToPx(10);
+        textView.setCompoundDrawablePadding(dp);
+        textView.setPadding(dp * 2, dp, dp * 2, dp);
+
+        textView.setBackgroundResource(android.R.drawable.toast_frame);
+
+        final PopupWindow mPopupWindow = new PopupWindow(textView, LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);
+        mPopupWindow.setFocusable(true);
+        mPopupWindow.showAsDropDown(anchor, 0, -Dips.dpToPx(120));
+
+        mPopupWindow.setOnDismissListener(new OnDismissListener() {
+
+            @Override
+            public void onDismiss() {
+                TintUtil.setDrawableTint(anchor.getDrawable(), Color.WHITE);
+            }
+        });
+
+        textView.setOnClickListener(new OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                mPopupWindow.dismiss();
+            }
+        });
+
+        Keyboards.hideNavigation((Activity) anchor.getContext());
+
+    }
+
+    public static TextView textViewWithImage(Context context, String text, int iconRes) {
+        TextView textView = new TextView(context);
+        textView.setTextColor(Color.WHITE);
+        textView.setTypeface(Typeface.DEFAULT, Typeface.BOLD);
+        textView.setTextSize(16);
+        textView.setBackgroundResource(android.R.drawable.toast_frame);
+        textView.setText(text);
+
+        Drawable icon = ContextCompat.getDrawable(context, iconRes);
+        TintUtil.setDrawableTint(icon.getCurrent(), Color.WHITE);
+
+        textView.setCompoundDrawablesWithIntrinsicBounds(icon, null, null, null);
+        int dp = Dips.dpToPx(10);
+        textView.setCompoundDrawablePadding(dp);
+        textView.setPadding(dp, dp, dp, dp);
+
+        textView.setBackgroundResource(android.R.drawable.toast_frame);
+
+        return textView;
+    }
 
     public static View activate(View view, boolean isActive) {
         view.setFocusable(isActive);

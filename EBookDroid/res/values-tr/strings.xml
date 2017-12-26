@@ -114,7 +114,6 @@
    <string name="list">Liste</string>
    <string name="grid">Izgara</string>
    <string name="items_">Öğeler:</string>
-   <string name="musician_performance">Müzisyen Modu</string>
    <string name="pdf_mode">PDF Modu</string>
    <string name="expiremental_features">Test, bazı belgelere zarar verebilir</string>
    <string name="remember_dictionary">Sözlük Hatırla</string>
@@ -434,4 +433,5 @@
    <string name="horizontally">Yatay</string>
    <string name="remember_reading_mode">Okuma modunu hatırla</string>
    <string name="background_color_on_images_the_same_as_page_background">Resimlerdeki arka plan rengi, sayfa arka planıyla aynı</string>
+   <string name="block_page_movement_horizontally">Sayfa hareketini yatay olarak engelle</string>
 </resources>

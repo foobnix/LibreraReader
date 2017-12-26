@@ -116,7 +116,6 @@
    <string name="list">Lista</string>
    <string name="grid">Rutnät</string>
    <string name="items_">Artiklar:</string>
-   <string name="musician_performance">Musiker Läge</string>
    <string name="pdf_mode">PDF-läge</string>
    <string name="expiremental_features">Anteckningar och oavgjort (Vid testning, kan det skada vissa dokument)</string>
    <string name="remember_dictionary">Kom ihåg ordbok</string>
@@ -434,4 +433,5 @@
    <string name="horizontally">Vågrätt</string>
    <string name="remember_reading_mode">Kom ihåg läsläge</string>
    <string name="background_color_on_images_the_same_as_page_background">Bakgrundsfärg på bilder samma som sidbakgrund</string>
+   <string name="block_page_movement_horizontally">Blockera sidrörelsen horisontellt</string>
 </resources>

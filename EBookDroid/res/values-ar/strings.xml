@@ -114,7 +114,6 @@
    <string name="list">قائمة</string>
    <string name="grid">شبكة</string>
    <string name="items_">العناصر:</string>
-   <string name="musician_performance">وضع الموسيقار</string>
    <string name="pdf_mode">PDF الوضع</string>
    <string name="expiremental_features">الشروح وتعادل (في الاختبار، فإنه قد يؤدي إلى تلف بعض الوثائق)</string>
    <string name="remember_dictionary">تذكر قاموس</string>
@@ -434,4 +433,5 @@
    <string name="horizontally">أفقيا</string>
    <string name="remember_reading_mode">تذكر وضع القراءة</string>
    <string name="background_color_on_images_the_same_as_page_background">لون الخلفية على الصور نفس الخلفية الصفحة</string>
+   <string name="block_page_movement_horizontally">كتلة حركة الصفحة أفقيا</string>
 </resources>

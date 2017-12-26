@@ -115,7 +115,6 @@
    <string name="list">Liste</string>
    <string name="grid">Gitter</string>
    <string name="items_">Dokumente:</string>
-   <string name="musician_performance">Musiker-Modus</string>
    <string name="pdf_mode">PDF-Modus</string>
    <string name="expiremental_features">Anmerkungen und Zeichnen (kann Dokumente beschädigen)</string>
    <string name="remember_dictionary">Wörterbuch</string>
@@ -434,4 +433,5 @@
    <string name="horizontally">Horizontal</string>
    <string name="remember_reading_mode">Merken Sie sich den Lesemodus</string>
    <string name="background_color_on_images_the_same_as_page_background">Hintergrundfarbe auf Bildern entspricht dem Seitenhintergrund</string>
+   <string name="block_page_movement_horizontally">Blockieren Sie die Seitenbewegung horizontal</string>
 </resources>

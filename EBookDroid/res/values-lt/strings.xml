@@ -117,7 +117,6 @@
    <string name="list">Sąrašas</string>
    <string name="grid">Tinklelis</string>
    <string name="items_">Kiekis:</string>
-   <string name="musician_performance">Slinkimas</string>
    <string name="pdf_mode">PDF režimas</string>
    <string name="expiremental_features">Pastabos ir piešimas (Bandoma, gali neveikti kai kuriuose dokumentuose)</string>
    <string name="remember_dictionary">Atsiminti žodyną</string>
@@ -434,4 +433,5 @@
    <string name="horizontally">Horizontaliai</string>
    <string name="remember_reading_mode">Prisiminti skaitymo režimą</string>
    <string name="background_color_on_images_the_same_as_page_background">Fono spalva ant paveikslėlių yra tokia pati kaip puslapio fonas</string>
+   <string name="block_page_movement_horizontally">Blokuoti puslapio judėjimą horizontaliai</string>
 </resources>
