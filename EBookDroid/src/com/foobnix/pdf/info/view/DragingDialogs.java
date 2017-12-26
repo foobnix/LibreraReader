@@ -12,6 +12,7 @@ import java.util.Map;
 import org.ebookdroid.BookType;
 import org.ebookdroid.common.settings.SettingsManager;
 import org.ebookdroid.common.settings.books.BookSettings;
+import org.ebookdroid.ui.viewer.VerticalViewActivity;
 import org.greenrobot.eventbus.EventBus;
 
 import com.foobnix.StringResponse;
@@ -167,7 +168,6 @@ public class DragingDialogs {
         dialog.show("Sample");
 
     }
-
 
     public static void contrastAndBrigtness(final FrameLayout anchor, final DocumentController controller, final Runnable onRealod, final Runnable onRestart) {
 
@@ -1280,6 +1280,7 @@ public class DragingDialogs {
                             } else {
                             }
                             pageUrl = PageUrl.buildSmall(currentBook.getPath(), page);
+                            LOG.d("PageThumbnailAdapter", "getPageUrl", page);
                             return pageUrl;
                         };
                     });
@@ -1361,7 +1362,9 @@ public class DragingDialogs {
 
             @Override
             public void run() {
-                // ImageLoader.getInstance().clearAllTasks();
+                if (controller.getActivity() instanceof VerticalViewActivity) {
+                    ImageLoader.getInstance().clearAllTasks();
+                }
             }
 
         });
@@ -3200,7 +3203,7 @@ public class DragingDialogs {
 
         DragingPopup dialog = new DragingPopup(R.string.preferences, anchor, PREF_WIDTH, PREF_HEIGHT) {
 
-    @Override
+            @Override
             public View getContentView(final LayoutInflater inflater) {
                 View inflate = inflater.inflate(R.layout.dialog_prefs, null, false);
 
@@ -3606,7 +3609,6 @@ public class DragingDialogs {
                     }
                 });
 
-
                 // orientation end
 
                 final CheckBox isEnableBlueFilter = (CheckBox) inflate.findViewById(R.id.isEnableBlueFilter);
@@ -3907,7 +3909,7 @@ public class DragingDialogs {
 
                             t2.setOnClickListener(new OnClickListener() {
 
-    @Override
+                                @Override
                                 public void onClick(View v) {
                                     AppState.get().colorNigthText = AppState.COLOR_WHITE;
                                     AppState.get().colorNigthBg = AppState.COLOR_BLACK;
@@ -4095,19 +4097,19 @@ public class DragingDialogs {
             }
         }.show(DragingPopup.PREF + "_preferences").setOnCloseListener(new Runnable() {
 
-    @Override
-    public void run() {
-        if (//
-        initSP != AppState.get().fontSizeSp || //
+            @Override
+            public void run() {
+                if (//
+                initSP != AppState.get().fontSizeSp || //
                 isChangedColor || //
                 isChangedPreFormatting || //
                 (controller.isTextFormat() && cssHash != BookCSS.get().toCssString().hashCode())) {
-            if (onRefresh != null) {
-                onRefresh.run();
+                    if (onRefresh != null) {
+                        onRefresh.run();
+                    }
+                    controller.restartActivity();
+                }
             }
-            controller.restartActivity();
-        }
-    }
         });
         return dialog;
     }

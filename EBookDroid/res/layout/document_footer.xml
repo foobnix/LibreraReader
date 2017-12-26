@@ -119,7 +119,7 @@
         android:layout_height="wrap_content"
         android:padding="2dip"
         android:clickable="true"
-        android:focusableInTouchMode="true"
+        android:focusableInTouchMode="false"
         android:gravity="center_vertical" >
 
         <ImageView

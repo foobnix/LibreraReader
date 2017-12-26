@@ -779,13 +779,6 @@ public class DocumentWrapperUI {
         maxSeek.setVisibility(View.GONE);
         seekBar.setVisibility(View.INVISIBLE);
 
-        moveCenter.setOnClickListener(new OnClickListener() {
-
-            @Override
-            public void onClick(View v) {
-                Views.showHelpToast(moveCenter);
-            }
-        });
 
 
 

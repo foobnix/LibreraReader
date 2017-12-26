@@ -29,7 +29,7 @@ public class BrigtnessDraw extends View {
         textView.setTextColor(Color.WHITE);
         textView.setTypeface(Typeface.DEFAULT, Typeface.BOLD);
         textView.setTextSize(16);
-        textView.setBackgroundResource(android.R.drawable.toast_frame);
+        textView.setBackgroundResource(R.drawable.bg_my_toast);
 
         Drawable icon = ContextCompat.getDrawable(context, R.drawable.glyphicons_190_brightness_increase);
         TintUtil.setDrawableTint(icon.getCurrent(), Color.WHITE);
@@ -37,9 +37,8 @@ public class BrigtnessDraw extends View {
         textView.setCompoundDrawablesWithIntrinsicBounds(icon, null, null, null);
         int dp = Dips.dpToPx(10);
         textView.setCompoundDrawablePadding(dp);
-        textView.setPadding(dp, dp, dp, dp);
+        textView.setPadding(dp * 2, dp, dp * 2, dp);
 
-        textView.setBackgroundResource(android.R.drawable.toast_frame);
 
         toast = new Toast(context);
         toast.setGravity(Gravity.CENTER, 0, 0);
@@ -135,11 +134,14 @@ public class BrigtnessDraw extends View {
         } else {
             textView.setText("" + (int) (AppState.getInstance().brightness * 100));
         }
+        toast.setDuration(1000);
         toast.show();
+
     }
 
     public void showToast(String text) {
         textView.setText(text);
+        toast.setDuration(1000);
         toast.show();
     }
 

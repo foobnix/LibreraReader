@@ -3,7 +3,7 @@
     package="com.foobnix.pdf.reader"
     android:installLocation="auto"
     android:versionCode="470"
-    android:versionName="7.3.80" >
+    android:versionName="7.3.81" >
 
     <uses-sdk
         android:minSdkVersion="14"
