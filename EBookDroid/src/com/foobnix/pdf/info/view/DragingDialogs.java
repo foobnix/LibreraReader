@@ -111,6 +111,7 @@ import android.view.View.OnClickListener;
 import android.view.View.OnKeyListener;
 import android.view.View.OnLongClickListener;
 import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.view.inputmethod.EditorInfo;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
@@ -167,95 +168,6 @@ public class DragingDialogs {
 
     }
 
-    public static void dialogBlueLight(final FrameLayout anchor, final DocumentController controller, final Runnable onRefresh, final Runnable updateUIRefresh) {
-
-        DragingPopup dialog = new DragingPopup(R.string.bluelight_filter, anchor, PREF_WIDTH, PREF_HEIGHT) {
-
-            @Override
-            public void beforeCreate() {
-                titleAction = controller.getString(R.string.preferences);
-                titleRunnable = new Runnable() {
-
-                    @Override
-                    public void run() {
-                        preferences(anchor, controller, onRefresh, updateUIRefresh);
-                    }
-                };
-            }
-
-            @Override
-            @SuppressLint("NewApi")
-            public View getContentView(LayoutInflater inflater) {
-                final Activity activity = controller.getActivity();
-                final View inflate = inflater.inflate(R.layout.dialog_bluelight, null, false);
-
-                /** Blue Light Color start **/
-
-                inflate.findViewById(R.id.blueLightLayout).setVisibility(AppState.get().isInkMode ? View.GONE : View.VISIBLE);
-
-                final CustomColorView blueLightColor = (CustomColorView) inflate.findViewById(R.id.blueLightColor);
-                TxtUtils.bold(blueLightColor.getText1());
-                blueLightColor.withDefaultColors(AppState.BLUE_FILTER_DEFAULT_COLOR, Color.BLACK, Color.RED, Color.GREEN);
-                blueLightColor.init(AppState.get().blueLightColor);
-                blueLightColor.setOnColorChanged(new StringResponse() {
-
-                    @Override
-                    public boolean onResultRecive(String string) {
-                        AppState.get().blueLightColor = Color.parseColor(string);
-                        if (onRefresh != null) {
-                            onRefresh.run();
-                        }
-                        Keyboards.hideNavigation(controller.getActivity());
-                        return false;
-                    }
-                });
-
-                final CustomSeek blueLightAlpha = (CustomSeek) inflate.findViewById(R.id.blueLightAlpha);
-                blueLightAlpha.init(0, 99, AppState.getInstance().blueLightAlpha);
-                blueLightAlpha.setOnSeekChanged(new IntegerResponse() {
-
-                    @Override
-                    public boolean onResultRecive(int result) {
-                        AppState.get().blueLightAlpha = result;
-                        blueLightAlpha.setValueText("" + AppState.getInstance().blueLightAlpha + "%");
-                        if (onRefresh != null) {
-                            onRefresh.run();
-                        }
-                        return false;
-                    }
-                });
-                blueLightAlpha.setValueText("" + AppState.getInstance().blueLightAlpha + "%");
-
-                TextView blueLightOff = (TextView) inflate.findViewById(R.id.blueLightOff);
-                TxtUtils.underlineTextView(blueLightOff);
-                blueLightOff.setOnClickListener(new OnClickListener() {
-
-                    @Override
-                    public void onClick(View v) {
-                        AppState.get().blueLightAlpha = 0;
-                        blueLightAlpha.reset(0);
-                        if (onRefresh != null) {
-                            onRefresh.run();
-                        }
-                    }
-                });
-
-                /** Blue Light Color end **/
-
-                return inflate;
-            }
-        };
-        dialog.setOnCloseListener(new Runnable() {
-
-            @Override
-            public void run() {
-                AppState.get().save(controller.getActivity());
-
-            }
-        });
-        dialog.show(DragingPopup.PREF + "_blueLightFilter");
-
-    }
 
     public static void contrastAndBrigtness(final FrameLayout anchor, final DocumentController controller, final Runnable onRealod, final Runnable onRestart) {
 
@@ -1451,6 +1363,7 @@ public class DragingDialogs {
             public void run() {
                 // ImageLoader.getInstance().clearAllTasks();
             }
+
         });
 
     }
@@ -3287,7 +3200,7 @@ public class DragingDialogs {
 
         DragingPopup dialog = new DragingPopup(R.string.preferences, anchor, PREF_WIDTH, PREF_HEIGHT) {
 
-            @Override
+    @Override
             public View getContentView(final LayoutInflater inflater) {
                 View inflate = inflater.inflate(R.layout.dialog_prefs, null, false);
 
@@ -3696,6 +3609,19 @@ public class DragingDialogs {
 
                 // orientation end
 
+                final CheckBox isEnableBlueFilter = (CheckBox) inflate.findViewById(R.id.isEnableBlueFilter);
+                isEnableBlueFilter.setChecked(AppState.get().isEnableBlueFilter);
+                isEnableBlueFilter.setOnCheckedChangeListener(new OnCheckedChangeListener() {
+
+                    @Override
+                    public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                        AppState.get().isEnableBlueFilter = isChecked;
+                        if (onRefresh != null) {
+                            onRefresh.run();
+                        }
+                    }
+                });
+
                 final TextView onBlueFilter = (TextView) inflate.findViewById(R.id.onBlueFilter);
                 onBlueFilter.setVisibility(Dips.isEInk(controller.getActivity()) ? View.GONE : View.VISIBLE);
                 TxtUtils.underlineTextView(onBlueFilter);
@@ -3703,7 +3629,63 @@ public class DragingDialogs {
 
                     @Override
                     public void onClick(View v) {
-                        dialogBlueLight(anchor, controller, onRefresh, updateUIRefresh);
+                        final AlertDialog.Builder builder = new AlertDialog.Builder(v.getContext());
+                        builder.setTitle(R.string.bluelight_filter);
+
+                        final View inflate = inflater.inflate(R.layout.dialog_bluelight, null, false);
+
+                        inflate.findViewById(R.id.blueLightLayout).setVisibility(AppState.get().isInkMode ? View.GONE : View.VISIBLE);
+
+                        final CustomColorView blueLightColor = (CustomColorView) inflate.findViewById(R.id.blueLightColor);
+                        TxtUtils.bold(blueLightColor.getText1());
+                        blueLightColor.withDefaultColors(AppState.BLUE_FILTER_DEFAULT_COLOR, Color.BLACK, Color.RED, Color.GREEN);
+                        blueLightColor.init(AppState.get().blueLightColor);
+                        blueLightColor.setOnColorChanged(new StringResponse() {
+
+                            @Override
+                            public boolean onResultRecive(String string) {
+                                AppState.get().isEnableBlueFilter = true;
+                                AppState.get().blueLightColor = Color.parseColor(string);
+                                if (onRefresh != null) {
+                                    onRefresh.run();
+                                }
+                                Keyboards.hideNavigation(controller.getActivity());
+                                return false;
+                            }
+                        });
+
+                        final CustomSeek blueLightAlpha = (CustomSeek) inflate.findViewById(R.id.blueLightAlpha);
+                        blueLightAlpha.init(0, 99, AppState.getInstance().blueLightAlpha);
+                        blueLightAlpha.setOnSeekChanged(new IntegerResponse() {
+
+                            @Override
+                            public boolean onResultRecive(int result) {
+                                AppState.get().isEnableBlueFilter = true;
+                                AppState.get().blueLightAlpha = result;
+                                blueLightAlpha.setValueText("" + AppState.getInstance().blueLightAlpha + "%");
+                                if (onRefresh != null) {
+                                    onRefresh.run();
+                                }
+                                return false;
+                            }
+                        });
+                        blueLightAlpha.setValueText("" + AppState.getInstance().blueLightAlpha + "%");
+
+                        builder.setView(inflate);
+
+                        builder.setNegativeButton(R.string.close, new DialogInterface.OnClickListener() {
+
+                            @Override
+                            public void onClick(final DialogInterface dialog, final int id) {
+                                isEnableBlueFilter.setChecked(AppState.get().isEnableBlueFilter);
+                                if (dialog != null) {
+                                    dialog.dismiss();
+                                }
+                            }
+                        });
+
+                        AlertDialog dialog = builder.show();
+                        dialog.getWindow().clearFlags(WindowManager.LayoutParams.FLAG_DIM_BEHIND);
                     }
                 });
 
@@ -3925,7 +3907,7 @@ public class DragingDialogs {
 
                             t2.setOnClickListener(new OnClickListener() {
 
-                                @Override
+    @Override
                                 public void onClick(View v) {
                                     AppState.get().colorNigthText = AppState.COLOR_WHITE;
                                     AppState.get().colorNigthBg = AppState.COLOR_BLACK;
@@ -4113,19 +4095,19 @@ public class DragingDialogs {
             }
         }.show(DragingPopup.PREF + "_preferences").setOnCloseListener(new Runnable() {
 
-            @Override
-            public void run() {
-                if (//
-                initSP != AppState.get().fontSizeSp || //
+    @Override
+    public void run() {
+        if (//
+        initSP != AppState.get().fontSizeSp || //
                 isChangedColor || //
                 isChangedPreFormatting || //
                 (controller.isTextFormat() && cssHash != BookCSS.get().toCssString().hashCode())) {
-                    if (onRefresh != null) {
-                        onRefresh.run();
-                    }
-                    controller.restartActivity();
-                }
+            if (onRefresh != null) {
+                onRefresh.run();
             }
+            controller.restartActivity();
+        }
+    }
         });
         return dialog;
     }

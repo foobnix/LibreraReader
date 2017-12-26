@@ -514,13 +514,28 @@
                 android:layout_marginTop="1dip"
                 android:background="@color/lt_grey_alpha" />
 
-            <TextView
-                android:id="@+id/onBlueFilter"
-                style="@style/textLink"
+            <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="4dip"
-                android:text="@string/bluelight_filter" />
+                android:gravity="center_vertical"
+                android:orientation="horizontal" >
+
+                <CheckBox
+                    android:id="@+id/isEnableBlueFilter"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="bottom"
+                    android:layout_weight="0"
+                    android:text="" />
+
+                <TextView
+                    android:id="@+id/onBlueFilter"
+                    style="@style/textLink"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="4dip"
+                    android:text="@string/bluelight_filter" />
+            </LinearLayout>
 
             <LinearLayout
                 android:layout_width="wrap_content"

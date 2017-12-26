@@ -34,6 +34,7 @@
         </com.foobnix.pdf.info.view.CustomSeek>
         
         <TextView
+            	android:visibility="gone"
                 android:id="@+id/blueLightOff"
                 style="@style/textLink"
                 android:layout_width="wrap_content"

@@ -61,7 +61,7 @@ public class Views {
 
             @Override
             public void onDismiss() {
-                TintUtil.setDrawableTint(anchor.getDrawable(), Color.WHITE);
+                TintUtil.setTintImageNoAlpha(anchor, Color.WHITE);
             }
         });
 

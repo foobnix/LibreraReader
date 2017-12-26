@@ -426,7 +426,8 @@ public class AppState {
     public int tapZoneRight = TAP_NEXT_PAGE;
 
     public int blueLightColor = BLUE_FILTER_DEFAULT_COLOR;
-    public int blueLightAlpha = 0;
+    public int blueLightAlpha = 30;
+    public boolean isEnableBlueFilter = false;
 
     public List<Integer> getNextKeys() {
         return isReverseKeys ? prevKeys : nextKeys;
@@ -732,6 +733,7 @@ public class AppState {
 
         blueLightColor = sp.getInt("blueLightColor", blueLightColor);
         blueLightAlpha = sp.getInt("blueLightAlpha", blueLightAlpha);
+        isEnableBlueFilter = sp.getBoolean("isEnableBlueFilter", isEnableBlueFilter);
 
         isFirstTimeVertical = sp.getBoolean("isFirstTimeVertical", isFirstTimeVertical);
         isFirstTimeHorizontal = sp.getBoolean("isFirstTimeHorizontal", isFirstTimeHorizontal);
@@ -972,6 +974,7 @@ public class AppState {
 
         editor.putInt("blueLightColor", blueLightColor);
         editor.putInt("blueLightAlpha", blueLightAlpha);
+        editor.putBoolean("isEnableBlueFilter", isEnableBlueFilter);
 
         editor.putBoolean("isFirstTimeHorizontal", isFirstTimeHorizontal);
         editor.putBoolean("isFirstTimeVertical", isFirstTimeVertical);
