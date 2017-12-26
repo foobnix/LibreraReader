@@ -4,9 +4,11 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.HashSet;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 import java.util.concurrent.TimeUnit;
 
 import com.foobnix.android.utils.Apps;
@@ -429,6 +431,8 @@ public class AppState {
     public int blueLightAlpha = 30;
     public boolean isEnableBlueFilter = false;
 
+    public Set<String> myAutoComplete = new HashSet<String>();
+
     public List<Integer> getNextKeys() {
         return isReverseKeys ? prevKeys : nextKeys;
     }
@@ -738,6 +742,9 @@ public class AppState {
         isFirstTimeVertical = sp.getBoolean("isFirstTimeVertical", isFirstTimeVertical);
         isFirstTimeHorizontal = sp.getBoolean("isFirstTimeHorizontal", isFirstTimeHorizontal);
 
+        myAutoComplete = sp.getStringSet("myAutoComplete", new HashSet<String>());
+
+
         LOG.d("LOAD AppState", "coverSmallSize", coverSmallSize);
     }
 
@@ -978,6 +985,8 @@ public class AppState {
 
         editor.putBoolean("isFirstTimeHorizontal", isFirstTimeHorizontal);
         editor.putBoolean("isFirstTimeVertical", isFirstTimeVertical);
+
+        editor.putStringSet("myAutoComplete", myAutoComplete);
 
         editor.commit();
 

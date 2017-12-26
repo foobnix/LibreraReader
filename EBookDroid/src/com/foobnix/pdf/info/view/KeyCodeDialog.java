@@ -1,4 +1,4 @@
-package com.foobnix.pdf.info.fragment;
+package com.foobnix.pdf.info.view;
 
 import com.foobnix.pdf.info.R;
 import com.foobnix.pdf.info.wrapper.AppState;

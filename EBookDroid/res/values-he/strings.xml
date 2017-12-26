@@ -434,4 +434,5 @@
    <string name="remember_reading_mode">זכור מצב קריאה</string>
    <string name="background_color_on_images_the_same_as_page_background">צבע רקע על תמונות כמו רקע הדף</string>
    <string name="block_page_movement_horizontally">חסום את תנועת הדף בצורה אופקית</string>
+   <string name="edit_autocomplete">ערוך את ההשלמה האוטומטית</string>
 </resources>

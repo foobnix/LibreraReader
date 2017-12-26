@@ -434,4 +434,5 @@
    <string name="remember_reading_mode">Rețineți modul de citire</string>
    <string name="background_color_on_images_the_same_as_page_background">Culoarea de fundal pe imagini este la fel ca fundalul paginii</string>
    <string name="block_page_movement_horizontally">Blocați mișcarea paginii pe orizontală</string>
+   <string name="edit_autocomplete">Editați completarea automată</string>
 </resources>

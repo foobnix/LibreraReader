@@ -567,7 +567,7 @@ public class ExtUtils {
                 dialog.dismiss();
             }
         });
-        if (AppState.get().isInkMode) {
+        if (Dips.isEInk(c)) {
             view.findViewById(R.id.music).setVisibility(View.GONE);
         }
         CheckBox checkBox = (CheckBox) view.findViewById(R.id.checkBoxRemember);

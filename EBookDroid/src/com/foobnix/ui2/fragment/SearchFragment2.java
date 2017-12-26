@@ -10,13 +10,15 @@ import java.util.List;
 import java.util.Set;
 import java.util.Stack;
 
+import com.foobnix.android.utils.BaseItemLayoutAdapter;
+import com.foobnix.android.utils.Keyboards;
 import com.foobnix.android.utils.LOG;
 import com.foobnix.android.utils.ResultResponse;
 import com.foobnix.android.utils.TxtUtils;
 import com.foobnix.dao2.FileMeta;
 import com.foobnix.pdf.info.R;
 import com.foobnix.pdf.info.TintUtil;
-import com.foobnix.pdf.info.fragment.KeyCodeDialog;
+import com.foobnix.pdf.info.view.KeyCodeDialog;
 import com.foobnix.pdf.info.view.MyPopupMenu;
 import com.foobnix.pdf.info.widget.PrefDialogs;
 import com.foobnix.pdf.info.wrapper.AppState;
@@ -32,8 +34,10 @@ import com.foobnix.ui2.fast.FastScrollRecyclerView;
 import com.foobnix.ui2.fast.FastScrollStateChangeListener;
 import com.nostra13.universalimageloader.core.ImageLoader;
 
+import android.app.AlertDialog;
 import android.content.BroadcastReceiver;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.Bundle;
@@ -54,6 +58,7 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.ImageView;
+import android.widget.ListView;
 import android.widget.PopupMenu;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -65,6 +70,7 @@ public class SearchFragment2 extends UIFragment<FileMeta> {
     private static final String CMD_KEYCODE = "@@keycode_config";
     private static final String CMD_LONG_TAP_ON_OFF = "@@long_tap_on_off";
     private static final String CMD_FULLSCREEN_ON = "@@fullscreen_on";
+    private static final String CMD_EDIT_AUTO_COMPLETE = "@@edit_autocomple";
 
     public static int NONE = -1;
 
@@ -73,7 +79,7 @@ public class SearchFragment2 extends UIFragment<FileMeta> {
 
     TextView countBooks, sortBy;
     Handler handler;
-    ImageView sortOrder;
+    ImageView sortOrder, myAutoCompleteImage;
     View onRefresh, cleanFilter, secondTopPanel;
     AutoCompleteTextView searchEditText;
 
@@ -113,6 +119,9 @@ public class SearchFragment2 extends UIFragment<FileMeta> {
         autocomplitions.add(CMD_FULLSCREEN_ON);
         autocomplitions.add(CMD_LONG_TAP_ON_OFF);
         autocomplitions.add(CMD_KEYCODE);
+        autocomplitions.add(CMD_EDIT_AUTO_COMPLETE);
+
+        autocomplitions.addAll(AppState.get().myAutoComplete);
 
         updateFilterListAdapter();
     }
@@ -145,8 +154,11 @@ public class SearchFragment2 extends UIFragment<FileMeta> {
         cleanFilter = view.findViewById(R.id.cleanFilter);
         sortBy = (TextView) view.findViewById(R.id.sortBy);
         sortOrder = (ImageView) view.findViewById(R.id.sortOrder);
+        myAutoCompleteImage = (ImageView) view.findViewById(R.id.myAutoCompleteImage);
         searchEditText = (AutoCompleteTextView) view.findViewById(R.id.filterLine);
         recyclerView = (RecyclerView) view.findViewById(R.id.recyclerView);
+
+        myAutoCompleteImage.setVisibility(View.GONE);
 
         ((FastScrollRecyclerView) recyclerView).setFastScrollStateChangeListener(new FastScrollStateChangeListener() {
 
@@ -254,7 +266,70 @@ public class SearchFragment2 extends UIFragment<FileMeta> {
                 super.onScrolled(recyclerView, dx, dy);
             }
         });
+
+        myAutoCompleteImage.setOnClickListener(new OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                showAutoCompleteDialog();
+            }
+        });
+
         return view;
+
+    }
+
+    public void showAutoCompleteDialog() {
+
+        final AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+        builder.setTitle(R.string.edit_autocomplete);
+
+        final ListView list = new ListView(getActivity());
+
+        final List<String> items = new ArrayList<String>(AppState.get().myAutoComplete);
+        BaseItemLayoutAdapter<String> adapter = new BaseItemLayoutAdapter<String>(getActivity(), R.layout.path_item, items) {
+            @Override
+            public void populateView(View layout, int position, final String item) {
+                TextView text = layout.findViewById(R.id.browserPath);
+                ImageView delete = layout.findViewById(R.id.delete);
+
+                text.setText(item);
+
+                delete.setOnClickListener(new OnClickListener() {
+
+                    @Override
+                    public void onClick(View v) {
+                        autocomplitions.remove(item);
+                        items.remove(item);
+                        AppState.get().myAutoComplete.remove(item);
+                        notifyDataSetChanged();
+                    }
+                });
+                layout.setOnClickListener(new OnClickListener() {
+
+                    @Override
+                    public void onClick(View v) {
+                        searchEditText.setText(item);
+                        searchAndOrderAsync();
+                    }
+                });
+
+            }
+        };
+
+        list.setAdapter(adapter);
+
+        builder.setView(list);
+
+        builder.setPositiveButton(R.string.close, new AlertDialog.OnClickListener() {
+
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+            }
+        });
+
+        builder.show();
+        Keyboards.close(getActivity());
 
     }
 
@@ -457,6 +532,11 @@ public class SearchFragment2 extends UIFragment<FileMeta> {
             searchEditText.setText("");
         }
 
+        if (CMD_EDIT_AUTO_COMPLETE.equals(txt)) {
+            searchEditText.setText("");
+            showAutoCompleteDialog();
+        }
+
         if (TxtUtils.isEmpty(txt)) {
             cleanFilter.setVisibility(View.GONE);
         } else {
@@ -527,6 +607,22 @@ public class SearchFragment2 extends UIFragment<FileMeta> {
         }
     };
 
+    Runnable saveAutoComplete = new Runnable() {
+
+        @Override
+        public void run() {
+            String txt = searchEditText.getText().toString().trim();
+            if (TxtUtils.isNotEmpty(txt) && !txt.startsWith("@@") && !AppState.get().myAutoComplete.contains(txt)) {
+                AppState.get().myAutoComplete.add(txt);
+                autocomplitions.add(txt);
+                updateFilterListAdapter();
+                myAutoCompleteImage.setVisibility(View.VISIBLE);
+
+            }
+
+        }
+    };
+
     private final TextWatcher filterTextWatcher = new TextWatcher() {
 
         @Override
@@ -552,6 +648,15 @@ public class SearchFragment2 extends UIFragment<FileMeta> {
                     handler.postDelayed(sortAndSeach, 1000);
                 }
             }
+            myAutoCompleteImage.setVisibility(View.GONE);
+            handler.removeCallbacks(saveAutoComplete);
+
+            if (AppState.get().myAutoComplete.contains(s.toString().trim())) {
+                myAutoCompleteImage.setVisibility(View.VISIBLE);
+            } else {
+                handler.postDelayed(saveAutoComplete, 10000);
+            }
+
         }
 
     };
@@ -671,7 +776,6 @@ public class SearchFragment2 extends UIFragment<FileMeta> {
             return true;
         }
     }
-
 
     @Override
     public void notifyFragment() {

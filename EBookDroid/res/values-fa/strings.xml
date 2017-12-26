@@ -434,4 +434,5 @@
    <string name="remember_reading_mode">به یاد داشته باشید حالت خواندن</string>
    <string name="background_color_on_images_the_same_as_page_background">رنگ پس زمینه در تصاویر همانند پس زمینه صفحه</string>
    <string name="block_page_movement_horizontally">مسدود کردن صفحه حرکت به صورت افقی</string>
+   <string name="edit_autocomplete">ویرایش تکمیل خودکار</string>
 </resources>

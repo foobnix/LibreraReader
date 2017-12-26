@@ -434,4 +434,5 @@
    <string name="remember_reading_mode">Pamätajte si režim čítania</string>
    <string name="background_color_on_images_the_same_as_page_background">Farba pozadia na obrázkoch je rovnaká ako pozadie stránky</string>
    <string name="block_page_movement_horizontally">Blokovať pohyb stránky horizontálne</string>
+   <string name="edit_autocomplete">Upraviť automatické dopĺňanie</string>
 </resources>

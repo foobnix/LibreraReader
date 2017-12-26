@@ -434,4 +434,5 @@
    <string name="remember_reading_mode">Kumbuka kusoma mode</string>
    <string name="background_color_on_images_the_same_as_page_background">Rangi ya asili kwenye picha sawa na background ya ukurasa</string>
    <string name="block_page_movement_horizontally">Zima harakati za ukurasa kwa usawa</string>
+   <string name="edit_autocomplete">Badilisha kikamilifu</string>
 </resources>

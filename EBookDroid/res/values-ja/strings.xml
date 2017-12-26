@@ -434,4 +434,5 @@
    <string name="remember_reading_mode">読書モードを記憶する</string>
    <string name="background_color_on_images_the_same_as_page_background">イメージの背景色はページの背景と同じです</string>
    <string name="block_page_movement_horizontally">水平方向にページ移動をブロックする</string>
+   <string name="edit_autocomplete">オートコンプリートを編集</string>
 </resources>

@@ -434,4 +434,5 @@
    <string name="remember_reading_mode">Zapamiętaj tryb czytania</string>
    <string name="background_color_on_images_the_same_as_page_background">Kolor tła na obrazkach takich samych jak tło strony</string>
    <string name="block_page_movement_horizontally">Zablokuj ruch strony w poziomie</string>
+   <string name="edit_autocomplete">Edytuj autouzupełnianie</string>
 </resources>

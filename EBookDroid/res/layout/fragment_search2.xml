@@ -56,6 +56,16 @@
                 android:textColor="@color/tint_gray"
                 android:textSize="14sp"
                 android:textStyle="bold" />
+            
+            <ImageView
+                android:id="@+id/myAutoCompleteImage"
+                style="@style/buttonClear"
+                android:layout_width="@dimen/wh_button_small"
+                android:layout_height="@dimen/wh_button_small"
+                android:layout_centerVertical="true"
+                android:layout_toLeftOf="@+id/cleanFilter"
+                android:layout_weight="0"
+                android:src="@drawable/glyphicons_207_ok" />
 
             <ImageView
                 android:contentDescription="@string/cd_clear_search_reasult"

@@ -434,4 +434,5 @@
    <string name="remember_reading_mode">Prisiminti skaitymo režimą</string>
    <string name="background_color_on_images_the_same_as_page_background">Fono spalva ant paveikslėlių yra tokia pati kaip puslapio fonas</string>
    <string name="block_page_movement_horizontally">Blokuoti puslapio judėjimą horizontaliai</string>
+   <string name="edit_autocomplete">Redaguoti automatinį užbaigimą</string>
 </resources>

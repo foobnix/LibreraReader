@@ -434,4 +434,5 @@
    <string name="remember_reading_mode">Husk lesemodus</string>
    <string name="background_color_on_images_the_same_as_page_background">Bakgrunnsfarge på bilder det samme som sidebakgrunn</string>
    <string name="block_page_movement_horizontally">Blokker sidebevegelsen horisontalt</string>
+   <string name="edit_autocomplete">Rediger autofullfør</string>
 </resources>
