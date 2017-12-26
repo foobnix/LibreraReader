@@ -116,7 +116,6 @@
    <string name="list">Danh sách</string>
    <string name="grid">Lưới</string>
    <string name="items_">Mặt hàng:</string>
-   <string name="musician_performance">Chế độ nhạc sĩ</string>
    <string name="pdf_mode">Chế độ PDF</string>
    <string name="expiremental_features">Chú thích và rút ra (Trong thử nghiệm, nó có thể làm hỏng một số tài liệu)</string>
    <string name="remember_dictionary">Ghi từ điển</string>
@@ -434,4 +433,5 @@
    <string name="horizontally">Theo chiều ngang</string>
    <string name="remember_reading_mode">Nhớ chế độ đọc</string>
    <string name="background_color_on_images_the_same_as_page_background">Màu nền trên hình ảnh giống như nền trang</string>
+   <string name="block_page_movement_horizontally">Chặn trang theo chiều ngang</string>
 </resources>

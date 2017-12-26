@@ -114,7 +114,6 @@
    <string name="list">列表</string>
    <string name="grid">电网</string>
    <string name="items_">产品:</string>
-   <string name="musician_performance">音乐家模式</string>
    <string name="pdf_mode">PDF模式</string>
    <string name="expiremental_features">注解和借鉴（在测试中，它可能会破坏一些文件）</string>
    <string name="remember_dictionary">记住字典</string>
@@ -434,4 +433,5 @@
    <string name="horizontally">水平</string>
    <string name="remember_reading_mode">请记住阅读模式</string>
    <string name="background_color_on_images_the_same_as_page_background">图像上的背景颜色与页面背景相同</string>
+   <string name="block_page_movement_horizontally">水平阻止页面移动</string>
 </resources>

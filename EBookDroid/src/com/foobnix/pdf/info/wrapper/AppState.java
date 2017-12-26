@@ -405,6 +405,9 @@ public class AppState {
     public long installationDate = System.currentTimeMillis();
     public long searchDate = 0;
 
+    public boolean isFirstTimeVertical = true;
+    public boolean isFirstTimeHorizontal = true;
+
     public String customConfigColors = "";
 
     public boolean isStarsInWidget = false;
@@ -730,6 +733,9 @@ public class AppState {
         blueLightColor = sp.getInt("blueLightColor", blueLightColor);
         blueLightAlpha = sp.getInt("blueLightAlpha", blueLightAlpha);
 
+        isFirstTimeVertical = sp.getBoolean("isFirstTimeVertical", isFirstTimeVertical);
+        isFirstTimeHorizontal = sp.getBoolean("isFirstTimeHorizontal", isFirstTimeHorizontal);
+
         LOG.d("LOAD AppState", "coverSmallSize", coverSmallSize);
     }
 
@@ -966,6 +972,9 @@ public class AppState {
 
         editor.putInt("blueLightColor", blueLightColor);
         editor.putInt("blueLightAlpha", blueLightAlpha);
+
+        editor.putBoolean("isFirstTimeHorizontal", isFirstTimeHorizontal);
+        editor.putBoolean("isFirstTimeVertical", isFirstTimeVertical);
 
         editor.commit();
 

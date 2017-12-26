@@ -19,6 +19,7 @@ import com.foobnix.android.utils.Keyboards;
 import com.foobnix.android.utils.LOG;
 import com.foobnix.android.utils.TxtUtils;
 import com.foobnix.android.utils.Vibro;
+import com.foobnix.android.utils.Views;
 import com.foobnix.pdf.info.DictsHelper;
 import com.foobnix.pdf.info.ExtUtils;
 import com.foobnix.pdf.info.R;
@@ -417,7 +418,7 @@ public class DocumentWrapperUI {
 
         showChapter();
 
-        showHide();
+        hideShow();
         initNextType();
         initToolBarPlusMinus();
 
@@ -578,7 +579,7 @@ public class DocumentWrapperUI {
         moveLeft = a.findViewById(R.id.moveLeft);
         moveLeft.setOnClickListener(onMoveLeft);
 
-        View moveCenter = a.findViewById(R.id.moveCenter);
+        final ImageView moveCenter = (ImageView) a.findViewById(R.id.moveCenter);
         moveCenter.setOnClickListener(onMoveCenter);
 
         moveRight = a.findViewById(R.id.moveRight);
@@ -609,7 +610,6 @@ public class DocumentWrapperUI {
         onModeChange = (ImageView) a.findViewById(R.id.onModeChange);
         onModeChange.setOnClickListener(onModeChangeClick);
         onModeChange.setImageResource(AppState.get().isCut ? R.drawable.glyphicons_page_split : R.drawable.glyphicons_two_page_one);
-
 
         View prefTop = a.findViewById(R.id.prefTop);
         prefTop.setOnClickListener(onPrefTop);
@@ -779,6 +779,16 @@ public class DocumentWrapperUI {
         maxSeek.setVisibility(View.GONE);
         seekBar.setVisibility(View.INVISIBLE);
 
+        moveCenter.setOnClickListener(new OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                Views.showHelpToast(moveCenter);
+            }
+        });
+
+
+
     }
 
     public void updateSeekBarColorAndSize() {
@@ -946,7 +956,7 @@ public class DocumentWrapperUI {
             if (AppState.get().doubleClickAction == AppState.DOUBLE_CLICK_ZOOM_IN_OUT) {
                 controller.onZoomInOut(x, y);
                 AppState.get().isEditMode = false;
-                showHide();
+                hideShow();
             } else if (AppState.get().doubleClickAction == AppState.DOUBLE_CLICK_ADJUST_PAGE) {
                 controller.alignDocument();
             } else if (AppState.get().doubleClickAction == AppState.DOUBLE_CLICK_CENTER_HORIZONTAL) {
@@ -959,7 +969,7 @@ public class DocumentWrapperUI {
 
     public void doShowHideWrapperControlls() {
         AppState.getInstance().isEditMode = !AppState.getInstance().isEditMode;
-        showHide();
+        hideShow();
 
     }
 
@@ -1055,7 +1065,7 @@ public class DocumentWrapperUI {
 
     }
 
-    public void showHide() {
+    public void hideShow() {
         if (AppState.getInstance().isEditMode) {
             show();
         } else {
@@ -1262,7 +1272,7 @@ public class DocumentWrapperUI {
         public void onClick(final View arg0) {
             AppState.get().isMusicianMode = false;
             initUI(a);
-            showHide();
+            hideShow();
         }
     };
 
@@ -1444,7 +1454,7 @@ public class DocumentWrapperUI {
             // titleBar.setBackgroundColor(MagicHelper.getBgColor());
             initToolBarPlusMinus();
             updateSeekBarColorAndSize();
-            showHide();
+            hideShow();
             TTSEngine.get().stop();
             updateOverlay();
         }
@@ -1603,6 +1613,22 @@ public class DocumentWrapperUI {
         return drawView;
     }
 
+    public void showHelp() {
+        if (AppState.get().isFirstTimeVertical) {
+            handler.postDelayed(new Runnable() {
+
+                @Override
+                public void run() {
+                    AppState.get().isFirstTimeVertical = false;
+                    AppState.get().isEditMode = true;
+                    hideShow();
+                    Views.showHelpToast(lockUnlock);
+
+                }
+            }, 1000);
+        }
+    }
+
     public void showOutline(final List<OutlineLinkWrapper> list, final int count) {
         try {
             controller.activity.runOnUiThread(new Runnable() {
@@ -1629,6 +1655,8 @@ public class DocumentWrapperUI {
                     seekBar.setVisibility(View.VISIBLE);
 
                     onCloseBook.setVisibility(View.VISIBLE);
+
+                    showHelp();
 
                 }
             });

@@ -25,6 +25,7 @@
                 android:background="?android:attr/selectableItemBackground"
                 android:gravity="center"
                 android:padding="10dip"
+                android:contentDescription="Open application menu"
                 android:src="@drawable/glyphicons_517_menu_hamburger"
                 android:tint="@color/white" />
 

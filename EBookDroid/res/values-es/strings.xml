@@ -114,7 +114,6 @@
    <string name="list">Lista</string>
    <string name="grid">Cuadrícula</string>
    <string name="items_">Los productos:</string>
-   <string name="musician_performance">Modo Músico</string>
    <string name="pdf_mode">Modo PDF</string>
    <string name="expiremental_features">Expiremental_features anotaciones y dibujar (En las pruebas, puede dañar algunos documentos)</string>
    <string name="there_are_no_email_applications_installed_">Aplicación de correo electrónico no está instalado.</string>
@@ -434,4 +433,5 @@
    <string name="horizontally">Horizontalmente</string>
    <string name="remember_reading_mode">Recuerde el modo de lectura</string>
    <string name="background_color_on_images_the_same_as_page_background">Color de fondo en las imágenes lo mismo que el fondo de la página</string>
+   <string name="block_page_movement_horizontally">Bloquear el movimiento de la página horizontalmente</string>
 </resources>

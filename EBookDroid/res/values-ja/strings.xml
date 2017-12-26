@@ -114,7 +114,6 @@
    <string name="list">リスト</string>
    <string name="grid">グリッド</string>
    <string name="items_">アイテム:</string>
-   <string name="musician_performance">ミュージシャンモード</string>
    <string name="pdf_mode">PDFモード</string>
    <string name="expiremental_features">注釈と（テストでは、それはいくつかの文書を損傷する場合があります）を描</string>
    <string name="remember_dictionary">辞書を忘れないでください</string>
@@ -434,4 +433,5 @@
    <string name="horizontally">水平に</string>
    <string name="remember_reading_mode">読書モードを記憶する</string>
    <string name="background_color_on_images_the_same_as_page_background">イメージの背景色はページの背景と同じです</string>
+   <string name="block_page_movement_horizontally">水平方向にページ移動をブロックする</string>
 </resources>

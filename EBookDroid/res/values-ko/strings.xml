@@ -116,7 +116,6 @@
    <string name="list">리스트</string>
    <string name="grid">그리드</string>
    <string name="items_">항목 :</string>
-   <string name="musician_performance">뮤지션 모드</string>
    <string name="pdf_mode">PDF 모드</string>
    <string name="expiremental_features">실험적 기능</string>
    <string name="remember_dictionary">사전 기억</string>
@@ -434,4 +433,5 @@
    <string name="horizontally">가로로</string>
    <string name="remember_reading_mode">읽기 모드 기억하기</string>
    <string name="background_color_on_images_the_same_as_page_background">이미지의 배경색은 페이지 배경과 동일합니다.</string>
+   <string name="block_page_movement_horizontally">페이지 이동을 가로로 차단</string>
 </resources>

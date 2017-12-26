@@ -139,7 +139,6 @@ public class MainTabs2 extends AdsFragmentActivity {
         }
     }
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         if (AppState.getInstance().isWhiteTheme) {
@@ -163,9 +162,7 @@ public class MainTabs2 extends AdsFragmentActivity {
 
         setContentView(R.layout.main_tabs);
 
-        imageMenu = (ImageView)
-
-        findViewById(R.id.imageMenu1);
+        imageMenu = (ImageView) findViewById(R.id.imageMenu1);
         imageMenuParent = findViewById(R.id.imageParent1);
         imageMenuParent.setBackgroundColor(TintUtil.color);
 
@@ -333,7 +330,10 @@ public class MainTabs2 extends AdsFragmentActivity {
 
         AndroidWhatsNew.checkForNewBeta(this);
 
+
+
     }
+
 
     BroadcastReceiver broadcastReceiver = new BroadcastReceiver() {
 
@@ -372,7 +372,6 @@ public class MainTabs2 extends AdsFragmentActivity {
         TintUtil.updateAll();
         AppState.get().lastA = MainTabs2.class.getSimpleName();
         LocalBroadcastManager.getInstance(this).registerReceiver(broadcastReceiver, new IntentFilter(UIFragment.INTENT_TINT_CHANGE));
-
 
         try {
             tabFragments.get(pager.getCurrentItem()).onSelectFragment();
