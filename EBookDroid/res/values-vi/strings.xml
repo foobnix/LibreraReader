@@ -432,7 +432,7 @@
    <string name="remember_reading_mode">Nhớ chế độ đọc</string>
    <string name="background_color_on_images_the_same_as_page_background">Màu nền trên hình ảnh giống như nền trang</string>
    <string name="block_page_movement_horizontally">Chặn trang theo chiều ngang</string>
-   <string name="edit_autocomplete">Chỉnh sửa tự động hoàn thành</string>
    <string name="vertically">Nâng cao (dọc)</string>
    <string name="horizontally">Dễ dàng (ngang)</string>
+   <string name="search_history_and_autocomplete">Lịch sử tìm kiếm và tính năng tự động hoàn thành</string>
 </resources>

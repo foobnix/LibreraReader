@@ -432,7 +432,7 @@
    <string name="remember_reading_mode">Muista lukutila</string>
    <string name="background_color_on_images_the_same_as_page_background">Kuvien taustaväri on sama kuin sivun taustalla</string>
    <string name="block_page_movement_horizontally">Estää sivun liikkuminen vaakasuunnassa</string>
-   <string name="edit_autocomplete">Muokkaa automaattista täydennystä</string>
    <string name="vertically">Kehittynyt (pystysuora)</string>
    <string name="horizontally">Helppo (horisontaalinen)</string>
+   <string name="search_history_and_autocomplete">Hakuhistoria ja automaattinen täydennys</string>
 </resources>

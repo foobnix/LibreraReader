@@ -432,7 +432,7 @@
    <string name="remember_reading_mode">읽기 모드 기억하기</string>
    <string name="background_color_on_images_the_same_as_page_background">이미지의 배경색은 페이지 배경과 동일합니다.</string>
    <string name="block_page_movement_horizontally">페이지 이동을 가로로 차단</string>
-   <string name="edit_autocomplete">자동 완성 수정</string>
    <string name="vertically">고급 (세로)</string>
    <string name="horizontally">쉬운 (수평)</string>
+   <string name="search_history_and_autocomplete">검색 기록 및 자동 완성</string>
 </resources>

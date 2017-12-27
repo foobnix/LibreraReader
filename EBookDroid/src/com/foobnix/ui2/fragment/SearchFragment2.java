@@ -282,7 +282,7 @@ public class SearchFragment2 extends UIFragment<FileMeta> {
     public void showAutoCompleteDialog() {
 
         final AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-        builder.setTitle(R.string.edit_autocomplete);
+        builder.setTitle(R.string.search_history_and_autocomplete);
 
         final ListView list = new ListView(getActivity());
 

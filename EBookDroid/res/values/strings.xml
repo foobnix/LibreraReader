@@ -432,7 +432,7 @@
    <string name="remember_reading_mode">Remember reading mode</string>
    <string name="background_color_on_images_the_same_as_page_background">Background color on images the same as page background</string>
    <string name="block_page_movement_horizontally">Block page movement horizontally</string>
-   <string name="edit_autocomplete">Edit autocomplete</string>
+   <string name="search_history_and_autocomplete">Search history and autocomplete</string>
    <string name="vertically">Advanced (vertical)</string>
    <string name="horizontally">Easy (horizontal)</string>
 </resources>

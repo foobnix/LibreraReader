@@ -432,7 +432,7 @@
    <string name="remember_reading_mode">Merken Sie sich den Lesemodus</string>
    <string name="background_color_on_images_the_same_as_page_background">Hintergrundfarbe auf Bildern entspricht dem Seitenhintergrund</string>
    <string name="block_page_movement_horizontally">Blockieren Sie die Seitenbewegung horizontal</string>
-   <string name="edit_autocomplete">Bearbeiten Sie die automatische Vervollständigung</string>
    <string name="vertically">Fortgeschrittene (vertikal)</string>
    <string name="horizontally">Einfach (horizontal)</string>
+   <string name="search_history_and_autocomplete">Suchverlauf und automatische Vervollständigung</string>
 </resources>

@@ -432,7 +432,7 @@
    <string name="remember_reading_mode">Запомнить режим чтения</string>
    <string name="background_color_on_images_the_same_as_page_background">Окрашивать фон изображений в цвет общего фона страниц</string>
    <string name="block_page_movement_horizontally">Блокировать движение страницы по горизонтали</string>
-   <string name="edit_autocomplete">Редактировать автозаполнение</string>
    <string name="vertically">Продвинутый (вертикальный)</string>
    <string name="horizontally">Легкий (горизонтальный)</string>
+   <string name="search_history_and_autocomplete">История поиска и автозаполнение</string>
 </resources>
