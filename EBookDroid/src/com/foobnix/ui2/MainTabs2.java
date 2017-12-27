@@ -412,9 +412,14 @@ public class MainTabs2 extends AdsFragmentActivity {
         getWindow().clearFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
         AppState.getInstance().save(this);
         LocalBroadcastManager.getInstance(this).unregisterReceiver(broadcastReceiver);
-        RecentUpates.updateAll(this);
         ImageLoader.getInstance().clearAllTasks();
     };
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        RecentUpates.updateAll(this);
+    }
 
     @Override
     public void onDestroy() {

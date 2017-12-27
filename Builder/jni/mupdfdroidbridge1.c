@@ -425,7 +425,7 @@ Java_org_ebookdroid_droids_mupdf_codec_MuPdfPage_open(JNIEnv *env, jclass clazz,
 
 	//fz_context* ctx = fz_clone_context(doc->ctx);
 	fz_context* ctx = doc->ctx;
-	if (!ctx) {
+	if (!ctx || doc->ctx == NULL) {
 		mupdf_throw_exception(env, "Context cloning failed");
 		return (jlong) (long) NULL;
 	}

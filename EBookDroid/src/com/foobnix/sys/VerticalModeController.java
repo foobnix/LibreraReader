@@ -653,6 +653,16 @@ public class VerticalModeController extends DocumentController {
     }
 
     @Override
+    public void restartActivity() {
+        try {
+            ctr.getDocumentModel().recyclePages();
+        } catch (Exception e) {
+            LOG.e(e);
+        }
+        super.restartActivity();
+    }
+
+    @Override
     public void onFullScreen() {
         AppSettings.getInstance().fullScreen = !AppSettings.getInstance().fullScreen;
         activity.finish();

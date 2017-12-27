@@ -1,5 +1,7 @@
 . ~/.profile
-MUPDF=/home/ivan-dev/dev/mupdf-1.11-source/platform/java
+#MUPDF=/home/ivan-dev/dev/mupdf-1.11-source/platform/java
+MUPDF=/home/ivan-dev/dev/mupdf-test/platform/java
+
 MY=/home/ivan-dev/git/LirbiReader
 
 rm -rf  $MUPDF/jni

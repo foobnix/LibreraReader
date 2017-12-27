@@ -254,15 +254,12 @@ public class ImageExtractor implements ImageDownloader {
             bitmap = bitmap1;
         }
 
-
         if (pageUrl.isDoText()) {
             PageImageState.get().pagesText.put(pageUrl.getPage(), pageCodec.getText());
             PageImageState.get().pagesLinks.put(pageUrl.getPage(), pageCodec.getPageLinks());
         }
 
-        if (pageUrl.getNumber() != 1) {
-            pageCodec.recycle();
-        }
+        pageCodec.recycle();
 
         if (!isNeedDisableMagicInPDFDjvu && MagicHelper.isNeedBookBackgroundImage()) {
             bitmap = MagicHelper.updateWithBackground(bitmap);
@@ -382,12 +379,10 @@ public class ImageExtractor implements ImageDownloader {
                     Bitmap proccessCoverPage = proccessCoverPage(pageUrl);
                     return generalCoverWithEffect(pageUrl, proccessCoverPage);
                 } finally {
-                    clearCodeDocument();
                     MagicHelper.isNeedBC = true;
                 }
             } else if (page == COVER_PAGE_NO_EFFECT) {
                 ByteArrayInputStream bitmapToStream = bitmapToStream(proccessCoverPage(pageUrl));
-                clearCodeDocument();
                 return bitmapToStream;
             } else {
                 if (pageUrl.isDouble()) {

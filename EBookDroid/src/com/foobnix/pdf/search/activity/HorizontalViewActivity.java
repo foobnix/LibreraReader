@@ -306,6 +306,7 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
 
             @Override
             public void onClick(final View v) {
+                v.setEnabled(false);
                 AppState.get().isInvert = !AppState.get().isInvert;
                 nullAdapter();
                 documentController.restartActivity();
@@ -429,8 +430,19 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
                     @Override
                     public boolean onMenuItemClick(MenuItem item) {
                         onModeChange.setImageResource(R.drawable.glyphicons_two_page_one);
-                        modeOnePage();
-                        documentController.cleanImageMatrix();
+                        AppState.get().isDouble = false;
+                        AppState.get().isDoubleCoverAlone = false;
+                        AppState.get().isCut = false;
+                        SettingsManager.getBookSettings().updateFromAppState();
+
+                        if (documentController.isTextFormat()) {
+                            nullAdapter();
+                            documentController.restartActivity();
+                            documentController.cleanImageMatrix();
+                        } else {
+                            TTSEngine.get().stop();
+                            reloadDoc.run();
+                        }
                         return false;
                     }
                 });
@@ -443,9 +455,14 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
                         AppState.get().isCut = false;
                         AppState.get().isDoubleCoverAlone = false;
                         SettingsManager.getBookSettings().updateFromAppState();
-                        nullAdapter();
-                        documentController.restartActivity();
-                        documentController.cleanImageMatrix();
+                        if (documentController.isTextFormat()) {
+                            nullAdapter();
+                            documentController.restartActivity();
+                            documentController.cleanImageMatrix();
+                        } else {
+                            TTSEngine.get().stop();
+                            reloadDoc.run();
+                        }
                         return false;
                     }
                 });
@@ -459,10 +476,14 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
                             AppState.get().isCut = false;
                             AppState.get().isDoubleCoverAlone = true;
                             SettingsManager.getBookSettings().updateFromAppState();
-
-                            nullAdapter();
-                            documentController.restartActivity();
-                            documentController.cleanImageMatrix();
+                            if (documentController.isTextFormat()) {
+                                nullAdapter();
+                                documentController.restartActivity();
+                                documentController.cleanImageMatrix();
+                            } else {
+                                TTSEngine.get().stop();
+                                reloadDoc.run();
+                            }
                             return false;
                         }
                     });
@@ -551,6 +572,10 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
 
             @Override
             public void onClick(final View v) {
+                anchor.setVisibility(View.GONE);
+                anchor.setTag("backGo");
+                anchor.removeAllViews();
+
                 showInterstial();
             }
         });
@@ -727,7 +752,6 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
                     EventBus.getDefault().post(new MessageAutoFit(documentController.getPageFromUri()));
                     AppState.get().isEditMode = true;
                     seekBar.setOnSeekBarChangeListener(onSeek);
-                    RecentUpates.updateAll(HorizontalViewActivity.this);
                     showHideInfoToolBar();
 
                     testScreenshots();
@@ -743,6 +767,8 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
 
                     onCrop.underline(AppState.get().isCrop);
                     onCrop.invalidate();
+
+                    RecentUpates.updateAll(HorizontalViewActivity.this);
 
                 }
 

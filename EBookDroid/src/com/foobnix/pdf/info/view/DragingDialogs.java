@@ -12,7 +12,6 @@ import java.util.Map;
 import org.ebookdroid.BookType;
 import org.ebookdroid.common.settings.SettingsManager;
 import org.ebookdroid.common.settings.books.BookSettings;
-import org.ebookdroid.ui.viewer.VerticalViewActivity;
 import org.greenrobot.eventbus.EventBus;
 
 import com.foobnix.StringResponse;
@@ -1252,8 +1251,8 @@ public class DragingDialogs {
 
     }
 
-    public static void thumbnailDialog(final FrameLayout anchor, final DocumentController controller) {
-        new DragingPopup(R.string.go_to_page_dialog, anchor, 300, 400) {
+    public static DragingPopup thumbnailDialog(final FrameLayout anchor, final DocumentController controller) {
+        DragingPopup popup = new DragingPopup(R.string.go_to_page_dialog, anchor, 300, 400) {
             @Override
             public View getContentView(LayoutInflater inflater) {
                 View view = inflater.inflate(R.layout.dialog_go_to_page, null, false);
@@ -1362,12 +1361,10 @@ public class DragingDialogs {
 
             @Override
             public void run() {
-                if (controller.getActivity() instanceof VerticalViewActivity) {
-                    ImageLoader.getInstance().clearAllTasks();
-                }
             }
 
         });
+        return popup;
 
     }
 

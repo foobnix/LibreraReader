@@ -15,7 +15,6 @@ import com.foobnix.pdf.info.ADS;
 import com.foobnix.pdf.info.Android6;
 import com.foobnix.pdf.info.ExtUtils;
 import com.foobnix.pdf.info.R;
-import com.foobnix.pdf.info.widget.RecentUpates;
 import com.foobnix.pdf.info.wrapper.AppState;
 import com.foobnix.pdf.info.wrapper.DocumentController;
 import com.foobnix.pdf.search.view.CloseAppDialog;
@@ -138,8 +137,6 @@ public class VerticalViewActivity extends AbstractActionActivity<VerticalViewAct
         getController().afterCreate(this);
 
         // ADS.activate(this, adView);
-
-        RecentUpates.updateAll(this);
 
         handler = new Handler();
 

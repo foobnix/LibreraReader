@@ -36,6 +36,7 @@ import com.foobnix.pdf.info.view.HorizontallSeekTouchEventListener;
 import com.foobnix.pdf.info.view.MyPopupMenu;
 import com.foobnix.pdf.info.view.ProgressDraw;
 import com.foobnix.pdf.info.view.UnderlineImageView;
+import com.foobnix.pdf.info.widget.RecentUpates;
 import com.foobnix.pdf.info.widget.ShareDialog;
 import com.foobnix.pdf.search.activity.HorizontalModeController;
 import com.foobnix.pdf.search.view.CloseAppDialog;
@@ -45,6 +46,7 @@ import com.foobnix.tts.TTSEngine;
 import com.foobnix.tts.TtsStatus;
 import com.foobnix.ui2.AppDB;
 import com.foobnix.ui2.MainTabs2;
+import com.nostra13.universalimageloader.core.ImageLoader;
 
 import android.annotation.TargetApi;
 import android.app.Activity;
@@ -360,6 +362,7 @@ public class DocumentWrapperUI {
 
     public void closeAndRunList(final boolean isLong) {
         EventBus.getDefault().unregister(this);
+
         AppState.get().lastA = null;
         if (handler != null) {
             handler.removeCallbacksAndMessages(null);
@@ -1338,6 +1341,7 @@ public class DocumentWrapperUI {
 
         @Override
         public void onClick(final View arg0) {
+            arg0.setEnabled(false);
             controller.onNightMode();
         }
     };
@@ -1457,6 +1461,11 @@ public class DocumentWrapperUI {
 
         @Override
         public void onClick(final View arg0) {
+            ImageLoader.getInstance().clearAllTasks();
+            anchor.setTag("backSpace");
+            anchor.removeAllViews();
+            anchor.setVisibility(View.GONE);
+
             closeAndRunList(false);
         }
     };
@@ -1650,6 +1659,8 @@ public class DocumentWrapperUI {
                     onCloseBook.setVisibility(View.VISIBLE);
 
                     showHelp();
+
+                    RecentUpates.updateAll(controller.getActivity());
 
                 }
             });
