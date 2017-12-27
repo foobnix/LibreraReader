@@ -2,7 +2,7 @@
 <resources>
 
     <dimen name="wh_button">45dp</dimen>
-    <dimen name="wh_button_small">35dp</dimen>
+    <dimen name="wh_button_small">32dp</dimen>
     
     <dimen name="wh_button_big">50dp</dimen>
     
