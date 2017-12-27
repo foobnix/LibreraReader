@@ -1,4 +1,4 @@
 "/home/ivan-dev/Downloads/mupdf-1.12-rc1-source-2/include",
 "/home/ivan-dev/Downloads/mupdf-1.12-rc1-source-2/platform/java",
-"/home/ivan-dev/dev/android-ndk-r15c/platforms/android-27/arch-arm/usr/include",
+"/home/ivan-dev/dev/android-ndk-r15c/platforms/android-26/arch-arm/usr/include",
 "/home/ivan-dev/Downloads/mupdf-1.12-rc1-source-2/platform/java/jni",
