@@ -41,7 +41,7 @@ public class Views {
         textView.setFocusable(true);
         textView.setFocusableInTouchMode(true);
 
-        TintUtil.setDrawableTint(anchor.getDrawable(), Color.RED);
+        TintUtil.setDrawableTint(anchor.getDrawable(), Color.YELLOW);
 
 
         // TintUtil.setDrawableTint(anchor.getDrawable(), Color.WHITE);
