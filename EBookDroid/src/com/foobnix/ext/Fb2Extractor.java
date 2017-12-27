@@ -407,6 +407,12 @@ public class Fb2Extractor extends BaseExtractor {
             } else if (!isEncoding && line.contains("Windows-1251")) {
                 line = line.replace("Windows-1251", "utf-8");
                 isEncoding = true;
+            } else if (!isEncoding && line.contains("windows-1252")) {
+                line = line.replace("windows-1252", "utf-8");
+                isEncoding = true;
+            } else if (!isEncoding && line.contains("Windows-1252")) {
+                line = line.replace("Windows-1252", "utf-8");
+                isEncoding = true;
             }
 
             if (fixXML) {
@@ -594,6 +600,8 @@ public class Fb2Extractor extends BaseExtractor {
             encodingCheck.read(header);
             if (new String(header).toLowerCase(Locale.US).contains("windows-1251")) {
                 encoding = "cp1251";
+            } else if (new String(header).toLowerCase(Locale.US).contains("windows-1252")) {
+                encoding = "cp1252";
             }
             encodingCheck.close();
             return encoding;
