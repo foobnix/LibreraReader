@@ -485,15 +485,16 @@ public class ImageExtractor implements ImageDownloader {
     static int whCache;
 
     public static synchronized void clearCodeDocument() {
-        if (codecContex != null) {
-            codecContex.recycle();
-            codecContex = null;
-        }
         if (codeCache != null) {
             codeCache.recycle();
             codeCache = null;
             pathCache = null;
-            LOG.d("getNewCodecContext recycle");
+            LOG.d("getNewCodecContext codeCache recycle");
+        }
+        if (codecContex != null) {
+            codecContex.recycle();
+            codecContex = null;
+            LOG.d("getNewCodecContext codecContex recycle");
         }
 
     }
