@@ -1,7 +1,6 @@
 
 APP_PLATFORM=android-14
-APP_ABI := x86 armeabi-v7a
-#APP_ABI := x86
+APP_ABI := x86 armeabi-v7a arm64-v8a
 
 MY_ARM_MODE := arm
 LOCAL_ARM_MODE := $(MY_ARM_MODE)

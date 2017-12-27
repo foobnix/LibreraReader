@@ -75,43 +75,52 @@
 
 
 	</target>
+	
+	
+	<target name="cpu_replace">
+	    <echo>Target cpu_replace</echo>
+	    <replaceregexp file="../EbookaPDF/project.properties"
+			match='android.library.reference.1=../cpu_[a-z0-9+]+' replace='android.library.reference.1=../temp' />
+	
+	</target>
 
-	<target name="x86">
+	<target name="x86" depends="cpu_replace">
+	    <echo>Target x86</echo>
 		<property name="pdf.app.platform" value="x86" />
 		<property name="pdf.reader.code" value="${code.cpu_x86__}" />
 		
 		<replaceregexp file="../EbookaPDF/project.properties"
-			match='android.library.reference.1=../cpu_arm' replace='android.library.reference.1=../cpu_x86' />
-
-		<replaceregexp file="../EbookaPDF/project.properties"
-			match='android.library.reference.1=../cpu_arm64' replace='android.library.reference.1=../cpu_x86' />
+			match='android.library.reference.1=../temp' replace='android.library.reference.1=../cpu_x86' />
 
 	</target>
 
-	<target name="arm">
+	<target name="arm" depends="cpu_replace">
 		<property name="pdf.app.platform" value="arm" />
 		<property name="pdf.reader.code" value="${code.cpu_arm__}" />
 
 		<replaceregexp file="../EbookaPDF/project.properties"
-			match='android.library.reference.1=../cpu_x86' replace='android.library.reference.1=../cpu_arm' />
-
-		<replaceregexp file="../EbookaPDF/project.properties"
-			match='android.library.reference.1=../cpu_arm64' replace='android.library.reference.1=../cpu_arm' />
+			match='android.library.reference.1=../temp' replace='android.library.reference.1=../cpu_arm' />
 
 	</target>
 
-	<target name="arm64">
+	<target name="arm64" depends="cpu_replace">
 		<property name="pdf.app.platform" value="arm64" />
 		<property name="pdf.reader.code" value="${code.cpu_arm64}" />
 		
 		<replaceregexp file="../EbookaPDF/project.properties"
-			match='android.library.reference.1=../cpu_x86' replace='android.library.reference.1=../cpu_arm64' />
-
-		<replaceregexp file="../EbookaPDF/project.properties"
-			match='android.library.reference.1=../cpu_arm' replace='android.library.reference.1=../cpu_arm64' />
-
+			match='android.library.reference.1=../temp' replace='android.library.reference.1=../cpu_arm64' />
 
 	</target>
+	
+	<target name="arm+arm64" depends="cpu_replace">
+		<property name="pdf.app.platform" value="arm+arm64" />
+		<property name="pdf.reader.code" value="${code.cpu_arm64}" />
+		
+		<replaceregexp file="../EbookaPDF/project.properties"
+			match='android.library.reference.1=../temp' replace='android.library.reference.1=../cpu_arm+arm64' />
+
+	</target>
+	
 
 
 

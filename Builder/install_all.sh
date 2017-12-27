@@ -8,7 +8,7 @@ do
 
 	if [[ $TYPE == *"arm"* ]]; then
 		echo "TYPE: arm"
-	    FILES=apk/*armeabi-v7a*.apk
+	    FILES=apk/*arm64*.apk
 	else
 		echo "TYPE: x86"
 	    FILES=apk/*x86*.apk
