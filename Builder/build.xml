@@ -78,74 +78,37 @@
 
 	<target name="x86">
 		<property name="pdf.app.platform" value="x86" />
-		<property name="pdf.reader.code" value="${pdf.reader.code3}" />
-
-
-		<replaceregexp file="../EbookaPDF/jni/Application.mk"
-			match='APP_ABI := armeabi-v7a' replace='APP_ABI := x86' />
-
-		<replaceregexp file="../EbookaPDF/jni/Application.mk"
-			match='APP_ABI := armeabi' replace='APP_ABI := x86' />
+		<property name="pdf.reader.code" value="${code.cpu_x86__}" />
+		
+		<replaceregexp file="../EbookaPDF/project.properties"
+			match='android.library.reference.1=../cpu_arm' replace='android.library.reference.1=../cpu_x86' />
 
 		<replaceregexp file="../EbookaPDF/project.properties"
-			match='android.library.reference.1=../arm_v7a' replace='android.library.reference.1=../cpu_x86' />
-
-		<replaceregexp file="../EbookaPDF/project.properties"
-			match='android.library.reference.1=../arm' replace='android.library.reference.1=../cpu_x86' />
-
-		<replaceregexp file="../EbookaPDF/project.properties"
-			match='android.library.reference.1=../cpu_all' replace='android.library.reference.1=../cpu_x86' />
+			match='android.library.reference.1=../cpu_arm64' replace='android.library.reference.1=../cpu_x86' />
 
 	</target>
 
-	<target name="armeabi">
-		<property name="pdf.app.platform" value="armeabi" />
-		<property name="pdf.reader.code" value="${pdf.reader.code1}" />
-
-		<replaceregexp file="../EbookaPDF/jni/Application.mk"
-			match='APP_ABI := x86' replace='APP_ABI := armeabi' />
-
-		<replaceregexp file="../EbookaPDF/jni/Application.mk"
-			match='APP_ABI := armeabi-v7a' replace='APP_ABI := armeabi' />
+	<target name="arm">
+		<property name="pdf.app.platform" value="arm" />
+		<property name="pdf.reader.code" value="${code.cpu_arm__}" />
 
 		<replaceregexp file="../EbookaPDF/project.properties"
-			match='android.library.reference.1=../cpu_x86' replace='android.library.reference.1=../arm' />
+			match='android.library.reference.1=../cpu_x86' replace='android.library.reference.1=../cpu_arm' />
 
 		<replaceregexp file="../EbookaPDF/project.properties"
-			match='android.library.reference.1=../arm_v7a' replace='android.library.reference.1=../arm' />
+			match='android.library.reference.1=../cpu_arm64' replace='android.library.reference.1=../cpu_arm' />
 
-		<replaceregexp file="../EbookaPDF/project.properties"
-			match='android.library.reference.1=../cpu_all' replace='android.library.reference.1=../arm' />
 	</target>
 
-	<target name="armeabi-v7a">
-		<property name="pdf.app.platform" value="armeabi-v7a" />
-		<property name="pdf.reader.code" value="${pdf.reader.code2}" />
-
-
-		<replaceregexp file="../EbookaPDF/jni/Application.mk"
-			match='APP_ABI := armeabi' replace='APP_ABI := armeabi-v7a' />
-
-		<replaceregexp file="../EbookaPDF/jni/Application.mk"
-			match='APP_ABI := armeabi-v7a-v7a' replace='APP_ABI := armeabi-v7a' />
-
-		<replaceregexp file="../EbookaPDF/jni/Application.mk"
-			match='APP_ABI := x86' replace='APP_ABI := armeabi-v7a' />
-
-
-
+	<target name="arm64">
+		<property name="pdf.app.platform" value="arm64" />
+		<property name="pdf.reader.code" value="${code.cpu_arm64}" />
+		
+		<replaceregexp file="../EbookaPDF/project.properties"
+			match='android.library.reference.1=../cpu_x86' replace='android.library.reference.1=../cpu_arm64' />
 
 		<replaceregexp file="../EbookaPDF/project.properties"
-			match='android.library.reference.1=../arm' replace='android.library.reference.1=../arm_v7a' />
-
-		<replaceregexp file="../EbookaPDF/project.properties"
-			match='android.library.reference.1=../arm_v7a_v7a' replace='android.library.reference.1=../arm_v7a' />
-
-		<replaceregexp file="../EbookaPDF/project.properties"
-			match='android.library.reference.1=../cpu_x86' replace='android.library.reference.1=../arm_v7a' />
-
-		<replaceregexp file="../EbookaPDF/project.properties"
-			match='android.library.reference.1=../cpu_all' replace='android.library.reference.1=../arm_v7a' />
+			match='android.library.reference.1=../cpu_arm' replace='android.library.reference.1=../cpu_arm64' />
 
 
 	</target>

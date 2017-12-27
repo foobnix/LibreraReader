@@ -1,6 +1,6 @@
 ant clean-apk
 
-ant armeabi-v7a pdf
+ant arm pdf
 
 
 ./remove_all.sh
