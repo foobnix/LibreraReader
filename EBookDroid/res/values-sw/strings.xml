@@ -429,10 +429,10 @@
    <string name="remember_choice">Kumbuka uchaguzi</string>
    <string name="formatted_text">Nakala iliyoboreshwa (graphics ya pseudo)</string>
    <string name="continuous_text">Nakala inayoendelea (hakuna kuvunja mstari)</string>
-   <string name="vertically">Vima</string>
-   <string name="horizontally">Kwa usawa</string>
    <string name="remember_reading_mode">Kumbuka kusoma mode</string>
    <string name="background_color_on_images_the_same_as_page_background">Rangi ya asili kwenye picha sawa na background ya ukurasa</string>
    <string name="block_page_movement_horizontally">Zima harakati za ukurasa kwa usawa</string>
    <string name="edit_autocomplete">Badilisha kikamilifu</string>
+   <string name="vertically">Kikubwa (wima)</string>
+   <string name="horizontally">Rahisi (usawa)</string>
 </resources>

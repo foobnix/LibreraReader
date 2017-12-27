@@ -429,10 +429,10 @@
    <string name="remember_choice">पसंद याद रखें</string>
    <string name="formatted_text">प्रारूपित पाठ (छद्म ग्राफिक्स)</string>
    <string name="continuous_text">निरंतर पाठ (कोई लाइन ब्रेक नहीं)</string>
-   <string name="vertically">लंबवत</string>
-   <string name="horizontally">क्षैतिज</string>
    <string name="remember_reading_mode">पढ़ने मोड याद रखें</string>
    <string name="background_color_on_images_the_same_as_page_background">पृष्ठ पृष्ठभूमि के समान चित्रों का पृष्ठभूमि रंग</string>
    <string name="block_page_movement_horizontally">ब्लॉक पृष्ठ आंदोलन क्षैतिज रूप से</string>
    <string name="edit_autocomplete">स्वत: पूर्ण संपादित करें</string>
+   <string name="vertically">उन्नत (ऊर्ध्वाधर)</string>
+   <string name="horizontally">आसान (क्षैतिज)</string>
 </resources>

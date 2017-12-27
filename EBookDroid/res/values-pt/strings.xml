@@ -429,10 +429,10 @@
    <string name="remember_choice">Lembre-se de escolha</string>
    <string name="formatted_text">Texto formatado (pseudo-gráficos)</string>
    <string name="continuous_text">Texto contínuo (sem intervalo de linha)</string>
-   <string name="vertically">Verticalmente</string>
-   <string name="horizontally">Horizontalmente</string>
    <string name="remember_reading_mode">Lembre-se do modo de leitura</string>
    <string name="background_color_on_images_the_same_as_page_background">Cor de fundo nas imagens o mesmo que o fundo da página</string>
    <string name="block_page_movement_horizontally">Bloqueie o movimento da página horizontalmente</string>
    <string name="edit_autocomplete">Editar preenchimento automático</string>
+   <string name="vertically">Avançado (vertical)</string>
+   <string name="horizontally">Fácil (horizontal)</string>
 </resources>

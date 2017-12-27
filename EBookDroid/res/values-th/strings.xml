@@ -429,10 +429,10 @@
    <string name="remember_choice">โปรดจำไว้ว่าทางเลือก</string>
    <string name="formatted_text">รูปแบบข้อความ (กราฟิกหลอก)</string>
    <string name="continuous_text">ข้อความต่อเนื่อง (ไม่แบ่งบรรทัด)</string>
-   <string name="vertically">ดิ่ง</string>
-   <string name="horizontally">แนวนอน</string>
    <string name="remember_reading_mode">โปรดอ่านโหมดการอ่าน</string>
    <string name="background_color_on_images_the_same_as_page_background">สีพื้นหลังในภาพเหมือนกับภาพพื้นหลัง</string>
    <string name="block_page_movement_horizontally">บล็อกการเคลื่อนไหวของหน้าในแนวนอน</string>
    <string name="edit_autocomplete">แก้ไขการเติมข้อความอัตโนมัติ</string>
+   <string name="vertically">ขั้นสูง (แนวตั้ง)</string>
+   <string name="horizontally">ง่าย (แนวนอน)</string>
 </resources>

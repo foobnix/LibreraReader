@@ -287,6 +287,7 @@ public class SearchFragment2 extends UIFragment<FileMeta> {
         final ListView list = new ListView(getActivity());
 
         final List<String> items = new ArrayList<String>(AppState.get().myAutoComplete);
+        Collections.sort(items);
         BaseItemLayoutAdapter<String> adapter = new BaseItemLayoutAdapter<String>(getActivity(), R.layout.path_item, items) {
             @Override
             public void populateView(View layout, int position, final String item) {
@@ -613,10 +614,12 @@ public class SearchFragment2 extends UIFragment<FileMeta> {
         public void run() {
             String txt = searchEditText.getText().toString().trim();
             if (TxtUtils.isNotEmpty(txt) && !txt.startsWith("@@") && !AppState.get().myAutoComplete.contains(txt)) {
-                AppState.get().myAutoComplete.add(txt);
-                autocomplitions.add(txt);
-                updateFilterListAdapter();
-                myAutoCompleteImage.setVisibility(View.VISIBLE);
+                if (!searchAdapter.getItemsList().isEmpty()) {
+                    AppState.get().myAutoComplete.add(txt);
+                    autocomplitions.add(txt);
+                    updateFilterListAdapter();
+                    myAutoCompleteImage.setVisibility(View.VISIBLE);
+                }
 
             }
 

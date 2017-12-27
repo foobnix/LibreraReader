@@ -429,10 +429,10 @@
    <string name="remember_choice">Nhớ sự lựa chọn</string>
    <string name="formatted_text">Văn bản định dạng (đồ hoạ giả)</string>
    <string name="continuous_text">Văn bản liên tục (không bị ngắt dòng)</string>
-   <string name="vertically">Theo chiều dọc</string>
-   <string name="horizontally">Theo chiều ngang</string>
    <string name="remember_reading_mode">Nhớ chế độ đọc</string>
    <string name="background_color_on_images_the_same_as_page_background">Màu nền trên hình ảnh giống như nền trang</string>
    <string name="block_page_movement_horizontally">Chặn trang theo chiều ngang</string>
    <string name="edit_autocomplete">Chỉnh sửa tự động hoàn thành</string>
+   <string name="vertically">Nâng cao (dọc)</string>
+   <string name="horizontally">Dễ dàng (ngang)</string>
 </resources>

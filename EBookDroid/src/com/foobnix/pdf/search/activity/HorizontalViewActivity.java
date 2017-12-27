@@ -960,8 +960,10 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
             FileInformationDialog.showFileInfoDialog(documentController.getActivity(), new File(documentController.getBookPath()), null);
         }
 
-        AppState.get().isEditMode = getIntent().getBooleanExtra("isEditMode", false);
-        hideShow();
+        if (false) {
+            AppState.get().isEditMode = getIntent().getBooleanExtra("isEditMode", false);
+            hideShow();
+        }
     }
 
     public void showHideHistory() {

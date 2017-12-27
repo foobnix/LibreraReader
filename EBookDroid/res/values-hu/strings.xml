@@ -429,10 +429,10 @@
    <string name="remember_choice">Ne feledje a választást</string>
    <string name="formatted_text">Formázott szöveg (pszeudo grafikák)</string>
    <string name="continuous_text">Folyamatos szöveg (nincs sortörés)</string>
-   <string name="vertically">Függőlegesen</string>
-   <string name="horizontally">Vízszintesen</string>
    <string name="remember_reading_mode">Emlékezz az olvasási módra</string>
    <string name="background_color_on_images_the_same_as_page_background">A kép háttérszíne megegyezik az oldal hátterével</string>
    <string name="block_page_movement_horizontally">Blokkolja az oldal mozgását vízszintesen</string>
    <string name="edit_autocomplete">Az automatikus kiegészítés szerkesztése</string>
+   <string name="vertically">Haladó (függőleges)</string>
+   <string name="horizontally">Könnyű (vízszintes)</string>
 </resources>

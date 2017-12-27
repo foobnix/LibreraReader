@@ -425,14 +425,14 @@
    <string name="landscape_180">Альбомная (180°)</string>
    <string name="portrait_180">Портретная (180°)</string>
    <string name="full_list_of_changes_with_images_web_pdf_">Полный список изменений с иллюстрациями</string>
-   <string name="select_the_reading_mode">Выберите необходимое...</string>
+   <string name="select_the_reading_mode">Выберите режим чтения</string>
    <string name="remember_choice">Запомнить выбор</string>
    <string name="formatted_text">Форматированный текст (псевдографика)</string>
    <string name="continuous_text">Непрерывный текст (без разрыва строк)</string>
-   <string name="vertically">Вертикально</string>
-   <string name="horizontally">Горизонтально</string>
    <string name="remember_reading_mode">Запомнить режим чтения</string>
    <string name="background_color_on_images_the_same_as_page_background">Окрашивать фон изображений в цвет общего фона страниц</string>
    <string name="block_page_movement_horizontally">Блокировать движение страницы по горизонтали</string>
    <string name="edit_autocomplete">Редактировать автозаполнение</string>
+   <string name="vertically">Продвинутый (вертикальный)</string>
+   <string name="horizontally">Легкий (горизонтальный)</string>
 </resources>

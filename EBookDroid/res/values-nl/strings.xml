@@ -429,10 +429,10 @@
    <string name="remember_choice">Onthoud de keuze</string>
    <string name="formatted_text">Opgemaakte tekst (pseudo-afbeeldingen)</string>
    <string name="continuous_text">Doorlopende tekst (geen regelafbreking)</string>
-   <string name="vertically">Verticaal</string>
-   <string name="horizontally">Horizontaal</string>
    <string name="remember_reading_mode">Denk aan de leesmodus</string>
    <string name="background_color_on_images_the_same_as_page_background">Achtergrondkleur op afbeeldingen gelijk aan pagina-achtergrond</string>
    <string name="block_page_movement_horizontally">Blokkeer de paginabeweging horizontaal</string>
    <string name="edit_autocomplete">Bewerk automatisch aanvullen</string>
+   <string name="vertically">Geavanceerd (verticaal)</string>
+   <string name="horizontally">Eenvoudig (horizontaal)</string>
 </resources>

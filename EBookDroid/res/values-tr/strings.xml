@@ -429,10 +429,10 @@
    <string name="remember_choice">Seçimi hatırla</string>
    <string name="formatted_text">Biçimlendirilmiş metin (sahte grafik)</string>
    <string name="continuous_text">Sürekli metin (satır sonu yok)</string>
-   <string name="vertically">Dikine</string>
-   <string name="horizontally">Yatay</string>
    <string name="remember_reading_mode">Okuma modunu hatırla</string>
    <string name="background_color_on_images_the_same_as_page_background">Resimlerdeki arka plan rengi, sayfa arka planıyla aynı</string>
    <string name="block_page_movement_horizontally">Sayfa hareketini yatay olarak engelle</string>
    <string name="edit_autocomplete">Otomatik tamamlama düzenle</string>
+   <string name="vertically">Gelişmiş (dikey)</string>
+   <string name="horizontally">Kolay (yatay)</string>
 </resources>

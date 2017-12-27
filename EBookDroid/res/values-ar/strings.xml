@@ -429,10 +429,10 @@
    <string name="remember_choice">تذكر الخيار</string>
    <string name="formatted_text">نص منسق (رسومات زائفة)</string>
    <string name="continuous_text">النص المستمر (بدون فاصل سطر)</string>
-   <string name="vertically">عموديا</string>
-   <string name="horizontally">أفقيا</string>
    <string name="remember_reading_mode">تذكر وضع القراءة</string>
    <string name="background_color_on_images_the_same_as_page_background">لون الخلفية على الصور نفس الخلفية الصفحة</string>
    <string name="block_page_movement_horizontally">كتلة حركة الصفحة أفقيا</string>
    <string name="edit_autocomplete">تعديل الإكمال التلقائي</string>
+   <string name="vertically">متقدم (عمودي)</string>
+   <string name="horizontally">سهل (أفقي)</string>
 </resources>

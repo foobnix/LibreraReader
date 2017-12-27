@@ -429,10 +429,10 @@
    <string name="remember_choice">זכור בחירה</string>
    <string name="formatted_text">טקסט מעוצב (גרפיקה פסאודו)</string>
    <string name="continuous_text">טקסט רציף (ללא הפסקה בשורה)</string>
-   <string name="vertically">בֵּמְאוּנָך</string>
-   <string name="horizontally">אופקית</string>
    <string name="remember_reading_mode">זכור מצב קריאה</string>
    <string name="background_color_on_images_the_same_as_page_background">צבע רקע על תמונות כמו רקע הדף</string>
    <string name="block_page_movement_horizontally">חסום את תנועת הדף בצורה אופקית</string>
    <string name="edit_autocomplete">ערוך את ההשלמה האוטומטית</string>
+   <string name="vertically">מתקדם (אנכי)</string>
+   <string name="horizontally">קל (אופקי)</string>
 </resources>
