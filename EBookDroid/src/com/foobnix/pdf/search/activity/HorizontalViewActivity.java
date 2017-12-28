@@ -62,6 +62,7 @@ import com.foobnix.ui2.AdsFragmentActivity;
 import com.foobnix.ui2.AppDB;
 import com.foobnix.ui2.MainTabs2;
 import com.foobnix.ui2.MyContextWrapper;
+import com.nostra13.universalimageloader.core.ImageLoader;
 
 import android.annotation.TargetApi;
 import android.app.AlertDialog;
@@ -572,12 +573,10 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
 
             @Override
             public void onClick(final View v) {
-                anchor.setVisibility(View.GONE);
-                anchor.setTag("backGo");
-                anchor.removeAllViews();
-
+                closeDialogs();
                 showInterstial();
             }
+
         });
         onClose.setOnLongClickListener(new OnLongClickListener() {
 
@@ -811,6 +810,12 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
             }
         });
 
+    }
+
+    private void closeDialogs() {
+        anchor.setVisibility(View.GONE);
+        anchor.setTag("backGo");
+        anchor.removeAllViews();
     }
 
     public void updateIconMode() {
@@ -1120,6 +1125,8 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
     public void nullAdapter() {
         if (viewPager != null) {
             try {
+                ImageLoader.getInstance().clearAllTasks();
+                closeDialogs();
                 viewPager.setAdapter(null);
             } catch (Exception e) {
                 LOG.e(e);
@@ -1820,9 +1827,7 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
 
         if (anchor != null && anchor.getChildCount() > 0 && anchor.getVisibility() == View.VISIBLE) {
             documentController.clearSelectedText();
-            anchor.setVisibility(View.GONE);
-            anchor.setTag("backGo");
-            anchor.removeAllViews();
+            closeDialogs();
             return;
         }
 

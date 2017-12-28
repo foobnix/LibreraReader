@@ -676,6 +676,7 @@ public class ExtUtils {
         return uriForFile;
     }
 
+
     public static void sendFileTo(final Activity a, final File file) {
         if (!isValidFile(file)) {
             Toast.makeText(a, R.string.file_not_found, Toast.LENGTH_LONG).show();
@@ -1138,5 +1139,6 @@ public class ExtUtils {
         }
         return encoding == null ? "UTF-8" : encoding;
     }
+
 
 }

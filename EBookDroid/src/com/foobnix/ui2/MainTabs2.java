@@ -7,6 +7,7 @@ import java.util.List;
 
 import org.ebookdroid.ui.viewer.VerticalViewActivity;
 
+import com.foobnix.android.utils.Dips;
 import com.foobnix.android.utils.LOG;
 import com.foobnix.android.utils.TxtUtils;
 import com.foobnix.dao2.FileMeta;
@@ -77,6 +78,8 @@ public class MainTabs2 extends AdsFragmentActivity {
 
     ImageView imageMenu;
     View imageMenuParent;
+
+    public boolean isEink = false;
 
     @Override
     protected void onNewIntent(final Intent intent) {
@@ -153,6 +156,8 @@ public class MainTabs2 extends AdsFragmentActivity {
             finish();
             return;
         }
+
+        isEink = Dips.isEInk(this);
 
         isInStack = true;
 
@@ -384,6 +389,10 @@ public class MainTabs2 extends AdsFragmentActivity {
 
     @Override
     public boolean onKeyDown(int keyCode1, KeyEvent event) {
+        if (!isEink) {
+            return super.onKeyDown(keyCode1, event);
+        }
+
         int keyCode = event.getKeyCode();
         if (keyCode == 0) {
             keyCode = event.getScanCode();
@@ -394,11 +403,15 @@ public class MainTabs2 extends AdsFragmentActivity {
             return true;
         }
 
-        return super.onKeyDown(keyCode, event);
+        return super.onKeyDown(keyCode1, event);
     }
 
     @Override
     public boolean onKeyUp(int keyCode, KeyEvent event) {
+        if (!isEink) {
+            return super.onKeyUp(keyCode, event);
+        }
+
         if (isMyKey) {
             return true;
         }
