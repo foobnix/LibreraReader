@@ -435,4 +435,8 @@
    <string name="vertically">Gelişmiş (dikey)</string>
    <string name="horizontally">Kolay (yatay)</string>
    <string name="search_history_and_autocomplete">Arama geçmişi ve otomatik tamamlama</string>
+   <string name="server">Sunucu</string>
+   <string name="port">Liman</string>
+   <string name="user">Kullanıcı</string>
+   <string name="use_proxy_server">Proxy sunucusu kullan</string>
 </resources>

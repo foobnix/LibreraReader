@@ -435,4 +435,8 @@
    <string name="vertically">고급 (세로)</string>
    <string name="horizontally">쉬운 (수평)</string>
    <string name="search_history_and_autocomplete">검색 기록 및 자동 완성</string>
+   <string name="server">섬기는 사람</string>
+   <string name="port">포트</string>
+   <string name="user">사용자</string>
+   <string name="use_proxy_server">프록시 서버 사용</string>
 </resources>

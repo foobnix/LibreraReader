@@ -435,4 +435,8 @@
    <string name="vertically">ขั้นสูง (แนวตั้ง)</string>
    <string name="horizontally">ง่าย (แนวนอน)</string>
    <string name="search_history_and_autocomplete">ประวัติการค้นหาและการเติมข้อความอัตโนมัติ</string>
+   <string name="server">เซิร์ฟเวอร์</string>
+   <string name="port">ท่าเรือ</string>
+   <string name="user">ผู้ใช้งาน</string>
+   <string name="use_proxy_server">ใช้พร็อกซีเซิร์ฟเวอร์</string>
 </resources>

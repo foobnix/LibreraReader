@@ -435,4 +435,8 @@
    <string name="vertically">متقدم (عمودي)</string>
    <string name="horizontally">سهل (أفقي)</string>
    <string name="search_history_and_autocomplete">سجل البحث والإكمال التلقائي</string>
+   <string name="server">الخادم</string>
+   <string name="port">ميناء</string>
+   <string name="user">المستعمل</string>
+   <string name="use_proxy_server">استخدام الخادم الوكيل</string>
 </resources>

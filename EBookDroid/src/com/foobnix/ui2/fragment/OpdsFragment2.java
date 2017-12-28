@@ -26,6 +26,8 @@ import com.foobnix.pdf.info.wrapper.AppState;
 import com.foobnix.ui2.adapter.EntryAdapter;
 import com.foobnix.ui2.fast.FastScrollRecyclerView;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.graphics.Color;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -37,6 +39,7 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.View.OnLongClickListener;
 import android.view.ViewGroup;
+import android.widget.CheckBox;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -58,8 +61,8 @@ public class OpdsFragment2 extends UIFragment<Entry> {
     String title;
     Stack<String> stack = new Stack<String>();
 
-    ImageView onPlus;
-    View onPlusView, pathContainer;
+    ImageView onPlus, onProxy;
+    View pathContainer, view1, view2;
     long enqueue;
     TextView defaults, faq;
     ImageView starIcon;
@@ -120,9 +123,11 @@ public class OpdsFragment2 extends UIFragment<Entry> {
 
         titleView = (TextView) view.findViewById(R.id.titleView);
         onPlus = (ImageView) view.findViewById(R.id.onPlus);
+        onProxy = (ImageView) view.findViewById(R.id.onProxy);
         starIcon = (ImageView) view.findViewById(R.id.starIcon);
-        onPlusView = view.findViewById(R.id.onPlusView);
         pathContainer = view.findViewById(R.id.pathContainer);
+        view1 = view.findViewById(R.id.view1);
+        view2 = view.findViewById(R.id.view2);
         progressBar = (ProgressBar) view.findViewById(R.id.progressBar);
         progressBar.setVisibility(View.GONE);
 
@@ -301,6 +306,45 @@ public class OpdsFragment2 extends UIFragment<Entry> {
             }
         });
 
+        onProxy.setOnClickListener(new OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                final AlertDialog.Builder builder = new AlertDialog.Builder(v.getContext());
+                View view = LayoutInflater.from(v.getContext()).inflate(R.layout.dialog_proxy_server, null, false);
+
+                final CheckBox proxyEnable = (CheckBox) view.findViewById(R.id.proxyEnable);
+                final TextView proxyServer = (TextView) view.findViewById(R.id.proxyServer);
+                final TextView proxyPort = (TextView) view.findViewById(R.id.proxyPort);
+                final TextView proxyUser = (TextView) view.findViewById(R.id.proxyUser);
+                final TextView proxyPassword = (TextView) view.findViewById(R.id.proxyPassword);
+
+                proxyEnable.setChecked(AppState.get().proxyEnable);
+                proxyServer.setText(AppState.get().proxyServer);
+                proxyPort.setText("" + AppState.get().proxyPort);
+                proxyUser.setText(AppState.get().proxyUser);
+                proxyPassword.setText(AppState.get().proxyPassword);
+
+                builder.setPositiveButton(R.string.close, new DialogInterface.OnClickListener() {
+
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        AppState.get().proxyEnable = proxyEnable.isChecked();
+                        AppState.get().proxyServer = proxyServer.getText().toString();
+                        AppState.get().proxyPort = Integer.parseInt(proxyPort.getText().toString());
+                        AppState.get().proxyUser = proxyUser.getText().toString();
+                        AppState.get().proxyPassword = proxyPassword.getText().toString();
+
+                        AppState.get().save(getActivity());
+
+                    }
+                });
+                builder.setView(view);
+                builder.show();
+
+            }
+        });
+
         populate();
         onTintChanged();
 
@@ -460,9 +504,10 @@ public class OpdsFragment2 extends UIFragment<Entry> {
             }
 
             Feed feed = OPDS.getFeed(url);
-            if (isNeedLoginPassword = feed.isNeedLoginPassword) {
+            if (feed == null) {
                 return Collections.emptyList();
             }
+            isNeedLoginPassword = feed.isNeedLoginPassword;
 
             LOG.d("Load: >>>", feed.title, url);
 
@@ -535,9 +580,10 @@ public class OpdsFragment2 extends UIFragment<Entry> {
         }
         int isHomeVisible = url == "/" ? View.VISIBLE : View.GONE;
         onPlus.setVisibility(isHomeVisible);
-        onPlusView.setVisibility(isHomeVisible);
         defaults.setVisibility(isHomeVisible);
         faq.setVisibility(isHomeVisible);
+        onProxy.setVisibility(isHomeVisible);
+        view1.setVisibility(isHomeVisible);
         starIcon.setVisibility(url == "/" ? View.GONE : View.VISIBLE);
 
         if (AppState.get().myOPDS.contains(url)) {

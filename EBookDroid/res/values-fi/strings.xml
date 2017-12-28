@@ -435,4 +435,8 @@
    <string name="vertically">Kehittynyt (pystysuora)</string>
    <string name="horizontally">Helppo (horisontaalinen)</string>
    <string name="search_history_and_autocomplete">Hakuhistoria ja automaattinen täydennys</string>
+   <string name="server">Server</string>
+   <string name="port">Portti</string>
+   <string name="user">Käyttäjä</string>
+   <string name="use_proxy_server">Käytä välityspalvelinta</string>
 </resources>

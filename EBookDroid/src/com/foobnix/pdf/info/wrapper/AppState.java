@@ -140,7 +140,8 @@ public class AppState {
     // братство,http://flibusta.is/favicon.ico;" + //
             "http://opds.litres.ru,Litres,Библиотека электронных книг,assets://opds/litres.ico;" + //
             "https://books.fbreader.org/opds,FBReader,My personal catalogue,assets://opds/fbreader.png;" + //
-            "https://www.gitbook.com/api/opds/catalog.atom,GitBook,Public books are always free.,assets://opds/gitbook.png;" + //
+            // "https://www.gitbook.com/api/opds/catalog.atom,GitBook,Public books are
+            // always free.,assets://opds/gitbook.png;" + //
             "http://m.gutenberg.org/ebooks.opds/,Project Gutenberg,Free ebooks since 1971,assets://opds/gutenberg.png;" + //
             "http://manybooks.net/opds/index.php,Manybooks,Online Catalog for Manybooks.net,assets://opds/manybooks.png;" + //
             "https://www.smashwords.com/atom,Smashwords,Online Catalog,assets://opds/smashwords.png;" + //
@@ -430,6 +431,12 @@ public class AppState {
     public int blueLightColor = BLUE_FILTER_DEFAULT_COLOR;
     public int blueLightAlpha = 30;
     public boolean isEnableBlueFilter = false;
+
+    public boolean proxyEnable = false;
+    public String proxyServer = "";
+    public int proxyPort = 0;
+    public String proxyUser = "";
+    public String proxyPassword = "";
 
     public Set<String> myAutoComplete = new HashSet<String>();
 
@@ -744,6 +751,12 @@ public class AppState {
 
         myAutoComplete = sp.getStringSet("myAutoComplete", new HashSet<String>());
 
+        // proxy
+        proxyEnable = sp.getBoolean("proxyEnable", proxyEnable);
+        proxyServer = sp.getString("proxyServer", proxyServer);
+        proxyPort = sp.getInt("proxyPort", proxyPort);
+        proxyUser = sp.getString("proxyUser", proxyUser);
+        proxyPassword = sp.getString("proxyPassword", proxyPassword);
 
         LOG.d("LOAD AppState", "coverSmallSize", coverSmallSize);
     }
@@ -986,7 +999,15 @@ public class AppState {
         editor.putBoolean("isFirstTimeHorizontal", isFirstTimeHorizontal);
         editor.putBoolean("isFirstTimeVertical", isFirstTimeVertical);
 
+
         editor.putStringSet("myAutoComplete", myAutoComplete);
+
+        // proxy
+        editor.putBoolean("proxyEnable", proxyEnable);
+        editor.putString("proxyServer", proxyServer);
+        editor.putInt("proxyPort", proxyPort);
+        editor.putString("proxyUser", proxyUser);
+        editor.putString("proxyPassword", proxyPassword);
 
         editor.commit();
 

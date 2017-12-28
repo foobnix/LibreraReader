@@ -435,4 +435,8 @@
    <string name="vertically">Avansat (vertical)</string>
    <string name="horizontally">Ușor (orizontal)</string>
    <string name="search_history_and_autocomplete">Istoricul căutărilor și autocompletarea</string>
+   <string name="server">Server</string>
+   <string name="port">Port</string>
+   <string name="user">Utilizator</string>
+   <string name="use_proxy_server">Utilizați serverul proxy</string>
 </resources>

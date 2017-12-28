@@ -435,4 +435,8 @@
    <string name="vertically">Nâng cao (dọc)</string>
    <string name="horizontally">Dễ dàng (ngang)</string>
    <string name="search_history_and_autocomplete">Lịch sử tìm kiếm và tính năng tự động hoàn thành</string>
+   <string name="server">Máy chủ</string>
+   <string name="port">Hải cảng</string>
+   <string name="user">Người dùng</string>
+   <string name="use_proxy_server">Sử dụng máy chủ proxy</string>
 </resources>

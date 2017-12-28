@@ -435,4 +435,8 @@
    <string name="vertically">Kikubwa (wima)</string>
    <string name="horizontally">Rahisi (usawa)</string>
    <string name="search_history_and_autocomplete">Historia ya Utafutaji na ukamilifu</string>
+   <string name="server">Seva</string>
+   <string name="port">Bandari</string>
+   <string name="user">Mtumiaji</string>
+   <string name="use_proxy_server">Tumia seva ya wakala</string>
 </resources>

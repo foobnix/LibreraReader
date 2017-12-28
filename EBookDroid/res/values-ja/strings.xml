@@ -435,4 +435,8 @@
    <string name="vertically">高度な（垂直）</string>
    <string name="horizontally">簡単（水平）</string>
    <string name="search_history_and_autocomplete">検索履歴とオートコンプリート</string>
+   <string name="server">サーバ</string>
+   <string name="port">ポート</string>
+   <string name="user">ユーザー</string>
+   <string name="use_proxy_server">プロキシサーバーを使用する</string>
 </resources>

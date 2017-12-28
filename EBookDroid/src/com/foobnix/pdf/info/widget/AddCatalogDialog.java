@@ -31,7 +31,7 @@ import android.widget.Toast;
 public class AddCatalogDialog {
 
     public static void showDialogLogin(final Activity a, final Runnable onRefresh) {
-
+        LOG.d("showDialogLogin");
         AlertDialog.Builder builder = new AlertDialog.Builder(a);
 
         builder.setTitle(R.string.authentication_required);

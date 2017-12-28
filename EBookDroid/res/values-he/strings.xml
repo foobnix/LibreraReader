@@ -435,4 +435,8 @@
    <string name="vertically">מתקדם (אנכי)</string>
    <string name="horizontally">קל (אופקי)</string>
    <string name="search_history_and_autocomplete">היסטוריית החיפושים וההשלמה האוטומטית</string>
+   <string name="server">שרת</string>
+   <string name="port">נמל</string>
+   <string name="user">מִשׁתַמֵשׁ</string>
+   <string name="use_proxy_server">השתמש בשרת proxy</string>
 </resources>

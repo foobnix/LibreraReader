@@ -435,4 +435,8 @@
    <string name="vertically">Avansert (vertikal)</string>
    <string name="horizontally">Enkel (horisontal)</string>
    <string name="search_history_and_autocomplete">Søkehistorikk og autofullføring</string>
+   <string name="server">Server</string>
+   <string name="port">Havn</string>
+   <string name="user">Bruker</string>
+   <string name="use_proxy_server">Bruk proxy-server</string>
 </resources>

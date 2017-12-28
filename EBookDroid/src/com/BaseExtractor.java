@@ -52,12 +52,12 @@ public abstract class BaseExtractor {
         TextPaint pNormal = new TextPaint(TextPaint.ANTI_ALIAS_FLAG);
         // pNormal.setColor(ColorUtils.setAlphaComponent(Color.WHITE, 255));
         pNormal.setColor(Color.WHITE);
-        pNormal.setTextSize(h / 10);
+        pNormal.setTextSize(h / 11);
 
         TextPaint pBold = new TextPaint(TextPaint.ANTI_ALIAS_FLAG);
         // pBold.setColor(ColorUtils.setAlphaComponent(Color.WHITE, 255));
         pBold.setColor(Color.WHITE);
-        pBold.setTextSize(h / 15);
+        pBold.setTextSize(h / 14);
         pBold.setTypeface(Typeface.create(Typeface.DEFAULT, Typeface.BOLD));
 
         Bitmap bitmap = Bitmap.createBitmap(w, h, Bitmap.Config.ARGB_8888);

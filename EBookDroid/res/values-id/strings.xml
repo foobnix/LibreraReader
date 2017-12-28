@@ -435,4 +435,8 @@
    <string name="vertically">Lanjutan (vertikal)</string>
    <string name="horizontally">Mudah (horizontal)</string>
    <string name="search_history_and_autocomplete">Cari history dan autocomplete</string>
+   <string name="server">Server</string>
+   <string name="port">Pelabuhan</string>
+   <string name="user">Pengguna</string>
+   <string name="use_proxy_server">Gunakan server proxy</string>
 </resources>

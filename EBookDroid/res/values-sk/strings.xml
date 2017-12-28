@@ -435,4 +435,8 @@
    <string name="vertically">Rozšírené (vertikálne)</string>
    <string name="horizontally">Jednoduché (horizontálne)</string>
    <string name="search_history_and_autocomplete">História vyhľadávania a automatické dopĺňanie</string>
+   <string name="server">Server</string>
+   <string name="port">Prístav</string>
+   <string name="user">Užívateľ</string>
+   <string name="use_proxy_server">Použite proxy server</string>
 </resources>

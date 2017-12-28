@@ -435,4 +435,8 @@
    <string name="vertically">Haladó (függőleges)</string>
    <string name="horizontally">Könnyű (vízszintes)</string>
    <string name="search_history_and_autocomplete">Keresési előzmények és automatikus kiegészítés</string>
+   <string name="server">Szerver</string>
+   <string name="port">Kikötő</string>
+   <string name="user">Használó</string>
+   <string name="use_proxy_server">Használjon proxykiszolgálót</string>
 </resources>

@@ -435,4 +435,8 @@
    <string name="vertically">उन्नत (ऊर्ध्वाधर)</string>
    <string name="horizontally">आसान (क्षैतिज)</string>
    <string name="search_history_and_autocomplete">खोज इतिहास और स्वत: पूर्ण</string>
+   <string name="server">सर्वर</string>
+   <string name="port">बंदरगाह</string>
+   <string name="user">उपयोगकर्ता</string>
+   <string name="use_proxy_server">प्रॉक्सी सर्वर का उपयोग करें</string>
 </resources>

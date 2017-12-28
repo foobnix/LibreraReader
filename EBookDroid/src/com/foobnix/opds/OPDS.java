@@ -2,6 +2,9 @@ package com.foobnix.opds;
 
 import java.io.IOException;
 import java.io.StringReader;
+import java.net.InetSocketAddress;
+import java.net.Proxy;
+import java.net.Proxy.Type;
 import java.util.Map;
 import java.util.Random;
 import java.util.concurrent.ConcurrentHashMap;
@@ -20,6 +23,7 @@ import com.foobnix.android.utils.LOG;
 import com.foobnix.android.utils.TxtUtils;
 import com.foobnix.ext.CacheZipUtils;
 import com.foobnix.ext.XmlParser;
+import com.foobnix.pdf.info.wrapper.AppState;
 import com.foobnix.sys.TempHolder;
 
 import okhttp3.Cache;
@@ -44,7 +48,7 @@ public class OPDS {
     final static Map<String, CachingAuthenticator> authCache = new ConcurrentHashMap<String, CachingAuthenticator>();
 
     public static int random = new Random().nextInt();
-    public static final String USER_AGENT = "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/57.0.2987." + random + " Safari/537.36";
+    public static final String USER_AGENT = "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/57.0.2997." + random + " Safari/537.36";
 
     public static String getHttpResponse(String url) throws IOException {
 
@@ -56,6 +60,18 @@ public class OPDS {
                         .build())//
                 .url(url)//
                 .build();//
+
+        if (AppState.get().proxyEnable && TxtUtils.isNotEmpty(AppState.get().proxyServer) && AppState.get().proxyPort != 0) {
+            LOG.d("Proxy: Server", AppState.get().proxyServer, AppState.get().proxyPort);
+            builder.proxy(new Proxy(Type.HTTP, new InetSocketAddress(AppState.get().proxyServer, AppState.get().proxyPort)));
+            if (TxtUtils.isNotEmpty(AppState.get().proxyUser)) {
+                LOG.d("Proxy: User", AppState.get().proxyUser, AppState.get().proxyPassword);
+                builder.proxyAuthenticator(new BasicAuthenticator(new Credentials(AppState.get().proxyUser, AppState.get().proxyPassword)));
+            }
+        } else {
+            builder.proxy(null);
+        }
+        client = builder.build();
 
         Response response = client//
                 .newCall(request)//

@@ -435,4 +435,8 @@
    <string name="vertically">Avanzato (verticale)</string>
    <string name="horizontally">Facile (orizzontale)</string>
    <string name="search_history_and_autocomplete">Cronologia delle ricerche e completamento automatico</string>
+   <string name="server">Server</string>
+   <string name="port">Porta</string>
+   <string name="user">Utente</string>
+   <string name="use_proxy_server">Usa il server proxy</string>
 </resources>

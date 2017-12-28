@@ -435,4 +435,8 @@
    <string name="vertically">Avancerad (vertikal)</string>
    <string name="horizontally">Enkel (horisontell)</string>
    <string name="search_history_and_autocomplete">Sökhistorik och autofullständig</string>
+   <string name="server">Server</string>
+   <string name="port">Hamn</string>
+   <string name="user">Användare</string>
+   <string name="use_proxy_server">Använd proxyserver</string>
 </resources>

@@ -435,4 +435,8 @@
    <string name="vertically">پیشرفته (عمودی)</string>
    <string name="horizontally">آسان (افقی)</string>
    <string name="search_history_and_autocomplete">سابقه جستجو و تکمیل خودکار</string>
+   <string name="server">سرور</string>
+   <string name="port">بندر</string>
+   <string name="user">کاربر</string>
+   <string name="use_proxy_server">از سرور پروکسی استفاده کنید</string>
 </resources>

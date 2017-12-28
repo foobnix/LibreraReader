@@ -62,8 +62,25 @@
             android:layout_height="wrap_content"
             android:layout_weight="0"
             android:progressTint="@color/white" />
+        
+        
+         <View
+             android:id="@+id/view1"
+            android:layout_width="1dip"
+            android:layout_height="match_parent"
+            android:background="@color/tint_divider" />
+
+        <ImageView
+            android:contentDescription="@string/cd_back_to_all_catalogs"
+            android:id="@+id/onProxy"
+            style="@style/buttonWhite"
+            android:layout_width="@dimen/wh_button"
+            android:layout_height="@dimen/wh_button"
+            android:layout_weight="0"
+            android:src="@drawable/glyphicons_137_cogwheel" />
 
         <View
+            android:id="@+id/view2"
             android:layout_width="1dip"
             android:layout_height="match_parent"
             android:background="@color/tint_divider" />
@@ -78,7 +95,6 @@
             android:src="@drawable/glyphicons_21_home" />
 
         <View
-            android:id="@+id/onPlusView"
             android:layout_width="1dip"
             android:layout_height="match_parent"
             android:background="@color/tint_divider" />

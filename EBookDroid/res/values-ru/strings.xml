@@ -435,4 +435,8 @@
    <string name="vertically">Продвинутый (вертикальный)</string>
    <string name="horizontally">Легкий (горизонтальный)</string>
    <string name="search_history_and_autocomplete">История поиска и автозаполнение</string>
+   <string name="server">Сервер</string>
+   <string name="port">Порт</string>
+   <string name="user">Пользователь</string>
+   <string name="use_proxy_server">Использовать прокси-сервер</string>
 </resources>

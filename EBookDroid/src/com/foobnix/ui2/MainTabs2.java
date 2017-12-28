@@ -383,6 +383,7 @@ public class MainTabs2 extends AdsFragmentActivity {
         } catch (Exception e) {
             LOG.e(e);
         }
+        adapter.notifyDataSetChanged();
     };
 
     boolean isMyKey = false;

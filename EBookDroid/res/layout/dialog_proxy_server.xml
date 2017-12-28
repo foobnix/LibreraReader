@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="5dip" >
+
+    <CheckBox
+        android:id="@+id/proxyEnable"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/use_proxy_server" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/server" />
+
+    <EditText
+        android:digits="0123456789."
+        android:id="@+id/proxyServer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+    </EditText>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/port" />
+
+    <EditText
+        android:id="@+id/proxyPort"
+         android:digits="0123456789"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+    </EditText>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/user" />
+
+    <EditText
+        android:id="@+id/proxyUser"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+    </EditText>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/password" />
+
+    <EditText
+        android:id="@+id/proxyPassword"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+    </EditText>
+
+</LinearLayout>

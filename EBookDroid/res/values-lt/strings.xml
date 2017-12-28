@@ -435,4 +435,8 @@
    <string name="vertically">Išplėstinė (vertikali)</string>
    <string name="horizontally">Lengvas (horizontalus)</string>
    <string name="search_history_and_autocomplete">Paieškos istorija ir automatinis užbaigimas</string>
+   <string name="server">Serveris</string>
+   <string name="port">Uostas</string>
+   <string name="user">Vartotojas</string>
+   <string name="use_proxy_server">Naudokite tarpinį serverį</string>
 </resources>

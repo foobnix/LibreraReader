@@ -435,4 +435,8 @@
    <string name="vertically">Geavanceerd (verticaal)</string>
    <string name="horizontally">Eenvoudig (horizontaal)</string>
    <string name="search_history_and_autocomplete">Zoekgeschiedenis en automatisch aanvullen</string>
+   <string name="server">Server</string>
+   <string name="port">Haven</string>
+   <string name="user">Gebruiker</string>
+   <string name="use_proxy_server">Gebruik proxyserver</string>
 </resources>
