@@ -7,6 +7,7 @@ import com.foobnix.android.utils.TxtUtils;
 
 public class Entry {
 
+    public static final String MY_CATALOG = ";my-catalog";
     public String updated;
     public String id;
     public String title = "";
@@ -56,7 +57,7 @@ public class Entry {
             links.add(logoLink);
         }
         if (subtitle != null) {
-            links.add(new Link(homeUrl, Link.APPLICATION_ATOM_XML + ";subtitle", subtitle));
+            links.add(new Link(homeUrl, Link.APPLICATION_ATOM_XML + MY_CATALOG, subtitle));
         }
 
         links.add(new Link(homeUrl));

@@ -567,7 +567,7 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
         });
 
         onClose = findViewById(R.id.bookClose);
-        onClose.setVisibility(View.GONE);
+        onClose.setVisibility(View.INVISIBLE);
 
         onClose.setOnClickListener(new View.OnClickListener() {
 
@@ -602,7 +602,7 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
 
         currentSeek.setVisibility(View.GONE);
         maxSeek.setVisibility(View.GONE);
-        seekBar.setVisibility(View.GONE);
+        seekBar.setVisibility(View.INVISIBLE);
         bottomIndicators.setVisibility(View.GONE);
 
         titleTxt.setText(HorizontalModeController.getTempTitle(this));

@@ -42,6 +42,8 @@ import android.view.View.OnClickListener;
 import android.view.View.OnLongClickListener;
 import android.view.ViewGroup;
 import android.widget.CheckBox;
+import android.widget.CompoundButton;
+import android.widget.CompoundButton.OnCheckedChangeListener;
 import android.widget.ImageView;
 import android.widget.PopupMenu;
 import android.widget.ProgressBar;
@@ -316,6 +318,8 @@ public class OpdsFragment2 extends UIFragment<Entry> {
                 final AlertDialog.Builder builder = new AlertDialog.Builder(v.getContext());
                 View view = LayoutInflater.from(v.getContext()).inflate(R.layout.dialog_proxy_server, null, false);
 
+                builder.setTitle(R.string.proxy_server_settings);
+
                 final CheckBox proxyEnable = (CheckBox) view.findViewById(R.id.proxyEnable);
                 final TextView proxyServer = (TextView) view.findViewById(R.id.proxyServer);
                 final TextView proxyPort = (TextView) view.findViewById(R.id.proxyPort);
@@ -329,6 +333,25 @@ public class OpdsFragment2 extends UIFragment<Entry> {
                 proxyPort.setText("" + AppState.get().proxyPort);
                 proxyUser.setText(AppState.get().proxyUser);
                 proxyPassword.setText(AppState.get().proxyPassword);
+
+                proxyEnable.setOnCheckedChangeListener(new OnCheckedChangeListener() {
+
+                    @Override
+                    public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                        if (isChecked) {
+                            if (TxtUtils.isEmpty(proxyServer.getText().toString())) {
+                                proxyServer.requestFocus();
+                                proxyEnable.setChecked(false);
+                                Toast.makeText(getContext(), R.string.incorrect_value, Toast.LENGTH_SHORT).show();
+                            } else if ("0".equals(proxyPort.getText().toString()) || TxtUtils.isEmpty(proxyPort.getText().toString())) {
+                                proxyPort.requestFocus();
+                                proxyEnable.setChecked(false);
+                                Toast.makeText(getContext(), R.string.incorrect_value, Toast.LENGTH_SHORT).show();
+                            }
+                        }
+
+                    }
+                });
 
                 TxtUtils.underline(proxyType, AppState.get().proxyType);
 
@@ -359,13 +382,19 @@ public class OpdsFragment2 extends UIFragment<Entry> {
                     }
                 });
 
-                builder.setPositiveButton(R.string.close, new DialogInterface.OnClickListener() {
+                builder.setPositiveButton(R.string.apply, new DialogInterface.OnClickListener() {
 
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         AppState.get().proxyEnable = proxyEnable.isChecked();
                         AppState.get().proxyServer = proxyServer.getText().toString();
-                        AppState.get().proxyPort = Integer.parseInt(proxyPort.getText().toString());
+
+                        try {
+                            AppState.get().proxyPort = Integer.parseInt(proxyPort.getText().toString());
+                        } catch (Exception e) {
+                            AppState.get().proxyPort = 0;
+                        }
+
                         AppState.get().proxyUser = proxyUser.getText().toString().trim();
                         AppState.get().proxyPassword = proxyPassword.getText().toString().trim();
 

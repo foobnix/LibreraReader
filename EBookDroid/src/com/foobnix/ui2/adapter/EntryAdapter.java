@@ -237,7 +237,7 @@ public class EntryAdapter extends AppRecycleAdapter<Entry, RecyclerView.ViewHold
 
                         @Override
                         public void onClick(View v) {
-                            FileInformationDialog.showImage1(context, link.href);
+                            FileInformationDialog.showImageHttpPath(context, link.href);
 
                         }
                     });
@@ -252,6 +252,7 @@ public class EntryAdapter extends AppRecycleAdapter<Entry, RecyclerView.ViewHold
             } else {
                 TextView t = new TextView(holder.parent.getContext());
                 t.setPadding(PD, PD, PD, PD);
+
                 t.setOnClickListener(new OnClickListener() {
 
                     @Override
@@ -260,6 +261,7 @@ public class EntryAdapter extends AppRecycleAdapter<Entry, RecyclerView.ViewHold
 
                     }
                 });
+
 
                 String downloadFormat = link.getDownloadDisplayFormat();
 
@@ -287,7 +289,11 @@ public class EntryAdapter extends AppRecycleAdapter<Entry, RecyclerView.ViewHold
                 } else {
                     t.setText(link.title != null ? link.title : link.type);
                     t.setTextColor(context.getResources().getColor(R.color.tint_blue));
-                    t.setBackgroundResource(R.drawable.bg_clickable);
+                    // t.setBackgroundResource(R.drawable.bg_clickable);
+                    // if (link.type != null && link.type.contains(Entry.MY_CATALOG)) {
+                    // t.setBackgroundColor(Color.TRANSPARENT);
+                    // }
+
                     if (AppState.get().isInkMode) {
                         // t.setTextColor(Color.GRAY);
                     }

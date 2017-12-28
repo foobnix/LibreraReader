@@ -30,7 +30,6 @@ import android.graphics.drawable.ColorDrawable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.view.ViewGroup;
 import android.view.Window;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
@@ -269,7 +268,7 @@ public class FileInformationDialog {
         builder.show();
     }
 
-    public static void showImage1(Context a, String path) {
+    public static void showImageHttpPath(Context a, String path) {
         final Dialog builder = new Dialog(a);
         builder.requestWindowFeature(Window.FEATURE_NO_TITLE);
         builder.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
@@ -290,7 +289,7 @@ public class FileInformationDialog {
         });
         ImageLoader.getInstance().displayImage(path, imageView, IMG.displayImageOptions);
 
-        RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
+        RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams((int) (Dips.screenWidth() * 0.9), (int) (Dips.screenHeight() * 0.9));
         builder.addContentView(imageView, params);
         builder.show();
     }
