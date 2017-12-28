@@ -38,9 +38,9 @@ public class OPDS {
 
     public static OkHttpClient.Builder builder = new OkHttpClient.Builder()//
             .cookieJar(new WebviewCookieHandler())//
-            .connectTimeout(15, TimeUnit.SECONDS)//
-            .writeTimeout(15, TimeUnit.SECONDS)//
-            .readTimeout(15, TimeUnit.SECONDS)//
+            .connectTimeout(45, TimeUnit.SECONDS)//
+            .writeTimeout(45, TimeUnit.SECONDS)//
+            .readTimeout(45, TimeUnit.SECONDS)//
             .cache(cache);//
 
     public static OkHttpClient client = builder.build();//
@@ -49,6 +49,21 @@ public class OPDS {
 
     public static int random = new Random().nextInt();
     public static final String USER_AGENT = "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/57.0.2997." + random + " Safari/537.36";
+
+    public static void buildProxy() {
+        if (AppState.get().proxyEnable && TxtUtils.isNotEmpty(AppState.get().proxyServer) && AppState.get().proxyPort != 0) {
+            Type http = AppState.PROXY_SOCKS.equals(AppState.get().proxyType) ? Type.SOCKS : Type.HTTP;
+            LOG.d("Proxy: Server", http.name(), AppState.get().proxyServer, AppState.get().proxyPort);
+            builder.proxy(new Proxy(http, new InetSocketAddress(AppState.get().proxyServer, AppState.get().proxyPort)));
+            if (TxtUtils.isNotEmpty(AppState.get().proxyUser)) {
+                LOG.d("Proxy: User", AppState.get().proxyUser, AppState.get().proxyPassword);
+                builder.proxyAuthenticator(new BasicAuthenticator(new Credentials(AppState.get().proxyUser, AppState.get().proxyPassword)));
+            }
+        } else {
+            builder.proxy(null);
+        }
+        client = builder.build();
+    }
 
     public static String getHttpResponse(String url) throws IOException {
 
@@ -60,18 +75,6 @@ public class OPDS {
                         .build())//
                 .url(url)//
                 .build();//
-
-        if (AppState.get().proxyEnable && TxtUtils.isNotEmpty(AppState.get().proxyServer) && AppState.get().proxyPort != 0) {
-            LOG.d("Proxy: Server", AppState.get().proxyServer, AppState.get().proxyPort);
-            builder.proxy(new Proxy(Type.HTTP, new InetSocketAddress(AppState.get().proxyServer, AppState.get().proxyPort)));
-            if (TxtUtils.isNotEmpty(AppState.get().proxyUser)) {
-                LOG.d("Proxy: User", AppState.get().proxyUser, AppState.get().proxyPassword);
-                builder.proxyAuthenticator(new BasicAuthenticator(new Credentials(AppState.get().proxyUser, AppState.get().proxyPassword)));
-            }
-        } else {
-            builder.proxy(null);
-        }
-        client = builder.build();
 
         Response response = client//
                 .newCall(request)//

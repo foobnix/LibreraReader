@@ -11,16 +11,36 @@
         android:layout_height="wrap_content"
         android:text="@string/use_proxy_server" />
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal" >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/proxy_type"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_marginLeft="10dip"
+            android:id="@+id/proxyType"
+            style="@style/textLink"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="HTTP" />
+    </LinearLayout>
+
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/server" />
 
     <EditText
-        android:digits="0123456789."
         android:id="@+id/proxyServer"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" >
+        android:layout_height="wrap_content"
+        android:digits="0123456789." >
     </EditText>
 
     <TextView
@@ -30,9 +50,9 @@
 
     <EditText
         android:id="@+id/proxyPort"
-         android:digits="0123456789"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" >
+        android:layout_height="wrap_content"
+        android:digits="0123456789" >
     </EditText>
 
     <TextView

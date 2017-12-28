@@ -439,4 +439,5 @@
    <string name="port">ポート</string>
    <string name="user">ユーザー</string>
    <string name="use_proxy_server">プロキシサーバーを使用する</string>
+   <string name="proxy_type">プロキシタイプ</string>
 </resources>

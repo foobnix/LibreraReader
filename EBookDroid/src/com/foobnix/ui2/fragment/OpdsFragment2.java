@@ -35,12 +35,15 @@ import android.support.v4.util.Pair;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
+import android.view.MenuItem.OnMenuItemClickListener;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.View.OnLongClickListener;
 import android.view.ViewGroup;
 import android.widget.CheckBox;
 import android.widget.ImageView;
+import android.widget.PopupMenu;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -319,11 +322,42 @@ public class OpdsFragment2 extends UIFragment<Entry> {
                 final TextView proxyUser = (TextView) view.findViewById(R.id.proxyUser);
                 final TextView proxyPassword = (TextView) view.findViewById(R.id.proxyPassword);
 
+                final TextView proxyType = (TextView) view.findViewById(R.id.proxyType);
+
                 proxyEnable.setChecked(AppState.get().proxyEnable);
                 proxyServer.setText(AppState.get().proxyServer);
                 proxyPort.setText("" + AppState.get().proxyPort);
                 proxyUser.setText(AppState.get().proxyUser);
                 proxyPassword.setText(AppState.get().proxyPassword);
+
+                TxtUtils.underline(proxyType, AppState.get().proxyType);
+
+                proxyType.setOnClickListener(new OnClickListener() {
+
+                    @Override
+                    public void onClick(View v) {
+                        PopupMenu menu = new PopupMenu(v.getContext(), v);
+                        menu.getMenu().add(AppState.PROXY_HTTP).setOnMenuItemClickListener(new OnMenuItemClickListener() {
+
+                            @Override
+                            public boolean onMenuItemClick(MenuItem item) {
+                                AppState.get().proxyType = AppState.PROXY_HTTP;
+                                TxtUtils.underline(proxyType, AppState.get().proxyType);
+                                return false;
+                            }
+                        });
+                        menu.getMenu().add(AppState.PROXY_SOCKS).setOnMenuItemClickListener(new OnMenuItemClickListener() {
+
+                            @Override
+                            public boolean onMenuItemClick(MenuItem item) {
+                                AppState.get().proxyType = AppState.PROXY_SOCKS;
+                                TxtUtils.underline(proxyType, AppState.get().proxyType);
+                                return false;
+                            }
+                        });
+                        menu.show();
+                    }
+                });
 
                 builder.setPositiveButton(R.string.close, new DialogInterface.OnClickListener() {
 
@@ -335,6 +369,8 @@ public class OpdsFragment2 extends UIFragment<Entry> {
                         AppState.get().proxyUser = proxyUser.getText().toString();
                         AppState.get().proxyPassword = proxyPassword.getText().toString();
 
+                        OPDS.buildProxy();
+
                         AppState.get().save(getActivity());
 
                     }
@@ -344,6 +380,7 @@ public class OpdsFragment2 extends UIFragment<Entry> {
 
             }
         });
+        OPDS.buildProxy();
 
         populate();
         onTintChanged();

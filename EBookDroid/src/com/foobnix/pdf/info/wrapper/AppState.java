@@ -34,6 +34,9 @@ import android.view.KeyEvent;
 
 public class AppState {
 
+    public static final String PROXY_HTTP = "HTTP";
+    public static final String PROXY_SOCKS = "SOCKS";
+
     public static final int TEXT_COLOR_DAY = Color.parseColor("#5b5b5b");
     public static final int TEXT_COLOR_NIGHT = Color.parseColor("#8e8e8e");
 
@@ -437,6 +440,7 @@ public class AppState {
     public int proxyPort = 0;
     public String proxyUser = "";
     public String proxyPassword = "";
+    public String proxyType = PROXY_HTTP;
 
     public Set<String> myAutoComplete = new HashSet<String>();
 
@@ -757,6 +761,7 @@ public class AppState {
         proxyPort = sp.getInt("proxyPort", proxyPort);
         proxyUser = sp.getString("proxyUser", proxyUser);
         proxyPassword = sp.getString("proxyPassword", proxyPassword);
+        proxyType = sp.getString("proxyType", proxyType);
 
         LOG.d("LOAD AppState", "coverSmallSize", coverSmallSize);
     }
@@ -1008,6 +1013,7 @@ public class AppState {
         editor.putInt("proxyPort", proxyPort);
         editor.putString("proxyUser", proxyUser);
         editor.putString("proxyPassword", proxyPassword);
+        editor.putString("proxyType", proxyType);
 
         editor.commit();
 

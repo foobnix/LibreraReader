@@ -439,4 +439,5 @@
    <string name="port">Liman</string>
    <string name="user">Kullanıcı</string>
    <string name="use_proxy_server">Proxy sunucusu kullan</string>
+   <string name="proxy_type">Proxy türü</string>
 </resources>

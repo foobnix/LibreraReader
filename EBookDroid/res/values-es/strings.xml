@@ -439,4 +439,5 @@
    <string name="port">Puerto</string>
    <string name="user">Usuario</string>
    <string name="use_proxy_server">Usar servidor proxy</string>
+   <string name="proxy_type">Tipo de proxy</string>
 </resources>

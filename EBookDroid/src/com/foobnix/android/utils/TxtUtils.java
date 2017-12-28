@@ -334,6 +334,11 @@ public class TxtUtils {
         return textView;
     }
 
+    public static TextView underline(TextView textView, String text) {
+        textView.setText(underline(text));
+        return textView;
+    }
+
     public static Spanned bold(String text) {
         return Html.fromHtml("<u>" + text + "</u>");
     }

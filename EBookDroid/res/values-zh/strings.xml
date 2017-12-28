@@ -439,4 +439,5 @@
    <string name="port">港口</string>
    <string name="user">用户</string>
    <string name="use_proxy_server">使用代理服务器</string>
+   <string name="proxy_type">代理类型</string>
 </resources>
