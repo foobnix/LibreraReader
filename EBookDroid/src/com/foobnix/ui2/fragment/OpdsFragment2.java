@@ -366,8 +366,8 @@ public class OpdsFragment2 extends UIFragment<Entry> {
                         AppState.get().proxyEnable = proxyEnable.isChecked();
                         AppState.get().proxyServer = proxyServer.getText().toString();
                         AppState.get().proxyPort = Integer.parseInt(proxyPort.getText().toString());
-                        AppState.get().proxyUser = proxyUser.getText().toString();
-                        AppState.get().proxyPassword = proxyPassword.getText().toString();
+                        AppState.get().proxyUser = proxyUser.getText().toString().trim();
+                        AppState.get().proxyPassword = proxyPassword.getText().toString().trim();
 
                         OPDS.buildProxy();
 
