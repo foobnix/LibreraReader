@@ -295,12 +295,9 @@ public class VerticalViewActivity extends AbstractActionActivity<VerticalViewAct
 
             LOG.d("READ PERCEnt", value);
 
-            if (Build.VERSION.SDK_INT >= 11) {
-                recreate();
-            } else {
-                finish();
-                startActivity(getIntent());
-            }
+            getController().closeActivityFinal(null);
+            startActivity(getIntent());
+
         }
     }
 
