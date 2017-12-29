@@ -440,4 +440,7 @@
    <string name="user">Benutzer</string>
    <string name="use_proxy_server">Verwenden Sie den Proxy-Server</string>
    <string name="proxy_type">Proxy-Typ</string>
+   <string name="proxy_server_settings">Proxy-Servereinstellungen</string>
+   <string name="other_settings">Andere Einstellungen</string>
+   <string name="display_large_book_covers_in_the_catalog">Zeigen Sie große Buchumschläge im Katalog an</string>
 </resources>

@@ -224,7 +224,7 @@ public class EntryAdapter extends AppRecycleAdapter<Entry, RecyclerView.ViewHold
                         continue;
                     }
                 }
-                if (!link.href.equals(imgLink)) {
+                if (!link.href.equals(imgLink) && AppState.get().opdsLargeCovers) {
                     ScaledImageView img = new ScaledImageView(holder.parent.getContext());
                     img.setPadding(PD, PD, PD, PD);
                     ImageLoader.getInstance().displayImage(link.href, img, IMG.displayImageOptions);

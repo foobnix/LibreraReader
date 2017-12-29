@@ -9,6 +9,7 @@ import java.util.Stack;
 
 import com.foobnix.android.utils.LOG;
 import com.foobnix.android.utils.ResultResponse;
+import com.foobnix.android.utils.ResultResponse2;
 import com.foobnix.android.utils.TxtUtils;
 import com.foobnix.opds.Entry;
 import com.foobnix.opds.Feed;
@@ -22,11 +23,13 @@ import com.foobnix.pdf.info.TintUtil;
 import com.foobnix.pdf.info.Urls;
 import com.foobnix.pdf.info.view.AlertDialogs;
 import com.foobnix.pdf.info.widget.AddCatalogDialog;
+import com.foobnix.pdf.info.widget.ChooserDialogFragment;
 import com.foobnix.pdf.info.wrapper.AppState;
 import com.foobnix.ui2.adapter.EntryAdapter;
 import com.foobnix.ui2.fast.FastScrollRecyclerView;
 
 import android.app.AlertDialog;
+import android.app.Dialog;
 import android.content.DialogInterface;
 import android.graphics.Color;
 import android.os.AsyncTask;
@@ -318,9 +321,8 @@ public class OpdsFragment2 extends UIFragment<Entry> {
                 final AlertDialog.Builder builder = new AlertDialog.Builder(v.getContext());
                 View view = LayoutInflater.from(v.getContext()).inflate(R.layout.dialog_proxy_server, null, false);
 
-                builder.setTitle(R.string.proxy_server_settings);
-
                 final CheckBox proxyEnable = (CheckBox) view.findViewById(R.id.proxyEnable);
+                final CheckBox opdsLargeCovers = (CheckBox) view.findViewById(R.id.opdsLargeCovers);
                 final TextView proxyServer = (TextView) view.findViewById(R.id.proxyServer);
                 final TextView proxyPort = (TextView) view.findViewById(R.id.proxyPort);
                 final TextView proxyUser = (TextView) view.findViewById(R.id.proxyUser);
@@ -328,9 +330,12 @@ public class OpdsFragment2 extends UIFragment<Entry> {
 
                 final TextView proxyType = (TextView) view.findViewById(R.id.proxyType);
 
+                TintUtil.setBackgroundFillColor(view.findViewById(R.id.section1), TintUtil.color);
+                TintUtil.setBackgroundFillColor(view.findViewById(R.id.section2), TintUtil.color);
+
                 proxyEnable.setChecked(AppState.get().proxyEnable);
                 proxyServer.setText(AppState.get().proxyServer);
-                proxyPort.setText("" + AppState.get().proxyPort);
+                proxyPort.setText(AppState.get().proxyPort == 0 ? "" : "" + AppState.get().proxyPort);
                 proxyUser.setText(AppState.get().proxyUser);
                 proxyPassword.setText(AppState.get().proxyPassword);
 
@@ -404,6 +409,36 @@ public class OpdsFragment2 extends UIFragment<Entry> {
 
                     }
                 });
+
+                opdsLargeCovers.setChecked(AppState.get().opdsLargeCovers);
+                opdsLargeCovers.setOnCheckedChangeListener(new OnCheckedChangeListener() {
+
+                    @Override
+                    public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                        AppState.get().opdsLargeCovers = isChecked;
+                    }
+                });
+
+                final TextView downlodsPath = (TextView) view.findViewById(R.id.downlodsPath);
+                downlodsPath.setText(ExtUtils.getFileName(AppState.getInstance().downlodsPath));
+                TxtUtils.underlineTextView(downlodsPath);
+                downlodsPath.setOnClickListener(new View.OnClickListener() {
+
+                    @Override
+                    public void onClick(final View v) {
+                        ChooserDialogFragment.chooseFolder(getActivity(), AppState.getInstance().downlodsPath).setOnSelectListener(new ResultResponse2<String, Dialog>() {
+                            @Override
+                            public boolean onResultRecive(String nPath, Dialog dialog) {
+                                AppState.getInstance().downlodsPath = nPath;
+                                downlodsPath.setText(ExtUtils.getFileName(AppState.getInstance().downlodsPath));
+                                TxtUtils.underlineTextView(downlodsPath);
+                                dialog.dismiss();
+                                return false;
+                            }
+                        });
+                    }
+                });
+
                 builder.setView(view);
                 builder.show();
 

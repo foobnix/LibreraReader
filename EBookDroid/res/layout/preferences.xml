@@ -783,27 +783,6 @@
             </LinearLayout>
         </LinearLayout>
 
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="5dip"
-            android:gravity="center_vertical"
-            android:orientation="horizontal" >
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/folder_for_downloaded_books" />
-
-            <TextView
-                android:id="@+id/downlodsPath"
-                style="@style/textLink"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="8dip"
-                android:minWidth="100dip"
-                android:text="Dowloads/Librera" />
-        </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"

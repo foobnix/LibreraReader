@@ -157,6 +157,8 @@ public class AppState {
 
     public String myOPDS = OPDS_DEFAULT;
 
+    public boolean opdsLargeCovers = true;
+
     public final static String READ_COLORS_DEAFAUL =
             // (name),(bg),(text),(0-day 1-nigth)
             "" + //
@@ -732,6 +734,7 @@ public class AppState {
         downlodsPath = sp.getString("downlodsPath", downlodsPath);
         readColors = sp.getString("readColors", readColors);
         myOPDS = sp.getString("myOPDS", myOPDS);
+        opdsLargeCovers = sp.getBoolean("opdsLargeCovers", opdsLargeCovers);
         tabsOrder = sp.getString("tabsOrder2", tabsOrder);
 
         bgImageDayTransparency = sp.getInt("bgImageDayTransparency", bgImageDayTransparency);
@@ -983,6 +986,7 @@ public class AppState {
         editor.putString("downlodsPath", downlodsPath);
         editor.putString("readColors", readColors);
         editor.putString("myOPDS", myOPDS);
+        editor.putBoolean("opdsLargeCovers", opdsLargeCovers);
         editor.putString("tabsOrder2", tabsOrder);
 
         editor.putInt("bgImageDayTransparency", bgImageDayTransparency);
