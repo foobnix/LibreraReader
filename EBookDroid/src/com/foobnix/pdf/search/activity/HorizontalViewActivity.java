@@ -442,7 +442,9 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
                             documentController.cleanImageMatrix();
                         } else {
                             TTSEngine.get().stop();
+                            documentController.cleanImageMatrix();
                             reloadDoc.run();
+                            authoFit();
                         }
                         return false;
                     }
@@ -462,7 +464,9 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
                             documentController.cleanImageMatrix();
                         } else {
                             TTSEngine.get().stop();
+                            documentController.cleanImageMatrix();
                             reloadDoc.run();
+                            authoFit();
                         }
                         return false;
                     }
@@ -483,7 +487,9 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
                                 documentController.cleanImageMatrix();
                             } else {
                                 TTSEngine.get().stop();
+                                documentController.cleanImageMatrix();
                                 reloadDoc.run();
+                                authoFit();
                             }
                             return false;
                         }
@@ -500,7 +506,10 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
                             AppState.get().isCrop = false;
                             SettingsManager.getBookSettings().updateFromAppState();
                             TTSEngine.get().stop();
+
+                            documentController.cleanImageMatrix();
                             reloadDoc.run();
+                            authoFit();
                             return false;
                         }
                     });
@@ -1551,6 +1560,17 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
 
     }
 
+    public void authoFit() {
+        handler.postDelayed(new Runnable() {
+
+            @Override
+            public void run() {
+                PageImageState.get().isAutoFit = true;
+                EventBus.getDefault().post(new MessageAutoFit(viewPager.getCurrentItem()));
+            }
+        }, 50);
+    }
+
     @TargetApi(Build.VERSION_CODES.HONEYCOMB)
     public void onRotateScreen() {
         // ADS.activate(this, adView);
@@ -1563,15 +1583,7 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
             documentController.restartActivity();
         } else {
             if (viewPager != null) {
-                handler.postDelayed(new Runnable() {
-
-                    @Override
-                    public void run() {
-                        PageImageState.get().isAutoFit = true;
-                        EventBus.getDefault().post(new MessageAutoFit(viewPager.getCurrentItem()));
-                    }
-                }, 50);
-
+                authoFit();
             }
         }
     }
