@@ -325,6 +325,8 @@ public abstract class DocumentController {
             if (brightness < 0) {
                 brightness = -1;
             }
+
+            LOG.d("applyBrigtness", brightness);
             lp.screenBrightness = brightness;
             a.getWindow().setAttributes(lp);
         } catch (Exception e) {

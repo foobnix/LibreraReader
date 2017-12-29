@@ -163,6 +163,7 @@
     </LinearLayout>
 
     <com.foobnix.pdf.info.view.BrigtnessDraw
+        android:visibility="gone"
         android:id="@+id/brigtnessProgressView"
         android:layout_width="@dimen/brigtness"
         android:layout_height="match_parent"
@@ -438,6 +439,14 @@
         android:id="@+id/overlay"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
+    
+    <include 
+        android:id="@+id/toastLayout"
+        layout="@layout/toast_brightness"
+        android:visibility="visible"
+        android:layout_centerInParent="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
     
     
 

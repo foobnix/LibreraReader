@@ -50,6 +50,7 @@ import com.foobnix.pdf.search.activity.msg.FlippingStop;
 import com.foobnix.pdf.search.activity.msg.InvalidateMessage;
 import com.foobnix.pdf.search.activity.msg.MessageAutoFit;
 import com.foobnix.pdf.search.activity.msg.MessageEvent;
+import com.foobnix.pdf.search.activity.msg.MessegeBrightness;
 import com.foobnix.pdf.search.view.CloseAppDialog;
 import com.foobnix.pdf.search.view.VerticalViewPager;
 import com.foobnix.sys.ClickUtils;
@@ -108,8 +109,8 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
 
     VerticalViewPager viewPager;
     SeekBar seekBar;
-    private TextView maxSeek, currentSeek, pagesCountIndicator, flippingIntervalView, pagesTime, pagesPower, titleTxt, chapterView;
-    View adFrame, bottomBar, bottomIndicators, moveCenter, onClose, overlay;
+    private TextView toastBrightnessText, maxSeek, currentSeek, pagesCountIndicator, flippingIntervalView, pagesTime, pagesPower, titleTxt, chapterView;
+    View toastLayout, adFrame, bottomBar, bottomIndicators, moveCenter, onClose, overlay;
     LinearLayout actionBar;
     private FrameLayout anchor;
 
@@ -213,11 +214,14 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
         bottomBar = findViewById(R.id.bottomBar);
         bottomIndicators = findViewById(R.id.bottomIndicators);
         adFrame = findViewById(R.id.adFrame);
+        toastLayout = findViewById(R.id.toastLayout);
+        toastLayout.setVisibility(View.GONE);
         anchor = (FrameLayout) findViewById(R.id.anchor);
         moveCenter = findViewById(R.id.moveCenter);
 
         currentSeek = (TextView) findViewById(R.id.currentSeek);
         maxSeek = (TextView) findViewById(R.id.maxSeek);
+        toastBrightnessText = (TextView) findViewById(R.id.toastBrightnessText);
         pagesCountIndicator = (TextView) findViewById(R.id.pagesCountIndicator);
         flippingIntervalView = (TextView) findViewById(R.id.flippingIntervalView);
         pagesTime = (TextView) findViewById(R.id.pagesTime);
@@ -818,6 +822,37 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
                 }
             }
         });
+
+    }
+
+    @Subscribe
+    public void onMessegeBrightness(MessegeBrightness msg) {
+        int value = msg.getValue();
+        toastLayout.setVisibility(View.VISIBLE);
+        toastLayout.getHandler().removeCallbacksAndMessages(null);
+        toastLayout.getHandler().postDelayed(new Runnable() {
+
+            @Override
+            public void run() {
+                toastLayout.setVisibility(View.GONE);
+            }
+        }, 1000);
+
+        if (value < 0) {
+            AppState.get().isEnableBlueFilter = true;
+            AppState.get().blueLightAlpha = Math.abs(value);
+            updateOverlay();
+
+            AppState.getInstance().brightness = 0f;
+            DocumentController.applyBrigtness(this);
+            toastBrightnessText.setText(getString(R.string.brightness) + " " + value + "%");
+        } else {
+            AppState.get().isEnableBlueFilter = false;
+            AppState.getInstance().brightness = (float) value / 100;
+            toastBrightnessText.setText(getString(R.string.brightness) + " " + value + "%");
+            DocumentController.applyBrigtness(this);
+
+        }
 
     }
 

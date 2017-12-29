@@ -79,7 +79,7 @@ public class AppState {
     public static int TAP_PREV_PAGE = 1;
     public static int TAP_DO_NOTHING = 2;
 
-    public static int BLUE_FILTER_DEFAULT_COLOR = Color.parseColor("#FFDD00");
+    public static int BLUE_FILTER_DEFAULT_COLOR = Color.BLACK;
     public static String MY_SYSTEM_LANG = "my";
 
     public boolean isUseTypeFace = false;

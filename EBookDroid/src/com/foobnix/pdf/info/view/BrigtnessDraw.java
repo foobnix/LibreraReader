@@ -39,7 +39,6 @@ public class BrigtnessDraw extends View {
         textView.setCompoundDrawablePadding(dp);
         textView.setPadding(dp * 2, dp, dp * 2, dp);
 
-
         toast = new Toast(context);
         toast.setGravity(Gravity.CENTER, 0, 0);
         toast.setView(textView);
@@ -47,7 +46,7 @@ public class BrigtnessDraw extends View {
     }
 
     float y, x;
-    int distance = Dips.dpToPx(5);
+    int distance = Dips.dpToPx(30);
 
     private Activity activity;
     private TextView textView;
@@ -69,11 +68,11 @@ public class BrigtnessDraw extends View {
     @Override
     public boolean onTouchEvent(MotionEvent event) {
         if (activity == null || !AppState.get().isBrighrnessEnable) {
-            return false;
+            return super.onTouchEvent(event);
         }
         gestureDetector.onTouchEvent(event);
 
-        LOG.d("BrigtnessDraw", event);
+        // LOG.d("BrigtnessDraw", event);
 
         final int action = event.getAction() & MotionEvent.ACTION_MASK;
 
@@ -85,8 +84,8 @@ public class BrigtnessDraw extends View {
         if (action == MotionEvent.ACTION_MOVE) {
             float dy1 = Math.abs(y - event.getY());
             float dx1 = Math.abs(x - event.getX());
-            if (dy1 >= distance) {
-                LOG.d("BrigtnessDraw", event.getX());
+            if (dy1 > distance && dy1 > dx1 * 2) {
+                LOG.d("BrigtnessDraw", dy1, dx1);
                 float dy = (y - event.getY());
                 double fast = 0.03;
                 double slow = 0.005;
@@ -118,7 +117,7 @@ public class BrigtnessDraw extends View {
                 showToast();
             }
         }
-        return true;
+        return super.onTouchEvent(event);
     }
 
     @Override

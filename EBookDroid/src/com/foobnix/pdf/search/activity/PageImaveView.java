@@ -13,6 +13,7 @@ import com.foobnix.android.utils.LOG;
 import com.foobnix.android.utils.TxtUtils;
 import com.foobnix.android.utils.Vibro;
 import com.foobnix.pdf.info.R;
+import com.foobnix.pdf.info.view.BrightnessHelper;
 import com.foobnix.pdf.info.wrapper.AppState;
 import com.foobnix.pdf.info.wrapper.MagicHelper;
 import com.foobnix.pdf.search.activity.msg.InvalidateMessage;
@@ -64,6 +65,8 @@ public class PageImaveView extends View {
     private int pageNumber;
     ClickUtils clickUtils;
 
+    BrightnessHelper brightnessHelper;
+
     public PageImaveView(final Context context, final AttributeSet attrs) {
         super(context, attrs);
 
@@ -78,6 +81,7 @@ public class PageImaveView extends View {
 
         EventBus.getDefault().register(this);
         clickUtils = new ClickUtils();
+        brightnessHelper = new BrightnessHelper();
     }
 
     public RectF transform(RectF origin, int number) {
@@ -173,11 +177,10 @@ public class PageImaveView extends View {
         imageMatrix().getValues(values);
         float mScale = values[Matrix.MSCALE_X];
 
-
         int w = (drawableWidth) / 2;
         int h = (drawableHeight) / 2;
 
-        if(MovePageAction.CENTER == event.getAction()){
+        if (MovePageAction.CENTER == event.getAction()) {
             LOG.d("Action center", event.getPage());
             PageImageState.get().isAutoFit = true;
             onAutoFit(new MessageAutoFit(event.getPage()));
@@ -266,6 +269,10 @@ public class PageImaveView extends View {
 
         @Override
         public boolean onFling(final MotionEvent e1, final MotionEvent e2, final float velocityX, final float velocityY) {
+            if (e1.getX() < BrightnessHelper.BRIGHTNESS_WIDTH) {
+                return false;
+            }
+
             if (AppState.get().selectedText != null) {
                 return false;
             }
@@ -304,6 +311,7 @@ public class PageImaveView extends View {
                 scroller.forceFinished(true);
                 x = event.getX();
                 y = event.getY();
+                brightnessHelper.onActoinDown(x, y);
                 isReadyForMove = false;
                 isLognPress = false;
             } else if (action == MotionEvent.ACTION_MOVE) {
@@ -328,7 +336,9 @@ public class PageImaveView extends View {
                             }
                         }
 
-                        if (isReadyForMove && !AppState.get().isLocked) {
+                        boolean isBrightness = brightnessHelper.onActionMove(event);
+                        
+                        if (!isBrightness && isReadyForMove && !AppState.get().isLocked) {
 
                             imageMatrix().postTranslate(dx, dy);
 
@@ -338,7 +348,9 @@ public class PageImaveView extends View {
                             x = event.getX();
                             y = event.getY();
                         }
+
                     }
+
                 }
 
                 if (event.getPointerCount() == 2) {
@@ -398,6 +410,7 @@ public class PageImaveView extends View {
                 distance = 0;
 
             } else if (action == MotionEvent.ACTION_UP) {
+                brightnessHelper.onActionUp();
 
                 LOG.d("TEST", "action ACTION_UP", "long: " + isLognPress);
                 distance = 0;
