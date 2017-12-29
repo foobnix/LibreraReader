@@ -26,6 +26,7 @@ import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.View.OnLongClickListener;
 import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -259,6 +260,14 @@ public class EntryAdapter extends AppRecycleAdapter<Entry, RecyclerView.ViewHold
                     public void onClick(View v) {
                         onLinkClickListener.onResultRecive(link);
 
+                    }
+                });
+                t.setOnLongClickListener(new OnLongClickListener() {
+
+                    @Override
+                    public boolean onLongClick(View v) {
+                        holder.parent.performLongClick();
+                        return false;
                     }
                 });
 

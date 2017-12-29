@@ -30,6 +30,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.res.Configuration;
+import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
@@ -109,6 +110,9 @@ public class VerticalViewActivity extends AbstractActionActivity<VerticalViewAct
                         AppState.get().isCrop = true;
                     }
                 }
+            }
+            if (AppState.get().isOLED) {
+                AppState.get().colorNigthBg = Color.BLACK;
             }
 
             getController().beforeCreate(this);

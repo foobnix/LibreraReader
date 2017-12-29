@@ -40,6 +40,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.graphics.Matrix;
 import android.graphics.PointF;
 
@@ -140,6 +141,9 @@ public abstract class HorizontalModeController extends DocumentController {
             if (AppState.get().isCropPDF && !isTextFormat) {
                 AppState.get().isCrop = true;
             }
+        }
+        if (AppState.get().isOLED) {
+            AppState.get().colorNigthBg = Color.BLACK;
         }
 
         if (false) {
