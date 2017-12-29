@@ -16,6 +16,7 @@ import com.foobnix.android.utils.Vibro;
 import com.foobnix.pdf.info.ExtUtils;
 import com.foobnix.pdf.info.R;
 import com.foobnix.pdf.info.model.AnnotationType;
+import com.foobnix.pdf.info.view.BrightnessHelper;
 import com.foobnix.pdf.info.wrapper.AppState;
 import com.foobnix.pdf.info.wrapper.DocumentController;
 
@@ -34,6 +35,7 @@ public class AdvGuestureDetector extends SimpleOnGestureListener implements IMul
     private boolean isLongMovement = false;
 
     ClickUtils clickUtils;
+    BrightnessHelper brightnessHelper;
 
     public AdvGuestureDetector(final AbstractViewController avc, final DocumentController listener) {
         this.avc = avc;
@@ -50,6 +52,7 @@ public class AdvGuestureDetector extends SimpleOnGestureListener implements IMul
 
         clickUtils = new ClickUtils();
         updateBorders();
+        brightnessHelper = new BrightnessHelper();
     }
 
     public void updateBorders() {
@@ -115,8 +118,11 @@ public class AdvGuestureDetector extends SimpleOnGestureListener implements IMul
 
         clickUtils.initMusician();
 
+        brightnessHelper.onActoinDown(e.getX(), e.getY());
+
         return true;
     }
+
 
     Annotation annotation;
 
@@ -223,6 +229,11 @@ public class AdvGuestureDetector extends SimpleOnGestureListener implements IMul
      */
     @Override
     public boolean onFling(final MotionEvent e1, final MotionEvent e2, final float vX, final float vY) {
+
+        if (e1.getX() < BrightnessHelper.BRIGHTNESS_WIDTH) {
+            return false;
+        }
+
         if (AppState.get().isMusicianMode) {
             return false;
         }
@@ -254,6 +265,10 @@ public class AdvGuestureDetector extends SimpleOnGestureListener implements IMul
     @Override
     public boolean onScroll(final MotionEvent e1, final MotionEvent e2, final float distanceX, final float distanceY) {
         final float x = distanceX, y = distanceY;
+
+        if (brightnessHelper.onActionMove(e2)) {
+            return true;
+        }
 
         if (isNoLock()) {
             // if (!AppState.get().isMusicianMode ||

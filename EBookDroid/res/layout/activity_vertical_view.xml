@@ -67,11 +67,7 @@
         android:layout_height="match_parent"
         android:visibility="gone" />
 
-    <com.foobnix.pdf.info.view.BrigtnessDraw
-        android:id="@+id/brigtnessProgressView"
-        android:layout_width="@dimen/brigtness"
-        android:layout_height="match_parent"
-        android:layout_alignParentLeft="true" />
+    
 
     <include
         android:id="@+id/document_title_bar"
@@ -150,5 +146,21 @@
         android:id="@+id/overlay"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
+    
+      <TextView
+        android:id="@+id/toastBrightnessText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:padding="12dip"
+        android:drawableTint="@color/white"
+        android:drawablePadding="10dip"
+        android:background="@drawable/bg_my_toast"
+        android:drawableLeft="@drawable/glyphicons_232_sun"
+        android:text="@string/brightness"
+        android:textColor="@color/white"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        android:visibility="visible" />
 
 </RelativeLayout>

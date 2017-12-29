@@ -21,6 +21,7 @@ import com.foobnix.pdf.info.R;
 import com.foobnix.pdf.info.TintUtil;
 import com.foobnix.pdf.info.Urls;
 import com.foobnix.pdf.info.view.AlertDialogs;
+import com.foobnix.pdf.info.view.BrightnessHelper;
 import com.foobnix.pdf.info.view.CustomSeek;
 import com.foobnix.pdf.info.view.Dialogs;
 import com.foobnix.pdf.info.view.KeyCodeDialog;
@@ -852,53 +853,9 @@ public class PrefFragment2 extends UIFragment {
         ///
 
 
-        /** customBrightness start **/
-        CheckBox autoSettings = (CheckBox) inflate.findViewById(R.id.autoSettings);
-        final CustomSeek customBrightness = (CustomSeek) inflate.findViewById(R.id.customBrightness);
-        customBrightness.init(0, 100, -1);
-        customBrightness.setOnSeekChanged(new IntegerResponse() {
-
-            @Override
-            public boolean onResultRecive(int result) {
-                float f = (float) result / 100;
-                if (f <= 0) {
-                    f = 0;
-                }
-                AppState.getInstance().brightness = f;
-                DocumentController.applyBrigtness(getActivity());
-                customBrightness.setValueText("" + result);
-                return false;
-            }
-        });
-
-        autoSettings.setOnCheckedChangeListener(new OnCheckedChangeListener() {
-
-            @Override
-            public void onCheckedChanged(final CompoundButton buttonView, final boolean isChecked) {
-                if (!buttonView.isPressed()) {
-                    return;
-                }
-                if (isChecked) {// auto
-                    final float val = DocumentController.getSystemBrigtness(getActivity());
-                    customBrightness.reset((int) (val * 100));
-                    customBrightness.setEnabled(false);
-                    AppState.getInstance().brightness = -1;
-                    DocumentController.applyBrigtness(getActivity());
-                } else {
-                    customBrightness.setEnabled(true);
-                }
-            }
-        });
-        if (AppState.getInstance().brightness < 0) {
-            autoSettings.setChecked(true);
-            customBrightness.reset((int) (100 * DocumentController.getSystemBrigtness(getActivity())));
-            customBrightness.setEnabled(false);
-        } else {
-            customBrightness.setEnabled(true);
-            autoSettings.setChecked(false);
-            customBrightness.reset((int) (100 * AppState.getInstance().brightness));
-        }
-        /** customBrightness end **/
+        // brightness begin
+        BrightnessHelper.controlsWrapper(inflate, getActivity());
+        // brightness end
 
         nextKeys = (TextView) inflate.findViewById(R.id.textNextKeys);
         prevKeys = (TextView) inflate.findViewById(R.id.textPrevKeys);

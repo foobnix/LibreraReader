@@ -37,7 +37,6 @@ import android.graphics.PointF;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Handler;
-import android.provider.Settings.SettingNotFoundException;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.WindowManager;
@@ -66,7 +65,6 @@ public abstract class DocumentController {
     public static int getRotationText() {
         return orientationTexts.get(orientationIds.indexOf(AppState.getInstance().orientation));
     }
-
 
     protected final Activity activity;
     private DocumentWrapperUI ui;
@@ -318,39 +316,12 @@ public abstract class DocumentController {
         }
     }
 
-    public static void applyBrigtness(final Activity a) {
-        try {
-            float brightness = AppState.getInstance().brightness;
-            final WindowManager.LayoutParams lp = a.getWindow().getAttributes();
-            if (brightness < 0) {
-                brightness = -1;
-            }
-
-            LOG.d("applyBrigtness", brightness);
-            lp.screenBrightness = brightness;
-            a.getWindow().setAttributes(lp);
-        } catch (Exception e) {
-            LOG.e(e);
-        }
-    }
-
-    public static float getSystemBrigtness(final Activity a) {
-        try {
-            final int brightInt = android.provider.Settings.System.getInt(a.getContentResolver(), android.provider.Settings.System.SCREEN_BRIGHTNESS);
-            return (float) brightInt / 255;
-        } catch (final SettingNotFoundException e) {
-            e.printStackTrace();
-        }
-        return 0.5f;
-    }
-
 
     public void restartActivity() {
 
         IMG.clearMemoryCache();
         saveAppState();
         TTSEngine.get().stop();
-
 
         Safe.run(new Runnable() {
 

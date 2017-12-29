@@ -220,6 +220,8 @@ public class AppState {
     public final static int OUTLINE_HEADERS_AND_SUBHEADERES = 0;
     public final static int OUTLINE_ONLY_HEADERS = 1;
 
+    public final static int AUTO_BRIGTNESS = -1000;
+
     public int doubleClickAction = DOUBLE_CLICK_ZOOM_IN_OUT;
     public int inactivityTime = 2;
     public int remindRestTime = 60;
@@ -260,7 +262,7 @@ public class AppState {
     public int brigtnessImage = 0;
     public boolean bolderTextOnImage = false;
 
-    public float brightness = -1f;
+    public int appBrightness = AUTO_BRIGTNESS;
     public float cropTolerance = 0.5f;
 
     public float ttsSpeed = 1.0f;
@@ -593,7 +595,7 @@ public class AppState {
         pagesInMemory = sp.getInt("pagesInMemory", pagesInMemory);
 
         pageQuality = getAsFloatOrInt(sp, "pageQuality", pageQuality);
-        brightness = getAsFloatOrInt(sp, "brightness1", brightness);
+        appBrightness = sp.getInt("appBrightness", appBrightness);
         cropTolerance = getAsFloatOrInt(sp, "cropTolerance", cropTolerance);
         ttsSpeed = getAsFloatOrInt(sp, "ttsSpeed", ttsSpeed);
         ttsPitch = getAsFloatOrInt(sp, "ttsPitch", ttsPitch);
@@ -887,7 +889,7 @@ public class AppState {
         editor.putInt("sortByBrowse", sortByBrowse);
         editor.putInt("contrastImage", contrastImage);
         editor.putInt("brigtnessImage", brigtnessImage);
-        editor.putFloat("brightness1", brightness);
+        editor.putInt("appBrightness", appBrightness);
         editor.putFloat("cropTolerance", cropTolerance);
         editor.putFloat("ttsSpeed", ttsSpeed);
         editor.putFloat("ttsPitch", ttsPitch);

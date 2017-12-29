@@ -15,6 +15,7 @@ import com.foobnix.pdf.info.ADS;
 import com.foobnix.pdf.info.Android6;
 import com.foobnix.pdf.info.ExtUtils;
 import com.foobnix.pdf.info.R;
+import com.foobnix.pdf.info.view.BrightnessHelper;
 import com.foobnix.pdf.info.wrapper.AppState;
 import com.foobnix.pdf.info.wrapper.DocumentController;
 import com.foobnix.pdf.search.view.CloseAppDialog;
@@ -117,7 +118,7 @@ public class VerticalViewActivity extends AbstractActionActivity<VerticalViewAct
 
             getController().beforeCreate(this);
 
-            DocumentController.applyBrigtness(this);
+            BrightnessHelper.applyBrigtness(this);
 
             if (AppState.getInstance().isInvert) {
                 setTheme(R.style.StyledIndicatorsWhite);
@@ -127,7 +128,7 @@ public class VerticalViewActivity extends AbstractActionActivity<VerticalViewAct
             super.onCreate(savedInstanceState);
         }
 
-        setContentView(R.layout.document_view);
+        setContentView(R.layout.activity_vertical_view);
 
         Android6.checkPermissions(this);
 

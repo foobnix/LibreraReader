@@ -162,13 +162,6 @@
         </LinearLayout>
     </LinearLayout>
 
-    <com.foobnix.pdf.info.view.BrigtnessDraw
-        android:visibility="gone"
-        android:id="@+id/brigtnessProgressView"
-        android:layout_width="@dimen/brigtness"
-        android:layout_height="match_parent"
-        android:layout_alignParentLeft="true" />
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -266,7 +259,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center_horizontal"
-             android:padding="2dip"
+            android:padding="2dip"
             android:visibility="visible" >
 
             <ImageView
@@ -323,8 +316,7 @@
                 android:layout_weight="0"
                 android:contentDescription="@string/content_of_book"
                 android:src="@drawable/glyphicons_115_list1" />
-            
-            
+
             <com.foobnix.pdf.search.view.HeightImageView
                 android:id="@+id/onModeChange"
                 style="@style/buttonWhite"
@@ -333,7 +325,6 @@
                 android:layout_weight="0"
                 android:src="@drawable/glyphicons_two_page_one"
                 android:visibility="visible" />
-            
         </LinearLayout>
 
         <LinearLayout
@@ -343,13 +334,13 @@
             android:visibility="visible" >
 
             <LinearLayout
-                 android:padding="2dip"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:clickable="true"
                 android:focusableInTouchMode="false"
-                android:orientation="horizontal" >
+                android:orientation="horizontal"
+                android:padding="2dip" >
 
                 <ImageView
                     android:id="@+id/onPageFlip"
@@ -435,19 +426,25 @@
         android:visibility="gone" />
 
     <FrameLayout
-        android:visibility="gone"
         android:id="@+id/overlay"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
-    
-    <include 
-        android:id="@+id/toastLayout"
-        layout="@layout/toast_brightness"
-        android:visibility="visible"
-        android:layout_centerInParent="true"
+        android:layout_height="match_parent"
+        android:visibility="gone" />
+
+    <TextView
+        android:id="@+id/toastBrightnessText"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
-    
-    
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:padding="12dip"
+        android:drawableTint="@color/white"
+        android:drawablePadding="10dip"
+        android:background="@drawable/bg_my_toast"
+        android:drawableLeft="@drawable/glyphicons_232_sun"
+        android:text="@string/brightness"
+        android:textColor="@color/white"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        android:visibility="visible" />
 
 </RelativeLayout>

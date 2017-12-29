@@ -6,6 +6,8 @@ import java.util.Arrays;
 import java.util.List;
 
 import org.ebookdroid.ui.viewer.VerticalViewActivity;
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
 
 import com.foobnix.android.utils.Dips;
 import com.foobnix.android.utils.LOG;
@@ -18,12 +20,14 @@ import com.foobnix.pdf.info.AndroidWhatsNew;
 import com.foobnix.pdf.info.FontExtractor;
 import com.foobnix.pdf.info.R;
 import com.foobnix.pdf.info.TintUtil;
+import com.foobnix.pdf.info.view.BrightnessHelper;
 import com.foobnix.pdf.info.widget.RecentBooksWidget;
 import com.foobnix.pdf.info.widget.RecentUpates;
 import com.foobnix.pdf.info.wrapper.AppState;
 import com.foobnix.pdf.info.wrapper.DocumentController;
 import com.foobnix.pdf.info.wrapper.UITab;
 import com.foobnix.pdf.search.activity.HorizontalViewActivity;
+import com.foobnix.pdf.search.activity.msg.MessegeBrightness;
 import com.foobnix.pdf.search.view.CloseAppDialog;
 import com.foobnix.sys.TempHolder;
 import com.foobnix.ui2.adapter.TabsAdapter2;
@@ -62,6 +66,7 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.WindowManager;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 @SuppressLint("NewApi")
@@ -77,7 +82,8 @@ public class MainTabs2 extends AdsFragmentActivity {
     TabsAdapter2 adapter;
 
     ImageView imageMenu;
-    View imageMenuParent;
+    View imageMenuParent, overlay;
+    TextView toastBrightnessText;
 
     public boolean isEink = false;
 
@@ -162,7 +168,6 @@ public class MainTabs2 extends AdsFragmentActivity {
         isInStack = true;
 
         TintUtil.setStatusBarColor(this);
-        DocumentController.applyBrigtness(this);
         DocumentController.doRotation(this);
 
         setContentView(R.layout.main_tabs);
@@ -170,6 +175,12 @@ public class MainTabs2 extends AdsFragmentActivity {
         imageMenu = (ImageView) findViewById(R.id.imageMenu1);
         imageMenuParent = findViewById(R.id.imageParent1);
         imageMenuParent.setBackgroundColor(TintUtil.color);
+
+        overlay = findViewById(R.id.overlay);
+
+        toastBrightnessText = (TextView) findViewById(R.id.toastBrightnessText);
+        toastBrightnessText.setVisibility(View.GONE);
+        TintUtil.setDrawableTint(toastBrightnessText.getCompoundDrawables()[0], Color.WHITE);
 
         tabFragments = new ArrayList<UIFragment>();
 
@@ -337,8 +348,14 @@ public class MainTabs2 extends AdsFragmentActivity {
 
 
 
+
     }
 
+    @Subscribe
+    public void onMessegeBrightness(MessegeBrightness msg) {
+        BrightnessHelper.onMessegeBrightness(msg, toastBrightnessText);
+        BrightnessHelper.updateOverlay(overlay);
+    }
 
     BroadcastReceiver broadcastReceiver = new BroadcastReceiver() {
 
@@ -384,6 +401,13 @@ public class MainTabs2 extends AdsFragmentActivity {
             LOG.e(e);
         }
         adapter.notifyDataSetChanged();
+
+        BrightnessHelper.applyBrigtness(this);
+        BrightnessHelper.updateOverlay(overlay);
+
+        EventBus.getDefault().unregister(this);
+        EventBus.getDefault().register(this);
+
     };
 
     boolean isMyKey = false;
@@ -433,6 +457,7 @@ public class MainTabs2 extends AdsFragmentActivity {
     protected void onStop() {
         super.onStop();
         RecentUpates.updateAll(this);
+        EventBus.getDefault().unregister(this);
     }
 
     @Override

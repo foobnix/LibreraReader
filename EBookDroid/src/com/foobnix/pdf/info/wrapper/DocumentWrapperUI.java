@@ -27,7 +27,7 @@ import com.foobnix.pdf.info.TintUtil;
 import com.foobnix.pdf.info.UiSystemUtils;
 import com.foobnix.pdf.info.model.BookCSS;
 import com.foobnix.pdf.info.model.OutlineLinkWrapper;
-import com.foobnix.pdf.info.view.BrigtnessDraw;
+import com.foobnix.pdf.info.view.BrightnessHelper;
 import com.foobnix.pdf.info.view.Dialogs;
 import com.foobnix.pdf.info.view.DragingDialogs;
 import com.foobnix.pdf.info.view.DragingPopup;
@@ -39,6 +39,7 @@ import com.foobnix.pdf.info.view.UnderlineImageView;
 import com.foobnix.pdf.info.widget.RecentUpates;
 import com.foobnix.pdf.info.widget.ShareDialog;
 import com.foobnix.pdf.search.activity.HorizontalModeController;
+import com.foobnix.pdf.search.activity.msg.MessegeBrightness;
 import com.foobnix.pdf.search.view.CloseAppDialog;
 import com.foobnix.sys.TempHolder;
 import com.foobnix.tts.MessagePageNumber;
@@ -60,7 +61,6 @@ import android.view.MenuItem;
 import android.view.MenuItem.OnMenuItemClickListener;
 import android.view.MotionEvent;
 import android.view.View;
-import android.view.View.OnClickListener;
 import android.view.View.OnLongClickListener;
 import android.view.ViewTreeObserver.OnGlobalLayoutListener;
 import android.widget.FrameLayout;
@@ -74,49 +74,29 @@ import android.widget.TextView;
  * 
  */
 public class DocumentWrapperUI {
-
     private static final int TRANSPARENT_UI = 240;
-    View menuLayout, moveLeft, moveRight, pages, lineNavgination, onCloseBook;
-    ImageView imageMenuArrow;
-    View adFrame;
-    SeekBar seekBar;
-    private final DocumentController controller;
-    private TextView currentPageIndex;
-    private TextView currentSeek;
-    private TextView maxSeek;
-    private TextView currentTime;
-    private TextView bookName;
-    private Activity a;
-    private String bookTitle;
-    private DocumentGestureListener documentListener;
-    private ImageView onDocDontext;
-    private ImageView toolBarButton;
-    private View titleBar, overlay;
-    private TextView nextTypeBootom;
-    private DocumentGuestureDetector documentGestureDetector;
-    private GestureDetector gestureDetector;
-    private ImageView linkHistory;
-    private ImageView lockUnlock;
-    private ImageView lockUnlockTop, textToSpeachTop, clockIcon, batteryIcon;
-    private ImageView showSearch;
+
+    final DocumentController controller;
+    Activity a;
+    String bookTitle;
+
+    DocumentGestureListener documentListener;
+    DocumentGuestureDetector documentGestureDetector;
+    GestureDetector gestureDetector;
+
+    TextView toastBrightnessText, currentPageIndex, currentSeek, maxSeek, currentTime, bookName, nextTypeBootom, batteryLevel, lirbiLogo, reverseKeysIndicator;
+    ImageView onDocDontext, toolBarButton, linkHistory, lockUnlock, lockUnlockTop, textToSpeachTop, clockIcon, batteryIcon;
+    ImageView showSearch, nextScreenType, autoScroll, textToSpeach, ttsActive, onModeChange, imageMenuArrow, editTop2, goToPage1, goToPage1Top;
+    View adFrame, titleBar, overlay, menuLayout, moveLeft, moveRight, pages, lineNavgination, onCloseBook, seekSpeedLayot, zoomPlus, zoomMinus;
+    View line1, line2, lineFirst, lineClose, closeTop;
+    SeekBar seekBar, speedSeekBar;
+    FrameLayout anchor;
+    DrawView drawView;
     ProgressDraw progressDraw;
-    private ImageView nextScreenType, autoScroll, textToSpeach, ttsActive, onModeChange;
-    private UnderlineImageView crop, cut;
-    private SeekBar speedSeekBar;
-    private View seekSpeedLayot, zoomPlus, zoomMinus;
-    private FrameLayout anchor;
-    private TextView batteryLevel;
+    UnderlineImageView crop, cut;
 
-    private ImageView editTop2;
-    private TextView lirbiLogo;
-    private DrawView drawView;
-    private View line1, line2, lineFirst, lineClose, closeTop;
-    private ImageView goToPage1, goToPage1Top;
-    private TextView reverseKeysIndicator;
-    private BrigtnessDraw brigtnessProgressView;
-
-    private final Handler handler = new Handler();
-    private final Handler handlerTimer = new Handler();
+    final Handler handler = new Handler();
+    final Handler handlerTimer = new Handler();
 
     public DocumentWrapperUI(final DocumentController controller) {
         AppState.getInstance().annotationDrawColor = "";
@@ -526,15 +506,6 @@ public class DocumentWrapperUI {
 
         overlay = a.findViewById(R.id.overlay);
         overlay.setVisibility(View.VISIBLE);
-        brigtnessProgressView = (BrigtnessDraw) a.findViewById(R.id.brigtnessProgressView);
-        brigtnessProgressView.setActivity(a);
-        brigtnessProgressView.setOnSingleClickListener(new OnClickListener() {
-
-            @Override
-            public void onClick(View v) {
-                controller.onLeftPress();
-            }
-        });
 
         reverseKeysIndicator = (TextView) a.findViewById(R.id.reverseKeysIndicator);
         // reverseKeysIndicator.setOnClickListener(onReverseKeys);
@@ -668,6 +639,9 @@ public class DocumentWrapperUI {
         bookmarks.setOnClickListener(onBookmarks);
         bookmarks.setOnLongClickListener(onBookmarksLong);
 
+        toastBrightnessText = (TextView) a.findViewById(R.id.toastBrightnessText);
+        toastBrightnessText.setVisibility(View.GONE);
+
         currentPageIndex = (TextView) a.findViewById(R.id.currentPageIndex);
         currentSeek = (TextView) a.findViewById(R.id.currentSeek);
         maxSeek = (TextView) a.findViewById(R.id.maxSeek);
@@ -736,7 +710,7 @@ public class DocumentWrapperUI {
 
         });
         updateSeekBarColorAndSize();
-        updateOverlay();
+        BrightnessHelper.updateOverlay(overlay);
 
         // bottom 1
         TintUtil.setStatusBarColor(a);
@@ -774,16 +748,12 @@ public class DocumentWrapperUI {
             reverseKeysIndicator.setVisibility(View.GONE);
             textToSpeachTop.setVisibility(View.GONE);
             progressDraw.setVisibility(View.GONE);
-            brigtnessProgressView.setVisibility(View.GONE);
             textToSpeach.setVisibility(View.GONE);
         }
 
         currentSeek.setVisibility(View.GONE);
         maxSeek.setVisibility(View.GONE);
         seekBar.setVisibility(View.INVISIBLE);
-
-
-
 
     }
 
@@ -838,6 +808,12 @@ public class DocumentWrapperUI {
 
         // lirbiLogo.getLayoutParams().height = panelSize;
 
+    }
+
+    @Subscribe
+    public void onMessegeBrightness(MessegeBrightness msg) {
+        BrightnessHelper.onMessegeBrightness(msg, toastBrightnessText);
+        BrightnessHelper.updateOverlay(overlay);
     }
 
     @TargetApi(Build.VERSION_CODES.JELLY_BEAN)
@@ -1023,18 +999,8 @@ public class DocumentWrapperUI {
         }
 
         progressDraw.setVisibility(AppState.get().isShowReadingProgress ? View.VISIBLE : View.GONE);
-        brigtnessProgressView.setVisibility(AppState.get().isBrighrnessEnable ? View.VISIBLE : View.GONE);
 
         toolBarButton.setVisibility(View.VISIBLE);
-
-    }
-
-    public void updateOverlay() {
-        if (AppState.get().isEnableBlueFilter) {
-            overlay.setBackgroundColor(ColorUtils.setAlphaComponent(AppState.get().blueLightColor, 220 * AppState.get().blueLightAlpha / 100));
-        } else {
-            overlay.setBackgroundColor(Color.TRANSPARENT);
-        }
 
     }
 
@@ -1453,7 +1419,7 @@ public class DocumentWrapperUI {
             updateSeekBarColorAndSize();
             hideShow();
             TTSEngine.get().stop();
-            updateOverlay();
+            BrightnessHelper.updateOverlay(overlay);
         }
     };
 

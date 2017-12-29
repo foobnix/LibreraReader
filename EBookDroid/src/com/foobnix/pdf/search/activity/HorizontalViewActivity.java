@@ -31,7 +31,7 @@ import com.foobnix.pdf.info.UiSystemUtils;
 import com.foobnix.pdf.info.model.BookCSS;
 import com.foobnix.pdf.info.model.OutlineLinkWrapper;
 import com.foobnix.pdf.info.view.AlertDialogs;
-import com.foobnix.pdf.info.view.BrigtnessDraw;
+import com.foobnix.pdf.info.view.BrightnessHelper;
 import com.foobnix.pdf.info.view.Dialogs;
 import com.foobnix.pdf.info.view.DragingDialogs;
 import com.foobnix.pdf.info.view.DragingPopup;
@@ -109,10 +109,10 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
 
     VerticalViewPager viewPager;
     SeekBar seekBar;
-    private TextView toastBrightnessText, maxSeek, currentSeek, pagesCountIndicator, flippingIntervalView, pagesTime, pagesPower, titleTxt, chapterView;
-    View toastLayout, adFrame, bottomBar, bottomIndicators, moveCenter, onClose, overlay;
+    TextView toastBrightnessText, maxSeek, currentSeek, pagesCountIndicator, flippingIntervalView, pagesTime, pagesPower, titleTxt, chapterView;
+    View adFrame, bottomBar, bottomIndicators, moveCenter, onClose, overlay;
     LinearLayout actionBar;
-    private FrameLayout anchor;
+    FrameLayout anchor;
 
     ImageView lockModelImage, linkHistory, ttsActive, onModeChange, outline, onMove, onBC, textToSpeach, onPageFlip1;
 
@@ -126,7 +126,6 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
     volatile int isInitOrientation;
 
     ProgressDraw progressDraw;
-    BrigtnessDraw brigtnessProgressView;
 
     @Override
     protected void onNewIntent(final Intent intent) {
@@ -164,7 +163,7 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
         long crateBegin = System.currentTimeMillis();
 
         requestWindowFeature(Window.FEATURE_NO_TITLE);
-        DocumentController.applyBrigtness(this);
+        BrightnessHelper.applyBrigtness(this);
 
         if (AppState.getInstance().isInvert) {
             setTheme(R.style.StyledIndicatorsWhite);
@@ -195,33 +194,19 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
         overlay.setVisibility(View.VISIBLE);
 
         progressDraw = (ProgressDraw) findViewById(R.id.progressDraw);
-        brigtnessProgressView = (BrigtnessDraw) findViewById(R.id.brigtnessProgressView);
-        brigtnessProgressView.setActivity(this);
-        brigtnessProgressView.setOnSingleClickListener(new OnClickListener() {
-
-            @Override
-            public void onClick(View v) {
-                if (AppState.get().tapZoneLeft == AppState.TAP_PREV_PAGE) {
-                    prevPage();
-                } else {
-                    nextPage();
-                }
-            }
-        });
 
         actionBar = (LinearLayout) findViewById(R.id.actionBar);
 
         bottomBar = findViewById(R.id.bottomBar);
         bottomIndicators = findViewById(R.id.bottomIndicators);
         adFrame = findViewById(R.id.adFrame);
-        toastLayout = findViewById(R.id.toastLayout);
-        toastLayout.setVisibility(View.GONE);
         anchor = (FrameLayout) findViewById(R.id.anchor);
         moveCenter = findViewById(R.id.moveCenter);
 
         currentSeek = (TextView) findViewById(R.id.currentSeek);
         maxSeek = (TextView) findViewById(R.id.maxSeek);
         toastBrightnessText = (TextView) findViewById(R.id.toastBrightnessText);
+        toastBrightnessText.setVisibility(View.GONE);
         pagesCountIndicator = (TextView) findViewById(R.id.pagesCountIndicator);
         flippingIntervalView = (TextView) findViewById(R.id.flippingIntervalView);
         pagesTime = (TextView) findViewById(R.id.pagesTime);
@@ -788,7 +773,7 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
         };
         loadinAsyncTask.executeOnExecutor(Executors.newSingleThreadExecutor());
         updateIconMode();
-        updateOverlay();
+        BrightnessHelper.updateOverlay(overlay);
 
         //
         tinUI();
@@ -827,33 +812,8 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
 
     @Subscribe
     public void onMessegeBrightness(MessegeBrightness msg) {
-        int value = msg.getValue();
-        toastLayout.setVisibility(View.VISIBLE);
-        toastLayout.getHandler().removeCallbacksAndMessages(null);
-        toastLayout.getHandler().postDelayed(new Runnable() {
-
-            @Override
-            public void run() {
-                toastLayout.setVisibility(View.GONE);
-            }
-        }, 1000);
-
-        if (value < 0) {
-            AppState.get().isEnableBlueFilter = true;
-            AppState.get().blueLightAlpha = Math.abs(value);
-            updateOverlay();
-
-            AppState.getInstance().brightness = 0f;
-            DocumentController.applyBrigtness(this);
-            toastBrightnessText.setText(getString(R.string.brightness) + " " + value + "%");
-        } else {
-            AppState.get().isEnableBlueFilter = false;
-            AppState.getInstance().brightness = (float) value / 100;
-            toastBrightnessText.setText(getString(R.string.brightness) + " " + value + "%");
-            DocumentController.applyBrigtness(this);
-
-        }
-
+        BrightnessHelper.onMessegeBrightness(msg, toastBrightnessText);
+        BrightnessHelper.updateOverlay(overlay);
     }
 
     private void closeDialogs() {
@@ -917,15 +877,6 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
         progressDraw.requestLayout();
     }
 
-    public void updateOverlay() {
-        if (AppState.get().isEnableBlueFilter) {
-            overlay.setBackgroundColor(ColorUtils.setAlphaComponent(AppState.get().blueLightColor, 220 * AppState.get().blueLightAlpha / 100));
-        } else {
-            overlay.setBackgroundColor(Color.TRANSPARENT);
-        }
-
-    }
-
     Runnable onRefresh = new Runnable() {
 
         @Override
@@ -936,7 +887,7 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
             updateUI(viewPager.getCurrentItem());
             showHideInfoToolBar();
             updateSeekBarColorAndSize();
-            updateOverlay();
+            BrightnessHelper.updateOverlay(overlay);
             hideShow();
             TTSEngine.get().stop();
 
@@ -1054,8 +1005,6 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
         bottomIndicators.setVisibility(isVisible);
 
         progressDraw.setVisibility(AppState.get().isShowReadingProgress ? View.VISIBLE : View.GONE);
-
-        brigtnessProgressView.setVisibility(AppState.get().isBrighrnessEnable ? View.VISIBLE : View.GONE);
 
     }
 

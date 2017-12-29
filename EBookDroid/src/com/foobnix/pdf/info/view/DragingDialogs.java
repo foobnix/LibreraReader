@@ -3486,59 +3486,9 @@ public class DragingDialogs {
                     }
                 });
 
-                CheckBox autoSettings = (CheckBox) inflate.findViewById(R.id.autoSettings);
-
-                final BrigtnessDraw brigtnessDraw = (BrigtnessDraw) controller.getActivity().findViewById(R.id.brigtnessProgressView);
-
-                final CustomSeek customBrightness = (CustomSeek) inflate.findViewById(R.id.customBrightness);
-                customBrightness.init(0, 100, -1);
-                customBrightness.setOnSeekChanged(new IntegerResponse() {
-
-                    @Override
-                    public boolean onResultRecive(int result) {
-                        float f = (float) result / 100;
-                        if (f <= 0) {
-                            f = 0;
-                        }
-                        AppState.getInstance().brightness = f;
-                        DocumentController.applyBrigtness(controller.getActivity());
-                        customBrightness.setValueText("" + result);
-                        brigtnessDraw.showToast();
-                        return false;
-                    }
-                });
-
-                autoSettings.setOnCheckedChangeListener(new OnCheckedChangeListener() {
-
-                    @Override
-                    public void onCheckedChanged(final CompoundButton buttonView, final boolean isChecked) {
-                        if (!buttonView.isPressed()) {
-                            return;
-                        }
-                        if (isChecked) {// auto
-                            final float val = DocumentController.getSystemBrigtness(controller.getActivity());
-                            customBrightness.reset((int) (val * 100));
-                            customBrightness.setEnabled(false);
-                            AppState.getInstance().brightness = -1;
-                            DocumentController.applyBrigtness(controller.getActivity());
-                            brigtnessDraw.showToast(controller.getString(R.string.automatic));
-                        } else {
-                            customBrightness.setEnabled(true);
-                        }
-
-                        if (controller.getActivity() != null) {
-                            AppState.getInstance().save(controller.getActivity());
-                        }
-
-                    }
-                });
-                if (AppState.getInstance().brightness < 0) {
-                    autoSettings.setChecked(true);
-                    customBrightness.reset((int) (100 * DocumentController.getSystemBrigtness(controller.getActivity())));
-                } else {
-                    autoSettings.setChecked(false);
-                    customBrightness.reset((int) (100 * AppState.getInstance().brightness));
-                }
+                // brightness begin
+                BrightnessHelper.controlsWrapper(inflate, controller.getActivity());
+                // brightness end
 
                 // crop
                 CheckBox isCropBorders = (CheckBox) inflate.findViewById(R.id.isCropBorders);
