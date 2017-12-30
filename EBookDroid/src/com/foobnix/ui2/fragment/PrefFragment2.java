@@ -335,7 +335,6 @@ public class PrefFragment2 extends UIFragment {
             }
         });
 
-
         // inflate.findViewById(R.id.onHelpTranslate).setOnClickListener(new
         // OnClickListener() {
         //
@@ -852,10 +851,7 @@ public class PrefFragment2 extends UIFragment {
 
         ///
 
-
-        // brightness begin
         BrightnessHelper.controlsWrapper(inflate, getActivity());
-        // brightness end
 
         nextKeys = (TextView) inflate.findViewById(R.id.textNextKeys);
         prevKeys = (TextView) inflate.findViewById(R.id.textPrevKeys);
@@ -892,7 +888,6 @@ public class PrefFragment2 extends UIFragment {
                 onFolderConfigDialog();
             }
         });
-
 
         TxtUtils.underlineTextView((TextView) inflate.findViewById(R.id.importButton)).setOnClickListener(new View.OnClickListener() {
 
@@ -1371,6 +1366,7 @@ public class PrefFragment2 extends UIFragment {
 
     }
 
+
     private void onEink() {
         AppState.get().isInkMode = true;
         AppState.getInstance().isWhiteTheme = true;
@@ -1496,6 +1492,7 @@ public class PrefFragment2 extends UIFragment {
     private TextView selectedDictionaly;
 
     private TextView screenOrientation;
+
 
     @Override
     public void onCreate(final Bundle savedInstanceState) {

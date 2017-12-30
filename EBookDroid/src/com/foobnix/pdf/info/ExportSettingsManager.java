@@ -205,7 +205,9 @@ public class ExportSettingsManager {
             if (exclude != null && key.startsWith(exclude)) {
                 continue;
             }
-            jsonObject.put(key, all.get(key));
+            Object value = all.get(key);
+            jsonObject.put(key, value);
+            LOG.d("export", key, value, value.getClass());
         }
         return jsonObject;
     }
@@ -222,7 +224,7 @@ public class ExportSettingsManager {
         while (keys.hasNext()) {
             String name = keys.next();
             Object res = jsonObject.get(name);
-            LOG.d("name", name, "type", res.getClass());
+            LOG.d("import", "name", name, "type", res.getClass());
             if (res instanceof String) {
                 edit.putString(name, (String) res);
             } else if (res instanceof Float) {

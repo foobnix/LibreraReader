@@ -229,7 +229,7 @@ public class PageImaveView extends View {
     static volatile boolean prevLock = false;
 
     class ImageSimpleGestureListener extends GestureDetector.SimpleOnGestureListener {
-        private final int DP_5 = Dips.dpToPx(10);
+        private final int DP_5 = Dips.dpToPx(8);
 
         @Override
         public boolean onDoubleTap(final MotionEvent e) {
@@ -269,10 +269,10 @@ public class PageImaveView extends View {
 
         @Override
         public boolean onFling(final MotionEvent e1, final MotionEvent e2, final float velocityX, final float velocityY) {
+            isIgronerClick = true;
             if (e1.getX() < BrightnessHelper.BRIGHTNESS_WIDTH) {
                 return false;
             }
-
             if (AppState.get().selectedText != null) {
                 return false;
             }
@@ -288,6 +288,7 @@ public class PageImaveView extends View {
 
         @Override
         public void onLongPress(MotionEvent e) {
+            isIgronerClick = true;
             Vibro.vibrate();
             if (!AppState.get().longTapEnable || AppState.get().isCut || AppState.get().isCrop) {
                 Toast.makeText(LibreraApp.context, R.string.selecting_text_in_this_mode_does_not_work, Toast.LENGTH_LONG).show();
@@ -325,12 +326,12 @@ public class PageImaveView extends View {
                     } else {
 
                         if (AppState.get().rotateViewPager == 0) {
-                            if (Math.abs(dy) > Math.abs(dx / 1.5) && (Math.abs(dy) + Math.abs(dx) > DP_5)) {
+                            if (Math.abs(dy) > Math.abs(dx) && (Math.abs(dy) + Math.abs(dx) > DP_5)) {
                                 isReadyForMove = true;
                                 isIgronerClick = true;
                             }
                         } else {
-                            if (Math.abs(dx) > Math.abs(dy / 1.5) && (Math.abs(dx) + Math.abs(dy) > DP_5)) {
+                            if (Math.abs(dx) > Math.abs(dy) && (Math.abs(dx) + Math.abs(dy) > DP_5)) {
                                 isReadyForMove = true;
                                 isIgronerClick = true;
                             }

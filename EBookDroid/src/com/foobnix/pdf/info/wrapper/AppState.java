@@ -758,7 +758,11 @@ public class AppState {
         isFirstTimeVertical = sp.getBoolean("isFirstTimeVertical", isFirstTimeVertical);
         isFirstTimeHorizontal = sp.getBoolean("isFirstTimeHorizontal", isFirstTimeHorizontal);
 
-        myAutoComplete = sp.getStringSet("myAutoComplete", new HashSet<String>());
+        try {
+            myAutoComplete = sp.getStringSet("myAutoComplete", new HashSet<String>());
+        } catch (Exception e) {
+            LOG.e(e);
+        }
 
         // proxy
         proxyEnable = sp.getBoolean("proxyEnable", proxyEnable);
@@ -1009,7 +1013,6 @@ public class AppState {
 
         editor.putBoolean("isFirstTimeHorizontal", isFirstTimeHorizontal);
         editor.putBoolean("isFirstTimeVertical", isFirstTimeVertical);
-
 
         editor.putStringSet("myAutoComplete", myAutoComplete);
 

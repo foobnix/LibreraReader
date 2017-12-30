@@ -28,7 +28,7 @@ public class BrightnessHelper {
     Toast toast;
 
     int lastPercent = 0;
-    int currentPercent = 0;
+    static int currentPercent = 0;
 
     int MAX = Dips.screenHeight();
     private float x;
@@ -36,6 +36,10 @@ public class BrightnessHelper {
     boolean isMovementStart;
 
     public BrightnessHelper() {
+        updateCurrentValue();
+    }
+
+    public void updateCurrentValue() {
         if (AppState.get().isEnableBlueFilter) {
             currentPercent = AppState.get().blueLightAlpha * -1;
         } else {
@@ -73,7 +77,7 @@ public class BrightnessHelper {
         float dy = Math.abs(yDiff);
         float dx = Math.abs(x - event.getX());
 
-        if (dy > dx * 2 && x < BRIGHTNESS_WIDTH) {
+        if (dy > dx * 2 && x < BRIGHTNESS_WIDTH && event.getPointerCount() == 1 && dy > Dips.dpToPx(5)) {
             isMovementStart = true;
             lastPercent = (int) (yDiff * 100 / MAX);
             int plus = getMinMaxValue(lastPercent + currentPercent);
@@ -84,7 +88,7 @@ public class BrightnessHelper {
     }
 
     public static void controlsWrapper(View inflate, Activity a) {
-        CheckBox autoSettings = (CheckBox) inflate.findViewById(R.id.autoSettings);
+        final CheckBox autoSettings = (CheckBox) inflate.findViewById(R.id.autoSettings);
 
         final int systemBrigtnessInt = getSystemBrigtnessInt(a);
 
@@ -129,6 +133,7 @@ public class BrightnessHelper {
         });
         autoSettings.setChecked(AppState.getInstance().appBrightness == AppState.AUTO_BRIGTNESS);
         customBrightness.setEnabled(AppState.getInstance().appBrightness != AppState.AUTO_BRIGTNESS);
+
     }
 
     public static void applyBrigtness(final Activity a) {
@@ -167,7 +172,7 @@ public class BrightnessHelper {
         return 50;
     }
 
-    public static void onMessegeBrightness(MessegeBrightness msg, final TextView textView) {
+    public static void onMessegeBrightness(MessegeBrightness msg, final TextView textView, final View overlay) {
         int value = msg.getValue();
         textView.setVisibility(View.VISIBLE);
         textView.getHandler().removeCallbacksAndMessages(null);
@@ -183,7 +188,7 @@ public class BrightnessHelper {
 
             @Override
             public void onClick(View v) {
-                onMessegeBrightness(new MessegeBrightness(AppState.AUTO_BRIGTNESS), textView);
+                onMessegeBrightness(new MessegeBrightness(AppState.AUTO_BRIGTNESS), textView, overlay);
             }
         });
 
@@ -191,8 +196,8 @@ public class BrightnessHelper {
             AppState.get().isEnableBlueFilter = false;
             AppState.get().blueLightAlpha = 0;
             AppState.getInstance().appBrightness = AppState.AUTO_BRIGTNESS;
-
             textView.setText(textView.getContext().getString(R.string.automatic));
+
         } else if (value < 0) {
             AppState.get().isEnableBlueFilter = true;
             AppState.get().blueLightAlpha = Math.abs(value);
@@ -208,6 +213,7 @@ public class BrightnessHelper {
         }
 
         BrightnessHelper.applyBrigtness((Activity) textView.getContext());
+        updateOverlay(overlay);
 
     }
 

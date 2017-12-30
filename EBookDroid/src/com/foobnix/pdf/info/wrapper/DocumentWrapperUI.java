@@ -641,6 +641,7 @@ public class DocumentWrapperUI {
 
         toastBrightnessText = (TextView) a.findViewById(R.id.toastBrightnessText);
         toastBrightnessText.setVisibility(View.GONE);
+        TintUtil.setDrawableTint(toastBrightnessText.getCompoundDrawables()[0], Color.WHITE);
 
         currentPageIndex = (TextView) a.findViewById(R.id.currentPageIndex);
         currentSeek = (TextView) a.findViewById(R.id.currentSeek);
@@ -812,8 +813,7 @@ public class DocumentWrapperUI {
 
     @Subscribe
     public void onMessegeBrightness(MessegeBrightness msg) {
-        BrightnessHelper.onMessegeBrightness(msg, toastBrightnessText);
-        BrightnessHelper.updateOverlay(overlay);
+        BrightnessHelper.onMessegeBrightness(msg, toastBrightnessText, overlay);
     }
 
     @TargetApi(Build.VERSION_CODES.JELLY_BEAN)
@@ -1062,7 +1062,8 @@ public class DocumentWrapperUI {
         }
 
         // hideSeekBarInReadMode();
-        showHideHavigationBar();
+        // showHideHavigationBar();
+        DocumentController.chooseFullScreen(controller.getActivity(), AppState.get().isFullScreen);
     }
 
     public void hide() {

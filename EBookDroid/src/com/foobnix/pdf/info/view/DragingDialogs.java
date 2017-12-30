@@ -3588,7 +3588,7 @@ public class DragingDialogs {
 
                         final CustomColorView blueLightColor = (CustomColorView) inflate.findViewById(R.id.blueLightColor);
                         TxtUtils.bold(blueLightColor.getText1());
-                        blueLightColor.withDefaultColors(AppState.BLUE_FILTER_DEFAULT_COLOR, Color.BLACK, Color.RED, Color.GREEN);
+                        blueLightColor.withDefaultColors(AppState.BLUE_FILTER_DEFAULT_COLOR, Color.parseColor("#FFDD00"), Color.RED, Color.GREEN);
                         blueLightColor.init(AppState.get().blueLightColor);
                         blueLightColor.setOnColorChanged(new StringResponse() {
 

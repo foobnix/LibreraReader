@@ -205,8 +205,11 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
 
         currentSeek = (TextView) findViewById(R.id.currentSeek);
         maxSeek = (TextView) findViewById(R.id.maxSeek);
+
         toastBrightnessText = (TextView) findViewById(R.id.toastBrightnessText);
         toastBrightnessText.setVisibility(View.GONE);
+        TintUtil.setDrawableTint(toastBrightnessText.getCompoundDrawables()[0], Color.WHITE);
+
         pagesCountIndicator = (TextView) findViewById(R.id.pagesCountIndicator);
         flippingIntervalView = (TextView) findViewById(R.id.flippingIntervalView);
         pagesTime = (TextView) findViewById(R.id.pagesTime);
@@ -522,6 +525,7 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
         });
 
         final UnderlineImageView onCrop = (UnderlineImageView) findViewById(R.id.onCrop);
+        onCrop.setVisibility(View.GONE);
         onCrop.setOnClickListener(new View.OnClickListener() {
 
             @Override
@@ -812,8 +816,7 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
 
     @Subscribe
     public void onMessegeBrightness(MessegeBrightness msg) {
-        BrightnessHelper.onMessegeBrightness(msg, toastBrightnessText);
-        BrightnessHelper.updateOverlay(overlay);
+        BrightnessHelper.onMessegeBrightness(msg, toastBrightnessText, overlay);
     }
 
     private void closeDialogs() {
@@ -1010,6 +1013,7 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
 
     private void showSearchDialog() {
         if (AppState.get().isCrop || AppState.get().isCut) {
+            onModeChange.setImageResource(R.drawable.glyphicons_two_page_one);
             AppState.get().isCrop = false;
             AppState.get().isCut = false;
             reloadDoc.run();
