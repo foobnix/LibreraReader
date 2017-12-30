@@ -1766,11 +1766,17 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
         if (keyCode == 0) {
             keyCode = event.getScanCode();
         }
-        LOG.d("onKeyDown", keyCode);
+
 
         isMyKey = false;
 
         if (AppState.get().isUseVolumeKeys) {
+
+            int repeatCount = event.getRepeatCount();
+            if (repeatCount >= 1 && repeatCount < 6) {
+                return true;
+            }
+            LOG.d("onKeyDown", keyCode, repeatCount);
 
             if (AppState.get().isUseVolumeKeys && KeyEvent.KEYCODE_HEADSETHOOK == keyCode) {
                 if (TTSEngine.get().isPlaying()) {
