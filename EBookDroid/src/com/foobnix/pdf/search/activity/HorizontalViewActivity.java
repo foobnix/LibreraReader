@@ -573,6 +573,7 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
 
             @Override
             public void onClick(final View v) {
+                nullAdapter();
                 closeDialogs();
                 showInterstial();
             }

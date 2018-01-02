@@ -29,6 +29,7 @@ import com.foobnix.pdf.info.wrapper.UITab;
 import com.foobnix.pdf.search.activity.HorizontalViewActivity;
 import com.foobnix.pdf.search.activity.msg.MessegeBrightness;
 import com.foobnix.pdf.search.view.CloseAppDialog;
+import com.foobnix.sys.ImageExtractor;
 import com.foobnix.sys.TempHolder;
 import com.foobnix.ui2.adapter.TabsAdapter2;
 import com.foobnix.ui2.fragment.BookmarksFragment2;
@@ -472,6 +473,8 @@ public class MainTabs2 extends AdsFragmentActivity {
         // Analytics.onStop(this);
         isInStack = false;
         CacheDir.ZipApp.removeCacheContent();
+        ImageExtractor.clearErrors();
+        ImageExtractor.clearCodeDocument();
     }
 
     @Override

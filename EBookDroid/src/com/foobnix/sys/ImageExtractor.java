@@ -254,12 +254,14 @@ public class ImageExtractor implements ImageDownloader {
             bitmap = bitmap1;
         }
 
-        if (pageUrl.isDoText()) {
+        if (pageUrl.isDoText() && !pageCodec.isRecycled()) {
             PageImageState.get().pagesText.put(pageUrl.getPage(), pageCodec.getText());
             PageImageState.get().pagesLinks.put(pageUrl.getPage(), pageCodec.getPageLinks());
         }
 
-        pageCodec.recycle();
+        if (!pageCodec.isRecycled()) {
+            pageCodec.recycle();
+        }
 
         if (!isNeedDisableMagicInPDFDjvu && MagicHelper.isNeedBookBackgroundImage()) {
             bitmap = MagicHelper.updateWithBackground(bitmap);
@@ -310,7 +312,12 @@ public class ImageExtractor implements ImageDownloader {
 
         if (imageUri.startsWith(Safe.TXT_SAFE_RUN)) {
             LOG.d("MUPDF!", Safe.TXT_SAFE_RUN);
-            return null;
+            // try {
+            // //Thread.sleep(500);
+            // } catch (InterruptedException e) {
+            // e.printStackTrace();
+            // }
+            return baseImage.getStream("assets://opds/web.png", null);
         }
         if (imageUri.startsWith("https")) {
 

@@ -66,7 +66,7 @@ public class ImagePageFragment extends Fragment {
                 }
 
             }
-        }, 50);
+        }, 150);
         lifeTime = System.currentTimeMillis();
 
         return view;
@@ -86,7 +86,7 @@ public class ImagePageFragment extends Fragment {
     int loadImageId;
 
     public void loadImage() {
-        if (getPriority() > 2) {
+        if (getPriority() > 2 || isDetached() || !isVisible()) {
             LOG.d("ImagePageFragment1  skip loading page ", page, "getPriority", getPriority(), "page");
             return;
         }
@@ -97,7 +97,7 @@ public class ImagePageFragment extends Fragment {
 
             @Override
             public void onLoadingStarted(String arg0, View arg1) {
-                LOG.d("ImagePageFragment1 onLoadingStarted ", page);
+                LOG.d("ImagePageFragment1 onLoadingStarted ", page, isVisible(), isDetached(), isInLayout(), isAdded());
                 count++;
 
                 if (LOG.isEnable) {

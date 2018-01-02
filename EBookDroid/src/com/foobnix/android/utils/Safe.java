@@ -18,7 +18,7 @@ public class Safe {
     public static void run(final Runnable action) {
         ImageLoader.getInstance().clearAllTasks();
 
-        ImageLoader.getInstance().loadImage("assets://opds/web.png", IMG.noneOptions, new SimpleImageLoadingListener() {
+        ImageLoader.getInstance().loadImage(TXT_SAFE_RUN, IMG.noneOptions, new SimpleImageLoadingListener() {
             @Override
             public void onLoadingComplete(String imageUri, View view, Bitmap loadedImage) {
                 LOG.d(TXT_SAFE_RUN, "Safe run");

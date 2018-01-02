@@ -540,6 +540,7 @@ public class ViewerActivityController extends ActionController<VerticalViewActiv
         if (documentModel != null) {
             documentModel.recycle();
         }
+
         LOG.d("closeActivity 2");
         if (temporaryBook) {
             SettingsManager.removeCurrentBookSettings();
