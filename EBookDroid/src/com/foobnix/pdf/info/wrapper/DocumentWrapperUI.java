@@ -1127,6 +1127,12 @@ public class DocumentWrapperUI {
     };
 
     public void showSearchDialog() {
+        if (AppState.get().isCut) {
+            onModeChange.setImageResource(R.drawable.glyphicons_two_page_one);
+            AppState.get().isCut = !false;
+            onCut.onClick(null);
+        }
+
         DragingDialogs.searchMenu(anchor, controller, "");
     }
 

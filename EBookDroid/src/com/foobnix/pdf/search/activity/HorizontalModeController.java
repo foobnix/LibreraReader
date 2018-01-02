@@ -83,6 +83,16 @@ public abstract class HorizontalModeController extends DocumentController {
     }
 
     @Override
+    public int getBookHeight() {
+        return imageHeight;
+    }
+
+    @Override
+    public int getBookWidth() {
+        return imageWidth;
+    }
+
+    @Override
     public void onLinkHistory() {
         if (!getLinkHistory().isEmpty()) {
             final int last = getLinkHistory().removeLast();

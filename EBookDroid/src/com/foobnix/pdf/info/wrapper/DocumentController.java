@@ -148,6 +148,10 @@ public abstract class DocumentController {
 
     public abstract void saveAnnotationsToFile();
 
+    public abstract int getBookWidth();
+
+    public abstract int getBookHeight();
+
     public void saveSettings() {
 
     }

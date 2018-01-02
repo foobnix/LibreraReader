@@ -139,17 +139,8 @@ public class ExtUtils {
     static List<String> audio = Arrays.asList(".mp3", ".mp4", ".wav", ".ogg", ".m4a");
     static List<String> video = Arrays.asList(".webm", ".m3u8", ".ts", ".flv", ".mp4", ".3gp", ".mov", ".avi", ".wmv", ".mp4", ".m4v");
 
-    public static void openFile(final Activity a, final File file) {
-        Safe.run(new Runnable() {
 
-            @Override
-            public void run() {
-                openFileInner(a, file);
-            }
-        });
-    }
-
-    private static void openFileInner(Activity a, File file) {
+    public static void openFile(Activity a, File file) {
         if (ExtUtils.doifFileExists(a, file)) {
 
             if (ExtUtils.isZip(file)) {
@@ -523,6 +514,9 @@ public class ExtUtils {
     }
 
     public static boolean showDocument(final Context c, final File file, final int page) {
+
+        ImageLoader.getInstance().clearAllTasks();
+
         if (AppState.getInstance().isRememberMode) {
             showDocumentWithoutDialog(c, file, page);
             return true;
@@ -583,8 +577,8 @@ public class ExtUtils {
 
     }
 
-    public static boolean showDocumentWithoutDialog(final Context c, final File file, final int page) {
-        return showDocument(c, Uri.fromFile(file), page);
+    public static void showDocumentWithoutDialog(final Context c, final File file, final int page) {
+        showDocument(c, Uri.fromFile(file), page);
     }
 
     public static boolean showDocument(final Activity c, final Uri uri) {
@@ -596,16 +590,28 @@ public class ExtUtils {
         return showDocument(c, new File(filePath), -1);
     }
 
-    public static boolean showDocument(final Context c, final Uri uri, final int page) {
+    public static void showDocument(final Context c, final Uri uri, final int page) {
+        Safe.run(new Runnable() {
+
+            @Override
+            public void run() {
+                showDocumentInner(c, uri, page);
+            }
+        });
+
+
+    }
+
+    public static void showDocumentInner(final Context c, final Uri uri, final int page) {
         if (!isValidFile(uri)) {
             Toast.makeText(c, R.string.file_not_found, Toast.LENGTH_LONG).show();
-            return false;
+            return;
         }
         LOG.d("showDocument", uri.getPath());
 
         if (AppState.getInstance().isAlwaysOpenAsMagazine) {
             openHorizontalView(c, new File(uri.getPath()), page - 1);
-            return true;
+            return;
         }
 
         final Intent intent = new Intent(c, VerticalViewActivity.class);
@@ -617,8 +623,6 @@ public class ExtUtils {
 
         c.startActivity(intent);
         // FileMetaDB.get().addRecent(uri.getPath());
-
-        return true;
     }
 
     private static void openHorizontalView(final Context c, final File file, final int page) {

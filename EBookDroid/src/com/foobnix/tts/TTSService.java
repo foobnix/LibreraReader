@@ -42,9 +42,13 @@ public class TTSService extends Service {
 
     public static String ACTION_PLAY_CURRENT_PAGE = "ACTION_PLAY_CURRENT_PAGE";
     private WakeLock wakeLock;
+
     public TTSService() {
         LOG.d(TAG, "Create constructor");
     }
+
+    int width;
+    int height;
 
     AudioManager mAudioManager;
     MediaSessionCompat mMediaSessionCompat;
@@ -116,8 +120,15 @@ public class TTSService extends Service {
         return null;
     }
 
-    public static void playBookPage(int page, String path, String anchor) {
+    public static void playLastBook() {
+        playBookPage(AppState.get().lastBookPage, AppState.get().lastBookPath, "", AppState.get().lastBookWidth, AppState.get().lastBookHeight);
+    }
+
+    public static void playBookPage(int page, String path, String anchor, int width, int height) {
         TTSEngine.get().stop();
+
+        AppState.get().lastBookWidth = width;
+        AppState.get().lastBookHeight = height;
 
         Intent intent = playBookIntent(page, path, anchor);
 
@@ -191,7 +202,7 @@ public class TTSService extends Service {
 
     public CodecDocument getDC() {
         try {
-            return ImageExtractor.getNewCodecContext(AppState.get().lastBookPath, "", 0, 0);
+            return ImageExtractor.getNewCodecContext(AppState.get().lastBookPath, "", AppState.get().lastBookWidth, AppState.get().lastBookHeight);
         } catch (Exception e) {
             LOG.e(e);
             return null;
@@ -199,7 +210,6 @@ public class TTSService extends Service {
     }
 
     int emptyPageCount = 0;
-
 
     @TargetApi(Build.VERSION_CODES.ICE_CREAM_SANDWICH_MR1)
     private void playPage(String preText, int pageNumber, String anchor) {

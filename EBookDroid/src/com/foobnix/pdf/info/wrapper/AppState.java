@@ -348,8 +348,11 @@ public class AppState {
     public String downlodsPath = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS), "Librera").getPath();
 
     public String fileToDelete;
+
     public String lastBookPath;
     public int lastBookPage = 0;
+    public int lastBookWidth = 0;
+    public int lastBookHeight = 0;
 
     public int colorDayText = COLOR_BLACK;
     public int colorDayBg = COLOR_WHITE;
@@ -656,6 +659,8 @@ public class AppState {
         fileToDelete = sp.getString("fileToDelete", fileToDelete);
         lastBookPath = sp.getString("lastBookPath", lastBookPath);
         lastBookPage = sp.getInt("lastBookPage", lastBookPage);
+        lastBookWidth = sp.getInt("lastBookWidth", lastBookWidth);
+        lastBookHeight = sp.getInt("lastBookHeight", lastBookHeight);
         lastA = sp.getString("lastA", lastA);
         lastMode = sp.getString("lastMode", lastMode);
         dirLastPath = sp.getString("dirLastPath", dirLastPath);
@@ -914,6 +919,8 @@ public class AppState {
         editor.putString("fileToDelete", fileToDelete);
         editor.putString("lastBookPath", lastBookPath);
         editor.putInt("lastBookPage", lastBookPage);
+        editor.putInt("lastBookWidth", lastBookWidth);
+        editor.putInt("lastBookHeight", lastBookHeight);
         editor.putString("lastA", lastA);
         editor.putString("lastMode", lastMode);
         editor.putString("dirLastPath", dirLastPath);

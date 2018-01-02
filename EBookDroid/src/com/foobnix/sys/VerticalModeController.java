@@ -69,6 +69,16 @@ public class VerticalModeController extends DocumentController {
         initHandler();
     }
 
+    @Override
+    public int getBookWidth() {
+        return Dips.screenWidth();
+    }
+
+    @Override
+    public int getBookHeight() {
+        return Dips.screenHeight();
+    }
+
     public void saveCurrentPage() {
         handler.removeCallbacksAndMessages(null);
         handler.postDelayed(new Runnable() {

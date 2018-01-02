@@ -11,7 +11,7 @@ public class TTSActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         AppState.get().load(this);
-        TTSService.playBookPage(AppState.get().lastBookPage, AppState.get().lastBookPath, "");
+        TTSService.playLastBook();
         finish();
 
     }
