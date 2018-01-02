@@ -96,7 +96,7 @@
         android:layout_below="@+id/document_title_bar"
         android:layout_centerHorizontal="true"
         layout="@layout/document_title_buttons"
-        android:clickable="true" />
+         />
 
     <FrameLayout
         android:id="@+id/adFrame"
@@ -124,8 +124,6 @@
 
     <include
         android:id="@+id/document_footer"
-        android:clickable="true"
-        android:focusableInTouchMode="false"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"

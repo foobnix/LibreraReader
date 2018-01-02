@@ -87,8 +87,8 @@ public class TTSEngine {
                 ttsEngine.setOnUtteranceCompletedListener(null);
             }
             ttsEngine.stop();
+            EventBus.getDefault().post(new TtsStatus());
         }
-        EventBus.getDefault().post(new TtsStatus());
     }
 
     public TextToSpeech setTTSWithEngine(String engine) {

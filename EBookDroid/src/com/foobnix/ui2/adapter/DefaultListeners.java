@@ -12,6 +12,7 @@ import com.foobnix.pdf.info.ExtUtils;
 import com.foobnix.pdf.info.R;
 import com.foobnix.pdf.info.widget.FileInformationDialog;
 import com.foobnix.pdf.info.widget.ShareDialog;
+import com.foobnix.pdf.info.wrapper.DocumentController;
 import com.foobnix.pdf.info.wrapper.UITab;
 import com.foobnix.pdf.search.activity.msg.OpenDirMessage;
 import com.foobnix.sys.TempHolder;
@@ -30,6 +31,29 @@ import android.widget.Toast;
 
 public class DefaultListeners {
 
+
+
+    public static void bindAdapter(final Activity a, final FileMetaAdapter searchAdapter, final DocumentController dc) {
+        searchAdapter.setOnItemClickListener(new ResultResponse<FileMeta>() {
+
+            @Override
+            public boolean onResultRecive(final FileMeta result) {
+                dc.onCloseActivityFinal(new Runnable() {
+
+                    @Override
+                    public void run() {
+                        ExtUtils.showDocumentWithoutDialog(a, new File(result.getPath()), -1);
+
+                    }
+                });
+                return false;
+            }
+
+        });
+        searchAdapter.setOnItemLongClickListener(getOnItemLongClickListener(a, searchAdapter));
+        searchAdapter.setOnMenuClickListener(getOnMenuClick(a, searchAdapter));
+        searchAdapter.setOnStarClickListener(getOnStarClick(a));
+    }
     public static void bindAdapter(Activity a, final FileMetaAdapter searchAdapter) {
         searchAdapter.setOnItemClickListener(getOnItemClickListener(a));
         searchAdapter.setOnItemLongClickListener(getOnItemLongClickListener(a, searchAdapter));

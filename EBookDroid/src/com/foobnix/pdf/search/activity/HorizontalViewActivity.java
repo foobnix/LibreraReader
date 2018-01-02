@@ -185,10 +185,9 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
         setContentView(R.layout.activity_horiziontal_view);
 
         Android6.checkPermissions(this);
+        TTSEngine.get().stop();
 
         viewPager = (VerticalViewPager) findViewById(R.id.pager);
-        viewPager.setOffscreenPageLimit(AppState.get().pagesInMemory);
-        LOG.d("setOffscreenPageLimit", AppState.get().pagesInMemory);
 
         overlay = findViewById(R.id.overlay);
         overlay.setVisibility(View.VISIBLE);
@@ -899,13 +898,21 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
 
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void onTTSStatus(TtsStatus status) {
-        ttsActive.setVisibility(TTSEngine.get().isPlaying() ? View.VISIBLE : View.GONE);
+        try {
+            ttsActive.setVisibility(TTSEngine.get().isPlaying() ? View.VISIBLE : View.GONE);
+        } catch (Exception e) {
+            LOG.e(e);
+        }
     }
 
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void onPageNumber(final MessagePageNumber event) {
-        ttsActive.setVisibility(View.VISIBLE);
-        documentController.onGoToPage(event.getPage() + 1);
+        try {
+            ttsActive.setVisibility(View.VISIBLE);
+            documentController.onGoToPage(event.getPage() + 1);
+        } catch (Exception e) {
+            LOG.e(e);
+        }
     }
 
     @Subscribe
@@ -1624,9 +1631,22 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
             }
 
         };
+        int pagesInMemory = AppState.get().pagesInMemory;
+        if (pagesInMemory == 1 || pagesInMemory == 0) {
+            pagesInMemory = 0;
+        } else if (pagesInMemory == 3) {
+            pagesInMemory = 1;
+        } else if (pagesInMemory == 5) {
+            pagesInMemory = 2;
+        } else {
+            pagesInMemory = 1;
+        }
+        viewPager.setOffscreenPageLimit(pagesInMemory);
+        LOG.d("setOffscreenPageLimit", pagesInMemory);
         viewPager.setAdapter(pagerAdapter);
         viewPager.setSaveEnabled(false);
         viewPager.setSaveFromParentEnabled(false);
+
     }
 
     public boolean prev = true;
@@ -1766,7 +1786,6 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
         if (keyCode == 0) {
             keyCode = event.getScanCode();
         }
-
 
         isMyKey = false;
 

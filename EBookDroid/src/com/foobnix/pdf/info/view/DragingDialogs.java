@@ -1543,7 +1543,7 @@ public class DragingDialogs {
                 recentAdapter.getItemsList().addAll(all);
                 recentAdapter.notifyDataSetChanged();
 
-                DefaultListeners.bindAdapter(controller.getActivity(), recentAdapter);
+                DefaultListeners.bindAdapter(controller.getActivity(), recentAdapter, controller);
 
                 return recyclerView;
             }
@@ -2423,19 +2423,40 @@ public class DragingDialogs {
                     @Override
                     public void onClick(View v) {
                         final PopupMenu popupMenu = new PopupMenu(v.getContext(), v);
-                        for (int i = 0; i <= 2f; i++) {
-                            final int number = i;
-                            popupMenu.getMenu().add("" + i).setOnMenuItemClickListener(new OnMenuItemClickListener() {
 
-                                @Override
-                                public boolean onMenuItemClick(MenuItem item) {
-                                    AppState.get().pagesInMemory = number;
-                                    pagesInMemory.setText("" + AppState.get().pagesInMemory);
-                                    TxtUtils.underlineTextView(pagesInMemory);
-                                    return false;
-                                }
-                            });
-                        }
+                        popupMenu.getMenu().add("" + 1).setOnMenuItemClickListener(new OnMenuItemClickListener() {
+
+                            @Override
+                            public boolean onMenuItemClick(MenuItem item) {
+                                AppState.get().pagesInMemory = 1;
+                                pagesInMemory.setText("" + AppState.get().pagesInMemory);
+                                TxtUtils.underlineTextView(pagesInMemory);
+                                return false;
+                            }
+                        });
+
+                        popupMenu.getMenu().add("" + 3).setOnMenuItemClickListener(new OnMenuItemClickListener() {
+
+                            @Override
+                            public boolean onMenuItemClick(MenuItem item) {
+                                AppState.get().pagesInMemory = 3;
+                                pagesInMemory.setText("" + AppState.get().pagesInMemory);
+                                TxtUtils.underlineTextView(pagesInMemory);
+                                return false;
+                            }
+                        });
+
+                        popupMenu.getMenu().add("" + 5).setOnMenuItemClickListener(new OnMenuItemClickListener() {
+
+                            @Override
+                            public boolean onMenuItemClick(MenuItem item) {
+                                AppState.get().pagesInMemory = 5;
+                                pagesInMemory.setText("" + AppState.get().pagesInMemory);
+                                TxtUtils.underlineTextView(pagesInMemory);
+                                return false;
+                            }
+                        });
+
                         popupMenu.show();
 
                     }
@@ -3485,7 +3506,6 @@ public class DragingDialogs {
                         });
                     }
                 });
-
 
                 // crop
                 CheckBox isCropBorders = (CheckBox) inflate.findViewById(R.id.isCropBorders);

@@ -135,15 +135,25 @@ public class DocumentWrapperUI {
 
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void onPageNumber(MessagePageNumber event) {
-        if (controller != null) {
-            controller.onGoToPage(event.getPage() + 1);
-            ttsActive.setVisibility(View.VISIBLE);
+        try {
+            if (controller != null) {
+                controller.onGoToPage(event.getPage() + 1);
+                ttsActive.setVisibility(View.VISIBLE);
+            }
+        } catch (Exception e) {
+            LOG.e(e);
         }
     }
 
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void onTTSStatus(TtsStatus status) {
-        ttsActive.setVisibility(TTSEngine.get().isPlaying() ? View.VISIBLE : View.GONE);
+        try {
+            if (ttsActive != null) {
+                ttsActive.setVisibility(TTSEngine.get().isPlaying() ? View.VISIBLE : View.GONE);
+            }
+        } catch (Exception e) {
+            LOG.e(e);
+        }
 
     }
 

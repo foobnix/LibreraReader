@@ -107,10 +107,12 @@ public class ShareDialog {
             items.add(a.getString(R.string.library));
         }
 
-        if (a instanceof VerticalViewActivity) {
-            items.add(a.getString(R.string.horizontally));
-        } else if (a instanceof HorizontalViewActivity) {
-            items.add(a.getString(R.string.vertically));
+        if (dc != null) {
+            if (a instanceof VerticalViewActivity) {
+                items.add(a.getString(R.string.horizontally));
+            } else if (a instanceof HorizontalViewActivity) {
+                items.add(a.getString(R.string.vertically));
+            }
         }
 
         items.add(a.getString(R.string.open_with));
@@ -140,7 +142,7 @@ public class ShareDialog {
                             MainTabs2.startActivity(a, UITab.getCurrentTabIndex(UITab.SearchFragment));
                         }
 
-                        if (a instanceof HorizontalViewActivity && which == i++) {
+                        if (dc != null && a instanceof HorizontalViewActivity && which == i++) {
                             dc.onCloseActivityFinal(new Runnable() {
 
                                 @Override
@@ -152,7 +154,7 @@ public class ShareDialog {
                                 }
                             });
 
-                        } else if (a instanceof VerticalViewActivity && which == i++) {
+                        } else if (dc != null && a instanceof VerticalViewActivity && which == i++) {
                             if (dc != null) {
                                 dc.onCloseActivityFinal(new Runnable() {
 

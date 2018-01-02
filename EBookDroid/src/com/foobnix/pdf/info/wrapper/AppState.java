@@ -400,7 +400,7 @@ public class AppState {
     public boolean isCutRTL = Urls.isRtl();
 
     // perofrmance
-    public int pagesInMemory = 1;
+    public int pagesInMemory = 3;
     public float pageQuality = 1.2f;
     public int rotate = 0;
     public int rotateViewPager = 0;
@@ -595,7 +595,7 @@ public class AppState {
         tapzoneSize = sp.getInt("tapzoneSize", tapzoneSize);
         allocatedMemorySize = sp.getInt("allocatedMemorySize", allocatedMemorySize);
 
-        pagesInMemory = sp.getInt("pagesInMemory", pagesInMemory);
+        pagesInMemory = sp.getInt("pagesInMemory1", pagesInMemory);
 
         pageQuality = getAsFloatOrInt(sp, "pageQuality", pageQuality);
         appBrightness = sp.getInt("appBrightness", appBrightness);
@@ -862,7 +862,7 @@ public class AppState {
         editor.putInt("tapzoneSize", tapzoneSize);
         editor.putInt("allocatedMemorySize", allocatedMemorySize);
 
-        editor.putInt("pagesInMemory", pagesInMemory);
+        editor.putInt("pagesInMemory1", pagesInMemory);
         editor.putFloat("pageQuality", pageQuality);
         editor.putFloat("editLineWidth", editLineWidth);
         editor.putFloat("appFontScale", appFontScale);

@@ -536,8 +536,8 @@ public class ExtUtils {
             public void onClick(View v) {
                 AppState.getInstance().isAlwaysOpenAsMagazine = false;
                 AppState.getInstance().isMusicianMode = false;
-                showDocumentWithoutDialog(c, file, page);
                 dialog.dismiss();
+                showDocumentWithoutDialog(c, file, page);
             }
         });
         view.findViewById(R.id.horizontal).setOnClickListener(new View.OnClickListener() {
@@ -546,8 +546,8 @@ public class ExtUtils {
             public void onClick(View v) {
                 AppState.getInstance().isAlwaysOpenAsMagazine = true;
                 AppState.getInstance().isMusicianMode = false;
-                showDocumentWithoutDialog(c, file, page);
                 dialog.dismiss();
+                showDocumentWithoutDialog(c, file, page);
             }
         });
 
@@ -557,8 +557,8 @@ public class ExtUtils {
             public void onClick(View v) {
                 AppState.getInstance().isAlwaysOpenAsMagazine = false;
                 AppState.getInstance().isMusicianMode = true;
-                showDocumentWithoutDialog(c, file, page);
                 dialog.dismiss();
+                showDocumentWithoutDialog(c, file, page);
             }
         });
         if (Dips.isEInk(c)) {

@@ -66,7 +66,7 @@ public class ImagePageFragment extends Fragment {
                 }
 
             }
-        }, 200);
+        }, 50);
         lifeTime = System.currentTimeMillis();
 
         return view;

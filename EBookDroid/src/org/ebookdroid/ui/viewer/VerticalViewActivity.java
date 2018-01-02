@@ -20,6 +20,7 @@ import com.foobnix.pdf.info.wrapper.AppState;
 import com.foobnix.pdf.info.wrapper.DocumentController;
 import com.foobnix.pdf.search.view.CloseAppDialog;
 import com.foobnix.sys.TempHolder;
+import com.foobnix.tts.TTSEngine;
 import com.foobnix.tts.TTSNotification;
 import com.foobnix.ui2.FileMetaCore;
 import com.foobnix.ui2.MainTabs2;
@@ -131,6 +132,7 @@ public class VerticalViewActivity extends AbstractActionActivity<VerticalViewAct
         setContentView(R.layout.activity_vertical_view);
 
         Android6.checkPermissions(this);
+        TTSEngine.get().stop();
 
         getController().createWrapper(this);
         frameLayout = (FrameLayout) findViewById(R.id.documentView);
