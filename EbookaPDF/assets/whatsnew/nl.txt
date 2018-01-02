@@ -1,8 +1,8 @@
-* Versnelde snelheid bij het openen van alle indelingen en PDF, EPUB 
+* Verbeterde snelheid bij openen van alle indelingen en PDF, EPUB 
 * ThemaInkt voor apparaten met elektronische inkt 
 * Verander het contrast en de helderheid 
 * Negatieve helderheid 
 * Bluelight filter 
-* Autocomplete query’s in de bibliotheek 
+* Vragen automatisch invullen in de bibliotheek 
 * Verbeterde interface 
 * Veel verbeteringen en bugfixes

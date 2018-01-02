@@ -1,4 +1,4 @@
-* Hastighet for å åpne alle formater og PDF, EPUB 
+* Forbedret hastigheten for å åpne alle formater og PDF, EPUB 
 * TemaInk for enheter med elektronisk blekk 
 * Endre kontrast og lysstyrke 
 * Negativ lysstyrke 

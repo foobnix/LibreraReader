@@ -1,8 +1,8 @@
-* Kecepatan yang dipercepat untuk membuka semua format dan PDF, EPUB 
+* Meningkatkan kecepatan dalam membuka semua format dan PDF, EPUB 
 * ThemeInk untuk perangkat dengan tinta elektronik 
 * Mengubah kontras dan kecerahan 
 * Kecerahan negatif 
-* Bluelight filter 
+* Filter bluelight 
 * Kueri pelengkapan otomatis di perpustakaan 
 * Antarmuka yang ditingkatkan 
 * Banyak perbaikan dan perbaikan bug.

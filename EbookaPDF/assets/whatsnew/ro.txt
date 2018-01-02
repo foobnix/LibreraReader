@@ -1,4 +1,4 @@
-* Viteza accelerată de deschidere a tuturor formatelor și PDF, EPUB 
+* Îmbunătățirea vitezei de deschidere a tuturor formatelor și PDF, EPUB 
 * TemaInk pentru dispozitivele cu cerneală electronică 
 * Schimbarea contrastului și luminozității 
 * Luminozitate negativă 

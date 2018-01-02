@@ -1,8 +1,8 @@
-* Zrýchlenie rýchlosti otvárania všetkých formátov a PDF, EPUB 
+* Vylepšená rýchlosť otvárania všetkých formátov a PDF, EPUB 
 * Téma Ink pre zariadenia s elektronickým atramentom 
 * Zmena kontrastu a jasu 
 * Negatívny jas 
-* Bluelight filter 
+* Filtrovanie Bluelight 
 * Automatické dopyty v knižnici 
 * Vylepšené rozhranie 
 * Veľa vylepšení a opravy chýb

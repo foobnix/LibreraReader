@@ -1,6 +1,6 @@
-* Velocidad acelerada para abrir todos los formatos y PDF, EPUB 
+* Mejora la velocidad de apertura de todos los formatos y PDF, EPUB 
 * TemaTinta para dispositivos con tinta electrónica 
-* Cambiar el contraste y el brillo 
+* Cambio de contraste y brillo 
 * Brillo negativo 
 * Filtro de luz azul 
 * Autocompletar consultas en la biblioteca 

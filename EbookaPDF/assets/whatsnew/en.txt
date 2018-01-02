@@ -1,4 +1,4 @@
-* Accelerated speed of opening all formats and PDF, EPUB
+* Improved the speed of opening all formats and PDF, EPUB
 * Theme "Ink" for devices with electronic ink
 * Change the contrast and brightness
 * Negative brightness

@@ -1,39 +1,39 @@
 
 <nl-NL>
-* Versnelde snelheid bij het openen van alle indelingen en PDF, EPUB 
+* Verbeterde snelheid bij openen van alle indelingen en PDF, EPUB 
 * ThemaInkt voor apparaten met elektronische inkt 
 * Verander het contrast en de helderheid 
 * Negatieve helderheid 
 * Bluelight filter 
-* Autocomplete query’s in de bibliotheek 
+* Vragen automatisch invullen in de bibliotheek 
 * Verbeterde interface 
 * Veel verbeteringen en bugfixes
 </nl-NL>
 
 <id>
-* Kecepatan yang dipercepat untuk membuka semua format dan PDF, EPUB 
+* Meningkatkan kecepatan dalam membuka semua format dan PDF, EPUB 
 * ThemeInk untuk perangkat dengan tinta elektronik 
 * Mengubah kontras dan kecerahan 
 * Kecerahan negatif 
-* Bluelight filter 
+* Filter bluelight 
 * Kueri pelengkapan otomatis di perpustakaan 
 * Antarmuka yang ditingkatkan 
 * Banyak perbaikan dan perbaikan bug.
 </id>
 
 <lt>
-* Pagreitintas visų formatų atidarymo greitis ir PDF, EPUB 
+* Patobulintas visų formatų atidarymo greitis ir PDF, EPUB 
 *Ink temos įrenginiams su elektroniniu rašalu 
 * Keisti kontrastą ir ryškumą 
 * Neigiamas ryškumas 
 * Bluelight filtras 
-* Automatinio užpildymo užklausos bibliotekoje 
+* Automatinis užbaigimas užklausų bibliotekoje 
 * Patobulinta sąsaja 
 * Daugybė patobulinimų ir klaidų taisymų
 </lt>
 
 <ar>
-* سرعة تسريع فتح جميع الأشكال و بدف، إبوب 
+* تحسين سرعة فتح جميع الأشكال و بدف، إبوب 
 * موضوعالحبر للأجهزة مع الحبر الإلكتروني 
 * تغيير التباين والسطوع 
 * سطوع سلبي 
@@ -44,7 +44,7 @@
 </ar>
 
 <ro>
-* Viteza accelerată de deschidere a tuturor formatelor și PDF, EPUB 
+* Îmbunătățirea vitezei de deschidere a tuturor formatelor și PDF, EPUB 
 * TemaInk pentru dispozitivele cu cerneală electronică 
 * Schimbarea contrastului și luminozității 
 * Luminozitate negativă 
@@ -55,7 +55,7 @@
 </ro>
 
 <de-DE>
-* Beschleunigte Geschwindigkeit des Öffnens aller Formate und PDF, EPUB 
+* Verbesserte die Geschwindigkeit des Öffnens aller Formate und PDF, EPUB 
 * ThemeInk für Geräte mit elektronischer Tinte 
 * Ändern Sie den Kontrast und die Helligkeit 
 * Negative Helligkeit 
@@ -66,9 +66,9 @@
 </de-DE>
 
 <pl-PL>
-* Przyspieszona prędkość otwierania wszystkich formatów i PDF, EPUB 
+* Zwiększono szybkość otwierania wszystkich formatów i PDF, EPUB 
 * MotywTusz dla urządzeń z tuszem elektronicznym 
-* Zmiana kontrastu i jasności 
+* Zmień kontrast i jasność 
 * Negatywna jasność 
 * Filtr Bluelight 
 * Autouzupełnianie zapytań w bibliotece 
@@ -77,8 +77,8 @@
 </pl-PL>
 
 <iw-IL>
-* מהירות מואצת של פתיחת כל הפורמטים ו- PDF, EPUB 
-* ערכת נושאדיו עבור התקנים עם דיו אלקטרוני 
+* שיפור מהירות פתיחת כל הפורמטים ו- PDF, EPUB 
+* נושאדיו עבור מכשירים עם דיו אלקטרוני 
 * שינוי הניגודיות והבהירות 
 * בהירות שלילית 
 * מסנן Bluelight 
@@ -88,20 +88,20 @@
 </iw-IL>
 
 <hi-IN>
-* सभी प्रारूपों और पीडीएफ खोलने की त्वरित गति, इलेक्ट्रॉनिक स्याही वाले उपकरणों के लिए ईपीबीई 
+* सभी प्रारूपों और पीडीएफ खोलने की गति में सुधार, इलेक्ट्रॉनिक स्याही वाले उपकरणों के लिए ईपीबीई 
 * थीमइंक 
-* विपरीत और चमक बदलें 
+* कंट्रास्ट और चमक को बदलें 
 * नकारात्मक चमक 
-* ब्ल्यूलियट फिल्टर 
+* ब्ल्यूएलइट फिल्टर 
 * पुस्तकालय में स्वत: पूर्ण प्रश्न 
-* बेहतर इंटरफेस 
+* बेहतर इंटरफ़ेस 
 * कई सुधार और बग फिक्स
 </hi-IN>
 
 <es-ES>
-* Velocidad acelerada para abrir todos los formatos y PDF, EPUB 
+* Mejora la velocidad de apertura de todos los formatos y PDF, EPUB 
 * TemaTinta para dispositivos con tinta electrónica 
-* Cambiar el contraste y el brillo 
+* Cambio de contraste y brillo 
 * Brillo negativo 
 * Filtro de luz azul 
 * Autocompletar consultas en la biblioteca 
@@ -110,14 +110,14 @@
 </es-ES>
 
 <fi-FI>
-* Kaikkien formaattien ja PDF: n, EPUB 
-* -teemanInk -nopeutettu nopeus 
-* Muuta kontrastia ja kirkkautta 
-* Negatiivinen kirkkaus 
-* Bluelight-suodatin 
-* Kirjaston automaattinen täydennyspyyntö 
-* Parannettu käyttöliittymä 
-* Monet parannukset ja virheenkorjaukset
+* Parannetaan kaikkien formaattien avautumista ja PDF, EPUB 
+* TeemaMuste elektronisille musteille. 
+* Muuta kontrastia ja kirkkautta. 
+* Negatiivinen kirkkaus. 
+* Bluelight-suodatin. 
+* Automaattinen täydennys kirjastoon. 
+* Parannettu käyttöliittymä. 
+* Monet parannukset ja virheiden korjaukset.
 </fi-FI>
 
 <vi>
@@ -132,9 +132,9 @@
 </vi>
 
 <fr-FR>
-* Vitesse accélérée d’ouverture de tous les formats et PDF, EPUB 
+* Amélioration de la vitesse d’ouverture de tous les formats et PDF, EPUB 
 * ThèmeEncre pour les appareils à encre électronique 
-* Modification du contraste et de la luminosité 
+* Changer le contraste et la luminosité 
 * Luminosité négative 
 * Filtre Bluelight 
 * Requêtes auto-complétées dans la bibliothèque 
@@ -143,9 +143,9 @@
 </fr-FR>
 
 <fr-CA>
-* Vitesse accélérée d’ouverture de tous les formats et PDF, EPUB 
+* Amélioration de la vitesse d’ouverture de tous les formats et PDF, EPUB 
 * ThèmeEncre pour les appareils à encre électronique 
-* Modification du contraste et de la luminosité 
+* Changer le contraste et la luminosité 
 * Luminosité négative 
 * Filtre Bluelight 
 * Requêtes auto-complétées dans la bibliothèque 
@@ -154,31 +154,31 @@
 </fr-CA>
 
 <sw>
-* Kasi ya kufungua mafomu yote na PDF, EPUB 
-* MandhariInk kwa vifaa na wino wa elektroniki 
+* Kuboresha kasi ya ufunguzi wa muundo wote na PDF, EPUB 
+* MandhariNyenzo kwa vifaa na wino wa elektroniki 
 * Badilisha tofauti na mwangaza 
-* Uavu mbaya 
+* Uavu usiofaa 
 * Bluelight chujio 
-* Maswali ya kikamilifu kwenye maktaba 
+* Maswali ya kikamilifu katika maktaba 
 * Kiboreshaji kilichoboreshwa 
 * Maboresho mengi na marekebisho ya mdudu
 </sw>
 
 <zh-TW>
-*加速打开所有格式和PDF，EPUB 
-*电子墨水设备的主题“墨水”的速度
+*改进打开所有格式和PDF，EPUB 
+*主题“墨水”的主题“墨水”的电子墨水设备的速度
 *改变对比度和亮度
 *负亮度
 *蓝光过滤器
-*在库中自动完成查询
+*库中的自动完成查询
 *改进的界面
 *许多改进和错误修复
 </zh-TW>
 
 <ru-RU>
-* Ускоренная скорость открытия всех форматов и PDF, EPUB 
+* Улучшена скорость открытия всех форматов и PDF, EPUB 
 * Тема «Чернила» для устройств с электронными чернилами 
-* Изменение контраста и яркости 
+* Изменение контрастности и яркости 
 * Отрицательная яркость 
 * Фильтр Bluelight 
 * Автозаполнение запросов в библиотеке 
@@ -187,17 +187,18 @@
 </ru-RU>
 
 <th>
-ความเร็วในการเร่งการเปิดทุกรูปแบบและ PDF, EPUB ธีมหมึก สำหรับอุปกรณ์ที่มีหมึกอิเล็กทรอนิกส์ 
+* ปรับปรุงความเร็วในการเปิดทุกรูปแบบและ PDF, EPUB 
+* ธีมหมึก สำหรับอุปกรณ์ที่มีหมึกอิเล็กทรอนิกส์ 
 * เปลี่ยนความคมชัดและความสว่าง 
 * ความสว่างเชิงลบ 
 * Bluelight filter 
-* คำสั่งเติมข้อความอัตโนมัติในไลบรารี 
-* อินเทอร์เฟซที่ปรับปรุงใหม่ 
-* การปรับปรุงและแก้ไขข้อบกพร่อง
+* คำถามใน Autocomplete ในไลบรารี 
+* อินเทอร์เฟซที่ดีขึ้น 
+* มีการปรับปรุงและแก้ไขข้อบกพร่อง
 </th>
 
 <it-IT>
-* Velocità accelerata di apertura di tutti i formati e PDF, EPUB 
+* Migliorata la velocità di apertura di tutti i formati e PDF, EPUB 
 * TemaInchiostro per dispositivi con inchiostro elettronico 
 * Modifica contrasto e luminosità 
 * Luminosità negativa 
@@ -208,7 +209,7 @@
 </it-IT>
 
 <sv-SE>
-* Snabbare hastighet för att öppna alla format och PDF, EPUB 
+* Förbättrat hastigheten att öppna alla format och PDF, EPUB 
 * TemaBläck för enheter med elektronisk bläck 
 * Ändra kontrasten och ljusstyrkan 
 * Negativ ljusstyrka 
@@ -219,7 +220,7 @@
 </sv-SE>
 
 <fa>
-* سرعت شتاب باز کردن تمام فرمت ها و PDF، EPUB 
+* بهبود سرعت باز کردن تمام فرمت ها و PDF، EPUB 
 * تمجوهر برای دستگاه های با جوهر الکترونیکی 
 * تغییر کنتراست و روشنایی 
 * روشنایی منفی 
@@ -230,7 +231,7 @@
 </fa>
 
 <pt-PT>
-* Velocidade acelerada de abertura de todos os formatos e PDF, EPUB 
+* Melhorou a velocidade de abertura de todos os formatos e PDF, EPUB 
 * TemaTinta para dispositivos com tinta eletrônica 
 * Alterar o contraste e o brilho 
 * Brilho negativo 
@@ -241,7 +242,7 @@
 </pt-PT>
 
 <pt-BR>
-* Velocidade acelerada de abertura de todos os formatos e PDF, EPUB 
+* Melhorou a velocidade de abertura de todos os formatos e PDF, EPUB 
 * TemaTinta para dispositivos com tinta eletrônica 
 * Alterar o contraste e o brilho 
 * Brilho negativo 
@@ -252,7 +253,7 @@
 </pt-BR>
 
 <ko-KR>
-* 모든 포맷 및 PDF, EPUB 열기의 가속화 된 속도 
+* 모든 형식 및 PDF, EPUB 열기의 속도 향상 
 * 전자 잉크가있는 장치의 테마잉크
 * 명암 및 밝기 변경 
 * 음화 밝기 
@@ -263,9 +264,9 @@
 </ko-KR>
 
 <hu-HU>
-* Az összes formátum és PDF, EPUB 
-* TémaTinta felgyorsítása az elektronikus tintával rendelkező eszközök esetén 
-* A kontraszt és a fényerő módosítása 
+* Javította az összes formátum és PDF, EPUB 
+* TémaInk megjelenítését az elektronikus tintával rendelkező eszközök esetében 
+* Változtassa meg a kontrasztot és a fényerőt 
 * Negatív fényerő 
 * Bluelight szűrő 
 * Automatikus kiegészítés lekérdezések a könyvtárban 
@@ -274,29 +275,29 @@
 </hu-HU>
 
 <sk>
-* Zrýchlenie rýchlosti otvárania všetkých formátov a PDF, EPUB 
+* Vylepšená rýchlosť otvárania všetkých formátov a PDF, EPUB 
 * Téma Ink pre zariadenia s elektronickým atramentom 
 * Zmena kontrastu a jasu 
 * Negatívny jas 
-* Bluelight filter 
+* Filtrovanie Bluelight 
 * Automatické dopyty v knižnici 
 * Vylepšené rozhranie 
 * Veľa vylepšení a opravy chýb
 </sk>
 
 <tr-TR>
-* Tüm formatları ve PDF, EPUB’u açma hızlandırılmış hız 
+* Tüm formatları ve PDF, EPUB’u açma hızını geliştirdi 
 * Elektronik mürekkepli cihazlar için TemaMürekkep 
-* Kontrast ve parlaklığı değiştirme 
+* Kontrast ve parlaklığı değiştirin 
 * Negatif parlaklık 
 * Bluelight filtresi 
-* Kütüphanedeki otomatik tamamlama sorguları 
+* Kütüphanede otomatik tamamlama sorguları 
 * Artırılmış arayüz 
 * Pek çok iyileştirme ve hata düzeltmesi
 </tr-TR>
 
 <no-NO>
-* Hastighet for å åpne alle formater og PDF, EPUB 
+* Forbedret hastigheten for å åpne alle formater og PDF, EPUB 
 * TemaInk for enheter med elektronisk blekk 
 * Endre kontrast og lysstyrke 
 * Negativ lysstyrke 
@@ -307,19 +308,19 @@
 </no-NO>
 
 <ja-JP>
-*すべてのフォーマットとPDF、EPUBを開くスピードを加速
+*すべてのフォーマットとPDF、EPUBを開くスピードを向上
 *電子インクを搭載したデバイスのテーマ「インク」
 *コントラストと明るさを変更する
 *ネガティブな明るさ
-*ブルーライトフィルタ
+* Bluelightフィルター
 *ライブラリ内のクエリをオートコンプリート
 *インターフェイスを改善
-*
+*多くの改善とバグ修正
 </ja-JP>
 
 <uk>
-* Прискорена швидкість відкривання всіх форматів і PDF, EPUB 
-* ТемаЧорнило для пристроїв з електронними чорнилом 
+* Покращено швидкість відкривання всіх форматів і PDF, EPUB 
+* ТемаInk для пристроїв з електронними чорнилом 
 * Зміна контрастності та яскравості 
 * Негативна яскравість 
 * Bluelight фільтр 
@@ -329,7 +330,7 @@
 </uk>
 
 <en-US>
-* Accelerated speed of opening all formats and PDF, EPUB
+* Improved the speed of opening all formats and PDF, EPUB
 * Theme "Ink" for devices with electronic ink
 * Change the contrast and brightness
 * Negative brightness

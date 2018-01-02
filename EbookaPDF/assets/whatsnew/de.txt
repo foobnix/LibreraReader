@@ -1,4 +1,4 @@
-* Beschleunigte Geschwindigkeit des Öffnens aller Formate und PDF, EPUB 
+* Verbesserte die Geschwindigkeit des Öffnens aller Formate und PDF, EPUB 
 * ThemeInk für Geräte mit elektronischer Tinte 
 * Ändern Sie den Kontrast und die Helligkeit 
 * Negative Helligkeit 

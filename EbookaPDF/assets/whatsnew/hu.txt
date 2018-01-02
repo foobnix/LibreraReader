@@ -1,6 +1,6 @@
-* Az összes formátum és PDF, EPUB 
-* TémaTinta felgyorsítása az elektronikus tintával rendelkező eszközök esetén 
-* A kontraszt és a fényerő módosítása 
+* Javította az összes formátum és PDF, EPUB 
+* TémaInk megjelenítését az elektronikus tintával rendelkező eszközök esetében 
+* Változtassa meg a kontrasztot és a fényerőt 
 * Negatív fényerő 
 * Bluelight szűrő 
 * Automatikus kiegészítés lekérdezések a könyvtárban 

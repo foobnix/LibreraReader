@@ -1,8 +1,8 @@
-* Pagreitintas visų formatų atidarymo greitis ir PDF, EPUB 
+* Patobulintas visų formatų atidarymo greitis ir PDF, EPUB 
 *Ink temos įrenginiams su elektroniniu rašalu 
 * Keisti kontrastą ir ryškumą 
 * Neigiamas ryškumas 
 * Bluelight filtras 
-* Automatinio užpildymo užklausos bibliotekoje 
+* Automatinis užbaigimas užklausų bibliotekoje 
 * Patobulinta sąsaja 
 * Daugybė patobulinimų ir klaidų taisymų

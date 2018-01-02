@@ -1,4 +1,4 @@
-* Snabbare hastighet för att öppna alla format och PDF, EPUB 
+* Förbättrat hastigheten att öppna alla format och PDF, EPUB 
 * TemaBläck för enheter med elektronisk bläck 
 * Ändra kontrasten och ljusstyrkan 
 * Negativ ljusstyrka 

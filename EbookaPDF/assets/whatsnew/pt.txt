@@ -1,4 +1,4 @@
-* Velocidade acelerada de abertura de todos os formatos e PDF, EPUB 
+* Melhorou a velocidade de abertura de todos os formatos e PDF, EPUB 
 * TemaTinta para dispositivos com tinta eletrônica 
 * Alterar o contraste e o brilho 
 * Brilho negativo 

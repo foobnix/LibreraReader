@@ -1,6 +1,6 @@
-* Przyspieszona prędkość otwierania wszystkich formatów i PDF, EPUB 
+* Zwiększono szybkość otwierania wszystkich formatów i PDF, EPUB 
 * MotywTusz dla urządzeń z tuszem elektronicznym 
-* Zmiana kontrastu i jasności 
+* Zmień kontrast i jasność 
 * Negatywna jasność 
 * Filtr Bluelight 
 * Autouzupełnianie zapytań w bibliotece 

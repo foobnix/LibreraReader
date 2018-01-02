@@ -1,6 +1,6 @@
-* Vitesse accélérée d’ouverture de tous les formats et PDF, EPUB 
+* Amélioration de la vitesse d’ouverture de tous les formats et PDF, EPUB 
 * ThèmeEncre pour les appareils à encre électronique 
-* Modification du contraste et de la luminosité 
+* Changer le contraste et la luminosité 
 * Luminosité négative 
 * Filtre Bluelight 
 * Requêtes auto-complétées dans la bibliothèque 

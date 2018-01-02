@@ -1,8 +1,8 @@
-* Kaikkien formaattien ja PDF: n, EPUB 
-* -teemanInk -nopeutettu nopeus 
-* Muuta kontrastia ja kirkkautta 
-* Negatiivinen kirkkaus 
-* Bluelight-suodatin 
-* Kirjaston automaattinen täydennyspyyntö 
-* Parannettu käyttöliittymä 
-* Monet parannukset ja virheenkorjaukset
+* Parannetaan kaikkien formaattien avautumista ja PDF, EPUB 
+* TeemaMuste elektronisille musteille. 
+* Muuta kontrastia ja kirkkautta. 
+* Negatiivinen kirkkaus. 
+* Bluelight-suodatin. 
+* Automaattinen täydennys kirjastoon. 
+* Parannettu käyttöliittymä. 
+* Monet parannukset ja virheiden korjaukset.

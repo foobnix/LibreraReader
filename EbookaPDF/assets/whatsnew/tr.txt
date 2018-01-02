@@ -1,8 +1,8 @@
-* Tüm formatları ve PDF, EPUB’u açma hızlandırılmış hız 
+* Tüm formatları ve PDF, EPUB’u açma hızını geliştirdi 
 * Elektronik mürekkepli cihazlar için TemaMürekkep 
-* Kontrast ve parlaklığı değiştirme 
+* Kontrast ve parlaklığı değiştirin 
 * Negatif parlaklık 
 * Bluelight filtresi 
-* Kütüphanedeki otomatik tamamlama sorguları 
+* Kütüphanede otomatik tamamlama sorguları 
 * Artırılmış arayüz 
 * Pek çok iyileştirme ve hata düzeltmesi

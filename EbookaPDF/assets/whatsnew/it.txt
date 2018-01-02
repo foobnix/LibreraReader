@@ -1,4 +1,4 @@
-* Velocità accelerata di apertura di tutti i formati e PDF, EPUB 
+* Migliorata la velocità di apertura di tutti i formati e PDF, EPUB 
 * TemaInchiostro per dispositivi con inchiostro elettronico 
 * Modifica contrasto e luminosità 
 * Luminosità negativa 

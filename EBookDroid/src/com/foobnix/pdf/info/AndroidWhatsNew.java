@@ -68,7 +68,7 @@ public class AndroidWhatsNew {
             textNotes = getWhatsNew(c, langCode);
         } catch (Exception e) {
             try {
-                textNotes = getWhatsNew(c, "en");
+                textNotes = getWhatsNew(c, Urls.getLangCode());
             } catch (Exception e1) {
                 textNotes = "erorr...";
             }
