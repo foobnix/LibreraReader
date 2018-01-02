@@ -124,7 +124,9 @@ public class BrightnessHelper {
                 if (!buttonView.isPressed()) {
                     return;
                 }
-                onAuto.run();
+                if (onAuto != null) {
+                    onAuto.run();
+                }
                 if (isChecked) {// auto
                     customBrightness.setEnabled(false);
                     customBrightness.reset(systemBrigtnessInt);

@@ -607,6 +607,13 @@ public class SearchFragment2 extends UIFragment<FileMeta> {
             searchAndOrderAsync();
         }
     };
+    Runnable hideKeyboard = new Runnable() {
+
+        @Override
+        public void run() {
+            Keyboards.close(searchEditText);
+        }
+    };
 
     Runnable saveAutoComplete = new Runnable() {
 
@@ -645,8 +652,10 @@ public class SearchFragment2 extends UIFragment<FileMeta> {
             AppState.get().libraryMode == AppState.MODE_COVERS//
             ) {
                 handler.removeCallbacks(sortAndSeach);
+                handler.removeCallbacks(hideKeyboard);
                 if (s.toString().trim().length() == 0) {
                     handler.postDelayed(sortAndSeach, 250);
+                    handler.postDelayed(hideKeyboard, 2000);
                 } else {
                     handler.postDelayed(sortAndSeach, 1000);
                 }

@@ -7,6 +7,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Stack;
 
+import com.foobnix.android.utils.Keyboards;
 import com.foobnix.android.utils.LOG;
 import com.foobnix.android.utils.ResultResponse;
 import com.foobnix.android.utils.ResultResponse2;
@@ -47,6 +48,7 @@ import android.view.ViewGroup;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.CompoundButton.OnCheckedChangeListener;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.PopupMenu;
 import android.widget.ProgressBar;
@@ -323,10 +325,10 @@ public class OpdsFragment2 extends UIFragment<Entry> {
 
                 final CheckBox proxyEnable = (CheckBox) view.findViewById(R.id.proxyEnable);
                 final CheckBox opdsLargeCovers = (CheckBox) view.findViewById(R.id.opdsLargeCovers);
-                final TextView proxyServer = (TextView) view.findViewById(R.id.proxyServer);
-                final TextView proxyPort = (TextView) view.findViewById(R.id.proxyPort);
-                final TextView proxyUser = (TextView) view.findViewById(R.id.proxyUser);
-                final TextView proxyPassword = (TextView) view.findViewById(R.id.proxyPassword);
+                final EditText proxyServer = (EditText) view.findViewById(R.id.proxyServer);
+                final EditText proxyPort = (EditText) view.findViewById(R.id.proxyPort);
+                final EditText proxyUser = (EditText) view.findViewById(R.id.proxyUser);
+                final EditText proxyPassword = (EditText) view.findViewById(R.id.proxyPassword);
 
                 final TextView proxyType = (TextView) view.findViewById(R.id.proxyType);
 
@@ -406,6 +408,7 @@ public class OpdsFragment2 extends UIFragment<Entry> {
                         OPDS.buildProxy();
 
                         AppState.get().save(getActivity());
+                        Keyboards.close(proxyServer);
 
                     }
                 });

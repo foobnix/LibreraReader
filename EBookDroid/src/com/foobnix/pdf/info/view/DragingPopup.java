@@ -359,6 +359,7 @@ public abstract class DragingPopup {
         if (onCloseListener != null) {
             onCloseListener.run();
         }
+        Keyboards.close(anchor);
         Keyboards.hideNavigation((Activity) anchor.getContext());
     }
 
