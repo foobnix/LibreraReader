@@ -3486,9 +3486,6 @@ public class DragingDialogs {
                     }
                 });
 
-                // brightness begin
-                BrightnessHelper.controlsWrapper(inflate, controller.getActivity());
-                // brightness end
 
                 // crop
                 CheckBox isCropBorders = (CheckBox) inflate.findViewById(R.id.isCropBorders);
@@ -3571,6 +3568,16 @@ public class DragingDialogs {
                         }
                     }
                 });
+
+                // brightness begin
+                BrightnessHelper.controlsWrapper(inflate, controller.getActivity(), new Runnable() {
+
+                    @Override
+                    public void run() {
+                        isEnableBlueFilter.setChecked(false);
+                    }
+                });
+                // brightness end
 
                 final TextView onBlueFilter = (TextView) inflate.findViewById(R.id.onBlueFilter);
                 onBlueFilter.setVisibility(Dips.isEInk(controller.getActivity()) ? View.GONE : View.VISIBLE);

@@ -2,18 +2,17 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="#0000ff"
-    android:clickable="true" >
+    android:background="#0000ff" >
 
     <LinearLayout
-        android:layout_marginLeft="@dimen/wh_button_big"
-        android:layout_marginRight="@dimen/wh_button_big"
         android:layout_width="wrap_content"
         android:layout_height="?android:attr/actionBarSize"
-        android:gravity="center"
-         android:padding="2dip"
         android:layout_centerInParent="true"
-        android:orientation="horizontal" >
+        android:layout_marginLeft="@dimen/wh_button_big"
+        android:layout_marginRight="@dimen/wh_button_big"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:padding="2dip" >
 
         <ImageView
             android:id="@+id/goToPage1"
@@ -120,10 +119,8 @@
             android:layout_weight="0"
             android:contentDescription="@string/preferences"
             android:src="@drawable/glyphicons_137_cogwheel" />
-
-        
     </LinearLayout>
-    
+
     <ImageView
         android:id="@+id/close"
         style="@style/buttonWhiteClose"

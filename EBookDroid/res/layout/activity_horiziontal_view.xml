@@ -330,71 +330,65 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:clickable="true"
+            android:focusableInTouchMode="false"
             android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:padding="2dip"
             android:visibility="visible" >
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
+            <ImageView
+                android:id="@+id/onPageFlip"
+                style="@style/buttonWhite"
+                android:layout_width="@dimen/wh_button"
+                android:layout_height="@dimen/wh_button"
+                android:layout_weight="0"
+                android:contentDescription="@string/go_to_page_dialog"
+                android:src="@drawable/glyphicons_174_play" />
+
+            <ImageView
+                android:id="@+id/bookTTS"
+                style="@style/buttonWhite"
+                android:layout_width="@dimen/wh_button"
+                android:layout_height="@dimen/wh_button"
+                android:layout_weight="0"
+                android:contentDescription="read aloud TTS"
+                android:src="@drawable/glyphicons_185_volume_up" />
+
+            <TextView
+                android:id="@+id/currentSeek"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="0"
                 android:clickable="true"
-                android:focusableInTouchMode="false"
-                android:orientation="horizontal"
-                android:padding="2dip" >
+                android:gravity="center"
+                android:minWidth="32dip"
+                android:text="--"
+                android:textColor="#ffffff"
+                android:textStyle="normal" />
 
-                <ImageView
-                    android:id="@+id/onPageFlip"
-                    style="@style/buttonWhite"
-                    android:layout_width="@dimen/wh_button"
-                    android:layout_height="@dimen/wh_button"
-                    android:layout_weight="0"
-                    android:contentDescription="@string/go_to_page_dialog"
-                    android:src="@drawable/glyphicons_174_play" />
+            <SeekBar
+                android:id="@+id/seekBar"
+                android:layout_width="match_parent"
+                android:layout_height="40dip"
+                android:layout_gravity="center_vertical"
+                android:layout_weight="1"
+                android:paddingBottom="4dip"
+                android:paddingTop="4dip"
+                android:progressTint="@android:color/white"
+                android:thumbTint="@android:color/white" />
 
-                <ImageView
-                    android:id="@+id/bookTTS"
-                    style="@style/buttonWhite"
-                    android:layout_width="@dimen/wh_button"
-                    android:layout_height="@dimen/wh_button"
-                    android:layout_weight="0"
-                    android:contentDescription="read aloud TTS"
-                    android:src="@drawable/glyphicons_185_volume_up" />
-
-                <TextView
-                    android:id="@+id/currentSeek"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_weight="0"
-                    android:clickable="true"
-                    android:gravity="center"
-                    android:minWidth="32dip"
-                    android:text="--"
-                    android:textColor="#ffffff"
-                    android:textStyle="normal" />
-
-                <SeekBar
-                    android:id="@+id/seekBar"
-                    android:layout_width="match_parent"
-                    android:layout_height="40dip"
-                    android:layout_gravity="center_vertical"
-                    android:layout_weight="1"
-                    android:paddingBottom="4dip"
-                    android:paddingTop="4dip"
-                    android:progressTint="@android:color/white"
-                    android:thumbTint="@android:color/white" />
-
-                <TextView
-                    android:id="@+id/maxSeek"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_weight="0"
-                    android:clickable="true"
-                    android:gravity="center"
-                    android:minWidth="32dip"
-                    android:text="--"
-                    android:textColor="#ffffff"
-                    android:textStyle="normal" />
-            </LinearLayout>
+            <TextView
+                android:id="@+id/maxSeek"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="0"
+                android:clickable="true"
+                android:gravity="center"
+                android:minWidth="32dip"
+                android:text="--"
+                android:textColor="#ffffff"
+                android:textStyle="normal" />
 
             <ImageView
                 android:id="@+id/bookMenu"
@@ -436,11 +430,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
-        android:padding="12dip"
-        android:drawableTint="@color/white"
-        android:drawablePadding="10dip"
         android:background="@drawable/bg_my_toast"
         android:drawableLeft="@drawable/glyphicons_232_sun"
+        android:drawablePadding="10dip"
+        android:drawableTint="@color/white"
+        android:padding="12dip"
         android:text="@string/brightness"
         android:textColor="@color/white"
         android:textSize="16sp"

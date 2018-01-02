@@ -88,6 +88,10 @@ public class BrightnessHelper {
     }
 
     public static void controlsWrapper(View inflate, Activity a) {
+        controlsWrapper(inflate, a, null);
+    }
+
+    public static void controlsWrapper(View inflate, Activity a, final Runnable onAuto) {
         final CheckBox autoSettings = (CheckBox) inflate.findViewById(R.id.autoSettings);
 
         final int systemBrigtnessInt = getSystemBrigtnessInt(a);
@@ -120,6 +124,7 @@ public class BrightnessHelper {
                 if (!buttonView.isPressed()) {
                     return;
                 }
+                onAuto.run();
                 if (isChecked) {// auto
                     customBrightness.setEnabled(false);
                     customBrightness.reset(systemBrigtnessInt);

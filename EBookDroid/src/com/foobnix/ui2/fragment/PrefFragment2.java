@@ -120,7 +120,7 @@ public class PrefFragment2 extends UIFragment {
 
     @Override
     public View onCreateView(final LayoutInflater inflater, final ViewGroup container, final Bundle savedInstanceState) {
-        final View inflate = inflater.inflate(R.layout.preferences, container, false);
+        inflate = inflater.inflate(R.layout.preferences, container, false);
 
         // tabs position
         final DragLinearLayout dragLinearLayout = (DragLinearLayout) inflate.findViewById(R.id.dragLinearLayout);
@@ -851,7 +851,7 @@ public class PrefFragment2 extends UIFragment {
 
         ///
 
-        BrightnessHelper.controlsWrapper(inflate, getActivity());
+        // BrightnessHelper.controlsWrapper(inflate, getActivity());
 
         nextKeys = (TextView) inflate.findViewById(R.id.textNextKeys);
         prevKeys = (TextView) inflate.findViewById(R.id.textPrevKeys);
@@ -1439,6 +1439,8 @@ public class PrefFragment2 extends UIFragment {
     public void onResume() {
         super.onResume();
 
+        BrightnessHelper.controlsWrapper(inflate, getActivity());
+
         rotationText();
 
         fullScreenText();
@@ -1492,6 +1494,8 @@ public class PrefFragment2 extends UIFragment {
     private TextView selectedDictionaly;
 
     private TextView screenOrientation;
+
+    private View inflate;
 
 
     @Override

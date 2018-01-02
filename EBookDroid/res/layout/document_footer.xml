@@ -3,18 +3,18 @@
     android:id="@+id/wrapper"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="#0000ff"
+    android:clickable="true"
+    android:focusableInTouchMode="false"
     android:orientation="vertical" >
 
     <LinearLayout
         android:id="@+id/lineNavgination"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="2dip"
         android:clickable="true"
-        android:focusableInTouchMode="true"
+        android:focusableInTouchMode="false"
         android:gravity="center"
-         android:padding="2dip"
+        android:padding="2dip"
         android:visibility="visible" >
 
         <ImageView
@@ -107,20 +107,14 @@
             android:textSize="14sp" />
     </LinearLayout>
 
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="1dip"
-        android:background="@color/tint_divider"
-        android:visibility="gone" />
-
     <LinearLayout
         android:id="@+id/pagsLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="2dip"
         android:clickable="true"
         android:focusableInTouchMode="false"
-        android:gravity="center_vertical" >
+        android:gravity="center_vertical"
+        android:padding="2dip" >
 
         <ImageView
             android:id="@+id/autoScroll"
@@ -155,6 +149,7 @@
             android:layout_height="match_parent"
             android:layout_marginLeft="2dip"
             android:layout_weight="0"
+            android:clickable="true"
             android:gravity="center"
             android:minWidth="32dip"
             android:text="--"
@@ -178,6 +173,7 @@
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_weight="0"
+            android:clickable="true"
             android:gravity="center"
             android:minWidth="32dip"
             android:text="--"

@@ -67,8 +67,6 @@
         android:layout_height="match_parent"
         android:visibility="gone" />
 
-    
-
     <include
         android:id="@+id/document_title_bar"
         android:layout_width="match_parent"
@@ -126,11 +124,12 @@
 
     <include
         android:id="@+id/document_footer"
+        android:clickable="true"
+        android:focusableInTouchMode="false"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        layout="@layout/document_footer"
-        android:clickable="true" />
+        layout="@layout/document_footer" />
 
     <FrameLayout
         android:id="@+id/anchor"
@@ -140,23 +139,23 @@
         android:minHeight="10dip"
         android:minWidth="10dip"
         android:visibility="gone" />
-    
+
     <FrameLayout
-        android:visibility="gone"
         android:id="@+id/overlay"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
-    
-      <TextView
+        android:layout_height="match_parent"
+        android:visibility="gone" />
+
+    <TextView
         android:id="@+id/toastBrightnessText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
-        android:padding="12dip"
-        android:drawableTint="@color/white"
-        android:drawablePadding="10dip"
         android:background="@drawable/bg_my_toast"
         android:drawableLeft="@drawable/glyphicons_232_sun"
+        android:drawablePadding="10dip"
+        android:drawableTint="@color/white"
+        android:padding="12dip"
         android:text="@string/brightness"
         android:textColor="@color/white"
         android:textSize="16sp"
