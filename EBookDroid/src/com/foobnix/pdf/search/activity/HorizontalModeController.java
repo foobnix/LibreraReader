@@ -33,6 +33,8 @@ import com.foobnix.pdf.search.activity.msg.MessageAutoFit;
 import com.foobnix.pdf.search.activity.msg.MessageCenterHorizontally;
 import com.foobnix.sys.ImageExtractor;
 import com.foobnix.sys.TempHolder;
+import com.foobnix.tts.TTSEngine;
+import com.foobnix.tts.TTSNotification;
 import com.foobnix.ui2.AppDB;
 import com.foobnix.ui2.FileMetaCore;
 
@@ -408,6 +410,9 @@ public abstract class HorizontalModeController extends DocumentController {
     @Override
     public void onCloseActivityFinal(final Runnable run) {
         TempHolder.get().clear();
+
+        TTSEngine.get().stop();
+        TTSNotification.hideNotification();
 
         Safe.run(new Runnable() {
 

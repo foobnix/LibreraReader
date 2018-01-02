@@ -185,7 +185,6 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
         setContentView(R.layout.activity_horiziontal_view);
 
         Android6.checkPermissions(this);
-        TTSEngine.get().stop();
 
         viewPager = (VerticalViewPager) findViewById(R.id.pager);
 

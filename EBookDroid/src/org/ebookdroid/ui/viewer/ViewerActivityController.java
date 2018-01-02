@@ -38,8 +38,10 @@ import com.foobnix.pdf.info.R;
 import com.foobnix.pdf.info.model.OutlineLinkWrapper;
 import com.foobnix.pdf.info.wrapper.AppState;
 import com.foobnix.pdf.info.wrapper.DocumentWrapperUI;
-import com.foobnix.sys.VerticalModeController;
 import com.foobnix.sys.TempHolder;
+import com.foobnix.sys.VerticalModeController;
+import com.foobnix.tts.TTSEngine;
+import com.foobnix.tts.TTSNotification;
 import com.foobnix.ui2.AppDB;
 
 import android.app.Activity;
@@ -531,6 +533,9 @@ public class ViewerActivityController extends ActionController<VerticalViewActiv
     }
 
     public void closeActivityFinal(final ActionEx action) {
+        TTSEngine.get().stop();
+        TTSNotification.hideNotification();
+
         LOG.d("closeActivity 1");
         if (documentModel != null) {
             documentModel.recycle();
@@ -546,6 +551,8 @@ public class ViewerActivityController extends ActionController<VerticalViewActiv
 
         System.gc();
         BitmapManager.clear("finish");
+
+
 
         LOG.d("closeActivity DONE");
     }
