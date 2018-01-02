@@ -443,4 +443,5 @@
    <string name="proxy_server_settings">การตั้งค่าพร็อกซีเซิร์ฟเวอร์</string>
    <string name="other_settings">การตั้งค่าอื่น ๆ</string>
    <string name="display_large_book_covers_in_the_catalog">แสดงปกหนังสือขนาดใหญ่ในแค็ตตาล็อก</string>
+   <string name="edit_names">แก้ไขชื่อ</string>
 </resources>

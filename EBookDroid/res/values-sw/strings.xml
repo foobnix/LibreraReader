@@ -443,4 +443,5 @@
    <string name="proxy_server_settings">Mipangilio ya seva ya wakala</string>
    <string name="other_settings">Mipangilio mengine</string>
    <string name="display_large_book_covers_in_the_catalog">Onyesha kitabu kinachojulikana katika orodha</string>
+   <string name="edit_names">Badilisha majina</string>
 </resources>

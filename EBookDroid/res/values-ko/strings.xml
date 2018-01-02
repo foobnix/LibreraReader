@@ -443,4 +443,5 @@
    <string name="proxy_server_settings">프록시 서버 설정</string>
    <string name="other_settings">다른 설정</string>
    <string name="display_large_book_covers_in_the_catalog">카탈로그에 큰 책 표지 표시</string>
+   <string name="edit_names">이름 수정</string>
 </resources>

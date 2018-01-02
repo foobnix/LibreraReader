@@ -443,4 +443,5 @@
    <string name="proxy_server_settings">Настройки прокси-сервера</string>
    <string name="other_settings">Другие настройки</string>
    <string name="display_large_book_covers_in_the_catalog">Отображать большие обложки книг в каталоге</string>
+   <string name="edit_names">Изменить имена</string>
 </resources>

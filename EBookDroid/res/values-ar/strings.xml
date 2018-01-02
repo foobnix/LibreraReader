@@ -443,4 +443,5 @@
    <string name="proxy_server_settings">إعدادات الخادم الوكيل</string>
    <string name="other_settings">اعدادات اخرى</string>
    <string name="display_large_book_covers_in_the_catalog">عرض أغلفة الكتب الكبيرة في الكتالوج</string>
+   <string name="edit_names">تعديل الأسماء</string>
 </resources>

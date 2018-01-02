@@ -109,9 +109,9 @@ public class ShareDialog {
 
         if (dc != null) {
             if (a instanceof VerticalViewActivity) {
-                items.add(a.getString(R.string.horizontally));
+                items.add(AppState.get().nameHorizontalMode);
             } else if (a instanceof HorizontalViewActivity) {
-                items.add(a.getString(R.string.vertically));
+                items.add(AppState.get().nameVerticalMode);
             }
         }
 

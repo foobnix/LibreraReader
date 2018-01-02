@@ -443,4 +443,5 @@
    <string name="proxy_server_settings">Välityspalvelimen asetukset</string>
    <string name="other_settings">Muut asetukset</string>
    <string name="display_large_book_covers_in_the_catalog">Näytä suuret kirjakuoret luettelossa</string>
+   <string name="edit_names">Muokkaa nimiä</string>
 </resources>

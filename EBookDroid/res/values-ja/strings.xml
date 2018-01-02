@@ -443,4 +443,5 @@
    <string name="proxy_server_settings">プロキシサーバーの設定</string>
    <string name="other_settings">その他の設定</string>
    <string name="display_large_book_covers_in_the_catalog">カタログに大きい本の表紙を表示する</string>
+   <string name="edit_names">名前の編集</string>
 </resources>

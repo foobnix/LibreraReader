@@ -443,4 +443,5 @@
    <string name="proxy_server_settings">Proxy-serverinnstillinger</string>
    <string name="other_settings">Andre innstillinger</string>
    <string name="display_large_book_covers_in_the_catalog">Vis store bokomslag i katalogen</string>
+   <string name="edit_names">Rediger navn</string>
 </resources>

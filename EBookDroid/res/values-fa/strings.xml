@@ -443,4 +443,5 @@
    <string name="proxy_server_settings">تنظیمات سرور پروکسی</string>
    <string name="other_settings">تنظیمات دیگر</string>
    <string name="display_large_book_covers_in_the_catalog">نمایش بزرگ کتاب را پوشش می دهد در کاتالوگ</string>
+   <string name="edit_names">ویرایش نام ها</string>
 </resources>

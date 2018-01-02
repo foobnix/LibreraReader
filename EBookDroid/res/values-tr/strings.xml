@@ -443,4 +443,5 @@
    <string name="proxy_server_settings">Proxy sunucu ayarları</string>
    <string name="other_settings">Diğer ayarlar</string>
    <string name="display_large_book_covers_in_the_catalog">Katalogda büyük kitap kapakları görüntüle</string>
+   <string name="edit_names">İsimleri düzenle</string>
 </resources>

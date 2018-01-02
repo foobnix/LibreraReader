@@ -3,17 +3,20 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:focusableInTouchMode="true"
+    android:focusable="true"
     android:padding="5dip" >
-
+    
+    
     <TextView
         android:id="@+id/vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight="0"
+        android:background="@android:drawable/list_selector_background"
         android:gravity="center_vertical"
         android:padding="15dip"
         android:text="@string/vertically"
-         android:background="@android:drawable/list_selector_background"
         android:textSize="16sp" />
 
     <TextView
@@ -36,13 +39,59 @@
         android:text="@string/musician"
         android:textSize="16sp" />
 
-    <CheckBox
-        android:layout_marginTop="10dip"
-        android:id="@+id/checkBoxRemember"
-        android:layout_width="wrap_content"
+    <EditText
+        android:id="@+id/verticalEdit"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight="0"
-        android:text="@string/remember_choice"
+        android:gravity="center_vertical"
+        android:padding="15dip"
+        android:text="@string/vertically"
         android:textSize="16sp" />
+
+    <EditText
+        android:id="@+id/horizontalEdit"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="0"
+        android:padding="15dip"
+        android:text="@string/horizontally"
+        android:textSize="16sp" />
+
+    <EditText
+        android:id="@+id/musicEdit"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="0"
+        android:padding="15dip"
+        android:text="@string/musician"
+        android:textSize="16sp" />
+
+    <LinearLayout
+        android:gravity="bottom"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+
+        <CheckBox
+            android:id="@+id/checkBoxRemember"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="0"
+            android:layout_marginTop="10dip"
+            android:text="@string/remember_choice"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/editNames"
+            android:layout_weight="1"
+            android:singleLine="true"
+            android:ellipsize="end"
+            android:gravity="right"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/lt_grey_alpha"
+            android:text="@string/edit_names"
+            android:textSize="10sp" />
+    </LinearLayout>
 
 </LinearLayout>
