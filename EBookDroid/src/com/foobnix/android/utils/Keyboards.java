@@ -24,7 +24,7 @@ public class Keyboards {
 
     public static void close(View currentFocus) {
         InputMethodManager inputManager = (InputMethodManager) currentFocus.getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
-        inputManager.toggleSoftInput(InputMethodManager.HIDE_IMPLICIT_ONLY, 0);
+        // inputManager.toggleSoftInput(InputMethodManager.HIDE_IMPLICIT_ONLY, 0);
         inputManager.hideSoftInputFromWindow(currentFocus.getWindowToken(), 0);
     }
 

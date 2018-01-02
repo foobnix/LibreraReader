@@ -68,11 +68,12 @@ public class BrightnessHelper {
         return value;
     }
 
-    public boolean isBrignressWidth() {
-        return x < BRIGHTNESS_WIDTH;
-    }
 
     public boolean onActionMove(final MotionEvent event) {
+        if (!AppState.get().isBrighrnessEnable) {
+            return false;
+        }
+
         float yDiff = y - event.getY();
         float dy = Math.abs(yDiff);
         float dx = Math.abs(x - event.getX());

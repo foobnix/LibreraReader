@@ -152,26 +152,6 @@
         </LinearLayout>
         
         <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-             >
-
-            <TextView
-                android:layout_width="180dip"
-                android:layout_height="wrap_content"
-                android:singleLine="true"
-                android:text="@string/page_quality"
-                android:textStyle="bold" />
-
-            <TextView
-                android:id="@+id/pageQuality"
-                style="@style/textLink"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="1.2" />
-        </LinearLayout>
-
-        <LinearLayout
             android:id="@+id/onDoubleTapLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -351,8 +331,26 @@
                 android:text="PNG"
                 android:textAllCaps="true" />
         </LinearLayout>
-
         
+         <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+             >
+
+            <TextView
+                android:layout_width="180dip"
+                android:layout_height="wrap_content"
+                android:singleLine="true"
+                android:text="@string/page_quality"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/pageQuality"
+                style="@style/textLink"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="1.2" />
+        </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
