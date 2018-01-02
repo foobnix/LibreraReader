@@ -1,5 +1,8 @@
-* E-mürekkep cihazları için özel tema 
-* Kontrastı ve parlaklığı değiştirme 
+* Tüm formatları ve PDF, EPUB’u açma hızlandırılmış hız 
+* Elektronik mürekkepli cihazlar için TemaMürekkep 
+* Kontrast ve parlaklığı değiştirme 
+* Negatif parlaklık 
 * Bluelight filtresi 
-* Geliştirilmiş UI 
-* Geri bildirimle birçok iyileştirme ve küçük düzeltmeler
+* Kütüphanedeki otomatik tamamlama sorguları 
+* Artırılmış arayüz 
+* Pek çok iyileştirme ve hata düzeltmesi

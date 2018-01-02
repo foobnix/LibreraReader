@@ -1,5 +1,8 @@
-* Tema especial para dispositivos de tinta electrónica 
-* Cambio de contraste y brillo 
+* Velocidad acelerada para abrir todos los formatos y PDF, EPUB 
+* TemaTinta para dispositivos con tinta electrónica 
+* Cambiar el contraste y el brillo 
+* Brillo negativo 
 * Filtro de luz azul 
-* Interfaz de usuario mejorada 
-* Muchas mejoras y pequeñas soluciones mediante comentarios
+* Autocompletar consultas en la biblioteca 
+* Interfaz mejorada 
+* Muchas mejoras y correcciones de errores

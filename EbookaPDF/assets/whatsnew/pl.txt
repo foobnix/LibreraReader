@@ -1,5 +1,8 @@
-* Specjalny motyw dla urządzeń z atramentem 
+* Przyspieszona prędkość otwierania wszystkich formatów i PDF, EPUB 
+* MotywTusz dla urządzeń z tuszem elektronicznym 
 * Zmiana kontrastu i jasności 
+* Negatywna jasność 
 * Filtr Bluelight 
-* Ulepszony interfejs użytkownika 
-* Wiele ulepszeń i drobnych poprawek za pomocą opinii
+* Autouzupełnianie zapytań w bibliotece 
+* Ulepszony interfejs 
+* Wiele ulepszeń i poprawek

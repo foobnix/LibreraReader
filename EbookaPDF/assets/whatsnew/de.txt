@@ -1,5 +1,8 @@
-* Spezielles Thema für E-Ink-Geräte 
-* Kontrast und Helligkeit ändern 
+* Beschleunigte Geschwindigkeit des Öffnens aller Formate und PDF, EPUB 
+* ThemeInk für Geräte mit elektronischer Tinte 
+* Ändern Sie den Kontrast und die Helligkeit 
+* Negative Helligkeit 
 * Bluelight-Filter 
+* Autocomplete Abfragen in der Bibliothek 
 * Verbesserte Benutzeroberfläche 
-* Viele Verbesserungen und kleine Korrekturen durch Feedback
+* Viele Verbesserungen und Fehlerbehebungen

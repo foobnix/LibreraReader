@@ -1,5 +1,8 @@
-* Spesielt tema for e-blekk-enheter 
+* Hastighet for å åpne alle formater og PDF, EPUB 
+* TemaInk for enheter med elektronisk blekk 
 * Endre kontrast og lysstyrke 
-* Bluelight-filter 
-* Forbedret brukergrensesnitt 
-* Mange forbedringer og små reparasjoner ved tilbakemelding
+* Negativ lysstyrke 
+* Bluelight filter 
+* Autofullfør spørringer i biblioteket 
+* Forbedret grensesnitt 
+* Mange forbedringer og feilrettinger

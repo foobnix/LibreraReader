@@ -1,5 +1,8 @@
-* Speciális téma az e-tintaeszközökhöz 
-* A kontraszt és a fényerő megváltoztatása 
+* Az összes formátum és PDF, EPUB 
+* TémaTinta felgyorsítása az elektronikus tintával rendelkező eszközök esetén 
+* A kontraszt és a fényerő módosítása 
+* Negatív fényerő 
 * Bluelight szűrő 
-* Továbbfejlesztett felhasználói felület 
-* Sok javítás és kis javítás visszajelzés alapján
+* Automatikus kiegészítés lekérdezések a könyvtárban 
+* Továbbfejlesztett felület 
+* Számos javítás és hibajavítás

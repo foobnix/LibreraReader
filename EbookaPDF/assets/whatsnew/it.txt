@@ -1,5 +1,8 @@
-* Tema speciale per i dispositivi e-ink 
-* Cambia contrasto e luminosità 
+* Velocità accelerata di apertura di tutti i formati e PDF, EPUB 
+* TemaInchiostro per dispositivi con inchiostro elettronico 
+* Modifica contrasto e luminosità 
+* Luminosità negativa 
 * Filtro Bluelight 
-* UI migliorata 
-* Molti miglioramenti e piccole correzioni tramite feedback
+* Query di completamento automatico nella libreria 
+* Interfaccia migliorata 
+* Molti miglioramenti e correzioni di bug

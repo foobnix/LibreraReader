@@ -1,248 +1,340 @@
 
 <nl-NL>
-* Speciaal thema voor e-ink-apparaten 
-* Contrast en helderheid wijzigen 
-* Bluelight-filter 
-* Verbeterde gebruikersinterface 
-* Veel verbeteringen en kleine fixes door feedback
+* Versnelde snelheid bij het openen van alle indelingen en PDF, EPUB 
+* ThemaInkt voor apparaten met elektronische inkt 
+* Verander het contrast en de helderheid 
+* Negatieve helderheid 
+* Bluelight filter 
+* Autocomplete query’s in de bibliotheek 
+* Verbeterde interface 
+* Veel verbeteringen en bugfixes
 </nl-NL>
 
 <id>
-* Tema khusus untuk perangkat e-ink 
-* Ubah kontras dan kecerahan 
+* Kecepatan yang dipercepat untuk membuka semua format dan PDF, EPUB 
+* ThemeInk untuk perangkat dengan tinta elektronik 
+* Mengubah kontras dan kecerahan 
+* Kecerahan negatif 
 * Bluelight filter 
-* Improved UI 
-* Banyak perbaikan dan perbaikan kecil oleh umpan balik.
+* Kueri pelengkapan otomatis di perpustakaan 
+* Antarmuka yang ditingkatkan 
+* Banyak perbaikan dan perbaikan bug.
 </id>
 
 <lt>
-* Speciali e-rašalo įrenginių tema 
+* Pagreitintas visų formatų atidarymo greitis ir PDF, EPUB 
+*Ink temos įrenginiams su elektroniniu rašalu 
 * Keisti kontrastą ir ryškumą 
+* Neigiamas ryškumas 
 * Bluelight filtras 
-* Patobulintas vartotojo sąsajos 
-* Daugybė patobulinimų ir mažų pataisymų atsiliepimais
+* Automatinio užpildymo užklausos bibliotekoje 
+* Patobulinta sąsaja 
+* Daugybė patobulinimų ir klaidų taisymų
 </lt>
 
 <ar>
-* موضوع خاص لأجهزة الحبر الإلكتروني 
+* سرعة تسريع فتح جميع الأشكال و بدف، إبوب 
+* موضوعالحبر للأجهزة مع الحبر الإلكتروني 
 * تغيير التباين والسطوع 
-* مرشح بلليت 
-* تحسين واجهة المستخدم 
-* العديد من التحسينات والإصلاحات الصغيرة من قبل ردود الفعل
+* سطوع سلبي 
+* تصفية بلليت 
+* الاستعلامات الإكمال التلقائي في المكتبة 
+* واجهة محسنة 
+* العديد من التحسينات وإصلاح الأخطاء
 </ar>
 
 <ro>
-* Temă specială pentru dispozitivele cu cerneală electronică 
+* Viteza accelerată de deschidere a tuturor formatelor și PDF, EPUB 
+* TemaInk pentru dispozitivele cu cerneală electronică 
 * Schimbarea contrastului și luminozității 
-* Filtrul Bluelight 
-* Interfața UI îmbunătățită 
-* Multe îmbunătățiri și corecții mici prin feedback
+* Luminozitate negativă 
+* Filtru Bluelight 
+* Interogări de completare automată în bibliotecă 
+* Interfață îmbunătățită 
+* Multe îmbunătățiri și corecții de erori
 </ro>
 
 <de-DE>
-* Spezielles Thema für E-Ink-Geräte 
-* Kontrast und Helligkeit ändern 
+* Beschleunigte Geschwindigkeit des Öffnens aller Formate und PDF, EPUB 
+* ThemeInk für Geräte mit elektronischer Tinte 
+* Ändern Sie den Kontrast und die Helligkeit 
+* Negative Helligkeit 
 * Bluelight-Filter 
+* Autocomplete Abfragen in der Bibliothek 
 * Verbesserte Benutzeroberfläche 
-* Viele Verbesserungen und kleine Korrekturen durch Feedback
+* Viele Verbesserungen und Fehlerbehebungen
 </de-DE>
 
 <pl-PL>
-* Specjalny motyw dla urządzeń z atramentem 
+* Przyspieszona prędkość otwierania wszystkich formatów i PDF, EPUB 
+* MotywTusz dla urządzeń z tuszem elektronicznym 
 * Zmiana kontrastu i jasności 
+* Negatywna jasność 
 * Filtr Bluelight 
-* Ulepszony interfejs użytkownika 
-* Wiele ulepszeń i drobnych poprawek za pomocą opinii
+* Autouzupełnianie zapytań w bibliotece 
+* Ulepszony interfejs 
+* Wiele ulepszeń i poprawek
 </pl-PL>
 
 <iw-IL>
-* נושא מיוחד עבור התקני דיו אלקטרוני 
-* שינוי בניגוד ובהירות 
+* מהירות מואצת של פתיחת כל הפורמטים ו- PDF, EPUB 
+* ערכת נושאדיו עבור התקנים עם דיו אלקטרוני 
+* שינוי הניגודיות והבהירות 
+* בהירות שלילית 
 * מסנן Bluelight 
-* ממשק משתמש משופר 
-* שיפורים רבים ותיקונים קטנים על ידי משוב
+* שאילתות השלמה אוטומטית בספריה 
+* ממשק משופר 
+* שיפורים רבים ותיקוני באגים
 </iw-IL>
 
 <hi-IN>
-* ई-इंक उपकरणों के लिए विशेष विषय 
+* सभी प्रारूपों और पीडीएफ खोलने की त्वरित गति, इलेक्ट्रॉनिक स्याही वाले उपकरणों के लिए ईपीबीई 
+* थीमइंक 
 * विपरीत और चमक बदलें 
+* नकारात्मक चमक 
 * ब्ल्यूलियट फिल्टर 
-* बेहतर UI 
-* प्रतिक्रिया से कई सुधार और छोटे सुधार
+* पुस्तकालय में स्वत: पूर्ण प्रश्न 
+* बेहतर इंटरफेस 
+* कई सुधार और बग फिक्स
 </hi-IN>
 
 <es-ES>
-* Tema especial para dispositivos de tinta electrónica 
-* Cambio de contraste y brillo 
+* Velocidad acelerada para abrir todos los formatos y PDF, EPUB 
+* TemaTinta para dispositivos con tinta electrónica 
+* Cambiar el contraste y el brillo 
+* Brillo negativo 
 * Filtro de luz azul 
-* Interfaz de usuario mejorada 
-* Muchas mejoras y pequeñas soluciones mediante comentarios
+* Autocompletar consultas en la biblioteca 
+* Interfaz mejorada 
+* Muchas mejoras y correcciones de errores
 </es-ES>
 
 <fi-FI>
-* Erityisaihe e-musteille 
+* Kaikkien formaattien ja PDF: n, EPUB 
+* -teemanInk -nopeutettu nopeus 
 * Muuta kontrastia ja kirkkautta 
+* Negatiivinen kirkkaus 
 * Bluelight-suodatin 
+* Kirjaston automaattinen täydennyspyyntö 
 * Parannettu käyttöliittymä 
-* Paljon parannuksia ja pieniä korjauksia palautteen avulla
+* Monet parannukset ja virheenkorjaukset
 </fi-FI>
 
 <vi>
-* Chủ đề đặc biệt cho các thiết bị mực điện tử 
+* Tăng tốc độ mở các định dạng và PDF, EPUB 
+* ThemeInk cho các thiết bị có mực điện tử 
 * Thay đổi độ tương phản và độ sáng 
+* Độ sáng tiêu cực 
 * Bộ lọc Bluelight 
-* Cải thiện giao diện người dùng 
-* Nhiều cải tiến và sửa lỗi nhỏ bằng phản hồi
+* Truy vấn tự động trong thư viện 
+* Cải thiện giao diện 
+* Nhiều cải tiến và sửa lỗi
 </vi>
 
 <fr-FR>
-* Thème spécial pour les appareils e-ink 
-* Changer le contraste et la luminosité 
+* Vitesse accélérée d’ouverture de tous les formats et PDF, EPUB 
+* ThèmeEncre pour les appareils à encre électronique 
+* Modification du contraste et de la luminosité 
+* Luminosité négative 
 * Filtre Bluelight 
-* Amélioration de l’interface utilisateur 
-* De nombreuses améliorations et de petites corrections par rétroaction
+* Requêtes auto-complétées dans la bibliothèque 
+* Interface améliorée 
+* Nombreuses améliorations et corrections de bugs
 </fr-FR>
 
 <fr-CA>
-* Thème spécial pour les appareils e-ink 
-* Changer le contraste et la luminosité 
+* Vitesse accélérée d’ouverture de tous les formats et PDF, EPUB 
+* ThèmeEncre pour les appareils à encre électronique 
+* Modification du contraste et de la luminosité 
+* Luminosité négative 
 * Filtre Bluelight 
-* Amélioration de l’interface utilisateur 
-* De nombreuses améliorations et de petites corrections par rétroaction
+* Requêtes auto-complétées dans la bibliothèque 
+* Interface améliorée 
+* Nombreuses améliorations et corrections de bugs
 </fr-CA>
 
 <sw>
-* Mandhari maalum ya vifaa vya e-wino 
+* Kasi ya kufungua mafomu yote na PDF, EPUB 
+* MandhariInk kwa vifaa na wino wa elektroniki 
 * Badilisha tofauti na mwangaza 
+* Uavu mbaya 
 * Bluelight chujio 
-* Uboreshaji UI 
-* Maboresho mengi na marekebisho madogo kwa maoni
+* Maswali ya kikamilifu kwenye maktaba 
+* Kiboreshaji kilichoboreshwa 
+* Maboresho mengi na marekebisho ya mdudu
 </sw>
 
 <zh-TW>
-*电子墨水设备的特殊主题
+*加速打开所有格式和PDF，EPUB 
+*电子墨水设备的主题“墨水”的速度
 *改变对比度和亮度
+*负亮度
 *蓝光过滤器
-*改进的用户界面
-*通过反馈的许多改进和小的修复
+*在库中自动完成查询
+*改进的界面
+*许多改进和错误修复
 </zh-TW>
 
 <ru-RU>
-* Специальная тема для устройств с электронными чернилами 
+* Ускоренная скорость открытия всех форматов и PDF, EPUB 
+* Тема «Чернила» для устройств с электронными чернилами 
 * Изменение контраста и яркости 
+* Отрицательная яркость 
 * Фильтр Bluelight 
-* Улучшенный интерфейс пользователя 
-* Множество улучшений и небольших исправлений по обратной связи
+* Автозаполнение запросов в библиотеке 
+* Улучшенный интерфейс 
+* Много улучшений и исправлений ошибок
 </ru-RU>
 
 <th>
-* ชุดรูปแบบพิเศษสำหรับอุปกรณ์หมึกอิเล็กทรอนิกส์ 
+ความเร็วในการเร่งการเปิดทุกรูปแบบและ PDF, EPUB ธีมหมึก สำหรับอุปกรณ์ที่มีหมึกอิเล็กทรอนิกส์ 
 * เปลี่ยนความคมชัดและความสว่าง 
-* ตัวกรอง Bluelight 
-* UI ที่ปรับปรุงขึ้น 
-* การปรับปรุงและการแก้ไขขนาดเล็กโดยการตอบรับ
+* ความสว่างเชิงลบ 
+* Bluelight filter 
+* คำสั่งเติมข้อความอัตโนมัติในไลบรารี 
+* อินเทอร์เฟซที่ปรับปรุงใหม่ 
+* การปรับปรุงและแก้ไขข้อบกพร่อง
 </th>
 
 <it-IT>
-* Tema speciale per i dispositivi e-ink 
-* Cambia contrasto e luminosità 
+* Velocità accelerata di apertura di tutti i formati e PDF, EPUB 
+* TemaInchiostro per dispositivi con inchiostro elettronico 
+* Modifica contrasto e luminosità 
+* Luminosità negativa 
 * Filtro Bluelight 
-* UI migliorata 
-* Molti miglioramenti e piccole correzioni tramite feedback
+* Query di completamento automatico nella libreria 
+* Interfaccia migliorata 
+* Molti miglioramenti e correzioni di bug
 </it-IT>
 
 <sv-SE>
-* Speciellt tema för e-bläck enheter 
-* Ändra kontrast och ljusstyrka 
-* Bluelight filter 
-* Förbättrat användargränssnitt 
-* Många förbättringar och små fixar genom feedback
+* Snabbare hastighet för att öppna alla format och PDF, EPUB 
+* TemaBläck för enheter med elektronisk bläck 
+* Ändra kontrasten och ljusstyrkan 
+* Negativ ljusstyrka 
+* Bluelight-filter 
+* Autofullständiga frågor i biblioteket 
+* Förbättrat gränssnitt 
+* Många förbättringar och buggfixar
 </sv-SE>
 
 <fa>
-* تم ویژه برای دستگاه های الکترونیکی جوهر 
+* سرعت شتاب باز کردن تمام فرمت ها و PDF، EPUB 
+* تمجوهر برای دستگاه های با جوهر الکترونیکی 
 * تغییر کنتراست و روشنایی 
+* روشنایی منفی 
 * فیلتر Bluelight 
-* UI بهبود یافته 
-* بسیاری از پیشرفت ها و رفع کوچک توسط بازخورد
+* درخواست تکمیل خودکار در کتابخانه 
+* رابط بهبود یافته 
+* بسیاری از بهبود و رفع اشکال
 </fa>
 
 <pt-PT>
-* Tema especial para dispositivos de tinta eletrônica 
-* Alterar contraste e brilho 
+* Velocidade acelerada de abertura de todos os formatos e PDF, EPUB 
+* TemaTinta para dispositivos com tinta eletrônica 
+* Alterar o contraste e o brilho 
+* Brilho negativo 
 * Filtro Bluelight 
-* UI aprimorada 
-* Muitas melhorias e pequenas correções por feedback
+* Consultas de preenchimento automático na biblioteca 
+* Interface aprimorada 
+* Muitas melhorias e correções de bugs
 </pt-PT>
 
 <pt-BR>
-* Tema especial para dispositivos de tinta eletrônica 
-* Alterar contraste e brilho 
+* Velocidade acelerada de abertura de todos os formatos e PDF, EPUB 
+* TemaTinta para dispositivos com tinta eletrônica 
+* Alterar o contraste e o brilho 
+* Brilho negativo 
 * Filtro Bluelight 
-* UI aprimorada 
-* Muitas melhorias e pequenas correções por feedback
+* Consultas de preenchimento automático na biblioteca 
+* Interface aprimorada 
+* Muitas melhorias e correções de bugs
 </pt-BR>
 
 <ko-KR>
-* 전자 잉크 장치를위한 특별 주제 
+* 모든 포맷 및 PDF, EPUB 열기의 가속화 된 속도 
+* 전자 잉크가있는 장치의 테마잉크
 * 명암 및 밝기 변경 
+* 음화 밝기 
 * Bluelight 필터 
-* 개선 된 UI 
-* 피드백에 의한 많은 개선 및 작은 수정
+* 라이브러리의 쿼리 자동 완성 
+* 향상된 인터페이스 
+* 많은 개선 및 버그 수정
 </ko-KR>
 
 <hu-HU>
-* Speciális téma az e-tintaeszközökhöz 
-* A kontraszt és a fényerő megváltoztatása 
+* Az összes formátum és PDF, EPUB 
+* TémaTinta felgyorsítása az elektronikus tintával rendelkező eszközök esetén 
+* A kontraszt és a fényerő módosítása 
+* Negatív fényerő 
 * Bluelight szűrő 
-* Továbbfejlesztett felhasználói felület 
-* Sok javítás és kis javítás visszajelzés alapján
+* Automatikus kiegészítés lekérdezések a könyvtárban 
+* Továbbfejlesztett felület 
+* Számos javítás és hibajavítás
 </hu-HU>
 
 <sk>
-* Špeciálna téma pre zariadenia s e-atramentom 
+* Zrýchlenie rýchlosti otvárania všetkých formátov a PDF, EPUB 
+* Téma Ink pre zariadenia s elektronickým atramentom 
 * Zmena kontrastu a jasu 
-* Filter Bluelight 
-* Vylepšené užívateľské rozhranie 
-* Veľa vylepšení a malých opráv pomocou spätnej väzby
+* Negatívny jas 
+* Bluelight filter 
+* Automatické dopyty v knižnici 
+* Vylepšené rozhranie 
+* Veľa vylepšení a opravy chýb
 </sk>
 
 <tr-TR>
-* E-mürekkep cihazları için özel tema 
-* Kontrastı ve parlaklığı değiştirme 
+* Tüm formatları ve PDF, EPUB’u açma hızlandırılmış hız 
+* Elektronik mürekkepli cihazlar için TemaMürekkep 
+* Kontrast ve parlaklığı değiştirme 
+* Negatif parlaklık 
 * Bluelight filtresi 
-* Geliştirilmiş UI 
-* Geri bildirimle birçok iyileştirme ve küçük düzeltmeler
+* Kütüphanedeki otomatik tamamlama sorguları 
+* Artırılmış arayüz 
+* Pek çok iyileştirme ve hata düzeltmesi
 </tr-TR>
 
 <no-NO>
-* Spesielt tema for e-blekk-enheter 
+* Hastighet for å åpne alle formater og PDF, EPUB 
+* TemaInk for enheter med elektronisk blekk 
 * Endre kontrast og lysstyrke 
-* Bluelight-filter 
-* Forbedret brukergrensesnitt 
-* Mange forbedringer og små reparasjoner ved tilbakemelding
+* Negativ lysstyrke 
+* Bluelight filter 
+* Autofullfør spørringer i biblioteket 
+* Forbedret grensesnitt 
+* Mange forbedringer og feilrettinger
 </no-NO>
 
 <ja-JP>
-*電子インクデバイスのための特別なテーマ
-*コントラストと明るさの変更
-*ブルーライトフィルター
-*改善されたUI 
-*フィードバックによる多くの改善と小さな修正
+*すべてのフォーマットとPDF、EPUBを開くスピードを加速
+*電子インクを搭載したデバイスのテーマ「インク」
+*コントラストと明るさを変更する
+*ネガティブな明るさ
+*ブルーライトフィルタ
+*ライブラリ内のクエリをオートコンプリート
+*インターフェイスを改善
+*
 </ja-JP>
 
 <uk>
-* Спеціальна тема для пристроїв електронної чорни 
-* Зміна контрасту та яскравості 
-* Фільтр Bluelight 
-* Покращений інтерфейс користувача 
-* Багато вдосконалень та дрібних виправлень за відгуками
+* Прискорена швидкість відкривання всіх форматів і PDF, EPUB 
+* ТемаЧорнило для пристроїв з електронними чорнилом 
+* Зміна контрастності та яскравості 
+* Негативна яскравість 
+* Bluelight фільтр 
+* Автозаповнення запитів у бібліотеці 
+* Покращений інтерфейс 
+* Багато вдосконалень та виправлень помилок
 </uk>
 
 <en-US>
-* Special theme for e-ink devices 
-* Change contrast and brightness
+* Accelerated speed of opening all formats and PDF, EPUB
+* Theme "Ink" for devices with electronic ink
+* Change the contrast and brightness
+* Negative brightness
 * Bluelight filter
-* Improved UI 
-* Many improvements and small fixes by feedback
+* Autocomplete queries in the library
+* Improved interface
+* Many improvements and bug fixes
 </en-US>

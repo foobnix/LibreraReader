@@ -1,5 +1,8 @@
-* Chủ đề đặc biệt cho các thiết bị mực điện tử 
+* Tăng tốc độ mở các định dạng và PDF, EPUB 
+* ThemeInk cho các thiết bị có mực điện tử 
 * Thay đổi độ tương phản và độ sáng 
+* Độ sáng tiêu cực 
 * Bộ lọc Bluelight 
-* Cải thiện giao diện người dùng 
-* Nhiều cải tiến và sửa lỗi nhỏ bằng phản hồi
+* Truy vấn tự động trong thư viện 
+* Cải thiện giao diện 
+* Nhiều cải tiến và sửa lỗi

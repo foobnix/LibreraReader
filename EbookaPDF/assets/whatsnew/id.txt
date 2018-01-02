@@ -1,5 +1,8 @@
-* Tema khusus untuk perangkat e-ink 
-* Ubah kontras dan kecerahan 
+* Kecepatan yang dipercepat untuk membuka semua format dan PDF, EPUB 
+* ThemeInk untuk perangkat dengan tinta elektronik 
+* Mengubah kontras dan kecerahan 
+* Kecerahan negatif 
 * Bluelight filter 
-* Improved UI 
-* Banyak perbaikan dan perbaikan kecil oleh umpan balik.
+* Kueri pelengkapan otomatis di perpustakaan 
+* Antarmuka yang ditingkatkan 
+* Banyak perbaikan dan perbaikan bug.

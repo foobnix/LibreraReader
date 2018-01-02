@@ -1,5 +1,8 @@
-* Speciellt tema för e-bläck enheter 
-* Ändra kontrast och ljusstyrka 
-* Bluelight filter 
-* Förbättrat användargränssnitt 
-* Många förbättringar och små fixar genom feedback
+* Snabbare hastighet för att öppna alla format och PDF, EPUB 
+* TemaBläck för enheter med elektronisk bläck 
+* Ändra kontrasten och ljusstyrkan 
+* Negativ ljusstyrka 
+* Bluelight-filter 
+* Autofullständiga frågor i biblioteket 
+* Förbättrat gränssnitt 
+* Många förbättringar och buggfixar

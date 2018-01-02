@@ -1,5 +1,8 @@
-* Speciali e-rašalo įrenginių tema 
+* Pagreitintas visų formatų atidarymo greitis ir PDF, EPUB 
+*Ink temos įrenginiams su elektroniniu rašalu 
 * Keisti kontrastą ir ryškumą 
+* Neigiamas ryškumas 
 * Bluelight filtras 
-* Patobulintas vartotojo sąsajos 
-* Daugybė patobulinimų ir mažų pataisymų atsiliepimais
+* Automatinio užpildymo užklausos bibliotekoje 
+* Patobulinta sąsaja 
+* Daugybė patobulinimų ir klaidų taisymų

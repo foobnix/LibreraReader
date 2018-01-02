@@ -1,5 +1,8 @@
-* Thème spécial pour les appareils e-ink 
-* Changer le contraste et la luminosité 
+* Vitesse accélérée d’ouverture de tous les formats et PDF, EPUB 
+* ThèmeEncre pour les appareils à encre électronique 
+* Modification du contraste et de la luminosité 
+* Luminosité négative 
 * Filtre Bluelight 
-* Amélioration de l’interface utilisateur 
-* De nombreuses améliorations et de petites corrections par rétroaction
+* Requêtes auto-complétées dans la bibliothèque 
+* Interface améliorée 
+* Nombreuses améliorations et corrections de bugs

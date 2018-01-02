@@ -1,5 +1,8 @@
-* Special theme for e-ink devices 
-* Change contrast and brightness
+* Accelerated speed of opening all formats and PDF, EPUB
+* Theme "Ink" for devices with electronic ink
+* Change the contrast and brightness
+* Negative brightness
 * Bluelight filter
-* Improved UI 
-* Many improvements and small fixes by feedback
+* Autocomplete queries in the library
+* Improved interface
+* Many improvements and bug fixes

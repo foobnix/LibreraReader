@@ -1,5 +1,8 @@
-* Erityisaihe e-musteille 
+* Kaikkien formaattien ja PDF: n, EPUB 
+* -teemanInk -nopeutettu nopeus 
 * Muuta kontrastia ja kirkkautta 
+* Negatiivinen kirkkaus 
 * Bluelight-suodatin 
+* Kirjaston automaattinen täydennyspyyntö 
 * Parannettu käyttöliittymä 
-* Paljon parannuksia ja pieniä korjauksia palautteen avulla
+* Monet parannukset ja virheenkorjaukset

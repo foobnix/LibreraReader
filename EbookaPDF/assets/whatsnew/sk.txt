@@ -1,5 +1,8 @@
-* Špeciálna téma pre zariadenia s e-atramentom 
+* Zrýchlenie rýchlosti otvárania všetkých formátov a PDF, EPUB 
+* Téma Ink pre zariadenia s elektronickým atramentom 
 * Zmena kontrastu a jasu 
-* Filter Bluelight 
-* Vylepšené užívateľské rozhranie 
-* Veľa vylepšení a malých opráv pomocou spätnej väzby
+* Negatívny jas 
+* Bluelight filter 
+* Automatické dopyty v knižnici 
+* Vylepšené rozhranie 
+* Veľa vylepšení a opravy chýb

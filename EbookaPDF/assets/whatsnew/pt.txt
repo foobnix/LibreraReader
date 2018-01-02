@@ -1,5 +1,8 @@
-* Tema especial para dispositivos de tinta eletrônica 
-* Alterar contraste e brilho 
+* Velocidade acelerada de abertura de todos os formatos e PDF, EPUB 
+* TemaTinta para dispositivos com tinta eletrônica 
+* Alterar o contraste e o brilho 
+* Brilho negativo 
 * Filtro Bluelight 
-* UI aprimorada 
-* Muitas melhorias e pequenas correções por feedback
+* Consultas de preenchimento automático na biblioteca 
+* Interface aprimorada 
+* Muitas melhorias e correções de bugs

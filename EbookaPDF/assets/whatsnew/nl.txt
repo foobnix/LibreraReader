@@ -1,5 +1,8 @@
-* Speciaal thema voor e-ink-apparaten 
-* Contrast en helderheid wijzigen 
-* Bluelight-filter 
-* Verbeterde gebruikersinterface 
-* Veel verbeteringen en kleine fixes door feedback
+* Versnelde snelheid bij het openen van alle indelingen en PDF, EPUB 
+* ThemaInkt voor apparaten met elektronische inkt 
+* Verander het contrast en de helderheid 
+* Negatieve helderheid 
+* Bluelight filter 
+* Autocomplete query’s in de bibliotheek 
+* Verbeterde interface 
+* Veel verbeteringen en bugfixes
