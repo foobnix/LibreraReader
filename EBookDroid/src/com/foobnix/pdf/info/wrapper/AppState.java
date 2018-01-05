@@ -449,6 +449,10 @@ public class AppState {
     public String proxyPassword = "";
     public String proxyType = PROXY_HTTP;
 
+    public String nameVerticalMode;
+    public String nameHorizontalMode;
+    public String nameMusicianMode;
+
     public Set<String> myAutoComplete = new HashSet<String>();
 
     public List<Integer> getNextKeys() {
@@ -539,6 +543,11 @@ public class AppState {
             AppState.getInstance().tintColor = Color.BLACK;
 
         }
+
+        nameVerticalMode = c.getString(R.string.vertically);
+        nameHorizontalMode = c.getString(R.string.horizontally);
+        nameMusicianMode = c.getString(R.string.musician);
+
         LOG.d("defaults", AppsConfig.IS_CLASSIC, AppState.get().tabsOrder);
     }
 
@@ -776,6 +785,10 @@ public class AppState {
         proxyUser = sp.getString("proxyUser", proxyUser);
         proxyPassword = sp.getString("proxyPassword", proxyPassword);
         proxyType = sp.getString("proxyType", proxyType);
+
+        nameVerticalMode = sp.getString("nameVerticalMode", nameVerticalMode);
+        nameHorizontalMode = sp.getString("nameHorizontalMode", nameHorizontalMode);
+        nameMusicianMode = sp.getString("nameMusicianMode", nameMusicianMode);
 
         LOG.d("LOAD AppState", "coverSmallSize", coverSmallSize);
     }
@@ -1030,6 +1043,10 @@ public class AppState {
         editor.putString("proxyUser", proxyUser);
         editor.putString("proxyPassword", proxyPassword);
         editor.putString("proxyType", proxyType);
+
+        editor.putString("nameVerticalMode", nameVerticalMode);
+        editor.putString("nameHorizontalMode", nameHorizontalMode);
+        editor.putString("nameMusicianMode", nameMusicianMode);
 
         editor.commit();
 

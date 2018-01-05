@@ -443,4 +443,5 @@
    <string name="proxy_server_settings">Impostazioni del server proxy</string>
    <string name="other_settings">Altre impostazioni</string>
    <string name="display_large_book_covers_in_the_catalog">Mostra copertine di libri di grandi dimensioni nel catalogo</string>
+   <string name="edit_names">Modifica nomi</string>
 </resources>

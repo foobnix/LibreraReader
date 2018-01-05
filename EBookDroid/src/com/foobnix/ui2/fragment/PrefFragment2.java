@@ -531,7 +531,7 @@ public class PrefFragment2 extends UIFragment {
                 }
                 final PopupMenu popupMenu = new PopupMenu(selectedOpenMode.getContext(), selectedOpenMode);
 
-                final MenuItem advanced_mode = popupMenu.getMenu().add(R.string.vertically);
+                final MenuItem advanced_mode = popupMenu.getMenu().add(AppState.get().nameVerticalMode);
                 advanced_mode.setOnMenuItemClickListener(new OnMenuItemClickListener() {
 
                     @Override
@@ -543,7 +543,7 @@ public class PrefFragment2 extends UIFragment {
                     }
                 });
 
-                final MenuItem easy_mode = popupMenu.getMenu().add(R.string.horizontally);
+                final MenuItem easy_mode = popupMenu.getMenu().add(AppState.get().nameHorizontalMode);
                 easy_mode.setOnMenuItemClickListener(new OnMenuItemClickListener() {
 
                     @Override
@@ -554,7 +554,7 @@ public class PrefFragment2 extends UIFragment {
                         return false;
                     }
                 });
-                final MenuItem music_mode = popupMenu.getMenu().add(R.string.musician);
+                final MenuItem music_mode = popupMenu.getMenu().add(AppState.get().nameMusicianMode);
                 music_mode.setOnMenuItemClickListener(new OnMenuItemClickListener() {
 
                     @Override
@@ -1402,16 +1402,16 @@ public class PrefFragment2 extends UIFragment {
     }
 
     private void checkOpenWithSpinner() {
-        int modId = R.string.vertically;
+        String modId = AppState.get().nameVerticalMode;
         if (AppState.getInstance().isMusicianMode) {
-            modId = R.string.musician;
+            modId = AppState.get().nameMusicianMode;
         } else if (AppState.getInstance().isAlwaysOpenAsMagazine) {
-            modId = R.string.horizontally;
+            modId = AppState.get().nameHorizontalMode;
         } else {
-            modId = R.string.vertically;
+            modId = AppState.get().nameVerticalMode;
         }
 
-        selectedOpenMode.setText(TxtUtils.underline(getString(modId)));
+        selectedOpenMode.setText(TxtUtils.underline(modId));
     }
 
     public void onFolderConfigDialog() {

@@ -443,4 +443,5 @@
    <string name="proxy_server_settings">प्रॉक्सी सर्वर सेटिंग्स</string>
    <string name="other_settings">अन्य सेटिंग</string>
    <string name="display_large_book_covers_in_the_catalog">कैटलॉग में बड़ी किताब को कवर दिखाएं</string>
+   <string name="edit_names">नाम संपादित करें</string>
 </resources>

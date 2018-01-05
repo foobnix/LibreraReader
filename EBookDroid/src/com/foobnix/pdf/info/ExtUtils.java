@@ -28,10 +28,12 @@ import org.mozilla.universalchardet.UniversalDetector;
 
 import com.foobnix.android.utils.Apps;
 import com.foobnix.android.utils.Dips;
+import com.foobnix.android.utils.Keyboards;
 import com.foobnix.android.utils.LOG;
 import com.foobnix.android.utils.ResultResponse2;
 import com.foobnix.android.utils.Safe;
 import com.foobnix.android.utils.TxtUtils;
+import com.foobnix.android.utils.Views;
 import com.foobnix.ext.CacheZipUtils;
 import com.foobnix.pdf.info.model.BookCSS;
 import com.foobnix.pdf.info.widget.ChooserDialogFragment;
@@ -67,6 +69,8 @@ import android.webkit.MimeTypeMap;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.CompoundButton.OnCheckedChangeListener;
+import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 public class ExtUtils {
@@ -138,7 +142,6 @@ public class ExtUtils {
 
     static List<String> audio = Arrays.asList(".mp3", ".mp4", ".wav", ".ogg", ".m4a");
     static List<String> video = Arrays.asList(".webm", ".m3u8", ".ts", ".flv", ".mp4", ".3gp", ".mov", ".avi", ".wmv", ".mp4", ".m4v");
-
 
     public static void openFile(Activity a, File file) {
         if (ExtUtils.doifFileExists(a, file)) {
@@ -524,43 +527,123 @@ public class ExtUtils {
 
         View view = LayoutInflater.from(c).inflate(R.layout.choose_mode_dialog, null, false);
 
+        final TextView vertical = (TextView) view.findViewById(R.id.vertical);
+        final TextView horizontal = (TextView) view.findViewById(R.id.horizontal);
+        final TextView music = (TextView) view.findViewById(R.id.music);
+
+        final EditText verticalEdit = (EditText) view.findViewById(R.id.verticalEdit);
+        final EditText horizontalEdit = (EditText) view.findViewById(R.id.horizontalEdit);
+        final EditText musicEdit = (EditText) view.findViewById(R.id.musicEdit);
+
+        verticalEdit.setText(AppState.get().nameVerticalMode);
+        horizontalEdit.setText(AppState.get().nameHorizontalMode);
+        musicEdit.setText(AppState.get().nameMusicianMode);
+
+        vertical.setText(AppState.get().nameVerticalMode);
+        horizontal.setText(AppState.get().nameHorizontalMode);
+        music.setText(AppState.get().nameMusicianMode);
+
+        Views.gone(verticalEdit, horizontalEdit, musicEdit);
+
+        final TextView editNames = (TextView) view.findViewById(R.id.editNames);
+        TxtUtils.underlineTextView(editNames);
+
+        editNames.setOnClickListener(new View.OnClickListener() {
+            boolean isEdit = true;
+
+            @Override
+            public void onClick(View v) {
+
+                String vText = verticalEdit.getText().toString().trim();
+                String hText = horizontalEdit.getText().toString().trim();
+                String mText = musicEdit.getText().toString().trim();
+
+                if (TxtUtils.isEmpty(vText)) {
+                    verticalEdit.setSelected(true);
+                    Toast.makeText(c, R.string.incorrect_value, Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                if (TxtUtils.isEmpty(hText)) {
+                    horizontalEdit.setSelected(true);
+                    Toast.makeText(c, R.string.incorrect_value, Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                if (TxtUtils.isEmpty(mText)) {
+                    musicEdit.setSelected(true);
+                    Toast.makeText(c, R.string.incorrect_value, Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
+                if (isEdit) { // edit
+                    editNames.setText(R.string.save);
+                    Views.visible(verticalEdit, horizontalEdit, musicEdit);
+                    Views.gone(vertical, horizontal, music);
+
+                    AppState.get().save(c);
+
+                } else { // text view
+                    editNames.setText(R.string.edit_names);
+                    Views.visible(vertical, horizontal, music);
+                    Views.gone(verticalEdit, horizontalEdit, musicEdit);
+                }
+
+                AppState.get().nameVerticalMode = vText;
+                AppState.get().nameHorizontalMode = hText;
+                AppState.get().nameMusicianMode = mText;
+
+                Keyboards.close(v);
+
+                verticalEdit.setText(AppState.get().nameVerticalMode);
+                horizontalEdit.setText(AppState.get().nameHorizontalMode);
+                musicEdit.setText(AppState.get().nameMusicianMode);
+
+                vertical.setText(AppState.get().nameVerticalMode);
+                horizontal.setText(AppState.get().nameHorizontalMode);
+                music.setText(AppState.get().nameMusicianMode);
+
+                TxtUtils.underlineTextView(editNames);
+                isEdit = !isEdit;
+            }
+        });
+
         AlertDialog.Builder builder = new AlertDialog.Builder(c);
         builder.setTitle(R.string.select_the_reading_mode);
         builder.setView(view);
         builder.setCancelable(true);
         final AlertDialog dialog = builder.show();
 
-        view.findViewById(R.id.vertical).setOnClickListener(new View.OnClickListener() {
+        vertical.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View v) {
+                dialog.dismiss();
                 AppState.getInstance().isAlwaysOpenAsMagazine = false;
                 AppState.getInstance().isMusicianMode = false;
-                dialog.dismiss();
                 showDocumentWithoutDialog(c, file, page);
             }
         });
-        view.findViewById(R.id.horizontal).setOnClickListener(new View.OnClickListener() {
+        horizontal.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View v) {
+                dialog.dismiss();
                 AppState.getInstance().isAlwaysOpenAsMagazine = true;
                 AppState.getInstance().isMusicianMode = false;
-                dialog.dismiss();
                 showDocumentWithoutDialog(c, file, page);
             }
         });
 
-        view.findViewById(R.id.music).setOnClickListener(new View.OnClickListener() {
+        music.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View v) {
+                dialog.dismiss();
                 AppState.getInstance().isAlwaysOpenAsMagazine = false;
                 AppState.getInstance().isMusicianMode = true;
-                dialog.dismiss();
                 showDocumentWithoutDialog(c, file, page);
             }
         });
+
         if (Dips.isEInk(c)) {
             view.findViewById(R.id.music).setVisibility(View.GONE);
         }
@@ -598,7 +681,6 @@ public class ExtUtils {
                 showDocumentInner(c, uri, page);
             }
         });
-
 
     }
 
@@ -679,7 +761,6 @@ public class ExtUtils {
         LOG.d("getUriProvider", uriForFile);
         return uriForFile;
     }
-
 
     public static void sendFileTo(final Activity a, final File file) {
         if (!isValidFile(file)) {
@@ -1143,6 +1224,5 @@ public class ExtUtils {
         }
         return encoding == null ? "UTF-8" : encoding;
     }
-
 
 }

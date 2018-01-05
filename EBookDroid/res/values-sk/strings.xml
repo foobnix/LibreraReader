@@ -443,4 +443,5 @@
    <string name="proxy_server_settings">Nastavenia proxy servera</string>
    <string name="other_settings">Ďalšie nastavenia</string>
    <string name="display_large_book_covers_in_the_catalog">Zobrazte veľké knihy v katalógu</string>
+   <string name="edit_names">Upraviť mená</string>
 </resources>

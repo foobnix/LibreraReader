@@ -121,6 +121,7 @@ public class MuPdfDocument extends AbstractCodecDocument {
     @Override
     protected void freeDocument() {
             free(documentHandle);
+        cacheHandle = -1;
         LOG.d("MUPDF! <<< recycle [document]", documentHandle, ExtUtils.getFileName(fname));
     }
 

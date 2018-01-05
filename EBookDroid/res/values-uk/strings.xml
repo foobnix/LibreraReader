@@ -426,7 +426,7 @@
    <string name="portrait_180">Портрет (180)</string>
    <string name="full_list_of_changes_with_images_web_pdf_">Повний список змін з зображеннями (веб, PDF)</string>
    <string name="select_the_reading_mode">Виберіть режим читання</string>
-   <string name="remember_choice">Пам\'ятай вибір</string>
+   <string name="remember_choice">Запам\'ятати вибір</string>
    <string name="formatted_text">Форматований текст (псевдографічна графіка)</string>
    <string name="continuous_text">Безперервний текст (без розриву рядків)</string>
    <string name="remember_reading_mode">Запам\'ятати режим читання</string>
@@ -443,4 +443,5 @@
    <string name="proxy_server_settings">Налаштування проксі-сервера</string>
    <string name="other_settings">Інші настройки</string>
    <string name="display_large_book_covers_in_the_catalog">Покажіть великі обкладинки книги в каталозі</string>
+   <string name="edit_names">Редагувати імена</string>
 </resources>

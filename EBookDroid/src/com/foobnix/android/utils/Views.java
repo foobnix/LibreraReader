@@ -29,6 +29,19 @@ import android.widget.TextView;
 
 public class Views {
 
+    public static void visible(final View... views) {
+        for (View v : views) {
+            v.setVisibility(View.VISIBLE);
+        }
+
+    }
+
+    public static void gone(final View... views) {
+        for (View v : views) {
+            v.setVisibility(View.GONE);
+        }
+    }
+
     public static void showHelpToast(final ImageView anchor) {
         Context context = anchor.getContext();
         TextView textView = new TextView(context);
@@ -43,14 +56,12 @@ public class Views {
 
         TintUtil.setDrawableTint(anchor.getDrawable(), Color.YELLOW);
 
-
         // TintUtil.setDrawableTint(anchor.getDrawable(), Color.WHITE);
 
         textView.setCompoundDrawablesWithIntrinsicBounds(anchor.getDrawable(), null, null, null);
         int dp = Dips.dpToPx(8);
         textView.setCompoundDrawablePadding(dp * 2);
         textView.setPadding(dp * 2, dp, dp * 2, dp);
-
 
         final PopupWindow mPopupWindow = new PopupWindow(textView, LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);
         mPopupWindow.setFocusable(true);
@@ -75,7 +86,6 @@ public class Views {
         Keyboards.hideNavigation((Activity) anchor.getContext());
 
     }
-
 
     public static View activate(View view, boolean isActive) {
         view.setFocusable(isActive);

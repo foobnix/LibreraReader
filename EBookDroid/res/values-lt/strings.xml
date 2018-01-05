@@ -443,4 +443,5 @@
    <string name="proxy_server_settings">Tarpinio serverio nustatymai</string>
    <string name="other_settings">Kiti nustatymai</string>
    <string name="display_large_book_covers_in_the_catalog">Rodyti dideles knygų viršelius kataloge</string>
+   <string name="edit_names">Redaguoti pavadinimus</string>
 </resources>
