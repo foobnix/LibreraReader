@@ -39,7 +39,6 @@ import com.foobnix.pdf.info.wrapper.MagicHelper;
 import com.foobnix.sys.Colors;
 import com.foobnix.sys.ImageExtractor;
 import com.foobnix.sys.TempHolder;
-import com.nostra13.universalimageloader.core.ImageLoader;
 
 import android.graphics.Bitmap.Config;
 import android.graphics.PixelFormat;
@@ -664,7 +663,8 @@ public class DecodeServiceBase implements DecodeService {
                     stopDecoding(task, null, "recycling");
                 }
 
-                tasks.add(new ShutdownTask());
+                // tasks.add(new ShutdownTask());
+                shutdownInner();
 
                 synchronized (run) {
                     run.notifyAll();
@@ -687,7 +687,6 @@ public class DecodeServiceBase implements DecodeService {
         }
 
         private void shutdownInner() {
-            ImageLoader.getInstance().clearAllTasks();
             TempHolder.get().clear();
 
             LOG.d("Begin shutdown 1");

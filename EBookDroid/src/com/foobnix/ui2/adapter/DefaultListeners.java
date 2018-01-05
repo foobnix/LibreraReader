@@ -33,11 +33,12 @@ public class DefaultListeners {
 
 
 
-    public static void bindAdapter(final Activity a, final FileMetaAdapter searchAdapter, final DocumentController dc) {
+    public static void bindAdapter(final Activity a, final FileMetaAdapter searchAdapter, final DocumentController dc, final Runnable onClick) {
         searchAdapter.setOnItemClickListener(new ResultResponse<FileMeta>() {
 
             @Override
             public boolean onResultRecive(final FileMeta result) {
+                onClick.run();
                 dc.onCloseActivityFinal(new Runnable() {
 
                     @Override

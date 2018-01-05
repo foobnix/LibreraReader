@@ -1544,7 +1544,13 @@ public class DragingDialogs {
                 recentAdapter.getItemsList().addAll(all);
                 recentAdapter.notifyDataSetChanged();
 
-                DefaultListeners.bindAdapter(controller.getActivity(), recentAdapter, controller);
+                DefaultListeners.bindAdapter(controller.getActivity(), recentAdapter, controller, new Runnable() {
+
+                    @Override
+                    public void run() {
+                        closeDialog();
+                    }
+                });
 
                 return recyclerView;
             }

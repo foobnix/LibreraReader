@@ -32,6 +32,7 @@ import org.emdev.utils.LengthUtils;
 
 import com.foobnix.android.utils.LOG;
 import com.foobnix.android.utils.ResultResponse;
+import com.foobnix.android.utils.Safe;
 import com.foobnix.android.utils.TxtUtils;
 import com.foobnix.pdf.info.ExtUtils;
 import com.foobnix.pdf.info.R;
@@ -532,28 +533,38 @@ public class ViewerActivityController extends ActionController<VerticalViewActiv
         viewerActivity.showInterstial();
     }
 
-    public void closeActivityFinal(final ActionEx action) {
-        TTSEngine.get().stop();
-        TTSNotification.hideNotification();
+    public void closeActivityFinal(final Runnable action) {
 
-        LOG.d("closeActivity 1");
-        if (documentModel != null) {
-            documentModel.recycle();
-        }
+        Safe.run(new Runnable() {
 
-        LOG.d("closeActivity 2");
-        if (temporaryBook) {
-            SettingsManager.removeCurrentBookSettings();
-        } else {
-            SettingsManager.storeBookSettings1();
-        }
-        LOG.d("closeActivity 3");
-        getManagedComponent().finish();
+            @Override
+            public void run() {
 
-        System.gc();
-        BitmapManager.clear("finish");
+                TTSEngine.get().stop();
+                TTSNotification.hideNotification();
 
+                LOG.d("closeActivity 1");
+                if (documentModel != null) {
+                    documentModel.recycle();
+                }
 
+                LOG.d("closeActivity 2");
+                if (temporaryBook) {
+                    SettingsManager.removeCurrentBookSettings();
+                } else {
+                    SettingsManager.storeBookSettings1();
+                }
+                LOG.d("closeActivity 3");
+                getManagedComponent().finish();
+
+                System.gc();
+                BitmapManager.clear("finish");
+
+                if (action != null) {
+                    action.run();
+                }
+            }
+        });
 
         LOG.d("closeActivity DONE");
     }

@@ -45,7 +45,6 @@ public class TempHolder {
 
     public void clear() {
         path = null;
-        TempHolder.get().loadingCancelled = true;
     }
 
     private boolean isTextForamtInner() {

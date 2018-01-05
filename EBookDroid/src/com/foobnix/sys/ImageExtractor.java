@@ -311,9 +311,9 @@ public class ImageExtractor implements ImageDownloader {
         LOG.d("TEST", "url: " + imageUri);
 
         if (imageUri.startsWith(Safe.TXT_SAFE_RUN)) {
-            LOG.d("MUPDF!", Safe.TXT_SAFE_RUN);
+            LOG.d("MUPDF!", Safe.TXT_SAFE_RUN, "begin", imageUri);
             // try {
-            // //Thread.sleep(500);
+            // Thread.sleep(1500);
             // } catch (InterruptedException e) {
             // e.printStackTrace();
             // }
