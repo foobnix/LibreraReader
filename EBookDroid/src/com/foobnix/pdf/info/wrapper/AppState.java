@@ -611,13 +611,6 @@ public class AppState {
         }
     }
 
-    public static float getAsFloatOrInt(SharedPreferences sp, String name, float init) {
-        try {
-            return sp.getFloat(name, init);
-        } catch (final Exception e) {
-            return sp.getInt(name, (int) init);
-        }
-    }
 
     public void loadIn(final Context a) {
         if (a == null) {
