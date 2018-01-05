@@ -92,7 +92,7 @@
             android:layout_height="wrap_content"
             android:textColor="@color/lt_grey_alpha"
             android:text="@string/edit_names"
-            android:textSize="10sp" />
+            android:textSize="12sp" />
     </LinearLayout>
 
 </LinearLayout>
