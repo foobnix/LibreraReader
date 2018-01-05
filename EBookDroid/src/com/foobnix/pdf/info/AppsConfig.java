@@ -107,7 +107,7 @@ public class AppsConfig {
 
         IS_BETA = APP_NAME.contains("Beta");
 
-        IS_BETA = false;
+        // IS_BETA = false;
 
         if (IS_BETA) {
             IS_EP = false;

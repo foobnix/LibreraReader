@@ -499,6 +499,8 @@ public class ImageExtractor implements ImageDownloader {
             LOG.d("getNewCodecContext codecContex recycle");
         }
 
+        TempHolder.get().clear();
+
     }
 
     public static void init(CodecDocument codec, String path) {
@@ -529,6 +531,7 @@ public class ImageExtractor implements ImageDownloader {
         LOG.d("getNewCodecContext after", w, h);
 
         codecContex = BookType.getCodecContextByPath(path);
+        TempHolder.get().init(path);
 
         LOG.d("CodecContext", codecContex);
 

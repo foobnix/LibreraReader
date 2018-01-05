@@ -404,6 +404,7 @@ public class AppState {
     public boolean isShowCloseAppDialog = true;
 
     public boolean isFirstSurname = false;
+
     public boolean isOLED = false;
 
     public int cutP = 50;
@@ -432,6 +433,8 @@ public class AppState {
     public int tapzoneSize = Dips.isXLargeScreen() ? 15 : 25;
 
     public int allocatedMemorySize = (int) MemoryUtils.RECOMENDED_MEMORY_SIZE;
+
+    @IgnoreHashCode
     public boolean isScrollAnimation = true;
     public String imageFormat = PNG;
     public boolean isCustomizeBgAndColors = false;
