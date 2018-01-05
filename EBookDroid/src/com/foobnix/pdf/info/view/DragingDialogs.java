@@ -22,6 +22,7 @@ import com.foobnix.android.utils.IntegerResponse;
 import com.foobnix.android.utils.Keyboards;
 import com.foobnix.android.utils.LOG;
 import com.foobnix.android.utils.MemoryUtils;
+import com.foobnix.android.utils.Objects;
 import com.foobnix.android.utils.ResultResponse;
 import com.foobnix.android.utils.ResultResponse2;
 import com.foobnix.android.utils.TxtUtils;
@@ -2204,7 +2205,7 @@ public class DragingDialogs {
     public static DragingPopup performanceSettings(final FrameLayout anchor, final DocumentController controller, final Runnable onRefresh, final Runnable updateUIRefresh) {
         AppState.get().saveIn(controller.getActivity());
         final int cssHash = BookCSS.get().toCssString().hashCode();
-        final int appHash = AppState.get().hashCode();
+        final int appHash = Objects.hashCode(AppState.get());
 
         DragingPopup dialog = new DragingPopup(R.string.advanced_settings, anchor, PREF_WIDTH, PREF_HEIGHT) {
 
@@ -2215,7 +2216,18 @@ public class DragingDialogs {
 
                     @Override
                     public void run() {
-                        preferences(anchor, controller, onRefresh, updateUIRefresh);
+                        if (appHash != Objects.hashCode(AppState.get())) {
+                            AlertDialogs.showDialog(controller.getActivity(), controller.getString(R.string.you_must_apply_the_new_settings), controller.getString(R.string.apply), new Runnable() {
+
+                                @Override
+                                public void run() {
+                                    closeDialog();
+                                }
+                            });
+
+                        } else {
+                            preferences(anchor, controller, onRefresh, updateUIRefresh);
+                        }
                     }
                 };
             }
@@ -2783,8 +2795,7 @@ public class DragingDialogs {
 
             @Override
             public void run() {
-                AppState.get().save(controller.getActivity());
-                boolean one = appHash != AppState.get().hashCode();
+                boolean one = appHash != Objects.hashCode(AppState.get());
                 boolean two = controller.isTextFormat() && cssHash != BookCSS.get().toCssString().hashCode();
                 if (one || two) {
                     if (onRefresh != null) {
@@ -2809,7 +2820,18 @@ public class DragingDialogs {
 
                     @Override
                     public void run() {
-                        preferences(anchor, controller, onRefresh, updateUIRefresh);
+                        if (initCssHash != BookCSS.get().toCssString().hashCode()) {
+                            AlertDialogs.showDialog(controller.getActivity(), controller.getString(R.string.you_must_apply_the_new_settings), controller.getString(R.string.apply), new Runnable() {
+
+                                @Override
+                                public void run() {
+                                    closeDialog();
+                                }
+                            });
+
+                        } else {
+                            preferences(anchor, controller, onRefresh, updateUIRefresh);
+                        }
                     }
                 };
             }
@@ -3198,14 +3220,9 @@ public class DragingDialogs {
         return dialog;
     }
 
-    static boolean isChangedColor = false;
-    static boolean isChangedPreFormatting = false;
-
     public static DragingPopup preferences(final FrameLayout anchor, final DocumentController controller, final Runnable onRefresh, final Runnable updateUIRefresh) {
-        final int initSP = AppState.get().fontSizeSp;
         final int cssHash = BookCSS.get().toCssString().hashCode();
-        isChangedColor = false;
-        isChangedPreFormatting = false;
+        final int appHash = Objects.hashCode(AppState.get());
 
         if (ExtUtils.isNotValidFile(controller.getCurrentBook())) {
             DragingPopup dialog = new DragingPopup(R.string.preferences, anchor, PREF_WIDTH, PREF_HEIGHT) {
@@ -3366,7 +3383,6 @@ public class DragingDialogs {
                     @Override
                     public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                         AppState.get().isPreText = isChecked;
-                        isChangedPreFormatting = true;
                     }
                 });
 
@@ -3379,7 +3395,6 @@ public class DragingDialogs {
                     @Override
                     public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                         AppState.get().isLineBreaksText = isChecked;
-                        isChangedPreFormatting = true;
                     }
                 });
 
@@ -3723,7 +3738,6 @@ public class DragingDialogs {
 
                                 ImageLoader.getInstance().clearDiskCache();
                                 ImageLoader.getInstance().clearMemoryCache();
-                                isChangedColor = true;
 
                                 if (AppState.get().isUseBGImageDay) {
                                     textDayColor.setBackgroundDrawable(MagicHelper.getBgImageDayDrawable(true));
@@ -3750,7 +3764,6 @@ public class DragingDialogs {
 
                                 AppState.get().colorNigthText = colorText;
                                 AppState.get().colorNigthBg = colorBg;
-                                isChangedColor = true;
 
                                 if (AppState.get().isUseBGImageNight) {
                                     textNigthColor.setBackgroundDrawable(MagicHelper.getBgImageNightDrawable(true));
@@ -3840,8 +3853,6 @@ public class DragingDialogs {
                                         textNigthColor.setBackgroundColor(bg);
                                         AppState.get().isUseBGImageNight = false;
                                     }
-                                    isChangedColor = true;
-
                                 }
                             });
                             lc.addView(t1);
@@ -3866,7 +3877,6 @@ public class DragingDialogs {
                                     textDayColor.setTextColor(Color.BLACK);
                                     textDayColor.setBackgroundDrawable(MagicHelper.getBgImageDayDrawable(false));
                                     AppState.get().isUseBGImageDay = true;
-                                    isChangedColor = true;
                                 }
                             });
                             lc.addView(t1, AppState.get().readColors.split(";").length / 2);
@@ -3892,7 +3902,6 @@ public class DragingDialogs {
                                     textNigthColor.setTextColor(Color.WHITE);
                                     textNigthColor.setBackgroundDrawable(MagicHelper.getBgImageNightDrawable(false));
                                     AppState.get().isUseBGImageNight = true;
-                                    isChangedColor = true;
                                 }
                             });
                             lc.addView(t2);
@@ -3940,8 +3949,6 @@ public class DragingDialogs {
 
                                 AppState.get().statusBarColorDay = AppState.TEXT_COLOR_DAY;
                                 AppState.get().statusBarColorNight = AppState.TEXT_COLOR_NIGHT;
-
-                                isChangedColor = true;
 
                                 colorsLine.run();
                             }
@@ -4075,9 +4082,7 @@ public class DragingDialogs {
             @Override
             public void run() {
                 if (//
-                initSP != AppState.get().fontSizeSp || //
-                isChangedColor || //
-                isChangedPreFormatting || //
+                appHash != Objects.hashCode(AppState.get()) || //
                 (controller.isTextFormat() && cssHash != BookCSS.get().toCssString().hashCode())) {
                     if (onRefresh != null) {
                         onRefresh.run();

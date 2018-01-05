@@ -346,10 +346,6 @@ public class MainTabs2 extends AdsFragmentActivity {
         checkGoToPage(getIntent());
 
         AndroidWhatsNew.checkForNewBeta(this);
-
-
-
-
     }
 
     @Subscribe
@@ -451,6 +447,7 @@ public class MainTabs2 extends AdsFragmentActivity {
         AppState.getInstance().save(this);
         LocalBroadcastManager.getInstance(this).unregisterReceiver(broadcastReceiver);
         ImageLoader.getInstance().clearAllTasks();
+
     };
 
     @Override

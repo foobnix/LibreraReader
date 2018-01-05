@@ -15,6 +15,7 @@ import com.foobnix.android.utils.Apps;
 import com.foobnix.android.utils.Dips;
 import com.foobnix.android.utils.LOG;
 import com.foobnix.android.utils.MemoryUtils;
+import com.foobnix.android.utils.Objects.IgnoreHashCode;
 import com.foobnix.opds.SamlibOPDS;
 import com.foobnix.pdf.info.AppsConfig;
 import com.foobnix.pdf.info.ExportSettingsManager;
@@ -222,9 +223,14 @@ public class AppState {
 
     public final static int AUTO_BRIGTNESS = -1000;
 
+    @IgnoreHashCode
     public int doubleClickAction = DOUBLE_CLICK_ZOOM_IN_OUT;
+
+    @IgnoreHashCode
     public int inactivityTime = 2;
+    @IgnoreHashCode
     public int remindRestTime = 60;
+
     public int flippingInterval = 10;
     public int ttsTimer = 60;
 
@@ -255,14 +261,19 @@ public class AppState {
     public int sortByBrowse = BR_SORT_BY_PATH;
     public boolean sortByReverse = false;
 
+    @IgnoreHashCode
     public boolean isBrighrnessEnable = true;
+
+    @IgnoreHashCode
     public boolean isRewindEnable = true;
 
     public int contrastImage = 0;
     public int brigtnessImage = 0;
     public boolean bolderTextOnImage = false;
 
+    @IgnoreHashCode
     public int appBrightness = AUTO_BRIGTNESS;
+
     public float cropTolerance = 0.5f;
 
     public float ttsSpeed = 1.0f;
@@ -270,8 +281,13 @@ public class AppState {
 
     public List<Integer> nextKeys = NEXT_KEYS;
     public List<Integer> prevKeys = PREV_KEYS;
+
+    @IgnoreHashCode
     public boolean isUseVolumeKeys = true;
+
+    @IgnoreHashCode
     public boolean isReverseKeys = Dips.isSmallScreen();
+
     public boolean isMusicianMode = false;
     public String musicText = "Musician";
 
@@ -313,7 +329,10 @@ public class AppState {
 
     public volatile boolean isAutoScroll = false;
     public int autoScrollSpeed = 120;
+
+    @IgnoreHashCode
     public int mouseWheelSpeed = 70;
+
     public String selectedText;
 
     // public int widgetHeigth = 100;
@@ -322,12 +341,16 @@ public class AppState {
 
     public int widgetSize = WIDGET_SIZE.get(1);
 
+    @IgnoreHashCode
     public String rememberDict = "web:Google Translate";
+
+    @IgnoreHashCode
     public boolean isRememberDictionary;
 
     public String fromLang = "en";
     public String toLang = Urls.getLangCode();
 
+    @IgnoreHashCode
     public int orientation = ActivityInfo.SCREEN_ORIENTATION_SENSOR;
 
     private static AppState instance = new AppState();
@@ -405,14 +428,22 @@ public class AppState {
     public int rotate = 0;
     public int rotateViewPager = 0;
 
+    @IgnoreHashCode
     public int tapzoneSize = Dips.isXLargeScreen() ? 15 : 25;
+
     public int allocatedMemorySize = (int) MemoryUtils.RECOMENDED_MEMORY_SIZE;
     public boolean isScrollAnimation = true;
     public String imageFormat = PNG;
     public boolean isCustomizeBgAndColors = false;
     public boolean isVibration = true;
+
+    @IgnoreHashCode
     public boolean isLockPDF = false;
+
+    @IgnoreHashCode
     public boolean isCropPDF = false;
+
+    @IgnoreHashCode
     public boolean selectingByLetters = Arrays.asList("ja", "zh", "ko", "vi").contains(Urls.getLangCode());
 
     public long installationDate = System.currentTimeMillis();
@@ -433,13 +464,22 @@ public class AppState {
     public int coverBigSize = (int) (((Dips.screenWidthDP() / (Dips.screenWidthDP() / 120)) - 8) * (Dips.isXLargeScreen() ? 1.5f : 1));
     public int coverSmallSize = 80;
 
+    @IgnoreHashCode
     public int tapZoneTop = TAP_PREV_PAGE;
+    @IgnoreHashCode
     public int tapZoneBottom = TAP_NEXT_PAGE;
+    @IgnoreHashCode
     public int tapZoneLeft = TAP_PREV_PAGE;
+    @IgnoreHashCode
     public int tapZoneRight = TAP_NEXT_PAGE;
 
+    @IgnoreHashCode
     public int blueLightColor = BLUE_FILTER_DEFAULT_COLOR;
+
+    @IgnoreHashCode
     public int blueLightAlpha = 30;
+
+    @IgnoreHashCode
     public boolean isEnableBlueFilter = false;
 
     public boolean proxyEnable = false;

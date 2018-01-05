@@ -363,6 +363,7 @@ public abstract class DragingPopup {
         Keyboards.hideNavigation((Activity) anchor.getContext());
     }
 
+
     private void saveLayout() {
         try {
             Place place = new Place();
