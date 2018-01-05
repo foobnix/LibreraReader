@@ -1,6 +1,7 @@
 package com.foobnix.ui2.fragment;
 
 import java.io.File;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
@@ -177,25 +178,44 @@ public class BrowseFragment2 extends UIFragment<FileMeta> {
             @Override
             public void onClick(View v) {
 
-                List<String> externalStorageDirectories = ExtUtils.getExternalStorageDirectories(getActivity());
-                if (externalStorageDirectories != null && !externalStorageDirectories.isEmpty()) {
-                    externalStorageDirectories.add(0, Environment.getExternalStorageDirectory().getPath());
-                    MyPopupMenu menu = new MyPopupMenu(getActivity(), onHome);
-                    for (final String info : externalStorageDirectories) {
-                        menu.getMenu().add(new File(info).getName()).setOnMenuItemClickListener(new OnMenuItemClickListener() {
+                List<String> extFolders = ExtUtils.getExternalStorageDirectories(getActivity());
 
-                            @Override
-                            public boolean onMenuItemClick(MenuItem item) {
-                                setDirPath(info);
-                                return false;
-                            }
-                        });
-                    }
-                    menu.show();
-                } else {
-                    File downloads = Environment.getExternalStorageDirectory();
-                    setDirPath(downloads.getPath());
+                MyPopupMenu menu = new MyPopupMenu(getActivity(), onHome);
+
+                extFolders.add(0, Environment.getExternalStorageDirectory().getPath());
+                for (final String info : extFolders) {
+                    menu.getMenu().add(new File(info).getName()).setOnMenuItemClickListener(new OnMenuItemClickListener() {
+
+                        @Override
+                        public boolean onMenuItemClick(MenuItem item) {
+                            setDirPath(info);
+                            return false;
+                        }
+                    }).setIcon(R.drawable.glyphicons_441_folder_closed);
+
                 }
+
+                List<FileMeta> starFolders = AppDB.get().getStarsFolder();
+                List<String> names = new ArrayList<String>();
+                for (FileMeta f : starFolders) {
+                    names.add(f.getPath());
+                }
+
+                Collections.sort(names, String.CASE_INSENSITIVE_ORDER);
+
+                for (final String info : names) {
+                    menu.getMenu().add(new File(info).getName()).setOnMenuItemClickListener(new OnMenuItemClickListener() {
+
+                        @Override
+                        public boolean onMenuItemClick(MenuItem item) {
+                            setDirPath(info);
+                            return false;
+                        }
+                    }).setIcon(R.drawable.glyphicons_50_star);
+
+                }
+
+                menu.show();
 
             }
         });

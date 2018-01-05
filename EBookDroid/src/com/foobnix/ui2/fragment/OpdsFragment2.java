@@ -681,7 +681,7 @@ public class OpdsFragment2 extends UIFragment<Entry> {
         recyclerView.setAdapter(searchAdapter);
 
         if (title != null) {
-            titleView.setText("" + title);
+            titleView.setText("" + title.replaceAll("[\n\r\t ]+", " ").trim());
         }
         int isHomeVisible = url == "/" ? View.VISIBLE : View.GONE;
         onPlus.setVisibility(isHomeVisible);

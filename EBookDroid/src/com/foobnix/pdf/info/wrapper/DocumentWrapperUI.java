@@ -308,11 +308,11 @@ public class DocumentWrapperUI {
         }
 
         if (AppState.get().isUseVolumeKeys && AppState.get().getNextKeys().contains(keyCode)) {
-            nextChose(false);
+            nextChose(false, event.getRepeatCount());
             return true;
         }
         if (AppState.get().isUseVolumeKeys && AppState.get().getPrevKeys().contains(keyCode)) {
-            prevChose(false);
+            prevChose(false, event.getRepeatCount());
             return true;
         }
 
@@ -967,7 +967,7 @@ public class DocumentWrapperUI {
         String pages = controller.getString(R.string.by_pages);
         String screen = controller.getString(R.string.of_screen).toLowerCase(Locale.US);
         String screens = controller.getString(R.string.by_screans);
-        final List<Integer> values = Arrays.asList(AppState.NEXT_SCREEN_SCROLL_BY_PAGES, 100, 95, 75, 50, 25, 5);
+        final List<Integer> values = Arrays.asList(AppState.NEXT_SCREEN_SCROLL_BY_PAGES, 100, 95, 75, 50, 25, 10, 5);
 
         for (int i = 0; i < values.size(); i++) {
             final int n = i;
@@ -1141,6 +1141,9 @@ public class DocumentWrapperUI {
             onModeChange.setImageResource(R.drawable.glyphicons_two_page_one);
             AppState.get().isCut = !false;
             onCut.onClick(null);
+        }
+        if (AppState.get().isCrop) {
+            onCrop.onClick(null);
         }
 
         DragingDialogs.searchMenu(anchor, controller, "");
@@ -1494,7 +1497,10 @@ public class DocumentWrapperUI {
         }
     };
 
-    public void nextChose(final boolean animate) {
+    public void nextChose(boolean animate) {
+        nextChose(animate, 0);
+    }
+    public void nextChose(boolean animate, int repeatCount) {
         controller.checkReadingTimer();
 
         if (controller.closeFooterNotesDialog()) {
@@ -1504,6 +1510,9 @@ public class DocumentWrapperUI {
         if (AppState.get().nextScreenScrollBy == AppState.NEXT_SCREEN_SCROLL_BY_PAGES) {
             controller.onNextPage(animate);
         } else {
+            if (AppState.get().nextScreenScrollBy < 30 && repeatCount == 0) {
+                animate = true;
+            }
             controller.onNextScreen(animate);
         }
         if (AppState.get().isEditMode) {
@@ -1513,7 +1522,11 @@ public class DocumentWrapperUI {
 
     }
 
-    public void prevChose(final boolean animate) {
+    public void prevChose(boolean animate) {
+        prevChose(animate, 0);
+    }
+
+    public void prevChose(boolean animate, int repeatCount) {
         controller.checkReadingTimer();
 
         if (controller.closeFooterNotesDialog()) {
@@ -1523,6 +1536,9 @@ public class DocumentWrapperUI {
         if (AppState.get().nextScreenScrollBy == AppState.NEXT_SCREEN_SCROLL_BY_PAGES) {
             controller.onPrevPage(animate);
         } else {
+            if (AppState.get().nextScreenScrollBy < 30 && repeatCount == 0) {
+                animate = true;
+            }
             controller.onPrevScreen(animate);
         }
         if (AppState.get().isEditMode) {
@@ -1562,13 +1578,6 @@ public class DocumentWrapperUI {
 
     }
 
-    public void nextPage() {
-        controller.onNextPage(false);
-    }
-
-    public void prevPage() {
-        controller.onPrevPage(false);
-    }
 
     public DocumentGestureListener getDocumentListener() {
         return documentListener;

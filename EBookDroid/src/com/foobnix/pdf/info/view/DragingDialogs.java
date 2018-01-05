@@ -749,6 +749,14 @@ public class DragingDialogs {
                 return view;
             }
         };
+        dialog.setOnCloseListener(new Runnable() {
+
+            @Override
+            public void run() {
+                TempHolder.isSeaching = false;
+
+            }
+        });
         dialog.show("searchMenu");
 
     }

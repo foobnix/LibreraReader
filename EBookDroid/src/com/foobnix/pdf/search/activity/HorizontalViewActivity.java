@@ -623,7 +623,7 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
                         finish();
                         CacheZipUtils.removeFiles(CacheZipUtils.CACHE_BOOK_DIR.listFiles());
                     }
-                }, true);
+                });
             };
 
             @Override

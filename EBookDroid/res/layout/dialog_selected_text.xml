@@ -89,8 +89,10 @@
     </HorizontalScrollView>
 
     <LinearLayout
+        android:layout_marginTop="2dip"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:gravity="center_vertical"
         android:orientation="horizontal" >
 
         <EditText
@@ -98,11 +100,11 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="3dip"
-            android:layout_marginTop="5dip"
             android:layout_weight="1"
             android:background="@color/transparent"
             android:ellipsize="end"
-            android:singleLine="true"
+            android:maxLines="2"
+            android:singleLine="false"
             android:text="Hello My World"
             android:textSize="15sp"
             android:textStyle="bold" >
@@ -120,10 +122,10 @@
             android:tint="@color/tint_gray" />
 
         <ImageView
-            android:layout_marginLeft="4dip"
             android:id="@+id/readTTSNext"
             android:layout_width="@dimen/wh_button_small"
             android:layout_height="@dimen/wh_button_small"
+            android:layout_marginLeft="4dip"
             android:layout_weight="0"
             android:adjustViewBounds="true"
             android:background="@drawable/bg_clickable"
@@ -180,7 +182,7 @@
         android:singleLine="true"
         android:text="@string/search_in_google"
         android:textSize="15sp" />
-    
+
     <TextView
         android:id="@+id/onBookSearch"
         style="@style/textLink"
@@ -204,7 +206,6 @@
         android:singleLine="true"
         android:text="@string/web_dict"
         android:textSize="15sp" />
-
 
     <HorizontalScrollView
         android:layout_width="match_parent"

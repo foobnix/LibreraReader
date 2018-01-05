@@ -31,11 +31,12 @@ import android.widget.TextView;
 
 public class Dialogs {
 
-    public static AlertDialog loadingBook(Context c, final Runnable onCancel, boolean cancalable) {
+    public static AlertDialog loadingBook(Context c, final Runnable onCancel) {
         final AlertDialog.Builder builder = new AlertDialog.Builder(c);
         View view = LayoutInflater.from(c).inflate(R.layout.dialog_loading_book, null, false);
+        final TextView text = (TextView) view.findViewById(R.id.text1);
+
         ImageView image = (ImageView) view.findViewById(R.id.onCancel);
-        image.setVisibility(cancalable ? View.VISIBLE : View.GONE);
         TintUtil.setTintImage(image);
         image.setOnClickListener(new OnClickListener() {
 
@@ -45,6 +46,7 @@ public class Dialogs {
                 onCancel.run();
             }
         });
+
         builder.setView(view);
         builder.setCancelable(false);
 

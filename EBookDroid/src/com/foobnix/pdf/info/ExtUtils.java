@@ -41,6 +41,7 @@ import com.foobnix.pdf.info.wrapper.AppBookmark;
 import com.foobnix.pdf.info.wrapper.AppState;
 import com.foobnix.pdf.info.wrapper.DocumentController;
 import com.foobnix.pdf.search.activity.HorizontalViewActivity;
+import com.foobnix.sys.TempHolder;
 import com.foobnix.zipmanager.ZipDialog;
 import com.nostra13.universalimageloader.core.ImageLoader;
 
@@ -48,7 +49,6 @@ import android.annotation.TargetApi;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
-import android.app.ProgressDialog;
 import android.content.ContentResolver;
 import android.content.Context;
 import android.content.Intent;
@@ -65,12 +65,15 @@ import android.support.v4.os.EnvironmentCompat;
 import android.text.format.DateFormat;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.View.OnLongClickListener;
+import android.view.WindowManager;
 import android.webkit.MimeTypeMap;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.CompoundButton.OnCheckedChangeListener;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -1028,23 +1031,43 @@ public class ExtUtils {
         }
 
         new AsyncTask() {
-            ProgressDialog dialog;
+            AlertDialog dialog;
 
             Handler handler;
 
             @Override
             protected void onPreExecute() {
-                dialog = new ProgressDialog(a);
-                dialog.setMessage(a.getString(R.string.msg_loading));
-                dialog.setCancelable(false);
+                TempHolder.get().isConverting = true;
+
+                final AlertDialog.Builder builder = new AlertDialog.Builder(a);
+                View view = LayoutInflater.from(a).inflate(R.layout.dialog_loading_book, null, false);
+                final TextView text = (TextView) view.findViewById(R.id.text1);
+
                 handler = new Handler() {
                     @Override
                     public void handleMessage(android.os.Message msg) {
-                        dialog.setMessage(a.getString(R.string.msg_loading) + " " + msg.what + "/100%");
-
+                        text.setText(a.getString(R.string.msg_loading) + " " + msg.what + "/100%");
                     };
                 };
-                dialog.show();
+
+                ImageView image = (ImageView) view.findViewById(R.id.onCancel);
+                TintUtil.setTintImage(image);
+                image.setOnClickListener(new OnClickListener() {
+
+                    @Override
+                    public void onClick(View v) {
+                        LOG.d("loadingBook Cancel");
+                        TempHolder.get().isConverting = false;
+                        dialog.dismiss();
+                    }
+                });
+
+                builder.setView(view);
+                builder.setCancelable(false);
+
+                dialog = builder.show();
+                dialog.getWindow().clearFlags(WindowManager.LayoutParams.FLAG_DIM_BEHIND);
+
             };
 
             @Override
@@ -1060,6 +1083,9 @@ public class ExtUtils {
                     } catch (Exception e) {
                         LOG.e(e);
                     }
+                }
+                if (!TempHolder.get().isConverting) {
+                    return;
                 }
                 if (result != null) {
 
@@ -1121,6 +1147,10 @@ public class ExtUtils {
                     LOG.d("Extract page end1", i);
                     dialog.sendEmptyMessage(((i + 1) * 100) / pages);
 
+                    if (!TempHolder.get().isConverting) {
+                        break;
+                    }
+
                 }
                 doc.recycle();
 
@@ -1132,6 +1162,12 @@ public class ExtUtils {
                 LOG.e(e);
                 return null;
             }
+
+            if (!TempHolder.get().isConverting) {
+                filefb2.delete();
+                LOG.d("Delete temp file", filefb2.getPath());
+            }
+
             LOG.d("openPDFInTextReflow", filefb2.getPath());
             return filefb2;
         } catch (Exception e) {

@@ -33,7 +33,7 @@ public abstract class BaseAsyncTask<Params, Result> extends CopyAsyncTask<Params
             public void run() {
                 onBookCancel();
             }
-        }, true);
+        });
     }
 
     @Override

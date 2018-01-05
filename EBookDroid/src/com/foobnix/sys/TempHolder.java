@@ -23,6 +23,7 @@ public class TempHolder {
     public static int listHash = 0;
 
     public static volatile boolean isSeaching = false;
+    public static volatile boolean isConverting = false;
 
     public long timerFinishTime = 0;
 
