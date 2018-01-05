@@ -4,6 +4,8 @@ import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.reflect.Field;
 import java.lang.reflect.Modifier;
+import java.util.HashSet;
+import java.util.Set;
 
 import com.foobnix.pdf.info.wrapper.AppState;
 
@@ -32,24 +34,27 @@ public class Objects {
 
                 if (f.getType().equals(int.class)) {
                     edit.putInt(f.getName(), f.getInt(obj));
-                }
+                } else
 
                 if (f.getType().equals(String.class)) {
                     edit.putString(f.getName(), f.get(obj).toString());
-                }
+                } else
 
                 if (f.getType().equals(float.class)) {
                     edit.putFloat(f.getName(), f.getFloat(obj));
-                }
+                } else
 
                 if (f.getType().equals(long.class)) {
                     edit.putLong(f.getName(), f.getLong(obj));
-                }
+                } else
 
                 if (f.getType().equals(boolean.class)) {
                     edit.putBoolean(f.getName(), f.getBoolean(obj));
-                }
+                } else
 
+                if (f.getType().equals(java.util.Set.class)) {
+                    edit.putStringSet(f.getName(), (Set<String>) f.get(obj));
+                }
 
             } catch (Exception e) {
                 LOG.e(e);
@@ -68,21 +73,22 @@ public class Objects {
             try {
                 if (f.getType().equals(int.class)) {
                     f.setInt(obj, sp.getInt(f.getName(), f.getInt(obj)));
-                }
+                } else
 
                 if (f.getType().equals(String.class)) {
                     f.set(obj, sp.getString(f.getName(), "" + f.get(obj)));
-                }
+                } else
 
                 if (f.getType().equals(float.class)) {
                     f.setFloat(obj, sp.getFloat(f.getName(), f.getFloat(obj)));
-                }
+                } else
 
                 if (f.getType().equals(long.class)) {
                     f.setLong(obj, sp.getLong(f.getName(), f.getLong(obj)));
-                }
-                if (f.getType().equals(boolean.class)) {
+                } else if (f.getType().equals(boolean.class)) {
                     f.setBoolean(obj, sp.getBoolean(f.getName(), f.getBoolean(obj)));
+                } else if (f.getType().equals(java.util.Set.class)) {
+                    f.set(obj, sp.getStringSet(f.getName(), new HashSet<String>()));
                 }
 
                 LOG.d(TAG, "loadFromSp", f.getType(), f.getName(), f.get(obj));
@@ -99,6 +105,7 @@ public class Objects {
     }
 
     static String hashStringID = "hashCode";
+
     public static int hashCode(Object obj, boolean ignoreSomeHash) {
         StringBuilder res = new StringBuilder();
 

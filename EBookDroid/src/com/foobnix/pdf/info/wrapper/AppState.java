@@ -896,11 +896,6 @@ public class AppState {
         sp = a.getSharedPreferences(ExportSettingsManager.PREFIX_PDF, Context.MODE_PRIVATE);
         hashCode = currentHash;
         Objects.saveToSP(AppState.get(), sp);
-
-        AppState o2 = new AppState();
-        Objects.loadFromSp(o2, sp);
-
-        Objects.compareObjects(AppState.get(), o2);
     }
 
     public void saveIn_old(final Context a) {
