@@ -151,7 +151,7 @@ public class MainTabs2 extends AdsFragmentActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        if (AppState.getInstance().isWhiteTheme) {
+        if (AppState.get().isWhiteTheme) {
             setTheme(R.style.StyledIndicatorsWhite);
         } else {
             setTheme(R.style.StyledIndicatorsBlack);
@@ -310,7 +310,7 @@ public class MainTabs2 extends AdsFragmentActivity {
 
         boolean showTabs = getIntent().getBooleanExtra(EXTRA_SHOW_TABS, false);
         LOG.d("EXTRA_SHOW_TABS", showTabs, AppState.get().lastMode);
-        if (showTabs == false && AppState.getInstance().isOpenLastBook) {
+        if (showTabs == false && AppState.get().isOpenLastBook) {
             FileMeta meta = AppDB.get().getRecentLast();
             AppState.get().lastA = null;
 
@@ -320,7 +320,7 @@ public class MainTabs2 extends AdsFragmentActivity {
                 intent.setData(Uri.fromFile(new File(meta.getPath())));
                 startActivity(intent);
             }
-        } else if (!AppState.getInstance().isOpenLastBook) {
+        } else if (!AppState.get().isOpenLastBook) {
             LOG.d("lasta", AppState.get().lastA);
             if (HorizontalViewActivity.class.getSimpleName().equals(AppState.get().lastA)) {
 

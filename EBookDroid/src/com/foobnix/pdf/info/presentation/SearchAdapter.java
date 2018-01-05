@@ -68,12 +68,12 @@ public class SearchAdapter extends BaseAdapter {
     public View getView(final int i, View convertView, ViewGroup viewGroup) {
         View browserItem = convertView;
 
-        if (browserItem != null && ((Holder) browserItem.getTag()).libMode != AppState.getInstance().libraryMode) {
+        if (browserItem != null && ((Holder) browserItem.getTag()).libMode != AppState.get().libraryMode) {
             browserItem = null;
         }
 
         if (browserItem == null) {
-            if (AppState.getInstance().libraryMode == AppState.MODE_GRID || AppState.getInstance().libraryMode == AppState.MODE_COVERS) {
+            if (AppState.get().libraryMode == AppState.MODE_GRID || AppState.get().libraryMode == AppState.MODE_COVERS) {
                 browserItem = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.browse_item_grid, viewGroup, false);
             } else {
                 browserItem = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.browse_item_list, viewGroup, false);
@@ -92,7 +92,7 @@ public class SearchAdapter extends BaseAdapter {
             holder.textDate = (TextView) browserItem.findViewById(R.id.browseDate);
             holder.textExt = (TextView) browserItem.findViewById(R.id.browserExt);
             holder.layoutBootom = browserItem.findViewById(R.id.layoutBootom);
-            holder.libMode = AppState.getInstance().libraryMode;
+            holder.libMode = AppState.get().libraryMode;
 
             View progresLayout = browserItem.findViewById(R.id.progresLayout);
             if (progresLayout != null) {
@@ -133,14 +133,14 @@ public class SearchAdapter extends BaseAdapter {
         holder.textDate.setText("" + fileMeta.getDate());
         holder.textExt.setText(fileMeta.getExt());
 
-        if (AppState.getInstance().libraryMode == AppState.MODE_GRID || AppState.getInstance().libraryMode == AppState.MODE_COVERS) {
+        if (AppState.get().libraryMode == AppState.MODE_GRID || AppState.get().libraryMode == AppState.MODE_COVERS) {
             holder.textPath.setVisibility(View.GONE);
             holder.textSize.setVisibility(View.GONE);
 
             IMG.updateImageSizeBig(holder.imageView);
             IMG.updateImageSizeBig((View) holder.imageView.getParent());
 
-            if (AppState.getInstance().libraryMode == AppState.MODE_COVERS) {
+            if (AppState.get().libraryMode == AppState.MODE_COVERS) {
                 holder.layoutBootom.setVisibility(View.GONE);
 
             }
@@ -152,7 +152,7 @@ public class SearchAdapter extends BaseAdapter {
             IMG.updateImageSizeSmall((View) holder.imageView.getParent());
         }
 
-        if (AppState.getInstance().libraryMode == AppState.MODE_LIST && AppState.get().coverSmallSize >= IMG.TWO_LINE_COVER_SIZE) {
+        if (AppState.get().libraryMode == AppState.MODE_LIST && AppState.get().coverSmallSize >= IMG.TWO_LINE_COVER_SIZE) {
             holder.title1.setSingleLine(false);
             holder.title1.setLines(2);
         } else {
@@ -160,7 +160,7 @@ public class SearchAdapter extends BaseAdapter {
             holder.title1.setLines(1);
         }
 
-        if (AppState.getInstance().libraryMode == AppState.MODE_GRID && AppState.get().coverBigSize <= IMG.TWO_LINE_COVER_SIZE) {
+        if (AppState.get().libraryMode == AppState.MODE_GRID && AppState.get().coverBigSize <= IMG.TWO_LINE_COVER_SIZE) {
             holder.textDate.setVisibility(View.GONE);
         } else {
             holder.textDate.setVisibility(View.VISIBLE);
@@ -168,7 +168,7 @@ public class SearchAdapter extends BaseAdapter {
 
         TintUtil.setTintImage(menuIcon);
 
-        // int size = AppState.getInstance().libraryMode == AppState.MODE_LIST ?
+        // int size = AppState.get().libraryMode == AppState.MODE_LIST ?
         // AppState.get().coverSmallSize : AppState.get().coverBigSize;
 
         // StarsWrapper.addStars(holder.starIcon, info);
@@ -199,7 +199,7 @@ public class SearchAdapter extends BaseAdapter {
 
                 // StarsWrapper.addStars(holder.starIcon, info);
 
-                if (TxtUtils.isEmpty(fileMeta.getAuthor()) && AppState.getInstance().libraryMode == AppState.MODE_LIST) {
+                if (TxtUtils.isEmpty(fileMeta.getAuthor()) && AppState.get().libraryMode == AppState.MODE_LIST) {
                     holder.title2.setVisibility(View.GONE);
                 } else {
                     holder.title2.setVisibility(View.VISIBLE);

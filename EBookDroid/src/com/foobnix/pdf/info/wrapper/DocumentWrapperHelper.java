@@ -6,7 +6,7 @@ import android.view.WindowManager;
 public class DocumentWrapperHelper {
 
 	public static void restoreFullScreen(Activity a) {
-		if (AppState.getInstance().isFullScrean()) {
+        if (AppState.get().isFullScreen) {
 			a.getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
 			a.getWindow().clearFlags(WindowManager.LayoutParams.FLAG_FORCE_NOT_FULLSCREEN);
 		} else {
@@ -16,7 +16,7 @@ public class DocumentWrapperHelper {
 	}
 
 	public static void changeFullScreen(Activity a) {
-		AppState.getInstance().setFullScrean(!AppState.getInstance().isFullScrean());
+        AppState.get().isFullScreen = !AppState.get().isFullScreen;
 		restoreFullScreen(a);
 	}
 

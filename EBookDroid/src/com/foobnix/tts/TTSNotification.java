@@ -66,7 +66,7 @@ public class TTSNotification {
                     .setLargeIcon(getBookImage(bookPath)) //
                     .setTicker(c.getString(R.string.app_name)) //
                     .setWhen(System.currentTimeMillis()) //
-                    .setOngoing(AppState.getInstance().notificationOngoing)//
+                    .setOngoing(AppState.get().notificationOngoing)//
                     .addAction(R.drawable.glyphicons_175_pause, c.getString(R.string.to_stop), stop)//
                     .addAction(R.drawable.glyphicons_174_play, c.getString(R.string.to_read), read)//
                     .addAction(R.drawable.glyphicons_177_forward, c.getString(R.string.next), next)//

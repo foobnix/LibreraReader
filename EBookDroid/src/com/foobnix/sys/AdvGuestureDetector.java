@@ -142,9 +142,9 @@ public class AdvGuestureDetector extends SimpleOnGestureListener implements IMul
     @Override
     public boolean onSingleTapUp(final MotionEvent e) {
         if (isScrollFinished) {// && !AppState.get().isEditPanelVisible) {
-            // if (isScrollFinished && AppState.getInstance().isLocked) {
+            // if (isScrollFinished && AppState.get().isLocked) {
             updateBorders();
-            if (!AppState.get().isMusicianMode && !AppState.get().isIgnoreAnnotatations || AppState.getInstance().editWith == AppState.EDIT_DELETE) {
+            if (!AppState.get().isMusicianMode && !AppState.get().isIgnoreAnnotatations || AppState.get().editWith == AppState.EDIT_DELETE) {
                 alowConfirm = false;
                 Annotation annotation2 = avc.isAnnotationTap(e.getX(), e.getY());
 
@@ -157,7 +157,7 @@ public class AdvGuestureDetector extends SimpleOnGestureListener implements IMul
 
                 if (annotation != null) {
                     avc.selectAnnotation(annotation);
-                    if (AppState.getInstance().editWith == AppState.EDIT_DELETE) {
+                    if (AppState.get().editWith == AppState.EDIT_DELETE) {
                         docCtrl.onAnnotationTap(annotation.getPageHandler(), annotation.getPage(), annotation.getIndex());
                         avc.selectAnnotation(null);
                         annotation = null;
@@ -287,8 +287,8 @@ public class AdvGuestureDetector extends SimpleOnGestureListener implements IMul
 
     private boolean isNoLock() {
         // return AppState.XgetInstance().isEditMode() ||
-        // !AppState.getInstance().isLocked;
-        return !AppState.getInstance().isLocked;
+        // !AppState.get().isLocked;
+        return !AppState.get().isLocked;
     }
 
     /**

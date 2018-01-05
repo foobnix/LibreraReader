@@ -558,10 +558,6 @@ public class AppState {
     //
     );
 
-    public static synchronized AppState getInstance() {
-        return instance;
-    }
-
     public static synchronized AppState get() {
         return instance;
     }
@@ -575,15 +571,15 @@ public class AppState {
         }
         if (AppState.get().isInkMode || AppsConfig.IS_INK) {
             AppsConfig.ADMOB_FULLSCREEN = null;
-            AppState.getInstance().isInkMode = true;
-            AppState.getInstance().isInvert = true;
-            AppState.getInstance().isEditMode = true;
-            AppState.getInstance().isRememberMode = false;
-            // AppState.getInstance().isAlwaysOpenAsMagazine = true;
-            // AppState.getInstance().isMusicianMode = false;
-            AppState.getInstance().isReverseKeys = true;
-            AppState.getInstance().isScrollAnimation = false;
-            AppState.getInstance().tintColor = Color.BLACK;
+            AppState.get().isInkMode = true;
+            AppState.get().isInvert = true;
+            AppState.get().isEditMode = true;
+            AppState.get().isRememberMode = false;
+            // AppState.get().isAlwaysOpenAsMagazine = true;
+            // AppState.get().isMusicianMode = false;
+            AppState.get().isReverseKeys = true;
+            AppState.get().isScrollAnimation = false;
+            AppState.get().tintColor = Color.BLACK;
 
         }
 
@@ -1095,21 +1091,6 @@ public class AppState {
 
         LOG.d("Save AppState", "coverSmallSize", coverSmallSize);
         LOG.d("AppState Save lasta", lastA, a.getClass());
-    }
-
-    public boolean isFullScrean() {
-        return isFullScreen;
-    }
-
-    public void setFullScrean(final boolean isFullScrean) {
-        this.isFullScreen = isFullScrean;
-    }
-
-    public static void outOfMemoryHack() {
-        AppState.get().pagesInMemory--;
-        if (AppState.get().pagesInMemory < 0) {
-            AppState.get().pagesInMemory = 0;
-        }
     }
 
 }

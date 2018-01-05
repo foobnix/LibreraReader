@@ -99,8 +99,8 @@ public class DocumentWrapperUI {
     final Handler handlerTimer = new Handler();
 
     public DocumentWrapperUI(final DocumentController controller) {
-        AppState.getInstance().annotationDrawColor = "";
-        AppState.getInstance().editWith = AppState.EDIT_NONE;
+        AppState.get().annotationDrawColor = "";
+        AppState.get().editWith = AppState.EDIT_NONE;
 
         this.controller = controller;
         controller.setUi(this);
@@ -158,7 +158,7 @@ public class DocumentWrapperUI {
     }
 
     public void onSingleTap() {
-        if (AppState.getInstance().isMusicianMode) {
+        if (AppState.get().isMusicianMode) {
             onAutoScrollClick();
         } else {
             doShowHideWrapperControlls();
@@ -290,28 +290,28 @@ public class DocumentWrapperUI {
             return true;
         }
 
-        if (AppState.get().isUseVolumeKeys && AppState.getInstance().isAutoScroll && KeyEvent.KEYCODE_VOLUME_UP == keyCode) {
-            if (AppState.getInstance().autoScrollSpeed > 1) {
-                AppState.getInstance().autoScrollSpeed -= 1;
+        if (AppState.get().isUseVolumeKeys && AppState.get().isAutoScroll && KeyEvent.KEYCODE_VOLUME_UP == keyCode) {
+            if (AppState.get().autoScrollSpeed > 1) {
+                AppState.get().autoScrollSpeed -= 1;
                 controller.onAutoScroll();
                 updateUI();
             }
             return true;
         }
-        if (AppState.get().isUseVolumeKeys && AppState.getInstance().isAutoScroll && KeyEvent.KEYCODE_VOLUME_DOWN == keyCode) {
-            if (AppState.getInstance().autoScrollSpeed <= AppState.MAX_SPEED) {
-                AppState.getInstance().autoScrollSpeed += 1;
+        if (AppState.get().isUseVolumeKeys && AppState.get().isAutoScroll && KeyEvent.KEYCODE_VOLUME_DOWN == keyCode) {
+            if (AppState.get().autoScrollSpeed <= AppState.MAX_SPEED) {
+                AppState.get().autoScrollSpeed += 1;
             }
             controller.onAutoScroll();
             updateUI();
             return true;
         }
 
-        if (AppState.get().isUseVolumeKeys && AppState.getInstance().getNextKeys().contains(keyCode)) {
+        if (AppState.get().isUseVolumeKeys && AppState.get().getNextKeys().contains(keyCode)) {
             nextChose(false);
             return true;
         }
-        if (AppState.get().isUseVolumeKeys && AppState.getInstance().getPrevKeys().contains(keyCode)) {
+        if (AppState.get().isUseVolumeKeys && AppState.get().getPrevKeys().contains(keyCode)) {
             prevChose(false);
             return true;
         }
@@ -374,8 +374,8 @@ public class DocumentWrapperUI {
 
         String current = TxtUtils.deltaPage(currentNumber);
 
-        if (AppState.getInstance().isAutoScroll) {
-            currentPageIndex.setText(String.format("{%s} %s/%s", AppState.getInstance().autoScrollSpeed, current, max));
+        if (AppState.get().isAutoScroll) {
+            currentPageIndex.setText(String.format("{%s} %s/%s", AppState.get().autoScrollSpeed, current, max));
         } else {
             currentPageIndex.setText(String.format("%s/%s", current, max));
         }
@@ -397,7 +397,7 @@ public class DocumentWrapperUI {
 
         speedSeekBar.setOnSeekBarChangeListener(null);
         speedSeekBar.setMax(AppState.MAX_SPEED);
-        speedSeekBar.setProgress(AppState.getInstance().autoScrollSpeed);
+        speedSeekBar.setProgress(AppState.get().autoScrollSpeed);
         speedSeekBar.setOnSeekBarChangeListener(onSpeed);
 
         // time
@@ -453,7 +453,7 @@ public class DocumentWrapperUI {
     public void updateLock() {
         // int mode = View.VISIBLE;
 
-        if (AppState.getInstance().isLocked) {
+        if (AppState.get().isLocked) {
             lockUnlock.setImageResource(R.drawable.glyphicons_204_lock);
             lockUnlockTop.setImageResource(R.drawable.glyphicons_204_lock);
             // lockUnlock.setColorFilter(a.getResources().getColor(R.color.tint_yellow));
@@ -688,7 +688,7 @@ public class DocumentWrapperUI {
 
         progressDraw = (ProgressDraw) a.findViewById(R.id.progressDraw);
 
-        AppState.getInstance().isAutoScroll = false;
+        AppState.get().isAutoScroll = false;
 
         ImageView recent = (ImageView) a.findViewById(R.id.onRecent);
         recent.setOnClickListener(onRecent);
@@ -924,7 +924,7 @@ public class DocumentWrapperUI {
 
         @Override
         public void onProgressChanged(final SeekBar seekBar, final int progress, final boolean fromUser) {
-            AppState.getInstance().autoScrollSpeed = progress + 1;
+            AppState.get().autoScrollSpeed = progress + 1;
             updateSpeedLabel();
 
             // hideSeekBarInReadMode();
@@ -932,7 +932,7 @@ public class DocumentWrapperUI {
     };
 
     public void doDoubleTap(int x, int y) {
-        if (AppState.getInstance().isMusicianMode) {
+        if (AppState.get().isMusicianMode) {
             controller.alignDocument();
         } else {
             if (AppState.get().doubleClickAction == AppState.DOUBLE_CLICK_ZOOM_IN_OUT) {
@@ -950,13 +950,13 @@ public class DocumentWrapperUI {
     }
 
     public void doShowHideWrapperControlls() {
-        AppState.getInstance().isEditMode = !AppState.getInstance().isEditMode;
+        AppState.get().isEditMode = !AppState.get().isEditMode;
         hideShow();
 
     }
 
     public void showHideHavigationBar() {
-        if (!AppState.getInstance().isEditMode && AppState.getInstance().isFullScrean()) {
+        if (!AppState.get().isEditMode && AppState.get().isFullScreen) {
             Keyboards.hideNavigation(a);
         }
     }
@@ -992,17 +992,17 @@ public class DocumentWrapperUI {
     }
 
     public void doHideShowToolBar() {
-        AppState.getInstance().isShowToolBar = !AppState.getInstance().isShowToolBar;
+        AppState.get().isShowToolBar = !AppState.get().isShowToolBar;
         initToolBarPlusMinus();
     }
 
     public void initToolBarPlusMinus() {
-        if (AppState.getInstance().isShowToolBar) {
+        if (AppState.get().isShowToolBar) {
             toolBarButton.setImageResource(R.drawable.glyphicons_336_pushpin);
         } else {
             toolBarButton.setImageResource(R.drawable.glyphicons_200_ban);
         }
-        if (AppState.getInstance().isEditMode || AppState.getInstance().isShowToolBar) {
+        if (AppState.get().isEditMode || AppState.get().isShowToolBar) {
             titleBar.setVisibility(View.VISIBLE);
         } else {
             titleBar.setVisibility(View.GONE);
@@ -1038,34 +1038,34 @@ public class DocumentWrapperUI {
     }
 
     public void hideShow() {
-        if (AppState.getInstance().isEditMode) {
+        if (AppState.get().isEditMode) {
             show();
         } else {
             hide();
         }
         initToolBarPlusMinus();
 
-        if (AppState.getInstance().isAutoScroll) {
+        if (AppState.get().isAutoScroll) {
             autoScroll.setImageResource(R.drawable.glyphicons_175_pause);
         } else {
             autoScroll.setImageResource(R.drawable.glyphicons_174_play);
         }
 
-        if (AppState.getInstance().isMusicianMode) {
-            if (AppState.getInstance().isAutoScroll) {
+        if (AppState.get().isMusicianMode) {
+            if (AppState.get().isAutoScroll) {
                 seekSpeedLayot.setVisibility(View.VISIBLE);
             } else {
                 seekSpeedLayot.setVisibility(View.GONE);
             }
         } else {
-            if (AppState.getInstance().isEditMode && AppState.getInstance().isAutoScroll) {
+            if (AppState.get().isEditMode && AppState.get().isAutoScroll) {
                 seekSpeedLayot.setVisibility(View.VISIBLE);
             } else {
                 seekSpeedLayot.setVisibility(View.GONE);
             }
         }
 
-        if (AppState.getInstance().isMusicianMode) {
+        if (AppState.get().isMusicianMode) {
             lirbiLogo.setVisibility(View.VISIBLE);
         } else {
             lirbiLogo.setVisibility(View.GONE);
@@ -1089,7 +1089,7 @@ public class DocumentWrapperUI {
     }
 
     public void _hideSeekBarInReadMode() {
-        if (!AppState.getInstance().isEditMode) {
+        if (!AppState.get().isEditMode) {
             handler.removeCallbacks(hideSeekBar);
             handler.postDelayed(hideSeekBar, 5000);
         }
@@ -1099,7 +1099,7 @@ public class DocumentWrapperUI {
 
         @Override
         public void run() {
-            if (!AppState.getInstance().isMusicianMode) {
+            if (!AppState.get().isMusicianMode) {
                 seekSpeedLayot.setVisibility(View.GONE);
             }
 
@@ -1120,8 +1120,8 @@ public class DocumentWrapperUI {
 
         imageMenuArrow.setImageResource(android.R.drawable.arrow_up_float);
 
-        // if (AppState.getInstance().isAutoScroll &&
-        // AppState.getInstance().isEditMode) {
+        // if (AppState.get().isAutoScroll &&
+        // AppState.get().isEditMode) {
         // seekSpeedLayot.setVisibility(View.VISIBLE);
         // }
 
@@ -1155,14 +1155,14 @@ public class DocumentWrapperUI {
     };
 
     public void onAutoScrollClick() {
-        AppState.getInstance().isAutoScroll = !AppState.getInstance().isAutoScroll;
+        AppState.get().isAutoScroll = !AppState.get().isAutoScroll;
         // changeAutoScrollButton();
         controller.onAutoScroll();
         updateUI();
     }
 
     // public void changeAutoScrollButton() {
-    // if (AppState.getInstance().isAutoScroll) {
+    // if (AppState.get().isAutoScroll) {
     // autoScroll.setImageResource(android.R.drawable.ic_media_pause);
     // seekSpeedLayot.setVisibility(View.VISIBLE);
     // } else {
@@ -1192,7 +1192,7 @@ public class DocumentWrapperUI {
 
         @Override
         public void onClick(final View arg0) {
-            AppState.getInstance().isLocked = !AppState.getInstance().isLocked;
+            AppState.get().isLocked = !AppState.get().isLocked;
             updateLock();
         }
     };
@@ -1287,9 +1287,9 @@ public class DocumentWrapperUI {
 
         @Override
         public void onClick(final View v) {
-            AppState.getInstance().setFullScrean(!AppState.getInstance().isFullScrean());
+            AppState.get().isFullScreen = !AppState.get().isFullScreen;
             ((ImageView) v).setImageResource(AppState.get().isFullScreen ? R.drawable.glyphicons_487_fit_frame_to_image : R.drawable.glyphicons_488_fit_image_to_frame);
-            DocumentController.chooseFullScreen(a, AppState.getInstance().isFullScrean());
+            DocumentController.chooseFullScreen(a, AppState.get().isFullScreen);
 
             // if (controller.isTextFormat()) {
             // onRefresh.run();

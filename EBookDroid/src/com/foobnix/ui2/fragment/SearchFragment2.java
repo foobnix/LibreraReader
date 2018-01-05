@@ -200,7 +200,7 @@ public class SearchFragment2 extends UIFragment<FileMeta> {
 
                     @Override
                     public void run() {
-                        AppState.getInstance().searchPaths = AppState.getInstance().searchPaths.replace("//", "/");
+                        AppState.get().searchPaths = AppState.get().searchPaths.replace("//", "/");
                     }
                 }, new Runnable() {
 
@@ -435,7 +435,7 @@ public class SearchFragment2 extends UIFragment<FileMeta> {
     public void searchAndOrderAsync() {
         searchEditText.setHint(R.string.msg_loading);
         sortBy.setText(AppDB.SORT_BY.getByID(AppState.get().sortBy).getResName());
-        sortOrder.setImageResource(AppState.getInstance().isSortAsc ? R.drawable.glyphicons_601_chevron_up : R.drawable.glyphicons_602_chevron_down);
+        sortOrder.setImageResource(AppState.get().isSortAsc ? R.drawable.glyphicons_601_chevron_up : R.drawable.glyphicons_602_chevron_down);
         populate();
     }
 
@@ -456,7 +456,7 @@ public class SearchFragment2 extends UIFragment<FileMeta> {
                 txt = txt.replace(NO_SERIES, "");
             }
 
-            List<FileMeta> searchBy = AppDB.get().searchBy(txt, SORT_BY.getByID(AppState.get().sortBy), AppState.getInstance().isSortAsc);
+            List<FileMeta> searchBy = AppDB.get().searchBy(txt, SORT_BY.getByID(AppState.get().sortBy), AppState.get().isSortAsc);
 
             List<String> result = new ArrayList<String>();
             boolean byGenre = txt.startsWith(SEARCH_IN.GENRE.getDotPrefix());
@@ -555,7 +555,7 @@ public class SearchFragment2 extends UIFragment<FileMeta> {
             if (loadingResults != null) {
                 searchAdapter.getItemsList().addAll(loadingResults);
             } else {
-                List<FileMeta> allSearchBy = AppDB.get().searchBy(txt, SORT_BY.getByID(AppState.get().sortBy), AppState.getInstance().isSortAsc);
+                List<FileMeta> allSearchBy = AppDB.get().searchBy(txt, SORT_BY.getByID(AppState.get().sortBy), AppState.get().isSortAsc);
                 searchAdapter.getItemsList().addAll(allSearchBy);
 
             }
@@ -683,7 +683,7 @@ public class SearchFragment2 extends UIFragment<FileMeta> {
 
                 @Override
                 public boolean onMenuItemClick(MenuItem item) {
-                    AppState.getInstance().sortBy = sortBy.getIndex();
+                    AppState.get().sortBy = sortBy.getIndex();
                     searchAndOrderAsync();
                     return false;
                 }
@@ -723,7 +723,7 @@ public class SearchFragment2 extends UIFragment<FileMeta> {
 
                 @Override
                 public boolean onMenuItemClick(MenuItem item) {
-                    AppState.getInstance().libraryMode = actions.get(index);
+                    AppState.get().libraryMode = actions.get(index);
                     onGridList.setImageResource(icons.get(index));
 
                     if (Arrays.asList(AppState.MODE_AUTHORS, AppState.MODE_SERIES, AppState.MODE_GENRE).contains(AppState.get().libraryMode)) {

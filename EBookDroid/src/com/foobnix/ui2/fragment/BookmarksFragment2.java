@@ -126,7 +126,7 @@ public class BookmarksFragment2 extends UIFragment<AppBookmark> {
 
                 @Override
                 public boolean onMenuItemClick(MenuItem item) {
-                    AppState.getInstance().bookmarksMode = actions.get(index);
+                    AppState.get().bookmarksMode = actions.get(index);
                     onGridList.setImageResource(icons.get(index));
                     bookmarksEditSearch.setText("");
                     bookmarksSearchContainer.setVisibility(View.GONE);

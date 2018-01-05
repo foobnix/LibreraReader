@@ -63,7 +63,7 @@ public class VerticalModeController extends DocumentController {
     public VerticalModeController(final Activity activity, final ViewerActivityController ctr) {
         super(activity);
         this.ctr = ctr;
-        AppSettings.getInstance().fullScreen = AppState.getInstance().isFullScrean();
+        AppSettings.getInstance().fullScreen = AppState.get().isFullScreen;
         handler = new Handler();
         TempHolder.get().loadingCancelled = false;
         initHandler();
@@ -155,13 +155,13 @@ public class VerticalModeController extends DocumentController {
 
     @Override
     public void onScrollUp() {
-        ctr.getDocumentController().getView().scrollBy(0, -1 * AppState.getInstance().mouseWheelSpeed);
+        ctr.getDocumentController().getView().scrollBy(0, -1 * AppState.get().mouseWheelSpeed);
 
     }
 
     @Override
     public void onScrollDown() {
-        ctr.getDocumentController().getView().scrollBy(0, AppState.getInstance().mouseWheelSpeed);
+        ctr.getDocumentController().getView().scrollBy(0, AppState.get().mouseWheelSpeed);
     }
 
     @Override
@@ -371,10 +371,10 @@ public class VerticalModeController extends DocumentController {
 
             @Override
             public void run() {
-                while (AppState.getInstance().isAutoScroll) {
+                while (AppState.get().isAutoScroll) {
                     auto();
                     try {
-                        float x = AppState.getInstance().autoScrollSpeed;
+                        float x = AppState.get().autoScrollSpeed;
 
                         if (x <= 50) {
                             x = x * 2;
@@ -408,7 +408,7 @@ public class VerticalModeController extends DocumentController {
             @Override
             public void run() {
 
-                if (AppState.getInstance().isLoopAutoplay && ctr.getDocumentController().getScrollLimits().bottom == ctr.getDocumentController().getView().getScrollY()) {
+                if (AppState.get().isLoopAutoplay && ctr.getDocumentController().getScrollLimits().bottom == ctr.getDocumentController().getView().getScrollY()) {
                     onScrollY(0);
                 } else {
                     ctr.getDocumentController().getView().scrollBy(0, 1);
@@ -648,7 +648,7 @@ public class VerticalModeController extends DocumentController {
         }
 
         if (true) {
-            AppState.getInstance().isInvert = !AppState.getInstance().isInvert;
+            AppState.get().isInvert = !AppState.get().isInvert;
             saveSettings();
             restartActivity();
             return;
@@ -790,7 +790,7 @@ public class VerticalModeController extends DocumentController {
     }
 
     public void onDestroy() {
-        AppState.getInstance().isAutoScroll = false;
+        AppState.get().isAutoScroll = false;
     }
 
 }

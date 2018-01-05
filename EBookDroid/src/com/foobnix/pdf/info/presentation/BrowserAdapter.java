@@ -62,17 +62,17 @@ public class BrowserAdapter extends BaseAdapter {
 
         View browserItem = convertView = null;
 
-        if (convertView != null && ((Boolean) convertView.getTag()) != AppState.getInstance().isBrowseGrid) {
+        if (convertView != null && ((Boolean) convertView.getTag()) != AppState.get().isBrowseGrid) {
             convertView = null;
         }
 
         if (convertView == null) {
-            if (AppState.getInstance().isBrowseGrid) {
+            if (AppState.get().isBrowseGrid) {
                 browserItem = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.browse_item_grid, viewGroup, false);
             } else {
                 browserItem = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.browse_item_list, viewGroup, false);
             }
-            browserItem.setTag(AppState.getInstance().isBrowseGrid);
+            browserItem.setTag(AppState.get().isBrowseGrid);
         }
 
         final ImageView imageView = (ImageView) browserItem.findViewById(R.id.browserItemIcon);
@@ -119,12 +119,12 @@ public class BrowserAdapter extends BaseAdapter {
 
             starIcon.setVisibility(View.GONE);
 
-            imageView.getLayoutParams().width = AppState.getInstance().isBrowseGrid ? Dips.dpToPx(AppState.get().coverBigSize) : Dips.dpToPx(35);
-            imageView.getLayoutParams().height = AppState.getInstance().isBrowseGrid ? Dips.dpToPx((int) (AppState.get().coverBigSize * 1.5)) : Dips.dpToPx(35);
+            imageView.getLayoutParams().width = AppState.get().isBrowseGrid ? Dips.dpToPx(AppState.get().coverBigSize) : Dips.dpToPx(35);
+            imageView.getLayoutParams().height = AppState.get().isBrowseGrid ? Dips.dpToPx((int) (AppState.get().coverBigSize * 1.5)) : Dips.dpToPx(35);
             imageView.setLayoutParams(imageView.getLayoutParams());
         } else if (new File(file.getPath()).isDirectory()) {
-            imageView.getLayoutParams().width = AppState.getInstance().isBrowseGrid ? Dips.dpToPx(AppState.get().coverBigSize) : Dips.dpToPx(35);
-            imageView.getLayoutParams().height = AppState.getInstance().isBrowseGrid ? Dips.dpToPx((int) (AppState.get().coverBigSize * 1.5)) : Dips.dpToPx(35);
+            imageView.getLayoutParams().width = AppState.get().isBrowseGrid ? Dips.dpToPx(AppState.get().coverBigSize) : Dips.dpToPx(35);
+            imageView.getLayoutParams().height = AppState.get().isBrowseGrid ? Dips.dpToPx((int) (AppState.get().coverBigSize * 1.5)) : Dips.dpToPx(35);
             imageView.setLayoutParams(imageView.getLayoutParams());
 
             title1.setSingleLine();
@@ -143,7 +143,7 @@ public class BrowserAdapter extends BaseAdapter {
 
         } else {
             imageView.setBackgroundColor(Color.TRANSPARENT);
-            if (AppState.getInstance().isBrowseGrid) {
+            if (AppState.get().isBrowseGrid) {
                 IMG.updateImageSizeBig(imageView);
                 IMG.updateImageSizeBig((View) imageView.getParent());
             } else {
@@ -159,7 +159,7 @@ public class BrowserAdapter extends BaseAdapter {
 
             starIcon.setVisibility(View.VISIBLE);
 
-            if (AppState.getInstance().isBrowseGrid) {
+            if (AppState.get().isBrowseGrid) {
                 title2.setVisibility(View.GONE);
                 textPath.setVisibility(View.GONE);
             } else {
@@ -173,7 +173,7 @@ public class BrowserAdapter extends BaseAdapter {
                 title2.setText("" + info.getAuthor());
             }
 
-            if (!AppState.getInstance().isBrowseGrid && AppState.get().coverSmallSize >= IMG.TWO_LINE_COVER_SIZE) {
+            if (!AppState.get().isBrowseGrid && AppState.get().coverSmallSize >= IMG.TWO_LINE_COVER_SIZE) {
                 title1.setSingleLine(false);
                 title1.setLines(2);
             } else {

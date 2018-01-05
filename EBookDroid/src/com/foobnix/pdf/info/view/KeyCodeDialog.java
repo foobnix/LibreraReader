@@ -33,9 +33,9 @@ public class KeyCodeDialog {
         builder.setPositiveButton(R.string.apply, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int id) {
-                AppState.getInstance().nextKeys = AppState.stringToKyes(keyNext.getText().toString());
-                AppState.getInstance().prevKeys = AppState.stringToKyes(keyPrev.getText().toString());
-                AppState.getInstance().save(a);
+                AppState.get().nextKeys = AppState.stringToKyes(keyNext.getText().toString());
+                AppState.get().prevKeys = AppState.stringToKyes(keyPrev.getText().toString());
+                AppState.get().save(a);
                 if (onClose != null) {
                     onClose.run();
                 }
@@ -71,8 +71,8 @@ public class KeyCodeDialog {
 
             @Override
             public void onClick(View v) {
-                AppState.getInstance().nextKeys = AppState.NEXT_KEYS;
-                AppState.getInstance().prevKeys = AppState.PREV_KEYS;
+                AppState.get().nextKeys = AppState.NEXT_KEYS;
+                AppState.get().prevKeys = AppState.PREV_KEYS;
                 init(keyNext, keyPrev);
 
             }
@@ -83,8 +83,8 @@ public class KeyCodeDialog {
     }
 
     private void init(final EditText keyNext, final EditText keyPrev) {
-        keyNext.setText(AppState.keyToString(AppState.getInstance().nextKeys));
-        keyPrev.setText(AppState.keyToString(AppState.getInstance().prevKeys));
+        keyNext.setText(AppState.keyToString(AppState.get().nextKeys));
+        keyPrev.setText(AppState.keyToString(AppState.get().prevKeys));
 
         keyNext.setSelection(keyNext.getText().length());
         keyPrev.setSelection(keyPrev.getText().length());

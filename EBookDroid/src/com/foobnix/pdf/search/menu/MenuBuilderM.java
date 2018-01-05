@@ -88,11 +88,11 @@ public class MenuBuilderM {
     public static PopupMenu addOrientationMenu(final View view, final Activity a, final PopupMenu popupMenu) {
         String title = a.getString(R.string.orientation) + ": ";
 
-        if (AppState.getInstance().orientation == ActivityInfo.SCREEN_ORIENTATION_SENSOR) {
+        if (AppState.get().orientation == ActivityInfo.SCREEN_ORIENTATION_SENSOR) {
             title += a.getString(R.string.automatic);
-        } else if (AppState.getInstance().orientation == ActivityInfo.SCREEN_ORIENTATION_PORTRAIT) {
+        } else if (AppState.get().orientation == ActivityInfo.SCREEN_ORIENTATION_PORTRAIT) {
             title += a.getString(R.string.portrait);
-        } else if (AppState.getInstance().orientation == ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE) {
+        } else if (AppState.get().orientation == ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE) {
             title += a.getString(R.string.landscape);
         }
 
@@ -117,7 +117,7 @@ public class MenuBuilderM {
 
             @Override
             public boolean onMenuItemClick(final MenuItem item) {
-                AppState.getInstance().orientation = ActivityInfo.SCREEN_ORIENTATION_SENSOR;
+                AppState.get().orientation = ActivityInfo.SCREEN_ORIENTATION_SENSOR;
                 DocumentController.doRotation(a);
                 return false;
             }
@@ -127,7 +127,7 @@ public class MenuBuilderM {
 
             @Override
             public boolean onMenuItemClick(final MenuItem item) {
-                AppState.getInstance().orientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT;
+                AppState.get().orientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT;
                 DocumentController.doRotation(a);
                 return false;
             }
@@ -138,7 +138,7 @@ public class MenuBuilderM {
 
             @Override
             public boolean onMenuItemClick(final MenuItem item) {
-                AppState.getInstance().orientation = ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE;
+                AppState.get().orientation = ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE;
                 DocumentController.doRotation(a);
                 return false;
             }
@@ -151,8 +151,8 @@ public class MenuBuilderM {
         Context a = view.getContext();
         String title = a.getString(R.string.rotate);
 
-        if (AppState.getInstance().rotate > 0) {
-            title = a.getString(R.string.rotate) + ": " + AppState.getInstance().rotate;
+        if (AppState.get().rotate > 0) {
+            title = a.getString(R.string.rotate) + ": " + AppState.get().rotate;
         }
 
         final PopupMenu rotateMenu = new PopupMenu(view.getContext(), view);
@@ -174,7 +174,7 @@ public class MenuBuilderM {
 
             @Override
             public boolean onMenuItemClick(final MenuItem item) {
-                AppState.getInstance().rotate = 0;
+                AppState.get().rotate = 0;
                 ranRunnable.run();
                 return false;
             }
@@ -185,7 +185,7 @@ public class MenuBuilderM {
 
             @Override
             public boolean onMenuItemClick(final MenuItem item) {
-                AppState.getInstance().rotate = 90;
+                AppState.get().rotate = 90;
                 ranRunnable.run();
                 return false;
             }
@@ -195,7 +195,7 @@ public class MenuBuilderM {
 
             @Override
             public boolean onMenuItemClick(final MenuItem item) {
-                AppState.getInstance().rotate = 180;
+                AppState.get().rotate = 180;
                 ranRunnable.run();
 
                 return false;
@@ -207,7 +207,7 @@ public class MenuBuilderM {
 
             @Override
             public boolean onMenuItemClick(final MenuItem item) {
-                AppState.getInstance().rotate = 270;
+                AppState.get().rotate = 270;
                 ranRunnable.run();
 
                 return false;

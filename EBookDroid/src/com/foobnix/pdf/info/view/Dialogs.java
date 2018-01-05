@@ -173,7 +173,7 @@ public class Dialogs {
 
         final CheckBox bolderText = new CheckBox(c);
         bolderText.setText(R.string.make_text_bold);
-        bolderText.setChecked(AppState.getInstance().bolderTextOnImage);
+        bolderText.setChecked(AppState.get().bolderTextOnImage);
         bolderText.setOnCheckedChangeListener(new OnCheckedChangeListener() {
 
             @Override
@@ -181,7 +181,7 @@ public class Dialogs {
                 if (contrastSeek.getCurrentValue() == 0) {
                     // contrastSeek.reset(25);
                 }
-                AppState.getInstance().bolderTextOnImage = isChecked;
+                AppState.get().bolderTextOnImage = isChecked;
                 actionWrapper.run();
             }
         });
@@ -213,8 +213,8 @@ public class Dialogs {
                     public void run() {
                         AppState.get().brigtnessImage = 0;
                         AppState.get().contrastImage = 0;
-                        AppState.getInstance().bolderTextOnImage = false;
-                        bolderText.setChecked(AppState.getInstance().bolderTextOnImage);
+                        AppState.get().bolderTextOnImage = false;
+                        bolderText.setChecked(AppState.get().bolderTextOnImage);
 
                         brightnesSeek.reset(AppState.get().brigtnessImage);
                         contrastSeek.reset(AppState.get().contrastImage);

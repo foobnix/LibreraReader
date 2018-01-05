@@ -63,7 +63,7 @@ public abstract class DocumentController {
     );
 
     public static int getRotationText() {
-        return orientationTexts.get(orientationIds.indexOf(AppState.getInstance().orientation));
+        return orientationTexts.get(orientationIds.indexOf(AppState.get().orientation));
     }
 
     protected final Activity activity;
@@ -180,7 +180,7 @@ public abstract class DocumentController {
     }
 
     public boolean isEasyMode() {
-        return AppState.getInstance().isAlwaysOpenAsMagazine;
+        return AppState.get().isAlwaysOpenAsMagazine;
     }
 
     public void onResume() {
@@ -313,7 +313,7 @@ public abstract class DocumentController {
     }
 
     private static void applyTheme(final Activity a) {
-        if (AppState.getInstance().isWhiteTheme) {
+        if (AppState.get().isWhiteTheme) {
             a.setTheme(R.style.StyledIndicatorsWhite);
         } else {
             a.setTheme(R.style.StyledIndicatorsBlack);
@@ -344,7 +344,7 @@ public abstract class DocumentController {
 
     public static void doRotation(final Activity a) {
         try {
-            a.setRequestedOrientation(AppState.getInstance().orientation);
+            a.setRequestedOrientation(AppState.get().orientation);
         } catch (Exception e) {
             LOG.e(e);
         }

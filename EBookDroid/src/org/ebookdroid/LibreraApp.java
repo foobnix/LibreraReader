@@ -41,7 +41,7 @@ public class LibreraApp extends Application {
         AppsConfig.init(getApplicationContext());
         Dips.init(context);
         AppDB.get().open(this);
-        AppState.getInstance().load(this);
+        AppState.get().load(this);
         AppSharedPreferences.get().init(this);
         CacheZipUtils.init(context);
         ExtUtils.init(getApplicationContext());

@@ -117,7 +117,7 @@ public class ViewerActivityController extends ActionController<VerticalViewActiv
     public void afterCreate(VerticalViewActivity a) {
         final VerticalViewActivity activity = getManagedComponent();
 
-        IUIManager.setFullScreenMode(activity, getManagedComponent().view.getView(), AppState.getInstance().isFullScrean());
+        IUIManager.setFullScreenMode(activity, getManagedComponent().view.getView(), AppState.get().isFullScreen);
 
         if (++loadingCount == 1) {
             documentModel = ActivityControllerStub.DM_STUB;

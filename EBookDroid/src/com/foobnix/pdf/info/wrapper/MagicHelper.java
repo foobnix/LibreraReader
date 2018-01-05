@@ -132,7 +132,7 @@ public class MagicHelper {
     }
 
     public static void applyBookEffect(Bitmap dest) {
-        if (AppState.getInstance().isBookCoverEffect) {
+        if (AppState.get().isBookCoverEffect) {
             Canvas canvas = new Canvas(dest);
             IMG.bookBGNoMark.setBounds(0, 0, dest.getWidth(), dest.getHeight());
             IMG.bookBGNoMark.draw(canvas);
@@ -695,7 +695,7 @@ public class MagicHelper {
         if (AppState.get().contrastImage != 0 || AppState.get().brigtnessImage != 0) {
             quickContrast3(arr, AppState.get().contrastImage, AppState.get().brigtnessImage * -1);
         }
-        if (AppState.getInstance().bolderTextOnImage) {
+        if (AppState.get().bolderTextOnImage) {
             ivanEbolden(arr);
         }
 
@@ -766,7 +766,7 @@ public class MagicHelper {
             }
 
             int nexSum = sum;
-            if (AppState.getInstance().bolderTextOnImage) {
+            if (AppState.get().bolderTextOnImage) {
                 if (i > 1) {
                     nexSum = Math.min(prevSum, sum);
                 }

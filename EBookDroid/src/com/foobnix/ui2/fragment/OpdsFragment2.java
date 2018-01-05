@@ -424,17 +424,17 @@ public class OpdsFragment2 extends UIFragment<Entry> {
                 });
 
                 final TextView downlodsPath = (TextView) view.findViewById(R.id.downlodsPath);
-                downlodsPath.setText(ExtUtils.getFileName(AppState.getInstance().downlodsPath));
+                downlodsPath.setText(ExtUtils.getFileName(AppState.get().downlodsPath));
                 TxtUtils.underlineTextView(downlodsPath);
                 downlodsPath.setOnClickListener(new View.OnClickListener() {
 
                     @Override
                     public void onClick(final View v) {
-                        ChooserDialogFragment.chooseFolder(getActivity(), AppState.getInstance().downlodsPath).setOnSelectListener(new ResultResponse2<String, Dialog>() {
+                        ChooserDialogFragment.chooseFolder(getActivity(), AppState.get().downlodsPath).setOnSelectListener(new ResultResponse2<String, Dialog>() {
                             @Override
                             public boolean onResultRecive(String nPath, Dialog dialog) {
-                                AppState.getInstance().downlodsPath = nPath;
-                                downlodsPath.setText(ExtUtils.getFileName(AppState.getInstance().downlodsPath));
+                                AppState.get().downlodsPath = nPath;
+                                downlodsPath.setText(ExtUtils.getFileName(AppState.get().downlodsPath));
                                 TxtUtils.underlineTextView(downlodsPath);
                                 dialog.dismiss();
                                 return false;

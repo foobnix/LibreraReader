@@ -100,10 +100,10 @@ public class BrightnessHelper {
         final CustomSeek customBrightness = (CustomSeek) inflate.findViewById(R.id.customBrightness);
 
         int value = 0;
-        if (AppState.getInstance().appBrightness == AppState.AUTO_BRIGTNESS) {
+        if (AppState.get().appBrightness == AppState.AUTO_BRIGTNESS) {
             value = systemBrigtnessInt;
         } else {
-            value = AppState.getInstance().isEnableBlueFilter ? AppState.getInstance().blueLightAlpha * -1 : AppState.getInstance().appBrightness;
+            value = AppState.get().isEnableBlueFilter ? AppState.get().blueLightAlpha * -1 : AppState.get().appBrightness;
         }
 
         customBrightness.init(-100, 100, value);
@@ -139,14 +139,14 @@ public class BrightnessHelper {
 
             }
         });
-        autoSettings.setChecked(AppState.getInstance().appBrightness == AppState.AUTO_BRIGTNESS);
-        customBrightness.setEnabled(AppState.getInstance().appBrightness != AppState.AUTO_BRIGTNESS);
+        autoSettings.setChecked(AppState.get().appBrightness == AppState.AUTO_BRIGTNESS);
+        customBrightness.setEnabled(AppState.get().appBrightness != AppState.AUTO_BRIGTNESS);
 
     }
 
     public static void applyBrigtness(final Activity a) {
         try {
-            int appBrightness = AppState.getInstance().appBrightness;
+            int appBrightness = AppState.get().appBrightness;
 
             final WindowManager.LayoutParams lp = a.getWindow().getAttributes();
 
@@ -203,19 +203,19 @@ public class BrightnessHelper {
         if (value == AppState.AUTO_BRIGTNESS) {
             AppState.get().isEnableBlueFilter = false;
             AppState.get().blueLightAlpha = 0;
-            AppState.getInstance().appBrightness = AppState.AUTO_BRIGTNESS;
+            AppState.get().appBrightness = AppState.AUTO_BRIGTNESS;
             textView.setText(textView.getContext().getString(R.string.automatic));
 
         } else if (value < 0) {
             AppState.get().isEnableBlueFilter = true;
             AppState.get().blueLightAlpha = Math.abs(value);
-            AppState.getInstance().appBrightness = 0;
+            AppState.get().appBrightness = 0;
 
             textView.setText(textView.getContext().getString(R.string.brightness) + " " + value + "%");
         } else {
             AppState.get().isEnableBlueFilter = false;
             AppState.get().blueLightAlpha = 0;
-            AppState.getInstance().appBrightness = value;
+            AppState.get().appBrightness = value;
 
             textView.setText(textView.getContext().getString(R.string.brightness) + " " + value + "%");
         }

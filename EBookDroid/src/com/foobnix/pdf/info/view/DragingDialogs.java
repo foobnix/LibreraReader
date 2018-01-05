@@ -535,12 +535,12 @@ public class DragingDialogs {
                 //
 
                 CheckBox notificationOngoing = (CheckBox) view.findViewById(R.id.notificationOngoing);
-                notificationOngoing.setChecked(AppState.getInstance().notificationOngoing);
+                notificationOngoing.setChecked(AppState.get().notificationOngoing);
                 notificationOngoing.setOnCheckedChangeListener(new OnCheckedChangeListener() {
 
                     @Override
                     public void onCheckedChanged(final CompoundButton buttonView, final boolean isChecked) {
-                        AppState.getInstance().notificationOngoing = isChecked;
+                        AppState.get().notificationOngoing = isChecked;
                         TTSNotification.hideNotification();
                         TTSNotification.showLast();
                     }
@@ -557,17 +557,17 @@ public class DragingDialogs {
                 });
 
                 final TextView ttsSpeakPath = (TextView) view.findViewById(R.id.ttsSpeakPath);
-                ttsSpeakPath.setText(AppState.getInstance().ttsSpeakPath);
+                ttsSpeakPath.setText(AppState.get().ttsSpeakPath);
                 TxtUtils.underlineTextView(ttsSpeakPath);
                 ttsSpeakPath.setOnClickListener(new OnClickListener() {
 
                     @Override
                     public void onClick(View v) {
 
-                        ChooserDialogFragment.chooseFolder((FragmentActivity) controller.getActivity(), AppState.getInstance().ttsSpeakPath).setOnSelectListener(new ResultResponse2<String, Dialog>() {
+                        ChooserDialogFragment.chooseFolder((FragmentActivity) controller.getActivity(), AppState.get().ttsSpeakPath).setOnSelectListener(new ResultResponse2<String, Dialog>() {
                             @Override
                             public boolean onResultRecive(String nPath, Dialog dialog) {
-                                AppState.getInstance().ttsSpeakPath = nPath;
+                                AppState.get().ttsSpeakPath = nPath;
                                 ttsSpeakPath.setText(nPath);
                                 TxtUtils.underlineTextView(ttsSpeakPath);
                                 dialog.dismiss();
@@ -841,7 +841,7 @@ public class DragingDialogs {
                 final View view = inflater.inflate(R.layout.dialog_selected_text, null, false);
                 final LinearLayout linearLayoutColor = (LinearLayout) view.findViewById(R.id.colorsLine);
                 linearLayoutColor.removeAllViews();
-                List<String> colors = new ArrayList<String>(AppState.getInstance().COLORS);
+                List<String> colors = new ArrayList<String>(AppState.get().COLORS);
                 colors.remove(0);
                 colors.remove(0);
 
@@ -918,19 +918,19 @@ public class DragingDialogs {
                         PopupMenu menu = new PopupMenu(v.getContext(), v);
 
                         Drawable highlight = controller.getActivity().getResources().getDrawable(R.drawable.glyphicons_607_te_background);
-                        highlight.setColorFilter(Color.parseColor(AppState.getInstance().annotationTextColor), Mode.SRC_ATOP);
+                        highlight.setColorFilter(Color.parseColor(AppState.get().annotationTextColor), Mode.SRC_ATOP);
 
                         Drawable underline = controller.getActivity().getResources().getDrawable(R.drawable.glyphicons_104_te_underline);
-                        underline.setColorFilter(Color.parseColor(AppState.getInstance().annotationTextColor), Mode.SRC_ATOP);
+                        underline.setColorFilter(Color.parseColor(AppState.get().annotationTextColor), Mode.SRC_ATOP);
 
                         Drawable strikeout = controller.getActivity().getResources().getDrawable(R.drawable.glyphicons_105_te_strike);
-                        strikeout.setColorFilter(Color.parseColor(AppState.getInstance().annotationTextColor), Mode.SRC_ATOP);
+                        strikeout.setColorFilter(Color.parseColor(AppState.get().annotationTextColor), Mode.SRC_ATOP);
 
                         menu.getMenu().add(R.string.highlight_of_text).setIcon(highlight).setOnMenuItemClickListener(new OnMenuItemClickListener() {
 
                             @Override
                             public boolean onMenuItemClick(MenuItem item) {
-                                AppState.get().customConfigColors += "H" + AppState.getInstance().annotationTextColor + ",";
+                                AppState.get().customConfigColors += "H" + AppState.get().annotationTextColor + ",";
                                 updateConfigRunnable.run();
                                 return false;
                             }
@@ -939,7 +939,7 @@ public class DragingDialogs {
 
                             @Override
                             public boolean onMenuItemClick(MenuItem item) {
-                                AppState.get().customConfigColors += "U" + AppState.getInstance().annotationTextColor + ",";
+                                AppState.get().customConfigColors += "U" + AppState.get().annotationTextColor + ",";
                                 updateConfigRunnable.run();
                                 return false;
                             }
@@ -948,21 +948,21 @@ public class DragingDialogs {
 
                             @Override
                             public boolean onMenuItemClick(MenuItem item) {
-                                AppState.get().customConfigColors += "S" + AppState.getInstance().annotationTextColor + ",";
+                                AppState.get().customConfigColors += "S" + AppState.get().annotationTextColor + ",";
                                 updateConfigRunnable.run();
                                 return false;
                             }
                         });
                         menu.show();
 
-                        PopupHelper.initIcons(menu, Color.parseColor(AppState.getInstance().annotationTextColor));
+                        PopupHelper.initIcons(menu, Color.parseColor(AppState.get().annotationTextColor));
 
                     }
                 });
 
-                underLine.setColorFilter(Color.parseColor(AppState.getInstance().annotationTextColor));
-                strike.setColorFilter(Color.parseColor(AppState.getInstance().annotationTextColor));
-                selection.setColorFilter(Color.parseColor(AppState.getInstance().annotationTextColor));
+                underLine.setColorFilter(Color.parseColor(AppState.get().annotationTextColor));
+                strike.setColorFilter(Color.parseColor(AppState.get().annotationTextColor));
+                selection.setColorFilter(Color.parseColor(AppState.get().annotationTextColor));
 
                 for (final String colorName : colors) {
                     final View inflate = LayoutInflater.from(linearLayoutColor.getContext()).inflate(R.layout.item_color, linearLayoutColor, false);
@@ -980,7 +980,7 @@ public class DragingDialogs {
                         public void onClick(View v) {
                             // Views.unselectChilds(linearLayoutColor);
                             // v.setSelected(true);
-                            AppState.getInstance().annotationTextColor = colorName;
+                            AppState.get().annotationTextColor = colorName;
                             underLine.setColorFilter(Color.parseColor(colorName));
                             strike.setColorFilter(Color.parseColor(colorName));
                             selection.setColorFilter(Color.parseColor(colorName));
@@ -1207,7 +1207,7 @@ public class DragingDialogs {
 
                     @Override
                     public void onClick(View v) {
-                        controller.underlineText(Color.parseColor(AppState.getInstance().annotationTextColor), 2.0f, AnnotationType.UNDERLINE);
+                        controller.underlineText(Color.parseColor(AppState.get().annotationTextColor), 2.0f, AnnotationType.UNDERLINE);
                         closeDialog();
                         controller.saveAnnotationsToFile();
                     }
@@ -1216,7 +1216,7 @@ public class DragingDialogs {
 
                     @Override
                     public void onClick(View v) {
-                        controller.underlineText(Color.parseColor(AppState.getInstance().annotationTextColor), 2.0f, AnnotationType.STRIKEOUT);
+                        controller.underlineText(Color.parseColor(AppState.get().annotationTextColor), 2.0f, AnnotationType.STRIKEOUT);
                         closeDialog();
                         controller.saveAnnotationsToFile();
                     }
@@ -1225,7 +1225,7 @@ public class DragingDialogs {
 
                     @Override
                     public void onClick(View v) {
-                        controller.underlineText(Color.parseColor(AppState.getInstance().annotationTextColor), 2.0f, AnnotationType.HIGHLIGHT);
+                        controller.underlineText(Color.parseColor(AppState.get().annotationTextColor), 2.0f, AnnotationType.HIGHLIGHT);
                         closeDialog();
                         controller.saveAnnotationsToFile();
                     }
@@ -1375,7 +1375,7 @@ public class DragingDialogs {
 
             @Override
             public void run() {
-                String annotationDrawColor = AppState.getInstance().annotationDrawColor;
+                String annotationDrawColor = AppState.get().annotationDrawColor;
                 if (TxtUtils.isEmpty(annotationDrawColor)) {
                     annotationDrawColor = AppState.get().COLORS.get(0);
                 }
@@ -1393,7 +1393,7 @@ public class DragingDialogs {
             public void closeDialog() {
                 super.closeDialog();
                 AppState.get().editWith = AppState.EDIT_NONE;
-                AppState.getInstance().annotationDrawColor = "";
+                AppState.get().annotationDrawColor = "";
                 drawView.setVisibility(View.GONE);
                 drawView.clear();
             };
@@ -1404,7 +1404,7 @@ public class DragingDialogs {
                 final GridView grid = (GridView) a.findViewById(R.id.gridColors);
 
                 if (AppState.get().editWith == AppState.EDIT_DELETE) {
-                    AppState.getInstance().annotationDrawColor = AppState.get().COLORS.get(0);
+                    AppState.get().annotationDrawColor = AppState.get().COLORS.get(0);
                 }
 
                 final BaseItemAdapter<String> adapter = new BaseItemAdapter<String>(AppState.get().COLORS) {
@@ -1432,7 +1432,7 @@ public class DragingDialogs {
                                 public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                                     spinner.setSelection(position);
                                     AppState.get().editLineWidth = values.get(position);
-                                    int acolor = IMG.alphaColor(AppState.get().editAlphaColor, AppState.getInstance().annotationDrawColor);
+                                    int acolor = IMG.alphaColor(AppState.get().editAlphaColor, AppState.get().annotationDrawColor);
                                     drawView.setColor(acolor, AppState.get().editLineWidth);
 
                                     try {
@@ -1467,7 +1467,7 @@ public class DragingDialogs {
                                 public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                                     spinner.setSelection(position);
                                     AppState.get().editAlphaColor = values.get(position);
-                                    int acolor = IMG.alphaColor(AppState.get().editAlphaColor, AppState.getInstance().annotationDrawColor);
+                                    int acolor = IMG.alphaColor(AppState.get().editAlphaColor, AppState.get().annotationDrawColor);
                                     drawView.setColor(acolor, AppState.get().editLineWidth);
                                     // ((TextView)
                                     // spinner.getChildAt(0)).setTextColor(anchor.getResources().getColor(R.color.grey_800));
@@ -1486,7 +1486,7 @@ public class DragingDialogs {
                             view.findViewById(R.id.itColor).setBackgroundColor(acolor);
                         }
                         view.setTag(color);
-                        if (color.equals(AppState.getInstance().annotationDrawColor)) {
+                        if (color.equals(AppState.get().annotationDrawColor)) {
                             view.setBackgroundResource(R.drawable.bg_border_1_lines);
                         } else {
                             view.setBackgroundColor(Color.TRANSPARENT);
@@ -1500,12 +1500,12 @@ public class DragingDialogs {
                     @Override
                     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                         AppState.get().editWith = AppState.EDIT_PEN;
-                        if (view.getTag().equals(AppState.getInstance().annotationDrawColor)) {
-                            AppState.getInstance().annotationDrawColor = "";
+                        if (view.getTag().equals(AppState.get().annotationDrawColor)) {
+                            AppState.get().annotationDrawColor = "";
                             drawView.setVisibility(View.GONE);
                         } else {
-                            AppState.getInstance().annotationDrawColor = (String) view.getTag();
-                            int acolor = IMG.alphaColor(AppState.get().editAlphaColor, AppState.getInstance().annotationDrawColor);
+                            AppState.get().annotationDrawColor = (String) view.getTag();
+                            int acolor = IMG.alphaColor(AppState.get().editAlphaColor, AppState.get().annotationDrawColor);
                             drawView.setColor(acolor, AppState.get().editLineWidth);
                             drawView.setVisibility(View.VISIBLE);
                             if (position == 0) {
@@ -1787,7 +1787,7 @@ public class DragingDialogs {
                 contentList.postDelayed(showOutline, 50);
 
                 if (BookType.FB2.is(controller.getCurrentBook().getPath())) {
-                    setTitlePopupIcon(AppState.getInstance().outlineMode == AppState.OUTLINE_ONLY_HEADERS ? R.drawable.glyphicons_114_justify : R.drawable.glyphicons_114_justify_sub);
+                    setTitlePopupIcon(AppState.get().outlineMode == AppState.OUTLINE_ONLY_HEADERS ? R.drawable.glyphicons_114_justify : R.drawable.glyphicons_114_justify_sub);
                     titlePopupMenu = new MyPopupMenu(controller.getActivity(), null);
 
                     List<Integer> names = Arrays.asList(R.string.headings_only, R.string.heading_and_subheadings);
@@ -1800,7 +1800,7 @@ public class DragingDialogs {
 
                             @Override
                             public boolean onMenuItemClick(MenuItem item) {
-                                AppState.getInstance().outlineMode = actions.get(index);
+                                AppState.get().outlineMode = actions.get(index);
                                 setTitlePopupIcon(icons.get(index));
                                 showOutline.run();
                                 return false;
@@ -1953,32 +1953,32 @@ public class DragingDialogs {
 
                 CheckBox isScrollAnimation = (CheckBox) inflate.findViewById(R.id.isScrollAnimation);
                 isScrollAnimation.setVisibility(AppState.get().isAlwaysOpenAsMagazine ? View.VISIBLE : View.GONE);
-                isScrollAnimation.setChecked(AppState.getInstance().isScrollAnimation);
+                isScrollAnimation.setChecked(AppState.get().isScrollAnimation);
                 isScrollAnimation.setOnCheckedChangeListener(new OnCheckedChangeListener() {
 
                     @Override
                     public void onCheckedChanged(final CompoundButton buttonView, final boolean isChecked) {
-                        AppState.getInstance().isScrollAnimation = isChecked;
+                        AppState.get().isScrollAnimation = isChecked;
                     }
                 });
 
                 CheckBox isLoopAutoplay = (CheckBox) inflate.findViewById(R.id.isLoopAutoplay);
-                isLoopAutoplay.setChecked(AppState.getInstance().isLoopAutoplay);
+                isLoopAutoplay.setChecked(AppState.get().isLoopAutoplay);
                 isLoopAutoplay.setOnCheckedChangeListener(new OnCheckedChangeListener() {
 
                     @Override
                     public void onCheckedChanged(final CompoundButton buttonView, final boolean isChecked) {
-                        AppState.getInstance().isLoopAutoplay = isChecked;
+                        AppState.get().isLoopAutoplay = isChecked;
                     }
                 });
 
                 CheckBox isShowToolBar = (CheckBox) inflate.findViewById(R.id.isShowToolBar);
-                isShowToolBar.setChecked(AppState.getInstance().isShowToolBar);
+                isShowToolBar.setChecked(AppState.get().isShowToolBar);
                 isShowToolBar.setOnCheckedChangeListener(new OnCheckedChangeListener() {
 
                     @Override
                     public void onCheckedChanged(final CompoundButton buttonView, final boolean isChecked) {
-                        AppState.getInstance().isShowToolBar = isChecked;
+                        AppState.get().isShowToolBar = isChecked;
                         if (onRefresh != null) {
                             onRefresh.run();
                         }
@@ -2237,59 +2237,59 @@ public class DragingDialogs {
                 View inflate = inflater.inflate(R.layout.dialog_adv_preferences, null, false);
 
                 CheckBox isLoopAutoplay = (CheckBox) inflate.findViewById(R.id.isLoopAutoplay);
-                isLoopAutoplay.setChecked(AppState.getInstance().isLoopAutoplay);
+                isLoopAutoplay.setChecked(AppState.get().isLoopAutoplay);
                 isLoopAutoplay.setOnCheckedChangeListener(new OnCheckedChangeListener() {
 
                     @Override
                     public void onCheckedChanged(final CompoundButton buttonView, final boolean isChecked) {
-                        AppState.getInstance().isLoopAutoplay = isChecked;
+                        AppState.get().isLoopAutoplay = isChecked;
                     }
                 });
 
                 CheckBox isBrighrnessEnable = (CheckBox) inflate.findViewById(R.id.isBrighrnessEnable);
-                isBrighrnessEnable.setChecked(AppState.getInstance().isBrighrnessEnable);
+                isBrighrnessEnable.setChecked(AppState.get().isBrighrnessEnable);
                 isBrighrnessEnable.setOnCheckedChangeListener(new OnCheckedChangeListener() {
 
                     @Override
                     public void onCheckedChanged(final CompoundButton buttonView, final boolean isChecked) {
-                        AppState.getInstance().isBrighrnessEnable = isChecked;
+                        AppState.get().isBrighrnessEnable = isChecked;
                     }
                 });
 
                 CheckBox isRewindEnable = (CheckBox) inflate.findViewById(R.id.isRewindEnable);
-                isRewindEnable.setChecked(AppState.getInstance().isRewindEnable);
+                isRewindEnable.setChecked(AppState.get().isRewindEnable);
                 isRewindEnable.setOnCheckedChangeListener(new OnCheckedChangeListener() {
 
                     @Override
                     public void onCheckedChanged(final CompoundButton buttonView, final boolean isChecked) {
-                        AppState.getInstance().isRewindEnable = isChecked;
+                        AppState.get().isRewindEnable = isChecked;
                     }
                 });
 
                 final CustomSeek mouseWheelSpeed = (CustomSeek) inflate.findViewById(R.id.seekWheelSpeed);
                 mouseWheelSpeed.getTitleText().setSingleLine(false);
-                mouseWheelSpeed.init(1, 200, AppState.getInstance().mouseWheelSpeed);
+                mouseWheelSpeed.init(1, 200, AppState.get().mouseWheelSpeed);
                 mouseWheelSpeed.setOnSeekChanged(new IntegerResponse() {
 
                     @Override
                     public boolean onResultRecive(int result) {
-                        AppState.getInstance().mouseWheelSpeed = result;
+                        AppState.get().mouseWheelSpeed = result;
                         return false;
                     }
                 });
 
                 CheckBox isScrollAnimation = (CheckBox) inflate.findViewById(R.id.isScrollAnimation);
                 isScrollAnimation.setVisibility(AppState.get().isAlwaysOpenAsMagazine ? View.VISIBLE : View.GONE);
-                isScrollAnimation.setChecked(AppState.getInstance().isScrollAnimation);
+                isScrollAnimation.setChecked(AppState.get().isScrollAnimation);
                 isScrollAnimation.setOnCheckedChangeListener(new OnCheckedChangeListener() {
 
                     @Override
                     public void onCheckedChanged(final CompoundButton buttonView, final boolean isChecked) {
-                        AppState.getInstance().isScrollAnimation = isChecked;
+                        AppState.get().isScrollAnimation = isChecked;
                     }
                 });
 
-                if (AppState.getInstance().isAlwaysOpenAsMagazine) {
+                if (AppState.get().isAlwaysOpenAsMagazine) {
                     inflate.findViewById(R.id.onDoubleTapLayout).setVisibility(View.GONE);
                 } else {
                     // inflate.findViewById(R.id.onDoubleTapLayout).setVisibility(ExtUtils.isTextFomat(controller.getCurrentBook().getPath())
@@ -2299,55 +2299,55 @@ public class DragingDialogs {
                 }
 
                 CheckBox isVibration = (CheckBox) inflate.findViewById(R.id.isVibration);
-                isVibration.setChecked(AppState.getInstance().isVibration);
+                isVibration.setChecked(AppState.get().isVibration);
                 isVibration.setOnCheckedChangeListener(new OnCheckedChangeListener() {
 
                     @Override
                     public void onCheckedChanged(final CompoundButton buttonView, final boolean isChecked) {
-                        AppState.getInstance().isVibration = isChecked;
+                        AppState.get().isVibration = isChecked;
                     }
                 });
 
                 CheckBox isOLED = (CheckBox) inflate.findViewById(R.id.isOLED);
-                isOLED.setChecked(AppState.getInstance().isOLED);
+                isOLED.setChecked(AppState.get().isOLED);
                 isOLED.setOnCheckedChangeListener(new OnCheckedChangeListener() {
 
                     @Override
                     public void onCheckedChanged(final CompoundButton buttonView, final boolean isChecked) {
-                        AppState.getInstance().isOLED = isChecked;
+                        AppState.get().isOLED = isChecked;
                     }
                 });
 
                 CheckBox isLockPDF = (CheckBox) inflate.findViewById(R.id.isLockPDF);
-                isLockPDF.setChecked(AppState.getInstance().isLockPDF);
+                isLockPDF.setChecked(AppState.get().isLockPDF);
                 isLockPDF.setVisibility(controller.isTextFormat() ? View.GONE : View.VISIBLE);
                 isLockPDF.setOnCheckedChangeListener(new OnCheckedChangeListener() {
 
                     @Override
                     public void onCheckedChanged(final CompoundButton buttonView, final boolean isChecked) {
-                        AppState.getInstance().isLockPDF = isChecked;
+                        AppState.get().isLockPDF = isChecked;
                     }
                 });
 
                 CheckBox isCropPDF = (CheckBox) inflate.findViewById(R.id.isCropPDF);
-                isCropPDF.setChecked(AppState.getInstance().isCropPDF);
+                isCropPDF.setChecked(AppState.get().isCropPDF);
                 isCropPDF.setVisibility(controller.isTextFormat() ? View.GONE : View.VISIBLE);
                 isCropPDF.setOnCheckedChangeListener(new OnCheckedChangeListener() {
 
                     @Override
                     public void onCheckedChanged(final CompoundButton buttonView, final boolean isChecked) {
-                        AppState.getInstance().isCropPDF = isChecked;
+                        AppState.get().isCropPDF = isChecked;
                     }
                 });
 
                 CheckBox isCustomizeBgAndColors = (CheckBox) inflate.findViewById(R.id.isCustomizeBgAndColors);
                 isCustomizeBgAndColors.setVisibility(controller.isTextFormat() ? View.GONE : View.VISIBLE);
-                isCustomizeBgAndColors.setChecked(AppState.getInstance().isCustomizeBgAndColors);
+                isCustomizeBgAndColors.setChecked(AppState.get().isCustomizeBgAndColors);
                 isCustomizeBgAndColors.setOnCheckedChangeListener(new OnCheckedChangeListener() {
 
                     @Override
                     public void onCheckedChanged(final CompoundButton buttonView, final boolean isChecked) {
-                        AppState.getInstance().isCustomizeBgAndColors = isChecked;
+                        AppState.get().isCustomizeBgAndColors = isChecked;
                     }
                 });
 
@@ -2378,22 +2378,22 @@ public class DragingDialogs {
                 isSaveAnnotatationsAutomatically.setVisibility(!AppState.get().isAlwaysOpenAsMagazine && BookType.PDF.is(controller.getCurrentBook().getPath()) ? View.VISIBLE : View.GONE);
 
                 CheckBox highlightByLetters = (CheckBox) inflate.findViewById(R.id.highlightByLetters);
-                highlightByLetters.setChecked(AppState.getInstance().selectingByLetters);
+                highlightByLetters.setChecked(AppState.get().selectingByLetters);
                 highlightByLetters.setOnCheckedChangeListener(new OnCheckedChangeListener() {
 
                     @Override
                     public void onCheckedChanged(final CompoundButton buttonView, final boolean isChecked) {
-                        AppState.getInstance().selectingByLetters = isChecked;
+                        AppState.get().selectingByLetters = isChecked;
                     }
                 });
 
                 CheckBox isCutRTL = (CheckBox) inflate.findViewById(R.id.isCutRTL);
-                isCutRTL.setChecked(AppState.getInstance().isCutRTL);
+                isCutRTL.setChecked(AppState.get().isCutRTL);
                 isCutRTL.setOnCheckedChangeListener(new OnCheckedChangeListener() {
 
                     @Override
                     public void onCheckedChanged(final CompoundButton buttonView, final boolean isChecked) {
-                        AppState.getInstance().isCutRTL = isChecked;
+                        AppState.get().isCutRTL = isChecked;
                     }
                 });
 
@@ -2578,7 +2578,7 @@ public class DragingDialogs {
 
                     @Override
                     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                        AppState.getInstance().doubleClickAction = doubleTapIDS.get(position);
+                        AppState.get().doubleClickAction = doubleTapIDS.get(position);
 
                         try {
                             TextView textView = (TextView) doubleTapSpinner.getChildAt(0);
@@ -2593,7 +2593,7 @@ public class DragingDialogs {
 
                     }
                 });
-                doubleTapSpinner.setSelection(doubleTapIDS.indexOf(AppState.getInstance().doubleClickAction));
+                doubleTapSpinner.setSelection(doubleTapIDS.indexOf(AppState.get().doubleClickAction));
 
                 final TextView tapzoneCustomize = (TextView) inflate.findViewById(R.id.tapzoneCustomize);
                 TxtUtils.underlineTextView(tapzoneCustomize);
@@ -3437,7 +3437,7 @@ public class DragingDialogs {
                 });
 
                 final CustomSeek fontSizeSp = (CustomSeek) inflate.findViewById(R.id.fontSizeSp);
-                fontSizeSp.init(10, 70, AppState.getInstance().fontSizeSp);
+                fontSizeSp.init(10, 70, AppState.get().fontSizeSp);
                 fontSizeSp.setOnSeekChanged(new IntegerResponse() {
 
                     @Override
@@ -3446,7 +3446,7 @@ public class DragingDialogs {
                         return false;
                     }
                 });
-                fontSizeSp.setValueText("" + AppState.getInstance().fontSizeSp);
+                fontSizeSp.setValueText("" + AppState.get().fontSizeSp);
 
                 inflate.findViewById(R.id.fontSizeLayout).setVisibility(ExtUtils.isTextFomat(controller.getCurrentBook().getPath()) ? View.VISIBLE : View.GONE);
                 inflate.findViewById(R.id.fontNameSelectionLayout).setVisibility(ExtUtils.isTextFomat(controller.getCurrentBook().getPath()) ? View.VISIBLE : View.GONE);
@@ -3577,7 +3577,7 @@ public class DragingDialogs {
 
                                 @Override
                                 public boolean onMenuItemClick(MenuItem item) {
-                                    AppState.getInstance().orientation = DocumentController.orientationIds.get(j);
+                                    AppState.get().orientation = DocumentController.orientationIds.get(j);
                                     screenOrientation.setText(DocumentController.orientationTexts.get(j));
                                     TxtUtils.underlineTextView(screenOrientation);
                                     DocumentController.doRotation(controller.getActivity());
@@ -3647,21 +3647,21 @@ public class DragingDialogs {
                         });
 
                         final CustomSeek blueLightAlpha = (CustomSeek) inflate.findViewById(R.id.blueLightAlpha);
-                        blueLightAlpha.init(0, 99, AppState.getInstance().blueLightAlpha);
+                        blueLightAlpha.init(0, 99, AppState.get().blueLightAlpha);
                         blueLightAlpha.setOnSeekChanged(new IntegerResponse() {
 
                             @Override
                             public boolean onResultRecive(int result) {
                                 AppState.get().isEnableBlueFilter = true;
                                 AppState.get().blueLightAlpha = result;
-                                blueLightAlpha.setValueText("" + AppState.getInstance().blueLightAlpha + "%");
+                                blueLightAlpha.setValueText("" + AppState.get().blueLightAlpha + "%");
                                 if (onRefresh != null) {
                                     onRefresh.run();
                                 }
                                 return false;
                             }
                         });
-                        blueLightAlpha.setValueText("" + AppState.getInstance().blueLightAlpha + "%");
+                        blueLightAlpha.setValueText("" + AppState.get().blueLightAlpha + "%");
 
                         builder.setView(inflate);
 
@@ -3699,12 +3699,12 @@ public class DragingDialogs {
                     }
                 });
 
-                ((CheckBox) inflate.findViewById(R.id.isRememberDictionary)).setChecked(AppState.getInstance().isRememberDictionary);
+                ((CheckBox) inflate.findViewById(R.id.isRememberDictionary)).setChecked(AppState.get().isRememberDictionary);
                 ((CheckBox) inflate.findViewById(R.id.isRememberDictionary)).setOnCheckedChangeListener(new OnCheckedChangeListener() {
 
                     @Override
                     public void onCheckedChanged(final CompoundButton buttonView, final boolean isChecked) {
-                        AppState.getInstance().isRememberDictionary = isChecked;
+                        AppState.get().isRememberDictionary = isChecked;
                     }
                 });
 

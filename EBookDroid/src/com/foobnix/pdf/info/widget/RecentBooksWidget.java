@@ -243,7 +243,7 @@ public class RecentBooksWidget extends AppWidgetProvider {
 		if (intent.getAction().equals(ACTION_MY)) {
 
 			String className = VerticalViewActivity.class.getName();
-			if (AppState.getInstance().isAlwaysOpenAsMagazine) {
+            if (AppState.get().isAlwaysOpenAsMagazine) {
 				className = HorizontalViewActivity.class.getName();
 			}
 
@@ -352,7 +352,7 @@ public class RecentBooksWidget extends AppWidgetProvider {
 		}
 
 		String className = VerticalViewActivity.class.getName();
-		if (AppState.getInstance().isAlwaysOpenAsMagazine) {
+        if (AppState.get().isAlwaysOpenAsMagazine) {
 			className = HorizontalViewActivity.class.getName();
 		}
 		remoteViews.removeAllViews(R.id.linearLayout);

@@ -165,7 +165,7 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         BrightnessHelper.applyBrigtness(this);
 
-        if (AppState.getInstance().isInvert) {
+        if (AppState.get().isInvert) {
             setTheme(R.style.StyledIndicatorsWhite);
         } else {
             setTheme(R.style.StyledIndicatorsBlack);
@@ -757,7 +757,7 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
                     testScreenshots();
 
                     isInitPosistion = Dips.screenHeight() > Dips.screenWidth();
-                    isInitOrientation = AppState.getInstance().orientation;
+                    isInitOrientation = AppState.get().orientation;
 
                     updateIconMode();
 
@@ -1521,7 +1521,7 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
         handler.removeCallbacksAndMessages(null);
 
         final boolean currentPosistion = Dips.screenHeight() > Dips.screenWidth();
-        if (ExtUtils.isTextFomat(getIntent()) && isInitOrientation == AppState.getInstance().orientation) {
+        if (ExtUtils.isTextFomat(getIntent()) && isInitOrientation == AppState.get().orientation) {
 
             if (rotatoinDialog != null) {
                 try {
@@ -1551,7 +1551,7 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
             onRotateScreen();
         }
 
-        isInitOrientation = AppState.getInstance().orientation;
+        isInitOrientation = AppState.get().orientation;
 
     }
 

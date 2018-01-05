@@ -20,7 +20,6 @@ import com.foobnix.pdf.info.wrapper.AppState;
 import com.foobnix.pdf.info.wrapper.DocumentController;
 import com.foobnix.pdf.search.view.CloseAppDialog;
 import com.foobnix.sys.TempHolder;
-import com.foobnix.tts.TTSEngine;
 import com.foobnix.tts.TTSNotification;
 import com.foobnix.ui2.FileMetaCore;
 import com.foobnix.ui2.MainTabs2;
@@ -86,11 +85,11 @@ public class VerticalViewActivity extends AbstractActionActivity<VerticalViewAct
     @Override
     public void onCreate(final Bundle savedInstanceState) {
         intetrstialTimeoutSec = ADS.FULL_SCREEN_TIMEOUT_SEC;
-        AppState.getInstance().load(this);
+        AppState.get().load(this);
 
         FileMetaCore.checkOrCreateMetaInfo(this);
 
-        if (AppState.getInstance().isRememberMode && AppState.getInstance().isAlwaysOpenAsMagazine) {
+        if (AppState.get().isRememberMode && AppState.get().isAlwaysOpenAsMagazine) {
             super.onCreate(savedInstanceState);
             finish();
             ExtUtils.showDocument(this, getIntent().getData());
@@ -98,10 +97,10 @@ public class VerticalViewActivity extends AbstractActionActivity<VerticalViewAct
         } else {
             if (getIntent().getData() != null) {
                 final BookSettings bs = SettingsManager.getBookSettings(getIntent().getData().getPath());
-                // AppState.getInstance().setNextScreen(bs.isNextScreen);
+                // AppState.get().setNextScreen(bs.isNextScreen);
                 if (bs != null) {
-                    // AppState.getInstance().isLocked = bs.isLocked;
-                    AppState.getInstance().autoScrollSpeed = bs.speed;
+                    // AppState.get().isLocked = bs.isLocked;
+                    AppState.get().autoScrollSpeed = bs.speed;
                     AppState.get().isCut = bs.isTextFormat() ? false : bs.splitPages;
                     AppState.get().isCrop = bs.cropPages;
                     AppState.get().isDouble = false;
@@ -121,7 +120,7 @@ public class VerticalViewActivity extends AbstractActionActivity<VerticalViewAct
 
             BrightnessHelper.applyBrigtness(this);
 
-            if (AppState.getInstance().isInvert) {
+            if (AppState.get().isInvert) {
                 setTheme(R.style.StyledIndicatorsWhite);
             } else {
                 setTheme(R.style.StyledIndicatorsBlack);
@@ -164,7 +163,7 @@ public class VerticalViewActivity extends AbstractActionActivity<VerticalViewAct
         super.onResume();
         DocumentController.doRotation(this);
 
-        if (AppState.getInstance().isFullScrean()) {
+        if (AppState.get().isFullScreen) {
             Keyboards.hideNavigation(this);
         }
         getController().onResume();
@@ -251,7 +250,7 @@ public class VerticalViewActivity extends AbstractActionActivity<VerticalViewAct
         super.onConfigurationChanged(newConfig);
         final boolean currentPosistion = Dips.screenHeight() > Dips.screenWidth();
 
-        if (ExtUtils.isTextFomat(getIntent()) && isInitOrientation == AppState.getInstance().orientation) {
+        if (ExtUtils.isTextFomat(getIntent()) && isInitOrientation == AppState.get().orientation) {
 
             if (rotatoinDialog != null) {
                 try {
@@ -279,7 +278,7 @@ public class VerticalViewActivity extends AbstractActionActivity<VerticalViewAct
             doConifChange();
         }
 
-        isInitOrientation = AppState.getInstance().orientation;
+        isInitOrientation = AppState.get().orientation;
     }
 
     public void doConifChange() {
@@ -313,7 +312,7 @@ public class VerticalViewActivity extends AbstractActionActivity<VerticalViewAct
         super.onPostCreate(savedInstanceState);
         getController().afterPostCreate();
         isInitPosistion = Dips.screenHeight() > Dips.screenWidth();
-        isInitOrientation = AppState.getInstance().orientation;
+        isInitOrientation = AppState.get().orientation;
     }
 
     @Override

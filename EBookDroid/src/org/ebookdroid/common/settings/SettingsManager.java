@@ -178,7 +178,7 @@ public class SettingsManager {
         lock.readLock().lock();
         try {
             if (current != null) {
-                current.speed = AppState.getInstance().autoScrollSpeed;
+                current.speed = AppState.get().autoScrollSpeed;
                 db.storeBookSettings(current);
             }
         } finally {

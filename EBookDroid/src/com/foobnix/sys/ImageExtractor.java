@@ -138,7 +138,7 @@ public class ImageExtractor implements ImageDownloader {
             LOG.d("generalCoverWithEffect", pageUrl.getWidth(), cover.getWidth(), " --- ", pageUrl.getHeight(), cover.getHeight());
             ByteArrayOutputStream out = new ByteArrayOutputStream();
             Bitmap res;
-            if (AppState.getInstance().isBookCoverEffect || pageUrl.getPage() == COVER_PAGE_WITH_EFFECT) {
+            if (AppState.get().isBookCoverEffect || pageUrl.getPage() == COVER_PAGE_WITH_EFFECT) {
                 res = MagicHelper.scaleCenterCrop(cover, pageUrl.getHeight(), pageUrl.getWidth(), !pageUrl.tempWithWatermakr);
                 res.compress(CompressFormat.PNG, 90, out);
             } else {
@@ -438,7 +438,7 @@ public class ImageExtractor implements ImageDownloader {
             LOG.e(e);
             return messageFile("#error", "");
         } catch (OutOfMemoryError e2) {
-            AppState.outOfMemoryHack();
+            AppState.get().pagesInMemory = 1;
             return messageFile("#error", "");
         } finally {
             // sp.edit().remove("" + imageUri.hashCode()).commit();

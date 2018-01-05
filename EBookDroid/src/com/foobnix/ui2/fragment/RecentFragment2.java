@@ -147,7 +147,7 @@ public class RecentFragment2 extends UIFragment<FileMeta> {
 
                 @Override
                 public boolean onMenuItemClick(MenuItem item) {
-                    AppState.getInstance().recentMode = actions.get(index);
+                    AppState.get().recentMode = actions.get(index);
                     onGridList.setImageResource(icons.get(index));
                     onGridList();
                     return false;

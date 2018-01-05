@@ -56,7 +56,7 @@ public class RecentUpates {
                     Bitmap image = ImageLoader.getInstance().loadImageSync(url, IMG.displayImageOptions);
 
                     Intent lastBookIntent = new Intent(c, VerticalViewActivity.class);
-                    if (AppState.getInstance().isAlwaysOpenAsMagazine) {
+                    if (AppState.get().isAlwaysOpenAsMagazine) {
                         lastBookIntent = new Intent(c, HorizontalViewActivity.class);
                     }
                     lastBookIntent.setAction(Intent.ACTION_VIEW);

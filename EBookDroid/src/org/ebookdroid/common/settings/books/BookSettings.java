@@ -27,7 +27,7 @@ public class BookSettings implements CurrentPageListener {
     public float offsetX;
     public float offsetY;
 
-    public int speed = AppState.getInstance().autoScrollSpeed;
+    public int speed = AppState.get().autoScrollSpeed;
 
     public boolean autoLevels;
     private int pages;

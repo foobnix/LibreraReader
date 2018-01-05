@@ -492,7 +492,7 @@ public class BrowseFragment2 extends UIFragment<FileMeta> {
 
                 @Override
                 public boolean onMenuItemClick(MenuItem item) {
-                    AppState.getInstance().broseMode = actions.get(index);
+                    AppState.get().broseMode = actions.get(index);
                     onGridList.setImageResource(icons.get(index));
                     onGridList();
                     return false;

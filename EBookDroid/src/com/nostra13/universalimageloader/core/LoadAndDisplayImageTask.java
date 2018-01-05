@@ -263,7 +263,7 @@ final class LoadAndDisplayImageTask implements Runnable, IoUtils.CopyListener {
             fireFailEvent(FailType.IO_ERROR, e);
         } catch (OutOfMemoryError e) {
             L.e(e);
-            AppState.outOfMemoryHack();
+            AppState.get().pagesInMemory = 1;
             fireFailEvent(FailType.OUT_OF_MEMORY, e);
         } catch (Throwable e) {
             L.e(e);

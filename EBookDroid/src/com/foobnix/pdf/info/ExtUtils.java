@@ -521,7 +521,7 @@ public class ExtUtils {
 
         ImageLoader.getInstance().clearAllTasks();
 
-        if (AppState.getInstance().isRememberMode) {
+        if (AppState.get().isRememberMode) {
             showDocumentWithoutDialog(c, file, page);
             return true;
         }
@@ -640,8 +640,8 @@ public class ExtUtils {
             @Override
             public void onClick(View v) {
                 dialog.dismiss();
-                AppState.getInstance().isAlwaysOpenAsMagazine = false;
-                AppState.getInstance().isMusicianMode = false;
+                AppState.get().isAlwaysOpenAsMagazine = false;
+                AppState.get().isMusicianMode = false;
                 showDocumentWithoutDialog(c, file, page);
             }
         });
@@ -650,8 +650,8 @@ public class ExtUtils {
             @Override
             public void onClick(View v) {
                 dialog.dismiss();
-                AppState.getInstance().isAlwaysOpenAsMagazine = true;
-                AppState.getInstance().isMusicianMode = false;
+                AppState.get().isAlwaysOpenAsMagazine = true;
+                AppState.get().isMusicianMode = false;
                 showDocumentWithoutDialog(c, file, page);
             }
         });
@@ -661,8 +661,8 @@ public class ExtUtils {
             @Override
             public void onClick(View v) {
                 dialog.dismiss();
-                AppState.getInstance().isAlwaysOpenAsMagazine = false;
-                AppState.getInstance().isMusicianMode = true;
+                AppState.get().isAlwaysOpenAsMagazine = false;
+                AppState.get().isMusicianMode = true;
                 showDocumentWithoutDialog(c, file, page);
             }
         });
@@ -675,7 +675,7 @@ public class ExtUtils {
 
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                AppState.getInstance().isRememberMode = isChecked;
+                AppState.get().isRememberMode = isChecked;
             }
         });
 
@@ -714,7 +714,7 @@ public class ExtUtils {
         }
         LOG.d("showDocument", uri.getPath());
 
-        if (AppState.getInstance().isAlwaysOpenAsMagazine) {
+        if (AppState.get().isAlwaysOpenAsMagazine) {
             openHorizontalView(c, new File(uri.getPath()), page - 1);
             return;
         }
@@ -1068,13 +1068,13 @@ public class ExtUtils {
                         @Override
                         public void run() {
                             if (a instanceof VerticalViewActivity) {
-                                AppState.getInstance().isAlwaysOpenAsMagazine = false;
-                                AppState.getInstance().isMusicianMode = false;
+                                AppState.get().isAlwaysOpenAsMagazine = false;
+                                AppState.get().isMusicianMode = false;
                                 showDocumentWithoutDialog(a, (File) result, page);
 
                             } else if (a instanceof HorizontalViewActivity) {
-                                AppState.getInstance().isAlwaysOpenAsMagazine = true;
-                                AppState.getInstance().isMusicianMode = false;
+                                AppState.get().isAlwaysOpenAsMagazine = true;
+                                AppState.get().isMusicianMode = false;
                                 showDocumentWithoutDialog(a, (File) result, page);
                             } else {
                                 showDocument(a, (File) result);

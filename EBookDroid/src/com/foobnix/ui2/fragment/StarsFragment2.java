@@ -121,7 +121,7 @@ public class StarsFragment2 extends UIFragment<FileMeta> {
 
                 @Override
                 public boolean onMenuItemClick(MenuItem item) {
-                    AppState.getInstance().starsMode = actions.get(index);
+                    AppState.get().starsMode = actions.get(index);
                     image.setImageResource(icons.get(index));
 
                     onGridList();
