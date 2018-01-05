@@ -15,6 +15,7 @@ import com.foobnix.android.utils.Apps;
 import com.foobnix.android.utils.Dips;
 import com.foobnix.android.utils.LOG;
 import com.foobnix.android.utils.MemoryUtils;
+import com.foobnix.android.utils.Objects;
 import com.foobnix.android.utils.Objects.IgnoreHashCode;
 import com.foobnix.opds.SamlibOPDS;
 import com.foobnix.pdf.info.AppsConfig;
@@ -492,11 +493,14 @@ public class AppState {
     public String proxyPassword = "";
     public String proxyType = PROXY_HTTP;
 
-    public String nameVerticalMode;
-    public String nameHorizontalMode;
-    public String nameMusicianMode;
+    public String nameVerticalMode = "";
+    public String nameHorizontalMode = "";
+    public String nameMusicianMode = "";
 
     public Set<String> myAutoComplete = new HashSet<String>();
+
+    @IgnoreHashCode
+    public int hashCode = 0;
 
     public List<Integer> getNextKeys() {
         return isReverseKeys ? prevKeys : nextKeys;
@@ -618,6 +622,11 @@ public class AppState {
     }
 
     public void loadIn(final Context a) {
+        sp = a.getSharedPreferences(ExportSettingsManager.PREFIX_PDF, Context.MODE_PRIVATE);
+        Objects.loadFromSp(this, sp);
+    }
+
+    public void loadIn_(final Context a) {
         sp = a.getSharedPreferences(ExportSettingsManager.PREFIX_PDF, Context.MODE_PRIVATE);
 
         isCropBookCovers = sp.getBoolean("isCropBookCovers", isCropBookCovers);
@@ -876,6 +885,25 @@ public class AppState {
     }
 
     public void saveIn(final Context a) {
+        if (a == null) {
+            return;
+        }
+        int currentHash = Objects.hashCode(AppState.get(), false);
+        if (currentHash == hashCode) {
+            LOG.d("Objects", "Ignore save hashCode the same");
+            return;
+        }
+        sp = a.getSharedPreferences(ExportSettingsManager.PREFIX_PDF, Context.MODE_PRIVATE);
+        hashCode = currentHash;
+        Objects.saveToSP(AppState.get(), sp);
+
+        AppState o2 = new AppState();
+        Objects.loadFromSp(o2, sp);
+
+        Objects.compareObjects(AppState.get(), o2);
+    }
+
+    public void saveIn_old(final Context a) {
         if (a == null) {
             return;
         }

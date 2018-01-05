@@ -5,6 +5,11 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.reflect.Field;
 import java.lang.reflect.Modifier;
 
+import com.foobnix.pdf.info.wrapper.AppState;
+
+import android.content.SharedPreferences;
+import android.content.SharedPreferences.Editor;
+
 public class Objects {
     static String TAG = "Objects";
 
@@ -13,29 +18,133 @@ public class Objects {
 
     }
 
-    public static int hashCode(Object o) {
-        StringBuilder res = new StringBuilder();
+    public static void saveToSP(Object obj, SharedPreferences sp) {
+        LOG.d(TAG, "saveToSP");
 
-        for (Field f : o.getClass().getDeclaredFields()) {
+        Editor edit = sp.edit();
+        for (final Field f : obj.getClass().getDeclaredFields()) {
             if (Modifier.isStatic(f.getModifiers()) || Modifier.isPrivate(f.getModifiers())) {
                 continue;
             }
-            if (f.isAnnotationPresent(IgnoreHashCode.class)) {
-                continue;
-            }
-            if (f.isAnnotationPresent(IgnoreHashCode.class)) {
-                LOG.d("Objects", "Ignore", f.getName());
-                continue;
-            }
             try {
-                res.append("" + f.get(o));
+
+                LOG.d(TAG, "saveToSP", f.getType(), f.getName(), f.get(obj));
+
+                if (f.getType().equals(int.class)) {
+                    edit.putInt(f.getName(), f.getInt(obj));
+                }
+
+                if (f.getType().equals(String.class)) {
+                    edit.putString(f.getName(), f.get(obj).toString());
+                }
+
+                if (f.getType().equals(float.class)) {
+                    edit.putFloat(f.getName(), f.getFloat(obj));
+                }
+
+                if (f.getType().equals(long.class)) {
+                    edit.putLong(f.getName(), f.getLong(obj));
+                }
+
+                if (f.getType().equals(boolean.class)) {
+                    edit.putBoolean(f.getName(), f.getBoolean(obj));
+                }
+
+
             } catch (Exception e) {
+                LOG.e(e);
+            }
+        }
+        edit.commit();
+    }
+
+    public static void loadFromSp(Object obj, SharedPreferences sp) {
+
+        for (final Field f : obj.getClass().getDeclaredFields()) {
+            if (Modifier.isStatic(f.getModifiers()) || Modifier.isPrivate(f.getModifiers())) {
+                continue;
+            }
+
+            try {
+                if (f.getType().equals(int.class)) {
+                    f.setInt(obj, sp.getInt(f.getName(), f.getInt(obj)));
+                }
+
+                if (f.getType().equals(String.class)) {
+                    f.set(obj, sp.getString(f.getName(), "" + f.get(obj)));
+                }
+
+                if (f.getType().equals(float.class)) {
+                    f.setFloat(obj, sp.getFloat(f.getName(), f.getFloat(obj)));
+                }
+
+                if (f.getType().equals(long.class)) {
+                    f.setLong(obj, sp.getLong(f.getName(), f.getLong(obj)));
+                }
+                if (f.getType().equals(boolean.class)) {
+                    f.setBoolean(obj, sp.getBoolean(f.getName(), f.getBoolean(obj)));
+                }
+
+                LOG.d(TAG, "loadFromSp", f.getType(), f.getName(), f.get(obj));
+
+            } catch (Exception e) {
+                LOG.e(e);
+            }
+        }
+
+    }
+
+    public static int hashCode(Object o) {
+        return hashCode(o, true);
+    }
+
+    static String hashStringID = "hashCode";
+    public static int hashCode(Object obj, boolean ignoreSomeHash) {
+        StringBuilder res = new StringBuilder();
+
+        for (Field f : obj.getClass().getDeclaredFields()) {
+            if (Modifier.isStatic(f.getModifiers()) || Modifier.isPrivate(f.getModifiers())) {
+                continue;
+            }
+            if (ignoreSomeHash && f.isAnnotationPresent(IgnoreHashCode.class)) {
+                continue;
+            }
+            if (f.getName().equals(hashStringID)) {
+                continue;
+            }
+
+            try {
+                res.append(f.get(obj));
+            } catch (Exception e) {
+                LOG.e(e);
             }
 
         }
         int hashCode = res.toString().hashCode();
         LOG.d(TAG, "hashCode", hashCode);
         return hashCode;
+    }
+
+    public static void compareObjects(Object obj1, AppState obj2) {
+        for (Field f : obj1.getClass().getDeclaredFields()) {
+            if (Modifier.isStatic(f.getModifiers()) || Modifier.isPrivate(f.getModifiers())) {
+                continue;
+            }
+
+            try {
+
+                String value1 = "" + f.get(obj1);
+                String value2 = "" + f.get(obj2);
+                if (!value1.equals(value2)) {
+                    LOG.d(TAG, "compareObjects not same", f.getName(), value1, value2);
+                }
+
+            } catch (Exception e) {
+                LOG.e(e);
+            }
+
+        }
+
     }
 
 }
