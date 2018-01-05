@@ -586,10 +586,6 @@ public class AppState {
 
         }
 
-        nameVerticalMode = c.getString(R.string.mode_vertical);
-        nameHorizontalMode = c.getString(R.string.mode_horizontally);
-        nameMusicianMode = c.getString(R.string.mode_musician);
-
         LOG.d("defaults", AppsConfig.IS_CLASSIC, AppState.get().tabsOrder);
     }
 
@@ -598,6 +594,9 @@ public class AppState {
             if (!isLoaded) {
                 AppState.get().isInkMode = Dips.isEInk(a);
                 AppState.get().bolderTextOnImage = Dips.isEInk(a);
+                nameVerticalMode = a.getString(R.string.mode_vertical);
+                nameHorizontalMode = a.getString(R.string.mode_horizontally);
+                nameMusicianMode = a.getString(R.string.mode_musician);
                 defaults(a);
                 loadIn(a);
                 BookCSS.get().load(a);
