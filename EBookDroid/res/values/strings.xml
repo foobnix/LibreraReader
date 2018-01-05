@@ -433,8 +433,9 @@
    <string name="background_color_on_images_the_same_as_page_background">Background color on images the same as page background</string>
    <string name="block_page_movement_horizontally">Block page movement horizontally</string>
    <string name="search_history_and_autocomplete">Search history and autocomplete</string>
-   <string name="vertically">Advanced (vertical)</string>
-   <string name="horizontally">Easy (horizontal)</string>
+   <string name="mode_vertical">Old scroll (vertical)</string>
+   <string name="mode_horizontally">New book (horizontal)</string>
+   <string name="mode_musician">Musician (rewinding music notes)</string>
    <string name="server">Server</string>
    <string name="port">Port</string>
    <string name="user">User</string>

@@ -432,8 +432,6 @@
    <string name="remember_reading_mode">Husk lesemodus</string>
    <string name="background_color_on_images_the_same_as_page_background">Bakgrunnsfarge på bilder det samme som sidebakgrunn</string>
    <string name="block_page_movement_horizontally">Blokker sidebevegelsen horisontalt</string>
-   <string name="vertically">Avansert (vertikal)</string>
-   <string name="horizontally">Enkel (horisontal)</string>
    <string name="search_history_and_autocomplete">Søkehistorikk og autofullføring</string>
    <string name="server">Server</string>
    <string name="port">Havn</string>
@@ -444,4 +442,7 @@
    <string name="other_settings">Andre innstillinger</string>
    <string name="display_large_book_covers_in_the_catalog">Vis store bokomslag i katalogen</string>
    <string name="edit_names">Rediger navn</string>
+   <string name="mode_vertical">Gamle rulle (vertikal)</string>
+   <string name="mode_horizontally">Ny bok (horisontal)</string>
+   <string name="mode_musician">Musiker (spoling musikknotater)</string>
 </resources>

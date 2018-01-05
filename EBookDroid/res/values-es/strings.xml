@@ -432,8 +432,6 @@
    <string name="remember_reading_mode">Recuerde el modo de lectura</string>
    <string name="background_color_on_images_the_same_as_page_background">Color de fondo en las imágenes lo mismo que el fondo de la página</string>
    <string name="block_page_movement_horizontally">Bloquear el movimiento de la página horizontalmente</string>
-   <string name="vertically">Avanzado (vertical)</string>
-   <string name="horizontally">Fácil (horizontal)</string>
    <string name="search_history_and_autocomplete">Historial de búsqueda y autocompletar</string>
    <string name="server">Servidor</string>
    <string name="port">Puerto</string>
@@ -444,4 +442,7 @@
    <string name="other_settings">Otros ajustes</string>
    <string name="display_large_book_covers_in_the_catalog">Muestra grandes portadas de libros en el catálogo</string>
    <string name="edit_names">Editar nombres</string>
+   <string name="mode_vertical">Desplazamiento antiguo (vertical)</string>
+   <string name="mode_horizontally">Nuevo libro (horizontal)</string>
+   <string name="mode_musician">Músico (rebobinar notas musicales)</string>
 </resources>

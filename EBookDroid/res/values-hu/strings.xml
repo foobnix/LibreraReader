@@ -307,8 +307,8 @@
    <string name="document_converter_online_">Dokumentum átalakító (online)</string>
    <string name="in_the_author_s_name_first_the_surname">A szerző nevében először a vezetéknevet</string>
    <string name="remind_about_rest_every">Emlékeztessen a pihenésre</string>
-   <string name="minutes">percben</string>
-   <string name="seconds">másodpercben</string>
+   <string name="minutes">Percben</string>
+   <string name="seconds">Másodpercben</string>
    <string name="remind_msg">Kérjük, pihentesse szemeit és tartson egy kis szünetet.</string>
    <string name="automatic_page_flipping">Automatikus lapozás</string>
    <string name="start">Indítás</string>
@@ -433,8 +433,6 @@
    <string name="background_color_on_images_the_same_as_page_background">A kép háttérszíne megegyezik az oldal hátterével</string>
    <string name="block_page_movement_horizontally">Az oldal vízszintes mozgatásának blokkolása</string>
    <string name="search_history_and_autocomplete">Keresési előzmények és automatikus kiegészítés</string>
-   <string name="vertically">Speciális (függőleges)</string>
-   <string name="horizontally">Egyszerű (vízszintes)</string>
    <string name="server">Szerver</string>
    <string name="port">Port</string>
    <string name="user">Felhasználó</string>
@@ -444,4 +442,7 @@
    <string name="other_settings">Egyéb beállitások</string>
    <string name="display_large_book_covers_in_the_catalog">Nagy könyvborítók megjelenítése a katalógusban</string>
    <string name="edit_names">Nevek szerkesztése</string>
+   <string name="mode_vertical">Old scroll (függőleges)</string>
+   <string name="mode_horizontally">Új könyv (vízszintes)</string>
+   <string name="mode_musician">Zenész (zeneszámok visszafordítása)</string>
 </resources>

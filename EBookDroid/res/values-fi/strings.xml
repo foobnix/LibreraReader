@@ -432,8 +432,6 @@
    <string name="remember_reading_mode">Muista lukutila</string>
    <string name="background_color_on_images_the_same_as_page_background">Kuvien taustaväri on sama kuin sivun taustalla</string>
    <string name="block_page_movement_horizontally">Estää sivun liikkuminen vaakasuunnassa</string>
-   <string name="vertically">Kehittynyt (pystysuora)</string>
-   <string name="horizontally">Helppo (horisontaalinen)</string>
    <string name="search_history_and_autocomplete">Hakuhistoria ja automaattinen täydennys</string>
    <string name="server">Server</string>
    <string name="port">Portti</string>
@@ -444,4 +442,7 @@
    <string name="other_settings">Muut asetukset</string>
    <string name="display_large_book_covers_in_the_catalog">Näytä suuret kirjakuoret luettelossa</string>
    <string name="edit_names">Muokkaa nimiä</string>
+   <string name="mode_vertical">Vanha vieritys (pystysuora)</string>
+   <string name="mode_horizontally">Uusi kirja (horisontaalinen)</string>
+   <string name="mode_musician">Muusikko (musiikkitiedostojen kelaaminen uudelleen)</string>
 </resources>

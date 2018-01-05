@@ -432,8 +432,6 @@
    <string name="remember_reading_mode">Okuma modunu hatırla</string>
    <string name="background_color_on_images_the_same_as_page_background">Resimlerdeki arka plan rengi, sayfa arka planıyla aynı</string>
    <string name="block_page_movement_horizontally">Sayfa hareketini yatay olarak engelle</string>
-   <string name="vertically">Gelişmiş (dikey)</string>
-   <string name="horizontally">Kolay (yatay)</string>
    <string name="search_history_and_autocomplete">Arama geçmişi ve otomatik tamamlama</string>
    <string name="server">Sunucu</string>
    <string name="port">Liman</string>
@@ -444,4 +442,7 @@
    <string name="other_settings">Diğer ayarlar</string>
    <string name="display_large_book_covers_in_the_catalog">Katalogda büyük kitap kapakları görüntüle</string>
    <string name="edit_names">İsimleri düzenle</string>
+   <string name="mode_vertical">Eski kaydırma (dikey)</string>
+   <string name="mode_horizontally">Yeni kitap (yatay)</string>
+   <string name="mode_musician">Müzisyen (müzik notalarını geri sarma)</string>
 </resources>

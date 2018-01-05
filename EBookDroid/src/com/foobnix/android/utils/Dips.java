@@ -15,6 +15,10 @@ import android.view.Display;
 import android.view.WindowManager;
 
 public class Dips {
+
+    public final static int DP_5 = Dips.dpToPx(5);
+    public final static int DP_10 = Dips.dpToPx(10);
+
     private static WindowManager wm;
     static Context context;
 

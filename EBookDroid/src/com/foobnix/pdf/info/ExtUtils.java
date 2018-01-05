@@ -65,6 +65,7 @@ import android.support.v4.os.EnvironmentCompat;
 import android.text.format.DateFormat;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.View.OnLongClickListener;
 import android.webkit.MimeTypeMap;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
@@ -547,6 +548,28 @@ public class ExtUtils {
 
         final TextView editNames = (TextView) view.findViewById(R.id.editNames);
         TxtUtils.underlineTextView(editNames);
+
+        editNames.setOnLongClickListener(new OnLongClickListener() {
+
+            @Override
+            public boolean onLongClick(View v) {
+                AppState.get().nameVerticalMode = c.getString(R.string.mode_vertical);
+                AppState.get().nameHorizontalMode = c.getString(R.string.mode_horizontally);
+                AppState.get().nameMusicianMode = c.getString(R.string.mode_musician);
+
+                verticalEdit.setText(AppState.get().nameVerticalMode);
+                horizontalEdit.setText(AppState.get().nameHorizontalMode);
+                musicEdit.setText(AppState.get().nameMusicianMode);
+
+                vertical.setText(AppState.get().nameVerticalMode);
+                horizontal.setText(AppState.get().nameHorizontalMode);
+                music.setText(AppState.get().nameMusicianMode);
+
+                AppState.get().save(c);
+
+                return true;
+            }
+        });
 
         editNames.setOnClickListener(new View.OnClickListener() {
             boolean isEdit = true;

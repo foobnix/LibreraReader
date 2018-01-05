@@ -432,8 +432,6 @@
    <string name="remember_reading_mode">Kumbuka kusoma mode</string>
    <string name="background_color_on_images_the_same_as_page_background">Rangi ya asili kwenye picha sawa na background ya ukurasa</string>
    <string name="block_page_movement_horizontally">Zima harakati za ukurasa kwa usawa</string>
-   <string name="vertically">Kikubwa (wima)</string>
-   <string name="horizontally">Rahisi (usawa)</string>
    <string name="search_history_and_autocomplete">Historia ya Utafutaji na ukamilifu</string>
    <string name="server">Seva</string>
    <string name="port">Bandari</string>
@@ -444,4 +442,7 @@
    <string name="other_settings">Mipangilio mengine</string>
    <string name="display_large_book_covers_in_the_catalog">Onyesha kitabu kinachojulikana katika orodha</string>
    <string name="edit_names">Badilisha majina</string>
+   <string name="mode_vertical">Kitabu cha kale (wima)</string>
+   <string name="mode_horizontally">Kitabu kipya (usawa)</string>
+   <string name="mode_musician">Muziki (kurejesha maelezo ya muziki)</string>
 </resources>

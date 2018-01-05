@@ -432,8 +432,6 @@
    <string name="remember_reading_mode">โปรดอ่านโหมดการอ่าน</string>
    <string name="background_color_on_images_the_same_as_page_background">สีพื้นหลังในภาพเหมือนกับภาพพื้นหลัง</string>
    <string name="block_page_movement_horizontally">บล็อกการเคลื่อนไหวของหน้าในแนวนอน</string>
-   <string name="vertically">ขั้นสูง (แนวตั้ง)</string>
-   <string name="horizontally">ง่าย (แนวนอน)</string>
    <string name="search_history_and_autocomplete">ประวัติการค้นหาและการเติมข้อความอัตโนมัติ</string>
    <string name="server">เซิร์ฟเวอร์</string>
    <string name="port">ท่าเรือ</string>
@@ -444,4 +442,7 @@
    <string name="other_settings">การตั้งค่าอื่น ๆ</string>
    <string name="display_large_book_covers_in_the_catalog">แสดงปกหนังสือขนาดใหญ่ในแค็ตตาล็อก</string>
    <string name="edit_names">แก้ไขชื่อ</string>
+   <string name="mode_vertical">สเกลเก่า (แนวตั้ง)</string>
+   <string name="mode_horizontally">หนังสือเล่มใหม่ (แนวนอน)</string>
+   <string name="mode_musician">นักดนตรี (โน้ตย่อบท)</string>
 </resources>

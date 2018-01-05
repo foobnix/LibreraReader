@@ -432,8 +432,6 @@
    <string name="remember_reading_mode">Prisiminti skaitymo režimą</string>
    <string name="background_color_on_images_the_same_as_page_background">Fono spalva ant paveikslėlių yra tokia pati kaip puslapio fonas</string>
    <string name="block_page_movement_horizontally">Blokuoti puslapio judėjimą horizontaliai</string>
-   <string name="vertically">Išplėstinė (vertikali)</string>
-   <string name="horizontally">Lengvas (horizontalus)</string>
    <string name="search_history_and_autocomplete">Paieškos istorija ir automatinis užbaigimas</string>
    <string name="server">Serveris</string>
    <string name="port">Uostas</string>
@@ -444,4 +442,7 @@
    <string name="other_settings">Kiti nustatymai</string>
    <string name="display_large_book_covers_in_the_catalog">Rodyti dideles knygų viršelius kataloge</string>
    <string name="edit_names">Redaguoti pavadinimus</string>
+   <string name="mode_vertical">Senoji slinktis (vertikali)</string>
+   <string name="mode_horizontally">Nauja knyga (horizontali)</string>
+   <string name="mode_musician">Muzikantas (atkūrimo muzikos įrašai)</string>
 </resources>

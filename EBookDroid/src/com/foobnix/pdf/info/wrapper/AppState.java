@@ -544,9 +544,9 @@ public class AppState {
 
         }
 
-        nameVerticalMode = c.getString(R.string.vertically);
-        nameHorizontalMode = c.getString(R.string.horizontally);
-        nameMusicianMode = c.getString(R.string.musician);
+        nameVerticalMode = c.getString(R.string.mode_vertical);
+        nameHorizontalMode = c.getString(R.string.mode_horizontally);
+        nameMusicianMode = c.getString(R.string.mode_musician);
 
         LOG.d("defaults", AppsConfig.IS_CLASSIC, AppState.get().tabsOrder);
     }

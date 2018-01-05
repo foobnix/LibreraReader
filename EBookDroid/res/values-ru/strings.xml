@@ -432,8 +432,6 @@
    <string name="remember_reading_mode">Запомнить режим чтения</string>
    <string name="background_color_on_images_the_same_as_page_background">Окрашивать фон изображений в цвет общего фона страниц</string>
    <string name="block_page_movement_horizontally">Блокировать движение страницы по горизонтали</string>
-   <string name="vertically">Продвинутый (вертикальный)</string>
-   <string name="horizontally">Легкий (горизонтальный)</string>
    <string name="search_history_and_autocomplete">История поиска и автозаполнение</string>
    <string name="server">Сервер</string>
    <string name="port">Порт</string>
@@ -444,4 +442,7 @@
    <string name="other_settings">Другие настройки</string>
    <string name="display_large_book_covers_in_the_catalog">Отображать большие обложки книг в каталоге</string>
    <string name="edit_names">Изменить имена</string>
+   <string name="mode_vertical">Старый свиток (вертикальный)</string>
+   <string name="mode_horizontally">Новая книга (горизонтальная)</string>
+   <string name="mode_musician">Музыкант (перемотка нот)</string>
 </resources>

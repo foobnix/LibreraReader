@@ -432,8 +432,6 @@
    <string name="remember_reading_mode">请记住阅读模式</string>
    <string name="background_color_on_images_the_same_as_page_background">图像上的背景颜色与页面背景相同</string>
    <string name="block_page_movement_horizontally">水平阻止页面移动</string>
-   <string name="vertically">高级（垂直）</string>
-   <string name="horizontally">简单（水平）</string>
    <string name="search_history_and_autocomplete">搜索记录和自动完成</string>
    <string name="server">服务器</string>
    <string name="port">港口</string>
@@ -444,4 +442,7 @@
    <string name="other_settings">其他设置</string>
    <string name="display_large_book_covers_in_the_catalog">在目录中显示大型书籍封面</string>
    <string name="edit_names">编辑名字</string>
+   <string name="mode_vertical">旧卷轴（垂直）</string>
+   <string name="mode_horizontally">新书（水平）</string>
+   <string name="mode_musician">音乐家（倒带音乐笔记）</string>
 </resources>

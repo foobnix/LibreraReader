@@ -229,7 +229,7 @@ public class PageImaveView extends View {
     static volatile boolean prevLock = false;
 
     class ImageSimpleGestureListener extends GestureDetector.SimpleOnGestureListener {
-        private final int DP_5 = Dips.dpToPx(8);
+
 
         @Override
         public boolean onDoubleTap(final MotionEvent e) {
@@ -326,12 +326,12 @@ public class PageImaveView extends View {
                     } else {
 
                         if (AppState.get().rotateViewPager == 0) {
-                            if (Math.abs(dy) > Math.abs(dx) && (Math.abs(dy) + Math.abs(dx) > DP_5)) {
+                            if (Math.abs(dy) > Math.abs(dx) && (Math.abs(dy) + Math.abs(dx) > Dips.DP_10)) {
                                 isReadyForMove = true;
                                 isIgronerClick = true;
                             }
                         } else {
-                            if (Math.abs(dx) > Math.abs(dy) && (Math.abs(dx) + Math.abs(dy) > DP_5)) {
+                            if (Math.abs(dx) > Math.abs(dy) && (Math.abs(dx) + Math.abs(dy) > Dips.DP_10)) {
                                 isReadyForMove = true;
                                 isIgronerClick = true;
                             }

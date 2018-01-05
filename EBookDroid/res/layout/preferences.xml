@@ -651,7 +651,7 @@
                 android:maxLines="2"
                 android:minWidth="100dip"
                 android:singleLine="false"
-                android:text="@string/vertically" />
+                android:text="@string/mode_vertical" />
         </LinearLayout>
 
         <CheckBox

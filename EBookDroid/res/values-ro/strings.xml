@@ -432,8 +432,6 @@
    <string name="remember_reading_mode">Rețineți modul de citire</string>
    <string name="background_color_on_images_the_same_as_page_background">Culoarea de fundal pe imagini este la fel ca fundalul paginii</string>
    <string name="block_page_movement_horizontally">Blocați mișcarea paginii pe orizontală</string>
-   <string name="vertically">Avansat (vertical)</string>
-   <string name="horizontally">Ușor (orizontal)</string>
    <string name="search_history_and_autocomplete">Istoricul căutărilor și autocompletarea</string>
    <string name="server">Server</string>
    <string name="port">Port</string>
@@ -444,4 +442,7 @@
    <string name="other_settings">Alte setari</string>
    <string name="display_large_book_covers_in_the_catalog">Afișați capace mari de cărți în catalog</string>
    <string name="edit_names">Editați numele</string>
+   <string name="mode_vertical">Scroll vechi (vertical)</string>
+   <string name="mode_horizontally">Cartea nouă (orizontală)</string>
+   <string name="mode_musician">Muzician (reînnoirea notelor muzicale)</string>
 </resources>

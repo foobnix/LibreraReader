@@ -432,8 +432,6 @@
    <string name="remember_reading_mode">Denk aan de leesmodus</string>
    <string name="background_color_on_images_the_same_as_page_background">Achtergrondkleur op afbeeldingen gelijk aan pagina-achtergrond</string>
    <string name="block_page_movement_horizontally">Blokkeer de paginabeweging horizontaal</string>
-   <string name="vertically">Geavanceerd (verticaal)</string>
-   <string name="horizontally">Eenvoudig (horizontaal)</string>
    <string name="search_history_and_autocomplete">Zoekgeschiedenis en automatisch aanvullen</string>
    <string name="server">Server</string>
    <string name="port">Haven</string>
@@ -444,4 +442,7 @@
    <string name="other_settings">Andere instellingen</string>
    <string name="display_large_book_covers_in_the_catalog">Toon grote boekomslagen in de catalogus</string>
    <string name="edit_names">Bewerk namen</string>
+   <string name="mode_vertical">Oude scroll (verticaal)</string>
+   <string name="mode_horizontally">Nieuw boek (horizontaal)</string>
+   <string name="mode_musician">Muzikant (terugspoelende muzieknoten)</string>
 </resources>

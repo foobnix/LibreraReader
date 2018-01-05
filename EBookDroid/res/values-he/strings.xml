@@ -432,8 +432,6 @@
    <string name="remember_reading_mode">זכור מצב קריאה</string>
    <string name="background_color_on_images_the_same_as_page_background">צבע רקע על תמונות כמו רקע הדף</string>
    <string name="block_page_movement_horizontally">חסום את תנועת הדף בצורה אופקית</string>
-   <string name="vertically">מתקדם (אנכי)</string>
-   <string name="horizontally">קל (אופקי)</string>
    <string name="search_history_and_autocomplete">היסטוריית החיפושים וההשלמה האוטומטית</string>
    <string name="server">שרת</string>
    <string name="port">נמל</string>
@@ -444,4 +442,7 @@
    <string name="other_settings">הגדרות אחרות</string>
    <string name="display_large_book_covers_in_the_catalog">הצגת כריכות ספרים גדולות בקטלוג</string>
    <string name="edit_names">ערוך שמות</string>
+   <string name="mode_vertical">גלילה ישנה (אנכית)</string>
+   <string name="mode_horizontally">ספר חדש (אופקי)</string>
+   <string name="mode_musician">מוסיקאי (rewind מוסיקה הערות)</string>
 </resources>

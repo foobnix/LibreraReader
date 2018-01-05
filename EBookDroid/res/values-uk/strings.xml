@@ -432,8 +432,6 @@
    <string name="remember_reading_mode">Запам\'ятати режим читання</string>
    <string name="background_color_on_images_the_same_as_page_background">Колір тла на зображеннях такий же, як і фон сторінки</string>
    <string name="block_page_movement_horizontally">Блокування сторінки рухається горизонтально</string>
-   <string name="vertically">Розширений (вертикальний)</string>
-   <string name="horizontally">Легкий (горизонтальний)</string>
    <string name="search_history_and_autocomplete">Історія пошуку та автозаповнення</string>
    <string name="server">Сервер</string>
    <string name="port">Порт</string>
@@ -444,4 +442,7 @@
    <string name="other_settings">Інші настройки</string>
    <string name="display_large_book_covers_in_the_catalog">Покажіть великі обкладинки книги в каталозі</string>
    <string name="edit_names">Редагувати імена</string>
+   <string name="mode_vertical">Стара свитка (вертикальна)</string>
+   <string name="mode_horizontally">Нова книга (горизонтальна)</string>
+   <string name="mode_musician">Музикант (перемотування музичних нотаток)</string>
 </resources>

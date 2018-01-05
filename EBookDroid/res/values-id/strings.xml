@@ -432,8 +432,6 @@
    <string name="remember_reading_mode">Ingat mode baca</string>
    <string name="background_color_on_images_the_same_as_page_background">Warna background pada gambar sama dengan background halaman</string>
    <string name="block_page_movement_horizontally">Blok gerakan halaman secara horisontal</string>
-   <string name="vertically">Lanjutan (vertikal)</string>
-   <string name="horizontally">Mudah (horizontal)</string>
    <string name="search_history_and_autocomplete">Cari history dan autocomplete</string>
    <string name="server">Server</string>
    <string name="port">Pelabuhan</string>
@@ -444,4 +442,7 @@
    <string name="other_settings">Pengaturan lainnya</string>
    <string name="display_large_book_covers_in_the_catalog">Tampilkan sampul buku besar di katalog</string>
    <string name="edit_names">Edit nama</string>
+   <string name="mode_vertical">Gulir lawas (vertikal)</string>
+   <string name="mode_horizontally">Buku baru (horizontal)</string>
+   <string name="mode_musician">Musisi (memutar catatan musik)</string>
 </resources>
