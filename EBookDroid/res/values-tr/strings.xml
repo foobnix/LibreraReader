@@ -445,4 +445,5 @@
    <string name="mode_vertical">Eski kaydırma (dikey)</string>
    <string name="mode_horizontally">Yeni kitap (yatay)</string>
    <string name="mode_musician">Müzisyen (müzik notalarını geri sarma)</string>
+   <string name="you_neet_to_apply_the_new_settings">Yeni ayarları uygulamalısınız</string>
 </resources>

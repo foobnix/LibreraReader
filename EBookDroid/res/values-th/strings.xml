@@ -445,4 +445,5 @@
    <string name="mode_vertical">สเกลเก่า (แนวตั้ง)</string>
    <string name="mode_horizontally">หนังสือเล่มใหม่ (แนวนอน)</string>
    <string name="mode_musician">นักดนตรี (โน้ตย่อบท)</string>
+   <string name="you_neet_to_apply_the_new_settings">คุณต้องใช้การตั้งค่าใหม่</string>
 </resources>

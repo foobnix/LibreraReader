@@ -445,4 +445,5 @@
    <string name="mode_vertical">古いスクロール（垂直）</string>
    <string name="mode_horizontally">新しい本（水平）</string>
    <string name="mode_musician">ミュージシャン（音楽ノートを巻き戻す）</string>
+   <string name="you_neet_to_apply_the_new_settings">あなたは新しい設定を適用する必要があります</string>
 </resources>

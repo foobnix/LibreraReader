@@ -177,7 +177,12 @@ public class ImageExtractor implements ImageDownloader {
             // isNeedDisableMagicInPDFDjvu = true;
         }
 
-        CodecDocument codeCache = getNewCodecContext(path, "", pageUrl.getWidth(), pageUrl.getHeight());
+        CodecDocument codeCache = null;
+        if (isNeedDisableMagicInPDFDjvu) {
+            codeCache = singleCodecContext(path, "", pageUrl.getWidth(), pageUrl.getHeight());
+        } else {
+            codeCache = getNewCodecContext(path, "", pageUrl.getWidth(), pageUrl.getHeight());
+        }
 
         if (codeCache == null) {
             LOG.d("TEST", "codecDocument == null" + path);
@@ -261,6 +266,9 @@ public class ImageExtractor implements ImageDownloader {
 
         if (!pageCodec.isRecycled()) {
             pageCodec.recycle();
+        }
+        if (isNeedDisableMagicInPDFDjvu) {
+            codeCache.recycle();
         }
 
         if (!isNeedDisableMagicInPDFDjvu && MagicHelper.isNeedBookBackgroundImage()) {
@@ -507,6 +515,20 @@ public class ImageExtractor implements ImageDownloader {
         clearCodeDocument();
         codeCache = codec;
         pathCache = path;
+    }
+
+    public static synchronized CodecDocument singleCodecContext(final String path, String passw, int w, int h) {
+        CodecContext codecContex = BookType.getCodecContextByPath(path);
+        TempHolder.get().init(path);
+
+        LOG.d("CodecContext", codecContex);
+
+        if (codecContex == null) {
+            return null;
+        }
+
+        TempHolder.get().loadingCancelled = false;
+        return codecContex.openDocument(path, passw);
     }
 
     public static synchronized CodecDocument getNewCodecContext(final String path, String passw, int w, int h) {

@@ -445,4 +445,5 @@
    <string name="mode_vertical">Alte Schriftrolle (vertikal)</string>
    <string name="mode_horizontally">Neues Buch (horizontal)</string>
    <string name="mode_musician">Musiker (Musiknoten zurückspulen)</string>
+   <string name="you_neet_to_apply_the_new_settings">Sie müssen die neuen Einstellungen anwenden</string>
 </resources>

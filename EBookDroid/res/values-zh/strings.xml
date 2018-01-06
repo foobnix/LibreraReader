@@ -445,4 +445,5 @@
    <string name="mode_vertical">旧卷轴（垂直）</string>
    <string name="mode_horizontally">新书（水平）</string>
    <string name="mode_musician">音乐家（倒带音乐笔记）</string>
+   <string name="you_neet_to_apply_the_new_settings">您需要应用新的设置</string>
 </resources>

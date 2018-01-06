@@ -445,4 +445,5 @@
    <string name="mode_vertical">التمرير القديم (عمودي)</string>
    <string name="mode_horizontally">كتاب جديد (أفقي)</string>
    <string name="mode_musician">الموسيقار (مذكرات الموسيقى اللف)</string>
+   <string name="you_neet_to_apply_the_new_settings">تحتاج إلى تطبيق الإعدادات الجديدة</string>
 </resources>

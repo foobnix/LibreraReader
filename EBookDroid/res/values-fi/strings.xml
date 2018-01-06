@@ -445,4 +445,5 @@
    <string name="mode_vertical">Vanha vieritys (pystysuora)</string>
    <string name="mode_horizontally">Uusi kirja (horisontaalinen)</string>
    <string name="mode_musician">Muusikko (musiikkitiedostojen kelaaminen uudelleen)</string>
+   <string name="you_neet_to_apply_the_new_settings">Sinun täytyy soveltaa uusia asetuksia</string>
 </resources>

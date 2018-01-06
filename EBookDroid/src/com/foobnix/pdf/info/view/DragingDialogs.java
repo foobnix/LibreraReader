@@ -2231,7 +2231,7 @@ public class DragingDialogs {
                     @Override
                     public void run() {
                         if (appHash != Objects.hashCode(AppState.get())) {
-                            AlertDialogs.showDialog(controller.getActivity(), controller.getString(R.string.you_must_apply_the_new_settings), controller.getString(R.string.apply), new Runnable() {
+                            AlertDialogs.showDialog(controller.getActivity(), controller.getString(R.string.you_neet_to_apply_the_new_settings), controller.getString(R.string.apply), new Runnable() {
 
                                 @Override
                                 public void run() {
@@ -2835,7 +2835,7 @@ public class DragingDialogs {
                     @Override
                     public void run() {
                         if (initCssHash != BookCSS.get().toCssString().hashCode()) {
-                            AlertDialogs.showDialog(controller.getActivity(), controller.getString(R.string.you_must_apply_the_new_settings), controller.getString(R.string.apply), new Runnable() {
+                            AlertDialogs.showDialog(controller.getActivity(), controller.getString(R.string.you_neet_to_apply_the_new_settings), controller.getString(R.string.apply), new Runnable() {
 
                                 @Override
                                 public void run() {

@@ -445,4 +445,5 @@
    <string name="mode_vertical">ओल्ड स्क्रॉल (ऊर्ध्वाधर)</string>
    <string name="mode_horizontally">नई पुस्तक (क्षैतिज)</string>
    <string name="mode_musician">संगीतकार (रीवाइंडिंग संगीत नोट्स)</string>
+   <string name="you_neet_to_apply_the_new_settings">आपको नई सेटिंग लागू करने की आवश्यकता है</string>
 </resources>

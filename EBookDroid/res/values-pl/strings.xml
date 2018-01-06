@@ -445,4 +445,5 @@
    <string name="mode_vertical">Stary zwój (w pionie)</string>
    <string name="mode_horizontally">Nowa książka (pozioma)</string>
    <string name="mode_musician">Muzyk (przewijanie nut)</string>
+   <string name="you_neet_to_apply_the_new_settings">Musisz zastosować nowe ustawienia</string>
 </resources>

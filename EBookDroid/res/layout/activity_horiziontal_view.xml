@@ -260,11 +260,84 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:padding="2dip"
+            android:visibility="visible" >
+
+            <ImageView
+                android:id="@+id/linkHistory"
+                style="@style/buttonWhite"
+                android:layout_width="@dimen/wh_button"
+                android:layout_height="@dimen/wh_button"
+                android:layout_weight="0"
+                android:src="@drawable/glyphicons_173_rewind"
+                android:tint="@color/tint_white"
+                android:visibility="visible" />
+
+            <ImageView
+                android:id="@+id/search"
+                style="@style/buttonWhite"
+                android:layout_width="@dimen/wh_button"
+                android:layout_height="@dimen/wh_button"
+                android:layout_weight="0"
+                android:contentDescription="@string/search"
+                android:src="@drawable/glyphicons_28_search1" />
+
+            <ImageView
+                android:id="@+id/bookRecent"
+                style="@style/buttonWhite"
+                android:layout_width="@dimen/wh_button"
+                android:layout_height="@dimen/wh_button"
+                android:layout_weight="0"
+                android:contentDescription="@string/recent"
+                android:src="@drawable/glyphicons_72_book1" />
+
+            <ImageView
+                android:id="@+id/thumbnail"
+                style="@style/buttonWhite"
+                android:layout_width="@dimen/wh_button"
+                android:layout_height="@dimen/wh_button"
+                android:layout_weight="0"
+                android:contentDescription="@string/go_to_page_dialog"
+                android:src="@drawable/glyphicons_37_file" />
+
+            <ImageView
+                android:id="@+id/bookmarks"
+                style="@style/buttonWhite"
+                android:layout_width="@dimen/wh_button"
+                android:layout_height="@dimen/wh_button"
+                android:layout_weight="0"
+                android:contentDescription="@string/bookmarks"
+                android:src="@drawable/glyphicons_73_bookmark1" />
+
+            <ImageView
+                android:id="@+id/content"
+                style="@style/buttonWhite"
+                android:layout_width="@dimen/wh_button"
+                android:layout_height="@dimen/wh_button"
+                android:layout_weight="0"
+                android:contentDescription="@string/content_of_book"
+                android:src="@drawable/glyphicons_115_list1" />
+
+            <com.foobnix.pdf.search.view.HeightImageView
+                android:id="@+id/onModeChange"
+                style="@style/buttonWhite"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/wh_button"
+                android:layout_weight="0"
+                android:src="@drawable/glyphicons_two_page_one"
+                android:visibility="visible" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:clickable="true"
             android:focusableInTouchMode="false"
             android:gravity="center_vertical"
             android:orientation="horizontal"
             android:padding="2dip"
+            android:layout_marginBottom="8dip"
             android:visibility="visible" >
 
             <ImageView
@@ -337,78 +410,6 @@
                 android:layout_weight="0"
                 android:contentDescription="@string/block_page_movement_horizontally"
                 android:src="@drawable/glyphicons_205_unlock" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center_horizontal"
-            android:padding="2dip"
-            android:visibility="visible" >
-
-            <ImageView
-                android:id="@+id/linkHistory"
-                style="@style/buttonWhite"
-                android:layout_width="@dimen/wh_button"
-                android:layout_height="@dimen/wh_button"
-                android:layout_weight="0"
-                android:src="@drawable/glyphicons_173_rewind"
-                android:tint="@color/tint_white"
-                android:visibility="visible" />
-
-            <ImageView
-                android:id="@+id/search"
-                style="@style/buttonWhite"
-                android:layout_width="@dimen/wh_button"
-                android:layout_height="@dimen/wh_button"
-                android:layout_weight="0"
-                android:contentDescription="@string/search"
-                android:src="@drawable/glyphicons_28_search1" />
-
-            <ImageView
-                android:id="@+id/bookRecent"
-                style="@style/buttonWhite"
-                android:layout_width="@dimen/wh_button"
-                android:layout_height="@dimen/wh_button"
-                android:layout_weight="0"
-                android:contentDescription="@string/recent"
-                android:src="@drawable/glyphicons_72_book1" />
-
-            <ImageView
-                android:id="@+id/thumbnail"
-                style="@style/buttonWhite"
-                android:layout_width="@dimen/wh_button"
-                android:layout_height="@dimen/wh_button"
-                android:layout_weight="0"
-                android:contentDescription="@string/go_to_page_dialog"
-                android:src="@drawable/glyphicons_37_file" />
-
-            <ImageView
-                android:id="@+id/bookmarks"
-                style="@style/buttonWhite"
-                android:layout_width="@dimen/wh_button"
-                android:layout_height="@dimen/wh_button"
-                android:layout_weight="0"
-                android:contentDescription="@string/bookmarks"
-                android:src="@drawable/glyphicons_73_bookmark1" />
-
-            <ImageView
-                android:id="@+id/content"
-                style="@style/buttonWhite"
-                android:layout_width="@dimen/wh_button"
-                android:layout_height="@dimen/wh_button"
-                android:layout_weight="0"
-                android:contentDescription="@string/content_of_book"
-                android:src="@drawable/glyphicons_115_list1" />
-
-            <com.foobnix.pdf.search.view.HeightImageView
-                android:id="@+id/onModeChange"
-                style="@style/buttonWhite"
-                android:layout_width="wrap_content"
-                android:layout_height="@dimen/wh_button"
-                android:layout_weight="0"
-                android:src="@drawable/glyphicons_two_page_one"
-                android:visibility="visible" />
         </LinearLayout>
     </LinearLayout>
 

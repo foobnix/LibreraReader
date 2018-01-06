@@ -445,5 +445,5 @@
    <string name="other_settings">Other settings</string>
    <string name="display_large_book_covers_in_the_catalog">Display large book covers in the catalog</string>
    <string name="edit_names">Edit names</string>
-   <string name="you_must_apply_the_new_settings">You must apply the new settings</string>
+   <string name="you_neet_to_apply_the_new_settings">You need to apply the new settings</string>
 </resources>

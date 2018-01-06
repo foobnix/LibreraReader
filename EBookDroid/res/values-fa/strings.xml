@@ -445,4 +445,5 @@
    <string name="mode_vertical">اسکرول قدیمی (عمودی)</string>
    <string name="mode_horizontally">کتاب جدید (افقی)</string>
    <string name="mode_musician">موسیقیدان</string>
+   <string name="you_neet_to_apply_the_new_settings">شما باید تنظیمات جدید را اعمال کنید</string>
 </resources>

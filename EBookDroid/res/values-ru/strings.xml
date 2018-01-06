@@ -445,4 +445,5 @@
    <string name="mode_vertical">Старый свиток (вертикальный)</string>
    <string name="mode_horizontally">Новая книга (горизонтальная)</string>
    <string name="mode_musician">Музыкант (перемотка нот)</string>
+   <string name="you_neet_to_apply_the_new_settings">Вам необходимо применить новые настройки</string>
 </resources>
