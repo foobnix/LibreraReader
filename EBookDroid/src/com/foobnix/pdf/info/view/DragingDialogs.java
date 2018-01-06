@@ -3556,7 +3556,6 @@ public class DragingDialogs {
                     @Override
                     public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                         AppState.get().isReverseKeys = isChecked;
-                        updateUIRefresh.run();
                     }
                 });
 
