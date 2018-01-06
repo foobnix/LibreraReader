@@ -692,7 +692,7 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
                             dialog.dismiss();
-                            onFinishActivity();
+                            documentController.onCloseActivityFinal(null);
                         }
 
                     });
@@ -700,15 +700,20 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
 
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
-                            String txt = input.getText().toString();
+                            final String txt = input.getText().toString();
                             if (TxtUtils.isNotEmpty(txt)) {
                                 dialog.dismiss();
-                                onFinishActivity();
+                                documentController.onCloseActivityFinal(new Runnable() {
 
-                                getIntent().putExtra(HorizontalModeController.PASSWORD_EXTRA, txt);
-                                startActivity(getIntent());
+                                    @Override
+                                    public void run() {
+                                        getIntent().putExtra(HorizontalModeController.PASSWORD_EXTRA, txt);
+                                        startActivity(getIntent());
+                                    }
+                                });
+
                             } else {
-                                onFinishActivity();
+                                documentController.onCloseActivityFinal(null);
                             }
                         }
                     });
