@@ -354,20 +354,17 @@ public class VerticalViewActivity extends AbstractActionActivity<VerticalViewAct
     public boolean onKeyDown(final int keyCode, final KeyEvent event) {
         LOG.d("onKeyDown");
 
-        if (!AppState.get().isUseVolumeKeys) {
-            return false;
+        if (keyCode == KeyEvent.KEYCODE_BACK) {
+            event.startTracking();
+            return true;
         }
 
         int repeatCount = event.getRepeatCount();
         if (repeatCount >= 1 && repeatCount < 6) {
             return true;
         }
-        isMyKey = false;
-        if (keyCode == KeyEvent.KEYCODE_BACK) {
-            event.startTracking();
-            return true;
-        }
 
+        isMyKey = false;
         if (getController().getWrapperControlls().dispatchKeyEventDown(event)) {
             isMyKey = true;
             return true;
