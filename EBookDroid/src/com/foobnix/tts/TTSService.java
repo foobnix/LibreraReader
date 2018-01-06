@@ -162,9 +162,11 @@ public class TTSService extends Service {
 
         if (TTSNotification.TTS_STOP.equals(intent.getAction())) {
             TTSEngine.get().stop();
+            savePage();
             if (wakeLock.isHeld()) {
                 wakeLock.release();
             }
+
         }
         if (TTSNotification.TTS_READ.equals(intent.getAction())) {
             TTSEngine.get().stop();
@@ -322,17 +324,22 @@ public class TTSService extends Service {
             TTSNotification.show(AppState.get().lastBookPath, pageNumber + 1);
             TTSEngine.get().speek(firstPart);
             EventBus.getDefault().post(new TtsStatus());
-            AppState.get().save(getApplicationContext());
 
-            try {
-                BookSettings bs = SettingsManager.getBookSettings(AppState.get().lastBookPath);
-                bs.currentPageChanged(pageNumber);
-                bs.save();
-                LOG.d(TAG, "currentPageChanged ", pageNumber, AppState.get().lastBookPath);
-            } catch (Exception e) {
-                LOG.e(e);
-            }
+            savePage();
 
+        }
+    }
+
+    public void savePage() {
+        AppState.get().save(getApplicationContext());
+
+        try {
+            BookSettings bs = SettingsManager.getBookSettings(AppState.get().lastBookPath);
+            bs.currentPageChanged(AppState.get().lastBookPage);
+            bs.save();
+            LOG.d(TAG, "currentPageChanged ", AppState.get().lastBookPage, AppState.get().lastBookPath);
+        } catch (Exception e) {
+            LOG.e(e);
         }
 
     }
