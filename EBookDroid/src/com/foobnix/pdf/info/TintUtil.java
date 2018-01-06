@@ -47,6 +47,7 @@ public class TintUtil {
 
     public static int randomColor(int hash) {
         try {
+            LOG.d("randomColor", hash);
             hash = Math.abs(hash);
             String num = "" + hash;
             float hue = 360f * Float.parseFloat(num.substring(0, 2)) / 100f;
@@ -57,7 +58,7 @@ public class TintUtil {
             return Color.HSVToColor(new float[] { hue, sat, Math.max(Math.min(0.1f, value), 0.5f) });
         } catch (Exception e) {
             LOG.e(e);
-            return tintRandomColor();
+            return Color.HSVToColor(new float[] { new Random().nextInt(360), new Random().nextFloat(), (3f + new Random().nextInt(4)) / 10f });
         }
     }
 

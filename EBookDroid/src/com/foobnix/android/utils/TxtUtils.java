@@ -608,4 +608,20 @@ public class TxtUtils {
 
     }
 
+    public static String ellipsize(String title, int size) {
+        if (TxtUtils.isEmpty(title)) {
+            return "";
+        }
+        if (title.length() <= size) {
+            return title;
+        }
+
+        String substring = title.substring(0, size);
+        if (substring.endsWith(" ")) {
+            return substring;
+        }
+        return substring + " ...";
+
+    }
+
 }

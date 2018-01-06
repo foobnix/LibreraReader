@@ -38,24 +38,24 @@ public abstract class BaseExtractor {
 
     public static Bitmap getBookCoverWithTitleBitmap(String title, String author) {
 
-        if (TxtUtils.isEmpty(title)) {
-            title = author;
-            author = "";
-        }
         if (TxtUtils.isEmpty(author)) {
             author = "";
         }
+        if (TxtUtils.isEmpty(title)) {
+            title = "";
+        }
+
+        title = TxtUtils.ellipsize(title, 20);
+        author = TxtUtils.ellipsize(author, 40);
 
         int w = Dips.dpToPx(AppState.get().coverBigSize);
         int h = (int) (w * (IMG.WIDTH_DK));
 
         TextPaint pNormal = new TextPaint(TextPaint.ANTI_ALIAS_FLAG);
-        // pNormal.setColor(ColorUtils.setAlphaComponent(Color.WHITE, 255));
         pNormal.setColor(Color.WHITE);
         pNormal.setTextSize(h / 11);
 
         TextPaint pBold = new TextPaint(TextPaint.ANTI_ALIAS_FLAG);
-        // pBold.setColor(ColorUtils.setAlphaComponent(Color.WHITE, 255));
         pBold.setColor(Color.WHITE);
         pBold.setTextSize(h / 14);
         pBold.setTypeface(Typeface.create(Typeface.DEFAULT, Typeface.BOLD));
@@ -63,7 +63,7 @@ public abstract class BaseExtractor {
         Bitmap bitmap = Bitmap.createBitmap(w, h, Bitmap.Config.ARGB_8888);
         Canvas c = new Canvas(bitmap);
         c.save();
-        c.drawColor(TintUtil.randomColor(title.hashCode()));
+        c.drawColor(TintUtil.randomColor((title + author).hashCode()));
 
         int margin = Dips.dpToPx(10);
         StaticLayout mTextLayout = new StaticLayout(title, pBold, c.getWidth() - margin * 2, Alignment.ALIGN_CENTER, 1.0f, 0.0f, false);
