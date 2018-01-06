@@ -13,7 +13,7 @@ import android.os.Vibrator;
 public class Vibro {
 
     public static void vibrate() {
-        vibrate(75);
+        vibrate(100);
     }
 
     @TargetApi(26)
