@@ -522,8 +522,10 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
             }
         });
 
+        boolean isTextFomat = ExtUtils.isTextFomat(getIntent());
+
         final UnderlineImageView onCrop = (UnderlineImageView) findViewById(R.id.onCrop);
-        onCrop.setVisibility(View.GONE);
+        onCrop.setVisibility(isTextFomat ? View.GONE : View.VISIBLE);
         onCrop.setOnClickListener(new View.OnClickListener() {
 
             @Override

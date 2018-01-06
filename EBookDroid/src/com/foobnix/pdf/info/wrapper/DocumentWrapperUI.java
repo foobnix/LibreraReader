@@ -572,7 +572,11 @@ public class DocumentWrapperUI {
         ImageView brightness = (ImageView) a.findViewById(R.id.brightness);
         brightness.setOnClickListener(onSun);
         brightness.setImageResource(!AppState.get().isInvert ? R.drawable.glyphicons_232_sun : R.drawable.glyphicons_2_moon);
-        brightness.setVisibility(AppState.get().isInkMode ? View.GONE : View.VISIBLE);
+
+        if (Dips.isEInk(controller.getActivity())) {
+            brightness.setVisibility(View.GONE);
+            AppState.get().isInvert = true;
+        }
 
         ImageView onBC = (ImageView) a.findViewById(R.id.onBC);
         onBC.setOnClickListener(onBCclick);

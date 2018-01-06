@@ -79,6 +79,7 @@ public abstract class HorizontalModeController extends DocumentController {
         }
     }
 
+
     public void udpateImageSize(int w, int h) {
         imageWidth = isTextFormat ? w : (int) (Math.min(Dips.screenWidth(), Dips.screenHeight()) * AppState.get().pageQuality);
         imageHeight = isTextFormat ? h : (int) (Math.max(Dips.screenWidth(), Dips.screenHeight()) * AppState.get().pageQuality);
