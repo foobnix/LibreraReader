@@ -9,6 +9,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import com.foobnix.android.utils.LOG;
+
 public class MobiParser {
     public static int COMPRESSION_NONE = 0;
     public static int COMPRESSION_PalmDOC = 2;
@@ -148,12 +150,18 @@ public class MobiParser {
 
         commpression = asInt(raw, mobiOffset, 2);
 
+        int encryption = asInt(raw, mobiOffset + 12, 2);
+        LOG.d("MobiParser", "encryption", encryption);
+
         mobiType = asInt(raw, mobiOffset + 24, 4);
         encoding = asInt(raw, mobiOffset + 28, 4) == 1252 ? "cp1251" : "UTF-8";
 
         int fullNameOffset = asInt(raw, mobiOffset + 84, 4);
         int fullNameLen = asInt(raw, mobiOffset + 88, 4);
         fullName = asString(raw, mobiOffset + fullNameOffset, fullNameLen);
+        if (encryption != 0) {
+            fullName = "(Encrypted) " + fullName;
+        }
 
         locale = asString(raw, mobiOffset + 92, 4);
 
@@ -256,6 +264,7 @@ public class MobiParser {
     public String getLocale() {
         return locale;
     }
+
 
     public String getAuthor() {
         byte[] bytes = exth.headers.get(100);
