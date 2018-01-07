@@ -1193,6 +1193,52 @@ public class ExtUtils {
         return res;
     }
 
+    public static String getSDPath() {
+        String[] strPath = { //
+                "/storage/sdcard1", //
+                "/storage/extsdcard", //
+                "/storage/sdcard0/external_sdcard", //
+                "/storage/external_SD", //
+                "/storage/ext_sd", //
+                "/storage/removable/sdcard1", //
+
+                "/data/sdext", //
+                "/data/sdext2", //
+                "/data/sdext3", //
+                "/data/sdext4", //
+
+                "/removable/microsd", //
+                "/Removable/MicroSD", //
+                "/emmc", //
+                "/sdcard/sd", //
+
+                "/mnt/extsdcard", //
+                "/mnt/sdcard/external_sd", //
+                "/mnt/external_sd", //
+                "/mnt/emmc", //
+                "/mnt/media_rw/sdcard1", //
+                "/mnt/sdcard/bpemmctest", //
+                "/mnt/sdcard/_ExternalSD", //
+                "/mnt/sdcard-ext", //
+                "/mnt/Removable/MicroSD", //
+                "/mnt/external1", //
+                "/mnt/extSdCard", //
+                "/mnt/extsd", //
+                "/mnt/usb_storage", //
+                "/mnt/extSdCard", //
+                "/mnt/UsbDriveA", //
+                "/mnt/UsbDriveB"//
+        };
+
+        for (String value : strPath) {
+            File f = new File(value);
+            if (f.exists() && f.isDirectory() && f.canRead()) {
+                return value;
+            }
+        }
+        return null;
+    }
+
     @TargetApi(Build.VERSION_CODES.LOLLIPOP)
     public static List<String> getExternalStorageDirectories(Context c) {
 

@@ -442,9 +442,10 @@
    <string name="other_settings">Inne ustawienia</string>
    <string name="display_large_book_covers_in_the_catalog">Wyświetl duże okładki książek w katalogu</string>
    <string name="edit_names">Edytuj nazwy</string>
-   <string name="mode_vertical">Stary zwój (w pionie)</string>
-   <string name="mode_horizontally">Nowa książka (pozioma)</string>
-   <string name="mode_musician">Muzyk (przewijanie nut)</string>
    <string name="you_neet_to_apply_the_new_settings">Musisz zastosować nowe ustawienia</string>
    <string name="custom_value">Wartość niestandardowa</string>
+   <string name="change_the_automatic_scrolling_speed_with_the_volume_keys">Zmień szybkość przewijania automatycznego za pomocą klawiszy głośności</string>
+   <string name="mode_vertical">Tryb przewijania (pionowy)</string>
+   <string name="mode_horizontally">Tryb książki (poziomo)</string>
+   <string name="mode_musician">Muzyk (przewijanie nut)</string>
 </resources>

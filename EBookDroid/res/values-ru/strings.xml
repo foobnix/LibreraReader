@@ -442,9 +442,10 @@
    <string name="other_settings">Другие настройки</string>
    <string name="display_large_book_covers_in_the_catalog">Отображать большие обложки книг в каталоге</string>
    <string name="edit_names">Изменить имена</string>
-   <string name="mode_vertical">Старый свиток (вертикальный)</string>
-   <string name="mode_horizontally">Новая книга (горизонтальная)</string>
-   <string name="mode_musician">Музыкант (перемотка нот)</string>
    <string name="you_neet_to_apply_the_new_settings">Вам необходимо применить новые настройки</string>
    <string name="custom_value">Пользовательское значение</string>
+   <string name="change_the_automatic_scrolling_speed_with_the_volume_keys">Измените скорость автоматического прокрутки клавишами регулировки громкости</string>
+   <string name="mode_vertical">Режим прокрутки (по вертикали)</string>
+   <string name="mode_horizontally">Режим книги (по горизонтали)</string>
+   <string name="mode_musician">Музыкант (перемотка музыкальных нот)</string>
 </resources>

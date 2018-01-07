@@ -442,9 +442,10 @@
    <string name="other_settings">Andra inställningar</string>
    <string name="display_large_book_covers_in_the_catalog">Visa stora bokomslag i katalogen</string>
    <string name="edit_names">Redigera namn</string>
-   <string name="mode_vertical">Gamla rullning (vertikal)</string>
-   <string name="mode_horizontally">Ny bok (horisontell)</string>
-   <string name="mode_musician">Musiker (återspolning musikanteckningar)</string>
    <string name="you_neet_to_apply_the_new_settings">Du måste ange de nya inställningarna</string>
    <string name="custom_value">Anpassat värde</string>
+   <string name="change_the_automatic_scrolling_speed_with_the_volume_keys">Ändra automatisk rullningshastighet med volymknapparna</string>
+   <string name="mode_vertical">Rullningsläge (vertikal)</string>
+   <string name="mode_horizontally">Bokningsläge (horisontellt)</string>
+   <string name="mode_musician">Musiker (återspolning musikanteckningar)</string>
 </resources>

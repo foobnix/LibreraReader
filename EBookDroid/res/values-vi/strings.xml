@@ -442,9 +442,10 @@
    <string name="other_settings">Các thiết lập khác</string>
    <string name="display_large_book_covers_in_the_catalog">Hiển thị bìa sách lớn trong catalogue</string>
    <string name="edit_names">Chỉnh sửa tên</string>
-   <string name="mode_vertical">Cuộn cũ (theo chiều dọc)</string>
-   <string name="mode_horizontally">Cuốn sách mới (ngang)</string>
-   <string name="mode_musician">Nhạc sĩ (ghi lại bài hát)</string>
    <string name="you_neet_to_apply_the_new_settings">Bạn cần áp dụng các cài đặt mới</string>
    <string name="custom_value">Giá trị tùy chỉnh</string>
+   <string name="change_the_automatic_scrolling_speed_with_the_volume_keys">Thay đổi tốc độ cuộn tự động bằng các phím âm lượng</string>
+   <string name="mode_vertical">Chế độ cuộn (dọc)</string>
+   <string name="mode_horizontally">Chế độ sách (theo chiều ngang)</string>
+   <string name="mode_musician">Nhạc sĩ (ghi lại bài hát)</string>
 </resources>

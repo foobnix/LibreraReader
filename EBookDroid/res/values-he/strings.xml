@@ -442,9 +442,10 @@
    <string name="other_settings">הגדרות אחרות</string>
    <string name="display_large_book_covers_in_the_catalog">הצגת כריכות ספרים גדולות בקטלוג</string>
    <string name="edit_names">ערוך שמות</string>
-   <string name="mode_vertical">גלילה ישנה (אנכית)</string>
-   <string name="mode_horizontally">ספר חדש (אופקי)</string>
-   <string name="mode_musician">מוסיקאי (rewind מוסיקה הערות)</string>
    <string name="you_neet_to_apply_the_new_settings">עליך להחיל את ההגדרות החדשות</string>
    <string name="custom_value">ערך מותאם אישית</string>
+   <string name="change_the_automatic_scrolling_speed_with_the_volume_keys">שנה את מהירות הגלילה האוטומטית באמצעות מקשי עוצמת הקול</string>
+   <string name="mode_vertical">מצב גלילה (אנכי)</string>
+   <string name="mode_horizontally">מצב ספר (אופקית)</string>
+   <string name="mode_musician">מוסיקאי (rewind מוסיקה הערות)</string>
 </resources>

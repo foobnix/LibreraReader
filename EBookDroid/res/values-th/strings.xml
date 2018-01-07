@@ -442,9 +442,10 @@
    <string name="other_settings">การตั้งค่าอื่น ๆ</string>
    <string name="display_large_book_covers_in_the_catalog">แสดงปกหนังสือขนาดใหญ่ในแค็ตตาล็อก</string>
    <string name="edit_names">แก้ไขชื่อ</string>
-   <string name="mode_vertical">สเกลเก่า (แนวตั้ง)</string>
-   <string name="mode_horizontally">หนังสือเล่มใหม่ (แนวนอน)</string>
-   <string name="mode_musician">นักดนตรี (โน้ตย่อบท)</string>
    <string name="you_neet_to_apply_the_new_settings">คุณต้องใช้การตั้งค่าใหม่</string>
    <string name="custom_value">ค่าที่กำหนดเอง</string>
+   <string name="change_the_automatic_scrolling_speed_with_the_volume_keys">เปลี่ยนความเร็วในการเลื่อนอัตโนมัติด้วยปุ่มปรับระดับเสียง</string>
+   <string name="mode_vertical">โหมดเลื่อน (แนวตั้ง)</string>
+   <string name="mode_horizontally">โหมดหนังสือ (แนวนอน)</string>
+   <string name="mode_musician">นักดนตรี (โน้ตย่อบท)</string>
 </resources>

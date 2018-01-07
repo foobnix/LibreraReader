@@ -442,9 +442,10 @@
    <string name="other_settings">다른 설정</string>
    <string name="display_large_book_covers_in_the_catalog">카탈로그에 큰 책 표지 표시</string>
    <string name="edit_names">이름 수정</string>
-   <string name="mode_vertical">오래된 스크롤 (세로)</string>
-   <string name="mode_horizontally">새 책 (가로)</string>
-   <string name="mode_musician">음악가 (되감기 음악 노트)</string>
    <string name="you_neet_to_apply_the_new_settings">새 설정을 적용해야합니다.</string>
    <string name="custom_value">맞춤 값</string>
+   <string name="change_the_automatic_scrolling_speed_with_the_volume_keys">볼륨 키로 자동 스크롤 속도 변경</string>
+   <string name="mode_vertical">스크롤 모드 (세로)</string>
+   <string name="mode_horizontally">북 모드 (가로)</string>
+   <string name="mode_musician">음악가 (되감기 음악 노트)</string>
 </resources>

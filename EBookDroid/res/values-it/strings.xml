@@ -442,9 +442,10 @@
    <string name="other_settings">Altre impostazioni</string>
    <string name="display_large_book_covers_in_the_catalog">Mostra copertine di libri di grandi dimensioni nel catalogo</string>
    <string name="edit_names">Modifica nomi</string>
-   <string name="mode_vertical">Vecchia pergamena (verticale)</string>
-   <string name="mode_horizontally">Nuovo libro (orizzontale)</string>
-   <string name="mode_musician">Musicista (riavvolgimento di note musicali)</string>
    <string name="you_neet_to_apply_the_new_settings">Devi applicare le nuove impostazioni</string>
    <string name="custom_value">Valore personalizzato</string>
+   <string name="change_the_automatic_scrolling_speed_with_the_volume_keys">Cambia la velocità di scorrimento automatico con i tasti del volume</string>
+   <string name="mode_vertical">Modalità di scorrimento (verticale)</string>
+   <string name="mode_horizontally">Modalità libro (orizzontalmente)</string>
+   <string name="mode_musician">Musicista (riavvolgimento di note musicali)</string>
 </resources>

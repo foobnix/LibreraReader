@@ -442,9 +442,10 @@
    <string name="other_settings">Otros ajustes</string>
    <string name="display_large_book_covers_in_the_catalog">Muestra grandes portadas de libros en el catálogo</string>
    <string name="edit_names">Editar nombres</string>
-   <string name="mode_vertical">Desplazamiento antiguo (vertical)</string>
-   <string name="mode_horizontally">Nuevo libro (horizontal)</string>
-   <string name="mode_musician">Músico (rebobinar notas musicales)</string>
    <string name="you_neet_to_apply_the_new_settings">Debe aplicar la nueva configuración</string>
    <string name="custom_value">Valor personalizado</string>
+   <string name="change_the_automatic_scrolling_speed_with_the_volume_keys">Cambiar la velocidad de desplazamiento automático con las teclas de volumen</string>
+   <string name="mode_vertical">Modo de desplazamiento (vertical)</string>
+   <string name="mode_horizontally">Modo de libro (horizontalmente)</string>
+   <string name="mode_musician">Músico (rebobinar notas musicales)</string>
 </resources>

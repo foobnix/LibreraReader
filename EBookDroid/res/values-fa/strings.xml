@@ -442,9 +442,10 @@
    <string name="other_settings">تنظیمات دیگر</string>
    <string name="display_large_book_covers_in_the_catalog">نمایش بزرگ کتاب را پوشش می دهد در کاتالوگ</string>
    <string name="edit_names">ویرایش نام ها</string>
-   <string name="mode_vertical">اسکرول قدیمی (عمودی)</string>
-   <string name="mode_horizontally">کتاب جدید (افقی)</string>
-   <string name="mode_musician">موسیقیدان</string>
    <string name="you_neet_to_apply_the_new_settings">شما باید تنظیمات جدید را اعمال کنید</string>
    <string name="custom_value">ارزش سفارشی</string>
+   <string name="change_the_automatic_scrolling_speed_with_the_volume_keys">سرعت پیمایش خودکار با کلید های حجم را تغییر دهید</string>
+   <string name="mode_vertical">حالت اسکرول (عمودی)</string>
+   <string name="mode_horizontally">حالت کتاب (به صورت افقی)</string>
+   <string name="mode_musician">موسیقیدان</string>
 </resources>

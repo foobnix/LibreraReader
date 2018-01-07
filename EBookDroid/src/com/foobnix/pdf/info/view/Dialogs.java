@@ -27,6 +27,7 @@ import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 public class Dialogs {
@@ -35,6 +36,9 @@ public class Dialogs {
         final AlertDialog.Builder builder = new AlertDialog.Builder(c);
         View view = LayoutInflater.from(c).inflate(R.layout.dialog_loading_book, null, false);
         final TextView text = (TextView) view.findViewById(R.id.text1);
+        
+        ProgressBar pr = (ProgressBar) view.findViewById(R.id.progressBar1);
+        TintUtil.setDrawableTint(pr.getIndeterminateDrawable().getCurrent(), TintUtil.color);
 
         ImageView image = (ImageView) view.findViewById(R.id.onCancel);
         TintUtil.setTintImage(image);

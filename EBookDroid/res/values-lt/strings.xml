@@ -442,9 +442,10 @@
    <string name="other_settings">Kiti nustatymai</string>
    <string name="display_large_book_covers_in_the_catalog">Rodyti dideles knygų viršelius kataloge</string>
    <string name="edit_names">Redaguoti pavadinimus</string>
-   <string name="mode_vertical">Senoji slinktis (vertikali)</string>
-   <string name="mode_horizontally">Nauja knyga (horizontali)</string>
-   <string name="mode_musician">Muzikantas (atkūrimo muzikos įrašai)</string>
    <string name="you_neet_to_apply_the_new_settings">Jums reikia taikyti naujus nustatymus</string>
    <string name="custom_value">Pasirinktinė vertė</string>
+   <string name="change_the_automatic_scrolling_speed_with_the_volume_keys">Keiskite automatinį slinkties greitį naudodami garsumo klavišus</string>
+   <string name="mode_vertical">Slinkties režimas (vertikalus)</string>
+   <string name="mode_horizontally">Knygos režimas (horizontaliai)</string>
+   <string name="mode_musician">Muzikantas (atkūrimo muzikos įrašai)</string>
 </resources>

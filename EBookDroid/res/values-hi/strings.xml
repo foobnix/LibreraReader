@@ -442,9 +442,10 @@
    <string name="other_settings">अन्य सेटिंग</string>
    <string name="display_large_book_covers_in_the_catalog">कैटलॉग में बड़ी किताब को कवर दिखाएं</string>
    <string name="edit_names">नाम संपादित करें</string>
-   <string name="mode_vertical">ओल्ड स्क्रॉल (ऊर्ध्वाधर)</string>
-   <string name="mode_horizontally">नई पुस्तक (क्षैतिज)</string>
-   <string name="mode_musician">संगीतकार (रीवाइंडिंग संगीत नोट्स)</string>
    <string name="you_neet_to_apply_the_new_settings">आपको नई सेटिंग लागू करने की आवश्यकता है</string>
    <string name="custom_value">कस्टम मूल्य</string>
+   <string name="change_the_automatic_scrolling_speed_with_the_volume_keys">वॉल्यूम कुंजियों के साथ स्वचालित स्क्रॉलिंग गति बदलें</string>
+   <string name="mode_vertical">स्क्रॉल मोड (ऊर्ध्वाधर)</string>
+   <string name="mode_horizontally">पुस्तक मोड (क्षैतिज रूप से)</string>
+   <string name="mode_musician">संगीतकार (रीवाइंडिंग संगीत नोट्स)</string>
 </resources>

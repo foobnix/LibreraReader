@@ -442,9 +442,10 @@
    <string name="other_settings">اعدادات اخرى</string>
    <string name="display_large_book_covers_in_the_catalog">عرض أغلفة الكتب الكبيرة في الكتالوج</string>
    <string name="edit_names">تعديل الأسماء</string>
-   <string name="mode_vertical">التمرير القديم (عمودي)</string>
-   <string name="mode_horizontally">كتاب جديد (أفقي)</string>
-   <string name="mode_musician">الموسيقار (مذكرات الموسيقى اللف)</string>
    <string name="you_neet_to_apply_the_new_settings">تحتاج إلى تطبيق الإعدادات الجديدة</string>
    <string name="custom_value">القيمة الجمركية</string>
+   <string name="change_the_automatic_scrolling_speed_with_the_volume_keys">تغيير سرعة التمرير التلقائي مع مفاتيح الصوت</string>
+   <string name="mode_vertical">وضع التمرير (عمودي)</string>
+   <string name="mode_horizontally">وضع الكتاب (أفقيا)</string>
+   <string name="mode_musician">الموسيقار (مذكرات الموسيقى اللف)</string>
 </resources>

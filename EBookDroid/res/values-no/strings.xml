@@ -442,9 +442,10 @@
    <string name="other_settings">Andre innstillinger</string>
    <string name="display_large_book_covers_in_the_catalog">Vis store bokomslag i katalogen</string>
    <string name="edit_names">Rediger navn</string>
-   <string name="mode_vertical">Gamle rulle (vertikal)</string>
-   <string name="mode_horizontally">Ny bok (horisontal)</string>
-   <string name="mode_musician">Musiker (spoling musikknotater)</string>
    <string name="you_neet_to_apply_the_new_settings">Du må bruke de nye innstillingene</string>
    <string name="custom_value">Tilpasset verdi</string>
+   <string name="change_the_automatic_scrolling_speed_with_the_volume_keys">Endre automatisk rullehastighet med volumtastene</string>
+   <string name="mode_vertical">Rullemodus (vertikal)</string>
+   <string name="mode_horizontally">Bokmodus (horisontalt)</string>
+   <string name="mode_musician">Musiker (spoling musikknotater)</string>
 </resources>

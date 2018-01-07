@@ -442,9 +442,10 @@
    <string name="other_settings">Muut asetukset</string>
    <string name="display_large_book_covers_in_the_catalog">Näytä suuret kirjakuoret luettelossa</string>
    <string name="edit_names">Muokkaa nimiä</string>
-   <string name="mode_vertical">Vanha vieritys (pystysuora)</string>
-   <string name="mode_horizontally">Uusi kirja (horisontaalinen)</string>
-   <string name="mode_musician">Muusikko (musiikkitiedostojen kelaaminen uudelleen)</string>
    <string name="you_neet_to_apply_the_new_settings">Sinun täytyy soveltaa uusia asetuksia</string>
    <string name="custom_value">Mukautettu arvo</string>
+   <string name="change_the_automatic_scrolling_speed_with_the_volume_keys">Vaihda automaattinen vieritysnopeus äänenvoimakkuusnäppäimillä</string>
+   <string name="mode_vertical">Vieritysmuoto (pystysuora)</string>
+   <string name="mode_horizontally">Kirjamoodi (vaakasuoraan)</string>
+   <string name="mode_musician">Muusikko (musiikkitiedostojen kelaaminen uudelleen)</string>
 </resources>

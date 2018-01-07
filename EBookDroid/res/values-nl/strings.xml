@@ -442,9 +442,10 @@
    <string name="other_settings">Andere instellingen</string>
    <string name="display_large_book_covers_in_the_catalog">Toon grote boekomslagen in de catalogus</string>
    <string name="edit_names">Bewerk namen</string>
-   <string name="mode_vertical">Oude scroll (verticaal)</string>
-   <string name="mode_horizontally">Nieuw boek (horizontaal)</string>
-   <string name="mode_musician">Muzikant (terugspoelende muzieknoten)</string>
    <string name="you_neet_to_apply_the_new_settings">U moet de nieuwe instellingen toepassen</string>
    <string name="custom_value">Aangepaste waarde</string>
+   <string name="change_the_automatic_scrolling_speed_with_the_volume_keys">Wijzig de automatische schuifsnelheid met de volumetoetsen</string>
+   <string name="mode_vertical">Scroll-modus (verticaal)</string>
+   <string name="mode_horizontally">Boekmodus (horizontaal)</string>
+   <string name="mode_musician">Muzikant (terugspoelende muzieknoten)</string>
 </resources>

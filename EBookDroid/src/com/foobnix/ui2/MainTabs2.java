@@ -11,6 +11,7 @@ import org.greenrobot.eventbus.Subscribe;
 
 import com.foobnix.android.utils.Dips;
 import com.foobnix.android.utils.LOG;
+import com.foobnix.android.utils.Safe;
 import com.foobnix.android.utils.TxtUtils;
 import com.foobnix.dao2.FileMeta;
 import com.foobnix.ext.CacheZipUtils.CacheDir;
@@ -311,36 +312,53 @@ public class MainTabs2 extends AdsFragmentActivity {
         boolean showTabs = getIntent().getBooleanExtra(EXTRA_SHOW_TABS, false);
         LOG.d("EXTRA_SHOW_TABS", showTabs, AppState.get().lastMode);
         if (showTabs == false && AppState.get().isOpenLastBook) {
-            FileMeta meta = AppDB.get().getRecentLast();
+            LOG.d("Open LAST book");
+            final FileMeta meta = AppDB.get().getRecentLast();
             AppState.get().lastA = null;
 
             if (meta != null) {
-                boolean isEasyMode = HorizontalViewActivity.class.getSimpleName().equals(AppState.get().lastMode);
-                Intent intent = new Intent(this, isEasyMode ? HorizontalViewActivity.class : VerticalViewActivity.class);
-                intent.setData(Uri.fromFile(new File(meta.getPath())));
-                startActivity(intent);
+
+                Safe.run(new Runnable() {
+
+                    @Override
+                    public void run() {
+                        boolean isEasyMode = HorizontalViewActivity.class.getSimpleName().equals(AppState.get().lastMode);
+                        Intent intent = new Intent(MainTabs2.this, isEasyMode ? HorizontalViewActivity.class : VerticalViewActivity.class);
+                        intent.setData(Uri.fromFile(new File(meta.getPath())));
+                        startActivity(intent);
+                    }
+                });
             }
         } else if (!AppState.get().isOpenLastBook) {
-            LOG.d("lasta", AppState.get().lastA);
-            if (HorizontalViewActivity.class.getSimpleName().equals(AppState.get().lastA)) {
+            LOG.d("Open book lastA", AppState.get().lastA);
 
-                FileMeta meta = AppDB.get().getRecentLast();
-                if (meta != null) {
-                    Intent intent = new Intent(this, HorizontalViewActivity.class);
-                    intent.setData(Uri.fromFile(new File(meta.getPath())));
-                    startActivity(intent);
-                    LOG.d("Start lasta", AppState.get().lastA);
-                }
-            } else if (VerticalViewActivity.class.getSimpleName().equals(AppState.get().lastA)) {
-                FileMeta meta = AppDB.get().getRecentLast();
-                if (meta != null) {
-                    Intent intent = new Intent(this, VerticalViewActivity.class);
-                    intent.setData(Uri.fromFile(new File(meta.getPath())));
-                    startActivity(intent);
-                    LOG.d("Start lasta", AppState.get().lastA);
-                }
+            Safe.run(new Runnable() {
 
-            }
+                @Override
+                public void run() {
+                    if (HorizontalViewActivity.class.getSimpleName().equals(AppState.get().lastA)) {
+
+                        FileMeta meta = AppDB.get().getRecentLast();
+                        if (meta != null) {
+                            Intent intent = new Intent(MainTabs2.this, HorizontalViewActivity.class);
+                            intent.setData(Uri.fromFile(new File(meta.getPath())));
+                            startActivity(intent);
+                            LOG.d("Start lasta", AppState.get().lastA);
+                        }
+                    } else if (VerticalViewActivity.class.getSimpleName().equals(AppState.get().lastA)) {
+                        FileMeta meta = AppDB.get().getRecentLast();
+                        if (meta != null) {
+                            Intent intent = new Intent(MainTabs2.this, VerticalViewActivity.class);
+                            intent.setData(Uri.fromFile(new File(meta.getPath())));
+                            startActivity(intent);
+                            LOG.d("Start lasta", AppState.get().lastA);
+                        }
+
+                    }
+
+                }
+            });
+
         }
 
         checkGoToPage(getIntent());

@@ -442,9 +442,10 @@
    <string name="other_settings">Ďalšie nastavenia</string>
    <string name="display_large_book_covers_in_the_catalog">Zobrazte veľké knihy v katalógu</string>
    <string name="edit_names">Upraviť mená</string>
-   <string name="mode_vertical">Staré posúvanie (vertikálne)</string>
-   <string name="mode_horizontally">Nová kniha (horizontálna)</string>
-   <string name="mode_musician">Hudobník (prevíjanie hudobných poznámok)</string>
    <string name="you_neet_to_apply_the_new_settings">Musíte použiť nové nastavenia</string>
    <string name="custom_value">Vlastná hodnota</string>
+   <string name="change_the_automatic_scrolling_speed_with_the_volume_keys">Zmeňte rýchlosť automatického posúvania pomocou tlačidiel hlasitosti</string>
+   <string name="mode_vertical">Režim rolovania (vertikálny)</string>
+   <string name="mode_horizontally">Režim knihy (vodorovne)</string>
+   <string name="mode_musician">Hudobník (prevíjanie hudobných poznámok)</string>
 </resources>

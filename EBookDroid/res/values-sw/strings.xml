@@ -442,9 +442,10 @@
    <string name="other_settings">Mipangilio mengine</string>
    <string name="display_large_book_covers_in_the_catalog">Onyesha kitabu kinachojulikana katika orodha</string>
    <string name="edit_names">Badilisha majina</string>
-   <string name="mode_vertical">Kitabu cha kale (wima)</string>
-   <string name="mode_horizontally">Kitabu kipya (usawa)</string>
-   <string name="mode_musician">Muziki (kurejesha maelezo ya muziki)</string>
    <string name="you_neet_to_apply_the_new_settings">Unahitaji kutumia mipangilio mipya</string>
    <string name="custom_value">Thamani ya kawaida</string>
+   <string name="change_the_automatic_scrolling_speed_with_the_volume_keys">Badilisha kasi ya scrolling moja kwa moja na funguo za kiasi</string>
+   <string name="mode_vertical">Njia ya kitabu (wima)</string>
+   <string name="mode_horizontally">Njia ya kitabu (usawa)</string>
+   <string name="mode_musician">Muziki (kurejesha maelezo ya muziki)</string>
 </resources>

@@ -247,7 +247,7 @@ public abstract class DragingPopup {
                 @Override
                 public void onClick(View v) {
                     titlePopupMenu.setAnchor(v);
-                    titlePopupMenu.show();
+                    titlePopupMenu.show(true);
 
                 }
             });

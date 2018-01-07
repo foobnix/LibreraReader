@@ -442,9 +442,10 @@
    <string name="other_settings">Alte setari</string>
    <string name="display_large_book_covers_in_the_catalog">Afișați capace mari de cărți în catalog</string>
    <string name="edit_names">Editați numele</string>
-   <string name="mode_vertical">Scroll vechi (vertical)</string>
-   <string name="mode_horizontally">Cartea nouă (orizontală)</string>
-   <string name="mode_musician">Muzician (reînnoirea notelor muzicale)</string>
    <string name="you_neet_to_apply_the_new_settings">Trebuie să aplicați noile setări</string>
    <string name="custom_value">Valoarea personalizată</string>
+   <string name="change_the_automatic_scrolling_speed_with_the_volume_keys">Schimbați viteza de derulare automată cu tastele de volum</string>
+   <string name="mode_vertical">Modul de derulare (vertical)</string>
+   <string name="mode_horizontally">Modul de carte (orizontal)</string>
+   <string name="mode_musician">Muzician (reînnoirea notelor muzicale)</string>
 </resources>

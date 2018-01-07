@@ -442,9 +442,10 @@
    <string name="other_settings">Outros ajustes</string>
    <string name="display_large_book_covers_in_the_catalog">Exibir grandes capas de livros no catálogo</string>
    <string name="edit_names">Editar nomes</string>
-   <string name="mode_vertical">Old scroll (vertical)</string>
-   <string name="mode_horizontally">Novo livro (horizontal)</string>
-   <string name="mode_musician">Músico (rebobinando notas de música)</string>
    <string name="you_neet_to_apply_the_new_settings">Você precisa aplicar as novas configurações</string>
    <string name="custom_value">Valor customizado</string>
+   <string name="change_the_automatic_scrolling_speed_with_the_volume_keys">Mude a velocidade de rolagem automática com as teclas de volume</string>
+   <string name="mode_vertical">Modo de rolagem (vertical)</string>
+   <string name="mode_horizontally">Modo livro (horizontalmente)</string>
+   <string name="mode_musician">Músico (rebobinando notas de música)</string>
 </resources>

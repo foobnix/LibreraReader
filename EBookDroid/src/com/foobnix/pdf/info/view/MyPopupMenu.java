@@ -63,6 +63,10 @@ public class MyPopupMenu {
     }
 
     public void show() {
+        show(false);
+    }
+
+    public void show(final boolean hidekeyboard) {
 
         final ListPopupWindow p1 = new ListPopupWindow(c);
         p1.setModal(true);
@@ -71,7 +75,9 @@ public class MyPopupMenu {
             @Override
             public void onDismiss() {
                 p1.dismiss();
-                Keyboards.hideNavigation((Activity) c);
+                if (hidekeyboard) {
+                    Keyboards.hideNavigation((Activity) c);
+                }
 
             }
         });
