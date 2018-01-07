@@ -98,6 +98,9 @@ public class ExtUtils {
         browseExts.add(".json");
         browseExts.addAll(BookCSS.fontExts);
 
+        mimeCache.put(".tpz", "application/x-topaz-ebook");
+        mimeCache.put(".azw1", "application/x-topaz-ebook");
+
         mimeCache.put(".jpeg", "image/jpeg");
         mimeCache.put(".jpg", "image/jpeg");
         mimeCache.put(".png", "image/png");
