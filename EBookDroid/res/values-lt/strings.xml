@@ -446,4 +446,5 @@
    <string name="mode_horizontally">Nauja knyga (horizontali)</string>
    <string name="mode_musician">Muzikantas (atkūrimo muzikos įrašai)</string>
    <string name="you_neet_to_apply_the_new_settings">Jums reikia taikyti naujus nustatymus</string>
+   <string name="custom_value">Pasirinktinė vertė</string>
 </resources>

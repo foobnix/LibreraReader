@@ -15,6 +15,7 @@ import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
 
 import com.foobnix.android.utils.Dips;
+import com.foobnix.android.utils.IntegerResponse;
 import com.foobnix.android.utils.Keyboards;
 import com.foobnix.android.utils.LOG;
 import com.foobnix.android.utils.TxtUtils;
@@ -28,6 +29,7 @@ import com.foobnix.pdf.info.UiSystemUtils;
 import com.foobnix.pdf.info.model.BookCSS;
 import com.foobnix.pdf.info.model.OutlineLinkWrapper;
 import com.foobnix.pdf.info.view.BrightnessHelper;
+import com.foobnix.pdf.info.view.CustomSeek;
 import com.foobnix.pdf.info.view.Dialogs;
 import com.foobnix.pdf.info.view.DragingDialogs;
 import com.foobnix.pdf.info.view.DragingPopup;
@@ -51,6 +53,9 @@ import com.nostra13.universalimageloader.core.ImageLoader;
 
 import android.annotation.TargetApi;
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
+import android.content.DialogInterface.OnClickListener;
 import android.graphics.Color;
 import android.os.Build;
 import android.os.Handler;
@@ -65,7 +70,6 @@ import android.view.View.OnLongClickListener;
 import android.view.ViewTreeObserver.OnGlobalLayoutListener;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
-import android.widget.PopupMenu;
 import android.widget.SeekBar;
 import android.widget.TextView;
 
@@ -290,24 +294,28 @@ public class DocumentWrapperUI {
             return true;
         }
 
-        if (AppState.get().isUseVolumeKeys && AppState.get().isAutoScroll && KeyEvent.KEYCODE_VOLUME_UP == keyCode) {
-            if (AppState.get().autoScrollSpeed > 1) {
-                AppState.get().autoScrollSpeed -= 1;
+        if (AppState.get().isScrollSpeedByVolumeKeys && AppState.get().isUseVolumeKeys && AppState.get().isAutoScroll) {
+            if (KeyEvent.KEYCODE_VOLUME_UP == keyCode) {
+                if (AppState.get().autoScrollSpeed > 1) {
+                    AppState.get().autoScrollSpeed -= 1;
+                    controller.onAutoScroll();
+                    updateUI();
+                }
+                return true;
+            }
+            if (KeyEvent.KEYCODE_VOLUME_DOWN == keyCode) {
+                if (AppState.get().autoScrollSpeed <= AppState.MAX_SPEED) {
+                    AppState.get().autoScrollSpeed += 1;
+                }
                 controller.onAutoScroll();
                 updateUI();
+                return true;
             }
-            return true;
-        }
-        if (AppState.get().isUseVolumeKeys && AppState.get().isAutoScroll && KeyEvent.KEYCODE_VOLUME_DOWN == keyCode) {
-            if (AppState.get().autoScrollSpeed <= AppState.MAX_SPEED) {
-                AppState.get().autoScrollSpeed += 1;
-            }
-            controller.onAutoScroll();
-            updateUI();
-            return true;
         }
 
-        if (AppState.get().isUseVolumeKeys && AppState.get().getNextKeys().contains(keyCode)) {
+        if (AppState.get().isUseVolumeKeys && AppState.get().getNextKeys().contains(keyCode))
+
+        {
             nextChose(false, event.getRepeatCount());
             return true;
         }
@@ -966,12 +974,12 @@ public class DocumentWrapperUI {
     }
 
     public void doChooseNextType(View view) {
-        final PopupMenu popupMenu = new PopupMenu(view.getContext(), view);
+        final MyPopupMenu popupMenu = new MyPopupMenu(view.getContext(), view);
 
         String pages = controller.getString(R.string.by_pages);
         String screen = controller.getString(R.string.of_screen).toLowerCase(Locale.US);
         String screens = controller.getString(R.string.by_screans);
-        final List<Integer> values = Arrays.asList(AppState.NEXT_SCREEN_SCROLL_BY_PAGES, 100, 95, 75, 50, 25, 10, 5);
+        final List<Integer> values = Arrays.asList(AppState.NEXT_SCREEN_SCROLL_BY_PAGES, 100, 95, 75, 50, 25, 5);
 
         for (int i = 0; i < values.size(); i++) {
             final int n = i;
@@ -991,6 +999,54 @@ public class DocumentWrapperUI {
                 }
             });
         }
+
+        popupMenu.getMenu().add(R.string.custom_value).setOnMenuItemClickListener(new OnMenuItemClickListener() {
+
+            @Override
+            public boolean onMenuItemClick(MenuItem item) {
+                Activity a = controller.getActivity();
+                final AlertDialog.Builder builder = new AlertDialog.Builder(a);
+                builder.setTitle(R.string.custom_value);
+
+                final CustomSeek myValue = new CustomSeek(a);
+                myValue.init(1, 100, AppState.get().nextScreenScrollMyValue);
+                myValue.setOnSeekChanged(new IntegerResponse() {
+
+                    @Override
+                    public boolean onResultRecive(int result) {
+                        AppState.get().nextScreenScrollMyValue = result;
+                        myValue.setValueText("" + AppState.get().nextScreenScrollMyValue);
+                        return false;
+                    }
+                });
+
+                builder.setView(myValue);
+
+                builder.setPositiveButton(R.string.apply, new OnClickListener() {
+
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        AppState.get().nextScreenScrollBy = AppState.get().nextScreenScrollMyValue;
+                        initNextType();
+                        Keyboards.hideNavigation(controller.getActivity());
+
+                    }
+                });
+                builder.setNegativeButton(R.string.cancel, new OnClickListener() {
+
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+
+                    }
+                });
+
+                builder.show();
+
+                return false;
+            }
+
+        });
+
         popupMenu.show();
 
     }
@@ -1504,6 +1560,7 @@ public class DocumentWrapperUI {
     public void nextChose(boolean animate) {
         nextChose(animate, 0);
     }
+
     public void nextChose(boolean animate, int repeatCount) {
         controller.checkReadingTimer();
 
@@ -1514,7 +1571,7 @@ public class DocumentWrapperUI {
         if (AppState.get().nextScreenScrollBy == AppState.NEXT_SCREEN_SCROLL_BY_PAGES) {
             controller.onNextPage(animate);
         } else {
-            if (AppState.get().nextScreenScrollBy < 30 && repeatCount == 0) {
+            if (AppState.get().nextScreenScrollBy <= 50 && repeatCount == 0) {
                 animate = true;
             }
             controller.onNextScreen(animate);
@@ -1540,7 +1597,7 @@ public class DocumentWrapperUI {
         if (AppState.get().nextScreenScrollBy == AppState.NEXT_SCREEN_SCROLL_BY_PAGES) {
             controller.onPrevPage(animate);
         } else {
-            if (AppState.get().nextScreenScrollBy < 30 && repeatCount == 0) {
+            if (AppState.get().nextScreenScrollBy <= 50 && repeatCount == 0) {
                 animate = true;
             }
             controller.onPrevScreen(animate);
@@ -1581,7 +1638,6 @@ public class DocumentWrapperUI {
         }
 
     }
-
 
     public DocumentGestureListener getDocumentListener() {
         return documentListener;

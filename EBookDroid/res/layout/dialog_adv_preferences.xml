@@ -184,6 +184,7 @@
                 android:gravity="center" />
         </LinearLayout>
         
+        
         <CheckBox
             android:id="@+id/isCustomizeBgAndColors"
             android:layout_width="wrap_content"
@@ -262,6 +263,12 @@
             android:layout_height="wrap_content"
             
             android:text="@string/simple_scroll_animation" />
+        
+        <CheckBox
+            android:id="@+id/isScrollSpeedByVolumeKeys"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/change_the_automatic_scrolling_speed_with_the_volume_keys" />
 
         <CheckBox
             android:id="@+id/isBrighrnessEnable"

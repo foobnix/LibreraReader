@@ -446,4 +446,5 @@
    <string name="mode_horizontally">Cuốn sách mới (ngang)</string>
    <string name="mode_musician">Nhạc sĩ (ghi lại bài hát)</string>
    <string name="you_neet_to_apply_the_new_settings">Bạn cần áp dụng các cài đặt mới</string>
+   <string name="custom_value">Giá trị tùy chỉnh</string>
 </resources>

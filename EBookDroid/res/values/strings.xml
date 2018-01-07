@@ -446,4 +446,6 @@
    <string name="display_large_book_covers_in_the_catalog">Display large book covers in the catalog</string>
    <string name="edit_names">Edit names</string>
    <string name="you_neet_to_apply_the_new_settings">You need to apply the new settings</string>
+   <string name="custom_value">Custom value</string>
+   <string name="change_the_automatic_scrolling_speed_with_the_volume_keys">Change the automatic scrolling speed with the volume keys</string>
 </resources>

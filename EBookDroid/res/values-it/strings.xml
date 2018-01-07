@@ -446,4 +446,5 @@
    <string name="mode_horizontally">Nuovo libro (orizzontale)</string>
    <string name="mode_musician">Musicista (riavvolgimento di note musicali)</string>
    <string name="you_neet_to_apply_the_new_settings">Devi applicare le nuove impostazioni</string>
+   <string name="custom_value">Valore personalizzato</string>
 </resources>

@@ -2260,6 +2260,16 @@ public class DragingDialogs {
                     }
                 });
 
+                CheckBox isScrollSpeedByVolumeKeys = (CheckBox) inflate.findViewById(R.id.isScrollSpeedByVolumeKeys);
+                isScrollSpeedByVolumeKeys.setChecked(AppState.get().isScrollSpeedByVolumeKeys);
+                isScrollSpeedByVolumeKeys.setOnCheckedChangeListener(new OnCheckedChangeListener() {
+
+                    @Override
+                    public void onCheckedChanged(final CompoundButton buttonView, final boolean isChecked) {
+                        AppState.get().isScrollSpeedByVolumeKeys = isChecked;
+                    }
+                });
+
                 CheckBox isBrighrnessEnable = (CheckBox) inflate.findViewById(R.id.isBrighrnessEnable);
                 isBrighrnessEnable.setChecked(AppState.get().isBrighrnessEnable);
                 isBrighrnessEnable.setOnCheckedChangeListener(new OnCheckedChangeListener() {

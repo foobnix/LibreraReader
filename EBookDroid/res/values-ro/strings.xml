@@ -446,4 +446,5 @@
    <string name="mode_horizontally">Cartea nouă (orizontală)</string>
    <string name="mode_musician">Muzician (reînnoirea notelor muzicale)</string>
    <string name="you_neet_to_apply_the_new_settings">Trebuie să aplicați noile setări</string>
+   <string name="custom_value">Valoarea personalizată</string>
 </resources>

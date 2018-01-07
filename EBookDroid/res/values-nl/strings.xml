@@ -446,4 +446,5 @@
    <string name="mode_horizontally">Nieuw boek (horizontaal)</string>
    <string name="mode_musician">Muzikant (terugspoelende muzieknoten)</string>
    <string name="you_neet_to_apply_the_new_settings">U moet de nieuwe instellingen toepassen</string>
+   <string name="custom_value">Aangepaste waarde</string>
 </resources>

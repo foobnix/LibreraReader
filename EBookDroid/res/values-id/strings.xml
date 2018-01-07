@@ -446,4 +446,5 @@
    <string name="mode_horizontally">Buku baru (horizontal)</string>
    <string name="mode_musician">Musisi (memutar catatan musik)</string>
    <string name="you_neet_to_apply_the_new_settings">Anda perlu menerapkan setting baru</string>
+   <string name="custom_value">Nilai khusus</string>
 </resources>

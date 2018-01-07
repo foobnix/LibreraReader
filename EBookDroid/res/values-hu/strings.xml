@@ -446,4 +446,5 @@
    <string name="mode_horizontally">Új könyv (vízszintes)</string>
    <string name="mode_musician">Zenész (zeneszámok visszafordítása)</string>
    <string name="you_neet_to_apply_the_new_settings">Új beállításokat kell alkalmazni</string>
+   <string name="custom_value">Egyéni érték</string>
 </resources>

@@ -22,7 +22,7 @@ public class CustomSeek extends FrameLayout {
 
     public CustomSeek(Context context) {
         super(context);
-
+        initWith("", "");
     }
 
     public void initWith(String name, String textColor) {

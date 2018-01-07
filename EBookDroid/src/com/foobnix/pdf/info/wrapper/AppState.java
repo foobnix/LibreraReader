@@ -253,6 +253,8 @@ public class AppState {
                                                                 // 25 - 25%
                                                                 // persent
 
+    public int nextScreenScrollMyValue = 15;
+
     public boolean isWhiteTheme = true;
     public boolean isOpenLastBook = false;
 
@@ -329,6 +331,9 @@ public class AppState {
 
     public volatile boolean isAutoScroll = false;
     public int autoScrollSpeed = 120;
+
+    @IgnoreHashCode
+    public boolean isScrollSpeedByVolumeKeys = true;
 
     @IgnoreHashCode
     public int mouseWheelSpeed = 70;

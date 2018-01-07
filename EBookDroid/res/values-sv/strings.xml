@@ -446,4 +446,5 @@
    <string name="mode_horizontally">Ny bok (horisontell)</string>
    <string name="mode_musician">Musiker (återspolning musikanteckningar)</string>
    <string name="you_neet_to_apply_the_new_settings">Du måste ange de nya inställningarna</string>
+   <string name="custom_value">Anpassat värde</string>
 </resources>

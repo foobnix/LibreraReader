@@ -79,7 +79,6 @@ public abstract class HorizontalModeController extends DocumentController {
         }
     }
 
-
     public void udpateImageSize(int w, int h) {
         imageWidth = isTextFormat ? w : (int) (Math.min(Dips.screenWidth(), Dips.screenHeight()) * AppState.get().pageQuality);
         imageHeight = isTextFormat ? h : (int) (Math.max(Dips.screenWidth(), Dips.screenHeight()) * AppState.get().pageQuality);
@@ -194,7 +193,11 @@ public abstract class HorizontalModeController extends DocumentController {
 
         TempHolder.get().init(bookPath);
         codeDocument = ImageExtractor.getNewCodecContext(getBookPath(), pasw, imageWidth, imageHeight);
-        pagesCount = codeDocument.getPageCount();
+        if (codeDocument != null) {
+            pagesCount = codeDocument.getPageCount();
+        } else {
+            pagesCount = 0;
+        }
 
         if (pagesCount == -1) {
             throw new IllegalArgumentException("Pages count = -1");
@@ -518,7 +521,9 @@ public abstract class HorizontalModeController extends DocumentController {
 
     @Override
     public void getOutline(com.foobnix.android.utils.ResultResponse<List<OutlineLinkWrapper>> outline, boolean forse) {
-
+        if (codeDocument == null) {
+            return;
+        }
         List<OutlineLinkWrapper> outlineRes = new ArrayList<OutlineLinkWrapper>();
         try {
             for (OutlineLink ol : codeDocument.getOutline()) {
@@ -537,6 +542,9 @@ public abstract class HorizontalModeController extends DocumentController {
 
     @Override
     public void recyclePage(int number) {
+        if (codeDocument == null) {
+            return;
+        }
         try {
             CodecPage page = codeDocument.getPage(number);
             page.recycle();

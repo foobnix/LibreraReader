@@ -446,4 +446,5 @@
    <string name="mode_horizontally">ספר חדש (אופקי)</string>
    <string name="mode_musician">מוסיקאי (rewind מוסיקה הערות)</string>
    <string name="you_neet_to_apply_the_new_settings">עליך להחיל את ההגדרות החדשות</string>
+   <string name="custom_value">ערך מותאם אישית</string>
 </resources>

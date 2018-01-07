@@ -446,4 +446,5 @@
    <string name="mode_horizontally">Nouveau livre (horizontal)</string>
    <string name="mode_musician">Musicien (rembobinage des notes de musique)</string>
    <string name="you_neet_to_apply_the_new_settings">Vous devez appliquer les nouveaux paramètres</string>
+   <string name="custom_value">Valeur personnalisée</string>
 </resources>

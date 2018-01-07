@@ -446,4 +446,5 @@
    <string name="mode_horizontally">Nová kniha (horizontálna)</string>
    <string name="mode_musician">Hudobník (prevíjanie hudobných poznámok)</string>
    <string name="you_neet_to_apply_the_new_settings">Musíte použiť nové nastavenia</string>
+   <string name="custom_value">Vlastná hodnota</string>
 </resources>

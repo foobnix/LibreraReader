@@ -446,4 +446,5 @@
    <string name="mode_horizontally">새 책 (가로)</string>
    <string name="mode_musician">음악가 (되감기 음악 노트)</string>
    <string name="you_neet_to_apply_the_new_settings">새 설정을 적용해야합니다.</string>
+   <string name="custom_value">맞춤 값</string>
 </resources>
