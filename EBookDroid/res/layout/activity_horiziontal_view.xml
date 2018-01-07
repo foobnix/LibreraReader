@@ -336,8 +336,9 @@
             android:focusableInTouchMode="false"
             android:gravity="center_vertical"
             android:orientation="horizontal"
-            android:padding="2dip"
-            android:layout_marginBottom="8dip"
+            android:paddingLeft="2dip"
+            android:paddingRight="2dip"
+            android:paddingTop="2dip"
             android:visibility="visible" >
 
             <ImageView
@@ -411,6 +412,17 @@
                 android:contentDescription="@string/block_page_movement_horizontally"
                 android:src="@drawable/glyphicons_205_unlock" />
         </LinearLayout>
+
+        <TextView
+            android:id="@+id/modeName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:clickable="true"
+            android:gravity="center"
+            android:paddingBottom="4dip"
+            android:text="@string/mode_horizontally"
+            android:textColor="#ffffff"
+            android:textSize="12sp" />
     </LinearLayout>
 
     <FrameLayout

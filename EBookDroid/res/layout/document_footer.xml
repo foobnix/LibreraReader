@@ -1,14 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/wrapper"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:clickable="true"
     android:focusableInTouchMode="false"
     android:orientation="vertical" >
-    
+
     <LinearLayout
-        android:id="@+id/lineNavgination"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:clickable="true"
@@ -108,14 +106,15 @@
     </LinearLayout>
 
     <LinearLayout
-        android:id="@+id/pagsLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:clickable="true"
         android:focusableInTouchMode="true"
         android:gravity="center_vertical"
-        android:layout_marginBottom="8dip"
-        android:padding="2dip" >
+            android:paddingLeft="2dip"
+            android:paddingRight="2dip"
+            android:paddingTop="2dip"
+         >
 
         <ImageView
             android:id="@+id/autoScroll"
@@ -201,6 +200,15 @@
             android:src="@drawable/glyphicons_204_lock" />
     </LinearLayout>
 
-    
+    <TextView
+        android:paddingBottom="4dip"
+        android:id="@+id/modeName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:clickable="true"
+        android:textSize="12sp"
+        android:gravity="center"
+        android:text="@string/mode_vertical"
+        android:textColor="#ffffff" />
 
 </LinearLayout>

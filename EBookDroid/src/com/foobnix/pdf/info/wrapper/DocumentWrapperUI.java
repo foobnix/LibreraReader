@@ -91,7 +91,7 @@ public class DocumentWrapperUI {
     TextView toastBrightnessText, currentPageIndex, currentSeek, maxSeek, currentTime, bookName, nextTypeBootom, batteryLevel, lirbiLogo, reverseKeysIndicator;
     ImageView onDocDontext, toolBarButton, linkHistory, lockUnlock, lockUnlockTop, textToSpeachTop, clockIcon, batteryIcon;
     ImageView showSearch, nextScreenType, autoScroll, textToSpeach, ttsActive, onModeChange, imageMenuArrow, editTop2, goToPage1, goToPage1Top;
-    View adFrame, titleBar, overlay, menuLayout, moveLeft, moveRight, pages, lineNavgination, onCloseBook, seekSpeedLayot, zoomPlus, zoomMinus;
+    View adFrame, titleBar, overlay, menuLayout, moveLeft, moveRight, bottomBar, onCloseBook, seekSpeedLayot, zoomPlus, zoomMinus;
     View line1, line2, lineFirst, lineClose, closeTop;
     SeekBar seekBar, speedSeekBar;
     FrameLayout anchor;
@@ -509,8 +509,7 @@ public class DocumentWrapperUI {
 
         menuLayout = a.findViewById(R.id.menuLayout);
 
-        pages = a.findViewById(R.id.pagsLayout);
-        lineNavgination = a.findViewById(R.id.lineNavgination);
+        bottomBar = a.findViewById(R.id.bottomBar);
         imageMenuArrow = (ImageView) a.findViewById(R.id.imageMenuArrow);
         adFrame = a.findViewById(R.id.adFrame);
 
@@ -665,6 +664,9 @@ public class DocumentWrapperUI {
         toastBrightnessText.setVisibility(View.GONE);
         TintUtil.setDrawableTint(toastBrightnessText.getCompoundDrawables()[0], Color.WHITE);
 
+        TextView modeName = (TextView) a.findViewById(R.id.modeName);
+        modeName.setText(AppState.get().nameVerticalMode);
+
         currentPageIndex = (TextView) a.findViewById(R.id.currentPageIndex);
         currentSeek = (TextView) a.findViewById(R.id.currentSeek);
         maxSeek = (TextView) a.findViewById(R.id.maxSeek);
@@ -739,7 +741,7 @@ public class DocumentWrapperUI {
         TintUtil.setStatusBarColor(a);
 
         TintUtil.setTintBgSimple(a.findViewById(R.id.menuLayout), TRANSPARENT_UI);
-        TintUtil.setTintBgSimple(a.findViewById(R.id.document_footer), TRANSPARENT_UI);
+        TintUtil.setTintBgSimple(a.findViewById(R.id.bottomBar), TRANSPARENT_UI);
         TintUtil.setBackgroundFillColorBottomRight(lirbiLogo, ColorUtils.setAlphaComponent(TintUtil.color, TRANSPARENT_UI));
         tintSpeed();
 
@@ -772,6 +774,7 @@ public class DocumentWrapperUI {
             textToSpeachTop.setVisibility(View.GONE);
             progressDraw.setVisibility(View.GONE);
             textToSpeach.setVisibility(View.GONE);
+            modeName.setVisibility(View.GONE);
         }
 
         currentSeek.setVisibility(View.GONE);
@@ -1138,8 +1141,7 @@ public class DocumentWrapperUI {
 
     public void hide() {
         menuLayout.setVisibility(View.GONE);
-        pages.setVisibility(View.GONE);
-        lineNavgination.setVisibility(View.GONE);
+        bottomBar.setVisibility(View.GONE);
         adFrame.setVisibility(View.GONE);
         adFrame.setClickable(false);
         imageMenuArrow.setImageResource(android.R.drawable.arrow_down_float);
@@ -1173,8 +1175,7 @@ public class DocumentWrapperUI {
 
         updateLock();
 
-        pages.setVisibility(View.VISIBLE);
-        lineNavgination.setVisibility(View.VISIBLE);
+        bottomBar.setVisibility(View.VISIBLE);
         adFrame.setVisibility(View.VISIBLE);
         adFrame.setClickable(true);
 
