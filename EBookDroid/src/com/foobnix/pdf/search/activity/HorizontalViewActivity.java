@@ -412,6 +412,15 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
                 DragingDialogs.textToSpeachDialog(anchor, documentController);
             }
         });
+        ttsActive.setOnLongClickListener(new OnLongClickListener() {
+
+            @Override
+            public boolean onLongClick(View v) {
+                Vibro.vibrate();
+                ttsActive.setVisibility(View.GONE);
+                return true;
+            }
+        });
 
         onModeChange = (ImageView) findViewById(R.id.onModeChange);
         onModeChange.setOnClickListener(new OnClickListener() {

@@ -648,6 +648,16 @@ public class DocumentWrapperUI {
         onTTSStatus(null);
         ttsActive.setOnClickListener(onTextToSpeach);
 
+        ttsActive.setOnLongClickListener(new OnLongClickListener() {
+
+            @Override
+            public boolean onLongClick(View v) {
+                Vibro.vibrate();
+                ttsActive.setVisibility(View.GONE);
+                return true;
+            }
+        });
+
         batteryIcon = (ImageView) a.findViewById(R.id.batteryIcon);
         clockIcon = (ImageView) a.findViewById(R.id.clockIcon);
 
