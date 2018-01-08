@@ -152,7 +152,7 @@ public class FileMetaCore {
     }
 
     public void udpateFullMeta(FileMeta fileMeta, EbookMeta meta) {
-        fileMeta.setAuthor(meta.getAuthor());
+        fileMeta.setAuthor(TxtUtils.isEmpty(meta.getAuthor()) ? "Librera" : meta.getAuthor());
         fileMeta.setTitle(meta.getTitle());
         fileMeta.setSequence(TxtUtils.firstUppercase(meta.getSequence()));
         fileMeta.setGenre(meta.getGenre());

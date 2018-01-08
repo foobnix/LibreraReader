@@ -151,7 +151,6 @@ public class Dialogs {
 
         final CustomSeek contrastSeek = new CustomSeek(c);
         contrastSeek.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT, 0));
-        contrastSeek.initWith("", "");
         contrastSeek.init(0, 200, AppState.get().contrastImage);
         contrastSeek.setOnSeekChanged(new IntegerResponse() {
 
@@ -165,7 +164,6 @@ public class Dialogs {
 
         final CustomSeek brightnesSeek = new CustomSeek(c);
         brightnesSeek.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT, 0));
-        brightnesSeek.initWith("", "");
         brightnesSeek.init(-100, 100, AppState.get().brigtnessImage);
         brightnesSeek.setOnSeekChanged(new IntegerResponse() {
 
