@@ -3468,7 +3468,7 @@ public class DragingDialogs {
 
 
                 final TextView fontNamePreview = (TextView) inflate.findViewById(R.id.fontNamePreview);
-                fontNamePreview.setTypeface(BookCSS.getTypeFaceForFont(BookCSS.get().normalFont));
+                // fontNamePreview.setTypeface(BookCSS.getTypeFaceForFont(BookCSS.get().normalFont));
 
                 final TextView textFontName = (TextView) inflate.findViewById(R.id.textFontName);
                 textFontName.setOnClickListener(new OnClickListener() {
@@ -3484,7 +3484,7 @@ public class DragingDialogs {
                                 public boolean onMenuItemClick(MenuItem item) {
                                     BookCSS.get().resetAll(fontName);
                                     TxtUtils.underline(textFontName, BookCSS.filterFontName(BookCSS.get().normalFont));
-                                    fontNamePreview.setTypeface(BookCSS.getTypeFaceForFont(BookCSS.get().normalFont));
+                                    // fontNamePreview.setTypeface(BookCSS.getTypeFaceForFont(BookCSS.get().normalFont));
                                     return false;
                                 }
                             });
@@ -3504,8 +3504,8 @@ public class DragingDialogs {
 
                             @Override
                             public void run() {
-                                TxtUtils.underline(textFontName, BookCSS.get().normalFont);
-                                fontNamePreview.setTypeface(BookCSS.getTypeFaceForFont(BookCSS.get().normalFont));
+                                TxtUtils.underline(textFontName, BookCSS.filterFontName(BookCSS.get().normalFont));
+                                // fontNamePreview.setTypeface(BookCSS.getTypeFaceForFont(BookCSS.get().normalFont));
                             }
                         });
                     }
