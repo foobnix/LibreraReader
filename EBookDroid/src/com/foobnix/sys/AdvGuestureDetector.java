@@ -123,7 +123,6 @@ public class AdvGuestureDetector extends SimpleOnGestureListener implements IMul
         return true;
     }
 
-
     Annotation annotation;
 
     @Override
@@ -270,7 +269,7 @@ public class AdvGuestureDetector extends SimpleOnGestureListener implements IMul
             return true;
         }
 
-        if (isNoLock()) {
+        if (isNoLock() || e2.getPointerCount() == 2) {
             // if (!AppState.get().isMusicianMode ||
             // (AppState.get().isMusicianMode && isClickRigth(e1))) {
             avc.getView().scrollBy((int) x, (int) y);
@@ -324,7 +323,7 @@ public class AdvGuestureDetector extends SimpleOnGestureListener implements IMul
     @Override
     public void onTwoFingerPinch(final MotionEvent e, final float oldDistance, final float newDistance) {
         final float factor = (float) Math.sqrt(newDistance / oldDistance);
-        if (isNoLock()) {
+        if (true || isNoLock()) {
             long delta = System.currentTimeMillis() - time;
             if (delta > 50) {
                 time = System.currentTimeMillis();
@@ -340,7 +339,7 @@ public class AdvGuestureDetector extends SimpleOnGestureListener implements IMul
      */
     @Override
     public void onTwoFingerPinchEnd(final MotionEvent e) {
-        if (isNoLock()) {
+        if (true || isNoLock()) {
             avc.base.getZoomModel().commit();
         }
     }

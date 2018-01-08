@@ -45,7 +45,6 @@ import com.foobnix.ui2.fragment.SearchFragment2;
 import com.foobnix.ui2.fragment.UIFragment;
 import com.nostra13.universalimageloader.core.ImageLoader;
 
-import android.Manifest;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.SearchManager;
@@ -53,13 +52,10 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
-import android.content.pm.PackageManager;
 import android.content.res.Configuration;
 import android.graphics.Color;
 import android.net.Uri;
-import android.os.Build;
 import android.os.Bundle;
-import android.support.v4.content.ContextCompat;
 import android.support.v4.content.LocalBroadcastManager;
 import android.support.v4.view.ViewPager;
 import android.support.v4.view.ViewPager.OnPageChangeListener;
@@ -236,9 +232,7 @@ public class MainTabs2 extends AdsFragmentActivity {
 
         findViewById(R.id.pager);
 
-        if (Build.VERSION.SDK_INT >= 23 && ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED) {
-            pager.setAdapter(adapter);
-        } else if (Build.VERSION.SDK_INT < 23) {
+        if (Android6.canWrite(this)) {
             pager.setAdapter(adapter);
         }
 
@@ -366,7 +360,11 @@ public class MainTabs2 extends AdsFragmentActivity {
 
         checkGoToPage(getIntent());
 
+        try {
         AndroidWhatsNew.checkForNewBeta(this);
+        } catch (Exception e) {
+            LOG.e(e);
+        }
     }
 
     @Subscribe
@@ -495,7 +493,7 @@ public class MainTabs2 extends AdsFragmentActivity {
         ImageExtractor.clearErrors();
         ImageExtractor.clearCodeDocument();
 
-        if (AppState.get().isAutomaticExport) {
+        if (AppState.get().isAutomaticExport && Android6.canWrite(this)) {
             try {
                 File file = new File(CacheZipUtils.SD_CARD_APP_DIR, Apps.getApplicationName(this) + "-" + Apps.getVersionName(this) + "-backup-export-all.json");
                 LOG.d("isAutomaticExport", file);

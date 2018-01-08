@@ -5,6 +5,7 @@ import com.foobnix.android.utils.LOG;
 import android.Manifest;
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -17,6 +18,13 @@ import android.support.v4.content.ContextCompat;
 public class Android6 {
 
     public static final int MY_PERMISSIONS_REQUEST_WES = 1;
+
+    public static boolean canWrite(Context c) {
+        if(Build.VERSION.SDK_INT >= 23) {
+            return ContextCompat.checkSelfPermission(c, Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED;
+        }
+        return true;
+    }
 
     public static void checkPermissions(final Activity a) {
 
