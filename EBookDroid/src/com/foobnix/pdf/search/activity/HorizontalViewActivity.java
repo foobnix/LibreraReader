@@ -173,6 +173,8 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
 
         super.onCreate(savedInstanceState);
 
+        boolean isTextFomat = ExtUtils.isTextFomat(getIntent());
+
         clickUtils = new ClickUtils();
 
         AppState.get().load(this);
@@ -331,8 +333,8 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
             }
         });
 
-        onMove.setVisibility(AppState.get().isInkMode ? View.VISIBLE : View.GONE);
         onBC.setVisibility(AppState.get().isInkMode ? View.VISIBLE : View.GONE);
+        onMove.setVisibility(AppState.get().isInkMode && !isTextFomat ? View.VISIBLE : View.GONE);
 
         findViewById(R.id.thumbnail).setOnClickListener(new View.OnClickListener() {
 
@@ -534,7 +536,7 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
             }
         });
 
-        boolean isTextFomat = ExtUtils.isTextFomat(getIntent());
+
 
         final UnderlineImageView onCrop = (UnderlineImageView) findViewById(R.id.onCrop);
         onCrop.setVisibility(isTextFomat ? View.GONE : View.VISIBLE);
