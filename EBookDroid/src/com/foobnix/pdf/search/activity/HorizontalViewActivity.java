@@ -235,6 +235,14 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
                 return true;
             }
         });
+        maxSeek.setOnLongClickListener(new OnLongClickListener() {
+
+            @Override
+            public boolean onLongClick(View v) {
+                Dialogs.showDeltaPage(anchor, documentController, documentController.getCurentPageFirst1(), onRefresh);
+                return true;
+            }
+        });
 
         updateSeekBarColorAndSize();
 

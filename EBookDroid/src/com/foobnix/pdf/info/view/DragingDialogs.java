@@ -3616,7 +3616,6 @@ public class DragingDialogs {
 
                         final View inflate = inflater.inflate(R.layout.dialog_bluelight, null, false);
 
-                        inflate.findViewById(R.id.blueLightLayout).setVisibility(AppState.get().isInkMode ? View.GONE : View.VISIBLE);
 
                         final CustomColorView blueLightColor = (CustomColorView) inflate.findViewById(R.id.blueLightColor);
                         TxtUtils.bold(blueLightColor.getText1());

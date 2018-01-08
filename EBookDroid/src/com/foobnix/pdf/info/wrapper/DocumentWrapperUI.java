@@ -703,6 +703,14 @@ public class DocumentWrapperUI {
                 return true;
             }
         });
+        maxSeek.setOnLongClickListener(new OnLongClickListener() {
+
+            @Override
+            public boolean onLongClick(View v) {
+                Dialogs.showDeltaPage(anchor, controller, controller.getCurentPageFirst1(), updateUIRunnable);
+                return true;
+            }
+        });
 
         View thumbnail = a.findViewById(R.id.thumbnail);
         thumbnail.setOnClickListener(onThumbnail);
