@@ -224,7 +224,7 @@ public class AppState {
     public final static int AUTO_BRIGTNESS = -1000;
 
     @IgnoreHashCode
-    public int doubleClickAction = DOUBLE_CLICK_ZOOM_IN_OUT;
+    public int doubleClickAction = DOUBLE_CLICK_ADJUST_PAGE;
 
     @IgnoreHashCode
     public int inactivityTime = 2;

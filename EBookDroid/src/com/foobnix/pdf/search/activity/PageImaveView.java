@@ -230,36 +230,42 @@ public class PageImaveView extends View {
 
     class ImageSimpleGestureListener extends GestureDetector.SimpleOnGestureListener {
 
-
         @Override
         public boolean onDoubleTap(final MotionEvent e) {
             isIgronerClick = true;
             if (clickUtils.isClickCenter(e.getX(), e.getY())) {
                 isLognPress = true;
 
-                if (isFirstZoomInOut) {
-                    // imageMatrix().reset();
-                    imageMatrix().preTranslate(getWidth() / 2 - e.getX(), getHeight() / 2 - e.getY());
-                    imageMatrix().postScale(2.5f, 2.5f, getWidth() / 2, getHeight() / 2);
-                    isFirstZoomInOut = false;
-                    prevLock = AppState.get().isLocked;
-                    AppState.get().isLocked = false;
-                    // invalidate();
-                    invalidateAndMsg();
-                    PageImageState.get().isAutoFit = false;
+                if (AppState.get().doubleClickAction == AppState.DOUBLE_CLICK_NOTHING) {
 
-                } else {
-                    AppState.get().isLocked = prevLock;
-                    if (TempHolder.get().isTextFormat) {
-                        AppState.get().isLocked = true;
+                } else if (AppState.get().doubleClickAction == AppState.DOUBLE_CLICK_ZOOM_IN_OUT) {
+                    if (isFirstZoomInOut) {
+                        imageMatrix().preTranslate(getWidth() / 2 - e.getX(), getHeight() / 2 - e.getY());
+                        imageMatrix().postScale(2.5f, 2.5f, getWidth() / 2, getHeight() / 2);
+                        isFirstZoomInOut = false;
+                        prevLock = AppState.get().isLocked;
+                        AppState.get().isLocked = false;
+                        invalidateAndMsg();
+                        PageImageState.get().isAutoFit = false;
+
+                    } else {
+                        AppState.get().isLocked = prevLock;
+                        if (TempHolder.get().isTextFormat) {
+                            AppState.get().isLocked = true;
+                        }
+                        isLognPress = true;
+                        PageImageState.get().isAutoFit = true;
+                        autoFit();
+                        invalidateAndMsg();
+                        isFirstZoomInOut = true;
+
                     }
-                    isLognPress = true;
+                } else {
                     PageImageState.get().isAutoFit = true;
                     autoFit();
                     invalidateAndMsg();
-                    isFirstZoomInOut = true;
-
                 }
+
                 EventBus.getDefault().post(new MessageEvent(MessageEvent.MESSAGE_DOUBLE_TAP, e.getX(), e.getY()));
                 return true;
             }
@@ -338,7 +344,7 @@ public class PageImaveView extends View {
                         }
 
                         boolean isBrightness = brightnessHelper.onActionMove(event);
-                        
+
                         if (!isBrightness && isReadyForMove && !AppState.get().isLocked) {
 
                             imageMatrix().postTranslate(dx, dy);
@@ -518,7 +524,7 @@ public class PageImaveView extends View {
     protected void onDraw(final Canvas canvas) {
         super.onDraw(canvas);
         try {
-            if (AppState.get().isOLED && MagicHelper.getBgColor() == Color.BLACK) {
+            if (AppState.get().isOLED && !AppState.get().isInvert /* && MagicHelper.getBgColor() == Color.BLACK */) {
                 canvas.drawColor(Color.BLACK);
             } else {
                 canvas.drawColor(MagicHelper.ligtherColor(MagicHelper.getBgColor()));
@@ -545,7 +551,7 @@ public class PageImaveView extends View {
                 }
             }
 
-            if (AppState.get().isOLED && !AppState.get().isInvert && !TempHolder.get().isTextFormat) {
+            if (AppState.get().isOLED && !AppState.get().isInvert /* && !TempHolder.get().isTextFormat */) {
                 canvas.drawRect(-dp1, 0, drawableWidth + dp1, drawableHeight, rect);
             }
 

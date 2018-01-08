@@ -2313,14 +2313,6 @@ public class DragingDialogs {
                     }
                 });
 
-                if (AppState.get().isAlwaysOpenAsMagazine) {
-                    inflate.findViewById(R.id.onDoubleTapLayout).setVisibility(View.GONE);
-                } else {
-                    // inflate.findViewById(R.id.onDoubleTapLayout).setVisibility(ExtUtils.isTextFomat(controller.getCurrentBook().getPath())
-                    // ? View.GONE : View.VISIBLE);
-                    inflate.findViewById(R.id.onDoubleTapLayout).setVisibility(View.VISIBLE);
-
-                }
 
                 CheckBox isVibration = (CheckBox) inflate.findViewById(R.id.isVibration);
                 isVibration.setChecked(AppState.get().isVibration);

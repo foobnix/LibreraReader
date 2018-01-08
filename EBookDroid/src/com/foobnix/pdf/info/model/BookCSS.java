@@ -105,7 +105,7 @@ public class BookCSS {
         marginBottom = sp.getInt("marginBottom", marginBottom);
         marginLeft = sp.getInt("marginLeft", marginLeft);
         emptyLine = sp.getInt("emptyLine", emptyLine);
-        customCSS = sp.getString("customCSS", customCSS);
+        customCSS = sp.getString("customCSS1", customCSS);
 
         lineHeight = sp.getInt("lineHeight", lineHeight);
         textIndent = sp.getInt("textIndent", textIndent);
@@ -157,9 +157,9 @@ public class BookCSS {
 
         linkColorDay = LINK_COLOR_UNIVERSAL;
         linkColorNight = LINK_COLOR_UNIVERSAL;
-        customCSS = "pre {white-space: pre} /* pre, normal*/ \n" + //
-                "svg{display:block} \n" + //
-                "figure>* {font-size: 0.6em}";
+        customCSS = "pre > * {white-space: pre; font-size: 0.7em;} /* pre, normal*/ \n" + //
+                "svg {display:block} \n" + //
+                "figure > * {font-size: 0.7em}";
 
     }
 
@@ -199,7 +199,7 @@ public class BookCSS {
         edit.putInt("marginBottom", marginBottom);
         edit.putInt("marginLeft", marginLeft);
         edit.putInt("emptyLine", emptyLine);
-        edit.putString("customCSS", customCSS);
+        edit.putString("customCSS1", customCSS);
 
         edit.putInt("lineHeight", lineHeight);
         edit.putInt("textIndent", textIndent);

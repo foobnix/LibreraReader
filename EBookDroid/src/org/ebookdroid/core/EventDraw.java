@@ -11,7 +11,6 @@ import com.foobnix.android.utils.Dips;
 import com.foobnix.pdf.info.R;
 import com.foobnix.pdf.info.wrapper.AppState;
 import com.foobnix.pdf.info.wrapper.MagicHelper;
-import com.foobnix.sys.TempHolder;
 
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
@@ -67,7 +66,7 @@ public class EventDraw implements IEvent {
     public ViewState process() {
         try {
 
-            if (AppState.get().isOLED && MagicHelper.getBgColor() == Color.BLACK) {
+            if (AppState.get().isOLED && !AppState.get().isInvert /* && MagicHelper.getBgColor() == Color.BLACK */) {
                 viewState.paint.backgroundFillPaint.setColor(Color.BLACK);
             } else {
                 viewState.paint.backgroundFillPaint.setColor(MagicHelper.ligtherColor(MagicHelper.getBgColor()));
@@ -115,8 +114,8 @@ public class EventDraw implements IEvent {
             p.setAlpha(255 - MagicHelper.getTransparencyInt());
             canvas.drawBitmap(MagicHelper.getBackgroundImage(), m, p);
         }
-        if (AppState.get().isOLED && !AppState.get().isInvert && !TempHolder.get().isTextFormat) {
-            canvas.drawRect(fixedPageBounds.left, fixedPageBounds.top - dp1, fixedPageBounds.right, fixedPageBounds.bottom + dp1, rect);
+        if (AppState.get().isOLED && !AppState.get().isInvert/* && !TempHolder.get().isTextFormat */) {
+            canvas.drawRect(fixedPageBounds.left, fixedPageBounds.top - dp1, fixedPageBounds.right + 1, fixedPageBounds.bottom + dp1, rect);
         }
 
         // TODO Draw there

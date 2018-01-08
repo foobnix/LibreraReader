@@ -1049,7 +1049,7 @@ public class ExtUtils {
                 handler = new Handler() {
                     @Override
                     public void handleMessage(android.os.Message msg) {
-                        text.setText(a.getString(R.string.msg_loading) + " " + msg.what + "/100%");
+                        text.setText(a.getString(R.string.please_wait) + " " + msg.what + "/100%");
                     };
                 };
 

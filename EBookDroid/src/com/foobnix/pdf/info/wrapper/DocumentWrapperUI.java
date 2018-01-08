@@ -895,6 +895,7 @@ public class DocumentWrapperUI {
         @Override
         public void onClick(final View v) {
             if (AppState.get().isCut) {
+                onModeChange.setImageResource(R.drawable.glyphicons_two_page_one);
                 onCut.onClick(null);
                 return;
             }
@@ -1018,10 +1019,11 @@ public class DocumentWrapperUI {
                     @Override
                     public boolean onResultRecive(int result) {
                         AppState.get().nextScreenScrollMyValue = result;
-                        myValue.setValueText("" + AppState.get().nextScreenScrollMyValue);
+                        myValue.setValueText(AppState.get().nextScreenScrollMyValue + "%");
                         return false;
                     }
                 });
+                myValue.setValueText(AppState.get().nextScreenScrollMyValue + "%");
 
                 builder.setView(myValue);
 

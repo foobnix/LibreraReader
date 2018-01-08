@@ -91,9 +91,10 @@ public class MainTabs2 extends AdsFragmentActivity {
     @Override
     protected void onNewIntent(final Intent intent) {
         isInStack = true;
-        testIntentHandler();
+        // testIntentHandler();
         if (intent.getBooleanExtra(EXTRA_EXIT, false)) {
             finish();
+            return;
         }
         checkGoToPage(intent);
     }
@@ -166,7 +167,7 @@ public class MainTabs2 extends AdsFragmentActivity {
 
         isEink = Dips.isEInk(this);
 
-        isInStack = true;
+
 
         TintUtil.setStatusBarColor(this);
         DocumentController.doRotation(this);
@@ -404,6 +405,7 @@ public class MainTabs2 extends AdsFragmentActivity {
     @Override
     protected void onResume() {
         super.onResume();
+        isInStack = true;
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
         // DocumentController.chooseFullScreen(this, false);
         TintUtil.updateAll();
