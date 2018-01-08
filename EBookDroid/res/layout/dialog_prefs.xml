@@ -254,7 +254,7 @@
 
         <LinearLayout
             android:id="@+id/fontNameSelectionLayout"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center_vertical"
             android:orientation="horizontal" >
@@ -277,14 +277,15 @@
                 android:singleLine="true"
                 android:text="@string/font_name"
                 android:textStyle="bold" />
-
-            <Spinner
-                android:id="@+id/spinnerFontName"
-                android:layout_width="match_parent"
-                android:layout_height="40dip"
-                android:layout_marginRight="4dip"
+            
+            <TextView
+                android:id="@+id/textFontName"
+                style="@style/textLink"
                 android:layout_weight="1"
-                android:minWidth="300dp" />
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="TimesNewRoman" />
+
 
             <ImageView
                 android:id="@+id/moreFontSettings"

@@ -82,7 +82,6 @@ public class BookCSS {
     public String linkColorDay;
     public String linkColorNight;
 
-    public int spinnerIndex = FONT_NAMES.indexOf(DEFAULT_FONT);
 
     public void load(Context c) {
         if (c == null) {
@@ -110,7 +109,6 @@ public class BookCSS {
         lineHeight = sp.getInt("lineHeight", lineHeight);
         textIndent = sp.getInt("textIndent", textIndent);
         fontWeight = sp.getInt("fontWeight", fontWeight);
-        spinnerIndex = sp.getInt("spinnerIndex", spinnerIndex);
         documentStyle = sp.getInt("documentStyle", documentStyle);
 
         isAutoHypens = sp.getBoolean("isAutoHypens1", isAutoHypens);
@@ -204,7 +202,6 @@ public class BookCSS {
         edit.putInt("lineHeight", lineHeight);
         edit.putInt("textIndent", textIndent);
         edit.putInt("fontWeight", fontWeight);
-        edit.putInt("spinnerIndex", spinnerIndex);
         edit.putInt("documentStyle", documentStyle);
         edit.putBoolean("isAutoHypens1", isAutoHypens);
         edit.putString("hypenLang", hypenLang);
@@ -289,14 +286,7 @@ public class BookCSS {
                 List<String> filtered = new ArrayList<String>();
 
                 for (String fontName : list) {
-                    String ext = ExtUtils.getFileExtension(fontName);
-                    if (fontName.contains("-")) {
-                        fontName = fontName.substring(0, fontName.lastIndexOf("-")) + "." + ext;
-                    } else if (fontName.contains("_")) {
-                        fontName = fontName.substring(0, fontName.lastIndexOf("_")) + "." + ext;
-                    } else if (fontName.contains(" ")) {
-                        fontName = fontName.substring(0, fontName.lastIndexOf(" ")) + "." + ext;
-                    }
+                    fontName = filterFontName(fontName);
 
                     if (!filtered.contains(fontName)) {
                         filtered.add(fontName);
@@ -314,6 +304,18 @@ public class BookCSS {
             }
         }
         return Collections.EMPTY_LIST;
+    }
+
+    public static String filterFontName(String fontName) {
+        String ext = ExtUtils.getFileExtension(fontName);
+        if (fontName.contains("-")) {
+            fontName = fontName.substring(0, fontName.lastIndexOf("-")) + "." + ext;
+        } else if (fontName.contains("_")) {
+            fontName = fontName.substring(0, fontName.lastIndexOf("_")) + "." + ext;
+        } else if (fontName.contains(" ")) {
+            fontName = fontName.substring(0, fontName.lastIndexOf(" ")) + "." + ext;
+        }
+        return fontName;
     }
 
     private Collection<String> getAllFontsFromFolder(String path) {

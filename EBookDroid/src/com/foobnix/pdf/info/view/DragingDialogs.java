@@ -2313,7 +2313,6 @@ public class DragingDialogs {
                     }
                 });
 
-
                 CheckBox isVibration = (CheckBox) inflate.findViewById(R.id.isVibration);
                 isVibration.setChecked(AppState.get().isVibration);
                 isVibration.setOnCheckedChangeListener(new OnCheckedChangeListener() {
@@ -3467,59 +3466,34 @@ public class DragingDialogs {
                 inflate.findViewById(R.id.fontSizeLayout).setVisibility(ExtUtils.isTextFomat(controller.getCurrentBook().getPath()) ? View.VISIBLE : View.GONE);
                 inflate.findViewById(R.id.fontNameSelectionLayout).setVisibility(ExtUtils.isTextFomat(controller.getCurrentBook().getPath()) ? View.VISIBLE : View.GONE);
 
-                final List<String> fontNames = BookCSS.get().getAllFontsFiltered();
 
                 final TextView fontNamePreview = (TextView) inflate.findViewById(R.id.fontNamePreview);
                 fontNamePreview.setTypeface(BookCSS.getTypeFaceForFont(BookCSS.get().normalFont));
-                // Font choose
-                final Spinner spinnerFontName = (Spinner) inflate.findViewById(R.id.spinnerFontName);
-                spinnerFontName.setAdapter(new BaseItemLayoutAdapter<String>(controller.getActivity(), android.R.layout.simple_spinner_dropdown_item, fontNames) {
+
+                final TextView textFontName = (TextView) inflate.findViewById(R.id.textFontName);
+                textFontName.setOnClickListener(new OnClickListener() {
 
                     @Override
-                    public void populateView(View inflate, int arg1, String value) {
-                        TextView tv = (TextView) inflate.findViewById(android.R.id.text1);
-                        tv.setText("" + value);
-                        // tv.setTypeface(BookCSS.getTypeFaceForFont(value));
+                    public void onClick(View v) {
+                        final List<String> fontNames = BookCSS.get().getAllFontsFiltered();
+                        MyPopupMenu popup = new MyPopupMenu(v);
+                        for (final String fontName : fontNames) {
+                            popup.getMenu().add(fontName).setOnMenuItemClickListener(new OnMenuItemClickListener() {
+
+                                @Override
+                                public boolean onMenuItemClick(MenuItem item) {
+                                    BookCSS.get().resetAll(fontName);
+                                    TxtUtils.underline(textFontName, BookCSS.filterFontName(BookCSS.get().normalFont));
+                                    fontNamePreview.setTypeface(BookCSS.getTypeFaceForFont(BookCSS.get().normalFont));
+                                    return false;
+                                }
+                            });
+                        }
+                        popup.show();
                     }
                 });
 
-                int indexOf = BookCSS.get().spinnerIndex;
-                spinnerFontName.setSelection(indexOf);
-                final Runnable runnable = new Runnable() {
-
-                    @Override
-                    public void run() {
-                        spinnerFontName.setOnItemSelectedListener(new OnItemSelectedListener() {
-
-                            @Override
-                            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                                String font = fontNames.get(position);
-                                BookCSS.get().spinnerIndex = spinnerFontName.getSelectedItemPosition();
-                                BookCSS.get().resetAll(font);
-                                fontNamePreview.setTypeface(BookCSS.getTypeFaceForFont(BookCSS.get().normalFont));
-
-                                try {
-                                    TextView textView = (TextView) spinnerFontName.getChildAt(0);
-                                    textView.setTextAppearance(controller.getActivity(), R.style.textLinkStyle);
-                                } catch (Exception e) {
-                                    LOG.e(e);
-                                }
-                            }
-
-                            @Override
-                            public void onNothingSelected(AdapterView<?> parent) {
-                            }
-                        });
-
-                        try {
-                            TextView textView = (TextView) spinnerFontName.getChildAt(0);
-                            textView.setTextAppearance(controller.getActivity(), R.style.textLinkStyle);
-                        } catch (Exception e) {
-                            LOG.e(e);
-                        }
-                    }
-                };
-                spinnerFontName.postDelayed(runnable, 100);
+                TxtUtils.underline(textFontName, BookCSS.filterFontName(BookCSS.get().normalFont));
 
                 final View moreFontSettings = inflate.findViewById(R.id.moreFontSettings);
                 moreFontSettings.setOnClickListener(new OnClickListener() {
@@ -3530,13 +3504,14 @@ public class DragingDialogs {
 
                             @Override
                             public void run() {
-                                spinnerFontName.setOnItemSelectedListener(null);
-                                spinnerFontName.setSelection(fontNames.indexOf(BookCSS.get().normalFont));
-                                spinnerFontName.postDelayed(runnable, 100);
+                                TxtUtils.underline(textFontName, BookCSS.get().normalFont);
+                                fontNamePreview.setTypeface(BookCSS.getTypeFaceForFont(BookCSS.get().normalFont));
                             }
                         });
                     }
                 });
+
+
 
                 // crop
                 CheckBox isCropBorders = (CheckBox) inflate.findViewById(R.id.isCropBorders);
