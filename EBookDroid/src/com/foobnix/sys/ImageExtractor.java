@@ -126,7 +126,7 @@ public class ImageExtractor implements ImageDownloader {
         }
 
         if (cover == null) {
-            cover = BaseExtractor.getBookCoverWithTitle(ebookMeta.getAuthor(), ebookMeta.getTitle(), true);
+            cover = BaseExtractor.getBookCoverWithTitle(fileMeta.getAuthor(), fileMeta.getTitle(), true);
             pageUrl.tempWithWatermakr = true;
         }
 

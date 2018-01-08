@@ -115,7 +115,7 @@ public class EventDraw implements IEvent {
             canvas.drawBitmap(MagicHelper.getBackgroundImage(), m, p);
         }
         if (AppState.get().isOLED && !AppState.get().isInvert/* && !TempHolder.get().isTextFormat */) {
-            canvas.drawRect(fixedPageBounds.left, fixedPageBounds.top - dp1, fixedPageBounds.right + 1, fixedPageBounds.bottom + dp1, rect);
+            canvas.drawRect(fixedPageBounds.left - dp1, fixedPageBounds.top - dp1, fixedPageBounds.right + dp1, fixedPageBounds.bottom + dp1, rect);
         }
 
         // TODO Draw there

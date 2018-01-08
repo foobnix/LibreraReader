@@ -56,6 +56,7 @@ public class VerticalViewActivity extends AbstractActionActivity<VerticalViewAct
 
     @Override
     protected void onNewIntent(final Intent intent) {
+        LOG.d("VerticalViewActivity", "onNewIntent");
         if (TTSNotification.ACTION_TTS.equals(intent.getAction())) {
             return;
         }
@@ -297,8 +298,13 @@ public class VerticalViewActivity extends AbstractActionActivity<VerticalViewAct
 
             LOG.d("READ PERCEnt", value);
 
-            getController().closeActivityFinal(null);
-            startActivity(getIntent());
+            getController().closeActivityFinal(new Runnable() {
+
+                @Override
+                public void run() {
+                    startActivity(getIntent());
+                }
+            });
 
         }
     }

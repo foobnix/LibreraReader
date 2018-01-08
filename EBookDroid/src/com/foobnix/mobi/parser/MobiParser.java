@@ -160,7 +160,7 @@ public class MobiParser {
         int fullNameLen = asInt(raw, mobiOffset + 88, 4);
         fullName = asString(raw, mobiOffset + fullNameOffset, fullNameLen);
         if (encryption != 0) {
-            fullName = "(Encrypted) " + fullName;
+            fullName = "(DRM) " + fullName;
         }
 
         locale = asString(raw, mobiOffset + 92, 4);
