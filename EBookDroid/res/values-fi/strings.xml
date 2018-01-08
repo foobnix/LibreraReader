@@ -448,5 +448,5 @@
    <string name="mode_vertical">Vieritysmuoto (pystysuora)</string>
    <string name="mode_horizontally">Kirjamoodi (vaakasuoraan)</string>
    <string name="mode_musician">Muusikko (musiikkitiedostojen kelaaminen uudelleen)</string>
-   <string name="automatic_export_backup_when_the_application_is_closed">Automaattinen vienti (varmuuskopio), kun sovellus on suljettu</string>
+   <string name="automatic_export_backup">Sovellusasetusten automaattinen vienti (varmuuskopiointi), kirjan lukemisen edistyminen ja kirjanmerkit.</string>
 </resources>

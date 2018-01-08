@@ -448,5 +448,5 @@
    <string name="mode_vertical">Görgetési mód (függőleges)</string>
    <string name="mode_horizontally">Könyv mód (vízszintes)</string>
    <string name="mode_musician">Zenész (zeneszámok visszafordítása)</string>
-   <string name="automatic_export_backup_when_the_application_is_closed">Automatikus exportálás (mentés) az alkalmazás bezárásakor</string>
+   <string name="automatic_export_backup">Az alkalmazás beállításainak automatikus exportálása (mentése), a könyvelés és a könyvjelzők előrehaladása.</string>
 </resources>

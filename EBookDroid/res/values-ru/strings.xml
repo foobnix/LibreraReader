@@ -448,5 +448,5 @@
    <string name="mode_vertical">Режим прокрутки (по вертикали)</string>
    <string name="mode_horizontally">Режим книги (по горизонтали)</string>
    <string name="mode_musician">Музыкант (перемотка музыкальных нот)</string>
-   <string name="automatic_export_backup_when_the_application_is_closed">Автоматический экспорт (резервное копирование) при закрытии приложения</string>
+   <string name="automatic_export_backup">Автоматический экспорт (резервное копирование) настроек приложения, ход чтения книг и закладки.</string>
 </resources>

@@ -448,5 +448,5 @@
    <string name="mode_vertical">Tryb przewijania (pionowy)</string>
    <string name="mode_horizontally">Tryb książki (poziomo)</string>
    <string name="mode_musician">Muzyk (przewijanie nut)</string>
-   <string name="automatic_export_backup_when_the_application_is_closed">Automatyczny eksport (kopia zapasowa), gdy aplikacja jest zamknięta</string>
+   <string name="automatic_export_backup">Automatyczny eksport (backup) ustawień aplikacji, postęp czytania książek i zakładek.</string>
 </resources>

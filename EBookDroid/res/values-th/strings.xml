@@ -448,5 +448,5 @@
    <string name="mode_vertical">โหมดเลื่อน (แนวตั้ง)</string>
    <string name="mode_horizontally">โหมดหนังสือ (แนวนอน)</string>
    <string name="mode_musician">นักดนตรี (โน้ตย่อบท)</string>
-   <string name="automatic_export_backup_when_the_application_is_closed">ส่งออกโดยอัตโนมัติ (สำรองข้อมูล) เมื่อปิดโปรแกรม</string>
+   <string name="automatic_export_backup">การส่งออกอัตโนมัติ (สำรอง) ของการตั้งค่าแอปพลิเคชันความคืบหน้าของการอ่านหนังสือและบุ๊กมาร์ก</string>
 </resources>

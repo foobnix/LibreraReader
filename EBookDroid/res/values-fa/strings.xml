@@ -448,5 +448,5 @@
    <string name="mode_vertical">حالت اسکرول (عمودی)</string>
    <string name="mode_horizontally">حالت کتاب (به صورت افقی)</string>
    <string name="mode_musician">موسیقیدان</string>
-   <string name="automatic_export_backup_when_the_application_is_closed">صادرات خودکار (پشتیبان) زمانی که برنامه بسته شده است</string>
+   <string name="automatic_export_backup">صادرات خودکار (تهیه پشتیبان) از تنظیمات برنامه، پیشرفت خواندن کتابها و نشانکها.</string>
 </resources>

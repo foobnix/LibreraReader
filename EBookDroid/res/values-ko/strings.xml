@@ -448,5 +448,5 @@
    <string name="mode_vertical">스크롤 모드 (세로)</string>
    <string name="mode_horizontally">북 모드 (가로)</string>
    <string name="mode_musician">음악가 (되감기 음악 노트)</string>
-   <string name="automatic_export_backup_when_the_application_is_closed">응용 프로그램이 닫힐 때 자동으로 내보내기 (백업)</string>
+   <string name="automatic_export_backup">응용 프로그램 설정의 자동 내보내기 (백업), 책 읽기 및 책갈피 진행.</string>
 </resources>

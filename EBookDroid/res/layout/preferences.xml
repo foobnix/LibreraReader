@@ -1067,7 +1067,7 @@
             android:id="@+id/isAutomaticExport"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/automatic_export_backup_when_the_application_is_closed" />
+            android:text="@string/automatic_export_backup" />
 
         <TextView
             android:id="@+id/section6"

@@ -448,5 +448,5 @@
    <string name="mode_vertical">Scroll-modus (verticaal)</string>
    <string name="mode_horizontally">Boekmodus (horizontaal)</string>
    <string name="mode_musician">Muzikant (terugspoelende muzieknoten)</string>
-   <string name="automatic_export_backup_when_the_application_is_closed">Automatisch exporteren (back-up) wanneer de applicatie gesloten is</string>
+   <string name="automatic_export_backup">Automatische export (back-up) van applicatie-instellingen, voortgang van het lezen van boeken en bladwijzers.</string>
 </resources>
