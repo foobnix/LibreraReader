@@ -448,4 +448,5 @@
    <string name="mode_vertical">Slinkties režimas (vertikalus)</string>
    <string name="mode_horizontally">Knygos režimas (horizontaliai)</string>
    <string name="mode_musician">Muzikantas (atkūrimo muzikos įrašai)</string>
+   <string name="automatic_export_backup_when_the_application_is_closed">Automatinis eksportas (atsarginė kopija), kai programa uždaryta</string>
 </resources>

@@ -1062,6 +1062,12 @@
                 android:minWidth="100dip"
                 android:text="@string/export_" />
         </LinearLayout>
+        
+        <CheckBox
+            android:id="@+id/isAutomaticExport"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/automatic_export_backup_when_the_application_is_closed" />
 
         <TextView
             android:id="@+id/section6"

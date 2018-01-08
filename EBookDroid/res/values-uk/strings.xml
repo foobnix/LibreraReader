@@ -448,4 +448,5 @@
    <string name="mode_vertical">Режим прокрутки (вертикально)</string>
    <string name="mode_horizontally">Режим книги (горизонтально)</string>
    <string name="mode_musician">Музикант (перемотування музичних нотаток)</string>
+   <string name="automatic_export_backup_when_the_application_is_closed">Автоматичний експорт (резервне копіювання), коли програма закрита</string>
 </resources>

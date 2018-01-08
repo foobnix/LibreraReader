@@ -905,6 +905,16 @@ public class PrefFragment2 extends UIFragment {
             }
         });
 
+        final CheckBox isAutomaticExport = (CheckBox) inflate.findViewById(R.id.isAutomaticExport);
+        isAutomaticExport.setChecked(AppState.get().isAutomaticExport);
+        isAutomaticExport.setOnCheckedChangeListener(new OnCheckedChangeListener() {
+
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                AppState.get().isAutomaticExport = isChecked;
+            }
+        });
+
         // Widget Configuration
 
         final TextView widgetLayout = (TextView) inflate.findViewById(R.id.widgetLayout);

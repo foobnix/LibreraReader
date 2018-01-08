@@ -9,15 +9,18 @@ import org.ebookdroid.ui.viewer.VerticalViewActivity;
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 
+import com.foobnix.android.utils.Apps;
 import com.foobnix.android.utils.Dips;
 import com.foobnix.android.utils.LOG;
 import com.foobnix.android.utils.Safe;
 import com.foobnix.android.utils.TxtUtils;
 import com.foobnix.dao2.FileMeta;
+import com.foobnix.ext.CacheZipUtils;
 import com.foobnix.ext.CacheZipUtils.CacheDir;
 import com.foobnix.pdf.SlidingTabLayout;
 import com.foobnix.pdf.info.Android6;
 import com.foobnix.pdf.info.AndroidWhatsNew;
+import com.foobnix.pdf.info.ExportSettingsManager;
 import com.foobnix.pdf.info.FontExtractor;
 import com.foobnix.pdf.info.R;
 import com.foobnix.pdf.info.TintUtil;
@@ -491,6 +494,16 @@ public class MainTabs2 extends AdsFragmentActivity {
         CacheDir.ZipApp.removeCacheContent();
         ImageExtractor.clearErrors();
         ImageExtractor.clearCodeDocument();
+
+        if (AppState.get().isAutomaticExport) {
+            try {
+                File file = new File(CacheZipUtils.SD_CARD_APP_DIR, Apps.getApplicationName(this) + "-" + Apps.getVersionName(this) + "-backup-export-all.json");
+                LOG.d("isAutomaticExport", file);
+                ExportSettingsManager.getInstance(this).exportAll(file);
+            } catch (Exception e) {
+                LOG.e(e);
+            }
+        }
     }
 
     @Override

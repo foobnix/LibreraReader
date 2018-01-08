@@ -120,11 +120,12 @@
         android:id="@+id/seekSpeedLayot"
         android:layout_width="match_parent"
         android:layout_height="@dimen/speed_size"
-        android:layout_above="@+id/bottomBar"
+        android:layout_above="@+id/bottomBar1"
         layout="@layout/document_speed_bar" />
-
+    
+  
     <include
-        android:id="@+id/bottomBar"
+        android:id="@+id/bottomBar1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"

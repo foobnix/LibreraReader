@@ -448,4 +448,5 @@
    <string name="mode_vertical">Scroll-Modus (vertikal)</string>
    <string name="mode_horizontally">Buchmodus (horizontal)</string>
    <string name="mode_musician">Musiker (Musiknoten zurückspulen)</string>
+   <string name="automatic_export_backup_when_the_application_is_closed">Automatischer Export (Backup), wenn die Anwendung geschlossen wird</string>
 </resources>

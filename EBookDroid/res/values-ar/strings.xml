@@ -448,4 +448,5 @@
    <string name="mode_vertical">وضع التمرير (عمودي)</string>
    <string name="mode_horizontally">وضع الكتاب (أفقيا)</string>
    <string name="mode_musician">الموسيقار (مذكرات الموسيقى اللف)</string>
+   <string name="automatic_export_backup_when_the_application_is_closed">تصدير تلقائي (النسخ الاحتياطي) عند إغلاق التطبيق</string>
 </resources>

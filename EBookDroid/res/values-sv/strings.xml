@@ -448,4 +448,5 @@
    <string name="mode_vertical">Rullningsläge (vertikal)</string>
    <string name="mode_horizontally">Bokningsläge (horisontellt)</string>
    <string name="mode_musician">Musiker (återspolning musikanteckningar)</string>
+   <string name="automatic_export_backup_when_the_application_is_closed">Automatisk export (backup) när programmet är stängt</string>
 </resources>

@@ -448,4 +448,5 @@
    <string name="mode_vertical">Modus gulir (vertikal)</string>
    <string name="mode_horizontally">Mode buku (secara horisontal)</string>
    <string name="mode_musician">Musisi (memutar catatan musik)</string>
+   <string name="automatic_export_backup_when_the_application_is_closed">Ekspor otomatis (backup) saat aplikasi ditutup</string>
 </resources>

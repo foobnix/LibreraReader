@@ -448,4 +448,5 @@
    <string name="mode_vertical">Chế độ cuộn (dọc)</string>
    <string name="mode_horizontally">Chế độ sách (theo chiều ngang)</string>
    <string name="mode_musician">Nhạc sĩ (ghi lại bài hát)</string>
+   <string name="automatic_export_backup_when_the_application_is_closed">Xuất khẩu tự động (sao lưu) khi ứng dụng bị đóng</string>
 </resources>

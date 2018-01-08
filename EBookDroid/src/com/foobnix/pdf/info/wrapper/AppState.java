@@ -333,7 +333,7 @@ public class AppState {
     public int autoScrollSpeed = 120;
 
     @IgnoreHashCode
-    public boolean isScrollSpeedByVolumeKeys = true;
+    public boolean isScrollSpeedByVolumeKeys = false;
 
     @IgnoreHashCode
     public int mouseWheelSpeed = 70;
@@ -500,6 +500,8 @@ public class AppState {
     public String nameVerticalMode = "";
     public String nameHorizontalMode = "";
     public String nameMusicianMode = "";
+
+    public boolean isAutomaticExport = true;
 
     public Set<String> myAutoComplete = new HashSet<String>();
 

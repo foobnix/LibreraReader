@@ -448,4 +448,5 @@
    <string name="mode_vertical">スクロールモード（垂直）</string>
    <string name="mode_horizontally">ブックモード（横方向）</string>
    <string name="mode_musician">ミュージシャン（音楽ノートを巻き戻す）</string>
+   <string name="automatic_export_backup_when_the_application_is_closed">アプリケーションが閉じられたときの自動エクスポート（バックアップ）</string>
 </resources>

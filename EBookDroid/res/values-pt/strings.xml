@@ -448,4 +448,5 @@
    <string name="mode_vertical">Modo de rolagem (vertical)</string>
    <string name="mode_horizontally">Modo livro (horizontalmente)</string>
    <string name="mode_musician">Músico (rebobinando notas de música)</string>
+   <string name="automatic_export_backup_when_the_application_is_closed">Exportação automática (backup) quando o aplicativo está fechado</string>
 </resources>

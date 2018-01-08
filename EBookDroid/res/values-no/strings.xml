@@ -448,4 +448,5 @@
    <string name="mode_vertical">Rullemodus (vertikal)</string>
    <string name="mode_horizontally">Bokmodus (horisontalt)</string>
    <string name="mode_musician">Musiker (spoling musikknotater)</string>
+   <string name="automatic_export_backup_when_the_application_is_closed">Automatisk eksport (backup) når programmet er stengt</string>
 </resources>
