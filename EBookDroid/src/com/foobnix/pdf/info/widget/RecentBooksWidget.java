@@ -359,8 +359,8 @@ public class RecentBooksWidget extends AppWidgetProvider {
 		for (int i = 0; i < recent.size() && i < AppState.get().widgetItemsCount; i++) {
 			FileMeta fileMeta = recent.get(i);
 			RemoteViews v = new RemoteViews(context.getPackageName(), R.layout.widget_list_image);
-			String url = IMG.toUrl(fileMeta.getPath(), ImageExtractor.COVER_PAGE_WITH_EFFECT, IMG.getImageSize());
-			Bitmap image = ImageLoader.getInstance().loadImageSync(url, IMG.displayImageOptions);
+            String url = IMG.toUrl(fileMeta.getPath(), ImageExtractor.COVER_PAGE_WITH_EFFECT, IMG.getImageSize());
+			Bitmap image = ImageLoader.getInstance().loadImageSync(url, IMG.displayCacheMemoryDisc);
 			v.setImageViewBitmap(R.id.imageView1, image);
 
 			Intent intent = new Intent(Intent.ACTION_VIEW, Uri.fromFile(new File(fileMeta.getPath())));

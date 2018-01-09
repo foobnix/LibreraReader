@@ -92,6 +92,6 @@ public class TTSNotification {
 
     public static Bitmap getBookImage(String path) {
         String url = IMG.toUrl(path, ImageExtractor.COVER_PAGE_WITH_EFFECT, IMG.getImageSize());
-        return ImageLoader.getInstance().loadImageSync(url, IMG.displayImageOptions);
+        return ImageLoader.getInstance().loadImageSync(url, IMG.displayCacheMemoryDisc);
     }
 }

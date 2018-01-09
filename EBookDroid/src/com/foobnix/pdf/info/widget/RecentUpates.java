@@ -35,7 +35,7 @@ public class RecentUpates {
             return;
         }
 
-        LOG.d("RecentUpates", "update widgets");
+        LOG.d("RecentUpates", "MUPDF!", c.getClass());
         try {
 
             {
@@ -52,8 +52,8 @@ public class RecentUpates {
                 FileMeta recentLast = AppDB.get().getRecentLast();
                 if (recentLast != null) {
                     ShortcutManager shortcutManager = c.getSystemService(ShortcutManager.class);
-                    String url = IMG.toUrl(recentLast.getPath(), ImageExtractor.COVER_PAGE_WITH_EFFECT, IMG.getImageSize());
-                    Bitmap image = ImageLoader.getInstance().loadImageSync(url, IMG.displayImageOptions);
+                    String url = IMG.toUrl(recentLast.getPath(), ImageExtractor.COVER_PAGE, IMG.getImageSize());
+                    Bitmap image = ImageLoader.getInstance().loadImageSync(url, IMG.displayCacheMemoryDisc);
 
                     Intent lastBookIntent = new Intent(c, VerticalViewActivity.class);
                     if (AppState.get().isAlwaysOpenAsMagazine) {

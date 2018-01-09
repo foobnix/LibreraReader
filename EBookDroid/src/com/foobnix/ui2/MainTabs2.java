@@ -158,6 +158,7 @@ public class MainTabs2 extends AdsFragmentActivity {
             setTheme(R.style.StyledIndicatorsBlack);
         }
         super.onCreate(savedInstanceState);
+        RecentUpates.updateAll(this);
 
         LOG.d("EXTRA_EXIT", EXTRA_EXIT);
         if (getIntent().getBooleanExtra(EXTRA_EXIT, false)) {
@@ -166,8 +167,6 @@ public class MainTabs2 extends AdsFragmentActivity {
         }
 
         isEink = Dips.isEInk(this);
-
-
 
         TintUtil.setStatusBarColor(this);
         DocumentController.doRotation(this);
@@ -362,7 +361,7 @@ public class MainTabs2 extends AdsFragmentActivity {
         checkGoToPage(getIntent());
 
         try {
-        AndroidWhatsNew.checkForNewBeta(this);
+            AndroidWhatsNew.checkForNewBeta(this);
         } catch (Exception e) {
             LOG.e(e);
         }
@@ -475,7 +474,6 @@ public class MainTabs2 extends AdsFragmentActivity {
     @Override
     protected void onStop() {
         super.onStop();
-        RecentUpates.updateAll(this);
         EventBus.getDefault().unregister(this);
     }
 

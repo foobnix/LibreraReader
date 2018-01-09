@@ -38,7 +38,6 @@ import com.foobnix.pdf.info.view.HorizontallSeekTouchEventListener;
 import com.foobnix.pdf.info.view.MyPopupMenu;
 import com.foobnix.pdf.info.view.ProgressDraw;
 import com.foobnix.pdf.info.view.UnderlineImageView;
-import com.foobnix.pdf.info.widget.RecentUpates;
 import com.foobnix.pdf.info.widget.ShareDialog;
 import com.foobnix.pdf.search.activity.HorizontalModeController;
 import com.foobnix.pdf.search.activity.msg.MessegeBrightness;
@@ -1745,7 +1744,6 @@ public class DocumentWrapperUI {
 
                     showHelp();
 
-                    RecentUpates.updateAll(controller.getActivity());
 
                 }
             });

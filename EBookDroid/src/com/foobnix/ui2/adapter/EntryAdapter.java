@@ -227,7 +227,7 @@ public class EntryAdapter extends AppRecycleAdapter<Entry, RecyclerView.ViewHold
                 if (!link.href.equals(imgLink) && AppState.get().opdsLargeCovers) {
                     ScaledImageView img = new ScaledImageView(holder.parent.getContext());
                     img.setPadding(PD, PD, PD, PD);
-                    ImageLoader.getInstance().displayImage(link.href, img, IMG.displayImageOptions);
+                    ImageLoader.getInstance().displayImage(link.href, img, IMG.displayCacheMemoryDisc);
                     if (AppState.get().isInkMode) {
                         // TintUtil.grayScaleImageView(img);
                     }

@@ -173,6 +173,7 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
 
         super.onCreate(savedInstanceState);
 
+
         boolean isTextFomat = ExtUtils.isTextFomat(getIntent());
 
         clickUtils = new ClickUtils();
@@ -797,7 +798,7 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
                     onCrop.underline(AppState.get().isCrop);
                     onCrop.invalidate();
 
-                    RecentUpates.updateAll(HorizontalViewActivity.this);
+                    // RecentUpates.updateAll(HorizontalViewActivity.this);
 
                 }
 
@@ -1115,6 +1116,8 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
             flippingHandler.removeCallbacksAndMessages(null);
         }
 
+        RecentUpates.updateAll(this);
+
     }
 
     Runnable closeRunnable = new Runnable() {
@@ -1152,6 +1155,7 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
 
         // AppState.get().isCut = false;
         PageImageState.get().clearResouces();
+
 
     }
 
@@ -1210,6 +1214,7 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
         handlerTimer.removeCallbacks(updateTimePower);
 
     }
+
 
     public void nextPage() {
         flippingTimer = 0;

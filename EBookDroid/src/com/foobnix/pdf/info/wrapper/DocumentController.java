@@ -189,7 +189,7 @@ public abstract class DocumentController {
 
     public Bitmap getBookImage() {
         String url = IMG.toUrl(getCurrentBook().getPath(), ImageExtractor.COVER_PAGE_WITH_EFFECT, IMG.getImageSize());
-        return ImageLoader.getInstance().loadImageSync(url, IMG.displayImageOptions);
+        return ImageLoader.getInstance().loadImageSync(url, IMG.displayCacheMemoryDisc);
     }
 
     public FileMeta getBookFileMeta() {

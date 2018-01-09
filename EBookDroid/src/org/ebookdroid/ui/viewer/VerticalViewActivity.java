@@ -16,6 +16,7 @@ import com.foobnix.pdf.info.Android6;
 import com.foobnix.pdf.info.ExtUtils;
 import com.foobnix.pdf.info.R;
 import com.foobnix.pdf.info.view.BrightnessHelper;
+import com.foobnix.pdf.info.widget.RecentUpates;
 import com.foobnix.pdf.info.wrapper.AppState;
 import com.foobnix.pdf.info.wrapper.DocumentController;
 import com.foobnix.pdf.search.view.CloseAppDialog;
@@ -125,6 +126,8 @@ public class VerticalViewActivity extends AbstractActionActivity<VerticalViewAct
             super.onCreate(savedInstanceState);
         }
 
+
+
         setContentView(R.layout.activity_vertical_view);
 
         Android6.checkPermissions(this);
@@ -205,7 +208,7 @@ public class VerticalViewActivity extends AbstractActionActivity<VerticalViewAct
     protected void onStop() {
         super.onStop();
         // Analytics.onStop(this);
-
+        RecentUpates.updateAll(this);
     }
 
     Runnable closeRunnable = new Runnable() {

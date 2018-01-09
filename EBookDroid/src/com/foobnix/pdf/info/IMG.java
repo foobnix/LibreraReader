@@ -143,7 +143,7 @@ public class IMG {
 
     }
 
-    public static DisplayImageOptions displayImageOptions = new DisplayImageOptions.Builder() //
+    public static DisplayImageOptions displayCacheMemoryDisc = new DisplayImageOptions.Builder() //
             .showImageOnFail(COLOR_DRAWABLE)//
             .showImageForEmptyUri(COLOR_DRAWABLE)//
             .showImageOnFail(COLOR_DRAWABLE)//
@@ -216,7 +216,7 @@ public class IMG {
             .build();//
 
     public static void display(final Context c, final String path, final ImageView imageView, final int sizePx, final int page, ImageLoadingListener listener) {
-        display(c, path, imageView, sizePx, page, listener, IMG.displayImageOptions);
+        display(c, path, imageView, sizePx, page, listener, IMG.displayCacheMemoryDisc);
 
     }
 
@@ -246,9 +246,9 @@ public class IMG {
         }
 
         if (listener != null) {
-            ImageLoader.getInstance().displayImage(pageUrl, imageView, IMG.displayImageOptions, listener);
+            ImageLoader.getInstance().displayImage(pageUrl, imageView, IMG.displayCacheMemoryDisc, listener);
         } else {
-            ImageLoader.getInstance().displayImage(pageUrl, imageView, IMG.displayImageOptions);
+            ImageLoader.getInstance().displayImage(pageUrl, imageView, IMG.displayCacheMemoryDisc);
         }
     }
 
@@ -288,11 +288,11 @@ public class IMG {
     }
 
     public static void getCoverPageWithEffect(ImageView img, String path, int width, ImageLoadingListener listener) {
-        ImageLoader.getInstance().displayImage(IMG.toUrl(path, ImageExtractor.COVER_PAGE, width), img, IMG.displayImageOptions, listener);
+        ImageLoader.getInstance().displayImage(IMG.toUrl(path, ImageExtractor.COVER_PAGE, width), img, IMG.displayCacheMemoryDisc, listener);
     }
 
     public static void getCoverPageWithEffectPos(ImageView img, String path, int width, int pos, ImageLoadingListener listener) {
-        ImageLoader.getInstance().displayImage(IMG.toUrlPos(path, ImageExtractor.COVER_PAGE, width, pos), img, IMG.displayImageOptions, listener);
+        ImageLoader.getInstance().displayImage(IMG.toUrlPos(path, ImageExtractor.COVER_PAGE, width, pos), img, IMG.displayCacheMemoryDisc, listener);
     }
 
     public static String toUrl(final String path, final int page, final int width) {

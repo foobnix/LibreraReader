@@ -149,7 +149,7 @@ public class BitmapActivity extends Activity {
 
             String url = IMG.toUrl(path, position, width);
 
-            ImageLoader.getInstance().displayImage(url, img, IMG.displayImageOptions);
+            ImageLoader.getInstance().displayImage(url, img, IMG.displayCacheMemoryDisc);
 
             TextView txt = (TextView) view.findViewById(R.id.text1);
             txt.setText("" + (position + 1));

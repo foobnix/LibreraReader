@@ -12,7 +12,7 @@ public class TestAppName extends Application {
 		super.onCreate();
 		ImageLoaderConfiguration config = new ImageLoaderConfiguration.Builder(getApplicationContext()).threadPoolSize(1)//
 				.threadPriority(5)//
-				.defaultDisplayImageOptions(IMG.displayImageOptions).build();
+				.defaultDisplayImageOptions(IMG.displayCacheMemoryDisc).build();
 
 		ImageLoader.getInstance().init(config);
 	}

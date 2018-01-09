@@ -287,7 +287,7 @@ public class FileInformationDialog {
 
             }
         });
-        ImageLoader.getInstance().displayImage(path, imageView, IMG.displayImageOptions);
+        ImageLoader.getInstance().displayImage(path, imageView, IMG.displayCacheMemoryDisc);
 
         RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams((int) (Dips.screenWidth() * 0.9), (int) (Dips.screenHeight() * 0.9));
         builder.addContentView(imageView, params);

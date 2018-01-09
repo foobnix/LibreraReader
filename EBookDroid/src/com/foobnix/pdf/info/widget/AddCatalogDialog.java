@@ -106,7 +106,7 @@ public class AddCatalogDialog {
             url.setText(line[0]);
             name.setText(line[1]);
             description.setText(line[2]);
-            ImageLoader.getInstance().displayImage(line[3], image, IMG.displayImageOptions);
+            ImageLoader.getInstance().displayImage(line[3], image, IMG.displayCacheMemoryDisc);
 
             if (e.logo != null) {
                 image.setTag(e.logo);
@@ -225,7 +225,7 @@ public class AddCatalogDialog {
                                 image.setVisibility(View.VISIBLE);
                                 feed.icon = Hrefs.fixHref(feed.icon, feedUrl);
                                 image.setTag(feed.icon);
-                                ImageLoader.getInstance().displayImage(feed.icon, image, IMG.displayImageOptions);
+                                ImageLoader.getInstance().displayImage(feed.icon, image, IMG.displayCacheMemoryDisc);
                             } else {
                                 image.setTag("assets://opds/web.png");
                             }
