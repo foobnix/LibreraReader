@@ -113,6 +113,7 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
     View adFrame, bottomBar, bottomIndicators, moveCenter, onClose, overlay;
     LinearLayout actionBar;
     FrameLayout anchor;
+    UnderlineImageView onCrop;
 
     ImageView lockModelImage, linkHistory, ttsActive, onModeChange, outline, onMove, onBC, textToSpeach, onPageFlip1;
 
@@ -172,7 +173,6 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
         }
 
         super.onCreate(savedInstanceState);
-
 
         boolean isTextFomat = ExtUtils.isTextFomat(getIntent());
 
@@ -545,9 +545,7 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
             }
         });
 
-
-
-        final UnderlineImageView onCrop = (UnderlineImageView) findViewById(R.id.onCrop);
+        onCrop = (UnderlineImageView) findViewById(R.id.onCrop);
         onCrop.setVisibility(isTextFomat ? View.GONE : View.VISIBLE);
         onCrop.setOnClickListener(new View.OnClickListener() {
 
@@ -1053,6 +1051,10 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
             onModeChange.setImageResource(R.drawable.glyphicons_two_page_one);
             AppState.get().isCrop = false;
             AppState.get().isCut = false;
+
+            onCrop.underline(AppState.get().isCrop);
+            onCrop.invalidate();
+
             reloadDoc.run();
         }
         DragingDialogs.searchMenu(anchor, documentController, "");
@@ -1156,7 +1158,6 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
         // AppState.get().isCut = false;
         PageImageState.get().clearResouces();
 
-
     }
 
     public void nullAdapter() {
@@ -1214,7 +1215,6 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
         handlerTimer.removeCallbacks(updateTimePower);
 
     }
-
 
     public void nextPage() {
         flippingTimer = 0;
