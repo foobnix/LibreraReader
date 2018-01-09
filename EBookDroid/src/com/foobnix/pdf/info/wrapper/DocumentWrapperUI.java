@@ -1444,6 +1444,7 @@ public class DocumentWrapperUI {
                     onModeChange.setImageResource(R.drawable.glyphicons_two_page_one);
                     AppState.get().isCut = !false;
                     onCut.onClick(null);
+                    hideShowEditIcon();
                     return false;
                 }
             });
@@ -1454,6 +1455,7 @@ public class DocumentWrapperUI {
                     onModeChange.setImageResource(R.drawable.glyphicons_page_split);
                     AppState.get().isCut = !true;
                     onCut.onClick(null);
+                    hideShowEditIcon();
                     return false;
                 }
             });
@@ -1654,10 +1656,20 @@ public class DocumentWrapperUI {
 
     public void setTitle(final String title) {
         this.bookTitle = title;
+        hideShowEditIcon();
+
+    }
+
+    public void hideShowEditIcon() {
         if (controller != null && controller.getCurrentBook() != null && !controller.getCurrentBook().getName().toLowerCase(Locale.US).endsWith(".pdf")) {
             editTop2.setVisibility(View.GONE);
+        } else {
+            if (AppState.get().isCut) {
+                editTop2.setVisibility(View.GONE);
+            } else {
+                editTop2.setVisibility(View.VISIBLE);
+            }
         }
-
     }
 
     public DocumentGestureListener getDocumentListener() {
