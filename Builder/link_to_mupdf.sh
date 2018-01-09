@@ -1,6 +1,5 @@
 . ~/.profile
 MUPDF=/home/ivan-dev/dev/mupdf-1.11-source/platform/java
-#MUPDF=/home/ivan-dev/dev/mupdf-test/platform/java
 
 MY=/home/ivan-dev/git/LirbiReader
 
@@ -17,10 +16,13 @@ X86=$MY/cpu_x86/libs
 rm -r $ALL
 rm -r $ARM
 rm -r $ARM64
+rm -r $ARM_ARM64
 rm -r $X86
 
+mkdir $ALL
 mkdir $ARM
 mkdir $ARM64
+mkdir $ARM_ARM64
 mkdir $X86
 
 ln -s $MUPDF/libs $ALL

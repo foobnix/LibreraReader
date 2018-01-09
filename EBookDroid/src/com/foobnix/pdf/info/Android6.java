@@ -1,6 +1,7 @@
 package com.foobnix.pdf.info;
 
 import com.foobnix.android.utils.LOG;
+import com.foobnix.pdf.info.wrapper.AppState;
 
 import android.Manifest;
 import android.app.Activity;
@@ -60,6 +61,7 @@ public class Android6 {
             }
         } else {
             AndroidWhatsNew.checkWhatsNew(a);
+            FontExtractor.extractFonts(a);
         }
     }
 
@@ -67,6 +69,7 @@ public class Android6 {
         switch (requestCode) {
         case MY_PERMISSIONS_REQUEST_WES: {
             // If request is cancelled, the result arrays are empty.
+            AppState.get().save(a);
             if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                 if (Build.VERSION.SDK_INT <= 22) {// kill to restart 22 ????fa
                     android.os.Process.killProcess(android.os.Process.myPid());

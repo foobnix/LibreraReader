@@ -10,6 +10,7 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.Locale;
 
+import com.foobnix.android.utils.LOG;
 import com.foobnix.android.utils.TxtUtils;
 import com.foobnix.pdf.info.ExportSettingsManager;
 import com.foobnix.pdf.info.ExtUtils;
@@ -159,6 +160,8 @@ public class BookCSS {
                 "svg {display:block} \n" + //
                 "figure > * {font-size: 0.7em}";
 
+        LOG.d("BookCSS", "resetToDefault");
+
     }
 
     private String DEFAULT_FOLDER(Context c) {
@@ -307,6 +310,9 @@ public class BookCSS {
     }
 
     public static String filterFontName(String fontName) {
+        if (!fontName.contains(".")) {
+            return fontName;
+        }
         String ext = ExtUtils.getFileExtension(fontName);
         if (fontName.contains("-")) {
             fontName = fontName.substring(0, fontName.lastIndexOf("-")) + "." + ext;

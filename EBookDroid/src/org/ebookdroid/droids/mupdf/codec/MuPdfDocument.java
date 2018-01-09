@@ -193,7 +193,7 @@ public class MuPdfDocument extends AbstractCodecDocument {
                 throw new RuntimeException("Document is corrupted");
             }
 
-            final int pages = getPageCountWithException(open);
+            // final int pages = getPageCountWithException(open);
             return open;
         } finally {
             TempHolder.lock.unlock();
