@@ -41,7 +41,7 @@ public class Dialogs {
         TintUtil.setDrawableTint(pr.getIndeterminateDrawable().getCurrent(), TintUtil.color);
 
         ImageView image = (ImageView) view.findViewById(R.id.onCancel);
-        TintUtil.setTintImage(image);
+        TintUtil.setTintImageNoAlpha(image, TintUtil.color);
         image.setOnClickListener(new OnClickListener() {
 
             @Override

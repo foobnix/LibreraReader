@@ -99,7 +99,7 @@ public class MyPopupMenu {
                     if (item.iconRes == R.drawable.icon_pdf_pro) {
                         TintUtil.setNoTintImage(imageView);
                     } else {
-                        TintUtil.setTintImage(imageView);
+                        TintUtil.setTintImageWithAlpha(imageView);
 
                     }
                 } else {

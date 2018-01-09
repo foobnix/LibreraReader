@@ -768,7 +768,7 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
                     }
 
                     if (ExtUtils.isNoTextLayerForamt(documentController.getCurrentBook().getPath())) {
-                        TintUtil.setTintImage(textToSpeach, Color.LTGRAY);
+                        TintUtil.setTintImageWithAlpha(textToSpeach, Color.LTGRAY);
                     }
                     if (documentController.isTextFormat()) {
                         // TintUtil.setTintImage(lockModelImage, Color.LTGRAY);
@@ -1432,7 +1432,7 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
             public boolean onResultRecive(List<OutlineLinkWrapper> result) {
                 progressDraw.updateDivs(result);
                 if (TxtUtils.isListEmpty(result)) {
-                    TintUtil.setTintImage(outline, Color.LTGRAY);
+                    TintUtil.setTintImageWithAlpha(outline, Color.LTGRAY);
                 }
                 return false;
             }

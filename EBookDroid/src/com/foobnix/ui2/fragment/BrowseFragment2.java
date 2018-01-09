@@ -388,7 +388,7 @@ public class BrowseFragment2 extends UIFragment<FileMeta> {
         } else {
             starIcon.setImageResource(R.drawable.star_2);
         }
-        TintUtil.setTintImage(starIcon, Color.WHITE);
+        TintUtil.setTintImageWithAlpha(starIcon, Color.WHITE);
 
         starIcon.setOnClickListener(new OnClickListener() {
 

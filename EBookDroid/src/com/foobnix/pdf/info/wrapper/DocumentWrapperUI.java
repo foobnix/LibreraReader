@@ -806,19 +806,19 @@ public class DocumentWrapperUI {
         TintUtil.setBackgroundFillColorBottomRight(ttsActive, ColorUtils.setAlphaComponent(TintUtil.color, 230));
 
         TintUtil.setTintText(bookName, TintUtil.getStatusBarColor());
-        TintUtil.setTintImage(textToSpeachTop, TintUtil.getStatusBarColor());
-        TintUtil.setTintImage(lockUnlockTop, TintUtil.getStatusBarColor());
-        TintUtil.setTintImage(nextScreenType, TintUtil.getStatusBarColor());
+        TintUtil.setTintImageWithAlpha(textToSpeachTop, TintUtil.getStatusBarColor());
+        TintUtil.setTintImageWithAlpha(lockUnlockTop, TintUtil.getStatusBarColor());
+        TintUtil.setTintImageWithAlpha(nextScreenType, TintUtil.getStatusBarColor());
         TintUtil.setTintText(currentPageIndex, TintUtil.getStatusBarColor());
         TintUtil.setTintText(currentTime, TintUtil.getStatusBarColor());
         TintUtil.setTintText(batteryLevel, TintUtil.getStatusBarColor());
         TintUtil.setTintText(reverseKeysIndicator, ColorUtils.setAlphaComponent(TintUtil.getStatusBarColor(), 200));
 
-        TintUtil.setTintImage(goToPage1Top, TintUtil.getStatusBarColor());
-        TintUtil.setTintImage((ImageView) closeTop, TintUtil.getStatusBarColor());
-        TintUtil.setTintImage(toolBarButton, TintUtil.getStatusBarColor());
-        TintUtil.setTintImage(clockIcon, TintUtil.getStatusBarColor()).setAlpha(200);
-        TintUtil.setTintImage(batteryIcon, TintUtil.getStatusBarColor()).setAlpha(200);
+        TintUtil.setTintImageWithAlpha(goToPage1Top, TintUtil.getStatusBarColor());
+        TintUtil.setTintImageWithAlpha((ImageView) closeTop, TintUtil.getStatusBarColor());
+        TintUtil.setTintImageWithAlpha(toolBarButton, TintUtil.getStatusBarColor());
+        TintUtil.setTintImageWithAlpha(clockIcon, TintUtil.getStatusBarColor()).setAlpha(200);
+        TintUtil.setTintImageWithAlpha(batteryIcon, TintUtil.getStatusBarColor()).setAlpha(200);
 
         int titleColor = AppState.get().isInvert ? MagicHelper.otherColor(AppState.get().colorDayBg, -0.05f) : MagicHelper.otherColor(AppState.get().colorNigthBg, 0.05f);
         titleBar.setBackgroundColor(titleColor);
@@ -1715,11 +1715,11 @@ public class DocumentWrapperUI {
                     titleBar.setOnTouchListener(new HorizontallSeekTouchEventListener(onSeek, controller.getPageCount(), false));
                     progressDraw.setOnTouchListener(new HorizontallSeekTouchEventListener(onSeek, controller.getPageCount(), false));
                     if (TxtUtils.isListEmpty(list)) {
-                        TintUtil.setTintImage(onDocDontext, Color.LTGRAY);
+                        TintUtil.setTintImageWithAlpha(onDocDontext, Color.LTGRAY);
                     }
 
                     if (ExtUtils.isNoTextLayerForamt(controller.getCurrentBook().getPath())) {
-                        TintUtil.setTintImage(textToSpeach, Color.LTGRAY);
+                        TintUtil.setTintImageWithAlpha(textToSpeach, Color.LTGRAY);
                     }
                     if (controller.isTextFormat()) {
                         // TintUtil.setTintImage(lockUnlock, Color.LTGRAY);

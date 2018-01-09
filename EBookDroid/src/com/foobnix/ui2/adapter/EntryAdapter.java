@@ -188,7 +188,7 @@ public class EntryAdapter extends AppRecycleAdapter<Entry, RecyclerView.ViewHold
                 final ImageView button = new ImageView(context);
                 button.setMinimumWidth(Dips.dpToPx(42));
                 button.setImageResource(R.drawable.glyphicons_28_search);
-                TintUtil.setTintImage(button);
+                TintUtil.setTintImageWithAlpha(button);
 
                 l.addView(search, new LinearLayout.LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT, 1.0f));
                 l.addView(button, new LinearLayout.LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT, 0.0f));

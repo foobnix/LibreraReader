@@ -184,7 +184,7 @@ public class OutlineAdapter extends BaseAdapter {
             btn.setOnClickListener(collapseListener);
 
             btn.setImageResource(states[id] == OutlineItemState.EXPANDED ? R.drawable.screen_zoom_out_dark : R.drawable.screen_zoom_in_dark);
-            TintUtil.setTintImage(btn, view.getCurrentTextColor());
+            TintUtil.setTintImageWithAlpha(btn, view.getCurrentTextColor());
             if (AppState.get().isUseTypeFace) {
                 view.setTypeface(BookCSS.getNormalTypeFace(), Typeface.BOLD);
             }

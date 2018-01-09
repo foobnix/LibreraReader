@@ -166,7 +166,7 @@ public class SearchAdapter extends BaseAdapter {
             holder.textDate.setVisibility(View.VISIBLE);
         }
 
-        TintUtil.setTintImage(menuIcon);
+        TintUtil.setTintImageWithAlpha(menuIcon);
 
         // int size = AppState.get().libraryMode == AppState.MODE_LIST ?
         // AppState.get().coverSmallSize : AppState.get().coverBigSize;

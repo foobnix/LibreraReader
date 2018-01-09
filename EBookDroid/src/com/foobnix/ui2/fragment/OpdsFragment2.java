@@ -262,7 +262,7 @@ public class OpdsFragment2 extends UIFragment<Entry> {
                         @Override
                         public void run() {
                             starIcon.setImageResource(R.drawable.star_1);
-                            TintUtil.setTintImage(starIcon, Color.WHITE);
+                            TintUtil.setTintImageWithAlpha(starIcon, Color.WHITE);
                         }
                     }, entry, false);
                 } else {
@@ -272,7 +272,7 @@ public class OpdsFragment2 extends UIFragment<Entry> {
                         public void run() {
                             AppState.get().myOPDS = AppState.get().myOPDS.replace(entry.appState, "");
                             starIcon.setImageResource(R.drawable.star_2);
-                            TintUtil.setTintImage(starIcon, Color.WHITE);
+                            TintUtil.setTintImageWithAlpha(starIcon, Color.WHITE);
                             url = "/";
                         }
                     });
@@ -696,7 +696,7 @@ public class OpdsFragment2 extends UIFragment<Entry> {
         } else {
             starIcon.setImageResource(R.drawable.star_2);
         }
-        TintUtil.setTintImage(starIcon, Color.WHITE);
+        TintUtil.setTintImageWithAlpha(starIcon, Color.WHITE);
     }
 
     public void onGridList() {

@@ -1054,7 +1054,7 @@ public class ExtUtils {
                 };
 
                 ImageView image = (ImageView) view.findViewById(R.id.onCancel);
-                TintUtil.setTintImage(image);
+                TintUtil.setTintImageWithAlpha(image);
                 image.setOnClickListener(new OnClickListener() {
 
                     @Override

@@ -206,14 +206,14 @@ public class DragingDialogs {
                 ImageView onCenter = (ImageView) view.findViewById(R.id.onCenter);
                 final ImageView onCrop = (ImageView) view.findViewById(R.id.onCrop);
 
-                TintUtil.setTintImage(onUp);
-                TintUtil.setTintImage(onDonw);
-                TintUtil.setTintImage(onLeft);
-                TintUtil.setTintImage(onRight);
-                TintUtil.setTintImage(onPlus);
-                TintUtil.setTintImage(onMinus);
-                TintUtil.setTintImage(onCenter);
-                TintUtil.setTintImage(onCrop);
+                TintUtil.setTintImageWithAlpha(onUp);
+                TintUtil.setTintImageWithAlpha(onDonw);
+                TintUtil.setTintImageWithAlpha(onLeft);
+                TintUtil.setTintImageWithAlpha(onRight);
+                TintUtil.setTintImageWithAlpha(onPlus);
+                TintUtil.setTintImageWithAlpha(onMinus);
+                TintUtil.setTintImageWithAlpha(onCenter);
+                TintUtil.setTintImageWithAlpha(onCrop);
 
                 onCrop.setOnClickListener(new OnClickListener() {
 
@@ -224,17 +224,17 @@ public class DragingDialogs {
                         updateUIRefresh.run();
 
                         if (AppState.get().isCrop) {
-                            TintUtil.setTintImage(onCrop, TintUtil.COLOR_ORANGE);
+                            TintUtil.setTintImageWithAlpha(onCrop, TintUtil.COLOR_ORANGE);
                         } else {
-                            TintUtil.setTintImage(onCrop);
+                            TintUtil.setTintImageWithAlpha(onCrop);
                         }
                     }
                 });
 
                 if (AppState.get().isCrop) {
-                    TintUtil.setTintImage(onCrop, TintUtil.COLOR_ORANGE);
+                    TintUtil.setTintImageWithAlpha(onCrop, TintUtil.COLOR_ORANGE);
                 } else {
-                    TintUtil.setTintImage(onCrop);
+                    TintUtil.setTintImageWithAlpha(onCrop);
                 }
 
                 OnClickListener listner = new OnClickListener() {
@@ -880,7 +880,7 @@ public class DragingDialogs {
                             }
                             String color = line.substring(1);
                             final int colorInt = Color.parseColor(color);
-                            TintUtil.setTintImage(image, colorInt);
+                            TintUtil.setTintImageWithAlpha(image, colorInt);
 
                             LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(Dips.dpToPx(35), Dips.dpToPx(35));
                             int pd = Dips.dpToPx(5);
@@ -3322,11 +3322,11 @@ public class DragingDialogs {
                     public void onClick(final View v) {
                         AppState.get().isCrop = !AppState.get().isCrop;
                         SettingsManager.getBookSettings().updateFromAppState();
-                        TintUtil.setTintImage(isCrop, !AppState.get().isCrop ? TintUtil.COLOR_TINT_GRAY : Color.LTGRAY);
+                        TintUtil.setTintImageWithAlpha(isCrop, !AppState.get().isCrop ? TintUtil.COLOR_TINT_GRAY : Color.LTGRAY);
                         updateUIRefresh.run();
                     }
                 });
-                TintUtil.setTintImage(isCrop, !AppState.get().isCrop ? TintUtil.COLOR_TINT_GRAY : Color.LTGRAY);
+                TintUtil.setTintImageWithAlpha(isCrop, !AppState.get().isCrop ? TintUtil.COLOR_TINT_GRAY : Color.LTGRAY);
 
                 final ImageView bookCut = (ImageView) inflate.findViewById(R.id.bookCut);
                 // bookCut.setVisibility(controller.isTextFormat() ? View.GONE :
@@ -3340,7 +3340,7 @@ public class DragingDialogs {
 
                             @Override
                             public boolean onResultRecive(Integer result) {
-                                TintUtil.setTintImage(bookCut, !AppState.get().isCut ? TintUtil.COLOR_TINT_GRAY : Color.LTGRAY);
+                                TintUtil.setTintImageWithAlpha(bookCut, !AppState.get().isCut ? TintUtil.COLOR_TINT_GRAY : Color.LTGRAY);
                                 SettingsManager.getBookSettings().updateFromAppState();
                                 EventBus.getDefault().post(new InvalidateMessage());
                                 return false;
@@ -3348,7 +3348,7 @@ public class DragingDialogs {
                         });
                     }
                 });
-                TintUtil.setTintImage(bookCut, !AppState.get().isCut ? TintUtil.COLOR_TINT_GRAY : Color.LTGRAY);
+                TintUtil.setTintImageWithAlpha(bookCut, !AppState.get().isCut ? TintUtil.COLOR_TINT_GRAY : Color.LTGRAY);
 
                 inflate.findViewById(R.id.onFullScreen).setOnClickListener(new View.OnClickListener() {
 
@@ -3720,7 +3720,7 @@ public class DragingDialogs {
                             public void onChooseColor(int colorText, int colorBg) {
                                 textDayColor.setTextColor(colorText);
                                 textDayColor.setBackgroundColor(colorBg);
-                                TintUtil.setTintImage(onDayColorImage, colorText);
+                                TintUtil.setTintImageWithAlpha(onDayColorImage, colorText);
 
                                 AppState.get().colorDayText = colorText;
                                 AppState.get().colorDayBg = colorBg;
@@ -3749,7 +3749,7 @@ public class DragingDialogs {
                             public void onChooseColor(int colorText, int colorBg) {
                                 textNigthColor.setTextColor(colorText);
                                 textNigthColor.setBackgroundColor(colorBg);
-                                TintUtil.setTintImage(onNigthColorImage, colorText);
+                                TintUtil.setTintImageWithAlpha(onNigthColorImage, colorText);
 
                                 AppState.get().colorNigthText = colorText;
                                 AppState.get().colorNigthBg = colorBg;
@@ -3765,8 +3765,8 @@ public class DragingDialogs {
 
                 final LinearLayout lc = (LinearLayout) inflate.findViewById(R.id.preColors);
 
-                TintUtil.setTintImage(onDayColorImage, AppState.get().colorDayText);
-                TintUtil.setTintImage(onNigthColorImage, AppState.get().colorNigthText);
+                TintUtil.setTintImageWithAlpha(onDayColorImage, AppState.get().colorDayText);
+                TintUtil.setTintImageWithAlpha(onNigthColorImage, AppState.get().colorNigthText);
 
                 textNigthColor.setTextColor(AppState.get().colorNigthText);
                 textNigthColor.setBackgroundColor(AppState.get().colorNigthBg);
@@ -3933,8 +3933,8 @@ public class DragingDialogs {
                                 textNigthColor.setTextColor(AppState.COLOR_WHITE);
                                 textNigthColor.setBackgroundColor(AppState.COLOR_BLACK);
 
-                                TintUtil.setTintImage(onDayColorImage, AppState.get().colorDayText);
-                                TintUtil.setTintImage(onNigthColorImage, AppState.get().colorNigthText);
+                                TintUtil.setTintImageWithAlpha(onDayColorImage, AppState.get().colorDayText);
+                                TintUtil.setTintImageWithAlpha(onNigthColorImage, AppState.get().colorNigthText);
 
                                 AppState.get().statusBarColorDay = AppState.TEXT_COLOR_DAY;
                                 AppState.get().statusBarColorNight = AppState.TEXT_COLOR_NIGHT;

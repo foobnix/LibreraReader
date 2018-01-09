@@ -137,7 +137,7 @@ public class PrefFragment2 extends UIFragment {
                     ((TextView) library.findViewById(R.id.text1)).setText(tab.getName());
                     ((CheckBox) library.findViewById(R.id.isVisible)).setChecked(tab.isVisible());
                     ((ImageView) library.findViewById(R.id.image1)).setImageResource(tab.getIcon());
-                    TintUtil.setTintImage(((ImageView) library.findViewById(R.id.image1)), TintUtil.COLOR_TINT_GRAY);
+                    TintUtil.setTintImageWithAlpha(((ImageView) library.findViewById(R.id.image1)), TintUtil.COLOR_TINT_GRAY);
                     library.setTag(tab.getIndex());
                     dragLinearLayout.addView(library, layoutParams);
                 }

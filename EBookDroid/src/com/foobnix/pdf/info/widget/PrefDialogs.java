@@ -195,7 +195,7 @@ public class PrefDialogs {
 
         ImageView home = new ImageView(a);
         home.setImageResource(R.drawable.glyphicons_21_home);
-        TintUtil.setTintImage(home);
+        TintUtil.setTintImageWithAlpha(home);
         home.setOnClickListener(new OnClickListener() {
 
             @Override
@@ -379,7 +379,7 @@ public class PrefDialogs {
 
         ImageView home = new ImageView(a);
         home.setImageResource(R.drawable.glyphicons_21_home);
-        TintUtil.setTintImage(home);
+        TintUtil.setTintImageWithAlpha(home);
         home.setOnClickListener(new OnClickListener() {
 
             @Override

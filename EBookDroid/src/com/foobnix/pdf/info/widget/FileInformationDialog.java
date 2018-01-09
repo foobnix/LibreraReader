@@ -215,7 +215,7 @@ public class FileInformationDialog {
                 } else {
                     starIcon.setImageResource(R.drawable.star_1);
                 }
-                TintUtil.setTintImage(starIcon, Color.WHITE);
+                TintUtil.setTintImageWithAlpha(starIcon, Color.WHITE);
 
             }
         });
@@ -225,7 +225,7 @@ public class FileInformationDialog {
         } else {
             starIcon.setImageResource(R.drawable.star_1);
         }
-        TintUtil.setTintImage(starIcon, Color.WHITE);
+        TintUtil.setTintImageWithAlpha(starIcon, Color.WHITE);
         TintUtil.setBackgroundFillColor(openFile, TintUtil.color);
 
         // builder.setTitle(R.string.file_info);

@@ -154,7 +154,7 @@ public class TintUtil {
         }
     }
 
-    public static ImageView setTintImage(ImageView img) {
+    public static ImageView setTintImageWithAlpha(ImageView img) {
         img.setColorFilter(color, Mode.SRC_ATOP);
         img.setAlpha(230);
         return img;
@@ -165,7 +165,7 @@ public class TintUtil {
         return img;
     }
 
-    public static ImageView setTintImage(ImageView img, int color) {
+    public static ImageView setTintImageWithAlpha(ImageView img, int color) {
         img.setColorFilter(color, Mode.SRC_ATOP);
         img.setAlpha(230);
         return img;
@@ -272,10 +272,10 @@ public class TintUtil {
     public static void drawStar(final ImageView imageView, boolean isStar) {
         if (isStar) {
             imageView.setImageResource(R.drawable.star_1);
-            TintUtil.setTintImage(imageView, TintUtil.color);
+            TintUtil.setTintImageWithAlpha(imageView, TintUtil.color);
         } else {
             imageView.setImageResource(R.drawable.star_2);
-            TintUtil.setTintImage(imageView, TintUtil.color);
+            TintUtil.setTintImageWithAlpha(imageView, TintUtil.color);
         }
     }
 

@@ -96,7 +96,7 @@ public class BrowserAdapter extends BaseAdapter {
         final TextView extFile = (TextView) browserItem.findViewById(R.id.browserExt);
 
         final ImageView itemMenu = (ImageView) browserItem.findViewById(R.id.itemMenu);
-        TintUtil.setTintImage(itemMenu);
+        TintUtil.setTintImageWithAlpha(itemMenu);
 
         final View infoLayout = browserItem.findViewById(R.id.infoLayout);
         final TextView textPath = (TextView) browserItem.findViewById(R.id.browserPath);
@@ -105,7 +105,7 @@ public class BrowserAdapter extends BaseAdapter {
 
         if (file.getPath().equals(currentDirectory.getParent())) {
             imageView.setImageResource(R.drawable.glyphicons_217_circle_arrow_left);
-            TintUtil.setTintImage(imageView);
+            TintUtil.setTintImageWithAlpha(imageView);
             imageView.setBackgroundColor(Color.TRANSPARENT);
 
             title1.setText(file.getPath());
@@ -129,7 +129,7 @@ public class BrowserAdapter extends BaseAdapter {
 
             title1.setSingleLine();
             imageView.setImageResource(R.drawable.glyphicons_441_folder_closed);
-            TintUtil.setTintImage(imageView);
+            TintUtil.setTintImageWithAlpha(imageView);
             imageView.setBackgroundColor(Color.TRANSPARENT);
 
             infoLayout.setVisibility(View.GONE);
