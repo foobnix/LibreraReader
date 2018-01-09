@@ -98,6 +98,7 @@ public class FileMetaCore {
         } else if (BookType.MOBI.is(unZipPath)) {
             ebookMeta = MobiExtract.getBookMetaInformation(unZipPath, true);
         }
+
         if (TxtUtils.isEmpty(ebookMeta.getTitle())) {
             Pair<String, String> pair = TxtUtils.getTitleAuthorByPath(ExtUtils.getFileName(unZipPath));
             ebookMeta = new EbookMeta(pair.first, pair.second);

@@ -58,7 +58,6 @@ public class MuPdfDocument extends AbstractCodecDocument {
         return ou.getOutline(documentHandle);
     }
 
-
     @Override
     public CodecPage getPageInner(final int pageNumber) {
         MuPdfPage createPage = MuPdfPage.createPage(documentHandle, pageNumber + 1);
@@ -120,7 +119,7 @@ public class MuPdfDocument extends AbstractCodecDocument {
 
     @Override
     protected void freeDocument() {
-            free(documentHandle);
+        free(documentHandle);
         cacheHandle = -1;
         LOG.d("MUPDF! <<< recycle [document]", documentHandle, ExtUtils.getFileName(fname));
     }
@@ -154,6 +153,30 @@ public class MuPdfDocument extends AbstractCodecDocument {
     }
 
     native static int getPageInfo(long docHandle, int pageNumber, CodecPageInfo cpi);
+
+    native static String getTitle(long docHandle);
+
+    native static String getAuthor(long docHandle);
+
+    @Override
+    public String getBookTitle() {
+        try {
+            TempHolder.lock.lock();
+            return getTitle(documentHandle);
+        } finally {
+            TempHolder.lock.unlock();
+        }
+    }
+
+    @Override
+    public String getBookAuthor() {
+        try {
+            TempHolder.lock.lock();
+            return getAuthor(documentHandle);
+        } finally {
+            TempHolder.lock.unlock();
+        }
+    }
 
     private static long openFile(final int format, String fname, final String pwd, String css) {
 

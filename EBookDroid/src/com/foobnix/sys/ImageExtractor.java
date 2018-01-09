@@ -21,6 +21,7 @@ import com.BaseExtractor;
 import com.foobnix.android.utils.Dips;
 import com.foobnix.android.utils.LOG;
 import com.foobnix.android.utils.Safe;
+import com.foobnix.android.utils.TxtUtils;
 import com.foobnix.dao2.FileMeta;
 import com.foobnix.ext.CacheZipUtils.CacheDir;
 import com.foobnix.ext.CbzCbrExtractor;
@@ -180,6 +181,18 @@ public class ImageExtractor implements ImageDownloader {
         CodecDocument codeCache = null;
         if (isNeedDisableMagicInPDFDjvu) {
             codeCache = singleCodecContext(path, "", pageUrl.getWidth(), pageUrl.getHeight());
+            FileMeta meta = AppDB.get().load(pageUrl.getPath());
+            if (meta != null && codeCache != null) {
+                String bookAuthor = codeCache.getBookAuthor();
+                if(TxtUtils.isNotEmpty(bookAuthor)) {
+                    meta.setAuthor(bookAuthor);
+                }
+                String bookTitle = codeCache.getBookTitle();
+                if (TxtUtils.isNotEmpty(bookTitle)) {
+                    meta.setTitle(bookTitle);
+                }
+                AppDB.get().update(meta);
+            }
         } else {
             codeCache = getNewCodecContext(path, "", pageUrl.getWidth(), pageUrl.getHeight());
         }

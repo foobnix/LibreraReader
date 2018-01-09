@@ -39,14 +39,14 @@ public abstract class AbstractCodecContext implements CodecContext {
     public abstract CodecDocument openDocumentInner(String fileName, String password);
 
     public CodecDocument openDocumentInnerCanceled(String fileName, String password) {
-            CodecDocument openDocument = openDocumentInner(fileName, password);
-            LOG.d("removeTempFiles1", TempHolder.get().loadingCancelled);
-            if (TempHolder.get().loadingCancelled) {
+        CodecDocument openDocument = openDocumentInner(fileName, password);
+        LOG.d("removeTempFiles1", TempHolder.get().loadingCancelled);
+        if (TempHolder.get().loadingCancelled) {
             TempHolder.get().clear();
-                removeTempFiles();
-                return null;
-            }
-            return openDocument;
+            removeTempFiles();
+            return null;
+        }
+        return openDocument;
     }
 
     public void removeTempFiles() {

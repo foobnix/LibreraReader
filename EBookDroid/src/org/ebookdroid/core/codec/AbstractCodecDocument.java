@@ -84,4 +84,14 @@ public abstract class AbstractCodecDocument implements CodecDocument {
         return null;
     }
 
+    @Override
+    public String getBookAuthor() {
+        return null;
+    }
+
+    @Override
+    public String getBookTitle() {
+        return null;
+    }
+
 }

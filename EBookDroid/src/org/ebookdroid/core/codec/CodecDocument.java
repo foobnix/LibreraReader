@@ -54,4 +54,8 @@ public interface CodecDocument {
 	void saveAnnotations(String path);
 
     String documentToHtml();
+
+    String getBookTitle();
+
+    String getBookAuthor();
 }
