@@ -2593,7 +2593,7 @@ public class DragingDialogs {
 
                     @Override
                     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                        AppState.get().doubleClickAction = doubleTapIDS.get(position);
+                        AppState.get().doubleClickAction1 = doubleTapIDS.get(position);
 
                         try {
                             TextView textView = (TextView) doubleTapSpinner.getChildAt(0);
@@ -2608,7 +2608,7 @@ public class DragingDialogs {
 
                     }
                 });
-                doubleTapSpinner.setSelection(doubleTapIDS.indexOf(AppState.get().doubleClickAction));
+                doubleTapSpinner.setSelection(doubleTapIDS.indexOf(AppState.get().doubleClickAction1));
 
                 final TextView tapzoneCustomize = (TextView) inflate.findViewById(R.id.tapzoneCustomize);
                 TxtUtils.underlineTextView(tapzoneCustomize);

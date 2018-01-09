@@ -122,7 +122,7 @@ public class CloseAppDialog {
                 }
             });
         }
-        popupMenu.show();
+        popupMenu.show(true);
 
     }
 

@@ -968,15 +968,15 @@ public class DocumentWrapperUI {
         if (AppState.get().isMusicianMode) {
             controller.alignDocument();
         } else {
-            if (AppState.get().doubleClickAction == AppState.DOUBLE_CLICK_ZOOM_IN_OUT) {
+            if (AppState.get().doubleClickAction1 == AppState.DOUBLE_CLICK_ZOOM_IN_OUT) {
                 controller.onZoomInOut(x, y);
                 AppState.get().isEditMode = false;
                 hideShow();
-            } else if (AppState.get().doubleClickAction == AppState.DOUBLE_CLICK_ADJUST_PAGE) {
+            } else if (AppState.get().doubleClickAction1 == AppState.DOUBLE_CLICK_ADJUST_PAGE) {
                 controller.alignDocument();
-            } else if (AppState.get().doubleClickAction == AppState.DOUBLE_CLICK_CENTER_HORIZONTAL) {
+            } else if (AppState.get().doubleClickAction1 == AppState.DOUBLE_CLICK_CENTER_HORIZONTAL) {
                 controller.centerHorizontal();
-            } else if (AppState.get().doubleClickAction == AppState.DOUBLE_CLICK_AUTOSCROLL) {
+            } else if (AppState.get().doubleClickAction1 == AppState.DOUBLE_CLICK_AUTOSCROLL) {
                 onAutoScrollClick();
             }
         }

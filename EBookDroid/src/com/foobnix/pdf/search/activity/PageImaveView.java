@@ -236,9 +236,9 @@ public class PageImaveView extends View {
             if (clickUtils.isClickCenter(e.getX(), e.getY())) {
                 isLognPress = true;
 
-                if (AppState.get().doubleClickAction == AppState.DOUBLE_CLICK_NOTHING) {
+                if (AppState.get().doubleClickAction1 == AppState.DOUBLE_CLICK_NOTHING) {
 
-                } else if (AppState.get().doubleClickAction == AppState.DOUBLE_CLICK_ZOOM_IN_OUT) {
+                } else if (AppState.get().doubleClickAction1 == AppState.DOUBLE_CLICK_ZOOM_IN_OUT) {
                     if (isFirstZoomInOut) {
                         imageMatrix().preTranslate(getWidth() / 2 - e.getX(), getHeight() / 2 - e.getY());
                         imageMatrix().postScale(2.5f, 2.5f, getWidth() / 2, getHeight() / 2);
