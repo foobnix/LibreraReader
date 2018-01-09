@@ -410,9 +410,9 @@
    <string name="restore_defaults_short">Вернуть значения по умолчанию</string>
    <string name="heading_and_subheadings">Заголовки и подзаголовки</string>
    <string name="headings_only">Только заголовки</string>
-   <string name="genre">Жанры</string>
-   <string name="author">Авторы</string>
-   <string name="serie">Серии</string>
+   <string name="genre">Жанр</string>
+   <string name="author">Автор</string>
+   <string name="serie">Серия</string>
    <string name="switch_off">Выключить</string>
    <string name="system_language">Системный</string>
    <string name="bluelight_filter">Фильтр синего цвета и затемнение</string>

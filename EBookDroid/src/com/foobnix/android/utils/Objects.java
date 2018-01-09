@@ -37,7 +37,8 @@ public class Objects {
                 } else
 
                 if (f.getType().equals(String.class)) {
-                    edit.putString(f.getName(), f.get(obj).toString());
+                    Object object = f.get(obj);
+                    edit.putString(f.getName(), object != null ? object.toString() : null);
                 } else
 
                 if (f.getType().equals(float.class)) {
@@ -57,7 +58,7 @@ public class Objects {
                 }
 
             } catch (Exception e) {
-                LOG.e(e);
+                LOG.e(e, f.getName());
             }
         }
         edit.commit();

@@ -36,7 +36,6 @@ public class AppsConfig {
     public static boolean IS_TEST_EP = false;
 
     public static String TXT_APP_NAME;
-    public static String TXT_NO_AUTHOR;
 
     static Random random = new Random();
 
@@ -45,7 +44,6 @@ public class AppsConfig {
         LOG.d("init packageName", packageName);
 
         TXT_APP_NAME = a.getString(R.string.app_name);
-        TXT_NO_AUTHOR = a.getString(R.string.author);
 
         APP_PACKAGE = packageName;
 

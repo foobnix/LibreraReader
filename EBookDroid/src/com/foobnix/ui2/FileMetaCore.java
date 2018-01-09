@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.util.Locale;
 
 import org.ebookdroid.BookType;
+import org.ebookdroid.LibreraApp;
 import org.ebookdroid.common.cache.CacheManager;
 import org.jsoup.Jsoup;
 import org.jsoup.safety.Whitelist;
@@ -21,8 +22,8 @@ import com.foobnix.ext.EpubExtractor;
 import com.foobnix.ext.Fb2Extractor;
 import com.foobnix.ext.MobiExtract;
 import com.foobnix.ext.PdfExtract;
-import com.foobnix.pdf.info.AppsConfig;
 import com.foobnix.pdf.info.ExtUtils;
+import com.foobnix.pdf.info.R;
 
 import android.app.Activity;
 import android.support.v4.util.Pair;
@@ -158,7 +159,7 @@ public class FileMetaCore {
 
     public void udpateFullMeta(FileMeta fileMeta, EbookMeta meta) {
         LOG.d("udpateFullMeta", "getAuthor", meta.getAuthor(), fileMeta.getAuthor());
-        fileMeta.setAuthor(TxtUtils.isEmpty(meta.getAuthor()) ? AppsConfig.TXT_NO_AUTHOR : meta.getAuthor());
+        fileMeta.setAuthor(TxtUtils.isEmpty(meta.getAuthor()) ? LibreraApp.context.getString(R.string.author) : meta.getAuthor());
         fileMeta.setTitle(meta.getTitle());
         fileMeta.setSequence(TxtUtils.firstUppercase(meta.getSequence()));
         fileMeta.setGenre(meta.getGenre());
