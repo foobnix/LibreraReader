@@ -34,6 +34,7 @@ import com.foobnix.android.utils.ResultResponse2;
 import com.foobnix.android.utils.Safe;
 import com.foobnix.android.utils.TxtUtils;
 import com.foobnix.android.utils.Views;
+import com.foobnix.dao2.FileMeta;
 import com.foobnix.ext.CacheZipUtils;
 import com.foobnix.pdf.info.model.BookCSS;
 import com.foobnix.pdf.info.widget.ChooserDialogFragment;
@@ -42,6 +43,7 @@ import com.foobnix.pdf.info.wrapper.AppState;
 import com.foobnix.pdf.info.wrapper.DocumentController;
 import com.foobnix.pdf.search.activity.HorizontalViewActivity;
 import com.foobnix.sys.TempHolder;
+import com.foobnix.ui2.AppDB;
 import com.foobnix.zipmanager.ZipDialog;
 import com.nostra13.universalimageloader.core.ImageLoader;
 
@@ -1091,8 +1093,7 @@ public class ExtUtils {
                     return;
                 }
                 if (result != null) {
-
-                    dc.onCloseActivityFinal(new Runnable() {
+                    Runnable run = new Runnable() {
 
                         @Override
                         public void run() {
@@ -1109,7 +1110,12 @@ public class ExtUtils {
                                 showDocument(a, (File) result);
                             }
                         }
-                    });
+                    };
+                    if (dc != null) {
+                        dc.onCloseActivityFinal(run);
+                    } else {
+                        Safe.run(run);
+                    }
 
                 }
             };
@@ -1124,6 +1130,16 @@ public class ExtUtils {
                 LIRBI_DOWNLOAD_DIR.mkdirs();
             }
 
+            FileMeta meta = AppDB.get().getOrCreate(file.getPath());
+            String author = "";
+            String title = ExtUtils.getFileNameWithoutExt(file.getName());
+            try {
+                author = meta.getAuthor();
+                title = meta.getTitle();
+            } catch (Exception e) {
+                LOG.e(e);
+            }
+
             CodecDocument doc = BookType.getCodecContextByPath(file.getPath()).openDocument(file.getPath(), "");
 
             final File filefb2 = new File(LIRBI_DOWNLOAD_DIR, file.getName() + REFLOW_FB2);
@@ -1133,8 +1149,8 @@ public class ExtUtils {
                 out.write("<html>");
 
                 out.write("<title-info>");
-                out.write("<author><first-name>" + AppsConfig.TXT_APP_NAME + "</first-name></autor><br/>");
-                out.write("<book-title><h1>" + file.getName() + "</h1></book-title>");
+                out.write("<author><first-name>" + author + "</first-name></autor><br/>");
+                out.write("<book-title>" + title + "</book-title>");
                 out.write("</title-info>");
 
                 out.write("<body>");

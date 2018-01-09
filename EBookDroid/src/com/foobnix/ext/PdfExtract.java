@@ -12,7 +12,7 @@ public class PdfExtract {
         CodecDocument openDocument = null;
         try {
             openDocument = codecContex.openDocument(unZipPath, "");
-        } catch (Exception e) {
+        } catch (RuntimeException e) {
             LOG.e(e);
             return EbookMeta.Empty();
         }

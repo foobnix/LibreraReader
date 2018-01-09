@@ -45,7 +45,7 @@ public class AppsConfig {
         LOG.d("init packageName", packageName);
 
         TXT_APP_NAME = a.getString(R.string.app_name);
-        TXT_NO_AUTHOR = a.getString(R.string.without_author);
+        TXT_NO_AUTHOR = a.getString(R.string.author);
 
         APP_PACKAGE = packageName;
 

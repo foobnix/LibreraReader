@@ -26,7 +26,6 @@ import com.foobnix.android.utils.LOG;
 import com.foobnix.android.utils.StreamUtils;
 import com.foobnix.android.utils.TxtUtils;
 import com.foobnix.hypen.HypenUtils;
-import com.foobnix.pdf.info.ExtUtils;
 import com.foobnix.pdf.info.model.BookCSS;
 import com.foobnix.pdf.info.wrapper.AppState;
 import com.foobnix.sys.TempHolder;
@@ -166,9 +165,11 @@ public class Fb2Extractor extends BaseExtractor {
     @Override
     public EbookMeta getBookMetaInformation(String inputFile) {
         try {
-            if (inputFile.contains(ExtUtils.REFLOW_FB2)) {
-                return new EbookMeta(new File(inputFile).getName().replace(ExtUtils.REFLOW_FB2, ""), "Text Reflow", "", "");
-            }
+            // if (inputFile.contains(ExtUtils.REFLOW_FB2)) {
+                // return new EbookMeta(new
+                // File(inputFile).getName().replace(ExtUtils.REFLOW_FB2, ""), "Text Reflow",
+                // "", "");
+            // }
 
             XmlPullParser xpp = XmlParser.buildPullParser();
             xpp.setInput(new FileInputStream(inputFile), findHeaderEncoding(inputFile));
