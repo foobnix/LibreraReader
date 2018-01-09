@@ -78,7 +78,7 @@ public class AndroidWhatsNew {
         notes.setText(textNotes);
 
         AlertDialog.Builder builder = new AlertDialog.Builder(c);
-        builder.setTitle(c.getString(R.string.what_is_new_in) + " " + AppsConfig.APP_NAME + " " + versionName);
+        builder.setTitle(c.getString(R.string.what_is_new_in) + " " + AppsConfig.TXT_APP_NAME + " " + versionName);
         builder.setView(inflate);
         builder.setNegativeButton(R.string.close, new OnClickListener() {
 

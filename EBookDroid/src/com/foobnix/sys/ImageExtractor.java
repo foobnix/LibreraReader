@@ -92,12 +92,12 @@ public class ImageExtractor implements ImageDownloader {
         }
 
         FileMeta fileMeta = AppDB.get().getOrCreate(path);
-        EbookMeta ebookMeta = FileMetaCore.get().getEbookMeta(path, CacheDir.ZipApp);
+        EbookMeta ebookMeta = FileMetaCore.get().getEbookMeta(path, CacheDir.ZipApp, false);
 
         FileMetaCore.get().upadteBasicMeta(fileMeta, new File(path));
         FileMetaCore.get().udpateFullMeta(fileMeta, ebookMeta);
 
-        AppDB.get().update(fileMeta);
+
 
         String unZipPath = ebookMeta.getUnzipPath();
 
@@ -114,7 +114,7 @@ public class ImageExtractor implements ImageDownloader {
         } else if (BookType.RTF.is(unZipPath)) {
             cover = BaseExtractor.arrayToBitmap(RtfExtract.getImageCover(unZipPath), pageUrl.getWidth());
         } else if (BookType.PDF.is(unZipPath) || BookType.DJVU.is(unZipPath) || BookType.TIFF.is(unZipPath)) {
-            cover = proccessOtherPage(pageUrl);
+            cover = proccessOtherPage(pageUrl, fileMeta);
         } else if (BookType.CBZ.is(unZipPath) || BookType.CBR.is(unZipPath)) {
             cover = BaseExtractor.arrayToBitmap(CbzCbrExtractor.getBookCover(unZipPath), pageUrl.getWidth());
         } else if (ExtUtils.isFileArchive(unZipPath)) {
@@ -130,6 +130,9 @@ public class ImageExtractor implements ImageDownloader {
             cover = BaseExtractor.getBookCoverWithTitle(fileMeta.getAuthor(), fileMeta.getTitle(), true);
             pageUrl.tempWithWatermakr = true;
         }
+
+        LOG.d("udpateFullMeta ImageExtractor", fileMeta.getAuthor());
+        AppDB.get().update(fileMeta);
 
         return cover;
     }
@@ -162,7 +165,7 @@ public class ImageExtractor implements ImageDownloader {
         }
     }
 
-    public Bitmap proccessOtherPage(PageUrl pageUrl) {
+    public Bitmap proccessOtherPage(PageUrl pageUrl, FileMeta meta) {
         int page = pageUrl.getPage();
         String path = pageUrl.getPath();
 
@@ -181,10 +184,9 @@ public class ImageExtractor implements ImageDownloader {
         CodecDocument codeCache = null;
         if (isNeedDisableMagicInPDFDjvu) {
             codeCache = singleCodecContext(path, "", pageUrl.getWidth(), pageUrl.getHeight());
-            FileMeta meta = AppDB.get().load(pageUrl.getPath());
             if (meta != null && codeCache != null) {
                 String bookAuthor = codeCache.getBookAuthor();
-                if(TxtUtils.isNotEmpty(bookAuthor)) {
+                if (TxtUtils.isNotEmpty(bookAuthor)) {
                     meta.setAuthor(bookAuthor);
                 }
                 String bookTitle = codeCache.getBookTitle();
@@ -192,7 +194,6 @@ public class ImageExtractor implements ImageDownloader {
                     meta.setTitle(bookTitle);
                 }
                 LOG.d("PDF getBookAuthor", bookAuthor, bookTitle);
-                AppDB.get().update(meta);
             }
         } else {
             codeCache = getNewCodecContext(path, "", pageUrl.getWidth(), pageUrl.getHeight());
@@ -420,12 +421,12 @@ public class ImageExtractor implements ImageDownloader {
                         pageUrl.setPage(pageUrl.getPage() - 1);
                     }
 
-                    Bitmap bitmap1 = proccessOtherPage(pageUrl);
+                    Bitmap bitmap1 = proccessOtherPage(pageUrl, null);
                     pageUrl.setPage(pageUrl.getPage() + 1);
 
                     Bitmap bitmap2 = null;
                     if (pageUrl.getPage() < pageCount) {
-                        bitmap2 = proccessOtherPage(pageUrl);
+                        bitmap2 = proccessOtherPage(pageUrl, null);
                     } else {
                         bitmap2 = Bitmap.createBitmap(bitmap1);
                         Canvas canvas = new Canvas(bitmap2);
@@ -451,7 +452,7 @@ public class ImageExtractor implements ImageDownloader {
 
                 }
 
-                return bitmapToStreamRAW(proccessOtherPage(pageUrl));
+                return bitmapToStreamRAW(proccessOtherPage(pageUrl, null));
             }
 
         } catch (MuPdfPasswordException e) {

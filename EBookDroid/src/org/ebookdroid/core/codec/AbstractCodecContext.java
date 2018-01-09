@@ -66,7 +66,7 @@ public abstract class AbstractCodecContext implements CodecContext {
             return openDocumentInnerCanceled(fileNameOriginal, password);
         }
 
-        EbookMeta ebookMeta = FileMetaCore.get().getEbookMeta(fileNameOriginal, CacheDir.ZipApp);
+        EbookMeta ebookMeta = FileMetaCore.get().getEbookMeta(fileNameOriginal, CacheDir.ZipApp, false);
 
         String lang = ebookMeta.getLang();
         if (TxtUtils.isNotEmpty(lang)) {

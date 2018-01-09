@@ -30,11 +30,13 @@ public class AppsConfig {
     public static String ANALYTICS_ID;
 
 
-    public static String APP_NAME;
     public static String APP_PACKAGE;
     public static boolean IS_BETA, IS_CLASSIC, IS_INK, IS_EP;
 
     public static boolean IS_TEST_EP = false;
+
+    public static String TXT_APP_NAME;
+    public static String TXT_NO_AUTHOR;
 
     static Random random = new Random();
 
@@ -42,7 +44,9 @@ public class AppsConfig {
         final String packageName = a.getPackageName();
         LOG.d("init packageName", packageName);
 
-        APP_NAME = a.getString(R.string.app_name);
+        TXT_APP_NAME = a.getString(R.string.app_name);
+        TXT_NO_AUTHOR = a.getString(R.string.without_author);
+
         APP_PACKAGE = packageName;
 
 
@@ -105,7 +109,7 @@ public class AppsConfig {
             IS_EP = false;
         }
 
-        IS_BETA = APP_NAME.contains("Beta");
+        IS_BETA = TXT_APP_NAME.contains("Beta");
 
         // IS_BETA = false;
 

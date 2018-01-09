@@ -20,6 +20,8 @@ import com.foobnix.ext.EbookMeta;
 import com.foobnix.ext.EpubExtractor;
 import com.foobnix.ext.Fb2Extractor;
 import com.foobnix.ext.MobiExtract;
+import com.foobnix.ext.PdfExtract;
+import com.foobnix.pdf.info.AppsConfig;
 import com.foobnix.pdf.info.ExtUtils;
 
 import android.app.Activity;
@@ -45,7 +47,7 @@ public class FileMetaCore {
                 FileMeta fileMeta = AppDB.get().getOrCreate(path);
                 if (TxtUtils.isEmpty(fileMeta.getTitle())) {
 
-                    EbookMeta ebookMeta = FileMetaCore.get().getEbookMeta(path, CacheDir.ZipApp);
+                    EbookMeta ebookMeta = FileMetaCore.get().getEbookMeta(path, CacheDir.ZipApp, false);
 
                     FileMetaCore.get().upadteBasicMeta(fileMeta, new File(path));
                     FileMetaCore.get().udpateFullMeta(fileMeta, ebookMeta);
@@ -61,20 +63,20 @@ public class FileMetaCore {
         }
     }
 
-    public EbookMeta getEbookMeta(String path, CacheDir folder) {
+    public EbookMeta getEbookMeta(String path, CacheDir folder, boolean withPDF) {
         EbookMeta ebookMeta = EbookMeta.Empty();
         try {
             if (path.toLowerCase(Locale.US).endsWith(".zip")) {
                 CacheZipUtils.cacheLock.lock();
                 try {
                     UnZipRes res = CacheZipUtils.extracIfNeed(path, folder);
-                    ebookMeta = getEbookMeta(path, res.unZipPath, res.entryName);
+                    ebookMeta = getEbookMeta(path, res.unZipPath, res.entryName, withPDF);
                     ebookMeta.setUnzipPath(res.unZipPath);
                 } finally {
                     CacheZipUtils.cacheLock.unlock();
                 }
             } else {
-                ebookMeta = getEbookMeta(path, path, null);
+                ebookMeta = getEbookMeta(path, path, null, withPDF);
                 ebookMeta.setUnzipPath(path);
             }
 
@@ -85,23 +87,25 @@ public class FileMetaCore {
 
     }
 
-    private EbookMeta getEbookMeta(String path, String unZipPath, String child) throws IOException {
+    private EbookMeta getEbookMeta(String path, String unZipPath, String child, boolean withDPF) throws IOException {
         EbookMeta ebookMeta = EbookMeta.Empty();
 
         if (CalirbeExtractor.isCalibre(unZipPath)) {
             ebookMeta = CalirbeExtractor.getBookMetaInformation(unZipPath);
-            LOG.d("isCalibre find");
+            LOG.d("isCalibre find", unZipPath);
         } else if (BookType.EPUB.is(unZipPath)) {
             ebookMeta = EpubExtractor.get().getBookMetaInformation(unZipPath);
         } else if (BookType.FB2.is(unZipPath)) {
             ebookMeta = Fb2Extractor.get().getBookMetaInformation(unZipPath);
         } else if (BookType.MOBI.is(unZipPath)) {
             ebookMeta = MobiExtract.getBookMetaInformation(unZipPath, true);
+        } else if (withDPF && BookType.PDF.is(unZipPath)) {
+            ebookMeta = PdfExtract.getBookMetaInformation(unZipPath);
         }
 
         if (TxtUtils.isEmpty(ebookMeta.getTitle())) {
             Pair<String, String> pair = TxtUtils.getTitleAuthorByPath(ExtUtils.getFileName(unZipPath));
-            ebookMeta = new EbookMeta(pair.first, pair.second);
+            ebookMeta = new EbookMeta(pair.first, TxtUtils.isNotEmpty(ebookMeta.getAuthor()) ? ebookMeta.getAuthor() : pair.second);
         }
 
         if (ebookMeta.getsIndex() == null && (path.contains("_") || path.contains(")"))) {
@@ -153,7 +157,8 @@ public class FileMetaCore {
     }
 
     public void udpateFullMeta(FileMeta fileMeta, EbookMeta meta) {
-        fileMeta.setAuthor(TxtUtils.isEmpty(meta.getAuthor()) ? "Librera" : meta.getAuthor());
+        LOG.d("udpateFullMeta", "getAuthor", meta.getAuthor(), fileMeta.getAuthor());
+        fileMeta.setAuthor(TxtUtils.isEmpty(meta.getAuthor()) ? AppsConfig.TXT_NO_AUTHOR : meta.getAuthor());
         fileMeta.setTitle(meta.getTitle());
         fileMeta.setSequence(TxtUtils.firstUppercase(meta.getSequence()));
         fileMeta.setGenre(meta.getGenre());

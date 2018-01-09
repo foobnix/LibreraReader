@@ -342,7 +342,7 @@ public class SearchFragment2 extends UIFragment<FileMeta> {
     }
 
     @Override
-    public void onPause() {
+    public void onStop() {
         super.onPause();
         LocalBroadcastManager.getInstance(getActivity()).unregisterReceiver(broadcastReceiver);
     }

@@ -100,7 +100,7 @@ public class BooksService extends IntentService {
                             }
 
                             FileMetaCore.get().upadteBasicMeta(meta, file);
-                            EbookMeta ebookMeta = FileMetaCore.get().getEbookMeta(meta.getPath(), CacheDir.ZipService);
+                            EbookMeta ebookMeta = FileMetaCore.get().getEbookMeta(meta.getPath(), CacheDir.ZipService, true);
                             FileMetaCore.get().udpateFullMeta(meta, ebookMeta);
 
                             meta.setIsSearchBook(true);
@@ -176,7 +176,8 @@ public class BooksService extends IntentService {
                 AppDB.get().updateAll(itemsMeta);
 
                 for (FileMeta meta : itemsMeta) {
-                    EbookMeta ebookMeta = FileMetaCore.get().getEbookMeta(meta.getPath(), CacheDir.ZipService);
+                    EbookMeta ebookMeta = FileMetaCore.get().getEbookMeta(meta.getPath(), CacheDir.ZipService, true);
+                    LOG.d("BooksService getAuthor", meta.getPath(), ebookMeta.getAuthor());
                     FileMetaCore.get().udpateFullMeta(meta, ebookMeta);
                 }
 

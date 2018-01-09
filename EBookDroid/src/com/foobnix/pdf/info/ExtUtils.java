@@ -1133,7 +1133,7 @@ public class ExtUtils {
                 out.write("<html>");
 
                 out.write("<title-info>");
-                out.write("<author><first-name>" + AppsConfig.APP_NAME + "</first-name></autor><br/>");
+                out.write("<author><first-name>" + AppsConfig.TXT_APP_NAME + "</first-name></autor><br/>");
                 out.write("<book-title><h1>" + file.getName() + "</h1></book-title>");
                 out.write("</title-info>");
 
