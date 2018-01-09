@@ -237,13 +237,17 @@ Java_org_ebookdroid_droids_mupdf_codec_MuPdfDocument_getTitle(JNIEnv *env,
 
 	return (*env)->NewStringUTF(env, info);
 }
-
-JNIEXPORT void JNICALL
-Java_org_ebookdroid_droids_mupdf_codec_MuPdfDocument_free(JNIEnv *env,
-		jclass clazz, jlong handle) {
+JNIEXPORT jstring JNICALL
+Java_org_ebookdroid_droids_mupdf_codec_MuPdfDocument_getAuthor(JNIEnv *env,
+		jclass cls, jlong handle) {
 	renderdocument_t *doc = (renderdocument_t*) (long) handle;
-	mupdf_free_document(doc);
+	char info[256];
+
+	fz_lookup_metadata(doc->ctx, doc->document, FZ_META_INFO_AUTHOR, info, sizeof(info));
+
+	return (*env)->NewStringUTF(env, info);
 }
+
 
 JNIEXPORT jint JNICALL
 Java_org_ebookdroid_droids_mupdf_codec_MuPdfDocument_getPageInfo(JNIEnv *env,

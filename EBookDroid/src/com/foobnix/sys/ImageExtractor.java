@@ -191,6 +191,7 @@ public class ImageExtractor implements ImageDownloader {
                 if (TxtUtils.isNotEmpty(bookTitle)) {
                     meta.setTitle(bookTitle);
                 }
+                LOG.d("PDF getBookAuthor", bookAuthor, bookTitle);
                 AppDB.get().update(meta);
             }
         } else {
