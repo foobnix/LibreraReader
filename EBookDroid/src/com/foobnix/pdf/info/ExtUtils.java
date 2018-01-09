@@ -41,6 +41,7 @@ import com.foobnix.pdf.info.widget.ChooserDialogFragment;
 import com.foobnix.pdf.info.wrapper.AppBookmark;
 import com.foobnix.pdf.info.wrapper.AppState;
 import com.foobnix.pdf.info.wrapper.DocumentController;
+import com.foobnix.pdf.search.activity.HorizontalModeController;
 import com.foobnix.pdf.search.activity.HorizontalViewActivity;
 import com.foobnix.sys.TempHolder;
 import com.foobnix.ui2.AppDB;
@@ -1077,7 +1078,12 @@ public class ExtUtils {
 
             @Override
             protected Object doInBackground(Object... params) {
-                return openPDFInTextReflowAsync(a, file, handler);
+                try {
+                    return openPDFInTextReflowAsync(a, file, handler);
+                } catch (RuntimeException e) {
+                    LOG.e(e);
+                    return null;
+                }
             };
 
             @Override
@@ -1139,8 +1145,17 @@ public class ExtUtils {
             } catch (Exception e) {
                 LOG.e(e);
             }
+            String pwd = "";
+            try {
+                pwd = a.getIntent().getStringExtra(HorizontalModeController.PASSWORD_EXTRA);
+                if (pwd == null) {
+                    pwd = "";
+                }
+            } catch (Exception e) {
+                LOG.e(e);
+            }
 
-            CodecDocument doc = BookType.getCodecContextByPath(file.getPath()).openDocument(file.getPath(), "");
+            CodecDocument doc = BookType.getCodecContextByPath(file.getPath()).openDocument(file.getPath(), pwd);
 
             final File filefb2 = new File(LIRBI_DOWNLOAD_DIR, file.getName() + REFLOW_FB2);
             try {
@@ -1189,7 +1204,7 @@ public class ExtUtils {
 
             LOG.d("openPDFInTextReflow", filefb2.getPath());
             return filefb2;
-        } catch (Exception e) {
+        } catch (RuntimeException e) {
             LOG.e(e);
             return null;
         }

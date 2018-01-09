@@ -39,6 +39,7 @@ import com.foobnix.pdf.info.R;
 import com.foobnix.pdf.info.model.OutlineLinkWrapper;
 import com.foobnix.pdf.info.wrapper.AppState;
 import com.foobnix.pdf.info.wrapper.DocumentWrapperUI;
+import com.foobnix.pdf.search.activity.HorizontalModeController;
 import com.foobnix.sys.TempHolder;
 import com.foobnix.sys.VerticalModeController;
 import com.foobnix.tts.TTSEngine;
@@ -233,7 +234,7 @@ public class ViewerActivityController extends ActionController<VerticalViewActiv
             @Override
             public void run() {
                 int pageIntent = intent.getIntExtra("page", 0);
-
+                getActivity().getIntent().putExtra(HorizontalModeController.PASSWORD_EXTRA, password);
                 double percent = getActivity().getIntent().getDoubleExtra(VerticalViewActivity.PERCENT_EXTRA, 0);
                 if (percent > 0) {
                     LOG.d("Percent", percent, getDocumentModel().getPageCount());

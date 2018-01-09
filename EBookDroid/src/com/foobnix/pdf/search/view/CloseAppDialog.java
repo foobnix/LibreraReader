@@ -5,6 +5,7 @@ import java.util.List;
 
 import com.foobnix.android.utils.Apps;
 import com.foobnix.pdf.info.R;
+import com.foobnix.pdf.info.view.MyPopupMenu;
 import com.foobnix.pdf.info.wrapper.AppState;
 import com.foobnix.pdf.info.wrapper.DocumentController;
 import com.foobnix.pdf.info.wrapper.UITab;
@@ -21,7 +22,6 @@ import android.view.KeyEvent;
 import android.view.MenuItem;
 import android.view.MenuItem.OnMenuItemClickListener;
 import android.view.View;
-import android.widget.PopupMenu;
 
 public class CloseAppDialog {
 
@@ -110,32 +110,19 @@ public class CloseAppDialog {
 
         };
 
-        if (v == null) {
-            AlertDialog.Builder dialog = new AlertDialog.Builder(a);
-            dialog.setItems(items.toArray(new String[items.size()]), listener);
-            dialog.setNegativeButton(R.string.cancel, new OnClickListener() {
+        final MyPopupMenu popupMenu = new MyPopupMenu(v);
+        for (int i = 0; i < items.size(); i++) {
+            final int j = i;
+            popupMenu.getMenu().add(items.get(i)).setOnMenuItemClickListener(new OnMenuItemClickListener() {
 
                 @Override
-                public void onClick(DialogInterface dialog, int which) {
-                    dialog.dismiss();
+                public boolean onMenuItemClick(MenuItem item) {
+                    listener.onClick(null, j);
+                    return false;
                 }
             });
-            dialog.show();
-        } else {
-            final PopupMenu popupMenu = new PopupMenu(a, v);
-            for (int i = 0; i < items.size(); i++) {
-                final int j = i;
-                popupMenu.getMenu().add(items.get(i)).setOnMenuItemClickListener(new OnMenuItemClickListener() {
-
-                    @Override
-                    public boolean onMenuItemClick(MenuItem item) {
-                        listener.onClick(null, j);
-                        return false;
-                    }
-                });
-            }
-            popupMenu.show();
         }
+        popupMenu.show();
 
     }
 
