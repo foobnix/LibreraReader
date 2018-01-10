@@ -35,11 +35,6 @@ public class MyPopupMenu {
         this.anchor = anchor;
     }
 
-    public MyPopupMenu(View anchor) {
-        this.c = anchor.getContext();
-        this.anchor = anchor;
-    }
-
     public class Menu {
         String stringRes;
         int iconRes;
