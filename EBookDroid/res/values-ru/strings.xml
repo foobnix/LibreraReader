@@ -430,8 +430,8 @@
    <string name="formatted_text">Форматированный текст (псевдографика)</string>
    <string name="continuous_text">Непрерывный текст (без разрыва строк)</string>
    <string name="remember_reading_mode">Запоминать режим чтения</string>
-   <string name="background_color_on_images_the_same_as_page_background">Применять особый алгоритм цветовой подстройки шрифтов и фонов</string>
-   <string name="block_page_movement_horizontally">Если «замочек» запереть, страницы не будут смещаться в стороны</string>
+   <string name="background_color_on_images_the_same_as_page_background">Применять особый алгоритм цветовой подстройки шрифтов и фонов для PDF/DJVU</string>
+   <string name="block_page_movement_horizontally">Если замочек «запереть», страницы не будут смещаться в стороны</string>
    <string name="search_history_and_autocomplete">История поиска и автозаполнение</string>
    <string name="server">Сервер</string>
    <string name="port">Порт</string>
@@ -448,9 +448,9 @@
    <string name="mode_vertical">Режим свитка (вертик. листание)</string>
    <string name="mode_horizontally">Режим книги (гориз. листание)</string>
    <string name="mode_musician">Режим «Музыкант» (прокрутка нот)</string>
-   <string name="automatic_export_backup">Автоэкспорт настроек, прогресса чтения книг и закладок при каждом выходе из приложения</string>
-   <string name="display_all_file_types_in_folders">Отображение всех типов файлов в папках</string>
-   <string name="no_serie">Нет серии</string>
-   <string name="no_genre">Нет жанра</string>
-   <string name="no_author">Нет автора</string>
+   <string name="automatic_export_backup">Автоматически экспортировать настройки, прогресс чтения книг и закладки при каждом выходе из приложения</string>
+   <string name="display_all_file_types_in_folders">Отображать в папках все типы файлов</string>
+   <string name="no_serie"><Без серии</string>
+   <string name="no_genre">Без жанра</string>
+   <string name="no_author">Без автора</string>
 </resources>
