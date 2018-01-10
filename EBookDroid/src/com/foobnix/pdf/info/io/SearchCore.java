@@ -12,6 +12,7 @@ import java.util.Locale;
 import com.foobnix.android.utils.LOG;
 import com.foobnix.dao2.FileMeta;
 import com.foobnix.pdf.info.ExtUtils;
+import com.foobnix.pdf.info.wrapper.AppState;
 import com.foobnix.ui2.FileMetaCore;
 import com.foobnix.ui2.adapter.FileMetaAdapter;
 
@@ -82,7 +83,13 @@ public class SearchCore {
         }
         ArrayList<FileMeta> files = new ArrayList<FileMeta>();
 
-        File[] listFiles = file.listFiles(SUPPORTED_EXT_AND_DIRS_FILTER);
+        File[] listFiles = null;
+
+        if (AppState.get().isDisplayAllFilesInFolder) {
+            listFiles = file.listFiles();
+        } else {
+            listFiles = file.listFiles(SUPPORTED_EXT_AND_DIRS_FILTER);
+        }
 
         if (listFiles == null || listFiles.length == 0) {
             return Collections.emptyList();

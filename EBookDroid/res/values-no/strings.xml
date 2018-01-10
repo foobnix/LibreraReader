@@ -449,4 +449,5 @@
    <string name="mode_horizontally">Bokmodus (horisontalt)</string>
    <string name="mode_musician">Musiker (spoling musikknotater)</string>
    <string name="automatic_export_backup">Automatisk eksport (backup) av programinnstillinger, fremdrift av bøkerlesning og bokmerker.</string>
+   <string name="display_all_file_types_in_folders">Vis alle filtyper i mapper</string>
 </resources>

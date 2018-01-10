@@ -449,4 +449,5 @@
    <string name="mode_horizontally">Režim knihy (vodorovne)</string>
    <string name="mode_musician">Hudobník (prevíjanie hudobných poznámok)</string>
    <string name="automatic_export_backup">Automatický export (zálohovanie) nastavení aplikácií, priebeh čítania kníh a záložiek.</string>
+   <string name="display_all_file_types_in_folders">Zobraziť všetky typy súborov v priečinkoch</string>
 </resources>

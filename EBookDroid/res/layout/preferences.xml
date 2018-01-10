@@ -697,20 +697,21 @@
             android:text="@string/loop_autoplay"
             android:visibility="gone" />
 
-        <LinearLayout
-            android:layout_width="match_parent"
+        <CheckBox
+            android:id="@+id/isDisplayAllFilesInFolder"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:gravity="center_vertical"
-            android:orientation="horizontal" >
+            android:layout_weight="1"
+            android:maxLines="2"
+            android:text="@string/display_all_file_types_in_folders" />
 
-            <CheckBox
-                android:id="@+id/isShowWhatIsNewDialog"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:maxLines="2"
-                android:text="@string/show_the_dialog_what_is_new_for_updates" />
-        </LinearLayout>
+        <CheckBox
+            android:id="@+id/isShowWhatIsNewDialog"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:maxLines="2"
+            android:text="@string/show_the_dialog_what_is_new_for_updates" />
 
         <TextView
             android:id="@+id/whatIsNew"
@@ -719,7 +720,6 @@
             android:layout_height="wrap_content"
             android:singleLine="true"
             android:text="@string/what_is_new_in" />
-
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -782,7 +782,6 @@
                     android:textSize="12sp" />
             </LinearLayout>
         </LinearLayout>
-
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -1062,7 +1061,7 @@
                 android:minWidth="100dip"
                 android:text="@string/export_" />
         </LinearLayout>
-        
+
         <CheckBox
             android:id="@+id/isAutomaticExport"
             android:layout_width="match_parent"

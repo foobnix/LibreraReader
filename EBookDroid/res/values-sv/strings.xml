@@ -449,4 +449,5 @@
    <string name="mode_horizontally">Bokningsläge (horisontellt)</string>
    <string name="mode_musician">Musiker (återspolning musikanteckningar)</string>
    <string name="automatic_export_backup">Automatisk export (backup) av programinställningar, framsteg i bokläsning och bokmärken.</string>
+   <string name="display_all_file_types_in_folders">Visa alla filtyper i mappar</string>
 </resources>

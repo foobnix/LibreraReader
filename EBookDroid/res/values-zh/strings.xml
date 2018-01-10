@@ -449,4 +449,5 @@
    <string name="mode_horizontally">书本模式（水平）</string>
    <string name="mode_musician">音乐家（倒带音乐笔记）</string>
    <string name="automatic_export_backup">应用程序设置的自动导出（备份），书籍阅读和书签的进度。</string>
+   <string name="display_all_file_types_in_folders">显示文件夹中的所有文件类型</string>
 </resources>

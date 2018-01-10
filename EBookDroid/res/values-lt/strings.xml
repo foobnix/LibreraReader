@@ -449,4 +449,5 @@
    <string name="mode_horizontally">Knygos režimas (horizontaliai)</string>
    <string name="mode_musician">Muzikantas (atkūrimo muzikos įrašai)</string>
    <string name="automatic_export_backup">Automatinis eksporto (atsarginės) programos parametrų, knygų skaitymo ir žymių eiga.</string>
+   <string name="display_all_file_types_in_folders">Rodyti visus failų tipus aplankuose</string>
 </resources>

@@ -104,6 +104,8 @@ public class ExtUtils {
         mimeCache.put(".tpz", "application/x-topaz-ebook");
         mimeCache.put(".azw1", "application/x-topaz-ebook");
 
+        mimeCache.put(".pgn", " application/x-chess-pgn");
+
         mimeCache.put(".jpeg", "image/jpeg");
         mimeCache.put(".jpg", "image/jpeg");
         mimeCache.put(".png", "image/png");
@@ -338,9 +340,17 @@ public class ExtUtils {
     }
 
     public static String getFileExtension(String name) {
+        LOG.d("getFileExtension 1", name);
         if (name == null) {
             return "";
         }
+        if (name.contains("/")) {
+            name = name.substring(name.lastIndexOf("/") + 1);
+        }
+        if (!name.contains(".")) {
+            return "";
+        }
+
         try {
             return name.substring(name.lastIndexOf(".") + 1);
         } catch (Exception e) {

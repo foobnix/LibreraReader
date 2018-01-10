@@ -449,4 +449,5 @@
    <string name="mode_horizontally">حالت کتاب (به صورت افقی)</string>
    <string name="mode_musician">موسیقیدان</string>
    <string name="automatic_export_backup">صادرات خودکار (تهیه پشتیبان) از تنظیمات برنامه، پیشرفت خواندن کتابها و نشانکها.</string>
+   <string name="display_all_file_types_in_folders">نمایش تمام انواع فایل ها در پوشه ها</string>
 </resources>

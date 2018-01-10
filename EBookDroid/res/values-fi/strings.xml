@@ -449,4 +449,5 @@
    <string name="mode_horizontally">Kirjamoodi (vaakasuoraan)</string>
    <string name="mode_musician">Muusikko (musiikkitiedostojen kelaaminen uudelleen)</string>
    <string name="automatic_export_backup">Sovellusasetusten automaattinen vienti (varmuuskopiointi), kirjan lukemisen edistyminen ja kirjanmerkit.</string>
+   <string name="display_all_file_types_in_folders">Näytä kaikki tiedostotyypit kansioihin</string>
 </resources>

@@ -449,4 +449,5 @@
    <string name="mode_horizontally">Boekmodus (horizontaal)</string>
    <string name="mode_musician">Muzikant (terugspoelende muzieknoten)</string>
    <string name="automatic_export_backup">Automatische export (back-up) van applicatie-instellingen, voortgang van het lezen van boeken en bladwijzers.</string>
+   <string name="display_all_file_types_in_folders">Toon alle bestandstypes in mappen</string>
 </resources>
