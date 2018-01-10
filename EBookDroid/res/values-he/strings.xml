@@ -450,7 +450,7 @@
    <string name="mode_musician">מוסיקאי (rewind מוסיקה הערות)</string>
    <string name="automatic_export_backup">ייצוא אוטומטי (גיבוי) של הגדרות היישום, התקדמות ספרים קריאה סימניות.</string>
    <string name="display_all_file_types_in_folders">הצגת כל סוגי הקבצים בתיקיות</string>
-   <string name="no_author">אין מחבר</string>
    <string name="no_serie">אין סרייה</string>
    <string name="no_genre">אין ז\'אנר</string>
+   <string name="no_author">אין מחבר</string>
 </resources>

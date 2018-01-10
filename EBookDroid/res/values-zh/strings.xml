@@ -450,7 +450,7 @@
    <string name="mode_musician">音乐家（倒带音乐笔记）</string>
    <string name="automatic_export_backup">应用程序设置的自动导出（备份），书籍阅读和书签的进度。</string>
    <string name="display_all_file_types_in_folders">显示文件夹中的所有文件类型</string>
-   <string name="no_author">没有作者</string>
    <string name="no_serie">没有意甲</string>
    <string name="no_genre">没有流派</string>
+   <string name="no_author">没有作者</string>
 </resources>

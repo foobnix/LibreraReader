@@ -450,7 +450,7 @@
    <string name="mode_musician">Musisi (memutar catatan musik)</string>
    <string name="automatic_export_backup">Ekspor otomatis (cadangan) pengaturan aplikasi, kemajuan membaca dan bookmark buku.</string>
    <string name="display_all_file_types_in_folders">Tampilkan semua jenis file dalam folder</string>
-   <string name="no_author">Tidak ada penulis</string>
    <string name="no_serie">Tidak ada serie</string>
    <string name="no_genre">Tidak ada genre</string>
+   <string name="no_author">Tidak ada penulis</string>
 </resources>

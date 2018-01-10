@@ -450,7 +450,7 @@
    <string name="mode_musician">Muusikko (musiikkitiedostojen kelaaminen uudelleen)</string>
    <string name="automatic_export_backup">Sovellusasetusten automaattinen vienti (varmuuskopiointi), kirjan lukemisen edistyminen ja kirjanmerkit.</string>
    <string name="display_all_file_types_in_folders">Näytä kaikki tiedostotyypit kansioihin</string>
-   <string name="no_author">Ei kirjoittajaa</string>
    <string name="no_serie">Ei sarjaa</string>
    <string name="no_genre">Ei lajia</string>
+   <string name="no_author">Ei kirjoittajaa</string>
 </resources>

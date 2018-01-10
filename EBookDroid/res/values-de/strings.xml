@@ -450,7 +450,7 @@
    <string name="mode_musician">Musiker (Musiknoten zurückspulen)</string>
    <string name="automatic_export_backup">Automatischer Export (Backup) von Anwendungseinstellungen, Fortschritt beim Lesen von Büchern und Lesezeichen.</string>
    <string name="display_all_file_types_in_folders">Zeigt alle Dateitypen in Ordnern an</string>
-   <string name="no_author">Kein Autor</string>
    <string name="no_serie">Keine Serie</string>
    <string name="no_genre">Kein Genre</string>
+   <string name="no_author">Kein Autor</string>
 </resources>
