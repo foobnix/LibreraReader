@@ -450,4 +450,7 @@
    <string name="mode_musician">Musiker (återspolning musikanteckningar)</string>
    <string name="automatic_export_backup">Automatisk export (backup) av programinställningar, framsteg i bokläsning och bokmärken.</string>
    <string name="display_all_file_types_in_folders">Visa alla filtyper i mappar</string>
+   <string name="no_author">Ingen författare</string>
+   <string name="no_serie">Ingen serie</string>
+   <string name="no_genre">Ingen genre</string>
 </resources>

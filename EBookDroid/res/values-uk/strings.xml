@@ -450,4 +450,7 @@
    <string name="mode_musician">Музикант (перемотування музичних нотаток)</string>
    <string name="automatic_export_backup">Автоматичний експорт (резервне копіювання) налаштувань програми, прогрес читання книг та закладки.</string>
    <string name="display_all_file_types_in_folders">Відображати всі типи файлів у папках</string>
+   <string name="no_author">Немає автора</string>
+   <string name="no_serie">Немає серії</string>
+   <string name="no_genre">Немає жанру</string>
 </resources>

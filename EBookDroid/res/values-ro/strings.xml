@@ -450,4 +450,7 @@
    <string name="mode_musician">Muzician (reînnoirea notelor muzicale)</string>
    <string name="automatic_export_backup">Export automat (copie de rezervă) a setărilor aplicațiilor, progresul citirii cărților și marcajelor.</string>
    <string name="display_all_file_types_in_folders">Afișează toate tipurile de fișiere în foldere</string>
+   <string name="no_author">Nu autor</string>
+   <string name="no_serie">Nici o serie</string>
+   <string name="no_genre">Nici un gen</string>
 </resources>

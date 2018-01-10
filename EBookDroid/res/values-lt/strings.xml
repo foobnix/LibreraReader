@@ -450,4 +450,7 @@
    <string name="mode_musician">Muzikantas (atkūrimo muzikos įrašai)</string>
    <string name="automatic_export_backup">Automatinis eksporto (atsarginės) programos parametrų, knygų skaitymo ir žymių eiga.</string>
    <string name="display_all_file_types_in_folders">Rodyti visus failų tipus aplankuose</string>
+   <string name="no_author">Nėra autoriaus</string>
+   <string name="no_serie">Nėra serijos</string>
+   <string name="no_genre">Nėra žanro</string>
 </resources>

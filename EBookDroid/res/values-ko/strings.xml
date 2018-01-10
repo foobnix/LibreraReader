@@ -450,4 +450,7 @@
    <string name="mode_musician">음악가 (되감기 음악 노트)</string>
    <string name="automatic_export_backup">응용 프로그램 설정의 자동 내보내기 (백업), 책 읽기 및 책갈피 진행.</string>
    <string name="display_all_file_types_in_folders">모든 파일 형식을 폴더에 표시</string>
+   <string name="no_author">작성자 없음</string>
+   <string name="no_serie">세리가 없다.</string>
+   <string name="no_genre">장르 없음</string>
 </resources>

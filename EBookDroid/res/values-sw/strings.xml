@@ -450,4 +450,7 @@
    <string name="mode_musician">Muziki (kurejesha maelezo ya muziki)</string>
    <string name="automatic_export_backup">Hifadhi ya moja kwa moja (salama) ya mipangilio ya programu, maendeleo ya vitabu vya kusoma na alama.</string>
    <string name="display_all_file_types_in_folders">Onyesha aina zote za faili kwenye folda</string>
+   <string name="no_author">Hakuna Mwandishi</string>
+   <string name="no_serie">Hakuna serie</string>
+   <string name="no_genre">Hakuna aina</string>
 </resources>

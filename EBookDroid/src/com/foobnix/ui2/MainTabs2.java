@@ -72,6 +72,7 @@ import android.widget.Toast;
 
 @SuppressLint("NewApi")
 public class MainTabs2 extends AdsFragmentActivity {
+    private static final String TAG = "MainTabs";
     public static final String EXTRA_EXIT = "EXTRA_EXIT";
     public static final String EXTRA_SHOW_TABS = "EXTRA_SHOW_TABS";
     public static String EXTRA_PAGE_NUMBER = "EXTRA_PAGE_NUMBER";
@@ -90,6 +91,7 @@ public class MainTabs2 extends AdsFragmentActivity {
 
     @Override
     protected void onNewIntent(final Intent intent) {
+        LOG.d(TAG, "onNewIntent");
         isInStack = true;
         // testIntentHandler();
         if (intent.getBooleanExtra(EXTRA_EXIT, false)) {
@@ -97,6 +99,7 @@ public class MainTabs2 extends AdsFragmentActivity {
             return;
         }
         checkGoToPage(intent);
+
     }
 
     public void testIntentHandler() {
@@ -159,6 +162,8 @@ public class MainTabs2 extends AdsFragmentActivity {
         }
         super.onCreate(savedInstanceState);
         RecentUpates.updateAll(this);
+
+        LOG.d(TAG, "onCreate");
 
         LOG.d("EXTRA_EXIT", EXTRA_EXIT);
         if (getIntent().getBooleanExtra(EXTRA_EXIT, false)) {
@@ -326,7 +331,7 @@ public class MainTabs2 extends AdsFragmentActivity {
                     }
                 });
             }
-        } else if (!AppState.get().isOpenLastBook) {
+        } else if (false && !AppState.get().isOpenLastBook) {
             LOG.d("Open book lastA", AppState.get().lastA);
 
             Safe.run(new Runnable() {
@@ -367,6 +372,7 @@ public class MainTabs2 extends AdsFragmentActivity {
         }
     }
 
+
     @Subscribe
     public void onMessegeBrightness(MessegeBrightness msg) {
         BrightnessHelper.onMessegeBrightness(msg, toastBrightnessText, overlay);
@@ -404,6 +410,7 @@ public class MainTabs2 extends AdsFragmentActivity {
     @Override
     protected void onResume() {
         super.onResume();
+        LOG.d(TAG, "onResume");
         isInStack = true;
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
         // DocumentController.chooseFullScreen(this, false);
@@ -480,6 +487,7 @@ public class MainTabs2 extends AdsFragmentActivity {
     @Override
     public void onDestroy() {
         super.onDestroy();
+        LOG.d(TAG, "onDestroy");
         if (pager != null) {
             try {
                 pager.setAdapter(null);
@@ -594,10 +602,10 @@ public class MainTabs2 extends AdsFragmentActivity {
 
     public static void closeApp(Context c) {
         // if (MainTabs2.isInStack) {
-            Intent startMain = new Intent(c, MainTabs2.class);
-            startMain.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-            startMain.putExtra(MainTabs2.EXTRA_EXIT, true);
-            c.startActivity(startMain);
+        Intent startMain = new Intent(c, MainTabs2.class);
+        startMain.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        startMain.putExtra(MainTabs2.EXTRA_EXIT, true);
+        c.startActivity(startMain);
         // }
     }
 

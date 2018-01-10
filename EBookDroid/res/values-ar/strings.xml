@@ -450,4 +450,7 @@
    <string name="mode_musician">الموسيقار (مذكرات الموسيقى اللف)</string>
    <string name="automatic_export_backup">تصدير تلقائي (النسخ الاحتياطي) من إعدادات التطبيق، وتقدم الكتب القراءة والإشارات.</string>
    <string name="display_all_file_types_in_folders">عرض جميع أنواع الملفات في المجلدات</string>
+   <string name="no_author">لا مؤلف</string>
+   <string name="no_serie">لا دوري الدرجة الاولى الايطالي</string>
+   <string name="no_genre">لا يوجد نوع</string>
 </resources>

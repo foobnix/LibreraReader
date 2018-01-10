@@ -450,4 +450,7 @@
    <string name="mode_musician">Musicista (riavvolgimento di note musicali)</string>
    <string name="automatic_export_backup">Esportazione automatica (backup) delle impostazioni dell\'applicazione, avanzamento della lettura dei libri e segnalibri.</string>
    <string name="display_all_file_types_in_folders">Mostra tutti i tipi di file nelle cartelle</string>
+   <string name="no_author">Nessun autore</string>
+   <string name="no_serie">Nessuna serie</string>
+   <string name="no_genre">Nessun genere</string>
 </resources>

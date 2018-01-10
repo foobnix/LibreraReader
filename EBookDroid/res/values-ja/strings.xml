@@ -450,4 +450,7 @@
    <string name="mode_musician">ミュージシャン（音楽ノートを巻き戻す）</string>
    <string name="automatic_export_backup">アプリケーション設定の自動エクスポート（バックアップ）、書籍の読書やブックマークの進捗状況。</string>
    <string name="display_all_file_types_in_folders">すべてのファイルタイプをフォルダに表示する</string>
+   <string name="no_author">著者はありません</string>
+   <string name="no_serie">セリエがない</string>
+   <string name="no_genre">ジャンルなし</string>
 </resources>

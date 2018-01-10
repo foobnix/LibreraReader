@@ -450,4 +450,7 @@
    <string name="mode_musician">Müzisyen (müzik notalarını geri sarma)</string>
    <string name="automatic_export_backup">Otomatik uygulama ayarları, ilerleme kitap okuma ve yer imleri ihracat (yedekleme).</string>
    <string name="display_all_file_types_in_folders">Tüm dosya türlerini klasörlerde görüntüle</string>
+   <string name="no_author">Yazar yok</string>
+   <string name="no_serie">Seri yok</string>
+   <string name="no_genre">Tür yok</string>
 </resources>

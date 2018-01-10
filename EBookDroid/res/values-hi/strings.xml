@@ -450,4 +450,7 @@
    <string name="mode_musician">संगीतकार (रीवाइंडिंग संगीत नोट्स)</string>
    <string name="automatic_export_backup">एप्लिकेशन सेटिंग्स के स्वचालित निर्यात (बैकअप), किताबें पढ़ने और बुकमार्क्स की प्रगति</string>
    <string name="display_all_file_types_in_folders">फ़ोल्डर्स में सभी फ़ाइल प्रकार प्रदर्शित करें</string>
+   <string name="no_author">कोई लेखक नहीं</string>
+   <string name="no_serie">कोई सीरी नहीं</string>
+   <string name="no_genre">कोई शैली नहीं</string>
 </resources>

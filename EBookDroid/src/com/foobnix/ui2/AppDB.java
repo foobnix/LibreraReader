@@ -23,6 +23,7 @@ import com.foobnix.pdf.info.R;
 import com.foobnix.pdf.info.wrapper.AppState;
 import com.foobnix.pdf.info.wrapper.UITab;
 import com.foobnix.ui2.adapter.FileMetaAdapter;
+import com.foobnix.ui2.fragment.SearchFragment2;
 
 import android.content.Context;
 import android.database.Cursor;
@@ -40,7 +41,7 @@ public class AppDB {
         SERIES(FileMetaDao.Properties.Sequence, AppState.MODE_SERIES), //
         GENRE(FileMetaDao.Properties.Genre, AppState.MODE_GENRE), //
         AUTHOR(FileMetaDao.Properties.Author, AppState.MODE_AUTHORS);
-        //ANNOT(FileMetaDao.Properties.Annotation, -1); //
+        // ANNOT(FileMetaDao.Properties.Annotation, -1); //
         // REGEX(FileMetaDao.Properties.Path, -1);//
         //
         private final Property property;
@@ -408,6 +409,10 @@ public class AppDB {
                     break;
                 }
             }
+            LOG.d("searchBy", str);
+            if (TxtUtils.isNotEmpty(str) && str.startsWith(SearchFragment2.EMPTY_ID)) {
+                where = where.where(searchIn.getProperty().like(""));
+            } else
 
             if (searchIn == SEARCH_IN.SERIES && !str.contains("*")) {
                 where = where.where(searchIn.getProperty().eq(str));

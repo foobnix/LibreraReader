@@ -65,6 +65,7 @@ import android.widget.Toast;
 
 public class SearchFragment2 extends UIFragment<FileMeta> {
 
+    public static final String EMPTY_ID = ":: ";
     private String NO_SERIES = ":no-series";
     public static final Pair<Integer, Integer> PAIR = new Pair<Integer, Integer>(R.string.library, R.drawable.glyphicons_2_book_open);
     private static final String CMD_KEYCODE = "@@keycode_config";
@@ -461,7 +462,7 @@ public class SearchFragment2 extends UIFragment<FileMeta> {
             List<String> result = new ArrayList<String>();
             boolean byGenre = txt.startsWith(SEARCH_IN.GENRE.getDotPrefix());
             boolean byAuthor = txt.startsWith(SEARCH_IN.AUTHOR.getDotPrefix());
-            if (byGenre || byAuthor) {
+            if (!txt.contains("::") && (byGenre || byAuthor)) {
                 if (isSearchOnlyEmpy) {
                     Iterator<FileMeta> iterator = searchBy.iterator();
                     while (iterator.hasNext()) {
@@ -511,6 +512,7 @@ public class SearchFragment2 extends UIFragment<FileMeta> {
     public void toastState(String command, boolean state) {
         Toast.makeText(getContext(), command + " [" + (state ? "ON" : "OFF") + "]", Toast.LENGTH_LONG).show();
     }
+
 
     public void searchAndOrderSync(List<FileMeta> loadingResults) {
         handler.removeCallbacks(sortAndSeach);
@@ -578,16 +580,22 @@ public class SearchFragment2 extends UIFragment<FileMeta> {
             sortBy.setText("");
             sortOrder.setEnabled(false);
             sortOrder.setVisibility(View.INVISIBLE);
+
+            String empty = "";
             if (AppState.get().libraryMode == AppState.MODE_AUTHORS) {
                 searchEditText.setHint(R.string.author);
+                empty = EMPTY_ID + getString(R.string.no_author);
             } else if (AppState.get().libraryMode == AppState.MODE_SERIES) {
                 searchEditText.setHint(R.string.serie);
+                empty = EMPTY_ID + getString(R.string.no_serie);
             } else if (AppState.get().libraryMode == AppState.MODE_GENRE) {
                 searchEditText.setHint(R.string.genre);
+                empty = EMPTY_ID + getString(R.string.no_genre);
             }
 
             authorsAdapter.clearItems();
             List<String> list = AppDB.get().getAll(SEARCH_IN.getByMode(AppState.get().libraryMode));
+            list.add(0, empty);
             authorsAdapter.getItemsList().addAll(list);
             authorsAdapter.notifyDataSetChanged();
 
