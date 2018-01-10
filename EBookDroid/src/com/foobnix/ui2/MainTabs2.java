@@ -495,7 +495,7 @@ public class MainTabs2 extends AdsFragmentActivity {
 
         if (AppState.get().isAutomaticExport && Android6.canWrite(this)) {
             try {
-                File file = new File(CacheZipUtils.SD_CARD_APP_DIR, Apps.getApplicationName(this) + "-" + Apps.getVersionName(this) + "-backup-export-all.json");
+                File file = new File(CacheZipUtils.SD_CARD_APP_DIR, Apps.getApplicationName(this) + "-" + Apps.getVersionName(this) + "-backup-export-all.JSON.txt");
                 LOG.d("isAutomaticExport", file);
                 ExportSettingsManager.getInstance(this).exportAll(file);
             } catch (Exception e) {
