@@ -202,9 +202,25 @@ public class TTSService extends Service {
         return START_STICKY;
     }
 
+    CodecDocument cache;
+    String path;
+    int wh;
+
     public CodecDocument getDC() {
         try {
-            return ImageExtractor.getNewCodecContext(AppState.get().lastBookPath, "", AppState.get().lastBookWidth, AppState.get().lastBookHeight);
+            if (AppState.get().lastBookPath != null && AppState.get().lastBookPath.equals(path) && cache != null && wh == AppState.get().lastBookWidth + AppState.get().lastBookHeight) {
+                LOG.d(TAG, "CodecDocument from cache", AppState.get().lastBookPath);
+                return cache;
+            }
+            if (cache != null) {
+                cache.recycle();
+                cache = null;
+            }
+            path = AppState.get().lastBookPath;
+            cache = ImageExtractor.singleCodecContext(AppState.get().lastBookPath, "", AppState.get().lastBookWidth, AppState.get().lastBookHeight);
+            wh = AppState.get().lastBookWidth + AppState.get().lastBookHeight;
+            LOG.d(TAG, "CodecDocument new ", AppState.get().lastBookPath, AppState.get().lastBookWidth, AppState.get().lastBookHeight);
+            return cache;
         } catch (Exception e) {
             LOG.e(e);
             return null;
@@ -353,6 +369,10 @@ public class TTSService extends Service {
         isActivated = false;
         TempHolder.get().timerFinishTime = 0;
         mMediaSessionCompat.setActive(false);
+        if (cache != null) {
+            cache.recycle();
+        }
+        path = null;
         LOG.d(TAG, "onDestroy");
     }
 
