@@ -826,6 +826,17 @@ public class PrefFragment2 extends UIFragment {
             }
         });
 
+        CheckBox isDisplayAllFilesInFolder = (CheckBox) inflate.findViewById(R.id.isDisplayAllFilesInFolder);
+        isDisplayAllFilesInFolder.setChecked(AppState.get().isDisplayAllFilesInFolder);
+        isDisplayAllFilesInFolder.setOnCheckedChangeListener(new OnCheckedChangeListener() {
+
+            @Override
+            public void onCheckedChanged(final CompoundButton buttonView, final boolean isChecked) {
+                AppState.get().isDisplayAllFilesInFolder = isChecked;
+                TempHolder.listHash++;
+            }
+        });
+
         // What is new
         CheckBox showWhatIsNew = (CheckBox) inflate.findViewById(R.id.isShowWhatIsNewDialog);
         showWhatIsNew.setChecked(AppState.get().isShowWhatIsNewDialog);

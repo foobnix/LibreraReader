@@ -449,4 +449,8 @@
    <string name="mode_horizontally">Tryb książki (poziomo)</string>
    <string name="mode_musician">Muzyk (przewijanie nut)</string>
    <string name="automatic_export_backup">Automatyczny eksport (backup) ustawień aplikacji, postęp czytania książek i zakładek.</string>
+   <string name="display_all_file_types_in_folders">Wyświetl wszystkie typy plików w folderach</string>
+   <string name="no_serie">Bez serii</string>
+   <string name="no_genre">Bez gatunku</string>
+   <string name="no_author">Brak autora</string>
 </resources>

@@ -449,4 +449,8 @@
    <string name="mode_horizontally">Modo livro (horizontalmente)</string>
    <string name="mode_musician">Músico (rebobinando notas de música)</string>
    <string name="automatic_export_backup">Exportação automática (backup) das configurações da aplicação, progresso da leitura de livros e marcadores.</string>
+   <string name="display_all_file_types_in_folders">Exibir todos os tipos de arquivos em pastas</string>
+   <string name="no_serie">Sem série</string>
+   <string name="no_genre">Nenhum gênero</string>
+   <string name="no_author">Nenhum autor</string>
 </resources>

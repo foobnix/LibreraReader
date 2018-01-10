@@ -449,4 +449,8 @@
    <string name="mode_horizontally">โหมดหนังสือ (แนวนอน)</string>
    <string name="mode_musician">นักดนตรี (โน้ตย่อบท)</string>
    <string name="automatic_export_backup">การส่งออกอัตโนมัติ (สำรอง) ของการตั้งค่าแอปพลิเคชันความคืบหน้าของการอ่านหนังสือและบุ๊กมาร์ก</string>
+   <string name="display_all_file_types_in_folders">แสดงประเภทไฟล์ทั้งหมดในโฟลเดอร์</string>
+   <string name="no_serie">ไม่มีซีรี่ส์</string>
+   <string name="no_genre">ไม่มีประเภท</string>
+   <string name="no_author">ไม่มีผู้แต่ง</string>
 </resources>

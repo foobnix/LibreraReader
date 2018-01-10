@@ -240,7 +240,6 @@ public class DocumentWrapperUI {
                 if (((VerticalViewActivity) getController().getActivity()).isInterstialShown()) {
                     return false;
                 } else {
-
                     CloseAppDialog.showOnLongClickDialog(getController().getActivity(), null, controller);
                 }
             }

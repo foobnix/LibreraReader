@@ -3476,7 +3476,7 @@ public class DragingDialogs {
                     @Override
                     public void onClick(View v) {
                         final List<String> fontNames = BookCSS.get().getAllFontsFiltered();
-                        MyPopupMenu popup = new MyPopupMenu(v);
+                        MyPopupMenu popup = new MyPopupMenu(controller.getActivity(), v);
                         for (final String fontName : fontNames) {
                             popup.getMenu().add(fontName).setOnMenuItemClickListener(new OnMenuItemClickListener() {
 

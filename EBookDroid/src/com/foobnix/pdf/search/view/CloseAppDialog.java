@@ -110,19 +110,32 @@ public class CloseAppDialog {
 
         };
 
-        final MyPopupMenu popupMenu = new MyPopupMenu(v);
-        for (int i = 0; i < items.size(); i++) {
-            final int j = i;
-            popupMenu.getMenu().add(items.get(i)).setOnMenuItemClickListener(new OnMenuItemClickListener() {
+        if (v == null) {
+            AlertDialog.Builder dialog = new AlertDialog.Builder(a);
+            dialog.setItems(items.toArray(new String[items.size()]), listener);
+            dialog.setNegativeButton(R.string.cancel, new OnClickListener() {
 
                 @Override
-                public boolean onMenuItemClick(MenuItem item) {
-                    listener.onClick(null, j);
-                    return false;
+                public void onClick(DialogInterface dialog, int which) {
+                    dialog.dismiss();
                 }
             });
+            dialog.show();
+        } else {
+            final MyPopupMenu popupMenu = new MyPopupMenu(a, v);
+            for (int i = 0; i < items.size(); i++) {
+                final int j = i;
+                popupMenu.getMenu().add(items.get(i)).setOnMenuItemClickListener(new OnMenuItemClickListener() {
+
+                    @Override
+                    public boolean onMenuItemClick(MenuItem item) {
+                        listener.onClick(null, j);
+                        return false;
+                    }
+                });
+            }
+            popupMenu.show(true);
         }
-        popupMenu.show(true);
 
     }
 
