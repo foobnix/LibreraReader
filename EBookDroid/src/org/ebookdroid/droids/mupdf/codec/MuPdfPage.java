@@ -15,6 +15,9 @@ import org.ebookdroid.core.codec.PageTextBox;
 import org.emdev.utils.LengthUtils;
 import org.emdev.utils.MatrixUtils;
 
+import com.artifex.mupdf.fitz.StructuredText;
+import com.artifex.mupdf.fitz.StructuredText.TextBlock;
+import com.artifex.mupdf.fitz.StructuredText.TextLine;
 import com.foobnix.android.utils.LOG;
 import com.foobnix.pdf.info.model.AnnotationType;
 import com.foobnix.pdf.info.wrapper.AppState;
@@ -236,8 +239,6 @@ public class MuPdfPage extends AbstractCodecPage {
 
     private static native boolean renderPageBitmap(long dochandle, long pagehandle, int[] viewboxarray, float[] matrixarray, Bitmap bitmap);
 
-    private native static List<PageTextBox> search(long docHandle, long pageHandle, String pattern);
-
     private native static TextChar[][][][] text(long docHandle, long pageHandle);
 
     private native void addInkAnnotationInternal(long docHandle, long pageHandle, float[] color, PointF[][] arcs, int width, float alpha);
@@ -326,12 +327,73 @@ public class MuPdfPage extends AbstractCodecPage {
 
     @Override
     public synchronized TextWord[][] getText() {
+        LOG.d("getText()", docHandle, pageHandle, pageNumber);
+        TextBlock[] blocks = null;
+        try {
+            TempHolder.lock.lock();
+            blocks = StructuredText.getBlocks(docHandle, pageHandle);
+        } finally {
+            TempHolder.lock.unlock();
+        }
+
+        ArrayList<TextWord[]> lns = new ArrayList<TextWord[]>();
+
+
+        for (TextBlock block : blocks) {
+            ArrayList<TextWord> words = new ArrayList<TextWord>();
+            for (TextLine line : block.lines) {
+
+                TextWord word = new TextWord();
+                for (StructuredText.TextChar ch : line.chars) {
+                    char chChar = (char) ch.c;
+
+                    if (AppState.get().selectingByLetters) {
+                        if (chChar == SPACE_CHAR) {
+                            chChar = ' ';
+                        }
+                        word.addChar(ch.bbox, chChar);
+                        words.add(word);
+                        word = new TextWord();
+                        continue;
+                    }
+
+                    if (chChar == ' ') {
+                        words.add(word);
+                        LOG.d("getText()", word.w);
+                        word = new TextWord();
+                        continue;
+                    }
+                    word.addChar(ch.bbox, chChar);
+                }
+                if (word.w.length() > 0) {
+                    words.add(word);
+                    LOG.d("getText()", word.w);
+                    word = new TextWord();
+                }
+            }
+            if (words.size() > 0) {
+                lns.add(words.toArray(new TextWord[words.size()]));
+            }
+        }
+
+        TextWord[][] res = lns.toArray(new TextWord[lns.size()][]);
+        for (TextWord[] lines : res) {
+            for (TextWord word : lines) {
+                LOG.d("word2", word.w);
+                update(word);
+            }
+        }
+        if (true) {
+            return res;
+        }
+
+        if (true) {
+            return new TextWord[0][0];
+        }
         TextChar[][][][] chars = text();
         if (chars == null) {
             return new TextWord[0][0];
         }
-
-        ArrayList<TextWord[]> lns = new ArrayList<TextWord[]>();
 
         for (TextChar[][][] bl : chars) {
 
@@ -370,14 +432,14 @@ public class MuPdfPage extends AbstractCodecPage {
             }
         }
 
-        TextWord[][] res = lns.toArray(new TextWord[lns.size()][]);
-        for (TextWord[] lines : res) {
+        TextWord[][] res2 = lns.toArray(new TextWord[lns.size()][]);
+        for (TextWord[] lines : res2) {
             for (TextWord word : lines) {
                 update(word);
             }
         }
 
-        return res;
+        return res2;
     }
 
     public void update(TextWord wd) {
@@ -390,13 +452,6 @@ public class MuPdfPage extends AbstractCodecPage {
         wd.top = (wd.top - pageBounds.top) / pageBounds.height();
         wd.right = (wd.right - pageBounds.left) / pageBounds.width();
         wd.bottom = (wd.bottom - pageBounds.top) / pageBounds.height();
-    }
-
-    @Override
-    public List<? extends RectF> searchText(final String pattern) {
-        final List<PageTextBox> rects = search(docHandle, pageHandle, pattern);
-        udpateSearchResult(rects);
-        return rects;
     }
 
     private void udpateSearchResult(final List<PageTextBox> rects) {

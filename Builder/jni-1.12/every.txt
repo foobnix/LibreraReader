@@ -7,7 +7,7 @@ source/html/epub-doc.c
 
 
 source/html/css-apply.c
-//INHERIT
+//INHERIT value = value_from_property(match, "font-size");
 
 		else if (!strcmp(value->data, "inherit")) style->font_size = make_number(1.0f, N_SCALE);
 		else style->font_size =make_number(1.0f, N_SCALE);
@@ -132,6 +132,60 @@ fz_print_stext_page(fz_context *ctx, fz_output *out, fz_stext_page *page)
 		{
 			break;
 		}
+		}
+	}
+}
+--------------
+
+
+/* Plain text */
+
+void
+fz_print_stext_page_as_text(fz_context *ctx, fz_output *out, fz_stext_page *page)
+{
+	fz_stext_block *block;
+	fz_stext_line *line;
+	fz_stext_char *ch;
+	char utf[10];
+	int i, n;
+
+	for (block = page->first_block; block; block = block->next)
+	{
+		if (block->type == FZ_STEXT_BLOCK_TEXT)
+		{
+			for (line = block->u.t.first_line; line; line = line->next)
+			{
+					int is_bold = fz_font_is_bold(ctx, line->first_char->font);
+					int is_italic = fz_font_is_italic(ctx, line->first_char->font);
+
+					if (is_bold){						
+						fz_write_printf(ctx,out,"<b>");
+					}
+
+					if (is_italic){
+						fz_write_printf(ctx,out,"<i>");
+					}
+
+				for (ch = line->first_char; ch; ch = ch->next)
+				{
+					n = fz_runetochar(utf, ch->c);
+					for (i = 0; i < n; i++)
+						fz_write_byte(ctx, out, utf[i]);
+				}
+
+				    if(is_bold){
+						fz_write_printf(ctx,out,"</b>&nbsp; ");
+					}
+
+					if(is_italic){
+						fz_write_printf(ctx,out,"</i>&nbsp; ");
+					}
+
+				fz_write_string(ctx, out, "&nbsp; ");
+				//fz_write_printf(ctx, out, "<br/>");
+			}
+			//fz_write_string(ctx, out, "\n");
+			fz_write_printf(ctx, out, "<br/>");
 		}
 	}
 }

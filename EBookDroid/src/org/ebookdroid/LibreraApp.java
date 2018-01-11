@@ -4,6 +4,7 @@ import org.ebookdroid.common.bitmaps.BitmapManager;
 import org.ebookdroid.common.cache.CacheManager;
 import org.ebookdroid.common.settings.SettingsManager;
 
+import com.artifex.mupdf.fitz.StructuredText;
 import com.foobnix.android.utils.Dips;
 import com.foobnix.android.utils.LOG;
 import com.foobnix.ext.CacheZipUtils;
@@ -36,6 +37,8 @@ public class LibreraApp extends Application {
     public void onCreate() {
         super.onCreate();
 
+        int initNative = StructuredText.initNative();
+        LOG.d("initNative", initNative);
 
         context = getApplicationContext();
         AppsConfig.init(getApplicationContext());

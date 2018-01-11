@@ -56,7 +56,7 @@ LOCAL_C_INCLUDES := \
 LOCAL_CFLAGS := \
 	-ffunction-sections -fdata-sections \
 	-D_FILE_OFFSET_BITS=32 \
-	-DTOFU_NOTO -DTOFU_CJK \
+	-DNOTO_SMALL \
 	-DAA_BITS=8 \
 
 LOCAL_SRC_FILES += \

@@ -1,11 +1,11 @@
 . ~/.profile
-MUPDF=/home/ivan-dev/dev/mupdf-1.11-source/platform/java
-#MUPDF=/home/ivan-dev/dev/mupdf-1.12.0-source/platform/java
+#MUPDF=/home/ivan-dev/dev/mupdf-1.11-source/platform/java
+MUPDF=/home/ivan-dev/dev/mupdf-1.12.0-source/platform/java
 
 MY=/home/ivan-dev/git/LirbiReader
 
 rm -rf  $MUPDF/jni
-cp -rRp $MY/Builder/jni-1.11 $MUPDF/jni
+cp -rRp $MY/Builder/jni-1.12 $MUPDF/jni
 
 
 ALL=$MY/cpu_all/libs
@@ -34,6 +34,7 @@ ln -s $MUPDF/libs/armeabi-v7a $ARM_ARM64/armeabi-v7a
 ln -s $MUPDF/libs/arm64-v8a $ARM_ARM64/arm64-v8a
 
 ln -s $MUPDF/libs/x86 $X86/x86
+ln -s $MUPDF/libs/x86_64 $X86/x86_64
 
 #echo "MUPDF:" $MUPDF ">>>" $MY
 

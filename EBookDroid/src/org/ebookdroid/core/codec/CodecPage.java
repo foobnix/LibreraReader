@@ -27,10 +27,6 @@ public interface CodecPage {
 
 	List<Annotation> getAnnotations();
 
-	List<PageTextBox> getPageText();
-
-	List<? extends RectF> searchText(final String pattern);
-
 	public TextWord[][] getText();
 
 	void recycle();

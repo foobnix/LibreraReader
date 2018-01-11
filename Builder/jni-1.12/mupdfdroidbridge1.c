@@ -1,5 +1,6 @@
 #include <jni.h>
 
+
 #include <android/log.h>
 
 #include <android/bitmap.h>
@@ -53,6 +54,618 @@ struct renderpage_s {
 	fz_display_list* pageList;
 	//fz_display_list* annot_list;
 };
+
+#define FUN(A) Java_com_artifex_mupdf_fitz_ ## A
+#define PKG "com/artifex/mupdf/fitz/"
+
+/* Do our best to avoid type casting warnings. */
+
+#define CAST(type, var) (type)pointer_cast(var)
+
+static inline void *pointer_cast(jlong l)
+{
+	return (void *)(intptr_t)l;
+}
+
+static inline jlong jlong_cast(const void *p)
+{
+	return (jlong)(intptr_t)p;
+}
+
+
+#define LOG_TAG "libmupdf"
+#define LOGI(...) __android_log_print(ANDROID_LOG_INFO,LOG_TAG,__VA_ARGS__)
+#define LOGT(...) __android_log_print(ANDROID_LOG_INFO,"alert",__VA_ARGS__)
+#define LOGE(...) __android_log_print(ANDROID_LOG_ERROR,LOG_TAG,__VA_ARGS__)
+
+
+/* All the cached classes/mids/fids we need. */
+
+static jclass cls_Annotation;
+static jclass cls_Buffer;
+static jclass cls_ColorSpace;
+static jclass cls_Cookie;
+static jclass cls_Device;
+static jclass cls_DisplayList;
+static jclass cls_Document;
+static jclass cls_DocumentWriter;
+static jclass cls_FloatArray;
+static jclass cls_Font;
+static jclass cls_IllegalArgumentException;
+static jclass cls_Image;
+static jclass cls_IndexOutOfBoundsException;
+static jclass cls_IntegerArray;
+static jclass cls_IOException;
+static jclass cls_Link;
+static jclass cls_Matrix;
+static jclass cls_NativeDevice;
+static jclass cls_NullPointerException;
+static jclass cls_Object;
+static jclass cls_Outline;
+static jclass cls_OutOfMemoryError;
+static jclass cls_Page;
+static jclass cls_Path;
+static jclass cls_PathWalker;
+static jclass cls_PDFAnnotation;
+static jclass cls_PDFDocument;
+static jclass cls_PDFPage;
+static jclass cls_PDFGraftMap;
+static jclass cls_PDFObject;
+static jclass cls_Pixmap;
+static jclass cls_Point;
+static jclass cls_Rect;
+static jclass cls_RuntimeException;
+static jclass cls_Shade;
+static jclass cls_StrokeState;
+static jclass cls_StructuredText;
+static jclass cls_Text;
+static jclass cls_TextBlock;
+static jclass cls_TextChar;
+static jclass cls_TextLine;
+static jclass cls_TextWalker;
+static jclass cls_TryLaterException;
+
+static jfieldID fid_Annotation_pointer;
+static jfieldID fid_Buffer_pointer;
+static jfieldID fid_ColorSpace_pointer;
+static jfieldID fid_Cookie_pointer;
+static jfieldID fid_Device_pointer;
+static jfieldID fid_DisplayList_pointer;
+static jfieldID fid_Document_pointer;
+static jfieldID fid_DocumentWriter_pointer;
+static jfieldID fid_Font_pointer;
+static jfieldID fid_Image_pointer;
+static jfieldID fid_Link_bounds;
+static jfieldID fid_Link_page;
+static jfieldID fid_Link_uri;
+static jfieldID fid_Matrix_a;
+static jfieldID fid_Matrix_b;
+static jfieldID fid_Matrix_c;
+static jfieldID fid_Matrix_d;
+static jfieldID fid_Matrix_e;
+static jfieldID fid_Matrix_f;
+static jfieldID fid_NativeDevice_nativeInfo;
+static jfieldID fid_NativeDevice_nativeResource;
+static jfieldID fid_Page_pointer;
+static jfieldID fid_Path_pointer;
+static jfieldID fid_PDFAnnotation_pointer;
+static jfieldID fid_PDFDocument_pointer;
+static jfieldID fid_PDFPage_pointer;
+static jfieldID fid_PDFGraftMap_pointer;
+static jfieldID fid_PDFObject_pointer;
+static jfieldID fid_PDFObject_Null;
+static jfieldID fid_Pixmap_pointer;
+static jfieldID fid_Point_x;
+static jfieldID fid_Point_y;
+static jfieldID fid_Rect_x0;
+static jfieldID fid_Rect_x1;
+static jfieldID fid_Rect_y0;
+static jfieldID fid_Rect_y1;
+static jfieldID fid_Shade_pointer;
+static jfieldID fid_StrokeState_pointer;
+static jfieldID fid_StructuredText_pointer;
+static jfieldID fid_TextBlock_bbox;
+static jfieldID fid_TextBlock_lines;
+static jfieldID fid_TextChar_bbox;
+static jfieldID fid_TextChar_c;
+static jfieldID fid_TextLine_bbox;
+static jfieldID fid_TextLine_chars;
+static jfieldID fid_Text_pointer;
+
+static jmethodID mid_Annotation_init;
+static jmethodID mid_ColorSpace_fromPointer;
+static jmethodID mid_ColorSpace_init;
+static jmethodID mid_Device_beginGroup;
+static jmethodID mid_Device_beginMask;
+static jmethodID mid_Device_beginTile;
+static jmethodID mid_Device_clipImageMask;
+static jmethodID mid_Device_clipPath;
+static jmethodID mid_Device_clipStrokePath;
+static jmethodID mid_Device_clipStrokeText;
+static jmethodID mid_Device_clipText;
+static jmethodID mid_Device_endGroup;
+static jmethodID mid_Device_endMask;
+static jmethodID mid_Device_endTile;
+static jmethodID mid_Device_fillImage;
+static jmethodID mid_Device_fillImageMask;
+static jmethodID mid_Device_fillPath;
+static jmethodID mid_Device_fillShade;
+static jmethodID mid_Device_fillText;
+static jmethodID mid_Device_ignoreText;
+static jmethodID mid_Device_init;
+static jmethodID mid_Device_popClip;
+static jmethodID mid_Device_strokePath;
+static jmethodID mid_Device_strokeText;
+static jmethodID mid_DisplayList_init;
+static jmethodID mid_Document_init;
+static jmethodID mid_Font_init;
+static jmethodID mid_Image_init;
+static jmethodID mid_Link_init;
+static jmethodID mid_Matrix_init;
+static jmethodID mid_Object_toString;
+static jmethodID mid_Outline_init;
+static jmethodID mid_Page_init;
+static jmethodID mid_Path_init;
+static jmethodID mid_PathWalker_closePath;
+static jmethodID mid_PathWalker_curveTo;
+static jmethodID mid_PathWalker_lineTo;
+static jmethodID mid_PathWalker_moveTo;
+static jmethodID mid_PDFAnnotation_init;
+static jmethodID mid_PDFDocument_init;
+static jmethodID mid_PDFPage_init;
+static jmethodID mid_PDFGraftMap_init;
+static jmethodID mid_PDFObject_init;
+static jmethodID mid_Pixmap_init;
+static jmethodID mid_Point_init;
+static jmethodID mid_Rect_init;
+static jmethodID mid_Shade_init;
+static jmethodID mid_StrokeState_init;
+static jmethodID mid_StructuredText_init;
+static jmethodID mid_TextBlock_init;
+static jmethodID mid_TextChar_init;
+static jmethodID mid_Text_init;
+static jmethodID mid_TextLine_init;
+static jmethodID mid_TextWalker_showGlyph;
+
+static const char *current_class_name = NULL;
+static jclass current_class = NULL;
+
+static jclass get_class(int *failed, JNIEnv *env, const char *name)
+{
+	jclass local;
+
+	if (*failed) return NULL;
+
+	current_class_name = name;
+	local = (*env)->FindClass(env, name);
+	if (!local)
+	{
+		LOGI("Failed to find class %s", name);
+		*failed = 1;
+		return NULL;
+	}
+
+	current_class = (*env)->NewGlobalRef(env, local);
+	if (!current_class)
+	{
+		LOGI("Failed to make global ref for %s", name);
+		*failed = 1;
+		return NULL;
+	}
+
+	(*env)->DeleteLocalRef(env, local);
+
+	return current_class;
+}
+
+static jfieldID get_field(int *failed, JNIEnv *env, const char *field, const char *sig)
+{
+	jfieldID fid;
+
+	if (*failed || !current_class) return NULL;
+
+	fid = (*env)->GetFieldID(env, current_class, field, sig);
+	if (fid == 0)
+	{
+		LOGI("Failed to get field for %s %s %s", current_class_name, field, sig);
+		*failed = 1;
+	}
+
+	return fid;
+}
+
+static jfieldID get_static_field(int *failed, JNIEnv *env, const char *field, const char *sig)
+{
+	jfieldID fid;
+
+	if (*failed || !current_class) return NULL;
+
+	fid = (*env)->GetStaticFieldID(env, current_class, field, sig);
+	if (fid == 0)
+	{
+		LOGI("Failed to get static field for %s %s %s", current_class_name, field, sig);
+		*failed = 1;
+	}
+
+	return fid;
+}
+
+static jmethodID get_method(int *failed, JNIEnv *env, const char *method, const char *sig)
+{
+	jmethodID mid;
+
+	if (*failed || !current_class) return NULL;
+
+	mid = (*env)->GetMethodID(env, current_class, method, sig);
+	if (mid == 0)
+	{
+		LOGI("Failed to get method for %s %s %s", current_class_name, method, sig);
+		*failed = 1;
+	}
+
+	return mid;
+}
+
+static jmethodID get_static_method(int *failed, JNIEnv *env, const char *method, const char *sig)
+{
+	jmethodID mid;
+
+	if (*failed || !current_class) return NULL;
+
+	mid = (*env)->GetStaticMethodID(env, current_class, method, sig);
+	if (mid == 0)
+	{
+		LOGI("Failed to get static method for %s %s %s", current_class_name, method, sig);
+		*failed = 1;
+	}
+
+	return mid;
+}
+
+
+static int find_fids(JNIEnv *env)
+{
+	int err = 0;
+
+	cls_Annotation = get_class(&err, env, PKG"Annotation");
+	fid_Annotation_pointer = get_field(&err, env, "pointer", "J");
+	mid_Annotation_init = get_method(&err, env, "<init>", "(J)V");
+
+	cls_Buffer = get_class(&err, env, PKG"Buffer");
+	fid_Buffer_pointer = get_field(&err, env, "pointer", "J");
+
+
+	cls_Cookie = get_class(&err, env, PKG"Cookie");
+	fid_Cookie_pointer = get_field(&err, env, "pointer", "J");
+
+	cls_Device = get_class(&err, env, PKG"Device");
+	fid_Device_pointer = get_field(&err, env, "pointer", "J");
+	mid_Device_init = get_method(&err, env, "<init>", "(J)V");
+	mid_Device_fillPath = get_method(&err, env, "fillPath", "(L"PKG"Path;ZL"PKG"Matrix;L"PKG"ColorSpace;[FF)V");
+	mid_Device_strokePath = get_method(&err, env, "strokePath", "(L"PKG"Path;L"PKG"StrokeState;L"PKG"Matrix;L"PKG"ColorSpace;[FF)V");
+	mid_Device_clipPath = get_method(&err, env, "clipPath", "(L"PKG"Path;ZL"PKG"Matrix;)V");
+	mid_Device_clipStrokePath = get_method(&err, env, "clipStrokePath", "(L"PKG"Path;L"PKG"StrokeState;L"PKG"Matrix;)V");
+	mid_Device_fillText = get_method(&err, env, "fillText", "(L"PKG"Text;L"PKG"Matrix;L"PKG"ColorSpace;[FF)V");
+	mid_Device_strokeText = get_method(&err, env, "strokeText", "(L"PKG"Text;L"PKG"StrokeState;L"PKG"Matrix;L"PKG"ColorSpace;[FF)V");
+	mid_Device_clipText = get_method(&err, env, "clipText", "(L"PKG"Text;L"PKG"Matrix;)V");
+	mid_Device_clipStrokeText = get_method(&err, env, "clipStrokeText", "(L"PKG"Text;L"PKG"StrokeState;L"PKG"Matrix;)V");
+	mid_Device_ignoreText = get_method(&err, env, "ignoreText", "(L"PKG"Text;L"PKG"Matrix;)V");
+	mid_Device_fillShade = get_method(&err, env, "fillShade", "(L"PKG"Shade;L"PKG"Matrix;F)V");
+	mid_Device_fillImage = get_method(&err, env, "fillImage", "(L"PKG"Image;L"PKG"Matrix;F)V");
+	mid_Device_fillImageMask = get_method(&err, env, "fillImageMask", "(L"PKG"Image;L"PKG"Matrix;L"PKG"ColorSpace;[FF)V");
+	mid_Device_clipImageMask = get_method(&err, env, "clipImageMask", "(L"PKG"Image;L"PKG"Matrix;)V");
+	mid_Device_popClip = get_method(&err, env, "popClip", "()V");
+	mid_Device_beginMask = get_method(&err, env, "beginMask", "(L"PKG"Rect;ZL"PKG"ColorSpace;[F)V");
+	mid_Device_endMask = get_method(&err, env, "endMask", "()V");
+	mid_Device_beginGroup = get_method(&err, env, "beginGroup", "(L"PKG"Rect;L"PKG"ColorSpace;ZZIF)V");
+	mid_Device_endGroup = get_method(&err, env, "endGroup", "()V");
+	mid_Device_beginTile = get_method(&err, env, "beginTile", "(L"PKG"Rect;L"PKG"Rect;FFL"PKG"Matrix;I)I");
+	mid_Device_endTile = get_method(&err, env, "endTile", "()V");
+
+	cls_DisplayList = get_class(&err, env, PKG"DisplayList");
+	fid_DisplayList_pointer = get_field(&err, env, "pointer", "J");
+	mid_DisplayList_init = get_method(&err, env, "<init>", "(J)V");
+
+	cls_Document = get_class(&err, env, PKG"Document");
+	fid_Document_pointer = get_field(&err, env, "pointer", "J");
+	mid_Document_init = get_method(&err, env, "<init>", "(J)V");
+
+	cls_DocumentWriter = get_class(&err, env, PKG"DocumentWriter");
+	fid_DocumentWriter_pointer = get_field(&err, env, "pointer", "J");
+
+	cls_Font = get_class(&err, env, PKG"Font");
+	fid_Font_pointer = get_field(&err, env, "pointer", "J");
+	mid_Font_init = get_method(&err, env, "<init>", "(J)V");
+
+	cls_Image = get_class(&err, env, PKG"Image");
+	fid_Image_pointer = get_field(&err, env, "pointer", "J");
+	mid_Image_init = get_method(&err, env, "<init>", "(J)V");
+
+	cls_Link = get_class(&err, env, PKG"Link");
+	fid_Link_bounds = get_field(&err, env, "bounds", "L"PKG"Rect;");
+	fid_Link_page = get_field(&err, env, "page", "I");
+	fid_Link_uri = get_field(&err, env, "uri", "Ljava/lang/String;");
+	mid_Link_init = get_method(&err, env, "<init>", "(L"PKG"Rect;ILjava/lang/String;)V");
+
+	cls_Matrix = get_class(&err, env, PKG"Matrix");
+	fid_Matrix_a = get_field(&err, env, "a", "F");
+	fid_Matrix_b = get_field(&err, env, "b", "F");
+	fid_Matrix_c = get_field(&err, env, "c", "F");
+	fid_Matrix_d = get_field(&err, env, "d", "F");
+	fid_Matrix_e = get_field(&err, env, "e", "F");
+	fid_Matrix_f = get_field(&err, env, "f", "F");
+	mid_Matrix_init = get_method(&err, env, "<init>", "(FFFFFF)V");
+
+	cls_NativeDevice = get_class(&err, env, PKG"NativeDevice");
+	fid_NativeDevice_nativeResource = get_field(&err, env, "nativeResource", "Ljava/lang/Object;");
+	fid_NativeDevice_nativeInfo = get_field(&err, env, "nativeInfo", "J");
+
+	cls_Outline = get_class(&err, env, PKG"Outline");
+	mid_Outline_init = get_method(&err, env, "<init>", "(Ljava/lang/String;ILjava/lang/String;FF[L"PKG"Outline;)V");
+
+	cls_Page = get_class(&err, env, PKG"Page");
+	fid_Page_pointer = get_field(&err, env, "pointer", "J");
+	mid_Page_init = get_method(&err, env, "<init>", "(J)V");
+
+	cls_Path = get_class(&err, env, PKG"Path");
+	fid_Path_pointer = get_field(&err, env, "pointer", "J");
+	mid_Path_init = get_method(&err, env, "<init>", "(J)V");
+
+	cls_PathWalker = get_class(&err, env, PKG"PathWalker");
+	mid_PathWalker_moveTo = get_method(&err, env, "moveTo", "(FF)V");
+	mid_PathWalker_lineTo = get_method(&err, env, "lineTo", "(FF)V");
+	mid_PathWalker_curveTo = get_method(&err, env, "curveTo", "(FFFFFF)V");
+	mid_PathWalker_closePath = get_method(&err, env, "closePath", "()V");
+
+	cls_PDFAnnotation = get_class(&err, env, PKG"PDFAnnotation");
+	fid_PDFAnnotation_pointer = get_field(&err, env, "pointer", "J");
+	mid_PDFAnnotation_init = get_method(&err, env, "<init>", "(J)V");
+
+	cls_PDFDocument = get_class(&err, env, PKG"PDFDocument");
+	fid_PDFDocument_pointer = get_field(&err, env, "pointer", "J");
+	mid_PDFDocument_init = get_method(&err, env, "<init>", "(J)V");
+
+	cls_PDFGraftMap = get_class(&err, env, PKG"PDFGraftMap");
+	fid_PDFGraftMap_pointer = get_field(&err, env, "pointer", "J");
+	mid_PDFGraftMap_init = get_method(&err, env, "<init>", "(J)V");
+
+
+	cls_PDFPage = get_class(&err, env, PKG"PDFPage");
+	fid_PDFPage_pointer = get_field(&err, env, "pointer", "J");
+	mid_PDFPage_init = get_method(&err, env, "<init>", "(J)V");
+
+	cls_Pixmap = get_class(&err, env, PKG"Pixmap");
+	fid_Pixmap_pointer = get_field(&err, env, "pointer", "J");
+	mid_Pixmap_init = get_method(&err, env, "<init>", "(J)V");
+
+	cls_Point = get_class(&err, env, PKG"Point");
+	mid_Point_init = get_method(&err, env, "<init>", "(FF)V");
+	fid_Point_x = get_field(&err, env, "x", "F");
+	fid_Point_y = get_field(&err, env, "y", "F");
+
+	cls_Rect = get_class(&err, env, PKG"Rect");
+	fid_Rect_x0 = get_field(&err, env, "x0", "F");
+	fid_Rect_x1 = get_field(&err, env, "x1", "F");
+	fid_Rect_y0 = get_field(&err, env, "y0", "F");
+	fid_Rect_y1 = get_field(&err, env, "y1", "F");
+	mid_Rect_init = get_method(&err, env, "<init>", "(FFFF)V");
+
+	cls_Shade = get_class(&err, env, PKG"Shade");
+	fid_Shade_pointer = get_field(&err, env, "pointer", "J");
+	mid_Shade_init = get_method(&err, env, "<init>", "(J)V");
+
+	cls_StrokeState = get_class(&err, env, PKG"StrokeState");
+	fid_StrokeState_pointer = get_field(&err, env, "pointer", "J");
+	mid_StrokeState_init = get_method(&err, env, "<init>", "(J)V");
+
+	cls_StructuredText = get_class(&err, env, PKG"StructuredText");
+	fid_StructuredText_pointer = get_field(&err, env, "pointer", "J");
+	mid_StructuredText_init = get_method(&err, env, "<init>", "(J)V");
+
+	cls_Text = get_class(&err, env, PKG"Text");
+	fid_Text_pointer = get_field(&err, env, "pointer", "J");
+	mid_Text_init = get_method(&err, env, "<init>", "(J)V");
+
+	cls_TextBlock = get_class(&err, env, "com/artifex/mupdf/fitz/StructuredText$TextBlock");
+	mid_TextBlock_init = get_method(&err, env, "<init>", "(Lcom/artifex/mupdf/fitz/StructuredText;)V");
+	fid_TextBlock_bbox = get_field(&err, env, "bbox", "Lcom/artifex/mupdf/fitz/Rect;");
+	fid_TextBlock_lines = get_field(&err, env, "lines", "[Lcom/artifex/mupdf/fitz/StructuredText$TextLine;");
+
+	cls_TextChar = get_class(&err, env, PKG"StructuredText$TextChar");
+	mid_TextChar_init = get_method(&err, env, "<init>", "(Lcom/artifex/mupdf/fitz/StructuredText;)V");
+	fid_TextChar_bbox = get_field(&err, env, "bbox", "Lcom/artifex/mupdf/fitz/Rect;");
+	fid_TextChar_c = get_field(&err, env, "c", "I");
+
+	cls_TextLine = get_class(&err, env, PKG"StructuredText$TextLine");
+	mid_TextLine_init = get_method(&err, env, "<init>", "(Lcom/artifex/mupdf/fitz/StructuredText;)V");
+	fid_TextLine_bbox = get_field(&err, env, "bbox", "Lcom/artifex/mupdf/fitz/Rect;");
+	fid_TextLine_chars = get_field(&err, env, "chars", "[Lcom/artifex/mupdf/fitz/StructuredText$TextChar;");
+
+	cls_TextWalker = get_class(&err, env, PKG"TextWalker");
+	mid_TextWalker_showGlyph = get_method(&err, env, "showGlyph", "(L"PKG"Font;L"PKG"Matrix;IIZ)V");
+
+	cls_TryLaterException = get_class(&err, env, PKG"TryLaterException");
+
+	/* Standard Java classes */
+
+	cls_FloatArray = get_class(&err, env, "[F");
+	cls_IntegerArray = get_class(&err, env, "[I");
+
+	cls_Object = get_class(&err, env, "java/lang/Object");
+	mid_Object_toString = get_method(&err, env, "toString", "()Ljava/lang/String;");
+
+	cls_IndexOutOfBoundsException = get_class(&err, env, "java/lang/IndexOutOfBoundsException");
+	cls_IllegalArgumentException = get_class(&err, env, "java/lang/IllegalArgumentException");
+	cls_IOException = get_class(&err, env, "java/io/IOException");
+	cls_NullPointerException = get_class(&err, env, "java/lang/NullPointerException");
+	cls_RuntimeException = get_class(&err, env, "java/lang/RuntimeException");
+
+	cls_OutOfMemoryError = get_class(&err, env, "java/lang/OutOfMemoryError");
+
+	return err;
+}
+
+static inline jobject to_Rect_safe(fz_context *ctx, JNIEnv *env, const fz_rect *rect)
+{
+	if (!ctx || !rect) return NULL;
+
+	return (*env)->NewObject(env, cls_Rect, mid_Rect_init, rect->x0, rect->y0, rect->x1, rect->y1);
+}
+
+
+JNIEXPORT jint JNICALL
+FUN(StructuredText_initNative)(JNIEnv *env, jobject self)
+{
+	return find_fids(env);
+}
+JNIEXPORT jobject JNICALL
+FUN(StructuredText_getBlocks)(JNIEnv *env, jobject self, jlong dochandle, jlong pagehandle)
+{
+
+	//find_fids(env);
+
+	renderdocument_t *doc = (renderdocument_t*) (long) dochandle;
+	fz_context* ctx = doc->ctx;
+
+	renderpage_t *page_t = (renderpage_t*) (long) pagehandle;
+
+	fz_stext_page *page = NULL;
+
+	fz_try(ctx)
+		{
+
+			page = fz_new_stext_page_from_page(ctx, page_t->page, NULL);
+		}
+	fz_catch(ctx)
+		{
+			//jni_rethrow(env, ctx);
+			return NULL;
+		}
+
+
+	jobject barr = NULL;
+	jobject larr = NULL;
+	jobject carr = NULL;
+	jobject jrect = NULL;
+
+	int len;
+	int b;
+	int l;
+	int c;
+
+	fz_stext_block *block = NULL;
+	fz_stext_line *line = NULL;
+	fz_stext_char *ch = NULL;
+
+	jobject jblock = NULL;
+	jobject jline = NULL;
+	jobject jchar = NULL;
+
+	if (!ctx || !page) return NULL;
+
+	len = 0;
+	for (block = page->first_block; block; block = block->next)
+		if (block->type == FZ_STEXT_BLOCK_TEXT)
+			++len;
+
+	//  create block array
+	barr = (*env)->NewObjectArray(env, len, cls_TextBlock, NULL);
+	if (!barr) return NULL;
+
+	for (b=0, block = page->first_block; block; ++b, block = block->next)
+	{
+		//  only do text blocks
+		if (block->type != FZ_STEXT_BLOCK_TEXT)
+			continue;
+
+		//  make a block
+		jblock = (*env)->NewObject(env, cls_TextBlock, mid_TextBlock_init, NULL);
+		if (!jblock) return NULL;
+
+		//  set block's bbox
+		jrect = to_Rect_safe(ctx, env, &(block->bbox));
+		if (!jrect) return NULL;
+
+		(*env)->SetObjectField(env, jblock, fid_TextBlock_bbox, jrect);
+		(*env)->DeleteLocalRef(env, jrect);
+
+		//  create block's line array
+		len = 0;
+		for (line = block->u.t.first_line; line; line = line->next)
+			++len;
+
+		larr = (*env)->NewObjectArray(env, len, cls_TextLine, NULL);
+		if (!larr) return NULL;
+
+		for (l=0, line = block->u.t.first_line; line; ++l, line = line->next)
+		{
+			//  make a line
+			jline = (*env)->NewObject(env, cls_TextLine, mid_TextLine_init, NULL);
+			if (!jline) return NULL;
+
+			//  set line's bbox
+			jrect = to_Rect_safe(ctx, env, &(line->bbox));
+			if (!jrect) return NULL;
+
+			(*env)->SetObjectField(env, jline, fid_TextLine_bbox, jrect);
+			(*env)->DeleteLocalRef(env, jrect);
+
+			//  count the chars
+			len = 0;
+			for (ch = line->first_char; ch; ch = ch->next)
+				len++;
+
+			//  make a char array
+			carr = (*env)->NewObjectArray(env, len, cls_TextChar, NULL);
+			if (!carr) return NULL;
+
+			for (c=0, ch = line->first_char; ch; ++c, ch = ch->next)
+			{
+				//  create a char
+				jchar = (*env)->NewObject(env, cls_TextChar, mid_TextChar_init, NULL);
+				if (!jchar) return NULL;
+
+				//  set the char's bbox
+				jrect = to_Rect_safe(ctx, env, &(ch->bbox));
+				if (!jrect) return NULL;
+
+				(*env)->SetObjectField(env, jchar, fid_TextChar_bbox, jrect);
+				(*env)->DeleteLocalRef(env, jrect);
+
+				//  set the char's value
+				(*env)->SetIntField(env, jchar, fid_TextChar_c, ch->c);
+
+				//  add it to the char array
+				(*env)->SetObjectArrayElement(env, carr, c, jchar);
+				if ((*env)->ExceptionCheck(env)) return NULL;
+
+				(*env)->DeleteLocalRef(env, jchar);
+			}
+
+			//  set the line's char array
+			(*env)->SetObjectField(env, jline, fid_TextLine_chars, carr);
+
+			//  add to the line array
+			(*env)->SetObjectArrayElement(env, larr, l, jline);
+			if ((*env)->ExceptionCheck(env)) return NULL;
+
+			(*env)->DeleteLocalRef(env, jline);
+		}
+
+		//  set the block's line array
+		(*env)->SetObjectField(env, jblock, fid_TextBlock_lines, larr);
+		(*env)->DeleteLocalRef(env, larr);
+
+		//  add to the block array
+		(*env)->SetObjectArrayElement(env, barr, b, jblock);
+		if ((*env)->ExceptionCheck(env)) return NULL;
+
+		(*env)->DeleteLocalRef(env, jblock);
+	}
+
+	return barr;
+}
+
 
 #define RUNTIME_EXCEPTION "java/lang/RuntimeException"
 #define PASSWORD_REQUIRED_EXCEPTION "org/ebookdroid/droids/mupdf/codec/exceptions/MuPdfPasswordRequiredException"
@@ -919,7 +1532,6 @@ bboxcharat(fz_context *ctx, fz_stext_page *page, int idx)
 
 
 
-
 static int match(fz_context *ctx, fz_stext_page *page, const char *s, int n) {
 	int orig = n;
 	int c;
@@ -936,9 +1548,182 @@ static int match(fz_context *ctx, fz_stext_page *page, const char *s, int n) {
 			n++;
 		}
 	}
+    
+
 	return n - orig;
 }
 
+
+
+
+JNIEXPORT jobject JNICALL
+Java_org_ebookdroid_droids_mupdf_codec_MuPdfPage_to_StructuredText(JNIEnv *env, jobject self, jlong dochandle, jlong pagehandle, jstring joptions)
+{
+	
+
+
+	renderdocument_t *doc = (renderdocument_t*) (long) dochandle;
+	fz_context* ctx = doc->ctx;
+    renderpage_t *page_t = (renderpage_t*) (long) pagehandle;
+	
+	fz_page *page = page_t->page;
+	fz_stext_page *text = NULL;
+	const char *options= NULL;
+	fz_stext_options opts;
+
+	if (!ctx || !page) return NULL;
+
+	if (joptions)
+	{
+		options = (*env)->GetStringUTFChars(env, joptions, NULL);
+		if (!options) return NULL;
+	}
+
+	fz_try(ctx)
+	{
+		fz_parse_stext_options(ctx, &opts, options);
+		text = fz_new_stext_page_from_page(ctx, page, &opts);
+	}
+	fz_always(ctx)
+	{
+		if (options)
+			(*env)->ReleaseStringUTFChars(env, joptions, options);
+	}
+	fz_catch(ctx)
+	{
+		//jni_rethrow(env, ctx);
+		return NULL;
+	}
+
+	return NULL;
+}
+
+
+
+JNIEXPORT jobjectArray JNICALL
+Java_org_ebookdroid_droids_mupdf_codec_MuPdfPage_search(JNIEnv * env,
+		jobject thiz, jlong dochandle, jlong pagehandle, jstring text) {
+
+	renderdocument_t *doc = (renderdocument_t*) (long) dochandle;
+	fz_context* ctx = doc->ctx;
+	renderpage_t *page = (renderpage_t*) (long) pagehandle;
+// DEBUG("MuPdfPage(%p).search(%p, %p)", thiz, doc, page);
+
+	if (!doc || !page) {
+		return NULL;
+	}
+
+	const char *str = (*env)->GetStringUTFChars(env, text, NULL);
+	if (str == NULL) {
+		return NULL;
+	}
+
+	ArrayListHelper alh;
+	PageTextBoxHelper ptbh;
+	if (!ArrayListHelper_init(&alh, env)
+			|| !PageTextBoxHelper_init(&ptbh, env)) {
+		//DEBUG("search(): JNI helper initialization failed", pagehandle);
+		return NULL;
+	}
+	jobject arrayList = ArrayListHelper_create(&alh);
+// DEBUG("MuPdfPage(%p).search(%p, %p): array: %p", thiz, doc, page, arrayList);
+	if (!arrayList) {
+		return NULL;
+	}
+
+	fz_rect *hit_bbox = NULL;
+
+	fz_stext_page *pagetext = NULL;
+	fz_device *dev = NULL;
+	int pos;
+	int len;
+	int i, n;
+	int hit_count = 0;
+
+	fz_try(doc->ctx)
+			{
+				fz_rect rect;
+				fz_rect mediabox;
+
+				// DEBUG("MuPdfPage(%p).search(%p, %p): load page text", thiz, doc, page);
+
+				fz_bound_page(ctx, page->page,  &rect);
+				pagetext = fz_new_stext_page(doc->ctx, fz_bound_page(ctx, page->page, &mediabox));
+				dev = fz_new_stext_device(doc->ctx, pagetext, NULL);
+				fz_run_page(ctx, page->page, dev, &fz_identity, NULL);
+
+				// DEBUG("MuPdfPage(%p).search(%p, %p): free text device", thiz, doc, page);
+
+				fz_close_device(ctx, dev);
+				fz_drop_device(ctx, dev);
+				dev = NULL;
+
+				//len = fz_stext_char_count(ctx, pagetext);
+				//len = pagetext->len;
+
+				// DEBUG("MuPdfPage(%p).search(%p, %p): text length: %d", thiz, doc, page, len);
+
+				for (pos = 0; pos < len; pos++) {
+					fz_rect rr = fz_empty_rect;
+					// DEBUG("MuPdfPage(%p).search(%p, %p): match %d", thiz, doc, page, pos);
+
+					n = match(ctx, pagetext, str, pos);
+					if (n > 0) {
+						DEBUG(
+								"MuPdfPage(%p).search(%p, %p): match found: %d, %d",
+								thiz, doc, page, pos, n);
+						for (i = 0; i < n; i++) {
+							fz_rect r2 =  bboxcharat(ctx, pagetext, pos + i);
+							fz_union_rect(&rr, &r2);
+						}
+
+						if (!fz_is_empty_rect(&rr)) {
+							int coords[4];
+							coords[0] = (rr.x0);
+							coords[1] = (rr.y0);
+							coords[2] = (rr.x1);
+							coords[3] = (rr.y1);
+							DEBUG(
+									"MuPdfPage(%p).search(%p, %p): found rectangle (%d, %d - %d, %d)",
+									thiz, doc, page, coords[0], coords[1],
+									coords[2], coords[3]);
+							jobject ptb = PageTextBoxHelper_create(&ptbh);
+							if (ptb) {
+								// DEBUG("MuPdfPage(%p).search(%p, %p): rect %p", thiz, doc, page, ptb);
+								PageTextBoxHelper_setRect(&ptbh, ptb, coords);
+								// PageTextBoxHelper_setText(&ptbh, ptb, txt);
+								// DEBUG("MuPdfPage(%p).search(%p, %p): add rect %p to array %p", thiz, doc, page, ptb, arrayList);
+								ArrayListHelper_add(&alh, arrayList, ptb);
+							}
+						}
+					}
+				}
+			}fz_always(doc->ctx)
+			{
+				// DEBUG("MuPdfPage(%p).search(%p, %p): free resources", thiz, doc, page);
+				if (pagetext) {
+					fz_drop_stext_page(doc->ctx, pagetext);
+				}
+				
+				if (dev) {
+					fz_close_device(doc->ctx, dev);
+					fz_drop_device(doc->ctx, dev);
+				}
+			}fz_catch(doc->ctx) {
+		jclass cls;
+		(*env)->ReleaseStringUTFChars(env, text, str);
+		cls = (*env)->FindClass(env, "java/lang/OutOfMemoryError");
+		if (cls != NULL) {
+			(*env)->ThrowNew(env, cls, "Out of memory in MuPDFCore_searchPage");
+		}
+		(*env)->DeleteLocalRef(env, cls);
+		return NULL;
+	}
+
+	(*env)->ReleaseStringUTFChars(env, text, str);
+
+	return arrayList;
+}
 
 
 
@@ -1373,12 +2158,11 @@ Java_org_ebookdroid_droids_mupdf_codec_MuPdfPage_getPageAsHtml(JNIEnv * env, job
 		fz_drop_device(ctx, dev);
 		dev = NULL;
 
-		//fz_analyze_text(ctx, sheet, text);
 
 		buf = fz_new_buffer(ctx, 256);
 		out = fz_new_output_with_buffer(ctx, buf);
 
-		fz_print_stext_page_as_html(ctx, out, text);
+		fz_print_stext_page_as_text(ctx, out, text);
 
 		fz_drop_output(ctx, out);
 		out = NULL;
