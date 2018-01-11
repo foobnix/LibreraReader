@@ -34,6 +34,7 @@ ln -s $MUPDF/libs/armeabi-v7a $ARM_ARM64/armeabi-v7a
 ln -s $MUPDF/libs/arm64-v8a $ARM_ARM64/arm64-v8a
 
 ln -s $MUPDF/libs/x86 $X86/x86
+ln -s $MUPDF/libs/x86_64 $X86/x86_64
 
 #echo "MUPDF:" $MUPDF ">>>" $MY
 
