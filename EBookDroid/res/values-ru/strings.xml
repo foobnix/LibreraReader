@@ -450,7 +450,7 @@
    <string name="mode_musician">Режим «Музыкант» (прокрутка нот)</string>
    <string name="automatic_export_backup">Автоматически экспортировать настройки, прогресс чтения книг и закладки при каждом выходе из приложения</string>
    <string name="display_all_file_types_in_folders">Отображать в папках все типы файлов</string>
-   <string name="no_serie"><Без серии</string>
+   <string name="no_serie">Без серии</string>
    <string name="no_genre">Без жанра</string>
    <string name="no_author">Без автора</string>
 </resources>

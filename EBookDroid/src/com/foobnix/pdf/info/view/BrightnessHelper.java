@@ -27,10 +27,10 @@ public class BrightnessHelper {
     public static final int BRIGHTNESS_WIDTH = Dips.dpToPx(50);
     Toast toast;
 
-    int lastPercent = 0;
-    static int currentPercent = 0;
+    float lastPercent = 0;
+    static float currentPercent = 0;
 
-    int MAX = Dips.screenHeight();
+    int MAX = Dips.dpToPx(1000);
     private float x;
     private float y;
     boolean isMovementStart;
@@ -58,7 +58,7 @@ public class BrightnessHelper {
         // isMovementStart = false;
     }
 
-    public int getMinMaxValue(int value) {
+    public float getMinMaxValue(float value) {
         if (value > 100) {
             return 100;
         }
@@ -81,8 +81,8 @@ public class BrightnessHelper {
         if (dy > dx * 2 && x < BRIGHTNESS_WIDTH && event.getPointerCount() == 1 && dy > Dips.dpToPx(5)) {
             isMovementStart = true;
             lastPercent = (int) (yDiff * 100 / MAX);
-            int plus = getMinMaxValue(lastPercent + currentPercent);
-            EventBus.getDefault().post(new MessegeBrightness(plus));
+            float plus = getMinMaxValue(lastPercent + currentPercent);
+            EventBus.getDefault().post(new MessegeBrightness((int) plus));
         }
         return isMovementStart;
 

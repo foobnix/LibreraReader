@@ -2163,7 +2163,7 @@ Java_org_ebookdroid_droids_mupdf_codec_MuPdfPage_getPageAsHtml(JNIEnv * env, job
 		buf = fz_new_buffer(ctx, 256);
 		out = fz_new_output_with_buffer(ctx, buf);
 
-		fz_print_stext_page_as_text(ctx, out, text);
+		fz_print_stext_page_as_text_my(ctx, out, text);
 
 		fz_drop_output(ctx, out);
 		out = NULL;

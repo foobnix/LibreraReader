@@ -66,82 +66,10 @@ static void measure_image(fz_context *ctx, fz_html_flow *node, float max_w, floa
 	node->h = image_h * s;
 }
 //stext-output.c
-void
-fz_print_stext_page(fz_context *ctx, fz_output *out, fz_stext_page *page)
-{
-	int block_n;
-
-	for (block_n = 0; block_n < page->len; block_n++)
-	{
-		switch (page->blocks[block_n].type)
-		{
-		case FZ_PAGE_BLOCK_TEXT:
-		{
-			fz_stext_block *block = page->blocks[block_n].u.text;
-			fz_stext_line *line;
-			fz_stext_char *ch;
-			char utf[10];
-			int i, n;
-
-			for (line = block->lines; line < block->lines + block->len; line++)
-			{
-				fz_stext_span *span;
-				for (span = line->first_span; span; span = span->next)
-				{
-					
-					
-					int is_bold = 0;
-					int is_italic = 0;
-
-					if (fz_font_is_bold(ctx, span->text->style->font)){
-						is_bold = 1;
-						fz_write_printf(ctx,out,"<b>");
-					}
-
-					if (fz_font_is_italic(ctx, span->text->style->font)){
-						is_italic = 1;
-						fz_write_printf(ctx,out,"<i>");
-					}
-
-					
-					for (ch = span->text; ch < span->text + span->len; ch++)
-					{
-						n = fz_runetochar(utf, ch->c);
-						
-						for (i = 0; i < n; i++){							
-							fz_write_printf(ctx, out, "%c", utf[i]);
-						}
-						
-					}
-
-					if(is_bold){
-						fz_write_printf(ctx,out,"</b>&nbsp;");
-					}
-
-					if(is_italic){
-						fz_write_printf(ctx,out,"</i>&nbsp;");
-					}
-
-				}
-				fz_write_printf(ctx, out, "<br/>");
-			}
-			//fz_printf(ctx, out, "<br/>");
-			break;
-		}
-		case FZ_PAGE_BLOCK_IMAGE:
-		{
-			break;
-		}
-		}
-	}
-}
---------------
-
-
 /* Plain text */
 
 void
-fz_print_stext_page_as_text(fz_context *ctx, fz_output *out, fz_stext_page *page)
+fz_print_stext_page_as_text_my(fz_context *ctx, fz_output *out, fz_stext_page *page)
 {
 	fz_stext_block *block;
 	fz_stext_line *line;
