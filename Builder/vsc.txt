@@ -1,4 +1,3 @@
-"/home/ivan-dev/dev/mupdf-1.12.0-source/include",
-"/home/ivan-dev/dev/mupdf-1.12.0-source/platform/java",
-"/home/ivan-dev/dev/mupdf-1.12.0-source/platform/java/jni",
+"${workspaceRoot}/include",
+"${workspaceRoot}/platform/java/jni",
 "/home/ivan-dev/dev/android-ndk-r16b/sysroot/usr/include",

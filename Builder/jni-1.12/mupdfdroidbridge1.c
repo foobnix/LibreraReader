@@ -471,12 +471,12 @@ static int find_fids(JNIEnv *env)
 	fid_TextBlock_bbox = get_field(&err, env, "bbox", "Lcom/artifex/mupdf/fitz/Rect;");
 	fid_TextBlock_lines = get_field(&err, env, "lines", "[Lcom/artifex/mupdf/fitz/StructuredText$TextLine;");
 
-	cls_TextChar = get_class(&err, env, PKG"StructuredText$TextChar");
+	cls_TextChar = get_class(&err, env, "com/artifex/mupdf/fitz/StructuredText$TextChar");
 	mid_TextChar_init = get_method(&err, env, "<init>", "(Lcom/artifex/mupdf/fitz/StructuredText;)V");
 	fid_TextChar_bbox = get_field(&err, env, "bbox", "Lcom/artifex/mupdf/fitz/Rect;");
 	fid_TextChar_c = get_field(&err, env, "c", "I");
 
-	cls_TextLine = get_class(&err, env, PKG"StructuredText$TextLine");
+	cls_TextLine = get_class(&err, env, "com/artifex/mupdf/fitz/StructuredText$TextLine");
 	mid_TextLine_init = get_method(&err, env, "<init>", "(Lcom/artifex/mupdf/fitz/StructuredText;)V");
 	fid_TextLine_bbox = get_field(&err, env, "bbox", "Lcom/artifex/mupdf/fitz/Rect;");
 	fid_TextLine_chars = get_field(&err, env, "chars", "[Lcom/artifex/mupdf/fitz/StructuredText$TextChar;");
@@ -644,6 +644,7 @@ FUN(StructuredText_getBlocks)(JNIEnv *env, jobject self, jlong dochandle, jlong 
 
 			//  set the line's char array
 			(*env)->SetObjectField(env, jline, fid_TextLine_chars, carr);
+			(*env)->DeleteLocalRef(env, carr);//1
 
 			//  add to the line array
 			(*env)->SetObjectArrayElement(env, larr, l, jline);

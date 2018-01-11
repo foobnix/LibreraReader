@@ -184,7 +184,7 @@ public class ImageExtractor implements ImageDownloader {
         CodecDocument codeCache = null;
         if (isNeedDisableMagicInPDFDjvu) {
             codeCache = singleCodecContext(path, "", pageUrl.getWidth(), pageUrl.getHeight());
-            if (meta != null && codeCache != null) {
+            if (meta != null && codeCache != null && FileMetaCore.isNeedToExtractPDFMeta(path)) {
                 String bookAuthor = codeCache.getBookAuthor();
                 if (TxtUtils.isNotEmpty(bookAuthor)) {
                     meta.setAuthor(bookAuthor);

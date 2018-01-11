@@ -86,8 +86,13 @@ public class FileMetaCore {
 
     }
 
+    public static boolean isNeedToExtractPDFMeta(String path) {
+        return !path.contains(" - ") && BookType.PDF.is(path);
+    }
+
     private EbookMeta getEbookMeta(String path, String unZipPath, String child, boolean withDPF) throws IOException {
         EbookMeta ebookMeta = EbookMeta.Empty();
+        String fileName = ExtUtils.getFileName(unZipPath);
 
         if (CalirbeExtractor.isCalibre(unZipPath)) {
             ebookMeta = CalirbeExtractor.getBookMetaInformation(unZipPath);
@@ -98,12 +103,12 @@ public class FileMetaCore {
             ebookMeta = Fb2Extractor.get().getBookMetaInformation(unZipPath);
         } else if (BookType.MOBI.is(unZipPath)) {
             ebookMeta = MobiExtract.getBookMetaInformation(unZipPath, true);
-        } else if (withDPF && BookType.PDF.is(unZipPath)) {
+        } else if (withDPF && isNeedToExtractPDFMeta(unZipPath)) {
             ebookMeta = PdfExtract.getBookMetaInformation(unZipPath);
         }
 
         if (TxtUtils.isEmpty(ebookMeta.getTitle())) {
-            Pair<String, String> pair = TxtUtils.getTitleAuthorByPath(ExtUtils.getFileName(unZipPath));
+            Pair<String, String> pair = TxtUtils.getTitleAuthorByPath(fileName);
             ebookMeta = new EbookMeta(pair.first, TxtUtils.isNotEmpty(ebookMeta.getAuthor()) ? ebookMeta.getAuthor() : pair.second);
         }
 
@@ -121,7 +126,7 @@ public class FileMetaCore {
         }
 
         if (path.endsWith(".zip") && !path.endsWith("fb2.zip")) {
-            ebookMeta.setTitle("{" + ExtUtils.getFileName(path) + "} " + ebookMeta.getTitle());
+            ebookMeta.setTitle("{" + fileName + "} " + ebookMeta.getTitle());
         }
 
         return ebookMeta;
