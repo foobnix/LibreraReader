@@ -15,7 +15,7 @@ public class HtmlContext extends PdfContext {
 
     @Override
     public CodecDocument openDocumentInner(String fileName, String password) {
-        
+
         Map<String, String> notes = null;
         try {
             FooterNote extract = HtmlExtractor.extract(fileName, CacheZipUtils.CACHE_BOOK_DIR.getPath());

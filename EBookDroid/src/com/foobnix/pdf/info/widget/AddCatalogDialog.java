@@ -9,6 +9,7 @@ import com.foobnix.opds.Hrefs;
 import com.foobnix.opds.OPDS;
 import com.foobnix.pdf.info.IMG;
 import com.foobnix.pdf.info.R;
+import com.foobnix.pdf.info.TintUtil;
 import com.foobnix.pdf.info.wrapper.AppState;
 import com.foobnix.sys.TempHolder;
 import com.nostra13.universalimageloader.core.ImageLoader;
@@ -97,6 +98,7 @@ public class AddCatalogDialog {
         final EditText name = (EditText) dialog.findViewById(R.id.name);
         final EditText description = (EditText) dialog.findViewById(R.id.description);
         final ProgressBar progressBar = (ProgressBar) dialog.findViewById(R.id.progressBar);
+        TintUtil.setDrawableTint(progressBar.getIndeterminateDrawable().getCurrent(), TintUtil.color);
         final ImageView image = (ImageView) dialog.findViewById(R.id.image);
         final CheckBox addAsWEb = (CheckBox) dialog.findViewById(R.id.addAsWEb);
         addAsWEb.setVisibility(View.GONE);

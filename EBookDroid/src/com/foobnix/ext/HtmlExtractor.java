@@ -56,6 +56,8 @@ public class HtmlExtractor {
             input.close();
 
             FileOutputStream out = new FileOutputStream(file);
+
+
             String string = Jsoup.clean(html.toString(), Whitelist.relaxed().removeTags("img"));
 
             if (BookCSS.get().isAutoHypens) {

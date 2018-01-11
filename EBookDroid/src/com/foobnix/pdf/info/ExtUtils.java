@@ -1172,7 +1172,7 @@ public class ExtUtils {
                 FileWriter fout = new FileWriter(filefb2);
                 BufferedWriter out = new BufferedWriter(fout);
                 out.write("<html>");
-
+                out.write("<head></head>");
                 out.write("<title-info>");
                 out.write("<author><first-name>" + author + "</first-name></autor><br/>");
                 out.write("<book-title>" + title + "</book-title>");

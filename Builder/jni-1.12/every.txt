@@ -66,7 +66,19 @@ static void measure_image(fz_context *ctx, fz_html_flow *node, float max_w, floa
 	node->h = image_h * s;
 }
 //stext-output.c
-/* Plain text */
+static void
+fz_print_stext_image_as_html(fz_context *ctx, fz_output *out, fz_stext_block *block)
+{
+	int x = block->bbox.x0;
+	int y = block->bbox.y0;
+	int w = block->bbox.x1 - block->bbox.x0;
+	int h = block->bbox.y1 - block->bbox.y0;
+
+	//fz_write_printf(ctx, out, "<img style=\"top:%dpt;left:%dpt;width:%dpt;height:%dpt\" src=\"data:", y, x, w, h);
+	fz_write_printf(ctx, out, "<img src=\"data:", y, x, w, h);
+	fz_write_image_as_data_uri(ctx, out, block->u.i.image);
+	fz_write_string(ctx, out, "\"/>");
+}
 
 void
 fz_print_stext_page_as_text_my(fz_context *ctx, fz_output *out, fz_stext_page *page)
@@ -79,7 +91,11 @@ fz_print_stext_page_as_text_my(fz_context *ctx, fz_output *out, fz_stext_page *p
 
 	for (block = page->first_block; block; block = block->next)
 	{
-		if (block->type == FZ_STEXT_BLOCK_TEXT)
+
+		if (block->type == FZ_STEXT_BLOCK_IMAGE){
+			//fz_write_printf(ctx,out,"<b> FZ_STEXT_BLOCK_IMAGE !!!!!!!!!!!</b>");
+			fz_print_stext_image_as_html(ctx, out, block);
+		}else if (block->type == FZ_STEXT_BLOCK_TEXT)
 		{
 			for (line = block->u.t.first_line; line; line = line->next)
 			{

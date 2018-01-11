@@ -2152,6 +2152,11 @@ Java_org_ebookdroid_droids_mupdf_codec_MuPdfPage_getPageAsHtml(JNIEnv * env, job
 		ctm = fz_identity;
 		
 		text = fz_new_stext_page(ctx, fz_bound_page(ctx, page->page, &mediabox));
+
+		fz_stext_options stext_options;
+		stext_options.flags = FZ_STEXT_PRESERVE_IMAGES;
+
+		//dev = fz_new_stext_device(ctx, text, &stext_options);
 		dev = fz_new_stext_device(ctx, text, NULL);
 		fz_run_page(ctx, page->page, dev, &ctm, NULL);
 
