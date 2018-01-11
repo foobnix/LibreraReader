@@ -451,7 +451,6 @@ public class AppState {
     @IgnoreHashCode
     public boolean isCropPDF = false;
 
-    @IgnoreHashCode
     public boolean selectingByLetters = Arrays.asList("ja", "zh", "ko", "vi").contains(Urls.getLangCode());
 
     public long installationDate = System.currentTimeMillis();

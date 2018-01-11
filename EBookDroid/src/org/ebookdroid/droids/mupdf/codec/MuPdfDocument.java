@@ -29,6 +29,7 @@ public class MuPdfDocument extends AbstractCodecDocument {
     int w, h;
     private String fname;
 
+
     public MuPdfDocument(final MuPdfContext context, final int format, final String fname, final String pwd) {
         super(context, openFile(format, fname, pwd, BookCSS.get().toCssString()));
         this.fname = fname;

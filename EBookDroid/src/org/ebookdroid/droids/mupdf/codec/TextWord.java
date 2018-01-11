@@ -1,5 +1,6 @@
 package org.ebookdroid.droids.mupdf.codec;
 
+import com.artifex.mupdf.fitz.Rect;
 import com.foobnix.android.utils.TxtUtils;
 
 import android.graphics.RectF;
@@ -27,6 +28,11 @@ public class TextWord extends RectF {
     public void Add(TextChar tc) {
         super.union(tc);
         w = w.concat(new String(new char[] { tc.c }));
+    }
+
+    public void addChar(Rect rect, char c) {
+        super.union(new RectF(rect.x0, rect.y0, rect.x1, rect.y1));
+        w = w.concat(String.valueOf(c));
     }
 
     public RectF getOriginal() {

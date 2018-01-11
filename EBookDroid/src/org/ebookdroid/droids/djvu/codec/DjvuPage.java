@@ -183,10 +183,6 @@ public class DjvuPage extends AbstractCodecPage {
         return Collections.emptyList();
     }
 
-    @Override
-    public List<PageTextBox> getPageText() {
-        return Collections.emptyList();
-    }
 
     public List<PageTextBox> getPageText1() {
         final List<PageTextBox> list = getPageText(docHandle, pageNo, contextHandle, null);
@@ -201,10 +197,6 @@ public class DjvuPage extends AbstractCodecPage {
         return list;
     }
 
-    @Override
-    public List<? extends RectF> searchText(final String pattern) {
-        return Collections.EMPTY_LIST;
-    }
 
     static void normalize(final RectF r, final float width, final float height) {
         r.left = r.left / width;
