@@ -564,18 +564,19 @@ static int find_fids(JNIEnv *env)
 	fid_Text_pointer = get_field(&err, env, "pointer", "J");
 	mid_Text_init = get_method(&err, env, "<init>", "(J)V");
 
+
 	cls_TextBlock = get_class(&err, env, PKG"StructuredText$TextBlock");
-	mid_TextBlock_init = get_method(&err, env, "<init>", "(L"PKG"StructuredText;)V");
+	mid_TextBlock_init = get_method(&err, env, "<init>", "(Lcom/artifex/mupdf/fitz/StructuredText;)V");
 	fid_TextBlock_bbox = get_field(&err, env, "bbox", "L"PKG"Rect;");
 	fid_TextBlock_lines = get_field(&err, env, "lines", "[L"PKG"StructuredText$TextLine;");
 
 	cls_TextChar = get_class(&err, env, PKG"StructuredText$TextChar");
-	mid_TextChar_init = get_method(&err, env, "<init>", "(L"PKG"StructuredText;)V");
+	mid_TextChar_init = get_method(&err, env, "<init>", "(Lcom/artifex/mupdf/fitz/StructuredText;)V");
 	fid_TextChar_bbox = get_field(&err, env, "bbox", "L"PKG"Rect;");
 	fid_TextChar_c = get_field(&err, env, "c", "I");
 
 	cls_TextLine = get_class(&err, env, PKG"StructuredText$TextLine");
-	mid_TextLine_init = get_method(&err, env, "<init>", "(L"PKG"StructuredText;)V");
+	mid_TextLine_init = get_method(&err, env, "<init>", "(Lcom/artifex/mupdf/fitz/StructuredText;)V");
 	fid_TextLine_bbox = get_field(&err, env, "bbox", "L"PKG"Rect;");
 	fid_TextLine_chars = get_field(&err, env, "chars", "[L"PKG"StructuredText$TextChar;");
 

@@ -466,20 +466,20 @@ static int find_fids(JNIEnv *env)
 	fid_Text_pointer = get_field(&err, env, "pointer", "J");
 	mid_Text_init = get_method(&err, env, "<init>", "(J)V");
 
-	cls_TextBlock = get_class(&err, env, PKG"StructuredText$TextBlock");
-	mid_TextBlock_init = get_method(&err, env, "<init>", "(L"PKG"StructuredText;)V");
-	fid_TextBlock_bbox = get_field(&err, env, "bbox", "L"PKG"Rect;");
-	fid_TextBlock_lines = get_field(&err, env, "lines", "[L"PKG"StructuredText$TextLine;");
+	cls_TextBlock = get_class(&err, env, "com/artifex/mupdf/fitz/StructuredText$TextBlock");
+	mid_TextBlock_init = get_method(&err, env, "<init>", "(Lcom/artifex/mupdf/fitz/StructuredText;)V");
+	fid_TextBlock_bbox = get_field(&err, env, "bbox", "Lcom/artifex/mupdf/fitz/Rect;");
+	fid_TextBlock_lines = get_field(&err, env, "lines", "[Lcom/artifex/mupdf/fitz/StructuredText$TextLine;");
 
 	cls_TextChar = get_class(&err, env, PKG"StructuredText$TextChar");
-	mid_TextChar_init = get_method(&err, env, "<init>", "(L"PKG"StructuredText;)V");
-	fid_TextChar_bbox = get_field(&err, env, "bbox", "L"PKG"Rect;");
+	mid_TextChar_init = get_method(&err, env, "<init>", "(Lcom/artifex/mupdf/fitz/StructuredText;)V");
+	fid_TextChar_bbox = get_field(&err, env, "bbox", "Lcom/artifex/mupdf/fitz/Rect;");
 	fid_TextChar_c = get_field(&err, env, "c", "I");
 
 	cls_TextLine = get_class(&err, env, PKG"StructuredText$TextLine");
-	mid_TextLine_init = get_method(&err, env, "<init>", "(L"PKG"StructuredText;)V");
-	fid_TextLine_bbox = get_field(&err, env, "bbox", "L"PKG"Rect;");
-	fid_TextLine_chars = get_field(&err, env, "chars", "[L"PKG"StructuredText$TextChar;");
+	mid_TextLine_init = get_method(&err, env, "<init>", "(Lcom/artifex/mupdf/fitz/StructuredText;)V");
+	fid_TextLine_bbox = get_field(&err, env, "bbox", "Lcom/artifex/mupdf/fitz/Rect;");
+	fid_TextLine_chars = get_field(&err, env, "chars", "[Lcom/artifex/mupdf/fitz/StructuredText$TextChar;");
 
 	cls_TextWalker = get_class(&err, env, PKG"TextWalker");
 	mid_TextWalker_showGlyph = get_method(&err, env, "showGlyph", "(L"PKG"Font;L"PKG"Matrix;IIZ)V");
@@ -579,7 +579,7 @@ FUN(StructuredText_getBlocks)(JNIEnv *env, jobject self, jlong dochandle, jlong 
 			continue;
 
 		//  make a block
-		jblock = (*env)->NewObject(env, cls_TextBlock, mid_TextBlock_init, self);
+		jblock = (*env)->NewObject(env, cls_TextBlock, mid_TextBlock_init, NULL);
 		if (!jblock) return NULL;
 
 		//  set block's bbox
@@ -600,7 +600,7 @@ FUN(StructuredText_getBlocks)(JNIEnv *env, jobject self, jlong dochandle, jlong 
 		for (l=0, line = block->u.t.first_line; line; ++l, line = line->next)
 		{
 			//  make a line
-			jline = (*env)->NewObject(env, cls_TextLine, mid_TextLine_init, self);
+			jline = (*env)->NewObject(env, cls_TextLine, mid_TextLine_init, NULL);
 			if (!jline) return NULL;
 
 			//  set line's bbox
@@ -622,7 +622,7 @@ FUN(StructuredText_getBlocks)(JNIEnv *env, jobject self, jlong dochandle, jlong 
 			for (c=0, ch = line->first_char; ch; ++c, ch = ch->next)
 			{
 				//  create a char
-				jchar = (*env)->NewObject(env, cls_TextChar, mid_TextChar_init, self);
+				jchar = (*env)->NewObject(env, cls_TextChar, mid_TextChar_init, NULL);
 				if (!jchar) return NULL;
 
 				//  set the char's bbox

@@ -20,6 +20,10 @@ public class StructuredText
 		pointer = p;
 	}
 
+    private StructuredText() {
+        pointer = 0;
+    }
+
 	public native Rect[] search(String needle);
 	public native Rect[] highlight(Point a, Point b);
 	public native String copy(Point a, Point b);
@@ -30,7 +34,7 @@ public class StructuredText
     public static native TextBlock[] getBlocks(long doc, long page);
 
 
-	public class TextBlock {
+    public class TextBlock {
 		public TextLine[] lines;
 		public Rect bbox;
 	}
