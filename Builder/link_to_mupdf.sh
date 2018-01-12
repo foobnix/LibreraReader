@@ -1,11 +1,12 @@
 . ~/.profile
 #MUPDF=/home/ivan-dev/dev/mupdf-1.11-source/platform/java
-MUPDF=/home/ivan-dev/dev/mupdf-1.12.0-source/platform/java
+MUPDF_ROOT=/home/ivan-dev/dev/mupdf-1.12.0-source
+MUPDF_JAVA=$MUPDF_ROOT/platform/java
 
 MY=/home/ivan-dev/git/LirbiReader
 
-rm -rf  $MUPDF/jni
-cp -rRp $MY/Builder/jni-1.12 $MUPDF/jni
+rm -rf  $MUPDF_JAVA/jni
+cp -rRp $MY/Builder/jni-1.12 $MUPDF_JAVA/jni
 
 
 ALL=$MY/cpu_all/libs
@@ -26,17 +27,22 @@ mkdir $ARM64
 mkdir $ARM_ARM64
 mkdir $X86
 
-ln -s $MUPDF/libs $ALL
-ln -s $MUPDF/libs/armeabi-v7a $ARM/armeabi-v7a
-ln -s $MUPDF/libs/arm64-v8a $ARM64/arm64-v8a
+ln -s $MUPDF_JAVA/libs $ALL
+ln -s $MUPDF_JAVA/libs/armeabi-v7a $ARM/armeabi-v7a
+ln -s $MUPDF_JAVA/libs/arm64-v8a $ARM64/arm64-v8a
 
-ln -s $MUPDF/libs/armeabi-v7a $ARM_ARM64/armeabi-v7a
-ln -s $MUPDF/libs/arm64-v8a $ARM_ARM64/arm64-v8a
+ln -s $MUPDF_JAVA/libs/armeabi-v7a $ARM_ARM64/armeabi-v7a
+ln -s $MUPDF_JAVA/libs/arm64-v8a $ARM_ARM64/arm64-v8a
 
-ln -s $MUPDF/libs/x86 $X86/x86
-ln -s $MUPDF/libs/x86_64 $X86/x86_64
+ln -s $MUPDF_JAVA/libs/x86 $X86/x86
+ln -s $MUPDF_JAVA/libs/x86_64 $X86/x86_64
 
 #echo "MUPDF:" $MUPDF ">>>" $MY
 
-cd $MUPDF
+cp -rp $MY/Builder/jni-1.12/~mupdf/epub-doc.c $MUPDF_ROOT/source/html/epub-doc.c
+cp -rp $MY/Builder/jni-1.12/~mupdf/css-apply.c $MUPDF_ROOT/source/html/css-apply.c
+cp -rp $MY/Builder/jni-1.12/~mupdf/html-layout.c $MUPDF_ROOT/source/html/html-layout.c
+cp -rp $MY/Builder/jni-1.12/~mupdf/stext-output.c $MUPDF_ROOT/source/fitz/stext-output.c
+
+cd $MUPDF_JAVA
 ndk-build
