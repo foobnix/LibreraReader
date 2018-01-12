@@ -30,7 +30,7 @@ public class BrightnessHelper {
     float lastPercent = 0;
     static float currentPercent = 0;
 
-    int MAX = Dips.dpToPx(1000);
+    int MAX = Dips.dpToPx(2000);
     private float x;
     private float y;
     boolean isMovementStart;

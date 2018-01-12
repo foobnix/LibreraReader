@@ -846,7 +846,7 @@ Java_org_ebookdroid_droids_mupdf_codec_MuPdfDocument_free(JNIEnv *env,
 
 JNIEXPORT jstring JNICALL
 Java_org_ebookdroid_droids_mupdf_codec_MuPdfDocument_getMeta(JNIEnv *env,
-		jclass cls, jlong handle, joptions) {
+		jclass cls, jlong handle, jstring joptions) {
 	renderdocument_t *doc = (renderdocument_t*) (long) handle;
 	char info[256];
 	
@@ -2150,7 +2150,7 @@ fz_print_stext_page_as_text_my1(fz_context *ctx, fz_output *out, fz_stext_page *
 										case '>': fz_write_string(ctx, out, "&gt;"); break;
 										case '&': fz_write_string(ctx, out, "&amp;"); break;
 										case '"': fz_write_string(ctx, out, "&quot;"); break;
-										case '\'': fz_write_string(ctx, out, "&apos;"); break;
+										//case '\'': fz_write_string(ctx, out, "&apos;"); break;
 										default:
 											   if (ch->c >= 32 && ch->c <= 127)
 												   fz_write_printf(ctx, out, "%c", ch->c);
