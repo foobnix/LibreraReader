@@ -209,7 +209,7 @@ public class ExtUtils {
     }
 
     public static boolean isNotSupportedFile(File file) {
-        return !BookType.isSupportedExtByPath(file.getPath()) && (isLibreFile(file) || isImageFile(file) || isOtherFile(file) || isFileArchive(file));
+        return !BookType.isSupportedExtByPath(file.getPath());
     }
 
     public static boolean isImageOrEpub(File file) {
