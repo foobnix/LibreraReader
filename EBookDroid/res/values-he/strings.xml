@@ -453,4 +453,6 @@
    <string name="no_serie">אין סרייה</string>
    <string name="no_genre">אין ז\'אנר</string>
    <string name="no_author">אין מחבר</string>
+   <string name="archives">אַרְכִיוֹן</string>
+   <string name="other">אַחֵר</string>
 </resources>

@@ -453,4 +453,6 @@
    <string name="no_serie">没有意甲</string>
    <string name="no_genre">没有流派</string>
    <string name="no_author">没有作者</string>
+   <string name="archives">档案</string>
+   <string name="other">其他</string>
 </resources>

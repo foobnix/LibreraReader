@@ -247,7 +247,7 @@ public class MuPdfPage extends AbstractCodecPage {
 
     private native void addMarkupAnnotationInternal(long docHandle, long pageHandle, PointF[] quadPoints, int type, float color[]);
 
-    private native byte[] getPageAsHtml(long docHandle, long pageHandle);
+    private native byte[] getPageAsHtml(long docHandle, long pageHandle, int opts);
 
     @Override
     public String getPageHTML() {
@@ -255,7 +255,27 @@ public class MuPdfPage extends AbstractCodecPage {
 
         try {
             TempHolder.lock.lock();
-            byte[] pageAsHtml = getPageAsHtml(docHandle, pageHandle);
+            byte[] pageAsHtml = getPageAsHtml(docHandle, pageHandle, -1);
+            String string = new String(pageAsHtml);
+            return string;
+        } catch (Exception e) {
+            LOG.e(e);
+            return "";
+        } finally {
+            TempHolder.lock.unlock();
+        }
+    }
+
+    @Override
+    public String getPageHTMLWithImages() {
+        LOG.d("getPageAsHtml");
+
+        try {
+            TempHolder.lock.lock();
+            // FZ_STEXT_PRESERVE_LIGATURES = 1,
+            // FZ_STEXT_PRESERVE_WHITESPACE = 2,
+            // FZ_STEXT_PRESERVE_IMAGES = 4,
+            byte[] pageAsHtml = getPageAsHtml(docHandle, pageHandle, 4);
             String string = new String(pageAsHtml);
             return string;
         } catch (Exception e) {
@@ -327,7 +347,7 @@ public class MuPdfPage extends AbstractCodecPage {
 
     @Override
     public synchronized TextWord[][] getText() {
-        LOG.d("getText()", docHandle, pageHandle, pageNumber);
+        // LOG.d("getText()", docHandle, pageHandle, pageNumber);
         TextBlock[] blocks = null;
         try {
             TempHolder.lock.lock();
@@ -359,7 +379,7 @@ public class MuPdfPage extends AbstractCodecPage {
 
                     if (chChar == ' ') {
                         words.add(word);
-                        LOG.d("getText()", word.w);
+                        // LOG.d("getText()", word.w);
                         word = new TextWord();
                         continue;
                     }
@@ -367,7 +387,7 @@ public class MuPdfPage extends AbstractCodecPage {
                 }
                 if (word.w.length() > 0) {
                     words.add(word);
-                    LOG.d("getText()", word.w);
+                    // LOG.d("getText()", word.w);
                     word = new TextWord();
                 }
             }

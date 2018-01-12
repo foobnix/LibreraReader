@@ -425,7 +425,7 @@ public class FileMetaAdapter extends AppRecycleAdapter<FileMeta, RecyclerView.Vi
             holder.idPercentText.setText("" + Math.round(100f * recentProgress) + "%");
 
         } else if (holder.progresLayout != null) {
-            holder.progresLayout.setVisibility(View.GONE);
+            holder.progresLayout.setVisibility(View.INVISIBLE);
             holder.idPercentText.setVisibility(View.INVISIBLE);
         }
 

@@ -453,4 +453,6 @@
    <string name="no_serie">Hakuna serie</string>
    <string name="no_genre">Hakuna aina</string>
    <string name="no_author">Hakuna mwandishi</string>
+   <string name="archives">Nyaraka</string>
+   <string name="other">Nyingine</string>
 </resources>

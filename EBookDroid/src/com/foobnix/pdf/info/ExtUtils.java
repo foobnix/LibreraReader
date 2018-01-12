@@ -36,6 +36,7 @@ import com.foobnix.android.utils.TxtUtils;
 import com.foobnix.android.utils.Views;
 import com.foobnix.dao2.FileMeta;
 import com.foobnix.ext.CacheZipUtils;
+import com.foobnix.ext.Fb2Extractor;
 import com.foobnix.pdf.info.model.BookCSS;
 import com.foobnix.pdf.info.widget.ChooserDialogFragment;
 import com.foobnix.pdf.info.wrapper.AppBookmark;
@@ -66,6 +67,7 @@ import android.support.v4.content.ContextCompat;
 import android.support.v4.content.FileProvider;
 import android.support.v4.os.EnvironmentCompat;
 import android.text.format.DateFormat;
+import android.util.Base64;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -82,7 +84,12 @@ import android.widget.Toast;
 
 public class ExtUtils {
 
-    public static final String REFLOW_FB2 = "-text-reflow.fb2";
+    public static final String REFLOW_EPUB = "-reflow.epub";
+    public static final String REFLOW_HTML = "-reflow.html";
+    private static final String IMAGE_BEGIN = "<image-begin>";
+    private static final String IMAGE_END = "<image-end>";
+
+    public static final String REFLOW_FB2 = "-text-reflow.fb2.html";
 
     public static ExecutorService ES = Executors.newFixedThreadPool(4);
 
@@ -100,6 +107,7 @@ public class ExtUtils {
         browseExts.addAll(lirbeExt);
         browseExts.add(".json");
         browseExts.addAll(BookCSS.fontExts);
+        browseExts.addAll(Arrays.asList(AppState.OTHER_BOOK_MEDIA));
 
         mimeCache.put(".tpz", "application/x-topaz-ebook");
         mimeCache.put(".azw1", "application/x-topaz-ebook");
@@ -1139,22 +1147,15 @@ public class ExtUtils {
         }.execute();
     }
 
-    public static File openPDFInTextReflowAsync(Activity a, File file, Handler dialog) {
+    public static File openPDFInTextReflowAsync(Activity a, final File file, Handler dialog) {
         try {
-            File LIRBI_DOWNLOAD_DIR = new File(AppState.get().downlodsPath);
-            if (!LIRBI_DOWNLOAD_DIR.exists()) {
-                LIRBI_DOWNLOAD_DIR.mkdirs();
+            File bookTempRoot = new File(AppState.get().downlodsPath, file.getName());
+            if (!bookTempRoot.exists()) {
+                bookTempRoot.mkdirs();
+            } else {
+                CacheZipUtils.removeFiles(bookTempRoot.listFiles());
             }
 
-            FileMeta meta = AppDB.get().getOrCreate(file.getPath());
-            String author = "";
-            String title = ExtUtils.getFileNameWithoutExt(file.getName());
-            try {
-                author = meta.getAuthor();
-                title = meta.getTitle();
-            } catch (Exception e) {
-                LOG.e(e);
-            }
             String pwd = "";
             try {
                 pwd = a.getIntent().getStringExtra(HorizontalModeController.PASSWORD_EXTRA);
@@ -1167,31 +1168,74 @@ public class ExtUtils {
 
             CodecDocument doc = BookType.getCodecContextByPath(file.getPath()).openDocument(file.getPath(), pwd);
 
-            final File filefb2 = new File(LIRBI_DOWNLOAD_DIR, file.getName() + REFLOW_FB2);
+            final File fileReflowHtml = new File(bookTempRoot, "temp" + REFLOW_HTML);
             try {
-                FileWriter fout = new FileWriter(filefb2);
+                FileWriter fout = new FileWriter(fileReflowHtml);
                 BufferedWriter out = new BufferedWriter(fout);
                 out.write("<html>");
-                out.write("<head></head>");
-                out.write("<title-info>");
-                out.write("<author><first-name>" + author + "</first-name></autor><br/>");
-                out.write("<book-title>" + title + "</book-title>");
-                out.write("</title-info>");
-
+                out.write("<head><meta charset=\"utf-8\"/></head>");
                 out.write("<body>");
 
                 int pages = doc.getPageCount();
 
+                int imgCount = 0;
                 for (int i = 0; i < pages; i++) {
                     LOG.d("Extract page", i);
                     CodecPage pageCodec = doc.getPage(i);
-                    String html = pageCodec.getPageHTML();
+                    String html = pageCodec.getPageHTMLWithImages();
+
+                    int startImage = html.indexOf(IMAGE_BEGIN);
+                    while (startImage >= 0) {
+                        if (!TempHolder.get().isConverting) {
+                            CacheZipUtils.removeFiles(bookTempRoot.listFiles());
+                            bookTempRoot.delete();
+                            break;
+                        }
+                        imgCount++;
+                        LOG.d("Extract image", imgCount);
+                        int endImage = html.indexOf(IMAGE_END, startImage);
+
+                        String mime = html.substring(startImage + IMAGE_BEGIN.length(), endImage);
+                        String format;
+                        if (mime.startsWith("image/jpeg;base64,")) {
+                            format = ".jpg";
+                            mime = mime.replace("image/jpeg;base64,", "");
+                        } else if (mime.startsWith("image/png;base64,")) {
+                            format = ".png";
+                            mime = mime.replace("image/png;base64,", "");
+                        } else {
+                            format = ".none";
+                        }
+
+                        byte[] decode = Base64.decode(mime, Base64.DEFAULT);
+
+                        String imageName = imgCount + format;
+
+                        LOG.d("Extract mime", format, startImage, endImage, mime.length(), imageName);
+
+                        FileOutputStream imgStream = new FileOutputStream(new File(bookTempRoot, imageName));
+                        imgStream.write(decode);
+                        imgStream.close();
+
+                        html = html.substring(0, startImage) + "<img src=\"" + imageName + "\"/>" + html.substring(endImage + IMAGE_END.length());
+                        startImage = html.indexOf(IMAGE_BEGIN);
+                        LOG.d("startImage", startImage);
+                    }
+
+                    
+                    // out.write(TextUtils.htmlEncode(html));
+                    // html = html.replace("< ", "&lt; ");
+                    // html = html.replace("> ", "&gt; ");
+                    // html = html.replace("&", "&amp;");
+
                     out.write(html);
                     pageCodec.recycle();
                     LOG.d("Extract page end1", i);
                     dialog.sendEmptyMessage(((i + 1) * 100) / pages);
 
                     if (!TempHolder.get().isConverting) {
+                        CacheZipUtils.removeFiles(bookTempRoot.listFiles());
+                        bookTempRoot.delete();
                         break;
                     }
 
@@ -1207,18 +1251,42 @@ public class ExtUtils {
                 return null;
             }
 
+            File epubOutpub = new File(AppState.get().downlodsPath, file.getName() + REFLOW_EPUB);
+
+            FileMeta meta = AppDB.get().getOrCreate(file.getPath());
+
+            Fb2Extractor.convertFolderToEpub(bookTempRoot, epubOutpub, meta.getAuthor(), meta.getTitle());
+
+            CacheZipUtils.removeFiles(bookTempRoot.listFiles());
+            bookTempRoot.delete();
+
             if (!TempHolder.get().isConverting) {
-                filefb2.delete();
-                LOG.d("Delete temp file", filefb2.getPath());
+                epubOutpub.delete();
+                LOG.d("Delete temp file", fileReflowHtml.getPath());
             }
 
-            LOG.d("openPDFInTextReflow", filefb2.getPath());
-            return filefb2;
+            LOG.d("openPDFInTextReflow", fileReflowHtml.getPath());
+            return epubOutpub;
         } catch (RuntimeException e) {
             LOG.e(e);
             return null;
         }
 
+    }
+
+    public static String escapeHTML(String s) {
+        StringBuilder out = new StringBuilder(Math.max(16, s.length()));
+        for (int i = 0; i < s.length(); i++) {
+            char c = s.charAt(i);
+            if (c > 127 || c == '"' || c == '<' || c == '>' || c == '&') {
+                out.append("&#");
+                out.append((int) c);
+                out.append(';');
+            } else {
+                out.append(c);
+            }
+        }
+        return out.toString();
     }
 
     public static List<String> getExternalStorageDirectories1(Context c) {

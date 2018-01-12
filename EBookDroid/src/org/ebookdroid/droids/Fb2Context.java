@@ -33,7 +33,8 @@ public class Fb2Context extends PdfContext {
     public CodecDocument openDocumentInner(final String fileName, String password) {
 
         if (fileName.endsWith(ExtUtils.REFLOW_FB2)) {
-            return new HtmlContext().openDocument(fileName, password);
+            return new PdfContext().openDocumentInner(fileName, password);
+            // return new HtmlContext().openDocument(fileName, password);
         }
 
         String outName = null;

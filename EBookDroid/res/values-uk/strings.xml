@@ -453,4 +453,6 @@
    <string name="no_serie">Немає серії</string>
    <string name="no_genre">Немає жанру</string>
    <string name="no_author">Немає автора</string>
+   <string name="archives">Архіви</string>
+   <string name="other">Інший</string>
 </resources>

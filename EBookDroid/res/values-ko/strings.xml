@@ -453,4 +453,6 @@
    <string name="no_serie">세리가 없다.</string>
    <string name="no_genre">장르 없음</string>
    <string name="no_author">작성자 없음</string>
+   <string name="archives">기록 보관소</string>
+   <string name="other">다른</string>
 </resources>

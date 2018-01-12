@@ -453,4 +453,6 @@
    <string name="no_serie">Žiadna séria</string>
    <string name="no_genre">Žiadny žáner</string>
    <string name="no_author">Žiadny autor</string>
+   <string name="archives">Archív</string>
+   <string name="other">Ostatné</string>
 </resources>

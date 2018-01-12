@@ -35,6 +35,11 @@ public class DjvuDocument extends AbstractCodecDocument {
     }
 
     @Override
+    public String getMeta(String option) {
+        return "";
+    }
+
+    @Override
     public DjvuPage getPageInner(final int pageNumber) {
         TempHolder.lock.lock();
         try {

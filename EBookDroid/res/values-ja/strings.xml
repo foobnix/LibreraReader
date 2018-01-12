@@ -453,4 +453,6 @@
    <string name="no_serie">セリエがない</string>
    <string name="no_genre">ジャンルなし</string>
    <string name="no_author">著者はありません</string>
+   <string name="archives">アーカイブ</string>
+   <string name="other">その他</string>
 </resources>

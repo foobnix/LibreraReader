@@ -98,6 +98,16 @@
                 android:layout_marginLeft="5dip"
                 android:text="Genre"
                 android:textIsSelectable="true" />
+            
+            
+            <TextView
+                android:id="@+id/metaPDF"
+                android:textSize="12sp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dip"
+                android:text="info:Title"
+                android:textIsSelectable="true" />
 
             <TextView
                 android:id="@+id/convertFile"

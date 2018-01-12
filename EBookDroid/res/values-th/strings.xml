@@ -453,4 +453,6 @@
    <string name="no_serie">ไม่มีซีรี่ส์</string>
    <string name="no_genre">ไม่มีประเภท</string>
    <string name="no_author">ไม่มีผู้แต่ง</string>
+   <string name="archives">หอจดหมายเหตุ</string>
+   <string name="other">อื่น ๆ</string>
 </resources>

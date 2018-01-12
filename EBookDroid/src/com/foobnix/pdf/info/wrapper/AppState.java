@@ -62,7 +62,8 @@ public class AppState {
     public static final String JPG = "JPG";
 
     public static final String[] LIBRE_EXT = ".odt, .odp, .docx, .doc, .pptx, .ppt".split(", ");
-    public static final String[] OTHER_BOOK_EXT = ".wav, .abw, .docm, .lwp, .md, .pages, .rst, .sdw, .tex, .wpd, .wps, .zabw, .cbc, .chm, .lit, .lrf, .oeb, .pml, .rb, .snb, .tcr, .txtz, .azw1, .tpz".split(", ");
+    public static final String[] OTHER_BOOK_MEDIA = ".wav ".split(", ");
+    public static final String[] OTHER_BOOK_EXT = ".abw, .docm, .lwp, .md, .pages, .rst, .sdw, .tex, .wpd, .wps, .zabw, .cbc, .chm, .lit, .lrf, .oeb, .pml, .rb, .snb, .tcr, .txtz, .azw1, .tpz".split(", ");
     public static final String[] OTHER_ARCH_EXT = ".img, .zip, .rar, .7z, .arj, .bz2, .bzip2, .tbz2, .tbz, .txz, .cab, .gz, .gzip, .tgz, .iso, .lzh, .lha, .lzma, .tar, .xar, .z, .taz, .xz, .dmg".split(", ");
 
     public static int COLOR_WHITE = Color.WHITE;
@@ -469,7 +470,7 @@ public class AppState {
     public boolean isBrowseImages = false;
 
     public int coverBigSize = (int) (((Dips.screenWidthDP() / (Dips.screenWidthDP() / 120)) - 8) * (Dips.isXLargeScreen() ? 1.5f : 1));
-    public int coverSmallSize = 80;
+    public int coverSmallSize = 85;
 
     @IgnoreHashCode
     public int tapZoneTop = TAP_PREV_PAGE;
