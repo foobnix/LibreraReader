@@ -453,4 +453,6 @@
    <string name="no_serie">Bez serii</string>
    <string name="no_genre">Bez gatunku</string>
    <string name="no_author">Brak autora</string>
+   <string name="archives">Archiwa</string>
+   <string name="other">Inny</string>
 </resources>

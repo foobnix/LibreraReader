@@ -60,6 +60,7 @@ public class HtmlExtractor {
 
             String string = Jsoup.clean(html.toString(), Whitelist.relaxed().removeTags("img"));
 
+
             if (BookCSS.get().isAutoHypens) {
                 string = HypenUtils.applyHypnes(string);
                 string = Jsoup.clean(string, Whitelist.relaxed());

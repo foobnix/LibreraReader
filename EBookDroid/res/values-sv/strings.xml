@@ -453,4 +453,6 @@
    <string name="no_serie">Ingen serie</string>
    <string name="no_genre">Ingen genre</string>
    <string name="no_author">Ingen författare</string>
+   <string name="archives">Arkiv</string>
+   <string name="other">Andra</string>
 </resources>

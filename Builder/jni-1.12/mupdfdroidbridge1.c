@@ -845,25 +845,18 @@ Java_org_ebookdroid_droids_mupdf_codec_MuPdfDocument_free(JNIEnv *env,
 }
 
 JNIEXPORT jstring JNICALL
-Java_org_ebookdroid_droids_mupdf_codec_MuPdfDocument_getTitle(JNIEnv *env,
-		jclass cls, jlong handle) {
+Java_org_ebookdroid_droids_mupdf_codec_MuPdfDocument_getMeta(JNIEnv *env,
+		jclass cls, jlong handle, joptions) {
 	renderdocument_t *doc = (renderdocument_t*) (long) handle;
 	char info[256];
+	
+	const char *options = (*env)->GetStringUTFChars(env, joptions, NULL);
 
-	fz_lookup_metadata(doc->ctx, doc->document, FZ_META_INFO_TITLE, info, sizeof(info));
+	fz_lookup_metadata(doc->ctx, doc->document, options, info, sizeof(info));
 
 	return (*env)->NewStringUTF(env, info);
 }
-JNIEXPORT jstring JNICALL
-Java_org_ebookdroid_droids_mupdf_codec_MuPdfDocument_getAuthor(JNIEnv *env,
-		jclass cls, jlong handle) {
-	renderdocument_t *doc = (renderdocument_t*) (long) handle;
-	char info[256];
 
-	fz_lookup_metadata(doc->ctx, doc->document, FZ_META_INFO_AUTHOR, info, sizeof(info));
-
-	return (*env)->NewStringUTF(env, info);
-}
 
 
 JNIEXPORT jint JNICALL
@@ -2113,10 +2106,82 @@ Java_org_ebookdroid_droids_mupdf_codec_MuPdfPage_addMarkupAnnotationInternal(JNI
 }
 
 
+void
+fz_print_stext_page_as_text_my1(fz_context *ctx, fz_output *out, fz_stext_page *page)
+{
+	fz_stext_block *block;
+	fz_stext_line *line;
+	fz_stext_char *ch;
+	char utf[10];
+	int i, n;
+
+	for (block = page->first_block; block; block = block->next)
+	{
+
+		if (block->type == FZ_STEXT_BLOCK_IMAGE){
+	fz_write_printf(ctx, out, "<image-begin>");
+	fz_write_image_as_data_uri(ctx, out, block->u.i.image);
+	fz_write_string(ctx, out, "<image-end>");
+	fz_write_printf(ctx, out, "<br/>");
+		}else if (block->type == FZ_STEXT_BLOCK_TEXT)
+		{
+			for (line = block->u.t.first_line; line; line = line->next)
+			{
+					int is_bold = fz_font_is_bold(ctx, line->first_char->font);
+					int is_italic = fz_font_is_italic(ctx, line->first_char->font);
+
+					if (is_bold){
+						fz_write_printf(ctx,out,"<b>");
+					}
+
+					if (is_italic){
+						fz_write_printf(ctx,out,"<i>");
+					}
+
+				for (ch = line->first_char; ch; ch = ch->next)
+				{
+					//n = fz_runetochar(utf, ch->c);
+					//for (i = 0; i < n; i++)
+						//fz_write_byte(ctx, out, utf[i]);
+
+					switch (ch->c)
+										{
+										case '<': fz_write_string(ctx, out, "&lt;"); break;
+										case '>': fz_write_string(ctx, out, "&gt;"); break;
+										case '&': fz_write_string(ctx, out, "&amp;"); break;
+										case '"': fz_write_string(ctx, out, "&quot;"); break;
+										case '\'': fz_write_string(ctx, out, "&apos;"); break;
+										default:
+											   if (ch->c >= 32 && ch->c <= 127)
+												   fz_write_printf(ctx, out, "%c", ch->c);
+											   else
+												   fz_write_printf(ctx, out, "&#x%x;", ch->c);
+											   break;
+										}
+
+				}
+
+				    if(is_bold){
+						fz_write_printf(ctx,out,"</b> ");
+					}
+
+					if(is_italic){
+						fz_write_printf(ctx,out,"</i> ");
+					}
+
+				fz_write_string(ctx, out, " ");
+				//fz_write_printf(ctx, out, "<br/>");
+			}
+			//fz_write_string(ctx, out, "\n");
+			fz_write_printf(ctx, out, "<br/>");
+		}
+	}
+}
+
 
 
 JNIEXPORT jbyteArray JNICALL
-Java_org_ebookdroid_droids_mupdf_codec_MuPdfPage_getPageAsHtml(JNIEnv * env, jobject thiz,  jlong handle, jlong pagehandle)
+Java_org_ebookdroid_droids_mupdf_codec_MuPdfPage_getPageAsHtml(JNIEnv * env, jobject thiz,  jlong handle, jlong pagehandle, jint opts)
 {
 
 	renderdocument_t *doc_t = (renderdocument_t*) (long) handle;
@@ -2153,11 +2218,16 @@ Java_org_ebookdroid_droids_mupdf_codec_MuPdfPage_getPageAsHtml(JNIEnv * env, job
 		
 		text = fz_new_stext_page(ctx, fz_bound_page(ctx, page->page, &mediabox));
 
-		fz_stext_options stext_options;
-		stext_options.flags = FZ_STEXT_PRESERVE_IMAGES;
+		if(opts==-1){
+			dev = fz_new_stext_device(ctx, text, NULL);
+		}else{
+			fz_stext_options stext_options;
+			stext_options.flags = (int)opts;
+			dev = fz_new_stext_device(ctx, text, &stext_options);
 
-		//dev = fz_new_stext_device(ctx, text, &stext_options);
-		dev = fz_new_stext_device(ctx, text, NULL);
+		}
+
+		//dev = fz_new_stext_device(ctx, text, NULL);
 		fz_run_page(ctx, page->page, dev, &ctm, NULL);
 
 		fz_close_device(ctx, dev);
@@ -2168,7 +2238,7 @@ Java_org_ebookdroid_droids_mupdf_codec_MuPdfPage_getPageAsHtml(JNIEnv * env, job
 		buf = fz_new_buffer(ctx, 256);
 		out = fz_new_output_with_buffer(ctx, buf);
 
-		fz_print_stext_page_as_text_my(ctx, out, text);
+		fz_print_stext_page_as_text_my1(ctx, out, text);
 
 		fz_drop_output(ctx, out);
 		out = NULL;
@@ -2202,6 +2272,7 @@ Java_org_ebookdroid_droids_mupdf_codec_MuPdfPage_getPageAsHtml(JNIEnv * env, job
 
 	return bArray;
 }
+
 
 
 

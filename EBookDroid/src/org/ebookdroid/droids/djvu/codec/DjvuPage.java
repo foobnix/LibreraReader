@@ -66,6 +66,11 @@ public class DjvuPage extends AbstractCodecPage {
     }
 
     @Override
+    public String getPageHTMLWithImages() {
+        return "";
+    }
+
+    @Override
     public BitmapRef renderBitmap(final int width, final int height, final RectF pageSliceBounds) {
         LOG.d("Render DJVU Page", width, height, pageSliceBounds);
         final int renderMode = AppSettings.getInstance().djvuRenderingMode;

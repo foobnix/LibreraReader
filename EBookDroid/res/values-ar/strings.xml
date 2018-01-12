@@ -453,4 +453,6 @@
    <string name="no_serie">لا دوري الدرجة الاولى الايطالي</string>
    <string name="no_genre">لا يوجد نوع</string>
    <string name="no_author">لا مؤلف</string>
+   <string name="archives">أرشيف</string>
+   <string name="other">آخر</string>
 </resources>

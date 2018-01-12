@@ -453,4 +453,6 @@
    <string name="no_serie">Sem série</string>
    <string name="no_genre">Nenhum gênero</string>
    <string name="no_author">Nenhum autor</string>
+   <string name="archives">Arquivos</string>
+   <string name="other">De outros</string>
 </resources>

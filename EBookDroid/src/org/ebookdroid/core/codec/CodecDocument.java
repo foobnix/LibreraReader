@@ -58,4 +58,6 @@ public interface CodecDocument {
     String getBookTitle();
 
     String getBookAuthor();
+
+    String getMeta(String option);
 }

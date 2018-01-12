@@ -453,4 +453,6 @@
    <string name="no_serie">Nincs sorozat</string>
    <string name="no_genre">Nincs műfaj</string>
    <string name="no_author">Nincs szerző</string>
+   <string name="archives">Levéltár</string>
+   <string name="other">Más</string>
 </resources>

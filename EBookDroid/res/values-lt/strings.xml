@@ -453,4 +453,6 @@
    <string name="no_serie">Nėra serijos</string>
    <string name="no_genre">Nėra žanro</string>
    <string name="no_author">Ne autorius</string>
+   <string name="archives">Archyvai</string>
+   <string name="other">Kita</string>
 </resources>

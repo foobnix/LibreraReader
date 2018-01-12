@@ -621,6 +621,7 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
                 updateLockMode();
             }
         });
+        updateLockMode();
 
         Keyboards.hideNavigationOnCreate(HorizontalViewActivity.this);
 

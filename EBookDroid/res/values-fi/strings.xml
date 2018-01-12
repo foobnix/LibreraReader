@@ -453,4 +453,6 @@
    <string name="no_serie">Ei sarjaa</string>
    <string name="no_genre">Ei lajia</string>
    <string name="no_author">Ei kirjoittajaa</string>
+   <string name="archives">Arkisto</string>
+   <string name="other">Muut</string>
 </resources>

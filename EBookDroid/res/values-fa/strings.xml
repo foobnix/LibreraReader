@@ -453,4 +453,6 @@
    <string name="no_serie">هیچ سریالی وجود ندارد</string>
    <string name="no_genre">هیچ ژانر نیست</string>
    <string name="no_author">بدون نویسنده</string>
+   <string name="archives">بایگانی</string>
+   <string name="other">دیگر</string>
 </resources>

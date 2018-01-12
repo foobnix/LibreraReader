@@ -453,4 +453,6 @@
    <string name="no_serie">Tidak ada serie</string>
    <string name="no_genre">Tidak ada genre</string>
    <string name="no_author">Tidak ada penulis</string>
+   <string name="archives">Arsip</string>
+   <string name="other">Lain</string>
 </resources>

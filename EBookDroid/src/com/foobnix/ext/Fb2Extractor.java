@@ -26,6 +26,7 @@ import com.foobnix.android.utils.LOG;
 import com.foobnix.android.utils.StreamUtils;
 import com.foobnix.android.utils.TxtUtils;
 import com.foobnix.hypen.HypenUtils;
+import com.foobnix.pdf.info.ExtUtils;
 import com.foobnix.pdf.info.model.BookCSS;
 import com.foobnix.pdf.info.wrapper.AppState;
 import com.foobnix.sys.TempHolder;
@@ -377,6 +378,37 @@ public class Fb2Extractor extends BaseExtractor {
         LOG.d("Fb2Context convert false");
         return false;
     }
+    
+    public static boolean convertFolderToEpub(File inputFolder, File outputFile, String author, String title) {
+
+        try {
+            ZipOutputStream zos = new ZipOutputStream(new FileOutputStream(outputFile));
+            zos.setLevel(0);
+
+            writeToZip(zos, "mimetype", "application/epub+zip");
+            writeToZip(zos, "META-INF/container.xml", container_xml);
+
+            String meta = content_opf.replace("fb2.fb2", "temp" + ExtUtils.REFLOW_HTML);
+            meta = meta.replace("%title%", title);
+            meta = meta.replace("%creator%", author);
+
+            writeToZip(zos, "OEBPS/content.opf", meta);
+            writeToZip(zos, "OEBPS/fb2.ncx", genetateNCX(new ArrayList<String>()));
+
+            for (File file : inputFolder.listFiles()) {
+                writeToZip(zos, "OEBPS/" + file.getName(), new FileInputStream(file));
+            }
+
+            LOG.d("Fb2Context convert true");
+            zos.close();
+            return true;
+        } catch (Exception e) {
+            LOG.d("Fb2Context convert false error");
+            LOG.e(e);
+        }
+        LOG.d("Fb2Context convert false");
+        return false;
+    }
 
     public ByteArrayOutputStream generateFb2File(String fb2, String encoding, boolean fixXML) throws Exception {
         BufferedReader input = new BufferedReader(new InputStreamReader(new FileInputStream(fb2), encoding));
@@ -517,7 +549,7 @@ public class Fb2Extractor extends BaseExtractor {
         return out;
     }
 
-    public String genetateNCX(List<String> titles) {
+    public static String genetateNCX(List<String> titles) {
         StringBuilder navs = new StringBuilder();
         for (int i = 0; i < titles.size(); i++) {
             navs.append(createNavPoint(i + 1, titles.get(i)));
@@ -621,7 +653,8 @@ public class Fb2Extractor extends BaseExtractor {
     public static String content_opf = "<?xml version=\"1.0\"?>\n" + //
             "<package version=\"2.0\" unique-identifier=\"uid\" xmlns=\"http://www.idpf.org/2007/opf\">\n" + //
             " <metadata xmlns:opf=\"http://www.idpf.org/2007/opf\" xmlns:dc=\"http://purl.org/dc/elements/1.1/\">\n" + //
-            "  <dc:title>title</dc:title>\n" + //
+            "  <dc:title>%title%</dc:title>\n" + //
+            "  <dc:creator>%creator%</dc:creator>\n" + //
             "<meta name=\"cover\" content=\"cover.jpg\" />\n" + //
             " </metadata>\n" + //
             "\n" + "<manifest>\n" + //
@@ -648,7 +681,7 @@ public class Fb2Extractor extends BaseExtractor {
             " </navMap>\n" + //
             "</ncx>";//
 
-    public String createNavPoint(int id, String text) {
+    public static String createNavPoint(int id, String text) {
         return "<navPoint id=\"toc-" + id + "\" playOrder=\"" + id + "\">\n" + //
                 "<navLabel>\n" + //
                 "<text>" + text + "</text>\n" + //
@@ -667,7 +700,7 @@ public class Fb2Extractor extends BaseExtractor {
         zipCopyNoClose(stream, zos);
     }
 
-    public void writeToZip(ZipOutputStream zos, String name, String content) throws IOException {
+    public static void writeToZip(ZipOutputStream zos, String name, String content) throws IOException {
         writeToZip(zos, name, new ByteArrayInputStream(content.getBytes()));
     }
 

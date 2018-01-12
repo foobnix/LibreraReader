@@ -1,7 +1,11 @@
 package com.foobnix.pdf.info.widget;
 
 import java.io.File;
+import java.util.Arrays;
 import java.util.List;
+
+import org.ebookdroid.BookType;
+import org.ebookdroid.core.codec.CodecDocument;
 
 import com.foobnix.android.utils.Dips;
 import com.foobnix.android.utils.TxtUtils;
@@ -15,6 +19,7 @@ import com.foobnix.pdf.info.view.AlertDialogs;
 import com.foobnix.pdf.info.view.ScaledImageView;
 import com.foobnix.pdf.info.wrapper.AppBookmark;
 import com.foobnix.pdf.info.wrapper.AppState;
+import com.foobnix.sys.ImageExtractor;
 import com.foobnix.ui2.AppDB;
 import com.foobnix.ui2.FileMetaCore;
 import com.foobnix.ui2.adapter.DefaultListeners;
@@ -27,6 +32,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
+import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -113,6 +119,36 @@ public class FileInformationDialog {
         } else {
             ((TextView) dialog.findViewById(R.id.metaGenre)).setVisibility(View.GONE);
             ((TextView) dialog.findViewById(R.id.metaGenreID)).setVisibility(View.GONE);
+        }
+
+        TextView metaPDF = (TextView) dialog.findViewById(R.id.metaPDF);
+        metaPDF.setVisibility(View.GONE);
+        if (BookType.PDF.is(file.getPath())) {
+            CodecDocument doc = ImageExtractor.singleCodecContext(file.getPath(), "", 0, 0);
+            if (doc != null) {
+                metaPDF.setVisibility(View.VISIBLE);
+                StringBuilder meta = new StringBuilder();
+                List<String> list = Arrays.asList(
+                        //
+                        "info:Title", //
+                        "info:Author", //
+                        "info:Subject", //
+                        "info:Keywords" //
+                // "info:Creator", //
+                // "info:Producer" //
+                // "info:CreationDate", //
+                // "info:ModDate"//
+                );
+                for (String id : list) {
+                    String metaValue = doc.getMeta(id);
+                    if (TxtUtils.isNotEmpty(metaValue)) {
+                        meta.append("<b>" + id.replace("info:", "") + "</b>").append(":").append(metaValue).append("<br>");
+                    }
+                }
+                doc.recycle();
+                String text = TxtUtils.replaceLast(meta.toString(), "<br>", "");
+                metaPDF.setText(Html.fromHtml(text));
+            }
         }
 
         TextView convertFile = (TextView) dialog.findViewById(R.id.convertFile);

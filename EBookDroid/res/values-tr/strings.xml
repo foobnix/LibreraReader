@@ -453,4 +453,6 @@
    <string name="no_serie">Seri yok</string>
    <string name="no_genre">Tür yok</string>
    <string name="no_author">Yazar yok</string>
+   <string name="archives">Arşiv</string>
+   <string name="other">Diğer</string>
 </resources>

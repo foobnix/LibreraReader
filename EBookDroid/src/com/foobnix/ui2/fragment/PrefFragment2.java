@@ -790,8 +790,10 @@ public class PrefFragment2 extends UIFragment {
             }
         });
 
-        ((CheckBox) inflate.findViewById(R.id.supportZIP)).setChecked(AppState.get().supportZIP);
-        ((CheckBox) inflate.findViewById(R.id.supportZIP)).setOnCheckedChangeListener(new OnCheckedChangeListener() {
+        CheckBox supportZIP = (CheckBox) inflate.findViewById(R.id.supportZIP);
+        supportZIP.setChecked(AppState.get().supportZIP);
+        supportZIP.setText(getString(R.string.archives) + " (ZIP/RAR/...)");
+        supportZIP.setOnCheckedChangeListener(new OnCheckedChangeListener() {
 
             @Override
             public void onCheckedChanged(final CompoundButton buttonView, final boolean isChecked) {
@@ -802,8 +804,10 @@ public class PrefFragment2 extends UIFragment {
             }
         });
 
-        ((CheckBox) inflate.findViewById(R.id.supportOther)).setChecked(AppState.get().supportOther);
-        ((CheckBox) inflate.findViewById(R.id.supportOther)).setOnCheckedChangeListener(new OnCheckedChangeListener() {
+        CheckBox supportOther = (CheckBox) inflate.findViewById(R.id.supportOther);
+        supportOther.setChecked(AppState.get().supportOther);
+        supportOther.setText(getString(R.string.other) + " (DOC/CHM/...)");
+        supportOther.setOnCheckedChangeListener(new OnCheckedChangeListener() {
 
             @Override
             public void onCheckedChanged(final CompoundButton buttonView, final boolean isChecked) {

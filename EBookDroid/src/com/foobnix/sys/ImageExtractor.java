@@ -97,8 +97,6 @@ public class ImageExtractor implements ImageDownloader {
         FileMetaCore.get().upadteBasicMeta(fileMeta, new File(path));
         FileMetaCore.get().udpateFullMeta(fileMeta, ebookMeta);
 
-
-
         String unZipPath = ebookMeta.getUnzipPath();
 
         Bitmap cover = null;
@@ -533,17 +531,22 @@ public class ImageExtractor implements ImageDownloader {
     }
 
     public static synchronized CodecDocument singleCodecContext(final String path, String passw, int w, int h) {
-        CodecContext codecContex = BookType.getCodecContextByPath(path);
-        TempHolder.get().init(path);
+        try {
+            CodecContext codecContex = BookType.getCodecContextByPath(path);
+            TempHolder.get().init(path);
 
-        LOG.d("CodecContext", codecContex);
+            LOG.d("CodecContext", codecContex);
 
-        if (codecContex == null) {
+            if (codecContex == null) {
+                return null;
+            }
+
+            TempHolder.get().loadingCancelled = false;
+            return codecContex.openDocument(path, passw);
+        } catch (RuntimeException e) {
+            LOG.e(e);
             return null;
         }
-
-        TempHolder.get().loadingCancelled = false;
-        return codecContex.openDocument(path, passw);
     }
 
     public static synchronized CodecDocument getNewCodecContext(final String path, String passw, int w, int h) {

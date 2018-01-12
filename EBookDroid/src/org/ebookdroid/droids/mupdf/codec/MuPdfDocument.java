@@ -29,7 +29,6 @@ public class MuPdfDocument extends AbstractCodecDocument {
     int w, h;
     private String fname;
 
-
     public MuPdfDocument(final MuPdfContext context, final int format, final String fname, final String pwd) {
         super(context, openFile(format, fname, pwd, BookCSS.get().toCssString()));
         this.fname = fname;
@@ -155,28 +154,34 @@ public class MuPdfDocument extends AbstractCodecDocument {
 
     native static int getPageInfo(long docHandle, int pageNumber, CodecPageInfo cpi);
 
-    native static String getTitle(long docHandle);
-
-    native static String getAuthor(long docHandle);
+    // 'info:Title'
+    // 'info:Author'
+    // 'info:Subject'
+    // 'info:Keywords'
+    // 'info:Creator'
+    // 'info:Producer'
+    // 'info:CreationDate'
+    // 'info:ModDate'
+    private native static String getMeta(long docHandle, String option);
 
     @Override
-    public String getBookTitle() {
+    public String getMeta(String option) {
         try {
             TempHolder.lock.lock();
-            return getTitle(documentHandle);
+            return getMeta(documentHandle, option);
         } finally {
             TempHolder.lock.unlock();
         }
     }
 
     @Override
+    public String getBookTitle() {
+        return getMeta("info:Title");
+    }
+
+    @Override
     public String getBookAuthor() {
-        try {
-            TempHolder.lock.lock();
-            return getAuthor(documentHandle);
-        } finally {
-            TempHolder.lock.unlock();
-        }
+        return getMeta("info:Author");
     }
 
     private static long openFile(final int format, String fname, final String pwd, String css) {

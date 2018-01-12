@@ -453,4 +453,6 @@
    <string name="no_serie">कोई सीरी नहीं</string>
    <string name="no_genre">कोई शैली नहीं</string>
    <string name="no_author">कोई लेखक नहीं</string>
+   <string name="archives">अभिलेखागार</string>
+   <string name="other">अन्य</string>
 </resources>

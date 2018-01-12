@@ -453,4 +453,6 @@
    <string name="no_serie">Không có serie</string>
    <string name="no_genre">Không có thể loại</string>
    <string name="no_author">Không có tác giả</string>
+   <string name="archives">Lưu trữ</string>
+   <string name="other">Khác</string>
 </resources>
