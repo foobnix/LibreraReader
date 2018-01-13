@@ -19,6 +19,7 @@ import java.util.Map;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipOutputStream;
 
+import org.ebookdroid.core.codec.OutlineLink;
 import org.xmlpull.v1.XmlPullParser;
 
 import com.BaseExtractor;
@@ -28,6 +29,7 @@ import com.foobnix.android.utils.TxtUtils;
 import com.foobnix.hypen.HypenUtils;
 import com.foobnix.pdf.info.ExtUtils;
 import com.foobnix.pdf.info.model.BookCSS;
+import com.foobnix.pdf.info.model.OutlineLinkWrapper;
 import com.foobnix.pdf.info.wrapper.AppState;
 import com.foobnix.sys.TempHolder;
 
@@ -167,9 +169,9 @@ public class Fb2Extractor extends BaseExtractor {
     public EbookMeta getBookMetaInformation(String inputFile) {
         try {
             // if (inputFile.contains(ExtUtils.REFLOW_FB2)) {
-                // return new EbookMeta(new
-                // File(inputFile).getName().replace(ExtUtils.REFLOW_FB2, ""), "Text Reflow",
-                // "", "");
+            // return new EbookMeta(new
+            // File(inputFile).getName().replace(ExtUtils.REFLOW_FB2, ""), "Text Reflow",
+            // "", "");
             // }
 
             XmlPullParser xpp = XmlParser.buildPullParser();
@@ -378,8 +380,8 @@ public class Fb2Extractor extends BaseExtractor {
         LOG.d("Fb2Context convert false");
         return false;
     }
-    
-    public static boolean convertFolderToEpub(File inputFolder, File outputFile, String author, String title) {
+
+    public static boolean convertFolderToEpub(File inputFolder, File outputFile, String author, String title, List<OutlineLink> outline) {
 
         try {
             ZipOutputStream zos = new ZipOutputStream(new FileOutputStream(outputFile));
@@ -393,7 +395,7 @@ public class Fb2Extractor extends BaseExtractor {
             meta = meta.replace("%creator%", author);
 
             writeToZip(zos, "OEBPS/content.opf", meta);
-            writeToZip(zos, "OEBPS/fb2.ncx", genetateNCX(new ArrayList<String>()));
+            writeToZip(zos, "OEBPS/fb2.ncx", genetateNCXbyOutline(outline));
 
             for (File file : inputFolder.listFiles()) {
                 writeToZip(zos, "OEBPS/" + file.getName(), new FileInputStream(file));
@@ -553,6 +555,20 @@ public class Fb2Extractor extends BaseExtractor {
         StringBuilder navs = new StringBuilder();
         for (int i = 0; i < titles.size(); i++) {
             navs.append(createNavPoint(i + 1, titles.get(i)));
+        }
+        return NCX.replace("%nav%", navs.toString());
+    }
+
+    public static String genetateNCXbyOutline(List<OutlineLink> titles) {
+        StringBuilder navs = new StringBuilder();
+        for (int i = 0; i < titles.size(); i++) {
+            OutlineLink link = titles.get(i);
+            String titleTxt = link.getTitle();
+            if (TxtUtils.isNotEmpty(titleTxt)) {
+                String createNavPoint = createNavPoint(OutlineLinkWrapper.getPageNumber(link.getLink()), link.getLevel() + DIVIDER + titleTxt);
+                createNavPoint = createNavPoint.replace("fb2.fb2", "temp-reflow.html");
+                navs.append(createNavPoint);
+            }
         }
         return NCX.replace("%nav%", navs.toString());
     }

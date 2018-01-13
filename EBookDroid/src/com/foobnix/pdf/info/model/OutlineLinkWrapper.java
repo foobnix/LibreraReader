@@ -33,6 +33,22 @@ public class OutlineLinkWrapper implements CharSequence {
         }
     }
 
+    public static int getPageNumber(String link) {
+        if (link != null) {
+            if (link.startsWith("#")) {
+                try {
+                    int page = Integer.parseInt(link.substring(1).replace(" ", ""));
+                    return PageUrl.realToFake(page);
+
+                } catch (final Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+        return -1;
+
+    }
+
     public String getTitleRaw() {
         return title;
 

@@ -22,6 +22,7 @@ import org.ebookdroid.BookType;
 import org.ebookdroid.common.cache.CacheManager;
 import org.ebookdroid.core.codec.CodecDocument;
 import org.ebookdroid.core.codec.CodecPage;
+import org.ebookdroid.core.codec.OutlineLink;
 import org.ebookdroid.ui.viewer.VerticalViewActivity;
 import org.json.JSONObject;
 import org.mozilla.universalchardet.UniversalDetector;
@@ -1168,6 +1169,8 @@ public class ExtUtils {
 
             CodecDocument doc = BookType.getCodecContextByPath(file.getPath()).openDocument(file.getPath(), pwd);
 
+            List<OutlineLink> outline = doc.getOutline();
+
             final File fileReflowHtml = new File(bookTempRoot, "temp" + REFLOW_HTML);
             try {
                 FileWriter fout = new FileWriter(fileReflowHtml);
@@ -1184,6 +1187,7 @@ public class ExtUtils {
                     CodecPage pageCodec = doc.getPage(i);
                     String html = pageCodec.getPageHTMLWithImages();
 
+                    out.write("<a id=\"" + i + "\"></a>");
                     int startImage = html.indexOf(IMAGE_BEGIN);
                     while (startImage >= 0) {
                         if (!TempHolder.get().isConverting) {
@@ -1255,7 +1259,7 @@ public class ExtUtils {
 
             FileMeta meta = AppDB.get().getOrCreate(file.getPath());
 
-            Fb2Extractor.convertFolderToEpub(bookTempRoot, epubOutpub, meta.getAuthor(), meta.getTitle());
+            Fb2Extractor.convertFolderToEpub(bookTempRoot, epubOutpub, meta.getAuthor(), meta.getTitle(), outline);
 
             CacheZipUtils.removeFiles(bookTempRoot.listFiles());
             bookTempRoot.delete();

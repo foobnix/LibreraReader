@@ -18,11 +18,9 @@ public class HtmlContext extends PdfContext {
 
         Map<String, String> notes = null;
         try {
-            if (false) {
-                FooterNote extract = HtmlExtractor.extract(fileName, CacheZipUtils.CACHE_BOOK_DIR.getPath());
-                fileName = extract.path;
-                notes = extract.notes;
-            }
+            FooterNote extract = HtmlExtractor.extract(fileName, CacheZipUtils.CACHE_BOOK_DIR.getPath());
+            fileName = extract.path;
+            notes = extract.notes;
             LOG.d("new file name", fileName);
         } catch (Exception e) {
             LOG.e(e);

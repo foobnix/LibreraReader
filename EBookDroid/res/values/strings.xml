@@ -122,7 +122,7 @@
    <string name="pdf_mode">PDF Mode</string>
    <string name="expiremental_features">Annotate and draw (In testing, it may damage some documents)</string>
    <string name="remember_dictionary">Choose dictionary</string>
-   <string name="customize_font_background_colours">Customize Font and Background colours</string>
+   <string name="customize_font_background_colors">Customize Font and Background colours</string>
    <string name="customize_background_color">Customize background colour</string>
    <string name="day">Day</string>
    <string name="nigth">Night</string>
