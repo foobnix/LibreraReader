@@ -2213,12 +2213,12 @@ Java_org_ebookdroid_droids_mupdf_codec_MuPdfPage_getPageAsHtml(JNIEnv * env, job
 		ctm = fz_identity;
 		
 		text = fz_new_stext_page(ctx, fz_bound_page(ctx, page->page, &mediabox));
-
-		if(opts==-1){
+		int j = (int)opts;
+		if(j == -1){
 			dev = fz_new_stext_device(ctx, text, NULL);
 		}else{
 			fz_stext_options stext_options;
-			stext_options.flags = (int)opts;
+			stext_options.flags = j;
 			dev = fz_new_stext_device(ctx, text, &stext_options);
 
 		}
