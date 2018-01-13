@@ -2125,28 +2125,24 @@ fz_print_stext_page_as_text_my1(fz_context *ctx, fz_output *out, fz_stext_page *
 	fz_write_printf(ctx, out, "<br/>");
 		}else if (block->type == FZ_STEXT_BLOCK_TEXT)
 		{
-			//fz_print_stext_block_as_html(ctx, out,block);
-			
+			//fz_write_printf(ctx, out, "<p style=\"font-size:%gpt;\">", block->u.t.first_line->first_char->size);
+			fz_write_printf(ctx, out, "<p>");
+
+					fz_font *font = block->u.t.first_line->first_char->font;
+					int is_bold = fz_font_is_bold(ctx, font);
+					int is_italic = fz_font_is_italic(ctx, font);
+					int is_mono = fz_font_is_monospaced(ctx, font);
+
+					if (is_bold) fz_write_printf(ctx,out,"<b>");
+					if (is_italic) fz_write_printf(ctx,out,"<i>");
+					if (is_mono) fz_write_printf(ctx,out,"<tt>");
+
 			
 			for (line = block->u.t.first_line; line; line = line->next)
 			{
-					int is_bold = fz_font_is_bold(ctx, line->first_char->font);
-					int is_italic = fz_font_is_italic(ctx, line->first_char->font);
-
-					if (is_bold){
-						fz_write_printf(ctx,out,"<b>");
-					}
-
-					if (is_italic){
-						fz_write_printf(ctx,out,"<i>");
-					}
-
+				    
 				for (ch = line->first_char; ch; ch = ch->next)
 				{
-					//n = fz_runetochar(utf, ch->c);
-					//for (i = 0; i < n; i++)
-						//fz_write_byte(ctx, out, utf[i]);
-
 					switch (ch->c)
 										{
 										case '<': fz_write_string(ctx, out, "&lt;"); break;
@@ -2163,20 +2159,16 @@ fz_print_stext_page_as_text_my1(fz_context *ctx, fz_output *out, fz_stext_page *
 										}
 
 				}
-
-				    if(is_bold){
-						fz_write_printf(ctx,out,"</b> ");
-					}
-
-					if(is_italic){
-						fz_write_printf(ctx,out,"</i> ");
-					}
-
-				fz_write_string(ctx, out, " ");
-				//fz_write_printf(ctx, out, "<br/>");
+				fz_write_string(ctx, out, " ");				
 			}
+			
+			if (is_bold) fz_write_printf(ctx,out,"</b>");
+			if (is_italic) fz_write_printf(ctx,out,"</i>");
+			if (is_mono) fz_write_printf(ctx,out,"</tt>");
+			
+			fz_write_printf(ctx,out,"</p>");
 			//fz_write_string(ctx, out, "\n");
-			fz_write_printf(ctx, out, "<br/>");
+			//fz_write_printf(ctx, out, "<br/>");
 			
 		}
 	}

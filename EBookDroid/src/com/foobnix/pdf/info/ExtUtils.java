@@ -1256,6 +1256,9 @@ public class ExtUtils {
             }
 
             File epubOutpub = new File(AppState.get().downlodsPath, file.getName() + REFLOW_EPUB);
+            if (epubOutpub.isFile()) {
+                epubOutpub.delete();
+            }
 
             FileMeta meta = AppDB.get().getOrCreate(file.getPath());
 

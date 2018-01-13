@@ -395,7 +395,9 @@ public class Fb2Extractor extends BaseExtractor {
             meta = meta.replace("%creator%", author);
 
             writeToZip(zos, "OEBPS/content.opf", meta);
-            writeToZip(zos, "OEBPS/fb2.ncx", genetateNCXbyOutline(outline));
+            if (TxtUtils.isListNotEmpty(outline)) {
+                writeToZip(zos, "OEBPS/fb2.ncx", genetateNCXbyOutline(outline));
+            }
 
             for (File file : inputFolder.listFiles()) {
                 writeToZip(zos, "OEBPS/" + file.getName(), new FileInputStream(file));
