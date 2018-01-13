@@ -2125,6 +2125,9 @@ fz_print_stext_page_as_text_my1(fz_context *ctx, fz_output *out, fz_stext_page *
 	fz_write_printf(ctx, out, "<br/>");
 		}else if (block->type == FZ_STEXT_BLOCK_TEXT)
 		{
+			//fz_print_stext_block_as_html(ctx, out,block);
+			
+			
 			for (line = block->u.t.first_line; line; line = line->next)
 			{
 					int is_bold = fz_font_is_bold(ctx, line->first_char->font);
@@ -2174,6 +2177,7 @@ fz_print_stext_page_as_text_my1(fz_context *ctx, fz_output *out, fz_stext_page *
 			}
 			//fz_write_string(ctx, out, "\n");
 			fz_write_printf(ctx, out, "<br/>");
+			
 		}
 	}
 }

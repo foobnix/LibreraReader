@@ -139,7 +139,7 @@
    <string name="send_file">Отправить файл</string>
    <string name="file_info">Информация о файле</string>
    <string name="open_file">Открыть файл</string>
-   <string name="make_text_reflow">Перекомпоновать в FB2-формат</string>
+   <string name="make_text_reflow">Перекомпоновать в текстовый вид (Text Reflow)</string>
    <string name="search_not_supported_formats">Поиск среди неподдерживаемых форматов</string>
    <string name="search_in_google">Найти в Google</string>
    <string name="reading_the_text_by_voice">Чтение текста голосом</string>
