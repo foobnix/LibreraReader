@@ -16,17 +16,19 @@ import com.foobnix.sys.TempHolder;
 
 public class EpubContext extends PdfContext {
 
+    private static final String TAG = "EpubContext";
     File cacheFile;
 
     @Override
     public File getCacheFileName(String fileNameOriginal) {
+        LOG.d(TAG, "getCacheFileName", fileNameOriginal, BookCSS.get().hypenLang);
         cacheFile = new File(CacheZipUtils.CACHE_BOOK_DIR, (fileNameOriginal + BookCSS.get().isAutoHypens + BookCSS.get().hypenLang).hashCode() + ".epub");
         return cacheFile;
     }
 
     @Override
     public CodecDocument openDocumentInner(final String fileName, String password) {
-        LOG.d("Context", "EpubContext", fileName);
+        LOG.d(TAG, fileName);
 
         if (BookCSS.get().isAutoHypens && !cacheFile.isFile()) {
             EpubExtractor.proccessHypens(fileName, cacheFile.getPath());

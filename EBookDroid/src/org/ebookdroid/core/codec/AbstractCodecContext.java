@@ -10,13 +10,14 @@ import org.ebookdroid.ui.viewer.VerticalViewActivity;
 
 import com.foobnix.android.utils.LOG;
 import com.foobnix.android.utils.TxtUtils;
+import com.foobnix.dao2.FileMeta;
 import com.foobnix.ext.CacheZipUtils;
 import com.foobnix.ext.CacheZipUtils.CacheDir;
-import com.foobnix.ext.EbookMeta;
 import com.foobnix.pdf.info.ExtUtils;
+import com.foobnix.pdf.info.Urls;
 import com.foobnix.pdf.info.model.BookCSS;
 import com.foobnix.sys.TempHolder;
-import com.foobnix.ui2.FileMetaCore;
+import com.foobnix.ui2.AppDB;
 
 import android.graphics.Bitmap;
 
@@ -59,27 +60,28 @@ public abstract class AbstractCodecContext implements CodecContext {
 
     @Override
     public CodecDocument openDocument(String fileNameOriginal, String password) {
-        LOG.d("Open Document", fileNameOriginal);
+        LOG.d("Open-Document", fileNameOriginal);
         // TempHolder.get().loadingCancelled = false;
         if (ExtUtils.isZip(fileNameOriginal)) {
-            LOG.d("Open Document ZIP", fileNameOriginal);
+            LOG.d("Open-Document ZIP", fileNameOriginal);
             return openDocumentInnerCanceled(fileNameOriginal, password);
         }
 
-        EbookMeta ebookMeta = FileMetaCore.get().getEbookMeta(fileNameOriginal, CacheDir.ZipApp, false);
-
-        String lang = ebookMeta.getLang();
-        if (TxtUtils.isNotEmpty(lang)) {
-            BookCSS.get().hypenLang = lang;
+        FileMeta meta = AppDB.get().load(fileNameOriginal);
+        if (meta != null) {
+            BookCSS.get().hypenLang = meta.getLang();
+        }
+        if (TxtUtils.isEmpty(BookCSS.get().hypenLang)) {
+            BookCSS.get().hypenLang = Urls.getLangCode();
         }
 
-        LOG.d("openDocument2 LANG:", lang, fileNameOriginal);
+        LOG.d("Open-Document 2 LANG:", BookCSS.get().hypenLang, fileNameOriginal);
 
         File cacheFileName = getCacheFileName(fileNameOriginal);
         CacheZipUtils.removeFiles(CacheZipUtils.CACHE_BOOK_DIR.listFiles(), cacheFileName);
 
         if (cacheFileName != null && cacheFileName.isFile()) {
-            LOG.d("Open Document from cache", fileNameOriginal);
+            LOG.d("Open-Document from cache", fileNameOriginal);
             return openDocumentInnerCanceled(fileNameOriginal, password);
         }
 
@@ -87,7 +89,7 @@ public abstract class AbstractCodecContext implements CodecContext {
         CacheZipUtils.createAllCacheDirs();
         try {
             String fileName = CacheZipUtils.extracIfNeed(fileNameOriginal, CacheDir.ZipApp).unZipPath;
-            LOG.d("Open Document extract", fileName);
+            LOG.d("Open-Document extract", fileName);
             if (!ExtUtils.isValidFile(fileName)) {
                 return null;
             }

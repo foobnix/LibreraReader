@@ -2931,13 +2931,11 @@ public class DragingDialogs {
 
                 final TextView hypenLang = (TextView) inflate.findViewById(R.id.hypenLang);
 
-                // hypenLang.setVisibility(isSupportHypens ? View.VISIBLE :
-                // View.GONE);
-                // hypenLangLabel.setVisibility(isSupportHypens ? View.VISIBLE :
-                // View.GONE);
+                hypenLang.setVisibility(isSupportHypens ? View.VISIBLE : View.GONE);
+                hypenLangLabel.setVisibility(isSupportHypens ? View.VISIBLE : View.GONE);
 
-                hypenLang.setVisibility(View.GONE);
-                hypenLangLabel.setVisibility(View.GONE);
+                // hypenLang.setVisibility(View.GONE);
+                // hypenLangLabel.setVisibility(View.GONE);
 
                 hypenLang.setText(DialogTranslateFromTo.getLanuageByCode(BookCSS.get().hypenLang));
                 TxtUtils.underlineTextView(hypenLang);
@@ -2967,6 +2965,11 @@ public class DragingDialogs {
                                     BookCSS.get().hypenLang = lang;
                                     hypenLang.setText(titleLang);
                                     TxtUtils.underlineTextView(hypenLang);
+                                    FileMeta load = AppDB.get().load(controller.getCurrentBook().getPath());
+                                    if (load != null) {
+                                        load.setLang(lang);
+                                        AppDB.get().update(load);
+                                    }
                                     return false;
                                 }
                             });
@@ -3467,7 +3470,6 @@ public class DragingDialogs {
                 inflate.findViewById(R.id.fontSizeLayout).setVisibility(ExtUtils.isTextFomat(controller.getCurrentBook().getPath()) ? View.VISIBLE : View.GONE);
                 inflate.findViewById(R.id.fontNameSelectionLayout).setVisibility(ExtUtils.isTextFomat(controller.getCurrentBook().getPath()) ? View.VISIBLE : View.GONE);
 
-
                 final TextView fontNamePreview = (TextView) inflate.findViewById(R.id.fontNamePreview);
                 // fontNamePreview.setTypeface(BookCSS.getTypeFaceForFont(BookCSS.get().normalFont));
 
@@ -3511,8 +3513,6 @@ public class DragingDialogs {
                         });
                     }
                 });
-
-
 
                 // crop
                 CheckBox isCropBorders = (CheckBox) inflate.findViewById(R.id.isCropBorders);
@@ -3616,7 +3616,6 @@ public class DragingDialogs {
                         builder.setTitle(R.string.bluelight_filter);
 
                         final View inflate = inflater.inflate(R.layout.dialog_bluelight, null, false);
-
 
                         final CustomColorView blueLightColor = (CustomColorView) inflate.findViewById(R.id.blueLightColor);
                         TxtUtils.bold(blueLightColor.getText1());

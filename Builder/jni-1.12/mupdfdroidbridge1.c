@@ -2125,13 +2125,13 @@ fz_print_stext_page_as_text_my1(fz_context *ctx, fz_output *out, fz_stext_page *
 	fz_write_printf(ctx, out, "<br/>");
 		}else if (block->type == FZ_STEXT_BLOCK_TEXT)
 		{
-			//fz_write_printf(ctx, out, "<p style=\"font-size:%gpt;\">", block->u.t.first_line->first_char->size);
 			fz_write_printf(ctx, out, "<p>");
 
-					fz_font *font = block->u.t.first_line->first_char->font;
-					int is_bold = fz_font_is_bold(ctx, font);
-					int is_italic = fz_font_is_italic(ctx, font);
-					int is_mono = fz_font_is_monospaced(ctx, font);
+					fz_font *font1 = block->u.t.first_line->first_char->font;
+					fz_font *font2 = block->u.t.first_line->last_char->font;
+					int is_bold = fz_font_is_bold(ctx, font1) && fz_font_is_bold(ctx, font2);
+					int is_italic = fz_font_is_italic(ctx, font1) && fz_font_is_italic(ctx, font2);
+					int is_mono = fz_font_is_monospaced(ctx, font1) && fz_font_is_monospaced(ctx, font2);
 
 					if (is_bold) fz_write_printf(ctx,out,"<b>");
 					if (is_italic) fz_write_printf(ctx,out,"<i>");
@@ -2143,6 +2143,16 @@ fz_print_stext_page_as_text_my1(fz_context *ctx, fz_output *out, fz_stext_page *
 				    
 				for (ch = line->first_char; ch; ch = ch->next)
 				{
+					
+					int is_bold_ch = !is_bold && fz_font_is_bold(ctx, ch->font);
+					int is_italic_ch = !is_italic && fz_font_is_italic(ctx, ch->font);
+					int is_mono_ch = !is_mono && fz_font_is_monospaced(ctx, ch->font);
+
+
+					if (is_bold_ch) fz_write_printf(ctx,out,"<b>");
+					if (is_italic_ch) fz_write_printf(ctx,out,"<i>");
+					if (is_mono_ch) fz_write_printf(ctx,out,"<tt>");
+
 					switch (ch->c)
 										{
 										case '<': fz_write_string(ctx, out, "&lt;"); break;
@@ -2151,12 +2161,15 @@ fz_print_stext_page_as_text_my1(fz_context *ctx, fz_output *out, fz_stext_page *
 										case '"': fz_write_string(ctx, out, "&quot;"); break;
 										//case '\'': fz_write_string(ctx, out, "&apos;"); break;
 										default:
-											   if (ch->c >= 32 && ch->c <= 127)
-												   fz_write_printf(ctx, out, "%c", ch->c);
-											   else
-												   fz_write_printf(ctx, out, "&#x%x;", ch->c);
+											   n = fz_runetochar(utf, ch->c);
+												for (i = 0; i < n; i++)
+													fz_write_byte(ctx, out, utf[i]);
 											   break;
 										}
+
+					if (is_bold_ch) fz_write_printf(ctx,out,"</b>");
+					if (is_italic_ch) fz_write_printf(ctx,out,"</i>");
+					if (is_mono_ch) fz_write_printf(ctx,out,"</tt>");
 
 				}
 				fz_write_string(ctx, out, " ");				

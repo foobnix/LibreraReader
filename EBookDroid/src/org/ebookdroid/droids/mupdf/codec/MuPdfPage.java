@@ -358,7 +358,6 @@ public class MuPdfPage extends AbstractCodecPage {
 
         ArrayList<TextWord[]> lns = new ArrayList<TextWord[]>();
 
-
         for (TextBlock block : blocks) {
             ArrayList<TextWord> words = new ArrayList<TextWord>();
             for (TextLine line : block.lines) {
@@ -399,67 +398,11 @@ public class MuPdfPage extends AbstractCodecPage {
         TextWord[][] res = lns.toArray(new TextWord[lns.size()][]);
         for (TextWord[] lines : res) {
             for (TextWord word : lines) {
-                LOG.d("word2", word.w);
                 update(word);
             }
         }
-        if (true) {
-            return res;
-        }
+        return res;
 
-        if (true) {
-            return new TextWord[0][0];
-        }
-        TextChar[][][][] chars = text();
-        if (chars == null) {
-            return new TextWord[0][0];
-        }
-
-        for (TextChar[][][] bl : chars) {
-
-            if (bl == null)
-                continue;
-            for (TextChar[][] ln : bl) {
-                ArrayList<TextWord> words = new ArrayList<TextWord>();
-                TextWord word = new TextWord();
-
-                for (TextChar[] sp : ln) {
-                    for (TextChar tc : sp) {
-                        if (AppState.get().selectingByLetters) {
-                            if (tc.c == SPACE_CHAR) {
-                                tc.c = ' ';
-                            }
-                            words.add(new TextWord(tc));
-                            continue;
-                        }
-                        if (tc.c == ' ') {
-                            words.add(new TextWord(tc));
-                        }
-                        if (tc.c != ' ') {
-                            word.Add(tc);
-                        } else if (word.w.length() > 0) {
-                            words.add(word);
-                            word = new TextWord();
-                        }
-                    }
-                }
-
-                if (word.w.length() > 0)
-                    words.add(word);
-
-                if (words.size() > 0)
-                    lns.add(words.toArray(new TextWord[words.size()]));
-            }
-        }
-
-        TextWord[][] res2 = lns.toArray(new TextWord[lns.size()][]);
-        for (TextWord[] lines : res2) {
-            for (TextWord word : lines) {
-                update(word);
-            }
-        }
-
-        return res2;
     }
 
     public void update(TextWord wd) {
