@@ -998,7 +998,8 @@ public class DragingDialogs {
                 }
 
                 final EditText editText = (EditText) view.findViewById(R.id.editText);
-                String selectedText = AppState.get().selectedText;
+                final String selectedText = AppState.get().selectedText;
+                AppState.get().selectedText = null;
 
                 editText.setText(selectedText);
 
@@ -1099,12 +1100,12 @@ public class DragingDialogs {
                 TextView onBookSearch = (TextView) view.findViewById(R.id.onBookSearch);
                 // onBookSearch.setText(controller.getString(R.string.search_in_the_book)
                 // + " \"" + AppState.get().selectedText + "\"");
-                onBookSearch.setVisibility(AppState.get().selectedText.contains(" ") ? View.GONE : View.VISIBLE);
+                onBookSearch.setVisibility(selectedText.contains(" ") ? View.GONE : View.VISIBLE);
                 onBookSearch.setOnClickListener(new View.OnClickListener() {
 
                     @Override
                     public void onClick(View v) {
-                        searchMenu(anchor, controller, AppState.get().selectedText);
+                        searchMenu(anchor, controller, selectedText);
                     }
                 });
 

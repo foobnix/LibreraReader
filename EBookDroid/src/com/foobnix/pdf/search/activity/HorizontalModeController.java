@@ -493,6 +493,7 @@ public abstract class HorizontalModeController extends DocumentController {
 
     @Override
     public void clearSelectedText() {
+        AppState.get().selectedText = null;
         PageImageState.get().cleanSelectedWords();
         EventBus.getDefault().post(new InvalidateMessage());
     }
