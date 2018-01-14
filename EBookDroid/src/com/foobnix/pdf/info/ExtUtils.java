@@ -85,6 +85,8 @@ import android.widget.Toast;
 
 public class ExtUtils {
 
+    private static final String IMAGE_PNG_BASE64 = "image/png;base64,";
+    private static final String IMAGE_JPEG_BASE64 = "image/jpeg;base64,";
     public static final String REFLOW_EPUB = "-reflow.epub";
     public static final String REFLOW_HTML = "-reflow.html";
     private static final String IMAGE_BEGIN = "<image-begin>";
@@ -1201,12 +1203,12 @@ public class ExtUtils {
 
                         String mime = html.substring(startImage + IMAGE_BEGIN.length(), endImage);
                         String format;
-                        if (mime.startsWith("image/jpeg;base64,")) {
+                        if (mime.startsWith(IMAGE_JPEG_BASE64)) {
                             format = ".jpg";
-                            mime = mime.replace("image/jpeg;base64,", "");
-                        } else if (mime.startsWith("image/png;base64,")) {
+                            mime = mime.replace(IMAGE_JPEG_BASE64, "");
+                        } else if (mime.startsWith(IMAGE_PNG_BASE64)) {
                             format = ".png";
-                            mime = mime.replace("image/png;base64,", "");
+                            mime = mime.replace(IMAGE_PNG_BASE64, "");
                         } else {
                             format = ".none";
                         }
@@ -1215,7 +1217,7 @@ public class ExtUtils {
 
                         String imageName = imgCount + format;
 
-                        LOG.d("Extract mime", format, startImage, endImage, mime.length(), imageName);
+                        LOG.d("Extract-mime", mime.substring(mime.length() - 10, mime.length()));
 
                         FileOutputStream imgStream = new FileOutputStream(new File(bookTempRoot, imageName));
                         imgStream.write(decode);
