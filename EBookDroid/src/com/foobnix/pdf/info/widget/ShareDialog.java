@@ -100,9 +100,7 @@ public class ShareDialog {
         final boolean isMainTabs = a instanceof MainTabs2;
 
         List<String> items = new ArrayList<String>();
-        if (isPDF) {
-            items.add(a.getString(R.string.make_text_reflow));
-        }
+
         if (isLibrary) {
             items.add(a.getString(R.string.library));
         }
@@ -113,6 +111,10 @@ public class ShareDialog {
             } else if (a instanceof HorizontalViewActivity) {
                 items.add(AppState.get().nameVerticalMode);
             }
+        }
+
+        if (isPDF) {
+            items.add(a.getString(R.string.make_text_reflow));
         }
 
         items.add(a.getString(R.string.open_with));
@@ -134,9 +136,7 @@ public class ShareDialog {
                     public void onClick(final DialogInterface dialog, final int which) {
                         int i = 0;
 
-                        if (isPDF && which == i++) {
-                            ExtUtils.openPDFInTextReflow(a, file, page + 1, dc);
-                        }
+
                         if (isLibrary && which == i++) {
                             a.finish();
                             MainTabs2.startActivity(a, UITab.getCurrentTabIndex(UITab.SearchFragment));
@@ -167,6 +167,9 @@ public class ShareDialog {
                                 });
                             }
                         }
+                else if (isPDF && which == i++) {
+                    ExtUtils.openPDFInTextReflow(a, file, page + 1, dc);
+                }
 
                         if (which == i++) {
                             ExtUtils.openWith(a, file);
