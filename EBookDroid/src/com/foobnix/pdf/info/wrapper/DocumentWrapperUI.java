@@ -713,8 +713,9 @@ public class DocumentWrapperUI {
         View thumbnail = a.findViewById(R.id.thumbnail);
         thumbnail.setOnClickListener(onThumbnail);
 
-        View itemMenu = a.findViewById(R.id.itemMenu);
-        itemMenu.setOnClickListener(onItemMenu);
+        View bookMenu = a.findViewById(R.id.bookMenu);
+        bookMenu.setOnClickListener(onItemMenu);
+        modeName.setOnClickListener(onItemMenu);
 
         progressDraw = (ProgressDraw) a.findViewById(R.id.progressDraw);
 

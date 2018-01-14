@@ -214,6 +214,7 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
         TextView modeName = (TextView) findViewById(R.id.modeName);
         modeName.setText(AppState.get().nameHorizontalMode);
 
+
         pagesCountIndicator = (TextView) findViewById(R.id.pagesCountIndicator);
         flippingIntervalView = (TextView) findViewById(R.id.flippingIntervalView);
         pagesTime = (TextView) findViewById(R.id.pagesTime);
@@ -561,7 +562,8 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
             }
         });
 
-        findViewById(R.id.bookMenu).setOnClickListener(new View.OnClickListener() {
+        final View bookMenu = findViewById(R.id.bookMenu);
+        bookMenu.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(final View v) {
@@ -578,6 +580,13 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
                 }, documentController.getCurentPage(), null, documentController);
                 Keyboards.hideNavigation(HorizontalViewActivity.this);
 
+            }
+        });
+        modeName.setOnClickListener(new OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                bookMenu.performClick();
             }
         });
 
@@ -1416,6 +1425,13 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
 
         bottomIndicators.setOnTouchListener(new HorizontallSeekTouchEventListener(onSeek, documentController.getPageCount(), false));
         progressDraw.setOnTouchListener(new HorizontallSeekTouchEventListener(onSeek, documentController.getPageCount(), false));
+        bottomIndicators.setOnClickListener(new OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                nextPage();
+            }
+        });
 
         currentSeek.setText("" + (documentController.getCurentPage() + 1));
         maxSeek.setText("" + documentController.getPageCount());

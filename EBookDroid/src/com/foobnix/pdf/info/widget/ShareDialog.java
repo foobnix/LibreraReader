@@ -128,8 +128,8 @@ public class ShareDialog {
         items.add(a.getString(R.string.file_info));
 
         final AlertDialog.Builder builder = new AlertDialog.Builder(a);
-        builder.setTitle(R.string.choose_)//
-                .setItems(items.toArray(new String[items.size()]), new DialogInterface.OnClickListener() {
+        //builder.setTitle(R.string.choose_)//
+        builder.setItems(items.toArray(new String[items.size()]), new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(final DialogInterface dialog, final int which) {
                         int i = 0;
