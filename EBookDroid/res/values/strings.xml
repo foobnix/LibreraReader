@@ -20,7 +20,7 @@
    <string name="crop_white_borders">Crop white borders</string>
    <string name="delete">Delete</string>
    <string name="delete_book_">Delete the File from SD card?</string>
-   <string name="dialog_color_picker">Colour Picker</string>
+   <string name="dialog_color_picker">Color Picker</string>
    <string name="Document_is_corrupted">Document is corrupted</string>
    <string name="downloading">Downloading</string>
    <string name="edit">Edit</string>
@@ -38,7 +38,7 @@
    <string name="help_us_translate">Help us translate</string>
    <string name="how_to_remove_ads_">How to remove Ads?</string>
    <string name="import_">Import ...</string>
-   <string name="invert_colors">Invert colours</string>
+   <string name="invert_colors">Invert colors</string>
    <string name="keys">Keys</string>
    <string name="landscape">Landscape</string>
    <string name="landscape_180">Landscape (180)</string>
@@ -70,7 +70,7 @@
    <string name="portrait">Portrait</string>
    <string name="preferences">Preferences</string>
    <string name="press_any_key">Press Any Key</string>
-   <string name="press_color_to_apply">Press on Colour to apply</string>
+   <string name="press_color_to_apply">Press on Color to apply</string>
    <string name="prev">Prev</string>
    <string name="prev_keys">Prev keys:</string>
    <string name="pro_pdf_description_ads_free">Application without Ads</string>
@@ -122,8 +122,8 @@
    <string name="pdf_mode">PDF Mode</string>
    <string name="expiremental_features">Annotate and draw (In testing, it may damage some documents)</string>
    <string name="remember_dictionary">Choose dictionary</string>
-   <string name="customize_font_background_colors">Customize Font and Background colours</string>
-   <string name="customize_background_color">Customize background colour</string>
+   <string name="customize_font_background_colors">Customize Font and Background colors</string>
+   <string name="customize_background_color">Customize background color</string>
    <string name="day">Day</string>
    <string name="nigth">Night</string>
    <string name="restore_defaults_full">Do you want to restore default values?</string>
@@ -178,7 +178,7 @@
    <string name="let_read_a_book">I think you want to read a book</string>
    <string name="convert_to">Convert to</string>
    <string name="convert_to_other_format_online_">Convert to other format (online)</string>
-   <string name="invalid_color_value">Invalid colour value</string>
+   <string name="invalid_color_value">Invalid color value</string>
    <string name="books_not_found">Books not found</string>
    <string name="ignore_annotations_on_click">Ignore annotations on click</string>
    <string name="open_in_the_dictionary">Open in the dictionary</string>
@@ -226,7 +226,7 @@
    <string name="underline_of_text">Underline</string>
    <string name="strikethrough_of_text">Strikethrough</string>
    <string name="selecting_text_by_letters">Select text by individual letters</string>
-   <string name="color">Colour</string>
+   <string name="color">Color</string>
    <string name="image">Image</string>
    <string name="transparency">Transparency</string>
    <string name="write_feedback">Write feedback</string>
@@ -316,14 +316,14 @@
    <string name="interval_sec_">Interval (sec)</string>
    <string name="library_settings">Library settings</string>
    <string name="opening_the_last_book_when_the_application_starts">Opening the last book on application launch</string>
-   <string name="links_color_day">Links colour at day</string>
-   <string name="links_color_night">Links colour at night</string>
+   <string name="links_color_day">Links color at day</string>
+   <string name="links_color_night">Links color at night</string>
    <string name="status_bar">Status bar</string>
    <string name="show_status_bar">Show status bar</string>
    <string name="settings">Settings</string>
    <string name="text_size">Text size</string>
-   <string name="text_color_day">Day text colour</string>
-   <string name="text_color_night">Night text colour at night</string>
+   <string name="text_color_day">Day text color</string>
+   <string name="text_color_night">Night text color at night</string>
    <string name="show_application_close_dialog_every_time">Show exit prompt before closing application</string>
    <string name="tabs_position">Tabs position</string>
    <string name="visible">Visible</string>
