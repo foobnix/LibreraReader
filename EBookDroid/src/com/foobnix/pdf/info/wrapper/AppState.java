@@ -517,13 +517,6 @@ public class AppState {
         return isReverseKeys ? nextKeys : prevKeys;
     }
 
-    public static Map<String, String> getUserGuides() {
-        final Map<String, String> providers = new LinkedHashMap<String, String>();
-        providers.put("ru", "Русский");
-        providers.put("en", "English");
-
-        return providers;
-    }
 
     public static Map<String, String> getDictionaries(String input) {
         final Map<String, String> providers = new LinkedHashMap<String, String>();

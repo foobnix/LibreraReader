@@ -455,4 +455,5 @@
    <string name="no_author">작성자 없음</string>
    <string name="archives">기록 보관소</string>
    <string name="other">다른</string>
+   <string name="read_the_tutorial_online_or_download_in_pdf_format">온라인 튜토리얼 읽기 또는 PDF 형식으로 다운로드</string>
 </resources>

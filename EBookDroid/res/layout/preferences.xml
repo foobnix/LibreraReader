@@ -1024,9 +1024,10 @@
             <TextView
                 android:id="@+id/tutorialLink"
                 style="@style/textLink"
+                android:singleLine="false"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="http://en.lirbi.com English" />
+                android:text="@string/read_the_tutorial_online_or_download_in_pdf_format" />
         </LinearLayout>
 
         <TextView
