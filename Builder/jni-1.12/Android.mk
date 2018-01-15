@@ -9,7 +9,7 @@ include $(TOP_LOCAL_PATH)/hqx/Android.mk
 include $(TOP_LOCAL_PATH)/simd/Android.mk
 include $(TOP_LOCAL_PATH)/jpeg-turbo/Android.mk
 include $(TOP_LOCAL_PATH)/djvu/Android.mk
-include $(TOP_LOCAL_PATH)/AndroidLame.mk
+#include $(TOP_LOCAL_PATH)/AndroidLame.mk
 
 include $(TOP_LOCAL_PATH)/MuPdf.mk
 
