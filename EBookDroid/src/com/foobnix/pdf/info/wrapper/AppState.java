@@ -470,7 +470,7 @@ public class AppState {
     public boolean isBrowseImages = false;
 
     public int coverBigSize = (int) (((Dips.screenWidthDP() / (Dips.screenWidthDP() / 120)) - 8) * (Dips.isXLargeScreen() ? 1.5f : 1));
-    public int coverSmallSize = 85;
+    public int coverSmallSize = 80;
 
     @IgnoreHashCode
     public int tapZoneTop = TAP_PREV_PAGE;
