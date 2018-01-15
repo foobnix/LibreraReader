@@ -331,7 +331,7 @@ public class AppState {
     public boolean isInkMode = true;
 
     public volatile boolean isAutoScroll = false;
-    public int autoScrollSpeed = 140;
+    public int autoScrollSpeed = 120;
 
     @IgnoreHashCode
     public boolean isScrollSpeedByVolumeKeys = false;
@@ -431,7 +431,7 @@ public class AppState {
 
     // perofrmance
     public int pagesInMemory = 3;
-    public float pageQuality = 1.2f;
+    public float pageQuality = 1.4f;
     public int rotate = 0;
     public int rotateViewPager = 0;
 
