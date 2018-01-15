@@ -97,7 +97,7 @@ public class TxtUtils {
         LOG.d("pageHTML", pageHTML);
         pageHTML = pageHTML.replace("<b>", " ").replace("</b>", " ").replace("<i>", " ").replace("</i>", " ");
         pageHTML = pageHTML.replace("<br/>", " ");
-        pageHTML = pageHTML.replace("<p>", " ").replace("</p>", ". ");
+        pageHTML = pageHTML.replace("<p>", "").replace("</p>", " ");
         pageHTML = pageHTML.replace("&nbsp;", " ");
         pageHTML = pageHTML.replaceAll("<end/>$", " ").replace("<end/>", ".");
         pageHTML = pageHTML.replace("'", "");
