@@ -139,7 +139,7 @@
    <string name="send_file">Отправить файл</string>
    <string name="file_info">Информация о файле</string>
    <string name="open_file">Открыть файл</string>
-   <string name="make_text_reflow">Перекомпоновать в текстовый вид (EPUB-формат)</string>
+   <string name="make_text_reflow">Перекомпоновать в текстовый формат</string>
    <string name="search_not_supported_formats">Поиск среди неподдерживаемых форматов</string>
    <string name="search_in_google">Найти в Google</string>
    <string name="reading_the_text_by_voice">Чтение текста голосом</string>
@@ -155,7 +155,7 @@
    <string name="db_auto_alignemnt">Вписать в ширину экрана</string>
    <string name="db_auto_scroll">Автопрокрутка</string>
    <string name="db_do_nothing">Ничего не делать</string>
-   <string name="action_on_double_tap">Двойной клик по центру</string>
+   <string name="action_on_double_tap">Двойной тап по центру</string>
    <string name="add_bookmark">Добавить закладку</string>
    <string name="add">Добавить</string>
    <string name="say_hello_my_name_is_droid_reader1">Здравствуйте, меня зовут Droid-ридер</string>
@@ -338,7 +338,7 @@
    <string name="loading_error">Ошибка загрузки</string>
    <string name="please_wait">Пожалуйста, подождите</string>
    <string name="add_network_catalog">Добавление сетевого каталога</string>
-   <string name="do_you_want_to_delete_">Вы действительно хотите удалить?</string>
+   <string name="do_you_want_to_delete_">Действительно ли вы хотите удалить?</string>
    <string name="network">Сеть</string>
    <string name="name">Название</string>
    <string name="description">Описание</string>
@@ -430,7 +430,7 @@
    <string name="formatted_text">Форматированный текст (псевдографика)</string>
    <string name="continuous_text">Непрерывный текст (без разрыва строк)</string>
    <string name="remember_reading_mode">Запоминать режим чтения</string>
-   <string name="background_color_on_images_the_same_as_page_background">Применять особый алгоритм цветовой подстройки шрифтов и фонов для PDF/DJVU</string>
+   <string name="background_color_on_images_the_same_as_page_background">Применять особый алгоритм цветовой подстройки шрифтов и фонов (для PDF/DJVU)</string>
    <string name="block_page_movement_horizontally">Если замочек «запереть», страницы не будут смещаться в стороны</string>
    <string name="search_history_and_autocomplete">История поиска и автозаполнение</string>
    <string name="server">Сервер</string>
@@ -449,7 +449,7 @@
    <string name="mode_horizontally">Режим книги (гориз. листание)</string>
    <string name="mode_musician">Режим «Музыкант» (прокрутка нот)</string>
    <string name="automatic_export_backup">Автоматически экспортировать настройки, прогресс чтения книг и закладки при каждом выходе из приложения</string>
-   <string name="display_all_file_types_in_folders">Отображать все типы файлов в папках файлового мененджера</string>
+   <string name="display_all_file_types_in_folders">Отображать в папках все типы файлов</string>
    <string name="no_serie">Без серии</string>
    <string name="no_genre">Без жанра</string>
    <string name="no_author">Без автора</string>
