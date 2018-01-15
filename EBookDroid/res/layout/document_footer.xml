@@ -16,7 +16,9 @@
             android:clickable="true"
             android:focusableInTouchMode="false"
             android:gravity="center"
-            android:padding="2dip"
+            android:paddingLeft="2dip"
+            android:paddingRight="2dip"
+            android:paddingTop="2dip"
             android:visibility="visible" >
 
             <ImageView
@@ -116,7 +118,8 @@
             android:focusableInTouchMode="true"
             android:gravity="center_vertical"
             android:orientation="horizontal"
-            android:padding="2dip" >
+            android:paddingLeft="2dip"
+            android:paddingRight="2dip" >
 
             <TextView
                 android:id="@+id/currentSeek"
@@ -147,9 +150,9 @@
                 android:id="@+id/maxSeek"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
+                android:layout_marginRight="8dip"
                 android:layout_weight="0"
                 android:clickable="true"
-                android:layout_marginRight="8dip"
                 android:gravity="center"
                 android:minWidth="32dip"
                 android:text="--"
@@ -165,7 +168,9 @@
             android:focusableInTouchMode="true"
             android:gravity="center_vertical"
             android:orientation="horizontal"
-            android:padding="2dip" >
+            android:paddingBottom="2dip"
+            android:paddingLeft="2dip"
+            android:paddingRight="2dip" >
 
             <ImageView
                 android:id="@+id/autoScroll"
@@ -198,8 +203,8 @@
                 android:id="@+id/modeName"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:gravity="center"
                 android:layout_weight="1"
+                android:gravity="center"
                 android:text="@string/mode_vertical"
                 android:textColor="#ffffff"
                 android:textSize="14sp"
