@@ -331,7 +331,7 @@ public class AppState {
     public boolean isInkMode = true;
 
     public volatile boolean isAutoScroll = false;
-    public int autoScrollSpeed = 120;
+    public int autoScrollSpeed = 140;
 
     @IgnoreHashCode
     public boolean isScrollSpeedByVolumeKeys = false;
