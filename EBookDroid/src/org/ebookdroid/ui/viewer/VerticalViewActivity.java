@@ -11,10 +11,13 @@ import org.emdev.utils.LengthUtils;
 import com.foobnix.android.utils.Dips;
 import com.foobnix.android.utils.Keyboards;
 import com.foobnix.android.utils.LOG;
+import com.foobnix.dao2.FileMeta;
 import com.foobnix.pdf.info.ADS;
 import com.foobnix.pdf.info.Android6;
 import com.foobnix.pdf.info.ExtUtils;
 import com.foobnix.pdf.info.R;
+import com.foobnix.pdf.info.Urls;
+import com.foobnix.pdf.info.model.BookCSS;
 import com.foobnix.pdf.info.view.BrightnessHelper;
 import com.foobnix.pdf.info.widget.RecentUpates;
 import com.foobnix.pdf.info.wrapper.AppState;
@@ -22,6 +25,7 @@ import com.foobnix.pdf.info.wrapper.DocumentController;
 import com.foobnix.pdf.search.view.CloseAppDialog;
 import com.foobnix.sys.TempHolder;
 import com.foobnix.tts.TTSNotification;
+import com.foobnix.ui2.AppDB;
 import com.foobnix.ui2.FileMetaCore;
 import com.foobnix.ui2.MainTabs2;
 import com.foobnix.ui2.MyContextWrapper;
@@ -97,7 +101,8 @@ public class VerticalViewActivity extends AbstractActionActivity<VerticalViewAct
             return;
         } else {
             if (getIntent().getData() != null) {
-                final BookSettings bs = SettingsManager.getBookSettings(getIntent().getData().getPath());
+                String path = getIntent().getData().getPath();
+                final BookSettings bs = SettingsManager.getBookSettings(path);
                 // AppState.get().setNextScreen(bs.isNextScreen);
                 if (bs != null) {
                     // AppState.get().isLocked = bs.isLocked;
@@ -111,6 +116,12 @@ public class VerticalViewActivity extends AbstractActionActivity<VerticalViewAct
                     if (AppState.get().isCropPDF && !bs.isTextFormat()) {
                         AppState.get().isCrop = true;
                     }
+                }
+                FileMeta meta = AppDB.get().load(path);
+                if (meta != null) {
+                    BookCSS.get().hypenLang = meta.getLang();
+                } else {
+                    BookCSS.get().hypenLang = Urls.getLangCode();
                 }
             }
 

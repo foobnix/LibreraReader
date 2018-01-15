@@ -92,7 +92,6 @@ public class ExtUtils {
     private static final String IMAGE_BEGIN = "<image-begin>";
     private static final String IMAGE_END = "<image-end>";
 
-    public static final String REFLOW_FB2 = "-text-reflow.fb2.html";
 
     public static ExecutorService ES = Executors.newFixedThreadPool(4);
 

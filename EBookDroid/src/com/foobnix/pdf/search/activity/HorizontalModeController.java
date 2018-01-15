@@ -21,10 +21,13 @@ import com.foobnix.android.utils.Dips;
 import com.foobnix.android.utils.LOG;
 import com.foobnix.android.utils.Safe;
 import com.foobnix.android.utils.TxtUtils;
+import com.foobnix.dao2.FileMeta;
 import com.foobnix.pdf.CopyAsyncTask;
 import com.foobnix.pdf.info.ExtUtils;
 import com.foobnix.pdf.info.PageUrl;
+import com.foobnix.pdf.info.Urls;
 import com.foobnix.pdf.info.model.AnnotationType;
+import com.foobnix.pdf.info.model.BookCSS;
 import com.foobnix.pdf.info.model.OutlineLinkWrapper;
 import com.foobnix.pdf.info.wrapper.AppState;
 import com.foobnix.pdf.info.wrapper.DocumentController;
@@ -153,6 +156,13 @@ public abstract class HorizontalModeController extends DocumentController {
             if (AppState.get().isCropPDF && !isTextFormat) {
                 AppState.get().isCrop = true;
             }
+        }
+
+        FileMeta meta = AppDB.get().load(bookPath);
+        if (meta != null) {
+            BookCSS.get().hypenLang = meta.getLang();
+        } else {
+            BookCSS.get().hypenLang = Urls.getLangCode();
         }
 
         if (false) {
