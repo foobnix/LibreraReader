@@ -207,7 +207,7 @@
    <string name="customize_fonts">Настройка шрифтов</string>
    <string name="regular_font">Обычный шрифт</string>
    <string name="bold_font">Жирный шрифт</string>
-   <string name="italic_font">Курсив</string>
+   <string name="italic_font">Курсив</string>ит
    <string name="bold_italic_font">Жирный курсив</string>
    <string name="font_for_headers">Шрифт для заголовков</string>
    <string name="highlight_of_text">Выделение текста</string>
@@ -432,7 +432,7 @@
    <string name="remember_reading_mode">Запоминать режим чтения</string>
    <string name="background_color_on_images_the_same_as_page_background">Применять особый алгоритм цветовой подстройки шрифтов и фонов (для PDF/DJVU)</string>
    <string name="block_page_movement_horizontally">Если замочек «запереть», страницы не будут смещаться в стороны</string>
-   <string name="search_history_and_autocomplete">История поиска и автозаполнение</string>
+   <string name="search_history_and_autocomplete">История поиска и автозаполнение</string>ит
    <string name="server">Сервер</string>
    <string name="port">Порт</string>
    <string name="user">Логин</string>
@@ -454,7 +454,7 @@
    <string name="no_genre">Без жанра</string>
    <string name="no_author">Без автора</string>
    <string name="archives">Архивы</string>
-   <string name="other">Другое</string>
+   <string name="other">Другое</string>ит
    <string name="read_the_tutorial_online_or_download_in_pdf_format">Читать учебник онлайн или загрузить в формате PDF</string>
    <string name="start_recording">Начать запись</string>
 </resources>
