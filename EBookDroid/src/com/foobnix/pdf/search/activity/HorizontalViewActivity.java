@@ -1384,12 +1384,16 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
         }
 
         String textPage = TxtUtils.deltaPage(page + 1);
+        String textMax = TxtUtils.deltaPage(documentController.getPageCount());
         if (AppState.get().isRTL) {
             maxSeek.setText("" + textPage);
+            currentSeek.setText(textMax);
         } else {
+            maxSeek.setText("" + textMax);
             currentSeek.setText("" + textPage);
         }
-        pagesCountIndicator.setText(textPage + " ∕ " + documentController.getPageCount());
+        pagesCountIndicator.setText(textPage + " ∕ " + textMax);
+
         seekBar.setProgress(page);
         if (documentController != null) {
             documentController.currentPage = page;
@@ -1433,13 +1437,14 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
             }
         });
 
-        currentSeek.setText("" + (documentController.getCurentPage() + 1));
-        maxSeek.setText("" + documentController.getPageCount());
-
-        if (AppState.get().isRTL) {
-            maxSeek.setText("" + (documentController.getCurentPage() + 1));
-            currentSeek.setText("" + documentController.getPageCount());
-        }
+        // currentSeek.setText("" + (documentController.getCurentPage() + 1));
+        // maxSeek.setText("" + TxtUtils.deltaPage(documentController.getPageCount()));
+        //
+        // if (AppState.get().isRTL) {
+        // maxSeek.setText("" + TxtUtils.deltaPage((documentController.getCurentPage() +
+        // 1)));
+        // currentSeek.setText("" + documentController.getPageCount());
+        // }
 
         updateLockMode();
 

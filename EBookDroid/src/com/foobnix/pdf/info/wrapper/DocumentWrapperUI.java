@@ -375,17 +375,15 @@ public class DocumentWrapperUI {
     }
 
     public void updateSpeedLabel() {
-        final int max = controller.getPageCount();
-        final int currentNumber = controller.getCurentPage();
 
-        String current = TxtUtils.deltaPage(currentNumber);
+        String current = TxtUtils.deltaPage(controller.getCurentPage());
+        String max = TxtUtils.deltaPage(controller.getPageCount());
 
         if (AppState.get().isAutoScroll) {
             currentPageIndex.setText(String.format("{%s} %s/%s", AppState.get().autoScrollSpeed, current, max));
         } else {
             currentPageIndex.setText(String.format("%s/%s", current, max));
         }
-        currentPageIndex.setVisibility(max == 0 ? View.GONE : View.VISIBLE);
     }
 
     public void updateUI() {
@@ -394,7 +392,7 @@ public class DocumentWrapperUI {
 
         updateSpeedLabel();
         currentSeek.setText(TxtUtils.deltaPage(current));
-        maxSeek.setText(String.valueOf(max));
+        maxSeek.setText(TxtUtils.deltaPage(max));
 
         seekBar.setOnSeekBarChangeListener(null);
         seekBar.setMax(max - 1);
@@ -676,6 +674,7 @@ public class DocumentWrapperUI {
         modeName.setText(AppState.get().nameVerticalMode);
 
         currentPageIndex = (TextView) a.findViewById(R.id.currentPageIndex);
+        currentPageIndex.setVisibility(View.GONE);
         currentSeek = (TextView) a.findViewById(R.id.currentSeek);
         maxSeek = (TextView) a.findViewById(R.id.maxSeek);
         bookName = (TextView) a.findViewById(R.id.bookName);
@@ -1741,6 +1740,7 @@ public class DocumentWrapperUI {
                     seekBar.setVisibility(View.VISIBLE);
 
                     onCloseBook.setVisibility(View.VISIBLE);
+                    currentPageIndex.setVisibility(View.VISIBLE);
 
                     showHelp();
 
