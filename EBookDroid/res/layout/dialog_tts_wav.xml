@@ -24,6 +24,7 @@
             android:orientation="horizontal" >
 
             <ProgressBar
+                android:visibility="gone"
                 android:id="@+id/progressBar1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
@@ -36,12 +37,28 @@
                 android:text="5 / 10" />
         </LinearLayout>
 
+          <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal" >
+            
         <Button
             android:id="@+id/start"
             style="?android:attr/buttonStyleSmall"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/start_recording" />
+        
+         <Button
+            android:id="@+id/stop"
+            style="?android:attr/buttonStyleSmall"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/to_stop" />
+        
+        
+        </LinearLayout>
     </LinearLayout>
 
 </ScrollView>

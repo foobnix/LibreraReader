@@ -1,6 +1,7 @@
 package com.foobnix.tts;
 
 import java.io.File;
+import java.io.FileFilter;
 import java.text.DecimalFormat;
 import java.util.HashMap;
 import java.util.List;
@@ -9,10 +10,13 @@ import org.ebookdroid.LibreraApp;
 import org.greenrobot.eventbus.EventBus;
 
 import com.foobnix.android.utils.LOG;
+import com.foobnix.android.utils.ResultResponse;
 import com.foobnix.android.utils.TxtUtils;
+import com.foobnix.ext.CacheZipUtils;
 import com.foobnix.pdf.info.R;
 import com.foobnix.pdf.info.wrapper.AppState;
 import com.foobnix.pdf.info.wrapper.DocumentController;
+import com.foobnix.sys.TempHolder;
 
 import android.annotation.TargetApi;
 import android.os.Build;
@@ -24,6 +28,7 @@ import android.widget.Toast;
 
 public class TTSEngine {
 
+    private static final String WAV = ".wav";
     private static final String UTTERANCE_ID = "LirbiReader";
     private static final String TAG = "TTSEngine";
     TextToSpeech ttsEngine;
@@ -125,29 +130,40 @@ public class TTSEngine {
         ttsEngine.speak(text, TextToSpeech.QUEUE_FLUSH, map);
     }
 
-    public void speakToFile(final DocumentController controller) {
+    public void speakToFile(final DocumentController controller, final ResultResponse<String> info) {
         File dirFolder = new File(AppState.get().ttsSpeakPath, "TTS_" + controller.getCurrentBook().getName());
         if (!dirFolder.exists()) {
             dirFolder.mkdirs();
         }
         if (!dirFolder.exists()) {
-            Toast.makeText(controller.getActivity(), R.string.file_not_found, Toast.LENGTH_LONG).show();
+            info.onResultRecive(controller.getActivity().getString(R.string.file_not_found) + " " + dirFolder.getPath());
             return;
         }
+        CacheZipUtils.removeFiles(dirFolder.listFiles(new FileFilter() {
 
-        speakToFile(controller, 0, dirFolder.getPath());
+            @Override
+            public boolean accept(File pathname) {
+                return pathname.getName().endsWith(WAV);
+            }
+        }));
+
+        speakToFile(controller, 0, dirFolder.getPath(), info);
     }
 
-    public void speakToFile(final DocumentController controller, final int page, final String folder) {
+    public void speakToFile(final DocumentController controller, final int page, final String folder, final ResultResponse<String> info) {
         LOG.d("speakToFile", page, controller.getPageCount());
 
-        if (page >= controller.getPageCount()) {
+        if (page >= controller.getPageCount() || !TempHolder.isRecordTTS) {
+            LOG.d("speakToFile finish", page, controller.getPageCount());
+            info.onResultRecive((controller.getActivity().getString(R.string.success)));
             return;
         }
+
+        info.onResultRecive((page + 1) + " / " + controller.getPageCount());
 
         DecimalFormat df = new DecimalFormat("000");
         String pageName = "page-" + df.format(page + 1);
-        final String wav = new File(folder, pageName + ".wav").getPath();
+        final String wav = new File(folder, pageName + WAV).getPath();
         String fileText = controller.getTextForPage(page);
 
         ttsEngine.synthesizeToFile(fileText, map, wav);
@@ -156,7 +172,8 @@ public class TTSEngine {
 
             @Override
             public void onUtteranceCompleted(String utteranceId) {
-                speakToFile(controller, page + 1, folder);
+                LOG.d("speakToFile onUtteranceCompleted", page, controller.getPageCount());
+                speakToFile(controller, page + 1, folder, info);
             }
 
         });

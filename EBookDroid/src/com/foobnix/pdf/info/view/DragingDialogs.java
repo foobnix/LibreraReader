@@ -83,6 +83,7 @@ import android.app.SearchManager;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.DialogInterface.OnDismissListener;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
@@ -553,16 +554,16 @@ public class DragingDialogs {
                     public void onClick(View v) {
                         AlertDialog.Builder dialog = new AlertDialog.Builder(controller.getActivity());
                         dialog.setTitle(R.string.speak_into_file_wav_);
-                        
+
                         View inflate = LayoutInflater.from(v.getContext()).inflate(R.layout.dialog_tts_wav, null, false);
                         final TextView ttsSpeakPath = (TextView) inflate.findViewById(R.id.ttsSpeakPath);
                         final TextView progressText = (TextView) inflate.findViewById(R.id.progressText);
                         final ProgressBar progressBar1 = (ProgressBar) inflate.findViewById(R.id.progressBar1);
                         final Button start = (Button) inflate.findViewById(R.id.start);
+                        final Button stop = (Button) inflate.findViewById(R.id.stop);
 
                         progressBar1.setVisibility(View.GONE);
                         progressText.setText("");
-
 
                         ttsSpeakPath.setText(Html.fromHtml("<u>" + AppState.get().ttsSpeakPath + "/<b>" + controller.getCurrentBook().getName() + "</b></u>"));
                         ttsSpeakPath.setOnClickListener(new OnClickListener() {
@@ -582,15 +583,38 @@ public class DragingDialogs {
 
                             }
                         });
+                        final ResultResponse<String> info = new ResultResponse<String>() {
+                            @Override
+                            public boolean onResultRecive(final String result) {
+                                controller.getActivity().runOnUiThread(new Runnable() {
+
+                                    @Override
+                                    public void run() {
+                                        progressText.setText(result);
+                                    }
+                                });
+                                return false;
+                            }
+                        };
+
+                        stop.setOnClickListener(new OnClickListener() {
+
+                            @Override
+                            public void onClick(View v) {
+                                TempHolder.isRecordTTS = false;
+                                progressBar1.setVisibility(View.GONE);
+                            }
+                        });
 
                         start.setOnClickListener(new OnClickListener() {
 
                             @Override
                             public void onClick(View v) {
-                                progressBar1.setVisibility(View.VISIBLE);
-                                TTSEngine.get().speakToFile(controller);
-                                progressBar1.setVisibility(View.GONE);
-                                progressText.setText(R.string.success);
+                                if (!TempHolder.isRecordTTS) {
+                                    TempHolder.isRecordTTS = true;
+                                    progressBar1.setVisibility(View.VISIBLE);
+                                    TTSEngine.get().speakToFile(controller, info);
+                                }
                             }
                         });
 
@@ -600,13 +624,21 @@ public class DragingDialogs {
 
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
-
+                                TempHolder.isRecordTTS = false;
                             }
                         });
-                        dialog.show();
+                        AlertDialog create = dialog.create();
+                        create.setOnDismissListener(new OnDismissListener() {
+
+                            @Override
+                            public void onDismiss(DialogInterface dialog) {
+                                TempHolder.isRecordTTS = false;
+                            }
+                        });
+
+                        create.show();
                     }
                 });
-
 
                 return view;
             }
