@@ -279,7 +279,7 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
             }
         }
 
-        onPageFlip1 = findViewById(R.id.onPageFlip);
+        onPageFlip1 = findViewById(R.id.autoScroll);
         onPageFlip1.setOnClickListener(new OnClickListener() {
 
             @Override
@@ -354,7 +354,7 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
 
             }
         });
-        findViewById(R.id.search).setOnClickListener(new View.OnClickListener() {
+        findViewById(R.id.onShowSearch).setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(final View v) {
@@ -363,7 +363,7 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
 
         });
 
-        outline = (ImageView) findViewById(R.id.content);
+        outline = (ImageView) findViewById(R.id.onDocDontext);
         outline.setOnClickListener(new View.OnClickListener() {
 
             @Override
@@ -371,7 +371,7 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
                 DragingDialogs.showContent(anchor, documentController);
             }
         });
-        findViewById(R.id.bookmarks).setOnClickListener(new View.OnClickListener() {
+        findViewById(R.id.onBookmarks).setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(final View v) {
@@ -385,7 +385,7 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
             }
         });
 
-        findViewById(R.id.bookmarks).setOnLongClickListener(new View.OnLongClickListener() {
+        findViewById(R.id.onBookmarks).setOnLongClickListener(new View.OnLongClickListener() {
 
             @Override
             public boolean onLongClick(final View arg0) {
@@ -394,7 +394,7 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
             }
         });
 
-        findViewById(R.id.bookRecent).setOnClickListener(new View.OnClickListener() {
+        findViewById(R.id.onRecent).setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(final View v) {
@@ -402,7 +402,7 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
             }
         });
 
-        textToSpeach = (ImageView) findViewById(R.id.bookTTS);
+        textToSpeach = (ImageView) findViewById(R.id.textToSpeach);
         textToSpeach.setOnClickListener(new View.OnClickListener() {
 
             @Override
@@ -621,7 +621,10 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
             }
         });
 
-        lockModelImage = (ImageView) findViewById(R.id.lockMode);
+        findViewById(R.id.editTop2).setVisibility(View.GONE);
+        findViewById(R.id.nextTypeBootom).setVisibility(View.GONE);
+
+        lockModelImage = (ImageView) findViewById(R.id.lockUnlock);
         lockModelImage.setOnClickListener(new OnClickListener() {
 
             @Override

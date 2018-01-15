@@ -2,6 +2,7 @@ package com.foobnix.pdf.info.view;
 
 import com.foobnix.android.utils.Dips;
 import com.foobnix.android.utils.IntegerResponse;
+import com.foobnix.android.utils.Keyboards;
 import com.foobnix.android.utils.LOG;
 import com.foobnix.android.utils.TxtUtils;
 import com.foobnix.android.utils.Vibro;
@@ -14,6 +15,7 @@ import com.foobnix.sys.TempHolder;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.DialogInterface.OnDismissListener;
 import android.os.Handler;
 import android.text.InputType;
 import android.view.LayoutInflater;
@@ -106,10 +108,17 @@ public class Dialogs {
 
             @Override
             public void onClick(final DialogInterface dialog, final int id) {
-
             }
         });
-        builder.show();
+        AlertDialog create = builder.create();
+        create.setOnDismissListener(new OnDismissListener() {
+
+            @Override
+            public void onDismiss(DialogInterface dialog) {
+                Keyboards.hideNavigation(controller.getActivity());
+            }
+        });
+        create.show();
     }
 
     public static void showContrastDialogByUrl(final Context c, final Runnable action) {

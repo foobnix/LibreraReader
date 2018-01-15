@@ -789,8 +789,7 @@ public class DocumentWrapperUI {
             reverseKeysIndicator.setVisibility(View.GONE);
             textToSpeachTop.setVisibility(View.GONE);
             progressDraw.setVisibility(View.GONE);
-            textToSpeach.setVisibility(View.GONE);
-            modeName.setVisibility(View.GONE);
+            modeName.setText(AppState.get().nameMusicianMode);
         }
 
         currentSeek.setVisibility(View.GONE);

@@ -2,8 +2,8 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content" >
+
     <LinearLayout
-        android:id="@+id/bottomBar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:clickable="true"
@@ -115,9 +115,57 @@
             android:clickable="true"
             android:focusableInTouchMode="true"
             android:gravity="center_vertical"
-            android:paddingLeft="2dip"
-            android:paddingRight="2dip"
-            android:paddingTop="2dip" >
+            android:orientation="horizontal"
+            android:padding="2dip" >
+
+            <TextView
+                android:id="@+id/currentSeek"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="8dip"
+                android:layout_weight="0"
+                android:clickable="true"
+                android:gravity="center"
+                android:minWidth="32dip"
+                android:text="--"
+                android:textColor="#ffffff"
+                android:textSize="16sp"
+                android:textStyle="normal" />
+
+            <SeekBar
+                android:id="@+id/seekBar"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:layout_gravity="center_vertical"
+                android:layout_weight="1"
+                android:paddingBottom="4dip"
+                android:paddingTop="4dip"
+                android:progressTint="@android:color/white"
+                android:thumbTint="@android:color/white" />
+
+            <TextView
+                android:id="@+id/maxSeek"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="0"
+                android:clickable="true"
+                android:layout_marginRight="8dip"
+                android:gravity="center"
+                android:minWidth="32dip"
+                android:text="--"
+                android:textColor="#ffffff"
+                android:textSize="16sp"
+                android:textStyle="normal" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:clickable="true"
+            android:focusableInTouchMode="true"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:padding="2dip" >
 
             <ImageView
                 android:id="@+id/autoScroll"
@@ -147,42 +195,15 @@
                 android:visibility="gone" />
 
             <TextView
-                android:id="@+id/currentSeek"
-                android:layout_width="wrap_content"
+                android:id="@+id/modeName"
+                android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_marginLeft="2dip"
-                android:layout_weight="0"
-                android:clickable="true"
                 android:gravity="center"
-                android:minWidth="32dip"
-                android:text="--"
-                android:textColor="#ffffff"
-                android:textSize="16sp"
-                android:textStyle="normal" />
-
-            <SeekBar
-                android:id="@+id/seekBar"
-                android:layout_width="wrap_content"
-                android:layout_height="40dp"
-                android:layout_gravity="center_vertical"
                 android:layout_weight="1"
-                android:paddingBottom="4dip"
-                android:paddingTop="4dip"
-                android:progressTint="@android:color/white"
-                android:thumbTint="@android:color/white" />
-
-            <TextView
-                android:id="@+id/maxSeek"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_weight="0"
-                android:clickable="true"
-                android:gravity="center"
-                android:minWidth="32dip"
-                android:text="--"
+                android:text="@string/mode_vertical"
                 android:textColor="#ffffff"
-                android:textSize="16sp"
-                android:textStyle="normal" />
+                android:textSize="14sp"
+                android:textStyle="bold" />
 
             <ImageView
                 android:id="@+id/bookMenu"
@@ -202,18 +223,6 @@
                 android:contentDescription="@string/block_page_movement_horizontally"
                 android:src="@drawable/glyphicons_204_lock" />
         </LinearLayout>
-
-        <TextView
-            android:id="@+id/modeName"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:clickable="true"
-            android:gravity="center"
-            android:textStyle="bold"
-            android:paddingBottom="4dip"
-            android:text="@string/mode_vertical"
-            android:textColor="#ffffff"
-            android:textSize="12sp" />
     </LinearLayout>
 
 </FrameLayout>

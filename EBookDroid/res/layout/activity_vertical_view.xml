@@ -2,9 +2,9 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/parentRoot"
-    android:focusableInTouchMode="true"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:focusableInTouchMode="true"
     android:orientation="vertical" >
 
     <FrameLayout
@@ -96,8 +96,7 @@
         android:layout_height="?android:attr/actionBarSize"
         android:layout_below="@+id/document_title_bar"
         android:layout_centerHorizontal="true"
-        layout="@layout/document_title_buttons"
-         />
+        layout="@layout/document_title_buttons" />
 
     <FrameLayout
         android:id="@+id/adFrame"
@@ -122,14 +121,20 @@
         android:layout_height="@dimen/speed_size"
         android:layout_above="@+id/bottomBar1"
         layout="@layout/document_speed_bar" />
-    
-  
-    <include
+
+    <FrameLayout
         android:id="@+id/bottomBar1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        layout="@layout/document_footer" />
+        android:background="#0000ff" >
+        <FrameLayout
+            android:id="@+id/bottomBar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" >
+            <include layout="@layout/document_footer" />
+        </FrameLayout>
+    </FrameLayout>
 
     <FrameLayout
         android:id="@+id/anchor"
