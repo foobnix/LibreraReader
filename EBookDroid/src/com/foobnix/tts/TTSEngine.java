@@ -136,15 +136,6 @@ public class TTSEngine {
         }
 
         speakToFile(controller, 0, dirFolder.getPath());
-
-        // for (File file : dirFolder.listFiles()) {
-        // if (file.getName().endsWith(".wav")) {
-        // Audio.encode(file.getPath(), new File(file.getPath().replace(".wav",
-        // ".mp3")).getPath());
-        // file.delete();
-        // LOG.d("Delete-WAV", file.getPath());
-        // }
-        // }
     }
 
     public void speakToFile(final DocumentController controller, final int page, final String folder) {
