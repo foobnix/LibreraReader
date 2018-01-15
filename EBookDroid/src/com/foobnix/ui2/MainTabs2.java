@@ -15,7 +15,6 @@ import com.foobnix.android.utils.LOG;
 import com.foobnix.android.utils.Safe;
 import com.foobnix.android.utils.TxtUtils;
 import com.foobnix.dao2.FileMeta;
-import com.foobnix.ext.CacheZipUtils;
 import com.foobnix.ext.CacheZipUtils.CacheDir;
 import com.foobnix.pdf.SlidingTabLayout;
 import com.foobnix.pdf.info.Android6;
@@ -372,7 +371,6 @@ public class MainTabs2 extends AdsFragmentActivity {
         }
     }
 
-
     @Subscribe
     public void onMessegeBrightness(MessegeBrightness msg) {
         BrightnessHelper.onMessegeBrightness(msg, toastBrightnessText, overlay);
@@ -503,7 +501,11 @@ public class MainTabs2 extends AdsFragmentActivity {
 
         if (AppState.get().isAutomaticExport && Android6.canWrite(this)) {
             try {
-                File file = new File(CacheZipUtils.SD_CARD_APP_DIR, Apps.getApplicationName(this) + "-" + Apps.getVersionName(this) + "-backup-export-all.JSON.txt");
+                File root = new File(AppState.get().downlodsPath, "Backup");
+                if (!root.isDirectory()) {
+                    root.mkdirs();
+                }
+                File file = new File(root, Apps.getApplicationName(this) + "-" + Apps.getVersionName(this) + "-backup-export-all.JSON.txt");
                 LOG.d("isAutomaticExport", file);
                 ExportSettingsManager.getInstance(this).exportAll(file);
             } catch (Exception e) {

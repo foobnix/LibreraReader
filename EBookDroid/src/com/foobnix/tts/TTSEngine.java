@@ -142,14 +142,6 @@ public class TTSEngine {
         LOG.d("speakToFile", page, controller.getPageCount());
 
         if (page >= controller.getPageCount()) {
-            controller.getActivity().runOnUiThread(new Runnable() {
-
-                @Override
-                public void run() {
-                    Toast.makeText(controller.getActivity(), R.string.success, Toast.LENGTH_LONG).show();
-                }
-            });
-
             return;
         }
 

@@ -550,8 +550,9 @@ public class DragingDialogs {
 
                     @Override
                     public void onClick(View v) {
-                        Toast.makeText(controller.getActivity(), R.string.please_wait, Toast.LENGTH_LONG).show();
+                        Toast.makeText(controller.getActivity(), R.string.please_wait, Toast.LENGTH_SHORT).show();
                         TTSEngine.get().speakToFile(controller);
+                        Toast.makeText(controller.getActivity(), R.string.success, Toast.LENGTH_LONG).show();
 
                     }
                 });
