@@ -98,11 +98,9 @@ public class TxtUtils {
         pageHTML = pageHTML.replace("<b>", " ").replace("</b>", " ").replace("<i>", " ").replace("</i>", " ");
         pageHTML = pageHTML.replace("<br/>", " ");
         pageHTML = pageHTML.replace("<p>", "").replace("</p>", " ");
-        pageHTML = pageHTML.replace("&nbsp;", " ");
-        pageHTML = pageHTML.replaceAll("<end/>$", " ").replace("<end/>", ".");
+        pageHTML = pageHTML.replace("&nbsp;", " ").replace("&lt;", " ").replace("&gt;", "").replace("&amp;", " ").replace("&quot;", " ");
         pageHTML = pageHTML.replace("'", "");
         pageHTML = pageHTML.replace("*", "");
-        pageHTML = pageHTML.replace("'", "");
         pageHTML = pageHTML.replace("  ", " ").replace("  ", " ");
         pageHTML = pageHTML.replace(".", ". ").replace(" .", ".").replace(" .", ".");
         pageHTML = pageHTML.replaceAll("(?u)(\\w+)(-\\s)", "$1");
