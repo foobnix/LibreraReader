@@ -95,7 +95,7 @@ public class TxtUtils {
             return "";
         }
         LOG.d("pageHTML", pageHTML);
-        pageHTML = pageHTML.replace("<b>", " ").replace("</b>", " ").replace("<i>", " ").replace("</i>", " ");
+        pageHTML = pageHTML.replace("<b>", "").replace("</b>", "").replace("<i>", "").replace("</i>", "").replace("<tt>", "").replace("</tt>", "");
         pageHTML = pageHTML.replace("<br/>", " ");
         pageHTML = pageHTML.replace("<p>", "").replace("</p>", " ");
         pageHTML = pageHTML.replace("&nbsp;", " ").replace("&lt;", " ").replace("&gt;", "").replace("&amp;", " ").replace("&quot;", " ");

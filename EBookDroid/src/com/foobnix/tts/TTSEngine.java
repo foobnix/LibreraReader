@@ -136,6 +136,15 @@ public class TTSEngine {
         }
 
         speakToFile(controller, 0, dirFolder.getPath());
+
+        // for (File file : dirFolder.listFiles()) {
+        // if (file.getName().endsWith(".wav")) {
+        // Audio.encode(file.getPath(), new File(file.getPath().replace(".wav",
+        // ".mp3")).getPath());
+        // file.delete();
+        // LOG.d("Delete-WAV", file.getPath());
+        // }
+        // }
     }
 
     public void speakToFile(final DocumentController controller, final int page, final String folder) {
@@ -146,7 +155,8 @@ public class TTSEngine {
         }
 
         DecimalFormat df = new DecimalFormat("000");
-        String wav = new File(folder, "page-" + df.format(page + 1) + ".wav").getPath();
+        String pageName = "page-" + df.format(page + 1);
+        final String wav = new File(folder, pageName + ".wav").getPath();
         String fileText = controller.getTextForPage(page);
 
         ttsEngine.synthesizeToFile(fileText, map, wav);
