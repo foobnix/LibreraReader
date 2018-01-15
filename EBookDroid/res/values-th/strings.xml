@@ -455,4 +455,6 @@
    <string name="no_author">ไม่มีผู้แต่ง</string>
    <string name="archives">หอจดหมายเหตุ</string>
    <string name="other">อื่น ๆ</string>
+   <string name="read_the_tutorial_online_or_download_in_pdf_format">อ่านแบบฝึกหัดออนไลน์หรือดาวน์โหลดในรูปแบบ PDF</string>
+   <string name="start_recording">เริ่มการบันทึก</string>
 </resources>

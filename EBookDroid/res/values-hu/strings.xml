@@ -455,4 +455,6 @@
    <string name="no_author">Nincs szerző</string>
    <string name="archives">Levéltár</string>
    <string name="other">Más</string>
+   <string name="read_the_tutorial_online_or_download_in_pdf_format">Olvassa el az oktatóanyagot online vagy töltse le PDF formátumban</string>
+   <string name="start_recording">Felvétel megkezdése</string>
 </resources>

@@ -199,6 +199,15 @@ public class BrowseFragment2 extends UIFragment<FileMeta> {
 
                 }
 
+                menu.getMenu().add("Librera").setOnMenuItemClickListener(new OnMenuItemClickListener() {
+
+                    @Override
+                    public boolean onMenuItemClick(MenuItem item) {
+                        setDirPath(AppState.get().downlodsPath);
+                        return false;
+                    }
+                }).setIcon(R.drawable.glyphicons_591_folder_heart);
+
                 List<FileMeta> starFolders = AppDB.get().getStarsFolder();
                 List<String> names = new ArrayList<String>();
                 for (FileMeta f : starFolders) {

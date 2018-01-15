@@ -419,6 +419,7 @@
             android:layout_height="wrap_content"
             android:clickable="true"
             android:gravity="center"
+            android:textStyle="bold"
             android:paddingBottom="4dip"
             android:text="@string/mode_horizontally"
             android:textColor="#ffffff"

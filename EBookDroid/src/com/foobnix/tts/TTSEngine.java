@@ -142,19 +142,12 @@ public class TTSEngine {
         LOG.d("speakToFile", page, controller.getPageCount());
 
         if (page >= controller.getPageCount()) {
-            controller.getActivity().runOnUiThread(new Runnable() {
-
-                @Override
-                public void run() {
-                    Toast.makeText(controller.getActivity(), R.string.success, Toast.LENGTH_LONG).show();
-                }
-            });
-
             return;
         }
 
         DecimalFormat df = new DecimalFormat("000");
-        String wav = new File(folder, "page-" + df.format(page + 1) + ".wav").getPath();
+        String pageName = "page-" + df.format(page + 1);
+        final String wav = new File(folder, pageName + ".wav").getPath();
         String fileText = controller.getTextForPage(page);
 
         ttsEngine.synthesizeToFile(fileText, map, wav);

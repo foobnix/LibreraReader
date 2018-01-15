@@ -455,4 +455,6 @@
    <string name="no_author">Sin autor</string>
    <string name="archives">Archivo</string>
    <string name="other">Otro</string>
+   <string name="read_the_tutorial_online_or_download_in_pdf_format">Lea el tutorial en línea o descárguelo en formato PDF</string>
+   <string name="start_recording">Empezar a grabar</string>
 </resources>

@@ -288,6 +288,7 @@ public class TTSService extends Service {
             final String secondPart = parts[1];
 
             if (TxtUtils.isNotEmpty(preText)) {
+                preText = TxtUtils.replaceLast(preText, "-", "");
                 firstPart = preText + firstPart;
             }
 

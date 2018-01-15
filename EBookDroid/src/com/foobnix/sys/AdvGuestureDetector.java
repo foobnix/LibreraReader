@@ -140,7 +140,7 @@ public class AdvGuestureDetector extends SimpleOnGestureListener implements IMul
 
     @Override
     public boolean onSingleTapUp(final MotionEvent e) {
-        if (isScrollFinished) {// && !AppState.get().isEditPanelVisible) {
+        if (true || isScrollFinished) {// && !AppState.get().isEditPanelVisible) {
             // if (isScrollFinished && AppState.get().isLocked) {
             updateBorders();
             if (!AppState.get().isMusicianMode && !AppState.get().isIgnoreAnnotatations || AppState.get().editWith == AppState.EDIT_DELETE) {

@@ -446,8 +446,8 @@
    <string name="custom_value">Custom value</string>
    <string name="change_the_automatic_scrolling_speed_with_the_volume_keys">Change auto-scroll speed with volume keys</string>
    <string name="mode_vertical">Scroll view</string>
-   <string name="mode_horizontally">Paginated view</string>
-   <string name="mode_musician">Musical score view</string>
+   <string name="mode_horizontally">Book view</string>
+   <string name="mode_musician">Musical view</string>
    <string name="automatic_export_backup">Automatic export (backup) of settings, bookmarks and reading progress.</string>
    <string name="display_all_file_types_in_folders">Display all file types in folders</string>
    <string name="no_author">No author</string>
@@ -455,4 +455,6 @@
    <string name="no_genre">No genre</string>
    <string name="archives">Archives</string>
    <string name="other">Other</string>
+   <string name="read_the_tutorial_online_or_download_in_pdf_format">Read the tutorial online or download in PDF format</string>
+   <string name="start_recording">Start recording</string>
 </resources>

@@ -78,6 +78,8 @@ greendao
 jsoup
 juniversalchardet
 rtfparserkit
+TAndroidLame
+Lame
 
 Librera is distributed under the GPL
 

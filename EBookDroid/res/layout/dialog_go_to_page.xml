@@ -37,6 +37,8 @@
         android:choiceMode="singleChoice"
         android:numColumns="auto_fit"
         android:scrollbars="none"
+        android:fastScrollEnabled="true"
+        android:fastScrollAlwaysVisible="true"
         android:stretchMode="columnWidth" >
     </GridView>
 

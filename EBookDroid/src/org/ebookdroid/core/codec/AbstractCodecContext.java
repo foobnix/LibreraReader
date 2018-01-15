@@ -9,15 +9,11 @@ import org.ebookdroid.droids.mupdf.codec.exceptions.MuPdfPasswordRequiredExcepti
 import org.ebookdroid.ui.viewer.VerticalViewActivity;
 
 import com.foobnix.android.utils.LOG;
-import com.foobnix.android.utils.TxtUtils;
-import com.foobnix.dao2.FileMeta;
 import com.foobnix.ext.CacheZipUtils;
 import com.foobnix.ext.CacheZipUtils.CacheDir;
 import com.foobnix.pdf.info.ExtUtils;
-import com.foobnix.pdf.info.Urls;
 import com.foobnix.pdf.info.model.BookCSS;
 import com.foobnix.sys.TempHolder;
-import com.foobnix.ui2.AppDB;
 
 import android.graphics.Bitmap;
 
@@ -67,13 +63,6 @@ public abstract class AbstractCodecContext implements CodecContext {
             return openDocumentInnerCanceled(fileNameOriginal, password);
         }
 
-        FileMeta meta = AppDB.get().load(fileNameOriginal);
-        if (meta != null) {
-            BookCSS.get().hypenLang = meta.getLang();
-        }
-        if (TxtUtils.isEmpty(BookCSS.get().hypenLang)) {
-            BookCSS.get().hypenLang = Urls.getLangCode();
-        }
 
         LOG.d("Open-Document 2 LANG:", BookCSS.get().hypenLang, fileNameOriginal);
 

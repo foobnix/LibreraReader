@@ -1307,23 +1307,15 @@ public class PrefFragment2 extends UIFragment {
 
         // tutorials
 
-        final String displayLanguage = Urls.getLangCode();
-        boolean containsKey = AppState.getUserGuides().containsKey(displayLanguage);
 
         TextView tutorialLink = (TextView) inflate.findViewById(R.id.tutorialLink);
-        LinearLayout tutorialLayout = (LinearLayout) inflate.findViewById(R.id.tutorialLayout);
-        tutorialLayout.setVisibility(containsKey ? View.VISIBLE : View.GONE);
-        section5.setVisibility(containsKey ? View.VISIBLE : View.GONE);
-
-        final String web = "http://" + displayLanguage + ".librera.mobi";
-        tutorialLink.setText(web);
+        TxtUtils.underlineTextView(tutorialLink);
 
         tutorialLink.setOnClickListener(new OnClickListener() {
 
             @Override
             public void onClick(View v) {
-
-                Urls.open(getActivity(), web);
+                Urls.open(getActivity(), AndroidWhatsNew.DETAIL_URL_RU);
             }
         });
 

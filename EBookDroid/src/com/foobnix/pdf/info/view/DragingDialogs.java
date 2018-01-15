@@ -102,6 +102,7 @@ import android.speech.tts.TextToSpeech.OnInitListener;
 import android.support.v4.app.FragmentActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.Html;
 import android.text.format.DateFormat;
 import android.view.Gravity;
 import android.view.KeyEvent;
@@ -550,33 +551,62 @@ public class DragingDialogs {
 
                     @Override
                     public void onClick(View v) {
-                        Toast.makeText(controller.getActivity(), R.string.please_wait, Toast.LENGTH_LONG).show();
-                        TTSEngine.get().speakToFile(controller);
+                        AlertDialog.Builder dialog = new AlertDialog.Builder(controller.getActivity());
+                        dialog.setTitle(R.string.speak_into_file_wav_);
+                        
+                        View inflate = LayoutInflater.from(v.getContext()).inflate(R.layout.dialog_tts_wav, null, false);
+                        final TextView ttsSpeakPath = (TextView) inflate.findViewById(R.id.ttsSpeakPath);
+                        final TextView progressText = (TextView) inflate.findViewById(R.id.progressText);
+                        final ProgressBar progressBar1 = (ProgressBar) inflate.findViewById(R.id.progressBar1);
+                        final Button start = (Button) inflate.findViewById(R.id.start);
 
-                    }
-                });
+                        progressBar1.setVisibility(View.GONE);
+                        progressText.setText("");
 
-                final TextView ttsSpeakPath = (TextView) view.findViewById(R.id.ttsSpeakPath);
-                ttsSpeakPath.setText(AppState.get().ttsSpeakPath);
-                TxtUtils.underlineTextView(ttsSpeakPath);
-                ttsSpeakPath.setOnClickListener(new OnClickListener() {
 
-                    @Override
-                    public void onClick(View v) {
+                        ttsSpeakPath.setText(Html.fromHtml("<u>" + AppState.get().ttsSpeakPath + "/<b>" + controller.getCurrentBook().getName() + "</b></u>"));
+                        ttsSpeakPath.setOnClickListener(new OnClickListener() {
 
-                        ChooserDialogFragment.chooseFolder((FragmentActivity) controller.getActivity(), AppState.get().ttsSpeakPath).setOnSelectListener(new ResultResponse2<String, Dialog>() {
                             @Override
-                            public boolean onResultRecive(String nPath, Dialog dialog) {
-                                AppState.get().ttsSpeakPath = nPath;
-                                ttsSpeakPath.setText(nPath);
-                                TxtUtils.underlineTextView(ttsSpeakPath);
-                                dialog.dismiss();
-                                return false;
+                            public void onClick(View v) {
+
+                                ChooserDialogFragment.chooseFolder((FragmentActivity) controller.getActivity(), AppState.get().ttsSpeakPath).setOnSelectListener(new ResultResponse2<String, Dialog>() {
+                                    @Override
+                                    public boolean onResultRecive(String nPath, Dialog dialog) {
+                                        AppState.get().ttsSpeakPath = nPath;
+                                        ttsSpeakPath.setText(Html.fromHtml("<u>" + AppState.get().ttsSpeakPath + "/<b>" + controller.getCurrentBook().getName() + "</b></u>"));
+                                        dialog.dismiss();
+                                        return false;
+                                    }
+                                });
+
                             }
                         });
 
+                        start.setOnClickListener(new OnClickListener() {
+
+                            @Override
+                            public void onClick(View v) {
+                                progressBar1.setVisibility(View.VISIBLE);
+                                TTSEngine.get().speakToFile(controller);
+                                progressBar1.setVisibility(View.GONE);
+                                progressText.setText(R.string.success);
+                            }
+                        });
+
+                        dialog.setView(inflate);
+
+                        dialog.setNegativeButton(R.string.close, new DialogInterface.OnClickListener() {
+
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+
+                            }
+                        });
+                        dialog.show();
                     }
                 });
+
 
                 return view;
             }

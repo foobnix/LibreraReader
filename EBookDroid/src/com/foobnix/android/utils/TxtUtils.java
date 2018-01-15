@@ -31,6 +31,7 @@ public class TxtUtils {
         return "[" + (current + TempHolder.get().pageDelta) + "]";
     }
 
+
     public static void addFilteredGenreSeries(String item, List<String> result, boolean simpleAdd) {
         if (TxtUtils.isEmpty(item)) {
             return;
@@ -94,14 +95,12 @@ public class TxtUtils {
             return "";
         }
         LOG.d("pageHTML", pageHTML);
-        pageHTML = pageHTML.replace("<b>", " ").replace("</b>", " ").replace("<i>", " ").replace("</i>", " ");
+        pageHTML = pageHTML.replace("<b>", "").replace("</b>", "").replace("<i>", "").replace("</i>", "").replace("<tt>", "").replace("</tt>", "");
         pageHTML = pageHTML.replace("<br/>", " ");
-        pageHTML = pageHTML.replace("<p>", " ").replace("</p>", ". ");
-        pageHTML = pageHTML.replace("&nbsp;", " ");
-        pageHTML = pageHTML.replaceAll("<end/>$", " ").replace("<end/>", ".");
+        pageHTML = pageHTML.replace("<p>", "").replace("</p>", " ");
+        pageHTML = pageHTML.replace("&nbsp;", " ").replace("&lt;", " ").replace("&gt;", "").replace("&amp;", " ").replace("&quot;", " ");
         pageHTML = pageHTML.replace("'", "");
         pageHTML = pageHTML.replace("*", "");
-        pageHTML = pageHTML.replace("'", "");
         pageHTML = pageHTML.replace("  ", " ").replace("  ", " ");
         pageHTML = pageHTML.replace(".", ". ").replace(" .", ".").replace(" .", ".");
         pageHTML = pageHTML.replaceAll("(?u)(\\w+)(-\\s)", "$1");

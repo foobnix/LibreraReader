@@ -92,7 +92,6 @@ public class ExtUtils {
     private static final String IMAGE_BEGIN = "<image-begin>";
     private static final String IMAGE_END = "<image-end>";
 
-    public static final String REFLOW_FB2 = "-text-reflow.fb2.html";
 
     public static ExecutorService ES = Executors.newFixedThreadPool(4);
 
@@ -793,10 +792,10 @@ public class ExtUtils {
 
             final Intent intent = new Intent();
             intent.setAction(android.content.Intent.ACTION_VIEW);
-            intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
             intent.setDataAndType(getUriProvider(a, file), getMimeType(file));
-            // a.startActivity(Intent.createChooser(intent,
-            // a.getString(R.string.open_with)));
+
+            intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             a.startActivity(intent);
         } catch (Exception e) {
             LOG.e(e);
@@ -826,14 +825,11 @@ public class ExtUtils {
             intent.putExtra(Intent.EXTRA_EMAIL, new String[] { "" });
             intent.setType(getMimeType(file));
             intent.putExtra(Intent.EXTRA_STREAM, getUriProvider(a, file));
-            intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
             intent.putExtra(Intent.EXTRA_SUBJECT, "");
-            // intent.putExtra(Intent.EXTRA_TEXT, "" + file.getName() + "\n\n" +
-            // AppsConfig.APP_NAME);
             intent.putExtra(Intent.EXTRA_TEXT, "");
 
-            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-
+            intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             a.startActivity(Intent.createChooser(intent, a.getString(R.string.send_file_to)));
         } catch (Exception e) {
             LOG.e(e);
@@ -888,9 +884,9 @@ public class ExtUtils {
 
             Intent shareIntent = new Intent();
             shareIntent.setAction(Intent.ACTION_SEND);
-            shareIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-            shareIntent.putExtra(Intent.EXTRA_STREAM, getUriProvider(a, oFile));
+            shareIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             shareIntent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+            shareIntent.putExtra(Intent.EXTRA_STREAM, getUriProvider(a, oFile));
             shareIntent.setType("image/jpeg");
             a.startActivity(Intent.createChooser(shareIntent, a.getString(R.string.send_snapshot_of_the_page)));
 
@@ -909,7 +905,7 @@ public class ExtUtils {
         final List<AppBookmark> bookmarksByBook = AppSharedPreferences.get().getBookmarksByBook(file);
 
         final Intent intent = new Intent(Intent.ACTION_SEND);
-        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         intent.setType("text/plain");
 
         if (bookmarksByBook != null && !bookmarksByBook.isEmpty()) {
@@ -1045,7 +1041,7 @@ public class ExtUtils {
 
     public static void exportAllBookmarksToGmail(Activity a) {
         final Intent intent = new Intent(Intent.ACTION_SEND);
-        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         intent.setType("text/plain");
         intent.putExtra(Intent.EXTRA_TEXT, getAllExportString(a, AppSharedPreferences.get()));
         a.startActivity(Intent.createChooser(intent, a.getString(R.string.export_bookmarks)));

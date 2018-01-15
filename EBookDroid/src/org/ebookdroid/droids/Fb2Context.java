@@ -10,7 +10,6 @@ import org.ebookdroid.droids.mupdf.codec.PdfContext;
 import com.foobnix.android.utils.LOG;
 import com.foobnix.ext.CacheZipUtils;
 import com.foobnix.ext.Fb2Extractor;
-import com.foobnix.pdf.info.ExtUtils;
 import com.foobnix.pdf.info.JsonHelper;
 import com.foobnix.pdf.info.model.BookCSS;
 import com.foobnix.pdf.info.wrapper.AppState;
@@ -31,12 +30,6 @@ public class Fb2Context extends PdfContext {
 
     @Override
     public CodecDocument openDocumentInner(final String fileName, String password) {
-
-        if (fileName.endsWith(ExtUtils.REFLOW_FB2)) {
-            return new PdfContext().openDocumentInner(fileName, password);
-            // return new HtmlContext().openDocument(fileName, password);
-        }
-
         String outName = null;
         if (cacheFile.isFile()) {
             outName = cacheFile.getPath();
@@ -47,7 +40,7 @@ public class Fb2Context extends PdfContext {
         if (outName == null) {
             outName = cacheFile.getPath();
             Fb2Extractor.get().convert(fileName, outName);
-            LOG.d("Fb2Context create", outName);
+            LOG.d("Fb2Context create", fileName, "to", outName);
         }
 
         LOG.d("Fb2Context open", outName);
