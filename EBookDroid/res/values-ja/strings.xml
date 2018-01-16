@@ -457,4 +457,5 @@
    <string name="other">その他</string>
    <string name="read_the_tutorial_online_or_download_in_pdf_format">チュートリアルをオンラインで読むかPDF形式でダウンロードする</string>
    <string name="start_recording">録音を開始</string>
+   <string name="favorite_folders_and_books">お気に入りのフォルダと書籍</string>
 </resources>

@@ -5,6 +5,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import com.foobnix.android.utils.ResultResponse;
+import com.foobnix.android.utils.TxtUtils;
 import com.foobnix.dao2.FileMeta;
 import com.foobnix.pdf.info.R;
 import com.foobnix.pdf.info.view.AlertDialogs;
@@ -21,13 +22,16 @@ import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.MenuItem.OnMenuItemClickListener;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 public class StarsFragment2 extends UIFragment<FileMeta> {
     public static final Pair<Integer, Integer> PAIR = new Pair<Integer, Integer>(R.string.starred, R.drawable.glyphicons_50_star);
 
     FileMetaAdapter recentAdapter;
+    ImageView onListGrid;
 
     @Override
     public Pair<Integer, Integer> getNameAndIconRes() {
@@ -45,15 +49,19 @@ public class StarsFragment2 extends UIFragment<FileMeta> {
         bindAdapter(recentAdapter);
         bindAuthorsSeriesAdapter(recentAdapter);
 
-        recentAdapter.setClearAllStarredFolders(new Runnable() {
+        TxtUtils.underlineTextView((TextView) view.findViewById(R.id.clearAllRecent)).setOnClickListener(new OnClickListener() {
 
             @Override
-            public void run() {
+            public void onClick(View v) {
                 AlertDialogs.showDialog(getActivity(), getString(R.string.do_you_want_to_clear_everything_), getString(R.string.ok), new Runnable() {
 
                     @Override
                     public void run() {
                         for (FileMeta f : AppDB.get().getStarsFolder()) {
+                            f.setIsStar(false);
+                            AppDB.get().update(f);
+                        }
+                        for (FileMeta f : AppDB.get().getStarsFiles()) {
                             f.setIsStar(false);
                             AppDB.get().update(f);
                         }
@@ -63,22 +71,13 @@ public class StarsFragment2 extends UIFragment<FileMeta> {
 
             }
         });
-        recentAdapter.setClearAllStarredBooks(new Runnable() {
+
+        onListGrid = (ImageView) view.findViewById(R.id.onListGrid);
+        onListGrid.setOnClickListener(new OnClickListener() {
 
             @Override
-            public void run() {
-                AlertDialogs.showDialog(getActivity(), getString(R.string.do_you_want_to_clear_everything_), getString(R.string.ok), new Runnable() {
-
-                    @Override
-                    public void run() {
-                        for (FileMeta f : AppDB.get().getStarsFiles()) {
-                            f.setIsStar(false);
-                            AppDB.get().update(f);
-                        }
-                        populate();
-                    }
-                });
-
+            public void onClick(View v) {
+                popupMenu(onListGrid);
             }
         });
 
@@ -149,14 +148,14 @@ public class StarsFragment2 extends UIFragment<FileMeta> {
     public List<FileMeta> prepareDataInBackground() {
         List<FileMeta> all = new ArrayList<FileMeta>();
 
-        FileMeta folders = new FileMeta();
-        folders.setCusType(FileMetaAdapter.DISPALY_TYPE_LAYOUT_TITLE_FOLDERS);
-        all.add(folders);
+        // FileMeta folders = new FileMeta();
+        // folders.setCusType(FileMetaAdapter.DISPALY_TYPE_LAYOUT_TITLE_FOLDERS);
+        // all.add(folders);
 
         all.addAll(AppDB.get().getStarsFolder());
 
         FileMeta books = new FileMeta();
-        books.setCusType(FileMetaAdapter.DISPALY_TYPE_LAYOUT_TITLE_BOOKS);
+        books.setCusType(FileMetaAdapter.DISPALY_TYPE_LAYOUT_TITLE_NONE);
         all.add(books);
 
         all.addAll(AppDB.get().getStarsFiles());
@@ -171,7 +170,7 @@ public class StarsFragment2 extends UIFragment<FileMeta> {
     }
 
     public void onGridList() {
-        onGridList(AppState.get().starsMode, null, recentAdapter, null);
+        onGridList(AppState.get().starsMode, onListGrid, recentAdapter, null);
 
     }
 

@@ -457,4 +457,5 @@
    <string name="other">Другое</string>
    <string name="read_the_tutorial_online_or_download_in_pdf_format">Читать учебник онлайн или загрузить в формате PDF</string>
    <string name="start_recording">Начать запись</string>
+   <string name="favorite_folders_and_books">Избранные папки и книги</string>
 </resources>
