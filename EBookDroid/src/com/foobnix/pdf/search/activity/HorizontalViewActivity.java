@@ -1619,8 +1619,8 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
             @Override
             public void run() {
                 PageImageState.get().isAutoFit = true;
-                EventBus.getDefault().post(new MessageAutoFit(viewPager.getCurrentItem()));
                 documentController.cleanImageMatrix();
+                EventBus.getDefault().post(new MessageAutoFit(viewPager.getCurrentItem()));
             }
         }, 50);
     }

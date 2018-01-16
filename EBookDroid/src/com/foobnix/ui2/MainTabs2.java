@@ -592,6 +592,7 @@ public class MainTabs2 extends AdsFragmentActivity {
         final Intent intent = new Intent(c, MainTabs2.class);
         intent.putExtra(MainTabs2.EXTRA_SHOW_TABS, true);
         intent.putExtra(MainTabs2.EXTRA_PAGE_NUMBER, tab);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         c.startActivity(intent);
         c.overridePendingTransition(0, 0);
 
