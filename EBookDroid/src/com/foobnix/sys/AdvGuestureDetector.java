@@ -79,7 +79,7 @@ public class AdvGuestureDetector extends SimpleOnGestureListener implements IMul
             }
             int delta = Dips.dpToPx(15);
             if (isLongMovement && (Math.abs(y - ev.getY()) > delta || Math.abs(x - ev.getX()) > delta)) {
-                AppState.get().selectedText = avc.processLongTap(false, null, ev);
+                AppState.get().selectedText = avc.processLongTap(false, null, ev, true);
                 x = ev.getX();
                 y = ev.getY();
             }
@@ -171,11 +171,10 @@ public class AdvGuestureDetector extends SimpleOnGestureListener implements IMul
                 }
 
                 if (isTextFormat) {
-                    String text = avc.processLongTap(true, e, e);
+                    String text = avc.processLongTap(true, e, e, false);
                     if (TxtUtils.isFooterNote(text)) {
                         AppState.get().selectedText = text;
-                        // TempHolder.get().linkPage = avc.getLinkPage(e.getX(),
-                        // e.getY());
+                        avc.processLongTap(true, e, e, true);
                         docCtrl.onLongPress(e);
                         return false;
                     }
@@ -308,7 +307,7 @@ public class AdvGuestureDetector extends SimpleOnGestureListener implements IMul
         if (SettingsManager.getBookSettings() != null && SettingsManager.getBookSettings().cropPages) {
             docCtrl.onCrop();
         }
-        AppState.get().selectedText = avc.processLongTap(true, e, e);
+        AppState.get().selectedText = avc.processLongTap(true, e, e, true);
     }
 
     /**

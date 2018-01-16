@@ -380,7 +380,7 @@ public abstract class AbstractViewController extends AbstractComponentController
         redrawView();
     }
 
-    public final String processLongTap(boolean single, final MotionEvent e1, final MotionEvent e2) {
+    public final String processLongTap(boolean single, final MotionEvent e1, final MotionEvent e2, boolean draw) {
         if (e1 != null) {
             xLong = e1.getX();
             yLong = e1.getY();
@@ -403,6 +403,7 @@ public abstract class AbstractViewController extends AbstractComponentController
 
         LOG.d("Add Word page", "----", firstVisiblePage, lastVisiblePage + 1);
         for (final Page page : model.getPages(firstVisiblePage, lastVisiblePage + 1)) {
+            if (draw)
             page.selectedText.clear();
             LOG.d("Add Word page", page.hashCode());
             final RectF bounds = page.getBounds(zoom);
@@ -424,18 +425,21 @@ public abstract class AbstractViewController extends AbstractComponentController
                             if (isHyphenWorld || (single && RectF.intersects(wordRect, tapRect))) {
                                 if (prevWord != null && prevWord.w.endsWith("-") && !isHyphenWorld) {
                                     build.append(prevWord.w.replace("-", ""));
-                                    page.selectedText.add(prevWord);
+                                    if (draw)
+                                        page.selectedText.add(prevWord);
                                 }
 
                                 build.append(line.w + " ");
 
                                 if (!isHyphenWorld) {
+                                    if (draw)
                                     page.selectedText.add(line);
                                 }
 
                                 LOG.d("Add Word", line.w);
 
                                 if (isHyphenWorld && TxtUtils.isNotEmpty(line.w)) {
+                                    if (draw)
                                     page.selectedText.add(line);
                                     isHyphenWorld = false;
                                 }
@@ -461,24 +465,28 @@ public abstract class AbstractViewController extends AbstractComponentController
                             } else if (!single) {
                                 if (y2 > yLong) {
                                     if (wordRect.top < tapRect.top && wordRect.bottom > tapRect.top && wordRect.right > tapRect.left) {
-                                        page.selectedText.add(line);
+                                        if (draw)
+                                            page.selectedText.add(line);
                                         build.append(line.w + TxtUtils.space());
 
                                         LOG.d("Add Word", line.w);
                                     } else if (wordRect.top < tapRect.bottom && wordRect.bottom > tapRect.bottom && wordRect.left < tapRect.right) {
-                                        page.selectedText.add(line);
+                                        if (draw)
+                                            page.selectedText.add(line);
                                         build.append(line.w + TxtUtils.space());
 
                                         LOG.d("Add Word", line.w);
                                     } else if (wordRect.top > tapRect.top && wordRect.bottom < tapRect.bottom) {
-                                        page.selectedText.add(line);
+                                        if (draw)
+                                            page.selectedText.add(line);
                                         build.append(line.w + TxtUtils.space());
 
                                         LOG.d("Add Word", line.w);
                                     }
 
                                 } else if (RectF.intersects(wordRect, tapRect)) {
-                                    page.selectedText.add(line);
+                                    if (draw)
+                                        page.selectedText.add(line);
                                     if (AppState.get().selectingByLetters) {
                                         build.append(line.w);
                                     } else {
