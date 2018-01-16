@@ -12,11 +12,14 @@ import java.util.Locale;
 
 import com.foobnix.android.utils.LOG;
 import com.foobnix.android.utils.TxtUtils;
+import com.foobnix.dao2.FileMeta;
 import com.foobnix.pdf.info.ExportSettingsManager;
 import com.foobnix.pdf.info.ExtUtils;
 import com.foobnix.pdf.info.FontExtractor;
+import com.foobnix.pdf.info.Urls;
 import com.foobnix.pdf.info.wrapper.AppState;
 import com.foobnix.pdf.info.wrapper.MagicHelper;
+import com.foobnix.ui2.AppDB;
 
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -82,7 +85,6 @@ public class BookCSS {
     public String hypenLang;
     public String linkColorDay;
     public String linkColorNight;
-
 
     public void load(Context c) {
         if (c == null) {
@@ -559,6 +561,16 @@ public class BookCSS {
 
     public String getFontPath(String name) {
         return fontFolder + "/" + name;
+    }
+
+    public void detectLang(String bookPath) {
+        FileMeta meta = AppDB.get().load(bookPath);
+        if (meta != null) {
+            BookCSS.get().hypenLang = meta.getLang();
+        }
+        if (TxtUtils.isEmpty(BookCSS.get().hypenLang)) {
+            BookCSS.get().hypenLang = Urls.getLangCode();
+        }
     }
 
 }
