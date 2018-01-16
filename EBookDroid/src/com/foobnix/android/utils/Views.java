@@ -65,7 +65,7 @@ public class Views {
 
         final PopupWindow mPopupWindow = new PopupWindow(textView, LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);
         mPopupWindow.setFocusable(true);
-        mPopupWindow.showAsDropDown(anchor, 0, -Dips.dpToPx(140));
+        mPopupWindow.showAsDropDown(anchor, 0, -Dips.dpToPx(180));
 
         mPopupWindow.setOnDismissListener(new OnDismissListener() {
 

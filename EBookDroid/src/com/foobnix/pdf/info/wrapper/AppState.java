@@ -460,6 +460,9 @@ public class AppState {
     public boolean isFirstTimeVertical = true;
     public boolean isFirstTimeHorizontal = true;
 
+    @IgnoreHashCode
+    public boolean isShowLongBackDialog = true;
+
     public String customConfigColors = "";
 
     public boolean isStarsInWidget = false;

@@ -117,9 +117,23 @@ public class CloseAppDialog {
         };
 
         if (v == null) {
+            if (!AppState.get().isShowLongBackDialog) {
+                c.onCloseActivity();
+                return;
+            }
             AlertDialog.Builder dialog = new AlertDialog.Builder(a);
             dialog.setItems(items.toArray(new String[items.size()]), listener);
-            dialog.setNegativeButton(R.string.cancel, new OnClickListener() {
+
+            dialog.setNegativeButton(R.string.don_t_show_this_dialog, new OnClickListener() {
+
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    AppState.get().isShowLongBackDialog = false;
+                    c.onCloseActivity();
+                    dialog.dismiss();
+                }
+            });
+            dialog.setPositiveButton(R.string.cancel, new OnClickListener() {
 
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
