@@ -36,7 +36,7 @@
                 android:inputType="textEmailAddress"
                 android:paddingBottom="0dip"
                 android:paddingLeft="10dip"
-                android:paddingRight="50dip"
+                android:paddingRight="70dip"
                 android:paddingTop="0dip"
                 android:singleLine="true"
                 android:textColor="@color/tint_gray"

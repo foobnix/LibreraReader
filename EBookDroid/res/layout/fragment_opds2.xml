@@ -51,7 +51,7 @@
             android:layout_height="@dimen/wh_button"
             android:layout_weight="0"
             android:background="?android:attr/selectableItemBackground"
-            android:padding="8dip"
+            android:padding="7dip"
             android:src="@drawable/star_2"
             android:tint="@color/tint_gray" />
 
