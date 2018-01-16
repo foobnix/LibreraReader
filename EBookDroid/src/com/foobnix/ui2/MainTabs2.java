@@ -31,6 +31,7 @@ import com.foobnix.pdf.info.wrapper.DocumentController;
 import com.foobnix.pdf.info.wrapper.UITab;
 import com.foobnix.pdf.search.activity.HorizontalViewActivity;
 import com.foobnix.pdf.search.activity.msg.MessegeBrightness;
+import com.foobnix.pdf.search.activity.msg.MsgCloseMainTabs;
 import com.foobnix.pdf.search.view.CloseAppDialog;
 import com.foobnix.sys.ImageExtractor;
 import com.foobnix.sys.TempHolder;
@@ -79,7 +80,6 @@ public class MainTabs2 extends AdsFragmentActivity {
     ViewPager pager;
     List<UIFragment> tabFragments;
 
-    public static volatile boolean isInStack;
     TabsAdapter2 adapter;
 
     ImageView imageMenu;
@@ -91,7 +91,6 @@ public class MainTabs2 extends AdsFragmentActivity {
     @Override
     protected void onNewIntent(final Intent intent) {
         LOG.d(TAG, "onNewIntent");
-        isInStack = true;
         // testIntentHandler();
         if (intent.getBooleanExtra(EXTRA_EXIT, false)) {
             finish();
@@ -369,6 +368,7 @@ public class MainTabs2 extends AdsFragmentActivity {
         } catch (Exception e) {
             LOG.e(e);
         }
+        EventBus.getDefault().register(this);
     }
 
     @Subscribe
@@ -409,7 +409,6 @@ public class MainTabs2 extends AdsFragmentActivity {
     protected void onResume() {
         super.onResume();
         LOG.d(TAG, "onResume");
-        isInStack = true;
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
         // DocumentController.chooseFullScreen(this, false);
         TintUtil.updateAll();
@@ -425,9 +424,6 @@ public class MainTabs2 extends AdsFragmentActivity {
 
         BrightnessHelper.applyBrigtness(this);
         BrightnessHelper.updateOverlay(overlay);
-
-        EventBus.getDefault().unregister(this);
-        EventBus.getDefault().register(this);
 
     };
 
@@ -479,7 +475,6 @@ public class MainTabs2 extends AdsFragmentActivity {
     @Override
     protected void onStop() {
         super.onStop();
-        EventBus.getDefault().unregister(this);
     }
 
     @Override
@@ -494,7 +489,6 @@ public class MainTabs2 extends AdsFragmentActivity {
             }
         }
         // Analytics.onStop(this);
-        isInStack = false;
         CacheDir.ZipApp.removeCacheContent();
         ImageExtractor.clearErrors();
         ImageExtractor.clearCodeDocument();
@@ -512,6 +506,7 @@ public class MainTabs2 extends AdsFragmentActivity {
                 LOG.e(e);
             }
         }
+        EventBus.getDefault().unregister(this);
     }
 
     @Override
@@ -602,13 +597,13 @@ public class MainTabs2 extends AdsFragmentActivity {
 
     }
 
+    @Subscribe
+    public void onCloseAppMsg(MsgCloseMainTabs event) {
+        onFinishActivity();
+    }
+
     public static void closeApp(Context c) {
-        // if (MainTabs2.isInStack) {
-        Intent startMain = new Intent(c, MainTabs2.class);
-        startMain.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-        startMain.putExtra(MainTabs2.EXTRA_EXIT, true);
-        c.startActivity(startMain);
-        // }
+        EventBus.getDefault().post(new MsgCloseMainTabs());
     }
 
 }

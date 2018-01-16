@@ -47,7 +47,6 @@ import com.foobnix.tts.MessagePageNumber;
 import com.foobnix.tts.TTSEngine;
 import com.foobnix.tts.TtsStatus;
 import com.foobnix.ui2.AppDB;
-import com.foobnix.ui2.MainTabs2;
 import com.nostra13.universalimageloader.core.ImageLoader;
 
 import android.annotation.TargetApi;
@@ -216,7 +215,7 @@ public class DocumentWrapperUI {
         }
 
         if (anchor == null) {
-            closeAndRunList(false);
+            closeAndRunList();
             return true;
         }
         if (AppState.get().isAutoScroll) {
@@ -356,7 +355,7 @@ public class DocumentWrapperUI {
 
     }
 
-    public void closeAndRunList(final boolean isLong) {
+    public void closeAndRunList() {
         EventBus.getDefault().unregister(this);
 
         AppState.get().lastA = null;
@@ -369,9 +368,6 @@ public class DocumentWrapperUI {
         }
         controller.onCloseActivity();
 
-        if (isLong && !MainTabs2.isInStack) {
-            MainTabs2.startActivity(a, UITab.getCurrentTabIndex(UITab.SearchFragment));
-        }
     }
 
     public void updateSpeedLabel() {
@@ -1532,7 +1528,7 @@ public class DocumentWrapperUI {
             anchor.removeAllViews();
             anchor.setVisibility(View.GONE);
 
-            closeAndRunList(false);
+            closeAndRunList();
         }
     };
     public View.OnLongClickListener onCloseLongClick = new View.OnLongClickListener() {
