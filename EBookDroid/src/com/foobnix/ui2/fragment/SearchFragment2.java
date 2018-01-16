@@ -65,7 +65,7 @@ import android.widget.Toast;
 
 public class SearchFragment2 extends UIFragment<FileMeta> {
 
-    public static final String EMPTY_ID = ":: ";
+    public static final String EMPTY_ID = "\u00A0";
     private String NO_SERIES = ":no-series";
     public static final Pair<Integer, Integer> PAIR = new Pair<Integer, Integer>(R.string.library, R.drawable.glyphicons_2_book_open);
     private static final String CMD_KEYCODE = "@@keycode_config";

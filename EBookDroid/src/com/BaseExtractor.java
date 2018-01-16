@@ -48,7 +48,7 @@ public abstract class BaseExtractor {
         title = TxtUtils.ellipsize(title, 20);
         author = TxtUtils.ellipsize(author, 40);
 
-        int w = Dips.dpToPx(AppState.get().coverBigSize);
+        int w = Dips.dpToPx(AppState.get().coverBigSize - 8);
         int h = (int) (w * (IMG.WIDTH_DK));
 
         TextPaint pNormal = new TextPaint(TextPaint.ANTI_ALIAS_FLAG);
