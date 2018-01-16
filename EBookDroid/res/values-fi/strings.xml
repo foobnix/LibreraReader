@@ -458,4 +458,6 @@
    <string name="read_the_tutorial_online_or_download_in_pdf_format">Lue opetusohjelma verkossa tai lataa PDF-muodossa</string>
    <string name="start_recording">Aloita nauhottaminen</string>
    <string name="favorite_folders_and_books">Suosikkikansiot ja kirjat</string>
+   <string name="don_t_show_this_dialog">Älä näytä tätä valintaikkunaa</string>
+   <string name="show_the_book_close_dialog">Näytä kirjan sulkeminen -valintaikkuna</string>
 </resources>

@@ -458,4 +458,6 @@
    <string name="read_the_tutorial_online_or_download_in_pdf_format">קרא את המדריך המקוון או הורד בפורמט PDF</string>
    <string name="start_recording">התחל להקליט</string>
    <string name="favorite_folders_and_books">תיקיות מועדפות וספרים</string>
+   <string name="don_t_show_this_dialog">אל תציג תיבת דו-שיח זו</string>
+   <string name="show_the_book_close_dialog">הצג את תיבת הדו-שיח \'סגור\' של הספר</string>
 </resources>

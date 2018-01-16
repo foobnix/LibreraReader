@@ -458,4 +458,6 @@
    <string name="read_the_tutorial_online_or_download_in_pdf_format">ट्यूटोरियल ऑनलाइन पढ़ें या पीडीएफ प्रारूप में डाउनलोड करें</string>
    <string name="start_recording">रिकॉर्डिंग शुरू</string>
    <string name="favorite_folders_and_books">पसंदीदा फ़ोल्डर्स और किताबें</string>
+   <string name="don_t_show_this_dialog">इस संवाद को नहीं दिखाएं</string>
+   <string name="show_the_book_close_dialog">पुस्तक बंद संवाद दिखाएं</string>
 </resources>

@@ -458,4 +458,6 @@
    <string name="read_the_tutorial_online_or_download_in_pdf_format">Les opplæringen online eller last ned i PDF-format</string>
    <string name="start_recording">Start opptak</string>
    <string name="favorite_folders_and_books">Favorittmapper og bøker</string>
+   <string name="don_t_show_this_dialog">Ikke vis denne dialogen</string>
+   <string name="show_the_book_close_dialog">Vis boken Lukk dialogboksen</string>
 </resources>

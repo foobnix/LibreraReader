@@ -458,4 +458,6 @@
    <string name="read_the_tutorial_online_or_download_in_pdf_format">在线阅读教程或以PDF格式下载</string>
    <string name="start_recording">开始录制</string>
    <string name="favorite_folders_and_books">最喜欢的文件夹和书籍</string>
+   <string name="don_t_show_this_dialog">不要显示这个对话框</string>
+   <string name="show_the_book_close_dialog">显示书籍关闭对话框</string>
 </resources>

@@ -458,4 +458,6 @@
    <string name="read_the_tutorial_online_or_download_in_pdf_format">Прочитайте підручник онлайн або завантажте у форматі PDF</string>
    <string name="start_recording">Почніть запис</string>
    <string name="favorite_folders_and_books">Улюблені папки та книги</string>
+   <string name="don_t_show_this_dialog">Не показувати це діалогове вікно</string>
+   <string name="show_the_book_close_dialog">Показати діалогове вікно закриття книги</string>
 </resources>

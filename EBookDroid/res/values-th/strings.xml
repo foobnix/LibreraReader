@@ -458,4 +458,6 @@
    <string name="read_the_tutorial_online_or_download_in_pdf_format">อ่านแบบฝึกหัดออนไลน์หรือดาวน์โหลดในรูปแบบ PDF</string>
    <string name="start_recording">เริ่มการบันทึก</string>
    <string name="favorite_folders_and_books">โฟลเดอร์และหนังสือที่ชอบ</string>
+   <string name="don_t_show_this_dialog">ไม่ต้องแสดงกล่องโต้ตอบนี้</string>
+   <string name="show_the_book_close_dialog">แสดงกล่องโต้ตอบปิดหนังสือ</string>
 </resources>

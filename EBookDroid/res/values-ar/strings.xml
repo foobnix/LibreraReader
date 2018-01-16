@@ -458,4 +458,6 @@
    <string name="read_the_tutorial_online_or_download_in_pdf_format">قراءة البرنامج التعليمي على الانترنت أو تحميل في شكل بدف</string>
    <string name="start_recording">ابدأ التسجيل</string>
    <string name="favorite_folders_and_books">المجلدات والكتب المفضلة</string>
+   <string name="don_t_show_this_dialog">لا يظهر مربع الحوار هذا</string>
+   <string name="show_the_book_close_dialog">عرض مربع الحوار إغلاق الكتاب</string>
 </resources>

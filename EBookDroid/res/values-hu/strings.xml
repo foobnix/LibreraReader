@@ -458,4 +458,6 @@
    <string name="read_the_tutorial_online_or_download_in_pdf_format">Olvassa el az oktatóanyagot online vagy töltse le PDF formátumban</string>
    <string name="start_recording">Felvétel megkezdése</string>
    <string name="favorite_folders_and_books">Kedvenc mappák és könyvek</string>
+   <string name="don_t_show_this_dialog">Ne jelenítse meg ezt a párbeszédablakot</string>
+   <string name="show_the_book_close_dialog">A könyv bezárása párbeszédablak megjelenítése</string>
 </resources>

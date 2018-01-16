@@ -458,4 +458,6 @@
    <string name="read_the_tutorial_online_or_download_in_pdf_format">Baca tutorial secara online atau download dalam format PDF</string>
    <string name="start_recording">Mulai merekam</string>
    <string name="favorite_folders_and_books">Folder dan buku favorit</string>
+   <string name="don_t_show_this_dialog">Jangan tampilkan dialog ini</string>
+   <string name="show_the_book_close_dialog">Tampilkan dialog tutup buku</string>
 </resources>

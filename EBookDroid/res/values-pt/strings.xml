@@ -458,4 +458,6 @@
    <string name="read_the_tutorial_online_or_download_in_pdf_format">Leia o tutorial on-line ou faça o download em formato PDF</string>
    <string name="start_recording">Comece a gravar</string>
    <string name="favorite_folders_and_books">Pastas e livros favoritos</string>
+   <string name="don_t_show_this_dialog">Não mostre este diálogo</string>
+   <string name="show_the_book_close_dialog">Mostra o diálogo do livro fechado</string>
 </resources>
