@@ -36,10 +36,10 @@
         android:layout_height="match_parent"
         android:choiceMode="singleChoice"
         android:numColumns="auto_fit"
+        android:paddingRight="12dp"
         android:scrollbars="none"
-        android:paddingRight="10dip"
         android:fastScrollEnabled="true"
-        android:fastScrollAlwaysVisible="true"
+        android:fastScrollAlwaysVisible="false"
         android:stretchMode="columnWidth" >
     </GridView>
 
