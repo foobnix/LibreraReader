@@ -273,7 +273,7 @@ public class OpdsFragment2 extends UIFragment<Entry> {
                             AppState.get().myOPDS = AppState.get().myOPDS.replace(entry.appState, "");
                             starIcon.setImageResource(R.drawable.star_2);
                             TintUtil.setTintImageWithAlpha(starIcon, Color.WHITE);
-                            url = "/";
+                            // url = "/";
                         }
                     });
                 }
