@@ -1278,6 +1278,10 @@ public class DocumentWrapperUI {
 
         @Override
         public void onClick(final View arg0) {
+            if (AppState.get().isCrop) {
+                onCrop.onClick(null);
+            }
+
             DragingDialogs.editColorsPanel(anchor, controller, drawView, false);
         }
     };
