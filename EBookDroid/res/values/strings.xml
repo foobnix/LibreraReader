@@ -19,7 +19,7 @@
    <string name="content_of_book">Book contents</string>
    <string name="crop_white_borders">Crop white borders</string>
    <string name="delete">Delete</string>
-   <string name="delete_book_">Delete the File from SD card?</string>
+   <string name="delete_book_">Delete this file from internal memory?</string>
    <string name="dialog_color_picker">Color Picker</string>
    <string name="Document_is_corrupted">Document is corrupted</string>
    <string name="downloading">Downloading</string>
@@ -41,8 +41,8 @@
    <string name="invert_colors">Invert colors</string>
    <string name="keys">Keys</string>
    <string name="landscape">Landscape</string>
-   <string name="landscape_180">Landscape (180)</string>
-   <string name="portrait_180">Portrait (180)</string>
+   <string name="landscape_180">Landscape inversed</string>
+   <string name="portrait_180">Portrait inversed</string>
    <string name="library">Library</string>
    <string name="licence_gnu_gpl_v3_0">License: GNU GPL v3.0</string>
    <string name="light">Light</string>
@@ -53,7 +53,7 @@
    <string name="msg_no_text_found">Text not found</string>
    <string name="msg_password_required">Enter password</string>
    <string name="msg_search_text_on_page">Searching on page</string>
-   <string name="msg_unexpected_error">Unexpected Error Occurred</string>
+   <string name="msg_unexpected_error">Unexpected error Occurred</string>
    <string name="msg_wrong_password">Wrong password given</string>
    <string name="next">Next</string>
    <string name="next_keys">Next keys:</string>
@@ -64,7 +64,7 @@
    <string name="open_page_with">Open page</string>
    <string name="open_with">Open with</string>
    <string name="orientation">Orientation</string>
-   <string name="outline_missed">Document without Outline</string>
+   <string name="outline_missed">Document without outline</string>
    <string name="page">Page</string>
    <string name="please_rate">Please Rate</string>
    <string name="portrait">Portrait</string>
@@ -108,7 +108,7 @@
    <string name="add_to_bookmark">Bookmark</string>
    <string name="web_dict">Web Dictionary</string>
    <string name="text">Text</string>
-   <string name="annotations_draw">Annotations and draw</string>
+   <string name="annotations_draw">Annotations and drawing</string>
    <string name="copy">Copy</string>
    <string name="save_changes">Save changes?</string>
    <string name="yes">Yes</string>
@@ -120,7 +120,7 @@
    <string name="grid">Grid</string>
    <string name="items_">Items:</string>
    <string name="pdf_mode">PDF Mode</string>
-   <string name="expiremental_features">Annotate and draw (In testing, it may damage some documents)</string>
+   <string name="expiremental_features">Annotate and draw (Alpha, may damage some documents)</string>
    <string name="remember_dictionary">Choose dictionary</string>
    <string name="customize_font_background_colors">Customize Font and Background colors</string>
    <string name="customize_background_color">Customize background color</string>
@@ -151,15 +151,15 @@
    <string name="file">File</string>
    <string name="file_not_found">File not found</string>
    <string name="send_file">Send file</string>
-   <string name="make_text_reflow">Text mode (Text Reflow)</string>
+   <string name="make_text_reflow">Text reflow</string>
    <string name="file_info">File information</string>
    <string name="open_file">Open file</string>
    <string name="search_not_supported_formats">Search for not supported formats</string>
    <string name="search_in_google">Search in Google</string>
    <string name="reading_the_text_by_voice">Reading the text by voice</string>
    <string name="speed1">Speed</string>
-   <string name="pitch1">Sound pitch</string>
-   <string name="sound_volume">Music volume</string>
+   <string name="pitch1">Pitch</string>
+   <string name="sound_volume">Volume</string>
    <string name="to_stop">Stop</string>
    <string name="to_read">Read</string>
    <string name="enter_password">Enter Password</string>
@@ -221,7 +221,7 @@
    <string name="bold_font">Bold font</string>
    <string name="italic_font">Italic font</string>
    <string name="bold_italic_font">Bold Italic font</string>
-   <string name="font_for_headers">Font for headers</string>
+   <string name="font_for_headers">Headers</string>
    <string name="highlight_of_text">Highlight</string>
    <string name="underline_of_text">Underline</string>
    <string name="strikethrough_of_text">Strikethrough</string>
@@ -241,7 +241,7 @@
    <string name="close_application_">Close application?</string>
    <string name="cover">Cover</string>
    <string name="application_cannot_open_the_book">Application cannot open this book</string>
-   <string name="extracting_information_from_books">Extracting information from books</string>
+   <string name="extracting_information_from_books">Extracting information from files</string>
    <string name="enable_effect_of_the_book_cover">Enable realistic covers</string>
    <string name="archive_files">Archive files</string>
    <string name="send_snapshot_of_the_page">Send snapshot of page</string>
@@ -252,7 +252,7 @@
    <string name="folders">Folders</string>
    <string name="clear_all">Clear all</string>
    <string name="musician">Musician</string>
-   <string name="borders_and_shadow_around_the_book_cover">Borders around covers</string>
+   <string name="borders_and_shadow_around_the_book_cover">Borders and shadows outline</string>
    <string name="by_path">File path</string>
    <string name="by_name">Name</string>
    <string name="by_file_name">File name</string>
@@ -262,8 +262,8 @@
    <string name="by_number">Number</string>
    <string name="by_date">Date</string>
    <string name="by_size">Size</string>
-   <string name="read_a_book">Read a book</string>
-   <string name="screen_turn_off_after_inactivity_minutes_">Screen turns off after inactivity (minutes)</string>
+   <string name="read_a_book">Read</string>
+   <string name="screen_turn_off_after_inactivity_minutes_">Screen turns off after (minutes)</string>
    <string name="all_bookmarks">All bookmarks</string>
    <string name="bookmark_by_date">By date</string>
    <string name="bookmark_by_book">By book</string>
@@ -323,7 +323,7 @@
    <string name="settings">Settings</string>
    <string name="text_size">Text size</string>
    <string name="text_color_day">Day text color</string>
-   <string name="text_color_night">Night text color at night</string>
+   <string name="text_color_night">Text color at night</string>
    <string name="show_application_close_dialog_every_time">Show exit prompt before closing application</string>
    <string name="tabs_position">Tabs position</string>
    <string name="visible">Visible</string>
@@ -351,7 +351,7 @@
    <string name="authentication_required">Authentication required</string>
    <string name="user_name">User Name</string>
    <string name="password">Password</string>
-   <string name="what_is_the_opds_online_catalog_">What is the OPDS online catalog?</string>
+   <string name="what_is_the_opds_online_catalog_">What is OPDS online catalog?</string>
    <string name="books">Books</string>
    <string name="reading_out_loud">Reading out loud</string>
    <string name="librera_pro_no_ads_leading_book_reader_and_pdf">Librera PRO (no ads) Leading Book and PDF Reader</string>
@@ -425,9 +425,9 @@
    <string name="theme_color">Theme color</string>
    <string name="add_folder">Add folder</string>
    <string name="selecting_text_in_this_mode_does_not_work">Selecting text in this mode does not work</string>
-   <string name="scroll_speed">Scroll speed</string>
+   <string name="scroll_speed">Scroll speed with mouse wheel</string>
    <string name="full_list_of_changes_with_images_web_pdf_">Full list of changes with images (web, PDF)</string>
-   <string name="select_the_reading_mode">Select the reading mode</string>
+   <string name="select_the_reading_mode">Select reading mode</string>
    <string name="remember_choice">Remember choice</string>
    <string name="remember_reading_mode">Remember reading mode</string>
    <string name="background_color_on_images_the_same_as_page_background">Background color on images the same as page background</string>
@@ -445,9 +445,9 @@
    <string name="you_neet_to_apply_the_new_settings">You need to apply the new settings</string>
    <string name="custom_value">Custom value</string>
    <string name="change_the_automatic_scrolling_speed_with_the_volume_keys">Change auto-scroll speed with volume keys</string>
-   <string name="mode_vertical">Scroll view (vertical)</string>
-   <string name="mode_horizontally">Book view (horizontal)</string>
-   <string name="mode_musician">Musical view (autoscroll)</string>
+   <string name="mode_vertical">Scroll view</string>
+   <string name="mode_horizontally">Paginated view</string>
+   <string name="mode_musician">Musical score view</string>
    <string name="automatic_export_backup">Automatic export (backup) of settings, bookmarks and reading progress.</string>
    <string name="display_all_file_types_in_folders">Display all file types in folders</string>
    <string name="no_author">No author</string>
@@ -455,9 +455,4 @@
    <string name="no_genre">No genre</string>
    <string name="archives">Archives</string>
    <string name="other">Other</string>
-   <string name="read_the_tutorial_online_or_download_in_pdf_format">Read the tutorial online or download in PDF format</string>
-   <string name="start_recording">Start recording</string>
-   <string name="favorite_folders_and_books">Favorite folders and books</string>
-   <string name="don_t_show_this_dialog">Don\'t show this dialog</string>
-   <string name="show_the_book_close_dialog">Show the book close dialog</string>
 </resources>
