@@ -338,8 +338,7 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
 
             @Override
             public void onClick(View v) {
-                PageImageState.get().isAutoFit = true;
-                EventBus.getDefault().post(new MessageAutoFit(viewPager.getCurrentItem()));
+                authoFit();
             }
         });
 
@@ -764,9 +763,9 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
                     onModeChange.setVisibility(View.VISIBLE);
 
                     documentController.initHandler();
-                    AppState.get().lastA = HorizontalViewActivity.class.getSimpleName();
+                    AppState.get().lastClosedActivity = HorizontalViewActivity.class.getSimpleName();
                     AppState.get().lastMode = HorizontalViewActivity.class.getSimpleName();
-                    LOG.d("lasta save", AppState.get().lastA);
+                    LOG.d("lasta save", AppState.get().lastClosedActivity);
 
                     AppState.get().isEditMode = true;
                     PageImageState.get().isAutoFit = PageImageState.get().needAutoFit;
@@ -1621,6 +1620,7 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
             public void run() {
                 PageImageState.get().isAutoFit = true;
                 EventBus.getDefault().post(new MessageAutoFit(viewPager.getCurrentItem()));
+                documentController.cleanImageMatrix();
             }
         }, 50);
     }
@@ -1926,7 +1926,7 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
 
     @Override
     public void onFinishActivity() {
-        AppState.get().lastA = null;
+        AppState.get().lastClosedActivity = null;
         if (handler != null) {
             handler.removeCallbacksAndMessages(null);
         }

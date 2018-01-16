@@ -420,7 +420,7 @@ public class AppState {
     public volatile int statusBarTextSizeEasy = Dips.isXLargeScreen() ? 16 : 12;
     public volatile int progressLineHeight = Dips.isXLargeScreen() ? 8 : 4;
 
-    public String lastA;
+    public String lastClosedActivity;
     public String lastMode;
     public String dirLastPath;
 
@@ -602,9 +602,9 @@ public class AppState {
                 loadIn(a);
                 BookCSS.get().load(a);
                 DragingPopup.loadCache(a);
-                LOG.d("AppState Load lasta", lastA);
+                LOG.d("AppState Load lasta", lastClosedActivity);
             } else {
-                LOG.d("AppState is Loaded", lastA);
+                LOG.d("AppState is Loaded", lastClosedActivity);
             }
             isLoaded = true;
         } catch (Exception e) {

@@ -102,8 +102,14 @@ public class CloseAppDialog {
                     Apps.showDesctop(a);
 
                 } else if (which == i++) {
-                    c.onCloseActivity();
-                    MainTabs2.closeApp(a);
+                    c.onCloseActivityFinal(new Runnable() {
+
+                        @Override
+                        public void run() {
+                            MainTabs2.closeApp(a);
+                        }
+                    });
+
                 }
 
             }

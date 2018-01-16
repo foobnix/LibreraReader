@@ -1,6 +1,7 @@
 package com.foobnix.pdf.info.widget;
 
 import com.foobnix.android.utils.AsyncTasks;
+import com.foobnix.android.utils.Keyboards;
 import com.foobnix.android.utils.LOG;
 import com.foobnix.android.utils.TxtUtils;
 import com.foobnix.opds.Entry;
@@ -17,6 +18,7 @@ import com.nostra13.universalimageloader.core.ImageLoader;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.content.DialogInterface.OnDismissListener;
 import android.os.AsyncTask;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -131,11 +133,19 @@ public class AddCatalogDialog {
         builder.setNegativeButton(R.string.close, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int id) {
-
+                Keyboards.close(a);
             }
         });
 
         final AlertDialog infoDialog = builder.create();
+        infoDialog.setOnDismissListener(new OnDismissListener() {
+
+            @Override
+            public void onDismiss(DialogInterface dialog) {
+                Keyboards.close(a);
+
+            }
+        });
         infoDialog.show();
 
         url.addTextChangedListener(new TextWatcher() {

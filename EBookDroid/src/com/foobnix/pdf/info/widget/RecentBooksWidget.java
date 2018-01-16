@@ -76,7 +76,7 @@ public class RecentBooksWidget extends AppWidgetProvider {
 
 			AppState.get().isMusicianMode = false;
 			AppState.get().isShowToolBar = true;
-			AppState.get().lastA = null;
+			AppState.get().lastClosedActivity = null;
 			int i = 1;
 
 			// MUSIC.setIsRecent(false);
@@ -89,14 +89,14 @@ public class RecentBooksWidget extends AppWidgetProvider {
 			if (id == i++) { // 1
 				AppState.get().isWhiteTheme = true;
 				AppState.get().libraryMode = AppState.MODE_GRID;
-				mainTabs(context, 0, "id0");
+				mainTabsTest(context, 0, "id0");
 			}
 			if (id == i++) { // 2
-				mainTabs(context, 1, "");
+				mainTabsTest(context, 1, "");
 			}
 
 			if (id == i++) {// 3
-				mainTabs(context, 2, "");
+				mainTabsTest(context, 2, "");
 			}
 
 			if (id == i++) {// 4
@@ -167,7 +167,7 @@ public class RecentBooksWidget extends AppWidgetProvider {
 				AppState.get().tintColor = Color.parseColor(AppState.STYLE_COLORS.get(4));
 				AppState.get().isWhiteTheme = false;
 				TintUtil.init();
-				mainTabs(context, 4, "");
+				mainTabsTest(context, 4, "");
 			}
 
 			if (id == i++) {// 12
@@ -175,7 +175,7 @@ public class RecentBooksWidget extends AppWidgetProvider {
 				AppState.get().isWhiteTheme = false;
 				AppState.get().libraryMode = AppState.MODE_LIST;
 				TintUtil.init();
-				mainTabs(context, 0, "id0");
+				mainTabsTest(context, 0, "id0");
 			}
 
 			if (id == i++)// 13 //dict
@@ -218,7 +218,7 @@ public class RecentBooksWidget extends AppWidgetProvider {
 				AppState.get().isWhiteTheme = true;
 				AppState.get().libraryMode = AppState.MODE_AUTHORS;
 				TintUtil.init();
-				mainTabs(context, 0, "");
+				mainTabsTest(context, 0, "");
 			}
 
 			if (id == i++) {// 18
@@ -226,7 +226,7 @@ public class RecentBooksWidget extends AppWidgetProvider {
 				AppState.get().isWhiteTheme = true;
 				AppState.get().libraryMode = AppState.MODE_GENRE;
 				TintUtil.init();
-				mainTabs(context, 0, "");
+				mainTabsTest(context, 0, "");
 			}
 
 			if (id == i++) {// 19
@@ -234,7 +234,7 @@ public class RecentBooksWidget extends AppWidgetProvider {
 				AppState.get().isWhiteTheme = true;
 				AppState.get().libraryMode = AppState.MODE_LIST;
 				TintUtil.init();
-				mainTabs(context, 0, "id1");
+				mainTabsTest(context, 0, "id1");
 			}
 
 			return;
@@ -287,7 +287,7 @@ public class RecentBooksWidget extends AppWidgetProvider {
 		context.startActivity(intent2);
 	}
 
-	private void mainTabs(Context context, int pos, String id) {
+	private void mainTabsTest(Context context, int pos, String id) {
 		Intent intent2 = new Intent(context, MainTabs2.class);
 		// intent2.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
 		intent2.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);

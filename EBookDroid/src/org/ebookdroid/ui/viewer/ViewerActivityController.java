@@ -254,9 +254,9 @@ public class ViewerActivityController extends ActionController<VerticalViewActiv
                     }
                 });
 
-                AppState.get().lastA = VerticalViewActivity.class.getSimpleName();
+                AppState.get().lastClosedActivity = VerticalViewActivity.class.getSimpleName();
                 AppState.get().lastMode = VerticalViewActivity.class.getSimpleName();
-                LOG.d("lasta save", AppState.get().lastA);
+                LOG.d("lasta save", AppState.get().lastClosedActivity);
             }
         }));
     }

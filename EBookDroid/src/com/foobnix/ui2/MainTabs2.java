@@ -293,7 +293,7 @@ public class MainTabs2 extends AdsFragmentActivity {
                 for (String extra : extras) {
                     final String text = getIntent().getStringExtra(extra);
                     if (TxtUtils.isNotEmpty(text)) {
-                        AppState.get().lastA = null;
+                        AppState.get().lastClosedActivity = null;
                         pager.postDelayed(new Runnable() {
 
                             @Override
@@ -314,7 +314,7 @@ public class MainTabs2 extends AdsFragmentActivity {
         if (showTabs == false && AppState.get().isOpenLastBook) {
             LOG.d("Open LAST book");
             final FileMeta meta = AppDB.get().getRecentLast();
-            AppState.get().lastA = null;
+            AppState.get().lastClosedActivity = null;
 
             if (meta != null) {
 
@@ -330,28 +330,28 @@ public class MainTabs2 extends AdsFragmentActivity {
                 });
             }
         } else if (false && !AppState.get().isOpenLastBook) {
-            LOG.d("Open book lastA", AppState.get().lastA);
+            LOG.d("Open book lastA", AppState.get().lastClosedActivity);
 
             Safe.run(new Runnable() {
 
                 @Override
                 public void run() {
-                    if (HorizontalViewActivity.class.getSimpleName().equals(AppState.get().lastA)) {
+                    if (HorizontalViewActivity.class.getSimpleName().equals(AppState.get().lastClosedActivity)) {
 
                         FileMeta meta = AppDB.get().getRecentLast();
                         if (meta != null) {
                             Intent intent = new Intent(MainTabs2.this, HorizontalViewActivity.class);
                             intent.setData(Uri.fromFile(new File(meta.getPath())));
                             startActivity(intent);
-                            LOG.d("Start lasta", AppState.get().lastA);
+                            LOG.d("Start lasta", AppState.get().lastClosedActivity);
                         }
-                    } else if (VerticalViewActivity.class.getSimpleName().equals(AppState.get().lastA)) {
+                    } else if (VerticalViewActivity.class.getSimpleName().equals(AppState.get().lastClosedActivity)) {
                         FileMeta meta = AppDB.get().getRecentLast();
                         if (meta != null) {
                             Intent intent = new Intent(MainTabs2.this, VerticalViewActivity.class);
                             intent.setData(Uri.fromFile(new File(meta.getPath())));
                             startActivity(intent);
-                            LOG.d("Start lasta", AppState.get().lastA);
+                            LOG.d("Start lasta", AppState.get().lastClosedActivity);
                         }
 
                     }
@@ -412,7 +412,7 @@ public class MainTabs2 extends AdsFragmentActivity {
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
         // DocumentController.chooseFullScreen(this, false);
         TintUtil.updateAll();
-        AppState.get().lastA = MainTabs2.class.getSimpleName();
+        AppState.get().lastClosedActivity = MainTabs2.class.getSimpleName();
         LocalBroadcastManager.getInstance(this).registerReceiver(broadcastReceiver, new IntentFilter(UIFragment.INTENT_TINT_CHANGE));
 
         try {
@@ -588,7 +588,7 @@ public class MainTabs2 extends AdsFragmentActivity {
     };
 
     public static void startActivity(Activity c, int tab) {
-        AppState.get().lastA = null;
+        AppState.get().lastClosedActivity = null;
         final Intent intent = new Intent(c, MainTabs2.class);
         intent.putExtra(MainTabs2.EXTRA_SHOW_TABS, true);
         intent.putExtra(MainTabs2.EXTRA_PAGE_NUMBER, tab);

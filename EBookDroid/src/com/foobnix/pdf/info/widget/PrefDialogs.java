@@ -19,6 +19,7 @@ import com.foobnix.pdf.info.model.BookCSS;
 import com.foobnix.pdf.info.presentation.BrowserAdapter;
 import com.foobnix.pdf.info.presentation.PathAdapter;
 import com.foobnix.pdf.info.wrapper.AppState;
+import com.foobnix.sys.TempHolder;
 import com.foobnix.ui2.MainTabs2;
 
 import android.app.Activity;
@@ -26,7 +27,6 @@ import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
-import android.content.Intent;
 import android.graphics.Typeface;
 import android.net.Uri;
 import android.os.Environment;
@@ -276,9 +276,7 @@ public class PrefDialogs {
                         LOG.d("appFontScale2", AppState.get().appFontScale);
 
                         activity.finish();
-                        Intent i = new Intent(activity, MainTabs2.class);
-                        i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                        activity.startActivity(i);
+                        MainTabs2.startActivity(activity, TempHolder.get().currentTab);
 
                         Toast.makeText(activity, activity.getString(R.string.import_) + " " + activity.getString(R.string.success), Toast.LENGTH_LONG).show();
 
