@@ -431,7 +431,7 @@
    <string name="continuous_text">Непрерывный текст (без разрыва строк)</string>
    <string name="remember_reading_mode">Запоминать режим чтения</string>
    <string name="background_color_on_images_the_same_as_page_background">Применять особый алгоритм цветовой подстройки шрифтов и фонов (для PDF/DJVU)</string>
-   <string name="block_page_movement_horizontally">Если замочек «запереть», страницы не будут смещаться в стороны</string>
+   <string name="block_page_movement_horizontally">«Запереть» смещение страниц в стороны</string>
    <string name="search_history_and_autocomplete">История поиска и автозаполнение</string>
    <string name="server">Сервер</string>
    <string name="port">Порт</string>

@@ -161,7 +161,7 @@ public class TTSEngine {
 
         info.onResultRecive((page + 1) + " / " + controller.getPageCount());
 
-        DecimalFormat df = new DecimalFormat("000");
+        DecimalFormat df = new DecimalFormat("0000");
         String pageName = "page-" + df.format(page + 1);
         final String wav = new File(folder, pageName + WAV).getPath();
         String fileText = controller.getTextForPage(page);

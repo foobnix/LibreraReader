@@ -445,9 +445,9 @@
    <string name="you_neet_to_apply_the_new_settings">You need to apply the new settings</string>
    <string name="custom_value">Custom value</string>
    <string name="change_the_automatic_scrolling_speed_with_the_volume_keys">Change auto-scroll speed with volume keys</string>
-   <string name="mode_vertical">Scroll view</string>
-   <string name="mode_horizontally">Book view</string>
-   <string name="mode_musician">Musical view</string>
+   <string name="mode_vertical">Scroll view (vertical)</string>
+   <string name="mode_horizontally">Book view (horizontal)</string>
+   <string name="mode_musician">Musical view (autoscroll)</string>
    <string name="automatic_export_backup">Automatic export (backup) of settings, bookmarks and reading progress.</string>
    <string name="display_all_file_types_in_folders">Display all file types in folders</string>
    <string name="no_author">No author</string>
