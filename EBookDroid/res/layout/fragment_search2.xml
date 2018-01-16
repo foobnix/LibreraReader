@@ -36,7 +36,7 @@
                 android:inputType="textEmailAddress"
                 android:paddingBottom="0dip"
                 android:paddingLeft="10dip"
-                android:paddingRight="70dip"
+                android:paddingRight="60dip"
                 android:paddingTop="0dip"
                 android:singleLine="true"
                 android:textColor="@color/tint_gray"
@@ -58,6 +58,7 @@
                 android:textStyle="bold" />
             
             <ImageView
+                android:layout_marginRight="-8dip"
                 android:id="@+id/myAutoCompleteImage"
                 style="@style/buttonClear"
                 android:layout_width="@dimen/wh_button_small"
