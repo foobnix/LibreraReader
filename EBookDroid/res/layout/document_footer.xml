@@ -209,7 +209,7 @@
                 android:text="@string/mode_vertical"
                 android:textColor="#ffffff"
                 android:textSize="14sp"
-                android:textStyle="bold" />
+                android:textStyle="normal" />
 
             <ImageView
                 android:id="@+id/bookMenu"

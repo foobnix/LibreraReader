@@ -383,6 +383,7 @@ public class BrowseFragment2 extends UIFragment<FileMeta> {
 
     public void setDirPath(String path) {
         setDirPath(path, null);
+        onGridList();
     }
 
     public void setDirPath(final String path, List<FileMeta> items) {
@@ -435,6 +436,18 @@ public class BrowseFragment2 extends UIFragment<FileMeta> {
             Collections.reverse(items);
         }
         Collections.sort(items, FileMetaComparators.DIRS);
+
+        for (int i = 0; i < items.size(); i++) {
+            FileMeta m = items.get(i);
+            if (m.getCusType() == null) {// directory
+                LOG.d("DISPALY_TYPE_LAYOUT_TITLE_FOLDERS", i);
+                FileMeta it = new FileMeta();
+                it.setCusType(FileMetaAdapter.DISPALY_TYPE_LAYOUT_TITLE_NONE);
+                items.add(i, it);
+                break;
+            }
+        }
+
 
         searchAdapter.getItemsList().addAll(items);
         recyclerView.setAdapter(searchAdapter);

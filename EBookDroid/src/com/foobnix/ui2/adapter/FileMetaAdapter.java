@@ -43,8 +43,8 @@ public class FileMetaAdapter extends AppRecycleAdapter<FileMeta, RecyclerView.Vi
 
     public static final int DISPALY_TYPE_LAYOUT_TITLE_FOLDERS = 5;
     public static final int DISPALY_TYPE_LAYOUT_TITLE_BOOKS = 6;
-
     public static final int DISPALY_TYPE_SERIES = 7;
+    public static final int DISPALY_TYPE_LAYOUT_TITLE_NONE = 8;
 
     public static final int ADAPTER_LIST = 0;
     public static final int ADAPTER_GRID = 1;
@@ -136,6 +136,13 @@ public class FileMetaAdapter extends AppRecycleAdapter<FileMeta, RecyclerView.Vi
         }
     }
 
+    public class NoneHolder extends RecyclerView.ViewHolder {
+
+        public NoneHolder(View view) {
+            super(view);
+        }
+    }
+
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View itemView;
@@ -157,6 +164,10 @@ public class FileMetaAdapter extends AppRecycleAdapter<FileMeta, RecyclerView.Vi
         if (viewType == DISPALY_TYPE_LAYOUT_TITLE_BOOKS) {
             itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.fragment_starred_title_books, parent, false);
             return new StarsTitleViewHolder(itemView);
+        }
+        if (viewType == DISPALY_TYPE_LAYOUT_TITLE_NONE) {
+            itemView = new View(parent.getContext());
+            return new NoneHolder(itemView);
         }
 
         if (viewType == DISPLAY_TYPE_DIRECTORY) {

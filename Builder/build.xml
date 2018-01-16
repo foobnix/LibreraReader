@@ -43,7 +43,7 @@
 	<!-- section 4 -->
 		
 		<replaceregexp file="../EBookDroid/res/values/config.xml"
-			match='Librera Beta' replace='Librera' />
+			match='Librera[ a-zA-Z0-9-]+' replace='Librera' />
 
 		<replaceregexp file="../EBookDroid/res/values/config.xml"
 			match='&lt;string name="app_name">${name.pro}&lt;/string>' replace='&lt;string name="app_name">${pdf.app.name}&lt;/string>' />
@@ -210,8 +210,8 @@
 
 		<property name="pdf.package" value="com.foobnix.pdf.reader" />
 		<property name="pdf.icon" value="@drawable/icon_pdf_reader" />
-		<property name="pdf.app.name" value="${name.pdf} Beta" />
-		<property name="pdf.export.name" value="${name.pdf} Beta" />
+		<property name="pdf.app.name" value="${name.pdf} ${version.beta.text}" />
+		<property name="pdf.export.name" value="${name.pdf} ${version.beta.text}" />
 
 		<antcall target="prepare-packages" />
 		<antcall target="free-replace" />
