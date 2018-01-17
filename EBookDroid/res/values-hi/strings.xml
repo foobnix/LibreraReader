@@ -460,4 +460,6 @@
    <string name="favorite_folders_and_books">पसंदीदा फ़ोल्डर्स और किताबें</string>
    <string name="don_t_show_this_dialog">इस संवाद को नहीं दिखाएं</string>
    <string name="show_the_book_close_dialog">पुस्तक बंद संवाद दिखाएं</string>
+   <string name="search_completed">खोज पूरी हुई</string>
+   <string name="you_can_search_only_one_word">आप केवल एक शब्द खोज सकते हैं</string>
 </resources>

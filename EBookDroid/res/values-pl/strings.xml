@@ -460,4 +460,6 @@
    <string name="favorite_folders_and_books">Ulubione foldery i książki</string>
    <string name="don_t_show_this_dialog">Nie pokazuj tego okna dialogowego</string>
    <string name="show_the_book_close_dialog">Pokaż okno dialogowe zamknięcia książki</string>
+   <string name="search_completed">Wyszukiwanie zakończone</string>
+   <string name="you_can_search_only_one_word">Możesz wyszukiwać tylko jedno słowo</string>
 </resources>

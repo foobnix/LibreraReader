@@ -460,4 +460,6 @@
    <string name="favorite_folders_and_books">Folder dan buku favorit</string>
    <string name="don_t_show_this_dialog">Jangan tampilkan dialog ini</string>
    <string name="show_the_book_close_dialog">Tampilkan dialog tutup buku</string>
+   <string name="search_completed">Pencarian selesai</string>
+   <string name="you_can_search_only_one_word">Anda bisa mencari hanya satu kata</string>
 </resources>

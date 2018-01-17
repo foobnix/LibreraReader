@@ -460,4 +460,6 @@
    <string name="favorite_folders_and_books">Улюблені папки та книги</string>
    <string name="don_t_show_this_dialog">Не показувати це діалогове вікно</string>
    <string name="show_the_book_close_dialog">Показати діалогове вікно закриття книги</string>
+   <string name="search_completed">Пошук виконано</string>
+   <string name="you_can_search_only_one_word">Ви можете шукати лише одне слово</string>
 </resources>

@@ -460,4 +460,6 @@
    <string name="favorite_folders_and_books">En sevdiğim klasörler ve kitaplar</string>
    <string name="don_t_show_this_dialog">Bu diyalogu gösterme</string>
    <string name="show_the_book_close_dialog">Kitabı kapat iletişim kutusunu göster</string>
+   <string name="search_completed">Arama tamamlandı</string>
+   <string name="you_can_search_only_one_word">Sadece bir kelimeyi arayabilirsiniz</string>
 </resources>

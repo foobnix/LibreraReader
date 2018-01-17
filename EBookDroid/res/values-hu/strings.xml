@@ -460,4 +460,6 @@
    <string name="favorite_folders_and_books">Kedvenc mappák és könyvek</string>
    <string name="don_t_show_this_dialog">Ne jelenítse meg ezt a párbeszédablakot</string>
    <string name="show_the_book_close_dialog">A könyv bezárása párbeszédablak megjelenítése</string>
+   <string name="search_completed">A keresés befejeződött</string>
+   <string name="you_can_search_only_one_word">Csak egy szót kereshet</string>
 </resources>

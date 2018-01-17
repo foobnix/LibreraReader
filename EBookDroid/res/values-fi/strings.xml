@@ -460,4 +460,6 @@
    <string name="favorite_folders_and_books">Suosikkikansiot ja kirjat</string>
    <string name="don_t_show_this_dialog">Älä näytä tätä valintaikkunaa</string>
    <string name="show_the_book_close_dialog">Näytä kirjan sulkeminen -valintaikkuna</string>
+   <string name="search_completed">Haku loppuun</string>
+   <string name="you_can_search_only_one_word">Voit etsiä vain yhtä sanaa</string>
 </resources>

@@ -460,4 +460,6 @@
    <string name="favorite_folders_and_books">お気に入りのフォルダと書籍</string>
    <string name="don_t_show_this_dialog">このダイアログを表示しない</string>
    <string name="show_the_book_close_dialog">ブッククローズダイアログを表示する</string>
+   <string name="search_completed">検索が完了しました</string>
+   <string name="you_can_search_only_one_word">1つの単語だけを検索できます</string>
 </resources>

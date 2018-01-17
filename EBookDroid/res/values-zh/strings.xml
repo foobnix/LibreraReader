@@ -460,4 +460,6 @@
    <string name="favorite_folders_and_books">最喜欢的文件夹和书籍</string>
    <string name="don_t_show_this_dialog">不要显示这个对话框</string>
    <string name="show_the_book_close_dialog">显示书籍关闭对话框</string>
+   <string name="search_completed">搜索完成</string>
+   <string name="you_can_search_only_one_word">您只能搜索一个词</string>
 </resources>

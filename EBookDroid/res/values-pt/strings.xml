@@ -460,4 +460,6 @@
    <string name="favorite_folders_and_books">Pastas e livros favoritos</string>
    <string name="don_t_show_this_dialog">Não mostre este diálogo</string>
    <string name="show_the_book_close_dialog">Mostra o diálogo do livro fechado</string>
+   <string name="search_completed">Pesquisa concluída</string>
+   <string name="you_can_search_only_one_word">Você pode pesquisar apenas uma palavra</string>
 </resources>

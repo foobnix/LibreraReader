@@ -460,4 +460,6 @@
    <string name="favorite_folders_and_books">Favorite folders and books</string>
    <string name="don_t_show_this_dialog">Don\'t show this dialog</string>
    <string name="show_the_book_close_dialog">Show the book close dialog</string>
+   <string name="search_completed">Search completed</string>
+   <string name="you_can_search_only_one_word">You can search only one word</string>
 </resources>

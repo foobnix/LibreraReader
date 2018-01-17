@@ -460,4 +460,6 @@
    <string name="favorite_folders_and_books">Obľúbené priečinky a knihy</string>
    <string name="don_t_show_this_dialog">Nepoužívajte tento dialóg</string>
    <string name="show_the_book_close_dialog">Zobraziť dialógové okno uzavretia knihy</string>
+   <string name="search_completed">Vyhľadávanie bolo dokončené</string>
+   <string name="you_can_search_only_one_word">Môžete vyhľadávať iba jedno slovo</string>
 </resources>

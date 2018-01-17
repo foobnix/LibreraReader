@@ -460,4 +460,6 @@
    <string name="favorite_folders_and_books">Folda za kupendeza na vitabu</string>
    <string name="don_t_show_this_dialog">Usionyeshe mazungumzo haya</string>
    <string name="show_the_book_close_dialog">Onyesha mazungumzo ya karibu ya kitabu</string>
+   <string name="search_completed">Utafutaji umekamilika</string>
+   <string name="you_can_search_only_one_word">Unaweza kutafuta neno moja tu</string>
 </resources>

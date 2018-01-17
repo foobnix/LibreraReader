@@ -460,4 +460,6 @@
    <string name="favorite_folders_and_books">پوشه ها و کتاب های مورد علاقه</string>
    <string name="don_t_show_this_dialog">این گفتگو را نشان ندهید</string>
    <string name="show_the_book_close_dialog">گفتگو نزدیک کتاب را نشان دهید</string>
+   <string name="search_completed">جستجو تکمیل شد</string>
+   <string name="you_can_search_only_one_word">شما می توانید تنها یک کلمه را جستجو کنید</string>
 </resources>

@@ -460,4 +460,6 @@
    <string name="favorite_folders_and_books">Mėgstamiausi aplankai ir knygos</string>
    <string name="don_t_show_this_dialog">Nenurodykite šio dialogo</string>
    <string name="show_the_book_close_dialog">Rodyti knygos uždarymo dialogą</string>
+   <string name="search_completed">Paieška baigta</string>
+   <string name="you_can_search_only_one_word">Galite ieškoti tik vieno žodžio</string>
 </resources>

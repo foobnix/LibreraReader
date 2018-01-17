@@ -460,4 +460,6 @@
    <string name="favorite_folders_and_books">โฟลเดอร์และหนังสือที่ชอบ</string>
    <string name="don_t_show_this_dialog">ไม่ต้องแสดงกล่องโต้ตอบนี้</string>
    <string name="show_the_book_close_dialog">แสดงกล่องโต้ตอบปิดหนังสือ</string>
+   <string name="search_completed">การค้นหาเสร็จสิ้น</string>
+   <string name="you_can_search_only_one_word">คุณสามารถค้นหาคำเดียวได้</string>
 </resources>

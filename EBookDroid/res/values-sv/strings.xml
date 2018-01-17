@@ -460,4 +460,6 @@
    <string name="favorite_folders_and_books">Favoritmappar och böcker</string>
    <string name="don_t_show_this_dialog">Visa inte denna dialogruta</string>
    <string name="show_the_book_close_dialog">Visa boken nära dialogrutan</string>
+   <string name="search_completed">Sökningen är klar</string>
+   <string name="you_can_search_only_one_word">Du kan söka endast ett ord</string>
 </resources>
