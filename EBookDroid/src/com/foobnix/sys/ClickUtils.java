@@ -35,38 +35,19 @@ public class ClickUtils {
     }
 
     public boolean isClickTop(float x, float y) {
-
-        if (y < border_top && (border_top < x && x < (WIDHT_X - border_side))) {
-            return true;
-        }
-        return false;
+        return y < border_top;
     }
 
     public boolean isClickBottom(float x, float y) {
-        if (y > (HEIGHT_Y - border_top) && (border_top < x && x < (WIDHT_X - border_side))) {
-            return true;
-        }
-        return false;
+        return y > (HEIGHT_Y - border_top);
     }
 
     public boolean isClickLeft(float x, float y) {
-        if (x < border_side /*
-                             * && (border_side < y && y < (HEIGHT_Y -
-                             * border_side))
-                             */) {
-            return true;
-        }
-        return false;
+        return x < border_side;
     }
 
     public boolean isClickRight(float x, float y) {
-        if (x > (WIDHT_X - border_side) /*
-                                         * && (border_side < y && y < (HEIGHT_Y
-                                         * - border_side))
-                                         */) {
-            return true;
-        }
-        return false;
+        return x > (WIDHT_X - border_side);
     }
 
 }

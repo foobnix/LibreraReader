@@ -460,4 +460,11 @@
    <string name="favorite_folders_and_books">Suosikkikansiot ja kirjat</string>
    <string name="don_t_show_this_dialog">Älä näytä tätä valintaikkunaa</string>
    <string name="show_the_book_close_dialog">Näytä kirjan sulkeminen -valintaikkuna</string>
+   <string name="search_completed">Haku loppuun</string>
+   <string name="you_can_search_only_one_word">Voit etsiä vain yhtä sanaa</string>
+   <string name="passwords_do_not_match">Salasanat eivät täsmää</string>
+   <string name="set_an_application_password">Aseta sovellussalasana</string>
+   <string name="request_a_password_when_the_application_starts">Pyydä salasanaa, kun sovellus käynnistyy</string>
+   <string name="incorrect_password">Väärä salasana</string>
+   <string name="repeat_password">Toista salasana</string>
 </resources>

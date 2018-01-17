@@ -11,11 +11,11 @@ import android.widget.TextView.OnEditorActionListener;
 public class EditTextHelper {
 
     public static void enableKeyboardSearch(final EditText searchEdit, final Runnable action) {
-        searchEdit.setImeOptions(EditorInfo.IME_ACTION_SEARCH);
+        searchEdit.setImeOptions(EditorInfo.IME_ACTION_DONE);
         searchEdit.setOnEditorActionListener(new OnEditorActionListener() {
             @Override
             public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
-                if (actionId == EditorInfo.IME_ACTION_SEARCH) {
+                if (actionId == EditorInfo.IME_ACTION_DONE) {
                     action.run();
                 }
                 return true;

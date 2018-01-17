@@ -2175,6 +2175,16 @@ public class DragingDialogs {
                     }
                 });
 
+                CheckBox isRewindEnable = (CheckBox) inflate.findViewById(R.id.isRewindEnable);
+                isRewindEnable.setChecked(AppState.get().isRewindEnable);
+                isRewindEnable.setOnCheckedChangeListener(new OnCheckedChangeListener() {
+
+                    @Override
+                    public void onCheckedChanged(final CompoundButton buttonView, final boolean isChecked) {
+                        AppState.get().isRewindEnable = isChecked;
+                    }
+                });
+
                 // status bar
 
                 final CheckBox isShowSatusBar = (CheckBox) inflate.findViewById(R.id.isShowSatusBar);
@@ -2343,15 +2353,7 @@ public class DragingDialogs {
                     }
                 });
 
-                CheckBox isRewindEnable = (CheckBox) inflate.findViewById(R.id.isRewindEnable);
-                isRewindEnable.setChecked(AppState.get().isRewindEnable);
-                isRewindEnable.setOnCheckedChangeListener(new OnCheckedChangeListener() {
 
-                    @Override
-                    public void onCheckedChanged(final CompoundButton buttonView, final boolean isChecked) {
-                        AppState.get().isRewindEnable = isChecked;
-                    }
-                });
 
                 CheckBox isShowLongBackDialog = (CheckBox) inflate.findViewById(R.id.isShowLongBackDialog);
                 isShowLongBackDialog.setChecked(AppState.get().isShowLongBackDialog);
@@ -3164,6 +3166,7 @@ public class DragingDialogs {
                 });
 
                 // font folder
+                LOG.d("fontFolder2-2", BookCSS.get().fontFolder);
                 final TextView fontsFolder = (TextView) inflate.findViewById(R.id.fontsFolder);
                 fontsFolder.setText(TxtUtils.underline(BookCSS.get().fontFolder));
                 fontsFolder.setOnClickListener(new OnClickListener() {

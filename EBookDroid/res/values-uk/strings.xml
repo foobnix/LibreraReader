@@ -460,4 +460,11 @@
    <string name="favorite_folders_and_books">Улюблені папки та книги</string>
    <string name="don_t_show_this_dialog">Не показувати це діалогове вікно</string>
    <string name="show_the_book_close_dialog">Показати діалогове вікно закриття книги</string>
+   <string name="search_completed">Пошук виконано</string>
+   <string name="you_can_search_only_one_word">Ви можете шукати лише одне слово</string>
+   <string name="passwords_do_not_match">Паролі не збігаються</string>
+   <string name="set_an_application_password">Встановити пароль програми</string>
+   <string name="request_a_password_when_the_application_starts">Запит на пароль після запуску програми</string>
+   <string name="incorrect_password">Невірний пароль</string>
+   <string name="repeat_password">Повторіть пароль</string>
 </resources>

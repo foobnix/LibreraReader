@@ -460,4 +460,11 @@
    <string name="favorite_folders_and_books">Избранные папки и книги</string>
    <string name="don_t_show_this_dialog">Не показывать этот диалог</string>
    <string name="show_the_book_close_dialog">Показать диалог закрытия книги</string>
+   <string name="search_completed">Поиск завершен</string>
+   <string name="you_can_search_only_one_word">Вы можете искать только одно слово</string>
+   <string name="passwords_do_not_match">Пароли не совпадают</string>
+   <string name="set_an_application_password">Установка пароля приложения</string>
+   <string name="request_a_password_when_the_application_starts">Запросить пароль при запуске приложения</string>
+   <string name="incorrect_password">Неверный пароль</string>
+   <string name="repeat_password">Повторите пароль</string>
 </resources>

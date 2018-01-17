@@ -174,6 +174,7 @@ public class BookCSS {
         if (fontFolder != null && fontFolder.equals(DEFAULT_FOLDER(c))) {
             fontFolder = null;
             save(c);
+            fontFolder = DEFAULT_FOLDER(c);
         }
 
     }

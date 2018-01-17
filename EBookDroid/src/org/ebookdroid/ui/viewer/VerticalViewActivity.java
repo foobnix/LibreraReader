@@ -253,7 +253,7 @@ public class VerticalViewActivity extends AbstractActionActivity<VerticalViewAct
         super.onConfigurationChanged(newConfig);
         final boolean currentPosistion = Dips.screenHeight() > Dips.screenWidth();
 
-        if (ExtUtils.isTextFomat(getIntent()) && isInitOrientation == AppState.get().orientation) {
+        if (ExtUtils.isTextFomat(getIntent()) /* && isInitOrientation == AppState.get().orientation */) {
 
             if (rotatoinDialog != null) {
                 try {

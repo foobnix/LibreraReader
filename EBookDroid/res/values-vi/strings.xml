@@ -460,4 +460,11 @@
    <string name="favorite_folders_and_books">Thư mục và sách ưa thích</string>
    <string name="don_t_show_this_dialog">Không hiển thị hộp thoại này</string>
    <string name="show_the_book_close_dialog">Hiển thị hộp thoại đóng sách</string>
+   <string name="search_completed">Hoàn thành tìm kiếm</string>
+   <string name="you_can_search_only_one_word">Bạn chỉ có thể tìm kiếm một từ</string>
+   <string name="passwords_do_not_match">Mật khẩu không phù hợp</string>
+   <string name="set_an_application_password">Đặt mật khẩu ứng dụng</string>
+   <string name="request_a_password_when_the_application_starts">Yêu cầu mật khẩu khi ứng dụng bắt đầu</string>
+   <string name="incorrect_password">Mật khẩu không đúng</string>
+   <string name="repeat_password">Lặp lại mật khẩu</string>
 </resources>

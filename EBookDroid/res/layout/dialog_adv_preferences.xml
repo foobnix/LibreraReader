@@ -277,12 +277,6 @@
             
             android:text="@string/enable_brightness_adjustment_on_the_left_of_the_screen" />
 
-        <CheckBox
-            android:id="@+id/isRewindEnable"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            
-            android:text="@string/enable_rewind_of_pages_using_the_read_progress_line" />
         
         <CheckBox
             android:id="@+id/isShowLongBackDialog"

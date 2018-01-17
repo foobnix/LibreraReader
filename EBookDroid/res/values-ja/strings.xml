@@ -460,4 +460,11 @@
    <string name="favorite_folders_and_books">お気に入りのフォルダと書籍</string>
    <string name="don_t_show_this_dialog">このダイアログを表示しない</string>
    <string name="show_the_book_close_dialog">ブッククローズダイアログを表示する</string>
+   <string name="search_completed">検索が完了しました</string>
+   <string name="you_can_search_only_one_word">1つの単語だけを検索できます</string>
+   <string name="passwords_do_not_match">パスワードが一致していません</string>
+   <string name="set_an_application_password">アプリケーションのパスワードを設定する</string>
+   <string name="request_a_password_when_the_application_starts">アプリケーションの起動時にパスワードを要求する</string>
+   <string name="incorrect_password">間違ったパスワード</string>
+   <string name="repeat_password">パスワードを再度入力してください。</string>
 </resources>

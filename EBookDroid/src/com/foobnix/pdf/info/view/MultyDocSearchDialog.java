@@ -170,6 +170,10 @@ public class MultyDocSearchDialog {
                     Toast.makeText(c, R.string.incorrect_value, Toast.LENGTH_SHORT).show();
                     return;
                 }
+                if (Model.get().text.contains(" ")) {
+                    Toast.makeText(c, R.string.you_can_search_only_one_word, Toast.LENGTH_SHORT).show();
+                    return;
+                }
 
                 if (Model.get().isSearcingRun) {
                     Toast.makeText(c, R.string.searching_please_wait_, Toast.LENGTH_SHORT).show();
@@ -282,6 +286,15 @@ public class MultyDocSearchDialog {
             }
             updater2.sendEmptyMessage(0);
             Model.get().isSearcingRun = false;
+
+            a.runOnUiThread(new Runnable() {
+
+                @Override
+                public void run() {
+                    infoView1.setText(R.string.search_completed);
+                }
+            });
+
             return null;
         }
 

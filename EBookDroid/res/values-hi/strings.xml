@@ -460,4 +460,11 @@
    <string name="favorite_folders_and_books">पसंदीदा फ़ोल्डर्स और किताबें</string>
    <string name="don_t_show_this_dialog">इस संवाद को नहीं दिखाएं</string>
    <string name="show_the_book_close_dialog">पुस्तक बंद संवाद दिखाएं</string>
+   <string name="search_completed">खोज पूरी हुई</string>
+   <string name="you_can_search_only_one_word">आप केवल एक शब्द खोज सकते हैं</string>
+   <string name="passwords_do_not_match">पासवर्ड मेल नहीं खाते</string>
+   <string name="set_an_application_password">एप्लिकेशन पासवर्ड सेट करें</string>
+   <string name="request_a_password_when_the_application_starts">जब आवेदन शुरू होता है तो पासवर्ड का अनुरोध करें</string>
+   <string name="incorrect_password">गलत पासवर्ड</string>
+   <string name="repeat_password">पासवर्ड दोहराएं</string>
 </resources>

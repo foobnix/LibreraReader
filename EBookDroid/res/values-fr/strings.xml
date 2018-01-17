@@ -460,4 +460,11 @@
    <string name="favorite_folders_and_books">Dossiers favoris et livres</string>
    <string name="don_t_show_this_dialog">Ne montrez pas cette boîte de dialogue</string>
    <string name="show_the_book_close_dialog">Afficher la boîte de dialogue de fermeture du livre</string>
+   <string name="search_completed">Recherche terminée</string>
+   <string name="you_can_search_only_one_word">Vous ne pouvez rechercher qu\'un seul mot</string>
+   <string name="passwords_do_not_match">Les mots de passe ne correspondent pas</string>
+   <string name="set_an_application_password">Définir un mot de passe d\'application</string>
+   <string name="request_a_password_when_the_application_starts">Demander un mot de passe lorsque l\'application démarre</string>
+   <string name="incorrect_password">Mot de passe incorrect</string>
+   <string name="repeat_password">Répéter le mot de passe</string>
 </resources>
