@@ -1,6 +1,6 @@
 package com.foobnix.pdf.search.view;
 
-import java.util.Arrays;
+import java.util.ArrayList;
 import java.util.List;
 
 import com.foobnix.android.utils.Apps;
@@ -76,12 +76,11 @@ public class CloseAppDialog {
 
     public static void showOnLongClickDialog(final Activity a, View v, final DocumentController c) {
 
-        List<String> items = Arrays.asList(//
-                c.getString(R.string.close_book), //
-                c.getString(R.string.go_to_the_library), //
-                c.getString(R.string.hide_app), //
-                c.getString(R.string.close_application) //
-        );//
+        List<String> items = new ArrayList<String>();
+        items.add(c.getString(R.string.close_book)); //
+        items.add(c.getString(R.string.go_to_the_library)); //
+        items.add(c.getString(R.string.hide_app)); //
+        items.add(c.getString(R.string.close_application)); //
 
         final DialogInterface.OnClickListener listener = new DialogInterface.OnClickListener() {
 
@@ -110,6 +109,10 @@ public class CloseAppDialog {
                         }
                     });
 
+                } else if (which == i++) {
+                    AppState.get().isShowLongBackDialog = false;
+                    c.onCloseActivity();
+
                 }
 
             }
@@ -121,18 +124,21 @@ public class CloseAppDialog {
                 c.onCloseActivity();
                 return;
             }
+            items.add(c.getString(R.string.don_t_show_this_dialog));
+
             AlertDialog.Builder dialog = new AlertDialog.Builder(a);
             dialog.setItems(items.toArray(new String[items.size()]), listener);
 
-            dialog.setNegativeButton(R.string.don_t_show_this_dialog, new OnClickListener() {
-
-                @Override
-                public void onClick(DialogInterface dialog, int which) {
-                    AppState.get().isShowLongBackDialog = false;
-                    c.onCloseActivity();
-                    dialog.dismiss();
-                }
-            });
+            // dialog.setNegativeButton(R.string.don_t_show_this_dialog, new
+            // OnClickListener() {
+            //
+            // @Override
+            // public void onClick(DialogInterface dialog, int which) {
+            // AppState.get().isShowLongBackDialog = false;
+            // c.onCloseActivity();
+            // dialog.dismiss();
+            // }
+            // });
             dialog.setPositiveButton(R.string.cancel, new OnClickListener() {
 
                 @Override

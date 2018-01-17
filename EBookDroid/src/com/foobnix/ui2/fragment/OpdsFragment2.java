@@ -414,6 +414,13 @@ public class OpdsFragment2 extends UIFragment<Entry> {
                     }
                 });
 
+                builder.setNeutralButton(R.string.cancel, new DialogInterface.OnClickListener() {
+
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                    }
+                });
+
                 opdsLargeCovers.setChecked(AppState.get().opdsLargeCovers);
                 opdsLargeCovers.setOnCheckedChangeListener(new OnCheckedChangeListener() {
 

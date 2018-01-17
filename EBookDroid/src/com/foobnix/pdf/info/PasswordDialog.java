@@ -1,5 +1,6 @@
 package com.foobnix.pdf.info;
 
+import com.foobnix.android.utils.Keyboards;
 import com.foobnix.android.utils.TxtUtils;
 import com.foobnix.pdf.info.view.EditTextHelper;
 import com.foobnix.pdf.info.wrapper.AppState;
@@ -35,6 +36,7 @@ public class PasswordDialog {
 
     public static AlertDialog showDialog(final Activity a, final boolean isSetPassord, final Runnable onDismiss) {
         final AlertDialog.Builder builder = new AlertDialog.Builder(a);
+        builder.setCancelable(false);
         if (isSetPassord) {
             builder.setTitle(R.string.set_an_application_password);
         } else {
@@ -61,6 +63,7 @@ public class PasswordDialog {
 
             @Override
             public void onClick(final DialogInterface dialog, final int id) {
+                Keyboards.close(password1);
             }
         });
         builder.setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
@@ -73,6 +76,7 @@ public class PasswordDialog {
                 if (onDismiss != null) {
                     onDismiss.run();
                 }
+                Keyboards.close(password1);
             }
         });
         final AlertDialog dialog = builder.create();
@@ -91,6 +95,7 @@ public class PasswordDialog {
                         dialog.dismiss();
                         if (onDismiss != null)
                             onDismiss.run();
+                        Keyboards.close(password1);
                         return;
                     }
 
@@ -114,6 +119,7 @@ public class PasswordDialog {
                     Toast.makeText(a, R.string.success, Toast.LENGTH_LONG).show();
                     if (onDismiss != null)
                         onDismiss.run();
+                    Keyboards.close(password1);
                     dialog.dismiss();
                 } else {
 
@@ -128,6 +134,7 @@ public class PasswordDialog {
                     intent.putExtra(EXTRA_APP_PASSWORD, AppState.get().appPassword);
                     a.startActivity(intent);
                 }
+                Keyboards.close(password1);
             }
         });
 
@@ -136,6 +143,7 @@ public class PasswordDialog {
             @Override
             public void run() {
                 dialog.getButton(AlertDialog.BUTTON_POSITIVE).performClick();
+                Keyboards.close(password1);
             }
         });
 

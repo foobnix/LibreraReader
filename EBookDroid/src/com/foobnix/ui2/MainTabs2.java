@@ -141,6 +141,7 @@ public class MainTabs2 extends AdsFragmentActivity {
         testIntentHandler();
     }
 
+
     @Override
     protected void attachBaseContext(Context context) {
         if (AppState.MY_SYSTEM_LANG.equals(AppState.get().appLang) && AppState.get().appFontScale == 1.0f) {
@@ -578,12 +579,15 @@ public class MainTabs2 extends AdsFragmentActivity {
             onFinishActivity();
             return;
         }
+        if (tabFragments != null) {
+            if (!tabFragments.isEmpty() && tabFragments.get(pager.getCurrentItem()).isBackPressed()) {
+                return;
+            }
 
-        if (!tabFragments.isEmpty() && tabFragments.get(pager.getCurrentItem()).isBackPressed()) {
-            return;
+            CloseAppDialog.show(this, closeActivityRunnable);
+        } else {
+            finish();
         }
-
-        CloseAppDialog.show(this, closeActivityRunnable);
     }
 
     Runnable closeActivityRunnable = new Runnable() {

@@ -117,7 +117,7 @@ public class PrefFragment2 extends UIFragment {
 
     }
 
-    View section1, section2, section3, section4, section5, section6, section7;
+    View section1, section2, section3, section4, section5, section6, section7, overlay;
 
     @Override
     public View onCreateView(final LayoutInflater inflater, final ViewGroup container, final Bundle savedInstanceState) {
@@ -1416,6 +1416,8 @@ public class PrefFragment2 extends UIFragment {
             }
         });
 
+        overlay = getActivity().findViewById(R.id.overlay);
+
         return inflate;
 
     }
@@ -1492,7 +1494,14 @@ public class PrefFragment2 extends UIFragment {
     public void onResume() {
         super.onResume();
 
-        BrightnessHelper.controlsWrapper(inflate, getActivity());
+        BrightnessHelper.updateOverlay(overlay);
+        BrightnessHelper.showBlueLigthDialogAndBrightness(getActivity(), inflate, new Runnable() {
+
+            @Override
+            public void run() {
+                BrightnessHelper.updateOverlay(overlay);
+            }
+        });
 
         rotationText();
 
