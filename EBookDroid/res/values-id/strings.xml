@@ -462,4 +462,9 @@
    <string name="show_the_book_close_dialog">Tampilkan dialog tutup buku</string>
    <string name="search_completed">Pencarian selesai</string>
    <string name="you_can_search_only_one_word">Anda bisa mencari hanya satu kata</string>
+   <string name="passwords_do_not_match">Sandi tidak cocok</string>
+   <string name="set_an_application_password">Tetapkan sandi aplikasi</string>
+   <string name="request_a_password_when_the_application_starts">Minta password saat aplikasi dijalankan</string>
+   <string name="incorrect_password">Kata kunci Salah</string>
+   <string name="repeat_password">Ulangi kata kunci</string>
 </resources>

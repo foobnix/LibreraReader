@@ -462,4 +462,9 @@
    <string name="show_the_book_close_dialog">A könyv bezárása párbeszédablak megjelenítése</string>
    <string name="search_completed">A keresés befejeződött</string>
    <string name="you_can_search_only_one_word">Csak egy szót kereshet</string>
+   <string name="passwords_do_not_match">A jelszavak nem egyeznek</string>
+   <string name="set_an_application_password">Alkalmazásjelszó beállítása</string>
+   <string name="request_a_password_when_the_application_starts">Kérjen jelszót, amikor az alkalmazás elindul</string>
+   <string name="incorrect_password">Hibás jelszó</string>
+   <string name="repeat_password">Jelszó újra</string>
 </resources>

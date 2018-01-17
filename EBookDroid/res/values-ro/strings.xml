@@ -462,4 +462,9 @@
    <string name="show_the_book_close_dialog">Afișați dialogul de închidere a cărții</string>
    <string name="search_completed">Căutarea a fost finalizată</string>
    <string name="you_can_search_only_one_word">Puteți căuta doar un singur cuvânt</string>
+   <string name="passwords_do_not_match">Parolele nu se potrivesc</string>
+   <string name="set_an_application_password">Setați o parolă pentru aplicație</string>
+   <string name="request_a_password_when_the_application_starts">Solicitați o parolă atunci când începe aplicația</string>
+   <string name="incorrect_password">Parola incorecta</string>
+   <string name="repeat_password">Repeta parola</string>
 </resources>

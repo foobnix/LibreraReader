@@ -462,4 +462,9 @@
    <string name="show_the_book_close_dialog">显示书籍关闭对话框</string>
    <string name="search_completed">搜索完成</string>
    <string name="you_can_search_only_one_word">您只能搜索一个词</string>
+   <string name="passwords_do_not_match">密码不匹配</string>
+   <string name="set_an_application_password">设置应用程序密码</string>
+   <string name="request_a_password_when_the_application_starts">当应用程序启动时请求密码</string>
+   <string name="incorrect_password">密码错误</string>
+   <string name="repeat_password">重复输入密码</string>
 </resources>

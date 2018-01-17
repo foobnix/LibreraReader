@@ -462,4 +462,9 @@
    <string name="show_the_book_close_dialog">Zobraziť dialógové okno uzavretia knihy</string>
    <string name="search_completed">Vyhľadávanie bolo dokončené</string>
    <string name="you_can_search_only_one_word">Môžete vyhľadávať iba jedno slovo</string>
+   <string name="passwords_do_not_match">Heslá sa nezhodujú</string>
+   <string name="set_an_application_password">Nastavte heslo aplikácie</string>
+   <string name="request_a_password_when_the_application_starts">Po spustení aplikácie požiadajte o heslo</string>
+   <string name="incorrect_password">Nesprávne heslo</string>
+   <string name="repeat_password">Zopakujte heslo</string>
 </resources>

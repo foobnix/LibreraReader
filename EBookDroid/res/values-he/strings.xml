@@ -462,4 +462,9 @@
    <string name="show_the_book_close_dialog">הצג את תיבת הדו-שיח \'סגור\' של הספר</string>
    <string name="search_completed">החיפוש הושלם</string>
    <string name="you_can_search_only_one_word">ניתן לחפש רק מילה אחת</string>
+   <string name="passwords_do_not_match">סיסמאות לא תואמות</string>
+   <string name="set_an_application_password">הגדר סיסמת יישום</string>
+   <string name="request_a_password_when_the_application_starts">בקש סיסמה כאשר היישום מתחיל</string>
+   <string name="incorrect_password">סיסמא לא נכונה</string>
+   <string name="repeat_password">חזור על הסיסמה</string>
 </resources>

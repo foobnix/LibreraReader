@@ -462,4 +462,9 @@
    <string name="show_the_book_close_dialog">Mostrar el diálogo de cierre del libro</string>
    <string name="search_completed">Búsqueda completa</string>
    <string name="you_can_search_only_one_word">Puedes buscar solo una palabra</string>
+   <string name="passwords_do_not_match">Las contraseñas no coinciden</string>
+   <string name="set_an_application_password">Establecer una contraseña de aplicación</string>
+   <string name="request_a_password_when_the_application_starts">Solicite una contraseña cuando comience la aplicación</string>
+   <string name="incorrect_password">Contraseña incorrecta</string>
+   <string name="repeat_password">Repite la contraseña</string>
 </resources>

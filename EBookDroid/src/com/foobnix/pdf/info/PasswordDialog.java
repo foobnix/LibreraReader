@@ -1,5 +1,7 @@
 package com.foobnix.pdf.info;
 
+import com.foobnix.android.utils.TxtUtils;
+import com.foobnix.pdf.info.view.EditTextHelper;
 import com.foobnix.pdf.info.wrapper.AppState;
 
 import android.app.Activity;
@@ -10,13 +12,34 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class PasswordDialog {
     public static String EXTRA_APP_PASSWORD = "EXTRA_APP_PASSWORD";
 
-    public static void showDialog(final Activity a) {
+    public static boolean isNeedPasswordDialog(final Activity a) {
+        if (a == null || a.getIntent() == null) {
+            return false;
+        }
+
+        if (AppState.get().isAppPassword) {
+            String password = a.getIntent().getStringExtra(PasswordDialog.EXTRA_APP_PASSWORD);
+            if (TxtUtils.isNotEmpty(AppState.get().appPassword) && !AppState.get().appPassword.equals(password)) {
+                PasswordDialog.showDialog(a, false, null);
+                return true;
+            }
+        }
+        return false;
+
+    }
+
+    public static AlertDialog showDialog(final Activity a, final boolean isSetPassord, final Runnable onDismiss) {
         final AlertDialog.Builder builder = new AlertDialog.Builder(a);
-        builder.setTitle(AppsConfig.TXT_APP_NAME);
+        if (isSetPassord) {
+            builder.setTitle(R.string.set_an_application_password);
+        } else {
+            builder.setTitle(AppsConfig.TXT_APP_NAME);
+        }
 
         View inflate = LayoutInflater.from(a).inflate(R.layout.dialog_app_password, null, false);
 
@@ -24,8 +47,13 @@ public class PasswordDialog {
         final EditText password2 = (EditText) inflate.findViewById(R.id.password2);
         final TextView password2Text = (TextView) inflate.findViewById(R.id.password2Logo);
 
-        password2.setVisibility(View.GONE);
-        password2Text.setVisibility(View.GONE);
+        password2.setVisibility(isSetPassord ? View.VISIBLE : View.GONE);
+        password2Text.setVisibility(isSetPassord ? View.VISIBLE : View.GONE);
+
+        if (isSetPassord) {
+            password1.setText(TxtUtils.nullToEmpty(AppState.get().appPassword));
+            password2.setText(TxtUtils.nullToEmpty(AppState.get().appPassword));
+        }
 
         builder.setView(inflate);
 
@@ -39,24 +67,79 @@ public class PasswordDialog {
 
             @Override
             public void onClick(final DialogInterface dialog, final int id) {
-                a.finish();
+                if (!isSetPassord) {
+                    a.finish();
+                }
+                if (onDismiss != null) {
+                    onDismiss.run();
+                }
             }
         });
-        AlertDialog dialog = builder.create();
+        final AlertDialog dialog = builder.create();
         dialog.show();
 
         dialog.getButton(AlertDialog.BUTTON_POSITIVE).setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View v) {
-                AppState.get().isOpenAppPassword = password1.getText().toString().trim();
-                a.finish();
-                Intent intent = new Intent(a.getIntent());
-                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                intent.putExtra(EXTRA_APP_PASSWORD, AppState.get().isOpenAppPassword);
-                a.startActivity(intent);
+                String pass1 = password1.getText().toString().trim();
+                if (isSetPassord) {
+                    String pass2 = password2.getText().toString().trim();
+
+                    if (TxtUtils.isEmpty(pass1) && TxtUtils.isEmpty(pass2)) {
+                        AppState.get().appPassword = null;
+                        dialog.dismiss();
+                        if (onDismiss != null)
+                            onDismiss.run();
+                        return;
+                    }
+
+                    if (TxtUtils.isEmpty(pass1)) {
+                        password1.requestFocus();
+                        Toast.makeText(a, R.string.incorrect_value, Toast.LENGTH_SHORT).show();
+                        return;
+                    }
+                    if (TxtUtils.isEmpty(pass2)) {
+                        password2.requestFocus();
+                        Toast.makeText(a, R.string.incorrect_value, Toast.LENGTH_SHORT).show();
+                        return;
+                    }
+                    if (!pass1.equals(pass2)) {
+                        Toast.makeText(a, R.string.passwords_do_not_match, Toast.LENGTH_SHORT).show();
+                        return;
+                    }
+                    AppState.get().appPassword = pass1;
+                    AppState.get().save(a);
+
+                    Toast.makeText(a, R.string.success, Toast.LENGTH_LONG).show();
+                    if (onDismiss != null)
+                        onDismiss.run();
+                    dialog.dismiss();
+                } else {
+
+                    if (TxtUtils.isEmpty(pass1) || !pass1.equals(AppState.get().appPassword)) {
+                        Toast.makeText(a, R.string.incorrect_password, Toast.LENGTH_SHORT).show();
+                        password1.setText("");
+                        return;
+                    }
+                    a.finish();
+                    Intent intent = a.getIntent();
+                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                    intent.putExtra(EXTRA_APP_PASSWORD, AppState.get().appPassword);
+                    a.startActivity(intent);
+                }
             }
         });
+
+        EditTextHelper.enableKeyboardSearch(password1, new Runnable() {
+
+            @Override
+            public void run() {
+                dialog.getButton(AlertDialog.BUTTON_POSITIVE).performClick();
+            }
+        });
+
+        return dialog;
 
     }
 

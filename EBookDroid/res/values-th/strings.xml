@@ -462,4 +462,9 @@
    <string name="show_the_book_close_dialog">แสดงกล่องโต้ตอบปิดหนังสือ</string>
    <string name="search_completed">การค้นหาเสร็จสิ้น</string>
    <string name="you_can_search_only_one_word">คุณสามารถค้นหาคำเดียวได้</string>
+   <string name="passwords_do_not_match">รหัสผ่านไม่ตรงกัน</string>
+   <string name="set_an_application_password">ตั้งรหัสผ่านแอ็พพลิเคชัน</string>
+   <string name="request_a_password_when_the_application_starts">ขอรหัสผ่านเมื่อแอปพลิเคชันเริ่มทำงาน</string>
+   <string name="incorrect_password">รหัสผ่านผิดพลาด</string>
+   <string name="repeat_password">ทำซ้ำรหัสผ่าน</string>
 </resources>

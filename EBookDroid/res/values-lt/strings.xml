@@ -462,4 +462,9 @@
    <string name="show_the_book_close_dialog">Rodyti knygos uždarymo dialogą</string>
    <string name="search_completed">Paieška baigta</string>
    <string name="you_can_search_only_one_word">Galite ieškoti tik vieno žodžio</string>
+   <string name="passwords_do_not_match">Slaptažodžiai nesutampa</string>
+   <string name="set_an_application_password">Nustatykite programos slaptažodį</string>
+   <string name="request_a_password_when_the_application_starts">Prašymo slaptažodis, kai programa prasideda</string>
+   <string name="incorrect_password">Neteisingas slaptažodis</string>
+   <string name="repeat_password">Pakartokite slaptažodį</string>
 </resources>

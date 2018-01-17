@@ -462,4 +462,9 @@
    <string name="show_the_book_close_dialog">عرض مربع الحوار إغلاق الكتاب</string>
    <string name="search_completed">اكتمل البحث</string>
    <string name="you_can_search_only_one_word">يمكنك البحث كلمة واحدة فقط</string>
+   <string name="passwords_do_not_match">كلمة المرور غير مطابقة</string>
+   <string name="set_an_application_password">تعيين كلمة مرور التطبيق</string>
+   <string name="request_a_password_when_the_application_starts">طلب كلمة مرور عند بدء تشغيل التطبيق</string>
+   <string name="incorrect_password">كلمة سر خاطئة</string>
+   <string name="repeat_password">اعد كلمة السر</string>
 </resources>

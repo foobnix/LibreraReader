@@ -161,9 +161,7 @@ public class MainTabs2 extends AdsFragmentActivity {
         }
         super.onCreate(savedInstanceState);
 
-        String passHash = getIntent().getStringExtra(PasswordDialog.EXTRA_APP_PASSWORD);
-        if (AppState.get().isOpenAppPassword != null && !AppState.get().isOpenAppPassword.equals(passHash)) {
-            PasswordDialog.showDialog(this);
+        if (PasswordDialog.isNeedPasswordDialog(this)) {
             return;
         }
 

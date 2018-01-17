@@ -17,6 +17,7 @@ import com.foobnix.pdf.info.AppSharedPreferences;
 import com.foobnix.pdf.info.AppsConfig;
 import com.foobnix.pdf.info.ExtUtils;
 import com.foobnix.pdf.info.IMG;
+import com.foobnix.pdf.info.PasswordDialog;
 import com.foobnix.pdf.info.R;
 import com.foobnix.pdf.info.TintUtil;
 import com.foobnix.pdf.info.Urls;
@@ -840,6 +841,43 @@ public class PrefFragment2 extends UIFragment {
                 TempHolder.listHash++;
             }
         });
+        // app password
+        final CheckBox isAppPassword = (CheckBox) inflate.findViewById(R.id.isAppPassword);
+        isAppPassword.setChecked(AppState.get().isAppPassword);
+        isAppPassword.setOnCheckedChangeListener(new OnCheckedChangeListener() {
+
+            @Override
+            public void onCheckedChanged(final CompoundButton buttonView, final boolean isChecked) {
+                AppState.get().isAppPassword = isChecked;
+                if (isChecked && TxtUtils.isEmpty(AppState.get().appPassword)) {
+                    PasswordDialog.showDialog(getActivity(), true, new Runnable() {
+
+                        @Override
+                        public void run() {
+                            if (TxtUtils.isEmpty(AppState.get().appPassword)) {
+                                isAppPassword.setChecked(false);
+                            }
+                        }
+                    });
+                }
+            }
+        });
+
+        TxtUtils.underlineTextView((TextView) inflate.findViewById(R.id.appPassword)).setOnClickListener(new OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                PasswordDialog.showDialog(getActivity(), true, new Runnable() {
+
+                    @Override
+                    public void run() {
+                        if (TxtUtils.isEmpty(AppState.get().appPassword)) {
+                            isAppPassword.setChecked(false);
+                        }
+                    }
+                });
+            }
+        });
 
         // What is new
         CheckBox showWhatIsNew = (CheckBox) inflate.findViewById(R.id.isShowWhatIsNewDialog);
@@ -1307,7 +1345,6 @@ public class PrefFragment2 extends UIFragment {
 
         // tutorials
 
-
         TextView tutorialLink = (TextView) inflate.findViewById(R.id.tutorialLink);
         TxtUtils.underlineTextView(tutorialLink);
 
@@ -1382,7 +1419,6 @@ public class PrefFragment2 extends UIFragment {
         return inflate;
 
     }
-
 
     private void onEink() {
         AppState.get().isInkMode = true;
@@ -1513,7 +1549,6 @@ public class PrefFragment2 extends UIFragment {
     private TextView screenOrientation;
 
     private View inflate;
-
 
     @Override
     public void onCreate(final Bundle savedInstanceState) {

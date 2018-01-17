@@ -462,4 +462,9 @@
    <string name="show_the_book_close_dialog">Kitabı kapat iletişim kutusunu göster</string>
    <string name="search_completed">Arama tamamlandı</string>
    <string name="you_can_search_only_one_word">Sadece bir kelimeyi arayabilirsiniz</string>
+   <string name="passwords_do_not_match">Parolalar uyuşmuyor</string>
+   <string name="set_an_application_password">Uygulama şifresi ayarlama</string>
+   <string name="request_a_password_when_the_application_starts">Uygulama başladığında bir şifre isteğinde bulunun</string>
+   <string name="incorrect_password">Yanlış parola</string>
+   <string name="repeat_password">Şifreyi tekrar girin</string>
 </resources>
