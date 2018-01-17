@@ -226,6 +226,9 @@ public class BrightnessHelper {
     }
 
     public static void updateOverlay(final View overlay) {
+        if (overlay == null) {
+            return;
+        }
         if (AppState.get().isEnableBlueFilter) {
             overlay.setVisibility(View.VISIBLE);
             overlay.setBackgroundColor(ColorUtils.setAlphaComponent(AppState.get().blueLightColor, 220 * AppState.get().blueLightAlpha / 100));

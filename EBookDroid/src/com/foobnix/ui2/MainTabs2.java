@@ -21,6 +21,7 @@ import com.foobnix.pdf.info.Android6;
 import com.foobnix.pdf.info.AndroidWhatsNew;
 import com.foobnix.pdf.info.ExportSettingsManager;
 import com.foobnix.pdf.info.FontExtractor;
+import com.foobnix.pdf.info.PasswordDialog;
 import com.foobnix.pdf.info.R;
 import com.foobnix.pdf.info.TintUtil;
 import com.foobnix.pdf.info.view.BrightnessHelper;
@@ -159,6 +160,13 @@ public class MainTabs2 extends AdsFragmentActivity {
             setTheme(R.style.StyledIndicatorsBlack);
         }
         super.onCreate(savedInstanceState);
+
+        String passHash = getIntent().getStringExtra(PasswordDialog.EXTRA_APP_PASSWORD);
+        if (AppState.get().isOpenAppPassword != null && !AppState.get().isOpenAppPassword.equals(passHash)) {
+            PasswordDialog.showDialog(this);
+            return;
+        }
+
         RecentUpates.updateAll(this);
 
         LOG.d(TAG, "onCreate");
@@ -420,7 +428,9 @@ public class MainTabs2 extends AdsFragmentActivity {
         } catch (Exception e) {
             LOG.e(e);
         }
-        adapter.notifyDataSetChanged();
+        if (adapter != null) {
+            adapter.notifyDataSetChanged();
+        }
 
         BrightnessHelper.applyBrigtness(this);
         BrightnessHelper.updateOverlay(overlay);
@@ -591,6 +601,7 @@ public class MainTabs2 extends AdsFragmentActivity {
         final Intent intent = new Intent(c, MainTabs2.class);
         intent.putExtra(MainTabs2.EXTRA_SHOW_TABS, true);
         intent.putExtra(MainTabs2.EXTRA_PAGE_NUMBER, tab);
+        intent.putExtra(PasswordDialog.EXTRA_APP_PASSWORD, c.getIntent().getStringExtra(PasswordDialog.EXTRA_APP_PASSWORD));
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         c.startActivity(intent);
         c.overridePendingTransition(0, 0);

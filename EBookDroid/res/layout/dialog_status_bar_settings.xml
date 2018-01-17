@@ -30,9 +30,16 @@
             android:id="@+id/isShowChaptersOnProgress"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="10dip"
+          
             android:layout_weight="1"
             android:text="@string/display_chapters_on_the_progress_line" />
+        
+        <CheckBox
+              android:layout_marginLeft="10dip"
+            android:id="@+id/isRewindEnable"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/enable_rewind_of_pages_using_the_read_progress_line" />
 
         <LinearLayout
             android:layout_width="match_parent"

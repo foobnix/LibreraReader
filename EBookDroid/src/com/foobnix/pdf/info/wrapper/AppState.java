@@ -509,6 +509,8 @@ public class AppState {
 
     public Set<String> myAutoComplete = new HashSet<String>();
 
+    public String isOpenAppPassword;
+
     @IgnoreHashCode
     public int hashCode = 0;
 
