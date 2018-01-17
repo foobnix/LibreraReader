@@ -8,6 +8,7 @@ import com.foobnix.android.utils.ResultResponse;
 import com.foobnix.android.utils.TxtUtils;
 import com.foobnix.dao2.FileMeta;
 import com.foobnix.pdf.info.R;
+import com.foobnix.pdf.info.TintUtil;
 import com.foobnix.pdf.info.view.AlertDialogs;
 import com.foobnix.pdf.info.view.MyPopupMenu;
 import com.foobnix.pdf.info.wrapper.AppState;
@@ -32,6 +33,7 @@ public class StarsFragment2 extends UIFragment<FileMeta> {
 
     FileMetaAdapter recentAdapter;
     ImageView onListGrid;
+    View panelRecent;
 
     @Override
     public Pair<Integer, Integer> getNameAndIconRes() {
@@ -43,6 +45,8 @@ public class StarsFragment2 extends UIFragment<FileMeta> {
         View view = inflater.inflate(R.layout.fragment_starred, container, false);
 
         recyclerView = (RecyclerView) view.findViewById(R.id.recyclerView);
+        panelRecent = view.findViewById(R.id.panelRecent);
+
 
         recentAdapter = new FileMetaAdapter();
         recentAdapter.tempValue = FileMetaAdapter.TEMP_VALUE_FOLDER_PATH;
@@ -94,8 +98,12 @@ public class StarsFragment2 extends UIFragment<FileMeta> {
 
         populate();
 
+        TintUtil.setBackgroundFillColor(panelRecent, TintUtil.color);
+
         return view;
     }
+
+
 
     private void popupMenu(final ImageView image) {
         MyPopupMenu p = new MyPopupMenu(getActivity(), image);
@@ -136,7 +144,8 @@ public class StarsFragment2 extends UIFragment<FileMeta> {
 
     @Override
     public void onTintChanged() {
-        recentAdapter.notifyDataSetChanged();
+        TintUtil.setBackgroundFillColor(panelRecent, TintUtil.color);
+
     }
 
     public boolean onBackAction() {
