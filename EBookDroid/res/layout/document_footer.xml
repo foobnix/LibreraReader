@@ -139,11 +139,9 @@
             <SeekBar
                 android:id="@+id/seekBar"
                 android:layout_width="wrap_content"
-                android:layout_height="40dp"
+                android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
                 android:layout_weight="1"
-                android:paddingBottom="4dip"
-                android:paddingTop="4dip"
                 android:progressTint="@android:color/white"
                 android:thumbTint="@android:color/white" />
 

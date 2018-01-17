@@ -266,14 +266,12 @@ public class PrefDialogs {
 
                 try {
                     if (result) {
-                        LOG.d("appFontScale1", AppState.get().appFontScale);
-
                         AppState.get().loadIn(activity);
                         BookCSS.get().load(activity);
                         TintUtil.init();
                         SettingsManager.clearCache();
 
-                        LOG.d("appFontScale2", AppState.get().appFontScale);
+                        LOG.d("fontFolder2-1", BookCSS.get().fontFolder);
 
                         activity.finish();
                         MainTabs2.startActivity(activity, TempHolder.get().currentTab);

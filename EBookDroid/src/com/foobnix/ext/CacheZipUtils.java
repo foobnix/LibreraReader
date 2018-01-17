@@ -32,7 +32,8 @@ public class CacheZipUtils {
     private static final int BUFFER_SIZE = 16 * 1024;
 
     public enum CacheDir {
-        ZipApp("ZipApp"), ZipService("ZipService");
+        ZipApp("ZipApp"), //
+        ZipService("ZipService"); //
 
         private final String type;
 
@@ -74,7 +75,6 @@ public class CacheZipUtils {
     public static File CACHE_BOOK_DIR;
     public static File CACHE_WEB;
     public static File ATTACHMENTS_CACHE_DIR;
-    public static File SD_CARD_APP_DIR;
     public static final Lock cacheLock = new ReentrantLock();
 
     public static void init(Context c) {
@@ -91,7 +91,6 @@ public class CacheZipUtils {
         CACHE_UN_ZIP_DIR = new File(externalCacheDir, "UnZip");
         ATTACHMENTS_CACHE_DIR = new File(externalCacheDir, "Attachments");
         CACHE_WEB = new File(externalCacheDir, "WEB");
-        SD_CARD_APP_DIR = new File(Environment.getExternalStorageDirectory(), "Librera");
 
         CacheZipUtils.createAllCacheDirs();
         CacheDir.createCacheDirs();
@@ -106,9 +105,6 @@ public class CacheZipUtils {
         }
         if (!CACHE_WEB.exists()) {
             CACHE_WEB.mkdirs();
-        }
-        if (!SD_CARD_APP_DIR.exists()) {
-            SD_CARD_APP_DIR.mkdirs();
         }
     }
 
