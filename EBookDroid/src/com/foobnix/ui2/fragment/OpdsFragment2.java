@@ -678,8 +678,14 @@ public class OpdsFragment2 extends UIFragment<Entry> {
             if ("/".equals(url)) {
                 return;
             }
-            Urls.openWevView(getActivity(), url);
-            popStack();
+            Urls.openWevView(getActivity(), url, new Runnable() {
+
+                @Override
+                public void run() {
+                    url = popStack();
+                }
+            });
+            url = popStack();
             return;
         }
 
