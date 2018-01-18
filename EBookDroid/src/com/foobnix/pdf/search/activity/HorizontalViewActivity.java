@@ -766,7 +766,7 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
                     AppState.get().lastMode = HorizontalViewActivity.class.getSimpleName();
                     LOG.d("lasta save", AppState.get().lastClosedActivity);
 
-                    AppState.get().isEditMode = true;
+
                     PageImageState.get().isAutoFit = PageImageState.get().needAutoFit;
 
                     if (ExtUtils.isTextFomat(getIntent())) {
@@ -786,10 +786,11 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
 
                     loadUI();
 
+                    // AppState.get().isEditMode = false; //remember last
                     updateUI(documentController.getPageFromUri());
+                    hideShow();
 
                     EventBus.getDefault().post(new MessageAutoFit(documentController.getPageFromUri()));
-                    AppState.get().isEditMode = true;
                     seekBar.setOnSeekBarChangeListener(onSeek);
                     showHideInfoToolBar();
 
@@ -1714,12 +1715,16 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
     public boolean prev = true;
 
     public void hideShow() {
+        hideShow(true);
+    }
+
+    public void hideShow(boolean animated) {
         if (prev == AppState.get().isEditMode) {
             return;
         }
         prev = AppState.get().isEditMode;
 
-        if (AppState.get().isInkMode) {
+        if (!animated || AppState.get().isInkMode) {
             actionBar.setVisibility(AppState.get().isEditMode ? View.VISIBLE : View.GONE);
             bottomBar.setVisibility(AppState.get().isEditMode ? View.VISIBLE : View.GONE);
             adFrame.setVisibility(AppState.get().isEditMode ? View.VISIBLE : View.GONE);
@@ -1804,8 +1809,10 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
 
         }
 
-        DocumentController.chooseFullScreen(this, AppState.get().isFullScreen);
-        pagerAdapter.notifyDataSetChanged();
+        if (pagerAdapter != null) {
+            DocumentController.chooseFullScreen(this, AppState.get().isFullScreen);
+            pagerAdapter.notifyDataSetChanged();
+        }
     }
 
     private boolean isMyKey = false;
