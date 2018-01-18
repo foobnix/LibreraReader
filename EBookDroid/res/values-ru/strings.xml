@@ -266,8 +266,8 @@
    <string name="previous_page">Предыдущая страница</string>
    <string name="customize">Настройка</string>
    <string name="left_side">Левая сторона</string>
-   <string name="top_side">Верхняя сторона</string>
-   <string name="bottom_side">Нижняя сторона</string>
+   <string name="top_side">Верхне-центр. сторона</string>
+   <string name="bottom_side">Нижне-центр. сторона</string>
    <string name="direction_of_reading_rtl_">Направление чтения (RTL)</string>
    <string name="customize_tap_zones">Настройка зон листаний</string>
    <string name="right_side">Правая сторона</string>
