@@ -260,6 +260,8 @@ public class PageImaveView extends View {
                         isFirstZoomInOut = true;
 
                     }
+                } else if (AppState.get().doubleClickAction1 == AppState.DOUBLE_CLICK_CLOSE_BOOK) {
+                    EventBus.getDefault().post(new MessageEvent(MessageEvent.MESSAGE_CLOSE_BOOK, e.getX(), e.getY()));
                 } else {
                     PageImageState.get().isAutoFit = true;
                     autoFit();

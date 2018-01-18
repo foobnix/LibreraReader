@@ -210,6 +210,7 @@ public class AppState {
     public final static int DOUBLE_CLICK_NOTHING = 2;
     public final static int DOUBLE_CLICK_ZOOM_IN_OUT = 3;
     public final static int DOUBLE_CLICK_CENTER_HORIZONTAL = 4;
+    public final static int DOUBLE_CLICK_CLOSE_BOOK = 5;
 
     public final static int BR_SORT_BY_PATH = 0;
     public final static int BR_SORT_BY_DATE = 1;

@@ -2646,14 +2646,17 @@ public class DragingDialogs {
                         controller.getString(R.string.db_auto_alignemnt), //
                         controller.getString(R.string.db_auto_center_horizontally), //
                         controller.getString(R.string.db_do_nothing), //
-                        controller.getString(R.string.zoom_in_zoom_out));
+                        controller.getString(R.string.zoom_in_zoom_out), //
+                        controller.getString(R.string.close_book));
 
                 final List<Integer> doubleTapIDS = Arrays.asList(//
                         AppState.DOUBLE_CLICK_AUTOSCROLL, //
                         AppState.DOUBLE_CLICK_ADJUST_PAGE, //
                         AppState.DOUBLE_CLICK_CENTER_HORIZONTAL, //
                         AppState.DOUBLE_CLICK_NOTHING, //
-                        AppState.DOUBLE_CLICK_ZOOM_IN_OUT);//
+                        AppState.DOUBLE_CLICK_ZOOM_IN_OUT,//
+                        AppState.DOUBLE_CLICK_CLOSE_BOOK//
+                );//
 
                 final Spinner doubleTapSpinner = (Spinner) inflate.findViewById(R.id.doubleTapSpinner);
                 doubleTapSpinner.setAdapter(new BaseItemLayoutAdapter<String>(controller.getActivity(), android.R.layout.simple_spinner_dropdown_item, doubleTapNames) {

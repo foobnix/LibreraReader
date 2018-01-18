@@ -972,6 +972,8 @@ public class DocumentWrapperUI {
                 controller.centerHorizontal();
             } else if (AppState.get().doubleClickAction1 == AppState.DOUBLE_CLICK_AUTOSCROLL) {
                 onAutoScrollClick();
+            } else if (AppState.get().doubleClickAction1 == AppState.DOUBLE_CLICK_CLOSE_BOOK) {
+                closeAndRunList();
             }
         }
     }

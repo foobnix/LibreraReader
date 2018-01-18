@@ -214,7 +214,6 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
         TextView modeName = (TextView) findViewById(R.id.modeName);
         modeName.setText(AppState.get().nameHorizontalMode);
 
-
         pagesCountIndicator = (TextView) findViewById(R.id.pagesCountIndicator);
         flippingIntervalView = (TextView) findViewById(R.id.flippingIntervalView);
         pagesTime = (TextView) findViewById(R.id.pagesTime);
@@ -1245,7 +1244,9 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
     public void onEvent(MessageEvent ev) {
         clickUtils.init();
         LOG.d("MessageEvent", ev.getMessage(), ev.getX(), ev.getY());
-        if (ev.getMessage().equals(MessageEvent.MESSAGE_PERFORM_CLICK)) {
+        if (ev.getMessage().equals(MessageEvent.MESSAGE_CLOSE_BOOK)) {
+            showInterstial();
+        } else if (ev.getMessage().equals(MessageEvent.MESSAGE_PERFORM_CLICK)) {
             int x = (int) ev.getX();
             int y = (int) ev.getY();
             if (clickUtils.isClickRight(x, y) && AppState.get().tapZoneRight != AppState.TAP_DO_NOTHING) {
