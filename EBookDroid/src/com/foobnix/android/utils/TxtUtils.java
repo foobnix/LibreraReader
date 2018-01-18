@@ -108,6 +108,13 @@ public class TxtUtils {
 
     }
 
+    public static String replaceEndLine(String pageHTML) {
+        pageHTML = pageHTML.replace("-<end-line>", "");
+        pageHTML = pageHTML.replace("- <end-line>", "");
+        pageHTML = pageHTML.replace("<end-line>", " ");
+        return pageHTML;
+    }
+
     public static String replaceHTMLforTTS(String pageHTML) {
         if (pageHTML == null) {
             return "";
@@ -115,8 +122,7 @@ public class TxtUtils {
         LOG.d("pageHTML [before]", pageHTML);
         pageHTML = pageHTML.replace("<b>", "").replace("</b>", "").replace("<i>", "").replace("</i>", "").replace("<tt>", "").replace("</tt>", "");
         pageHTML = pageHTML.replace("<br/>", " ");
-        pageHTML = pageHTML.replace("-<end-line>", "");
-        pageHTML = pageHTML.replace("<end-line>", " ");
+        pageHTML = replaceEndLine(pageHTML);
         pageHTML = pageHTML.replace("<p>", "").replace("</p>", " ");
         pageHTML = pageHTML.replace("&nbsp;", " ").replace("&lt;", " ").replace("&gt;", "").replace("&amp;", " ").replace("&quot;", " ");
         pageHTML = pageHTML.replace("'", "");
