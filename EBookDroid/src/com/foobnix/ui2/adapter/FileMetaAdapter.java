@@ -479,7 +479,7 @@ public class FileMetaAdapter extends AppRecycleAdapter<FileMeta, RecyclerView.Vi
 
             int sizeDP = AppState.get().coverBigSize;
             if (tempValue == TEMP_VALUE_STAR_GRID_ITEM) {
-                sizeDP = Math.max(90, AppState.get().coverBigSize);
+                sizeDP = Math.max(80, AppState.get().coverSmallSize);
             }
 
             IMG.updateImageSizeBig((View) holder.image.getParent().getParent(), sizeDP);
