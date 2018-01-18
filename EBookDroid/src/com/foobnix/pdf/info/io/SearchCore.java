@@ -76,7 +76,7 @@ public class SearchCore {
 
     }
 
-    public static List<FileMeta> getFilesAndDirs(String path) {
+    public static List<FileMeta> getFilesAndDirs(String path, boolean filterEmpty) {
         File file = new File(path);
         if (!file.isDirectory()) {
             return Collections.emptyList();
@@ -102,6 +102,10 @@ public class SearchCore {
             if (it.getName().startsWith(".")) {
                 continue;
             }
+            if (!AppState.get().isDisplayAllFilesInFolder && filterEmpty && !isDirderctoryWithBook(it)) {
+                continue;
+            }
+
             FileMeta meta = new FileMeta(it.getPath());
             FileMetaCore.get().upadteBasicMeta(meta, it);
             if (it.isDirectory()) {
@@ -111,6 +115,14 @@ public class SearchCore {
         }
 
         return files;
+    }
+
+    public static boolean isDirderctoryWithBook(File dir) {
+        if (dir.isFile()) {
+            return true;
+        }
+        File[] list = dir.listFiles(SUPPORTED_EXT_AND_DIRS_FILTER);
+        return list != null && list.length >= 1;
     }
 
     public static SupportedExtAndDirsFilter SUPPORTED_EXT_AND_DIRS_FILTER = new SupportedExtAndDirsFilter();

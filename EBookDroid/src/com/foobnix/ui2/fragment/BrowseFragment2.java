@@ -363,7 +363,7 @@ public class BrowseFragment2 extends UIFragment<FileMeta> {
 
     @Override
     public List<FileMeta> prepareDataInBackground() {
-        return SearchCore.getFilesAndDirs(getInitPath());
+        return SearchCore.getFilesAndDirs(getInitPath(), fragmentType == TYPE_DEFAULT);
     }
 
     @Override
@@ -424,7 +424,7 @@ public class BrowseFragment2 extends UIFragment<FileMeta> {
 
         searchAdapter.clearItems();
         if (items == null) {
-            items = SearchCore.getFilesAndDirs(path);
+            items = SearchCore.getFilesAndDirs(path, fragmentType == TYPE_DEFAULT);
         }
 
         if (AppState.get().sortByBrowse == AppState.BR_SORT_BY_PATH) {
