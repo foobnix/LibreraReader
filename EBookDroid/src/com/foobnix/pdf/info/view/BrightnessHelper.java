@@ -75,7 +75,6 @@ public class BrightnessHelper {
         return value;
     }
 
-
     public boolean onActionMove(final MotionEvent event) {
         if (!AppState.get().isBrighrnessEnable) {
             return false;
@@ -94,8 +93,6 @@ public class BrightnessHelper {
         return isMovementStart;
 
     }
-
-
 
     public static void applyBrigtness(final Activity a) {
         try {
@@ -150,6 +147,16 @@ public class BrightnessHelper {
             @Override
             public void onClick(View v) {
                 onMessegeBrightness(new MessegeBrightness(AppState.AUTO_BRIGTNESS), textView, overlay);
+                Activity inflate = (Activity) textView.getContext();
+                CheckBox isEnableBlueFilter = inflate.findViewById(R.id.autoSettings);
+                if (isEnableBlueFilter != null) {
+                    isEnableBlueFilter.setChecked(true);
+                }
+                View customBrightness = inflate.findViewById(R.id.customBrightness);
+                if (customBrightness != null) {
+                    customBrightness.setEnabled(false);
+                }
+
             }
         });
 
@@ -204,7 +211,6 @@ public class BrightnessHelper {
                 }
             }
         });
-
 
         final TextView onBlueFilter = (TextView) inflate.findViewById(R.id.onBlueFilter);
         onBlueFilter.setVisibility(Dips.isEInk(a) ? View.GONE : View.VISIBLE);

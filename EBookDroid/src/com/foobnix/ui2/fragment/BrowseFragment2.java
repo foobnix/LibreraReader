@@ -382,11 +382,15 @@ public class BrowseFragment2 extends UIFragment<FileMeta> {
     }
 
     public void setDirPath(String path) {
+        if (path != null) {
+            path = path.replace("//", "/");
+        }
         setDirPath(path, null);
         onGridList();
     }
 
     public void setDirPath(final String path, List<FileMeta> items) {
+        LOG.d("setDirPath", path);
         if (searchAdapter == null) {
             return;
         }
@@ -448,7 +452,6 @@ public class BrowseFragment2 extends UIFragment<FileMeta> {
             }
         }
 
-
         searchAdapter.getItemsList().addAll(items);
         recyclerView.setAdapter(searchAdapter);
 
@@ -484,21 +487,21 @@ public class BrowseFragment2 extends UIFragment<FileMeta> {
 
                 if (i == split.length - 1) {
                     item.setTypeface(Typeface.DEFAULT, Typeface.BOLD);
-                } else {
-                    item.setOnClickListener(new OnClickListener() {
-
-                        @Override
-                        public void onClick(View v) {
-                            StringBuilder builder = new StringBuilder();
-                            for (int j = 0; j <= index; j++) {
-                                builder.append("/");
-                                builder.append(split[j]);
-                            }
-                            String itemPath = builder.toString();
-                            setDirPath(itemPath);
-                        }
-                    });
                 }
+
+                item.setOnClickListener(new OnClickListener() {
+
+                    @Override
+                    public void onClick(View v) {
+                        StringBuilder builder = new StringBuilder();
+                        for (int j = 0; j <= index; j++) {
+                            builder.append("/");
+                            builder.append(split[j]);
+                        }
+                        String itemPath = builder.toString();
+                        setDirPath(itemPath);
+                    }
+                });
 
                 paths.addView(slash);
                 paths.addView(item, new LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.MATCH_PARENT));
@@ -515,6 +518,7 @@ public class BrowseFragment2 extends UIFragment<FileMeta> {
             public void run() {
                 scroller.fullScroll(HorizontalScrollView.FOCUS_RIGHT);
             }
+
         }, 100);
 
     }
