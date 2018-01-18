@@ -109,12 +109,7 @@ public class CloseAppDialog {
                         }
                     });
 
-                } else if (which == i++) {
-                    AppState.get().isShowLongBackDialog = false;
-                    c.onCloseActivity();
-
                 }
-
             }
 
         };
@@ -124,8 +119,6 @@ public class CloseAppDialog {
                 c.onCloseActivity();
                 return;
             }
-            items.add(c.getString(R.string.don_t_show_this_dialog));
-
             AlertDialog.Builder dialog = new AlertDialog.Builder(a);
             dialog.setItems(items.toArray(new String[items.size()]), listener);
 

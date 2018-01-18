@@ -93,6 +93,9 @@ public class FileMetaCore {
     private EbookMeta getEbookMeta(String path, String unZipPath, String child, boolean withDPF) throws IOException {
         EbookMeta ebookMeta = EbookMeta.Empty();
         String fileName = ExtUtils.getFileName(unZipPath);
+        String fileNameOriginal = ExtUtils.getFileName(path);
+        fileNameOriginal = TxtUtils.encode1251(fileNameOriginal);
+        fileName = TxtUtils.encode1251(fileNameOriginal);
 
         if (CalirbeExtractor.isCalibre(unZipPath)) {
             ebookMeta = CalirbeExtractor.getBookMetaInformation(unZipPath);
@@ -126,7 +129,7 @@ public class FileMetaCore {
         }
 
         if (path.endsWith(".zip") && !path.endsWith("fb2.zip")) {
-            ebookMeta.setTitle("{" + fileName + "} " + ebookMeta.getTitle());
+            ebookMeta.setTitle("{" + fileNameOriginal + "} " + ebookMeta.getTitle());
         }
 
         return ebookMeta;
@@ -181,7 +184,7 @@ public class FileMetaCore {
         fileMeta.setExt(ExtUtils.getFileExtension(file));
         fileMeta.setSizeTxt(ExtUtils.readableFileSize(file.length()));
         fileMeta.setDateTxt(ExtUtils.getDateFormat(file));
-        fileMeta.setPathTxt(file.getName());
+        fileMeta.setPathTxt(TxtUtils.encode1251(file.getName()));
     }
 
 }

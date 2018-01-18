@@ -462,7 +462,7 @@ public class AppState {
     public boolean isFirstTimeHorizontal = true;
 
     @IgnoreHashCode
-    public boolean isShowLongBackDialog = true;
+    public boolean isShowLongBackDialog = false;
 
     public String customConfigColors = "";
 

@@ -1,6 +1,8 @@
 package com.foobnix.android.utils;
 
+import java.io.UnsupportedEncodingException;
 import java.lang.Character.UnicodeBlock;
+import java.nio.charset.Charset;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
@@ -23,6 +25,22 @@ public class TxtUtils {
 
     public static String LONG_DASH = "–";
     public static String SMALL_DASH = " - ";
+
+    public static String encode1251(String string) {
+        if (Charset.forName("8859_1").newEncoder().canEncode(string)) {
+            return encode(string, "8859_1", "Windows-1251");
+        } else {
+            return string;
+        }
+    }
+
+    public static String encode(String string, String from, String to) {
+        try {
+            return new String(string.getBytes(from), to);
+        } catch (UnsupportedEncodingException e) {
+            return string;
+        }
+    }
 
     public static String deltaPage(int current) {
         if (TempHolder.get().pageDelta == 0) {
@@ -260,7 +278,7 @@ public class TxtUtils {
 
     }
 
-    static List<String> dividers = Arrays.asList(" - ", " _ ", "_-_");
+    static List<String> dividers = Arrays.asList(" - ", " _ ", "_-_", "+-+");
 
     public static Pair<String, String> getTitleAuthorByPath(String name) {
         LOG.d("getTitleAuthorByPath", name);
