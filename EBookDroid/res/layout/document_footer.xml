@@ -126,17 +126,19 @@
                 android:id="@+id/currentSeek"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:layout_marginLeft="8dip"
+                android:layout_marginLeft="4dip"
                 android:layout_weight="0"
                 android:clickable="true"
                 android:gravity="center"
-                android:minWidth="32dip"
+                android:ems="2"
                 android:text="--"
                 android:textColor="#ffffff"
-                android:textSize="16sp"
+                android:textSize="15sp"
                 android:textStyle="normal" />
 
             <SeekBar
+                android:paddingTop="3dip"
+                android:paddingBottom="3dip"
                 android:id="@+id/seekBar"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -149,14 +151,14 @@
                 android:id="@+id/maxSeek"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:layout_marginRight="8dip"
+                android:layout_marginRight="4dip"
                 android:layout_weight="0"
                 android:clickable="true"
                 android:gravity="center"
-                android:minWidth="32dip"
+                android:ems="2"
                 android:text="--"
                 android:textColor="#ffffff"
-                android:textSize="16sp"
+                android:textSize="15sp"
                 android:textStyle="normal" />
         </LinearLayout>
 
@@ -201,7 +203,7 @@
             <TextView
                 android:id="@+id/modeName"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:gravity="center"
                 android:text="@string/mode_vertical"
