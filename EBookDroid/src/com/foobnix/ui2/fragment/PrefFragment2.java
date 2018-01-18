@@ -34,6 +34,7 @@ import com.foobnix.pdf.info.widget.PrefDialogs;
 import com.foobnix.pdf.info.widget.ShareDialog;
 import com.foobnix.pdf.info.wrapper.AppState;
 import com.foobnix.pdf.info.wrapper.DocumentController;
+import com.foobnix.pdf.info.wrapper.PasswordState;
 import com.foobnix.pdf.info.wrapper.UITab;
 import com.foobnix.sys.TempHolder;
 import com.foobnix.ui2.BooksService;
@@ -843,18 +844,18 @@ public class PrefFragment2 extends UIFragment {
         });
         // app password
         final CheckBox isAppPassword = (CheckBox) inflate.findViewById(R.id.isAppPassword);
-        isAppPassword.setChecked(AppState.get().isAppPassword);
+        isAppPassword.setChecked(PasswordState.get().isAppPassword);
         isAppPassword.setOnCheckedChangeListener(new OnCheckedChangeListener() {
 
             @Override
             public void onCheckedChanged(final CompoundButton buttonView, final boolean isChecked) {
-                AppState.get().isAppPassword = isChecked;
-                if (isChecked && TxtUtils.isEmpty(AppState.get().appPassword)) {
+                PasswordState.get().isAppPassword = isChecked;
+                if (isChecked && TxtUtils.isEmpty(PasswordState.get().appPassword)) {
                     PasswordDialog.showDialog(getActivity(), true, new Runnable() {
 
                         @Override
                         public void run() {
-                            if (TxtUtils.isEmpty(AppState.get().appPassword)) {
+                            if (TxtUtils.isEmpty(PasswordState.get().appPassword)) {
                                 isAppPassword.setChecked(false);
                             }
                         }
@@ -871,7 +872,7 @@ public class PrefFragment2 extends UIFragment {
 
                     @Override
                     public void run() {
-                        if (TxtUtils.isEmpty(AppState.get().appPassword)) {
+                        if (TxtUtils.isEmpty(PasswordState.get().appPassword)) {
                             isAppPassword.setChecked(false);
                         }
                     }

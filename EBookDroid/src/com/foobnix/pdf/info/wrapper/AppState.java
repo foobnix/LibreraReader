@@ -509,9 +509,6 @@ public class AppState {
 
     public Set<String> myAutoComplete = new HashSet<String>();
 
-    public boolean isAppPassword = false;
-    public String appPassword = "";
-
     @IgnoreHashCode
     public int hashCode = 0;
 
@@ -608,6 +605,7 @@ public class AppState {
                 loadIn(a);
                 BookCSS.get().load(a);
                 DragingPopup.loadCache(a);
+                PasswordState.get().load(a);
                 LOG.d("AppState Load lasta", lastClosedActivity);
             } else {
                 LOG.d("AppState is Loaded", lastClosedActivity);
@@ -654,6 +652,7 @@ public class AppState {
             saveIn(a);
             BookCSS.get().save(a);
             DragingPopup.saveCache(a);
+            PasswordState.get().save(a);
         } catch (Exception e) {
             LOG.e(e);
         }
