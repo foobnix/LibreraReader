@@ -460,4 +460,11 @@
    <string name="favorite_folders_and_books">Favoritmappar och böcker</string>
    <string name="don_t_show_this_dialog">Visa inte denna dialogruta</string>
    <string name="show_the_book_close_dialog">Visa boken nära dialogrutan</string>
+   <string name="search_completed">Sökningen är klar</string>
+   <string name="you_can_search_only_one_word">Du kan söka endast ett ord</string>
+   <string name="passwords_do_not_match">Lösenorden matchar inte</string>
+   <string name="set_an_application_password">Ange ett programlösenord</string>
+   <string name="request_a_password_when_the_application_starts">Begär ett lösenord när programmet startar</string>
+   <string name="incorrect_password">Fel lösenord</string>
+   <string name="repeat_password">Repetera lösenord</string>
 </resources>

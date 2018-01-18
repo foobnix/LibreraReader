@@ -2172,7 +2172,7 @@ fz_print_stext_page_as_text_my1(fz_context *ctx, fz_output *out, fz_stext_page *
 					if (is_mono_ch) fz_write_printf(ctx,out,"</tt>");
 
 				}
-				fz_write_string(ctx, out, " ");				
+				fz_write_string(ctx, out, "<end-line>");
 			}
 			
 			if (is_bold) fz_write_printf(ctx,out,"</b>");

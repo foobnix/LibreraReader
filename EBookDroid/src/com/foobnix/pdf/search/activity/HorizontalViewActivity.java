@@ -1243,6 +1243,8 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
     @TargetApi(Build.VERSION_CODES.HONEYCOMB)
     @Subscribe
     public void onEvent(MessageEvent ev) {
+        clickUtils.init();
+        LOG.d("MessageEvent", ev.getMessage(), ev.getX(), ev.getY());
         if (ev.getMessage().equals(MessageEvent.MESSAGE_PERFORM_CLICK)) {
             int x = (int) ev.getX();
             int y = (int) ev.getY();
@@ -1579,7 +1581,7 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
         handler.removeCallbacksAndMessages(null);
 
         final boolean currentPosistion = Dips.screenHeight() > Dips.screenWidth();
-        if (ExtUtils.isTextFomat(getIntent()) && isInitOrientation == AppState.get().orientation) {
+        if (ExtUtils.isTextFomat(getIntent()) /* && isInitOrientation == AppState.get().orientation */) {
 
             if (rotatoinDialog != null) {
                 try {

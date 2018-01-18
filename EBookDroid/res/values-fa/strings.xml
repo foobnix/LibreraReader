@@ -460,4 +460,11 @@
    <string name="favorite_folders_and_books">پوشه ها و کتاب های مورد علاقه</string>
    <string name="don_t_show_this_dialog">این گفتگو را نشان ندهید</string>
    <string name="show_the_book_close_dialog">گفتگو نزدیک کتاب را نشان دهید</string>
+   <string name="search_completed">جستجو تکمیل شد</string>
+   <string name="you_can_search_only_one_word">شما می توانید تنها یک کلمه را جستجو کنید</string>
+   <string name="passwords_do_not_match">رمزهای ورود مطابقت ندارند</string>
+   <string name="set_an_application_password">رمز عبور برنامه را تنظیم کنید</string>
+   <string name="request_a_password_when_the_application_starts">هنگام شروع برنامه، گذرواژه را درخواست کنید</string>
+   <string name="incorrect_password">رمز عبور اشتباه است</string>
+   <string name="repeat_password">رمز عبور را تکرار کنید</string>
 </resources>

@@ -94,9 +94,11 @@ public class TxtUtils {
         if (pageHTML == null) {
             return "";
         }
-        LOG.d("pageHTML", pageHTML);
+        LOG.d("pageHTML [before]", pageHTML);
         pageHTML = pageHTML.replace("<b>", "").replace("</b>", "").replace("<i>", "").replace("</i>", "").replace("<tt>", "").replace("</tt>", "");
         pageHTML = pageHTML.replace("<br/>", " ");
+        pageHTML = pageHTML.replace("-<end-line>", "");
+        pageHTML = pageHTML.replace("<end-line>", " ");
         pageHTML = pageHTML.replace("<p>", "").replace("</p>", " ");
         pageHTML = pageHTML.replace("&nbsp;", " ").replace("&lt;", " ").replace("&gt;", "").replace("&amp;", " ").replace("&quot;", " ");
         pageHTML = pageHTML.replace("'", "");
@@ -104,6 +106,7 @@ public class TxtUtils {
         pageHTML = pageHTML.replace("  ", " ").replace("  ", " ");
         pageHTML = pageHTML.replace(".", ". ").replace(" .", ".").replace(" .", ".");
         pageHTML = pageHTML.replaceAll("(?u)(\\w+)(-\\s)", "$1");
+        LOG.d("pageHTML [after]", pageHTML);
         return pageHTML;
     }
 

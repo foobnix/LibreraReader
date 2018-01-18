@@ -460,4 +460,11 @@
    <string name="favorite_folders_and_books">Favorite books and folders</string>
    <string name="don_t_show_this_dialog">Don\'t show this dialog</string>
    <string name="show_the_book_close_dialog">Show book exit prompt</string>
+   <string name="search_completed">Search completed</string>
+   <string name="you_can_search_only_one_word">You can search only one word</string>
+   <string name="passwords_do_not_match">Passwords do not match</string>
+   <string name="set_an_application_password">Set an application password</string>
+   <string name="request_a_password_when_the_application_starts">Request a password when the application starts</string>
+   <string name="incorrect_password">Incorrect password</string>
+   <string name="repeat_password">Repeat password</string>
 </resources>

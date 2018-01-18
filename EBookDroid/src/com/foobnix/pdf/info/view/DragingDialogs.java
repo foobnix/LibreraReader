@@ -115,7 +115,6 @@ import android.view.View.OnClickListener;
 import android.view.View.OnKeyListener;
 import android.view.View.OnLongClickListener;
 import android.view.ViewGroup;
-import android.view.WindowManager;
 import android.view.inputmethod.EditorInfo;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
@@ -898,12 +897,12 @@ public class DragingDialogs {
 
     public static DragingPopup selectTextMenu(final FrameLayout anchor, final DocumentController controller, final boolean withAnnotation, final Runnable reloadUI) {
 
-        try {
-            int number = Integer.parseInt(AppState.get().selectedText);
-            Dialogs.showDeltaPage(anchor, controller, number, reloadUI);
-            return null;
-        } catch (Exception e) {
-        }
+        // try {
+        // int number = Integer.parseInt(AppState.get().selectedText);
+        // Dialogs.showDeltaPage(anchor, controller, number, reloadUI);
+        // return null;
+        // } catch (Exception e) {
+        // }
 
         return new DragingPopup(R.string.text, anchor, 260, 400) {
             @Override
@@ -2175,6 +2174,16 @@ public class DragingDialogs {
                     }
                 });
 
+                CheckBox isRewindEnable = (CheckBox) inflate.findViewById(R.id.isRewindEnable);
+                isRewindEnable.setChecked(AppState.get().isRewindEnable);
+                isRewindEnable.setOnCheckedChangeListener(new OnCheckedChangeListener() {
+
+                    @Override
+                    public void onCheckedChanged(final CompoundButton buttonView, final boolean isChecked) {
+                        AppState.get().isRewindEnable = isChecked;
+                    }
+                });
+
                 // status bar
 
                 final CheckBox isShowSatusBar = (CheckBox) inflate.findViewById(R.id.isShowSatusBar);
@@ -2343,15 +2352,7 @@ public class DragingDialogs {
                     }
                 });
 
-                CheckBox isRewindEnable = (CheckBox) inflate.findViewById(R.id.isRewindEnable);
-                isRewindEnable.setChecked(AppState.get().isRewindEnable);
-                isRewindEnable.setOnCheckedChangeListener(new OnCheckedChangeListener() {
 
-                    @Override
-                    public void onCheckedChanged(final CompoundButton buttonView, final boolean isChecked) {
-                        AppState.get().isRewindEnable = isChecked;
-                    }
-                });
 
                 CheckBox isShowLongBackDialog = (CheckBox) inflate.findViewById(R.id.isShowLongBackDialog);
                 isShowLongBackDialog.setChecked(AppState.get().isShowLongBackDialog);
@@ -3164,6 +3165,7 @@ public class DragingDialogs {
                 });
 
                 // font folder
+                LOG.d("fontFolder2-2", BookCSS.get().fontFolder);
                 final TextView fontsFolder = (TextView) inflate.findViewById(R.id.fontsFolder);
                 fontsFolder.setText(TxtUtils.underline(BookCSS.get().fontFolder));
                 fontsFolder.setOnClickListener(new OnClickListener() {
@@ -3654,94 +3656,8 @@ public class DragingDialogs {
 
                 // orientation end
 
-                final CheckBox isEnableBlueFilter = (CheckBox) inflate.findViewById(R.id.isEnableBlueFilter);
-                isEnableBlueFilter.setChecked(AppState.get().isEnableBlueFilter);
-                isEnableBlueFilter.setOnCheckedChangeListener(new OnCheckedChangeListener() {
-
-                    @Override
-                    public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                        AppState.get().isEnableBlueFilter = isChecked;
-                        if (onRefresh != null) {
-                            onRefresh.run();
-                        }
-                    }
-                });
-
-                // brightness begin
-                BrightnessHelper.controlsWrapper(inflate, controller.getActivity(), new Runnable() {
-
-                    @Override
-                    public void run() {
-                        isEnableBlueFilter.setChecked(false);
-                    }
-                });
+                BrightnessHelper.showBlueLigthDialogAndBrightness(controller.getActivity(), inflate, onRefresh);
                 // brightness end
-
-                final TextView onBlueFilter = (TextView) inflate.findViewById(R.id.onBlueFilter);
-                onBlueFilter.setVisibility(Dips.isEInk(controller.getActivity()) ? View.GONE : View.VISIBLE);
-                TxtUtils.underlineTextView(onBlueFilter);
-                onBlueFilter.setOnClickListener(new OnClickListener() {
-
-                    @Override
-                    public void onClick(View v) {
-                        final AlertDialog.Builder builder = new AlertDialog.Builder(v.getContext());
-                        builder.setTitle(R.string.bluelight_filter);
-
-                        final View inflate = inflater.inflate(R.layout.dialog_bluelight, null, false);
-
-                        final CustomColorView blueLightColor = (CustomColorView) inflate.findViewById(R.id.blueLightColor);
-                        TxtUtils.bold(blueLightColor.getText1());
-                        blueLightColor.withDefaultColors(AppState.BLUE_FILTER_DEFAULT_COLOR, Color.parseColor("#FFDD00"), Color.RED, Color.GREEN);
-                        blueLightColor.init(AppState.get().blueLightColor);
-                        blueLightColor.setOnColorChanged(new StringResponse() {
-
-                            @Override
-                            public boolean onResultRecive(String string) {
-                                AppState.get().isEnableBlueFilter = true;
-                                AppState.get().blueLightColor = Color.parseColor(string);
-                                if (onRefresh != null) {
-                                    onRefresh.run();
-                                }
-                                Keyboards.hideNavigation(controller.getActivity());
-                                return false;
-                            }
-                        });
-
-                        final CustomSeek blueLightAlpha = (CustomSeek) inflate.findViewById(R.id.blueLightAlpha);
-                        blueLightAlpha.init(0, 99, AppState.get().blueLightAlpha);
-                        blueLightAlpha.setOnSeekChanged(new IntegerResponse() {
-
-                            @Override
-                            public boolean onResultRecive(int result) {
-                                AppState.get().isEnableBlueFilter = true;
-                                AppState.get().blueLightAlpha = result;
-                                blueLightAlpha.setValueText("" + AppState.get().blueLightAlpha + "%");
-                                if (onRefresh != null) {
-                                    onRefresh.run();
-                                }
-                                return false;
-                            }
-                        });
-                        blueLightAlpha.setValueText("" + AppState.get().blueLightAlpha + "%");
-
-                        builder.setView(inflate);
-
-                        builder.setNegativeButton(R.string.close, new DialogInterface.OnClickListener() {
-
-                            @Override
-                            public void onClick(final DialogInterface dialog, final int id) {
-                                isEnableBlueFilter.setChecked(AppState.get().isEnableBlueFilter);
-                                if (dialog != null) {
-                                    dialog.dismiss();
-                                }
-                            }
-                        });
-
-                        AlertDialog dialog = builder.show();
-                        dialog.getWindow().clearFlags(WindowManager.LayoutParams.FLAG_DIM_BEHIND);
-                    }
-                });
-
                 // dicts
 
                 final TextView selectedDictionaly = (TextView) inflate.findViewById(R.id.selectedDictionaly);

@@ -100,12 +100,12 @@
             android:orientation="horizontal" >
 
             <CheckBox
-                android:layout_margin="0dip"
-                android:padding="-5dip"
                 android:id="@+id/supportPDF"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_margin="0dip"
                 android:minWidth="110dp"
+                android:padding="-5dip"
                 android:text="PDF"
                 android:textSize="11sp" />
 
@@ -434,22 +434,29 @@
             android:layout_marginTop="1dip"
             android:background="@color/lt_grey_alpha" />
 
-        <TextView
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="5dip"
-            android:text="@string/brightness"
-            android:textStyle="bold" />
+            android:gravity="center_vertical"
+            android:orientation="horizontal" >
 
-        <CheckBox
-            android:id="@+id/autoSettings"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="4dip"
-            android:layout_weight="0"
-            android:singleLine="true"
-            android:text="@string/automatic"
-            android:textSize="12sp" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dip"
+                android:text="@string/brightness"
+                android:textStyle="bold" />
+
+            <CheckBox
+                android:id="@+id/autoSettings"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="4dip"
+                android:layout_weight="0"
+                android:singleLine="true"
+                android:text="@string/automatic"
+                android:textSize="12sp" />
+        </LinearLayout>
 
         <com.foobnix.pdf.info.view.CustomSeek
             android:id="@+id/customBrightness"
@@ -457,6 +464,29 @@
             android:layout_height="wrap_content"
             android:layout_weight="1" >
         </com.foobnix.pdf.info.view.CustomSeek>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal" >
+
+            <CheckBox
+                android:id="@+id/isEnableBlueFilter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom"
+                android:layout_weight="0"
+                android:text="" />
+
+            <TextView
+                android:id="@+id/onBlueFilter"
+                style="@style/textLink"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="4dip"
+                android:text="@string/bluelight_filter" />
+        </LinearLayout>
 
         <LinearLayout
             android:id="@+id/onKeyCode"
@@ -654,6 +684,32 @@
                 android:minWidth="100dip"
                 android:singleLine="false"
                 android:text="@string/mode_vertical" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal" >
+
+            <CheckBox
+                android:id="@+id/isAppPassword"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:maxLines="2"
+                android:text="@string/request_a_password_when_the_application_starts" />
+
+            <TextView
+                android:id="@+id/appPassword"
+                style="@style/textLink"
+                android:layout_width="150dip"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:maxLines="2"
+                android:minWidth="100dip"
+                android:singleLine="false"
+                android:text="@string/password" />
         </LinearLayout>
 
         <CheckBox
@@ -1024,9 +1080,9 @@
             <TextView
                 android:id="@+id/tutorialLink"
                 style="@style/textLink"
-                android:singleLine="false"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:singleLine="false"
                 android:text="@string/read_the_tutorial_online_or_download_in_pdf_format" />
         </LinearLayout>
 

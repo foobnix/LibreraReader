@@ -460,4 +460,11 @@
    <string name="favorite_folders_and_books">Favoriete mappen en boeken</string>
    <string name="don_t_show_this_dialog">Toon dit dialoogvenster niet</string>
    <string name="show_the_book_close_dialog">Toon het dialoogvenster \'Boek sluiten\'</string>
+   <string name="search_completed">Zoekopdracht voltooid</string>
+   <string name="you_can_search_only_one_word">U kunt slechts één woord zoeken</string>
+   <string name="passwords_do_not_match">Wachtwoorden komen niet overeen</string>
+   <string name="set_an_application_password">Stel een app-wachtwoord in</string>
+   <string name="request_a_password_when_the_application_starts">Vraag een wachtwoord aan wanneer de applicatie start</string>
+   <string name="incorrect_password">Incorrect wachtwoord</string>
+   <string name="repeat_password">Herhaal wachtwoord</string>
 </resources>

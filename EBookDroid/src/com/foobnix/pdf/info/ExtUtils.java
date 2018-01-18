@@ -1186,6 +1186,10 @@ public class ExtUtils {
                     String html = pageCodec.getPageHTMLWithImages();
 
                     out.write("<a id=\"" + i + "\"></a>");
+
+                    html = html.replace("-<end-line>", "");
+                    html = html.replace("<end-line>", " ");
+
                     int startImage = html.indexOf(IMAGE_BEGIN);
                     while (startImage >= 0) {
                         if (!TempHolder.get().isConverting) {

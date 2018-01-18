@@ -460,4 +460,11 @@
    <string name="favorite_folders_and_books">Favorittmapper og bøker</string>
    <string name="don_t_show_this_dialog">Ikke vis denne dialogen</string>
    <string name="show_the_book_close_dialog">Vis boken Lukk dialogboksen</string>
+   <string name="search_completed">Søket er fullført</string>
+   <string name="you_can_search_only_one_word">Du kan søke bare ett ord</string>
+   <string name="passwords_do_not_match">Passordene er ikke like</string>
+   <string name="set_an_application_password">Angi et programpassord</string>
+   <string name="request_a_password_when_the_application_starts">Be om et passord når programmet starter</string>
+   <string name="incorrect_password">Feil passord</string>
+   <string name="repeat_password">Gjenta passord</string>
 </resources>
