@@ -166,7 +166,7 @@
    <string name="invalid_color_value">Недопустимое значение цвета</string>
    <string name="books_not_found">Файлы не найдены</string>
    <string name="ignore_annotations_on_click">Игнорировать комментарии и пометки при нажатиях</string>
-   <string name="save_new_annotations_automatically">Автоматически сохранять новые комментарии и пометки</string>
+   <string name="save_new_annotations_automatically">Автоматически сохранять новые комментарии и пометки при закрытии книги или выходе из приложения</string>
    <string name="web_dict">Глянуть в веб-словаре</string>
    <string name="remember_dictionary">Запомнить словарь</string>
    <string name="left_to_rigth">Слева направо</string>
@@ -357,7 +357,7 @@
    <string name="trim_borders">Границы обрезки</string>
    <string name="stop_reading_timer_">Остановить чтение через</string>
    <string name="two_pages_cover">Обложка, 2 страницы</string>
-   <string name="enhancements_for_oled_display">Заполнять пространство вокруг страниц черным цветом, если фон любого из ночных пресетов тоже черный (AMOLED-адаптация)</string>
+   <string name="enhancements_for_oled_display">Заполнять пространство вокруг страниц черным цветом, если выбран любой из ночных пресетов (AMOLED-адаптация)</string>
    <string name="reading_will_be_stopped">Чтение остановится в</string>
    <string name="compact">Полусписок</string>
    <string name="cd_search_books_in_the_library">Поиск книг в библиотеке</string>
@@ -401,7 +401,7 @@
    <string name="number_of_books">Число книг</string>
    <string name="show">Показывать</string>
    <string name="folder_for_downloaded_books">Папка для загрузки книг</string>
-   <string name="set_the_current_page_number">Перенумерация страниц</string>
+   <string name="set_the_current_page_number">Условная перенумерация страниц</string>
    <string name="search_in_document">Искать внутри текста</string>
    <string name="opening_book_with_losed_lock">Всегда блокировать смещения страниц при открытии PDF/DJVU</string>
    <string name="opening_book_with_cropped_borders">Активировать автообрезку пустых полей при каждом открытии PDF/DJVU</string>
@@ -431,7 +431,7 @@
    <string name="continuous_text">Непрерывный текст (без разрыва строк)</string>
    <string name="remember_reading_mode">Запоминать режим чтения</string>
    <string name="background_color_on_images_the_same_as_page_background">Применять особый алгоритм цветовой подстройки шрифтов и фонов (для PDF/DJVU)</string>
-   <string name="block_page_movement_horizontally">«Запереть» смещение страниц в стороны</string>
+   <string name="block_page_movement_horizontally">Если замочек «запереть», страницы не будут смещаться в стороны</string>
    <string name="search_history_and_autocomplete">История поиска и автозаполнение</string>
    <string name="server">Сервер</string>
    <string name="port">Порт</string>
@@ -455,16 +455,16 @@
    <string name="no_author">Без автора</string>
    <string name="archives">Архивы</string>
    <string name="other">Другое</string>
-   <string name="read_the_tutorial_online_or_download_in_pdf_format">Читать учебник онлайн или загрузить в формате PDF</string>
+   <string name="read_the_tutorial_online_or_download_in_pdf_format">Ознакомиться с руководством на сайте или скачать его в PDF-формате</string>
    <string name="start_recording">Начать запись</string>
    <string name="favorite_folders_and_books">Избранные папки и книги</string>
-   <string name="don_t_show_this_dialog">Не показывать этот диалог</string>
-   <string name="show_the_book_close_dialog">Показать диалог закрытия книги</string>
+   <string name="don_t_show_this_dialog">Больше не показывать это окно</string>
+   <string name="show_the_book_close_dialog">Показывать окно-подтверждение закрытия книги при коротком нажатии на клавишу «Назад»</string>
    <string name="search_completed">Поиск завершен</string>
-   <string name="you_can_search_only_one_word">Вы можете искать только одно слово</string>
+   <string name="you_can_search_only_one_word">Для поиска введите в поле не более одного слова</string>
    <string name="passwords_do_not_match">Пароли не совпадают</string>
-   <string name="set_an_application_password">Установка пароля приложения</string>
-   <string name="request_a_password_when_the_application_starts">Запросить пароль при запуске приложения</string>
-   <string name="incorrect_password">Неверный пароль</string>
-   <string name="repeat_password">Повторите пароль</string>
+   <string name="set_an_application_password">Настройка пароля приложения</string>
+   <string name="request_a_password_when_the_application_starts">Запрашивать пароль при запуске приложения</string>
+   <string name="incorrect_password">Пароль неверный</string>
+   <string name="repeat_password">Введите пароль еще раз</string>
 </resources>
