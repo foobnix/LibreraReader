@@ -8,6 +8,7 @@ import com.artifex.mupdf.fitz.StructuredText;
 import com.foobnix.android.utils.Dips;
 import com.foobnix.android.utils.LOG;
 import com.foobnix.ext.CacheZipUtils;
+import com.foobnix.pdf.info.ADS;
 import com.foobnix.pdf.info.AppSharedPreferences;
 import com.foobnix.pdf.info.AppsConfig;
 import com.foobnix.pdf.info.ExtUtils;
@@ -16,6 +17,7 @@ import com.foobnix.pdf.info.R;
 import com.foobnix.pdf.info.TintUtil;
 import com.foobnix.pdf.info.wrapper.AppState;
 import com.foobnix.ui2.AppDB;
+import com.google.android.gms.ads.AdRequest;
 
 import android.app.Application;
 import android.content.Context;
@@ -30,8 +32,6 @@ public class LibreraApp extends Application {
     }
 
     public static Context context;
-    
-
 
     @Override
     public void onCreate() {
@@ -62,12 +62,24 @@ public class LibreraApp extends Application {
         LOG.d("Build", "Build.DEVICE", Build.DEVICE);
         LOG.d("Build", "Build.BRAND", Build.BRAND);
         LOG.d("Build", "Build.MODEL", Build.MODEL);
-        
+
         LOG.d("Build.Context", "Context.getFilesDir()", getFilesDir());
         LOG.d("Build.Context", "Context.getCacheDir()", getCacheDir());
         LOG.d("Build.Context", "Context.getExternalCacheDir", getExternalCacheDir());
         LOG.d("Build.Context", "Context.getExternalFilesDir(null)", getExternalFilesDir(null));
         LOG.d("Build.Context", "Environment.getExternalStorageDirectory()", Environment.getExternalStorageDirectory());
+
+        try {
+            if (!AppsConfig.checkIsProInstalled(this)) {
+                String myID = ADS.getByTestID(this);
+                ADS.adRequest = new AdRequest.Builder()//
+                        .addTestDevice(AdRequest.DEVICE_ID_EMULATOR)//
+                        .addTestDevice(myID)//
+                        .build();//
+            }
+        } catch (Exception e) {
+            LOG.e(e);
+        }
 
     }
 

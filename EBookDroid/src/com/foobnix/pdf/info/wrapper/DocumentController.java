@@ -110,7 +110,7 @@ public abstract class DocumentController {
 
     public abstract void onZoomInOut(int x, int y);
 
-    public abstract void onCloseActivity();
+    public abstract void onCloseActivityAdnShowInterstial();
 
     public abstract void onCloseActivityFinal(Runnable run);
 

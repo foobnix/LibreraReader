@@ -129,12 +129,9 @@ public class VerticalViewActivity extends AbstractActionActivity<VerticalViewAct
             super.onCreate(savedInstanceState);
         }
 
-
-
         setContentView(R.layout.activity_vertical_view);
 
         Android6.checkPermissions(this);
-
 
         getController().createWrapper(this);
         frameLayout = (FrameLayout) findViewById(R.id.documentView);
@@ -332,40 +329,53 @@ public class VerticalViewActivity extends AbstractActionActivity<VerticalViewAct
     }
 
     @Override
+    public boolean onKeyLongPress(final int keyCode, final KeyEvent event) {
+        // Toast.makeText(this, "onKeyLongPress", Toast.LENGTH_SHORT).show();
+        if (CloseAppDialog.checkLongPress(this, event)) {
+            CloseAppDialog.showOnLongClickDialog(getController().getActivity(), null, getController().getListener());
+            return true;
+        }
+        return super.onKeyLongPress(keyCode, event);
+    }
+
+    @Override
+    public void onBackPressed() {
+        // Toast.makeText(this, "onBackPressed", Toast.LENGTH_SHORT).show();
+
+        if (isInterstialShown()) {
+            getController().closeActivityFinal(null);
+            return;
+        }
+        if (getController().getWrapperControlls().checkBack(new KeyEvent(KeyEvent.KEYCODE_BACK, KeyEvent.KEYCODE_BACK))) {
+            return;
+        }
+
+        if (AppState.get().isShowLongBackDialog) {
+            CloseAppDialog.showOnLongClickDialog(getController().getActivity(), null, getController().getListener());
+        } else {
+            showInterstial();
+        }
+
+    }
+
+    private boolean isMyKey = false;
+
+    @Override
     public boolean onKeyUp(final int keyCode, final KeyEvent event) {
         LOG.d("onKeyUp");
-        if (keyCode == KeyEvent.KEYCODE_BACK && event.isTracking() && !event.isCanceled()) {
-            if (!getController().getWrapperControlls().checkBack(event)) {
-                onFinishActivity();
-            }
+        if (isMyKey) {
             return true;
         }
 
         if (getController().getWrapperControlls().dispatchKeyEventUp(event)) {
             return true;
         }
-
-        return isMyKey;
-    }
-
-    private boolean isMyKey = false;
-
-    @Override
-    public void onBackPressed() {
-        super.onBackPressed();
-        if (isInterstialShown()) {
-            getController().closeActivityFinal(null);
-        }
+        return super.onKeyUp(keyCode, event);
     }
 
     @Override
     public boolean onKeyDown(final int keyCode, final KeyEvent event) {
         LOG.d("onKeyDown");
-
-        if (keyCode == KeyEvent.KEYCODE_BACK) {
-            event.startTracking();
-            return true;
-        }
 
         int repeatCount = event.getRepeatCount();
         if (repeatCount >= 1 && repeatCount < 6) {
@@ -377,16 +387,7 @@ public class VerticalViewActivity extends AbstractActionActivity<VerticalViewAct
             isMyKey = true;
             return true;
         }
-        return false;
-    }
-
-    @Override
-    public boolean onKeyLongPress(final int keyCode, final KeyEvent event) {
-        if (false && CloseAppDialog.checkLongPress(this, event)) {
-            CloseAppDialog.showOnLongClickDialog(getController().getActivity(), null, getController().getListener());
-            return true;
-        }
-        return super.onKeyLongPress(keyCode, event);
+        return super.onKeyDown(keyCode, event);
     }
 
     @Override

@@ -91,12 +91,16 @@ public class CloseAppDialog {
                 int i = 0;
                 if (which == i++) {
 
-                    c.onCloseActivity();
+                    c.onCloseActivityAdnShowInterstial();
 
                 } else if (which == i++) {
-                    c.onCloseActivity();
-                    MainTabs2.startActivity(a, UITab.getCurrentTabIndex(UITab.SearchFragment));
+                    c.onCloseActivityFinal(new Runnable() {
 
+                        @Override
+                        public void run() {
+                            MainTabs2.startActivity(a, UITab.getCurrentTabIndex(UITab.SearchFragment));
+                        }
+                    });
                 } else if (which == i++) {
                     Apps.showDesctop(a);
 
@@ -115,10 +119,6 @@ public class CloseAppDialog {
         };
 
         if (v == null) {
-            if (!AppState.get().isShowLongBackDialog) {
-                c.onCloseActivity();
-                return;
-            }
             AlertDialog.Builder dialog = new AlertDialog.Builder(a);
             dialog.setItems(items.toArray(new String[items.size()]), listener);
 

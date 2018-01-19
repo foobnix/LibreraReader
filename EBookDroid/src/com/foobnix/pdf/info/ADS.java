@@ -1,5 +1,7 @@
 package com.foobnix.pdf.info;
 
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -23,6 +25,7 @@ import com.google.android.gms.ads.NativeExpressAdView;
 import android.app.Activity;
 import android.content.Context;
 import android.graphics.drawable.GradientDrawable;
+import android.provider.Settings;
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
@@ -34,11 +37,6 @@ public class ADS {
 
     public static AdRequest adRequest = new AdRequest.Builder()//
             .addTestDevice(AdRequest.DEVICE_ID_EMULATOR)//
-            .addTestDevice("E0A9E8CB1E71AE8C3F6F64D692E914DB")//
-            .addTestDevice("465253044271C009F461C81CFAC406BA")//
-            .addTestDevice("ECC8DAFFDFD6BE5A3C799695FC4853E8")//
-            .addTestDevice("ECC8DAFFDFD6BE5A3C799695FC4853E8")//
-            .addTestDevice("04CB89245EAA401BEB07B0719E8ECF05")//
             .build();//
 
     public static HashMap<ParamsType, Object> interstitial = new HashMap<ParamsType, Object>();
@@ -258,5 +256,35 @@ public class ADS {
             adView.destroy();
             adView = null;
         }
+    }
+
+    public static String getByTestID(Context c) {
+        String android_id = Settings.Secure.getString(c.getContentResolver(), Settings.Secure.ANDROID_ID);
+        String upperCase = md5_2(android_id).toUpperCase();
+        LOG.d("test-MY_ADS_ID", upperCase);
+        return upperCase;
+    }
+
+    public static final String md5_2(final String s)
+    {
+        try {
+            // Create MD5 Hash
+            MessageDigest digest = java.security.MessageDigest.getInstance("MD5");
+            digest.update(s.getBytes());
+            byte messageDigest[] = digest.digest();
+
+            // Create Hex String
+            StringBuffer hexString = new StringBuffer();
+            for (int i = 0; i < messageDigest.length; i++) {
+                String h = Integer.toHexString(0xFF & messageDigest[i]);
+                while (h.length() < 2)
+                    h = "0" + h;
+                hexString.append(h);
+            }
+            return hexString.toString();
+
+        } catch (NoSuchAlgorithmException e) {
+        }
+        return "";
     }
 }

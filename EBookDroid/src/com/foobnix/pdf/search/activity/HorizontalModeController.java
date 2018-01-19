@@ -276,6 +276,8 @@ public abstract class HorizontalModeController extends DocumentController {
 
     public abstract void notifyAdapterDataChanged();
 
+    public abstract void showInterstialAndClose();
+
     @Override
     public void onGoToPage(int page) {
         if (page <= getPageCount()) {
@@ -451,8 +453,9 @@ public abstract class HorizontalModeController extends DocumentController {
     }
 
     @Override
-    public void onCloseActivity() {
-        onCloseActivityFinal(null);
+    public void onCloseActivityAdnShowInterstial() {
+        showInterstialAndClose();
+
     }
 
     @Override

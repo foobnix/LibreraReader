@@ -9,7 +9,6 @@ import java.util.Locale;
 
 import org.ebookdroid.common.settings.SettingsManager;
 import org.ebookdroid.common.settings.books.BookSettings;
-import org.ebookdroid.ui.viewer.VerticalViewActivity;
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
@@ -233,17 +232,13 @@ public class DocumentWrapperUI {
                 if (prefDialog != null) {
                     prefDialog.closeDialog();
                 }
+                return true;
             } else if (!controller.getLinkHistory().isEmpty()) {
                 controller.onLinkHistory();
-            } else {
-                if (((VerticalViewActivity) getController().getActivity()).isInterstialShown()) {
-                    return false;
-                } else {
-                    CloseAppDialog.showOnLongClickDialog(getController().getActivity(), null, controller);
-                }
+                return true;
             }
         }
-        return true;
+        return false;
     }
 
     public boolean dispatchKeyEventUp(final KeyEvent event) {
@@ -366,7 +361,7 @@ public class DocumentWrapperUI {
         if (titleBar != null) {
             titleBar.removeCallbacks(null);
         }
-        controller.onCloseActivity();
+        controller.onCloseActivityAdnShowInterstial();
 
     }
 

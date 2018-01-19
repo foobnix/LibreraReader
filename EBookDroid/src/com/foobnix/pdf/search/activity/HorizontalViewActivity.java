@@ -766,7 +766,6 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
                     AppState.get().lastMode = HorizontalViewActivity.class.getSimpleName();
                     LOG.d("lasta save", AppState.get().lastClosedActivity);
 
-
                     PageImageState.get().isAutoFit = PageImageState.get().needAutoFit;
 
                     if (ExtUtils.isTextFomat(getIntent())) {
@@ -1140,7 +1139,7 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
         public void run() {
             LOG.d("Close App");
             if (documentController != null) {
-                documentController.onCloseActivity();
+                documentController.onCloseActivityAdnShowInterstial();
             } else {
                 finish();
             }
@@ -1356,6 +1355,12 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
             @Override
             public void notifyAdapterDataChanged() {
             }
+
+            @Override
+            public void showInterstialAndClose() {
+                showInterstial();
+            }
+
         };
         documentController.init(this);
     }
@@ -1905,7 +1910,8 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
 
     @Override
     public boolean onKeyLongPress(final int keyCode, final KeyEvent event) {
-        if (false && CloseAppDialog.checkLongPress(this, event)) {
+        // Toast.makeText(this, "onKeyLongPress", Toast.LENGTH_SHORT).show();
+        if (CloseAppDialog.checkLongPress(this, event)) {
             CloseAppDialog.showOnLongClickDialog(HorizontalViewActivity.this, null, documentController);
             return true;
         }
@@ -1914,6 +1920,7 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
 
     @Override
     public void onBackPressed() {
+        // Toast.makeText(this, "onBackPressed", Toast.LENGTH_SHORT).show();
         if (isInterstialShown()) {
             onFinishActivity();
             return;
@@ -1931,7 +1938,11 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
             return;
         }
 
-        CloseAppDialog.showOnLongClickDialog(HorizontalViewActivity.this, null, documentController);
+        if (AppState.get().isShowLongBackDialog) {
+            CloseAppDialog.showOnLongClickDialog(HorizontalViewActivity.this, null, documentController);
+        } else {
+            showInterstial();
+        }
     }
 
     @Override
@@ -1941,7 +1952,7 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
             handler.removeCallbacksAndMessages(null);
         }
         nullAdapter();
-        documentController.onCloseActivity();
+        documentController.onCloseActivityFinal(null);
     }
 
     private void updateAnimation(final TranslateAnimation a) {

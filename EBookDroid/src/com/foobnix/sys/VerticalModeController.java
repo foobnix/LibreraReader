@@ -564,7 +564,7 @@ public class VerticalModeController extends DocumentController {
     }
 
     @Override
-    public void onCloseActivity() {
+    public void onCloseActivityAdnShowInterstial() {
         handler.removeCallbacksAndMessages(null);
         if (ctr == null || ctr.getDecodeService() == null) {
             return;

@@ -307,7 +307,7 @@ public class ViewerActivityController extends ActionController<VerticalViewActiv
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 dialog.dismiss();
-                controller.onCloseActivity();
+                controller.onCloseActivityAdnShowInterstial();
             }
         });
         dialog.setPositiveButton(R.string.open_file, new OnClickListener() {
@@ -319,7 +319,7 @@ public class ViewerActivityController extends ActionController<VerticalViewActiv
                     dialog.dismiss();
                     startDecoding(fileName, input.getText().toString());
                 } else {
-                    controller.onCloseActivity();
+                    controller.onCloseActivityAdnShowInterstial();
                 }
             }
         });

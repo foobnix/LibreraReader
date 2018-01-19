@@ -110,7 +110,11 @@ public class MyADSProvider {
 
         };
         LOG.d("ADS post delay postDelayed", intetrstialTimeout);
-        handler.postDelayed(r, TimeUnit.SECONDS.toMillis(intetrstialTimeout));
+        if (AppsConfig.checkIsProInstalled(a)) {
+            handler.postDelayed(r, TimeUnit.SECONDS.toMillis(intetrstialTimeout));
+        } else {
+            handler.postDelayed(r, TimeUnit.SECONDS.toMillis(0));
+        }
 
     }
 
