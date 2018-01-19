@@ -471,4 +471,6 @@
    <string name="title">Titel</string>
    <string name="subject">Onderwerpen</string>
    <string name="keywords">Trefwoorden</string>
+   <string name="number">Aantal</string>
+   <string name="percent">Procent</string>
 </resources>

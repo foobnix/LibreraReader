@@ -1394,8 +1394,9 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
             viewPager.setCurrentItem(page, false);
         }
 
-        String textPage = TxtUtils.deltaPage(page + 1);
-        String textMax = TxtUtils.deltaPage(documentController.getPageCount());
+        int max = documentController.getPageCount();
+        String textPage = TxtUtils.deltaPage(page + 1, max);
+        String textMax = TxtUtils.deltaPage(max, max);
         if (AppState.get().isRTL) {
             maxSeek.setText("" + textPage);
             currentSeek.setText(textMax);

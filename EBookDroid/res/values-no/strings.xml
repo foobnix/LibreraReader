@@ -471,4 +471,6 @@
    <string name="title">Tittel</string>
    <string name="subject">Emne</string>
    <string name="keywords">Nøkkelord</string>
+   <string name="number">Antall</string>
+   <string name="percent">Prosent</string>
 </resources>

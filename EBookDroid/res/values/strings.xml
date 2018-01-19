@@ -471,4 +471,6 @@
    <string name="title">Title</string>
    <string name="subject">Subject</string>
    <string name="keywords">Keywords</string>
+   <string name="number">Number</string>
+   <string name="percent">Percent</string>
 </resources>

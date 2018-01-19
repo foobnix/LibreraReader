@@ -471,4 +471,6 @@
    <string name="title">หัวข้อ</string>
    <string name="subject">เรื่อง</string>
    <string name="keywords">คำสำคัญ</string>
+   <string name="number">จำนวน</string>
+   <string name="percent">เปอร์เซ็นต์</string>
 </resources>

@@ -223,6 +223,9 @@ public class AppState {
     public final static int OUTLINE_HEADERS_AND_SUBHEADERES = 0;
     public final static int OUTLINE_ONLY_HEADERS = 1;
 
+    public final static int READING_PROGRESS_NUMBERS = 0;
+    public final static int READING_PROGRESS_PERCENT = 1;
+
     public final static int AUTO_BRIGTNESS = -1000;
 
     @IgnoreHashCode
@@ -235,6 +238,9 @@ public class AppState {
 
     public int flippingInterval = 10;
     public int ttsTimer = 60;
+
+    @IgnoreHashCode
+    public int readingProgress = READING_PROGRESS_NUMBERS;
 
     public int outlineMode = OUTLINE_ONLY_HEADERS;
 

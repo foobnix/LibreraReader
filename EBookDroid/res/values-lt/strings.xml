@@ -471,4 +471,6 @@
    <string name="title">Pavadinimas</string>
    <string name="subject">Tema</string>
    <string name="keywords">Raktiniai žodžiai</string>
+   <string name="number">Numeris</string>
+   <string name="percent">Procentas</string>
 </resources>

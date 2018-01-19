@@ -471,4 +471,6 @@
    <string name="title">Otsikko</string>
    <string name="subject">Aihe</string>
    <string name="keywords">Avainsanat</string>
+   <string name="number">Määrä</string>
+   <string name="percent">Prosentti</string>
 </resources>

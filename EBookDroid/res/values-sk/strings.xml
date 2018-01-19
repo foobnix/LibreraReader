@@ -471,4 +471,6 @@
    <string name="title">Nadpis</string>
    <string name="subject">Predmet</string>
    <string name="keywords">Kľúčové slová</string>
+   <string name="number">Číslo</string>
+   <string name="percent">Percento</string>
 </resources>

@@ -471,4 +471,6 @@
    <string name="title">כותרת</string>
    <string name="subject">נושא</string>
    <string name="keywords">מילות מפתח</string>
+   <string name="number">מספר</string>
+   <string name="percent">אָחוּז</string>
 </resources>

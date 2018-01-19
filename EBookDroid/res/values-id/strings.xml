@@ -471,4 +471,6 @@
    <string name="title">Judul</string>
    <string name="subject">Subyek</string>
    <string name="keywords">Kata kunci</string>
+   <string name="number">Jumlah</string>
+   <string name="percent">Persen</string>
 </resources>

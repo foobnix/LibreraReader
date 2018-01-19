@@ -471,4 +471,6 @@
    <string name="title">Titre</string>
    <string name="subject">Assujettir</string>
    <string name="keywords">Mots clés</string>
+   <string name="number">Nombre</string>
+   <string name="percent">Pour cent</string>
 </resources>

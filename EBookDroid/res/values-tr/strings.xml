@@ -471,4 +471,6 @@
    <string name="title">Başlık</string>
    <string name="subject">Konu</string>
    <string name="keywords">Anahtar kelimeler</string>
+   <string name="number">Numara</string>
+   <string name="percent">Yüzde</string>
 </resources>

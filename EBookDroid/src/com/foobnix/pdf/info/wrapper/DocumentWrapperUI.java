@@ -367,8 +367,9 @@ public class DocumentWrapperUI {
 
     public void updateSpeedLabel() {
 
-        String current = TxtUtils.deltaPage(controller.getCurentPage());
-        String max = TxtUtils.deltaPage(controller.getPageCount());
+        int maxValue = controller.getPageCount();
+        String current = TxtUtils.deltaPage(controller.getCurentPage(), maxValue);
+        String max = TxtUtils.deltaPage(maxValue, maxValue);
 
         if (AppState.get().isAutoScroll) {
             currentPageIndex.setText(String.format("{%s} %s/%s", AppState.get().autoScrollSpeed, current, max));
@@ -382,8 +383,8 @@ public class DocumentWrapperUI {
         final int current = controller.getCurentPage();
 
         updateSpeedLabel();
-        currentSeek.setText(TxtUtils.deltaPage(current));
-        maxSeek.setText(TxtUtils.deltaPage(max));
+        currentSeek.setText(TxtUtils.deltaPage(current, max));
+        maxSeek.setText(TxtUtils.deltaPage(max, max));
 
         seekBar.setOnSeekBarChangeListener(null);
         seekBar.setMax(max - 1);
@@ -1515,6 +1516,7 @@ public class DocumentWrapperUI {
             initToolBarPlusMinus();
             updateSeekBarColorAndSize();
             hideShow();
+            updateUI();
             TTSEngine.get().stop();
             BrightnessHelper.updateOverlay(overlay);
         }
@@ -1739,7 +1741,6 @@ public class DocumentWrapperUI {
                     currentPageIndex.setVisibility(View.VISIBLE);
 
                     showHelp();
-
 
                 }
             });

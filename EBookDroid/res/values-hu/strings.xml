@@ -471,4 +471,6 @@
    <string name="title">Cím</string>
    <string name="subject">Tantárgy</string>
    <string name="keywords">Kulcsszavak</string>
+   <string name="number">Szám</string>
+   <string name="percent">Százalék</string>
 </resources>

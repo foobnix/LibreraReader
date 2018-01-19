@@ -471,4 +471,6 @@
    <string name="title">Chức vụ</string>
    <string name="subject">Môn học</string>
    <string name="keywords">Từ khoá</string>
+   <string name="number">Con số</string>
+   <string name="percent">Phần trăm</string>
 </resources>

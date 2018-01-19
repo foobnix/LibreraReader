@@ -36,9 +36,11 @@ public class OutlineAdapter extends BaseAdapter {
     private final OutlineItemState[] states;
     private final SparseIntArray mapping = new SparseIntArray();
     private int currentId;
+    private int pages;
 
-    public OutlineAdapter(final Context context, final List<OutlineLinkWrapper> objects, final OutlineLinkWrapper current) {
+    public OutlineAdapter(final Context context, final List<OutlineLinkWrapper> objects, final OutlineLinkWrapper current, int pages) {
         this.context = context;
+        this.pages = pages;
         this.objects = objects.toArray(new OutlineLinkWrapper[objects.size()]);
         this.states = new OutlineItemState[this.objects.length];
 
@@ -152,7 +154,7 @@ public class OutlineAdapter extends BaseAdapter {
 
         final OutlineLinkWrapper item = getItem(position);
         view.setText(item.getTitleAsString().trim());
-        num.setText(TxtUtils.deltaPage(item.targetPage));
+        num.setText(TxtUtils.deltaPage(item.targetPage, pages));
 
         if (item.targetPage != -1) {
             num.setVisibility(View.VISIBLE);

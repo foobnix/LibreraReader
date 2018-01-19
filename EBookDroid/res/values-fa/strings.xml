@@ -471,4 +471,6 @@
    <string name="title">عنوان</string>
    <string name="subject">موضوع</string>
    <string name="keywords">کلید واژه ها</string>
+   <string name="number">عدد</string>
+   <string name="percent">درصد</string>
 </resources>

@@ -471,4 +471,6 @@
    <string name="title">Назва</string>
    <string name="subject">Тема</string>
    <string name="keywords">Ключові слова</string>
+   <string name="number">Номер</string>
+   <string name="percent">Відсоток</string>
 </resources>

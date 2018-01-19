@@ -471,4 +471,6 @@
    <string name="title">Titel</string>
    <string name="subject">Ämne</string>
    <string name="keywords">Nyckelord</string>
+   <string name="number">Siffra</string>
+   <string name="percent">Procent</string>
 </resources>

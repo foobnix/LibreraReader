@@ -471,4 +471,6 @@
    <string name="title">표제</string>
    <string name="subject">제목</string>
    <string name="keywords">키워드</string>
+   <string name="number">번호</string>
+   <string name="percent">퍼센트</string>
 </resources>

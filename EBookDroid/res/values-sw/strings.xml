@@ -471,4 +471,6 @@
    <string name="title">Kichwa</string>
    <string name="subject">Somo</string>
    <string name="keywords">Maneno</string>
+   <string name="number">Nambari</string>
+   <string name="percent">Asilimia</string>
 </resources>

@@ -672,7 +672,7 @@ public class DragingDialogs {
 
                     @Override
                     public void populateView(View inflate, int arg1, Integer page) {
-                        final TextView text = Views.text(inflate, android.R.id.text1, TxtUtils.deltaPage(page + 1));
+                        final TextView text = Views.text(inflate, android.R.id.text1, TxtUtils.deltaPage(page + 1, controller.getPageCount()));
                         text.setGravity(Gravity.CENTER);
                         text.setTypeface(Typeface.DEFAULT, Typeface.BOLD);
                     }
@@ -1847,7 +1847,7 @@ public class DragingDialogs {
                                         if (outline != null && outline.size() > 0) {
                                             contentList.clearChoices();
                                             OutlineLinkWrapper currentByPageNumber = OutlineHelper.getCurrentByPageNumber(outline, controller.getCurentPageFirst1());
-                                            final OutlineAdapter adapter = new OutlineAdapter(controller.getActivity(), outline, currentByPageNumber);
+                                            final OutlineAdapter adapter = new OutlineAdapter(controller.getActivity(), outline, currentByPageNumber, controller.getPageCount());
                                             contentList.setAdapter(adapter);
                                             contentList.setOnItemClickListener(onClickContent);
                                             contentList.setSelection(adapter.getItemPosition(currentByPageNumber) - 3);
@@ -2183,8 +2183,7 @@ public class DragingDialogs {
                         AppState.get().isRewindEnable = isChecked;
                     }
                 });
-
-                // status bar
+                //
 
                 final CheckBox isShowSatusBar = (CheckBox) inflate.findViewById(R.id.isShowSatusBar);
                 isShowSatusBar.setOnCheckedChangeListener(new OnCheckedChangeListener() {
@@ -2199,6 +2198,50 @@ public class DragingDialogs {
                     }
                 });
                 isShowSatusBar.setChecked(AppState.get().isShowToolBar);
+
+                // status bar
+
+                final TextView readingProgress = (TextView) inflate.findViewById(R.id.readingProgress);
+                readingProgress.setText(AppState.get().readingProgress == AppState.READING_PROGRESS_NUMBERS ? controller.getString(R.string.number) : controller.getString(R.string.percent));
+                TxtUtils.underlineTextView(readingProgress);
+
+                readingProgress.setOnClickListener(new OnClickListener() {
+
+                    @Override
+                    public void onClick(View v) {
+                        final PopupMenu popupMenu = new PopupMenu(v.getContext(), v);
+
+                        popupMenu.getMenu().add(R.string.number).setOnMenuItemClickListener(new OnMenuItemClickListener() {
+
+                            @Override
+                            public boolean onMenuItemClick(MenuItem item) {
+                                AppState.get().readingProgress = AppState.READING_PROGRESS_NUMBERS;
+                                readingProgress.setText(AppState.get().readingProgress == AppState.READING_PROGRESS_NUMBERS ? controller.getString(R.string.number) : controller.getString(R.string.percent));
+                                TxtUtils.underlineTextView(readingProgress);
+                                if (onRefresh != null) {
+                                    onRefresh.run();
+                                }
+                                return false;
+                            }
+                        });
+
+                        popupMenu.getMenu().add(R.string.percent).setOnMenuItemClickListener(new OnMenuItemClickListener() {
+
+                            @Override
+                            public boolean onMenuItemClick(MenuItem item) {
+                                AppState.get().readingProgress = AppState.READING_PROGRESS_PERCENT;
+                                readingProgress.setText(AppState.get().readingProgress == AppState.READING_PROGRESS_NUMBERS ? controller.getString(R.string.number) : controller.getString(R.string.percent));
+                                TxtUtils.underlineTextView(readingProgress);
+                                if (onRefresh != null) {
+                                    onRefresh.run();
+                                }
+                                return false;
+                            }
+                        });
+                        popupMenu.show();
+                    }
+                });
+
                 /// asd
 
                 final CustomSeek statusBarTextSize = (CustomSeek) inflate.findViewById(R.id.statusBarTextSize);
@@ -2351,8 +2394,6 @@ public class DragingDialogs {
                         AppState.get().isBrighrnessEnable = isChecked;
                     }
                 });
-
-
 
                 CheckBox isShowLongBackDialog = (CheckBox) inflate.findViewById(R.id.isShowLongBackDialog);
                 isShowLongBackDialog.setChecked(AppState.get().isShowLongBackDialog);
@@ -2654,7 +2695,7 @@ public class DragingDialogs {
                         AppState.DOUBLE_CLICK_ADJUST_PAGE, //
                         AppState.DOUBLE_CLICK_CENTER_HORIZONTAL, //
                         AppState.DOUBLE_CLICK_NOTHING, //
-                        AppState.DOUBLE_CLICK_ZOOM_IN_OUT,//
+                        AppState.DOUBLE_CLICK_ZOOM_IN_OUT, //
                         AppState.DOUBLE_CLICK_CLOSE_BOOK//
                 );//
 

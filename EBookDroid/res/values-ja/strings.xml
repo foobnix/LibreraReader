@@ -471,4 +471,6 @@
    <string name="title">タイトル</string>
    <string name="subject">件名</string>
    <string name="keywords">キーワード</string>
+   <string name="number">数</string>
+   <string name="percent">パーセント</string>
 </resources>

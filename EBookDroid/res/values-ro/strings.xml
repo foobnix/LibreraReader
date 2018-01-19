@@ -471,4 +471,6 @@
    <string name="title">Titlu</string>
    <string name="subject">Subiect</string>
    <string name="keywords">Cuvinte cheie</string>
+   <string name="number">Număr</string>
+   <string name="percent">La sută</string>
 </resources>

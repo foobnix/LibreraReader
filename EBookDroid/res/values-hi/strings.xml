@@ -471,4 +471,6 @@
    <string name="title">शीर्षक</string>
    <string name="subject">विषय</string>
    <string name="keywords">कीवर्ड</string>
+   <string name="number">संख्या</string>
+   <string name="percent">प्रतिशत</string>
 </resources>

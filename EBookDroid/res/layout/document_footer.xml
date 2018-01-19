@@ -7,14 +7,12 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:clickable="true"
-        android:focusableInTouchMode="false"
         android:orientation="vertical" >
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:clickable="true"
-            android:focusableInTouchMode="false"
             android:gravity="center"
             android:paddingLeft="2dip"
             android:paddingRight="2dip"
@@ -116,7 +114,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:clickable="true"
-            android:focusableInTouchMode="true"
             android:gravity="center_vertical"
             android:orientation="horizontal"
             android:paddingLeft="2dip"
@@ -130,10 +127,10 @@
                 android:layout_weight="0"
                 android:clickable="true"
                 android:gravity="center"
-                android:ems="2"
+                android:minEms="2"
                 android:text="--"
                 android:textColor="#ffffff"
-                android:textSize="15sp"
+                android:textSize="14sp"
                 android:textStyle="normal" />
 
             <SeekBar
@@ -155,10 +152,10 @@
                 android:layout_weight="0"
                 android:clickable="true"
                 android:gravity="center"
-                android:ems="2"
+                android:minEms="2"
                 android:text="--"
                 android:textColor="#ffffff"
-                android:textSize="15sp"
+                android:textSize="14sp"
                 android:textStyle="normal" />
         </LinearLayout>
 
@@ -166,7 +163,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:clickable="true"
-            android:focusableInTouchMode="true"
             android:gravity="center_vertical"
             android:orientation="horizontal"
             android:paddingBottom="2dip"

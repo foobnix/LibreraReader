@@ -471,4 +471,6 @@
    <string name="title">Заглавие</string>
    <string name="subject">Предмет</string>
    <string name="keywords">Ключевые слова</string>
+   <string name="number">Число</string>
+   <string name="percent">Процент</string>
 </resources>

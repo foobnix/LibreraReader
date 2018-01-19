@@ -43,6 +43,13 @@ public class TxtUtils {
     }
 
     public static String deltaPage(int current) {
+        return deltaPage(current, 0);
+    }
+
+    public static String deltaPage(int current, int max) {
+        if (AppState.get().readingProgress == AppState.READING_PROGRESS_PERCENT && max != 0) {
+            return (current * 100 / max) + "%";
+        }
         if (TempHolder.get().pageDelta == 0) {
             return "" + current;
         }
