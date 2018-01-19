@@ -473,4 +473,6 @@
    <string name="keywords">Ключевые слова</string>
    <string name="number">Число</string>
    <string name="percent">Процент</string>
+   <string name="reading_progress">Прогресс чтения</string>
+   <string name="awards">Награды</string>
 </resources>

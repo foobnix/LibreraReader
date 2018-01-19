@@ -5,7 +5,6 @@ import org.greenrobot.eventbus.EventBus;
 import com.foobnix.StringResponse;
 import com.foobnix.android.utils.Dips;
 import com.foobnix.android.utils.IntegerResponse;
-import com.foobnix.android.utils.Keyboards;
 import com.foobnix.android.utils.LOG;
 import com.foobnix.android.utils.TxtUtils;
 import com.foobnix.pdf.info.R;
@@ -237,7 +236,7 @@ public class BrightnessHelper {
                         if (onRefresh != null) {
                             onRefresh.run();
                         }
-                        Keyboards.hideNavigation(a);
+                        // Keyboards.hideNavigation(a);
                         return false;
                     }
                 });

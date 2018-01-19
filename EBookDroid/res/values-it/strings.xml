@@ -473,4 +473,6 @@
    <string name="keywords">Parole</string>
    <string name="number">Numero</string>
    <string name="percent">Per cento</string>
+   <string name="reading_progress">Leggere i progressi</string>
+   <string name="awards">Premi</string>
 </resources>

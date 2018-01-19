@@ -473,4 +473,6 @@
    <string name="keywords">Kulcsszavak</string>
    <string name="number">Szám</string>
    <string name="percent">Százalék</string>
+   <string name="reading_progress">Az előrehaladás olvasása</string>
+   <string name="awards">Díjak</string>
 </resources>

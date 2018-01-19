@@ -473,4 +473,6 @@
    <string name="keywords">Từ khoá</string>
    <string name="number">Con số</string>
    <string name="percent">Phần trăm</string>
+   <string name="reading_progress">Đọc tiến độ</string>
+   <string name="awards">Giải thưởng</string>
 </resources>

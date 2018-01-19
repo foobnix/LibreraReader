@@ -473,4 +473,6 @@
    <string name="keywords">คำสำคัญ</string>
    <string name="number">จำนวน</string>
    <string name="percent">เปอร์เซ็นต์</string>
+   <string name="reading_progress">อ่านความคืบหน้า</string>
+   <string name="awards">รางวัล</string>
 </resources>

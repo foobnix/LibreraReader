@@ -473,4 +473,6 @@
    <string name="keywords">Cuvinte cheie</string>
    <string name="number">Număr</string>
    <string name="percent">La sută</string>
+   <string name="reading_progress">Progresul de citire</string>
+   <string name="awards">Premii</string>
 </resources>

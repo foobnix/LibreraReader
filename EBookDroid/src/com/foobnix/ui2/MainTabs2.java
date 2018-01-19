@@ -415,7 +415,6 @@ public class MainTabs2 extends AdsFragmentActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        AppState.get().isFullScreen = false;
         LOG.d(TAG, "onResume");
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
         // DocumentController.chooseFullScreen(this, false);

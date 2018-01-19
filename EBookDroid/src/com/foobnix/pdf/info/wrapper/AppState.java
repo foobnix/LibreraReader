@@ -157,7 +157,7 @@ public class AppState {
     ;
     // end
 
-    public String myOPDS = OPDS_DEFAULT;
+    public String myOPDSLinks = OPDS_DEFAULT;
 
     public boolean opdsLargeCovers = true;
 

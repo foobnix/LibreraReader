@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">Librera RC3</string>
+    <string name="app_name">Librera RC</string>
     <string name="app_name_pro">Librera PRO</string>
 
 	<bool name="is_log_enable">true</bool>

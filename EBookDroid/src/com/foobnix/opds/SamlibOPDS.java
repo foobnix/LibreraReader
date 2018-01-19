@@ -25,8 +25,8 @@ public class SamlibOPDS {
     private static final String GENRE = "?genre";
     private static final String BOOK = "?BOOK";
     private static final String ROOT = "http://samlib.ru";
-    public static final String ROOT_AWARDS = "Awards";
-    public static final String ROOT_FAVORITES = "Favorites";
+    public static final String ROOT_AWARDS = "My:Awards";
+    public static final String ROOT_FAVORITES = "My:Favorites";
 
     public static boolean isSamlibUrl(String url) {
         return url.startsWith(ROOT) || url.startsWith(ROOT_AWARDS) || url.startsWith(ROOT_FAVORITES);
@@ -225,7 +225,7 @@ public class SamlibOPDS {
             return Pair.create(getHomeAwards(), getTitle(url));
         }
         if (ROOT_FAVORITES.equals(url)) {
-            String[] list = AppState.get().myOPDS.split(";");
+            String[] list = AppState.get().myOPDSLinks.split(";");
             List<Entry> res = new ArrayList<Entry>();
             for (String line : list) {
                 if (TxtUtils.isEmpty(line)) {

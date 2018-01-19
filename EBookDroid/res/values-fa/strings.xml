@@ -473,4 +473,6 @@
    <string name="keywords">کلید واژه ها</string>
    <string name="number">عدد</string>
    <string name="percent">درصد</string>
+   <string name="reading_progress">پیشرفت خواندن</string>
+   <string name="awards">جوایز</string>
 </resources>

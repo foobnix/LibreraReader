@@ -473,4 +473,6 @@
    <string name="keywords">Anahtar kelimeler</string>
    <string name="number">Numara</string>
    <string name="percent">Yüzde</string>
+   <string name="reading_progress">Ilerleme okuma</string>
+   <string name="awards">Ödüller</string>
 </resources>

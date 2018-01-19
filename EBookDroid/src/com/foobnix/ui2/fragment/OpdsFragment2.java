@@ -94,7 +94,7 @@ public class OpdsFragment2 extends UIFragment<Entry> {
             return Arrays.asList(new Entry(test, test));
         }
 
-        String[] list = AppState.get().myOPDS.split(";");
+        String[] list = AppState.get().myOPDSLinks.split(";");
         List<Entry> res = new ArrayList<Entry>();
         boolean hasStars = false;
         for (String line : list) {
@@ -168,7 +168,7 @@ public class OpdsFragment2 extends UIFragment<Entry> {
 
                     @Override
                     public void run() {
-                        AppState.get().myOPDS = AppState.OPDS_DEFAULT;
+                        AppState.get().myOPDSLinks = AppState.OPDS_DEFAULT;
                         url = "/";
                         populate();
                     }
@@ -209,7 +209,7 @@ public class OpdsFragment2 extends UIFragment<Entry> {
 
                     @Override
                     public void run() {
-                        AppState.get().myOPDS = AppState.get().myOPDS.replace(result.appState, "");
+                        AppState.get().myOPDSLinks = AppState.get().myOPDSLinks.replace(result.appState, "");
                         url = "/";
                         populate();
                     }
@@ -255,7 +255,7 @@ public class OpdsFragment2 extends UIFragment<Entry> {
                 }
                 entry.setAppState(url, title, url2, "assets://opds/star_1.png");
 
-                if (!AppState.get().myOPDS.contains(url)) {
+                if (!AppState.get().myOPDSLinks.contains(url)) {
 
                     AddCatalogDialog.showDialog(getActivity(), new Runnable() {
 
@@ -266,7 +266,7 @@ public class OpdsFragment2 extends UIFragment<Entry> {
                         }
                     }, entry, false);
                 } else {
-                    AppState.get().myOPDS = AppState.get().myOPDS.replace(entry.appState, "");
+                    AppState.get().myOPDSLinks = AppState.get().myOPDSLinks.replace(entry.appState, "");
                     starIcon.setImageResource(R.drawable.star_2);
                     TintUtil.setTintImageWithAlpha(starIcon, Color.WHITE);
                     // AlertDialogs.showOkDialog(getActivity(),
@@ -311,7 +311,7 @@ public class OpdsFragment2 extends UIFragment<Entry> {
 
                     @Override
                     public void run() {
-                        AppState.get().myOPDS = AppState.OPDS_DEFAULT;
+                        AppState.get().myOPDSLinks = AppState.OPDS_DEFAULT;
                         populate();
                     }
                 });
@@ -615,7 +615,7 @@ public class OpdsFragment2 extends UIFragment<Entry> {
             if (SamlibOPDS.isSamlibUrl(url)) {
                 Pair<List<Entry>, String> pair = SamlibOPDS.getSamlibResult(url);
                 List<Entry> samlibResult = pair.first;
-                title = pair.second;
+                title = pair.second.replace(SamlibOPDS.ROOT_FAVORITES, getString(R.string.favorites)).replace(SamlibOPDS.ROOT_AWARDS, getString(R.string.awards));
                 return samlibResult;
             }
 
@@ -715,7 +715,7 @@ public class OpdsFragment2 extends UIFragment<Entry> {
             }
         }
 
-        if (AppState.get().myOPDS.contains(url)) {
+        if (AppState.get().myOPDSLinks.contains(url)) {
             starIcon.setImageResource(R.drawable.star_1);
         } else {
             starIcon.setImageResource(R.drawable.star_2);

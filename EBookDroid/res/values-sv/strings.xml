@@ -473,4 +473,6 @@
    <string name="keywords">Nyckelord</string>
    <string name="number">Siffra</string>
    <string name="percent">Procent</string>
+   <string name="reading_progress">Läsa framsteg</string>
+   <string name="awards">Awards</string>
 </resources>

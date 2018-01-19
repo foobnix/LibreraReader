@@ -473,4 +473,6 @@
    <string name="keywords">מילות מפתח</string>
    <string name="number">מספר</string>
    <string name="percent">אָחוּז</string>
+   <string name="reading_progress">התקדמות הקריאה</string>
+   <string name="awards">פרסים</string>
 </resources>

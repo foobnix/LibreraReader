@@ -473,4 +473,6 @@
    <string name="keywords">Schlüsselwörter</string>
    <string name="number">Nummer</string>
    <string name="percent">Prozent</string>
+   <string name="reading_progress">Fortschritt lesen</string>
+   <string name="awards">Auszeichnungen</string>
 </resources>

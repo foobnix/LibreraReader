@@ -473,4 +473,6 @@
    <string name="keywords">Ключові слова</string>
    <string name="number">Номер</string>
    <string name="percent">Відсоток</string>
+   <string name="reading_progress">Прогрес читання</string>
+   <string name="awards">Нагороди</string>
 </resources>

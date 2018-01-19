@@ -280,17 +280,24 @@ public class PrefFragment2 extends UIFragment {
 
             @Override
             public void onClick(View v) {
-                IMG.clearDiscCache();
-                IMG.clearMemoryCache();
-                AppState.get().coverBigSize = (int) (((Dips.screenWidthDP() / (Dips.screenWidthDP() / 120)) - 8) * (Dips.isXLargeScreen() ? 1.5f : 1));
-                AppState.get().coverSmallSize = 80;
-                TempHolder.listHash++;
 
-                columsCount.setText("" + Dips.screenWidthDP() / AppState.get().coverBigSize);
-                TxtUtils.underlineTextView(columsCount);
+                AlertDialogs.showOkDialog(getActivity(), getActivity().getString(R.string.restore_defaults_full), new Runnable() {
 
-                coverSmallSize.init(40, max, AppState.get().coverSmallSize);
-                coverBigSize.init(40, Math.max(max, AppState.get().coverBigSize), AppState.get().coverBigSize);
+                    @Override
+                    public void run() {
+                        IMG.clearDiscCache();
+                        IMG.clearMemoryCache();
+                        AppState.get().coverBigSize = (int) (((Dips.screenWidthDP() / (Dips.screenWidthDP() / 120)) - 8) * (Dips.isXLargeScreen() ? 1.5f : 1));
+                        AppState.get().coverSmallSize = 80;
+                        TempHolder.listHash++;
+
+                        columsCount.setText("" + Dips.screenWidthDP() / AppState.get().coverBigSize);
+                        TxtUtils.underlineTextView(columsCount);
+
+                        coverSmallSize.init(40, max, AppState.get().coverSmallSize);
+                        coverBigSize.init(40, Math.max(max, AppState.get().coverBigSize), AppState.get().coverBigSize);
+                    }
+                });
 
             }
         });

@@ -209,6 +209,7 @@
                 android:layout_marginLeft="10dip"
                 android:layout_toRightOf="@+id/pagesCountIndicator"
                 android:text="{10}"
+                android:minEms="3"
                 android:textColor="@color/tint_gray"
                 android:textSize="12sp"
                 android:visibility="gone" />

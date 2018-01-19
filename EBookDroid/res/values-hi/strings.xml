@@ -473,4 +473,6 @@
    <string name="keywords">कीवर्ड</string>
    <string name="number">संख्या</string>
    <string name="percent">प्रतिशत</string>
+   <string name="reading_progress">प्रगति पढ़ना</string>
+   <string name="awards">पुरस्कार</string>
 </resources>

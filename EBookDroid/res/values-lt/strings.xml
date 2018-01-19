@@ -473,4 +473,6 @@
    <string name="keywords">Raktiniai žodžiai</string>
    <string name="number">Numeris</string>
    <string name="percent">Procentas</string>
+   <string name="reading_progress">Skaitymo progresas</string>
+   <string name="awards">Apdovanojimai</string>
 </resources>

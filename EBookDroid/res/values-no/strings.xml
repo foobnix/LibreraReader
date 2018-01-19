@@ -473,4 +473,6 @@
    <string name="keywords">Nøkkelord</string>
    <string name="number">Antall</string>
    <string name="percent">Prosent</string>
+   <string name="reading_progress">Leser fremgang</string>
+   <string name="awards">Awards</string>
 </resources>

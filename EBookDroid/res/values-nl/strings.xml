@@ -473,4 +473,6 @@
    <string name="keywords">Trefwoorden</string>
    <string name="number">Aantal</string>
    <string name="percent">Procent</string>
+   <string name="reading_progress">Vooruitgang boeken</string>
+   <string name="awards">Awards</string>
 </resources>

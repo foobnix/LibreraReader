@@ -473,4 +473,6 @@
    <string name="keywords">Keywords</string>
    <string name="number">Number</string>
    <string name="percent">Percent</string>
+   <string name="reading_progress">Reading  progress</string>
+   <string name="awards">Awards</string>
 </resources>

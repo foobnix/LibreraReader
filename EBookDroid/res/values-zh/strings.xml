@@ -473,4 +473,6 @@
    <string name="keywords">关键词</string>
    <string name="number">数</string>
    <string name="percent">百分</string>
+   <string name="reading_progress">阅读进度</string>
+   <string name="awards">奖项</string>
 </resources>

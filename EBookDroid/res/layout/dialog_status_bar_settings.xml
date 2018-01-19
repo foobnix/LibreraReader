@@ -80,7 +80,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="4dip"
                 android:singleLine="true"
-                android:text="Reading  progress" />
+                android:text="@string/reading_progress" />
 
             <TextView
                 android:id="@+id/readingProgress"

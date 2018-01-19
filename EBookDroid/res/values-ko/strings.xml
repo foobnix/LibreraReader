@@ -473,4 +473,6 @@
    <string name="keywords">키워드</string>
    <string name="number">번호</string>
    <string name="percent">퍼센트</string>
+   <string name="reading_progress">읽기 진행률</string>
+   <string name="awards">수상 내역</string>
 </resources>

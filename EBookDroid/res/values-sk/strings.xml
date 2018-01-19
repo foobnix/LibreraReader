@@ -473,4 +473,6 @@
    <string name="keywords">Kľúčové slová</string>
    <string name="number">Číslo</string>
    <string name="percent">Percento</string>
+   <string name="reading_progress">Čítanie pokroku</string>
+   <string name="awards">Ocenenie</string>
 </resources>

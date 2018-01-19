@@ -473,4 +473,6 @@
    <string name="keywords">الكلمات الدالة</string>
    <string name="number">رقم</string>
    <string name="percent">نسبه مئويه</string>
+   <string name="reading_progress">قراءة التقدم</string>
+   <string name="awards">جوائز</string>
 </resources>
