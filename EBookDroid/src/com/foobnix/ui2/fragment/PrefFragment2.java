@@ -217,7 +217,7 @@ public class PrefFragment2 extends UIFragment {
 
         final int max = Dips.pxToDp(Dips.screenMinWH() / 2) - 2 * 4;
 
-        CustomSeek coverSmallSize = (CustomSeek) inflate.findViewById(R.id.coverSmallSize);
+        final CustomSeek coverSmallSize = (CustomSeek) inflate.findViewById(R.id.coverSmallSize);
         coverSmallSize.init(40, max, AppState.get().coverSmallSize);
 
         coverSmallSize.setOnSeekChanged(new IntegerResponse() {
@@ -272,6 +272,26 @@ public class PrefFragment2 extends UIFragment {
                 }
 
                 p.show();
+            }
+        });
+        final TextView columsDefaul = (TextView) inflate.findViewById(R.id.columsDefaul);
+        TxtUtils.underlineTextView(columsDefaul);
+        columsDefaul.setOnClickListener(new OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                IMG.clearDiscCache();
+                IMG.clearMemoryCache();
+                AppState.get().coverBigSize = (int) (((Dips.screenWidthDP() / (Dips.screenWidthDP() / 120)) - 8) * (Dips.isXLargeScreen() ? 1.5f : 1));
+                AppState.get().coverSmallSize = 80;
+                TempHolder.listHash++;
+
+                columsCount.setText("" + Dips.screenWidthDP() / AppState.get().coverBigSize);
+                TxtUtils.underlineTextView(columsCount);
+
+                coverSmallSize.init(40, max, AppState.get().coverSmallSize);
+                coverBigSize.init(40, Math.max(max, AppState.get().coverBigSize), AppState.get().coverBigSize);
+
             }
         });
 

@@ -978,9 +978,17 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="8dip"
-                android:minWidth="100dip"
+                android:minWidth="60dip"
                 android:text="2"
                 android:textAllCaps="true" />
+            
+            <TextView
+                android:id="@+id/columsDefaul"
+                style="@style/textLink"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/restore_defaults_short" />
         </LinearLayout>
 
         <View

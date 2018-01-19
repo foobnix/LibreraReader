@@ -238,7 +238,7 @@ public class OpdsFragment2 extends UIFragment<Entry> {
                         public void run() {
                             populate();
                         }
-                    }, result, true);
+                    }, result, SamlibOPDS.isSamlibUrl(result.homeUrl) ? false : true);
                 }
                 return false;
             }
@@ -266,16 +266,18 @@ public class OpdsFragment2 extends UIFragment<Entry> {
                         }
                     }, entry, false);
                 } else {
-                    AlertDialogs.showOkDialog(getActivity(), getActivity().getString(R.string.do_you_want_to_delete_), new Runnable() {
-
-                        @Override
-                        public void run() {
-                            AppState.get().myOPDS = AppState.get().myOPDS.replace(entry.appState, "");
-                            starIcon.setImageResource(R.drawable.star_2);
-                            TintUtil.setTintImageWithAlpha(starIcon, Color.WHITE);
-                            // url = "/";
-                        }
-                    });
+                    AppState.get().myOPDS = AppState.get().myOPDS.replace(entry.appState, "");
+                    starIcon.setImageResource(R.drawable.star_2);
+                    TintUtil.setTintImageWithAlpha(starIcon, Color.WHITE);
+                    // AlertDialogs.showOkDialog(getActivity(),
+                    // getActivity().getString(R.string.do_you_want_to_delete_), new Runnable() {
+                    //
+                    // @Override
+                    // public void run() {
+                    //
+                    // // url = "/";
+                    // }
+                    // });
                 }
 
             }
@@ -599,13 +601,15 @@ public class OpdsFragment2 extends UIFragment<Entry> {
 
     boolean isNeedLoginPassword = false;
 
+    public List<Entry> allCatalogs = new ArrayList<Entry>();
+
     @Override
     public List<Entry> prepareDataInBackground() {
         try {
             LOG.d("OPDS URL", url);
             if ("/".equals(url)) {
                 title = getString(R.string.catalogs);
-                return getAllCatalogs();
+                return allCatalogs = getAllCatalogs();
             }
 
             if (SamlibOPDS.isSamlibUrl(url)) {
@@ -702,7 +706,14 @@ public class OpdsFragment2 extends UIFragment<Entry> {
         faq.setVisibility(isHomeVisible);
         onProxy.setVisibility(isHomeVisible);
         view1.setVisibility(isHomeVisible);
+
         starIcon.setVisibility(url == "/" ? View.GONE : View.VISIBLE);
+        for (Entry cat : allCatalogs) {
+            if (url.equals(cat.homeUrl)) {
+                starIcon.setVisibility(View.GONE);
+                break;
+            }
+        }
 
         if (AppState.get().myOPDS.contains(url)) {
             starIcon.setImageResource(R.drawable.star_1);
