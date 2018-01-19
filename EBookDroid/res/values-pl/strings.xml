@@ -467,4 +467,5 @@
    <string name="request_a_password_when_the_application_starts">Żądaj hasła podczas uruchamiania aplikacji</string>
    <string name="incorrect_password">Niepoprawne hasło</string>
    <string name="repeat_password">Powtórz hasło</string>
+   <string name="internal_storage">Pamięć wewnętrzna</string>
 </resources>

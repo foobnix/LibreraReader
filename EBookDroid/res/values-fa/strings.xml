@@ -467,4 +467,5 @@
    <string name="request_a_password_when_the_application_starts">هنگام شروع برنامه، گذرواژه را درخواست کنید</string>
    <string name="incorrect_password">رمز عبور اشتباه است</string>
    <string name="repeat_password">رمز عبور را تکرار کنید</string>
+   <string name="internal_storage">حافظه داخلی</string>
 </resources>

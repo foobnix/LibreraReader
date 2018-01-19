@@ -467,4 +467,5 @@
    <string name="request_a_password_when_the_application_starts">응용 프로그램이 시작될 때 암호 요청</string>
    <string name="incorrect_password">잘못된 비밀번호</string>
    <string name="repeat_password">비밀번호 반복</string>
+   <string name="internal_storage">내부 저장소</string>
 </resources>

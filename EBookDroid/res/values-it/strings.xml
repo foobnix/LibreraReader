@@ -467,4 +467,5 @@
    <string name="request_a_password_when_the_application_starts">Richiedi una password all\'avvio dell\'applicazione</string>
    <string name="incorrect_password">Password errata</string>
    <string name="repeat_password">Ripeti la password</string>
+   <string name="internal_storage">Archiviazione interna</string>
 </resources>

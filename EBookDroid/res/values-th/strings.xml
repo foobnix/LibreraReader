@@ -467,4 +467,5 @@
    <string name="request_a_password_when_the_application_starts">ขอรหัสผ่านเมื่อแอปพลิเคชันเริ่มทำงาน</string>
    <string name="incorrect_password">รหัสผ่านผิดพลาด</string>
    <string name="repeat_password">ทำซ้ำรหัสผ่าน</string>
+   <string name="internal_storage">พื้นที่เก็บข้อมูลภายใน</string>
 </resources>

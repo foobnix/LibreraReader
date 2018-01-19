@@ -186,7 +186,15 @@ public class BrowseFragment2 extends UIFragment<FileMeta> {
 
                 MyPopupMenu menu = new MyPopupMenu(getActivity(), onHome);
 
-                extFolders.add(0, Environment.getExternalStorageDirectory().getPath());
+                menu.getMenu().add(R.string.internal_storage).setOnMenuItemClickListener(new OnMenuItemClickListener() {
+
+                    @Override
+                    public boolean onMenuItemClick(MenuItem item) {
+                        setDirPath(Environment.getExternalStorageDirectory().getPath());
+                        return false;
+                    }
+                }).setIcon(R.drawable.glyphicons_441_folder_closed);
+
                 for (final String info : extFolders) {
                     menu.getMenu().add(new File(info).getName()).setOnMenuItemClickListener(new OnMenuItemClickListener() {
 

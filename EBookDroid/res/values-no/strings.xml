@@ -467,4 +467,5 @@
    <string name="request_a_password_when_the_application_starts">Be om et passord når programmet starter</string>
    <string name="incorrect_password">Feil passord</string>
    <string name="repeat_password">Gjenta passord</string>
+   <string name="internal_storage">Intern lagring</string>
 </resources>

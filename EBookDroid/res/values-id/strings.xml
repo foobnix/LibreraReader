@@ -467,4 +467,5 @@
    <string name="request_a_password_when_the_application_starts">Minta password saat aplikasi dijalankan</string>
    <string name="incorrect_password">Kata kunci Salah</string>
    <string name="repeat_password">Ulangi kata kunci</string>
+   <string name="internal_storage">Penyimpanan internal</string>
 </resources>

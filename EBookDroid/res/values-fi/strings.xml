@@ -467,4 +467,5 @@
    <string name="request_a_password_when_the_application_starts">Pyydä salasanaa, kun sovellus käynnistyy</string>
    <string name="incorrect_password">Väärä salasana</string>
    <string name="repeat_password">Toista salasana</string>
+   <string name="internal_storage">Sisäistä tallennustilaa</string>
 </resources>

@@ -467,4 +467,5 @@
    <string name="request_a_password_when_the_application_starts">Solicitați o parolă atunci când începe aplicația</string>
    <string name="incorrect_password">Parola incorecta</string>
    <string name="repeat_password">Repeta parola</string>
+   <string name="internal_storage">Stocare internă</string>
 </resources>

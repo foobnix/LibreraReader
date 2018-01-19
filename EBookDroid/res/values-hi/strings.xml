@@ -467,4 +467,5 @@
    <string name="request_a_password_when_the_application_starts">जब आवेदन शुरू होता है तो पासवर्ड का अनुरोध करें</string>
    <string name="incorrect_password">गलत पासवर्ड</string>
    <string name="repeat_password">पासवर्ड दोहराएं</string>
+   <string name="internal_storage">आंतरिक स्टोरेज</string>
 </resources>

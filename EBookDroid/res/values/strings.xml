@@ -467,4 +467,5 @@
    <string name="request_a_password_when_the_application_starts">Request a password when the application starts</string>
    <string name="incorrect_password">Incorrect password</string>
    <string name="repeat_password">Repeat password</string>
+   <string name="internal_storage">Internal storage</string>
 </resources>

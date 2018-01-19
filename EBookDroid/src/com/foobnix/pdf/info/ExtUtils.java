@@ -1314,6 +1314,7 @@ public class ExtUtils {
         String[] strPath = { //
                 "/storage/sdcard1", //
                 "/storage/extsdcard", //
+                "/storage/extSdCard", //
                 "/storage/sdcard0/external_sdcard", //
                 "/storage/external_SD", //
                 "/storage/ext_sd", //
@@ -1339,7 +1340,6 @@ public class ExtUtils {
                 "/mnt/sdcard-ext", //
                 "/mnt/Removable/MicroSD", //
                 "/mnt/external1", //
-                "/mnt/extSdCard", //
                 "/mnt/extsd", //
                 "/mnt/usb_storage", //
                 "/mnt/extSdCard", //

@@ -467,4 +467,5 @@
    <string name="request_a_password_when_the_application_starts">Запрашивать пароль при запуске приложения</string>
    <string name="incorrect_password">Пароль неверный</string>
    <string name="repeat_password">Введите пароль еще раз</string>
+   <string name="internal_storage">Внутреннее хранилище</string>
 </resources>

@@ -467,4 +467,5 @@
    <string name="request_a_password_when_the_application_starts">アプリケーションの起動時にパスワードを要求する</string>
    <string name="incorrect_password">間違ったパスワード</string>
    <string name="repeat_password">パスワードを再度入力してください。</string>
+   <string name="internal_storage">内部記憶装置</string>
 </resources>

@@ -467,4 +467,5 @@
    <string name="request_a_password_when_the_application_starts">Yêu cầu mật khẩu khi ứng dụng bắt đầu</string>
    <string name="incorrect_password">Mật khẩu không đúng</string>
    <string name="repeat_password">Lặp lại mật khẩu</string>
+   <string name="internal_storage">Lưu trữ nội bộ</string>
 </resources>

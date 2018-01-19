@@ -467,4 +467,5 @@
    <string name="request_a_password_when_the_application_starts">Prašymo slaptažodis, kai programa prasideda</string>
    <string name="incorrect_password">Neteisingas slaptažodis</string>
    <string name="repeat_password">Pakartokite slaptažodį</string>
+   <string name="internal_storage">Vidinė atmintis</string>
 </resources>
