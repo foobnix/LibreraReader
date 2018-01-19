@@ -225,6 +225,7 @@ public class CacheZipUtils {
             in = new FileInputStream(new File(path));
             ZipArchiveInputStream zipInputStream = new ZipArchiveInputStream(in, "cp1251");
 
+
             ZipArchiveEntry nextEntry = null;
             while ((nextEntry = zipInputStream.getNextZipEntry()) != null) {
                 if (BookType.isSupportedExtByPath(nextEntry.getName())) {

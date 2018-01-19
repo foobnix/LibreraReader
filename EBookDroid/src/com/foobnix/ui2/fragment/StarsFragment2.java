@@ -11,6 +11,7 @@ import com.foobnix.pdf.info.R;
 import com.foobnix.pdf.info.TintUtil;
 import com.foobnix.pdf.info.view.AlertDialogs;
 import com.foobnix.pdf.info.view.MyPopupMenu;
+import com.foobnix.pdf.info.widget.RecentUpates;
 import com.foobnix.pdf.info.wrapper.AppState;
 import com.foobnix.pdf.info.wrapper.PopupHelper;
 import com.foobnix.ui2.AppDB;
@@ -70,6 +71,7 @@ public class StarsFragment2 extends UIFragment<FileMeta> {
                             AppDB.get().update(f);
                         }
                         populate();
+                        RecentUpates.updateAll(getActivity());
                     }
                 });
 

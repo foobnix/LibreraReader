@@ -11,6 +11,7 @@ import com.foobnix.dao2.FileMeta;
 import com.foobnix.pdf.info.ExtUtils;
 import com.foobnix.pdf.info.R;
 import com.foobnix.pdf.info.widget.FileInformationDialog;
+import com.foobnix.pdf.info.widget.RecentUpates;
 import com.foobnix.pdf.info.widget.ShareDialog;
 import com.foobnix.pdf.info.wrapper.DocumentController;
 import com.foobnix.pdf.info.wrapper.UITab;
@@ -235,6 +236,7 @@ public class DefaultListeners {
                 }
                 TempHolder.listHash++;
 
+                RecentUpates.updateAll(a);
                 return false;
             }
         };

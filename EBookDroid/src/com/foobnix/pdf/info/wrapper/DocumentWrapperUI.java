@@ -753,7 +753,7 @@ public class DocumentWrapperUI {
         TintUtil.setStatusBarColor(a);
 
         TintUtil.setTintBgSimple(a.findViewById(R.id.menuLayout), TRANSPARENT_UI);
-        TintUtil.setTintBgSimple(a.findViewById(R.id.bottomBar), TRANSPARENT_UI);
+        TintUtil.setTintBgSimple(a.findViewById(R.id.bottomBar1), TRANSPARENT_UI);
         TintUtil.setBackgroundFillColorBottomRight(lirbiLogo, ColorUtils.setAlphaComponent(TintUtil.color, TRANSPARENT_UI));
         tintSpeed();
 
