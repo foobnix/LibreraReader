@@ -77,7 +77,8 @@ public class Objects {
                 } else
 
                 if (f.getType().equals(String.class)) {
-                    f.set(obj, sp.getString(f.getName(), "" + f.get(obj)));
+                    Object object = f.get(obj);
+                    f.set(obj, sp.getString(f.getName(), object != null ? "" + object : null));
                 } else
 
                 if (f.getType().equals(float.class)) {

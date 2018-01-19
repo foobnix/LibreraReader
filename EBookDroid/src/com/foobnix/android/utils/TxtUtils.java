@@ -49,7 +49,6 @@ public class TxtUtils {
         return "[" + (current + TempHolder.get().pageDelta) + "]";
     }
 
-
     public static void addFilteredGenreSeries(String item, List<String> result, boolean simpleAdd) {
         if (TxtUtils.isEmpty(item)) {
             return;
@@ -567,7 +566,11 @@ public class TxtUtils {
         }
         StringBuilder sb = new StringBuilder();
         for (Object it : items) {
-            sb.append(it);
+            if (it == null) {
+                sb.append("@null");
+            } else {
+                sb.append(it);
+            }
             sb.append(delim);
         }
         String string = sb.toString();
