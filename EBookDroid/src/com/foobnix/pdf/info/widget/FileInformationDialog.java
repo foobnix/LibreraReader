@@ -146,7 +146,7 @@ public class FileInformationDialog {
                         id = id.replace("info:Author", a.getString(R.string.author));
                         id = id.replace("info:Subject", a.getString(R.string.subject));
                         id = id.replace("info:Keywords", a.getString(R.string.keywords));
-                        meta.append("<b>" + id + "</b>").append(":").append(metaValue).append("<br>");
+                        meta.append("<b>" + id).append(": " + "</b>").append(metaValue).append("<br>");
                     }
                 }
                 doc.recycle();
