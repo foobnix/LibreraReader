@@ -420,7 +420,6 @@
    <string name="you_need_to_update_the_library">Jums reikia atnaujinti biblioteką</string>
    <string name="theme_color">Temos spalva</string>
    <string name="add_folder">Pridėti aplanką</string>
-   <string name="selecting_text_in_this_mode_does_not_work">Teksto pasirinkimas šiame režime neveikia</string>
    <string name="scroll_speed">Slinkties greitis</string>
    <string name="landscape_180">Kraštovaizdis (180)</string>
    <string name="portrait_180">Portretas (180)</string>
@@ -468,4 +467,5 @@
    <string name="incorrect_password">Neteisingas slaptažodis</string>
    <string name="repeat_password">Pakartokite slaptažodį</string>
    <string name="internal_storage">Vidinė atmintis</string>
+   <string name="the_page_is_clipped_the_text_selection_does_not_work">Puslapis nukopijuotas, teksto pasirinkimas neveikia</string>
 </resources>

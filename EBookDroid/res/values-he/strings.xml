@@ -420,7 +420,6 @@
    <string name="you_need_to_update_the_library">עליך לעדכן את הספריה</string>
    <string name="theme_color">צבע ערכת נושא</string>
    <string name="add_folder">הוסף תיקיה</string>
-   <string name="selecting_text_in_this_mode_does_not_work">בחירת טקסט במצב זה אינה פועלת</string>
    <string name="scroll_speed">מהירות גלילה</string>
    <string name="landscape_180">נופים (180)</string>
    <string name="portrait_180">דיוקן (180)</string>
@@ -468,4 +467,5 @@
    <string name="incorrect_password">סיסמא לא נכונה</string>
    <string name="repeat_password">חזור על הסיסמה</string>
    <string name="internal_storage">אחסון פנימי</string>
+   <string name="the_page_is_clipped_the_text_selection_does_not_work">הדף מקוטע, בחירת הטקסט אינה פועלת</string>
 </resources>

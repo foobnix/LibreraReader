@@ -424,7 +424,6 @@
    <string name="you_need_to_update_the_library">You need to update the library</string>
    <string name="theme_color">Theme color</string>
    <string name="add_folder">Add folder</string>
-   <string name="selecting_text_in_this_mode_does_not_work">Selecting text in this mode does not work</string>
    <string name="scroll_speed">Scroll speed with mouse wheel</string>
    <string name="full_list_of_changes_with_images_web_pdf_">Full list of changes with images (web, PDF)</string>
    <string name="select_the_reading_mode">Select reading mode</string>
@@ -468,4 +467,5 @@
    <string name="incorrect_password">Incorrect password</string>
    <string name="repeat_password">Repeat password</string>
    <string name="internal_storage">Internal storage</string>
+   <string name="the_page_is_clipped_the_text_selection_does_not_work">The page is clipped, the text selection does not work</string>
 </resources>

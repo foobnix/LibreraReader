@@ -420,7 +420,6 @@
    <string name="you_need_to_update_the_library">Bạn cần cập nhật thư viện</string>
    <string name="theme_color">Màu chủ đề</string>
    <string name="add_folder">Thêm thư mục</string>
-   <string name="selecting_text_in_this_mode_does_not_work">Chọn văn bản trong chế độ này không hoạt động</string>
    <string name="scroll_speed">Tốc độ cuộn</string>
    <string name="landscape_180">Phong cảnh (180)</string>
    <string name="portrait_180">Chân dung (180)</string>
@@ -468,4 +467,5 @@
    <string name="incorrect_password">Mật khẩu không đúng</string>
    <string name="repeat_password">Lặp lại mật khẩu</string>
    <string name="internal_storage">Lưu trữ nội bộ</string>
+   <string name="the_page_is_clipped_the_text_selection_does_not_work">Trang bị cắt bớt, lựa chọn văn bản không hoạt động</string>
 </resources>

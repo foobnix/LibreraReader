@@ -420,7 +420,6 @@
    <string name="you_need_to_update_the_library">Trebuie să actualizați biblioteca</string>
    <string name="theme_color">Culoarea temei</string>
    <string name="add_folder">Adaugă folder</string>
-   <string name="selecting_text_in_this_mode_does_not_work">Selectarea textului în acest mod nu funcționează</string>
    <string name="scroll_speed">Scroll viteza</string>
    <string name="landscape_180">Peisaj (180)</string>
    <string name="portrait_180">Portret (180)</string>
@@ -468,4 +467,5 @@
    <string name="incorrect_password">Parola incorecta</string>
    <string name="repeat_password">Repeta parola</string>
    <string name="internal_storage">Stocare internă</string>
+   <string name="the_page_is_clipped_the_text_selection_does_not_work">Pagina este tăiată, selecția textului nu funcționează</string>
 </resources>

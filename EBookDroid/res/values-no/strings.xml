@@ -420,7 +420,6 @@
    <string name="you_need_to_update_the_library">Du må oppdatere biblioteket</string>
    <string name="theme_color">Tema farge</string>
    <string name="add_folder">Legg til mappe</string>
-   <string name="selecting_text_in_this_mode_does_not_work">Velger tekst i denne modusen virker ikke</string>
    <string name="scroll_speed">Rullehastighet</string>
    <string name="landscape_180">Landskap (180)</string>
    <string name="portrait_180">Portrett (180)</string>
@@ -468,4 +467,5 @@
    <string name="incorrect_password">Feil passord</string>
    <string name="repeat_password">Gjenta passord</string>
    <string name="internal_storage">Intern lagring</string>
+   <string name="the_page_is_clipped_the_text_selection_does_not_work">Siden er klippet, tekstvalg ikke fungerer</string>
 </resources>

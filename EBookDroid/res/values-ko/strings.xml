@@ -420,7 +420,6 @@
    <string name="you_need_to_update_the_library">라이브러리를 업데이트해야합니다.</string>
    <string name="theme_color">테마 색</string>
    <string name="add_folder">폴더 추가</string>
-   <string name="selecting_text_in_this_mode_does_not_work">이 모드에서 텍스트 선택이 작동하지 않습니다.</string>
    <string name="scroll_speed">스크롤 속도</string>
    <string name="landscape_180">풍경 (180)</string>
    <string name="portrait_180">세로 방향 (180)</string>
@@ -468,4 +467,5 @@
    <string name="incorrect_password">잘못된 비밀번호</string>
    <string name="repeat_password">비밀번호 반복</string>
    <string name="internal_storage">내부 저장소</string>
+   <string name="the_page_is_clipped_the_text_selection_does_not_work">페이지가 잘리고 텍스트 선택이 작동하지 않습니다.</string>
 </resources>

@@ -420,7 +420,6 @@
    <string name="you_need_to_update_the_library">Для вступления изменений в силу нужно обновить библиотеку. Сделать это сейчас?</string>
    <string name="theme_color">Цвет темы</string>
    <string name="add_folder">Добавить еще путь</string>
-   <string name="selecting_text_in_this_mode_does_not_work">Выделить текст нельзя</string>
    <string name="scroll_speed">Шаг прокр. текста</string>
    <string name="landscape_180">Альбомная (180°)</string>
    <string name="portrait_180">Портретная (180°)</string>
@@ -468,4 +467,5 @@
    <string name="incorrect_password">Пароль неверный</string>
    <string name="repeat_password">Введите пароль еще раз</string>
    <string name="internal_storage">Внутреннее хранилище</string>
+   <string name="the_page_is_clipped_the_text_selection_does_not_work">Страница обрезана, выбор текста не работает</string>
 </resources>

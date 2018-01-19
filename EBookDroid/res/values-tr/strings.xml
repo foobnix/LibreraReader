@@ -420,7 +420,6 @@
    <string name="you_need_to_update_the_library">Kütüphaneyi güncellemeniz gerekiyor</string>
    <string name="theme_color">Tema rengi</string>
    <string name="add_folder">Klasörü eklemek</string>
-   <string name="selecting_text_in_this_mode_does_not_work">Bu modda metin seçmek işe yaramıyor</string>
    <string name="scroll_speed">Kaydırma hızı</string>
    <string name="landscape_180">Manzara (180)</string>
    <string name="portrait_180">Portre (180)</string>
@@ -468,4 +467,5 @@
    <string name="incorrect_password">Yanlış parola</string>
    <string name="repeat_password">Şifreyi tekrar girin</string>
    <string name="internal_storage">Dahili depolama</string>
+   <string name="the_page_is_clipped_the_text_selection_does_not_work">Sayfa kırpılmış, metin seçimi çalışmıyor</string>
 </resources>

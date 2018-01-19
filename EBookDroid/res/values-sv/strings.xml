@@ -420,7 +420,6 @@
    <string name="you_need_to_update_the_library">Du måste uppdatera biblioteket</string>
    <string name="theme_color">Tema färg</string>
    <string name="add_folder">Lägg till mapp</string>
-   <string name="selecting_text_in_this_mode_does_not_work">Val av text i det här läget fungerar inte</string>
    <string name="scroll_speed">Scrollhastighet</string>
    <string name="landscape_180">Landskap (180)</string>
    <string name="portrait_180">Porträtt (180)</string>
@@ -468,4 +467,5 @@
    <string name="incorrect_password">Fel lösenord</string>
    <string name="repeat_password">Repetera lösenord</string>
    <string name="internal_storage">Intern lagring</string>
+   <string name="the_page_is_clipped_the_text_selection_does_not_work">Sidan är klippt, textvalet fungerar inte</string>
 </resources>

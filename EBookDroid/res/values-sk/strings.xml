@@ -420,7 +420,6 @@
    <string name="you_need_to_update_the_library">Je potrebné aktualizovať knižnicu</string>
    <string name="theme_color">Farba témy</string>
    <string name="add_folder">Pridať priečinok</string>
-   <string name="selecting_text_in_this_mode_does_not_work">Výber textu v tomto režime nefunguje</string>
    <string name="scroll_speed">Rýchlosť rolovania</string>
    <string name="landscape_180">Krajina (180)</string>
    <string name="portrait_180">Portrét (180)</string>
@@ -468,4 +467,5 @@
    <string name="incorrect_password">Nesprávne heslo</string>
    <string name="repeat_password">Zopakujte heslo</string>
    <string name="internal_storage">Vnútorné úložisko</string>
+   <string name="the_page_is_clipped_the_text_selection_does_not_work">Stránka je orezaná, výber textu nefunguje</string>
 </resources>

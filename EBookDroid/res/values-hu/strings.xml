@@ -424,7 +424,6 @@
    <string name="you_need_to_update_the_library">Frissítenie kell a könyvtárat</string>
    <string name="theme_color">Téma színe</string>
    <string name="add_folder">Mappa hozzáadása</string>
-   <string name="selecting_text_in_this_mode_does_not_work">A szöveg kiválasztása ebben a módban nem működik</string>
    <string name="scroll_speed">Görgetési sebesség</string>
    <string name="full_list_of_changes_with_images_web_pdf_">Változások teljes listája képekkel (web, PDF)</string>
    <string name="select_the_reading_mode">Válassza ki az olvasási módot</string>
@@ -468,4 +467,5 @@
    <string name="incorrect_password">Hibás jelszó</string>
    <string name="repeat_password">Jelszó újra</string>
    <string name="internal_storage">Belső tároló</string>
+   <string name="the_page_is_clipped_the_text_selection_does_not_work">Az oldal le van vágva, a szövegválasztás nem működik</string>
 </resources>

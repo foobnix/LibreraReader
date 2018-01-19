@@ -420,7 +420,6 @@
    <string name="you_need_to_update_the_library">Sinun on päivitettävä kirjasto</string>
    <string name="theme_color">Teeman väri</string>
    <string name="add_folder">Lisää kansio</string>
-   <string name="selecting_text_in_this_mode_does_not_work">Tekstin valinta tässä tilassa ei toimi</string>
    <string name="scroll_speed">Vieritä nopeutta</string>
    <string name="landscape_180">Maisema (180)</string>
    <string name="portrait_180">Muotokuva (180)</string>
@@ -468,4 +467,5 @@
    <string name="incorrect_password">Väärä salasana</string>
    <string name="repeat_password">Toista salasana</string>
    <string name="internal_storage">Sisäistä tallennustilaa</string>
+   <string name="the_page_is_clipped_the_text_selection_does_not_work">Sivua leikataan, tekstin valinta ei toimi</string>
 </resources>

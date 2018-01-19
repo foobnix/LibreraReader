@@ -420,7 +420,6 @@
    <string name="you_need_to_update_the_library">Sie müssen die Bibliothek aktualisieren</string>
    <string name="theme_color">Thema Farbe</string>
    <string name="add_folder">Ordner hinzufügen</string>
-   <string name="selecting_text_in_this_mode_does_not_work">Die Auswahl von Text in diesem Modus funktioniert nicht</string>
    <string name="scroll_speed">Scrollgeschwindigkeit</string>
    <string name="landscape_180">Landschaft (180)</string>
    <string name="portrait_180">Porträt (180)</string>
@@ -468,4 +467,5 @@
    <string name="incorrect_password">Falsches Passwort</string>
    <string name="repeat_password">Passwort wiederholen</string>
    <string name="internal_storage">Interne Speicher</string>
+   <string name="the_page_is_clipped_the_text_selection_does_not_work">Die Seite ist abgeschnitten, die Textauswahl funktioniert nicht</string>
 </resources>

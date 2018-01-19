@@ -420,7 +420,6 @@
    <string name="you_need_to_update_the_library">شما باید کتابخانه را به روز کنید</string>
    <string name="theme_color">رنگ تم</string>
    <string name="add_folder">اضافه کردن پوشه</string>
-   <string name="selecting_text_in_this_mode_does_not_work">انتخاب متن در این حالت کار نمی کند</string>
    <string name="scroll_speed">سرعت حرکت</string>
    <string name="landscape_180">چشم انداز (180)</string>
    <string name="portrait_180">پرتره (180)</string>
@@ -468,4 +467,5 @@
    <string name="incorrect_password">رمز عبور اشتباه است</string>
    <string name="repeat_password">رمز عبور را تکرار کنید</string>
    <string name="internal_storage">حافظه داخلی</string>
+   <string name="the_page_is_clipped_the_text_selection_does_not_work">صفحه کپی شده است، انتخاب متن کار نمی کند</string>
 </resources>

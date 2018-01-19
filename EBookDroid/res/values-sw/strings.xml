@@ -420,7 +420,6 @@
    <string name="you_need_to_update_the_library">Unahitaji kusasisha maktaba</string>
    <string name="theme_color">Mandhari ya rangi</string>
    <string name="add_folder">Ongeza folda</string>
-   <string name="selecting_text_in_this_mode_does_not_work">Kuchagua maandishi katika hali hii haifanyi kazi</string>
    <string name="scroll_speed">Tembea kasi</string>
    <string name="landscape_180">Mazingira (180)</string>
    <string name="portrait_180">Picha (180)</string>
@@ -468,4 +467,5 @@
    <string name="incorrect_password">Nenosiri isiyo sahihi</string>
    <string name="repeat_password">Rudia neno siri</string>
    <string name="internal_storage">Uhifadhi wa ndani</string>
+   <string name="the_page_is_clipped_the_text_selection_does_not_work">Ukurasa umebainishwa, uteuzi wa maandiko haufanyi kazi</string>
 </resources>

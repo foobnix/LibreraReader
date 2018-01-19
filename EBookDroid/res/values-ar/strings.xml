@@ -420,7 +420,6 @@
    <string name="you_need_to_update_the_library">تحتاج إلى تحديث المكتبة</string>
    <string name="theme_color">لون الموضوع</string>
    <string name="add_folder">أضف المجلد</string>
-   <string name="selecting_text_in_this_mode_does_not_work">لا يعمل تحديد النص في هذا الوضع</string>
    <string name="scroll_speed">سرعة التمرير</string>
    <string name="landscape_180">المناظر الطبيعية (180)</string>
    <string name="portrait_180">صورة (180)</string>
@@ -468,4 +467,5 @@
    <string name="incorrect_password">كلمة سر خاطئة</string>
    <string name="repeat_password">اعد كلمة السر</string>
    <string name="internal_storage">التخزين الداخلي</string>
+   <string name="the_page_is_clipped_the_text_selection_does_not_work">يتم قص الصفحة، واختيار النص لا يعمل</string>
 </resources>

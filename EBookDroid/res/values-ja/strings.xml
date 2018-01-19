@@ -420,7 +420,6 @@
    <string name="you_need_to_update_the_library">ライブラリを更新する必要があります</string>
    <string name="theme_color">テーマの色</string>
    <string name="add_folder">フォルダーを追加</string>
-   <string name="selecting_text_in_this_mode_does_not_work">このモードでテキストを選択しても機能しません</string>
    <string name="scroll_speed">スクロール速度</string>
    <string name="landscape_180">風景（180）</string>
    <string name="portrait_180">ポートレート（180）</string>
@@ -468,4 +467,5 @@
    <string name="incorrect_password">間違ったパスワード</string>
    <string name="repeat_password">パスワードを再度入力してください。</string>
    <string name="internal_storage">内部記憶装置</string>
+   <string name="the_page_is_clipped_the_text_selection_does_not_work">ページがクリップされ、テキスト選択が機能しません</string>
 </resources>

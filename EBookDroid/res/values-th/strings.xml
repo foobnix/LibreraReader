@@ -420,7 +420,6 @@
    <string name="you_need_to_update_the_library">คุณจำเป็นต้องอัปเดตไลบรารี</string>
    <string name="theme_color">สีธีม</string>
    <string name="add_folder">เพิ่มกล่องเก็บไฟล์</string>
-   <string name="selecting_text_in_this_mode_does_not_work">การเลือกข้อความในโหมดนี้ไม่ทำงาน</string>
    <string name="scroll_speed">เลื่อนความเร็ว</string>
    <string name="landscape_180">ภูมิทัศน์ (180)</string>
    <string name="portrait_180">ถ่ายภาพบุคคล (180)</string>
@@ -468,4 +467,5 @@
    <string name="incorrect_password">รหัสผ่านผิดพลาด</string>
    <string name="repeat_password">ทำซ้ำรหัสผ่าน</string>
    <string name="internal_storage">พื้นที่เก็บข้อมูลภายใน</string>
+   <string name="the_page_is_clipped_the_text_selection_does_not_work">หน้าเว็บถูกตัดการเลือกข้อความไม่ได้ผล</string>
 </resources>

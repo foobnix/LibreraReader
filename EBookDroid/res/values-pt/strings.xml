@@ -420,7 +420,6 @@
    <string name="you_need_to_update_the_library">Você precisa atualizar a biblioteca</string>
    <string name="theme_color">Cor do tema</string>
    <string name="add_folder">Adicionar pasta</string>
-   <string name="selecting_text_in_this_mode_does_not_work">Selecionar texto neste modo não funciona</string>
    <string name="scroll_speed">Velocidade de rolamento</string>
    <string name="landscape_180">Paisagem (180)</string>
    <string name="portrait_180">Retrato (180)</string>
@@ -468,4 +467,5 @@
    <string name="incorrect_password">Senha incorreta</string>
    <string name="repeat_password">Repita a senha</string>
    <string name="internal_storage">Armazenamento interno</string>
+   <string name="the_page_is_clipped_the_text_selection_does_not_work">A página é cortada, a seleção de texto não funciona</string>
 </resources>

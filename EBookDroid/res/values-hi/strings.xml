@@ -420,7 +420,6 @@
    <string name="you_need_to_update_the_library">आपको पुस्तकालय को अपडेट करना होगा</string>
    <string name="theme_color">थीम रंग</string>
    <string name="add_folder">फ़ोल्डर जोड़ें</string>
-   <string name="selecting_text_in_this_mode_does_not_work">इस मोड में टेक्स्ट का चयन करना काम नहीं करता है</string>
    <string name="scroll_speed">स्क्रोल गति</string>
    <string name="landscape_180">लैंडस्केप (180)</string>
    <string name="portrait_180">पोर्ट्रेट (180)</string>
@@ -468,4 +467,5 @@
    <string name="incorrect_password">गलत पासवर्ड</string>
    <string name="repeat_password">पासवर्ड दोहराएं</string>
    <string name="internal_storage">आंतरिक स्टोरेज</string>
+   <string name="the_page_is_clipped_the_text_selection_does_not_work">पेज काटा गया है, टेक्स्ट चयन काम नहीं करता है</string>
 </resources>
