@@ -468,4 +468,7 @@
    <string name="repeat_password">Passwort wiederholen</string>
    <string name="internal_storage">Interne Speicher</string>
    <string name="the_page_is_clipped_the_text_selection_does_not_work">Die Seite ist abgeschnitten, die Textauswahl funktioniert nicht</string>
+   <string name="title">Titel</string>
+   <string name="subject">Gegenstand</string>
+   <string name="keywords">Schlüsselwörter</string>
 </resources>

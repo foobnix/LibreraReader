@@ -468,4 +468,7 @@
    <string name="repeat_password">رمز عبور را تکرار کنید</string>
    <string name="internal_storage">حافظه داخلی</string>
    <string name="the_page_is_clipped_the_text_selection_does_not_work">صفحه کپی شده است، انتخاب متن کار نمی کند</string>
+   <string name="title">عنوان</string>
+   <string name="subject">موضوع</string>
+   <string name="keywords">کلید واژه ها</string>
 </resources>

@@ -468,4 +468,7 @@
    <string name="repeat_password">Zopakujte heslo</string>
    <string name="internal_storage">Vnútorné úložisko</string>
    <string name="the_page_is_clipped_the_text_selection_does_not_work">Stránka je orezaná, výber textu nefunguje</string>
+   <string name="title">Nadpis</string>
+   <string name="subject">Predmet</string>
+   <string name="keywords">Kľúčové slová</string>
 </resources>

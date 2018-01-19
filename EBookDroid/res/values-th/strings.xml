@@ -468,4 +468,7 @@
    <string name="repeat_password">ทำซ้ำรหัสผ่าน</string>
    <string name="internal_storage">พื้นที่เก็บข้อมูลภายใน</string>
    <string name="the_page_is_clipped_the_text_selection_does_not_work">หน้าเว็บถูกตัดการเลือกข้อความไม่ได้ผล</string>
+   <string name="title">หัวข้อ</string>
+   <string name="subject">เรื่อง</string>
+   <string name="keywords">คำสำคัญ</string>
 </resources>

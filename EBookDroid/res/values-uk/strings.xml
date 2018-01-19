@@ -468,4 +468,7 @@
    <string name="repeat_password">Повторіть пароль</string>
    <string name="internal_storage">Внутрішня пам\'ять</string>
    <string name="the_page_is_clipped_the_text_selection_does_not_work">Сторінка обрізана, вибір тексту не працює</string>
+   <string name="title">Назва</string>
+   <string name="subject">Тема</string>
+   <string name="keywords">Ключові слова</string>
 </resources>

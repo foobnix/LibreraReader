@@ -468,4 +468,7 @@
    <string name="repeat_password">비밀번호 반복</string>
    <string name="internal_storage">내부 저장소</string>
    <string name="the_page_is_clipped_the_text_selection_does_not_work">페이지가 잘리고 텍스트 선택이 작동하지 않습니다.</string>
+   <string name="title">표제</string>
+   <string name="subject">제목</string>
+   <string name="keywords">키워드</string>
 </resources>

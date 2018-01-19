@@ -142,7 +142,11 @@ public class FileInformationDialog {
                 for (String id : list) {
                     String metaValue = doc.getMeta(id);
                     if (TxtUtils.isNotEmpty(metaValue)) {
-                        meta.append("<b>" + id.replace("info:", "") + "</b>").append(":").append(metaValue).append("<br>");
+                        id = id.replace("info:Title", a.getString(R.string.title));
+                        id = id.replace("info:Author", a.getString(R.string.author));
+                        id = id.replace("info:Subject", a.getString(R.string.subject));
+                        id = id.replace("info:Keywords", a.getString(R.string.keywords));
+                        meta.append("<b>" + id + "</b>").append(":").append(metaValue).append("<br>");
                     }
                 }
                 doc.recycle();

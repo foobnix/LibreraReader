@@ -468,4 +468,7 @@
    <string name="repeat_password">Repeat password</string>
    <string name="internal_storage">Internal storage</string>
    <string name="the_page_is_clipped_the_text_selection_does_not_work">The page is clipped, the text selection does not work</string>
+   <string name="title">Title</string>
+   <string name="subject">Subject</string>
+   <string name="keywords">Keywords</string>
 </resources>

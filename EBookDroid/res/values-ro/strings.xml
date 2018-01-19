@@ -468,4 +468,7 @@
    <string name="repeat_password">Repeta parola</string>
    <string name="internal_storage">Stocare internă</string>
    <string name="the_page_is_clipped_the_text_selection_does_not_work">Pagina este tăiată, selecția textului nu funcționează</string>
+   <string name="title">Titlu</string>
+   <string name="subject">Subiect</string>
+   <string name="keywords">Cuvinte cheie</string>
 </resources>

@@ -468,4 +468,7 @@
    <string name="repeat_password">Şifreyi tekrar girin</string>
    <string name="internal_storage">Dahili depolama</string>
    <string name="the_page_is_clipped_the_text_selection_does_not_work">Sayfa kırpılmış, metin seçimi çalışmıyor</string>
+   <string name="title">Başlık</string>
+   <string name="subject">Konu</string>
+   <string name="keywords">Anahtar kelimeler</string>
 </resources>

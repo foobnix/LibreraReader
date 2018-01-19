@@ -468,4 +468,7 @@
    <string name="repeat_password">Ulangi kata kunci</string>
    <string name="internal_storage">Penyimpanan internal</string>
    <string name="the_page_is_clipped_the_text_selection_does_not_work">Halaman yang terpotong, pemilihan teks tidak bekerja</string>
+   <string name="title">Judul</string>
+   <string name="subject">Subyek</string>
+   <string name="keywords">Kata kunci</string>
 </resources>

@@ -468,4 +468,7 @@
    <string name="repeat_password">Powtórz hasło</string>
    <string name="internal_storage">Pamięć wewnętrzna</string>
    <string name="the_page_is_clipped_the_text_selection_does_not_work">Strona jest obcięta, wybór tekstu nie działa</string>
+   <string name="title">Tytuł</string>
+   <string name="subject">Przedmiot</string>
+   <string name="keywords">Słowa kluczowe</string>
 </resources>

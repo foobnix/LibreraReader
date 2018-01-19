@@ -468,4 +468,7 @@
    <string name="repeat_password">Pakartokite slaptažodį</string>
    <string name="internal_storage">Vidinė atmintis</string>
    <string name="the_page_is_clipped_the_text_selection_does_not_work">Puslapis nukopijuotas, teksto pasirinkimas neveikia</string>
+   <string name="title">Pavadinimas</string>
+   <string name="subject">Tema</string>
+   <string name="keywords">Raktiniai žodžiai</string>
 </resources>

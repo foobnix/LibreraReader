@@ -468,4 +468,7 @@
    <string name="repeat_password">重复输入密码</string>
    <string name="internal_storage">内部存储器</string>
    <string name="the_page_is_clipped_the_text_selection_does_not_work">该页面被剪辑，文本选择不起作用</string>
+   <string name="title">标题</string>
+   <string name="subject">学科</string>
+   <string name="keywords">关键词</string>
 </resources>

@@ -468,4 +468,7 @@
    <string name="repeat_password">Lặp lại mật khẩu</string>
    <string name="internal_storage">Lưu trữ nội bộ</string>
    <string name="the_page_is_clipped_the_text_selection_does_not_work">Trang bị cắt bớt, lựa chọn văn bản không hoạt động</string>
+   <string name="title">Chức vụ</string>
+   <string name="subject">Môn học</string>
+   <string name="keywords">Từ khoá</string>
 </resources>

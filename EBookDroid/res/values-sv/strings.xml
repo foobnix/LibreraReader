@@ -468,4 +468,7 @@
    <string name="repeat_password">Repetera lösenord</string>
    <string name="internal_storage">Intern lagring</string>
    <string name="the_page_is_clipped_the_text_selection_does_not_work">Sidan är klippt, textvalet fungerar inte</string>
+   <string name="title">Titel</string>
+   <string name="subject">Ämne</string>
+   <string name="keywords">Nyckelord</string>
 </resources>

@@ -468,4 +468,7 @@
    <string name="repeat_password">اعد كلمة السر</string>
    <string name="internal_storage">التخزين الداخلي</string>
    <string name="the_page_is_clipped_the_text_selection_does_not_work">يتم قص الصفحة، واختيار النص لا يعمل</string>
+   <string name="title">عنوان</string>
+   <string name="subject">موضوع</string>
+   <string name="keywords">الكلمات الدالة</string>
 </resources>

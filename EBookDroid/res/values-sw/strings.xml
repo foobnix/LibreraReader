@@ -468,4 +468,7 @@
    <string name="repeat_password">Rudia neno siri</string>
    <string name="internal_storage">Uhifadhi wa ndani</string>
    <string name="the_page_is_clipped_the_text_selection_does_not_work">Ukurasa umebainishwa, uteuzi wa maandiko haufanyi kazi</string>
+   <string name="title">Kichwa</string>
+   <string name="subject">Somo</string>
+   <string name="keywords">Maneno</string>
 </resources>

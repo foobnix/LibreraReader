@@ -468,4 +468,7 @@
    <string name="repeat_password">पासवर्ड दोहराएं</string>
    <string name="internal_storage">आंतरिक स्टोरेज</string>
    <string name="the_page_is_clipped_the_text_selection_does_not_work">पेज काटा गया है, टेक्स्ट चयन काम नहीं करता है</string>
+   <string name="title">शीर्षक</string>
+   <string name="subject">विषय</string>
+   <string name="keywords">कीवर्ड</string>
 </resources>

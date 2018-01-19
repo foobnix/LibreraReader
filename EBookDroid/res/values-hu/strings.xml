@@ -468,4 +468,7 @@
    <string name="repeat_password">Jelszó újra</string>
    <string name="internal_storage">Belső tároló</string>
    <string name="the_page_is_clipped_the_text_selection_does_not_work">Az oldal le van vágva, a szövegválasztás nem működik</string>
+   <string name="title">Cím</string>
+   <string name="subject">Tantárgy</string>
+   <string name="keywords">Kulcsszavak</string>
 </resources>

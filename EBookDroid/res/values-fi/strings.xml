@@ -468,4 +468,7 @@
    <string name="repeat_password">Toista salasana</string>
    <string name="internal_storage">Sisäistä tallennustilaa</string>
    <string name="the_page_is_clipped_the_text_selection_does_not_work">Sivua leikataan, tekstin valinta ei toimi</string>
+   <string name="title">Otsikko</string>
+   <string name="subject">Aihe</string>
+   <string name="keywords">Avainsanat</string>
 </resources>

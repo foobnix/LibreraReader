@@ -468,4 +468,7 @@
    <string name="repeat_password">Введите пароль еще раз</string>
    <string name="internal_storage">Внутреннее хранилище</string>
    <string name="the_page_is_clipped_the_text_selection_does_not_work">Страница обрезана, выбор текста не работает</string>
+   <string name="title">Заглавие</string>
+   <string name="subject">Предмет</string>
+   <string name="keywords">Ключевые слова</string>
 </resources>

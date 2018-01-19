@@ -468,4 +468,7 @@
    <string name="repeat_password">Gjenta passord</string>
    <string name="internal_storage">Intern lagring</string>
    <string name="the_page_is_clipped_the_text_selection_does_not_work">Siden er klippet, tekstvalg ikke fungerer</string>
+   <string name="title">Tittel</string>
+   <string name="subject">Emne</string>
+   <string name="keywords">Nøkkelord</string>
 </resources>

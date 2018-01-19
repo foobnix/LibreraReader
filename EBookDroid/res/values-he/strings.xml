@@ -468,4 +468,7 @@
    <string name="repeat_password">חזור על הסיסמה</string>
    <string name="internal_storage">אחסון פנימי</string>
    <string name="the_page_is_clipped_the_text_selection_does_not_work">הדף מקוטע, בחירת הטקסט אינה פועלת</string>
+   <string name="title">כותרת</string>
+   <string name="subject">נושא</string>
+   <string name="keywords">מילות מפתח</string>
 </resources>

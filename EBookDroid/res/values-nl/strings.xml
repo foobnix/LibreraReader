@@ -468,4 +468,7 @@
    <string name="repeat_password">Herhaal wachtwoord</string>
    <string name="internal_storage">Intern geheugen</string>
    <string name="the_page_is_clipped_the_text_selection_does_not_work">De pagina is geknipt, de tekstselectie werkt niet</string>
+   <string name="title">Titel</string>
+   <string name="subject">Onderwerpen</string>
+   <string name="keywords">Trefwoorden</string>
 </resources>
