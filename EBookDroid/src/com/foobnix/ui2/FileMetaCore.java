@@ -186,7 +186,13 @@ public class FileMetaCore {
         fileMeta.setExt(ExtUtils.getFileExtension(file));
         fileMeta.setSizeTxt(ExtUtils.readableFileSize(file.length()));
         fileMeta.setDateTxt(ExtUtils.getDateFormat(file));
-        fileMeta.setPathTxt(TxtUtils.encode1251(file.getName()));
+
+        if (BookType.FB2.is(file.getName())) {
+            fileMeta.setPathTxt(TxtUtils.encode1251(file.getName()));
+        } else {
+            fileMeta.setPathTxt(file.getName());
+
+        }
     }
 
 }
