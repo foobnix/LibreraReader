@@ -117,7 +117,7 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
 
     ImageView lockModelImage, linkHistory, ttsActive, onModeChange, outline, onMove, textToSpeach, onPageFlip1;
 
-    HorizontalModeController documentController;
+    HorizontalModeController dc;
 
     Handler handler, handlerTimer;
     CopyAsyncTask loadinAsyncTask;
@@ -224,7 +224,7 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
 
             @Override
             public void onClick(View v) {
-                DragingDialogs.onMoveDialog(anchor, documentController, onRefresh, reloadDoc);
+                DragingDialogs.onMoveDialog(anchor, dc, onRefresh, reloadDoc);
             }
         });
 
@@ -232,7 +232,7 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
 
             @Override
             public boolean onLongClick(View v) {
-                Dialogs.showDeltaPage(anchor, documentController, documentController.getCurentPageFirst1(), onRefresh);
+                Dialogs.showDeltaPage(anchor, dc, dc.getCurentPageFirst1(), onRefresh);
                 return true;
             }
         });
@@ -240,7 +240,7 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
 
             @Override
             public boolean onLongClick(View v) {
-                Dialogs.showDeltaPage(anchor, documentController, documentController.getCurentPageFirst1(), onRefresh);
+                Dialogs.showDeltaPage(anchor, dc, dc.getCurentPageFirst1(), onRefresh);
                 return true;
             }
         });
@@ -264,7 +264,7 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
 
             @Override
             public void onClick(View v) {
-                documentController.onLinkHistory();
+                dc.onLinkHistory();
                 showHideHistory();
             }
         });
@@ -283,7 +283,7 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
 
             @Override
             public void onClick(View v) {
-                DragingDialogs.pageFlippingDialog(anchor, documentController, onRefresh);
+                DragingDialogs.pageFlippingDialog(anchor, dc, onRefresh);
             }
         });
 
@@ -295,12 +295,12 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
                 AppState.get().isFullScreen = !AppState.get().isFullScreen;
                 onFullScreen.setImageResource(AppState.get().isFullScreen ? R.drawable.glyphicons_487_fit_frame_to_image : R.drawable.glyphicons_488_fit_image_to_frame);
                 DocumentController.chooseFullScreen(HorizontalViewActivity.this, AppState.get().isFullScreen);
-                if (documentController.isTextFormat()) {
+                if (dc.isTextFormat()) {
                     if (onRefresh != null) {
                         onRefresh.run();
                     }
                     nullAdapter();
-                    documentController.restartActivity();
+                    dc.restartActivity();
                 }
             }
         });
@@ -314,7 +314,7 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
                 v.setEnabled(false);
                 AppState.get().isInvert = !AppState.get().isInvert;
                 nullAdapter();
-                documentController.restartActivity();
+                dc.restartActivity();
             }
         });
         if (Dips.isEInk(this)) {
@@ -328,7 +328,7 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
 
             @Override
             public void onClick(final View v) {
-                DragingDialogs.contrastAndBrigtness(anchor, documentController, reloadDocBrigntness, reloadDoc);
+                DragingDialogs.contrastAndBrigtness(anchor, dc, reloadDocBrigntness, reloadDoc);
             }
         });
 
@@ -343,7 +343,7 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
         });
 
         onBC.setVisibility(isTextFomat ? View.GONE : View.VISIBLE);
-        if (AppState.get().bolderTextOnImage || AppState.get().brigtnessImage != 0 || AppState.get().contrastImage != 0) {
+        if (Dips.isEInk(dc.getActivity()) || AppState.get().bolderTextOnImage || AppState.get().brigtnessImage != 0 || AppState.get().contrastImage != 0) {
             onBC.setVisibility(View.VISIBLE);
         }
         onMove.setVisibility(Dips.isEInk(this) && !isTextFomat ? View.VISIBLE : View.GONE);
@@ -352,7 +352,7 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
 
             @Override
             public void onClick(final View v) {
-                DragingDialogs.thumbnailDialog(anchor, documentController);
+                DragingDialogs.thumbnailDialog(anchor, dc);
 
             }
         });
@@ -370,14 +370,14 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
 
             @Override
             public void onClick(final View v) {
-                DragingDialogs.showContent(anchor, documentController);
+                DragingDialogs.showContent(anchor, dc);
             }
         });
         findViewById(R.id.onBookmarks).setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(final View v) {
-                DragingDialogs.addBookmarks(anchor, documentController, new Runnable() {
+                DragingDialogs.addBookmarks(anchor, dc, new Runnable() {
 
                     @Override
                     public void run() {
@@ -391,7 +391,7 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
 
             @Override
             public boolean onLongClick(final View arg0) {
-                DragingDialogs.addBookmarksLong(anchor, documentController);
+                DragingDialogs.addBookmarksLong(anchor, dc);
                 return true;
             }
         });
@@ -400,7 +400,7 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
 
             @Override
             public void onClick(final View v) {
-                DragingDialogs.recentBooks(anchor, documentController);
+                DragingDialogs.recentBooks(anchor, dc);
             }
         });
 
@@ -414,7 +414,7 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
                     modeOnePage();
                     return;
                 }
-                DragingDialogs.textToSpeachDialog(anchor, documentController);
+                DragingDialogs.textToSpeachDialog(anchor, dc);
             }
         });
         ttsActive = (ImageView) findViewById(R.id.ttsActive);
@@ -423,7 +423,7 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
 
             @Override
             public void onClick(final View v) {
-                DragingDialogs.textToSpeachDialog(anchor, documentController);
+                DragingDialogs.textToSpeachDialog(anchor, dc);
             }
         });
         ttsActive.setOnLongClickListener(new OnLongClickListener() {
@@ -452,13 +452,13 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
                         AppState.get().isCut = false;
                         SettingsManager.getBookSettings().updateFromAppState();
 
-                        if (documentController.isTextFormat()) {
+                        if (dc.isTextFormat()) {
                             nullAdapter();
-                            documentController.restartActivity();
-                            documentController.cleanImageMatrix();
+                            dc.restartActivity();
+                            dc.cleanImageMatrix();
                         } else {
                             TTSEngine.get().stop();
-                            documentController.cleanImageMatrix();
+                            dc.cleanImageMatrix();
                             reloadDoc.run();
                             authoFit();
                         }
@@ -474,20 +474,20 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
                         AppState.get().isCut = false;
                         AppState.get().isDoubleCoverAlone = false;
                         SettingsManager.getBookSettings().updateFromAppState();
-                        if (documentController.isTextFormat()) {
+                        if (dc.isTextFormat()) {
                             nullAdapter();
-                            documentController.restartActivity();
-                            documentController.cleanImageMatrix();
+                            dc.restartActivity();
+                            dc.cleanImageMatrix();
                         } else {
                             TTSEngine.get().stop();
-                            documentController.cleanImageMatrix();
+                            dc.cleanImageMatrix();
                             reloadDoc.run();
                             authoFit();
                         }
                         return false;
                     }
                 });
-                if (!documentController.isTextFormat()) {
+                if (!dc.isTextFormat()) {
                     p.getMenu().add(R.string.two_pages_cover).setIcon(R.drawable.glyphicons_two_pages_23).setOnMenuItemClickListener(new OnMenuItemClickListener() {
 
                         @Override
@@ -497,13 +497,13 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
                             AppState.get().isCut = false;
                             AppState.get().isDoubleCoverAlone = true;
                             SettingsManager.getBookSettings().updateFromAppState();
-                            if (documentController.isTextFormat()) {
+                            if (dc.isTextFormat()) {
                                 nullAdapter();
-                                documentController.restartActivity();
-                                documentController.cleanImageMatrix();
+                                dc.restartActivity();
+                                dc.cleanImageMatrix();
                             } else {
                                 TTSEngine.get().stop();
-                                documentController.cleanImageMatrix();
+                                dc.cleanImageMatrix();
                                 reloadDoc.run();
                                 authoFit();
                             }
@@ -511,7 +511,7 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
                         }
                     });
                 }
-                if (!documentController.isTextFormat()) {
+                if (!dc.isTextFormat()) {
                     p.getMenu().add(R.string.half_page).setIcon(R.drawable.glyphicons_page_split).setOnMenuItemClickListener(new OnMenuItemClickListener() {
 
                         @Override
@@ -523,7 +523,7 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
                             SettingsManager.getBookSettings().updateFromAppState();
                             TTSEngine.get().stop();
 
-                            documentController.cleanImageMatrix();
+                            dc.cleanImageMatrix();
                             reloadDoc.run();
                             authoFit();
                             return false;
@@ -569,17 +569,17 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
 
             @Override
             public void onClick(final View v) {
-                ShareDialog.show(HorizontalViewActivity.this, documentController.getCurrentBook(), new Runnable() {
+                ShareDialog.show(HorizontalViewActivity.this, dc.getCurrentBook(), new Runnable() {
 
                     @Override
                     public void run() {
-                        if (documentController.getCurrentBook().delete()) {
+                        if (dc.getCurrentBook().delete()) {
                             TempHolder.listHash++;
-                            AppDB.get().deleteBy(documentController.getCurrentBook().getPath());
-                            documentController.getActivity().finish();
+                            AppDB.get().deleteBy(dc.getCurrentBook().getPath());
+                            dc.getActivity().finish();
                         }
                     }
-                }, documentController.getCurentPage(), null, documentController);
+                }, dc.getCurentPage(), null, dc);
                 Keyboards.hideNavigation(HorizontalViewActivity.this);
 
             }
@@ -596,7 +596,7 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
 
             @Override
             public void onClick(final View v) {
-                DragingDialogs.preferences(anchor, documentController, onRefresh, reloadDoc);
+                DragingDialogs.preferences(anchor, dc, onRefresh, reloadDoc);
             }
         });
 
@@ -618,7 +618,7 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
             @Override
             public boolean onLongClick(final View v) {
                 Vibro.vibrate();
-                CloseAppDialog.showOnLongClickDialog(HorizontalViewActivity.this, v, documentController);
+                CloseAppDialog.showOnLongClickDialog(HorizontalViewActivity.this, v, dc);
                 return true;
             }
         });
@@ -730,7 +730,7 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
                             dialog.dismiss();
-                            documentController.onCloseActivityFinal(null);
+                            dc.onCloseActivityFinal(null);
                         }
 
                     });
@@ -741,7 +741,7 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
                             final String txt = input.getText().toString();
                             if (TxtUtils.isNotEmpty(txt)) {
                                 dialog.dismiss();
-                                documentController.onCloseActivityFinal(new Runnable() {
+                                dc.onCloseActivityFinal(new Runnable() {
 
                                     @Override
                                     public void run() {
@@ -751,7 +751,7 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
                                 });
 
                             } else {
-                                documentController.onCloseActivityFinal(null);
+                                dc.onCloseActivityFinal(null);
                             }
                         }
                     });
@@ -765,7 +765,7 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
                     bottomIndicators.setVisibility(View.VISIBLE);
                     onModeChange.setVisibility(View.VISIBLE);
 
-                    documentController.initHandler();
+                    dc.initHandler();
                     AppState.get().lastClosedActivity = HorizontalViewActivity.class.getSimpleName();
                     AppState.get().lastMode = HorizontalViewActivity.class.getSimpleName();
                     LOG.d("lasta save", AppState.get().lastClosedActivity);
@@ -780,20 +780,20 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
                         AppState.get().isLocked = true;
                     }
 
-                    if (ExtUtils.isNoTextLayerForamt(documentController.getCurrentBook().getPath())) {
+                    if (ExtUtils.isNoTextLayerForamt(dc.getCurrentBook().getPath())) {
                         TintUtil.setTintImageWithAlpha(textToSpeach, Color.LTGRAY);
                     }
-                    if (documentController.isTextFormat()) {
+                    if (dc.isTextFormat()) {
                         // TintUtil.setTintImage(lockModelImage, Color.LTGRAY);
                     }
 
                     loadUI();
 
                     // AppState.get().isEditMode = false; //remember last
-                    updateUI(documentController.getPageFromUri());
+                    updateUI(dc.getPageFromUri());
                     hideShow();
 
-                    EventBus.getDefault().post(new MessageAutoFit(documentController.getPageFromUri()));
+                    EventBus.getDefault().post(new MessageAutoFit(dc.getPageFromUri()));
                     seekBar.setOnSeekBarChangeListener(onSeek);
                     showHideInfoToolBar();
 
@@ -804,10 +804,10 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
 
                     updateIconMode();
 
-                    onCrop.setVisibility(documentController.isTextFormat() ? View.GONE : View.VISIBLE);
-                    onMove.setVisibility(AppState.get().isInkMode && !documentController.isTextFormat() ? View.VISIBLE : View.GONE);
-                    onBC.setVisibility(documentController.isTextFormat() ? View.GONE : View.VISIBLE);
-                    if (AppState.get().bolderTextOnImage || AppState.get().brigtnessImage != 0 || AppState.get().contrastImage != 0) {
+                    onCrop.setVisibility(dc.isTextFormat() ? View.GONE : View.VISIBLE);
+                    onMove.setVisibility(AppState.get().isInkMode && !dc.isTextFormat() ? View.VISIBLE : View.GONE);
+                    onBC.setVisibility(dc.isTextFormat() ? View.GONE : View.VISIBLE);
+                    if (Dips.isEInk(dc.getActivity()) || AppState.get().bolderTextOnImage || AppState.get().brigtnessImage != 0 || AppState.get().contrastImage != 0) {
                         onBC.setVisibility(View.VISIBLE);
                     }
 
@@ -896,7 +896,7 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
         AppState.get().isCut = false;
         SettingsManager.getBookSettings().updateFromAppState();
         nullAdapter();
-        documentController.restartActivity();
+        dc.restartActivity();
     }
 
     public void updateSeekBarColorAndSize() {
@@ -929,7 +929,7 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
 
         @Override
         public void run() {
-            documentController.getOutline(null, false);
+            dc.getOutline(null, false);
             updateReadPercent();
 
             updateUI(viewPager.getCurrentItem());
@@ -955,7 +955,7 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
     public void onPageNumber(final MessagePageNumber event) {
         try {
             ttsActive.setVisibility(View.VISIBLE);
-            documentController.onGoToPage(event.getPage() + 1);
+            dc.onGoToPage(event.getPage() + 1);
         } catch (Exception e) {
             LOG.e(e);
         }
@@ -994,9 +994,9 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
 
             if (flippingTimer >= AppState.get().flippingInterval) {
                 flippingTimer = 0;
-                if (documentController.getCurentPage() == documentController.getPageCount() - 1) {
+                if (dc.getCurentPage() == dc.getPageCount() - 1) {
                     if (AppState.get().isLoopAutoplay) {
-                        documentController.onGoToPage(1);
+                        dc.onGoToPage(1);
                     } else {
                         onFlippingStop(null);
                         return;
@@ -1017,29 +1017,29 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
     public void testScreenshots() {
 
         if (getIntent().hasExtra("id1")) {
-            DragingDialogs.thumbnailDialog(anchor, documentController);
+            DragingDialogs.thumbnailDialog(anchor, dc);
 
         }
         if (getIntent().hasExtra("id2")) {
-            DragingDialogs.showContent(anchor, documentController);
+            DragingDialogs.showContent(anchor, dc);
         }
         if (getIntent().hasExtra("id3")) {
             findViewById(R.id.bookPref).performClick();
         }
 
         if (getIntent().hasExtra("id4")) {
-            DragingDialogs.selectTextMenu(anchor, documentController, true, onRefresh);
+            DragingDialogs.selectTextMenu(anchor, dc, true, onRefresh);
         }
 
         if (getIntent().hasExtra("id5")) {
-            DragingDialogs.textToSpeachDialog(anchor, documentController);
+            DragingDialogs.textToSpeachDialog(anchor, dc);
         }
 
         if (getIntent().hasExtra("id6")) {
-            DragingDialogs.moreBookSettings(anchor, documentController, null, null);
+            DragingDialogs.moreBookSettings(anchor, dc, null, null);
         }
         if (getIntent().hasExtra("id7")) {
-            FileInformationDialog.showFileInfoDialog(documentController.getActivity(), new File(documentController.getBookPath()), null);
+            FileInformationDialog.showFileInfoDialog(dc.getActivity(), new File(dc.getBookPath()), null);
         }
 
         if (false) {
@@ -1049,7 +1049,7 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
     }
 
     public void showHideHistory() {
-        linkHistory.setVisibility(!documentController.getLinkHistory().isEmpty() ? View.VISIBLE : View.GONE);
+        linkHistory.setVisibility(!dc.getLinkHistory().isEmpty() ? View.VISIBLE : View.GONE);
 
     }
 
@@ -1075,7 +1075,7 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
 
             reloadDoc.run();
         }
-        DragingDialogs.searchMenu(anchor, documentController, "");
+        DragingDialogs.searchMenu(anchor, dc, "");
     }
 
     @Override
@@ -1097,8 +1097,8 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
         @Override
         public void run() {
             onBC.underline(AppState.get().bolderTextOnImage || AppState.get().brigtnessImage != 0 || AppState.get().contrastImage != 0);
-            documentController.getOutline(null, false);
-            documentController.saveCurrentPage();
+            dc.getOutline(null, false);
+            dc.saveCurrentPage();
             createAdapter();
 
             loadUI();
@@ -1146,8 +1146,8 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
         @Override
         public void run() {
             LOG.d("Close App");
-            if (documentController != null) {
-                documentController.onCloseActivityAdnShowInterstial();
+            if (dc != null) {
+                dc.onCloseActivityAdnShowInterstial();
             } else {
                 finish();
             }
@@ -1192,8 +1192,8 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
     }
 
     public void updateReadPercent() {
-        if (documentController != null) {
-            double value = (documentController.getCurentPage() + 0.0001) / documentController.getPageCount();
+        if (dc != null) {
+            double value = (dc.getCurentPage() + 0.0001) / dc.getPageCount();
             getIntent().putExtra(PERCENT_EXTRA, value);
         }
     }
@@ -1209,12 +1209,12 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
             clickUtils.init();
         }
 
-        if (documentController != null) {
-            documentController.onResume();
+        if (dc != null) {
+            dc.onResume();
         }
 
-        if (documentController != null && TTSEngine.get().isPlaying()) {
-            documentController.onGoToPage(AppState.get().lastBookPage + 1);
+        if (dc != null && TTSEngine.get().isPlaying()) {
+            dc.onGoToPage(AppState.get().lastBookPage + 1);
         }
 
         handler.removeCallbacks(closeRunnable);
@@ -1224,8 +1224,8 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
     @Override
     protected void onPause() {
         super.onPause();
-        if (documentController != null) {
-            documentController.saveCurrentPage();
+        if (dc != null) {
+            dc.saveCurrentPage();
         }
         AppState.get().save(this);
         TempHolder.isSeaching = false;
@@ -1237,14 +1237,14 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
 
     public void nextPage() {
         flippingTimer = 0;
-        viewPager.setCurrentItem(documentController.getCurentPage() + 1, AppState.get().isScrollAnimation);
-        documentController.checkReadingTimer();
+        viewPager.setCurrentItem(dc.getCurentPage() + 1, AppState.get().isScrollAnimation);
+        dc.checkReadingTimer();
     }
 
     public void prevPage() {
         flippingTimer = 0;
-        viewPager.setCurrentItem(documentController.getCurentPage() - 1, AppState.get().isScrollAnimation);
-        documentController.checkReadingTimer();
+        viewPager.setCurrentItem(dc.getCurentPage() - 1, AppState.get().isScrollAnimation);
+        dc.checkReadingTimer();
     }
 
     @TargetApi(Build.VERSION_CODES.HONEYCOMB)
@@ -1293,8 +1293,8 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
             updateLockMode();
             // Toast.makeText(this, "DB", Toast.LENGTH_SHORT).show();
         } else if (ev.getMessage().equals(MessageEvent.MESSAGE_SELECTED_TEXT)) {
-            if (documentController.isTextFormat() && TxtUtils.isFooterNote(AppState.get().selectedText)) {
-                showFootNotes = DragingDialogs.showFootNotes(anchor, documentController, new Runnable() {
+            if (dc.isTextFormat() && TxtUtils.isFooterNote(AppState.get().selectedText)) {
+                showFootNotes = DragingDialogs.showFootNotes(anchor, dc, new Runnable() {
 
                     @Override
                     public void run() {
@@ -1306,15 +1306,15 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
                 if (AppState.get().isRememberDictionary) {
                     DictsHelper.runIntent(anchor.getContext(), AppState.get().selectedText);
                 } else {
-                    DragingDialogs.selectTextMenu(anchor, documentController, true, onRefresh);
+                    DragingDialogs.selectTextMenu(anchor, dc, true, onRefresh);
                 }
             }
         } else if (ev.getMessage().equals(MessageEvent.MESSAGE_GOTO_PAGE)) {
             if (ev.getPage() == -1 && TxtUtils.isNotEmpty(ev.getBody())) {
                 AlertDialogs.openUrl(this, ev.getBody());
             } else {
-                documentController.getLinkHistory().add(documentController.getCurentPage() + 1);
-                documentController.onGoToPage(ev.getPage() + 1);
+                dc.getLinkHistory().add(dc.getCurentPage() + 1);
+                dc.onGoToPage(ev.getPage() + 1);
                 showHideHistory();
             }
         }
@@ -1353,7 +1353,7 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
     };
 
     public void initAsync(int w, int h) {
-        documentController = new HorizontalModeController(this, w, h) {
+        dc = new HorizontalModeController(this, w, h) {
             @Override
             public void onGoToPageImpl(int page) {
                 updateUI(page);
@@ -1370,7 +1370,7 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
             }
 
         };
-        documentController.init(this);
+        dc.init(this);
     }
 
     Runnable updateTimePower = new Runnable() {
@@ -1394,7 +1394,7 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
     };
 
     public void updateUI(int page) {
-        if (documentController == null) {
+        if (dc == null) {
             return;
         }
 
@@ -1402,7 +1402,7 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
             viewPager.setCurrentItem(page, false);
         }
 
-        int max = documentController.getPageCount();
+        int max = dc.getPageCount();
         String textPage = TxtUtils.deltaPage(page + 1, max);
         String textMax = TxtUtils.deltaPageMax(max);
         if (AppState.get().isRTL) {
@@ -1415,8 +1415,8 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
         pagesCountIndicator.setText(textPage + " ∕ " + textMax);
 
         seekBar.setProgress(page);
-        if (documentController != null) {
-            documentController.currentPage = page;
+        if (dc != null) {
+            dc.currentPage = page;
         }
 
         pagesTime.setText(UiSystemUtils.getSystemTime(this));
@@ -1426,8 +1426,8 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
         if (myLevel == -1) {
             pagesPower.setVisibility(View.GONE);
         }
-        if (TxtUtils.isNotEmpty(documentController.getCurrentChapter())) {
-            chapterView.setText(documentController.getCurrentChapter());
+        if (TxtUtils.isNotEmpty(dc.getCurrentChapter())) {
+            chapterView.setText(dc.getCurrentChapter());
             chapterView.setVisibility(View.VISIBLE);
         } else {
             chapterView.setVisibility(View.GONE);
@@ -1438,17 +1438,17 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
     }
 
     public void loadUI() {
-        titleTxt.setText(documentController.getTitle());
+        titleTxt.setText(dc.getTitle());
         createAdapter();
 
         viewPager.addOnPageChangeListener(onViewPagerChangeListener);
-        viewPager.setCurrentItem(documentController.getCurentPage(), false);
+        viewPager.setCurrentItem(dc.getCurentPage(), false);
 
-        seekBar.setMax(documentController.getPageCount() - 1);
-        seekBar.setProgress(documentController.getCurentPage());
+        seekBar.setMax(dc.getPageCount() - 1);
+        seekBar.setProgress(dc.getCurentPage());
 
-        bottomIndicators.setOnTouchListener(new HorizontallSeekTouchEventListener(onSeek, documentController.getPageCount(), false));
-        progressDraw.setOnTouchListener(new HorizontallSeekTouchEventListener(onSeek, documentController.getPageCount(), false));
+        bottomIndicators.setOnTouchListener(new HorizontallSeekTouchEventListener(onSeek, dc.getPageCount(), false));
+        progressDraw.setOnTouchListener(new HorizontallSeekTouchEventListener(onSeek, dc.getPageCount(), false));
         bottomIndicators.setOnClickListener(new OnClickListener() {
 
             @Override
@@ -1470,10 +1470,10 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
 
         tinUI();
 
-        onViewPagerChangeListener.onPageSelected(documentController.getCurentPage());
+        onViewPagerChangeListener.onPageSelected(dc.getCurentPage());
 
-        progressDraw.updatePageCount(documentController.getPageCount());
-        documentController.getOutline(new ResultResponse<List<OutlineLinkWrapper>>() {
+        progressDraw.updatePageCount(dc.getPageCount());
+        dc.getOutline(new ResultResponse<List<OutlineLinkWrapper>>() {
 
             @Override
             public boolean onResultRecive(List<OutlineLinkWrapper> result) {
@@ -1528,7 +1528,7 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
 
                 @Override
                 public void run() {
-                    documentController.saveCurrentPage();
+                    dc.saveCurrentPage();
                     LOG.d("PAGE SAVED");
                 }
             }, 2000);
@@ -1623,7 +1623,7 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
             }
         } else {
             Keyboards.hideNavigationOnCreate(this);
-            documentController.udpateImageSize(viewPager.getWidth(), viewPager.getHeight());
+            dc.udpateImageSize(viewPager.getWidth(), viewPager.getHeight());
             onRotateScreen();
         }
 
@@ -1637,7 +1637,7 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
             @Override
             public void run() {
                 PageImageState.get().isAutoFit = true;
-                documentController.cleanImageMatrix();
+                dc.cleanImageMatrix();
                 EventBus.getDefault().post(new MessageAutoFit(viewPager.getCurrentItem()));
             }
         }, 50);
@@ -1652,7 +1652,7 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
         if (ExtUtils.isTextFomat(getIntent())) {
             updateReadPercent();
             nullAdapter();
-            documentController.restartActivity();
+            dc.restartActivity();
         } else {
             if (viewPager != null) {
                 authoFit();
@@ -1666,7 +1666,7 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
         LOG.d("createAdapter");
         nullAdapter();
         pagerAdapter = null;
-        final int count = documentController.getPageCount();
+        final int count = dc.getPageCount();
         pagerAdapter = new UpdatableFragmentPagerAdapter(getSupportFragmentManager()) {
 
             @Override
@@ -1680,7 +1680,7 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
 
                 final Bundle b = new Bundle();
                 b.putInt(ImagePageFragment.POS, position);
-                b.putString(ImagePageFragment.PAGE_PATH, documentController.getPageUrl(position).toString());
+                b.putString(ImagePageFragment.PAGE_PATH, dc.getPageUrl(position).toString());
 
                 imageFragment.setArguments(b);
                 return imageFragment;
@@ -1838,11 +1838,11 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
         }
         if (anchor != null && anchor.getVisibility() == View.GONE) {
             if (keyCode >= KeyEvent.KEYCODE_1 && keyCode <= KeyEvent.KEYCODE_9) {
-                documentController.onGoToPage(keyCode - KeyEvent.KEYCODE_1 + 1);
+                dc.onGoToPage(keyCode - KeyEvent.KEYCODE_1 + 1);
                 return true;
             }
             if (keyCode == KeyEvent.KEYCODE_0) {
-                DragingDialogs.thumbnailDialog(anchor, documentController);
+                DragingDialogs.thumbnailDialog(anchor, dc);
                 return true;
             }
 
@@ -1851,7 +1851,7 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
                 return true;
             }
             if (KeyEvent.KEYCODE_F == keyCode) {
-                documentController.alignDocument();
+                dc.alignDocument();
                 return true;
             }
 
@@ -1887,7 +1887,7 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
                     TTSEngine.get().playCurrent();
                     anchor.setTag("");
                 }
-                DragingDialogs.textToSpeachDialog(anchor, documentController);
+                DragingDialogs.textToSpeachDialog(anchor, dc);
                 return true;
             }
 
@@ -1921,7 +1921,7 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
     public boolean onKeyLongPress(final int keyCode, final KeyEvent event) {
         // Toast.makeText(this, "onKeyLongPress", Toast.LENGTH_SHORT).show();
         if (CloseAppDialog.checkLongPress(this, event)) {
-            CloseAppDialog.showOnLongClickDialog(HorizontalViewActivity.this, null, documentController);
+            CloseAppDialog.showOnLongClickDialog(HorizontalViewActivity.this, null, dc);
             return true;
         }
         return super.onKeyLongPress(keyCode, event);
@@ -1936,19 +1936,19 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
         }
 
         if (anchor != null && anchor.getChildCount() > 0 && anchor.getVisibility() == View.VISIBLE) {
-            documentController.clearSelectedText();
+            dc.clearSelectedText();
             closeDialogs();
             return;
         }
 
-        if (documentController != null && !documentController.getLinkHistory().isEmpty()) {
-            documentController.onLinkHistory();
+        if (dc != null && !dc.getLinkHistory().isEmpty()) {
+            dc.onLinkHistory();
             showHideHistory();
             return;
         }
 
         if (AppState.get().isShowLongBackDialog) {
-            CloseAppDialog.showOnLongClickDialog(HorizontalViewActivity.this, null, documentController);
+            CloseAppDialog.showOnLongClickDialog(HorizontalViewActivity.this, null, dc);
         } else {
             showInterstial();
         }
@@ -1961,7 +1961,7 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
             handler.removeCallbacksAndMessages(null);
         }
         nullAdapter();
-        documentController.onCloseActivityFinal(null);
+        dc.onCloseActivityFinal(null);
     }
 
     private void updateAnimation(final TranslateAnimation a) {
