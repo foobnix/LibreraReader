@@ -343,6 +343,9 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
         });
 
         onBC.setVisibility(isTextFomat ? View.GONE : View.VISIBLE);
+        if (AppState.get().bolderTextOnImage || AppState.get().brigtnessImage != 0 || AppState.get().contrastImage != 0) {
+            onBC.setVisibility(View.VISIBLE);
+        }
         onMove.setVisibility(Dips.isEInk(this) && !isTextFomat ? View.VISIBLE : View.GONE);
 
         findViewById(R.id.thumbnail).setOnClickListener(new View.OnClickListener() {
@@ -804,6 +807,9 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
                     onCrop.setVisibility(documentController.isTextFormat() ? View.GONE : View.VISIBLE);
                     onMove.setVisibility(AppState.get().isInkMode && !documentController.isTextFormat() ? View.VISIBLE : View.GONE);
                     onBC.setVisibility(documentController.isTextFormat() ? View.GONE : View.VISIBLE);
+                    if (AppState.get().bolderTextOnImage || AppState.get().brigtnessImage != 0 || AppState.get().contrastImage != 0) {
+                        onBC.setVisibility(View.VISIBLE);
+                    }
 
                     onCrop.underline(AppState.get().isCrop);
                     onCrop.invalidate();

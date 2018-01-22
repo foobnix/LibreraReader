@@ -431,7 +431,11 @@ public class DocumentWrapperUI {
             crop.setVisibility(View.GONE);
             cut.setVisibility(View.GONE);
             onModeChange.setVisibility(View.GONE);
-            onBC.setVisibility(View.GONE);
+            if (AppState.get().bolderTextOnImage || AppState.get().brigtnessImage != 0 || AppState.get().contrastImage != 0) {
+                onBC.setVisibility(View.VISIBLE);
+            } else {
+                onBC.setVisibility(View.GONE);
+            }
         }
 
         crop.underline(AppState.get().isCrop);
