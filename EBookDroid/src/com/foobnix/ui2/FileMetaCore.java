@@ -94,8 +94,10 @@ public class FileMetaCore {
         EbookMeta ebookMeta = EbookMeta.Empty();
         String fileName = ExtUtils.getFileName(unZipPath);
         String fileNameOriginal = ExtUtils.getFileName(path);
-        fileNameOriginal = TxtUtils.encode1251(fileNameOriginal);
-        fileName = TxtUtils.encode1251(fileNameOriginal);
+        if (BookType.FB2.is(unZipPath) || BookType.FB2.is(unZipPath)) {
+            fileNameOriginal = TxtUtils.encode1251(fileNameOriginal);
+            fileName = TxtUtils.encode1251(fileNameOriginal);
+        }
 
         if (CalirbeExtractor.isCalibre(unZipPath)) {
             ebookMeta = CalirbeExtractor.getBookMetaInformation(unZipPath);
