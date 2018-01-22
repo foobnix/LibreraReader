@@ -46,6 +46,7 @@ import com.foobnix.tts.MessagePageNumber;
 import com.foobnix.tts.TTSEngine;
 import com.foobnix.tts.TtsStatus;
 import com.foobnix.ui2.AppDB;
+import com.foobnix.ui2.MainTabs2;
 import com.nostra13.universalimageloader.core.ImageLoader;
 
 import android.annotation.TargetApi;
@@ -977,6 +978,14 @@ public class DocumentWrapperUI {
                 onAutoScrollClick();
             } else if (AppState.get().doubleClickAction1 == AppState.DOUBLE_CLICK_CLOSE_BOOK) {
                 closeAndRunList();
+            } else if (AppState.get().doubleClickAction1 == AppState.DOUBLE_CLICK_CLOSE_BOOK_AND_APP) {
+                dc.onCloseActivityFinal(new Runnable() {
+
+                    @Override
+                    public void run() {
+                        MainTabs2.closeApp(dc.getActivity());
+                    }
+                });
             }
         }
     }

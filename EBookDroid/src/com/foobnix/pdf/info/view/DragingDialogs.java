@@ -2687,7 +2687,9 @@ public class DragingDialogs {
                         controller.getString(R.string.db_auto_alignemnt), //
                         controller.getString(R.string.db_auto_center_horizontally), //
                         controller.getString(R.string.zoom_in_zoom_out), //
-                        controller.getString(R.string.close_book), controller.getString(R.string.db_do_nothing) //
+                        controller.getString(R.string.close_book), //
+                        controller.getString(R.string.close_book_and_application), //
+                        controller.getString(R.string.db_do_nothing) //
 
                 );
 
@@ -2697,6 +2699,7 @@ public class DragingDialogs {
                         AppState.DOUBLE_CLICK_CENTER_HORIZONTAL, //
                         AppState.DOUBLE_CLICK_ZOOM_IN_OUT, //
                         AppState.DOUBLE_CLICK_CLOSE_BOOK, //
+                        AppState.DOUBLE_CLICK_CLOSE_BOOK_AND_APP, //
                         AppState.DOUBLE_CLICK_NOTHING //
                 );//
 

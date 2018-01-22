@@ -475,4 +475,5 @@
    <string name="percent">百分</string>
    <string name="reading_progress">阅读进度</string>
    <string name="awards">奖项</string>
+   <string name="close_book_and_application">关闭书籍和应用程序</string>
 </resources>

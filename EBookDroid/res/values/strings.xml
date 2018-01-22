@@ -475,4 +475,5 @@
    <string name="percent">Percent</string>
    <string name="reading_progress">Reading  progress</string>
    <string name="awards">Awards</string>
+   <string name="close_book_and_application">Close book and application</string>
 </resources>

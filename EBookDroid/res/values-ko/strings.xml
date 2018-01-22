@@ -475,4 +475,5 @@
    <string name="percent">퍼센트</string>
    <string name="reading_progress">읽기 진행률</string>
    <string name="awards">수상 내역</string>
+   <string name="close_book_and_application">도서 및 신청서 닫기</string>
 </resources>

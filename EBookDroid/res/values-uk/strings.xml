@@ -475,4 +475,5 @@
    <string name="percent">Відсоток</string>
    <string name="reading_progress">Прогрес читання</string>
    <string name="awards">Нагороди</string>
+   <string name="close_book_and_application">Закрити книгу та додаток</string>
 </resources>

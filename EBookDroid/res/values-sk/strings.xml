@@ -475,4 +475,5 @@
    <string name="percent">Percento</string>
    <string name="reading_progress">Čítanie pokroku</string>
    <string name="awards">Ocenenie</string>
+   <string name="close_book_and_application">Zatvorte knihu a aplikáciu</string>
 </resources>

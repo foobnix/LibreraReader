@@ -475,4 +475,5 @@
    <string name="percent">Yüzde</string>
    <string name="reading_progress">Ilerleme okuma</string>
    <string name="awards">Ödüller</string>
+   <string name="close_book_and_application">Kitabı ve başvuruyu kapat</string>
 </resources>

@@ -1254,6 +1254,14 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
         LOG.d("MessageEvent", ev.getMessage(), ev.getX(), ev.getY());
         if (ev.getMessage().equals(MessageEvent.MESSAGE_CLOSE_BOOK)) {
             showInterstial();
+        } else if (ev.getMessage().equals(MessageEvent.MESSAGE_CLOSE_BOOK_APP)) {
+            dc.onCloseActivityFinal(new Runnable() {
+
+                @Override
+                public void run() {
+                    MainTabs2.closeApp(dc.getActivity());
+                }
+            });
         } else if (ev.getMessage().equals(MessageEvent.MESSAGE_PERFORM_CLICK)) {
             int x = (int) ev.getX();
             int y = (int) ev.getY();

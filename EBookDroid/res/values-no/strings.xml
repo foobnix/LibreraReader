@@ -475,4 +475,5 @@
    <string name="percent">Prosent</string>
    <string name="reading_progress">Leser fremgang</string>
    <string name="awards">Awards</string>
+   <string name="close_book_and_application">Lukk bok og søknad</string>
 </resources>

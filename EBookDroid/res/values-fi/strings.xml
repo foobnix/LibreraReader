@@ -475,4 +475,5 @@
    <string name="percent">Prosentti</string>
    <string name="reading_progress">Edistyksen lukeminen</string>
    <string name="awards">Palkinnot</string>
+   <string name="close_book_and_application">Sulje kirja ja sovellus</string>
 </resources>

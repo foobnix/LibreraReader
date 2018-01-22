@@ -475,4 +475,5 @@
    <string name="percent">Pour cent</string>
    <string name="reading_progress">Lecture des progrès</string>
    <string name="awards">Prix</string>
+   <string name="close_book_and_application">Fermer le livre et l\'application</string>
 </resources>

@@ -475,4 +475,5 @@
    <string name="percent">Procent</string>
    <string name="reading_progress">Vooruitgang boeken</string>
    <string name="awards">Awards</string>
+   <string name="close_book_and_application">Boek en toepassing sluiten</string>
 </resources>

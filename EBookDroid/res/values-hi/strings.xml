@@ -475,4 +475,5 @@
    <string name="percent">प्रतिशत</string>
    <string name="reading_progress">प्रगति पढ़ना</string>
    <string name="awards">पुरस्कार</string>
+   <string name="close_book_and_application">पुस्तक और एप्लिकेशन को बंद करें</string>
 </resources>

@@ -141,7 +141,6 @@ public class MainTabs2 extends AdsFragmentActivity {
         testIntentHandler();
     }
 
-
     @Override
     protected void attachBaseContext(Context context) {
         if (AppState.MY_SYSTEM_LANG.equals(AppState.get().appLang) && AppState.get().appFontScale == 1.0f) {
@@ -614,6 +613,9 @@ public class MainTabs2 extends AdsFragmentActivity {
     }
 
     public static void closeApp(Context c) {
+        if (c == null) {
+            return;
+        }
         EventBus.getDefault().post(new MsgCloseMainTabs());
     }
 
