@@ -672,7 +672,7 @@ public class DragingDialogs {
 
                     @Override
                     public void populateView(View inflate, int arg1, Integer page) {
-                        final TextView text = Views.text(inflate, android.R.id.text1, TxtUtils.deltaPage(page + 1, controller.getPageCount()));
+                        final TextView text = Views.text(inflate, android.R.id.text1, TxtUtils.deltaPageMax(page + 1));
                         text.setGravity(Gravity.CENTER);
                         text.setTypeface(Typeface.DEFAULT, Typeface.BOLD);
                     }

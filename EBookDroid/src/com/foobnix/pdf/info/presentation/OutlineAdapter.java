@@ -154,7 +154,7 @@ public class OutlineAdapter extends BaseAdapter {
 
         final OutlineLinkWrapper item = getItem(position);
         view.setText(item.getTitleAsString().trim());
-        num.setText(TxtUtils.deltaPage(item.targetPage, pages));
+        num.setText(TxtUtils.deltaPageMax(item.targetPage));
 
         if (item.targetPage != -1) {
             num.setVisibility(View.VISIBLE);

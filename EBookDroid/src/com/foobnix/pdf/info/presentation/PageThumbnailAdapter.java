@@ -72,7 +72,7 @@ public class PageThumbnailAdapter extends BaseAdapter {
         ImageLoader.getInstance().displayImage(url, img, IMG.displayImageOptionsNoDiscCache);
 
         TextView txt = (TextView) view.findViewById(R.id.text1);
-        txt.setText(TxtUtils.deltaPage((position + 1), pageCount));
+        txt.setText(TxtUtils.deltaPage((position + 1)));
 
         txt.setVisibility(View.VISIBLE);
         img.setVisibility(View.VISIBLE);
