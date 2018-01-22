@@ -369,7 +369,7 @@ public class DocumentWrapperUI {
 
         int maxValue = controller.getPageCount();
         String current = TxtUtils.deltaPage(controller.getCurentPage(), maxValue);
-        String max = TxtUtils.deltaPage(maxValue, maxValue);
+        String max = TxtUtils.deltaPageMax(maxValue);
 
         if (AppState.get().isAutoScroll) {
             currentPageIndex.setText(String.format("{%s} %s/%s", AppState.get().autoScrollSpeed, current, max));
@@ -384,7 +384,7 @@ public class DocumentWrapperUI {
 
         updateSpeedLabel();
         currentSeek.setText(TxtUtils.deltaPage(current, max));
-        maxSeek.setText(TxtUtils.deltaPage(max, max));
+        maxSeek.setText(TxtUtils.deltaPageMax(max));
 
         seekBar.setOnSeekBarChangeListener(null);
         seekBar.setMax(max - 1);

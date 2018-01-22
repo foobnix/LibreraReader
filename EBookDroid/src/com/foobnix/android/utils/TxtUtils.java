@@ -56,6 +56,13 @@ public class TxtUtils {
         return "[" + (current + TempHolder.get().pageDelta) + "]";
     }
 
+    public static String deltaPageMax(int current) {
+        if (TempHolder.get().pageDelta == 0) {
+            return "" + current;
+        }
+        return "[" + (current + TempHolder.get().pageDelta) + "]";
+    }
+
     public static void addFilteredGenreSeries(String item, List<String> result, boolean simpleAdd) {
         if (TxtUtils.isEmpty(item)) {
             return;
