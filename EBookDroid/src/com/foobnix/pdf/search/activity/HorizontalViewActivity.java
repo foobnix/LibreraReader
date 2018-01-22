@@ -113,9 +113,9 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
     View adFrame, bottomBar, bottomIndicators, moveCenter, onClose, overlay;
     LinearLayout actionBar;
     FrameLayout anchor;
-    UnderlineImageView onCrop;
+    UnderlineImageView onCrop, onBC;
 
-    ImageView lockModelImage, linkHistory, ttsActive, onModeChange, outline, onMove, onBC, textToSpeach, onPageFlip1;
+    ImageView lockModelImage, linkHistory, ttsActive, onModeChange, outline, onMove, textToSpeach, onPageFlip1;
 
     HorizontalModeController documentController;
 
@@ -322,7 +322,8 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
             AppState.get().isInvert = true;
         }
 
-        onBC = (ImageView) findViewById(R.id.onBC);
+        onBC = (UnderlineImageView) findViewById(R.id.onBC);
+        onBC.underline(AppState.get().bolderTextOnImage || AppState.get().brigtnessImage != 0 || AppState.get().contrastImage != 0);
         onBC.setOnClickListener(new View.OnClickListener() {
 
             @Override
@@ -341,8 +342,8 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
             }
         });
 
-        onBC.setVisibility(AppState.get().isInkMode ? View.VISIBLE : View.GONE);
-        onMove.setVisibility(AppState.get().isInkMode && !isTextFomat ? View.VISIBLE : View.GONE);
+        onBC.setVisibility(isTextFomat ? View.GONE : View.VISIBLE);
+        onMove.setVisibility(Dips.isEInk(this) && !isTextFomat ? View.VISIBLE : View.GONE);
 
         findViewById(R.id.thumbnail).setOnClickListener(new View.OnClickListener() {
 
@@ -802,7 +803,7 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
 
                     onCrop.setVisibility(documentController.isTextFormat() ? View.GONE : View.VISIBLE);
                     onMove.setVisibility(AppState.get().isInkMode && !documentController.isTextFormat() ? View.VISIBLE : View.GONE);
-                    onBC.setVisibility(AppState.get().isInkMode ? View.VISIBLE : View.GONE);
+                    onBC.setVisibility(documentController.isTextFormat() ? View.GONE : View.VISIBLE);
 
                     onCrop.underline(AppState.get().isCrop);
                     onCrop.invalidate();
@@ -1089,7 +1090,7 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
 
         @Override
         public void run() {
-
+            onBC.underline(AppState.get().bolderTextOnImage || AppState.get().brigtnessImage != 0 || AppState.get().contrastImage != 0);
             documentController.getOutline(null, false);
             documentController.saveCurrentPage();
             createAdapter();
@@ -1101,6 +1102,7 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
 
         @Override
         public void run() {
+            onBC.underline(AppState.get().bolderTextOnImage || AppState.get().brigtnessImage != 0 || AppState.get().contrastImage != 0);
             IMG.clearMemoryCache();
             ImagePageFragment f2 = (ImagePageFragment) getSupportFragmentManager().findFragmentByTag("f" + (viewPager.getCurrentItem()));
             if (f2 != null) {

@@ -69,7 +69,7 @@
             android:contentDescription="zoom out"
             android:src="@drawable/glyphicons_191_circle_plus" />
 
-        <ImageView
+        <com.foobnix.pdf.info.view.UnderlineImageView
             android:id="@+id/onBC"
             style="@style/buttonWhite"
             android:layout_width="@dimen/wh_button"

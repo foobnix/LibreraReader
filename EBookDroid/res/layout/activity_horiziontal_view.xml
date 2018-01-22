@@ -115,13 +115,13 @@
                 android:src="@drawable/glyphicons_187_move"
                 android:visibility="visible" />
 
-            <ImageView
+            <com.foobnix.pdf.info.view.UnderlineImageView
                 android:id="@+id/onBC"
                 style="@style/buttonWhite"
                 android:layout_width="@dimen/wh_button"
                 android:layout_height="@dimen/wh_button"
                 android:layout_weight="0"
-                android:cropToPadding="true"
+                android:contentDescription="align document"
                 android:src="@drawable/glyphicons_190_brightness_my"
                 android:visibility="visible" />
 

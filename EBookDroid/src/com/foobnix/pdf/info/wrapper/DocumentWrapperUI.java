@@ -94,7 +94,7 @@ public class DocumentWrapperUI {
     FrameLayout anchor;
     DrawView drawView;
     ProgressDraw progressDraw;
-    UnderlineImageView crop, cut;
+    UnderlineImageView crop, cut, onBC;
 
     final Handler handler = new Handler();
     final Handler handlerTimer = new Handler();
@@ -419,8 +419,10 @@ public class DocumentWrapperUI {
             reverseKeysIndicator.setVisibility(View.GONE);
         }
 
-        moveLeft.setVisibility(Dips.screenWidth() < Dips.dpToPx(480) ? View.GONE : View.VISIBLE);
-        moveRight.setVisibility(Dips.screenWidth() < Dips.dpToPx(480) ? View.GONE : View.VISIBLE);
+        moveLeft.setVisibility(Dips.isSmallWidth() ? View.GONE : View.VISIBLE);
+        moveRight.setVisibility(Dips.isSmallWidth() ? View.GONE : View.VISIBLE);
+        zoomPlus.setVisibility(Dips.isSmallWidth() ? View.GONE : View.VISIBLE);
+        zoomMinus.setVisibility(Dips.isSmallWidth() ? View.GONE : View.VISIBLE);
         if (controller.isTextFormat()) {
             moveLeft.setVisibility(View.GONE);
             moveRight.setVisibility(View.GONE);
@@ -429,6 +431,7 @@ public class DocumentWrapperUI {
             crop.setVisibility(View.GONE);
             cut.setVisibility(View.GONE);
             onModeChange.setVisibility(View.GONE);
+            onBC.setVisibility(View.GONE);
         }
 
         crop.underline(AppState.get().isCrop);
@@ -573,9 +576,9 @@ public class DocumentWrapperUI {
             AppState.get().isInvert = true;
         }
 
-        ImageView onBC = (ImageView) a.findViewById(R.id.onBC);
+        onBC = (UnderlineImageView) a.findViewById(R.id.onBC);
         onBC.setOnClickListener(onBCclick);
-        onBC.setVisibility(AppState.get().isInkMode ? View.VISIBLE : View.GONE);
+        onBC.underline(AppState.get().bolderTextOnImage || AppState.get().brigtnessImage != 0 || AppState.get().contrastImage != 0);
 
         a.findViewById(R.id.toPage).setOnClickListener(toPage);
 
@@ -1393,6 +1396,7 @@ public class DocumentWrapperUI {
 
                 @Override
                 public void run() {
+                    onBC.underline(AppState.get().bolderTextOnImage || AppState.get().brigtnessImage != 0 || AppState.get().contrastImage != 0);
                     controller.updateRendering();
                 }
             }, null);
