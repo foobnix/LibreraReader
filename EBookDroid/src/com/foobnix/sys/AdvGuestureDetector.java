@@ -114,6 +114,7 @@ public class AdvGuestureDetector extends SimpleOnGestureListener implements IMul
         isScrollFinished = avc.getView().getScroller().isFinished();
         if (!isScrollFinished) {
             avc.getView().getScroller().forceFinished(true);
+            isScrollFinished = true;
         }
 
         clickUtils.initMusician();
@@ -127,12 +128,12 @@ public class AdvGuestureDetector extends SimpleOnGestureListener implements IMul
 
     @Override
     public boolean onSingleTapConfirmed(final MotionEvent e) {
-        if (isScrollFinished) {
+        // if (isScrollFinished) {
 
             if (alowConfirm && clickUtils.isClickCenter(e.getX(), e.getY())) {
                 docCtrl.onSingleTap();
             }
-        }
+        // }
         return true;
     }
 
@@ -140,82 +141,79 @@ public class AdvGuestureDetector extends SimpleOnGestureListener implements IMul
 
     @Override
     public boolean onSingleTapUp(final MotionEvent e) {
-        if (true || isScrollFinished) {// && !AppState.get().isEditPanelVisible) {
-            // if (isScrollFinished && AppState.get().isLocked) {
-            updateBorders();
-            if (!AppState.get().isMusicianMode && !AppState.get().isIgnoreAnnotatations || AppState.get().editWith == AppState.EDIT_DELETE) {
-                alowConfirm = false;
-                Annotation annotation2 = avc.isAnnotationTap(e.getX(), e.getY());
+        updateBorders();
+        if (!AppState.get().isMusicianMode && !AppState.get().isIgnoreAnnotatations || AppState.get().editWith == AppState.EDIT_DELETE) {
+            alowConfirm = false;
+            Annotation annotation2 = avc.isAnnotationTap(e.getX(), e.getY());
 
-                if (annotation2 == null && annotation != null) {
-                    annotation = null;
-                    avc.selectAnnotation(null);
-                    return true;
-                }
-                annotation = annotation2;
-
-                if (annotation != null) {
-                    avc.selectAnnotation(annotation);
-                    if (AppState.get().editWith == AppState.EDIT_DELETE) {
-                        docCtrl.onAnnotationTap(annotation.getPageHandler(), annotation.getPage(), annotation.getIndex());
-                        avc.selectAnnotation(null);
-                        annotation = null;
-                    } else {
-                        if (annotation.type == AnnotationType.TEXT) {
-                            docCtrl.showAnnotation(annotation);
-                        } else {
-                            docCtrl.showEditDialogIfNeed();
-                        }
-                    }
-                    return true;
-                }
-
-                if (isTextFormat) {
-                    String text = avc.processLongTap(true, e, e, false);
-                    if (TxtUtils.isFooterNote(text)) {
-                        AppState.get().selectedText = text;
-                        avc.processLongTap(true, e, e, true);
-                        docCtrl.onLongPress(e);
-                        return false;
-                    }
-                    if (text != null) {
-                        docCtrl.clearSelectedText();
-                        docCtrl.closeFooterNotesDialog();
-                    }
-                }
-
-                if (AppState.get().selectedText != null) {
-                    docCtrl.clearSelectedText();
-                    docCtrl.closeFooterNotesDialog();
-                    AppState.get().selectedText = null;
-                    return true;
-                }
+            if (annotation2 == null && annotation != null) {
+                annotation = null;
+                avc.selectAnnotation(null);
+                return true;
             }
-            if (!AppState.get().isMusicianMode) {
-                boolean processTap = avc.processTap(TouchManager.Touch.SingleTap, e);
-                if (processTap) {
+            annotation = annotation2;
+
+            if (annotation != null) {
+                avc.selectAnnotation(annotation);
+                if (AppState.get().editWith == AppState.EDIT_DELETE) {
+                    docCtrl.onAnnotationTap(annotation.getPageHandler(), annotation.getPage(), annotation.getIndex());
+                    avc.selectAnnotation(null);
+                    annotation = null;
+                } else {
+                    if (annotation.type == AnnotationType.TEXT) {
+                        docCtrl.showAnnotation(annotation);
+                    } else {
+                        docCtrl.showEditDialogIfNeed();
+                    }
+                }
+                return true;
+            }
+
+            if (isTextFormat) {
+                String text = avc.processLongTap(true, e, e, false);
+                if (TxtUtils.isFooterNote(text)) {
+                    AppState.get().selectedText = text;
+                    avc.processLongTap(true, e, e, true);
+                    docCtrl.onLongPress(e);
                     return false;
                 }
+                if (text != null) {
+                    docCtrl.clearSelectedText();
+                    docCtrl.closeFooterNotesDialog();
+                }
             }
-            if (clickUtils.isClickRight(e.getX(), e.getY())) {
-                docCtrl.onRightPress();
 
-            } else if (clickUtils.isClickLeft(e.getX(), e.getY())) {
-                docCtrl.onLeftPress();
-
-            } else if (clickUtils.isClickTop(e.getX(), e.getY())) {
-                docCtrl.onTopPress();
-
-            } else if (clickUtils.isClickBottom(e.getX(), e.getY())) {
-                docCtrl.onBottomPress();
-
-            } else if (clickUtils.isClickCenter(e.getX(), e.getY())) {
-                // docCtrl.onSingleTap();
-                alowConfirm = true;
+            if (AppState.get().selectedText != null) {
+                docCtrl.clearSelectedText();
+                docCtrl.closeFooterNotesDialog();
+                AppState.get().selectedText = null;
+                return true;
+            }
+        }
+        if (!AppState.get().isMusicianMode) {
+            boolean processTap = avc.processTap(TouchManager.Touch.SingleTap, e);
+            if (processTap) {
                 return false;
             }
-
         }
+        if (clickUtils.isClickRight(e.getX(), e.getY())) {
+            docCtrl.onRightPress();
+
+        } else if (clickUtils.isClickLeft(e.getX(), e.getY())) {
+            docCtrl.onLeftPress();
+
+        } else if (clickUtils.isClickTop(e.getX(), e.getY())) {
+            docCtrl.onTopPress();
+
+        } else if (clickUtils.isClickBottom(e.getX(), e.getY())) {
+            docCtrl.onBottomPress();
+
+        } else if (clickUtils.isClickCenter(e.getX(), e.getY())) {
+            // docCtrl.onSingleTap();
+            alowConfirm = true;
+            return false;
+        }
+
         return true;
     }
 

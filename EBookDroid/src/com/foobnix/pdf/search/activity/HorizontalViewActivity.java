@@ -343,7 +343,7 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
         });
 
         onBC.setVisibility(isTextFomat ? View.GONE : View.VISIBLE);
-        if (Dips.isEInk(dc.getActivity()) || AppState.get().bolderTextOnImage || AppState.get().brigtnessImage != 0 || AppState.get().contrastImage != 0) {
+        if (Dips.isEInk(this) || AppState.get().bolderTextOnImage || AppState.get().brigtnessImage != 0 || AppState.get().contrastImage != 0) {
             onBC.setVisibility(View.VISIBLE);
         }
         onMove.setVisibility(Dips.isEInk(this) && !isTextFomat ? View.VISIBLE : View.GONE);

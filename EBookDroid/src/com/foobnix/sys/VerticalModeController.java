@@ -194,7 +194,7 @@ public class VerticalModeController extends DocumentController {
     @Override
     public void onNextScreen(boolean animate) {
         int nextScreenScrollBy = AppState.get().nextScreenScrollBy;
-        LOG.d("nextScreenScrollBy", nextScreenScrollBy);
+        LOG.d("nextScreenScrollBy", nextScreenScrollBy, "animate", animate);
         if (animate) {
             ctr.getDocumentController().getView().startPageScroll(0, 1 * nextScreenScrollBy * getScrollValue() / 100);
         } else {

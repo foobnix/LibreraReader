@@ -999,7 +999,7 @@ public class DocumentWrapperUI {
         String pages = dc.getString(R.string.by_pages);
         String screen = dc.getString(R.string.of_screen).toLowerCase(Locale.US);
         String screens = dc.getString(R.string.by_screans);
-        final List<Integer> values = Arrays.asList(AppState.NEXT_SCREEN_SCROLL_BY_PAGES, 100, 95, 75, 50, 25, 5);
+        final List<Integer> values = Arrays.asList(AppState.NEXT_SCREEN_SCROLL_BY_PAGES, 100, 95, 75, 50, 25, 10);
 
         for (int i = 0; i < values.size(); i++) {
             final int n = i;
@@ -1589,6 +1589,7 @@ public class DocumentWrapperUI {
     }
 
     public void nextChose(boolean animate, int repeatCount) {
+        LOG.d("nextChose");
         dc.checkReadingTimer();
 
         if (dc.closeFooterNotesDialog()) {
