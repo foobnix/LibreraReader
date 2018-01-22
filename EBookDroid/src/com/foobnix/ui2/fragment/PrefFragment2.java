@@ -458,8 +458,11 @@ public class PrefFragment2 extends UIFragment {
 
                 final PopupMenu popupMenu = new PopupMenu(v.getContext(), v);
 
-                final List<String> codes = Arrays.asList("en", "ar", "de", "es", "fa", "fi", "fr", "he", "hi", "hu", "id", "it", "ja", "ko", "lt", "nl", "no", "pl", "pt", "ro", "ru", "sk", "sv", "sw", "th", "tr", "uk",
-                        "vi", "zh");
+                final List<String> codes = Arrays.asList(//
+                        "en", "ar", "de", "es", "fa", "fi", "fr", "he", //
+                        "hi", "hu", "id", "it", "ja", "ko", "la", "lt", //
+                        "nl", "no", "pl", "pt", "ro", "ru", "sk", "sv", //
+                        "sw", "th", "tr", "uk", "vi", "zh");
                 List<String> langs = new ArrayList<String>();
                 for (String code : codes) {
                     langs.add(DialogTranslateFromTo.getLanuageByCode(code) + ":" + code);
