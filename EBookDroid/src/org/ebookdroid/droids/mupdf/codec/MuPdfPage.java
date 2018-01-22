@@ -46,10 +46,11 @@ public class MuPdfPage extends AbstractCodecPage {
     private MuPdfPage(final long pageHandle, final long docHandle, int pageNumber) {
         this.pageHandle = pageHandle;
         this.docHandle = docHandle;
+        this.pageNumber = pageNumber;
+
         this.pageBounds = getBounds();
         this.actualWidth = (int) pageBounds.width();
         this.actualHeight = (int) pageBounds.height();
-        this.pageNumber = pageNumber;
     }
 
     @Override
@@ -229,7 +230,19 @@ public class MuPdfPage extends AbstractCodecPage {
         }
     }
 
+    @Override
+    public int getCharCount() {
+        try {
+            TempHolder.lock.lock();
+            return getCharCount(docHandle, pageHandle);
+        } finally {
+            TempHolder.lock.unlock();
+        }
+    }
+
     private static native void getBounds(long dochandle, long handle, float[] bounds);
+
+    private static native int getCharCount(long dochandle, long handle);
 
     private static native void free(long dochandle, long handle);
 

@@ -53,6 +53,11 @@ public class DjvuPage extends AbstractCodecPage {
     }
 
     @Override
+    public int getCharCount() {
+        return 0;
+    }
+
+    @Override
     public int getHeight() {
         if (h == 0) {
             h = getHeight(pageHandle);

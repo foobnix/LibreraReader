@@ -43,4 +43,6 @@ public interface CodecPage {
 
     String getPageHTMLWithImages();
 
+    int getCharCount();
+
 }

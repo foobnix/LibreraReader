@@ -645,6 +645,7 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
         bottomIndicators.setVisibility(View.GONE);
 
         titleTxt.setText(HorizontalModeController.getTempTitle(this));
+
         loadinAsyncTask = new CopyAsyncTask() {
             AlertDialog dialog;
             private boolean isCancelled = false;

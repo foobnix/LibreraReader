@@ -668,6 +668,54 @@ FUN(StructuredText_getBlocks)(JNIEnv *env, jobject self, jlong dochandle, jlong 
 }
 
 
+JNIEXPORT jint JNICALL
+Java_org_ebookdroid_droids_mupdf_codec_MuPdfPage_getCharCount(JNIEnv * env, jobject thiz,  jlong dochandle, jlong pagehandle)
+{
+
+		renderdocument_t *doc = (renderdocument_t*) (long) dochandle;
+		fz_context* ctx = doc->ctx;
+
+		renderpage_t *page_t = (renderpage_t*) (long) pagehandle;
+
+		fz_stext_page *page = NULL;
+
+		fz_try(ctx)
+			{
+
+				page = fz_new_stext_page_from_page(ctx, page_t->page, NULL);
+			}
+		fz_catch(ctx)
+			{
+
+				return 0;
+			}
+
+
+			fz_stext_block *block;
+			fz_stext_line *line;
+			fz_stext_char *ch;
+			int len = 0;
+
+			for (block = page->first_block; block; block = block->next)
+			{
+				if (block->type != FZ_STEXT_BLOCK_TEXT)
+					continue;
+				for (line = block->u.t.first_line; line; line = line->next)
+				{
+					for (ch = line->first_char; ch; ch = ch->next)
+						if(ch->c != ' ')
+							++len;
+				}
+			}
+
+			//fz_drop_stext_page(page_t->page, page);
+
+
+		return len;
+
+}
+
+
 #define RUNTIME_EXCEPTION "java/lang/RuntimeException"
 #define PASSWORD_REQUIRED_EXCEPTION "org/ebookdroid/droids/mupdf/codec/exceptions/MuPdfPasswordRequiredException"
 #define WRONG_PASSWORD_EXCEPTION "org/ebookdroid/droids/mupdf/codec/exceptions/MuPdfWrongPasswordEnteredException"
@@ -2186,6 +2234,7 @@ fz_print_stext_page_as_text_my1(fz_context *ctx, fz_output *out, fz_stext_page *
 		}
 	}
 }
+
 
 
 

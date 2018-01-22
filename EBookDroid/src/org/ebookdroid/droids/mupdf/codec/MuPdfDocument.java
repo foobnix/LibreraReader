@@ -104,7 +104,6 @@ public class MuPdfDocument extends AbstractCodecDocument {
         try {
             TempHolder.lock.lock();
             final int res = getPageInfo(documentHandle, pageNumber + 1, info);
-
             if (res == -1) {
                 return null;
             } else {
