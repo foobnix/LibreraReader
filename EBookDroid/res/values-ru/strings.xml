@@ -381,7 +381,7 @@
    <string name="show_book_covers">Показывать обложки книг</string>
    <string name="without_series">Вне серий</string>
    <string name="add_as_a_web_site">Добавить как веб-сайт</string>
-   <string name="add_catalog">Добавление каталога</string>
+   <string name="add_catalog">Добавление каталога/сайта</string>
    <string name="favorites">Избранные</string>
    <string name="my_favorites_links">Мои избранные ссылки</string>
    <string name="contrast">Контрастность</string>
@@ -466,13 +466,13 @@
    <string name="request_a_password_when_the_application_starts">Запрашивать пароль при запуске приложения</string>
    <string name="incorrect_password">Пароль неверный</string>
    <string name="repeat_password">Введите пароль еще раз</string>
-   <string name="internal_storage">Внутреннее хранилище</string>
-   <string name="the_page_is_clipped_the_text_selection_does_not_work">Страница обрезана, выбор текста не работает</string>
-   <string name="title">Заглавие</string>
-   <string name="subject">Предмет</string>
+   <string name="internal_storage">Внутр. карта памяти</string>
+   <string name="the_page_is_clipped_the_text_selection_does_not_work">Включена автообрезка пустых полей — выделить текст нельзя</string>
+   <string name="title">Заголовок</string>
+   <string name="subject">Тема</string>
    <string name="keywords">Ключевые слова</string>
-   <string name="number">Число</string>
-   <string name="percent">Процент</string>
-   <string name="reading_progress">Прогресс чтения</string>
+   <string name="number">соотношение числа страниц</string>
+   <string name="percent">процентное соотношение</string>
+   <string name="reading_progress">Показывать в строке</string>
    <string name="awards">Награды</string>
 </resources>
