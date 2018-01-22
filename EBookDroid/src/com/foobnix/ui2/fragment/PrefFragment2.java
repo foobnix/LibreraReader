@@ -325,16 +325,18 @@ public class PrefFragment2 extends UIFragment {
             }
         });
 
-        inflate.findViewById(R.id.onFullScreen).setOnClickListener(new OnClickListener() {
+        final ImageView onFullScreen = (ImageView) inflate.findViewById(R.id.fullscreen);
+        onFullScreen.setOnClickListener(new OnClickListener() {
 
             @Override
             public void onClick(final View v) {
-                AppState.get().isFullScreen = !AppState.get().isFullScreen;
-                DocumentController.chooseFullScreen(getActivity(), AppState.get().isFullScreen);
-                fullScreenText();
+                AppState.get().isFullScreenMain = !AppState.get().isFullScreenMain;
+                onFullScreen.setImageResource(AppState.get().isFullScreenMain ? R.drawable.glyphicons_487_fit_frame_to_image : R.drawable.glyphicons_488_fit_image_to_frame);
+                DocumentController.chooseFullScreen(getActivity(), AppState.get().isFullScreenMain);
 
             }
         });
+        onFullScreen.setImageResource(AppState.get().isFullScreenMain ? R.drawable.glyphicons_487_fit_frame_to_image : R.drawable.glyphicons_488_fit_image_to_frame);
 
         screenOrientation = (TextView) inflate.findViewById(R.id.screenOrientation);
         screenOrientation.setText(DocumentController.getRotationText());
@@ -1536,7 +1538,6 @@ public class PrefFragment2 extends UIFragment {
 
         rotationText();
 
-        fullScreenText();
 
         ch.setOnCheckedChangeListener(null);
         ch.setChecked(AppState.get().isReverseKeys);
@@ -1657,7 +1658,6 @@ public class PrefFragment2 extends UIFragment {
     @Override
     public void onActivityCreated(final Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        fullScreenText();
         rotationText();
 
         if (AppState.get().isInkMode) {
@@ -1669,12 +1669,6 @@ public class PrefFragment2 extends UIFragment {
         }
     }
 
-    public void fullScreenText() {
-        final boolean full = AppState.get().isFullScreen;
-        int textID = full ? R.string.on : R.string.off;
-        ((TextView) getActivity().findViewById(R.id.fullscreenOnOff)).setText(TxtUtils.underline(getString(textID)));
-
-    }
 
     private void saveChanges() {
         if (getActivity() != null) {

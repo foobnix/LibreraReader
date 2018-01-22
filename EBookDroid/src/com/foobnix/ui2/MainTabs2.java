@@ -417,7 +417,7 @@ public class MainTabs2 extends AdsFragmentActivity {
         super.onResume();
         LOG.d(TAG, "onResume");
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
-        // DocumentController.chooseFullScreen(this, false);
+        DocumentController.chooseFullScreen(this, AppState.get().isFullScreenMain);
         TintUtil.updateAll();
         AppState.get().lastClosedActivity = MainTabs2.class.getSimpleName();
         LocalBroadcastManager.getInstance(this).registerReceiver(broadcastReceiver, new IntentFilter(UIFragment.INTENT_TINT_CHANGE));

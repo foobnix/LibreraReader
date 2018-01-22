@@ -228,19 +228,37 @@
                 android:text="@string/in_the_author_s_name_first_the_surname" />
         </LinearLayout>
 
-        <TextView
+        <LinearLayout
             android:id="@+id/section2"
-            style="@style/textLinkWhite"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="4dip"
             android:background="@drawable/bg_search_second"
-            android:text="@string/preferences" />
+            android:gravity="center_vertical" >
+
+            <TextView
+                style="@style/textLinkWhite"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/preferences" />
+
+            <ImageView
+                android:id="@+id/fullscreen"
+                style="@style/buttonWhite"
+                android:layout_width="30dip"
+                android:layout_height="30dip"
+                android:layout_weight="0"
+                android:contentDescription="@string/fullscreen"
+                android:src="@drawable/glyphicons_488_fit_image_to_frame"
+                android:tint="@color/white" />
+        </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="5dip" >
+            android:layout_marginLeft="5dip"
+            android:gravity="center_vertical" >
 
             <TextView
                 android:layout_width="wrap_content"
@@ -356,42 +374,6 @@
             </LinearLayout>
         </LinearLayout>
 
-        <LinearLayout
-            android:id="@+id/onFullScreen"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="5dip"
-            android:clickable="true"
-            android:gravity="center_vertical"
-            android:visibility="gone" >
-
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:padding="5dip"
-                android:src="@drawable/glyphicons_488_fit_image_to_frame"
-                android:tint="@color/tint_gray" />
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical" >
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="5dip"
-                    android:text="@string/full_screen_"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:id="@+id/fullscreenOnOff"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="5dip"
-                    android:text="@string/on" />
-            </LinearLayout>
-        </LinearLayout>
 
         <LinearLayout
             android:id="@+id/onColorChoser"
@@ -981,7 +963,7 @@
                 android:minWidth="60dip"
                 android:text="2"
                 android:textAllCaps="true" />
-            
+
             <TextView
                 android:id="@+id/columsDefaul"
                 style="@style/textLink"

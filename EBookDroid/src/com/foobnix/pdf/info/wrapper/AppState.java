@@ -248,6 +248,7 @@ public class AppState {
 
     public boolean isEditMode = true;
     public boolean isFullScreen = true;
+    public boolean isFullScreenMain = false;
     public boolean isAutoFit = false;
     public boolean notificationOngoing = false;
 

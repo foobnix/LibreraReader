@@ -22,7 +22,6 @@ import com.foobnix.pdf.info.view.KeyCodeDialog;
 import com.foobnix.pdf.info.view.MyPopupMenu;
 import com.foobnix.pdf.info.widget.PrefDialogs;
 import com.foobnix.pdf.info.wrapper.AppState;
-import com.foobnix.pdf.info.wrapper.DocumentController;
 import com.foobnix.pdf.info.wrapper.PopupHelper;
 import com.foobnix.ui2.AppDB;
 import com.foobnix.ui2.AppDB.SEARCH_IN;
@@ -70,7 +69,6 @@ public class SearchFragment2 extends UIFragment<FileMeta> {
     public static final Pair<Integer, Integer> PAIR = new Pair<Integer, Integer>(R.string.library, R.drawable.glyphicons_2_book_open);
     private static final String CMD_KEYCODE = "@@keycode_config";
     private static final String CMD_LONG_TAP_ON_OFF = "@@long_tap_on_off";
-    private static final String CMD_FULLSCREEN_ON = "@@fullscreen_on";
     private static final String CMD_EDIT_AUTO_COMPLETE = "@@edit_autocomple";
 
     public static int NONE = -1;
@@ -117,7 +115,6 @@ public class SearchFragment2 extends UIFragment<FileMeta> {
             }
         }
 
-        autocomplitions.add(CMD_FULLSCREEN_ON);
         autocomplitions.add(CMD_LONG_TAP_ON_OFF);
         autocomplitions.add(CMD_KEYCODE);
         autocomplitions.add(CMD_EDIT_AUTO_COMPLETE);
@@ -525,10 +522,6 @@ public class SearchFragment2 extends UIFragment<FileMeta> {
             searchEditText.setText("");
         }
 
-        if (CMD_FULLSCREEN_ON.equals(txt)) {
-            DocumentController.chooseFullScreen(getActivity(), true);
-            searchEditText.setText("");
-        }
         if (CMD_LONG_TAP_ON_OFF.equals(txt)) {
             AppState.get().longTapEnable = !AppState.get().longTapEnable;
             toastState(CMD_LONG_TAP_ON_OFF, AppState.get().longTapEnable);
