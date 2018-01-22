@@ -2687,17 +2687,16 @@ public class DragingDialogs {
                         controller.getString(R.string.db_auto_alignemnt), //
                         controller.getString(R.string.db_auto_center_horizontally), //
                         controller.getString(R.string.zoom_in_zoom_out), //
-                        controller.getString(R.string.close_book),
-                        controller.getString(R.string.db_do_nothing) //
-                        
-                        );
+                        controller.getString(R.string.close_book), controller.getString(R.string.db_do_nothing) //
+
+                );
 
                 final List<Integer> doubleTapIDS = Arrays.asList(//
                         AppState.DOUBLE_CLICK_AUTOSCROLL, //
                         AppState.DOUBLE_CLICK_ADJUST_PAGE, //
                         AppState.DOUBLE_CLICK_CENTER_HORIZONTAL, //
                         AppState.DOUBLE_CLICK_ZOOM_IN_OUT, //
-                        AppState.DOUBLE_CLICK_CLOSE_BOOK,//
+                        AppState.DOUBLE_CLICK_CLOSE_BOOK, //
                         AppState.DOUBLE_CLICK_NOTHING //
                 );//
 
@@ -2808,7 +2807,11 @@ public class DragingDialogs {
                 // remind rest time
                 final TextView remindRestTime = (TextView) inflate.findViewById(R.id.remindRestTime);
                 final String minutesString = controller.getString(R.string.minutes).toLowerCase(Locale.US);
-                remindRestTime.setText(AppState.get().remindRestTime + " " + minutesString);
+                if (AppState.get().remindRestTime == -1) {
+                    remindRestTime.setText(R.string.no);
+                } else {
+                    remindRestTime.setText(AppState.get().remindRestTime + " " + minutesString);
+                }
                 TxtUtils.underlineTextView(remindRestTime);
                 remindRestTime.setOnClickListener(new OnClickListener() {
 
@@ -2816,6 +2819,18 @@ public class DragingDialogs {
                     @Override
                     public void onClick(View v) {
                         final PopupMenu popupMenu = new PopupMenu(v.getContext(), v);
+
+                        popupMenu.getMenu().add(R.string.no).setOnMenuItemClickListener(new OnMenuItemClickListener() {
+
+                            @Override
+                            public boolean onMenuItemClick(MenuItem item) {
+                                AppState.get().remindRestTime = -1;
+                                remindRestTime.setText(R.string.no);
+                                TxtUtils.underlineTextView(remindRestTime);
+                                return false;
+                            }
+                        });
+
                         for (int i = 10; i <= 240; i += 10) {
                             final int j = i;
                             popupMenu.getMenu().add(i + " " + minutesString).setOnMenuItemClickListener(new OnMenuItemClickListener() {

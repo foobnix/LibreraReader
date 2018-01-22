@@ -168,7 +168,7 @@ public abstract class DocumentController {
 
     public void checkReadingTimer() {
         long timeout = System.currentTimeMillis() - readTimeStart;
-        if (timeout >= TimeUnit.MINUTES.toMillis(AppState.get().remindRestTime)) {
+        if (AppState.get().remindRestTime != -1 && timeout >= TimeUnit.MINUTES.toMillis(AppState.get().remindRestTime)) {
             AlertDialogs.showOkDialog(activity, getString(R.string.remind_msg), new Runnable() {
 
                 @Override
