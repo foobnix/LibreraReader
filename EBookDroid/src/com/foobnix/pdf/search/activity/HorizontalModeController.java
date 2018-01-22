@@ -204,13 +204,13 @@ public abstract class HorizontalModeController extends DocumentController {
             throw new IllegalArgumentException("Pages count = -1");
         }
 
-        int charsCount = 0;
-        for (int i = 0; i <= pagesCount; i++) {
-            CodecPage page2 = codeDocument.getPage(i);
-            charsCount += page2.getCharCount();
-            page2.recycle();
-        }
-        LOG.d("total-chars", charsCount);
+        // int charsCount = 0;
+        // for (int i = 0; i <= pagesCount; i++) {
+        // CodecPage page2 = codeDocument.getPage(i);
+        // charsCount += page2.getCharCount();
+        // page2.recycle();
+        // }
+        // LOG.d("total-chars", charsCount);
 
         AppDB.get().addRecent(bookPath);
         getPageFromUri();
