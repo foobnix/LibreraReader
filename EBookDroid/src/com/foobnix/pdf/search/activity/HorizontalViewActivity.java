@@ -166,7 +166,7 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         BrightnessHelper.applyBrigtness(this);
 
-        if (AppState.get().isInvert) {
+        if (AppState.get().isDayNotInvert) {
             setTheme(R.style.StyledIndicatorsWhite);
         } else {
             setTheme(R.style.StyledIndicatorsBlack);
@@ -312,14 +312,14 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
             @Override
             public void onClick(final View v) {
                 v.setEnabled(false);
-                AppState.get().isInvert = !AppState.get().isInvert;
+                AppState.get().isDayNotInvert = !AppState.get().isDayNotInvert;
                 nullAdapter();
                 dc.restartActivity();
             }
         });
         if (Dips.isEInk(this)) {
             dayNightButton.setVisibility(View.GONE);
-            AppState.get().isInvert = true;
+            AppState.get().isDayNotInvert = true;
         }
 
         onBC = (UnderlineImageView) findViewById(R.id.onBC);
@@ -332,7 +332,7 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
             }
         });
 
-        dayNightButton.setImageResource(!AppState.get().isInvert ? R.drawable.glyphicons_232_sun : R.drawable.glyphicons_2_moon);
+        dayNightButton.setImageResource(!AppState.get().isDayNotInvert ? R.drawable.glyphicons_232_sun : R.drawable.glyphicons_2_moon);
 
         moveCenter.setOnClickListener(new OnClickListener() {
 
@@ -919,7 +919,7 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
         pagesCountIndicator.setTextSize(AppState.get().statusBarTextSizeEasy);
         flippingIntervalView.setTextSize(AppState.get().statusBarTextSizeEasy);
 
-        int progressColor = AppState.get().isInvert ? AppState.get().statusBarColorDay : MagicHelper.otherColor(AppState.get().statusBarColorNight, +0.2f);
+        int progressColor = AppState.get().isDayNotInvert ? AppState.get().statusBarColorDay : MagicHelper.otherColor(AppState.get().statusBarColorNight, +0.2f);
         progressDraw.updateColor(progressColor);
 
         progressDraw.getLayoutParams().height = Dips.dpToPx(AppState.get().progressLineHeight);

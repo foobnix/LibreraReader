@@ -9,9 +9,12 @@ import com.foobnix.android.utils.Keyboards;
 import com.foobnix.android.utils.LOG;
 import com.foobnix.pdf.info.R;
 import com.foobnix.pdf.info.TintUtil;
+import com.foobnix.pdf.info.wrapper.AppState;
+import com.foobnix.ui2.MainTabs2;
 
 import android.app.Activity;
 import android.content.Context;
+import android.graphics.Color;
 import android.util.TypedValue;
 import android.view.MenuItem.OnMenuItemClickListener;
 import android.view.View;
@@ -82,6 +85,8 @@ public class MyPopupMenu {
             }
         });
 
+        final boolean isTabs = c instanceof MainTabs2;
+
         BaseItemLayoutAdapter<Menu> a = new BaseItemLayoutAdapter<Menu>(c, R.layout.item_dict_line, list) {
             @Override
             public void populateView(View layout, int position, final Menu item) {
@@ -94,8 +99,20 @@ public class MyPopupMenu {
                     if (item.iconRes == R.drawable.icon_pdf_pro) {
                         TintUtil.setNoTintImage(imageView);
                     } else {
-                        TintUtil.setTintImageWithAlpha(imageView);
+                        if (isTabs) {
+                            if (AppState.get().isInkMode || AppState.get().isWhiteTheme) {
+                                TintUtil.setTintImageWithAlpha(imageView, TintUtil.color);
+                            } else {
+                                TintUtil.setTintImageWithAlpha(imageView, Color.WHITE);
+                            }
+                        } else {
 
+                            if (AppState.get().isDayNotInvert) {
+                                TintUtil.setTintImageWithAlpha(imageView, TintUtil.color);
+                            } else {
+                                TintUtil.setTintImageWithAlpha(imageView, Color.WHITE);
+                            }
+                        }
                     }
                 } else {
                     imageView.setVisibility(View.GONE);

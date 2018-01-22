@@ -3449,11 +3449,11 @@ public class DragingDialogs {
 
                     @Override
                     public void onClick(final View v) {
-                        AppState.get().isInvert = !AppState.get().isInvert;
+                        AppState.get().isDayNotInvert = !AppState.get().isDayNotInvert;
                         controller.restartActivity();
                     }
                 });
-                brightness.setImageResource(!AppState.get().isInvert ? R.drawable.glyphicons_232_sun : R.drawable.glyphicons_2_moon);
+                brightness.setImageResource(!AppState.get().isDayNotInvert ? R.drawable.glyphicons_232_sun : R.drawable.glyphicons_2_moon);
 
                 final ImageView isCrop = (ImageView) inflate.findViewById(R.id.onCrop);
                 // isCrop.setVisibility(controller.isTextFormat() ||

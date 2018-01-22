@@ -228,7 +228,7 @@ public class IMG {
 
         PageUrl pageUrl = IMG.toPageUrl(path, page, sizePx);
         pageUrl.setUnic(BookCSS.get().toCssString().hashCode());
-        pageUrl.setInvert(!AppState.get().isInvert);
+        pageUrl.setInvert(!AppState.get().isDayNotInvert);
 
         final String url = pageUrl.toString();
         if (listener != null) {

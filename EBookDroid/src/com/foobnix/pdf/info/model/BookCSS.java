@@ -451,7 +451,7 @@ public class BookCSS {
 
         if (documentStyle == STYLES_DOC_AND_USER || documentStyle == STYLES_ONLY_USER) {
 
-            if (AppState.get().isInvert) {
+            if (AppState.get().isDayNotInvert) {
                 builder.append("a{color:" + linkColorDay + " !important;}");
             } else {
                 builder.append("a{color:" + linkColorNight + " !important;}");

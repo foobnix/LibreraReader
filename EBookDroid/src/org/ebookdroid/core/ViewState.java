@@ -48,7 +48,7 @@ public class ViewState {
         this.viewRect = new RectF(ctrl.getView().getViewRect());
         this.viewBase = ctrl.getView().getBase(viewRect);
         // this.nightMode = book != null ? book.nightMode : app.nightMode;
-        this.nightMode = AppState.get().isInvert;
+        this.nightMode = AppState.get().isDayNotInvert;
         this.zoom = zoom;
         this.pageAlign = DocumentViewMode.getPageAlign(book);
         this.paint = this.nightMode ? PagePaint.NIGHT : PagePaint.DAY;

@@ -574,11 +574,11 @@ public class DocumentWrapperUI {
 
         ImageView brightness = (ImageView) a.findViewById(R.id.brightness);
         brightness.setOnClickListener(onSun);
-        brightness.setImageResource(!AppState.get().isInvert ? R.drawable.glyphicons_232_sun : R.drawable.glyphicons_2_moon);
+        brightness.setImageResource(!AppState.get().isDayNotInvert ? R.drawable.glyphicons_232_sun : R.drawable.glyphicons_2_moon);
 
         if (Dips.isEInk(dc.getActivity())) {
             brightness.setVisibility(View.GONE);
-            AppState.get().isInvert = true;
+            AppState.get().isDayNotInvert = true;
         }
 
         onBC = (UnderlineImageView) a.findViewById(R.id.onBC);
@@ -817,10 +817,10 @@ public class DocumentWrapperUI {
         TintUtil.setTintImageWithAlpha(clockIcon, TintUtil.getStatusBarColor()).setAlpha(200);
         TintUtil.setTintImageWithAlpha(batteryIcon, TintUtil.getStatusBarColor()).setAlpha(200);
 
-        int titleColor = AppState.get().isInvert ? MagicHelper.otherColor(AppState.get().colorDayBg, -0.05f) : MagicHelper.otherColor(AppState.get().colorNigthBg, 0.05f);
+        int titleColor = AppState.get().isDayNotInvert ? MagicHelper.otherColor(AppState.get().colorDayBg, -0.05f) : MagicHelper.otherColor(AppState.get().colorNigthBg, 0.05f);
         titleBar.setBackgroundColor(titleColor);
 
-        int progressColor = AppState.get().isInvert ? AppState.get().statusBarColorDay : MagicHelper.otherColor(AppState.get().statusBarColorNight, +0.2f);
+        int progressColor = AppState.get().isDayNotInvert ? AppState.get().statusBarColorDay : MagicHelper.otherColor(AppState.get().statusBarColorNight, +0.2f);
         progressDraw.updateColor(progressColor);
         progressDraw.getLayoutParams().height = Dips.dpToPx(AppState.get().progressLineHeight);
         progressDraw.requestLayout();

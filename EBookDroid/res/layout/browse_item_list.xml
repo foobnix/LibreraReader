@@ -192,7 +192,7 @@
                         android:layout_height="wrap_content"
                         android:gravity="center_vertical"
                         android:text="10%"
-                        android:textStyle="normal"
+                        android:textStyle="italic"
                         android:layout_weight="1"
                         android:layout_marginLeft="4dip"
                         android:singleLine="true"

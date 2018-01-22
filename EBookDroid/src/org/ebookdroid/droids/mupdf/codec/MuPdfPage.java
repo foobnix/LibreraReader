@@ -195,7 +195,7 @@ public class MuPdfPage extends AbstractCodecPage {
                     MagicHelper.udpateColorsMagic(bufferarray);
                 } else {
                     int color = MagicHelper.getBgColor();
-                    if (!AppState.get().isInvert) {
+                    if (!AppState.get().isDayNotInvert) {
                         color = ~color;
                     }
                     int r = Color.red(color);

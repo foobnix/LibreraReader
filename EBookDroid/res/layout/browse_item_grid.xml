@@ -113,7 +113,7 @@
                      android:layout_weight="1"
                     android:layout_marginLeft="2dip"
                     android:text="20%"
-                     android:textStyle="normal"
+                     android:textStyle="italic"
                     android:textSize="@dimen/text_subtitle" />
                
                

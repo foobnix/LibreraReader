@@ -647,7 +647,7 @@ public class VerticalModeController extends DocumentController {
         }
 
         if (true) {
-            AppState.get().isInvert = !AppState.get().isInvert;
+            AppState.get().isDayNotInvert = !AppState.get().isDayNotInvert;
             saveSettings();
             restartActivity();
             return;

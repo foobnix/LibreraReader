@@ -104,7 +104,7 @@ public class RecentBooksWidget extends AppWidgetProvider {
 				AppState.get().colorNigthBg = Color.parseColor("#3a3a3a");
 				AppState.get().colorNigthText = Color.parseColor("#c8c8c8");
 
-				AppState.get().isInvert = false; // nighh
+				AppState.get().isDayNotInvert = false; // nighh
 				easyMode(context, Alice, "", false);
 			}
 
@@ -116,24 +116,24 @@ public class RecentBooksWidget extends AppWidgetProvider {
 				AppState.get().colorDayBg = AppState.COLOR_WHITE;
 
 
-				AppState.get().isInvert = true;
+				AppState.get().isDayNotInvert = true;
 				AppState.get().isEditMode = false;
 				easyMode(context, Alice, "", true);
 			}
 
 			if (id == i++) {// 6
-				AppState.get().isInvert = true;
+				AppState.get().isDayNotInvert = true;
 				AppState.get().isEditMode = true;
 				easyMode(context, Alice, "id1", false);
 			}
 
 			if (id == i++) {// 7
-				AppState.get().isInvert = true;
+				AppState.get().isDayNotInvert = true;
 				AppState.get().isEditMode = true;
 				easyMode(context, Alice, "id2", true);
 			}
 			if (id == i++) {// 8
-				AppState.get().isInvert = true;
+				AppState.get().isDayNotInvert = true;
 				AppState.get().isEditMode = false;
 				easyMode(context, Alice, "id3", false);
 			}
@@ -145,7 +145,7 @@ public class RecentBooksWidget extends AppWidgetProvider {
 				AppState.get().isUseBGImageDay = false;
 				AppState.get().selectedText = "Install";
 
-				AppState.get().isInvert = true;
+				AppState.get().isDayNotInvert = true;
 				AppState.get().isEditMode = true;
 				advMode(context, PDF, "id2", true);
 			}
@@ -156,7 +156,7 @@ public class RecentBooksWidget extends AppWidgetProvider {
 				AppState.get().colorDayBg = AppState.COLOR_WHITE;
 				AppState.get().isUseBGImageDay = false;
 
-				AppState.get().isInvert = true;
+				AppState.get().isDayNotInvert = true;
 				AppState.get().isEditMode = false;
 				AppState.get().isShowToolBar = false;
 				AppState.get().isMusicianMode = true;
@@ -182,7 +182,7 @@ public class RecentBooksWidget extends AppWidgetProvider {
 			{
 				AppState.get().tintColor = Color.parseColor(AppState.STYLE_COLORS.get(0));
 				TintUtil.init();
-				AppState.get().isInvert = true;
+				AppState.get().isDayNotInvert = true;
 				AppState.get().isEditMode = true;
 				AppState.get().selectedText = "There was";
 				easyMode(context, Alice, "id4", true);
@@ -191,7 +191,7 @@ public class RecentBooksWidget extends AppWidgetProvider {
 			{
 				AppState.get().tintColor = Color.parseColor(AppState.STYLE_COLORS.get(0));
 				TintUtil.init();
-				AppState.get().isInvert = true;
+				AppState.get().isDayNotInvert = true;
 				AppState.get().isEditMode = true;
 				easyMode(context, Alice, "id5", true);
 			}
@@ -199,7 +199,7 @@ public class RecentBooksWidget extends AppWidgetProvider {
 			{
 				AppState.get().tintColor = Color.parseColor(AppState.STYLE_COLORS.get(0));
 				TintUtil.init();
-				AppState.get().isInvert = true;
+				AppState.get().isDayNotInvert = true;
 				AppState.get().isEditMode = true;
 				easyMode(context, Alice, "id6", true);
 			}
@@ -207,7 +207,7 @@ public class RecentBooksWidget extends AppWidgetProvider {
 			{
 				AppState.get().tintColor = Color.parseColor(AppState.STYLE_COLORS.get(0));
 				TintUtil.init();
-				AppState.get().isInvert = true;
+				AppState.get().isDayNotInvert = true;
 				AppState.get().isEditMode = true;
 				easyMode(context, Alice, "id7", true);
 

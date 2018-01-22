@@ -150,11 +150,11 @@ public class MagicHelper {
             return false;
         }
 
-        boolean isDay = AppState.get().isInvert && //
+        boolean isDay = AppState.get().isDayNotInvert && //
                 (AppState.get().colorDayBg != AppState.COLOR_WHITE || //
                         AppState.get().colorDayText != AppState.COLOR_BLACK); //
 
-        boolean isNigth = !AppState.get().isInvert && //
+        boolean isNigth = !AppState.get().isDayNotInvert && //
                 (AppState.get().colorNigthBg != AppState.COLOR_BLACK || //
                         AppState.get().colorNigthText != AppState.COLOR_WHITE); //
 
@@ -162,11 +162,11 @@ public class MagicHelper {
     }
 
     public static boolean isNeedBookBackgroundImage() {
-        return (!AppState.get().isInvert && AppState.get().isUseBGImageNight) || (AppState.get().isInvert && AppState.get().isUseBGImageDay);
+        return (!AppState.get().isDayNotInvert && AppState.get().isUseBGImageNight) || (AppState.get().isDayNotInvert && AppState.get().isUseBGImageDay);
     }
 
     public static String getImagePath() {
-        return !AppState.get().isInvert ? AppState.get().bgImageNightPath : AppState.get().bgImageDayPath;
+        return !AppState.get().isDayNotInvert ? AppState.get().bgImageNightPath : AppState.get().bgImageDayPath;
     }
 
     public static String getImagePath(boolean isDay) {
@@ -174,7 +174,7 @@ public class MagicHelper {
     }
 
     public static int getTransparencyInt() {
-        return AppState.get().isInvert ? AppState.get().bgImageDayTransparency : AppState.get().bgImageNightTransparency;
+        return AppState.get().isDayNotInvert ? AppState.get().bgImageDayTransparency : AppState.get().bgImageNightTransparency;
     }
 
     public static final String IMAGE_BG_1 = "bg/bg1.jpg";
@@ -337,18 +337,18 @@ public class MagicHelper {
     }
 
     public static int getTextColor() {
-        return AppState.get().isInvert ? AppState.get().colorDayText : AppState.get().colorNigthText;
+        return AppState.get().isDayNotInvert ? AppState.get().colorDayText : AppState.get().colorNigthText;
     }
 
     public static int getBgColor() {
-        if (AppState.get().isInvert && AppState.get().isUseBGImageDay) {
+        if (AppState.get().isDayNotInvert && AppState.get().isUseBGImageDay) {
             // return Color.parseColor("#EFEBDE");
         }
-        if (!AppState.get().isInvert && AppState.get().isUseBGImageNight) {
+        if (!AppState.get().isDayNotInvert && AppState.get().isUseBGImageNight) {
             // return Color.parseColor("#52493A");
         }
 
-        return AppState.get().isInvert ? AppState.get().colorDayBg : AppState.get().colorNigthBg;
+        return AppState.get().isDayNotInvert ? AppState.get().colorDayBg : AppState.get().colorNigthBg;
     }
 
     public static float[] getHSV(int color) {
@@ -472,6 +472,7 @@ public class MagicHelper {
 
         int textColor = MagicHelper.getTextColor();
         int bgColor = MagicHelper.getBgColor();
+        int first = allpixels[0];
 
         for (int i = 0; i < allpixels.length; i++) {
             int color = allpixels[i];
@@ -481,7 +482,7 @@ public class MagicHelper {
                 continue;
             }
             //
-            if (allpixels[i] == Color.WHITE) {
+            if (color == Color.WHITE || color == first) {
                 allpixels[i] = bgColor;
                 continue;
             }

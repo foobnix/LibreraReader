@@ -75,7 +75,7 @@ public class PageImaveView extends View {
         imageGestureListener = new ImageSimpleGestureListener();
         gestureDetector = new GestureDetector(context, imageGestureListener);
 
-        paintWrods.setColor(AppState.get().isInvert ? Color.BLUE : Color.YELLOW);
+        paintWrods.setColor(AppState.get().isDayNotInvert ? Color.BLUE : Color.YELLOW);
         paintWrods.setAlpha(60);
         paintWrods.setStrokeWidth(Dips.dpToPx(2));
 
@@ -528,7 +528,7 @@ public class PageImaveView extends View {
     protected void onDraw(final Canvas canvas) {
         super.onDraw(canvas);
         try {
-            if (AppState.get().isOLED && !AppState.get().isInvert /* && MagicHelper.getBgColor() == Color.BLACK */) {
+            if (AppState.get().isOLED && !AppState.get().isDayNotInvert /* && MagicHelper.getBgColor() == Color.BLACK */) {
                 canvas.drawColor(Color.BLACK);
             } else {
                 canvas.drawColor(MagicHelper.ligtherColor(MagicHelper.getBgColor()));
@@ -555,7 +555,7 @@ public class PageImaveView extends View {
                 }
             }
 
-            if (AppState.get().isOLED && !AppState.get().isInvert /* && !TempHolder.get().isTextFormat */) {
+            if (AppState.get().isOLED && !AppState.get().isDayNotInvert /* && !TempHolder.get().isTextFormat */) {
                 canvas.drawRect(-dp1, 0, drawableWidth + dp1, drawableHeight, rect);
             }
 

@@ -66,7 +66,7 @@ public class EventDraw implements IEvent {
     public ViewState process() {
         try {
 
-            if (AppState.get().isOLED && !AppState.get().isInvert /* && MagicHelper.getBgColor() == Color.BLACK */) {
+            if (AppState.get().isOLED && !AppState.get().isDayNotInvert /* && MagicHelper.getBgColor() == Color.BLACK */) {
                 viewState.paint.backgroundFillPaint.setColor(Color.BLACK);
             } else {
                 viewState.paint.backgroundFillPaint.setColor(MagicHelper.ligtherColor(MagicHelper.getBgColor()));
@@ -114,7 +114,7 @@ public class EventDraw implements IEvent {
             p.setAlpha(255 - MagicHelper.getTransparencyInt());
             canvas.drawBitmap(MagicHelper.getBackgroundImage(), m, p);
         }
-        if (AppState.get().isOLED && !AppState.get().isInvert/* && !TempHolder.get().isTextFormat */) {
+        if (AppState.get().isOLED && !AppState.get().isDayNotInvert/* && !TempHolder.get().isTextFormat */) {
             canvas.drawRect(fixedPageBounds.left - dp1, fixedPageBounds.top - dp1, fixedPageBounds.right + dp1, fixedPageBounds.bottom + dp1, rect);
         }
 
@@ -215,7 +215,7 @@ public class EventDraw implements IEvent {
 
     private void drawSelectedText(final Page page) {
         final Paint p = new Paint();
-        p.setColor(AppState.get().isInvert ? Color.BLUE : Color.YELLOW);
+        p.setColor(AppState.get().isDayNotInvert ? Color.BLUE : Color.YELLOW);
         p.setAlpha(60);
 
         if (page.selectionAnnotion != null) {

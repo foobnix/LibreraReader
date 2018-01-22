@@ -67,13 +67,13 @@ public class MenuBuilderM {
         });
         final MenuItem invert = popupMenu.getMenu().add(R.string.invert_colors);
         invert.setCheckable(true);
-        invert.setChecked(AppState.get().isInvert);
+        invert.setChecked(AppState.get().isDayNotInvert);
         invert.setOnMenuItemClickListener(new OnMenuItemClickListener() {
 
             @Override
             public boolean onMenuItemClick(final MenuItem item) {
-                AppState.get().isInvert = !AppState.get().isInvert;
-                invert.setChecked(AppState.get().isInvert);
+                AppState.get().isDayNotInvert = !AppState.get().isDayNotInvert;
+                invert.setChecked(AppState.get().isDayNotInvert);
                 onReloadDocument.run();
                 return false;
             }

@@ -308,7 +308,7 @@ public class AppState {
     public boolean isDouble = false;
     public boolean isDoubleCoverAlone = false;
 
-    public boolean isInvert = true;
+    public boolean isDayNotInvert = true;
 
     public int cpTextLight = Color.BLACK;
     public int cpBGLight = Color.WHITE;
@@ -588,7 +588,7 @@ public class AppState {
         if (AppState.get().isInkMode || AppsConfig.IS_INK) {
             AppsConfig.ADMOB_FULLSCREEN = null;
             AppState.get().isInkMode = true;
-            AppState.get().isInvert = true;
+            AppState.get().isDayNotInvert = true;
             AppState.get().isEditMode = true;
             AppState.get().isRememberMode = false;
             // AppState.get().isAlwaysOpenAsMagazine = true;
