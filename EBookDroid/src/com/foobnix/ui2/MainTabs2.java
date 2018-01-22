@@ -319,11 +319,9 @@ public class MainTabs2 extends AdsFragmentActivity {
         boolean showTabs = getIntent().getBooleanExtra(EXTRA_SHOW_TABS, false);
         LOG.d("EXTRA_SHOW_TABS", showTabs, AppState.get().lastMode);
         if (showTabs == false && AppState.get().isOpenLastBook) {
-            LOG.d("Open LAST book");
-            final FileMeta meta = AppDB.get().getRecentLast();
+            LOG.d("Open lastBookPath", AppState.get().lastBookPath);
             AppState.get().lastClosedActivity = null;
-
-            if (meta != null) {
+            if (AppState.get().lastBookPath != null) {
 
                 Safe.run(new Runnable() {
 
@@ -331,7 +329,7 @@ public class MainTabs2 extends AdsFragmentActivity {
                     public void run() {
                         boolean isEasyMode = HorizontalViewActivity.class.getSimpleName().equals(AppState.get().lastMode);
                         Intent intent = new Intent(MainTabs2.this, isEasyMode ? HorizontalViewActivity.class : VerticalViewActivity.class);
-                        intent.setData(Uri.fromFile(new File(meta.getPath())));
+                        intent.setData(Uri.fromFile(new File(AppState.get().lastBookPath)));
                         startActivity(intent);
                     }
                 });

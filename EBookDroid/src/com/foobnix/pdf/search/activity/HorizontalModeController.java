@@ -142,6 +142,8 @@ public abstract class HorizontalModeController extends DocumentController {
 
         bookPath = getBookPathFromActivity(activity);
 
+        AppState.get().lastBookPath = bookPath;
+
         BookSettings bs = SettingsManager.getBookSettings(bookPath);
         if (bs != null) {
             AppState.get().isCut = bs.splitPages;

@@ -254,9 +254,6 @@ public class ViewerActivityController extends ActionController<VerticalViewActiv
                     }
                 });
 
-                AppState.get().lastClosedActivity = VerticalViewActivity.class.getSimpleName();
-                AppState.get().lastMode = VerticalViewActivity.class.getSimpleName();
-                LOG.d("lasta save", AppState.get().lastClosedActivity);
             }
         }));
     }
@@ -390,8 +387,17 @@ public class ViewerActivityController extends ActionController<VerticalViewActiv
     public void createWrapper(Activity a) {
         try {
             String file = CacheManager.getFilePathFromAttachmentIfNeed(a);
+            if (TxtUtils.isEmpty(file)) {
+                file = a.getIntent().getData().getPath();
+            }
+            AppState.get().lastBookPath = file;
+            AppState.get().lastClosedActivity = VerticalViewActivity.class.getSimpleName();
+            AppState.get().lastMode = VerticalViewActivity.class.getSimpleName();
+
+            LOG.d("lasta save", AppState.get().lastClosedActivity);
+
             LOG.d("createWrapper", file);
-            if (ExtUtils.isTextFomat(TxtUtils.isNotEmpty(file) ? file : a.getIntent().getData().getPath())) {
+            if (ExtUtils.isTextFomat(file)) {
                 AppState.get().isLocked = true;
             } else {
                 if (AppState.get().isLockPDF) {
