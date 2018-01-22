@@ -1,7 +1,6 @@
 package com.foobnix.pdf.info.wrapper;
 
 import com.foobnix.android.utils.Objects;
-import com.foobnix.pdf.info.ExportSettingsManager;
 
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -30,7 +29,7 @@ public class PasswordState {
         if (a == null) {
             return;
         }
-        SharedPreferences sp = a.getSharedPreferences(ExportSettingsManager.PREFIX_PDF, Context.MODE_PRIVATE);
+        SharedPreferences sp = a.getSharedPreferences(PASSWORD_STATE, Context.MODE_PRIVATE);
         Objects.loadFromSp(this, sp);
     }
 
