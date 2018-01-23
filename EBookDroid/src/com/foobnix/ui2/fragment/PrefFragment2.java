@@ -355,7 +355,7 @@ public class PrefFragment2 extends UIFragment {
                     public boolean onMenuItemClick(MenuItem item) {
                         AppState.get().isFullScreenMain = false;
 
-                        onFullScreen.setText(R.string.yes);
+                        onFullScreen.setText(R.string.no);
                         TxtUtils.underlineTextView(onFullScreen);
                         DocumentController.chooseFullScreen(getActivity(), AppState.get().isFullScreenMain);
                         return false;
