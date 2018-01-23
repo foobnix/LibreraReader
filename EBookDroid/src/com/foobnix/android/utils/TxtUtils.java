@@ -47,13 +47,15 @@ public class TxtUtils {
     }
 
     public static String deltaPage(int current, int max) {
-        if (AppState.get().readingProgress == AppState.READING_PROGRESS_PERCENT_NUMBERS) {
-            float f = (float) current * 100 / max;
-            return String.format("%.1f", f) + "%";
-        }
-        if (AppState.get().readingProgress == AppState.READING_PROGRESS_PERCENT) {
-            float f = (float) current * 100 / max;
-            return String.format("%.1f", f) + "%";
+        if (max != 0) {
+            if (AppState.get().readingProgress == AppState.READING_PROGRESS_PERCENT_NUMBERS) {
+                float f = (float) current * 100 / max;
+                return String.format("%.1f", f) + "%";
+            }
+            if (AppState.get().readingProgress == AppState.READING_PROGRESS_PERCENT) {
+                float f = (float) current * 100 / max;
+                return String.format("%.1f", f) + "%";
+            }
         }
 
         if (TempHolder.get().pageDelta == 0) {
