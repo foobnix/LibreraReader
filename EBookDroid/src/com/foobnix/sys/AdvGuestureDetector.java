@@ -130,9 +130,9 @@ public class AdvGuestureDetector extends SimpleOnGestureListener implements IMul
     public boolean onSingleTapConfirmed(final MotionEvent e) {
         // if (isScrollFinished) {
 
-            if (alowConfirm && clickUtils.isClickCenter(e.getX(), e.getY())) {
-                docCtrl.onSingleTap();
-            }
+        if (alowConfirm && clickUtils.isClickCenter(e.getX(), e.getY())) {
+            docCtrl.onSingleTap();
+        }
         // }
         return true;
     }
@@ -266,24 +266,16 @@ public class AdvGuestureDetector extends SimpleOnGestureListener implements IMul
             return true;
         }
 
-        if (isNoLock() || e2.getPointerCount() == 2) {
-            // if (!AppState.get().isMusicianMode ||
-            // (AppState.get().isMusicianMode && isClickRigth(e1))) {
+        if (isNoLock() || (e2.getPointerCount() == 2 && !AppState.get().isMusicianMode)) {
             avc.getView().scrollBy((int) x, (int) y);
-            // }
         } else {
-            // if (!AppState.get().isMusicianMode ||
-            // (AppState.get().isMusicianMode && isClickRigth(e1))) {
             avc.getView().scrollBy(0, (int) y);
-            // }
 
         }
         return true;
     }
 
     private boolean isNoLock() {
-        // return AppState.XgetInstance().isEditMode() ||
-        // !AppState.get().isLocked;
         return !AppState.get().isLocked;
     }
 
@@ -319,14 +311,17 @@ public class AdvGuestureDetector extends SimpleOnGestureListener implements IMul
 
     @Override
     public void onTwoFingerPinch(final MotionEvent e, final float oldDistance, final float newDistance) {
-        final float factor = (float) Math.sqrt(newDistance / oldDistance);
-        if (true || isNoLock()) {
-            long delta = System.currentTimeMillis() - time;
-            if (delta > 50) {
-                time = System.currentTimeMillis();
-                avc.base.getZoomModel().scaleZoom(factor);
-            }
+        if (AppState.get().isMusicianMode && AppState.get().isLocked) {
+            return;
         }
+
+        final float factor = (float) Math.sqrt(newDistance / oldDistance);
+        long delta = System.currentTimeMillis() - time;
+        if (delta > 50) {
+            time = System.currentTimeMillis();
+            avc.base.getZoomModel().scaleZoom(factor);
+        }
+
     }
 
     /**
@@ -336,9 +331,10 @@ public class AdvGuestureDetector extends SimpleOnGestureListener implements IMul
      */
     @Override
     public void onTwoFingerPinchEnd(final MotionEvent e) {
-        if (true || isNoLock()) {
-            avc.base.getZoomModel().commit();
+        if (AppState.get().isMusicianMode && AppState.get().isLocked) {
+            return;
         }
+        avc.base.getZoomModel().commit();
     }
 
     /**
