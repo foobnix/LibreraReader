@@ -31,8 +31,6 @@
    <string name="fail">Error</string>
    <string name="filter">Colum</string>
    <string name="filter_pro_feature_">Filter (Pro feature)</string>
-   <string name="full_screen_">Vellarium plenum</string>
-   <string name="fullscreen">Vellarium plenum</string>
    <string name="go">Procedere</string>
    <string name="go_to_page_dialog">Cambiare paginam</string>
    <string name="help_us_translate">Juvate traducere</string>
@@ -215,7 +213,7 @@
    <string name="enable_vibration_for_some_actions">Enable vibration for select actions</string>
    <string name="center">Centrum</string>
    <string name="width">Width</string>
-   <string name="text_align">Scriptum aequare </string>
+   <string name="text_align">Scriptum aequare</string>
    <string name="customize_fonts">Customize fonts</string>
    <string name="regular_font">Litterae</string>
    <string name="bold_font">Litterae crasae</string>
@@ -454,7 +452,7 @@
    <string name="no_genre">Nullum generis</string>
    <string name="archives">Archivi</string>
    <string name="other">Cetera</string>
-  <string name="read_the_tutorial_online_or_download_in_pdf_format">Read tutorial online or download in PDF format</string>
+   <string name="read_the_tutorial_online_or_download_in_pdf_format">Read tutorial online or download in PDF format</string>
    <string name="start_recording">Start recording</string>
    <string name="favorite_folders_and_books">Libri ac coopercula electa</string>
    <string name="don_t_show_this_dialog">Don\'t show this dialog</string>
@@ -476,4 +474,5 @@
    <string name="reading_progress">Ostendere in fasciae</string>
    <string name="awards">Awards</string>
    <string name="close_book_and_application">Close book and application</string>
+   <string name="full_screen">Screen</string>
 </resources>

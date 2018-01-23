@@ -31,8 +31,6 @@
    <string name="fail">Fallito</string>
    <string name="filter">Filtra</string>
    <string name="filter_pro_feature_">Filtro (Caratteristica Pro)</string>
-   <string name="full_screen_">Schermo intero</string>
-   <string name="fullscreen">Schermo intero</string>
    <string name="go">Vai</string>
    <string name="go_to_page_dialog">Vai a pagina</string>
    <string name="help_us_translate">Aiutaci a tradurre</string>
@@ -476,4 +474,5 @@
    <string name="reading_progress">Leggere i progressi</string>
    <string name="awards">Premi</string>
    <string name="close_book_and_application">Chiudere il libro e l\'applicazione</string>
+   <string name="full_screen">A schermo intero</string>
 </resources>

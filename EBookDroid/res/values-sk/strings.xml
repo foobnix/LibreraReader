@@ -31,8 +31,6 @@
    <string name="fail">Fail</string>
    <string name="filter">Filter</string>
    <string name="filter_pro_feature_">Filter (PRO verzia)</string>
-   <string name="full_screen_">Na celú obrazovku</string>
-   <string name="fullscreen">Fullscreen</string>
    <string name="go">Go</string>
    <string name="go_to_page_dialog">Go To Page</string>
    <string name="help_us_translate">Help us Translate</string>
@@ -476,4 +474,5 @@
    <string name="reading_progress">Čítanie pokroku</string>
    <string name="awards">Ocenenie</string>
    <string name="close_book_and_application">Zatvorte knihu a aplikáciu</string>
+   <string name="full_screen">Celá obrazovka</string>
 </resources>

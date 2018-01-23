@@ -19,6 +19,7 @@
         android:id="@+id/text1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:minWidth="80dip"
         android:layout_marginLeft="4dip"
         android:singleLine="true"
         android:text="Item"

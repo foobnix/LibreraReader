@@ -31,8 +31,6 @@
    <string name="fail">Échec</string>
    <string name="filter">Filtrer</string>
    <string name="filter_pro_feature_">Filtrer (Version Pro)</string>
-   <string name="full_screen_">Plein écran</string>
-   <string name="fullscreen">Plein écran</string>
    <string name="go">OK</string>
    <string name="go_to_page_dialog">Aller à la page</string>
    <string name="help_us_translate">Aider à la traduction</string>
@@ -476,4 +474,5 @@
    <string name="reading_progress">Lecture des progrès</string>
    <string name="awards">Prix</string>
    <string name="close_book_and_application">Fermer le livre et l\'application</string>
+   <string name="full_screen">Plein écran</string>
 </resources>

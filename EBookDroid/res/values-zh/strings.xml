@@ -31,8 +31,6 @@
    <string name="fail">失败</string>
    <string name="filter">筛选</string>
    <string name="filter_pro_feature_">筛选(仅高级版)</string>
-   <string name="full_screen_">全屏显示</string>
-   <string name="fullscreen">全屏</string>
    <string name="go">前往</string>
    <string name="go_to_page_dialog">前进到指定页</string>
    <string name="help_us_translate">参与翻译软件界面语言</string>
@@ -476,4 +474,5 @@
    <string name="reading_progress">阅读进度</string>
    <string name="awards">奖项</string>
    <string name="close_book_and_application">关闭书籍和应用程序</string>
+   <string name="full_screen">全屏</string>
 </resources>

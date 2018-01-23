@@ -31,8 +31,6 @@
    <string name="fail">فشل</string>
    <string name="filter">بحث</string>
    <string name="filter_pro_feature_">(التصنيف (ميزة مدفوعة</string>
-   <string name="full_screen_">ملء الشاشة</string>
-   <string name="fullscreen">ملء الشاشة</string>
    <string name="go">ذهاب</string>
    <string name="go_to_page_dialog">ذهاب الى الصفحة</string>
    <string name="help_us_translate">ساعدنا في الترجمة</string>
@@ -476,4 +474,5 @@
    <string name="reading_progress">قراءة التقدم</string>
    <string name="awards">جوائز</string>
    <string name="close_book_and_application">إغلاق الكتاب والتطبيق</string>
+   <string name="full_screen">تكبير الشاشة</string>
 </resources>

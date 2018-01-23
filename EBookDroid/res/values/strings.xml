@@ -31,8 +31,7 @@
    <string name="fail">Fail</string>
    <string name="filter">Filter</string>
    <string name="filter_pro_feature_">Filter (Pro feature)</string>
-   <string name="full_screen_">Full Screen</string>
-   <string name="fullscreen">Fullscreen</string>
+   <string name="full_screen">Full Screen</string>
    <string name="go">Go</string>
    <string name="go_to_page_dialog">Go to page</string>
    <string name="help_us_translate">Help us translate</string>

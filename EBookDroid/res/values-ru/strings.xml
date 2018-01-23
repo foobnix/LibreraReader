@@ -31,8 +31,6 @@
    <string name="fail">Сбой</string>
    <string name="filter">Фильтр</string>
    <string name="filter_pro_feature_">Фильтр (Pro-функционал)</string>
-   <string name="full_screen_">На весь экран</string>
-   <string name="fullscreen">На весь экран</string>
    <string name="go">Перейти</string>
    <string name="go_to_page_dialog">Перейти к странице</string>
    <string name="help_us_translate">Помочь с переводом</string>
@@ -471,9 +469,10 @@
    <string name="title">Заголовок</string>
    <string name="subject">Тема</string>
    <string name="keywords">Ключевые слова</string>
-   <string name="number">соотношение числа страниц</string>
-   <string name="percent">процентное соотношение</string>
+   <string name="number">Соотношение числа страниц</string>
+   <string name="percent">Процентное соотношение</string>
    <string name="reading_progress">Показывать в строке</string>
    <string name="awards">Награды</string>
    <string name="close_book_and_application">Закрыть книгу и приложение</string>
+   <string name="full_screen">Полноэкранный</string>
 </resources>

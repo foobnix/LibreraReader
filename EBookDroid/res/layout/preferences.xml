@@ -228,31 +228,14 @@
                 android:text="@string/in_the_author_s_name_first_the_surname" />
         </LinearLayout>
 
-        <LinearLayout
+        <TextView
             android:id="@+id/section2"
+            style="@style/textLinkWhite"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="4dip"
             android:background="@drawable/bg_search_second"
-            android:gravity="center_vertical" >
-
-            <TextView
-                style="@style/textLinkWhite"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="@string/preferences" />
-
-            <ImageView
-                android:id="@+id/fullscreen"
-                style="@style/buttonWhite"
-                android:layout_width="30dip"
-                android:layout_height="30dip"
-                android:layout_weight="0"
-                android:contentDescription="@string/fullscreen"
-                android:src="@drawable/glyphicons_488_fit_image_to_frame"
-                android:tint="@color/white" />
-        </LinearLayout>
+            android:text="@string/preferences" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -341,6 +324,26 @@
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="5dip" >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:minWidth="125dp"
+                android:text="@string/full_screen"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/fullscreen"
+                style="@style/textLink"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/no" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_marginLeft="5dip"
             android:gravity="center_vertical" >
 
@@ -373,7 +376,6 @@
                     layout="@layout/item_color" />
             </LinearLayout>
         </LinearLayout>
-
 
         <LinearLayout
             android:id="@+id/onColorChoser"

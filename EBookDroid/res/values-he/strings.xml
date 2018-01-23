@@ -31,8 +31,6 @@
    <string name="fail">לְהִכָּשֵׁל</string>
    <string name="filter">לְסַנֵן</string>
    <string name="filter_pro_feature_">מסנן (תכונה Pro)</string>
-   <string name="full_screen_">מסך מלא</string>
-   <string name="fullscreen">מסך מלא</string>
    <string name="go">ללכת</string>
    <string name="go_to_page_dialog">לך לעמוד</string>
    <string name="help_us_translate">עזרו לנו לוקליזציה</string>
@@ -476,4 +474,5 @@
    <string name="reading_progress">התקדמות הקריאה</string>
    <string name="awards">פרסים</string>
    <string name="close_book_and_application">סגור ספר ויישום</string>
+   <string name="full_screen">מסך מלא</string>
 </resources>

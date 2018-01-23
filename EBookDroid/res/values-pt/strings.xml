@@ -31,8 +31,6 @@
    <string name="fail">Erro</string>
    <string name="filter">Filtrar</string>
    <string name="filter_pro_feature_">Filtrar (Recurso Pro)</string>
-   <string name="full_screen_">Tela cheia</string>
-   <string name="fullscreen">Tela cheia</string>
    <string name="go">Ir</string>
    <string name="go_to_page_dialog">Ir à página</string>
    <string name="help_us_translate">Ajude-nos a traduzir</string>
@@ -476,4 +474,5 @@
    <string name="reading_progress">Progresso de leitura</string>
    <string name="awards">Prêmios</string>
    <string name="close_book_and_application">Fechar livro e aplicação</string>
+   <string name="full_screen">Tela cheia</string>
 </resources>

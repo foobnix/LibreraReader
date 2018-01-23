@@ -31,8 +31,6 @@
    <string name="fail">شکست</string>
    <string name="filter">صافی</string>
    <string name="filter_pro_feature_">فیلتر (طرفدار ویژگی)</string>
-   <string name="full_screen_">تمام صفحه</string>
-   <string name="fullscreen">تمام صفحه</string>
    <string name="go">رفتن</string>
    <string name="go_to_page_dialog">برو به صفحه</string>
    <string name="help_us_translate">به ما کمک کنید ترجمه و بومی سازی</string>
@@ -476,4 +474,5 @@
    <string name="reading_progress">پیشرفت خواندن</string>
    <string name="awards">جوایز</string>
    <string name="close_book_and_application">بستن کتاب و برنامه</string>
+   <string name="full_screen">تمام صفحه</string>
 </resources>

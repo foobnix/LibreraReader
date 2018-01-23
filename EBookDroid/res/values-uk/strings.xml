@@ -31,8 +31,6 @@
    <string name="fail">Помилка</string>
    <string name="filter">Фільтр</string>
    <string name="filter_pro_feature_">Фільтр (Pro функціонал)</string>
-   <string name="full_screen_">На весь екран</string>
-   <string name="fullscreen">На весь екран</string>
    <string name="go">Перехід</string>
    <string name="go_to_page_dialog">Перехід на сторінку</string>
    <string name="help_us_translate">Допомогти з перекладом</string>
@@ -476,4 +474,5 @@
    <string name="reading_progress">Прогрес читання</string>
    <string name="awards">Нагороди</string>
    <string name="close_book_and_application">Закрити книгу та додаток</string>
+   <string name="full_screen">Повноекранний</string>
 </resources>

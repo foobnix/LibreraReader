@@ -31,8 +31,6 @@
    <string name="fail">Hata</string>
    <string name="filter">Filtre</string>
    <string name="filter_pro_feature_">Filtre (Pro fonksiyonel)</string>
-   <string name="full_screen_">Tam ekran</string>
-   <string name="fullscreen">Tam ekran</string>
    <string name="go">Git</string>
    <string name="go_to_page_dialog">Sayfaya git</string>
    <string name="help_us_translate">Tercümede yardım edin</string>
@@ -476,4 +474,5 @@
    <string name="reading_progress">Ilerleme okuma</string>
    <string name="awards">Ödüller</string>
    <string name="close_book_and_application">Kitabı ve başvuruyu kapat</string>
+   <string name="full_screen">Tam ekran</string>
 </resources>

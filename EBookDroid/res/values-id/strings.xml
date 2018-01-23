@@ -31,8 +31,6 @@
    <string name="fail">Gagal</string>
    <string name="filter">Menyaring</string>
    <string name="filter_pro_feature_">Filter (Fitur Pro)</string>
-   <string name="full_screen_">Layar penuh</string>
-   <string name="fullscreen">Layar penuh</string>
    <string name="go">Pergi</string>
    <string name="go_to_page_dialog">Buka halaman</string>
    <string name="help_us_translate">Bantu kami melokalisasikan</string>
@@ -476,4 +474,5 @@
    <string name="reading_progress">Membaca kemajuan</string>
    <string name="awards">Penghargaan</string>
    <string name="close_book_and_application">Tutup buku dan aplikasi</string>
+   <string name="full_screen">Layar penuh</string>
 </resources>

@@ -31,8 +31,6 @@
    <string name="fail">실패</string>
    <string name="filter">필터</string>
    <string name="filter_pro_feature_">필터(프로기능)</string>
-   <string name="full_screen_">전체 화면</string>
-   <string name="fullscreen">전체화면</string>
    <string name="go">이동</string>
    <string name="go_to_page_dialog">페이지로 이동</string>
    <string name="help_us_translate">현지화를 도와주세요</string>
@@ -476,4 +474,5 @@
    <string name="reading_progress">읽기 진행률</string>
    <string name="awards">수상 내역</string>
    <string name="close_book_and_application">도서 및 신청서 닫기</string>
+   <string name="full_screen">전체 화면</string>
 </resources>

@@ -31,8 +31,6 @@
    <string name="fail">失敗しました</string>
    <string name="filter">Filter</string>
    <string name="filter_pro_feature_">フィルター（Pro版機能）</string>
-   <string name="full_screen_">フルスクリーン</string>
-   <string name="fullscreen">Fullscreen</string>
    <string name="go">Go</string>
    <string name="go_to_page_dialog">ページに移動</string>
    <string name="help_us_translate">Help us Translate</string>
@@ -476,4 +474,5 @@
    <string name="reading_progress">読書の進捗状況</string>
    <string name="awards">賞</string>
    <string name="close_book_and_application">ブックとアプリケーションを閉じる</string>
+   <string name="full_screen">全画面表示</string>
 </resources>

@@ -31,8 +31,6 @@
    <string name="fail">Mislukken</string>
    <string name="filter">Filter</string>
    <string name="filter_pro_feature_">Filter (Pro Feature)</string>
-   <string name="full_screen_">Volledig scherm</string>
-   <string name="fullscreen">Volledig scherm</string>
    <string name="go">Gaan</string>
    <string name="go_to_page_dialog">Ga naar pagina</string>
    <string name="help_us_translate">Help ons lokaliseren</string>
@@ -476,4 +474,5 @@
    <string name="reading_progress">Vooruitgang boeken</string>
    <string name="awards">Awards</string>
    <string name="close_book_and_application">Boek en toepassing sluiten</string>
+   <string name="full_screen">Volledig scherm</string>
 </resources>

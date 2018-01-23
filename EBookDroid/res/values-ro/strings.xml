@@ -31,8 +31,6 @@
    <string name="fail">Eşuat</string>
    <string name="filter">Filtru</string>
    <string name="filter_pro_feature_">Filtru (Caracteristică Pro)</string>
-   <string name="full_screen_">Ecran complet</string>
-   <string name="fullscreen">Ecran complet</string>
    <string name="go">Du-te</string>
    <string name="go_to_page_dialog">Mergeți la pagina</string>
    <string name="help_us_translate">Ajutați-ne să localizăm</string>
@@ -476,4 +474,5 @@
    <string name="reading_progress">Progresul de citire</string>
    <string name="awards">Premii</string>
    <string name="close_book_and_application">Închideți cartea și aplicația</string>
+   <string name="full_screen">Ecran complet</string>
 </resources>

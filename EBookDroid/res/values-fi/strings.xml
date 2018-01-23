@@ -31,8 +31,6 @@
    <string name="fail">Epäonnistua</string>
    <string name="filter">Suodattaa</string>
    <string name="filter_pro_feature_">Suodatin (Pro Feature)</string>
-   <string name="full_screen_">Koko näyttö</string>
-   <string name="fullscreen">Koko näyttö</string>
    <string name="go">Mennä</string>
    <string name="go_to_page_dialog">Mene sivulle</string>
    <string name="help_us_translate">Auta meitä Lokalisoi</string>
@@ -476,4 +474,5 @@
    <string name="reading_progress">Edistyksen lukeminen</string>
    <string name="awards">Palkinnot</string>
    <string name="close_book_and_application">Sulje kirja ja sovellus</string>
+   <string name="full_screen">Koko näyttö</string>
 </resources>

@@ -31,8 +31,6 @@
    <string name="fail">Nieudane</string>
    <string name="filter">Filtr</string>
    <string name="filter_pro_feature_">Filtr (wersja Pro)</string>
-   <string name="full_screen_">Pełny ekran</string>
-   <string name="fullscreen">Pełny ekran</string>
    <string name="go">Idź do...</string>
    <string name="go_to_page_dialog">Idź do strony</string>
    <string name="help_us_translate">Pomóż nam w tłumaczeniu</string>
@@ -476,4 +474,5 @@
    <string name="reading_progress">Czytanie postępu</string>
    <string name="awards">Nagrody</string>
    <string name="close_book_and_application">Zamknij książkę i aplikację</string>
+   <string name="full_screen">Pełny ekran</string>
 </resources>

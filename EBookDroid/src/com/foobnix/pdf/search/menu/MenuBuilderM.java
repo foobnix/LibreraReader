@@ -25,7 +25,7 @@ public class MenuBuilderM {
 
         addOrientationMenu(view, a, popupMenu);
 
-        final MenuItem fullscren = popupMenu.getMenu().add(R.string.fullscreen);
+        final MenuItem fullscren = popupMenu.getMenu().add(R.string.full_screen);
         fullscren.setCheckable(true);
         fullscren.setChecked(AppState.get().isFullScreen);
         fullscren.setOnMenuItemClickListener(new OnMenuItemClickListener() {

@@ -31,8 +31,6 @@
    <string name="fail">ล้มเหลว</string>
    <string name="filter">กรอง</string>
    <string name="filter_pro_feature_">ตัวกรอง (คุณลักษณะ Pro)</string>
-   <string name="full_screen_">เต็มจอ</string>
-   <string name="fullscreen">เต็มจอ</string>
    <string name="go">ไป</string>
    <string name="go_to_page_dialog">ไปที่หน้า</string>
    <string name="help_us_translate">ช่วยเราแปลภาษา</string>
@@ -476,4 +474,5 @@
    <string name="reading_progress">อ่านความคืบหน้า</string>
    <string name="awards">รางวัล</string>
    <string name="close_book_and_application">ปิดหนังสือและการสมัคร</string>
+   <string name="full_screen">เต็มจอ</string>
 </resources>

@@ -31,8 +31,6 @@
    <string name="fail">Nepavyko</string>
    <string name="filter">Filtruoti</string>
    <string name="filter_pro_feature_">Filtruoti (Pro galimybė)</string>
-   <string name="full_screen_">Pilnas ekranas</string>
-   <string name="fullscreen">Pilnas ekranas</string>
    <string name="go">Pirmyn</string>
    <string name="go_to_page_dialog">Rasti puslapį</string>
    <string name="help_us_translate">Padėkite mums išversti</string>
@@ -476,4 +474,5 @@
    <string name="reading_progress">Skaitymo progresas</string>
    <string name="awards">Apdovanojimai</string>
    <string name="close_book_and_application">Uždaryti knygą ir paraišką</string>
+   <string name="full_screen">Per visą ekraną</string>
 </resources>

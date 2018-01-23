@@ -31,8 +31,6 @@
    <string name="fail">Kushindwa</string>
    <string name="filter">Filter</string>
    <string name="filter_pro_feature_">Filter (Pro Feature)</string>
-   <string name="full_screen_">Screen Kamili</string>
-   <string name="fullscreen">Fullscreen</string>
    <string name="go">Go</string>
    <string name="go_to_page_dialog">Go Kwanza</string>
    <string name="help_us_translate">Kutusaidia Localize</string>
@@ -476,4 +474,5 @@
    <string name="reading_progress">Kusoma maendeleo</string>
    <string name="awards">Tuzo</string>
    <string name="close_book_and_application">Funga kitabu na programu</string>
+   <string name="full_screen">Screen Kamili</string>
 </resources>

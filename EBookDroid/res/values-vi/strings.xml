@@ -31,8 +31,6 @@
    <string name="fail">Thất bại</string>
    <string name="filter">Lọc</string>
    <string name="filter_pro_feature_">Bộ lọc (Pro Tính năng)</string>
-   <string name="full_screen_">Toàn màn hình</string>
-   <string name="fullscreen">Toàn màn hình</string>
    <string name="go">Đi</string>
    <string name="go_to_page_dialog">Đi tới trang</string>
    <string name="help_us_translate">Giúp chúng tôi địa hoá</string>
@@ -476,4 +474,5 @@
    <string name="reading_progress">Đọc tiến độ</string>
    <string name="awards">Giải thưởng</string>
    <string name="close_book_and_application">Đóng sách và ứng dụng</string>
+   <string name="full_screen">Toàn màn hình</string>
 </resources>

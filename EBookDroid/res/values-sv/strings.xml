@@ -31,8 +31,6 @@
    <string name="fail">Misslyckas</string>
    <string name="filter">Filtrera</string>
    <string name="filter_pro_feature_">Filter (Pro Feature)</string>
-   <string name="full_screen_">Fullskärm</string>
-   <string name="fullscreen">Fullskärm</string>
    <string name="go">Gå</string>
    <string name="go_to_page_dialog">Gå till sidan</string>
    <string name="help_us_translate">Hjälp oss Lokalisera</string>
@@ -476,4 +474,5 @@
    <string name="reading_progress">Läsa framsteg</string>
    <string name="awards">Awards</string>
    <string name="close_book_and_application">Stäng bok och ansökan</string>
+   <string name="full_screen">Fullskärm</string>
 </resources>

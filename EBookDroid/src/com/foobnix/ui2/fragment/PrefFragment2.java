@@ -27,6 +27,7 @@ import com.foobnix.pdf.info.view.CustomSeek;
 import com.foobnix.pdf.info.view.Dialogs;
 import com.foobnix.pdf.info.view.KeyCodeDialog;
 import com.foobnix.pdf.info.view.MultyDocSearchDialog;
+import com.foobnix.pdf.info.view.MyPopupMenu;
 import com.foobnix.pdf.info.widget.ColorsDialog;
 import com.foobnix.pdf.info.widget.ColorsDialog.ColorsDialogResult;
 import com.foobnix.pdf.info.widget.DialogTranslateFromTo;
@@ -325,18 +326,46 @@ public class PrefFragment2 extends UIFragment {
             }
         });
 
-        final ImageView onFullScreen = (ImageView) inflate.findViewById(R.id.fullscreen);
+        final TextView onFullScreen = (TextView) inflate.findViewById(R.id.fullscreen);
+        onFullScreen.setText(AppState.get().isFullScreenMain ? R.string.yes : R.string.no);
+        TxtUtils.underlineTextView(onFullScreen);
+
         onFullScreen.setOnClickListener(new OnClickListener() {
 
             @Override
             public void onClick(final View v) {
-                AppState.get().isFullScreenMain = !AppState.get().isFullScreenMain;
-                onFullScreen.setImageResource(AppState.get().isFullScreenMain ? R.drawable.glyphicons_487_fit_frame_to_image : R.drawable.glyphicons_488_fit_image_to_frame);
-                DocumentController.chooseFullScreen(getActivity(), AppState.get().isFullScreenMain);
+
+                MyPopupMenu popup = new MyPopupMenu(getActivity(), v);
+                popup.getMenu().add(R.string.yes).setOnMenuItemClickListener(new OnMenuItemClickListener() {
+
+                    @Override
+                    public boolean onMenuItemClick(MenuItem item) {
+                        AppState.get().isFullScreenMain = true;
+
+                        onFullScreen.setText(R.string.yes);
+                        TxtUtils.underlineTextView(onFullScreen);
+                        DocumentController.chooseFullScreen(getActivity(), AppState.get().isFullScreenMain);
+                        return false;
+                    }
+                });
+
+                popup.getMenu().add(R.string.no).setOnMenuItemClickListener(new OnMenuItemClickListener() {
+
+                    @Override
+                    public boolean onMenuItemClick(MenuItem item) {
+                        AppState.get().isFullScreenMain = false;
+
+                        onFullScreen.setText(R.string.yes);
+                        TxtUtils.underlineTextView(onFullScreen);
+                        DocumentController.chooseFullScreen(getActivity(), AppState.get().isFullScreenMain);
+                        return false;
+                    }
+                });
+
+                popup.show();
 
             }
         });
-        onFullScreen.setImageResource(AppState.get().isFullScreenMain ? R.drawable.glyphicons_487_fit_frame_to_image : R.drawable.glyphicons_488_fit_image_to_frame);
 
         screenOrientation = (TextView) inflate.findViewById(R.id.screenOrientation);
         screenOrientation.setText(DocumentController.getRotationText());

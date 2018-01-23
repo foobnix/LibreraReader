@@ -31,8 +31,6 @@
    <string name="fail">असफल</string>
    <string name="filter">फ़िल्टर</string>
    <string name="filter_pro_feature_">फ़िल्टर (प्रो फ़ीचर)</string>
-   <string name="full_screen_">पूर्ण स्क्रीन</string>
-   <string name="fullscreen">पूर्ण स्क्रीन</string>
    <string name="go">चले जाओ</string>
    <string name="go_to_page_dialog">पृष्ठ पर जाओ</string>
    <string name="help_us_translate">हमें स्थानीय बनाना मदद</string>
@@ -476,4 +474,5 @@
    <string name="reading_progress">प्रगति पढ़ना</string>
    <string name="awards">पुरस्कार</string>
    <string name="close_book_and_application">पुस्तक और एप्लिकेशन को बंद करें</string>
+   <string name="full_screen">पूर्ण स्क्रीन</string>
 </resources>
