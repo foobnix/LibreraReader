@@ -749,6 +749,11 @@ public class ExtUtils {
         }
 
         final Intent intent = new Intent(c, VerticalViewActivity.class);
+        try {
+            intent.putExtra(PasswordDialog.EXTRA_APP_PASSWORD, ((Activity) c).getIntent().getStringExtra(PasswordDialog.EXTRA_APP_PASSWORD));
+        } catch (Exception e) {
+            LOG.e(e);
+        }
         intent.setData(uri);
 
         if (page > 0) {
@@ -771,6 +776,12 @@ public class ExtUtils {
 
         final Intent intent = new Intent(c, HorizontalViewActivity.class);
         intent.setData(Uri.fromFile(file));
+        try {
+            intent.putExtra(PasswordDialog.EXTRA_APP_PASSWORD, ((Activity) c).getIntent().getStringExtra(PasswordDialog.EXTRA_APP_PASSWORD));
+        } catch (Exception e) {
+            LOG.e(e);
+        }
+
 
         if (page > 0) {
             intent.putExtra("page", page);

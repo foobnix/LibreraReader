@@ -156,9 +156,7 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
     @Override
     protected void onCreate(final Bundle savedInstanceState) {
 
-        if (PasswordDialog.isNeedPasswordDialog(this)) {
-            return;
-        }
+
 
         intetrstialTimeoutSec = ADS.FULL_SCREEN_TIMEOUT_SEC;
         DocumentController.doRotation(this);
@@ -179,7 +177,9 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
         }
 
         super.onCreate(savedInstanceState);
-
+        if (PasswordDialog.isNeedPasswordDialog(this)) {
+            return;
+        }
         boolean isTextFomat = ExtUtils.isTextFomat(getIntent());
 
         clickUtils = new ClickUtils();

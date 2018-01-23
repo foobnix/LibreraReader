@@ -87,9 +87,6 @@ public class VerticalViewActivity extends AbstractActionActivity<VerticalViewAct
      */
     @Override
     public void onCreate(final Bundle savedInstanceState) {
-        if (PasswordDialog.isNeedPasswordDialog(this)) {
-            return;
-        }
         intetrstialTimeoutSec = ADS.FULL_SCREEN_TIMEOUT_SEC;
         AppState.get().load(this);
 
@@ -133,6 +130,9 @@ public class VerticalViewActivity extends AbstractActionActivity<VerticalViewAct
             super.onCreate(savedInstanceState);
         }
 
+        if (PasswordDialog.isNeedPasswordDialog(this)) {
+            return;
+        }
         setContentView(R.layout.activity_vertical_view);
 
         Android6.checkPermissions(this);
@@ -171,7 +171,9 @@ public class VerticalViewActivity extends AbstractActionActivity<VerticalViewAct
             Keyboards.hideNavigation(this);
         }
         getController().onResume();
-        handler.removeCallbacks(closeRunnable);
+        if (handler != null) {
+            handler.removeCallbacks(closeRunnable);
+        }
 
     }
 
@@ -194,7 +196,9 @@ public class VerticalViewActivity extends AbstractActionActivity<VerticalViewAct
         AppState.get().isAutoScroll = false;
         AppState.get().save(this);
         TempHolder.isSeaching = false;
-        handler.postDelayed(closeRunnable, AppState.APP_CLOSE_AUTOMATIC);
+        if (handler != null) {
+            handler.postDelayed(closeRunnable, AppState.APP_CLOSE_AUTOMATIC);
+        }
     }
 
     @Override
