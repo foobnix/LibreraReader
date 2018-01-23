@@ -565,8 +565,9 @@ public class OpdsFragment2 extends UIFragment<Entry> {
                         @Override
                         protected void onPostExecute(Object result) {
                             progressBar.setVisibility(View.GONE);
-                            if ((Boolean) result == false) {
+                            if ((Boolean) result == false || file.length() == 0) {
                                 Toast.makeText(getContext(), R.string.loading_error, Toast.LENGTH_LONG).show();
+                                Urls.openWevView(getActivity(), link.href, null);
                             } else {
                                 link.filePath = file.getPath();
                             }

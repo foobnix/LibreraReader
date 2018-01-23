@@ -74,7 +74,9 @@ public class Urls {
             @Override
             public void onClick(DialogInterface dialog, int id) {
                 dialog.dismiss();
-                onClose.run();
+                if (onClose != null) {
+                    onClose.run();
+                }
             }
         });
         AlertDialog create = alert.create();
@@ -82,7 +84,9 @@ public class Urls {
 
             @Override
             public void onDismiss(DialogInterface dialog) {
-                onClose.run();
+                if (onClose != null) {
+                    onClose.run();
+                }
             }
         });
         alert.show();
