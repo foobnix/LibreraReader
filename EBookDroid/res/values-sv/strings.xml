@@ -475,4 +475,6 @@
    <string name="awards">Awards</string>
    <string name="close_book_and_application">Stäng bok och ansökan</string>
    <string name="full_screen">Fullskärm</string>
+   <string name="percent_and_number">Procent och antal</string>
+   <string name="current_page">Nuvarande sida</string>
 </resources>

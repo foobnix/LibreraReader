@@ -475,4 +475,6 @@
    <string name="awards">पुरस्कार</string>
    <string name="close_book_and_application">पुस्तक और एप्लिकेशन को बंद करें</string>
    <string name="full_screen">पूर्ण स्क्रीन</string>
+   <string name="percent_and_number">प्रतिशत और संख्या</string>
+   <string name="current_page">वर्तमान पृष्ठ</string>
 </resources>

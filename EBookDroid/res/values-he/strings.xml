@@ -475,4 +475,6 @@
    <string name="awards">פרסים</string>
    <string name="close_book_and_application">סגור ספר ויישום</string>
    <string name="full_screen">מסך מלא</string>
+   <string name="percent_and_number">אחוזים ומספר</string>
+   <string name="current_page">העמוד הנוכחי</string>
 </resources>

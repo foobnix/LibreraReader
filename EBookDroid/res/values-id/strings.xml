@@ -475,4 +475,6 @@
    <string name="awards">Penghargaan</string>
    <string name="close_book_and_application">Tutup buku dan aplikasi</string>
    <string name="full_screen">Layar penuh</string>
+   <string name="percent_and_number">Persen dan Nomor</string>
+   <string name="current_page">Halaman saat ini</string>
 </resources>

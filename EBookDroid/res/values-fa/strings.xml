@@ -475,4 +475,6 @@
    <string name="awards">جوایز</string>
    <string name="close_book_and_application">بستن کتاب و برنامه</string>
    <string name="full_screen">تمام صفحه</string>
+   <string name="percent_and_number">درصد و تعداد</string>
+   <string name="current_page">صفحه کنونی</string>
 </resources>

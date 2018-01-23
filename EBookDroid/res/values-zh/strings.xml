@@ -475,4 +475,6 @@
    <string name="awards">奖项</string>
    <string name="close_book_and_application">关闭书籍和应用程序</string>
    <string name="full_screen">全屏</string>
+   <string name="percent_and_number">百分比和数量</string>
+   <string name="current_page">当前页面</string>
 </resources>

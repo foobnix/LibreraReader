@@ -475,4 +475,6 @@
    <string name="awards">Giải thưởng</string>
    <string name="close_book_and_application">Đóng sách và ứng dụng</string>
    <string name="full_screen">Toàn màn hình</string>
+   <string name="percent_and_number">Phần trăm và Số</string>
+   <string name="current_page">Trang hiện tại</string>
 </resources>

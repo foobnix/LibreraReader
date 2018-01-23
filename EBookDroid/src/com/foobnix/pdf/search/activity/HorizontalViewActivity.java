@@ -1427,6 +1427,9 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
             maxSeek.setText("" + textMax);
             currentSeek.setText("" + textPage);
         }
+        if (AppState.get().readingProgress == AppState.READING_PROGRESS_PERCENT) {
+            textPage = textPage.replace("%", "");
+        }
         pagesCountIndicator.setText(textPage + " ∕ " + textMax);
 
         seekBar.setProgress(page);

@@ -475,4 +475,6 @@
    <string name="awards">Nagrody</string>
    <string name="close_book_and_application">Zamknij książkę i aplikację</string>
    <string name="full_screen">Pełny ekran</string>
+   <string name="percent_and_number">Procent i liczba</string>
+   <string name="current_page">Bieżąca strona</string>
 </resources>

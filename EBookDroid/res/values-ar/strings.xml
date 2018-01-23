@@ -475,4 +475,6 @@
    <string name="awards">جوائز</string>
    <string name="close_book_and_application">إغلاق الكتاب والتطبيق</string>
    <string name="full_screen">تكبير الشاشة</string>
+   <string name="percent_and_number">النسبة المئوية والرقم</string>
+   <string name="current_page">الصفحه الحاليه</string>
 </resources>

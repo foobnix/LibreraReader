@@ -475,4 +475,6 @@
    <string name="awards">賞</string>
    <string name="close_book_and_application">ブックとアプリケーションを閉じる</string>
    <string name="full_screen">全画面表示</string>
+   <string name="percent_and_number">パーセントと数</string>
+   <string name="current_page">現在のページ</string>
 </resources>

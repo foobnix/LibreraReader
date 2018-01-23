@@ -475,4 +475,6 @@
    <string name="awards">Apdovanojimai</string>
    <string name="close_book_and_application">Uždaryti knygą ir paraišką</string>
    <string name="full_screen">Per visą ekraną</string>
+   <string name="percent_and_number">Procentas ir skaičius</string>
+   <string name="current_page">Dabartinis puslapis</string>
 </resources>

@@ -475,4 +475,6 @@
    <string name="awards">Premii</string>
    <string name="close_book_and_application">Închideți cartea și aplicația</string>
    <string name="full_screen">Ecran complet</string>
+   <string name="percent_and_number">Procent și număr</string>
+   <string name="current_page">Pagina curenta</string>
 </resources>

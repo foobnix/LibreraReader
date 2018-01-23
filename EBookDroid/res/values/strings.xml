@@ -475,4 +475,6 @@
    <string name="reading_progress">Reading progress in</string>
    <string name="awards">Awards</string>
    <string name="close_book_and_application">Close book and application</string>
+   <string name="percent_and_number">Percent and Number</string>
+   <string name="current_page">Current page</string>
 </resources>

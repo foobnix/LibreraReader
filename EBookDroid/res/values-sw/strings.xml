@@ -475,4 +475,6 @@
    <string name="awards">Tuzo</string>
    <string name="close_book_and_application">Funga kitabu na programu</string>
    <string name="full_screen">Screen Kamili</string>
+   <string name="percent_and_number">Asilimia na Idadi</string>
+   <string name="current_page">Ukurasa wa sasa</string>
 </resources>

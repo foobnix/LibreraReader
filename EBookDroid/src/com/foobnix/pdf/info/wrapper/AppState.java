@@ -226,6 +226,7 @@ public class AppState {
 
     public final static int READING_PROGRESS_NUMBERS = 0;
     public final static int READING_PROGRESS_PERCENT = 1;
+    public final static int READING_PROGRESS_PERCENT_NUMBERS = 2;
 
     public final static int AUTO_BRIGTNESS = -1000;
 

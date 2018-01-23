@@ -475,4 +475,6 @@
    <string name="awards">Awards</string>
    <string name="close_book_and_application">Boek en toepassing sluiten</string>
    <string name="full_screen">Volledig scherm</string>
+   <string name="percent_and_number">Percentage en nummer</string>
+   <string name="current_page">Huidige pagina</string>
 </resources>

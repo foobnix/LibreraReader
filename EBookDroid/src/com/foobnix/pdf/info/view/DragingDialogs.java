@@ -2201,44 +2201,45 @@ public class DragingDialogs {
 
                 // status bar
 
+                final List<Integer> modeIds = Arrays.asList(//
+                        AppState.READING_PROGRESS_NUMBERS, //
+                        AppState.READING_PROGRESS_PERCENT, //
+                        AppState.READING_PROGRESS_PERCENT_NUMBERS//
+                );//
+
+                final List<String> modeStrings = Arrays.asList(//
+                        controller.getString(R.string.number), //
+                        controller.getString(R.string.percent), //
+                        controller.getString(R.string.percent_and_number)//
+                );//
+
                 final TextView readingProgress = (TextView) inflate.findViewById(R.id.readingProgress);
-                readingProgress.setText(AppState.get().readingProgress == AppState.READING_PROGRESS_NUMBERS ? controller.getString(R.string.number) : controller.getString(R.string.percent));
+                readingProgress.setText(modeStrings.get(modeIds.indexOf(AppState.get().readingProgress)));
                 TxtUtils.underlineTextView(readingProgress);
 
                 readingProgress.setOnClickListener(new OnClickListener() {
 
                     @Override
                     public void onClick(View v) {
-                        final PopupMenu popupMenu = new PopupMenu(v.getContext(), v);
+                        final MyPopupMenu popupMenu = new MyPopupMenu(v.getContext(), v);
+                        for (int i = 0; i < modeStrings.size(); i++) {
+                            final int j = i;
+                            popupMenu.getMenu().add(modeStrings.get(i)).setOnMenuItemClickListener(new OnMenuItemClickListener() {
 
-                        popupMenu.getMenu().add(R.string.number).setOnMenuItemClickListener(new OnMenuItemClickListener() {
-
-                            @Override
-                            public boolean onMenuItemClick(MenuItem item) {
-                                AppState.get().readingProgress = AppState.READING_PROGRESS_NUMBERS;
-                                readingProgress.setText(AppState.get().readingProgress == AppState.READING_PROGRESS_NUMBERS ? controller.getString(R.string.number) : controller.getString(R.string.percent));
-                                TxtUtils.underlineTextView(readingProgress);
-                                if (onRefresh != null) {
-                                    onRefresh.run();
+                                @Override
+                                public boolean onMenuItemClick(MenuItem item) {
+                                    AppState.get().readingProgress = modeIds.get(j);
+                                    readingProgress.setText(modeStrings.get(modeIds.indexOf(AppState.get().readingProgress)));
+                                    TxtUtils.underlineTextView(readingProgress);
+                                    if (onRefresh != null) {
+                                        onRefresh.run();
+                                    }
+                                    return false;
                                 }
-                                return false;
-                            }
-                        });
+                            });
+                        }
 
-                        popupMenu.getMenu().add(R.string.percent).setOnMenuItemClickListener(new OnMenuItemClickListener() {
-
-                            @Override
-                            public boolean onMenuItemClick(MenuItem item) {
-                                AppState.get().readingProgress = AppState.READING_PROGRESS_PERCENT;
-                                readingProgress.setText(AppState.get().readingProgress == AppState.READING_PROGRESS_NUMBERS ? controller.getString(R.string.number) : controller.getString(R.string.percent));
-                                TxtUtils.underlineTextView(readingProgress);
-                                if (onRefresh != null) {
-                                    onRefresh.run();
-                                }
-                                return false;
-                            }
-                        });
-                        popupMenu.show();
+                        popupMenu.show(AppState.get().isFullScreen);
                     }
                 });
 
@@ -2729,7 +2730,6 @@ public class DragingDialogs {
 
                     }
                 });
-
 
                 final TextView tapzoneCustomize = (TextView) inflate.findViewById(R.id.tapzoneCustomize);
                 TxtUtils.underlineTextView(tapzoneCustomize);

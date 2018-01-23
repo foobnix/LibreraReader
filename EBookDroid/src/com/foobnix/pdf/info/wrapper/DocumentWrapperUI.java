@@ -372,6 +372,10 @@ public class DocumentWrapperUI {
         String current = TxtUtils.deltaPage(dc.getCurentPage(), maxValue);
         String max = TxtUtils.deltaPageMax(maxValue);
 
+        if (AppState.get().readingProgress == AppState.READING_PROGRESS_PERCENT) {
+            current = current.replace("%", "");
+        }
+
         if (AppState.get().isAutoScroll) {
             currentPageIndex.setText(String.format("{%s} %s/%s", AppState.get().autoScrollSpeed, current, max));
         } else {

@@ -442,9 +442,9 @@
    <string name="you_neet_to_apply_the_new_settings">Необходимо применить новые настройки</string>
    <string name="custom_value">Свое значение</string>
    <string name="change_the_automatic_scrolling_speed_with_the_volume_keys">Менять скорость автопрокрутки текста клавишами регулировки громкости</string>
-   <string name="mode_vertical">Режим свитка (вертик. листание)</string>
-   <string name="mode_horizontally">Режим книги (гориз. листание)</string>
-   <string name="mode_musician">Режим «Музыкант» (прокрутка нот)</string>
+   <string name="mode_vertical">Режим свитка</string>
+   <string name="mode_horizontally">Режим книги</string>
+   <string name="mode_musician">Режим «Музыкант»</string>
    <string name="automatic_export_backup">Автоматически экспортировать настройки, прогресс чтения книг и закладки при каждом выходе из приложения</string>
    <string name="display_all_file_types_in_folders">Отображать в папках все типы файлов</string>
    <string name="no_serie">Без серии</string>
@@ -469,10 +469,12 @@
    <string name="title">Заголовок</string>
    <string name="subject">Тема</string>
    <string name="keywords">Ключевые слова</string>
-   <string name="number">Соотношение числа страниц</string>
-   <string name="percent">Процентное соотношение</string>
+   <string name="number">Число</string>
+   <string name="percent">Процент</string>
    <string name="reading_progress">Показывать в строке</string>
    <string name="awards">Награды</string>
    <string name="close_book_and_application">Закрыть книгу и приложение</string>
    <string name="full_screen">Полноэкранный</string>
+   <string name="percent_and_number">Процент и число</string>
+   <string name="current_page">Текущая страница</string>
 </resources>

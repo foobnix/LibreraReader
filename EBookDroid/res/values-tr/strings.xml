@@ -475,4 +475,6 @@
    <string name="awards">Ödüller</string>
    <string name="close_book_and_application">Kitabı ve başvuruyu kapat</string>
    <string name="full_screen">Tam ekran</string>
+   <string name="percent_and_number">Yüzde ve Sayı</string>
+   <string name="current_page">Geçerli sayfa</string>
 </resources>

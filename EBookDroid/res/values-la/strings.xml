@@ -475,4 +475,6 @@
    <string name="awards">Awards</string>
    <string name="close_book_and_application">Close book and application</string>
    <string name="full_screen">Screen</string>
+   <string name="percent_and_number">Et Number percent</string>
+   <string name="current_page">Pagina</string>
 </resources>

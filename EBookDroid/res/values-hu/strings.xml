@@ -475,4 +475,6 @@
    <string name="awards">Díjak</string>
    <string name="close_book_and_application">Zárja be a könyveket és az alkalmazásokat</string>
    <string name="full_screen">Teljes képernyő</string>
+   <string name="percent_and_number">Százalék és szám</string>
+   <string name="current_page">Aktuális oldal</string>
 </resources>

@@ -475,4 +475,6 @@
    <string name="awards">Palkinnot</string>
    <string name="close_book_and_application">Sulje kirja ja sovellus</string>
    <string name="full_screen">Koko näyttö</string>
+   <string name="percent_and_number">Prosentti ja lukumäärä</string>
+   <string name="current_page">Tämänhetkinen sivu</string>
 </resources>

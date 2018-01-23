@@ -475,4 +475,6 @@
    <string name="awards">수상 내역</string>
    <string name="close_book_and_application">도서 및 신청서 닫기</string>
    <string name="full_screen">전체 화면</string>
+   <string name="percent_and_number">백분율 및 수</string>
+   <string name="current_page">현재 페이지</string>
 </resources>

@@ -475,4 +475,6 @@
    <string name="awards">Нагороди</string>
    <string name="close_book_and_application">Закрити книгу та додаток</string>
    <string name="full_screen">Повноекранний</string>
+   <string name="percent_and_number">Відсоток і кількість</string>
+   <string name="current_page">Поточна сторінка</string>
 </resources>

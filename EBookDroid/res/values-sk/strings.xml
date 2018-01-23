@@ -475,4 +475,6 @@
    <string name="awards">Ocenenie</string>
    <string name="close_book_and_application">Zatvorte knihu a aplikáciu</string>
    <string name="full_screen">Celá obrazovka</string>
+   <string name="percent_and_number">Percento a číslo</string>
+   <string name="current_page">Aktuálna stránka</string>
 </resources>
