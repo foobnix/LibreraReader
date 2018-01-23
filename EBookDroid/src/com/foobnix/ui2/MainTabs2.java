@@ -165,7 +165,6 @@ public class MainTabs2 extends AdsFragmentActivity {
             return;
         }
 
-        RecentUpates.updateAll(this);
 
         LOG.d(TAG, "onCreate");
 
@@ -332,6 +331,7 @@ public class MainTabs2 extends AdsFragmentActivity {
                     public void run() {
                         boolean isEasyMode = HorizontalViewActivity.class.getSimpleName().equals(AppState.get().lastMode);
                         Intent intent = new Intent(MainTabs2.this, isEasyMode ? HorizontalViewActivity.class : VerticalViewActivity.class);
+                        intent.putExtra(PasswordDialog.EXTRA_APP_PASSWORD, getIntent().getStringExtra(PasswordDialog.EXTRA_APP_PASSWORD));
                         intent.setData(Uri.fromFile(new File(AppState.get().lastBookPath)));
                         startActivity(intent);
                     }
@@ -367,6 +367,8 @@ public class MainTabs2 extends AdsFragmentActivity {
                 }
             });
 
+        } else {
+            RecentUpates.updateAll(this);
         }
 
         checkGoToPage(getIntent());
