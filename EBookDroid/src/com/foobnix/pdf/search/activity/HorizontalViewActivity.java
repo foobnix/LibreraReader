@@ -25,6 +25,7 @@ import com.foobnix.pdf.info.Android6;
 import com.foobnix.pdf.info.DictsHelper;
 import com.foobnix.pdf.info.ExtUtils;
 import com.foobnix.pdf.info.IMG;
+import com.foobnix.pdf.info.PasswordDialog;
 import com.foobnix.pdf.info.R;
 import com.foobnix.pdf.info.TintUtil;
 import com.foobnix.pdf.info.UiSystemUtils;
@@ -154,6 +155,11 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
 
     @Override
     protected void onCreate(final Bundle savedInstanceState) {
+
+        if (PasswordDialog.isNeedPasswordDialog(this)) {
+            return;
+        }
+
         intetrstialTimeoutSec = ADS.FULL_SCREEN_TIMEOUT_SEC;
         DocumentController.doRotation(this);
         handler = new Handler();

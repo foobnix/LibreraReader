@@ -1,6 +1,7 @@
 package com.foobnix.ui2.adapter;
 
 import com.foobnix.android.utils.Dips;
+import com.foobnix.android.utils.Keyboards;
 import com.foobnix.android.utils.ResultResponse;
 import com.foobnix.android.utils.TxtUtils;
 import com.foobnix.opds.Entry;
@@ -207,6 +208,8 @@ public class EntryAdapter extends AppRecycleAdapter<Entry, RecyclerView.ViewHold
                             String replace = link.href.replace("{searchterms}", encode).replace("{searchTerms}", encode);
                             Link l = new Link(replace);
                             onLinkClickListener.onResultRecive(l);
+
+                            Keyboards.close(search);
                         } else {
                             Toast.makeText(context, R.string.incorrect_value, Toast.LENGTH_SHORT).show();
                         }

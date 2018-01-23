@@ -13,6 +13,7 @@ import org.ebookdroid.core.codec.CodecPage;
 import org.ebookdroid.droids.mupdf.codec.TextWord;
 
 import com.foobnix.android.utils.BaseItemLayoutAdapter;
+import com.foobnix.android.utils.Keyboards;
 import com.foobnix.android.utils.LOG;
 import com.foobnix.android.utils.ResultResponse2;
 import com.foobnix.android.utils.TxtUtils;
@@ -186,6 +187,9 @@ public class MultyDocSearchDialog {
 
                 Model.get().res.clear();
                 adapter.notifyDataSetChanged();
+
+                Keyboards.close(editSearchText);
+
             }
         });
 

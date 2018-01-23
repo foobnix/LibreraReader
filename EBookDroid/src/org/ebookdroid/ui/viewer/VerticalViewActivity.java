@@ -14,6 +14,7 @@ import com.foobnix.android.utils.LOG;
 import com.foobnix.pdf.info.ADS;
 import com.foobnix.pdf.info.Android6;
 import com.foobnix.pdf.info.ExtUtils;
+import com.foobnix.pdf.info.PasswordDialog;
 import com.foobnix.pdf.info.R;
 import com.foobnix.pdf.info.model.BookCSS;
 import com.foobnix.pdf.info.view.BrightnessHelper;
@@ -86,6 +87,9 @@ public class VerticalViewActivity extends AbstractActionActivity<VerticalViewAct
      */
     @Override
     public void onCreate(final Bundle savedInstanceState) {
+        if (PasswordDialog.isNeedPasswordDialog(this)) {
+            return;
+        }
         intetrstialTimeoutSec = ADS.FULL_SCREEN_TIMEOUT_SEC;
         AppState.get().load(this);
 

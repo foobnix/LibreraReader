@@ -11,6 +11,7 @@ import java.util.Locale;
 import org.ebookdroid.common.settings.SettingsManager;
 import org.ebookdroid.common.settings.books.BookSettings;
 
+import com.foobnix.android.utils.Keyboards;
 import com.foobnix.android.utils.ResultResponse;
 import com.foobnix.android.utils.TxtUtils;
 import com.foobnix.pdf.info.AppSharedPreferences;
@@ -253,6 +254,7 @@ public class BookmarksFragment2 extends UIFragment<AppBookmark> {
             boolean isVisible = bookmarksSearchContainer.getVisibility() == View.VISIBLE;
             if (isVisible) {
                 bookmarksSearchContainer.setVisibility(View.GONE);
+                Keyboards.close(bookmarksEditSearch);
             } else {
                 bookmarksSearchContainer.setVisibility(View.VISIBLE);
             }
