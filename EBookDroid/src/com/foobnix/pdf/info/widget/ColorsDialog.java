@@ -56,14 +56,14 @@ public class ColorsDialog {
 
     Handler handler;
 
-    public ColorsDialog(final FragmentActivity c, final boolean isDayMode, int colorText, int colorBg, boolean onlyColorBg, final boolean soligBG, final ColorsDialogResult colorsDialogResult) {
+    public ColorsDialog(final FragmentActivity c, final boolean isDayMode, final int colorTextDef, final int colorBgDef, boolean onlyColorBg, final boolean soligBG, final ColorsDialogResult colorsDialogResult) {
         super();
         final View view = LayoutInflater.from(c).inflate(R.layout.dialog_colors, null, false);
 
         handler = new Handler();
 
-        colorText = magicBlackColor(colorText);
-        colorBg = magicBlackColor(colorBg);
+        int colorText = magicBlackColor(colorTextDef);
+        int colorBg = magicBlackColor(colorBgDef);
 
         colorTextChoose = colorText;
         colorBgChoose = colorBg;
@@ -417,7 +417,18 @@ public class ColorsDialog {
                     AppState.get().bgImageNightPath = MagicHelper.IMAGE_BG_2;
                     imageTransparency.reset(AppState.get().bgImageNightTransparency);
                 }
-                // updateAll(defText, defBg);
+                updateAll(colorTextDef, colorBgDef);
+                handler.postDelayed(new Runnable() {
+
+                    @Override
+                    public void run() {
+                        if (soligBG) {
+                            isColor.performClick();
+                        } else {
+                            isImage.performClick();
+                        }
+                    }
+                }, 25);
 
             }
         });

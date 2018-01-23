@@ -32,8 +32,6 @@ import android.widget.Toast;
 
 public class DefaultListeners {
 
-
-
     public static void bindAdapter(final Activity a, final FileMetaAdapter searchAdapter, final DocumentController dc, final Runnable onClick) {
         searchAdapter.setOnItemClickListener(new ResultResponse<FileMeta>() {
 
@@ -56,6 +54,7 @@ public class DefaultListeners {
         searchAdapter.setOnMenuClickListener(getOnMenuClick(a, searchAdapter));
         searchAdapter.setOnStarClickListener(getOnStarClick(a));
     }
+
     public static void bindAdapter(Activity a, final FileMetaAdapter searchAdapter) {
         searchAdapter.setOnItemClickListener(getOnItemClickListener(a));
         searchAdapter.setOnItemLongClickListener(getOnItemLongClickListener(a, searchAdapter));
@@ -114,7 +113,9 @@ public class DefaultListeners {
                     }
 
                 };
-                FileInformationDialog.showFileInfoDialog(a, item, onDeleteAction);
+                if (ExtUtils.doifFileExists(a, item)) {
+                    FileInformationDialog.showFileInfoDialog(a, item, onDeleteAction);
+                }
                 return true;
             }
         };
@@ -161,20 +162,25 @@ public class DefaultListeners {
 
             @Override
             public boolean onResultRecive(final FileMeta result) {
+
                 final File file = new File(result.getPath());
-                Runnable onDeleteAction = new Runnable() {
 
-                    @Override
-                    public void run() {
-                        deleteFile(a, searchAdapter, result);
+                if (ExtUtils.doifFileExists(a, file)) {
+
+                    Runnable onDeleteAction = new Runnable() {
+
+                        @Override
+                        public void run() {
+                            deleteFile(a, searchAdapter, result);
+                        }
+
+                    };
+
+                    if (ExtUtils.isNotSupportedFile(file)) {
+                        ShareDialog.showArchive(a, file, onDeleteAction);
+                    } else {
+                        ShareDialog.show(a, file, onDeleteAction, -1, null, null);
                     }
-
-                };
-
-                if (ExtUtils.isNotSupportedFile(file)) {
-                    ShareDialog.showArchive(a, file, onDeleteAction);
-                } else {
-                    ShareDialog.show(a, file, onDeleteAction, -1, null, null);
                 }
 
                 return false;
