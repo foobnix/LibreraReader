@@ -2682,7 +2682,7 @@ public class DragingDialogs {
 
                 // double tap
 
-                List<String> doubleTapNames = Arrays.asList(//
+                final List<String> doubleTapNames = Arrays.asList(//
                         controller.getString(R.string.db_auto_scroll), //
                         controller.getString(R.string.db_auto_alignemnt), //
                         controller.getString(R.string.db_auto_center_horizontally), //
@@ -2702,35 +2702,34 @@ public class DragingDialogs {
                         AppState.DOUBLE_CLICK_CLOSE_BOOK_AND_APP, //
                         AppState.DOUBLE_CLICK_NOTHING //
                 );//
+                final TextView doubleClickAction1 = (TextView) inflate.findViewById(R.id.doubleTapValue);
+                doubleClickAction1.setText(doubleTapNames.get(doubleTapIDS.indexOf(AppState.get().doubleClickAction1)));
+                TxtUtils.underlineTextView(doubleClickAction1);
 
-                final Spinner doubleTapSpinner = (Spinner) inflate.findViewById(R.id.doubleTapSpinner);
-                doubleTapSpinner.setAdapter(new BaseItemLayoutAdapter<String>(controller.getActivity(), android.R.layout.simple_spinner_dropdown_item, doubleTapNames) {
-
-                    @Override
-                    public void populateView(View inflate, int arg1, String value) {
-                        Views.text(inflate, android.R.id.text1, "" + value);
-                    }
-                });
-                doubleTapSpinner.setOnItemSelectedListener(new OnItemSelectedListener() {
+                doubleClickAction1.setOnClickListener(new OnClickListener() {
 
                     @Override
-                    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                        AppState.get().doubleClickAction1 = doubleTapIDS.get(position);
+                    public void onClick(View v) {
+                        MyPopupMenu popup = new MyPopupMenu(controller.getActivity(), v);
+                        for (int i = 0; i < doubleTapNames.size(); i++) {
+                            final int j = i;
+                            final String fontName = doubleTapNames.get(i);
+                            popup.getMenu().add(fontName).setOnMenuItemClickListener(new OnMenuItemClickListener() {
 
-                        try {
-                            TextView textView = (TextView) doubleTapSpinner.getChildAt(0);
-                            textView.setTextAppearance(controller.getActivity(), R.style.textLinkStyle);
-                        } catch (Exception e) {
-                            LOG.e(e);
+                                @Override
+                                public boolean onMenuItemClick(MenuItem item) {
+                                    AppState.get().doubleClickAction1 = doubleTapIDS.get(j);
+                                    doubleClickAction1.setText(doubleTapNames.get(doubleTapIDS.indexOf(AppState.get().doubleClickAction1)));
+                                    TxtUtils.underlineTextView(doubleClickAction1);
+                                    return false;
+                                }
+                            });
                         }
-                    }
-
-                    @Override
-                    public void onNothingSelected(AdapterView<?> parent) {
+                        popup.show();
 
                     }
                 });
-                doubleTapSpinner.setSelection(doubleTapIDS.indexOf(AppState.get().doubleClickAction1));
+
 
                 final TextView tapzoneCustomize = (TextView) inflate.findViewById(R.id.tapzoneCustomize);
                 TxtUtils.underlineTextView(tapzoneCustomize);

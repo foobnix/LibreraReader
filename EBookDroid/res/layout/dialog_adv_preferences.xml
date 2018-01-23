@@ -152,36 +152,25 @@
         </LinearLayout>
         
         <LinearLayout
-            android:id="@+id/onDoubleTapLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:clickable="true"
             android:gravity="center_vertical" >
 
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="0"
-                android:padding="5dip"
-                android:src="@drawable/glyphicons_723_mouse_double_click"
-                android:tint="@color/tint_gray" />
-
             <TextView
-                android:layout_width="wrap_content"
+                android:layout_width="180dip"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="5dip"
-                android:layout_weight="1"
                 android:ellipsize="end"
                 android:singleLine="true"
                 android:text="@string/action_on_double_tap"
                 android:textStyle="bold" />
-
-            <Spinner
-                android:id="@+id/doubleTapSpinner"
-                android:layout_width="185dip"
-                android:layout_height="40dip"
-                android:layout_weight="0"
-                android:gravity="center" />
+            
+            <TextView
+                android:id="@+id/doubleTapValue"
+                style="@style/textLink"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/close_book" />
         </LinearLayout>
         
         
