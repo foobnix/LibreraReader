@@ -102,7 +102,7 @@ public class SearchCore {
             if (it.getName().startsWith(".")) {
                 continue;
             }
-            if (!AppState.get().isDisplayAllFilesInFolder && filterEmpty && !isDirderctoryWithBook(it)) {
+            if (!AppState.get().isDisplayAllFilesInFolder && filterEmpty && !isDirderctoryWithBook(it, 0)) {
                 continue;
             }
 
@@ -117,12 +117,29 @@ public class SearchCore {
         return files;
     }
 
-    public static boolean isDirderctoryWithBook(File dir) {
-        if (dir.isFile()) {
+    public static boolean isDirderctoryWithBook(File dir, int dep) {
+        if (dir.isFile() || dep == 2) {
             return true;
         }
-        File[] list = dir.listFiles(SUPPORTED_EXT_AND_DIRS_FILTER);
-        return list != null && list.length >= 1;
+        File[] list = dir.listFiles();
+        if (list == null || list.length == 0) {
+            return false;
+        }
+        for (File f : list) {
+            if (f.isDirectory()) {
+                if (isDirderctoryWithBook(f, dep + 1)) {
+                    return true;
+                }
+            } else {
+                for (String s : ExtUtils.browseExts) {
+                    if (f.getName().endsWith(s)) {
+                        return true;
+                    }
+                }
+            }
+        }
+
+        return false;
     }
 
     public static SupportedExtAndDirsFilter SUPPORTED_EXT_AND_DIRS_FILTER = new SupportedExtAndDirsFilter();

@@ -319,6 +319,10 @@ public class MainTabs2 extends AdsFragmentActivity {
         LOG.d("EXTRA_SHOW_TABS", showTabs, AppState.get().lastMode);
         if (showTabs == false && AppState.get().isOpenLastBook) {
             LOG.d("Open lastBookPath", AppState.get().lastBookPath);
+            if (!new File(AppState.get().lastBookPath).isFile()) {
+                LOG.d("Open Last book not found");
+                return;
+            }
             AppState.get().lastClosedActivity = null;
             if (AppState.get().lastBookPath != null) {
 

@@ -4,7 +4,9 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import com.foobnix.android.utils.LOG;
 import com.foobnix.android.utils.ResultResponse;
@@ -66,7 +68,7 @@ public class BrowseFragment2 extends UIFragment<FileMeta> {
 
     private int fragmentType = TYPE_DEFAULT;
     private String fragmentText = "";
-    int rememberPos;
+    Map<String, Integer> rememberPos = new HashMap<String, Integer>();
 
     public BrowseFragment2() {
         super();
@@ -381,9 +383,11 @@ public class BrowseFragment2 extends UIFragment<FileMeta> {
 
     public boolean onBackAction() {
         File file = new File(AppState.get().dirLastPath);
-        if (recyclerView != null && file.getParent() != null) {
-            recyclerView.scrollToPosition(rememberPos);
-            setDirPath(file.getParent());
+        String path = file.getParent();
+        if (recyclerView != null && path != null) {
+            int pos = rememberPos.get(path) == null ? 0 : rememberPos.get(path);
+            setDirPath(path);
+            recyclerView.scrollToPosition(pos);
             return true;
         }
         return false;
@@ -397,13 +401,22 @@ public class BrowseFragment2 extends UIFragment<FileMeta> {
         onGridList();
     }
 
+    String prevPath;
+
     public void setDirPath(final String path, List<FileMeta> items) {
         LOG.d("setDirPath", path);
         if (searchAdapter == null) {
             return;
         }
+        
 
-        rememberPos = ((LinearLayoutManager) recyclerView.getLayoutManager()).findFirstVisibleItemPosition();
+        if (!path.equals(prevPath)) {
+            int pos = ((LinearLayoutManager) recyclerView.getLayoutManager()).findFirstVisibleItemPosition();
+            rememberPos.put(prevPath, pos);
+            LOG.d("rememberPos", path, pos);
+        }
+        prevPath = path;
+
 
         if (AppDB.get().isStarFolder(path)) {
             starIcon.setImageResource(R.drawable.star_1);
