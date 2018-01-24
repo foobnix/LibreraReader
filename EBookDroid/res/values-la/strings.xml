@@ -284,7 +284,7 @@
    <string name="styles">Styles</string>
    <string name="document_styles">Insinuati</string>
    <string name="user_styles">Styli usufructuarii</string>
-   <string name="archive">Archivus</string
+   <string name="archive">Archivus</string>
    <string name="beta_version">Versicula beta</string>
    <string name="of_screen">Velarii</string>
    <string name="ongoing_notification">Monitio pertinax</string>
@@ -458,7 +458,7 @@
    <string name="favorite_folders_and_books">Libri ac coopercula electa</string>
    <string name="don_t_show_this_dialog">Meminisse</string>
    <string name="show_the_book_close_dialog">Show book exit prompt</string>
-   <string name="search_completed">Search completed</string>
+   <string name="search_completed">Search completed</string>Да, до 1000 символов текста и до 5 изображений можно будет добавить.
    <string name="you_can_search_only_one_word">You can search only one word</string>
    <string name="passwords_do_not_match">Passwords do not match</string>
    <string name="set_an_application_password">Set an application password</string>
