@@ -472,10 +472,10 @@ public class Fb2Extractor extends BaseExtractor {
                     count++;
                     line = line.replace("</title>", "<a id=\"" + count + "\"></a></title>");
                 }
-                if (BookCSS.get().isAutoHypens && line.contains("<subtitle>")) {
+                if (false && BookCSS.get().isAutoHypens && line.contains("<subtitle>")) {
                     titleBegin = true;
                 }
-                if (line.contains("</subtitle>")) {
+                if (false && line.contains("</subtitle>")) {
                     titleBegin = false;
                     count++;
                     line = line.replace("</subtitle>", "<a id=\"" + count + "\"></a></subtitle>");
@@ -585,7 +585,6 @@ public class Fb2Extractor extends BaseExtractor {
         List<String> titles = new ArrayList<String>();
 
         int section = 0;
-        boolean isFirstEndBody = false;
         int dividerSection = -1;
         String dividerLine = null;
         while (eventType != XmlPullParser.END_DOCUMENT) {
@@ -593,36 +592,28 @@ public class Fb2Extractor extends BaseExtractor {
                 break;
             }
             if (eventType == XmlPullParser.START_TAG) {
-                if (xpp.getName().equals("section") || xpp.getName().equals("subtitle")) {
+                if (xpp.getName().equals("section")) {
                     section++;
                 }
-                if (xpp.getName().equals("title") || xpp.getName().equals("subtitle")) {
+                if (xpp.getName().equals("title")) {
                     isTitle = true;
                 }
 
             } else if (eventType == XmlPullParser.END_TAG) {
-                if (xpp.getName().equals("title") || xpp.getName().equals("subtitle")) {
+                if (xpp.getName().equals("title")) {
                     isTitle = false;
                     title = "[" + xpp.getName() + "]" + title;
-                    if (isFirstEndBody) {
-                        titles.add(section + DIVIDER + title + FOOTER_AFTRER_BOODY);
-                    } else {
-                        titles.add(section + DIVIDER + title);
-                    }
+                    titles.add(section + DIVIDER + title);
                     title = "";
                     if (section == dividerSection) {
                         titles.remove(dividerLine);
                     }
                 }
-                if (xpp.getName().equals("section") || xpp.getName().equals("subtitle")) {
+                if (xpp.getName().equals("section")) {
                     section--;
                 }
-                if (!isFirstEndBody && xpp.getName().equals("body")) {
-                    isFirstEndBody = true;
-                    section++;
-                    dividerSection = section;
-                    dividerLine = section + DIVIDER + FOOTER_NOTES_SIGN;
-                    titles.add(dividerLine);
+                if (xpp.getName().equals("body")) {
+                    break;
                 }
 
             } else if (eventType == XmlPullParser.TEXT) {
