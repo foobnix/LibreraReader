@@ -146,12 +146,12 @@
    <string name="formatted_text">Formatted text (pseudo graphics)</string>
    <string name="dictionary">Thesaurus</string>
    <string name="import_bookmarks">Importare signalibris</string>
-   <string name="email">e-pistula</string>
+   <string name="email">E-pistula</string>
    <string name="file">Plica</string>
    <string name="file_not_found">Plica abest</string>
    <string name="send_file">Mittite plicam</string>
    <string name="make_text_reflow">Refluationis scriptorum</string>
-   <string name="file_info">Notitae plicae </string>
+   <string name="file_info">Notitae plicae</string>
    <string name="open_file">Aperire plicam</string>
    <string name="search_not_supported_formats">Search for not supported formats</string>
    <string name="search_in_google">Perlustrare con googla</string>
@@ -201,7 +201,7 @@
    <string name="folder_with_fonts">Fonts location</string>
    <string name="margin_width">Latitudo marginum</string>
    <string name="top">Latus basalis</string>
-   <string name="bottom">Latus superum </string>
+   <string name="bottom">Latus superum</string>
    <string name="left">Latus laeva</string>
    <string name="right">Latus dextra</string>
    <string name="interval">Discrimen</string>
@@ -458,7 +458,7 @@
    <string name="favorite_folders_and_books">Libri ac coopercula electa</string>
    <string name="don_t_show_this_dialog">Meminisse</string>
    <string name="show_the_book_close_dialog">Show book exit prompt</string>
-   <string name="search_completed">Search completed</string>Да, до 1000 символов текста и до 5 изображений можно будет добавить.
+   <string name="search_completed">Search completed</string>
    <string name="you_can_search_only_one_word">You can search only one word</string>
    <string name="passwords_do_not_match">Passwords do not match</string>
    <string name="set_an_application_password">Set an application password</string>
