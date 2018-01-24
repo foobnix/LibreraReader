@@ -26,7 +26,7 @@ public abstract class BaseItemLayoutAdapter<T> extends BaseItemAdapter<T> {
     @Override
     public View getView(int position, View convertView, ViewGroup parent, T item) {
         if (convertView == null) {
-            convertView = LayoutInflater.from(context).inflate(layoutResId, null, false);
+            convertView = LayoutInflater.from(context).inflate(layoutResId, parent, false);
         }
         populateView(convertView, position, item);
         return convertView;
