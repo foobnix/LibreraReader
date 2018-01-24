@@ -204,7 +204,7 @@
                 android:gravity="center"
                 android:text="@string/mode_vertical"
                 android:textColor="#ffffff"
-                android:textSize="14sp"
+                android:textSize="13sp"
                 android:textStyle="normal" />
 
             <ImageView

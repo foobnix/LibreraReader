@@ -373,13 +373,18 @@ public class DocumentWrapperUI {
         String max = TxtUtils.deltaPageMax(maxValue);
 
         if (AppState.get().readingProgress == AppState.READING_PROGRESS_PERCENT) {
-            current = current.replace("%", "");
-        }
-
-        if (AppState.get().isAutoScroll) {
-            currentPageIndex.setText(String.format("{%s} %s/%s", AppState.get().autoScrollSpeed, current, max));
+            if (AppState.get().isAutoScroll) {
+                currentPageIndex.setText(String.format("{%s} %s", AppState.get().autoScrollSpeed, current));
+            } else {
+                currentPageIndex.setText(String.format("%s", current));
+            }
         } else {
-            currentPageIndex.setText(String.format("%s/%s", current, max));
+
+            if (AppState.get().isAutoScroll) {
+                currentPageIndex.setText(String.format("{%s} %s/%s", AppState.get().autoScrollSpeed, current, max));
+            } else {
+                currentPageIndex.setText(String.format("%s/%s", current, max));
+            }
         }
     }
 
