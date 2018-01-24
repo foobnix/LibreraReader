@@ -169,7 +169,7 @@
    <string name="remember_dictionary">Запомнить словарь</string>
    <string name="left_to_rigth">Слева направо</string>
    <string name="right_to_left">Справа налево</string>
-   <string name="show_the_dialog_what_is_new_for_updates">Показывать окно "Что нового..." при обновлениях</string>
+   <string name="show_the_dialog_what_is_new_for_updates">Показывать окно \"Что нового...\" при обновлениях</string>
    <string name="font_size">Размер шрифта</string>
    <string name="performance_settings">Параметры быстродействия</string>
    <string name="page_quality">Кач-во прорисовки стр-ц</string>
