@@ -586,14 +586,11 @@ public class AppState {
         if (AppsConfig.IS_CLASSIC) {
             AppState.get().tabsOrder = DEFAULTS_TABS_ORDER.replace(UITab.OpdsFragment.index + "#1", UITab.OpdsFragment.index + "#0");
         }
-        if (AppState.get().isInkMode || AppsConfig.IS_INK) {
-            AppsConfig.ADMOB_FULLSCREEN = null;
+        if (Dips.isEInk(c)) {
             AppState.get().isInkMode = true;
             AppState.get().isDayNotInvert = true;
             AppState.get().isEditMode = true;
             AppState.get().isRememberMode = false;
-            // AppState.get().isAlwaysOpenAsMagazine = true;
-            // AppState.get().isMusicianMode = false;
             AppState.get().isReverseKeys = true;
             AppState.get().isScrollAnimation = false;
             AppState.get().tintColor = Color.BLACK;
