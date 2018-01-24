@@ -8,6 +8,7 @@ import org.ebookdroid.BookType;
 import org.ebookdroid.ui.viewer.VerticalViewActivity;
 import org.greenrobot.eventbus.EventBus;
 
+import com.foobnix.android.utils.Keyboards;
 import com.foobnix.pdf.info.ExtUtils;
 import com.foobnix.pdf.info.R;
 import com.foobnix.pdf.info.Urls;
@@ -23,6 +24,7 @@ import com.foobnix.ui2.MainTabs2;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.content.DialogInterface.OnDismissListener;
 import android.widget.Toast;
 
 public class ShareDialog {
@@ -194,7 +196,15 @@ public class ShareDialog {
 
                     }
                 });
-        builder.show();
+        AlertDialog create = builder.create();
+        create.setOnDismissListener(new OnDismissListener() {
+
+            @Override
+            public void onDismiss(DialogInterface dialog) {
+                Keyboards.hideNavigation(a);
+            }
+        });
+        create.show();
     };
 
 }

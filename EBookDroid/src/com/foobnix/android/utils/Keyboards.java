@@ -1,6 +1,7 @@
 package com.foobnix.android.utils;
 
 import com.foobnix.pdf.info.wrapper.AppState;
+import com.foobnix.ui2.MainTabs2;
 
 import android.app.Activity;
 import android.content.Context;
@@ -30,7 +31,12 @@ public class Keyboards {
 
     public static void hideNavigation(final Activity a) {
         try {
-            if (!AppState.get().isFullScreen) {
+            if (a == null) {
+                return;
+            }
+            if (a instanceof MainTabs2 && !AppState.get().isFullScreenMain) {
+                return;
+            } else if (!AppState.get().isFullScreen) {
                 return;
             }
 

@@ -153,7 +153,7 @@ public class CloseAppDialog {
                     }
                 });
             }
-            popupMenu.show(true);
+            popupMenu.show();
         }
 
     }

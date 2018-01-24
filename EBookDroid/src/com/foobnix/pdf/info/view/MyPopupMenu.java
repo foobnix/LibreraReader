@@ -32,10 +32,12 @@ public class MyPopupMenu {
     Context c;
     private View anchor;
     List<Menu> list = new ArrayList<Menu>();
+    private boolean isTabsActivity;
 
     public MyPopupMenu(Context c, View anchor) {
         this.c = c;
         this.anchor = anchor;
+        isTabsActivity = c instanceof MainTabs2;
     }
 
     public class Menu {
@@ -66,10 +68,6 @@ public class MyPopupMenu {
     }
 
     public void show() {
-        show(false);
-    }
-
-    public void show(final boolean hidekeyboard) {
 
         final ListPopupWindow p1 = new ListPopupWindow(c);
         p1.setModal(true);
@@ -78,14 +76,18 @@ public class MyPopupMenu {
             @Override
             public void onDismiss() {
                 p1.dismiss();
-                if (hidekeyboard) {
-                    Keyboards.hideNavigation((Activity) c);
+                if (isTabsActivity) {
+                    if (AppState.get().isFullScreenMain) {
+                        Keyboards.hideNavigation((Activity) c);
+                    }
+                } else {
+                    if (AppState.get().isFullScreen) {
+                        Keyboards.hideNavigation((Activity) c);
+                    }
                 }
 
             }
         });
-
-        final boolean isTabs = c instanceof MainTabs2;
 
         BaseItemLayoutAdapter<Menu> a = new BaseItemLayoutAdapter<Menu>(c, R.layout.item_dict_line, list) {
             @Override
@@ -99,7 +101,7 @@ public class MyPopupMenu {
                     if (item.iconRes == R.drawable.icon_pdf_pro) {
                         TintUtil.setNoTintImage(imageView);
                     } else {
-                        if (isTabs) {
+                        if (isTabsActivity) {
                             if (AppState.get().isInkMode || AppState.get().isWhiteTheme) {
                                 TintUtil.setTintImageWithAlpha(imageView, TintUtil.color);
                             } else {

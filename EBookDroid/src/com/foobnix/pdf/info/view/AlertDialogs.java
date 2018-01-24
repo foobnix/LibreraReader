@@ -1,15 +1,17 @@
 package com.foobnix.pdf.info.view;
 
+import com.foobnix.android.utils.Keyboards;
 import com.foobnix.pdf.info.R;
 import com.foobnix.pdf.info.Urls;
 
+import android.app.Activity;
 import android.app.AlertDialog;
-import android.content.Context;
 import android.content.DialogInterface;
+import android.content.DialogInterface.OnDismissListener;
 
 public class AlertDialogs {
 
-    public static void openUrl(final Context c, final String url) {
+    public static void openUrl(final Activity c, final String url) {
         final AlertDialog.Builder builder = new AlertDialog.Builder(c);
         builder.setTitle(R.string.open_web_page);
         builder.setMessage(url);
@@ -28,10 +30,19 @@ public class AlertDialogs {
                 }
             }
         });
-        builder.show();
+        AlertDialog create = builder.create();
+        create.setOnDismissListener(new OnDismissListener() {
+
+            @Override
+            public void onDismiss(DialogInterface dialog) {
+                Keyboards.hideNavigation(c);
+            }
+        });
+
+        create.show();
     }
 
-    public static void showOkDialog(final Context c, final String message, final Runnable action) {
+    public static void showOkDialog(final Activity c, final String message, final Runnable action) {
         final AlertDialog.Builder builder = new AlertDialog.Builder(c);
         builder.setMessage(message);
         builder.setCancelable(true);
@@ -51,14 +62,23 @@ public class AlertDialogs {
             public void onClick(final DialogInterface dialog, final int id) {
             }
         });
-        builder.show();
+        AlertDialog create = builder.create();
+        create.setOnDismissListener(new OnDismissListener() {
+
+            @Override
+            public void onDismiss(DialogInterface dialog) {
+                Keyboards.hideNavigation(c);
+            }
+        });
+
+        create.show();
     }
 
-    public static void showDialog(final Context c, final String message, String okButton, final Runnable onAction) {
+    public static void showDialog(final Activity c, final String message, String okButton, final Runnable onAction) {
         showDialog(c, message, okButton, onAction, null);
     }
 
-    public static void showDialog(final Context c, final String message, String okButton, final Runnable onAction, final Runnable onCancel) {
+    public static void showDialog(final Activity c, final String message, String okButton, final Runnable onAction, final Runnable onCancel) {
         final AlertDialog.Builder builder = new AlertDialog.Builder(c);
         builder.setMessage(message);
         builder.setCancelable(true);
@@ -81,7 +101,16 @@ public class AlertDialogs {
                 }
             }
         });
-        builder.show();
+        AlertDialog create = builder.create();
+        create.setOnDismissListener(new OnDismissListener() {
+
+            @Override
+            public void onDismiss(DialogInterface dialog) {
+                Keyboards.hideNavigation(c);
+            }
+        });
+
+        create.show();
     }
 
 }

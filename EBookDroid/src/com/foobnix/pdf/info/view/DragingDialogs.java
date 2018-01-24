@@ -513,7 +513,7 @@ public class DragingDialogs {
                     @Override
                     public void onClick(View v) {
 
-                        AlertDialogs.showOkDialog(v.getContext(), controller.getString(R.string.restore_defaults_full), new Runnable() {
+                        AlertDialogs.showOkDialog(controller.getActivity(), controller.getString(R.string.restore_defaults_full), new Runnable() {
 
                             @Override
                             public void run() {
@@ -2239,7 +2239,7 @@ public class DragingDialogs {
                             });
                         }
 
-                        popupMenu.show(AppState.get().isFullScreen);
+                        popupMenu.show();
                     }
                 });
 
@@ -3326,7 +3326,7 @@ public class DragingDialogs {
                     @Override
                     public void onClick(View v) {
 
-                        AlertDialogs.showOkDialog(v.getContext(), controller.getString(R.string.restore_defaults_full), new Runnable() {
+                        AlertDialogs.showOkDialog(controller.getActivity(), controller.getString(R.string.restore_defaults_full), new Runnable() {
 
                             @Override
                             public void run() {
@@ -3956,7 +3956,7 @@ public class DragingDialogs {
                     @Override
                     public void onClick(View v) {
 
-                        AlertDialogs.showOkDialog(v.getContext(), controller.getString(R.string.restore_defaults_full), new Runnable() {
+                        AlertDialogs.showOkDialog(controller.getActivity(), controller.getString(R.string.restore_defaults_full), new Runnable() {
 
                             @Override
                             public void run() {

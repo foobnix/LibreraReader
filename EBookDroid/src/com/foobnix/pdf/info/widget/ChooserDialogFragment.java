@@ -1,11 +1,13 @@
 package com.foobnix.pdf.info.widget;
 
+import com.foobnix.android.utils.Keyboards;
 import com.foobnix.android.utils.ResultResponse;
 import com.foobnix.android.utils.ResultResponse2;
 import com.foobnix.pdf.info.R;
 import com.foobnix.ui2.fragment.BrowseFragment2;
 
 import android.app.Dialog;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.app.FragmentActivity;
@@ -18,6 +20,13 @@ import android.widget.FrameLayout.LayoutParams;
 public class ChooserDialogFragment extends DialogFragment {
 
     public ChooserDialogFragment() {
+
+    }
+
+    @Override
+    public void onDismiss(DialogInterface dialog) {
+        super.onDismiss(dialog);
+        Keyboards.hideNavigation(getActivity());
     }
 
     public static ChooserDialogFragment chooseFolder(FragmentActivity a, String initPath) {

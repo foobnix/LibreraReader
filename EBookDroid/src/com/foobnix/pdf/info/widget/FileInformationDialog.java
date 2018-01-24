@@ -8,6 +8,7 @@ import org.ebookdroid.BookType;
 import org.ebookdroid.core.codec.CodecDocument;
 
 import com.foobnix.android.utils.Dips;
+import com.foobnix.android.utils.Keyboards;
 import com.foobnix.android.utils.TxtUtils;
 import com.foobnix.dao2.FileMeta;
 import com.foobnix.pdf.info.AppSharedPreferences;
@@ -30,6 +31,7 @@ import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.DialogInterface.OnDismissListener;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.text.Html;
@@ -87,7 +89,7 @@ public class FileInformationDialog {
 
             @Override
             public void onClick(View v) {
-                AlertDialogs.showOkDialog(bookmarks.getContext(), bookmarks.getText().toString(), null);
+                AlertDialogs.showOkDialog(a, bookmarks.getText().toString(), null);
             }
         });
 
@@ -99,7 +101,7 @@ public class FileInformationDialog {
 
             @Override
             public void onClick(View v) {
-                AlertDialogs.showOkDialog(infoView.getContext(), infoView.getText().toString(), null);
+                AlertDialogs.showOkDialog(a, infoView.getText().toString(), null);
             }
         });
 
@@ -279,6 +281,14 @@ public class FileInformationDialog {
         });
 
         infoDialog = builder.create();
+        infoDialog.setOnDismissListener(new OnDismissListener() {
+
+            @Override
+            public void onDismiss(DialogInterface dialog) {
+                Keyboards.hideNavigation(a);
+            }
+        });
+
         infoDialog.show();
     }
 

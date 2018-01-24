@@ -1086,7 +1086,7 @@ public class DocumentWrapperUI {
 
         });
 
-        popupMenu.show(true);
+        popupMenu.show();
 
     }
 
@@ -1480,7 +1480,7 @@ public class DocumentWrapperUI {
                     return false;
                 }
             });
-            p.show(true);
+            p.show();
             Keyboards.hideNavigation(dc.getActivity());
 
         }

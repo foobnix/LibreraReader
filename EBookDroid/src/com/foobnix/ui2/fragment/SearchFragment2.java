@@ -18,6 +18,7 @@ import com.foobnix.android.utils.TxtUtils;
 import com.foobnix.dao2.FileMeta;
 import com.foobnix.pdf.info.R;
 import com.foobnix.pdf.info.TintUtil;
+import com.foobnix.pdf.info.view.EditTextHelper;
 import com.foobnix.pdf.info.view.KeyCodeDialog;
 import com.foobnix.pdf.info.view.MyPopupMenu;
 import com.foobnix.pdf.info.widget.PrefDialogs;
@@ -37,6 +38,7 @@ import android.app.AlertDialog;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.DialogInterface.OnDismissListener;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.Bundle;
@@ -54,11 +56,11 @@ import android.view.MenuItem.OnMenuItemClickListener;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
+import android.view.inputmethod.EditorInfo;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.ImageView;
 import android.widget.ListView;
-import android.widget.PopupMenu;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -174,6 +176,16 @@ public class SearchFragment2 extends UIFragment<FileMeta> {
         });
 
         searchEditText.addTextChangedListener(filterTextWatcher);
+        searchEditText.setImeOptions(EditorInfo.IME_ACTION_SEARCH);
+        EditTextHelper.enableKeyboardSearch(searchEditText, new Runnable() {
+
+            @Override
+            public void run() {
+                Keyboards.close(searchEditText);
+                Keyboards.hideNavigation(getActivity());
+            }
+        });
+
         searchAdapter = new FileMetaAdapter();
         authorsAdapter = new AuthorsAdapter2();
 
@@ -327,7 +339,16 @@ public class SearchFragment2 extends UIFragment<FileMeta> {
             }
         });
 
-        builder.show();
+        AlertDialog create = builder.create();
+        create.setOnDismissListener(new OnDismissListener() {
+
+            @Override
+            public void onDismiss(DialogInterface dialog) {
+                Keyboards.hideNavigation(getActivity());
+            }
+        });
+        create.show();
+
         Keyboards.close(getActivity());
 
     }
@@ -510,7 +531,6 @@ public class SearchFragment2 extends UIFragment<FileMeta> {
         Toast.makeText(getContext(), command + " [" + (state ? "ON" : "OFF") + "]", Toast.LENGTH_LONG).show();
     }
 
-
     public void searchAndOrderSync(List<FileMeta> loadingResults) {
         handler.removeCallbacks(sortAndSeach);
 
@@ -613,6 +633,7 @@ public class SearchFragment2 extends UIFragment<FileMeta> {
         @Override
         public void run() {
             Keyboards.close(searchEditText);
+            Keyboards.hideNavigation(getActivity());
         }
     };
 
@@ -678,7 +699,7 @@ public class SearchFragment2 extends UIFragment<FileMeta> {
 
     private void sortByPopup(final View view) {
 
-        PopupMenu popup = new PopupMenu(getActivity(), view);
+        MyPopupMenu popup = new MyPopupMenu(getActivity(), view);
         for (final SORT_BY sortBy : SORT_BY.values()) {
             popup.getMenu().add(sortBy.getResName()).setOnMenuItemClickListener(new OnMenuItemClickListener() {
 

@@ -8,6 +8,7 @@ import com.foobnix.pdf.info.wrapper.PasswordState;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.content.DialogInterface.OnDismissListener;
 import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -80,6 +81,15 @@ public class PasswordDialog {
             }
         });
         final AlertDialog dialog = builder.create();
+
+        dialog.setOnDismissListener(new OnDismissListener() {
+
+            @Override
+            public void onDismiss(DialogInterface dialog) {
+                Keyboards.hideNavigation(a);
+            }
+        });
+
         dialog.show();
 
         dialog.getButton(AlertDialog.BUTTON_POSITIVE).setOnClickListener(new View.OnClickListener() {

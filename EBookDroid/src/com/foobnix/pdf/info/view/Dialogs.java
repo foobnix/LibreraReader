@@ -12,6 +12,7 @@ import com.foobnix.pdf.info.wrapper.AppState;
 import com.foobnix.pdf.info.wrapper.DocumentController;
 import com.foobnix.sys.TempHolder;
 
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -121,7 +122,7 @@ public class Dialogs {
         create.show();
     }
 
-    public static void showContrastDialogByUrl(final Context c, final Runnable action) {
+    public static void showContrastDialogByUrl(final Activity c, final Runnable action) {
         final AlertDialog.Builder builder = new AlertDialog.Builder(c);
         builder.setCancelable(true);
         builder.setTitle(R.string.contrast_and_brightness);
@@ -142,7 +143,7 @@ public class Dialogs {
         builder.show();
     }
 
-    public static LinearLayout getBCView(final Context c, final Runnable action) {
+    public static LinearLayout getBCView(final Activity c, final Runnable action) {
         LinearLayout l = new LinearLayout(c);
         l.setPadding(Dips.dpToPx(5), Dips.dpToPx(5), Dips.dpToPx(5), Dips.dpToPx(5));
         l.setOrientation(LinearLayout.VERTICAL);

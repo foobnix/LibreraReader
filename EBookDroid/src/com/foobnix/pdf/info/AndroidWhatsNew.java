@@ -14,6 +14,7 @@ import com.foobnix.pdf.CopyAsyncTask;
 import com.foobnix.pdf.info.view.AlertDialogs;
 import com.foobnix.pdf.info.wrapper.AppState;
 
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -107,7 +108,7 @@ public class AndroidWhatsNew {
 
     }
 
-    public static void checkForNewBeta(final Context c) {
+    public static void checkForNewBeta(final Activity c) {
         if (!AppsConfig.IS_BETA) {
             return;
         }

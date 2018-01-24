@@ -5,6 +5,7 @@ import org.greenrobot.eventbus.EventBus;
 import com.foobnix.StringResponse;
 import com.foobnix.android.utils.Dips;
 import com.foobnix.android.utils.IntegerResponse;
+import com.foobnix.android.utils.Keyboards;
 import com.foobnix.android.utils.LOG;
 import com.foobnix.android.utils.TxtUtils;
 import com.foobnix.pdf.info.R;
@@ -14,6 +15,7 @@ import com.foobnix.pdf.search.activity.msg.MessegeBrightness;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.content.DialogInterface.OnDismissListener;
 import android.graphics.Color;
 import android.provider.Settings.SettingNotFoundException;
 import android.support.v4.graphics.ColorUtils;
@@ -271,8 +273,16 @@ public class BrightnessHelper {
                     }
                 });
 
-                AlertDialog dialog = builder.show();
+                AlertDialog dialog = builder.create();
+                dialog.setOnDismissListener(new OnDismissListener() {
+
+                    @Override
+                    public void onDismiss(DialogInterface dialog) {
+                        Keyboards.hideNavigation(a);
+                    }
+                });
                 dialog.getWindow().clearFlags(WindowManager.LayoutParams.FLAG_DIM_BEHIND);
+                dialog.show();
             }
         });
 

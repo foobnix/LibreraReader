@@ -7,6 +7,7 @@ import java.util.List;
 import org.ebookdroid.common.settings.SettingsManager;
 
 import com.foobnix.android.utils.Dips;
+import com.foobnix.android.utils.Keyboards;
 import com.foobnix.android.utils.LOG;
 import com.foobnix.android.utils.ResultResponse;
 import com.foobnix.android.utils.ResultResponse2;
@@ -27,6 +28,7 @@ import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.DialogInterface.OnDismissListener;
 import android.graphics.Typeface;
 import android.net.Uri;
 import android.os.Environment;
@@ -145,7 +147,15 @@ public class PrefDialogs {
             }
         });
 
-        builder.show();
+        AlertDialog create = builder.create();
+        create.setOnDismissListener(new OnDismissListener() {
+
+            @Override
+            public void onDismiss(DialogInterface dialog) {
+                Keyboards.hideNavigation(a);
+            }
+        });
+        create.show();
     }
 
     private void navigationDialog(final FragmentActivity a, File currentDirectory, final Runnable onChanges, final Runnable onScan) {
