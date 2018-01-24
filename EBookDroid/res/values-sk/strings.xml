@@ -442,9 +442,6 @@
    <string name="you_neet_to_apply_the_new_settings">Musíte použiť nové nastavenia</string>
    <string name="custom_value">Vlastná hodnota</string>
    <string name="change_the_automatic_scrolling_speed_with_the_volume_keys">Zmeňte rýchlosť automatického posúvania pomocou tlačidiel hlasitosti</string>
-   <string name="mode_vertical">Režim rolovania (vertikálny)</string>
-   <string name="mode_horizontally">Režim knihy (vodorovne)</string>
-   <string name="mode_musician">Hudobník (prevíjanie hudobných poznámok)</string>
    <string name="automatic_export_backup">Automatický export (zálohovanie) nastavení aplikácií, priebeh čítania kníh a záložiek.</string>
    <string name="display_all_file_types_in_folders">Zobraziť všetky typy súborov v priečinkoch</string>
    <string name="no_serie">Žiadna séria</string>
@@ -477,4 +474,7 @@
    <string name="full_screen">Celá obrazovka</string>
    <string name="percent_and_number">Percento a číslo</string>
    <string name="current_page">Aktuálna stránka</string>
+   <string name="mode_vertical">Režim \"Posúvanie\"</string>
+   <string name="mode_horizontally">Režim \"Kniha\"</string>
+   <string name="mode_musician">Režim \"Hudobník\"</string>
 </resources>

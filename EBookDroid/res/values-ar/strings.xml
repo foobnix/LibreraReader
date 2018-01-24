@@ -442,9 +442,6 @@
    <string name="you_neet_to_apply_the_new_settings">تحتاج إلى تطبيق الإعدادات الجديدة</string>
    <string name="custom_value">القيمة الجمركية</string>
    <string name="change_the_automatic_scrolling_speed_with_the_volume_keys">تغيير سرعة التمرير التلقائي مع مفاتيح الصوت</string>
-   <string name="mode_vertical">وضع التمرير (عمودي)</string>
-   <string name="mode_horizontally">وضع الكتاب (أفقيا)</string>
-   <string name="mode_musician">الموسيقار (مذكرات الموسيقى اللف)</string>
    <string name="automatic_export_backup">تصدير تلقائي (النسخ الاحتياطي) من إعدادات التطبيق، وتقدم الكتب القراءة والإشارات.</string>
    <string name="display_all_file_types_in_folders">عرض جميع أنواع الملفات في المجلدات</string>
    <string name="no_serie">لا دوري الدرجة الاولى الايطالي</string>
@@ -477,4 +474,7 @@
    <string name="full_screen">تكبير الشاشة</string>
    <string name="percent_and_number">النسبة المئوية والرقم</string>
    <string name="current_page">الصفحه الحاليه</string>
+   <string name="mode_vertical">الوضع \"التمرير\"</string>
+   <string name="mode_horizontally">وضع \"كتاب\"</string>
+   <string name="mode_musician">وضع \"موسيقي\"</string>
 </resources>

@@ -442,9 +442,6 @@
    <string name="you_neet_to_apply_the_new_settings">आपको नई सेटिंग लागू करने की आवश्यकता है</string>
    <string name="custom_value">कस्टम मूल्य</string>
    <string name="change_the_automatic_scrolling_speed_with_the_volume_keys">वॉल्यूम कुंजियों के साथ स्वचालित स्क्रॉलिंग गति बदलें</string>
-   <string name="mode_vertical">स्क्रॉल मोड (ऊर्ध्वाधर)</string>
-   <string name="mode_horizontally">पुस्तक मोड (क्षैतिज रूप से)</string>
-   <string name="mode_musician">संगीतकार (रीवाइंडिंग संगीत नोट्स)</string>
    <string name="automatic_export_backup">एप्लिकेशन सेटिंग्स के स्वचालित निर्यात (बैकअप), किताबें पढ़ने और बुकमार्क्स की प्रगति</string>
    <string name="display_all_file_types_in_folders">फ़ोल्डर्स में सभी फ़ाइल प्रकार प्रदर्शित करें</string>
    <string name="no_serie">कोई सीरी नहीं</string>
@@ -477,4 +474,7 @@
    <string name="full_screen">पूर्ण स्क्रीन</string>
    <string name="percent_and_number">प्रतिशत और संख्या</string>
    <string name="current_page">वर्तमान पृष्ठ</string>
+   <string name="mode_vertical">मोड \"स्क्रॉल करें\"</string>
+   <string name="mode_horizontally">मोड \"पुस्तक\"</string>
+   <string name="mode_musician">मोड \"संगीतकार\"</string>
 </resources>

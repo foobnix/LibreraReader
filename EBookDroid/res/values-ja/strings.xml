@@ -442,9 +442,6 @@
    <string name="you_neet_to_apply_the_new_settings">あなたは新しい設定を適用する必要があります</string>
    <string name="custom_value">カスタム値</string>
    <string name="change_the_automatic_scrolling_speed_with_the_volume_keys">音量キーで自動スクロール速度を変更する</string>
-   <string name="mode_vertical">スクロールモード（垂直）</string>
-   <string name="mode_horizontally">ブックモード（横方向）</string>
-   <string name="mode_musician">ミュージシャン（音楽ノートを巻き戻す）</string>
    <string name="automatic_export_backup">アプリケーション設定の自動エクスポート（バックアップ）、書籍の読書やブックマークの進捗状況。</string>
    <string name="display_all_file_types_in_folders">すべてのファイルタイプをフォルダに表示する</string>
    <string name="no_serie">セリエがない</string>
@@ -477,4 +474,7 @@
    <string name="full_screen">全画面表示</string>
    <string name="percent_and_number">パーセントと数</string>
    <string name="current_page">現在のページ</string>
+   <string name="mode_vertical">モード \"スクロール\"</string>
+   <string name="mode_horizontally">モード \"ブック\"</string>
+   <string name="mode_musician">モード \"ミュージシャン\"</string>
 </resources>

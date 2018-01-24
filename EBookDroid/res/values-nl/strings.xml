@@ -442,9 +442,6 @@
    <string name="you_neet_to_apply_the_new_settings">U moet de nieuwe instellingen toepassen</string>
    <string name="custom_value">Aangepaste waarde</string>
    <string name="change_the_automatic_scrolling_speed_with_the_volume_keys">Wijzig de automatische schuifsnelheid met de volumetoetsen</string>
-   <string name="mode_vertical">Scroll-modus (verticaal)</string>
-   <string name="mode_horizontally">Boekmodus (horizontaal)</string>
-   <string name="mode_musician">Muzikant (terugspoelende muzieknoten)</string>
    <string name="automatic_export_backup">Automatische export (back-up) van applicatie-instellingen, voortgang van het lezen van boeken en bladwijzers.</string>
    <string name="display_all_file_types_in_folders">Toon alle bestandstypes in mappen</string>
    <string name="no_serie">Geen serie</string>
@@ -477,4 +474,7 @@
    <string name="full_screen">Volledig scherm</string>
    <string name="percent_and_number">Percentage en nummer</string>
    <string name="current_page">Huidige pagina</string>
+   <string name="mode_vertical">Modus \"Scroll\"</string>
+   <string name="mode_horizontally">Modus \"Boek\"</string>
+   <string name="mode_musician">Modus \"Musicus\"</string>
 </resources>

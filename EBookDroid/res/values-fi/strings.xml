@@ -442,9 +442,6 @@
    <string name="you_neet_to_apply_the_new_settings">Sinun täytyy soveltaa uusia asetuksia</string>
    <string name="custom_value">Mukautettu arvo</string>
    <string name="change_the_automatic_scrolling_speed_with_the_volume_keys">Vaihda automaattinen vieritysnopeus äänenvoimakkuusnäppäimillä</string>
-   <string name="mode_vertical">Vieritysmuoto (pystysuora)</string>
-   <string name="mode_horizontally">Kirjamoodi (vaakasuoraan)</string>
-   <string name="mode_musician">Muusikko (musiikkitiedostojen kelaaminen uudelleen)</string>
    <string name="automatic_export_backup">Sovellusasetusten automaattinen vienti (varmuuskopiointi), kirjan lukemisen edistyminen ja kirjanmerkit.</string>
    <string name="display_all_file_types_in_folders">Näytä kaikki tiedostotyypit kansioihin</string>
    <string name="no_serie">Ei sarjaa</string>
@@ -477,4 +474,7 @@
    <string name="full_screen">Koko näyttö</string>
    <string name="percent_and_number">Prosentti ja lukumäärä</string>
    <string name="current_page">Tämänhetkinen sivu</string>
+   <string name="mode_vertical">Moodi \"Vieritä\"</string>
+   <string name="mode_horizontally">Tila \"Kirja\"</string>
+   <string name="mode_musician">Tila \"Muusikko\"</string>
 </resources>

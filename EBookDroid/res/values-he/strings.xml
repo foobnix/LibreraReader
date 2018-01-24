@@ -442,9 +442,6 @@
    <string name="you_neet_to_apply_the_new_settings">עליך להחיל את ההגדרות החדשות</string>
    <string name="custom_value">ערך מותאם אישית</string>
    <string name="change_the_automatic_scrolling_speed_with_the_volume_keys">שנה את מהירות הגלילה האוטומטית באמצעות מקשי עוצמת הקול</string>
-   <string name="mode_vertical">מצב גלילה (אנכי)</string>
-   <string name="mode_horizontally">מצב ספר (אופקית)</string>
-   <string name="mode_musician">מוסיקאי (rewind מוסיקה הערות)</string>
    <string name="automatic_export_backup">ייצוא אוטומטי (גיבוי) של הגדרות היישום, התקדמות ספרים קריאה סימניות.</string>
    <string name="display_all_file_types_in_folders">הצגת כל סוגי הקבצים בתיקיות</string>
    <string name="no_serie">אין סרייה</string>
@@ -477,4 +474,7 @@
    <string name="full_screen">מסך מלא</string>
    <string name="percent_and_number">אחוזים ומספר</string>
    <string name="current_page">העמוד הנוכחי</string>
+   <string name="mode_vertical">מצב \"גלילה\"</string>
+   <string name="mode_horizontally">מצב \"ספר\"</string>
+   <string name="mode_musician">מצב \"מוסיקאי\"</string>
 </resources>

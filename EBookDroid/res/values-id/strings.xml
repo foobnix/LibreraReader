@@ -442,9 +442,6 @@
    <string name="you_neet_to_apply_the_new_settings">Anda perlu menerapkan setting baru</string>
    <string name="custom_value">Nilai khusus</string>
    <string name="change_the_automatic_scrolling_speed_with_the_volume_keys">Ubah kecepatan gulir otomatis dengan tombol volume</string>
-   <string name="mode_vertical">Modus gulir (vertikal)</string>
-   <string name="mode_horizontally">Mode buku (secara horisontal)</string>
-   <string name="mode_musician">Musisi (memutar catatan musik)</string>
    <string name="automatic_export_backup">Ekspor otomatis (cadangan) pengaturan aplikasi, kemajuan membaca dan bookmark buku.</string>
    <string name="display_all_file_types_in_folders">Tampilkan semua jenis file dalam folder</string>
    <string name="no_serie">Tidak ada serie</string>
@@ -477,4 +474,7 @@
    <string name="full_screen">Layar penuh</string>
    <string name="percent_and_number">Persen dan Nomor</string>
    <string name="current_page">Halaman saat ini</string>
+   <string name="mode_vertical">Mode \"Gulir\"</string>
+   <string name="mode_horizontally">Mode \"Buku\"</string>
+   <string name="mode_musician">Mode \"Musisi\"</string>
 </resources>

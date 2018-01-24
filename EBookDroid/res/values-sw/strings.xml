@@ -442,9 +442,6 @@
    <string name="you_neet_to_apply_the_new_settings">Unahitaji kutumia mipangilio mipya</string>
    <string name="custom_value">Thamani ya kawaida</string>
    <string name="change_the_automatic_scrolling_speed_with_the_volume_keys">Badilisha kasi ya scrolling moja kwa moja na funguo za kiasi</string>
-   <string name="mode_vertical">Njia ya kitabu (wima)</string>
-   <string name="mode_horizontally">Njia ya kitabu (usawa)</string>
-   <string name="mode_musician">Muziki (kurejesha maelezo ya muziki)</string>
    <string name="automatic_export_backup">Hifadhi ya moja kwa moja (salama) ya mipangilio ya programu, maendeleo ya vitabu vya kusoma na alama.</string>
    <string name="display_all_file_types_in_folders">Onyesha aina zote za faili kwenye folda</string>
    <string name="no_serie">Hakuna serie</string>
@@ -477,4 +474,7 @@
    <string name="full_screen">Screen Kamili</string>
    <string name="percent_and_number">Asilimia na Idadi</string>
    <string name="current_page">Ukurasa wa sasa</string>
+   <string name="mode_vertical">Hali \"Kitabu\"</string>
+   <string name="mode_horizontally">Kitabu \"Kitabu\"</string>
+   <string name="mode_musician">Mtindo \"Muziki\"</string>
 </resources>

@@ -442,9 +442,6 @@
    <string name="you_neet_to_apply_the_new_settings">Você precisa aplicar as novas configurações</string>
    <string name="custom_value">Valor customizado</string>
    <string name="change_the_automatic_scrolling_speed_with_the_volume_keys">Mude a velocidade de rolagem automática com as teclas de volume</string>
-   <string name="mode_vertical">Modo de rolagem (vertical)</string>
-   <string name="mode_horizontally">Modo livro (horizontalmente)</string>
-   <string name="mode_musician">Músico (rebobinando notas de música)</string>
    <string name="automatic_export_backup">Exportação automática (backup) das configurações da aplicação, progresso da leitura de livros e marcadores.</string>
    <string name="display_all_file_types_in_folders">Exibir todos os tipos de arquivos em pastas</string>
    <string name="no_serie">Sem série</string>
@@ -477,4 +474,7 @@
    <string name="full_screen">Tela cheia</string>
    <string name="percent_and_number">Porcentagem e número</string>
    <string name="current_page">Pagina atual</string>
+   <string name="mode_vertical">Modo \"Scroll\"</string>
+   <string name="mode_horizontally">Modo \"Livro\"</string>
+   <string name="mode_musician">Modo \"Músico\"</string>
 </resources>

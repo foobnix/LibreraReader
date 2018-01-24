@@ -169,7 +169,7 @@
    <string name="remember_dictionary">Запомнить словарь</string>
    <string name="left_to_rigth">Слева направо</string>
    <string name="right_to_left">Справа налево</string>
-   <string name="show_the_dialog_what_is_new_for_updates">Показывать окно «Что нового...» при обновлениях</string>
+   <string name="show_the_dialog_what_is_new_for_updates">Показывать окно "Что нового..." при обновлениях</string>
    <string name="font_size">Размер шрифта</string>
    <string name="performance_settings">Параметры быстродействия</string>
    <string name="page_quality">Кач-во прорисовки стр-ц</string>
@@ -314,11 +314,11 @@
    <string name="text_color_day">Цвет текста (День)</string>
    <string name="text_color_night">Цвет текста (Ночь)</string>
    <string name="show_application_close_dialog_every_time">Всегда спрашивать подтверждение при закрытии приложения</string>
-   <string name="show_bookmarks_tab">Показать вкладку «Закладки»</string>
+   <string name="show_bookmarks_tab">Показать вкладку "Закладки"</string>
    <string name="show_assistant_droid_reader">Показать помощник Droid Reader</string>
    <string name="tabs_position">Очередность/видимость вкладок</string>
    <string name="visible">Показывать</string>
-   <string name="show_preferences_tab_in_the_left_menu">Показывать вкладку «Настройки» как боковое меню</string>
+   <string name="show_preferences_tab_in_the_left_menu">Показывать вкладку "Настройки" как боковое меню</string>
    <string name="theme">Тема</string>
    <string name="hide_app">Свернуть приложение</string>
    <string name="close_application">Закрыть приложение</string>
@@ -428,7 +428,7 @@
    <string name="continuous_text">Непрерывный текст (без разрыва строк)</string>
    <string name="remember_reading_mode">Запоминать режим чтения</string>
    <string name="background_color_on_images_the_same_as_page_background">Применять особый алгоритм цветовой подстройки шрифтов и фонов (для PDF/DJVU)</string>
-   <string name="block_page_movement_horizontally">Если замочек «запереть», страницы не будут смещаться в стороны</string>
+   <string name="block_page_movement_horizontally">Если замочек "запереть", страницы не будут смещаться в стороны</string>
    <string name="search_history_and_autocomplete">История поиска и автозаполнение</string>
    <string name="server">Сервер</string>
    <string name="port">Порт</string>
@@ -442,9 +442,6 @@
    <string name="you_neet_to_apply_the_new_settings">Необходимо применить новые настройки</string>
    <string name="custom_value">Свое значение</string>
    <string name="change_the_automatic_scrolling_speed_with_the_volume_keys">Менять скорость автопрокрутки текста клавишами регулировки громкости</string>
-   <string name="mode_vertical">Режим свитка</string>
-   <string name="mode_horizontally">Режим книги</string>
-   <string name="mode_musician">Режим «Музыкант»</string>
    <string name="automatic_export_backup">Автоматически экспортировать настройки, прогресс чтения книг и закладки при каждом выходе из приложения</string>
    <string name="display_all_file_types_in_folders">Отображать в папках все типы файлов</string>
    <string name="no_serie">Без серии</string>
@@ -456,7 +453,7 @@
    <string name="start_recording">Начать запись</string>
    <string name="favorite_folders_and_books">Избранные папки и книги</string>
    <string name="don_t_show_this_dialog">Больше не показывать это окно</string>
-   <string name="show_the_book_close_dialog">Показывать окно-подтверждение закрытия книги при коротком нажатии на клавишу «Назад»</string>
+   <string name="show_the_book_close_dialog">Показывать окно-подтверждение закрытия книги при коротком нажатии на клавишу "Назад"</string>
    <string name="search_completed">Поиск завершен</string>
    <string name="you_can_search_only_one_word">Для поиска введите в поле не более одного слова</string>
    <string name="passwords_do_not_match">Пароли не совпадают</string>
@@ -477,4 +474,7 @@
    <string name="full_screen">Полноэкранный</string>
    <string name="percent_and_number">Процент и число</string>
    <string name="current_page">Текущая страница</string>
+   <string name="mode_vertical">Режим \"Свиток\"</string>
+   <string name="mode_horizontally">Режим \"Книга\"</string>
+   <string name="mode_musician">Режим \"Музыкант\"</string>
 </resources>

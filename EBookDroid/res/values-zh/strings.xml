@@ -442,9 +442,6 @@
    <string name="you_neet_to_apply_the_new_settings">您需要应用新的设置</string>
    <string name="custom_value">自定义值</string>
    <string name="change_the_automatic_scrolling_speed_with_the_volume_keys">使用音量键更改自动滚动速度</string>
-   <string name="mode_vertical">滚动模式（垂直）</string>
-   <string name="mode_horizontally">书本模式（水平）</string>
-   <string name="mode_musician">音乐家（倒带音乐笔记）</string>
    <string name="automatic_export_backup">应用程序设置的自动导出（备份），书籍阅读和书签的进度。</string>
    <string name="display_all_file_types_in_folders">显示文件夹中的所有文件类型</string>
    <string name="no_serie">没有意甲</string>
@@ -477,4 +474,7 @@
    <string name="full_screen">全屏</string>
    <string name="percent_and_number">百分比和数量</string>
    <string name="current_page">当前页面</string>
+   <string name="mode_vertical">模式“滚动”</string>
+   <string name="mode_horizontally">模式“书”</string>
+   <string name="mode_musician">模式“音乐家”</string>
 </resources>

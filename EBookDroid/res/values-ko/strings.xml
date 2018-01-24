@@ -442,9 +442,6 @@
    <string name="you_neet_to_apply_the_new_settings">새 설정을 적용해야합니다.</string>
    <string name="custom_value">맞춤 값</string>
    <string name="change_the_automatic_scrolling_speed_with_the_volume_keys">볼륨 키로 자동 스크롤 속도 변경</string>
-   <string name="mode_vertical">스크롤 모드 (세로)</string>
-   <string name="mode_horizontally">북 모드 (가로)</string>
-   <string name="mode_musician">음악가 (되감기 음악 노트)</string>
    <string name="automatic_export_backup">응용 프로그램 설정의 자동 내보내기 (백업), 책 읽기 및 책갈피 진행.</string>
    <string name="display_all_file_types_in_folders">모든 파일 형식을 폴더에 표시</string>
    <string name="no_serie">세리가 없다.</string>
@@ -477,4 +474,7 @@
    <string name="full_screen">전체 화면</string>
    <string name="percent_and_number">백분율 및 수</string>
    <string name="current_page">현재 페이지</string>
+   <string name="mode_vertical">모드 \"스크롤\"</string>
+   <string name="mode_horizontally">모드 \"예약\"</string>
+   <string name="mode_musician">모드 \"뮤지션\"</string>
 </resources>

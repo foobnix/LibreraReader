@@ -442,9 +442,6 @@
    <string name="you_neet_to_apply_the_new_settings">คุณต้องใช้การตั้งค่าใหม่</string>
    <string name="custom_value">ค่าที่กำหนดเอง</string>
    <string name="change_the_automatic_scrolling_speed_with_the_volume_keys">เปลี่ยนความเร็วในการเลื่อนอัตโนมัติด้วยปุ่มปรับระดับเสียง</string>
-   <string name="mode_vertical">โหมดเลื่อน (แนวตั้ง)</string>
-   <string name="mode_horizontally">โหมดหนังสือ (แนวนอน)</string>
-   <string name="mode_musician">นักดนตรี (โน้ตย่อบท)</string>
    <string name="automatic_export_backup">การส่งออกอัตโนมัติ (สำรอง) ของการตั้งค่าแอปพลิเคชันความคืบหน้าของการอ่านหนังสือและบุ๊กมาร์ก</string>
    <string name="display_all_file_types_in_folders">แสดงประเภทไฟล์ทั้งหมดในโฟลเดอร์</string>
    <string name="no_serie">ไม่มีซีรี่ส์</string>
@@ -477,4 +474,7 @@
    <string name="full_screen">เต็มจอ</string>
    <string name="percent_and_number">เปอร์เซ็นต์และจำนวน</string>
    <string name="current_page">หน้าปัจจุบัน</string>
+   <string name="mode_vertical">โหมด \"เลื่อน\"</string>
+   <string name="mode_horizontally">โหมด \"สมุด\"</string>
+   <string name="mode_musician">โหมด \"นักดนตรี\"</string>
 </resources>

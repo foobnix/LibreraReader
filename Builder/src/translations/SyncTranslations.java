@@ -27,6 +27,8 @@ import translations.model.StringModel;
  */
 public class SyncTranslations {
 
+    private static final String BREK = "\\\"";
+
     static class Config {
         String name;
         String dropbox;// path to dropbox
@@ -80,7 +82,7 @@ public class SyncTranslations {
 
         final List<String> asList = getAllLangCodes("/home/ivan-dev/git/LirbiReader/EBookDroid/res");
 
-        // final List<String> asList = Arrays.asList("ru", "uk");
+        // final List<String> asList = Arrays.asList("ru");
 
         normalize(projectEN);
         for (final String lang : asList) {
@@ -217,6 +219,9 @@ public class SyncTranslations {
         text = text.replace("\\'", "\'");
         text = text.replace("'", "\\'");
         text = text.replace(" & ", " &amp; ");
+        text = text.replace("&quot;", BREK);
+        text = text.replace("«", BREK);
+        text = text.replace("»", BREK);
         text = text.replace("&#39;", "\\'");
 
         if (text.contains("<")) {
@@ -236,6 +241,7 @@ public class SyncTranslations {
         if (!text.startsWith("[T]")) {
             // text = "[T]" + text;
             try {
+                text = text.replace(BREK, "\"");
                 text = GoogleTranslation.translate(text, lang);
                 text = normilizeText(text);
             } catch (JSONException | IOException e) {

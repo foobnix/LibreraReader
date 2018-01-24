@@ -442,9 +442,6 @@
    <string name="you_neet_to_apply_the_new_settings">Új beállításokat kell alkalmazni</string>
    <string name="custom_value">Egyéni érték</string>
    <string name="change_the_automatic_scrolling_speed_with_the_volume_keys">Módosítsa az automatikus görgetési sebességet a hangerőgombokkal</string>
-   <string name="mode_vertical">Görgetési mód (függőleges)</string>
-   <string name="mode_horizontally">Könyv mód (vízszintes)</string>
-   <string name="mode_musician">Zenész (zeneszámok visszafordítása)</string>
    <string name="automatic_export_backup">Az alkalmazás beállításainak automatikus exportálása (mentése), a könyvelés és a könyvjelzők előrehaladása.</string>
    <string name="display_all_file_types_in_folders">Az összes fájltípus megjelenítése a mappákban</string>
    <string name="no_serie">Nincs sorozat</string>
@@ -477,4 +474,7 @@
    <string name="full_screen">Teljes képernyő</string>
    <string name="percent_and_number">Százalék és szám</string>
    <string name="current_page">Aktuális oldal</string>
+   <string name="mode_vertical">\"Scroll\" mód</string>
+   <string name="mode_horizontally">\"Könyv\" mód</string>
+   <string name="mode_musician">\"Zenész\" mód</string>
 </resources>

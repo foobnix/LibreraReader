@@ -442,9 +442,6 @@
    <string name="you_neet_to_apply_the_new_settings">Jums reikia taikyti naujus nustatymus</string>
    <string name="custom_value">Pasirinktinė vertė</string>
    <string name="change_the_automatic_scrolling_speed_with_the_volume_keys">Keiskite automatinį slinkties greitį naudodami garsumo klavišus</string>
-   <string name="mode_vertical">Slinkties režimas (vertikalus)</string>
-   <string name="mode_horizontally">Knygos režimas (horizontaliai)</string>
-   <string name="mode_musician">Muzikantas (atkūrimo muzikos įrašai)</string>
    <string name="automatic_export_backup">Automatinis eksporto (atsarginės) programos parametrų, knygų skaitymo ir žymių eiga.</string>
    <string name="display_all_file_types_in_folders">Rodyti visus failų tipus aplankuose</string>
    <string name="no_serie">Nėra serijos</string>
@@ -477,4 +474,7 @@
    <string name="full_screen">Per visą ekraną</string>
    <string name="percent_and_number">Procentas ir skaičius</string>
    <string name="current_page">Dabartinis puslapis</string>
+   <string name="mode_vertical">Mode \"Scroll\"</string>
+   <string name="mode_horizontally">Mode \"Book\"</string>
+   <string name="mode_musician">Režimas \"muzikantas\"</string>
 </resources>

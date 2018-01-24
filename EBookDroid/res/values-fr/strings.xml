@@ -442,9 +442,6 @@
    <string name="you_neet_to_apply_the_new_settings">Vous devez appliquer les nouveaux paramètres</string>
    <string name="custom_value">Valeur personnalisée</string>
    <string name="change_the_automatic_scrolling_speed_with_the_volume_keys">Modifier la vitesse de défilement automatique avec les touches de volume</string>
-   <string name="mode_vertical">Mode de défilement (vertical)</string>
-   <string name="mode_horizontally">Mode livre (horizontalement)</string>
-   <string name="mode_musician">Musicien (rembobinage des notes de musique)</string>
    <string name="automatic_export_backup">Exportation automatique (sauvegarde) des paramètres de l\'application, progression de la lecture des livres et des signets.</string>
    <string name="display_all_file_types_in_folders">Afficher tous les types de fichiers dans les dossiers</string>
    <string name="no_serie">Aucune série</string>
@@ -477,4 +474,7 @@
    <string name="full_screen">Plein écran</string>
    <string name="percent_and_number">Pourcentage et nombre</string>
    <string name="current_page">Page actuelle</string>
+   <string name="mode_vertical">Mode \"Défilement\"</string>
+   <string name="mode_horizontally">Mode \"Livre\"</string>
+   <string name="mode_musician">Mode \"Musicien\"</string>
 </resources>

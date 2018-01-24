@@ -443,9 +443,6 @@
    <string name="you_neet_to_apply_the_new_settings">You need to apply the new settings</string>
    <string name="custom_value">Valore tui</string>
    <string name="change_the_automatic_scrolling_speed_with_the_volume_keys">Mutare velocitatem auto protrahendi con bullis</string>
-   <string name="mode_vertical">Volumen</string>
-   <string name="mode_horizontally">Paginis</string>
-   <string name="mode_musician">Notae</string>
    <string name="automatic_export_backup">Autoexportare ob exitum</string>
    <string name="display_all_file_types_in_folders">Demostrare unusquisque plicas in cooperculis</string>
    <string name="no_author">Nullus effector denotum</string>
@@ -477,4 +474,7 @@
    <string name="close_book_and_application">Claudere applicationem</string>
    <string name="percent_and_number">Pagina ac procentum</string>
    <string name="current_page">Exhibere in fasciis</string>
+   <string name="mode_vertical">Modus \"Libro\"</string>
+   <string name="mode_horizontally">Modus \"Liber\"</string>
+   <string name="mode_musician">Modus \'Musicus\'</string>
 </resources>

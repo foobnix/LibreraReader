@@ -171,7 +171,7 @@
    <string name="web_dict">Веб-словник</string>
    <string name="left_to_rigth">Зліва направо</string>
    <string name="right_to_left">Справа наліво</string>
-   <string name="show_the_dialog_what_is_new_for_updates">Показувати вікно «Що нового...» після оновлень</string>
+   <string name="show_the_dialog_what_is_new_for_updates">Показувати вікно "Що нового..." після оновлень</string>
    <string name="font_size">Розмір шрифту</string>
    <string name="performance_settings">Параметри швидкодії</string>
    <string name="page_quality">Якість сторінок</string>
@@ -260,7 +260,7 @@
    <string name="bookmark_by_book">Книга</string>
    <string name="banner_slogan_LIRBI_READER">Надійний і професійний додаток для читання електронних книжок</string>
    <string name="banner_slogan_EPUB_READER">Найзручніший рідер для читання електронних книжок</string>
-   <string name="banner_slogan_PDF_READER">Найзручніший «PDF Reader» для читання електронних документів</string>
+   <string name="banner_slogan_PDF_READER">Найзручніший "PDF Reader" для читання електронних документів</string>
    <string name="banner_slogan_PRO_LIRBI_READER_1">Платна версія кращої програми для читання електронних книжок</string>
    <string name="next_page">Наступна сторінка</string>
    <string name="previous_page">Попередня сторінка</string>
@@ -318,7 +318,7 @@
    <string name="show_application_close_dialog_every_time">Завжди запитувати підтвердження закриття додатку</string>
    <string name="tabs_position">Позиції вкладок</string>
    <string name="visible">Видимий</string>
-   <string name="show_preferences_tab_in_the_left_menu">Показувати вкладку «Налаштування» як бокове меню</string>
+   <string name="show_preferences_tab_in_the_left_menu">Показувати вкладку "Налаштування" як бокове меню</string>
    <string name="theme">Тема</string>
    <string name="hide_app">Приховати додаток</string>
    <string name="close_application">Закрити додаток</string>
@@ -442,9 +442,6 @@
    <string name="you_neet_to_apply_the_new_settings">Вам потрібно застосувати нові налаштування</string>
    <string name="custom_value">Своє значення</string>
    <string name="change_the_automatic_scrolling_speed_with_the_volume_keys">Змінювати швидкість автоматичного прокручування за допомогою клавіш гучності</string>
-   <string name="mode_vertical">Режим прокручування (вертикально)</string>
-   <string name="mode_horizontally">Режим книги (горизонтально)</string>
-   <string name="mode_musician">Музикант (прокручування нот)</string>
    <string name="automatic_export_backup">Автоматичний експорт налаштувань додатку, прогресу читання книжок та закладок.</string>
    <string name="display_all_file_types_in_folders">Відображати всі типи файлів у папках</string>
    <string name="no_serie">Без серії</string>
@@ -477,4 +474,7 @@
    <string name="full_screen">Повноекранний</string>
    <string name="percent_and_number">Відсоток і кількість</string>
    <string name="current_page">Поточна сторінка</string>
+   <string name="mode_vertical">Режим  \"Прокрутка\"</string>
+   <string name="mode_horizontally">Режим \"Книга\"</string>
+   <string name="mode_musician">Режим \"Музикант\"</string>
 </resources>

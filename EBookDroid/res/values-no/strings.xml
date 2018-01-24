@@ -442,9 +442,6 @@
    <string name="you_neet_to_apply_the_new_settings">Du må bruke de nye innstillingene</string>
    <string name="custom_value">Tilpasset verdi</string>
    <string name="change_the_automatic_scrolling_speed_with_the_volume_keys">Endre automatisk rullehastighet med volumtastene</string>
-   <string name="mode_vertical">Rullemodus (vertikal)</string>
-   <string name="mode_horizontally">Bokmodus (horisontalt)</string>
-   <string name="mode_musician">Musiker (spoling musikknotater)</string>
    <string name="automatic_export_backup">Automatisk eksport (backup) av programinnstillinger, fremdrift av bøkerlesning og bokmerker.</string>
    <string name="display_all_file_types_in_folders">Vis alle filtyper i mapper</string>
    <string name="no_serie">Ingen serie</string>
@@ -477,4 +474,7 @@
    <string name="full_screen">Full skjerm</string>
    <string name="percent_and_number">Prosent og tall</string>
    <string name="current_page">Nåværende side</string>
+   <string name="mode_vertical">Modus \"bla\"</string>
+   <string name="mode_horizontally">Modus \"bok\"</string>
+   <string name="mode_musician">Modus \"musiker\"</string>
 </resources>

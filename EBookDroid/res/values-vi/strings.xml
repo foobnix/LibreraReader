@@ -442,9 +442,6 @@
    <string name="you_neet_to_apply_the_new_settings">Bạn cần áp dụng các cài đặt mới</string>
    <string name="custom_value">Giá trị tùy chỉnh</string>
    <string name="change_the_automatic_scrolling_speed_with_the_volume_keys">Thay đổi tốc độ cuộn tự động bằng các phím âm lượng</string>
-   <string name="mode_vertical">Chế độ cuộn (dọc)</string>
-   <string name="mode_horizontally">Chế độ sách (theo chiều ngang)</string>
-   <string name="mode_musician">Nhạc sĩ (ghi lại bài hát)</string>
    <string name="automatic_export_backup">Tự động xuất (sao lưu) cài đặt ứng dụng, tiến độ đọc sách và dấu trang.</string>
    <string name="display_all_file_types_in_folders">Hiển thị tất cả các loại tập tin trong thư mục</string>
    <string name="no_serie">Không có serie</string>
@@ -477,4 +474,7 @@
    <string name="full_screen">Toàn màn hình</string>
    <string name="percent_and_number">Phần trăm và Số</string>
    <string name="current_page">Trang hiện tại</string>
+   <string name="mode_vertical">Chế độ \"Di chuyển\"</string>
+   <string name="mode_horizontally">Chế độ \"Sách\"</string>
+   <string name="mode_musician">Chế độ \"Nhạc sĩ\"</string>
 </resources>

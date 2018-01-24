@@ -442,9 +442,6 @@
    <string name="you_neet_to_apply_the_new_settings">Debe aplicar la nueva configuración</string>
    <string name="custom_value">Valor personalizado</string>
    <string name="change_the_automatic_scrolling_speed_with_the_volume_keys">Cambiar la velocidad de desplazamiento automático con las teclas de volumen</string>
-   <string name="mode_vertical">Modo de desplazamiento (vertical)</string>
-   <string name="mode_horizontally">Modo de libro (horizontalmente)</string>
-   <string name="mode_musician">Músico (rebobinar notas musicales)</string>
    <string name="automatic_export_backup">Exportación automática (copia de seguridad) de la configuración de la aplicación, progreso de la lectura de libros y marcadores.</string>
    <string name="display_all_file_types_in_folders">Mostrar todos los tipos de archivos en carpetas</string>
    <string name="no_serie">Sin serie</string>
@@ -477,4 +474,7 @@
    <string name="full_screen">Pantalla completa</string>
    <string name="percent_and_number">Porcentaje y número</string>
    <string name="current_page">Página actual</string>
+   <string name="mode_vertical">Modo \"Desplazarse\"</string>
+   <string name="mode_horizontally">Modo \"Libro\"</string>
+   <string name="mode_musician">Modo \"Músico\"</string>
 </resources>
