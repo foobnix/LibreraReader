@@ -129,6 +129,8 @@ public class PasswordDialog {
                     Toast.makeText(a, R.string.success, Toast.LENGTH_LONG).show();
                     if (onDismiss != null)
                         onDismiss.run();
+
+                    a.getIntent().putExtra(PasswordDialog.EXTRA_APP_PASSWORD, PasswordState.get().appPassword);
                     Keyboards.close(password1);
                     dialog.dismiss();
                 } else {

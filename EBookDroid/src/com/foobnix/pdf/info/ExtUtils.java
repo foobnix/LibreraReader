@@ -459,7 +459,7 @@ public class ExtUtils {
             return true;
         }
         if (c != null) {
-            Toast.makeText(c, c.getString(R.string.file_not_found) + file.getPath(), Toast.LENGTH_LONG).show();
+            Toast.makeText(c, c.getString(R.string.file_not_found) + " " + file.getPath(), Toast.LENGTH_LONG).show();
         }
         return false;
 

@@ -501,7 +501,7 @@ public class MainTabs2 extends AdsFragmentActivity {
         // Analytics.onStop(this);
         CacheDir.ZipApp.removeCacheContent();
         ImageExtractor.clearErrors();
-        ImageExtractor.clearCodeDocument();
+        // ImageExtractor.clearCodeDocument();
 
         if (AppState.get().isAutomaticExport && Android6.canWrite(this)) {
             try {

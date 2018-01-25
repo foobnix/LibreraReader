@@ -156,8 +156,6 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
     @Override
     protected void onCreate(final Bundle savedInstanceState) {
 
-
-
         intetrstialTimeoutSec = ADS.FULL_SCREEN_TIMEOUT_SEC;
         DocumentController.doRotation(this);
         handler = new Handler();
