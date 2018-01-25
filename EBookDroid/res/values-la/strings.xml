@@ -51,7 +51,7 @@
    <string name="msg_loading">Onerando... Expectate</string>
    <string name="msg_no_text_found">Text not found</string>
    <string name="msg_password_required">Inducere tesseram</string>
-   <string name="msg_search_text_on_page">Perlustrando</string> ищется. проверить.
+   <string name="msg_search_text_on_page">Perlustrando</string> 
    <string name="msg_unexpected_error">Unexpected error Occurred</string>
    <string name="msg_wrong_password">Falso</string>
    <string name="next">Sequens</string>
