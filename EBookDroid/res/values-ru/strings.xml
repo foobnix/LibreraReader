@@ -471,7 +471,7 @@
    <string name="reading_progress">Показывать в строке</string>
    <string name="awards">Награды</string>
    <string name="close_book_and_application">Закрыть книгу и приложение</string>
-   <string name="full_screen">Полноэкр. режим</string>
+   <string name="full_screen">Во весь экран</string>
    <string name="percent_and_number">Процент и число страниц</string>
    <string name="current_page">Ход чтения</string>
    <string name="mode_vertical">Режим \"Свиток\"</string>
