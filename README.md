@@ -59,7 +59,7 @@ MY=/home/ivan-dev/git/LirbiReader
 
 ## Librera depend on
 
-MuPDF - (AGPL License) http://git.ghostscript.com/?p=mupdf.git;a=commit;h=0628a0b3d166543dbc1c346790014ff39ccf76b8
+MuPDF - (AGPL License) https://mupdf.com/downloads/archive/ (mupdf-1.12.0-source.tar.xz)
 
 Librera Patch ./LirbiReader/Builder/jni/MupdfPatch.txt
 
