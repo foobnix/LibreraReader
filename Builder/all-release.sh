@@ -4,27 +4,34 @@
 
 ./inc-index.sh
 
-
 ant clean-apk
 
-ant x86 droid
-ant armeabi-v7a droid
+rm /home/ivan-dev/Dropbox/FREE_PDF_APK/testing/*.apk
 
-
+ant arm pro
+ant arm64 pro
 ant x86 pro
-ant armeabi-v7a pro
 
+./remove_all.sh
+./install_all.sh
+
+ant arm pdf
+ant arm64 pdf
 ant x86 pdf
-ant armeabi-v7a pdf
 
-ant armeabi-v7a classic
+ant arm classic
+ant arm64 classic
 ant x86 classic
+
+ant arm droid
+ant arm64 droid
+ant x86 droid
+
+ant arm pdf-ink
+ant arm64 pdf-ink
+ant x86 pdf-ink
 
 ant version
 
 ./remove_all.sh
 ./install_all.sh
-
-
-./link_lang.sh
-./zip-source.sh

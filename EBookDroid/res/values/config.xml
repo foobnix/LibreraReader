@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">eBooka Reader</string>
+    <string name="app_name">Librera</string>
     <string name="app_name_pro">Librera PRO</string>
 
-	<bool name="is_log_enable">true</bool>
+	<bool name="is_log_enable">false</bool>
 	
 	<string name="my_email">librera.reader@gmail.com</string>
     <string name="my_site"><![CDATA[<u>http://librera.mobi</u>]]></string>

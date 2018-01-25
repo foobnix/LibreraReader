@@ -6,10 +6,13 @@ do
 	  echo "DEVICE: ${DEVICE} ${MODEL}"
 	  echo "CPU: ${TYPE}"
 
-	if [[ $TYPE == *"arm"* ]]; then
+	if [[ $TYPE == *"arm64"* ]]; then
 		echo "TYPE: arm"
-	    FILES=apk/*arm64*.apk
-	else
+	    FILES=apk/*arm64.apk
+	elif [[ $TYPE == *"armeabi"* ]]; then
+		echo "TYPE: arm"
+	    FILES=apk/*arm.apk
+	else 
 		echo "TYPE: x86"
 	    FILES=apk/*x86*.apk
 	fi

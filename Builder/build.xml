@@ -4,21 +4,27 @@
 
 	<target name="prepare-packages">
 
+	    <echo>Prepare Packages "${pdf.package}"</echo>
+	    <echo>${package.pdf}</echo>
+	    <echo>${package.pro}</echo>
+	    <echo>${package.classic}</echo>
+	    <echo>${package.droid}</echo>
+	    <echo>${package.ink}</echo>
 	   <!-- section 2 -->
 	
-	<replaceregexp file="../EbookaPDF/AndroidManifest.xml"
+ <replaceregexp file="../EbookaPDF/AndroidManifest.xml" flags="g"
 		match='${package.pdf}' replace='${pdf.package}' />
 	
-	<replaceregexp file="../EbookaPDF/AndroidManifest.xml"
+	<replaceregexp file="../EbookaPDF/AndroidManifest.xml" flags="g"
 		match='${package.pro}' replace='${pdf.package}' />
 	
-	<replaceregexp file="../EbookaPDF/AndroidManifest.xml"
+	<replaceregexp file="../EbookaPDF/AndroidManifest.xml" flags="g"
 		match='${package.classic}' replace='${pdf.package}' />
 	
-	<replaceregexp file="../EbookaPDF/AndroidManifest.xml"
+	<replaceregexp file="../EbookaPDF/AndroidManifest.xml" flags="g"
 		match='${package.droid}' replace='${pdf.package}' />
 	
-	<replaceregexp file="../EbookaPDF/AndroidManifest.xml"
+	<replaceregexp file="../EbookaPDF/AndroidManifest.xml" flags="g"
 		match='${package.ink}' replace='${pdf.package}' />
 		
 	<!-- section 3 -->
@@ -81,8 +87,8 @@
 	    <echo>Target cpu_replace</echo>
 	    <replaceregexp file="../EbookaPDF/project.properties"
 			match='android.library.reference.1=../cpu_[a-z0-9+]+' replace='android.library.reference.1=../temp' />
-	
 	</target>
+	
 
 	<target name="x86" depends="cpu_replace">
 	    <echo>Target x86</echo>
@@ -334,8 +340,26 @@
 		</subant>
 
 		<antcall target="copy" inheritAll="true" />
+		<copy file="../EbookaPDF/bin/EbookaPDF-release.apk"
+			tofile="${dropbox}/${pdf.export.name}-${version.code}.${version.code.index}-c${pdf.reader.code}-${pdf.app.platform}.apk"
+			overwrite="true" />
+		
 
 	</target>
+	
+	<target name="test" >
+	    
+	 <property name="pdf.package" value="${package.pro}" />
+		<property name="pdf.icon" value="@drawable/icon_pdf_pro" />
+		<property name="pdf.app.name" value="${name.pro}" />
+		<property name="pdf.export.name" value="${name.pro}-PRO" />
+		
+		
+		<antcall target="prepare-packages" />
+	
+	</target>
+	    
+	    
 
 
 

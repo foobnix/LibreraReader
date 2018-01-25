@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="droid.reader.book.epub.mobi.pdf.djvu.fb2.txt.azw.azw3"
+    package="com.foobnix.pro.pdf.reader"
     android:installLocation="auto"
-    android:versionCode="474"
-    android:versionName="7.5.35" >
+    android:versionCode="475"
+    android:versionName="7.5.36" >
 
     <uses-sdk
         android:minSdkVersion="14"
@@ -18,12 +18,12 @@
     <!-- android:name="com.foobnix.pdf.info.TestAppName" -->
     <application
         android:name="org.ebookdroid.LibreraApp"
-        android:icon="@drawable/icon_pdf_droid"
+        android:icon="@drawable/icon_pdf_pro"
         android:label="@string/app_name"
         android:largeHeap="true"
         android:theme="@style/StyledIndicatorsWhite" >
         <!-- firebase start -->
-        <provider android:authorities="droid.reader.book.epub.mobi.pdf.djvu.fb2.txt.azw.azw3.firebaseinitprovider" android:name="com.google.firebase.provider.FirebaseInitProvider" android:exported="false" android:initOrder="100"/>
+        <provider android:authorities="com.foobnix.pro.pdf.reader.firebaseinitprovider" android:name="com.google.firebase.provider.FirebaseInitProvider" android:exported="false" android:initOrder="100"/>
 
         
         <receiver android:name="com.google.android.gms.measurement.AppMeasurementReceiver" android:enabled="true" android:exported="false">
@@ -43,7 +43,7 @@
        <receiver android:name="com.google.firebase.iid.FirebaseInstanceIdReceiver" android:exported="true" android:permission="com.google.android.c2dm.permission.SEND">
             <intent-filter>
                 <action android:name="com.google.android.c2dm.intent.RECEIVE"/>
-                <category android:name="droid.reader.book.epub.mobi.pdf.djvu.fb2.txt.azw.azw3"/>
+                <category android:name="com.foobnix.pro.pdf.reader"/>
             </intent-filter>
         </receiver>
 
@@ -64,7 +64,7 @@
         
         <provider
             android:name="android.support.v4.content.FileProvider"
-            android:authorities="droid.reader.book.epub.mobi.pdf.djvu.fb2.txt.azw.azw3.provider"
+            android:authorities="com.foobnix.pro.pdf.reader.provider"
             android:exported="false"
             android:grantUriPermissions="true" >
             <meta-data
@@ -309,64 +309,13 @@
         <meta-data
             android:name="com.sec.android.multiwindow.MINIMUM_SIZE_H"
             android:value="598.0dip" />
-
-        <!-- EP -->
-
-        <activity
-            xmlns:android="http://schemas.android.com/apk/res/android"
-            android:name="com.adclient.android.sdk.install.AdClientPopupActivity"
-            android:theme="@android:style/Theme.Dialog" />
-        <activity
-            xmlns:android="http://schemas.android.com/apk/res/android"
-            android:name="com.adclient.android.sdk.view.AdClientSdkActivity"
-            android:configChanges="keyboardHidden|orientation|screenSize"
-            android:theme="@android:style/Theme.Translucent.NoTitleBar.Fullscreen" />
-        <activity
-            xmlns:android="http://schemas.android.com/apk/res/android"
-            android:name="com.adclient.android.sdk.inapp.landing.AdClientInAppLandingActivity"
-            android:configChanges="keyboardHidden|orientation|screenSize" />
-
-        <meta-data
+        
+         <meta-data
             xmlns:android="http://schemas.android.com/apk/res/android"
             android:name="com.google.android.gms.version"
             android:value="@integer/google_play_services_version" />
 
-        <receiver
-            xmlns:android="http://schemas.android.com/apk/res/android"
-            android:name="com.adclient.android.sdk.install.DownloadCompleteReceiver" >
-            <intent-filter>
-                <action android:name="android.intent.action.DOWNLOAD_COMPLETE" />
-            </intent-filter>
-        </receiver>
 
-        <service
-            xmlns:android="http://schemas.android.com/apk/res/android"
-            android:name="com.adclient.android.sdk.synchronization.AdClientSynchronizer" />
-
-        <activity
-            xmlns:android="http://schemas.android.com/apk/res/android"
-            android:name="com.mopub.mobileads.MoPubActivity"
-            android:configChanges="keyboardHidden|orientation|screenSize" />
-        <activity
-            xmlns:android="http://schemas.android.com/apk/res/android"
-            android:name="com.mopub.mobileads.MraidActivity"
-            android:configChanges="keyboardHidden|orientation|screenSize" />
-        <activity
-            xmlns:android="http://schemas.android.com/apk/res/android"
-            android:name="com.mopub.common.MoPubBrowser"
-            android:configChanges="keyboardHidden|orientation|screenSize" />
-        <activity
-            xmlns:android="http://schemas.android.com/apk/res/android"
-            android:name="com.mopub.mobileads.MraidVideoPlayerActivity"
-            android:configChanges="keyboardHidden|orientation|screenSize" />
-        <activity
-            xmlns:android="http://schemas.android.com/apk/res/android"
-            android:name="com.mopub.mobileads.RewardedMraidActivity"
-            android:configChanges="keyboardHidden|orientation|screenSize" />
-        <activity
-            xmlns:android="http://schemas.android.com/apk/res/android"
-            android:name="com.facebook.ads.AudienceNetworkActivity"
-            android:configChanges="keyboardHidden|orientation|screenSize" />
     </application>
 
 </manifest>
