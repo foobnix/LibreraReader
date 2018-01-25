@@ -318,7 +318,7 @@
    <string name="show_assistant_droid_reader">Показать помощник Droid Reader</string>
    <string name="tabs_position">Очередность/видимость вкладок</string>
    <string name="visible">Показывать</string>
-   <string name="show_preferences_tab_in_the_left_menu">Показывать вкладку "Настройки" как боковое меню</string>
+   <string name="show_preferences_tab_in_the_left_menu">Показывать вкладку \"Настройки\" как боковое меню</string>
    <string name="theme">Тема</string>
    <string name="hide_app">Свернуть приложение</string>
    <string name="close_application">Закрыть приложение</string>
@@ -471,7 +471,7 @@
    <string name="reading_progress">Показывать в строке</string>
    <string name="awards">Награды</string>
    <string name="close_book_and_application">Закрыть книгу и приложение</string>
-   <string name="full_screen">В полный экран</string>
+   <string name="full_screen">Полноэкр. режим</string>
    <string name="percent_and_number">Процент и число страниц</string>
    <string name="current_page">Ход чтения</string>
    <string name="mode_vertical">Режим \"Свиток\"</string>
