@@ -139,7 +139,7 @@
    <string name="web">Situs</string>
    <string name="volume_keys">Bullae sonorum</string>
    <string name="this_function_will_works_in_modern_android">This function will work on modern android devices</string>
-   <string name="import_or_export_application_settings_to_json_file">Exemplum subsidiarium</string> 
+   <string name="import_or_export_application_settings_to_json_file">Exemplum subsidiarium</string>
    <string name="menu">Menu</string>
    <string name="font_size">Dimensio litterum</string>
    <string name="foot_notes">Annotatio ad calcem paginae</string>
@@ -338,7 +338,7 @@
    <string name="enable_brightness_adjustment_on_the_left_of_the_screen">Adtempere candorem laevad lateri vellarii</string>
    <string name="enable_rewind_of_pages_using_the_read_progress_line">Mutare paginas prolabendi secundum linea progressioni</string>
    <string name="catalogs">Catalogi</string>
-   <string name="can_t_download">Tractum iri non possit</string> 
+   <string name="can_t_download">Tractum iri non possit</string>
    <string name="download">Trahere</string>
    <string name="loading_error">Error onerandi</string>
    <string name="please_wait">Exscpectate</string>
