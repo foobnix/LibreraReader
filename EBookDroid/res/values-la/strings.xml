@@ -139,7 +139,7 @@
    <string name="web">Situs</string>
    <string name="volume_keys">Bullae sonorum</string>
    <string name="this_function_will_works_in_modern_android">This function will work on modern android devices</string>
-   <string name="import_or_export_application_settings_to_json_file">Exemplum subsidiarium</string> резервное. retrorsum никак в флективн. яз. не сделать одно слово без изощрен.
+   <string name="import_or_export_application_settings_to_json_file">Exemplum subsidiarium</string> 
    <string name="menu">Menu</string>
    <string name="font_size">Dimensio litterum</string>
    <string name="foot_notes">Annotatio ad calcem paginae</string>
@@ -165,7 +165,7 @@
    <string name="text_to_speech">Scriptum recitare</string>
    <string name="application_user_guide_">Manuale</string>
    <string name="you_need_grant_permission">You need to grant permission of external storage for this application</string>
-   <string name="db_auto_alignemnt">Auto aequatum</string> supin 2 or particeps any tense aequatum
+   <string name="db_auto_alignemnt">Auto aequatum</string> 
    <string name="db_auto_scroll">Auto protrahendum</string>
    <string name="db_do_nothing">Nil facere</string>
    <string name="action_on_double_tap">Pulsus duplus</string>
