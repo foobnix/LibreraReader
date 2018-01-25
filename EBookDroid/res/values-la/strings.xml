@@ -51,7 +51,7 @@
    <string name="msg_loading">Onerando... Expectate</string>
    <string name="msg_no_text_found">Text not found</string>
    <string name="msg_password_required">Inducere tesseram</string>
-   <string name="msg_search_text_on_page">Perlustrando</string> 
+   <string name="msg_search_text_on_page">Perlustrando</string>
    <string name="msg_unexpected_error">Unexpected error Occurred</string>
    <string name="msg_wrong_password">Falso</string>
    <string name="next">Sequens</string>
@@ -165,7 +165,7 @@
    <string name="text_to_speech">Scriptum recitare</string>
    <string name="application_user_guide_">Manuale</string>
    <string name="you_need_grant_permission">You need to grant permission of external storage for this application</string>
-   <string name="db_auto_alignemnt">Auto aequatum</string> 
+   <string name="db_auto_alignemnt">Auto aequatum</string>
    <string name="db_auto_scroll">Auto protrahendum</string>
    <string name="db_do_nothing">Nil facere</string>
    <string name="action_on_double_tap">Pulsus duplus</string>
