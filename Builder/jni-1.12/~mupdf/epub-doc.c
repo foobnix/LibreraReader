@@ -36,6 +36,60 @@ struct epub_page_s
 	int number;
 };
 
+static fz_html_flow *
+find_first_content(fz_html_box *box)
+{
+	while (box)
+	{
+		if (box->type == BOX_FLOW)
+			return box->flow_head;
+		box = box->down;
+	}
+	return NULL;
+}
+
+static float
+find_flow_target(fz_html_flow *flow, const char *id)
+{
+	while (flow)
+	{
+		if (flow->box->id && !strcmp(id, flow->box->id))
+			return flow->y;
+		flow = flow->next;
+	}
+	return -1;
+}
+
+static float
+find_box_target(fz_html_box *box, const char *id)
+{
+	float y;
+	while (box)
+	{
+		if (box->id && !strcmp(id, box->id))
+		{
+			fz_html_flow *flow = find_first_content(box);
+			if (flow)
+				return flow->y;
+			return box->y;
+		}
+		if (box->type == BOX_FLOW)
+		{
+			y = find_flow_target(box->flow_head, id);
+			if (y >= 0)
+				return y;
+		}
+		else
+		{
+			y = find_box_target(box->down, id);
+			if (y >= 0)
+				return y;
+		}
+		box = box->next;
+	}
+	return -1;
+}
+
 static int
 epub_resolve_link(fz_context *ctx, fz_document *doc_, const char *dest, float *xp, float *yp)
 {
@@ -47,14 +101,16 @@ epub_resolve_link(fz_context *ctx, fz_document *doc_, const char *dest, float *x
 	if (s && s[1] == 0)
 		s = NULL;
 
+	
 	for (ch = doc->spine; ch; ch = ch->next)
 	{
+		fz_html_box *box = ch->html->root;
 		if (!strncmp(ch->path, dest, n) && ch->path[n] == 0)
 		{
 			if (s)
 			{
 				/* Search for a matching fragment */
-				float y = fz_find_html_target(ctx, ch->html, s+1);
+				float y = find_box_target(box, s+1);
 				if (y >= 0)
 				{
 					int page = y / ch->html->page_h;

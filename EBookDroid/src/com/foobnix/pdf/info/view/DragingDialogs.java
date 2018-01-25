@@ -1862,7 +1862,7 @@ public class DragingDialogs {
                 };
                 contentList.postDelayed(showOutline, 50);
 
-                if (BookType.FB2.is(controller.getCurrentBook().getPath())) {
+                if (false && BookType.FB2.is(controller.getCurrentBook().getPath())) {
                     setTitlePopupIcon(AppState.get().outlineMode == AppState.OUTLINE_ONLY_HEADERS ? R.drawable.glyphicons_114_justify : R.drawable.glyphicons_114_justify_sub);
                     titlePopupMenu = new MyPopupMenu(controller.getActivity(), null);
 

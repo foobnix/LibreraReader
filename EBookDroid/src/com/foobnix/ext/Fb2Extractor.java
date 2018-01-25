@@ -467,41 +467,33 @@ public class Fb2Extractor extends BaseExtractor {
                 if (BookCSS.get().isAutoHypens && line.contains("<title")) {
                     titleBegin = true;
                 }
+
                 if (line.contains("</title>")) {
                     titleBegin = false;
                     count++;
                     line = line.replace("</title>", "<a id=\"" + count + "\"></a></title>");
                 }
-                if (false && BookCSS.get().isAutoHypens && line.contains("<subtitle>")) {
-                    titleBegin = true;
-                }
-                if (false && line.contains("</subtitle>")) {
-                    titleBegin = false;
-                    count++;
-                    line = line.replace("</subtitle>", "<a id=\"" + count + "\"></a></subtitle>");
-                }
-                if (line.contains("</body>")) {
-                    count++;
-                    line = line.replace("</body>", "<a id=\"" + count + "\"></a></body>");
+
+                if (!isFindBodyEnd && line.contains("</body>")) {
+                    isFindBodyEnd = true;
+                    // count++;
+                    // line = line.replace("</body>", "<a id=\"" + count + "\"></a></body>");
                 }
 
-                if ((AppState.get().isDouble || !titleBegin) && BookCSS.get().isAutoHypens) {
-                    if (!isFindBodyEnd && line.contains("</body>")) {
-                        isFindBodyEnd = true;
-                    }
-                    if (!isFindBodyEnd) {
-                        if (line.contains("&")) {
-                            line = line.replace("&nbsp;", " ");
-                        }
+                if (!isFindBodyEnd) {
+                    if ((AppState.get().isDouble || !titleBegin) && BookCSS.get().isAutoHypens) {
+                        // if (line.contains("&")) {
+                        // line = line.replace("&nbsp;", " ");
+                        // }
                         // line = HypenUtils.applyHypnes(line);
                         line = HypenUtils.applyHypnesOld(line);
                     }
                 }
-
                 writer.println(line);
             }
 
         }
+
         long delta = System.currentTimeMillis() - init;
         LOG.d("generateFb2File", delta / 1000.0);
         input.close();
@@ -536,9 +528,9 @@ public class Fb2Extractor extends BaseExtractor {
                     line = "</" + subLine[i];
                 }
 
-                if (line.contains("&")) {
-                    line = line.replace("&nbsp;", " ");
-                }
+                // if (line.contains("&")) {
+                // line = line.replace("&nbsp;", " ");
+                // }
                 if (isEPUB && line.contains("<image")) {
                     line = line.replace("<image", "<img");
                     line = line.replace("xlink:href=", "src=");
