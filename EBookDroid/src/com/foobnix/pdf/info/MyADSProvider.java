@@ -3,10 +3,6 @@ package com.foobnix.pdf.info;
 import java.util.Random;
 import java.util.concurrent.TimeUnit;
 
-import com.adclient.android.sdk.listeners.ClientAdListener;
-import com.adclient.android.sdk.nativeads.AdClientNativeAd;
-import com.adclient.android.sdk.view.AbstractAdClientView;
-import com.adclient.android.sdk.view.AdClientInterstitial;
 import com.foobnix.android.utils.LOG;
 import com.google.android.gms.ads.AdListener;
 import com.google.android.gms.ads.AdView;
@@ -19,14 +15,12 @@ import android.os.Handler;
 public class MyADSProvider {
 
     private NativeExpressAdView adViewNative;
-    private AdClientNativeAd adClientView;
     private AdView adView;
     private Activity a;
 
     Random random = new Random();
 
     InterstitialAd mInterstitialAd;
-    AdClientInterstitial interstitialEP;
     public int intetrstialTimeout = 0;
 
     Handler handler;
@@ -47,14 +41,10 @@ public class MyADSProvider {
             return;
         }
 
-        if (AppsConfig.IS_EP) {
-            ADS.activateEP(a, adClientView);
+        if (AppsConfig.ADMOB_NATIVE_BANNER != null && random.nextBoolean()) {
+            ADS.activateAdmobNativeBanner(a, adViewNative);
         } else {
-            if (AppsConfig.ADMOB_NATIVE_BANNER != null && random.nextBoolean()) {
-                ADS.activateAdmobNativeBanner(a, adViewNative);
-            } else {
-                ADS.activateAdmobSmartBanner(a, adView);
-            }
+            ADS.activateAdmobSmartBanner(a, adView);
         }
 
         handler.removeCallbacksAndMessages(null);
@@ -64,35 +54,7 @@ public class MyADSProvider {
             @Override
             public void run() {
                 try {
-                    if (AppsConfig.IS_EP) {
-                        interstitialEP = new AdClientInterstitial(a);
-                        interstitialEP.setConfiguration(ADS.interstitial);
-
-                        interstitialEP.addClientAdListener(new ClientAdListener() {
-                            @Override
-                            public void onReceivedAd(AbstractAdClientView adClientView) {
-                            }
-
-                            @Override
-                            public void onFailedToReceiveAd(AbstractAdClientView adClientView) {
-                            }
-
-                            @Override
-                            public void onClickedAd(AbstractAdClientView adClientView) {
-                            }
-
-                            @Override
-                            public void onLoadingAd(AbstractAdClientView adClientView, String message) {
-                                // interstitialEP.isAdLoaded();
-                            }
-
-                            @Override
-                            public void onClosedAd(AbstractAdClientView adClientView) {
-                                finish.run();
-                            }
-                        });
-                        interstitialEP.load();
-                    } else if (AppsConfig.ADMOB_FULLSCREEN != null) {
+                    if (AppsConfig.ADMOB_FULLSCREEN != null) {
                         mInterstitialAd = new InterstitialAd(a);
                         mInterstitialAd.setAdUnitId(AppsConfig.ADMOB_FULLSCREEN);
                         mInterstitialAd.setAdListener(new AdListener() {
@@ -119,37 +81,23 @@ public class MyADSProvider {
     }
 
     public boolean showInterstial() {
-        if (AppsConfig.IS_EP) {
-            if (interstitialEP != null && interstitialEP.isAdLoaded()) {
-                interstitialEP.show();
-                return true;
-            }
-        } else {
-            if (mInterstitialAd != null && mInterstitialAd.isLoaded()) {
-                mInterstitialAd.show();
-                return true;
-            }
-        }
-        return false;
-    }
-
-    public boolean isInterstialShown() {
-        if (interstitialEP != null && interstitialEP.isShown()) {
+        if (mInterstitialAd != null && mInterstitialAd.isLoaded()) {
+            mInterstitialAd.show();
             return true;
         }
         return false;
     }
 
     public void pause() {
-        ADS.onPauseAll(adViewNative, adClientView, adView);
+        ADS.onPauseAll(adViewNative, adView);
     }
 
     public void resume() {
-        ADS.onResumeAll(a, adViewNative, adClientView, adView);
+        ADS.onResumeAll(a, adViewNative, adView);
     }
 
     public void destroy() {
-        ADS.destoryAll(adViewNative, adClientView, adView);
+        ADS.destoryAll(adViewNative, adView);
         a = null;
     }
 

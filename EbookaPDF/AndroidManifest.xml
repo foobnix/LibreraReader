@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.foobnix.pro.pdf.reader"
+    package="com.foobnix.pdf.reader"
     android:installLocation="auto"
-    android:versionCode="475"
-    android:versionName="7.5.36" >
+    android:versionCode="477"
+    android:versionName="7.5.37" >
 
     <uses-sdk
         android:minSdkVersion="14"
@@ -22,49 +22,10 @@
         android:label="@string/app_name"
         android:largeHeap="true"
         android:theme="@style/StyledIndicatorsWhite" >
-        <!-- firebase start -->
-        <provider android:authorities="com.foobnix.pro.pdf.reader.firebaseinitprovider" android:name="com.google.firebase.provider.FirebaseInitProvider" android:exported="false" android:initOrder="100"/>
-
-        
-        <receiver android:name="com.google.android.gms.measurement.AppMeasurementReceiver" android:enabled="true" android:exported="false">
-      </receiver>
-      <receiver android:name="com.google.android.gms.measurement.AppMeasurementInstallReferrerReceiver" android:permission="android.permission.INSTALL_PACKAGES" android:enabled="true" android:exported="true">
-          <intent-filter>
-              <action android:name="com.android.vending.INSTALL_REFERRER"/>
-          </intent-filter>
-      </receiver>
-      <service android:name="com.google.android.gms.measurement.AppMeasurementService" android:enabled="true" android:exported="false"/>
-      <service android:name="com.google.android.gms.measurement.AppMeasurementJobService" android:permission="android.permission.BIND_JOB_SERVICE" android:enabled="true" android:exported="false"/>
- 
-      <receiver android:name="com.google.android.gms.measurement.AppMeasurementReceiver" android:enabled="true" android:exported="false">
-      </receiver>
-      <service android:name="com.google.android.gms.measurement.AppMeasurementService" android:enabled="true" android:exported="false"/>
-   
-       <receiver android:name="com.google.firebase.iid.FirebaseInstanceIdReceiver" android:exported="true" android:permission="com.google.android.c2dm.permission.SEND">
-            <intent-filter>
-                <action android:name="com.google.android.c2dm.intent.RECEIVE"/>
-                <category android:name="com.foobnix.pro.pdf.reader"/>
-            </intent-filter>
-        </receiver>
-
-        <!-- Internal (not exported) receiver used by the app to start its own exported services
-             without risk of being spoofed. -->
-        <receiver android:name="com.google.firebase.iid.FirebaseInstanceIdInternalReceiver" android:exported="false"/>
-
-        <!-- FirebaseInstanceIdService performs security checks at runtime,
-             no need for explicit permissions despite exported="true" -->
-        <service android:name="com.google.firebase.iid.FirebaseInstanceIdService" android:exported="true">
-            <intent-filter android:priority="-500">
-                <action android:name="com.google.firebase.INSTANCE_ID_EVENT"/>
-            </intent-filter>
-        </service>
-  
-        
-        <!-- firebase end -->
         
         <provider
             android:name="android.support.v4.content.FileProvider"
-            android:authorities="com.foobnix.pro.pdf.reader.provider"
+            android:authorities="com.foobnix.pdf.reader.provider"
             android:exported="false"
             android:grantUriPermissions="true" >
             <meta-data

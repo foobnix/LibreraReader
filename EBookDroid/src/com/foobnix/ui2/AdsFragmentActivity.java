@@ -80,7 +80,7 @@ public abstract class AdsFragmentActivity extends FragmentActivity {
     }
 
     public boolean isInterstialShown() {
-        return myAds.isInterstialShown();
+        return false;
     }
 
 }

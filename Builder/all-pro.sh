@@ -2,12 +2,9 @@
 
 ant clean-apk
 
+ant arm pro
+ant arm64 pro
 ant x86 pro
-ant armeabi-v7a pro
 
 ./remove_all.sh
 ./install_all.sh
-
-
-./link_lang.sh
-./zip-source.sh
