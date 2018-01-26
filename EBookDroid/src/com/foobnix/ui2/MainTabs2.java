@@ -287,7 +287,7 @@ public class MainTabs2 extends AdsFragmentActivity {
 
         Android6.checkPermissions(this);
         // Analytics.onStart(this);
-        FontExtractor.extractFonts(this);
+
 
         List<String> actions = Arrays.asList("android.intent.action.PROCESS_TEXT", "android.intent.action.SEARCH", "android.intent.action.SEND");
         List<String> extras = Arrays.asList(Intent.EXTRA_PROCESS_TEXT_READONLY, Intent.EXTRA_PROCESS_TEXT, SearchManager.QUERY, Intent.EXTRA_TEXT);
@@ -375,6 +375,9 @@ public class MainTabs2 extends AdsFragmentActivity {
             AndroidWhatsNew.checkForNewBeta(this);
         } catch (Exception e) {
             LOG.e(e);
+        }
+        if (Android6.canWrite(this)) {
+            FontExtractor.extractFonts(this);
         }
         EventBus.getDefault().register(this);
     }

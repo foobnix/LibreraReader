@@ -658,6 +658,7 @@ public class DocumentWrapperUI {
             @Override
             public boolean onLongClick(View v) {
                 Vibro.vibrate();
+                TTSEngine.get().stop();
                 ttsActive.setVisibility(View.GONE);
                 return true;
             }
