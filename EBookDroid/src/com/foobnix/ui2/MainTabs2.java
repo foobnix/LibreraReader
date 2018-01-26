@@ -34,7 +34,6 @@ import com.foobnix.pdf.search.activity.HorizontalViewActivity;
 import com.foobnix.pdf.search.activity.msg.MessegeBrightness;
 import com.foobnix.pdf.search.activity.msg.MsgCloseMainTabs;
 import com.foobnix.pdf.search.view.CloseAppDialog;
-import com.foobnix.sys.ImageExtractor;
 import com.foobnix.sys.TempHolder;
 import com.foobnix.ui2.adapter.TabsAdapter2;
 import com.foobnix.ui2.fragment.BookmarksFragment2;
@@ -500,7 +499,7 @@ public class MainTabs2 extends AdsFragmentActivity {
         }
         // Analytics.onStop(this);
         CacheDir.ZipApp.removeCacheContent();
-        ImageExtractor.clearErrors();
+        // ImageExtractor.clearErrors();
         // ImageExtractor.clearCodeDocument();
 
         if (AppState.get().isAutomaticExport && Android6.canWrite(this)) {

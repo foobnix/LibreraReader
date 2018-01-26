@@ -76,7 +76,7 @@ public class ImageExtractor implements ImageDownloader {
 
     public static void clearErrors() {
         if (sp != null) {
-            // sp.edit().clear().commit();
+            sp.edit().clear().commit();
         }
     }
 
@@ -364,10 +364,10 @@ public class ImageExtractor implements ImageDownloader {
         if (!imageUri.startsWith("{")) {
             return baseImage.getStream(imageUri, null);
         }
-        // if (sp.contains("" + imageUri.hashCode())) {
-        // LOG.d("Error FILE", imageUri);
-        // return messageFile("#crash", "");
-        // }
+        if (sp.contains("" + imageUri.hashCode())) {
+            LOG.d("Error FILE", imageUri);
+            return messageFile("#crash", "");
+        }
 
         final PageUrl pageUrl = PageUrl.fromString(imageUri);
         String path = pageUrl.getPath();
@@ -393,7 +393,7 @@ public class ImageExtractor implements ImageDownloader {
             if (!file.isFile()) {
                 return messageFile("#no file", "");
             }
-            // sp.edit().putBoolean("" + imageUri.hashCode(), true).commit();
+            sp.edit().putBoolean("" + imageUri.hashCode(), true).commit();
 
             int page = pageUrl.getPage();
 
@@ -462,7 +462,7 @@ public class ImageExtractor implements ImageDownloader {
             AppState.get().pagesInMemory = 1;
             return messageFile("#error", "");
         } finally {
-            // sp.edit().remove("" + imageUri.hashCode()).commit();
+            sp.edit().remove("" + imageUri.hashCode()).commit();
         }
     }
 
