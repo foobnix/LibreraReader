@@ -121,14 +121,16 @@ public class TTSService extends Service {
     }
 
     public static void playLastBook() {
-        playBookPage(AppState.get().lastBookPage, AppState.get().lastBookPath, "", AppState.get().lastBookWidth, AppState.get().lastBookHeight);
+        playBookPage(AppState.get().lastBookPage, AppState.get().lastBookPath, "", AppState.get().lastBookWidth, AppState.get().lastBookHeight, AppState.get().lastFontSize);
     }
 
-    public static void playBookPage(int page, String path, String anchor, int width, int height) {
+    public static void playBookPage(int page, String path, String anchor, int width, int height, int fontSize) {
+        LOG.d(TAG, "playBookPage", page, path, width, height);
         TTSEngine.get().stop();
 
         AppState.get().lastBookWidth = width;
         AppState.get().lastBookHeight = height;
+        AppState.get().lastFontSize = fontSize;
 
         Intent intent = playBookIntent(page, path, anchor);
 
@@ -218,8 +220,9 @@ public class TTSService extends Service {
             }
             path = AppState.get().lastBookPath;
             cache = ImageExtractor.singleCodecContext(AppState.get().lastBookPath, "", AppState.get().lastBookWidth, AppState.get().lastBookHeight);
+            cache.getPageCount(AppState.get().lastBookWidth, AppState.get().lastBookHeight, AppState.get().fontSizeSp);
             wh = AppState.get().lastBookWidth + AppState.get().lastBookHeight;
-            LOG.d(TAG, "CodecDocument new ", AppState.get().lastBookPath, AppState.get().lastBookWidth, AppState.get().lastBookHeight);
+            LOG.d(TAG, "CodecDocument new", AppState.get().lastBookPath, AppState.get().lastBookWidth, AppState.get().lastBookHeight);
             return cache;
         } catch (Exception e) {
             LOG.e(e);
@@ -240,8 +243,9 @@ public class TTSService extends Service {
                 return;
             }
 
-            LOG.d(TAG, "CodecDocument", pageNumber, dc.getPageCount());
-            if (pageNumber >= dc.getPageCount()) {
+            int pageCount = dc.getPageCount();
+            LOG.d(TAG, "CodecDocument PageCount", pageNumber, pageCount);
+            if (pageNumber >= pageCount) {
 
                 TempHolder.get().timerFinishTime = 0;
 
