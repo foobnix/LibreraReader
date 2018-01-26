@@ -1453,6 +1453,12 @@ public class DocumentWrapperUI {
         }
     };
 
+    private void closeDialogs() {
+        anchor.setVisibility(View.GONE);
+        anchor.setTag("backGo");
+        anchor.removeAllViews();
+    }
+
     public View.OnClickListener onModeChangeClick = new View.OnClickListener() {
 
         @Override
@@ -1463,6 +1469,7 @@ public class DocumentWrapperUI {
 
                 @Override
                 public boolean onMenuItemClick(MenuItem item) {
+                    closeDialogs();
                     onModeChange.setImageResource(R.drawable.glyphicons_two_page_one);
                     AppState.get().isCut = !false;
                     onCut.onClick(null);
@@ -1474,6 +1481,7 @@ public class DocumentWrapperUI {
 
                 @Override
                 public boolean onMenuItemClick(MenuItem item) {
+                    closeDialogs();
                     onModeChange.setImageResource(R.drawable.glyphicons_page_split);
                     AppState.get().isCut = !true;
                     onCut.onClick(null);
