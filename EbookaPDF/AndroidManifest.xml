@@ -54,6 +54,17 @@
                 <data android:mimeType="application/zip" />
             </intent-filter>
         </activity>
+        
+         <activity
+            android:name="com.foobnix.pdf.search.activity.HorizontalViewActivity"
+            android:configChanges="orientation|screenSize|keyboard|keyboardHidden"
+            android:exported="true"
+            android:launchMode="singleTask"
+            android:resizeableActivity="true"
+            android:screenOrientation="behind" 
+              android:windowSoftInputMode="adjustPan">
+        </activity>
+        
         <activity
             android:name="org.ebookdroid.ui.viewer.VerticalViewActivity"
             android:configChanges="orientation|screenSize|keyboard|keyboardHidden"
@@ -212,14 +223,7 @@
                 <data android:mimeType="text/plain" />
             </intent-filter>
         </activity>
-        <activity
-            android:name="com.foobnix.pdf.search.activity.HorizontalViewActivity"
-            android:configChanges="orientation|screenSize|keyboard|keyboardHidden"
-            android:exported="true"
-            android:launchMode="singleTask"
-            android:resizeableActivity="true"
-            android:screenOrientation="behind" >
-        </activity>
+       
 
         <activity
             android:name="com.google.android.gms.ads.AdActivity"

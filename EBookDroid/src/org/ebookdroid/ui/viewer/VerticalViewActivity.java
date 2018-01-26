@@ -150,6 +150,22 @@ public class VerticalViewActivity extends AbstractActionActivity<VerticalViewAct
 
         handler = new Handler();
 
+        getController().onBookLoaded(new Runnable() {
+
+            @Override
+            public void run() {
+                handler.postDelayed(new Runnable() {
+
+                    @Override
+                    public void run() {
+                        isInitPosistion = Dips.screenHeight() > Dips.screenWidth();
+                        isInitOrientation = AppState.get().orientation;
+                    }
+                }, 1000);
+
+            }
+        });
+
     }
 
     @Override
@@ -250,12 +266,16 @@ public class VerticalViewActivity extends AbstractActionActivity<VerticalViewAct
     }
 
     Dialog rotatoinDialog;
-    boolean isInitPosistion;
+    Boolean isInitPosistion;
     int isInitOrientation;
 
     @Override
     public void onConfigurationChanged(final Configuration newConfig) {
         super.onConfigurationChanged(newConfig);
+        if (isInitPosistion == null) {
+            return;
+        }
+
         final boolean currentPosistion = Dips.screenHeight() > Dips.screenWidth();
 
         if (ExtUtils.isTextFomat(getIntent()) /* && isInitOrientation == AppState.get().orientation */) {
@@ -324,8 +344,6 @@ public class VerticalViewActivity extends AbstractActionActivity<VerticalViewAct
     protected void onPostCreate(final Bundle savedInstanceState) {
         super.onPostCreate(savedInstanceState);
         getController().afterPostCreate();
-        isInitPosistion = Dips.screenHeight() > Dips.screenWidth();
-        isInitOrientation = AppState.get().orientation;
     }
 
     @Override

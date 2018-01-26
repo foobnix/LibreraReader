@@ -116,6 +116,12 @@ public class ViewerActivityController extends ActionController<VerticalViewActiv
         }
     }
 
+    Runnable onBookLoaded;
+
+    public void onBookLoaded(Runnable onBookLoaded) {
+        this.onBookLoaded = onBookLoaded;
+    }
+
     public void afterCreate(VerticalViewActivity a) {
         final VerticalViewActivity activity = getManagedComponent();
 
@@ -233,6 +239,7 @@ public class ViewerActivityController extends ActionController<VerticalViewActiv
 
             @Override
             public void run() {
+
                 int pageIntent = intent.getIntExtra("page", 0);
                 getActivity().getIntent().putExtra(HorizontalModeController.PASSWORD_EXTRA, password);
                 double percent = getActivity().getIntent().getDoubleExtra(VerticalViewActivity.PERCENT_EXTRA, 0);
@@ -245,11 +252,19 @@ public class ViewerActivityController extends ActionController<VerticalViewActiv
                     controller.onGoToPage(pageIntent);
                 }
 
+                if (onBookLoaded != null) {
+                    onBookLoaded.run();
+                }
+
+
                 controller.loadOutline(new ResultResponse<List<OutlineLinkWrapper>>() {
 
                     @Override
                     public boolean onResultRecive(List<OutlineLinkWrapper> result) {
                         wrapperControlls.showOutline(result, controller.getPageCount());
+
+
+
                         return false;
                     }
                 });
