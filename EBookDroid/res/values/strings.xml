@@ -474,7 +474,7 @@
    <string name="close_book_and_application">Close book and application</string>
    <string name="percent_and_number">Percent and Number</string>
    <string name="current_page">Current page</string>
-   <string name="mode_vertical">Mode \"Scroll\"</string>
-   <string name="mode_horizontally">Mode \"Book\"</string>
-   <string name="mode_musician">Mode \"Musician\"</string>
+   <string name="mode_vertical">\"Scroll\" mode</string>
+   <string name="mode_horizontally">\"Book\" mode</string>
+   <string name="mode_musician">\"Musician\" mode</string>
 </resources>
