@@ -429,10 +429,10 @@ public class DocumentWrapperUI {
             reverseKeysIndicator.setVisibility(View.GONE);
         }
 
-        moveLeft.setVisibility(Dips.isSmallWidth() ? View.GONE : View.VISIBLE);
-        moveRight.setVisibility(Dips.isSmallWidth() ? View.GONE : View.VISIBLE);
-        zoomPlus.setVisibility(Dips.isSmallWidth() ? View.GONE : View.VISIBLE);
-        zoomMinus.setVisibility(Dips.isSmallWidth() ? View.GONE : View.VISIBLE);
+        moveLeft.setVisibility(Dips.isSmallScreen() ? View.GONE : View.VISIBLE);
+        moveRight.setVisibility(Dips.isSmallScreen() ? View.GONE : View.VISIBLE);
+        zoomPlus.setVisibility(Dips.isSmallScreen() ? View.GONE : View.VISIBLE);
+        zoomMinus.setVisibility(Dips.isSmallScreen() ? View.GONE : View.VISIBLE);
         if (dc.isTextFormat()) {
             moveLeft.setVisibility(View.GONE);
             moveRight.setVisibility(View.GONE);
@@ -845,7 +845,6 @@ public class DocumentWrapperUI {
 
         int iconSize = Dips.spToPx(AppState.get().statusBarTextSizeAdv);
         int smallIconSize = iconSize - Dips.dpToPx(5);
-        int panelSize = (int) (iconSize * 1.5);
 
         textToSpeachTop.getLayoutParams().height = textToSpeachTop.getLayoutParams().width = iconSize;
         lockUnlockTop.getLayoutParams().height = lockUnlockTop.getLayoutParams().width = iconSize;
