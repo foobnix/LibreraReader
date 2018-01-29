@@ -212,6 +212,7 @@ public class AppState {
     public final static int DOUBLE_CLICK_CENTER_HORIZONTAL = 4;
     public final static int DOUBLE_CLICK_CLOSE_BOOK = 5;
     public final static int DOUBLE_CLICK_CLOSE_BOOK_AND_APP = 6;
+    public final static int DOUBLE_CLICK_CLOSE_HIDE_APP = 7;
 
     public final static int BR_SORT_BY_PATH = 0;
     public final static int BR_SORT_BY_DATE = 1;
