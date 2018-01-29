@@ -128,6 +128,9 @@ public class DialogTranslateFromTo {
     }
 
     public static String getLanuageByCode(String code) {
+        if (LibreraApp.context == null) {
+            return "";
+        }
         if (AppState.MY_SYSTEM_LANG.equals(code)) {
             return LibreraApp.context.getString(R.string.system_language);
         }

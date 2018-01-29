@@ -173,7 +173,7 @@ public class FileMetaCore {
         fileMeta.setAnnotation(meta.getAnnotation());
         fileMeta.setSIndex(meta.getsIndex());
         fileMeta.setChild(ExtUtils.getFileExtension(meta.getUnzipPath()));
-        fileMeta.setLang(meta.getLang());
+        fileMeta.setLang(TxtUtils.toLowerCase(meta.getLang()));
 
     }
 

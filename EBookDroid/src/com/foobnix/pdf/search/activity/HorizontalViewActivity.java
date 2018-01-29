@@ -1404,7 +1404,7 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
     };
 
     public void updateUI(int page) {
-        if (dc == null) {
+        if (dc == null || viewPager == null) {
             return;
         }
 
