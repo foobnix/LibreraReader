@@ -477,4 +477,6 @@
    <string name="mode_vertical">模式“滚动”</string>
    <string name="mode_horizontally">模式“书”</string>
    <string name="mode_musician">模式“音乐家”</string>
+   <string name="backup_folder">备份文件夹</string>
+   <string name="audio_books_folder">音频书籍文件夹</string>
 </resources>

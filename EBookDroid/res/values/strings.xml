@@ -477,4 +477,6 @@
    <string name="mode_vertical">\"Scroll\" mode</string>
    <string name="mode_horizontally">\"Book\" mode</string>
    <string name="mode_musician">\"Musician\" mode</string>
+   <string name="backup_folder">Backup folder</string>
+   <string name="audio_books_folder">Audio books folder</string>
 </resources>

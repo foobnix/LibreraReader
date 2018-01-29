@@ -507,7 +507,7 @@ public class MainTabs2 extends AdsFragmentActivity {
 
         if (AppState.get().isAutomaticExport && Android6.canWrite(this)) {
             try {
-                File root = new File(AppState.get().downlodsPath, "Backup");
+                File root = new File(AppState.get().backupPath);
                 if (!root.isDirectory()) {
                     root.mkdirs();
                 }

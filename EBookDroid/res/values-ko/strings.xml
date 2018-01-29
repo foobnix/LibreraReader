@@ -477,4 +477,6 @@
    <string name="mode_vertical">모드 \"스크롤\"</string>
    <string name="mode_horizontally">모드 \"예약\"</string>
    <string name="mode_musician">모드 \"뮤지션\"</string>
+   <string name="backup_folder">백업 폴더</string>
+   <string name="audio_books_folder">오디오 북 폴더</string>
 </resources>

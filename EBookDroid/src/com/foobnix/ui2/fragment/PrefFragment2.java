@@ -12,6 +12,7 @@ import com.foobnix.android.utils.Dips;
 import com.foobnix.android.utils.IntegerResponse;
 import com.foobnix.android.utils.Keyboards;
 import com.foobnix.android.utils.LOG;
+import com.foobnix.android.utils.ResultResponse2;
 import com.foobnix.android.utils.TxtUtils;
 import com.foobnix.pdf.info.AndroidWhatsNew;
 import com.foobnix.pdf.info.AppSharedPreferences;
@@ -22,6 +23,7 @@ import com.foobnix.pdf.info.PasswordDialog;
 import com.foobnix.pdf.info.R;
 import com.foobnix.pdf.info.TintUtil;
 import com.foobnix.pdf.info.Urls;
+import com.foobnix.pdf.info.model.BookCSS;
 import com.foobnix.pdf.info.view.AlertDialogs;
 import com.foobnix.pdf.info.view.BrightnessHelper;
 import com.foobnix.pdf.info.view.CustomSeek;
@@ -29,6 +31,7 @@ import com.foobnix.pdf.info.view.Dialogs;
 import com.foobnix.pdf.info.view.KeyCodeDialog;
 import com.foobnix.pdf.info.view.MultyDocSearchDialog;
 import com.foobnix.pdf.info.view.MyPopupMenu;
+import com.foobnix.pdf.info.widget.ChooserDialogFragment;
 import com.foobnix.pdf.info.widget.ColorsDialog;
 import com.foobnix.pdf.info.widget.ColorsDialog.ColorsDialogResult;
 import com.foobnix.pdf.info.widget.DialogTranslateFromTo;
@@ -47,6 +50,7 @@ import com.nostra13.universalimageloader.core.ImageLoader;
 
 import android.annotation.SuppressLint;
 import android.app.AlertDialog;
+import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.DialogInterface.OnDismissListener;
 import android.content.Intent;
@@ -1029,6 +1033,79 @@ public class PrefFragment2 extends UIFragment {
                 AppState.get().isAutomaticExport = isChecked;
             }
         });
+        // folders
+
+        final TextView fontFolder = (TextView) inflate.findViewById(R.id.fontFolder);
+        TxtUtils.underline(fontFolder, BookCSS.get().fontFolder);
+        fontFolder.setOnClickListener(new OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                ChooserDialogFragment.chooseFolder(getActivity(), BookCSS.get().fontFolder).setOnSelectListener(new ResultResponse2<String, Dialog>() {
+                    @Override
+                    public boolean onResultRecive(String nPath, Dialog dialog) {
+                        BookCSS.get().fontFolder = nPath;
+                        TxtUtils.underline(fontFolder, BookCSS.get().fontFolder);
+                        dialog.dismiss();
+                        return false;
+                    }
+                });
+            }
+        });
+
+        final TextView downloadFolder = (TextView) inflate.findViewById(R.id.downloadFolder);
+        TxtUtils.underline(downloadFolder, AppState.get().downlodsPath);
+        downloadFolder.setOnClickListener(new OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                ChooserDialogFragment.chooseFolder(getActivity(), AppState.get().downlodsPath).setOnSelectListener(new ResultResponse2<String, Dialog>() {
+                    @Override
+                    public boolean onResultRecive(String nPath, Dialog dialog) {
+                        AppState.get().downlodsPath = nPath;
+                        TxtUtils.underline(downloadFolder, AppState.get().downlodsPath);
+                        dialog.dismiss();
+                        return false;
+                    }
+                });
+            }
+        });
+
+        final TextView ttsFolder = (TextView) inflate.findViewById(R.id.ttsFolder);
+        TxtUtils.underline(ttsFolder, AppState.get().ttsSpeakPath);
+        ttsFolder.setOnClickListener(new OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                ChooserDialogFragment.chooseFolder(getActivity(), AppState.get().ttsSpeakPath).setOnSelectListener(new ResultResponse2<String, Dialog>() {
+                    @Override
+                    public boolean onResultRecive(String nPath, Dialog dialog) {
+                        AppState.get().ttsSpeakPath = nPath;
+                        TxtUtils.underline(ttsFolder, AppState.get().ttsSpeakPath);
+                        dialog.dismiss();
+                        return false;
+                    }
+                });
+            }
+        });
+
+        final TextView backupPath = (TextView) inflate.findViewById(R.id.backupFolder);
+        TxtUtils.underline(backupPath, AppState.get().backupPath);
+        backupPath.setOnClickListener(new OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                ChooserDialogFragment.chooseFolder(getActivity(), AppState.get().backupPath).setOnSelectListener(new ResultResponse2<String, Dialog>() {
+                    @Override
+                    public boolean onResultRecive(String nPath, Dialog dialog) {
+                        AppState.get().backupPath = nPath;
+                        TxtUtils.underline(backupPath, AppState.get().backupPath);
+                        dialog.dismiss();
+                        return false;
+                    }
+                });
+            }
+        });
 
         // Widget Configuration
 
@@ -1574,7 +1651,6 @@ public class PrefFragment2 extends UIFragment {
 
         rotationText();
 
-
         ch.setOnCheckedChangeListener(null);
         ch.setChecked(AppState.get().isReverseKeys);
         ch.setOnCheckedChangeListener(reverseListener);
@@ -1704,7 +1780,6 @@ public class PrefFragment2 extends UIFragment {
             themeColor.setText(TxtUtils.underline(getString(R.string.black)));
         }
     }
-
 
     private void saveChanges() {
         if (getActivity() != null) {

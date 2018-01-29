@@ -236,7 +236,7 @@
             android:layout_marginTop="4dip"
             android:background="@drawable/bg_search_second"
             android:text="@string/preferences" />
-        
+
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -340,7 +340,6 @@
                 android:layout_height="wrap_content"
                 android:text="@string/light" />
         </LinearLayout>
-
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -1119,6 +1118,90 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/automatic_export_backup" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal" >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/folder_with_fonts"
+                android:width="135dip" />
+
+            <TextView
+                android:id="@+id/fontFolder"
+                style="@style/textLink"
+                android:ellipsize="start"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="[]" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal" >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/folder_for_downloaded_books"
+                android:width="135dip" />
+
+            <TextView
+                android:id="@+id/downloadFolder"
+                style="@style/textLink"
+                    android:ellipsize="start"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="[]" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal" >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/backup_folder"
+                android:width="135dip" />
+
+            <TextView
+                android:id="@+id/backupFolder"
+                style="@style/textLink"
+                    android:ellipsize="start"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="[]" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal" >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/audio_books_folder"
+                android:width="135dip" />
+
+            <TextView
+                android:id="@+id/ttsFolder"
+                    android:ellipsize="start"
+                style="@style/textLink"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="[]" />
+        </LinearLayout>
 
         <TextView
             android:id="@+id/section6"

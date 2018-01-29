@@ -384,7 +384,8 @@ public class AppState {
     public String searchPaths = Environment.getExternalStorageDirectory() == null ? "/" : Environment.getExternalStorageDirectory().getPath();
     public String texturePath = Environment.getExternalStorageDirectory().getPath();
     public String downlodsPath = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS), "Librera").getPath();
-    public String ttsSpeakPath = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS), "Librera").getPath();
+    public String ttsSpeakPath = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS), "Librera/TTS").getPath();
+    public String backupPath = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS), "Librera/Backup").getPath();
 
     public String fileToDelete;
 

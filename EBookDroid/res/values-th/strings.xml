@@ -477,4 +477,6 @@
    <string name="mode_vertical">โหมด \"เลื่อน\"</string>
    <string name="mode_horizontally">โหมด \"สมุด\"</string>
    <string name="mode_musician">โหมด \"นักดนตรี\"</string>
+   <string name="backup_folder">โฟลเดอร์สำรอง</string>
+   <string name="audio_books_folder">โฟลเดอร์หนังสือเสียง</string>
 </resources>

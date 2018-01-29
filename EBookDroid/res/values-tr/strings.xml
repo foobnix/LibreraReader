@@ -477,4 +477,6 @@
    <string name="mode_vertical">Mod \"Kaydırma\"</string>
    <string name="mode_horizontally">Mod \"Kitap\"</string>
    <string name="mode_musician">Mod \"Müzisyen\"</string>
+   <string name="backup_folder">Yedekleme klasörü</string>
+   <string name="audio_books_folder">Sesli kitaplar klasörü</string>
 </resources>

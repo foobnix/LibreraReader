@@ -477,4 +477,6 @@
    <string name="mode_vertical">Mode \"Scroll\"</string>
    <string name="mode_horizontally">Mode \"Book\"</string>
    <string name="mode_musician">Režimas \"muzikantas\"</string>
+   <string name="backup_folder">Atsarginis aplankas</string>
+   <string name="audio_books_folder">Garso knygų aplankas</string>
 </resources>

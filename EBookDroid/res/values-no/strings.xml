@@ -477,4 +477,6 @@
    <string name="mode_vertical">Modus \"bla\"</string>
    <string name="mode_horizontally">Modus \"bok\"</string>
    <string name="mode_musician">Modus \"musiker\"</string>
+   <string name="backup_folder">Sikkerhetskopieringsmappe</string>
+   <string name="audio_books_folder">Lydbøker mappe</string>
 </resources>

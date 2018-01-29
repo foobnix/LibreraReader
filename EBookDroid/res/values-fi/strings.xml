@@ -477,4 +477,6 @@
    <string name="mode_vertical">Moodi \"Vieritä\"</string>
    <string name="mode_horizontally">Tila \"Kirja\"</string>
    <string name="mode_musician">Tila \"Muusikko\"</string>
+   <string name="backup_folder">Varmuuskopio-kansio</string>
+   <string name="audio_books_folder">Äänikirjakansio</string>
 </resources>

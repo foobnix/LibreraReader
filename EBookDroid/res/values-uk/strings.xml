@@ -477,4 +477,6 @@
    <string name="mode_vertical">Режим  \"Прокрутка\"</string>
    <string name="mode_horizontally">Режим \"Книга\"</string>
    <string name="mode_musician">Режим \"Музикант\"</string>
+   <string name="backup_folder">Резервна копія</string>
+   <string name="audio_books_folder">Папка звукових книг</string>
 </resources>

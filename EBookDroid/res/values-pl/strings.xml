@@ -477,4 +477,6 @@
    <string name="mode_vertical">Tryb \"Przewiń\"</string>
    <string name="mode_horizontally">Tryb \"Zarezerwuj\"</string>
    <string name="mode_musician">Tryb \"Muzyk\"</string>
+   <string name="backup_folder">Folder kopii zapasowej</string>
+   <string name="audio_books_folder">Folder książek audio</string>
 </resources>

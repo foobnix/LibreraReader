@@ -477,4 +477,6 @@
    <string name="mode_vertical">Chế độ \"Di chuyển\"</string>
    <string name="mode_horizontally">Chế độ \"Sách\"</string>
    <string name="mode_musician">Chế độ \"Nhạc sĩ\"</string>
+   <string name="backup_folder">Thư mục sao lưu</string>
+   <string name="audio_books_folder">Thư mục sách âm thanh</string>
 </resources>

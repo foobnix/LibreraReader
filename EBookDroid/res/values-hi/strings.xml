@@ -477,4 +477,6 @@
    <string name="mode_vertical">मोड \"स्क्रॉल करें\"</string>
    <string name="mode_horizontally">मोड \"पुस्तक\"</string>
    <string name="mode_musician">मोड \"संगीतकार\"</string>
+   <string name="backup_folder">बैकअप फ़ोल्डर</string>
+   <string name="audio_books_folder">ऑडियो पुस्तकों फ़ोल्डर</string>
 </resources>

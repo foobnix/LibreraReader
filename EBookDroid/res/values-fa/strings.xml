@@ -477,4 +477,6 @@
    <string name="mode_vertical">حالت \"حرکت\"</string>
    <string name="mode_horizontally">حالت \"کتاب\"</string>
    <string name="mode_musician">حالت \"موسیقیدان\"</string>
+   <string name="backup_folder">پوشه پشتیبان</string>
+   <string name="audio_books_folder">پوشه کتاب صوتی</string>
 </resources>

@@ -477,4 +477,6 @@
    <string name="mode_vertical">\"Scroll\" mód</string>
    <string name="mode_horizontally">\"Könyv\" mód</string>
    <string name="mode_musician">\"Zenész\" mód</string>
+   <string name="backup_folder">Biztonsági mentés mappa</string>
+   <string name="audio_books_folder">Audiokönyvek mappa</string>
 </resources>

@@ -477,4 +477,6 @@
    <string name="mode_vertical">Modul \"Derulați\"</string>
    <string name="mode_horizontally">Modul \"Rezervați\"</string>
    <string name="mode_musician">Modul \"Muzician\"</string>
+   <string name="backup_folder">Dosar de backup</string>
+   <string name="audio_books_folder">Cărți audio</string>
 </resources>

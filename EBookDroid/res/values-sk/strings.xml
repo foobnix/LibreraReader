@@ -477,4 +477,6 @@
    <string name="mode_vertical">Režim \"Posúvanie\"</string>
    <string name="mode_horizontally">Režim \"Kniha\"</string>
    <string name="mode_musician">Režim \"Hudobník\"</string>
+   <string name="backup_folder">Zálohovací priečinok</string>
+   <string name="audio_books_folder">Zložka zvukových kníh</string>
 </resources>

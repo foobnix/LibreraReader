@@ -477,4 +477,6 @@
    <string name="mode_vertical">الوضع \"التمرير\"</string>
    <string name="mode_horizontally">وضع \"كتاب\"</string>
    <string name="mode_musician">وضع \"موسيقي\"</string>
+   <string name="backup_folder">مجلد النسخ الاحتياطي</string>
+   <string name="audio_books_folder">مجلد كتب صوتية</string>
 </resources>

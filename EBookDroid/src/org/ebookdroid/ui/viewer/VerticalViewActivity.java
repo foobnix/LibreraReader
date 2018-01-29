@@ -88,6 +88,8 @@ public class VerticalViewActivity extends AbstractActionActivity<VerticalViewAct
     @Override
     public void onCreate(final Bundle savedInstanceState) {
         intetrstialTimeoutSec = ADS.FULL_SCREEN_TIMEOUT_SEC;
+        DocumentController.doRotation(this);
+
         AppState.get().load(this);
 
         FileMetaCore.checkOrCreateMetaInfo(this);

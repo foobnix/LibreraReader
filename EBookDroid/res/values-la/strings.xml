@@ -477,4 +477,6 @@
    <string name="mode_vertical">Volumen</string>
    <string name="mode_horizontally">Paginarum</string>
    <string name="mode_musician">Notae</string>
+   <string name="backup_folder">Folder tergum</string>
+   <string name="audio_books_folder">Folder books audio</string>
 </resources>

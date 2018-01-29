@@ -477,4 +477,6 @@
    <string name="mode_vertical">Modus \"Scroll\"</string>
    <string name="mode_horizontally">Modus \"Boek\"</string>
    <string name="mode_musician">Modus \"Musicus\"</string>
+   <string name="backup_folder">Back-upmap</string>
+   <string name="audio_books_folder">Map Audioboeken</string>
 </resources>

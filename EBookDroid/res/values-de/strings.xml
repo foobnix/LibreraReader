@@ -477,4 +477,6 @@
    <string name="mode_vertical">Modus \"Blättern\"</string>
    <string name="mode_horizontally">Modus \"Buch\"</string>
    <string name="mode_musician">Modus \"Musiker\"</string>
+   <string name="backup_folder">Sicherungsordner</string>
+   <string name="audio_books_folder">Ordner für Hörbücher</string>
 </resources>

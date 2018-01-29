@@ -477,4 +477,6 @@
    <string name="mode_vertical">מצב \"גלילה\"</string>
    <string name="mode_horizontally">מצב \"ספר\"</string>
    <string name="mode_musician">מצב \"מוסיקאי\"</string>
+   <string name="backup_folder">תיקיית גיבוי</string>
+   <string name="audio_books_folder">תיקיית ספרי אודיו</string>
 </resources>
