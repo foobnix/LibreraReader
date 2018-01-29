@@ -38,6 +38,7 @@
         android:numColumns="auto_fit"
         android:paddingRight="12dp"
         android:scrollbars="none"
+        android:scrollbarStyle="outsideOverlay"
         android:fastScrollEnabled="true"
         android:fastScrollAlwaysVisible="false"
         android:stretchMode="columnWidth" >
