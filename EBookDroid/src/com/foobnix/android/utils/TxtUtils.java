@@ -5,6 +5,7 @@ import java.lang.Character.UnicodeBlock;
 import java.nio.charset.Charset;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -32,6 +33,14 @@ public class TxtUtils {
         } else {
             return string;
         }
+    }
+
+    public static String toLowerCase(String str) {
+        if (str == null) {
+            return str;
+        }
+        return str.toLowerCase(Locale.US);
+
     }
 
     public static String encode(String string, String from, String to) {
