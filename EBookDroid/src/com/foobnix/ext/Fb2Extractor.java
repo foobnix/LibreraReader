@@ -200,7 +200,7 @@ public class Fb2Extractor extends BaseExtractor {
                         if (xpp.getName().equals("book-title")) {
                             bookTitle = xpp.nextText();
                         } else if (xpp.getName().equals("lang")) {
-                            lang = xpp.nextText();
+                            lang = ("" + xpp.nextText()).toLowerCase(Locale.US);
                         } else if (firstName == null && xpp.getName().equals("first-name")) {
                             firstName = xpp.nextText();
                         } else if (lastName == null && xpp.getName().equals("last-name")) {

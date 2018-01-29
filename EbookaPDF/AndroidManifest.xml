@@ -3,7 +3,7 @@
     package="com.foobnix.pdf.reader"
     android:installLocation="auto"
     android:versionCode="477"
-    android:versionName="7.5.44" >
+    android:versionName="7.5.45" >
 
     <uses-sdk
         android:minSdkVersion="14"
@@ -22,7 +22,6 @@
         android:label="@string/app_name"
         android:largeHeap="true"
         android:theme="@style/StyledIndicatorsWhite" >
-        
         <provider
             android:name="android.support.v4.content.FileProvider"
             android:authorities="com.foobnix.pdf.reader.provider"
@@ -54,17 +53,32 @@
                 <data android:mimeType="application/zip" />
             </intent-filter>
         </activity>
-        
-         <activity
+        <activity
             android:name="com.foobnix.pdf.search.activity.HorizontalViewActivity"
             android:configChanges="orientation|screenSize|keyboard|keyboardHidden"
             android:exported="true"
             android:launchMode="singleTask"
             android:resizeableActivity="true"
-            android:screenOrientation="behind" 
-              android:windowSoftInputMode="adjustPan">
+            android:screenOrientation="behind"
+            android:windowSoftInputMode="adjustPan" >
         </activity>
-        
+        <activity android:name="test.MimeTestActivity" >
+            <!-- 
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+                <data android:scheme="file" android:host="*"  />
+                <data android:scheme="content" android:host="*"/>
+            </intent-filter>
+             <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+                <data android:mimeType="*/*" android:pathPattern=""/>
+            </intent-filter>
+             -->
+        </activity>
         <activity
             android:name="org.ebookdroid.ui.viewer.VerticalViewActivity"
             android:configChanges="orientation|screenSize|keyboard|keyboardHidden"
@@ -223,8 +237,6 @@
                 <data android:mimeType="text/plain" />
             </intent-filter>
         </activity>
-       
-
         <activity
             android:name="com.google.android.gms.ads.AdActivity"
             android:configChanges="keyboard|keyboardHidden|orientation|screenLayout|uiMode|screenSize|smallestScreenSize"
@@ -274,13 +286,10 @@
         <meta-data
             android:name="com.sec.android.multiwindow.MINIMUM_SIZE_H"
             android:value="598.0dip" />
-        
-         <meta-data
+        <meta-data
             xmlns:android="http://schemas.android.com/apk/res/android"
             android:name="com.google.android.gms.version"
             android:value="@integer/google_play_services_version" />
-
-
     </application>
 
 </manifest>

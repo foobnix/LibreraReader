@@ -10,6 +10,7 @@ import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
@@ -57,12 +58,15 @@ import android.app.Dialog;
 import android.content.ContentResolver;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.content.pm.ResolveInfo;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Environment;
 import android.os.Handler;
+import android.os.Parcelable;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.content.FileProvider;
@@ -91,7 +95,6 @@ public class ExtUtils {
     public static final String REFLOW_HTML = "-reflow.html";
     private static final String IMAGE_BEGIN = "<image-begin>";
     private static final String IMAGE_END = "<image-end>";
-
 
     public static ExecutorService ES = Executors.newFixedThreadPool(4);
 
@@ -782,7 +785,6 @@ public class ExtUtils {
             LOG.e(e);
         }
 
-
         if (page > 0) {
             intent.putExtra("page", page);
         }
@@ -794,29 +796,88 @@ public class ExtUtils {
 
     }
 
-    public static void openWith(final Context a, final File file) {
-        try {
-            if (!isValidFile(file)) {
-                Toast.makeText(a, R.string.file_not_found, Toast.LENGTH_LONG).show();
-                return;
+    public static Intent createOpenFileIntent(Context context, File file) {
+        String extension = extensionFromName(file.getName());
+        String mimeType = MimeTypeMap.getSingleton().getMimeTypeFromExtension(extension);
+        if (mimeType == null) {
+            // If android doesn't know extension we can check our own list.
+            mimeType = getMimeType(file);
+        }
+
+        Intent openIntent = new Intent();
+        openIntent.setAction(android.content.Intent.ACTION_VIEW);
+        openIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        openIntent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+        // openIntent.setDataAndType(getUriProvider(context, file), mimeType);
+        openIntent.setDataAndType(getUriProvider(context, file), mimeType);
+        // LOG.d("getUriProvider2", getUriProvider(context, file));
+        // LOG.d("getUriProvider2", Uri.fromFile(file));
+
+        // 1. Check if there is a default app opener for this type of content.
+        final PackageManager packageManager = context.getPackageManager();
+        ResolveInfo defaultAppInfo = packageManager.resolveActivity(openIntent, PackageManager.MATCH_DEFAULT_ONLY);
+        if (!defaultAppInfo.activityInfo.name.endsWith("ResolverActivity")) {
+            return openIntent;
+        }
+
+        // 2. Retrieve all apps for our intent. If there are no apps - return usual
+        // already created intent.
+        List<Intent> targetedOpenIntents = new ArrayList<Intent>();
+        List<ResolveInfo> appInfoList = packageManager.queryIntentActivities(openIntent, PackageManager.MATCH_DEFAULT_ONLY);
+        if (appInfoList.isEmpty()) {
+            return openIntent;
+        }
+
+        // 3. Sort in alphabetical order, filter itself and create intent with the rest
+        // of the apps.
+        Collections.sort(appInfoList, new Comparator<ResolveInfo>() {
+            @Override
+            public int compare(ResolveInfo first, ResolveInfo second) {
+                String firstName = packageManager.getApplicationLabel(first.activityInfo.applicationInfo).toString();
+                String secondName = packageManager.getApplicationLabel(second.activityInfo.applicationInfo).toString();
+                return firstName.compareToIgnoreCase(secondName);
+            }
+        });
+        for (ResolveInfo appInfo : appInfoList) {
+            String packageName = appInfo.activityInfo.packageName;
+            if (packageName.equals(context.getPackageName())) {
+                continue;
             }
 
-            final Intent intent = new Intent();
-            intent.setAction(android.content.Intent.ACTION_VIEW);
-            intent.setDataAndType(getUriProvider(a, file), getMimeType(file));
+            Intent targetedOpenIntent = new Intent(android.content.Intent.ACTION_VIEW);
+            targetedOpenIntent.setDataAndType(getUriProvider(context, file), mimeType);
+            targetedOpenIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            targetedOpenIntent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+            targetedOpenIntent.setPackage(packageName);
 
-            intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
-            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-            a.startActivity(intent);
-        } catch (Exception e) {
-            LOG.e(e);
-            Toast.makeText(a, "" + e.getMessage(), Toast.LENGTH_LONG).show();
+            targetedOpenIntents.add(targetedOpenIntent);
         }
+        Intent chooserIntent = Intent.createChooser(targetedOpenIntents.remove(targetedOpenIntents.size() - 1), context.getString(R.string.select)).putExtra(Intent.EXTRA_INITIAL_INTENTS,
+                targetedOpenIntents.toArray(new Parcelable[] {}));
+
+        return chooserIntent;
+    }
+
+    public static String extensionFromName(String fileName) {
+        int dotPosition = fileName.lastIndexOf('.');
+
+        // If extension not present or empty
+        if (dotPosition == -1 || dotPosition == fileName.length() - 1) {
+            return "";
+        } else {
+            return fileName.substring(dotPosition + 1).toLowerCase(Locale.getDefault());
+        }
+    }
+
+    public static void openWith(final Context a, final File file) {
+        a.startActivity(createOpenFileIntent(a, file));
     }
 
     public static Uri getUriProvider(Context a, File file) {
         Uri uriForFile = null;
-        if (Apps.getTargetSdkVersion(a) >= 24) {
+        // if (Apps.getTargetSdkVersion(a) >= 24) {
+        // if (Apps.getTargetSdkVersion(a) >= 24) {
+        if (Build.VERSION.SDK_INT >= 24) {
             uriForFile = FileProvider.getUriForFile(a, Apps.getPackageName(a) + ".provider", file);
         } else {
             uriForFile = Uri.fromFile(file);
@@ -1238,7 +1299,6 @@ public class ExtUtils {
                         LOG.d("startImage", startImage);
                     }
 
-                    
                     // out.write(TextUtils.htmlEncode(html));
                     // html = html.replace("< ", "&lt; ");
                     // html = html.replace("> ", "&gt; ");

@@ -314,7 +314,7 @@ public class PrefFragment2 extends UIFragment {
         try {
             PackageInfo packageInfo = getActivity().getPackageManager().getPackageInfo(getActivity().getPackageName(), 0);
             final String version = packageInfo.versionName;
-            ((TextView) inflate.findViewById(R.id.pVersion)).setText(String.format("%s: %s-%s %s", getString(R.string.version), version, System.getProperty("os.arch"), getFullDeviceInfo()));
+            ((TextView) inflate.findViewById(R.id.pVersion)).setText(String.format("%s: %s", getString(R.string.version), version));
         } catch (final NameNotFoundException e) {
         }
 
@@ -1638,7 +1638,7 @@ public class PrefFragment2 extends UIFragment {
         String string = getResources().getString(R.string.my_email).replace("<u>", "").replace("</u>", "");
         final String aEmailList[] = { string };
         emailIntent.putExtra(android.content.Intent.EXTRA_EMAIL, aEmailList);
-        emailIntent.putExtra(android.content.Intent.EXTRA_SUBJECT, AppsConfig.TXT_APP_NAME + " " + Apps.getVersionName(getContext()) + "-" + System.getProperty("os.arch") + getFullDeviceInfo());
+        emailIntent.putExtra(android.content.Intent.EXTRA_SUBJECT, AppsConfig.TXT_APP_NAME + " " + Apps.getVersionName(getContext()));
         emailIntent.setType("plain/text");
         emailIntent.putExtra(android.content.Intent.EXTRA_TEXT, "Hi Support, ");
 
