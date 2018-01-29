@@ -4,6 +4,7 @@ import java.util.Comparator;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import com.foobnix.android.utils.LOG;
 import com.foobnix.dao2.FileMeta;
 import com.foobnix.ui2.adapter.FileMetaAdapter;
 
@@ -35,12 +36,16 @@ public class FileMetaComparators {
 
         @Override
         public int compare(FileMeta o1, FileMeta o2) {
-            Matcher m1 = compile.matcher(o1.getPathTxt());
-            Matcher m2 = compile.matcher(o2.getPathTxt());
-            if (m1.find() && m2.find()) {
-                int g1 = Integer.parseInt(m1.group(0));
-                int g2 = Integer.parseInt(m2.group(0));
-                return compareInt(g1, g2);
+            try {
+                Matcher m1 = compile.matcher(o1.getPathTxt());
+                Matcher m2 = compile.matcher(o2.getPathTxt());
+                if (m1.find() && m2.find()) {
+                    int g1 = Integer.parseInt(m1.group(0));
+                    int g2 = Integer.parseInt(m2.group(0));
+                    return compareInt(g1, g2);
+                }
+            } catch (Exception e) {
+                LOG.e(e);
             }
 
             return o1.getPath().compareTo(o2.getPath());

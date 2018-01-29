@@ -43,6 +43,15 @@ public class Views {
     }
 
     public static void showHelpToast(final ImageView anchor) {
+        try {
+            showHelpToastUnsafe(anchor);
+        } catch (Exception e) {
+            LOG.e(e);
+        }
+
+    }
+
+    private static void showHelpToastUnsafe(final ImageView anchor) {
         Context context = anchor.getContext();
         TextView textView = new TextView(context);
         textView.setGravity(Gravity.CENTER);
