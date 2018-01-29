@@ -1125,7 +1125,6 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
         super.onStart();
         // Analytics.onStart(this);
         EventBus.getDefault().register(this);
-        getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
 
     }
 
@@ -1134,7 +1133,6 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
         EventBus.getDefault().unregister(this);
         super.onStop();
         // Analytics.onStop(this);
-        getWindow().clearFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
         if (flippingHandler != null) {
             flippingHandler.removeCallbacksAndMessages(null);
         }
@@ -1547,17 +1545,10 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
                 }
             }, 2000);
 
-            handler.postDelayed(new Runnable() {
-
-                @Override
-                public void run() {
-                    try {
-                        getWindow().clearFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
-                    } catch (Exception e) {
-                        LOG.e(e);
-                    }
-                }
-            }, TimeUnit.MINUTES.toMillis(AppState.get().inactivityTime));
+            getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
+            LOG.d("FLAG addFlags", "FLAG_KEEP_SCREEN_ON", dc.getActivity().getWindow().getAttributes().flags);
+            handler.removeCallbacks(clearFlags);
+            handler.postDelayed(clearFlags, TimeUnit.MINUTES.toMillis(AppState.get().inactivityTime));
 
             LOG.d("onPageSelected", pos);
 
@@ -1574,6 +1565,19 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
         public void onPageScrollStateChanged(int arg0) {
             // TODO Auto-generated method stub
 
+        }
+    };
+
+    Runnable clearFlags = new Runnable() {
+
+        @Override
+        public void run() {
+            try {
+                getWindow().clearFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
+                LOG.d("FLAG clearFlags", "FLAG_KEEP_SCREEN_ON", dc.getActivity().getWindow().getAttributes().flags);
+            } catch (Exception e) {
+                LOG.e(e);
+            }
         }
     };
 

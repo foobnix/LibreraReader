@@ -14,15 +14,12 @@ import org.ebookdroid.ui.viewer.IViewController;
 import org.emdev.utils.MathUtils;
 import org.emdev.utils.concurrent.Flag;
 
-import com.foobnix.pdf.info.wrapper.AppState;
-
 import android.graphics.PointF;
 import android.graphics.Rect;
 import android.graphics.RectF;
 import android.view.MotionEvent;
 import android.view.SurfaceHolder;
 import android.view.View;
-import android.view.WindowManager;
 import android.widget.Scroller;
 
 public final class PdfSurfaceView extends android.view.SurfaceView implements IView, SurfaceHolder.Callback {
@@ -44,54 +41,15 @@ public final class PdfSurfaceView extends android.view.SurfaceView implements IV
     // protected final FullScreenCallback fullScreenCallback;
 
     // private int sleepTime = 1000 * 5;
-    private boolean isKeep = false;
-
 
     public PdfSurfaceView(final IActivityController baseActivity) {
         super(baseActivity.getContext());
         this.base = baseActivity;
         this.scroller = new Scroller(getContext());
-
-        keepON();
-
-        // setFocusable(true);
-        // setFocusableInTouchMode(true);
-
         getHolder().addCallback(this);
-        // fullScreenCallback = new
-        // FullScreenCallback(baseActivity.getActivity(), this);
-        // requestFocus();
-        runTimer();
-        // LOG.d("DEBUG", "create");
     }
 
-    public void keepON() {
-        if (!isKeep) {
-            base.getActivity().getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
-            isKeep = true;
-        }
-    }
 
-    public void keepOff() {
-        if (isKeep) {
-            base.getActivity().getWindow().clearFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
-            isKeep = false;
-        }
-    }
-
-    public void runTimer() {
-        keepON();
-        removeCallbacks(setKeepScreenOff);
-        postDelayed(setKeepScreenOff, TimeUnit.MINUTES.toMillis(AppState.get().inactivityTime));
-    }
-
-    Runnable setKeepScreenOff = new Runnable() {
-
-        @Override
-        public void run() {
-            keepOff();
-        }
-    };
 
     @Override
     public void onWindowFocusChanged(boolean hasWindowFocus) {
@@ -266,7 +224,6 @@ public final class PdfSurfaceView extends android.view.SurfaceView implements IV
         };
 
         base.getActivity().runOnUiThread(r);
-        runTimer();
     }
 
     /**

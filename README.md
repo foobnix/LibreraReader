@@ -1,7 +1,7 @@
 # Librera Reader
 
 Librera Reader is a book reader and PDF Redaer for Android 
-Supprt formats PDF, EPUB, MOBI, DjVu, FB2, TXT, RTF, AZW, AZW3, HTML, CBZ, CBR
+Supprt formats PDF, EPUB, MOBI, DjVu, FB2, TXT, RTF, AZW, AZW3, HTML, CBZ, CBR and OPDS Catalogs
 
 Web: [http://librera.mobi/](http://librera.mobi/)
 
@@ -17,12 +17,12 @@ Android Play market apps:
 
 ## How to install
 
-Librera is developed on Eclise with ADT
+Librera is developed on Eclise with ADT (Android Developer Tools Plugin)
 
-INSTALL IDE
-
+INSTALL
+0) Linux is prefer (Windows never tested)
 1) Install Eclipse
-2) Install Android ADT
+2) Install Android ADT (from the Eclipse markeplace)
 3) Install Android NDK
 4) Install JAVA
 5) Install ANT
@@ -36,7 +36,7 @@ Downlaod required packages (Google Play Service, RecicleView, CardView, etc)
 
 3) Download Mupdf sources tar.gz from [http://mupdf.com/downloads](http://mupdf.com/downloads)
 
-4) import all projects to Eclipse
+4) Import all projects to Eclipse
 
 
 ## Build
@@ -49,37 +49,39 @@ MUPDF=/dev/mupdf-test/platform/java
 MY=/home/ivan-dev/git/LirbiReader
 
 2) To build Librera Reader
-./LirbiReader/Builder/all-lirbi-free.sh
+./LirbiReader/Builder/all-beta.sh
 
-3) To build Librera PRO
-./LirbiReader/Builder/all-pro.sh
-
-4) To build PDF Classic
-./LirbiReader/Builder/all-classic.sh
 
 ## Librera depend on
 
 MuPDF - (AGPL License) https://mupdf.com/downloads/archive/ (mupdf-1.12.0-source.tar.xz)
 
-Librera Patch ./LirbiReader/Builder/jni/MupdfPatch.txt
+MuPDF changed source ./LirbiReader/jni-1.12/~mupdf
 
-Mupdf patch source ./LirbiReader/mupdf-source.tar.gz
+* EbookDroid
+* djvulibre
+* hpx
+* junrar
+* Universal Image Loader
+* libmobi
+* commons-compress
+* eventbus
+* greendao
+* jsoup
+* juniversalchardet
+* rtfparserkit
+* okhttp
 
-EbookDroid
-djvulibre
-hpx
-
-junrar
-Universal Image Loader
-libmobi
-commons-compress
-eventbus
-greendao
-jsoup
-juniversalchardet
-rtfparserkit
-TAndroidLame
-Lame
+commons-compress-1.14.jar
+eventbus-3.0.0.jar
+greendao-3.2.0.jar
+greendao-api-3.2.0.jar
+jsoup-1.8.3.jar
+juniversalchardet-1.0.3.jar
+okhttp-3.9.1.jar
+okhttp-digest-1.15.jar
+okio-1.13.0.jar
+rtfparserkit-1.10.0.jar
 
 Librera is distributed under the GPL
 

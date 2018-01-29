@@ -3,7 +3,6 @@
 #PATH=/home/papa/dev/android-sdk-linux/platform-tools:$PATH
 
 ./inc-index.sh
-./link_lang.sh
 
 ant clean-apk
 

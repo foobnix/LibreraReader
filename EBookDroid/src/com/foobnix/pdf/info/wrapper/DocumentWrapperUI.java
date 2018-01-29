@@ -6,6 +6,7 @@ package com.foobnix.pdf.info.wrapper;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Locale;
+import java.util.concurrent.TimeUnit;
 
 import org.ebookdroid.common.settings.SettingsManager;
 import org.ebookdroid.common.settings.books.BookSettings;
@@ -67,6 +68,7 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnLongClickListener;
 import android.view.ViewTreeObserver.OnGlobalLayoutListener;
+import android.view.WindowManager;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.SeekBar;
@@ -453,7 +455,25 @@ public class DocumentWrapperUI {
         cut.underline(AppState.get().isCut);
 
         progressDraw.updateProgress(current - 1);
+
+        dc.getActivity().getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
+        LOG.d("FLAG addFlags", "FLAG_KEEP_SCREEN_ON", dc.getActivity().getWindow().getAttributes().flags);
+        handler.removeCallbacks(clearFlags);
+        handler.postDelayed(clearFlags, TimeUnit.MINUTES.toMillis(AppState.get().inactivityTime));
     }
+
+    Runnable clearFlags = new Runnable() {
+
+        @Override
+        public void run() {
+            try {
+                dc.getActivity().getWindow().clearFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
+                LOG.d("FLAG clearFlags", "FLAG_KEEP_SCREEN_ON", dc.getActivity().getWindow().getAttributes().flags);
+            } catch (Exception e) {
+                LOG.e(e);
+            }
+        }
+    };
 
     public void showChapter() {
         if (TxtUtils.isNotEmpty(dc.getCurrentChapter())) {
