@@ -12,8 +12,10 @@ import android.content.Context;
 
 public class FontExtractor {
 
-
     public static void extractFonts(final Context c) {
+        if (c == null) {
+            return;
+        }
         new Thread() {
             @Override
             public void run() {

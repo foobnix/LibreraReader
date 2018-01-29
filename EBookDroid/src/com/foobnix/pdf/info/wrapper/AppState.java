@@ -392,6 +392,7 @@ public class AppState {
     public int lastBookPage = 0;
     public int lastBookWidth = 0;
     public int lastBookHeight = 0;
+    public int lastFontSize = 0;
 
     public int colorDayText = COLOR_BLACK;
     public int colorDayBg = COLOR_WHITE;

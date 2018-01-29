@@ -153,7 +153,7 @@ public class BookCSS {
         headersFont = DEFAULT_FONT;
 
         documentStyle = STYLES_DOC_AND_USER;
-        isAutoHypens = false;
+        isAutoHypens = true;
         hypenLang = "ru";
 
         linkColorDay = LINK_COLOR_UNIVERSAL;

@@ -435,6 +435,7 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
             @Override
             public boolean onLongClick(View v) {
                 Vibro.vibrate();
+                TTSEngine.get().stop();
                 ttsActive.setVisibility(View.GONE);
                 return true;
             }
@@ -450,6 +451,7 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
 
                     @Override
                     public boolean onMenuItemClick(MenuItem item) {
+                        closeDialogs();
                         onModeChange.setImageResource(R.drawable.glyphicons_two_page_one);
                         AppState.get().isDouble = false;
                         AppState.get().isDoubleCoverAlone = false;
@@ -473,6 +475,7 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
 
                     @Override
                     public boolean onMenuItemClick(MenuItem item) {
+                        closeDialogs();
                         onModeChange.setImageResource(R.drawable.glyphicons_two_pages_12);
                         AppState.get().isDouble = true;
                         AppState.get().isCut = false;
@@ -496,6 +499,7 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
 
                         @Override
                         public boolean onMenuItemClick(MenuItem item) {
+                            closeDialogs();
                             onModeChange.setImageResource(R.drawable.glyphicons_two_pages_23);
                             AppState.get().isDouble = true;
                             AppState.get().isCut = false;
@@ -520,12 +524,15 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
 
                         @Override
                         public boolean onMenuItemClick(MenuItem item) {
+                            closeDialogs();
                             onModeChange.setImageResource(R.drawable.glyphicons_page_split);
                             AppState.get().isDouble = false;
                             AppState.get().isCut = true;
-                            AppState.get().isCrop = false;
+                            // AppState.get().isCrop = false;
                             SettingsManager.getBookSettings().updateFromAppState();
                             TTSEngine.get().stop();
+
+                            // onCrop.underline(AppState.get().isCrop);
 
                             dc.cleanImageMatrix();
                             reloadDoc.run();
@@ -534,18 +541,7 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
                         }
                     });
                 }
-                if (false) {
-                    p.getMenu().add(R.string.crop_white_borders).setIcon(R.drawable.glyphicons_94_crop).setOnMenuItemClickListener(new OnMenuItemClickListener() {
 
-                        @Override
-                        public boolean onMenuItemClick(MenuItem item) {
-                            AppState.get().isCrop = !AppState.get().isCrop;
-                            SettingsManager.getBookSettings().cropPages = AppState.get().isCrop;
-                            reloadDoc.run();
-                            return false;
-                        }
-                    });
-                }
                 p.show();
                 Keyboards.hideNavigation(HorizontalViewActivity.this);
 
@@ -1070,14 +1066,15 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
     }
 
     private void showSearchDialog() {
+
         if (AppState.get().isCrop || AppState.get().isCut) {
             onModeChange.setImageResource(R.drawable.glyphicons_two_page_one);
             AppState.get().isCrop = false;
             AppState.get().isCut = false;
+            AppState.get().isDouble = false;
 
             onCrop.underline(AppState.get().isCrop);
             onCrop.invalidate();
-
             reloadDoc.run();
         }
         DragingDialogs.searchMenu(anchor, dc, "");
