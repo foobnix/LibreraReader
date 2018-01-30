@@ -730,7 +730,7 @@
 
         <CheckBox
             android:id="@+id/isLoopAutoplay"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:singleLine="true"
             android:text="@string/loop_autoplay"
@@ -981,25 +981,25 @@
 
         <CheckBox
             android:id="@+id/isShowImages"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/show_book_covers" />
 
         <CheckBox
             android:id="@+id/isBookCoverEffect"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/enable_effect_of_the_book_cover" />
 
         <CheckBox
             android:id="@+id/isCropBookCovers"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/crop_images_in_the_book_cover" />
 
         <CheckBox
             android:id="@+id/isBorderAndShadow"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/borders_and_shadow_around_the_book_cover" />
 
@@ -1112,7 +1112,7 @@
 
         <CheckBox
             android:id="@+id/isAutomaticExport"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/automatic_export_backup" />
 

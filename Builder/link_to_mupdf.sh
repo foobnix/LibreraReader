@@ -43,6 +43,7 @@ cp -rp $MY/Builder/jni-1.12/~mupdf/epub-doc.c $MUPDF_ROOT/source/html/epub-doc.c
 cp -rp $MY/Builder/jni-1.12/~mupdf/css-apply.c $MUPDF_ROOT/source/html/css-apply.c
 cp -rp $MY/Builder/jni-1.12/~mupdf/html-layout.c $MUPDF_ROOT/source/html/html-layout.c
 cp -rp $MY/Builder/jni-1.12/~mupdf/colorspace.c $MUPDF_ROOT/source/fitz/colorspace.c
+cp -rp $MY/Builder/jni-1.12/~mupdf/xml.c $MUPDF_ROOT/source/fitz/xml.c
 
 cd $MUPDF_JAVA
 ndk-build

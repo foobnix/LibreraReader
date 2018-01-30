@@ -649,8 +649,9 @@ generate_boxes(fz_context *ctx, fz_xml *node, fz_html_box *top,
 				}
 			}
 
-			else if (g->is_fb2 && tag[0]=='i' && tag[1]=='m' && tag[2]=='a' && tag[3]=='g' && tag[4]=='e' && tag[5]==0)
+			else if (tag[0]=='i' && tag[1]=='m' && tag[2]=='a' && tag[3]=='g' && tag[4]=='e' && tag[5]==0)
 			{
+				if(g->is_fb2 ){
 				const char *src = fz_xml_att(node, "l:href");
 				if (!src)
 					src = fz_xml_att(node, "xlink:href");
@@ -676,8 +677,18 @@ generate_boxes(fz_context *ctx, fz_xml *node, fz_html_box *top,
 						generate_image(ctx, box, fz_keep_image(ctx, img), g);
 					}
 				}
-			}
+				}else{
+					const char *src = fz_xml_att(node, "xlink:href");
+					if (src)
+					{
+						box = new_box(ctx, g->pool, markup_dir);
+						fz_apply_css_style(ctx, g->set, &box->style, &match);
+						insert_inline_box(ctx, box, top, markup_dir, g);
+						generate_image(ctx, box, load_html_image(ctx, g->zip, g->base_uri, src), g);
+					}
 
+				}
+			}
 			else if (display != DIS_NONE)
 			{
 				const char *dir, *lang, *id, *href;

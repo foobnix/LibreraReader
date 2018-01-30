@@ -531,10 +531,10 @@ public class Fb2Extractor extends BaseExtractor {
                 // if (line.contains("&")) {
                 // line = line.replace("&nbsp;", " ");
                 // }
-                if (isEPUB && line.contains("<image")) {
-                    line = line.replace("<image", "<img");
-                    line = line.replace("xlink:href=", "src=");
-                }
+                // if (isEPUB && line.contains("<image")) {
+                // line = line.replace("<image", "<img");
+                // line = line.replace("xlink:href=", "src=");
+                // }
 
                 line = HypenUtils.applyHypnes(line);
                 writer.print(line);
