@@ -444,7 +444,7 @@ public class DocumentWrapperUI {
             crop.setVisibility(View.GONE);
             cut.setVisibility(View.GONE);
             onModeChange.setVisibility(View.GONE);
-            if (Dips.isEInk(dc.getActivity()) || AppState.get().bolderTextOnImage || AppState.get().brigtnessImage != 0 || AppState.get().contrastImage != 0) {
+            if (Dips.isEInk(dc.getActivity()) || AppState.get().isEnableBC) {
                 onBC.setVisibility(View.VISIBLE);
             } else {
                 onBC.setVisibility(View.GONE);
@@ -613,7 +613,7 @@ public class DocumentWrapperUI {
 
         onBC = (UnderlineImageView) a.findViewById(R.id.onBC);
         onBC.setOnClickListener(onBCclick);
-        onBC.underline(AppState.get().bolderTextOnImage || AppState.get().brigtnessImage != 0 || AppState.get().contrastImage != 0);
+        onBC.underline(AppState.get().isEnableBC);
 
         a.findViewById(R.id.toPage).setOnClickListener(toPage);
 
@@ -1441,7 +1441,7 @@ public class DocumentWrapperUI {
 
                 @Override
                 public void run() {
-                    onBC.underline(AppState.get().bolderTextOnImage || AppState.get().brigtnessImage != 0 || AppState.get().contrastImage != 0);
+                    onBC.underline(AppState.get().isEnableBC);
                     dc.updateRendering();
                 }
             }, null);

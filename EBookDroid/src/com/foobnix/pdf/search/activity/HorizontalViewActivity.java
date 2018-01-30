@@ -327,7 +327,7 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
         }
 
         onBC = (UnderlineImageView) findViewById(R.id.onBC);
-        onBC.underline(AppState.get().bolderTextOnImage || AppState.get().brigtnessImage != 0 || AppState.get().contrastImage != 0);
+        onBC.underline(AppState.get().isEnableBC);
         onBC.setOnClickListener(new View.OnClickListener() {
 
             @Override
@@ -347,7 +347,7 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
         });
 
         onBC.setVisibility(isTextFomat ? View.GONE : View.VISIBLE);
-        if (Dips.isEInk(this) || AppState.get().bolderTextOnImage || AppState.get().brigtnessImage != 0 || AppState.get().contrastImage != 0) {
+        if (Dips.isEInk(this) || AppState.get().isEnableBC) {
             onBC.setVisibility(View.VISIBLE);
         }
         onMove.setVisibility(Dips.isEInk(this) && !isTextFomat ? View.VISIBLE : View.GONE);
@@ -808,7 +808,7 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
                     onCrop.setVisibility(dc.isTextFormat() ? View.GONE : View.VISIBLE);
                     onMove.setVisibility(AppState.get().isInkMode && !dc.isTextFormat() ? View.VISIBLE : View.GONE);
                     onBC.setVisibility(dc.isTextFormat() ? View.GONE : View.VISIBLE);
-                    if (Dips.isEInk(dc.getActivity()) || AppState.get().bolderTextOnImage || AppState.get().brigtnessImage != 0 || AppState.get().contrastImage != 0) {
+                    if (Dips.isEInk(dc.getActivity()) || AppState.get().isEnableBC) {
                         onBC.setVisibility(View.VISIBLE);
                     }
 
@@ -1098,7 +1098,7 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
 
         @Override
         public void run() {
-            onBC.underline(AppState.get().bolderTextOnImage || AppState.get().brigtnessImage != 0 || AppState.get().contrastImage != 0);
+            onBC.underline(AppState.get().isEnableBC);
             dc.getOutline(null, false);
             dc.saveCurrentPage();
             createAdapter();
@@ -1110,7 +1110,7 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
 
         @Override
         public void run() {
-            onBC.underline(AppState.get().bolderTextOnImage || AppState.get().brigtnessImage != 0 || AppState.get().contrastImage != 0);
+            onBC.underline(AppState.get().isEnableBC);
             IMG.clearMemoryCache();
             ImagePageFragment f2 = (ImagePageFragment) getSupportFragmentManager().findFragmentByTag("f" + (viewPager.getCurrentItem()));
             if (f2 != null) {

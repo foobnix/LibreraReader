@@ -479,4 +479,5 @@
    <string name="mode_musician">Režim \"Hudobník\"</string>
    <string name="backup_folder">Zálohovací priečinok</string>
    <string name="audio_books_folder">Zložka zvukových kníh</string>
+   <string name="enable_contrast_and_brightness">Umožňuje kontrast a jas</string>
 </resources>

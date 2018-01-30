@@ -479,4 +479,5 @@
    <string name="mode_musician">Modus \"Musicus\"</string>
    <string name="backup_folder">Back-upmap</string>
    <string name="audio_books_folder">Map Audioboeken</string>
+   <string name="enable_contrast_and_brightness">Schakel contrast en helderheid in</string>
 </resources>

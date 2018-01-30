@@ -479,4 +479,5 @@
    <string name="mode_musician">Tryb \"Muzyk\"</string>
    <string name="backup_folder">Folder kopii zapasowej</string>
    <string name="audio_books_folder">Folder książek audio</string>
+   <string name="enable_contrast_and_brightness">Włącz kontrast i jasność</string>
 </resources>

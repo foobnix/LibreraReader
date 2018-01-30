@@ -39,7 +39,7 @@ public class Dialogs {
         final AlertDialog.Builder builder = new AlertDialog.Builder(c);
         View view = LayoutInflater.from(c).inflate(R.layout.dialog_loading_book, null, false);
         final TextView text = (TextView) view.findViewById(R.id.text1);
-        
+
         ProgressBar pr = (ProgressBar) view.findViewById(R.id.progressBar1);
         TintUtil.setDrawableTint(pr.getIndeterminateDrawable().getCurrent(), TintUtil.color);
 
@@ -159,6 +159,18 @@ public class Dialogs {
             }
         };
 
+        final CheckBox isEnableBC = new CheckBox(c);
+        isEnableBC.setText(R.string.enable_contrast_and_brightness);
+        isEnableBC.setChecked(AppState.get().isEnableBC);
+        isEnableBC.setOnCheckedChangeListener(new OnCheckedChangeListener() {
+
+            @Override
+            public void onCheckedChanged(final CompoundButton buttonView, final boolean isChecked) {
+                AppState.get().isEnableBC = isChecked;
+                actionWrapper.run();
+            }
+        });
+
         final CustomSeek contrastSeek = new CustomSeek(c);
         contrastSeek.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT, 0));
         contrastSeek.init(0, 200, AppState.get().contrastImage);
@@ -167,6 +179,7 @@ public class Dialogs {
             @Override
             public boolean onResultRecive(int result) {
                 AppState.get().contrastImage = result;
+                isEnableBC.setChecked(true);
                 actionWrapper.run();
                 return false;
             }
@@ -180,6 +193,7 @@ public class Dialogs {
             @Override
             public boolean onResultRecive(int result) {
                 AppState.get().brigtnessImage = result;
+                isEnableBC.setChecked(true);
                 actionWrapper.run();
                 return false;
             }
@@ -192,10 +206,10 @@ public class Dialogs {
 
             @Override
             public void onCheckedChanged(final CompoundButton buttonView, final boolean isChecked) {
-                if (contrastSeek.getCurrentValue() == 0) {
-                    // contrastSeek.reset(25);
-                }
                 AppState.get().bolderTextOnImage = isChecked;
+                if (isChecked) {
+                    isEnableBC.setChecked(true);
+                }
                 actionWrapper.run();
             }
         });
@@ -211,6 +225,7 @@ public class Dialogs {
         l.addView(brightnessText);
         l.addView(brightnesSeek);
         l.addView(bolderText);
+        l.addView(isEnableBC);
 
         TextView defaults = new TextView(c);
         defaults.setTextAppearance(c, R.style.textLinkStyle);
@@ -228,7 +243,7 @@ public class Dialogs {
                         AppState.get().brigtnessImage = 0;
                         AppState.get().contrastImage = 0;
                         AppState.get().bolderTextOnImage = false;
-                        bolderText.setChecked(AppState.get().bolderTextOnImage);
+                        isEnableBC.setChecked(AppState.get().bolderTextOnImage);
 
                         brightnesSeek.reset(AppState.get().brigtnessImage);
                         contrastSeek.reset(AppState.get().contrastImage);

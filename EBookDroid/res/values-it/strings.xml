@@ -479,4 +479,5 @@
    <string name="mode_musician">Modalità \"Musicista\"</string>
    <string name="backup_folder">Cartella di backup</string>
    <string name="audio_books_folder">Cartella dei libri audio</string>
+   <string name="enable_contrast_and_brightness">Abilita contrasto e luminosità</string>
 </resources>

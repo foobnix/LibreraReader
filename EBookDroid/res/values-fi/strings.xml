@@ -479,4 +479,5 @@
    <string name="mode_musician">Tila \"Muusikko\"</string>
    <string name="backup_folder">Varmuuskopio-kansio</string>
    <string name="audio_books_folder">Äänikirjakansio</string>
+   <string name="enable_contrast_and_brightness">Ota kontrasti ja kirkkaus käyttöön</string>
 </resources>

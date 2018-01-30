@@ -693,11 +693,13 @@ public class MagicHelper {
     }
 
     public static void applyQuickContrastAndBrightness(int[] arr, int w, int h) {
-        if (AppState.get().contrastImage != 0 || AppState.get().brigtnessImage != 0) {
-            quickContrast3(arr, AppState.get().contrastImage, AppState.get().brigtnessImage * -1);
-        }
-        if (AppState.get().bolderTextOnImage) {
-            ivanEbolden(arr);
+        if (AppState.get().isEnableBC) {
+            if (AppState.get().contrastImage != 0 || AppState.get().brigtnessImage != 0) {
+                quickContrast3(arr, AppState.get().contrastImage, AppState.get().brigtnessImage * -1);
+            }
+            if (AppState.get().bolderTextOnImage) {
+                ivanEbolden(arr);
+            }
         }
 
     }

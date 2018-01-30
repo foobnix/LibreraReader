@@ -479,4 +479,5 @@
    <string name="mode_musician">\"Zenész\" mód</string>
    <string name="backup_folder">Biztonsági mentés mappa</string>
    <string name="audio_books_folder">Audiokönyvek mappa</string>
+   <string name="enable_contrast_and_brightness">Kontraszt és fényerő engedélyezése</string>
 </resources>

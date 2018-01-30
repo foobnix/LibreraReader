@@ -502,7 +502,7 @@ public class Fb2Extractor extends BaseExtractor {
         return out;
     }
 
-    public static ByteArrayOutputStream generateHyphenFile(InputStreamReader inputStream, boolean isEPUB) throws Exception {
+    public static ByteArrayOutputStream generateHyphenFile(InputStreamReader inputStream) throws Exception {
         BufferedReader input = new BufferedReader(inputStream);
 
         ByteArrayOutputStream out = new ByteArrayOutputStream();
@@ -527,14 +527,6 @@ public class Fb2Extractor extends BaseExtractor {
                 } else {
                     line = "</" + subLine[i];
                 }
-
-                // if (line.contains("&")) {
-                // line = line.replace("&nbsp;", " ");
-                // }
-                // if (isEPUB && line.contains("<image")) {
-                // line = line.replace("<image", "<img");
-                // line = line.replace("xlink:href=", "src=");
-                // }
 
                 line = HypenUtils.applyHypnes(line);
                 writer.print(line);

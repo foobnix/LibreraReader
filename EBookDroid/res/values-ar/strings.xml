@@ -479,4 +479,5 @@
    <string name="mode_musician">وضع \"موسيقي\"</string>
    <string name="backup_folder">مجلد النسخ الاحتياطي</string>
    <string name="audio_books_folder">مجلد كتب صوتية</string>
+   <string name="enable_contrast_and_brightness">تمكين التباين والسطوع</string>
 </resources>

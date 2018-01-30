@@ -479,4 +479,5 @@
    <string name="mode_musician">Modo \"Músico\"</string>
    <string name="backup_folder">Pasta de backup</string>
    <string name="audio_books_folder">Pasta de livros de áudio</string>
+   <string name="enable_contrast_and_brightness">Permitir contraste e brilho</string>
 </resources>

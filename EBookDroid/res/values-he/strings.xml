@@ -479,4 +479,5 @@
    <string name="mode_musician">מצב \"מוסיקאי\"</string>
    <string name="backup_folder">תיקיית גיבוי</string>
    <string name="audio_books_folder">תיקיית ספרי אודיו</string>
+   <string name="enable_contrast_and_brightness">אפשר ניגודיות ובהירות</string>
 </resources>

@@ -479,4 +479,5 @@
    <string name="mode_musician">Modo \"Músico\"</string>
    <string name="backup_folder">Carpeta de respaldo</string>
    <string name="audio_books_folder">Carpeta de libros de audio</string>
+   <string name="enable_contrast_and_brightness">Habilitar contraste y brillo</string>
 </resources>

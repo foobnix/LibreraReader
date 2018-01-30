@@ -284,6 +284,7 @@ public class AppState {
     public int contrastImage = 0;
     public int brigtnessImage = 0;
     public boolean bolderTextOnImage = false;
+    public boolean isEnableBC = false;
 
     @IgnoreHashCode
     public int appBrightness = AUTO_BRIGTNESS;
@@ -608,6 +609,7 @@ public class AppState {
             if (!isLoaded) {
                 AppState.get().isInkMode = Dips.isEInk(a);
                 AppState.get().bolderTextOnImage = Dips.isEInk(a);
+                AppState.get().isEnableBC = Dips.isEInk(a);
                 nameVerticalMode = a.getString(R.string.mode_vertical);
                 nameHorizontalMode = a.getString(R.string.mode_horizontally);
                 nameMusicianMode = a.getString(R.string.mode_musician);

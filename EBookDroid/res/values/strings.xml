@@ -479,4 +479,5 @@
    <string name="mode_musician">\"Musician\" mode</string>
    <string name="backup_folder">Backup folder</string>
    <string name="audio_books_folder">Audio books folder</string>
+   <string name="enable_contrast_and_brightness">Enable contrast and brightness</string>
 </resources>

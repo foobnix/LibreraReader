@@ -200,8 +200,8 @@
 
             <LinearLayout
                 android:layout_width="wrap_content"
-                android:gravity="center_vertical"
                 android:layout_height="wrap_content"
+                android:gravity="center_vertical"
                 android:orientation="horizontal" >
 
                 <CheckBox
@@ -1110,11 +1110,16 @@
                 android:text="@string/export_" />
         </LinearLayout>
 
-        <CheckBox
-            android:id="@+id/isAutomaticExport"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/automatic_export_backup" />
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" >
+
+            <CheckBox
+                android:id="@+id/isAutomaticExport"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/automatic_export_backup" />
+        </FrameLayout>
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -1131,9 +1136,9 @@
             <TextView
                 android:id="@+id/fontFolder"
                 style="@style/textLink"
-                android:ellipsize="start"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:ellipsize="start"
                 android:text="[]" />
         </LinearLayout>
 
@@ -1152,9 +1157,9 @@
             <TextView
                 android:id="@+id/downloadFolder"
                 style="@style/textLink"
-                    android:ellipsize="start"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:ellipsize="start"
                 android:text="[]" />
         </LinearLayout>
 
@@ -1173,9 +1178,9 @@
             <TextView
                 android:id="@+id/backupFolder"
                 style="@style/textLink"
-                    android:ellipsize="start"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:ellipsize="start"
                 android:text="[]" />
         </LinearLayout>
 
@@ -1193,10 +1198,10 @@
 
             <TextView
                 android:id="@+id/ttsFolder"
-                    android:ellipsize="start"
                 style="@style/textLink"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:ellipsize="start"
                 android:text="[]" />
         </LinearLayout>
 

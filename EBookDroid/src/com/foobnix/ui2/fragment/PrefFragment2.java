@@ -436,6 +436,7 @@ public class PrefFragment2 extends UIFragment {
                         AppState.get().contrastImage = 0;
                         AppState.get().brigtnessImage = 0;
                         AppState.get().bolderTextOnImage = false;
+                        AppState.get().isEnableBC = false;
 
                         AppState.get().save(getActivity());
 
@@ -456,6 +457,7 @@ public class PrefFragment2 extends UIFragment {
                         AppState.get().contrastImage = 0;
                         AppState.get().brigtnessImage = 0;
                         AppState.get().bolderTextOnImage = false;
+                        AppState.get().isEnableBC = false;
 
                         AppState.get().save(getActivity());
 

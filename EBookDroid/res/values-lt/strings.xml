@@ -479,4 +479,5 @@
    <string name="mode_musician">Režimas \"muzikantas\"</string>
    <string name="backup_folder">Atsarginis aplankas</string>
    <string name="audio_books_folder">Garso knygų aplankas</string>
+   <string name="enable_contrast_and_brightness">Įgalinkite kontrastą ir ryškumą</string>
 </resources>

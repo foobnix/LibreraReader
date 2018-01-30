@@ -479,4 +479,5 @@
    <string name="mode_musician">모드 \"뮤지션\"</string>
    <string name="backup_folder">백업 폴더</string>
    <string name="audio_books_folder">오디오 북 폴더</string>
+   <string name="enable_contrast_and_brightness">대비 및 밝기 사용</string>
 </resources>

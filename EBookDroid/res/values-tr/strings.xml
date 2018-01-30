@@ -479,4 +479,5 @@
    <string name="mode_musician">Mod \"Müzisyen\"</string>
    <string name="backup_folder">Yedekleme klasörü</string>
    <string name="audio_books_folder">Sesli kitaplar klasörü</string>
+   <string name="enable_contrast_and_brightness">Kontrast ve parlaklığı etkinleştir</string>
 </resources>
