@@ -450,10 +450,10 @@
    <string name="archives">Архивы</string>
    <string name="other">Другое</string>
    <string name="read_the_tutorial_online_or_download_in_pdf_format">Ознакомиться с руководством на сайте и/или скачать его в PDF-формате</string>
-   <string name="start_recording">Начать запись</string>
+   <string name="start_recording">Запуск начитки</string>
    <string name="favorite_folders_and_books">Избранные папки и книги</string>
    <string name="don_t_show_this_dialog">Больше не показывать это окно</string>
-   <string name="show_the_book_close_dialog">Показывать окно-подтверждение закрытия книги при коротком нажатии на клавишу "Назад"</string>
+   <string name="show_the_book_close_dialog">Показывать окно-подтверждение закрытия книги при коротком нажатии на клавишу \"Назад\"</string>
    <string name="search_completed">Поиск завершен</string>
    <string name="you_can_search_only_one_word">Для поиска введите в поле не более одного слова</string>
    <string name="passwords_do_not_match">Пароли не совпадают</string>
@@ -467,7 +467,7 @@
    <string name="subject">Тема</string>
    <string name="keywords">Ключевые слова</string>
    <string name="number">Число страниц</string>
-   <string name="percent">Процент страниц</string>
+   <string name="percent">Процент прочитанного</string>
    <string name="reading_progress">Показывать в строке</string>
    <string name="awards">Награды</string>
    <string name="close_book_and_application">Закрыть книгу и приложение</string>
@@ -477,6 +477,6 @@
    <string name="mode_vertical">Режим \"Свиток\"</string>
    <string name="mode_horizontally">Режим \"Книга\"</string>
    <string name="mode_musician">Режим \"Музыкант\"</string>
-   <string name="backup_folder">Папка резервного копирования</string>
-   <string name="audio_books_folder">Папка аудиокниг</string>
+   <string name="backup_folder">Папка для автом. экспорта настроек</string>
+   <string name="audio_books_folder">Папка для начит. голосом книг</string>
 </resources>
