@@ -37,6 +37,14 @@ ln -s $MUPDF_JAVA/libs/x86 $X86/x86
 ln -s $MUPDF_JAVA/libs/x86_64 $X86/x86_64
 
 #echo "MUPDF:" $MUPDF ">>>" $MY
+cp -rp $MY/Builder/jni-1.11/~mupdf/epub-doc.c $MUPDF_ROOT/source/html/epub-doc.c
+cp -rp $MY/Builder/jni-1.11/~mupdf/css-apply.c $MUPDF_ROOT/source/html/css-apply.c
+cp -rp $MY/Builder/jni-1.11/~mupdf/html-layout.c $MUPDF_ROOT/source/html/html-layout.c
+cp -rp $MY/Builder/jni-1.11/~mupdf/xml.c $MUPDF_ROOT/source/fitz/xml.c
+cp -rp $MY/Builder/jni-1.11/~mupdf/stext-device.c $MUPDF_ROOT/source/fitz/stext-device.c
+cp -rp $MY/Builder/jni-1.11/~mupdf/fitz-imp.h $MUPDF_ROOT/source/fitz/fitz-imp.h
+cp -rp $MY/Builder/jni-1.11/~mupdf/structured-text.h $MUPDF_ROOT/inclume/mupdf/fitz/structured-text.h
+
 
 
 cd $MUPDF_JAVA

@@ -1262,43 +1262,43 @@ public class ExtUtils {
 
                     html = TxtUtils.replaceEndLine(html);
 
-                    int startImage = html.indexOf(IMAGE_BEGIN);
-                    while (startImage >= 0) {
-                        if (!TempHolder.get().isConverting) {
-                            CacheZipUtils.removeFiles(bookTempRoot.listFiles());
-                            bookTempRoot.delete();
-                            break;
+                        int startImage = html.indexOf(IMAGE_BEGIN);
+                        while (startImage >= 0) {
+                            if (!TempHolder.get().isConverting) {
+                                CacheZipUtils.removeFiles(bookTempRoot.listFiles());
+                                bookTempRoot.delete();
+                                break;
+                            }
+                            imgCount++;
+                            LOG.d("Extract image", imgCount);
+                            int endImage = html.indexOf(IMAGE_END, startImage);
+
+                            String mime = html.substring(startImage + IMAGE_BEGIN.length(), endImage);
+                            String format;
+                            if (mime.startsWith(IMAGE_JPEG_BASE64)) {
+                                format = ".jpg";
+                                mime = mime.replace(IMAGE_JPEG_BASE64, "");
+                            } else if (mime.startsWith(IMAGE_PNG_BASE64)) {
+                                format = ".png";
+                                mime = mime.replace(IMAGE_PNG_BASE64, "");
+                            } else {
+                                format = ".none";
+                            }
+
+                            byte[] decode = Base64.decode(mime, Base64.DEFAULT);
+
+                            String imageName = imgCount + format;
+
+                            LOG.d("Extract-mime", mime.substring(mime.length() - 10, mime.length()));
+
+                            FileOutputStream imgStream = new FileOutputStream(new File(bookTempRoot, imageName));
+                            imgStream.write(decode);
+                            imgStream.close();
+
+                            html = html.substring(0, startImage) + "<img src=\"" + imageName + "\"/>" + html.substring(endImage + IMAGE_END.length());
+                            startImage = html.indexOf(IMAGE_BEGIN);
+                            LOG.d("startImage", startImage);
                         }
-                        imgCount++;
-                        LOG.d("Extract image", imgCount);
-                        int endImage = html.indexOf(IMAGE_END, startImage);
-
-                        String mime = html.substring(startImage + IMAGE_BEGIN.length(), endImage);
-                        String format;
-                        if (mime.startsWith(IMAGE_JPEG_BASE64)) {
-                            format = ".jpg";
-                            mime = mime.replace(IMAGE_JPEG_BASE64, "");
-                        } else if (mime.startsWith(IMAGE_PNG_BASE64)) {
-                            format = ".png";
-                            mime = mime.replace(IMAGE_PNG_BASE64, "");
-                        } else {
-                            format = ".none";
-                        }
-
-                        byte[] decode = Base64.decode(mime, Base64.DEFAULT);
-
-                        String imageName = imgCount + format;
-
-                        LOG.d("Extract-mime", mime.substring(mime.length() - 10, mime.length()));
-
-                        FileOutputStream imgStream = new FileOutputStream(new File(bookTempRoot, imageName));
-                        imgStream.write(decode);
-                        imgStream.close();
-
-                        html = html.substring(0, startImage) + "<img src=\"" + imageName + "\"/>" + html.substring(endImage + IMAGE_END.length());
-                        startImage = html.indexOf(IMAGE_BEGIN);
-                        LOG.d("startImage", startImage);
-                    }
 
                     // out.write(TextUtils.htmlEncode(html));
                     // html = html.replace("< ", "&lt; ");

@@ -65,73 +65,52 @@ static void measure_image(fz_context *ctx, fz_html_flow *node, float max_w, floa
 	node->w = image_w * s;
 	node->h = image_h * s;
 }
-//stext-output.c
-void
-fz_print_stext_page(fz_context *ctx, fz_output *out, fz_stext_page *page)
-{
-	int block_n;
 
-	for (block_n = 0; block_n < page->len; block_n++)
-	{
-		switch (page->blocks[block_n].type)
-		{
-		case FZ_PAGE_BLOCK_TEXT:
-		{
-			fz_stext_block *block = page->blocks[block_n].u.text;
-			fz_stext_line *line;
-			fz_stext_char *ch;
-			char utf[10];
-			int i, n;
 
-			for (line = block->lines; line < block->lines + block->len; line++)
-			{
-				fz_stext_span *span;
-				for (span = line->first_span; span; span = span->next)
+if(g->is_fb2){
+				const char *src = fz_xml_att(node, "l:href");
+				if (!src)
+					src = fz_xml_att(node, "xlink:href");
+				if (src && src[0] == '#')
 				{
-					
-					
-					int is_bold = 0;
-					int is_italic = 0;
-
-					if (fz_font_is_bold(ctx, span->text->style->font)){
-						is_bold = 1;
-						fz_write_printf(ctx,out,"<b>");
-					}
-
-					if (fz_font_is_italic(ctx, span->text->style->font)){
-						is_italic = 1;
-						fz_write_printf(ctx,out,"<i>");
-					}
-
-					
-					for (ch = span->text; ch < span->text + span->len; ch++)
+					fz_image *img = fz_tree_lookup(ctx, g->images, src+1);
+					if (display == DIS_BLOCK)
 					{
-						n = fz_runetochar(utf, ch->c);
-						
-						for (i = 0; i < n; i++){							
-							fz_write_printf(ctx, out, "%c", utf[i]);
-						}
-						
+						fz_html_box *imgbox;
+						box = new_box(ctx, g->pool, markup_dir);
+						fz_apply_css_style(ctx, g->set, &box->style, &match);
+						top = insert_block_box(ctx, box, top);
+						imgbox = new_box(ctx, g->pool, markup_dir);
+						fz_apply_css_style(ctx, g->set, &imgbox->style, &match);
+						insert_inline_box(ctx, imgbox, box, markup_dir, g);
+						generate_image(ctx, imgbox, fz_keep_image(ctx, img), g);
 					}
-
-					if(is_bold){
-						fz_write_printf(ctx,out,"</b>&nbsp;");
+					else if (display == DIS_INLINE)
+					{
+						box = new_box(ctx, g->pool, markup_dir);
+						fz_apply_css_style(ctx, g->set, &box->style, &match);
+						insert_inline_box(ctx, box, top, markup_dir, g);
+						generate_image(ctx, box, fz_keep_image(ctx, img), g);
 					}
-
-					if(is_italic){
-						fz_write_printf(ctx,out,"</i>&nbsp;");
+				}
+				}else{
+					const char *src = fz_xml_att(node, "xlink:href");
+					if (src)
+					{
+						box = new_box(ctx, g->pool, markup_dir);
+						fz_apply_css_style(ctx, g->set, &box->style, &match);
+						insert_inline_box(ctx, box, top, markup_dir, g);
+						generate_image(ctx, box, load_html_image(ctx, g->zip, g->base_uri, src), g);
 					}
 
 				}
-				fz_write_printf(ctx, out, "<br/>");
-			}
-			//fz_printf(ctx, out, "<br/>");
-			break;
+
+//xml.c
+
+if(p[1]=='b' && p[2]=='r' && p[3]=='>' && p[4]=='<' && p[5]=='b' && p[6]=='r' && p[7]=='>'){
+			p+=8;
+			goto parse_text;
 		}
-		case FZ_PAGE_BLOCK_IMAGE:
-		{
-			break;
-		}
-		}
-	}
-}
+		
+//structured-text.h
+void send_data_base64_stext(fz_context *ctx, fz_output *out, fz_buffer *buffer);
