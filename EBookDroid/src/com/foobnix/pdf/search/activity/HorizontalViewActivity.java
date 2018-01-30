@@ -1530,20 +1530,14 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
         @Override
         public void onPageSelected(final int pos) {
             PageImageState.currentPage = pos;
+            dc.setCurrentPage(viewPager.getCurrentItem());
             updateUI(pos);
 
             if (PageImageState.get().isAutoFit) {
                 EventBus.getDefault().post(new MessageAutoFit(pos));
             }
-
-            handler.postDelayed(new Runnable() {
-
-                @Override
-                public void run() {
-                    dc.saveCurrentPage();
-                    LOG.d("PAGE SAVED");
-                }
-            }, 2000);
+            handler.removeCallbacks(savePage);
+            handler.postDelayed(savePage, 5000);
 
             getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
             LOG.d("FLAG addFlags", "FLAG_KEEP_SCREEN_ON", dc.getActivity().getWindow().getAttributes().flags);
@@ -1568,6 +1562,15 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
         }
     };
 
+    Runnable savePage = new Runnable() {
+
+        @Override
+        public void run() {
+            dc.saveCurrentPage();
+            LOG.d("PAGE SAVED");
+        }
+    };
+    
     Runnable clearFlags = new Runnable() {
 
         @Override
