@@ -200,6 +200,7 @@
 
             <LinearLayout
                 android:layout_width="wrap_content"
+                android:gravity="center_vertical"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal" >
 
@@ -215,7 +216,6 @@
                     android:id="@+id/supportOther"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:ellipsize="end"
                     android:minWidth="110dp"
                     android:text="@string/other"
                     android:textSize="11sp" />
@@ -655,15 +655,14 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:maxLines="2"
                 android:text="@string/remember_reading_mode" />
 
             <TextView
                 android:id="@+id/selectedOpenMode"
                 style="@style/textLink"
-                android:layout_width="150dip"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
+                android:layout_weight="0"
                 android:maxLines="2"
                 android:minWidth="100dip"
                 android:singleLine="false"
@@ -681,16 +680,14 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:maxLines="2"
                 android:text="@string/request_a_password_when_the_application_starts" />
 
             <TextView
                 android:id="@+id/appPassword"
                 style="@style/textLink"
-                android:layout_width="150dip"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:maxLines="2"
+                android:layout_weight="0"
                 android:minWidth="100dip"
                 android:singleLine="false"
                 android:text="@string/password" />

@@ -27,6 +27,19 @@ public class TxtUtils {
     public static String LONG_DASH = "–";
     public static String SMALL_DASH = " - ";
 
+    public static String lastTwoPath(String txt) {
+        int fist = txt.lastIndexOf("/");
+        if (fist >= 0) {
+            int second = txt.lastIndexOf("/", fist - 1);
+            if (second >= 0) {
+                return "[..." + txt.substring(second) + "]";
+            } else {
+                return "[..." + txt.substring(fist) + "]";
+            }
+        }
+        return "[" + txt + "]";
+    }
+
     public static String encode1251(String string) {
         if (Charset.forName("8859_1").newEncoder().canEncode(string)) {
             return encode(string, "8859_1", "Windows-1251");

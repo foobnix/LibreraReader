@@ -1036,7 +1036,7 @@ public class PrefFragment2 extends UIFragment {
         // folders
 
         final TextView fontFolder = (TextView) inflate.findViewById(R.id.fontFolder);
-        TxtUtils.underline(fontFolder, BookCSS.get().fontFolder);
+        TxtUtils.underline(fontFolder, TxtUtils.lastTwoPath(BookCSS.get().fontFolder));
         fontFolder.setOnClickListener(new OnClickListener() {
 
             @Override
@@ -1045,7 +1045,7 @@ public class PrefFragment2 extends UIFragment {
                     @Override
                     public boolean onResultRecive(String nPath, Dialog dialog) {
                         BookCSS.get().fontFolder = nPath;
-                        TxtUtils.underline(fontFolder, BookCSS.get().fontFolder);
+                        TxtUtils.underline(fontFolder, TxtUtils.lastTwoPath(BookCSS.get().fontFolder));
                         dialog.dismiss();
                         return false;
                     }
@@ -1054,7 +1054,7 @@ public class PrefFragment2 extends UIFragment {
         });
 
         final TextView downloadFolder = (TextView) inflate.findViewById(R.id.downloadFolder);
-        TxtUtils.underline(downloadFolder, AppState.get().downlodsPath);
+        TxtUtils.underline(downloadFolder, TxtUtils.lastTwoPath(AppState.get().downlodsPath));
         downloadFolder.setOnClickListener(new OnClickListener() {
 
             @Override
@@ -1063,7 +1063,7 @@ public class PrefFragment2 extends UIFragment {
                     @Override
                     public boolean onResultRecive(String nPath, Dialog dialog) {
                         AppState.get().downlodsPath = nPath;
-                        TxtUtils.underline(downloadFolder, AppState.get().downlodsPath);
+                        TxtUtils.underline(downloadFolder, TxtUtils.lastTwoPath(AppState.get().downlodsPath));
                         dialog.dismiss();
                         return false;
                     }
@@ -1072,7 +1072,7 @@ public class PrefFragment2 extends UIFragment {
         });
 
         final TextView ttsFolder = (TextView) inflate.findViewById(R.id.ttsFolder);
-        TxtUtils.underline(ttsFolder, AppState.get().ttsSpeakPath);
+        TxtUtils.underline(ttsFolder, TxtUtils.lastTwoPath(AppState.get().ttsSpeakPath));
         ttsFolder.setOnClickListener(new OnClickListener() {
 
             @Override
@@ -1081,7 +1081,7 @@ public class PrefFragment2 extends UIFragment {
                     @Override
                     public boolean onResultRecive(String nPath, Dialog dialog) {
                         AppState.get().ttsSpeakPath = nPath;
-                        TxtUtils.underline(ttsFolder, AppState.get().ttsSpeakPath);
+                        TxtUtils.underline(ttsFolder, TxtUtils.lastTwoPath(AppState.get().ttsSpeakPath));
                         dialog.dismiss();
                         return false;
                     }
@@ -1090,7 +1090,7 @@ public class PrefFragment2 extends UIFragment {
         });
 
         final TextView backupPath = (TextView) inflate.findViewById(R.id.backupFolder);
-        TxtUtils.underline(backupPath, AppState.get().backupPath);
+        TxtUtils.underline(backupPath, TxtUtils.lastTwoPath(AppState.get().backupPath));
         backupPath.setOnClickListener(new OnClickListener() {
 
             @Override
@@ -1099,7 +1099,7 @@ public class PrefFragment2 extends UIFragment {
                     @Override
                     public boolean onResultRecive(String nPath, Dialog dialog) {
                         AppState.get().backupPath = nPath;
-                        TxtUtils.underline(backupPath, AppState.get().backupPath);
+                        TxtUtils.underline(backupPath, TxtUtils.lastTwoPath(AppState.get().backupPath));
                         dialog.dismiss();
                         return false;
                     }

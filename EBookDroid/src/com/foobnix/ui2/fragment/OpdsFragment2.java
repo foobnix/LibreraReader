@@ -433,8 +433,7 @@ public class OpdsFragment2 extends UIFragment<Entry> {
                 });
 
                 final TextView downlodsPath = (TextView) view.findViewById(R.id.downlodsPath);
-                downlodsPath.setText(ExtUtils.getFileName(AppState.get().downlodsPath));
-                TxtUtils.underlineTextView(downlodsPath);
+                TxtUtils.underline(downlodsPath, TxtUtils.lastTwoPath(AppState.get().downlodsPath));
                 downlodsPath.setOnClickListener(new View.OnClickListener() {
 
                     @Override
@@ -443,8 +442,7 @@ public class OpdsFragment2 extends UIFragment<Entry> {
                             @Override
                             public boolean onResultRecive(String nPath, Dialog dialog) {
                                 AppState.get().downlodsPath = nPath;
-                                downlodsPath.setText(ExtUtils.getFileName(AppState.get().downlodsPath));
-                                TxtUtils.underlineTextView(downlodsPath);
+                                TxtUtils.underline(downlodsPath, TxtUtils.lastTwoPath(AppState.get().downlodsPath));
                                 dialog.dismiss();
                                 return false;
                             }

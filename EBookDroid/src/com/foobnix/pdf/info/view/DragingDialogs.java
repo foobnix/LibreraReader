@@ -3233,7 +3233,7 @@ public class DragingDialogs {
                 // font folder
                 LOG.d("fontFolder2-2", BookCSS.get().fontFolder);
                 final TextView fontsFolder = (TextView) inflate.findViewById(R.id.fontsFolder);
-                fontsFolder.setText(TxtUtils.underline(BookCSS.get().fontFolder));
+                TxtUtils.underline(fontsFolder, TxtUtils.lastTwoPath(BookCSS.get().fontFolder));
                 fontsFolder.setOnClickListener(new OnClickListener() {
 
                     @Override
@@ -3243,7 +3243,7 @@ public class DragingDialogs {
                             public boolean onResultRecive(String nPath, Dialog dialog) {
                                 File result = new File(nPath);
                                 BookCSS.get().fontFolder = result.getPath();
-                                fontsFolder.setText(TxtUtils.underline(BookCSS.get().fontFolder));
+                                TxtUtils.underline(fontsFolder, TxtUtils.lastTwoPath(BookCSS.get().fontFolder));
                                 BookCSS.get().save(controller.getActivity());
                                 dialog.dismiss();
                                 return false;
