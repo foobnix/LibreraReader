@@ -154,8 +154,7 @@
    <string name="you_need_grant_permission">您需要授予外部存储权限</string>
    <string name="db_auto_alignemnt">自动对齐</string>
    <string name="db_auto_scroll">自动滚屏</string>
-   <string name="db_do_nothing">无
-  </string>
+   <string name="db_do_nothing">无</string>
    <string name="action_on_double_tap">双击</string>
    <string name="add_bookmark">添加书签</string>
    <string name="add">加</string>
@@ -267,8 +266,7 @@
    <string name="previous_page">上一页</string>
    <string name="customize">定制</string>
    <string name="left_side">左边</string>
-   <string name="top_side">上边
-  </string>
+   <string name="top_side">上边</string>
    <string name="bottom_side">下边</string>
    <string name="direction_of_reading_rtl_">阅读方向（RTL）</string>
    <string name="customize_tap_zones">屏幕触碰事件</string>
@@ -479,4 +477,6 @@
    <string name="mode_vertical">模式“滚动”</string>
    <string name="mode_horizontally">模式“书”</string>
    <string name="mode_musician">模式“乐谱”</string>
+   <string name="backup_folder">备份文件夹</string>
+   <string name="audio_books_folder">音频书籍文件夹</string>
 </resources>

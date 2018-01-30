@@ -477,4 +477,6 @@
    <string name="mode_vertical">モード \"スクロール\"</string>
    <string name="mode_horizontally">モード \"ブック\"</string>
    <string name="mode_musician">モード \"ミュージシャン\"</string>
+   <string name="backup_folder">バックアップフォルダ</string>
+   <string name="audio_books_folder">オーディオブックフォルダ</string>
 </resources>
