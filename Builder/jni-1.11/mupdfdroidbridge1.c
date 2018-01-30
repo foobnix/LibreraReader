@@ -55,6 +55,8 @@ struct renderpage_s {
 #define PASSWORD_REQUIRED_EXCEPTION "org/ebookdroid/droids/mupdf/codec/exceptions/MuPdfPasswordRequiredException"
 #define WRONG_PASSWORD_EXCEPTION "org/ebookdroid/droids/mupdf/codec/exceptions/MuPdfWrongPasswordEnteredException"
 
+
+
 extern fz_locks_context * jni_new_locks();
 extern void jni_free_locks(fz_locks_context *locks);
 
@@ -228,26 +230,17 @@ Java_org_ebookdroid_droids_mupdf_codec_MuPdfDocument_free(JNIEnv *env,
 }
 
 JNIEXPORT jstring JNICALL
-Java_org_ebookdroid_droids_mupdf_codec_MuPdfDocument_getTitle(JNIEnv *env,
-		jclass cls, jlong handle) {
+Java_org_ebookdroid_droids_mupdf_codec_MuPdfDocument_getMeta(JNIEnv *env,
+		jclass cls, jlong handle, jstring joptions) {
 	renderdocument_t *doc = (renderdocument_t*) (long) handle;
 	char info[256];
 
-	fz_lookup_metadata(doc->ctx, doc->document, FZ_META_INFO_TITLE, info, sizeof(info));
+	const char *options = (*env)->GetStringUTFChars(env, joptions, NULL);
+
+	fz_lookup_metadata(doc->ctx, doc->document, options, info, sizeof(info));
 
 	return (*env)->NewStringUTF(env, info);
 }
-JNIEXPORT jstring JNICALL
-Java_org_ebookdroid_droids_mupdf_codec_MuPdfDocument_getAuthor(JNIEnv *env,
-		jclass cls, jlong handle) {
-	renderdocument_t *doc = (renderdocument_t*) (long) handle;
-	char info[256];
-
-	fz_lookup_metadata(doc->ctx, doc->document, FZ_META_INFO_AUTHOR, info, sizeof(info));
-
-	return (*env)->NewStringUTF(env, info);
-}
-
 
 JNIEXPORT jint JNICALL
 Java_org_ebookdroid_droids_mupdf_codec_MuPdfDocument_getPageInfo(JNIEnv *env,
