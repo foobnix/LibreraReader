@@ -1285,6 +1285,10 @@ public class ExtUtils {
                             format = ".none";
                         }
 
+                        FileOutputStream mimeOut = new FileOutputStream(new File(bookTempRoot, "mime" + imgCount + ".mime"));
+                        mimeOut.write(mime.getBytes());
+                        mimeOut.close();
+
                         byte[] decode = Base64.decode(mime, Base64.DEFAULT);
 
                         String imageName = imgCount + format;
