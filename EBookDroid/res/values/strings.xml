@@ -108,7 +108,7 @@
    <string name="right_page_then_left_page_rtl_">Right page then left page (RTL)</string>
    <string name="rotate_page">Rotate page</string>
    <string name="rotate_default">Default</string>
-   <string name="tap_zone_size">Tap___zone size</string>
+   <string name="tap_zone_size">Tap-zone size</string>
    <string name="customize_tap_zones">Customize tap zones</string>
    <string name="left_side">Left side</string>
    <string name="right_side">Right side</string>
@@ -130,7 +130,7 @@
    <string name="ignore_annotations_on_click">Ignore touch on annotations</string>
    <string name="save_new_annotations_automatically">Save new annotations automatically</string>
    <string name="selecting_text_by_letters">Select text by individual letters</string>
-   <string name="change_the_automatic_scrolling_speed_with_the_volume_keys">Change auto___scroll speed with volume keys</string>
+   <string name="change_the_automatic_scrolling_speed_with_the_volume_keys">Change auto-scroll speed with volume keys</string>
    <string name="enable_brightness_adjustment_on_the_left_of_the_screen">Adjust brightness on the left edge</string>
    <string name="scroll_speed">Mouse wheel sensitivity</string>
    <string name="page_quality">Page quality</string>
