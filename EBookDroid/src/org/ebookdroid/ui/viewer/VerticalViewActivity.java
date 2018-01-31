@@ -381,7 +381,8 @@ public class VerticalViewActivity extends AbstractActionActivity<VerticalViewAct
         if (AppState.get().isShowLongBackDialog) {
             CloseAppDialog.showOnLongClickDialog(getController().getActivity(), null, getController().getListener());
         } else {
-            showInterstial();
+            // showInterstial();
+            getController().getListener().onCloseActivityAdnShowInterstial();
         }
 
     }
