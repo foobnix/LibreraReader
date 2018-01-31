@@ -14,7 +14,6 @@ import com.foobnix.android.utils.Dips;
 import com.foobnix.android.utils.LOG;
 import com.foobnix.android.utils.Safe;
 import com.foobnix.android.utils.TxtUtils;
-import com.foobnix.dao2.FileMeta;
 import com.foobnix.ext.CacheZipUtils.CacheDir;
 import com.foobnix.pdf.SlidingTabLayout;
 import com.foobnix.pdf.info.Android6;
@@ -288,7 +287,6 @@ public class MainTabs2 extends AdsFragmentActivity {
         Android6.checkPermissions(this);
         // Analytics.onStart(this);
 
-
         List<String> actions = Arrays.asList("android.intent.action.PROCESS_TEXT", "android.intent.action.SEARCH", "android.intent.action.SEND");
         List<String> extras = Arrays.asList(Intent.EXTRA_PROCESS_TEXT_READONLY, Intent.EXTRA_PROCESS_TEXT, SearchManager.QUERY, Intent.EXTRA_TEXT);
         if (getIntent() != null && getIntent().getAction() != null) {
@@ -315,51 +313,54 @@ public class MainTabs2 extends AdsFragmentActivity {
         boolean showTabs = getIntent().getBooleanExtra(EXTRA_SHOW_TABS, false);
         LOG.d("EXTRA_SHOW_TABS", showTabs, AppState.get().lastMode);
         if (showTabs == false && AppState.get().isOpenLastBook) {
-            if (AppState.get().lastBookPath != null) {
-                LOG.d("Open lastBookPath", AppState.get().lastBookPath);
-                if (!new File(AppState.get().lastBookPath).isFile()) {
-                    LOG.d("Open Last book not found");
-                    return;
-                }
-                AppState.get().lastClosedActivity = null;
-
-                Safe.run(new Runnable() {
-
-                    @Override
-                    public void run() {
-                        boolean isEasyMode = HorizontalViewActivity.class.getSimpleName().equals(AppState.get().lastMode);
-                        Intent intent = new Intent(MainTabs2.this, isEasyMode ? HorizontalViewActivity.class : VerticalViewActivity.class);
-                        intent.putExtra(PasswordDialog.EXTRA_APP_PASSWORD, getIntent().getStringExtra(PasswordDialog.EXTRA_APP_PASSWORD));
-                        intent.setData(Uri.fromFile(new File(AppState.get().lastBookPath)));
-                        startActivity(intent);
-                    }
-                });
+            if (AppState.get().lastBookPath == null) {
             }
-        } else if (false && !AppState.get().isOpenLastBook) {
-            LOG.d("Open book lastA", AppState.get().lastClosedActivity);
+            LOG.d("Open lastBookPath", AppState.get().lastBookPath);
+            if (!new File(AppState.get().lastBookPath).isFile()) {
+                LOG.d("Open Last book not found");
+                return;
+            }
+            AppState.get().lastClosedActivity = null;
 
             Safe.run(new Runnable() {
 
                 @Override
                 public void run() {
-                    if (HorizontalViewActivity.class.getSimpleName().equals(AppState.get().lastClosedActivity)) {
+                    boolean isEasyMode = HorizontalViewActivity.class.getSimpleName().equals(AppState.get().lastMode);
+                    Intent intent = new Intent(MainTabs2.this, isEasyMode ? HorizontalViewActivity.class : VerticalViewActivity.class);
+                    intent.putExtra(PasswordDialog.EXTRA_APP_PASSWORD, getIntent().getStringExtra(PasswordDialog.EXTRA_APP_PASSWORD));
+                    intent.setData(Uri.fromFile(new File(AppState.get().lastBookPath)));
+                    startActivity(intent);
+                }
+            });
+        } else if (!AppState.get().isOpenLastBook) {
+            LOG.d("Open book lastA", AppState.get().lastClosedActivity);
 
-                        FileMeta meta = AppDB.get().getRecentLast();
-                        if (meta != null) {
-                            Intent intent = new Intent(MainTabs2.this, HorizontalViewActivity.class);
-                            intent.setData(Uri.fromFile(new File(meta.getPath())));
-                            startActivity(intent);
-                            LOG.d("Start lasta", AppState.get().lastClosedActivity);
-                        }
-                    } else if (VerticalViewActivity.class.getSimpleName().equals(AppState.get().lastClosedActivity)) {
-                        FileMeta meta = AppDB.get().getRecentLast();
-                        if (meta != null) {
-                            Intent intent = new Intent(MainTabs2.this, VerticalViewActivity.class);
-                            intent.setData(Uri.fromFile(new File(meta.getPath())));
-                            startActivity(intent);
-                            LOG.d("Start lasta", AppState.get().lastClosedActivity);
-                        }
+            if (AppState.get().lastBookPath == null) {
+                LOG.d("Open book lastA", "null");
+                return;
+            }
 
+            if (!new File(AppState.get().lastBookPath).isFile()) {
+                LOG.d("Open Last book not found");
+                return;
+            }
+            final String saveMode = AppState.get().lastClosedActivity;
+            Safe.run(new Runnable() {
+
+                @Override
+                public void run() {
+
+                    if (HorizontalViewActivity.class.getSimpleName().equals(saveMode)) {
+                        Intent intent = new Intent(MainTabs2.this, HorizontalViewActivity.class);
+                        intent.setData(Uri.fromFile(new File(AppState.get().lastBookPath)));
+                        startActivity(intent);
+                        LOG.d("Start lastA", saveMode);
+                    } else if (VerticalViewActivity.class.getSimpleName().equals(saveMode)) {
+                        Intent intent = new Intent(MainTabs2.this, VerticalViewActivity.class);
+                        intent.setData(Uri.fromFile(new File(AppState.get().lastBookPath)));
+                        startActivity(intent);
+                        LOG.d("Start lastA", saveMode);
                     }
 
                 }
