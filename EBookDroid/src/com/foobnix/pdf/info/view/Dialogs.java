@@ -220,12 +220,12 @@ public class Dialogs {
         TextView brightnessText = new TextView(c);
         brightnessText.setText(R.string.brightness);
 
+        l.addView(isEnableBC);
         l.addView(contrastText);
         l.addView(contrastSeek);
         l.addView(brightnessText);
         l.addView(brightnesSeek);
         l.addView(bolderText);
-        l.addView(isEnableBC);
 
         TextView defaults = new TextView(c);
         defaults.setTextAppearance(c, R.style.textLinkStyle);

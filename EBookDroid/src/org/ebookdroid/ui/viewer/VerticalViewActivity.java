@@ -1,12 +1,9 @@
 package org.ebookdroid.ui.viewer;
 
-import org.ebookdroid.common.settings.AppSettings;
 import org.ebookdroid.common.settings.SettingsManager;
 import org.ebookdroid.common.settings.books.BookSettings;
-import org.ebookdroid.common.settings.types.ToastPosition;
 import org.ebookdroid.ui.viewer.viewers.PdfSurfaceView;
 import org.emdev.ui.AbstractActionActivity;
-import org.emdev.utils.LengthUtils;
 
 import com.foobnix.android.utils.Dips;
 import com.foobnix.android.utils.Keyboards;
@@ -199,7 +196,7 @@ public class VerticalViewActivity extends AbstractActionActivity<VerticalViewAct
     protected void onActivityResult(final int requestCode, final int resultCode, final Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (resultCode == RESULT_OK) {
-            getController().getDocumentController().goToPage(data.getIntExtra("page", 0));
+            getController().getDocumentController().goToPage(data.getIntExtra(DocumentController.PAGE, 0));
         }
     }
 
@@ -255,17 +252,6 @@ public class VerticalViewActivity extends AbstractActionActivity<VerticalViewAct
         }
     }
 
-    public void currentPageChanged(final String pageText, final String bookTitle) {
-        if (LengthUtils.isEmpty(pageText)) {
-            return;
-        }
-        final AppSettings app = AppSettings.getInstance();
-
-        if (app.pageNumberToastPosition == ToastPosition.Invisible) {
-            return;
-        }
-
-    }
 
     Dialog rotatoinDialog;
     Boolean isInitPosistion;

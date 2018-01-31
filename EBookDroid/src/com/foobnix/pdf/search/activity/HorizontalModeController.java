@@ -48,7 +48,7 @@ import android.graphics.PointF;
 
 public abstract class HorizontalModeController extends DocumentController {
     public static final String PASSWORD_EXTRA = "password";
-    public static final String PAGE = "page";
+
     public static final String PERCENT_EXTRA = "percent";
 
     private int pagesCount;
@@ -235,6 +235,9 @@ public abstract class HorizontalModeController extends DocumentController {
         final double percent = activity.getIntent().getDoubleExtra(PERCENT_EXTRA, 0);
         int number = activity.getIntent().getIntExtra(PAGE, 0);
         LOG.d("_PAGE", "uri page", number);
+
+        activity.getIntent().putExtra(PAGE, 0);
+        activity.getIntent().putExtra(PERCENT_EXTRA, 0);
 
         if (percent > 0) {
             number = (int) (pagesCount * percent);

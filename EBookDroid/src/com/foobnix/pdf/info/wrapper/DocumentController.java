@@ -46,6 +46,8 @@ import android.widget.Toast;
 @SuppressLint("NewApi")
 public abstract class DocumentController {
 
+    public static final String PAGE = "page";
+
     public final static List<Integer> orientationIds = Arrays.asList(//
             ActivityInfo.SCREEN_ORIENTATION_SENSOR, //
             ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE, //

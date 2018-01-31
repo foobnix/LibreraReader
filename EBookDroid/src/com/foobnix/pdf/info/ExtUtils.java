@@ -760,7 +760,7 @@ public class ExtUtils {
         intent.setData(uri);
 
         if (page > 0) {
-            intent.putExtra("page", page);
+            intent.putExtra(DocumentController.PAGE, page);
         }
 
         c.startActivity(intent);
@@ -786,7 +786,7 @@ public class ExtUtils {
         }
 
         if (page > 0) {
-            intent.putExtra("page", page);
+            intent.putExtra(DocumentController.PAGE, page);
         }
         c.startActivity(intent);
 

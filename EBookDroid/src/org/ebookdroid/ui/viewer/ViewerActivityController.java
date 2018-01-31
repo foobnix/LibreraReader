@@ -38,6 +38,7 @@ import com.foobnix.pdf.info.ExtUtils;
 import com.foobnix.pdf.info.R;
 import com.foobnix.pdf.info.model.OutlineLinkWrapper;
 import com.foobnix.pdf.info.wrapper.AppState;
+import com.foobnix.pdf.info.wrapper.DocumentController;
 import com.foobnix.pdf.info.wrapper.DocumentWrapperUI;
 import com.foobnix.pdf.search.activity.HorizontalModeController;
 import com.foobnix.sys.TempHolder;
@@ -240,9 +241,13 @@ public class ViewerActivityController extends ActionController<VerticalViewActiv
             @Override
             public void run() {
 
-                int pageIntent = intent.getIntExtra("page", 0);
-                getActivity().getIntent().putExtra(HorizontalModeController.PASSWORD_EXTRA, password);
-                double percent = getActivity().getIntent().getDoubleExtra(VerticalViewActivity.PERCENT_EXTRA, 0);
+                int pageIntent = intent.getIntExtra(DocumentController.PAGE, 0);
+                intent.putExtra(HorizontalModeController.PASSWORD_EXTRA, password);
+                double percent = intent.getDoubleExtra(VerticalViewActivity.PERCENT_EXTRA, 0f);
+
+                intent.putExtra(DocumentController.PAGE, 0);
+                intent.putExtra(VerticalViewActivity.PERCENT_EXTRA, 0f);
+
                 if (percent > 0) {
                     LOG.d("Percent", percent, getDocumentModel().getPageCount());
                     pageIntent = (int) (getDocumentModel().getPageCount() * percent);
@@ -256,14 +261,11 @@ public class ViewerActivityController extends ActionController<VerticalViewActiv
                     onBookLoaded.run();
                 }
 
-
                 controller.loadOutline(new ResultResponse<List<OutlineLinkWrapper>>() {
 
                     @Override
                     public boolean onResultRecive(List<OutlineLinkWrapper> result) {
                         wrapperControlls.showOutline(result, controller.getPageCount());
-
-
 
                         return false;
                     }
@@ -391,8 +393,15 @@ public class ViewerActivityController extends ActionController<VerticalViewActiv
         if (pageCount > 0) {
             pageText = (newIndex.viewIndex + 1) + "/" + pageCount;
         }
-        getManagedComponent().currentPageChanged(pageText, bookTitle);
-        SettingsManager.currentPageChanged(newIndex, pageCount);
+
+        try {
+            BookSettings bs = SettingsManager.getBookSettings(controller.getCurrentBook().getPath());
+            bs.updateFromAppState();
+            bs.currentPageChanged(newIndex, pageCount);
+            bs.save();
+        } catch (Exception e) {
+            LOG.e(e);
+        }
 
         wrapperControlls.updateUI();
         wrapperControlls.setTitle(bookTitle);

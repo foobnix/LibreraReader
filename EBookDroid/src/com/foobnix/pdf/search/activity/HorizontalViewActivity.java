@@ -1224,9 +1224,6 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
     @Override
     protected void onPause() {
         super.onPause();
-        if (dc != null) {
-            dc.saveCurrentPage();
-        }
         AppState.get().save(this);
         TempHolder.isSeaching = false;
 
