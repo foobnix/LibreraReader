@@ -53,7 +53,7 @@ public class PageUrl {
     public static PageUrl buildSmall(String path, int page) {
         int w = Dips.dpToPx(AppState.get().coverSmallSize);
         int h = (int) (w * 1.5);
-        return build(path, page, Dips.dpToPx(w), h);
+        return build(path, page, w, h);
     }
 
     public static int realToFake(int page) {
@@ -102,6 +102,9 @@ public class PageUrl {
         if (AppState.get().isDouble && !(AppState.get().isDoubleCoverAlone && page == 0)) {
             url.setPage(page * 2);
             url.setDouble(AppState.get().isDouble);
+
+            url.setWidth((int)(w * 0.7));
+            url.setHeight((int) (h * 0.7));
         }
         return url;
 
@@ -230,7 +233,6 @@ public class PageUrl {
         this.unic = unic;
     }
 
-
     public boolean isDouble() {
         return isDouble;
     }
@@ -246,6 +248,5 @@ public class PageUrl {
     public void setDoText(boolean doText) {
         this.doText = doText;
     }
-
 
 }

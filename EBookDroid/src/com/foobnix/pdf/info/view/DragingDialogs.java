@@ -116,6 +116,8 @@ import android.view.View.OnKeyListener;
 import android.view.View.OnLongClickListener;
 import android.view.ViewGroup;
 import android.view.inputmethod.EditorInfo;
+import android.widget.AbsListView;
+import android.widget.AbsListView.OnScrollListener;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.AdapterView.OnItemLongClickListener;
@@ -1329,6 +1331,7 @@ public class DragingDialogs {
             @Override
             public View getContentView(LayoutInflater inflater) {
                 View view = inflater.inflate(R.layout.dialog_go_to_page, null, false);
+                final View searchLayout = view.findViewById(R.id.searchLayout);
 
                 final EditText number = (EditText) view.findViewById(R.id.edit1);
                 number.clearFocus();
@@ -1336,7 +1339,7 @@ public class DragingDialogs {
                 final GridView grid = (GridView) view.findViewById(R.id.grid1);
                 int dpToPx = Dips.dpToPx(AppState.get().coverSmallSize);
 
-                if (AppState.get().isDouble && Dips.isHorizontal()) {
+                if (AppState.get().isDouble) {
                     dpToPx = dpToPx * 2;
                 }
                 grid.setColumnWidth(dpToPx);
@@ -1346,14 +1349,7 @@ public class DragingDialogs {
                     grid.setAdapter(new PageThumbnailAdapter(anchor.getContext(), controller.getPageCount(), controller.getCurentPageFirst1() - 1) {
                         @Override
                         public PageUrl getPageUrl(int page) {
-                            PageUrl pageUrl = null;
-                            if (controller.isTextFormat()) {
-                                // pageUrl = controller.getPageUrl(page);
-                            } else {
-                            }
-                            pageUrl = PageUrl.buildSmall(currentBook.getPath(), page);
-                            LOG.d("PageThumbnailAdapter", "getPageUrl", page);
-                            return pageUrl;
+                            return PageUrl.buildSmall(currentBook.getPath(), page);
                         };
                     });
                 }
@@ -1369,6 +1365,24 @@ public class DragingDialogs {
 
                 });
                 grid.setSelection(controller.getCurentPage() - 1);
+
+                grid.setOnScrollListener(new OnScrollListener() {
+
+                    @Override
+                    public void onScrollStateChanged(AbsListView view, int scrollState) {
+
+                    }
+
+                    @Override
+                    public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount, int totalItemCount) {
+                        LOG.d("onScroll", firstVisibleItem, Math.abs(firstVisibleItem - controller.getCurentPage()));
+                        if (firstVisibleItem < 3 || Math.abs(firstVisibleItem - controller.getCurentPage()) < 5) {
+                            searchLayout.setVisibility(View.VISIBLE);
+                        } else {
+                            searchLayout.setVisibility(View.GONE);
+                        }
+                    }
+                });
 
                 final View onSearch = view.findViewById(R.id.onSearch);
                 TintUtil.setTintBg(onSearch);

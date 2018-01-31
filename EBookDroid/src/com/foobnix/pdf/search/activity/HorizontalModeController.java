@@ -80,6 +80,7 @@ public abstract class HorizontalModeController extends DocumentController {
     }
 
     public void udpateImageSize(int w, int h) {
+        LOG.d("udpateImageSize", w, h, isTextFormat);
         imageWidth = isTextFormat ? w : (int) (Math.min(Dips.screenWidth(), Dips.screenHeight()) * AppState.get().pageQuality);
         imageHeight = isTextFormat ? h : (int) (Math.max(Dips.screenWidth(), Dips.screenHeight()) * AppState.get().pageQuality);
     }
@@ -181,9 +182,9 @@ public abstract class HorizontalModeController extends DocumentController {
 
         if (AppState.get().isDouble) {
             if (isTextFormat) {
-                imageWidth = Dips.screenWidth() / 2;
+                // imageWidth = Dips.screenWidth() / 2;
             } else {
-                imageWidth = (int) (Dips.screenWidth() * AppState.get().pageQuality / 2);
+                // imageWidth = (int) (Dips.screenWidth() * AppState.get().pageQuality / 2);
             }
         }
 
@@ -249,7 +250,7 @@ public abstract class HorizontalModeController extends DocumentController {
             currentPage = number;
         } else {
             currentPage = SettingsManager.getBookSettings(getBookPath()).getCurrentPage().viewIndex;
-            currentPage = PageUrl.realToFake(currentPage);
+            // currentPage = PageUrl.realToFake(currentPage);
         }
 
         LOG.d("_PAGE", "LOAD currentPage", currentPage, getBookPath());

@@ -4,15 +4,13 @@
     android:layout_height="wrap_content"
     android:gravity="center_horizontal"
     android:orientation="vertical"
-    android:padding="5dip" >
+    android:padding="2dip" >
 
     <ImageView
         android:id="@+id/image1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:adjustViewBounds="true"
-        android:cropToPadding="true" />
+        android:scaleType="centerInside" />
 
     <TextView
         android:id="@+id/text1"

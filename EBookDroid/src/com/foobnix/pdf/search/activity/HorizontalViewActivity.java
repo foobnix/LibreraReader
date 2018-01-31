@@ -451,12 +451,15 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
 
                     @Override
                     public boolean onMenuItemClick(MenuItem item) {
+
                         closeDialogs();
                         onModeChange.setImageResource(R.drawable.glyphicons_two_page_one);
                         AppState.get().isDouble = false;
                         AppState.get().isDoubleCoverAlone = false;
                         AppState.get().isCut = false;
                         SettingsManager.getBookSettings().updateFromAppState();
+
+
 
                         if (dc.isTextFormat()) {
                             nullAdapter();
@@ -475,6 +478,7 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
 
                     @Override
                     public boolean onMenuItemClick(MenuItem item) {
+
                         closeDialogs();
                         onModeChange.setImageResource(R.drawable.glyphicons_two_pages_12);
                         AppState.get().isDouble = true;
@@ -499,6 +503,7 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
 
                         @Override
                         public boolean onMenuItemClick(MenuItem item) {
+
                             closeDialogs();
                             onModeChange.setImageResource(R.drawable.glyphicons_two_pages_23);
                             AppState.get().isDouble = true;
@@ -524,6 +529,7 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
 
                         @Override
                         public boolean onMenuItemClick(MenuItem item) {
+
                             closeDialogs();
                             onModeChange.setImageResource(R.drawable.glyphicons_page_split);
                             AppState.get().isDouble = false;
@@ -1226,7 +1232,6 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
         super.onPause();
         AppState.get().save(this);
         TempHolder.isSeaching = false;
-
         handler.postDelayed(closeRunnable, AppState.APP_CLOSE_AUTOMATIC);
         handlerTimer.removeCallbacks(updateTimePower);
 
@@ -1534,7 +1539,7 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
                 EventBus.getDefault().post(new MessageAutoFit(pos));
             }
             handler.removeCallbacks(savePage);
-            handler.postDelayed(savePage, 5000);
+            handler.postDelayed(savePage, 1000);
 
             getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
             LOG.d("FLAG addFlags", "FLAG_KEEP_SCREEN_ON", dc.getActivity().getWindow().getAttributes().flags);

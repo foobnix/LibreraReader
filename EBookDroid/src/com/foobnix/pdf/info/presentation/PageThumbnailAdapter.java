@@ -1,6 +1,5 @@
 package com.foobnix.pdf.info.presentation;
 
-import com.foobnix.android.utils.Dips;
 import com.foobnix.android.utils.TxtUtils;
 import com.foobnix.pdf.info.IMG;
 import com.foobnix.pdf.info.PageUrl;
@@ -63,7 +62,7 @@ public class PageThumbnailAdapter extends BaseAdapter {
 
         ImageView img = (ImageView) view.findViewById(R.id.image1);
         LayoutParams lp = IMG.updateImageSizeSmall(img);
-        if (AppState.get().isDouble && Dips.isHorizontal()) {
+        if (AppState.get().isDouble) {
             lp.width = lp.width * 2;
         }
 
