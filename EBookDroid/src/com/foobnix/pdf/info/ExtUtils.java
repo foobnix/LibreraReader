@@ -816,7 +816,7 @@ public class ExtUtils {
         // 1. Check if there is a default app opener for this type of content.
         final PackageManager packageManager = context.getPackageManager();
         ResolveInfo defaultAppInfo = packageManager.resolveActivity(openIntent, PackageManager.MATCH_DEFAULT_ONLY);
-        if (!defaultAppInfo.activityInfo.name.endsWith("ResolverActivity")) {
+        if (defaultAppInfo != null && defaultAppInfo.activityInfo != null && defaultAppInfo.activityInfo.name != null && !defaultAppInfo.activityInfo.name.endsWith("ResolverActivity")) {
             return openIntent;
         }
 
@@ -871,7 +871,12 @@ public class ExtUtils {
     }
 
     public static void openWith(final Context a, final File file) {
+        try {
         a.startActivity(createOpenFileIntent(a, file));
+        } catch (Exception e) {
+            LOG.e(e);
+            Toast.makeText(a, e.getMessage(), Toast.LENGTH_LONG).show();
+        }
     }
 
     public static Uri getUriProvider(Context a, File file) {
