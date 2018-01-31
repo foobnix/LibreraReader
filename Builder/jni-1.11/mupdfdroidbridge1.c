@@ -1647,10 +1647,12 @@ fz_print_stext_page_as_text_my1(fz_context *ctx, fz_output *out, fz_stext_page *
 			fz_write_printf(ctx, out, "<p>");
 
 			fz_font *font = block->lines->first_span->text->style->font;
+			fz_font *font2 = block->lines->last_span->text->style->font;
 
-			int is_bold = fz_font_is_bold(ctx,font);
-			int is_italic = fz_font_is_italic(ctx, font);
-			int is_mono = fz_font_is_monospaced(ctx, font);
+
+			int is_bold = fz_font_is_bold(ctx,font) && fz_font_is_bold(ctx,font2);
+			int is_italic = fz_font_is_italic(ctx, font) && fz_font_is_italic(ctx, font2);
+			int is_mono = fz_font_is_monospaced(ctx, font) && fz_font_is_monospaced(ctx, font2);
 
 
 			if (is_bold) fz_write_printf(ctx,out,"<b>");

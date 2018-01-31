@@ -2,6 +2,7 @@
 #PATH=/home/papa/dev/apache-ant-1.9.4/bin:$PATH
 #PATH=/home/papa/dev/android-sdk-linux/platform-tools:$PATH
 
+./link_to_mupdf_1.11.sh
 ./inc-index.sh
 
 ant clean-apk
