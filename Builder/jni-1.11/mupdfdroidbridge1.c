@@ -6,6 +6,7 @@
 #include "mupdf/fitz.h"
 #include "mupdf/pdf.h"
 
+
 #include <stdio.h>
 #include <stdlib.h>
 
@@ -54,6 +55,8 @@ struct renderpage_s {
 #define RUNTIME_EXCEPTION "java/lang/RuntimeException"
 #define PASSWORD_REQUIRED_EXCEPTION "org/ebookdroid/droids/mupdf/codec/exceptions/MuPdfPasswordRequiredException"
 #define WRONG_PASSWORD_EXCEPTION "org/ebookdroid/droids/mupdf/codec/exceptions/MuPdfWrongPasswordEnteredException"
+
+
 
 extern fz_locks_context * jni_new_locks();
 extern void jni_free_locks(fz_locks_context *locks);
@@ -228,26 +231,17 @@ Java_org_ebookdroid_droids_mupdf_codec_MuPdfDocument_free(JNIEnv *env,
 }
 
 JNIEXPORT jstring JNICALL
-Java_org_ebookdroid_droids_mupdf_codec_MuPdfDocument_getTitle(JNIEnv *env,
-		jclass cls, jlong handle) {
+Java_org_ebookdroid_droids_mupdf_codec_MuPdfDocument_getMeta(JNIEnv *env,
+		jclass cls, jlong handle, jstring joptions) {
 	renderdocument_t *doc = (renderdocument_t*) (long) handle;
 	char info[256];
 
-	fz_lookup_metadata(doc->ctx, doc->document, FZ_META_INFO_TITLE, info, sizeof(info));
+	const char *options = (*env)->GetStringUTFChars(env, joptions, NULL);
+
+	fz_lookup_metadata(doc->ctx, doc->document, options, info, sizeof(info));
 
 	return (*env)->NewStringUTF(env, info);
 }
-JNIEXPORT jstring JNICALL
-Java_org_ebookdroid_droids_mupdf_codec_MuPdfDocument_getAuthor(JNIEnv *env,
-		jclass cls, jlong handle) {
-	renderdocument_t *doc = (renderdocument_t*) (long) handle;
-	char info[256];
-
-	fz_lookup_metadata(doc->ctx, doc->document, FZ_META_INFO_AUTHOR, info, sizeof(info));
-
-	return (*env)->NewStringUTF(env, info);
-}
-
 
 JNIEXPORT jint JNICALL
 Java_org_ebookdroid_droids_mupdf_codec_MuPdfDocument_getPageInfo(JNIEnv *env,
@@ -1598,10 +1592,128 @@ Java_org_ebookdroid_droids_mupdf_codec_MuPdfPage_addMarkupAnnotationInternal(JNI
 }
 
 
+void
+fz_print_stext_page_as_text_my1(fz_context *ctx, fz_output *out, fz_stext_page *page)
+{
+	int block_n;
+
+	for (block_n = 0; block_n < page->len; block_n++)
+	{
+		if (page->blocks[block_n].type == FZ_PAGE_BLOCK_IMAGE)
+		{
+			fz_write_printf(ctx, out, "<image-begin>");
+			//fz_write_image_as_data_uri(ctx, out, page->blocks[block_n].u.image);
+
+			//image begin
+
+
+			fz_image_block *image = page->blocks[block_n].u.image;
+			fz_compressed_buffer *buffer = fz_compressed_image_buffer(ctx, image->image);
+			//fz_write_printf(ctx, out, "<img width=%d height=%d src=\"data:", image->image->w, image->image->h);
+			switch (buffer == NULL ? FZ_IMAGE_JPX : buffer->params.type)
+			{
+			case FZ_IMAGE_JPEG:
+				fz_write_printf(ctx, out, "image/jpeg;base64,");
+				send_data_base64_stext(ctx, out, buffer->buffer);
+				break;
+			case FZ_IMAGE_PNG:
+				fz_write_printf(ctx, out, "image/png;base64,");
+				send_data_base64_stext(ctx, out, buffer->buffer);
+				break;
+			default:
+				{
+					fz_buffer *buf = fz_new_buffer_from_image_as_png(ctx, image->image);
+					fz_write_printf(ctx, out, "image/png;base64,");
+					send_data_base64_stext(ctx, out, buf);
+					fz_drop_buffer(ctx, buf);
+					break;
+				}
+			}
+			//fz_write_printf(ctx, out, "\">\n");
+
+
+			//image end
+
+
+			fz_write_string(ctx, out, "<image-end>");
+			fz_write_printf(ctx, out, "<br/>");
+		}else if(page->blocks[block_n].type == FZ_PAGE_BLOCK_TEXT){
+			fz_stext_block *block = page->blocks[block_n].u.text;
+			fz_stext_line *line;
+			fz_stext_char *ch;
+			char utf[10];
+			int i, n;
+
+			fz_write_printf(ctx, out, "<p>");
+
+			fz_font *font = block->lines->first_span->text->style->font;
+
+			int is_bold = fz_font_is_bold(ctx,font);
+			int is_italic = fz_font_is_italic(ctx, font);
+			int is_mono = fz_font_is_monospaced(ctx, font);
+
+
+			if (is_bold) fz_write_printf(ctx,out,"<b>");
+			if (is_italic) fz_write_printf(ctx,out,"<i>");
+			if (is_mono) fz_write_printf(ctx,out,"<tt>");
+
+			for (line = block->lines; line < block->lines + block->len; line++)
+			{
+				fz_stext_span *span;
+				for (span = line->first_span; span; span = span->next)
+				{
+
+					for (ch = span->text; ch < span->text + span->len; ch++)
+					{
+
+						int is_bold_ch = !is_bold && fz_font_is_bold(ctx, ch->style->font);
+						int is_italic_ch = !is_italic && fz_font_is_italic(ctx, ch->style->font);
+						int is_mono_ch = !is_mono && fz_font_is_monospaced(ctx, ch->style->font);
+
+
+						if (is_bold_ch) fz_write_printf(ctx,out,"<b>");
+						if (is_italic_ch) fz_write_printf(ctx,out,"<i>");
+						if (is_mono_ch) fz_write_printf(ctx,out,"<tt>");
+
+						switch (ch->c)
+							{
+							case '<': fz_write_string(ctx, out, "&lt;"); break;
+							case '>': fz_write_string(ctx, out, "&gt;"); break;
+							case '&': fz_write_string(ctx, out, "&amp;"); break;
+							case '"': fz_write_string(ctx, out, "&quot;"); break;
+							//case '\'': fz_write_string(ctx, out, "&apos;"); break;
+							default:
+								   n = fz_runetochar(utf, ch->c);
+									for (i = 0; i < n; i++)
+										fz_write_byte(ctx, out, utf[i]);
+								   break;
+							}
+
+						if (is_bold_ch) fz_write_printf(ctx,out,"</b>");
+						if (is_italic_ch) fz_write_printf(ctx,out,"</i>");
+						if (is_mono_ch) fz_write_printf(ctx,out,"</tt>");
+					}
+
+
+
+				fz_write_string(ctx, out, "<end-line>");
+				}
+			}
+			if (is_bold) fz_write_printf(ctx,out,"</b>");
+			if (is_italic) fz_write_printf(ctx,out,"</i>");
+			if (is_mono) fz_write_printf(ctx,out,"</tt>");
+			fz_write_printf(ctx,out,"</p>");
+			//fz_printf(ctx, out, "<br/>");
+		}
+	}
+
+}
+
+
 
 
 JNIEXPORT jbyteArray JNICALL
-Java_org_ebookdroid_droids_mupdf_codec_MuPdfPage_getPageAsHtml(JNIEnv * env, jobject thiz,  jlong handle, jlong pagehandle)
+Java_org_ebookdroid_droids_mupdf_codec_MuPdfPage_getPageAsHtml(JNIEnv * env, jobject thiz,  jlong handle, jlong pagehandle, jint opts)
 {
 
 	renderdocument_t *doc_t = (renderdocument_t*) (long) handle;
@@ -1624,6 +1736,8 @@ Java_org_ebookdroid_droids_mupdf_codec_MuPdfPage_getPageAsHtml(JNIEnv * env, job
 
 	fz_var(sheet);
 	fz_var(text);
+
+
 	fz_var(dev);
 	fz_var(buf);
 	fz_var(out);
@@ -1637,9 +1751,23 @@ Java_org_ebookdroid_droids_mupdf_codec_MuPdfPage_getPageAsHtml(JNIEnv * env, job
 
 		ctm = fz_identity;
 		sheet = fz_new_stext_sheet(ctx);
+
+
+		//fz_stext_options opts;
+		//fz_parse_stext_options(ctx, &opts, options);
+
 		text = fz_new_stext_page(ctx, fz_bound_page(ctx, page->page, &mediabox));
-		dev = fz_new_stext_device(ctx, sheet, text, NULL);
+
+
+		dev = fz_new_stext_device(ctx,sheet,text, NULL);
+		int j = (int)opts;
+		if(j != -1){
+			fz_disable_device_hints(ctx, dev, FZ_IGNORE_IMAGE);
+		}
+
+
 		fz_run_page(ctx, page->page, dev, &ctm, NULL);
+
 
 		fz_close_device(ctx, dev);
 		fz_drop_device(ctx, dev);
@@ -1650,7 +1778,7 @@ Java_org_ebookdroid_droids_mupdf_codec_MuPdfPage_getPageAsHtml(JNIEnv * env, job
 		buf = fz_new_buffer(ctx, 256);
 		out = fz_new_output_with_buffer(ctx, buf);
 
-		fz_print_stext_page(ctx, out, text);
+		fz_print_stext_page_as_text_my1(ctx, out, text);
 
 		fz_drop_output(ctx, out);
 		out = NULL;

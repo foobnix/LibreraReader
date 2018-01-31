@@ -10,6 +10,8 @@ import android.content.pm.PackageManager.NameNotFoundException;
 
 public class AppsConfig {
 
+    public static int MUPDF = 111;
+
     public static final String PRO_LIBRERA_READER = "com.foobnix.pro.pdf.reader";
 
     public static final String LIBRERA_READER = "com.foobnix.pdf.reader";

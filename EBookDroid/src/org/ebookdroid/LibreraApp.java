@@ -37,8 +37,10 @@ public class LibreraApp extends Application {
     public void onCreate() {
         super.onCreate();
 
-        int initNative = StructuredText.initNative();
-        LOG.d("initNative", initNative);
+        if (AppsConfig.MUPDF == 112) {
+            int initNative = StructuredText.initNative();
+            LOG.d("initNative", initNative);
+        }
 
         context = getApplicationContext();
         AppsConfig.init(getApplicationContext());
