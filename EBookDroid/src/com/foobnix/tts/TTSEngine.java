@@ -181,6 +181,9 @@ public class TTSEngine {
     }
 
     public boolean isPlaying() {
+        if (TempHolder.isRecordTTS) {
+            return false;
+        }
         return ttsEngine != null && ttsEngine.isSpeaking();
     }
 

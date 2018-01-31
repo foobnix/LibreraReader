@@ -1593,13 +1593,13 @@ Java_org_ebookdroid_droids_mupdf_codec_MuPdfPage_addMarkupAnnotationInternal(JNI
 
 
 void
-fz_print_stext_page_as_text_my1(fz_context *ctx, fz_output *out, fz_stext_page *page)
+fz_print_stext_page_as_text_my1(fz_context *ctx, fz_output *out, fz_stext_page *page, int opts)
 {
 	int block_n;
 
 	for (block_n = 0; block_n < page->len; block_n++)
 	{
-		if (page->blocks[block_n].type == FZ_PAGE_BLOCK_IMAGE)
+		if (opts == 4 && page->blocks[block_n].type == FZ_PAGE_BLOCK_IMAGE)
 		{
 			fz_write_printf(ctx, out, "<image-begin>");
 			//fz_write_image_as_data_uri(ctx, out, page->blocks[block_n].u.image);
@@ -1763,7 +1763,7 @@ Java_org_ebookdroid_droids_mupdf_codec_MuPdfPage_getPageAsHtml(JNIEnv * env, job
 
 		dev = fz_new_stext_device(ctx,sheet,text, NULL);
 		int j = (int)opts;
-		if(j != -1){
+		if(j == 4){
 			fz_disable_device_hints(ctx, dev, FZ_IGNORE_IMAGE);
 		}
 
@@ -1780,7 +1780,7 @@ Java_org_ebookdroid_droids_mupdf_codec_MuPdfPage_getPageAsHtml(JNIEnv * env, job
 		buf = fz_new_buffer(ctx, 256);
 		out = fz_new_output_with_buffer(ctx, buf);
 
-		fz_print_stext_page_as_text_my1(ctx, out, text);
+		fz_print_stext_page_as_text_my1(ctx, out, text, j);
 
 		fz_drop_output(ctx, out);
 		out = NULL;
