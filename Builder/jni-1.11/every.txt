@@ -112,5 +112,5 @@ if(p[1]=='b' && p[2]=='r' && p[3]=='>' && p[4]=='<' && p[5]=='b' && p[6]=='r' &&
 			goto parse_text;
 		}
 		
-//structured-text.h
+//structured-text.h, stext-output.c 
 void send_data_base64_stext(fz_context *ctx, fz_output *out, fz_buffer *buffer);
