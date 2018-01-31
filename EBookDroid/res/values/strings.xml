@@ -1,5 +1,5 @@
 <resources>
-<string name="___LIBRARY-SETTINGS-SECTION___"></string>
+   <string name="___LIBRARY___SETTINGS___SECTION___"></string>
    <string name="library_settings">Library settings</string>
    <string name="scan_device_for_new_books">Scan device for new books</string>
    <string name="add_folder">Add folder</string>
@@ -61,8 +61,7 @@
    <string name="beta_version">Beta version</string>
    <string name="archive">Archive</string>
    <string name="rate_pdf_reader1">Please give your feedback and rate us on Google Play, it is very important for further development</string>
-
-<string name="___PREFERENCES-SECTION___"></string>
+   <string name="___PREFERENCES___SECTION___"></string>
    <string name="formatted_text">Formatted text (pseudo graphics)</string>
    <string name="continuous_text">Continuous text (no line breaks)</string>
    <string name="customize_fonts">Customize fonts</string>
@@ -79,8 +78,7 @@
    <string name="dictionary">Dictionary</string>
    <string name="day">Day</string>
    <string name="nigth">Night</string>
-
-<string name="___READING-SETTINGS-SECTION___"></string>
+   <string name="___READING___SETTINGS___SECTION___"></string>
    <string name="reading_settings">Reading settings</string>
    <string name="folder_with_fonts">Fonts location</string>
    <string name="text_align">Text alignment</string>
@@ -101,8 +99,7 @@
    <string name="bottom">Bottom side</string>
    <string name="links_color_day">Links color at day</string>
    <string name="links_color_night">Links color at night</string>
-
-<string name="___ADVANCED-SETTINGS-SECTION___"></string>
+   <string name="___ADVANCED___SETTINGS___SECTION___"></string>
    <string name="advanced_settings">Advanced settings</string>
    <string name="direction_of_scrolling">Direction of scrolling</string>
    <string name="direction_of_reading_rtl_">Direction of reading (RTL)</string>
@@ -111,7 +108,7 @@
    <string name="right_page_then_left_page_rtl_">Right page then left page (RTL)</string>
    <string name="rotate_page">Rotate page</string>
    <string name="rotate_default">Default</string>
-   <string name="tap_zone_size">Tap-zone size</string>
+   <string name="tap_zone_size">Tap___zone size</string>
    <string name="customize_tap_zones">Customize tap zones</string>
    <string name="left_side">Left side</string>
    <string name="right_side">Right side</string>
@@ -133,14 +130,13 @@
    <string name="ignore_annotations_on_click">Ignore touch on annotations</string>
    <string name="save_new_annotations_automatically">Save new annotations automatically</string>
    <string name="selecting_text_by_letters">Select text by individual letters</string>
-   <string name="change_the_automatic_scrolling_speed_with_the_volume_keys">Change auto-scroll speed with volume keys</string>
+   <string name="change_the_automatic_scrolling_speed_with_the_volume_keys">Change auto___scroll speed with volume keys</string>
    <string name="enable_brightness_adjustment_on_the_left_of_the_screen">Adjust brightness on the left edge</string>
    <string name="scroll_speed">Mouse wheel sensitivity</string>
    <string name="page_quality">Page quality</string>
    <string name="pages_in_memory">Pages in memory</string>
    <string name="screen_turn_off_after_inactivity_minutes_">Minutes screen turns off after</string>
-
-<string name="___STATUS-BAR-SETTINGS-SECTION___"></string>
+   <string name="___STATUS___BAR___SETTINGS___SECTION___"></string>
    <string name="status_bar">Status bar</string>
    <string name="show_status_bar">Show status bar</string>
    <string name="show_progress_of_reading">Show progress of reading</string>
@@ -150,8 +146,7 @@
    <string name="line_height">Bar height</string>
    <string name="text_color_day">Day text color</string>
    <string name="text_color_night">Text color at night</string>
-
-<string name="___MULTIPLE-SECTIONS___"></string>
+   <string name="___MULTIPLE___SECTIONS___"></string>
    <string name="preferences">Preferences</string>
    <string name="language">Language</string>
    <string name="font_size">Font size</string>
@@ -173,8 +168,7 @@
    <string name="export_bookmarks">Export bookmarks</string>
    <string name="simple_scroll_animation">Simple scroll animation</string>
    <string name="close_application">Close application</string>
-
-<string name="___TABS-SECTION___"></string>
+   <string name="___TABS___SECTION___"></string>
    <string name="library">Library</string>
    <string name="extracting_information_from_books">Extracting information from files</string>
    <string name="no_author">No author</string>
@@ -221,8 +215,7 @@
    <string name="favorites">Favorites</string>
    <string name="my_favorites_links">My favorites links</string>
    <string name="what_is_the_opds_online_catalog_">What is OPDS online catalog?</string>
-
-<string name="___DIALOGS-SECTION___"></string>
+   <string name="___DIALOGS___SECTION___"></string>
    <string name="ok">Ok</string>
    <string name="yes">Yes</string>
    <string name="no">No</string>
@@ -237,8 +230,7 @@
    <string name="do_you_want_to_clear_everything_">Do you want to clear everything?</string>
    <string name="close_application_">Close application?</string>
    <string name="new_beta_version_available">New beta version available</string>
-
-<string name="___NOTIFICATION-SECTION___"></string>
+   <string name="___NOTIFICATION___SECTION___"></string>
    <string name="fail">Fail</string>
    <string name="success">Success</string>
    <string name="please_wait">Please wait</string>
@@ -254,8 +246,7 @@
    <string name="can_t_download">Can\'t download</string>
    <string name="loading_error">Loading error</string>
    <string name="loading_failed">Page Loading Failed</string>
-
-<string name="___CONTEXT-MENU-SECTION___"></string>
+   <string name="___CONTEXT___MENU___SECTION___"></string>
    <string name="select_the_reading_mode">Select reading mode</string>
    <string name="convert_to">Convert to</string>
    <string name="mode_vertical">\"Scroll\" mode</string>
@@ -274,8 +265,7 @@
    <string name="archive_files">Archive files</string>
    <string name="open_file">Open file</string>
    <string name="read_a_book">Read</string>
-
-<string name="___SORT-AND-VIEW-SECTION___"></string>   
+   <string name="___SORT___AND___VIEW___SECTION___"></string>
    <string name="by_path">File path</string>
    <string name="by_file_name">File name</string>
    <string name="by_size">Size</string>
@@ -291,8 +281,7 @@
    <string name="author">Author</string>
    <string name="genre">Genre</string>
    <string name="serie">Series</string>
-   
-<string name="___READING-SCREEN-SECTION___"></string>   
+   <string name="___READING___SCREEN___SECTION___"></string>
    <string name="enter_password">Enter Password</string>
    <string name="page_position">Page position</string>
    <string name="open_web_page">Open Web Page</string>
@@ -337,8 +326,7 @@
    <string name="foot_notes">Footnote</string>
    <string name="set_the_current_page_number">Set the current page number</string>
    <string name="the_book_is_over">The book is over</string>
-   
-<string name="___SELECT-TEXT-SECTION___"></string>   
+   <string name="___SELECT___TEXT___SECTION___"></string>
    <string name="highlight_of_text">Highlight</string>
    <string name="underline_of_text">Underline</string>
    <string name="strikethrough_of_text">Strikethrough</string>
@@ -350,18 +338,15 @@
    <string name="search_in_google">Search in Google</string>
    <string name="search_in_document">Search in Document</string>
    <string name="web_dict">Web Dictionary</string>
-  
-<string name="___TO-CHECK-SECTION___"></string>   
+   <string name="___TO___CHECK___SECTION___"></string>
    <string name="font">Font</string>
    <string name="font_name">Font</string>
    <string name="text_page">Page</string>
    <string name="page">Page</string>
-
-<string name="___INDEFINITE-SECTION___"></string>
+   <string name="___INDEFINITE___SECTION___"></string>
    <string name="choose_">Choose...</string>
    <string name="crop_white_borders">Crop white borders</string>
-   <string name="full_screen_">Full Screen</string>
-   <string name="fullscreen">Fullscreen</string>
+   <string name="full_screen">Full Screen</string>
    <string name="go">Go</string>
    <string name="invert_colors">Invert colors</string>
    <string name="keys">Keys</string>
@@ -425,8 +410,7 @@
    <string name="cd_add_new_opds_catalog">Add new OPDS catalog</string>
    <string name="can_t_delete_file">Can\'t delete file</string>
    <string name="switch_off">Switch off</string>
-
-<string name="___RECENTLY-ADDED-SECTION___"></string>
+   <string name="___RECENTLY___ADDED___SECTION___"></string>
    <string name="read_the_tutorial_online_or_download_in_pdf_format">Read tutorial online or download in PDF format</string>
    <string name="start_recording">Start recording</string>
    <string name="favorite_folders_and_books">Favorite books and folders</string>

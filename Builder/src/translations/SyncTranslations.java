@@ -9,7 +9,6 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.StandardCopyOption;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Comparator;
 import java.util.Iterator;
 import java.util.List;
@@ -103,6 +102,7 @@ public class SyncTranslations {
         final ResourcesModel in = load(inFile);
         final ResourcesModel out = normilize(load(outFile));
 
+        int i = 0;
         for (final StringModel model : in.getStrings()) {
             if (!hasKey(out, model.getName())) {
                 String text = model.getText();
@@ -111,8 +111,9 @@ public class SyncTranslations {
                 }
                 text = normilizeText(text);
                 model.setText(text);
-                out.getStrings().add(model);
+                out.getStrings().add(i, model);
             }
+            i++;
         }
 
         final Iterator<StringModel> iterator = out.getStrings().iterator();
@@ -121,11 +122,12 @@ public class SyncTranslations {
             if (!hasKey(in, next.getName())) {
                 iterator.remove();
             }
-            final boolean app = Arrays.asList("app_name_beta", "app_name_prod").contains(next.getName());
-            if (!app && sameText(in, next.getName(), next.getText())) {
-                // next.setText(unTranslated(next.getText()));
-                // System.out.println(next.getText());
-            }
+            // final boolean app = Arrays.asList("app_name_beta",
+            // "app_name_prod").contains(next.getName());
+            // if (!app && sameText(in, next.getName(), next.getText())) {
+            // next.setText(unTranslated(next.getText()));
+            // System.out.println(next.getText());
+            // }
         }
 
         save(outFile, out);
@@ -210,6 +212,9 @@ public class SyncTranslations {
     }
 
     private static String normilizeText(String text) {
+        if (text == null || text.length() == 0) {
+            return "";
+        }
         text = text.trim();
         if (text.startsWith("\"") && text.endsWith("\"")) {
             text = text.substring(1, text.length() - 1);
@@ -238,6 +243,9 @@ public class SyncTranslations {
     }
 
     private static String unTranslated(String text, String lang) {
+        if (text == null || text.length() == 0) {
+            return "";
+        }
         if (!text.startsWith("[T]")) {
             // text = "[T]" + text;
             try {

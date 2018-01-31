@@ -17,7 +17,7 @@ public class StringModel {
     @Attribute(required = false)
     private Boolean formatted;
 
-    @Text
+    @Text(empty = "", required = false)
     private String text;
 
     public StringModel() {
@@ -36,7 +36,6 @@ public class StringModel {
     public void setName(String name) {
         this.name = name;
     }
-
 
     public Boolean getFormatted() {
         return formatted;
