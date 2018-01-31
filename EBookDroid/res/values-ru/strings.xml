@@ -462,7 +462,7 @@
    <string name="incorrect_password">Пароль неверный</string>
    <string name="repeat_password">Введите пароль еще раз</string>
    <string name="internal_storage">Внутр. карта памяти</string>
-   <string name="the_page_is_clipped_the_text_selection_does_not_work">Включена автообрезка пустых полей, поэтому выделить текст нельзя</string>
+   <string name="the_page_is_clipped_the_text_selection_does_not_work">При включенной автообрезке пустых полей и (или) делении страниц пополам выделить текст нельзя</string>
    <string name="title">Заголовок</string>
    <string name="subject">Тема</string>
    <string name="keywords">Ключевые слова</string>
@@ -479,5 +479,5 @@
    <string name="mode_musician">Режим \"Музыкант\"</string>
    <string name="backup_folder">Папка для автом. экспорта настроек</string>
    <string name="audio_books_folder">Папка для начит. голосом книг</string>
-   <string name="enable_contrast_and_brightness">Включить контраст и яркость</string>
+   <string name="enable_contrast_and_brightness">Включить</string>
 </resources>
