@@ -132,6 +132,7 @@
    <string name="to_stop">Sustinere</string>
    <string name="to_read">Lege</string>
    <string name="enter_password">Inducere tesseram</string>
+   <string name="scroll_speed">Mus sensus rotam</string>
    <string name="___TABS___SECTION___"></string>
    <string name="text_to_speech">Scriptum recitare</string>
    <string name="application_user_guide_">Manuale</string>
@@ -298,7 +299,7 @@
    <string name="show_progress_of_reading">Demostrare striam progressioni</string>
    <string name="line_height">Striai statura</string>
    <string name="display_chapters_on_the_progress_line">Ostendere scarifationes capitulum striad progressioni</string>
-   <string name="enable_brightness_adjustment_on_the_left_of_the_screen">Adtempere candorem laevad lateri velarii</string>/string>
+   <string name="enable_brightness_adjustment_on_the_left_of_the_screen">Adtempere candorem laevad lateri velarii</string>
    <string name="enable_rewind_of_pages_using_the_read_progress_line">Mutare paginas prolabendi secundum linea progressioni</string>
    <string name="catalogs">Catalogi</string>
    <string name="can_t_download">Tractum iri non possit</string>
@@ -381,7 +382,6 @@
    <string name="you_need_to_update_the_library">You need to update the library</string>
    <string name="theme_color">Color thematis</string>
    <string name="add_folder">Subdere coopercula</string>
-   <string name="mouse_scroll_speed">Mollitio rot. muris</string>
    <string name="full_list_of_changes_with_images_web_pdf_">Full list of changes with images (web, PDF)</string>
    <string name="select_the_reading_mode">Elige modum lectionis</string>
    <string name="remember_choice">Meminisse</string>
@@ -412,7 +412,7 @@
    <string name="start_recording">Initiare irrotulationem</string>
    <string name="favorite_folders_and_books">Libri ac coopercula electa</string>
    <string name="don_t_show_this_dialog">Meminisse</string>
-   <string name="show_the_book_close_dialog">Exitus e libero semper confirmandum est </string>
+   <string name="show_the_book_close_dialog">Exitus e libero semper confirmandum est</string>
    <string name="search_completed">Search completed</string>
    <string name="you_can_search_only_one_word">You can search only one word</string>
    <string name="passwords_do_not_match">Tesserae inaequales</string>
