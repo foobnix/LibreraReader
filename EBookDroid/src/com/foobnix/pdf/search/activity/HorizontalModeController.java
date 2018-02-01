@@ -180,12 +180,8 @@ public abstract class HorizontalModeController extends DocumentController {
             }
         }
 
-        if (AppState.get().isDouble) {
-            if (isTextFormat) {
-                // imageWidth = Dips.screenWidth() / 2;
-            } else {
-                // imageWidth = (int) (Dips.screenWidth() * AppState.get().pageQuality / 2);
-            }
+        if (AppState.get().isDouble && isTextFormat) {
+                imageWidth = Dips.screenWidth() / 2;
         }
 
         FileMetaCore.checkOrCreateMetaInfo(activity);

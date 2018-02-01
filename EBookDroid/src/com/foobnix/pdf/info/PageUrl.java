@@ -103,8 +103,10 @@ public class PageUrl {
             url.setPage(page * 2);
             url.setDouble(AppState.get().isDouble);
 
-            url.setWidth((int)(w * 0.7));
-            url.setHeight((int) (h * 0.7));
+            if (!ExtUtils.isTextFomat(path)) {
+                url.setWidth((int) (w * 0.7));
+                url.setHeight((int) (h * 0.7));
+            }
         }
         return url;
 
