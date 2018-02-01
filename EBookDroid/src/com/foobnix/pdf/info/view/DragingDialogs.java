@@ -1364,6 +1364,22 @@ public class DragingDialogs {
                     }
 
                 });
+                grid.setOnItemLongClickListener(new OnItemLongClickListener() {
+
+                    @Override
+                    public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
+                        Vibro.vibrate();
+                        if (grid.isFastScrollEnabled()) {
+                            grid.setFastScrollEnabled(false);
+                            grid.setFastScrollAlwaysVisible(false);
+                        } else {
+                            grid.setFastScrollEnabled(true);
+                            grid.setFastScrollAlwaysVisible(true);
+                        }
+                        return true;
+                    }
+                });
+
                 grid.setSelection(controller.getCurentPage() - 1);
 
                 grid.setOnScrollListener(new OnScrollListener() {
@@ -1376,7 +1392,7 @@ public class DragingDialogs {
                     @Override
                     public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount, int totalItemCount) {
                         LOG.d("onScroll", firstVisibleItem, Math.abs(firstVisibleItem - controller.getCurentPage()));
-                        if (firstVisibleItem < 3 || Math.abs(firstVisibleItem - controller.getCurentPage()) < 5) {
+                        if (firstVisibleItem < 3 || Math.abs(firstVisibleItem - controller.getCurentPage()) < 20) {
                             searchLayout.setVisibility(View.VISIBLE);
                         } else {
                             searchLayout.setVisibility(View.GONE);

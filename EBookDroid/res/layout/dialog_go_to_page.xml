@@ -17,6 +17,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:imeOptions="actionDone"
+            
             android:singleLine="true"
             android:visibility="visible" >
         </EditText>
@@ -27,8 +28,7 @@
             android:layout_width="@dimen/wh_button"
             android:layout_height="@dimen/wh_button"
             android:layout_weight="0"
-            android:src="@drawable/glyphicons_28_search1"
-             />
+            android:src="@drawable/glyphicons_28_search1" />
     </LinearLayout>
 
     <GridView
@@ -36,12 +36,9 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:choiceMode="singleChoice"
-        android:numColumns="auto_fit"
-        android:paddingRight="20dp"
-        android:scrollbars="none"
         android:scrollbarStyle="outsideOverlay"
-        android:fastScrollEnabled="true"
-        android:fastScrollAlwaysVisible="false"
+        android:numColumns="auto_fit"
+        android:scrollbars="none"
         android:stretchMode="columnWidth" >
     </GridView>
 

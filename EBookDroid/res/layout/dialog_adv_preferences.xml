@@ -205,10 +205,8 @@
         
         <CheckBox
             android:id="@+id/isVibration"
-            android:visibility="gone"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            
             android:text="@string/enable_vibration_for_some_actions" />
 
         
