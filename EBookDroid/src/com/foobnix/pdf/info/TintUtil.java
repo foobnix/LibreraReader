@@ -30,7 +30,7 @@ public class TintUtil {
     public static final int RADIUS = Dips.dpToPx(2);
     public static final int STROKE = Dips.dpToPx(1);
     public static int itAlpha = 245;
-    public static int colorSecondTab = Color.parseColor("#ddffffff");// Color.parseColor("#9fd8bc");
+    public static int colorSecondTab = Color.parseColor("#eeffffff");// Color.parseColor("#9fd8bc");
     public static int color = Color.parseColor(AppState.STYLE_COLORS.get(0));
     private static List<Drawable> drawables = new ArrayList<Drawable>();
     private static List<GradientDrawable> drawableFill = new ArrayList<GradientDrawable>();
