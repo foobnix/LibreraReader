@@ -1374,7 +1374,7 @@ public class DragingDialogs {
                             grid.setFastScrollAlwaysVisible(false);
                         } else {
                             grid.setFastScrollEnabled(true);
-                            grid.setFastScrollAlwaysVisible(true);
+                            grid.setFastScrollAlwaysVisible(false);
                         }
                         return true;
                     }

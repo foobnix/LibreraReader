@@ -43,6 +43,9 @@ public class Views {
     }
 
     public static void showHelpToast(final ImageView anchor) {
+        if (anchor == null) {
+            return;
+        }
         try {
             showHelpToastUnsafe(anchor);
         } catch (Exception e) {

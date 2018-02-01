@@ -9,6 +9,7 @@ import java.util.Map;
 import org.ebookdroid.LibreraApp;
 
 import com.foobnix.android.utils.BaseItemLayoutAdapter;
+import com.foobnix.android.utils.LOG;
 import com.foobnix.android.utils.TxtUtils;
 import com.foobnix.android.utils.Views;
 import com.foobnix.pdf.info.DictsHelper;
@@ -128,31 +129,36 @@ public class DialogTranslateFromTo {
     }
 
     public static String getLanuageByCode(String code) {
-        if (LibreraApp.context == null) {
-            return "";
-        }
-        if (AppState.MY_SYSTEM_LANG.equals(code)) {
-            return LibreraApp.context.getString(R.string.system_language);
-        }
         try {
-            Locale l = new Locale(code);
-            return TxtUtils.firstUppercase(l.getDisplayLanguage(l));
-        } catch (Exception e) {
-        }
-
-        if (TxtUtils.isEmpty(code)) {
-            return "";
-        }
-        if (code.length() > 2) {
-            code = code.substring(0, 2);
-        }
-        for (String key : langs.keySet()) {
-            String value = langs.get(key);
-            if (code.equals(value)) {
-                return key;
+            if (LibreraApp.context == null) {
+                return "";
             }
+            if (AppState.MY_SYSTEM_LANG.equals(code)) {
+                return LibreraApp.context.getString(R.string.system_language);
+            }
+            try {
+                Locale l = new Locale(code);
+                return TxtUtils.firstUppercase(l.getDisplayLanguage(l));
+            } catch (Exception e) {
+            }
+
+            if (TxtUtils.isEmpty(code)) {
+                return "";
+            }
+            if (code.length() > 2) {
+                code = code.substring(0, 2);
+            }
+            for (String key : langs.keySet()) {
+                String value = langs.get(key);
+                if (code.equals(value)) {
+                    return key;
+                }
+            }
+        } catch (Exception e) {
+            LOG.e(e);
         }
         return code;
+
     }
 
     public static Spanned getSelectedDictionaryUnderline() {

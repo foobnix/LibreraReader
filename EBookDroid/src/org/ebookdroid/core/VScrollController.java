@@ -67,8 +67,12 @@ public class VScrollController extends AbstractScrollController {
     @Override
     public final Rect getScrollLimits() {
         if (model.getPageCount() == 1) {
-            int w = (getWidth()) / 2;
-            int h = (getHeight()) / 2;
+            float zoom = getBase().getZoomModel().getZoom();
+            if (zoom < 1) {
+                zoom = 1;
+            }
+            int w = (int) (getWidth() * zoom);
+            int h = (int) (getHeight() * zoom);
             return new Rect(-1 * w, -1 * h, w, h);
         }
         final int width = getWidth();
