@@ -16,7 +16,6 @@ public class VScrollController extends AbstractScrollController {
         super(base, DocumentViewMode.VERTICALL_SCROLL);
     }
 
-
     /**
      * {@inheritDoc}
      * 
@@ -29,8 +28,7 @@ public class VScrollController extends AbstractScrollController {
 
         final int viewY = Math.round(viewState.viewRect.centerY());
 
-        final Iterable<Page> pages = firstVisible != -1 ? viewState.model.getPages(firstVisible, lastVisible + 1)
-                : viewState.model.getPages(0);
+        final Iterable<Page> pages = firstVisible != -1 ? viewState.model.getPages(firstVisible, lastVisible + 1) : viewState.model.getPages(0);
 
         for (final Page page : pages) {
             final RectF bounds = viewState.getBounds(page);
@@ -68,6 +66,11 @@ public class VScrollController extends AbstractScrollController {
      */
     @Override
     public final Rect getScrollLimits() {
+        if (model.getPageCount() == 1) {
+            int w = (getWidth()) / 2;
+            int h = (getHeight()) / 2;
+            return new Rect(-1 * w, -1 * h, w, h);
+        }
         final int width = getWidth();
         final int height = getHeight();
         final Page lpo = model.getLastPageObject();
@@ -75,14 +78,9 @@ public class VScrollController extends AbstractScrollController {
 
         final int bottom = lpo != null ? (int) lpo.getBounds(zoom).bottom - height : 0;
 
-        // int right = Math.abs((int) (width * zoom) - width);
-        // int left = -2 * right;
-        int right = (int) (getWidth() * zoom) - 120;
-        int left = -1 * getWidth() + 120;
-        // LOG.d("DEBUG", String.format("%s %s %s %s", getWidth(), zoom, right, left));
-        // int right = (int) (getWidth() * 0.5);
-        // right = Math.abs(right);
-        // final int left = (int) -1.5 * right;
+        int right = (int) (width * zoom) - 120;
+        int left = -1 * width + 120;
+
         return new Rect(left, 0, right, bottom);
     }
 
@@ -129,11 +127,11 @@ public class VScrollController extends AbstractScrollController {
     /**
      * {@inheritDoc}
      * 
-     * @see org.ebookdroid.ui.viewer.IViewController#calcPageBounds(org.ebookdroid.core.Page, int, int)
+     * @see org.ebookdroid.ui.viewer.IViewController#calcPageBounds(org.ebookdroid.core.Page,
+     *      int, int)
      */
     @Override
-    public RectF calcPageBounds(final PageAlign pageAlign, final float pageAspectRatio, final int width,
-            final int height) {
+    public RectF calcPageBounds(final PageAlign pageAlign, final float pageAspectRatio, final int width, final int height) {
         return new RectF(0, 0, width, width / pageAspectRatio);
     }
 }

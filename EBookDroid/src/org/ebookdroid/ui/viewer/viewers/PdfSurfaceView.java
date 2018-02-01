@@ -49,8 +49,6 @@ public final class PdfSurfaceView extends android.view.SurfaceView implements IV
         getHolder().addCallback(this);
     }
 
-
-
     @Override
     public void onWindowFocusChanged(boolean hasWindowFocus) {
         super.onWindowFocusChanged(hasWindowFocus);
@@ -222,7 +220,6 @@ public final class PdfSurfaceView extends android.view.SurfaceView implements IV
                 PdfSurfaceView.super.scrollTo(xx, yy);
             }
         };
-
         base.getActivity().runOnUiThread(r);
     }
 
