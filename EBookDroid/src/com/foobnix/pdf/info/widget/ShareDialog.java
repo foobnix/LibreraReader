@@ -115,6 +115,8 @@ public class ShareDialog {
             }
         }
 
+        items.add(AppState.get().nameMusicianMode);
+
         if (isPDF) {
             items.add(a.getString(R.string.make_text_reflow));
         }
@@ -132,70 +134,83 @@ public class ShareDialog {
         items.add(a.getString(R.string.file_info));
 
         final AlertDialog.Builder builder = new AlertDialog.Builder(a);
-        //builder.setTitle(R.string.choose_)//
+        // builder.setTitle(R.string.choose_)//
         builder.setItems(items.toArray(new String[items.size()]), new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(final DialogInterface dialog, final int which) {
-                        int i = 0;
+            @Override
+            public void onClick(final DialogInterface dialog, final int which) {
+                int i = 0;
 
+                if (isLibrary && which == i++) {
+                    a.finish();
+                    MainTabs2.startActivity(a, UITab.getCurrentTabIndex(UITab.SearchFragment));
+                }
 
-                        if (isLibrary && which == i++) {
-                            a.finish();
-                            MainTabs2.startActivity(a, UITab.getCurrentTabIndex(UITab.SearchFragment));
+                if (dc != null && a instanceof HorizontalViewActivity && which == i++) {
+                    dc.onCloseActivityFinal(new Runnable() {
+
+                        @Override
+                        public void run() {
+                            AppState.get().isMusicianMode = false;
+                            AppState.get().isAlwaysOpenAsMagazine = false;
+                            ExtUtils.showDocumentWithoutDialog(a, file, page + 1);
+
                         }
+                    });
 
-                        if (dc != null && a instanceof HorizontalViewActivity && which == i++) {
-                            dc.onCloseActivityFinal(new Runnable() {
+                }
+                if (dc != null && a instanceof VerticalViewActivity && which == i++) {
+                    if (dc != null) {
+                        dc.onCloseActivityFinal(new Runnable() {
 
-                                @Override
-                                public void run() {
-                                    AppState.get().isMusicianMode = false;
-                                    AppState.get().isAlwaysOpenAsMagazine = false;
-                                    ExtUtils.showDocumentWithoutDialog(a, file, page + 1);
-
-                                }
-                            });
-
-                        } else if (dc != null && a instanceof VerticalViewActivity && which == i++) {
-                            if (dc != null) {
-                                dc.onCloseActivityFinal(new Runnable() {
-
-                                    @Override
-                                    public void run() {
-                                        AppState.get().isMusicianMode = false;
-                                        AppState.get().isAlwaysOpenAsMagazine = true;
-                                        ExtUtils.showDocumentWithoutDialog(a, file, page + 1);
-                                    }
-                                });
+                            @Override
+                            public void run() {
+                                AppState.get().isMusicianMode = false;
+                                AppState.get().isAlwaysOpenAsMagazine = true;
+                                ExtUtils.showDocumentWithoutDialog(a, file, page + 1);
                             }
-                        }
-                else if (isPDF && which == i++) {
+                        });
+                    }
+                }
+                if (which == i++) {
+                    if (dc != null) {
+                        dc.onCloseActivityFinal(new Runnable() {
+
+                            @Override
+                            public void run() {
+                                AppState.get().isMusicianMode = true;
+                                AppState.get().isAlwaysOpenAsMagazine = false;
+                                ExtUtils.showDocumentWithoutDialog(a, file, page + 1);
+                            }
+                        });
+                    }
+                }
+                if (isPDF && which == i++) {
                     ExtUtils.openPDFInTextReflow(a, file, page + 1, dc);
                 }
 
-                        if (which == i++) {
-                            ExtUtils.openWith(a, file);
-                        } else if (which == i++) {
-                            ExtUtils.sendFileTo(a, file);
-                        } else if (which == i++) {
-                            ExtUtils.sendBookmarksTo(a, file);
-                        } else if (isMainTabs && which == i++) {
-                            FileInformationDialog.dialogDelete(a, file, onDeleteAction);
-                        } else if (isMainTabs && which == i++) {
-                            AppDB.get().deleteBy(file.getPath());
-                            EventBus.getDefault().post(new UpdateAllFragments());
-                        } else if (!isMainTabs && which == i++) {
-                            if (dc != null) {
-                                ExtUtils.sharePage(a, file, page, dc.getPageUrl(page).toString());
-                            } else {
-                                ExtUtils.sharePage(a, file, page, null);
-                            }
-                        } else if (which == i++) {
-                            FileInformationDialog.showFileInfoDialog(a, file, onDeleteAction);
-                        }
-
+                if (which == i++) {
+                    ExtUtils.openWith(a, file);
+                } else if (which == i++) {
+                    ExtUtils.sendFileTo(a, file);
+                } else if (which == i++) {
+                    ExtUtils.sendBookmarksTo(a, file);
+                } else if (isMainTabs && which == i++) {
+                    FileInformationDialog.dialogDelete(a, file, onDeleteAction);
+                } else if (isMainTabs && which == i++) {
+                    AppDB.get().deleteBy(file.getPath());
+                    EventBus.getDefault().post(new UpdateAllFragments());
+                } else if (!isMainTabs && which == i++) {
+                    if (dc != null) {
+                        ExtUtils.sharePage(a, file, page, dc.getPageUrl(page).toString());
+                    } else {
+                        ExtUtils.sharePage(a, file, page, null);
                     }
-                });
+                } else if (which == i++) {
+                    FileInformationDialog.showFileInfoDialog(a, file, onDeleteAction);
+                }
+
+            }
+        });
         AlertDialog create = builder.create();
         create.setOnDismissListener(new OnDismissListener() {
 
