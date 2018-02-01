@@ -108,14 +108,17 @@ public class ShareDialog {
         }
 
         if (dc != null) {
-            if (a instanceof VerticalViewActivity) {
+            if (a instanceof VerticalViewActivity || AppState.get().isMusicianMode) {
                 items.add(AppState.get().nameHorizontalMode);
-            } else if (a instanceof HorizontalViewActivity) {
+            }
+            if (a instanceof HorizontalViewActivity || AppState.get().isMusicianMode) {
                 items.add(AppState.get().nameVerticalMode);
             }
         }
 
-        items.add(AppState.get().nameMusicianMode);
+        if (AppState.get().isMusicianMode == false) {
+            items.add(AppState.get().nameMusicianMode);
+        }
 
         if (isPDF) {
             items.add(a.getString(R.string.make_text_reflow));
@@ -145,33 +148,42 @@ public class ShareDialog {
                     MainTabs2.startActivity(a, UITab.getCurrentTabIndex(UITab.SearchFragment));
                 }
 
-                if (dc != null && a instanceof HorizontalViewActivity && which == i++) {
+                if (dc != null && (a instanceof HorizontalViewActivity || AppState.get().isMusicianMode) && which == i++) {
                     dc.onCloseActivityFinal(new Runnable() {
 
                         @Override
                         public void run() {
+                            if (AppState.get().isMusicianMode) {
+                                AppState.get().isAlwaysOpenAsMagazine = true;
+                            } else {
+                                AppState.get().isAlwaysOpenAsMagazine = false;
+                            }
                             AppState.get().isMusicianMode = false;
-                            AppState.get().isAlwaysOpenAsMagazine = false;
                             ExtUtils.showDocumentWithoutDialog(a, file, page + 1);
 
                         }
                     });
 
                 }
-                if (dc != null && a instanceof VerticalViewActivity && which == i++) {
+                if (dc != null && (a instanceof VerticalViewActivity || AppState.get().isMusicianMode) && which == i++) {
                     if (dc != null) {
                         dc.onCloseActivityFinal(new Runnable() {
 
                             @Override
                             public void run() {
+                                if (AppState.get().isMusicianMode) {
+                                    AppState.get().isAlwaysOpenAsMagazine = false;
+                                } else {
+                                    AppState.get().isAlwaysOpenAsMagazine = true;
+
+                                }
                                 AppState.get().isMusicianMode = false;
-                                AppState.get().isAlwaysOpenAsMagazine = true;
                                 ExtUtils.showDocumentWithoutDialog(a, file, page + 1);
                             }
                         });
                     }
                 }
-                if (which == i++) {
+                if (AppState.get().isMusicianMode == false && which == i++) {
                     if (dc != null) {
                         dc.onCloseActivityFinal(new Runnable() {
 
