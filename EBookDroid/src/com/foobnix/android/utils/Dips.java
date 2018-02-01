@@ -64,11 +64,14 @@ public class Dips {
 
     public static boolean isEInk(Context context) {
         boolean isEink = getRefreshRate(context) < 30.0;
-        String brand = Build.BRAND.toLowerCase(Locale.US);
-        if (!isEink && (brand.contains("onyx") || brand.contains("icarus") || brand.contains("yota") || brand.contains("nook"))) {
+        if (isEink) {
             return true;
         }
-        return isEink;
+        String brand = Build.BRAND.toLowerCase(Locale.US);
+        if (brand.contains("onyx") || brand.contains("icarus") || brand.contains("yota") || brand.contains("nook")) {
+            return true;
+        }
+        return false;
     }
 
     @TargetApi(Build.VERSION_CODES.JELLY_BEAN_MR1)

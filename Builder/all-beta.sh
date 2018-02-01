@@ -13,6 +13,8 @@ ant arm+arm64 pdf-beta
 #ant arm64 pdf-beta
 #ant x86 pdf-beta
 
+ant x86
+
 ant version
 
 ./remove_all.sh
