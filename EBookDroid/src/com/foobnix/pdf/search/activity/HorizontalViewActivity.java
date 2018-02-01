@@ -665,8 +665,8 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
                     public void run() {
                         isCancelled = true;
                         TempHolder.get().loadingCancelled = true;
-                        finish();
                         CacheZipUtils.removeFiles(CacheZipUtils.CACHE_BOOK_DIR.listFiles());
+                        finish();
                     }
                 });
             };
@@ -1620,7 +1620,7 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
         handler.removeCallbacksAndMessages(null);
 
         final boolean currentPosistion = Dips.screenHeight() > Dips.screenWidth();
-        if (ExtUtils.isTextFomat(getIntent()) /* && isInitOrientation == AppState.get().orientation */) {
+        if (ExtUtils.isTextFomat(getIntent()) && isInitOrientation == AppState.get().orientation) {
 
             if (rotatoinDialog != null) {
                 try {
