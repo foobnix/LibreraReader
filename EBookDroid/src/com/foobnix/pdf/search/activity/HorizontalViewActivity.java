@@ -72,6 +72,7 @@ import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
 import android.content.res.Configuration;
 import android.graphics.Color;
 import android.graphics.drawable.GradientDrawable;
@@ -157,7 +158,8 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
     protected void onCreate(final Bundle savedInstanceState) {
 
         intetrstialTimeoutSec = ADS.FULL_SCREEN_TIMEOUT_SEC;
-        DocumentController.doRotation(this);
+        LOG.d("getRequestedOrientation", AppState.get().orientation, getRequestedOrientation());
+
         handler = new Handler();
         handlerTimer = new Handler();
         flippingHandler = new Handler();
@@ -173,6 +175,8 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
         } else {
             setTheme(R.style.StyledIndicatorsBlack);
         }
+
+        DocumentController.doRotation(this);
 
         super.onCreate(savedInstanceState);
         if (PasswordDialog.isNeedPasswordDialog(this)) {
@@ -459,8 +463,6 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
                         AppState.get().isCut = false;
                         SettingsManager.getBookSettings().updateFromAppState();
 
-
-
                         if (dc.isTextFormat()) {
                             nullAdapter();
                             dc.restartActivity();
@@ -674,11 +676,25 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
             @Override
             protected Object doInBackground(Object... params) {
                 try {
-                    while (viewPager.getHeight() == 0) {
-                        try {
+                    LOG.d("doRotation(this)", AppState.get().orientation, HorizontalViewActivity.this.getRequestedOrientation());
+                    try {
+                        while (viewPager.getHeight() == 0) {
                             Thread.sleep(250);
-                        } catch (InterruptedException e) {
                         }
+                        int count = 0;
+                        if (AppState.get().orientation == ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE || AppState.get().orientation == ActivityInfo.SCREEN_ORIENTATION_SENSOR_LANDSCAPE) {
+                            while (viewPager.getHeight() > viewPager.getWidth() && count < 20) {
+                                Thread.sleep(250);
+                                count++;
+                            }
+                        } else if (AppState.get().orientation == ActivityInfo.SCREEN_ORIENTATION_PORTRAIT || AppState.get().orientation == ActivityInfo.SCREEN_ORIENTATION_SENSOR_PORTRAIT) {
+                            while (viewPager.getWidth() > viewPager.getHeight() && count < 20) {
+                                Thread.sleep(250);
+                                count++;
+                            }
+                        }
+
+                    } catch (InterruptedException e) {
                     }
                     LOG.d("viewPager", viewPager.getHeight() + "x" + viewPager.getWidth());
                     initAsync(viewPager.getWidth(), viewPager.getHeight());
@@ -1572,7 +1588,7 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
             LOG.d("PAGE SAVED");
         }
     };
-    
+
     Runnable clearFlags = new Runnable() {
 
         @Override
