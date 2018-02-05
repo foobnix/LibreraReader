@@ -13,7 +13,7 @@
    <string name="close_book">关闭该书</string>
    <string name="content_of_book">目录</string>
    <string name="crop_white_borders">裁白边</string>
-   <string name="delete">删除</string>
+   <string name="delete">删除文件</string>
    <string name="delete_book_">从设备存储删除该书？</string>
    <string name="dialog_color_picker">颜色选择</string>
    <string name="export_">导出 ...</string>
