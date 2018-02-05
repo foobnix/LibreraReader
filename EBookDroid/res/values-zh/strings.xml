@@ -30,7 +30,7 @@
    <string name="licence_gnu_gpl_v3_0">授权方式: GNU GPL v3.0</string>
    <string name="light">亮色调</string>
    <string name="loading_failed">页面载入失败</string>
-   <string name="loop_autoplay">自动循环滚动</string>
+   <string name="loop_autoplay">循环滚动</string>
    <string name="msg_loading">正在载入...</string>
    <string name="msg_no_text_found">未找到指定内容</string>
    <string name="msg_password_required">请输入密码</string>
@@ -45,7 +45,7 @@
    <string name="open_with">打开方式</string>
    <string name="orientation">屏显方向</string>
    <string name="___PREFERENCES___SECTION___"></string>
-   <string name="page">页</string>
+   <string name="page">页面</string>
    <string name="portrait">竖屏模式</string>
    <string name="preferences">首选项</string>
    <string name="press_any_key">请按下任意实体键</string>
@@ -53,7 +53,7 @@
    <string name="prev_keys">上一页按键:</string>
    <string name="product">产品</string>
    <string name="recent">最近打开的文档</string>
-   <string name="restore_default_keys">恢复默认按键</string>
+   <string name="restore_default_keys">恢复默认</string>
    <string name="reverse_keys">按键功能互换</string>
    <string name="___READING___SETTINGS___SECTION___"></string>
    <string name="rotate">旋转</string>
@@ -68,11 +68,11 @@
    <string name="share">分享</string>
    <string name="split_pages_in_two">拆分页面</string>
    <string name="success">完成</string>
-   <string name="text_page">页</string>
+   <string name="text_page">页面</string>
    <string name="this_directory_is_already_in_the_list">该路径已经存在</string>
    <string name="___ADVANCED___SETTINGS___SECTION___"></string>
    <string name="version">版本号</string>
-   <string name="add_to_bookmark">加入收藏</string>
+   <string name="add_to_bookmark">加入书签</string>
    <string name="text">文本</string>
    <string name="annotations_draw">注释和手绘</string>
    <string name="copy">复制</string>
@@ -103,7 +103,7 @@
    <string name="dictionary">字典</string>
    <string name="___STATUS___BAR___SETTINGS___SECTION___"></string>
    <string name="import_bookmarks">导入书签</string>
-   <string name="email">电子邮件</string>
+   <string name="email">邮件</string>
    <string name="file">文件</string>
    <string name="file_not_found">文件未找到</string>
    <string name="send_file">发送文件</string>
@@ -121,7 +121,7 @@
    <string name="enter_password">输入密码</string>
    <string name="text_to_speech">文字转语音</string>
    <string name="application_user_guide_">用户指南</string>
-   <string name="you_need_grant_permission">您需要授予外部存储权限</string>
+   <string name="you_need_grant_permission">您需要授予外部存储权限。</string>
    <string name="db_auto_alignemnt">自动对齐</string>
    <string name="db_auto_scroll">自动滚屏</string>
    <string name="db_do_nothing">无</string>
@@ -159,7 +159,7 @@
    <string name="folder_with_fonts">更改字体</string>
    <string name="interval">行间距</string>
    <string name="paragraph">段间距</string>
-   <string name="simple_scroll_animation">简单滚动</string>
+   <string name="simple_scroll_animation">过渡动画</string>
    <string name="image_format">图像格式</string>
    <string name="empty_line">空行</string>
    <string name="customize_background_color">自定义背景色</string>
@@ -177,7 +177,7 @@
    <string name="highlight_of_text">文本高亮</string>
    <string name="underline_of_text">文本下划线</string>
    <string name="strikethrough_of_text">文本删除线</string>
-   <string name="selecting_text_by_letters">高亮选择文本</string>
+   <string name="selecting_text_by_letters">选择单字</string>
    <string name="color">颜色</string>
    <string name="image">图片</string>
    <string name="transparency">透明度</string>
@@ -189,7 +189,7 @@
    <string name="clear_all_recent">清空最近阅读</string>
    <string name="clear_all_bookmars">清空书签</string>
    <string name="clear_all_marked">清空标记</string>
-   <string name="enable_volume_keys">启用音量键</string>
+   <string name="enable_volume_keys">音量键</string>
    <string name="open_in_the_dictionary">打开字典中的</string>
    <string name="cover_image_size">封面图片大小</string>
    <string name="close_application_">关闭应用程序？</string>
@@ -218,7 +218,7 @@
    <string name="by_date">日期</string>
    <string name="by_size">大小</string>
    <string name="read_a_book">阅读</string>
-   <string name="screen_turn_off_after_inactivity_minutes_">阅读时保持屏幕常亮（分钟）</string>
+   <string name="screen_turn_off_after_inactivity_minutes_">关屏时间（分钟）</string>
    <string name="___SORT___AND___VIEW___SECTION___"></string>
    <string name="bookmark_by_date">按日期</string>
    <string name="bookmark_by_book">按书籍</string>
