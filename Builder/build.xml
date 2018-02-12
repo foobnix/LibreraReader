@@ -1,6 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
+
 <project name="Builder">
 	<property file="../Builder/local.properties" />
+	<property name="ant.build.javac.source" value="1.7"/>
+	<property name="ant.build.javac.target" value="1.7"/>
+	
+	<target name="print-version"> 
+   <echo>Java/JVM version: ${ant.java.version}</echo> 
+   <echo>Java/JVM detail version: ${java.version}</echo> 
+</target>
 
 	<target name="prepare-packages">
 
