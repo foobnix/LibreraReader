@@ -51,40 +51,84 @@ public class EpubExtractor extends BaseExtractor {
 
     public static void proccessHypens(String input, String output) {
         try {
-
-            LOG.d("proccessHypens", input, output);
-
-            FileInputStream inputStream = new FileInputStream(new File(input));
-            ZipArchiveInputStream zipInputStream = new ZipArchiveInputStream(inputStream);
-            ArchiveEntry nextEntry = null;
-
-            ZipOutputStream zos = new ZipOutputStream(new FileOutputStream(new File(output)));
-            zos.setLevel(0);
-
-            while ((nextEntry = zipInputStream.getNextEntry()) != null) {
-                if (TempHolder.get().loadingCancelled) {
-                    break;
-                }
-                String name = nextEntry.getName();
-                String nameLow = name.toLowerCase();
-
-                if (!name.endsWith("container.xml") && (nameLow.endsWith("html") || nameLow.endsWith("htm") || nameLow.endsWith("xml"))) {
-                    LOG.d("nextEntry HTML cancell", TempHolder.get().loadingCancelled, name);
-                    ByteArrayOutputStream hStream = Fb2Extractor.generateHyphenFile(new InputStreamReader(zipInputStream));
-                    Fb2Extractor.writeToZipNoClose(zos, name, new ByteArrayInputStream(hStream.toByteArray()));
-                } else {
-                    LOG.d("nextEntry cancell", TempHolder.get().loadingCancelled, name);
-                    Fb2Extractor.writeToZipNoClose(zos, name, zipInputStream);
-                }
-
-            }
-            zipInputStream.close();
-            inputStream.close();
-
-            zos.close();
+            proccessHypensDefault(input, output);
         } catch (Exception e) {
             LOG.e(e);
+            try {
+                proccessHypensApache(input, output);
+            } catch (Exception e1) {
+                LOG.e(e1);
+            }
         }
+
+    }
+
+    public static void proccessHypensDefault(String input, String output) throws Exception {
+        LOG.d("proccessHypens1", input, output);
+
+        FileInputStream inputStream = new FileInputStream(new File(input));
+        ZipInputStream zipInputStream = new ZipInputStream(inputStream);
+        ZipEntry nextEntry = null;
+
+        ZipOutputStream zos = new ZipOutputStream(new FileOutputStream(new File(output)));
+        zos.setLevel(0);
+
+        while ((nextEntry = zipInputStream.getNextEntry()) != null) {
+            if (TempHolder.get().loadingCancelled) {
+                break;
+            }
+            String name = nextEntry.getName();
+            String nameLow = name.toLowerCase();
+
+            if (!name.endsWith("container.xml") && (nameLow.endsWith("html") || nameLow.endsWith("htm") || nameLow.endsWith("xml"))) {
+                LOG.d("nextEntry HTML cancell", TempHolder.get().loadingCancelled, name);
+                ByteArrayOutputStream hStream = Fb2Extractor.generateHyphenFile(new InputStreamReader(zipInputStream));
+                Fb2Extractor.writeToZipNoClose(zos, name, new ByteArrayInputStream(hStream.toByteArray()));
+            } else {
+                LOG.d("nextEntry cancell", TempHolder.get().loadingCancelled, name);
+                Fb2Extractor.writeToZipNoClose(zos, name, zipInputStream);
+            }
+
+        }
+        zipInputStream.close();
+        inputStream.close();
+
+        zos.close();
+
+    }
+
+    public static void proccessHypensApache(String input, String output) throws Exception {
+
+        LOG.d("proccessHypens2", input, output);
+
+        FileInputStream inputStream = new FileInputStream(new File(input));
+        ZipArchiveInputStream zipInputStream = new ZipArchiveInputStream(inputStream);
+        ArchiveEntry nextEntry = null;
+
+        ZipOutputStream zos = new ZipOutputStream(new FileOutputStream(new File(output)));
+        zos.setLevel(0);
+
+        while ((nextEntry = zipInputStream.getNextEntry()) != null) {
+            if (TempHolder.get().loadingCancelled) {
+                break;
+            }
+            String name = nextEntry.getName();
+            String nameLow = name.toLowerCase();
+
+            if (!name.endsWith("container.xml") && (nameLow.endsWith("html") || nameLow.endsWith("htm") || nameLow.endsWith("xml"))) {
+                LOG.d("nextEntry HTML cancell", TempHolder.get().loadingCancelled, name);
+                ByteArrayOutputStream hStream = Fb2Extractor.generateHyphenFile(new InputStreamReader(zipInputStream));
+                Fb2Extractor.writeToZipNoClose(zos, name, new ByteArrayInputStream(hStream.toByteArray()));
+            } else {
+                LOG.d("nextEntry cancell", TempHolder.get().loadingCancelled, name);
+                Fb2Extractor.writeToZipNoClose(zos, name, zipInputStream);
+            }
+
+        }
+        zipInputStream.close();
+        inputStream.close();
+
+        zos.close();
 
     }
 

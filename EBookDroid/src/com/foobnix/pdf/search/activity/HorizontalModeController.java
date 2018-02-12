@@ -229,12 +229,12 @@ public abstract class HorizontalModeController extends DocumentController {
     }
 
     public int getPageFromUri() {
-        final double percent = activity.getIntent().getDoubleExtra(PERCENT_EXTRA, 0);
+        final double percent = activity.getIntent().getDoubleExtra(PERCENT_EXTRA, 0.0);
         int number = activity.getIntent().getIntExtra(PAGE, 0);
         LOG.d("_PAGE", "uri page", number);
 
         activity.getIntent().putExtra(PAGE, 0);
-        activity.getIntent().putExtra(PERCENT_EXTRA, 0);
+        activity.getIntent().putExtra(PERCENT_EXTRA, 0.0);
 
         if (percent > 0) {
             number = (int) (pagesCount * percent);
