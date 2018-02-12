@@ -20,6 +20,7 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 import org.ebookdroid.BookType;
+import org.ebookdroid.LibreraApp;
 import org.ebookdroid.common.cache.CacheManager;
 import org.ebookdroid.core.codec.CodecDocument;
 import org.ebookdroid.core.codec.CodecPage;
@@ -72,6 +73,7 @@ import android.support.v4.content.ContextCompat;
 import android.support.v4.content.FileProvider;
 import android.support.v4.os.EnvironmentCompat;
 import android.text.format.DateFormat;
+import android.text.format.Formatter;
 import android.util.Base64;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -510,6 +512,9 @@ public class ExtUtils {
     }
 
     public static String readableFileSize(long size) {
+        if (true) {
+            return Formatter.formatFileSize(LibreraApp.context, size);
+        }
         if (size <= 0)
             return "0";
         final String[] units = new String[] { "B", "KB", "MB", "GB", "TB" };
