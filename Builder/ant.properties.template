@@ -3,3 +3,6 @@ key.alias=
 
 key.store.password=
 key.alias.password=
+
+java.target=1.7
+java.source=1.7
