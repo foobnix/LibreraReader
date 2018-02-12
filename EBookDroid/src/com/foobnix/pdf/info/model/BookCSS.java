@@ -160,7 +160,10 @@ public class BookCSS {
         linkColorNight = LINK_COLOR_UNIVERSAL;
         customCSS1 = "pre > * {white-space: pre; font-size: 0.7em;} /* pre, normal*/ \n" + //
                 "svg {display:block} \n" + //
-                "figure > * {font-size: 0.7em}";
+                "figure > * {font-size: 0.7em} \n" + //
+                "tr{display:block}\n" + //
+                "td>*{display:inline}\n" //
+                ;
 
         LOG.d("BookCSS", "resetToDefault");
 

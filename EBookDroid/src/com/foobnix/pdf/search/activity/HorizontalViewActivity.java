@@ -1420,7 +1420,7 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
     };
 
     public void updateUI(int page) {
-        if (dc == null || viewPager == null) {
+        if (dc == null || viewPager == null || viewPager.getAdapter() == null) {
             return;
         }
 
