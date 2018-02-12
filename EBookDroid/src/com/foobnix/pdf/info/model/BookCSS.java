@@ -478,7 +478,7 @@ public class BookCSS {
             }
 
             if (isFontFileName(headersFont)) {
-                builder.append("@font-face {font-family: myHeader; src: url('" + getFontPath(headersFont) + "') format('truetype');}");
+                builder.append("@font-face {font-family: myHeader; src: url('" + getFontPath(headersFont) + "') format('truetype'); }");
                 builder.append("h1{font-size:1.50em; text-align: center; font-weight: normal; font-family: myHeader;}");
                 builder.append("h2{font-size:1.30em; text-align: center; font-weight: normal; font-family: myHeader;}");
                 builder.append("h3{font-size:1.15em; text-align: center; font-weight: normal; font-family: myHeader;}");
@@ -486,8 +486,8 @@ public class BookCSS {
                 builder.append("h5{font-size:0.80em; text-align: center; font-weight: normal; font-family: myHeader;}");
                 builder.append("h6{font-size:0.60em; text-align: center; font-weight: normal; font-family: myHeader;}");
 
-                builder.append("title,title>p,title>p>strong  {font-size:1.2em;  font-weight: normal; font-family: myHeader;}");
-                builder.append(/*                 */ "subtitle{font-size:1.0em; font-weight: normal; font-family: myHeader;}");
+                builder.append("title,title>p,title>p>strong  {font-size:1.2em; font-weight: normal; font-family: myHeader !important;}");
+                builder.append(/*                 */ "subtitle{font-size:1.0em; font-weight: normal; font-family: myHeader !important;}");
 
             } else {
                 builder.append("h1{font-size:1.50em; text-align: center; font-weight: bold; font-family: " + headersFont + ";}");
