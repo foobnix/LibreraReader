@@ -51,11 +51,12 @@ public class EpubExtractor extends BaseExtractor {
 
     public static void proccessHypens(String input, String output) {
         try {
-            proccessHypensDefault(input, output);
+            // proccessHypensDefault(input, output);
+            proccessHypensApache(input, output);
         } catch (Exception e) {
             LOG.e(e);
             try {
-                proccessHypensApache(input, output);
+
             } catch (Exception e1) {
                 LOG.e(e1);
             }
