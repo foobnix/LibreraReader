@@ -252,6 +252,15 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
             }
         });
 
+        pagesCountIndicator.setOnLongClickListener(new OnLongClickListener() {
+
+            @Override
+            public boolean onLongClick(View v) {
+                Dialogs.showDeltaPage(anchor, dc, dc.getCurentPageFirst1(), onRefresh);
+                return true;
+            }
+        });
+
         updateSeekBarColorAndSize();
 
         titleTxt = (TextView) findViewById(R.id.title);

@@ -6,6 +6,7 @@ import java.io.FileInputStream;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Locale;
 
 import org.apache.commons.compress.archivers.zip.ZipArchiveEntry;
 import org.apache.commons.compress.archivers.zip.ZipArchiveInputStream;
@@ -74,11 +75,31 @@ public class CbzCbrExtractor {
             } else if (BookType.CBR.is(path)) {
                 FileInputStream is = new FileInputStream(new File(path));
                 Archive archive = new Archive(new File(path));
+
                 FileHeader fileHeader = archive.getFileHeaders().get(0);
+
                 if (fileHeader.isDirectory()) {
                     fileHeader = archive.getFileHeaders().get(1);
 
                 }
+
+                for (FileHeader it : archive.getFileHeaders()) {
+                    if (it.isDirectory()) {
+                        continue;
+                    }
+                    String lowerCase = it.getFileNameString().toLowerCase(Locale.US);
+                    if (lowerCase.contains("\\")) {
+                        lowerCase = lowerCase.substring(lowerCase.indexOf("\\") + 1);
+                    }
+
+                    if (lowerCase.contains("cover")) {
+                        fileHeader = it;
+                        break;
+                    }
+                }
+
+                LOG.d("fileHeader", fileHeader.getFileNameString());
+
                 LOG.d("EXtract CBR", fileHeader.getFileNameString());
                 archive.extractFile(fileHeader, out);
                 archive.close();
