@@ -581,21 +581,25 @@ public class OpdsFragment2 extends UIFragment<Entry> {
     }
 
     public void clearEmpty() {
-        File LIRBI_DOWNLOAD_DIR = new File(AppState.get().downlodsPath);
+        try {
+            File LIRBI_DOWNLOAD_DIR = new File(AppState.get().downlodsPath);
 
-        if (!LIRBI_DOWNLOAD_DIR.exists()) {
-            LIRBI_DOWNLOAD_DIR.mkdirs();
-        }
-
-        for (String file : LIRBI_DOWNLOAD_DIR.list()) {
-            File f = new File(LIRBI_DOWNLOAD_DIR, file);
-            if (f.length() == 0) {
-                LOG.d("Delete file", f.getPath());
-                f.delete();
+            if (!LIRBI_DOWNLOAD_DIR.exists()) {
+                LIRBI_DOWNLOAD_DIR.mkdirs();
             }
-        }
 
-        searchAdapter.notifyDataSetChanged();
+            for (String file : LIRBI_DOWNLOAD_DIR.list()) {
+                File f = new File(LIRBI_DOWNLOAD_DIR, file);
+                if (f.length() == 0) {
+                    LOG.d("Delete file", f.getPath());
+                    f.delete();
+                }
+            }
+
+            searchAdapter.notifyDataSetChanged();
+        } catch (Exception e) {
+            LOG.e(e);
+        }
     }
 
     boolean isNeedLoginPassword = false;

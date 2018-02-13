@@ -2159,6 +2159,7 @@ public class DragingDialogs {
                 final CheckBox isShowReadingProgress = (CheckBox) inflate.findViewById(R.id.isShowReadingProgress);
                 final CheckBox isShowChaptersOnProgress = (CheckBox) inflate.findViewById(R.id.isShowChaptersOnProgress);
 
+                isShowReadingProgress.setChecked(AppState.get().isShowReadingProgress);
                 isShowReadingProgress.setOnCheckedChangeListener(new OnCheckedChangeListener() {
 
                     @Override
@@ -2172,8 +2173,9 @@ public class DragingDialogs {
                         isShowChaptersOnProgress.setEnabled(isChecked);
                     }
                 });
-                isShowReadingProgress.setChecked(AppState.get().isShowReadingProgress);
 
+                isShowChaptersOnProgress.setChecked(AppState.get().isShowChaptersOnProgress);
+                isShowChaptersOnProgress.setEnabled(AppState.get().isShowReadingProgress);
                 isShowChaptersOnProgress.setOnCheckedChangeListener(new OnCheckedChangeListener() {
 
                     @Override
@@ -2188,8 +2190,7 @@ public class DragingDialogs {
                         }
                     }
                 });
-                isShowChaptersOnProgress.setChecked(AppState.get().isShowChaptersOnProgress);
-                isShowChaptersOnProgress.setEnabled(AppState.get().isShowReadingProgress);
+
 
                 final EditText musicText = (EditText) inflate.findViewById(R.id.musicText);
                 musicText.setText(AppState.get().musicText);
@@ -2218,6 +2219,7 @@ public class DragingDialogs {
                 //
 
                 final CheckBox isShowSatusBar = (CheckBox) inflate.findViewById(R.id.isShowSatusBar);
+                isShowSatusBar.setChecked(AppState.get().isShowToolBar);
                 isShowSatusBar.setOnCheckedChangeListener(new OnCheckedChangeListener() {
 
                     @Override
@@ -2229,7 +2231,7 @@ public class DragingDialogs {
                         }
                     }
                 });
-                isShowSatusBar.setChecked(AppState.get().isShowToolBar);
+
 
                 // status bar
 

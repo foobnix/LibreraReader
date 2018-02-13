@@ -46,6 +46,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.LinearLayout.LayoutParams;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class BrowseFragment2 extends UIFragment<FileMeta> {
     public static final Pair<Integer, Integer> PAIR = new Pair<Integer, Integer>(R.string.folders, R.drawable.glyphicons_145_folder_open);
@@ -345,7 +346,11 @@ public class BrowseFragment2 extends UIFragment<FileMeta> {
         @Override
         public void onClick(View v) {
             if (fragmentType == TYPE_SELECT_FOLDER) {
-                onPositiveAction.onResultRecive(AppState.get().dirLastPath);
+                if (new File(AppState.get().dirLastPath).canRead()) {
+                    onPositiveAction.onResultRecive(AppState.get().dirLastPath);
+                } else {
+                    Toast.makeText(getContext(), R.string.incorrect_value, Toast.LENGTH_SHORT).show();
+                }
             } else if (fragmentType == TYPE_SELECT_FILE) {
                 onPositiveAction.onResultRecive(AppState.get().dirLastPath + "/" + editPath.getText());
             } else if (fragmentType == TYPE_CREATE_FILE) {
@@ -408,7 +413,6 @@ public class BrowseFragment2 extends UIFragment<FileMeta> {
         if (searchAdapter == null) {
             return;
         }
-        
 
         if (!path.equals(prevPath)) {
             int pos = ((LinearLayoutManager) recyclerView.getLayoutManager()).findFirstVisibleItemPosition();
@@ -416,7 +420,6 @@ public class BrowseFragment2 extends UIFragment<FileMeta> {
             LOG.d("rememberPos", path, pos);
         }
         prevPath = path;
-
 
         if (AppDB.get().isStarFolder(path)) {
             starIcon.setImageResource(R.drawable.star_1);
