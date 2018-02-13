@@ -17,6 +17,7 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.DialogInterface.OnDismissListener;
 import android.graphics.Color;
+import android.os.Build;
 import android.provider.Settings.SettingNotFoundException;
 import android.support.v4.graphics.ColorUtils;
 import android.view.LayoutInflater;
@@ -104,7 +105,11 @@ public class BrightnessHelper {
             if (appBrightness == AppState.AUTO_BRIGTNESS) {
                 lp.screenBrightness = -1;
             } else if (appBrightness == 0) {
-                lp.screenBrightness = 0;
+                if (Build.VERSION.SDK_INT >= 21) {
+                    lp.screenBrightness = 0;
+                } else {
+                    lp.screenBrightness = 1;
+                }
             } else {
                 lp.screenBrightness = (float) appBrightness / 100;
             }
