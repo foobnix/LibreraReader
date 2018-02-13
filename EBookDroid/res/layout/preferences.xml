@@ -378,6 +378,47 @@
         </LinearLayout>
 
         <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dip"
+            android:gravity="center_vertical" >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:minWidth="103dp"
+                android:text="Text color"
+                android:textStyle="bold" />
+            
+            <CheckBox
+                android:id="@+id/isUiTextColor"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <LinearLayout
+                android:id="@+id/colorsLine1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="bottom"
+                android:orientation="horizontal" >
+
+                <include
+                    android:id="@+id/color1"
+                    android:layout_width="25dip"
+                    android:layout_height="25dip"
+                    android:layout_margin="1dip"
+                    layout="@layout/item_color" />
+
+                <include
+                    android:id="@+id/color2"
+                    android:layout_width="25dip"
+                    android:layout_height="25dip"
+                    android:layout_margin="1dip"
+                    layout="@layout/item_color" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
             android:id="@+id/onColorChoser"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -652,9 +693,9 @@
 
             <CheckBox
                 android:id="@+id/isRememberMode"
-                android:layout_weight="1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_weight="1"
                 android:text="@string/remember_reading_mode" />
 
             <TextView

@@ -101,6 +101,10 @@ public class SearchFragment2 extends UIFragment<FileMeta> {
     public void onTintChanged() {
         TintUtil.setBackgroundFillColor(secondTopPanel, TintUtil.color);
         TintUtil.setStrokeColor(searchEditText, TintUtil.color);
+
+        TintUtil.setUITextColor(countBooks);
+        TintUtil.setUITextColor(searchEditText);
+
     }
 
     public void onGridList() {

@@ -178,6 +178,10 @@ public class AppState {
 
     public int tintColor = Color.parseColor(STYLE_COLORS.get(0));
 
+    public boolean isUiTextColor = false;
+    public int uiTextColor = Color.BLUE;
+    public int uiTextColorUser = Color.MAGENTA;
+
     public int statusBarColorDay = TEXT_COLOR_DAY;
     public int statusBarColorNight = TEXT_COLOR_NIGHT;
     // public int tintColor =

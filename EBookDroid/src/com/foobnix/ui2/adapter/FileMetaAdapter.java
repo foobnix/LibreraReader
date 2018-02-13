@@ -369,14 +369,16 @@ public class FileMetaAdapter extends AppRecycleAdapter<FileMeta, RecyclerView.Vi
         final FileMeta fileMeta = getItem(position);
 
         holder.title.setText(fileMeta.getTitle());
-
         holder.author.setText(fileMeta.getAuthor());
-        if (AppState.get().isInkMode) {
-            holder.author.setTextColor(Color.BLACK);
-            if (holder.series != null) {
-                holder.series.setTextColor(Color.BLACK);
-            }
-        }
+
+        TintUtil.setUITextColor(holder.title);
+        TintUtil.setUITextColor(holder.author);
+        TintUtil.setUITextColor(holder.path);
+        TintUtil.setUITextColor(holder.browserExt);
+        TintUtil.setUITextColor(holder.size);
+        TintUtil.setUITextColor(holder.date);
+        TintUtil.setUITextColor(holder.series);
+        TintUtil.setUITextColor(holder.idPercentText);
 
         if (TxtUtils.isEmpty(fileMeta.getAuthor())) {
             if (adapterType == ADAPTER_GRID) {
