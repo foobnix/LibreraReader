@@ -37,6 +37,7 @@ import android.os.Handler;
 import android.util.DisplayMetrics;
 import android.view.KeyEvent;
 import android.view.MotionEvent;
+import android.view.WindowManager;
 import android.widget.FrameLayout;
 
 public class VerticalViewActivity extends AbstractActionActivity<VerticalViewActivity, ViewerActivityController> {
@@ -189,6 +190,7 @@ public class VerticalViewActivity extends AbstractActionActivity<VerticalViewAct
         if (handler != null) {
             handler.removeCallbacks(closeRunnable);
         }
+        getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
 
     }
 

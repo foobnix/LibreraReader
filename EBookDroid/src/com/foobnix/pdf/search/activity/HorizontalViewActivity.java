@@ -1241,6 +1241,7 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
 
         handler.removeCallbacks(closeRunnable);
         handlerTimer.post(updateTimePower);
+        getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
     }
 
     @Override

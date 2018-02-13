@@ -442,6 +442,7 @@ public class ViewerActivityController extends ActionController<VerticalViewActiv
         if (wrapperControlls != null) {
             wrapperControlls.onResume();
         }
+
     }
 
     public void setWindowTitle() {
