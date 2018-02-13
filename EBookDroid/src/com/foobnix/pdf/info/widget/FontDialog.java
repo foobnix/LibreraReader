@@ -81,6 +81,7 @@ public class FontDialog {
             public void populateView(View inflate, int arg1, String value) {
                 TextView tv = (TextView) inflate.findViewById(android.R.id.text1);
                 tv.setText("" + ExtUtils.getFileName(value));
+                tv.setTypeface(BookCSS.getTypeFaceForFont(value));
             }
 
             @Override

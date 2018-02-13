@@ -255,6 +255,8 @@ public class BookCSS {
     }
 
     public void resetAll(FontPack pack) {
+        LOG.d("resetAll", pack.dispalyName, pack.fontFolder);
+
         displayFontName = pack.dispalyName;
 
         normalFont = DEFAULT_FONT;
@@ -271,28 +273,29 @@ public class BookCSS {
 
         all.addAll(getAllFontsFromFolder(pack.fontFolder));
 
+        String dispalyName = pack.dispalyName.replace(".ttf", "").replace(".otf", "").trim().toLowerCase(Locale.US);
+
         for (String fullName : all) {
-            String fontName = fullName.replace(".ttf", "").replace(".otf", "").trim().toLowerCase(Locale.US);
-            fontName = ExtUtils.getFileName(fontName);
-            String dispalyName = pack.dispalyName.replace(".ttf", "").replace(".otf", "").trim().toLowerCase(Locale.US);
+            String fontName = ExtUtils.getFileName(fullName).replace(".ttf", "").replace(".otf", "").trim().toLowerCase(Locale.US);
 
             if (fontName.startsWith(dispalyName) || fontName.equals(dispalyName)) {
 
-                if (fontName.equals(dispalyName) || fontName.endsWith("regular") || fontName.endsWith("normal") || fontName.endsWith("light") || fontName.endsWith("medium") || fontName.endsWith("me")) {
+                if (fontName.equals(dispalyName) || fontName.contains("regular") || fontName.contains("normal") || fontName.contains("light") || fontName.contains("medium") || fontName.endsWith("me")) {
                     normalFont = fullName;
 
-                } else if (fontName.endsWith("bolditalic") || fontName.endsWith("boldit") || fontName.endsWith("boit") || fontName.endsWith("bold it") || fontName.endsWith("bold italic")) {
+                } else if (fontName.contains("bolditalic") || fontName.contains("boldit") || fontName.contains("boit") || fontName.contains("bold it") || fontName.contains("bold italic")) {
                     boldItalicFont = fullName;
 
-                } else if (fontName.endsWith("bold") || fontName.endsWith("bo") || fontName.endsWith("bd") || fontName.endsWith("bolt")) {
+                } else if (fontName.contains("bold") || fontName.endsWith("bo") || fontName.endsWith("bd") || fontName.contains("bolt")) {
                     headersFont = boldFont = fullName;
 
-                } else if (fontName.endsWith("italic") || fontName.endsWith("it")) {
+                } else if (fontName.contains("italic") || fontName.endsWith("it")) {
                     italicFont = fullName;
 
                 }
             }
         }
+        LOG.d("resetAll", normalFont);
 
     }
 
@@ -364,7 +367,7 @@ public class BookCSS {
                             fontNameDisplay = fontNameDisplay.replace(".ttf", "").replace(".otf", "").trim().toLowerCase(Locale.US);
 
                             if (font.startsWith(fontNameDisplay)) {
-                                if (font.equals(fontNameDisplay) || font.endsWith("regular") || font.endsWith("normal") || font.endsWith("light") || font.endsWith("medium") || font.endsWith("me")) {
+                                if (font.equals(fontNameDisplay) || font.contains("regular") || font.contains("normal") || font.contains("light") || font.contains("medium") || font.endsWith("me")) {
                                     e.normalFont = path + "/" + fontInit;
                                     break;
                                 }
