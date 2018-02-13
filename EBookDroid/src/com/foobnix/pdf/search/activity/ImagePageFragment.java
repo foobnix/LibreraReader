@@ -3,8 +3,6 @@ package com.foobnix.pdf.search.activity;
 import com.foobnix.android.utils.LOG;
 import com.foobnix.pdf.info.IMG;
 import com.foobnix.pdf.info.R;
-import com.foobnix.pdf.info.model.BookCSS;
-import com.foobnix.pdf.info.wrapper.AppState;
 import com.foobnix.pdf.info.wrapper.MagicHelper;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.assist.FailReason;
@@ -39,9 +37,6 @@ public class ImagePageFragment extends Fragment {
         path = getArguments().getString(PAGE_PATH);
 
         text = (TextView) view.findViewById(R.id.text1);
-        if (AppState.get().isUseTypeFace) {
-            text.setTypeface(BookCSS.getNormalTypeFace());
-        }
         image = (PageImaveView) view.findViewById(R.id.myImage1);
 
         image.setPageNumber(page);

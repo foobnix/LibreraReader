@@ -313,10 +313,8 @@ public class MainTabs2 extends AdsFragmentActivity {
         boolean showTabs = getIntent().getBooleanExtra(EXTRA_SHOW_TABS, false);
         LOG.d("EXTRA_SHOW_TABS", showTabs, AppState.get().lastMode);
         if (showTabs == false && AppState.get().isOpenLastBook) {
-            if (AppState.get().lastBookPath == null) {
-            }
             LOG.d("Open lastBookPath", AppState.get().lastBookPath);
-            if (!new File(AppState.get().lastBookPath).isFile()) {
+            if (AppState.get().lastBookPath == null || !new File(AppState.get().lastBookPath).isFile()) {
                 LOG.d("Open Last book not found");
                 return;
             }
@@ -336,12 +334,7 @@ public class MainTabs2 extends AdsFragmentActivity {
         } else if (!AppState.get().isOpenLastBook) {
             LOG.d("Open book lastA", AppState.get().lastClosedActivity);
 
-            if (AppState.get().lastBookPath == null) {
-                LOG.d("Open book lastA", "null");
-                return;
-            }
-
-            if (!new File(AppState.get().lastBookPath).isFile()) {
+            if (AppState.get().lastBookPath == null || !new File(AppState.get().lastBookPath).isFile()) {
                 LOG.d("Open Last book not found");
                 return;
             }

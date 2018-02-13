@@ -28,6 +28,9 @@ public class TxtUtils {
     public static String SMALL_DASH = " - ";
 
     public static String lastTwoPath(String txt) {
+        if (TxtUtils.isEmpty(txt)) {
+            return "[]";
+        }
         int fist = txt.lastIndexOf("/");
         if (fist >= 0) {
             int second = txt.lastIndexOf("/", fist - 1);

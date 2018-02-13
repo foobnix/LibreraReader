@@ -25,6 +25,7 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
 import android.graphics.Typeface;
+import android.os.Environment;
 
 public class BookCSS {
 
@@ -43,21 +44,14 @@ public class BookCSS {
     public static int STYLES_ONLY_DOC = 1;
     public static int STYLES_ONLY_USER = 2;
 
+    public static final String ARIAL = "Arial";
     public static final String COURIER = "Courier";
-    private static final String DEFAULT_FONT = "Times New Roman";
+    public static final String DEFAULT_FONT = "Times New Roman";
+
+    private static final Object TAG = "BookCSS";
 
     public static List<String> fontExts = Arrays.asList(".ttf", ".otf");
 
-    private static List<String> FONT_NAMES = Arrays.asList(//
-            "Arial", //
-            // "Noto Serif", "Noto Sans", //
-            // "Charis SIL", //
-            COURIER, //
-            // "Helvetica", //
-            DEFAULT_FONT);
-    static {
-        Collections.sort(FONT_NAMES);
-    }
     public int documentStyle = STYLES_DOC_AND_USER;
     public int marginTop;
     public int marginRight;
@@ -75,6 +69,7 @@ public class BookCSS {
 
     public String fontFolder;
 
+    public String displayFontName;
     public String normalFont;
     public String boldFont;
     public String boldItalicFont;
@@ -95,6 +90,7 @@ public class BookCSS {
         SharedPreferences sp = c.getSharedPreferences(ExportSettingsManager.PREFIX_BOOK_CSS, Context.MODE_PRIVATE);
         fontFolder = sp.getString("fontFolder1", fontFolder);
 
+        displayFontName = sp.getString("displayFontName", displayFontName);
         normalFont = sp.getString("normalFont", normalFont);
         boldFont = sp.getString("boldFont", boldFont);
         boldItalicFont = sp.getString("boldItalicFont", boldItalicFont);
@@ -146,6 +142,7 @@ public class BookCSS {
         fontWeight = 400;
 
         fontFolder = DEFAULT_FOLDER(c);
+        displayFontName = DEFAULT_FONT;
         normalFont = DEFAULT_FONT;
         boldFont = DEFAULT_FONT;
         italicFont = DEFAULT_FONT;
@@ -163,7 +160,7 @@ public class BookCSS {
                 "figure > * {font-size: 0.7em} \n" + //
                 "tr{display:block}\n" + //
                 "td>*{display:inline}\n" //
-                ;
+        ;
 
         LOG.d("BookCSS", "resetToDefault");
 
@@ -194,6 +191,7 @@ public class BookCSS {
         Editor edit = sp.edit();
         edit.putString("fontFolder1", fontFolder);
 
+        edit.putString("displayFontName", displayFontName);
         edit.putString("normalFont", normalFont);
         edit.putString("boldFont", boldFont);
         edit.putString("italicFont", italicFont);
@@ -220,30 +218,67 @@ public class BookCSS {
         edit.commit();
     }
 
-    public void resetAll(String initFontName) {
-        if (FONT_NAMES.contains(initFontName)) {
-            normalFont = initFontName;
-            boldFont = initFontName;
-            italicFont = initFontName;
-            boldItalicFont = initFontName;
-            headersFont = initFontName;
-            return;
+    public static class FontPack {
+        public String dispalyName = "";
+        public String fontFolder;
+
+        public String normalFont;
+        public String boldFont;
+        public String italicFont;
+        public String boldItalicFont;
+        public String headersFont;
+
+        public FontPack(String name, String path) {
+            fontFolder = path;
+            dispalyName = name;
+            normalFont = path + "/" + name;
+            boldFont = path + "/" + name;
+            italicFont = path + "/" + name;
+            boldItalicFont = path + "/" + name;
+            headersFont = path + "/" + name;
         }
+
+        public FontPack(String name) {
+            dispalyName = name;
+            normalFont = name;
+            boldFont = name;
+            italicFont = name;
+            boldItalicFont = name;
+            headersFont = name;
+        }
+
+        @Override
+        public boolean equals(Object obj) {
+            return obj instanceof FontPack && dispalyName.equals(((FontPack) obj).dispalyName);
+        }
+
+    }
+
+    public void resetAll(FontPack pack) {
+        displayFontName = pack.dispalyName;
+
         normalFont = DEFAULT_FONT;
         boldFont = DEFAULT_FONT;
         italicFont = DEFAULT_FONT;
         boldItalicFont = DEFAULT_FONT;
         headersFont = DEFAULT_FONT;
 
-        initFontName = initFontName.replace(".ttf", "").replace(".otf", "").trim().toLowerCase(Locale.US);
+        List<String> all = new ArrayList<String>();
 
-        List<String> allFonts = getAllFonts();
-        for (String fullName : allFonts) {
+        all.add(ARIAL);
+        all.add(COURIER);
+        all.add(DEFAULT_FONT);
+
+        all.addAll(getAllFontsFromFolder(pack.fontFolder));
+
+        for (String fullName : all) {
             String fontName = fullName.replace(".ttf", "").replace(".otf", "").trim().toLowerCase(Locale.US);
+            fontName = ExtUtils.getFileName(fontName);
+            String dispalyName = pack.dispalyName.replace(".ttf", "").replace(".otf", "").trim().toLowerCase(Locale.US);
 
-            if (fontName.startsWith(initFontName) || fontName.equals(initFontName)) {
+            if (fontName.startsWith(dispalyName) || fontName.equals(dispalyName)) {
 
-                if (fontName.equals(initFontName) || fontName.endsWith("regular") || fontName.endsWith("normal") || fontName.endsWith("light") || fontName.endsWith("medium") || fontName.endsWith("me")) {
+                if (fontName.equals(dispalyName) || fontName.endsWith("regular") || fontName.endsWith("normal") || fontName.endsWith("light") || fontName.endsWith("medium") || fontName.endsWith("me")) {
                     normalFont = fullName;
 
                 } else if (fontName.endsWith("bolditalic") || fontName.endsWith("boldit") || fontName.endsWith("boit") || fontName.endsWith("bold it") || fontName.endsWith("bold italic")) {
@@ -263,19 +298,39 @@ public class BookCSS {
 
     public List<String> getAllFonts() {
         List<String> all = new ArrayList<String>();
-        all.addAll(FONT_NAMES);
+        if (AppState.get().lastBookPath != null) {
+            all.addAll(getAllFontsFromFolder(new File(AppState.get().lastBookPath).getParent()));
+        }
+        all.add(ARIAL);
+        all.add(COURIER);
+        all.add(DEFAULT_FONT);
+
         all.addAll(getAllFontsFromFolder(fontFolder));
+
+        all.addAll(getAllFontsFromFolder(new File(Environment.getExternalStorageDirectory(), "fonts").getPath()));
+        all.addAll(getAllFontsFromFolder(new File(Environment.getExternalStorageDirectory(), "Fonts").getPath()));
+
         return all;
     }
 
-    public List<String> getAllFontsFiltered() {
-        List<String> all = new ArrayList<String>();
-        all.addAll(FONT_NAMES);
+    public List<FontPack> getAllFontsPacks() {
+        List<FontPack> all = new ArrayList<FontPack>();
+        if (AppState.get().lastBookPath != null) {
+            all.addAll(getAllFontsFiltered(new File(AppState.get().lastBookPath).getParent()));
+        }
+        all.add(new FontPack(ARIAL));
+        all.add(new FontPack(COURIER));
+        all.add(new FontPack(DEFAULT_FONT));
+
         all.addAll(getAllFontsFiltered(fontFolder));
+
+        all.addAll(getAllFontsFiltered(new File(Environment.getExternalStorageDirectory(), "fonts").getPath()));
+        all.addAll(getAllFontsFiltered(new File(Environment.getExternalStorageDirectory(), "Fonts").getPath()));
+
         return all;
     }
 
-    private Collection<String> getAllFontsFiltered(String path) {
+    private Collection<FontPack> getAllFontsFiltered(String path) {
         if (TxtUtils.isNotEmpty(path) && new File(path).isDirectory()) {
             File file = new File(path);
             String[] list = file.list(new FilenameFilter() {
@@ -292,20 +347,39 @@ public class BookCSS {
                 }
             });
             if (list != null && list.length >= 1) {
-                List<String> filtered = new ArrayList<String>();
+                List<FontPack> filtered = new ArrayList<FontPack>();
 
                 for (String fontName : list) {
-                    fontName = filterFontName(fontName);
 
-                    if (!filtered.contains(fontName)) {
-                        filtered.add(fontName);
+                    String fontNameDisplay = filterFontName(fontName);
+
+                    FontPack e = new FontPack(fontNameDisplay, path);
+
+                    if (!filtered.contains(e)) {
+                        e.normalFont = path + "/" + fontName;
+                        for (String font : list) {
+                            String fontInit = font;
+
+                            font = font.replace(".ttf", "").replace(".otf", "").trim().toLowerCase(Locale.US);
+                            fontNameDisplay = fontNameDisplay.replace(".ttf", "").replace(".otf", "").trim().toLowerCase(Locale.US);
+
+                            if (font.startsWith(fontNameDisplay)) {
+                                if (font.equals(fontNameDisplay) || font.endsWith("regular") || font.endsWith("normal") || font.endsWith("light") || font.endsWith("medium") || font.endsWith("me")) {
+                                    e.normalFont = path + "/" + fontInit;
+                                    break;
+                                }
+                            }
+
+                        }
+
+                        filtered.add(e);
                     }
                 }
 
-                Collections.sort(filtered, new Comparator<String>() {
+                Collections.sort(filtered, new Comparator<FontPack>() {
                     @Override
-                    public int compare(String o1, String o2) {
-                        return o1.toLowerCase().compareTo(o2.toLowerCase());
+                    public int compare(FontPack o1, FontPack o2) {
+                        return o1.dispalyName.toLowerCase().compareTo(o2.dispalyName.toLowerCase());
                     }
 
                 });
@@ -321,11 +395,11 @@ public class BookCSS {
         }
         String ext = ExtUtils.getFileExtension(fontName);
         if (fontName.contains("-")) {
-            fontName = fontName.substring(0, fontName.lastIndexOf("-")) + "." + ext;
+            fontName = fontName.substring(0, fontName.indexOf("-")) + "." + ext;
         } else if (fontName.contains("_")) {
-            fontName = fontName.substring(0, fontName.lastIndexOf("_")) + "." + ext;
+            fontName = fontName.substring(0, fontName.indexOf("_")) + "." + ext;
         } else if (fontName.contains(" ")) {
-            fontName = fontName.substring(0, fontName.lastIndexOf(" ")) + "." + ext;
+            fontName = fontName.substring(0, fontName.indexOf(" ")) + "." + ext;
         }
         return fontName;
     }
@@ -350,7 +424,7 @@ public class BookCSS {
                 List<String> filtered = new ArrayList<String>();
 
                 for (String fontName : list) {
-                    filtered.add(fontName);
+                    filtered.add(path + "/" + fontName);
                 }
 
                 Collections.sort(filtered, new Comparator<String>() {
@@ -462,23 +536,23 @@ public class BookCSS {
 
             // FONTS BEGIN
             if (isFontFileName(normalFont)) {
-                builder.append("@font-face {font-family: my; src: url('" + getFontPath(normalFont) + "') format('truetype'); font-weight: normal; font-style: normal;}");
+                builder.append("@font-face {font-family: my; src: url('" + normalFont + "') format('truetype'); font-weight: normal; font-style: normal;}");
             }
 
             if (isFontFileName(boldFont)) {
-                builder.append("@font-face {font-family: my; src: url('" + getFontPath(boldFont) + "') format('truetype'); font-weight: bold; font-style: normal;}");
+                builder.append("@font-face {font-family: my; src: url('" + boldFont + "') format('truetype'); font-weight: bold; font-style: normal;}");
             }
 
             if (isFontFileName(italicFont)) {
-                builder.append("@font-face {font-family: my; src: url('" + getFontPath(italicFont) + "') format('truetype'); font-weight: normal; font-style: italic;}");
+                builder.append("@font-face {font-family: my; src: url('" + italicFont + "') format('truetype'); font-weight: normal; font-style: italic;}");
             }
 
             if (isFontFileName(boldItalicFont)) {
-                builder.append("@font-face {font-family: my; src: url('" + getFontPath(boldItalicFont) + "') format('truetype'); font-weight: bold; font-style: italic;}");
+                builder.append("@font-face {font-family: my; src: url('" + boldItalicFont + "') format('truetype'); font-weight: bold; font-style: italic;}");
             }
 
             if (isFontFileName(headersFont)) {
-                builder.append("@font-face {font-family: myHeader; src: url('" + getFontPath(headersFont) + "') format('truetype'); }");
+                builder.append("@font-face {font-family: myHeader; src: url('" + headersFont + "') format('truetype'); }");
                 builder.append("h1{font-size:1.50em; text-align: center; font-weight: normal; font-family: myHeader;}");
                 builder.append("h2{font-size:1.30em; text-align: center; font-weight: normal; font-family: myHeader;}");
                 builder.append("h3{font-size:1.15em; text-align: center; font-weight: normal; font-family: myHeader;}");
@@ -549,22 +623,24 @@ public class BookCSS {
     }
 
     public static Typeface getTypeFaceForFont(String fontName) {
+        if (TxtUtils.isEmpty(fontName)) {
+            return Typeface.DEFAULT;
+        }
         try {
-            if (FONT_NAMES.contains(fontName)) {
-                return Typeface.DEFAULT;
+
+            if (fontName.equals(BookCSS.ARIAL)) {
+                return Typeface.SANS_SERIF;
+            } else if (fontName.equals(BookCSS.COURIER)) {
+                return Typeface.MONOSPACE;
+            } else if (fontName.equals(BookCSS.DEFAULT_FONT)) {
+                return Typeface.SERIF;
+            } else {
+                return Typeface.createFromFile(fontName);
             }
-            return Typeface.createFromFile(BookCSS.get().getFontPath(fontName));
+
         } catch (Exception e) {
             return Typeface.DEFAULT;
         }
-    }
-
-    public static Typeface getNormalTypeFace() {
-        return getTypeFaceForFont(BookCSS.get().normalFont);
-    }
-
-    public String getFontPath(String name) {
-        return fontFolder + "/" + name;
     }
 
     public void detectLang(String bookPath) {

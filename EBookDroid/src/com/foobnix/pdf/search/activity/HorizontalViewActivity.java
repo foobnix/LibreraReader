@@ -29,7 +29,6 @@ import com.foobnix.pdf.info.PasswordDialog;
 import com.foobnix.pdf.info.R;
 import com.foobnix.pdf.info.TintUtil;
 import com.foobnix.pdf.info.UiSystemUtils;
-import com.foobnix.pdf.info.model.BookCSS;
 import com.foobnix.pdf.info.model.OutlineLinkWrapper;
 import com.foobnix.pdf.info.view.AlertDialogs;
 import com.foobnix.pdf.info.view.BrightnessHelper;
@@ -257,16 +256,6 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
 
         titleTxt = (TextView) findViewById(R.id.title);
         chapterView = (TextView) findViewById(R.id.chapter);
-
-        if (AppState.get().isUseTypeFace) {
-            currentSeek.setTypeface(BookCSS.getNormalTypeFace());
-            maxSeek.setTypeface(BookCSS.getNormalTypeFace());
-            pagesCountIndicator.setTypeface(BookCSS.getNormalTypeFace());
-            pagesTime.setTypeface(BookCSS.getNormalTypeFace());
-            pagesPower.setTypeface(BookCSS.getNormalTypeFace());
-            titleTxt.setTypeface(BookCSS.getNormalTypeFace());
-            chapterView.setTypeface(BookCSS.getNormalTypeFace());
-        }
 
         linkHistory.setOnClickListener(new OnClickListener() {
 

@@ -9,9 +9,7 @@ import com.foobnix.android.utils.LOG;
 import com.foobnix.android.utils.TxtUtils;
 import com.foobnix.pdf.info.R;
 import com.foobnix.pdf.info.TintUtil;
-import com.foobnix.pdf.info.model.BookCSS;
 import com.foobnix.pdf.info.widget.DraggbleTouchListener;
-import com.foobnix.pdf.info.wrapper.AppState;
 
 import android.app.Activity;
 import android.content.Context;
@@ -135,9 +133,6 @@ public abstract class DragingPopup {
 
         TextView titleView = (TextView) popupView.findViewById(R.id.dialogTitle);
         titleView.setText(title);
-        if (AppState.get().isUseTypeFace) {
-            titleView.setTypeface(BookCSS.getNormalTypeFace());
-        }
 
         popupView.findViewById(R.id.close).setOnClickListener(new View.OnClickListener() {
 

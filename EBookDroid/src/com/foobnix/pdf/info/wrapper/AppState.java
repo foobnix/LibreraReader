@@ -84,8 +84,6 @@ public class AppState {
     public static int BLUE_FILTER_DEFAULT_COLOR = Color.BLACK;
     public static String MY_SYSTEM_LANG = "my";
 
-    public boolean isUseTypeFace = false;
-
     public static List<Integer> NEXT_KEYS = Arrays.asList(//
             KeyEvent.KEYCODE_VOLUME_UP, //
             KeyEvent.KEYCODE_PAGE_UP, //

@@ -41,6 +41,7 @@ import com.foobnix.pdf.info.TintUtil;
 import com.foobnix.pdf.info.Urls;
 import com.foobnix.pdf.info.model.AnnotationType;
 import com.foobnix.pdf.info.model.BookCSS;
+import com.foobnix.pdf.info.model.BookCSS.FontPack;
 import com.foobnix.pdf.info.model.OutlineLinkWrapper;
 import com.foobnix.pdf.info.presentation.BookmarksAdapter;
 import com.foobnix.pdf.info.presentation.OutlineAdapter;
@@ -3640,24 +3641,21 @@ public class DragingDialogs {
                 inflate.findViewById(R.id.fontSizeLayout).setVisibility(ExtUtils.isTextFomat(controller.getCurrentBook().getPath()) ? View.VISIBLE : View.GONE);
                 inflate.findViewById(R.id.fontNameSelectionLayout).setVisibility(ExtUtils.isTextFomat(controller.getCurrentBook().getPath()) ? View.VISIBLE : View.GONE);
 
-                final TextView fontNamePreview = (TextView) inflate.findViewById(R.id.fontNamePreview);
-                // fontNamePreview.setTypeface(BookCSS.getTypeFaceForFont(BookCSS.get().normalFont));
-
                 final TextView textFontName = (TextView) inflate.findViewById(R.id.textFontName);
                 textFontName.setOnClickListener(new OnClickListener() {
 
                     @Override
                     public void onClick(View v) {
-                        final List<String> fontNames = BookCSS.get().getAllFontsFiltered();
+                        final List<FontPack> fontPacks = BookCSS.get().getAllFontsPacks();
                         MyPopupMenu popup = new MyPopupMenu(controller.getActivity(), v);
-                        for (final String fontName : fontNames) {
-                            popup.getMenu().add(fontName).setOnMenuItemClickListener(new OnMenuItemClickListener() {
+                        for (final FontPack pack : fontPacks) {
+                            LOG.d("pack.normalFont", pack.normalFont);
+                            popup.getMenu().add(pack.dispalyName, pack.normalFont).setOnMenuItemClickListener(new OnMenuItemClickListener() {
 
                                 @Override
                                 public boolean onMenuItemClick(MenuItem item) {
-                                    BookCSS.get().resetAll(fontName);
-                                    TxtUtils.underline(textFontName, BookCSS.filterFontName(BookCSS.get().normalFont));
-                                    // fontNamePreview.setTypeface(BookCSS.getTypeFaceForFont(BookCSS.get().normalFont));
+                                    BookCSS.get().resetAll(pack);
+                                    TxtUtils.underline(textFontName, BookCSS.get().displayFontName);
                                     return false;
                                 }
                             });
@@ -3666,7 +3664,7 @@ public class DragingDialogs {
                     }
                 });
 
-                TxtUtils.underline(textFontName, BookCSS.filterFontName(BookCSS.get().normalFont));
+                TxtUtils.underline(textFontName, BookCSS.get().displayFontName);
 
                 final View moreFontSettings = inflate.findViewById(R.id.moreFontSettings);
                 moreFontSettings.setOnClickListener(new OnClickListener() {
@@ -3677,7 +3675,7 @@ public class DragingDialogs {
 
                             @Override
                             public void run() {
-                                TxtUtils.underline(textFontName, BookCSS.filterFontName(BookCSS.get().normalFont));
+                                TxtUtils.underline(textFontName, BookCSS.get().displayFontName);
                                 // fontNamePreview.setTypeface(BookCSS.getTypeFaceForFont(BookCSS.get().normalFont));
                             }
                         });

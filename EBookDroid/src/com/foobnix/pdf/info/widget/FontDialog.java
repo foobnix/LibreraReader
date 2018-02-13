@@ -3,14 +3,13 @@ package com.foobnix.pdf.info.widget;
 import java.util.List;
 
 import com.foobnix.android.utils.BaseItemLayoutAdapter;
-import com.foobnix.android.utils.LOG;
+import com.foobnix.pdf.info.ExtUtils;
 import com.foobnix.pdf.info.R;
 import com.foobnix.pdf.info.model.BookCSS;
 
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
-import android.graphics.Typeface;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -25,8 +24,6 @@ public class FontDialog {
     public static void initSpinner(final Spinner spinner, BaseItemLayoutAdapter adaper, int selected, int plusRes, int minusRes, int sampleRes) {
         spinner.setAdapter(adaper);
         LinearLayout parent = (LinearLayout) spinner.getParent();
-
-        final TextView textViewPreview = (TextView) parent.findViewById(sampleRes);
 
         if (plusRes != -1) {
             parent.findViewById(plusRes).setOnClickListener(new OnClickListener() {
@@ -60,16 +57,8 @@ public class FontDialog {
             @Override
             public void onItemSelected(AdapterView<?> arg0, View arg1, int arg2, long arg3) {
                 TextView textView = (TextView) spinner.getChildAt(0);
-                try {
-                    String value = (String) spinner.getSelectedItem();
-                    textView.setTypeface(BookCSS.getTypeFaceForFont(value));
-                } catch (Exception e) {
-                    textView.setTypeface(Typeface.DEFAULT);
-                    LOG.e(e);
-                }
-
-                // textView.setTextAppearance(spinner.getContext(),
-                // R.style.textLinkStyle);
+                String value = (String) spinner.getSelectedItem();
+                textView.setTypeface(BookCSS.getTypeFaceForFont(value));
             }
 
             @Override
@@ -91,8 +80,7 @@ public class FontDialog {
             @Override
             public void populateView(View inflate, int arg1, String value) {
                 TextView tv = (TextView) inflate.findViewById(android.R.id.text1);
-                tv.setText("" + value);
-                // tv.setTypeface(BookCSS.getTypeFaceForFont(value));
+                tv.setText("" + ExtUtils.getFileName(value));
             }
 
             @Override
@@ -136,7 +124,6 @@ public class FontDialog {
             }
         });
         builder.show();
-
 
     }
 

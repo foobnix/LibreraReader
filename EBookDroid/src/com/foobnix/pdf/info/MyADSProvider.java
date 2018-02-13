@@ -46,6 +46,9 @@ public class MyADSProvider {
         } else {
             ADS.activateAdmobSmartBanner(a, adView);
         }
+        if (handler == null) {
+            return;
+        }
 
         handler.removeCallbacksAndMessages(null);
 

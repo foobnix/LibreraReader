@@ -6,13 +6,10 @@ import com.foobnix.android.utils.Dips;
 import com.foobnix.android.utils.TxtUtils;
 import com.foobnix.pdf.info.R;
 import com.foobnix.pdf.info.TintUtil;
-import com.foobnix.pdf.info.model.BookCSS;
 import com.foobnix.pdf.info.model.OutlineLinkWrapper;
-import com.foobnix.pdf.info.wrapper.AppState;
 
 import android.content.Context;
 import android.graphics.Color;
-import android.graphics.Typeface;
 import android.util.SparseIntArray;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -147,9 +144,6 @@ public class OutlineAdapter extends BaseAdapter {
         }
         final TextView view = (TextView) container.findViewById(R.id.outline_title);
         final TextView num = (TextView) container.findViewById(R.id.pageNumber);
-        if (AppState.get().isUseTypeFace) {
-            num.setTypeface(BookCSS.getNormalTypeFace());
-        }
         final ImageView btn = (ImageView) container.findViewById(R.id.outline_collapse);
 
         final OutlineLinkWrapper item = getItem(position);
@@ -178,18 +172,12 @@ public class OutlineAdapter extends BaseAdapter {
         if (states[id] == OutlineItemState.LEAF) {
             // btn.setBackgroundColor(Color.TRANSPARENT);
             btn.setImageDrawable(null);
-            if (AppState.get().isUseTypeFace) {
-                view.setTypeface(BookCSS.getNormalTypeFace(), Typeface.NORMAL);
-            }
             btn.setOnClickListener(itemListener);
         } else {
             btn.setOnClickListener(collapseListener);
 
             btn.setImageResource(states[id] == OutlineItemState.EXPANDED ? R.drawable.screen_zoom_out_dark : R.drawable.screen_zoom_in_dark);
             TintUtil.setTintImageWithAlpha(btn, view.getCurrentTextColor());
-            if (AppState.get().isUseTypeFace) {
-                view.setTypeface(BookCSS.getNormalTypeFace(), Typeface.BOLD);
-            }
 
         }
 

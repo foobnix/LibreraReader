@@ -7,8 +7,10 @@ import com.foobnix.android.utils.BaseItemLayoutAdapter;
 import com.foobnix.android.utils.Dips;
 import com.foobnix.android.utils.Keyboards;
 import com.foobnix.android.utils.LOG;
+import com.foobnix.android.utils.TxtUtils;
 import com.foobnix.pdf.info.R;
 import com.foobnix.pdf.info.TintUtil;
+import com.foobnix.pdf.info.model.BookCSS;
 import com.foobnix.pdf.info.wrapper.AppState;
 import com.foobnix.ui2.MainTabs2;
 
@@ -44,6 +46,7 @@ public class MyPopupMenu {
         String stringRes;
         int iconRes;
         OnMenuItemClickListener click;
+        private String fontPath;
 
         public Menu add(int res) {
             this.stringRes = c.getString(res);
@@ -52,6 +55,12 @@ public class MyPopupMenu {
 
         public Menu add(String name) {
             this.stringRes = name;
+            return this;
+        }
+
+        public Menu add(String name, String fontPath) {
+            this.stringRes = name;
+            this.fontPath = fontPath;
             return this;
         }
 
@@ -95,6 +104,11 @@ public class MyPopupMenu {
                 TextView textView = (TextView) layout.findViewById(R.id.text1);
                 textView.setText(item.stringRes);
                 textView.setTextSize(TypedValue.COMPLEX_UNIT_SP, 20);
+
+                if (TxtUtils.isNotEmpty(item.fontPath)) {
+                    textView.setTypeface(BookCSS.getTypeFaceForFont(item.fontPath));
+                }
+
                 ImageView imageView = (ImageView) layout.findViewById(R.id.image1);
                 if (item.iconRes != 0) {
                     imageView.setImageResource(item.iconRes);

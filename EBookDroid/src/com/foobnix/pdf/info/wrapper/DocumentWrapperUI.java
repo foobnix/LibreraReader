@@ -27,7 +27,6 @@ import com.foobnix.pdf.info.ExtUtils;
 import com.foobnix.pdf.info.R;
 import com.foobnix.pdf.info.TintUtil;
 import com.foobnix.pdf.info.UiSystemUtils;
-import com.foobnix.pdf.info.model.BookCSS;
 import com.foobnix.pdf.info.model.OutlineLinkWrapper;
 import com.foobnix.pdf.info.view.BrightnessHelper;
 import com.foobnix.pdf.info.view.CustomSeek;
@@ -713,15 +712,6 @@ public class DocumentWrapperUI {
         currentTime = (TextView) a.findViewById(R.id.currentTime);
         batteryLevel = (TextView) a.findViewById(R.id.currentBattery);
 
-        if (AppState.get().isUseTypeFace) {
-            reverseKeysIndicator.setTypeface(BookCSS.getNormalTypeFace());
-            bookName.setTypeface(BookCSS.getNormalTypeFace());
-            currentSeek.setTypeface(BookCSS.getNormalTypeFace());
-            currentPageIndex.setTypeface(BookCSS.getNormalTypeFace());
-            maxSeek.setTypeface(BookCSS.getNormalTypeFace());
-            currentTime.setTypeface(BookCSS.getNormalTypeFace());
-            batteryLevel.setTypeface(BookCSS.getNormalTypeFace());
-        }
 
         currentSeek.setOnLongClickListener(new OnLongClickListener() {
 
@@ -1141,9 +1131,7 @@ public class DocumentWrapperUI {
             nextTypeBootom.setText(R.string.by_pages);
             nextScreenType.setImageResource(R.drawable.glyphicons_full_page);
 
-            if (AppState.get().isUseTypeFace) {
-                nextTypeBootom.setTypeface(BookCSS.getNormalTypeFace());
-            }
+
         } else {
             if (AppState.get().nextScreenScrollBy == 100) {
                 nextTypeBootom.setText(dc.getString(R.string.by_screans));
@@ -1152,9 +1140,6 @@ public class DocumentWrapperUI {
             }
             nextScreenType.setImageResource(R.drawable.glyphicons_halp_page);
 
-            if (AppState.get().isUseTypeFace) {
-                nextTypeBootom.setTypeface(BookCSS.getNormalTypeFace());
-            }
         }
 
     }
