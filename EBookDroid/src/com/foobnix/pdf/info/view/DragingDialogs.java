@@ -2246,8 +2246,9 @@ public class DragingDialogs {
                 );//
 
                 final TextView readingProgress = (TextView) inflate.findViewById(R.id.readingProgress);
-                readingProgress.setText(modeStrings.get(modeIds.indexOf(AppState.get().readingProgress)));
+                readingProgress.setText(modeStrings.get(modeIds.indexOf(AppState.get().readingProgress1)));
                 TxtUtils.underlineTextView(readingProgress);
+                readingProgress.setVisibility(View.GONE);
 
                 readingProgress.setOnClickListener(new OnClickListener() {
 
@@ -2260,8 +2261,8 @@ public class DragingDialogs {
 
                                 @Override
                                 public boolean onMenuItemClick(MenuItem item) {
-                                    AppState.get().readingProgress = modeIds.get(j);
-                                    readingProgress.setText(modeStrings.get(modeIds.indexOf(AppState.get().readingProgress)));
+                                    AppState.get().readingProgress1 = modeIds.get(j);
+                                    readingProgress.setText(modeStrings.get(modeIds.indexOf(AppState.get().readingProgress1)));
                                     TxtUtils.underlineTextView(readingProgress);
                                     if (onRefresh != null) {
                                         onRefresh.run();

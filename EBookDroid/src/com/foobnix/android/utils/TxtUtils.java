@@ -73,11 +73,11 @@ public class TxtUtils {
 
     public static String deltaPage(int current, int max) {
         if (max != 0) {
-            if (AppState.get().readingProgress == AppState.READING_PROGRESS_PERCENT_NUMBERS) {
+            if (AppState.get().readingProgress1 == AppState.READING_PROGRESS_PERCENT_NUMBERS) {
                 float f = (float) current * 100 / max;
                 return String.format("%.1f", f) + "%";
             }
-            if (AppState.get().readingProgress == AppState.READING_PROGRESS_PERCENT) {
+            if (AppState.get().readingProgress1 == AppState.READING_PROGRESS_PERCENT) {
                 float f = (float) current * 100 / max;
                 return String.format("%.1f", f) + "%";
             }
@@ -89,8 +89,13 @@ public class TxtUtils {
         return "[" + (current + TempHolder.get().pageDelta) + "]";
     }
 
+    public static String getProgressPercent(int current, int max) {
+        float f = (float) current * 100 / max;
+        return String.format("%.1f", f) + "%";
+    }
+
     public static String deltaPageMax(int current) {
-        if (AppState.get().readingProgress == AppState.READING_PROGRESS_PERCENT) {
+        if (AppState.get().readingProgress1 == AppState.READING_PROGRESS_PERCENT) {
             return "100%";
         }
         if (TempHolder.get().pageDelta == 0) {

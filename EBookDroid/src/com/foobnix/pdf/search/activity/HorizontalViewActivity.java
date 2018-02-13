@@ -1428,10 +1428,10 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
             maxSeek.setText("" + textMax);
             currentSeek.setText("" + textPage);
         }
-        if (AppState.get().readingProgress == AppState.READING_PROGRESS_PERCENT) {
+        if (AppState.get().readingProgress1 == AppState.READING_PROGRESS_PERCENT) {
             pagesCountIndicator.setText(textPage);
         } else {
-            pagesCountIndicator.setText(textPage + " ∕ " + textMax);
+            pagesCountIndicator.setText("[" + TxtUtils.getProgressPercent(page + 1, max) + "] " + textPage + "∕" + textMax);
         }
 
         seekBar.setProgress(page);
@@ -1476,15 +1476,6 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
                 nextPage();
             }
         });
-
-        // currentSeek.setText("" + (documentController.getCurentPage() + 1));
-        // maxSeek.setText("" + TxtUtils.deltaPage(documentController.getPageCount()));
-        //
-        // if (AppState.get().isRTL) {
-        // maxSeek.setText("" + TxtUtils.deltaPage((documentController.getCurentPage() +
-        // 1)));
-        // currentSeek.setText("" + documentController.getPageCount());
-        // }
 
         updateLockMode();
 
