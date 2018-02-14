@@ -43,6 +43,7 @@ public class Dialogs {
     public static void showLinksColorDialog(final Activity a, final Runnable action) {
         final AlertDialog.Builder builder = new AlertDialog.Builder(a);
         builder.setCancelable(true);
+        builder.setTitle(R.string.link_color);
 
         LayoutInflater inflater = LayoutInflater.from(a);
         View inflate = inflater.inflate(R.layout.dialog_links_color, null, false);
