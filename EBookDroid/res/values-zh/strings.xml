@@ -13,7 +13,7 @@
    <string name="close_book">关闭书籍</string>
    <string name="content_of_book">目录</string>
    <string name="crop_white_borders">裁白边</string>
-   <string name="delete">删除文件</string>
+   <string name="delete">删除</string>
    <string name="delete_book_">删除文件？</string>
    <string name="dialog_color_picker">颜色选择</string>
    <string name="export_">导出 ...</string>
@@ -30,9 +30,10 @@
    <string name="licence_gnu_gpl_v3_0">授权方式: GNU GPL v3.0</string>
    <string name="light">亮色调</string>
    <string name="loading_failed">载入失败</string>
-   <string name="loop_autoplay">自动滚动</string>
+   <string name="loop_autoplay">自动循环</string>
+   <string name="mouse_scroll_speed">鼠标灵敏度</string>
    <string name="msg_loading">正在载入...</string>
-   <string name="msg_no_text_found">无搜索结果</string>
+   <string name="msg_no_text_found">无结果</string>
    <string name="msg_password_required">请输入密码</string>
    <string name="msg_unexpected_error">未知错误</string>
    <string name="msg_wrong_password">密码错误</string>
@@ -123,7 +124,7 @@
    <string name="application_user_guide_">说明</string>
    <string name="you_need_grant_permission">需要授权</string>
    <string name="db_auto_alignemnt">自动对齐</string>
-   <string name="db_auto_scroll">自动滚屏</string>
+   <string name="db_auto_scroll">自动滚动</string>
    <string name="db_do_nothing">无</string>
    <string name="action_on_double_tap">双击</string>
    <string name="add_bookmark">添加书签</string>
@@ -401,7 +402,7 @@
    <string name="custom_value">自定义值</string>
    <string name="change_the_automatic_scrolling_speed_with_the_volume_keys">音量键调节滚动速度</string>
    <string name="automatic_export_backup">自动备份设置，进度，书签，并导出。</string>
-   <string name="display_all_file_types_in_folders">显示文件夹全类文件</string>
+   <string name="display_all_file_types_in_folders">显示文件夹中所有文件类型</string>
    <string name="no_serie">没有系列</string>
    <string name="no_genre">没有类型</string>
    <string name="no_author">没有作者</string>
