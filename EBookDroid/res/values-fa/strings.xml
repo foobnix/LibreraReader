@@ -438,4 +438,6 @@
    <string name="backup_folder">پوشه پشتیبان</string>
    <string name="audio_books_folder">پوشه کتاب صوتی</string>
    <string name="enable_contrast_and_brightness">کنتراست و روشنایی را فعال کنید</string>
+   <string name="enable">فعال کردن</string>
+   <string name="link_color">رنگ لینک</string>
 </resources>

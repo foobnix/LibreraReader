@@ -438,4 +438,6 @@
    <string name="backup_folder">Thư mục sao lưu</string>
    <string name="audio_books_folder">Thư mục sách âm thanh</string>
    <string name="enable_contrast_and_brightness">Bật độ tương phản và độ sáng</string>
+   <string name="enable">Bật</string>
+   <string name="link_color">Màu sắc liên kết</string>
 </resources>

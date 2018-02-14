@@ -438,4 +438,6 @@
    <string name="backup_folder">Mentési mappa</string>
    <string name="audio_books_folder">Hangoskönyvek mappa</string>
    <string name="enable_contrast_and_brightness">Kontraszt és fényerő engedélyezése</string>
+   <string name="enable">Engedélyezze</string>
+   <string name="link_color">Link szín</string>
 </resources>

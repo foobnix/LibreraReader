@@ -80,8 +80,8 @@ public class SearchFragment2 extends UIFragment<FileMeta> {
 
     TextView countBooks, sortBy;
     Handler handler;
-    ImageView sortOrder, myAutoCompleteImage;
-    View onRefresh, cleanFilter, secondTopPanel;
+    ImageView sortOrder, myAutoCompleteImage, cleanFilter;
+    View onRefresh, secondTopPanel;
     AutoCompleteTextView searchEditText;
 
     public static List<FileMeta> itemsMeta = new ArrayList<FileMeta>();
@@ -102,8 +102,11 @@ public class SearchFragment2 extends UIFragment<FileMeta> {
         TintUtil.setBackgroundFillColor(secondTopPanel, TintUtil.color);
         TintUtil.setStrokeColor(searchEditText, TintUtil.color);
 
-        TintUtil.setUITextColor(countBooks);
-        TintUtil.setUITextColor(searchEditText);
+        TintUtil.setUITextColor(countBooks, TintUtil.color);
+        TintUtil.setUITextColor(searchEditText, TintUtil.color);
+        
+        TintUtil.setTintImageNoAlpha(cleanFilter, TintUtil.color);
+        TintUtil.setTintImageNoAlpha(myAutoCompleteImage, TintUtil.color);
 
     }
 
@@ -155,7 +158,7 @@ public class SearchFragment2 extends UIFragment<FileMeta> {
         countBooks = (TextView) view.findViewById(R.id.countBooks);
         onRefresh = view.findViewById(R.id.onRefresh);
         onRefresh.setActivated(true);
-        cleanFilter = view.findViewById(R.id.cleanFilter);
+        cleanFilter = (ImageView) view.findViewById(R.id.cleanFilter);
         sortBy = (TextView) view.findViewById(R.id.sortBy);
         sortOrder = (ImageView) view.findViewById(R.id.sortOrder);
         myAutoCompleteImage = (ImageView) view.findViewById(R.id.myAutoCompleteImage);

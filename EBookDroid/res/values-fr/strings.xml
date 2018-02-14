@@ -438,4 +438,6 @@
    <string name="backup_folder">Dossier de sauvegarde</string>
    <string name="audio_books_folder">Dossier de livres audio</string>
    <string name="enable_contrast_and_brightness">Activer le contraste et la luminosité</string>
+   <string name="enable">Activer</string>
+   <string name="link_color">Couleur du lien</string>
 </resources>

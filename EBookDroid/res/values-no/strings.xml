@@ -438,4 +438,6 @@
    <string name="backup_folder">Sikkerhetskopieringsmappe</string>
    <string name="audio_books_folder">Lydbøker mappe</string>
    <string name="enable_contrast_and_brightness">Aktiver kontrast og lysstyrke</string>
+   <string name="enable">Aktiver</string>
+   <string name="link_color">Link farge</string>
 </resources>

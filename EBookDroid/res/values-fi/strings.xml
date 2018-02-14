@@ -438,4 +438,6 @@
    <string name="backup_folder">Varmuuskopio-kansio</string>
    <string name="audio_books_folder">Äänikirjakansio</string>
    <string name="enable_contrast_and_brightness">Ota kontrasti ja kirkkaus käyttöön</string>
+   <string name="enable">Ota käyttöön</string>
+   <string name="link_color">Linkin väri</string>
 </resources>

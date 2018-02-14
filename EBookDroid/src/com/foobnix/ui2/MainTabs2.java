@@ -436,6 +436,10 @@ public class MainTabs2 extends AdsFragmentActivity {
 
     boolean isMyKey = false;
 
+    public void updateCurrentFragment() {
+        tabFragments.get(pager.getCurrentItem()).onSelectFragment();
+    }
+
     @Override
     public boolean onKeyDown(int keyCode1, KeyEvent event) {
         if (!isEink) {

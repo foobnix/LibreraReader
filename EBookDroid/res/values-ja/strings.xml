@@ -438,4 +438,6 @@
    <string name="backup_folder">バックアップフォルダ</string>
    <string name="audio_books_folder">オーディオブックフォルダ</string>
    <string name="enable_contrast_and_brightness">コントラストと明るさを有効にする</string>
+   <string name="enable">有効にする</string>
+   <string name="link_color">リンクの色</string>
 </resources>

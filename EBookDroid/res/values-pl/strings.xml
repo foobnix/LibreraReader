@@ -438,4 +438,6 @@
    <string name="backup_folder">Folder kopii zapasowej</string>
    <string name="audio_books_folder">Folder książek audio</string>
    <string name="enable_contrast_and_brightness">Włącz kontrast i jasność</string>
+   <string name="enable">Włączyć</string>
+   <string name="link_color">Kolor łącza</string>
 </resources>

@@ -438,4 +438,6 @@
    <string name="backup_folder">Folder cadangan</string>
    <string name="audio_books_folder">Buku audio folder</string>
    <string name="enable_contrast_and_brightness">Aktifkan kontras dan kecerahan</string>
+   <string name="enable">Memungkinkan</string>
+   <string name="link_color">Warna link</string>
 </resources>

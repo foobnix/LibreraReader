@@ -31,7 +31,6 @@
    <string name="light">亮色调</string>
    <string name="loading_failed">载入失败</string>
    <string name="loop_autoplay">自动循环</string>
-   <string name="mouse_scroll_speed">鼠标灵敏度</string>
    <string name="msg_loading">正在载入...</string>
    <string name="msg_no_text_found">无结果</string>
    <string name="msg_password_required">请输入密码</string>
@@ -113,7 +112,7 @@
    <string name="make_text_reflow">文本重排</string>
    <string name="search_not_supported_formats">搜索未支持格式</string>
    <string name="___MULTIPLE___SECTIONS___">多选</string>
-   <string name="search_in_google">google搜索</string>
+   <string name="search_in_google">Google搜索</string>
    <string name="sound_volume">音量</string>
    <string name="speed1">语速</string>
    <string name="pitch1">音调</string>
@@ -438,5 +437,7 @@
    <string name="mode_musician">乐谱模式</string>
    <string name="backup_folder">备份目录</string>
    <string name="audio_books_folder">音频目录</string>
+   <string name="enable">启用</string>
    <string name="enable_contrast_and_brightness">启用对比度和亮度</string>
+   <string name="link_color">链接颜色</string>
 </resources>

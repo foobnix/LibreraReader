@@ -438,4 +438,6 @@
    <string name="backup_folder">Cartella di backup</string>
    <string name="audio_books_folder">Cartella dei libri audio</string>
    <string name="enable_contrast_and_brightness">Abilita contrasto e luminosità</string>
+   <string name="enable">Abilitare</string>
+   <string name="link_color">Link a colori</string>
 </resources>

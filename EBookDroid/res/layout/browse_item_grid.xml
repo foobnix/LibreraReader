@@ -101,7 +101,7 @@
                     android:text="PDF"
                     android:textAllCaps="true"
                     android:textSize="@dimen/text_subtitle"
-                    android:textStyle="bold" />
+                    android:textStyle="normal" />
                 
                 <TextView
                     android:id="@+id/idPercentText"

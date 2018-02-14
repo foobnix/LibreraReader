@@ -136,6 +136,9 @@ public class EntryAdapter extends AppRecycleAdapter<Entry, RecyclerView.ViewHold
             holder.author.setVisibility(View.VISIBLE);
             if (TxtUtils.isNotEmpty(entry.authorUrl)) {
                 holder.author.setTextColor(ContextCompat.getColor(context, R.color.tint_blue));
+                if (AppState.get().isUiTextColor) {
+                    TintUtil.setUITextColor(holder.author, AppState.get().uiTextColor);
+                }
                 holder.author.setOnClickListener(new OnClickListener() {
 
                     @Override
@@ -305,6 +308,11 @@ public class EntryAdapter extends AppRecycleAdapter<Entry, RecyclerView.ViewHold
                 } else {
                     t.setText(link.title != null ? link.title : link.type);
                     t.setTextColor(context.getResources().getColor(R.color.tint_blue));
+
+                    if (AppState.get().isUiTextColor) {
+                        TintUtil.setUITextColor(t, AppState.get().uiTextColor);
+                    }
+
                     // t.setBackgroundResource(R.drawable.bg_clickable);
                     // if (link.type != null && link.type.contains(Entry.MY_CATALOG)) {
                     // t.setBackgroundColor(Color.TRANSPARENT);

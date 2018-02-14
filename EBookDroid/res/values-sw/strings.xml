@@ -438,4 +438,6 @@
    <string name="backup_folder">Faili ya Backup</string>
    <string name="audio_books_folder">Faili ya vitabu vya sauti</string>
    <string name="enable_contrast_and_brightness">Wezesha tofauti na mwangaza</string>
+   <string name="enable">Wezesha</string>
+   <string name="link_color">Weka rangi</string>
 </resources>

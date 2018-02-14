@@ -438,4 +438,6 @@
    <string name="backup_folder">โฟลเดอร์สำรอง</string>
    <string name="audio_books_folder">โฟลเดอร์หนังสือเสียง</string>
    <string name="enable_contrast_and_brightness">เปิดใช้งานความคมชัดและความสว่าง</string>
+   <string name="enable">ทำให้สามารถ</string>
+   <string name="link_color">สีลิงก์</string>
 </resources>

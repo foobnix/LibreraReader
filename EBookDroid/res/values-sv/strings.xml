@@ -438,4 +438,6 @@
    <string name="backup_folder">Backup-mapp</string>
    <string name="audio_books_folder">Ljudböcker mapp</string>
    <string name="enable_contrast_and_brightness">Aktivera kontrast och ljusstyrka</string>
+   <string name="enable">Gör det möjligt</string>
+   <string name="link_color">Länkfärg</string>
 </resources>

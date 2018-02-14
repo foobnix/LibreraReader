@@ -438,4 +438,6 @@
    <string name="backup_folder">Резервна копія</string>
    <string name="audio_books_folder">Папка звукових книг</string>
    <string name="enable_contrast_and_brightness">Увімкнути контрастність та яскравість</string>
+   <string name="enable">Увімкнути</string>
+   <string name="link_color">Посилання на колір</string>
 </resources>

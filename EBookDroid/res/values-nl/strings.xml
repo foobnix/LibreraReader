@@ -438,4 +438,6 @@
    <string name="backup_folder">Back-upmap</string>
    <string name="audio_books_folder">Map Audioboeken</string>
    <string name="enable_contrast_and_brightness">Schakel contrast en helderheid in</string>
+   <string name="enable">In staat stellen</string>
+   <string name="link_color">Link kleur</string>
 </resources>

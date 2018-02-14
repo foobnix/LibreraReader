@@ -438,4 +438,6 @@
    <string name="backup_folder">Папка для автом. экспорта настроек</string>
    <string name="audio_books_folder">Папка для начит. голосом книг</string>
    <string name="enable_contrast_and_brightness">Включить</string>
+   <string name="enable">Включить</string>
+   <string name="link_color">Цвет ссылки</string>
 </resources>

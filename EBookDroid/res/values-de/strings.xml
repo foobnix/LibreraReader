@@ -438,4 +438,6 @@
    <string name="backup_folder">Sicherungsordner</string>
    <string name="audio_books_folder">Ordner für Hörbücher</string>
    <string name="enable_contrast_and_brightness">Aktivieren Sie Kontrast und Helligkeit</string>
+   <string name="enable">Aktivieren</string>
+   <string name="link_color">Verknüpfungsfarbe</string>
 </resources>

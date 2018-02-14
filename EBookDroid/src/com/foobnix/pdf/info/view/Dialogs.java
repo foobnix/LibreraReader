@@ -1,5 +1,7 @@
 package com.foobnix.pdf.info.view;
 
+import com.buzzingandroid.ui.HSVColorPickerDialog;
+import com.buzzingandroid.ui.HSVColorPickerDialog.OnColorSelectedListener;
 import com.foobnix.android.utils.Dips;
 import com.foobnix.android.utils.IntegerResponse;
 import com.foobnix.android.utils.Keyboards;
@@ -17,11 +19,14 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.DialogInterface.OnDismissListener;
+import android.graphics.Color;
 import android.os.Handler;
 import android.text.InputType;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.ViewGroup;
+import android.view.ViewGroup.LayoutParams;
 import android.view.WindowManager;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
@@ -34,6 +39,97 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 
 public class Dialogs {
+
+    public static void showLinksColorDialog(final Activity a, final Runnable action) {
+        final AlertDialog.Builder builder = new AlertDialog.Builder(a);
+        builder.setCancelable(true);
+
+        LayoutInflater inflater = LayoutInflater.from(a);
+        View inflate = inflater.inflate(R.layout.dialog_links_color, null, false);
+
+        final CheckBox isUiTextColor = (CheckBox) inflate.findViewById(R.id.isUiTextColor);
+        isUiTextColor.setChecked(AppState.get().isUiTextColor);
+        isUiTextColor.setOnCheckedChangeListener(new OnCheckedChangeListener() {
+
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                AppState.get().isUiTextColor = isChecked;
+                if (action != null) {
+                    action.run();
+                }
+            }
+        });
+
+        LinearLayout colorsLine1 = inflate.findViewById(R.id.colorsLine1);
+        colorsLine1.removeAllViews();
+
+        for (String color : AppState.STYLE_COLORS) {
+            View view = inflater.inflate(R.layout.item_color, (ViewGroup) inflate, false);
+            view.setBackgroundColor(Color.TRANSPARENT);
+            final int intColor = Color.parseColor(color);
+            final View img = view.findViewById(R.id.itColor);
+            img.setBackgroundColor(intColor);
+
+            colorsLine1.addView(view, new LayoutParams(Dips.dpToPx(30), Dips.dpToPx(30)));
+
+            view.setOnClickListener(new OnClickListener() {
+
+                @Override
+                public void onClick(View v) {
+                    isUiTextColor.setChecked(true);
+                    AppState.get().isUiTextColor = true;
+                    AppState.get().uiTextColor = intColor;
+                    if (action != null) {
+                        action.run();
+                    }
+                }
+            });
+        }
+
+        View view = inflater.inflate(R.layout.item_color, (ViewGroup) inflate, false);
+        view.setBackgroundColor(Color.TRANSPARENT);
+        final ImageView img = (ImageView) view.findViewById(R.id.itColor);
+        img.setColorFilter(a.getResources().getColor(R.color.tint_gray));
+        img.setImageResource(R.drawable.glyphicons_433_plus);
+        img.setBackgroundColor(AppState.get().uiTextColorUser);
+        colorsLine1.addView(view, new LayoutParams(Dips.dpToPx(30), Dips.dpToPx(30)));
+
+        view.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                new HSVColorPickerDialog(a, AppState.get().uiTextColorUser, new OnColorSelectedListener() {
+
+                    @Override
+                    public void colorSelected(Integer color) {
+                        isUiTextColor.setChecked(true);
+                        AppState.get().isUiTextColor = true;
+                        AppState.get().uiTextColor = color;
+                        AppState.get().uiTextColorUser = color;
+                        img.setBackgroundColor(color);
+
+                        if (action != null) {
+                            action.run();
+                        }
+
+                    }
+                }).show();
+
+            }
+        });
+
+        builder.setView(inflate);
+
+        builder.setPositiveButton(R.string.close, new DialogInterface.OnClickListener() {
+
+            @Override
+            public void onClick(final DialogInterface dialog, final int id) {
+
+            }
+        });
+        AlertDialog dialog = builder.show();
+        dialog.getWindow().clearFlags(WindowManager.LayoutParams.FLAG_DIM_BEHIND);
+
+    }
 
     public static AlertDialog loadingBook(Context c, final Runnable onCancel) {
         final AlertDialog.Builder builder = new AlertDialog.Builder(c);

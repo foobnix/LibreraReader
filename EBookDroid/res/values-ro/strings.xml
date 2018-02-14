@@ -438,4 +438,6 @@
    <string name="backup_folder">Dosar de backup</string>
    <string name="audio_books_folder">Cărți audio</string>
    <string name="enable_contrast_and_brightness">Activați contrastul și luminozitatea</string>
+   <string name="enable">Permite</string>
+   <string name="link_color">Culoare legătură</string>
 </resources>

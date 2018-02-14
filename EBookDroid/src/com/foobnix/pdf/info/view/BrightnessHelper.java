@@ -106,9 +106,9 @@ public class BrightnessHelper {
                 lp.screenBrightness = -1;
             } else if (appBrightness == 0) {
                 if (Build.VERSION.SDK_INT >= 21) {
-                    lp.screenBrightness = 0;
+                    lp.screenBrightness = 0f;
                 } else {
-                    lp.screenBrightness = 1;
+                    lp.screenBrightness = 0.01f;
                 }
             } else {
                 lp.screenBrightness = (float) appBrightness / 100;

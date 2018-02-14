@@ -438,4 +438,6 @@
    <string name="backup_folder">Plica exempli subs.</string>
    <string name="audio_books_folder">Plica audiolibrorum</string>
    <string name="enable_contrast_and_brightness">Contrafactium et candor</string>
+   <string name="enable">Admitte</string>
+   <string name="link_color">Color Link</string>
 </resources>

@@ -438,4 +438,6 @@
    <string name="backup_folder">Zálohovací priečinok</string>
    <string name="audio_books_folder">Zložka zvukových kníh</string>
    <string name="enable_contrast_and_brightness">Umožňuje kontrast a jas</string>
+   <string name="enable">Umožniť</string>
+   <string name="link_color">Farba odkazu</string>
 </resources>
