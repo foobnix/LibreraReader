@@ -9,6 +9,7 @@ import org.ebookdroid.ui.viewer.VerticalViewActivity;
 import org.greenrobot.eventbus.EventBus;
 
 import com.foobnix.android.utils.Keyboards;
+import com.foobnix.dao2.FileMeta;
 import com.foobnix.pdf.info.ExtUtils;
 import com.foobnix.pdf.info.R;
 import com.foobnix.pdf.info.Urls;
@@ -209,7 +210,11 @@ public class ShareDialog {
                 } else if (isMainTabs && which == i++) {
                     FileInformationDialog.dialogDelete(a, file, onDeleteAction);
                 } else if (isMainTabs && which == i++) {
-                    AppDB.get().deleteBy(file.getPath());
+                    FileMeta load = AppDB.get().load(file.getPath());
+                    if (load != null) {
+                        load.setIsSearchBook(false);
+                        AppDB.get().update(load);
+                    }
                     EventBus.getDefault().post(new UpdateAllFragments());
                 } else if (!isMainTabs && which == i++) {
                     if (dc != null) {
