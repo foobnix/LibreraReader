@@ -1,8 +1,5 @@
-* Meningkatkan kecepatan dalam membuka semua format dan PDF, EPUB 
+* Librera adalah aplikasi terbaik untuk membaca semua format buku dan PDF 
 * ThemeInk untuk perangkat dengan tinta elektronik 
 * Mengubah kontras dan kecerahan 
 * Kecerahan negatif 
-* Filter bluelight 
-* Kueri pelengkapan otomatis di perpustakaan 
-* Antarmuka yang ditingkatkan 
-* Banyak perbaikan dan perbaikan bug.
+* Filter cahaya biru

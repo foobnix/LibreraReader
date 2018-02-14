@@ -1,8 +1,5 @@
-* Migliorata la velocità di apertura di tutti i formati e PDF, EPUB 
+* Librera è la migliore app per leggere tutti i formati di libri e PDF 
 * TemaInchiostro per dispositivi con inchiostro elettronico 
-* Modifica contrasto e luminosità 
+* Cambia il contrasto e la luminosità 
 * Luminosità negativa 
-* Filtro Bluelight 
-* Query di completamento automatico nella libreria 
-* Interfaccia migliorata 
-* Molti miglioramenti e correzioni di bug
+* Filtro blu chiaro

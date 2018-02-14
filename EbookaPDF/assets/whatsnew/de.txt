@@ -1,8 +1,5 @@
-* Verbesserte die Geschwindigkeit des Öffnens aller Formate und PDF, EPUB 
-* ThemeInk für Geräte mit elektronischer Tinte 
+* Librera ist die beste App, um alle Buchformate und PDF 
+* ThemeInk für Geräte mit elektronischer Tinte zu lesen 
 * Ändern Sie den Kontrast und die Helligkeit 
 * Negative Helligkeit 
-* Bluelight-Filter 
-* Autocomplete Abfragen in der Bibliothek 
-* Verbesserte Benutzeroberfläche 
-* Viele Verbesserungen und Fehlerbehebungen
+* Blaulichtfilter

@@ -1,8 +1,5 @@
-* Mejora la velocidad de apertura de todos los formatos y PDF, EPUB 
+* Librera es la mejor aplicación para leer todos los formatos de libros y PDF 
 * TemaTinta para dispositivos con tinta electrónica 
-* Cambio de contraste y brillo 
+* Cambiar el contraste y el brillo 
 * Brillo negativo 
-* Filtro de luz azul 
-* Autocompletar consultas en la biblioteca 
-* Interfaz mejorada 
-* Muchas mejoras y correcciones de errores
+* Filtro de luz azul

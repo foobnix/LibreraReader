@@ -1,8 +1,5 @@
-* Kuboresha kasi ya ufunguzi wa muundo wote na PDF, EPUB 
-* MandhariNyenzo kwa vifaa na wino wa elektroniki 
+* Librera ni programu bora kusoma fomu zote za kitabu na PDF 
+* MandhariInk kwa vifaa na wino wa elektroniki 
 * Badilisha tofauti na mwangaza 
 * Uavu usiofaa 
-* Bluelight chujio 
-* Maswali ya kikamilifu katika maktaba 
-* Kiboreshaji kilichoboreshwa 
-* Maboresho mengi na marekebisho ya mdudu
+* Blue Light filter

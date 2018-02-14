@@ -1,8 +1,5 @@
-* Patobulintas visų formatų atidarymo greitis ir PDF, EPUB 
-*Ink temos įrenginiams su elektroniniu rašalu 
+*Librera yra geriausia programa skaityti visas knygų formatus ir PDF 
+*Ink temos prietaisams su elektroniniu rašalu 
 * Keisti kontrastą ir ryškumą 
 * Neigiamas ryškumas 
-* Bluelight filtras 
-* Automatinis užbaigimas užklausų bibliotekoje 
-* Patobulinta sąsaja 
-* Daugybė patobulinimų ir klaidų taisymų
+* Mėlynas šviesos filtras

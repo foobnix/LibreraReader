@@ -1,8 +1,5 @@
-* Förbättrat hastigheten att öppna alla format och PDF, EPUB 
+* Librera är den bästa appen för att läsa alla bokformat och PDF 
 * TemaBläck för enheter med elektronisk bläck 
 * Ändra kontrasten och ljusstyrkan 
 * Negativ ljusstyrka 
-* Bluelight-filter 
-* Autofullständiga frågor i biblioteket 
-* Förbättrat gränssnitt 
-* Många förbättringar och buggfixar
+* Blå ljusfilter

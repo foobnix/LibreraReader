@@ -1,8 +1,5 @@
-* Vylepšená rýchlosť otvárania všetkých formátov a PDF, EPUB 
-* Téma Ink pre zariadenia s elektronickým atramentom 
+* Librera je najlepšia aplikácia na čítanie všetkých formátov kníh a PDF 
+* TémaAtrament pre zariadenia s elektronickým atramentom 
 * Zmena kontrastu a jasu 
 * Negatívny jas 
-* Filtrovanie Bluelight 
-* Automatické dopyty v knižnici 
-* Vylepšené rozhranie 
-* Veľa vylepšení a opravy chýb
+* Filter svetlého svetla

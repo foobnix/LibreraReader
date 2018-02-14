@@ -1,8 +1,5 @@
-* Îmbunătățirea vitezei de deschidere a tuturor formatelor și PDF, EPUB 
-* TemaInk pentru dispozitivele cu cerneală electronică 
+* Librera este cea mai bună aplicație pentru a citi toate formatele de cărți și PDF 
+* TemaCerneală pentru dispozitivele cu cerneală electronică 
 * Schimbarea contrastului și luminozității 
 * Luminozitate negativă 
-* Filtru Bluelight 
-* Interogări de completare automată în bibliotecă 
-* Interfață îmbunătățită 
-* Multe îmbunătățiri și corecții de erori
+* Filtru albastru

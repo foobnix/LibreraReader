@@ -1,8 +1,5 @@
-* Forbedret hastigheten for å åpne alle formater og PDF, EPUB 
-* TemaInk for enheter med elektronisk blekk 
+* Librera er den beste appen for å lese alle bokformater og PDF 
+* TemaBlekk for enheter med elektronisk blekk 
 * Endre kontrast og lysstyrke 
 * Negativ lysstyrke 
-* Bluelight filter 
-* Autofullfør spørringer i biblioteket 
-* Forbedret grensesnitt 
-* Mange forbedringer og feilrettinger
+* Blå lysfilter

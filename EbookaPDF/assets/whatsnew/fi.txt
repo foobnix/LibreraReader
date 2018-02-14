@@ -1,8 +1,5 @@
-* Parannetaan kaikkien formaattien avautumista ja PDF, EPUB 
-* TeemaMuste elektronisille musteille. 
-* Muuta kontrastia ja kirkkautta. 
-* Negatiivinen kirkkaus. 
-* Bluelight-suodatin. 
-* Automaattinen täydennys kirjastoon. 
-* Parannettu käyttöliittymä. 
-* Monet parannukset ja virheiden korjaukset.
+* Librera on paras sovellus lukemaan kaikki kirjamuodot ja PDF 
+* TeemaInk laitteille, joissa on elektroninen muste 
+* Vaihda kontrasti ja kirkkaus 
+* Negatiivinen kirkkaus 
+* Sininen valosuodatin

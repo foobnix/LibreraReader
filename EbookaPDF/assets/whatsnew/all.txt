@@ -1,341 +1,255 @@
 
 <nl-NL>
-* Verbeterde snelheid bij openen van alle indelingen en PDF, EPUB 
-* ThemaInkt voor apparaten met elektronische inkt 
+* Librera is de beste app om alle boekformaten en PDF 
+* ThemaInkt te lezen voor apparaten met elektronische inkt 
 * Verander het contrast en de helderheid 
 * Negatieve helderheid 
-* Bluelight filter 
-* Vragen automatisch invullen in de bibliotheek 
-* Verbeterde interface 
-* Veel verbeteringen en bugfixes
+* Blauwlichtfilter
 </nl-NL>
 
 <id>
-* Meningkatkan kecepatan dalam membuka semua format dan PDF, EPUB 
+* Librera adalah aplikasi terbaik untuk membaca semua format buku dan PDF 
 * ThemeInk untuk perangkat dengan tinta elektronik 
 * Mengubah kontras dan kecerahan 
 * Kecerahan negatif 
-* Filter bluelight 
-* Kueri pelengkapan otomatis di perpustakaan 
-* Antarmuka yang ditingkatkan 
-* Banyak perbaikan dan perbaikan bug.
+* Filter cahaya biru
 </id>
 
 <lt>
-* Patobulintas visų formatų atidarymo greitis ir PDF, EPUB 
-*Ink temos įrenginiams su elektroniniu rašalu 
+*Librera yra geriausia programa skaityti visas knygų formatus ir PDF 
+*Ink temos prietaisams su elektroniniu rašalu 
 * Keisti kontrastą ir ryškumą 
 * Neigiamas ryškumas 
-* Bluelight filtras 
-* Automatinis užbaigimas užklausų bibliotekoje 
-* Patobulinta sąsaja 
-* Daugybė patobulinimų ir klaidų taisymų
+* Mėlynas šviesos filtras
 </lt>
 
 <ar>
-* تحسين سرعة فتح جميع الأشكال و بدف، إبوب 
+* ليبريرا هو أفضل التطبيق لقراءة جميع صيغ الكتب و بدف 
 * موضوعالحبر للأجهزة مع الحبر الإلكتروني 
 * تغيير التباين والسطوع 
 * سطوع سلبي 
-* تصفية بلليت 
-* الاستعلامات الإكمال التلقائي في المكتبة 
-* واجهة محسنة 
-* العديد من التحسينات وإصلاح الأخطاء
+* الضوء الأزرق مرشح
 </ar>
 
 <ro>
-* Îmbunătățirea vitezei de deschidere a tuturor formatelor și PDF, EPUB 
-* TemaInk pentru dispozitivele cu cerneală electronică 
+* Librera este cea mai bună aplicație pentru a citi toate formatele de cărți și PDF 
+* TemaCerneală pentru dispozitivele cu cerneală electronică 
 * Schimbarea contrastului și luminozității 
 * Luminozitate negativă 
-* Filtru Bluelight 
-* Interogări de completare automată în bibliotecă 
-* Interfață îmbunătățită 
-* Multe îmbunătățiri și corecții de erori
+* Filtru albastru
 </ro>
 
 <de-DE>
-* Verbesserte die Geschwindigkeit des Öffnens aller Formate und PDF, EPUB 
-* ThemeInk für Geräte mit elektronischer Tinte 
+* Librera ist die beste App, um alle Buchformate und PDF 
+* ThemeInk für Geräte mit elektronischer Tinte zu lesen 
 * Ändern Sie den Kontrast und die Helligkeit 
 * Negative Helligkeit 
-* Bluelight-Filter 
-* Autocomplete Abfragen in der Bibliothek 
-* Verbesserte Benutzeroberfläche 
-* Viele Verbesserungen und Fehlerbehebungen
+* Blaulichtfilter
 </de-DE>
 
 <pl-PL>
-* Zwiększono szybkość otwierania wszystkich formatów i PDF, EPUB 
+* Librera to najlepsza aplikacja do czytania wszystkich formatów książek i PDF 
 * MotywTusz dla urządzeń z tuszem elektronicznym 
-* Zmień kontrast i jasność 
+* Zmiana kontrastu i jasności 
 * Negatywna jasność 
-* Filtr Bluelight 
-* Autouzupełnianie zapytań w bibliotece 
-* Ulepszony interfejs 
-* Wiele ulepszeń i poprawek
+* Filtr światła niebieskiego
 </pl-PL>
 
 <iw-IL>
-* שיפור מהירות פתיחת כל הפורמטים ו- PDF, EPUB 
-* נושאדיו עבור מכשירים עם דיו אלקטרוני 
-* שינוי הניגודיות והבהירות 
+* Librera הוא היישום הטוב ביותר לקרוא את כל הפורמטים הספר PDF 
+* Themeדיו עבור מכשירים עם דיו אלקטרוני 
+* לשנות את הניגודיות ואת בהירות 
 * בהירות שלילית 
-* מסנן Bluelight 
-* שאילתות השלמה אוטומטית בספריה 
-* ממשק משופר 
-* שיפורים רבים ותיקוני באגים
+* אור כחול מסנן
 </iw-IL>
 
 <hi-IN>
-* सभी प्रारूपों और पीडीएफ खोलने की गति में सुधार, इलेक्ट्रॉनिक स्याही वाले उपकरणों के लिए ईपीबीई 
-* थीमइंक 
-* कंट्रास्ट और चमक को बदलें 
+* लिब्रेरा सभी पुस्तक प्रारूपों और पीडीएफ पढ़ने के लिए सबसे अच्छा ऐप है 
+* इलेक्ट्रॉनिक इंक वाले उपकरणों के लिए थीमइंक 
+* विपरीत और चमक बदलें 
 * नकारात्मक चमक 
-* ब्ल्यूएलइट फिल्टर 
-* पुस्तकालय में स्वत: पूर्ण प्रश्न 
-* बेहतर इंटरफ़ेस 
-* कई सुधार और बग फिक्स
+* ब्लू लाइट फिल्टर
 </hi-IN>
 
 <es-ES>
-* Mejora la velocidad de apertura de todos los formatos y PDF, EPUB 
+* Librera es la mejor aplicación para leer todos los formatos de libros y PDF 
 * TemaTinta para dispositivos con tinta electrónica 
-* Cambio de contraste y brillo 
+* Cambiar el contraste y el brillo 
 * Brillo negativo 
-* Filtro de luz azul 
-* Autocompletar consultas en la biblioteca 
-* Interfaz mejorada 
-* Muchas mejoras y correcciones de errores
+* Filtro de luz azul
 </es-ES>
 
 <fi-FI>
-* Parannetaan kaikkien formaattien avautumista ja PDF, EPUB 
-* TeemaMuste elektronisille musteille. 
-* Muuta kontrastia ja kirkkautta. 
-* Negatiivinen kirkkaus. 
-* Bluelight-suodatin. 
-* Automaattinen täydennys kirjastoon. 
-* Parannettu käyttöliittymä. 
-* Monet parannukset ja virheiden korjaukset.
+* Librera on paras sovellus lukemaan kaikki kirjamuodot ja PDF 
+* TeemaInk laitteille, joissa on elektroninen muste 
+* Vaihda kontrasti ja kirkkaus 
+* Negatiivinen kirkkaus 
+* Sininen valosuodatin
 </fi-FI>
 
 <vi>
-* Tăng tốc độ mở các định dạng và PDF, EPUB 
+* Librera là ứng dụng tốt nhất để đọc tất cả các định dạng sách và PDF 
 * ThemeInk cho các thiết bị có mực điện tử 
 * Thay đổi độ tương phản và độ sáng 
 * Độ sáng tiêu cực 
-* Bộ lọc Bluelight 
-* Truy vấn tự động trong thư viện 
-* Cải thiện giao diện 
-* Nhiều cải tiến và sửa lỗi
+* Bộ lọc ánh sáng màu xanh
 </vi>
 
 <fr-FR>
-* Amélioration de la vitesse d’ouverture de tous les formats et PDF, EPUB 
+* Librera est la meilleure application pour lire tous les formats de livres et PDF 
 * ThèmeEncre pour les appareils à encre électronique 
 * Changer le contraste et la luminosité 
 * Luminosité négative 
-* Filtre Bluelight 
-* Requêtes auto-complétées dans la bibliothèque 
-* Interface améliorée 
-* Nombreuses améliorations et corrections de bugs
+* Filtre Blue Light
 </fr-FR>
 
 <fr-CA>
-* Amélioration de la vitesse d’ouverture de tous les formats et PDF, EPUB 
+* Librera est la meilleure application pour lire tous les formats de livres et PDF 
 * ThèmeEncre pour les appareils à encre électronique 
 * Changer le contraste et la luminosité 
 * Luminosité négative 
-* Filtre Bluelight 
-* Requêtes auto-complétées dans la bibliothèque 
-* Interface améliorée 
-* Nombreuses améliorations et corrections de bugs
+* Filtre Blue Light
 </fr-CA>
 
 <sw>
-* Kuboresha kasi ya ufunguzi wa muundo wote na PDF, EPUB 
-* MandhariNyenzo kwa vifaa na wino wa elektroniki 
+* Librera ni programu bora kusoma fomu zote za kitabu na PDF 
+* MandhariInk kwa vifaa na wino wa elektroniki 
 * Badilisha tofauti na mwangaza 
 * Uavu usiofaa 
-* Bluelight chujio 
-* Maswali ya kikamilifu katika maktaba 
-* Kiboreshaji kilichoboreshwa 
-* Maboresho mengi na marekebisho ya mdudu
+* Blue Light filter
 </sw>
 
 <zh-TW>
-*改进打开所有格式和PDF，EPUB 
-*主题“墨水”的主题“墨水”的电子墨水设备的速度
+* Librera是阅读所有书籍格式和PDF格式的最佳应用程序
+*电子墨水设备的主题“墨水”
 *改变对比度和亮度
 *负亮度
-*蓝光过滤器
-*库中的自动完成查询
-*改进的界面
-*许多改进和错误修复
+*蓝光滤镜
 </zh-TW>
 
 <ru-RU>
-* Улучшена скорость открытия всех форматов и PDF, EPUB 
+* Librera - лучшее приложение для чтения всех форматов книг и PDF 
 * Тема «Чернила» для устройств с электронными чернилами 
 * Изменение контрастности и яркости 
 * Отрицательная яркость 
-* Фильтр Bluelight 
-* Автозаполнение запросов в библиотеке 
-* Улучшенный интерфейс 
-* Много улучшений и исправлений ошибок
+* Синий фильтр
 </ru-RU>
 
 <th>
-* ปรับปรุงความเร็วในการเปิดทุกรูปแบบและ PDF, EPUB 
+* Librera เป็นแอพที่ดีที่สุดในการอ่านรูปแบบหนังสือและ PDF 
 * ธีมหมึก สำหรับอุปกรณ์ที่มีหมึกอิเล็กทรอนิกส์ 
 * เปลี่ยนความคมชัดและความสว่าง 
-* ความสว่างเชิงลบ 
-* Bluelight filter 
-* คำถามใน Autocomplete ในไลบรารี 
-* อินเทอร์เฟซที่ดีขึ้น 
-* มีการปรับปรุงและแก้ไขข้อบกพร่อง
+* ความสว่างที่เป็นลบ 
+* ตัวกรองแสงสีน้ำเงิน
 </th>
 
 <it-IT>
-* Migliorata la velocità di apertura di tutti i formati e PDF, EPUB 
+* Librera è la migliore app per leggere tutti i formati di libri e PDF 
 * TemaInchiostro per dispositivi con inchiostro elettronico 
-* Modifica contrasto e luminosità 
+* Cambia il contrasto e la luminosità 
 * Luminosità negativa 
-* Filtro Bluelight 
-* Query di completamento automatico nella libreria 
-* Interfaccia migliorata 
-* Molti miglioramenti e correzioni di bug
+* Filtro blu chiaro
 </it-IT>
 
 <sv-SE>
-* Förbättrat hastigheten att öppna alla format och PDF, EPUB 
+* Librera är den bästa appen för att läsa alla bokformat och PDF 
 * TemaBläck för enheter med elektronisk bläck 
 * Ändra kontrasten och ljusstyrkan 
 * Negativ ljusstyrka 
-* Bluelight-filter 
-* Autofullständiga frågor i biblioteket 
-* Förbättrat gränssnitt 
-* Många förbättringar och buggfixar
+* Blå ljusfilter
 </sv-SE>
 
 <fa>
-* بهبود سرعت باز کردن تمام فرمت ها و PDF، EPUB 
-* تمجوهر برای دستگاه های با جوهر الکترونیکی 
+* Librera بهترین برنامه برای خواندن تمام فرمت های کتاب و PDF 
+* تمجوهر برای دستگاه های جوهر الکترونیکی 
 * تغییر کنتراست و روشنایی 
 * روشنایی منفی 
-* فیلتر Bluelight 
-* درخواست تکمیل خودکار در کتابخانه 
-* رابط بهبود یافته 
-* بسیاری از بهبود و رفع اشکال
+* فیلتر نور آبی
 </fa>
 
 <pt-PT>
-* Melhorou a velocidade de abertura de todos os formatos e PDF, EPUB 
+* Librera é o melhor aplicativo para ler todos os formatos de livros e PDF 
 * TemaTinta para dispositivos com tinta eletrônica 
 * Alterar o contraste e o brilho 
 * Brilho negativo 
-* Filtro Bluelight 
-* Consultas de preenchimento automático na biblioteca 
-* Interface aprimorada 
-* Muitas melhorias e correções de bugs
+* Filtro de luz azul
 </pt-PT>
 
 <pt-BR>
-* Melhorou a velocidade de abertura de todos os formatos e PDF, EPUB 
+* Librera é o melhor aplicativo para ler todos os formatos de livros e PDF 
 * TemaTinta para dispositivos com tinta eletrônica 
 * Alterar o contraste e o brilho 
 * Brilho negativo 
-* Filtro Bluelight 
-* Consultas de preenchimento automático na biblioteca 
-* Interface aprimorada 
-* Muitas melhorias e correções de bugs
+* Filtro de luz azul
 </pt-BR>
 
 <ko-KR>
-* 모든 형식 및 PDF, EPUB 열기의 속도 향상 
+* Librera는 모든 책 형식 및 PDF를 읽을 수있는 최고의 응용 프로그램입니다 
 * 전자 잉크가있는 장치의 테마잉크
 * 명암 및 밝기 변경 
-* 음화 밝기 
-* Bluelight 필터 
-* 라이브러리의 쿼리 자동 완성 
-* 향상된 인터페이스 
-* 많은 개선 및 버그 수정
+* 음의 밝기 
+* 청색 광 필터
 </ko-KR>
 
 <hu-HU>
-* Javította az összes formátum és PDF, EPUB 
-* TémaInk megjelenítését az elektronikus tintával rendelkező eszközök esetében 
+* A Librera a legjobb app, hogy olvassa el az összes könyvformátumot és PDF 
+* TémaTinta elektronikus tintasugaras készülékekhez 
 * Változtassa meg a kontrasztot és a fényerőt 
 * Negatív fényerő 
-* Bluelight szűrő 
-* Automatikus kiegészítés lekérdezések a könyvtárban 
-* Továbbfejlesztett felület 
-* Számos javítás és hibajavítás
+* Kék fényszűrő
 </hu-HU>
 
 <sk>
-* Vylepšená rýchlosť otvárania všetkých formátov a PDF, EPUB 
-* Téma Ink pre zariadenia s elektronickým atramentom 
+* Librera je najlepšia aplikácia na čítanie všetkých formátov kníh a PDF 
+* TémaAtrament pre zariadenia s elektronickým atramentom 
 * Zmena kontrastu a jasu 
 * Negatívny jas 
-* Filtrovanie Bluelight 
-* Automatické dopyty v knižnici 
-* Vylepšené rozhranie 
-* Veľa vylepšení a opravy chýb
+* Filter svetlého svetla
 </sk>
 
 <tr-TR>
-* Tüm formatları ve PDF, EPUB’u açma hızını geliştirdi 
-* Elektronik mürekkepli cihazlar için TemaMürekkep 
-* Kontrast ve parlaklığı değiştirin 
+* Librera, tüm kitap formatlarını ve PDF 
+* temasını elektronik mürekkepli cihazlar içinMürekkep okumak için en iyi uygulamadır 
+* Kontrastı ve parlaklığı değiştirin 
 * Negatif parlaklık 
-* Bluelight filtresi 
-* Kütüphanede otomatik tamamlama sorguları 
-* Artırılmış arayüz 
-* Pek çok iyileştirme ve hata düzeltmesi
+* Mavi Işık filtresi
 </tr-TR>
 
 <no-NO>
-* Forbedret hastigheten for å åpne alle formater og PDF, EPUB 
-* TemaInk for enheter med elektronisk blekk 
+* Librera er den beste appen for å lese alle bokformater og PDF 
+* TemaBlekk for enheter med elektronisk blekk 
 * Endre kontrast og lysstyrke 
 * Negativ lysstyrke 
-* Bluelight filter 
-* Autofullfør spørringer i biblioteket 
-* Forbedret grensesnitt 
-* Mange forbedringer og feilrettinger
+* Blå lysfilter
 </no-NO>
 
+<la>
+* Librera app est optimus omni legere librum formats et Natus Est PDF 
+* ’Ink’ pro atramento electronic cogitationes et mutare 
+* Sed claritas, et Blue claritas negativus 
+* filter lux
+</la>
+
 <ja-JP>
-*すべてのフォーマットとPDF、EPUBを開くスピードを向上
+* Libreraは、すべての書籍の形式とPDFを読むための最高のアプリです
 *電子インクを搭載したデバイスのテーマ「インク」
-*コントラストと明るさを変更する
+*コントラストと明るさを変える
 *ネガティブな明るさ
-* Bluelightフィルター
-*ライブラリ内のクエリをオートコンプリート
-*インターフェイスを改善
-*多くの改善とバグ修正
+*青色の光フィルター
 </ja-JP>
 
 <uk>
-* Покращено швидкість відкривання всіх форматів і PDF, EPUB 
-* ТемаInk для пристроїв з електронними чорнилом 
+* Librera - це найкраща програма для читання всіх форматів книг і PDF 
+* ТемаЧорнило для пристроїв з електронними чорнилом 
 * Зміна контрастності та яскравості 
 * Негативна яскравість 
-* Bluelight фільтр 
-* Автозаповнення запитів у бібліотеці 
-* Покращений інтерфейс 
-* Багато вдосконалень та виправлень помилок
+* Блакитний світловий фільтр
 </uk>
 
 <en-US>
-* Improved the speed of opening all formats and PDF, EPUB
+* Librera is the best app to read all book formats and PDF
 * Theme "Ink" for devices with electronic ink
 * Change the contrast and brightness
 * Negative brightness
-* Bluelight filter
-* Autocomplete queries in the library
-* Improved interface
-* Many improvements and bug fixes
+* Blue Light filter
 </en-US>

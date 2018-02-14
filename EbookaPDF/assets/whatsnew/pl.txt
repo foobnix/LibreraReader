@@ -1,8 +1,5 @@
-* Zwiększono szybkość otwierania wszystkich formatów i PDF, EPUB 
+* Librera to najlepsza aplikacja do czytania wszystkich formatów książek i PDF 
 * MotywTusz dla urządzeń z tuszem elektronicznym 
-* Zmień kontrast i jasność 
+* Zmiana kontrastu i jasności 
 * Negatywna jasność 
-* Filtr Bluelight 
-* Autouzupełnianie zapytań w bibliotece 
-* Ulepszony interfejs 
-* Wiele ulepszeń i poprawek
+* Filtr światła niebieskiego

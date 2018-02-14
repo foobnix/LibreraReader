@@ -1,8 +1,5 @@
-* Improved the speed of opening all formats and PDF, EPUB
+* Librera is the best app to read all book formats and PDF
 * Theme "Ink" for devices with electronic ink
 * Change the contrast and brightness
 * Negative brightness
-* Bluelight filter
-* Autocomplete queries in the library
-* Improved interface
-* Many improvements and bug fixes
+* Blue Light filter

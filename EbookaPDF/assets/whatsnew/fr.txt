@@ -1,8 +1,5 @@
-* Amélioration de la vitesse d’ouverture de tous les formats et PDF, EPUB 
+* Librera est la meilleure application pour lire tous les formats de livres et PDF 
 * ThèmeEncre pour les appareils à encre électronique 
 * Changer le contraste et la luminosité 
 * Luminosité négative 
-* Filtre Bluelight 
-* Requêtes auto-complétées dans la bibliothèque 
-* Interface améliorée 
-* Nombreuses améliorations et corrections de bugs
+* Filtre Blue Light

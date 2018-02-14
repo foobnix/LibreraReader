@@ -1,8 +1,5 @@
-* Javította az összes formátum és PDF, EPUB 
-* TémaInk megjelenítését az elektronikus tintával rendelkező eszközök esetében 
+* A Librera a legjobb app, hogy olvassa el az összes könyvformátumot és PDF 
+* TémaTinta elektronikus tintasugaras készülékekhez 
 * Változtassa meg a kontrasztot és a fényerőt 
 * Negatív fényerő 
-* Bluelight szűrő 
-* Automatikus kiegészítés lekérdezések a könyvtárban 
-* Továbbfejlesztett felület 
-* Számos javítás és hibajavítás
+* Kék fényszűrő
