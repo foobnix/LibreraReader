@@ -1,5 +1,5 @@
-* Librera este cea mai bună aplicație pentru a citi toate formatele de cărți și PDF 
+* Poate cea mai bună aplicație pentru citirea tuturor formatelor de cărți și PDF 
 * TemaCerneală pentru dispozitivele cu cerneală electronică 
 * Schimbarea contrastului și luminozității 
 * Luminozitate negativă 
-* Filtru albastru
+* Filtru de lumină albastră

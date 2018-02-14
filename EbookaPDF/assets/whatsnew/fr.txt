@@ -1,5 +1,5 @@
-* Librera est la meilleure application pour lire tous les formats de livres et PDF 
+* Peut-être la meilleure application pour lire tous les formats de livres et PDF 
 * ThèmeEncre pour les appareils à encre électronique 
 * Changer le contraste et la luminosité 
-* Luminosité négative 
-* Filtre Blue Light
+* Brillance négative 
+* Filtre lumière bleue

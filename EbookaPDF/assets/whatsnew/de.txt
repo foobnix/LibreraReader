@@ -1,5 +1,5 @@
-* Librera ist die beste App, um alle Buchformate und PDF 
-* ThemeInk für Geräte mit elektronischer Tinte zu lesen 
+* Vielleicht die beste Anwendung zum Lesen aller Formate von Büchern und PDF 
+* ThemaTinte für Geräte mit elektronischer Tinte 
 * Ändern Sie den Kontrast und die Helligkeit 
 * Negative Helligkeit 
 * Blaulichtfilter

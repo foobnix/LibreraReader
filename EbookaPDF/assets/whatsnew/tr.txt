@@ -1,5 +1,5 @@
-* Librera, tüm kitap formatlarını ve PDF 
-* temasını elektronik mürekkepli cihazlar içinMürekkep okumak için en iyi uygulamadır 
-* Kontrastı ve parlaklığı değiştirin 
+* Belki de tüm formattaki kitapları ve PDF formatlarını okumak için en iyi uygulama 
+* Elektronik mürekkepli cihazlar için TemaMürekkep 
+* Kontrast ve parlaklığı değiştirin 
 * Negatif parlaklık 
-* Mavi Işık filtresi
+* Mavi ışık filtresi

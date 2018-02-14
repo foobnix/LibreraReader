@@ -1,5 +1,5 @@
-* Librera is de beste app om alle boekformaten en PDF 
-* ThemaInkt te lezen voor apparaten met elektronische inkt 
+* Misschien wel de beste toepassing voor het lezen van alle indelingen van boeken en PDF 
+* ThemaInkt voor apparaten met elektronische inkt 
 * Verander het contrast en de helderheid 
 * Negatieve helderheid 
 * Blauwlichtfilter

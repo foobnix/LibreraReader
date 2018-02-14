@@ -1,5 +1,5 @@
-* Librera on paras sovellus lukemaan kaikki kirjamuodot ja PDF 
-* TeemaInk laitteille, joissa on elektroninen muste 
-* Vaihda kontrasti ja kirkkaus 
+* Ehkä paras sovellus kaikkien kirjojen ja PDF-kirjojen lukemiseen 
+* TeemaMuste sähköisten musteella varustettujen laitteiden kanssa 
+* Muuta kontrastia ja kirkkautta 
 * Negatiivinen kirkkaus 
 * Sininen valosuodatin

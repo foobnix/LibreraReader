@@ -1,5 +1,5 @@
-* Librera è la migliore app per leggere tutti i formati di libri e PDF 
+* Forse la migliore applicazione per la lettura di tutti i formati di libri e PDF 
 * TemaInchiostro per dispositivi con inchiostro elettronico 
-* Cambia il contrasto e la luminosità 
+* Modifica del contrasto e della luminosità 
 * Luminosità negativa 
-* Filtro blu chiaro
+* Filtro luce blu

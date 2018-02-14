@@ -1,5 +1,5 @@
-* Librera to najlepsza aplikacja do czytania wszystkich formatów książek i PDF 
-* MotywTusz dla urządzeń z tuszem elektronicznym 
-* Zmiana kontrastu i jasności 
+* Być może najlepsza aplikacja do czytania wszystkich formatów książek i PDF 
+* TematTusz dla urządzeń z tuszem elektronicznym 
+* Zmień kontrast i jasność 
 * Negatywna jasność 
-* Filtr światła niebieskiego
+* Niebieskie światło filtru

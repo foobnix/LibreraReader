@@ -1,5 +1,5 @@
-* Librera je najlepšia aplikácia na čítanie všetkých formátov kníh a PDF 
+* Snáď najlepšia aplikácia pre čítanie všetkých formátov kníh a PDF 
 * TémaAtrament pre zariadenia s elektronickým atramentom 
 * Zmena kontrastu a jasu 
 * Negatívny jas 
-* Filter svetlého svetla
+* Filtru modrého svetla

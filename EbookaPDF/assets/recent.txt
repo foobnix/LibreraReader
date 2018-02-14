@@ -1,5 +1,5 @@
-* Librera is the best app to read all book formats and PDF
+* Perhaps the best application for reading all formats of books and PDF
 * Theme "Ink" for devices with electronic ink
 * Change the contrast and brightness
 * Negative brightness
-* Blue Light filter
+* Blue light filter

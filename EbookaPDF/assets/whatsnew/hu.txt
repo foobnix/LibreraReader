@@ -1,5 +1,5 @@
-* A Librera a legjobb app, hogy olvassa el az összes könyvformátumot és PDF 
-* TémaTinta elektronikus tintasugaras készülékekhez 
-* Változtassa meg a kontrasztot és a fényerőt 
+* Talán a legjobb alkalmazás a könyvek és PDF formátumok olvasásához 
+* TémaInk az elektronikus tintával rendelkező készülékekhez 
+* A kontraszt és a fényerő módosítása 
 * Negatív fényerő 
-* Kék fényszűrő
+* Kék fény szűrő

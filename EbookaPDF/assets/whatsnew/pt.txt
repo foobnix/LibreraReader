@@ -1,4 +1,4 @@
-* Librera é o melhor aplicativo para ler todos os formatos de livros e PDF 
+* Talvez a melhor aplicação para ler todos os formatos de livros e PDF 
 * TemaTinta para dispositivos com tinta eletrônica 
 * Alterar o contraste e o brilho 
 * Brilho negativo 

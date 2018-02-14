@@ -1,5 +1,5 @@
-*Librera yra geriausia programa skaityti visas knygų formatus ir PDF 
-*Ink temos prietaisams su elektroniniu rašalu 
+* Galbūt geriausia programa skaityti visų formų knygas ir PDF 
+* TemaRašalas prietaisams su elektroniniu rašalu 
 * Keisti kontrastą ir ryškumą 
 * Neigiamas ryškumas 
 * Mėlynas šviesos filtras

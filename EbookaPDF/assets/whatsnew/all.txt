@@ -1,30 +1,30 @@
 
 <nl-NL>
-* Librera is de beste app om alle boekformaten en PDF 
-* ThemaInkt te lezen voor apparaten met elektronische inkt 
+* Misschien wel de beste toepassing voor het lezen van alle indelingen van boeken en PDF 
+* ThemaInkt voor apparaten met elektronische inkt 
 * Verander het contrast en de helderheid 
 * Negatieve helderheid 
 * Blauwlichtfilter
 </nl-NL>
 
 <id>
-* Librera adalah aplikasi terbaik untuk membaca semua format buku dan PDF 
-* ThemeInk untuk perangkat dengan tinta elektronik 
+* Mungkin aplikasi terbaik untuk membaca semua format buku dan PDF 
+* TemaTinta untuk perangkat dengan tinta elektronik 
 * Mengubah kontras dan kecerahan 
 * Kecerahan negatif 
 * Filter cahaya biru
 </id>
 
 <lt>
-*Librera yra geriausia programa skaityti visas knygų formatus ir PDF 
-*Ink temos prietaisams su elektroniniu rašalu 
+* Galbūt geriausia programa skaityti visų formų knygas ir PDF 
+* TemaRašalas prietaisams su elektroniniu rašalu 
 * Keisti kontrastą ir ryškumą 
 * Neigiamas ryškumas 
 * Mėlynas šviesos filtras
 </lt>
 
 <ar>
-* ليبريرا هو أفضل التطبيق لقراءة جميع صيغ الكتب و بدف 
+* ولعل أفضل تطبيق لقراءة جميع صيغ الكتب و بدف 
 * موضوعالحبر للأجهزة مع الحبر الإلكتروني 
 * تغيير التباين والسطوع 
 * سطوع سلبي 
@@ -32,47 +32,47 @@
 </ar>
 
 <ro>
-* Librera este cea mai bună aplicație pentru a citi toate formatele de cărți și PDF 
+* Poate cea mai bună aplicație pentru citirea tuturor formatelor de cărți și PDF 
 * TemaCerneală pentru dispozitivele cu cerneală electronică 
 * Schimbarea contrastului și luminozității 
 * Luminozitate negativă 
-* Filtru albastru
+* Filtru de lumină albastră
 </ro>
 
 <de-DE>
-* Librera ist die beste App, um alle Buchformate und PDF 
-* ThemeInk für Geräte mit elektronischer Tinte zu lesen 
+* Vielleicht die beste Anwendung zum Lesen aller Formate von Büchern und PDF 
+* ThemaTinte für Geräte mit elektronischer Tinte 
 * Ändern Sie den Kontrast und die Helligkeit 
 * Negative Helligkeit 
 * Blaulichtfilter
 </de-DE>
 
 <pl-PL>
-* Librera to najlepsza aplikacja do czytania wszystkich formatów książek i PDF 
-* MotywTusz dla urządzeń z tuszem elektronicznym 
-* Zmiana kontrastu i jasności 
+* Być może najlepsza aplikacja do czytania wszystkich formatów książek i PDF 
+* TematTusz dla urządzeń z tuszem elektronicznym 
+* Zmień kontrast i jasność 
 * Negatywna jasność 
-* Filtr światła niebieskiego
+* Niebieskie światło filtru
 </pl-PL>
 
 <iw-IL>
-* Librera הוא היישום הטוב ביותר לקרוא את כל הפורמטים הספר PDF 
-* Themeדיו עבור מכשירים עם דיו אלקטרוני 
+* אולי את היישום הטוב ביותר לקריאת כל הפורמטים של ספרים PDF 
+* נושאדיו עבור מכשירים עם דיו אלקטרוני 
 * לשנות את הניגודיות ואת בהירות 
 * בהירות שלילית 
 * אור כחול מסנן
 </iw-IL>
 
 <hi-IN>
-* लिब्रेरा सभी पुस्तक प्रारूपों और पीडीएफ पढ़ने के लिए सबसे अच्छा ऐप है 
-* इलेक्ट्रॉनिक इंक वाले उपकरणों के लिए थीमइंक 
+* शायद किताबों और पीडीएफ के सभी स्वरूपों को पढ़ने के लिए सबसे अच्छा आवेदन 
+* इलेक्ट्रॉनिक स्याही वाले उपकरणों के लिए थीमइंक 
 * विपरीत और चमक बदलें 
 * नकारात्मक चमक 
 * ब्लू लाइट फिल्टर
 </hi-IN>
 
 <es-ES>
-* Librera es la mejor aplicación para leer todos los formatos de libros y PDF 
+* Tal vez la mejor aplicación para leer todos los formatos de libros y PDF 
 * TemaTinta para dispositivos con tinta electrónica 
 * Cambiar el contraste y el brillo 
 * Brillo negativo 
@@ -80,79 +80,79 @@
 </es-ES>
 
 <fi-FI>
-* Librera on paras sovellus lukemaan kaikki kirjamuodot ja PDF 
-* TeemaInk laitteille, joissa on elektroninen muste 
-* Vaihda kontrasti ja kirkkaus 
+* Ehkä paras sovellus kaikkien kirjojen ja PDF-kirjojen lukemiseen 
+* TeemaMuste sähköisten musteella varustettujen laitteiden kanssa 
+* Muuta kontrastia ja kirkkautta 
 * Negatiivinen kirkkaus 
 * Sininen valosuodatin
 </fi-FI>
 
 <vi>
-* Librera là ứng dụng tốt nhất để đọc tất cả các định dạng sách và PDF 
+* Có thể ứng dụng tốt nhất để đọc tất cả các định dạng sách và PDF 
 * ThemeInk cho các thiết bị có mực điện tử 
 * Thay đổi độ tương phản và độ sáng 
-* Độ sáng tiêu cực 
+* Độ sáng âm 
 * Bộ lọc ánh sáng màu xanh
 </vi>
 
 <fr-FR>
-* Librera est la meilleure application pour lire tous les formats de livres et PDF 
+* Peut-être la meilleure application pour lire tous les formats de livres et PDF 
 * ThèmeEncre pour les appareils à encre électronique 
 * Changer le contraste et la luminosité 
-* Luminosité négative 
-* Filtre Blue Light
+* Brillance négative 
+* Filtre lumière bleue
 </fr-FR>
 
 <fr-CA>
-* Librera est la meilleure application pour lire tous les formats de livres et PDF 
+* Peut-être la meilleure application pour lire tous les formats de livres et PDF 
 * ThèmeEncre pour les appareils à encre électronique 
 * Changer le contraste et la luminosité 
-* Luminosité négative 
-* Filtre Blue Light
+* Brillance négative 
+* Filtre lumière bleue
 </fr-CA>
 
 <sw>
-* Librera ni programu bora kusoma fomu zote za kitabu na PDF 
+* Labda maombi bora ya kusoma kila aina ya vitabu na PDF 
 * MandhariInk kwa vifaa na wino wa elektroniki 
 * Badilisha tofauti na mwangaza 
-* Uavu usiofaa 
-* Blue Light filter
+* Uavu mbaya 
+* Blue mwanga filter
 </sw>
 
 <zh-TW>
-* Librera是阅读所有书籍格式和PDF格式的最佳应用程序
+*可能是阅读所有格式书籍和PDF的最佳应用程序
 *电子墨水设备的主题“墨水”
-*改变对比度和亮度
+*更改对比度和亮度
 *负亮度
 *蓝光滤镜
 </zh-TW>
 
 <ru-RU>
-* Librera - лучшее приложение для чтения всех форматов книг и PDF 
+* Возможно, лучшее приложение для чтения всех форматов книг и PDF 
 * Тема «Чернила» для устройств с электронными чернилами 
-* Изменение контрастности и яркости 
+* Изменение контраста и яркости 
 * Отрицательная яркость 
 * Синий фильтр
 </ru-RU>
 
 <th>
-* Librera เป็นแอพที่ดีที่สุดในการอ่านรูปแบบหนังสือและ PDF 
+* บางทีโปรแกรมที่ดีที่สุดสำหรับการอ่านทุกรูปแบบของหนังสือและ PDF 
 * ธีมหมึก สำหรับอุปกรณ์ที่มีหมึกอิเล็กทรอนิกส์ 
 * เปลี่ยนความคมชัดและความสว่าง 
-* ความสว่างที่เป็นลบ 
-* ตัวกรองแสงสีน้ำเงิน
+* ความสว่างเชิงลบ 
+* กรองแสงสีฟ้า
 </th>
 
 <it-IT>
-* Librera è la migliore app per leggere tutti i formati di libri e PDF 
+* Forse la migliore applicazione per la lettura di tutti i formati di libri e PDF 
 * TemaInchiostro per dispositivi con inchiostro elettronico 
-* Cambia il contrasto e la luminosità 
+* Modifica del contrasto e della luminosità 
 * Luminosità negativa 
-* Filtro blu chiaro
+* Filtro luce blu
 </it-IT>
 
 <sv-SE>
-* Librera är den bästa appen för att läsa alla bokformat och PDF 
+* Kanske den bästa applikationen för att läsa alla format på böcker och PDF 
 * TemaBläck för enheter med elektronisk bläck 
 * Ändra kontrasten och ljusstyrkan 
 * Negativ ljusstyrka 
@@ -160,7 +160,7 @@
 </sv-SE>
 
 <fa>
-* Librera بهترین برنامه برای خواندن تمام فرمت های کتاب و PDF 
+* شاید بهترین برنامه برای خواندن تمام فرمت های کتاب و PDF 
 * تمجوهر برای دستگاه های جوهر الکترونیکی 
 * تغییر کنتراست و روشنایی 
 * روشنایی منفی 
@@ -168,7 +168,7 @@
 </fa>
 
 <pt-PT>
-* Librera é o melhor aplicativo para ler todos os formatos de livros e PDF 
+* Talvez a melhor aplicação para ler todos os formatos de livros e PDF 
 * TemaTinta para dispositivos com tinta eletrônica 
 * Alterar o contraste e o brilho 
 * Brilho negativo 
@@ -176,7 +176,7 @@
 </pt-PT>
 
 <pt-BR>
-* Librera é o melhor aplicativo para ler todos os formatos de livros e PDF 
+* Talvez a melhor aplicação para ler todos os formatos de livros e PDF 
 * TemaTinta para dispositivos com tinta eletrônica 
 * Alterar o contraste e o brilho 
 * Brilho negativo 
@@ -184,7 +184,7 @@
 </pt-BR>
 
 <ko-KR>
-* Librera는 모든 책 형식 및 PDF를 읽을 수있는 최고의 응용 프로그램입니다 
+* 아마도 모든 책 및 PDF 형식을 읽을 수있는 최고의 응용 프로그램 
 * 전자 잉크가있는 장치의 테마잉크
 * 명암 및 밝기 변경 
 * 음의 밝기 
@@ -192,31 +192,31 @@
 </ko-KR>
 
 <hu-HU>
-* A Librera a legjobb app, hogy olvassa el az összes könyvformátumot és PDF 
-* TémaTinta elektronikus tintasugaras készülékekhez 
-* Változtassa meg a kontrasztot és a fényerőt 
+* Talán a legjobb alkalmazás a könyvek és PDF formátumok olvasásához 
+* TémaInk az elektronikus tintával rendelkező készülékekhez 
+* A kontraszt és a fényerő módosítása 
 * Negatív fényerő 
-* Kék fényszűrő
+* Kék fény szűrő
 </hu-HU>
 
 <sk>
-* Librera je najlepšia aplikácia na čítanie všetkých formátov kníh a PDF 
+* Snáď najlepšia aplikácia pre čítanie všetkých formátov kníh a PDF 
 * TémaAtrament pre zariadenia s elektronickým atramentom 
 * Zmena kontrastu a jasu 
 * Negatívny jas 
-* Filter svetlého svetla
+* Filtru modrého svetla
 </sk>
 
 <tr-TR>
-* Librera, tüm kitap formatlarını ve PDF 
-* temasını elektronik mürekkepli cihazlar içinMürekkep okumak için en iyi uygulamadır 
-* Kontrastı ve parlaklığı değiştirin 
+* Belki de tüm formattaki kitapları ve PDF formatlarını okumak için en iyi uygulama 
+* Elektronik mürekkepli cihazlar için TemaMürekkep 
+* Kontrast ve parlaklığı değiştirin 
 * Negatif parlaklık 
-* Mavi Işık filtresi
+* Mavi ışık filtresi
 </tr-TR>
 
 <no-NO>
-* Librera er den beste appen for å lese alle bokformater og PDF 
+* Kanskje det beste programmet for å lese alle formater av bøker og PDF 
 * TemaBlekk for enheter med elektronisk blekk 
 * Endre kontrast og lysstyrke 
 * Negativ lysstyrke 
@@ -224,32 +224,33 @@
 </no-NO>
 
 <la>
-* Librera app est optimus omni legere librum formats et Natus Est PDF 
+All formats 
+* fortasse optimum application est legere librorum et Natus Est PDF 
 * ’Ink’ pro atramento electronic cogitationes et mutare 
 * Sed claritas, et Blue claritas negativus 
 * filter lux
 </la>
 
 <ja-JP>
-* Libreraは、すべての書籍の形式とPDFを読むための最高のアプリです
-*電子インクを搭載したデバイスのテーマ「インク」
-*コントラストと明るさを変える
-*ネガティブな明るさ
-*青色の光フィルター
+*おそらく、書籍やPDFのすべての形式を読むための最高のアプリケーション
+*電子インクのデバイスのテーマインク 
+*コントラストと明るさを変更する
+*負の明るさ
+*青色光フィルター
 </ja-JP>
 
 <uk>
-* Librera - це найкраща програма для читання всіх форматів книг і PDF 
-* ТемаЧорнило для пристроїв з електронними чорнилом 
+* Можливо найкраща програма для читання всіх форматів книг і PDF 
+* ТемаЧорнило для пристроїв з електронними чорнилами 
 * Зміна контрастності та яскравості 
 * Негативна яскравість 
-* Блакитний світловий фільтр
+* Блакитний світлофільтр
 </uk>
 
 <en-US>
-* Librera is the best app to read all book formats and PDF
+* Perhaps the best application for reading all formats of books and PDF
 * Theme "Ink" for devices with electronic ink
 * Change the contrast and brightness
 * Negative brightness
-* Blue Light filter
+* Blue light filter
 </en-US>
