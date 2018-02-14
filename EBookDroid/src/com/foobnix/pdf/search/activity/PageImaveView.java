@@ -233,6 +233,7 @@ public class PageImaveView extends View {
 
         @Override
         public boolean onDoubleTap(final MotionEvent e) {
+            clickUtils.init();
             isIgronerClick = true;
             if (clickUtils.isClickCenter(e.getX(), e.getY())) {
                 isLognPress = true;
