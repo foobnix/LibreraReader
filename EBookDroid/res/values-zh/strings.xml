@@ -14,7 +14,7 @@
    <string name="content_of_book">目录</string>
    <string name="crop_white_borders">裁白边</string>
    <string name="delete">删除</string>
-   <string name="delete_book_">删除文件？</string>
+   <string name="delete_book_">删除文档？</string>
    <string name="dialog_color_picker">颜色选择</string>
    <string name="export_">导出 ...</string>
    <string name="export_bookmarks">导出书签</string>
@@ -288,7 +288,7 @@
    <string name="language">语言</string>
    <string name="___TO___CHECK___SECTION___">检查</string>
    <string name="show_progress_of_reading">显示进度条</string>
-   <string name="line_height">进度条宽度</string>
+   <string name="line_height">进度条宽</string>
    <string name="display_chapters_on_the_progress_line">显示章节预览</string>
    <string name="enable_brightness_adjustment_on_the_left_of_the_screen">屏幕左侧调节亮度</string>
    <string name="___INDEFINITE___SECTION___">无限</string>
@@ -314,10 +314,10 @@
    <string name="one_page">单页</string>
    <string name="two_pages">双页</string>
    <string name="half_page">半页</string>
-   <string name="stop_reading_timer_">停止阅读（定时器）</string>
+   <string name="stop_reading_timer_">停止朗读（定时器）</string>
    <string name="two_pages_cover">双页覆盖</string>
    <string name="enhancements_for_oled_display">OLED显示屏增强</string>
-   <string name="reading_will_be_stopped">阅读停止于</string>
+   <string name="reading_will_be_stopped">朗读停止于</string>
    <string name="compact">简洁</string>
    <string name="cd_search_books_in_the_library">书库搜索</string>
    <string name="cd_clear_search_reasult">清除记录</string>
@@ -358,7 +358,7 @@
    <string name="show">显示</string>
    <string name="folder_for_downloaded_books">下载目录</string>
    <string name="set_the_current_page_number">设置页码</string>
-   <string name="search_in_document">文档中搜索</string>
+   <string name="search_in_document">文档搜索</string>
    <string name="opening_book_with_losed_lock">禁用页面水平移动</string>
    <string name="opening_book_with_cropped_borders">自动裁白边</string>
    <string name="do_you_want_to_clear_everything_">全部清空？</string>
@@ -376,7 +376,7 @@
    <string name="you_need_to_update_the_library">更新书库？</string>
    <string name="theme_color">主题颜色</string>
    <string name="add_folder">添加文件夹</string>
-   <string name="scroll_speed">滚动速度</string>
+   <string name="scroll_speed">鼠标灵敏度</string>
    <string name="landscape_180">横屏（反向）</string>
    <string name="portrait_180">竖屏（反向）</string>
    <string name="full_list_of_changes_with_images_web_pdf_">详细变更信息。</string>
@@ -438,6 +438,6 @@
    <string name="backup_folder">备份目录</string>
    <string name="audio_books_folder">音频目录</string>
    <string name="enable">启用</string>
-   <string name="enable_contrast_and_brightness">启用对比度和亮度</string>
+   <string name="enable_contrast_and_brightness">启用</string>
    <string name="link_color">链接颜色</string>
 </resources>
