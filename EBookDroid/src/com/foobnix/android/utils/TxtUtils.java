@@ -75,11 +75,11 @@ public class TxtUtils {
         if (max != 0) {
             if (AppState.get().readingProgress1 == AppState.READING_PROGRESS_PERCENT_NUMBERS) {
                 float f = (float) current * 100 / max;
-                return String.format("%.1f", f) + "%";
+                return String.format("%.1f%%", f);
             }
             if (AppState.get().readingProgress1 == AppState.READING_PROGRESS_PERCENT) {
                 float f = (float) current * 100 / max;
-                return String.format("%.1f", f) + "%";
+                return String.format("%.1f%%", f);
             }
         }
 

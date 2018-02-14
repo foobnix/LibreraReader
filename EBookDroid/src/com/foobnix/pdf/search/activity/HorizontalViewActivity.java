@@ -252,14 +252,6 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
             }
         });
 
-        pagesCountIndicator.setOnLongClickListener(new OnLongClickListener() {
-
-            @Override
-            public boolean onLongClick(View v) {
-                Dialogs.showDeltaPage(anchor, dc, dc.getCurentPageFirst1(), onRefresh);
-                return true;
-            }
-        });
 
         updateSeekBarColorAndSize();
 
@@ -1439,8 +1431,10 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
         }
         if (AppState.get().readingProgress1 == AppState.READING_PROGRESS_PERCENT) {
             pagesCountIndicator.setText(textPage);
+        } else if (AppState.get().readingProgress1 == AppState.READING_PROGRESS_PERCENT_NUMBERS) {
+            pagesCountIndicator.setText(TxtUtils.getProgressPercent(page + 1, max) + " · " + TxtUtils.deltaPage(page + 1) + "∕" + textMax);
         } else {
-            pagesCountIndicator.setText("[" + TxtUtils.getProgressPercent(page + 1, max) + "] " + textPage + "∕" + textMax);
+            pagesCountIndicator.setText(textPage + "∕" + textMax);
         }
 
         seekBar.setProgress(page);

@@ -2250,7 +2250,6 @@ public class DragingDialogs {
                 final TextView readingProgress = (TextView) inflate.findViewById(R.id.readingProgress);
                 readingProgress.setText(modeStrings.get(modeIds.indexOf(AppState.get().readingProgress1)));
                 TxtUtils.underlineTextView(readingProgress);
-                readingProgress.setVisibility(View.GONE);
 
                 readingProgress.setOnClickListener(new OnClickListener() {
 
