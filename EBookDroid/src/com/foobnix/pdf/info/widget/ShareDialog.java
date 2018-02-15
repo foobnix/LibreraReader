@@ -115,10 +115,10 @@ public class ShareDialog {
             if (a instanceof HorizontalViewActivity || AppState.get().isMusicianMode) {
                 items.add(AppState.get().nameVerticalMode);
             }
-        }
 
-        if (AppState.get().isMusicianMode == false) {
-            items.add(AppState.get().nameMusicianMode);
+            if (AppState.get().isMusicianMode == false) {
+                items.add(AppState.get().nameMusicianMode);
+            }
         }
 
         if (isPDF) {
@@ -184,18 +184,16 @@ public class ShareDialog {
                         });
                     }
                 }
-                if (AppState.get().isMusicianMode == false && which == i++) {
-                    if (dc != null) {
-                        dc.onCloseActivityFinal(new Runnable() {
+                if (dc != null && AppState.get().isMusicianMode == false && which == i++) {
+                    dc.onCloseActivityFinal(new Runnable() {
 
-                            @Override
-                            public void run() {
-                                AppState.get().isMusicianMode = true;
-                                AppState.get().isAlwaysOpenAsMagazine = false;
-                                ExtUtils.showDocumentWithoutDialog(a, file, page + 1);
-                            }
-                        });
-                    }
+                        @Override
+                        public void run() {
+                            AppState.get().isMusicianMode = true;
+                            AppState.get().isAlwaysOpenAsMagazine = false;
+                            ExtUtils.showDocumentWithoutDialog(a, file, page + 1);
+                        }
+                    });
                 }
                 if (isPDF && which == i++) {
                     ExtUtils.openPDFInTextReflow(a, file, page + 1, dc);

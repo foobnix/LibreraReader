@@ -205,9 +205,12 @@ public class MuPdfDocument extends AbstractCodecDocument {
         }
     }
 
+    public static native int getMupdfVersion();
+
     private static native long open(int storememory, int format, String fname, String pwd, String css, int useDocStyle);
 
     private static native void free(long handle);
+
 
     private static synchronized int getPageCountWithException(final long handle) {
         final int count = getPageCountSafe(handle, Dips.screenWidth(), Dips.screenHeight(), Dips.spToPx(AppState.get().fontSizeSp));

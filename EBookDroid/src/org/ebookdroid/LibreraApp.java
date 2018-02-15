@@ -37,13 +37,14 @@ public class LibreraApp extends Application {
     public void onCreate() {
         super.onCreate();
 
-        if (AppsConfig.MUPDF == 112) {
+        context = getApplicationContext();
+        AppsConfig.init(getApplicationContext());
+
+        if (AppsConfig.MUPDF_VERSION == AppsConfig.MUPDF_1_12) {
             int initNative = StructuredText.initNative();
             LOG.d("initNative", initNative);
         }
 
-        context = getApplicationContext();
-        AppsConfig.init(getApplicationContext());
         Dips.init(context);
         AppDB.get().open(this);
         AppState.get().load(this);

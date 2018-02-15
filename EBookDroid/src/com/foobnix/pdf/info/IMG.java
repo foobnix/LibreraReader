@@ -291,6 +291,10 @@ public class IMG {
         ImageLoader.getInstance().displayImage(IMG.toUrl(path, ImageExtractor.COVER_PAGE, width), img, IMG.displayCacheMemoryDisc, listener);
     }
 
+    public static void loadCoverPageWithEffect(String path, int width) {
+        ImageLoader.getInstance().loadImageSync(IMG.toUrl(path, ImageExtractor.COVER_PAGE, width), IMG.displayCacheMemoryDisc);
+    }
+
     public static void getCoverPageWithEffectPos(ImageView img, String path, int width, int pos, ImageLoadingListener listener) {
         ImageLoader.getInstance().displayImage(IMG.toUrlPos(path, ImageExtractor.COVER_PAGE, width, pos), img, IMG.displayCacheMemoryDisc, listener);
     }

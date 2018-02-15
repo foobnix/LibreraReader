@@ -2,6 +2,8 @@ package com.foobnix.pdf.info;
 
 import java.util.Random;
 
+import org.ebookdroid.droids.mupdf.codec.MuPdfDocument;
+
 import com.foobnix.android.utils.LOG;
 
 import android.content.Context;
@@ -10,7 +12,9 @@ import android.content.pm.PackageManager.NameNotFoundException;
 
 public class AppsConfig {
 
-    public static int MUPDF = 111;
+    public static int MUPDF_1_11 = 111;
+    public static int MUPDF_1_12 = 112;
+    public static int MUPDF_VERSION = -1;
 
     public static final String PRO_LIBRERA_READER = "com.foobnix.pro.pdf.reader";
 
@@ -31,7 +35,6 @@ public class AppsConfig {
 
     public static String ANALYTICS_ID;
 
-
     public static String APP_PACKAGE;
     public static boolean IS_BETA, IS_CLASSIC, IS_INK;
 
@@ -42,14 +45,13 @@ public class AppsConfig {
     static Random random = new Random();
 
     public static void init(final Context a) {
+        MUPDF_VERSION = MuPdfDocument.getMupdfVersion();
         final String packageName = a.getPackageName();
         LOG.d("init packageName", packageName);
 
         TXT_APP_NAME = a.getString(R.string.app_name);
 
         APP_PACKAGE = packageName;
-
-
 
         if (PRO_LIBRERA_READER.equals(packageName)) {
             ADMOB_BANNER = null;
@@ -63,7 +65,7 @@ public class AppsConfig {
             ADMOB_BANNER/*     */ = "ca-app-pub-8347903083053959/4166397275";
             ADMOB_FULLSCREEN/*  */ = "ca-app-pub-8347903083053959/2769081274";
             ADMOB_NATIVE_BANNER/**/ = "ca-app-pub-8347903083053959/5722547677";
-            
+
             EP_BANNER_NATIVE = "9cf064256b16a112cc1fd3fb42487dbd";
             EP_INTERSTITIAL = "cd6563264b30c32814df5f0e1048079b";
 
@@ -115,7 +117,6 @@ public class AppsConfig {
             EP_INTERSTITIAL = "0928de1630a1452b64eaab1813d3af64";
             EP_BANNER_NATIVE = "ec5086312cf4959dcc54fe8a8ad15401";
         }
-
 
     }
 

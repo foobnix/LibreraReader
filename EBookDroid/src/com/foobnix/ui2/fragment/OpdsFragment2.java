@@ -12,6 +12,7 @@ import com.foobnix.android.utils.LOG;
 import com.foobnix.android.utils.ResultResponse;
 import com.foobnix.android.utils.ResultResponse2;
 import com.foobnix.android.utils.TxtUtils;
+import com.foobnix.dao2.FileMeta;
 import com.foobnix.opds.Entry;
 import com.foobnix.opds.Feed;
 import com.foobnix.opds.Hrefs;
@@ -19,6 +20,7 @@ import com.foobnix.opds.Link;
 import com.foobnix.opds.OPDS;
 import com.foobnix.opds.SamlibOPDS;
 import com.foobnix.pdf.info.ExtUtils;
+import com.foobnix.pdf.info.IMG;
 import com.foobnix.pdf.info.R;
 import com.foobnix.pdf.info.TintUtil;
 import com.foobnix.pdf.info.Urls;
@@ -26,6 +28,8 @@ import com.foobnix.pdf.info.view.AlertDialogs;
 import com.foobnix.pdf.info.widget.AddCatalogDialog;
 import com.foobnix.pdf.info.widget.ChooserDialogFragment;
 import com.foobnix.pdf.info.wrapper.AppState;
+import com.foobnix.sys.TempHolder;
+import com.foobnix.ui2.AppDB;
 import com.foobnix.ui2.adapter.EntryAdapter;
 import com.foobnix.ui2.fast.FastScrollRecyclerView;
 
@@ -568,6 +572,14 @@ public class OpdsFragment2 extends UIFragment<Entry> {
                                 // Urls.openWevView(getActivity(), link.href, null);
                             } else {
                                 link.filePath = file.getPath();
+
+                                FileMeta meta = AppDB.get().getOrCreate(file.getPath());
+                                meta.setIsSearchBook(true);
+                                AppDB.get().updateOrSave(meta);
+                                IMG.loadCoverPageWithEffect(meta.getPath(), IMG.getImageSize());
+
+                                TempHolder.listHash++;
+
                             }
                             clearEmpty();
                         };

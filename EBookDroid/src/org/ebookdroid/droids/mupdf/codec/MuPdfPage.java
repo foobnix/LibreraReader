@@ -361,7 +361,7 @@ public class MuPdfPage extends AbstractCodecPage {
 
     @Override
     public synchronized TextWord[][] getText() {
-        if (AppsConfig.MUPDF == 112) {
+        if (AppsConfig.MUPDF_VERSION == AppsConfig.MUPDF_1_12) {
             return getText_112();
         } else {
             return getText_111();

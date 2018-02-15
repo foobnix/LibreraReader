@@ -113,6 +113,12 @@ static void mupdf_free_document(renderdocument_t* doc) {
 //	//LOGE("mupdf_free_document 7");
 }
 
+JNIEXPORT jint JNICALL
+Java_org_ebookdroid_droids_mupdf_codec_MuPdfDocument_getMupdfVersion(JNIEnv *env,
+		jclass clazz) {
+	return 111;
+}
+
 JNIEXPORT jlong JNICALL
 Java_org_ebookdroid_droids_mupdf_codec_MuPdfDocument_open(JNIEnv *env,
 		jclass clazz, jint storememory, jint format, jstring fname, jstring pwd, jstring jcss, jint isDocCSS) {
