@@ -1,5 +1,5 @@
-* Talán a legjobb alkalmazás a könyvek és PDF formátumok olvasásához 
-* TémaInk az elektronikus tintával rendelkező készülékekhez 
+* Alkalmazás könyvek és PDF formátumok olvasására 
+* TémaInk elektronikus tintasugaras készülékekhez 
 * A kontraszt és a fényerő módosítása 
 * Negatív fényerő 
 * Kék fény szűrő

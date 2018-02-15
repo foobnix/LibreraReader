@@ -1,4 +1,4 @@
-* Forse la migliore applicazione per la lettura di tutti i formati di libri e PDF 
+* Applicazione per la lettura di tutti i formati di libri e PDF 
 * TemaInchiostro per dispositivi con inchiostro elettronico 
 * Modifica del contrasto e della luminosità 
 * Luminosità negativa 

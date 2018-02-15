@@ -1,4 +1,4 @@
-* Galbūt geriausia programa skaityti visų formų knygas ir PDF 
+* Paraiška skaityti visus knygų ir PDF formatus 
 * TemaRašalas prietaisams su elektroniniu rašalu 
 * Keisti kontrastą ir ryškumą 
 * Neigiamas ryškumas 

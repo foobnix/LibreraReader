@@ -1,4 +1,4 @@
-* Perhaps the best application for reading all formats of books and PDF
+* Application for reading all formats of books and PDF
 * Theme "Ink" for devices with electronic ink
 * Change the contrast and brightness
 * Negative brightness

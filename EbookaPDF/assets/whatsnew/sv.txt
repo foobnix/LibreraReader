@@ -1,4 +1,4 @@
-* Kanske den bästa applikationen för att läsa alla format på böcker och PDF 
+* Applikation för att läsa alla format på böcker och PDF 
 * TemaBläck för enheter med elektronisk bläck 
 * Ändra kontrasten och ljusstyrkan 
 * Negativ ljusstyrka 

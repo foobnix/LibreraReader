@@ -1,5 +1,5 @@
-* Być może najlepsza aplikacja do czytania wszystkich formatów książek i PDF 
-* TematTusz dla urządzeń z tuszem elektronicznym 
+* Aplikacja do czytania wszystkich formatów książek i PDF 
+* MotywTusz dla urządzeń z tuszem elektronicznym 
 * Zmień kontrast i jasność 
 * Negatywna jasność 
 * Niebieskie światło filtru

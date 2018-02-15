@@ -1,5 +1,5 @@
-* Belki de tüm formattaki kitapları ve PDF formatlarını okumak için en iyi uygulama 
+* Kitapların ve PDF’nin tüm formatlarını okumak için başvuru 
 * Elektronik mürekkepli cihazlar için TemaMürekkep 
-* Kontrast ve parlaklığı değiştirin 
+* Kontrast ve parlaklığı değiştirme 
 * Negatif parlaklık 
 * Mavi ışık filtresi

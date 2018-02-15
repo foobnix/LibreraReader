@@ -1,6 +1,6 @@
 
 <nl-NL>
-* Misschien wel de beste toepassing voor het lezen van alle indelingen van boeken en PDF 
+* Toepassing voor het lezen van alle formaten van boeken en PDF 
 * ThemaInkt voor apparaten met elektronische inkt 
 * Verander het contrast en de helderheid 
 * Negatieve helderheid 
@@ -8,7 +8,7 @@
 </nl-NL>
 
 <id>
-* Mungkin aplikasi terbaik untuk membaca semua format buku dan PDF 
+* Aplikasi untuk membaca semua format buku dan PDF 
 * TemaTinta untuk perangkat dengan tinta elektronik 
 * Mengubah kontras dan kecerahan 
 * Kecerahan negatif 
@@ -16,7 +16,7 @@
 </id>
 
 <lt>
-* Galbūt geriausia programa skaityti visų formų knygas ir PDF 
+* Paraiška skaityti visus knygų ir PDF formatus 
 * TemaRašalas prietaisams su elektroniniu rašalu 
 * Keisti kontrastą ir ryškumą 
 * Neigiamas ryškumas 
@@ -24,7 +24,7 @@
 </lt>
 
 <ar>
-* ولعل أفضل تطبيق لقراءة جميع صيغ الكتب و بدف 
+* تطبيق لقراءة جميع صيغ الكتب و بدف 
 * موضوعالحبر للأجهزة مع الحبر الإلكتروني 
 * تغيير التباين والسطوع 
 * سطوع سلبي 
@@ -32,15 +32,15 @@
 </ar>
 
 <ro>
-* Poate cea mai bună aplicație pentru citirea tuturor formatelor de cărți și PDF 
+* Aplicație pentru citirea tuturor formatelor de cărți și PDF 
 * TemaCerneală pentru dispozitivele cu cerneală electronică 
-* Schimbarea contrastului și luminozității 
+* Modificarea contrastului și luminozității 
 * Luminozitate negativă 
 * Filtru de lumină albastră
 </ro>
 
 <de-DE>
-* Vielleicht die beste Anwendung zum Lesen aller Formate von Büchern und PDF 
+* Anwendung zum Lesen aller Formate von Büchern und PDF 
 * ThemaTinte für Geräte mit elektronischer Tinte 
 * Ändern Sie den Kontrast und die Helligkeit 
 * Negative Helligkeit 
@@ -48,15 +48,15 @@
 </de-DE>
 
 <pl-PL>
-* Być może najlepsza aplikacja do czytania wszystkich formatów książek i PDF 
-* TematTusz dla urządzeń z tuszem elektronicznym 
+* Aplikacja do czytania wszystkich formatów książek i PDF 
+* MotywTusz dla urządzeń z tuszem elektronicznym 
 * Zmień kontrast i jasność 
 * Negatywna jasność 
 * Niebieskie światło filtru
 </pl-PL>
 
 <iw-IL>
-* אולי את היישום הטוב ביותר לקריאת כל הפורמטים של ספרים PDF 
+* יישום לקריאת כל הפורמטים של ספרים PDF 
 * נושאדיו עבור מכשירים עם דיו אלקטרוני 
 * לשנות את הניגודיות ואת בהירות 
 * בהירות שלילית 
@@ -64,7 +64,7 @@
 </iw-IL>
 
 <hi-IN>
-* शायद किताबों और पीडीएफ के सभी स्वरूपों को पढ़ने के लिए सबसे अच्छा आवेदन 
+* किताबों और पीडीएफ के सभी स्वरूपों को पढ़ने के लिए आवेदन 
 * इलेक्ट्रॉनिक स्याही वाले उपकरणों के लिए थीमइंक 
 * विपरीत और चमक बदलें 
 * नकारात्मक चमक 
@@ -72,7 +72,7 @@
 </hi-IN>
 
 <es-ES>
-* Tal vez la mejor aplicación para leer todos los formatos de libros y PDF 
+* Aplicación para leer todos los formatos de libros y PDF 
 * TemaTinta para dispositivos con tinta electrónica 
 * Cambiar el contraste y el brillo 
 * Brillo negativo 
@@ -80,55 +80,55 @@
 </es-ES>
 
 <fi-FI>
-* Ehkä paras sovellus kaikkien kirjojen ja PDF-kirjojen lukemiseen 
-* TeemaMuste sähköisten musteella varustettujen laitteiden kanssa 
+* Sovellus kaikkien kirjojen ja PDF-formaattien lukemiseen 
+* TeemaInk elektronisilla musteilla varustetuissa laitteissa 
 * Muuta kontrastia ja kirkkautta 
 * Negatiivinen kirkkaus 
 * Sininen valosuodatin
 </fi-FI>
 
 <vi>
-* Có thể ứng dụng tốt nhất để đọc tất cả các định dạng sách và PDF 
-* ThemeInk cho các thiết bị có mực điện tử 
+* Ứng dụng để đọc tất cả các định dạng sách và PDF 
+* ThemeMực cho các thiết bị có mực điện tử 
 * Thay đổi độ tương phản và độ sáng 
-* Độ sáng âm 
+* Độ sáng tiêu cực 
 * Bộ lọc ánh sáng màu xanh
 </vi>
 
 <fr-FR>
-* Peut-être la meilleure application pour lire tous les formats de livres et PDF 
-* ThèmeEncre pour les appareils à encre électronique 
+* Application pour lire tous les formats de livres et PDF 
+* ThèmeEncre pour les appareils avec encre électronique 
 * Changer le contraste et la luminosité 
 * Brillance négative 
 * Filtre lumière bleue
 </fr-FR>
 
 <fr-CA>
-* Peut-être la meilleure application pour lire tous les formats de livres et PDF 
-* ThèmeEncre pour les appareils à encre électronique 
+* Application pour lire tous les formats de livres et PDF 
+* ThèmeEncre pour les appareils avec encre électronique 
 * Changer le contraste et la luminosité 
 * Brillance négative 
 * Filtre lumière bleue
 </fr-CA>
 
 <sw>
-* Labda maombi bora ya kusoma kila aina ya vitabu na PDF 
+* Maombi ya kusoma kila aina ya vitabu na PDF 
 * MandhariInk kwa vifaa na wino wa elektroniki 
 * Badilisha tofauti na mwangaza 
 * Uavu mbaya 
-* Blue mwanga filter
+* Bluu nyekundu filter
 </sw>
 
 <zh-TW>
-*可能是阅读所有格式书籍和PDF的最佳应用程序
-*电子墨水设备的主题“墨水”
-*更改对比度和亮度
+*应用程序阅读所有格式的书籍和PDF 
+*主题“墨水”设备与电子墨水
+*改变对比度和亮度
 *负亮度
-*蓝光滤镜
+*蓝色滤光片
 </zh-TW>
 
 <ru-RU>
-* Возможно, лучшее приложение для чтения всех форматов книг и PDF 
+* Приложение для чтения всех форматов книг и PDF 
 * Тема «Чернила» для устройств с электронными чернилами 
 * Изменение контраста и яркости 
 * Отрицательная яркость 
@@ -136,15 +136,15 @@
 </ru-RU>
 
 <th>
-* บางทีโปรแกรมที่ดีที่สุดสำหรับการอ่านทุกรูปแบบของหนังสือและ PDF 
+* การประยุกต์ใช้สำหรับการอ่านรูปแบบทั้งหมดของหนังสือและ PDF 
 * ธีมหมึก สำหรับอุปกรณ์ที่มีหมึกอิเล็กทรอนิกส์ 
 * เปลี่ยนความคมชัดและความสว่าง 
-* ความสว่างเชิงลบ 
-* กรองแสงสีฟ้า
+* ความสว่างที่เป็นลบ 
+* ตัวกรองแสงสีน้ำเงิน
 </th>
 
 <it-IT>
-* Forse la migliore applicazione per la lettura di tutti i formati di libri e PDF 
+* Applicazione per la lettura di tutti i formati di libri e PDF 
 * TemaInchiostro per dispositivi con inchiostro elettronico 
 * Modifica del contrasto e della luminosità 
 * Luminosità negativa 
@@ -152,7 +152,7 @@
 </it-IT>
 
 <sv-SE>
-* Kanske den bästa applikationen för att läsa alla format på böcker och PDF 
+* Applikation för att läsa alla format på böcker och PDF 
 * TemaBläck för enheter med elektronisk bläck 
 * Ändra kontrasten och ljusstyrkan 
 * Negativ ljusstyrka 
@@ -160,7 +160,7 @@
 </sv-SE>
 
 <fa>
-* شاید بهترین برنامه برای خواندن تمام فرمت های کتاب و PDF 
+* برنامه برای خواندن تمام فرمت های کتاب و PDF 
 * تمجوهر برای دستگاه های جوهر الکترونیکی 
 * تغییر کنتراست و روشنایی 
 * روشنایی منفی 
@@ -168,23 +168,23 @@
 </fa>
 
 <pt-PT>
-* Talvez a melhor aplicação para ler todos os formatos de livros e PDF 
+* Aplicação para ler todos os formatos de livros e PDF 
 * TemaTinta para dispositivos com tinta eletrônica 
-* Alterar o contraste e o brilho 
+* Alterar o contraste e brilho 
 * Brilho negativo 
 * Filtro de luz azul
 </pt-PT>
 
 <pt-BR>
-* Talvez a melhor aplicação para ler todos os formatos de livros e PDF 
+* Aplicação para ler todos os formatos de livros e PDF 
 * TemaTinta para dispositivos com tinta eletrônica 
-* Alterar o contraste e o brilho 
+* Alterar o contraste e brilho 
 * Brilho negativo 
 * Filtro de luz azul
 </pt-BR>
 
 <ko-KR>
-* 아마도 모든 책 및 PDF 형식을 읽을 수있는 최고의 응용 프로그램 
+* 모든 형식의 책 및 PDF 읽기 응용 프로그램 
 * 전자 잉크가있는 장치의 테마잉크
 * 명암 및 밝기 변경 
 * 음의 밝기 
@@ -192,31 +192,31 @@
 </ko-KR>
 
 <hu-HU>
-* Talán a legjobb alkalmazás a könyvek és PDF formátumok olvasásához 
-* TémaInk az elektronikus tintával rendelkező készülékekhez 
+* Alkalmazás könyvek és PDF formátumok olvasására 
+* TémaInk elektronikus tintasugaras készülékekhez 
 * A kontraszt és a fényerő módosítása 
 * Negatív fényerő 
 * Kék fény szűrő
 </hu-HU>
 
 <sk>
-* Snáď najlepšia aplikácia pre čítanie všetkých formátov kníh a PDF 
+* Aplikácia na čítanie všetkých formátov kníh a PDF 
 * TémaAtrament pre zariadenia s elektronickým atramentom 
 * Zmena kontrastu a jasu 
 * Negatívny jas 
-* Filtru modrého svetla
+* Filter modrého svetla
 </sk>
 
 <tr-TR>
-* Belki de tüm formattaki kitapları ve PDF formatlarını okumak için en iyi uygulama 
+* Kitapların ve PDF’nin tüm formatlarını okumak için başvuru 
 * Elektronik mürekkepli cihazlar için TemaMürekkep 
-* Kontrast ve parlaklığı değiştirin 
+* Kontrast ve parlaklığı değiştirme 
 * Negatif parlaklık 
 * Mavi ışık filtresi
 </tr-TR>
 
 <no-NO>
-* Kanskje det beste programmet for å lese alle formater av bøker og PDF 
+* Søknad for å lese alle formater av bøker og PDF 
 * TemaBlekk for enheter med elektronisk blekk 
 * Endre kontrast og lysstyrke 
 * Negativ lysstyrke 
@@ -225,14 +225,14 @@
 
 <la>
 All formats 
-* fortasse optimum application est legere librorum et Natus Est PDF 
+* Application pro legere librorum et Natus Est PDF 
 * ’Ink’ pro atramento electronic cogitationes et mutare 
 * Sed claritas, et Blue claritas negativus 
 * filter lux
 </la>
 
 <ja-JP>
-*おそらく、書籍やPDFのすべての形式を読むための最高のアプリケーション
+*書籍やPDFのすべての形式を読むためのアプリケーション
 *電子インクのデバイスのテーマインク 
 *コントラストと明るさを変更する
 *負の明るさ
@@ -240,7 +240,7 @@ All formats
 </ja-JP>
 
 <uk>
-* Можливо найкраща програма для читання всіх форматів книг і PDF 
+* Застосування для читання всіх форматів книг і PDF 
 * ТемаЧорнило для пристроїв з електронними чорнилами 
 * Зміна контрастності та яскравості 
 * Негативна яскравість 
@@ -248,7 +248,7 @@ All formats
 </uk>
 
 <en-US>
-* Perhaps the best application for reading all formats of books and PDF
+* Application for reading all formats of books and PDF
 * Theme "Ink" for devices with electronic ink
 * Change the contrast and brightness
 * Negative brightness

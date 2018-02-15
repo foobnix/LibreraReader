@@ -1,5 +1,5 @@
-* Ehkä paras sovellus kaikkien kirjojen ja PDF-kirjojen lukemiseen 
-* TeemaMuste sähköisten musteella varustettujen laitteiden kanssa 
+* Sovellus kaikkien kirjojen ja PDF-formaattien lukemiseen 
+* TeemaInk elektronisilla musteilla varustetuissa laitteissa 
 * Muuta kontrastia ja kirkkautta 
 * Negatiivinen kirkkaus 
 * Sininen valosuodatin

@@ -1,4 +1,4 @@
-* Tal vez la mejor aplicación para leer todos los formatos de libros y PDF 
+* Aplicación para leer todos los formatos de libros y PDF 
 * TemaTinta para dispositivos con tinta electrónica 
 * Cambiar el contraste y el brillo 
 * Brillo negativo 

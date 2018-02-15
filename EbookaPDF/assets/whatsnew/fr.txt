@@ -1,5 +1,5 @@
-* Peut-être la meilleure application pour lire tous les formats de livres et PDF 
-* ThèmeEncre pour les appareils à encre électronique 
+* Application pour lire tous les formats de livres et PDF 
+* ThèmeEncre pour les appareils avec encre électronique 
 * Changer le contraste et la luminosité 
 * Brillance négative 
 * Filtre lumière bleue

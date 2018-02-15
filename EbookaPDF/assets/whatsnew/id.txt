@@ -1,4 +1,4 @@
-* Mungkin aplikasi terbaik untuk membaca semua format buku dan PDF 
+* Aplikasi untuk membaca semua format buku dan PDF 
 * TemaTinta untuk perangkat dengan tinta elektronik 
 * Mengubah kontras dan kecerahan 
 * Kecerahan negatif 
