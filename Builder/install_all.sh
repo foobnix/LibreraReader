@@ -1,3 +1,5 @@
+APK=/home/ivan-dev/Dropbox/FREE_PDF_APK/testing
+
 for DEVICE in $(adb devices | grep [0-9] | tr -s "\t " " " | cut -d " " -f 1)
 do
 	  echo "--------------------------------------------------------"
@@ -8,13 +10,13 @@ do
 
 	if [[ $TYPE == *"arm64"* ]]; then
 		echo "TYPE: arm"
-	    FILES=apk/*arm64.apk
+	    FILES=$APK/*arm64-*.apk
 	elif [[ $TYPE == *"armeabi"* ]]; then
 		echo "TYPE: arm"
-	    FILES=apk/*arm.apk
+	    FILES=$APK/*arm-*.apk
 	else 
 		echo "TYPE: x86"
-	    FILES=apk/*x86*.apk
+	    FILES=$APK/*x86*.apk
 	fi
 
   for f in $FILES

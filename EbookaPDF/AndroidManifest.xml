@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.foobnix.pdf.reader"
+    package="librera.beta112"
     android:installLocation="auto"
-    android:versionCode="487"
-    android:versionName="7.6.14" >
+    android:versionCode="488"
+    android:versionName="7.6.15" >
 
     <uses-sdk
         android:minSdkVersion="14"
@@ -24,7 +24,7 @@
         android:theme="@style/StyledIndicatorsWhite" >
         <provider
             android:name="android.support.v4.content.FileProvider"
-            android:authorities="com.foobnix.pdf.reader.provider"
+            android:authorities="librera.beta112.provider"
             android:exported="false"
             android:grantUriPermissions="true" >
             <meta-data

@@ -380,6 +380,13 @@ public class DocumentWrapperUI {
             } else {
                 currentPageIndex.setText(String.format("%s", current));
             }
+
+        } else if (AppState.get().readingProgress1 == AppState.READING_PROGRESS_PERCENT_NUMBERS) {
+            if (AppState.get().isAutoScroll) {
+                currentPageIndex.setText(String.format("{%s} %s", AppState.get().autoScrollSpeed, current));
+            } else {
+                currentPageIndex.setText(TxtUtils.getProgressPercent(dc.getCurentPage(), maxValue) + "·" + TxtUtils.deltaPage(dc.getCurentPage()) + "∕" + maxValue);
+            }
         } else {
 
             if (AppState.get().isAutoScroll) {

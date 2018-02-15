@@ -1,6 +1,4 @@
-#PATH=/home/papa/dev/jdk1.8.0_45/bin:$PATH
-#PATH=/home/papa/dev/apache-ant-1.9.4/bin:$PATH
-#PATH=/home/papa/dev/android-sdk-linux/platform-tools:$PATH
+
 ./link_to_mupdf_1.11.sh
 ./inc-index.sh
 

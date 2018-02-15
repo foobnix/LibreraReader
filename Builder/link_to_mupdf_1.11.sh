@@ -43,7 +43,7 @@ cp -rp $MY/Builder/jni-1.11/~mupdf/html-layout.c $MUPDF_ROOT/source/html/html-la
 cp -rp $MY/Builder/jni-1.11/~mupdf/xml.c $MUPDF_ROOT/source/fitz/xml.c
 cp -rp $MY/Builder/jni-1.11/~mupdf/stext-output.c $MUPDF_ROOT/source/fitz/stext-output.c
 
-cp -rp $MY/Builder/jni-1.11/~mupdf/structured-text.h $MUPDF_ROOT/inclume/mupdf/fitz/structured-text.h
+cp -rp $MY/Builder/jni-1.11/~mupdf/structured-text.h $MUPDF_ROOT/include/mupdf/fitz/structured-text.h
 
 
 

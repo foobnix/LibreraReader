@@ -8,12 +8,11 @@ ant clean-apk
 
 rm /home/ivan-dev/Dropbox/FREE_PDF_APK/testing/*.apk
 
-./link_to_mupdf_1.11.sh
-ant arm+arm64 pdf-beta-111
-
 ./link_to_mupdf_1.12.sh
 ant arm+arm64 pdf-beta-112
 
+./link_to_mupdf_1.11.sh
+ant arm+arm64 pdf-beta-111
 
 ant x86
 ant version

@@ -1219,7 +1219,7 @@ public class DragingDialogs {
                             try {
                                 ImageView image = new ImageView(anchor.getContext());
                                 LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(Dips.dpToPx(44), Dips.dpToPx(44));
-                                layoutParams.topMargin = Dips.dpToPx(8);
+                                layoutParams.rightMargin = Dips.dpToPx(8);
                                 image.setLayoutParams(layoutParams);
                                 Drawable icon = anchor.getContext().getPackageManager().getApplicationIcon(app.activityInfo.packageName);
                                 image.setImageDrawable(icon);
