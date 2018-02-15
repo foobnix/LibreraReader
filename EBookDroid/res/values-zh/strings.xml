@@ -163,7 +163,7 @@
    <string name="image_format">图像格式</string>
    <string name="empty_line">空行</string>
    <string name="customize_background_color">自定义背景色</string>
-   <string name="enable_vibration_for_some_actions">振动</string>
+   <string name="enable_vibration_for_some_actions">振动提示</string>
    <string name="center">中央</string>
    <string name="width">宽度</string>
    <string name="text_align">文本对齐</string>
@@ -254,7 +254,7 @@
    <string name="reading_settings">阅读设置</string>
    <string name="db_auto_center_horizontally">水平中心</string>
    <string name="licenses_for_libraries">许可证</string>
-   <string name="search_for_text_in_documents">多文件搜索文本</string>
+   <string name="search_for_text_in_documents">多文件中搜索文本</string>
    <string name="stop">停止</string>
    <string name="incorrect_value">值不正确</string>
    <string name="search_in_the_subfolders">子文件夹</string>
@@ -304,7 +304,7 @@
    <string name="description">描述</string>
    <string name="authentication_required">需要验证</string>
    <string name="user_name">用户名</string>
-   <string name="password">密码</string>
+   <string name="password">输入密码</string>
    <string name="what_is_the_opds_online_catalog_">什么是OPDS在线目录？</string>
    <string name="books">书籍</string>
    <string name="reading_out_loud">大声朗读</string>
