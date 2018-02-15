@@ -804,28 +804,24 @@ static void measure_image(fz_context *ctx, fz_html_flow *node, float max_w, floa
 	/* NOTE: We ignore the image DPI here, since most images in EPUB files have bogus values. */
 	float image_w = node->content.image->w * 72 / 96;
 	float image_h = node->content.image->h * 72 / 96;
-	node->x = 0;
-	node->y = 0;
-	if (image_w > max_w)
-		xs = max_w / image_w;
-	if (image_h > max_h)
-		ys = max_h / image_h;
+		node->x = 0;
+		node->y = 0;
+
+		int size = 100;
+		if(image_h < size){
+			image_w = image_w * size/image_h;
+			image_h = size;
+		}
+
+		if (image_w > max_w)
+			xs = max_w / image_w;
+		if (image_h > max_h)
+			ys = max_h / image_h;
 
 
-	if(image_w < max_w/7 && image_h < max_h/7){ //very small parts
-		xs = 7;
-		ys = 7;
-	}else if(image_w < max_w && image_h < max_h/7){//line images
-		xs = max_w / image_w;
-		ys = max_h / image_h;
-	}else if(image_w < max_w/2 && image_h < max_h/3){//line images
-		xs = 2;
-		ys = 2;
-	}
-
-	s = fz_min(xs, ys);
-	node->w = image_w * s;
-	node->h = image_h * s;
+		s = fz_min(xs, ys);
+		node->w = image_w * s;
+		node->h = image_h * s;
 }
 
 typedef struct string_walker
