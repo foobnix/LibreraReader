@@ -375,7 +375,7 @@
    <string name="what_is_new_in">新增内容</string>
    <string name="you_need_to_update_the_library">更新书库？</string>
    <string name="theme_color">主题颜色</string>
-   <string name="add_folder">添加文件夹</string>
+   <string name="add_folder">添加目录</string>
    <string name="scroll_speed">鼠标灵敏度</string>
    <string name="landscape_180">横屏（反向）</string>
    <string name="portrait_180">竖屏（反向）</string>
@@ -387,7 +387,7 @@
    <string name="remember_reading_mode">默认阅读模式</string>
    <string name="background_color_on_images_the_same_as_page_background">图像背景色与页面背景相同</string>
    <string name="block_page_movement_horizontally">禁用页面水平移动</string>
-   <string name="search_history_and_autocomplete">自动搜索记录</string>
+   <string name="search_history_and_autocomplete">历史记录</string>
    <string name="server">服务器</string>
    <string name="port">端口</string>
    <string name="user">用户</string>
