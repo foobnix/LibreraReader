@@ -112,7 +112,7 @@
    <string name="make_text_reflow">文本重排</string>
    <string name="search_not_supported_formats">搜索未支持格式</string>
    <string name="___MULTIPLE___SECTIONS___">多选</string>
-   <string name="search_in_google">Google搜索</string>
+   <string name="search_in_google">谷歌搜索</string>
    <string name="sound_volume">音量</string>
    <string name="speed1">语速</string>
    <string name="pitch1">音调</string>
@@ -207,7 +207,7 @@
    <string name="folders">存储</string>
    <string name="extracting_information_from_books">书籍信息</string>
    <string name="clear_all">清空</string>
-   <string name="musician">乐谱模式</string>
+   <string name="musician">乐谱</string>
    <string name="borders_and_shadow_around_the_book_cover">边框阴影</string>
    <string name="by_path">路径</string>
    <string name="by_file_name">名称</string>
@@ -271,7 +271,7 @@
    <string name="opening_the_last_book_when_the_application_starts">启动后继续上次阅读</string>
    <string name="links_color_day">链接颜色（白天）</string>
    <string name="links_color_night">链接颜色（夜晚）</string>
-   <string name="status_bar">状态栏</string>
+   <string name="status_bar">状态信息</string>
    <string name="show_status_bar">显示状态栏</string>
    <string name="text_size">字体大小</string>
    <string name="text_color_day">文字颜色（白天）</string>
@@ -358,7 +358,7 @@
    <string name="show">显示</string>
    <string name="folder_for_downloaded_books">下载目录</string>
    <string name="set_the_current_page_number">设置页码</string>
-   <string name="search_in_document">文件搜索</string>
+   <string name="search_in_document">文内搜索</string>
    <string name="opening_book_with_losed_lock">禁用页面水平移动</string>
    <string name="opening_book_with_cropped_borders">自动裁白边</string>
    <string name="do_you_want_to_clear_everything_">全部清空？</string>
@@ -432,9 +432,9 @@
    <string name="full_screen">全屏</string>
    <string name="percent_and_number">百分比和页码</string>
    <string name="current_page">当前页面</string>
-   <string name="mode_vertical">滚动模式</string>
-   <string name="mode_horizontally">仿真模式</string>
-   <string name="mode_musician">乐谱模式</string>
+   <string name="mode_vertical">滚动</string>
+   <string name="mode_horizontally">书本</string>
+   <string name="mode_musician">乐谱</string>
    <string name="backup_folder">备份目录</string>
    <string name="audio_books_folder">音频目录</string>
    <string name="enable">启用</string>
