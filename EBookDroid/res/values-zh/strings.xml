@@ -14,7 +14,7 @@
    <string name="content_of_book">目录</string>
    <string name="crop_white_borders">裁白边</string>
    <string name="delete">删除</string>
-   <string name="delete_book_">删除文档？</string>
+   <string name="delete_book_">删除文件？</string>
    <string name="dialog_color_picker">颜色选择</string>
    <string name="export_">导出 ...</string>
    <string name="export_bookmarks">导出书签</string>
@@ -25,7 +25,7 @@
    <string name="import_">导入 ...</string>
    <string name="invert_colors">反色</string>
    <string name="keys">按键</string>
-   <string name="landscape">横屏显示</string>
+   <string name="landscape">横屏</string>
    <string name="library">书库</string>
    <string name="licence_gnu_gpl_v3_0">授权方式: GNU GPL v3.0</string>
    <string name="light">亮色调</string>
@@ -46,7 +46,7 @@
    <string name="orientation">屏幕方向</string>
    <string name="___PREFERENCES___SECTION___">设置</string>
    <string name="page">页</string>
-   <string name="portrait">竖屏模式</string>
+   <string name="portrait">竖屏</string>
    <string name="preferences">设置</string>
    <string name="press_any_key">任意按键</string>
    <string name="press_color_to_apply">点击应用颜色</string>
@@ -64,7 +64,7 @@
    <string name="search">搜索</string>
    <string name="searching_please_wait_">正在搜索...</string>
    <string name="select">选取</string>
-   <string name="send_file_to">发送文档</string>
+   <string name="send_file_to">发送文件</string>
    <string name="share">分享</string>
    <string name="split_pages_in_two">双页分割</string>
    <string name="success">完成</string>
@@ -103,7 +103,7 @@
    <string name="dictionary">字典</string>
    <string name="___STATUS___BAR___SETTINGS___SECTION___">状态栏设置</string>
    <string name="import_bookmarks">导入书签</string>
-   <string name="email">电子邮件</string>
+   <string name="email">邮件</string>
    <string name="file">文件</string>
    <string name="file_not_found">无结果</string>
    <string name="send_file">发送文件</string>
@@ -125,7 +125,7 @@
    <string name="db_auto_alignemnt">自动对齐</string>
    <string name="db_auto_scroll">自动滚动</string>
    <string name="db_do_nothing">无</string>
-   <string name="action_on_double_tap">双击</string>
+   <string name="action_on_double_tap">双击反馈</string>
    <string name="add_bookmark">添加书签</string>
    <string name="add">添加</string>
    <string name="___TABS___SECTION___">标签</string>
@@ -238,7 +238,7 @@
    <string name="right_side">右边</string>
    <string name="apply_a_new_screen_orientation_">应用设置？</string>
    <string name="styles">样式</string>
-   <string name="document_styles">文档样式</string>
+   <string name="document_styles">文件样式</string>
    <string name="user_styles">用户样式</string>
    <string name="archive">档案</string>
    <string name="beta_version">测试版</string>
@@ -254,10 +254,10 @@
    <string name="reading_settings">阅读设置</string>
    <string name="db_auto_center_horizontally">水平中心</string>
    <string name="licenses_for_libraries">许可证</string>
-   <string name="search_for_text_in_documents">多文档搜索</string>
+   <string name="search_for_text_in_documents">多文件搜索文本</string>
    <string name="stop">停止</string>
    <string name="incorrect_value">值不正确</string>
-   <string name="search_in_the_subfolders">子文件夹中搜索</string>
+   <string name="search_in_the_subfolders">子文件夹</string>
    <string name="document_converter_online_">文件转换（在线）</string>
    <string name="in_the_author_s_name_first_the_surname">作者姓名</string>
    <string name="remind_about_rest_every">休息间隔</string>
@@ -289,8 +289,8 @@
    <string name="___TO___CHECK___SECTION___">检查</string>
    <string name="show_progress_of_reading">显示进度条</string>
    <string name="line_height">进度条宽</string>
-   <string name="display_chapters_on_the_progress_line">显示章节预览</string>
-   <string name="enable_brightness_adjustment_on_the_left_of_the_screen">屏幕左侧调节亮度</string>
+   <string name="display_chapters_on_the_progress_line">显示出章节预览</string>
+   <string name="enable_brightness_adjustment_on_the_left_of_the_screen">屏幕的左侧调节亮度</string>
    <string name="___INDEFINITE___SECTION___">无限</string>
    <string name="enable_rewind_of_pages_using_the_read_progress_line">进度条控制进度</string>
    <string name="catalogs">在线书库</string>
@@ -298,7 +298,7 @@
    <string name="download">下载</string>
    <string name="loading_error">加载错误</string>
    <string name="please_wait">请稍候...</string>
-   <string name="do_you_want_to_delete_">删除？</string>
+   <string name="do_you_want_to_delete_">确定删除？</string>
    <string name="network">网络</string>
    <string name="name">名称</string>
    <string name="description">描述</string>
@@ -358,7 +358,7 @@
    <string name="show">显示</string>
    <string name="folder_for_downloaded_books">下载目录</string>
    <string name="set_the_current_page_number">设置页码</string>
-   <string name="search_in_document">文档搜索</string>
+   <string name="search_in_document">文件搜索</string>
    <string name="opening_book_with_losed_lock">禁用页面水平移动</string>
    <string name="opening_book_with_cropped_borders">自动裁白边</string>
    <string name="do_you_want_to_clear_everything_">全部清空？</string>
@@ -401,7 +401,7 @@
    <string name="custom_value">自定义值</string>
    <string name="change_the_automatic_scrolling_speed_with_the_volume_keys">音量键调节滚动速度</string>
    <string name="automatic_export_backup">自动备份设置，进度，书签，并导出。</string>
-   <string name="display_all_file_types_in_folders">显示文件夹中所有文件类型</string>
+   <string name="display_all_file_types_in_folders">文件夹中全文件类型</string>
    <string name="no_serie">没有系列</string>
    <string name="no_genre">没有类型</string>
    <string name="no_author">没有作者</string>
