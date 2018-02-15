@@ -382,7 +382,7 @@
    <string name="full_list_of_changes_with_images_web_pdf_">详细变更信息。</string>
    <string name="select_the_reading_mode">阅读模式</string>
    <string name="remember_choice">默认</string>
-   <string name="formatted_text">格式化文本（伪图形）</string>
+   <string name="formatted_text">格式文本（伪图形）</string>
    <string name="continuous_text">连续文本（不换行）</string>
    <string name="remember_reading_mode">默认阅读模式</string>
    <string name="background_color_on_images_the_same_as_page_background">图像背景色与页面背景相同</string>
