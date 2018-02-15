@@ -19,6 +19,13 @@
 	    <echo>${package.droid}</echo>
 	    <echo>${package.ink}</echo>
 	   <!-- section 2 -->
+	   
+	   
+   <replaceregexp file="../EbookaPDF/AndroidManifest.xml" flags="g"
+	match='librera.beta111' replace='${pdf.package}' />
+
+	<replaceregexp file="../EbookaPDF/AndroidManifest.xml" flags="g"
+	match='librera.beta112' replace='${pdf.package}' />
 	
  <replaceregexp file="../EbookaPDF/AndroidManifest.xml" flags="g"
 		match='${package.pdf}' replace='${pdf.package}' />
@@ -34,6 +41,11 @@
 	
 	<replaceregexp file="../EbookaPDF/AndroidManifest.xml" flags="g"
 		match='${package.ink}' replace='${pdf.package}' />
+	
+	
+		<replaceregexp file="../EBookDroid/res/values/config.xml"
+			match='app_name">[ .()a-zA-Z0-9-]+' replace='app_name">${pdf.app.name}' />
+	
 		
 	<!-- section 3 -->
 		<replaceregexp file="../EbookaPDF/AndroidManifest.xml"
@@ -54,27 +66,6 @@
 		<replaceregexp file="../EbookaPDF/AndroidManifest.xml"
 			match='android:icon="@drawable/test"' replace='android:icon="${pdf.icon}"' />
 
-	<!-- section 4 -->
-		
-		<replaceregexp file="../EBookDroid/res/values/config.xml"
-			match='app_name">Librera[ a-zA-Z0-9-]+' replace='app_name">Librera' />
-
-		<replaceregexp file="../EBookDroid/res/values/config.xml"
-			match='&lt;string name="app_name">${name.pro}&lt;/string>' replace='&lt;string name="app_name">${pdf.app.name}&lt;/string>' />
-
-		<replaceregexp file="../EBookDroid/res/values/config.xml"
-			match='&lt;string name="app_name">${name.pdf}&lt;/string>' replace='&lt;string name="app_name">${pdf.app.name}&lt;/string>' />
-
-		<replaceregexp file="../EBookDroid/res/values/config.xml"
-			match='&lt;string name="app_name">${name.classic}&lt;/string>'
-			replace='&lt;string name="app_name">${pdf.app.name}&lt;/string>' />
-
-		<replaceregexp file="../EBookDroid/res/values/config.xml"
-			match='&lt;string name="app_name">${name.droid}&lt;/string>' replace='&lt;string name="app_name">${pdf.app.name}&lt;/string>' />
-		
-		<replaceregexp file="../EBookDroid/res/values/config.xml"
-			match='&lt;string name="app_name">${name.ink}&lt;/string>' replace='&lt;string name="app_name">${pdf.app.name}&lt;/string>' />
-		
 
 		<!-- section 5 -->
 		
@@ -219,13 +210,15 @@
 		<echo file="${dropbox}" append="false">${version.code}.${version.code.index}</echo>
 
 	</target>
-	<target name="pdf-beta">
+	
+	
+	<target name="pdf-beta-111">
 		<antcall target="clean-all" />
 
-		<property name="pdf.package" value="com.foobnix.pdf.reader" />
+		<property name="pdf.package" value="librera.beta111" />
 		<property name="pdf.icon" value="@drawable/icon_pdf_reader" />
-		<property name="pdf.app.name" value="${name.pdf} ${version.beta.text}" />
-		<property name="pdf.export.name" value="${name.pdf} ${version.beta.text}" />
+		<property name="pdf.app.name" value="Beta ${version.code}.${version.code.index} (11)" />
+		<property name="pdf.export.name" value="Beta" />
 
 		<antcall target="prepare-packages" />
 		<antcall target="free-replace" />
@@ -237,12 +230,39 @@
 
 		<antcall target="copy" inheritAll="true" />
 		<copy file="../EbookaPDF/bin/EbookaPDF-release.apk"
-			tofile="${dropbox}/${pdf.export.name}-${version.code}.${version.code.index}-c${pdf.reader.code}-${pdf.app.platform}.apk"
+			tofile="${dropbox}/${pdf.export.name}-${version.code}.${version.code.index}-c${pdf.reader.code}-${pdf.app.platform}-mupdf1.11.apk"
 			overwrite="true" />
 		
 		<echo file="${dropbox}" append="false">${version.code}.${version.code.index}</echo>
 
 	</target>
+	
+	<target name="pdf-beta-112">
+		<antcall target="clean-all" />
+
+		<property name="pdf.package" value="librera.beta112" />
+		<property name="pdf.icon" value="@drawable/icon_pdf_reader" />
+		<property name="pdf.app.name" value="Beta ${version.code}.${version.code.index} (12)" />
+		<property name="pdf.export.name" value="Beta" />
+
+		<antcall target="prepare-packages" />
+		<antcall target="free-replace" />
+
+		<!-- -->
+		<subant target="release">
+			<fileset dir="../EbookaPDF/" includes="build.xml" />
+		</subant>
+
+		<antcall target="copy" inheritAll="true" />
+		<copy file="../EbookaPDF/bin/EbookaPDF-release.apk"
+			tofile="${dropbox}/${pdf.export.name}-${version.code}.${version.code.index}-c${pdf.reader.code}-${pdf.app.platform}-mupdf1.12.apk"
+			overwrite="true" />
+		
+		<echo file="${dropbox}" append="false">${version.code}.${version.code.index}</echo>
+
+	</target>
+	
+	
 	
 	<target name="pdf-ink">
 		<antcall target="clean-all" />
