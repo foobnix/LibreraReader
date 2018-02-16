@@ -489,7 +489,7 @@ public class Fb2Extractor extends BaseExtractor {
                         line = HypenUtils.applyHypnesOld(line);
                     }
                 }
-                writer.println(line);
+                writer.print(line);
             }
 
         }
