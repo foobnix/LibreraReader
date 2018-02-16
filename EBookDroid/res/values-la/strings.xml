@@ -442,4 +442,5 @@
    <string name="link_color">Color Link</string>
    <string name="show_battery_percentage">Show altilium recipis</string>
    <string name="show_current_time">Ostenta Tempus</string>
+   <string name="telegram_channel">Telegraphum channel</string>
 </resources>

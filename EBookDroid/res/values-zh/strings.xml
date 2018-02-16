@@ -442,4 +442,5 @@
    <string name="link_color">链接颜色</string>
    <string name="show_battery_percentage">显示电池百分比</string>
    <string name="show_current_time">显示当前时间</string>
+   <string name="telegram_channel">电报频道</string>
 </resources>

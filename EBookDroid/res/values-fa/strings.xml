@@ -442,4 +442,5 @@
    <string name="link_color">رنگ لینک</string>
    <string name="show_battery_percentage">نمایش درصد باتری</string>
    <string name="show_current_time">نمایش زمان فعلی</string>
+   <string name="telegram_channel">کانال Telegram</string>
 </resources>

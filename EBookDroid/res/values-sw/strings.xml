@@ -442,4 +442,5 @@
    <string name="link_color">Weka rangi</string>
    <string name="show_battery_percentage">Onyesha asilimia ya betri</string>
    <string name="show_current_time">Onyesha wakati wa sasa</string>
+   <string name="telegram_channel">Kituo cha Telegramu</string>
 </resources>

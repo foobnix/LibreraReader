@@ -442,4 +442,5 @@
    <string name="link_color">צבע קישור</string>
    <string name="show_battery_percentage">הצג את אחוז הסוללה</string>
    <string name="show_current_time">הצג את השעה הנוכחית</string>
+   <string name="telegram_channel">ערוץ המברקים</string>
 </resources>

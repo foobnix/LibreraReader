@@ -442,4 +442,5 @@
    <string name="link_color">Bağlantı rengi</string>
    <string name="show_battery_percentage">Pil yüzdesini göster</string>
    <string name="show_current_time">Geçerli saati göster</string>
+   <string name="telegram_channel">Telgraf kanalı</string>
 </resources>

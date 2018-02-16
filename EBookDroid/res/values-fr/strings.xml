@@ -442,4 +442,5 @@
    <string name="link_color">Couleur du lien</string>
    <string name="show_battery_percentage">Afficher le pourcentage de la batterie</string>
    <string name="show_current_time">Afficher l\'heure actuelle</string>
+   <string name="telegram_channel">Chaîne de télégrammes</string>
 </resources>

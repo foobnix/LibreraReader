@@ -442,4 +442,5 @@
    <string name="link_color">Посилання на колір</string>
    <string name="show_battery_percentage">Показати відсоток акумулятора</string>
    <string name="show_current_time">Показати поточний час</string>
+   <string name="telegram_channel">Телеграма каналу</string>
 </resources>

@@ -442,4 +442,5 @@
    <string name="link_color">Länkfärg</string>
    <string name="show_battery_percentage">Visa batteriprocent</string>
    <string name="show_current_time">Visa aktuell tid</string>
+   <string name="telegram_channel">Telegramkanal</string>
 </resources>

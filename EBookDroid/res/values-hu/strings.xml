@@ -442,4 +442,5 @@
    <string name="link_color">Link szín</string>
    <string name="show_battery_percentage">Az akkumulátor százalékos arányának megjelenítése</string>
    <string name="show_current_time">Az aktuális idő megjelenítése</string>
+   <string name="telegram_channel">Telegram csatorna</string>
 </resources>

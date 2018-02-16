@@ -442,4 +442,5 @@
    <string name="link_color">Nuorodos spalva</string>
    <string name="show_battery_percentage">Rodyti akumuliatoriaus procentą</string>
    <string name="show_current_time">Rodyti dabartinį laiką</string>
+   <string name="telegram_channel">Telegram kanalas</string>
 </resources>

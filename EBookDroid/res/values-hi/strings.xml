@@ -442,4 +442,5 @@
    <string name="link_color">लिंक रंग</string>
    <string name="show_battery_percentage">बैटरी का प्रतिशत दिखाएं</string>
    <string name="show_current_time">वर्तमान समय दिखाएं</string>
+   <string name="telegram_channel">टेलीग्राम चैनल</string>
 </resources>

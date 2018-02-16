@@ -442,4 +442,5 @@
    <string name="link_color">Màu sắc liên kết</string>
    <string name="show_battery_percentage">Hiển thị tỷ lệ pin</string>
    <string name="show_current_time">Hiển thị thời gian hiện tại</string>
+   <string name="telegram_channel">Kênh điện tín</string>
 </resources>

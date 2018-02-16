@@ -442,4 +442,5 @@
    <string name="link_color">Warna link</string>
    <string name="show_battery_percentage">Tunjukkan persentase baterai</string>
    <string name="show_current_time">Tampilkan waktu sekarang</string>
+   <string name="telegram_channel">Saluran telegram</string>
 </resources>

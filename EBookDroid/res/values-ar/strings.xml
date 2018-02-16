@@ -442,4 +442,5 @@
    <string name="link_color">لون الرابط</string>
    <string name="show_battery_percentage">عرض نسبة البطارية</string>
    <string name="show_current_time">إظهار الوقت الحالي</string>
+   <string name="telegram_channel">قناة برقية</string>
 </resources>

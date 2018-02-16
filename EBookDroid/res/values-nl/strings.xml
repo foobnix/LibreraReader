@@ -442,4 +442,5 @@
    <string name="link_color">Link kleur</string>
    <string name="show_battery_percentage">Toon batterijpercentage</string>
    <string name="show_current_time">Toon de huidige tijd</string>
+   <string name="telegram_channel">Telegram-kanaal</string>
 </resources>

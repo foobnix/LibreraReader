@@ -442,4 +442,5 @@
    <string name="link_color">Cor do link</string>
    <string name="show_battery_percentage">Mostrar porcentagem da bateria</string>
    <string name="show_current_time">Mostrar hora atual</string>
+   <string name="telegram_channel">Canal Telegram</string>
 </resources>

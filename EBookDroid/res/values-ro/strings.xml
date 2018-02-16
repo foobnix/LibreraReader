@@ -442,4 +442,5 @@
    <string name="link_color">Culoare legătură</string>
    <string name="show_battery_percentage">Afișați procentul bateriei</string>
    <string name="show_current_time">Afișați ora curentă</string>
+   <string name="telegram_channel">Canal de telegrame</string>
 </resources>

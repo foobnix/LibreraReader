@@ -442,4 +442,5 @@
    <string name="link_color">Linkin väri</string>
    <string name="show_battery_percentage">Näytä akun prosenttiosuus</string>
    <string name="show_current_time">Näytä nykyinen aika</string>
+   <string name="telegram_channel">Telegramkanava</string>
 </resources>

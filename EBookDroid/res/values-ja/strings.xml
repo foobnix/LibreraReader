@@ -442,4 +442,5 @@
    <string name="link_color">リンクの色</string>
    <string name="show_battery_percentage">バッテリの割合を表示する</string>
    <string name="show_current_time">現在の時間を表示する</string>
+   <string name="telegram_channel">テレグラムチャンネル</string>
 </resources>
