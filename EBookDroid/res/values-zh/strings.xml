@@ -1,9 +1,9 @@
 <resources>
    <string name="___LIBRARY___SETTINGS___SECTION___">书库</string>
-   <string name="apply">应用</string>
+   <string name="apply">确定</string>
    <string name="automatic">自动</string>
    <string name="autor_ivan_ivanenko">作者: Ivan Ivanenko</string>
-   <string name="black">暗色调</string>
+   <string name="black">暗色</string>
    <string name="bookmark_on_page_">添加书签</string>
    <string name="bookmarks">书签</string>
    <string name="brightness">亮度</string>
@@ -28,7 +28,7 @@
    <string name="landscape">横屏</string>
    <string name="library">书库</string>
    <string name="licence_gnu_gpl_v3_0">授权方式: GNU GPL v3.0</string>
-   <string name="light">亮色调</string>
+   <string name="light">亮色</string>
    <string name="loading_failed">载入失败</string>
    <string name="loop_autoplay">自动循环</string>
    <string name="msg_loading">正在载入...</string>
@@ -41,7 +41,7 @@
    <string name="no_results_found_">无结果</string>
    <string name="off">禁用</string>
    <string name="on">启用</string>
-   <string name="open_in_browser">用浏览器打开</string>
+   <string name="open_in_browser">下载</string>
    <string name="open_with">打开方式</string>
    <string name="orientation">屏幕方向</string>
    <string name="___PREFERENCES___SECTION___">设置</string>
@@ -54,7 +54,7 @@
    <string name="product">产品</string>
    <string name="recent">最近</string>
    <string name="restore_default_keys">恢复默认按键</string>
-   <string name="reverse_keys">反键</string>
+   <string name="reverse_keys">反键位</string>
    <string name="___READING___SETTINGS___SECTION___">阅读设置</string>
    <string name="rotate">旋转</string>
    <string name="rotate_default">默认角度</string>
@@ -163,7 +163,7 @@
    <string name="image_format">图像格式</string>
    <string name="empty_line">空行</string>
    <string name="customize_background_color">自定义背景色</string>
-   <string name="enable_vibration_for_some_actions">振动提示</string>
+   <string name="enable_vibration_for_some_actions">振动操作提示</string>
    <string name="center">中央</string>
    <string name="width">宽度</string>
    <string name="text_align">文本对齐</string>
@@ -177,7 +177,7 @@
    <string name="highlight_of_text">文本高亮</string>
    <string name="underline_of_text">文本下划线</string>
    <string name="strikethrough_of_text">文本删除线</string>
-   <string name="selecting_text_by_letters">选择单字</string>
+   <string name="selecting_text_by_letters">选择文本单字</string>
    <string name="color">颜色</string>
    <string name="image">图片</string>
    <string name="transparency">透明度</string>
@@ -201,8 +201,8 @@
    <string name="column_count">列数</string>
    <string name="crop_images_in_the_book_cover">获取封面</string>
    <string name="___CONTEXT___MENU___SECTION___">背景设置</string>
-   <string name="by_screans">全部屏幕</string>
-   <string name="by_pages">按页滚屏</string>
+   <string name="by_screans">全屏滚距</string>
+   <string name="by_pages">按页滚距</string>
    <string name="send_snapshot_of_the_page">页面分享</string>
    <string name="folders">存储</string>
    <string name="extracting_information_from_books">书籍信息</string>
@@ -218,7 +218,7 @@
    <string name="by_date">日期</string>
    <string name="by_size">大小</string>
    <string name="read_a_book">阅读</string>
-   <string name="screen_turn_off_after_inactivity_minutes_">阅读时屏幕常亮（分钟）</string>
+   <string name="screen_turn_off_after_inactivity_minutes_">屏幕常亮（分钟）</string>
    <string name="___SORT___AND___VIEW___SECTION___">排序视窗</string>
    <string name="bookmark_by_date">按日期</string>
    <string name="bookmark_by_book">按书籍</string>
@@ -228,7 +228,7 @@
    <string name="banner_slogan_PRO_LIRBI_READER_1">专业电子书阅读器</string>
    <string name="next_page">下一页</string>
    <string name="previous_page">上一页</string>
-   <string name="customize">自定义</string>
+   <string name="customize">自定义背景</string>
    <string name="left_side">左边</string>
    <string name="top_side">上边</string>
    <string name="bottom_side">下边</string>
@@ -242,7 +242,7 @@
    <string name="user_styles">用户样式</string>
    <string name="archive">档案</string>
    <string name="beta_version">测试版</string>
-   <string name="of_screen">屏幕</string>
+   <string name="of_screen">滚距</string>
    <string name="ongoing_notification">显示通知</string>
    <string name="speak_into_file_wav_">录入文件（WAV）</string>
    <string name="the_book_is_over">本书结束</string>
@@ -272,7 +272,7 @@
    <string name="links_color_day">链接颜色（白天）</string>
    <string name="links_color_night">链接颜色（夜晚）</string>
    <string name="status_bar">状态信息</string>
-   <string name="show_status_bar">显示状态栏</string>
+   <string name="show_status_bar">显示状态栏信息</string>
    <string name="text_size">字体大小</string>
    <string name="text_color_day">文字颜色（白天）</string>
    <string name="___SELECT___TEXT___SECTION___">选择文本</string>
@@ -287,10 +287,10 @@
    <string name="go_to_the_library">返回书库</string>
    <string name="language">语言</string>
    <string name="___TO___CHECK___SECTION___">检查</string>
-   <string name="show_progress_of_reading">显示进度条</string>
+   <string name="show_progress_of_reading">显示进度条信息</string>
    <string name="line_height">进度条宽</string>
    <string name="display_chapters_on_the_progress_line">显示出章节预览</string>
-   <string name="enable_brightness_adjustment_on_the_left_of_the_screen">屏幕的左侧调节亮度</string>
+   <string name="enable_brightness_adjustment_on_the_left_of_the_screen">左侧调节亮度</string>
    <string name="___INDEFINITE___SECTION___">无限</string>
    <string name="enable_rewind_of_pages_using_the_read_progress_line">进度条控制进度</string>
    <string name="catalogs">在线书库</string>
@@ -312,11 +312,11 @@
    <string name="custom_text">自定义文本</string>
    <string name="right_page_then_left_page_rtl_">右页再左页（RTL）</string>
    <string name="one_page">单页</string>
-   <string name="two_pages">双页</string>
+   <string name="two_pages">反页</string>
    <string name="half_page">半页</string>
    <string name="stop_reading_timer_">停止朗读（定时器）</string>
-   <string name="two_pages_cover">反页</string>
-   <string name="enhancements_for_oled_display">OLED显示屏增强</string>
+   <string name="two_pages_cover">双页</string>
+   <string name="enhancements_for_oled_display">OLED屏显增强</string>
    <string name="reading_will_be_stopped">朗读停止于</string>
    <string name="compact">简洁</string>
    <string name="cd_search_books_in_the_library">书库搜索</string>
@@ -334,7 +334,7 @@
    <string name="cd_back_to_parent">返回上级</string>
    <string name="cd_back_to_all_catalogs">返回所有目录</string>
    <string name="cd_add_new_opds_catalog">添加新的OPDS目录</string>
-   <string name="new_beta_version_available">新的测试版可用</string>
+   <string name="new_beta_version_available">新测试版</string>
    <string name="custom_css">自定义CSS</string>
    <string name="show_book_covers">显示封面</string>
    <string name="without_series">没有系列</string>
@@ -359,7 +359,7 @@
    <string name="folder_for_downloaded_books">下载目录</string>
    <string name="set_the_current_page_number">设置页码</string>
    <string name="search_in_document">文内搜索</string>
-   <string name="opening_book_with_losed_lock">禁用页面水平移动</string>
+   <string name="opening_book_with_losed_lock">禁用页面移动</string>
    <string name="opening_book_with_cropped_borders">自动切除白边</string>
    <string name="do_you_want_to_clear_everything_">全部清空？</string>
    <string name="restore_defaults_full">恢复默认值？</string>
@@ -370,7 +370,7 @@
    <string name="author">作者</string>
    <string name="serie">系列</string>
    <string name="switch_off">关闭</string>
-   <string name="system_language">系统语言</string>
+   <string name="system_language">系统</string>
    <string name="bluelight_filter">背光控制</string>
    <string name="what_is_new_in">新增内容</string>
    <string name="you_need_to_update_the_library">更新书库？</string>
@@ -385,8 +385,8 @@
    <string name="formatted_text">格式文本（伪图形）</string>
    <string name="continuous_text">连续文本（不换行）</string>
    <string name="remember_reading_mode">设置为默认阅读模式</string>
-   <string name="background_color_on_images_the_same_as_page_background">图像背景色与页面背景相同</string>
-   <string name="block_page_movement_horizontally">禁用页面水平移动</string>
+   <string name="background_color_on_images_the_same_as_page_background">一致化背景色</string>
+   <string name="block_page_movement_horizontally">禁用页面移动</string>
    <string name="search_history_and_autocomplete">历史记录</string>
    <string name="server">服务器</string>
    <string name="port">端口</string>
@@ -399,7 +399,7 @@
    <string name="edit_names">编辑名称</string>
    <string name="you_neet_to_apply_the_new_settings">应用新设置？</string>
    <string name="custom_value">自定义值</string>
-   <string name="change_the_automatic_scrolling_speed_with_the_volume_keys">音量键调节滚动速度</string>
+   <string name="change_the_automatic_scrolling_speed_with_the_volume_keys">音量键调滚速</string>
    <string name="automatic_export_backup">自动备份设置，进度，书签，并导出。</string>
    <string name="display_all_file_types_in_folders">文件夹中全文件类型</string>
    <string name="no_serie">没有系列</string>
@@ -411,7 +411,7 @@
    <string name="start_recording">开始记录</string>
    <string name="favorite_folders_and_books">文件夹和书籍</string>
    <string name="don_t_show_this_dialog">不再询问</string>
-   <string name="show_the_book_close_dialog">书籍关闭时进行询问</string>
+   <string name="show_the_book_close_dialog">书籍关闭询问</string>
    <string name="search_completed">搜索完成</string>
    <string name="you_can_search_only_one_word">只能搜索一个词</string>
    <string name="passwords_do_not_match">密码错误</string>
@@ -440,7 +440,7 @@
    <string name="enable">启用</string>
    <string name="enable_contrast_and_brightness">启用</string>
    <string name="link_color">链接颜色</string>
-   <string name="show_battery_percentage">显示电池百分比</string>
-   <string name="show_current_time">显示当前时间</string>
-   <string name="telegram_channel">电报频道</string>
+   <string name="show_battery_percentage">显示电量百分比</string>
+   <string name="show_current_time">显示当前的时间</string>
+   <string name="telegram_channel">交流群</string>
 </resources>
