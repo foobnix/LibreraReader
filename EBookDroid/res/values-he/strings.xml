@@ -443,4 +443,5 @@
    <string name="show_battery_percentage">הצג את אחוז הסוללה</string>
    <string name="show_current_time">הצג את השעה הנוכחית</string>
    <string name="telegram_channel">ערוץ המברקים</string>
+   <string name="zoom_in_out_using_the_volume_keys">התקרב / הקטן באמצעות מקשי עוצמת הקול</string>
 </resources>

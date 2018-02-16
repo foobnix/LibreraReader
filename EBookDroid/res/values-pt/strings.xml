@@ -443,4 +443,5 @@
    <string name="show_battery_percentage">Mostrar porcentagem da bateria</string>
    <string name="show_current_time">Mostrar hora atual</string>
    <string name="telegram_channel">Canal Telegram</string>
+   <string name="zoom_in_out_using_the_volume_keys">Zoom in / out usando as teclas de volume</string>
 </resources>

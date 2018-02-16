@@ -443,4 +443,5 @@
    <string name="show_battery_percentage">عرض نسبة البطارية</string>
    <string name="show_current_time">إظهار الوقت الحالي</string>
    <string name="telegram_channel">قناة برقية</string>
+   <string name="zoom_in_out_using_the_volume_keys">التكبير / التصغير باستخدام مفاتيح الصوت</string>
 </resources>

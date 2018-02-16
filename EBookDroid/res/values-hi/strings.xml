@@ -443,4 +443,5 @@
    <string name="show_battery_percentage">बैटरी का प्रतिशत दिखाएं</string>
    <string name="show_current_time">वर्तमान समय दिखाएं</string>
    <string name="telegram_channel">टेलीग्राम चैनल</string>
+   <string name="zoom_in_out_using_the_volume_keys">वॉल्यूम कुंजियों का उपयोग करके ज़ूम इन / आउट करें</string>
 </resources>

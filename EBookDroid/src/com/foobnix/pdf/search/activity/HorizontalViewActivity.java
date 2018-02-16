@@ -1905,6 +1905,21 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
             if (repeatCount >= 1 && repeatCount < 6) {
                 return true;
             }
+            if (AppState.get().isZoomInOutWithVolueKeys) {
+                if (keyCode == KeyEvent.KEYCODE_VOLUME_UP) {
+                    dc.onZoomInc();
+                    isMyKey = true;
+                    return true;
+                }
+
+                if (keyCode == KeyEvent.KEYCODE_VOLUME_DOWN) {
+                    dc.onZoomDec();
+                    isMyKey = true;
+                    return true;
+                }
+
+            }
+
             LOG.d("onKeyDown", keyCode, repeatCount);
 
             if (AppState.get().isUseVolumeKeys && KeyEvent.KEYCODE_HEADSETHOOK == keyCode) {

@@ -32,6 +32,7 @@ import com.foobnix.pdf.info.wrapper.DocumentController;
 import com.foobnix.pdf.search.activity.msg.InvalidateMessage;
 import com.foobnix.pdf.search.activity.msg.MessageAutoFit;
 import com.foobnix.pdf.search.activity.msg.MessageCenterHorizontally;
+import com.foobnix.pdf.search.activity.msg.MovePageAction;
 import com.foobnix.sys.ImageExtractor;
 import com.foobnix.sys.TempHolder;
 import com.foobnix.tts.TTSEngine;
@@ -377,8 +378,12 @@ public abstract class HorizontalModeController extends DocumentController {
 
     @Override
     public void onZoomInc() {
-        throw new RuntimeException("Not Implemented");
+        EventBus.getDefault().post(new MovePageAction(MovePageAction.ZOOM_PLUS, getCurentPage()));
+    }
 
+    @Override
+    public void onZoomDec() {
+        EventBus.getDefault().post(new MovePageAction(MovePageAction.ZOOM_MINUS, getCurentPage()));
     }
 
     @Override
@@ -414,11 +419,7 @@ public abstract class HorizontalModeController extends DocumentController {
     public void onScrollUp() {
     }
 
-    @Override
-    public void onZoomDec() {
-        throw new RuntimeException("Not Implemented");
 
-    }
 
     private volatile boolean isClosed = false;
 

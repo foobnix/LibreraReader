@@ -443,4 +443,5 @@
    <string name="show_battery_percentage">Batterie Prozentsatz anzeigen</string>
    <string name="show_current_time">Aktuelle Uhrzeit anzeigen</string>
    <string name="telegram_channel">Telegrammkanal</string>
+   <string name="zoom_in_out_using_the_volume_keys">Vergrößern / Verkleinern mit den Lautstärketasten</string>
 </resources>

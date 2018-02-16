@@ -443,4 +443,5 @@
    <string name="show_battery_percentage">Show altilium recipis</string>
    <string name="show_current_time">Ostenta Tempus</string>
    <string name="telegram_channel">Telegraphum channel</string>
+   <string name="zoom_in_out_using_the_volume_keys">Ie / ex volumine claves ad uti</string>
 </resources>

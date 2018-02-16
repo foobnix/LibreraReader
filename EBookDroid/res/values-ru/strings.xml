@@ -443,4 +443,5 @@
    <string name="show_battery_percentage">Показать процент батареи</string>
    <string name="show_current_time">Показать текущее время</string>
    <string name="telegram_channel">Канал телеграмм</string>
+   <string name="zoom_in_out_using_the_volume_keys">Увеличение / уменьшение масштаба с помощью клавиш регулировки громкости</string>
 </resources>

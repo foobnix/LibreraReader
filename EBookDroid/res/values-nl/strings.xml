@@ -443,4 +443,5 @@
    <string name="show_battery_percentage">Toon batterijpercentage</string>
    <string name="show_current_time">Toon de huidige tijd</string>
    <string name="telegram_channel">Telegram-kanaal</string>
+   <string name="zoom_in_out_using_the_volume_keys">Zoom in / uit met de volumetoetsen</string>
 </resources>

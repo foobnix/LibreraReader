@@ -443,4 +443,5 @@
    <string name="show_battery_percentage">Visa batteriprocent</string>
    <string name="show_current_time">Visa aktuell tid</string>
    <string name="telegram_channel">Telegramkanal</string>
+   <string name="zoom_in_out_using_the_volume_keys">Zooma in / ut med volymknapparna</string>
 </resources>

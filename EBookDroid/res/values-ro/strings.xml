@@ -443,4 +443,5 @@
    <string name="show_battery_percentage">Afișați procentul bateriei</string>
    <string name="show_current_time">Afișați ora curentă</string>
    <string name="telegram_channel">Canal de telegrame</string>
+   <string name="zoom_in_out_using_the_volume_keys">Măriți / micșorați utilizând tastele de volum</string>
 </resources>
