@@ -12,7 +12,7 @@
    <string name="close">关闭</string>
    <string name="close_book">关闭书籍</string>
    <string name="content_of_book">目录</string>
-   <string name="crop_white_borders">裁白边</string>
+   <string name="crop_white_borders">切除白边</string>
    <string name="delete">删除</string>
    <string name="delete_book_">删除文件？</string>
    <string name="dialog_color_picker">颜色选择</string>
@@ -112,7 +112,7 @@
    <string name="make_text_reflow">文本重排</string>
    <string name="search_not_supported_formats">搜索未支持格式</string>
    <string name="___MULTIPLE___SECTIONS___">多选</string>
-   <string name="search_in_google">Google搜索</string>
+   <string name="search_in_google">谷歌搜索</string>
    <string name="sound_volume">音量</string>
    <string name="speed1">语速</string>
    <string name="pitch1">音调</string>
@@ -136,7 +136,7 @@
    <string name="web_dict">在线词典</string>
    <string name="left_to_rigth">左到右</string>
    <string name="right_to_left">右到左</string>
-   <string name="show_the_dialog_what_is_new_for_updates">显示更新提示</string>
+   <string name="show_the_dialog_what_is_new_for_updates">更新后显示更新内容</string>
    <string name="font_size">字体大小</string>
    <string name="performance_settings">性能设置</string>
    <string name="page_quality">页面质量</string>
@@ -163,7 +163,7 @@
    <string name="image_format">图像格式</string>
    <string name="empty_line">空行</string>
    <string name="customize_background_color">自定义背景色</string>
-   <string name="enable_vibration_for_some_actions">振动</string>
+   <string name="enable_vibration_for_some_actions">振动提示</string>
    <string name="center">中央</string>
    <string name="width">宽度</string>
    <string name="text_align">文本对齐</string>
@@ -207,7 +207,7 @@
    <string name="folders">存储</string>
    <string name="extracting_information_from_books">书籍信息</string>
    <string name="clear_all">清空</string>
-   <string name="musician">乐谱模式</string>
+   <string name="musician">演奏乐谱</string>
    <string name="borders_and_shadow_around_the_book_cover">边框阴影</string>
    <string name="by_path">路径</string>
    <string name="by_file_name">名称</string>
@@ -254,7 +254,7 @@
    <string name="reading_settings">阅读设置</string>
    <string name="db_auto_center_horizontally">水平中心</string>
    <string name="licenses_for_libraries">许可证</string>
-   <string name="search_for_text_in_documents">多文件搜索文本</string>
+   <string name="search_for_text_in_documents">多文件中搜索文本</string>
    <string name="stop">停止</string>
    <string name="incorrect_value">值不正确</string>
    <string name="search_in_the_subfolders">子文件夹</string>
@@ -271,7 +271,7 @@
    <string name="opening_the_last_book_when_the_application_starts">启动后继续上次阅读</string>
    <string name="links_color_day">链接颜色（白天）</string>
    <string name="links_color_night">链接颜色（夜晚）</string>
-   <string name="status_bar">状态栏</string>
+   <string name="status_bar">状态信息</string>
    <string name="show_status_bar">显示状态栏</string>
    <string name="text_size">字体大小</string>
    <string name="text_color_day">文字颜色（白天）</string>
@@ -304,7 +304,7 @@
    <string name="description">描述</string>
    <string name="authentication_required">需要验证</string>
    <string name="user_name">用户名</string>
-   <string name="password">密码</string>
+   <string name="password">输入密码</string>
    <string name="what_is_the_opds_online_catalog_">什么是OPDS在线目录？</string>
    <string name="books">书籍</string>
    <string name="reading_out_loud">大声朗读</string>
@@ -315,7 +315,7 @@
    <string name="two_pages">双页</string>
    <string name="half_page">半页</string>
    <string name="stop_reading_timer_">停止朗读（定时器）</string>
-   <string name="two_pages_cover">双页覆盖</string>
+   <string name="two_pages_cover">反页</string>
    <string name="enhancements_for_oled_display">OLED显示屏增强</string>
    <string name="reading_will_be_stopped">朗读停止于</string>
    <string name="compact">简洁</string>
@@ -358,9 +358,9 @@
    <string name="show">显示</string>
    <string name="folder_for_downloaded_books">下载目录</string>
    <string name="set_the_current_page_number">设置页码</string>
-   <string name="search_in_document">文件搜索</string>
+   <string name="search_in_document">文内搜索</string>
    <string name="opening_book_with_losed_lock">禁用页面水平移动</string>
-   <string name="opening_book_with_cropped_borders">自动裁白边</string>
+   <string name="opening_book_with_cropped_borders">自动切除白边</string>
    <string name="do_you_want_to_clear_everything_">全部清空？</string>
    <string name="restore_defaults_full">恢复默认值？</string>
    <string name="restore_defaults_short">恢复默认</string>
@@ -377,14 +377,14 @@
    <string name="theme_color">主题颜色</string>
    <string name="add_folder">添加目录</string>
    <string name="scroll_speed">鼠标灵敏度</string>
-   <string name="landscape_180">横屏（反向）</string>
-   <string name="portrait_180">竖屏（反向）</string>
+   <string name="landscape_180">横屏（180°）</string>
+   <string name="portrait_180">竖屏（180°）</string>
    <string name="full_list_of_changes_with_images_web_pdf_">详细变更信息。</string>
    <string name="select_the_reading_mode">阅读模式</string>
    <string name="remember_choice">默认</string>
-   <string name="formatted_text">格式化文本（伪图形）</string>
+   <string name="formatted_text">格式文本（伪图形）</string>
    <string name="continuous_text">连续文本（不换行）</string>
-   <string name="remember_reading_mode">默认阅读模式</string>
+   <string name="remember_reading_mode">设置为默认阅读模式</string>
    <string name="background_color_on_images_the_same_as_page_background">图像背景色与页面背景相同</string>
    <string name="block_page_movement_horizontally">禁用页面水平移动</string>
    <string name="search_history_and_autocomplete">历史记录</string>
@@ -432,9 +432,9 @@
    <string name="full_screen">全屏</string>
    <string name="percent_and_number">百分比和页码</string>
    <string name="current_page">当前页面</string>
-   <string name="mode_vertical">滚动模式</string>
-   <string name="mode_horizontally">仿真模式</string>
-   <string name="mode_musician">乐谱模式</string>
+   <string name="mode_vertical">滚动翻页</string>
+   <string name="mode_horizontally">仿真翻页</string>
+   <string name="mode_musician">演奏乐谱</string>
    <string name="backup_folder">备份目录</string>
    <string name="audio_books_folder">音频目录</string>
    <string name="enable">启用</string>
