@@ -12,7 +12,7 @@
    <string name="close">关闭</string>
    <string name="close_book">关闭书籍</string>
    <string name="content_of_book">目录</string>
-   <string name="crop_white_borders">裁白边</string>
+   <string name="crop_white_borders">切除白边</string>
    <string name="delete">删除</string>
    <string name="delete_book_">删除文件？</string>
    <string name="dialog_color_picker">颜色选择</string>
@@ -136,7 +136,7 @@
    <string name="web_dict">在线词典</string>
    <string name="left_to_rigth">左到右</string>
    <string name="right_to_left">右到左</string>
-   <string name="show_the_dialog_what_is_new_for_updates">显示更新提示</string>
+   <string name="show_the_dialog_what_is_new_for_updates">更新后显示更新内容</string>
    <string name="font_size">字体大小</string>
    <string name="performance_settings">性能设置</string>
    <string name="page_quality">页面质量</string>
@@ -207,7 +207,7 @@
    <string name="folders">存储</string>
    <string name="extracting_information_from_books">书籍信息</string>
    <string name="clear_all">清空</string>
-   <string name="musician">乐谱</string>
+   <string name="musician">演奏乐谱</string>
    <string name="borders_and_shadow_around_the_book_cover">边框阴影</string>
    <string name="by_path">路径</string>
    <string name="by_file_name">名称</string>
@@ -315,7 +315,7 @@
    <string name="two_pages">双页</string>
    <string name="half_page">半页</string>
    <string name="stop_reading_timer_">停止朗读（定时器）</string>
-   <string name="two_pages_cover">双页覆盖</string>
+   <string name="two_pages_cover">反页</string>
    <string name="enhancements_for_oled_display">OLED显示屏增强</string>
    <string name="reading_will_be_stopped">朗读停止于</string>
    <string name="compact">简洁</string>
@@ -360,7 +360,7 @@
    <string name="set_the_current_page_number">设置页码</string>
    <string name="search_in_document">文内搜索</string>
    <string name="opening_book_with_losed_lock">禁用页面水平移动</string>
-   <string name="opening_book_with_cropped_borders">自动裁白边</string>
+   <string name="opening_book_with_cropped_borders">自动切除白边</string>
    <string name="do_you_want_to_clear_everything_">全部清空？</string>
    <string name="restore_defaults_full">恢复默认值？</string>
    <string name="restore_defaults_short">恢复默认</string>
@@ -377,14 +377,14 @@
    <string name="theme_color">主题颜色</string>
    <string name="add_folder">添加目录</string>
    <string name="scroll_speed">鼠标灵敏度</string>
-   <string name="landscape_180">横屏（反向）</string>
-   <string name="portrait_180">竖屏（反向）</string>
+   <string name="landscape_180">横屏（180°）</string>
+   <string name="portrait_180">竖屏（180°）</string>
    <string name="full_list_of_changes_with_images_web_pdf_">详细变更信息。</string>
    <string name="select_the_reading_mode">阅读模式</string>
    <string name="remember_choice">默认</string>
    <string name="formatted_text">格式文本（伪图形）</string>
    <string name="continuous_text">连续文本（不换行）</string>
-   <string name="remember_reading_mode">默认阅读模式</string>
+   <string name="remember_reading_mode">设置为默认阅读模式</string>
    <string name="background_color_on_images_the_same_as_page_background">图像背景色与页面背景相同</string>
    <string name="block_page_movement_horizontally">禁用页面水平移动</string>
    <string name="search_history_and_autocomplete">历史记录</string>
@@ -432,9 +432,9 @@
    <string name="full_screen">全屏</string>
    <string name="percent_and_number">百分比和页码</string>
    <string name="current_page">当前页面</string>
-   <string name="mode_vertical">滚动</string>
-   <string name="mode_horizontally">书本</string>
-   <string name="mode_musician">乐谱</string>
+   <string name="mode_vertical">滚动翻页</string>
+   <string name="mode_horizontally">仿真翻页</string>
+   <string name="mode_musician">演奏乐谱</string>
    <string name="backup_folder">备份目录</string>
    <string name="audio_books_folder">音频目录</string>
    <string name="enable">启用</string>
