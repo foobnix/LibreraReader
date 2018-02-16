@@ -440,4 +440,6 @@
    <string name="enable_contrast_and_brightness">کنتراست و روشنایی را فعال کنید</string>
    <string name="enable">فعال کردن</string>
    <string name="link_color">رنگ لینک</string>
+   <string name="show_battery_percentage">نمایش درصد باتری</string>
+   <string name="show_current_time">نمایش زمان فعلی</string>
 </resources>

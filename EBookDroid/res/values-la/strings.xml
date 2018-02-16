@@ -440,4 +440,6 @@
    <string name="enable_contrast_and_brightness">Contrafactium et candor</string>
    <string name="enable">Admitte</string>
    <string name="link_color">Color Link</string>
+   <string name="show_battery_percentage">Show altilium recipis</string>
+   <string name="show_current_time">Ostenta Tempus</string>
 </resources>

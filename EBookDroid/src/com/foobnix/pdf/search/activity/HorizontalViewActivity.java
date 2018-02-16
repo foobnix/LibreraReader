@@ -252,7 +252,6 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
             }
         });
 
-
         updateSeekBarColorAndSize();
 
         titleTxt = (TextView) findViewById(R.id.title);
@@ -1074,6 +1073,11 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
         bottomIndicators.setVisibility(isVisible);
 
         progressDraw.setVisibility(AppState.get().isShowReadingProgress ? View.VISIBLE : View.GONE);
+
+        if (AppState.get().isShowToolBar) {
+            pagesPower.setVisibility(AppState.get().isShowBattery ? View.VISIBLE : View.INVISIBLE);
+            pagesTime.setVisibility(AppState.get().isShowTime ? View.VISIBLE : View.INVISIBLE);
+        }
 
     }
 

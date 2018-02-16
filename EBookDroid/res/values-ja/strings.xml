@@ -440,4 +440,6 @@
    <string name="enable_contrast_and_brightness">コントラストと明るさを有効にする</string>
    <string name="enable">有効にする</string>
    <string name="link_color">リンクの色</string>
+   <string name="show_battery_percentage">バッテリの割合を表示する</string>
+   <string name="show_current_time">現在の時間を表示する</string>
 </resources>

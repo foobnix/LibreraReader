@@ -440,4 +440,6 @@
    <string name="enable_contrast_and_brightness">Włącz kontrast i jasność</string>
    <string name="enable">Włączyć</string>
    <string name="link_color">Kolor łącza</string>
+   <string name="show_battery_percentage">Pokaż procent baterii</string>
+   <string name="show_current_time">Pokaż aktualny czas</string>
 </resources>

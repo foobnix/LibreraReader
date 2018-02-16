@@ -440,4 +440,6 @@
    <string name="enable_contrast_and_brightness">เปิดใช้งานความคมชัดและความสว่าง</string>
    <string name="enable">ทำให้สามารถ</string>
    <string name="link_color">สีลิงก์</string>
+   <string name="show_battery_percentage">แสดงเปอร์เซ็นต์ของแบตเตอรี่</string>
+   <string name="show_current_time">แสดงเวลาปัจจุบัน</string>
 </resources>

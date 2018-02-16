@@ -440,4 +440,6 @@
    <string name="enable_contrast_and_brightness">대비 및 밝기 사용</string>
    <string name="enable">사용</string>
    <string name="link_color">링크 색상</string>
+   <string name="show_battery_percentage">배터리 비율 표시</string>
+   <string name="show_current_time">현재 시간 표시</string>
 </resources>

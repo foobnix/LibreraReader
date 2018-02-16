@@ -675,7 +675,7 @@ public class DragingDialogs {
 
                     @Override
                     public void populateView(View inflate, int arg1, Integer page) {
-                        final TextView text = Views.text(inflate, android.R.id.text1, TxtUtils.deltaPageMax(page + 1));
+                        final TextView text = Views.text(inflate, android.R.id.text1, TxtUtils.deltaPage(page + 1, 0));
                         text.setGravity(Gravity.CENTER);
                         text.setTypeface(Typeface.DEFAULT, Typeface.BOLD);
                     }
@@ -2231,6 +2231,40 @@ public class DragingDialogs {
                         }
                     }
                 });
+
+                final CheckBox isShowTime = (CheckBox) inflate.findViewById(R.id.isShowTime);
+                isShowTime.setChecked(AppState.get().isShowTime);
+                isShowTime.setOnCheckedChangeListener(new OnCheckedChangeListener() {
+
+                    @Override
+                    public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                        AppState.get().isShowTime = isChecked;
+                        if (onRefresh != null) {
+                            onRefresh.run();
+                        }
+                        if (isChecked) {
+                            isShowSatusBar.setChecked(true);
+                        }
+                    }
+                });
+
+                final CheckBox isShowBattery = (CheckBox) inflate.findViewById(R.id.isShowBattery);
+                isShowBattery.setChecked(AppState.get().isShowBattery);
+                isShowBattery.setOnCheckedChangeListener(new OnCheckedChangeListener() {
+
+                    @Override
+                    public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                        AppState.get().isShowBattery = isChecked;
+                        if (onRefresh != null) {
+                            onRefresh.run();
+                        }
+                        if (isChecked) {
+                            isShowSatusBar.setChecked(true);
+                        }
+                    }
+                });
+
+
 
 
                 // status bar

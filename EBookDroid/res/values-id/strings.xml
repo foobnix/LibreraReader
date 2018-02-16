@@ -440,4 +440,6 @@
    <string name="enable_contrast_and_brightness">Aktifkan kontras dan kecerahan</string>
    <string name="enable">Memungkinkan</string>
    <string name="link_color">Warna link</string>
+   <string name="show_battery_percentage">Tunjukkan persentase baterai</string>
+   <string name="show_current_time">Tampilkan waktu sekarang</string>
 </resources>

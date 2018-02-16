@@ -440,4 +440,6 @@
    <string name="enable_contrast_and_brightness">Bật độ tương phản và độ sáng</string>
    <string name="enable">Bật</string>
    <string name="link_color">Màu sắc liên kết</string>
+   <string name="show_battery_percentage">Hiển thị tỷ lệ pin</string>
+   <string name="show_current_time">Hiển thị thời gian hiện tại</string>
 </resources>

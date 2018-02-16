@@ -440,4 +440,6 @@
    <string name="enable_contrast_and_brightness">विपरीत और चमक को सक्षम करें</string>
    <string name="enable">सक्षम करें</string>
    <string name="link_color">लिंक रंग</string>
+   <string name="show_battery_percentage">बैटरी का प्रतिशत दिखाएं</string>
+   <string name="show_current_time">वर्तमान समय दिखाएं</string>
 </resources>

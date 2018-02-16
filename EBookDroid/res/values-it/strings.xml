@@ -440,4 +440,6 @@
    <string name="enable_contrast_and_brightness">Abilita contrasto e luminosità</string>
    <string name="enable">Abilitare</string>
    <string name="link_color">Link a colori</string>
+   <string name="show_battery_percentage">Mostra la percentuale della batteria</string>
+   <string name="show_current_time">Mostra l\'ora corrente</string>
 </resources>

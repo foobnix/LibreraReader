@@ -283,6 +283,10 @@ public class AppState {
 
     @IgnoreHashCode
     public boolean isRewindEnable = true;
+    @IgnoreHashCode
+    public boolean isShowTime = true;
+    @IgnoreHashCode
+    public boolean isShowBattery = true;
 
     public int contrastImage = 0;
     public int brigtnessImage = 0;

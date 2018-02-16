@@ -440,4 +440,6 @@
    <string name="enable_contrast_and_brightness">Schakel contrast en helderheid in</string>
    <string name="enable">In staat stellen</string>
    <string name="link_color">Link kleur</string>
+   <string name="show_battery_percentage">Toon batterijpercentage</string>
+   <string name="show_current_time">Toon de huidige tijd</string>
 </resources>

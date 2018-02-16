@@ -440,4 +440,6 @@
    <string name="enable_contrast_and_brightness">Aktiver kontrast og lysstyrke</string>
    <string name="enable">Aktiver</string>
    <string name="link_color">Link farge</string>
+   <string name="show_battery_percentage">Vis batteriprosentrasjon</string>
+   <string name="show_current_time">Vis nåværende tid</string>
 </resources>

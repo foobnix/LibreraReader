@@ -719,7 +719,6 @@ public class DocumentWrapperUI {
         currentTime = (TextView) a.findViewById(R.id.currentTime);
         batteryLevel = (TextView) a.findViewById(R.id.currentBattery);
 
-
         currentSeek.setOnLongClickListener(new OnLongClickListener() {
 
             @Override
@@ -1131,13 +1130,18 @@ public class DocumentWrapperUI {
 
         toolBarButton.setVisibility(View.VISIBLE);
 
+        batteryLevel.setVisibility(AppState.get().isShowBattery ? View.VISIBLE : View.GONE);
+        batteryIcon.setVisibility(AppState.get().isShowBattery ? View.VISIBLE : View.GONE);
+
+        currentTime.setVisibility(AppState.get().isShowTime ? View.VISIBLE : View.GONE);
+        clockIcon.setVisibility(AppState.get().isShowTime ? View.VISIBLE : View.GONE);
+
     }
 
     public void initNextType() {
         if (AppState.get().nextScreenScrollBy == AppState.NEXT_SCREEN_SCROLL_BY_PAGES) {
             nextTypeBootom.setText(R.string.by_pages);
             nextScreenType.setImageResource(R.drawable.glyphicons_full_page);
-
 
         } else {
             if (AppState.get().nextScreenScrollBy == 100) {

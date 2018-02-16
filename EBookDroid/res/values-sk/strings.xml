@@ -440,4 +440,6 @@
    <string name="enable_contrast_and_brightness">Umožňuje kontrast a jas</string>
    <string name="enable">Umožniť</string>
    <string name="link_color">Farba odkazu</string>
+   <string name="show_battery_percentage">Zobraziť percentuálny podiel batérie</string>
+   <string name="show_current_time">Zobraziť aktuálny čas</string>
 </resources>
