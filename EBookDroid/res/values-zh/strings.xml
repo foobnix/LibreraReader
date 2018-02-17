@@ -222,13 +222,13 @@
    <string name="___SORT___AND___VIEW___SECTION___">排序视窗</string>
    <string name="bookmark_by_date">按日期</string>
    <string name="bookmark_by_book">按书籍</string>
-   <string name="banner_slogan_LIRBI_READER">专业可靠的多格式阅读程序</string>
+   <string name="banner_slogan_LIRBI_READER">专业先进的多格式阅读器</string>
    <string name="banner_slogan_EPUB_READER">方便阅读EPUB电子书</string>
    <string name="banner_slogan_PDF_READER">方便阅读PDF文档</string>
    <string name="banner_slogan_PRO_LIRBI_READER_1">专业电子书阅读器</string>
    <string name="next_page">下一页</string>
    <string name="previous_page">上一页</string>
-   <string name="customize">自定义背景</string>
+   <string name="customize">自定义</string>
    <string name="left_side">左边</string>
    <string name="top_side">上边</string>
    <string name="bottom_side">下边</string>
@@ -443,5 +443,5 @@
    <string name="show_battery_percentage">显示电量百分比</string>
    <string name="show_current_time">显示当前的时间</string>
    <string name="telegram_channel">交流群</string>
-   <string name="zoom_in_out_using_the_volume_keys">使用音量键放大/缩小</string>
+   <string name="zoom_in_out_using_the_volume_keys">用音量键缩放</string>
 </resources>
