@@ -310,12 +310,12 @@
    <string name="reading_out_loud">大声朗读</string>
    <string name="librera_pro_no_ads_leading_book_reader_and_pdf">Librera PRO专业领先无广告的电子书及PDF阅读器</string>
    <string name="custom_text">自定义文本</string>
-   <string name="right_page_then_left_page_rtl_">右页再左页（RTL）</string>
+   <string name="right_page_then_left_page_rtl_">右页然后左页（RTL）</string>
    <string name="one_page">单页</string>
-   <string name="two_pages">反页</string>
+   <string name="two_pages">双页</string>
    <string name="half_page">半页</string>
    <string name="stop_reading_timer_">停止朗读（定时器）</string>
-   <string name="two_pages_cover">双页</string>
+   <string name="two_pages_cover">封页</string>
    <string name="enhancements_for_oled_display">OLED屏显增强</string>
    <string name="reading_will_be_stopped">朗读停止于</string>
    <string name="compact">简洁</string>
