@@ -18,10 +18,9 @@
  */
 package junrar.rarfile;
 
+import android.util.Log;
+
 import junrar.io.Raw;
-
-
-
 
 
 /**
@@ -31,7 +30,8 @@ import junrar.io.Raw;
 public class MacInfoHeader 
 extends SubBlockHeader 
 {
-	
+	private static String TAG = MacInfoHeader.class.getName();
+
 	public static final short MacInfoHeaderSize = 8;
 	
 	private int fileType;
@@ -76,6 +76,8 @@ extends SubBlockHeader
 	
 	public void print(){
 		super.print();
+		Log.i(TAG, "filetype: "+fileType);
+		Log.i(TAG, "creator :"+fileCreator);
 	}
 	
 }

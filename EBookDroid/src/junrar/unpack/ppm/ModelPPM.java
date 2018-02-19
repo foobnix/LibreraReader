@@ -193,6 +193,10 @@ public class ModelPPM
 		int MaxMB = 0;
 		if (reset) {
 			MaxMB = unpackRead.getChar();
+			// Workaround: http://stackoverflow.com/questions/14109455/outofmemoryerror-when-i-decompress-rar-file-on-android
+			if (MaxMB > 1) {
+				MaxMB = 1;
+			}
 		} else {
 			if (subAlloc.GetAllocatedMemory() == 0) {
 				return (false);

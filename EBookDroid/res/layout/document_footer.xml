@@ -141,6 +141,8 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
                 android:layout_weight="1"
+                android:layout_marginTop="2dip"
+                android:layout_marginBottom="2dip"
                 android:progressTint="@android:color/white"
                 android:thumbTint="@android:color/white" />
 

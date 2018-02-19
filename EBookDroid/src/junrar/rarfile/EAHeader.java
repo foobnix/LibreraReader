@@ -18,10 +18,9 @@
  */
 package junrar.rarfile;
 
+import android.util.Log;
+
 import junrar.io.Raw;
-
-
-
 
 
 /**
@@ -31,6 +30,7 @@ import junrar.io.Raw;
 public class EAHeader 
 extends SubBlockHeader 
 {
+	private static String TAG = EAHeader.class.getName();
 	
 	public static final short EAHeaderSize = 10;
 	
@@ -83,6 +83,10 @@ extends SubBlockHeader
 	public void print()
 	{
 		super.print();
+		Log.i(TAG, "unpSize: "+unpSize);
+		Log.i(TAG, "unpVersion: " + unpVer);
+		Log.i(TAG, "method: "+method);
+		Log.i(TAG, "EACRC:" + EACRC);
 	}
 }
 

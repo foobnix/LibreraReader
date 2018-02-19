@@ -18,15 +18,15 @@
  */
 package junrar.rarfile;
 
+import android.util.Log;
+
 import junrar.io.Raw;
-
-
-
 
 
 public class SubBlockHeader 
 extends BlockHeader 
 {
+	private static String TAG = SubBlockHeader.class.getName();
 	
 	public static final short SubBlockHeaderSize = 3;
 	
@@ -66,5 +66,7 @@ extends BlockHeader
 	public void print()
 	{
 		super.print();
+		Log.i(TAG, "subtype: "+getSubType());
+		Log.i(TAG, "level: "+level);
 	}
 }

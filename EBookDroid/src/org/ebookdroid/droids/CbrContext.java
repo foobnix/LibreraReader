@@ -38,7 +38,12 @@ public class CbrContext extends PdfContext {
                     File cbrDir = new File(extractDir);
                     cbrDir.mkdirs();
 
-                    ExtractArchive.extractArchive(fileName, extractDir, password);
+                    try {
+                        ExtractArchive.extractArchive(fileName, extractDir, password);
+                    } catch (OutOfMemoryError e) {
+                        LOG.e(e);
+                    }
+
                     CacheZipUtils.zipFolder(extractDir, cacheFile.getPath());
 
                     CacheZipUtils.deleteDir(cbrDir);

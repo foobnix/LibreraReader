@@ -18,10 +18,9 @@
  */
 package junrar.rarfile;
 
+import android.util.Log;
+
 import junrar.io.Raw;
-
-
-
 
 
 /**
@@ -31,6 +30,7 @@ import junrar.io.Raw;
  * @version $LastChangedRevision$
  */
 public class MainHeader extends BaseBlock {
+	private static String TAG = MainHeader.class.getName();
 	public static final short mainHeaderSizeWithEnc = 7;
 	public static final short mainHeaderSize = 6;
 	private short highPosAv;
@@ -111,6 +111,7 @@ public class MainHeader extends BaseBlock {
 		str.append("\nisLocked: "+isLocked());
 		str.append("\nisProtected: "+isProtected());
 		str.append("\nisAV: "+isAV());
+		Log.i(TAG, str.toString());
 	}
 	
 	/**

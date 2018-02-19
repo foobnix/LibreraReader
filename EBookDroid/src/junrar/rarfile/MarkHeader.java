@@ -18,10 +18,9 @@
  */
 package junrar.rarfile;
 
+import android.util.Log;
+
 import junrar.io.Raw;
-
-
-
 
 
 /**
@@ -32,6 +31,7 @@ import junrar.io.Raw;
  */
 public class MarkHeader extends BaseBlock {
 	
+	private static String TAG = MarkHeader.class.getName();
 	private boolean oldFormat = false;
 	
 	public MarkHeader(BaseBlock bb){
@@ -81,5 +81,6 @@ public class MarkHeader extends BaseBlock {
     
 	public void print(){
 		super.print();
+		Log.i(TAG, "valid: "+isValid());
 	}
 }

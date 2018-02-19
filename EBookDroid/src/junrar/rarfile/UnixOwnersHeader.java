@@ -1,14 +1,15 @@
 package junrar.rarfile;
 
+import android.util.Log;
+
 import junrar.io.Raw;
-
-
-
 
 
 public class UnixOwnersHeader 
 extends SubBlockHeader 
 {
+	private static String TAG = UnixOwnersHeader.class.getName();
+
 	private int ownerNameSize;
 	private int groupNameSize;
 	private String owner;
@@ -87,5 +88,9 @@ extends SubBlockHeader
 	 */
 	public void print(){
 		super.print();
+		Log.i(TAG, "ownerNameSize: "+ownerNameSize);
+		Log.i(TAG, "owner: "+owner);
+		Log.i(TAG, "groupNameSize: "+groupNameSize);
+		Log.i(TAG, "group: "+group);
 	}
 }

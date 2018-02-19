@@ -1,5 +1,7 @@
 package junrar.extract;
 
+import android.util.Log;
+
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -9,9 +11,6 @@ import junrar.Archive;
 import junrar.exception.RarException;
 import junrar.rarfile.FileHeader;
 
-
-
-
 /**
  * extract an archive to the given location
  * 
@@ -20,6 +19,7 @@ import junrar.rarfile.FileHeader;
  */
 public class RarExtractor {
 
+	private static String TAG = RarExtractor.class.getName();
 
 	public void extractArchive(String archive, String destination) throws RarException, IOException {
 		extractArchive(new File(archive), new File(destination));
@@ -31,21 +31,26 @@ public class RarExtractor {
 			arch = new Archive(archive);
 		}
 		catch (RarException re) {
+			Log.e(TAG, re.getMessage(), re);
 			throw re;
 		}
 		catch (IOException ioe) {
+			Log.e(TAG, ioe.getMessage(), ioe);
 			throw ioe;
 		}
 		if (arch != null) {
 			if (arch.isEncrypted()) {
+				Log.e(TAG, "Unsupported encrypted archive " + archive.getName());
 				try {
 					arch.close();
 				}
 				catch (Exception e) {
+					Log.e(TAG, e.getMessage(), e);
 				}
 				return;
 			}
 			else {
+				Log.e(TAG, "Extracting from " + archive.getName());
 			}
 			try {
 				FileHeader fh = null;
@@ -56,6 +61,7 @@ public class RarExtractor {
 					}
 					String fileNameString = fh.getFileNameString();
 					if (fh.isEncrypted()) {
+						Log.e(TAG, "Unsupported encrypted file " + fileNameString);
 						continue;
 					}
 					OutputStream stream = null;
@@ -64,15 +70,18 @@ public class RarExtractor {
 							createDirectory(fh, destination);
 						}
 						else {
+							Log.e(TAG, "Extracting  " + fileNameString);
 							File f = createFile(fh, destination);
 							stream = new FileOutputStream(f);
 							arch.extractFile(fh, stream);
 						}
 					}
 					catch (IOException ioe) {
+						Log.e(TAG, "Error extracting  " + fileNameString, ioe);
 						throw ioe;
 					}
 					catch (RarException re) {
+						Log.e(TAG, "Error extracting  " + fileNameString, re);
 						throw re;
 					}
 					finally {
@@ -82,6 +91,7 @@ public class RarExtractor {
 							}
 						}
 						catch (Exception e) {
+							Log.e(TAG, e.getMessage(), e);
 						}
 					}
 				}
@@ -89,8 +99,10 @@ public class RarExtractor {
 			finally {
 				try {
 					arch.close();
+					Log.i(TAG, "Extraction completed.");
 				}
 				catch (Exception e) {
+					Log.w(TAG, e.getMessage(), e);
 				}
 			}
 		}
@@ -111,6 +123,7 @@ public class RarExtractor {
 				f = makeFile(destination, name);
 			}
 			catch (IOException e) {
+				Log.e(TAG, "Error creating the new file  " + f.getName(), e);
 			}
 		}
 		return f;

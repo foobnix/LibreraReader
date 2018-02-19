@@ -18,13 +18,12 @@
  */
 package junrar.rarfile;
 
+import android.util.Log;
+
 import java.util.Calendar;
 import java.util.Date;
 
 import junrar.io.Raw;
-
-
-
 
 
 /**
@@ -35,6 +34,7 @@ import junrar.io.Raw;
  */
 public class FileHeader extends BlockHeader {
 
+	private static String TAG = FileHeader.class.getName();
 
     private static final byte SALT_SIZE = 8;
 
@@ -218,6 +218,7 @@ public class FileHeader extends BlockHeader {
 	str.append("\nhasSalt: " + hasSalt());
 	str.append("\nhasEncryptVersions: " + hasEncryptVersion());
 	str.append("\nisSubBlock: " + isSubBlock());
+	Log.i(TAG, str.toString());
     }
 
     private Date getDateDos(int time) {

@@ -18,10 +18,9 @@
  */
 package junrar.rarfile;
 
+import android.util.Log;
+
 import junrar.io.Raw;
-
-
-
 
 
 /**
@@ -33,6 +32,7 @@ import junrar.io.Raw;
 public class BlockHeader extends BaseBlock{
 	public static final short blockHeaderSize = 4;
 	
+	private static String TAG = BlockHeader.class.getName();
 	
 	private long dataSize;
 	private long packSize;
@@ -67,5 +67,6 @@ public class BlockHeader extends BaseBlock{
     public void print(){
     	super.print();
     	String s = "DataSize: "+getDataSize()+" packSize: "+getPackSize();
+    	Log.i(TAG, s);
     }
 }

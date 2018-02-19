@@ -18,10 +18,9 @@
  */
 package junrar.rarfile;
 
+import android.util.Log;
+
 import junrar.io.Raw;
-
-
-
 
 
 
@@ -33,6 +32,7 @@ import junrar.io.Raw;
  */
 public class BaseBlock{
 	
+	private static String TAG = BaseBlock.class.getName();
 	
 	public static final short BaseBlockSize = 7;
 	
@@ -176,5 +176,6 @@ public class BaseBlock{
 		str.append("\nFlags: "+Integer.toHexString(getFlags()));
 		str.append("\nHeaderSize: "+getHeaderSize());
 		str.append("\nPosition in file: "+getPositionInFile());
+		Log.i(TAG, str.toString());
 	}
 }
