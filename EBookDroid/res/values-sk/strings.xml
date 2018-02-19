@@ -443,4 +443,5 @@
    <string name="show_battery_percentage">Zobraziť percentuálny podiel batérie</string>
    <string name="show_current_time">Zobraziť aktuálny čas</string>
    <string name="telegram_channel">Telegramový kanál</string>
+   <string name="zoom_in_out_using_the_volume_keys">Priblížiť / oddialiť pomocou tlačidiel na ovládanie hlasitosti</string>
 </resources>

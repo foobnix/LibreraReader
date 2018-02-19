@@ -484,6 +484,9 @@ public class AppState {
     @IgnoreHashCode
     public boolean isShowLongBackDialog = false;
 
+    @IgnoreHashCode
+    public boolean isZoomInOutWithVolueKeys = false;
+
     public String customConfigColors = "";
 
     public boolean isStarsInWidget = false;
@@ -591,6 +594,7 @@ public class AppState {
     }
 
     private boolean isLoaded = false;
+
 
     public void defaults(Context c) {
         musicText = c.getString(R.string.musician);

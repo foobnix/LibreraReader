@@ -443,4 +443,5 @@
    <string name="show_battery_percentage">显示电量百分比</string>
    <string name="show_current_time">显示当前的时间</string>
    <string name="telegram_channel">交流群</string>
+   <string name="zoom_in_out_using_the_volume_keys">使用音量键放大/缩小</string>
 </resources>

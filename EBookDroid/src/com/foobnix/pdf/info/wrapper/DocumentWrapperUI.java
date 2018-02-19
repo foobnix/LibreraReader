@@ -289,6 +289,19 @@ public class DocumentWrapperUI {
             return true;
         }
 
+        if (AppState.get().isUseVolumeKeys && AppState.get().isZoomInOutWithVolueKeys) {
+            if (keyCode == KeyEvent.KEYCODE_VOLUME_UP) {
+                dc.onZoomInc();
+                return true;
+            }
+
+            if (keyCode == KeyEvent.KEYCODE_VOLUME_DOWN) {
+                dc.onZoomDec();
+                return true;
+            }
+
+        }
+
         if (AppState.get().isScrollSpeedByVolumeKeys && AppState.get().isUseVolumeKeys && AppState.get().isAutoScroll) {
             if (KeyEvent.KEYCODE_VOLUME_UP == keyCode) {
                 if (AppState.get().autoScrollSpeed > 1) {

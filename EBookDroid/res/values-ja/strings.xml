@@ -443,4 +443,5 @@
    <string name="show_battery_percentage">バッテリの割合を表示する</string>
    <string name="show_current_time">現在の時間を表示する</string>
    <string name="telegram_channel">テレグラムチャンネル</string>
+   <string name="zoom_in_out_using_the_volume_keys">音量キーで拡大/縮小する</string>
 </resources>

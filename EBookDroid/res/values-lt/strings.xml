@@ -443,4 +443,5 @@
    <string name="show_battery_percentage">Rodyti akumuliatoriaus procentą</string>
    <string name="show_current_time">Rodyti dabartinį laiką</string>
    <string name="telegram_channel">Telegram kanalas</string>
+   <string name="zoom_in_out_using_the_volume_keys">Padidinkite / išjunkite garsumo mygtukus</string>
 </resources>

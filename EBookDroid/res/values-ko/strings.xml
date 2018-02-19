@@ -443,4 +443,5 @@
    <string name="show_battery_percentage">배터리 비율 표시</string>
    <string name="show_current_time">현재 시간 표시</string>
    <string name="telegram_channel">텔레 그램 채널</string>
+   <string name="zoom_in_out_using_the_volume_keys">볼륨 키를 사용하여 확대 / 축소</string>
 </resources>

@@ -443,4 +443,5 @@
    <string name="show_battery_percentage">Tunjukkan persentase baterai</string>
    <string name="show_current_time">Tampilkan waktu sekarang</string>
    <string name="telegram_channel">Saluran telegram</string>
+   <string name="zoom_in_out_using_the_volume_keys">Zoom in / out dengan menggunakan tombol volume</string>
 </resources>

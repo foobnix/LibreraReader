@@ -270,6 +270,11 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/show_the_book_close_dialog" />
+        <CheckBox
+            android:id="@+id/isZoomInOutWithVolueKeys"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/zoom_in_out_using_the_volume_keys" />
 
             
             <com.foobnix.pdf.info.view.CustomSeek

@@ -2474,6 +2474,16 @@ public class DragingDialogs {
                     }
                 });
 
+                CheckBox isZoomInOutWithVolueKeys = (CheckBox) inflate.findViewById(R.id.isZoomInOutWithVolueKeys);
+                isZoomInOutWithVolueKeys.setChecked(AppState.get().isZoomInOutWithVolueKeys);
+                isZoomInOutWithVolueKeys.setOnCheckedChangeListener(new OnCheckedChangeListener() {
+
+                    @Override
+                    public void onCheckedChanged(final CompoundButton buttonView, final boolean isChecked) {
+                        AppState.get().isZoomInOutWithVolueKeys = isChecked;
+                    }
+                });
+
                 final CustomSeek mouseWheelSpeed = (CustomSeek) inflate.findViewById(R.id.seekWheelSpeed);
                 mouseWheelSpeed.getTitleText().setSingleLine(false);
                 mouseWheelSpeed.init(1, 200, AppState.get().mouseWheelSpeed);

@@ -443,4 +443,5 @@
    <string name="show_battery_percentage">Näytä akun prosenttiosuus</string>
    <string name="show_current_time">Näytä nykyinen aika</string>
    <string name="telegram_channel">Telegramkanava</string>
+   <string name="zoom_in_out_using_the_volume_keys">Suurenna / pienennä äänenvoimakkuusnäppäimillä</string>
 </resources>
