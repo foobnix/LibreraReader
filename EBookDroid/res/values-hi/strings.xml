@@ -444,4 +444,7 @@
    <string name="show_current_time">वर्तमान समय दिखाएं</string>
    <string name="telegram_channel">टेलीग्राम चैनल</string>
    <string name="zoom_in_out_using_the_volume_keys">वॉल्यूम कुंजियों का उपयोग करके ज़ूम इन / आउट करें</string>
+   <string name="tag">टैग</string>
+   <string name="no_tag">कोई टैग नहीं</string>
+   <string name="add_tag">टैग जोड़ो</string>
 </resources>

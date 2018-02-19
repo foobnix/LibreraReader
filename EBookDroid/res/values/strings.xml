@@ -444,4 +444,7 @@
    <string name="show_current_time">Show current time</string>
    <string name="telegram_channel">Telegram channel</string>
    <string name="zoom_in_out_using_the_volume_keys">Zoom in/out using the volume keys</string>
+   <string name="tag">Tag</string>
+   <string name="no_tag">No tag</string>
+   <string name="add_tag">Add tag</string>
 </resources>

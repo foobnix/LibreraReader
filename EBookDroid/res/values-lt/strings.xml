@@ -444,4 +444,7 @@
    <string name="show_current_time">Rodyti dabartinį laiką</string>
    <string name="telegram_channel">Telegram kanalas</string>
    <string name="zoom_in_out_using_the_volume_keys">Padidinkite / išjunkite garsumo mygtukus</string>
+   <string name="tag">Žyma</string>
+   <string name="no_tag">Nr žyma</string>
+   <string name="add_tag">Pridėti žymą</string>
 </resources>

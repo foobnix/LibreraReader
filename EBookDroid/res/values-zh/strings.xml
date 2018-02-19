@@ -444,4 +444,7 @@
    <string name="show_current_time">显示当前的时间</string>
    <string name="telegram_channel">交流群</string>
    <string name="zoom_in_out_using_the_volume_keys">使用音量键放大/缩小</string>
+   <string name="tag">标签</string>
+   <string name="no_tag">没有标签</string>
+   <string name="add_tag">添加标签</string>
 </resources>

@@ -444,4 +444,7 @@
    <string name="show_current_time">Hiển thị thời gian hiện tại</string>
    <string name="telegram_channel">Kênh điện tín</string>
    <string name="zoom_in_out_using_the_volume_keys">Phóng to / thu nhỏ bằng phím âm lượng</string>
+   <string name="tag">Nhãn</string>
+   <string name="no_tag">Không có thẻ</string>
+   <string name="add_tag">Thêm thẻ</string>
 </resources>

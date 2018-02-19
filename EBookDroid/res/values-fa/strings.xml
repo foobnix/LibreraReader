@@ -444,4 +444,7 @@
    <string name="show_current_time">نمایش زمان فعلی</string>
    <string name="telegram_channel">کانال Telegram</string>
    <string name="zoom_in_out_using_the_volume_keys">با استفاده از کلیدهای حجمی، زوم / خارج کنید</string>
+   <string name="tag">برچسب</string>
+   <string name="no_tag">بدون برچسب</string>
+   <string name="add_tag">برچسب اضافه کنید</string>
 </resources>

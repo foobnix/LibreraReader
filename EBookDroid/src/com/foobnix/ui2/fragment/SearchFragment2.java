@@ -611,6 +611,9 @@ public class SearchFragment2 extends UIFragment<FileMeta> {
             } else if (AppState.get().libraryMode == AppState.MODE_GENRE) {
                 searchEditText.setHint(R.string.genre);
                 empty = EMPTY_ID + getString(R.string.no_genre);
+            } else if (AppState.get().libraryMode == AppState.MODE_TAGS) {
+                searchEditText.setHint(R.string.tag);
+                empty = EMPTY_ID + getActivity().getString(R.string.no_tag);
             }
 
             authorsAdapter.clearItems();
@@ -735,7 +738,8 @@ public class SearchFragment2 extends UIFragment<FileMeta> {
                 R.string.cover, //
                 R.string.author, //
                 R.string.genre, //
-                R.string.serie);
+                R.string.serie, //
+                R.string.tag);
 
         final List<Integer> icons = Arrays.asList(R.drawable.glyphicons_114_justify, //
                 R.drawable.glyphicons_114_justify_compact, //
@@ -743,8 +747,15 @@ public class SearchFragment2 extends UIFragment<FileMeta> {
                 R.drawable.glyphicons_157_show_thumbnails, //
                 R.drawable.glyphicons_4_user, //
                 R.drawable.glyphicons_66_tag, //
-                R.drawable.glyphicons_710_list_numbered);
-        final List<Integer> actions = Arrays.asList(AppState.MODE_LIST, AppState.MODE_LIST_COMPACT, AppState.MODE_GRID, AppState.MODE_COVERS, AppState.MODE_AUTHORS, AppState.MODE_GENRE, AppState.MODE_SERIES);
+                R.drawable.glyphicons_710_list_numbered,//
+                R.drawable.glyphicons_67_tags);
+        final List<Integer> actions = Arrays.asList(AppState.MODE_LIST, AppState.MODE_LIST_COMPACT, //
+                AppState.MODE_GRID, //
+                AppState.MODE_COVERS, //
+                AppState.MODE_AUTHORS, //
+                AppState.MODE_GENRE, //
+                AppState.MODE_SERIES, //
+                AppState.MODE_TAGS);
 
         for (int i = 0; i < names.size(); i++) {
             final int index = i;
@@ -755,7 +766,7 @@ public class SearchFragment2 extends UIFragment<FileMeta> {
                     AppState.get().libraryMode = actions.get(index);
                     onGridList.setImageResource(icons.get(index));
 
-                    if (Arrays.asList(AppState.MODE_AUTHORS, AppState.MODE_SERIES, AppState.MODE_GENRE).contains(AppState.get().libraryMode)) {
+                    if (Arrays.asList(AppState.MODE_AUTHORS, AppState.MODE_SERIES, AppState.MODE_GENRE, AppState.MODE_TAGS).contains(AppState.get().libraryMode)) {
                         searchEditText.setText("");
                     }
 

@@ -13,6 +13,7 @@ import com.foobnix.dao2.FileMeta;
 import com.foobnix.pdf.info.ExtUtils;
 import com.foobnix.pdf.info.R;
 import com.foobnix.pdf.info.Urls;
+import com.foobnix.pdf.info.view.Dialogs;
 import com.foobnix.pdf.info.wrapper.AppState;
 import com.foobnix.pdf.info.wrapper.DocumentController;
 import com.foobnix.pdf.info.wrapper.DocumentWrapperUI;
@@ -135,6 +136,8 @@ public class ShareDialog {
         if (!isMainTabs) {
             items.add(a.getString(R.string.send_snapshot_of_the_page) + " " + (Math.max(page, 0) + 1) + "");
         }
+
+        items.add("# " + a.getString(R.string.add_tag));
         items.add(a.getString(R.string.file_info));
 
         final AlertDialog.Builder builder = new AlertDialog.Builder(a);
@@ -220,6 +223,8 @@ public class ShareDialog {
                     } else {
                         ExtUtils.sharePage(a, file, page, null);
                     }
+                } else if (which == i++) {
+                    Dialogs.showTagsDialog(a, file, null);
                 } else if (which == i++) {
                     FileInformationDialog.showFileInfoDialog(a, file, onDeleteAction);
                 }

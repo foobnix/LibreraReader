@@ -444,4 +444,7 @@
    <string name="show_current_time">Afficher l\'heure actuelle</string>
    <string name="telegram_channel">Chaîne de télégrammes</string>
    <string name="zoom_in_out_using_the_volume_keys">Zoom avant / arrière en utilisant les touches de volume</string>
+   <string name="tag">Marque</string>
+   <string name="no_tag">Aucun tag</string>
+   <string name="add_tag">Ajouter une étiquette</string>
 </resources>

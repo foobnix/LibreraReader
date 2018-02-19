@@ -41,7 +41,8 @@ public class AppDB {
         PATH(FileMetaDao.Properties.Path, -1), //
         SERIES(FileMetaDao.Properties.Sequence, AppState.MODE_SERIES), //
         GENRE(FileMetaDao.Properties.Genre, AppState.MODE_GENRE), //
-        AUTHOR(FileMetaDao.Properties.Author, AppState.MODE_AUTHORS);
+        AUTHOR(FileMetaDao.Properties.Author, AppState.MODE_AUTHORS), //
+        TAGS(FileMetaDao.Properties.Tag, AppState.MODE_TAGS);
         // ANNOT(FileMetaDao.Properties.Annotation, -1); //
         // REGEX(FileMetaDao.Properties.Path, -1);//
         //
@@ -415,7 +416,7 @@ public class AppDB {
             }
             LOG.d("searchBy", str);
             if (TxtUtils.isNotEmpty(str) && str.startsWith(SearchFragment2.EMPTY_ID)) {
-                where = where.where(searchIn.getProperty().like(""));
+                where = where.whereOr(searchIn.getProperty().like(""), searchIn.getProperty().isNull());
             } else
 
             if (searchIn == SEARCH_IN.SERIES && !str.contains("*")) {

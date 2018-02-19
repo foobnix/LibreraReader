@@ -123,6 +123,14 @@ public class FileInformationDialog {
             ((TextView) dialog.findViewById(R.id.metaGenreID)).setVisibility(View.GONE);
         }
 
+        String tag = fileMeta.getTag();
+        if (TxtUtils.isNotEmpty(tag)) {
+            ((TextView) dialog.findViewById(R.id.tagsList)).setText(tag);
+        } else {
+            ((TextView) dialog.findViewById(R.id.tagsID)).setVisibility(View.GONE);
+            ((TextView) dialog.findViewById(R.id.tagsList)).setVisibility(View.GONE);
+        }
+
         TextView metaPDF = (TextView) dialog.findViewById(R.id.metaPDF);
         metaPDF.setVisibility(View.GONE);
         if (BookType.PDF.is(file.getPath())) {

@@ -1,18 +1,30 @@
 package com.foobnix.pdf.info.view;
 
+import java.io.File;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.HashSet;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Set;
+
 import com.buzzingandroid.ui.HSVColorPickerDialog;
 import com.buzzingandroid.ui.HSVColorPickerDialog.OnColorSelectedListener;
+import com.foobnix.android.utils.BaseItemLayoutAdapter;
 import com.foobnix.android.utils.Dips;
 import com.foobnix.android.utils.IntegerResponse;
 import com.foobnix.android.utils.Keyboards;
 import com.foobnix.android.utils.LOG;
 import com.foobnix.android.utils.TxtUtils;
 import com.foobnix.android.utils.Vibro;
+import com.foobnix.dao2.FileMeta;
 import com.foobnix.pdf.info.R;
 import com.foobnix.pdf.info.TintUtil;
 import com.foobnix.pdf.info.wrapper.AppState;
 import com.foobnix.pdf.info.wrapper.DocumentController;
 import com.foobnix.sys.TempHolder;
+import com.foobnix.ui2.AppDB;
 
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -35,8 +47,10 @@ import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class Dialogs {
 
@@ -354,6 +368,186 @@ public class Dialogs {
 
         l.addView(defaults);
         return l;
+    }
+
+    public static void addTagsDialog(final Context a, final Runnable onRefresh) {
+        final AlertDialog.Builder builder = new AlertDialog.Builder(a);
+        builder.setTitle(R.string.tag);
+
+        final EditText edit = new EditText(a);
+        edit.setHint("#tag");
+
+        builder.setView(edit);
+
+        builder.setNegativeButton(R.string.cancel, new AlertDialog.OnClickListener() {
+
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+            }
+        });
+
+        builder.setPositiveButton(R.string.add, new AlertDialog.OnClickListener() {
+
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+            }
+        });
+
+        final AlertDialog create = builder.create();
+        create.setOnDismissListener(new OnDismissListener() {
+
+            @Override
+            public void onDismiss(DialogInterface dialog) {
+                // Keyboards.hideNavigation(a);
+            }
+        });
+        create.show();
+
+        create.getButton(AlertDialog.BUTTON_POSITIVE).setOnClickListener(new OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                String text = edit.getText().toString().trim();
+                if (TxtUtils.isEmpty(text)) {
+                    Toast.makeText(a, R.string.incorrect_value, Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                if (AppState.get().bookTags.contains(text)) {
+                    Toast.makeText(a, R.string.incorrect_value, Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
+                if (!text.startsWith("#")) {
+                    text = "#" + text;
+                }
+                AppState.get().bookTags = AppState.get().bookTags + "," + text;
+                AppState.get().bookTags = TxtUtils.replaceFirst(AppState.get().bookTags, ",", "");
+                if (onRefresh != null) {
+                    onRefresh.run();
+                }
+                create.dismiss();
+                AppState.get().save(a);
+
+            }
+        });
+    }
+
+    public static void showTagsDialog(final Context a, File file, final Runnable refresh) {
+        final FileMeta fileMeta = AppDB.get().getOrCreate(file.getPath());
+
+        LOG.d("showTagsDialog book tags", fileMeta.getTag());
+
+        final AlertDialog.Builder builder = new AlertDialog.Builder(a);
+        // builder.setTitle(R.string.tag);
+
+        View inflate = LayoutInflater.from(a).inflate(R.layout.dialog_tags, null, false);
+
+        final ListView list = (ListView) inflate.findViewById(R.id.listView1);
+        final TextView add = (TextView) inflate.findViewById(R.id.addTag);
+        TxtUtils.underline(add, "+ " + a.getString(R.string.add_tag));
+
+        final List<String> tags = new ArrayList<String>(Arrays.asList(AppState.get().bookTags.split(",")));
+        if (fileMeta.getTag() != null) {
+            ArrayList<String> booksTag = new ArrayList<String>(Arrays.asList(fileMeta.getTag().split(",")));
+            for (String bTag : booksTag) {
+                if (!tags.contains(bTag)) {
+                    tags.add(bTag);
+                }
+            }
+        }
+        Collections.sort(tags);
+
+        Iterator<String> iterator = tags.iterator();
+        while (iterator.hasNext()) {
+            if (TxtUtils.isEmpty(iterator.next())) {
+                iterator.remove();
+            }
+        }
+
+        final Set<Integer> checked = new HashSet<>();
+
+        final BaseItemLayoutAdapter<String> adapter = new BaseItemLayoutAdapter<String>(a, R.layout.tag_item, tags) {
+            @Override
+            public void populateView(View layout, final int position, final String item) {
+                CheckBox text = (CheckBox) layout.findViewById(R.id.tagName);
+                text.setText(item);
+
+                text.setOnCheckedChangeListener(new OnCheckedChangeListener() {
+
+                    @Override
+                    public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                        if (isChecked) {
+                            checked.add(position);
+                        } else {
+                            checked.remove(position);
+                        }
+                    }
+                });
+
+                text.setChecked(fileMeta.getTag() != null && fileMeta.getTag().contains(item));
+
+            }
+        };
+
+        add.setOnClickListener(new OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                addTagsDialog(a, new Runnable() {
+
+                    @Override
+                    public void run() {
+                        tags.clear();
+                        tags.addAll(new ArrayList<String>(Arrays.asList(AppState.get().bookTags.split(","))));
+                        adapter.notifyDataSetChanged();
+                    }
+                });
+            }
+        });
+
+        list.setAdapter(adapter);
+
+        builder.setView(inflate);
+
+        builder.setNegativeButton(R.string.close, new AlertDialog.OnClickListener() {
+
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+            }
+        });
+
+        builder.setPositiveButton(R.string.apply, new AlertDialog.OnClickListener() {
+
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                String res = "";
+                for (int i : checked) {
+                    res = res + tags.get(i) + ",";
+                }
+                res = TxtUtils.replaceLast(res, ",", "");
+
+                LOG.d("showTagsDialog", res);
+                fileMeta.setTag(res);
+                AppDB.get().update(fileMeta);
+                if (refresh != null) {
+                    refresh.run();
+                }
+            }
+
+        });
+
+        AlertDialog create = builder.create();
+        create.setOnDismissListener(new OnDismissListener() {
+
+            @Override
+            public void onDismiss(DialogInterface dialog) {
+                // Keyboards.hideNavigation(a);
+            }
+        });
+        create.show();
+
+        // Keyboards.close(a);
+
     }
 
 }

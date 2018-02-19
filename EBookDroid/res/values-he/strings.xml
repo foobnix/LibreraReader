@@ -444,4 +444,7 @@
    <string name="show_current_time">הצג את השעה הנוכחית</string>
    <string name="telegram_channel">ערוץ המברקים</string>
    <string name="zoom_in_out_using_the_volume_keys">התקרב / הקטן באמצעות מקשי עוצמת הקול</string>
+   <string name="tag">תָג</string>
+   <string name="no_tag">אין תג</string>
+   <string name="add_tag">הוסף תגית</string>
 </resources>

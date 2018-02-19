@@ -444,4 +444,7 @@
    <string name="show_current_time">Zobraziť aktuálny čas</string>
    <string name="telegram_channel">Telegramový kanál</string>
    <string name="zoom_in_out_using_the_volume_keys">Priblížiť / oddialiť pomocou tlačidiel na ovládanie hlasitosti</string>
+   <string name="tag">Štítok</string>
+   <string name="no_tag">Žiadna značka</string>
+   <string name="add_tag">Pridať značku</string>
 </resources>

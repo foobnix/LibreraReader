@@ -444,4 +444,7 @@
    <string name="show_current_time">Pokaż aktualny czas</string>
    <string name="telegram_channel">Kanał telegramu</string>
    <string name="zoom_in_out_using_the_volume_keys">Powiększanie / pomniejszanie za pomocą klawiszy głośności</string>
+   <string name="tag">Etykietka</string>
+   <string name="no_tag">Brak tagu</string>
+   <string name="add_tag">Dodaj tag</string>
 </resources>

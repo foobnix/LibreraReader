@@ -444,4 +444,7 @@
    <string name="show_current_time">Onyesha wakati wa sasa</string>
    <string name="telegram_channel">Kituo cha Telegramu</string>
    <string name="zoom_in_out_using_the_volume_keys">Ondoa ndani / nje kwa kutumia funguo za kiasi</string>
+   <string name="tag">Andika</string>
+   <string name="no_tag">Hakuna lebo</string>
+   <string name="add_tag">Ongeza lebo</string>
 </resources>

@@ -1,6 +1,9 @@
 package com.foobnix.ui2.adapter;
 
+import java.io.File;
+import java.util.Collections;
 import java.util.List;
+import java.util.Locale;
 
 import com.foobnix.android.utils.Dips;
 import com.foobnix.android.utils.LOG;
@@ -11,9 +14,13 @@ import com.foobnix.dao2.FileMeta;
 import com.foobnix.pdf.info.IMG;
 import com.foobnix.pdf.info.R;
 import com.foobnix.pdf.info.TintUtil;
+import com.foobnix.pdf.info.view.Dialogs;
+import com.foobnix.pdf.info.view.MyPopupMenu;
 import com.foobnix.pdf.info.wrapper.AppState;
 import com.foobnix.pdf.info.wrapper.PopupHelper;
 import com.foobnix.ui2.AppDB;
+import com.foobnix.ui2.AppDB.SEARCH_IN;
+import com.foobnix.ui2.AppDB.SORT_BY;
 import com.foobnix.ui2.AppRecycleAdapter;
 import com.foobnix.ui2.adapter.AuthorsAdapter2.AuthorViewHolder;
 import com.foobnix.ui2.fast.FastScroller;
@@ -25,6 +32,8 @@ import android.graphics.Color;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.RecyclerView.ViewHolder;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
+import android.view.MenuItem.OnMenuItemClickListener;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.View.OnLongClickListener;
@@ -60,7 +69,7 @@ public class FileMetaAdapter extends AppRecycleAdapter<FileMeta, RecyclerView.Vi
 
     public class FileMetaViewHolder extends RecyclerView.ViewHolder {
         public TextView title, author, path, browserExt, size, date, series, idPercentText;
-        public ImageView image, star, menu;
+        public ImageView image, star, signIcon, menu;
         public View authorParent, progresLayout, parent, remove, layoutBootom, infoLayout, idProgressColor, idProgressBg, imageParent;
 
         public FileMetaViewHolder(View view) {
@@ -77,6 +86,7 @@ public class FileMetaAdapter extends AppRecycleAdapter<FileMeta, RecyclerView.Vi
 
             image = (ImageView) view.findViewById(R.id.browserItemIcon);
             star = (ImageView) view.findViewById(R.id.starIcon);
+            signIcon = (ImageView) view.findViewById(R.id.signIcon);
             idProgressColor = view.findViewById(R.id.idProgressColor);
             idProgressBg = view.findViewById(R.id.idProgressBg);
             infoLayout = view.findViewById(R.id.infoLayout);
@@ -111,11 +121,13 @@ public class FileMetaAdapter extends AppRecycleAdapter<FileMeta, RecyclerView.Vi
         public RecyclerView recyclerView;
         public TextView clearAllRecent, clearAllStars, starredName, recentName;
         public View panelStars, panelRecent;
+        public ImageView starredNameIcon;
 
         public StarsLayoutViewHolder(View view) {
             super(view);
             recyclerView = (RecyclerView) view.findViewById(R.id.recyclerViewStars);
             starredName = (TextView) view.findViewById(R.id.starredName);
+            starredNameIcon = (ImageView) view.findViewById(R.id.starredNameIcon);
             recentName = (TextView) view.findViewById(R.id.recentName);
             panelStars = view.findViewById(R.id.panelStars);
             panelRecent = view.findViewById(R.id.panelRecent);
@@ -296,6 +308,7 @@ public class FileMetaAdapter extends AppRecycleAdapter<FileMeta, RecyclerView.Vi
             } else {
                 holder.starIcon.setImageResource(R.drawable.star_2);
             }
+
             TintUtil.setTintImageWithAlpha(holder.starIcon, TintUtil.color);
 
             if (onStarClickListener != null) {
@@ -321,7 +334,7 @@ public class FileMetaAdapter extends AppRecycleAdapter<FileMeta, RecyclerView.Vi
 
         } else if (holderAll instanceof StarsLayoutViewHolder) {
             final StarsLayoutViewHolder holder = (StarsLayoutViewHolder) holderAll;
-            FileMetaAdapter adapter = new FileMetaAdapter();
+            final FileMetaAdapter adapter = new FileMetaAdapter();
             adapter.setOnItemClickListener(onItemClickListener);
             adapter.setOnItemLongClickListener(onItemLongClickListener);
 
@@ -343,8 +356,61 @@ public class FileMetaAdapter extends AppRecycleAdapter<FileMeta, RecyclerView.Vi
             TintUtil.setBackgroundFillColor(holder.panelRecent, TintUtil.color);
             TintUtil.setBackgroundFillColor(holder.panelStars, TintUtil.color);
 
-            holder.starredName.setText(holder.starredName.getContext().getString(R.string.starred) + " (" + allStars.size() + ")");
+            final String STARRED = holder.starredName.getContext().getString(R.string.starred).toUpperCase(Locale.US) + " (" + allStars.size() + ")";
+            holder.starredName.setText(STARRED);
             holder.recentName.setText(holder.starredName.getContext().getString(R.string.recent) + " (" + (getItemCount() - 1) + ")");
+            holder.starredNameIcon.setImageResource(R.drawable.star_1);
+            TintUtil.setTintImageNoAlpha(holder.starredNameIcon, Color.WHITE);
+
+            TxtUtils.underlineTextView(holder.starredName);
+            holder.starredName.setOnClickListener(new OnClickListener() {
+
+                @Override
+                public void onClick(final View v) {
+                    MyPopupMenu menu = new MyPopupMenu(v.getContext(), v);
+
+                    menu.getMenu().add(STARRED).setIcon(R.drawable.star_1).setOnMenuItemClickListener(new OnMenuItemClickListener() {
+
+                        @Override
+                        public boolean onMenuItemClick(MenuItem item) {
+                            holder.starredNameIcon.setImageResource(R.drawable.star_1);
+                            TintUtil.setTintImageNoAlpha(holder.starredNameIcon, Color.WHITE);
+
+                            TxtUtils.underline(holder.starredName, STARRED);
+
+                            adapter.getItemsList().clear();
+                            List<FileMeta> allStars = AppDB.get().getStarsFiles();
+                            adapter.getItemsList().addAll(allStars);
+                            adapter.notifyDataSetChanged();
+
+                            return false;
+                        }
+                    });
+                    List<String> tags = AppDB.get().getAll(SEARCH_IN.TAGS);
+                    Collections.sort(tags);
+                    for (final String tag : tags) {
+                        menu.getMenu().add(tag).setIcon(R.drawable.glyphicons_67_tags).setOnMenuItemClickListener(new OnMenuItemClickListener() {
+
+                            @Override
+                            public boolean onMenuItemClick(MenuItem item) {
+                                holder.starredNameIcon.setImageResource(R.drawable.glyphicons_67_tags);
+                                TintUtil.setTintImageNoAlpha(holder.starredNameIcon, Color.WHITE);
+
+                                TxtUtils.underline(holder.starredName, tag);
+
+                                adapter.getItemsList().clear();
+                                List<FileMeta> allTags = AppDB.get().searchBy("@tags " + tag, SORT_BY.FILE_NAME, false);
+                                adapter.getItemsList().addAll(allTags);
+                                adapter.notifyDataSetChanged();
+
+                                return false;
+                            }
+                        });
+                    }
+                    menu.show();
+
+                }
+            });
 
         } else if (holderAll instanceof AuthorViewHolder) {
             AuthorViewHolder aHolder = (AuthorViewHolder) holderAll;
@@ -367,6 +433,10 @@ public class FileMetaAdapter extends AppRecycleAdapter<FileMeta, RecyclerView.Vi
             return new FileMeta();
         }
         final FileMeta fileMeta = getItem(position);
+
+        if (fileMeta == null) {
+            return new FileMeta();
+        }
 
         holder.title.setText(fileMeta.getTitle());
         holder.author.setText(fileMeta.getAuthor());
@@ -419,7 +489,7 @@ public class FileMetaAdapter extends AppRecycleAdapter<FileMeta, RecyclerView.Vi
             holder.date.setText(fileMeta.getDateTxt());
         }
 
-        double recentProgress = fileMeta.getIsRecentProgress();
+        double recentProgress = fileMeta.getIsRecentProgress() == null ? 0 : fileMeta.getIsRecentProgress();
 
         if (holder.idProgressColor != null && recentProgress > 0) {
             holder.progresLayout.setVisibility(View.VISIBLE);
@@ -467,6 +537,22 @@ public class FileMetaAdapter extends AppRecycleAdapter<FileMeta, RecyclerView.Vi
         } else
 
         {
+        }
+        if (holder.signIcon != null) {
+            holder.signIcon.setOnClickListener(new OnClickListener() {
+
+                @Override
+                public void onClick(View v) {
+                    Dialogs.showTagsDialog(v.getContext(), new File(fileMeta.getPath()), new Runnable() {
+
+                        @Override
+                        public void run() {
+                            TintUtil.setTintImageWithAlpha(holder.signIcon, TxtUtils.isEmpty(fileMeta.getTag()) ? TintUtil.COLOR_TINT_GRAY : TintUtil.color);
+                        }
+                    });
+                }
+            });
+            TintUtil.setTintImageWithAlpha(holder.signIcon, TxtUtils.isEmpty(fileMeta.getTag()) ? TintUtil.COLOR_TINT_GRAY : TintUtil.color);
         }
 
         bindItemClickAndLongClickListeners(holder.parent, fileMeta);

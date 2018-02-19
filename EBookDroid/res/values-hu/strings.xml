@@ -444,4 +444,7 @@
    <string name="show_current_time">Az aktuális idő megjelenítése</string>
    <string name="telegram_channel">Telegram csatorna</string>
    <string name="zoom_in_out_using_the_volume_keys">Nagyítás / kicsinyítés a hangerőgombokkal</string>
+   <string name="tag">Címke</string>
+   <string name="no_tag">Nincs címke</string>
+   <string name="add_tag">Címke hozzáadása</string>
 </resources>

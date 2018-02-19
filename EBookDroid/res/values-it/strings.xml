@@ -444,4 +444,7 @@
    <string name="show_current_time">Mostra l\'ora corrente</string>
    <string name="telegram_channel">Canale di Telegram</string>
    <string name="zoom_in_out_using_the_volume_keys">Zoom avanti / indietro usando i tasti del volume</string>
+   <string name="tag">Etichetta</string>
+   <string name="no_tag">Nessun tag</string>
+   <string name="add_tag">Aggiungi Tag</string>
 </resources>

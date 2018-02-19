@@ -144,13 +144,26 @@
                         android:layout_width="@dimen/wh_button_small"
                         android:layout_height="@dimen/wh_button_small"
                         android:layout_gravity="center"
-                        android:layout_marginRight="2dip"
                         android:layout_marginBottom="0dip"
                         android:layout_weight="0"
                         android:background="?android:attr/selectableItemBackground"
                         android:padding="4dip"
                         android:src="@drawable/star_2"
                         android:tint="@color/tint_gray" />
+                    
+                    <ImageView
+                        android:id="@+id/signIcon"
+                        android:layout_width="@dimen/wh_button_small"
+                        android:layout_height="@dimen/wh_button_small"
+                        android:layout_gravity="center"
+                        android:layout_marginRight="2dip"
+                        android:layout_marginBottom="0dip"
+                        android:layout_weight="0"
+                        android:background="?android:attr/selectableItemBackground"
+                        android:padding="4dip"
+                        android:src="@drawable/sign"
+                        android:tint="@color/tint_gray" />
+                    
 
                     <TextView
                         android:id="@+id/browseDate"
