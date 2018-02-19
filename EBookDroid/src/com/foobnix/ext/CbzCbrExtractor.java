@@ -5,6 +5,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Locale;
 
@@ -76,14 +77,25 @@ public class CbzCbrExtractor {
                 FileInputStream is = new FileInputStream(new File(path));
                 Archive archive = new Archive(new File(path));
 
-                FileHeader fileHeader = archive.getFileHeaders().get(0);
+
+
+                List<FileHeader> fileHeaders = archive.getFileHeaders();
+                Collections.sort(fileHeaders, new Comparator<FileHeader>() {
+
+                    @Override
+                    public int compare(FileHeader o1, FileHeader o2) {
+                        return o1.getFileNameString().compareTo(o2.getFileNameString());
+                    }
+                });
+
+                FileHeader fileHeader = fileHeaders.get(0);
 
                 if (fileHeader.isDirectory()) {
-                    fileHeader = archive.getFileHeaders().get(1);
+                    fileHeader = fileHeaders.get(1);
 
                 }
 
-                for (FileHeader it : archive.getFileHeaders()) {
+                for (FileHeader it : fileHeaders) {
                     if (it.isDirectory()) {
                         continue;
                     }
