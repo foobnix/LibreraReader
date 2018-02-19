@@ -1,4 +1,4 @@
-package com.foobnix.ui2;
+package com.foobnix.dao2;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -6,9 +6,6 @@ import java.util.Comparator;
 import java.util.List;
 
 import org.greenrobot.greendao.database.Database;
-
-import com.foobnix.dao2.DaoMaster;
-import com.foobnix.dao2.FileMetaDao;
 
 import android.content.Context;
 
@@ -32,6 +29,7 @@ public class DatabaseUpgradeHelper extends DaoMaster.OpenHelper {
     private List<Migration> getMigrations() {
         List<Migration> migrations = new ArrayList<Migration>();
         migrations.add(new MigrationV3());
+        migrations.add(new MigrationV4());
 
         // Sorting just to be safe, in case other people add migrations in the wrong order.
         Comparator<Migration> migrationComparator = new Comparator<Migration>() {
@@ -56,6 +54,19 @@ public class DatabaseUpgradeHelper extends DaoMaster.OpenHelper {
         @Override
         public void runMigration(Database db) {
             db.execSQL("ALTER TABLE " + FileMetaDao.TABLENAME + " ADD COLUMN " + FileMetaDao.Properties.Lang.columnName + " TEXT");
+        }
+    }
+
+    private static class MigrationV4 implements Migration {
+
+        @Override
+        public Integer getVersion() {
+            return 4;
+        }
+
+        @Override
+        public void runMigration(Database db) {
+            db.execSQL("ALTER TABLE " + FileMetaDao.TABLENAME + " ADD COLUMN " + FileMetaDao.Properties.Tag.columnName + " TEXT");
         }
     }
 

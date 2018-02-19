@@ -16,6 +16,7 @@ import com.foobnix.android.utils.LOG;
 import com.foobnix.android.utils.TxtUtils;
 import com.foobnix.dao2.DaoMaster;
 import com.foobnix.dao2.DaoSession;
+import com.foobnix.dao2.DatabaseUpgradeHelper;
 import com.foobnix.dao2.FileMeta;
 import com.foobnix.dao2.FileMetaDao;
 import com.foobnix.pdf.info.ExtUtils;
