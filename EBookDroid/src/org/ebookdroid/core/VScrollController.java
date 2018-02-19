@@ -66,26 +66,22 @@ public class VScrollController extends AbstractScrollController {
      */
     @Override
     public final Rect getScrollLimits() {
-        if (model.getPageCount() == 1) {
-            float zoom = getBase().getZoomModel().getZoom();
-            if (zoom < 1) {
-                zoom = 1;
-            }
-            int w = (int) (getWidth() * zoom);
-            int h = (int) (getHeight() * zoom);
-            return new Rect(-1 * w, -1 * h, w, h);
-        }
         final int width = getWidth();
         final int height = getHeight();
-        final Page lpo = model.getLastPageObject();
+
+        Page lpo = model.getLastPageObject();
+        if (lpo == null) {
+            lpo = model.getCurrentPageObject();
+        }
+
         final float zoom = getBase().getZoomModel().getZoom();
 
-        final int bottom = lpo != null ? (int) lpo.getBounds(zoom).bottom - height : 0;
+        final int bottom = lpo != null ? (int) lpo.getBounds(zoom).bottom - height + 120 : 0;
 
         int right = (int) (width * zoom) - 120;
         int left = -1 * width + 120;
 
-        return new Rect(left, 0, right, bottom);
+        return new Rect(left, -120, right, bottom);
     }
 
     /**
