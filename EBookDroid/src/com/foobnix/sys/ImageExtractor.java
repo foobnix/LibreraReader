@@ -201,6 +201,9 @@ public class ImageExtractor implements ImageDownloader {
             LOG.d("TEST", "codecDocument == null" + path);
             return null;
         }
+        if (isNeedDisableMagicInPDFDjvu && meta != null) {
+            meta.setPages(codeCache.getPageCount());
+        }
 
         final CodecPageInfo pageInfo = codeCache.getPageInfo(page);
 

@@ -42,6 +42,7 @@ public class Dao2Generator {
         note.addBooleanProperty("isSearchBook");
         note.addStringProperty("lang");
         note.addStringProperty("tag");
+        note.addIntProperty("pages");
 
 
 

@@ -45,6 +45,7 @@ public class FileMeta {
     private Boolean isSearchBook;
     private String lang;
     private String tag;
+    private Integer pages;
 
     @Generated
     public FileMeta() {
@@ -55,7 +56,7 @@ public class FileMeta {
     }
 
     @Generated
-    public FileMeta(String path, String title, String author, String sequence, String genre, String child, String annotation, Integer sIndex, Integer cusType, String ext, Long size, Long date, String dateTxt, String sizeTxt, String pathTxt, Boolean isStar, Long isStarTime, Boolean isRecent, Long isRecentTime, Float isRecentProgress, Boolean isSearchBook, String lang, String tag) {
+    public FileMeta(String path, String title, String author, String sequence, String genre, String child, String annotation, Integer sIndex, Integer cusType, String ext, Long size, Long date, String dateTxt, String sizeTxt, String pathTxt, Boolean isStar, Long isStarTime, Boolean isRecent, Long isRecentTime, Float isRecentProgress, Boolean isSearchBook, String lang, String tag, Integer pages) {
         this.path = path;
         this.title = title;
         this.author = author;
@@ -79,6 +80,7 @@ public class FileMeta {
         this.isSearchBook = isSearchBook;
         this.lang = lang;
         this.tag = tag;
+        this.pages = pages;
     }
 
     public String getPath() {
@@ -263,6 +265,14 @@ public class FileMeta {
 
     public void setTag(String tag) {
         this.tag = tag;
+    }
+
+    public Integer getPages() {
+        return pages;
+    }
+
+    public void setPages(Integer pages) {
+        this.pages = pages;
     }
 
 }

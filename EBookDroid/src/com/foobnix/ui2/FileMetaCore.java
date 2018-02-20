@@ -114,7 +114,9 @@ public class FileMetaCore {
 
         if (TxtUtils.isEmpty(ebookMeta.getTitle())) {
             Pair<String, String> pair = TxtUtils.getTitleAuthorByPath(fileName);
+            int count = ebookMeta.getPagesCount();
             ebookMeta = new EbookMeta(pair.first, TxtUtils.isNotEmpty(ebookMeta.getAuthor()) ? ebookMeta.getAuthor() : pair.second);
+            ebookMeta.setPagesCount(count);
         }
 
         if (ebookMeta.getsIndex() == null && (path.contains("_") || path.contains(")"))) {
@@ -174,6 +176,10 @@ public class FileMetaCore {
         fileMeta.setSIndex(meta.getsIndex());
         fileMeta.setChild(ExtUtils.getFileExtension(meta.getUnzipPath()));
         fileMeta.setLang(TxtUtils.toLowerCase(meta.getLang()));
+        int pagesCount = meta.getPagesCount();
+        if (pagesCount != 0) {
+            fileMeta.setPages(pagesCount);
+        }
 
     }
 

@@ -63,7 +63,13 @@ public class FileInformationDialog {
         ((TextView) dialog.findViewById(R.id.path)).setText(file.getPath());
         ((TextView) dialog.findViewById(R.id.date)).setText(fileMeta.getDateTxt());
         ((TextView) dialog.findViewById(R.id.mimeExt)).setText(fileMeta.getExt());
-        ((TextView) dialog.findViewById(R.id.size)).setText(fileMeta.getSizeTxt());
+
+        if (fileMeta.getPages() != null && fileMeta.getPages() != 0) {
+            ((TextView) dialog.findViewById(R.id.size)).setText(fileMeta.getSizeTxt() + "/" + fileMeta.getPages() + "");
+        } else {
+            ((TextView) dialog.findViewById(R.id.size)).setText(fileMeta.getSizeTxt());
+        }
+
         ((TextView) dialog.findViewById(R.id.mimeType)).setText("" + ExtUtils.getMimeType(file));
 
         final TextView hypenLang = (TextView) dialog.findViewById(R.id.hypenLang);

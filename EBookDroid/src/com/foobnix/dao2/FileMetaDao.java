@@ -45,6 +45,7 @@ public class FileMetaDao extends AbstractDao<FileMeta, String> {
         public final static Property IsSearchBook = new Property(20, Boolean.class, "isSearchBook", false, "IS_SEARCH_BOOK");
         public final static Property Lang = new Property(21, String.class, "lang", false, "LANG");
         public final static Property Tag = new Property(22, String.class, "tag", false, "TAG");
+        public final static Property Pages = new Property(23, Integer.class, "pages", false, "PAGES");
     }
 
 
@@ -82,7 +83,8 @@ public class FileMetaDao extends AbstractDao<FileMeta, String> {
                 "\"IS_RECENT_PROGRESS\" REAL," + // 19: isRecentProgress
                 "\"IS_SEARCH_BOOK\" INTEGER," + // 20: isSearchBook
                 "\"LANG\" TEXT," + // 21: lang
-                "\"TAG\" TEXT);"); // 22: tag
+                "\"TAG\" TEXT," + // 22: tag
+                "\"PAGES\" INTEGER);"); // 23: pages
         // Add Indexes
         db.execSQL("CREATE UNIQUE INDEX " + constraint + "path_asc ON FILE_META" +
                 " (\"PATH\" ASC);");
@@ -234,6 +236,11 @@ public class FileMetaDao extends AbstractDao<FileMeta, String> {
         if (tag != null) {
             stmt.bindString(23, tag);
         }
+ 
+        Integer pages = entity.getPages();
+        if (pages != null) {
+            stmt.bindLong(24, pages);
+        }
     }
 
     @Override
@@ -354,6 +361,11 @@ public class FileMetaDao extends AbstractDao<FileMeta, String> {
         if (tag != null) {
             stmt.bindString(23, tag);
         }
+ 
+        Integer pages = entity.getPages();
+        if (pages != null) {
+            stmt.bindLong(24, pages);
+        }
     }
 
     @Override
@@ -386,7 +398,8 @@ public class FileMetaDao extends AbstractDao<FileMeta, String> {
             cursor.isNull(offset + 19) ? null : cursor.getFloat(offset + 19), // isRecentProgress
             cursor.isNull(offset + 20) ? null : cursor.getShort(offset + 20) != 0, // isSearchBook
             cursor.isNull(offset + 21) ? null : cursor.getString(offset + 21), // lang
-            cursor.isNull(offset + 22) ? null : cursor.getString(offset + 22) // tag
+            cursor.isNull(offset + 22) ? null : cursor.getString(offset + 22), // tag
+            cursor.isNull(offset + 23) ? null : cursor.getInt(offset + 23) // pages
         );
         return entity;
     }
@@ -416,6 +429,7 @@ public class FileMetaDao extends AbstractDao<FileMeta, String> {
         entity.setIsSearchBook(cursor.isNull(offset + 20) ? null : cursor.getShort(offset + 20) != 0);
         entity.setLang(cursor.isNull(offset + 21) ? null : cursor.getString(offset + 21));
         entity.setTag(cursor.isNull(offset + 22) ? null : cursor.getString(offset + 22));
+        entity.setPages(cursor.isNull(offset + 23) ? null : cursor.getInt(offset + 23));
      }
     
     @Override

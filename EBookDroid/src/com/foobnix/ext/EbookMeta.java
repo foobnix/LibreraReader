@@ -11,6 +11,7 @@ public class EbookMeta {
     private String unzipPath;
     private Integer sIndex;
     private String lang;
+    private int pagesCount;
 
     public EbookMeta(String title, String author, byte[] coverImage) {
         this.title = updateString(title);
@@ -110,6 +111,14 @@ public class EbookMeta {
 
     public void setLang(String lang) {
         this.lang = lang;
+    }
+
+    public int getPagesCount() {
+        return pagesCount;
+    }
+
+    public void setPagesCount(int pagesCount) {
+        this.pagesCount = pagesCount;
     }
 
 }

@@ -17,6 +17,7 @@ public class PdfExtract {
             return EbookMeta.Empty();
         }
         EbookMeta meta = new EbookMeta(openDocument.getBookTitle(), openDocument.getBookAuthor());
+        meta.setPagesCount(openDocument.getPageCount());
         LOG.d("PdfExtract", meta.getAuthor(), meta.getTitle(), unZipPath);
         openDocument.recycle();
         openDocument = null;
