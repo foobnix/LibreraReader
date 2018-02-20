@@ -15,6 +15,7 @@ import com.foobnix.pdf.info.widget.RecentUpates;
 import com.foobnix.pdf.info.wrapper.AppState;
 import com.foobnix.pdf.info.wrapper.PopupHelper;
 import com.foobnix.ui2.AppDB;
+import com.foobnix.ui2.AppDB.SEARCH_IN;
 import com.foobnix.ui2.adapter.FileMetaAdapter;
 
 import android.os.Bundle;
@@ -47,7 +48,6 @@ public class StarsFragment2 extends UIFragment<FileMeta> {
 
         recyclerView = (RecyclerView) view.findViewById(R.id.recyclerView);
         panelRecent = view.findViewById(R.id.panelRecent);
-
 
         recentAdapter = new FileMetaAdapter();
         recentAdapter.tempValue = FileMetaAdapter.TEMP_VALUE_FOLDER_PATH;
@@ -105,8 +105,6 @@ public class StarsFragment2 extends UIFragment<FileMeta> {
         return view;
     }
 
-
-
     private void popupMenu(final ImageView image) {
         MyPopupMenu p = new MyPopupMenu(getActivity(), image);
         PopupHelper.addPROIcon(p, getActivity());
@@ -154,14 +152,24 @@ public class StarsFragment2 extends UIFragment<FileMeta> {
         return false;
     }
 
-
     @Override
     public List<FileMeta> prepareDataInBackground() {
         List<FileMeta> all = new ArrayList<FileMeta>();
 
-        // FileMeta folders = new FileMeta();
-        // folders.setCusType(FileMetaAdapter.DISPALY_TYPE_LAYOUT_TITLE_FOLDERS);
-        // all.add(folders);
+        List<String> tags = AppDB.get().getAll(SEARCH_IN.TAGS);
+        if (TxtUtils.isListNotEmpty(tags)) {
+            for (String tag : tags) {
+                FileMeta m = new FileMeta("");
+                m.setCusType(FileMetaAdapter.DISPALY_TYPE_LAYOUT_TAG);
+                int count = AppDB.get().getAllWithTag(tag).size();
+                m.setPathTxt(tag + " (" + count + ")");
+                all.add(m);
+            }
+
+            FileMeta empy = new FileMeta();
+            empy.setCusType(FileMetaAdapter.DISPALY_TYPE_LAYOUT_TITLE_NONE);
+            all.add(empy);
+        }
 
         all.addAll(AppDB.get().getStarsFolder());
 
@@ -184,7 +192,6 @@ public class StarsFragment2 extends UIFragment<FileMeta> {
         onGridList(AppState.get().starsMode, onListGrid, recentAdapter, null);
 
     }
-
 
     @Override
     public void notifyFragment() {

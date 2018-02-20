@@ -10,6 +10,8 @@ import java.util.List;
 import java.util.Set;
 import java.util.Stack;
 
+import org.greenrobot.eventbus.Subscribe;
+
 import com.foobnix.android.utils.BaseItemLayoutAdapter;
 import com.foobnix.android.utils.Keyboards;
 import com.foobnix.android.utils.LOG;
@@ -24,6 +26,7 @@ import com.foobnix.pdf.info.view.MyPopupMenu;
 import com.foobnix.pdf.info.widget.PrefDialogs;
 import com.foobnix.pdf.info.wrapper.AppState;
 import com.foobnix.pdf.info.wrapper.PopupHelper;
+import com.foobnix.pdf.search.activity.msg.OpenTagMessage;
 import com.foobnix.ui2.AppDB;
 import com.foobnix.ui2.AppDB.SEARCH_IN;
 import com.foobnix.ui2.AppDB.SORT_BY;
@@ -463,6 +466,12 @@ public class SearchFragment2 extends UIFragment<FileMeta> {
         sortBy.setText(AppDB.SORT_BY.getByID(AppState.get().sortBy).getResName());
         sortOrder.setImageResource(AppState.get().isSortAsc ? R.drawable.glyphicons_601_chevron_up : R.drawable.glyphicons_602_chevron_down);
         populate();
+    }
+
+    @Subscribe
+    public void onShowTag(OpenTagMessage msg) {
+        searchAndOrderExteral("@tags " + msg.getTagName());
+
     }
 
     @Override

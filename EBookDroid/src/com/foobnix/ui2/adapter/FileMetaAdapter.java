@@ -54,6 +54,7 @@ public class FileMetaAdapter extends AppRecycleAdapter<FileMeta, RecyclerView.Vi
     public static final int DISPALY_TYPE_LAYOUT_TITLE_BOOKS = 6;
     public static final int DISPALY_TYPE_SERIES = 7;
     public static final int DISPALY_TYPE_LAYOUT_TITLE_NONE = 8;
+    public static final int DISPALY_TYPE_LAYOUT_TAG = 9;
 
     public static final int ADAPTER_LIST = 0;
     public static final int ADAPTER_GRID = 1;
@@ -113,6 +114,19 @@ public class FileMetaAdapter extends AppRecycleAdapter<FileMeta, RecyclerView.Vi
             path = (TextView) view.findViewById(R.id.text2);
             image = (ImageView) view.findViewById(R.id.image1);
             starIcon = (ImageView) view.findViewById(R.id.starIcon);
+            parent = view;
+        }
+    }
+
+    public class TagViewHolder extends RecyclerView.ViewHolder {
+        public TextView title;
+        public ImageView image;
+        public View parent;
+
+        public TagViewHolder(View view) {
+            super(view);
+            title = (TextView) view.findViewById(R.id.text1);
+            image = (ImageView) view.findViewById(R.id.image1);
             parent = view;
         }
     }
@@ -187,9 +201,9 @@ public class FileMetaAdapter extends AppRecycleAdapter<FileMeta, RecyclerView.Vi
             return new DirectoryViewHolder(itemView);
         }
 
-        if (viewType == DISPLAY_TYPE_DIRECTORY) {
-            itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.browse_dir, parent, false);
-            return new DirectoryViewHolder(itemView);
+        if (viewType == DISPALY_TYPE_LAYOUT_TAG) {
+            itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.browse_tag, parent, false);
+            return new TagViewHolder(itemView);
         }
 
         if (viewType == DISPLAY_TYPE_FILE) {
@@ -289,6 +303,14 @@ public class FileMetaAdapter extends AppRecycleAdapter<FileMeta, RecyclerView.Vi
             });
 
             holder.imageParent.setVisibility(AppState.get().isShowImages ? View.VISIBLE : View.GONE);
+
+        }
+
+        else if (holderAll instanceof TagViewHolder) {
+            final TagViewHolder holder = (TagViewHolder) holderAll;
+            holder.title.setText(fileMeta.getPathTxt());
+            TintUtil.setTintImageWithAlpha(holder.image);
+            bindItemClickAndLongClickListeners(holder.parent, fileMeta);
 
         } else if (holderAll instanceof DirectoryViewHolder)
 

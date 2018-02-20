@@ -16,6 +16,7 @@ import com.foobnix.pdf.info.widget.ShareDialog;
 import com.foobnix.pdf.info.wrapper.DocumentController;
 import com.foobnix.pdf.info.wrapper.UITab;
 import com.foobnix.pdf.search.activity.msg.OpenDirMessage;
+import com.foobnix.pdf.search.activity.msg.OpenTagMessage;
 import com.foobnix.sys.TempHolder;
 import com.foobnix.ui2.AppDB;
 import com.foobnix.ui2.MainTabs2;
@@ -73,6 +74,9 @@ public class DefaultListeners {
 
             @Override
             public boolean onResultRecive(FileMeta result) {
+                if (isTagCicked(a, result)) {
+                    return true;
+                }
                 final File item = new File(result.getPath());
                 if (item.isDirectory()) {
                     Intent intent = new Intent(UIFragment.INTENT_TINT_CHANGE)//
@@ -86,14 +90,31 @@ public class DefaultListeners {
                 }
                 return false;
             }
+
         };
     };
+
+    private static boolean isTagCicked(final Activity a, FileMeta result) {
+        if (result.getCusType() != null && result.getCusType() == FileMetaAdapter.DISPALY_TYPE_LAYOUT_TAG) {
+            Intent intent = new Intent(UIFragment.INTENT_TINT_CHANGE)//
+                    .putExtra(MainTabs2.EXTRA_PAGE_NUMBER, UITab.getCurrentTabIndex(UITab.SearchFragment));//
+            LocalBroadcastManager.getInstance(a).sendBroadcast(intent);
+
+            EventBus.getDefault().post(new OpenTagMessage(result.getPathTxt()));
+            return true;
+        }
+        return false;
+    }
 
     public static ResultResponse<FileMeta> getOnItemLongClickListener(final Activity a, final FileMetaAdapter searchAdapter) {
         return new ResultResponse<FileMeta>() {
 
             @Override
             public boolean onResultRecive(final FileMeta result) {
+                if (isTagCicked(a, result)) {
+                    return true;
+                }
+
                 File item = new File(result.getPath());
 
                 if (item.isDirectory()) {

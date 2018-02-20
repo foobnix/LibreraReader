@@ -126,7 +126,7 @@ public class FileInformationDialog {
         String tag = fileMeta.getTag();
         if (TxtUtils.isNotEmpty(tag)) {
             String replace = tag.replace("#", " ");
-            replace = TxtUtils.replaceLast(replace, ",", "");
+            replace = TxtUtils.replaceLast(replace, ",", "").trim();
             ((TextView) dialog.findViewById(R.id.tagsList)).setText(replace);
         } else {
             ((TextView) dialog.findViewById(R.id.tagsID)).setVisibility(View.GONE);
