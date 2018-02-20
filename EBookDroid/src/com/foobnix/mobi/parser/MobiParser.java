@@ -31,6 +31,7 @@ public class MobiParser {
     private int firstContentIndex;
 
     private int commpression;
+    private int bookSize;
 
     // http://wiki.mobileread.com/wiki/MOBI#MOBI_Header
     class EXTH {
@@ -149,6 +150,7 @@ public class MobiParser {
         int mobiOffset = recordsOffset.get(0);
 
         commpression = asInt(raw, mobiOffset, 2);
+        bookSize = asInt(raw, mobiOffset + 4, 4);
 
         int encryption = asInt(raw, mobiOffset + 12, 2);
         LOG.d("MobiParser", "encryption", encryption);
@@ -280,6 +282,10 @@ public class MobiParser {
             return null;
         }
         return new String(bytes);
+    }
+
+    public int getBookSize() {
+        return bookSize;
     }
 
     public String getLanguage() {
