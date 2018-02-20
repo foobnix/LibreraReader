@@ -13,6 +13,7 @@ import org.greenrobot.greendao.Property;
 import org.greenrobot.greendao.query.QueryBuilder;
 
 import com.foobnix.android.utils.LOG;
+import com.foobnix.android.utils.StringDB;
 import com.foobnix.android.utils.TxtUtils;
 import com.foobnix.dao2.DaoMaster;
 import com.foobnix.dao2.DaoSession;
@@ -402,6 +403,14 @@ public class AppDB {
         fileMetaDao.updateInTx(stars);
     }
 
+    public List<FileMeta> getAllWithTag(String tagName) {
+        LOG.d("getAllWithTag", tagName);
+        QueryBuilder<FileMeta> where = fileMetaDao.queryBuilder();
+        where = where.where(SEARCH_IN.TAGS.getProperty().like("%" + tagName + StringDB.DIVIDER + "%"));
+        return where.list();
+
+    }
+
     public List<FileMeta> searchBy(String str, SORT_BY sortby, boolean isAsc) {
         try {
             QueryBuilder<FileMeta> where = fileMetaDao.queryBuilder();
@@ -414,16 +423,18 @@ public class AppDB {
                     break;
                 }
             }
+
+            if (searchIn == SEARCH_IN.TAGS) {
+                str = str + StringDB.DIVIDER;
+
+            }
             LOG.d("searchBy", str);
-            if (TxtUtils.isNotEmpty(str) && str.startsWith(SearchFragment2.EMPTY_ID)) {
+            if (str.startsWith(SearchFragment2.EMPTY_ID)) {
                 where = where.whereOr(searchIn.getProperty().like(""), searchIn.getProperty().isNull());
             } else
 
             if (searchIn == SEARCH_IN.SERIES && !str.contains("*")) {
                 where = where.where(searchIn.getProperty().eq(str));
-                // sort by index by deafult
-                // where = where.where(FileMetaDao.Properties.IsSearchBook.eq(1));
-                // return where.orderAsc(SORT_BY.SERIES_INDEX.getProperty()).list();
             } else {
                 if (TxtUtils.isNotEmpty(str)) {
                     str = str.replace(" ", "%").replace("*", "%");

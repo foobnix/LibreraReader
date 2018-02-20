@@ -25,6 +25,6 @@
         android:padding="5dip"
         android:src="@drawable/glyphicons_208_remove_2"
         android:tint="@color/lt_grey_dima"
-        android:visibility="gone" />
+        android:visibility="visible" />
 
 </LinearLayout>

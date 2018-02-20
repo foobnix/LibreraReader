@@ -389,14 +389,16 @@ public class FileMetaAdapter extends AppRecycleAdapter<FileMeta, RecyclerView.Vi
                     List<String> tags = AppDB.get().getAll(SEARCH_IN.TAGS);
                     Collections.sort(tags);
                     for (final String tag : tags) {
-                        menu.getMenu().add(tag).setIcon(R.drawable.glyphicons_67_tags).setOnMenuItemClickListener(new OnMenuItemClickListener() {
+                        int count = AppDB.get().getAllWithTag(tag).size();
+                        final String nameName = tag + " (" + count + ")";
+                        menu.getMenu().add(nameName).setIcon(R.drawable.glyphicons_67_tags).setOnMenuItemClickListener(new OnMenuItemClickListener() {
 
                             @Override
                             public boolean onMenuItemClick(MenuItem item) {
                                 holder.starredNameIcon.setImageResource(R.drawable.glyphicons_67_tags);
                                 TintUtil.setTintImageNoAlpha(holder.starredNameIcon, Color.WHITE);
 
-                                TxtUtils.underline(holder.starredName, tag);
+                                TxtUtils.underline(holder.starredName, nameName);
 
                                 adapter.getItemsList().clear();
                                 List<FileMeta> allTags = AppDB.get().searchBy("@tags " + tag, SORT_BY.FILE_NAME, false);

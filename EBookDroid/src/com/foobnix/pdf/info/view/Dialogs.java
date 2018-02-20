@@ -1,8 +1,6 @@
 package com.foobnix.pdf.info.view;
 
 import java.io.File;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Iterator;
@@ -16,6 +14,7 @@ import com.foobnix.android.utils.Dips;
 import com.foobnix.android.utils.IntegerResponse;
 import com.foobnix.android.utils.Keyboards;
 import com.foobnix.android.utils.LOG;
+import com.foobnix.android.utils.StringDB;
 import com.foobnix.android.utils.TxtUtils;
 import com.foobnix.android.utils.Vibro;
 import com.foobnix.dao2.FileMeta;
@@ -420,8 +419,7 @@ public class Dialogs {
                 if (!text.startsWith("#")) {
                     text = "#" + text;
                 }
-                AppState.get().bookTags = AppState.get().bookTags + "," + text;
-                AppState.get().bookTags = TxtUtils.replaceFirst(AppState.get().bookTags, ",", "");
+                AppState.get().bookTags = StringDB.add(AppState.get().bookTags, text);
                 if (onRefresh != null) {
                     onRefresh.run();
                 }
@@ -446,20 +444,18 @@ public class Dialogs {
         final TextView add = (TextView) inflate.findViewById(R.id.addTag);
         TxtUtils.underline(add, "+ " + a.getString(R.string.add_tag));
 
-        final List<String> tags = new ArrayList<String>(Arrays.asList(AppState.get().bookTags.split(",")));
-        if (fileMeta.getTag() != null) {
-            ArrayList<String> booksTag = new ArrayList<String>(Arrays.asList(fileMeta.getTag().split(",")));
-            for (String bTag : booksTag) {
-                if (!tags.contains(bTag)) {
-                    tags.add(bTag);
-                }
+        final List<String> tags = StringDB.asList(AppState.get().bookTags);
+        List<String> fileTags = StringDB.asList(fileMeta.getTag());
+        for (String fileTag : fileTags) {
+            if (!StringDB.contains(AppState.get().bookTags, fileTag)) {
+                tags.add(fileTag);
             }
         }
         Collections.sort(tags);
 
         Iterator<String> iterator = tags.iterator();
         while (iterator.hasNext()) {
-            if (TxtUtils.isEmpty(iterator.next())) {
+            if (TxtUtils.isEmpty(iterator.next().trim())) {
                 iterator.remove();
             }
         }
@@ -468,9 +464,9 @@ public class Dialogs {
 
         final BaseItemLayoutAdapter<String> adapter = new BaseItemLayoutAdapter<String>(a, R.layout.tag_item, tags) {
             @Override
-            public void populateView(View layout, final int position, final String item) {
+            public void populateView(View layout, final int position, final String tagName) {
                 CheckBox text = (CheckBox) layout.findViewById(R.id.tagName);
-                text.setText(item);
+                text.setText(tagName);
 
                 text.setOnCheckedChangeListener(new OnCheckedChangeListener() {
 
@@ -484,7 +480,37 @@ public class Dialogs {
                     }
                 });
 
-                text.setChecked(fileMeta.getTag() != null && fileMeta.getTag().contains(item));
+                text.setChecked(StringDB.contains(fileMeta.getTag(), tagName));
+
+                layout.findViewById(R.id.deleteTag).setOnClickListener(new OnClickListener() {
+
+                    @Override
+                    public void onClick(View v) {
+                        AlertDialogs.showOkDialog((Activity) a, a.getString(R.string.do_you_want_to_delete_this_tag_from_all_books_), new Runnable() {
+
+                            @Override
+                            public void run() {
+                                checked.clear();
+
+                                AppState.get().bookTags = StringDB.delete(AppState.get().bookTags, tagName);
+                                tags.clear();
+                                tags.addAll(StringDB.asList(AppState.get().bookTags));
+                                notifyDataSetChanged();
+
+                                List<FileMeta> allWithTag = AppDB.get().getAllWithTag(tagName);
+                                for (FileMeta meta : allWithTag) {
+                                    meta.setTag(StringDB.delete(meta.getTag(), tagName));
+                                }
+                                AppDB.get().updateAll(allWithTag);
+                                if (refresh != null) {
+                                    refresh.run();
+                                }
+
+                            }
+                        });
+
+                    }
+                });
 
             }
         };
@@ -498,7 +524,7 @@ public class Dialogs {
                     @Override
                     public void run() {
                         tags.clear();
-                        tags.addAll(new ArrayList<String>(Arrays.asList(AppState.get().bookTags.split(","))));
+                        tags.addAll(StringDB.asList(AppState.get().bookTags));
                         adapter.notifyDataSetChanged();
                     }
                 });
@@ -522,10 +548,8 @@ public class Dialogs {
             public void onClick(DialogInterface dialog, int which) {
                 String res = "";
                 for (int i : checked) {
-                    res = res + tags.get(i) + ",";
+                    res = StringDB.add(res, tags.get(i));
                 }
-                res = TxtUtils.replaceLast(res, ",", "");
-
                 LOG.d("showTagsDialog", res);
                 fileMeta.setTag(res);
                 AppDB.get().update(fileMeta);
