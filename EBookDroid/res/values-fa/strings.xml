@@ -447,4 +447,6 @@
    <string name="tag">برچسب</string>
    <string name="no_tag">بدون برچسب</string>
    <string name="add_tag">برچسب اضافه کنید</string>
+   <string name="do_you_want_to_delete_this_tag_from_all_books_">آیا میخواهید این برچسب را از همه کتابها پاک کنید؟</string>
+   <string name="tags">برچسب ها</string>
 </resources>

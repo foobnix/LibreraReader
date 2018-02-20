@@ -447,4 +447,6 @@
    <string name="tag">Label</string>
    <string name="no_tag">Geen tag</string>
    <string name="add_tag">Tag toevoegen</string>
+   <string name="do_you_want_to_delete_this_tag_from_all_books_">Wil je deze tag uit alle boeken verwijderen?</string>
+   <string name="tags">Tags</string>
 </resources>

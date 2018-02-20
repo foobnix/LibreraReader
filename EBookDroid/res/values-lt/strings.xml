@@ -447,4 +447,6 @@
    <string name="tag">Žyma</string>
    <string name="no_tag">Nr žyma</string>
    <string name="add_tag">Pridėti žymą</string>
+   <string name="do_you_want_to_delete_this_tag_from_all_books_">Ar norite pašalinti šią žymą iš visų knygų?</string>
+   <string name="tags">Žymos</string>
 </resources>

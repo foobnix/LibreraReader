@@ -447,4 +447,6 @@
    <string name="tag">Märka</string>
    <string name="no_tag">Ingen tagg</string>
    <string name="add_tag">Lägg till tagg</string>
+   <string name="do_you_want_to_delete_this_tag_from_all_books_">Vill du radera den här taggen från alla böcker?</string>
+   <string name="tags">Tags</string>
 </resources>

@@ -447,4 +447,6 @@
    <string name="tag">タグ</string>
    <string name="no_tag">タグなし</string>
    <string name="add_tag">タグ付けする</string>
+   <string name="do_you_want_to_delete_this_tag_from_all_books_">このタグをすべての書籍から削除しますか？</string>
+   <string name="tags">タグ</string>
 </resources>

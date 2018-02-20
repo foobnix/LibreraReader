@@ -447,4 +447,6 @@
    <string name="tag">תָג</string>
    <string name="no_tag">אין תג</string>
    <string name="add_tag">הוסף תגית</string>
+   <string name="do_you_want_to_delete_this_tag_from_all_books_">האם ברצונך למחוק תג זה מכל הספרים?</string>
+   <string name="tags">תגים</string>
 </resources>

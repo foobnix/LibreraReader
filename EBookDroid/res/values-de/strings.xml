@@ -447,4 +447,6 @@
    <string name="tag">Etikett</string>
    <string name="no_tag">Keine Markierung</string>
    <string name="add_tag">Tag hinzufügen</string>
+   <string name="do_you_want_to_delete_this_tag_from_all_books_">Möchten Sie dieses Tag aus allen Büchern löschen?</string>
+   <string name="tags">Stichworte</string>
 </resources>

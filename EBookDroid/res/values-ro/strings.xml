@@ -447,4 +447,6 @@
    <string name="tag">Etichetă</string>
    <string name="no_tag">Nici o etichetă</string>
    <string name="add_tag">Adaugă etichetă</string>
+   <string name="do_you_want_to_delete_this_tag_from_all_books_">Doriți să ștergeți această etichetă din toate cărțile?</string>
+   <string name="tags">Etichete</string>
 </resources>

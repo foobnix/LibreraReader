@@ -447,4 +447,6 @@
    <string name="tag">Tag</string>
    <string name="no_tag">Ei tagia</string>
    <string name="add_tag">Lisää merkintä</string>
+   <string name="do_you_want_to_delete_this_tag_from_all_books_">Haluatko poistaa tämän tunnisteen kaikista kirjoista?</string>
+   <string name="tags">Tunnisteet</string>
 </resources>

@@ -447,4 +447,6 @@
    <string name="tag">टैग</string>
    <string name="no_tag">कोई टैग नहीं</string>
    <string name="add_tag">टैग जोड़ो</string>
+   <string name="do_you_want_to_delete_this_tag_from_all_books_">क्या आप सभी टैगों से इस टैग को हटाना चाहते हैं?</string>
+   <string name="tags">टैग</string>
 </resources>

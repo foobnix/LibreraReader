@@ -447,4 +447,6 @@
    <string name="tag">标签</string>
    <string name="no_tag">没有标签</string>
    <string name="add_tag">添加标签</string>
+   <string name="do_you_want_to_delete_this_tag_from_all_books_">你想从所有书籍中删除这个标签吗？</string>
+   <string name="tags">标签</string>
 </resources>

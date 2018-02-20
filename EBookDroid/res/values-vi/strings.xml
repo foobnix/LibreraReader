@@ -447,4 +447,6 @@
    <string name="tag">Nhãn</string>
    <string name="no_tag">Không có thẻ</string>
    <string name="add_tag">Thêm thẻ</string>
+   <string name="do_you_want_to_delete_this_tag_from_all_books_">Bạn có muốn xóa thẻ này khỏi tất cả sách?</string>
+   <string name="tags">Thẻ</string>
 </resources>

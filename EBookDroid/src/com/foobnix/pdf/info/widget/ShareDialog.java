@@ -137,7 +137,7 @@ public class ShareDialog {
             items.add(a.getString(R.string.send_snapshot_of_the_page) + " " + (Math.max(page, 0) + 1) + "");
         }
 
-        items.add("# " + a.getString(R.string.add_tag));
+        items.add(a.getString(R.string.tags));
         items.add(a.getString(R.string.file_info));
 
         final AlertDialog.Builder builder = new AlertDialog.Builder(a);

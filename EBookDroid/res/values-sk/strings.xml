@@ -447,4 +447,6 @@
    <string name="tag">Štítok</string>
    <string name="no_tag">Žiadna značka</string>
    <string name="add_tag">Pridať značku</string>
+   <string name="do_you_want_to_delete_this_tag_from_all_books_">Chcete túto značku odstrániť zo všetkých kníh?</string>
+   <string name="tags">Tagy</string>
 </resources>

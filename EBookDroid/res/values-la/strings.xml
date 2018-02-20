@@ -447,4 +447,6 @@
    <string name="tag">Tag →</string>
    <string name="no_tag">Non tag</string>
    <string name="add_tag">Add tag</string>
+   <string name="do_you_want_to_delete_this_tag_from_all_books_">Non vis ut delete is ab omnibus libris tag?</string>
+   <string name="tags">Tags</string>
 </resources>

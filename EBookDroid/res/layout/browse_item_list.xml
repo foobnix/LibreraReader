@@ -159,6 +159,7 @@
                         android:layout_marginRight="2dip"
                         android:layout_marginBottom="0dip"
                         android:layout_weight="0"
+                        android:visibility="gone"
                         android:background="?android:attr/selectableItemBackground"
                         android:padding="4dip"
                         android:src="@drawable/sign"

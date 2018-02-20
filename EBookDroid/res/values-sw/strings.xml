@@ -447,4 +447,6 @@
    <string name="tag">Andika</string>
    <string name="no_tag">Hakuna lebo</string>
    <string name="add_tag">Ongeza lebo</string>
+   <string name="do_you_want_to_delete_this_tag_from_all_books_">Unataka kufuta lebo hii kutoka kwa vitabu vyote?</string>
+   <string name="tags">Vitambulisho</string>
 </resources>

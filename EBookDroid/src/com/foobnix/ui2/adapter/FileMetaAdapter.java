@@ -536,6 +536,20 @@ public class FileMetaAdapter extends AppRecycleAdapter<FileMeta, RecyclerView.Vi
                     onStarClickListener.onResultRecive(fileMeta, FileMetaAdapter.this);
                 }
             });
+
+            holder.star.setOnLongClickListener(new OnLongClickListener() {
+
+                @Override
+                public boolean onLongClick(View v) {
+                    Dialogs.showTagsDialog(v.getContext(), new File(fileMeta.getPath()), new Runnable() {
+
+                        @Override
+                        public void run() {
+                        }
+                    });
+                    return true;
+                }
+            });
         } else
 
         {

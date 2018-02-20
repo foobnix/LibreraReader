@@ -448,4 +448,5 @@
    <string name="no_tag">No tag</string>
    <string name="add_tag">Add tag</string>
    <string name="do_you_want_to_delete_this_tag_from_all_books_">Do you want to delete this tag from all books?</string>
+   <string name="tags">Tags</string>
 </resources>
