@@ -214,7 +214,6 @@
    <string name="by_title">Tên sách</string>
    <string name="by_author">Tác giả cuốn sách</string>
    <string name="by_series">Loạt</string>
-   <string name="by_number">Con số</string>
    <string name="by_date">Ngày</string>
    <string name="by_size">Kích thước</string>
    <string name="read_a_book">Đọc quyển sách</string>
@@ -448,5 +447,7 @@
    <string name="no_tag">Không có thẻ</string>
    <string name="add_tag">Thêm thẻ</string>
    <string name="do_you_want_to_delete_this_tag_from_all_books_">Bạn có muốn xóa thẻ này khỏi tất cả sách?</string>
+   <string name="by_number_of_pages">Số trang</string>
+   <string name="by_number_in_serie">Số trong serie</string>
    <string name="tags">Thẻ</string>
 </resources>

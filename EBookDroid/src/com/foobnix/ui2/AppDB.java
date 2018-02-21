@@ -95,7 +95,8 @@ public class AppDB {
         TITLE(4, R.string.by_title, FileMetaDao.Properties.Title), //
         AUTHOR(5, R.string.by_author, FileMetaDao.Properties.Author), //
         SERIES(6, R.string.by_series, FileMetaDao.Properties.Sequence), //
-        SERIES_INDEX(7, R.string.by_number, FileMetaDao.Properties.SIndex);//
+        SERIES_INDEX(7, R.string.by_number_in_serie, FileMetaDao.Properties.SIndex), //
+        PAGES(8, R.string.by_number_of_pages, FileMetaDao.Properties.Pages);//
 
         private final int index;
         private final int resName;

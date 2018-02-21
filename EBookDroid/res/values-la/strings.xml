@@ -223,7 +223,6 @@
    <string name="by_title">Titulus</string>
    <string name="by_author">Effector</string>
    <string name="by_series">Series</string>
-   <string name="by_number">Numerus</string>
    <string name="by_date">Datum</string>
    <string name="by_size">Mensura</string>
    <string name="read_a_book">Legere</string>
@@ -448,5 +447,7 @@
    <string name="no_tag">Non tag</string>
    <string name="add_tag">Add tag</string>
    <string name="do_you_want_to_delete_this_tag_from_all_books_">Non vis ut delete is ab omnibus libris tag?</string>
+   <string name="by_number_of_pages">Number of pages</string>
+   <string name="by_number_in_serie">Serie in numero</string>
    <string name="tags">Tags</string>
 </resources>

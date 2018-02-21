@@ -509,7 +509,7 @@ public class FileMetaAdapter extends AppRecycleAdapter<FileMeta, RecyclerView.Vi
         holder.path.setText(fileMeta.getPathTxt());
         holder.browserExt.setText(fileMeta.getChild() != null ? fileMeta.getChild() : fileMeta.getExt());
         if (fileMeta.getPages() != null && fileMeta.getPages() != 0) {
-            holder.size.setText(fileMeta.getSizeTxt() + "/" + fileMeta.getPages() + "");
+            holder.size.setText(fileMeta.getSizeTxt() + " (" + fileMeta.getPages() + ")");
         } else {
             holder.size.setText(fileMeta.getSizeTxt());
 

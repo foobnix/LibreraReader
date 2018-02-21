@@ -215,7 +215,6 @@
    <string name="by_title">Judul buku</string>
    <string name="by_author">Penulis buku</string>
    <string name="by_series">Seri</string>
-   <string name="by_number">Jumlah</string>
    <string name="by_date">Tanggal</string>
    <string name="by_size">Ukuran</string>
    <string name="___SORT___AND___VIEW___SECTION___"></string>
@@ -448,5 +447,7 @@
    <string name="no_tag">Tidak ada tag</string>
    <string name="add_tag">Tambahkan tag</string>
    <string name="do_you_want_to_delete_this_tag_from_all_books_">Apakah Anda ingin menghapus tag ini dari semua buku?</string>
+   <string name="by_number_of_pages">Jumlah halaman</string>
+   <string name="by_number_in_serie">Nomor serie</string>
    <string name="tags">Tag</string>
 </resources>

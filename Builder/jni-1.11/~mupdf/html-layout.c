@@ -63,6 +63,7 @@ static const char *html_default_css =
 "ul ul ul{list-style-type:square}"
 "var{font-style:italic}"
 "svg{display:none}"
+"br{display:block}"
 ;
 
 static const char *fb2_default_css =
@@ -615,7 +616,7 @@ static void generate_boxes(fz_context *ctx, fz_xml *node, fz_html_box *top,
 
 			display = fz_get_css_match_display(&match);
 
-			if (tag[0]=='b' && tag[1]=='r' && tag[2]==0)
+			if (1==2 && tag[0]=='b' && tag[1]=='r' && tag[2]==0)
 			{
 				if (top->type == BOX_INLINE)
 				{

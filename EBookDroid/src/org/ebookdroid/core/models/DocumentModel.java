@@ -28,9 +28,11 @@ import org.emdev.utils.LengthUtils;
 import org.emdev.utils.listeners.ListenerProxy;
 
 import com.foobnix.android.utils.LOG;
+import com.foobnix.dao2.FileMeta;
 import com.foobnix.pdf.info.ExtUtils;
 import com.foobnix.pdf.info.wrapper.AppState;
 import com.foobnix.sys.TempHolder;
+import com.foobnix.ui2.AppDB;
 
 public class DocumentModel extends ListenerProxy {
 
@@ -216,7 +218,20 @@ public class DocumentModel extends ListenerProxy {
     }
 
     private CodecPageInfo[] retrievePagesInfo(final IActivityController base, final BookSettings bs, final IProgressIndicator task) {
-        final PageCacheFile pagesFile = CacheManager.getPageFile(bs.fileName, base.getDecodeService().getPageCount());
+        int pagesCount = base.getDecodeService().getPageCount();
+        final PageCacheFile pagesFile = CacheManager.getPageFile(bs.fileName, pagesCount);
+
+        try {
+            if (pagesCount > 0) {
+                FileMeta meta = AppDB.get().load(bs.fileName);
+                if (meta != null) {
+                    meta.setPages(pagesCount);
+                    AppDB.get().update(meta);
+                }
+            }
+        } catch (Exception e) {
+            LOG.e(e);
+        }
 
         if (decodeService.isPageSizeCacheable() && pagesFile.exists()) {
             final CodecPageInfo[] infos = pagesFile.load();

@@ -215,7 +215,6 @@
    <string name="by_title">ชื่อหนังสือ</string>
    <string name="by_author">ผู้เขียนหนังสือ</string>
    <string name="by_series">ชุด</string>
-   <string name="by_number">จำนวน</string>
    <string name="by_date">วันที่</string>
    <string name="by_size">ขนาด</string>
    <string name="___SORT___AND___VIEW___SECTION___"></string>
@@ -448,5 +447,7 @@
    <string name="no_tag">ไม่มีแท็ก</string>
    <string name="add_tag">เพิ่มแท็ก</string>
    <string name="do_you_want_to_delete_this_tag_from_all_books_">คุณต้องการลบแท็กนี้จากหนังสือทั้งหมดหรือไม่?</string>
+   <string name="by_number_of_pages">เลขหน้า</string>
+   <string name="by_number_in_serie">จำนวนในซีรี่ส์</string>
    <string name="tags">แท็ก</string>
 </resources>

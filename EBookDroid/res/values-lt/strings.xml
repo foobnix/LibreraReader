@@ -215,7 +215,6 @@
    <string name="by_title">Knygos pavadinimas</string>
    <string name="by_author">Knygos autorius</string>
    <string name="by_series">Serija</string>
-   <string name="by_number">Numeris</string>
    <string name="by_date">Data</string>
    <string name="by_size">Dydis</string>
    <string name="___SORT___AND___VIEW___SECTION___"></string>
@@ -448,5 +447,7 @@
    <string name="no_tag">Nr žyma</string>
    <string name="add_tag">Pridėti žymą</string>
    <string name="do_you_want_to_delete_this_tag_from_all_books_">Ar norite pašalinti šią žymą iš visų knygų?</string>
+   <string name="by_number_of_pages">Puslapių skaičius</string>
+   <string name="by_number_in_serie">Numeris serijoje</string>
    <string name="tags">Žymos</string>
 </resources>

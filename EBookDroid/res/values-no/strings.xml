@@ -215,7 +215,6 @@
    <string name="by_title">Boktittel</string>
    <string name="by_author">Bokforfatter</string>
    <string name="by_series">Serie</string>
-   <string name="by_number">Antall</string>
    <string name="by_date">Dato</string>
    <string name="by_size">Størrelse</string>
    <string name="___SORT___AND___VIEW___SECTION___"></string>
@@ -448,5 +447,7 @@
    <string name="no_tag">Ingen tagger</string>
    <string name="add_tag">Legg til tag</string>
    <string name="do_you_want_to_delete_this_tag_from_all_books_">Vil du slette denne taggen fra alle bøkene?</string>
+   <string name="by_number_of_pages">Antall sider</string>
+   <string name="by_number_in_serie">Nummer i serie</string>
    <string name="tags">Tags</string>
 </resources>

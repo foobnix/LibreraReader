@@ -214,7 +214,6 @@
    <string name="by_title">عنوان كتاب</string>
    <string name="by_author">مؤلف كتاب</string>
    <string name="by_series">سلسلة</string>
-   <string name="by_number">رقم</string>
    <string name="by_date">تاريخ</string>
    <string name="by_size">بحجم</string>
    <string name="read_a_book">اقرأ كتاب</string>
@@ -448,5 +447,7 @@
    <string name="no_tag">لا علامه</string>
    <string name="add_tag">إضافة علامة</string>
    <string name="do_you_want_to_delete_this_tag_from_all_books_">هل تريد حذف هذه العلامة من جميع الكتب؟</string>
+   <string name="by_number_of_pages">عدد الصفحات</string>
+   <string name="by_number_in_serie">الرقم في دوري الدرجة الاولى الايطالي</string>
    <string name="tags">الكلمات</string>
 </resources>

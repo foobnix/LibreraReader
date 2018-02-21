@@ -293,7 +293,7 @@ public class BrowseFragment2 extends UIFragment<FileMeta> {
                         getActivity().getString(R.string.by_file_name), //
                         getActivity().getString(R.string.by_date), //
                         getActivity().getString(R.string.by_size), //
-                        getActivity().getString(R.string.by_number) //
+                        getActivity().getString(R.string.by_number_in_serie) //
                 );//
 
                 final List<Integer> ids = Arrays.asList(//

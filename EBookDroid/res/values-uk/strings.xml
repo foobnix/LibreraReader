@@ -214,7 +214,6 @@
    <string name="by_title">Назва книги</string>
    <string name="by_author">Автор книги</string>
    <string name="by_series">Серія</string>
-   <string name="by_number">Номер в серії</string>
    <string name="by_date">Дата створення файлу</string>
    <string name="by_size">Розмір</string>
    <string name="read_a_book">Читати книгу</string>
@@ -448,5 +447,7 @@
    <string name="no_tag">Немає тегу</string>
    <string name="add_tag">Додати тег</string>
    <string name="do_you_want_to_delete_this_tag_from_all_books_">Ви хочете видалити цей тег із усіх книг?</string>
+   <string name="by_number_of_pages">Кількість сторінок</string>
+   <string name="by_number_in_serie">Номер у серії</string>
    <string name="tags">Теги</string>
 </resources>

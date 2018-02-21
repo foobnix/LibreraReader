@@ -16,6 +16,7 @@ import com.foobnix.ext.CacheZipUtils;
 import com.foobnix.ext.CacheZipUtils.CacheDir;
 import com.foobnix.ext.CacheZipUtils.UnZipRes;
 import com.foobnix.ext.CalirbeExtractor;
+import com.foobnix.ext.CbzCbrExtractor;
 import com.foobnix.ext.EbookMeta;
 import com.foobnix.ext.EpubExtractor;
 import com.foobnix.ext.Fb2Extractor;
@@ -98,7 +99,6 @@ public class FileMetaCore {
             fileNameOriginal = TxtUtils.encode1251(fileNameOriginal);
             fileName = TxtUtils.encode1251(fileNameOriginal);
         }
-
         if (CalirbeExtractor.isCalibre(unZipPath)) {
             ebookMeta = CalirbeExtractor.getBookMetaInformation(unZipPath);
             LOG.d("isCalibre find", unZipPath);
@@ -110,6 +110,9 @@ public class FileMetaCore {
             ebookMeta = MobiExtract.getBookMetaInformation(unZipPath, true);
         } else if (withDPF && isNeedToExtractPDFMeta(unZipPath)) {
             ebookMeta = PdfExtract.getBookMetaInformation(unZipPath);
+        } else if (BookType.CBR.is(unZipPath) || BookType.CBZ.is(unZipPath)) {
+            ebookMeta.setPagesCount(CbzCbrExtractor.getPageCount(unZipPath));
+
         }
 
         if (TxtUtils.isEmpty(ebookMeta.getTitle())) {

@@ -214,7 +214,6 @@
    <string name="by_title">Titlul cartii</string>
    <string name="by_author">Autor de carte</string>
    <string name="by_series">Serie</string>
-   <string name="by_number">Număr</string>
    <string name="by_date">Data</string>
    <string name="by_size">Mărimea</string>
    <string name="read_a_book">Citește o carte</string>
@@ -448,5 +447,7 @@
    <string name="no_tag">Nici o etichetă</string>
    <string name="add_tag">Adaugă etichetă</string>
    <string name="do_you_want_to_delete_this_tag_from_all_books_">Doriți să ștergeți această etichetă din toate cărțile?</string>
+   <string name="by_number_of_pages">Număr de pagini</string>
+   <string name="by_number_in_serie">Numărul în serie</string>
    <string name="tags">Etichete</string>
 </resources>

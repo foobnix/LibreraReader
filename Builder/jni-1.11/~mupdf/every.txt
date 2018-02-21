@@ -38,6 +38,10 @@ if (!strcmp(value->data, "auto"))
 //add fb2 styles to main styles
 
 //html-layout.c
+
+//skip br
+"br{display:block}"
+
 static void measure_image(fz_context *ctx, fz_html_flow *node, float max_w, float max_h)
 {
 	float xs = 1, ys = 1, s = 1;

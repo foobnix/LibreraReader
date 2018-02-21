@@ -214,7 +214,6 @@
    <string name="by_title">Boktitel</string>
    <string name="by_author">Bok författare</string>
    <string name="by_series">Serier</string>
-   <string name="by_number">Siffra</string>
    <string name="by_date">Datum</string>
    <string name="by_size">Storlek</string>
    <string name="read_a_book">Läs en bok</string>
@@ -448,5 +447,7 @@
    <string name="no_tag">Ingen tagg</string>
    <string name="add_tag">Lägg till tagg</string>
    <string name="do_you_want_to_delete_this_tag_from_all_books_">Vill du radera den här taggen från alla böcker?</string>
+   <string name="by_number_of_pages">Antal sidor</string>
+   <string name="by_number_in_serie">Antal i serie</string>
    <string name="tags">Tags</string>
 </resources>

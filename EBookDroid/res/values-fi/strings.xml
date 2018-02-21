@@ -215,7 +215,6 @@
    <string name="by_title">Kirjan nimi</string>
    <string name="by_author">Kirjailija</string>
    <string name="by_series">Sarja</string>
-   <string name="by_number">Määrä</string>
    <string name="by_date">Treffi</string>
    <string name="by_size">Koko</string>
    <string name="___SORT___AND___VIEW___SECTION___"></string>
@@ -448,5 +447,7 @@
    <string name="no_tag">Ei tagia</string>
    <string name="add_tag">Lisää merkintä</string>
    <string name="do_you_want_to_delete_this_tag_from_all_books_">Haluatko poistaa tämän tunnisteen kaikista kirjoista?</string>
+   <string name="by_number_of_pages">Sivujen määrä</string>
+   <string name="by_number_in_serie">Numero sarjassa</string>
    <string name="tags">Tunnisteet</string>
 </resources>

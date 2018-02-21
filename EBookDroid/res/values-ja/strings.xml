@@ -214,7 +214,6 @@
    <string name="by_title">書名</string>
    <string name="by_author">本の著者</string>
    <string name="by_series">シリーズ</string>
-   <string name="by_number">数</string>
    <string name="by_date">日付</string>
    <string name="by_size">サイズ</string>
    <string name="read_a_book">本を読む</string>
@@ -448,5 +447,7 @@
    <string name="no_tag">タグなし</string>
    <string name="add_tag">タグ付けする</string>
    <string name="do_you_want_to_delete_this_tag_from_all_books_">このタグをすべての書籍から削除しますか？</string>
+   <string name="by_number_of_pages">ページ数</string>
+   <string name="by_number_in_serie">セリエの数</string>
    <string name="tags">タグ</string>
 </resources>

@@ -37,6 +37,36 @@ public class CbzCbrExtractor {
         return false;
     }
 
+    public static int getPageCount(String path) {
+        int count = 0;
+        try {
+            if (BookType.CBZ.is(path) || isZip(path)) {
+                FileInputStream is = new FileInputStream(new File(path));
+
+                ZipArchiveInputStream zipInputStream = new ZipArchiveInputStream(is);
+
+                while (zipInputStream.getNextZipEntry() != null) {
+                        count++;
+                }
+                zipInputStream.close();
+                is.close();
+
+            } else if (BookType.CBR.is(path)) {
+                Archive archive = new Archive(new File(path));
+
+                for (FileHeader it : archive.getFileHeaders()) {
+                    count++;
+                }
+
+                archive.close();
+            }
+
+        } catch (Exception e) {
+            LOG.e(e);
+        }
+        return count;
+    }
+
     public static byte[] getBookCover(String path) {
         ByteArrayOutputStream out = new ByteArrayOutputStream();
         try {
@@ -74,10 +104,7 @@ public class CbzCbrExtractor {
                 is.close();
 
             } else if (BookType.CBR.is(path)) {
-                FileInputStream is = new FileInputStream(new File(path));
                 Archive archive = new Archive(new File(path));
-
-
 
                 List<FileHeader> fileHeaders = archive.getFileHeaders();
                 Collections.sort(fileHeaders, new Comparator<FileHeader>() {
@@ -115,7 +142,6 @@ public class CbzCbrExtractor {
                 LOG.d("EXtract CBR", fileHeader.getFileNameString());
                 archive.extractFile(fileHeader, out);
                 archive.close();
-                is.close();
             }
 
         } catch (Exception e) {

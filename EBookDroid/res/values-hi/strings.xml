@@ -214,7 +214,6 @@
    <string name="by_title">पुस्तक का शीर्षक</string>
    <string name="by_author">पुस्तक के लेखक</string>
    <string name="by_series">शृंखला</string>
-   <string name="by_number">संख्या</string>
    <string name="by_date">तारीख</string>
    <string name="by_size">आकार</string>
    <string name="read_a_book">एक किताब पढ़ी</string>
@@ -448,5 +447,7 @@
    <string name="no_tag">कोई टैग नहीं</string>
    <string name="add_tag">टैग जोड़ो</string>
    <string name="do_you_want_to_delete_this_tag_from_all_books_">क्या आप सभी टैगों से इस टैग को हटाना चाहते हैं?</string>
+   <string name="by_number_of_pages">पृष्ठों की संख्या</string>
+   <string name="by_number_in_serie">श्रृंखला में नंबर</string>
    <string name="tags">टैग</string>
 </resources>

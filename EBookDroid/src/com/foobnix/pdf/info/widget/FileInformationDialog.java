@@ -65,7 +65,7 @@ public class FileInformationDialog {
         ((TextView) dialog.findViewById(R.id.mimeExt)).setText(fileMeta.getExt());
 
         if (fileMeta.getPages() != null && fileMeta.getPages() != 0) {
-            ((TextView) dialog.findViewById(R.id.size)).setText(fileMeta.getSizeTxt() + "/" + fileMeta.getPages() + "");
+            ((TextView) dialog.findViewById(R.id.size)).setText(fileMeta.getSizeTxt() + " (" + fileMeta.getPages() + ")");
         } else {
             ((TextView) dialog.findViewById(R.id.size)).setText(fileMeta.getSizeTxt());
         }

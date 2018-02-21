@@ -273,7 +273,6 @@
    <string name="by_title">Könyv címe</string>
    <string name="by_author">Könyv szerzője</string>
    <string name="by_series">Sorozatok</string>
-   <string name="by_number">Szám</string>
    <string name="list">Lista</string>
    <string name="compact">Összevont</string>
    <string name="grid">Rács</string>
@@ -448,5 +447,7 @@
    <string name="no_tag">Nincs címke</string>
    <string name="add_tag">Címke hozzáadása</string>
    <string name="do_you_want_to_delete_this_tag_from_all_books_">Szeretné törölni ezt a címkét az összes könyvből?</string>
+   <string name="by_number_of_pages">Oldalszám</string>
+   <string name="by_number_in_serie">Sorszám sorban</string>
    <string name="tags">Címkék</string>
 </resources>

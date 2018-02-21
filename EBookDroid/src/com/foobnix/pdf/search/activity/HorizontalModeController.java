@@ -21,6 +21,7 @@ import com.foobnix.android.utils.Dips;
 import com.foobnix.android.utils.LOG;
 import com.foobnix.android.utils.Safe;
 import com.foobnix.android.utils.TxtUtils;
+import com.foobnix.dao2.FileMeta;
 import com.foobnix.pdf.CopyAsyncTask;
 import com.foobnix.pdf.info.ExtUtils;
 import com.foobnix.pdf.info.PageUrl;
@@ -182,7 +183,7 @@ public abstract class HorizontalModeController extends DocumentController {
         }
 
         if (AppState.get().isDouble && isTextFormat) {
-                imageWidth = Dips.screenWidth() / 2;
+            imageWidth = Dips.screenWidth() / 2;
         }
 
         FileMetaCore.checkOrCreateMetaInfo(activity);
@@ -200,6 +201,18 @@ public abstract class HorizontalModeController extends DocumentController {
 
         if (pagesCount == -1) {
             throw new IllegalArgumentException("Pages count = -1");
+        }
+
+        try {
+            if (pagesCount > 0) {
+                FileMeta meta = AppDB.get().load(bs.fileName);
+                if (meta != null) {
+                    meta.setPages(pagesCount);
+                    AppDB.get().update(meta);
+                }
+            }
+        } catch (Exception e) {
+            LOG.e(e);
         }
 
         // int charsCount = 0;
@@ -418,8 +431,6 @@ public abstract class HorizontalModeController extends DocumentController {
     @Override
     public void onScrollUp() {
     }
-
-
 
     private volatile boolean isClosed = false;
 

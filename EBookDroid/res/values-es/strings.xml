@@ -214,7 +214,6 @@
    <string name="by_title">Titulo del libro</string>
    <string name="by_author">Autor de libros</string>
    <string name="by_series">Serie</string>
-   <string name="by_number">Número</string>
    <string name="by_date">Fecha</string>
    <string name="by_size">Tamaño</string>
    <string name="read_a_book">Lee un libro</string>
@@ -448,5 +447,7 @@
    <string name="no_tag">Sin etiqueta</string>
    <string name="add_tag">Añadir etiqueta</string>
    <string name="do_you_want_to_delete_this_tag_from_all_books_">¿Desea eliminar esta etiqueta de todos los libros?</string>
+   <string name="by_number_of_pages">Número de páginas</string>
+   <string name="by_number_in_serie">Número en serie</string>
    <string name="tags">Etiquetas</string>
 </resources>

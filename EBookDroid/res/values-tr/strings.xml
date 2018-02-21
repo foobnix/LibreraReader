@@ -214,7 +214,6 @@
    <string name="by_title">Kitap Başlığı</string>
    <string name="by_author">Kitap Yazarı</string>
    <string name="by_series">Dizi</string>
-   <string name="by_number">Numara</string>
    <string name="by_date">Tarih</string>
    <string name="by_size">Boyut</string>
    <string name="read_a_book">Kitabı Oku</string>
@@ -448,5 +447,7 @@
    <string name="no_tag">Etiket yok</string>
    <string name="add_tag">Etiket ekle</string>
    <string name="do_you_want_to_delete_this_tag_from_all_books_">Bu etiketi tüm kitaplardan silmek istiyor musunuz?</string>
+   <string name="by_number_of_pages">Sayfa sayısı</string>
+   <string name="by_number_in_serie">Seri numarası</string>
    <string name="tags">Etiketler</string>
 </resources>
