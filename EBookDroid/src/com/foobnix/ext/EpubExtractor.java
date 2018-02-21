@@ -196,7 +196,7 @@ public class EpubExtractor extends BaseExtractor {
 
             while ((nextEntry = zipInputStream.getNextEntry()) != null) {
                 String name = nextEntry.getName().toLowerCase();
-                if (name.endsWith("html") || name.endsWith("htm") || name.endsWith("xml")) {
+                if (name.endsWith("htmle") || name.endsWith("htm") || name.endsWith("xml")) {
                     size += nextEntry.getSize();
                 }
 

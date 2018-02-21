@@ -222,13 +222,13 @@
    <string name="___SORT___AND___VIEW___SECTION___">排序视窗</string>
    <string name="bookmark_by_date">按日期</string>
    <string name="bookmark_by_book">按书籍</string>
-   <string name="banner_slogan_LIRBI_READER">专业可靠的多格式阅读程序</string>
+   <string name="banner_slogan_LIRBI_READER">专业先进的多格式阅读器</string>
    <string name="banner_slogan_EPUB_READER">方便阅读EPUB电子书</string>
    <string name="banner_slogan_PDF_READER">方便阅读PDF文档</string>
    <string name="banner_slogan_PRO_LIRBI_READER_1">专业电子书阅读器</string>
    <string name="next_page">下一页</string>
    <string name="previous_page">上一页</string>
-   <string name="customize">自定义背景</string>
+   <string name="customize">自定义</string>
    <string name="left_side">左边</string>
    <string name="top_side">上边</string>
    <string name="bottom_side">下边</string>
@@ -310,12 +310,12 @@
    <string name="reading_out_loud">大声朗读</string>
    <string name="librera_pro_no_ads_leading_book_reader_and_pdf">Librera PRO专业领先无广告的电子书及PDF阅读器</string>
    <string name="custom_text">自定义文本</string>
-   <string name="right_page_then_left_page_rtl_">右页再左页（RTL）</string>
+   <string name="right_page_then_left_page_rtl_">先右页再左页（RTL）</string>
    <string name="one_page">单页</string>
-   <string name="two_pages">反页</string>
+   <string name="two_pages">双页</string>
    <string name="half_page">半页</string>
    <string name="stop_reading_timer_">停止朗读（定时器）</string>
-   <string name="two_pages_cover">双页</string>
+   <string name="two_pages_cover">封页</string>
    <string name="enhancements_for_oled_display">OLED屏显增强</string>
    <string name="reading_will_be_stopped">朗读停止于</string>
    <string name="compact">简洁</string>
@@ -347,7 +347,7 @@
    <string name="remove_from_library">移出书库</string>
    <string name="contrast_and_brightness">对比度和亮度</string>
    <string name="book_covers">封面</string>
-   <string name="page_position">页面位置</string>
+   <string name="page_position">页面调整</string>
    <string name="normal">正常</string>
    <string name="small">小</string>
    <string name="large">大</string>
@@ -443,10 +443,10 @@
    <string name="show_battery_percentage">显示电量百分比</string>
    <string name="show_current_time">显示当前的时间</string>
    <string name="telegram_channel">交流群</string>
-   <string name="zoom_in_out_using_the_volume_keys">使用音量键放大/缩小</string>
+   <string name="zoom_in_out_using_the_volume_keys">用音量键缩放</string>
    <string name="tag">标签</string>
    <string name="no_tag">没有标签</string>
-   <string name="add_tag">添加标签</string>
-   <string name="do_you_want_to_delete_this_tag_from_all_books_">你想从所有书籍中删除这个标签吗？</string>
+   <string name="add_tag">标签</string>
+   <string name="do_you_want_to_delete_this_tag_from_all_books_">删除标签？</string>
    <string name="tags">标签</string>
 </resources>

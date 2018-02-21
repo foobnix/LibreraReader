@@ -556,6 +556,7 @@ public class Dialogs {
                 if (refresh != null) {
                     refresh.run();
                 }
+                TempHolder.listHash++;
             }
 
         });
