@@ -120,8 +120,13 @@ public class BooksService extends IntentService {
                 IMG.clearMemoryCache();
                 ImageExtractor.clearErrors();
 
+                List<FileMeta> allWithTag = AppDB.get().getAllWithTag();
+                LOG.d(TAG, "allWithTag", allWithTag.size());
+
                 List<Uri> recent = AppSharedPreferences.get().getRecent();
                 List<FileMeta> starsAndRecent = AppDB.get().deleteAllSafe();
+
+
 
                 long time = Integer.MAX_VALUE;
                 for (Uri uri : recent) {
@@ -182,6 +187,8 @@ public class BooksService extends IntentService {
                 }
 
                 AppDB.get().updateAll(itemsMeta);
+
+                AppDB.get().updateAll(allWithTag);
 
                 itemsMeta.clear();
 

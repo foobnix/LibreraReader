@@ -24,6 +24,7 @@ import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
 import android.os.Environment;
 import android.provider.Settings;
+import android.support.v4.util.Pair;
 import android.text.TextUtils;
 import android.text.format.DateFormat;
 import android.widget.Toast;
@@ -40,6 +41,8 @@ public class ExportSettingsManager {
     public static final String PREFIX_RECENT = "Recent";
     public static final String PREFIX_STARS_Books = "StarsBook";
     public static final String PREFIX_STARS_Folders = "StarsFolder";
+
+    public static final String PREFIX_TAGS_BOOKS = "TAGS";
 
     public static final String RECURCIVE = "recurcive";
     private static final String PATH2 = "PATH";
@@ -80,6 +83,8 @@ public class ExportSettingsManager {
             root.put(PREFIX_RECENT, fileMetaToJSON(AppDB.get().getRecent()));
             root.put(PREFIX_STARS_Books, fileMetaToJSON(AppDB.get().getStarsFiles()));
             root.put(PREFIX_STARS_Folders, fileMetaToJSON(AppDB.get().getStarsFolder()));
+
+            root.put(PREFIX_TAGS_BOOKS, fileMetaTagToJSON(AppDB.get().getAllWithTag()));
 
             String name = getSampleJsonConfigName(c, "export_all.json");
             File fileConfig = toFile;
@@ -162,6 +167,24 @@ public class ExportSettingsManager {
                 }
             });
 
+            jsonTagsToMeta(jsonObject.optJSONArray(PREFIX_TAGS_BOOKS), new ResultResponse<Pair<String, String>>() {
+
+                @Override
+                public boolean onResultRecive(Pair<String, String> result) {
+                    try {
+                        if (new File(result.first).isFile()) {
+                            FileMeta meta = AppDB.get().getOrCreate(result.first);
+                            meta.setTag(result.second);
+                            AppDB.get().update(meta);
+                        }
+                    } catch (Exception e) {
+                        LOG.e(e);
+                    }
+
+                    return false;
+                }
+            });
+
             return true;
         } catch (Exception e) {
             LOG.e(e);
@@ -182,6 +205,24 @@ public class ExportSettingsManager {
         return jsonObject;
     }
 
+    public static JSONArray fileMetaTagToJSON(List<FileMeta> list) {
+        JSONArray jsonObject = new JSONArray();
+        if (list == null) {
+            return jsonObject;
+        }
+        for (FileMeta value : list) {
+            JSONObject obj = new JSONObject();
+            try {
+                obj.put("path", value.getPath());
+                obj.put("tag", value.getTag());
+            } catch (Exception e) {
+                LOG.e(e);
+            }
+            jsonObject.put(obj);
+        }
+        return jsonObject;
+    }
+
     public static void jsonToMeta(JSONArray jsonObject, ResultResponse<String> action) {
         if (jsonObject == null) {
             return;
@@ -191,6 +232,22 @@ public class ExportSettingsManager {
                 String path = jsonObject.getString(i);
                 if (path != null) {
                     action.onResultRecive(path);
+                }
+            }
+        } catch (Exception e) {
+            LOG.e(e);
+        }
+    }
+
+    public static void jsonTagsToMeta(JSONArray jsonObject, ResultResponse<Pair<String, String>> action) {
+        if (jsonObject == null) {
+            return;
+        }
+        try {
+            for (int i = jsonObject.length() - 1; i >= 0; i--) {
+                JSONObject object = jsonObject.getJSONObject(i);
+                if (object != null) {
+                    action.onResultRecive(new Pair<String, String>(object.getString("path"), object.getString("tag")));
                 }
             }
         } catch (Exception e) {

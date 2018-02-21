@@ -409,6 +409,12 @@ public class AppDB {
         QueryBuilder<FileMeta> where = fileMetaDao.queryBuilder();
         where = where.where(SEARCH_IN.TAGS.getProperty().like("%" + tagName + StringDB.DIVIDER + "%"));
         return where.list();
+    }
+
+    public List<FileMeta> getAllWithTag() {
+        QueryBuilder<FileMeta> where = fileMetaDao.queryBuilder();
+        where = where.where(FileMetaDao.Properties.Tag.isNotNull());
+        return where.list();
 
     }
 
