@@ -17,6 +17,7 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.DialogInterface.OnDismissListener;
 import android.graphics.Color;
+import android.os.Build;
 import android.provider.Settings.SettingNotFoundException;
 import android.support.v4.graphics.ColorUtils;
 import android.view.LayoutInflater;
@@ -102,9 +103,13 @@ public class BrightnessHelper {
             final WindowManager.LayoutParams lp = a.getWindow().getAttributes();
 
             if (appBrightness == AppState.AUTO_BRIGTNESS) {
-                lp.screenBrightness = -1;
+                lp.screenBrightness = WindowManager.LayoutParams.BRIGHTNESS_OVERRIDE_NONE;
             } else if (appBrightness == 0) {
-                lp.screenBrightness = 0.01f;
+                if (Build.VERSION.SDK_INT >= 21) {
+                    lp.screenBrightness = WindowManager.LayoutParams.BRIGHTNESS_OVERRIDE_OFF;
+                } else {
+                    lp.screenBrightness = 0.01f;
+                }
             } else {
                 lp.screenBrightness = (float) appBrightness / 100;
             }

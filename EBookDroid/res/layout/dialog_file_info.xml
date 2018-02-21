@@ -47,7 +47,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="1"
+        android:layout_weight="0"
         android:orientation="horizontal" >
 
         <ImageView
@@ -58,7 +58,6 @@
             android:adjustViewBounds="true"
             android:cropToPadding="true"
             android:src="@drawable/icon_pdf_pro" />
-
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -164,7 +163,11 @@
                 android:textSize="@dimen/text_subtitle"
                 android:visibility="gone" />
 
-            <LinearLayout
+            
+        </LinearLayout>
+    </LinearLayout>
+    
+    <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
@@ -215,13 +218,12 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="5dip"
+                    android:singleLine="true"
                     android:layout_weight="0"
                     android:minWidth="50dip"
                     android:text="Russian"
                     android:textStyle="bold" />
             </LinearLayout>
-        </LinearLayout>
-    </LinearLayout>
 
     <TextView
         android:id="@+id/bookmarks"

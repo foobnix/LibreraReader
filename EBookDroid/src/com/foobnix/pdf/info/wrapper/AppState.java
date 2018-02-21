@@ -529,7 +529,7 @@ public class AppState {
     public String nameHorizontalMode = "";
     public String nameMusicianMode = "";
 
-    public boolean isAutomaticExport = true;
+    public boolean isAutomaticExport = false;
     public boolean isDisplayAllFilesInFolder = false;
 
     public Set<String> myAutoComplete = new HashSet<String>();
