@@ -448,6 +448,6 @@
    <string name="add_tag">标签</string>
    <string name="do_you_want_to_delete_this_tag_from_all_books_">删除标签？</string>
    <string name="by_number_of_pages">页数</string>
-   <string name="by_number_in_serie">数字在意甲</string>
+   <string name="by_number_in_serie">系数</string>
    <string name="tags">标签</string>
 </resources>
