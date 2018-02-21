@@ -188,6 +188,7 @@ public class Fb2Extractor extends BaseExtractor {
             boolean titleInfo = false;
 
             int eventType = xpp.getEventType();
+            long fileSize = 0;
             while (eventType != XmlPullParser.END_DOCUMENT) {
 
                 if (eventType == XmlPullParser.START_TAG) {
@@ -216,7 +217,7 @@ public class Fb2Extractor extends BaseExtractor {
                         }
                     }
 
-                    if (xpp.getName().equals("body")) {
+                    if (xpp.getName().equals("binary")) {
                         break;
                     }
                 }
@@ -225,9 +226,14 @@ public class Fb2Extractor extends BaseExtractor {
                         titleInfo = false;
                     }
                 }
+                if (eventType == XmlPullParser.TEXT) {
+                    fileSize += xpp.getText().length();
+                }
 
                 eventType = xpp.next();
             }
+
+
             lastName = TxtUtils.nullNullToEmpty(lastName);
             firstName = TxtUtils.nullNullToEmpty(firstName);
 
@@ -242,6 +248,7 @@ public class Fb2Extractor extends BaseExtractor {
                 try {
                     ebookMeta.setLang(lang);
                     ebookMeta.setsIndex(Integer.parseInt(number));
+                    ebookMeta.setPagesCount((int) fileSize / 512);
                 } catch (Exception e) {
                     LOG.e(e);
                 }
@@ -249,6 +256,7 @@ public class Fb2Extractor extends BaseExtractor {
             } else {
                 EbookMeta ebookMeta = new EbookMeta(bookTitle, firstName + " " + lastName, sequence, genre);
                 ebookMeta.setLang(lang);
+                ebookMeta.setPagesCount((int) fileSize / 512);
                 return ebookMeta;
             }
         } catch (Exception e) {
