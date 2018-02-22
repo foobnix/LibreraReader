@@ -475,22 +475,19 @@ public class Fb2Extractor extends BaseExtractor {
 
                 if (line.contains("</title")) {
                     titleBegin = false;
-                    count++;
-                    line = line.replace("</title>", "<a id=\"" + count + "\"></a></title>");
+
+                    if (line.contains("</title>")) {
+                        count++;
+                        line = line.replace("</title>", "<a id=\"" + count + "\"></a></title>");
+                    }
                 }
 
                 if (!isFindBodyEnd && line.contains("</body>")) {
                     isFindBodyEnd = true;
-                    // count++;
-                    // line = line.replace("</body>", "<a id=\"" + count + "\"></a></body>");
                 }
 
                 if (!isFindBodyEnd) {
                     if ((AppState.get().isDouble || !titleBegin) && BookCSS.get().isAutoHypens) {
-                        // if (line.contains("&")) {
-                        // line = line.replace("&nbsp;", " ");
-                        // }
-                        // line = HypenUtils.applyHypnes(line);
                         line = HypenUtils.applyHypnesOld(line);
                     }
                 }

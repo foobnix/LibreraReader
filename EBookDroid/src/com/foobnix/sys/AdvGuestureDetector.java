@@ -177,18 +177,14 @@ public class AdvGuestureDetector extends SimpleOnGestureListener implements IMul
                     docCtrl.onLongPress(e);
                     return false;
                 }
-                if (text != null) {
+                if (TxtUtils.isNotEmpty(text)) {
                     docCtrl.clearSelectedText();
                     docCtrl.closeFooterNotesDialog();
+                    AppState.get().selectedText = null;
+
                 }
             }
 
-            if (AppState.get().selectedText != null) {
-                docCtrl.clearSelectedText();
-                docCtrl.closeFooterNotesDialog();
-                AppState.get().selectedText = null;
-                return true;
-            }
         }
         if (!AppState.get().isMusicianMode) {
             boolean processTap = avc.processTap(TouchManager.Touch.SingleTap, e);
