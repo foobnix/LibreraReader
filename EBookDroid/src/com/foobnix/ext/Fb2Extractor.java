@@ -476,7 +476,7 @@ public class Fb2Extractor extends BaseExtractor {
                     titleBegin = true;
                 }
 
-                if (line.contains("</title>")) {
+                if (line.contains("</title")) {
                     titleBegin = false;
                     count++;
                     line = line.replace("</title>", "<a id=\"" + count + "\"></a></title>");
