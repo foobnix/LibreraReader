@@ -448,6 +448,7 @@
                 android:text="@string/automatic"
                 android:textSize="12sp" />
         </LinearLayout>
+        
 
         <com.foobnix.pdf.info.view.CustomSeek
             android:id="@+id/customBrightness"

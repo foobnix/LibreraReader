@@ -536,6 +536,7 @@ public class AppState {
 
     public String bookTags = "";
 
+
     @IgnoreHashCode
     public int hashCode = 0;
 

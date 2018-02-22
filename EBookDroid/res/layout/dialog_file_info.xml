@@ -179,25 +179,29 @@
                     android:layout_height="wrap_content"
                     android:text="Date"
                     android:textSize="@dimen/text_subtitle" />
-
+                
                 <TextView
-                    android:id="@+id/size"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="4dip"
-                    android:text="Size"
-                    android:textSize="@dimen/text_subtitle"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:id="@+id/mimeExt"
+                    android:id="@+id/info"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="4dip"
                     android:text="EPUB"
                     android:textAllCaps="true"
                     android:textSize="@dimen/text_subtitle"
-                    android:textStyle="bold" />
+                    android:textStyle="normal" />
+                
+                 <TextView
+                    android:id="@+id/size"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="4dip"
+                    android:text="EPUB"
+                    android:textAllCaps="false"
+                    android:textSize="@dimen/text_subtitle"
+                    android:textStyle="normal" />
+
+
+                
             </LinearLayout>
 
             <LinearLayout

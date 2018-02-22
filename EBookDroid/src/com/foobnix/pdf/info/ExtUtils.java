@@ -513,7 +513,7 @@ public class ExtUtils {
 
     public static String readableFileSize(long size) {
         if (true) {
-            return Formatter.formatFileSize(LibreraApp.context, size);
+            return Formatter.formatFileSize(LibreraApp.context, size).replace(" ", "");
         }
         if (size <= 0)
             return "0";
