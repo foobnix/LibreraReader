@@ -264,7 +264,7 @@ public class EpubExtractor extends BaseExtractor {
                 LOG.d(e);
             }
             ebookMeta.setLang(lang);
-            ebookMeta.setPagesCount((int) size / 1024);
+            // ebookMeta.setPagesCount((int) size / 1024);
             return ebookMeta;
         } catch (
 

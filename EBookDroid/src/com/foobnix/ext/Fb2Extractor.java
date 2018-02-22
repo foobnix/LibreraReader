@@ -248,7 +248,7 @@ public class Fb2Extractor extends BaseExtractor {
                 try {
                     ebookMeta.setLang(lang);
                     ebookMeta.setsIndex(Integer.parseInt(number));
-                    ebookMeta.setPagesCount((int) fileSize / 512);
+                    // ebookMeta.setPagesCount((int) fileSize / 512);
                 } catch (Exception e) {
                     LOG.e(e);
                 }
@@ -256,7 +256,7 @@ public class Fb2Extractor extends BaseExtractor {
             } else {
                 EbookMeta ebookMeta = new EbookMeta(bookTitle, firstName + " " + lastName, sequence, genre);
                 ebookMeta.setLang(lang);
-                ebookMeta.setPagesCount((int) fileSize / 512);
+                // ebookMeta.setPagesCount((int) fileSize / 512);
                 return ebookMeta;
             }
         } catch (Exception e) {

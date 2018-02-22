@@ -777,6 +777,7 @@ Java_org_ebookdroid_droids_mupdf_codec_MuPdfOutline_free(JNIEnv *env,
 	}
 }
 
+
 JNIEXPORT jstring JNICALL
 Java_org_ebookdroid_droids_mupdf_codec_MuPdfOutline_getTitle(JNIEnv *env,
 		jclass clazz, jlong outlinehandle) {
@@ -784,6 +785,8 @@ Java_org_ebookdroid_droids_mupdf_codec_MuPdfOutline_getTitle(JNIEnv *env,
 //	DEBUG("PdfOutline_getTitle(%p)",outline);
 	if (outline)
 		return (*env)->NewStringUTF(env, outline->title);
+		//return (*env)->GetStringUTFChars(env, outline->title, NULL);
+
 	return NULL;
 }
 

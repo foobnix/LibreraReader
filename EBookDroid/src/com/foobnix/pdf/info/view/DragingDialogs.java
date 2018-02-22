@@ -2446,6 +2446,7 @@ public class DragingDialogs {
 
                 CheckBox isScrollSpeedByVolumeKeys = (CheckBox) inflate.findViewById(R.id.isScrollSpeedByVolumeKeys);
                 isScrollSpeedByVolumeKeys.setChecked(AppState.get().isScrollSpeedByVolumeKeys);
+                isScrollSpeedByVolumeKeys.setVisibility(View.GONE);
                 isScrollSpeedByVolumeKeys.setOnCheckedChangeListener(new OnCheckedChangeListener() {
 
                     @Override

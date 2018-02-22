@@ -11,7 +11,6 @@ import com.foobnix.android.utils.ResultResponse;
 import com.foobnix.android.utils.ResultResponse2;
 import com.foobnix.android.utils.TxtUtils;
 import com.foobnix.dao2.FileMeta;
-import com.foobnix.pdf.info.ExtUtils;
 import com.foobnix.pdf.info.IMG;
 import com.foobnix.pdf.info.R;
 import com.foobnix.pdf.info.TintUtil;
@@ -510,11 +509,7 @@ public class FileMetaAdapter extends AppRecycleAdapter<FileMeta, RecyclerView.Vi
         holder.path.setText(fileMeta.getPathTxt());
         holder.browserExt.setText(fileMeta.getChild() != null ? fileMeta.getChild() : fileMeta.getExt());
         if (fileMeta.getPages() != null && fileMeta.getPages() != 0) {
-            if (ExtUtils.isTextFomat(fileMeta.getExt())) {
-                holder.size.setText(fileMeta.getSizeTxt() + " (~" + fileMeta.getPages() + ")");
-            } else {
-                holder.size.setText(fileMeta.getSizeTxt() + " (" + fileMeta.getPages() + ")");
-            }
+            holder.size.setText(fileMeta.getSizeTxt() + " (" + fileMeta.getPages() + ")");
         } else {
             holder.size.setText(fileMeta.getSizeTxt());
 

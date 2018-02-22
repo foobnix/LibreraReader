@@ -545,23 +545,38 @@ public abstract class HorizontalModeController extends DocumentController {
     }
 
     @Override
-    public void getOutline(com.foobnix.android.utils.ResultResponse<List<OutlineLinkWrapper>> outline, boolean forse) {
+    public synchronized void getOutline(final com.foobnix.android.utils.ResultResponse<List<OutlineLinkWrapper>> outline, boolean forse) {
         if (codeDocument == null) {
             return;
         }
-        List<OutlineLinkWrapper> outlineRes = new ArrayList<OutlineLinkWrapper>();
-        try {
-            for (OutlineLink ol : codeDocument.getOutline()) {
-                outlineRes.add(new OutlineLinkWrapper(ol.getTitle(), ol.getLink(), ol.getLevel()));
-            }
 
-            setOutline(outlineRes);
-            if (outline != null) {
-                outline.onResultRecive(outlineRes);
-            }
-        } catch (Exception e) {
-            LOG.e(e);
-        }
+        new Thread() {
+            @Override
+            public void run() {
+
+                final List<OutlineLinkWrapper> outlineRes = new ArrayList<OutlineLinkWrapper>();
+                try {
+                    for (OutlineLink ol : codeDocument.getOutline()) {
+                        outlineRes.add(new OutlineLinkWrapper(ol.getTitle(), ol.getLink(), ol.getLevel()));
+                    }
+
+                    setOutline(outlineRes);
+                    if (outline != null) {
+                        getActivity().runOnUiThread(new Runnable() {
+
+                            @Override
+                            public void run() {
+                                outline.onResultRecive(outlineRes);
+                            }
+                        });
+
+                    }
+                } catch (Exception e) {
+                    LOG.e(e);
+                }
+
+            };
+        }.start();
 
     }
 

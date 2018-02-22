@@ -1491,6 +1491,7 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
         onViewPagerChangeListener.onPageSelected(dc.getCurentPage());
 
         progressDraw.updatePageCount(dc.getPageCount());
+
         dc.getOutline(new ResultResponse<List<OutlineLinkWrapper>>() {
 
             @Override
