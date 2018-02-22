@@ -559,8 +559,8 @@ public class SearchFragment2 extends UIFragment<FileMeta> {
         }
 
         if (CMD_LONG_TAP_ON_OFF.equals(txt)) {
-            AppState.get().longTapEnable = !AppState.get().longTapEnable;
-            toastState(CMD_LONG_TAP_ON_OFF, AppState.get().longTapEnable);
+            AppState.get().isAllowTextSelection = !AppState.get().isAllowTextSelection;
+            toastState(CMD_LONG_TAP_ON_OFF, AppState.get().isAllowTextSelection);
             searchEditText.setText("");
         }
 

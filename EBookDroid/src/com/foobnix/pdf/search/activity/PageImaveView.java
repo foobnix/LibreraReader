@@ -303,8 +303,13 @@ public class PageImaveView extends View {
         @Override
         public void onLongPress(MotionEvent e) {
             isIgronerClick = true;
+
+            if (!AppState.get().isAllowTextSelection) {
+                return;
+            }
+
             Vibro.vibrate();
-            if (!AppState.get().longTapEnable || AppState.get().isCut || AppState.get().isCrop) {
+            if (AppState.get().isCut || AppState.get().isCrop) {
                 Toast.makeText(LibreraApp.context, R.string.the_page_is_clipped_the_text_selection_does_not_work, Toast.LENGTH_LONG).show();
                 return;
             }

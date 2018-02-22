@@ -270,6 +270,13 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/show_the_book_close_dialog" />
+        
+        <CheckBox
+            android:id="@+id/isAllowTextSelection"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/enable_text_highlight" />
+        
         <CheckBox
             android:id="@+id/isZoomInOutWithVolueKeys"
             android:layout_width="match_parent"

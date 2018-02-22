@@ -2475,6 +2475,16 @@ public class DragingDialogs {
                     }
                 });
 
+                CheckBox isAllowTextSelection = (CheckBox) inflate.findViewById(R.id.isAllowTextSelection);
+                isAllowTextSelection.setChecked(AppState.get().isAllowTextSelection);
+                isAllowTextSelection.setOnCheckedChangeListener(new OnCheckedChangeListener() {
+
+                    @Override
+                    public void onCheckedChanged(final CompoundButton buttonView, final boolean isChecked) {
+                        AppState.get().isAllowTextSelection = isChecked;
+                    }
+                });
+
                 CheckBox isZoomInOutWithVolueKeys = (CheckBox) inflate.findViewById(R.id.isZoomInOutWithVolueKeys);
                 isZoomInOutWithVolueKeys.setChecked(AppState.get().isZoomInOutWithVolueKeys);
                 isZoomInOutWithVolueKeys.setOnCheckedChangeListener(new OnCheckedChangeListener() {

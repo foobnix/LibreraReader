@@ -451,4 +451,5 @@
    <string name="by_number_in_serie">Número en serie</string>
    <string name="tags">Etiquetas</string>
    <string name="recent_favorites_tags">Etiquetas recientes, favoritos</string>
+   <string name="enable_text_highlight">Habilitar texto resaltado</string>
 </resources>

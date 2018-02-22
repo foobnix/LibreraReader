@@ -451,4 +451,5 @@
    <string name="by_number_in_serie">Numeris serijoje</string>
    <string name="tags">Žymos</string>
    <string name="recent_favorites_tags">Naujausi, mėgstamiausi, žymas</string>
+   <string name="enable_text_highlight">Įgalinti teksto paryškinimą</string>
 </resources>

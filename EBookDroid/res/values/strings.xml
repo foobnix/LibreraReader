@@ -451,4 +451,5 @@
    <string name="by_number_of_pages">Number of pages</string>
    <string name="by_number_in_serie">Number in serie</string>
    <string name="recent_favorites_tags">Recent, favorites, tags</string>
+   <string name="enable_text_highlight">Enable text highlight</string>
 </resources>

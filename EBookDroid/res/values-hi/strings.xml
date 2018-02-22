@@ -451,4 +451,5 @@
    <string name="by_number_in_serie">श्रृंखला में नंबर</string>
    <string name="tags">टैग</string>
    <string name="recent_favorites_tags">हाल ही में, पसंदीदा, टैग</string>
+   <string name="enable_text_highlight">टेक्स्ट हाइलाइट सक्षम करें</string>
 </resources>

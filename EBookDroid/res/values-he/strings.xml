@@ -451,4 +451,5 @@
    <string name="by_number_in_serie">מספר בסרי</string>
    <string name="tags">תגים</string>
    <string name="recent_favorites_tags">לאחרונה, מועדפים, תגים</string>
+   <string name="enable_text_highlight">הפעל הדגשת טקסט</string>
 </resources>

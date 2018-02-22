@@ -451,4 +451,5 @@
    <string name="by_number_in_serie">Numărul în serie</string>
    <string name="tags">Etichete</string>
    <string name="recent_favorites_tags">Recente, favorite, etichete</string>
+   <string name="enable_text_highlight">Activați evidențierea textului</string>
 </resources>

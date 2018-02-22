@@ -755,6 +755,14 @@ public class DocumentWrapperUI {
         View bookMenu = a.findViewById(R.id.bookMenu);
         bookMenu.setOnClickListener(onItemMenu);
         modeName.setOnClickListener(onItemMenu);
+        modeName.setOnLongClickListener(new OnLongClickListener() {
+
+            @Override
+            public boolean onLongClick(View v) {
+                dc.onChangeTextSelection();
+                return true;
+            }
+        });
 
         progressDraw = (ProgressDraw) a.findViewById(R.id.progressDraw);
 

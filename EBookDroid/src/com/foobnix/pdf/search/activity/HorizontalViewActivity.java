@@ -588,6 +588,14 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
                 bookMenu.performClick();
             }
         });
+        modeName.setOnLongClickListener(new OnLongClickListener() {
+
+            @Override
+            public boolean onLongClick(View v) {
+                dc.onChangeTextSelection();
+                return true;
+            }
+        });
 
         findViewById(R.id.bookPref).setOnClickListener(new View.OnClickListener() {
 

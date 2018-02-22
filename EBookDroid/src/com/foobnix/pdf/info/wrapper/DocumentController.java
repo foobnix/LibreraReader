@@ -14,6 +14,7 @@ import com.foobnix.android.utils.LOG;
 import com.foobnix.android.utils.ResultResponse;
 import com.foobnix.android.utils.Safe;
 import com.foobnix.android.utils.TxtUtils;
+import com.foobnix.android.utils.Vibro;
 import com.foobnix.dao2.FileMeta;
 import com.foobnix.pdf.info.ExtUtils;
 import com.foobnix.pdf.info.IMG;
@@ -179,6 +180,14 @@ public abstract class DocumentController {
                 }
             });
         }
+    }
+
+    public void onChangeTextSelection() {
+        Vibro.vibrate();
+        AppState.get().isAllowTextSelection = !AppState.get().isAllowTextSelection;
+        String txt = getString(R.string.enable_text_highlight);
+        txt = txt + " [ " + (AppState.get().isAllowTextSelection ? getString(R.string.on) : getString(R.string.off)) + " ]";
+        Toast.makeText(getActivity(), txt, Toast.LENGTH_LONG).show();
     }
 
     public boolean isEasyMode() {

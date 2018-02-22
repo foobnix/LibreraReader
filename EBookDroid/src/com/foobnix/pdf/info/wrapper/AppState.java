@@ -252,7 +252,8 @@ public class AppState {
 
     public int outlineMode = OUTLINE_ONLY_HEADERS;
 
-    public boolean longTapEnable = true;
+    @IgnoreHashCode
+    public boolean isAllowTextSelection = true;
 
     public boolean isEditMode = true;
     public boolean isFullScreen = true;
