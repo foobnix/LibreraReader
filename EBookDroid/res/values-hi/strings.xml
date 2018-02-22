@@ -450,4 +450,5 @@
    <string name="by_number_of_pages">पृष्ठों की संख्या</string>
    <string name="by_number_in_serie">श्रृंखला में नंबर</string>
    <string name="tags">टैग</string>
+   <string name="recent_favorites_tags">हाल ही में, पसंदीदा, टैग</string>
 </resources>

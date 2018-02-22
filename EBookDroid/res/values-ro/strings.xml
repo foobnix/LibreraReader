@@ -450,4 +450,5 @@
    <string name="by_number_of_pages">Număr de pagini</string>
    <string name="by_number_in_serie">Numărul în serie</string>
    <string name="tags">Etichete</string>
+   <string name="recent_favorites_tags">Recente, favorite, etichete</string>
 </resources>

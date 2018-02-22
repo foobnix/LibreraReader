@@ -450,4 +450,5 @@
    <string name="by_number_of_pages">Antall sider</string>
    <string name="by_number_in_serie">Nummer i serie</string>
    <string name="tags">Tags</string>
+   <string name="recent_favorites_tags">Nylig, favoritter, tagger</string>
 </resources>

@@ -450,4 +450,5 @@
    <string name="by_number_of_pages">Número de páginas</string>
    <string name="by_number_in_serie">Número en serie</string>
    <string name="tags">Etiquetas</string>
+   <string name="recent_favorites_tags">Etiquetas recientes, favoritos</string>
 </resources>

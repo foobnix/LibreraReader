@@ -450,4 +450,5 @@
    <string name="by_number_of_pages">Oldalszám</string>
    <string name="by_number_in_serie">Sorszám sorban</string>
    <string name="tags">Címkék</string>
+   <string name="recent_favorites_tags">Legutóbbi, kedvencek, címkék</string>
 </resources>

@@ -450,4 +450,5 @@
    <string name="by_number_of_pages">ページ数</string>
    <string name="by_number_in_serie">セリエの数</string>
    <string name="tags">タグ</string>
+   <string name="recent_favorites_tags">最近のお気に入り、タグ</string>
 </resources>

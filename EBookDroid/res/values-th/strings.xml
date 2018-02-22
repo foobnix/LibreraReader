@@ -450,4 +450,5 @@
    <string name="by_number_of_pages">เลขหน้า</string>
    <string name="by_number_in_serie">จำนวนในซีรี่ส์</string>
    <string name="tags">แท็ก</string>
+   <string name="recent_favorites_tags">รายการโปรดล่าสุดแท็ก</string>
 </resources>
