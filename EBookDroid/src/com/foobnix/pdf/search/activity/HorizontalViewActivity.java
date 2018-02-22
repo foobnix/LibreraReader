@@ -593,6 +593,8 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
             @Override
             public boolean onLongClick(View v) {
                 dc.onChangeTextSelection();
+                AppState.get().isEditMode = false;
+                hideShow();
                 return true;
             }
         });
