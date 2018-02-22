@@ -97,7 +97,7 @@
    <string name="web">网站</string>
    <string name="pro_pdf_description_ads_free">专业版无广告</string>
    <string name="this_function_will_works_in_modern_android">此功能将启用</string>
-   <string name="import_or_export_application_settings_to_json_file">JSON文件</string>
+   <string name="import_or_export_application_settings_to_json_file">备份</string>
    <string name="menu">设置</string>
    <string name="foot_notes">脚注</string>
    <string name="dictionary">字典</string>
