@@ -12,6 +12,7 @@ import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
@@ -233,7 +234,6 @@ public class Fb2Extractor extends BaseExtractor {
                 eventType = xpp.next();
             }
 
-
             lastName = TxtUtils.nullNullToEmpty(lastName);
             firstName = TxtUtils.nullNullToEmpty(firstName);
 
@@ -434,29 +434,26 @@ public class Fb2Extractor extends BaseExtractor {
             HypenUtils.applyLanguage(BookCSS.get().hypenLang);
         }
 
-        boolean isEncoding = false;
         boolean isFindBodyEnd = false;
         boolean titleBegin = false;
 
         long init = System.currentTimeMillis();
 
+        boolean firstLine = true;
         while ((line = input.readLine()) != null) {
             if (TempHolder.get().loadingCancelled) {
                 break;
             }
 
-            if (!isEncoding && line.contains("windows-1251")) {
-                line = line.replace("windows-1251", "utf-8");
-                isEncoding = true;
-            } else if (!isEncoding && line.contains("Windows-1251")) {
-                line = line.replace("Windows-1251", "utf-8");
-                isEncoding = true;
-            } else if (!isEncoding && line.contains("windows-1252")) {
-                line = line.replace("windows-1252", "utf-8");
-                isEncoding = true;
-            } else if (!isEncoding && line.contains("Windows-1252")) {
-                line = line.replace("Windows-1252", "utf-8");
-                isEncoding = true;
+            if (firstLine) {
+                List<String> encodings = Arrays.asList("windows-1251", "Windows-1251", "windows-1252", "Windows-1252");
+                for (String e : encodings) {
+                    if (line.contains(e)) {
+                        line = line.replace(e, "utf-8");
+                    }
+                }
+                firstLine = false;
+                continue;
             }
 
             if (fixXML) {
