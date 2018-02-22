@@ -73,7 +73,6 @@ public class SearchFragment2 extends UIFragment<FileMeta> {
     private String NO_SERIES = ":no-series";
     public static final Pair<Integer, Integer> PAIR = new Pair<Integer, Integer>(R.string.library, R.drawable.glyphicons_2_book_open);
     private static final String CMD_KEYCODE = "@@keycode_config";
-    private static final String CMD_LONG_TAP_ON_OFF = "@@long_tap_on_off";
     private static final String CMD_EDIT_AUTO_COMPLETE = "@@edit_autocomple";
 
     public static int NONE = -1;
@@ -127,7 +126,6 @@ public class SearchFragment2 extends UIFragment<FileMeta> {
             }
         }
 
-        autocomplitions.add(CMD_LONG_TAP_ON_OFF);
         autocomplitions.add(CMD_KEYCODE);
         autocomplitions.add(CMD_EDIT_AUTO_COMPLETE);
 
@@ -555,12 +553,6 @@ public class SearchFragment2 extends UIFragment<FileMeta> {
 
         if (CMD_KEYCODE.equals(txt)) {
             new KeyCodeDialog(getActivity(), null);
-            searchEditText.setText("");
-        }
-
-        if (CMD_LONG_TAP_ON_OFF.equals(txt)) {
-            AppState.get().isAllowTextSelection = !AppState.get().isAllowTextSelection;
-            toastState(CMD_LONG_TAP_ON_OFF, AppState.get().isAllowTextSelection);
             searchEditText.setText("");
         }
 
