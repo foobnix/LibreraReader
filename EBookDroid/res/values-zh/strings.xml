@@ -30,7 +30,7 @@
    <string name="licence_gnu_gpl_v3_0">授权方式: GNU GPL v3.0</string>
    <string name="light">亮色</string>
    <string name="loading_failed">载入失败</string>
-   <string name="loop_autoplay">自动循环</string>
+   <string name="loop_autoplay">启用自动循环</string>
    <string name="msg_loading">正在载入...</string>
    <string name="msg_no_text_found">无结果</string>
    <string name="msg_password_required">请输入密码</string>
@@ -62,7 +62,7 @@
    <string name="scan_device_for_new_books">扫描新书</string>
    <string name="screen_orientation">屏幕方向</string>
    <string name="search">搜索</string>
-   <string name="searching_please_wait_">正在搜索...</string>
+   <string name="searching_please_wait_">正在更新...</string>
    <string name="select">选取</string>
    <string name="send_file_to">发送文件</string>
    <string name="share">分享</string>
@@ -97,7 +97,7 @@
    <string name="web">网站</string>
    <string name="pro_pdf_description_ads_free">专业版无广告</string>
    <string name="this_function_will_works_in_modern_android">此功能将启用</string>
-   <string name="import_or_export_application_settings_to_json_file">JSON文件</string>
+   <string name="import_or_export_application_settings_to_json_file">备份</string>
    <string name="menu">设置</string>
    <string name="foot_notes">脚注</string>
    <string name="dictionary">字典</string>
@@ -159,7 +159,7 @@
    <string name="folder_with_fonts">更改字体</string>
    <string name="interval">行间距</string>
    <string name="paragraph">段间距</string>
-   <string name="simple_scroll_animation">过渡动画</string>
+   <string name="simple_scroll_animation">显示过渡动画</string>
    <string name="image_format">图像格式</string>
    <string name="empty_line">空行</string>
    <string name="customize_background_color">自定义背景色</string>
@@ -241,7 +241,7 @@
    <string name="user_styles">用户样式</string>
    <string name="archive">档案</string>
    <string name="beta_version">测试版</string>
-   <string name="of_screen">滚距</string>
+   <string name="of_screen">距</string>
    <string name="ongoing_notification">显示通知</string>
    <string name="speak_into_file_wav_">录入文件（WAV）</string>
    <string name="the_book_is_over">本书结束</string>
@@ -264,7 +264,7 @@
    <string name="remind_msg">请休息下。</string>
    <string name="automatic_page_flipping">自动翻页</string>
    <string name="start">开始</string>
-   <string name="show_bottom_panel">底部信息</string>
+   <string name="show_bottom_panel">显示底部信息</string>
    <string name="interval_sec_">间隔（秒）</string>
    <string name="library_settings">书库</string>
    <string name="opening_the_last_book_when_the_application_starts">启动后继续上次阅读</string>
@@ -315,7 +315,7 @@
    <string name="half_page">半页</string>
    <string name="stop_reading_timer_">停止朗读（定时器）</string>
    <string name="two_pages_cover">封页</string>
-   <string name="enhancements_for_oled_display">OLED屏显增强</string>
+   <string name="enhancements_for_oled_display">有机屏显增强</string>
    <string name="reading_will_be_stopped">朗读停止于</string>
    <string name="compact">简洁</string>
    <string name="cd_search_books_in_the_library">书库搜索</string>
@@ -378,7 +378,7 @@
    <string name="scroll_speed">鼠标灵敏度</string>
    <string name="landscape_180">横屏（180°）</string>
    <string name="portrait_180">竖屏（180°）</string>
-   <string name="full_list_of_changes_with_images_web_pdf_">详细变更信息。</string>
+   <string name="full_list_of_changes_with_images_web_pdf_">详细变更信息...</string>
    <string name="select_the_reading_mode">阅读模式</string>
    <string name="remember_choice">默认</string>
    <string name="formatted_text">格式文本（伪图形）</string>
@@ -396,14 +396,14 @@
    <string name="other_settings">其它设置</string>
    <string name="display_large_book_covers_in_the_catalog">目录中显示书籍大封面</string>
    <string name="edit_names">编辑名称</string>
-   <string name="you_neet_to_apply_the_new_settings">应用新设置？</string>
+   <string name="you_neet_to_apply_the_new_settings">应用设置？</string>
    <string name="custom_value">自定义值</string>
    <string name="change_the_automatic_scrolling_speed_with_the_volume_keys">音量键调滚速</string>
    <string name="automatic_export_backup">自动备份设置，进度，书签，并导出。</string>
-   <string name="display_all_file_types_in_folders">文件夹中全文件类型</string>
-   <string name="no_serie">没有系列</string>
-   <string name="no_genre">没有类型</string>
-   <string name="no_author">没有作者</string>
+   <string name="display_all_file_types_in_folders">文件夹显全文件类型</string>
+   <string name="no_serie">无系列</string>
+   <string name="no_genre">无类型</string>
+   <string name="no_author">无作者</string>
    <string name="archives">档案</string>
    <string name="other">其它</string>
    <string name="read_the_tutorial_online_or_download_in_pdf_format">在线阅读教程或以PDF格式下载</string>
@@ -444,7 +444,7 @@
    <string name="telegram_channel">交流群</string>
    <string name="zoom_in_out_using_the_volume_keys">用音量键缩放</string>
    <string name="tag">标签</string>
-   <string name="no_tag">没有标签</string>
+   <string name="no_tag">无标签</string>
    <string name="add_tag">标签</string>
    <string name="do_you_want_to_delete_this_tag_from_all_books_">删除标签？</string>
    <string name="by_number_of_pages">页数</string>
