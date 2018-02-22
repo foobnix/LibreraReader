@@ -450,5 +450,5 @@
    <string name="by_number_of_pages">页数</string>
    <string name="by_number_in_serie">系数</string>
    <string name="tags">标签</string>
-   <string name="recent_favorites_tags">最近，收藏夹，标签</string>
+   <string name="recent_favorites_tags">最近，收藏，标签</string>
 </resources>
