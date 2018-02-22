@@ -293,14 +293,18 @@ public class BrowseFragment2 extends UIFragment<FileMeta> {
                         getActivity().getString(R.string.by_file_name), //
                         getActivity().getString(R.string.by_date), //
                         getActivity().getString(R.string.by_size), //
-                        getActivity().getString(R.string.by_number_in_serie) //
+                        getActivity().getString(R.string.by_title), //
+                        getActivity().getString(R.string.by_number_in_serie), //
+                        getActivity().getString(R.string.by_number_of_pages) //
                 );//
 
                 final List<Integer> ids = Arrays.asList(//
                         AppState.BR_SORT_BY_PATH, //
                         AppState.BR_SORT_BY_DATE, //
                         AppState.BR_SORT_BY_SIZE, //
-                        AppState.BR_SORT_BY_NUMBER //
+                        AppState.BR_SORT_BY_TITLE, //
+                        AppState.BR_SORT_BY_NUMBER, //
+                        AppState.BR_SORT_BY_PAGES //
                 );//
 
                 MyPopupMenu menu = new MyPopupMenu(getActivity(), v);
@@ -458,7 +462,11 @@ public class BrowseFragment2 extends UIFragment<FileMeta> {
         } else if (AppState.get().sortByBrowse == AppState.BR_SORT_BY_SIZE) {
             Collections.sort(items, FileMetaComparators.BY_SIZE);
         } else if (AppState.get().sortByBrowse == AppState.BR_SORT_BY_NUMBER) {
-            Collections.sort(items, FileMetaComparators.BR_BY_NUMBER);
+            Collections.sort(items, FileMetaComparators.BR_BY_NUMBER1);
+        } else if (AppState.get().sortByBrowse == AppState.BR_SORT_BY_PAGES) {
+            Collections.sort(items, FileMetaComparators.BR_BY_PAGES);
+        } else if (AppState.get().sortByBrowse == AppState.BR_SORT_BY_TITLE) {
+            Collections.sort(items, FileMetaComparators.BR_BY_TITLE);
         }
         if (AppState.get().sortByReverse) {
             Collections.reverse(items);

@@ -223,6 +223,7 @@ public class AppState {
     public final static int BR_SORT_BY_SIZE = 2;
     public final static int BR_SORT_BY_TITLE = 3;// not possible
     public final static int BR_SORT_BY_NUMBER = 4;// not possible
+    public final static int BR_SORT_BY_PAGES = 5;// not possible
 
     public final static int NEXT_SCREEN_SCROLL_BY_PAGES = 0;
 

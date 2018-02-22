@@ -1626,7 +1626,7 @@ public class DragingDialogs {
     }
 
     public static void recentBooks(final FrameLayout anchor, final DocumentController controller) {
-        new DragingPopup(R.string.recent, anchor, PREF_WIDTH, PREF_HEIGHT) {
+        new DragingPopup(R.string.recent_favorites_tags, anchor, PREF_WIDTH, PREF_HEIGHT) {
 
             @Override
             public View getContentView(final LayoutInflater inflater) {

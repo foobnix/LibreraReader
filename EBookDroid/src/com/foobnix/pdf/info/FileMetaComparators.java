@@ -53,6 +53,37 @@ public class FileMetaComparators {
 
     };
 
+    public static Comparator<FileMeta> BR_BY_NUMBER1 = new Comparator<FileMeta>() {
+
+        @Override
+        public int compare(FileMeta o1, FileMeta o2) {
+            int g1 = o1.getSIndex() == null ? 0 : o1.getSIndex();
+            int g2 = o2.getSIndex() == null ? 0 : o2.getSIndex();
+            LOG.d("BR_BY_NUMBER1", g1, g2);
+            return compareInt(g1, g2);
+        }
+
+    };
+
+    public static Comparator<FileMeta> BR_BY_PAGES = new Comparator<FileMeta>() {
+
+        @Override
+        public int compare(FileMeta o1, FileMeta o2) {
+            int g1 = o1.getPages() == null ? 0 : o1.getPages();
+            int g2 = o2.getPages() == null ? 0 : o2.getPages();
+            LOG.d("BR_BY_PAGES", g1, g2);
+            return compareInt(g1, g2);
+        }
+    };
+
+    public static Comparator<FileMeta> BR_BY_TITLE = new Comparator<FileMeta>() {
+
+        @Override
+        public int compare(FileMeta o1, FileMeta o2) {
+            return String.CASE_INSENSITIVE_ORDER.compare(o1.getTitle(), o2.getTitle());
+        }
+    };
+
     public static Comparator<FileMeta> DIRS = new Comparator<FileMeta>() {
         @Override
         public int compare(FileMeta o1, FileMeta o2) {

@@ -13,6 +13,7 @@ import com.foobnix.android.utils.LOG;
 import com.foobnix.dao2.FileMeta;
 import com.foobnix.pdf.info.ExtUtils;
 import com.foobnix.pdf.info.wrapper.AppState;
+import com.foobnix.ui2.AppDB;
 import com.foobnix.ui2.FileMetaCore;
 import com.foobnix.ui2.adapter.FileMetaAdapter;
 
@@ -107,9 +108,17 @@ public class SearchCore {
             }
 
             FileMeta meta = new FileMeta(it.getPath());
-            FileMetaCore.get().upadteBasicMeta(meta, it);
+
             if (it.isDirectory()) {
+                FileMetaCore.get().upadteBasicMeta(meta, it);
                 meta.setCusType(FileMetaAdapter.DISPLAY_TYPE_DIRECTORY);
+            } else {
+                FileMeta load = AppDB.get().load(it.getPath());
+                if (load == null) {
+                    FileMetaCore.get().upadteBasicMeta(meta, it);
+                } else {
+                    meta = load;
+                }
             }
             files.add(meta);
         }
