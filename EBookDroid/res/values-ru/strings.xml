@@ -451,8 +451,8 @@
    <string name="recent_favorites_tags">Недавние, избранные, теги</string>
    <string name="line_spacing">Межстрочный интервал</string>
    <string name="paragraph_spacing">Интервал между абзацами</string>
-   <string name="indent">Отступ</string>
-   <string name="allow_text_highlight">Разрешить выделение текста</string>
-   <string name="text_highlight_mode_is_enable">Режим выделения текста включен</string>
+   <string name="indent">Отступ первой строки абзаца</string>
+   <string name="allow_text_highlight">Разрешать выделять текст (функция включается/отключается долгим тапом по области с названием режима чтения)</string>
+   <string name="text_highlight_mode_is_enable">Включен режим выделения текста/string>
    <string name="text_highlight_mode_is_disable">Режим выделения текста отключен</string>
 </resources>
