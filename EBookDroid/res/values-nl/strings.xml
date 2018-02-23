@@ -449,8 +449,10 @@
    <string name="by_number_of_pages">Aantal pagina\'s</string>
    <string name="by_number_in_serie">Nummer in serie</string>
    <string name="recent_favorites_tags">Recent, favorieten, tags</string>
-   <string name="enable_text_highlight">Tekstmarkering inschakelen</string>
    <string name="line_spacing">Regelafstand</string>
    <string name="paragraph_spacing">Alinea-afstand</string>
    <string name="indent">Inspringen</string>
+   <string name="allow_text_highlight">Sta tekstmarkering toe</string>
+   <string name="text_highlight_mode_is_enable">Tekstmarkeringsmodus is ingeschakeld</string>
+   <string name="text_highlight_mode_is_disable">De tekstmarkeringsmodus is uitgeschakeld</string>
 </resources>

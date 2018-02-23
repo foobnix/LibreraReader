@@ -449,8 +449,10 @@
    <string name="by_number_of_pages">ページ数</string>
    <string name="by_number_in_serie">セリエの数</string>
    <string name="recent_favorites_tags">最近のお気に入り、タグ</string>
-   <string name="enable_text_highlight">テキストハイライトを有効にする</string>
    <string name="line_spacing">行間隔</string>
    <string name="paragraph_spacing">段落の間隔</string>
    <string name="indent">インデント</string>
+   <string name="allow_text_highlight">テキストハイライトを許可する</string>
+   <string name="text_highlight_mode_is_enable">テキストハイライトモードは有効です</string>
+   <string name="text_highlight_mode_is_disable">テキストハイライトモードは無効です</string>
 </resources>

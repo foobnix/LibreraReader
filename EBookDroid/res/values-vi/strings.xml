@@ -449,8 +449,10 @@
    <string name="by_number_of_pages">Số trang</string>
    <string name="by_number_in_serie">Số trong serie</string>
    <string name="recent_favorites_tags">Gần đây, mục yêu thích, thẻ</string>
-   <string name="enable_text_highlight">Bật đánh dấu văn bản</string>
    <string name="line_spacing">Khoảng cách dòng</string>
    <string name="paragraph_spacing">Khoảng cách giữa đoạn văn</string>
    <string name="indent">Thụt lề</string>
+   <string name="allow_text_highlight">Cho phép đánh dấu văn bản</string>
+   <string name="text_highlight_mode_is_enable">Chế độ đánh dấu văn bản được kích hoạt</string>
+   <string name="text_highlight_mode_is_disable">Chế độ đánh dấu văn bản bị vô hiệu hóa</string>
 </resources>

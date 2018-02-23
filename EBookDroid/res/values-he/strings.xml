@@ -449,8 +449,10 @@
    <string name="by_number_of_pages">מספר דפים</string>
    <string name="by_number_in_serie">מספר בסרי</string>
    <string name="recent_favorites_tags">לאחרונה, מועדפים, תגים</string>
-   <string name="enable_text_highlight">הפעל הדגשת טקסט</string>
    <string name="line_spacing">מרווח בין שורות</string>
    <string name="paragraph_spacing">ריווח פסקה</string>
    <string name="indent">לְשַׁנֵן</string>
+   <string name="allow_text_highlight">אפשר הדגשת טקסט</string>
+   <string name="text_highlight_mode_is_enable">מצב סימון טקסט מופעל</string>
+   <string name="text_highlight_mode_is_disable">מצב הדגשת טקסט מושבת</string>
 </resources>

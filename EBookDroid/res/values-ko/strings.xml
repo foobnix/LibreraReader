@@ -449,8 +449,10 @@
    <string name="by_number_of_pages">페이지 수</string>
    <string name="by_number_in_serie">세리에 번호</string>
    <string name="recent_favorites_tags">최근 즐겨 찾기, 태그</string>
-   <string name="enable_text_highlight">텍스트 강조 표시 사용</string>
    <string name="line_spacing">줄 간격</string>
    <string name="paragraph_spacing">단락 간격</string>
    <string name="indent">톱니 모양</string>
+   <string name="allow_text_highlight">텍스트 강조 표시 허용</string>
+   <string name="text_highlight_mode_is_enable">텍스트 강조 모드 사용</string>
+   <string name="text_highlight_mode_is_disable">텍스트 강조 모드가 사용 중지되었습니다.</string>
 </resources>

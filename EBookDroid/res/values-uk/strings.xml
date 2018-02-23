@@ -449,8 +449,10 @@
    <string name="by_number_of_pages">Кількість сторінок</string>
    <string name="by_number_in_serie">Номер у серії</string>
    <string name="recent_favorites_tags">Недавні, вибрані, теги</string>
-   <string name="enable_text_highlight">Увімкнути виділення тексту</string>
    <string name="line_spacing">Міжрядковий інтервал</string>
    <string name="paragraph_spacing">Міжрядковий інтервал</string>
    <string name="indent">Відступ</string>
+   <string name="allow_text_highlight">Дозволити виділення тексту</string>
+   <string name="text_highlight_mode_is_enable">Режим підсвічування тексту увімкнено</string>
+   <string name="text_highlight_mode_is_disable">Режим підсвічування тексту вимкнено</string>
 </resources>

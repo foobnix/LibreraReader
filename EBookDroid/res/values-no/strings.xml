@@ -449,8 +449,10 @@
    <string name="by_number_of_pages">Antall sider</string>
    <string name="by_number_in_serie">Nummer i serie</string>
    <string name="recent_favorites_tags">Nylig, favoritter, tagger</string>
-   <string name="enable_text_highlight">Aktiver teksthefte</string>
    <string name="line_spacing">Linjeavstand</string>
    <string name="paragraph_spacing">Avsnittsavstand</string>
    <string name="indent">Innrykk</string>
+   <string name="allow_text_highlight">Tillat tekstutheving</string>
+   <string name="text_highlight_mode_is_enable">Tekstmarkeringsmodus er aktivert</string>
+   <string name="text_highlight_mode_is_disable">Tekstlampemodus er deaktivert</string>
 </resources>

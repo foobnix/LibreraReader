@@ -449,8 +449,10 @@
    <string name="by_number_of_pages">Puslapių skaičius</string>
    <string name="by_number_in_serie">Numeris serijoje</string>
    <string name="recent_favorites_tags">Naujausi, mėgstamiausi, žymas</string>
-   <string name="enable_text_highlight">Įgalinti teksto paryškinimą</string>
    <string name="line_spacing">Linijos tarpai</string>
    <string name="paragraph_spacing">Taškų tarpas</string>
    <string name="indent">Taškas</string>
+   <string name="allow_text_highlight">Leisti teksto paryškinimą</string>
+   <string name="text_highlight_mode_is_enable">Įjunkite teksto paryškinimo režimą</string>
+   <string name="text_highlight_mode_is_disable">Teksto paryškinimo režimas išjungiamas</string>
 </resources>

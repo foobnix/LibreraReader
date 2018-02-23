@@ -449,8 +449,10 @@
    <string name="by_number_of_pages">Número de páginas</string>
    <string name="by_number_in_serie">Número en serie</string>
    <string name="recent_favorites_tags">Etiquetas recientes, favoritos</string>
-   <string name="enable_text_highlight">Habilitar texto resaltado</string>
    <string name="line_spacing">Espaciado entre líneas</string>
    <string name="paragraph_spacing">Espaciado entre párrafos</string>
    <string name="indent">Sangrar</string>
+   <string name="allow_text_highlight">Permitir texto resaltado</string>
+   <string name="text_highlight_mode_is_enable">El modo de resaltado de texto está habilitado</string>
+   <string name="text_highlight_mode_is_disable">El modo resaltado de texto está deshabilitado</string>
 </resources>

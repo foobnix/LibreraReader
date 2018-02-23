@@ -96,7 +96,7 @@ public class SyncTranslations {
     }
 
     public static void merge(final String inFile, final String outFile, String lang) throws FileNotFoundException, Exception {
-        System.out.println("merge begin" + outFile);
+        System.out.println(">>> " + outFile);
 
         final ResourcesModel in = load(inFile);
         final ResourcesModel out = normilize(load(outFile));
@@ -121,7 +121,7 @@ public class SyncTranslations {
         }
 
         save(outFile, outModel);
-        System.out.println("merge end" + outFile);
+        System.out.println("");
     }
 
     private static ResourcesModel load(final String inFile) throws Exception, FileNotFoundException {

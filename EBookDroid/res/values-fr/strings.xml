@@ -449,8 +449,10 @@
    <string name="by_number_of_pages">Nombre de pages</string>
    <string name="by_number_in_serie">Numéro en série</string>
    <string name="recent_favorites_tags">Récent, favoris, tags</string>
-   <string name="enable_text_highlight">Activer la mise en évidence du texte</string>
    <string name="line_spacing">Interligne</string>
    <string name="paragraph_spacing">Espacement des paragraphes</string>
    <string name="indent">Retrait</string>
+   <string name="allow_text_highlight">Autoriser la mise en évidence</string>
+   <string name="text_highlight_mode_is_enable">Le mode de surbrillance du texte est activé</string>
+   <string name="text_highlight_mode_is_disable">Le mode de surbrillance du texte est désactivé</string>
 </resources>

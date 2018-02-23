@@ -449,8 +449,10 @@
    <string name="by_number_of_pages">पृष्ठों की संख्या</string>
    <string name="by_number_in_serie">श्रृंखला में नंबर</string>
    <string name="recent_favorites_tags">हाल ही में, पसंदीदा, टैग</string>
-   <string name="enable_text_highlight">टेक्स्ट हाइलाइट सक्षम करें</string>
    <string name="line_spacing">पंक्ति रिक्ति</string>
    <string name="paragraph_spacing">पैराग्राफ़ स्पेसिंग</string>
    <string name="indent">इंडेंट</string>
+   <string name="allow_text_highlight">टेक्स्ट हाइलाइट की अनुमति दें</string>
+   <string name="text_highlight_mode_is_enable">टेक्स्ट हाइलाइट मोड सक्षम है</string>
+   <string name="text_highlight_mode_is_disable">पाठ हाइलाइट मोड अक्षम है</string>
 </resources>

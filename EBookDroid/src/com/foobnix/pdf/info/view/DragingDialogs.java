@@ -3247,7 +3247,7 @@ public class DragingDialogs {
                 });
 
                 final CustomSeek paragraphHeight = (CustomSeek) inflate.findViewById(R.id.paragraphHeight);
-                paragraphHeight.init(0, 30, BookCSS.get().paragraphHeight);
+                paragraphHeight.init(0, 20, BookCSS.get().paragraphHeight);
                 paragraphHeight.setOnSeekChanged(new IntegerResponse() {
 
                     @Override

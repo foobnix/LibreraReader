@@ -449,8 +449,10 @@
    <string name="by_number_of_pages">عدد الصفحات</string>
    <string name="by_number_in_serie">الرقم في دوري الدرجة الاولى الايطالي</string>
    <string name="recent_favorites_tags">الأخيرة، المفضلة، والعلامات</string>
-   <string name="enable_text_highlight">تمكين تمييز النص</string>
    <string name="line_spacing">تباعد الأسطر</string>
    <string name="paragraph_spacing">تباعد الفقرات</string>
    <string name="indent">المسافة البادئة</string>
+   <string name="allow_text_highlight">السماح بتمييز النص</string>
+   <string name="text_highlight_mode_is_enable">يتم تمكين وضع تمييز النص</string>
+   <string name="text_highlight_mode_is_disable">يتم تعطيل وضع تمييز النص</string>
 </resources>

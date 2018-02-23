@@ -302,7 +302,7 @@
    <string name="half_page">半页</string>
    <string name="by_pages">按页滚距</string>
    <string name="by_screans">全屏滚距</string>
-   <string name="of_screen">of距</string>
+   <string name="of_screen">Of距</string>
    <string name="custom_value">自定义值</string>
    <string name="automatic_page_flipping">自动翻页</string>
    <string name="interval_sec_">间隔（秒）</string>
@@ -449,8 +449,10 @@
    <string name="by_number_of_pages">页数</string>
    <string name="by_number_in_serie">系数</string>
    <string name="recent_favorites_tags">最近，收藏，标签</string>
-   <string name="enable_text_highlight">启用文字高亮</string>
    <string name="line_spacing">行间距</string>
    <string name="paragraph_spacing">段间距</string>
    <string name="indent">缩进</string>
+   <string name="allow_text_highlight">允许文字高亮</string>
+   <string name="text_highlight_mode_is_enable">文本高亮模式已启用</string>
+   <string name="text_highlight_mode_is_disable">文本高亮模式被禁用</string>
 </resources>

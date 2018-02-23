@@ -449,8 +449,10 @@
    <string name="by_number_of_pages">Sayfa sayısı</string>
    <string name="by_number_in_serie">Seri numarası</string>
    <string name="recent_favorites_tags">Son, favoriler, etiketler</string>
-   <string name="enable_text_highlight">Metin vurgulamayı etkinleştir</string>
    <string name="line_spacing">Satır aralığı</string>
    <string name="paragraph_spacing">Paragraf aralığı</string>
    <string name="indent">Çentik</string>
+   <string name="allow_text_highlight">Metne vurgulamaya izin ver</string>
+   <string name="text_highlight_mode_is_enable">Metin vurgulama modu etkindir</string>
+   <string name="text_highlight_mode_is_disable">Metin vurgulama modu devre dışı</string>
 </resources>

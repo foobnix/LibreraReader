@@ -449,8 +449,10 @@
    <string name="by_number_of_pages">Antal sidor</string>
    <string name="by_number_in_serie">Antal i serie</string>
    <string name="recent_favorites_tags">Senaste, favoriter, taggar</string>
-   <string name="enable_text_highlight">Aktivera texthöjd</string>
    <string name="line_spacing">Radavstånd</string>
    <string name="paragraph_spacing">Avsnittsavstånd</string>
    <string name="indent">Indrag</string>
+   <string name="allow_text_highlight">Tillåt textmarkering</string>
+   <string name="text_highlight_mode_is_enable">Textmarkeringsläget är aktiverat</string>
+   <string name="text_highlight_mode_is_disable">Textmarkeringsläge är inaktiverat</string>
 </resources>

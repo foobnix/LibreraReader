@@ -453,6 +453,6 @@
    <string name="paragraph_spacing">Paragraph spacing</string>
    <string name="indent">Indent</string>
    <string name="allow_text_highlight">Allow text highlight</string>
-   <string name="text_selection_mode_is_enable">Text selection mode is enable</string>
-   <string name="text_selection_mode_is_disable">Text selection mode is disable</string>
+   <string name="text_highlight_mode_is_enable">Text highlight mode is enable</string>
+   <string name="text_highlight_mode_is_disable">Text highlight mode is disable</string>
 </resources>

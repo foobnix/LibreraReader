@@ -449,8 +449,10 @@
    <string name="by_number_of_pages">تعدادی از صفحات</string>
    <string name="by_number_in_serie">شماره سریال</string>
    <string name="recent_favorites_tags">اخیرا، موارد مورد علاقه، برچسب ها</string>
-   <string name="enable_text_highlight">برجسته کردن متن را فعال کنید</string>
    <string name="line_spacing">فاصله خطوط</string>
    <string name="paragraph_spacing">فاصله پاراگراف</string>
    <string name="indent">عقب نشینی</string>
+   <string name="allow_text_highlight">اجازه متن برجسته</string>
+   <string name="text_highlight_mode_is_enable">حالت برجسته متن فعال است</string>
+   <string name="text_highlight_mode_is_disable">حالت برجسته متن غیرفعال است</string>
 </resources>
