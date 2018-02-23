@@ -10,12 +10,11 @@
         android:orientation="vertical"
         android:padding="6dip" >
 
-
         <LinearLayout
-            android:visibility="gone"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="center_vertical" >
+            android:gravity="center_vertical"
+            android:visibility="gone" >
 
             <ImageView
                 android:layout_width="wrap_content"
@@ -35,12 +34,9 @@
                 android:textStyle="bold" />
         </LinearLayout>
 
-        
-
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-             >
+            android:layout_height="wrap_content" >
 
             <TextView
                 android:layout_width="180dip"
@@ -59,8 +55,7 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-             >
+            android:layout_height="wrap_content" >
 
             <TextView
                 android:layout_width="180dip"
@@ -85,8 +80,7 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-             >
+            android:layout_height="wrap_content" >
 
             <TextView
                 android:layout_width="180dip"
@@ -105,8 +99,7 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-             >
+            android:layout_height="wrap_content" >
 
             <TextView
                 android:layout_width="180dip"
@@ -133,8 +126,7 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-             >
+            android:layout_height="wrap_content" >
 
             <TextView
                 android:layout_width="180dip"
@@ -150,7 +142,7 @@
                 android:layout_height="wrap_content"
                 android:text="120 min" />
         </LinearLayout>
-        
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -164,7 +156,7 @@
                 android:singleLine="true"
                 android:text="@string/action_on_double_tap"
                 android:textStyle="bold" />
-            
+
             <TextView
                 android:id="@+id/doubleTapValue"
                 style="@style/textLink"
@@ -172,132 +164,120 @@
                 android:layout_height="wrap_content"
                 android:text="@string/close_book" />
         </LinearLayout>
-        
-        
-        <CheckBox
-            android:id="@+id/isCustomizeBgAndColors"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/background_color_on_images_the_same_as_page_background" />
-        
+
         <CheckBox
             android:id="@+id/isLockPDF"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            
             android:text="@string/opening_book_with_losed_lock" />
-        
-         <CheckBox
-            android:id="@+id/isCropPDF"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            
-            android:text="@string/opening_book_with_cropped_borders" />
-        
-        <CheckBox
-            android:id="@+id/isOLED"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            
-            android:text="@string/enhancements_for_oled_display" />
-
-        
-        
-        <CheckBox
-            android:id="@+id/isVibration"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/enable_vibration_for_some_actions" />
-
-        
-
-        
-
-        
 
         <CheckBox
-            android:id="@+id/isIgnoreAnnotatations"
-            android:layout_width="wrap_content"
+            android:id="@+id/isAllowTextSelection"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            
-            android:text="@string/ignore_annotations_on_click" />
-
-        <CheckBox
-            android:id="@+id/isSaveAnnotatationsAutomatically"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            
-            android:text="@string/save_new_annotations_automatically" />
+            android:text="@string/allow_text_highlight" />
 
         <CheckBox
             android:id="@+id/highlightByLetters"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            
             android:text="@string/selecting_text_by_letters" />
 
         <CheckBox
-            android:visibility="gone"
+            android:id="@+id/isBrighrnessEnable"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/enable_brightness_adjustment_on_the_left_of_the_screen" />
+
+        <CheckBox
+            android:id="@+id/isIgnoreAnnotatations"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/ignore_annotations_on_click" />
+        
+          <CheckBox
+            android:id="@+id/isSaveAnnotatationsAutomatically"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/save_new_annotations_automatically" />
+          
+        <CheckBox
+            android:id="@+id/isCropPDF"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/opening_book_with_cropped_borders" />
+
+        <CheckBox
+            android:id="@+id/isCustomizeBgAndColors"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/background_color_on_images_the_same_as_page_background" />
+
+        
+
+        <CheckBox
+            android:id="@+id/isOLED"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/enhancements_for_oled_display" />
+
+        
+
+      
+
+        <CheckBox
             android:id="@+id/isLoopAutoplay"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            
-            android:text="@string/loop_autoplay" />
-        
+            android:text="@string/loop_autoplay"
+            android:visibility="gone" />
+
         <CheckBox
             android:id="@+id/isScrollAnimation"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            
             android:text="@string/simple_scroll_animation" />
-        
+
         <CheckBox
             android:id="@+id/isScrollSpeedByVolumeKeys"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/change_the_automatic_scrolling_speed_with_the_volume_keys" />
 
-        <CheckBox
-            android:id="@+id/isBrighrnessEnable"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            
-            android:text="@string/enable_brightness_adjustment_on_the_left_of_the_screen" />
+      
 
-        
-        <CheckBox
-            android:id="@+id/isShowLongBackDialog"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/show_the_book_close_dialog" />
-        
-        <CheckBox
-            android:id="@+id/isAllowTextSelection"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/enable_text_highlight" />
-        
         <CheckBox
             android:id="@+id/isZoomInOutWithVolueKeys"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/zoom_in_out_using_the_volume_keys" />
+        
+          <CheckBox
+            android:id="@+id/isShowLongBackDialog"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/show_the_book_close_dialog" />
+          
+        <CheckBox
+            android:id="@+id/isVibration"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/enable_vibration_for_some_actions" />
 
-            
-            <com.foobnix.pdf.info.view.CustomSeek
-                   myseek:text="@string/scroll_speed"
-                    android:id="@+id/seekWheelSpeed"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1" >
-                </com.foobnix.pdf.info.view.CustomSeek>
+        <com.foobnix.pdf.info.view.CustomSeek
+            android:id="@+id/seekWheelSpeed"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            myseek:text="@string/scroll_speed" >
+        </com.foobnix.pdf.info.view.CustomSeek>
 
         <LinearLayout
-            android:visibility="gone"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="5dip"
-            android:gravity="center_vertical" >
+            android:gravity="center_vertical"
+            android:visibility="gone" >
 
             <ImageView
                 android:layout_width="wrap_content"
@@ -319,8 +299,7 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-             >
+            android:layout_height="wrap_content" >
 
             <TextView
                 android:layout_width="180dip"
@@ -337,11 +316,10 @@
                 android:text="PNG"
                 android:textAllCaps="true" />
         </LinearLayout>
-        
-         <LinearLayout
+
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-             >
+            android:layout_height="wrap_content" >
 
             <TextView
                 android:layout_width="180dip"
@@ -360,8 +338,7 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-             >
+            android:layout_height="wrap_content" >
 
             <TextView
                 android:layout_width="180dip"
@@ -381,7 +358,6 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            
             android:gravity="center_vertical" >
 
             <TextView
@@ -401,7 +377,6 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            
             android:visibility="gone" >
 
             <TextView

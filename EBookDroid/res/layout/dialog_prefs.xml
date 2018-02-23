@@ -416,7 +416,6 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:singleLine="true"
                     android:text="@string/enable_volume_keys" />
 
                 <CheckBox
@@ -424,7 +423,6 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:singleLine="true"
                     android:text="@string/reverse_keys" />
             </LinearLayout>
         </LinearLayout>
@@ -450,7 +448,6 @@
                 android:layout_marginLeft="4dip"
                 android:layout_weight="1"
                 android:ellipsize="end"
-                android:singleLine="true"
                 android:text="@string/screen_orientation"
                 android:textStyle="bold" />
 
@@ -482,7 +479,6 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:ellipsize="end"
-                android:singleLine="true"
                 android:text="@string/open_in_the_dictionary" />
 
             <TextView

@@ -185,8 +185,7 @@ public abstract class DocumentController {
     public void onChangeTextSelection() {
         Vibro.vibrate();
         AppState.get().isAllowTextSelection = !AppState.get().isAllowTextSelection;
-        String txt = getString(R.string.enable_text_highlight);
-        txt = txt + " [ " + (AppState.get().isAllowTextSelection ? getString(R.string.on) : getString(R.string.off)) + " ]";
+        String txt = AppState.get().isAllowTextSelection ? getString(R.string.text_selection_mode_is_enable) : getString(R.string.text_selection_mode_is_disable);
         Toast.makeText(getActivity(), txt, Toast.LENGTH_LONG).show();
     }
 
