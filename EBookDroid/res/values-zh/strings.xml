@@ -1,6 +1,6 @@
 <resources>
-   <string name="___LIBRARY___SETTINGS___SECTION___">书库</string>
-   <string name="library_settings">书库</string>
+   <string name="___LIBRARY___SETTINGS___SECTION___">书库设置</string>
+   <string name="library_settings">书库设置</string>
    <string name="scan_device_for_new_books">扫描新书</string>
    <string name="add_folder">添加目录</string>
    <string name="archives">档案</string>
@@ -31,23 +31,23 @@
    <string name="display_all_file_types_in_folders">文件夹显全文件类型</string>
    <string name="show_the_dialog_what_is_new_for_updates">更新后显示更新内容</string>
    <string name="what_is_new_in">新增内容</string>
-   <string name="full_list_of_changes_with_images_web_pdf_">详细变更信息...</string>
+   <string name="full_list_of_changes_with_images_web_pdf_">了解详细变更信息...</string>
    <string name="search_for_text_in_documents">多文件中搜索文本</string>
    <string name="search_in_the_subfolders">子文件夹</string>
    <string name="stop">停止</string>
    <string name="document_converter_online_">文件转换（在线）</string>
-   <string name="book_covers">封面</string>
+   <string name="book_covers">书籍封面</string>
    <string name="cover_image_size">封面大小</string>
    <string name="column_count">列数</string>
    <string name="show_book_covers">显示封面</string>
    <string name="enable_effect_of_the_book_cover">封面特效</string>
    <string name="crop_images_in_the_book_cover">获取封面</string>
    <string name="borders_and_shadow_around_the_book_cover">边框阴影</string>
-   <string name="tabs_position">标签</string>
+   <string name="tabs_position">标签状态</string>
    <string name="show_preferences_tab_in_the_left_menu">显示左侧设置栏</string>
    <string name="visible">可见</string>
-   <string name="application_user_guide_">说明</string>
-   <string name="import_or_export_application_settings_to_json_file">备份</string>
+   <string name="application_user_guide_">使用说明</string>
+   <string name="import_or_export_application_settings_to_json_file">配置文件</string>
    <string name="import_">导入 ...</string>
    <string name="export_">导出 ...</string>
    <string name="automatic_export_backup">自动备份设置，进度，书签，并导出。</string>
@@ -56,12 +56,12 @@
    <string name="licence_gnu_gpl_v3_0">授权方式: GNU GPL v3.0</string>
    <string name="licenses_for_libraries">许可证</string>
    <string name="autor_ivan_ivanenko">作者: Ivan Ivanenko</string>
-   <string name="support">邮件</string>
-   <string name="web">网站</string>
+   <string name="support">邮箱</string>
+   <string name="web">官网</string>
    <string name="beta_version">测试版</string>
    <string name="archive">档案</string>
    <string name="rate_pdf_reader1">请反馈，并在google play store评价，这对后续开发非常重要。</string>
-   <string name="___PREFERENCES___SECTION___">设置</string>
+   <string name="___PREFERENCES___SECTION___">偏好设置</string>
    <string name="formatted_text">格式文本（伪图形）</string>
    <string name="continuous_text">连续文本（不换行）</string>
    <string name="customize_fonts">自定义字体</string>
@@ -145,7 +145,7 @@
    <string name="text_color_day">文字颜色（白天）</string>
    <string name="text_color_night">文字颜色（夜晚）</string>
    <string name="___MULTIPLE___SECTIONS___">多选</string>
-   <string name="preferences">设置</string>
+   <string name="preferences">偏好设置</string>
    <string name="language">语言</string>
    <string name="font_size">字体大小</string>
    <string name="brightness">亮度</string>
@@ -166,13 +166,13 @@
    <string name="export_bookmarks">导出书签</string>
    <string name="simple_scroll_animation">显示过渡动画</string>
    <string name="close_application">关闭应用</string>
-   <string name="___TABS___SECTION___">标签</string>
+   <string name="___TABS___SECTION___">标签状态</string>
    <string name="library">书库</string>
    <string name="extracting_information_from_books">书籍信息</string>
    <string name="no_author">无作者</string>
    <string name="no_serie">无系列</string>
    <string name="no_genre">无类型</string>
-   <string name="without_series">没有系列</string>
+   <string name="without_series">无系列</string>
    <string name="folders">存储</string>
    <string name="recent">最近</string>
    <string name="clear_all">清空</string>
@@ -192,7 +192,7 @@
    <string name="bookmark_by_book">按书籍</string>
    <string name="network">网络</string>
    <string name="catalogs">在线书库</string>
-   <string name="proxy_server_settings">代理服务器设置</string>
+   <string name="proxy_server_settings">代理设置</string>
    <string name="use_proxy_server">使用代理服务器</string>
    <string name="proxy_type">代理类型</string>
    <string name="server">服务器</string>
@@ -302,7 +302,7 @@
    <string name="half_page">半页</string>
    <string name="by_pages">按页滚距</string>
    <string name="by_screans">全屏滚距</string>
-   <string name="of_screen">距</string>
+   <string name="of_screen">of距</string>
    <string name="custom_value">自定义值</string>
    <string name="automatic_page_flipping">自动翻页</string>
    <string name="interval_sec_">间隔（秒）</string>
@@ -451,6 +451,6 @@
    <string name="recent_favorites_tags">最近，收藏，标签</string>
    <string name="enable_text_highlight">启用文字高亮</string>
    <string name="line_spacing">行间距</string>
-   <string name="paragraph_spacing">段落间距</string>
+   <string name="paragraph_spacing">段间距</string>
    <string name="indent">缩进</string>
 </resources>
