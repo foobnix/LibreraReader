@@ -42,7 +42,7 @@ static const char *html_default_css =
 "li{display:list-item}"
 "menu{display:block;list-style-type:disc;margin:1em 0;padding:0 0 0 30pt}"
 "ol{display:block;list-style-type:decimal;margin:1em 0;padding:0 0 0 30pt}"
-"p{display:block;margin:1em 0}"
+"p{display:block;}"
 "pre{display:block;font-family:monospace;margin:1em 0;white-space:pre}"
 "samp{font-family:monospace}"
 "script{display:none}"

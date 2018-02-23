@@ -157,8 +157,6 @@
    <string name="left">Côté gauche</string>
    <string name="right">Côté droit</string>
    <string name="folder_with_fonts">Dossier avec les polices</string>
-   <string name="interval">Intervalle</string>
-   <string name="paragraph">Paragraphe</string>
    <string name="simple_scroll_animation">Animation de défilement simple</string>
    <string name="image_format">Format d\'image</string>
    <string name="empty_line">Ligne vide</string>
@@ -450,6 +448,9 @@
    <string name="by_number_of_pages">Nombre de pages</string>
    <string name="by_number_in_serie">Numéro en série</string>
    <string name="tags">Mots clés</string>
+   <string name="line_spacing">Interligne</string>
+   <string name="paragraph_spacing">Espacement des paragraphes</string>
    <string name="recent_favorites_tags">Récent, favoris, tags</string>
    <string name="enable_text_highlight">Activer la mise en évidence du texte</string>
+   <string name="indent">Retrait</string>
 </resources>

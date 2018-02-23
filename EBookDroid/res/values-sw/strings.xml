@@ -162,8 +162,6 @@
    <string name="bottom">Upande wa chini</string>
    <string name="left">Upande wa kushoto</string>
    <string name="right">Upande wa kulia</string>
-   <string name="interval">Interval</string>
-   <string name="paragraph">Aya</string>
    <string name="simple_scroll_animation">Rahisi kitabu uhuishaji</string>
    <string name="image_format">Format Image</string>
    <string name="empty_line">Line tupu</string>
@@ -450,6 +448,9 @@
    <string name="by_number_of_pages">Idadi ya kurasa</string>
    <string name="by_number_in_serie">Nambari katika serie</string>
    <string name="tags">Vitambulisho</string>
+   <string name="line_spacing">Upeo wa mstari</string>
+   <string name="paragraph_spacing">Mgawanyiko wa mstari</string>
    <string name="recent_favorites_tags">Hivi karibuni, vipendwa, vitambulisho</string>
    <string name="enable_text_highlight">Wezesha kuzingatia maandishi</string>
+   <string name="indent">Inayofaa</string>
 </resources>

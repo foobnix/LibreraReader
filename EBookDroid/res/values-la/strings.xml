@@ -170,8 +170,6 @@
    <string name="bottom">Latus basalis</string>
    <string name="left">Latus laeva</string>
    <string name="right">Latus dextra</string>
-   <string name="interval">Discrimen</string>
-   <string name="paragraph">Indentum</string>
    <string name="simple_scroll_animation">Animatio procurrendi</string>
    <string name="image_format">Image Format</string>
    <string name="___DIALOGS___SECTION___"></string>
@@ -450,6 +448,9 @@
    <string name="by_number_of_pages">Number of pages</string>
    <string name="by_number_in_serie">Serie in numero</string>
    <string name="tags">Tags</string>
+   <string name="line_spacing">Color linee</string>
+   <string name="paragraph_spacing">Span style</string>
    <string name="recent_favorites_tags">Recentes, personarum acceptor Deus; tags</string>
    <string name="enable_text_highlight">Admitte highlight text</string>
+   <string name="indent">Maius Impelle</string>
 </resources>

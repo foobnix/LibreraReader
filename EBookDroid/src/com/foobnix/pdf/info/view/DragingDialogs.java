@@ -3235,13 +3235,24 @@ public class DragingDialogs {
                     }
                 });
 
-                final CustomSeek fontInterval = (CustomSeek) inflate.findViewById(R.id.fontInterval);
-                fontInterval.init(0, 30, BookCSS.get().lineHeight);
-                fontInterval.setOnSeekChanged(new IntegerResponse() {
+                final CustomSeek lineHeight = (CustomSeek) inflate.findViewById(R.id.lineHeight);
+                lineHeight.init(0, 30, BookCSS.get().lineHeight);
+                lineHeight.setOnSeekChanged(new IntegerResponse() {
 
                     @Override
                     public boolean onResultRecive(int result) {
                         BookCSS.get().lineHeight = result;
+                        return false;
+                    }
+                });
+
+                final CustomSeek paragraphHeight = (CustomSeek) inflate.findViewById(R.id.paragraphHeight);
+                paragraphHeight.init(0, 30, BookCSS.get().paragraphHeight);
+                paragraphHeight.setOnSeekChanged(new IntegerResponse() {
+
+                    @Override
+                    public boolean onResultRecive(int result) {
+                        BookCSS.get().paragraphHeight = result;
                         return false;
                     }
                 });
@@ -3429,7 +3440,9 @@ public class DragingDialogs {
                                 fontWeight.reset(BookCSS.get().fontWeight / 100);
                                 fontWeight.setValueText("" + BookCSS.get().fontWeight);
 
-                                fontInterval.reset(BookCSS.get().lineHeight);
+                                lineHeight.reset(BookCSS.get().lineHeight);
+                                paragraphHeight.reset(BookCSS.get().paragraphHeight);
+
                                 fontParagraph.reset(BookCSS.get().textIndent);
                                 //
                                 marginTop.reset(BookCSS.get().marginTop);

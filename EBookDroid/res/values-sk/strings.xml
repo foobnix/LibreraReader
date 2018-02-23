@@ -157,8 +157,6 @@
    <string name="left">Ľavá strana</string>
    <string name="right">Pravá strana</string>
    <string name="folder_with_fonts">Zložka s písmom</string>
-   <string name="interval">Interval</string>
-   <string name="paragraph">Odsek</string>
    <string name="simple_scroll_animation">Jednoduché scroll animácie</string>
    <string name="image_format">Formát obrázku</string>
    <string name="empty_line">Prázdny riadok</string>
@@ -450,6 +448,9 @@
    <string name="by_number_of_pages">Počet stránok</string>
    <string name="by_number_in_serie">Číslo v sérií</string>
    <string name="tags">Tagy</string>
+   <string name="line_spacing">Riadkovanie</string>
+   <string name="paragraph_spacing">Odstránenie oddielov</string>
    <string name="recent_favorites_tags">Nedávno, obľúbené, značky</string>
    <string name="enable_text_highlight">Povoliť zvýraznenie textu</string>
+   <string name="indent">Zarážka</string>
 </resources>

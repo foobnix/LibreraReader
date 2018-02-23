@@ -91,8 +91,6 @@
    <string name="document_styles">Document styles</string>
    <string name="user_styles">User styles</string>
    <string name="automatic_hyphenation">Enable hyphenation</string>
-   <string name="interval">Line spacing</string>
-   <string name="paragraph">Indent</string>
    <string name="empty_line">Empty Line</string>
    <string name="margin_width">Margin width</string>
    <string name="top">Top side</string>
@@ -452,4 +450,7 @@
    <string name="by_number_in_serie">Number in serie</string>
    <string name="recent_favorites_tags">Recent, favorites, tags</string>
    <string name="enable_text_highlight">Enable text highlight</string>
+   <string name="line_spacing">Line spacing</string>
+   <string name="paragraph_spacing">Paragraph spacing</string>
+   <string name="indent">Indent</string>
 </resources>

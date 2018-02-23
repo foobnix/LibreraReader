@@ -61,6 +61,7 @@ public class BookCSS {
     public int emptyLine;
 
     public int lineHeight;
+    public int paragraphHeight;
     public int textIndent;
     public int fontWeight;
     public String customCSS1;
@@ -106,6 +107,7 @@ public class BookCSS {
         customCSS1 = sp.getString("customCSS1", customCSS1);
 
         lineHeight = sp.getInt("lineHeight", lineHeight);
+        paragraphHeight = sp.getInt("paragraphHeight", paragraphHeight);
         textIndent = sp.getInt("textIndent", textIndent);
         fontWeight = sp.getInt("fontWeight", fontWeight);
         documentStyle = sp.getInt("documentStyle", documentStyle);
@@ -138,6 +140,7 @@ public class BookCSS {
         emptyLine = 5;
 
         lineHeight = 13;
+        paragraphHeight = 5;
         textIndent = 10;
         fontWeight = 400;
 
@@ -516,6 +519,7 @@ public class BookCSS {
         builder.append("epigraph{text-align:right; margin-left:2em;font-style: italic;}");
         builder.append("text-author{font-style: italic;font-weight: bold;}");
         builder.append("p>image{display:block;}");
+        builder.append(String.format("p{margin:%s 0}", em(paragraphHeight)));
 
         // FB2 END
 

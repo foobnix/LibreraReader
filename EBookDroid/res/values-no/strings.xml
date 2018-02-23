@@ -163,8 +163,6 @@
    <string name="bottom">Under siden</string>
    <string name="left">Venstre side</string>
    <string name="right">Høyre side</string>
-   <string name="interval">Intervall</string>
-   <string name="paragraph">Avsnitt</string>
    <string name="simple_scroll_animation">Enkel rulleanimasjon</string>
    <string name="image_format">Bildeformat</string>
    <string name="empty_line">Tom linje</string>
@@ -450,6 +448,9 @@
    <string name="by_number_of_pages">Antall sider</string>
    <string name="by_number_in_serie">Nummer i serie</string>
    <string name="tags">Tags</string>
+   <string name="line_spacing">Linjeavstand</string>
+   <string name="paragraph_spacing">Avsnittsavstand</string>
    <string name="recent_favorites_tags">Nylig, favoritter, tagger</string>
    <string name="enable_text_highlight">Aktiver teksthefte</string>
+   <string name="indent">Innrykk</string>
 </resources>

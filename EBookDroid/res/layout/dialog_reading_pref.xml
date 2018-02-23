@@ -147,11 +147,19 @@
         </LinearLayout>
 
         <com.foobnix.pdf.info.view.CustomSeek
-            android:id="@+id/fontInterval"
+            android:id="@+id/lineHeight"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="5dip"
-            myseek:text="@string/interval" >
+            myseek:text="@string/line_spacing" >
+        </com.foobnix.pdf.info.view.CustomSeek>
+        
+          <com.foobnix.pdf.info.view.CustomSeek
+            android:id="@+id/paragraphHeight"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dip"
+            myseek:text="@string/paragraph_spacing" >
         </com.foobnix.pdf.info.view.CustomSeek>
 
         <com.foobnix.pdf.info.view.CustomSeek
@@ -159,7 +167,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="5dip"
-            myseek:text="@string/paragraph" >
+            myseek:text="@string/indent" >
         </com.foobnix.pdf.info.view.CustomSeek>
 
         <com.foobnix.pdf.info.view.CustomSeek

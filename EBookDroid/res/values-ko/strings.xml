@@ -162,8 +162,6 @@
    <string name="bottom">아래</string>
    <string name="left">왼쪽</string>
    <string name="right">오른쪽</string>
-   <string name="interval">간격</string>
-   <string name="paragraph">절</string>
    <string name="simple_scroll_animation">간단한 스크롤 애니메이션</string>
    <string name="image_format">이미지 포맷</string>
    <string name="empty_line">빈 라인</string>
@@ -450,6 +448,9 @@
    <string name="by_number_of_pages">페이지 수</string>
    <string name="by_number_in_serie">세리에 번호</string>
    <string name="tags">태그</string>
+   <string name="line_spacing">줄 간격</string>
+   <string name="paragraph_spacing">단락 간격</string>
    <string name="recent_favorites_tags">최근 즐겨 찾기, 태그</string>
    <string name="enable_text_highlight">텍스트 강조 표시 사용</string>
+   <string name="indent">톱니 모양</string>
 </resources>

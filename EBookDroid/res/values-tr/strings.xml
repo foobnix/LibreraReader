@@ -157,8 +157,6 @@
    <string name="left">Sol</string>
    <string name="right">Sağ</string>
    <string name="folder_with_fonts">Yazıtipi Klasörü</string>
-   <string name="interval">Aralık</string>
-   <string name="paragraph">Paragraf</string>
    <string name="simple_scroll_animation">Basit kaydırma animasyonu</string>
    <string name="image_format">Resim Formatı</string>
    <string name="empty_line">Boş Hattı</string>
@@ -450,6 +448,9 @@
    <string name="by_number_of_pages">Sayfa sayısı</string>
    <string name="by_number_in_serie">Seri numarası</string>
    <string name="tags">Etiketler</string>
+   <string name="line_spacing">Satır aralığı</string>
+   <string name="paragraph_spacing">Paragraf aralığı</string>
    <string name="recent_favorites_tags">Son, favoriler, etiketler</string>
    <string name="enable_text_highlight">Metin vurgulamayı etkinleştir</string>
+   <string name="indent">Çentik</string>
 </resources>

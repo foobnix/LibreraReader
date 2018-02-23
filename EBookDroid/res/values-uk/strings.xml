@@ -157,8 +157,6 @@
    <string name="left">Зліва</string>
    <string name="right">Справа</string>
    <string name="folder_with_fonts">Папка зі шрифтами</string>
-   <string name="interval">Інтервал</string>
-   <string name="paragraph">Пункт</string>
    <string name="simple_scroll_animation">Показувати анімацію гортання</string>
    <string name="image_format">Формат зображення</string>
    <string name="empty_line">Порожній рядок</string>
@@ -450,6 +448,9 @@
    <string name="by_number_of_pages">Кількість сторінок</string>
    <string name="by_number_in_serie">Номер у серії</string>
    <string name="tags">Теги</string>
+   <string name="line_spacing">Міжрядковий інтервал</string>
+   <string name="paragraph_spacing">Міжрядковий інтервал</string>
    <string name="recent_favorites_tags">Недавні, вибрані, теги</string>
    <string name="enable_text_highlight">Увімкнути виділення тексту</string>
+   <string name="indent">Відступ</string>
 </resources>

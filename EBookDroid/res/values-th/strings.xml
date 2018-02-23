@@ -163,8 +163,6 @@
    <string name="bottom">ด้านล่าง</string>
    <string name="left">ด้านซ้าย</string>
    <string name="right">ด้านขวา</string>
-   <string name="interval">ระยะห่าง</string>
-   <string name="paragraph">ย่อหน้า</string>
    <string name="simple_scroll_animation">ภาพเคลื่อนไหวแบบเลื่อนง่ายๆ</string>
    <string name="image_format">รูปแบบรูปภาพ</string>
    <string name="empty_line">Empty Line</string>
@@ -450,6 +448,9 @@
    <string name="by_number_of_pages">เลขหน้า</string>
    <string name="by_number_in_serie">จำนวนในซีรี่ส์</string>
    <string name="tags">แท็ก</string>
+   <string name="line_spacing">ระยะห่างระหว่างบรรทัด</string>
+   <string name="paragraph_spacing">ระยะห่างของวรรค</string>
    <string name="recent_favorites_tags">รายการโปรดล่าสุดแท็ก</string>
    <string name="enable_text_highlight">เปิดใช้ไฮไลต์ข้อความ</string>
+   <string name="indent">ย่อหน้า</string>
 </resources>

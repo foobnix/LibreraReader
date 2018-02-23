@@ -161,8 +161,6 @@
    <string name="bottom">Partea inferioară</string>
    <string name="left">Partea stângă</string>
    <string name="right">Partea dreaptă</string>
-   <string name="interval">Interval</string>
-   <string name="paragraph">Paragraf</string>
    <string name="simple_scroll_animation">Parcurgere animație simplă</string>
    <string name="image_format">Formatul de imagine</string>
    <string name="empty_line">Linie goală</string>
@@ -450,6 +448,9 @@
    <string name="by_number_of_pages">Număr de pagini</string>
    <string name="by_number_in_serie">Numărul în serie</string>
    <string name="tags">Etichete</string>
+   <string name="line_spacing">Spațierea liniei</string>
+   <string name="paragraph_spacing">Spațierea paragrafelor</string>
    <string name="recent_favorites_tags">Recente, favorite, etichete</string>
    <string name="enable_text_highlight">Activați evidențierea textului</string>
+   <string name="indent">Indentați</string>
 </resources>

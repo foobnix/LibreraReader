@@ -157,8 +157,6 @@
    <string name="left">बाईं तरफ</string>
    <string name="right">दाईं ओर</string>
    <string name="folder_with_fonts">फोंट के साथ फ़ोल्डर</string>
-   <string name="interval">मध्यान्तर</string>
-   <string name="paragraph">अनुच्छेद</string>
    <string name="simple_scroll_animation">सरल पुस्तक एनीमेशन</string>
    <string name="image_format">छवि प्रारूप</string>
    <string name="empty_line">खाली पंक्ति</string>
@@ -450,6 +448,9 @@
    <string name="by_number_of_pages">पृष्ठों की संख्या</string>
    <string name="by_number_in_serie">श्रृंखला में नंबर</string>
    <string name="tags">टैग</string>
+   <string name="line_spacing">पंक्ति रिक्ति</string>
+   <string name="paragraph_spacing">पैराग्राफ़ स्पेसिंग</string>
    <string name="recent_favorites_tags">हाल ही में, पसंदीदा, टैग</string>
    <string name="enable_text_highlight">टेक्स्ट हाइलाइट सक्षम करें</string>
+   <string name="indent">इंडेंट</string>
 </resources>

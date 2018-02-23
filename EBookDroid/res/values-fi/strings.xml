@@ -163,8 +163,6 @@
    <string name="bottom">Pohja puoli</string>
    <string name="left">Vasen puoli</string>
    <string name="right">Oikea puoli</string>
-   <string name="interval">Intervalli</string>
-   <string name="paragraph">Kohta</string>
    <string name="simple_scroll_animation">Yksinkertainen selaa animaatio</string>
    <string name="image_format">Kuvan formaatti</string>
    <string name="empty_line">Tyhjä rivi</string>
@@ -450,6 +448,9 @@
    <string name="by_number_of_pages">Sivujen määrä</string>
    <string name="by_number_in_serie">Numero sarjassa</string>
    <string name="tags">Tunnisteet</string>
+   <string name="line_spacing">Riviväli</string>
+   <string name="paragraph_spacing">Kappaleen väli</string>
    <string name="recent_favorites_tags">Viimeaikaiset suosikit, tagit</string>
    <string name="enable_text_highlight">Ota tekstin korostaminen käyttöön</string>
+   <string name="indent">Sisennys</string>
 </resources>

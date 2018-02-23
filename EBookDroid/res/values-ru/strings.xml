@@ -157,8 +157,6 @@
    <string name="left">По левому краю</string>
    <string name="right">По правому краю</string>
    <string name="folder_with_fonts">Папка со шрифтами</string>
-   <string name="interval">Интервал</string>
-   <string name="paragraph">Абзац</string>
    <string name="simple_scroll_animation">Показывать анимацию простого сдвига страниц</string>
    <string name="image_format">Формат изображений</string>
    <string name="empty_line">Пустая строка</string>
@@ -450,6 +448,9 @@
    <string name="by_number_of_pages">Число страниц</string>
    <string name="by_number_in_serie">Номер в серии</string>
    <string name="tags">Теги</string>
+   <string name="line_spacing">Межстрочный интервал</string>
+   <string name="paragraph_spacing">Интервал между абзацами</string>
    <string name="recent_favorites_tags">Недавние, избранные, теги</string>
    <string name="enable_text_highlight">Включить выделение текста</string>
+   <string name="indent">Отступ</string>
 </resources>

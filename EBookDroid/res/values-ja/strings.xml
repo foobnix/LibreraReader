@@ -157,8 +157,6 @@
    <string name="left">左側</string>
    <string name="right">右側</string>
    <string name="folder_with_fonts">フォントを含むフォルダ</string>
-   <string name="interval">間隔</string>
-   <string name="paragraph">段落</string>
    <string name="simple_scroll_animation">シンプルなスクロールアニメーション</string>
    <string name="image_format">画像フォーマット</string>
    <string name="empty_line">空行</string>
@@ -450,6 +448,9 @@
    <string name="by_number_of_pages">ページ数</string>
    <string name="by_number_in_serie">セリエの数</string>
    <string name="tags">タグ</string>
+   <string name="line_spacing">行間隔</string>
+   <string name="paragraph_spacing">段落の間隔</string>
    <string name="recent_favorites_tags">最近のお気に入り、タグ</string>
    <string name="enable_text_highlight">テキストハイライトを有効にする</string>
+   <string name="indent">インデント</string>
 </resources>
