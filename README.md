@@ -15,8 +15,7 @@ Android Play market apps:
 
 [Beta(latest) .apk](http://beta.librera.mobi)
 
-[Telegram  Канал   (Русский)](https://t.me/LibreraReaderRus)
-[Telegram  Channel (English)](https://t.me/LibreraReaderEng)
+[Telegram] (https://t.me/LibreraReader)
 
 ## How to install
 
