@@ -9,8 +9,8 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.StandardCopyOption;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Comparator;
-import java.util.Iterator;
 import java.util.List;
 
 import org.json.JSONException;
@@ -79,14 +79,15 @@ public class SyncTranslations {
 
         final String projectEN = project + "values/strings.xml";
 
-        final List<String> asList = getAllLangCodes("/home/ivan-dev/git/LirbiReader/EBookDroid/res");
+        // final List<String> asList =
+        // getAllLangCodes("/home/ivan-dev/git/LirbiReader/EBookDroid/res");
 
-        // final List<String> asList = Arrays.asList("ru");
+        final List<String> asList = Arrays.asList("ru");
 
         normalize(projectEN);
         for (final String lang : asList) {
             final String projectRU = project + "values-" + lang + "/strings.xml";
-            merge(projectEN, projectRU, true, lang);
+            merge(projectEN, projectRU, lang);
         }
 
     }
@@ -96,42 +97,33 @@ public class SyncTranslations {
         System.out.println("copy " + in + " to " + out);
     }
 
-    public static void merge(final String inFile, final String outFile, final boolean markUntranslated, String lang) throws FileNotFoundException, Exception {
-        System.out.println("markUntranlated begin" + outFile);
+    public static void merge(final String inFile, final String outFile, String lang) throws FileNotFoundException, Exception {
+        System.out.println("merge begin" + outFile);
 
         final ResourcesModel in = load(inFile);
         final ResourcesModel out = normilize(load(outFile));
 
+        final ResourcesModel outModel = new ResourcesModel();
+
         int i = 0;
-        for (final StringModel model : in.getStrings()) {
-            if (!hasKey(out, model.getName())) {
-                String text = model.getText();
-                if (markUntranslated) {
-                    text = unTranslated(text, lang);
-                }
+        for (final StringModel inModel : in.getStrings()) {
+
+            String key = inModel.getName();
+            String text = inModel.getText();
+
+            StringModel model = getModelByKey(out, key);
+            if (model != null) {
+                outModel.getStrings().add(model);
+            } else {
                 text = normilizeText(text);
-                model.setText(text);
-                out.getStrings().add(i, model);
+                text = unTranslated(text, lang);
+                inModel.setText(text);
+                outModel.getStrings().add(inModel);
             }
-            i++;
         }
 
-        final Iterator<StringModel> iterator = out.getStrings().iterator();
-        while (iterator.hasNext()) {
-            final StringModel next = iterator.next();
-            if (!hasKey(in, next.getName())) {
-                iterator.remove();
-            }
-            // final boolean app = Arrays.asList("app_name_beta",
-            // "app_name_prod").contains(next.getName());
-            // if (!app && sameText(in, next.getName(), next.getText())) {
-            // next.setText(unTranslated(next.getText()));
-            // System.out.println(next.getText());
-            // }
-        }
-
-        save(outFile, out);
-        System.out.println("markUntranlated end" + outFile);
+        save(outFile, outModel);
+        System.out.println("merge end" + outFile);
     }
 
     private static ResourcesModel load(final String inFile) throws Exception, FileNotFoundException {
@@ -146,6 +138,15 @@ public class SyncTranslations {
             }
         }
         return false;
+    }
+
+    public static StringModel getModelByKey(final ResourcesModel in, final String key) {
+        for (final StringModel model : in.getStrings()) {
+            if (model.getName().equals(key)) {
+                return model;
+            }
+        }
+        return null;
     }
 
     public static boolean sameText(final ResourcesModel in, final String key, final String text) {

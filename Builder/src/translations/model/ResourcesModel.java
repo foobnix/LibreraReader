@@ -17,7 +17,7 @@ public class ResourcesModel {
     private List<StringArray> stringArrays = new ArrayList<>();
     
     @ElementList(name="string", inline=true)
-    private List<StringModel> strings;
+    private List<StringModel> strings = new ArrayList<StringModel>();
     
     public List<StringModel> getStrings() {
         return strings;
