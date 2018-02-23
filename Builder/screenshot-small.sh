@@ -11,4 +11,4 @@ adb pull /sdcard/screen.png "$1/$2.png"
 adb shell rm /sdcard/screen.png
 
 #convert  -resize 50% "$1/$2.png" "$1/$2-50p.png"
-convert  -resize 21% "$1/$2.png" "$1/$2.png"
+convert -resize 21% "$1/$2.png" "$1/$2.png"

@@ -448,7 +448,6 @@
                 android:text="@string/automatic"
                 android:textSize="12sp" />
         </LinearLayout>
-        
 
         <com.foobnix.pdf.info.view.CustomSeek
             android:id="@+id/customBrightness"
@@ -1337,32 +1336,13 @@
                 android:layout_height="wrap_content"
                 android:text="http://archive.librera.mobi" />
         </LinearLayout>
-        
-         <LinearLayout
-            android:layout_width="match_parent"
+
+        <TextView
+            android:id="@+id/onTelegram"
+            style="@style/textLink"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:gravity="center_vertical" >
-
-            <TextView
-                android:layout_width="100dip"
-                android:layout_height="wrap_content"
-                android:paddingLeft="5dip"
-                android:text="@string/telegram_channel" />
-
-            <TextView
-                android:id="@+id/onTelegramRus"
-                style="@style/textLink"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Русский" />
-            
-            <TextView
-                android:id="@+id/onTelegramEng"
-                style="@style/textLink"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="English" />
-        </LinearLayout>
+            android:text="@string/telegram_channel" />
 
         <TextView
             android:id="@+id/onRateIt"

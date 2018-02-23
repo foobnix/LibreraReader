@@ -1435,21 +1435,14 @@ public class PrefFragment2 extends UIFragment {
             }
         });
 
-        underline(inflate.findViewById(R.id.onTelegramRus)).setOnClickListener(new OnClickListener() {
+        underline(inflate.findViewById(R.id.onTelegram)).setOnClickListener(new OnClickListener() {
 
             @Override
             public void onClick(final View v) {
-                Urls.open(getActivity(), "https://t.me/LibreraReaderRus");
+                Urls.open(getActivity(), "https://t.me/LibreraReader");
             }
         });
 
-        underline(inflate.findViewById(R.id.onTelegramEng)).setOnClickListener(new OnClickListener() {
-
-            @Override
-            public void onClick(final View v) {
-                Urls.open(getActivity(), "https://t.me/LibreraReaderEng");
-            }
-        });
 
         TextView proText = (TextView) inflate.findViewById(R.id.downloadPRO);
         TxtUtils.underlineTextView(proText);

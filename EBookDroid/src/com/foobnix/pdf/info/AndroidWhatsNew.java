@@ -25,7 +25,7 @@ import android.widget.TextView;
 
 public class AndroidWhatsNew {
 
-    public static final String DETAIL_URL_RU = "https://drive.google.com/open?id=1qXdmPNP4rr_pBfJSSy5QRQvW_Kyb-NN-";
+    public static final String DETAIL_URL_RU = "http://doc.librera.mobi";
     private static final String BETA_TXT = "changelog.txt";
     private static final String BETA = "beta-";
 
