@@ -9,7 +9,6 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.StandardCopyOption;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Comparator;
 import java.util.List;
 
@@ -79,10 +78,9 @@ public class SyncTranslations {
 
         final String projectEN = project + "values/strings.xml";
 
-        // final List<String> asList =
-        // getAllLangCodes("/home/ivan-dev/git/LirbiReader/EBookDroid/res");
+        final List<String> asList = getAllLangCodes("/home/ivan-dev/git/LirbiReader/EBookDroid/res");
 
-        final List<String> asList = Arrays.asList("ru");
+        // final List<String> asList = Arrays.asList("ru");
 
         normalize(projectEN);
         for (final String lang : asList) {
