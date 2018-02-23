@@ -336,7 +336,7 @@
    <string name="new_beta_version_available">新测试版</string>
    <string name="custom_css">自定义CSS</string>
    <string name="show_book_covers">显示封面</string>
-   <string name="without_series">没有系列</string>
+   <string name="without_series">无系列</string>
    <string name="add_as_a_web_site">添加网站</string>
    <string name="add_catalog">添加书库</string>
    <string name="favorites">收藏</string>
@@ -378,7 +378,7 @@
    <string name="scroll_speed">鼠标灵敏度</string>
    <string name="landscape_180">横屏（180°）</string>
    <string name="portrait_180">竖屏（180°）</string>
-   <string name="full_list_of_changes_with_images_web_pdf_">详细变更信息...</string>
+   <string name="full_list_of_changes_with_images_web_pdf_">了解详细变更信息...</string>
    <string name="select_the_reading_mode">阅读模式</string>
    <string name="remember_choice">默认</string>
    <string name="formatted_text">格式文本（伪图形）</string>
