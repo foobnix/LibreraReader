@@ -455,4 +455,5 @@
    <string name="allow_text_highlight">السماح بتمييز النص</string>
    <string name="text_highlight_mode_is_enable">يتم تمكين وضع تمييز النص</string>
    <string name="text_highlight_mode_is_disable">يتم تعطيل وضع تمييز النص</string>
+   <string name="application_error_please_send_this_report_by_emial">خطأ في التطبيق، يرجى إرسال هذا التقرير بواسطة إميل</string>
 </resources>

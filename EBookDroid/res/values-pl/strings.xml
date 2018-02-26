@@ -455,4 +455,5 @@
    <string name="allow_text_highlight">Pozwól na podświetlenie tekstu</string>
    <string name="text_highlight_mode_is_enable">Tryb podświetlania tekstu jest włączony</string>
    <string name="text_highlight_mode_is_disable">Tryb podświetlania tekstu jest wyłączony</string>
+   <string name="application_error_please_send_this_report_by_emial">Błąd aplikacji, proszę wysłać ten raport przez emaill</string>
 </resources>

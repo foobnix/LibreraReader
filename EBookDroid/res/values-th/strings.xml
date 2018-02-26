@@ -455,4 +455,5 @@
    <string name="allow_text_highlight">อนุญาตให้เน้นข้อความ</string>
    <string name="text_highlight_mode_is_enable">โหมดเน้นข้อความถูกเปิดใช้งาน</string>
    <string name="text_highlight_mode_is_disable">โหมดเน้นข้อความถูกปิดใช้งาน</string>
+   <string name="application_error_please_send_this_report_by_emial">ข้อผิดพลาดของแอปพลิเคชันโปรดส่งรายงานนี้โดย emaill</string>
 </resources>

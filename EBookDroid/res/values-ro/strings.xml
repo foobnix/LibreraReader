@@ -455,4 +455,5 @@
    <string name="allow_text_highlight">Permiteți evidențierea textului</string>
    <string name="text_highlight_mode_is_enable">Modul de evidențiere a textului este activat</string>
    <string name="text_highlight_mode_is_disable">Modul de evidențiere a textului este dezactivat</string>
+   <string name="application_error_please_send_this_report_by_emial">Eroare de aplicare, trimiteți acest raport prin e-mail</string>
 </resources>

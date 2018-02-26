@@ -455,4 +455,5 @@
    <string name="allow_text_highlight">Leisti teksto paryškinimą</string>
    <string name="text_highlight_mode_is_enable">Įjunkite teksto paryškinimo režimą</string>
    <string name="text_highlight_mode_is_disable">Teksto paryškinimo režimas išjungiamas</string>
+   <string name="application_error_please_send_this_report_by_emial">Programos klaida, prašome atsiųsti šią ataskaitą el. Paštu</string>
 </resources>

@@ -455,4 +455,5 @@
    <string name="allow_text_highlight">Ruhusu kuzingatia maandiko</string>
    <string name="text_highlight_mode_is_enable">Njia ya kuonyesha maandishi inaruhusu</string>
    <string name="text_highlight_mode_is_disable">Mfumo wa kuonyesha maandishi hauzima</string>
+   <string name="application_error_please_send_this_report_by_emial">Hitilafu ya maombi, tafadhali tuma ripoti hii kwa barua pepe</string>
 </resources>

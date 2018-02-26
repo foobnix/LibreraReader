@@ -455,4 +455,5 @@
    <string name="allow_text_highlight">启用文本高亮</string>
    <string name="text_highlight_mode_is_enable">文本高亮已启用</string>
    <string name="text_highlight_mode_is_disable">文本高亮已禁用</string>
+   <string name="application_error_please_send_this_report_by_emial">应用程序错误，请通过emaill发送此报告</string>
 </resources>

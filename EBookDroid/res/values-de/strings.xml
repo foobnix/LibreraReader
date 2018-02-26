@@ -455,4 +455,5 @@
    <string name="allow_text_highlight">Erlaube Text markieren</string>
    <string name="text_highlight_mode_is_enable">Der Textmarkierungsmodus ist aktiviert</string>
    <string name="text_highlight_mode_is_disable">Der Textmarkierungsmodus ist deaktiviert</string>
+   <string name="application_error_please_send_this_report_by_emial">Anwendungsfehler, bitte senden Sie diesen Bericht von Emaill</string>
 </resources>

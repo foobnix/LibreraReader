@@ -455,4 +455,5 @@
    <string name="allow_text_highlight">اجازه متن برجسته</string>
    <string name="text_highlight_mode_is_enable">حالت برجسته متن فعال است</string>
    <string name="text_highlight_mode_is_disable">حالت برجسته متن غیرفعال است</string>
+   <string name="application_error_please_send_this_report_by_emial">خطا در برنامه، لطفا این گزارش را توسط emaill ارسال کنید</string>
 </resources>

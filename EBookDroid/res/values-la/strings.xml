@@ -455,4 +455,5 @@
    <string name="allow_text_highlight">Patitur highlight text</string>
    <string name="text_highlight_mode_is_enable">Enable is modus highlight text</string>
    <string name="text_highlight_mode_is_disable">Text and Style modus est disable</string>
+   <string name="application_error_please_send_this_report_by_emial">Applicatio errorem mittere divulgatum per emaill</string>
 </resources>

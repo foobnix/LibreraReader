@@ -455,4 +455,5 @@
    <string name="allow_text_highlight">Sta tekstmarkering toe</string>
    <string name="text_highlight_mode_is_enable">Tekstmarkeringsmodus is ingeschakeld</string>
    <string name="text_highlight_mode_is_disable">De tekstmarkeringsmodus is uitgeschakeld</string>
+   <string name="application_error_please_send_this_report_by_emial">Toepassingsfout, stuur dit rapport door emaill</string>
 </resources>

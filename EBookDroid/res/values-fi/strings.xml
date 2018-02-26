@@ -455,4 +455,5 @@
    <string name="allow_text_highlight">Salli tekstin korostaminen</string>
    <string name="text_highlight_mode_is_enable">Teksti korostustila on käytössä</string>
    <string name="text_highlight_mode_is_disable">Tekstin korostustila on poistettu käytöstä</string>
+   <string name="application_error_please_send_this_report_by_emial">Sovellusvirhe, lähetä tämä raportti osoitteeseen emaill</string>
 </resources>

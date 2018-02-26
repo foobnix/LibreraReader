@@ -455,4 +455,5 @@
    <string name="allow_text_highlight">Izinkan sorotan teks</string>
    <string name="text_highlight_mode_is_enable">Mode highlight teks aktif</string>
    <string name="text_highlight_mode_is_disable">Mode highlight teks dinonaktifkan</string>
+   <string name="application_error_please_send_this_report_by_emial">Kesalahan aplikasi, silahkan kirim laporan ini melalui emaill</string>
 </resources>

@@ -455,4 +455,5 @@
    <string name="allow_text_highlight">Povoliť zvýraznenie textu</string>
    <string name="text_highlight_mode_is_enable">Režim zvýraznenia textu je povolený</string>
    <string name="text_highlight_mode_is_disable">Režim zvýraznenia textu je deaktivovaný</string>
+   <string name="application_error_please_send_this_report_by_emial">Chyba aplikácie, pošlite túto správu e-mailom</string>
 </resources>

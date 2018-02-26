@@ -455,4 +455,5 @@
    <string name="allow_text_highlight">Разрешать выделять текст</string>
    <string name="text_highlight_mode_is_enable">Включен режим выделения текста</string>
    <string name="text_highlight_mode_is_disable">Режим выделения текста отключен</string>
+   <string name="application_error_please_send_this_report_by_emial">Ошибка приложения, пожалуйста, отправьте этот отчет emaill</string>
 </resources>

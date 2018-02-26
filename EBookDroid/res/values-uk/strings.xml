@@ -455,4 +455,5 @@
    <string name="allow_text_highlight">Дозволити виділення тексту</string>
    <string name="text_highlight_mode_is_enable">Режим підсвічування тексту увімкнено</string>
    <string name="text_highlight_mode_is_disable">Режим підсвічування тексту вимкнено</string>
+   <string name="application_error_please_send_this_report_by_emial">Помилка програми, будь ласка, надішліть цей звіт за допомогою emaill</string>
 </resources>

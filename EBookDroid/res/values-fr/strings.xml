@@ -455,4 +455,5 @@
    <string name="allow_text_highlight">Autoriser la mise en évidence</string>
    <string name="text_highlight_mode_is_enable">Le mode de surbrillance du texte est activé</string>
    <string name="text_highlight_mode_is_disable">Le mode de surbrillance du texte est désactivé</string>
+   <string name="application_error_please_send_this_report_by_emial">Erreur d\'application, merci d\'envoyer ce rapport par emaill</string>
 </resources>

@@ -455,4 +455,5 @@
    <string name="allow_text_highlight">Tillåt textmarkering</string>
    <string name="text_highlight_mode_is_enable">Textmarkeringsläget är aktiverat</string>
    <string name="text_highlight_mode_is_disable">Textmarkeringsläge är inaktiverat</string>
+   <string name="application_error_please_send_this_report_by_emial">Applikationsfel, skicka denna rapport via emaill</string>
 </resources>

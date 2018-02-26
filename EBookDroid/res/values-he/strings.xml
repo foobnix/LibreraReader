@@ -455,4 +455,5 @@
    <string name="allow_text_highlight">אפשר הדגשת טקסט</string>
    <string name="text_highlight_mode_is_enable">מצב סימון טקסט מופעל</string>
    <string name="text_highlight_mode_is_disable">מצב הדגשת טקסט מושבת</string>
+   <string name="application_error_please_send_this_report_by_emial">שגיאת יישום, אנא שלח דוח זה על ידי emaill</string>
 </resources>

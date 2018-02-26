@@ -455,4 +455,5 @@
    <string name="allow_text_highlight">Metne vurgulamaya izin ver</string>
    <string name="text_highlight_mode_is_enable">Metin vurgulama modu etkindir</string>
    <string name="text_highlight_mode_is_disable">Metin vurgulama modu devre dışı</string>
+   <string name="application_error_please_send_this_report_by_emial">Uygulama hatası, lütfen bu raporu emaill tarafından gönder</string>
 </resources>

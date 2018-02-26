@@ -455,4 +455,5 @@
    <string name="allow_text_highlight">Permitir texto resaltado</string>
    <string name="text_highlight_mode_is_enable">El modo de resaltado de texto está habilitado</string>
    <string name="text_highlight_mode_is_disable">El modo resaltado de texto está deshabilitado</string>
+   <string name="application_error_please_send_this_report_by_emial">Error de aplicación, envíe este informe por emaill</string>
 </resources>

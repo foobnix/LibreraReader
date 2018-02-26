@@ -92,13 +92,14 @@ public class LibreraApp extends Application {
             Thread.setDefaultUncaughtExceptionHandler(new Thread.UncaughtExceptionHandler() {
                 @Override
                 public void uncaughtException(Thread thread, final Throwable e) {
-                    LOG.d(e);
+                    LOG.e(e);
+                    e.printStackTrace();
                     try {
 
 
                         StringWriter errors = new StringWriter();
                         e.printStackTrace(new PrintWriter(errors));
-                        Apps.onCrashEmail(context, errors.toString(), AppsConfig.TXT_APP_NAME + " " + context.getString(R.string.application_crash_please_send_this_report_to_us));
+                        Apps.onCrashEmail(context, errors.toString(), AppsConfig.TXT_APP_NAME + " " + context.getString(R.string.application_error_please_send_this_report_by_emial));
 
                         System.exit(1);
 

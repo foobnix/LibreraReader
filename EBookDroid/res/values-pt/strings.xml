@@ -455,4 +455,5 @@
    <string name="allow_text_highlight">Permitir texto destacado</string>
    <string name="text_highlight_mode_is_enable">O modo de resumo de texto é habilitado</string>
    <string name="text_highlight_mode_is_disable">O modo de destaque de texto é desativado</string>
+   <string name="application_error_please_send_this_report_by_emial">Erro de aplicação, envie este relatório por email</string>
 </resources>
