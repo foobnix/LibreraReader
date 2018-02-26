@@ -382,6 +382,7 @@ public class Dialogs {
 
             @Override
             public void onClick(DialogInterface dialog, int which) {
+                Keyboards.close(edit);
             }
         });
 
@@ -389,6 +390,7 @@ public class Dialogs {
 
             @Override
             public void onClick(DialogInterface dialog, int which) {
+                Keyboards.close(edit);
             }
         });
 
@@ -397,7 +399,6 @@ public class Dialogs {
 
             @Override
             public void onDismiss(DialogInterface dialog) {
-                // Keyboards.hideNavigation(a);
             }
         });
         create.show();
@@ -416,6 +417,9 @@ public class Dialogs {
                     return;
                 }
 
+                Keyboards.close(edit);
+                Keyboards.hideNavigation((Activity) a);
+
                 if (!text.startsWith("#")) {
                     text = "#" + text;
                 }
@@ -425,6 +429,8 @@ public class Dialogs {
                 }
                 create.dismiss();
                 AppState.get().save(a);
+
+
 
             }
         });
@@ -539,6 +545,7 @@ public class Dialogs {
 
             @Override
             public void onClick(DialogInterface dialog, int which) {
+
             }
         });
 
@@ -566,12 +573,13 @@ public class Dialogs {
 
             @Override
             public void onDismiss(DialogInterface dialog) {
-                // Keyboards.hideNavigation(a);
+                Keyboards.close((Activity) a);
+                Keyboards.hideNavigation((Activity) a);
+
             }
         });
         create.show();
 
-        // Keyboards.close(a);
 
     }
 
