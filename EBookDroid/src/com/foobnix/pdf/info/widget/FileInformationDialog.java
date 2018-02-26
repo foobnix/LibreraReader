@@ -139,6 +139,8 @@ public class FileInformationDialog {
                     String replace = tag.replace("#", " ");
                     replace = TxtUtils.replaceLast(replace, ",", "").trim();
                     ((TextView) dialog.findViewById(R.id.tagsList)).setText(replace);
+                    ((TextView) dialog.findViewById(R.id.tagsID)).setVisibility(View.VISIBLE);
+                    ((TextView) dialog.findViewById(R.id.tagsList)).setVisibility(View.VISIBLE);
                 } else {
                     ((TextView) dialog.findViewById(R.id.tagsID)).setVisibility(View.GONE);
                     ((TextView) dialog.findViewById(R.id.tagsList)).setVisibility(View.GONE);

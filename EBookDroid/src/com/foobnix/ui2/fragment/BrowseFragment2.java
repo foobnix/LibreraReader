@@ -235,7 +235,7 @@ public class BrowseFragment2 extends UIFragment<FileMeta> {
                             setDirPath(info);
                             return false;
                         }
-                    }).setIcon(R.drawable.glyphicons_50_star);
+                    }).setIcon(R.drawable.glyphicons_591_folder_star);
 
                 }
 
