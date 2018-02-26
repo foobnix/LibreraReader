@@ -1755,6 +1755,8 @@ public class PrefFragment2 extends UIFragment {
         }
     }
 
+
+
     public String getFullDeviceInfo() {
         return "(" + Build.BRAND + ", " + Build.MODEL + ", " + android.os.Build.VERSION.RELEASE + ", " + Dips.screenWidthDP() + "dp" + ")";
     }

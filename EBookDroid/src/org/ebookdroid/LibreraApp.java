@@ -1,10 +1,14 @@
 package org.ebookdroid;
 
+import java.io.PrintWriter;
+import java.io.StringWriter;
+
 import org.ebookdroid.common.bitmaps.BitmapManager;
 import org.ebookdroid.common.cache.CacheManager;
 import org.ebookdroid.common.settings.SettingsManager;
 
 import com.artifex.mupdf.fitz.StructuredText;
+import com.foobnix.android.utils.Apps;
 import com.foobnix.android.utils.Dips;
 import com.foobnix.android.utils.LOG;
 import com.foobnix.ext.CacheZipUtils;
@@ -82,6 +86,27 @@ public class LibreraApp extends Application {
             }
         } catch (Exception e) {
             LOG.e(e);
+        }
+
+        if (AppsConfig.IS_BETA) {
+            Thread.setDefaultUncaughtExceptionHandler(new Thread.UncaughtExceptionHandler() {
+                @Override
+                public void uncaughtException(Thread thread, final Throwable e) {
+                    LOG.d(e);
+                    try {
+
+
+                        StringWriter errors = new StringWriter();
+                        e.printStackTrace(new PrintWriter(errors));
+                        Apps.onCrashEmail(context, errors.toString(), AppsConfig.TXT_APP_NAME + " " + context.getString(R.string.application_crash_please_send_this_report_to_us));
+
+                        System.exit(1);
+
+                    } catch (Exception e1) {
+                        LOG.e(e1);
+                    }
+                }
+            });
         }
 
     }

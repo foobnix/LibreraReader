@@ -1,11 +1,15 @@
 package com.foobnix.android.utils;
 
+import com.foobnix.pdf.info.AppsConfig;
+import com.foobnix.pdf.info.R;
+
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageInfo;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.provider.Settings.Secure;
+import android.widget.Toast;
 
 public class Apps {
 
@@ -83,6 +87,23 @@ public class Apps {
         startMain.addCategory(Intent.CATEGORY_HOME);
         startMain.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         c.startActivity(startMain);
+    }
+
+    public static void onCrashEmail(Context c, String msg, String title) {
+        final Intent emailIntent = new Intent(android.content.Intent.ACTION_SEND);
+
+        String string = c.getResources().getString(R.string.my_email).replace("<u>", "").replace("</u>", "");
+        final String aEmailList[] = { string };
+        emailIntent.putExtra(android.content.Intent.EXTRA_EMAIL, aEmailList);
+        emailIntent.putExtra(android.content.Intent.EXTRA_SUBJECT, AppsConfig.TXT_APP_NAME + " " + Apps.getVersionName(c) + " Crash report");
+        emailIntent.setType("plain/text");
+        emailIntent.putExtra(android.content.Intent.EXTRA_TEXT, msg);
+
+        try {
+            c.startActivity(Intent.createChooser(emailIntent, title));
+        } catch (android.content.ActivityNotFoundException ex) {
+            Toast.makeText(c, R.string.there_are_no_email_applications_installed_, Toast.LENGTH_SHORT).show();
+        }
     }
 
 }

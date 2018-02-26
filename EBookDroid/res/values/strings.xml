@@ -455,4 +455,5 @@
    <string name="allow_text_highlight">Allow text highlight</string>
    <string name="text_highlight_mode_is_enable">Text highlight mode is enable</string>
    <string name="text_highlight_mode_is_disable">Text highlight mode is disable</string>
+   <string name="application_crash_please_send_this_report_to_us">Application crash, please send this report to us</string>
 </resources>
