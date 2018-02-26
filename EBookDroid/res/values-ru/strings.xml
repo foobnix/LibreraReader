@@ -127,12 +127,12 @@
    <string name="enhancements_for_oled_display">Заполнять пространство вокруг страниц черным цветом при выборе любого из ночных пресетов (AMOLED-адаптация)</string>
    <string name="ignore_annotations_on_click">Игнорировать комментарии и пометки при нажатиях</string>
    <string name="save_new_annotations_automatically">Автоматически сохранять новые комментарии и пометки при закрытии книги или выходе из приложения</string>
-   <string name="selecting_text_by_letters">Выделять текст по буквам (для иероглифических языков)</string>
+   <string name="selecting_text_by_letters">Использовать побуквенное выделение текста (для иероглифических языков)</string>
    <string name="change_the_automatic_scrolling_speed_with_the_volume_keys">Менять скорость автопрокрутки текста клавишами регулировки громкости</string>
    <string name="enable_brightness_adjustment_on_the_left_of_the_screen">Регулировать яркость подсветки у левой границы экрана</string>
    <string name="scroll_speed">Шаг прокр. текста</string>
    <string name="page_quality">Кач-во прорисовки стр-ц</string>
-   <string name="pages_in_memory">Страниц в операт. памяти</string>
+   <string name="pages_in_memory">Страниц в опер. памяти</string>
    <string name="screen_turn_off_after_inactivity_minutes_">Время перед гашением экрана (в минутах)</string>
    <string name="___STATUS___BAR___SETTINGS___SECTION___"></string>
    <string name="status_bar">Строка состояния</string>
@@ -375,7 +375,7 @@
    <string name="size_of_allocated_memory">Размер выделенной памяти</string>
    <string name="display_settings">Настройки отображения</string>
    <string name="image_format">Формат изображений</string>
-   <string name="enable_vibration_for_some_actions">Включить виброотклик для некоторых действий</string>
+   <string name="enable_vibration_for_some_actions">Включать виброотклик при некоторых действиях</string>
    <string name="image">Изображение</string>
    <string name="transparency">Прозрачность</string>
    <string name="write_feedback">Написать отзыв</string>
@@ -421,7 +421,7 @@
    <string name="incorrect_password">Пароль неверный</string>
    <string name="repeat_password">Введите пароль еще раз</string>
    <string name="internal_storage">Внутр. карта памяти</string>
-   <string name="the_page_is_clipped_the_text_selection_does_not_work">При включенной автообрезке пустых полей и (или) делении страниц пополам выделить текст нельзя</string>
+   <string name="the_page_is_clipped_the_text_selection_does_not_work">При включенной автообрезке пустых полей и/или делении страниц пополам выделить текст нельзя</string>
    <string name="title">Заголовок</string>
    <string name="subject">Тема</string>
    <string name="keywords">Ключевые слова</string>
@@ -455,5 +455,5 @@
    <string name="allow_text_highlight">Разрешать выделять текст</string>
    <string name="text_highlight_mode_is_enable">Включен режим выделения текста</string>
    <string name="text_highlight_mode_is_disable">Режим выделения текста отключен</string>
-   <string name="application_error_please_send_this_report_by_emial">Ошибка приложения, пожалуйста, отправьте этот отчет emaill</string>
+   <string name="application_error_please_send_this_report_by_emial">Что-то пошло не так! Очень просим вам отправить этот отчет об ошибке по Email, т. к. он помог бы разобраться в проблеме</string>
 </resources>
