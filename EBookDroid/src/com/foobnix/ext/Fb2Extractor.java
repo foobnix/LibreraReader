@@ -490,7 +490,7 @@ public class Fb2Extractor extends BaseExtractor {
 
                 if (!isFindBodyEnd) {
                     if ((AppState.get().isDouble || !titleBegin) && BookCSS.get().isAutoHypens) {
-                        line = HypenUtils.applyHypnesOld(line);
+                        line = HypenUtils.applyHypnes(line);
                     }
                 }
                 writer.print(line);

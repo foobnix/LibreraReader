@@ -44,9 +44,11 @@ import android.content.DialogInterface;
 import android.content.DialogInterface.OnDismissListener;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v4.content.LocalBroadcastManager;
+import android.support.v4.graphics.ColorUtils;
 import android.support.v4.util.Pair;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -102,13 +104,16 @@ public class SearchFragment2 extends UIFragment<FileMeta> {
     @Override
     public void onTintChanged() {
         TintUtil.setBackgroundFillColor(secondTopPanel, TintUtil.color);
-        TintUtil.setStrokeColor(searchEditText, TintUtil.color);
 
-        TintUtil.setUITextColor(countBooks, TintUtil.color);
-        TintUtil.setUITextColor(searchEditText, TintUtil.color);
-        
-        TintUtil.setTintImageNoAlpha(cleanFilter, TintUtil.color);
-        TintUtil.setTintImageNoAlpha(myAutoCompleteImage, TintUtil.color);
+        int colorTheme = AppState.get().isWhiteTheme ? TintUtil.color : Color.WHITE;
+        colorTheme = ColorUtils.setAlphaComponent(colorTheme, 230);
+
+        TintUtil.setStrokeColor(searchEditText, colorTheme);
+        TintUtil.setUITextColor(countBooks, colorTheme);
+        TintUtil.setUITextColor(searchEditText, colorTheme);
+
+        TintUtil.setTintImageNoAlpha(cleanFilter, colorTheme);
+        TintUtil.setTintImageNoAlpha(myAutoCompleteImage, colorTheme);
 
     }
 
@@ -748,7 +753,7 @@ public class SearchFragment2 extends UIFragment<FileMeta> {
                 R.drawable.glyphicons_157_show_thumbnails, //
                 R.drawable.glyphicons_4_user, //
                 R.drawable.glyphicons_66_tag, //
-                R.drawable.glyphicons_710_list_numbered,//
+                R.drawable.glyphicons_710_list_numbered, //
                 R.drawable.glyphicons_67_tags);
         final List<Integer> actions = Arrays.asList(AppState.MODE_LIST, AppState.MODE_LIST_COMPACT, //
                 AppState.MODE_GRID, //

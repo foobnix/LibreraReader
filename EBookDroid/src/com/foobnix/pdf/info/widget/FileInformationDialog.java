@@ -6,6 +6,7 @@ import java.util.List;
 
 import org.ebookdroid.BookType;
 import org.ebookdroid.core.codec.CodecDocument;
+import org.greenrobot.eventbus.EventBus;
 
 import com.foobnix.android.utils.Dips;
 import com.foobnix.android.utils.Keyboards;
@@ -21,6 +22,7 @@ import com.foobnix.pdf.info.view.Dialogs;
 import com.foobnix.pdf.info.view.ScaledImageView;
 import com.foobnix.pdf.info.wrapper.AppBookmark;
 import com.foobnix.pdf.info.wrapper.AppState;
+import com.foobnix.pdf.search.activity.msg.NotifyAllFragments;
 import com.foobnix.sys.ImageExtractor;
 import com.foobnix.ui2.AppDB;
 import com.foobnix.ui2.FileMetaCore;
@@ -159,6 +161,7 @@ public class FileInformationDialog {
                     @Override
                     public void run() {
                         tagsRunnable.run();
+                        EventBus.getDefault().post(new NotifyAllFragments());
                     }
                 });
             }

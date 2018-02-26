@@ -57,7 +57,7 @@ public class RtfExtract {
                     if (BookCSS.get().isAutoHypens) {
                         htmlEncode = HypenUtils.applyHypnes(htmlEncode);
                     }
-                    writer.println(htmlEncode);
+                    writer.print(htmlEncode);
 					isBR = false;
 				}
 

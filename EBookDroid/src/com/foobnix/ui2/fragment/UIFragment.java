@@ -13,6 +13,7 @@ import com.foobnix.android.utils.LOG;
 import com.foobnix.android.utils.TxtUtils;
 import com.foobnix.pdf.info.wrapper.AppState;
 import com.foobnix.pdf.info.wrapper.PopupHelper;
+import com.foobnix.pdf.search.activity.msg.NotifyAllFragments;
 import com.foobnix.pdf.search.activity.msg.OpenDirMessage;
 import com.foobnix.pdf.search.activity.msg.UpdateAllFragments;
 import com.foobnix.sys.TempHolder;
@@ -89,6 +90,11 @@ public abstract class UIFragment<T> extends Fragment {
     public void notifyUpdateFragment(UpdateAllFragments event) {
         TempHolder.listHash++;
         onSelectFragment();
+    }
+
+    @Subscribe
+    public void notifyUpdateFragment(NotifyAllFragments event) {
+        notifyFragment();
     }
 
     public void bindAdapter(FileMetaAdapter searchAdapter) {

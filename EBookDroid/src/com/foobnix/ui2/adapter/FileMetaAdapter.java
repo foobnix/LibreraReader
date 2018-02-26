@@ -456,8 +456,6 @@ public class FileMetaAdapter extends AppRecycleAdapter<FileMeta, RecyclerView.Vi
                 holder.starredNameIcon.setImageResource(R.drawable.glyphicons_67_tags);
                 TintUtil.setTintImageNoAlpha(holder.starredNameIcon, Color.WHITE);
 
-
-
                 adapter.getItemsList().clear();
                 List<FileMeta> allTags = AppDB.get().searchBy("@tags " + AppState.get().recentTag, SORT_BY.FILE_NAME, false);
                 adapter.getItemsList().addAll(allTags);
@@ -637,7 +635,7 @@ public class FileMetaAdapter extends AppRecycleAdapter<FileMeta, RecyclerView.Vi
         } else {
             holder.star.setImageResource(R.drawable.star_1);
         }
-        TintUtil.setTintImageWithAlpha(holder.star, TintUtil.color);
+        TintUtil.setTintImageWithAlpha(holder.star, AppState.get().isWhiteTheme ? TintUtil.color : Color.WHITE);
 
         if (onStarClickListener != null) {
             holder.star.setOnClickListener(new OnClickListener() {
@@ -769,7 +767,7 @@ public class FileMetaAdapter extends AppRecycleAdapter<FileMeta, RecyclerView.Vi
             }
         }
 
-        TintUtil.setTintImageWithAlpha(holder.menu);
+        TintUtil.setTintImageWithAlpha(holder.menu, AppState.get().isWhiteTheme ? TintUtil.color : Color.WHITE);
 
         if (holder.remove != null) {
             holder.remove.setOnClickListener(new OnClickListener() {

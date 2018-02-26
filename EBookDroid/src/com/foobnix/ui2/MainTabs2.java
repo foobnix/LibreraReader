@@ -381,6 +381,7 @@ public class MainTabs2 extends AdsFragmentActivity {
         BrightnessHelper.onMessegeBrightness(msg, toastBrightnessText, overlay);
     }
 
+
     BroadcastReceiver broadcastReceiver = new BroadcastReceiver() {
 
         @Override

@@ -30,7 +30,11 @@ public class HypenUtils {
 
     }
 
-    public static String applyHypnesOld(String input) {
+    public static String applyHypnes(String htmlEncode) {
+        return applyHypnesOld(htmlEncode);
+    }
+
+    private static String applyHypnesOld(String input) {
         if (input == null || input.length() == 0) {
             return "";
         }
@@ -105,7 +109,7 @@ public class HypenUtils {
         return result;
     }
 
-    public static String applyHypnes(String input) {
+    private static String applyHypnesNewNotUse(String input) {
         if (input == null || input.length() == 0) {
             return "";
         }
@@ -179,8 +183,7 @@ public class HypenUtils {
             }
 
         }
-
-        return res.toString();
+        return res.toString().replace(" <", "<").replace("> ", ">");
     }
 
     public static String join(List<String> list, String delimiter) {
@@ -195,4 +198,5 @@ public class HypenUtils {
         return string;
         // return string.replace(SHY + SHY, SHY);
     }
+
 }
