@@ -17,6 +17,7 @@ import com.foobnix.pdf.info.IMG;
 import com.foobnix.pdf.info.R;
 import com.foobnix.pdf.info.TintUtil;
 import com.foobnix.pdf.info.view.AlertDialogs;
+import com.foobnix.pdf.info.view.Dialogs;
 import com.foobnix.pdf.info.view.ScaledImageView;
 import com.foobnix.pdf.info.wrapper.AppBookmark;
 import com.foobnix.pdf.info.wrapper.AppState;
@@ -53,7 +54,7 @@ public class FileInformationDialog {
 
         final FileMeta fileMeta = AppDB.get().getOrCreate(file.getPath());
 
-        View dialog = LayoutInflater.from(a).inflate(R.layout.dialog_file_info, null, false);
+        final View dialog = LayoutInflater.from(a).inflate(R.layout.dialog_file_info, null, false);
 
         TextView title = (TextView) dialog.findViewById(R.id.title);
         final TextView bookmarks = (TextView) dialog.findViewById(R.id.bookmarks);
@@ -129,15 +130,37 @@ public class FileInformationDialog {
             ((TextView) dialog.findViewById(R.id.metaGenreID)).setVisibility(View.GONE);
         }
 
-        String tag = fileMeta.getTag();
-        if (TxtUtils.isNotEmpty(tag)) {
-            String replace = tag.replace("#", " ");
-            replace = TxtUtils.replaceLast(replace, ",", "").trim();
-            ((TextView) dialog.findViewById(R.id.tagsList)).setText(replace);
-        } else {
-            ((TextView) dialog.findViewById(R.id.tagsID)).setVisibility(View.GONE);
-            ((TextView) dialog.findViewById(R.id.tagsList)).setVisibility(View.GONE);
-        }
+        final Runnable tagsRunnable = new Runnable() {
+
+            @Override
+            public void run() {
+                String tag = fileMeta.getTag();
+                if (TxtUtils.isNotEmpty(tag)) {
+                    String replace = tag.replace("#", " ");
+                    replace = TxtUtils.replaceLast(replace, ",", "").trim();
+                    ((TextView) dialog.findViewById(R.id.tagsList)).setText(replace);
+                } else {
+                    ((TextView) dialog.findViewById(R.id.tagsID)).setVisibility(View.GONE);
+                    ((TextView) dialog.findViewById(R.id.tagsList)).setVisibility(View.GONE);
+                }
+
+            }
+        };
+        tagsRunnable.run();
+
+        TxtUtils.underlineTextView((TextView) dialog.findViewById(R.id.addTags)).setOnClickListener(new OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                Dialogs.showTagsDialog(v.getContext(), new File(fileMeta.getPath()), new Runnable() {
+
+                    @Override
+                    public void run() {
+                        tagsRunnable.run();
+                    }
+                });
+            }
+        });
 
         TextView metaPDF = (TextView) dialog.findViewById(R.id.metaPDF);
         metaPDF.setVisibility(View.GONE);

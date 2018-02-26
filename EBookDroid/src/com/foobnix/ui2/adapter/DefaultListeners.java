@@ -56,11 +56,28 @@ public class DefaultListeners {
         searchAdapter.setOnStarClickListener(getOnStarClick(a));
     }
 
-    public static void bindAdapter(Activity a, final FileMetaAdapter searchAdapter) {
+    public static void bindAdapter(final Activity a, final FileMetaAdapter searchAdapter) {
         searchAdapter.setOnItemClickListener(getOnItemClickListener(a));
         searchAdapter.setOnItemLongClickListener(getOnItemLongClickListener(a, searchAdapter));
         searchAdapter.setOnMenuClickListener(getOnMenuClick(a, searchAdapter));
         searchAdapter.setOnStarClickListener(getOnStarClick(a));
+        searchAdapter.setOnTagClickListner(new ResultResponse<String>() {
+
+            @Override
+            public boolean onResultRecive(String result) {
+                showBooksByTag(a, result);
+                return false;
+            }
+
+        });
+    }
+
+    private static void showBooksByTag(final Activity a, String result) {
+        Intent intent = new Intent(UIFragment.INTENT_TINT_CHANGE)//
+                .putExtra(MainTabs2.EXTRA_PAGE_NUMBER, UITab.getCurrentTabIndex(UITab.SearchFragment));//
+        LocalBroadcastManager.getInstance(a).sendBroadcast(intent);
+
+        EventBus.getDefault().post(new OpenTagMessage(result));
     }
 
     public static void bindAdapterAuthorSerias(Activity a, final FileMetaAdapter searchAdapter) {
@@ -96,11 +113,7 @@ public class DefaultListeners {
 
     private static boolean isTagCicked(final Activity a, FileMeta result) {
         if (result.getCusType() != null && result.getCusType() == FileMetaAdapter.DISPALY_TYPE_LAYOUT_TAG) {
-            Intent intent = new Intent(UIFragment.INTENT_TINT_CHANGE)//
-                    .putExtra(MainTabs2.EXTRA_PAGE_NUMBER, UITab.getCurrentTabIndex(UITab.SearchFragment));//
-            LocalBroadcastManager.getInstance(a).sendBroadcast(intent);
-
-            EventBus.getDefault().post(new OpenTagMessage(result.getPathTxt()));
+            showBooksByTag(a, result.getPathTxt());
             return true;
         }
         return false;

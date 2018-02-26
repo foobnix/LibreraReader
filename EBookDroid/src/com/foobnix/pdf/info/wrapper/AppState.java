@@ -537,6 +537,7 @@ public class AppState {
     public Set<String> myAutoComplete = new HashSet<String>();
 
     public String bookTags = "";
+    public String recentTag = "";
 
 
     @IgnoreHashCode

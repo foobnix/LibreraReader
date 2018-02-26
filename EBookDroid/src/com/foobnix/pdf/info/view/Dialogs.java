@@ -374,7 +374,7 @@ public class Dialogs {
         builder.setTitle(R.string.tag);
 
         final EditText edit = new EditText(a);
-        edit.setHint("#tag");
+        edit.setHint("#");
 
         builder.setView(edit);
 

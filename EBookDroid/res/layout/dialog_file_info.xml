@@ -70,7 +70,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="5dip"
-                android:text="@string/tag"
+                android:text="@string/tags"
                 android:textStyle="bold" />
 
             <TextView
@@ -145,6 +145,13 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/send_file" />
+            
+            <TextView
+                android:id="@+id/addTags"
+                style="@style/textLink"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/tags" />
 
             <TextView
                 android:id="@+id/delete"

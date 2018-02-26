@@ -57,12 +57,12 @@
             </FrameLayout>
 
             <LinearLayout
-                android:layout_weight="1"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginBottom="4dip"
                 android:layout_marginLeft="3dip"
                 android:layout_marginTop="4dip"
+                android:layout_weight="1"
                 android:gravity="center_vertical"
                 android:orientation="vertical" >
 
@@ -117,19 +117,44 @@
                     android:textSize="16sp"
                     android:textStyle="normal" />
 
-                <TextView
-                    android:id="@+id/browserPath"
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="bottom"
-                    android:layout_marginLeft="3dip"
-                    android:layout_marginRight="2dip"
                     android:layout_marginTop="4dip"
-                    android:layout_weight="0"
-                    android:ellipsize="end"
-                    android:singleLine="true"
-                    android:text="/"
-                    android:textSize="@dimen/text_subtitle" />
+                    android:gravity="center_vertical" >
+
+                    <LinearLayout
+                        android:id="@+id/browserTags"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="3dip"
+                        android:layout_weight="0"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal" >
+                    </LinearLayout>
+
+                    <TextView
+                        android:id="@+id/browserEmptyTag"
+                        style="@style/textLink"
+                        android:minEms="0"
+                        android:visibility="gone"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0"
+                        android:text="#"
+                        android:textSize="@dimen/text_subtitle" />
+
+                    <TextView
+                        android:id="@+id/browserPath"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="2dip"
+                        android:layout_weight="0"
+                        android:ellipsize="end"
+                        android:singleLine="true"
+                        android:text="/path"
+                        android:textSize="@dimen/text_subtitle" />
+                </LinearLayout>
 
                 <LinearLayout
                     android:id="@+id/infoLayout"
@@ -150,21 +175,20 @@
                         android:padding="4dip"
                         android:src="@drawable/star_2"
                         android:tint="@color/tint_gray" />
-                    
+
                     <ImageView
                         android:id="@+id/signIcon"
                         android:layout_width="@dimen/wh_button_small"
                         android:layout_height="@dimen/wh_button_small"
                         android:layout_gravity="center"
-                        android:layout_marginRight="2dip"
                         android:layout_marginBottom="0dip"
+                        android:layout_marginRight="2dip"
                         android:layout_weight="0"
-                        android:visibility="gone"
                         android:background="?android:attr/selectableItemBackground"
                         android:padding="4dip"
                         android:src="@drawable/sign"
-                        android:tint="@color/tint_gray" />
-                    
+                        android:tint="@color/tint_gray"
+                        android:visibility="gone" />
 
                     <TextView
                         android:id="@+id/browseDate"
@@ -189,30 +213,28 @@
                         android:textStyle="normal" />
 
                     <TextView
-                        android:layout_marginLeft="6dip"
                         android:id="@+id/browserSize"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_vertical"
+                        android:layout_marginLeft="6dip"
                         android:layout_weight="0"
                         android:singleLine="true"
                         android:text="123 Kb"
                         android:textSize="@dimen/text_subtitle" />
-                    
-                    
+
                     <TextView
                         android:id="@+id/idPercentText"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:gravity="center_vertical"
-                        android:text="10%"
-                        android:textStyle="italic"
-                        android:layout_weight="1"
                         android:layout_marginLeft="4dip"
+                        android:layout_weight="1"
+                        android:gravity="center_vertical"
                         android:singleLine="true"
+                        android:text="10%"
                         android:textSize="@dimen/text_subtitle"
+                        android:textStyle="italic"
                         android:visibility="visible" />
-
 
                     <ImageView
                         android:id="@+id/delete"
@@ -247,11 +269,11 @@
                     android:layout_height="wrap_content"
                     android:gravity="bottom"
                     android:orientation="horizontal" >
-                    
+
                     <RelativeLayout
-                        android:layout_marginLeft="4dip"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_marginLeft="4dip"
                         android:layout_weight="1" >
 
                         <View

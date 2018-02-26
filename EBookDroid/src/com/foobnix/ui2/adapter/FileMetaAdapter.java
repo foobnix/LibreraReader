@@ -9,6 +9,7 @@ import com.foobnix.android.utils.Dips;
 import com.foobnix.android.utils.LOG;
 import com.foobnix.android.utils.ResultResponse;
 import com.foobnix.android.utils.ResultResponse2;
+import com.foobnix.android.utils.StringDB;
 import com.foobnix.android.utils.TxtUtils;
 import com.foobnix.dao2.FileMeta;
 import com.foobnix.pdf.info.IMG;
@@ -31,6 +32,7 @@ import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.RecyclerView.ViewHolder;
+import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.MenuItem.OnMenuItemClickListener;
@@ -42,6 +44,7 @@ import android.view.ViewGroup.LayoutParams;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.ImageView.ScaleType;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 public class FileMetaAdapter extends AppRecycleAdapter<FileMeta, RecyclerView.ViewHolder> implements FastScroller.SectionIndexer {
@@ -70,6 +73,7 @@ public class FileMetaAdapter extends AppRecycleAdapter<FileMeta, RecyclerView.Vi
 
     public class FileMetaViewHolder extends RecyclerView.ViewHolder {
         public TextView title, author, path, browserExt, size, date, series, idPercentText;
+        public LinearLayout tags;
         public ImageView image, star, signIcon, menu;
         public View authorParent, progresLayout, parent, remove, layoutBootom, infoLayout, idProgressColor, idProgressBg, imageParent;
 
@@ -79,6 +83,7 @@ public class FileMetaAdapter extends AppRecycleAdapter<FileMeta, RecyclerView.Vi
             author = (TextView) view.findViewById(R.id.title2);
             authorParent = view.findViewById(R.id.title2Parent);
             path = (TextView) view.findViewById(R.id.browserPath);
+            tags = (LinearLayout) view.findViewById(R.id.browserTags);
             size = (TextView) view.findViewById(R.id.browserSize);
             browserExt = (TextView) view.findViewById(R.id.browserExt);
             date = (TextView) view.findViewById(R.id.browseDate);
@@ -371,15 +376,13 @@ public class FileMetaAdapter extends AppRecycleAdapter<FileMeta, RecyclerView.Vi
             holder.recyclerView.setAdapter(adapter);
 
             adapter.getItemsList().clear();
-            List<FileMeta> allStars = AppDB.get().getStarsFiles();
-            adapter.getItemsList().addAll(allStars);
-            adapter.notifyDataSetChanged();
 
             TintUtil.setBackgroundFillColor(holder.panelRecent, TintUtil.color);
             TintUtil.setBackgroundFillColor(holder.panelStars, TintUtil.color);
 
+            List<FileMeta> allStars = AppDB.get().getStarsFiles();
             final String STARRED = holder.starredName.getContext().getString(R.string.starred).toUpperCase(Locale.US) + " (" + allStars.size() + ")";
-            holder.starredName.setText(STARRED);
+
             holder.recentName.setText(holder.starredName.getContext().getString(R.string.recent) + " (" + (getItemCount() - 1) + ")");
             holder.starredNameIcon.setImageResource(R.drawable.star_1);
             TintUtil.setTintImageNoAlpha(holder.starredNameIcon, Color.WHITE);
@@ -395,6 +398,7 @@ public class FileMetaAdapter extends AppRecycleAdapter<FileMeta, RecyclerView.Vi
 
                         @Override
                         public boolean onMenuItemClick(MenuItem item) {
+                            AppState.get().recentTag = "";
                             holder.starredNameIcon.setImageResource(R.drawable.star_1);
                             TintUtil.setTintImageNoAlpha(holder.starredNameIcon, Color.WHITE);
 
@@ -417,6 +421,7 @@ public class FileMetaAdapter extends AppRecycleAdapter<FileMeta, RecyclerView.Vi
 
                             @Override
                             public boolean onMenuItemClick(MenuItem item) {
+                                AppState.get().recentTag = tag;
                                 holder.starredNameIcon.setImageResource(R.drawable.glyphicons_67_tags);
                                 TintUtil.setTintImageNoAlpha(holder.starredNameIcon, Color.WHITE);
 
@@ -435,6 +440,32 @@ public class FileMetaAdapter extends AppRecycleAdapter<FileMeta, RecyclerView.Vi
 
                 }
             });
+
+            if (TxtUtils.isEmpty(AppState.get().recentTag)) {
+                holder.starredNameIcon.setImageResource(R.drawable.star_1);
+                TintUtil.setTintImageNoAlpha(holder.starredNameIcon, Color.WHITE);
+
+                TxtUtils.underline(holder.starredName, STARRED);
+
+                adapter.getItemsList().clear();
+                adapter.getItemsList().addAll(allStars);
+                adapter.notifyDataSetChanged();
+
+            } else {
+
+                holder.starredNameIcon.setImageResource(R.drawable.glyphicons_67_tags);
+                TintUtil.setTintImageNoAlpha(holder.starredNameIcon, Color.WHITE);
+
+
+
+                adapter.getItemsList().clear();
+                List<FileMeta> allTags = AppDB.get().searchBy("@tags " + AppState.get().recentTag, SORT_BY.FILE_NAME, false);
+                adapter.getItemsList().addAll(allTags);
+                adapter.notifyDataSetChanged();
+
+                TxtUtils.underline(holder.starredName, AppState.get().recentTag + " (" + allTags.size() + ")");
+
+            }
 
         } else if (holderAll instanceof AuthorViewHolder) {
             AuthorViewHolder aHolder = (AuthorViewHolder) holderAll;
@@ -506,7 +537,60 @@ public class FileMetaAdapter extends AppRecycleAdapter<FileMeta, RecyclerView.Vi
             }
         });
 
+        if (holder.tags != null) {
+            if (TxtUtils.isNotEmpty(fileMeta.getTag())) {
+                holder.tags.setVisibility(View.VISIBLE);
+                holder.tags.removeAllViews();
+                for (final String tag : StringDB.asList(fileMeta.getTag())) {
+                    TextView t = new TextView(holder.tags.getContext());
+                    t.setTextAppearance(holder.tags.getContext(), R.style.textLink);
+                    TxtUtils.bold(t);
+                    t.setText(tag + " ");
+                    t.setTextSize(12);
+
+                    TypedValue outValue = new TypedValue();
+                    holder.tags.getContext().getTheme().resolveAttribute(android.R.attr.selectableItemBackground, outValue, true);
+                    t.setBackgroundResource(outValue.resourceId);
+
+                    if (AppState.get().isUiTextColor) {
+                        TintUtil.setUITextColor(t, AppState.get().uiTextColor);
+                    }
+                    t.setOnClickListener(new OnClickListener() {
+
+                        @Override
+                        public void onClick(View v) {
+                            if (onTagClickListner != null) {
+                                onTagClickListner.onResultRecive(tag);
+                            }
+
+                        }
+                    });
+                    t.setOnLongClickListener(new OnLongClickListener() {
+
+                        @Override
+                        public boolean onLongClick(View v) {
+
+                            Dialogs.showTagsDialog(v.getContext(), new File(fileMeta.getPath()), new Runnable() {
+
+                                @Override
+                                public void run() {
+                                    notifyDataSetChanged();
+                                }
+                            });
+
+                            return true;
+                        }
+                    });
+
+                    holder.tags.addView(t);
+                }
+
+            } else {
+                holder.tags.setVisibility(View.GONE);
+            }
+        }
         holder.path.setText(fileMeta.getPathTxt());
+
         holder.browserExt.setText(fileMeta.getChild() != null ? fileMeta.getChild() : fileMeta.getExt());
         if (fileMeta.getPages() != null && fileMeta.getPages() != 0) {
             holder.size.setText(fileMeta.getSizeTxt() + " (" + fileMeta.getPages() + ")");
@@ -572,6 +656,7 @@ public class FileMetaAdapter extends AppRecycleAdapter<FileMeta, RecyclerView.Vi
 
                         @Override
                         public void run() {
+                            notifyDataSetChanged();
                         }
                     });
                     return true;
@@ -786,10 +871,15 @@ public class FileMetaAdapter extends AppRecycleAdapter<FileMeta, RecyclerView.Vi
         this.onGridOrList = onGridOrList;
     }
 
+    public void setOnTagClickListner(ResultResponse<String> onTagClickListner) {
+        this.onTagClickListner = onTagClickListner;
+    }
+
     private ResultResponse<FileMeta> onMenuClickListener;
     private ResultResponse<FileMeta> onDeleteClickListener;
     private ResultResponse<String> onAuthorClickListener;
     private ResultResponse<String> onSeriesClickListener;
+    private ResultResponse<String> onTagClickListner;
     private ResultResponse2<FileMeta, FileMetaAdapter> onStarClickListener;
     private Runnable clearAllStarredFolders;
     private Runnable clearAllStarredBooks;
