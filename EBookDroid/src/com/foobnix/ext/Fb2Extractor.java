@@ -446,13 +446,15 @@ public class Fb2Extractor extends BaseExtractor {
             }
 
             if (firstLine) {
-                List<String> encodings = Arrays.asList("windows-1251", "Windows-1251", "windows-1252", "Windows-1252");
+                List<String> encodings = Arrays.asList("utf-8", "windows-1251", "Windows-1251", "windows-1252", "Windows-1252");
                 for (String e : encodings) {
                     if (line.contains(e)) {
                         line = line.replace(e, "utf-8");
+                        break;
                     }
                 }
                 firstLine = false;
+                writer.print(line);
                 continue;
             }
 

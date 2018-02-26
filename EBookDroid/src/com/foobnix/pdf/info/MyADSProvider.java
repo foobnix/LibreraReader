@@ -41,11 +41,12 @@ public class MyADSProvider {
             return;
         }
 
-        if (AppsConfig.ADMOB_NATIVE_BANNER != null && random.nextBoolean()) {
-            ADS.activateAdmobNativeBanner(a, adViewNative);
-        } else {
-            ADS.activateAdmobSmartBanner(a, adView);
-        }
+        // if (AppsConfig.ADMOB_NATIVE_BANNER != null && random.nextBoolean()) {
+        // ADS.activateAdmobNativeBanner(a, adViewNative);
+        // } else {
+        // }
+        ADS.activateAdmobSmartBanner(a, adView);
+
         if (handler == null) {
             return;
         }

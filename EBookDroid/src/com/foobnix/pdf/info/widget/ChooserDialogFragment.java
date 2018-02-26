@@ -27,6 +27,7 @@ public class ChooserDialogFragment extends DialogFragment {
     public void onDismiss(DialogInterface dialog) {
         super.onDismiss(dialog);
         Keyboards.hideNavigation(getActivity());
+        Keyboards.close(getActivity());
     }
 
     public static ChooserDialogFragment chooseFolder(FragmentActivity a, String initPath) {
