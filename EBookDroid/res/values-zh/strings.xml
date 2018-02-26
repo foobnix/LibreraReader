@@ -201,7 +201,7 @@
    <string name="other_settings">其它设置</string>
    <string name="folder_for_downloaded_books">下载路径</string>
    <string name="display_large_book_covers_in_the_catalog">目录中显示书籍大封面</string>
-   <string name="add_catalog">添加新书库</string>
+   <string name="add_catalog">添加书库</string>
    <string name="name">名称</string>
    <string name="description">描述</string>
    <string name="add_as_a_web_site">添加网站</string>
