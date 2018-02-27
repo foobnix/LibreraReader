@@ -32,19 +32,12 @@
             android:text="@string/display_chapters_on_the_progress_line" />
 
         <CheckBox
-            android:id="@+id/isRewindEnable"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="10dip"
-            android:text="@string/enable_rewind_of_pages_using_the_read_progress_line" />
-        
-        <CheckBox
             android:id="@+id/isShowTime"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dip"
             android:text="@string/show_current_time" />
-        
+
         <CheckBox
             android:id="@+id/isShowBattery"
             android:layout_width="match_parent"
@@ -135,6 +128,13 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="5dip"
             myseek:text="@string/text_color_night" />
+
+        <CheckBox
+            android:id="@+id/isRewindEnable"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dip"
+            android:text="@string/enable_rewind_of_pages_using_the_read_progress_line" />
     </LinearLayout>
 
 </ScrollView>

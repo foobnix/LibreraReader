@@ -153,10 +153,10 @@ public class AppDB {
 
         fileMetaDao = daoSession.getFileMetaDao();
 
-        if (c.getResources().getBoolean(R.bool.is_log_enable)) {
-            QueryBuilder.LOG_SQL = true;
-            QueryBuilder.LOG_VALUES = true;
-        }
+        // if (c.getResources().getBoolean(R.bool.is_log_enable)) {
+        // QueryBuilder.LOG_SQL = true;
+        // QueryBuilder.LOG_VALUES = true;
+        // }
     }
 
     public List<FileMeta> deleteAllSafe() {

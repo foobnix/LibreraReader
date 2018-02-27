@@ -25,19 +25,18 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/simple_scroll_animation" />
-
-    <CheckBox
-        android:id="@+id/isLoopAutoplay"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/loop_autoplay" />
-    
     
     <CheckBox
         android:id="@+id/isShowToolBar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/show_bottom_panel" />
+    
+    <CheckBox
+        android:id="@+id/isLoopAutoplay"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/loop_autoplay" />
 
     <LinearLayout
         android:layout_width="match_parent"

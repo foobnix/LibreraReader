@@ -23,130 +23,135 @@ import android.text.TextUtils;
 
 public class RtfExtract {
 
-	public static FooterNote extract(String inputPath, final String outputDir, final String fileName)
-			throws IOException {
+    public static FooterNote extract(String inputPath, final String outputDir, final String fileName) throws IOException {
 
-		File file = new File(outputDir, fileName);
-		try {
+        File file = new File(outputDir, fileName);
+        try {
 
-			final PrintWriter writer = new PrintWriter(file);
+            final PrintWriter writer = new PrintWriter(file);
 
-			writer.println("<!DOCTYPE html>");
-			writer.println("<html>");
+            writer.println("<!DOCTYPE html>");
+            writer.println("<html>");
 
-			writer.println("<body>");
+            writer.println("<body>");
 
-			InputStream is = new FileInputStream(inputPath);
-			IRtfSource source = new RtfStreamSource(is);
-			IRtfParser parser = new StandardRtfParser();
+            InputStream is = new FileInputStream(inputPath);
+            IRtfSource source = new RtfStreamSource(is);
+            IRtfParser parser = new StandardRtfParser();
 
             if (BookCSS.get().isAutoHypens) {
                 HypenUtils.applyLanguage(BookCSS.get().hypenLang);
             }
 
-			parser.parse(source, new StringTextConverter() {
-				boolean isImage;
-				boolean isBR;
-				String format = "jpg";
-				int counter = 0;
+            parser.parse(source, new StringTextConverter() {
+                boolean isImage;
+                String format = "jpg";
+                int counter = 0;
 
-				@Override
-				public void processExtractedText(String text) {
+                @Override
+                public void processExtractedText(String text) {
 
-					String htmlEncode = TextUtils.htmlEncode(text);
+                    String htmlEncode = TextUtils.htmlEncode(text);
                     if (BookCSS.get().isAutoHypens) {
                         htmlEncode = HypenUtils.applyHypnes(htmlEncode);
                     }
                     writer.print(htmlEncode);
-					isBR = false;
-				}
+                }
 
-				@Override
-				public void processString(String string) {
-					super.processString(string);
-					if (isImage) {
-						try {
-							isImage = false;
-							String imageName = fileName + counter++ + ".rtf." + format;
-							FileOutputStream fileWriter = new FileOutputStream(new File(outputDir, imageName));
-							fileWriter.write(HexUtils.parseHexString(string));
-							fileWriter.flush();
-							fileWriter.close();
+                @Override
+                public void processString(String string) {
+                    super.processString(string);
+                    if (isImage) {
+                        try {
+                            isImage = false;
+                            String imageName = fileName + counter++ + ".rtf." + format;
+                            FileOutputStream fileWriter = new FileOutputStream(new File(outputDir, imageName));
+                            fileWriter.write(HexUtils.parseHexString(string));
+                            fileWriter.flush();
+                            fileWriter.close();
 
-							writer.write("<img src='" + imageName + "' />");
+                            writer.write("<img src='" + imageName + "' />");
 
-						} catch (Exception e) {
-							LOG.e(e);
-						}
-					}
-				}
+                        } catch (Exception e) {
+                            LOG.e(e);
+                        }
+                    }
+                }
 
-				@Override
-				public void processCommand(Command command, int parameter, boolean hasParameter, boolean optional) {
-					super.processCommand(command, parameter, hasParameter, optional);
-					if (command == Command.cbpat || command == Command.par || command == Command.line) {
-						if (!isBR) {
-							writer.write("<br/>");
-							isBR = true;
-						}
-					}
-					if (command == Command.pngblip) {
-						isImage = true;
-						format = "png";
-					}
-					if (command == Command.jpegblip) {
-						isImage = true;
-						format = "jpg";
-					}
-				}
+                boolean isPar = true;
 
-			});
+                @Override
+                public void processCommand(Command command, int parameter, boolean hasParameter, boolean optional) {
+                    super.processCommand(command, parameter, hasParameter, optional);
+                    if (command == Command.cbpat) {
+                        writer.write("<br/>");
+                    }
 
-			writer.println("</body></html>");
+                    if (command == Command.par) {
+                        if (isPar) {
+                            writer.write("<p>");
+                        } else {
+                            writer.write("</p>");
+                        }
+                        isPar = !isPar;
+                    }
+                    if (command == Command.pngblip) {
+                        isImage = true;
+                        format = "png";
+                    }
+                    if (command == Command.jpegblip) {
+                        isImage = true;
+                        format = "jpg";
+                    }
+                }
 
-			writer.close();
+            });
 
-		} catch (Exception e) {
-			LOG.e(e);
-		}
-		return new FooterNote(file.getPath(), null);
-	}
+            writer.println("</body></html>");
 
-	static byte[] decode = null;
+            writer.close();
 
-	public static byte[] getImageCover(String path) {
-		File file = new File(path);
-		try {
+        } catch (Exception e) {
+            LOG.e(e);
+        }
+        return new FooterNote(file.getPath(), null);
+    }
 
-			IRtfSource source = new RtfStreamSource(new FileInputStream(path));
-			IRtfParser parser = new StandardRtfParser();
+    static byte[] decode = null;
 
-			decode = null;
+    public static byte[] getImageCover(String path) {
+        File file = new File(path);
+        try {
 
-			parser.parse(source, new RtfListenerAdaptor() {
-				boolean pict = false;
+            IRtfSource source = new RtfStreamSource(new FileInputStream(path));
+            IRtfParser parser = new StandardRtfParser();
 
-				@Override
-				public void processString(String string) {
-					if (decode == null && pict) {
-						decode = HexUtils.parseHexString(string);
-					}
-				}
+            decode = null;
 
-				@Override
-				public void processCommand(Command command, int parameter, boolean hasParameter, boolean optional) {
-					if (command == Command.pngblip || command == Command.jpegblip) {
-						pict = true;
-					}
-				}
+            parser.parse(source, new RtfListenerAdaptor() {
+                boolean pict = false;
 
-			});
-		} catch (Exception e) {
-			LOG.e(e);
-		}
+                @Override
+                public void processString(String string) {
+                    if (decode == null && pict) {
+                        decode = HexUtils.parseHexString(string);
+                    }
+                }
 
-		return decode;
+                @Override
+                public void processCommand(Command command, int parameter, boolean hasParameter, boolean optional) {
+                    if (command == Command.pngblip || command == Command.jpegblip) {
+                        pict = true;
+                    }
+                }
 
-	}
+            });
+        } catch (Exception e) {
+            LOG.e(e);
+        }
+
+        return decode;
+
+    }
 
 }
