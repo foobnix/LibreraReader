@@ -324,7 +324,7 @@ public class FileMetaAdapter extends AppRecycleAdapter<FileMeta, RecyclerView.Vi
             holder.title.setText(fileMeta.getPathTxt());
             holder.path.setText(fileMeta.getPath());
 
-            TintUtil.setTintImageWithAlpha(holder.image);
+            TintUtil.setTintImageWithAlpha(holder.image, TintUtil.getColorInDayNighth());
             bindItemClickAndLongClickListeners(holder.parent, fileMeta);
             if (!AppState.get().isBorderAndShadow) {
                 holder.parent.setBackgroundColor(Color.TRANSPARENT);
@@ -336,7 +336,7 @@ public class FileMetaAdapter extends AppRecycleAdapter<FileMeta, RecyclerView.Vi
                 holder.starIcon.setImageResource(R.drawable.star_2);
             }
 
-            TintUtil.setTintImageWithAlpha(holder.starIcon, TintUtil.color);
+            TintUtil.setTintImageWithAlpha(holder.starIcon, TintUtil.getColorInDayNighth());
 
             if (onStarClickListener != null) {
                 holder.starIcon.setOnClickListener(new OnClickListener() {
@@ -635,7 +635,7 @@ public class FileMetaAdapter extends AppRecycleAdapter<FileMeta, RecyclerView.Vi
         } else {
             holder.star.setImageResource(R.drawable.star_1);
         }
-        TintUtil.setTintImageWithAlpha(holder.star, AppState.get().isWhiteTheme ? TintUtil.color : Color.WHITE);
+        TintUtil.setTintImageWithAlpha(holder.star, TintUtil.getColorInDayNighth());
 
         if (onStarClickListener != null) {
             holder.star.setOnClickListener(new OnClickListener() {
@@ -767,7 +767,7 @@ public class FileMetaAdapter extends AppRecycleAdapter<FileMeta, RecyclerView.Vi
             }
         }
 
-        TintUtil.setTintImageWithAlpha(holder.menu, AppState.get().isWhiteTheme ? TintUtil.color : Color.WHITE);
+        TintUtil.setTintImageWithAlpha(holder.menu, TintUtil.getColorInDayNighth());
 
         if (holder.remove != null) {
             holder.remove.setOnClickListener(new OnClickListener() {

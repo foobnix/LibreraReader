@@ -119,14 +119,14 @@ public class MyPopupMenu {
                             if (AppState.get().isInkMode || AppState.get().isWhiteTheme) {
                                 TintUtil.setTintImageWithAlpha(imageView, TintUtil.color);
                             } else {
-                                TintUtil.setTintImageWithAlpha(imageView, Color.WHITE);
+                                TintUtil.setTintImageWithAlpha(imageView, Color.LTGRAY);
                             }
                         } else {
 
                             if (AppState.get().isDayNotInvert) {
                                 TintUtil.setTintImageWithAlpha(imageView, TintUtil.color);
                             } else {
-                                TintUtil.setTintImageWithAlpha(imageView, Color.WHITE);
+                                TintUtil.setTintImageWithAlpha(imageView, Color.LTGRAY);
                             }
                         }
                     }

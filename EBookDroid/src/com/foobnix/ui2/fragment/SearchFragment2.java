@@ -44,7 +44,6 @@ import android.content.DialogInterface;
 import android.content.DialogInterface.OnDismissListener;
 import android.content.Intent;
 import android.content.IntentFilter;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v4.content.LocalBroadcastManager;
@@ -105,7 +104,7 @@ public class SearchFragment2 extends UIFragment<FileMeta> {
     public void onTintChanged() {
         TintUtil.setBackgroundFillColor(secondTopPanel, TintUtil.color);
 
-        int colorTheme = AppState.get().isWhiteTheme ? TintUtil.color : Color.WHITE;
+        int colorTheme = TintUtil.getColorInDayNighth();
         colorTheme = ColorUtils.setAlphaComponent(colorTheme, 230);
 
         TintUtil.setStrokeColor(searchEditText, colorTheme);

@@ -39,6 +39,10 @@ public class TintUtil {
     public static int COLOR_TINT_GRAY = Color.parseColor("#009688");
     public static int COLOR_ORANGE = Color.parseColor("#FF8C00");
 
+    public static int getColorInDayNighth() {
+        return AppState.get().isWhiteTheme ? TintUtil.color : Color.LTGRAY;
+    }
+
     static Random random = new Random();
 
     public static int randomColor() {
