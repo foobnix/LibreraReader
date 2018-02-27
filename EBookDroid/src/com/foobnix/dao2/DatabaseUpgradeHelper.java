@@ -8,6 +8,7 @@ import java.util.List;
 import org.greenrobot.greendao.database.Database;
 
 import android.content.Context;
+import android.util.Log;
 
 public class DatabaseUpgradeHelper extends DaoMaster.OpenHelper {
 
@@ -17,6 +18,7 @@ public class DatabaseUpgradeHelper extends DaoMaster.OpenHelper {
 
     @Override
     public void onUpgrade(Database db, int oldVersion, int newVersion) {
+        Log.d("greenDAO", "Upgrading schema from version " + oldVersion + " to " + newVersion);
         List<Migration> migrations = getMigrations();
 
         for (Migration migration : migrations) {
@@ -54,6 +56,8 @@ public class DatabaseUpgradeHelper extends DaoMaster.OpenHelper {
         @Override
         public void runMigration(Database db) {
             db.execSQL("ALTER TABLE " + FileMetaDao.TABLENAME + " ADD COLUMN " + FileMetaDao.Properties.Lang.columnName + " TEXT");
+            Log.d("greenDAO", "runMigration version 3");
+
         }
     }
 
@@ -68,6 +72,7 @@ public class DatabaseUpgradeHelper extends DaoMaster.OpenHelper {
         public void runMigration(Database db) {
             db.execSQL("ALTER TABLE " + FileMetaDao.TABLENAME + " ADD COLUMN " + FileMetaDao.Properties.Tag.columnName + " TEXT");
             db.execSQL("ALTER TABLE " + FileMetaDao.TABLENAME + " ADD COLUMN " + FileMetaDao.Properties.Pages.columnName + " INTEGER");
+            Log.d("greenDAO", "runMigration version 4");
         }
     }
 
