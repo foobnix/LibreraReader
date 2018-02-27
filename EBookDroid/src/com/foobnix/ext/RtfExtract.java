@@ -12,7 +12,7 @@ import java.util.Set;
 import com.foobnix.android.utils.LOG;
 import com.foobnix.hypen.HypenUtils;
 import com.foobnix.pdf.info.model.BookCSS;
-import com.rtfparserkit.converter.text.StringTextConverter;
+import com.rtfparserkit.converter.text.AbstractTextConverter;
 import com.rtfparserkit.parser.IRtfParser;
 import com.rtfparserkit.parser.IRtfSource;
 import com.rtfparserkit.parser.RtfListenerAdaptor;
@@ -45,7 +45,7 @@ public class RtfExtract {
                 HypenUtils.applyLanguage(BookCSS.get().hypenLang);
             }
 
-            parser.parse(source, new StringTextConverter() {
+            parser.parse(source, new AbstractTextConverter() {
                 boolean isImage;
                 String format = "jpg";
                 int counter = 0;
@@ -81,7 +81,6 @@ public class RtfExtract {
                 }
 
                 Set<Command> stack = new HashSet<Command>();
-
 
                 private void printText(String txt) {
                     if (stack.contains(Command.par))
@@ -125,15 +124,18 @@ public class RtfExtract {
                         writer.print("</i>");
                         stack.remove(Command.i);
                     }
+
                 }
 
                 @Override
                 // http://latex2rtf.sourceforge.net/rtfspec_62.html
                 public void processCommand(Command command, int parameter, boolean hasParameter, boolean optional) {
+                    super.processCommand(command, parameter, hasParameter, optional);
                     if (command == Command.cbpat) {
                         writer.write("<br/>");
                     }
 
+                    // writer.write("[" + command + "]");
                     stack.add(command);
 
                     if (command == Command.pngblip) {
