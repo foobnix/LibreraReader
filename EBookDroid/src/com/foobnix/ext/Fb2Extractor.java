@@ -26,7 +26,6 @@ import org.xmlpull.v1.XmlPullParser;
 import com.BaseExtractor;
 import com.foobnix.android.utils.LOG;
 import com.foobnix.android.utils.StreamUtils;
-import com.foobnix.android.utils.StringDB;
 import com.foobnix.android.utils.TxtUtils;
 import com.foobnix.hypen.HypenUtils;
 import com.foobnix.pdf.info.ExtUtils;
@@ -191,7 +190,6 @@ public class Fb2Extractor extends BaseExtractor {
             boolean titleInfo = false;
 
             int eventType = xpp.getEventType();
-            long fileSize = 0;
             while (eventType != XmlPullParser.END_DOCUMENT) {
 
                 if (eventType == XmlPullParser.START_TAG) {
@@ -221,20 +219,13 @@ public class Fb2Extractor extends BaseExtractor {
                             }
                         }
                     }
-
-                    if (xpp.getName().equals("binary")) {
-                        break;
-                    }
                 }
                 if (eventType == XmlPullParser.END_TAG) {
                     if (xpp.getName().equals("title-info")) {
                         titleInfo = false;
+                        break;
                     }
                 }
-                if (eventType == XmlPullParser.TEXT) {
-                    fileSize += xpp.getText().length();
-                }
-
                 eventType = xpp.next();
             }
 
@@ -248,20 +239,14 @@ public class Fb2Extractor extends BaseExtractor {
             }
 
             if (TxtUtils.isNotEmpty(keywords)) {
-                keywords = keywords.replace("\n", "").replace("\r", "").trim();
+                keywords = keywords.replace(". ", ",").replace(", ", ",");
 
-                keywords = "#" + keywords;
-
-                keywords = keywords.replace(",", ",#").replace(".", ",#");
-                keywords = keywords.replace("# ", "#");
-                keywords = keywords.replace("# ", "#");
-
-                keywords = TxtUtils.replaceLast(keywords, "#", "");
-                keywords = keywords + StringDB.DIVIDER;
-
-                LOG.d("keywords", keywords);
-            } else {
-                keywords = null;
+                if (TxtUtils.isEmpty(genre)) {
+                    genre = keywords;
+                } else {
+                    genre = genre + keywords;
+                }
+                LOG.d("keywords", genre);
             }
 
             if (TxtUtils.isNotEmpty(number)) {
@@ -269,7 +254,6 @@ public class Fb2Extractor extends BaseExtractor {
                 try {
                     ebookMeta.setLang(lang);
                     ebookMeta.setsIndex(Integer.parseInt(number));
-                    ebookMeta.setKeywords(keywords);
                     // ebookMeta.setPagesCount((int) fileSize / 512);
                 } catch (Exception e) {
                     LOG.e(e);
@@ -278,7 +262,6 @@ public class Fb2Extractor extends BaseExtractor {
             } else {
                 EbookMeta ebookMeta = new EbookMeta(bookTitle, firstName + " " + lastName, sequence, genre);
                 ebookMeta.setLang(lang);
-                ebookMeta.setKeywords(keywords);
                 // ebookMeta.setPagesCount((int) fileSize / 512);
                 return ebookMeta;
             }

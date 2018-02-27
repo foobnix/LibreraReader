@@ -112,6 +112,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="5dip"
                 android:text="Genre"
+                android:maxLines="5"
+                android:ellipsize="end"
                 android:textIsSelectable="true" />
             
             

@@ -439,7 +439,7 @@ public class AppDB {
                 str = str + StringDB.DIVIDER;
 
             }
-            LOG.d("searchBy", str);
+            LOG.d("searchBy", searchIn, str, "-");
             if (str.startsWith(SearchFragment2.EMPTY_ID)) {
                 where = where.whereOr(searchIn.getProperty().like(""), searchIn.getProperty().isNull());
             } else
@@ -451,7 +451,7 @@ public class AppDB {
                     str = str.replace(" ", "%").replace("*", "%");
                     String string = "%" + str + "%";
                     if (searchIn != null) {
-                        where = where.where(searchIn.getProperty().like(string));
+                        where = where.whereOr(searchIn.getProperty().like(string), searchIn.getProperty().like(string.toLowerCase(Locale.US)));
                     } else {
                         where = where.whereOr(//
                                 FileMetaDao.Properties.PathTxt.like(string), //

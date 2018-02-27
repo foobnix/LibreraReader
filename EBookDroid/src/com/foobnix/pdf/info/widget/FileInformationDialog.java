@@ -125,7 +125,7 @@ public class FileInformationDialog {
 
         String genre = fileMeta.getGenre();
         if (TxtUtils.isNotEmpty(genre)) {
-            genre = TxtUtils.firstUppercase(genre.replaceAll(",$", "").replace(",", " / "));
+            genre = TxtUtils.firstUppercase(genre.replaceAll(",$", "").replace(",", ", "));
             ((TextView) dialog.findViewById(R.id.metaGenre)).setText(genre);
         } else {
             ((TextView) dialog.findViewById(R.id.metaGenre)).setVisibility(View.GONE);

@@ -12,7 +12,6 @@ public class EbookMeta {
     private Integer sIndex;
     private String lang;
     private int pagesCount;
-    private String keywords;
 
     public EbookMeta(String title, String author, byte[] coverImage) {
         this.title = updateString(title);
@@ -122,12 +121,5 @@ public class EbookMeta {
         this.pagesCount = pagesCount;
     }
 
-    public String getKeywords() {
-        return keywords;
-    }
-
-    public void setKeywords(String keywords) {
-        this.keywords = keywords;
-    }
 
 }

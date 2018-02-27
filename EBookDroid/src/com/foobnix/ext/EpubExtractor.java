@@ -192,13 +192,9 @@ public class EpubExtractor extends BaseExtractor {
             String number = null;
             String lang = null;
 
-            long size = 0;
 
             while ((nextEntry = zipInputStream.getNextEntry()) != null) {
                 String name = nextEntry.getName().toLowerCase();
-                if (name.endsWith("html") || name.endsWith("htm") || name.endsWith("xml")) {
-                    size += nextEntry.getSize();
-                }
 
                 if (name.endsWith(".opf")) {
 
