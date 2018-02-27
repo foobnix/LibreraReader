@@ -38,6 +38,8 @@ if (!strcmp(value->data, "auto"))
 //add fb2 styles to main styles
 
 //html-layout.c
+30pt
+padding:0 2em 0 2em
 
 //skip br
 "br{display:block}"

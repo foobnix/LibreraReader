@@ -6,6 +6,8 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.PrintWriter;
+import java.util.HashSet;
+import java.util.Set;
 
 import com.foobnix.android.utils.LOG;
 import com.foobnix.hypen.HypenUtils;
@@ -55,7 +57,7 @@ public class RtfExtract {
                     if (BookCSS.get().isAutoHypens) {
                         htmlEncode = HypenUtils.applyHypnes(htmlEncode);
                     }
-                    writer.print(htmlEncode);
+                    printText(htmlEncode);
                 }
 
                 @Override
@@ -78,23 +80,62 @@ public class RtfExtract {
                     }
                 }
 
-                boolean isPar = true;
+                Set<Command> stack = new HashSet<Command>();
+
+
+                private void printText(String txt) {
+                    if (stack.contains(Command.par))
+                        writer.print("<p>");
+
+                    if (stack.contains(Command.sub))
+                        writer.print("<sub>");
+
+                    if (stack.contains(Command.supercmd))
+                        writer.print("<sup>");
+
+                    if (stack.contains(Command.b))
+                        writer.print("<b>");
+
+                    if (stack.contains(Command.i))
+                        writer.print("<i>");
+
+                    writer.print(txt);
+
+                    if (stack.contains(Command.par)) {
+                        writer.print("</p>");
+                        stack.remove(Command.par);
+                    }
+
+                    if (stack.contains(Command.sub)) {
+                        writer.print("</sub>");
+                        stack.remove(Command.sub);
+                    }
+
+                    if (stack.contains(Command.supercmd)) {
+                        writer.print("</sup>");
+                        stack.remove(Command.supercmd);
+                    }
+
+                    if (stack.contains(Command.b)) {
+                        writer.print("</b>");
+                        stack.remove(Command.b);
+                    }
+
+                    if (stack.contains(Command.i)) {
+                        writer.print("</i>");
+                        stack.remove(Command.i);
+                    }
+                }
 
                 @Override
+                // http://latex2rtf.sourceforge.net/rtfspec_62.html
                 public void processCommand(Command command, int parameter, boolean hasParameter, boolean optional) {
-                    super.processCommand(command, parameter, hasParameter, optional);
                     if (command == Command.cbpat) {
                         writer.write("<br/>");
                     }
 
-                    if (command == Command.par) {
-                        if (isPar) {
-                            writer.write("<p>");
-                        } else {
-                            writer.write("</p>");
-                        }
-                        isPar = !isPar;
-                    }
+                    stack.add(command);
+
                     if (command == Command.pngblip) {
                         isImage = true;
                         format = "png";

@@ -24,7 +24,7 @@ public class RtfContext extends PdfContext {
 
 	@Override
 	public CodecDocument openDocumentInner(String fileName, String password) {
-		if (!cacheFile.isFile()) {
+        if (true || !cacheFile.isFile()) {
 			try {
 				RtfExtract.extract(fileName, CacheZipUtils.CACHE_BOOK_DIR.getPath(), cacheFile.getName());
 			} catch (Exception e) {
