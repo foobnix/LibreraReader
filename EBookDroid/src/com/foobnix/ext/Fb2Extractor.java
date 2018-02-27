@@ -239,14 +239,20 @@ public class Fb2Extractor extends BaseExtractor {
             }
 
             if (TxtUtils.isNotEmpty(keywords)) {
-                keywords = keywords.replace(". ", ",").replace(", ", ",");
+                LOG.d("keywords before", genre);
+
+                if (keywords.contains(",") || keywords.contains(";")) {
+                    keywords = keywords.replace("; ", ",").replace(", ", ",");
+                } else {
+                    keywords = keywords.replace(". ", ",");
+                }
 
                 if (TxtUtils.isEmpty(genre)) {
                     genre = keywords;
                 } else {
                     genre = genre + keywords;
                 }
-                LOG.d("keywords", genre);
+                LOG.d("keywords after", genre);
             }
 
             if (TxtUtils.isNotEmpty(number)) {
