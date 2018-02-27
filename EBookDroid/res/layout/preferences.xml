@@ -659,7 +659,7 @@
 
             <CheckBox
                 android:id="@+id/isRememberMode"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="@string/remember_reading_mode" />
@@ -684,7 +684,7 @@
 
             <CheckBox
                 android:id="@+id/isAppPassword"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="@string/request_a_password_when_the_application_starts" />
