@@ -26,6 +26,7 @@ import org.xmlpull.v1.XmlPullParser;
 import com.BaseExtractor;
 import com.foobnix.android.utils.LOG;
 import com.foobnix.android.utils.StreamUtils;
+import com.foobnix.android.utils.StringDB;
 import com.foobnix.android.utils.TxtUtils;
 import com.foobnix.hypen.HypenUtils;
 import com.foobnix.pdf.info.ExtUtils;
@@ -186,6 +187,7 @@ public class Fb2Extractor extends BaseExtractor {
             String sequence = "";
             String lang = "";
             String number = "";
+            String keywords = "";
             boolean titleInfo = false;
 
             int eventType = xpp.getEventType();
@@ -209,6 +211,8 @@ public class Fb2Extractor extends BaseExtractor {
                             lastName = xpp.nextText();
                         } else if (xpp.getName().equals("genre")) {
                             genre = xpp.nextText() + "," + genre;
+                        } else if (xpp.getName().equals("keywords")) {
+                            keywords = xpp.nextText();
                         } else if (xpp.getName().equals("sequence")) {
                             sequence = xpp.getAttributeValue(null, "name");
                             String current = xpp.getAttributeValue(null, "number");
@@ -243,11 +247,29 @@ public class Fb2Extractor extends BaseExtractor {
                 firstName = temp;
             }
 
+            if (TxtUtils.isNotEmpty(keywords)) {
+                keywords = keywords.replace("\n", "").replace("\r", "").trim();
+
+                keywords = "#" + keywords;
+
+                keywords = keywords.replace(",", ",#").replace(".", ",#");
+                keywords = keywords.replace("# ", "#");
+                keywords = keywords.replace("# ", "#");
+
+                keywords = TxtUtils.replaceLast(keywords, "#", "");
+                keywords = keywords + StringDB.DIVIDER;
+
+                LOG.d("keywords", keywords);
+            } else {
+                keywords = null;
+            }
+
             if (TxtUtils.isNotEmpty(number)) {
                 EbookMeta ebookMeta = new EbookMeta(bookTitle, firstName + " " + lastName, sequence, genre);
                 try {
                     ebookMeta.setLang(lang);
                     ebookMeta.setsIndex(Integer.parseInt(number));
+                    ebookMeta.setKeywords(keywords);
                     // ebookMeta.setPagesCount((int) fileSize / 512);
                 } catch (Exception e) {
                     LOG.e(e);
@@ -256,6 +278,7 @@ public class Fb2Extractor extends BaseExtractor {
             } else {
                 EbookMeta ebookMeta = new EbookMeta(bookTitle, firstName + " " + lastName, sequence, genre);
                 ebookMeta.setLang(lang);
+                ebookMeta.setKeywords(keywords);
                 // ebookMeta.setPagesCount((int) fileSize / 512);
                 return ebookMeta;
             }

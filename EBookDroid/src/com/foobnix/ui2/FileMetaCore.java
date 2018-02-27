@@ -183,6 +183,9 @@ public class FileMetaCore {
         if (pagesCount != 0) {
             fileMeta.setPages(pagesCount);
         }
+        if (fileMeta.getTag() == null && meta.getKeywords() != null) {
+            fileMeta.setTag(meta.getKeywords());
+        }
 
     }
 
