@@ -598,11 +598,10 @@ public class BookCSS {
                 builder.append("font-family:" + normalFont + " !important; font-weight:normal;");
             }
 
-            builder.append(String.format("text-indent:%s;", em(textIndent)));
             builder.append(String.format("text-align:%s !important;", getTextAlignConst(textAlign)));
             builder.append("}");
 
-            builder.append(String.format("p+p{text-indent:%s;}", em(textIndent)));
+            builder.append(String.format("p{text-indent:%s;}", em(textIndent)));
 
             if (!isFontFileName(boldFont)) {
                 builder.append("b{font-family:" + boldFont + ";font-weight: bold;}");
