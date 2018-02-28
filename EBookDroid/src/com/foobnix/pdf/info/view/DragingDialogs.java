@@ -848,7 +848,7 @@ public class DragingDialogs {
 
                 goTo.setText(controller.getString(R.string.go_to_page_dialog) + " " + page);
                 text.setText(controller.getFootNote(selectedText));
-                if (page == -1 || page == 0) {
+                if (page == -1 || page == 0 || AppState.get().isDouble) {
                     goTo.setVisibility(View.GONE);
                     goBack.setVisibility(View.GONE);
                 }
@@ -883,7 +883,7 @@ public class DragingDialogs {
                         }
                     }
                 });
-
+                
                 TxtUtils.underlineTextView(goTo);
                 TxtUtils.underlineTextView(goBack);
 
@@ -1340,7 +1340,7 @@ public class DragingDialogs {
                 final GridView grid = (GridView) view.findViewById(R.id.grid1);
                 int dpToPx = Dips.dpToPx(AppState.get().coverSmallSize);
 
-                if (AppState.get().isDouble) {
+                if (AppState.get().isDouble && !controller.isTextFormat()) {
                     dpToPx = dpToPx * 2;
                 }
                 grid.setColumnWidth(dpToPx);

@@ -444,7 +444,7 @@
    <string name="tag">Тег</string>
    <string name="no_tag">Без тега</string>
    <string name="add_tag">Добавить тег</string>
-   <string name="do_you_want_to_delete_this_tag_from_all_books_">Вы действительно хотите удалить этот тег?</string>
+   <string name="do_you_want_to_delete_this_tag_from_all_books_">Вы действительно хотите удалить этот тег во всех книгах?</string>
    <string name="tags">Теги</string>
    <string name="by_number_of_pages">Число страниц</string>
    <string name="by_number_in_serie">Номер в серии</string>
