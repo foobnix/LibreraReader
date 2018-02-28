@@ -13,10 +13,16 @@ public class OutlineLinkWrapper implements CharSequence {
     public String targetUrl;
     public int targetPage = -1;
     public RectF targetRect;
+    public long docHandle;
 
-    public OutlineLinkWrapper(final String title, final String link, final int level) {
+    public String linkUri;
+
+    public OutlineLinkWrapper(final String title, final String link, final int level, long docHandle, String linkUri) {
         this.title = title;
         this.level = level;
+        this.docHandle = docHandle;
+
+        this.linkUri = linkUri;
 
         if (link != null) {
             if (link.startsWith("#")) {
@@ -26,6 +32,7 @@ public class OutlineLinkWrapper implements CharSequence {
 
                 } catch (final Exception e) {
                     e.printStackTrace();
+                    targetPage = -1;
                 }
             } else if (link.startsWith("http:")) {
                 targetUrl = link;
@@ -55,7 +62,11 @@ public class OutlineLinkWrapper implements CharSequence {
     }
 
     public String getTitleAsString() {
-        return title.replace(Fb2Extractor.FOOTER_AFTRER_BOODY, "");
+        String t = title;
+        if (title.contains("$")) {
+            t = t.substring(0, title.indexOf("$"));
+        }
+        return t.replace(Fb2Extractor.FOOTER_AFTRER_BOODY, "");
     }
 
     /**

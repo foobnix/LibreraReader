@@ -5,11 +5,15 @@ public class OutlineLink implements CharSequence {
     private String title;
     private int level;
 	private final String link;
+    public long docHandle;
+    public String linkUri;
 
-	public OutlineLink(final String title, final String link, final int level) {
+    public OutlineLink(final String title, final String link, final int level, long docHandle, String linkUri) {
 		this.title = title;
 		this.link = link;
 		this.level = level;
+        this.docHandle = docHandle;
+        this.linkUri = linkUri;
 	}
 
 	/**

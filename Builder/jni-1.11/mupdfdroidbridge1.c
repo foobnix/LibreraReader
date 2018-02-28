@@ -374,17 +374,19 @@ Java_org_ebookdroid_droids_mupdf_codec_MuPdfLinks_getPageLinkTargetPage(
 	fz_link *link = (fz_link*) (long) linkhandle;
 	renderdocument_t *doc = (renderdocument_t *)(long)handle;
 
-	//if (!link || link->dest.kind != FZ_LINK_GOTO) {
-	//	return (jint) 0;
-	//}
-
-	//char linkbuf[1024];
-	//snprintf(linkbuf, 1023, "%s", link->uri);
-
-
 	int pageNum =  fz_resolve_link(doc->ctx, link->doc, link->uri, NULL, NULL);
     return pageNum;
+}
 
+JNIEXPORT jint JNICALL
+Java_org_ebookdroid_droids_mupdf_codec_MuPdfLinks_getLinkPage(
+		JNIEnv *env, jclass clazz, jlong handle,  jstring id) {
+
+	renderdocument_t *doc = (renderdocument_t *)(long)handle;
+	const char *str = (*env)->GetStringUTFChars(env, id, NULL);
+
+	int pageNum =  fz_resolve_link(doc->ctx, doc->document, str, NULL, NULL);
+    return pageNum;
 }
 
 JNIEXPORT jint JNICALL
@@ -806,6 +808,19 @@ Java_org_ebookdroid_droids_mupdf_codec_MuPdfOutline_getLink(JNIEnv *env,
 	snprintf(linkbuf, 127, "#%d", pageNo + 1);
 
 	return (*env)->NewStringUTF(env, linkbuf);
+}
+
+JNIEXPORT jstring JNICALL
+Java_org_ebookdroid_droids_mupdf_codec_MuPdfOutline_getLinkUri(JNIEnv *env,
+		jclass clazz, jlong outlinehandle, jlong dochandle) {
+	fz_outline *outline = (fz_outline*) (long) outlinehandle;
+	renderdocument_t *doc = (renderdocument_t*) (long) dochandle;
+
+// DEBUG("PdfOutline_getLink(%p)",outline);
+	if (!outline)
+		return NULL;
+
+	return (*env)->NewStringUTF(env, outline->uri);
 }
 
 JNIEXPORT jint JNICALL

@@ -557,7 +557,7 @@ public abstract class HorizontalModeController extends DocumentController {
                 final List<OutlineLinkWrapper> outlineRes = new ArrayList<OutlineLinkWrapper>();
                 try {
                     for (OutlineLink ol : codeDocument.getOutline()) {
-                        outlineRes.add(new OutlineLinkWrapper(ol.getTitle(), ol.getLink(), ol.getLevel()));
+                        outlineRes.add(new OutlineLinkWrapper(ol.getTitle(), ol.getLink(), ol.getLevel(), ol.docHandle, ol.linkUri));
                     }
 
                     setOutline(outlineRes);

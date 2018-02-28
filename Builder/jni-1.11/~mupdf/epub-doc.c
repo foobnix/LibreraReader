@@ -71,7 +71,7 @@ epub_update_outline(fz_context *ctx, fz_document *doc, fz_outline *node)
 {
 	while (node)
 	{
-		node->page = epub_resolve_link(ctx, doc, node->uri, NULL, NULL);
+		node->page = -1; // epub_resolve_link(ctx, doc, node->uri, NULL, NULL);
 		epub_update_outline(ctx, doc, node->down);
 		node = node->next;
 	}

@@ -12,6 +12,7 @@ import java.util.Map;
 import org.ebookdroid.BookType;
 import org.ebookdroid.common.settings.SettingsManager;
 import org.ebookdroid.common.settings.books.BookSettings;
+import org.ebookdroid.droids.mupdf.codec.MuPdfLinks;
 import org.greenrobot.eventbus.EventBus;
 
 import com.foobnix.StringResponse;
@@ -1780,6 +1781,14 @@ public class DragingDialogs {
             @Override
             public void onItemClick(final AdapterView<?> parent, final View view, final int position, final long id) {
                 final OutlineLinkWrapper link = (OutlineLinkWrapper) parent.getItemAtPosition(position);
+                if (true) {
+                    int linkPage = MuPdfLinks.getLinkPageWrapper(link.docHandle, link.linkUri) + 1;
+                    LOG.d("targetUrl page", linkPage);
+                    controller.onGoToPage(linkPage);
+
+                    return;
+                }
+
                 if (link.targetPage != -1) {
                     int pageCount = controller.getPageCount();
                     if (link.targetPage < 1 || link.targetPage > pageCount) {

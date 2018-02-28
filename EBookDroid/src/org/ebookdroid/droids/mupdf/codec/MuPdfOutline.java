@@ -25,7 +25,7 @@ public class MuPdfOutline {
             ttOutline(ls, outline, 0);
             free(dochandle);
 
-            ls.add(new OutlineLink("", "", -1));
+            ls.add(new OutlineLink("", "", -1, dochandle, ""));
         } finally {
             TempHolder.lock.unlock();
         }
@@ -36,8 +36,10 @@ public class MuPdfOutline {
         while (outline != -1) {
             final String title = getTitle(outline);
             final String link = getLink(outline, docHandle);
+            String linkUri = getLinkUri(outline, docHandle);
+            LOG.d("linkUri", linkUri);
             if (title != null) {
-                final OutlineLink outlineLink = new OutlineLink(title, link, level);
+                final OutlineLink outlineLink = new OutlineLink(title, link, level, docHandle, linkUri);
 
                 boolean toAdd = true;
                 if (AppState.get().outlineMode == AppState.OUTLINE_ONLY_HEADERS) {
@@ -73,6 +75,8 @@ public class MuPdfOutline {
     private static native String getTitle(long outlinehandle);
 
     private static native String getLink(long outlinehandle, long dochandle);
+
+    private static native String getLinkUri(long outlinehandle, long dochandle);
 
     private static native int fillLinkTargetPoint(long outlinehandle, float[] point);
 

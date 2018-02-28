@@ -150,11 +150,12 @@ public class OutlineAdapter extends BaseAdapter {
         view.setText(item.getTitleAsString().trim());
         num.setText(TxtUtils.deltaPage(item.targetPage));
 
-        if (item.targetPage != -1) {
-            num.setVisibility(View.VISIBLE);
-        } else {
+        if (item.targetPage <= 0) {
             num.setVisibility(View.INVISIBLE);
+        } else {
+            num.setVisibility(View.VISIBLE);
         }
+
         if (currentId == id) {
             container.setBackgroundResource(R.color.tint_blue_alpha);
         } else {

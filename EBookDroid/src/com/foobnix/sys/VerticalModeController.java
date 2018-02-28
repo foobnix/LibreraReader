@@ -765,7 +765,7 @@ public class VerticalModeController extends DocumentController {
                 }
 
                 for (OutlineLink ol : outlineLinks) {
-                    outline.add(new OutlineLinkWrapper(ol.getTitle(), ol.getLink(), ol.getLevel()));
+                    outline.add(new OutlineLinkWrapper(ol.getTitle(), ol.getLink(), ol.getLevel(), ol.docHandle, ol.linkUri));
                 }
                 resultWrapper.onResultRecive(outline);
                 return true;
