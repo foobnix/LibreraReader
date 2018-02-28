@@ -383,6 +383,7 @@ public class Fb2Extractor extends BaseExtractor {
 
             String encoding = findHeaderEncoding(inputFile);
             List<String> titles = getFb2Titles(inputFile, encoding);
+            // List<String> titles = new ArrayList<String>();
 
             String ncx = genetateNCX(titles);
             writeToZip(zos, "OEBPS/fb2.ncx", ncx);
