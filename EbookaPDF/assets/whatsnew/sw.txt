@@ -1,5 +1,6 @@
-* Maombi ya kusoma kila aina ya vitabu na PDF 
+* Maombi ya kusoma fomu zote za vitabu na PDF 
+* Vitambulisho vya mtumiaji wa vitabu 
 * MandhariInk kwa vifaa na wino wa elektroniki 
 * Badilisha tofauti na mwangaza 
-* Uavu mbaya 
+* Uavu usiofaa 
 * Bluu nyekundu filter

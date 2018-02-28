@@ -1,4 +1,5 @@
 * Aplicación para leer todos los formatos de libros y PDF 
+* Etiquetas de usuario para libros 
 * TemaTinta para dispositivos con tinta electrónica 
 * Cambiar el contraste y el brillo 
 * Brillo negativo 

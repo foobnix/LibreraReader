@@ -1,5 +1,6 @@
 * Aplikácia na čítanie všetkých formátov kníh a PDF 
-* TémaAtrament pre zariadenia s elektronickým atramentom 
+* Používateľské značky pre knihy 
+* Téma Ink pre zariadenia s elektronickým atramentom 
 * Zmena kontrastu a jasu 
 * Negatívny jas 
 * Filter modrého svetla

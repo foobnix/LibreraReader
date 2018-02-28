@@ -1,5 +1,6 @@
 * Paraiška skaityti visus knygų ir PDF formatus 
-* TemaRašalas prietaisams su elektroniniu rašalu 
+* Vartotojo knygų žymos 
+* TemaRašalas įrenginiams su elektroniniu rašalu 
 * Keisti kontrastą ir ryškumą 
 * Neigiamas ryškumas 
 * Mėlynas šviesos filtras

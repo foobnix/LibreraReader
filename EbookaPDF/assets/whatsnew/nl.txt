@@ -1,4 +1,5 @@
 * Toepassing voor het lezen van alle formaten van boeken en PDF 
+* Gebruikerstags voor boeken 
 * ThemaInkt voor apparaten met elektronische inkt 
 * Verander het contrast en de helderheid 
 * Negatieve helderheid 

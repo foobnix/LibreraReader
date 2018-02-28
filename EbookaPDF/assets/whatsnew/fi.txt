@@ -1,5 +1,6 @@
 * Sovellus kaikkien kirjojen ja PDF-formaattien lukemiseen 
-* TeemaInk elektronisilla musteilla varustetuissa laitteissa 
+* Kirjojen käyttäjätunnisteet 
+* TeemaInk elektronisille musteille tarkoitetuille laitteille 
 * Muuta kontrastia ja kirkkautta 
 * Negatiivinen kirkkaus 
 * Sininen valosuodatin

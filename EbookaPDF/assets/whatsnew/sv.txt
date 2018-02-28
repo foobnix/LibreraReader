@@ -1,4 +1,5 @@
-* Applikation för att läsa alla format på böcker och PDF 
+* Applikation för läsning av alla format av böcker och PDF 
+* Användarkoder för böcker 
 * TemaBläck för enheter med elektronisk bläck 
 * Ändra kontrasten och ljusstyrkan 
 * Negativ ljusstyrka 

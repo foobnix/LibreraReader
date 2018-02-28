@@ -1,4 +1,5 @@
 * Applicazione per la lettura di tutti i formati di libri e PDF 
+* Tag utente per libri 
 * TemaInchiostro per dispositivi con inchiostro elettronico 
 * Modifica del contrasto e della luminosità 
 * Luminosità negativa 

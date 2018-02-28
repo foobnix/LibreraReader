@@ -1,4 +1,5 @@
 * Søknad for å lese alle formater av bøker og PDF 
+* Brukerkoder for bøker 
 * TemaBlekk for enheter med elektronisk blekk 
 * Endre kontrast og lysstyrke 
 * Negativ lysstyrke 

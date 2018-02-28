@@ -1,4 +1,5 @@
 * Anwendung zum Lesen aller Formate von Büchern und PDF 
+* Benutzertags für Bücher 
 * ThemaTinte für Geräte mit elektronischer Tinte 
 * Ändern Sie den Kontrast und die Helligkeit 
 * Negative Helligkeit 

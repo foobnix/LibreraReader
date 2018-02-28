@@ -1,5 +1,6 @@
 * Application pour lire tous les formats de livres et PDF 
+* Tags d’utilisateur pour les livres 
 * ThèmeEncre pour les appareils avec encre électronique 
 * Changer le contraste et la luminosité 
-* Brillance négative 
+* Luminosité négative 
 * Filtre lumière bleue

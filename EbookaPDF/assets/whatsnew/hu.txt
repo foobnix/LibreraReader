@@ -1,4 +1,5 @@
 * Alkalmazás könyvek és PDF formátumok olvasására 
+* Felhasználói címkék könyvekhez 
 * TémaInk elektronikus tintasugaras készülékekhez 
 * A kontraszt és a fényerő módosítása 
 * Negatív fényerő 

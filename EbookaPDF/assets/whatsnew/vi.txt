@@ -1,4 +1,5 @@
-* Ứng dụng để đọc tất cả các định dạng sách và PDF 
+* Ứng dụng để đọc tất cả các định dạng của sách và PDF 
+* Thẻ người dùng cho sách 
 * ThemeMực cho các thiết bị có mực điện tử 
 * Thay đổi độ tương phản và độ sáng 
 * Độ sáng tiêu cực 

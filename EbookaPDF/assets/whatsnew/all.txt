@@ -1,6 +1,7 @@
 
 <nl-NL>
 * Toepassing voor het lezen van alle formaten van boeken en PDF 
+* Gebruikerstags voor boeken 
 * ThemaInkt voor apparaten met elektronische inkt 
 * Verander het contrast en de helderheid 
 * Negatieve helderheid 
@@ -9,6 +10,7 @@
 
 <id>
 * Aplikasi untuk membaca semua format buku dan PDF 
+* Tag pengguna untuk buku 
 * TemaTinta untuk perangkat dengan tinta elektronik 
 * Mengubah kontras dan kecerahan 
 * Kecerahan negatif 
@@ -17,7 +19,8 @@
 
 <lt>
 * Paraiška skaityti visus knygų ir PDF formatus 
-* TemaRašalas prietaisams su elektroniniu rašalu 
+* Vartotojo knygų žymos 
+* TemaRašalas įrenginiams su elektroniniu rašalu 
 * Keisti kontrastą ir ryškumą 
 * Neigiamas ryškumas 
 * Mėlynas šviesos filtras
@@ -25,6 +28,7 @@
 
 <ar>
 * تطبيق لقراءة جميع صيغ الكتب و بدف 
+* علامات المستخدم للكتب 
 * موضوعالحبر للأجهزة مع الحبر الإلكتروني 
 * تغيير التباين والسطوع 
 * سطوع سلبي 
@@ -33,14 +37,16 @@
 
 <ro>
 * Aplicație pentru citirea tuturor formatelor de cărți și PDF 
+* Etichete de utilizator pentru cărți 
 * TemaCerneală pentru dispozitivele cu cerneală electronică 
-* Modificarea contrastului și luminozității 
+* Schimbarea contrastului și luminozității 
 * Luminozitate negativă 
 * Filtru de lumină albastră
 </ro>
 
 <de-DE>
 * Anwendung zum Lesen aller Formate von Büchern und PDF 
+* Benutzertags für Bücher 
 * ThemaTinte für Geräte mit elektronischer Tinte 
 * Ändern Sie den Kontrast und die Helligkeit 
 * Negative Helligkeit 
@@ -49,14 +55,16 @@
 
 <pl-PL>
 * Aplikacja do czytania wszystkich formatów książek i PDF 
+* Tagi użytkownika dla książek 
 * MotywTusz dla urządzeń z tuszem elektronicznym 
 * Zmień kontrast i jasność 
 * Negatywna jasność 
-* Niebieskie światło filtru
+* Niebieskie światło filtr
 </pl-PL>
 
 <iw-IL>
 * יישום לקריאת כל הפורמטים של ספרים PDF 
+* תגי משתמש עבור ספרים 
 * נושאדיו עבור מכשירים עם דיו אלקטרוני 
 * לשנות את הניגודיות ואת בהירות 
 * בהירות שלילית 
@@ -65,7 +73,8 @@
 
 <hi-IN>
 * किताबों और पीडीएफ के सभी स्वरूपों को पढ़ने के लिए आवेदन 
-* इलेक्ट्रॉनिक स्याही वाले उपकरणों के लिए थीमइंक 
+* पुस्तकों के लिए उपयोगकर्ता टैग 
+* इलेक्ट्रॉनिक इंक वाले उपकरणों के लिए थीमइंक 
 * विपरीत और चमक बदलें 
 * नकारात्मक चमक 
 * ब्लू लाइट फिल्टर
@@ -73,6 +82,7 @@
 
 <es-ES>
 * Aplicación para leer todos los formatos de libros y PDF 
+* Etiquetas de usuario para libros 
 * TemaTinta para dispositivos con tinta electrónica 
 * Cambiar el contraste y el brillo 
 * Brillo negativo 
@@ -81,14 +91,16 @@
 
 <fi-FI>
 * Sovellus kaikkien kirjojen ja PDF-formaattien lukemiseen 
-* TeemaInk elektronisilla musteilla varustetuissa laitteissa 
+* Kirjojen käyttäjätunnisteet 
+* TeemaInk elektronisille musteille tarkoitetuille laitteille 
 * Muuta kontrastia ja kirkkautta 
 * Negatiivinen kirkkaus 
 * Sininen valosuodatin
 </fi-FI>
 
 <vi>
-* Ứng dụng để đọc tất cả các định dạng sách và PDF 
+* Ứng dụng để đọc tất cả các định dạng của sách và PDF 
+* Thẻ người dùng cho sách 
 * ThemeMực cho các thiết bị có mực điện tử 
 * Thay đổi độ tương phản và độ sáng 
 * Độ sáng tiêu cực 
@@ -97,46 +109,52 @@
 
 <fr-FR>
 * Application pour lire tous les formats de livres et PDF 
+* Tags d’utilisateur pour les livres 
 * ThèmeEncre pour les appareils avec encre électronique 
 * Changer le contraste et la luminosité 
-* Brillance négative 
+* Luminosité négative 
 * Filtre lumière bleue
 </fr-FR>
 
 <fr-CA>
 * Application pour lire tous les formats de livres et PDF 
+* Tags d’utilisateur pour les livres 
 * ThèmeEncre pour les appareils avec encre électronique 
 * Changer le contraste et la luminosité 
-* Brillance négative 
+* Luminosité négative 
 * Filtre lumière bleue
 </fr-CA>
 
 <sw>
-* Maombi ya kusoma kila aina ya vitabu na PDF 
+* Maombi ya kusoma fomu zote za vitabu na PDF 
+* Vitambulisho vya mtumiaji wa vitabu 
 * MandhariInk kwa vifaa na wino wa elektroniki 
 * Badilisha tofauti na mwangaza 
-* Uavu mbaya 
+* Uavu usiofaa 
 * Bluu nyekundu filter
 </sw>
 
 <zh-TW>
-*应用程序阅读所有格式的书籍和PDF 
-*主题“墨水”设备与电子墨水
+*适用于阅读所有格式的书籍和PDF 
+*书籍的用户标签
+*用于电子墨水设备的主题“墨水”
 *改变对比度和亮度
 *负亮度
-*蓝色滤光片
+*蓝光滤镜
 </zh-TW>
 
 <ru-RU>
 * Приложение для чтения всех форматов книг и PDF 
+* Пользовательские теги для книг 
 * Тема «Чернила» для устройств с электронными чернилами 
-* Изменение контраста и яркости 
+* Изменение контрастности и яркости 
 * Отрицательная яркость 
 * Синий фильтр
 </ru-RU>
 
 <th>
-* การประยุกต์ใช้สำหรับการอ่านรูปแบบทั้งหมดของหนังสือและ PDF 
+* การประยุกต์ใช้สำหรับการอ่านหนังสือทุกรูปแบบและ PDF 
+* แท็กผู้ใช้สำหรับหนังสือ 
 * ธีมหมึก สำหรับอุปกรณ์ที่มีหมึกอิเล็กทรอนิกส์ 
 * เปลี่ยนความคมชัดและความสว่าง 
 * ความสว่างที่เป็นลบ 
@@ -145,6 +163,7 @@
 
 <it-IT>
 * Applicazione per la lettura di tutti i formati di libri e PDF 
+* Tag utente per libri 
 * TemaInchiostro per dispositivi con inchiostro elettronico 
 * Modifica del contrasto e della luminosità 
 * Luminosità negativa 
@@ -152,7 +171,8 @@
 </it-IT>
 
 <sv-SE>
-* Applikation för att läsa alla format på böcker och PDF 
+* Applikation för läsning av alla format av böcker och PDF 
+* Användarkoder för böcker 
 * TemaBläck för enheter med elektronisk bläck 
 * Ändra kontrasten och ljusstyrkan 
 * Negativ ljusstyrka 
@@ -161,7 +181,8 @@
 
 <fa>
 * برنامه برای خواندن تمام فرمت های کتاب و PDF 
-* تمجوهر برای دستگاه های جوهر الکترونیکی 
+* برچسب های کاربر برای کتاب 
+* تمجوهر برای دستگاه های با جوهر الکترونیکی 
 * تغییر کنتراست و روشنایی 
 * روشنایی منفی 
 * فیلتر نور آبی
@@ -169,30 +190,34 @@
 
 <pt-PT>
 * Aplicação para ler todos os formatos de livros e PDF 
+* Etiquetas de usuários para livros 
 * TemaTinta para dispositivos com tinta eletrônica 
-* Alterar o contraste e brilho 
+* Alterar o contraste e o brilho 
 * Brilho negativo 
 * Filtro de luz azul
 </pt-PT>
 
 <pt-BR>
 * Aplicação para ler todos os formatos de livros e PDF 
+* Etiquetas de usuários para livros 
 * TemaTinta para dispositivos com tinta eletrônica 
-* Alterar o contraste e brilho 
+* Alterar o contraste e o brilho 
 * Brilho negativo 
 * Filtro de luz azul
 </pt-BR>
 
 <ko-KR>
-* 모든 형식의 책 및 PDF 읽기 응용 프로그램 
-* 전자 잉크가있는 장치의 테마잉크
-* 명암 및 밝기 변경 
-* 음의 밝기 
-* 청색 광 필터
+* 도서 및 PDF의 모든 형식을 읽기위한 응용 프로그램 
+* 도서에 대한 사용자 태그 
+* 테마 전자 잉크와 장치에 대한잉크
+* 명암과 밝기를 변경 
+* 부정적인 밝기 
+* 푸른 빛의 필터
 </ko-KR>
 
 <hu-HU>
 * Alkalmazás könyvek és PDF formátumok olvasására 
+* Felhasználói címkék könyvekhez 
 * TémaInk elektronikus tintasugaras készülékekhez 
 * A kontraszt és a fényerő módosítása 
 * Negatív fényerő 
@@ -201,7 +226,8 @@
 
 <sk>
 * Aplikácia na čítanie všetkých formátov kníh a PDF 
-* TémaAtrament pre zariadenia s elektronickým atramentom 
+* Používateľské značky pre knihy 
+* Téma Ink pre zariadenia s elektronickým atramentom 
 * Zmena kontrastu a jasu 
 * Negatívny jas 
 * Filter modrého svetla
@@ -209,7 +235,8 @@
 
 <tr-TR>
 * Kitapların ve PDF’nin tüm formatlarını okumak için başvuru 
-* Elektronik mürekkepli cihazlar için TemaMürekkep 
+* Kitaplar için kullanıcı etiketleri 
+* Elektronik mürekkepli cihazlar içinMürekkep 
 * Kontrast ve parlaklığı değiştirme 
 * Negatif parlaklık 
 * Mavi ışık filtresi
@@ -217,6 +244,7 @@
 
 <no-NO>
 * Søknad for å lese alle formater av bøker og PDF 
+* Brukerkoder for bøker 
 * TemaBlekk for enheter med elektronisk blekk 
 * Endre kontrast og lysstyrke 
 * Negativ lysstyrke 
@@ -224,16 +252,18 @@
 </no-NO>
 
 <la>
-All formats 
-* Application pro legere librorum et Natus Est PDF 
-* ’Ink’ pro atramento electronic cogitationes et mutare 
+Application pro legere librorum et omnia PDF formats 
+* 
+* 
+* librorum Natus Est enim User tags:Ink ’pro atramento electronic cogitationes et mutare 
 * Sed claritas, et Blue claritas negativus 
 * filter lux
 </la>
 
 <ja-JP>
 *書籍やPDFのすべての形式を読むためのアプリケーション
-*電子インクのデバイスのテーマインク 
+*書籍のユーザータグ
+*テーマ電子インクのデバイスのためのインク 
 *コントラストと明るさを変更する
 *負の明るさ
 *青色光フィルター
@@ -241,7 +271,8 @@ All formats
 
 <uk>
 * Застосування для читання всіх форматів книг і PDF 
-* ТемаЧорнило для пристроїв з електронними чорнилами 
+* Теги користувача для книг 
+* ТемаЧорнило для пристроїв з електронними чорнилом 
 * Зміна контрастності та яскравості 
 * Негативна яскравість 
 * Блакитний світлофільтр
@@ -249,6 +280,7 @@ All formats
 
 <en-US>
 * Application for reading all formats of books and PDF
+* User tags for books
 * Theme "Ink" for devices with electronic ink
 * Change the contrast and brightness
 * Negative brightness

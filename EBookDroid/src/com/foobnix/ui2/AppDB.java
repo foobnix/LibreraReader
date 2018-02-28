@@ -160,12 +160,17 @@ public class AppDB {
     }
 
     public List<FileMeta> deleteAllSafe() {
-        List<FileMeta> list = fileMetaDao.queryBuilder().whereOr(FileMetaDao.Properties.IsStar.eq(1), FileMetaDao.Properties.IsRecent.eq(1)).list();
-        if (list == null) {
-            list = new ArrayList<FileMeta>();
+        try {
+            List<FileMeta> list = fileMetaDao.queryBuilder().whereOr(FileMetaDao.Properties.IsStar.eq(1), FileMetaDao.Properties.IsRecent.eq(1)).list();
+            if (list == null) {
+                list = new ArrayList<FileMeta>();
+            }
+            fileMetaDao.deleteAll();
+            return list;
+        } catch (Exception e) {
+            LOG.e(e);
+            return new ArrayList<FileMeta>();
         }
-        fileMetaDao.deleteAll();
-        return list;
     }
 
     public void delete(FileMeta meta) {

@@ -1,5 +1,6 @@
 * Aplikacja do czytania wszystkich formatów książek i PDF 
+* Tagi użytkownika dla książek 
 * MotywTusz dla urządzeń z tuszem elektronicznym 
 * Zmień kontrast i jasność 
 * Negatywna jasność 
-* Niebieskie światło filtru
+* Niebieskie światło filtr

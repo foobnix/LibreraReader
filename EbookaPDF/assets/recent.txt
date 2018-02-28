@@ -1,4 +1,5 @@
 * Application for reading all formats of books and PDF
+* User tags for books
 * Theme "Ink" for devices with electronic ink
 * Change the contrast and brightness
 * Negative brightness

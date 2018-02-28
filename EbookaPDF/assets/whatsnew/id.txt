@@ -1,4 +1,5 @@
 * Aplikasi untuk membaca semua format buku dan PDF 
+* Tag pengguna untuk buku 
 * TemaTinta untuk perangkat dengan tinta elektronik 
 * Mengubah kontras dan kecerahan 
 * Kecerahan negatif 

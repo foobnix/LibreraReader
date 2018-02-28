@@ -1,5 +1,6 @@
 * Kitapların ve PDF’nin tüm formatlarını okumak için başvuru 
-* Elektronik mürekkepli cihazlar için TemaMürekkep 
+* Kitaplar için kullanıcı etiketleri 
+* Elektronik mürekkepli cihazlar içinMürekkep 
 * Kontrast ve parlaklığı değiştirme 
 * Negatif parlaklık 
 * Mavi ışık filtresi

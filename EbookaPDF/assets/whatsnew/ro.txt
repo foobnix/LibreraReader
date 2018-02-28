@@ -1,5 +1,6 @@
 * Aplicație pentru citirea tuturor formatelor de cărți și PDF 
+* Etichete de utilizator pentru cărți 
 * TemaCerneală pentru dispozitivele cu cerneală electronică 
-* Modificarea contrastului și luminozității 
+* Schimbarea contrastului și luminozității 
 * Luminozitate negativă 
 * Filtru de lumină albastră
