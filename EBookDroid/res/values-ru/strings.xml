@@ -70,10 +70,10 @@
    <string name="italic_font">Курсив</string>
    <string name="bold_italic_font">Жирный курсив</string>
    <string name="font_for_headers">Шрифт для заголовков</string>
-   <string name="enable_volume_keys">Листать клавишами регул. громкости</string>
-   <string name="reverse_keys">Переназначить клавиши регул. громкости</string>
+   <string name="enable_volume_keys">Листать клавишами регулировки громкости</string>
+   <string name="reverse_keys">Переназначить клавиши регулировки громкости</string>
    <string name="screen_orientation">Ориентация экрана</string>
-   <string name="open_in_the_dictionary">Открывать выделен. текст в словаре</string>
+   <string name="open_in_the_dictionary">Открывать выделенный текст в...</string>
    <string name="remember_dictionary">Запомнить словарь</string>
    <string name="dictionary">Словарь</string>
    <string name="day">День</string>
