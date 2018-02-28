@@ -6,6 +6,7 @@ import java.util.List;
 import org.ebookdroid.core.codec.PageLink;
 
 import com.foobnix.android.utils.LOG;
+import com.foobnix.android.utils.TxtUtils;
 import com.foobnix.sys.TempHolder;
 
 import android.graphics.RectF;
@@ -81,6 +82,9 @@ public class MuPdfLinks {
     private static native int getLinkPage(long dochandle, String id);
 
     public static int getLinkPageWrapper(long dochandle, String id) {
+        if (TxtUtils.isEmpty(id)) {
+            return -1;
+        }
         try {
             TempHolder.lock.lock();
             return getLinkPage(dochandle, id);

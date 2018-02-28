@@ -224,11 +224,7 @@ public abstract class DocumentController {
         }, false);
     }
 
-    List<OutlineLinkWrapper> outline;
-
-    public void setOutline(List<OutlineLinkWrapper> outline) {
-        this.outline = outline;
-    }
+    protected volatile List<OutlineLinkWrapper> outline;
 
     public String getCurrentChapter() {
         if (outline == null || outline.isEmpty()) {

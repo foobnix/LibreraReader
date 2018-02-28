@@ -1783,7 +1783,7 @@ public class DragingDialogs {
                 final OutlineLinkWrapper link = (OutlineLinkWrapper) parent.getItemAtPosition(position);
                 if (true) {
                     int linkPage = MuPdfLinks.getLinkPageWrapper(link.docHandle, link.linkUri) + 1;
-                    LOG.d("targetUrl page", linkPage);
+                    LOG.d("targetUrl page", linkPage, link.linkUri);
                     controller.onGoToPage(linkPage);
 
                     return;

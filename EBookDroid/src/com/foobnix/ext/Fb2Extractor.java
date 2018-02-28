@@ -383,7 +383,6 @@ public class Fb2Extractor extends BaseExtractor {
 
             String encoding = findHeaderEncoding(inputFile);
             List<String> titles = getFb2Titles(inputFile, encoding);
-            // List<String> titles = new ArrayList<String>();
 
             String ncx = genetateNCX(titles);
             writeToZip(zos, "OEBPS/fb2.ncx", ncx);
@@ -575,7 +574,7 @@ public class Fb2Extractor extends BaseExtractor {
         return NCX.replace("%nav%", navs.toString());
     }
 
-    public List<String> getFb2Titles(String fb2, String encoding) throws Exception {
+    public static List<String> getFb2Titles(String fb2, String encoding) throws Exception {
         XmlPullParser xpp = XmlParser.buildPullParser();
 
         xpp.setInput(new FileInputStream(fb2), encoding);

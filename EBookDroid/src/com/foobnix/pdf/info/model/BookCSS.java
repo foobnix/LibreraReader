@@ -135,8 +135,8 @@ public class BookCSS {
         marginTop = 9;
         marginBottom = 6;
 
-        marginRight = 12;
-        marginLeft = 12;
+        marginRight = 10;
+        marginLeft = 10;
 
         emptyLine = 5;
 

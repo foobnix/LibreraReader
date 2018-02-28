@@ -36,6 +36,8 @@ public class MobiContext extends PdfContext {
 
         if (cacheFile.isFile()) {
             fileNameEpub = cacheFile.getPath();
+            LOG.d("Context", "MobiContext cache", fileNameEpub);
+
         } else {
             try {
                 int outName = BookCSS.get().isAutoHypens ? "temp".hashCode() : originalHashCode;
@@ -46,7 +48,8 @@ public class MobiContext extends PdfContext {
                     EpubExtractor.proccessHypens(fileNameEpub, cacheFile.getPath());
                     fileNameEpub = cacheFile.getPath();
                 }
-                LOG.d("new file name", fileName);
+                LOG.d("Context", "MobiContext extract", fileNameEpub);
+
             } catch (Exception e) {
                 LOG.e(e);
             }

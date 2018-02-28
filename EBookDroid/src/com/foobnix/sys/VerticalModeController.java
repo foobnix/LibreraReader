@@ -20,6 +20,7 @@ import org.ebookdroid.core.Page;
 import org.ebookdroid.core.codec.Annotation;
 import org.ebookdroid.core.codec.OutlineLink;
 import org.ebookdroid.core.codec.PageLink;
+import org.ebookdroid.droids.mupdf.codec.MuPdfLinks;
 import org.ebookdroid.droids.mupdf.codec.TextWord;
 import org.ebookdroid.ui.viewer.ViewerActivityController;
 
@@ -751,7 +752,7 @@ public class VerticalModeController extends DocumentController {
 
     @Override
     public synchronized void getOutline(final ResultResponse<List<OutlineLinkWrapper>> resultWrapper, boolean forseRealod) {
-        if (!forseRealod && outline != null) {
+        if (outline != null) {
             resultWrapper.onResultRecive(outline);
             return;
         }
@@ -765,7 +766,8 @@ public class VerticalModeController extends DocumentController {
                 }
 
                 for (OutlineLink ol : outlineLinks) {
-                    outline.add(new OutlineLinkWrapper(ol.getTitle(), ol.getLink(), ol.getLevel(), ol.docHandle, ol.linkUri));
+                    int page = MuPdfLinks.getLinkPageWrapper(ol.docHandle, ol.linkUri) + 1;
+                    outline.add(new OutlineLinkWrapper(ol.getTitle(), "#" + page, ol.getLevel(), ol.docHandle, ol.linkUri));
                 }
                 resultWrapper.onResultRecive(outline);
                 return true;

@@ -1,9 +1,12 @@
 package org.ebookdroid.droids;
 
 import java.io.File;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 import org.ebookdroid.core.codec.CodecDocument;
+import org.ebookdroid.core.codec.OutlineLink;
 import org.ebookdroid.droids.mupdf.codec.MuPdfDocument;
 import org.ebookdroid.droids.mupdf.codec.PdfContext;
 
@@ -27,6 +30,40 @@ public class Fb2Context extends PdfContext {
     }
 
     MuPdfDocument muPdfDocument;
+
+    public CodecDocument openDocumentInner2(final String fileName1, String password) {
+
+        final String fileName = cacheFile1.getPath();
+        Fb2Extractor.get().convertFB2(fileName1, fileName);
+
+        MuPdfDocument muPdfDocument2 = new MuPdfDocument(this, MuPdfDocument.FORMAT_PDF, fileName, password) {
+            @Override
+            public java.util.List<OutlineLink> getOutline() {
+                List<OutlineLink> res = new ArrayList<OutlineLink>();
+                try {
+                    String encoding = Fb2Extractor.findHeaderEncoding(fileName1);
+                    List<String> titles = Fb2Extractor.getFb2Titles(fileName1, encoding);
+                    for (int i = 0; i < titles.size(); i++) {
+
+                        String string = titles.get(i).replace("~@~[title]", "###");
+                        String full[] = string.split("###");
+                        int level = Integer.parseInt(full[0]);
+                        String title = full[1];
+                        String linkUri = "#" + (i + 1);
+                        res.add(new OutlineLink(title + linkUri, "", level, getDocumentHandle(), linkUri));
+                    }
+
+                } catch (Exception e) {
+                    LOG.e(e);
+                }
+
+                return res;
+
+            };
+        };
+
+        return muPdfDocument2;
+    }
 
     @Override
     public CodecDocument openDocumentInner(final String fileName, String password) {
@@ -75,7 +112,6 @@ public class Fb2Context extends PdfContext {
                 };
             }.start();
         }
-
 
         return muPdfDocument;
     }

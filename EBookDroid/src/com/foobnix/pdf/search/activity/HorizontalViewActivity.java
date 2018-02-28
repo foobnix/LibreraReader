@@ -957,7 +957,7 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
 
         @Override
         public void run() {
-            dc.getOutline(null, false);
+            // dc.getOutline(null, false);
             updateReadPercent();
 
             updateUI(viewPager.getCurrentItem());
@@ -1131,7 +1131,7 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
         @Override
         public void run() {
             onBC.underline(AppState.get().isEnableBC);
-            dc.getOutline(null, false);
+            // dc.getOutline(null, false);
             dc.saveCurrentPage();
             createAdapter();
 

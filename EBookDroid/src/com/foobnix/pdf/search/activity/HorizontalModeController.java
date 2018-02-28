@@ -14,6 +14,7 @@ import org.ebookdroid.core.codec.CodecDocument;
 import org.ebookdroid.core.codec.CodecPage;
 import org.ebookdroid.core.codec.OutlineLink;
 import org.ebookdroid.core.codec.PageLink;
+import org.ebookdroid.droids.mupdf.codec.MuPdfLinks;
 import org.ebookdroid.droids.mupdf.codec.TextWord;
 import org.greenrobot.eventbus.EventBus;
 
@@ -226,7 +227,7 @@ public abstract class HorizontalModeController extends DocumentController {
         AppDB.get().addRecent(bookPath);
         getPageFromUri();
 
-        loadOutline(null);
+        // loadOutline(null);
     }
 
     public int getCurrentPage() {
@@ -545,38 +546,42 @@ public abstract class HorizontalModeController extends DocumentController {
     }
 
     @Override
-    public synchronized void getOutline(final com.foobnix.android.utils.ResultResponse<List<OutlineLinkWrapper>> outline, boolean forse) {
+    public synchronized void getOutline(final com.foobnix.android.utils.ResultResponse<List<OutlineLinkWrapper>> outlineResonse, boolean forse) {
         if (codeDocument == null) {
             return;
         }
+        if (outline == null) {
+            outline = new ArrayList<OutlineLinkWrapper>();
+            new Thread() {
+                @Override
+                public void run() {
 
-        new Thread() {
-            @Override
-            public void run() {
+                    try {
+                        for (OutlineLink ol : codeDocument.getOutline()) {
+                            int page = MuPdfLinks.getLinkPageWrapper(ol.docHandle, ol.linkUri) + 1;
+                            outline.add(new OutlineLinkWrapper(ol.getTitle(), "#" + page, ol.getLevel(), ol.docHandle, ol.linkUri));
+                        }
 
-                final List<OutlineLinkWrapper> outlineRes = new ArrayList<OutlineLinkWrapper>();
-                try {
-                    for (OutlineLink ol : codeDocument.getOutline()) {
-                        outlineRes.add(new OutlineLinkWrapper(ol.getTitle(), ol.getLink(), ol.getLevel(), ol.docHandle, ol.linkUri));
+                        // setOutline(outline);
+                        if (outlineResonse != null) {
+                            getActivity().runOnUiThread(new Runnable() {
+
+                                @Override
+                                public void run() {
+                                    outlineResonse.onResultRecive(outline);
+                                }
+                            });
+
+                        }
+                    } catch (Exception e) {
+                        LOG.e(e);
                     }
 
-                    setOutline(outlineRes);
-                    if (outline != null) {
-                        getActivity().runOnUiThread(new Runnable() {
-
-                            @Override
-                            public void run() {
-                                outline.onResultRecive(outlineRes);
-                            }
-                        });
-
-                    }
-                } catch (Exception e) {
-                    LOG.e(e);
-                }
-
-            };
-        }.start();
+                };
+            }.start();
+        } else {
+            outlineResonse.onResultRecive(outline);
+        }
 
     }
 
