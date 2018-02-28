@@ -44,7 +44,7 @@
    <string name="crop_images_in_the_book_cover">获取封面</string>
    <string name="borders_and_shadow_around_the_book_cover">边框阴影</string>
    <string name="tabs_position">标签状态</string>
-   <string name="show_preferences_tab_in_the_left_menu">显示左侧主要设置</string>
+   <string name="show_preferences_tab_in_the_left_menu">启用侧滑设置界面</string>
    <string name="visible">可见</string>
    <string name="application_user_guide_">使用说明</string>
    <string name="import_or_export_application_settings_to_json_file">配置文件</string>
