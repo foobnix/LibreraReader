@@ -131,7 +131,7 @@ public class RtfExtract {
                 // http://latex2rtf.sourceforge.net/rtfspec_62.html
                 public void processCommand(Command command, int parameter, boolean hasParameter, boolean optional) {
                     super.processCommand(command, parameter, hasParameter, optional);
-                    if (command == Command.cbpat) {
+                    if (command == Command.cbpat || command == Command.line) {
                         writer.write("<br/>");
                     }
 
@@ -166,8 +166,10 @@ public class RtfExtract {
         File file = new File(path);
         try {
 
-            IRtfSource source = new RtfStreamSource(new FileInputStream(path));
+            final FileInputStream fileInputStream = new FileInputStream(path);
+            IRtfSource source = new RtfStreamSource(fileInputStream);
             IRtfParser parser = new StandardRtfParser();
+
 
             decode = null;
 
@@ -178,8 +180,14 @@ public class RtfExtract {
                 public void processString(String string) {
                     if (decode == null && pict) {
                         decode = HexUtils.parseHexString(string);
+                        try {
+                            fileInputStream.close();
+                        } catch (IOException e) {
+                            LOG.e(e);
+                        }
                     }
                 }
+
 
                 @Override
                 public void processCommand(Command command, int parameter, boolean hasParameter, boolean optional) {

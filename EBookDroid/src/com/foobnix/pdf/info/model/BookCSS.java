@@ -133,9 +133,10 @@ public class BookCSS {
         textAlign = TEXT_ALIGN_JUSTIFY;
 
         marginTop = 9;
-        marginRight = 8;
         marginBottom = 6;
-        marginLeft = 8;
+
+        marginRight = 12;
+        marginLeft = 12;
 
         emptyLine = 5;
 

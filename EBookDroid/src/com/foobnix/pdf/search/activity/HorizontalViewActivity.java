@@ -110,7 +110,7 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
 
     VerticalViewPager viewPager;
     SeekBar seekBar;
-    TextView toastBrightnessText, maxSeek, currentSeek, pagesCountIndicator, flippingIntervalView, pagesTime, pagesPower, titleTxt, chapterView;
+    TextView toastBrightnessText, maxSeek, currentSeek, pagesCountIndicator, flippingIntervalView, pagesTime, pagesPower, titleTxt, chapterView, modeName;
     View adFrame, bottomBar, bottomIndicators, moveCenter, onClose, overlay;
     LinearLayout actionBar;
     FrameLayout anchor;
@@ -218,7 +218,7 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
         toastBrightnessText.setVisibility(View.GONE);
         TintUtil.setDrawableTint(toastBrightnessText.getCompoundDrawables()[0], Color.WHITE);
 
-        TextView modeName = (TextView) findViewById(R.id.modeName);
+        modeName = (TextView) findViewById(R.id.modeName);
         modeName.setText(AppState.get().nameHorizontalMode);
 
         pagesCountIndicator = (TextView) findViewById(R.id.pagesCountIndicator);
@@ -656,9 +656,11 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
         loadinAsyncTask = new CopyAsyncTask() {
             AlertDialog dialog;
             private boolean isCancelled = false;
+            long start = 0;
 
             @Override
             protected void onPreExecute() {
+                start = System.currentTimeMillis();
                 TempHolder.get().loadingCancelled = false;
                 dialog = Dialogs.loadingBook(HorizontalViewActivity.this, new Runnable() {
 
@@ -719,6 +721,10 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
 
             @Override
             protected void onPostExecute(Object result) {
+                if (LOG.isEnable) {
+                    long time = System.currentTimeMillis() - start;
+                    modeName.setText("" + time / 1000);
+                }
                 try {
                     onClose.setVisibility(View.VISIBLE);
                     LOG.d("RESULT", result);
