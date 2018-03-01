@@ -59,7 +59,7 @@ public class DecodeServiceBase implements DecodeService {
 
     final AtomicReference<ViewState> viewState = new AtomicReference<ViewState>();
 
-    private CodecDocument document;
+    private CodecDocument codecDocument;
 
     private Map<Integer, CodecPageHolder> pages = new LinkedHashMap<Integer, CodecPageHolder>() {
 
@@ -106,7 +106,7 @@ public class DecodeServiceBase implements DecodeService {
 
     @Override
     public boolean hasAnnotationChanges() {
-        return document != null ? document.hasChanges() : false;
+        return codecDocument != null ? codecDocument.hasChanges() : false;
     }
 
     @Override
@@ -118,7 +118,7 @@ public class DecodeServiceBase implements DecodeService {
             public void run() {
                 LOG.d("saveAnnotations Begin");
                 if (hasAnnotationChanges()) {
-                    document.saveAnnotations(path);
+                    codecDocument.saveAnnotations(path);
                 } else {
                     LOG.d("NO Annotations for save!!!");
                 }
@@ -136,20 +136,20 @@ public class DecodeServiceBase implements DecodeService {
     @Override
     public void open(final String fileName, final String password) {
         ImageExtractor.clearCodeDocument();
-        document = codecContext.openDocument(fileName, password);
-        ImageExtractor.init(document, fileName);
+        codecDocument = codecContext.openDocument(fileName, password);
+        ImageExtractor.init(codecDocument, fileName);
         TempHolder.get().init(fileName);
 
     }
 
     @Override
     public CodecPageInfo getUnifiedPageInfo() {
-        return document != null ? document.getUnifiedPageInfo() : null;
+        return codecDocument != null ? codecDocument.getUnifiedPageInfo() : null;
     }
 
     @Override
     public CodecPageInfo getPageInfo(final int pageIndex) {
-        return document != null ? document.getPageInfo(pageIndex) : null;
+        return codecDocument != null ? codecDocument.getPageInfo(pageIndex) : null;
     }
 
     @Override
@@ -193,7 +193,7 @@ public class DecodeServiceBase implements DecodeService {
 
             @Override
             public void run() {
-                document.deleteAnnotation(pageHandle, index);
+                codecDocument.deleteAnnotation(pageHandle, index);
                 pages.clear();
                 response.onResultRecive(getPage(page).getAnnotations());
             }
@@ -223,7 +223,7 @@ public class DecodeServiceBase implements DecodeService {
                         return;
                     }
                     if (page.texts == null) {
-                        final CodecPage page2 = document.getPage(page.index.docIndex);
+                        final CodecPage page2 = codecDocument.getPage(page.index.docIndex);
                         page.texts = page2.getText();
                         if (!page2.isRecycled()) {
                             executor.addAny(new Task(0) {
@@ -438,7 +438,7 @@ public class DecodeServiceBase implements DecodeService {
 
         CodecPageHolder holder = getPages().get(pageIndex);
         if (holder == null) {
-            holder = new CodecPageHolder(document, pageIndex);
+            holder = new CodecPageHolder(codecDocument, pageIndex);
             getPages().put(pageIndex, holder);
         }
 
@@ -456,20 +456,35 @@ public class DecodeServiceBase implements DecodeService {
 
     @Override
     public int getPageCount() {
-        return document != null ? document.getPageCount() : 0;
+        return codecDocument != null ? codecDocument.getPageCount() : 0;
     }
 
     @Override
     public void getOutline(final ResultResponse<List<OutlineLink>> response) {
+        if (true) {
+
+            new Thread() {
+                @Override
+                public void run() {
+                    if (codecDocument == null) {
+                        response.onResultRecive(null);
+                        return;
+                    }
+                    response.onResultRecive(codecDocument.getOutline());
+                }
+            }.start();
+
+            return;
+        }
         executor.addAny(new Task(0) {
 
             @Override
             public void run() {
-                if (document == null) {
+                if (codecDocument == null) {
                     response.onResultRecive(null);
                     return;
                 }
-                response.onResultRecive(document.getOutline());
+                response.onResultRecive(codecDocument.getOutline());
             }
         });
     }
@@ -697,13 +712,12 @@ public class DecodeServiceBase implements DecodeService {
 
             LOG.d("Begin shutdown 2");
 
-
             getPages().clear();
 
             LOG.d("Begin shutdown 3");
-            if (document != null) {
-                document.recycle();
-                document = null;
+            if (getCodecDocument() != null) {
+                getCodecDocument().recycle();
+                codecDocument = null;
             }
             LOG.d("Begin shutdown 4");
             codecContext.recycle();
@@ -879,7 +893,7 @@ public class DecodeServiceBase implements DecodeService {
                 return;
             }
             if (page.texts == null) {
-                CodecPage page2 = document.getPage(page.index.docIndex);
+                CodecPage page2 = codecDocument.getPage(page.index.docIndex);
                 page.texts = page2.getText();
                 page2.recycle();
             }
@@ -888,38 +902,45 @@ public class DecodeServiceBase implements DecodeService {
 
     @Override
     public List<PageLink> getLinksForPage(int page) {
-        if (document == null || document.getPage(page) == null) {
+        if (codecDocument == null || codecDocument.getPage(page) == null) {
             return null;
         }
-        return document.getPage(page).getPageLinks();
+        return codecDocument.getPage(page).getPageLinks();
     }
 
     @Override
     public TextWord[][] getTextForPage(int page) {
-        if (document == null || document.getPage(page) == null) {
+        if (codecDocument == null || codecDocument.getPage(page) == null) {
             return null;
         }
-        return document.getPage(page).getText();
+        return codecDocument.getPage(page).getText();
     }
 
     @Override
     public String getPageHTML(int page) {
-        if (document == null || document.getPage(page) == null) {
+        if (codecDocument == null || codecDocument.getPage(page) == null) {
             return null;
         }
-        return document.getPage(page).getPageHTML();
+        return codecDocument.getPage(page).getPageHTML();
     }
 
     @Override
     public String getFooterNote(String input) {
-        if (document == null || document.getFootNotes() == null) {
+        if (codecDocument == null || codecDocument.getFootNotes() == null) {
             return "";
         }
-        return TxtUtils.getFooterNote(input, document.getFootNotes());
+        return TxtUtils.getFooterNote(input, codecDocument.getFootNotes());
     }
 
     @Override
     public List<String> getAttachemnts() {
-        return document.getMediaAttachments();
+        return codecDocument.getMediaAttachments();
     }
+
+    @Override
+    public CodecDocument getCodecDocument() {
+        return codecDocument;
+    }
+
+
 }

@@ -726,7 +726,7 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
                     modeName.setText("" + time / 1000);
                 }
                 try {
-                    onClose.setVisibility(View.VISIBLE);
+                    // onClose.setVisibility(View.VISIBLE);
                     LOG.d("RESULT", result);
                     if (dialog != null) {
                         dialog.dismiss();
@@ -1512,6 +1512,7 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
 
             @Override
             public boolean onResultRecive(List<OutlineLinkWrapper> result) {
+                onClose.setVisibility(View.VISIBLE);
                 progressDraw.updateDivs(result);
                 if (TxtUtils.isListEmpty(result)) {
                     TintUtil.setTintImageWithAlpha(outline, Color.LTGRAY);

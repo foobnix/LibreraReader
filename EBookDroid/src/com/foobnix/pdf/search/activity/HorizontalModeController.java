@@ -558,8 +558,17 @@ public abstract class HorizontalModeController extends DocumentController {
 
                     try {
                         for (OutlineLink ol : codeDocument.getOutline()) {
-                            int page = MuPdfLinks.getLinkPageWrapper(ol.docHandle, ol.linkUri) + 1;
-                            outline.add(new OutlineLinkWrapper(ol.getTitle(), "#" + page, ol.getLevel(), ol.docHandle, ol.linkUri));
+                            if (TempHolder.get().loadingCancelled) {
+                                return;
+                            }
+                            if (!codeDocument.isRecycled()) {
+                                if (ol.getLink() != null && ol.getLink().startsWith("#") && !ol.getLink().startsWith("#0")) {
+                                    outline.add(new OutlineLinkWrapper(ol.getTitle(), ol.getLink(), ol.getLevel(), ol.docHandle, ol.linkUri));
+                                } else {
+                                    int page = MuPdfLinks.getLinkPageWrapper(ol.docHandle, ol.linkUri) + 1;
+                                    outline.add(new OutlineLinkWrapper(ol.getTitle(), "#" + page, ol.getLevel(), ol.docHandle, ol.linkUri));
+                                }
+                            }
                         }
 
                         // setOutline(outline);

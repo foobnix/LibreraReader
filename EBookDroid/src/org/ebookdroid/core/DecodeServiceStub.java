@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.ebookdroid.core.codec.Annotation;
+import org.ebookdroid.core.codec.CodecDocument;
 import org.ebookdroid.core.codec.CodecPageHolder;
 import org.ebookdroid.core.codec.CodecPageInfo;
 import org.ebookdroid.core.codec.OutlineLink;
@@ -35,6 +36,11 @@ public class DecodeServiceStub implements DecodeService {
 	public void searchText(String text, Page[] pages, ResultResponse<Integer> response, Runnable finish) {
 
 	}
+
+    @Override
+    public CodecDocument getCodecDocument() {
+        return null;
+    }
 
     @Override
     public List<String> getAttachemnts() {

@@ -5,6 +5,7 @@ import java.util.Map;
 
 import org.ebookdroid.common.bitmaps.BitmapRef;
 import org.ebookdroid.core.codec.Annotation;
+import org.ebookdroid.core.codec.CodecDocument;
 import org.ebookdroid.core.codec.CodecPage;
 import org.ebookdroid.core.codec.CodecPageHolder;
 import org.ebookdroid.core.codec.CodecPageInfo;
@@ -80,5 +81,7 @@ public interface DecodeService {
     public String getPageHTML(int page);
 
     List<PageLink> getLinksForPage(int page);
+
+    CodecDocument getCodecDocument();
 
 }

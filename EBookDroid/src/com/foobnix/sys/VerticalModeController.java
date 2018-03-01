@@ -208,7 +208,6 @@ public class VerticalModeController extends DocumentController {
     public void onPrevScreen(boolean animate) {
         int nextScreenScrollBy = AppState.get().nextScreenScrollBy;
 
-
         if (animate) {
             ctr.getDocumentController().getView().startPageScroll(0, -1 * nextScreenScrollBy * getScrollValue() / 100);
         } else {
@@ -766,8 +765,19 @@ public class VerticalModeController extends DocumentController {
                 }
 
                 for (OutlineLink ol : outlineLinks) {
-                    int page = MuPdfLinks.getLinkPageWrapper(ol.docHandle, ol.linkUri) + 1;
-                    outline.add(new OutlineLinkWrapper(ol.getTitle(), "#" + page, ol.getLevel(), ol.docHandle, ol.linkUri));
+                    if (TempHolder.get().loadingCancelled) {
+                        return false;
+                    }
+                    if (!ctr.getDocumentModel().decodeService.getCodecDocument().isRecycled()) {
+
+                        if (ol.getLink() != null && ol.getLink().startsWith("#") && !ol.getLink().startsWith("#0")) {
+                            outline.add(new OutlineLinkWrapper(ol.getTitle(), ol.getLink(), ol.getLevel(), ol.docHandle, ol.linkUri));
+                        } else {
+                            int page = MuPdfLinks.getLinkPageWrapper(ol.docHandle, ol.linkUri) + 1;
+                            outline.add(new OutlineLinkWrapper(ol.getTitle(), "#" + page, ol.getLevel(), ol.docHandle, ol.linkUri));
+                        }
+
+                    }
                 }
                 resultWrapper.onResultRecive(outline);
                 return true;
