@@ -32,7 +32,7 @@ public class TxtExtract {
     public static FooterNote extract(String inputPath, String outputDir) throws IOException {
         File file = new File(outputDir, AppState.get().isPreText + OUT_FB2_XML);
 
-        String encoding = ExtUtils.determineEncoding(new FileInputStream(inputPath));
+        String encoding = ExtUtils.determineTxtEncoding(new FileInputStream(inputPath));
 
         BufferedReader input = new BufferedReader(new InputStreamReader(new FileInputStream(inputPath), encoding));
         PrintWriter writer = new PrintWriter(file);

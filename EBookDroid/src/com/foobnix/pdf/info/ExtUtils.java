@@ -1,11 +1,13 @@
 package com.foobnix.pdf.info;
 
+import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileFilter;
 import java.io.FileOutputStream;
 import java.io.FileWriter;
 import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -877,7 +879,7 @@ public class ExtUtils {
 
     public static void openWith(final Context a, final File file) {
         try {
-        a.startActivity(createOpenFileIntent(a, file));
+            a.startActivity(createOpenFileIntent(a, file));
         } catch (Exception e) {
             LOG.e(e);
             Toast.makeText(a, e.getMessage(), Toast.LENGTH_LONG).show();
@@ -1513,13 +1515,45 @@ public class ExtUtils {
         return results;
     }
 
-    public static String determineEncoding(InputStream fis) {
+    public static String determineHtmlEncoding(InputStream fis) {
+        try {
+            BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(fis));
+            String line;
+
+            List<String> es = Arrays.asList("encoding=\"", "charset=\"", "charset=");
+            int count = 0;
+            while ((line = bufferedReader.readLine()) != null) {
+                count++;
+                for (String e : es) {
+                    line = line.toLowerCase(Locale.US);
+                    if (line.contains(e)) {
+                        bufferedReader.close();
+                        int index = line.indexOf(e) + e.length();
+                        String encoding = line.substring(index, line.indexOf("\"", index));
+                        LOG.d("extract-encoding-html", encoding);
+                        return encoding;
+                    }
+                }
+                if (count >= 100) {
+                    break;
+                }
+
+            }
+            bufferedReader.close();
+        } catch (Exception e) {
+            LOG.e(e);
+        }
+        return "UTF-8";
+
+    }
+
+    public static String determineTxtEncoding(InputStream fis) {
         String encoding = null;
         try {
             UniversalDetector detector = new UniversalDetector(null);
 
             int nread;
-            byte[] buf = new byte[1024];
+            byte[] buf = new byte[2024];
             while ((nread = fis.read(buf)) > 0 && !detector.isDone()) {
                 detector.handleData(buf, 0, nread);
             }
