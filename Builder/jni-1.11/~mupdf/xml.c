@@ -589,9 +589,9 @@ parse_attribute_value:
 	return "end of data in attribute value";
 }
 
-static char *convert_to_utf8(fz_context *doc, unsigned char *s, size_t n, int *dofree)
+static char *convert_to_utf8(fz_context *doc, const unsigned char *s, size_t n, int *dofree)
 {
-	unsigned char *e = s + n;
+	const unsigned char *e = s + n;
 	char *dst, *d;
 	int c;
 

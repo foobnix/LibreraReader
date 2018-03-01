@@ -723,7 +723,7 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
             protected void onPostExecute(Object result) {
                 if (LOG.isEnable) {
                     long time = System.currentTimeMillis() - start;
-                    modeName.setText("" + time / 1000);
+                    // modeName.setText("" + time / 1000);
                 }
                 try {
                     // onClose.setVisibility(View.VISIBLE);
