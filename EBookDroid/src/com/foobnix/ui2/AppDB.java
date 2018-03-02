@@ -182,8 +182,12 @@ public class AppDB {
     }
 
     public List<FileMeta> getRecent() {
+        try {
         List<FileMeta> list = fileMetaDao.queryBuilder().where(FileMetaDao.Properties.IsRecent.eq(1)).orderDesc(FileMetaDao.Properties.IsRecentTime).list();
         return removeNotExist(list);
+        } catch (Exception e) {
+            return new ArrayList<>();
+        }
     }
 
     public static List<FileMeta> removeNotExist(List<FileMeta> items) {
