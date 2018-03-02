@@ -340,6 +340,8 @@ public class BrightnessHelper {
 
             }
         });
+
+        isEnableBlueFilter.setChecked(AppState.get().isEnableBlueFilter);
         autoSettings.setChecked(AppState.get().appBrightness == AppState.AUTO_BRIGTNESS);
         customBrightness.setEnabled(AppState.get().appBrightness != AppState.AUTO_BRIGTNESS);
 
