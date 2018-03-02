@@ -35,7 +35,7 @@
    <string name="search_for_text_in_documents">多文件中搜索文本</string>
    <string name="search_in_the_subfolders">子文件夹</string>
    <string name="stop">停止</string>
-   <string name="document_converter_online_">文件转换（在线）</string>
+   <string name="document_converter_online_">文件格式在线转换</string>
    <string name="book_covers">书籍封面</string>
    <string name="cover_image_size">封面大小</string>
    <string name="column_count">列数</string>
@@ -47,7 +47,7 @@
    <string name="show_preferences_tab_in_the_left_menu">启用侧滑设置界面</string>
    <string name="visible">可见</string>
    <string name="application_user_guide_">使用说明</string>
-   <string name="import_or_export_application_settings_to_json_file">配置文件</string>
+   <string name="import_or_export_application_settings_to_json_file">备份文件</string>
    <string name="import_">导入 ...</string>
    <string name="export_">导出 ...</string>
    <string name="automatic_export_backup">自动备份设置，进度，书签，并导出。</string>
@@ -151,7 +151,7 @@
    <string name="brightness">亮度</string>
    <string name="bluelight_filter">背光控制</string>
    <string name="password">密码</string>
-   <string name="restore_defaults_short">恢复默认</string>
+   <string name="restore_defaults_short">恢复</string>
    <string name="customize">自定义</string>
    <string name="color">颜色</string>
    <string name="horizontal">横向</string>
@@ -165,10 +165,10 @@
    <string name="search">搜索</string>
    <string name="export_bookmarks">导出书签</string>
    <string name="simple_scroll_animation">显示过渡动画</string>
-   <string name="close_application">关闭应用</string>
+   <string name="close_application">退出应用</string>
    <string name="___TABS___SECTION___">标签状态</string>
    <string name="library">我的书库</string>
-   <string name="extracting_information_from_books">书籍信息</string>
+   <string name="extracting_information_from_books">书籍数量</string>
    <string name="no_author">无作者</string>
    <string name="no_serie">无系列</string>
    <string name="no_genre">无类型</string>
@@ -178,7 +178,7 @@
    <string name="clear_all">清空</string>
    <string name="search_history_and_autocomplete">历史记录</string>
    <string name="press_any_key">任意按键</string>
-   <string name="restore_default_keys">恢复默认按键</string>
+   <string name="restore_default_keys">恢复按键</string>
    <string name="next_keys">下一页按键:</string>
    <string name="prev_keys">上一页按键:</string>
    <string name="starred">我的珍藏</string>
@@ -191,7 +191,7 @@
    <string name="bookmark_by_date">按日期</string>
    <string name="bookmark_by_book">按书籍</string>
    <string name="network">网上书库</string>
-   <string name="catalogs">网上书库</string>
+   <string name="catalogs">书库目录</string>
    <string name="proxy_server_settings">代理设置</string>
    <string name="use_proxy_server">使用代理服务器</string>
    <string name="proxy_type">代理类型</string>
@@ -217,20 +217,20 @@
    <string name="ok">确定</string>
    <string name="yes">确定</string>
    <string name="no">取消</string>
-   <string name="apply">确定</string>
+   <string name="apply">应用</string>
    <string name="cancel">取消</string>
    <string name="close">关闭</string>
-   <string name="restore_defaults_full">恢复默认设置？</string>
+   <string name="restore_defaults_full">恢复默认？</string>
    <string name="delete_book_">删除文件？</string>
    <string name="send_file_to">发送文件</string>
    <string name="apply_a_new_screen_orientation_">应用屏幕方向？</string>
    <string name="send_mail">发送邮件</string>
    <string name="do_you_want_to_clear_everything_">全部清空？</string>
-   <string name="close_application_">关闭应用？</string>
+   <string name="close_application_">退出应用？</string>
    <string name="new_beta_version_available">新测试版</string>
    <string name="___NOTIFICATION___SECTION___">通知栏</string>
    <string name="fail">失败</string>
-   <string name="success">完成</string>
+   <string name="success">成功</string>
    <string name="please_wait">请稍候...</string>
    <string name="incorrect_value">值不正确</string>
    <string name="this_directory_is_already_in_the_list">已存路径</string>
@@ -293,7 +293,7 @@
    <string name="go_to_page_dialog">页面预览</string>
    <string name="bookmark_with_text">文本书签</string>
    <string name="fast_bookmark">快速书签</string>
-   <string name="content_of_book">目录</string>
+   <string name="content_of_book">章节目录</string>
    <string name="heading_and_subheadings">标题与副标题</string>
    <string name="headings_only">仅标题</string>
    <string name="one_page">单页</string>
@@ -307,7 +307,7 @@
    <string name="automatic_page_flipping">自动翻页</string>
    <string name="interval_sec_">间隔（秒）</string>
    <string name="loop_autoplay">启用自动循环</string>
-   <string name="show_bottom_panel">显示底部信息</string>
+   <string name="show_bottom_panel">显示阅读状态</string>
    <string name="to_stop">停止</string>
    <string name="to_read">朗读</string>
    <string name="text_to_speech">文字转语音</string>
@@ -390,7 +390,7 @@
    <string name="reading_out_loud">大声朗读</string>
    <string name="librera_pro_no_ads_leading_book_reader_and_pdf">Librera PRO专业领先无广告的电子书及PDF阅读器</string>
    <string name="custom_text">自定义文本</string>
-   <string name="cd_search_books_in_the_library">搜索书库</string>
+   <string name="cd_search_books_in_the_library">书库搜索</string>
    <string name="cd_clear_search_reasult">清除记录</string>
    <string name="cd_sort_results">排序结果</string>
    <string name="cd_sort_order">排序</string>
@@ -410,7 +410,7 @@
    <string name="___RECENTLY___ADDED___SECTION___">最近添加</string>
    <string name="read_the_tutorial_online_or_download_in_pdf_format">在线阅读教程或以PDF格式下载</string>
    <string name="start_recording">开始记录</string>
-   <string name="favorite_folders_and_books">文件夹，书籍。</string>
+   <string name="favorite_folders_and_books">书籍，文件夹。</string>
    <string name="don_t_show_this_dialog">不再询问</string>
    <string name="show_the_book_close_dialog">书籍关闭询问</string>
    <string name="search_completed">搜索完成</string>
@@ -434,7 +434,7 @@
    <string name="current_page">当前页面</string>
    <string name="backup_folder">备份路径</string>
    <string name="audio_books_folder">音频路径</string>
-   <string name="enable_contrast_and_brightness">启用</string>
+   <string name="enable_contrast_and_brightness">启用设置</string>
    <string name="enable">启用</string>
    <string name="link_color">链接颜色</string>
    <string name="show_battery_percentage">显示电量百分比</string>
@@ -455,5 +455,5 @@
    <string name="allow_text_highlight">启用文本高亮</string>
    <string name="text_highlight_mode_is_enable">文本高亮已启用</string>
    <string name="text_highlight_mode_is_disable">文本高亮已禁用</string>
-   <string name="application_error_please_send_this_report_by_emial">应用程序出错，请通过电子邮件发送报告。</string>
+   <string name="application_error_please_send_this_report_by_emial">请用电子邮件，发送崩溃日志。</string>
 </resources>
