@@ -5,7 +5,7 @@
    <string name="add_folder">添加目录</string>
    <string name="archives">档案</string>
    <string name="other">其它</string>
-   <string name="you_need_to_update_the_library">更新书库？</string>
+   <string name="you_need_to_update_the_library">搜索书库？</string>
    <string name="in_the_author_s_name_first_the_surname">作者姓名</string>
    <string name="orientation">屏幕方向</string>
    <string name="automatic">自动</string>
@@ -44,7 +44,7 @@
    <string name="crop_images_in_the_book_cover">获取封面</string>
    <string name="borders_and_shadow_around_the_book_cover">边框阴影</string>
    <string name="tabs_position">标签状态</string>
-   <string name="show_preferences_tab_in_the_left_menu">启用侧滑设置界面</string>
+   <string name="show_preferences_tab_in_the_left_menu">启用侧滑界面</string>
    <string name="visible">可见</string>
    <string name="application_user_guide_">使用说明</string>
    <string name="import_or_export_application_settings_to_json_file">备份文件</string>
@@ -287,7 +287,7 @@
    <string name="contrast_and_brightness">对比度和亮度</string>
    <string name="contrast">对比</string>
    <string name="make_text_bold">文字加粗</string>
-   <string name="searching_please_wait_">正在更新...</string>
+   <string name="searching_please_wait_">正在搜索...</string>
    <string name="msg_no_text_found">无结果</string>
    <string name="annotations_draw">注释和手绘</string>
    <string name="go_to_page_dialog">页面预览</string>
