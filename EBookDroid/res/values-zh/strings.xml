@@ -399,7 +399,7 @@
    <string name="cd_return_to_the_parent_folder">返回上级</string>
    <string name="cd_back_to_sd_card">返回SD卡</string>
    <string name="cd_clear_all">清空</string>
-   <string name="cd_search_in_bookmarks">搜索书签</string>
+   <string name="cd_search_in_bookmarks">书签搜索</string>
    <string name="cd_export">导出</string>
    <string name="cd_import">导入</string>
    <string name="cd_back_to_parent">返回上级</string>
