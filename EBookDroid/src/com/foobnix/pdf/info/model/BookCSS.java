@@ -138,7 +138,7 @@ public class BookCSS {
         marginRight = 10;
         marginLeft = 10;
 
-        emptyLine = 5;
+        emptyLine = 1;
 
         lineHeight = 13;
         paragraphHeight = 2;
