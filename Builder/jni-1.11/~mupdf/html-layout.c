@@ -100,7 +100,7 @@ static const char *fb2_default_css =
 "subtitle{text-align:center;font-size:large}"
 "p{margin-top:1em;text-align:justify}"
 "empty-line{padding-top:1em}"
-"p+p{margin-top:0;text-indent:1.5em}"
+//"p+p{margin-top:0;text-indent:1.5em}"
 "empty-line+p{margin-top:0}"
 "section>title{page-break-before:always}"
 ;
