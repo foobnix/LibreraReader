@@ -768,15 +768,20 @@ public class VerticalModeController extends DocumentController {
                     if (TempHolder.get().loadingCancelled) {
                         return false;
                     }
-                    if (!ctr.getDocumentModel().decodeService.getCodecDocument().isRecycled()) {
 
-                        if (ol.getLink() != null && ol.getLink().startsWith("#") && !ol.getLink().startsWith("#0")) {
-                            outline.add(new OutlineLinkWrapper(ol.getTitle(), ol.getLink(), ol.getLevel(), ol.docHandle, ol.linkUri));
-                        } else {
-                            int page = MuPdfLinks.getLinkPageWrapper(ol.docHandle, ol.linkUri) + 1;
-                            outline.add(new OutlineLinkWrapper(ol.getTitle(), "#" + page, ol.getLevel(), ol.docHandle, ol.linkUri));
+                    try {
+                        if (!ctr.getDocumentModel().decodeService.getCodecDocument().isRecycled()) {
+
+                            if (ol.getLink() != null && ol.getLink().startsWith("#") && !ol.getLink().startsWith("#0")) {
+                                outline.add(new OutlineLinkWrapper(ol.getTitle(), ol.getLink(), ol.getLevel(), ol.docHandle, ol.linkUri));
+                            } else {
+                                int page = MuPdfLinks.getLinkPageWrapper(ol.docHandle, ol.linkUri) + 1;
+                                outline.add(new OutlineLinkWrapper(ol.getTitle(), "#" + page, ol.getLevel(), ol.docHandle, ol.linkUri));
+                            }
+
                         }
-
+                    } catch (Exception e) {
+                        LOG.e(e);
                     }
                 }
                 resultWrapper.onResultRecive(outline);

@@ -11,6 +11,7 @@ import java.util.List;
 import java.util.Locale;
 
 import com.foobnix.android.utils.LOG;
+import com.foobnix.android.utils.Objects;
 import com.foobnix.android.utils.TxtUtils;
 import com.foobnix.dao2.FileMeta;
 import com.foobnix.pdf.info.ExportSettingsManager;
@@ -23,7 +24,6 @@ import com.foobnix.ui2.AppDB;
 
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.content.SharedPreferences.Editor;
 import android.graphics.Typeface;
 import android.os.Environment;
 
@@ -82,53 +82,6 @@ public class BookCSS {
     public String linkColorDay;
     public String linkColorNight;
 
-    public void load(Context c) {
-        if (c == null) {
-            return;
-        }
-        resetToDefault(c);
-
-        SharedPreferences sp = c.getSharedPreferences(ExportSettingsManager.PREFIX_BOOK_CSS, Context.MODE_PRIVATE);
-        fontFolder = sp.getString("fontFolder1", fontFolder);
-
-        displayFontName = sp.getString("displayFontName", displayFontName);
-        normalFont = sp.getString("normalFont", normalFont);
-        boldFont = sp.getString("boldFont", boldFont);
-        boldItalicFont = sp.getString("boldItalicFont", boldItalicFont);
-        italicFont = sp.getString("italicFont", italicFont);
-        headersFont = sp.getString("headersFont", headersFont);
-
-        textAlign = sp.getInt("textAlign", textAlign);
-        marginTop = sp.getInt("marginTop", marginTop);
-        marginRight = sp.getInt("marginRight", marginRight);
-        marginBottom = sp.getInt("marginBottom", marginBottom);
-        marginLeft = sp.getInt("marginLeft", marginLeft);
-        emptyLine = sp.getInt("emptyLine", emptyLine);
-        customCSS1 = sp.getString("customCSS1", customCSS1);
-
-        lineHeight = sp.getInt("lineHeight", lineHeight);
-        paragraphHeight = sp.getInt("paragraphHeight", paragraphHeight);
-        textIndent = sp.getInt("textIndent", textIndent);
-        fontWeight = sp.getInt("fontWeight", fontWeight);
-        documentStyle = sp.getInt("documentStyle", documentStyle);
-
-        isAutoHypens = sp.getBoolean("isAutoHypens1", isAutoHypens);
-        hypenLang = sp.getString("hypenLang", hypenLang);
-        linkColorDay = sp.getString("linkColorDay", linkColorDay);
-        linkColorNight = sp.getString("linkColorNight", linkColorNight);
-
-    }
-
-    public int position(String fontName) {
-        try {
-            List<String> allFonts = getAllFonts();
-            return allFonts.indexOf(fontName);
-        } catch (Exception e) {
-            return 0;
-        }
-
-    }
-
     public void resetToDefault(Context c) {
         textAlign = TEXT_ALIGN_JUSTIFY;
 
@@ -170,6 +123,34 @@ public class BookCSS {
 
     }
 
+    public void load(Context c) {
+        if (c == null) {
+            return;
+        }
+        resetToDefault(c);
+
+        SharedPreferences sp = c.getSharedPreferences(ExportSettingsManager.PREFIX_BOOK_CSS, Context.MODE_PRIVATE);
+        Objects.loadFromSp(this, sp);
+    }
+
+    public void save(Context c) {
+        if (c == null) {
+            return;
+        }
+        SharedPreferences sp = c.getSharedPreferences(ExportSettingsManager.PREFIX_BOOK_CSS, Context.MODE_PRIVATE);
+        Objects.saveToSP(BookCSS.get(), sp);
+    }
+
+    public int position(String fontName) {
+        try {
+            List<String> allFonts = getAllFonts();
+            return allFonts.indexOf(fontName);
+        } catch (Exception e) {
+            return 0;
+        }
+
+    }
+
     private String DEFAULT_FOLDER(Context c) {
         return FontExtractor.getFontsDir(c, FONTS_DIR).getPath();
     }
@@ -187,42 +168,6 @@ public class BookCSS {
         normalFont = fontName;
     }
 
-    public void save(Context c) {
-        if (c == null) {
-            return;
-        }
-        SharedPreferences sp = c.getSharedPreferences(ExportSettingsManager.PREFIX_BOOK_CSS, Context.MODE_PRIVATE);
-        Editor edit = sp.edit();
-        edit.putString("fontFolder1", fontFolder);
-
-        edit.putString("displayFontName", displayFontName);
-        edit.putString("normalFont", normalFont);
-        edit.putString("boldFont", boldFont);
-        edit.putString("italicFont", italicFont);
-        edit.putString("boldItalicFont", boldItalicFont);
-        edit.putString("headersFont", headersFont);
-
-        edit.putInt("textAlign", textAlign);
-        edit.putInt("marginTop", marginTop);
-        edit.putInt("marginRight", marginRight);
-        edit.putInt("marginBottom", marginBottom);
-        edit.putInt("marginLeft", marginLeft);
-        edit.putInt("emptyLine", emptyLine);
-        edit.putString("customCSS1", customCSS1);
-
-        edit.putInt("lineHeight", lineHeight);
-        edit.putInt("paragraphHeight", paragraphHeight);
-        edit.putInt("textIndent", textIndent);
-        edit.putInt("fontWeight", fontWeight);
-        edit.putInt("documentStyle", documentStyle);
-
-        edit.putBoolean("isAutoHypens1", isAutoHypens);
-        edit.putString("hypenLang", hypenLang);
-        edit.putString("linkColorDay", linkColorDay);
-        edit.putString("linkColorNight", linkColorNight);
-
-        edit.commit();
-    }
 
     public static class FontPack {
         public String dispalyName = "";

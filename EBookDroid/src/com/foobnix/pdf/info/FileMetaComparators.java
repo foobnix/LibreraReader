@@ -20,7 +20,11 @@ public class FileMetaComparators {
     public static Comparator<FileMeta> BY_DATE = new Comparator<FileMeta>() {
         @Override
         public int compare(FileMeta o1, FileMeta o2) {
-            return compareLong(o1.getDate(), o2.getDate());
+            try {
+                return compareLong(o1.getDate(), o2.getDate());
+            } catch (Exception e) {
+                return 0;
+            }
         }
     };
 

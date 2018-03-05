@@ -183,8 +183,8 @@ public class AppDB {
 
     public List<FileMeta> getRecent() {
         try {
-        List<FileMeta> list = fileMetaDao.queryBuilder().where(FileMetaDao.Properties.IsRecent.eq(1)).orderDesc(FileMetaDao.Properties.IsRecentTime).list();
-        return removeNotExist(list);
+            List<FileMeta> list = fileMetaDao.queryBuilder().where(FileMetaDao.Properties.IsRecent.eq(1)).orderDesc(FileMetaDao.Properties.IsRecentTime).list();
+            return removeNotExist(list);
         } catch (Exception e) {
             return new ArrayList<>();
         }
@@ -415,9 +415,13 @@ public class AppDB {
 
     public List<FileMeta> getAllWithTag(String tagName) {
         LOG.d("getAllWithTag", tagName);
-        QueryBuilder<FileMeta> where = fileMetaDao.queryBuilder();
-        where = where.where(SEARCH_IN.TAGS.getProperty().like("%" + tagName + StringDB.DIVIDER + "%"));
-        return where.list();
+        try {
+            QueryBuilder<FileMeta> where = fileMetaDao.queryBuilder();
+            where = where.where(SEARCH_IN.TAGS.getProperty().like("%" + tagName + StringDB.DIVIDER + "%"));
+            return where.list();
+        } catch (Exception e) {
+            return new ArrayList<FileMeta>();
+        }
     }
 
     public List<FileMeta> getAllWithTag() {
