@@ -211,9 +211,11 @@ public class BookCSS {
         edit.putString("customCSS1", customCSS1);
 
         edit.putInt("lineHeight", lineHeight);
+        edit.putInt("paragraphHeight", paragraphHeight);
         edit.putInt("textIndent", textIndent);
         edit.putInt("fontWeight", fontWeight);
         edit.putInt("documentStyle", documentStyle);
+
         edit.putBoolean("isAutoHypens1", isAutoHypens);
         edit.putString("hypenLang", hypenLang);
         edit.putString("linkColorDay", linkColorDay);
