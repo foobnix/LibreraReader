@@ -67,8 +67,8 @@ static const char *html_default_css =
 ;
 
 static const char *fb2_default_css =
-//"@page{margin:2em 2em}"
-"FictionBook{display:block;}"
+"@page{margin:2em 1em}"
+"FictionBook{display:block}"
 "stylesheet,binary{display:none}"
 #ifdef FB2_FRONT_MATTER
 "description>*{display:none}"
@@ -94,11 +94,11 @@ static const char *fb2_default_css =
 "sub{font-size:small;vertical-align:sub}"
 "sup{font-size:small;vertical-align:super}"
 "image{margin:1em 0;text-align:center}"
-"cite,poem{margin:1em 2em}"
+"cite,poem{margin:1em 1.5em}"
 "subtitle,epigraph,stanza{margin:1em 0}"
 "title>p{text-align:center;font-size:x-large}"
 "subtitle{text-align:center;font-size:large}"
-//"p{margin-top:1em;text-align:justify}"
+"p{text-align:justify}"
 "empty-line{padding-top:1em}"
 //"p+p{margin-top:0;text-indent:1.5em}"
 //"empty-line+p{margin-top:0}"
