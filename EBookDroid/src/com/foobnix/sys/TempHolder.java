@@ -35,6 +35,8 @@ public class TempHolder {
 
     public volatile long lastRecycledDocument = 0;
 
+    public boolean isAllowTextSelectionFirstTime = true;
+
     public static TempHolder get() {
         return inst;
     }

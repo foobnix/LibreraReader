@@ -283,7 +283,10 @@ public class AdvGuestureDetector extends SimpleOnGestureListener implements IMul
     @Override
     public void onLongPress(final MotionEvent e) {
         if (!AppState.get().isAllowTextSelection) {
-            Toast.makeText(LibreraApp.context, R.string.text_highlight_mode_is_disable, Toast.LENGTH_LONG).show();
+            if (TempHolder.get().isAllowTextSelectionFirstTime) {
+                Toast.makeText(LibreraApp.context, R.string.text_highlight_mode_is_disable, Toast.LENGTH_LONG).show();
+                TempHolder.get().isAllowTextSelectionFirstTime = false;
+            }
             return;
         }
         Vibro.vibrate();

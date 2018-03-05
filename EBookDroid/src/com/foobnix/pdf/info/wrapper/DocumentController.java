@@ -26,6 +26,7 @@ import com.foobnix.pdf.info.model.AnnotationType;
 import com.foobnix.pdf.info.model.OutlineLinkWrapper;
 import com.foobnix.pdf.info.view.AlertDialogs;
 import com.foobnix.sys.ImageExtractor;
+import com.foobnix.sys.TempHolder;
 import com.foobnix.tts.TTSEngine;
 import com.foobnix.ui2.AppDB;
 import com.nostra13.universalimageloader.core.ImageLoader;
@@ -187,6 +188,9 @@ public abstract class DocumentController {
         AppState.get().isAllowTextSelection = !AppState.get().isAllowTextSelection;
         String txt = AppState.get().isAllowTextSelection ? getString(R.string.text_highlight_mode_is_enable) : getString(R.string.text_highlight_mode_is_disable);
         Toast.makeText(getActivity(), txt, Toast.LENGTH_LONG).show();
+        if (AppState.get().isAllowTextSelection) {
+            TempHolder.get().isAllowTextSelectionFirstTime = true;
+        }
     }
 
     public boolean isEasyMode() {
@@ -325,7 +329,6 @@ public abstract class DocumentController {
             a.setTheme(R.style.StyledIndicatorsBlack);
         }
     }
-
 
     public void restartActivity() {
 

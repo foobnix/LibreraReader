@@ -2487,6 +2487,9 @@ public class DragingDialogs {
                     @Override
                     public void onCheckedChanged(final CompoundButton buttonView, final boolean isChecked) {
                         AppState.get().isAllowTextSelection = isChecked;
+                        if (isChecked) {
+                            TempHolder.get().isAllowTextSelectionFirstTime = true;
+                        }
                     }
                 });
 

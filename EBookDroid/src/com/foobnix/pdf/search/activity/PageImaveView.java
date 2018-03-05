@@ -305,7 +305,10 @@ public class PageImaveView extends View {
             isIgronerClick = true;
 
             if (!AppState.get().isAllowTextSelection) {
-                Toast.makeText(LibreraApp.context, R.string.text_highlight_mode_is_disable, Toast.LENGTH_LONG).show();
+                if (TempHolder.get().isAllowTextSelectionFirstTime) {
+                    Toast.makeText(LibreraApp.context, R.string.text_highlight_mode_is_disable, Toast.LENGTH_LONG).show();
+                    TempHolder.get().isAllowTextSelectionFirstTime = false;
+                }
                 return;
             }
 
