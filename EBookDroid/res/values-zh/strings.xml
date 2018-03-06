@@ -30,12 +30,12 @@
    <string name="show_application_close_dialog_every_time">应用退出询问</string>
    <string name="display_all_file_types_in_folders">显示隐藏文件</string>
    <string name="show_the_dialog_what_is_new_for_updates">显示更新信息</string>
-   <string name="what_is_new_in">新增内容</string>
+   <string name="what_is_new_in">了解</string>
    <string name="full_list_of_changes_with_images_web_pdf_">了解详细信息...</string>
-   <string name="search_for_text_in_documents">多文件中搜索文本</string>
+   <string name="search_for_text_in_documents">多文件中搜索</string>
    <string name="search_in_the_subfolders">子文件夹</string>
    <string name="stop">停止</string>
-   <string name="document_converter_online_">文件格式在线转换</string>
+   <string name="document_converter_online_">文件在线转换</string>
    <string name="book_covers">书籍封面</string>
    <string name="cover_image_size">封面大小</string>
    <string name="column_count">列数</string>
@@ -163,7 +163,7 @@
    <string name="invalid_color_value">无效的颜色值</string>
    <string name="add">添加</string>
    <string name="search">搜索</string>
-   <string name="export_bookmarks">导出</string>
+   <string name="export_bookmarks">导出书签</string>
    <string name="simple_scroll_animation">显示翻页动画</string>
    <string name="close_application">退出应用</string>
    <string name="___TABS___SECTION___">标签位置</string>
@@ -184,9 +184,9 @@
    <string name="starred">我的珍藏</string>
    <string name="bookmarks">笔记书签</string>
    <string name="back">返回</string>
-   <string name="import_bookmarks">导入</string>
+   <string name="import_bookmarks">导入书签</string>
    <string name="email">邮件</string>
-   <string name="file">文件</string>
+   <string name="file">文本</string>
    <string name="filter">筛选</string>
    <string name="bookmark_by_date">按日期</string>
    <string name="bookmark_by_book">按书籍</string>
@@ -200,7 +200,7 @@
    <string name="user">用户</string>
    <string name="other_settings">其它设置</string>
    <string name="folder_for_downloaded_books">下载路径</string>
-   <string name="display_large_book_covers_in_the_catalog">目录中显示书籍大封面</string>
+   <string name="display_large_book_covers_in_the_catalog">显示目录中书籍大封面</string>
    <string name="add_catalog">添加书库</string>
    <string name="name">名称</string>
    <string name="description">描述</string>
@@ -251,7 +251,7 @@
    <string name="mode_horizontally">仿真翻页</string>
    <string name="mode_musician">演奏乐谱</string>
    <string name="save">保存</string>
-   <string name="remember_choice">默认</string>
+   <string name="remember_choice">默认选择</string>
    <string name="edit_names">编辑名称</string>
    <string name="make_text_reflow">文本重排</string>
    <string name="open_with">打开方式</string>
@@ -420,7 +420,7 @@
    <string name="request_a_password_when_the_application_starts">设置启动密码</string>
    <string name="incorrect_password">密码错误</string>
    <string name="repeat_password">确认</string>
-   <string name="internal_storage">内部存储</string>
+   <string name="internal_storage">sdcard</string>
    <string name="the_page_is_clipped_the_text_selection_does_not_work">页面已被剪辑，文本选择失效。</string>
    <string name="title">标题</string>
    <string name="subject">主题</string>
