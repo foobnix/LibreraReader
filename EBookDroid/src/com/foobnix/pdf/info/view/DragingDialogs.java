@@ -1244,7 +1244,7 @@ public class DragingDialogs {
                                             intentCustom.setComponent(name);
 
                                             intentCustom.putExtra("EXTRA_QUERY", selecteText);
-                                            intentCustom.putExtra("EXTRA_HEIGHT", Dips.dpToPx(200));
+                                            intentCustom.putExtra("EXTRA_HEIGHT", Dips.screenHeight() / 2);
                                             intentCustom.putExtra("EXTRA_GRAVITY", Gravity.BOTTOM);
 
                                             controller.getActivity().startActivity(intentCustom);
