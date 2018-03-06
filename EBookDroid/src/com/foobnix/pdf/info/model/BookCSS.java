@@ -216,6 +216,15 @@ public class BookCSS {
         boldItalicFont = DEFAULT_FONT;
         headersFont = DEFAULT_FONT;
 
+        if (displayFontName != null && !displayFontName.contains(".")) {
+            normalFont = displayFontName;
+            boldFont = displayFontName;
+            italicFont = displayFontName;
+            boldItalicFont = displayFontName;
+            headersFont = displayFontName;
+            return;
+        }
+
         List<String> all = new ArrayList<String>();
 
         all.add(ARIAL);
@@ -526,8 +535,8 @@ public class BookCSS {
                 builder.append("h5{font-size:0.80em; text-align: center; font-weight: bold; font-family: " + headersFont + ";}");
                 builder.append("h6{font-size:0.60em; text-align: center; font-weight: bold; font-family: " + headersFont + ";}");
 
-                builder.append("title   {font-size:1.2em; font-weight: bold; font-family: " + headersFont + ";}");
-                builder.append("subtitle{font-size:1.0em; font-weight: bold; font-family: " + headersFont + ";}");
+                builder.append("title, title>p{font-size:1.2em; font-weight: bold; font-family: " + headersFont + ";}");
+                builder.append("subtitle, subtitle>p{font-size:1.0em; font-weight: bold; font-family: " + headersFont + ";}");
             }
 
             builder.append("h1,h2,h3,h4,h5,h6,img {text-indent:0px !important; text-align: center;}");
