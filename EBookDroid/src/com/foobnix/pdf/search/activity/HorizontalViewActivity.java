@@ -1792,7 +1792,7 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
             return;
         }
 
-        ((RelativeLayout.LayoutParams) adFrame.getLayoutParams()).topMargin = actionBar.getHeight() + Dips.dpToPx(10);
+        ((RelativeLayout.LayoutParams) adFrame.getLayoutParams()).topMargin = actionBar.getHeight() + Dips.dpToPx(30);
 
         final TranslateAnimation hideActionBar = new TranslateAnimation(0, 0, 0, -actionBar.getHeight());
         final TranslateAnimation hideBottomBar = new TranslateAnimation(0, 0, 0, bottomBar.getHeight());
