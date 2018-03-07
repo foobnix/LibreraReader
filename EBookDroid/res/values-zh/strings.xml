@@ -91,7 +91,7 @@
    <string name="document_styles">文件样式</string>
    <string name="user_styles">用户样式</string>
    <string name="automatic_hyphenation">自动断字</string>
-   <string name="empty_line">标题间隔</string>
+   <string name="empty_line">标题间距</string>
    <string name="margin_width">页边空白</string>
    <string name="top">上边空白</string>
    <string name="bottom">下边空白</string>
