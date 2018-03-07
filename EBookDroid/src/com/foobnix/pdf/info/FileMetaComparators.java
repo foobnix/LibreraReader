@@ -13,7 +13,12 @@ public class FileMetaComparators {
     public static Comparator<FileMeta> BY_PATH = new Comparator<FileMeta>() {
         @Override
         public int compare(FileMeta o1, FileMeta o2) {
-            return o1.getPath().compareTo(o2.getPath());
+            try {
+                return o1.getPath().compareTo(o2.getPath());
+            } catch (Exception e) {
+                LOG.e(e);
+                return 0;
+            }
         }
     };
 
@@ -31,7 +36,12 @@ public class FileMetaComparators {
     public static Comparator<FileMeta> BY_SIZE = new Comparator<FileMeta>() {
         @Override
         public int compare(FileMeta o1, FileMeta o2) {
-            return o1.getSize().compareTo(o2.getSize());
+            try {
+                return o1.getSize().compareTo(o2.getSize());
+            } catch (Exception e) {
+                LOG.e(e);
+                return 0;
+            }
         }
     };
 
@@ -52,7 +62,7 @@ public class FileMetaComparators {
                 LOG.e(e);
             }
 
-            return o1.getPath().compareTo(o2.getPath());
+            return BY_PATH.compare(o1, o2);
         }
 
     };
@@ -84,7 +94,14 @@ public class FileMetaComparators {
 
         @Override
         public int compare(FileMeta o1, FileMeta o2) {
-            return String.CASE_INSENSITIVE_ORDER.compare(o1.getTitle(), o2.getTitle());
+            try {
+                String t2 = o1.getTitle() == null ? "" : o1.getTitle();
+                String t3 = o2.getTitle() == null ? "" : o2.getTitle();
+                return String.CASE_INSENSITIVE_ORDER.compare(t2, t3);
+            } catch (Exception e) {
+                LOG.e(e);
+                return 0;
+            }
         }
     };
 

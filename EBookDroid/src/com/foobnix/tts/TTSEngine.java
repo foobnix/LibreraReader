@@ -69,6 +69,9 @@ public class TTSEngine {
     }
 
     public TextToSpeech getTTS(OnInitListener onLisnter) {
+        if (LibreraApp.context == null) {
+            return null;
+        }
         if (ttsEngine != null) {
             return ttsEngine;
         }
