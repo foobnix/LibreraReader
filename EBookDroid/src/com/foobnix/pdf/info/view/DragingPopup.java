@@ -15,6 +15,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
+import android.view.GestureDetector;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
@@ -75,6 +76,7 @@ public abstract class DragingPopup {
     }
 
     static Map<String, Place> cache = new HashMap<String, Place>();
+    private View topHeaderLayout;
 
     public static void loadCache(final Context c) {
         try {
@@ -126,8 +128,8 @@ public abstract class DragingPopup {
         ImageView appLogo = (ImageView) popupView.findViewById(R.id.droid);
         appLogo.setVisibility(View.GONE);
 
-        View findViewById = popupView.findViewById(R.id.topLayout);
-        TintUtil.setTintBgSimple(findViewById, 230);
+        topHeaderLayout = popupView.findViewById(R.id.topLayout);
+        TintUtil.setTintBgSimple(topHeaderLayout, 230);
 
         popupContent = (FrameLayout) popupView.findViewById(R.id.popupContent);
 
@@ -251,7 +253,7 @@ public abstract class DragingPopup {
         anchor.setVisibility(View.VISIBLE);
         anchor.removeAllViews();
         anchor.addView(popupView);
-        DraggbleTouchListener draggbleTouchListener = new DraggbleTouchListener(anchor, this);
+        final DraggbleTouchListener draggbleTouchListener = new DraggbleTouchListener(anchor, this);
         draggbleTouchListener.setOnMoveFinish(new Runnable() {
 
             @Override
@@ -259,7 +261,22 @@ public abstract class DragingPopup {
                 saveLayout();
             }
         });
-        popupView.findViewById(R.id.dialogTitle).setOnTouchListener(draggbleTouchListener);
+        topHeaderLayout.setOnTouchListener(new OnTouchListener() {
+
+            private GestureDetector gestureDetector = new GestureDetector(topHeaderLayout.getContext(), new GestureDetector.SimpleOnGestureListener() {
+                @Override
+                public boolean onDoubleTap(MotionEvent e) {
+                    closeDialog();
+                    return super.onDoubleTap(e);
+                }
+            });
+
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                gestureDetector.onTouchEvent(event);
+                return draggbleTouchListener.onTouch(v, event);
+            }
+        });
         initState();
 
         View right = popupView.findViewById(R.id.rigth);
