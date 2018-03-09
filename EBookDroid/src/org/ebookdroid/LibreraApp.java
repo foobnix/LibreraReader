@@ -96,10 +96,18 @@ public class LibreraApp extends Application {
                     e.printStackTrace();
                     try {
 
-
                         StringWriter errors = new StringWriter();
                         e.printStackTrace(new PrintWriter(errors));
-                        Apps.onCrashEmail(context, errors.toString(), AppsConfig.TXT_APP_NAME + " " + context.getString(R.string.application_error_please_send_this_report_by_emial));
+                        String log = errors.toString();
+                        log = log + "/n";
+                        log = log + Build.MANUFACTURER + "/n";
+                        log = log + Build.PRODUCT + "/n";
+                        log = log + Build.DEVICE + "/n";
+                        log = log + Build.BRAND + "/n";
+                        log = log + Build.BRAND + "/n";
+                        log = log + Build.MODEL + "/n";
+                        log = log + Build.VERSION.SDK_INT + "/n";
+                        Apps.onCrashEmail(context, log, AppsConfig.TXT_APP_NAME + " " + context.getString(R.string.application_error_please_send_this_report_by_emial));
 
                         System.exit(1);
 
