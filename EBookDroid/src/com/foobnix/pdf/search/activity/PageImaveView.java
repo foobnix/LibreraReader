@@ -348,15 +348,20 @@ public class PageImaveView extends View {
                         selectText(event.getX(), event.getY(), xInit, yInit);
                     } else {
 
-                        if (AppState.get().rotateViewPager == 0) {
-                            if (Math.abs(dy) > Math.abs(dx) && (Math.abs(dy) + Math.abs(dx) > Dips.DP_10)) {
-                                isReadyForMove = true;
-                                isIgronerClick = true;
-                            }
+                        if (AppState.get().isLocked) {
+                            isReadyForMove = true;
+                            isIgronerClick = true;
                         } else {
-                            if (Math.abs(dx) > Math.abs(dy) && (Math.abs(dx) + Math.abs(dy) > Dips.DP_10)) {
-                                isReadyForMove = true;
-                                isIgronerClick = true;
+                            if (AppState.get().rotateViewPager == 0) {
+                                if (Math.abs(dy) > Math.abs(dx) && (Math.abs(dy) + Math.abs(dx) > Dips.DP_10)) {
+                                    isReadyForMove = true;
+                                    isIgronerClick = true;
+                                }
+                            } else {
+                                if (Math.abs(dx) > Math.abs(dy) && (Math.abs(dx) + Math.abs(dy) > Dips.DP_10)) {
+                                    isReadyForMove = true;
+                                    isIgronerClick = true;
+                                }
                             }
                         }
 
