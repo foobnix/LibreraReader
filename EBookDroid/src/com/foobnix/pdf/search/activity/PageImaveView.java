@@ -349,8 +349,8 @@ public class PageImaveView extends View {
                     } else {
 
                         if (AppState.get().isLocked) {
-                            isReadyForMove = true;
-                            isIgronerClick = true;
+                            isReadyForMove = false;
+                            isIgronerClick = false;
                         } else {
                             if (AppState.get().rotateViewPager == 0) {
                                 if (Math.abs(dy) > Math.abs(dx) && (Math.abs(dy) + Math.abs(dx) > Dips.DP_10)) {

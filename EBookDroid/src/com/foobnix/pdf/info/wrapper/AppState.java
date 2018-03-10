@@ -248,7 +248,7 @@ public class AppState {
     public int ttsTimer = 60;
 
     @IgnoreHashCode
-    public int readingProgress1 = READING_PROGRESS_NUMBERS;
+    public int readingProgress = READING_PROGRESS_PERCENT_NUMBERS;
 
     public int outlineMode = OUTLINE_ONLY_HEADERS;
 

@@ -1,5 +1,8 @@
 package com.foobnix.pdf.search.view;
 
+import java.lang.reflect.Field;
+
+import com.foobnix.android.utils.Dips;
 import com.foobnix.android.utils.LOG;
 import com.foobnix.pdf.info.wrapper.AppState;
 
@@ -11,12 +14,16 @@ import android.support.v4.view.ViewPager;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.animation.Interpolator;
+import android.view.animation.LinearInterpolator;
+import android.widget.Scroller;
 
 public class VerticalViewPager extends CustomViewPager {
 
     public VerticalViewPager(Context context, AttributeSet attrs) {
         super(context, attrs);
         init();
+        setMyScroller();
     }
 
     private void init() {
@@ -24,6 +31,46 @@ public class VerticalViewPager extends CustomViewPager {
             setPageTransformer(true, new VerticalPageTransformer());
         }
     }
+
+    private void setMyScroller() {
+        try {
+            Class<?> viewpager = ViewPager.class;
+            Field scroller = viewpager.getDeclaredField("mScroller");
+            scroller.setAccessible(true);
+            scroller.set(this, new MyScroller(getContext()));
+
+            Field mFlingDistance = viewpager.getDeclaredField("mFlingDistance");
+            mFlingDistance.setAccessible(true);
+            mFlingDistance.set(this, Dips.DP_10);
+
+            Field mMinimumVelocity = viewpager.getDeclaredField("mMinimumVelocity");
+            mMinimumVelocity.setAccessible(true);
+            mMinimumVelocity.set(this, 0);
+
+        } catch (Exception e) {
+            LOG.e(e);
+        }
+
+    }
+
+    public class MyScroller extends Scroller {
+        public MyScroller(Context context) {
+            super(context, new LinearInterpolator());
+        }
+
+        @Override
+        public void startScroll(int startX, int startY, int dx, int dy, int duration) {
+            super.startScroll(startX, startY, dx, dy, 300);
+        }
+    }
+
+    private static Interpolator sInterpolator = new Interpolator() {
+        @Override
+        public float getInterpolation(float t) {
+            t -= 1.0f;
+            return t * t * t * t * t + 1.0f;
+        }
+    };
 
     private class VerticalPageTransformer implements ViewPager.PageTransformer {
 
@@ -58,7 +105,6 @@ public class VerticalViewPager extends CustomViewPager {
 
         return ev;
     }
-
 
     @Override
     public boolean onInterceptTouchEvent(MotionEvent ev) {
