@@ -86,7 +86,7 @@ public class BrightnessHelper {
         float dy = Math.abs(yDiff);
         float dx = Math.abs(x - event.getX());
 
-        if ((isMovementStart || dy > Dips.DP_50) && event.getPointerCount() == 1 && x < BRIGHTNESS_WIDTH && dy > dx) {
+        if ((isMovementStart || dy > Dips.DP_25) && event.getPointerCount() == 1 && x < BRIGHTNESS_WIDTH && dy > dx) {
             isMovementStart = true;
             lastPercent = (int) (yDiff * 100 / MAX);
             float plus = getMinMaxValue(lastPercent + currentPercent);
