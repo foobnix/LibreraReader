@@ -14,7 +14,6 @@ import android.support.v4.view.ViewPager;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.View;
-import android.view.animation.Interpolator;
 import android.view.animation.LinearInterpolator;
 import android.widget.Scroller;
 
@@ -64,13 +63,6 @@ public class VerticalViewPager extends CustomViewPager {
         }
     }
 
-    private static Interpolator sInterpolator = new Interpolator() {
-        @Override
-        public float getInterpolation(float t) {
-            t -= 1.0f;
-            return t * t * t * t * t + 1.0f;
-        }
-    };
 
     private class VerticalPageTransformer implements ViewPager.PageTransformer {
 
