@@ -44,7 +44,7 @@
    <string name="crop_images_in_the_book_cover">撷取封面</string>
    <string name="borders_and_shadow_around_the_book_cover">边框阴影</string>
    <string name="tabs_position">标签位置</string>
-   <string name="show_preferences_tab_in_the_left_menu">启用侧滑菜单</string>
+   <string name="show_preferences_tab_in_the_left_menu">启用侧边菜单</string>
    <string name="visible">可见</string>
    <string name="application_user_guide_">使用说明</string>
    <string name="import_or_export_application_settings_to_json_file">备份文件</string>
@@ -134,8 +134,8 @@
    <string name="page_quality">页面质量</string>
    <string name="pages_in_memory">预载页面</string>
    <string name="screen_turn_off_after_inactivity_minutes_">屏幕常亮（分钟）</string>
-   <string name="___STATUS___BAR___SETTINGS___SECTION___">状态设置</string>
-   <string name="status_bar">状态设置</string>
+   <string name="___STATUS___BAR___SETTINGS___SECTION___">信息区域</string>
+   <string name="status_bar">信息区域</string>
    <string name="show_status_bar">显示阅读状态</string>
    <string name="show_progress_of_reading">显示出进度条</string>
    <string name="display_chapters_on_the_progress_line">显示章节预览</string>
@@ -168,7 +168,7 @@
    <string name="close_application">退出应用</string>
    <string name="___TABS___SECTION___">标签位置</string>
    <string name="library">我的书库</string>
-   <string name="extracting_information_from_books">书籍数量</string>
+   <string name="extracting_information_from_books">书籍信息</string>
    <string name="no_author">无作者</string>
    <string name="no_serie">无系列</string>
    <string name="no_genre">无类型</string>
@@ -181,7 +181,7 @@
    <string name="restore_default_keys">恢复按键</string>
    <string name="next_keys">下一页按键:</string>
    <string name="prev_keys">上一页按键:</string>
-   <string name="starred">星标</string>
+   <string name="starred">我的珍藏</string>
    <string name="bookmarks">笔记书签</string>
    <string name="back">返回</string>
    <string name="import_bookmarks">导入书签</string>
@@ -244,7 +244,7 @@
    <string name="can_t_download">不能下载</string>
    <string name="loading_error">加载错误</string>
    <string name="loading_failed">载入失败</string>
-   <string name="___CONTEXT___MENU___SECTION___">背景设置</string>
+   <string name="___CONTEXT___MENU___SECTION___">上下文菜单</string>
    <string name="select_the_reading_mode">阅读模式</string>
    <string name="convert_to">转换为</string>
    <string name="mode_vertical">滚动翻页</string>
@@ -286,7 +286,7 @@
    <string name="go_to_the_library">返回书库</string>
    <string name="contrast_and_brightness">对比度和亮度</string>
    <string name="contrast">对比</string>
-   <string name="make_text_bold">文字加粗</string>
+   <string name="make_text_bold">字体加粗</string>
    <string name="searching_please_wait_">正在搜索...</string>
    <string name="msg_no_text_found">无结果</string>
    <string name="annotations_draw">注释和手绘</string>
@@ -301,9 +301,9 @@
    <string name="two_pages_cover">封页</string>
    <string name="half_page">半页</string>
    <string name="by_pages">按页</string>
-   <string name="by_screans">全屏</string>
+   <string name="by_screans">按屏</string>
    <string name="of_screen">滚距</string>
-   <string name="custom_value">自定</string>
+   <string name="custom_value">自定值</string>
    <string name="automatic_page_flipping">自动翻页</string>
    <string name="interval_sec_">间隔（秒）</string>
    <string name="loop_autoplay">启用自动循环</string>
@@ -324,7 +324,7 @@
    <string name="set_the_current_page_number">设置页码</string>
    <string name="the_book_is_over">本书结束</string>
    <string name="___SELECT___TEXT___SECTION___">选择文本</string>
-   <string name="highlight_of_text">文本高亮</string>
+   <string name="highlight_of_text">高亮</string>
    <string name="underline_of_text">下划线</string>
    <string name="strikethrough_of_text">删除线</string>
    <string name="text">文本</string>
@@ -337,7 +337,7 @@
    <string name="web_dict">在线词典</string>
    <string name="___TO___CHECK___SECTION___">检查</string>
    <string name="font">字体</string>
-   <string name="font_name">字体选择</string>
+   <string name="font_name">字体名称</string>
    <string name="text_page">页</string>
    <string name="page">页</string>
    <string name="___INDEFINITE___SECTION___">无限</string>
@@ -431,7 +431,7 @@
    <string name="awards">授权</string>
    <string name="close_book_and_application">退出应用</string>
    <string name="percent_and_number">百分比和页码</string>
-   <string name="current_page">进度显示形式</string>
+   <string name="current_page">进度显示</string>
    <string name="backup_folder">备份路径</string>
    <string name="audio_books_folder">音频路径</string>
    <string name="enable_contrast_and_brightness">启用调整</string>
