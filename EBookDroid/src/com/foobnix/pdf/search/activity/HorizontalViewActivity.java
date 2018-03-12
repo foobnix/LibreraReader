@@ -1449,9 +1449,9 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
             maxSeek.setText("" + textMax);
             currentSeek.setText("" + textPage);
         }
-        if (AppState.get().readingProgress1 == AppState.READING_PROGRESS_PERCENT) {
+        if (AppState.get().readingProgress == AppState.READING_PROGRESS_PERCENT) {
             pagesCountIndicator.setText(textPage);
-        } else if (AppState.get().readingProgress1 == AppState.READING_PROGRESS_PERCENT_NUMBERS) {
+        } else if (AppState.get().readingProgress == AppState.READING_PROGRESS_PERCENT_NUMBERS) {
             pagesCountIndicator.setText(TxtUtils.getProgressPercent(page + 1, max) + " " + TxtUtils.deltaPage(page + 1) + " ∕ " + textMax);
         } else {
             pagesCountIndicator.setText(textPage + "∕" + textMax);

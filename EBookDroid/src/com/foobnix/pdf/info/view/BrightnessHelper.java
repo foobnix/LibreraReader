@@ -33,7 +33,7 @@ import android.widget.Toast;
 
 public class BrightnessHelper {
 
-    public static final int BRIGHTNESS_WIDTH = Dips.dpToPx(50);
+    public static final int BRIGHTNESS_WIDTH = Dips.DP_50;
     Toast toast;
 
     float lastPercent = 0;
@@ -86,7 +86,7 @@ public class BrightnessHelper {
         float dy = Math.abs(yDiff);
         float dx = Math.abs(x - event.getX());
 
-        if (dy > dx * 2 && x < BRIGHTNESS_WIDTH && event.getPointerCount() == 1 && dy > Dips.dpToPx(5)) {
+        if ((isMovementStart || dy > Dips.DP_25) && event.getPointerCount() == 1 && x < BRIGHTNESS_WIDTH && dy > dx) {
             isMovementStart = true;
             lastPercent = (int) (yDiff * 100 / MAX);
             float plus = getMinMaxValue(lastPercent + currentPercent);
@@ -217,7 +217,6 @@ public class BrightnessHelper {
                 }
             }
         });
-
 
         final TextView onBlueFilter = (TextView) inflate.findViewById(R.id.onBlueFilter);
         onBlueFilter.setVisibility(Dips.isEInk(a) ? View.GONE : View.VISIBLE);
