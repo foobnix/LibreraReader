@@ -20,10 +20,10 @@ git clone https://github.com/dandar3/android-google-play-services-basement googl
 git clone https://github.com/dandar3/android-google-play-services-gass google-play-services-gass
 git clone https://github.com/dandar3/android-google-play-services-tasks google-play-services-tasks
 
-git clone https://github.com/dandar3/android-google-firebase-analytics google-firebase-analytics
-git clone https://github.com/dandar3/android-google-firebase-analytics-impl google-firebase-analytics-impl
-git clone https://github.com/dandar3/android-google-firebase-common google-firebase-common
-git clone https://github.com/dandar3/android-google-firebase-iid google-firebase-iid
+#git clone https://github.com/dandar3/android-google-firebase-analytics google-firebase-analytics
+#git clone https://github.com/dandar3/android-google-firebase-analytics-impl google-firebase-analytics-impl
+#git clone https://github.com/dandar3/android-google-firebase-common google-firebase-common
+#git clone https://github.com/dandar3/android-google-firebase-iid google-firebase-iid
 
 for d in * ; do
 if [[ -d $d ]]; then
