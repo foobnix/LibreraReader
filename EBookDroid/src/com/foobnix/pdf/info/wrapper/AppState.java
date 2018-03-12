@@ -297,6 +297,9 @@ public class AppState {
     public boolean isEnableBC = false;
 
     @IgnoreHashCode
+    public boolean stopReadingOnCall = true;
+
+    @IgnoreHashCode
     public int appBrightness = AUTO_BRIGTNESS;
 
     public float cropTolerance = 0.5f;

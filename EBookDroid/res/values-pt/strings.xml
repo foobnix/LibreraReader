@@ -456,4 +456,5 @@
    <string name="text_highlight_mode_is_enable">O modo de resumo de texto é habilitado</string>
    <string name="text_highlight_mode_is_disable">O modo de destaque de texto é desativado</string>
    <string name="application_error_please_send_this_report_by_emial">Erro de aplicação, envie este relatório por email</string>
+   <string name="pause_reading_if_the_incoming_call_or_other_sounds">Pausar a leitura se a chamada recebida ou outros sons</string>
 </resources>

@@ -456,4 +456,5 @@
    <string name="text_highlight_mode_is_enable">A szövegkiemelés mód engedélyezve van</string>
    <string name="text_highlight_mode_is_disable">A szövegkiemelés mód letiltása</string>
    <string name="application_error_please_send_this_report_by_emial">Alkalmazáshiba, küldje el ezt a jelentést emaill-el</string>
+   <string name="pause_reading_if_the_incoming_call_or_other_sounds">Szüneteltesse az olvasást, ha a bejövő hívás vagy más hang</string>
 </resources>

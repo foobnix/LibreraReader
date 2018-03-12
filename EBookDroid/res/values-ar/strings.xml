@@ -456,4 +456,5 @@
    <string name="text_highlight_mode_is_enable">يتم تمكين وضع تمييز النص</string>
    <string name="text_highlight_mode_is_disable">يتم تعطيل وضع تمييز النص</string>
    <string name="application_error_please_send_this_report_by_emial">خطأ في التطبيق، يرجى إرسال هذا التقرير بواسطة إميل</string>
+   <string name="pause_reading_if_the_incoming_call_or_other_sounds">وقفة القراءة إذا كانت مكالمة واردة أو أصوات أخرى</string>
 </resources>

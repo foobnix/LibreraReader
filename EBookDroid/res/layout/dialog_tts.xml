@@ -134,6 +134,12 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/ongoing_notification" />
+        
+        <CheckBox
+            android:id="@+id/stopReadingOnCall"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/pause_reading_if_the_incoming_call_or_other_sounds" />
 
 
         <LinearLayout

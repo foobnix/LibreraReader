@@ -550,6 +550,16 @@ public class DragingDialogs {
                     }
                 });
 
+                CheckBox stopReadingOnCall = (CheckBox) view.findViewById(R.id.stopReadingOnCall);
+                stopReadingOnCall.setChecked(AppState.get().stopReadingOnCall);
+                stopReadingOnCall.setOnCheckedChangeListener(new OnCheckedChangeListener() {
+
+                    @Override
+                    public void onCheckedChanged(final CompoundButton buttonView, final boolean isChecked) {
+                        AppState.get().stopReadingOnCall = isChecked;
+                    }
+                });
+
                 view.findViewById(R.id.ttsSkeakToFile).setOnClickListener(new OnClickListener() {
 
                     @Override

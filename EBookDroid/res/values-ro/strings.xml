@@ -456,4 +456,5 @@
    <string name="text_highlight_mode_is_enable">Modul de evidențiere a textului este activat</string>
    <string name="text_highlight_mode_is_disable">Modul de evidențiere a textului este dezactivat</string>
    <string name="application_error_please_send_this_report_by_emial">Eroare de aplicare, trimiteți acest raport prin e-mail</string>
+   <string name="pause_reading_if_the_incoming_call_or_other_sounds">Întrerupeți lectură dacă efectuați apelul sau alte sunete</string>
 </resources>
