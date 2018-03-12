@@ -16,6 +16,7 @@
 
 package com.foobnix.ui2.fast;
 
+import com.foobnix.android.utils.LOG;
 import com.foobnix.pdf.info.TintUtil;
 
 import android.content.Context;
@@ -70,7 +71,8 @@ public class FastScrollRecyclerView extends RecyclerView {
     /**
      * Set the enabled state of fast scrolling.
      *
-     * @param enabled True to enable fast scrolling, false otherwise
+     * @param enabled
+     *            True to enable fast scrolling, false otherwise
      */
     public void setFastScrollEnabled(boolean enabled) {
         mFastScroller.setEnabled(enabled);
@@ -79,7 +81,8 @@ public class FastScrollRecyclerView extends RecyclerView {
     /**
      * Hide the scrollbar when not scrolling.
      *
-     * @param hideScrollbar True to hide the scrollbar, false to show
+     * @param hideScrollbar
+     *            True to hide the scrollbar, false to show
      */
     public void setHideScrollbar(boolean hideScrollbar) {
         mFastScroller.setHideScrollbar(hideScrollbar);
@@ -88,7 +91,8 @@ public class FastScrollRecyclerView extends RecyclerView {
     /**
      * Display a scroll track while scrolling.
      *
-     * @param visible True to show scroll track, false to hide
+     * @param visible
+     *            True to show scroll track, false to hide
      */
     public void setTrackVisible(boolean visible) {
         mFastScroller.setTrackVisible(visible);
@@ -97,7 +101,8 @@ public class FastScrollRecyclerView extends RecyclerView {
     /**
      * Set the color of the scroll track.
      *
-     * @param color The color for the scroll track
+     * @param color
+     *            The color for the scroll track
      */
     public void setTrackColor(@ColorInt int color) {
         mFastScroller.setTrackColor(color);
@@ -106,7 +111,8 @@ public class FastScrollRecyclerView extends RecyclerView {
     /**
      * Set the color for the scroll handle.
      *
-     * @param color The color for the scroll handle
+     * @param color
+     *            The color for the scroll handle
      */
     public void setHandleColor(@ColorInt int color) {
         mFastScroller.setHandleColor(color);
@@ -115,7 +121,8 @@ public class FastScrollRecyclerView extends RecyclerView {
     /**
      * Set the background color of the index bubble.
      *
-     * @param color The background color for the index bubble
+     * @param color
+     *            The background color for the index bubble
      */
     public void setBubbleColor(@ColorInt int color) {
         mFastScroller.setBubbleColor(color);
@@ -124,7 +131,8 @@ public class FastScrollRecyclerView extends RecyclerView {
     /**
      * Set the text color of the index bubble.
      *
-     * @param color The text color for the index bubble
+     * @param color
+     *            The text color for the index bubble
      */
     public void setBubbleTextColor(@ColorInt int color) {
         mFastScroller.setBubbleTextColor(color);
@@ -133,7 +141,8 @@ public class FastScrollRecyclerView extends RecyclerView {
     /**
      * Set the fast scroll state change listener.
      *
-     * @param fastScrollStateChangeListener The interface that will listen to fastscroll state change events
+     * @param fastScrollStateChangeListener
+     *            The interface that will listen to fastscroll state change events
      */
     public void setFastScrollStateChangeListener(FastScrollStateChangeListener fastScrollStateChangeListener) {
         mFastScroller.setFastScrollStateChangeListener(fastScrollStateChangeListener);
@@ -142,14 +151,18 @@ public class FastScrollRecyclerView extends RecyclerView {
     @Override
     protected void onAttachedToWindow() {
         super.onAttachedToWindow();
-        mFastScroller.attachRecyclerView(this);
+        try {
+            mFastScroller.attachRecyclerView(this);
 
-        ViewParent parent = getParent();
+            ViewParent parent = getParent();
 
-        if (parent instanceof ViewGroup) {
-            ViewGroup viewGroup = (ViewGroup) parent;
-            viewGroup.addView(mFastScroller);
-            mFastScroller.setLayoutParams(viewGroup);
+            if (parent instanceof ViewGroup) {
+                ViewGroup viewGroup = (ViewGroup) parent;
+                viewGroup.addView(mFastScroller);
+                mFastScroller.setLayoutParams(viewGroup);
+            }
+        } catch (Exception e) {
+            LOG.e(e);
         }
     }
 

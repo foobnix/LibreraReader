@@ -40,7 +40,9 @@ public abstract class BaseAsyncTask<Params, Result> extends CopyAsyncTask<Params
     protected void onPostExecute(Result result) {
         super.onPostExecute(result);
         try {
-            progressDialog.dismiss();
+            if (progressDialog != null) {
+                progressDialog.dismiss();
+            }
         } catch (Exception e) {
         }
     }

@@ -176,6 +176,7 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
         }
 
         DocumentController.doRotation(this);
+        clickUtils = new ClickUtils();
 
         super.onCreate(savedInstanceState);
         if (PasswordDialog.isNeedPasswordDialog(this)) {
@@ -183,7 +184,7 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
         }
         boolean isTextFomat = ExtUtils.isTextFomat(getIntent());
 
-        clickUtils = new ClickUtils();
+
 
         AppState.get().load(this);
 

@@ -221,31 +221,35 @@ public class AdvGuestureDetector extends SimpleOnGestureListener implements IMul
      */
     @Override
     public boolean onFling(final MotionEvent e1, final MotionEvent e2, final float vX, final float vY) {
+        try {
 
-        if (e1.getX() < BrightnessHelper.BRIGHTNESS_WIDTH) {
+            if (e1.getX() < BrightnessHelper.BRIGHTNESS_WIDTH) {
+                return false;
+            }
+
+            if (AppState.get().isMusicianMode) {
+                return false;
+            }
+            final Rect l = avc.getScrollLimits();
+            float x = vX, y = vY;
+            if (Math.abs(vX / vY) < 0.5) {
+                x = 0;
+            }
+            if (Math.abs(vY / vX) < 0.5) {
+                y = 0;
+            }
+            if (isNoLock()) {
+                avc.getView().startFling(x, y, l);
+                avc.getView().redrawView();
+            } else {
+                avc.getView().startFling(0, y, l);
+                avc.getView().redrawView();
+
+            }
+            return true;
+        } catch (Exception e) {
             return false;
         }
-
-        if (AppState.get().isMusicianMode) {
-            return false;
-        }
-        final Rect l = avc.getScrollLimits();
-        float x = vX, y = vY;
-        if (Math.abs(vX / vY) < 0.5) {
-            x = 0;
-        }
-        if (Math.abs(vY / vX) < 0.5) {
-            y = 0;
-        }
-        if (isNoLock()) {
-            avc.getView().startFling(x, y, l);
-            avc.getView().redrawView();
-        } else {
-            avc.getView().startFling(0, y, l);
-            avc.getView().redrawView();
-
-        }
-        return true;
     }
 
     /**

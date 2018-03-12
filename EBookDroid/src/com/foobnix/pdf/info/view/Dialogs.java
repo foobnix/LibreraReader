@@ -146,30 +146,34 @@ public class Dialogs {
     }
 
     public static AlertDialog loadingBook(Context c, final Runnable onCancel) {
-        final AlertDialog.Builder builder = new AlertDialog.Builder(c);
-        View view = LayoutInflater.from(c).inflate(R.layout.dialog_loading_book, null, false);
-        final TextView text = (TextView) view.findViewById(R.id.text1);
+        try {
+            final AlertDialog.Builder builder = new AlertDialog.Builder(c);
+            View view = LayoutInflater.from(c).inflate(R.layout.dialog_loading_book, null, false);
+            final TextView text = (TextView) view.findViewById(R.id.text1);
 
-        ProgressBar pr = (ProgressBar) view.findViewById(R.id.progressBar1);
-        TintUtil.setDrawableTint(pr.getIndeterminateDrawable().getCurrent(), TintUtil.color);
+            ProgressBar pr = (ProgressBar) view.findViewById(R.id.progressBar1);
+            TintUtil.setDrawableTint(pr.getIndeterminateDrawable().getCurrent(), TintUtil.color);
 
-        ImageView image = (ImageView) view.findViewById(R.id.onCancel);
-        TintUtil.setTintImageNoAlpha(image, TintUtil.color);
-        image.setOnClickListener(new OnClickListener() {
+            ImageView image = (ImageView) view.findViewById(R.id.onCancel);
+            TintUtil.setTintImageNoAlpha(image, TintUtil.color);
+            image.setOnClickListener(new OnClickListener() {
 
-            @Override
-            public void onClick(View v) {
-                LOG.d("loadingBook Cancel");
-                onCancel.run();
-            }
-        });
+                @Override
+                public void onClick(View v) {
+                    LOG.d("loadingBook Cancel");
+                    onCancel.run();
+                }
+            });
 
-        builder.setView(view);
-        builder.setCancelable(false);
+            builder.setView(view);
+            builder.setCancelable(false);
 
-        AlertDialog dialog = builder.show();
-        dialog.getWindow().clearFlags(WindowManager.LayoutParams.FLAG_DIM_BEHIND);
-        return dialog;
+            AlertDialog dialog = builder.show();
+            dialog.getWindow().clearFlags(WindowManager.LayoutParams.FLAG_DIM_BEHIND);
+            return dialog;
+        } catch (Exception e) {
+            return null;
+        }
 
     }
 
@@ -430,8 +434,6 @@ public class Dialogs {
                 create.dismiss();
                 AppState.get().save(a);
 
-
-
             }
         });
     }
@@ -579,7 +581,6 @@ public class Dialogs {
             }
         });
         create.show();
-
 
     }
 
