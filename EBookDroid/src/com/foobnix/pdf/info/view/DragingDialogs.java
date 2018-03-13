@@ -1255,7 +1255,19 @@ public class DragingDialogs {
 
                                             intentCustom.putExtra("EXTRA_QUERY", selecteText);
                                             intentCustom.putExtra("EXTRA_HEIGHT", Dips.screenHeight() / 2);
-                                            intentCustom.putExtra("EXTRA_GRAVITY", Gravity.BOTTOM);
+
+                                            if (AppState.get().isDouble || Dips.screenWidth() > Dips.screenHeight()) {
+                                                if (TempHolder.get().textFromPage == 1) {
+                                                    intentCustom.putExtra("EXTRA_GRAVITY", Gravity.BOTTOM | Gravity.RIGHT);
+                                                } else if (TempHolder.get().textFromPage == 2) {
+                                                    intentCustom.putExtra("EXTRA_GRAVITY", Gravity.BOTTOM | Gravity.LEFT);
+                                                } else {
+                                                    intentCustom.putExtra("EXTRA_GRAVITY", Gravity.BOTTOM | Gravity.CENTER);
+                                                }
+                                                intentCustom.putExtra("EXTRA_WIDTH", Dips.screenWidth() / 2);
+                                            } else {
+                                                intentCustom.putExtra("EXTRA_GRAVITY", Gravity.BOTTOM);
+                                            }
 
                                             controller.getActivity().startActivity(intentCustom);
                                         } else if (proccessTextList.contains(app)) {
@@ -4131,7 +4143,6 @@ public class DragingDialogs {
 
                                 AppState.get().statusBarColorDay = AppState.TEXT_COLOR_DAY;
                                 AppState.get().statusBarColorNight = AppState.TEXT_COLOR_NIGHT;
-
 
                                 colorsLine.run();
                             }

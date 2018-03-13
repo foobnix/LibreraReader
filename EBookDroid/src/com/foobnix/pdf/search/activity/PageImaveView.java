@@ -747,6 +747,7 @@ public class PageImaveView extends View {
         if (AppState.get().isDouble) {
             firstNumber = xInit < drawableWidth / 2 ? 1 : 2;
         }
+        TempHolder.get().textFromPage = firstNumber;
 
         LOG.d("firstNumber", firstNumber);
         TextWord[][] pageText = getPageText(firstNumber);

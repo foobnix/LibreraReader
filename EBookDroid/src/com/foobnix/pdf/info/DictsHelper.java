@@ -5,8 +5,10 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import com.foobnix.android.utils.Dips;
 import com.foobnix.android.utils.LOG;
 import com.foobnix.pdf.info.wrapper.AppState;
+import com.foobnix.sys.TempHolder;
 
 import android.app.SearchManager;
 import android.content.ComponentName;
@@ -16,6 +18,7 @@ import android.content.pm.PackageManager;
 import android.content.pm.PackageManager.NameNotFoundException;
 import android.content.pm.ResolveInfo;
 import android.graphics.drawable.Drawable;
+import android.view.Gravity;
 import android.widget.Toast;
 
 public class DictsHelper {
@@ -77,6 +80,29 @@ public class DictsHelper {
         return intentSend;
     }
 
+    public static Intent getType0(String selecteText) {
+        final Intent intentCustom = new Intent();
+        intentCustom.setAction("colordict.intent.action.SEARCH");
+
+        intentCustom.putExtra("EXTRA_QUERY", selecteText);
+        intentCustom.putExtra("EXTRA_HEIGHT", Dips.screenHeight() / 2);
+
+        if (AppState.get().isDouble || Dips.screenWidth() > Dips.screenHeight()) {
+            if (TempHolder.get().textFromPage == 1) {
+                intentCustom.putExtra("EXTRA_GRAVITY", Gravity.BOTTOM | Gravity.RIGHT);
+            } else if (TempHolder.get().textFromPage == 2) {
+                intentCustom.putExtra("EXTRA_GRAVITY", Gravity.BOTTOM | Gravity.LEFT);
+            } else {
+                intentCustom.putExtra("EXTRA_GRAVITY", Gravity.BOTTOM | Gravity.CENTER);
+            }
+            intentCustom.putExtra("EXTRA_WIDTH", Dips.screenWidth() / 2);
+        } else {
+            intentCustom.putExtra("EXTRA_GRAVITY", Gravity.BOTTOM);
+        }
+
+        return intentCustom;
+    }
+
     public static List<DictItem> getByType(Context c, List<ResolveInfo> all, String type) {
         List<DictItem> items = new ArrayList<DictItem>();
         for (ResolveInfo item : all) {
@@ -97,6 +123,7 @@ public class DictsHelper {
 
     public static List<DictItem> getAllResolveInfoAsDictItem1(Context c, String text) {
         List<DictItem> items = new ArrayList<DictItem>();
+        items.addAll(getByType(c, getByIntent(c, getType0(text), text), "type0"));
         items.addAll(getByType(c, getByIntent(c, getType1(text), text), "type1"));
         items.addAll(getByType(c, getByIntent(c, getType2(text), text), "type2"));
         items.addAll(getByType(c, getByIntent(c, getType3(text), text), "type3"));
@@ -124,6 +151,9 @@ public class DictsHelper {
             }
             if (dict.startsWith("type")) {
                 Intent intent = null;
+                if (dict.startsWith("type0")) {
+                    intent = getType0(selectedText);
+                }
                 if (dict.startsWith("type1")) {
                     intent = getType1(selectedText);
                 }
@@ -164,15 +194,18 @@ public class DictsHelper {
     public static List<ResolveInfo> getAllResolveInfo(Context c, String text) {
         PackageManager pm = c.getPackageManager();
 
+        Intent intentProccessCustom = getType0(text);
         Intent intentProccessText = getType1(text);
         Intent intentSearch = getType2(text);
         Intent intentSend = getType3(text);
 
+        final List<ResolveInfo> proccessCustom = pm.queryIntentActivities(intentProccessCustom, 0);
         final List<ResolveInfo> proccessTextList = pm.queryIntentActivities(intentProccessText, 0);
         final List<ResolveInfo> searchList = pm.queryIntentActivities(intentSearch, 0);
         final List<ResolveInfo> sendList = pm.queryIntentActivities(intentSend, 0);
 
         final List<ResolveInfo> all = new ArrayList<ResolveInfo>();
+        all.addAll(proccessCustom);
         all.addAll(proccessTextList);
         all.addAll(searchList);
         all.addAll(sendList);
