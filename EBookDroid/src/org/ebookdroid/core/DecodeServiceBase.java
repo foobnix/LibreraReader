@@ -362,9 +362,8 @@ public class DecodeServiceBase implements DecodeService {
         // Checks if page root node has been cropped before
         final PageTreeNode root = task.node.page.nodes.root;
         if (root.croppedBounds == null) {
-            // final Rect rootRect = new Rect(0, 0, vuPage.getWidth(),
-            // vuPage.getHeight());
-            final Rect rootRect = new Rect(0, 0, PageCropper.BMP_SIZE, PageCropper.BMP_SIZE);
+            final Rect rootRect = new Rect(0, 0, vuPage.getWidth(), vuPage.getHeight());
+            // final Rect rootRect = new Rect(0, 0, rootRect.width(), rootRect.height());
 
             // TempHolder.lock.lock();
             MagicHelper.isNeedMagic = false;
@@ -941,6 +940,5 @@ public class DecodeServiceBase implements DecodeService {
     public CodecDocument getCodecDocument() {
         return codecDocument;
     }
-
 
 }

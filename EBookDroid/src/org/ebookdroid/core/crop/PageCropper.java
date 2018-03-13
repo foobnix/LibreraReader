@@ -10,19 +10,10 @@ import android.graphics.Rect;
 import android.graphics.RectF;
 
 public class PageCropper {
-    public static final int BMP_SIZE = 800;
-    private static final Rect RECT = new Rect(0, 0, BMP_SIZE, BMP_SIZE);
-
     public static RectF getCropBounds(Bitmap bitmap1, final Rect bitmapBounds, final RectF pageSliceBounds) {
 
-        // Bitmap source = Bitmap.createBitmap(BMP_SIZE, BMP_SIZE,
-        // Bitmap.Config.RGB_565);
-        // Bitmap source = Bitmap.createBitmap(bitmapRef.getBitmap());
-
-        // final Canvas c = new Canvas(source);
-        // c.drawBitmap(bitmap1, bitmapBounds, RECT, null);
-
         int f = bitmap1.getPixel(0, 0);
+        int f2 = bitmap1.getPixel(bitmap1.getWidth() - 1, bitmap1.getHeight() - 1);
         int fR = Color.red(f);
         int fG = Color.green(f);
         int fB = Color.blue(f);
@@ -35,13 +26,16 @@ public class PageCropper {
         int bottomY = 0;
         int bottomX = 0;
 
-        LOG.d("firstColor", MagicHelper.colorToString(f));
-        int dx = Dips.dpToPx(4);
+        // int dy = Math.max(Dips.dpToPx(3), height / 300);
+        // int dx = Math.max(Dips.dpToPx(3), width / 300);
+        int dy = Dips.dpToPx(3);
+        int dx = Dips.dpToPx(3);
+        LOG.d("firstColor", MagicHelper.colorToString(f), dx, dy, Dips.dpToPx(3));
 
-        for (int y = 0; y < height; y += dx) {
+        for (int y = 0; y < height; y += dy) {
             for (int x = 0; x < width; x += dx) {
                 int p = bitmap1.getPixel(x, y);
-                if (p == Color.WHITE || p == Color.BLACK || p == f) {
+                if (p == Color.WHITE || p == Color.BLACK || p == f || p == f2) {
                     continue;
                 }
 
