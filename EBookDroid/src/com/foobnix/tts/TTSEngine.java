@@ -86,7 +86,7 @@ public class TTSEngine {
     }
 
     @TargetApi(Build.VERSION_CODES.ICE_CREAM_SANDWICH_MR1)
-    public void stop() {
+    public synchronized void stop() {
         LOG.d(TAG, "stop");
         if (ttsEngine != null) {
             if (Build.VERSION.SDK_INT >= 15) {
@@ -108,7 +108,7 @@ public class TTSEngine {
     private String text = "";
 
     @TargetApi(Build.VERSION_CODES.LOLLIPOP)
-    public void speek(final String text) {
+    public synchronized void speek(final String text) {
         this.text = text;
         LOG.d(TAG, "speek", text);
         if (TxtUtils.isEmpty(text)) {

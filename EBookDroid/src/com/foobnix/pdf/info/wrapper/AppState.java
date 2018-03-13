@@ -142,7 +142,9 @@ public class AppState {
     public final static String OPDS_DEFAULT = "" + //
     // "http://flibusta.is/opds,Flibusta,Книжное
     // братство,http://flibusta.is/favicon.ico;" + //
-            "http://opds.litres.ru,Litres,Библиотека электронных книг,assets://opds/litres.ico;" + //
+
+    // "http://opds.litres.ru,Litres,Библиотека электронных
+    // книг,assets://opds/litres.ico;" + //
             "https://books.fbreader.org/opds,FBReader,My personal catalogue,assets://opds/fbreader.png;" + //
             // "https://www.gitbook.com/api/opds/catalog.atom,GitBook,Public books are
             // always free.,assets://opds/gitbook.png;" + //
