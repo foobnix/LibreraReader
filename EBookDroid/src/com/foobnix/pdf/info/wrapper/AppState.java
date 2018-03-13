@@ -607,20 +607,7 @@ public class AppState {
 
 
     public void defaults(Context c) {
-        musicText = c.getString(R.string.musician);
-        if (AppsConfig.IS_CLASSIC) {
-            AppState.get().tabsOrder = DEFAULTS_TABS_ORDER.replace(UITab.OpdsFragment.index + "#1", UITab.OpdsFragment.index + "#0");
-        }
-        if (Dips.isEInk(c)) {
-            AppState.get().isInkMode = true;
-            AppState.get().isDayNotInvert = true;
-            AppState.get().isEditMode = true;
-            AppState.get().isRememberMode = false;
-            AppState.get().isReverseKeys = true;
-            AppState.get().isScrollAnimation = false;
-            AppState.get().tintColor = Color.BLACK;
 
-        }
 
         LOG.d("defaults", AppsConfig.IS_CLASSIC, AppState.get().tabsOrder);
     }
@@ -628,13 +615,24 @@ public class AppState {
     public void load(final Context a) {
         try {
             if (!isLoaded) {
-                AppState.get().isInkMode = Dips.isEInk(a);
-                AppState.get().bolderTextOnImage = Dips.isEInk(a);
-                AppState.get().isEnableBC = Dips.isEInk(a);
                 nameVerticalMode = a.getString(R.string.mode_vertical);
                 nameHorizontalMode = a.getString(R.string.mode_horizontally);
                 nameMusicianMode = a.getString(R.string.mode_musician);
-                defaults(a);
+                musicText = a.getString(R.string.musician);
+
+                if (Dips.isEInk(a)) {
+                    AppState.get().isInkMode = true;
+                    AppState.get().isDayNotInvert = true;
+                    AppState.get().isEditMode = true;
+                    AppState.get().isRememberMode = false;
+                    AppState.get().isReverseKeys = true;
+                    AppState.get().isScrollAnimation = false;
+                    AppState.get().tintColor = Color.BLACK;
+                    AppState.get().bolderTextOnImage = true;
+                    AppState.get().isEnableBC = true;
+
+                }
+
                 loadIn(a);
                 BookCSS.get().load(a);
                 DragingPopup.loadCache(a);

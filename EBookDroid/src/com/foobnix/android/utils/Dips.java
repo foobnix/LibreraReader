@@ -65,7 +65,7 @@ public class Dips {
     }
 
     public static boolean isEInk(Context context) {
-        boolean isEink = getRefreshRate(context) < 20.0;
+        boolean isEink = getRefreshRate(context) < 30.0;
         if (isEink) {
             return true;
         }
