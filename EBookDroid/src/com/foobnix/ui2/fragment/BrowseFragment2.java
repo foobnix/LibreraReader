@@ -10,6 +10,7 @@ import java.util.Map;
 
 import com.foobnix.android.utils.LOG;
 import com.foobnix.android.utils.ResultResponse;
+import com.foobnix.android.utils.StringDB;
 import com.foobnix.android.utils.TxtUtils;
 import com.foobnix.dao2.FileMeta;
 import com.foobnix.pdf.info.ExtUtils;
@@ -21,14 +22,23 @@ import com.foobnix.pdf.info.view.MyPopupMenu;
 import com.foobnix.pdf.info.wrapper.AppState;
 import com.foobnix.pdf.info.wrapper.PopupHelper;
 import com.foobnix.ui2.AppDB;
+import com.foobnix.ui2.MainTabs2;
 import com.foobnix.ui2.adapter.DefaultListeners;
 import com.foobnix.ui2.adapter.FileMetaAdapter;
 import com.foobnix.ui2.fast.FastScrollRecyclerView;
 
+import android.annotation.TargetApi;
+import android.content.ContentResolver;
+import android.content.Intent;
+import android.database.Cursor;
 import android.graphics.Color;
 import android.graphics.Typeface;
+import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
+import android.provider.DocumentsContract;
+import android.provider.DocumentsContract.Document;
 import android.support.v4.util.Pair;
 import android.support.v7.widget.LinearLayoutManager;
 import android.util.TypedValue;
@@ -180,14 +190,44 @@ public class BrowseFragment2 extends UIFragment<FileMeta> {
 
             @Override
             public void onClick(View v) {
+                List<String> extFolders = new ArrayList<String>();
 
-                List<String> extFolders = ExtUtils.getExternalStorageDirectories(getActivity());
+                extFolders = ExtUtils.getExternalStorageDirectories(getActivity());
                 String sdPath = ExtUtils.getSDPath();
                 if (TxtUtils.isNotEmpty(sdPath) && !extFolders.contains(sdPath)) {
                     extFolders.add(sdPath);
                 }
 
                 MyPopupMenu menu = new MyPopupMenu(getActivity(), onHome);
+
+                if (Build.VERSION.SDK_INT >= 21) {
+                    menu.getMenu().add("Add resource").setOnMenuItemClickListener(new OnMenuItemClickListener() {
+
+                        @Override
+                        public boolean onMenuItemClick(MenuItem item) {
+                            Intent intent = new Intent(Intent.ACTION_OPEN_DOCUMENT_TREE);
+                            getActivity().startActivityForResult(intent, MainTabs2.REQUEST_CODE_ADD_RESOURCE);
+                            return true;
+                        }
+                    }).setIcon(R.drawable.glyphicons_433_plus);
+
+                    List<String> safs = StringDB.asList(AppState.get().pathSAF);
+
+                    for (final String saf : safs) {
+                        String fileName = ExtUtils.getFileName(saf);
+                        menu.getMenu().add(fileName).setOnMenuItemClickListener(new OnMenuItemClickListener() {
+
+                            @TargetApi(Build.VERSION_CODES.LOLLIPOP)
+                            @Override
+                            public boolean onMenuItemClick(MenuItem item) {
+                                Uri uri = Uri.parse(saf);
+                                Uri docUri = DocumentsContract.buildDocumentUriUsingTree(uri, DocumentsContract.getTreeDocumentId(uri));
+                                setDirPath(docUri.toString());
+                                return false;
+                            }
+                        }).setIcon(R.drawable.glyphicons_529_database_search);
+                    }
+                }
 
                 menu.getMenu().add(R.string.internal_storage).setOnMenuItemClickListener(new OnMenuItemClickListener() {
 
@@ -404,7 +444,9 @@ public class BrowseFragment2 extends UIFragment<FileMeta> {
 
     public void setDirPath(String path) {
         if (path != null) {
-            path = path.replace("//", "/");
+            if (path.startsWith("/")) {
+                path = path.replace("//", "/");
+            }
         }
         setDirPath(path, null);
         onGridList();
@@ -412,6 +454,19 @@ public class BrowseFragment2 extends UIFragment<FileMeta> {
 
     String prevPath;
 
+    @TargetApi(Build.VERSION_CODES.KITKAT)
+    public void closeQuietly(AutoCloseable closeable) {
+        if (closeable != null) {
+            try {
+                closeable.close();
+            } catch (RuntimeException rethrown) {
+                throw rethrown;
+            } catch (Exception ignored) {
+            }
+        }
+    }
+
+    @TargetApi(Build.VERSION_CODES.LOLLIPOP)
     public void setDirPath(final String path, List<FileMeta> items) {
         LOG.d("setDirPath", path);
         if (searchAdapter == null) {
@@ -452,7 +507,58 @@ public class BrowseFragment2 extends UIFragment<FileMeta> {
 
         searchAdapter.clearItems();
         if (items == null) {
-            items = SearchCore.getFilesAndDirs(path, fragmentType == TYPE_DEFAULT);
+            if (path.startsWith("/")) {
+                items = SearchCore.getFilesAndDirs(path, fragmentType == TYPE_DEFAULT);
+            } else {
+                items = new ArrayList<FileMeta>();
+                if (Build.VERSION.SDK_INT >= 21) {
+
+                    Uri uri = Uri.parse(path);
+                    ContentResolver contentResolver = getActivity().getContentResolver();
+                    Uri childrenUri = DocumentsContract.buildChildDocumentsUriUsingTree(uri, DocumentsContract.getTreeDocumentId(uri));
+
+                    Cursor childCursor = contentResolver.query(childrenUri, new String[] { //
+                            Document.COLUMN_DISPLAY_NAME, //
+                            Document.COLUMN_DOCUMENT_ID, //
+                            Document.COLUMN_ICON, //
+                            Document.COLUMN_LAST_MODIFIED, //
+                            Document.COLUMN_MIME_TYPE, //
+                            Document.COLUMN_SIZE, //
+                            Document.COLUMN_SUMMARY, //
+                    }, //
+                            null, null, null); //
+                    try {
+                        while (childCursor.moveToNext()) {
+                            String COLUMN_DISPLAY_NAME = childCursor.getString(0);
+                            String COLUMN_DOCUMENT_ID = childCursor.getString(1);
+                            String COLUMN_ICON = childCursor.getString(2);
+                            String COLUMN_LAST_MODIFIED = childCursor.getString(3);
+                            String COLUMN_MIME_TYPE = childCursor.getString(4);
+                            String COLUMN_SIZE = childCursor.getString(5);
+                            String COLUMN_SUMMARY = childCursor.getString(6);
+
+                            LOG.d("found- child 2=", COLUMN_DISPLAY_NAME, COLUMN_DOCUMENT_ID, COLUMN_ICON);
+
+                            FileMeta meta = new FileMeta();
+                            meta.setTitle(COLUMN_DISPLAY_NAME);
+                            meta.setPathTxt(COLUMN_DOCUMENT_ID);
+
+                            // meta.setPath("content://com.android.externalstorage.documents/tree/" +
+                            // COLUMN_DOCUMENT_ID);
+
+                            if ("vnd.android.document/directory".equals(COLUMN_MIME_TYPE)) {
+                                meta.setCusType(FileMetaAdapter.DISPLAY_TYPE_DIRECTORY);
+                            }
+
+                            items.add(meta);
+
+                        }
+                    } finally {
+                        closeQuietly(childCursor);
+                    }
+                }
+
+            }
         }
 
         if (AppState.get().sortByBrowse == AppState.BR_SORT_BY_PATH) {

@@ -76,6 +76,7 @@ public class LibreraApp extends Application {
         LOG.d("Build.Context", "Context.getExternalFilesDir(null)", getExternalFilesDir(null));
         LOG.d("Build.Context", "Environment.getExternalStorageDirectory()", Environment.getExternalStorageDirectory());
 
+
         try {
             if (LOG.isEnable) {
                 String myID = ADS.getByTestID(this);

@@ -87,6 +87,10 @@ public class ImageExtractor implements ImageDownloader {
 
     public Bitmap proccessCoverPage(PageUrl pageUrl) {
         String path = pageUrl.getPath();
+        if (!path.startsWith("/")) {
+            return BaseExtractor.getBookCoverWithTitle("#", "...", true);
+        }
+
         if (pageUrl.getHeight() == 0) {
             pageUrl.setHeight((int) (pageUrl.getWidth() * 1.5));
         }

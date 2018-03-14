@@ -190,6 +190,8 @@ public class AppState {
     // Color.parseColor(STYLE_COLORS.get(STYLE_COLORS.size() - 2));
     public int userColor = Color.MAGENTA;
 
+    public String pathSAF = "";
+
     final public static List<Integer> WIDGET_SIZE = Arrays.asList(0, 70, 100, 150, 200, 250);
 
     public final static int MAX_SPEED = 149;

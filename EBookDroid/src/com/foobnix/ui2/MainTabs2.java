@@ -13,6 +13,7 @@ import com.foobnix.android.utils.Apps;
 import com.foobnix.android.utils.Dips;
 import com.foobnix.android.utils.LOG;
 import com.foobnix.android.utils.Safe;
+import com.foobnix.android.utils.StringDB;
 import com.foobnix.android.utils.TxtUtils;
 import com.foobnix.ext.CacheZipUtils.CacheDir;
 import com.foobnix.pdf.SlidingTabLayout;
@@ -71,6 +72,8 @@ import android.widget.Toast;
 
 @SuppressLint("NewApi")
 public class MainTabs2 extends AdsFragmentActivity {
+    public static final int REQUEST_CODE_ADD_RESOURCE = 123;
+
     private static final String TAG = "MainTabs";
     public static final String EXTRA_EXIT = "EXTRA_EXIT";
     public static final String EXTRA_SHOW_TABS = "EXTRA_SHOW_TABS";
@@ -129,6 +132,22 @@ public class MainTabs2 extends AdsFragmentActivity {
                 startActivity(new Intent(this, MainTabs2.class));
             }
 
+        }
+
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == REQUEST_CODE_ADD_RESOURCE && resultCode == Activity.RESULT_OK) {
+            getContentResolver().takePersistableUriPermission(data.getData(), Intent.FLAG_GRANT_READ_URI_PERMISSION | Intent.FLAG_GRANT_WRITE_URI_PERMISSION);
+            Uri uri = data.getData();
+
+            String pathSAF = uri.toString();
+
+            AppState.get().pathSAF = StringDB.add(AppState.get().pathSAF, pathSAF);
+
+            LOG.d("REQUEST_CODE_ADD_RESOURCE", pathSAF, AppState.get().pathSAF);
         }
 
     }
@@ -374,13 +393,13 @@ public class MainTabs2 extends AdsFragmentActivity {
             FontExtractor.extractFonts(this);
         }
         EventBus.getDefault().register(this);
+
     }
 
     @Subscribe
     public void onMessegeBrightness(MessegeBrightness msg) {
         BrightnessHelper.onMessegeBrightness(msg, toastBrightnessText, overlay);
     }
-
 
     BroadcastReceiver broadcastReceiver = new BroadcastReceiver() {
 

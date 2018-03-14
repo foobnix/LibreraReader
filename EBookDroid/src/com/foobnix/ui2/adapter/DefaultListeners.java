@@ -22,12 +22,9 @@ import com.foobnix.ui2.AppDB;
 import com.foobnix.ui2.MainTabs2;
 import com.foobnix.ui2.fragment.UIFragment;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
-import android.content.ContentResolver;
-import android.content.Context;
 import android.content.Intent;
-import android.net.Uri;
-import android.provider.MediaStore;
 import android.support.v4.content.LocalBroadcastManager;
 import android.widget.Toast;
 
@@ -155,15 +152,14 @@ public class DefaultListeners {
         };
     };
 
+    @SuppressLint("NewApi")
     private static void deleteFile(Activity a, final FileMetaAdapter searchAdapter, final FileMeta result) {
+
         final File file = new File(result.getPath());
 
         boolean delete = file.delete();
-        if (!delete) {
-            delete = delete(a, file);
-        }
 
-        LOG.d("Delete file", file.getPath(), delete);
+        LOG.d("Delete-file", file.getPath(), delete, ExtUtils.getUriProvider(a, file));
 
         if (delete) {
             TempHolder.listHash++;
@@ -174,21 +170,6 @@ public class DefaultListeners {
         } else {
             Toast.makeText(a, R.string.can_t_delete_file, Toast.LENGTH_LONG).show();
         }
-    }
-
-    public static boolean delete(final Context context, final File file) {
-        final String where = MediaStore.MediaColumns.DATA + "=?";
-        final String[] selectionArgs = new String[] { file.getAbsolutePath() };
-        final ContentResolver contentResolver = context.getContentResolver();
-        final Uri filesUri = MediaStore.Files.getContentUri("external");
-
-        contentResolver.delete(filesUri, where, selectionArgs);
-
-        if (file.exists()) {
-
-            contentResolver.delete(filesUri, where, selectionArgs);
-        }
-        return !file.exists();
     }
 
     public static ResultResponse<FileMeta> getOnMenuClick(final Activity a, final FileMetaAdapter searchAdapter) {
