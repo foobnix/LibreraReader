@@ -1073,7 +1073,7 @@ public class DragingDialogs {
 
                 final EditText editText = (EditText) view.findViewById(R.id.editText);
                 final String selectedText = AppState.get().selectedText;
-                AppState.get().selectedText = null;
+                // AppState.get().selectedText = null;
 
                 editText.setText(selectedText);
 
@@ -1257,6 +1257,7 @@ public class DragingDialogs {
                                             intentCustom.putExtra("EXTRA_HEIGHT", Dips.screenHeight() / 2);
 
                                             if (AppState.get().isDouble || Dips.screenWidth() > Dips.screenHeight()) {
+                                                intentCustom.putExtra("EXTRA_HEIGHT", Dips.screenHeight() * 2 / 3);
                                                 if (TempHolder.get().textFromPage == 1) {
                                                     intentCustom.putExtra("EXTRA_GRAVITY", Gravity.BOTTOM | Gravity.RIGHT);
                                                 } else if (TempHolder.get().textFromPage == 2) {
@@ -1358,7 +1359,7 @@ public class DragingDialogs {
 
             @Override
             public void run() {
-                controller.clearSelectedText();
+                // controller.clearSelectedText();
             }
         });
 

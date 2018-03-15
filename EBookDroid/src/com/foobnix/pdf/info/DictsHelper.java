@@ -88,6 +88,8 @@ public class DictsHelper {
         intentCustom.putExtra("EXTRA_HEIGHT", Dips.screenHeight() / 2);
 
         if (AppState.get().isDouble || Dips.screenWidth() > Dips.screenHeight()) {
+            intentCustom.putExtra("EXTRA_HEIGHT", Dips.screenHeight() * 2 / 3);
+
             if (TempHolder.get().textFromPage == 1) {
                 intentCustom.putExtra("EXTRA_GRAVITY", Gravity.BOTTOM | Gravity.RIGHT);
             } else if (TempHolder.get().textFromPage == 2) {
