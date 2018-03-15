@@ -39,11 +39,11 @@ public class PageCropper {
                     continue;
                 }
 
-                int pR = Color.red(p);
-                int pG = Color.green(p);
-                int pB = Color.blue(p);
+                // int pR = Color.red(p);
+                // int pG = Color.green(p);
+                // int pB = Color.blue(p);
 
-                if (Math.abs(fR - pR) > 10 && Math.abs(fG - pG) > 10 && Math.abs(fB - pB) > 10) {
+                if (MagicHelper.isColorDarkSimple(p)) {
                     if (x < topX)
                         topX = x;
                     if (y < topY)
