@@ -39,6 +39,7 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.provider.DocumentsContract;
 import android.provider.DocumentsContract.Document;
+import android.support.v4.provider.DocumentFile;
 import android.support.v4.util.Pair;
 import android.support.v7.widget.LinearLayoutManager;
 import android.util.TypedValue;
@@ -220,9 +221,7 @@ public class BrowseFragment2 extends UIFragment<FileMeta> {
                             @TargetApi(Build.VERSION_CODES.LOLLIPOP)
                             @Override
                             public boolean onMenuItemClick(MenuItem item) {
-                                Uri uri = Uri.parse(saf);
-                                Uri docUri = DocumentsContract.buildDocumentUriUsingTree(uri, DocumentsContract.getTreeDocumentId(uri));
-                                setDirPath(docUri.toString());
+                                setDirPath(saf);
                                 return false;
                             }
                         }).setIcon(R.drawable.glyphicons_529_database_search);
@@ -514,6 +513,9 @@ public class BrowseFragment2 extends UIFragment<FileMeta> {
                 if (Build.VERSION.SDK_INT >= 21) {
 
                     Uri uri = Uri.parse(path);
+
+                    DocumentFile df = DocumentFile.fromTreeUri(getActivity(), uri);
+
                     ContentResolver contentResolver = getActivity().getContentResolver();
                     Uri childrenUri = DocumentsContract.buildChildDocumentsUriUsingTree(uri, DocumentsContract.getTreeDocumentId(uri));
 
