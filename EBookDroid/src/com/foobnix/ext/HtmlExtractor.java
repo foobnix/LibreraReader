@@ -57,13 +57,11 @@ public class HtmlExtractor {
 
             FileOutputStream out = new FileOutputStream(file);
 
-
-            String string = Jsoup.clean(html.toString(), Whitelist.relaxed().removeTags("img"));
-
+            String string = Jsoup.clean(html.toString(), Whitelist.basic());
 
             if (BookCSS.get().isAutoHypens) {
                 string = HypenUtils.applyHypnes(string);
-                string = Jsoup.clean(string, Whitelist.relaxed());
+                // string = Jsoup.clean(string, Whitelist.none());
             }
             // String string = html.toString();
             string = "<html><head></head><body style='text-align:justify;'><br/>" + string + "</body></html>";
