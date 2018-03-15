@@ -56,7 +56,6 @@ public class CacheZipUtils {
             }
         }
 
-
         public void removeCacheContent() {
             try {
                 removeFiles(getDir().listFiles());
@@ -147,7 +146,6 @@ public class CacheZipUtils {
         }
     }
 
-
     public static void removeFiles(File[] files, File exept) {
         try {
             if (files == null || exept == null) {
@@ -224,7 +222,6 @@ public class CacheZipUtils {
             }
             in = new FileInputStream(new File(path));
             ZipArchiveInputStream zipInputStream = new ZipArchiveInputStream(in, "cp1251");
-
 
             ZipArchiveEntry nextEntry = null;
             while ((nextEntry = zipInputStream.getNextZipEntry()) != null) {
@@ -336,6 +333,23 @@ public class CacheZipUtils {
         } finally {
             is.close();
             os.close();
+        }
+    }
+
+    public static void copyFile(InputStream is, File dest) throws IOException {
+        OutputStream os = null;
+        try {
+            os = new FileOutputStream(dest);
+            byte[] buffer = new byte[BUFFER_SIZE];
+            int length;
+            while ((length = is.read(buffer)) > 0) {
+                os.write(buffer, 0, length);
+            }
+        } finally {
+            is.close();
+            if (os != null) {
+                os.close();
+            }
         }
     }
 }

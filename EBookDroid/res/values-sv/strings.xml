@@ -457,4 +457,5 @@
    <string name="text_highlight_mode_is_disable">Textmarkeringsläge är inaktiverat</string>
    <string name="application_error_please_send_this_report_by_emial">Applikationsfel, skicka denna rapport via emaill</string>
    <string name="pause_reading_if_the_incoming_call_or_other_sounds">Pausa läsning om inkommande samtal eller andra ljud</string>
+   <string name="add_resource">Lägg till resurs</string>
 </resources>

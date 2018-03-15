@@ -91,7 +91,7 @@
             android:layout_width="@dimen/wh_button"
             android:layout_height="@dimen/wh_button"
             android:layout_weight="0"
-            android:src="@drawable/glyphicons_21_home" />
+            android:src="@drawable/glyphicons_441_folder_closed" />
 
         <View
             android:layout_width="1dip"

@@ -87,9 +87,6 @@ public class ImageExtractor implements ImageDownloader {
 
     public Bitmap proccessCoverPage(PageUrl pageUrl) {
         String path = pageUrl.getPath();
-        if (!path.startsWith("/")) {
-            return BaseExtractor.getBookCoverWithTitle("#", "...", true);
-        }
 
         if (pageUrl.getHeight() == 0) {
             pageUrl.setHeight((int) (pageUrl.getWidth() * 1.5));
@@ -373,17 +370,22 @@ public class ImageExtractor implements ImageDownloader {
             LOG.d("Load image data ", uri);
             return new ByteArrayInputStream(Base64.decode(uri, Base64.DEFAULT));
         }
-
         if (!imageUri.startsWith("{")) {
             return baseImage.getStream(imageUri, null);
         }
+
         if (sp.contains("" + imageUri.hashCode())) {
             LOG.d("Error FILE", imageUri);
             return messageFile("#crash", "");
         }
 
+
         final PageUrl pageUrl = PageUrl.fromString(imageUri);
         String path = pageUrl.getPath();
+
+        if (ExtUtils.isExteralSD(path)) {
+            return messageFile("", "");
+        }
 
         File file = new File(path);
         try {

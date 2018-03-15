@@ -457,4 +457,5 @@
    <string name="text_highlight_mode_is_disable">텍스트 강조 모드가 사용 중지되었습니다.</string>
    <string name="application_error_please_send_this_report_by_emial">응용 프로그램 오류입니다, emaill 님이이 보고서를 보내주십시오.</string>
    <string name="pause_reading_if_the_incoming_call_or_other_sounds">걸려 오는 전화 또는 다른 소리가 들리면 독서를 일시 중지하십시오.</string>
+   <string name="add_resource">리소스 추가</string>
 </resources>

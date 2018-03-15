@@ -70,6 +70,7 @@ import android.os.Build;
 import android.os.Environment;
 import android.os.Handler;
 import android.os.Parcelable;
+import android.provider.DocumentsContract;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.content.FileProvider;
@@ -188,6 +189,30 @@ public class ExtUtils {
                 ExtUtils.showDocument(a, file);
             }
         }
+    }
+
+    public static boolean isExteralSD(String path) {
+        if (path == null) {
+            return false;
+        }
+        return path.startsWith("content://");
+    }
+
+    @TargetApi(Build.VERSION_CODES.LOLLIPOP)
+    public static String getExtSDDisplayName(Context c, String path) {
+        String id;
+        Uri uri = Uri.parse(path);
+        try {
+            if (DocumentsContract.isDocumentUri(c, uri)) {
+                id = DocumentsContract.getDocumentId(uri);
+            } else {
+                id = DocumentsContract.getTreeDocumentId(uri);
+            }
+        } catch (Exception e) {
+            LOG.e(e);
+            return path;
+        }
+        return id;
     }
 
     public static boolean isMediaContent(String path) {

@@ -1,6 +1,7 @@
 package com.foobnix.ui2.adapter;
 
 import java.io.File;
+import java.io.InputStream;
 
 import org.greenrobot.eventbus.EventBus;
 
@@ -8,6 +9,7 @@ import com.foobnix.android.utils.LOG;
 import com.foobnix.android.utils.ResultResponse;
 import com.foobnix.android.utils.ResultResponse2;
 import com.foobnix.dao2.FileMeta;
+import com.foobnix.ext.CacheZipUtils;
 import com.foobnix.pdf.info.ExtUtils;
 import com.foobnix.pdf.info.R;
 import com.foobnix.pdf.info.widget.FileInformationDialog;
@@ -25,7 +27,9 @@ import com.foobnix.ui2.fragment.UIFragment;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Intent;
+import android.net.Uri;
 import android.support.v4.content.LocalBroadcastManager;
+import android.support.v4.provider.DocumentFile;
 import android.widget.Toast;
 
 public class DefaultListeners {
@@ -91,7 +95,36 @@ public class DefaultListeners {
                 if (isTagCicked(a, result)) {
                     return true;
                 }
-                final File item = new File(result.getPath());
+
+                String path = result.getPath();
+                if (ExtUtils.isExteralSD(path)) {
+                    try {
+                        Uri uri = Uri.parse(path);
+
+                        File cacheFile = new File(CacheZipUtils.ATTACHMENTS_CACHE_DIR, result.getTitle());
+                        if (cacheFile.exists()) {
+                            ExtUtils.openFile(a, cacheFile);
+                            return true;
+                        }
+
+                        LOG.d("Copy-file", path);
+                        InputStream inputStream = a.getContentResolver().openInputStream(uri);
+                        if (inputStream == null) {
+                            Toast.makeText(a, R.string.incorrect_value, Toast.LENGTH_SHORT).show();
+                            return false;
+                        }
+                        CacheZipUtils.copyFile(inputStream, cacheFile);
+                        LOG.d("Create-file", cacheFile.getPath(), cacheFile.length());
+
+                        ExtUtils.openFile(a, cacheFile);
+                    } catch (Exception e) {
+                        LOG.e(e);
+                    }
+
+                    return true;
+                }
+
+                final File item = new File(path);
                 if (item.isDirectory()) {
                     Intent intent = new Intent(UIFragment.INTENT_TINT_CHANGE)//
                             .putExtra(MainTabs2.EXTRA_PAGE_NUMBER, UITab.getCurrentTabIndex(UITab.BrowseFragment));//
@@ -155,6 +188,15 @@ public class DefaultListeners {
     @SuppressLint("NewApi")
     private static void deleteFile(Activity a, final FileMetaAdapter searchAdapter, final FileMeta result) {
 
+        if (ExtUtils.isExteralSD(result.getPath())) {
+            DocumentFile doc = DocumentFile.fromSingleUri(a, Uri.parse(result.getPath()));
+            boolean delete = doc.delete();
+            if (!delete) {
+                Toast.makeText(a, R.string.can_t_delete_file, Toast.LENGTH_LONG).show();
+            }
+            return;
+        }
+
         final File file = new File(result.getPath());
 
         boolean delete = file.delete();
@@ -180,7 +222,8 @@ public class DefaultListeners {
 
                 final File file = new File(result.getPath());
 
-                if (ExtUtils.doifFileExists(a, file)) {
+
+                if (ExtUtils.isExteralSD(result.getPath()) || ExtUtils.doifFileExists(a, file)) {
 
                     Runnable onDeleteAction = new Runnable() {
 

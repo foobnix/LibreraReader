@@ -457,4 +457,5 @@
    <string name="text_highlight_mode_is_disable">पाठ हाइलाइट मोड अक्षम है</string>
    <string name="application_error_please_send_this_report_by_emial">एप्लिकेशन त्रुटि, कृपया इस रिपोर्ट को एमाइल द्वारा भेजें</string>
    <string name="pause_reading_if_the_incoming_call_or_other_sounds">आने वाली कॉल या अन्य ध्वनियों को पढ़ने के लिए रोकें</string>
+   <string name="add_resource">संसाधन जोड़ें</string>
 </resources>

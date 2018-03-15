@@ -457,4 +457,5 @@
    <string name="text_highlight_mode_is_disable">Režim zvýraznenia textu je deaktivovaný</string>
    <string name="application_error_please_send_this_report_by_emial">Chyba aplikácie, pošlite túto správu e-mailom</string>
    <string name="pause_reading_if_the_incoming_call_or_other_sounds">Pozastaviť čítanie, či prichádzajúci hovor alebo iné zvuky</string>
+   <string name="add_resource">Pridajte zdroj</string>
 </resources>

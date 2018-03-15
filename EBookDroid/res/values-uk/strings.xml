@@ -457,4 +457,5 @@
    <string name="text_highlight_mode_is_disable">Режим підсвічування тексту вимкнено</string>
    <string name="application_error_please_send_this_report_by_emial">Помилка програми, будь ласка, надішліть цей звіт за допомогою emaill</string>
    <string name="pause_reading_if_the_incoming_call_or_other_sounds">Призупинити читання, якщо вхідний дзвінок або інші звуки</string>
+   <string name="add_resource">Додати ресурс</string>
 </resources>

@@ -457,4 +457,5 @@
    <string name="text_highlight_mode_is_disable">Tekstin korostustila on poistettu käytöstä</string>
    <string name="application_error_please_send_this_report_by_emial">Sovellusvirhe, lähetä tämä raportti osoitteeseen emaill</string>
    <string name="pause_reading_if_the_incoming_call_or_other_sounds">Keskeytä lukeminen, jos saapuva puhelu tai muut äänet</string>
+   <string name="add_resource">Lisää resursseja</string>
 </resources>

@@ -457,4 +457,5 @@
    <string name="text_highlight_mode_is_disable">Text and Style modus est disable</string>
    <string name="application_error_please_send_this_report_by_emial">Applicatio errorem mittere divulgatum per emaill</string>
    <string name="pause_reading_if_the_incoming_call_or_other_sounds">Si mora lectioni aut sonus advenientis vocationem</string>
+   <string name="add_resource">Addere resource</string>
 </resources>
