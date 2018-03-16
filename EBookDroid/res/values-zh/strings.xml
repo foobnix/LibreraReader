@@ -300,10 +300,10 @@
    <string name="two_pages">双页</string>
    <string name="two_pages_cover">封页</string>
    <string name="half_page">半页</string>
-   <string name="by_pages">按页面</string>
-   <string name="by_screans">按屏幕</string>
+   <string name="by_pages">按页</string>
+   <string name="by_screans">按屏</string>
    <string name="of_screen">滚距</string>
-   <string name="custom_value">自定义值</string>
+   <string name="custom_value">自定</string>
    <string name="automatic_page_flipping">自动翻页</string>
    <string name="interval_sec_">间隔（秒）</string>
    <string name="loop_autoplay">启用自动循环</string>
@@ -324,7 +324,7 @@
    <string name="set_the_current_page_number">设置页码</string>
    <string name="the_book_is_over">本书结束</string>
    <string name="___SELECT___TEXT___SECTION___">选择文本</string>
-   <string name="highlight_of_text">高亮</string>
+   <string name="highlight_of_text">文本高亮</string>
    <string name="underline_of_text">下划线</string>
    <string name="strikethrough_of_text">删除线</string>
    <string name="text">文本</string>
@@ -420,7 +420,7 @@
    <string name="request_a_password_when_the_application_starts">设置启动密码</string>
    <string name="incorrect_password">密码错误</string>
    <string name="repeat_password">确认</string>
-   <string name="internal_storage">Sdcard0</string>
+   <string name="internal_storage">内部存储</string>
    <string name="the_page_is_clipped_the_text_selection_does_not_work">页面已被剪辑，文本选择失效。</string>
    <string name="title">标题</string>
    <string name="subject">主题</string>
@@ -457,5 +457,5 @@
    <string name="text_highlight_mode_is_disable">文本高亮已被禁用</string>
    <string name="application_error_please_send_this_report_by_emial">请用电子邮件，发送崩溃日志。</string>
    <string name="pause_reading_if_the_incoming_call_or_other_sounds">来电暂停</string>
-   <string name="add_resource">添加资源</string>
+   <string name="add_resource">快捷索引</string>
 </resources>
