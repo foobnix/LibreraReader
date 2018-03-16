@@ -17,6 +17,14 @@ Android Play market apps:
 
 [Telegram] (https://t.me/LibreraReader)
 
+## Support intents
+
+intent.putExtra("page", int); //to open doc on page number
+
+intent.putExtra("percent", float); //to open doc page by percent 
+
+intent.putExtra("password", String); //to open password protected PDF
+
 ## How to install
 
 Librera is developed on Eclise with ADT (Android Developer Tools Plugin)
