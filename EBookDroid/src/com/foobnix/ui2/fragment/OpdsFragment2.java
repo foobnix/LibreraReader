@@ -1,6 +1,8 @@
 package com.foobnix.ui2.fragment;
 
 import java.io.File;
+import java.io.FileOutputStream;
+import java.io.OutputStream;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -33,12 +35,16 @@ import com.foobnix.ui2.AppDB;
 import com.foobnix.ui2.adapter.EntryAdapter;
 import com.foobnix.ui2.fast.FastScrollRecyclerView;
 
+import android.annotation.TargetApi;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.DialogInterface;
 import android.graphics.Color;
+import android.net.Uri;
 import android.os.AsyncTask;
+import android.os.Build;
 import android.os.Bundle;
+import android.provider.DocumentsContract;
 import android.support.v4.util.Pair;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -499,7 +505,9 @@ public class OpdsFragment2 extends UIFragment<Entry> {
     public void onClickLink(final Link link) {
         LOG.d("onClickLink", link.type, link.href);
         if (link.filePath != null) {
-            ExtUtils.openFile(getActivity(), new File(link.filePath));
+            FileMeta meta = new FileMeta(link.filePath);
+            meta.setTitle(link.getDownloadName());
+            ExtUtils.openFile(getActivity(), meta);
         } else if (link.isDisabled()) {
             Toast.makeText(getActivity(), R.string.can_t_download, Toast.LENGTH_SHORT).show();
         } else if (link.isWebLink()) {
@@ -522,22 +530,41 @@ public class OpdsFragment2 extends UIFragment<Entry> {
             }
 
             AlertDialogs.showDialog(getActivity(), link.getDownloadName(), getActivity().getString(R.string.download), new Runnable() {
+                String bookPath;
 
                 @Override
                 public void run() {
-                    File LIRBI_DOWNLOAD_DIR = new File(AppState.get().downlodsPath);
-                    if (!LIRBI_DOWNLOAD_DIR.exists()) {
-                        LIRBI_DOWNLOAD_DIR.mkdirs();
-                    }
-
-                    final File file = new File(LIRBI_DOWNLOAD_DIR, link.getDownloadName());
-                    file.delete();
 
                     new AsyncTask() {
 
+                        @TargetApi(Build.VERSION_CODES.LOLLIPOP)
                         @Override
                         protected Object doInBackground(Object... params) {
+
                             try {
+                                OutputStream outStream = null;
+                                String displayName = link.getDownloadName();
+                                if (ExtUtils.isExteralSD(AppState.get().downlodsPath)) {
+                                    String mimeType = ExtUtils.getMimeType(displayName);
+
+                                    Uri uri = Uri.parse(AppState.get().downlodsPath);
+                                    Uri childrenUri = ExtUtils.getChildUri(getContext(), uri);
+                                    Uri createDocument = DocumentsContract.createDocument(getActivity().getContentResolver(), childrenUri, mimeType, displayName);
+
+                                    bookPath = createDocument.toString();
+                                    outStream = getActivity().getContentResolver().openOutputStream(createDocument);
+                                } else {
+                                    File LIRBI_DOWNLOAD_DIR = new File(AppState.get().downlodsPath);
+                                    if (!LIRBI_DOWNLOAD_DIR.exists()) {
+                                        LIRBI_DOWNLOAD_DIR.mkdirs();
+                                    }
+
+                                    final File file = new File(LIRBI_DOWNLOAD_DIR, displayName);
+                                    file.delete();
+                                    outStream = new FileOutputStream(file);
+                                    bookPath = file.getPath();
+                                }
+
                                 okhttp3.Request request = new okhttp3.Request.Builder()//
                                         .cacheControl(new CacheControl.Builder().noCache().build()).url(link.href)//
                                         .build();//
@@ -547,7 +574,7 @@ public class OpdsFragment2 extends UIFragment<Entry> {
                                         .execute();
                                 BufferedSource source = response.body().source();
 
-                                BufferedSink sink = Okio.buffer(Okio.sink(file));
+                                BufferedSink sink = Okio.buffer(Okio.sink(outStream));
                                 sink.writeAll(response.body().source());
                                 sink.close();
 
@@ -567,17 +594,18 @@ public class OpdsFragment2 extends UIFragment<Entry> {
                         @Override
                         protected void onPostExecute(Object result) {
                             progressBar.setVisibility(View.GONE);
-                            if ((Boolean) result == false || file.length() == 0) {
+                            if ((Boolean) result == false) {
                                 Toast.makeText(getContext(), R.string.loading_error, Toast.LENGTH_LONG).show();
                                 // Urls.openWevView(getActivity(), link.href, null);
                             } else {
-                                link.filePath = file.getPath();
+                                link.filePath = bookPath;
 
-                                FileMeta meta = AppDB.get().getOrCreate(file.getPath());
-                                meta.setIsSearchBook(true);
-                                AppDB.get().updateOrSave(meta);
-                                IMG.loadCoverPageWithEffect(meta.getPath(), IMG.getImageSize());
-
+                                if (!ExtUtils.isExteralSD(bookPath)) {
+                                    FileMeta meta = AppDB.get().getOrCreate(bookPath);
+                                    meta.setIsSearchBook(true);
+                                    AppDB.get().updateOrSave(meta);
+                                    IMG.loadCoverPageWithEffect(meta.getPath(), IMG.getImageSize());
+                                }
                                 TempHolder.listHash++;
 
                             }
@@ -593,6 +621,11 @@ public class OpdsFragment2 extends UIFragment<Entry> {
     }
 
     public void clearEmpty() {
+        if (ExtUtils.isExteralSD(AppState.get().downlodsPath)) {
+            searchAdapter.notifyDataSetChanged();
+            return;
+        }
+
         try {
             File LIRBI_DOWNLOAD_DIR = new File(AppState.get().downlodsPath);
 

@@ -148,6 +148,12 @@ public class MainTabs2 extends AdsFragmentActivity {
             AppState.get().pathSAF = StringDB.add(AppState.get().pathSAF, pathSAF);
 
             LOG.d("REQUEST_CODE_ADD_RESOURCE", pathSAF, AppState.get().pathSAF);
+            
+            UIFragment uiFragment = tabFragments.get(pager.getCurrentItem());
+            if (uiFragment instanceof BrowseFragment2) {
+                BrowseFragment2 fr = (BrowseFragment2) uiFragment;
+                fr.setDirPath(pathSAF);
+            }
         }
 
     }

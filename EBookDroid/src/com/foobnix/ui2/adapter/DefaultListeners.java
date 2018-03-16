@@ -1,7 +1,6 @@
 package com.foobnix.ui2.adapter;
 
 import java.io.File;
-import java.io.InputStream;
 
 import org.greenrobot.eventbus.EventBus;
 
@@ -9,7 +8,6 @@ import com.foobnix.android.utils.LOG;
 import com.foobnix.android.utils.ResultResponse;
 import com.foobnix.android.utils.ResultResponse2;
 import com.foobnix.dao2.FileMeta;
-import com.foobnix.ext.CacheZipUtils;
 import com.foobnix.pdf.info.ExtUtils;
 import com.foobnix.pdf.info.R;
 import com.foobnix.pdf.info.widget.FileInformationDialog;
@@ -96,35 +94,7 @@ public class DefaultListeners {
                     return true;
                 }
 
-                String path = result.getPath();
-                if (ExtUtils.isExteralSD(path)) {
-                    try {
-                        Uri uri = Uri.parse(path);
-
-                        File cacheFile = new File(CacheZipUtils.ATTACHMENTS_CACHE_DIR, result.getTitle());
-                        if (cacheFile.exists()) {
-                            ExtUtils.openFile(a, cacheFile);
-                            return true;
-                        }
-
-                        LOG.d("Copy-file", path);
-                        InputStream inputStream = a.getContentResolver().openInputStream(uri);
-                        if (inputStream == null) {
-                            Toast.makeText(a, R.string.incorrect_value, Toast.LENGTH_SHORT).show();
-                            return false;
-                        }
-                        CacheZipUtils.copyFile(inputStream, cacheFile);
-                        LOG.d("Create-file", cacheFile.getPath(), cacheFile.length());
-
-                        ExtUtils.openFile(a, cacheFile);
-                    } catch (Exception e) {
-                        LOG.e(e);
-                    }
-
-                    return true;
-                }
-
-                final File item = new File(path);
+                final File item = new File(result.getPath());
                 if (item.isDirectory()) {
                     Intent intent = new Intent(UIFragment.INTENT_TINT_CHANGE)//
                             .putExtra(MainTabs2.EXTRA_PAGE_NUMBER, UITab.getCurrentTabIndex(UITab.BrowseFragment));//
@@ -133,7 +103,7 @@ public class DefaultListeners {
                     EventBus.getDefault().post(new OpenDirMessage(result.getPath()));
 
                 } else {
-                    ExtUtils.openFile(a, item);
+                    ExtUtils.openFile(a, result);
                 }
                 return false;
             }
@@ -187,21 +157,16 @@ public class DefaultListeners {
 
     @SuppressLint("NewApi")
     private static void deleteFile(Activity a, final FileMetaAdapter searchAdapter, final FileMeta result) {
-
+        boolean delete = false;
         if (ExtUtils.isExteralSD(result.getPath())) {
             DocumentFile doc = DocumentFile.fromSingleUri(a, Uri.parse(result.getPath()));
-            boolean delete = doc.delete();
-            if (!delete) {
-                Toast.makeText(a, R.string.can_t_delete_file, Toast.LENGTH_LONG).show();
-            }
-            return;
+            delete = doc.delete();
+        } else {
+            final File file = new File(result.getPath());
+            delete = file.delete();
         }
 
-        final File file = new File(result.getPath());
-
-        boolean delete = file.delete();
-
-        LOG.d("Delete-file", file.getPath(), delete, ExtUtils.getUriProvider(a, file));
+        LOG.d("Delete-file", result.getPath(), delete);
 
         if (delete) {
             TempHolder.listHash++;
@@ -219,25 +184,48 @@ public class DefaultListeners {
 
             @Override
             public boolean onResultRecive(final FileMeta result) {
+                if (false) {
+
+                    DocumentFile df = DocumentFile.fromFile(new File(result.getPath()));
+                    LOG.d("getOnMenuClick", df.getUri());
+                    boolean delete = df.delete();
+                    LOG.d("getOnMenuClick delete", delete);
+                    if (!delete) {
+                        DocumentFile doc = DocumentFile.fromSingleUri(a, Uri.parse(result.getPath()));
+                        delete = doc.delete();
+                        LOG.d("getOnMenuClick delete 2", delete);
+                    }
+
+                    if (delete) {
+                        TempHolder.listHash++;
+                        AppDB.get().delete(result);
+                        searchAdapter.getItemsList().remove(result);
+                        searchAdapter.notifyDataSetChanged();
+                    }
+
+                }
 
                 final File file = new File(result.getPath());
+                Runnable onDeleteAction = new Runnable() {
 
+                    @Override
+                    public void run() {
+                        deleteFile(a, searchAdapter, result);
+                    }
 
-                if (ExtUtils.isExteralSD(result.getPath()) || ExtUtils.doifFileExists(a, file)) {
+                };
 
-                    Runnable onDeleteAction = new Runnable() {
+                if (ExtUtils.isExteralSD(result.getPath())) {
+                    ShareDialog.show(a, file, onDeleteAction, -1, null, null);
+                } else {
 
-                        @Override
-                        public void run() {
-                            deleteFile(a, searchAdapter, result);
+                    if (ExtUtils.doifFileExists(a, file)) {
+
+                        if (ExtUtils.isNotSupportedFile(file)) {
+                            ShareDialog.showArchive(a, file, onDeleteAction);
+                        } else {
+                            ShareDialog.show(a, file, onDeleteAction, -1, null, null);
                         }
-
-                    };
-
-                    if (ExtUtils.isNotSupportedFile(file)) {
-                        ShareDialog.showArchive(a, file, onDeleteAction);
-                    } else {
-                        ShareDialog.show(a, file, onDeleteAction, -1, null, null);
                     }
                 }
 

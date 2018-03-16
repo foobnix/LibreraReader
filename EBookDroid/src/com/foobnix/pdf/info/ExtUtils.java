@@ -173,7 +173,27 @@ public class ExtUtils {
     static List<String> audio = Arrays.asList(".mp3", ".mp4", ".wav", ".ogg", ".m4a");
     static List<String> video = Arrays.asList(".webm", ".m3u8", ".ts", ".flv", ".mp4", ".3gp", ".mov", ".avi", ".wmv", ".mp4", ".m4v");
 
-    public static void openFile(Activity a, File file) {
+    public static void openFile(Activity a, FileMeta meta) {
+        File file = new File(meta.getPath());
+
+        if (ExtUtils.isExteralSD(meta.getPath())) {
+            Uri uri = Uri.parse(meta.getPath());
+            file = new File(CacheZipUtils.ATTACHMENTS_CACHE_DIR, meta.getTitle());
+            if (!file.exists()) {
+                try {
+                    InputStream inputStream = a.getContentResolver().openInputStream(uri);
+                    if (inputStream == null) {
+                        Toast.makeText(a, R.string.incorrect_value, Toast.LENGTH_SHORT).show();
+                        return;
+                    }
+                    CacheZipUtils.copyFile(inputStream, file);
+                    LOG.d("Create-file", file.getPath(), file.length());
+                } catch (Exception e) {
+                    LOG.e(e);
+                }
+            }
+        }
+
         if (ExtUtils.doifFileExists(a, file)) {
 
             if (ExtUtils.isZip(file)) {
@@ -195,7 +215,7 @@ public class ExtUtils {
         if (path == null) {
             return false;
         }
-        return path.startsWith("content://");
+        return path.startsWith("content:/");
     }
 
     @TargetApi(Build.VERSION_CODES.LOLLIPOP)
@@ -213,6 +233,15 @@ public class ExtUtils {
             return path;
         }
         return id;
+    }
+
+    @TargetApi(Build.VERSION_CODES.LOLLIPOP)
+    public static Uri getChildUri(Context c, Uri uri) {
+        if (DocumentsContract.isDocumentUri(c, uri)) {
+            return DocumentsContract.buildChildDocumentsUriUsingTree(uri, DocumentsContract.getDocumentId(uri));
+        } else {
+            return DocumentsContract.buildChildDocumentsUriUsingTree(uri, DocumentsContract.getTreeDocumentId(uri));
+        }
     }
 
     public static boolean isMediaContent(String path) {
@@ -948,9 +977,14 @@ public class ExtUtils {
     }
 
     public static String getMimeType(File file) {
+        String name = file.getName();
+        return getMimeType(name);
+    }
+
+    public static String getMimeType(String name) {
         String mime = "";
         try {
-            String name = file.getName().toLowerCase();
+            name = name.toLowerCase(Locale.US);
             String ext = getFileExtension(name);
 
             String mimeType = mimeCache.get("." + ext);
@@ -961,7 +995,7 @@ public class ExtUtils {
                 mime = codecType.getFirstMimeTime();
             }
         } catch (Exception e) {
-            mime = "application/" + ExtUtils.getFileExtension(file);
+            mime = "application/" + ExtUtils.getFileExtension(name);
         }
         LOG.d("getMimeType", mime);
         return mime;

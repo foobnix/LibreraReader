@@ -22,6 +22,7 @@ import android.view.MenuItem.OnMenuItemClickListener;
 import android.view.View;
 import android.view.View.MeasureSpec;
 import android.view.View.OnClickListener;
+import android.view.View.OnLongClickListener;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
@@ -46,6 +47,7 @@ public class MyPopupMenu {
         String stringRes;
         int iconRes;
         OnMenuItemClickListener click;
+        OnMenuItemClickListener onLongClick;
         private String fontPath;
 
         public Menu add(int res) {
@@ -71,6 +73,11 @@ public class MyPopupMenu {
 
         public Menu setOnMenuItemClickListener(OnMenuItemClickListener onclick) {
             this.click = onclick;
+            return this;
+        }
+
+        public Menu setOnMenuItemLongClickListener(OnMenuItemClickListener onLongClick) {
+            this.onLongClick = onLongClick;
             return this;
         }
 
@@ -144,6 +151,21 @@ public class MyPopupMenu {
                             LOG.e(e);
                         }
                     }
+                });
+
+                layout.setOnLongClickListener(new OnLongClickListener() {
+
+                    @Override
+                    public boolean onLongClick(View v) {
+                        item.onLongClick.onMenuItemClick(null);
+                        try {
+                            p1.dismiss();
+                        } catch (Exception e) {
+                            LOG.e(e);
+                        }
+                        return true;
+                    }
+
                 });
 
             }

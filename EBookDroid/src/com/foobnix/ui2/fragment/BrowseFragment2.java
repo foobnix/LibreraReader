@@ -201,39 +201,6 @@ public class BrowseFragment2 extends UIFragment<FileMeta> {
 
                 MyPopupMenu menu = new MyPopupMenu(getActivity(), onHome);
 
-                if (Build.VERSION.SDK_INT >= 21) {
-                    menu.getMenu().add(R.string.add_resource).setOnMenuItemClickListener(new OnMenuItemClickListener() {
-
-                        @Override
-                        public boolean onMenuItemClick(MenuItem item) {
-                            Intent intent = new Intent(Intent.ACTION_OPEN_DOCUMENT_TREE);
-
-                            intent.addFlags(Intent.FLAG_GRANT_PERSISTABLE_URI_PERMISSION//
-                                    | Intent.FLAG_GRANT_PREFIX_URI_PERMISSION//
-                                    | Intent.FLAG_GRANT_READ_URI_PERMISSION//
-                                    | Intent.FLAG_GRANT_WRITE_URI_PERMISSION//
-                            );
-
-                            getActivity().startActivityForResult(intent, MainTabs2.REQUEST_CODE_ADD_RESOURCE);
-                            return true;
-                        }
-                    }).setIcon(R.drawable.glyphicons_146_add_folder_plus);
-
-                    List<String> safs = StringDB.asList(AppState.get().pathSAF);
-
-                    for (final String saf : safs) {
-                        String fileName = DocumentsContract.getTreeDocumentId(Uri.parse(saf));
-                        menu.getMenu().add(fileName).setOnMenuItemClickListener(new OnMenuItemClickListener() {
-
-                            @Override
-                            public boolean onMenuItemClick(MenuItem item) {
-                                setDirPath(saf);
-                                return false;
-                            }
-                        }).setIcon(R.drawable.glyphicons_146_folder_plus);
-                    }
-                }
-
                 menu.getMenu().add(R.string.internal_storage).setOnMenuItemClickListener(new OnMenuItemClickListener() {
 
                     @Override
@@ -241,7 +208,7 @@ public class BrowseFragment2 extends UIFragment<FileMeta> {
                         setDirPath(Environment.getExternalStorageDirectory().getPath());
                         return false;
                     }
-                }).setIcon(R.drawable.glyphicons_441_folder_closed);
+                }).setIcon(R.drawable.glyphicons_146_folder_sd);
 
                 for (final String info : extFolders) {
 
@@ -260,7 +227,7 @@ public class BrowseFragment2 extends UIFragment<FileMeta> {
                             setDirPath(info);
                             return false;
                         }
-                    }).setIcon(R.drawable.glyphicons_441_folder_closed);
+                    }).setIcon(R.drawable.glyphicons_146_folder_sd);
 
                 }
 
@@ -273,6 +240,32 @@ public class BrowseFragment2 extends UIFragment<FileMeta> {
                     }
                 }).setIcon(R.drawable.glyphicons_591_folder_heart);
 
+                // resources
+
+                if (Build.VERSION.SDK_INT >= 21) {
+                    List<String> safs = StringDB.asList(AppState.get().pathSAF);
+
+                    for (final String saf : safs) {
+                        String fileName = DocumentsContract.getTreeDocumentId(Uri.parse(saf));
+                        menu.getMenu().add(fileName).setOnMenuItemClickListener(new OnMenuItemClickListener() {
+
+                            @Override
+                            public boolean onMenuItemClick(MenuItem item) {
+                                setDirPath(saf);
+                                return false;
+                            }
+                        }).setOnMenuItemLongClickListener(new OnMenuItemClickListener() {
+
+                            @Override
+                            public boolean onMenuItemClick(MenuItem item) {
+                                AppState.get().pathSAF = StringDB.delete(AppState.get().pathSAF, saf);
+                                return false;
+                            }
+                        }).setIcon(R.drawable.glyphicons_146_folder_plus);
+                    }
+                }
+
+                // stars
                 List<FileMeta> starFolders = AppDB.get().getStarsFolder();
                 List<String> names = new ArrayList<String>();
                 for (FileMeta f : starFolders) {
@@ -299,6 +292,26 @@ public class BrowseFragment2 extends UIFragment<FileMeta> {
                             return false;
                         }
                     }).setIcon(R.drawable.glyphicons_591_folder_star);
+
+                }
+
+                if (Build.VERSION.SDK_INT >= 21) {
+                    menu.getMenu().add(R.string.add_resource).setOnMenuItemClickListener(new OnMenuItemClickListener() {
+
+                        @Override
+                        public boolean onMenuItemClick(MenuItem item) {
+                            Intent intent = new Intent(Intent.ACTION_OPEN_DOCUMENT_TREE);
+
+                            intent.addFlags(Intent.FLAG_GRANT_PERSISTABLE_URI_PERMISSION//
+                                    | Intent.FLAG_GRANT_PREFIX_URI_PERMISSION//
+                                    | Intent.FLAG_GRANT_READ_URI_PERMISSION//
+                                    | Intent.FLAG_GRANT_WRITE_URI_PERMISSION//
+                            );
+
+                            getActivity().startActivityForResult(intent, MainTabs2.REQUEST_CODE_ADD_RESOURCE);
+                            return true;
+                        }
+                    }).setIcon(R.drawable.glyphicons_146_add_folder_plus);
 
                 }
 
@@ -413,7 +426,8 @@ public class BrowseFragment2 extends UIFragment<FileMeta> {
         @Override
         public void onClick(View v) {
             if (fragmentType == TYPE_SELECT_FOLDER) {
-                if (new File(AppState.get().dirLastPath).canRead()) {
+
+                if (ExtUtils.isExteralSD(AppState.get().dirLastPath) || new File(AppState.get().dirLastPath).canWrite()) {
                     onPositiveAction.onResultRecive(AppState.get().dirLastPath);
                 } else {
                     Toast.makeText(getContext(), R.string.incorrect_value, Toast.LENGTH_SHORT).show();
@@ -493,6 +507,7 @@ public class BrowseFragment2 extends UIFragment<FileMeta> {
         return false;
     }
 
+
     public void setDirPath(String path) {
         if (path != null) {
             if (path.startsWith("/")) {
@@ -570,11 +585,7 @@ public class BrowseFragment2 extends UIFragment<FileMeta> {
                     Uri childrenUri = null;
 
                     try {
-                        if (DocumentsContract.isDocumentUri(getContext(), uri)) {
-                            childrenUri = DocumentsContract.buildChildDocumentsUriUsingTree(uri, DocumentsContract.getDocumentId(uri));
-                        } else {
-                            childrenUri = DocumentsContract.buildChildDocumentsUriUsingTree(uri, DocumentsContract.getTreeDocumentId(uri));
-                        }
+                        childrenUri = ExtUtils.getChildUri(getContext(), uri);
 
                         if (childrenUri != null) {
 
