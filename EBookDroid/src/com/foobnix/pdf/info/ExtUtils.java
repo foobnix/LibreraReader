@@ -792,9 +792,9 @@ public class ExtUtils {
         intent.setData(uri);
 
         if (page > 0) {
-            intent.putExtra(DocumentController.PAGE, page);
-        }
+            intent.putExtra(DocumentController.EXTRA_PAGE, page);
 
+        }
         c.startActivity(intent);
         // FileMetaDB.get().addRecent(uri.getPath());
     }
@@ -818,7 +818,7 @@ public class ExtUtils {
         }
 
         if (page > 0) {
-            intent.putExtra(DocumentController.PAGE, page);
+            intent.putExtra(DocumentController.EXTRA_PAGE, page);
         }
         c.startActivity(intent);
 
@@ -1267,7 +1267,7 @@ public class ExtUtils {
 
             String pwd = "";
             try {
-                pwd = a.getIntent().getStringExtra(HorizontalModeController.PASSWORD_EXTRA);
+                pwd = a.getIntent().getStringExtra(HorizontalModeController.EXTRA_PASSWORD);
                 if (pwd == null) {
                     pwd = "";
                 }

@@ -230,7 +230,11 @@ public class ViewerActivityController extends ActionController<VerticalViewActiv
     public void afterPostCreate() {
         setWindowTitle();
         if (loadingCount == 1 && documentModel != ActivityControllerStub.DM_STUB) {
-            startDecoding(m_fileName, "");
+            String stringExtra = intent.getStringExtra(DocumentController.EXTRA_PASSWORD);
+            if (stringExtra == null) {
+                stringExtra = "";
+            }
+            startDecoding(m_fileName, stringExtra);
         }
 
     }
@@ -241,11 +245,11 @@ public class ViewerActivityController extends ActionController<VerticalViewActiv
             @Override
             public void run() {
 
-                int pageIntent = intent.getIntExtra(DocumentController.PAGE, 0);
-                intent.putExtra(HorizontalModeController.PASSWORD_EXTRA, password);
+                int pageIntent = intent.getIntExtra(DocumentController.EXTRA_PAGE, 0);
+                intent.putExtra(HorizontalModeController.EXTRA_PASSWORD, password);
                 double percent = intent.getDoubleExtra(VerticalViewActivity.PERCENT_EXTRA, 0.0);
 
-                intent.putExtra(DocumentController.PAGE, 0);
+                intent.putExtra(DocumentController.EXTRA_PAGE, 0);
                 intent.putExtra(VerticalViewActivity.PERCENT_EXTRA, 0.0);
 
                 if (percent > 0) {

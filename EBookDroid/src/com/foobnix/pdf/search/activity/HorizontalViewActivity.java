@@ -774,7 +774,7 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
 
                                     @Override
                                     public void run() {
-                                        getIntent().putExtra(HorizontalModeController.PASSWORD_EXTRA, txt);
+                                        getIntent().putExtra(HorizontalModeController.EXTRA_PASSWORD, txt);
                                         startActivity(getIntent());
                                     }
                                 });

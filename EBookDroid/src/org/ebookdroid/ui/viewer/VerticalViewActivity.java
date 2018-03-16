@@ -198,7 +198,7 @@ public class VerticalViewActivity extends AbstractActionActivity<VerticalViewAct
     protected void onActivityResult(final int requestCode, final int resultCode, final Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (resultCode == RESULT_OK) {
-            getController().getDocumentController().goToPage(data.getIntExtra(DocumentController.PAGE, 0));
+            getController().getDocumentController().goToPage(data.getIntExtra(DocumentController.EXTRA_PAGE, 0));
         }
     }
 

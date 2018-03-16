@@ -1587,7 +1587,7 @@ public class DocumentWrapperUI {
         @Override
         public void run() {
             double value = (getController().getCurentPage() + 0.0001) / getController().getPageCount();
-            a.getIntent().putExtra(HorizontalModeController.PERCENT_EXTRA, value);
+            a.getIntent().putExtra(HorizontalModeController.EXTRA_PERCENT, value);
             // titleBar.setBackgroundColor(MagicHelper.getBgColor());
             initToolBarPlusMinus();
             updateSeekBarColorAndSize();

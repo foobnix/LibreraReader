@@ -217,7 +217,7 @@ public class BrowseFragment2 extends UIFragment<FileMeta> {
                             getActivity().startActivityForResult(intent, MainTabs2.REQUEST_CODE_ADD_RESOURCE);
                             return true;
                         }
-                    }).setIcon(R.drawable.glyphicons_433_plus);
+                    }).setIcon(R.drawable.glyphicons_146_add_folder_plus);
 
                     List<String> safs = StringDB.asList(AppState.get().pathSAF);
 

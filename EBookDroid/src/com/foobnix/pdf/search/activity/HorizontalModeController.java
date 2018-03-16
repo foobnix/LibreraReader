@@ -50,9 +50,7 @@ import android.graphics.Matrix;
 import android.graphics.PointF;
 
 public abstract class HorizontalModeController extends DocumentController {
-    public static final String PASSWORD_EXTRA = "password";
 
-    public static final String PERCENT_EXTRA = "percent";
 
     private int pagesCount;
     int currentPage;
@@ -189,7 +187,7 @@ public abstract class HorizontalModeController extends DocumentController {
 
         FileMetaCore.checkOrCreateMetaInfo(activity);
         LOG.d("pagesCount", "init", imageWidth, imageHeight);
-        String pasw = activity.getIntent().getStringExtra(PASSWORD_EXTRA);
+        String pasw = activity.getIntent().getStringExtra(EXTRA_PASSWORD);
         pasw = TxtUtils.nullToEmpty(pasw);
 
         TempHolder.get().init(bookPath);
@@ -244,12 +242,12 @@ public abstract class HorizontalModeController extends DocumentController {
     }
 
     public int getPageFromUri() {
-        final double percent = activity.getIntent().getDoubleExtra(PERCENT_EXTRA, 0.0);
-        int number = activity.getIntent().getIntExtra(PAGE, 0);
+        final double percent = activity.getIntent().getDoubleExtra(DocumentController.EXTRA_PERCENT, 0.0);
+        int number = activity.getIntent().getIntExtra(EXTRA_PAGE, 0);
         LOG.d("_PAGE", "uri page", number);
 
-        activity.getIntent().putExtra(PAGE, 0);
-        activity.getIntent().putExtra(PERCENT_EXTRA, 0.0);
+        activity.getIntent().putExtra(EXTRA_PAGE, 0);
+        activity.getIntent().putExtra(EXTRA_PERCENT, 0.0);
 
         if (percent > 0) {
             number = (int) (pagesCount * percent);
