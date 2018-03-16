@@ -1,3 +1,5 @@
+![Logo](https://raw.githubusercontent.com/foobnix/LirbiReader/master/logo.jpg)
+
 # Librera Reader
 
 Librera Reader is a book reader and PDF Redaer for Android 
