@@ -130,7 +130,7 @@
    <string name="selecting_text_by_letters">Использовать побуквенное выделение текста (для иероглифических языков)</string>
    <string name="change_the_automatic_scrolling_speed_with_the_volume_keys">Менять скорость автопрокрутки текста клавишами регулировки громкости</string>
    <string name="enable_brightness_adjustment_on_the_left_of_the_screen">Регулировать яркость подсветки у левой границы экрана</string>
-   <string name="scroll_speed">Чувств-ть к кол. мышки</string>
+   <string name="scroll_speed">Чувств-ть к колёс. мыши</string>
    <string name="page_quality">Кач-во прорисовки стр-ц</string>
    <string name="pages_in_memory">Страниц в опер. памяти</string>
    <string name="screen_turn_off_after_inactivity_minutes_">Время перед гашением экрана (в минутах)</string>
@@ -205,7 +205,7 @@
    <string name="name">Название</string>
    <string name="description">Описание</string>
    <string name="add_as_a_web_site">Добавить как веб-сайт</string>
-   <string name="more">Больше</string>
+   <string name="more">Подробнее</string>
    <string name="download">Скачать</string>
    <string name="do_you_want_to_delete_">Действительно ли вы хотите удалить?</string>
    <string name="authentication_required">Для этого требуется войти</string>
@@ -456,6 +456,6 @@
    <string name="text_highlight_mode_is_enable">Включена возможность выделения текста</string>
    <string name="text_highlight_mode_is_disable">Возможность выделения текста отключена</string>
    <string name="application_error_please_send_this_report_by_emial">Что-то пошло не так! Очень просим вам отправить этот отчет об ошибке по почте, т.к. он, возможно, помог бы разобраться в проблеме</string>
-   <string name="pause_reading_if_the_incoming_call_or_other_sounds">Приостанавливать чтение во время входящих вызовов, уведомлений и т. д.</string>
+   <string name="pause_reading_if_the_incoming_call_or_other_sounds">Ставить чтение на паузу при входящих вызовах, уведомлениях и т. д.</string>
    <string name="add_resource">Добавить ресурс</string>
 </resources>
