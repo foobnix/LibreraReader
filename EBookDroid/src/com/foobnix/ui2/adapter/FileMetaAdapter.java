@@ -12,6 +12,7 @@ import com.foobnix.android.utils.ResultResponse2;
 import com.foobnix.android.utils.StringDB;
 import com.foobnix.android.utils.TxtUtils;
 import com.foobnix.dao2.FileMeta;
+import com.foobnix.pdf.info.ExtUtils;
 import com.foobnix.pdf.info.IMG;
 import com.foobnix.pdf.info.R;
 import com.foobnix.pdf.info.TintUtil;
@@ -301,8 +302,11 @@ public class FileMetaAdapter extends AppRecycleAdapter<FileMeta, RecyclerView.Vi
                 @Override
                 public void onLoadingComplete(String arg0, View arg1, Bitmap arg2) {
                     if (position <= items.size() - 1) {
-                        items.set(position, AppDB.get().getOrCreate(fileMeta.getPath()));
-                        bindFileMetaView(holder, position);
+                        FileMeta it = AppDB.get().load(fileMeta.getPath());
+                        if (it != null) {
+                            items.set(position, it);
+                            bindFileMetaView(holder, position);
+                        }
                     }
                 }
 
@@ -348,6 +352,9 @@ public class FileMetaAdapter extends AppRecycleAdapter<FileMeta, RecyclerView.Vi
                     }
                 });
             }
+
+            holder.starIcon.setVisibility(ExtUtils.isExteralSD(fileMeta.getPath()) ? View.GONE : View.VISIBLE);
+
             if (adapterType == ADAPTER_GRID || adapterType == ADAPTER_COVERS) {
                 holder.image.setVisibility(View.GONE);
                 holder.path.setVisibility(View.GONE);
@@ -666,6 +673,8 @@ public class FileMetaAdapter extends AppRecycleAdapter<FileMeta, RecyclerView.Vi
 
         {
         }
+        holder.star.setVisibility(ExtUtils.isExteralSD(fileMeta.getPath()) ? View.GONE : View.VISIBLE);
+
         if (holder.signIcon != null) {
             holder.signIcon.setOnClickListener(new OnClickListener() {
 

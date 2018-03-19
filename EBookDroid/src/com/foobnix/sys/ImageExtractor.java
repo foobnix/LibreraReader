@@ -51,6 +51,7 @@ import android.graphics.Color;
 import android.graphics.Matrix;
 import android.graphics.Rect;
 import android.graphics.RectF;
+import android.net.Uri;
 import android.util.Base64;
 import android.util.Pair;
 import okhttp3.Request;
@@ -384,6 +385,9 @@ public class ImageExtractor implements ImageDownloader {
         String path = pageUrl.getPath();
 
         if (ExtUtils.isExteralSD(path)) {
+            if (ExtUtils.isImagePath(path)) {
+                return c.getContentResolver().openInputStream(Uri.parse(path));
+            }
             return messageFile("", "");
         }
 

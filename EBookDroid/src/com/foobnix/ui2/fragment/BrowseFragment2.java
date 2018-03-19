@@ -8,6 +8,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.ebookdroid.BookType;
+
 import com.foobnix.android.utils.LOG;
 import com.foobnix.android.utils.ResultResponse;
 import com.foobnix.android.utils.StringDB;
@@ -615,7 +617,7 @@ public class BrowseFragment2 extends UIFragment<FileMeta> {
                                     LOG.d("found- child 2=", COLUMN_DISPLAY_NAME, COLUMN_DOCUMENT_ID, COLUMN_ICON);
 
                                     FileMeta meta = new FileMeta();
-                                    meta.setTitle(COLUMN_DISPLAY_NAME);
+                                    meta.setAuthor(SearchFragment2.EMPTY_ID);
 
                                     final Uri newNode = DocumentsContract.buildDocumentUriUsingTree(uri, COLUMN_DOCUMENT_ID);
                                     meta.setPath(newNode.toString());
@@ -624,9 +626,29 @@ public class BrowseFragment2 extends UIFragment<FileMeta> {
                                     if (Document.MIME_TYPE_DIR.equals(COLUMN_MIME_TYPE)) {
                                         meta.setCusType(FileMetaAdapter.DISPLAY_TYPE_DIRECTORY);
                                         meta.setPathTxt(COLUMN_DISPLAY_NAME);
+                                        meta.setTitle(COLUMN_DISPLAY_NAME);
+
                                     } else {
+                                        try {
+                                        if (COLUMN_SIZE != null) {
+                                            long size = Long.parseLong(COLUMN_SIZE);
+                                            meta.setSize(size);
+                                            meta.setSizeTxt(ExtUtils.readableFileSize(size));
+                                        }
+                                        if (COLUMN_LAST_MODIFIED != null) {
+                                            meta.setDateTxt(ExtUtils.getDateFormat(Long.parseLong(COLUMN_LAST_MODIFIED)));
+                                        }
+                                        } catch (Exception e) {
+                                            LOG.e(e);
+                                        }
                                         meta.setExt(ExtUtils.getFileExtension(COLUMN_DISPLAY_NAME));
-                                        AppDB.get().updateOrSave(meta);
+
+                                        if (BookType.FB2.is(COLUMN_DISPLAY_NAME)) {
+                                            meta.setTitle(TxtUtils.encode1251(COLUMN_DISPLAY_NAME));
+                                        } else {
+                                            meta.setTitle(COLUMN_DISPLAY_NAME);
+                                        }
+
                                     }
                                     items.add(meta);
 

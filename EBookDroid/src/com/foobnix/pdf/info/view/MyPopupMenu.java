@@ -157,6 +157,9 @@ public class MyPopupMenu {
 
                     @Override
                     public boolean onLongClick(View v) {
+                        if (item.onLongClick == null) {
+                            return false;
+                        }
                         item.onLongClick.onMenuItemClick(null);
                         try {
                             p1.dismiss();

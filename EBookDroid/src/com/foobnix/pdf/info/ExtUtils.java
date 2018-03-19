@@ -567,6 +567,10 @@ public class ExtUtils {
         return dateFormat.format(file.lastModified());
     }
 
+    public static String getDateFormat(long datetime) {
+        return dateFormat.format(datetime);
+    }
+
     public static String readableFileSize(long size) {
         if (true) {
             return Formatter.formatFileSize(LibreraApp.context, size).replace(" ", "");

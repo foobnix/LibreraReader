@@ -95,7 +95,7 @@ public class FileMetaCore {
         EbookMeta ebookMeta = EbookMeta.Empty();
         String fileName = ExtUtils.getFileName(unZipPath);
         String fileNameOriginal = ExtUtils.getFileName(path);
-        if (BookType.FB2.is(unZipPath) || BookType.FB2.is(unZipPath)) {
+        if (BookType.FB2.is(unZipPath)) {
             fileNameOriginal = TxtUtils.encode1251(fileNameOriginal);
             fileName = TxtUtils.encode1251(fileNameOriginal);
         }
