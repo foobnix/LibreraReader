@@ -94,8 +94,13 @@ public class VerticalViewActivity extends AbstractActionActivity<VerticalViewAct
 
         if (AppState.get().isRememberMode && AppState.get().isAlwaysOpenAsMagazine) {
             super.onCreate(savedInstanceState);
+            if (AppState.get().isDayNotInvert) {
+                setTheme(R.style.StyledIndicatorsWhite);
+            } else {
+                setTheme(R.style.StyledIndicatorsBlack);
+            }
             finish();
-            ExtUtils.showDocument(this, getIntent().getData());
+            ExtUtils.showDocumentInner(this, getIntent().getData(), getIntent().getIntExtra(DocumentController.EXTRA_PAGE, 0));
             return;
         } else {
             if (getIntent().getData() != null) {
