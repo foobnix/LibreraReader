@@ -210,7 +210,7 @@ public class BrowseFragment2 extends UIFragment<FileMeta> {
                         setDirPath(Environment.getExternalStorageDirectory().getPath());
                         return false;
                     }
-                }).setIcon(R.drawable.glyphicons_146_folder_sd);
+                }).setIcon(R.drawable.glyphicons_146_folder_sd1);
 
                 for (final String info : extFolders) {
 
@@ -229,7 +229,7 @@ public class BrowseFragment2 extends UIFragment<FileMeta> {
                             setDirPath(info);
                             return false;
                         }
-                    }).setIcon(R.drawable.glyphicons_146_folder_sd);
+                    }).setIcon(R.drawable.glyphicons_146_folder_sd1);
 
                 }
 

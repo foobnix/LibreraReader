@@ -92,7 +92,7 @@
             android:layout_width="@dimen/wh_button"
             android:layout_height="@dimen/wh_button"
             android:layout_weight="0"
-            android:src="@drawable/glyphicons_146_folder_sd" />
+            android:src="@drawable/glyphicons_146_folder_sd1" />
 
         <View
             android:layout_width="1dip"
