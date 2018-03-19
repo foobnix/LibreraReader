@@ -252,7 +252,7 @@ public class PageImaveView extends View {
 
                     } else {
                         AppState.get().isLocked = prevLock;
-                        if (TempHolder.get().isTextFormat) {
+                        if (AppState.get().isTextFormat()) {
                             AppState.get().isLocked = true;
                         }
                         isLognPress = true;
@@ -449,7 +449,7 @@ public class PageImaveView extends View {
 
                 if (isLognPress) {
                     selectText(event.getX(), event.getY(), xInit, yInit);
-                } else if (TempHolder.get().isTextFormat) {
+                } else if (AppState.get().isTextFormat()) {
                     selectText(event.getX(), event.getY(), event.getX(), event.getY());
                     if (!TxtUtils.isFooterNote(AppState.get().selectedText)) {
                         PageImageState.get().cleanSelectedWords();

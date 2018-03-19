@@ -183,7 +183,7 @@ public class MuPdfPage extends AbstractCodecPage {
 
             final int[] bufferarray = new int[width * height];
 
-            if (TempHolder.get().isTextFormat) {
+            if (AppState.get().isTextFormat()) {
                 int color = MagicHelper.getBgColor();
                 int r = Color.red(color);
                 int g = Color.green(color);

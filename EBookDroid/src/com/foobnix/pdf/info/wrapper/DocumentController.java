@@ -90,6 +90,14 @@ public abstract class DocumentController {
     private File currentBook;
     private String title;
 
+    public boolean isPasswordProtected() {
+        try {
+            return TxtUtils.isNotEmpty(activity.getIntent().getStringExtra(EXTRA_PASSWORD));
+        } catch (Exception e) {
+            return false;
+        }
+    }
+
     private final LinkedList<Integer> linkHistory = new LinkedList<Integer>();
 
     public abstract void onGoToPage(int page);

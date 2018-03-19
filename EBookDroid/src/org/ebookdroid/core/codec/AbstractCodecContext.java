@@ -39,7 +39,6 @@ public abstract class AbstractCodecContext implements CodecContext {
         CodecDocument openDocument = openDocumentInner(fileName, password);
         LOG.d("removeTempFiles1", TempHolder.get().loadingCancelled);
         if (TempHolder.get().loadingCancelled) {
-            TempHolder.get().clear();
             removeTempFiles();
             return null;
         }

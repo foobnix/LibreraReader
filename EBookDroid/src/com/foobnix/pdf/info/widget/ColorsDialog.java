@@ -12,7 +12,6 @@ import com.foobnix.pdf.info.R;
 import com.foobnix.pdf.info.view.CustomSeek;
 import com.foobnix.pdf.info.wrapper.AppState;
 import com.foobnix.pdf.info.wrapper.MagicHelper;
-import com.foobnix.sys.TempHolder;
 
 import android.app.AlertDialog;
 import android.app.Dialog;
@@ -442,7 +441,7 @@ public class ColorsDialog {
         // updateRGB(fontRGB, colorText);
         // updateRGB(bgRGB, colorBg);
 
-        if (!(TempHolder.get().isTextFormat || AppState.get().isCustomizeBgAndColors)) {
+        if (!(AppState.get().isTextFormat() || AppState.get().isCustomizeBgAndColors)) {
             fontRGB.setVisibility(View.GONE);
             hsvColorWheel1.setVisibility(View.GONE);
             hsvValueSlider1.setVisibility(View.GONE);

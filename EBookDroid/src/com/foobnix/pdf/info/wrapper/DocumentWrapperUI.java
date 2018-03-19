@@ -1729,7 +1729,7 @@ public class DocumentWrapperUI {
 
     public void setTitle(final String title) {
         this.bookTitle = title;
-        hideShowEditIcon();
+        // hideShowEditIcon();
 
     }
 
@@ -1737,7 +1737,11 @@ public class DocumentWrapperUI {
         if (dc != null && dc.getCurrentBook() != null && !dc.getCurrentBook().getName().toLowerCase(Locale.US).endsWith(".pdf")) {
             editTop2.setVisibility(View.GONE);
         } else {
-            if (AppState.get().isCut) {
+            boolean passwordProtected = dc.isPasswordProtected();
+            LOG.d("passwordProtected", passwordProtected);
+            if (dc != null && passwordProtected) {
+                editTop2.setVisibility(View.GONE);
+            } else if (AppState.get().isCut) {
                 editTop2.setVisibility(View.GONE);
             } else {
                 editTop2.setVisibility(View.VISIBLE);
@@ -1818,6 +1822,8 @@ public class DocumentWrapperUI {
                     currentPageIndex.setVisibility(View.VISIBLE);
 
                     showHelp();
+
+                    hideShowEditIcon();
 
                 }
             });

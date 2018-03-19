@@ -190,7 +190,6 @@ public abstract class HorizontalModeController extends DocumentController {
         String pasw = activity.getIntent().getStringExtra(EXTRA_PASSWORD);
         pasw = TxtUtils.nullToEmpty(pasw);
 
-        TempHolder.get().init(bookPath);
         codeDocument = ImageExtractor.getNewCodecContext(getBookPath(), pasw, imageWidth, imageHeight);
         if (codeDocument != null) {
             pagesCount = codeDocument.getPageCount();
@@ -435,7 +434,6 @@ public abstract class HorizontalModeController extends DocumentController {
 
     @Override
     public void onCloseActivityFinal(final Runnable run) {
-        TempHolder.get().clear();
 
         TTSEngine.get().stop();
         TTSNotification.hideNotification();

@@ -5,7 +5,6 @@ import org.ebookdroid.BookType;
 import com.foobnix.android.utils.LOG;
 import com.foobnix.pdf.info.wrapper.AppState;
 import com.foobnix.pdf.info.wrapper.MagicHelper;
-import com.foobnix.sys.TempHolder;
 
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
@@ -86,27 +85,18 @@ public final class RawBitmap {
         }
     }
 
-    public static String jopa;
 
     public void invert() {
-        if (TempHolder.get().path != null) {
-            jopa = TempHolder.get().path;
-        }
-        if (TempHolder.get().path == null && jopa != null) {
-            TempHolder.get().path = jopa;
-        }
-
-        LOG.d("nativeInvert", TempHolder.get().path, BookType.DJVU.is(TempHolder.get().path));
-
-        if (!MagicHelper.isNeedMagic() && BookType.DJVU.is(TempHolder.get().path)) {
+        LOG.d("invert", AppState.get().lastBookPath);
+        if (!MagicHelper.isNeedMagic() && BookType.DJVU.is(AppState.get().lastBookPath)) {
             nativeInvert(pixels, width, height);
             return;
         }
-        if (BookType.DJVU.is(TempHolder.get().path)) {
+        if (BookType.DJVU.is(AppState.get().lastBookPath)) {
             return;
         }
         if (!(MagicHelper.isNeedMagic() && AppState.get().isCustomizeBgAndColors)) {
-            if (!TempHolder.get().isTextFormat) {
+            if (!AppState.get().isTextFormat()) {
                 nativeInvert(pixels, width, height);
             }
         }

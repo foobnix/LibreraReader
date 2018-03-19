@@ -354,6 +354,8 @@ public class ViewerActivityController extends ActionController<VerticalViewActiv
         final PasswordEditable value = action.getParameter("input");
         final String password = value.getPassword();
         final String fileName = action.getParameter("fileName");
+
+        intent.putExtra(DocumentController.EXTRA_PASSWORD, password);
         startDecoding(fileName, password);
     }
 

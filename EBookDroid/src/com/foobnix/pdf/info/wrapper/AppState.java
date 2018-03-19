@@ -19,6 +19,7 @@ import com.foobnix.android.utils.Objects.IgnoreHashCode;
 import com.foobnix.opds.SamlibOPDS;
 import com.foobnix.pdf.info.AppsConfig;
 import com.foobnix.pdf.info.ExportSettingsManager;
+import com.foobnix.pdf.info.ExtUtils;
 import com.foobnix.pdf.info.R;
 import com.foobnix.pdf.info.Urls;
 import com.foobnix.pdf.info.model.BookCSS;
@@ -134,7 +135,7 @@ public class AppState {
             // "#395B9C", //
             "#EA5964", //
             "#00897B", //
-            //"#FBAB49", //
+            // "#FBAB49", //
             "#000000" //
 
     );
@@ -546,7 +547,6 @@ public class AppState {
     public String bookTags = "";
     public String recentTag = "";
 
-
     @IgnoreHashCode
     public int hashCode = 0;
 
@@ -557,7 +557,6 @@ public class AppState {
     public List<Integer> getPrevKeys() {
         return isReverseKeys ? nextKeys : prevKeys;
     }
-
 
     public static Map<String, String> getDictionaries(String input) {
         final Map<String, String> providers = new LinkedHashMap<String, String>();
@@ -609,9 +608,7 @@ public class AppState {
 
     private boolean isLoaded = false;
 
-
     public void defaults(Context c) {
-
 
         LOG.d("defaults", AppsConfig.IS_CLASSIC, AppState.get().tabsOrder);
     }
@@ -650,7 +647,6 @@ public class AppState {
             LOG.e(e);
         }
     }
-
 
     public void loadIn(final Context a) {
         if (a == null) {
@@ -705,6 +701,14 @@ public class AppState {
         sp = a.getSharedPreferences(ExportSettingsManager.PREFIX_PDF, Context.MODE_PRIVATE);
         hashCode = currentHash;
         Objects.saveToSP(AppState.get(), sp);
+    }
+
+    public boolean isTextFormat() {
+        try {
+            return ExtUtils.isTextFomat(lastBookPath);
+        } catch (Exception e) {
+            return false;
+        }
     }
 
 }

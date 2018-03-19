@@ -138,7 +138,6 @@ public class DecodeServiceBase implements DecodeService {
         ImageExtractor.clearCodeDocument();
         codecDocument = codecContext.openDocument(fileName, password);
         ImageExtractor.init(codecDocument, fileName);
-        TempHolder.get().init(fileName);
 
     }
 
@@ -701,7 +700,6 @@ public class DecodeServiceBase implements DecodeService {
         }
 
         private void shutdownInner() {
-            TempHolder.get().clear();
 
             LOG.d("Begin shutdown 1");
 

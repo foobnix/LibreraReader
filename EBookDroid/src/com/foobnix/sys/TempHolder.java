@@ -2,18 +2,11 @@ package com.foobnix.sys;
 
 import java.util.concurrent.locks.ReentrantLock;
 
-import org.ebookdroid.BookType;
-
-import com.foobnix.pdf.info.ExtUtils;
 import com.foobnix.pdf.info.wrapper.UITab;
 
 public class TempHolder {
     public static final ReentrantLock lock = new ReentrantLock();
     public static TempHolder inst = new TempHolder();
-
-    public volatile String path;
-    public boolean isTextFormat;
-    public boolean isTextForamtButNotTxt;
 
     public String login = "", password = "";
 
@@ -42,30 +35,6 @@ public class TempHolder {
         return inst;
     }
 
-    public void init(String pathI) {
-        path = pathI;
-        isTextFormat = isTextForamtInner();
-        isTextForamtButNotTxt = isTextForamtButNotTxt();
-    }
 
-    public void clear() {
-        path = null;
-    }
-
-    private boolean isTextForamtInner() {
-        try {
-            return ExtUtils.isTextFomat(path);
-        } catch (Exception e) {
-            return false;
-        }
-    }
-
-    private boolean isTextForamtButNotTxt() {
-        try {
-            return ExtUtils.isTextFomat(path) && !BookType.TXT.is(path);
-        } catch (Exception e) {
-            return false;
-        }
-    }
 
 }
