@@ -805,10 +805,13 @@ static void measure_image(fz_context *ctx, fz_html_flow *node, float max_w, floa
 	node->x = 0;
 	node->y = 0;
 
-	int size = 100;
+	int size = 50;
 	if(image_h < size){
 		image_w = image_w * size/image_h;
 		image_h = size;
+	}else {
+		image_w = image_w * 3;
+		image_h = image_h * 3;
 	}
 
 	if (image_w > max_w)
@@ -820,6 +823,8 @@ static void measure_image(fz_context *ctx, fz_html_flow *node, float max_w, floa
 	s = fz_min(xs, ys);
 	node->w = image_w * s;
 	node->h = image_h * s;
+	//node->w = 20;
+	//node->h = node->box->h;
 }
 
 typedef struct string_walker
