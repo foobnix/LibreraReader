@@ -160,7 +160,7 @@
    <string name="close_book">Закрыть книгу</string>
    <string name="background">Фон</string>
    <string name="dialog_color_picker">HEX-код цвета</string>
-   <string name="invalid_color_value">Недопустимое значение цвета</string>
+   <string name="invalid_color_value">Такого значения цвета не бывает</string>
    <string name="add">Добавить</string>
    <string name="search">Поиск</string>
    <string name="export_bookmarks">Экспорт закладок</string>
@@ -231,7 +231,7 @@
    <string name="___NOTIFICATION___SECTION___"></string>
    <string name="fail">Сбой</string>
    <string name="success">Успешно</string>
-   <string name="please_wait">Пожалуйста, подождите</string>
+   <string name="please_wait">Секундочку...</string>
    <string name="incorrect_value">Неверное значение</string>
    <string name="this_directory_is_already_in_the_list">Этот каталог уже в списке</string>
    <string name="you_neet_to_apply_the_new_settings">Необходимо применить новые настройки</string>
@@ -448,7 +448,7 @@
    <string name="tags">Теги</string>
    <string name="by_number_of_pages">Число страниц</string>
    <string name="by_number_in_serie">Номер в серии</string>
-   <string name="by_extension">Расширение</string>
+   <string name="by_extension">Тип файла</string>
    <string name="recent_favorites_tags">Недавние, избранные, теги</string>
    <string name="line_spacing">Межстрочный интервал</string>
    <string name="paragraph_spacing">Интервал между абзацами</string>
