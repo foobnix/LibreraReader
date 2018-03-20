@@ -24,6 +24,7 @@ import com.foobnix.ui2.AppDB;
 import com.foobnix.ui2.AppDB.SEARCH_IN;
 import com.foobnix.ui2.AppDB.SORT_BY;
 import com.foobnix.ui2.AppRecycleAdapter;
+import com.foobnix.ui2.MainTabs2;
 import com.foobnix.ui2.adapter.AuthorsAdapter2.AuthorViewHolder;
 import com.foobnix.ui2.fast.FastScroller;
 import com.nostra13.universalimageloader.core.ImageLoader;
@@ -329,7 +330,8 @@ public class FileMetaAdapter extends AppRecycleAdapter<FileMeta, RecyclerView.Vi
             holder.title.setText(fileMeta.getPathTxt());
             holder.path.setText(fileMeta.getPath());
 
-            TintUtil.setTintImageWithAlpha(holder.image, TintUtil.getColorInDayNighth());
+            TintUtil.setTintImageWithAlpha(holder.image, holder.image.getContext() instanceof MainTabs2 ? TintUtil.getColorInDayNighth() : TintUtil.getColorInDayNighthBook());
+
             bindItemClickAndLongClickListeners(holder.parent, fileMeta);
             if (!AppState.get().isBorderAndShadow) {
                 holder.parent.setBackgroundColor(Color.TRANSPARENT);
@@ -341,7 +343,7 @@ public class FileMetaAdapter extends AppRecycleAdapter<FileMeta, RecyclerView.Vi
                 holder.starIcon.setImageResource(R.drawable.star_2);
             }
 
-            TintUtil.setTintImageWithAlpha(holder.starIcon, TintUtil.getColorInDayNighth());
+            TintUtil.setTintImageWithAlpha(holder.starIcon, holder.starIcon.getContext() instanceof MainTabs2 ? TintUtil.getColorInDayNighth() : TintUtil.getColorInDayNighthBook());
 
             if (onStarClickListener != null) {
                 holder.starIcon.setOnClickListener(new OnClickListener() {
@@ -644,7 +646,7 @@ public class FileMetaAdapter extends AppRecycleAdapter<FileMeta, RecyclerView.Vi
         } else {
             holder.star.setImageResource(R.drawable.star_1);
         }
-        TintUtil.setTintImageWithAlpha(holder.star, TintUtil.getColorInDayNighth());
+        TintUtil.setTintImageWithAlpha(holder.star, holder.parent.getContext() instanceof MainTabs2 ? TintUtil.getColorInDayNighth() : TintUtil.getColorInDayNighthBook());
 
         if (onStarClickListener != null) {
             holder.star.setOnClickListener(new OnClickListener() {
@@ -778,7 +780,7 @@ public class FileMetaAdapter extends AppRecycleAdapter<FileMeta, RecyclerView.Vi
             }
         }
 
-        TintUtil.setTintImageWithAlpha(holder.menu, TintUtil.getColorInDayNighth());
+        TintUtil.setTintImageWithAlpha(holder.menu, holder.parent.getContext() instanceof MainTabs2 ? TintUtil.getColorInDayNighth() : TintUtil.getColorInDayNighthBook());
 
         if (holder.remove != null) {
             holder.remove.setOnClickListener(new OnClickListener() {

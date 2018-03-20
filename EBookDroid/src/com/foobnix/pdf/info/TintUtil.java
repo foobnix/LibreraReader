@@ -43,6 +43,10 @@ public class TintUtil {
         return AppState.get().isWhiteTheme ? TintUtil.color : Color.LTGRAY;
     }
 
+    public static int getColorInDayNighthBook() {
+        return AppState.get().isDayNotInvert ? TintUtil.color : Color.LTGRAY;
+    }
+
     static Random random = new Random();
 
     public static int randomColor() {
