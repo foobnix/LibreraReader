@@ -1,6 +1,6 @@
-* Alkalmazás könyvek és PDF formátumok olvasására 
-* Felhasználói címkék könyvekhez 
-* TémaInk elektronikus tintasugaras készülékekhez 
-* A kontraszt és a fényerő módosítása 
-* Negatív fényerő 
-* Kék fény szűrő
+* Legjobb PDF-olvasó PDF és egyéb formátumokhoz 
+* Megtalálja az összes dokumentumot, megjeleníti a borítót 
+* Éjszakai téma és könyv háttérének megváltoztatása 
+* Hangos olvasás (TTS) 
+* Megjegyzések, fordítók, szótárak 
+* Automatikus görgetés előre beállított sebességgel

@@ -1,6 +1,6 @@
-* Toepassing voor het lezen van alle formaten van boeken en PDF 
-* Gebruikerstags voor boeken 
-* ThemaInkt voor apparaten met elektronische inkt 
-* Verander het contrast en de helderheid 
-* Negatieve helderheid 
-* Blauwlichtfilter
+* Beste PDF Reader voor PDF en andere formaten 
+* Vindt alle documenten, toont de covers 
+* Nachtthema en verandert de achtergrond van een boek 
+* Hardop lezen (TTS) 
+* Notes, vertalers, woordenboeken 
+* Automatisch scrollen op vooraf ingestelde snelheid

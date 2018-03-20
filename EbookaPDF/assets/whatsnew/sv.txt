@@ -1,6 +1,6 @@
-* Applikation för läsning av alla format av böcker och PDF 
-* Användarkoder för böcker 
-* TemaBläck för enheter med elektronisk bläck 
-* Ändra kontrasten och ljusstyrkan 
-* Negativ ljusstyrka 
-* Blå ljusfilter
+* Bästa PDF-läsare för PDF och andra format 
+* Finns alla dokument, visar omslaget 
+* Natttema och ändrar bakgrunden till en bok 
+* Läser högt (TTS) 
+* Anteckningar, översättare, ordböcker 
+* Automatisk rullning vid förinställd hastighet

@@ -1,6 +1,6 @@
-* Aplicație pentru citirea tuturor formatelor de cărți și PDF 
-* Etichete de utilizator pentru cărți 
-* TemaCerneală pentru dispozitivele cu cerneală electronică 
-* Schimbarea contrastului și luminozității 
-* Luminozitate negativă 
-* Filtru de lumină albastră
+* Cel mai bun PDF Reader pentru PDF și alte formate 
+* Găsește toate documentele, afișează copertele 
+* Tema de noapte și schimbă fundalul unei cărți 
+* Citirea cu voce tare (TTS) 
+* Note, traducători, dicționare 
+* Derulare automată la viteza prestabilită

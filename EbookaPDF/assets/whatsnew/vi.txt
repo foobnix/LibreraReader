@@ -1,6 +1,6 @@
-* Ứng dụng để đọc tất cả các định dạng của sách và PDF 
-* Thẻ người dùng cho sách 
-* ThemeMực cho các thiết bị có mực điện tử 
-* Thay đổi độ tương phản và độ sáng 
-* Độ sáng tiêu cực 
-* Bộ lọc ánh sáng màu xanh
+* Trình đọc PDF tốt nhất cho PDF và các định dạng khác 
+* Tìm tất cả các tài liệu, hiển thị bìa 
+* Chủ đề ban đêm và thay đổi nền của một quyển sách 
+* Đọc to (TTS) 
+* Ghi chú, dịch giả, từ điển 
+* Tự động cuộn theo tốc độ định sẵn

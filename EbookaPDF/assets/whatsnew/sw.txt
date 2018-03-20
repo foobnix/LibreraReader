@@ -1,6 +1,6 @@
-* Maombi ya kusoma fomu zote za vitabu na PDF 
-* Vitambulisho vya mtumiaji wa vitabu 
-* MandhariInk kwa vifaa na wino wa elektroniki 
-* Badilisha tofauti na mwangaza 
-* Uavu usiofaa 
-* Bluu nyekundu filter
+* Bora PDF Reader kwa PDF na muundo mwingine 
+* Inatafuta nyaraka zote, huonyesha inashughulikia 
+* Usiku wa mandhari na kubadilisha historia ya kitabu 
+* Kusoma kwa sauti kubwa (TTS) 
+* Vidokezo, watafsiri, dictionaries 
+* Kusajili kwa moja kwa moja kasi ya kasi

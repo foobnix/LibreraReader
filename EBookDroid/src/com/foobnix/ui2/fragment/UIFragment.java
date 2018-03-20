@@ -267,6 +267,10 @@ public abstract class UIFragment<T> extends Fragment {
                         return num;
                     }
 
+                    if (type == FileMetaAdapter.DISPLAY_TYPE_DIRECTORY) {
+                        return num / 2;
+                    }
+
                     if (type == FileMetaAdapter.DISPALY_TYPE_SERIES) {
                         return num;
                     }

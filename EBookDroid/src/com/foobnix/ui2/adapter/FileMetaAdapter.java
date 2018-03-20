@@ -356,10 +356,10 @@ public class FileMetaAdapter extends AppRecycleAdapter<FileMeta, RecyclerView.Vi
             holder.starIcon.setVisibility(ExtUtils.isExteralSD(fileMeta.getPath()) ? View.GONE : View.VISIBLE);
 
             if (adapterType == ADAPTER_GRID || adapterType == ADAPTER_COVERS) {
-                holder.image.setVisibility(View.GONE);
+                // holder.image.setVisibility(View.GONE);
                 holder.path.setVisibility(View.GONE);
             } else {
-                holder.image.setVisibility(View.VISIBLE);
+                // holder.image.setVisibility(View.VISIBLE);
                 if (tempValue == TEMP_VALUE_FOLDER_PATH) {
                     holder.path.setVisibility(View.VISIBLE);
                 } else {

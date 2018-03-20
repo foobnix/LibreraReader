@@ -1,6 +1,6 @@
-* Søknad for å lese alle formater av bøker og PDF 
-* Brukerkoder for bøker 
-* TemaBlekk for enheter med elektronisk blekk 
-* Endre kontrast og lysstyrke 
-* Negativ lysstyrke 
-* Blå lysfilter
+* Best PDF Reader for PDF og andre formater 
+* Finner alle dokumentene, viser dekslene 
+* Natt tema og endrer bakgrunnen til en bok 
+* Leser høyt (TTS) 
+* Merknader, oversettere, ordbøker 
+* Automatisk rulling med forhåndsinnstilt hastighet

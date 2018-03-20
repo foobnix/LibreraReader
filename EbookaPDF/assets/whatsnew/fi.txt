@@ -1,6 +1,6 @@
-* Sovellus kaikkien kirjojen ja PDF-formaattien lukemiseen 
-* Kirjojen käyttäjätunnisteet 
-* TeemaInk elektronisille musteille tarkoitetuille laitteille 
-* Muuta kontrastia ja kirkkautta 
-* Negatiivinen kirkkaus 
-* Sininen valosuodatin
+* Paras PDF-lukija PDF: lle ja muille formaateille 
+* Löydä kaikki asiakirjat, näyttää kansiot 
+* Yöteema ja kirjan taustakuvan muuttaminen 
+* Äänen lukeminen (TTS) 
+* Muistiinpanot, kääntäjät, sanakirjat 
+* Automaattinen vieritys valmiilla nopeuksilla

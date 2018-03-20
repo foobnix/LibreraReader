@@ -1,6 +1,6 @@
-* Aplikacja do czytania wszystkich formatów książek i PDF 
-* Tagi użytkownika dla książek 
-* MotywTusz dla urządzeń z tuszem elektronicznym 
-* Zmień kontrast i jasność 
-* Negatywna jasność 
-* Niebieskie światło filtr
+* Najlepszy czytnik PDF dla plików PDF i innych formatów 
+* Znajduje wszystkie dokumenty, wyświetla okładki 
+* Motyw nocny i zmiana tła książki 
+* Odczytanie na głos (TTS) 
+* Uwagi, tłumacze, słowniki 
+* Automatyczne przewijanie z ustawioną prędkością

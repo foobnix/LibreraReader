@@ -1,6 +1,6 @@
-* Application for reading all formats of books and PDF
-* User tags for books
-* Theme "Ink" for devices with electronic ink
-* Change the contrast and brightness
-* Negative brightness
-* Blue light filter
+* Best PDF Reader for PDF and other formats
+* Finds all the documents, displays the covers
+* Night theme and changing the background of a book
+* Reading out loud (TTS)
+* Notes, translators, dictionaries
+* Automatic scrolling at preset speed

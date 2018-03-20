@@ -1,6 +1,6 @@
-* Kitapların ve PDF’nin tüm formatlarını okumak için başvuru 
-* Kitaplar için kullanıcı etiketleri 
-* Elektronik mürekkepli cihazlar içinMürekkep 
-* Kontrast ve parlaklığı değiştirme 
-* Negatif parlaklık 
-* Mavi ışık filtresi
+* PDF ve diğer formatlar için en iyi PDF Okuyucu 
+* Tüm belgeleri bulur, kapakları gösterir 
+* Gece teması ve bir kitabın arka planını değiştirme 
+* Yüksek sesli okuma (TTS) 
+* Notlar, çevirmenler, sözlükler 
+* Önceden ayarlanmış hızda otomatik kaydırma

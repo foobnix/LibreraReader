@@ -1,6 +1,6 @@
-* Anwendung zum Lesen aller Formate von Büchern und PDF 
-* Benutzertags für Bücher 
-* ThemaTinte für Geräte mit elektronischer Tinte 
-* Ändern Sie den Kontrast und die Helligkeit 
-* Negative Helligkeit 
-* Blaulichtfilter
+* Bester PDF Reader für PDF und andere Formate 
+* Findet alle Dokumente, zeigt die Cover an 
+* Nacht Thema und ändert den Hintergrund eines Buches 
+* Vorlesen (TTS) 
+* Notizen, Übersetzer, Wörterbücher 
+* Automatisches Scrollen mit voreingestellter Geschwindigkeit

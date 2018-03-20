@@ -1,6 +1,6 @@
-* Paraiška skaityti visus knygų ir PDF formatus 
-* Vartotojo knygų žymos 
-* TemaRašalas įrenginiams su elektroniniu rašalu 
-* Keisti kontrastą ir ryškumą 
-* Neigiamas ryškumas 
-* Mėlynas šviesos filtras
+* Geriausias PDF Reader PDF ir kitiems formatams 
+* Randa visus dokumentus, parodo viršelius 
+* Nakties tema ir knygos fono keitimas 
+* Skaitymas garsiai (TTS) 
+* Pastabos, vertėjai, žodynai 
+* Automatinis slinkimas esant nustatytam greičiui

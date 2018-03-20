@@ -1,288 +1,289 @@
 
 <nl-NL>
-* Toepassing voor het lezen van alle formaten van boeken en PDF 
-* Gebruikerstags voor boeken 
-* ThemaInkt voor apparaten met elektronische inkt 
-* Verander het contrast en de helderheid 
-* Negatieve helderheid 
-* Blauwlichtfilter
+* Beste PDF Reader voor PDF en andere formaten 
+* Vindt alle documenten, toont de covers 
+* Nachtthema en verandert de achtergrond van een boek 
+* Hardop lezen (TTS) 
+* Notes, vertalers, woordenboeken 
+* Automatisch scrollen op vooraf ingestelde snelheid
 </nl-NL>
 
 <id>
-* Aplikasi untuk membaca semua format buku dan PDF 
-* Tag pengguna untuk buku 
-* TemaTinta untuk perangkat dengan tinta elektronik 
-* Mengubah kontras dan kecerahan 
-* Kecerahan negatif 
-* Filter cahaya biru
+* PDF Reader Terbaik untuk PDF dan format lain 
+* Menemukan semua dokumen, menampilkan sampul 
+* Tema malam dan mengubah latar belakang buku 
+* Membaca dengan suara keras (TTS) 
+* Catatan, penerjemah, kamus 
+* Bergulir otomatis pada kecepatan yang telah ditentukan
 </id>
 
 <lt>
-* Paraiška skaityti visus knygų ir PDF formatus 
-* Vartotojo knygų žymos 
-* TemaRašalas įrenginiams su elektroniniu rašalu 
-* Keisti kontrastą ir ryškumą 
-* Neigiamas ryškumas 
-* Mėlynas šviesos filtras
+* Geriausias PDF Reader PDF ir kitiems formatams 
+* Randa visus dokumentus, parodo viršelius 
+* Nakties tema ir knygos fono keitimas 
+* Skaitymas garsiai (TTS) 
+* Pastabos, vertėjai, žodynai 
+* Automatinis slinkimas esant nustatytam greičiui
 </lt>
 
 <ar>
-* تطبيق لقراءة جميع صيغ الكتب و بدف 
-* علامات المستخدم للكتب 
-* موضوعالحبر للأجهزة مع الحبر الإلكتروني 
-* تغيير التباين والسطوع 
-* سطوع سلبي 
-* الضوء الأزرق مرشح
+* أفضل قارئ PDF لقوات الدفاع الشعبي وغيرها من الأشكال 
+* يجد كل الوثائق ، ويعرض الأغطية 
+* موضوع ليلة وتغيير خلفية الكتاب 
+* القراءة بصوت عال (TTS) 
+* الملاحظات والمترجمين والقواميس 
+* التمرير التلقائي بسرعة محددة مسبقا
 </ar>
 
 <ro>
-* Aplicație pentru citirea tuturor formatelor de cărți și PDF 
-* Etichete de utilizator pentru cărți 
-* TemaCerneală pentru dispozitivele cu cerneală electronică 
-* Schimbarea contrastului și luminozității 
-* Luminozitate negativă 
-* Filtru de lumină albastră
+* Cel mai bun PDF Reader pentru PDF și alte formate 
+* Găsește toate documentele, afișează copertele 
+* Tema de noapte și schimbă fundalul unei cărți 
+* Citirea cu voce tare (TTS) 
+* Note, traducători, dicționare 
+* Derulare automată la viteza prestabilită
 </ro>
 
 <de-DE>
-* Anwendung zum Lesen aller Formate von Büchern und PDF 
-* Benutzertags für Bücher 
-* ThemaTinte für Geräte mit elektronischer Tinte 
-* Ändern Sie den Kontrast und die Helligkeit 
-* Negative Helligkeit 
-* Blaulichtfilter
+* Bester PDF Reader für PDF und andere Formate 
+* Findet alle Dokumente, zeigt die Cover an 
+* Nacht Thema und ändert den Hintergrund eines Buches 
+* Vorlesen (TTS) 
+* Notizen, Übersetzer, Wörterbücher 
+* Automatisches Scrollen mit voreingestellter Geschwindigkeit
 </de-DE>
 
 <pl-PL>
-* Aplikacja do czytania wszystkich formatów książek i PDF 
-* Tagi użytkownika dla książek 
-* MotywTusz dla urządzeń z tuszem elektronicznym 
-* Zmień kontrast i jasność 
-* Negatywna jasność 
-* Niebieskie światło filtr
+* Najlepszy czytnik PDF dla plików PDF i innych formatów 
+* Znajduje wszystkie dokumenty, wyświetla okładki 
+* Motyw nocny i zmiana tła książki 
+* Odczytanie na głos (TTS) 
+* Uwagi, tłumacze, słowniki 
+* Automatyczne przewijanie z ustawioną prędkością
 </pl-PL>
 
 <iw-IL>
-* יישום לקריאת כל הפורמטים של ספרים PDF 
-* תגי משתמש עבור ספרים 
-* נושאדיו עבור מכשירים עם דיו אלקטרוני 
-* לשנות את הניגודיות ואת בהירות 
-* בהירות שלילית 
-* אור כחול מסנן
+* PDF הטוב ביותר עבור PDF PDF ו פורמטים אחרים 
+* מוצא את כל המסמכים, מציג את מכסה 
+* נושא לילה ושינוי הרקע של הספר 
+* קריאה בקול רם (TTS) 
+* הערות, מתרגמים, מילונים 
+* גלילה אוטומטית במהירות מראש
 </iw-IL>
 
 <hi-IN>
-* किताबों और पीडीएफ के सभी स्वरूपों को पढ़ने के लिए आवेदन 
-* पुस्तकों के लिए उपयोगकर्ता टैग 
-* इलेक्ट्रॉनिक इंक वाले उपकरणों के लिए थीमइंक 
-* विपरीत और चमक बदलें 
-* नकारात्मक चमक 
-* ब्लू लाइट फिल्टर
+* पीडीएफ और अन्य प्रारूपों के लिए सर्वश्रेष्ठ पीडीएफ रीडर 
+* सभी दस्तावेजों का पता चलता है, कवर प्रदर्शित करता है 
+* रात्रि विषय और पुस्तक की पृष्ठभूमि को बदलना 
+* ज़ोर से पढ़ना (टीटीएस) 
+* नोट्स, अनुवादकों, शब्दकोश 
+* पूर्व निर्धारित गति पर स्वचालित स्क्रॉल
 </hi-IN>
 
 <es-ES>
-* Aplicación para leer todos los formatos de libros y PDF 
-* Etiquetas de usuario para libros 
-* TemaTinta para dispositivos con tinta electrónica 
-* Cambiar el contraste y el brillo 
-* Brillo negativo 
-* Filtro de luz azul
+* Mejor lector de PDF para PDF y otros formatos 
+* Encuentra todos los documentos, muestra las portadas 
+* Tema nocturno y cambio de fondo de un libro 
+* Lectura en voz alta (TTS) 
+* Notas, traductores, diccionarios 
+* Desplazamiento automático a la velocidad preestablecida
 </es-ES>
 
 <fi-FI>
-* Sovellus kaikkien kirjojen ja PDF-formaattien lukemiseen 
-* Kirjojen käyttäjätunnisteet 
-* TeemaInk elektronisille musteille tarkoitetuille laitteille 
-* Muuta kontrastia ja kirkkautta 
-* Negatiivinen kirkkaus 
-* Sininen valosuodatin
+* Paras PDF-lukija PDF: lle ja muille formaateille 
+* Löydä kaikki asiakirjat, näyttää kansiot 
+* Yöteema ja kirjan taustakuvan muuttaminen 
+* Äänen lukeminen (TTS) 
+* Muistiinpanot, kääntäjät, sanakirjat 
+* Automaattinen vieritys valmiilla nopeuksilla
 </fi-FI>
 
 <vi>
-* Ứng dụng để đọc tất cả các định dạng của sách và PDF 
-* Thẻ người dùng cho sách 
-* ThemeMực cho các thiết bị có mực điện tử 
-* Thay đổi độ tương phản và độ sáng 
-* Độ sáng tiêu cực 
-* Bộ lọc ánh sáng màu xanh
+* Trình đọc PDF tốt nhất cho PDF và các định dạng khác 
+* Tìm tất cả các tài liệu, hiển thị bìa 
+* Chủ đề ban đêm và thay đổi nền của một quyển sách 
+* Đọc to (TTS) 
+* Ghi chú, dịch giả, từ điển 
+* Tự động cuộn theo tốc độ định sẵn
 </vi>
 
 <fr-FR>
-* Application pour lire tous les formats de livres et PDF 
-* Tags d’utilisateur pour les livres 
-* ThèmeEncre pour les appareils avec encre électronique 
-* Changer le contraste et la luminosité 
-* Luminosité négative 
-* Filtre lumière bleue
+* Meilleur lecteur PDF pour PDF et autres formats 
+* Trouve tous les documents, affiche les couvertures 
+* Thème de la nuit et change l’arrière-plan d’un livre 
+* Lecture à voix haute (TTS) 
+* Notes, traducteurs, dictionnaires 
+* Défilement automatique à vitesse prédéfinie
 </fr-FR>
 
 <fr-CA>
-* Application pour lire tous les formats de livres et PDF 
-* Tags d’utilisateur pour les livres 
-* ThèmeEncre pour les appareils avec encre électronique 
-* Changer le contraste et la luminosité 
-* Luminosité négative 
-* Filtre lumière bleue
+* Meilleur lecteur PDF pour PDF et autres formats 
+* Trouve tous les documents, affiche les couvertures 
+* Thème de la nuit et change l’arrière-plan d’un livre 
+* Lecture à voix haute (TTS) 
+* Notes, traducteurs, dictionnaires 
+* Défilement automatique à vitesse prédéfinie
 </fr-CA>
 
 <sw>
-* Maombi ya kusoma fomu zote za vitabu na PDF 
-* Vitambulisho vya mtumiaji wa vitabu 
-* MandhariInk kwa vifaa na wino wa elektroniki 
-* Badilisha tofauti na mwangaza 
-* Uavu usiofaa 
-* Bluu nyekundu filter
+* Bora PDF Reader kwa PDF na muundo mwingine 
+* Inatafuta nyaraka zote, huonyesha inashughulikia 
+* Usiku wa mandhari na kubadilisha historia ya kitabu 
+* Kusoma kwa sauti kubwa (TTS) 
+* Vidokezo, watafsiri, dictionaries 
+* Kusajili kwa moja kwa moja kasi ya kasi
 </sw>
 
 <zh-TW>
-*适用于阅读所有格式的书籍和PDF 
-*书籍的用户标签
-*用于电子墨水设备的主题“墨水”
-*改变对比度和亮度
-*负亮度
-*蓝光滤镜
+* PDF和其他格式的最佳PDF阅读器
+*查找所有文件，显示封面
+*夜间主题和改变书的背景
+*大声朗读（TTS）
+*笔记，翻译，词典
+*以预设速度自动滚动
 </zh-TW>
 
 <ru-RU>
-* Приложение для чтения всех форматов книг и PDF 
-* Пользовательские теги для книг 
-* Тема «Чернила» для устройств с электронными чернилами 
-* Изменение контрастности и яркости 
-* Отрицательная яркость 
-* Синий фильтр
+* Лучший PDF-ридер для PDF и других форматов 
+* Поиск всех документов, отображение обложек 
+* Ночная тема и изменение фона книги 
+* Чтение вслух (TTS) 
+* Заметки, переводчики, словари 
+* Автоматическая прокрутка с заданной скоростью
 </ru-RU>
 
 <th>
-* การประยุกต์ใช้สำหรับการอ่านหนังสือทุกรูปแบบและ PDF 
-* แท็กผู้ใช้สำหรับหนังสือ 
-* ธีมหมึก สำหรับอุปกรณ์ที่มีหมึกอิเล็กทรอนิกส์ 
-* เปลี่ยนความคมชัดและความสว่าง 
-* ความสว่างที่เป็นลบ 
-* ตัวกรองแสงสีน้ำเงิน
+* อ่าน PDF ที่ดีที่สุดสำหรับรูปแบบ PDF และอื่น ๆ 
+* ค้นหาเอกสารทั้งหมดที่แสดงครอบคลุม 
+* ธีมกลางคืนและการเปลี่ยนพื้นหลังของหนังสือ 
+* อ่านออกมาดัง ๆ (TTS) 
+* หมายเหตุนักแปลพจนานุกรม 
+* เลื่อนอัตโนมัติที่ความเร็วที่ตั้งไว้
 </th>
 
 <it-IT>
-* Applicazione per la lettura di tutti i formati di libri e PDF 
-* Tag utente per libri 
-* TemaInchiostro per dispositivi con inchiostro elettronico 
-* Modifica del contrasto e della luminosità 
-* Luminosità negativa 
-* Filtro luce blu
+* Miglior lettore PDF per PDF e altri formati 
+* Trova tutti i documenti, visualizza le copertine 
+* Tema notturno e modifica dello sfondo di un libro 
+* Lettura ad alta voce (TTS) 
+* Note, traduttori, dizionari 
+* Scorrimento automatico a velocità preimpostata
 </it-IT>
 
 <sv-SE>
-* Applikation för läsning av alla format av böcker och PDF 
-* Användarkoder för böcker 
-* TemaBläck för enheter med elektronisk bläck 
-* Ändra kontrasten och ljusstyrkan 
-* Negativ ljusstyrka 
-* Blå ljusfilter
+* Bästa PDF-läsare för PDF och andra format 
+* Finns alla dokument, visar omslaget 
+* Natttema och ändrar bakgrunden till en bok 
+* Läser högt (TTS) 
+* Anteckningar, översättare, ordböcker 
+* Automatisk rullning vid förinställd hastighet
 </sv-SE>
 
 <fa>
-* برنامه برای خواندن تمام فرمت های کتاب و PDF 
-* برچسب های کاربر برای کتاب 
-* تمجوهر برای دستگاه های با جوهر الکترونیکی 
-* تغییر کنتراست و روشنایی 
-* روشنایی منفی 
-* فیلتر نور آبی
+* بهترین PDF Reader برای PDF و فرمت های دیگر 
+* تمام اسناد را نمایش می دهد، نمایش ها را پوشش می دهد 
+* تم شب و تغییر پس زمینه یک کتاب 
+* خواندن با صدای بلند (TTS) 
+* یادداشت ها، مترجمان، واژه نامه ها 
+* پیمایش خودکار در سرعت پیش فرض
 </fa>
 
 <pt-PT>
-* Aplicação para ler todos os formatos de livros e PDF 
-* Etiquetas de usuários para livros 
-* TemaTinta para dispositivos com tinta eletrônica 
-* Alterar o contraste e o brilho 
-* Brilho negativo 
-* Filtro de luz azul
+* Melhor PDF Reader para PDF e outros formatos 
+* Encontra todos os documentos, exibe as capas 
+* Tema da noite e alterando o fundo de um livro 
+* Leitura em voz alta (TTS) 
+* Notas, tradutores, dicionários 
+* Rolagem automática a velocidade predefinida
 </pt-PT>
 
 <pt-BR>
-* Aplicação para ler todos os formatos de livros e PDF 
-* Etiquetas de usuários para livros 
-* TemaTinta para dispositivos com tinta eletrônica 
-* Alterar o contraste e o brilho 
-* Brilho negativo 
-* Filtro de luz azul
+* Melhor PDF Reader para PDF e outros formatos 
+* Encontra todos os documentos, exibe as capas 
+* Tema da noite e alterando o fundo de um livro 
+* Leitura em voz alta (TTS) 
+* Notas, tradutores, dicionários 
+* Rolagem automática a velocidade predefinida
 </pt-BR>
 
 <ko-KR>
-* 도서 및 PDF의 모든 형식을 읽기위한 응용 프로그램 
-* 도서에 대한 사용자 태그 
-* 테마 전자 잉크와 장치에 대한잉크
-* 명암과 밝기를 변경 
-* 부정적인 밝기 
-* 푸른 빛의 필터
+* PDF 및 기타 형식에 대한 최고의 PDF 리더 
+* 모든 문서를 찾아 커버를 표시 
+* 야간 테마 및 도서의 배경을 변경 
+* 큰소리로 읽기 (TTS) 
+* 노트, 번역기, 사전 
+* 사전 설정된 속도로 자동 스크롤
 </ko-KR>
 
 <hu-HU>
-* Alkalmazás könyvek és PDF formátumok olvasására 
-* Felhasználói címkék könyvekhez 
-* TémaInk elektronikus tintasugaras készülékekhez 
-* A kontraszt és a fényerő módosítása 
-* Negatív fényerő 
-* Kék fény szűrő
+* Legjobb PDF-olvasó PDF és egyéb formátumokhoz 
+* Megtalálja az összes dokumentumot, megjeleníti a borítót 
+* Éjszakai téma és könyv háttérének megváltoztatása 
+* Hangos olvasás (TTS) 
+* Megjegyzések, fordítók, szótárak 
+* Automatikus görgetés előre beállított sebességgel
 </hu-HU>
 
 <sk>
-* Aplikácia na čítanie všetkých formátov kníh a PDF 
-* Používateľské značky pre knihy 
-* Téma Ink pre zariadenia s elektronickým atramentom 
-* Zmena kontrastu a jasu 
-* Negatívny jas 
-* Filter modrého svetla
+* Najlepšie PDF Reader pre PDF a iné formáty 
+* Nájde všetky dokumenty, zobrazí kryty 
+* Nočná téma a zmena pozadia knihy 
+* Čítanie nahlas (TTS) 
+* Poznámky, prekladatelia, slovníky 
+* Automatické rolovanie v prednastavenej rýchlosti
 </sk>
 
 <tr-TR>
-* Kitapların ve PDF’nin tüm formatlarını okumak için başvuru 
-* Kitaplar için kullanıcı etiketleri 
-* Elektronik mürekkepli cihazlar içinMürekkep 
-* Kontrast ve parlaklığı değiştirme 
-* Negatif parlaklık 
-* Mavi ışık filtresi
+* PDF ve diğer formatlar için en iyi PDF Okuyucu 
+* Tüm belgeleri bulur, kapakları gösterir 
+* Gece teması ve bir kitabın arka planını değiştirme 
+* Yüksek sesli okuma (TTS) 
+* Notlar, çevirmenler, sözlükler 
+* Önceden ayarlanmış hızda otomatik kaydırma
 </tr-TR>
 
 <no-NO>
-* Søknad for å lese alle formater av bøker og PDF 
-* Brukerkoder for bøker 
-* TemaBlekk for enheter med elektronisk blekk 
-* Endre kontrast og lysstyrke 
-* Negativ lysstyrke 
-* Blå lysfilter
+* Best PDF Reader for PDF og andre formater 
+* Finner alle dokumentene, viser dekslene 
+* Natt tema og endrer bakgrunnen til en bok 
+* Leser høyt (TTS) 
+* Merknader, oversettere, ordbøker 
+* Automatisk rulling med forhåndsinnstilt hastighet
 </no-NO>
 
 <la>
-Application pro legere librorum et omnia PDF formats 
-* 
-* 
-* librorum Natus Est enim User tags:Ink ’pro atramento electronic cogitationes et mutare 
-* Sed claritas, et Blue claritas negativus 
-* filter lux
+PDF PDF pro optimus 
+* Lector aliisque documentis formats 
+* omnes reperit: ostenditque umeros opercula theme noctem 
+*, et mutantur in background de Lectio libri 
+* ex magna (TTS) 
+* Notes: translators, dictionaries scrolling 
+* Lorem ad celeritatem preset
 </la>
 
 <ja-JP>
-*書籍やPDFのすべての形式を読むためのアプリケーション
-*書籍のユーザータグ
-*テーマ電子インクのデバイスのためのインク 
-*コントラストと明るさを変更する
-*負の明るさ
-*青色光フィルター
+* PDFやその他のフォーマットのための最高のPDFリーダー
+*すべてのドキュメントを検索し、カバーを表示する
+*夜のテーマと背景の変更
+*ノートを読み上げる（TTS）
+*ノート、翻訳者、辞書
+*設定された速度で自動スクロール
 </ja-JP>
 
 <uk>
-* Застосування для читання всіх форматів книг і PDF 
-* Теги користувача для книг 
-* ТемаЧорнило для пристроїв з електронними чорнилом 
-* Зміна контрастності та яскравості 
-* Негативна яскравість 
-* Блакитний світлофільтр
+* Кращий PDF Reader для PDF та інших форматів 
+* Знайдено всі документи, відображає обкладинки 
+* Нічна тема та зміна фону книги 
+* Читання голосно (TTS) 
+* Примітки, перекладачі, словники 
+* Автоматичне прокручування за заданою швидкістю
 </uk>
 
 <en-US>
-* Application for reading all formats of books and PDF
-* User tags for books
-* Theme "Ink" for devices with electronic ink
-* Change the contrast and brightness
-* Negative brightness
-* Blue light filter
+* Best PDF Reader for PDF and other formats
+* Finds all the documents, displays the covers
+* Night theme and changing the background of a book
+* Reading out loud (TTS)
+* Notes, translators, dictionaries
+* Automatic scrolling at preset speed
 </en-US>

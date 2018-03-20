@@ -1,6 +1,6 @@
-* Aplikasi untuk membaca semua format buku dan PDF 
-* Tag pengguna untuk buku 
-* TemaTinta untuk perangkat dengan tinta elektronik 
-* Mengubah kontras dan kecerahan 
-* Kecerahan negatif 
-* Filter cahaya biru
+* PDF Reader Terbaik untuk PDF dan format lain 
+* Menemukan semua dokumen, menampilkan sampul 
+* Tema malam dan mengubah latar belakang buku 
+* Membaca dengan suara keras (TTS) 
+* Catatan, penerjemah, kamus 
+* Bergulir otomatis pada kecepatan yang telah ditentukan

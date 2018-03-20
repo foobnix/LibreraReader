@@ -1,6 +1,6 @@
-* Aplicación para leer todos los formatos de libros y PDF 
-* Etiquetas de usuario para libros 
-* TemaTinta para dispositivos con tinta electrónica 
-* Cambiar el contraste y el brillo 
-* Brillo negativo 
-* Filtro de luz azul
+* Mejor lector de PDF para PDF y otros formatos 
+* Encuentra todos los documentos, muestra las portadas 
+* Tema nocturno y cambio de fondo de un libro 
+* Lectura en voz alta (TTS) 
+* Notas, traductores, diccionarios 
+* Desplazamiento automático a la velocidad preestablecida

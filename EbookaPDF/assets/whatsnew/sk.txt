@@ -1,6 +1,6 @@
-* Aplikácia na čítanie všetkých formátov kníh a PDF 
-* Používateľské značky pre knihy 
-* Téma Ink pre zariadenia s elektronickým atramentom 
-* Zmena kontrastu a jasu 
-* Negatívny jas 
-* Filter modrého svetla
+* Najlepšie PDF Reader pre PDF a iné formáty 
+* Nájde všetky dokumenty, zobrazí kryty 
+* Nočná téma a zmena pozadia knihy 
+* Čítanie nahlas (TTS) 
+* Poznámky, prekladatelia, slovníky 
+* Automatické rolovanie v prednastavenej rýchlosti
