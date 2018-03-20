@@ -234,12 +234,12 @@
    <string name="please_wait">请稍候...</string>
    <string name="incorrect_value">值不正确</string>
    <string name="this_directory_is_already_in_the_list">已有路径</string>
-   <string name="you_neet_to_apply_the_new_settings">应用当前设置？</string>
+   <string name="you_neet_to_apply_the_new_settings">需应用新设置</string>
    <string name="block_page_movement_horizontally">禁用页面移动</string>
-   <string name="there_are_no_email_applications_installed_">安装电子邮件？</string>
+   <string name="there_are_no_email_applications_installed_">没有安装电子邮件!</string>
    <string name="file_not_found">无结果</string>
    <string name="you_need_grant_permission">需要授权</string>
-   <string name="remind_msg">请休息下。</string>
+   <string name="remind_msg">请注意休息以保护视力</string>
    <string name="bookmark_for_this_page_already_exists">已有书签</string>
    <string name="can_t_download">不能下载</string>
    <string name="loading_error">加载错误</string>
@@ -389,7 +389,7 @@
    <string name="books">书籍</string>
    <string name="reading_out_loud">大声朗读</string>
    <string name="librera_pro_no_ads_leading_book_reader_and_pdf">Librera PRO专业领先无广告的电子书及PDF阅读器</string>
-   <string name="custom_text">自定义文本</string>
+   <string name="custom_text">自定义乐谱名</string>
    <string name="cd_search_books_in_the_library">书库搜索</string>
    <string name="cd_clear_search_reasult">清除记录</string>
    <string name="cd_sort_results">排序结果</string>
@@ -410,7 +410,7 @@
    <string name="___RECENTLY___ADDED___SECTION___">最近添加</string>
    <string name="read_the_tutorial_online_or_download_in_pdf_format">在线阅读教程或以PDF格式下载</string>
    <string name="start_recording">开始记录</string>
-   <string name="favorite_folders_and_books">书籍，文件夹。</string>
+   <string name="favorite_folders_and_books">珍藏书籍和文件夹</string>
    <string name="don_t_show_this_dialog">不再询问</string>
    <string name="show_the_book_close_dialog">书籍关闭询问</string>
    <string name="search_completed">搜索完成</string>
@@ -421,7 +421,7 @@
    <string name="incorrect_password">密码错误</string>
    <string name="repeat_password">确认</string>
    <string name="internal_storage">内部存储</string>
-   <string name="the_page_is_clipped_the_text_selection_does_not_work">页面已被剪辑，文本选择失效。</string>
+   <string name="the_page_is_clipped_the_text_selection_does_not_work">页面已被剪辑，文本选择失效</string>
    <string name="title">标题</string>
    <string name="subject">主题</string>
    <string name="keywords">关键词</string>
@@ -456,7 +456,7 @@
    <string name="allow_text_highlight">启用文本高亮</string>
    <string name="text_highlight_mode_is_enable">文本高亮已经启用</string>
    <string name="text_highlight_mode_is_disable">文本高亮已被禁用</string>
-   <string name="application_error_please_send_this_report_by_emial">请用电子邮件，发送崩溃日志。</string>
+   <string name="application_error_please_send_this_report_by_emial">请用电子邮件，传送错误报告</string>
    <string name="pause_reading_if_the_incoming_call_or_other_sounds">来电暂停</string>
    <string name="add_resource">快捷方式</string>
 </resources>
