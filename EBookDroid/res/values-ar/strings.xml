@@ -448,6 +448,7 @@
    <string name="tags">الكلمات</string>
    <string name="by_number_of_pages">عدد الصفحات</string>
    <string name="by_number_in_serie">الرقم في دوري الدرجة الاولى الايطالي</string>
+   <string name="by_extension">تمديد</string>
    <string name="recent_favorites_tags">الأخيرة، المفضلة، والعلامات</string>
    <string name="line_spacing">تباعد الأسطر</string>
    <string name="paragraph_spacing">تباعد الفقرات</string>

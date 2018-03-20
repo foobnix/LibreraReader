@@ -448,6 +448,7 @@
    <string name="tags">Mots clés</string>
    <string name="by_number_of_pages">Nombre de pages</string>
    <string name="by_number_in_serie">Numéro en série</string>
+   <string name="by_extension">Extension</string>
    <string name="recent_favorites_tags">Récent, favoris, tags</string>
    <string name="line_spacing">Interligne</string>
    <string name="paragraph_spacing">Espacement des paragraphes</string>

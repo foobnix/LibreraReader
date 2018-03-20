@@ -448,6 +448,7 @@
    <string name="tags">Tags</string>
    <string name="by_number_of_pages">Antall sider</string>
    <string name="by_number_in_serie">Nummer i serie</string>
+   <string name="by_extension">Extension</string>
    <string name="recent_favorites_tags">Nylig, favoritter, tagger</string>
    <string name="line_spacing">Linjeavstand</string>
    <string name="paragraph_spacing">Avsnittsavstand</string>

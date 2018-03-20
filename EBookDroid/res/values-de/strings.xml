@@ -448,6 +448,7 @@
    <string name="tags">Stichworte</string>
    <string name="by_number_of_pages">Seitenzahl</string>
    <string name="by_number_in_serie">Nummer in der Serie</string>
+   <string name="by_extension">Erweiterung</string>
    <string name="recent_favorites_tags">Aktuelle, Favoriten, Tags</string>
    <string name="line_spacing">Zeilenabstand</string>
    <string name="paragraph_spacing">Absatzabstand</string>

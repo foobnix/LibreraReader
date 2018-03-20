@@ -448,6 +448,7 @@
    <string name="tags">Теги</string>
    <string name="by_number_of_pages">Число страниц</string>
    <string name="by_number_in_serie">Номер в серии</string>
+   <string name="by_extension">Расширение</string>
    <string name="recent_favorites_tags">Недавние, избранные, теги</string>
    <string name="line_spacing">Межстрочный интервал</string>
    <string name="paragraph_spacing">Интервал между абзацами</string>

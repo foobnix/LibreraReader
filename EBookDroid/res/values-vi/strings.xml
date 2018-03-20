@@ -448,6 +448,7 @@
    <string name="tags">Thẻ</string>
    <string name="by_number_of_pages">Số trang</string>
    <string name="by_number_in_serie">Số trong serie</string>
+   <string name="by_extension">Sự mở rộng</string>
    <string name="recent_favorites_tags">Gần đây, mục yêu thích, thẻ</string>
    <string name="line_spacing">Khoảng cách dòng</string>
    <string name="paragraph_spacing">Khoảng cách giữa đoạn văn</string>

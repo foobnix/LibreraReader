@@ -448,6 +448,7 @@
    <string name="tags">Теги</string>
    <string name="by_number_of_pages">Кількість сторінок</string>
    <string name="by_number_in_serie">Номер у серії</string>
+   <string name="by_extension">Розширення</string>
    <string name="recent_favorites_tags">Недавні, вибрані, теги</string>
    <string name="line_spacing">Міжрядковий інтервал</string>
    <string name="paragraph_spacing">Міжрядковий інтервал</string>

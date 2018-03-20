@@ -448,6 +448,7 @@
    <string name="tags">Tagy</string>
    <string name="by_number_of_pages">Počet stránok</string>
    <string name="by_number_in_serie">Číslo v sérií</string>
+   <string name="by_extension">Predĺženie</string>
    <string name="recent_favorites_tags">Nedávno, obľúbené, značky</string>
    <string name="line_spacing">Riadkovanie</string>
    <string name="paragraph_spacing">Odstránenie oddielov</string>

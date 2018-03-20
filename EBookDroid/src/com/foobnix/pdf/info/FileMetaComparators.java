@@ -45,6 +45,18 @@ public class FileMetaComparators {
         }
     };
 
+    public static Comparator<FileMeta> BR_BY_EXT = new Comparator<FileMeta>() {
+        @Override
+        public int compare(FileMeta o1, FileMeta o2) {
+            try {
+                return o1.getExt().compareTo(o2.getExt());
+            } catch (Exception e) {
+                LOG.e(e);
+                return 0;
+            }
+        }
+    };
+
     public static Comparator<FileMeta> BR_BY_NUMBER = new Comparator<FileMeta>() {
         Pattern compile = Pattern.compile("[0-9]+");
 

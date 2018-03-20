@@ -373,7 +373,8 @@ public class BrowseFragment2 extends UIFragment<FileMeta> {
                         getActivity().getString(R.string.by_size), //
                         getActivity().getString(R.string.by_title), //
                         getActivity().getString(R.string.by_number_in_serie), //
-                        getActivity().getString(R.string.by_number_of_pages) //
+                        getActivity().getString(R.string.by_number_of_pages), //
+                        getActivity().getString(R.string.by_extension) //
                 );//
 
                 final List<Integer> ids = Arrays.asList(//
@@ -382,7 +383,8 @@ public class BrowseFragment2 extends UIFragment<FileMeta> {
                         AppState.BR_SORT_BY_SIZE, //
                         AppState.BR_SORT_BY_TITLE, //
                         AppState.BR_SORT_BY_NUMBER, //
-                        AppState.BR_SORT_BY_PAGES //
+                        AppState.BR_SORT_BY_PAGES, //
+                        AppState.BR_SORT_BY_EXT//
                 );//
 
                 MyPopupMenu menu = new MyPopupMenu(getActivity(), v);
@@ -678,6 +680,8 @@ public class BrowseFragment2 extends UIFragment<FileMeta> {
             Collections.sort(items, FileMetaComparators.BR_BY_PAGES);
         } else if (AppState.get().sortByBrowse == AppState.BR_SORT_BY_TITLE) {
             Collections.sort(items, FileMetaComparators.BR_BY_TITLE);
+        } else if (AppState.get().sortByBrowse == AppState.BR_SORT_BY_EXT) {
+            Collections.sort(items, FileMetaComparators.BR_BY_EXT);
         }
         if (AppState.get().sortByReverse) {
             Collections.reverse(items);

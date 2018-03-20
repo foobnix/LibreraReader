@@ -448,6 +448,7 @@
    <string name="tags">태그</string>
    <string name="by_number_of_pages">페이지 수</string>
    <string name="by_number_in_serie">세리에 번호</string>
+   <string name="by_extension">신장</string>
    <string name="recent_favorites_tags">최근 즐겨 찾기, 태그</string>
    <string name="line_spacing">줄 간격</string>
    <string name="paragraph_spacing">단락 간격</string>

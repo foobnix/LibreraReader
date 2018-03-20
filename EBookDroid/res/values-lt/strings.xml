@@ -448,6 +448,7 @@
    <string name="tags">Žymos</string>
    <string name="by_number_of_pages">Puslapių skaičius</string>
    <string name="by_number_in_serie">Numeris serijoje</string>
+   <string name="by_extension">Pratęsimas</string>
    <string name="recent_favorites_tags">Naujausi, mėgstamiausi, žymas</string>
    <string name="line_spacing">Linijos tarpai</string>
    <string name="paragraph_spacing">Taškų tarpas</string>
