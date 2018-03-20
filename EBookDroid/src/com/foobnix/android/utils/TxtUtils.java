@@ -679,7 +679,7 @@ public class TxtUtils {
     }
 
     public static boolean isListEmpty(List<?> objects) {
-        return objects == null || objects.size() <= 1;
+        return objects == null || objects.size() <= 0;
     }
 
     public static void bold(TextView text) {

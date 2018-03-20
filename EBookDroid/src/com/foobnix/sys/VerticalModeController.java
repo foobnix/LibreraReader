@@ -770,7 +770,7 @@ public class VerticalModeController extends DocumentController {
                     }
 
                     try {
-                        if (!ctr.getDocumentModel().decodeService.getCodecDocument().isRecycled()) {
+                        if (!ctr.getDocumentModel().decodeService.getCodecDocument().isRecycled() && TxtUtils.isNotEmpty(ol.getTitle())) {
 
                             if (ol.getLink() != null && ol.getLink().startsWith("#") && !ol.getLink().startsWith("#0")) {
                                 outline.add(new OutlineLinkWrapper(ol.getTitle(), ol.getLink(), ol.getLevel(), ol.docHandle, ol.linkUri));

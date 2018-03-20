@@ -557,7 +557,7 @@ public abstract class HorizontalModeController extends DocumentController {
                             if (TempHolder.get().loadingCancelled) {
                                 return;
                             }
-                            if (!codeDocument.isRecycled()) {
+                            if (!codeDocument.isRecycled() && TxtUtils.isNotEmpty(ol.getTitle())) {
                                 if (ol.getLink() != null && ol.getLink().startsWith("#") && !ol.getLink().startsWith("#0")) {
                                     outline.add(new OutlineLinkWrapper(ol.getTitle(), ol.getLink(), ol.getLevel(), ol.docHandle, ol.linkUri));
                                 } else {
