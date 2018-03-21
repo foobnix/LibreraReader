@@ -11,6 +11,9 @@ source/html/css-apply.c
 
 		else if (!strcmp(value->data, "inherit")) style->font_size = make_number(1.0f, N_SCALE);
 		else style->font_size =make_number(1.0f, N_SCALE);
+		
+if (value->type == CSS_PERCENT)
+		return make_number(fz_css_strtof(value->data, NULL)/2.5, N_PERCENT);		
 	
 //REM	
 	
