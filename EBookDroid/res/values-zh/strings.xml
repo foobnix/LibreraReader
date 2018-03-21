@@ -32,10 +32,10 @@
    <string name="show_the_dialog_what_is_new_for_updates">显示更新信息</string>
    <string name="what_is_new_in">了解</string>
    <string name="full_list_of_changes_with_images_web_pdf_">了解详细信息...</string>
-   <string name="search_for_text_in_documents">多文件中搜索</string>
+   <string name="search_for_text_in_documents">多文件中搜索文本</string>
    <string name="search_in_the_subfolders">子文件夹</string>
    <string name="stop">停止</string>
-   <string name="document_converter_online_">文件在线转换</string>
+   <string name="document_converter_online_">文件格式在线转换</string>
    <string name="book_covers">书籍封面</string>
    <string name="cover_image_size">封面大小</string>
    <string name="column_count">列数</string>
@@ -200,7 +200,7 @@
    <string name="user">用户</string>
    <string name="other_settings">其它设置</string>
    <string name="folder_for_downloaded_books">下载路径</string>
-   <string name="display_large_book_covers_in_the_catalog">显示目录中书籍大封面</string>
+   <string name="display_large_book_covers_in_the_catalog">显示书籍大封面</string>
    <string name="add_catalog">添加书库</string>
    <string name="name">名称</string>
    <string name="description">描述</string>
@@ -239,7 +239,7 @@
    <string name="there_are_no_email_applications_installed_">没有安装电子邮件!</string>
    <string name="file_not_found">无结果</string>
    <string name="you_need_grant_permission">需要授权</string>
-   <string name="remind_msg">请注意休息以保护视力</string>
+   <string name="remind_msg">请注意休息以保护视力。</string>
    <string name="bookmark_for_this_page_already_exists">已有书签</string>
    <string name="can_t_download">不能下载</string>
    <string name="loading_error">加载错误</string>
@@ -394,7 +394,7 @@
    <string name="cd_clear_search_reasult">清除记录</string>
    <string name="cd_sort_results">排序结果</string>
    <string name="cd_sort_order">排序</string>
-   <string name="cd_update_search_search_for_new_books_on_sd_card">更新搜索，在SD卡上搜索新书</string>
+   <string name="cd_update_search_search_for_new_books_on_sd_card">更新搜索，在SD卡上搜索新书。</string>
    <string name="cd_show_results_as_a_list_or_grid">结果显示为列表或网格</string>
    <string name="cd_return_to_the_parent_folder">返回上级</string>
    <string name="cd_back_to_sd_card">返回SD卡</string>
@@ -408,7 +408,7 @@
    <string name="can_t_delete_file">删除失败</string>
    <string name="switch_off">关闭</string>
    <string name="___RECENTLY___ADDED___SECTION___">最近添加</string>
-   <string name="read_the_tutorial_online_or_download_in_pdf_format">在线阅读教程或以PDF格式下载</string>
+   <string name="read_the_tutorial_online_or_download_in_pdf_format">在线阅读教程或以PDF格式下载。</string>
    <string name="start_recording">开始记录</string>
    <string name="favorite_folders_and_books">珍藏书籍和文件夹</string>
    <string name="don_t_show_this_dialog">不再询问</string>
@@ -421,7 +421,7 @@
    <string name="incorrect_password">密码错误</string>
    <string name="repeat_password">确认</string>
    <string name="internal_storage">内部存储</string>
-   <string name="the_page_is_clipped_the_text_selection_does_not_work">页面已被剪辑，文本选择失效</string>
+   <string name="the_page_is_clipped_the_text_selection_does_not_work">页面已被剪辑，文本选择失效。</string>
    <string name="title">标题</string>
    <string name="subject">主题</string>
    <string name="keywords">关键词</string>
@@ -448,7 +448,7 @@
    <string name="tags">标签</string>
    <string name="by_number_of_pages">页数</string>
    <string name="by_number_in_serie">系数</string>
-   <string name="by_extension">延期</string>
+   <string name="by_extension">子集</string>
    <string name="recent_favorites_tags">最近，珍藏，标签。</string>
    <string name="line_spacing">行目间距</string>
    <string name="paragraph_spacing">段落间距</string>
@@ -456,7 +456,7 @@
    <string name="allow_text_highlight">启用文本高亮</string>
    <string name="text_highlight_mode_is_enable">文本高亮已经启用</string>
    <string name="text_highlight_mode_is_disable">文本高亮已被禁用</string>
-   <string name="application_error_please_send_this_report_by_emial">请用电子邮件，传送错误报告</string>
+   <string name="application_error_please_send_this_report_by_emial">请用电子邮件，传送错误报告。</string>
    <string name="pause_reading_if_the_incoming_call_or_other_sounds">来电暂停</string>
    <string name="add_resource">快捷方式</string>
 </resources>
