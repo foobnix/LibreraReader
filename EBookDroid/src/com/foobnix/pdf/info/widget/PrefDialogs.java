@@ -96,7 +96,9 @@ public class PrefDialogs {
                                 break;
                             }
                         }
-                        if (isExists) {
+                        if (ExtUtils.isExteralSD(nPath)) {
+                            Toast.makeText(a, R.string.incorrect_value, Toast.LENGTH_SHORT).show();
+                        } else if (isExists) {
                             Toast.makeText(a, String.format("[ %s == %s ] %s", nPath, existPath, a.getString(R.string.this_directory_is_already_in_the_list)), Toast.LENGTH_LONG).show();
                         } else {
                             if (AppState.get().searchPaths.endsWith(",")) {
@@ -126,23 +128,20 @@ public class PrefDialogs {
 
             @Override
             public boolean onResultRecive(Uri result) {
-                if (AppState.get().searchPaths.split(",").length > 1) {
-                    String path = result.getPath();
-                    LOG.d("TEST", "Remove " + AppState.get().searchPaths);
-                    LOG.d("TEST", "Remove " + path);
-                    StringBuilder builder = new StringBuilder();
-                    for (String str : AppState.get().searchPaths.split(",")) {
-                        if (str != null && str.trim().length() > 0 && !str.equals(path)) {
-                            builder.append(str);
-                            builder.append(",");
-                        }
+                String path = result.getPath();
+                LOG.d("TEST", "Remove " + AppState.get().searchPaths);
+                LOG.d("TEST", "Remove " + path);
+                StringBuilder builder = new StringBuilder();
+                for (String str : AppState.get().searchPaths.split(",")) {
+                    if (str != null && str.trim().length() > 0 && !str.equals(path)) {
+                        builder.append(str);
+                        builder.append(",");
                     }
-                    AppState.get().searchPaths = builder.toString();
-                    LOG.d("TEST", "Remove " + AppState.get().searchPaths);
-                    recentAdapter.setPaths(AppState.get().searchPaths);
-                    onChanges.run();
-
                 }
+                AppState.get().searchPaths = builder.toString();
+                LOG.d("TEST", "Remove " + AppState.get().searchPaths);
+                recentAdapter.setPaths(AppState.get().searchPaths);
+                onChanges.run();
                 return false;
             }
         });
@@ -156,112 +155,6 @@ public class PrefDialogs {
             }
         });
         create.show();
-    }
-
-    private void navigationDialog(final FragmentActivity a, File currentDirectory, final Runnable onChanges, final Runnable onScan) {
-
-        if (true) {
-            return;
-        }
-
-        final BrowserAdapter adapter = new BrowserAdapter(a, new ExtFilter(ExtUtils.browseExts));
-        adapter.setCurrentDirectory(currentDirectory);
-
-        final AlertDialog.Builder builder = new AlertDialog.Builder(a);
-        builder.setTitle(R.string.choose_);
-
-        final TextView text = new TextView(a);
-        text.setText(currentDirectory.getPath());
-        int p = Dips.dpToPx(5);
-        text.setPadding(p, p, p, p);
-        text.setTypeface(Typeface.DEFAULT, Typeface.BOLD);
-        text.setTextSize(16);
-        text.setSingleLine();
-        text.setEllipsize(TruncateAt.END);
-
-        final ListView list = new ListView(a);
-        list.setMinimumHeight(1000);
-        list.setMinimumWidth(600);
-        list.setAdapter(adapter);
-        list.setOnItemClickListener(new OnItemClickListener() {
-
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                final File file = new File(adapter.getItem(position).getPath());
-                if (file.isDirectory()) {
-                    lastPaht = file.getPath();
-                    adapter.setCurrentDirectory(file);
-                    text.setText(file.getPath());
-                    list.setSelection(0);
-
-                }
-            }
-        });
-
-        LinearLayout inflate = (LinearLayout) LayoutInflater.from(a).inflate(R.layout.frame_layout, null, false);
-
-        list.setLayoutParams(new TableLayout.LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT, 1f));
-        text.setLayoutParams(new TableLayout.LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT, 0f));
-
-        ImageView home = new ImageView(a);
-        home.setImageResource(R.drawable.glyphicons_21_home);
-        TintUtil.setTintImageWithAlpha(home);
-        home.setOnClickListener(new OnClickListener() {
-
-            @Override
-            public void onClick(View v) {
-                final File file = Environment.getExternalStorageDirectory();
-                lastPaht = file.getPath();
-                adapter.setCurrentDirectory(file);
-                text.setText(file.getPath());
-                list.setSelection(0);
-            }
-        });
-
-        inflate.addView(home);
-
-        inflate.addView(text);
-        inflate.addView(list);
-        builder.setView(inflate);
-
-        builder.setPositiveButton(R.string.select, new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int id) {
-                String nPath = text.getText().toString();
-
-                boolean isExists = false;
-                String existPath = "";
-                for (String str : AppState.get().searchPaths.split(",")) {
-                    if (str != null && str.trim().length() != 0 && nPath.equals(str)) {
-                        isExists = true;
-                        existPath = str;
-                        break;
-                    }
-                }
-                if (isExists) {
-                    Toast.makeText(a, String.format("[ %s == %s ] %s", nPath, existPath, a.getString(R.string.this_directory_is_already_in_the_list)), Toast.LENGTH_LONG).show();
-                } else {
-                    if (AppState.get().searchPaths.endsWith(",")) {
-                        AppState.get().searchPaths = AppState.get().searchPaths + "" + nPath;
-                    } else {
-                        AppState.get().searchPaths = AppState.get().searchPaths + "," + nPath;
-                    }
-                }
-
-                chooseFolderDialog(a, onChanges, onScan);
-            }
-        });
-
-        builder.setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int id) {
-                dialog.dismiss();
-            }
-        });
-
-        AlertDialog dialog = builder.create();
-        dialog.show();
-
     }
 
     public static void importDialog(final FragmentActivity activity) {

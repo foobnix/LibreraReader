@@ -13,7 +13,6 @@
         android:layout_height="48dip"
         android:layout_weight="0"
         android:orientation="horizontal"
-        android:background="@drawable/bg_clickable"
         android:padding="12dip"
         android:src="@drawable/screen_zoom_out_dark"
         android:tint="#FF0000" />

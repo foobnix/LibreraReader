@@ -359,7 +359,7 @@ public class AppState {
 
     public boolean isAlwaysOpenAsMagazine = false;
     public boolean isRememberMode = false;
-    public boolean isInkMode = true;
+    public boolean isInkMode = false;
 
     public volatile boolean isAutoScroll = false;
     public int autoScrollSpeed = 120;

@@ -174,9 +174,10 @@ public class OutlineAdapter extends BaseAdapter {
             // btn.setBackgroundColor(Color.TRANSPARENT);
             btn.setImageDrawable(null);
             btn.setOnClickListener(itemListener);
+            btn.setBackgroundColor(Color.TRANSPARENT);
         } else {
+            btn.setBackgroundResource(R.drawable.bg_clickable);
             btn.setOnClickListener(collapseListener);
-
             btn.setImageResource(states[id] == OutlineItemState.EXPANDED ? R.drawable.screen_zoom_out_dark : R.drawable.screen_zoom_in_dark);
             TintUtil.setTintImageWithAlpha(btn, view.getCurrentTextColor());
 

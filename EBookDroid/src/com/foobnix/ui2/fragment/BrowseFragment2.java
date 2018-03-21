@@ -244,7 +244,7 @@ public class BrowseFragment2 extends UIFragment<FileMeta> {
 
                 // resources
 
-                if (Build.VERSION.SDK_INT >= 21) {
+                if (Build.VERSION.SDK_INT >= 21 && getActivity() instanceof MainTabs2) {
                     List<String> safs = StringDB.asList(AppState.get().pathSAF);
 
                     for (final String saf : safs) {
@@ -297,7 +297,7 @@ public class BrowseFragment2 extends UIFragment<FileMeta> {
 
                 }
 
-                if (Build.VERSION.SDK_INT >= 21) {
+                if (Build.VERSION.SDK_INT >= 21 && getActivity() instanceof MainTabs2) {
                     menu.getMenu().add(R.string.add_resource).setOnMenuItemClickListener(new OnMenuItemClickListener() {
 
                         @Override
