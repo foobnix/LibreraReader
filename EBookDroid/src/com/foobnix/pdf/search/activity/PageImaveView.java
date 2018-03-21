@@ -366,6 +366,9 @@ public class PageImaveView extends View {
                         }
 
                         boolean isBrightness = brightnessHelper.onActionMove(event);
+                        if (isBrightness) {
+                            isIgronerClick = true;
+                        }
 
                         if (!isBrightness && isReadyForMove && !AppState.get().isLocked) {
 
