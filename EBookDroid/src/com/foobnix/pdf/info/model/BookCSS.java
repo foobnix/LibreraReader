@@ -251,11 +251,12 @@ public class BookCSS {
 
                 } else if (fontName.contains("italic") || fontName.endsWith("it")) {
                     italicFont = fullName;
-
+                } else {
+                    normalFont = fullName;
                 }
             }
         }
-        LOG.d("resetAll", normalFont);
+        LOG.d("resetAll 2", normalFont);
 
     }
 
