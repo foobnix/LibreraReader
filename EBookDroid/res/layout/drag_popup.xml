@@ -84,7 +84,7 @@
                 android:src="@drawable/glyphicons_208_remove_2" />
         </LinearLayout>
 
-        <FrameLayout
+        <com.foobnix.pdf.info.view.MyFrameLayout
             android:id="@+id/popupContent"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -92,7 +92,7 @@
             android:layout_centerHorizontal="true"
             android:clickable="true"
             android:padding="2dip" >
-        </FrameLayout>
+        </com.foobnix.pdf.info.view.MyFrameLayout>
 
         <View
             android:id="@+id/left"

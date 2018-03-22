@@ -1,7 +1,5 @@
-PDF PDF pro optimus 
-* Lector aliisque documentis formats 
-* omnes reperit: ostenditque umeros opercula theme noctem 
-*, et mutantur in background de Lectio libri 
-* ex magna (TTS) 
-* Notes: translators, dictionaries scrolling 
-* Lorem ad celeritatem preset
+* Multi improvements iuxta vota vestra: ut simul nos tibi optimum libri PDF legit et legit. Additional fonts 
+* (LUDUS LATRUNCULARIUS in libris exempli gratia) Melior icones et user interface 
+* 
+* 
+* venenum blanda Sort libros per file type horizontal scrolling

@@ -1,6 +1,5 @@
-* Best PDF Reader for PDF og andre formater 
-* Finner alle dokumentene, viser dekslene 
-* Natt tema og endrer bakgrunnen til en bok 
-* Leser høyt (TTS) 
-* Merknader, oversettere, ordbøker 
-* Automatisk rulling med forhåndsinnstilt hastighet
+* Mange forbedringer i henhold til dine ønsker, sammen vil vi lage den beste bokleseren og PDF-leseren. 
+* Ekstra skrifttyper (for eksempel for sjakkbøker) 
+* Forbedrede ikoner og brukergrensesnitt 
+* Sorter bøker etter filtype 
+* Glatt horisontal rulling

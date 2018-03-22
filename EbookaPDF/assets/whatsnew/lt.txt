@@ -1,6 +1,5 @@
-* Geriausias PDF Reader PDF ir kitiems formatams 
-* Randa visus dokumentus, parodo viršelius 
-* Nakties tema ir knygos fono keitimas 
-* Skaitymas garsiai (TTS) 
-* Pastabos, vertėjai, žodynai 
-* Automatinis slinkimas esant nustatytam greičiui
+* Daugybė patobulinimų pagal jūsų norus, kartu mes padarysime geriausią knygų skaitytuvą ir PDF skaitytuvą. 
+* Papildomi šriftai (pvz., Šachmatų knygoms) 
+* Patobulintos piktogramos ir vartotojo sąsaja 
+* Rūšiuoti knygas pagal failo tipą 
+* Lygus horizontalus slinkimas

@@ -1,6 +1,7 @@
 package com.foobnix.pdf.info.widget;
 
 import com.foobnix.android.utils.Dips;
+import com.foobnix.android.utils.LOG;
 import com.foobnix.pdf.info.view.AnchorHelper;
 import com.foobnix.pdf.info.view.DragingPopup;
 
@@ -37,8 +38,14 @@ public class DraggbleTouchListener implements OnTouchListener {
 
     long time;
 
+    private Runnable onEventDetected;
+
     @Override
     public boolean onTouch(View v, MotionEvent event) {
+        LOG.d("DraggbleTouchListener", event);
+        if (onEventDetected != null) {
+            onEventDetected.run();
+        }
         if (anchor == null || root == null) {
             return false;
         }
@@ -107,5 +114,13 @@ public class DraggbleTouchListener implements OnTouchListener {
     public void setOnMoveFinish(Runnable onMoveFinish) {
         this.onMoveFinish = onMoveFinish;
 
+    }
+
+    public Runnable getOnEventDetected() {
+        return onEventDetected;
+    }
+
+    public void setOnEventDetected(Runnable onEventDetected) {
+        this.onEventDetected = onEventDetected;
     }
 }

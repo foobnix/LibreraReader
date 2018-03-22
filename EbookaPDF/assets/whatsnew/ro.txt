@@ -1,6 +1,5 @@
-* Cel mai bun PDF Reader pentru PDF și alte formate 
-* Găsește toate documentele, afișează copertele 
-* Tema de noapte și schimbă fundalul unei cărți 
-* Citirea cu voce tare (TTS) 
-* Note, traducători, dicționare 
-* Derulare automată la viteza prestabilită
+* Multe îmbunătățiri în funcție de dorințele dvs., împreună vom face cel mai bun cititor de cărți și cititor PDF. 
+* Fonturi suplimentare (de exemplu, pentru cărți de șah) 
+* Pictograme îmbunătățite și interfața cu utilizatorul 
+* Sortați cărțile după tipul de fișier 
+*

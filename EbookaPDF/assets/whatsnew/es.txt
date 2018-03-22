@@ -1,6 +1,5 @@
-* Mejor lector de PDF para PDF y otros formatos 
-* Encuentra todos los documentos, muestra las portadas 
-* Tema nocturno y cambio de fondo de un libro 
-* Lectura en voz alta (TTS) 
-* Notas, traductores, diccionarios 
-* Desplazamiento automático a la velocidad preestablecida
+* Muchas mejoras de acuerdo a sus deseos, juntos haremos el mejor lector de libros y lector de PDF. 
+* Fuentes adicionales (por ejemplo, libros de ajedrez) 
+* Iconos mejorados e interfaz de usuario 
+* Ordenar libros por tipo de archivo 
+* Desplazamiento horizontal suave

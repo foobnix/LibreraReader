@@ -1,6 +1,5 @@
-* Trình đọc PDF tốt nhất cho PDF và các định dạng khác 
-* Tìm tất cả các tài liệu, hiển thị bìa 
-* Chủ đề ban đêm và thay đổi nền của một quyển sách 
-* Đọc to (TTS) 
-* Ghi chú, dịch giả, từ điển 
-* Tự động cuộn theo tốc độ định sẵn
+* Nhiều cải tiến theo ý muốn của bạn, chúng tôi sẽ làm cho Trình đọc Sách và Trình đọc PDF tốt nhất. 
+* Các phông chữ bổ sung (ví dụ cho các sách cờ vua) 
+* Cải thiện các biểu tượng và giao diện người dùng 
+* Sắp xếp sách theo loại tập tin 
+* Cuộn theo chiều ngang mịn

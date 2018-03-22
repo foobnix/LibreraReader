@@ -1,6 +1,5 @@
-* Best PDF Reader for PDF and other formats
-* Finds all the documents, displays the covers
-* Night theme and changing the background of a book
-* Reading out loud (TTS)
-* Notes, translators, dictionaries
-* Automatic scrolling at preset speed
+* Many improvements according to your wishes, together we'll make the best Book reader and PDF reader.
+* Additional fonts (for example for chess books)
+* Improved icons and user interface
+* Sort books by file type
+* Smooth horizontal scrolling

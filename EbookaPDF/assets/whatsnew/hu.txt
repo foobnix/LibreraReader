@@ -1,6 +1,5 @@
-* Legjobb PDF-olvasó PDF és egyéb formátumokhoz 
-* Megtalálja az összes dokumentumot, megjeleníti a borítót 
-* Éjszakai téma és könyv háttérének megváltoztatása 
-* Hangos olvasás (TTS) 
-* Megjegyzések, fordítók, szótárak 
-* Automatikus görgetés előre beállított sebességgel
+* Számos fejlesztés az Ön kívánságainak megfelelően, együtt készítjük a legjobb könyvolvasót és PDF-olvasót. 
+* További betűkészletek (például sakkkönyvekhez) 
+* Továbbfejlesztett ikonok és felhasználói felület 
+* A könyvek rendezése fájltípus szerint 
+* Sima vízszintes görgetés

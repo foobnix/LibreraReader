@@ -1,6 +1,5 @@
-* PDF ve diğer formatlar için en iyi PDF Okuyucu 
-* Tüm belgeleri bulur, kapakları gösterir 
-* Gece teması ve bir kitabın arka planını değiştirme 
-* Yüksek sesli okuma (TTS) 
-* Notlar, çevirmenler, sözlükler 
-* Önceden ayarlanmış hızda otomatik kaydırma
+* İsteklerinize göre birçok iyileştirme, birlikte en iyi Kitap okuyucusunu ve PDF okuyucuyu yapacağız. 
+* Ek yazı tipleri (örneğin satranç kitapları için) 
+* Geliştirilmiş simgeler ve kullanıcı arabirimi 
+* Dosya türüne göre kitapları sırala 
+* Düz yatay kaydırma

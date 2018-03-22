@@ -1,289 +1,305 @@
 
 <nl-NL>
-* Beste PDF Reader voor PDF en andere formaten 
-* Vindt alle documenten, toont de covers 
-* Nachtthema en verandert de achtergrond van een boek 
-* Hardop lezen (TTS) 
-* Notes, vertalers, woordenboeken 
-* Automatisch scrollen op vooraf ingestelde snelheid
+* Veel verbeteringen op basis van uw wensen, samen maken we de beste boeklezer en PDF-lezer. 
+* Extra lettertypen (bijvoorbeeld voor schaakboeken) 
+* Verbeterde pictogrammen en gebruikersinterface 
+* Boeken sorteren op bestandstype 
+* Vloeiend horizontaal scrollen
 </nl-NL>
 
 <id>
-* PDF Reader Terbaik untuk PDF dan format lain 
-* Menemukan semua dokumen, menampilkan sampul 
-* Tema malam dan mengubah latar belakang buku 
-* Membaca dengan suara keras (TTS) 
-* Catatan, penerjemah, kamus 
-* Bergulir otomatis pada kecepatan yang telah ditentukan
+* Banyak perbaikan sesuai keinginan Anda, bersama-sama kami akan membuat pembaca Buku terbaik dan pembaca PDF. 
+* Font tambahan (misalnya untuk buku catur) 
+* Peningkatan ikon dan antarmuka pengguna 
+* Urutkan buku berdasarkan jenis file 
+* Pengguliran horizontal halus
 </id>
 
 <lt>
-* Geriausias PDF Reader PDF ir kitiems formatams 
-* Randa visus dokumentus, parodo viršelius 
-* Nakties tema ir knygos fono keitimas 
-* Skaitymas garsiai (TTS) 
-* Pastabos, vertėjai, žodynai 
-* Automatinis slinkimas esant nustatytam greičiui
+* Daugybė patobulinimų pagal jūsų norus, kartu mes padarysime geriausią knygų skaitytuvą ir PDF skaitytuvą. 
+* Papildomi šriftai (pvz., Šachmatų knygoms) 
+* Patobulintos piktogramos ir vartotojo sąsaja 
+* Rūšiuoti knygas pagal failo tipą 
+* Lygus horizontalus slinkimas
 </lt>
 
 <ar>
-* أفضل قارئ PDF لقوات الدفاع الشعبي وغيرها من الأشكال 
-* يجد كل الوثائق ، ويعرض الأغطية 
-* موضوع ليلة وتغيير خلفية الكتاب 
-* القراءة بصوت عال (TTS) 
-* الملاحظات والمترجمين والقواميس 
-* التمرير التلقائي بسرعة محددة مسبقا
+* العديد من التحسينات وفقا لرغباتك ، معا سنجعل أفضل قارئ الكتاب وقارئ PDF. 
+* خطوط إضافية (على سبيل المثال لكتب الشطرنج) 
+* رموز محسنة واجهة مستخدم 
+* فرز الكتب حسب نوع الملف 
+* التمرير الأفقي السلس
 </ar>
 
 <ro>
-* Cel mai bun PDF Reader pentru PDF și alte formate 
-* Găsește toate documentele, afișează copertele 
-* Tema de noapte și schimbă fundalul unei cărți 
-* Citirea cu voce tare (TTS) 
-* Note, traducători, dicționare 
-* Derulare automată la viteza prestabilită
+* Multe îmbunătățiri în funcție de dorințele dvs., împreună vom face cel mai bun cititor de cărți și cititor PDF. 
+* Fonturi suplimentare (de exemplu, pentru cărți de șah) 
+* Pictograme îmbunătățite și interfața cu utilizatorul 
+* Sortați cărțile după tipul de fișier 
+*
 </ro>
 
 <de-DE>
-* Bester PDF Reader für PDF und andere Formate 
-* Findet alle Dokumente, zeigt die Cover an 
-* Nacht Thema und ändert den Hintergrund eines Buches 
-* Vorlesen (TTS) 
-* Notizen, Übersetzer, Wörterbücher 
-* Automatisches Scrollen mit voreingestellter Geschwindigkeit
+* Viele Verbesserungen nach Ihren Wünschen, zusammen machen wir den besten Buchleser und PDF-Reader. 
+* Zusätzliche Schriftarten (zum Beispiel für Schachbücher) 
+* Verbesserte Symbole und Benutzeroberfläche 
+* Sortieren von Büchern nach Dateityp 
+* Glattes horizontales Scrollen
 </de-DE>
 
 <pl-PL>
-* Najlepszy czytnik PDF dla plików PDF i innych formatów 
-* Znajduje wszystkie dokumenty, wyświetla okładki 
-* Motyw nocny i zmiana tła książki 
-* Odczytanie na głos (TTS) 
-* Uwagi, tłumacze, słowniki 
-* Automatyczne przewijanie z ustawioną prędkością
+* Wiele ulepszeń zgodnie z Twoimi życzeniami, razem stworzymy najlepszy czytnik książek i czytnik PDF. 
+* Dodatkowe czcionki (na przykład dla książek w szachy) 
+* Poprawione ikony i interfejs użytkownika 
+* Sortowanie książek według typu pliku 
+* Płynne przewijanie w poziomie
 </pl-PL>
 
 <iw-IL>
-* PDF הטוב ביותר עבור PDF PDF ו פורמטים אחרים 
-* מוצא את כל המסמכים, מציג את מכסה 
-* נושא לילה ושינוי הרקע של הספר 
-* קריאה בקול רם (TTS) 
-* הערות, מתרגמים, מילונים 
-* גלילה אוטומטית במהירות מראש
+* שיפורים רבים על פי רצונכם, יחד נעשה את הטוב ביותר קורא ספרים וקורא PDF. 
+* גופנים נוספים (לדוגמה עבור ספרי שחמט) 
+* סמלים משופרת וממשק משתמש 
+* מיין ספרים לפי סוג הקובץ 
+* גלילה אופקית חלקה
 </iw-IL>
 
 <hi-IN>
-* पीडीएफ और अन्य प्रारूपों के लिए सर्वश्रेष्ठ पीडीएफ रीडर 
-* सभी दस्तावेजों का पता चलता है, कवर प्रदर्शित करता है 
-* रात्रि विषय और पुस्तक की पृष्ठभूमि को बदलना 
-* ज़ोर से पढ़ना (टीटीएस) 
-* नोट्स, अनुवादकों, शब्दकोश 
-* पूर्व निर्धारित गति पर स्वचालित स्क्रॉल
+* आपकी इच्छाओं के अनुसार कई सुधार, एक साथ हम सर्वश्रेष्ठ बुक रीडर और पीडीएफ रीडर बना लेंगे 
+* अतिरिक्त फोंट (उदाहरण के लिए शतरंज पुस्तकों के लिए) 
+* बेहतर आइकन और यूजर इंटरफेस 
+* फाइल प्रकार के आधार पर पुस्तकें 
+* चिकना क्षैतिज स्क्रॉलिंग
 </hi-IN>
 
 <es-ES>
-* Mejor lector de PDF para PDF y otros formatos 
-* Encuentra todos los documentos, muestra las portadas 
-* Tema nocturno y cambio de fondo de un libro 
-* Lectura en voz alta (TTS) 
-* Notas, traductores, diccionarios 
-* Desplazamiento automático a la velocidad preestablecida
+* Muchas mejoras de acuerdo a sus deseos, juntos haremos el mejor lector de libros y lector de PDF. 
+* Fuentes adicionales (por ejemplo, libros de ajedrez) 
+* Iconos mejorados e interfaz de usuario 
+* Ordenar libros por tipo de archivo 
+* Desplazamiento horizontal suave
 </es-ES>
 
 <fi-FI>
-* Paras PDF-lukija PDF: lle ja muille formaateille 
-* Löydä kaikki asiakirjat, näyttää kansiot 
-* Yöteema ja kirjan taustakuvan muuttaminen 
-* Äänen lukeminen (TTS) 
-* Muistiinpanot, kääntäjät, sanakirjat 
-* Automaattinen vieritys valmiilla nopeuksilla
+* Monet toiveesi mukaiset parannukset, yhdessä parhaan kirjan lukijan ja PDF-lukijan kanssa. 
+* Muut kirjasimet (esimerkiksi shakkikirjoihin) 
+* Parannetut kuvakkeet ja käyttöliittymä 
+* Lajittele kirjat tiedostotyypin mukaan 
+* Tasainen vaakasuora vieritys
 </fi-FI>
 
 <vi>
-* Trình đọc PDF tốt nhất cho PDF và các định dạng khác 
-* Tìm tất cả các tài liệu, hiển thị bìa 
-* Chủ đề ban đêm và thay đổi nền của một quyển sách 
-* Đọc to (TTS) 
-* Ghi chú, dịch giả, từ điển 
-* Tự động cuộn theo tốc độ định sẵn
+* Nhiều cải tiến theo ý muốn của bạn, chúng tôi sẽ làm cho Trình đọc Sách và Trình đọc PDF tốt nhất. 
+* Các phông chữ bổ sung (ví dụ cho các sách cờ vua) 
+* Cải thiện các biểu tượng và giao diện người dùng 
+* Sắp xếp sách theo loại tập tin 
+* Cuộn theo chiều ngang mịn
 </vi>
 
 <fr-FR>
-* Meilleur lecteur PDF pour PDF et autres formats 
-* Trouve tous les documents, affiche les couvertures 
-* Thème de la nuit et change l’arrière-plan d’un livre 
-* Lecture à voix haute (TTS) 
-* Notes, traducteurs, dictionnaires 
-* Défilement automatique à vitesse prédéfinie
+* Beaucoup d’améliorations selon vos souhaits, ensemble nous ferons le meilleur lecteur de livre et lecteur de PDF. 
+* Polices supplémentaires (par exemple pour les livres d’échecs) 
+* Amélioration des icônes et de l’interface utilisateur 
+* Trier les livres par type de fichier 
+* Défilement horizontal lisse
 </fr-FR>
 
 <fr-CA>
-* Meilleur lecteur PDF pour PDF et autres formats 
-* Trouve tous les documents, affiche les couvertures 
-* Thème de la nuit et change l’arrière-plan d’un livre 
-* Lecture à voix haute (TTS) 
-* Notes, traducteurs, dictionnaires 
-* Défilement automatique à vitesse prédéfinie
+* Beaucoup d’améliorations selon vos souhaits, ensemble nous ferons le meilleur lecteur de livre et lecteur de PDF. 
+* Polices supplémentaires (par exemple pour les livres d’échecs) 
+* Amélioration des icônes et de l’interface utilisateur 
+* Trier les livres par type de fichier 
+* Défilement horizontal lisse
 </fr-CA>
 
 <sw>
-* Bora PDF Reader kwa PDF na muundo mwingine 
-* Inatafuta nyaraka zote, huonyesha inashughulikia 
-* Usiku wa mandhari na kubadilisha historia ya kitabu 
-* Kusoma kwa sauti kubwa (TTS) 
-* Vidokezo, watafsiri, dictionaries 
-* Kusajili kwa moja kwa moja kasi ya kasi
+* Maboresho mengi kulingana na matakwa yako, pamoja tutatengeneza msomaji bora wa Kitabu na msomaji wa PDF. 
+* Fonts za ziada (kwa mfano kwa vitabu vya chess) 
+* Icons zilizoboreshwa na interface ya mtumiaji 
+* Weka vitabu kwa aina ya faili 
+* Kutafuta kwa usawa wa kushoto
 </sw>
 
 <zh-TW>
-* PDF和其他格式的最佳PDF阅读器
-*查找所有文件，显示封面
-*夜间主题和改变书的背景
-*大声朗读（TTS）
-*笔记，翻译，词典
-*以预设速度自动滚动
+*根据您的意愿做出许多改进，我们将一起制作最好的图书阅读器和PDF阅读器。 
+*其他字体（例如国际象棋书籍）
+*改进的图标和用户界面
+*按文件类型对书籍进行排序
+*平滑水平滚动
 </zh-TW>
 
 <ru-RU>
-* Лучший PDF-ридер для PDF и других форматов 
-* Поиск всех документов, отображение обложек 
-* Ночная тема и изменение фона книги 
-* Чтение вслух (TTS) 
-* Заметки, переводчики, словари 
-* Автоматическая прокрутка с заданной скоростью
+* Много улучшений в соответствии с вашими пожеланиями, вместе мы сделаем лучший читатель книг и PDF-ридер. 
+* Дополнительные шрифты (например, для шахматных книг) 
+* Улучшенные значки и пользовательский интерфейс 
+* Сортировка книг по типу файлов 
+* Гладкая горизонтальная прокрутка
 </ru-RU>
 
 <th>
-* อ่าน PDF ที่ดีที่สุดสำหรับรูปแบบ PDF และอื่น ๆ 
-* ค้นหาเอกสารทั้งหมดที่แสดงครอบคลุม 
-* ธีมกลางคืนและการเปลี่ยนพื้นหลังของหนังสือ 
-* อ่านออกมาดัง ๆ (TTS) 
-* หมายเหตุนักแปลพจนานุกรม 
-* เลื่อนอัตโนมัติที่ความเร็วที่ตั้งไว้
+* การปรับปรุงหลายอย่างตามความต้องการของคุณร่วมกันเราจะทำหนังสืออ่านและอ่าน PDF ที่ดีที่สุด 
+* 
+* 
+* 
+* 
+* 
+* 
+* 
+* 
+* 
+* 
+* 
+* 
+* 
+* 
+* 
+* 
+* 
+* 
+* 
+* 
+* 
+* 
+* 
+* 
+* 
+* 
+* 
+* 
+* 
+* 
+* 
+* 
+* 
+* 
+* 
+* 
+* 
+* 
+* 
+* 
+* 
+* 
+* 
+* 
+* 
+* 
+* 
+* 
+* 
+* 
+* 
+*
 </th>
 
 <it-IT>
-* Miglior lettore PDF per PDF e altri formati 
-* Trova tutti i documenti, visualizza le copertine 
-* Tema notturno e modifica dello sfondo di un libro 
-* Lettura ad alta voce (TTS) 
-* Note, traduttori, dizionari 
-* Scorrimento automatico a velocità preimpostata
+* Molti miglioramenti secondo i tuoi desideri, insieme faremo il miglior lettore di libri e lettore PDF. 
+* Caratteri aggiuntivi (ad esempio per i libri di scacchi) 
+* Icone e interfaccia utente migliorate 
+* Ordina i libri per tipo di file 
+* Scorrimento orizzontale uniforme
 </it-IT>
 
 <sv-SE>
-* Bästa PDF-läsare för PDF och andra format 
-* Finns alla dokument, visar omslaget 
-* Natttema och ändrar bakgrunden till en bok 
-* Läser högt (TTS) 
-* Anteckningar, översättare, ordböcker 
-* Automatisk rullning vid förinställd hastighet
+* Många förbättringar enligt dina önskemål, tillsammans gör vi den bästa bokläsaren och PDF-läsaren. 
+* Ytterligare teckensnitt (till exempel för schackböcker) 
+* Förbättrade ikoner och användargränssnitt 
+* Sortera böcker efter filtyp 
+* Glatt horisontell rullning
 </sv-SE>
 
 <fa>
-* بهترین PDF Reader برای PDF و فرمت های دیگر 
-* تمام اسناد را نمایش می دهد، نمایش ها را پوشش می دهد 
-* تم شب و تغییر پس زمینه یک کتاب 
-* خواندن با صدای بلند (TTS) 
-* یادداشت ها، مترجمان، واژه نامه ها 
-* پیمایش خودکار در سرعت پیش فرض
+* بسیاری از بهبود با توجه به خواسته های خود را، همراه ما بهترین کتاب خوان و PDF خوان را. 
+* فونت های اضافی (به عنوان مثال برای کتاب شطرنج) 
+* آیکون های بهبود یافته و رابط کاربر 
+* مرتب سازی بر اساس نوع فایل 
+* پیمایش صاف افقی
 </fa>
 
 <pt-PT>
-* Melhor PDF Reader para PDF e outros formatos 
-* Encontra todos os documentos, exibe as capas 
-* Tema da noite e alterando o fundo de um livro 
-* Leitura em voz alta (TTS) 
-* Notas, tradutores, dicionários 
-* Rolagem automática a velocidade predefinida
+* Muitas melhorias de acordo com seus desejos, juntos faremos o melhor leitor de livros e leitor de PDF. 
+* Fontes adicionais (por exemplo, para livros de xadrez) 
+* Ícones e interface do usuário aprimorados 
+* Classificar livros por tipo de arquivo 
+* Rolagem horizontal suave
 </pt-PT>
 
 <pt-BR>
-* Melhor PDF Reader para PDF e outros formatos 
-* Encontra todos os documentos, exibe as capas 
-* Tema da noite e alterando o fundo de um livro 
-* Leitura em voz alta (TTS) 
-* Notas, tradutores, dicionários 
-* Rolagem automática a velocidade predefinida
+* Muitas melhorias de acordo com seus desejos, juntos faremos o melhor leitor de livros e leitor de PDF. 
+* Fontes adicionais (por exemplo, para livros de xadrez) 
+* Ícones e interface do usuário aprimorados 
+* Classificar livros por tipo de arquivo 
+* Rolagem horizontal suave
 </pt-BR>
 
 <ko-KR>
-* PDF 및 기타 형식에 대한 최고의 PDF 리더 
-* 모든 문서를 찾아 커버를 표시 
-* 야간 테마 및 도서의 배경을 변경 
-* 큰소리로 읽기 (TTS) 
-* 노트, 번역기, 사전 
-* 사전 설정된 속도로 자동 스크롤
+* 귀하의 희망에 따라 많은 개선, 함께 우리는 최고의 도서 리더와 PDF 리더를 만들거야. 
+* 추가 글꼴 (예 : 체스 서적) 
+* 향상된 아이콘 및 사용자 인터페이스 
+* 파일 형식으로 책 정렬 
+* 부드러운 가로 스크롤
 </ko-KR>
 
 <hu-HU>
-* Legjobb PDF-olvasó PDF és egyéb formátumokhoz 
-* Megtalálja az összes dokumentumot, megjeleníti a borítót 
-* Éjszakai téma és könyv háttérének megváltoztatása 
-* Hangos olvasás (TTS) 
-* Megjegyzések, fordítók, szótárak 
-* Automatikus görgetés előre beállított sebességgel
+* Számos fejlesztés az Ön kívánságainak megfelelően, együtt készítjük a legjobb könyvolvasót és PDF-olvasót. 
+* További betűkészletek (például sakkkönyvekhez) 
+* Továbbfejlesztett ikonok és felhasználói felület 
+* A könyvek rendezése fájltípus szerint 
+* Sima vízszintes görgetés
 </hu-HU>
 
 <sk>
-* Najlepšie PDF Reader pre PDF a iné formáty 
-* Nájde všetky dokumenty, zobrazí kryty 
-* Nočná téma a zmena pozadia knihy 
-* Čítanie nahlas (TTS) 
-* Poznámky, prekladatelia, slovníky 
-* Automatické rolovanie v prednastavenej rýchlosti
+* Veľa vylepšení podľa vašich želaní, spoločne budeme robiť najlepšie čitateľ knihy a PDF čítačku. 
+* Ďalšie písma (napríklad pre šachové knihy) 
+* Vylepšené ikony a užívateľské rozhranie 
+* Zoradiť knihy podľa typu súboru 
+* Hladké horizontálne posúvanie
 </sk>
 
 <tr-TR>
-* PDF ve diğer formatlar için en iyi PDF Okuyucu 
-* Tüm belgeleri bulur, kapakları gösterir 
-* Gece teması ve bir kitabın arka planını değiştirme 
-* Yüksek sesli okuma (TTS) 
-* Notlar, çevirmenler, sözlükler 
-* Önceden ayarlanmış hızda otomatik kaydırma
+* İsteklerinize göre birçok iyileştirme, birlikte en iyi Kitap okuyucusunu ve PDF okuyucuyu yapacağız. 
+* Ek yazı tipleri (örneğin satranç kitapları için) 
+* Geliştirilmiş simgeler ve kullanıcı arabirimi 
+* Dosya türüne göre kitapları sırala 
+* Düz yatay kaydırma
 </tr-TR>
 
 <no-NO>
-* Best PDF Reader for PDF og andre formater 
-* Finner alle dokumentene, viser dekslene 
-* Natt tema og endrer bakgrunnen til en bok 
-* Leser høyt (TTS) 
-* Merknader, oversettere, ordbøker 
-* Automatisk rulling med forhåndsinnstilt hastighet
+* Mange forbedringer i henhold til dine ønsker, sammen vil vi lage den beste bokleseren og PDF-leseren. 
+* Ekstra skrifttyper (for eksempel for sjakkbøker) 
+* Forbedrede ikoner og brukergrensesnitt 
+* Sorter bøker etter filtype 
+* Glatt horisontal rulling
 </no-NO>
 
 <la>
-PDF PDF pro optimus 
-* Lector aliisque documentis formats 
-* omnes reperit: ostenditque umeros opercula theme noctem 
-*, et mutantur in background de Lectio libri 
-* ex magna (TTS) 
-* Notes: translators, dictionaries scrolling 
-* Lorem ad celeritatem preset
+* Multi improvements iuxta vota vestra: ut simul nos tibi optimum libri PDF legit et legit. Additional fonts 
+* (LUDUS LATRUNCULARIUS in libris exempli gratia) Melior icones et user interface 
+* 
+* 
+* venenum blanda Sort libros per file type horizontal scrolling
 </la>
 
 <ja-JP>
-* PDFやその他のフォーマットのための最高のPDFリーダー
-*すべてのドキュメントを検索し、カバーを表示する
-*夜のテーマと背景の変更
-*ノートを読み上げる（TTS）
-*ノート、翻訳者、辞書
-*設定された速度で自動スクロール
+あなたの希望に応じて
+*多くの改善、一緒に私たちは最高の本とPDFリーダーを作るでしょう。 
+*追加のフォント（チェスブックなど）
+*アイコンとユーザーインターフェイスの改善
+*ファイルの種類別に書籍の並べ替え
+*スムーズな水平スクロール
 </ja-JP>
 
 <uk>
-* Кращий PDF Reader для PDF та інших форматів 
-* Знайдено всі документи, відображає обкладинки 
-* Нічна тема та зміна фону книги 
-* Читання голосно (TTS) 
-* Примітки, перекладачі, словники 
-* Автоматичне прокручування за заданою швидкістю
+* Багато вдосконалень відповідно до ваших побажань, разом ми зробимо найкращий читач книг і читач PDF. 
+* Додаткові шрифти (наприклад, для шахових книг) 
+* Покращена піктограма та користувальницький інтерфейс 
+* Сортування книг за типом файлів 
+* Плавна горизонтальна прокрутка
 </uk>
 
 <en-US>
-* Best PDF Reader for PDF and other formats
-* Finds all the documents, displays the covers
-* Night theme and changing the background of a book
-* Reading out loud (TTS)
-* Notes, translators, dictionaries
-* Automatic scrolling at preset speed
+* Many improvements according to your wishes, together we'll make the best Book reader and PDF reader.
+* Additional fonts (for example for chess books)
+* Improved icons and user interface
+* Sort books by file type
+* Smooth horizontal scrolling
 </en-US>

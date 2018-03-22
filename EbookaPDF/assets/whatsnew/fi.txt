@@ -1,6 +1,5 @@
-* Paras PDF-lukija PDF: lle ja muille formaateille 
-* Löydä kaikki asiakirjat, näyttää kansiot 
-* Yöteema ja kirjan taustakuvan muuttaminen 
-* Äänen lukeminen (TTS) 
-* Muistiinpanot, kääntäjät, sanakirjat 
-* Automaattinen vieritys valmiilla nopeuksilla
+* Monet toiveesi mukaiset parannukset, yhdessä parhaan kirjan lukijan ja PDF-lukijan kanssa. 
+* Muut kirjasimet (esimerkiksi shakkikirjoihin) 
+* Parannetut kuvakkeet ja käyttöliittymä 
+* Lajittele kirjat tiedostotyypin mukaan 
+* Tasainen vaakasuora vieritys

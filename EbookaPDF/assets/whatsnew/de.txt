@@ -1,6 +1,5 @@
-* Bester PDF Reader für PDF und andere Formate 
-* Findet alle Dokumente, zeigt die Cover an 
-* Nacht Thema und ändert den Hintergrund eines Buches 
-* Vorlesen (TTS) 
-* Notizen, Übersetzer, Wörterbücher 
-* Automatisches Scrollen mit voreingestellter Geschwindigkeit
+* Viele Verbesserungen nach Ihren Wünschen, zusammen machen wir den besten Buchleser und PDF-Reader. 
+* Zusätzliche Schriftarten (zum Beispiel für Schachbücher) 
+* Verbesserte Symbole und Benutzeroberfläche 
+* Sortieren von Büchern nach Dateityp 
+* Glattes horizontales Scrollen

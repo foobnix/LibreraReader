@@ -31,7 +31,7 @@ public abstract class DragingPopup {
     private static int MIN_WH = Dips.dpToPx(50);
     private FrameLayout anchor;
     private View popupView;
-    private FrameLayout popupContent;
+    private MyFrameLayout popupContent;
     private LayoutInflater inflater;
     private int rootWidth;
     private int width;
@@ -104,6 +104,7 @@ public abstract class DragingPopup {
 
     public DragingPopup(String title, final FrameLayout anchor) {
         this(title, anchor, 250, 250);
+
     }
 
     public DragingPopup(int titleResID, final FrameLayout anchor, int width, int heigth) {
@@ -131,7 +132,7 @@ public abstract class DragingPopup {
         topHeaderLayout = popupView.findViewById(R.id.topLayout);
         TintUtil.setTintBgSimple(topHeaderLayout, 230);
 
-        popupContent = (FrameLayout) popupView.findViewById(R.id.popupContent);
+        popupContent = (MyFrameLayout) popupView.findViewById(R.id.popupContent);
 
         TextView titleView = (TextView) popupView.findViewById(R.id.dialogTitle);
         titleView.setText(title);
@@ -144,7 +145,30 @@ public abstract class DragingPopup {
             }
         });
         rootWidth = ((View) anchor.getParent()).getWidth();
+
+        postAction();
+        popupContent.setOnEventDetected(new Runnable() {
+
+            @Override
+            public void run() {
+                postAction();
+            }
+        });
     }
+
+    public void postAction() {
+        LOG.d("postAction");
+        // anchor.getHandler().removeCallbacksAndMessages(null);
+        // anchor.getHandler().postDelayed(closeRunnable, 3000);
+    }
+
+    Runnable closeRunnable = new Runnable() {
+
+        @Override
+        public void run() {
+            closeDialog();
+        }
+    };
 
     public void initState() {
         String tag = getTAG() + Dips.screenWidth();
@@ -192,6 +216,7 @@ public abstract class DragingPopup {
     }
 
     public DragingPopup show(String tag, boolean always, boolean update) {
+        postAction();
         if (tag != null) {
             if (!always) {
                 if (tag.equals(anchor.getTag())) {
@@ -261,6 +286,13 @@ public abstract class DragingPopup {
                 saveLayout();
             }
         });
+        draggbleTouchListener.setOnEventDetected(new Runnable() {
+
+            @Override
+            public void run() {
+                postAction();
+            }
+        });
         topHeaderLayout.setOnTouchListener(new OnTouchListener() {
 
             private GestureDetector gestureDetector = new GestureDetector(topHeaderLayout.getContext(), new GestureDetector.SimpleOnGestureListener() {
@@ -286,6 +318,7 @@ public abstract class DragingPopup {
 
             @Override
             public boolean onTouch(View v, MotionEvent event) {
+                postAction();
                 if (event.getAction() == MotionEvent.ACTION_DOWN && popupView.getLayoutParams() != null) {
                     x = event.getRawX();
                     y = event.getRawY();
@@ -322,6 +355,7 @@ public abstract class DragingPopup {
 
             @Override
             public boolean onTouch(View v, MotionEvent event) {
+                postAction();
                 if (event.getAction() == MotionEvent.ACTION_DOWN && popupView.getLayoutParams() != null) {
                     x = event.getRawX();
                     y = event.getRawY();
@@ -365,6 +399,7 @@ public abstract class DragingPopup {
     }
 
     public void closeDialog() {
+        anchor.getHandler().removeCallbacksAndMessages(null);
         saveLayout();
 
         anchor.setVisibility(View.GONE);

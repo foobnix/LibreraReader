@@ -1,6 +1,5 @@
-* Bästa PDF-läsare för PDF och andra format 
-* Finns alla dokument, visar omslaget 
-* Natttema och ändrar bakgrunden till en bok 
-* Läser högt (TTS) 
-* Anteckningar, översättare, ordböcker 
-* Automatisk rullning vid förinställd hastighet
+* Många förbättringar enligt dina önskemål, tillsammans gör vi den bästa bokläsaren och PDF-läsaren. 
+* Ytterligare teckensnitt (till exempel för schackböcker) 
+* Förbättrade ikoner och användargränssnitt 
+* Sortera böcker efter filtyp 
+* Glatt horisontell rullning

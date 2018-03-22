@@ -1,6 +1,5 @@
-* Najlepšie PDF Reader pre PDF a iné formáty 
-* Nájde všetky dokumenty, zobrazí kryty 
-* Nočná téma a zmena pozadia knihy 
-* Čítanie nahlas (TTS) 
-* Poznámky, prekladatelia, slovníky 
-* Automatické rolovanie v prednastavenej rýchlosti
+* Veľa vylepšení podľa vašich želaní, spoločne budeme robiť najlepšie čitateľ knihy a PDF čítačku. 
+* Ďalšie písma (napríklad pre šachové knihy) 
+* Vylepšené ikony a užívateľské rozhranie 
+* Zoradiť knihy podľa typu súboru 
+* Hladké horizontálne posúvanie

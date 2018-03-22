@@ -1,6 +1,5 @@
-* PDF Reader Terbaik untuk PDF dan format lain 
-* Menemukan semua dokumen, menampilkan sampul 
-* Tema malam dan mengubah latar belakang buku 
-* Membaca dengan suara keras (TTS) 
-* Catatan, penerjemah, kamus 
-* Bergulir otomatis pada kecepatan yang telah ditentukan
+* Banyak perbaikan sesuai keinginan Anda, bersama-sama kami akan membuat pembaca Buku terbaik dan pembaca PDF. 
+* Font tambahan (misalnya untuk buku catur) 
+* Peningkatan ikon dan antarmuka pengguna 
+* Urutkan buku berdasarkan jenis file 
+* Pengguliran horizontal halus

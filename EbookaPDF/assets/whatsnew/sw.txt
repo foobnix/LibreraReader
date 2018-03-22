@@ -1,6 +1,5 @@
-* Bora PDF Reader kwa PDF na muundo mwingine 
-* Inatafuta nyaraka zote, huonyesha inashughulikia 
-* Usiku wa mandhari na kubadilisha historia ya kitabu 
-* Kusoma kwa sauti kubwa (TTS) 
-* Vidokezo, watafsiri, dictionaries 
-* Kusajili kwa moja kwa moja kasi ya kasi
+* Maboresho mengi kulingana na matakwa yako, pamoja tutatengeneza msomaji bora wa Kitabu na msomaji wa PDF. 
+* Fonts za ziada (kwa mfano kwa vitabu vya chess) 
+* Icons zilizoboreshwa na interface ya mtumiaji 
+* Weka vitabu kwa aina ya faili 
+* Kutafuta kwa usawa wa kushoto

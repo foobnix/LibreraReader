@@ -1,6 +1,5 @@
-* Beste PDF Reader voor PDF en andere formaten 
-* Vindt alle documenten, toont de covers 
-* Nachtthema en verandert de achtergrond van een boek 
-* Hardop lezen (TTS) 
-* Notes, vertalers, woordenboeken 
-* Automatisch scrollen op vooraf ingestelde snelheid
+* Veel verbeteringen op basis van uw wensen, samen maken we de beste boeklezer en PDF-lezer. 
+* Extra lettertypen (bijvoorbeeld voor schaakboeken) 
+* Verbeterde pictogrammen en gebruikersinterface 
+* Boeken sorteren op bestandstype 
+* Vloeiend horizontaal scrollen
