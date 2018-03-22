@@ -17,6 +17,10 @@ Android Play market apps:
 
 [Beta(latest) .apk](http://beta.librera.mobi)
 
+Application fonts (**fonts.zip** downalod to internal sd card, to [Downloads] folder)
+[link1](https://github.com/foobnix/LirbiReader/tree/master/Builder/fonts) 
+[link2](http://archive.librera.mobi)
+
 [Telegram] (https://t.me/LibreraReader)
 
 ## Support intents

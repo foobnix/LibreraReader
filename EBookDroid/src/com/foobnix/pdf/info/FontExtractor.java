@@ -1,7 +1,9 @@
 package com.foobnix.pdf.info;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.io.IOException;
 import java.io.InputStream;
 
 import com.foobnix.android.utils.LOG;
@@ -15,6 +17,7 @@ import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.os.AsyncTask;
+import android.os.Environment;
 import android.view.View;
 import android.widget.Toast;
 import okhttp3.CacheControl;
@@ -24,6 +27,11 @@ import okio.BufferedSource;
 import okio.Okio;
 
 public class FontExtractor {
+
+    public static String FONT_HTTP_ZIP1 = "https://raw.github.com/foobnix/LirbiReader/master/Builder/fonts/fonts.zip";
+    public static String FONT_HTTP_ZIP2 = "https://www.dropbox.com/s/c8v7d05vskmjt28/fonts.zip?raw=1";
+
+    public static File FONT_LOCAL_ZIP = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS), "fonts.zip");
 
     public static void extractFonts(final Context c) {
         if (c == null) {
@@ -73,8 +81,8 @@ public class FontExtractor {
             File fontDir = new File(BookCSS.get().fontFolder);
             fontDir.mkdirs();
 
-            BookCSS.FONT_LOCAL_ZIP.getParentFile().mkdirs();
-            CacheZipUtils.extractArchive(BookCSS.FONT_LOCAL_ZIP, fontDir);
+            FONT_LOCAL_ZIP.getParentFile().mkdirs();
+            CacheZipUtils.extractArchive(FONT_LOCAL_ZIP, fontDir);
         } catch (Exception e) {
             LOG.e(e);
         }
@@ -83,7 +91,7 @@ public class FontExtractor {
 
     public static boolean hasZipFonts() {
         try {
-            return BookCSS.FONT_LOCAL_ZIP.isFile() && BookCSS.FONT_LOCAL_ZIP.length() > 0;
+            return FONT_LOCAL_ZIP.isFile() && FONT_LOCAL_ZIP.length() > 5 * 1024 * 1024;
         } catch (Exception e) {
             return false;
         }
@@ -106,29 +114,45 @@ public class FontExtractor {
                     @Override
                     protected Object doInBackground(Object... params) {
                         try {
-                            LOG.d("Download from", BookCSS.FONT_HTTP_ZIP);
-                            LOG.d("Download to  ", BookCSS.FONT_LOCAL_ZIP);
-
-                            okhttp3.Request request = new okhttp3.Request.Builder()//
-                                    .cacheControl(new CacheControl.Builder().noCache().build()).url(BookCSS.FONT_HTTP_ZIP)//
-                                    .build();//
-
-                            Response response = OPDS.client//
-                                    .newCall(request)//
-                                    .execute();
-                            BufferedSource source = response.body().source();
-
-                            BufferedSink sink = Okio.buffer(Okio.sink(BookCSS.FONT_LOCAL_ZIP));
-                            sink.writeAll(response.body().source());
-                            sink.close();
-
-                            copyFontsFromZip();
-                            return true;
+                            downloadFontFile(FONT_HTTP_ZIP1);
                         } catch (Exception e) {
                             LOG.e(e);
                         }
 
+                        if (!hasZipFonts()) {
+                            try {
+                                downloadFontFile(FONT_HTTP_ZIP2);
+                            } catch (Exception e) {
+                                LOG.e(e);
+                            }
+                        }
+                        if (hasZipFonts()) {
+                            copyFontsFromZip();
+                            return true;
+                        }
                         return null;
+
+                    }
+
+                    private void downloadFontFile(String url) throws IOException, FileNotFoundException {
+                        LOG.d("Download from", url);
+                        LOG.d("Download to  ", FONT_LOCAL_ZIP);
+                        FONT_LOCAL_ZIP.delete();
+
+                        okhttp3.Request request = new okhttp3.Request.Builder()//
+                                .cacheControl(new CacheControl.Builder().noCache().build()).url(url)//
+                                .build();//
+
+                        Response response = OPDS.client//
+                                .newCall(request)//
+                                .execute();
+
+                        BufferedSource source = response.body().source();
+                        FileOutputStream out = new FileOutputStream(FONT_LOCAL_ZIP);
+                        BufferedSink sink = Okio.buffer(Okio.sink(out));
+                        sink.writeAll(response.body().source());
+                        sink.close();
+                        out.close();
                     }
 
                     @Override
@@ -140,7 +164,7 @@ public class FontExtractor {
                             Toast.makeText(a, R.string.msg_unexpected_error, Toast.LENGTH_LONG).show();
                         }
                         label1.setVisibility(FontExtractor.hasZipFonts() ? View.GONE : View.VISIBLE);
-                        if (label2 != null) {
+                        if (hasZipFonts() && label2 != null) {
                             label2.performClick();
                         }
                     };

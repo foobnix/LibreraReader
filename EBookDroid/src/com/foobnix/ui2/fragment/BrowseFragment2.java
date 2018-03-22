@@ -431,7 +431,7 @@ public class BrowseFragment2 extends UIFragment<FileMeta> {
         public void onClick(View v) {
             if (fragmentType == TYPE_SELECT_FOLDER) {
 
-                if (ExtUtils.isExteralSD(AppState.get().dirLastPath) || new File(AppState.get().dirLastPath).canWrite()) {
+                if (ExtUtils.isExteralSD(AppState.get().dirLastPath) || new File(AppState.get().dirLastPath).canRead()) {
                     onPositiveAction.onResultRecive(AppState.get().dirLastPath);
                 } else {
                     Toast.makeText(getContext(), R.string.incorrect_value, Toast.LENGTH_SHORT).show();
