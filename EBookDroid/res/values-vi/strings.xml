@@ -459,4 +459,5 @@
    <string name="application_error_please_send_this_report_by_emial">Lỗi ứng dụng, vui lòng gửi báo cáo này bởi emaill</string>
    <string name="pause_reading_if_the_incoming_call_or_other_sounds">Tạm dừng đọc nếu cuộc gọi đến hoặc các âm thanh khác</string>
    <string name="add_resource">Thêm tài nguyên</string>
+   <string name="do_you_want_to_download_more_book_fonts_10mb_">Bạn có muốn tải nhiều phông chữ sách hơn (10MB)?</string>
 </resources>

@@ -459,4 +459,5 @@
    <string name="application_error_please_send_this_report_by_emial">Erreur d\'application, merci d\'envoyer ce rapport par emaill</string>
    <string name="pause_reading_if_the_incoming_call_or_other_sounds">Mettre en pause la lecture si l\'appel entrant ou d\'autres sons</string>
    <string name="add_resource">Ajouter une ressource</string>
+   <string name="do_you_want_to_download_more_book_fonts_10mb_">Voulez-vous télécharger plus de polices de livre (10MB)?</string>
 </resources>

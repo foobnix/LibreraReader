@@ -29,6 +29,12 @@ import android.os.Environment;
 
 public class BookCSS {
 
+    // public static String FONT_HTTP_ZIP =
+    // "http://github.com/foobnix/LirbiReader/raw/master/Builder/fonts/fonts.zip";
+    public static String FONT_HTTP_ZIP = "https://raw.github.com/foobnix/LirbiReader/master/Builder/fonts/fonts.zip";
+
+    public static File FONT_LOCAL_ZIP = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS), "fonts.zip");
+
     public static final String LINK_COLOR_NIGHT = "#876f52";
     public static final String LINK_COLOR_DAY = "#8c1908";
     public static final String LINK_COLOR_UNIVERSAL = "#0066cc";
@@ -167,7 +173,6 @@ public class BookCSS {
     public void allFonts(String fontName) {
         normalFont = fontName;
     }
-
 
     public static class FontPack {
         public String dispalyName = "";

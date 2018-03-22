@@ -287,6 +287,16 @@
                 android:layout_height="wrap_content"
                 android:text="TimesNewRoman" />
 
+            
+            <ImageView
+                android:id="@+id/downloadFonts"
+                android:layout_width="@dimen/wh_button"
+                android:layout_height="@dimen/wh_button"
+                android:layout_alignParentRight="true"
+                android:layout_weight="0"
+                android:padding="8dip"
+                android:src="@drawable/glyphicons_182_download_alt"
+                android:tint="@color/tint_gray" />
 
             <ImageView
                 android:id="@+id/moreFontSettings"
@@ -294,7 +304,6 @@
                 android:layout_height="@dimen/wh_button"
                 android:layout_alignParentRight="true"
                 android:layout_weight="0"
-                android:background="@drawable/bg_border_ltgray"
                 android:padding="8dip"
                 android:src="@drawable/glyphicons_685_article"
                 android:tint="@color/tint_gray" />

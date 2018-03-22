@@ -459,4 +459,5 @@
    <string name="application_error_please_send_this_report_by_emial">Hitilafu ya maombi, tafadhali tuma ripoti hii kwa barua pepe</string>
    <string name="pause_reading_if_the_incoming_call_or_other_sounds">Pumisha kusoma ikiwa simu inayoingia au sauti nyingine</string>
    <string name="add_resource">Ongeza rasilimali</string>
+   <string name="do_you_want_to_download_more_book_fonts_10mb_">Unataka kupakua fonts zaidi ya kitabu (10MB)?</string>
 </resources>

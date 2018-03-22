@@ -459,4 +459,5 @@
    <string name="application_error_please_send_this_report_by_emial">请用电子邮件，传送错误报告。</string>
    <string name="pause_reading_if_the_incoming_call_or_other_sounds">来电暂停</string>
    <string name="add_resource">快捷方式</string>
+   <string name="do_you_want_to_download_more_book_fonts_10mb_">你想下载更多的书籍字体（10MB）？</string>
 </resources>

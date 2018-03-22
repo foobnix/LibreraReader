@@ -459,4 +459,5 @@
    <string name="application_error_please_send_this_report_by_emial">Programos klaida, prašome atsiųsti šią ataskaitą el. Paštu</string>
    <string name="pause_reading_if_the_incoming_call_or_other_sounds">Sustabdykite skaitymą, kai gaunamas skambutis ar kiti garsai</string>
    <string name="add_resource">Pridėti šaltinį</string>
+   <string name="do_you_want_to_download_more_book_fonts_10mb_">Ar norite atsisiųsti daugiau knygų šriftų (10 MB)?</string>
 </resources>

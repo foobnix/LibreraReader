@@ -23,6 +23,7 @@ import org.apache.commons.compress.archivers.zip.ZipArchiveInputStream;
 import org.ebookdroid.BookType;
 
 import com.foobnix.android.utils.LOG;
+import com.foobnix.pdf.info.ExtUtils;
 
 import android.content.Context;
 import android.os.Environment;
@@ -243,6 +244,34 @@ public class CacheZipUtils {
             LOG.e(e);
         }
         return new UnZipRes(path, path, null);
+    }
+
+    public static boolean extractArchive(File fromFile, File toDir) {
+        try {
+            LOG.d("extractArchive From:", fromFile);
+            LOG.d("extractArchive To:  ", toDir);
+            InputStream in = new FileInputStream(fromFile);
+            ZipArchiveInputStream zipInputStream = new ZipArchiveInputStream(in);
+
+            ZipArchiveEntry nextEntry = null;
+            while ((nextEntry = zipInputStream.getNextZipEntry()) != null) {
+                if (nextEntry.isDirectory()) {
+                    continue;
+                }
+                String name = ExtUtils.getFileName(nextEntry.getName());
+                File file = new File(toDir, name);
+                LOG.d("extractArchive", file.getName());
+                BufferedOutputStream fileOutputStream = new BufferedOutputStream(new FileOutputStream(file));
+                writeToStream(zipInputStream, fileOutputStream);
+            }
+            zipInputStream.close();
+            in.close();
+        } catch (Exception e) {
+            LOG.e(e);
+            return false;
+        }
+
+        return true;
     }
 
     public static byte[] getEntryAsByte(InputStream zipInputStream) throws IOException {

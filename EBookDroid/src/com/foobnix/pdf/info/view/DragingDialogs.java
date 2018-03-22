@@ -33,6 +33,7 @@ import com.foobnix.ext.EpubExtractor;
 import com.foobnix.hypen.HyphenPattern;
 import com.foobnix.pdf.info.AppSharedPreferences;
 import com.foobnix.pdf.info.ExtUtils;
+import com.foobnix.pdf.info.FontExtractor;
 import com.foobnix.pdf.info.IMG;
 import com.foobnix.pdf.info.OutlineHelper;
 import com.foobnix.pdf.info.PageUrl;
@@ -3399,6 +3400,15 @@ public class DragingDialogs {
 
                 });
 
+                final View downloadFonts = inflate.findViewById(R.id.downloadFonts);
+                downloadFonts.setOnClickListener(new OnClickListener() {
+
+                    @Override
+                    public void onClick(View v) {
+                        FontExtractor.showDownloadFontsDialog(controller.getActivity(), downloadFonts, fontsFolder);
+                    }
+                });
+
                 /// aling
 
                 final Map<Integer, String> alignConst = new LinkedHashMap<Integer, String>();
@@ -3792,9 +3802,18 @@ public class DragingDialogs {
                             @Override
                             public void run() {
                                 TxtUtils.underline(textFontName, BookCSS.get().displayFontName);
-                                // fontNamePreview.setTypeface(BookCSS.getTypeFaceForFont(BookCSS.get().normalFont));
                             }
                         });
+                    }
+                });
+
+                final View downloadFonts = inflate.findViewById(R.id.downloadFonts);
+                downloadFonts.setVisibility(FontExtractor.hasZipFonts() ? View.GONE : View.VISIBLE);
+                downloadFonts.setOnClickListener(new OnClickListener() {
+
+                    @Override
+                    public void onClick(View v) {
+                        FontExtractor.showDownloadFontsDialog(controller.getActivity(), downloadFonts, textFontName);
                     }
                 });
 
