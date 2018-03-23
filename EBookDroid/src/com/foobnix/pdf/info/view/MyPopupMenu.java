@@ -84,6 +84,10 @@ public class MyPopupMenu {
     }
 
     public void show() {
+        show(-1);
+    }
+
+    public void show(int pos) {
 
         final ListPopupWindow p1 = new ListPopupWindow(c);
         p1.setModal(true);
@@ -176,6 +180,7 @@ public class MyPopupMenu {
 
         p1.setAnchorView(anchor);
         p1.setAdapter(a);
+
         try {
             p1.setWidth(measureContentWidth(a, c) + Dips.dpToPx(20));
         } catch (Exception e) {
@@ -183,6 +188,10 @@ public class MyPopupMenu {
         }
 
         p1.show();
+
+        if (pos != -1) {
+            p1.setSelection(pos - 2);
+        }
 
     }
 
