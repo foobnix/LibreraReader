@@ -31,7 +31,8 @@ public class TTSEngine {
     private static final String WAV = ".wav";
     private static final String UTTERANCE_ID = "LirbiReader";
     private static final String TAG = "TTSEngine";
-    TextToSpeech ttsEngine;
+    volatile TextToSpeech ttsEngine;
+    Object helpObject = new Object();
 
     private static TTSEngine INSTANCE = new TTSEngine();
 
@@ -46,10 +47,14 @@ public class TTSEngine {
 
     public void shutdown() {
         LOG.d(TAG, "shutdown");
-        if (ttsEngine != null) {
-            ttsEngine.shutdown();
+
+        synchronized (helpObject) {
+            if (ttsEngine != null) {
+                ttsEngine.shutdown();
+            }
+            ttsEngine = null;
         }
-        ttsEngine = null;
+
     }
 
     OnInitListener listener = new OnInitListener() {
@@ -68,40 +73,46 @@ public class TTSEngine {
         return getTTS(null);
     }
 
-    public TextToSpeech getTTS(OnInitListener onLisnter) {
+    public synchronized TextToSpeech getTTS(OnInitListener onLisnter) {
         if (LibreraApp.context == null) {
             return null;
         }
-        if (ttsEngine != null) {
-            return ttsEngine;
+        synchronized (helpObject) {
+            if (ttsEngine != null) {
+                return ttsEngine;
+            }
+            if (onLisnter == null) {
+                onLisnter = listener;
+            }
+            ttsEngine = new TextToSpeech(LibreraApp.context, onLisnter);
         }
-        if (onLisnter == null) {
-            onLisnter = listener;
-        }
-
-        ttsEngine = new TextToSpeech(LibreraApp.context, onLisnter);
 
         return ttsEngine;
 
     }
 
     @TargetApi(Build.VERSION_CODES.ICE_CREAM_SANDWICH_MR1)
-    public synchronized void stop() {
+    public void stop() {
         LOG.d(TAG, "stop");
-        if (ttsEngine != null) {
-            if (Build.VERSION.SDK_INT >= 15) {
-                ttsEngine.setOnUtteranceProgressListener(null);
-            } else {
-                ttsEngine.setOnUtteranceCompletedListener(null);
+        synchronized (helpObject) {
+
+            if (ttsEngine != null) {
+                if (Build.VERSION.SDK_INT >= 15) {
+                    ttsEngine.setOnUtteranceProgressListener(null);
+                } else {
+                    ttsEngine.setOnUtteranceCompletedListener(null);
+                }
+                ttsEngine.stop();
+                EventBus.getDefault().post(new TtsStatus());
             }
-            ttsEngine.stop();
-            EventBus.getDefault().post(new TtsStatus());
         }
     }
 
-    public TextToSpeech setTTSWithEngine(String engine) {
+    public synchronized TextToSpeech setTTSWithEngine(String engine) {
         shutdown();
-        ttsEngine = new TextToSpeech(LibreraApp.context, listener, engine);
+        synchronized (helpObject) {
+            ttsEngine = new TextToSpeech(LibreraApp.context, listener, engine);
+        }
         return ttsEngine;
     }
 
