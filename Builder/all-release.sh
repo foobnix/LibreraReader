@@ -1,6 +1,7 @@
 
 ./link_to_mupdf_1.11.sh
 ./inc-index.sh
+./copy-fonts.sh
 
 ant clean-apk
 
@@ -34,4 +35,3 @@ ant version
 ./remove_all.sh
 ./install_all.sh
 
-./copy-fonts.sh

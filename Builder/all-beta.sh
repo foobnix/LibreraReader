@@ -23,4 +23,4 @@ ant version
 ./remove_all.sh
 ./install_all.sh
 
-./copy-fonts.sh
+#./copy-fonts.sh

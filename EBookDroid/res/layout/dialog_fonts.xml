@@ -8,21 +8,22 @@
     <LinearLayout
         android:id="@+id/fontNameSelectionLayout"
         android:layout_width="wrap_content"
-        android:layout_height="40dip"
+        android:layout_height="wrap_content"
         android:gravity="center_vertical"
+        android:padding="2dip"
         android:orientation="horizontal" >
 
         <TextView
             android:id="@+id/textFontNormal"
             android:layout_width="90dip"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="5dip"
+            android:layout_marginRight="4dip"
             android:text="@string/regular_font" />
 
         <TextView
             android:id="@+id/normalFontSpinner"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_weight="1"
             android:gravity="center_vertical"
             android:minWidth="500dip"
@@ -35,8 +36,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
+            android:layout_marginLeft="4dip"
             android:layout_weight="0"
-            android:background="@drawable/bg_clickable"
+            android:background="@drawable/bg_border_ltgray"
             android:padding="10dip"
             android:src="@drawable/glyphicons_214_arrow_up"
             android:tint="@color/tint_gray" />
@@ -46,16 +48,18 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
+            android:layout_marginLeft="4dip"
             android:layout_weight="0"
-            android:background="@drawable/bg_clickable"
+            android:background="@drawable/bg_border_ltgray"
             android:padding="10dip"
             android:src="@drawable/glyphicons_21_arrow_down"
             android:tint="@color/tint_gray" />
     </LinearLayout>
 
     <LinearLayout
+         android:padding="2dip"
         android:layout_width="wrap_content"
-        android:layout_height="40dip"
+        android:layout_height="wrap_content"
         android:gravity="center_vertical"
         android:orientation="horizontal" >
 
@@ -63,28 +67,30 @@
             android:id="@+id/textFontBold"
             android:layout_width="90dip"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="5dip"
+            android:layout_marginLeft="4dip"
+            android:layout_marginRight="4dip"
             android:text="@string/bold_font"
             android:textStyle="bold" />
 
         <TextView
-            android:textSize="16sp" 
-            android:text="boldFontSpinner"
             android:id="@+id/boldFontSpinner"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_weight="1"
             android:gravity="center_vertical"
             android:minWidth="500dip"
-            android:singleLine="true" />
+            android:singleLine="true"
+            android:text="boldFontSpinner"
+            android:textSize="16sp" />
 
         <ImageView
             android:id="@+id/boldFontUp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
+            android:layout_marginLeft="4dip"
             android:layout_weight="0"
-            android:background="@drawable/bg_clickable"
+            android:background="@drawable/bg_border_ltgray"
             android:padding="10dip"
             android:src="@drawable/glyphicons_214_arrow_up"
             android:tint="@color/tint_gray" />
@@ -94,16 +100,18 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
+            android:layout_marginLeft="4dip"
             android:layout_weight="0"
-            android:background="@drawable/bg_clickable"
+            android:background="@drawable/bg_border_ltgray"
             android:padding="10dip"
             android:src="@drawable/glyphicons_21_arrow_down"
             android:tint="@color/tint_gray" />
     </LinearLayout>
 
     <LinearLayout
+         android:padding="2dip"
         android:layout_width="wrap_content"
-        android:layout_height="40dip"
+        android:layout_height="wrap_content"
         android:gravity="center_vertical"
         android:orientation="horizontal" >
 
@@ -111,28 +119,30 @@
             android:id="@+id/textFontItalic"
             android:layout_width="90dip"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="5dip"
+            android:layout_marginLeft="4dip"
+            android:layout_marginRight="4dip"
             android:text="@string/italic_font"
             android:textStyle="italic" />
 
         <TextView
             android:id="@+id/italicFontSpinner"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="italicFontSpinner"
+            android:layout_height="match_parent"
             android:layout_weight="1"
             android:gravity="center_vertical"
-            android:textSize="16sp" 
             android:minWidth="500dip"
-            android:singleLine="true" />
+            android:singleLine="true"
+            android:text="italicFontSpinner"
+            android:textSize="16sp" />
 
         <ImageView
             android:id="@+id/italicFontUp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
+            android:layout_marginLeft="4dip"
             android:layout_weight="0"
-            android:background="@drawable/bg_clickable"
+            android:background="@drawable/bg_border_ltgray"
             android:padding="10dip"
             android:src="@drawable/glyphicons_214_arrow_up"
             android:tint="@color/tint_gray" />
@@ -142,16 +152,18 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
+            android:layout_marginLeft="4dip"
             android:layout_weight="0"
-            android:background="@drawable/bg_clickable"
+            android:background="@drawable/bg_border_ltgray"
             android:padding="10dip"
             android:src="@drawable/glyphicons_21_arrow_down"
             android:tint="@color/tint_gray" />
     </LinearLayout>
 
     <LinearLayout
+         android:padding="2dip"
         android:layout_width="wrap_content"
-        android:layout_height="40dip"
+        android:layout_height="wrap_content"
         android:gravity="center_vertical"
         android:orientation="horizontal" >
 
@@ -159,28 +171,30 @@
             android:id="@+id/textFontBoldItalic"
             android:layout_width="90dip"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="5dip"
+            android:layout_marginLeft="4dip"
+            android:layout_marginRight="4dip"
             android:text="@string/bold_italic_font"
             android:textStyle="bold|italic" />
 
         <TextView
             android:id="@+id/boldItalicFontSpinner"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="boldItalicFontSpinner"
+            android:layout_height="match_parent"
             android:layout_weight="1"
             android:gravity="center_vertical"
-            android:textSize="16sp" 
             android:minWidth="500dip"
-            android:singleLine="true" />
+            android:singleLine="true"
+            android:text="boldItalicFontSpinner"
+            android:textSize="16sp" />
 
         <ImageView
             android:id="@+id/boldItalicFontUp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
+            android:layout_marginLeft="4dip"
             android:layout_weight="0"
-            android:background="@drawable/bg_clickable"
+            android:background="@drawable/bg_border_ltgray"
             android:padding="10dip"
             android:src="@drawable/glyphicons_214_arrow_up"
             android:tint="@color/tint_gray" />
@@ -190,16 +204,18 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
+            android:layout_marginLeft="4dip"
             android:layout_weight="0"
-            android:background="@drawable/bg_clickable"
+            android:background="@drawable/bg_border_ltgray"
             android:padding="10dip"
             android:src="@drawable/glyphicons_21_arrow_down"
             android:tint="@color/tint_gray" />
     </LinearLayout>
 
     <LinearLayout
+         android:padding="2dip"
         android:layout_width="wrap_content"
-        android:layout_height="40dip"
+        android:layout_height="wrap_content"
         android:gravity="center_vertical"
         android:orientation="horizontal" >
 
@@ -207,7 +223,8 @@
             android:id="@+id/textFontHeaders"
             android:layout_width="90dip"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="5dip"
+            android:layout_marginLeft="4dip"
+            android:layout_marginRight="4dip"
             android:text="@string/font_for_headers"
             android:textSize="16sp"
             android:textStyle="bold" />
@@ -215,21 +232,22 @@
         <TextView
             android:id="@+id/headersFontSpinner"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="headersFontSpinner"
+            android:layout_height="match_parent"
             android:layout_weight="1"
             android:gravity="center_vertical"
-            android:textSize="16sp" 
             android:minWidth="500dip"
-            android:singleLine="true" />
+            android:singleLine="true"
+            android:text="headersFontSpinner"
+            android:textSize="16sp" />
 
         <ImageView
             android:id="@+id/headersFontUp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
+            android:layout_marginLeft="4dip"
             android:layout_weight="0"
-            android:background="@drawable/bg_clickable"
+            android:background="@drawable/bg_border_ltgray"
             android:padding="10dip"
             android:src="@drawable/glyphicons_214_arrow_up"
             android:tint="@color/tint_gray" />
@@ -239,8 +257,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
+            android:layout_marginLeft="4dip"
             android:layout_weight="0"
-            android:background="@drawable/bg_clickable"
+            android:background="@drawable/bg_border_ltgray"
             android:padding="10dip"
             android:src="@drawable/glyphicons_21_arrow_down"
             android:tint="@color/tint_gray" />

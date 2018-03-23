@@ -277,17 +277,16 @@
                 android:singleLine="true"
                 android:text="@string/font_name"
                 android:textStyle="bold" />
-            
+
             <TextView
                 android:id="@+id/textFontName"
                 style="@style/textLink"
-                android:textSize="16sp"
-                android:layout_weight="1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="TimesNewRoman" />
+                android:layout_weight="1"
+                android:text="TimesNewRoman"
+                android:textSize="16sp" />
 
-            
             <ImageView
                 android:id="@+id/downloadFonts"
                 android:layout_width="@dimen/wh_button"
@@ -304,6 +303,7 @@
                 android:layout_height="@dimen/wh_button"
                 android:layout_alignParentRight="true"
                 android:layout_weight="0"
+                android:background="@drawable/bg_border_ltgray"
                 android:padding="8dip"
                 android:src="@drawable/glyphicons_685_article"
                 android:tint="@color/tint_gray" />

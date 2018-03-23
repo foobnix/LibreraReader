@@ -124,6 +124,10 @@ public class DefaultListeners {
 
             @Override
             public boolean onResultRecive(final FileMeta result) {
+                if (ExtUtils.isExteralSD(result.getPath())) {
+                    return false;
+                }
+
                 if (isTagCicked(a, result)) {
                     return true;
                 }
