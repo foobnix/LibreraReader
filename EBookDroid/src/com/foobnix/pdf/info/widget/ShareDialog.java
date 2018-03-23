@@ -43,10 +43,18 @@ public class ShareDialog {
             items.add(a.getString(R.string.convert_to) + " EPUB");
             items.add(a.getString(R.string.convert_to) + " PDF");
         }
+        final boolean canDelete = ExtUtils.isExteralSD(file.getPath()) ? true : file.canWrite();
+        final boolean isShowInfo = !ExtUtils.isExteralSD(file.getPath());
+
         items.add(a.getString(R.string.open_with));
         items.add(a.getString(R.string.send_file));
-        items.add(a.getString(R.string.delete));
-        items.add(a.getString(R.string.file_info));
+
+        if (canDelete) {
+            items.add(a.getString(R.string.delete));
+        }
+        if (isShowInfo) {
+            items.add(a.getString(R.string.file_info));
+        }
 
         final String chooseTitle = file != null ? file.getPath() : a.getString(R.string.choose_);
 
@@ -68,9 +76,9 @@ public class ShareDialog {
                             ExtUtils.openWith(a, file);
                         } else if (which == i++) {
                             ExtUtils.sendFileTo(a, file);
-                        } else if (which == i++) {
+                        } else if (canDelete && which == i++) {
                             FileInformationDialog.dialogDelete(a, file, onDeleteAction);
-                        } else if (which == i++) {
+                        } else if (isShowInfo && which == i++) {
                             FileInformationDialog.showFileInfoDialog(a, file, onDeleteAction);
                         }
 
@@ -103,8 +111,6 @@ public class ShareDialog {
                                         // true;
         final boolean isMainTabs = a instanceof MainTabs2;
 
-        final boolean isShowInfo = !ExtUtils.isExteralSD(file.getPath());
-
         List<String> items = new ArrayList<String>();
 
         if (isLibrary) {
@@ -132,6 +138,8 @@ public class ShareDialog {
         items.add(a.getString(R.string.send_file));
         items.add(a.getString(R.string.export_bookmarks));
         final boolean canDelete = ExtUtils.isExteralSD(file.getPath()) ? true : file.canWrite();
+        final boolean isShowInfo = !ExtUtils.isExteralSD(file.getPath());
+
         if (isMainTabs) {
             if (canDelete) {
                 items.add(a.getString(R.string.delete));
@@ -144,7 +152,7 @@ public class ShareDialog {
 
         items.add(a.getString(R.string.tags));
         if (isShowInfo) {
-        items.add(a.getString(R.string.file_info));
+            items.add(a.getString(R.string.file_info));
         }
 
         final AlertDialog.Builder builder = new AlertDialog.Builder(a);

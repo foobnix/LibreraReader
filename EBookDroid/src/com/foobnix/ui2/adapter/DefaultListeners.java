@@ -184,27 +184,6 @@ public class DefaultListeners {
 
             @Override
             public boolean onResultRecive(final FileMeta result) {
-                if (false) {
-
-                    DocumentFile df = DocumentFile.fromFile(new File(result.getPath()));
-                    LOG.d("getOnMenuClick", df.getUri());
-                    boolean delete = df.delete();
-                    LOG.d("getOnMenuClick delete", delete);
-                    if (!delete) {
-                        DocumentFile doc = DocumentFile.fromSingleUri(a, Uri.parse(result.getPath()));
-                        delete = doc.delete();
-                        LOG.d("getOnMenuClick delete 2", delete);
-                    }
-
-                    if (delete) {
-                        TempHolder.listHash++;
-                        AppDB.get().delete(result);
-                        searchAdapter.getItemsList().remove(result);
-                        searchAdapter.notifyDataSetChanged();
-                    }
-
-                }
-
                 final File file = new File(result.getPath());
                 Runnable onDeleteAction = new Runnable() {
 
