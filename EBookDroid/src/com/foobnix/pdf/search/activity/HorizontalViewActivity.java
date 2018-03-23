@@ -184,8 +184,6 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
         }
         boolean isTextFomat = ExtUtils.isTextFomat(getIntent());
 
-
-
         AppState.get().load(this);
 
         // AppState.get().isCut = false;
@@ -1265,15 +1263,32 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
 
     }
 
+    long lastClick = 0;
+    long lastClickMaxTime = 300;
+
     public void nextPage() {
         flippingTimer = 0;
-        viewPager.setCurrentItem(dc.getCurentPage() + 1, AppState.get().isScrollAnimation);
+
+        boolean isAnimate = AppState.get().isScrollAnimation;
+        long lx = System.currentTimeMillis() - lastClick;
+        LOG.d("lastClick", lx);
+        if (lx < lastClickMaxTime) {
+            isAnimate = false;
+        }
+        lastClick = System.currentTimeMillis();
+        viewPager.setCurrentItem(dc.getCurentPage() + 1, isAnimate);
         dc.checkReadingTimer();
     }
 
     public void prevPage() {
         flippingTimer = 0;
-        viewPager.setCurrentItem(dc.getCurentPage() - 1, AppState.get().isScrollAnimation);
+
+        boolean isAnimate = AppState.get().isScrollAnimation;
+        if (System.currentTimeMillis() - lastClick < lastClickMaxTime) {
+            isAnimate = false;
+        }
+        lastClick = System.currentTimeMillis();
+        viewPager.setCurrentItem(dc.getCurentPage() - 1, isAnimate);
         dc.checkReadingTimer();
     }
 
@@ -1322,6 +1337,7 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
                 }
 
             } else {
+                LOG.d("Click-center!", x, y);
                 handler.removeCallbacks(doShowHideWrapperControllsRunnable);
                 handler.postDelayed(doShowHideWrapperControllsRunnable, 250);
                 // Toast.makeText(this, "Click", Toast.LENGTH_SHORT).show();

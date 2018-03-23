@@ -19,6 +19,8 @@ import android.widget.Scroller;
 
 public class VerticalViewPager extends CustomViewPager {
 
+    private MyScroller value;
+
     public VerticalViewPager(Context context, AttributeSet attrs) {
         super(context, attrs);
         init();
@@ -36,7 +38,8 @@ public class VerticalViewPager extends CustomViewPager {
             Class<?> viewpager = ViewPager.class;
             Field scroller = viewpager.getDeclaredField("mScroller");
             scroller.setAccessible(true);
-            scroller.set(this, new MyScroller(getContext()));
+            value = new MyScroller(getContext());
+            scroller.set(this, value);
 
             Field mFlingDistance = viewpager.getDeclaredField("mFlingDistance");
             mFlingDistance.setAccessible(true);
@@ -103,6 +106,10 @@ public class VerticalViewPager extends CustomViewPager {
         if (!AppState.get().isScrollAnimation) {
             return false;
         }
+        if (value != null && !value.isFinished()) {
+            return false;
+        }
+
         boolean intercepted = super.onInterceptTouchEvent(swapXY(ev));
         swapXY(ev);
         return intercepted;
@@ -113,6 +120,7 @@ public class VerticalViewPager extends CustomViewPager {
         if (!AppState.get().isScrollAnimation) {
             return false;
         }
+
         return super.onTouchEvent(swapXY(ev));
     }
 

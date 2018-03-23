@@ -19,7 +19,7 @@ Android Play market apps:
 
 Application fonts (**fonts.zip** downalod to internal sd card, to [Downloads] folder)
 [link1](https://github.com/foobnix/LirbiReader/tree/master/Builder/fonts) 
-[link2](http://archive.librera.mobi)
+[link2](https://www.dropbox.com/home/FREE_PDF_APK/testing)
 
 [Telegram] (https://t.me/LibreraReader)
 
