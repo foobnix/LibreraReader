@@ -20,6 +20,7 @@ import com.foobnix.pdf.info.IMG;
 import com.foobnix.pdf.info.R;
 import com.foobnix.pdf.info.TintUtil;
 import com.foobnix.pdf.info.wrapper.AppState;
+import com.foobnix.tts.TTSNotification;
 import com.foobnix.ui2.AppDB;
 import com.google.android.gms.ads.AdRequest;
 
@@ -49,6 +50,7 @@ public class LibreraApp extends Application {
             LOG.d("initNative", initNative);
         }
 
+        TTSNotification.initChannels(this);
         Dips.init(context);
         AppDB.get().open(this);
         AppState.get().load(this);

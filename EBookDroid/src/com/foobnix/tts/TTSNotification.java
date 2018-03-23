@@ -6,7 +6,9 @@ import org.ebookdroid.LibreraApp;
 import org.ebookdroid.ui.viewer.VerticalViewActivity;
 
 import com.foobnix.android.utils.LOG;
+import com.foobnix.android.utils.TxtUtils;
 import com.foobnix.dao2.FileMeta;
+import com.foobnix.pdf.info.AppsConfig;
 import com.foobnix.pdf.info.IMG;
 import com.foobnix.pdf.info.R;
 import com.foobnix.pdf.info.wrapper.AppState;
@@ -15,16 +17,21 @@ import com.foobnix.sys.ImageExtractor;
 import com.foobnix.ui2.AppDB;
 import com.nostra13.universalimageloader.core.ImageLoader;
 
+import android.annotation.TargetApi;
 import android.app.Notification;
+import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.net.Uri;
+import android.os.Build;
 import android.support.v4.app.NotificationCompat;
 
 public class TTSNotification {
+
+    private static final String DEFAULT = "default";
 
     public static final String ACTION_TTS = "TTSNotification_TTS";
 
@@ -37,41 +44,54 @@ public class TTSNotification {
     static String bookPath1;
     static int page1;
 
+    private static Context context;
+
+    @TargetApi(26)
+    public static void initChannels(Context context) {
+        TTSNotification.context = context;
+        if (Build.VERSION.SDK_INT < 26) {
+            return;
+        }
+        NotificationManager notificationManager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
+        NotificationChannel channel = new NotificationChannel(DEFAULT, AppsConfig.TXT_APP_NAME, NotificationManager.IMPORTANCE_DEFAULT);
+        // channel.setDescription("Channel description");
+        notificationManager.createNotificationChannel(channel);
+    }
+
     public static void show(String bookPath, int page) {
-        Context c = LibreraApp.context;
         bookPath1 = bookPath;
         page1 = page;
         try {
-            NotificationManager nm = (NotificationManager) c.getSystemService(Context.NOTIFICATION_SERVICE);
+            NotificationManager nm = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
 
-            NotificationCompat.Builder builder = new NotificationCompat.Builder(c);
+            NotificationCompat.Builder builder = new NotificationCompat.Builder(context, DEFAULT);
 
             FileMeta fileMeta = AppDB.get().getOrCreate(bookPath);
 
-            Intent intent = new Intent(c, HorizontalViewActivity.class.getSimpleName().equals(AppState.get().lastMode) ? HorizontalViewActivity.class : VerticalViewActivity.class);
+            Intent intent = new Intent(context, HorizontalViewActivity.class.getSimpleName().equals(AppState.get().lastMode) ? HorizontalViewActivity.class : VerticalViewActivity.class);
             intent.setAction(ACTION_TTS);
             intent.setData(Uri.fromFile(new File(bookPath)));
             if (page > 0) {
                 intent.putExtra("page", page - 1);
             }
 
-            PendingIntent contentIntent = PendingIntent.getActivity(c, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
+            PendingIntent contentIntent = PendingIntent.getActivity(context, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
 
-            PendingIntent stop = PendingIntent.getService(c, 0, new Intent(TTS_STOP, null, c, TTSService.class), PendingIntent.FLAG_UPDATE_CURRENT);
-            PendingIntent read = PendingIntent.getService(c, 0, new Intent(TTS_READ, null, c, TTSService.class), PendingIntent.FLAG_UPDATE_CURRENT);
-            PendingIntent next = PendingIntent.getService(c, 0, new Intent(TTS_NEXT, null, c, TTSService.class), PendingIntent.FLAG_UPDATE_CURRENT);
+            PendingIntent stop = PendingIntent.getService(context, 0, new Intent(TTS_STOP, null, context, TTSService.class), PendingIntent.FLAG_UPDATE_CURRENT);
+            PendingIntent read = PendingIntent.getService(context, 0, new Intent(TTS_READ, null, context, TTSService.class), PendingIntent.FLAG_UPDATE_CURRENT);
+            PendingIntent next = PendingIntent.getService(context, 0, new Intent(TTS_NEXT, null, context, TTSService.class), PendingIntent.FLAG_UPDATE_CURRENT);
 
             builder.setContentIntent(contentIntent) //
                     .setSmallIcon(R.drawable.glyphicons_185_volume_up) //
                     .setLargeIcon(getBookImage(bookPath)) //
-                    .setTicker(c.getString(R.string.app_name)) //
+                    .setTicker(context.getString(R.string.app_name)) //
                     .setWhen(System.currentTimeMillis()) //
                     .setOngoing(AppState.get().notificationOngoing)//
-                    .addAction(R.drawable.glyphicons_175_pause, c.getString(R.string.to_stop), stop)//
-                    .addAction(R.drawable.glyphicons_174_play, c.getString(R.string.to_read), read)//
-                    .addAction(R.drawable.glyphicons_177_forward, c.getString(R.string.next), next)//
-                    .setContentTitle(fileMeta.getTitle() + " – " + fileMeta.getAuthor()) //
-                    .setContentText(c.getString(R.string.page) + " " + page); ///
+                    .addAction(R.drawable.glyphicons_175_pause, context.getString(R.string.to_stop), stop)//
+                    .addAction(R.drawable.glyphicons_174_play, context.getString(R.string.to_read), read)//
+                    .addAction(R.drawable.glyphicons_177_forward, context.getString(R.string.next), next)//
+                    .setContentTitle(TxtUtils.getFileMetaBookName(fileMeta)) //
+                    .setContentText(context.getString(R.string.page) + " " + page); ///
 
             Notification n = builder.build(); //
             nm.notify(NOT_ID, n);
