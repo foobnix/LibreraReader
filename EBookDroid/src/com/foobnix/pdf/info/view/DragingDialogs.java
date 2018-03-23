@@ -1361,6 +1361,7 @@ public class DragingDialogs {
             @Override
             public void run() {
                 // controller.clearSelectedText();
+                AppState.get().selectedText = null;
             }
         });
 
