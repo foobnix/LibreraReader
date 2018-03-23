@@ -1,6 +1,8 @@
 package com.foobnix.pdf.info.widget;
 
 import java.io.File;
+import java.io.UnsupportedEncodingException;
+import java.net.URLDecoder;
 import java.util.Arrays;
 import java.util.List;
 
@@ -10,6 +12,7 @@ import org.greenrobot.eventbus.EventBus;
 
 import com.foobnix.android.utils.Dips;
 import com.foobnix.android.utils.Keyboards;
+import com.foobnix.android.utils.LOG;
 import com.foobnix.android.utils.TxtUtils;
 import com.foobnix.dao2.FileMeta;
 import com.foobnix.pdf.info.AppSharedPreferences;
@@ -393,7 +396,16 @@ public class FileInformationDialog {
             return;
         }
         final AlertDialog.Builder builder = new AlertDialog.Builder(a);
-        builder.setMessage(a.getString(R.string.delete_book_) + "\n" + file.getName()).setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+        String name = file.getName();
+        if (ExtUtils.isExteralSD(file.getPath())) {
+            try {
+                name = URLDecoder.decode(file.getName(), "UTF-8");
+            } catch (UnsupportedEncodingException e) {
+                LOG.e(e);
+            }
+        }
+
+        builder.setMessage(a.getString(R.string.delete_book_) + "\n" + name).setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(final DialogInterface dialog, final int id) {
                 onDeleteAction.run();

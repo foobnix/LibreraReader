@@ -103,6 +103,8 @@ public class ShareDialog {
                                         // true;
         final boolean isMainTabs = a instanceof MainTabs2;
 
+        final boolean isShowInfo = !ExtUtils.isExteralSD(file.getPath());
+
         List<String> items = new ArrayList<String>();
 
         if (isLibrary) {
@@ -141,7 +143,9 @@ public class ShareDialog {
         }
 
         items.add(a.getString(R.string.tags));
+        if (isShowInfo) {
         items.add(a.getString(R.string.file_info));
+        }
 
         final AlertDialog.Builder builder = new AlertDialog.Builder(a);
         // builder.setTitle(R.string.choose_)//
@@ -228,7 +232,7 @@ public class ShareDialog {
                     }
                 } else if (which == i++) {
                     Dialogs.showTagsDialog(a, file, null);
-                } else if (which == i++) {
+                } else if (isShowInfo && which == i++) {
                     FileInformationDialog.showFileInfoDialog(a, file, onDeleteAction);
                 }
 
