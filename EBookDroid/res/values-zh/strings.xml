@@ -32,10 +32,10 @@
    <string name="show_the_dialog_what_is_new_for_updates">显示更新信息</string>
    <string name="what_is_new_in">了解</string>
    <string name="full_list_of_changes_with_images_web_pdf_">了解详细信息...</string>
-   <string name="search_for_text_in_documents">多文件中搜索文本</string>
+   <string name="search_for_text_in_documents">多文件中搜索</string>
    <string name="search_in_the_subfolders">子文件夹</string>
    <string name="stop">停止</string>
-   <string name="document_converter_online_">文件格式在线转换</string>
+   <string name="document_converter_online_">文件在线转换</string>
    <string name="book_covers">书籍封面</string>
    <string name="cover_image_size">封面大小</string>
    <string name="column_count">列数</string>
@@ -151,7 +151,7 @@
    <string name="brightness">亮度</string>
    <string name="bluelight_filter">背光控制</string>
    <string name="password">密码</string>
-   <string name="restore_defaults_short">恢复</string>
+   <string name="restore_defaults_short">重置</string>
    <string name="customize">自定义</string>
    <string name="color">颜色</string>
    <string name="horizontal">横向</string>
@@ -171,14 +171,14 @@
    <string name="extracting_information_from_books">书籍信息</string>
    <string name="no_author">无作者</string>
    <string name="no_serie">无系列</string>
-   <string name="no_genre">无类型</string>
+   <string name="no_genre">无流派</string>
    <string name="without_series">无系列</string>
    <string name="folders">我的文件</string>
    <string name="recent">最近阅读</string>
    <string name="clear_all">清空</string>
    <string name="search_history_and_autocomplete">历史记录</string>
    <string name="press_any_key">任意按键</string>
-   <string name="restore_default_keys">恢复按键</string>
+   <string name="restore_default_keys">重置按键</string>
    <string name="next_keys">下一页按键:</string>
    <string name="prev_keys">上一页按键:</string>
    <string name="starred">我的珍藏</string>
@@ -188,8 +188,8 @@
    <string name="email">邮件</string>
    <string name="file">文本</string>
    <string name="filter">筛选</string>
-   <string name="bookmark_by_date">按日期</string>
-   <string name="bookmark_by_book">按书籍</string>
+   <string name="bookmark_by_date">日期</string>
+   <string name="bookmark_by_book">书籍</string>
    <string name="network">网上书库</string>
    <string name="catalogs">书库目录</string>
    <string name="proxy_server_settings">代理设置</string>
@@ -276,7 +276,7 @@
    <string name="grid">网格</string>
    <string name="cover">封面</string>
    <string name="author">作者</string>
-   <string name="genre">类型</string>
+   <string name="genre">流派</string>
    <string name="serie">系列</string>
    <string name="___READING___SCREEN___SECTION___">阅读屏幕</string>
    <string name="enter_password">密码</string>
@@ -300,10 +300,10 @@
    <string name="two_pages">双页</string>
    <string name="two_pages_cover">封页</string>
    <string name="half_page">半页</string>
-   <string name="by_pages">按页</string>
-   <string name="by_screans">按屏</string>
+   <string name="by_pages">1按页滚动</string>
+   <string name="by_screans">2按屏滚动</string>
    <string name="of_screen">滚距</string>
-   <string name="custom_value">自定</string>
+   <string name="custom_value">3自定滚距</string>
    <string name="automatic_page_flipping">自动翻页</string>
    <string name="interval_sec_">间隔（秒）</string>
    <string name="loop_autoplay">启用自动循环</string>
@@ -389,7 +389,7 @@
    <string name="books">书籍</string>
    <string name="reading_out_loud">大声朗读</string>
    <string name="librera_pro_no_ads_leading_book_reader_and_pdf">Librera PRO专业领先无广告的电子书及PDF阅读器</string>
-   <string name="custom_text">自定义乐谱名</string>
+   <string name="custom_text">自定义名称</string>
    <string name="cd_search_books_in_the_library">书库搜索</string>
    <string name="cd_clear_search_reasult">清除记录</string>
    <string name="cd_sort_results">排序结果</string>
@@ -410,7 +410,7 @@
    <string name="___RECENTLY___ADDED___SECTION___">最近添加</string>
    <string name="read_the_tutorial_online_or_download_in_pdf_format">在线阅读教程或以PDF格式下载。</string>
    <string name="start_recording">开始记录</string>
-   <string name="favorite_folders_and_books">珍藏书籍和文件夹</string>
+   <string name="favorite_folders_and_books">书籍，文件夹。</string>
    <string name="don_t_show_this_dialog">不再询问</string>
    <string name="show_the_book_close_dialog">书籍关闭询问</string>
    <string name="search_completed">搜索完成</string>
@@ -448,7 +448,7 @@
    <string name="tags">标签</string>
    <string name="by_number_of_pages">页数</string>
    <string name="by_number_in_serie">系数</string>
-   <string name="by_extension">子集</string>
+   <string name="by_extension">类型</string>
    <string name="recent_favorites_tags">最近，珍藏，标签。</string>
    <string name="line_spacing">行目间距</string>
    <string name="paragraph_spacing">段落间距</string>
@@ -459,5 +459,5 @@
    <string name="application_error_please_send_this_report_by_emial">请用电子邮件，传送错误报告。</string>
    <string name="pause_reading_if_the_incoming_call_or_other_sounds">来电暂停</string>
    <string name="add_resource">快捷方式</string>
-   <string name="do_you_want_to_download_more_book_fonts_10mb_">你想下载更多的书籍字体（10MB）？</string>
+   <string name="do_you_want_to_download_more_book_fonts_10mb_">下载更多字体（10MB）？</string>
 </resources>
