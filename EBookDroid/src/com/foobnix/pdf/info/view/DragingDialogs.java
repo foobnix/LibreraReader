@@ -3540,6 +3540,8 @@ public class DragingDialogs {
     public static DragingPopup preferences(final FrameLayout anchor, final DocumentController controller, final Runnable onRefresh, final Runnable updateUIRefresh) {
         final int cssHash = BookCSS.get().toCssString().hashCode();
         final int appHash = Objects.hashCode(AppState.get());
+        
+        // LOG.d("ojectAsString1", Objects.ojectAsString(AppState.get()));
 
         if (ExtUtils.isNotValidFile(controller.getCurrentBook())) {
             DragingPopup dialog = new DragingPopup(R.string.preferences, anchor, PREF_WIDTH, PREF_HEIGHT) {
@@ -4296,6 +4298,8 @@ public class DragingDialogs {
 
             @Override
             public void run() {
+                // LOG.d("ojectAsString2", Objects.ojectAsString(AppState.get()));
+
                 if (//
                 appHash != Objects.hashCode(AppState.get()) || //
                 (controller.isTextFormat() && cssHash != BookCSS.get().toCssString().hashCode())) {

@@ -261,9 +261,11 @@ public class AppState {
     @IgnoreHashCode
     public boolean isAllowTextSelection = true;
 
+    @IgnoreHashCode
     public boolean isEditMode = true;
     public boolean isFullScreen = true;
     public boolean isFullScreenMain = false;
+    @IgnoreHashCode
     public boolean isAutoFit = false;
     public boolean notificationOngoing = false;
 
@@ -370,6 +372,7 @@ public class AppState {
     @IgnoreHashCode
     public int mouseWheelSpeed = 70;
 
+    @IgnoreHashCode
     public String selectedText;
 
     // public int widgetHeigth = 100;
@@ -411,7 +414,10 @@ public class AppState {
     public String fileToDelete;
 
     public String lastBookPath;
+
+    @IgnoreHashCode
     public int lastBookPage = 0;
+
     public int lastBookWidth = 0;
     public int lastBookHeight = 0;
     public int lastFontSize = 0;

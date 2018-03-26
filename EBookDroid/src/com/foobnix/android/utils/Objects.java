@@ -134,6 +134,25 @@ public class Objects {
         return hashCode;
     }
 
+    public static String ojectAsString(Object obj) {
+        StringBuffer out = new StringBuffer();
+
+        for (Field f : obj.getClass().getDeclaredFields()) {
+            if (Modifier.isStatic(f.getModifiers()) || Modifier.isPrivate(f.getModifiers())) {
+                continue;
+            }
+            out.append(f.getName());
+            out.append(":");
+            try {
+                out.append(f.get(obj));
+                out.append(",");
+            } catch (Exception e) {
+                LOG.e(e);
+            }
+        }
+        return out.toString();
+    }
+
     public static void compareObjects(Object obj1, AppState obj2) {
         for (Field f : obj1.getClass().getDeclaredFields()) {
             if (Modifier.isStatic(f.getModifiers()) || Modifier.isPrivate(f.getModifiers())) {

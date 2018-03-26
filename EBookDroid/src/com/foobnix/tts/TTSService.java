@@ -375,6 +375,8 @@ public class TTSService extends Service {
         if (wakeLock.isHeld()) {
             wakeLock.release();
         }
+        TTSEngine.get().shutdown();
+
         isActivated = false;
         TempHolder.get().timerFinishTime = 0;
         mMediaSessionCompat.setActive(false);
