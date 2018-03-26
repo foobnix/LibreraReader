@@ -1329,9 +1329,7 @@ public class PrefFragment2 extends UIFragment {
                     onTintChanged();
                     sendNotifyTintChanged();
 
-
                     AppState.get().save(getActivity());
-
 
                 }
             });
@@ -1442,7 +1440,6 @@ public class PrefFragment2 extends UIFragment {
                 Urls.open(getActivity(), "https://t.me/LibreraReader");
             }
         });
-
 
         TextView proText = (TextView) inflate.findViewById(R.id.downloadPRO);
         TxtUtils.underlineTextView(proText);
@@ -1755,8 +1752,6 @@ public class PrefFragment2 extends UIFragment {
         }
     }
 
-
-
     public String getFullDeviceInfo() {
         return "(" + Build.BRAND + ", " + Build.MODEL + ", " + android.os.Build.VERSION.RELEASE + ", " + Dips.screenWidthDP() + "dp" + ")";
     }
@@ -1834,5 +1829,7 @@ public class PrefFragment2 extends UIFragment {
         }
         return prefix;
     }
+
+
 
 }

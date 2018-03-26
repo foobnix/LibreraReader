@@ -1,6 +1,7 @@
 package com.foobnix.pdf.info.view;
 
 import com.foobnix.android.utils.IntegerResponse;
+import com.foobnix.android.utils.LOG;
 import com.foobnix.android.utils.TxtUtils;
 import com.foobnix.pdf.info.R;
 
@@ -9,6 +10,7 @@ import android.content.res.TypedArray;
 import android.graphics.Color;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.SeekBar;
@@ -69,6 +71,38 @@ public class CustomSeek extends FrameLayout {
         });
 
         addView(inflate);
+        fixSeekBak(seek);
+
+    }
+
+    public static void fixSeekBak(SeekBar seekbar) {
+        try {
+        seekbar.setOnTouchListener(new OnTouchListener() {
+
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                int action = event.getAction();
+                switch (action) {
+                case MotionEvent.ACTION_DOWN:
+                    // Disallow Drawer to intercept touch events.
+                    v.getParent().requestDisallowInterceptTouchEvent(true);
+                    break;
+
+                case MotionEvent.ACTION_UP:
+                    // Allow Drawer to intercept touch events.
+                    v.getParent().requestDisallowInterceptTouchEvent(false);
+                    break;
+                }
+
+                // Handle seekbar touch events.
+                v.onTouchEvent(event);
+                return true;
+            }
+        });
+        } catch (Exception e) {
+            LOG.e(e);
+        }
+
     }
 
     public CustomSeek(Context context, AttributeSet attrs) {

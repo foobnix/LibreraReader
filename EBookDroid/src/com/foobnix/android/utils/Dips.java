@@ -11,7 +11,9 @@ import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.graphics.Point;
 import android.os.Build;
+import android.provider.Settings;
 import android.view.Display;
+import android.view.Surface;
 import android.view.WindowManager;
 
 public class Dips {
@@ -127,6 +129,22 @@ public class Dips {
     public static boolean isLargeOrXLargeScreen() {
         int size = Resources.getSystem().getConfiguration().screenLayout & Configuration.SCREENLAYOUT_SIZE_MASK;
         return size == Configuration.SCREENLAYOUT_SIZE_LARGE || size == Configuration.SCREENLAYOUT_SIZE_XLARGE;
+    }
+
+    public static boolean isSystemAutoRotation(Context c) {
+        try {
+            return android.provider.Settings.System.getInt(c.getContentResolver(), Settings.System.ACCELEROMETER_ROTATION, 0) == 1;
+        } catch (Exception e) {
+            return true;
+        }
+    }
+
+    public static int geUserRotation(Context c) {
+        try {
+            return android.provider.Settings.System.getInt(c.getContentResolver(), Settings.System.USER_ROTATION, 0);
+        } catch (Exception e) {
+            return Surface.ROTATION_90;
+        }
     }
 
 }

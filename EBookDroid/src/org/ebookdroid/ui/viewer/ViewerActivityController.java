@@ -320,6 +320,7 @@ public class ViewerActivityController extends ActionController<VerticalViewActiv
         AlertDialog.Builder dialog = new AlertDialog.Builder(getManagedComponent());
         dialog.setTitle(R.string.enter_password);
         dialog.setView(input);
+        dialog.setCancelable(false);
         dialog.setNegativeButton(R.string.cancel, new OnClickListener() {
 
             @Override

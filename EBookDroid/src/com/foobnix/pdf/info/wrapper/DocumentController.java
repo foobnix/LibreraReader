@@ -363,6 +363,9 @@ public abstract class DocumentController {
 
     public static void doRotation(final Activity a) {
         try {
+            // LOG.d("isSystemAutoRotation isSystemAutoRotation",
+            // Dips.isSystemAutoRotation(a));
+            // LOG.d("isSystemAutoRotation geUserRotation", Dips.geUserRotation(a));
             a.setRequestedOrientation(AppState.get().orientation);
         } catch (Exception e) {
             LOG.e(e);

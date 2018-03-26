@@ -752,6 +752,7 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
                     AlertDialog.Builder dialog = new AlertDialog.Builder(HorizontalViewActivity.this);
                     dialog.setTitle(R.string.enter_password);
                     dialog.setView(input);
+                    dialog.setCancelable(false);
                     dialog.setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
 
                         @Override
