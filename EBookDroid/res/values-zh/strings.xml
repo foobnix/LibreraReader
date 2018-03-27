@@ -302,7 +302,7 @@
    <string name="half_page">半页</string>
    <string name="by_pages">1按页滚动</string>
    <string name="by_screans">2按屏滚动</string>
-   <string name="of_screen">滚距</string>
+   <string name="of_screen"> 滚距</string>
    <string name="custom_value">3自定滚距</string>
    <string name="automatic_page_flipping">自动翻页</string>
    <string name="interval_sec_">间隔（秒）</string>
