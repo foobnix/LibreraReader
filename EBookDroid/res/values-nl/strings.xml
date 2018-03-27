@@ -460,4 +460,5 @@
    <string name="pause_reading_if_the_incoming_call_or_other_sounds">Pauzeer het lezen als de inkomende oproep of andere geluiden</string>
    <string name="add_resource">Voeg bron toe</string>
    <string name="do_you_want_to_download_more_book_fonts_10mb_">Wilt u meer boeklettertypen downloaden (10MB)?</string>
+   <string name="hyphenation_language">Woordafbreking taal</string>
 </resources>

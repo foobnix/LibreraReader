@@ -3227,23 +3227,26 @@ public class DragingDialogs {
 
                         List<String> all = new ArrayList<String>();
                         for (HyphenPattern p : values) {
-                            all.add(p.lang);
+                            String e = DialogTranslateFromTo.getLanuageByCode(p.lang) + ":" + p.lang;
+                            all.add(e);
+
                         }
                         Collections.sort(all);
 
-                        for (final String lang : all) {
-
-                            final String titleLang = DialogTranslateFromTo.getLanuageByCode(lang) + " (" + lang + ")";
+                        for (final String langFull : all) {
+                            String[] split = langFull.split(":");
+                            final String titleLang = split[0];
+                            final String code = split[1];
                             popupMenu.getMenu().add(titleLang).setOnMenuItemClickListener(new OnMenuItemClickListener() {
 
                                 @Override
                                 public boolean onMenuItemClick(MenuItem item) {
-                                    BookCSS.get().hypenLang = lang;
+                                    BookCSS.get().hypenLang = code;
                                     hypenLang.setText(titleLang);
                                     TxtUtils.underlineTextView(hypenLang);
                                     FileMeta load = AppDB.get().load(controller.getCurrentBook().getPath());
                                     if (load != null) {
-                                        load.setLang(lang);
+                                        load.setLang(code);
                                         AppDB.get().update(load);
                                     }
                                     return false;
@@ -3541,7 +3544,7 @@ public class DragingDialogs {
     public static DragingPopup preferences(final FrameLayout anchor, final DocumentController controller, final Runnable onRefresh, final Runnable updateUIRefresh) {
         final int cssHash = BookCSS.get().toCssString().hashCode();
         final int appHash = Objects.hashCode(AppState.get());
-        
+
         // LOG.d("ojectAsString1", Objects.ojectAsString(AppState.get()));
 
         if (ExtUtils.isNotValidFile(controller.getCurrentBook())) {

@@ -460,4 +460,5 @@
    <string name="pause_reading_if_the_incoming_call_or_other_sounds">Призупинити читання, якщо вхідний дзвінок або інші звуки</string>
    <string name="add_resource">Додати ресурс</string>
    <string name="do_you_want_to_download_more_book_fonts_10mb_">Ви хочете завантажити більше книжкових шрифтів (10 Мб)?</string>
+   <string name="hyphenation_language">Мова переносу</string>
 </resources>

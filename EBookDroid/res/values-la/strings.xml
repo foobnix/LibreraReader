@@ -460,4 +460,5 @@
    <string name="pause_reading_if_the_incoming_call_or_other_sounds">Si mora lectioni aut sonus advenientis vocationem</string>
    <string name="add_resource">Addere resource</string>
    <string name="do_you_want_to_download_more_book_fonts_10mb_">Tu magis volo ut download libro fonts (10MB)?</string>
+   <string name="hyphenation_language">Lingua enim repetita</string>
 </resources>

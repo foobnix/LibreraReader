@@ -302,7 +302,7 @@
    <string name="half_page">半页</string>
    <string name="by_pages">1按页滚动</string>
    <string name="by_screans">2按屏滚动</string>
-   <string name="of_screen"> 滚距</string>
+   <string name="of_screen">滚距</string>
    <string name="custom_value">3自定滚距</string>
    <string name="automatic_page_flipping">自动翻页</string>
    <string name="interval_sec_">间隔（秒）</string>
@@ -460,4 +460,5 @@
    <string name="pause_reading_if_the_incoming_call_or_other_sounds">来电暂停</string>
    <string name="add_resource">快捷方式</string>
    <string name="do_you_want_to_download_more_book_fonts_10mb_">下载更多字体（10MB）？</string>
+   <string name="hyphenation_language">连字语言</string>
 </resources>

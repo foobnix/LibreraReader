@@ -460,4 +460,5 @@
    <string name="pause_reading_if_the_incoming_call_or_other_sounds">Pausa läsning om inkommande samtal eller andra ljud</string>
    <string name="add_resource">Lägg till resurs</string>
    <string name="do_you_want_to_download_more_book_fonts_10mb_">Vill du ladda ner fler bokstäver (10 MB)?</string>
+   <string name="hyphenation_language">Hyphenation språk</string>
 </resources>

@@ -460,4 +460,5 @@
    <string name="pause_reading_if_the_incoming_call_or_other_sounds">Pausiere das Lesen, wenn der Anruf eingeht oder andere Geräusche</string>
    <string name="add_resource">Ressource hinzufügen</string>
    <string name="do_you_want_to_download_more_book_fonts_10mb_">Möchten Sie weitere Buchschriften (10 MB) herunterladen?</string>
+   <string name="hyphenation_language">Silbentrennungssprache</string>
 </resources>

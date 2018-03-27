@@ -460,4 +460,5 @@
    <string name="pause_reading_if_the_incoming_call_or_other_sounds">Pause reading if the incoming call or other sounds</string>
    <string name="add_resource">Add resource</string>
    <string name="do_you_want_to_download_more_book_fonts_10mb_">Do you want to download more book fonts (10MB)?</string>
+   <string name="hyphenation_language">Hyphenation language</string>
 </resources>

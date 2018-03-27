@@ -460,4 +460,5 @@
    <string name="pause_reading_if_the_incoming_call_or_other_sounds">خواندن مکالمه اگر تماس های دریافتی یا صداهای دیگر</string>
    <string name="add_resource">اضافه کردن منبع</string>
    <string name="do_you_want_to_download_more_book_fonts_10mb_">آیا می خواهید فونت کتاب بیشتری (10 مگابایت) را دانلود کنید؟</string>
+   <string name="hyphenation_language">زبان هیپنوتیزم</string>
 </resources>
