@@ -416,6 +416,9 @@ public class DocumentWrapperUI {
 
         updateSpeedLabel();
         currentSeek.setText(TxtUtils.deltaPage(current, max));
+        if (AppState.get().readingProgress == AppState.READING_PROGRESS_PERCENT_NUMBERS) {
+            currentSeek.setText(TxtUtils.deltaPage(current));
+        }
         maxSeek.setText(TxtUtils.deltaPageMax(max));
 
         seekBar.setOnSeekBarChangeListener(null);
