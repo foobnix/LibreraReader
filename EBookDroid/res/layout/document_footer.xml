@@ -24,8 +24,9 @@
                 style="@style/buttonWhite"
                 android:layout_width="@dimen/wh_button"
                 android:layout_height="@dimen/wh_button"
+                android:background="@drawable/bg_border_ltgray"
                 android:contentDescription="return to page"
-                android:src="@drawable/glyphicons_173_rewind"
+                android:src="@drawable/glyphicons_222_unshare"
                 android:visibility="visible" />
 
             <ImageView
@@ -83,8 +84,7 @@
                 android:contentDescription="@string/content_of_book"
                 android:src="@drawable/glyphicons_115_list1" />
 
-            
-             <com.foobnix.pdf.search.view.HeightImageView
+            <com.foobnix.pdf.search.view.HeightImageView
                 android:id="@+id/onModeChange"
                 style="@style/buttonWhite"
                 android:layout_width="wrap_content"
@@ -134,15 +134,15 @@
                 android:textStyle="normal" />
 
             <SeekBar
-                android:paddingTop="3dip"
-                android:paddingBottom="3dip"
                 android:id="@+id/seekBar"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
-                android:layout_weight="1"
-                android:layout_marginTop="2dip"
                 android:layout_marginBottom="2dip"
+                android:layout_marginTop="2dip"
+                android:layout_weight="1"
+                android:paddingBottom="3dip"
+                android:paddingTop="3dip"
                 android:progressTint="@android:color/white"
                 android:thumbTint="@android:color/white" />
 
@@ -202,8 +202,8 @@
                 android:id="@+id/modeName"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_weight="1"
                 android:layout_marginTop="4dip"
+                android:layout_weight="1"
                 android:gravity="center"
                 android:text="@string/mode_vertical"
                 android:textColor="#ffffff"

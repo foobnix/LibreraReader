@@ -274,6 +274,8 @@ public class AppState {
     public boolean isShowReadingProgress = true;
     public boolean isShowChaptersOnProgress = true;
 
+    public long fontExtractTime = 0;
+
     public int nextScreenScrollBy = NEXT_SCREEN_SCROLL_BY_PAGES;// 0 by
                                                                 // pages,
                                                                 // 25 - 25%

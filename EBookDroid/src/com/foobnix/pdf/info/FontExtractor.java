@@ -12,6 +12,7 @@ import com.foobnix.ext.EpubExtractor;
 import com.foobnix.opds.OPDS;
 import com.foobnix.pdf.info.model.BookCSS;
 import com.foobnix.pdf.info.view.AlertDialogs;
+import com.foobnix.pdf.info.wrapper.AppState;
 
 import android.app.Activity;
 import android.app.ProgressDialog;
@@ -33,6 +34,8 @@ public class FontExtractor {
 
     public static File FONT_LOCAL_ZIP = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS), "fonts.zip");
 
+    final static Object lock = new Object();
+
     public static void extractFonts(final Context c) {
         if (c == null) {
             return;
@@ -40,8 +43,23 @@ public class FontExtractor {
         new Thread() {
             @Override
             public void run() {
-                extractInside(c, "fonts", BookCSS.FONTS_DIR);
-                copyFontsFromZip();
+                // extractInside(c, "fonts", BookCSS.FONTS_DIR);
+                try {
+                    synchronized (lock) {
+                        if (hasZipFonts()) {
+                            long lastModified = FONT_LOCAL_ZIP.lastModified();
+                            if (lastModified != AppState.get().fontExtractTime) {
+                                copyFontsFromZip();
+                                AppState.get().fontExtractTime = lastModified;
+                                LOG.d("extractFonts YES", AppState.get().fontExtractTime, lastModified);
+                            } else {
+                                LOG.d("extractFonts NO");
+                            }
+                        }
+                    }
+                } catch (Exception e) {
+                    LOG.e(e);
+                }
 
             };
         }.start();
