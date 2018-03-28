@@ -3495,7 +3495,7 @@ public class DragingDialogs {
                             public void run() {
                                 BookCSS.get().resetToDefault(controller.getActivity());
 
-                                fontsFolder.setText(TxtUtils.underline(BookCSS.get().fontFolder));
+                                fontsFolder.setText(TxtUtils.underline(TxtUtils.lastTwoPath(BookCSS.get().fontFolder)));
                                 textAlign.setText(TxtUtils.underline(alignConst.get(BookCSS.get().textAlign)));
 
                                 fontWeight.reset(BookCSS.get().fontWeight / 100);

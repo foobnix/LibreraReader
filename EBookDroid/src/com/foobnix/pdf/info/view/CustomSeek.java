@@ -77,28 +77,41 @@ public class CustomSeek extends FrameLayout {
 
     public static void fixSeekBak(SeekBar seekbar) {
         try {
-        seekbar.setOnTouchListener(new OnTouchListener() {
+            seekbar.setOnTouchListener(new OnTouchListener() {
+                float x, y;
 
-            @Override
-            public boolean onTouch(View v, MotionEvent event) {
-                int action = event.getAction();
-                switch (action) {
-                case MotionEvent.ACTION_DOWN:
-                    // Disallow Drawer to intercept touch events.
-                    v.getParent().requestDisallowInterceptTouchEvent(true);
-                    break;
+                @Override
+                public boolean onTouch(View v, MotionEvent event) {
+                    int action = event.getAction();
+                    switch (action) {
+                    case MotionEvent.ACTION_DOWN:
+                        x = event.getX();
+                        y = event.getY();
+                        // Disallow Drawer to intercept touch events.
+                        v.getParent().requestDisallowInterceptTouchEvent(true);
+                        break;
 
-                case MotionEvent.ACTION_UP:
-                    // Allow Drawer to intercept touch events.
-                    v.getParent().requestDisallowInterceptTouchEvent(false);
-                    break;
+                    case MotionEvent.ACTION_MOVE:
+                        float dx = Math.abs(x - event.getX());
+                        float dy = Math.abs(y - event.getY());
+                        if (dx > dy) {
+                            v.getParent().requestDisallowInterceptTouchEvent(true);
+                        } else {
+                            v.getParent().requestDisallowInterceptTouchEvent(false);
+                        }
+                        break;
+
+                    case MotionEvent.ACTION_UP:
+                        // Allow Drawer to intercept touch events.
+                        v.getParent().requestDisallowInterceptTouchEvent(false);
+                        break;
+                    }
+
+                    // Handle seekbar touch events.
+                    v.onTouchEvent(event);
+                    return true;
                 }
-
-                // Handle seekbar touch events.
-                v.onTouchEvent(event);
-                return true;
-            }
-        });
+            });
         } catch (Exception e) {
             LOG.e(e);
         }

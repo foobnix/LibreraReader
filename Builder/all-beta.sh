@@ -1,4 +1,5 @@
-./inc-index.sh
+ant -f build_index.xml index
+ant -f build_index.xml index-beta
 
 ant clean-apk
 

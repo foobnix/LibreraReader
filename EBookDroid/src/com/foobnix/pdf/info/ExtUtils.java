@@ -398,11 +398,13 @@ public class ExtUtils {
     public static List<String> seachExts = new ArrayList<String>();
 
     private static java.text.DateFormat dateFormat;
+    private static java.text.DateFormat timeFormat;
 
     public static void init(Context c) {
         context = c;
 
         dateFormat = DateFormat.getDateFormat(c);
+        timeFormat = DateFormat.getTimeFormat(c);
         updateSearchExts();
     }
 
@@ -563,6 +565,9 @@ public class ExtUtils {
         return BookType.TXT.is(path) || BookType.RTF.is(path) || BookType.HTML.is(path) || BookType.PDF.is(path) || BookType.DJVU.is(path) || BookType.CBZ.is(path);
     }
 
+    public static String getDateTimeFormat(File file) {
+        return dateFormat.format(file.lastModified()) + " " + timeFormat.format(file.lastModified());
+    }
     public static String getDateFormat(File file) {
         return dateFormat.format(file.lastModified());
     }

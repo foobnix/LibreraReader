@@ -6,4 +6,11 @@
 			<entry key="version.code.index" type="int" operation="+" value="1" />
 		</propertyfile>
 	</target>
+	
+	<target name="index-beta">
+		<propertyfile file="local.properties">
+			<entry key="code.cpu_arm+arm64_beta" type="int" operation="+" value="1" />
+		</propertyfile>
+	</target>
+	
 </project>
