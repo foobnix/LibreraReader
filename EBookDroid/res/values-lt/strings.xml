@@ -461,4 +461,5 @@
    <string name="add_resource">Pridėti šaltinį</string>
    <string name="do_you_want_to_download_more_book_fonts_10mb_">Ar norite atsisiųsti daugiau knygų šriftų (10 MB)?</string>
    <string name="hyphenation_language">Šnipinėjimo kalba</string>
+   <string name="without_white_background">Be balto fono</string>
 </resources>

@@ -461,4 +461,5 @@
    <string name="add_resource">Lägg till resurs</string>
    <string name="do_you_want_to_download_more_book_fonts_10mb_">Vill du ladda ner fler bokstäver (10 MB)?</string>
    <string name="hyphenation_language">Hyphenation språk</string>
+   <string name="without_white_background">Utan vit bakgrund</string>
 </resources>

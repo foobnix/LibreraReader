@@ -461,4 +461,5 @@
    <string name="add_resource">快捷方式</string>
    <string name="do_you_want_to_download_more_book_fonts_10mb_">下载更多字体（10MB）？</string>
    <string name="hyphenation_language">断字语言</string>
+   <string name="without_white_background">没有白色背景</string>
 </resources>

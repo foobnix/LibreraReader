@@ -461,4 +461,5 @@
    <string name="add_resource">리소스 추가</string>
    <string name="do_you_want_to_download_more_book_fonts_10mb_">도서 글꼴 (10MB)을 더 다운로드 하시겠습니까?</string>
    <string name="hyphenation_language">하이픈 넣기 언어</string>
+   <string name="without_white_background">흰색 배경이없는 경우</string>
 </resources>

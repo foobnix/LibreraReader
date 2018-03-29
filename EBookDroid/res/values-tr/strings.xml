@@ -461,4 +461,5 @@
    <string name="add_resource">Kaynak ekle</string>
    <string name="do_you_want_to_download_more_book_fonts_10mb_">Daha fazla kitap fontu (10MB) indirmek ister misiniz?</string>
    <string name="hyphenation_language">Tireleme dili</string>
+   <string name="without_white_background">Beyaz arka plan olmadan</string>
 </resources>

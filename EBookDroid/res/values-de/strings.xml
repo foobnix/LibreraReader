@@ -461,4 +461,5 @@
    <string name="add_resource">Ressource hinzufügen</string>
    <string name="do_you_want_to_download_more_book_fonts_10mb_">Möchten Sie weitere Buchschriften (10 MB) herunterladen?</string>
    <string name="hyphenation_language">Silbentrennungssprache</string>
+   <string name="without_white_background">Ohne weißen Hintergrund</string>
 </resources>

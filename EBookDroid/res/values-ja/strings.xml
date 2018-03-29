@@ -461,4 +461,5 @@
    <string name="add_resource">リソースを追加</string>
    <string name="do_you_want_to_download_more_book_fonts_10mb_">より多くのブックフォント（10MB）をダウンロードしますか？</string>
    <string name="hyphenation_language">ハイフネーション言語</string>
+   <string name="without_white_background">白い背景なし</string>
 </resources>

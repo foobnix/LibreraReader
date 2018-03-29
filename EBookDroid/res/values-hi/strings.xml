@@ -461,4 +461,5 @@
    <string name="add_resource">संसाधन जोड़ें</string>
    <string name="do_you_want_to_download_more_book_fonts_10mb_">क्या आप अधिक पुस्तक फोंट (10 एमबी) डाउनलोड करना चाहते हैं?</string>
    <string name="hyphenation_language">हायफिनेशन भाषा</string>
+   <string name="without_white_background">सफेद पृष्ठभूमि के बिना</string>
 </resources>

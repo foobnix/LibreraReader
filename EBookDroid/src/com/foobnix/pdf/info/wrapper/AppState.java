@@ -283,6 +283,8 @@ public class AppState {
 
     public int nextScreenScrollMyValue = 15;
 
+    public boolean isReplaceWhite = false;
+
     public boolean isWhiteTheme = true;
     public boolean isOpenLastBook = false;
 

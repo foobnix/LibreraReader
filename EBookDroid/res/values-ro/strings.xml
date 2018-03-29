@@ -461,4 +461,5 @@
    <string name="add_resource">Adăugați o resursă</string>
    <string name="do_you_want_to_download_more_book_fonts_10mb_">Doriți să descărcați mai multe fonturi de carte (10MB)?</string>
    <string name="hyphenation_language">Limba de sincronizare</string>
+   <string name="without_white_background">Fără fundal alb</string>
 </resources>

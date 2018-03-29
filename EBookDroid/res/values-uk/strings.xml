@@ -461,4 +461,5 @@
    <string name="add_resource">Додати ресурс</string>
    <string name="do_you_want_to_download_more_book_fonts_10mb_">Ви хочете завантажити більше книжкових шрифтів (10 Мб)?</string>
    <string name="hyphenation_language">Мова переносу</string>
+   <string name="without_white_background">Без білого фону</string>
 </resources>

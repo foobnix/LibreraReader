@@ -461,4 +461,5 @@
    <string name="add_resource">اضافه کردن منبع</string>
    <string name="do_you_want_to_download_more_book_fonts_10mb_">آیا می خواهید فونت کتاب بیشتری (10 مگابایت) را دانلود کنید؟</string>
    <string name="hyphenation_language">زبان هیپنوتیزم</string>
+   <string name="without_white_background">بدون پس زمینه سفید</string>
 </resources>

@@ -461,4 +461,5 @@
    <string name="add_resource">Voeg bron toe</string>
    <string name="do_you_want_to_download_more_book_fonts_10mb_">Wilt u meer boeklettertypen downloaden (10MB)?</string>
    <string name="hyphenation_language">Woordafbreking taal</string>
+   <string name="without_white_background">Zonder witte achtergrond</string>
 </resources>

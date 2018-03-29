@@ -461,4 +461,5 @@
    <string name="add_resource">إضافة الموارد</string>
    <string name="do_you_want_to_download_more_book_fonts_10mb_">هل تريد تنزيل المزيد من خطوط الكتاب (10 ميجابايت)؟</string>
    <string name="hyphenation_language">لغة الوصل</string>
+   <string name="without_white_background">بدون خلفية بيضاء</string>
 </resources>

@@ -461,4 +461,5 @@
    <string name="add_resource">Lisää resursseja</string>
    <string name="do_you_want_to_download_more_book_fonts_10mb_">Haluatko ladata lisää kirjafontteja (10 Mt)?</string>
    <string name="hyphenation_language">Hyphenation kieli</string>
+   <string name="without_white_background">Ilman valkoista taustaa</string>
 </resources>

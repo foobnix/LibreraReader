@@ -461,4 +461,5 @@
    <string name="add_resource">Agregar recurso</string>
    <string name="do_you_want_to_download_more_book_fonts_10mb_">¿Desea descargar más fuentes de libro (10 MB)?</string>
    <string name="hyphenation_language">Lenguaje de guiones</string>
+   <string name="without_white_background">Sin fondo blanco</string>
 </resources>

@@ -461,4 +461,5 @@
    <string name="add_resource">Pridajte zdroj</string>
    <string name="do_you_want_to_download_more_book_fonts_10mb_">Chcete si stiahnuť viac písomných kníh (10 MB)?</string>
    <string name="hyphenation_language">Jazyk slovenia</string>
+   <string name="without_white_background">Bez bieleho pozadia</string>
 </resources>

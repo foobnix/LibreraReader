@@ -149,7 +149,7 @@
    <string name="language">Язык</string>
    <string name="font_size">Размер шрифта</string>
    <string name="brightness">Яркость</string>
-   <string name="bluelight_filter">Фильтр синего цвета и затемнение</string>
+   <string name="bluelight_filter">Фильтр синего цвета</string>
    <string name="password">Пароль</string>
    <string name="restore_defaults_short">Вернуть значения по умолчанию</string>
    <string name="customize">Настройка</string>
@@ -461,4 +461,5 @@
    <string name="add_resource">Добавить ресурс</string>
    <string name="do_you_want_to_download_more_book_fonts_10mb_">Хотите загрузить пакет книжных шрифтов размером 10 Мб?</string>
    <string name="hyphenation_language">Язык переносов</string>
+   <string name="without_white_background">Без белого фона</string>
 </resources>

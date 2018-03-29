@@ -461,4 +461,5 @@
    <string name="add_resource">Add resource</string>
    <string name="do_you_want_to_download_more_book_fonts_10mb_">Do you want to download more book fonts (10MB)?</string>
    <string name="hyphenation_language">Hyphenation language</string>
+   <string name="without_white_background">Without white background</string>
 </resources>

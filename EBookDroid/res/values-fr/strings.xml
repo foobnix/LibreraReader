@@ -461,4 +461,5 @@
    <string name="add_resource">Ajouter une ressource</string>
    <string name="do_you_want_to_download_more_book_fonts_10mb_">Voulez-vous télécharger plus de polices de livre (10MB)?</string>
    <string name="hyphenation_language">Césure</string>
+   <string name="without_white_background">Sans fond blanc</string>
 </resources>

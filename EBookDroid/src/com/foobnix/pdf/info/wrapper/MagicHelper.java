@@ -161,6 +161,13 @@ public class MagicHelper {
         return isDay || isNigth;
     }
 
+    public static boolean isNeedMagicSimple() {
+        boolean isDay = AppState.get().isDayNotInvert && //
+                (AppState.get().colorDayBg != AppState.COLOR_WHITE || //
+                        AppState.get().colorDayText != AppState.COLOR_BLACK); //
+        return isDay;
+    }
+
     public static boolean isNeedBookBackgroundImage() {
         return (!AppState.get().isDayNotInvert && AppState.get().isUseBGImageNight) || (AppState.get().isDayNotInvert && AppState.get().isUseBGImageDay);
     }
@@ -462,6 +469,25 @@ public class MagicHelper {
 
         }
 
+    }
+
+    public static void udpateColorsMagicSimple(int[] allpixels) {
+        int bgColor = MagicHelper.getBgColor();
+        int first = allpixels[0];
+
+        for (int i = 0; i < allpixels.length; i++) {
+            int color = allpixels[i];
+            if (color == Color.WHITE || color == first) {
+                allpixels[i] = bgColor;
+                continue;
+            }
+
+            int k = Color.red(color) + Color.green(color) + Color.blue(color);
+            if (k > 500) {
+                // ligth font color
+                allpixels[i] = mixColorsFontColor(color, bgColor);
+            }
+        }
     }
 
     public static void udpateColorsMagic(int[] allpixels) {

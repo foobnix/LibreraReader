@@ -4011,6 +4011,18 @@ public class DragingDialogs {
                 // AppState.get().isCustomizeBgAndColors ? View.VISIBLE :
                 // View.GONE);
 
+                final CheckBox isReplaceWhite = (CheckBox) inflate.findViewById(R.id.isReplaceWhite);
+                isReplaceWhite.setChecked(AppState.get().isReplaceWhite);
+                isReplaceWhite.setVisibility(controller.isTextFormat() && MagicHelper.isNeedMagicSimple() ? View.VISIBLE : View.GONE);
+
+                isReplaceWhite.setOnCheckedChangeListener(new OnCheckedChangeListener() {
+
+                    @Override
+                    public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                        AppState.get().isReplaceWhite = isChecked;
+                    }
+                });
+
                 final int padding = Dips.dpToPx(3);
                 final Runnable colorsLine = new Runnable() {
 
@@ -4068,6 +4080,7 @@ public class DragingDialogs {
                                         AppState.get().isUseBGImageNight = false;
                                     }
 
+                                    isReplaceWhite.setVisibility(controller.isTextFormat() && MagicHelper.isNeedMagicSimple() ? View.VISIBLE : View.GONE);
                                     TintUtil.setTintImageWithAlpha(onDayColorImage, AppState.get().colorDayText);
                                     TintUtil.setTintImageWithAlpha(onNigthColorImage, AppState.get().colorNigthText);
                                 }
@@ -4097,6 +4110,8 @@ public class DragingDialogs {
                                     AppState.get().isUseBGImageDay = true;
 
                                     TintUtil.setTintImageWithAlpha(onDayColorImage, AppState.get().colorDayText);
+                                    isReplaceWhite.setVisibility(controller.isTextFormat() && MagicHelper.isNeedMagicSimple() ? View.VISIBLE : View.GONE);
+
                                 }
                             });
                             lc.addView(t1, AppState.get().readColors.split(";").length / 2);
@@ -4123,6 +4138,8 @@ public class DragingDialogs {
                                     textNigthColor.setBackgroundDrawable(MagicHelper.getBgImageNightDrawable(false));
                                     AppState.get().isUseBGImageNight = true;
                                     TintUtil.setTintImageWithAlpha(onNigthColorImage, AppState.get().colorNigthText);
+                                    isReplaceWhite.setVisibility(controller.isTextFormat() && MagicHelper.isNeedMagicSimple() ? View.VISIBLE : View.GONE);
+
                                 }
                             });
                             lc.addView(t2);
@@ -4131,6 +4148,8 @@ public class DragingDialogs {
                     }
                 };
                 colorsLine.run();
+
+
 
                 TxtUtils.underlineTextView((TextView) inflate.findViewById(R.id.onDefaultColor)).setOnClickListener(new OnClickListener() {
 
@@ -4170,6 +4189,8 @@ public class DragingDialogs {
 
                                 AppState.get().statusBarColorDay = AppState.TEXT_COLOR_DAY;
                                 AppState.get().statusBarColorNight = AppState.TEXT_COLOR_NIGHT;
+
+                                isReplaceWhite.setVisibility(controller.isTextFormat() && MagicHelper.isNeedMagicSimple() ? View.VISIBLE : View.GONE);
 
                                 colorsLine.run();
                             }

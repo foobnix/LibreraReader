@@ -189,6 +189,11 @@ public class MuPdfPage extends AbstractCodecPage {
                 int g = Color.green(color);
                 int b = Color.blue(color);
                 renderPage(docHandle, pageHandle, mRect, ctm, bufferarray, r, g, b);
+
+                if (MagicHelper.isNeedMagicSimple() && AppState.get().isReplaceWhite) {
+                    MagicHelper.udpateColorsMagicSimple(bufferarray);
+                }
+
             } else if (MagicHelper.isNeedMagic()) {
 
                 if (AppState.get().isCustomizeBgAndColors) {

@@ -542,7 +542,17 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="4dip"
+                    android:layout_weight="1"
                     android:text="@string/bluelight_filter" />
+
+                <CheckBox
+                    android:id="@+id/isReplaceWhite"
+                    style="@style/textLink"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="bottom"
+                    android:layout_weight="1"
+                    android:text="@string/without_white_background" />
             </LinearLayout>
 
             <LinearLayout
