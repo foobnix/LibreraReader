@@ -148,7 +148,7 @@ public class MainTabs2 extends AdsFragmentActivity {
             AppState.get().pathSAF = StringDB.add(AppState.get().pathSAF, pathSAF);
 
             LOG.d("REQUEST_CODE_ADD_RESOURCE", pathSAF, AppState.get().pathSAF);
-            
+
             UIFragment uiFragment = tabFragments.get(pager.getCurrentItem());
             if (uiFragment instanceof BrowseFragment2) {
                 BrowseFragment2 fr = (BrowseFragment2) uiFragment;
@@ -233,7 +233,7 @@ public class MainTabs2 extends AdsFragmentActivity {
         }
         getSupportFragmentManager().beginTransaction().replace(R.id.left_drawer, new PrefFragment2()).commit();
 
-        final DrawerLayout drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
+        drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
 
         imageMenu.setOnClickListener(new OnClickListener() {
 
@@ -607,6 +607,12 @@ public class MainTabs2 extends AdsFragmentActivity {
             onFinishActivity();
             return;
         }
+
+        if (drawerLayout != null && drawerLayout.isDrawerOpen(Gravity.START)) {
+            drawerLayout.closeDrawer(Gravity.START, !AppState.get().isInkMode);
+            return;
+        }
+
         if (tabFragments != null) {
             if (!tabFragments.isEmpty() && tabFragments.get(pager.getCurrentItem()).isBackPressed()) {
                 return;
@@ -625,6 +631,8 @@ public class MainTabs2 extends AdsFragmentActivity {
             showInterstial();
         }
     };
+
+    private DrawerLayout drawerLayout;
 
     public static void startActivity(Activity c, int tab) {
         AppState.get().lastClosedActivity = null;
