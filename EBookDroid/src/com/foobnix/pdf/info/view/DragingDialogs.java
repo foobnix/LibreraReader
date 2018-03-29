@@ -3259,8 +3259,8 @@ public class DragingDialogs {
                 });
                 // - hypens
 
-                TextView customCSS = (TextView) inflate.findViewById(R.id.customCSS);
-                TxtUtils.underlineTextView(customCSS);
+                View customCSS = inflate.findViewById(R.id.customCSS);
+                // TxtUtils.underlineTextView(customCSS);
                 customCSS.setOnClickListener(new OnClickListener() {
 
                     @Override

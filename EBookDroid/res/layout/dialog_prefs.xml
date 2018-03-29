@@ -302,6 +302,7 @@
                 android:layout_width="@dimen/wh_button"
                 android:layout_height="@dimen/wh_button"
                 android:layout_alignParentRight="true"
+                android:layout_marginRight="4dip"
                 android:layout_weight="0"
                 android:background="@drawable/bg_border_ltgray"
                 android:padding="8dip"
