@@ -460,6 +460,6 @@
    <string name="add_resource">Добавить ресурс</string>
    <string name="do_you_want_to_download_more_book_fonts_10mb_">Хотите загрузить пакет книжных шрифтов размером 10 Мб?</string>
    <string name="hyphenation_language">Язык переносов</string>
-   <string name="replacing_the_white_color_in_the_images_with_the_background_color">Замена белого цвета в изображении цветом фона</string>
+   <string name="replacing_the_white_color_in_the_images_with_the_background_color">Заменять белый фон изображений цветом фона страниц</string>
    <string name="disable_swipe_gestures_for_page_paging">Отключить жесты для смены страниц</string>
 </resources>
