@@ -458,7 +458,7 @@
    <string name="application_error_please_send_this_report_by_emial">Что-то пошло не так! Очень просим вам отправить этот отчет об ошибке по почте, т.к. он, возможно, помог бы разобраться в проблеме</string>
    <string name="pause_reading_if_the_incoming_call_or_other_sounds">Ставить чтение на паузу при входящих вызовах, уведомлениях и т. д.</string>
    <string name="add_resource">Добавить ресурс</string>
-   <string name="do_you_want_to_download_more_book_fonts_10mb_">Хотите загрузить пакет книжных шрифтов размером 10 Мб?</string>
+   <string name="do_you_want_to_download_more_book_fonts_10mb_">Вы действительно хотите скачать набор книжных шрифтов размером 10 Мб?</string>
    <string name="hyphenation_language">Язык переносов</string>
-   <string name="replacing_the_white_color_in_the_images_with_the_background_color">Замена белого цвета на изображения цветом фона</string>
+   <string name="replacing_the_white_color_in_the_images_with_the_background_color">Заменять белый фон изображений цветом фона страниц</string>
 </resources>
