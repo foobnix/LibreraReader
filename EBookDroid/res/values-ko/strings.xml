@@ -118,7 +118,6 @@
    <string name="remind_about_rest_every">매번 휴식을 상기시킨다.</string>
    <string name="action_on_double_tap">두 번 탭</string>
    <string name="db_auto_scroll">자동 스크롤</string>
-   <string name="background_color_on_images_the_same_as_page_background">이미지의 배경색은 페이지 배경과 동일합니다.</string>
    <string name="opening_book_with_losed_lock">잠금 장치가있는 책 열기</string>
    <string name="opening_book_with_cropped_borders">자른 테두리가있는 책 열기</string>
    <string name="db_auto_alignemnt">자동 정렬</string>
@@ -461,5 +460,5 @@
    <string name="add_resource">리소스 추가</string>
    <string name="do_you_want_to_download_more_book_fonts_10mb_">도서 글꼴 (10MB)을 더 다운로드 하시겠습니까?</string>
    <string name="hyphenation_language">하이픈 넣기 언어</string>
-   <string name="without_white_background">흰색 배경이없는 경우</string>
+   <string name="replacing_the_white_color_in_the_images_with_the_background_color">이미지의 흰색 색상을 배경색으로 바꾸기</string>
 </resources>

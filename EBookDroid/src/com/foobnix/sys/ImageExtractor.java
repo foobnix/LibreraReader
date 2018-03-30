@@ -230,15 +230,13 @@ public class ImageExtractor implements ImageDownloader {
 
         if (pageUrl.getNumber() == 0) {
             rectF = new RectF(0, 0, 1f, 1f);
-            if (isNeedDisableMagicInPDFDjvu) {
-                MagicHelper.isNeedMagic = false;
-            }
-
-            bitmapRef = pageCodec.renderBitmap(width, height, rectF);
 
             if (isNeedDisableMagicInPDFDjvu) {
-                MagicHelper.isNeedMagic = true;
+                bitmapRef = pageCodec.renderBitmapSimple(width, height, rectF);
+            } else {
+                bitmapRef = pageCodec.renderBitmap(width, height, rectF);
             }
+
             bitmap = bitmapRef.getBitmap();
 
             if (pageUrl.isCrop()) {
@@ -379,7 +377,6 @@ public class ImageExtractor implements ImageDownloader {
             LOG.d("Error FILE", imageUri);
             return messageFile("#crash", "");
         }
-
 
         final PageUrl pageUrl = PageUrl.fromString(imageUri);
         String path = pageUrl.getPath();

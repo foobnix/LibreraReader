@@ -76,6 +76,12 @@ public class MuPdfPage extends AbstractCodecPage {
     }
 
     @Override
+    public BitmapRef renderBitmapSimple(final int width, final int height, final RectF pageSliceBounds) {
+        final float[] matrixArray = calculateFz(width, height, pageSliceBounds);
+        return renderSimple(new Rect(0, 0, width, height), matrixArray);
+    }
+
+    @Override
     public Bitmap renderThumbnail(final int width) {
         return renderThumbnail(width, getWidth(), getHeight());
     }
@@ -165,6 +171,34 @@ public class MuPdfPage extends AbstractCodecPage {
         return new RectF(box[0], box[1], box[2], box[3]);
     }
 
+    public BitmapRef renderSimple(final Rect viewbox, final float[] ctm) {
+        try {
+            TempHolder.lock.lock();
+
+            if (isRecycled()) {
+                throw new RuntimeException("The page has been recycled before: " + this);
+            }
+            final int[] mRect = new int[4];
+            mRect[0] = viewbox.left;
+            mRect[1] = viewbox.top;
+            mRect[2] = viewbox.right;
+            mRect[3] = viewbox.bottom;
+
+            final int width = viewbox.width();
+            final int height = viewbox.height();
+
+            final int[] bufferarray = new int[width * height];
+
+            renderPage(docHandle, pageHandle, mRect, ctm, bufferarray, -1, -1, -1);
+
+            final BitmapRef b = BitmapManager.getBitmap("PDF page", width, height, Config.RGB_565);
+            b.getBitmap().setPixels(bufferarray, 0, width, 0, 0, width, height);
+            return b;
+        } finally {
+            TempHolder.lock.unlock();
+        }
+    }
+
     public BitmapRef render(final Rect viewbox, final float[] ctm) {
         try {
             TempHolder.lock.lock();
@@ -190,7 +224,7 @@ public class MuPdfPage extends AbstractCodecPage {
                 int b = Color.blue(color);
                 renderPage(docHandle, pageHandle, mRect, ctm, bufferarray, r, g, b);
 
-                if (MagicHelper.isNeedMagicSimple() && AppState.get().isReplaceWhite) {
+                if (AppState.get().isReplaceWhite && MagicHelper.isNeedMagicSimple()) {
                     MagicHelper.udpateColorsMagicSimple(bufferarray);
                 }
 

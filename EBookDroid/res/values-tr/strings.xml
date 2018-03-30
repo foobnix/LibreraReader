@@ -118,7 +118,6 @@
    <string name="remind_about_rest_every">Dinlenme hakkında hatırlat</string>
    <string name="action_on_double_tap">İki kez hafifçe vurun</string>
    <string name="db_auto_scroll">Otomatik kaydırma</string>
-   <string name="background_color_on_images_the_same_as_page_background">Resimlerdeki arka plan rengi, sayfa arka planıyla aynı</string>
    <string name="opening_book_with_losed_lock">Kilitli kilitli açılış kitabı</string>
    <string name="opening_book_with_cropped_borders">Kırpılmış kenarlı kitap açma</string>
    <string name="db_auto_alignemnt">Otomatik Hizalama</string>
@@ -461,5 +460,5 @@
    <string name="add_resource">Kaynak ekle</string>
    <string name="do_you_want_to_download_more_book_fonts_10mb_">Daha fazla kitap fontu (10MB) indirmek ister misiniz?</string>
    <string name="hyphenation_language">Tireleme dili</string>
-   <string name="without_white_background">Beyaz arka plan olmadan</string>
+   <string name="replacing_the_white_color_in_the_images_with_the_background_color">Resimdeki beyaz rengi arka plan rengiyle değiştirme</string>
 </resources>

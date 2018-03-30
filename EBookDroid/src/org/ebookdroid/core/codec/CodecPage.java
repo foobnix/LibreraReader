@@ -19,6 +19,9 @@ public interface CodecPage {
 
 	BitmapRef renderBitmap(int width, int height, RectF pageSliceBounds);
 
+    BitmapRef renderBitmapSimple(int width, int height, RectF pageSliceBounds);
+
+
 	Bitmap renderThumbnail(int width);
 
 	Bitmap renderThumbnail(int width, int originW, int originH);

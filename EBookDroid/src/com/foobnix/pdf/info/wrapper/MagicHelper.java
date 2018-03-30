@@ -30,7 +30,6 @@ import android.widget.TextView;
 
 public class MagicHelper {
 
-    public static volatile boolean isNeedMagic = true;
     public static volatile boolean isNeedBC = true;
 
     public static int hash() {
@@ -146,9 +145,6 @@ public class MagicHelper {
     }
 
     public static boolean isNeedMagic() {
-        if (!isNeedMagic) {
-            return false;
-        }
 
         boolean isDay = AppState.get().isDayNotInvert && //
                 (AppState.get().colorDayBg != AppState.COLOR_WHITE || //

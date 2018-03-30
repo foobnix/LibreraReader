@@ -118,7 +118,6 @@
    <string name="remind_about_rest_every">प्रत्येक को आराम के बारे में याद दिलाएं</string>
    <string name="action_on_double_tap">दो बार टैप</string>
    <string name="db_auto_scroll">स्व घूमना</string>
-   <string name="background_color_on_images_the_same_as_page_background">पृष्ठ पृष्ठभूमि के समान चित्रों का पृष्ठभूमि रंग</string>
    <string name="opening_book_with_losed_lock">सोलट लॉक के साथ पुस्तक खोलना</string>
    <string name="opening_book_with_cropped_borders">फसल वाली सीमाओं के साथ पुस्तक खोलना</string>
    <string name="db_auto_alignemnt">ऑटो संरेखण</string>
@@ -461,5 +460,5 @@
    <string name="add_resource">संसाधन जोड़ें</string>
    <string name="do_you_want_to_download_more_book_fonts_10mb_">क्या आप अधिक पुस्तक फोंट (10 एमबी) डाउनलोड करना चाहते हैं?</string>
    <string name="hyphenation_language">हायफिनेशन भाषा</string>
-   <string name="without_white_background">सफेद पृष्ठभूमि के बिना</string>
+   <string name="replacing_the_white_color_in_the_images_with_the_background_color">पृष्ठभूमि रंग के साथ चित्रों में सफ़ेद रंग की जगह</string>
 </resources>

@@ -76,6 +76,24 @@ public class DjvuPage extends AbstractCodecPage {
     }
 
     @Override
+    public BitmapRef renderBitmapSimple(int width, int height, RectF pageSliceBounds) {
+        LOG.d("Render DJVU Page", width, height, pageSliceBounds);
+        final int renderMode = AppSettings.getInstance().djvuRenderingMode;
+        BitmapRef bmp = null;
+        if (width > 0 && height > 0) {
+            bmp = BitmapManager.getBitmap("Djvu page", width, height, Bitmap.Config.RGB_565);
+            final int[] buffer = new int[width * height];
+            renderPageWrapper(pageHandle, contextHandle, width, height, pageSliceBounds.left, pageSliceBounds.top, pageSliceBounds.width(), pageSliceBounds.height(), buffer, renderMode);
+            bmp.getBitmap().setPixels(buffer, 0, width, 0, 0, width, height);
+            return bmp;
+        }
+        if (bmp == null) {
+            bmp = BitmapManager.getBitmap("Djvu page", 100, 100, Bitmap.Config.RGB_565);
+        }
+        return bmp;
+    }
+
+    @Override
     public BitmapRef renderBitmap(final int width, final int height, final RectF pageSliceBounds) {
         LOG.d("Render DJVU Page", width, height, pageSliceBounds);
         final int renderMode = AppSettings.getInstance().djvuRenderingMode;

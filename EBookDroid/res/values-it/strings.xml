@@ -118,7 +118,6 @@
    <string name="remind_about_rest_every">Ricorda di riposare ogni</string>
    <string name="action_on_double_tap">Doppio tap</string>
    <string name="db_auto_scroll">Scorrimento automatico</string>
-   <string name="background_color_on_images_the_same_as_page_background">Colore di sfondo sulle immagini come lo sfondo della pagina</string>
    <string name="opening_book_with_losed_lock">Libro di apertura con serratura chiusa</string>
    <string name="opening_book_with_cropped_borders">Libro di apertura con bordi ritagliati</string>
    <string name="db_auto_alignemnt">Allineamento automatico</string>
@@ -461,5 +460,5 @@
    <string name="add_resource">Aggiungi risorsa</string>
    <string name="do_you_want_to_download_more_book_fonts_10mb_">Vuoi scaricare più font di libri (10 MB)?</string>
    <string name="hyphenation_language">Linguaggio di sillabazione</string>
-   <string name="without_white_background">Senza sfondo bianco</string>
+   <string name="replacing_the_white_color_in_the_images_with_the_background_color">Sostituzione del colore bianco nelle immagini con il colore di sfondo</string>
 </resources>

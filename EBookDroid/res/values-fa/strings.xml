@@ -118,7 +118,6 @@
    <string name="remind_about_rest_every">یادآوری در مورد بقیه هر</string>
    <string name="action_on_double_tap">دو تا ضربه ی آهسته بزن</string>
    <string name="db_auto_scroll">اسکرول خودکار</string>
-   <string name="background_color_on_images_the_same_as_page_background">رنگ پس زمینه در تصاویر همانند پس زمینه صفحه</string>
    <string name="opening_book_with_losed_lock">افتتاح کتاب با قفل خالی</string>
    <string name="opening_book_with_cropped_borders">کتاب افتتاحیه با مرزهای بریده شده</string>
    <string name="db_auto_alignemnt">تراز خودرو</string>
@@ -461,5 +460,5 @@
    <string name="add_resource">اضافه کردن منبع</string>
    <string name="do_you_want_to_download_more_book_fonts_10mb_">آیا می خواهید فونت کتاب بیشتری (10 مگابایت) را دانلود کنید؟</string>
    <string name="hyphenation_language">زبان هیپنوتیزم</string>
-   <string name="without_white_background">بدون پس زمینه سفید</string>
+   <string name="replacing_the_white_color_in_the_images_with_the_background_color">جایگزین رنگ سفید در تصاویر با رنگ پس زمینه</string>
 </resources>

@@ -118,7 +118,6 @@
    <string name="remind_about_rest_every">تذكير عن بقية كل</string>
    <string name="action_on_double_tap">الصنبور مزدوج</string>
    <string name="db_auto_scroll">لف تلقائي</string>
-   <string name="background_color_on_images_the_same_as_page_background">لون الخلفية على الصور نفس الخلفية الصفحة</string>
    <string name="opening_book_with_losed_lock">كتاب الافتتاح مع قفل فلوسيد</string>
    <string name="opening_book_with_cropped_borders">فتح الكتاب مع الحدود اقتصاص</string>
    <string name="db_auto_alignemnt">محاذاة السيارات</string>
@@ -461,5 +460,5 @@
    <string name="add_resource">إضافة الموارد</string>
    <string name="do_you_want_to_download_more_book_fonts_10mb_">هل تريد تنزيل المزيد من خطوط الكتاب (10 ميجابايت)؟</string>
    <string name="hyphenation_language">لغة الوصل</string>
-   <string name="without_white_background">بدون خلفية بيضاء</string>
+   <string name="replacing_the_white_color_in_the_images_with_the_background_color">استبدال اللون الأبيض في الصور بلون الخلفية</string>
 </resources>

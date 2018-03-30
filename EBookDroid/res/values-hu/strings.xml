@@ -118,7 +118,6 @@
    <string name="remind_about_rest_every">Emlékeztessen a pihenésre</string>
    <string name="action_on_double_tap">Dupla érintés</string>
    <string name="db_auto_scroll">Automatikus görgetés</string>
-   <string name="background_color_on_images_the_same_as_page_background">A képek háttérszíne megegyezik az oldal hátterével</string>
    <string name="opening_book_with_losed_lock">A szabad oldalmozgás blokkolása alapértelmezés szerint</string>
    <string name="opening_book_with_cropped_borders">Mindig vágja le a szegélyeket a fájlok megnyitásakor</string>
    <string name="db_auto_alignemnt">Automatikus igazítás</string>
@@ -461,5 +460,5 @@
    <string name="add_resource">Erőforrás hozzáadása</string>
    <string name="do_you_want_to_download_more_book_fonts_10mb_">Több könyvkönyvet szeretne letölteni (10 MB)?</string>
    <string name="hyphenation_language">Elválasztási nyelv</string>
-   <string name="without_white_background">Fehér háttér nélkül</string>
+   <string name="replacing_the_white_color_in_the_images_with_the_background_color">A háttérszín színes felvétele a képeken</string>
 </resources>

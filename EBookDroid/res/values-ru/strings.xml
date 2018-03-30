@@ -118,7 +118,6 @@
    <string name="remind_about_rest_every">Увед-е об отдыхе каждые</string>
    <string name="action_on_double_tap">Двойной тап по центру</string>
    <string name="db_auto_scroll">Автопрокрутка текста</string>
-   <string name="background_color_on_images_the_same_as_page_background">Применять особый алгоритм цветовой подстройки шрифтов и фонов (для PDF/DJVU)</string>
    <string name="opening_book_with_losed_lock">Всегда блокировать смещения страниц при открытии PDF/DJVU</string>
    <string name="opening_book_with_cropped_borders">Активировать автообрезку пустых полей при каждом открытии PDF/DJVU</string>
    <string name="db_auto_alignemnt">Вписать в ширину экрана</string>
@@ -461,5 +460,5 @@
    <string name="add_resource">Добавить ресурс</string>
    <string name="do_you_want_to_download_more_book_fonts_10mb_">Хотите загрузить пакет книжных шрифтов размером 10 Мб?</string>
    <string name="hyphenation_language">Язык переносов</string>
-   <string name="without_white_background">Без белого фона</string>
+   <string name="replacing_the_white_color_in_the_images_with_the_background_color">Замена белого цвета на изображения цветом фона</string>
 </resources>

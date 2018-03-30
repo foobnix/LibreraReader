@@ -194,13 +194,13 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/ignore_annotations_on_click" />
-        
-          <CheckBox
+
+        <CheckBox
             android:id="@+id/isSaveAnnotatationsAutomatically"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/save_new_annotations_automatically" />
-          
+
         <CheckBox
             android:id="@+id/isCropPDF"
             android:layout_width="wrap_content"
@@ -211,19 +211,19 @@
             android:id="@+id/isCustomizeBgAndColors"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/background_color_on_images_the_same_as_page_background" />
+            android:text="@string/replacing_the_white_color_in_the_images_with_the_background_color" />
 
-        
+        <CheckBox
+            android:id="@+id/isReplaceWhite"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/replacing_the_white_color_in_the_images_with_the_background_color" />
 
         <CheckBox
             android:id="@+id/isOLED"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/enhancements_for_oled_display" />
-
-        
-
-      
 
         <CheckBox
             android:id="@+id/isLoopAutoplay"
@@ -244,20 +244,18 @@
             android:layout_height="wrap_content"
             android:text="@string/change_the_automatic_scrolling_speed_with_the_volume_keys" />
 
-      
-
         <CheckBox
             android:id="@+id/isZoomInOutWithVolueKeys"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/zoom_in_out_using_the_volume_keys" />
-        
-          <CheckBox
+
+        <CheckBox
             android:id="@+id/isShowLongBackDialog"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/show_the_book_close_dialog" />
-          
+
         <CheckBox
             android:id="@+id/isVibration"
             android:layout_width="wrap_content"

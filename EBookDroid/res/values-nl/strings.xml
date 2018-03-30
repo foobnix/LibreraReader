@@ -118,7 +118,6 @@
    <string name="remind_about_rest_every">Herinner u aan rust elke</string>
    <string name="action_on_double_tap">Dubbele tik</string>
    <string name="db_auto_scroll">Auto scroll</string>
-   <string name="background_color_on_images_the_same_as_page_background">Achtergrondkleur op afbeeldingen gelijk aan pagina-achtergrond</string>
    <string name="opening_book_with_losed_lock">Openingsboek met gesloten slot</string>
    <string name="opening_book_with_cropped_borders">Openingsboek met bijgesneden randen</string>
    <string name="db_auto_alignemnt">Auto alignment</string>
@@ -461,5 +460,5 @@
    <string name="add_resource">Voeg bron toe</string>
    <string name="do_you_want_to_download_more_book_fonts_10mb_">Wilt u meer boeklettertypen downloaden (10MB)?</string>
    <string name="hyphenation_language">Woordafbreking taal</string>
-   <string name="without_white_background">Zonder witte achtergrond</string>
+   <string name="replacing_the_white_color_in_the_images_with_the_background_color">De witte kleur in de afbeeldingen vervangen door de achtergrondkleur</string>
 </resources>

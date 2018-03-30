@@ -118,7 +118,6 @@
    <string name="remind_about_rest_every">Remind about rest every</string>
    <string name="action_on_double_tap">Double tap</string>
    <string name="db_auto_scroll">Auto scroll</string>
-   <string name="background_color_on_images_the_same_as_page_background">Background color of images the same as page background</string>
    <string name="opening_book_with_losed_lock">Block free page movement by default</string>
    <string name="opening_book_with_cropped_borders">Always crop borders when opening files</string>
    <string name="db_auto_alignemnt">Auto alignment</string>
@@ -461,5 +460,5 @@
    <string name="add_resource">Add resource</string>
    <string name="do_you_want_to_download_more_book_fonts_10mb_">Do you want to download more book fonts (10MB)?</string>
    <string name="hyphenation_language">Hyphenation language</string>
-   <string name="without_white_background">Without white background</string>
+   <string name="replacing_the_white_color_in_the_images_with_the_background_color">Replacing the white color in the images with the background color</string>
 </resources>

@@ -118,7 +118,6 @@
    <string name="remind_about_rest_every">הזכר כל השאר</string>
    <string name="action_on_double_tap">הקשה כפולה</string>
    <string name="db_auto_scroll">גלילה אוטומטית</string>
-   <string name="background_color_on_images_the_same_as_page_background">צבע רקע על תמונות כמו רקע הדף</string>
    <string name="opening_book_with_losed_lock">פתיחת ספר עם מנעול סגור</string>
    <string name="opening_book_with_cropped_borders">ספר פתיחה עם גבולות קצוצים</string>
    <string name="db_auto_alignemnt">יישור אוטומטי</string>
@@ -461,5 +460,5 @@
    <string name="add_resource">הוסף משאב</string>
    <string name="do_you_want_to_download_more_book_fonts_10mb_">האם ברצונך להוריד עוד גופני ספרים (10MB)?</string>
    <string name="hyphenation_language">שפת מיקוף</string>
-   <string name="without_white_background">ללא רקע לבן</string>
+   <string name="replacing_the_white_color_in_the_images_with_the_background_color">החלפת צבע לבן בתמונות עם צבע הרקע</string>
 </resources>

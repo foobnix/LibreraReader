@@ -118,7 +118,6 @@
    <string name="remind_about_rest_every">Påminner om vila varje</string>
    <string name="action_on_double_tap">Dubbelklicka</string>
    <string name="db_auto_scroll">Auto-scrolla</string>
-   <string name="background_color_on_images_the_same_as_page_background">Bakgrundsfärg på bilder samma som sidbakgrund</string>
    <string name="opening_book_with_losed_lock">Öppningsbok med stängt lås</string>
    <string name="opening_book_with_cropped_borders">Öppningsbok med beskurna gränser</string>
    <string name="db_auto_alignemnt">Automatisk justering</string>
@@ -461,5 +460,5 @@
    <string name="add_resource">Lägg till resurs</string>
    <string name="do_you_want_to_download_more_book_fonts_10mb_">Vill du ladda ner fler bokstäver (10 MB)?</string>
    <string name="hyphenation_language">Hyphenation språk</string>
-   <string name="without_white_background">Utan vit bakgrund</string>
+   <string name="replacing_the_white_color_in_the_images_with_the_background_color">Byter den vita färgen i bilderna med bakgrundsfärgen</string>
 </resources>

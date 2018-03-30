@@ -118,7 +118,6 @@
    <string name="remind_about_rest_every">เตือนเกี่ยวกับการพักผ่อนทุกครั้ง</string>
    <string name="action_on_double_tap">แตะสองครั้ง</string>
    <string name="db_auto_scroll">เลื่อนอัตโนมัติ</string>
-   <string name="background_color_on_images_the_same_as_page_background">สีพื้นหลังในภาพเหมือนกับภาพพื้นหลัง</string>
    <string name="opening_book_with_losed_lock">หนังสือเปิดพร้อมล็อคเกลียว</string>
    <string name="opening_book_with_cropped_borders">หนังสือเปิดที่มีขอบตัด</string>
    <string name="db_auto_alignemnt">จัดตำแหน่งอัตโนมัติ</string>
@@ -461,5 +460,5 @@
    <string name="add_resource">เพิ่มทรัพยากร</string>
    <string name="do_you_want_to_download_more_book_fonts_10mb_">คุณต้องการดาวน์โหลดแบบอักษรหนังสือมากกว่า (10MB) หรือไม่?</string>
    <string name="hyphenation_language">ยัติภังค์</string>
-   <string name="without_white_background">ไม่มีพื้นหลังสีขาว</string>
+   <string name="replacing_the_white_color_in_the_images_with_the_background_color">การแทนที่สีขาวในภาพด้วยสีพื้นหลัง</string>
 </resources>

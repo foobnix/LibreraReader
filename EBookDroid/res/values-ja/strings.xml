@@ -118,7 +118,6 @@
    <string name="remind_about_rest_every">毎日休息を思い出させる</string>
    <string name="action_on_double_tap">ダブルタップ</string>
    <string name="db_auto_scroll">オートスクロール</string>
-   <string name="background_color_on_images_the_same_as_page_background">イメージの背景色はページの背景と同じです</string>
    <string name="opening_book_with_losed_lock">閉鎖ロック付きオープニングブック</string>
    <string name="opening_book_with_cropped_borders">切り取った罫線のある本を開く</string>
    <string name="db_auto_alignemnt">オートアライメント</string>
@@ -461,5 +460,5 @@
    <string name="add_resource">リソースを追加</string>
    <string name="do_you_want_to_download_more_book_fonts_10mb_">より多くのブックフォント（10MB）をダウンロードしますか？</string>
    <string name="hyphenation_language">ハイフネーション言語</string>
-   <string name="without_white_background">白い背景なし</string>
+   <string name="replacing_the_white_color_in_the_images_with_the_background_color">イメージ内の白色を背景色に置き換える</string>
 </resources>

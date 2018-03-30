@@ -118,7 +118,6 @@
    <string name="remind_about_rest_every">Wakumbushe kuhusu wengine kila</string>
    <string name="action_on_double_tap">Double bomba</string>
    <string name="db_auto_scroll">Auto kitabu</string>
-   <string name="background_color_on_images_the_same_as_page_background">Rangi ya asili kwenye picha sawa na background ya ukurasa</string>
    <string name="opening_book_with_losed_lock">Kitabu cha ufunguzi kwa lock iliyofungwa</string>
    <string name="opening_book_with_cropped_borders">Kitabu cha kufungua na mipaka iliyopigwa</string>
    <string name="db_auto_alignemnt">Auto alignment</string>
@@ -461,5 +460,5 @@
    <string name="add_resource">Ongeza rasilimali</string>
    <string name="do_you_want_to_download_more_book_fonts_10mb_">Unataka kupakua fonts zaidi ya kitabu (10MB)?</string>
    <string name="hyphenation_language">Lugha ya kufuta</string>
-   <string name="without_white_background">Bila background nyeupe</string>
+   <string name="replacing_the_white_color_in_the_images_with_the_background_color">Kubadilisha rangi nyeupe kwenye picha na rangi ya nyuma</string>
 </resources>

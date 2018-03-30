@@ -118,7 +118,6 @@
    <string name="remind_about_rest_every">Nhắc về phần còn lại</string>
    <string name="action_on_double_tap">Double tap</string>
    <string name="db_auto_scroll">Tự động cuộn</string>
-   <string name="background_color_on_images_the_same_as_page_background">Màu nền trên hình ảnh giống như nền trang</string>
    <string name="opening_book_with_losed_lock">Mở sổ sách có khóa khóa</string>
    <string name="opening_book_with_cropped_borders">Mở sách với biên giới cắt xén</string>
    <string name="db_auto_alignemnt">Liên kết tự động</string>
@@ -461,5 +460,5 @@
    <string name="add_resource">Thêm tài nguyên</string>
    <string name="do_you_want_to_download_more_book_fonts_10mb_">Bạn có muốn tải nhiều phông chữ sách hơn (10MB)?</string>
    <string name="hyphenation_language">Ngôn ngữ phân cách</string>
-   <string name="without_white_background">Không có nền trắng</string>
+   <string name="replacing_the_white_color_in_the_images_with_the_background_color">Thay thế màu trắng trong các hình ảnh với màu nền</string>
 </resources>

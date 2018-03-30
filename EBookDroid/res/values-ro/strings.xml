@@ -118,7 +118,6 @@
    <string name="remind_about_rest_every">Amintiți-vă de odihnă în fiecare</string>
    <string name="action_on_double_tap">Apăsare dubla</string>
    <string name="db_auto_scroll">Parcurgere automată</string>
-   <string name="background_color_on_images_the_same_as_page_background">Culoarea de fundal pe imagini este la fel ca fundalul paginii</string>
    <string name="opening_book_with_losed_lock">Deschiderea cărții cu încuietoare închisă</string>
    <string name="opening_book_with_cropped_borders">Deschiderea cărții cu margini tăiate</string>
    <string name="db_auto_alignemnt">Aliniere automată</string>
@@ -461,5 +460,5 @@
    <string name="add_resource">Adăugați o resursă</string>
    <string name="do_you_want_to_download_more_book_fonts_10mb_">Doriți să descărcați mai multe fonturi de carte (10MB)?</string>
    <string name="hyphenation_language">Limba de sincronizare</string>
-   <string name="without_white_background">Fără fundal alb</string>
+   <string name="replacing_the_white_color_in_the_images_with_the_background_color">Înlocuirea culorii albe în imagini cu culoarea de fundal</string>
 </resources>

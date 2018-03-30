@@ -35,7 +35,6 @@ import com.foobnix.android.utils.ResultResponse;
 import com.foobnix.android.utils.Safe;
 import com.foobnix.android.utils.TxtUtils;
 import com.foobnix.pdf.info.model.AnnotationType;
-import com.foobnix.pdf.info.wrapper.MagicHelper;
 import com.foobnix.sys.Colors;
 import com.foobnix.sys.ImageExtractor;
 import com.foobnix.sys.TempHolder;
@@ -365,9 +364,7 @@ public class DecodeServiceBase implements DecodeService {
             // final Rect rootRect = new Rect(0, 0, rootRect.width(), rootRect.height());
 
             // TempHolder.lock.lock();
-            MagicHelper.isNeedMagic = false;
             final BitmapRef rootBitmap = vuPage.renderBitmap(rootRect.width(), rootRect.height(), new RectF(0, 0, 1f, 1f));
-            MagicHelper.isNeedMagic = true;
             // TempHolder.lock.unlock();
 
             root.croppedBounds = PageCropper.getCropBounds(rootBitmap.getBitmap(), rootRect, new RectF(0, 0, 1f, 1f));
