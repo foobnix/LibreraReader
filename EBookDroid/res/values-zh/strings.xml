@@ -388,7 +388,7 @@
    <string name="books">书籍</string>
    <string name="reading_out_loud">大声朗读</string>
    <string name="librera_pro_no_ads_leading_book_reader_and_pdf">Librera PRO专业领先无广告的电子书及PDF阅读器</string>
-   <string name="custom_text">自定义名称</string>
+   <string name="custom_text">自定义标题</string>
    <string name="cd_search_books_in_the_library">书库搜索</string>
    <string name="cd_clear_search_reasult">清除记录</string>
    <string name="cd_sort_results">排序结果</string>
