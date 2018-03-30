@@ -237,6 +237,12 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/simple_scroll_animation" />
+        
+        <CheckBox
+            android:id="@+id/isDisableSwipe"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/disable_swipe_gestures_for_page_paging" />
 
         <CheckBox
             android:id="@+id/isScrollSpeedByVolumeKeys"

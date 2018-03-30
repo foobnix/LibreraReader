@@ -461,4 +461,5 @@
    <string name="do_you_want_to_download_more_book_fonts_10mb_">Doriți să descărcați mai multe fonturi de carte (10MB)?</string>
    <string name="hyphenation_language">Limba de sincronizare</string>
    <string name="replacing_the_white_color_in_the_images_with_the_background_color">Înlocuirea culorii albe în imagini cu culoarea de fundal</string>
+   <string name="disable_swipe_gestures_for_page_paging">Dezactivați gesturile de glisare pentru paginile de paginare</string>
 </resources>

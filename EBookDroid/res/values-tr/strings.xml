@@ -461,4 +461,5 @@
    <string name="do_you_want_to_download_more_book_fonts_10mb_">Daha fazla kitap fontu (10MB) indirmek ister misiniz?</string>
    <string name="hyphenation_language">Tireleme dili</string>
    <string name="replacing_the_white_color_in_the_images_with_the_background_color">Resimdeki beyaz rengi arka plan rengiyle değiştirme</string>
+   <string name="disable_swipe_gestures_for_page_paging">Sayfa sayfalama için kaydırma hareketlerini devre dışı bırak</string>
 </resources>

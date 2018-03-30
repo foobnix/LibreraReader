@@ -461,4 +461,5 @@
    <string name="do_you_want_to_download_more_book_fonts_10mb_">より多くのブックフォント（10MB）をダウンロードしますか？</string>
    <string name="hyphenation_language">ハイフネーション言語</string>
    <string name="replacing_the_white_color_in_the_images_with_the_background_color">イメージ内の白色を背景色に置き換える</string>
+   <string name="disable_swipe_gestures_for_page_paging">ページページングのスワイプジェスチャーを無効にする</string>
 </resources>

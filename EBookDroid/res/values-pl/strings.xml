@@ -461,4 +461,5 @@
    <string name="do_you_want_to_download_more_book_fonts_10mb_">Czy chcesz pobrać więcej czcionek książek (10 MB)?</string>
    <string name="hyphenation_language">Dzielenie języka</string>
    <string name="replacing_the_white_color_in_the_images_with_the_background_color">Zastępowanie koloru białego na zdjęciach kolorem tła</string>
+   <string name="disable_swipe_gestures_for_page_paging">Wyłącz gesty przesunięcia dla stronicowania stron</string>
 </resources>

@@ -461,4 +461,5 @@
    <string name="do_you_want_to_download_more_book_fonts_10mb_">Do you want to download more book fonts (10MB)?</string>
    <string name="hyphenation_language">Hyphenation language</string>
    <string name="replacing_the_white_color_in_the_images_with_the_background_color">Replacing the white color in the images with the background color</string>
+   <string name="disable_swipe_gestures_for_page_paging">Disable swipe gestures for page paging</string>
 </resources>

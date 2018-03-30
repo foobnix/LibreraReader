@@ -461,4 +461,5 @@
    <string name="do_you_want_to_download_more_book_fonts_10mb_">Möchten Sie weitere Buchschriften (10 MB) herunterladen?</string>
    <string name="hyphenation_language">Silbentrennungssprache</string>
    <string name="replacing_the_white_color_in_the_images_with_the_background_color">Ersetzen der weißen Farbe in den Bildern durch die Hintergrundfarbe</string>
+   <string name="disable_swipe_gestures_for_page_paging">Deaktivieren Sie Swipe-Gesten für das Seiten-Paging</string>
 </resources>

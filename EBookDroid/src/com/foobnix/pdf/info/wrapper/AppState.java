@@ -485,6 +485,10 @@ public class AppState {
 
     @IgnoreHashCode
     public boolean isScrollAnimation = true;
+
+    @IgnoreHashCode
+    public boolean isDisableSwipe = false;
+
     public String imageFormat = PNG;
     public boolean isCustomizeBgAndColors = false;
     public boolean isVibration = true;
@@ -639,6 +643,7 @@ public class AppState {
                     AppState.get().isRememberMode = false;
                     AppState.get().isReverseKeys = true;
                     AppState.get().isScrollAnimation = false;
+                    AppState.get().isDisableSwipe = true;
                     AppState.get().tintColor = Color.BLACK;
                     AppState.get().bolderTextOnImage = true;
                     AppState.get().isEnableBC = true;

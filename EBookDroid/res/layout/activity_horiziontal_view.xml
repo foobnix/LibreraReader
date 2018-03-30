@@ -183,6 +183,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dip"
+                android:minWidth="50dip"
                 android:layout_weight="1"
                 android:text="--:--"
                 android:textColor="@color/tint_gray"
@@ -215,6 +216,7 @@
                 android:visibility="gone" />
 
             <TextView
+                android:minWidth="50dip"
                 android:id="@+id/pagesPower"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

@@ -2120,6 +2120,7 @@ public class DragingDialogs {
                     }
                 });
 
+
                 CheckBox isLoopAutoplay = (CheckBox) inflate.findViewById(R.id.isLoopAutoplay);
                 isLoopAutoplay.setChecked(AppState.get().isLoopAutoplay);
                 isLoopAutoplay.setOnCheckedChangeListener(new OnCheckedChangeListener() {
@@ -2564,6 +2565,17 @@ public class DragingDialogs {
                     @Override
                     public void onCheckedChanged(final CompoundButton buttonView, final boolean isChecked) {
                         AppState.get().isScrollAnimation = isChecked;
+                    }
+                });
+
+                CheckBox isDisableSwipe = (CheckBox) inflate.findViewById(R.id.isDisableSwipe);
+                isDisableSwipe.setVisibility(AppState.get().isAlwaysOpenAsMagazine ? View.VISIBLE : View.GONE);
+                isDisableSwipe.setChecked(AppState.get().isDisableSwipe);
+                isDisableSwipe.setOnCheckedChangeListener(new OnCheckedChangeListener() {
+
+                    @Override
+                    public void onCheckedChanged(final CompoundButton buttonView, final boolean isChecked) {
+                        AppState.get().isDisableSwipe = isChecked;
                     }
                 });
 

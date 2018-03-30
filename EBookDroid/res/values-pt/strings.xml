@@ -461,4 +461,5 @@
    <string name="do_you_want_to_download_more_book_fonts_10mb_">Deseja baixar mais fontes de livros (10MB)?</string>
    <string name="hyphenation_language">Linguagem de hifenização</string>
    <string name="replacing_the_white_color_in_the_images_with_the_background_color">Substituindo a cor branca nas imagens pela cor de fundo</string>
+   <string name="disable_swipe_gestures_for_page_paging">Desativar gestos de deslize para paginação de páginas</string>
 </resources>

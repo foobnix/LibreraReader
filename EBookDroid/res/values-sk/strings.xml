@@ -461,4 +461,5 @@
    <string name="do_you_want_to_download_more_book_fonts_10mb_">Chcete si stiahnuť viac písomných kníh (10 MB)?</string>
    <string name="hyphenation_language">Jazyk slovenia</string>
    <string name="replacing_the_white_color_in_the_images_with_the_background_color">Výmena bielej farby v obraze s farbou pozadia</string>
+   <string name="disable_swipe_gestures_for_page_paging">Zakázať gestá na posúvanie stránok</string>
 </resources>

@@ -103,7 +103,7 @@ public class VerticalViewPager extends CustomViewPager {
 
     @Override
     public boolean onInterceptTouchEvent(MotionEvent ev) {
-        if (!AppState.get().isScrollAnimation) {
+        if (AppState.get().isDisableSwipe) {
             return false;
         }
         if (value != null && !value.isFinished()) {
@@ -117,7 +117,7 @@ public class VerticalViewPager extends CustomViewPager {
 
     @Override
     public boolean onTouchEvent(MotionEvent ev) {
-        if (!AppState.get().isScrollAnimation) {
+        if (AppState.get().isDisableSwipe) {
             return false;
         }
 

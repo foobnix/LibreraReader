@@ -461,4 +461,5 @@
    <string name="do_you_want_to_download_more_book_fonts_10mb_">下载更多字体（10MB）？</string>
    <string name="hyphenation_language">断字语言</string>
    <string name="replacing_the_white_color_in_the_images_with_the_background_color">用背景颜色替换图像中的白色</string>
+   <string name="disable_swipe_gestures_for_page_paging">禁用页面分页的轻扫手势</string>
 </resources>
