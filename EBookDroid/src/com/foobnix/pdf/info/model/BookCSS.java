@@ -291,12 +291,16 @@ public class BookCSS {
 
         all.addAll(getAllFontsFiltered(new File(Environment.getExternalStorageDirectory(), "fonts").getPath()));
         all.addAll(getAllFontsFiltered(new File(Environment.getExternalStorageDirectory(), "Fonts").getPath()));
-        all.addAll(getAllFontsFiltered(new File("/system/fonts").getPath()));
+        all.addAll(getAllFontsFiltered(new File("/system/fonts").getPath(), true));
 
         return all;
     }
 
     private Collection<FontPack> getAllFontsFiltered(String path) {
+        return getAllFontsFiltered(path, false);
+    }
+
+    private Collection<FontPack> getAllFontsFiltered(String path, final boolean excludeNoto) {
         if (TxtUtils.isNotEmpty(path) && new File(path).isDirectory()) {
             File file = new File(path);
             String[] list = file.list(new FilenameFilter() {
@@ -304,6 +308,12 @@ public class BookCSS {
                 @Override
                 public boolean accept(File dir, String name) {
                     name = name.toLowerCase(Locale.US);
+
+                    if (excludeNoto) {
+                        if (name.startsWith("noto")) {
+                            return false;
+                        }
+                    }
 
                     for (String ext : fontExts) {
                         if (name.endsWith(ext)) {

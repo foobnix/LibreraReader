@@ -1732,7 +1732,7 @@ public class DocumentWrapperUI {
 
     public void setTitle(final String title) {
         this.bookTitle = title;
-        // hideShowEditIcon();
+        hideShowEditIcon();
 
     }
 

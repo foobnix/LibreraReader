@@ -24,7 +24,6 @@
                 style="@style/buttonWhite"
                 android:layout_width="@dimen/wh_button"
                 android:layout_height="@dimen/wh_button"
-                android:background="@drawable/bg_border_ltgray"
                 android:contentDescription="return to page"
                 android:src="@drawable/glyphicons_222_unshare"
                 android:visibility="visible" />
