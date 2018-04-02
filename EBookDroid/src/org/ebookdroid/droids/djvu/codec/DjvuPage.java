@@ -37,6 +37,8 @@ public class DjvuPage extends AbstractCodecPage {
         this.docHandle = docHandle;
         this.pageHandle = pageHandle;
         this.pageNo = pageNo;
+        w = getWidth(pageHandle);
+        h = getHeight(pageHandle);
     }
 
     @Override
@@ -46,9 +48,6 @@ public class DjvuPage extends AbstractCodecPage {
 
     @Override
     public int getWidth() {
-        if (w == 0) {
-            w = getWidth(pageHandle);
-        }
         return w;
     }
 
@@ -59,9 +58,6 @@ public class DjvuPage extends AbstractCodecPage {
 
     @Override
     public int getHeight() {
-        if (h == 0) {
-            h = getHeight(pageHandle);
-        }
         return h;
     }
 
@@ -107,17 +103,15 @@ public class DjvuPage extends AbstractCodecPage {
                 MagicHelper.applyQuickContrastAndBrightness(buffer, width, height);
             }
 
+            // if (AppState.get().isCustomizeBgAndColors) {
             MagicHelper.udpateColorsMagic(buffer);
+            // }
             bmp.getBitmap().setPixels(buffer, 0, width, 0, 0, width, height);
             return bmp;
         }
         if (bmp == null) {
-            bmp = BitmapManager.getBitmap("Djvu page", 100, 100, Bitmap.Config.RGB_565);
+            bmp = BitmapManager.getBitmap("Djvu page", 100, 1000, Bitmap.Config.RGB_565);
         }
-        // final Canvas c = new Canvas(bmp.getBitmap());
-        // final Paint paint = new Paint();
-        // paint.setColor(Color.GRAY);
-        // c.drawRect(new Rect(0, 0, width, height), paint);
         return bmp;
     }
 
@@ -211,7 +205,6 @@ public class DjvuPage extends AbstractCodecPage {
         return Collections.emptyList();
     }
 
-
     public List<PageTextBox> getPageText1() {
         final List<PageTextBox> list = getPageText(docHandle, pageNo, contextHandle, null);
         if (LengthUtils.isNotEmpty(list)) {
@@ -224,7 +217,6 @@ public class DjvuPage extends AbstractCodecPage {
         }
         return list;
     }
-
 
     static void normalize(final RectF r, final float width, final float height) {
         r.left = r.left / width;
@@ -248,7 +240,7 @@ public class DjvuPage extends AbstractCodecPage {
 
     private static synchronized native int getHeight(long pageHandle);
 
-    private static native boolean isDecodingDone(long pageHandle);
+    // private static native boolean isDecodingDone(long pageHandle);
 
     private boolean renderPageWrapper(long pageHandle, long contextHandle, int targetWidth, int targetHeight, float pageSliceX, float pageSliceY, float pageSliceWidth, float pageSliceHeight, int[] buffer,
             int renderMode) {

@@ -354,6 +354,9 @@ public class DecodeServiceBase implements DecodeService {
             // Page size is actuall now
             return null;
         }
+        if (vuPage.getWidth() == 0 && vuPage.getHeight() == 0) {
+            return null;
+        }
 
         RectF croppedPageBounds = null;
 
@@ -364,16 +367,23 @@ public class DecodeServiceBase implements DecodeService {
             // final Rect rootRect = new Rect(0, 0, rootRect.width(), rootRect.height());
 
             // TempHolder.lock.lock();
-            final BitmapRef rootBitmap = vuPage.renderBitmap(rootRect.width(), rootRect.height(), new RectF(0, 0, 1f, 1f));
+            LOG.d("DJVU1-1", rootRect.width(), rootRect.height());
+            final BitmapRef rootBitmap = vuPage.renderBitmapSimple(rootRect.width(), rootRect.height(), new RectF(0, 0, 1f, 1f));
             // TempHolder.lock.unlock();
 
+            LOG.d("DJVU1-1a", vuPage.getWidth(), vuPage.getHeight());
+            LOG.d("DJVU1-1b", rootBitmap.getBitmap().getWidth(), rootBitmap.getBitmap().getHeight());
+
             root.croppedBounds = PageCropper.getCropBounds(rootBitmap.getBitmap(), rootRect, new RectF(0, 0, 1f, 1f));
+            LOG.d("DJVU1-2", root.croppedBounds.width(), root.croppedBounds.height());
 
             BitmapManager.release(rootBitmap);
 
             final ViewState viewState = task.viewState;
             final float pageWidth = vuPage.getWidth() * root.croppedBounds.width();
             final float pageHeight = vuPage.getHeight() * root.croppedBounds.height();
+
+            LOG.d("DJVU1-3", pageWidth, pageHeight);
 
             final PageIndex currentPage = viewState.book.getCurrentPage();
             final float offsetX = viewState.book.offsetX;
