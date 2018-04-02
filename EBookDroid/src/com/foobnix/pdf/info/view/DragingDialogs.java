@@ -211,14 +211,25 @@ public class DragingDialogs {
                 ImageView onCenter = (ImageView) view.findViewById(R.id.onCenter);
                 final ImageView onCrop = (ImageView) view.findViewById(R.id.onCrop);
 
-                TintUtil.setTintImageWithAlpha(onUp);
-                TintUtil.setTintImageWithAlpha(onDonw);
-                TintUtil.setTintImageWithAlpha(onLeft);
-                TintUtil.setTintImageWithAlpha(onRight);
-                TintUtil.setTintImageWithAlpha(onPlus);
-                TintUtil.setTintImageWithAlpha(onMinus);
-                TintUtil.setTintImageWithAlpha(onCenter);
-                TintUtil.setTintImageWithAlpha(onCrop);
+                if (AppState.get().isDayNotInvert) {
+                    TintUtil.setTintImageWithAlpha(onUp);
+                    TintUtil.setTintImageWithAlpha(onDonw);
+                    TintUtil.setTintImageWithAlpha(onLeft);
+                    TintUtil.setTintImageWithAlpha(onRight);
+                    TintUtil.setTintImageWithAlpha(onPlus);
+                    TintUtil.setTintImageWithAlpha(onMinus);
+                    TintUtil.setTintImageWithAlpha(onCenter);
+                    TintUtil.setTintImageWithAlpha(onCrop);
+                } else {
+                    TintUtil.setTintImageWithAlpha(onUp, Color.WHITE);
+                    TintUtil.setTintImageWithAlpha(onDonw, Color.WHITE);
+                    TintUtil.setTintImageWithAlpha(onLeft, Color.WHITE);
+                    TintUtil.setTintImageWithAlpha(onRight, Color.WHITE);
+                    TintUtil.setTintImageWithAlpha(onPlus, Color.WHITE);
+                    TintUtil.setTintImageWithAlpha(onMinus, Color.WHITE);
+                    TintUtil.setTintImageWithAlpha(onCenter, Color.WHITE);
+                    TintUtil.setTintImageWithAlpha(onCrop, Color.WHITE);
+                }
 
                 onCrop.setOnClickListener(new OnClickListener() {
 
@@ -231,7 +242,7 @@ public class DragingDialogs {
                         if (AppState.get().isCrop) {
                             TintUtil.setTintImageWithAlpha(onCrop, TintUtil.COLOR_ORANGE);
                         } else {
-                            TintUtil.setTintImageWithAlpha(onCrop);
+                            TintUtil.setTintImageWithAlpha(onCrop, AppState.get().isDayNotInvert ? TintUtil.color : Color.WHITE);
                         }
                     }
                 });
@@ -239,7 +250,7 @@ public class DragingDialogs {
                 if (AppState.get().isCrop) {
                     TintUtil.setTintImageWithAlpha(onCrop, TintUtil.COLOR_ORANGE);
                 } else {
-                    TintUtil.setTintImageWithAlpha(onCrop);
+                    TintUtil.setTintImageWithAlpha(onCrop, AppState.get().isDayNotInvert ? TintUtil.color : Color.WHITE);
                 }
 
                 OnClickListener listner = new OnClickListener() {
@@ -2119,7 +2130,6 @@ public class DragingDialogs {
                         AppState.get().isScrollAnimation = isChecked;
                     }
                 });
-
 
                 CheckBox isLoopAutoplay = (CheckBox) inflate.findViewById(R.id.isLoopAutoplay);
                 isLoopAutoplay.setChecked(AppState.get().isLoopAutoplay);
