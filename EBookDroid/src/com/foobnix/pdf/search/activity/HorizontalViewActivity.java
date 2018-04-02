@@ -339,10 +339,10 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
         });
 
         onBC.setVisibility(isTextFomat ? View.GONE : View.VISIBLE);
-        if (Dips.isEInk(this) || AppState.get().isInkMode) {
+        if (DocumentController.isEinkOrMode(this)) {
             onBC.setVisibility(View.VISIBLE);
         }
-        onMove.setVisibility(Dips.isEInk(this) && !isTextFomat ? View.VISIBLE : View.GONE);
+        onMove.setVisibility(DocumentController.isEinkOrMode(this) && !isTextFomat ? View.VISIBLE : View.GONE);
 
         findViewById(R.id.thumbnail).setOnClickListener(new View.OnClickListener() {
 
@@ -833,7 +833,7 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
                     updateIconMode();
 
                     onCrop.setVisibility(dc.isTextFormat() ? View.GONE : View.VISIBLE);
-                    onMove.setVisibility(AppState.get().isInkMode && !dc.isTextFormat() ? View.VISIBLE : View.GONE);
+                    onMove.setVisibility(DocumentController.isEinkOrMode(HorizontalViewActivity.this) && !dc.isTextFormat() ? View.VISIBLE : View.GONE);
                     onBC.setVisibility(dc.isTextFormat() ? View.GONE : View.VISIBLE);
                     if (Dips.isEInk(dc.getActivity()) || AppState.get().isInkMode) {
                         onBC.setVisibility(View.VISIBLE);

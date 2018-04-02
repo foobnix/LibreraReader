@@ -9,6 +9,7 @@ import java.util.concurrent.TimeUnit;
 import org.ebookdroid.core.codec.Annotation;
 import org.ebookdroid.core.codec.PageLink;
 
+import com.foobnix.android.utils.Dips;
 import com.foobnix.android.utils.Keyboards;
 import com.foobnix.android.utils.LOG;
 import com.foobnix.android.utils.ResultResponse;
@@ -33,6 +34,7 @@ import com.nostra13.universalimageloader.core.ImageLoader;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
+import android.content.Context;
 import android.content.pm.ActivityInfo;
 import android.graphics.Bitmap;
 import android.graphics.PointF;
@@ -253,6 +255,10 @@ public abstract class DocumentController {
         }
     }
 
+    public static boolean isEinkOrMode(Context c) {
+        return Dips.isEInk(c) || AppState.get().isInkMode;
+
+    }
     public boolean isTextFormat() {
         try {
             boolean textFomat = ExtUtils.isTextFomat(getCurrentBook().getPath());
