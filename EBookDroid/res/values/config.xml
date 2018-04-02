@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Beta 7.8.24</string>
+    <string name="app_name">Beta 7.8.25</string>
     <string name="app_name_pro">Librera PRO</string>
 
 	<bool name="is_log_enable">true</bool>

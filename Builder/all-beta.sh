@@ -14,8 +14,8 @@ rm /home/ivan-dev/Dropbox/FREE_PDF_APK/testing/*.apk
 
 ./link_to_mupdf_1.11.sh
 #ant arm pdf-beta
-#ant arm64 pdf-beta
-#ant x86 pdf-beta
+ant arm64 pro
+#ant x86 pro
 ant arm+arm64 pdf-beta
 
 ant x86
