@@ -273,6 +273,7 @@ public class BookCSS {
 
         all.addAll(getAllFontsFromFolder(new File(Environment.getExternalStorageDirectory(), "fonts").getPath()));
         all.addAll(getAllFontsFromFolder(new File(Environment.getExternalStorageDirectory(), "Fonts").getPath()));
+        all.addAll(getAllFontsFromFolder(new File("/system/fonts").getPath()));
 
         return all;
     }
@@ -290,6 +291,7 @@ public class BookCSS {
 
         all.addAll(getAllFontsFiltered(new File(Environment.getExternalStorageDirectory(), "fonts").getPath()));
         all.addAll(getAllFontsFiltered(new File(Environment.getExternalStorageDirectory(), "Fonts").getPath()));
+        all.addAll(getAllFontsFiltered(new File("/system/fonts").getPath()));
 
         return all;
     }
@@ -302,6 +304,7 @@ public class BookCSS {
                 @Override
                 public boolean accept(File dir, String name) {
                     name = name.toLowerCase(Locale.US);
+
                     for (String ext : fontExts) {
                         if (name.endsWith(ext)) {
                             return true;
@@ -369,37 +372,41 @@ public class BookCSS {
     }
 
     private Collection<String> getAllFontsFromFolder(String path) {
-        if (TxtUtils.isNotEmpty(path) && new File(path).isDirectory()) {
-            File file = new File(path);
-            String[] list = file.list(new FilenameFilter() {
+        try {
+            if (TxtUtils.isNotEmpty(path) && new File(path).isDirectory()) {
+                File file = new File(path);
+                String[] list = file.list(new FilenameFilter() {
 
-                @Override
-                public boolean accept(File dir, String name) {
-                    name = name.toLowerCase(Locale.US);
-                    for (String ext : fontExts) {
-                        if (name.endsWith(ext)) {
-                            return true;
-                        }
-                    }
-                    return false;
-                }
-            });
-            if (list != null && list.length >= 1) {
-                List<String> filtered = new ArrayList<String>();
-
-                for (String fontName : list) {
-                    filtered.add(path + "/" + fontName);
-                }
-
-                Collections.sort(filtered, new Comparator<String>() {
                     @Override
-                    public int compare(String o1, String o2) {
-                        return o1.toLowerCase().compareTo(o2.toLowerCase());
+                    public boolean accept(File dir, String name) {
+                        name = name.toLowerCase(Locale.US);
+                        for (String ext : fontExts) {
+                            if (name.endsWith(ext)) {
+                                return true;
+                            }
+                        }
+                        return false;
+                    }
+                });
+                if (list != null && list.length >= 1) {
+                    List<String> filtered = new ArrayList<String>();
+
+                    for (String fontName : list) {
+                        filtered.add(path + "/" + fontName);
                     }
 
-                });
-                return filtered;
+                    Collections.sort(filtered, new Comparator<String>() {
+                        @Override
+                        public int compare(String o1, String o2) {
+                            return o1.toLowerCase().compareTo(o2.toLowerCase());
+                        }
+
+                    });
+                    return filtered;
+                }
             }
+        } catch (Exception e) {
+            LOG.e(e);
         }
         return Collections.EMPTY_LIST;
     }
