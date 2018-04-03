@@ -30,6 +30,7 @@ import org.emdev.utils.CompareUtils;
 import org.emdev.utils.LengthUtils;
 import org.emdev.utils.MathUtils;
 
+import com.foobnix.android.utils.Dips;
 import com.foobnix.android.utils.LOG;
 import com.foobnix.android.utils.ResultResponse;
 import com.foobnix.android.utils.Safe;
@@ -354,16 +355,13 @@ public class DecodeServiceBase implements DecodeService {
             // Page size is actuall now
             return null;
         }
-        if (vuPage.getWidth() == 0 && vuPage.getHeight() == 0) {
-            return null;
-        }
 
         RectF croppedPageBounds = null;
 
         // Checks if page root node has been cropped before
         final PageTreeNode root = task.node.page.nodes.root;
         if (root.croppedBounds == null) {
-            final Rect rootRect = new Rect(0, 0, vuPage.getWidth(), vuPage.getHeight());
+            final Rect rootRect = new Rect(0, 0, Math.min(Dips.DP_200, vuPage.getWidth()), Math.min(Dips.DP_300, vuPage.getHeight()));
             // final Rect rootRect = new Rect(0, 0, rootRect.width(), rootRect.height());
 
             // TempHolder.lock.lock();

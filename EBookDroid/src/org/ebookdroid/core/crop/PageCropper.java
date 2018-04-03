@@ -32,10 +32,10 @@ public class PageCropper {
         int dx = Dips.dpToPx(3);
         LOG.d("firstColor", MagicHelper.colorToString(f), dx, dy, Dips.dpToPx(3));
 
-        for (int y = 0; y < height; y += dy) {
-            for (int x = 0; x < width; x += dx) {
+        for (int y = 0; y < height; y += 1) {
+            for (int x = 0; x < width; x += 1) {
                 int p = bitmap1.getPixel(x, y);
-                if (p == Color.WHITE || p == Color.BLACK || p == f || p == f2) {
+                if (p == Color.WHITE || p == f || p == f2) {
                     continue;
                 }
 
@@ -82,7 +82,7 @@ public class PageCropper {
         float right = Math.min(1, (float) bottomX / width + k);
         float bottom = Math.min(1, (float) bottomY / height + k);
 
-        LOG.d("getCropBounds", left, top, right, bottom);
+        LOG.d("getCropBounds-crop", left, top, right, bottom);
         return new RectF(left * pageSliceBounds.width() + pageSliceBounds.left, top * pageSliceBounds.height() + pageSliceBounds.top, right * pageSliceBounds.width() + pageSliceBounds.left,
                 bottom * pageSliceBounds.height() + pageSliceBounds.top);
     }

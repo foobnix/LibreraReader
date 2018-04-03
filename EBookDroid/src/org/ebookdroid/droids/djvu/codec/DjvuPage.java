@@ -39,6 +39,18 @@ public class DjvuPage extends AbstractCodecPage {
         this.pageNo = pageNo;
         w = getWidth(pageHandle);
         h = getHeight(pageHandle);
+
+        int count = 0;
+        while ((w == 0 || h == 0) && count < 5) {
+            count++;
+            try {
+                Thread.sleep(50);
+            } catch (InterruptedException e) {
+            }
+            w = getWidth(pageHandle);
+            h = getHeight(pageHandle);
+            LOG.d("DjvuPage-create", count, w, h);
+        }
     }
 
     @Override

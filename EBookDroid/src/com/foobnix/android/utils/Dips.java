@@ -22,6 +22,12 @@ public class Dips {
     public final static int DP_10 = Dips.dpToPx(10);
     public final static int DP_25 = Dips.dpToPx(25);
     public final static int DP_50 = Dips.dpToPx(50);
+    public final static int DP_800 = Dips.dpToPx(800);
+    public final static int DP_600 = Dips.dpToPx(600);
+    public final static int DP_400 = Dips.dpToPx(400);
+    public final static int DP_300 = Dips.dpToPx(300);
+    public final static int DP_200 = Dips.dpToPx(200);
+    public final static int DP_100 = Dips.dpToPx(100);
 
     private static WindowManager wm;
     static Context context;
