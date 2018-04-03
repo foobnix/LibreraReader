@@ -41,13 +41,13 @@
         android:layout_height="wrap_content"
         android:layout_weight="0"
         android:ellipsize="end"
-        android:maxLines="3"
+        android:maxLines="4"
         android:text="@string/msg_loading" />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="0"
+        android:layout_weight="1"
         android:orientation="horizontal" >
 
         <ImageView
@@ -180,7 +180,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:padding="5dip" >
+                android:padding="2dip" >
 
                 <TextView
                     android:id="@+id/date"
@@ -217,7 +217,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center_vertical"
-                android:padding="5dip" >
+                android:padding="2dip" >
 
                 <TextView
                     android:id="@+id/hypenLangLabel"
@@ -248,6 +248,7 @@
         android:textSize="12sp" />
 
     <LinearLayout
+        android:layout_weight="0"
         android:id="@+id/openFile"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
