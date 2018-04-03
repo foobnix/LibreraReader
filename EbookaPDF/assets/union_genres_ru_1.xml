@@ -1,0 +1,361 @@
+<genres type="union">
+<group name="Деловая литература">
+<genre name="Банковское дело, Финансы" code="banking"/>
+<genre name="Бухучет и аудит" code="accounting"/>
+<genre name="Внешняя торговля" code="global_economy"/>
+<genre name="Деловая литература" code="economics_ref"/>
+<genre name="Делопроизводство" code="paper_work"/>
+<genre name="Корпоративная культура" code="org_behavior"/>
+<genre name="Личные финансы" code="personal_finance"/>
+<genre name="Малый бизнес" code="small_business"/>
+<genre name="Маркетинг, PR, реклама" code="marketing"/>
+<genre name="Недвижимость" code="real_estate"/>
+<genre name="О бизнесе популярно" code="popular_business"/>
+<genre name="Отраслевые издания" code="industries"/>
+<genre name="Поиск работы, карьера" code="job_hunting"/>
+<genre name="Торговля" code="trade"/>
+<genre name="Управление, подбор персонала" code="management"/>
+<genre name="Ценные бумаги, инвестиции" code="stock"/>
+<genre name="Экономика" code="economics"/>
+</group>
+<group name="Детективы и Триллеры">
+<genre name="Боевик" code="det_action"/>
+<genre name="Дамский детективный роман" code="det_cozy"/>
+<genre name="Детективная фантастика" code="sf_detective"/>
+<genre name="Детективы" code="detective"/>
+<genre name="Иронический детектив" code="det_irony"/>
+<genre name="Исторический детектив" code="det_history"/>
+<genre name="Классический детектив" code="det_classic"/>
+<genre name="Криминальный детектив" code="det_crime"/>
+<genre name="Крутой детектив" code="det_hard"/>
+<genre name="Любовные детективы" code="love_detective"/>
+<genre name="Маньяки" code="det_maniac"/>
+<genre name="Медицинский триллер" code="thriller_medical"/>
+<genre name="Политический детектив" code="det_political"/>
+<genre name="Полицейский детектив" code="det_police"/>
+<genre name="Советский детектив" code="det_su"/>
+<genre name="Техно триллер" code="thriller_techno"/>
+<genre name="Триллер" code="thriller"/>
+<genre name="Шпионский детектив" code="det_espionage"/>
+<genre name="Юридический триллер" code="thriller_legal"/>
+</group>
+<group name="Детское">
+<genre name="Детская литература" code="children"/>
+<genre name="Детская проза" code="child_prose"/>
+<genre name="Детская фантастика" code="child_sf"/>
+<genre name="Детские остросюжетные" code="child_det"/>
+<genre name="Детские приключения" code="child_adv"/>
+<genre name="Детские стихи" code="child_verse"/>
+<genre name="Детский фольклор" code="child_folklore"/>
+<genre name="Зарубежная литература для детей" code="foreign_children"/>
+<genre name="Игры, упражнения для детей" code="prose_game"/>
+<genre name="Классическая детская литература" code="child_classical"/>
+<genre name="Образовательная литература" code="child_education"/>
+<genre name="Русские сказки" code="child_tale_rus"/>
+<genre name="Подростковая литература" code="ya"/>
+<genre name="Сказки" code="child_tale"/>
+</group>
+<group name="Документальная литература">
+<genre name="Биографии и Мемуары" code="nonf_biography"/>
+<genre name="Военная документалистика и аналитика" code="nonf_military"/>
+<genre name="География, путевые заметки" code="travel_notes"/>
+<genre name="Документальная литература" code="nonfiction"/>
+<genre name="Критика" code="nonf_criticism"/>
+<genre name="Публицистика" code="nonf_publicism"/>
+</group>
+<group name="Домоводство (Дом и семья)">
+<genre name="Детская психология" code="psy_childs"/>
+<genre name="Домашние животные" code="home_pets"/>
+<genre name="Домоводство" code="home"/>
+<genre name="Здоровье" code="home_health"/>
+<genre name="Коллекционирование" code="home_collecting"/>
+<genre name="Кулинария" code="home_cooking"/>
+<genre name="Развлечения" code="home_entertain"/>
+<genre name="Сад и огород" code="home_garden"/>
+<genre name="Сделай сам" code="home_diy"/>
+<genre name="Сексуальные отношения" code="home_sex"/>
+<genre name="Семейные отношения" code="family"/>
+<genre name="Физические упражнения, спорт" code="home_sport"/>
+<genre name="Хобби и ремесла" code="home_crafts"/>
+</group>
+<group name="Драматургия">
+<genre name="Античная драма" code="drama_antique"/>
+<genre name="Водевиль, буффонада, мистерия" code="vaudeville"/>
+<genre name="Драма" code="drama"/>
+<genre name="Драматургия" code="dramaturgy"/>
+<genre name="Киносценарии" code="screenplays"/>
+<genre name="Комедия" code="comedy"/>
+<genre name="Мистерия" code="mystery"/>
+<genre name="Сценарии" code="scenarios"/>
+<genre name="Трагедия" code="tragedy"/>
+</group>
+<group name="Искусство, Дизайн">
+<genre name="Архитектура и скульптура" code="architecture_book"/>
+<genre name="Живопись, альбомы, иллюстрированные каталоги" code="painting"/>
+<genre name="Изобразительное искусство, фотография" code="visual_arts"/>
+<genre name="Искусство и Дизайн" code="design"/>
+<genre name="Искусствоведение" code="art_criticism"/>
+<genre name="Кино" code="cine"/>
+<genre name="Музыка" code="music"/>
+<genre name="Партитуры" code="notes"/>
+<genre name="Театр" code="theatre"/>
+</group>
+<group name="Компьютеры и Интернет">
+<genre name="Аппаратное обеспечение (компьютерное 'железо')" code="comp_hard"/>
+<genre name="Базы данных" code="comp_db"/>
+<genre name="Интернет" code="comp_www"/>
+<genre name="ОС и Сети" code="comp_osnet"/>
+<genre name="Околокомпьютерная литература" code="computers"/>
+<genre name="Программирование" code="comp_programming"/>
+<genre name="Программы" code="comp_soft"/>
+<genre name="Цифровая обработка сигналов" code="comp_dsp"/>
+<genre name="Учебные пособия, самоучители" code="tbg_computers"/>
+</group>
+<group name="Наука, Образование">
+<genre name="Альтернативная медицина" code="sci_medicine_alternative"/>
+<genre name="Альтернативные науки и научные теории" code="sci_theories"/>
+<genre name="Аналитическая химия" code="sci_anachem"/>
+<genre name="Археология" code="science_archaeology"/>
+<genre name="Астрономия и Космос" code="sci_cosmos"/>
+<genre name="Биология" code="sci_biology"/>
+<genre name="Биофизика" code="sci_biophys"/>
+<genre name="Биохимия" code="sci_biochem"/>
+<genre name="Ботаника" code="sci_botany"/>
+<genre name="Ветеринария" code="sci_veterinary"/>
+<genre name="Военная история" code="military_history"/>
+<genre name="Востоковедение" code="sci_oriental"/>
+<genre name="Геология и география" code="sci_geo"/>
+<genre name="Государство и право" code="sci_state"/>
+<genre name="Деловая литература" code="sci_business"/>
+<genre name="Детская психология" code="psy_childs"/>
+<genre name="Зоология" code="sci_zoo"/>
+<genre name="Иностранные языки" code="foreign_language"/>
+<genre name="История" code="sci_history"/>
+<genre name="Культурология" code="sci_culture"/>
+<genre name="Литературоведение" code="sci_philology"/>
+<genre name="Математика" code="sci_math"/>
+<genre name="Медицина" code="sci_medicine"/>
+<genre name="Научная литература" code="science"/>
+<genre name="Научно-популярная литература" code="sci_popular"/>
+<genre name="Обществознание, Социология" code="sci_social_studies"/>
+<genre name="Органическая химия" code="sci_orgchem"/>
+<genre name="Педагогика" code="sci_pedagogy"/>
+<genre name="Политика" code="sci_politics"/>
+<genre name="Психология" code="sci_psychology"/>
+<genre name="Психотерапия и консультирование" code="psy_theraphy"/>
+<genre name="Рефераты" code="sci_abstract"/>
+<genre name="Секс и семейная психология" code="psy_sex_and_family"/>
+<genre name="Технические науки" code="sci_tech"/>
+<genre name="Физика" code="sci_phys"/>
+<genre name="Физическая химия" code="sci_physchem"/>
+<genre name="Философия" code="sci_philosophy"/>
+<genre name="Химия" code="sci_chem"/>
+<genre name="Экология" code="sci_ecology"/>
+<genre name="Экономика" code="sci_economy"/>
+<genre name="Юриспруденция" code="sci_juris"/>
+<genre name="Языкознание, иностранные языки" code="sci_linguistic"/>
+</group>
+<group name="Поэзия">
+<genre name="Басни" code="fable"/>
+<genre name="В стихах" code="in_verse"/>
+<genre name="Верлибры" code="vers_libre"/>
+<genre name="Визуальная поэзия" code="visual_poetry"/>
+<genre name="Детские стихи" code="child_verse"/>
+<genre name="Классическая зарубежная поэзия" code="poetry_for_classical"/>
+<genre name="Классическая поэзия" code="poetry_classical"/>
+<genre name="Классическая русская поэзия" code="poetry_rus_classical"/>
+<genre name="Лирика" code="lyrics"/>
+<genre name="Палиндромы" code="palindromes"/>
+<genre name="Песенная поэзия" code="song_poetry"/>
+<genre name="Поэзия Востока" code="poetry_east"/>
+<genre name="Поэма, эпическая поэзия" code="poem"/>
+<genre name="Современная зарубежная поэзия" code="poetry_for_modern"/>
+<genre name="Современная поэзия" code="poetry_modern"/>
+<genre name="Современная русская поэзия" code="poetry_rus_modern"/>
+<genre name="Экспериментальная поэзия" code="experimental_poetry"/>
+<genre name="Эпическая поэзия" code="epic_poetry"/>
+<genre name="Юмористические стихи" code="humor_verse"/>
+<genre name="Поэзия" code="poetry"/>
+</group>
+<group name="Приключения">
+<genre name="Авантюрный роман" code="adv_story"/>
+<genre name="Вестерн" code="adv_western"/>
+<genre name="Исторические приключения" code="adv_history"/>
+<genre name="Морские приключения" code="adv_maritime"/>
+<genre name="Приключения про индейцев" code="adv_indian"/>
+<genre name="Приключения" code="adventure"/>
+<genre name="Приключения в современном мире" code="adv_modern"/>
+<genre name="Природа и животные" code="adv_animal"/>
+<genre name="Путешествия и география" code="adv_geo"/>
+<genre name="Рыцарский роман" code="tale_chivalry"/>
+</group>
+<group name="Проза">
+<genre name="Антисоветская литература" code="dissident"/>
+<genre name="Афоризмы" code="aphorisms"/>
+<genre name="Готический роман" code="gothic_novel"/>
+<genre name="Зарубежная классическая проза" code="foreign_prose"/>
+<genre name="Историческая проза" code="prose_history"/>
+<genre name="Классическая проза" code="prose_classic"/>
+<genre name="Классическая проза XVII-XVIII веков" code="literature_18"/>
+<genre name="Классическая проза ХIX века" code="literature_19"/>
+<genre name="Классическая проза ХX века" code="literature_20"/>
+<genre name="Контркультура" code="prose_counter"/>
+<genre name="Магический реализм" code="prose_magic"/>
+<genre name="Новелла" code="story"/>
+<genre name="О войне" code="prose_military"/>
+<genre name="Повесть" code="great_story"/>
+<genre name="Проза" code="prose"/>
+<genre name="Рассказ" code="short_story"/>
+<genre name="Роман" code="roman"/>
+<genre name="Русская классическая проза" code="prose_rus_classic"/>
+<genre name="Семейный роман/Семейная сага" code="sagas"/>
+<genre name="Сентиментальная проза" code="prose_sentimental"/>
+<genre name="Советская классическая проза" code="prose_su_classics"/>
+<genre name="Современная проза" code="prose_contemporary"/>
+<genre name="Средневековая классическая проза" code="foreign_antique"/>
+<genre name="Фантасмагория, абсурдистская проза" code="prose_abs"/>
+<genre name="Феерия" code="extravaganza"/>
+<genre name="Экспериментальная, неформатная проза" code="prose_neformatny"/>
+<genre name="Эпистолярная проза" code="epistolary_fiction"/>
+<genre name="Эпопея" code="prose_epic"/>
+<genre name="Эссе, очерк, этюд, набросок" code="essay"/>
+<genre name="Юмористическая проза" code="humor_prose"/>
+</group>
+<group name="Религия и духовность">
+<genre name="Астрология" code="astrology"/>
+<genre name="Буддизм" code="religion_budda"/>
+<genre name="Индуизм" code="religion_hinduism"/>
+<genre name="Ислам" code="religion_islam"/>
+<genre name="Иудаизм" code="religion_judaism"/>
+<genre name="Католицизм" code="religion_catholicism"/>
+<genre name="Оккультизм" code="religion_occult"/>
+<genre name="Православие" code="religion_orthodoxy"/>
+<genre name="Протестантизм" code="religion_protestantism"/>
+<genre name="Религиоведение" code="sci_religion"/>
+<genre name="Религиозная литература" code="religion"/>
+<genre name="Религия" code="religion_rel"/>
+<genre name="Самосовершенствование" code="religion_self"/>
+<genre name="Хиромантия" code="palmistry"/>
+<genre name="Христианство" code="religion_christianity"/>
+<genre name="Эзотерика" code="religion_esoterics"/>
+<genre name="Язычество" code="religion_paganism"/>
+</group>
+<group name="Справочная литература">
+<genre name="Путеводители, карты, атласы" code="geo_guides"/>
+<genre name="Руководства" code="ref_guide"/>
+<genre name="Словари" code="ref_dict"/>
+<genre name="Справочная литература" code="reference"/>
+<genre name="Справочники" code="ref_ref"/>
+<genre name="Энциклопедии" code="ref_encyc"/>
+</group>
+<group name="Старинное">
+<genre name="Античная литература" code="antique_ant"/>
+<genre name="Древневосточная литература" code="antique_east"/>
+<genre name="Древнеевропейская литература" code="antique_european"/>
+<genre name="Древнерусская литература" code="antique_russian"/>
+<genre name="Мифы. Легенды. Эпос" code="antique_myths"/>
+<genre name="Старинная литература" code="antique"/>
+</group>
+<group name="Техника">
+<genre name="Автодело" code="auto_business"/>
+<genre name="Автомобили и ПДД" code="auto_regulations"/>
+<genre name="Военная техника и вооружение" code="military_weapon"/>
+<genre name="История техники" code="equ_history"/>
+<genre name="Металлургия" code="sci_metal"/>
+<genre name="Радиоэлектроника" code="sci_radio"/>
+<genre name="Строительство и сопромат" code="sci_build"/>
+<genre name="Технические науки" code="sci_tech"/>
+<genre name="Транспорт и авиация" code="sci_transport"/>
+</group>
+<group name="Учебники и пособия">
+<genre name="Учебники" code="sci_textbook"/>
+<genre name="Учебники и пособия ВУЗов" code="tbg_higher"/>
+<genre name="Учебники и пособия для среднего и специального образования" code="tbg_secondary"/>
+<genre name="Школьные учебники и пособия, рефераты, шпаргалки" code="tbg_school"/>
+<genre name="Шпаргалки" code="sci_crib"/>
+</group>
+<group name="Фантастика">
+<genre name="Альтернативная история" code="sf_history"/>
+<genre name="Боевая фантастика" code="sf_action"/>
+<genre name="Героическая фантастика" code="sf_heroic"/>
+<genre name="Городское фэнтези" code="sf_fantasy_city"/>
+<genre name="Готический роман" code="gothic_novel"/>
+<genre name="Детективная фантастика" code="sf_detective"/>
+<genre name="Детская фантастика" code="child_sf"/>
+<genre name="Ироническая фантастика" code="sf_irony"/>
+<genre name="Ироническое фэнтези" code="sf_fantasy_irony"/>
+<genre name="Историческое фэнтези" code="historical_fantasy"/>
+<genre name="Киберпанк" code="sf_cyberpunk"/>
+<genre name="Космическая фантастика" code="sf_space"/>
+<genre name="Космоопера" code="sf_space_opera"/>
+<genre name="ЛитРПГ" code="sf_litrpg"/>
+<genre name="Любовная фантастика" code="love_sf"/>
+<genre name="Мистика" code="sf_mystic"/>
+<genre name="Мифологическая фантастика" code="fairy_fantasy"/>
+<genre name="Научная фантастика" code="sf"/>
+<genre name="Ненаучная фантастика" code="nsf"/>
+<genre name="Попаданцы" code="popadanec"/>
+<genre name="Постапокалипсис" code="sf_postapocalyptic"/>
+<genre name="Славянское фэнтези" code="russian_fantasy"/>
+<genre name="Современная сказка" code="modern_tale"/>
+<genre name="Социальная фантастика" code="sf_social"/>
+<genre name="Стимпанк" code="sf_stimpank"/>
+<genre name="Технофэнтези" code="sf_technofantasy"/>
+<genre name="Ужасы" code="sf_horror"/>
+<genre name="Фантастика" code="sf_etc"/>
+<genre name="Фэнтези" code="sf_fantasy"/>
+<genre name="Хроноопера" code="hronoopera"/>
+<genre name="Эпическая фантастика" code="sf_epic"/>
+<genre name="Юмористическая фантастика" code="sf_humor"/>
+<genre name="Юмористическое фэнтези" code="humor_fantasy"/>
+</group>
+<group name="Фольклор">
+<genre name="Анекдоты" code="humor_anecdote"/>
+<genre name="Басни" code="fable"/>
+<genre name="Былины, эпопея" code="epic"/>
+<genre name="Детский фольклор" code="child_folklore"/>
+<genre name="Загадки" code="riddles"/>
+<genre name="Народные песни" code="folk_songs"/>
+<genre name="Народные сказки" code="folk_tale"/>
+<genre name="Пословицы, поговорки" code="proverbs"/>
+<genre name="Мифы. Легенды. Эпос" code="antique_myths"/>
+<genre name="Фольклор" code="folklore"/>
+<genre name="Частушки, прибаутки, потешки" code="limerick"/>
+</group>
+<group name="Юмор">
+<genre name="Анекдоты" code="humor_anecdote"/>
+<genre name="Комедия" code="comedy"/>
+<genre name="Сатира" code="humor_satire"/>
+<genre name="Юмор" code="humor"/>
+<genre name="Юмористическая проза" code="humor_prose"/>
+<genre name="Юмористические стихи" code="humor_verse"/>
+</group>
+<group name="Любовные романы">
+<genre name="Дамский детективный роман" code="det_cozy"/>
+<genre name="Исторические любовные романы" code="love_history"/>
+<genre name="Короткие любовные романы" code="love_short"/>
+<genre name="Любовная фантастика, любовное фэнтези" code="love_sf"/>
+<genre name="Любовные детективы" code="love_detective"/>
+<genre name="Любовные романы" code="love"/>
+<genre name="Порно" code="love_hard"/>
+<genre name="Современные любовные романы" code="love_contemporary"/>
+<genre name="Эротика" code="love_erotica"/>
+</group>
+<group name="Военное дело">
+<genre name="Боевые искусства" code="military_arts"/>
+<genre name="Военная документалистика" code="nonf_military"/>
+<genre name="Военная история" code="military_history"/>
+<genre name="Военная техника и вооружение" code="military_weapon"/>
+<genre name="Военное дело" code="military"/>
+<genre name="Спецслужбы" code="military_special"/>
+</group>
+<group name="Прочее">
+<genre name="Газеты и журналы" code="periodic"/>
+<genre name="Комиксы" code="comics"/>
+<genre name="Мировая художественная культура" code="art_world_culture"/>
+<genre name="Недописанное, Незавершенное" code="unfinished"/>
+<genre name="Неотсортированное" code="other"/>
+<genre name="Самиздат, сетевая литература" code="network_literature"/>
+<genre name="Фанфик" code="fanfiction"/>
+</group>
+</genres>

@@ -20,6 +20,7 @@ import java.util.Map;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipOutputStream;
 
+import org.ebookdroid.LibreraApp;
 import org.ebookdroid.core.codec.OutlineLink;
 import org.xmlpull.v1.XmlPullParser;
 
@@ -45,7 +46,56 @@ public class Fb2Extractor extends BaseExtractor {
     static Fb2Extractor inst = new Fb2Extractor();
 
     private Fb2Extractor() {
+    }
 
+    public Map<String, String> genresRus = new HashMap<>();
+
+    public void loadGenres() {
+        if (!genresRus.isEmpty()) {
+            return;
+        }
+        try {
+            {
+                InputStream xmlStream = LibreraApp.context.getAssets().open("union_genres_ru_1.xml");
+                XmlPullParser xpp = XmlParser.buildPullParser();
+                xpp.setInput(xmlStream, "UTF-8");
+
+                int eventType = xpp.getEventType();
+                while (eventType != XmlPullParser.END_DOCUMENT) {
+                    if (eventType == XmlPullParser.START_TAG) {
+                        if (xpp.getName().equals("genre")) {
+                            String name = xpp.getAttributeValue(0);
+                            String code = xpp.getAttributeValue(1);
+                            genresRus.put(code, name);
+                            LOG.d("loadGenres-add-1", code, name);
+                        }
+                    }
+                    eventType = xpp.next();
+                }
+            }
+            {
+                InputStream xmlStream = LibreraApp.context.getAssets().open("union_genres_ru_2.xml");
+                XmlPullParser xpp = XmlParser.buildPullParser();
+                xpp.setInput(xmlStream, "UTF-8");
+
+                int eventType = xpp.getEventType();
+                while (eventType != XmlPullParser.END_DOCUMENT) {
+                    if (eventType == XmlPullParser.START_TAG) {
+                        if (xpp.getName().equals("subgenres")) {
+                            String name = xpp.getAttributeValue(1);
+                            String code = xpp.getAttributeValue(2);
+                            if (!genresRus.containsKey(code)) {
+                                genresRus.put(code, name);
+                            }
+                            LOG.d("loadGenres-add-2", code, name);
+                        }
+                    }
+                    eventType = xpp.next();
+                }
+            }
+        } catch (Exception e) {
+            LOG.e(e);
+        }
     }
 
     public static Fb2Extractor get() {
@@ -250,10 +300,23 @@ public class Fb2Extractor extends BaseExtractor {
                 if (TxtUtils.isEmpty(genre)) {
                     genre = keywords;
                 } else {
-                    genre = genre + keywords;
+                    genre = genre + "," + keywords;
                 }
                 LOG.d("keywords after", genre);
             }
+            genre = genre.replace(",,", ",") + ",";
+
+            loadGenres();
+            for (String g : genre.split(",")) {
+                String value = genresRus.get(g.trim());
+                if (TxtUtils.isNotEmpty(value)) {
+                    genre = genre.replace(g + ",", value + ",");
+                    LOG.d("loadGenres-repalce", g, value);
+                } else {
+                    LOG.d("loadGenres-not-found", g);
+                }
+            }
+            genre = TxtUtils.replaceLast(genre, ",", "");
 
             if (TxtUtils.isNotEmpty(number)) {
                 EbookMeta ebookMeta = new EbookMeta(bookTitle, firstName + " " + lastName, sequence, genre);

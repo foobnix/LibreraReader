@@ -288,8 +288,10 @@ public class AppState {
     public boolean isWhiteTheme = true;
     public boolean isOpenLastBook = false;
 
-    public boolean isSortAsc = true;
-    public int sortBy = AppDB.SORT_BY.PATH.ordinal();
+    // sort by
+    public boolean isSortAsc = false;
+    public int sortBy = AppDB.SORT_BY.DATA.ordinal();
+
     public int sortByBrowse = BR_SORT_BY_PATH;
     public boolean sortByReverse = false;
 
