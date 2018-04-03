@@ -1825,7 +1825,7 @@ public class DragingDialogs {
         }.show("addBookmarks", false, true);
     }
 
-    public static void showContent(final FrameLayout anchor, final DocumentController controller) {
+    public static DragingPopup showContent(final FrameLayout anchor, final DocumentController controller) {
 
         final OnItemClickListener onClickContent = new OnItemClickListener() {
 
@@ -1856,7 +1856,7 @@ public class DragingDialogs {
 
             }
         };
-        new DragingPopup(anchor.getContext().getString(R.string.content_of_book), anchor, 300, 400) {
+        DragingPopup dragingPopup = new DragingPopup(anchor.getContext().getString(R.string.content_of_book), anchor, 300, 400) {
 
             @Override
             public View getContentView(LayoutInflater inflater) {
@@ -1982,6 +1982,7 @@ public class DragingDialogs {
             }
 
         }.show("showContent", false, true);
+        return dragingPopup;
 
     }
 

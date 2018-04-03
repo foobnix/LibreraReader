@@ -34,7 +34,6 @@ import com.foobnix.pdf.info.view.AlertDialogs;
 import com.foobnix.pdf.info.view.BrightnessHelper;
 import com.foobnix.pdf.info.view.Dialogs;
 import com.foobnix.pdf.info.view.DragingDialogs;
-import com.foobnix.pdf.info.view.DragingPopup;
 import com.foobnix.pdf.info.view.HorizontallSeekTouchEventListener;
 import com.foobnix.pdf.info.view.MyPopupMenu;
 import com.foobnix.pdf.info.view.ProgressDraw;
@@ -892,10 +891,8 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
         BrightnessHelper.onMessegeBrightness(msg, toastBrightnessText, overlay);
     }
 
-    private void closeDialogs() {
-        anchor.setVisibility(View.GONE);
-        anchor.setTag("backGo");
-        anchor.removeAllViews();
+    private boolean closeDialogs() {
+        return dc.closeDialogs(anchor);
     }
 
     public void updateIconMode() {
@@ -1349,7 +1346,7 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
             // Toast.makeText(this, "DB", Toast.LENGTH_SHORT).show();
         } else if (ev.getMessage().equals(MessageEvent.MESSAGE_SELECTED_TEXT)) {
             if (dc.isTextFormat() && TxtUtils.isFooterNote(AppState.get().selectedText)) {
-                showFootNotes = DragingDialogs.showFootNotes(anchor, dc, new Runnable() {
+                DragingDialogs.showFootNotes(anchor, dc, new Runnable() {
 
                     @Override
                     public void run() {
@@ -1383,15 +1380,8 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
         }
     };
 
-    DragingPopup showFootNotes;
 
     private void doShowHideWrapperControlls() {
-
-        if (showFootNotes != null && showFootNotes.isVisible()) {
-            showFootNotes.closeDialog();
-            return;
-        }
-
         AppState.get().isEditMode = !AppState.get().isEditMode;
         hideShow();
     }
@@ -1971,8 +1961,7 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
             }
 
             if (AppState.get().getNextKeys().contains(keyCode)) {
-                if (showFootNotes != null && showFootNotes.isVisible()) {
-                    showFootNotes.closeDialog();
+                if (closeDialogs()) {
                     isMyKey = true;
                     return true;
                 }
@@ -1981,8 +1970,7 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
                 isMyKey = true;
                 return true;
             } else if (AppState.get().getPrevKeys().contains(keyCode)) {
-                if (showFootNotes != null && showFootNotes.isVisible()) {
-                    showFootNotes.closeDialog();
+                if (closeDialogs()) {
                     isMyKey = true;
                     return true;
                 }

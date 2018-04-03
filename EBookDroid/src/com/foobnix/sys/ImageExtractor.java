@@ -240,9 +240,14 @@ public class ImageExtractor implements ImageDownloader {
             bitmap = bitmapRef.getBitmap();
 
             if (pageUrl.isCrop()) {
-                // bitmap = getCroppedPage(codecDocumentLocal, page,
-                // bitmap).first;
-                bitmap = cropBitmap(bitmap);
+                if (BookType.DJVU.is(pageUrl.getPath())) {
+                    Bitmap sample = pageCodec.renderBitmapSimple(PageCropper.MAX_WIDTH, PageCropper.MAX_HEIGHT, rectF).getBitmap();
+                    bitmap = cropBitmap(bitmap, sample);
+                    sample.recycle();
+                    sample = null;
+                } else {
+                    bitmap = cropBitmap(bitmap, bitmap);
+                }
             }
 
         } else if (pageUrl.getNumber() == 1) {
@@ -252,7 +257,7 @@ public class ImageExtractor implements ImageDownloader {
             bitmap = bitmapRef.getBitmap();
 
             if (pageUrl.isCrop()) {
-                bitmap = cropBitmap(bitmap);
+                bitmap = cropBitmap(bitmap, bitmap);
             }
 
         } else if (pageUrl.getNumber() == 2) {
@@ -262,7 +267,7 @@ public class ImageExtractor implements ImageDownloader {
             bitmap = bitmapRef.getBitmap();
 
             if (pageUrl.isCrop()) {
-                bitmap = cropBitmap(bitmap);
+                bitmap = cropBitmap(bitmap, bitmap);
             }
         }
 
@@ -300,9 +305,9 @@ public class ImageExtractor implements ImageDownloader {
         return bitmap;
     }
 
-    public Bitmap cropBitmap(Bitmap bitmap) {
-        final Rect rootRect = new Rect(0, 0, bitmap.getWidth(), bitmap.getHeight());
-        RectF rectCrop = PageCropper.getCropBounds(bitmap, rootRect, new RectF(0, 0, 1f, 1f));
+    public Bitmap cropBitmap(Bitmap bitmap, Bitmap sample) {
+        final Rect rootRect = new Rect(0, 0, sample.getWidth(), sample.getHeight());
+        RectF rectCrop = PageCropper.getCropBounds(sample, rootRect, new RectF(0, 0, 1f, 1f));
         int x = (int) (bitmap.getWidth() * rectCrop.left);
         int y = (int) (bitmap.getHeight() * rectCrop.top);
         int w = (int) (bitmap.getWidth() * rectCrop.width());

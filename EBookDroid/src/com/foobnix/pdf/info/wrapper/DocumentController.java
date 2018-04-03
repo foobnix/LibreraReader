@@ -44,6 +44,7 @@ import android.os.Handler;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.WindowManager;
+import android.widget.FrameLayout;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -259,6 +260,7 @@ public abstract class DocumentController {
         return Dips.isEInk(c) || AppState.get().isInkMode;
 
     }
+
     public boolean isTextFormat() {
         try {
             boolean textFomat = ExtUtils.isTextFomat(getCurrentBook().getPath());
@@ -268,6 +270,17 @@ public abstract class DocumentController {
             LOG.e(e);
             return false;
         }
+    }
+
+    public boolean closeDialogs(FrameLayout anchor) {
+        boolean isVisible = anchor.getVisibility() == View.VISIBLE;
+        anchor.setVisibility(View.GONE);
+        anchor.setTag("backGo");
+        anchor.removeAllViews();
+        if (isVisible) {
+            clearSelectedText();
+        }
+        return isVisible;
     }
 
     public abstract boolean isCropCurrentBook();
@@ -458,14 +471,6 @@ public abstract class DocumentController {
 
     public void onLongPress(MotionEvent ev) {
         ui.onLongPress(ev);
-    }
-
-    public boolean closeFooterNotesDialog() {
-        if (ui != null && ui.showFootNotes != null && ui.showFootNotes.isVisible()) {
-            ui.showFootNotes.closeDialog();
-            return true;
-        }
-        return false;
     }
 
     public abstract void doSearch(String text, ResultResponse<Integer> result);

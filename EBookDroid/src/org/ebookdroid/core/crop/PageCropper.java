@@ -10,13 +10,13 @@ import android.graphics.Rect;
 import android.graphics.RectF;
 
 public class PageCropper {
+    public static final int MAX_HEIGHT = Dips.DP_300;
+    public static final int MAX_WIDTH = Dips.DP_200;
+
     public static RectF getCropBounds(Bitmap bitmap1, final Rect bitmapBounds, final RectF pageSliceBounds) {
 
         int f = bitmap1.getPixel(0, 0);
         int f2 = bitmap1.getPixel(bitmap1.getWidth() - 1, bitmap1.getHeight() - 1);
-        int fR = Color.red(f);
-        int fG = Color.green(f);
-        int fB = Color.blue(f);
 
         int width = bitmap1.getWidth();
         int height = bitmap1.getHeight();
@@ -26,22 +26,16 @@ public class PageCropper {
         int bottomY = 0;
         int bottomX = 0;
 
-        // int dy = Math.max(Dips.dpToPx(3), height / 300);
-        // int dx = Math.max(Dips.dpToPx(3), width / 300);
-        int dy = Dips.dpToPx(3);
-        int dx = Dips.dpToPx(3);
-        LOG.d("firstColor", MagicHelper.colorToString(f), dx, dy, Dips.dpToPx(3));
+        int dx = Math.max(1, bitmap1.getHeight() / MAX_HEIGHT);
+        int dy = Math.max(1, bitmap1.getWidth() / MAX_WIDTH);
+        LOG.d("getCropBounds-dx-dy", dx, dy);
 
-        for (int y = 0; y < height; y += 1) {
-            for (int x = 0; x < width; x += 1) {
+        for (int y = 0; y < height; y += dx) {
+            for (int x = 0; x < width; x += dy) {
                 int p = bitmap1.getPixel(x, y);
                 if (p == Color.WHITE || p == f || p == f2) {
                     continue;
                 }
-
-                // int pR = Color.red(p);
-                // int pG = Color.green(p);
-                // int pB = Color.blue(p);
 
                 if (MagicHelper.isColorDarkSimple(p)) {
                     if (x < topX)

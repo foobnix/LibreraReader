@@ -179,7 +179,7 @@ public class AdvGuestureDetector extends SimpleOnGestureListener implements IMul
                 }
                 if (TxtUtils.isNotEmpty(text)) {
                     docCtrl.clearSelectedText();
-                    docCtrl.closeFooterNotesDialog();
+                    // docCtrl.closeFooterNotesDialog();
                     AppState.get().selectedText = null;
 
                 }

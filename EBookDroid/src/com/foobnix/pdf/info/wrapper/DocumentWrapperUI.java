@@ -32,7 +32,6 @@ import com.foobnix.pdf.info.view.BrightnessHelper;
 import com.foobnix.pdf.info.view.CustomSeek;
 import com.foobnix.pdf.info.view.Dialogs;
 import com.foobnix.pdf.info.view.DragingDialogs;
-import com.foobnix.pdf.info.view.DragingPopup;
 import com.foobnix.pdf.info.view.DrawView;
 import com.foobnix.pdf.info.view.HorizontallSeekTouchEventListener;
 import com.foobnix.pdf.info.view.MyPopupMenu;
@@ -169,8 +168,6 @@ public class DocumentWrapperUI {
         }
     }
 
-    DragingPopup showFootNotes;
-
     public static boolean isCJK(int ch) {
         Character.UnicodeBlock block = Character.UnicodeBlock.of(ch);
         if (Character.UnicodeBlock.CJK_UNIFIED_IDEOGRAPHS.equals(block) || Character.UnicodeBlock.CJK_COMPATIBILITY_IDEOGRAPHS.equals(block) || Character.UnicodeBlock.CJK_UNIFIED_IDEOGRAPHS_EXTENSION_A.equals(block)) {
@@ -182,7 +179,7 @@ public class DocumentWrapperUI {
     @TargetApi(Build.VERSION_CODES.HONEYCOMB)
     public void onLongPress(MotionEvent ev) {
         if (dc.isTextFormat() && TxtUtils.isFooterNote(AppState.get().selectedText)) {
-            showFootNotes = DragingDialogs.showFootNotes(anchor, dc, new Runnable() {
+            DragingDialogs.showFootNotes(anchor, dc, new Runnable() {
 
                 @Override
                 public void run() {
@@ -227,14 +224,7 @@ public class DocumentWrapperUI {
         }
 
         if (KeyEvent.KEYCODE_BACK == keyCode) {
-            if (anchor.getChildCount() > 0 && anchor.getVisibility() == View.VISIBLE) {
-                dc.clearSelectedText();
-                anchor.setTag("backSpace");
-                anchor.removeAllViews();
-                anchor.setVisibility(View.GONE);
-                if (prefDialog != null) {
-                    prefDialog.closeDialog();
-                }
+            if (closeDialogs()) {
                 return true;
             } else if (!dc.getLinkHistory().isEmpty()) {
                 dc.onLinkHistory();
@@ -321,13 +311,17 @@ public class DocumentWrapperUI {
             }
         }
 
-        if (AppState.get().isUseVolumeKeys && AppState.get().getNextKeys().contains(keyCode))
-
-        {
+        if (AppState.get().isUseVolumeKeys && AppState.get().getNextKeys().contains(keyCode)) {
+            if (closeDialogs()) {
+                return true;
+            }
             nextChose(false, event.getRepeatCount());
             return true;
         }
         if (AppState.get().isUseVolumeKeys && AppState.get().getPrevKeys().contains(keyCode)) {
+            if (closeDialogs()) {
+                return true;
+            }
             prevChose(false, event.getRepeatCount());
             return true;
         }
@@ -1497,10 +1491,8 @@ public class DocumentWrapperUI {
         }
     };
 
-    private void closeDialogs() {
-        anchor.setVisibility(View.GONE);
-        anchor.setTag("backGo");
-        anchor.removeAllViews();
+    private boolean closeDialogs() {
+        return dc.closeDialogs(anchor);
     }
 
     public View.OnClickListener onModeChangeClick = new View.OnClickListener() {
@@ -1569,12 +1561,11 @@ public class DocumentWrapperUI {
         }
     };
 
-    DragingPopup prefDialog;
     public View.OnClickListener onPrefTop = new View.OnClickListener() {
 
         @Override
         public void onClick(final View arg0) {
-            prefDialog = DragingDialogs.preferences(anchor, dc, onRefresh, new Runnable() {
+            DragingDialogs.preferences(anchor, dc, onRefresh, new Runnable() {
 
                 @Override
                 public void run() {
@@ -1606,10 +1597,7 @@ public class DocumentWrapperUI {
         @Override
         public void onClick(final View arg0) {
             ImageLoader.getInstance().clearAllTasks();
-            anchor.setTag("backSpace");
-            anchor.removeAllViews();
-            anchor.setVisibility(View.GONE);
-
+            closeDialogs();
             closeAndRunList();
         }
     };
@@ -1663,10 +1651,6 @@ public class DocumentWrapperUI {
         LOG.d("nextChose");
         dc.checkReadingTimer();
 
-        if (dc.closeFooterNotesDialog()) {
-            return;
-        }
-
         if (AppState.get().nextScreenScrollBy == AppState.NEXT_SCREEN_SCROLL_BY_PAGES) {
             dc.onNextPage(animate);
         } else {
@@ -1688,10 +1672,6 @@ public class DocumentWrapperUI {
 
     public void prevChose(boolean animate, int repeatCount) {
         dc.checkReadingTimer();
-
-        if (dc.closeFooterNotesDialog()) {
-            return;
-        }
 
         if (AppState.get().nextScreenScrollBy == AppState.NEXT_SCREEN_SCROLL_BY_PAGES) {
             dc.onPrevPage(animate);
