@@ -78,7 +78,6 @@ public class LibreraApp extends Application {
         LOG.d("Build.Context", "Context.getExternalFilesDir(null)", getExternalFilesDir(null));
         LOG.d("Build.Context", "Environment.getExternalStorageDirectory()", Environment.getExternalStorageDirectory());
 
-
         try {
             if (LOG.isEnable) {
                 String myID = ADS.getByTestID(this);
@@ -97,6 +96,11 @@ public class LibreraApp extends Application {
                 public void uncaughtException(Thread thread, final Throwable e) {
                     LOG.e(e);
                     e.printStackTrace();
+                    if (e instanceof android.database.sqlite.SQLiteException) {
+                        LOG.d("Drop-databases1");
+                        AppDB.get().dropCreateTables(getApplicationContext());
+                        LOG.d("Drop-databases2");
+                    }
                     try {
 
                         StringWriter errors = new StringWriter();

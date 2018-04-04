@@ -150,6 +150,7 @@ public class AppDB {
         SQLiteDatabase writableDatabase = helper.getWritableDatabase();
         DaoMaster daoMaster = new DaoMaster(writableDatabase);
 
+
         daoSession = daoMaster.newSession();
 
         fileMetaDao = daoSession.getFileMetaDao();
@@ -158,6 +159,14 @@ public class AppDB {
         // QueryBuilder.LOG_SQL = true;
         // QueryBuilder.LOG_VALUES = true;
         // }
+
+
+    }
+
+    public void dropCreateTables(Context c) {
+        DatabaseUpgradeHelper helper = new DatabaseUpgradeHelper(c, DB_NAME);
+        DaoMaster.dropAllTables(helper.getWritableDb(), true);
+        DaoMaster.createAllTables(helper.getWritableDb(), true);
     }
 
     public List<FileMeta> deleteAllSafe() {
