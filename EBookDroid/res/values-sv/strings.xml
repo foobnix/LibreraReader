@@ -462,4 +462,5 @@
    <string name="hyphenation_language">Hyphenation språk</string>
    <string name="replacing_the_white_color_in_the_images_with_the_background_color">Byter den vita färgen i bilderna med bakgrundsfärgen</string>
    <string name="disable_swipe_gestures_for_page_paging">Inaktivera svepbehåll för sidsökning</string>
+   <string name="add_keywords_to_genres">Lägg till nyckelord i genrer</string>
 </resources>

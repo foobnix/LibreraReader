@@ -1,5 +1,6 @@
 * Számos fejlesztés az Ön kívánságainak megfelelően, együtt készítjük a legjobb könyvolvasót és PDF-olvasót. 
-* További betűkészletek (például sakkkönyvekhez) 
+* További betűkészletek (például sakkkönyvek esetén) 
+* Csökkentett alkalmazásméret 
 * Továbbfejlesztett ikonok és felhasználói felület 
-* A könyvek rendezése fájltípus szerint 
+* A könyvek rendezése fájl típus szerint 
 * Sima vízszintes görgetés

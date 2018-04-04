@@ -1,5 +1,6 @@
 * Monet toiveesi mukaiset parannukset, yhdessä parhaan kirjan lukijan ja PDF-lukijan kanssa. 
-* Muut kirjasimet (esimerkiksi shakkikirjoihin) 
+* Muut fontit (esimerkiksi shakkikirjoille) 
+* Pienennetty sovelluskoko 
 * Parannetut kuvakkeet ja käyttöliittymä 
 * Lajittele kirjat tiedostotyypin mukaan 
 * Tasainen vaakasuora vieritys

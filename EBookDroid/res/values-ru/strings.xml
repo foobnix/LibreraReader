@@ -462,4 +462,5 @@
    <string name="hyphenation_language">Язык переносов</string>
    <string name="replacing_the_white_color_in_the_images_with_the_background_color">Окрашивать белый фон изображений в цвет фона страниц</string>
    <string name="disable_swipe_gestures_for_page_paging">Отключить возможность листания страниц свайпами</string>
+   <string name="add_keywords_to_genres">Добавить ключевые слова в жанры</string>
 </resources>

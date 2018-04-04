@@ -1,5 +1,6 @@
 * Multi improvements iuxta vota vestra: ut simul nos tibi optimum libri PDF legit et legit. Additional fonts 
-* (LUDUS LATRUNCULARIUS in libris exempli gratia) Melior icones et user interface 
+* (LUDUS LATRUNCULARIUS in libris exempli gratia) Reducitur applicationem magnitudinis 
 * 
 * 
-* venenum blanda Sort libros per file type horizontal scrolling
+* Melior icones et user interface librorum Sort by file type 
+* venenum blanda horizontal scrolling

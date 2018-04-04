@@ -1,5 +1,6 @@
 * Wiele ulepszeń zgodnie z Twoimi życzeniami, razem stworzymy najlepszy czytnik książek i czytnik PDF. 
 * Dodatkowe czcionki (na przykład dla książek w szachy) 
-* Poprawione ikony i interfejs użytkownika 
+* Zredukowany rozmiar aplikacji 
+* Ulepszone ikony i interfejs użytkownika 
 * Sortowanie książek według typu pliku 
 * Płynne przewijanie w poziomie

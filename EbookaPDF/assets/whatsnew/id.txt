@@ -1,5 +1,6 @@
 * Banyak perbaikan sesuai keinginan Anda, bersama-sama kami akan membuat pembaca Buku terbaik dan pembaca PDF. 
 * Font tambahan (misalnya untuk buku catur) 
-* Peningkatan ikon dan antarmuka pengguna 
+* Mengurangi ukuran aplikasi 
+* Ikon yang disempurnakan dan antarmuka pengguna 
 * Urutkan buku berdasarkan jenis file 
 * Pengguliran horizontal halus

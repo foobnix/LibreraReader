@@ -2,6 +2,7 @@
 <nl-NL>
 * Veel verbeteringen op basis van uw wensen, samen maken we de beste boeklezer en PDF-lezer. 
 * Extra lettertypen (bijvoorbeeld voor schaakboeken) 
+* Gereduceerde approotte 
 * Verbeterde pictogrammen en gebruikersinterface 
 * Boeken sorteren op bestandstype 
 * Vloeiend horizontaal scrollen
@@ -10,14 +11,16 @@
 <id>
 * Banyak perbaikan sesuai keinginan Anda, bersama-sama kami akan membuat pembaca Buku terbaik dan pembaca PDF. 
 * Font tambahan (misalnya untuk buku catur) 
-* Peningkatan ikon dan antarmuka pengguna 
+* Mengurangi ukuran aplikasi 
+* Ikon yang disempurnakan dan antarmuka pengguna 
 * Urutkan buku berdasarkan jenis file 
 * Pengguliran horizontal halus
 </id>
 
 <lt>
-* Daugybė patobulinimų pagal jūsų norus, kartu mes padarysime geriausią knygų skaitytuvą ir PDF skaitytuvą. 
+* Daugybė patobulinimų pagal jūsų pageidavimus kartu sukursime geriausią knygų skaitytuvą ir PDF skaitytuvą. 
 * Papildomi šriftai (pvz., Šachmatų knygoms) 
+* Sumažintas programos dydis 
 * Patobulintos piktogramos ir vartotojo sąsaja 
 * Rūšiuoti knygas pagal failo tipą 
 * Lygus horizontalus slinkimas
@@ -25,7 +28,8 @@
 
 <ar>
 * العديد من التحسينات وفقا لرغباتك ، معا سنجعل أفضل قارئ الكتاب وقارئ PDF. 
-* خطوط إضافية (على سبيل المثال لكتب الشطرنج) 
+* خطوط إضافية (على سبيل المثال لدفاتر الشطرنج) 
+* تخفيض حجم التطبيق 
 * رموز محسنة واجهة مستخدم 
 * فرز الكتب حسب نوع الملف 
 * التمرير الأفقي السلس
@@ -33,24 +37,27 @@
 
 <ro>
 * Multe îmbunătățiri în funcție de dorințele dvs., împreună vom face cel mai bun cititor de cărți și cititor PDF. 
-* Fonturi suplimentare (de exemplu, pentru cărți de șah) 
+* Fonturi suplimentare (de exemplu, pentru cărțile de șah) 
+* Dimensiune redusă a aplicației 
 * Pictograme îmbunătățite și interfața cu utilizatorul 
-* Sortați cărțile după tipul de fișier 
+* Sortarea cărților după tipul de fișier 
 *
 </ro>
 
 <de-DE>
 * Viele Verbesserungen nach Ihren Wünschen, zusammen machen wir den besten Buchleser und PDF-Reader. 
 * Zusätzliche Schriftarten (zum Beispiel für Schachbücher) 
+* Reduzierte Anwendungsgröße 
 * Verbesserte Symbole und Benutzeroberfläche 
-* Sortieren von Büchern nach Dateityp 
+* Sortiert Bücher nach Dateityp 
 * Glattes horizontales Scrollen
 </de-DE>
 
 <pl-PL>
 * Wiele ulepszeń zgodnie z Twoimi życzeniami, razem stworzymy najlepszy czytnik książek i czytnik PDF. 
 * Dodatkowe czcionki (na przykład dla książek w szachy) 
-* Poprawione ikony i interfejs użytkownika 
+* Zredukowany rozmiar aplikacji 
+* Ulepszone ikony i interfejs użytkownika 
 * Sortowanie książek według typu pliku 
 * Płynne przewijanie w poziomie
 </pl-PL>
@@ -58,22 +65,25 @@
 <iw-IL>
 * שיפורים רבים על פי רצונכם, יחד נעשה את הטוב ביותר קורא ספרים וקורא PDF. 
 * גופנים נוספים (לדוגמה עבור ספרי שחמט) 
+* גודל היישום מופחת 
 * סמלים משופרת וממשק משתמש 
-* מיין ספרים לפי סוג הקובץ 
+* מיון ספרים לפי סוג הקובץ 
 * גלילה אופקית חלקה
 </iw-IL>
 
 <hi-IN>
-* आपकी इच्छाओं के अनुसार कई सुधार, एक साथ हम सर्वश्रेष्ठ बुक रीडर और पीडीएफ रीडर बना लेंगे 
+* आपकी इच्छाओं के अनुसार कई सुधार, एक साथ हम सर्वश्रेष्ठ बुक रीडर और पीडीएफ रीडर बना लेंगे। 
 * अतिरिक्त फोंट (उदाहरण के लिए शतरंज पुस्तकों के लिए) 
+* कम आवेदन का आकार 
 * बेहतर आइकन और यूजर इंटरफेस 
-* फाइल प्रकार के आधार पर पुस्तकें 
+* फ़ाइल प्रकार के आधार पर सॉर्ट करें 
 * चिकना क्षैतिज स्क्रॉलिंग
 </hi-IN>
 
 <es-ES>
 * Muchas mejoras de acuerdo a sus deseos, juntos haremos el mejor lector de libros y lector de PDF. 
-* Fuentes adicionales (por ejemplo, libros de ajedrez) 
+* Fuentes adicionales (por ejemplo, para libros de ajedrez) 
+* Tamaño de aplicación reducido 
 * Iconos mejorados e interfaz de usuario 
 * Ordenar libros por tipo de archivo 
 * Desplazamiento horizontal suave
@@ -81,7 +91,8 @@
 
 <fi-FI>
 * Monet toiveesi mukaiset parannukset, yhdessä parhaan kirjan lukijan ja PDF-lukijan kanssa. 
-* Muut kirjasimet (esimerkiksi shakkikirjoihin) 
+* Muut fontit (esimerkiksi shakkikirjoille) 
+* Pienennetty sovelluskoko 
 * Parannetut kuvakkeet ja käyttöliittymä 
 * Lajittele kirjat tiedostotyypin mukaan 
 * Tasainen vaakasuora vieritys
@@ -89,15 +100,17 @@
 
 <vi>
 * Nhiều cải tiến theo ý muốn của bạn, chúng tôi sẽ làm cho Trình đọc Sách và Trình đọc PDF tốt nhất. 
-* Các phông chữ bổ sung (ví dụ cho các sách cờ vua) 
-* Cải thiện các biểu tượng và giao diện người dùng 
+* Các phông chữ bổ sung (ví dụ như cho các sách cờ vua) 
+* Giảm kích thước ứng dụng 
+* Cải thiện biểu tượng và giao diện người dùng 
 * Sắp xếp sách theo loại tập tin 
-* Cuộn theo chiều ngang mịn
+*
 </vi>
 
 <fr-FR>
 * Beaucoup d’améliorations selon vos souhaits, ensemble nous ferons le meilleur lecteur de livre et lecteur de PDF. 
 * Polices supplémentaires (par exemple pour les livres d’échecs) 
+* Réduction de la taille de l’application 
 * Amélioration des icônes et de l’interface utilisateur 
 * Trier les livres par type de fichier 
 * Défilement horizontal lisse
@@ -106,6 +119,7 @@
 <fr-CA>
 * Beaucoup d’améliorations selon vos souhaits, ensemble nous ferons le meilleur lecteur de livre et lecteur de PDF. 
 * Polices supplémentaires (par exemple pour les livres d’échecs) 
+* Réduction de la taille de l’application 
 * Amélioration des icônes et de l’interface utilisateur 
 * Trier les livres par type de fichier 
 * Défilement horizontal lisse
@@ -114,14 +128,16 @@
 <sw>
 * Maboresho mengi kulingana na matakwa yako, pamoja tutatengeneza msomaji bora wa Kitabu na msomaji wa PDF. 
 * Fonts za ziada (kwa mfano kwa vitabu vya chess) 
+* Kupunguza ukubwa wa maombi 
 * Icons zilizoboreshwa na interface ya mtumiaji 
 * Weka vitabu kwa aina ya faili 
-* Kutafuta kwa usawa wa kushoto
+* Kutafuta kando ya usawa
 </sw>
 
 <zh-TW>
 *根据您的意愿做出许多改进，我们将一起制作最好的图书阅读器和PDF阅读器。 
 *其他字体（例如国际象棋书籍）
+*缩小的应用程序大小
 *改进的图标和用户界面
 *按文件类型对书籍进行排序
 *平滑水平滚动
@@ -130,9 +146,10 @@
 <ru-RU>
 * Много улучшений в соответствии с вашими пожеланиями, вместе мы сделаем лучший читатель книг и PDF-ридер. 
 * Дополнительные шрифты (например, для шахматных книг) 
+* Уменьшенный размер приложения 
 * Улучшенные значки и пользовательский интерфейс 
 * Сортировка книг по типу файлов 
-* Гладкая горизонтальная прокрутка
+* Плавная горизонтальная прокрутка
 </ru-RU>
 
 <th>
@@ -179,22 +196,14 @@
 * 
 * 
 * 
-* 
-* 
-* 
-* 
-* 
-* 
-* 
-* 
-* 
-*
+* ตัวอักษรเพิ่มเติม (ตัวอย่างเช่นสำหรับหนังสือหมากรุก)
 </th>
 
 <it-IT>
 * Molti miglioramenti secondo i tuoi desideri, insieme faremo il miglior lettore di libri e lettore PDF. 
 * Caratteri aggiuntivi (ad esempio per i libri di scacchi) 
-* Icone e interfaccia utente migliorate 
+* Dimensioni ridotte dell’applicazione 
+* Icone migliorate e interfaccia utente 
 * Ordina i libri per tipo di file 
 * Scorrimento orizzontale uniforme
 </it-IT>
@@ -202,6 +211,7 @@
 <sv-SE>
 * Många förbättringar enligt dina önskemål, tillsammans gör vi den bästa bokläsaren och PDF-läsaren. 
 * Ytterligare teckensnitt (till exempel för schackböcker) 
+* Minskad applikationsstorlek 
 * Förbättrade ikoner och användargränssnitt 
 * Sortera böcker efter filtyp 
 * Glatt horisontell rullning
@@ -210,6 +220,7 @@
 <fa>
 * بسیاری از بهبود با توجه به خواسته های خود را، همراه ما بهترین کتاب خوان و PDF خوان را. 
 * فونت های اضافی (به عنوان مثال برای کتاب شطرنج) 
+* کاهش اندازه برنامه 
 * آیکون های بهبود یافته و رابط کاربر 
 * مرتب سازی بر اساس نوع فایل 
 * پیمایش صاف افقی
@@ -218,6 +229,7 @@
 <pt-PT>
 * Muitas melhorias de acordo com seus desejos, juntos faremos o melhor leitor de livros e leitor de PDF. 
 * Fontes adicionais (por exemplo, para livros de xadrez) 
+* Tamanho reduzido do aplicativo 
 * Ícones e interface do usuário aprimorados 
 * Classificar livros por tipo de arquivo 
 * Rolagem horizontal suave
@@ -226,6 +238,7 @@
 <pt-BR>
 * Muitas melhorias de acordo com seus desejos, juntos faremos o melhor leitor de livros e leitor de PDF. 
 * Fontes adicionais (por exemplo, para livros de xadrez) 
+* Tamanho reduzido do aplicativo 
 * Ícones e interface do usuário aprimorados 
 * Classificar livros por tipo de arquivo 
 * Rolagem horizontal suave
@@ -234,6 +247,7 @@
 <ko-KR>
 * 귀하의 희망에 따라 많은 개선, 함께 우리는 최고의 도서 리더와 PDF 리더를 만들거야. 
 * 추가 글꼴 (예 : 체스 서적) 
+* 응용 프로그램 크기 감소 
 * 향상된 아이콘 및 사용자 인터페이스 
 * 파일 형식으로 책 정렬 
 * 부드러운 가로 스크롤
@@ -241,31 +255,35 @@
 
 <hu-HU>
 * Számos fejlesztés az Ön kívánságainak megfelelően, együtt készítjük a legjobb könyvolvasót és PDF-olvasót. 
-* További betűkészletek (például sakkkönyvekhez) 
+* További betűkészletek (például sakkkönyvek esetén) 
+* Csökkentett alkalmazásméret 
 * Továbbfejlesztett ikonok és felhasználói felület 
-* A könyvek rendezése fájltípus szerint 
+* A könyvek rendezése fájl típus szerint 
 * Sima vízszintes görgetés
 </hu-HU>
 
 <sk>
 * Veľa vylepšení podľa vašich želaní, spoločne budeme robiť najlepšie čitateľ knihy a PDF čítačku. 
 * Ďalšie písma (napríklad pre šachové knihy) 
-* Vylepšené ikony a užívateľské rozhranie 
+* Znížená veľkosť aplikácie 
+* Vylepšené ikony a používateľské rozhranie 
 * Zoradiť knihy podľa typu súboru 
-* Hladké horizontálne posúvanie
+* Hladký horizontálny rolovanie
 </sk>
 
 <tr-TR>
 * İsteklerinize göre birçok iyileştirme, birlikte en iyi Kitap okuyucusunu ve PDF okuyucuyu yapacağız. 
 * Ek yazı tipleri (örneğin satranç kitapları için) 
+* Azaltılmış uygulama boyutu 
 * Geliştirilmiş simgeler ve kullanıcı arabirimi 
-* Dosya türüne göre kitapları sırala 
+* Dosyaları dosya türüne göre sırala 
 * Düz yatay kaydırma
 </tr-TR>
 
 <no-NO>
 * Mange forbedringer i henhold til dine ønsker, sammen vil vi lage den beste bokleseren og PDF-leseren. 
 * Ekstra skrifttyper (for eksempel for sjakkbøker) 
+* Redusert applikasjonsstørrelse 
 * Forbedrede ikoner og brukergrensesnitt 
 * Sorter bøker etter filtype 
 * Glatt horisontal rulling
@@ -273,24 +291,27 @@
 
 <la>
 * Multi improvements iuxta vota vestra: ut simul nos tibi optimum libri PDF legit et legit. Additional fonts 
-* (LUDUS LATRUNCULARIUS in libris exempli gratia) Melior icones et user interface 
+* (LUDUS LATRUNCULARIUS in libris exempli gratia) Reducitur applicationem magnitudinis 
 * 
 * 
-* venenum blanda Sort libros per file type horizontal scrolling
+* Melior icones et user interface librorum Sort by file type 
+* venenum blanda horizontal scrolling
 </la>
 
 <ja-JP>
 あなたの希望に応じて
 *多くの改善、一緒に私たちは最高の本とPDFリーダーを作るでしょう。 
-*追加のフォント（チェスブックなど）
+*追加フォント（チェスブックなど）
+*アプリケーションサイズの縮小
 *アイコンとユーザーインターフェイスの改善
-*ファイルの種類別に書籍の並べ替え
+*ファイルの種類別ブックの並べ替え
 *スムーズな水平スクロール
 </ja-JP>
 
 <uk>
 * Багато вдосконалень відповідно до ваших побажань, разом ми зробимо найкращий читач книг і читач PDF. 
 * Додаткові шрифти (наприклад, для шахових книг) 
+* Зменшений розмір програми 
 * Покращена піктограма та користувальницький інтерфейс 
 * Сортування книг за типом файлів 
 * Плавна горизонтальна прокрутка
@@ -299,6 +320,7 @@
 <en-US>
 * Many improvements according to your wishes, together we'll make the best Book reader and PDF reader.
 * Additional fonts (for example for chess books)
+* Reduced application size
 * Improved icons and user interface
 * Sort books by file type
 * Smooth horizontal scrolling

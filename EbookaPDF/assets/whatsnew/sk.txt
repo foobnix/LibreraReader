@@ -1,5 +1,6 @@
 * Veľa vylepšení podľa vašich želaní, spoločne budeme robiť najlepšie čitateľ knihy a PDF čítačku. 
 * Ďalšie písma (napríklad pre šachové knihy) 
-* Vylepšené ikony a užívateľské rozhranie 
+* Znížená veľkosť aplikácie 
+* Vylepšené ikony a používateľské rozhranie 
 * Zoradiť knihy podľa typu súboru 
-* Hladké horizontálne posúvanie
+* Hladký horizontálny rolovanie

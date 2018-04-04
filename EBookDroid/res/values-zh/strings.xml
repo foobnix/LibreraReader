@@ -462,4 +462,5 @@
    <string name="hyphenation_language">断字语言</string>
    <string name="replacing_the_white_color_in_the_images_with_the_background_color">一致化背景色</string>
    <string name="disable_swipe_gestures_for_page_paging">禁用轻扫翻页</string>
+   <string name="add_keywords_to_genres">为流派添加关键字</string>
 </resources>

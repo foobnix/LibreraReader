@@ -1,5 +1,6 @@
 * Nhiều cải tiến theo ý muốn của bạn, chúng tôi sẽ làm cho Trình đọc Sách và Trình đọc PDF tốt nhất. 
-* Các phông chữ bổ sung (ví dụ cho các sách cờ vua) 
-* Cải thiện các biểu tượng và giao diện người dùng 
+* Các phông chữ bổ sung (ví dụ như cho các sách cờ vua) 
+* Giảm kích thước ứng dụng 
+* Cải thiện biểu tượng và giao diện người dùng 
 * Sắp xếp sách theo loại tập tin 
-* Cuộn theo chiều ngang mịn
+*

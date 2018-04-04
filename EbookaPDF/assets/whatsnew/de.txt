@@ -1,5 +1,6 @@
 * Viele Verbesserungen nach Ihren Wünschen, zusammen machen wir den besten Buchleser und PDF-Reader. 
 * Zusätzliche Schriftarten (zum Beispiel für Schachbücher) 
+* Reduzierte Anwendungsgröße 
 * Verbesserte Symbole und Benutzeroberfläche 
-* Sortieren von Büchern nach Dateityp 
+* Sortiert Bücher nach Dateityp 
 * Glattes horizontales Scrollen

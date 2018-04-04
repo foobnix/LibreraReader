@@ -455,6 +455,7 @@ public class AppState {
     public boolean isShowCloseAppDialog = true;
 
     public boolean isFirstSurname = false;
+    public boolean isAddKeywordsToGenres = false;
 
     public boolean isOLED = false;
 

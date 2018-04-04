@@ -1,5 +1,6 @@
-* Daugybė patobulinimų pagal jūsų norus, kartu mes padarysime geriausią knygų skaitytuvą ir PDF skaitytuvą. 
+* Daugybė patobulinimų pagal jūsų pageidavimus kartu sukursime geriausią knygų skaitytuvą ir PDF skaitytuvą. 
 * Papildomi šriftai (pvz., Šachmatų knygoms) 
+* Sumažintas programos dydis 
 * Patobulintos piktogramos ir vartotojo sąsaja 
 * Rūšiuoti knygas pagal failo tipą 
 * Lygus horizontalus slinkimas

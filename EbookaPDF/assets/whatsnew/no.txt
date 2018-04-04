@@ -1,5 +1,6 @@
 * Mange forbedringer i henhold til dine ønsker, sammen vil vi lage den beste bokleseren og PDF-leseren. 
 * Ekstra skrifttyper (for eksempel for sjakkbøker) 
+* Redusert applikasjonsstørrelse 
 * Forbedrede ikoner og brukergrensesnitt 
 * Sorter bøker etter filtype 
 * Glatt horisontal rulling

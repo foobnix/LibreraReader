@@ -1,5 +1,6 @@
 * Many improvements according to your wishes, together we'll make the best Book reader and PDF reader.
 * Additional fonts (for example for chess books)
+* Reduced application size
 * Improved icons and user interface
 * Sort books by file type
 * Smooth horizontal scrolling

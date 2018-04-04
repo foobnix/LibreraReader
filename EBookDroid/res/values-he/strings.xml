@@ -462,4 +462,5 @@
    <string name="hyphenation_language">שפת מיקוף</string>
    <string name="replacing_the_white_color_in_the_images_with_the_background_color">החלפת צבע לבן בתמונות עם צבע הרקע</string>
    <string name="disable_swipe_gestures_for_page_paging">השבת תנועות מחיקת תנועות עבור הדפסת עמודים</string>
+   <string name="add_keywords_to_genres">הוסף מילות מפתח לז\'אנרים</string>
 </resources>

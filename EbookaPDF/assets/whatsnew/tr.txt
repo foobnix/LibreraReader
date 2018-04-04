@@ -1,5 +1,6 @@
 * İsteklerinize göre birçok iyileştirme, birlikte en iyi Kitap okuyucusunu ve PDF okuyucuyu yapacağız. 
 * Ek yazı tipleri (örneğin satranç kitapları için) 
+* Azaltılmış uygulama boyutu 
 * Geliştirilmiş simgeler ve kullanıcı arabirimi 
-* Dosya türüne göre kitapları sırala 
+* Dosyaları dosya türüne göre sırala 
 * Düz yatay kaydırma

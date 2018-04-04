@@ -462,4 +462,5 @@
    <string name="hyphenation_language">Lugha ya kufuta</string>
    <string name="replacing_the_white_color_in_the_images_with_the_background_color">Kubadilisha rangi nyeupe kwenye picha na rangi ya nyuma</string>
    <string name="disable_swipe_gestures_for_page_paging">Zima ishara ya swipe kwa ukurasa wa kupiga</string>
+   <string name="add_keywords_to_genres">Ongeza maneno ya muziki</string>
 </resources>

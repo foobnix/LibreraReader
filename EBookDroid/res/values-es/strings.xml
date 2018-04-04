@@ -462,4 +462,5 @@
    <string name="hyphenation_language">Lenguaje de guiones</string>
    <string name="replacing_the_white_color_in_the_images_with_the_background_color">Reemplazar el color blanco en las imágenes con el color de fondo</string>
    <string name="disable_swipe_gestures_for_page_paging">Deshabilitar los gestos de deslizamiento para la paginación de la página</string>
+   <string name="add_keywords_to_genres">Agregar palabras clave a los géneros</string>
 </resources>

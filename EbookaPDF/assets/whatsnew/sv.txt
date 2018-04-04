@@ -1,5 +1,6 @@
 * Många förbättringar enligt dina önskemål, tillsammans gör vi den bästa bokläsaren och PDF-läsaren. 
 * Ytterligare teckensnitt (till exempel för schackböcker) 
+* Minskad applikationsstorlek 
 * Förbättrade ikoner och användargränssnitt 
 * Sortera böcker efter filtyp 
 * Glatt horisontell rullning

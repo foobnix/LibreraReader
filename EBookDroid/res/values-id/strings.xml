@@ -462,4 +462,5 @@
    <string name="hyphenation_language">Bahasa hyphenation</string>
    <string name="replacing_the_white_color_in_the_images_with_the_background_color">Mengganti warna putih pada gambar dengan warna latar belakang</string>
    <string name="disable_swipe_gestures_for_page_paging">Nonaktifkan gestur gesek untuk halaman halaman</string>
+   <string name="add_keywords_to_genres">Tambahkan kata kunci ke genre</string>
 </resources>

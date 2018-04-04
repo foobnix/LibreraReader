@@ -1,5 +1,6 @@
 * Muitas melhorias de acordo com seus desejos, juntos faremos o melhor leitor de livros e leitor de PDF. 
 * Fontes adicionais (por exemplo, para livros de xadrez) 
+* Tamanho reduzido do aplicativo 
 * Ícones e interface do usuário aprimorados 
 * Classificar livros por tipo de arquivo 
 * Rolagem horizontal suave

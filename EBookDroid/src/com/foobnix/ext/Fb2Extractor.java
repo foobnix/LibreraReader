@@ -72,6 +72,7 @@ public class Fb2Extractor extends BaseExtractor {
                     }
                     eventType = xpp.next();
                 }
+                xmlStream.close();
             }
             {
                 InputStream xmlStream = LibreraApp.context.getAssets().open("union_genres_ru_2.xml");
@@ -92,6 +93,7 @@ public class Fb2Extractor extends BaseExtractor {
                     }
                     eventType = xpp.next();
                 }
+                xmlStream.close();
             }
         } catch (Exception e) {
             LOG.e(e);
@@ -288,7 +290,7 @@ public class Fb2Extractor extends BaseExtractor {
                 firstName = temp;
             }
 
-            if (TxtUtils.isNotEmpty(keywords)) {
+            if (AppState.get().isAddKeywordsToGenres && TxtUtils.isNotEmpty(keywords)) {
                 LOG.d("keywords before", genre);
 
                 if (keywords.contains(",") || keywords.contains(";")) {

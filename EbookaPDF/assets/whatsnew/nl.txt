@@ -1,5 +1,6 @@
 * Veel verbeteringen op basis van uw wensen, samen maken we de beste boeklezer en PDF-lezer. 
 * Extra lettertypen (bijvoorbeeld voor schaakboeken) 
+* Gereduceerde approotte 
 * Verbeterde pictogrammen en gebruikersinterface 
 * Boeken sorteren op bestandstype 
 * Vloeiend horizontaal scrollen
