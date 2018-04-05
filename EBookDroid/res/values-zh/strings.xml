@@ -1,6 +1,6 @@
 <resources>
-   <string name="___LIBRARY___SETTINGS___SECTION___">书库预置</string>
-   <string name="library_settings">书库预置</string>
+   <string name="___LIBRARY___SETTINGS___SECTION___">书库预设</string>
+   <string name="library_settings">书库预设</string>
    <string name="scan_device_for_new_books">扫描新书</string>
    <string name="add_folder">添加目录</string>
    <string name="archives">档案</string>
@@ -44,7 +44,7 @@
    <string name="crop_images_in_the_book_cover">撷取封面</string>
    <string name="borders_and_shadow_around_the_book_cover">边框阴影</string>
    <string name="tabs_position">标签位置</string>
-   <string name="show_preferences_tab_in_the_left_menu">启用侧边菜单</string>
+   <string name="show_preferences_tab_in_the_left_menu">启用侧边选单</string>
    <string name="visible">可见</string>
    <string name="application_user_guide_">使用说明</string>
    <string name="import_or_export_application_settings_to_json_file">备份文件</string>
@@ -243,7 +243,7 @@
    <string name="can_t_download">不能下载</string>
    <string name="loading_error">加载错误</string>
    <string name="loading_failed">载入失败</string>
-   <string name="___CONTEXT___MENU___SECTION___">上下文菜单</string>
+   <string name="___CONTEXT___MENU___SECTION___">上下文选单</string>
    <string name="select_the_reading_mode">阅读模式</string>
    <string name="convert_to">转换为</string>
    <string name="mode_vertical">滚动翻页</string>
@@ -301,7 +301,7 @@
    <string name="half_page">半页</string>
    <string name="by_pages">按页/滚动</string>
    <string name="by_screans">按屏/滚动</string>
-   <string name="of_screen">.滚距</string>
+   <string name="of_screen">滚距</string>
    <string name="custom_value">自定/滚距</string>
    <string name="automatic_page_flipping">自动翻页</string>
    <string name="interval_sec_">间隔（秒）</string>
@@ -367,7 +367,7 @@
    <string name="clear_all_recent">清空最近</string>
    <string name="clear_all_bookmars">清空书签</string>
    <string name="this_function_will_works_in_modern_android">This function will works in modern android</string>
-   <string name="menu">菜单</string>
+   <string name="menu">选单</string>
    <string name="search_not_supported_formats">搜索未支持的格式</string>
    <string name="add_bookmark">添加书签</string>
    <string name="performance_settings">性能设置</string>
@@ -462,5 +462,5 @@
    <string name="hyphenation_language">断字语言</string>
    <string name="replacing_the_white_color_in_the_images_with_the_background_color">一致化背景色</string>
    <string name="disable_swipe_gestures_for_page_paging">禁用轻扫翻页</string>
-   <string name="add_keywords_to_genres">为流派添加关键字</string>
+   <string name="add_keywords_to_genres">文件主名</string>
 </resources>
