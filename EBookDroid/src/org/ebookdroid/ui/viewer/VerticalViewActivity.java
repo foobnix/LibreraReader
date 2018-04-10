@@ -314,6 +314,8 @@ public class VerticalViewActivity extends AbstractActionActivity<VerticalViewAct
             return;
         }
 
+
+
         AppState.get().save(this);
 
         if (ExtUtils.isTextFomat(getIntent())) {
@@ -331,6 +333,8 @@ public class VerticalViewActivity extends AbstractActionActivity<VerticalViewAct
                 }
             });
 
+        }else {
+            activateAds();
         }
     }
 

@@ -65,7 +65,7 @@ public abstract class AdsFragmentActivity extends FragmentActivity {
     @Override
     public void onConfigurationChanged(Configuration newConfig) {
         super.onConfigurationChanged(newConfig);
-        myAds.activate(this, onFinish);
+        // myAds.activate(this, onFinish);
     }
 
     public void showInterstial() {

@@ -458,6 +458,8 @@ public class MainTabs2 extends AdsFragmentActivity {
         BrightnessHelper.applyBrigtness(this);
         BrightnessHelper.updateOverlay(overlay);
 
+        activateAds();
+
     };
 
     boolean isMyKey = false;
