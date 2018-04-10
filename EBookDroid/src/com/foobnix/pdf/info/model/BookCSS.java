@@ -12,6 +12,7 @@ import java.util.Locale;
 
 import com.foobnix.android.utils.LOG;
 import com.foobnix.android.utils.Objects;
+import com.foobnix.android.utils.Strings;
 import com.foobnix.android.utils.TxtUtils;
 import com.foobnix.dao2.FileMeta;
 import com.foobnix.pdf.info.ExportSettingsManager;
@@ -51,6 +52,8 @@ public class BookCSS {
     private static final Object TAG = "BookCSS";
 
     public static List<String> fontExts = Arrays.asList(".ttf", ".otf");
+
+    public static String DEFAULT_FOLDER = "";
 
     public int documentStyle = STYLES_DOC_AND_USER;
     public int marginTop;
@@ -98,7 +101,7 @@ public class BookCSS {
         textIndent = 10;
         fontWeight = 400;
 
-        fontFolder = DEFAULT_FOLDER(c);
+        fontFolder = DEFAULT_FOLDER;
         displayFontName = DEFAULT_FONT;
         normalFont = DEFAULT_FONT;
         boldFont = DEFAULT_FONT;
@@ -127,6 +130,7 @@ public class BookCSS {
         if (c == null) {
             return;
         }
+        DEFAULT_FOLDER = FontExtractor.getFontsDir(c, FONTS_DIR).getPath();
         resetToDefault(c);
 
         SharedPreferences sp = c.getSharedPreferences(ExportSettingsManager.PREFIX_BOOK_CSS, Context.MODE_PRIVATE);
@@ -151,15 +155,11 @@ public class BookCSS {
 
     }
 
-    private String DEFAULT_FOLDER(Context c) {
-        return FontExtractor.getFontsDir(c, FONTS_DIR).getPath();
-    }
-
     public void checkBeforeExport(Context c) {
-        if (fontFolder != null && fontFolder.equals(DEFAULT_FOLDER(c))) {
+        if (fontFolder != null && fontFolder.equals(DEFAULT_FOLDER)) {
             fontFolder = null;
             save(c);
-            fontFolder = DEFAULT_FOLDER(c);
+            fontFolder = DEFAULT_FOLDER;
         }
 
     }
@@ -273,7 +273,9 @@ public class BookCSS {
 
         all.addAll(getAllFontsFromFolder(new File(Environment.getExternalStorageDirectory(), "fonts").getPath()));
         all.addAll(getAllFontsFromFolder(new File(Environment.getExternalStorageDirectory(), "Fonts").getPath()));
-        all.addAll(getAllFontsFromFolder(new File("/system/fonts").getPath()));
+        if (Strings.equals(fontFolder, DEFAULT_FOLDER)) {
+            all.addAll(getAllFontsFromFolder(new File("/system/fonts").getPath()));
+        }
 
         return all;
     }
@@ -291,7 +293,9 @@ public class BookCSS {
 
         all.addAll(getAllFontsFiltered(new File(Environment.getExternalStorageDirectory(), "fonts").getPath()));
         all.addAll(getAllFontsFiltered(new File(Environment.getExternalStorageDirectory(), "Fonts").getPath()));
-        all.addAll(getAllFontsFiltered(new File("/system/fonts").getPath(), true));
+        if (Strings.equals(fontFolder, DEFAULT_FOLDER)) {
+            all.addAll(getAllFontsFiltered(new File("/system/fonts").getPath(), true));
+        }
 
         return all;
     }
