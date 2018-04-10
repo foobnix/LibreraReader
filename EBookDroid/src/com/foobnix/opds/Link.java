@@ -39,6 +39,7 @@ public class Link {
         map.put("application/pdb", "pdb");
         map.put("application/djvu", "djvu");
         map.put("application/epub+zip", "epub");
+        map.put("application/epub", "epub");
         map.put("application/fb-ebook", "fb2");
         map.put("application/fb2+xml", "fb2");
         map.put("application/fb-ebook+zip", "fb2.zip");
