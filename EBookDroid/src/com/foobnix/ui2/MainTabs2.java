@@ -457,9 +457,6 @@ public class MainTabs2 extends AdsFragmentActivity {
 
         BrightnessHelper.applyBrigtness(this);
         BrightnessHelper.updateOverlay(overlay);
-
-        activateAds();
-
     };
 
     boolean isMyKey = false;
@@ -561,6 +558,7 @@ public class MainTabs2 extends AdsFragmentActivity {
             pager.setAdapter(adapter);
             pager.setCurrentItem(currentItem);
         }
+        activateAds();
 
     }
 

@@ -104,7 +104,7 @@ public class AppsConfig {
 
         }
 
-        IS_BETA = TXT_APP_NAME.contains("Beta");
+        IS_BETA = TXT_APP_NAME.contains("Beta_");
 
         // IS_BETA = false;
 

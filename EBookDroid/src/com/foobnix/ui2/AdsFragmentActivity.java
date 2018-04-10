@@ -31,13 +31,13 @@ public abstract class AdsFragmentActivity extends FragmentActivity {
     protected void onCreate(Bundle arg0) {
         super.onCreate(arg0);
         myAds.intetrstialTimeout = intetrstialTimeoutSec;
+        myAds.createHandler();
     }
 
     @Override
     protected void onPostCreate(Bundle savedInstanceState) {
         super.onPostCreate(savedInstanceState);
-        myAds.createHandler();
-        myAds.activate(this, onFinish);
+        // myAds.activate(this, onFinish);
     }
 
     public void activateAds() {
@@ -47,7 +47,8 @@ public abstract class AdsFragmentActivity extends FragmentActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        myAds.resume();
+        // myAds.resume();
+        myAds.activate(this, onFinish);
     }
 
     @Override
