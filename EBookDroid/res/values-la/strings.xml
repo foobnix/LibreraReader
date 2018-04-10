@@ -463,4 +463,6 @@
    <string name="replacing_the_white_color_in_the_images_with_the_background_color">Repositoque color albus in in background color imagines</string>
    <string name="disable_swipe_gestures_for_page_paging">Inactivare ungunt gestibus et pervolutantes page</string>
    <string name="add_keywords_to_genres">Add to Paradise keywords</string>
+   <string name="turn_off">DEFLECTO</string>
+   <string name="crop_off">Off Crop</string>
 </resources>

@@ -463,4 +463,6 @@
    <string name="replacing_the_white_color_in_the_images_with_the_background_color">पृष्ठभूमि रंग के साथ चित्रों में सफ़ेद रंग की जगह</string>
    <string name="disable_swipe_gestures_for_page_paging">पृष्ठ पेजिंग के लिए ज़ोर से मारना इशारों को अक्षम करें</string>
    <string name="add_keywords_to_genres">शैलियों में कीवर्ड जोड़ें</string>
+   <string name="turn_off">बंद करें</string>
+   <string name="crop_off">फसल बंद</string>
 </resources>

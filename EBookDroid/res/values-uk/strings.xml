@@ -463,4 +463,6 @@
    <string name="replacing_the_white_color_in_the_images_with_the_background_color">Заміна білого кольору на зображення з фоновим кольором</string>
    <string name="disable_swipe_gestures_for_page_paging">Вимкніть жести для повзунка для виклику сторінок</string>
    <string name="add_keywords_to_genres">Додайте ключові слова до жанрів</string>
+   <string name="turn_off">Вимкнути</string>
+   <string name="crop_off">Обрізати</string>
 </resources>

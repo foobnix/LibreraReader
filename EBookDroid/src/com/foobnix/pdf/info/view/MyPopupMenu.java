@@ -87,6 +87,8 @@ public class MyPopupMenu {
         show(-1);
     }
 
+    private OnDismissListener onDismissListener;
+
     public void show(int pos) {
 
         final ListPopupWindow p1 = new ListPopupWindow(c);
@@ -104,6 +106,9 @@ public class MyPopupMenu {
                     if (AppState.get().isFullScreen) {
                         Keyboards.hideNavigation((Activity) c);
                     }
+                }
+                if (onDismissListener != null) {
+                    onDismissListener.onDismiss();
                 }
 
             }
@@ -237,6 +242,10 @@ public class MyPopupMenu {
 
     public void setAnchor(View anchor) {
         this.anchor = anchor;
+    }
+
+    public void setOnDismissListener(OnDismissListener onDismissListener) {
+        this.onDismissListener = onDismissListener;
     }
 
 }

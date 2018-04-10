@@ -464,4 +464,5 @@
    <string name="disable_swipe_gestures_for_page_paging">Disable swipe gestures for page paging</string>
    <string name="add_keywords_to_genres">Add keywords to genres</string>
    <string name="turn_off">Turn Off</string>
+   <string name="crop_off">Crop off</string>
 </resources>

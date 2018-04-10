@@ -463,4 +463,6 @@
    <string name="replacing_the_white_color_in_the_images_with_the_background_color">Vaizdų baltos spalvos pakeitimas fono spalva</string>
    <string name="disable_swipe_gestures_for_page_paging">Išjunkite puslapių ieškos sparčiuosius gestus</string>
    <string name="add_keywords_to_genres">Pridėti raktinius žodžius į žanrus</string>
+   <string name="turn_off">Išjunk</string>
+   <string name="crop_off">Iškirpti</string>
 </resources>

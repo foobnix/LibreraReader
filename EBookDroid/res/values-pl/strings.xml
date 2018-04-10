@@ -463,4 +463,6 @@
    <string name="replacing_the_white_color_in_the_images_with_the_background_color">Zastępowanie koloru białego na zdjęciach kolorem tła</string>
    <string name="disable_swipe_gestures_for_page_paging">Wyłącz gesty przesunięcia dla stronicowania stron</string>
    <string name="add_keywords_to_genres">Dodaj słowa kluczowe do gatunków</string>
+   <string name="turn_off">Wyłączyć</string>
+   <string name="crop_off">Przycinaj</string>
 </resources>

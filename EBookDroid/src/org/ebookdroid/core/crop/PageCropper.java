@@ -52,7 +52,7 @@ public class PageCropper {
                     continue;
                 }
 
-                if (MagicHelper.isColorDarkSimple(p)) {
+                if (p == Color.BLACK || MagicHelper.isColorDarkSimple(p)) {
                     if (x < topX)
                         topX = x;
                     if (y < topY)
@@ -84,7 +84,7 @@ public class PageCropper {
             bottomX = width;
         }
 
-        float k = 0.01f;
+        float k = 0.02f;
         float left = Math.max(0, (float) topX / width - k);
         float top = Math.max(0, (float) topY / height - k);
 

@@ -463,4 +463,6 @@
    <string name="replacing_the_white_color_in_the_images_with_the_background_color">Remplacer la couleur blanche dans les images par la couleur de fond</string>
    <string name="disable_swipe_gestures_for_page_paging">Désactiver les gestes de balayage pour la pagination de la page</string>
    <string name="add_keywords_to_genres">Ajouter des mots-clés aux genres</string>
+   <string name="turn_off">Éteindre</string>
+   <string name="crop_off">Recadrer</string>
 </resources>

@@ -100,6 +100,7 @@ import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.PopupWindow.OnDismissListener;
 import android.widget.RelativeLayout;
 import android.widget.SeekBar;
 import android.widget.TextView;
@@ -551,13 +552,12 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
 
             @Override
             public void onClick(final View v) {
-
                 MyPopupMenu popup = new MyPopupMenu(dc.getActivity(), v);
 
-                List<Integer> values = Arrays.asList(-2, 0, 1, 2, 5, 10, 15, -1);
+                List<Integer> values = Arrays.asList(-2, 0, 5, 10, 15, -1);
 
                 for (final int i : values) {
-                    String name = "Crop " + i + "%";
+                    String name = getString(R.string.crop_off) + " " + i + "%";
                     if (i == 0) {
                         name = dc.getString(R.string.automatic);
                     }
@@ -615,7 +615,18 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
                     }
 
                 }
+
                 popup.show();
+
+                adFrame.setTag("activated");
+                adFrame.setVisibility(View.GONE);
+                popup.setOnDismissListener(new OnDismissListener() {
+
+                    @Override
+                    public void onDismiss() {
+                        adFrame.setTag(null);
+                    }
+                });
 
             }
         });
@@ -925,7 +936,7 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
                     adFrame.setVisibility(View.GONE);
                     adFrame.setClickable(false);
                 } else {
-                    if (AppState.get().isEditMode) {
+                    if (AppState.get().isEditMode && adFrame.getTag() == null) {
                         adFrame.setVisibility(View.VISIBLE);
                         adFrame.setClickable(true);
                     } else {
@@ -1909,7 +1920,7 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
             });
 
         } else {
-            if (anchor.getVisibility() == View.GONE) {
+            if (anchor.getVisibility() == View.GONE && adFrame.getVisibility() == View.VISIBLE) {
                 adFrame.startAnimation(adsHide);
             }
             actionBar.startAnimation(hideActionBar);

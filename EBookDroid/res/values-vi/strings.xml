@@ -463,4 +463,6 @@
    <string name="replacing_the_white_color_in_the_images_with_the_background_color">Thay thế màu trắng trong các hình ảnh với màu nền</string>
    <string name="disable_swipe_gestures_for_page_paging">Tắt cử chỉ vuốt để phân trang trang</string>
    <string name="add_keywords_to_genres">Thêm từ khoá vào thể loại</string>
+   <string name="turn_off">Tắt</string>
+   <string name="crop_off">Cắt bỏ</string>
 </resources>
