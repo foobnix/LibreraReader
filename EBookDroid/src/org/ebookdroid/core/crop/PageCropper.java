@@ -2,6 +2,7 @@ package org.ebookdroid.core.crop;
 
 import com.foobnix.android.utils.Dips;
 import com.foobnix.android.utils.LOG;
+import com.foobnix.pdf.info.wrapper.AppState;
 import com.foobnix.pdf.info.wrapper.MagicHelper;
 
 import android.graphics.Bitmap;
@@ -28,10 +29,24 @@ public class PageCropper {
 
         int dx = Math.max(1, bitmap1.getHeight() / MAX_HEIGHT);
         int dy = Math.max(1, bitmap1.getWidth() / MAX_WIDTH);
-        LOG.d("getCropBounds-dx-dy", dx, dy);
 
-        for (int y = 0; y < height; y += dx) {
-            for (int x = 0; x < width; x += dy) {
+        int minY = 0;
+        int minX = 0;
+        int maxY = height;
+        int maxX = width;
+
+        if (AppState.get().minCropPercent > 0) {
+            minY = height * AppState.get().minCropPercent / 100;
+            minX = width * AppState.get().minCropPercent / 100;
+
+            maxY = height - minY;
+            maxX = width - minX;
+        }
+
+        LOG.d("getCropBounds-dx-dy", dx, dy, minY, minX, maxY, maxX);
+
+        for (int y = minY; y < maxY; y += dx) {
+            for (int x = minX; x < maxX; x += dy) {
                 int p = bitmap1.getPixel(x, y);
                 if (p == Color.WHITE || p == f || p == f2) {
                     continue;
@@ -69,7 +84,7 @@ public class PageCropper {
             bottomX = width;
         }
 
-        float k = 0.02f;
+        float k = 0.01f;
         float left = Math.max(0, (float) topX / width - k);
         float top = Math.max(0, (float) topY / height - k);
 

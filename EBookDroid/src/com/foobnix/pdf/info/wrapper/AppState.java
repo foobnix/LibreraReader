@@ -334,6 +334,7 @@ public class AppState {
     public String musicText = "Musician";
 
     public boolean isCrop = false;
+    public int minCropPercent = 0;
     public boolean isCut = false;
     public boolean isDouble = false;
     public boolean isDoubleCoverAlone = false;

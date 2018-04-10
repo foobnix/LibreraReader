@@ -1,6 +1,7 @@
 package com.foobnix.pdf.search.activity;
 
 import java.io.File;
+import java.util.Arrays;
 import java.util.List;
 import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
@@ -12,6 +13,7 @@ import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
 
 import com.foobnix.android.utils.Dips;
+import com.foobnix.android.utils.IntegerResponse;
 import com.foobnix.android.utils.Keyboards;
 import com.foobnix.android.utils.LOG;
 import com.foobnix.android.utils.ResultResponse;
@@ -548,14 +550,73 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
         onCrop.setOnClickListener(new View.OnClickListener() {
 
             @Override
-            public void onClick(View v) {
-                AppState.get().isCrop = !AppState.get().isCrop;
-                SettingsManager.getBookSettings().cropPages = AppState.get().isCrop;
-                reloadDoc.run();
-                onCrop.underline(AppState.get().isCrop);
+            public void onClick(final View v) {
 
-                PageImageState.get().isAutoFit = true;
-                EventBus.getDefault().post(new MessageAutoFit(viewPager.getCurrentItem()));
+                MyPopupMenu popup = new MyPopupMenu(dc.getActivity(), v);
+
+                List<Integer> values = Arrays.asList(-2, 0, 1, 2, 5, 10, 15, -1);
+
+                for (final int i : values) {
+                    String name = "Crop " + i + "%";
+                    if (i == 0) {
+                        name = dc.getString(R.string.automatic);
+                    }
+                    if (i == -1) {
+                        name = dc.getString(R.string.custom_value);
+                    }
+                    if (i == -2) {
+                        name = dc.getString(R.string.turn_off);
+                    }
+
+                    if (i == -1) {
+                        popup.getMenu().add(name).setOnMenuItemClickListener(new OnMenuItemClickListener() {
+
+                            @Override
+                            public boolean onMenuItemClick(MenuItem item) {
+                                Dialogs.customValueDialog(v.getContext(), AppState.get().minCropPercent, new IntegerResponse() {
+
+                                    @Override
+                                    public boolean onResultRecive(int result) {
+                                        AppState.get().isCrop = true;
+                                        AppState.get().minCropPercent = result;
+                                        SettingsManager.getBookSettings().cropPages = AppState.get().isCrop;
+                                        reloadDoc.run();
+                                        onCrop.underline(AppState.get().isCrop);
+
+                                        PageImageState.get().isAutoFit = true;
+                                        EventBus.getDefault().post(new MessageAutoFit(viewPager.getCurrentItem()));
+                                        return false;
+                                    }
+                                });
+
+                                return false;
+                            }
+                        });
+                    } else {
+                        popup.getMenu().add(name).setOnMenuItemClickListener(new OnMenuItemClickListener() {
+
+                            @Override
+                            public boolean onMenuItemClick(MenuItem item) {
+                                if (i == -2) {
+                                    AppState.get().isCrop = false;
+                                } else {
+                                    AppState.get().isCrop = true;
+                                    AppState.get().minCropPercent = i;
+                                }
+                                SettingsManager.getBookSettings().cropPages = AppState.get().isCrop;
+                                reloadDoc.run();
+                                onCrop.underline(AppState.get().isCrop);
+
+                                PageImageState.get().isAutoFit = true;
+                                EventBus.getDefault().post(new MessageAutoFit(viewPager.getCurrentItem()));
+                                return false;
+                            }
+                        });
+                    }
+
+                }
+                popup.show();
+
             }
         });
 
@@ -1379,7 +1440,6 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
             doShowHideWrapperControlls();
         }
     };
-
 
     private void doShowHideWrapperControlls() {
         AppState.get().isEditMode = !AppState.get().isEditMode;

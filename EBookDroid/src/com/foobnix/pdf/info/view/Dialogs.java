@@ -53,6 +53,41 @@ import android.widget.Toast;
 
 public class Dialogs {
 
+    public static void customValueDialog(final Context a, final int initValue, final IntegerResponse reponse) {
+        final AlertDialog.Builder builder = new AlertDialog.Builder(a);
+        builder.setTitle(R.string.custom_value);
+
+        final CustomSeek myValue = new CustomSeek(a);
+        myValue.init(1, 100, initValue);
+        myValue.setOnSeekChanged(new IntegerResponse() {
+
+            @Override
+            public boolean onResultRecive(int result) {
+                return false;
+            }
+        });
+        myValue.setValueText(initValue + "%");
+
+        builder.setView(myValue);
+
+        builder.setPositiveButton(R.string.apply, new DialogInterface.OnClickListener() {
+
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                reponse.onResultRecive(myValue.getCurrentValue());
+            }
+        });
+        builder.setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
+
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+
+            }
+        });
+
+        builder.show();
+    }
+
     public static void showLinksColorDialog(final Activity a, final Runnable action) {
         final AlertDialog.Builder builder = new AlertDialog.Builder(a);
         builder.setCancelable(true);
