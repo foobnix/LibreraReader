@@ -18,6 +18,7 @@ public class PdfExtract {
         }
         EbookMeta meta = new EbookMeta(openDocument.getBookTitle(), openDocument.getBookAuthor());
         meta.setPagesCount(openDocument.getPageCount());
+        meta.setKeywords(openDocument.getMeta("info:Keywords"));
         if ("untitled".equals(meta.getTitle())) {
             meta.setTitle("");
         }

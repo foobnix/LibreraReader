@@ -108,8 +108,14 @@ public class FileMetaCore {
             ebookMeta = Fb2Extractor.get().getBookMetaInformation(unZipPath);
         } else if (BookType.MOBI.is(unZipPath)) {
             ebookMeta = MobiExtract.getBookMetaInformation(unZipPath, true);
-        } else if (withDPF && isNeedToExtractPDFMeta(unZipPath)) {
-            ebookMeta = PdfExtract.getBookMetaInformation(unZipPath);
+        } else if (withDPF) {
+            boolean needExtractMeta = isNeedToExtractPDFMeta(unZipPath);
+            EbookMeta local = PdfExtract.getBookMetaInformation(unZipPath);
+            if (needExtractMeta) {
+                ebookMeta = local;
+            }
+            ebookMeta.setKeywords(local.getKeywords());
+
         } else if (BookType.CBR.is(unZipPath) || BookType.CBZ.is(unZipPath)) {
             ebookMeta.setPagesCount(CbzCbrExtractor.getPageCount(unZipPath));
 
@@ -195,11 +201,11 @@ public class FileMetaCore {
 
         fileMeta.setExt(ExtUtils.getFileExtension(file));
         fileMeta.setSizeTxt(ExtUtils.readableFileSize(file.length()));
-        if(BookType.TXT.is(file.getName())) {
+        if (BookType.TXT.is(file.getName())) {
             fileMeta.setDateTxt(ExtUtils.getDateTimeFormat(file));
-        }else {
+        } else {
             fileMeta.setDateTxt(ExtUtils.getDateFormat(file));
-            
+
         }
 
         if (BookType.FB2.is(file.getName())) {
