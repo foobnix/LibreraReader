@@ -30,7 +30,7 @@
    <string name="show_application_close_dialog_every_time">应用退出询问</string>
    <string name="display_all_file_types_in_folders">显示隐藏文件</string>
    <string name="show_the_dialog_what_is_new_for_updates">显示更新信息</string>
-   <string name="what_is_new_in">了解</string>
+   <string name="what_is_new_in">更新说明</string>
    <string name="full_list_of_changes_with_images_web_pdf_">了解详细信息...</string>
    <string name="search_for_text_in_documents">多文件中搜索</string>
    <string name="search_in_the_subfolders">子文件夹</string>
@@ -52,7 +52,7 @@
    <string name="export_">导出 ...</string>
    <string name="automatic_export_backup">自动备份设置，进度，书签，并导出。</string>
    <string name="product">产品</string>
-   <string name="version">版本号</string>
+   <string name="version">当前版本</string>
    <string name="licence_gnu_gpl_v3_0">授权方式: GNU GPL v3.0</string>
    <string name="licenses_for_libraries">许可证</string>
    <string name="autor_ivan_ivanenko">作者: Ivan Ivanenko</string>
@@ -302,7 +302,7 @@
    <string name="by_pages">按页/滚动</string>
    <string name="by_screans">按屏/滚动</string>
    <string name="of_screen">滚距</string>
-   <string name="custom_value">自定/滚距</string>
+   <string name="custom_value">自定义/值</string>
    <string name="automatic_page_flipping">自动翻页</string>
    <string name="interval_sec_">间隔（秒）</string>
    <string name="loop_autoplay">启用自动循环</string>
@@ -463,6 +463,6 @@
    <string name="replacing_the_white_color_in_the_images_with_the_background_color">一致化背景色</string>
    <string name="disable_swipe_gestures_for_page_paging">禁用轻扫翻页</string>
    <string name="add_keywords_to_genres">文件主名</string>
-   <string name="turn_off">关掉</string>
-   <string name="crop_off">剪掉</string>
+   <string name="turn_off">关闭</string>
+   <string name="crop_off">裁切</string>
 </resources>
