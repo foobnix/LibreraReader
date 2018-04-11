@@ -240,8 +240,9 @@ public class BookCSS {
             if (fontName.startsWith(dispalyName) || fontName.equals(dispalyName)) {
 
                 if (fontName.equals(dispalyName) || fontName.contains("regular") || fontName.contains("normal") || fontName.contains("light") || fontName.contains("medium") || fontName.endsWith("me")) {
-                    normalFont = fullName;
-
+                    if (!fontName.contains("regularitalic")) {
+                        normalFont = fullName;
+                    }
                 } else if (fontName.contains("bolditalic") || fontName.contains("boldoblique") || fontName.contains("boldit") || fontName.contains("boit") || fontName.contains("bold it")
                         || fontName.contains("bold italic")) {
                     boldItalicFont = fullName;
