@@ -175,6 +175,79 @@ public class DragingDialogs {
 
     }
 
+    public static void customCropDialog(final FrameLayout anchor, final DocumentController controller, final Runnable onCropChange) {
+
+        DragingPopup dialog = new DragingPopup(R.string.custom_value, anchor, 380, 260) {
+
+            @Override
+            @SuppressLint("NewApi")
+            public View getContentView(LayoutInflater inflater) {
+                final Activity activity = controller.getActivity();
+                final View inflate = inflater.inflate(R.layout.dialog_custom_crop, null, false);
+
+                // Margins
+                final CustomSeek marginTop = (CustomSeek) inflate.findViewById(R.id.marginTop);
+                marginTop.init(0, 30, AppState.get().cropTop);
+                marginTop.setOnSeekChanged(new IntegerResponse() {
+
+                    @Override
+                    public boolean onResultRecive(int result) {
+                        AppState.get().cropTop = result;
+                        onCropChange.run();
+                        return false;
+                    }
+                });
+
+                final CustomSeek marginBottom = (CustomSeek) inflate.findViewById(R.id.marginBottom);
+                marginBottom.init(0, 30, AppState.get().cropBottom);
+                marginBottom.setOnSeekChanged(new IntegerResponse() {
+
+                    @Override
+                    public boolean onResultRecive(int result) {
+                        AppState.get().cropBottom = result;
+                        onCropChange.run();
+                        return false;
+                    }
+                });
+
+                final CustomSeek marginLeft = (CustomSeek) inflate.findViewById(R.id.marginLeft);
+                marginLeft.init(0, 30, AppState.get().cropLeft);
+                marginLeft.setOnSeekChanged(new IntegerResponse() {
+
+                    @Override
+                    public boolean onResultRecive(int result) {
+                        AppState.get().cropLeft = result;
+                        onCropChange.run();
+                        return false;
+                    }
+                });
+
+                final CustomSeek marginRight = (CustomSeek) inflate.findViewById(R.id.marginRight);
+                marginRight.init(0, 30, AppState.get().cropRigth);
+                marginRight.setOnSeekChanged(new IntegerResponse() {
+
+                    @Override
+                    public boolean onResultRecive(int result) {
+                        AppState.get().cropRigth = result;
+                        onCropChange.run();
+                        return false;
+                    }
+                });
+
+                return inflate;
+            }
+        };
+        dialog.setOnCloseListener(new Runnable() {
+
+            @Override
+            public void run() {
+
+            }
+        });
+        dialog.show("Sample");
+
+    }
+
     public static void contrastAndBrigtness(final FrameLayout anchor, final DocumentController controller, final Runnable onRealod, final Runnable onRestart) {
 
         DragingPopup dialog = new DragingPopup(R.string.contrast_and_brightness, anchor, 300, 280) {

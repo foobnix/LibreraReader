@@ -1,8 +1,9 @@
 package com.foobnix.pdf.search.activity;
 
 import java.io.File;
-import java.util.Arrays;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
 
@@ -13,7 +14,6 @@ import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
 
 import com.foobnix.android.utils.Dips;
-import com.foobnix.android.utils.IntegerResponse;
 import com.foobnix.android.utils.Keyboards;
 import com.foobnix.android.utils.LOG;
 import com.foobnix.android.utils.ResultResponse;
@@ -554,38 +554,35 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
             public void onClick(final View v) {
                 MyPopupMenu popup = new MyPopupMenu(dc.getActivity(), v);
 
-                List<Integer> values = Arrays.asList(-2, 0, 5, 10, 15, -1);
+                Map<Integer, String> map = new LinkedHashMap<>();
+                map.put(-2, dc.getString(R.string.turn_off));
+                map.put(0, dc.getString(R.string.automatic));
+                map.put(5, dc.getString(R.string.crop_off) + " 5%");
+                map.put(10, dc.getString(R.string.crop_off) + " 10%");
+                map.put(15, dc.getString(R.string.crop_off) + " 15%");
+                map.put(-1, dc.getString(R.string.custom_value));
 
-                for (final int i : values) {
-                    String name = getString(R.string.crop_off) + " " + i + "%";
-                    if (i == 0) {
-                        name = dc.getString(R.string.automatic);
-                    }
-                    if (i == -1) {
-                        name = dc.getString(R.string.custom_value);
-                    }
-                    if (i == -2) {
-                        name = dc.getString(R.string.turn_off);
-                    }
+                for (final int i : map.keySet()) {
 
                     if (i == -1) {
-                        popup.getMenu().add(name).setOnMenuItemClickListener(new OnMenuItemClickListener() {
+                        popup.getMenu().add(map.get(i)).setOnMenuItemClickListener(new OnMenuItemClickListener() {
 
                             @Override
                             public boolean onMenuItemClick(MenuItem item) {
-                                Dialogs.customValueDialog(v.getContext(), AppState.get().minCropPercent, new IntegerResponse() {
+                                DragingDialogs.customCropDialog(anchor, dc, new Runnable() {
 
                                     @Override
-                                    public boolean onResultRecive(int result) {
+                                    public void run() {
                                         AppState.get().isCrop = true;
-                                        AppState.get().minCropPercent = result;
-                                        SettingsManager.getBookSettings().cropPages = AppState.get().isCrop;
-                                        reloadDoc.run();
-                                        onCrop.underline(AppState.get().isCrop);
+                                        SettingsManager.getBookSettings().cropPages = true;
+                                        reloadDocBrigntness.run();
+                                        onCrop.underline(true);
 
                                         PageImageState.get().isAutoFit = true;
                                         EventBus.getDefault().post(new MessageAutoFit(viewPager.getCurrentItem()));
-                                        return false;
+
+                                        AppState.get().isEditMode = false;
+                                        hideShow();
                                     }
                                 });
 
@@ -593,7 +590,7 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
                             }
                         });
                     } else {
-                        popup.getMenu().add(name).setOnMenuItemClickListener(new OnMenuItemClickListener() {
+                        popup.getMenu().add(map.get(i)).setOnMenuItemClickListener(new OnMenuItemClickListener() {
 
                             @Override
                             public boolean onMenuItemClick(MenuItem item) {
@@ -601,7 +598,11 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
                                     AppState.get().isCrop = false;
                                 } else {
                                     AppState.get().isCrop = true;
-                                    AppState.get().minCropPercent = i;
+
+                                    AppState.get().cropTop = i;
+                                    AppState.get().cropBottom = i;
+                                    AppState.get().cropLeft = i;
+                                    AppState.get().cropRigth = i;
                                 }
                                 SettingsManager.getBookSettings().cropPages = AppState.get().isCrop;
                                 reloadDoc.run();
@@ -1213,8 +1214,17 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
         public void run() {
             onBC.underline(AppState.get().isEnableBC);
             IMG.clearMemoryCache();
+            int position = viewPager.getCurrentItem();
             ImagePageFragment f2 = (ImagePageFragment) getSupportFragmentManager().findFragmentByTag("f" + (viewPager.getCurrentItem()));
+            LOG.d("reloadDocBrigntness", f2);
             if (f2 != null) {
+
+                final Bundle b = new Bundle();
+                b.putInt(ImagePageFragment.POS, position);
+                b.putString(ImagePageFragment.PAGE_PATH, dc.getPageUrl(position).toString());
+
+                f2.setArguments(b);
+
                 f2.loadImage();
             }
             return;

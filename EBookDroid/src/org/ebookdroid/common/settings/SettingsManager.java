@@ -106,22 +106,6 @@ public class SettingsManager {
         }
     }
 
-    public static boolean toggleCropMode() {
-        if (current == null) {
-            return false;
-        }
-        lock.writeLock().lock();
-        try {
-            if (current != null) {
-                current.cropPages = !current.cropPages;
-                db.storeBookSettings(current);
-            }
-        } finally {
-            lock.writeLock().unlock();
-        }
-
-        return current.cropPages;
-    }
 
     public static boolean toggleCropMode(boolean isCrop) {
         if (current == null) {

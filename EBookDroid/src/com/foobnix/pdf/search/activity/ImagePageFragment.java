@@ -29,12 +29,16 @@ public class ImagePageFragment extends Fragment {
 
     long lifeTime = 0;
 
+    public String getPath() {
+        return getArguments().getString(PAGE_PATH);
+    }
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         final View view = inflater.inflate(R.layout.page_n, container, false);
 
         page = getArguments().getInt(POS);
-        path = getArguments().getString(PAGE_PATH);
+
 
         text = (TextView) view.findViewById(R.id.text1);
         image = (PageImaveView) view.findViewById(R.id.myImage1);
@@ -88,7 +92,7 @@ public class ImagePageFragment extends Fragment {
 
         LOG.d("ImagePageFragment1 loadImage start with lifetime ", page, System.currentTimeMillis() - lifeTime);
 
-        loadImageId = ImageLoader.getInstance().loadImage(path, IMG.ligthOptions, new ImageLoadingListener() {
+        loadImageId = ImageLoader.getInstance().loadImage(getPath(), IMG.ligthOptions, new ImageLoadingListener() {
 
             @Override
             public void onLoadingStarted(String arg0, View arg1) {
@@ -153,7 +157,6 @@ public class ImagePageFragment extends Fragment {
         }
 
     };
-    private String path;
     private PageImaveView image;
     private TextView text;
 

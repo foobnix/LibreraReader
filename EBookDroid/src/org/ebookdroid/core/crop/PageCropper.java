@@ -35,12 +35,12 @@ public class PageCropper {
         int maxY = height;
         int maxX = width;
 
-        if (AppState.get().minCropPercent > 0) {
-            minY = height * AppState.get().minCropPercent / 100;
-            minX = width * AppState.get().minCropPercent / 100;
+        if (AppState.get().cropTop >= 0) {
+            minY = height * AppState.get().cropTop / 100;
+            minX = width * AppState.get().cropLeft / 100;
 
-            maxY = height - minY;
-            maxX = width - minX;
+            maxY = height - height * AppState.get().cropBottom / 100;
+            maxX = width - width * AppState.get().cropRigth / 100;
         }
 
         LOG.d("getCropBounds-dx-dy", dx, dy, minY, minX, maxY, maxX);

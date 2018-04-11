@@ -498,8 +498,8 @@ public class ViewerActivityController extends ActionController<VerticalViewActiv
         currentPageChanged(documentModel.getCurrentIndex(), -1);
     }
 
-    public void toggleCrop() {
-        SettingsManager.toggleCropMode();
+    public void toggleCrop(boolean isCrop) {
+        SettingsManager.toggleCropMode(isCrop);
         getDocumentController().toggleRenderingEffects();
 
         final IViewController newDc = switchDocumentController(SettingsManager.getBookSettings());

@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:myseek="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="2dip" >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:clickable="true"
+        android:gravity="center_vertical" >
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="5dip"
+            android:text="@string/crop_white_borders"
+            android:textSize="14sp"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+    <com.foobnix.pdf.info.view.CustomSeek
+        android:id="@+id/marginTop"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dip"
+        myseek:text="@string/top" >
+    </com.foobnix.pdf.info.view.CustomSeek>
+
+    <com.foobnix.pdf.info.view.CustomSeek
+        android:id="@+id/marginBottom"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dip"
+        myseek:text="@string/bottom" >
+    </com.foobnix.pdf.info.view.CustomSeek>
+
+    <com.foobnix.pdf.info.view.CustomSeek
+        android:id="@+id/marginLeft"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dip"
+        myseek:text="@string/left" >
+    </com.foobnix.pdf.info.view.CustomSeek>
+
+    <com.foobnix.pdf.info.view.CustomSeek
+        android:id="@+id/marginRight"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dip"
+        myseek:text="@string/right" >
+    </com.foobnix.pdf.info.view.CustomSeek>
+
+</LinearLayout>

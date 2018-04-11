@@ -316,8 +316,6 @@ public class AppState {
     @IgnoreHashCode
     public int appBrightness = AUTO_BRIGTNESS;
 
-    public float cropTolerance = 0.5f;
-
     public float ttsSpeed = 1.0f;
     public float ttsPitch = 1.0f;
 
@@ -334,7 +332,12 @@ public class AppState {
     public String musicText = "Musician";
 
     public boolean isCrop = false;
-    public int minCropPercent = 0;
+
+    public int cropTop = 0;
+    public int cropBottom = 0;
+    public int cropLeft = 0;
+    public int cropRigth = 0;
+
     public boolean isCut = false;
     public boolean isDouble = false;
     public boolean isDoubleCoverAlone = false;
