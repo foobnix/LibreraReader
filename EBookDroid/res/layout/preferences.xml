@@ -227,12 +227,6 @@
                 android:layout_height="wrap_content"
                 android:text="@string/in_the_author_s_name_first_the_surname" />
             
-             <CheckBox
-                android:id="@+id/isAddKeywordsToGenres"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/add_keywords_to_genres" />
-            
             
         </LinearLayout>
 

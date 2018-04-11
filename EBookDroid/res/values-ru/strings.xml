@@ -444,7 +444,6 @@
    <string name="no_tag">Без тега</string>
    <string name="add_tag">Добавить тег</string>
    <string name="do_you_want_to_delete_this_tag_from_all_books_">Вы действительно хотите удалить этот тег во всех связанных с ним книгах?</string>
-   <string name="tags">Теги</string>
    <string name="by_number_of_pages">Число страниц</string>
    <string name="by_number_in_serie">Номер в серии</string>
    <string name="by_extension">Тип файла</string>
@@ -462,7 +461,8 @@
    <string name="hyphenation_language">Язык переносов</string>
    <string name="replacing_the_white_color_in_the_images_with_the_background_color">Окрашивать белый фон изображений в цвет фона страниц</string>
    <string name="disable_swipe_gestures_for_page_paging">Отключить возможность листания страниц свайпами</string>
-   <string name="add_keywords_to_genres">Добавлять ключевые слова к жанрам</string>
    <string name="turn_off">Выключить</string>
    <string name="crop_off">Обрезать</string>
+   <string name="no_keywords">Нет ключевых слов</string>
+   <string name="my_tags">Мои теги</string>
 </resources>

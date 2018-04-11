@@ -444,7 +444,6 @@
    <string name="no_tag">لا علامه</string>
    <string name="add_tag">إضافة علامة</string>
    <string name="do_you_want_to_delete_this_tag_from_all_books_">هل تريد حذف هذه العلامة من جميع الكتب؟</string>
-   <string name="tags">الكلمات</string>
    <string name="by_number_of_pages">عدد الصفحات</string>
    <string name="by_number_in_serie">الرقم في دوري الدرجة الاولى الايطالي</string>
    <string name="by_extension">تمديد</string>
@@ -462,7 +461,8 @@
    <string name="hyphenation_language">لغة الوصل</string>
    <string name="replacing_the_white_color_in_the_images_with_the_background_color">استبدال اللون الأبيض في الصور بلون الخلفية</string>
    <string name="disable_swipe_gestures_for_page_paging">تعطيل إيماءات التمرير لصفحة الترحيل</string>
-   <string name="add_keywords_to_genres">أضف كلمات رئيسية إلى أنواع</string>
    <string name="turn_off">أطفأ</string>
    <string name="crop_off">اقتطع</string>
+   <string name="no_keywords">لا كلمات رئيسية</string>
+   <string name="my_tags">علاماتي</string>
 </resources>

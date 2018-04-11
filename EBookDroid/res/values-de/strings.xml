@@ -444,7 +444,6 @@
    <string name="no_tag">Keine Markierung</string>
    <string name="add_tag">Tag hinzufügen</string>
    <string name="do_you_want_to_delete_this_tag_from_all_books_">Möchten Sie dieses Tag aus allen Büchern löschen?</string>
-   <string name="tags">Stichworte</string>
    <string name="by_number_of_pages">Seitenzahl</string>
    <string name="by_number_in_serie">Nummer in der Serie</string>
    <string name="by_extension">Erweiterung</string>
@@ -462,7 +461,8 @@
    <string name="hyphenation_language">Silbentrennungssprache</string>
    <string name="replacing_the_white_color_in_the_images_with_the_background_color">Ersetzen der weißen Farbe in den Bildern durch die Hintergrundfarbe</string>
    <string name="disable_swipe_gestures_for_page_paging">Deaktivieren Sie Swipe-Gesten für das Seiten-Paging</string>
-   <string name="add_keywords_to_genres">Fügen Sie Stichwörtern zu Genres hinzu</string>
    <string name="turn_off">Abschalten</string>
    <string name="crop_off">Abschneiden</string>
+   <string name="no_keywords">Keine Schlüsselwörter</string>
+   <string name="my_tags">Meine Tags</string>
 </resources>

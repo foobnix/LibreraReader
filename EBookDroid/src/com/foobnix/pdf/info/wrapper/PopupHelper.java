@@ -36,6 +36,10 @@ public class PopupHelper {
             gridList.setImageResource(R.drawable.glyphicons_710_list_numbered);
         } else if (libraryMode == AppState.MODE_GENRE) {
             gridList.setImageResource(R.drawable.glyphicons_66_tag);
+        } else if (libraryMode == AppState.MODE_USER_TAGS) {
+            gridList.setImageResource(R.drawable.glyphicons_66_tag);
+        } else if (libraryMode == AppState.MODE_KEYWORDS) {
+            gridList.setImageResource(R.drawable.glyphicons_66_tag);
         }
     }
 

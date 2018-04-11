@@ -135,6 +135,14 @@ public class FileInformationDialog {
             ((TextView) dialog.findViewById(R.id.metaGenreID)).setVisibility(View.GONE);
         }
 
+        if (TxtUtils.isNotEmpty(fileMeta.getKeyword())) {
+            String list = TxtUtils.firstUppercase(fileMeta.getKeyword().replaceAll(",$", "").replace(",", ", "));
+            ((TextView) dialog.findViewById(R.id.keywordList)).setText(list);
+        } else {
+            ((TextView) dialog.findViewById(R.id.keywordID)).setVisibility(View.GONE);
+            ((TextView) dialog.findViewById(R.id.keywordList)).setVisibility(View.GONE);
+        }
+
         final Runnable tagsRunnable = new Runnable() {
 
             @Override

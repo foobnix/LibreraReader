@@ -444,7 +444,6 @@
    <string name="no_tag">태그 없음</string>
    <string name="add_tag">태그 추가</string>
    <string name="do_you_want_to_delete_this_tag_from_all_books_">모든 책에서이 태그를 삭제 하시겠습니까?</string>
-   <string name="tags">태그</string>
    <string name="by_number_of_pages">페이지 수</string>
    <string name="by_number_in_serie">세리에 번호</string>
    <string name="by_extension">신장</string>
@@ -462,7 +461,8 @@
    <string name="hyphenation_language">하이픈 넣기 언어</string>
    <string name="replacing_the_white_color_in_the_images_with_the_background_color">이미지의 흰색 색상을 배경색으로 바꾸기</string>
    <string name="disable_swipe_gestures_for_page_paging">페이지 페이징을 위해 스 와이프 제스처 사용 중지</string>
-   <string name="add_keywords_to_genres">장르에 키워드 추가</string>
    <string name="turn_off">끄다</string>
    <string name="crop_off">자르기</string>
+   <string name="no_keywords">키워드 없음</string>
+   <string name="my_tags">내 태그</string>
 </resources>

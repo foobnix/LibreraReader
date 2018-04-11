@@ -444,7 +444,6 @@
    <string name="no_tag">Žiadna značka</string>
    <string name="add_tag">Pridať značku</string>
    <string name="do_you_want_to_delete_this_tag_from_all_books_">Chcete túto značku odstrániť zo všetkých kníh?</string>
-   <string name="tags">Tagy</string>
    <string name="by_number_of_pages">Počet stránok</string>
    <string name="by_number_in_serie">Číslo v sérií</string>
    <string name="by_extension">Predĺženie</string>
@@ -462,7 +461,8 @@
    <string name="hyphenation_language">Jazyk slovenia</string>
    <string name="replacing_the_white_color_in_the_images_with_the_background_color">Výmena bielej farby v obraze s farbou pozadia</string>
    <string name="disable_swipe_gestures_for_page_paging">Zakázať gestá na posúvanie stránok</string>
-   <string name="add_keywords_to_genres">Pridajte kľúčové slová do žánrov</string>
    <string name="turn_off">Vypnúť</string>
    <string name="crop_off">Orezanie vypnuté</string>
+   <string name="no_keywords">Žiadne kľúčové slová</string>
+   <string name="my_tags">Moje značky</string>
 </resources>

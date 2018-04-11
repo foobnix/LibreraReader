@@ -444,7 +444,6 @@
    <string name="no_tag">Nincs címke</string>
    <string name="add_tag">Címke hozzáadása</string>
    <string name="do_you_want_to_delete_this_tag_from_all_books_">Szeretné törölni ezt a címkét az összes könyvből?</string>
-   <string name="tags">Címkék</string>
    <string name="by_number_of_pages">Oldalszám</string>
    <string name="by_number_in_serie">Sorszám sorban</string>
    <string name="by_extension">Kiterjesztés</string>
@@ -462,7 +461,8 @@
    <string name="hyphenation_language">Elválasztási nyelv</string>
    <string name="replacing_the_white_color_in_the_images_with_the_background_color">A háttérszín színes felvétele a képeken</string>
    <string name="disable_swipe_gestures_for_page_paging">Letiltható kézmozdulatok letiltása lapozáshoz</string>
-   <string name="add_keywords_to_genres">Kulcsszavak hozzáadása a műfajokhoz</string>
    <string name="turn_off">Kikapcsolni</string>
    <string name="crop_off">Elvágás</string>
+   <string name="no_keywords">Nincsenek kulcsszavak</string>
+   <string name="my_tags">A címkéim</string>
 </resources>

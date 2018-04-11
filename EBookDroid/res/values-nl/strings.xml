@@ -444,7 +444,6 @@
    <string name="no_tag">Geen tag</string>
    <string name="add_tag">Tag toevoegen</string>
    <string name="do_you_want_to_delete_this_tag_from_all_books_">Wil je deze tag uit alle boeken verwijderen?</string>
-   <string name="tags">Tags</string>
    <string name="by_number_of_pages">Aantal pagina\'s</string>
    <string name="by_number_in_serie">Nummer in serie</string>
    <string name="by_extension">Uitbreiding</string>
@@ -462,7 +461,8 @@
    <string name="hyphenation_language">Woordafbreking taal</string>
    <string name="replacing_the_white_color_in_the_images_with_the_background_color">De witte kleur in de afbeeldingen vervangen door de achtergrondkleur</string>
    <string name="disable_swipe_gestures_for_page_paging">Schakel veegbewegingen uit voor paginapaging</string>
-   <string name="add_keywords_to_genres">Voeg trefwoorden toe aan genres</string>
    <string name="turn_off">Uitschakelen</string>
    <string name="crop_off">Snij uit</string>
+   <string name="no_keywords">Geen zoekwoorden</string>
+   <string name="my_tags">Mijn tags</string>
 </resources>

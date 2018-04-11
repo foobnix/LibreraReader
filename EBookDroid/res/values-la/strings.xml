@@ -444,7 +444,6 @@
    <string name="no_tag">Non tag</string>
    <string name="add_tag">Add tag</string>
    <string name="do_you_want_to_delete_this_tag_from_all_books_">Non vis ut delete is ab omnibus libris tag?</string>
-   <string name="tags">Tags</string>
    <string name="by_number_of_pages">Number of pages</string>
    <string name="by_number_in_serie">Serie in numero</string>
    <string name="by_extension">Extensio</string>
@@ -462,7 +461,8 @@
    <string name="hyphenation_language">Lingua enim repetita</string>
    <string name="replacing_the_white_color_in_the_images_with_the_background_color">Repositoque color albus in in background color imagines</string>
    <string name="disable_swipe_gestures_for_page_paging">Inactivare ungunt gestibus et pervolutantes page</string>
-   <string name="add_keywords_to_genres">Add to Paradise keywords</string>
    <string name="turn_off">DEFLECTO</string>
    <string name="crop_off">Off Crop</string>
+   <string name="no_keywords">Non keywords</string>
+   <string name="my_tags">Tags meum</string>
 </resources>

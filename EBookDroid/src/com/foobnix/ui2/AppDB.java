@@ -43,7 +43,8 @@ public class AppDB {
         SERIES(FileMetaDao.Properties.Sequence, AppState.MODE_SERIES), //
         GENRE(FileMetaDao.Properties.Genre, AppState.MODE_GENRE), //
         AUTHOR(FileMetaDao.Properties.Author, AppState.MODE_AUTHORS), //
-        TAGS(FileMetaDao.Properties.Tag, AppState.MODE_TAGS);
+        TAGS(FileMetaDao.Properties.Tag, AppState.MODE_USER_TAGS), //
+        KEYWRODS(FileMetaDao.Properties.Keyword, AppState.MODE_KEYWORDS);
         // ANNOT(FileMetaDao.Properties.Annotation, -1); //
         // REGEX(FileMetaDao.Properties.Path, -1);//
         //
@@ -150,7 +151,6 @@ public class AppDB {
         SQLiteDatabase writableDatabase = helper.getWritableDatabase();
         DaoMaster daoMaster = new DaoMaster(writableDatabase);
 
-
         daoSession = daoMaster.newSession();
 
         fileMetaDao = daoSession.getFileMetaDao();
@@ -159,7 +159,6 @@ public class AppDB {
         // QueryBuilder.LOG_SQL = true;
         // QueryBuilder.LOG_VALUES = true;
         // }
-
 
     }
 

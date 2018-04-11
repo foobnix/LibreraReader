@@ -444,7 +444,6 @@
    <string name="no_tag">Aucun tag</string>
    <string name="add_tag">Ajouter une étiquette</string>
    <string name="do_you_want_to_delete_this_tag_from_all_books_">Voulez-vous supprimer cette balise de tous les livres?</string>
-   <string name="tags">Mots clés</string>
    <string name="by_number_of_pages">Nombre de pages</string>
    <string name="by_number_in_serie">Numéro en série</string>
    <string name="by_extension">Extension</string>
@@ -462,7 +461,8 @@
    <string name="hyphenation_language">Césure</string>
    <string name="replacing_the_white_color_in_the_images_with_the_background_color">Remplacer la couleur blanche dans les images par la couleur de fond</string>
    <string name="disable_swipe_gestures_for_page_paging">Désactiver les gestes de balayage pour la pagination de la page</string>
-   <string name="add_keywords_to_genres">Ajouter des mots-clés aux genres</string>
    <string name="turn_off">Éteindre</string>
    <string name="crop_off">Recadrer</string>
+   <string name="no_keywords">Aucun mot-clé</string>
+   <string name="my_tags">Mes tags</string>
 </resources>

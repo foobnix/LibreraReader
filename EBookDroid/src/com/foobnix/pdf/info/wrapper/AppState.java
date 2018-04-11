@@ -209,7 +209,8 @@ public class AppState {
     public final static int MODE_GENRE = 5;
     public final static int MODE_SERIES = 6;
     public final static int MODE_LIST_COMPACT = 7;
-    public final static int MODE_TAGS = 8;
+    public final static int MODE_USER_TAGS = 8;
+    public final static int MODE_KEYWORDS = 9;
 
     public final static int BOOKMARK_MODE_BY_DATE = 1;
     public final static int BOOKMARK_MODE_BY_BOOK = 2;
@@ -459,7 +460,6 @@ public class AppState {
     public boolean isShowCloseAppDialog = true;
 
     public boolean isFirstSurname = false;
-    public boolean isAddKeywordsToGenres = false;
 
     public boolean isOLED = false;
 

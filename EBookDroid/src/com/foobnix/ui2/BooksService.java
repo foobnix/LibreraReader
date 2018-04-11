@@ -179,6 +179,7 @@ public class BooksService extends IntentService {
                 }
 
                 AppDB.get().updateAll(itemsMeta);
+                sendFinishMessage();
 
                 for (FileMeta meta : itemsMeta) {
                     EbookMeta ebookMeta = FileMetaCore.get().getEbookMeta(meta.getPath(), CacheDir.ZipService, true);

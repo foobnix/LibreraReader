@@ -444,7 +444,6 @@
    <string name="no_tag">No tag</string>
    <string name="add_tag">Add tag</string>
    <string name="do_you_want_to_delete_this_tag_from_all_books_">Do you want to delete this tag from all books?</string>
-   <string name="tags">Tags</string>
    <string name="by_number_of_pages">Number of pages</string>
    <string name="by_number_in_serie">Number in serie</string>
    <string name="by_extension">Extension</string>
@@ -462,7 +461,8 @@
    <string name="hyphenation_language">Hyphenation language</string>
    <string name="replacing_the_white_color_in_the_images_with_the_background_color">Replacing the white color in the images with the background color</string>
    <string name="disable_swipe_gestures_for_page_paging">Disable swipe gestures for page paging</string>
-   <string name="add_keywords_to_genres">Add keywords to genres</string>
    <string name="turn_off">Turn Off</string>
    <string name="crop_off">Crop off</string>
+   <string name="no_keywords">No keywords</string>
+   <string name="my_tags">My tags</string>
 </resources>

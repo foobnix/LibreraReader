@@ -444,7 +444,6 @@
    <string name="no_tag">אין תג</string>
    <string name="add_tag">הוסף תגית</string>
    <string name="do_you_want_to_delete_this_tag_from_all_books_">האם ברצונך למחוק תג זה מכל הספרים?</string>
-   <string name="tags">תגים</string>
    <string name="by_number_of_pages">מספר דפים</string>
    <string name="by_number_in_serie">מספר בסרי</string>
    <string name="by_extension">סיומת</string>
@@ -462,7 +461,8 @@
    <string name="hyphenation_language">שפת מיקוף</string>
    <string name="replacing_the_white_color_in_the_images_with_the_background_color">החלפת צבע לבן בתמונות עם צבע הרקע</string>
    <string name="disable_swipe_gestures_for_page_paging">השבת תנועות מחיקת תנועות עבור הדפסת עמודים</string>
-   <string name="add_keywords_to_genres">הוסף מילות מפתח לז\'אנרים</string>
    <string name="turn_off">לכבות</string>
    <string name="crop_off">לחתוך</string>
+   <string name="no_keywords">אין מילות מפתח</string>
+   <string name="my_tags">התגים שלי</string>
 </resources>

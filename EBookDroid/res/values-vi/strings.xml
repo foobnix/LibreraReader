@@ -444,7 +444,6 @@
    <string name="no_tag">Không có thẻ</string>
    <string name="add_tag">Thêm thẻ</string>
    <string name="do_you_want_to_delete_this_tag_from_all_books_">Bạn có muốn xóa thẻ này khỏi tất cả sách?</string>
-   <string name="tags">Thẻ</string>
    <string name="by_number_of_pages">Số trang</string>
    <string name="by_number_in_serie">Số trong serie</string>
    <string name="by_extension">Sự mở rộng</string>
@@ -462,7 +461,8 @@
    <string name="hyphenation_language">Ngôn ngữ phân cách</string>
    <string name="replacing_the_white_color_in_the_images_with_the_background_color">Thay thế màu trắng trong các hình ảnh với màu nền</string>
    <string name="disable_swipe_gestures_for_page_paging">Tắt cử chỉ vuốt để phân trang trang</string>
-   <string name="add_keywords_to_genres">Thêm từ khoá vào thể loại</string>
    <string name="turn_off">Tắt</string>
    <string name="crop_off">Cắt bỏ</string>
+   <string name="no_keywords">Không có từ khoá</string>
+   <string name="my_tags">Thẻ của tôi</string>
 </resources>

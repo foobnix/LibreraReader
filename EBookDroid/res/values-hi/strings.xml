@@ -444,7 +444,6 @@
    <string name="no_tag">कोई टैग नहीं</string>
    <string name="add_tag">टैग जोड़ो</string>
    <string name="do_you_want_to_delete_this_tag_from_all_books_">क्या आप सभी टैगों से इस टैग को हटाना चाहते हैं?</string>
-   <string name="tags">टैग</string>
    <string name="by_number_of_pages">पृष्ठों की संख्या</string>
    <string name="by_number_in_serie">श्रृंखला में नंबर</string>
    <string name="by_extension">एक्सटेंशन</string>
@@ -462,7 +461,8 @@
    <string name="hyphenation_language">हायफिनेशन भाषा</string>
    <string name="replacing_the_white_color_in_the_images_with_the_background_color">पृष्ठभूमि रंग के साथ चित्रों में सफ़ेद रंग की जगह</string>
    <string name="disable_swipe_gestures_for_page_paging">पृष्ठ पेजिंग के लिए ज़ोर से मारना इशारों को अक्षम करें</string>
-   <string name="add_keywords_to_genres">शैलियों में कीवर्ड जोड़ें</string>
    <string name="turn_off">बंद करें</string>
    <string name="crop_off">फसल बंद</string>
+   <string name="no_keywords">कोई कीवर्ड नहीं</string>
+   <string name="my_tags">मेरे टैग</string>
 </resources>

@@ -150,7 +150,7 @@ public class ShareDialog {
             items.add(a.getString(R.string.send_snapshot_of_the_page) + " " + (Math.max(page, 0) + 1) + "");
         }
 
-        items.add(a.getString(R.string.tags));
+        items.add(a.getString(R.string.my_tags));
         if (isShowInfo) {
             items.add(a.getString(R.string.file_info));
         }

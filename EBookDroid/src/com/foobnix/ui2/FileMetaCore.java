@@ -179,6 +179,7 @@ public class FileMetaCore {
         fileMeta.setSIndex(meta.getsIndex());
         fileMeta.setChild(ExtUtils.getFileExtension(meta.getUnzipPath()));
         fileMeta.setLang(TxtUtils.toLowerCase(meta.getLang()));
+        fileMeta.setKeyword(meta.getKeywords());
         int pagesCount = meta.getPagesCount();
         if (pagesCount != 0) {
             fileMeta.setPages(pagesCount);

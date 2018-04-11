@@ -444,7 +444,6 @@
    <string name="no_tag">タグなし</string>
    <string name="add_tag">タグ付けする</string>
    <string name="do_you_want_to_delete_this_tag_from_all_books_">このタグをすべての書籍から削除しますか？</string>
-   <string name="tags">タグ</string>
    <string name="by_number_of_pages">ページ数</string>
    <string name="by_number_in_serie">セリエの数</string>
    <string name="by_extension">拡張</string>
@@ -462,7 +461,8 @@
    <string name="hyphenation_language">ハイフネーション言語</string>
    <string name="replacing_the_white_color_in_the_images_with_the_background_color">イメージ内の白色を背景色に置き換える</string>
    <string name="disable_swipe_gestures_for_page_paging">ページページングのスワイプジェスチャーを無効にする</string>
-   <string name="add_keywords_to_genres">ジャンルにキーワードを追加する</string>
    <string name="turn_off">消す</string>
    <string name="crop_off">切り取る</string>
+   <string name="no_keywords">キーワードなし</string>
+   <string name="my_tags">私のタグ</string>
 </resources>

@@ -444,7 +444,6 @@
    <string name="no_tag">بدون برچسب</string>
    <string name="add_tag">برچسب اضافه کنید</string>
    <string name="do_you_want_to_delete_this_tag_from_all_books_">آیا میخواهید این برچسب را از همه کتابها پاک کنید؟</string>
-   <string name="tags">برچسب ها</string>
    <string name="by_number_of_pages">تعدادی از صفحات</string>
    <string name="by_number_in_serie">شماره سریال</string>
    <string name="by_extension">امتداد</string>
@@ -462,7 +461,8 @@
    <string name="hyphenation_language">زبان هیپنوتیزم</string>
    <string name="replacing_the_white_color_in_the_images_with_the_background_color">جایگزین رنگ سفید در تصاویر با رنگ پس زمینه</string>
    <string name="disable_swipe_gestures_for_page_paging">غیرفعال کردن حرکات ضربه تند وشدید زدن برای صفحه بندی صفحه</string>
-   <string name="add_keywords_to_genres">کلمات کلیدی را به ژانرهای اضافه کنید</string>
    <string name="turn_off">خاموش</string>
    <string name="crop_off">برداشتن</string>
+   <string name="no_keywords">بدون کلید واژه</string>
+   <string name="my_tags">برچسب های من</string>
 </resources>

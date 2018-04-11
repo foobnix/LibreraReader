@@ -290,22 +290,6 @@ public class Fb2Extractor extends BaseExtractor {
                 firstName = temp;
             }
 
-            if (AppState.get().isAddKeywordsToGenres && TxtUtils.isNotEmpty(keywords)) {
-                LOG.d("keywords before", genre);
-
-                if (keywords.contains(",") || keywords.contains(";")) {
-                    keywords = keywords.replace("; ", ",").replace(", ", ",");
-                } else {
-                    keywords = keywords.replace(". ", ",");
-                }
-
-                if (TxtUtils.isEmpty(genre)) {
-                    genre = keywords;
-                } else {
-                    genre = genre + "," + keywords;
-                }
-                LOG.d("keywords after", genre);
-            }
             genre = genre.replace(",,", ",") + ",";
 
             loadGenres();
@@ -325,6 +309,7 @@ public class Fb2Extractor extends BaseExtractor {
                 try {
                     ebookMeta.setLang(lang);
                     ebookMeta.setsIndex(Integer.parseInt(number));
+                    ebookMeta.setKeywords(keywords);
                     // ebookMeta.setPagesCount((int) fileSize / 512);
                 } catch (Exception e) {
                     LOG.e(e);
@@ -333,6 +318,7 @@ public class Fb2Extractor extends BaseExtractor {
             } else {
                 EbookMeta ebookMeta = new EbookMeta(bookTitle, firstName + " " + lastName, sequence, genre);
                 ebookMeta.setLang(lang);
+                ebookMeta.setKeywords(keywords);
                 // ebookMeta.setPagesCount((int) fileSize / 512);
                 return ebookMeta;
             }

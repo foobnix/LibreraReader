@@ -444,7 +444,6 @@
    <string name="no_tag">Etiket yok</string>
    <string name="add_tag">Etiket ekle</string>
    <string name="do_you_want_to_delete_this_tag_from_all_books_">Bu etiketi tüm kitaplardan silmek istiyor musunuz?</string>
-   <string name="tags">Etiketler</string>
    <string name="by_number_of_pages">Sayfa sayısı</string>
    <string name="by_number_in_serie">Seri numarası</string>
    <string name="by_extension">Uzantı</string>
@@ -462,7 +461,8 @@
    <string name="hyphenation_language">Tireleme dili</string>
    <string name="replacing_the_white_color_in_the_images_with_the_background_color">Resimdeki beyaz rengi arka plan rengiyle değiştirme</string>
    <string name="disable_swipe_gestures_for_page_paging">Sayfa sayfalama için kaydırma hareketlerini devre dışı bırak</string>
-   <string name="add_keywords_to_genres">Anahtar kelimeleri türlere ekleyin</string>
    <string name="turn_off">Kapat</string>
    <string name="crop_off">Kırpma</string>
+   <string name="no_keywords">Anahtar kelime yok</string>
+   <string name="my_tags">Etiketlerim</string>
 </resources>

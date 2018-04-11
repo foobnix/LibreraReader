@@ -65,21 +65,6 @@
             android:layout_marginTop="8dip"
             android:orientation="vertical" >
             
-             <TextView
-                android:id="@+id/tagsID"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="5dip"
-                android:text="@string/tags"
-                android:textStyle="bold" />
-
-            <TextView
-                android:id="@+id/tagsList"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="5dip"
-                android:text="Tags"
-                android:textIsSelectable="true" />
 
             <TextView
                 android:id="@+id/metaSeriesID"
@@ -114,6 +99,40 @@
                 android:text="Genre"
                 android:maxLines="5"
                 android:ellipsize="end"
+                android:textIsSelectable="true" />
+            
+            
+            <TextView
+                android:id="@+id/keywordID"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dip"
+                android:text="@string/keywords"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/keywordList"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dip"
+                android:text="Tags"
+                android:textIsSelectable="true" />
+            
+            
+              <TextView
+                android:id="@+id/tagsID"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dip"
+                android:text="@string/my_tags"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/tagsList"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dip"
+                android:text="Tags"
                 android:textIsSelectable="true" />
             
             
@@ -153,7 +172,7 @@
                 style="@style/textLink"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/tags" />
+                android:text="@string/my_tags" />
 
             <TextView
                 android:id="@+id/delete"

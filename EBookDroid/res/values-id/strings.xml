@@ -444,7 +444,6 @@
    <string name="no_tag">Tidak ada tag</string>
    <string name="add_tag">Tambahkan tag</string>
    <string name="do_you_want_to_delete_this_tag_from_all_books_">Apakah Anda ingin menghapus tag ini dari semua buku?</string>
-   <string name="tags">Tag</string>
    <string name="by_number_of_pages">Jumlah halaman</string>
    <string name="by_number_in_serie">Nomor serie</string>
    <string name="by_extension">Perpanjangan</string>
@@ -462,7 +461,8 @@
    <string name="hyphenation_language">Bahasa hyphenation</string>
    <string name="replacing_the_white_color_in_the_images_with_the_background_color">Mengganti warna putih pada gambar dengan warna latar belakang</string>
    <string name="disable_swipe_gestures_for_page_paging">Nonaktifkan gestur gesek untuk halaman halaman</string>
-   <string name="add_keywords_to_genres">Tambahkan kata kunci ke genre</string>
    <string name="turn_off">Matikan</string>
    <string name="crop_off">Pangkas</string>
+   <string name="no_keywords">Tidak ada kata kunci</string>
+   <string name="my_tags">Tag saya</string>
 </resources>

@@ -764,18 +764,6 @@ public class PrefFragment2 extends UIFragment {
             }
         });
 
-        final CheckBox isAddKeywordsToGenres = (CheckBox) inflate.findViewById(R.id.isAddKeywordsToGenres);
-        isAddKeywordsToGenres.setChecked(AppState.get().isAddKeywordsToGenres);
-        isAddKeywordsToGenres.setOnCheckedChangeListener(new OnCheckedChangeListener() {
-
-            @Override
-            public void onCheckedChanged(final CompoundButton buttonView, final boolean isChecked) {
-                AppState.get().isAddKeywordsToGenres = isChecked;
-                handler.removeCallbacks(ask);
-                handler.postDelayed(ask, timeout);
-            }
-        });
-
         ////
         ((CheckBox) inflate.findViewById(R.id.supportPDF)).setChecked(AppState.get().supportPDF);
         ((CheckBox) inflate.findViewById(R.id.supportPDF)).setOnCheckedChangeListener(new OnCheckedChangeListener() {
@@ -832,10 +820,8 @@ public class PrefFragment2 extends UIFragment {
                 ExtUtils.updateSearchExts();
                 handler.removeCallbacks(ask);
                 handler.postDelayed(ask, timeout);
-                isAddKeywordsToGenres.setVisibility(AppState.get().supportFB2 ? View.VISIBLE : View.GONE);
             }
         });
-        isAddKeywordsToGenres.setVisibility(AppState.get().supportFB2 ? View.VISIBLE : View.GONE);
 
         ((CheckBox) inflate.findViewById(R.id.supportTXT)).setChecked(AppState.get().supportTXT);
         ((CheckBox) inflate.findViewById(R.id.supportTXT)).setOnCheckedChangeListener(new OnCheckedChangeListener() {
