@@ -758,7 +758,7 @@ public class SearchFragment2 extends UIFragment<FileMeta> {
                 R.drawable.glyphicons_4_user, //
                 R.drawable.glyphicons_66_tag, //
                 R.drawable.glyphicons_710_list_numbered, //
-                R.drawable.glyphicons_67_tags, //
+                R.drawable.glyphicons_67_keywords, //
                 R.drawable.glyphicons_67_tags);
         final List<Integer> actions = Arrays.asList(AppState.MODE_LIST, AppState.MODE_LIST_COMPACT, //
                 AppState.MODE_GRID, //
