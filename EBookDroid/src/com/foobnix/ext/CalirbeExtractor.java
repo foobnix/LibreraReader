@@ -3,6 +3,8 @@ package com.foobnix.ext;
 import java.io.File;
 import java.io.FileInputStream;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
 import org.jsoup.Jsoup;
 import org.jsoup.safety.Whitelist;
 import org.xmlpull.v1.XmlPullParser;
@@ -95,6 +97,19 @@ public class CalirbeExtractor {
 
                         if ("calibre:series_index".equals(attrName)) {
                             meta.setsIndex(Integer.parseInt(attrContent));
+                        }
+
+                        if ("calibre:user_metadata:#genre".equals(attrName)) {
+                            LOG.d("userGenre", attrContent);
+                            JSONObject obj = new JSONObject(attrContent);
+                            JSONArray jsonArray = obj.getJSONArray("#value#");
+                            String res = "";
+                            for (int i = 0; i < jsonArray.length(); i++) {
+                                res = res + "," + jsonArray.getString(i);
+                            }
+                            res = TxtUtils.replaceFirst(res, ",", "");
+                            meta.setGenre(res);
+                            LOG.d("userGenre-list", res);
                         }
 
                     }
