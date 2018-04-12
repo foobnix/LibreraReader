@@ -26,7 +26,7 @@ public class DjvuOutline {
                 ls.add(new OutlineLink(title, link, level, docHandle, ""));
             }
             final long child = getChild(expr);
-            ttOutline(ls, child, level+1);
+            ttOutline(ls, child, level + 1);
 
             expr = getNext(expr);
         }

@@ -17,6 +17,7 @@ import com.foobnix.ext.CacheZipUtils.CacheDir;
 import com.foobnix.ext.CacheZipUtils.UnZipRes;
 import com.foobnix.ext.CalirbeExtractor;
 import com.foobnix.ext.CbzCbrExtractor;
+import com.foobnix.ext.DjvuExtract;
 import com.foobnix.ext.EbookMeta;
 import com.foobnix.ext.EpubExtractor;
 import com.foobnix.ext.Fb2Extractor;
@@ -108,6 +109,8 @@ public class FileMetaCore {
             ebookMeta = Fb2Extractor.get().getBookMetaInformation(unZipPath);
         } else if (BookType.MOBI.is(unZipPath)) {
             ebookMeta = MobiExtract.getBookMetaInformation(unZipPath, true);
+        } else if (BookType.DJVU.is(unZipPath)) {
+            ebookMeta = DjvuExtract.getBookMetaInformation(unZipPath);
         } else if (withDPF) {
             boolean needExtractMeta = isNeedToExtractPDFMeta(unZipPath);
             EbookMeta local = PdfExtract.getBookMetaInformation(unZipPath);
@@ -164,6 +167,10 @@ public class FileMetaCore {
                 info = Fb2Extractor.get().getBookOverview(path);
             } else if (BookType.MOBI.is(path)) {
                 info = MobiExtract.getBookOverview(path);
+            } else if (BookType.DJVU.is(path)) {
+                info = DjvuExtract.getBookOverview(path);
+            } else if (BookType.PDF.is(path)) {
+                info = PdfExtract.getBookOverview(path);
             }
             if (TxtUtils.isEmpty(info)) {
                 return "";

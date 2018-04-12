@@ -9,6 +9,7 @@ import org.ebookdroid.core.codec.PageTextBox;
 import org.emdev.utils.LengthUtils;
 
 import com.foobnix.android.utils.LOG;
+import com.foobnix.android.utils.TxtUtils;
 import com.foobnix.sys.TempHolder;
 
 import android.graphics.RectF;
@@ -35,8 +36,14 @@ public class DjvuDocument extends AbstractCodecDocument {
     }
 
     @Override
-    public String getMeta(String option) {
-        return "";
+    public String getMeta(String key) {
+        TempHolder.lock.lock();
+        try {
+            String res = getMeta(documentHandle, key);
+            return TxtUtils.nullNullToEmpty(res);
+        } finally {
+            TempHolder.lock.unlock();
+        }
     }
 
     @Override
@@ -87,6 +94,8 @@ public class DjvuDocument extends AbstractCodecDocument {
         free(documentHandle);
         LOG.d("MUPDF! recycle document djvu", documentHandle, fileName);
     }
+
+    private static native String getMeta(long docHandle, String key);
 
     private native static int getPageInfo(long docHandle, int pageNumber, long contextHandle, CodecPageInfo cpi);
 

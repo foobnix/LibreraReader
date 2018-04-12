@@ -670,6 +670,22 @@ extern "C" jstring Java_org_ebookdroid_droids_djvu_codec_DjvuOutline_getTitle(JN
     return NULL;
 }
 
+extern "C" jstring Java_org_ebookdroid_droids_djvu_codec_DjvuDocument_getMeta(JNIEnv *env, jclass cls, jlong docHandle, jstring jkey)
+{
+
+		const char *key =  env->GetStringUTFChars(jkey, NULL);
+		miniexp_t annot = ddjvu_document_get_anno((ddjvu_document_t*) docHandle, 1);
+
+        if (annot && annot != miniexp_dummy)
+        {
+        	const char* value = ddjvu_anno_get_metadata(annot, miniexp_symbol(key));
+        	return env->NewStringUTF(value);
+        }
+    
+    return NULL;
+}
+
+
 extern "C" jstring Java_org_ebookdroid_droids_djvu_codec_DjvuOutline_getLink(JNIEnv *env, jclass cls, jlong expr,
                                                                            jlong docHandle)
 {
