@@ -125,6 +125,16 @@ public class DjvuDocument extends AbstractCodecDocument {
     }
 
     @Override
+    public String getBookAuthor() {
+        return getMeta("author") + getMeta("authors");
+    }
+
+    @Override
+    public String getBookTitle() {
+        return getMeta("title") + getMeta("booktitle") + getMeta("name");
+    }
+
+    @Override
     public boolean hasChanges() {
         return false;
     }

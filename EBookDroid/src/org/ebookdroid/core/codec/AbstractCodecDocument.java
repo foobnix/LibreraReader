@@ -86,12 +86,12 @@ public abstract class AbstractCodecDocument implements CodecDocument {
 
     @Override
     public String getBookAuthor() {
-        return getMeta("author");
+        return "";
     }
 
     @Override
     public String getBookTitle() {
-        return getMeta("title") + "" + getMeta("booktitle") + getMeta("name");
+        return "";
     }
 
 }

@@ -118,6 +118,8 @@ public class FileMetaCore {
                 ebookMeta = local;
             }
             ebookMeta.setKeywords(local.getKeywords());
+            ebookMeta.setGenre(local.getGenre());
+            ebookMeta.setSequence(local.getSequence());
 
         } else if (BookType.CBR.is(unZipPath) || BookType.CBZ.is(unZipPath)) {
             ebookMeta.setPagesCount(CbzCbrExtractor.getPageCount(unZipPath));
