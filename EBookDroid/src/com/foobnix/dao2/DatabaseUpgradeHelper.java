@@ -24,6 +24,7 @@ public class DatabaseUpgradeHelper extends DaoMaster.OpenHelper {
         for (Migration migration : migrations) {
             if (oldVersion < migration.getVersion()) {
                 migration.runMigration(db);
+                Log.d("greenDAO", "Upgrading schema run " + migration.getVersion());
             }
         }
     }
@@ -32,8 +33,8 @@ public class DatabaseUpgradeHelper extends DaoMaster.OpenHelper {
         List<Migration> migrations = new ArrayList<Migration>();
         migrations.add(new MigrationV3());
         migrations.add(new MigrationV4());
+        migrations.add(new MigrationV5());
 
-        // Sorting just to be safe, in case other people add migrations in the wrong order.
         Comparator<Migration> migrationComparator = new Comparator<Migration>() {
             @Override
             public int compare(Migration m1, Migration m2) {
@@ -56,7 +57,6 @@ public class DatabaseUpgradeHelper extends DaoMaster.OpenHelper {
         @Override
         public void runMigration(Database db) {
             db.execSQL("ALTER TABLE " + FileMetaDao.TABLENAME + " ADD COLUMN " + FileMetaDao.Properties.Lang.columnName + " TEXT");
-            Log.d("greenDAO", "runMigration version 3");
 
         }
     }
@@ -72,7 +72,19 @@ public class DatabaseUpgradeHelper extends DaoMaster.OpenHelper {
         public void runMigration(Database db) {
             db.execSQL("ALTER TABLE " + FileMetaDao.TABLENAME + " ADD COLUMN " + FileMetaDao.Properties.Tag.columnName + " TEXT");
             db.execSQL("ALTER TABLE " + FileMetaDao.TABLENAME + " ADD COLUMN " + FileMetaDao.Properties.Pages.columnName + " INTEGER");
-            Log.d("greenDAO", "runMigration version 4");
+        }
+    }
+
+    private static class MigrationV5 implements Migration {
+
+        @Override
+        public Integer getVersion() {
+            return 5;
+        }
+
+        @Override
+        public void runMigration(Database db) {
+            db.execSQL("ALTER TABLE " + FileMetaDao.TABLENAME + " ADD COLUMN " + FileMetaDao.Properties.Keyword.columnName + " TEXT");
         }
     }
 
