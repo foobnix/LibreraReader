@@ -10,6 +10,7 @@ import com.foobnix.android.utils.LOG;
 import com.foobnix.pdf.info.wrapper.AppState;
 import com.foobnix.sys.TempHolder;
 
+import android.app.Activity;
 import android.app.SearchManager;
 import android.content.ComponentName;
 import android.content.Context;
@@ -142,7 +143,7 @@ public class DictsHelper {
         return items;
     }
 
-    public static void runIntent(Context c, String selectedText) {
+    public static void runIntent(Activity c, String selectedText) {
         try {
             String dict = AppState.get().rememberDict;
             String dictName = DictItem.fetchDictName(AppState.get().rememberDict);
@@ -172,8 +173,11 @@ public class DictsHelper {
                         final ComponentName cName = new ComponentName(app.activityInfo.applicationInfo.packageName, app.activityInfo.name);
                         intent.addCategory(Intent.CATEGORY_LAUNCHER);
                         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_RESET_TASK_IF_NEEDED);
+                        intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
+                        intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
                         intent.setComponent(cName);
                         c.startActivity(intent);
+                        // c.overridePendingTransition(0, 0);
                         return;
                     }
                 }

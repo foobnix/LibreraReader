@@ -191,7 +191,7 @@ public class DocumentWrapperUI {
             });
         } else {
             if (AppState.get().isRememberDictionary) {
-                DictsHelper.runIntent(anchor.getContext(), AppState.get().selectedText);
+                DictsHelper.runIntent(dc.getActivity(), AppState.get().selectedText);
             } else {
                 DragingDialogs.selectTextMenu(anchor, dc, true, updateUIRunnable);
             }

@@ -1357,6 +1357,8 @@ public class DragingDialogs {
                                             }
 
                                             controller.getActivity().startActivity(intentCustom);
+                                            // controller.getActivity().overridePendingTransition(0, 0);
+
                                         } else if (proccessTextList.contains(app)) {
                                             intentProccessText.addCategory(Intent.CATEGORY_LAUNCHER);
                                             intentProccessText.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_RESET_TASK_IF_NEEDED);
