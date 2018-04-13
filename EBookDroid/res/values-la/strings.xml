@@ -465,4 +465,5 @@
    <string name="crop_off">Off Crop</string>
    <string name="no_keywords">Non keywords</string>
    <string name="my_tags">Tags meum</string>
+   <string name="crop_borders_symmetrically">Seges oras aequabiliter intortum</string>
 </resources>

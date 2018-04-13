@@ -177,7 +177,7 @@ public class DragingDialogs {
 
     public static void customCropDialog(final FrameLayout anchor, final DocumentController controller, final Runnable onCropChange) {
 
-        DragingPopup dialog = new DragingPopup(R.string.custom_value, anchor, 380, 260) {
+        DragingPopup dialog = new DragingPopup(R.string.custom_value, anchor, 360, 300) {
 
             @Override
             @SuppressLint("NewApi")
@@ -187,6 +187,8 @@ public class DragingDialogs {
 
                 // Margins
                 final CustomSeek marginTop = (CustomSeek) inflate.findViewById(R.id.marginTop);
+                final CustomSeek marginBottom = (CustomSeek) inflate.findViewById(R.id.marginBottom);
+
                 marginTop.init(0, 30, AppState.get().cropTop);
                 marginTop.setOnSeekChanged(new IntegerResponse() {
 
@@ -194,11 +196,13 @@ public class DragingDialogs {
                     public boolean onResultRecive(int result) {
                         AppState.get().cropTop = result;
                         onCropChange.run();
+                        if (AppState.get().isCropSymetry) {
+                            marginBottom.reset(result);
+                        }
                         return false;
                     }
                 });
 
-                final CustomSeek marginBottom = (CustomSeek) inflate.findViewById(R.id.marginBottom);
                 marginBottom.init(0, 30, AppState.get().cropBottom);
                 marginBottom.setOnSeekChanged(new IntegerResponse() {
 
@@ -206,11 +210,16 @@ public class DragingDialogs {
                     public boolean onResultRecive(int result) {
                         AppState.get().cropBottom = result;
                         onCropChange.run();
+                        if (AppState.get().isCropSymetry) {
+                            marginTop.reset(result);
+                        }
                         return false;
                     }
                 });
 
                 final CustomSeek marginLeft = (CustomSeek) inflate.findViewById(R.id.marginLeft);
+                final CustomSeek marginRight = (CustomSeek) inflate.findViewById(R.id.marginRight);
+
                 marginLeft.init(0, 30, AppState.get().cropLeft);
                 marginLeft.setOnSeekChanged(new IntegerResponse() {
 
@@ -218,11 +227,13 @@ public class DragingDialogs {
                     public boolean onResultRecive(int result) {
                         AppState.get().cropLeft = result;
                         onCropChange.run();
+                        if (AppState.get().isCropSymetry) {
+                            marginRight.reset(result);
+                        }
                         return false;
                     }
                 });
 
-                final CustomSeek marginRight = (CustomSeek) inflate.findViewById(R.id.marginRight);
                 marginRight.init(0, 30, AppState.get().cropRigth);
                 marginRight.setOnSeekChanged(new IntegerResponse() {
 
@@ -230,7 +241,24 @@ public class DragingDialogs {
                     public boolean onResultRecive(int result) {
                         AppState.get().cropRigth = result;
                         onCropChange.run();
+                        if (AppState.get().isCropSymetry) {
+                            marginLeft.reset(result);
+                        }
                         return false;
+                    }
+                });
+
+                CheckBox isCropSymetry = (CheckBox) inflate.findViewById(R.id.isCropSymetry);
+                isCropSymetry.setChecked(AppState.get().isCropSymetry);
+                isCropSymetry.setOnCheckedChangeListener(new OnCheckedChangeListener() {
+
+                    @Override
+                    public void onCheckedChanged(final CompoundButton buttonView, final boolean isChecked) {
+                        AppState.get().isCropSymetry = isChecked;
+                        if (isChecked) {
+                            marginBottom.reset(marginTop.getCurrentValue());
+                            marginRight.reset(marginLeft.getCurrentValue());
+                        }
                     }
                 });
 

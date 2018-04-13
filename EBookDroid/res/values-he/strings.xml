@@ -465,4 +465,5 @@
    <string name="crop_off">לחתוך</string>
    <string name="no_keywords">אין מילות מפתח</string>
    <string name="my_tags">התגים שלי</string>
+   <string name="crop_borders_symmetrically">חתוך גבולות באופן סימטרי</string>
 </resources>

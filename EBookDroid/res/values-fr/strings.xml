@@ -465,4 +465,5 @@
    <string name="crop_off">Recadrer</string>
    <string name="no_keywords">Aucun mot-clé</string>
    <string name="my_tags">Mes tags</string>
+   <string name="crop_borders_symmetrically">Rogner les bordures symétriquement</string>
 </resources>

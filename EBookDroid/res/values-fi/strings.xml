@@ -465,4 +465,5 @@
    <string name="crop_off">Rajaa pois</string>
    <string name="no_keywords">Ei avainsanoja</string>
    <string name="my_tags">Omat tagit</string>
+   <string name="crop_borders_symmetrically">Rajaa rajat symmetrisesti</string>
 </resources>

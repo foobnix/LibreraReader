@@ -465,4 +465,5 @@
    <string name="crop_off">Ritaglia</string>
    <string name="no_keywords">Nessuna parola chiave</string>
    <string name="my_tags">I miei tag</string>
+   <string name="crop_borders_symmetrically">Ritaglia i bordi simmetricamente</string>
 </resources>

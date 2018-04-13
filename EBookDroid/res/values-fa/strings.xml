@@ -465,4 +465,5 @@
    <string name="crop_off">برداشتن</string>
    <string name="no_keywords">بدون کلید واژه</string>
    <string name="my_tags">برچسب های من</string>
+   <string name="crop_borders_symmetrically">میانه های محصول به طور متقارن</string>
 </resources>

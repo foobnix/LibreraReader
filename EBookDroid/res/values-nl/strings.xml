@@ -465,4 +465,5 @@
    <string name="crop_off">Snij uit</string>
    <string name="no_keywords">Geen zoekwoorden</string>
    <string name="my_tags">Mijn tags</string>
+   <string name="crop_borders_symmetrically">Snijd de randen symmetrisch bij</string>
 </resources>

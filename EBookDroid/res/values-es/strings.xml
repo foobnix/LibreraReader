@@ -465,4 +465,5 @@
    <string name="crop_off">Recortar</string>
    <string name="no_keywords">Sin palabras clave</string>
    <string name="my_tags">Mis etiquetas</string>
+   <string name="crop_borders_symmetrically">Recortar bordes simétricamente</string>
 </resources>

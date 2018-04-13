@@ -465,4 +465,5 @@
    <string name="crop_off">Iškirpti</string>
    <string name="no_keywords">Nėra raktinių žodžių</string>
    <string name="my_tags">Mano žymos</string>
+   <string name="crop_borders_symmetrically">Sumažinti sienas simetriškai</string>
 </resources>

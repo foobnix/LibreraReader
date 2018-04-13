@@ -465,4 +465,5 @@
    <string name="crop_off">ตัดออก</string>
    <string name="no_keywords">ไม่มีคำหลัก</string>
    <string name="my_tags">แท็กของฉัน</string>
+   <string name="crop_borders_symmetrically">ครอบตัดขอบสมมาตร</string>
 </resources>

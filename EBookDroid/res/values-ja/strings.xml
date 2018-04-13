@@ -465,4 +465,5 @@
    <string name="crop_off">切り取る</string>
    <string name="no_keywords">キーワードなし</string>
    <string name="my_tags">私のタグ</string>
+   <string name="crop_borders_symmetrically">境界を対称的にトリミングする</string>
 </resources>

@@ -465,4 +465,5 @@
    <string name="crop_off">اقتطع</string>
    <string name="no_keywords">لا كلمات رئيسية</string>
    <string name="my_tags">علاماتي</string>
+   <string name="crop_borders_symmetrically">حدود المحاصيل متناظرة</string>
 </resources>

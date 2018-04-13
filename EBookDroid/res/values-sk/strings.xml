@@ -465,4 +465,5 @@
    <string name="crop_off">Orezanie vypnuté</string>
    <string name="no_keywords">Žiadne kľúčové slová</string>
    <string name="my_tags">Moje značky</string>
+   <string name="crop_borders_symmetrically">Orezajte okraje symetricky</string>
 </resources>

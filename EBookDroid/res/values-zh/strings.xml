@@ -465,4 +465,5 @@
    <string name="crop_off">裁切</string>
    <string name="no_keywords">无关键</string>
    <string name="my_tags">标签</string>
+   <string name="crop_borders_symmetrically">裁剪边界对称</string>
 </resources>

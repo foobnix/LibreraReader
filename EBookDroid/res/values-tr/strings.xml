@@ -465,4 +465,5 @@
    <string name="crop_off">Kırpma</string>
    <string name="no_keywords">Anahtar kelime yok</string>
    <string name="my_tags">Etiketlerim</string>
+   <string name="crop_borders_symmetrically">Simetrik olarak bitki sınırları</string>
 </resources>

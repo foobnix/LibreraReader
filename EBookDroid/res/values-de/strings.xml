@@ -465,4 +465,5 @@
    <string name="crop_off">Abschneiden</string>
    <string name="no_keywords">Keine Schlüsselwörter</string>
    <string name="my_tags">Meine Tags</string>
+   <string name="crop_borders_symmetrically">Ernte grenzt symmetrisch</string>
 </resources>

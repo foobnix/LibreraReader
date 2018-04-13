@@ -465,4 +465,5 @@
    <string name="crop_off">फसल बंद</string>
    <string name="no_keywords">कोई कीवर्ड नहीं</string>
    <string name="my_tags">मेरे टैग</string>
+   <string name="crop_borders_symmetrically">सीमाओं को सममित रूप से क्रॉप करें</string>
 </resources>

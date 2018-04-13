@@ -465,4 +465,5 @@
    <string name="crop_off">Elvágás</string>
    <string name="no_keywords">Nincsenek kulcsszavak</string>
    <string name="my_tags">A címkéim</string>
+   <string name="crop_borders_symmetrically">A szegélyeket szimmetrikusan rajzolja</string>
 </resources>

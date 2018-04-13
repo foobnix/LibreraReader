@@ -465,4 +465,5 @@
    <string name="crop_off">Crop off</string>
    <string name="no_keywords">No keywords</string>
    <string name="my_tags">My tags</string>
+   <string name="crop_borders_symmetrically">Crop borders symmetrically</string>
 </resources>

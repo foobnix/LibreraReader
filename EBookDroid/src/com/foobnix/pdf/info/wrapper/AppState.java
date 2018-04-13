@@ -333,6 +333,7 @@ public class AppState {
     public String musicText = "Musician";
 
     public boolean isCrop = false;
+    public boolean isCropSymetry = false;
 
     public int cropTop = 0;
     public int cropBottom = 0;

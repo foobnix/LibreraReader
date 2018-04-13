@@ -465,4 +465,5 @@
    <string name="crop_off">Обрізати</string>
    <string name="no_keywords">Немає ключових слів</string>
    <string name="my_tags">Мої теги</string>
+   <string name="crop_borders_symmetrically">Обрізання меж симетрично</string>
 </resources>

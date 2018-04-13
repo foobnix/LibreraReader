@@ -465,4 +465,5 @@
    <string name="crop_off">자르기</string>
    <string name="no_keywords">키워드 없음</string>
    <string name="my_tags">내 태그</string>
+   <string name="crop_borders_symmetrically">대칭으로 테두리 자르기</string>
 </resources>

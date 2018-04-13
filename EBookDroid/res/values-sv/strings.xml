@@ -465,4 +465,5 @@
    <string name="crop_off">Beskära av</string>
    <string name="no_keywords">Inga nyckelord</string>
    <string name="my_tags">Mina taggar</string>
+   <string name="crop_borders_symmetrically">Beskär gränserna symmetriskt</string>
 </resources>

@@ -465,4 +465,5 @@
    <string name="crop_off">Desprindeți-vă</string>
    <string name="no_keywords">Nu există cuvinte cheie</string>
    <string name="my_tags">Etichetele mele</string>
+   <string name="crop_borders_symmetrically">Trasați marginile în mod simetric</string>
 </resources>

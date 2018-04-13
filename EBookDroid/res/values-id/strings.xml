@@ -465,4 +465,5 @@
    <string name="crop_off">Pangkas</string>
    <string name="no_keywords">Tidak ada kata kunci</string>
    <string name="my_tags">Tag saya</string>
+   <string name="crop_borders_symmetrically">Perbatasan tanaman simetris</string>
 </resources>

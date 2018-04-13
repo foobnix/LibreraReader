@@ -53,4 +53,10 @@
         myseek:text="@string/right" >
     </com.foobnix.pdf.info.view.CustomSeek>
 
+    <CheckBox
+        android:id="@+id/isCropSymetry"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/crop_borders_symmetrically" />
+
 </LinearLayout>

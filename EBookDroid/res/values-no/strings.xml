@@ -465,4 +465,5 @@
    <string name="crop_off">Beskjære</string>
    <string name="no_keywords">Ingen søkeord</string>
    <string name="my_tags">Mine koder</string>
+   <string name="crop_borders_symmetrically">Beskjær kantene symmetrisk</string>
 </resources>

@@ -465,4 +465,5 @@
    <string name="crop_off">Cắt bỏ</string>
    <string name="no_keywords">Không có từ khoá</string>
    <string name="my_tags">Thẻ của tôi</string>
+   <string name="crop_borders_symmetrically">Cắt biên giới đối xứng</string>
 </resources>
