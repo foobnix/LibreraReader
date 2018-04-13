@@ -187,10 +187,10 @@ public class Dialogs {
             final TextView text = (TextView) view.findViewById(R.id.text1);
 
             ProgressBar pr = (ProgressBar) view.findViewById(R.id.progressBar1);
-            TintUtil.setDrawableTint(pr.getIndeterminateDrawable().getCurrent(), TintUtil.color);
+            TintUtil.setDrawableTint(pr.getIndeterminateDrawable().getCurrent(), AppState.get().isDayNotInvert ? TintUtil.color : Color.WHITE);
 
             ImageView image = (ImageView) view.findViewById(R.id.onCancel);
-            TintUtil.setTintImageNoAlpha(image, TintUtil.color);
+            TintUtil.setTintImageNoAlpha(image, AppState.get().isDayNotInvert ? TintUtil.color : Color.WHITE);
             image.setOnClickListener(new OnClickListener() {
 
                 @Override
