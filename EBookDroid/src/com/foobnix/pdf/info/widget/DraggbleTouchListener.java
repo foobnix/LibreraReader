@@ -94,6 +94,16 @@ public class DraggbleTouchListener implements OnTouchListener {
 
             AnchorHelper.setXY(anchor, x, y);
 
+            if (heigh > Dips.screenHeight() - Dips.DP_25) {
+                popup.getView().getLayoutParams().height = Dips.screenHeight() - Dips.DP_25;
+                popup.getView().requestLayout();
+            }
+
+            if (width > Dips.screenWidth() - Dips.DP_25) {
+                popup.getView().getLayoutParams().width = Dips.screenWidth() - Dips.DP_25;
+                popup.getView().requestLayout();
+            }
+
         }
         if (event.getAction() == MotionEvent.ACTION_UP) {
             float dx = event.getRawX() - initPoint.x;

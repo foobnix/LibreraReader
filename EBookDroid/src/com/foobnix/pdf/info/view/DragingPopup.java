@@ -44,6 +44,10 @@ public abstract class DragingPopup {
     protected int titlePopupIcon;
     protected MyPopupMenu titlePopupMenu;
 
+    public View getView() {
+        return popupView;
+    }
+
     public void beforeCreate() {
 
     }
