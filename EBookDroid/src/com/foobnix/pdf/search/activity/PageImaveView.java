@@ -406,7 +406,7 @@ public class PageImaveView extends View {
                     final float values[] = new float[9];
                     imageMatrix().getValues(values);
 
-                    if (true || !AppState.get().isLocked) {
+                    if (AppState.get().isAllowMoveTwoFingerWithLock || !AppState.get().isLocked) {
                         LOG.d("postScale", scale, values[Matrix.MSCALE_X]);
                         if (values[Matrix.MSCALE_X] > 0.3f || scale > 1) {
                             imageMatrix().postScale(scale, scale, centerX, centerY);
@@ -414,7 +414,7 @@ public class PageImaveView extends View {
                     }
                     final float dx = centerX - cx;
                     final float dy = centerY - cy;
-                    if (true || !AppState.get().isLocked) {
+                    if (AppState.get().isAllowMoveTwoFingerWithLock || !AppState.get().isLocked) {
                         imageMatrix().postTranslate(dx, dy);
                     }
                     cx = centerX(event);

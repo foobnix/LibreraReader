@@ -79,7 +79,7 @@ public class Dips {
             return true;
         }
         String brand = Build.BRAND.toLowerCase(Locale.US);
-        if (brand.contains("onyx") || brand.contains("icarus")) {
+        if (brand.contains("onyx") || brand.contains("icarus") || brand.contains("likebook")) {
             return true;
         }
         return false;

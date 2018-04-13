@@ -362,6 +362,9 @@ public class AppState {
     public float appFontScale = 1.0f;
 
     public boolean isLocked = false;
+
+    public boolean isAllowMoveTwoFingerWithLock = true;
+
     public boolean isLoopAutoplay = false;
     public boolean isBookCoverEffect = false;
 
@@ -655,7 +658,7 @@ public class AppState {
                     AppState.get().tintColor = Color.BLACK;
                     AppState.get().bolderTextOnImage = true;
                     AppState.get().isEnableBC = true;
-
+                    isAllowMoveTwoFingerWithLock = false;
                 }
 
                 loadIn(a);
