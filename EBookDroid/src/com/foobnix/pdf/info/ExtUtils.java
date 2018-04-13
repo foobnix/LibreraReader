@@ -568,6 +568,7 @@ public class ExtUtils {
     public static String getDateTimeFormat(File file) {
         return dateFormat.format(file.lastModified()) + " " + timeFormat.format(file.lastModified());
     }
+
     public static String getDateFormat(File file) {
         return dateFormat.format(file.lastModified());
     }
@@ -1592,6 +1593,12 @@ public class ExtUtils {
             int count = 0;
             while ((line = bufferedReader.readLine()) != null) {
                 count++;
+
+                if (count <= 10 && line.contains("#E9E9E9")) {
+                    BookCSS.get().hypenLang = "ru";
+                    bufferedReader.close();
+                    return "CP1251";// samlib hack
+                }
                 for (String e : es) {
                     line = line.toLowerCase(Locale.US);
                     if (line.contains(e)) {
@@ -1599,6 +1606,7 @@ public class ExtUtils {
                         int index = line.indexOf(e) + e.length();
                         String encoding = line.substring(index, line.indexOf("\"", index));
                         LOG.d("extract-encoding-html", encoding);
+                        bufferedReader.close();
                         return encoding;
                     }
                 }
@@ -1611,6 +1619,7 @@ public class ExtUtils {
         } catch (Exception e) {
             LOG.e(e);
         }
+
         return "UTF-8";
 
     }
