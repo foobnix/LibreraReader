@@ -101,15 +101,19 @@ public class CalirbeExtractor {
 
                         if ("calibre:user_metadata:#genre".equals(attrName)) {
                             LOG.d("userGenre", attrContent);
-                            JSONObject obj = new JSONObject(attrContent);
-                            JSONArray jsonArray = obj.getJSONArray("#value#");
-                            String res = "";
-                            for (int i = 0; i < jsonArray.length(); i++) {
-                                res = res + "," + jsonArray.getString(i);
+                            try {
+                                JSONObject obj = new JSONObject(attrContent);
+                                JSONArray jsonArray = obj.getJSONArray("#value#");
+                                String res = "";
+                                for (int i = 0; i < jsonArray.length(); i++) {
+                                    res = res + "," + jsonArray.getString(i);
+                                }
+                                res = TxtUtils.replaceFirst(res, ",", "");
+                                meta.setGenre(res);
+                                LOG.d("userGenre-list", res);
+                            } catch (Exception e) {
+                                LOG.e(e);
                             }
-                            res = TxtUtils.replaceFirst(res, ",", "");
-                            meta.setGenre(res);
-                            LOG.d("userGenre-list", res);
                         }
 
                     }

@@ -23,6 +23,8 @@ import java.util.zip.ZipOutputStream;
 
 import org.apache.commons.compress.archivers.ArchiveEntry;
 import org.apache.commons.compress.archivers.zip.ZipArchiveInputStream;
+import org.json.JSONArray;
+import org.json.JSONObject;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -191,7 +193,7 @@ public class EpubExtractor extends BaseExtractor {
             String series = null;
             String number = null;
             String lang = null;
-
+            String genre = null;
 
             while ((nextEntry = zipInputStream.getNextEntry()) != null) {
                 String name = nextEntry.getName().toLowerCase();
@@ -223,14 +225,32 @@ public class EpubExtractor extends BaseExtractor {
 
                             if ("meta".equals(xpp.getName())) {
                                 String nameAttr = xpp.getAttributeValue(null, "name");
+                                String value = xpp.getAttributeValue(null, "content");
                                 if ("calibre:series".equals(nameAttr)) {
-                                    series = xpp.getAttributeValue(null, "content");
+                                    series = value;
                                 } else if ("calibre:series_index".equals(nameAttr)) {
-                                    number = xpp.getAttributeValue(null, "content");
+                                    number = value;
                                     if (number != null) {
                                         number = number.replace(".0", "");
                                     }
+                                } else
+
+                                if ("calibre:user_metadata:#genre".equals(nameAttr)) {
+                                    LOG.d("userGenre", value);
+                                    try {
+                                        JSONObject obj = new JSONObject(value);
+                                        JSONArray jsonArray = obj.getJSONArray("#value#");
+                                        String res = "";
+                                        for (int i = 0; i < jsonArray.length(); i++) {
+                                            res = res + "," + jsonArray.getString(i);
+                                        }
+                                        genre = TxtUtils.replaceFirst(res, ",", "");
+                                        LOG.d("userGenre-list", genre);
+                                    } catch (Exception e) {
+                                        LOG.e(e);
+                                    }
                                 }
+
                             }
                         }
                         if (eventType == XmlPullParser.END_TAG) {
@@ -260,6 +280,7 @@ public class EpubExtractor extends BaseExtractor {
                 LOG.d(e);
             }
             ebookMeta.setLang(lang);
+            ebookMeta.setGenre(genre);
             // ebookMeta.setPagesCount((int) size / 1024);
             return ebookMeta;
         } catch (
