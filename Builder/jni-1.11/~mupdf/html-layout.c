@@ -2331,15 +2331,17 @@ load_fb2_images(fz_context *ctx, fz_xml *root)
 	{
 		const char *id = fz_xml_att(binary, "id");
 		char *b64 = concat_text(ctx, binary);
-		fz_buffer *buf;
-		fz_image *img;
 
-		buf = fz_new_buffer_from_base64(ctx, b64, strlen(b64));
-		img = fz_new_image_from_buffer(ctx, buf);
-		fz_drop_buffer(ctx, buf);
-		fz_free(ctx, b64);
+			fz_buffer *buf;
+			fz_image *img;
+			if(strlen(b64)>10){
+				buf = fz_new_buffer_from_base64(ctx, b64, strlen(b64));
+				img = fz_new_image_from_buffer(ctx, buf);
+				fz_drop_buffer(ctx, buf);
+				images = fz_tree_insert(ctx, images, id, img);
+			}
+			fz_free(ctx, b64);
 
-		images = fz_tree_insert(ctx, images, id, img);
 	}
 
 	return images;
