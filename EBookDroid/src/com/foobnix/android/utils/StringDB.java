@@ -28,7 +28,7 @@ public class StringDB {
         if (TxtUtils.isEmpty(db) || TxtUtils.isEmpty(tag)) {
             return false;
         }
-        return db.contains(tag + DIVIDER);
+        return db.startsWith(tag + DIVIDER) || db.contains(DIVIDER + tag + DIVIDER);
     }
 
     public static List<String> asList(String db) {

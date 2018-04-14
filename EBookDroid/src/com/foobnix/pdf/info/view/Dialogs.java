@@ -447,11 +447,18 @@ public class Dialogs {
             @Override
             public void onClick(View v) {
                 String text = edit.getText().toString().trim();
+
+
                 if (TxtUtils.isEmpty(text)) {
                     Toast.makeText(a, R.string.incorrect_value, Toast.LENGTH_SHORT).show();
                     return;
                 }
-                if (AppState.get().bookTags.contains(text)) {
+
+                if (!text.startsWith("#")) {
+                    text = "#" + text;
+                }
+
+                if (StringDB.contains(AppState.get().bookTags, text)) {
                     Toast.makeText(a, R.string.incorrect_value, Toast.LENGTH_SHORT).show();
                     return;
                 }
@@ -459,9 +466,7 @@ public class Dialogs {
                 Keyboards.close(edit);
                 Keyboards.hideNavigation((Activity) a);
 
-                if (!text.startsWith("#")) {
-                    text = "#" + text;
-                }
+
                 AppState.get().bookTags = StringDB.add(AppState.get().bookTags, text);
                 if (onRefresh != null) {
                     onRefresh.run();
