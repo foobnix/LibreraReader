@@ -1594,7 +1594,7 @@ public class ExtUtils {
             while ((line = bufferedReader.readLine()) != null) {
                 count++;
 
-                if (count <= 10 && line.contains("#E9E9E9")) {
+                if (count <= 10 && (line.contains("#E9E9E9") || line.contains("#e9e9e9"))) {
                     BookCSS.get().hypenLang = "ru";
                     bufferedReader.close();
                     return "CP1251";// samlib hack
