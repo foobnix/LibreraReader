@@ -177,7 +177,7 @@ public class DragingDialogs {
 
     public static void customCropDialog(final FrameLayout anchor, final DocumentController controller, final Runnable onCropChange) {
 
-        DragingPopup dialog = new DragingPopup(R.string.custom_value, anchor, 360, 300) {
+        DragingPopup dialog = new DragingPopup(R.string.crop_white_borders, anchor, 360, 400) {
 
             @Override
             @SuppressLint("NewApi")
@@ -189,7 +189,7 @@ public class DragingDialogs {
                 final CustomSeek marginTop = (CustomSeek) inflate.findViewById(R.id.marginTop);
                 final CustomSeek marginBottom = (CustomSeek) inflate.findViewById(R.id.marginBottom);
 
-                marginTop.init(0, 30, AppState.get().cropTop);
+                marginTop.init(0, 30, AppState.get().cropTop, "%");
                 marginTop.setOnSeekChanged(new IntegerResponse() {
 
                     @Override
@@ -203,7 +203,7 @@ public class DragingDialogs {
                     }
                 });
 
-                marginBottom.init(0, 30, AppState.get().cropBottom);
+                marginBottom.init(0, 30, AppState.get().cropBottom, "%");
                 marginBottom.setOnSeekChanged(new IntegerResponse() {
 
                     @Override
@@ -220,7 +220,7 @@ public class DragingDialogs {
                 final CustomSeek marginLeft = (CustomSeek) inflate.findViewById(R.id.marginLeft);
                 final CustomSeek marginRight = (CustomSeek) inflate.findViewById(R.id.marginRight);
 
-                marginLeft.init(0, 30, AppState.get().cropLeft);
+                marginLeft.init(0, 30, AppState.get().cropLeft, "%");
                 marginLeft.setOnSeekChanged(new IntegerResponse() {
 
                     @Override
@@ -234,7 +234,7 @@ public class DragingDialogs {
                     }
                 });
 
-                marginRight.init(0, 30, AppState.get().cropRigth);
+                marginRight.init(0, 30, AppState.get().cropRigth, "%");
                 marginRight.setOnSeekChanged(new IntegerResponse() {
 
                     @Override
@@ -259,6 +259,69 @@ public class DragingDialogs {
                             marginBottom.reset(marginTop.getCurrentValue());
                             marginRight.reset(marginLeft.getCurrentValue());
                         }
+                    }
+                });
+
+                final CheckBox isEnableCrop = (CheckBox) inflate.findViewById(R.id.isEnableCrop);
+                isEnableCrop.setChecked(AppState.get().isCrop);
+                isEnableCrop.setOnCheckedChangeListener(new OnCheckedChangeListener() {
+
+                    @Override
+                    public void onCheckedChanged(final CompoundButton buttonView, final boolean isEnableCrop) {
+                        AppState.get().isCrop = isEnableCrop;
+                        onCropChange.run();
+                    }
+                });
+
+                final IntegerResponse updateCrop = new IntegerResponse() {
+
+                    @Override
+                    public boolean onResultRecive(int result) {
+                        marginTop.reset(result);
+                        marginBottom.reset(result);
+                        marginLeft.reset(result);
+                        marginRight.reset(result);
+
+                        AppState.get().cropTop = result;
+                        AppState.get().cropBottom = result;
+                        AppState.get().cropLeft = result;
+                        AppState.get().cropRigth = result;
+
+                        AppState.get().isCrop = true;
+                        isEnableCrop.setChecked(true);
+                        onCropChange.run();
+
+                        return false;
+                    }
+                };
+
+                inflate.findViewById(R.id.cropAuto).setOnClickListener(new OnClickListener() {
+
+                    @Override
+                    public void onClick(View v) {
+                        updateCrop.onResultRecive(0);
+                    }
+                });
+                inflate.findViewById(R.id.v5).setOnClickListener(new OnClickListener() {
+
+                    @Override
+                    public void onClick(View v) {
+                        updateCrop.onResultRecive(5);
+                    }
+                });
+                inflate.findViewById(R.id.v10).setOnClickListener(new OnClickListener() {
+
+                    @Override
+                    public void onClick(View v) {
+                        updateCrop.onResultRecive(10);
+                    }
+                });
+                inflate.findViewById(R.id.v15).setOnClickListener(new OnClickListener() {
+
+                    @Override
+                    public void onClick(View v) {
+                        updateCrop.onResultRecive(15);
+
                     }
                 });
 

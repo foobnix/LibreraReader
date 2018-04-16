@@ -461,9 +461,8 @@
    <string name="hyphenation_language">Elválasztási nyelv</string>
    <string name="replacing_the_white_color_in_the_images_with_the_background_color">A háttérszín színes felvétele a képeken</string>
    <string name="disable_swipe_gestures_for_page_paging">Letiltható kézmozdulatok letiltása lapozáshoz</string>
-   <string name="turn_off">Kikapcsolni</string>
-   <string name="crop_off">Elvágás</string>
    <string name="no_keywords">Nincsenek kulcsszavak</string>
    <string name="my_tags">A címkéim</string>
    <string name="crop_borders_symmetrically">A szegélyeket szimmetrikusan rajzolja</string>
+   <string name="enable_cropping_of_white_borders">Engedélyezze a fehér szegélyek kivágását</string>
 </resources>

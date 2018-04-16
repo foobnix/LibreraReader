@@ -461,9 +461,8 @@
    <string name="hyphenation_language">Hyphenation language</string>
    <string name="replacing_the_white_color_in_the_images_with_the_background_color">Replacing the white color in the images with the background color</string>
    <string name="disable_swipe_gestures_for_page_paging">Disable swipe gestures for page paging</string>
-   <string name="turn_off">Turn Off</string>
-   <string name="crop_off">Crop off</string>
    <string name="no_keywords">No keywords</string>
    <string name="my_tags">My tags</string>
    <string name="crop_borders_symmetrically">Crop borders symmetrically</string>
+   <string name="enable_cropping_of_white_borders">Enable cropping of white borders</string>
 </resources>

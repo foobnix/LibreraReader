@@ -461,9 +461,8 @@
    <string name="hyphenation_language">Ngôn ngữ phân cách</string>
    <string name="replacing_the_white_color_in_the_images_with_the_background_color">Thay thế màu trắng trong các hình ảnh với màu nền</string>
    <string name="disable_swipe_gestures_for_page_paging">Tắt cử chỉ vuốt để phân trang trang</string>
-   <string name="turn_off">Tắt</string>
-   <string name="crop_off">Cắt bỏ</string>
    <string name="no_keywords">Không có từ khoá</string>
    <string name="my_tags">Thẻ của tôi</string>
    <string name="crop_borders_symmetrically">Cắt biên giới đối xứng</string>
+   <string name="enable_cropping_of_white_borders">Cho phép cắt xén đường viền trắng</string>
 </resources>

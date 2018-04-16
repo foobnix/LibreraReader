@@ -461,9 +461,8 @@
    <string name="hyphenation_language">لغة الوصل</string>
    <string name="replacing_the_white_color_in_the_images_with_the_background_color">استبدال اللون الأبيض في الصور بلون الخلفية</string>
    <string name="disable_swipe_gestures_for_page_paging">تعطيل إيماءات التمرير لصفحة الترحيل</string>
-   <string name="turn_off">أطفأ</string>
-   <string name="crop_off">اقتطع</string>
    <string name="no_keywords">لا كلمات رئيسية</string>
    <string name="my_tags">علاماتي</string>
    <string name="crop_borders_symmetrically">حدود المحاصيل متناظرة</string>
+   <string name="enable_cropping_of_white_borders">تمكين الاقتصاص من الحدود البيضاء</string>
 </resources>

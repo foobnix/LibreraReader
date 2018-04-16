@@ -461,9 +461,8 @@
    <string name="hyphenation_language">Silbentrennungssprache</string>
    <string name="replacing_the_white_color_in_the_images_with_the_background_color">Ersetzen der weißen Farbe in den Bildern durch die Hintergrundfarbe</string>
    <string name="disable_swipe_gestures_for_page_paging">Deaktivieren Sie Swipe-Gesten für das Seiten-Paging</string>
-   <string name="turn_off">Abschalten</string>
-   <string name="crop_off">Abschneiden</string>
    <string name="no_keywords">Keine Schlüsselwörter</string>
    <string name="my_tags">Meine Tags</string>
    <string name="crop_borders_symmetrically">Ernte grenzt symmetrisch</string>
+   <string name="enable_cropping_of_white_borders">Aktivieren Sie das Beschneiden von weißen Rahmen</string>
 </resources>

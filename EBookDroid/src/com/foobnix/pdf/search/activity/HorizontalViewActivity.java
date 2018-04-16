@@ -1,9 +1,7 @@
 package com.foobnix.pdf.search.activity;
 
 import java.io.File;
-import java.util.LinkedHashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
 
@@ -100,7 +98,6 @@ import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.PopupWindow.OnDismissListener;
 import android.widget.RelativeLayout;
 import android.widget.SeekBar;
 import android.widget.TextView;
@@ -552,80 +549,19 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
 
             @Override
             public void onClick(final View v) {
-                MyPopupMenu popup = new MyPopupMenu(dc.getActivity(), v);
-
-                Map<Integer, String> map = new LinkedHashMap<>();
-                map.put(-2, dc.getString(R.string.turn_off));
-                map.put(0, dc.getString(R.string.automatic));
-                map.put(5, dc.getString(R.string.crop_off) + " 5%");
-                map.put(10, dc.getString(R.string.crop_off) + " 10%");
-                map.put(15, dc.getString(R.string.crop_off) + " 15%");
-                map.put(-1, dc.getString(R.string.custom_value));
-
-                for (final int i : map.keySet()) {
-
-                    if (i == -1) {
-                        popup.getMenu().add(map.get(i)).setOnMenuItemClickListener(new OnMenuItemClickListener() {
-
-                            @Override
-                            public boolean onMenuItemClick(MenuItem item) {
-                                DragingDialogs.customCropDialog(anchor, dc, new Runnable() {
-
-                                    @Override
-                                    public void run() {
-                                        AppState.get().isCrop = true;
-                                        SettingsManager.getBookSettings().cropPages = true;
-                                        reloadDocBrigntness.run();
-                                        onCrop.underline(true);
-
-                                        PageImageState.get().isAutoFit = true;
-                                        EventBus.getDefault().post(new MessageAutoFit(viewPager.getCurrentItem()));
-
-                                        AppState.get().isEditMode = false;
-                                        hideShow();
-                                    }
-                                });
-
-                                return false;
-                            }
-                        });
-                    } else {
-                        popup.getMenu().add(map.get(i)).setOnMenuItemClickListener(new OnMenuItemClickListener() {
-
-                            @Override
-                            public boolean onMenuItemClick(MenuItem item) {
-                                if (i == -2) {
-                                    AppState.get().isCrop = false;
-                                } else {
-                                    AppState.get().isCrop = true;
-
-                                    AppState.get().cropTop = i;
-                                    AppState.get().cropBottom = i;
-                                    AppState.get().cropLeft = i;
-                                    AppState.get().cropRigth = i;
-                                }
-                                SettingsManager.getBookSettings().cropPages = AppState.get().isCrop;
-                                reloadDoc.run();
-                                onCrop.underline(AppState.get().isCrop);
-
-                                PageImageState.get().isAutoFit = true;
-                                EventBus.getDefault().post(new MessageAutoFit(viewPager.getCurrentItem()));
-                                return false;
-                            }
-                        });
-                    }
-
-                }
-
-                popup.show();
-
-                adFrame.setTag("activated");
-                adFrame.setVisibility(View.GONE);
-                popup.setOnDismissListener(new OnDismissListener() {
+                DragingDialogs.customCropDialog(anchor, dc, new Runnable() {
 
                     @Override
-                    public void onDismiss() {
-                        adFrame.setTag(null);
+                    public void run() {
+                        SettingsManager.getBookSettings().cropPages = AppState.get().isCrop;
+                        reloadDocBrigntness.run();
+                        onCrop.underline(AppState.get().isCrop);
+
+                        PageImageState.get().isAutoFit = true;
+                        EventBus.getDefault().post(new MessageAutoFit(viewPager.getCurrentItem()));
+
+                        AppState.get().isEditMode = false;
+                        hideShow();
                     }
                 });
 

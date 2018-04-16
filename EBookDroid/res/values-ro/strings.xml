@@ -461,9 +461,8 @@
    <string name="hyphenation_language">Limba de sincronizare</string>
    <string name="replacing_the_white_color_in_the_images_with_the_background_color">Înlocuirea culorii albe în imagini cu culoarea de fundal</string>
    <string name="disable_swipe_gestures_for_page_paging">Dezactivați gesturile de glisare pentru paginile de paginare</string>
-   <string name="turn_off">Opriți</string>
-   <string name="crop_off">Desprindeți-vă</string>
    <string name="no_keywords">Nu există cuvinte cheie</string>
    <string name="my_tags">Etichetele mele</string>
    <string name="crop_borders_symmetrically">Trasați marginile în mod simetric</string>
+   <string name="enable_cropping_of_white_borders">Activați decuparea marginilor albe</string>
 </resources>

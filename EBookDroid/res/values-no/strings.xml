@@ -461,9 +461,8 @@
    <string name="hyphenation_language">Hyphenation språk</string>
    <string name="replacing_the_white_color_in_the_images_with_the_background_color">Bytte den hvite fargen i bildene med bakgrunnsfargen</string>
    <string name="disable_swipe_gestures_for_page_paging">Deaktiver sveipebevegelser for sideoppretting</string>
-   <string name="turn_off">Skru av</string>
-   <string name="crop_off">Beskjære</string>
    <string name="no_keywords">Ingen søkeord</string>
    <string name="my_tags">Mine koder</string>
    <string name="crop_borders_symmetrically">Beskjær kantene symmetrisk</string>
+   <string name="enable_cropping_of_white_borders">Aktiver beskjæring av hvite grenser</string>
 </resources>

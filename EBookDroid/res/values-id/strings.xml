@@ -461,9 +461,8 @@
    <string name="hyphenation_language">Bahasa hyphenation</string>
    <string name="replacing_the_white_color_in_the_images_with_the_background_color">Mengganti warna putih pada gambar dengan warna latar belakang</string>
    <string name="disable_swipe_gestures_for_page_paging">Nonaktifkan gestur gesek untuk halaman halaman</string>
-   <string name="turn_off">Matikan</string>
-   <string name="crop_off">Pangkas</string>
    <string name="no_keywords">Tidak ada kata kunci</string>
    <string name="my_tags">Tag saya</string>
    <string name="crop_borders_symmetrically">Perbatasan tanaman simetris</string>
+   <string name="enable_cropping_of_white_borders">Aktifkan pemangkasan batas putih</string>
 </resources>

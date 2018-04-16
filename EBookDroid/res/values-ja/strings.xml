@@ -461,9 +461,8 @@
    <string name="hyphenation_language">ハイフネーション言語</string>
    <string name="replacing_the_white_color_in_the_images_with_the_background_color">イメージ内の白色を背景色に置き換える</string>
    <string name="disable_swipe_gestures_for_page_paging">ページページングのスワイプジェスチャーを無効にする</string>
-   <string name="turn_off">消す</string>
-   <string name="crop_off">切り取る</string>
    <string name="no_keywords">キーワードなし</string>
    <string name="my_tags">私のタグ</string>
    <string name="crop_borders_symmetrically">境界を対称的にトリミングする</string>
+   <string name="enable_cropping_of_white_borders">白い枠線のトリミングを有効にする</string>
 </resources>

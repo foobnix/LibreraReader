@@ -461,9 +461,8 @@
    <string name="hyphenation_language">Dzielenie języka</string>
    <string name="replacing_the_white_color_in_the_images_with_the_background_color">Zastępowanie koloru białego na zdjęciach kolorem tła</string>
    <string name="disable_swipe_gestures_for_page_paging">Wyłącz gesty przesunięcia dla stronicowania stron</string>
-   <string name="turn_off">Wyłączyć</string>
-   <string name="crop_off">Przycinaj</string>
    <string name="no_keywords">Brak słów kluczowych</string>
    <string name="my_tags">Moje tagi</string>
    <string name="crop_borders_symmetrically">Obramowuj granice symetrycznie</string>
+   <string name="enable_cropping_of_white_borders">Włącz przycinanie białych obramowań</string>
 </resources>

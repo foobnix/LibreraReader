@@ -156,9 +156,10 @@ public class CustomSeek extends FrameLayout {
     int min = 0;
     int max = 0;
     int current = 0;
+    private String sufix;
 
     public void reset(int current) {
-        init(min, max, current);
+        init(min, max, current, sufix);
     }
 
     public void setMax(int max) {
@@ -168,13 +169,18 @@ public class CustomSeek extends FrameLayout {
     }
 
     public void init(final int min, int max, int current) {
+        init(min, max, current, "");
+    }
+
+    public void init(final int min, int max, int current, final String sufix) {
+        this.sufix = sufix;
         seek.setOnSeekBarChangeListener(null);
         this.min = min;
         this.max = max;
         this.current = current;
         valueResponse = current;
         distance = max - min;
-        textCurerntValue.setText("" + current);
+        textCurerntValue.setText("" + current + sufix);
         seek.setMax(distance);
         seek.setProgress(current - min);
 
@@ -193,7 +199,7 @@ public class CustomSeek extends FrameLayout {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
                 valueResponse = min + progress;
-                textCurerntValue.setText("" + valueResponse);
+                textCurerntValue.setText("" + valueResponse + sufix);
                 if (integerResponse != null) {
                     integerResponse.onResultRecive(valueResponse);
                 }
@@ -215,7 +221,7 @@ public class CustomSeek extends FrameLayout {
     private TextView titleText;
 
     public void setValueText(String text) {
-        textCurerntValue.setText(text);
+        textCurerntValue.setText(text + sufix);
     }
 
     public void setOnSeekChanged(IntegerResponse integerResponse) {

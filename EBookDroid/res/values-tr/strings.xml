@@ -461,9 +461,8 @@
    <string name="hyphenation_language">Tireleme dili</string>
    <string name="replacing_the_white_color_in_the_images_with_the_background_color">Resimdeki beyaz rengi arka plan rengiyle değiştirme</string>
    <string name="disable_swipe_gestures_for_page_paging">Sayfa sayfalama için kaydırma hareketlerini devre dışı bırak</string>
-   <string name="turn_off">Kapat</string>
-   <string name="crop_off">Kırpma</string>
    <string name="no_keywords">Anahtar kelime yok</string>
    <string name="my_tags">Etiketlerim</string>
    <string name="crop_borders_symmetrically">Simetrik olarak bitki sınırları</string>
+   <string name="enable_cropping_of_white_borders">Beyaz kenarlıkların kırpılmasını etkinleştir</string>
 </resources>

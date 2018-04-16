@@ -461,9 +461,8 @@
    <string name="hyphenation_language">断字语言</string>
    <string name="replacing_the_white_color_in_the_images_with_the_background_color">一致化背景色</string>
    <string name="disable_swipe_gestures_for_page_paging">禁用轻扫翻页</string>
-   <string name="turn_off">关闭</string>
-   <string name="crop_off">裁切</string>
    <string name="no_keywords">无关键</string>
    <string name="my_tags">标签</string>
    <string name="crop_borders_symmetrically">裁剪边界对称</string>
+   <string name="enable_cropping_of_white_borders">启用白色边框的裁剪</string>
 </resources>
