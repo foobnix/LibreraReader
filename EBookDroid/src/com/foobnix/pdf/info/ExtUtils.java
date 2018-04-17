@@ -1586,6 +1586,7 @@ public class ExtUtils {
 
     public static String determineHtmlEncoding(InputStream fis, InputStream fis2) {
 
+
         try {
             BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(fis));
             String line;
@@ -1620,8 +1621,10 @@ public class ExtUtils {
         } catch (Exception e) {
             LOG.e(e);
         }
+
         String encdogin = determineEncodingAuto(fis2);
         LOG.d("determineHtmlEncoding auto", encdogin);
+
         return encdogin;
 
     }
