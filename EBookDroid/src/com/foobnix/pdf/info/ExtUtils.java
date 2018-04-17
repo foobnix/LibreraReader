@@ -1611,7 +1611,7 @@ public class ExtUtils {
                     }
                 }
 
-                if (count >= 300) {
+                if (count >= 100) {
                     break;
                 }
 
