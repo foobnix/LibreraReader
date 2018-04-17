@@ -238,7 +238,28 @@ public class TxtUtils {
 
     }
 
-    public static String replaceLastFirstName(String name) {
+    public static String replaceLastFirstNameSplit(String name) {
+        if (TxtUtils.isEmpty(name)) {
+            return "";
+        }
+        name = name.trim();
+        if (name.contains(";") || name.contains(",")) {
+            StringBuilder res = new StringBuilder();
+            String[] split = name.split("[;,]");
+            for (String sub : split) {
+                if (TxtUtils.isNotEmpty(sub)) {
+                    res.append(replaceLastFirstName(sub));
+                    res.append("; ");
+                }
+            }
+            return TxtUtils.replaceLast(res.toString(), ";", "");
+        }
+
+        return replaceLastFirstName(name);
+
+    }
+
+    private static String replaceLastFirstName(String name) {
         if (TxtUtils.isEmpty(name)) {
             return "";
         }

@@ -36,7 +36,6 @@ import com.BaseExtractor;
 import com.foobnix.android.utils.LOG;
 import com.foobnix.android.utils.TxtUtils;
 import com.foobnix.pdf.info.ExtUtils;
-import com.foobnix.pdf.info.wrapper.AppState;
 import com.foobnix.sys.TempHolder;
 
 public class EpubExtractor extends BaseExtractor {
@@ -265,9 +264,6 @@ public class EpubExtractor extends BaseExtractor {
             zipInputStream.close();
             inputStream.close();
 
-            if (AppState.get().isFirstSurname) {
-                author = TxtUtils.replaceLastFirstName(author);
-            }
 
             EbookMeta ebookMeta = new EbookMeta(title, author, series, subject.replaceAll(",$", ""));
             try {

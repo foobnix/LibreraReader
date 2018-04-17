@@ -284,12 +284,6 @@ public class Fb2Extractor extends BaseExtractor {
             lastName = TxtUtils.nullNullToEmpty(lastName);
             firstName = TxtUtils.nullNullToEmpty(firstName);
 
-            if (AppState.get().isFirstSurname) {
-                String temp = lastName;
-                lastName = firstName;
-                firstName = temp;
-            }
-
             genre = genre.replace(",,", ",") + ",";
 
             loadGenres();

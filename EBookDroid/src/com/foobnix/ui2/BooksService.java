@@ -27,7 +27,6 @@ import android.support.v4.media.session.MediaSessionCompat;
 public class BooksService extends IntentService {
     private MediaSessionCompat mediaSessionCompat;
 
-
     public BooksService() {
         super("BooksService");
         AppState.get().load(this);
@@ -54,7 +53,6 @@ public class BooksService extends IntentService {
     public static String RESULT_SEARCH_COUNT = "RESULT_SEARCH_COUNT";
 
     private List<FileMeta> itemsMeta = new LinkedList<FileMeta>();
-
 
     @Override
     protected void onHandleIntent(Intent intent) {
@@ -126,8 +124,6 @@ public class BooksService extends IntentService {
                 List<Uri> recent = AppSharedPreferences.get().getRecent();
                 List<FileMeta> starsAndRecent = AppDB.get().deleteAllSafe();
 
-
-
                 long time = Integer.MAX_VALUE;
                 for (Uri uri : recent) {
                     FileMeta item = new FileMeta(uri.getPath());
@@ -183,7 +179,7 @@ public class BooksService extends IntentService {
 
                 for (FileMeta meta : itemsMeta) {
                     EbookMeta ebookMeta = FileMetaCore.get().getEbookMeta(meta.getPath(), CacheDir.ZipService, true);
-                    LOG.d("BooksService getAuthor", meta.getPath(), ebookMeta.getAuthor());
+                    LOG.d("BooksService getAuthor", ebookMeta.getAuthor());
                     FileMetaCore.get().udpateFullMeta(meta, ebookMeta);
                 }
 
@@ -222,6 +218,12 @@ public class BooksService extends IntentService {
     };
 
     private void sendFinishMessage() {
+        try {
+            AppDB.get().getDao().detachAll();
+        } catch (Exception e) {
+            LOG.e(e);
+        }
+
         sendFinishMessage(this);
     }
 

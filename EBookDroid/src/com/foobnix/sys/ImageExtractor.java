@@ -21,7 +21,6 @@ import com.BaseExtractor;
 import com.foobnix.android.utils.Dips;
 import com.foobnix.android.utils.LOG;
 import com.foobnix.android.utils.Safe;
-import com.foobnix.android.utils.TxtUtils;
 import com.foobnix.dao2.FileMeta;
 import com.foobnix.ext.CacheZipUtils.CacheDir;
 import com.foobnix.ext.CbzCbrExtractor;
@@ -94,15 +93,16 @@ public class ImageExtractor implements ImageDownloader {
         }
 
         FileMeta fileMeta = AppDB.get().load(path);
-        EbookMeta ebookMeta = FileMetaCore.get().getEbookMeta(path, CacheDir.ZipApp, false);
 
         LOG.d("proccessCoverPage fileMeta", fileMeta, pageUrl);
 
+        EbookMeta ebookMeta = FileMetaCore.get().getEbookMeta(path, CacheDir.ZipApp, fileMeta == null);
         if (fileMeta == null) {
             fileMeta = new FileMeta(path);
             FileMetaCore.get().upadteBasicMeta(fileMeta, new File(path));
             FileMetaCore.get().udpateFullMeta(fileMeta, ebookMeta);
-            AppDB.get().getDao().insert(fileMeta);
+
+            AppDB.get().updateOrSave(fileMeta);
         }
 
         String unZipPath = ebookMeta.getUnzipPath();
@@ -120,7 +120,7 @@ public class ImageExtractor implements ImageDownloader {
         } else if (BookType.RTF.is(unZipPath)) {
             cover = BaseExtractor.arrayToBitmap(RtfExtract.getImageCover(unZipPath), pageUrl.getWidth());
         } else if (BookType.PDF.is(unZipPath) || BookType.DJVU.is(unZipPath) || BookType.TIFF.is(unZipPath)) {
-            cover = proccessOtherPage(pageUrl, fileMeta);
+            cover = proccessOtherPage(pageUrl);
         } else if (BookType.CBZ.is(unZipPath) || BookType.CBR.is(unZipPath)) {
             cover = BaseExtractor.arrayToBitmap(CbzCbrExtractor.getBookCover(unZipPath), pageUrl.getWidth());
         } else if (ExtUtils.isFileArchive(unZipPath)) {
@@ -138,7 +138,6 @@ public class ImageExtractor implements ImageDownloader {
         }
 
         LOG.d("udpateFullMeta ImageExtractor", fileMeta.getAuthor());
-        AppDB.get().update(fileMeta);
 
         return cover;
     }
@@ -171,7 +170,7 @@ public class ImageExtractor implements ImageDownloader {
         }
     }
 
-    public Bitmap proccessOtherPage(PageUrl pageUrl, FileMeta meta) {
+    public Bitmap proccessOtherPage(PageUrl pageUrl) {
         int page = pageUrl.getPage();
         String path = pageUrl.getPath();
 
@@ -190,17 +189,6 @@ public class ImageExtractor implements ImageDownloader {
         CodecDocument codeCache = null;
         if (isNeedDisableMagicInPDFDjvu) {
             codeCache = singleCodecContext(path, "", pageUrl.getWidth(), pageUrl.getHeight());
-            if (meta != null && codeCache != null && FileMetaCore.isNeedToExtractPDFMeta(path)) {
-                String bookAuthor = codeCache.getBookAuthor();
-                if (TxtUtils.isNotEmpty(bookAuthor)) {
-                    meta.setAuthor(bookAuthor);
-                }
-                String bookTitle = codeCache.getBookTitle();
-                if (TxtUtils.isNotEmpty(bookTitle)) {
-                    meta.setTitle(bookTitle);
-                }
-                LOG.d("PDF getBookAuthor", bookAuthor, bookTitle);
-            }
         } else {
             codeCache = getNewCodecContext(path, "", pageUrl.getWidth(), pageUrl.getHeight());
         }
@@ -208,9 +196,6 @@ public class ImageExtractor implements ImageDownloader {
         if (codeCache == null) {
             LOG.d("TEST", "codecDocument == null" + path);
             return null;
-        }
-        if (isNeedDisableMagicInPDFDjvu && meta != null) {
-            meta.setPages(codeCache.getPageCount());
         }
 
         final CodecPageInfo pageInfo = codeCache.getPageInfo(page);
@@ -440,12 +425,12 @@ public class ImageExtractor implements ImageDownloader {
                         pageUrl.setPage(pageUrl.getPage() - 1);
                     }
 
-                    Bitmap bitmap1 = proccessOtherPage(pageUrl, null);
+                    Bitmap bitmap1 = proccessOtherPage(pageUrl);
                     pageUrl.setPage(pageUrl.getPage() + 1);
 
                     Bitmap bitmap2 = null;
                     if (pageUrl.getPage() < pageCount) {
-                        bitmap2 = proccessOtherPage(pageUrl, null);
+                        bitmap2 = proccessOtherPage(pageUrl);
                     } else {
                         bitmap2 = Bitmap.createBitmap(bitmap1);
                         Canvas canvas = new Canvas(bitmap2);
@@ -471,7 +456,7 @@ public class ImageExtractor implements ImageDownloader {
 
                 }
 
-                return bitmapToStreamRAW(proccessOtherPage(pageUrl, null));
+                return bitmapToStreamRAW(proccessOtherPage(pageUrl));
             }
 
         } catch (MuPdfPasswordException e) {

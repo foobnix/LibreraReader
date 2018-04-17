@@ -24,6 +24,7 @@ import com.foobnix.ext.Fb2Extractor;
 import com.foobnix.ext.MobiExtract;
 import com.foobnix.ext.PdfExtract;
 import com.foobnix.pdf.info.ExtUtils;
+import com.foobnix.pdf.info.wrapper.AppState;
 
 import android.app.Activity;
 import android.support.v4.util.Pair;
@@ -64,20 +65,24 @@ public class FileMetaCore {
         }
     }
 
-    public EbookMeta getEbookMeta(String path, CacheDir folder, boolean withPDF) {
+    public EbookMeta getEbookMeta(String path, CacheDir folder, boolean extract) {
         EbookMeta ebookMeta = EbookMeta.Empty();
         try {
             if (path.toLowerCase(Locale.US).endsWith(".zip")) {
                 CacheZipUtils.cacheLock.lock();
                 try {
                     UnZipRes res = CacheZipUtils.extracIfNeed(path, folder);
-                    ebookMeta = getEbookMeta(path, res.unZipPath, res.entryName, withPDF);
+                    if (extract) {
+                        ebookMeta = getEbookMeta(path, res.unZipPath, res.entryName);
+                    }
                     ebookMeta.setUnzipPath(res.unZipPath);
                 } finally {
                     CacheZipUtils.cacheLock.unlock();
                 }
             } else {
-                ebookMeta = getEbookMeta(path, path, null, withPDF);
+                if (extract) {
+                    ebookMeta = getEbookMeta(path, path, null);
+                }
                 ebookMeta.setUnzipPath(path);
             }
 
@@ -92,7 +97,7 @@ public class FileMetaCore {
         return !path.contains(" - ") && BookType.PDF.is(path);
     }
 
-    private EbookMeta getEbookMeta(String path, String unZipPath, String child, boolean withDPF) throws IOException {
+    private EbookMeta getEbookMeta(String path, String unZipPath, String child) throws IOException {
         EbookMeta ebookMeta = EbookMeta.Empty();
         String fileName = ExtUtils.getFileName(unZipPath);
         String fileNameOriginal = ExtUtils.getFileName(path);
@@ -111,15 +116,17 @@ public class FileMetaCore {
             ebookMeta = MobiExtract.getBookMetaInformation(unZipPath, true);
         } else if (BookType.DJVU.is(unZipPath)) {
             ebookMeta = DjvuExtract.getBookMetaInformation(unZipPath);
-        } else if (withDPF) {
+        } else if (BookType.PDF.is(unZipPath)) {
             boolean needExtractMeta = isNeedToExtractPDFMeta(unZipPath);
             EbookMeta local = PdfExtract.getBookMetaInformation(unZipPath);
             if (needExtractMeta) {
-                ebookMeta = local;
+                ebookMeta.setTitle(local.getTitle());
+                ebookMeta.setAuthor(local.getAuthor());
             }
             ebookMeta.setKeywords(local.getKeywords());
             ebookMeta.setGenre(local.getGenre());
             ebookMeta.setSequence(local.getSequence());
+            ebookMeta.setPagesCount(local.getPagesCount());
 
         } else if (BookType.CBR.is(unZipPath) || BookType.CBZ.is(unZipPath)) {
             ebookMeta.setPagesCount(CbzCbrExtractor.getPageCount(unZipPath));
@@ -128,9 +135,8 @@ public class FileMetaCore {
 
         if (TxtUtils.isEmpty(ebookMeta.getTitle())) {
             Pair<String, String> pair = TxtUtils.getTitleAuthorByPath(fileName);
-            int count = ebookMeta.getPagesCount();
-            ebookMeta = new EbookMeta(pair.first, TxtUtils.isNotEmpty(ebookMeta.getAuthor()) ? ebookMeta.getAuthor() : pair.second);
-            ebookMeta.setPagesCount(count);
+            ebookMeta.setTitle(pair.first);
+            ebookMeta.setAuthor(TxtUtils.isNotEmpty(ebookMeta.getAuthor()) ? ebookMeta.getAuthor() : pair.second);
         }
 
         if (ebookMeta.getsIndex() == null && (path.contains("_") || path.contains(")"))) {
@@ -148,6 +154,12 @@ public class FileMetaCore {
 
         if (path.endsWith(".zip") && !path.endsWith("fb2.zip")) {
             ebookMeta.setTitle("{" + fileNameOriginal + "} " + ebookMeta.getTitle());
+        }
+
+        if (AppState.get().isFirstSurname) {
+            String before = ebookMeta.getAuthor();
+            ebookMeta.setAuthor(TxtUtils.replaceLastFirstNameSplit(before));
+            LOG.d("isFirstSurname1", before, "=>", ebookMeta.getAuthor());
         }
 
         return ebookMeta;

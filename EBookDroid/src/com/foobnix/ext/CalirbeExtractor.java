@@ -12,7 +12,6 @@ import org.xmlpull.v1.XmlPullParser;
 import com.BaseExtractor;
 import com.foobnix.android.utils.LOG;
 import com.foobnix.android.utils.TxtUtils;
-import com.foobnix.pdf.info.wrapper.AppState;
 
 public class CalirbeExtractor {
 
@@ -73,9 +72,6 @@ public class CalirbeExtractor {
 
                     if ("dc:creator".equals(xpp.getName())) {
                         String author = xpp.nextText();
-                        if (AppState.get().isFirstSurname) {
-                            author = TxtUtils.replaceLastFirstName(author);
-                        }
                         if (TxtUtils.isNotEmpty(meta.getAuthor())) {
                             meta.setAuthor(meta.getAuthor() + ", " + author);
                         } else {

@@ -335,11 +335,13 @@ public class AppDB {
         }
     }
 
-    public void updateOrSave(FileMeta meta) {
+    public synchronized void updateOrSave(FileMeta meta) {
         if (fileMetaDao.load(meta.getPath()) == null) {
             fileMetaDao.insert(meta);
+            LOG.d("updateOrSave1", meta.getAuthor(), meta.getPages());
         } else {
             fileMetaDao.update(meta);
+            LOG.d("updateOrSave2", meta.getAuthor(), meta.getPages());
         }
 
     }
