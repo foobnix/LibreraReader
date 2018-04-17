@@ -1584,7 +1584,8 @@ public class ExtUtils {
         return results;
     }
 
-    public static String determineHtmlEncoding(InputStream fis) {
+    public static String determineHtmlEncoding(InputStream fis, InputStream fis2) {
+
         try {
             BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(fis));
             String line;
@@ -1593,11 +1594,8 @@ public class ExtUtils {
             int count = 0;
             while ((line = bufferedReader.readLine()) != null) {
                 count++;
-
-                if (count <= 15 && (line.contains("#E9E9E9") || line.contains("#e9e9e9"))) {
-                    BookCSS.get().hypenLang = "ru";
-                    bufferedReader.close();
-                    return "CP1251";// samlib hack
+                if (line.contains("<script")) {
+                    continue;
                 }
                 for (String e : es) {
                     line = line.toLowerCase(Locale.US);
@@ -1607,10 +1605,13 @@ public class ExtUtils {
                         String encoding = line.substring(index, line.indexOf("\"", index));
                         LOG.d("extract-encoding-html", encoding);
                         bufferedReader.close();
+                        LOG.d("determineHtmlEncoding", encoding);
+                        fis2.close();
                         return encoding;
                     }
                 }
-                if (count >= 100) {
+
+                if (count >= 300) {
                     break;
                 }
 
@@ -1619,9 +1620,34 @@ public class ExtUtils {
         } catch (Exception e) {
             LOG.e(e);
         }
+        String encdogin = determineEncodingAuto(fis2);
+        LOG.d("determineHtmlEncoding auto", encdogin);
+        return encdogin;
 
-        return "UTF-8";
+    }
 
+    private static String determineEncodingAuto(InputStream fis) {
+        String encoding = null;
+        try {
+            UniversalDetector detector = new UniversalDetector(null);
+
+            int nread;
+            byte[] buf = new byte[1024];
+            while ((nread = fis.read(buf)) > 0 && !detector.isDone()) {
+                detector.handleData(buf, 0, nread);
+            }
+            detector.dataEnd();
+
+            encoding = detector.getDetectedCharset();
+            detector.reset();
+            fis.close();
+
+            LOG.d("File Encoding", encoding);
+
+        } catch (Exception e) {
+            LOG.e(e);
+        }
+        return encoding == null ? "UTF-8" : encoding;
     }
 
     public static String determineTxtEncoding(InputStream fis) {

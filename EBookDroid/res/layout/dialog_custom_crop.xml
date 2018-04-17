@@ -21,34 +21,34 @@
             style="@style/textLink"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:minEms="3"
             android:gravity="center"
-            android:text="0%" />
+            android:minEms="3"
+            android:text="@string/automatic" />
 
         <TextView
             android:id="@+id/v5"
             style="@style/textLink"
-            android:gravity="center"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:gravity="center"
             android:minEms="3"
             android:text="5%" />
 
         <TextView
             android:id="@+id/v10"
-            android:gravity="center"
             style="@style/textLink"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:gravity="center"
             android:minEms="3"
             android:text="10%" />
 
         <TextView
             android:id="@+id/v15"
-            android:gravity="center"
             style="@style/textLink"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:gravity="center"
             android:minEms="3"
             android:text="15%" />
     </LinearLayout>

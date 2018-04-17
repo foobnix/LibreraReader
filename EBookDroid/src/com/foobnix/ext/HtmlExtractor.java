@@ -26,7 +26,7 @@ public class HtmlExtractor {
 
         try {
 
-            String encoding = ExtUtils.determineHtmlEncoding(new FileInputStream(inputPath));
+            String encoding = ExtUtils.determineHtmlEncoding(new FileInputStream(inputPath), new FileInputStream(inputPath));
 
 
             LOG.d("HtmlExtractor encoding: ", encoding);
