@@ -283,7 +283,7 @@ public class PageImaveView extends View {
 
         @Override
         public boolean onFling(final MotionEvent e1, final MotionEvent e2, final float velocityX, final float velocityY) {
-            isIgronerClick = true;
+
             if (e1.getX() < BrightnessHelper.BRIGHTNESS_WIDTH) {
                 return false;
             }
@@ -294,6 +294,7 @@ public class PageImaveView extends View {
                 return false;
             }
             if (isReadyForMove) {
+                isIgronerClick = true;
                 scroller.fling((int) e2.getX(), (int) e2.getY(), (int) velocityX / 3, (int) velocityY / 3, Integer.MIN_VALUE, Integer.MAX_VALUE, Integer.MIN_VALUE, Integer.MAX_VALUE);
                 handler.post(scrolling);
             }

@@ -21,6 +21,7 @@ public class Dips {
     public final static int DP_3 = Dips.dpToPx(3);
     public final static int DP_5 = Dips.dpToPx(5);
     public final static int DP_10 = Dips.dpToPx(10);
+    public final static int DP_15 = Dips.dpToPx(15);
     public final static int DP_25 = Dips.dpToPx(25);
     public final static int DP_40 = Dips.dpToPx(40);
     public final static int DP_50 = Dips.dpToPx(50);
