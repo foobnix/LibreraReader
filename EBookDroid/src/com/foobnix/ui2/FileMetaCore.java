@@ -133,6 +133,21 @@ public class FileMetaCore {
 
         }
 
+        try {
+            String sequence = ebookMeta.getSequence();
+            if (sequence != null && sequence.contains(",")) {
+                String[] split = sequence.split(",");
+                String name = split[0].trim();
+                String intger = split[1].trim();
+
+                int intValue = Integer.parseInt(intger);
+                ebookMeta.setSequence(name);
+                ebookMeta.setsIndex(intValue);
+            }
+        } catch (Exception e) {
+            LOG.e(e);
+        }
+
         if (TxtUtils.isEmpty(ebookMeta.getTitle())) {
             Pair<String, String> pair = TxtUtils.getTitleAuthorByPath(fileName);
             ebookMeta.setTitle(pair.first);

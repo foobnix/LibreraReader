@@ -1,3 +1,6 @@
+noto.c
+TOFU_SYMBOL1 + add symbols
+
 source/html/epub-doc.c
 
 //if (fz_has_archive_entry(ctx, zip, "META-INF/rights.xml"))
