@@ -180,12 +180,19 @@ public class FileInformationDialog {
 
         TextView metaPDF = (TextView) dialog.findViewById(R.id.metaPDF);
         metaPDF.setVisibility(View.GONE);
-        if (false && (BookType.PDF.is(file.getPath()) || BookType.DJVU.is(file.getPath()))) {
+        if (BookType.PDF.is(file.getPath())) {
             CodecDocument doc = ImageExtractor.singleCodecContext(file.getPath(), "", 0, 0);
             if (doc != null) {
                 metaPDF.setVisibility(View.VISIBLE);
                 StringBuilder meta = new StringBuilder();
+                
                 List<String> list = Arrays.asList(
+                        //
+                        "info:Title", //
+                        "info:Author" //
+                        // djvu
+                );
+                List<String> list2 = Arrays.asList(
                         //
                         "info:Title", //
                         "info:Author", //
