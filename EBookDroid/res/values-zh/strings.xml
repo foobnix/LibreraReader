@@ -464,5 +464,5 @@
    <string name="no_keywords">无关键</string>
    <string name="my_tags">标签</string>
    <string name="crop_borders_symmetrically">裁剪边界对称</string>
-   <string name="enable_cropping_of_white_borders">启用白色边框的裁剪</string>
+   <string name="enable_cropping_of_white_borders">启用裁剪白边</string>
 </resources>
