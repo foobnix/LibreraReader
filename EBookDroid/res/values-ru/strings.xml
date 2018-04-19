@@ -122,7 +122,7 @@
    <string name="opening_book_with_cropped_borders">Активировать обрезку пустых полей при каждом открытии PDF/DJVU</string>
    <string name="db_auto_alignemnt">Вписать в ширину экрана</string>
    <string name="db_auto_center_horizontally">Выровнить по горизонтали</string>
-   <string name="zoom_in_zoom_out">Увеличить/уменьшить в 2 раза</string>
+   <string name="zoom_in_zoom_out">Увел./умен. масштаб страниц в 2 раза</string>
    <string name="enhancements_for_oled_display">Заполнять пространство вокруг страниц черным цветом при выборе любого из ночных пресетов (AMOLED-адаптация)</string>
    <string name="ignore_annotations_on_click">Игнорировать комментарии и пометки при нажатиях</string>
    <string name="save_new_annotations_automatically">Автоматически сохранять новые комментарии и пометки при закрытии книги или выходе из приложения</string>
@@ -460,10 +460,10 @@
    <string name="do_you_want_to_download_more_book_fonts_10mb_">Для удобства чтения можно скачать дополнительный набор шрифтов размером 10 Мб. Хотите ли вы это сделать?</string>
    <string name="hyphenation_language">Язык переносов</string>
    <string name="replacing_the_white_color_in_the_images_with_the_background_color">Окрашивать белый фон изображений в цвет фона страниц</string>
-   <string name="disable_swipe_gestures_for_page_paging">Отключить возможность листания страниц горизонтальными свайпами</string>
+   <string name="disable_swipe_gestures_for_page_paging">Отключить возможность листания страниц горизонтальными свайпами (для электр. читалок)</string>
    <string name="no_keywords">Без ключевых слов</string>
    <string name="my_tags">Свои теги</string>
    <string name="crop_borders_symmetrically">Симметричная обрезка полей</string>
    <string name="enable_cropping_of_white_borders">Включить</string>
-   <string name="displaying_the_author_and_title_of_the_pdf_book_from_the_meta_tags">Отображение автора и названия книги PDF из метатег</string>
+   <string name="displaying_the_author_and_title_of_the_pdf_book_from_the_meta_tags">Отображать имена авторов и названия PDF-книг, используя информацию метаданных</string>
 </resources>
