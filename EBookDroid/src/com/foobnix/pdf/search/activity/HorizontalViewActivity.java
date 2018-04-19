@@ -1379,13 +1379,19 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
                     DragingDialogs.selectTextMenu(anchor, dc, true, onRefresh);
                 }
             }
-        } else if (ev.getMessage().equals(MessageEvent.MESSAGE_GOTO_PAGE)) {
+        } else if (ev.getMessage().equals(MessageEvent.MESSAGE_GOTO_PAGE_BY_LINK)) {
             if (ev.getPage() == -1 && TxtUtils.isNotEmpty(ev.getBody())) {
                 AlertDialogs.openUrl(this, ev.getBody());
             } else {
                 dc.getLinkHistory().add(dc.getCurentPage() + 1);
                 dc.onGoToPage(ev.getPage() + 1);
                 showHideHistory();
+            }
+        } else if (ev.getMessage().equals(MessageEvent.MESSAGE_GOTO_PAGE_SWIPE)) {
+            if (ev.getPage() > 0) {
+                nextPage();
+            } else {
+                prevPage();
             }
         }
     }

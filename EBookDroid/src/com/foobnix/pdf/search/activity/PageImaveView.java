@@ -61,6 +61,8 @@ public class PageImaveView extends View {
     private boolean isLognPress = false;
     private boolean isIgronerClick = false;
 
+    private int isMoveNextPrev = 0;
+
     float x, y, xInit, yInit, cx, cy, distance = 0;
 
     private int pageNumber;
@@ -339,6 +341,7 @@ public class PageImaveView extends View {
                 brightnessHelper.onActoinDown(x, y);
                 isReadyForMove = false;
                 isLognPress = false;
+                isMoveNextPrev = 0;
             } else if (action == MotionEvent.ACTION_MOVE) {
                 if (event.getPointerCount() == 1) {
                     LOG.d("TEST", "action ACTION_MOVE 1");
@@ -352,6 +355,10 @@ public class PageImaveView extends View {
                         if (AppState.get().isLocked) {
                             isReadyForMove = false;
                             isIgronerClick = false;
+                            if (Math.abs(dy) > Math.abs(dx) && Math.abs(dy) > Dips.DP_10) {
+                                isMoveNextPrev = dy > 0 ? 1 : -1;
+                            }
+
                         } else {
                             if (AppState.get().rotateViewPager == 0) {
                                 if (Math.abs(dy) > Math.abs(dx) && (Math.abs(dy) + Math.abs(dx) > Dips.DP_10)) {
@@ -369,6 +376,7 @@ public class PageImaveView extends View {
                         boolean isBrightness = brightnessHelper.onActionMove(event);
                         if (isBrightness) {
                             isIgronerClick = true;
+                            isMoveNextPrev = 0;
                         }
 
                         if (!isBrightness && isReadyForMove && !AppState.get().isLocked) {
@@ -467,10 +475,12 @@ public class PageImaveView extends View {
                     TempHolder.get().linkPage = pageLink.targetPage;
                 }
 
-                if (TxtUtils.isNotEmpty(AppState.get().selectedText)) {
+                if (isMoveNextPrev != 0) {
+                    EventBus.getDefault().post(new MessageEvent(MessageEvent.MESSAGE_GOTO_PAGE_SWIPE, isMoveNextPrev));
+                } else if (TxtUtils.isNotEmpty(AppState.get().selectedText)) {
                     EventBus.getDefault().post(new MessageEvent(MessageEvent.MESSAGE_SELECTED_TEXT));
                 } else if (pageLink != null) {
-                    EventBus.getDefault().post(new MessageEvent(MessageEvent.MESSAGE_GOTO_PAGE, pageLink.targetPage, pageLink.url));
+                    EventBus.getDefault().post(new MessageEvent(MessageEvent.MESSAGE_GOTO_PAGE_BY_LINK, pageLink.targetPage, pageLink.url));
                 } else {
                     if (!isIgronerClick) {
                         EventBus.getDefault().post(new MessageEvent(MessageEvent.MESSAGE_PERFORM_CLICK, event.getX(), event.getY()));
