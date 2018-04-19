@@ -221,13 +221,26 @@
                     android:textSize="11sp" />
             </LinearLayout>
 
-            <CheckBox
-                android:id="@+id/isFirstSurname"
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/in_the_author_s_name_first_the_surname" />
-            
-            
+                android:layout_height="wrap_content" >
+
+                <CheckBox
+                    android:id="@+id/isFirstSurname"
+                    android:layout_weight="1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/in_the_author_s_name_first_the_surname" />
+
+                <ImageView
+                    android:id="@+id/moreLybraryettings"
+                    android:layout_width="@dimen/wh_button"
+                    android:layout_height="@dimen/wh_button"
+                    android:layout_weight="0"
+                    android:padding="8dip"
+                    android:src="@drawable/glyphicons_685_article"
+                    android:tint="@color/tint_gray" />
+            </LinearLayout>
         </LinearLayout>
 
         <TextView

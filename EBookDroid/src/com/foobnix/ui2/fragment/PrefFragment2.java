@@ -750,7 +750,40 @@ public class PrefFragment2 extends UIFragment {
                 }, null);
             }
         };
+
         final int timeout = 1500;
+
+        inflate.findViewById(R.id.moreLybraryettings).setOnClickListener(new OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                final CheckBox check = new CheckBox(v.getContext());
+                check.setText(R.string.displaying_the_author_and_title_of_the_pdf_book_from_the_meta_tags);
+
+                final AlertDialog d = AlertDialogs.showViewDialog(getActivity(), check);
+
+                check.setChecked(AppState.get().isAuthorTitleFromMetaPDF);
+
+                check.setOnCheckedChangeListener(new OnCheckedChangeListener() {
+
+                    @Override
+                    public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                        AppState.get().isAuthorTitleFromMetaPDF = isChecked;
+                        handler.removeCallbacksAndMessages(null);
+                        handler.postDelayed(ask, timeout);
+                        handler.postDelayed(new Runnable() {
+
+                            @Override
+                            public void run() {
+                                d.dismiss();
+                            }
+                        }, timeout);
+                    }
+                });
+
+
+            }
+        });
 
         final CheckBox isFirstSurname = (CheckBox) inflate.findViewById(R.id.isFirstSurname);
         isFirstSurname.setChecked(AppState.get().isFirstSurname);

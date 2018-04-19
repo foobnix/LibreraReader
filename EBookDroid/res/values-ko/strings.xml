@@ -465,4 +465,5 @@
    <string name="my_tags">내 태그</string>
    <string name="crop_borders_symmetrically">대칭으로 테두리 자르기</string>
    <string name="enable_cropping_of_white_borders">흰색 테두리 잘라 내기 사용</string>
+   <string name="displaying_the_author_and_title_of_the_pdf_book_from_the_meta_tags">메타 태그에서 PDF 책의 저자 및 제목 표시</string>
 </resources>

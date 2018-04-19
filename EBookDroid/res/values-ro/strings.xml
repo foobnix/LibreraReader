@@ -465,4 +465,5 @@
    <string name="my_tags">Etichetele mele</string>
    <string name="crop_borders_symmetrically">Trasați marginile în mod simetric</string>
    <string name="enable_cropping_of_white_borders">Activați decuparea marginilor albe</string>
+   <string name="displaying_the_author_and_title_of_the_pdf_book_from_the_meta_tags">Afișarea autorului și a titlului cărții PDF din etichetele meta</string>
 </resources>

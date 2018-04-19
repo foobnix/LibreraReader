@@ -465,4 +465,5 @@
    <string name="my_tags">Etiketlerim</string>
    <string name="crop_borders_symmetrically">Simetrik olarak bitki sınırları</string>
    <string name="enable_cropping_of_white_borders">Beyaz kenarlıkların kırpılmasını etkinleştir</string>
+   <string name="displaying_the_author_and_title_of_the_pdf_book_from_the_meta_tags">Meta kitabından yazarı ve PDF kitabının başlığını görüntüleme</string>
 </resources>

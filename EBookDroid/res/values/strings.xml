@@ -465,4 +465,5 @@
    <string name="my_tags">My tags</string>
    <string name="crop_borders_symmetrically">Crop borders symmetrically</string>
    <string name="enable_cropping_of_white_borders">Enable cropping of white borders</string>
+   <string name="displaying_the_author_and_title_of_the_pdf_book_from_the_meta_tags">Displaying the author and title of the PDF book from the meta tags</string>
 </resources>

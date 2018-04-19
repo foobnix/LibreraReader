@@ -117,7 +117,7 @@ public class FileMetaCore {
         } else if (BookType.DJVU.is(unZipPath)) {
             ebookMeta = DjvuExtract.getBookMetaInformation(unZipPath);
         } else if (BookType.PDF.is(unZipPath)) {
-            boolean needExtractMeta = isNeedToExtractPDFMeta(unZipPath);
+            boolean needExtractMeta = AppState.get().isAuthorTitleFromMetaPDF ? true : isNeedToExtractPDFMeta(unZipPath);
             EbookMeta local = PdfExtract.getBookMetaInformation(unZipPath);
             if (needExtractMeta) {
                 ebookMeta.setTitle(local.getTitle());

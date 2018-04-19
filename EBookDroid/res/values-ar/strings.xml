@@ -465,4 +465,5 @@
    <string name="my_tags">علاماتي</string>
    <string name="crop_borders_symmetrically">حدود المحاصيل متناظرة</string>
    <string name="enable_cropping_of_white_borders">تمكين الاقتصاص من الحدود البيضاء</string>
+   <string name="displaying_the_author_and_title_of_the_pdf_book_from_the_meta_tags">عرض المؤلف وعنوان كتاب PDF من العلامات الوصفية</string>
 </resources>

@@ -1,5 +1,6 @@
 package com.foobnix.pdf.info.view;
 
+import com.foobnix.android.utils.Dips;
 import com.foobnix.android.utils.Keyboards;
 import com.foobnix.pdf.info.R;
 import com.foobnix.pdf.info.Urls;
@@ -8,6 +9,8 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.DialogInterface.OnDismissListener;
+import android.view.View;
+import android.widget.LinearLayout;
 
 public class AlertDialogs {
 
@@ -111,6 +114,35 @@ public class AlertDialogs {
         });
 
         create.show();
+    }
+
+    public static AlertDialog showViewDialog(final Activity c, final View child) {
+        final AlertDialog.Builder builder = new AlertDialog.Builder(c);
+        builder.setCancelable(true);
+
+        LinearLayout l = new LinearLayout(c);
+        l.setPadding(Dips.DP_5, Dips.DP_5, Dips.DP_5, Dips.DP_5);
+        l.setOrientation(LinearLayout.VERTICAL);
+        l.addView(child);
+        builder.setView(l);
+
+        builder.setNegativeButton(R.string.close, new DialogInterface.OnClickListener() {
+
+            @Override
+            public void onClick(final DialogInterface dialog, final int id) {
+            }
+        });
+        AlertDialog create = builder.create();
+        create.setOnDismissListener(new OnDismissListener() {
+
+            @Override
+            public void onDismiss(DialogInterface dialog) {
+                Keyboards.hideNavigation(c);
+            }
+        });
+
+        create.show();
+        return create;
     }
 
 }

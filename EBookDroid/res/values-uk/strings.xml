@@ -465,4 +465,5 @@
    <string name="my_tags">Мої теги</string>
    <string name="crop_borders_symmetrically">Обрізання меж симетрично</string>
    <string name="enable_cropping_of_white_borders">Увімкнути обрізання білих меж</string>
+   <string name="displaying_the_author_and_title_of_the_pdf_book_from_the_meta_tags">Відображення автора та назви книги PDF з метатегів</string>
 </resources>

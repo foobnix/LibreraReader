@@ -465,4 +465,5 @@
    <string name="my_tags">私のタグ</string>
    <string name="crop_borders_symmetrically">境界を対称的にトリミングする</string>
    <string name="enable_cropping_of_white_borders">白い枠線のトリミングを有効にする</string>
+   <string name="displaying_the_author_and_title_of_the_pdf_book_from_the_meta_tags">メタタグからPDFブックの著者とタイトルを表示する</string>
 </resources>

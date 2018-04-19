@@ -465,4 +465,5 @@
    <string name="my_tags">Mes tags</string>
    <string name="crop_borders_symmetrically">Rogner les bordures symétriquement</string>
    <string name="enable_cropping_of_white_borders">Activer le recadrage des bordures blanches</string>
+   <string name="displaying_the_author_and_title_of_the_pdf_book_from_the_meta_tags">Affichage de l\'auteur et du titre du livre PDF à partir des balises META</string>
 </resources>

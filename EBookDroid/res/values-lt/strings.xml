@@ -465,4 +465,5 @@
    <string name="my_tags">Mano žymos</string>
    <string name="crop_borders_symmetrically">Sumažinti sienas simetriškai</string>
    <string name="enable_cropping_of_white_borders">Įgalinti baltų sienų apkarpymą</string>
+   <string name="displaying_the_author_and_title_of_the_pdf_book_from_the_meta_tags">Rodoma autoriaus ir PDF knygos pavadinimo iš meta žymeles</string>
 </resources>

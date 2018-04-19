@@ -465,4 +465,5 @@
    <string name="my_tags">Meine Tags</string>
    <string name="crop_borders_symmetrically">Ernte grenzt symmetrisch</string>
    <string name="enable_cropping_of_white_borders">Aktivieren Sie das Beschneiden von weißen Rahmen</string>
+   <string name="displaying_the_author_and_title_of_the_pdf_book_from_the_meta_tags">Anzeige des Autors und des Titels des PDF-Buches aus den Meta-Tags</string>
 </resources>

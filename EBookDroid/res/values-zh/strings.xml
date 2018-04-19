@@ -465,4 +465,5 @@
    <string name="my_tags">标签</string>
    <string name="crop_borders_symmetrically">裁剪边界对称</string>
    <string name="enable_cropping_of_white_borders">启用裁剪白边</string>
+   <string name="displaying_the_author_and_title_of_the_pdf_book_from_the_meta_tags">从元标记中显示PDF书的作者和标题</string>
 </resources>
