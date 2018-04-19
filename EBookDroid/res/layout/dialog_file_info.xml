@@ -14,7 +14,7 @@
         android:layout_weight="0"
         android:gravity="center_horizontal"
         android:text="Author - Title"
-        android:textIsSelectable="true"
+        
         android:textSize="16sp"
         android:textStyle="bold" />
 
@@ -24,7 +24,7 @@
         android:layout_height="wrap_content"
         android:layout_weight="0"
         android:text="Path"
-        android:textIsSelectable="true"
+        
         android:textSize="10sp" />
 
     <View
@@ -58,13 +58,13 @@
             android:adjustViewBounds="true"
             android:cropToPadding="true"
             android:src="@drawable/icon_pdf_pro" />
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="top"
             android:layout_marginTop="8dip"
             android:orientation="vertical" >
-            
 
             <TextView
                 android:id="@+id/metaSeriesID"
@@ -79,8 +79,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="5dip"
+                android:maxLines="3"
                 android:text="Series"
-                android:textIsSelectable="true" />
+                 />
 
             <TextView
                 android:id="@+id/metaGenreID"
@@ -88,7 +89,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="5dip"
                 android:text="@string/genre"
-                android:textIsSelectable="true"
+                
                 android:textStyle="bold" />
 
             <TextView
@@ -96,12 +97,11 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="5dip"
-                android:text="Genre"
-                android:maxLines="5"
                 android:ellipsize="end"
-                android:textIsSelectable="true" />
-            
-            
+                android:maxLines="3"
+                android:text="Genre"
+                 />
+
             <TextView
                 android:id="@+id/keywordID"
                 android:layout_width="wrap_content"
@@ -115,11 +115,11 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="5dip"
+                android:maxLines="3"
                 android:text="Tags"
-                android:textIsSelectable="true" />
-            
-            
-              <TextView
+                 />
+
+            <TextView
                 android:id="@+id/tagsID"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -132,18 +132,18 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="5dip"
+                android:maxLines="3"
                 android:text="Tags"
-                android:textIsSelectable="true" />
-            
-            
+                 />
+
             <TextView
                 android:id="@+id/metaPDF"
-                android:textSize="12sp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="5dip"
                 android:text="info:Title"
-                android:textIsSelectable="true" />
+                
+                android:textSize="12sp" />
 
             <TextView
                 android:id="@+id/convertFile"
@@ -166,7 +166,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/send_file" />
-            
+
             <TextView
                 android:id="@+id/addTags"
                 style="@style/textLink"
@@ -190,72 +190,67 @@
                 android:text="Mime"
                 android:textSize="@dimen/text_subtitle"
                 android:visibility="gone" />
-
-            
         </LinearLayout>
     </LinearLayout>
-    
+
     <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:padding="2dip" >
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="2dip" >
 
-                <TextView
-                    android:id="@+id/date"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Date"
-                    android:textSize="@dimen/text_subtitle" />
-                
-                <TextView
-                    android:id="@+id/info"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="4dip"
-                    android:text="EPUB"
-                    android:textAllCaps="true"
-                    android:textSize="@dimen/text_subtitle"
-                    android:textStyle="normal" />
-                
-                 <TextView
-                    android:id="@+id/size"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="4dip"
-                    android:text="EPUB"
-                    android:textAllCaps="false"
-                    android:textSize="@dimen/text_subtitle"
-                    android:textStyle="normal" />
+        <TextView
+            android:id="@+id/date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Date"
+            android:textSize="@dimen/text_subtitle" />
 
+        <TextView
+            android:id="@+id/info"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="4dip"
+            android:text="EPUB"
+            android:textAllCaps="true"
+            android:textSize="@dimen/text_subtitle"
+            android:textStyle="normal" />
 
-                
-            </LinearLayout>
+        <TextView
+            android:id="@+id/size"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="4dip"
+            android:text="EPUB"
+            android:textAllCaps="false"
+            android:textSize="@dimen/text_subtitle"
+            android:textStyle="normal" />
+    </LinearLayout>
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center_vertical"
-                android:padding="2dip" >
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:padding="2dip" >
 
-                <TextView
-                    android:id="@+id/hypenLangLabel"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="0"
-                    android:text="@string/language" />
+        <TextView
+            android:id="@+id/hypenLangLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="0"
+            android:text="@string/language" />
 
-                <TextView
-                    android:id="@+id/hypenLang"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="5dip"
-                    android:singleLine="true"
-                    android:layout_weight="0"
-                    android:minWidth="50dip"
-                    android:text="Russian"
-                    android:textStyle="bold" />
-            </LinearLayout>
+        <TextView
+            android:id="@+id/hypenLang"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dip"
+            android:layout_weight="0"
+            android:minWidth="50dip"
+            android:singleLine="true"
+            android:text="Russian"
+            android:textStyle="bold" />
+    </LinearLayout>
 
     <TextView
         android:id="@+id/bookmarks"
@@ -267,28 +262,26 @@
         android:textSize="12sp" />
 
     <LinearLayout
-        android:layout_weight="0"
         android:id="@+id/openFile"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:paddingRight="20dip"
-        android:background="@drawable/bg_search_second" >
+        android:layout_weight="0"
+        android:background="@drawable/bg_search_second"
+        android:paddingRight="20dip" >
 
         <ImageView
             android:id="@+id/starIcon"
             android:layout_width="40dip"
             android:layout_height="40dip"
             android:layout_alignLeft="@+id/openFile"
+            android:layout_gravity="center_vertical"
             android:background="?android:attr/selectableItemBackground"
             android:padding="8dip"
-            android:layout_gravity="center_vertical"
             android:src="@drawable/star_1"
             android:tint="@color/white" />
 
         <TextView
-            
-            android:textColor="#ccffffff"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
@@ -296,6 +289,7 @@
             android:minWidth="100dip"
             android:padding="10dip"
             android:text="@string/read_a_book"
+            android:textColor="#ccffffff"
             android:textSize="16sp"
             android:textStyle="bold" />
     </LinearLayout>

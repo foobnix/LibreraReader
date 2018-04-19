@@ -120,7 +120,17 @@ public class FileInformationDialog {
         String sequence = fileMeta.getSequence();
         if (TxtUtils.isNotEmpty(sequence)) {
             String replace = sequence.replaceAll(",$", "").replace(",", " / ");
-            ((TextView) dialog.findViewById(R.id.metaSeries)).setText(replace);
+            final TextView metaSeries = (TextView) dialog.findViewById(R.id.metaSeries);
+            metaSeries.setText(replace);
+
+            metaSeries.setOnClickListener(new OnClickListener() {
+
+                @Override
+                public void onClick(View v) {
+                    AlertDialogs.showOkDialog(a, metaSeries.getText().toString(), null);
+                }
+            });
+
         } else {
             ((TextView) dialog.findViewById(R.id.metaSeries)).setVisibility(View.GONE);
             ((TextView) dialog.findViewById(R.id.metaSeriesID)).setVisibility(View.GONE);
@@ -129,7 +139,17 @@ public class FileInformationDialog {
         String genre = fileMeta.getGenre();
         if (TxtUtils.isNotEmpty(genre)) {
             genre = TxtUtils.firstUppercase(genre.replaceAll(",$", "").replace(",", ", "));
-            ((TextView) dialog.findViewById(R.id.metaGenre)).setText(genre);
+            final TextView metaGenre = (TextView) dialog.findViewById(R.id.metaGenre);
+            metaGenre.setText(genre);
+
+            metaGenre.setOnClickListener(new OnClickListener() {
+
+                @Override
+                public void onClick(View v) {
+                    AlertDialogs.showOkDialog(a, metaGenre.getText().toString(), null);
+                }
+            });
+
         } else {
             ((TextView) dialog.findViewById(R.id.metaGenre)).setVisibility(View.GONE);
             ((TextView) dialog.findViewById(R.id.metaGenreID)).setVisibility(View.GONE);
@@ -137,7 +157,17 @@ public class FileInformationDialog {
 
         if (TxtUtils.isNotEmpty(fileMeta.getKeyword())) {
             String list = TxtUtils.firstUppercase(fileMeta.getKeyword().replaceAll(",$", "").replace(",", ", "));
-            ((TextView) dialog.findViewById(R.id.keywordList)).setText(list);
+            final TextView metaKeys = (TextView) dialog.findViewById(R.id.keywordList);
+            metaKeys.setText(list);
+
+            metaKeys.setOnClickListener(new OnClickListener() {
+
+                @Override
+                public void onClick(View v) {
+                    AlertDialogs.showOkDialog(a, metaKeys.getText().toString(), null);
+                }
+            });
+
         } else {
             ((TextView) dialog.findViewById(R.id.keywordID)).setVisibility(View.GONE);
             ((TextView) dialog.findViewById(R.id.keywordList)).setVisibility(View.GONE);
