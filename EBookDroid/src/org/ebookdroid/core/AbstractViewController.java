@@ -414,7 +414,7 @@ public abstract class AbstractViewController extends AbstractComponentController
                     for (final TextWord[] lines : page.texts) {
                         final TextWord current[] = lines;
                         for (final TextWord line : current) {
-                            if (line.left <= 0 || line.top <= 0) {
+                            if (line.left < 0 || line.top < 0) {
                                 continue;
                             }
                             RectF wordRect = page.getPageRegion(bounds, line);
