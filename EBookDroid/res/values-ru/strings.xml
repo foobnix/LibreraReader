@@ -119,7 +119,7 @@
    <string name="action_on_double_tap">Двойной тап по центру</string>
    <string name="db_auto_scroll">Автопрокрутка текста</string>
    <string name="opening_book_with_losed_lock">Всегда блокировать смещения страниц при открытии PDF/DJVU</string>
-   <string name="opening_book_with_cropped_borders">Активировать автообрезку пустых полей при каждом открытии PDF/DJVU</string>
+   <string name="opening_book_with_cropped_borders">Активировать обрезку пустых полей при каждом открытии PDF/DJVU</string>
    <string name="db_auto_alignemnt">Вписать в ширину экрана</string>
    <string name="db_auto_center_horizontally">Выровнить по горизонтали</string>
    <string name="zoom_in_zoom_out">Увеличить/уменьшить в 2 раза</string>
@@ -341,7 +341,7 @@
    <string name="page">Страница</string>
    <string name="___INDEFINITE___SECTION___"></string>
    <string name="choose_">Выберите...</string>
-   <string name="crop_white_borders">Обрезать пустые поля</string>
+   <string name="crop_white_borders">Обрезка пустых полей</string>
    <string name="full_screen">Во весь экран</string>
    <string name="go">Перейти</string>
    <string name="invert_colors">Инвертировать цвета</string>
@@ -420,7 +420,7 @@
    <string name="incorrect_password">Пароль неверный</string>
    <string name="repeat_password">Введите пароль еще раз</string>
    <string name="internal_storage">Внутр. карта памяти</string>
-   <string name="the_page_is_clipped_the_text_selection_does_not_work">При включенной автообрезке пустых полей и/или делении страниц пополам выделить текст нельзя</string>
+   <string name="the_page_is_clipped_the_text_selection_does_not_work">При включенной обрезке пустых полей и/или делении страниц пополам выделить текст нельзя</string>
    <string name="title">Заголовок</string>
    <string name="subject">Тема</string>
    <string name="keywords">Ключевые слова</string>
@@ -452,18 +452,18 @@
    <string name="paragraph_spacing">Интервал между абзацами</string>
    <string name="indent">Красная строка</string>
    <string name="allow_text_highlight">Разрешать выделять текст</string>
-   <string name="text_highlight_mode_is_enable">Включена возможность выделения текста</string>
+   <string name="text_highlight_mode_is_enable">Возможность выделения текста включена</string>
    <string name="text_highlight_mode_is_disable">Возможность выделения текста отключена</string>
    <string name="application_error_please_send_this_report_by_emial">Что-то пошло не так! Очень просим вам отправить этот отчет об ошибке по почте, т.к. он, возможно, помог бы разобраться в проблеме</string>
    <string name="pause_reading_if_the_incoming_call_or_other_sounds">Ставить чтение на паузу при входящих вызовах, уведомлениях и т. д.</string>
    <string name="add_resource">Добавить ресурс</string>
-   <string name="do_you_want_to_download_more_book_fonts_10mb_">Вы действительно хотите загрузить набор книжных шрифтов размером 10 mb?</string>
+   <string name="do_you_want_to_download_more_book_fonts_10mb_">Для удобства чтения можно скачать дополнительный набор шрифтов размером 10 Мб. Хотите ли вы это сделать?</string>
    <string name="hyphenation_language">Язык переносов</string>
    <string name="replacing_the_white_color_in_the_images_with_the_background_color">Окрашивать белый фон изображений в цвет фона страниц</string>
-   <string name="disable_swipe_gestures_for_page_paging">Отключить возможность листания страниц свайпами</string>
-   <string name="no_keywords">Нет ключевых слов</string>
-   <string name="my_tags">Мои теги</string>
-   <string name="crop_borders_symmetrically">Обрезать границы симметрично</string>
-   <string name="enable_cropping_of_white_borders">Включить обрезку белых границ</string>
+   <string name="disable_swipe_gestures_for_page_paging">Отключить возможность листания страниц горизонтальными свайпами</string>
+   <string name="no_keywords">Без ключевых слов</string>
+   <string name="my_tags">Свои теги</string>
+   <string name="crop_borders_symmetrically">Симметричная обрезка полей</string>
+   <string name="enable_cropping_of_white_borders">Включить</string>
    <string name="displaying_the_author_and_title_of_the_pdf_book_from_the_meta_tags">Отображение автора и названия книги PDF из метатег</string>
 </resources>
