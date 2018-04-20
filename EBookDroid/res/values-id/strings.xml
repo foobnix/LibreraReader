@@ -466,4 +466,5 @@
    <string name="crop_borders_symmetrically">Perbatasan tanaman simetris</string>
    <string name="enable_cropping_of_white_borders">Aktifkan pemangkasan batas putih</string>
    <string name="displaying_the_author_and_title_of_the_pdf_book_from_the_meta_tags">Menampilkan penulis dan judul buku PDF dari meta tag</string>
+   <string name="meta_tags">Meta tag</string>
 </resources>

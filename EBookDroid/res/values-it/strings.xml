@@ -466,4 +466,5 @@
    <string name="crop_borders_symmetrically">Ritaglia i bordi simmetricamente</string>
    <string name="enable_cropping_of_white_borders">Abilita il ritaglio dei bordi bianchi</string>
    <string name="displaying_the_author_and_title_of_the_pdf_book_from_the_meta_tags">Visualizzazione dell\'autore e del titolo del libro PDF dai meta tag</string>
+   <string name="meta_tags">Meta tags</string>
 </resources>

@@ -466,4 +466,5 @@
    <string name="crop_borders_symmetrically">Rajaa rajat symmetrisesti</string>
    <string name="enable_cropping_of_white_borders">Ota valkoisten rajojen leikkaus käyttöön</string>
    <string name="displaying_the_author_and_title_of_the_pdf_book_from_the_meta_tags">PDF-kirjan kirjoittajan ja nimikkeen näyttäminen metakoodeista</string>
+   <string name="meta_tags">Sisällönkuvauskentät</string>
 </resources>

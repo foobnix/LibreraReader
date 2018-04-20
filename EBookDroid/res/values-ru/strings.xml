@@ -466,4 +466,5 @@
    <string name="crop_borders_symmetrically">Симметричная обрезка полей</string>
    <string name="enable_cropping_of_white_borders">Включить</string>
    <string name="displaying_the_author_and_title_of_the_pdf_book_from_the_meta_tags">Отображение автора и названия книги PDF из метатег</string>
+   <string name="meta_tags">Мета-теги</string>
 </resources>

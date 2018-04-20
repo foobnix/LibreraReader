@@ -466,4 +466,5 @@
    <string name="crop_borders_symmetrically">Cắt biên giới đối xứng</string>
    <string name="enable_cropping_of_white_borders">Cho phép cắt xén đường viền trắng</string>
    <string name="displaying_the_author_and_title_of_the_pdf_book_from_the_meta_tags">Hiển thị tác giả và tựa đề của cuốn sách PDF từ các thẻ meta</string>
+   <string name="meta_tags">Thẻ meta</string>
 </resources>

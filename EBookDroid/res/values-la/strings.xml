@@ -466,4 +466,5 @@
    <string name="crop_borders_symmetrically">Seges oras aequabiliter intortum</string>
    <string name="enable_cropping_of_white_borders">Admitte tondentes de finibus album</string>
    <string name="displaying_the_author_and_title_of_the_pdf_book_from_the_meta_tags">Author imaginatio demonstrans appetibile, et in titulum libri de PDF tags meta</string>
+   <string name="meta_tags">Meta tags</string>
 </resources>

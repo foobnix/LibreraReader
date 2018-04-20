@@ -466,4 +466,5 @@
    <string name="crop_borders_symmetrically">Beskär gränserna symmetriskt</string>
    <string name="enable_cropping_of_white_borders">Aktivera beskärning av vita gränser</string>
    <string name="displaying_the_author_and_title_of_the_pdf_book_from_the_meta_tags">Visar författaren och titeln på PDF-boken från metataggarna</string>
+   <string name="meta_tags">Metataggar</string>
 </resources>
