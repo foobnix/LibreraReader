@@ -1,7 +1,5 @@
 package com.foobnix.ext;
 
-import java.util.concurrent.atomic.AtomicBoolean;
-
 import org.ebookdroid.core.codec.CodecDocument;
 import org.ebookdroid.droids.mupdf.codec.PdfContext;
 
@@ -12,33 +10,11 @@ public class PdfExtract {
 
     public static String getBookOverview(final String unZipPath) {
         final StringBuilder info = new StringBuilder();
-        final AtomicBoolean ready = new AtomicBoolean(false);
-        new Thread() {
-            @Override
-            public void run() {
+        PdfContext codecContex = new PdfContext();
+        CodecDocument openDocument = codecContex.openDocument(unZipPath, "");
 
-                try {
-                    PdfContext codecContex = new PdfContext();
-                    CodecDocument openDocument = codecContex.openDocument(unZipPath, "");
-
-                    info.append(openDocument.getMeta("info:Annotation"));
-                    info.append(openDocument.getMeta("info:Description"));
-                    LOG.d("getBookOverview", info.toString());
-                } catch (Throwable e) {
-                    LOG.e(e);
-                } finally {
-                    ready.set(true);
-                }
-
-            };
-        }.start();
-
-        while (!ready.get()) {
-            try {
-                Thread.sleep(50);
-            } catch (InterruptedException e) {
-            }
-        }
+        info.append(openDocument.getMeta("info:Annotation"));
+        info.append(openDocument.getMeta("info:Description"));
 
         return info.toString();
     }

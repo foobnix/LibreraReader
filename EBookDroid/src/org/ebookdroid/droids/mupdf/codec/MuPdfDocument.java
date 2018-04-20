@@ -2,6 +2,7 @@ package org.ebookdroid.droids.mupdf.codec;
 
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.atomic.AtomicBoolean;
 
 import org.ebookdroid.core.codec.AbstractCodecDocument;
 import org.ebookdroid.core.codec.CodecPage;
@@ -161,13 +162,44 @@ public class MuPdfDocument extends AbstractCodecDocument {
     // 'info:Producer'
     // 'info:CreationDate'
     // 'info:ModDate'
-    private native static String getMeta(long docHandle, String option);
+    private native static String getMeta(long docHandle, final String option);
 
     @Override
-    public String getMeta(String option) {
+    public String getMeta(final String option) {
         try {
             TempHolder.lock.lock();
-            return getMeta(documentHandle, option);
+            if (true) {
+                return getMeta(documentHandle, option);
+            }
+            
+            final AtomicBoolean ready = new AtomicBoolean(false);
+            final StringBuilder info = new StringBuilder();
+
+            new Thread() {
+                @Override
+                public void run() {
+
+                    try {
+                        LOG.d("getMeta", option);
+                        String key = getMeta(documentHandle, option);
+                        info.append(key);
+                    } catch (Throwable e) {
+                        LOG.e(e);
+                    } finally {
+                        ready.set(true);
+                    }
+
+                };
+            }.start();
+
+            while (!ready.get()) {
+                try {
+                    Thread.sleep(50);
+                } catch (InterruptedException e) {
+                }
+            }
+
+            return info.toString();
         } finally {
             TempHolder.lock.unlock();
         }
@@ -210,7 +242,6 @@ public class MuPdfDocument extends AbstractCodecDocument {
     private static native long open(int storememory, int format, String fname, String pwd, String css, int useDocStyle);
 
     private static native void free(long handle);
-
 
     private static synchronized int getPageCountWithException(final long handle) {
         final int count = getPageCountSafe(handle, Dips.screenWidth(), Dips.screenHeight(), Dips.spToPx(AppState.get().fontSizeSp));
