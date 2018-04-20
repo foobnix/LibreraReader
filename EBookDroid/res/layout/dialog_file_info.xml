@@ -12,10 +12,10 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="8dip"
         android:layout_weight="0"
+        android:maxLines="2"
         android:gravity="center_horizontal"
         android:text="Author - Title"
-        
-        android:textSize="16sp"
+        android:textSize="14sp"
         android:textStyle="bold" />
 
     <TextView
@@ -24,7 +24,6 @@
         android:layout_height="wrap_content"
         android:layout_weight="0"
         android:text="Path"
-        
         android:textSize="10sp" />
 
     <View
@@ -41,157 +40,162 @@
         android:layout_height="wrap_content"
         android:layout_weight="0"
         android:ellipsize="end"
-        android:maxLines="4"
+        android:maxLines="3"
         android:text="@string/msg_loading" />
 
-    <LinearLayout
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight="1"
         android:orientation="horizontal" >
 
-        <ImageView
-            android:id="@+id/image"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="5dip"
-            android:adjustViewBounds="true"
-            android:cropToPadding="true"
-            android:src="@drawable/icon_pdf_pro" />
-
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="top"
-            android:layout_marginTop="8dip"
-            android:orientation="vertical" >
+            android:layout_weight="1"
+            android:orientation="horizontal" >
 
-            <TextView
-                android:id="@+id/metaSeriesID"
+            <ImageView
+                android:id="@+id/image"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="5dip"
-                android:text="@string/serie"
-                android:textStyle="bold" />
+                android:layout_margin="5dip"
+                android:adjustViewBounds="true"
+                android:cropToPadding="true"
+                android:src="@drawable/icon_pdf_pro" />
 
-            <TextView
-                android:id="@+id/metaSeries"
-                android:layout_width="wrap_content"
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="5dip"
-                android:maxLines="3"
-                android:text="Series"
-                 />
+                android:layout_gravity="top"
+                android:layout_marginTop="8dip"
+                android:orientation="vertical" >
 
-            <TextView
-                android:id="@+id/metaGenreID"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="5dip"
-                android:text="@string/genre"
+                <TextView
+                    android:id="@+id/metaSeriesID"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dip"
+                    android:text="@string/serie"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/metaSeries"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dip"
+                    android:maxLines="3"
+                    android:text="Series" />
+
+                <TextView
+                    android:id="@+id/metaGenreID"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dip"
+                    android:text="@string/genre"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/metaGenre"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dip"
+                    android:ellipsize="end"
+                    android:maxLines="3"
+                    android:text="Genre" />
+
+                <TextView
+                    android:id="@+id/keywordID"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dip"
+                    android:text="@string/keywords"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/keywordList"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dip"
+                    android:maxLines="3"
+                    android:text="Tags" />
+
+                <TextView
+                    android:id="@+id/tagsID"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dip"
+                    android:text="@string/my_tags"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/tagsList"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dip"
+                    android:maxLines="3"
+                    android:text="Tags" />
+
+                <TextView
+                    android:id="@+id/metaPDF"
+                     style="@style/textLink"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/meta_tags"
+                     />
                 
-                android:textStyle="bold" />
 
-            <TextView
-                android:id="@+id/metaGenre"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="5dip"
-                android:ellipsize="end"
-                android:maxLines="3"
-                android:text="Genre"
-                 />
+                <TextView
+                    android:id="@+id/convertFile"
+                    style="@style/textLink"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/convert_to"
+                    android:visibility="gone" />
 
-            <TextView
-                android:id="@+id/keywordID"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="5dip"
-                android:text="@string/keywords"
-                android:textStyle="bold" />
+                <TextView
+                    android:id="@+id/openWith"
+                    style="@style/textLink"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/open_with"
+                    android:visibility="gone" />
 
-            <TextView
-                android:id="@+id/keywordList"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="5dip"
-                android:maxLines="3"
-                android:text="Tags"
-                 />
+                <TextView
+                    android:id="@+id/sendFile"
+                    style="@style/textLink"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/send_file"
+                    android:visibility="gone" />
 
-            <TextView
-                android:id="@+id/tagsID"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="5dip"
-                android:text="@string/my_tags"
-                android:textStyle="bold" />
+                <TextView
+                    android:id="@+id/addTags"
+                    style="@style/textLink"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/my_tags"
+                    android:visibility="gone" />
 
-            <TextView
-                android:id="@+id/tagsList"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="5dip"
-                android:maxLines="3"
-                android:text="Tags"
-                 />
+                <TextView
+                    android:id="@+id/delete"
+                    style="@style/textLink"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/delete"
+                    android:visibility="gone" />
 
-            <TextView
-                android:id="@+id/metaPDF"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="5dip"
-                android:text="info:Title"
-                
-                android:textSize="12sp" />
-
-            <TextView
-                android:id="@+id/convertFile"
-                style="@style/textLink"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/convert_to"
-                android:visibility="gone" />
-
-            <TextView
-                android:id="@+id/openWith"
-                style="@style/textLink"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/open_with" />
-
-            <TextView
-                android:id="@+id/sendFile"
-                style="@style/textLink"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/send_file" />
-
-            <TextView
-                android:id="@+id/addTags"
-                style="@style/textLink"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/my_tags" />
-
-            <TextView
-                android:id="@+id/delete"
-                style="@style/textLink"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/delete"
-                android:visibility="gone" />
-
-            <TextView
-                android:id="@+id/mimeType"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="4dip"
-                android:text="Mime"
-                android:textSize="@dimen/text_subtitle"
-                android:visibility="gone" />
+                <TextView
+                    android:id="@+id/mimeType"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dip"
+                    android:text="Mime"
+                    android:textSize="@dimen/text_subtitle"
+                    android:visibility="gone" />
+            </LinearLayout>
         </LinearLayout>
-    </LinearLayout>
+    </ScrollView>
 
     <LinearLayout
         android:layout_width="match_parent"

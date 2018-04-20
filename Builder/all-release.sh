@@ -9,6 +9,7 @@ rm /home/ivan-dev/Dropbox/FREE_PDF_APK/testing/*.apk
 
 ant arm pro
 ant arm64 pro
+ant arm+arm64 pro
 ant x86 pro
 
 ./remove_all.sh
@@ -22,12 +23,10 @@ ant arm classic
 ant arm64 classic
 ant x86 classic
 
-ant arm droid
-ant arm64 droid
+ant arm+arm64 droid
 ant x86 droid
 
-ant arm pdf-ink
-ant arm64 pdf-ink
+ant arm+arm64 pdf-ink
 ant x86 pdf-ink
 
 ant version

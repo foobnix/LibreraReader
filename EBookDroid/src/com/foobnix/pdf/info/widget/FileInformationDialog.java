@@ -210,56 +210,61 @@ public class FileInformationDialog {
 
         TextView metaPDF = (TextView) dialog.findViewById(R.id.metaPDF);
         metaPDF.setVisibility(View.GONE);
-        if (BookType.PDF.is(file.getPath())) {
-            CodecDocument doc = ImageExtractor.singleCodecContext(file.getPath(), "", 0, 0);
-            if (doc != null) {
-                metaPDF.setVisibility(View.VISIBLE);
-                StringBuilder meta = new StringBuilder();
-                
-                List<String> list = Arrays.asList(
-                        //
-                        "info:Title", //
-                        "info:Author" //
-                        // djvu
-                );
-                List<String> list2 = Arrays.asList(
-                        //
-                        "info:Title", //
-                        "info:Author", //
-                        "info:Subject", //
-                        "info:Keywords", //
-                        // djvu
-                        "author", //
-                        "authors", //
-                        "title", //
-                        "booktitle", //
-                        "bookname", //
-                        "name", //
-                        "subject", //
-                        "subjects", //
-                        "sequence", //
-                        "seria", //
-                        "keywords" //
+        if (BookType.PDF.is(file.getPath()) || BookType.DJVU.is(file.getPath())) {
+            metaPDF.setVisibility(View.VISIBLE);
 
-                // "info:Creator", //
-                // "info:Producer" //
-                // "info:CreationDate", //
-                // "info:ModDate"//
-                );
-                for (String id : list) {
-                    String metaValue = doc.getMeta(id);
-                    if (TxtUtils.isNotEmpty(metaValue)) {
-                        id = id.replace("info:Title", a.getString(R.string.title));
-                        id = id.replace("info:Author", a.getString(R.string.author));
-                        id = id.replace("info:Subject", a.getString(R.string.subject));
-                        id = id.replace("info:Keywords", a.getString(R.string.keywords));
-                        meta.append("<b>" + id).append(": " + "</b>").append(metaValue).append("<br>");
+            final List<String> list2 = Arrays.asList(
+                    //
+                    "info:Title", //
+                    "info:Author", //
+                    "info:Subject", //
+                    "info:Keywords", //
+                    "info:Creator", //
+                    "info:Producer", //
+                    "info:CreationDate", //
+                    "info:ModDate", //
+                    // djvu
+                    "author", //
+                    "authors", //
+                    "title", //
+                    "booktitle", //
+                    "bookname", //
+                    "name", //
+                    "subject", //
+                    "subjects", //
+                    "sequence", //
+                    "seria", //
+                    "series", //
+                    "year", //
+                    "note", //
+                    "key", //
+                    "keywords" //
+            );
+
+            metaPDF.setOnClickListener(new OnClickListener() {
+
+                @Override
+                public void onClick(View v) {
+                    final CodecDocument doc = ImageExtractor.singleCodecContext(file.getPath(), "", 0, 0);
+
+                    StringBuilder meta = new StringBuilder();
+                    for (String id : list2) {
+                        String metaValue = doc.getMeta(id);
+
+                        if (TxtUtils.isNotEmpty(metaValue)) {
+                            id = id.replace("info:", "");
+                            meta.append("<b>" + id).append(": " + "</b>").append(metaValue).append("<br>");
+                        }
                     }
+                    doc.recycle();
+
+                    String text = TxtUtils.replaceLast(meta.toString(), "<br>", "");
+                    TextView t = new TextView(v.getContext());
+                    t.setText(Html.fromHtml(text));
+                    AlertDialogs.showViewDialog(a, t);
+
                 }
-                doc.recycle();
-                String text = TxtUtils.replaceLast(meta.toString(), "<br>", "");
-                metaPDF.setText(Html.fromHtml(text));
-            }
+            });
         }
 
         TextView convertFile = (TextView) dialog.findViewById(R.id.convertFile);

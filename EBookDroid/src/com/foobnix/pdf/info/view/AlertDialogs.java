@@ -11,6 +11,7 @@ import android.content.DialogInterface;
 import android.content.DialogInterface.OnDismissListener;
 import android.view.View;
 import android.widget.LinearLayout;
+import android.widget.ScrollView;
 
 public class AlertDialogs {
 
@@ -120,11 +121,15 @@ public class AlertDialogs {
         final AlertDialog.Builder builder = new AlertDialog.Builder(c);
         builder.setCancelable(true);
 
+        ScrollView scroll = new ScrollView(c);
+
         LinearLayout l = new LinearLayout(c);
         l.setPadding(Dips.DP_5, Dips.DP_5, Dips.DP_5, Dips.DP_5);
         l.setOrientation(LinearLayout.VERTICAL);
         l.addView(child);
-        builder.setView(l);
+
+        scroll.addView(l);
+        builder.setView(scroll);
 
         builder.setNegativeButton(R.string.close, new DialogInterface.OnClickListener() {
 

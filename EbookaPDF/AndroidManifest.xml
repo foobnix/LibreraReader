@@ -2,8 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.foobnix.pdf.reader"
     android:installLocation="auto"
-    android:versionCode="531"
-    android:versionName="7.8.46" >
+    android:versionCode="532"
+    android:versionName="7.8.47" >
 
     <uses-sdk
         android:minSdkVersion="14"
