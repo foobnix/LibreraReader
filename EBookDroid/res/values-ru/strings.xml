@@ -103,7 +103,7 @@
    <string name="direction_of_reading_rtl_">Направление чтения (RTL)</string>
    <string name="left_to_rigth">Слева направо</string>
    <string name="right_to_left">Справа налево</string>
-   <string name="right_page_then_left_page_rtl_">Сначала правая страница (или правая половина страницы), потом левая (RTL)</string>
+   <string name="right_page_then_left_page_rtl_">Сначала правая страница (или правая её половина), потом левая (для араб. и др. языков)</string>
    <string name="rotate_page">Угол поворота страниц</string>
    <string name="rotate_default">По умолчанию</string>
    <string name="tap_zone_size">Размер зон листаний</string>
@@ -123,7 +123,7 @@
    <string name="db_auto_alignemnt">Вписать в ширину экрана</string>
    <string name="db_auto_center_horizontally">Выровнить по горизонтали</string>
    <string name="zoom_in_zoom_out">Увел./умен. масштаб страниц в 2 раза</string>
-   <string name="enhancements_for_oled_display">Заполнять пространство вокруг страниц черным цветом при выборе любого из ночных пресетов (AMOLED-адаптация)</string>
+   <string name="enhancements_for_oled_display">Заполнять пустоту вокруг страниц черным цветом при выборе любого из ночных пресетов (AMOLED-адаптация)</string>
    <string name="ignore_annotations_on_click">Игнорировать комментарии и пометки при нажатиях</string>
    <string name="save_new_annotations_automatically">Автоматически сохранять новые комментарии и пометки при закрытии книги или выходе из приложения</string>
    <string name="selecting_text_by_letters">Использовать побуквенное выделение текста (для иероглифических языков)</string>
@@ -230,7 +230,7 @@
    <string name="___NOTIFICATION___SECTION___"></string>
    <string name="fail">Сбой</string>
    <string name="success">Успешно</string>
-   <string name="please_wait">Секундочку...</string>
+   <string name="please_wait">Секунду...</string>
    <string name="incorrect_value">Неверное значение</string>
    <string name="this_directory_is_already_in_the_list">Этот каталог уже в списке</string>
    <string name="you_neet_to_apply_the_new_settings">Необходимо применить новые настройки</string>
@@ -411,7 +411,7 @@
    <string name="start_recording">Запуск начитки</string>
    <string name="favorite_folders_and_books">Избранные папки и книги</string>
    <string name="don_t_show_this_dialog">Больше не показывать это окно</string>
-   <string name="show_the_book_close_dialog">Показывать окно-подтверждение закрытия книги при коротком нажатии на клавишу \"Назад\"</string>
+   <string name="show_the_book_close_dialog">Выводить окно-подтверждение закрытия книги при коротком нажатии на клавишу \"Назад\"</string>
    <string name="search_completed">Поиск завершен</string>
    <string name="you_can_search_only_one_word">Для поиска введите в поле не более одного слова</string>
    <string name="passwords_do_not_match">Пароли не совпадают</string>
@@ -441,7 +441,7 @@
    <string name="telegram_channel">Telegram-канал</string>
    <string name="zoom_in_out_using_the_volume_keys">Увеличивать/уменьшать масштаб страниц клавишами регулировки громкости</string>
    <string name="tag">Тег</string>
-   <string name="no_tag">Без тега</string>
+   <string name="no_tag">Без тегов</string>
    <string name="add_tag">Добавить тег</string>
    <string name="do_you_want_to_delete_this_tag_from_all_books_">Вы действительно хотите удалить этот тег во всех связанных с ним книгах?</string>
    <string name="by_number_of_pages">Число страниц</string>
@@ -466,5 +466,5 @@
    <string name="crop_borders_symmetrically">Симметричная обрезка полей</string>
    <string name="enable_cropping_of_white_borders">Включить</string>
    <string name="displaying_the_author_and_title_of_the_pdf_book_from_the_meta_tags">Отображать имена авторов и названия PDF-книг, используя информацию метаданных</string>
-   <string name="meta_tags">Мета-теги</string>
+   <string name="meta_tags">Метаданные</string>
 </resources>
