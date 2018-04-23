@@ -14,7 +14,8 @@ ant x86 pro
 ./remove_all.sh
 ./install_all.sh
 
-sh ninja-adb.sh shell pm clear com.foobnix.pro.pdf.reader
+./clear-cache.sh
+
 
 ant arm pdf
 ant arm64 pdf
