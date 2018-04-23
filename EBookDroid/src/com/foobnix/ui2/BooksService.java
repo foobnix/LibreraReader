@@ -119,7 +119,6 @@ public class BooksService extends IntentService {
                 ImageExtractor.clearErrors();
 
                 List<FileMeta> allWithTag = AppDB.get().getAllWithTag();
-                LOG.d(TAG, "allWithTag", allWithTag.size());
 
                 List<Uri> recent = AppSharedPreferences.get().getRecent();
                 List<FileMeta> starsAndRecent = AppDB.get().deleteAllSafe();

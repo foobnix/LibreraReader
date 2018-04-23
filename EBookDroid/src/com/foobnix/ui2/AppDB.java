@@ -439,7 +439,7 @@ public class AppDB {
         QueryBuilder<FileMeta> where = fileMetaDao.queryBuilder();
         where = where.where(FileMetaDao.Properties.Tag.isNotNull());
         try {
-            return where.list();
+            return where.list() == null ? new ArrayList<FileMeta>() : where.list();
         } catch (Exception e) {
             return new ArrayList<FileMeta>();
         }

@@ -355,7 +355,7 @@ public class PageImaveView extends View {
                         if (AppState.get().isLocked) {
                             isReadyForMove = false;
                             isIgronerClick = false;
-                            if (Math.abs(dy) > Math.abs(dx) && Math.abs(dy) > Dips.DP_10) {
+                            if (!AppState.get().isDisableSwipe && Math.abs(dy) > Math.abs(dx) && Math.abs(dy) > Dips.DP_10) {
                                 isMoveNextPrev = dy > 0 ? 1 : -1;
                             }
 
@@ -476,6 +476,7 @@ public class PageImaveView extends View {
                 }
 
                 if (isMoveNextPrev != 0) {
+                    LOG.d("isMoveNextPrev", isMoveNextPrev);
                     EventBus.getDefault().post(new MessageEvent(MessageEvent.MESSAGE_GOTO_PAGE_SWIPE, isMoveNextPrev));
                 } else if (TxtUtils.isNotEmpty(AppState.get().selectedText)) {
                     EventBus.getDefault().post(new MessageEvent(MessageEvent.MESSAGE_SELECTED_TEXT));
