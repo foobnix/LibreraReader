@@ -104,7 +104,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/menuLayout"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="10dip" />
+        android:layout_marginTop="14dip" />
 
     <include
         android:id="@+id/includeEditPanel"

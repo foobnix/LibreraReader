@@ -464,7 +464,7 @@
    <string name="no_keywords">Sin palabras clave</string>
    <string name="my_tags">Mis etiquetas</string>
    <string name="crop_borders_symmetrically">Recortar bordes simétricamente</string>
-   <string name="enable_cropping_of_white_borders">Habilitar recorte de bordes blancos</string>
    <string name="displaying_the_author_and_title_of_the_pdf_book_from_the_meta_tags">Mostrar el autor y el título del libro PDF de las etiquetas meta</string>
    <string name="meta_tags">Metaetiquetas</string>
+   <string name="librera_pro_program_for_reading_books_without_advertising_installing_it_removes_advertising_in_this_application">Librera PRO - programa para leer libros sin publicidad, instalarlo elimina publicidad en esta aplicación</string>
 </resources>

@@ -10,7 +10,7 @@
         android:id="@+id/isEnableCrop"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/enable_cropping_of_white_borders" />
+        android:text="@string/enable" />
 
     <LinearLayout
         android:layout_width="match_parent"

@@ -464,7 +464,7 @@
    <string name="no_keywords">Ingen søkeord</string>
    <string name="my_tags">Mine koder</string>
    <string name="crop_borders_symmetrically">Beskjær kantene symmetrisk</string>
-   <string name="enable_cropping_of_white_borders">Aktiver beskjæring av hvite grenser</string>
    <string name="displaying_the_author_and_title_of_the_pdf_book_from_the_meta_tags">Viser forfatteren og tittelen til PDF-boken fra metatagsene</string>
    <string name="meta_tags">Metatagger</string>
+   <string name="librera_pro_program_for_reading_books_without_advertising_installing_it_removes_advertising_in_this_application">Librera PRO-programmet for å lese bøker uten reklame, installere den fjerner reklame i denne applikasjonen</string>
 </resources>
