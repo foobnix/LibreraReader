@@ -176,7 +176,11 @@ public class FontExtractor {
                     @Override
                     protected void onPostExecute(Object result) {
                         if (progressDialog != null) {
-                            progressDialog.dismiss();
+                            try {
+                                progressDialog.dismiss();
+                            } catch (Exception e) {
+                                LOG.e(e);
+                            }
                         }
                         if (result == null) {
                             Toast.makeText(a, R.string.msg_unexpected_error, Toast.LENGTH_LONG).show();

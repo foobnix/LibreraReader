@@ -511,7 +511,6 @@ public class BrowseFragment2 extends UIFragment<FileMeta> {
         return false;
     }
 
-
     public void setDirPath(String path) {
         if (path != null) {
             if (path.startsWith("/")) {
@@ -632,14 +631,14 @@ public class BrowseFragment2 extends UIFragment<FileMeta> {
 
                                     } else {
                                         try {
-                                        if (COLUMN_SIZE != null) {
-                                            long size = Long.parseLong(COLUMN_SIZE);
-                                            meta.setSize(size);
-                                            meta.setSizeTxt(ExtUtils.readableFileSize(size));
-                                        }
-                                        if (COLUMN_LAST_MODIFIED != null) {
-                                            meta.setDateTxt(ExtUtils.getDateFormat(Long.parseLong(COLUMN_LAST_MODIFIED)));
-                                        }
+                                            if (COLUMN_SIZE != null) {
+                                                long size = Long.parseLong(COLUMN_SIZE);
+                                                meta.setSize(size);
+                                                meta.setSizeTxt(ExtUtils.readableFileSize(size));
+                                            }
+                                            if (COLUMN_LAST_MODIFIED != null) {
+                                                meta.setDateTxt(ExtUtils.getDateFormat(Long.parseLong(COLUMN_LAST_MODIFIED)));
+                                            }
                                         } catch (Exception e) {
                                             LOG.e(e);
                                         }
@@ -668,25 +667,30 @@ public class BrowseFragment2 extends UIFragment<FileMeta> {
             }
         }
 
-        if (AppState.get().sortByBrowse == AppState.BR_SORT_BY_PATH) {
-            Collections.sort(items, FileMetaComparators.BY_PATH);
-        } else if (AppState.get().sortByBrowse == AppState.BR_SORT_BY_DATE) {
-            Collections.sort(items, FileMetaComparators.BY_DATE);
-        } else if (AppState.get().sortByBrowse == AppState.BR_SORT_BY_SIZE) {
-            Collections.sort(items, FileMetaComparators.BY_SIZE);
-        } else if (AppState.get().sortByBrowse == AppState.BR_SORT_BY_NUMBER) {
-            Collections.sort(items, FileMetaComparators.BR_BY_NUMBER1);
-        } else if (AppState.get().sortByBrowse == AppState.BR_SORT_BY_PAGES) {
-            Collections.sort(items, FileMetaComparators.BR_BY_PAGES);
-        } else if (AppState.get().sortByBrowse == AppState.BR_SORT_BY_TITLE) {
-            Collections.sort(items, FileMetaComparators.BR_BY_TITLE);
-        } else if (AppState.get().sortByBrowse == AppState.BR_SORT_BY_EXT) {
-            Collections.sort(items, FileMetaComparators.BR_BY_EXT);
+        try {
+            if (AppState.get().sortByBrowse == AppState.BR_SORT_BY_PATH) {
+                Collections.sort(items, FileMetaComparators.BY_PATH);
+            } else if (AppState.get().sortByBrowse == AppState.BR_SORT_BY_DATE) {
+                Collections.sort(items, FileMetaComparators.BY_DATE);
+            } else if (AppState.get().sortByBrowse == AppState.BR_SORT_BY_SIZE) {
+                Collections.sort(items, FileMetaComparators.BY_SIZE);
+            } else if (AppState.get().sortByBrowse == AppState.BR_SORT_BY_NUMBER) {
+                Collections.sort(items, FileMetaComparators.BR_BY_NUMBER1);
+            } else if (AppState.get().sortByBrowse == AppState.BR_SORT_BY_PAGES) {
+                Collections.sort(items, FileMetaComparators.BR_BY_PAGES);
+            } else if (AppState.get().sortByBrowse == AppState.BR_SORT_BY_TITLE) {
+                Collections.sort(items, FileMetaComparators.BR_BY_TITLE);
+            } else if (AppState.get().sortByBrowse == AppState.BR_SORT_BY_EXT) {
+                Collections.sort(items, FileMetaComparators.BR_BY_EXT);
+            }
+            if (AppState.get().sortByReverse) {
+                Collections.reverse(items);
+            }
+            Collections.sort(items, FileMetaComparators.DIRS);
+
+        } catch (Exception e) {
+            LOG.e(e);
         }
-        if (AppState.get().sortByReverse) {
-            Collections.reverse(items);
-        }
-        Collections.sort(items, FileMetaComparators.DIRS);
 
         for (int i = 0; i < items.size(); i++) {
             FileMeta m = items.get(i);
