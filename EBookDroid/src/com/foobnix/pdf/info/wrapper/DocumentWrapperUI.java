@@ -622,10 +622,10 @@ public class DocumentWrapperUI {
         brightness.setOnClickListener(onSun);
         brightness.setImageResource(!AppState.get().isDayNotInvert ? R.drawable.glyphicons_232_sun : R.drawable.glyphicons_2_moon);
 
-        if (Dips.isEInk(dc.getActivity())) {
-            brightness.setVisibility(View.GONE);
-            AppState.get().isDayNotInvert = true;
-        }
+        // if (Dips.isEInk(dc.getActivity())) {
+        // brightness.setVisibility(View.GONE);
+        // AppState.get().isDayNotInvert = true;
+        // }
 
         onBC = (UnderlineImageView) a.findViewById(R.id.onBC);
         onBC.setOnClickListener(onBCclick);

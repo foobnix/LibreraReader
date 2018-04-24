@@ -20,6 +20,7 @@ import android.os.Build;
 import android.support.v4.util.Pair;
 import android.text.Html;
 import android.text.Spanned;
+import android.text.SpannedString;
 import android.widget.TextView;
 
 public class TxtUtils {
@@ -283,8 +284,16 @@ public class TxtUtils {
         return AppState.get().selectingByLetters ? "" : " ";
     }
 
-    public static Spanned underline(String text) {
-        return Html.fromHtml("<u>" + text + "</u>");
+    public static Spanned underline(final String text) {
+        try {
+            return Html.fromHtml("<u>" + text + "</u>");
+        } catch (Exception e) {
+            try {
+                return Html.fromHtml("<u>" + text + "</u>", Html.FROM_HTML_MODE_LEGACY);
+            } catch (Exception e1) {
+                return new SpannedString(text);
+            }
+        }
     }
 
     @TargetApi(Build.VERSION_CODES.KITKAT)

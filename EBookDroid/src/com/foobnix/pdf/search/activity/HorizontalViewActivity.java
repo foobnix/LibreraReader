@@ -312,10 +312,10 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
                 dc.restartActivity();
             }
         });
-        if (Dips.isEInk(this)) {
-            dayNightButton.setVisibility(View.GONE);
-            AppState.get().isDayNotInvert = true;
-        }
+        // if (Dips.isEInk(this)) {
+            // dayNightButton.setVisibility(View.GONE);
+            // AppState.get().isDayNotInvert = true;
+        // }
 
         onBC = (UnderlineImageView) findViewById(R.id.onBC);
         onBC.underline(AppState.get().isEnableBC);

@@ -115,10 +115,15 @@ public class CalirbeExtractor {
                     }
 
                     if ("reference".equals(xpp.getName()) && "cover".equals(xpp.getAttributeValue(null, "type"))) {
-                        String imgName = xpp.getAttributeValue(null, "href");
-                        FileInputStream fileStream = new FileInputStream(new File(rootFolder, imgName));
-                        meta.coverImage = BaseExtractor.getEntryAsByte(fileStream);
-                        fileStream.close();
+                        try {
+                            String imgName = xpp.getAttributeValue(null, "href");
+                            FileInputStream fileStream = new FileInputStream(new File(rootFolder, imgName));
+                            meta.coverImage = BaseExtractor.getEntryAsByte(fileStream);
+                            fileStream.close();
+                        } catch (Exception e) {
+                            LOG.e(e);
+                        }
+
                     }
 
                 }
