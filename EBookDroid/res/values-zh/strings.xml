@@ -6,14 +6,14 @@
    <string name="archives">档案</string>
    <string name="other">其它</string>
    <string name="you_need_to_update_the_library">搜索书库？</string>
-   <string name="in_the_author_s_name_first_the_surname">显示作者姓名</string>
+   <string name="in_the_author_s_name_first_the_surname">作者姓在前名在后</string>
    <string name="orientation">屏幕方向</string>
    <string name="automatic">自动</string>
    <string name="landscape">横屏</string>
    <string name="portrait">竖屏</string>
    <string name="landscape_180">横屏（180°）</string>
    <string name="portrait_180">竖屏（180°）</string>
-   <string name="system_language">系统语言</string>
+   <string name="system_language">系统</string>
    <string name="small">小</string>
    <string name="normal">正常</string>
    <string name="large">大</string>
@@ -264,7 +264,7 @@
    <string name="read_a_book">阅读</string>
    <string name="___SORT___AND___VIEW___SECTION___">排序视窗</string>
    <string name="by_path">路径</string>
-   <string name="by_file_name">文件名</string>
+   <string name="by_file_name">文件</string>
    <string name="by_size">大小</string>
    <string name="by_date">日期</string>
    <string name="by_title">书名</string>
@@ -423,7 +423,7 @@
    <string name="the_page_is_clipped_the_text_selection_does_not_work">页面已被剪辑，文本选择失效。</string>
    <string name="title">书名</string>
    <string name="subject">主题</string>
-   <string name="keywords">关键词</string>
+   <string name="keywords">索引</string>
    <string name="number">页码</string>
    <string name="percent">百分比</string>
    <string name="reading_progress">阅读进度</string>
@@ -445,7 +445,7 @@
    <string name="add_tag">标签</string>
    <string name="do_you_want_to_delete_this_tag_from_all_books_">删除标签？</string>
    <string name="by_number_of_pages">页数</string>
-   <string name="by_number_in_serie">书号</string>
+   <string name="by_number_in_serie">序号</string>
    <string name="by_extension">格式</string>
    <string name="recent_favorites_tags">最近，珍藏，标签。</string>
    <string name="line_spacing">行目间距</string>
@@ -461,7 +461,7 @@
    <string name="hyphenation_language">断字语言</string>
    <string name="replacing_the_white_color_in_the_images_with_the_background_color">一致化背景色</string>
    <string name="disable_swipe_gestures_for_page_paging">禁用轻扫翻页</string>
-   <string name="no_keywords">无关键词</string>
+   <string name="no_keywords">无索引</string>
    <string name="my_tags">标签</string>
    <string name="crop_borders_symmetrically">裁剪边界对称</string>
    <string name="displaying_the_author_and_title_of_the_pdf_book_from_the_meta_tags">从元标签中显示PDF书的作者和书名</string>
