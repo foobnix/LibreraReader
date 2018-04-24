@@ -284,6 +284,7 @@ public class TxtUtils {
         return AppState.get().selectingByLetters ? "" : " ";
     }
 
+    @TargetApi(24)
     public static Spanned underline(final String text) {
         try {
             return Html.fromHtml("<u>" + text + "</u>");
