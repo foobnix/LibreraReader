@@ -436,6 +436,9 @@ public class AppDB {
     }
 
     public List<FileMeta> getAllWithTag() {
+        if (fileMetaDao == null || fileMetaDao.queryBuilder() == null) {
+            return new ArrayList<FileMeta>();
+        }
         QueryBuilder<FileMeta> where = fileMetaDao.queryBuilder();
         where = where.where(FileMetaDao.Properties.Tag.isNotNull());
         try {

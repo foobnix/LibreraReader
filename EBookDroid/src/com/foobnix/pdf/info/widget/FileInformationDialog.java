@@ -38,7 +38,6 @@ import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.DialogInterface.OnDismissListener;
-import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.text.Html;
 import android.view.LayoutInflater;
@@ -365,7 +364,7 @@ public class FileInformationDialog {
                 } else {
                     starIcon.setImageResource(R.drawable.star_1);
                 }
-                TintUtil.setTintImageWithAlpha(starIcon, Color.WHITE);
+                TintUtil.setTintImageWithAlpha(starIcon, TintUtil.color);
 
             }
         });
@@ -375,7 +374,7 @@ public class FileInformationDialog {
         } else {
             starIcon.setImageResource(R.drawable.star_1);
         }
-        TintUtil.setTintImageWithAlpha(starIcon, Color.WHITE);
+        TintUtil.setTintImageWithAlpha(starIcon, TintUtil.color);
         TintUtil.setBackgroundFillColor(openFile, TintUtil.color);
 
         // builder.setTitle(R.string.file_info);

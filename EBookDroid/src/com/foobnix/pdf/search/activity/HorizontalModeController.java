@@ -111,8 +111,12 @@ public abstract class HorizontalModeController extends DocumentController {
 
     @Override
     public void cleanImageMatrix() {
+        try {
         PageImageState.get().getMatrix().reset();
         matrixSP.edit().remove("" + bookPath.hashCode()).commit();
+        } catch (Exception e) {
+            LOG.e(e);
+        }
     }
 
     @Override
