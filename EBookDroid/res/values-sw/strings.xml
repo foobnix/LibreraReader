@@ -469,4 +469,6 @@
    <string name="librera_pro_program_for_reading_books_without_advertising_installing_it_removes_advertising_in_this_application">Programu ya programu ya Librera PRO ya kusoma vitabu bila matangazo, kuifuta huondoa matangazo katika programu hii</string>
    <string name="annotation">Maelezo</string>
    <string name="book">Kitabu</string>
+   <string name="information">Taarifa</string>
+   <string name="file_path">Futa njia</string>
 </resources>

@@ -469,4 +469,6 @@
    <string name="librera_pro_program_for_reading_books_without_advertising_installing_it_removes_advertising_in_this_application">Librera PRO-programmet för att läsa böcker utan reklam, installera den tar bort reklam i den här applikationen</string>
    <string name="annotation">Anteckning</string>
    <string name="book">Bok</string>
+   <string name="information">Information</string>
+   <string name="file_path">Sökväg</string>
 </resources>

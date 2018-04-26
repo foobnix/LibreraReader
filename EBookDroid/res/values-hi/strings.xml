@@ -469,4 +469,6 @@
    <string name="librera_pro_program_for_reading_books_without_advertising_installing_it_removes_advertising_in_this_application">लिब्रेरा प्रो - विज्ञापन के बिना किताबें पढ़ने के लिए कार्यक्रम, इसे स्थापित करने से इस एप्लिकेशन में विज्ञापन हटा दिया जाता है</string>
    <string name="annotation">टिप्पणी</string>
    <string name="book">किताब</string>
+   <string name="information">जानकारी</string>
+   <string name="file_path">फ़ाइल पथ</string>
 </resources>

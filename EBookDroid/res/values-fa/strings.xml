@@ -469,4 +469,6 @@
    <string name="librera_pro_program_for_reading_books_without_advertising_installing_it_removes_advertising_in_this_application">Librera PRO - برنامه برای خواندن کتاب بدون تبلیغات، نصب آن، تبلیغات را در این برنامه حذف می کند</string>
    <string name="annotation">حاشیه نویسی</string>
    <string name="book">کتاب</string>
+   <string name="information">اطلاعات</string>
+   <string name="file_path">مسیر فایل</string>
 </resources>

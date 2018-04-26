@@ -469,4 +469,6 @@
    <string name="librera_pro_program_for_reading_books_without_advertising_installing_it_removes_advertising_in_this_application">A Librera PRO - a hirdetés nélküli könyvek olvasásának programja, telepítése eltávolítja a hirdetést ebben az alkalmazásban</string>
    <string name="annotation">Jegyzet</string>
    <string name="book">Könyv</string>
+   <string name="information">Információ</string>
+   <string name="file_path">Fájl elérési út</string>
 </resources>

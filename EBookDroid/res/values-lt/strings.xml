@@ -469,4 +469,6 @@
    <string name="librera_pro_program_for_reading_books_without_advertising_installing_it_removes_advertising_in_this_application">\"Librera PRO\" - programa, skirta skaityti knygas be reklamos, ją įdiegus, šioje programoje ištrinama reklama</string>
    <string name="annotation">Anotacija</string>
    <string name="book">Knyga</string>
+   <string name="information">Informacija</string>
+   <string name="file_path">Bylos kelias</string>
 </resources>

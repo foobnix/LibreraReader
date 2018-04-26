@@ -469,4 +469,6 @@
    <string name="librera_pro_program_for_reading_books_without_advertising_installing_it_removes_advertising_in_this_application">Librera PRO - program pentru citirea cărților fără publicitate, instalarea acestora elimină publicitatea în această aplicație</string>
    <string name="annotation">Adnotare</string>
    <string name="book">Carte</string>
+   <string name="information">Informație</string>
+   <string name="file_path">Dosarul fișierului</string>
 </resources>

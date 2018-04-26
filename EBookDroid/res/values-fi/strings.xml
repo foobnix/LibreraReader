@@ -469,4 +469,6 @@
    <string name="librera_pro_program_for_reading_books_without_advertising_installing_it_removes_advertising_in_this_application">Librera PRO - ohjelma lukemattomia kirjoja varten ilman mainontaa, asentaminen poistaa mainonnan tässä sovelluksessa</string>
    <string name="annotation">Huomautus</string>
    <string name="book">Kirja</string>
+   <string name="information">Tiedot</string>
+   <string name="file_path">Tiedostopolku</string>
 </resources>

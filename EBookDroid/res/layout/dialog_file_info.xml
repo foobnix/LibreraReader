@@ -186,7 +186,7 @@
                 style="@style/textSection"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Information"
+                android:text="@string/information"
                 android:textStyle="bold" />
 
             <LinearLayout
@@ -261,7 +261,7 @@
                 style="@style/textSection"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Path"
+                android:text="@string/file_path"
                 android:textStyle="bold" />
 
             <TextView

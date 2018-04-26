@@ -469,4 +469,6 @@
    <string name="librera_pro_program_for_reading_books_without_advertising_installing_it_removes_advertising_in_this_application">Librera PRO - 광고없이 책을 읽고 프로그램을 설치하면이 응용 프로그램에서 광고가 제거됩니다.</string>
    <string name="annotation">주석</string>
    <string name="book">도서</string>
+   <string name="information">정보</string>
+   <string name="file_path">파일 경로</string>
 </resources>

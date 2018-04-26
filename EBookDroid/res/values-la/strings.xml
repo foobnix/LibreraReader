@@ -469,4 +469,6 @@
    <string name="librera_pro_program_for_reading_books_without_advertising_installing_it_removes_advertising_in_this_application">Librera pro - progressio in libros legere non vendo, vendo in hoc removeat applicationem installing</string>
    <string name="annotation">Description</string>
    <string name="book">Liber</string>
+   <string name="information">Information</string>
+   <string name="file_path">File semita</string>
 </resources>
