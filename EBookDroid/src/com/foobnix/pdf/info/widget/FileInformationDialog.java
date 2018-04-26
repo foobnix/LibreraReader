@@ -15,6 +15,7 @@ import com.foobnix.android.utils.Keyboards;
 import com.foobnix.android.utils.LOG;
 import com.foobnix.android.utils.TxtUtils;
 import com.foobnix.dao2.FileMeta;
+import com.foobnix.pdf.info.ADS;
 import com.foobnix.pdf.info.AppSharedPreferences;
 import com.foobnix.pdf.info.ExtUtils;
 import com.foobnix.pdf.info.IMG;
@@ -53,6 +54,8 @@ public class FileInformationDialog {
     static AlertDialog infoDialog;
 
     public static void showFileInfoDialog(final Activity a, final File file, final Runnable onDeleteAction) {
+
+        ADS.hideAdsTemp(a);
 
         AlertDialog.Builder builder = new AlertDialog.Builder(a);
 

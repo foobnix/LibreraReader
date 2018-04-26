@@ -585,6 +585,7 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
                     }
                 }, dc.getCurentPage(), null, dc);
                 Keyboards.hideNavigation(HorizontalViewActivity.this);
+                hideAds();
 
             }
         });
@@ -633,6 +634,7 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
             public boolean onLongClick(final View v) {
                 Vibro.vibrate();
                 CloseAppDialog.showOnLongClickDialog(HorizontalViewActivity.this, v, dc);
+                hideAds();
                 return true;
             }
         });
@@ -877,6 +879,7 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
             @TargetApi(Build.VERSION_CODES.HONEYCOMB)
             @Override
             public void onGlobalLayout() {
+
                 if (anchor.getVisibility() == View.VISIBLE) {
                     adFrame.setVisibility(View.GONE);
                     adFrame.setClickable(false);
@@ -910,6 +913,11 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
 
     private boolean closeDialogs() {
         return dc.closeDialogs(anchor);
+    }
+
+    public void hideAds() {
+        adFrame.setTag("");
+        adFrame.setVisibility(View.GONE);
     }
 
     public void updateIconMode() {
@@ -1883,6 +1891,7 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
                     actionBar.setVisibility(View.VISIBLE);
                     bottomBar.setVisibility(View.VISIBLE);
                     adFrame.setVisibility(View.VISIBLE);
+                    adFrame.setTag(null);
 
                 }
             });

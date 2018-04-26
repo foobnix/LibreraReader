@@ -779,7 +779,7 @@ public class DocumentWrapperUI {
                     adFrame.setVisibility(View.GONE);
                     adFrame.setClickable(false);
                 } else {
-                    if (AppState.get().isEditMode) {
+                    if (AppState.get().isEditMode && adFrame.getTag() == null) {
                         adFrame.setVisibility(View.VISIBLE);
                         adFrame.setClickable(true);
                     } else {
@@ -940,6 +940,7 @@ public class DocumentWrapperUI {
                 }
             }, dc.getCurentPage() - 1, DocumentWrapperUI.this, dc);
             Keyboards.hideNavigation(a);
+            hideAds();
         }
     };
 
@@ -1253,6 +1254,7 @@ public class DocumentWrapperUI {
         bottomBar.setVisibility(View.VISIBLE);
         adFrame.setVisibility(View.VISIBLE);
         adFrame.setClickable(true);
+        adFrame.setTag(null);
 
         imageMenuArrow.setImageResource(android.R.drawable.arrow_up_float);
 
@@ -1615,9 +1617,15 @@ public class DocumentWrapperUI {
         public boolean onLongClick(final View v) {
             Vibro.vibrate();
             CloseAppDialog.showOnLongClickDialog(a, v, getController());
+            hideAds();
             return true;
         };
     };
+
+    public void hideAds() {
+        adFrame.setTag("");
+        adFrame.setVisibility(View.GONE);
+    }
 
     public View.OnClickListener onMoveLeft = new View.OnClickListener() {
 

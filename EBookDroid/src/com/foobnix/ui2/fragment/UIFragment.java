@@ -11,6 +11,7 @@ import com.foobnix.android.utils.AsyncTasks;
 import com.foobnix.android.utils.Dips;
 import com.foobnix.android.utils.LOG;
 import com.foobnix.android.utils.TxtUtils;
+import com.foobnix.pdf.info.R;
 import com.foobnix.pdf.info.wrapper.AppState;
 import com.foobnix.pdf.info.wrapper.PopupHelper;
 import com.foobnix.pdf.search.activity.msg.NotifyAllFragments;
@@ -50,6 +51,8 @@ public abstract class UIFragment<T> extends Fragment {
 
     public abstract Pair<Integer, Integer> getNameAndIconRes();
 
+    View adFrame;
+
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
@@ -83,6 +86,19 @@ public abstract class UIFragment<T> extends Fragment {
             listHash = TempHolder.listHash;
         } else {
             notifyFragment();
+
+            try {
+                if (adFrame == null) {
+                    adFrame = getActivity().findViewById(R.id.adFrame);
+                }
+
+                if (adFrame != null && adFrame.getVisibility() == View.INVISIBLE) {
+                    adFrame.setVisibility(View.VISIBLE);
+                }
+            } catch (Exception e) {
+                LOG.e(e);
+            }
+
         }
     }
 

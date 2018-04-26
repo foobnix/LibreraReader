@@ -89,6 +89,7 @@
 
             <TextView
                 android:id="@+id/metaSeries"
+                android:textIsSelectable="true"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:padding="4dip"
@@ -102,6 +103,7 @@
                 android:text="@string/genre" />
 
             <TextView
+                android:textIsSelectable="true"
                 android:id="@+id/metaGenre"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -117,6 +119,7 @@
                 android:text="@string/keywords" />
 
             <TextView
+                android:textIsSelectable="true"
                 android:id="@+id/keywordList"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -131,6 +134,7 @@
                 android:text="@string/my_tags" />
 
             <TextView
+                android:textIsSelectable="true"
                 android:id="@+id/tagsList"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -157,6 +161,7 @@
                 android:id="@+id/metaTagsInfo"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:textIsSelectable="true"
                 android:padding="4dip"
                 android:text="@string/meta_tags" />
 

@@ -25,6 +25,17 @@ public class ADS {
             .addTestDevice(AdRequest.DEVICE_ID_EMULATOR)//
             .build();//
 
+    public static void hideAdsTemp(Activity a) {
+        try {
+            if (a == null) {
+                return;
+            }
+            View adFrame = a.findViewById(R.id.adFrame);
+            adFrame.setVisibility(View.INVISIBLE);
+        } catch (Exception e) {
+            LOG.e(e);
+        }
+    }
 
     public static void activateAdmobSmartBanner(final Activity a, AdView adView) {
         try {
@@ -128,8 +139,7 @@ public class ADS {
         return upperCase;
     }
 
-    public static final String md5_2(final String s)
-    {
+    public static final String md5_2(final String s) {
         try {
             // Create MD5 Hash
             MessageDigest digest = java.security.MessageDigest.getInstance("MD5");

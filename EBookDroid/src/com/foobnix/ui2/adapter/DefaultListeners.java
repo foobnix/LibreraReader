@@ -8,6 +8,7 @@ import com.foobnix.android.utils.LOG;
 import com.foobnix.android.utils.ResultResponse;
 import com.foobnix.android.utils.ResultResponse2;
 import com.foobnix.dao2.FileMeta;
+import com.foobnix.pdf.info.ADS;
 import com.foobnix.pdf.info.ExtUtils;
 import com.foobnix.pdf.info.R;
 import com.foobnix.pdf.info.widget.FileInformationDialog;
@@ -188,6 +189,8 @@ public class DefaultListeners {
 
             @Override
             public boolean onResultRecive(final FileMeta result) {
+                ADS.hideAdsTemp(a);
+
                 final File file = new File(result.getPath());
                 Runnable onDeleteAction = new Runnable() {
 
