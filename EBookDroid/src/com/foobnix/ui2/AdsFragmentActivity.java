@@ -37,7 +37,7 @@ public abstract class AdsFragmentActivity extends FragmentActivity {
     @Override
     protected void onPostCreate(Bundle savedInstanceState) {
         super.onPostCreate(savedInstanceState);
-        // myAds.activate(this, onFinish);
+        myAds.activate(this, onFinish);
     }
 
     public void activateAds() {
@@ -47,13 +47,16 @@ public abstract class AdsFragmentActivity extends FragmentActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        // myAds.resume();
-        myAds.activate(this, onFinish);
+        myAds.resume();
     }
 
     @Override
     protected void onPause() {
         super.onPause();
+        myAds.pause();
+    }
+
+    public void adsPause() {
         myAds.pause();
     }
 
@@ -72,6 +75,7 @@ public abstract class AdsFragmentActivity extends FragmentActivity {
     public void showInterstial() {
         TTSNotification.hideNotification();
         TTSEngine.get().shutdown();
+        adsPause();
         if (myAds.showInterstial()) {
             // ok
         } else {

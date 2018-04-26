@@ -313,8 +313,8 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
             }
         });
         // if (Dips.isEInk(this)) {
-            // dayNightButton.setVisibility(View.GONE);
-            // AppState.get().isDayNotInvert = true;
+        // dayNightButton.setVisibility(View.GONE);
+        // AppState.get().isDayNotInvert = true;
         // }
 
         onBC = (UnderlineImageView) findViewById(R.id.onBC);
@@ -701,6 +701,14 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
                                 count++;
                             }
                         }
+
+                        HorizontalViewActivity.this.runOnUiThread(new Runnable() {
+
+                            @Override
+                            public void run() {
+                                updateBannnerTop();
+                            }
+                        });
 
                     } catch (InterruptedException e) {
                     }
@@ -1809,7 +1817,17 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
         hideShow(true);
     }
 
+    public void updateBannnerTop() {
+        try {
+            ((RelativeLayout.LayoutParams) adFrame.getLayoutParams()).topMargin = actionBar.getHeight() + Dips.dpToPx(14);
+        } catch (Exception e) {
+            LOG.e(e);
+        }
+    }
+
     public void hideShow(boolean animated) {
+        updateBannnerTop();
+
         if (prev == AppState.get().isEditMode) {
             return;
         }
@@ -1823,8 +1841,6 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
             DocumentController.chooseFullScreen(this, AppState.get().isFullScreen);
             return;
         }
-
-        ((RelativeLayout.LayoutParams) adFrame.getLayoutParams()).topMargin = actionBar.getHeight() + Dips.dpToPx(60);
 
         final TranslateAnimation hideActionBar = new TranslateAnimation(0, 0, 0, -actionBar.getHeight());
         final TranslateAnimation hideBottomBar = new TranslateAnimation(0, 0, 0, bottomBar.getHeight());

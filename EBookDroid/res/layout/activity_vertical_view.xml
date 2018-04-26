@@ -104,7 +104,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/menuLayout"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="14dip" />
+        android:layout_marginTop="@dimen/ads_margin_top" />
 
     <include
         android:id="@+id/includeEditPanel"
@@ -128,10 +128,12 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:background="#0000ff" >
+
         <FrameLayout
             android:id="@+id/bottomBar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" >
+
             <include layout="@layout/document_footer" />
         </FrameLayout>
     </FrameLayout>

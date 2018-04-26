@@ -11,6 +11,8 @@
     <dimen name="title_wh_padding">3dp</dimen>
     <dimen name="title_h_adv">13sp</dimen>
 
+    <dimen name="ads_margin_top">14sp</dimen>
+
     <string name="ads_banner_size">FULL_WIDTHx320</string>
 
     <declare-styleable name="CustomSeek">

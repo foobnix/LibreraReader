@@ -79,7 +79,7 @@ public class LibreraApp extends Application {
         LOG.d("Build.Context", "Environment.getExternalStorageDirectory()", Environment.getExternalStorageDirectory());
 
         try {
-            if (LOG.isEnable) {
+            if (false && LOG.isEnable) {
                 String myID = ADS.getByTestID(this);
                 ADS.adRequest = new AdRequest.Builder()//
                         .addTestDevice(AdRequest.DEVICE_ID_EMULATOR)//
