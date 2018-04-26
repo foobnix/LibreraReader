@@ -467,4 +467,6 @@
    <string name="displaying_the_author_and_title_of_the_pdf_book_from_the_meta_tags">Afișarea autorului și a titlului cărții PDF din etichetele meta</string>
    <string name="meta_tags">Meta etichete</string>
    <string name="librera_pro_program_for_reading_books_without_advertising_installing_it_removes_advertising_in_this_application">Librera PRO - program pentru citirea cărților fără publicitate, instalarea acestora elimină publicitatea în această aplicație</string>
+   <string name="annotation">Adnotare</string>
+   <string name="book">Carte</string>
 </resources>

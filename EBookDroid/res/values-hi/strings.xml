@@ -467,4 +467,6 @@
    <string name="displaying_the_author_and_title_of_the_pdf_book_from_the_meta_tags">मेटा टैग से पीडीएफ पुस्तक के लेखक और शीर्षक को प्रदर्शित करना</string>
    <string name="meta_tags">मेटा टैग</string>
    <string name="librera_pro_program_for_reading_books_without_advertising_installing_it_removes_advertising_in_this_application">लिब्रेरा प्रो - विज्ञापन के बिना किताबें पढ़ने के लिए कार्यक्रम, इसे स्थापित करने से इस एप्लिकेशन में विज्ञापन हटा दिया जाता है</string>
+   <string name="annotation">टिप्पणी</string>
+   <string name="book">किताब</string>
 </resources>

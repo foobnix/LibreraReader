@@ -86,4 +86,10 @@
           <item name="android:padding">8dip</item>
           <item name="android:tint">@color/tint_gray</item>
      </style>
+     
+      <style name="textSection">
+          <item name="android:textStyle">bold</item>
+          <item name="android:padding">4dip</item>
+          <item name="android:background">#60e1e1e1</item>
+     </style>
 </resources>

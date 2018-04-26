@@ -467,4 +467,6 @@
    <string name="displaying_the_author_and_title_of_the_pdf_book_from_the_meta_tags">A PDF-könyv szerzőjének és címének megjelenítése a meta címkékről</string>
    <string name="meta_tags">Meta tagek</string>
    <string name="librera_pro_program_for_reading_books_without_advertising_installing_it_removes_advertising_in_this_application">A Librera PRO - a hirdetés nélküli könyvek olvasásának programja, telepítése eltávolítja a hirdetést ebben az alkalmazásban</string>
+   <string name="annotation">Jegyzet</string>
+   <string name="book">Könyv</string>
 </resources>

@@ -63,6 +63,7 @@ public class FileInformationDialog {
 
         TextView title = (TextView) dialog.findViewById(R.id.title);
         final TextView bookmarks = (TextView) dialog.findViewById(R.id.bookmarks);
+        final TextView bookmarksSection = (TextView) dialog.findViewById(R.id.bookmarksSection);
 
         title.setText(TxtUtils.getFileMetaBookName(fileMeta));
 
@@ -96,6 +97,9 @@ public class FileInformationDialog {
             }
         }
         bookmarks.setText(TxtUtils.replaceLast(lines.toString(), "\n", ""));
+        if (TxtUtils.isListEmpty(objects)) {
+            bookmarksSection.setVisibility(View.GONE);
+        }
 
         bookmarks.setOnClickListener(new OnClickListener() {
 
@@ -182,10 +186,10 @@ public class FileInformationDialog {
                     String replace = tag.replace("#", " ");
                     replace = TxtUtils.replaceLast(replace, ",", "").trim();
                     ((TextView) dialog.findViewById(R.id.tagsList)).setText(replace);
-                    ((TextView) dialog.findViewById(R.id.tagsID)).setVisibility(View.VISIBLE);
+                    // ((TextView) dialog.findViewById(R.id.tagsID)).setVisibility(View.VISIBLE);
                     ((TextView) dialog.findViewById(R.id.tagsList)).setVisibility(View.VISIBLE);
                 } else {
-                    ((TextView) dialog.findViewById(R.id.tagsID)).setVisibility(View.GONE);
+                    // ((TextView) dialog.findViewById(R.id.tagsID)).setVisibility(View.GONE);
                     ((TextView) dialog.findViewById(R.id.tagsList)).setVisibility(View.GONE);
                 }
 
@@ -208,10 +212,13 @@ public class FileInformationDialog {
             }
         });
 
-        TextView metaPDF = (TextView) dialog.findViewById(R.id.metaPDF);
-        metaPDF.setVisibility(View.GONE);
+        TextView metaTags = (TextView) dialog.findViewById(R.id.metaTags);
+        TextView metaTagsInfo = (TextView) dialog.findViewById(R.id.metaTagsInfo);
+        metaTags.setVisibility(View.GONE);
+        metaTagsInfo.setVisibility(View.GONE);
         if (BookType.PDF.is(file.getPath()) || BookType.DJVU.is(file.getPath())) {
-            metaPDF.setVisibility(View.VISIBLE);
+            metaTags.setVisibility(View.VISIBLE);
+            metaTagsInfo.setVisibility(View.VISIBLE);
 
             final List<String> list2 = Arrays.asList(
                     //
@@ -241,30 +248,22 @@ public class FileInformationDialog {
                     "keywords" //
             );
 
-            metaPDF.setOnClickListener(new OnClickListener() {
+            final CodecDocument doc = ImageExtractor.singleCodecContext(file.getPath(), "", 0, 0);
 
-                @Override
-                public void onClick(View v) {
-                    final CodecDocument doc = ImageExtractor.singleCodecContext(file.getPath(), "", 0, 0);
+            StringBuilder meta = new StringBuilder();
+            for (String id : list2) {
+                String metaValue = doc.getMeta(id);
 
-                    StringBuilder meta = new StringBuilder();
-                    for (String id : list2) {
-                        String metaValue = doc.getMeta(id);
-
-                        if (TxtUtils.isNotEmpty(metaValue)) {
-                            id = id.replace("info:", "");
-                            meta.append("<b>" + id).append(": " + "</b>").append(metaValue).append("<br>");
-                        }
-                    }
-                    doc.recycle();
-
-                    String text = TxtUtils.replaceLast(meta.toString(), "<br>", "");
-                    TextView t = new TextView(v.getContext());
-                    t.setText(Html.fromHtml(text));
-                    AlertDialogs.showViewDialog(a, t);
-
+                if (TxtUtils.isNotEmpty(metaValue)) {
+                    id = id.replace("info:", "");
+                    meta.append("<b>" + id).append(": " + "</b>").append(metaValue).append("<br>");
                 }
-            });
+            }
+            doc.recycle();
+
+            String text = TxtUtils.replaceLast(meta.toString(), "<br>", "");
+            metaTagsInfo.setText(Html.fromHtml(text));
+
         }
 
         TextView convertFile = (TextView) dialog.findViewById(R.id.convertFile);
@@ -324,7 +323,8 @@ public class FileInformationDialog {
         });
 
         View openFile = dialog.findViewById(R.id.openFile);
-        openFile.setVisibility(ExtUtils.isNotSupportedFile(file) ? View.GONE : View.VISIBLE);
+        // openFile.setVisibility(ExtUtils.isNotSupportedFile(file) ? View.GONE :
+        // View.VISIBLE);
         openFile.setOnClickListener(new OnClickListener() {
 
             @Override
@@ -339,8 +339,6 @@ public class FileInformationDialog {
         });
 
         final ImageView coverImage = (ImageView) dialog.findViewById(R.id.image);
-        coverImage.setMaxWidth(Dips.screenWidth() / 3);
-        // coverImage.getLayoutParams().width = Dips.screenWidth() / 3;
 
         IMG.getCoverPage(coverImage, file.getPath(), IMG.getImageSize());
 
@@ -387,6 +385,13 @@ public class FileInformationDialog {
             @Override
             public void onClick(DialogInterface dialog, int id) {
 
+            }
+        });
+
+        builder.setPositiveButton(R.string.read_a_book, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int id) {
+                ExtUtils.showDocument(a, file);
             }
         });
 

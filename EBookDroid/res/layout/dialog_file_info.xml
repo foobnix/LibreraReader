@@ -2,188 +2,198 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:card_view="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:padding="5dip" >
-
-    <TextView
-        android:id="@+id/title"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="8dip"
-        android:layout_weight="0"
-        android:maxLines="2"
-        android:gravity="center_horizontal"
-        android:text="Author - Title"
-        android:textSize="14sp"
-        android:textStyle="bold" />
-
-    <TextView
-        android:id="@+id/path"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_weight="0"
-        android:text="Path"
-        android:textSize="10sp" />
-
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="1dip"
-        android:layout_margin="4dip"
-        android:layout_weight="0"
-        android:background="@color/lt_grey"
-        android:visibility="gone" />
-
-    <TextView
-        android:id="@+id/metaInfo"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_weight="0"
-        android:ellipsize="end"
-        android:maxLines="3"
-        android:text="@string/msg_loading" />
+    android:layout_height="wrap_content"
+    android:orientation="vertical" >
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:orientation="horizontal" >
+        android:layout_height="match_parent"
+        android:layout_weight="1" >
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:orientation="horizontal" >
+            android:layout_height="match_parent"
+            android:orientation="vertical" >
 
             <ImageView
                 android:id="@+id/image"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
                 android:layout_margin="5dip"
                 android:adjustViewBounds="true"
                 android:cropToPadding="true"
                 android:src="@drawable/icon_pdf_pro" />
 
+
+            <TextView
+                style="@style/textSection"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/book"
+                android:textStyle="bold" />
+            
+            <TextView
+                android:id="@+id/title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="0"
+                android:gravity="left"
+                android:maxLines="2"
+                android:padding="4dip"
+                android:text="Author - Title"
+                android:textSize="14sp"
+                android:textStyle="bold" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dip"
+                android:layout_margin="4dip"
+                android:layout_weight="0"
+                android:background="@color/lt_grey"
+                android:visibility="gone" />
+
+            <TextView
+                style="@style/textSection"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/annotation"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/metaInfo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="0"
+                android:ellipsize="end"
+                android:maxLines="5"
+                android:padding="4dip"
+                android:text="@string/msg_loading" />
+
+            <TextView
+                android:id="@+id/metaSeriesID"
+                style="@style/textSection"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/serie"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/metaSeries"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="4dip"
+                android:text="Series" />
+
+            <TextView
+                android:id="@+id/metaGenreID"
+                style="@style/textSection"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/genre" />
+
+            <TextView
+                android:id="@+id/metaGenre"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:padding="4dip"
+                android:text="Genre" />
+
+            <TextView
+                android:id="@+id/keywordID"
+                style="@style/textSection"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/keywords" />
+
+            <TextView
+                android:id="@+id/keywordList"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="4dip"
+                android:text="Tags" />
+
+            <TextView
+                android:id="@+id/tagsID"
+                style="@style/textSection"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/my_tags" />
+
+            <TextView
+                android:id="@+id/tagsList"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="4dip"
+                android:text="Tags" />
+
+            <TextView
+                android:id="@+id/addTags"
+                style="@style/textLink"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/add_tag"
+                android:visibility="visible" />
+
+            <TextView
+                android:id="@+id/metaTags"
+                style="@style/textSection"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/meta_tags" />
+
+            <TextView
+                android:id="@+id/metaTagsInfo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="4dip"
+                android:text="@string/meta_tags" />
+
+            <TextView
+                android:id="@+id/convertFile"
+                style="@style/textLink"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/convert_to"
+                android:visibility="gone" />
+
+            <TextView
+                android:id="@+id/openWith"
+                style="@style/textLink"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/open_with"
+                android:visibility="gone" />
+
+            <TextView
+                android:id="@+id/sendFile"
+                style="@style/textLink"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/send_file"
+                android:visibility="gone" />
+
+            <TextView
+                android:id="@+id/delete"
+                style="@style/textLink"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/delete"
+                android:visibility="gone" />
+
+            <TextView
+                style="@style/textSection"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Information"
+                android:textStyle="bold" />
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_gravity="top"
-                android:layout_marginTop="8dip"
-                android:orientation="vertical" >
-
-                <TextView
-                    android:id="@+id/metaSeriesID"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="5dip"
-                    android:text="@string/serie"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:id="@+id/metaSeries"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="5dip"
-                    android:maxLines="3"
-                    android:text="Series" />
-
-                <TextView
-                    android:id="@+id/metaGenreID"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="5dip"
-                    android:text="@string/genre"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:id="@+id/metaGenre"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="5dip"
-                    android:ellipsize="end"
-                    android:maxLines="3"
-                    android:text="Genre" />
-
-                <TextView
-                    android:id="@+id/keywordID"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="5dip"
-                    android:text="@string/keywords"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:id="@+id/keywordList"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="5dip"
-                    android:maxLines="3"
-                    android:text="Tags" />
-
-                <TextView
-                    android:id="@+id/tagsID"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="5dip"
-                    android:text="@string/my_tags"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:id="@+id/tagsList"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="5dip"
-                    android:maxLines="3"
-                    android:text="Tags" />
-
-                <TextView
-                    android:id="@+id/metaPDF"
-                     style="@style/textLink"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/meta_tags"
-                     />
-                
-
-                <TextView
-                    android:id="@+id/convertFile"
-                    style="@style/textLink"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/convert_to"
-                    android:visibility="gone" />
-
-                <TextView
-                    android:id="@+id/openWith"
-                    style="@style/textLink"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/open_with"
-                    android:visibility="gone" />
-
-                <TextView
-                    android:id="@+id/sendFile"
-                    style="@style/textLink"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/send_file"
-                    android:visibility="gone" />
-
-                <TextView
-                    android:id="@+id/addTags"
-                    style="@style/textLink"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/my_tags"
-                    android:visibility="gone" />
-
-                <TextView
-                    android:id="@+id/delete"
-                    style="@style/textLink"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/delete"
-                    android:visibility="gone" />
+                android:gravity="center_vertical"
+                android:padding="4dip" >
 
                 <TextView
                     android:id="@+id/mimeType"
@@ -193,77 +203,94 @@
                     android:text="Mime"
                     android:textSize="@dimen/text_subtitle"
                     android:visibility="gone" />
+
+                <TextView
+                    android:id="@+id/date"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Date"
+                    android:textSize="@dimen/text_subtitle" />
+
+                <TextView
+                    android:id="@+id/info"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="4dip"
+                    android:text="EPUB"
+                    android:textAllCaps="true"
+                    android:textSize="@dimen/text_subtitle"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/size"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="4dip"
+                    android:text="EPUB"
+                    android:textAllCaps="false"
+                    android:textSize="@dimen/text_subtitle"
+                    android:textStyle="normal" />
             </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:padding="4dip" >
+
+                <TextView
+                    android:id="@+id/hypenLangLabel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0"
+                    android:text="@string/language" />
+
+                <TextView
+                    android:id="@+id/hypenLang"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dip"
+                    android:layout_weight="0"
+                    android:minWidth="50dip"
+                    android:singleLine="true"
+                    android:text="Russian"
+                    android:textStyle="bold" />
+            </LinearLayout>
+
+            <TextView
+                style="@style/textSection"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Path"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/path"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="0"
+                android:padding="4dip"
+                android:text="Path"
+                android:textSize="10sp" />
+
+            <TextView
+                android:id="@+id/bookmarksSection"
+                style="@style/textSection"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/bookmarks"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/bookmarks"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="0"
+                android:ellipsize="end"
+                android:maxLines="5"
+                android:padding="4dip" />
         </LinearLayout>
     </ScrollView>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:padding="2dip" >
-
-        <TextView
-            android:id="@+id/date"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Date"
-            android:textSize="@dimen/text_subtitle" />
-
-        <TextView
-            android:id="@+id/info"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="4dip"
-            android:text="EPUB"
-            android:textAllCaps="true"
-            android:textSize="@dimen/text_subtitle"
-            android:textStyle="normal" />
-
-        <TextView
-            android:id="@+id/size"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="4dip"
-            android:text="EPUB"
-            android:textAllCaps="false"
-            android:textSize="@dimen/text_subtitle"
-            android:textStyle="normal" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center_vertical"
-        android:padding="2dip" >
-
-        <TextView
-            android:id="@+id/hypenLangLabel"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="0"
-            android:text="@string/language" />
-
-        <TextView
-            android:id="@+id/hypenLang"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="5dip"
-            android:layout_weight="0"
-            android:minWidth="50dip"
-            android:singleLine="true"
-            android:text="Russian"
-            android:textStyle="bold" />
-    </LinearLayout>
-
-    <TextView
-        android:id="@+id/bookmarks"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_weight="0"
-        android:ellipsize="end"
-        android:maxLines="4"
-        android:textSize="12sp" />
 
     <LinearLayout
         android:id="@+id/openFile"
@@ -272,12 +299,13 @@
         android:layout_gravity="center"
         android:layout_weight="0"
         android:background="@drawable/bg_search_second"
-        android:paddingRight="20dip" >
+        android:paddingRight="20dip"
+        android:visibility="gone" >
 
         <ImageView
             android:id="@+id/starIcon"
-            android:layout_width="40dip"
-            android:layout_height="40dip"
+            android:layout_width="@dimen/wh_button"
+            android:layout_height="@dimen/wh_button"
             android:layout_alignLeft="@+id/openFile"
             android:layout_gravity="center_vertical"
             android:background="?android:attr/selectableItemBackground"
@@ -287,14 +315,13 @@
 
         <TextView
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_gravity="center_horizontal"
             android:gravity="center"
             android:minWidth="100dip"
-            android:padding="10dip"
             android:text="@string/read_a_book"
             android:textColor="#ccffffff"
-            android:textSize="16sp"
+            android:textSize="14sp"
             android:textStyle="bold" />
     </LinearLayout>
 

@@ -467,4 +467,6 @@
    <string name="displaying_the_author_and_title_of_the_pdf_book_from_the_meta_tags">Відображення автора та назви книги PDF з метатегів</string>
    <string name="meta_tags">Метатеги</string>
    <string name="librera_pro_program_for_reading_books_without_advertising_installing_it_removes_advertising_in_this_application">Librera PRO - програма для читання книг без реклами, її встановлення видаляє рекламу в цій програмі</string>
+   <string name="annotation">Анотація</string>
+   <string name="book">Книга</string>
 </resources>

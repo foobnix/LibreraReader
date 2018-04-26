@@ -467,4 +467,6 @@
    <string name="displaying_the_author_and_title_of_the_pdf_book_from_the_meta_tags">แสดงชื่อผู้แต่งและชื่อหนังสือ PDF จากเมตาแท็ก</string>
    <string name="meta_tags">แท็ก meta</string>
    <string name="librera_pro_program_for_reading_books_without_advertising_installing_it_removes_advertising_in_this_application">Librera PRO - โปรแกรมสำหรับอ่านหนังสือที่ไม่มีโฆษณาติดตั้งเอาโฆษณาในโปรแกรมนี้</string>
+   <string name="annotation">คำอธิบายประกอบ</string>
+   <string name="book">หนังสือ</string>
 </resources>
