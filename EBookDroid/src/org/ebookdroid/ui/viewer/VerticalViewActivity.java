@@ -8,6 +8,7 @@ import org.emdev.ui.AbstractActionActivity;
 import com.foobnix.android.utils.Dips;
 import com.foobnix.android.utils.Keyboards;
 import com.foobnix.android.utils.LOG;
+import com.foobnix.android.utils.TxtUtils;
 import com.foobnix.pdf.info.ADS;
 import com.foobnix.pdf.info.Android6;
 import com.foobnix.pdf.info.ExtUtils;
@@ -31,6 +32,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.res.Configuration;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
@@ -83,6 +85,7 @@ public class VerticalViewActivity extends AbstractActionActivity<VerticalViewAct
     /**
      * Called when the activity is first created.
      */
+
     @Override
     public void onCreate(final Bundle savedInstanceState) {
         intetrstialTimeoutSec = ADS.FULL_SCREEN_TIMEOUT_SEC;
@@ -91,6 +94,34 @@ public class VerticalViewActivity extends AbstractActionActivity<VerticalViewAct
         AppState.get().load(this);
 
         FileMetaCore.checkOrCreateMetaInfo(this);
+
+        // check uri
+
+        try {
+            Uri uri = getIntent().getData();
+            String page = uri.getQueryParameter(DocumentController.EXTRA_PAGE);
+            String password = uri.getQueryParameter(DocumentController.EXTRA_PASSWORD);
+
+            LOG.d("getIntent-1", getIntent());
+            if (TxtUtils.isNotEmpty(page) || TxtUtils.isNotEmpty(password)) {
+                Uri data = Uri.parse(uri.getScheme() + "://" + uri.getPath());
+                getIntent().setData(data);
+                if (TxtUtils.isNotEmpty(page)) {
+                    try {
+                        getIntent().putExtra(DocumentController.EXTRA_PAGE, Integer.parseInt(page));
+                    } catch (Exception e) {
+                        LOG.e(e);
+                    }
+                }
+
+                if (TxtUtils.isNotEmpty(password)) {
+                    getIntent().putExtra(DocumentController.EXTRA_PASSWORD, password);
+                }
+            }
+            LOG.d("getIntent-2", getIntent());
+        } catch (Exception e) {
+            LOG.e(e);
+        }
 
         if (AppState.get().isRememberMode && AppState.get().isAlwaysOpenAsMagazine) {
             super.onCreate(savedInstanceState);
@@ -314,8 +345,6 @@ public class VerticalViewActivity extends AbstractActionActivity<VerticalViewAct
             return;
         }
 
-
-
         AppState.get().save(this);
 
         if (ExtUtils.isTextFomat(getIntent())) {
@@ -333,7 +362,7 @@ public class VerticalViewActivity extends AbstractActionActivity<VerticalViewAct
                 }
             });
 
-        }else {
+        } else {
             activateAds();
         }
     }
