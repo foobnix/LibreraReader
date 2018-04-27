@@ -64,10 +64,16 @@ public class FileInformationDialog {
         final View dialog = LayoutInflater.from(a).inflate(R.layout.dialog_file_info, null, false);
 
         TextView title = (TextView) dialog.findViewById(R.id.title);
+        TextView author = (TextView) dialog.findViewById(R.id.author);
         final TextView bookmarks = (TextView) dialog.findViewById(R.id.bookmarks);
         final TextView bookmarksSection = (TextView) dialog.findViewById(R.id.bookmarksSection);
 
-        title.setText(TxtUtils.getFileMetaBookName(fileMeta));
+        title.setText(fileMeta.getTitle());
+        if (TxtUtils.isNotEmpty(fileMeta.getAuthor())) {
+            author.setText(fileMeta.getAuthor());
+        } else {
+            author.setVisibility(View.GONE);
+        }
 
         ((TextView) dialog.findViewById(R.id.path)).setText(file.getPath());
         ((TextView) dialog.findViewById(R.id.date)).setText(fileMeta.getDateTxt());
@@ -114,14 +120,17 @@ public class FileInformationDialog {
         final TextView infoView = (TextView) dialog.findViewById(R.id.metaInfo);
         String bookOverview = FileMetaCore.getBookOverview(file.getPath());
         infoView.setText(TxtUtils.nullToEmpty(bookOverview));
+        if (TxtUtils.isEmpty(bookOverview)) {
+            infoView.setVisibility(View.GONE);
+        }
 
-        infoView.setOnClickListener(new OnClickListener() {
-
-            @Override
-            public void onClick(View v) {
-                AlertDialogs.showOkDialog(a, infoView.getText().toString(), null);
-            }
-        });
+        // infoView.setOnClickListener(new OnClickListener() {
+        //
+        // @Override
+        // public void onClick(View v) {
+        // AlertDialogs.showOkDialog(a, infoView.getText().toString(), null);
+        // }
+        // });
 
         String sequence = fileMeta.getSequence();
         if (TxtUtils.isNotEmpty(sequence)) {
@@ -341,6 +350,7 @@ public class FileInformationDialog {
         });
 
         final ImageView coverImage = (ImageView) dialog.findViewById(R.id.image);
+        coverImage.getLayoutParams().width = Dips.screenMinWH() / 2;
 
         IMG.getCoverPage(coverImage, file.getPath(), IMG.getImageSize());
 
