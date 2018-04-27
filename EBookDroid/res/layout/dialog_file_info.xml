@@ -35,8 +35,8 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
                 android:gravity="center_vertical"
+                android:orientation="horizontal"
                 android:padding="4dip" >
 
                 <LinearLayout
@@ -56,10 +56,10 @@
                         android:textStyle="bold" />
 
                     <TextView
-                        android:layout_marginTop="2dip"
                         android:id="@+id/author"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
+                        android:layout_marginTop="2dip"
                         android:layout_weight="1"
                         android:gravity="center_vertical"
                         android:maxLines="2"
@@ -97,9 +97,9 @@
                 android:layout_weight="0"
                 android:ellipsize="end"
                 android:padding="4dip"
+                android:maxLines="10"
                 android:text="@string/msg_loading"
-                android:textIsSelectable="true"
-                android:textSize="12sp" />
+                android:textIsSelectable="true" />
 
             <TextView
                 android:id="@+id/metaSeriesID"

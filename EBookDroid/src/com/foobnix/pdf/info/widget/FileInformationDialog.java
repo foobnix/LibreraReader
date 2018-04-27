@@ -113,7 +113,8 @@ public class FileInformationDialog {
 
             @Override
             public void onClick(View v) {
-                AlertDialogs.showOkDialog(a, bookmarks.getText().toString(), null);
+                // AlertDialogs.showOkDialog(a, bookmarks.getText().toString(), null);
+                bookmarks.setMaxLines(Integer.MAX_VALUE);
             }
         });
 
@@ -124,13 +125,13 @@ public class FileInformationDialog {
             infoView.setVisibility(View.GONE);
         }
 
-        // infoView.setOnClickListener(new OnClickListener() {
-        //
-        // @Override
-        // public void onClick(View v) {
-        // AlertDialogs.showOkDialog(a, infoView.getText().toString(), null);
-        // }
-        // });
+        infoView.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // AlertDialogs.showOkDialog(a, infoView.getText().toString(), null);
+                infoView.setMaxLines(Integer.MAX_VALUE);
+            }
+        });
 
         String sequence = fileMeta.getSequence();
         if (TxtUtils.isNotEmpty(sequence)) {
@@ -175,13 +176,13 @@ public class FileInformationDialog {
             final TextView metaKeys = (TextView) dialog.findViewById(R.id.keywordList);
             metaKeys.setText(list);
 
-            metaKeys.setOnClickListener(new OnClickListener() {
-
-                @Override
-                public void onClick(View v) {
-                    AlertDialogs.showOkDialog(a, metaKeys.getText().toString(), null);
-                }
-            });
+            // metaKeys.setOnClickListener(new OnClickListener() {
+            //
+            // @Override
+            // public void onClick(View v) {
+            // AlertDialogs.showOkDialog(a, metaKeys.getText().toString(), null);
+            // }
+            // });
 
         } else {
             ((TextView) dialog.findViewById(R.id.keywordID)).setVisibility(View.GONE);
