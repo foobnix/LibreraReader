@@ -177,6 +177,10 @@ public class FileMetaCore {
             LOG.d("isFirstSurname1", before, "=>", ebookMeta.getAuthor());
         }
 
+        if (ebookMeta.getYear() != null && ebookMeta.getYear().contains("-")) {
+            ebookMeta.setYear(ebookMeta.getYear().substring(0, ebookMeta.getYear().indexOf("-")));
+        }
+
         return ebookMeta;
     }
 
@@ -225,6 +229,15 @@ public class FileMetaCore {
         int pagesCount = meta.getPagesCount();
         if (pagesCount != 0) {
             fileMeta.setPages(pagesCount);
+        }
+
+        if (meta.getYear() != null) {
+            try {
+                fileMeta.setYear(Integer.parseInt(meta.getYear()));
+            } catch (Exception e) {
+                LOG.e(e);
+            }
+
         }
 
     }

@@ -13,6 +13,7 @@ public class EbookMeta {
     private String lang;
     private int pagesCount;
     private String keywords;
+    private String year;
 
     public EbookMeta(String title, String author, byte[] coverImage) {
         this.title = updateString(title);
@@ -129,5 +130,14 @@ public class EbookMeta {
     public void setKeywords(String keywords) {
         this.keywords = keywords;
     }
+
+    public String getYear() {
+        return year;
+    }
+
+    public void setYear(String year) {
+        this.year = year;
+    }
+
 
 }

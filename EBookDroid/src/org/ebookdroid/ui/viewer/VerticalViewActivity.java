@@ -97,30 +97,32 @@ public class VerticalViewActivity extends AbstractActionActivity<VerticalViewAct
 
         // check uri
 
-        try {
-            Uri uri = getIntent().getData();
-            String page = uri.getQueryParameter(DocumentController.EXTRA_PAGE);
-            String password = uri.getQueryParameter(DocumentController.EXTRA_PASSWORD);
+        if (false) {
+            try {
+                Uri uri = getIntent().getData();
+                String page = uri.getQueryParameter(DocumentController.EXTRA_PAGE);
+                String password = uri.getQueryParameter(DocumentController.EXTRA_PASSWORD);
 
-            LOG.d("getIntent-1", getIntent());
-            if (TxtUtils.isNotEmpty(page) || TxtUtils.isNotEmpty(password)) {
-                Uri data = Uri.parse(uri.getScheme() + "://" + uri.getPath());
-                getIntent().setData(data);
-                if (TxtUtils.isNotEmpty(page)) {
-                    try {
-                        getIntent().putExtra(DocumentController.EXTRA_PAGE, Integer.parseInt(page));
-                    } catch (Exception e) {
-                        LOG.e(e);
+                LOG.d("getIntent-1", getIntent());
+                if (TxtUtils.isNotEmpty(page) || TxtUtils.isNotEmpty(password)) {
+                    Uri data = Uri.parse(uri.getScheme() + "://" + uri.getPath());
+                    getIntent().setData(data);
+                    if (TxtUtils.isNotEmpty(page)) {
+                        try {
+                            getIntent().putExtra(DocumentController.EXTRA_PAGE, Integer.parseInt(page));
+                        } catch (Exception e) {
+                            LOG.e(e);
+                        }
+                    }
+
+                    if (TxtUtils.isNotEmpty(password)) {
+                        getIntent().putExtra(DocumentController.EXTRA_PASSWORD, password);
                     }
                 }
-
-                if (TxtUtils.isNotEmpty(password)) {
-                    getIntent().putExtra(DocumentController.EXTRA_PASSWORD, password);
-                }
+                LOG.d("getIntent-2", getIntent());
+            } catch (Exception e) {
+                LOG.e(e);
             }
-            LOG.d("getIntent-2", getIntent());
-        } catch (Exception e) {
-            LOG.e(e);
         }
 
         if (AppState.get().isRememberMode && AppState.get().isAlwaysOpenAsMagazine) {

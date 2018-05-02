@@ -34,6 +34,7 @@ public class MobiParser {
     private int bookSize;
 
     // http://wiki.mobileread.com/wiki/MOBI#MOBI_Header
+    // https://wiki.mobileread.com/wiki/MOBI#EXTH_Header
     class EXTH {
         public String identifier;
         public int len;
@@ -278,6 +279,14 @@ public class MobiParser {
 
     public String getSubject() {
         byte[] bytes = exth.headers.get(105);
+        if (bytes == null) {
+            return null;
+        }
+        return new String(bytes);
+    }
+
+    public String getPublishDate() {
+        byte[] bytes = exth.headers.get(106);
         if (bytes == null) {
             return null;
         }

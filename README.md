@@ -29,7 +29,12 @@ intent.putExtra("page", int); //to open doc on page number
 
 intent.putExtra("percent", float); //to open doc page by percent 
 
-intent.putExtra("password", String); //to open password protected PDF
+intent.putExtra("password", String); //to open password protected PDFlink
+
+## Support links
+
+<a href="file:///mnt/sdcard/test.pdf?page=2">open page 2</p>
+
 
 ## How to install
 

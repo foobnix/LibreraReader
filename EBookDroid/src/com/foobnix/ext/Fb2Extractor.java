@@ -240,6 +240,8 @@ public class Fb2Extractor extends BaseExtractor {
             String number = "";
             String keywords = "";
             boolean titleInfo = false;
+            boolean publishInfo = false;
+            String year = "";
 
             int eventType = xpp.getEventType();
             while (eventType != XmlPullParser.END_DOCUMENT) {
@@ -248,6 +250,18 @@ public class Fb2Extractor extends BaseExtractor {
 
                     if (xpp.getName().equals("title-info")) {
                         titleInfo = true;
+                        publishInfo = false;
+                    }
+
+                    if (xpp.getName().equals("publish-info")) {
+                        publishInfo = true;
+                        titleInfo = false;
+                    }
+
+                    if (publishInfo) {
+                        if (xpp.getName().equals("year")) {
+                            year = xpp.nextText();
+                        }
                     }
 
                     if (titleInfo) {
@@ -273,8 +287,7 @@ public class Fb2Extractor extends BaseExtractor {
                     }
                 }
                 if (eventType == XmlPullParser.END_TAG) {
-                    if (xpp.getName().equals("title-info")) {
-                        titleInfo = false;
+                    if (xpp.getName().equals("description")) {
                         break;
                     }
                 }
@@ -304,6 +317,7 @@ public class Fb2Extractor extends BaseExtractor {
                     ebookMeta.setLang(lang);
                     ebookMeta.setsIndex(Integer.parseInt(number));
                     ebookMeta.setKeywords(keywords);
+                    ebookMeta.setYear(year);
                     // ebookMeta.setPagesCount((int) fileSize / 512);
                 } catch (Exception e) {
                     LOG.e(e);
@@ -313,6 +327,7 @@ public class Fb2Extractor extends BaseExtractor {
                 EbookMeta ebookMeta = new EbookMeta(bookTitle, firstName + " " + lastName, sequence, genre);
                 ebookMeta.setLang(lang);
                 ebookMeta.setKeywords(keywords);
+                ebookMeta.setYear(year);
                 // ebookMeta.setPagesCount((int) fileSize / 512);
                 return ebookMeta;
             }

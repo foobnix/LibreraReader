@@ -47,6 +47,7 @@ public class FileMetaDao extends AbstractDao<FileMeta, String> {
         public final static Property Tag = new Property(22, String.class, "tag", false, "TAG");
         public final static Property Pages = new Property(23, Integer.class, "pages", false, "PAGES");
         public final static Property Keyword = new Property(24, String.class, "keyword", false, "KEYWORD");
+        public final static Property Year = new Property(25, Integer.class, "year", false, "YEAR");
     }
 
 
@@ -86,7 +87,8 @@ public class FileMetaDao extends AbstractDao<FileMeta, String> {
                 "\"LANG\" TEXT," + // 21: lang
                 "\"TAG\" TEXT," + // 22: tag
                 "\"PAGES\" INTEGER," + // 23: pages
-                "\"KEYWORD\" TEXT);"); // 24: keyword
+                "\"KEYWORD\" TEXT," + // 24: keyword
+                "\"YEAR\" INTEGER);"); // 25: year
         // Add Indexes
         db.execSQL("CREATE UNIQUE INDEX " + constraint + "path_asc ON FILE_META" +
                 " (\"PATH\" ASC);");
@@ -248,6 +250,11 @@ public class FileMetaDao extends AbstractDao<FileMeta, String> {
         if (keyword != null) {
             stmt.bindString(25, keyword);
         }
+ 
+        Integer year = entity.getYear();
+        if (year != null) {
+            stmt.bindLong(26, year);
+        }
     }
 
     @Override
@@ -378,6 +385,11 @@ public class FileMetaDao extends AbstractDao<FileMeta, String> {
         if (keyword != null) {
             stmt.bindString(25, keyword);
         }
+ 
+        Integer year = entity.getYear();
+        if (year != null) {
+            stmt.bindLong(26, year);
+        }
     }
 
     @Override
@@ -412,7 +424,8 @@ public class FileMetaDao extends AbstractDao<FileMeta, String> {
             cursor.isNull(offset + 21) ? null : cursor.getString(offset + 21), // lang
             cursor.isNull(offset + 22) ? null : cursor.getString(offset + 22), // tag
             cursor.isNull(offset + 23) ? null : cursor.getInt(offset + 23), // pages
-            cursor.isNull(offset + 24) ? null : cursor.getString(offset + 24) // keyword
+            cursor.isNull(offset + 24) ? null : cursor.getString(offset + 24), // keyword
+            cursor.isNull(offset + 25) ? null : cursor.getInt(offset + 25) // year
         );
         return entity;
     }
@@ -444,6 +457,7 @@ public class FileMetaDao extends AbstractDao<FileMeta, String> {
         entity.setTag(cursor.isNull(offset + 22) ? null : cursor.getString(offset + 22));
         entity.setPages(cursor.isNull(offset + 23) ? null : cursor.getInt(offset + 23));
         entity.setKeyword(cursor.isNull(offset + 24) ? null : cursor.getString(offset + 24));
+        entity.setYear(cursor.isNull(offset + 25) ? null : cursor.getInt(offset + 25));
      }
     
     @Override

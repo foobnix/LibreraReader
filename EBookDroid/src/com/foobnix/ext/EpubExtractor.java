@@ -193,6 +193,7 @@ public class EpubExtractor extends BaseExtractor {
             String number = null;
             String lang = null;
             String genre = null;
+            String date = null;
 
             while ((nextEntry = zipInputStream.getNextEntry()) != null) {
                 String name = nextEntry.getName().toLowerCase();
@@ -212,6 +213,12 @@ public class EpubExtractor extends BaseExtractor {
 
                             if ("dc:creator".equals(xpp.getName()) || "dcns:creator".equals(xpp.getName())) {
                                 author = xpp.nextText();
+                            }
+
+                            if ("dc:date".equals(xpp.getName()) || "dcns:date".equals(xpp.getName())) {
+                                if (xpp.getAttributeCount() == 0) {
+                                    date = xpp.nextText();
+                                }
                             }
 
                             if ("dc:subject".equals(xpp.getName()) || "dcns:subject".equals(xpp.getName())) {
@@ -264,7 +271,6 @@ public class EpubExtractor extends BaseExtractor {
             zipInputStream.close();
             inputStream.close();
 
-
             EbookMeta ebookMeta = new EbookMeta(title, author, series, subject.replaceAll(",$", ""));
             try {
                 if (number != null) {
@@ -277,6 +283,7 @@ public class EpubExtractor extends BaseExtractor {
             }
             ebookMeta.setLang(lang);
             ebookMeta.setGenre(genre);
+            ebookMeta.setYear(date);
             // ebookMeta.setPagesCount((int) size / 1024);
             return ebookMeta;
         } catch (

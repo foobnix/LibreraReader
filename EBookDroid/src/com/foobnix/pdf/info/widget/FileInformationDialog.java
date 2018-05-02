@@ -65,15 +65,17 @@ public class FileInformationDialog {
 
         TextView title = (TextView) dialog.findViewById(R.id.title);
         TextView author = (TextView) dialog.findViewById(R.id.author);
+        TextView year = (TextView) dialog.findViewById(R.id.year);
+
         final TextView bookmarks = (TextView) dialog.findViewById(R.id.bookmarks);
         final TextView bookmarksSection = (TextView) dialog.findViewById(R.id.bookmarksSection);
 
         title.setText(fileMeta.getTitle());
         if (TxtUtils.isNotEmpty(fileMeta.getAuthor())) {
             author.setText(fileMeta.getAuthor());
-        } else {
-            author.setVisibility(View.GONE);
         }
+
+        year.setText("" + TxtUtils.nullToEmpty(fileMeta.getYear()));
 
         ((TextView) dialog.findViewById(R.id.path)).setText(file.getPath());
         ((TextView) dialog.findViewById(R.id.date)).setText(fileMeta.getDateTxt());
@@ -121,9 +123,6 @@ public class FileInformationDialog {
         final TextView infoView = (TextView) dialog.findViewById(R.id.metaInfo);
         String bookOverview = FileMetaCore.getBookOverview(file.getPath());
         infoView.setText(TxtUtils.nullToEmpty(bookOverview));
-        if (TxtUtils.isEmpty(bookOverview)) {
-            infoView.setVisibility(View.GONE);
-        }
 
         infoView.setOnClickListener(new OnClickListener() {
             @Override
@@ -136,6 +135,9 @@ public class FileInformationDialog {
         String sequence = fileMeta.getSequence();
         if (TxtUtils.isNotEmpty(sequence)) {
             String replace = sequence.replaceAll(",$", "").replace(",", " / ");
+            replace = replace.replace(",", "\n");
+            replace = replace.replace(";", "\n");
+
             final TextView metaSeries = (TextView) dialog.findViewById(R.id.metaSeries);
             metaSeries.setText(replace);
 
@@ -155,6 +157,8 @@ public class FileInformationDialog {
         String genre = fileMeta.getGenre();
         if (TxtUtils.isNotEmpty(genre)) {
             genre = TxtUtils.firstUppercase(genre.replaceAll(",$", "").replace(",", ", "));
+            genre = genre.replace(",", "\n");
+            genre = genre.replace(";", "\n");
             final TextView metaGenre = (TextView) dialog.findViewById(R.id.metaGenre);
             metaGenre.setText(genre);
 
@@ -173,6 +177,8 @@ public class FileInformationDialog {
 
         if (TxtUtils.isNotEmpty(fileMeta.getKeyword())) {
             String list = TxtUtils.firstUppercase(fileMeta.getKeyword().replaceAll(",$", "").replace(",", ", "));
+            list = list.replace(",", "\n");
+            list = list.replace(";", "\n");
             final TextView metaKeys = (TextView) dialog.findViewById(R.id.keywordList);
             metaKeys.setText(list);
 
@@ -260,21 +266,26 @@ public class FileInformationDialog {
                     "keywords" //
             );
 
-            final CodecDocument doc = ImageExtractor.singleCodecContext(file.getPath(), "", 0, 0);
+            try {
+                final CodecDocument doc = ImageExtractor.singleCodecContext(file.getPath(), "", 0, 0);
 
-            StringBuilder meta = new StringBuilder();
-            for (String id : list2) {
-                String metaValue = doc.getMeta(id);
+                StringBuilder meta = new StringBuilder();
+                for (String id : list2) {
+                    String metaValue = doc.getMeta(id);
 
-                if (TxtUtils.isNotEmpty(metaValue)) {
-                    id = id.replace("info:", "");
-                    meta.append("<b>" + id).append(": " + "</b>").append(metaValue).append("<br>");
+                    if (TxtUtils.isNotEmpty(metaValue)) {
+                        id = id.replace("info:", "");
+                        meta.append("<b>" + id).append(": " + "</b>").append(metaValue).append("<br>");
+                    }
                 }
-            }
-            doc.recycle();
+                doc.recycle();
 
-            String text = TxtUtils.replaceLast(meta.toString(), "<br>", "");
-            metaTagsInfo.setText(Html.fromHtml(text));
+                String text = TxtUtils.replaceLast(meta.toString(), "<br>", "");
+                metaTagsInfo.setText(Html.fromHtml(text));
+
+            } catch (Exception e) {
+                LOG.e(e);
+            }
 
         }
 

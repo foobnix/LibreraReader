@@ -10,7 +10,7 @@ public class Dao2Generator {
 
     public static void main(String[] args) throws IOException, Exception {
 
-        Schema schema = new Schema(5, "com.foobnix.dao2");
+        Schema schema = new Schema(6, "com.foobnix.dao2");
 
         Entity note = schema.addEntity("FileMeta");
 
@@ -44,6 +44,7 @@ public class Dao2Generator {
         note.addStringProperty("tag");
         note.addIntProperty("pages");
         note.addStringProperty("keyword");
+        note.addIntProperty("year");
 
 
 

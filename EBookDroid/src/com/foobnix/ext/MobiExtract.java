@@ -34,6 +34,7 @@ public class MobiExtract {
             String author = parse.getAuthor();
             String subject = parse.getSubject();
             String lang = parse.getLanguage();
+            String year = parse.getPublishDate();
 
 
             if (TxtUtils.isEmpty(title)) {
@@ -47,7 +48,8 @@ public class MobiExtract {
             EbookMeta ebookMeta = new EbookMeta(title, author, decode);
             ebookMeta.setGenre(subject);
             ebookMeta.setLang(lang);
-            ebookMeta.setPagesCount(parse.getBookSize() / 1024);
+            ebookMeta.setYear(year);
+            // ebookMeta.setPagesCount(parse.getBookSize() / 1024);
             return ebookMeta;
 
         } catch (Throwable e) {
