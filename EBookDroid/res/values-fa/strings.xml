@@ -471,4 +471,5 @@
    <string name="book">کتاب</string>
    <string name="information">اطلاعات</string>
    <string name="file_path">مسیر فایل</string>
+   <string name="year">سال</string>
 </resources>

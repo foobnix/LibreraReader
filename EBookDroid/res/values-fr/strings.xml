@@ -471,4 +471,5 @@
    <string name="book">Livre</string>
    <string name="information">Information</string>
    <string name="file_path">Chemin du fichier</string>
+   <string name="year">An</string>
 </resources>

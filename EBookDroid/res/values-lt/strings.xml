@@ -471,4 +471,5 @@
    <string name="book">Knyga</string>
    <string name="information">Informacija</string>
    <string name="file_path">Bylos kelias</string>
+   <string name="year">Metai</string>
 </resources>

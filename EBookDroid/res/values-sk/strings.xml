@@ -471,4 +471,5 @@
    <string name="book">Kniha</string>
    <string name="information">Informácie</string>
    <string name="file_path">Cesta k súboru</string>
+   <string name="year">Rok</string>
 </resources>

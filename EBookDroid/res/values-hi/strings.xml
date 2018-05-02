@@ -471,4 +471,5 @@
    <string name="book">किताब</string>
    <string name="information">जानकारी</string>
    <string name="file_path">फ़ाइल पथ</string>
+   <string name="year">साल</string>
 </resources>

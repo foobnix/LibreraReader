@@ -471,4 +471,5 @@
    <string name="book">本</string>
    <string name="information">情報</string>
    <string name="file_path">ファイルパス</string>
+   <string name="year">年</string>
 </resources>

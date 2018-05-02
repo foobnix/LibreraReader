@@ -471,4 +471,5 @@
    <string name="book">Kitap</string>
    <string name="information">Bilgi</string>
    <string name="file_path">Dosya yolu</string>
+   <string name="year">Yıl</string>
 </resources>

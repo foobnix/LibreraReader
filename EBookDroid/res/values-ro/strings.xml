@@ -471,4 +471,5 @@
    <string name="book">Carte</string>
    <string name="information">Informație</string>
    <string name="file_path">Dosarul fișierului</string>
+   <string name="year">An</string>
 </resources>

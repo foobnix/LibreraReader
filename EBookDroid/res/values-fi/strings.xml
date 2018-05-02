@@ -471,4 +471,5 @@
    <string name="book">Kirja</string>
    <string name="information">Tiedot</string>
    <string name="file_path">Tiedostopolku</string>
+   <string name="year">Vuosi</string>
 </resources>

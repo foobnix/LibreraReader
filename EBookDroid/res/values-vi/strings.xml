@@ -471,4 +471,5 @@
    <string name="book">Sách</string>
    <string name="information">Thông tin</string>
    <string name="file_path">Đường dẫn tập tin</string>
+   <string name="year">Năm</string>
 </resources>
