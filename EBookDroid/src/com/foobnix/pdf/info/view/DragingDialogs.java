@@ -3107,45 +3107,6 @@ public class DragingDialogs {
                     }
                 });
 
-                // image format
-                final TextView imageFormat = (TextView) inflate.findViewById(R.id.imageFormat);
-                // ((ViewGroup)
-                // imageFormat.getParent()).setVisibility(AppState.get().isAlwaysOpenAsMagazine
-                // ? View.VISIBLE : View.GONE);
-                ((ViewGroup) imageFormat.getParent()).setVisibility(View.GONE);
-                imageFormat.setText(AppState.get().imageFormat);
-                TxtUtils.underlineTextView(imageFormat);
-                imageFormat.setOnClickListener(new OnClickListener() {
-
-                    @SuppressLint("NewApi")
-                    @Override
-                    public void onClick(View v) {
-                        final PopupMenu popupMenu = new PopupMenu(v.getContext(), v);
-                        popupMenu.getMenu().add(AppState.PNG).setOnMenuItemClickListener(new OnMenuItemClickListener() {
-
-                            @Override
-                            public boolean onMenuItemClick(MenuItem item) {
-                                AppState.get().imageFormat = AppState.PNG;
-                                imageFormat.setText(AppState.get().imageFormat);
-                                TxtUtils.underlineTextView(imageFormat);
-                                return false;
-                            }
-                        });
-                        popupMenu.getMenu().add(AppState.JPG).setOnMenuItemClickListener(new OnMenuItemClickListener() {
-
-                            @Override
-                            public boolean onMenuItemClick(MenuItem item) {
-                                AppState.get().imageFormat = AppState.JPG;
-                                imageFormat.setText(AppState.get().imageFormat);
-                                TxtUtils.underlineTextView(imageFormat);
-                                return false;
-                            }
-                        });
-                        popupMenu.show();
-
-                    }
-                });
-
                 // remind rest time
                 final TextView remindRestTime = (TextView) inflate.findViewById(R.id.remindRestTime);
                 final String minutesString = controller.getString(R.string.minutes).toLowerCase(Locale.US);

@@ -501,7 +501,6 @@ public class AppState {
     @IgnoreHashCode
     public boolean isDisableSwipe = false;
 
-    public String imageFormat = PNG;
     public boolean isCustomizeBgAndColors = false;
     public boolean isVibration = true;
 

@@ -66,6 +66,7 @@ public class ImageExtractor implements ImageDownloader {
 
     public static SharedPreferences sp;
 
+
     public static synchronized ImageExtractor getInstance(final Context c) {
         if (instance == null) {
             instance = new ImageExtractor(c);
@@ -475,11 +476,9 @@ public class ImageExtractor implements ImageDownloader {
     private ByteArrayInputStream bitmapToStream(Bitmap bitmap) {
         try {
             ByteArrayOutputStream os = new ByteArrayOutputStream();
-            boolean isJPG = AppState.get().imageFormat.equals(AppState.JPG);
 
-            CompressFormat format = isJPG ? CompressFormat.JPEG : CompressFormat.PNG;
-            int quality = isJPG ? 80 : 100;
-            bitmap.compress(format, quality, os);
+            CompressFormat format = CompressFormat.JPEG;
+            bitmap.compress(format, 80, os);
 
             byte[] byteArray = os.toByteArray();
             final ByteArrayInputStream byteArrayInputStream = new ByteArrayInputStream(byteArray);
@@ -495,6 +494,7 @@ public class ImageExtractor implements ImageDownloader {
             return null;
         }
     }
+
 
     private InputStream bitmapToStreamRAW(Bitmap bitmap) {
         try {

@@ -502,6 +502,8 @@ public class BookCSS {
         builder.append("text-author{font-style: italic;font-weight: bold;}");
         builder.append("p>image{display:block;}");
         builder.append(String.format("p{margin:%s 0}", em(paragraphHeight)));
+        // not supported text-decoration
+        builder.append("a,del,ins,u,strikethrough{font-style:italic}");
 
         // FB2 END
 
