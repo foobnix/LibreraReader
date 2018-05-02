@@ -39,6 +39,7 @@ public class DjvuExtract {
         meta.setKeywords(openDocument.getMeta("keywords"));
         meta.setSequence(openDocument.getMeta("sequence") + "" + openDocument.getMeta("seria"));
         meta.setGenre(openDocument.getMeta("subject"));
+        meta.setYear(openDocument.getMeta("year"));
         LOG.d("DjvuExtract", meta.getAuthor(), meta.getTitle(), meta.getPagesCount(), unZipPath);
         openDocument.recycle();
         openDocument = null;

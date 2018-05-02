@@ -32,6 +32,7 @@ public class PdfExtract {
         meta.setPagesCount(openDocument.getPageCount());
         meta.setKeywords(openDocument.getMeta("info:Keywords"));
         meta.setGenre(openDocument.getMeta("info:Subject"));
+        meta.setYear(openDocument.getMeta("info:CreationDate"));
         String s1 = openDocument.getMeta("info:Sequence");
         String s2 = openDocument.getMeta("info:Seria");
         if (TxtUtils.isNotEmpty(s1)) {

@@ -127,6 +127,7 @@ public class FileMetaCore {
             ebookMeta.setGenre(local.getGenre());
             ebookMeta.setSequence(local.getSequence());
             ebookMeta.setPagesCount(local.getPagesCount());
+            ebookMeta.setYear(local.getYear());
 
         } else if (BookType.CBR.is(unZipPath) || BookType.CBZ.is(unZipPath)) {
             ebookMeta.setPagesCount(CbzCbrExtractor.getPageCount(unZipPath));
@@ -177,8 +178,13 @@ public class FileMetaCore {
             LOG.d("isFirstSurname1", before, "=>", ebookMeta.getAuthor());
         }
 
-        if (ebookMeta.getYear() != null && ebookMeta.getYear().contains("-")) {
-            ebookMeta.setYear(ebookMeta.getYear().substring(0, ebookMeta.getYear().indexOf("-")));
+        String year = ebookMeta.getYear();
+        if (year != null) {
+            if (year.startsWith("D:") && year.length() >= 7) {
+                ebookMeta.setYear(year.substring(2, 6));
+            } else if (year.contains("-")) {
+                ebookMeta.setYear(year.substring(0, year.indexOf("-")));
+            }
         }
 
         return ebookMeta;
