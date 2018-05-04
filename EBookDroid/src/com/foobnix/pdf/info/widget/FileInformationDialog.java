@@ -3,7 +3,9 @@ package com.foobnix.pdf.info.widget;
 import java.io.File;
 import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 import org.ebookdroid.BookType;
@@ -21,7 +23,6 @@ import com.foobnix.pdf.info.ExtUtils;
 import com.foobnix.pdf.info.IMG;
 import com.foobnix.pdf.info.R;
 import com.foobnix.pdf.info.TintUtil;
-import com.foobnix.pdf.info.view.AlertDialogs;
 import com.foobnix.pdf.info.view.Dialogs;
 import com.foobnix.pdf.info.view.ScaledImageView;
 import com.foobnix.pdf.info.wrapper.AppBookmark;
@@ -52,6 +53,22 @@ import android.widget.TextView;
 public class FileInformationDialog {
 
     static AlertDialog infoDialog;
+
+    public static String showKeys(String line) {
+        if (TxtUtils.isEmpty(line)) {
+            return "";
+        }
+        String lines[] = line.split("[,;]");
+        List<String> res = new ArrayList<String>();
+        for (String it : lines) {
+            if (TxtUtils.isNotEmpty(it)) {
+                res.add(TxtUtils.firstUppercase(it.trim()));
+            }
+        }
+        Collections.sort(res);
+
+        return TxtUtils.joinList("\n", res);
+    }
 
     public static void showFileInfoDialog(final Activity a, final File file, final Runnable onDeleteAction) {
 
@@ -121,33 +138,27 @@ public class FileInformationDialog {
         });
 
         final TextView infoView = (TextView) dialog.findViewById(R.id.metaInfo);
+        final TextView expand = (TextView) dialog.findViewById(R.id.expand);
         String bookOverview = FileMetaCore.getBookOverview(file.getPath());
         infoView.setText(TxtUtils.nullToEmpty(bookOverview));
 
-        infoView.setOnClickListener(new OnClickListener() {
+        expand.setVisibility(TxtUtils.isNotEmpty(bookOverview) ? View.VISIBLE : View.GONE);
+        expand.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
                 // AlertDialogs.showOkDialog(a, infoView.getText().toString(), null);
                 infoView.setMaxLines(Integer.MAX_VALUE);
+                infoView.setTextIsSelectable(true);
+                expand.setVisibility(View.GONE);
             }
         });
 
         String sequence = fileMeta.getSequence();
         if (TxtUtils.isNotEmpty(sequence)) {
-            String replace = sequence.replaceAll(",$", "").replace(",", " / ");
-            replace = replace.replace(",", "\n");
-            replace = replace.replace(";", "\n");
-
             final TextView metaSeries = (TextView) dialog.findViewById(R.id.metaSeries);
-            metaSeries.setText(replace);
+            metaSeries.setText(showKeys(sequence));
 
-            metaSeries.setOnClickListener(new OnClickListener() {
 
-                @Override
-                public void onClick(View v) {
-                    AlertDialogs.showOkDialog(a, metaSeries.getText().toString(), null);
-                }
-            });
 
         } else {
             ((TextView) dialog.findViewById(R.id.metaSeries)).setVisibility(View.GONE);
@@ -156,19 +167,10 @@ public class FileInformationDialog {
 
         String genre = fileMeta.getGenre();
         if (TxtUtils.isNotEmpty(genre)) {
-            genre = TxtUtils.firstUppercase(genre.replaceAll(",$", "").replace(",", ", "));
-            genre = genre.replace(",", "\n");
-            genre = genre.replace(";", "\n");
             final TextView metaGenre = (TextView) dialog.findViewById(R.id.metaGenre);
-            metaGenre.setText(genre);
+            metaGenre.setText(showKeys(genre));
 
-            metaGenre.setOnClickListener(new OnClickListener() {
 
-                @Override
-                public void onClick(View v) {
-                    AlertDialogs.showOkDialog(a, metaGenre.getText().toString(), null);
-                }
-            });
 
         } else {
             ((TextView) dialog.findViewById(R.id.metaGenre)).setVisibility(View.GONE);
@@ -176,20 +178,8 @@ public class FileInformationDialog {
         }
 
         if (TxtUtils.isNotEmpty(fileMeta.getKeyword())) {
-            String list = TxtUtils.firstUppercase(fileMeta.getKeyword().replaceAll(",$", "").replace(",", ", "));
-            list = list.replace(",", "\n");
-            list = list.replace(";", "\n");
             final TextView metaKeys = (TextView) dialog.findViewById(R.id.keywordList);
-            metaKeys.setText(list);
-
-            // metaKeys.setOnClickListener(new OnClickListener() {
-            //
-            // @Override
-            // public void onClick(View v) {
-            // AlertDialogs.showOkDialog(a, metaKeys.getText().toString(), null);
-            // }
-            // });
-
+            metaKeys.setText(showKeys(fileMeta.getKeyword()));
         } else {
             ((TextView) dialog.findViewById(R.id.keywordID)).setVisibility(View.GONE);
             ((TextView) dialog.findViewById(R.id.keywordList)).setVisibility(View.GONE);
