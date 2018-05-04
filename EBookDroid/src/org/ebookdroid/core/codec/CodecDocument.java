@@ -60,4 +60,6 @@ public interface CodecDocument {
     String getBookAuthor();
 
     String getMeta(String option);
+
+    List<String> getMetaKeys();
 }

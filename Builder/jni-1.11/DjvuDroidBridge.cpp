@@ -10,6 +10,7 @@
 #include <DjvuDroidTrace.h>
 #include <ddjvuapi.h>
 #include <miniexp.h>
+#include <string.h>
 
 /*JNI BITMAP API */
 
@@ -682,6 +683,37 @@ extern "C" jstring Java_org_ebookdroid_droids_djvu_codec_DjvuDocument_getMeta(JN
         	return env->NewStringUTF(value);
         }
     
+    return NULL;
+}
+
+extern "C" jstring Java_org_ebookdroid_droids_djvu_codec_DjvuDocument_getMetaKeys(JNIEnv *env, jclass cls, jlong docHandle)
+{
+
+		miniexp_t annot = ddjvu_document_get_anno((ddjvu_document_t*) docHandle, 1);
+
+        if (annot && annot != miniexp_dummy)
+        {
+
+        	miniexp_t *keys =  ddjvu_anno_get_metadata_keys(annot);
+        	miniexp_t *iter =  NULL;
+
+
+        	char result[1024];
+        	strcpy(result, "");
+
+        	for (iter = keys; *iter; ++iter)
+        	{
+        		const char* item = miniexp_to_name(iter[0]);
+                DEBUG_PRINT("getMetaKeys %s",item);
+                strcat(result, item);
+                strcat(result, ",");
+
+			}
+        	free(keys);
+
+        	return env->NewStringUTF(result);
+        }
+
     return NULL;
 }
 

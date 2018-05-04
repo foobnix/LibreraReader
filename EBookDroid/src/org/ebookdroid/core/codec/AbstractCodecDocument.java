@@ -1,5 +1,6 @@
 package org.ebookdroid.core.codec;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Map;
@@ -23,7 +24,6 @@ public abstract class AbstractCodecDocument implements CodecDocument {
     public long getDocumentHandle() {
         return documentHandle;
     }
-
 
     @Override
     public CodecPage getPage(int pageNuber) {
@@ -92,6 +92,11 @@ public abstract class AbstractCodecDocument implements CodecDocument {
     @Override
     public String getBookTitle() {
         return "";
+    }
+
+    @Override
+    public List<String> getMetaKeys() {
+        return new ArrayList<String>();
     }
 
 }

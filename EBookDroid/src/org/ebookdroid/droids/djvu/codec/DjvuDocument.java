@@ -1,5 +1,7 @@
 package org.ebookdroid.droids.djvu.codec;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import org.ebookdroid.core.codec.AbstractCodecDocument;
@@ -44,6 +46,20 @@ public class DjvuDocument extends AbstractCodecDocument {
         } finally {
             TempHolder.lock.unlock();
         }
+    }
+
+    public List<String> getMetaKeys() {
+        TempHolder.lock.lock();
+        try {
+            String metaKeys = getMetaKeys(documentHandle);
+            LOG.d("getMetaKeys", metaKeys);
+            if (TxtUtils.isNotEmpty(metaKeys)) {
+                return Arrays.asList(metaKeys.split(","));
+            }
+        } finally {
+            TempHolder.lock.unlock();
+        }
+        return new ArrayList<String>();
     }
 
     @Override
@@ -96,6 +112,8 @@ public class DjvuDocument extends AbstractCodecDocument {
     }
 
     private static native String getMeta(long docHandle, String key);
+
+    private static native String getMetaKeys(long docHandle);
 
     private native static int getPageInfo(long docHandle, int pageNumber, long contextHandle, CodecPageInfo cpi);
 

@@ -228,7 +228,7 @@ public class FileInformationDialog {
             metaTags.setVisibility(View.VISIBLE);
             metaTagsInfo.setVisibility(View.VISIBLE);
 
-            final List<String> list2 = Arrays.asList(
+            final List<String> list2 = new ArrayList<String>(Arrays.asList(
                     //
                     "info:Title", //
                     "info:Author", //
@@ -237,27 +237,16 @@ public class FileInformationDialog {
                     "info:Creator", //
                     "info:Producer", //
                     "info:CreationDate", //
-                    "info:ModDate", //
-                    // djvu
-                    "author", //
-                    "authors", //
-                    "title", //
-                    "booktitle", //
-                    "bookname", //
-                    "name", //
-                    "subject", //
-                    "subjects", //
-                    "sequence", //
-                    "seria", //
-                    "series", //
-                    "year", //
-                    "note", //
-                    "key", //
-                    "keywords" //
-            );
+                    "info:ModDate" //
+            ));
+            
 
             try {
                 final CodecDocument doc = ImageExtractor.singleCodecContext(file.getPath(), "", 0, 0);
+                
+                if(BookType.DJVU.is(file.getPath())) {
+                    list2.addAll(doc.getMetaKeys());
+                }
 
                 StringBuilder meta = new StringBuilder();
                 for (String id : list2) {
