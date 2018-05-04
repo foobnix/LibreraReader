@@ -37,7 +37,7 @@ public class LOG {
     }
 
     private static String asString(Object... statements) {
-        return TxtUtils.join(DELIMITER, statements);
+        return TxtUtils.join(DELIMITER, statements) + "|";
     }
 
 }

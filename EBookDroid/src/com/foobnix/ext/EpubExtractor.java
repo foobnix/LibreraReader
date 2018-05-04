@@ -476,7 +476,7 @@ public class EpubExtractor extends BaseExtractor {
             Set<String> files = new HashSet<String>();
 
             try {
-                CacheZipUtils.removeFiles(CacheZipUtils.ATTACHMENTS_CACHE_DIR.listFiles());
+                // CacheZipUtils.removeFiles(CacheZipUtils.ATTACHMENTS_CACHE_DIR.listFiles());
 
                 while ((nextEntry = zipInputStream.getNextEntry()) != null) {
                     if (TempHolder.get().loadingCancelled) {

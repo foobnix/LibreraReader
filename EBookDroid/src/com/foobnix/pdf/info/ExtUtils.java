@@ -177,6 +177,7 @@ public class ExtUtils {
         File file = new File(meta.getPath());
 
         if (ExtUtils.isExteralSD(meta.getPath())) {
+            CacheZipUtils.removeFiles(CacheZipUtils.ATTACHMENTS_CACHE_DIR.listFiles());
             Uri uri = Uri.parse(meta.getPath());
             file = new File(CacheZipUtils.ATTACHMENTS_CACHE_DIR, meta.getTitle());
             if (!file.exists()) {
@@ -613,7 +614,8 @@ public class ExtUtils {
     }
 
     public static boolean isValidFile(final Uri uri) {
-        return uri != null && isValidFile(uri.getPath());
+        LOG.d("getScheme()", uri.getScheme(), uri, uri.getPath());
+        return uri != null && ("content".equals(uri.getScheme()) || isValidFile(uri.getPath()));
     }
 
     public static boolean showDocument(final Context c, final File file) {
@@ -818,7 +820,7 @@ public class ExtUtils {
         LOG.d("showDocument", uri.getPath());
 
         if (AppState.get().isAlwaysOpenAsMagazine) {
-            openHorizontalView(c, new File(uri.getPath()), page - 1);
+            openHorizontalView(c, uri, page - 1);
             return;
         }
 
@@ -838,18 +840,18 @@ public class ExtUtils {
         // FileMetaDB.get().addRecent(uri.getPath());
     }
 
-    private static void openHorizontalView(final Context c, final File file, final int page) {
-        if (file == null) {
+    private static void openHorizontalView(final Context c, final Uri uri, final int page) {
+        if (uri == null) {
             Toast.makeText(c, R.string.file_not_found, Toast.LENGTH_LONG).show();
             return;
         }
-        if (!isValidFile(file.getPath())) {
+        if (!isValidFile(uri)) {
             Toast.makeText(c, R.string.file_not_found, Toast.LENGTH_LONG).show();
             return;
         }
 
         final Intent intent = new Intent(c, HorizontalViewActivity.class);
-        intent.setData(Uri.fromFile(file));
+        intent.setData(uri);
         try {
             intent.putExtra(PasswordDialog.EXTRA_APP_PASSWORD, ((Activity) c).getIntent().getStringExtra(PasswordDialog.EXTRA_APP_PASSWORD));
         } catch (Exception e) {
