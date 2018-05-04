@@ -16,33 +16,37 @@
             android:layout_height="match_parent"
             android:orientation="vertical" >
 
-            <com.foobnix.pdf.info.view.ScaledImageView
-                android:id="@+id/image"
-                android:layout_width="100dip"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:layout_margin="10dip"
-                android:src="@drawable/icon_pdf_pro" />
-
-            <TextView
-                style="@style/textSection"
+            <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/book"
-                android:textStyle="bold"
-                android:visibility="gone" />
+                android:layout_height="wrap_content" >
 
-            <ImageView
-                android:id="@+id/starIcon"
-                android:layout_width="@dimen/wh_button"
-                android:layout_height="@dimen/wh_button"
-                android:layout_alignLeft="@+id/openFile"
-                android:layout_gravity="center_vertical"
-                android:layout_weight="0"
-                android:background="?android:attr/selectableItemBackground"
-                android:padding="8dip"
-                android:src="@drawable/star_1"
-                android:tint="@color/white" />
+                <FrameLayout
+                    android:layout_centerInParent="true"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" >
+
+                    <com.foobnix.pdf.info.view.ScaledImageView
+                        android:id="@+id/image"
+                        android:layout_width="100dip"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_margin="10dip"
+                        android:src="@drawable/icon_pdf_pro" />
+                </FrameLayout>
+
+                <ImageView
+                    android:id="@+id/starIcon"
+                    android:layout_width="@dimen/wh_button"
+                    android:layout_height="@dimen/wh_button"
+                    android:layout_alignParentBottom="true"
+                    android:layout_gravity="center_vertical"
+                    android:layout_weight="0"
+                    android:background="?android:attr/selectableItemBackground"
+                    android:padding="8dip"
+                    android:src="@drawable/star_1"
+                    android:tint="@color/white" />
+            </RelativeLayout>
 
             <TextView
                 style="@style/textSection"
@@ -101,16 +105,15 @@
                     android:ellipsize="end"
                     android:maxLines="6"
                     android:padding="4dip"
-                    android:text="@string/msg_loading"
-                     />
+                    android:text="@string/msg_loading" />
 
                 <TextView
-                    android:layout_below="@+id/metaInfo"
                     android:id="@+id/expand"
                     style="@style/textLink"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentRight="true"
+                    android:layout_below="@+id/metaInfo"
                     android:gravity="right"
                     android:text="@string/more"
                     android:textSize="10sp" />
