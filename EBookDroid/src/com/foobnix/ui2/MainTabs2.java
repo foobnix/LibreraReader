@@ -9,6 +9,7 @@ import org.ebookdroid.ui.viewer.VerticalViewActivity;
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 
+import com.cloudrail.si.CloudRail;
 import com.foobnix.android.utils.Apps;
 import com.foobnix.android.utils.Dips;
 import com.foobnix.android.utils.LOG;
@@ -98,9 +99,15 @@ public class MainTabs2 extends AdsFragmentActivity {
             finish();
             return;
         }
+        if (intent.getCategories().contains("android.intent.category.BROWSABLE")) {
+            CloudRail.setAuthenticationResponse(intent);
+        }
+
         checkGoToPage(intent);
 
     }
+
+
 
     public void testIntentHandler() {
         if (getIntent().hasExtra(RecentBooksWidget.TEST_LOCALE)) {
@@ -401,6 +408,7 @@ public class MainTabs2 extends AdsFragmentActivity {
         EventBus.getDefault().register(this);
 
     }
+
 
     @Subscribe
     public void onMessegeBrightness(MessegeBrightness msg) {

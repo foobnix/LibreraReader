@@ -187,7 +187,7 @@ public class EpubExtractor extends BaseExtractor {
             ArchiveEntry nextEntry = null;
 
             String title = null;
-            String author = null;
+            String author = "";
             String subject = "";
             String series = null;
             String number = null;
@@ -212,7 +212,7 @@ public class EpubExtractor extends BaseExtractor {
                             }
 
                             if ("dc:creator".equals(xpp.getName()) || "dcns:creator".equals(xpp.getName())) {
-                                author = xpp.nextText();
+                                author = author + ", " + xpp.nextText();
                             }
 
                             if ("dc:date".equals(xpp.getName()) || "dcns:date".equals(xpp.getName())) {
@@ -270,6 +270,8 @@ public class EpubExtractor extends BaseExtractor {
             }
             zipInputStream.close();
             inputStream.close();
+
+            author = TxtUtils.replaceFirst(author, ", ", "");
 
             EbookMeta ebookMeta = new EbookMeta(title, author, series, subject.replaceAll(",$", ""));
             try {

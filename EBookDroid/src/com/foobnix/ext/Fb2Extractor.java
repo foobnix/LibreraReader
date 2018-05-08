@@ -234,6 +234,9 @@ public class Fb2Extractor extends BaseExtractor {
 
             String firstName = null;
             String lastName = null;
+
+            String authors = "";
+
             String genre = "";
             String sequence = "";
             String lang = "";
@@ -250,12 +253,10 @@ public class Fb2Extractor extends BaseExtractor {
 
                     if (xpp.getName().equals("title-info")) {
                         titleInfo = true;
-                        publishInfo = false;
                     }
 
                     if (xpp.getName().equals("publish-info")) {
                         publishInfo = true;
-                        titleInfo = false;
                     }
 
                     if (publishInfo) {
@@ -284,20 +285,34 @@ public class Fb2Extractor extends BaseExtractor {
                                 number = current;
                             }
                         }
+
                     }
                 }
                 if (eventType == XmlPullParser.END_TAG) {
+                    if (titleInfo && xpp.getName().equals("author") && firstName != null && lastName != null) {
+                        authors = authors + ", " + firstName + " " + lastName;
+                        firstName = null;
+                        lastName = null;
+
+                    }
+
                     if (xpp.getName().equals("description")) {
                         break;
+                    }
+                    if (xpp.getName().equals("title-info")) {
+                        titleInfo = false;
+                    }
+
+                    if (xpp.getName().equals("publish-info")) {
+                        publishInfo = false;
                     }
                 }
                 eventType = xpp.next();
             }
 
-            lastName = TxtUtils.nullNullToEmpty(lastName);
-            firstName = TxtUtils.nullNullToEmpty(firstName);
 
             genre = genre.replace(",,", ",") + ",";
+            authors = TxtUtils.replaceFirst(authors, ", ", "");
 
             loadGenres();
             for (String g : genre.split(",")) {
@@ -312,7 +327,7 @@ public class Fb2Extractor extends BaseExtractor {
             genre = TxtUtils.replaceLast(genre, ",", "");
 
             if (TxtUtils.isNotEmpty(number)) {
-                EbookMeta ebookMeta = new EbookMeta(bookTitle, firstName + " " + lastName, sequence, genre);
+                EbookMeta ebookMeta = new EbookMeta(bookTitle, authors, sequence, genre);
                 try {
                     ebookMeta.setLang(lang);
                     ebookMeta.setsIndex(Integer.parseInt(number));
@@ -324,7 +339,7 @@ public class Fb2Extractor extends BaseExtractor {
                 }
                 return ebookMeta;
             } else {
-                EbookMeta ebookMeta = new EbookMeta(bookTitle, firstName + " " + lastName, sequence, genre);
+                EbookMeta ebookMeta = new EbookMeta(bookTitle, authors, sequence, genre);
                 ebookMeta.setLang(lang);
                 ebookMeta.setKeywords(keywords);
                 ebookMeta.setYear(year);

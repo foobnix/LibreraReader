@@ -89,7 +89,7 @@ public class FileInformationDialog {
 
         title.setText(fileMeta.getTitle());
         if (TxtUtils.isNotEmpty(fileMeta.getAuthor())) {
-            author.setText(fileMeta.getAuthor());
+            author.setText(showKeys(fileMeta.getAuthor()));
         }
 
         year.setText("" + TxtUtils.nullToEmpty(fileMeta.getYear()));
