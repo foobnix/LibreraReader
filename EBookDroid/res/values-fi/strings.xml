@@ -472,4 +472,5 @@
    <string name="information">Tiedot</string>
    <string name="file_path">Tiedostopolku</string>
    <string name="year">Vuosi</string>
+   <string name="publisher">Kustantaja</string>
 </resources>

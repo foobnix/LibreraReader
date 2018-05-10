@@ -472,4 +472,5 @@
    <string name="information">Information</string>
    <string name="file_path">Sökväg</string>
    <string name="year">År</string>
+   <string name="publisher">Utgivare</string>
 </resources>

@@ -472,4 +472,5 @@
    <string name="information">Informacija</string>
    <string name="file_path">Bylos kelias</string>
    <string name="year">Metai</string>
+   <string name="publisher">Leidėjas</string>
 </resources>

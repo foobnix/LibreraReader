@@ -472,4 +472,5 @@
    <string name="information">Thông tin</string>
    <string name="file_path">Đường dẫn tập tin</string>
    <string name="year">Năm</string>
+   <string name="publisher">Nhà xuất bản</string>
 </resources>

@@ -472,4 +472,5 @@
    <string name="information">Információ</string>
    <string name="file_path">Fájl elérési út</string>
    <string name="year">Év</string>
+   <string name="publisher">Kiadó</string>
 </resources>

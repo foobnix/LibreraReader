@@ -472,4 +472,5 @@
    <string name="information">اطلاعات</string>
    <string name="file_path">مسیر فایل</string>
    <string name="year">سال</string>
+   <string name="publisher">ناشر</string>
 </resources>

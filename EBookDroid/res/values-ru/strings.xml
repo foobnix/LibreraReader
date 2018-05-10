@@ -472,4 +472,5 @@
    <string name="information">Информация</string>
    <string name="file_path">Путь к файлу</string>
    <string name="year">Год</string>
+   <string name="publisher">Издатель</string>
 </resources>

@@ -472,4 +472,5 @@
    <string name="information">Informasi</string>
    <string name="file_path">Jalur file</string>
    <string name="year">Tahun</string>
+   <string name="publisher">Penerbit</string>
 </resources>

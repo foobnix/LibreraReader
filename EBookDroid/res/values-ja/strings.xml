@@ -472,4 +472,5 @@
    <string name="information">情報</string>
    <string name="file_path">ファイルパス</string>
    <string name="year">年</string>
+   <string name="publisher">出版社</string>
 </resources>

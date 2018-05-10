@@ -472,4 +472,5 @@
    <string name="information">Інформація</string>
    <string name="file_path">Файл шляху</string>
    <string name="year">Рік</string>
+   <string name="publisher">Видавець</string>
 </resources>

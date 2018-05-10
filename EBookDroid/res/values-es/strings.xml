@@ -472,4 +472,5 @@
    <string name="information">Información</string>
    <string name="file_path">Ruta de archivo</string>
    <string name="year">Año</string>
+   <string name="publisher">Editor</string>
 </resources>
