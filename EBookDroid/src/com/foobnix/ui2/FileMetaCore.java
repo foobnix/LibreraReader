@@ -134,6 +134,8 @@ public class FileMetaCore {
             ebookMeta.setSequence(local.getSequence());
             ebookMeta.setPagesCount(local.getPagesCount());
             ebookMeta.setYear(local.getYear());
+            ebookMeta.setIsbn(local.getIsbn());
+            ebookMeta.setPublisher(local.getPublisher());
 
         } else if (BookType.CBR.is(unZipPath) || BookType.CBZ.is(unZipPath)) {
             ebookMeta.setPagesCount(CbzCbrExtractor.getPageCount(unZipPath));
