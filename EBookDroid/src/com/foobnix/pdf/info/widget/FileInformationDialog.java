@@ -17,6 +17,8 @@ import com.foobnix.android.utils.Keyboards;
 import com.foobnix.android.utils.LOG;
 import com.foobnix.android.utils.TxtUtils;
 import com.foobnix.dao2.FileMeta;
+import com.foobnix.ext.CacheZipUtils.CacheDir;
+import com.foobnix.ext.EbookMeta;
 import com.foobnix.pdf.info.ADS;
 import com.foobnix.pdf.info.AppSharedPreferences;
 import com.foobnix.pdf.info.ExtUtils;
@@ -77,6 +79,14 @@ public class FileInformationDialog {
         AlertDialog.Builder builder = new AlertDialog.Builder(a);
 
         final FileMeta fileMeta = AppDB.get().getOrCreate(file.getPath());
+        LOG.d("FileMeta-State", fileMeta.getState());
+
+        if (fileMeta.getState() != FileMetaCore.STATE_FULL) {
+            EbookMeta ebookMeta = FileMetaCore.get().getEbookMeta(file.getPath(), CacheDir.ZipApp, true);
+            FileMetaCore.get().upadteBasicMeta(fileMeta, file);
+            FileMetaCore.get().udpateFullMeta(fileMeta, ebookMeta);
+            AppDB.get().updateOrSave(fileMeta);
+        }
 
         final View dialog = LayoutInflater.from(a).inflate(R.layout.dialog_file_info, null, false);
 
@@ -97,6 +107,9 @@ public class FileInformationDialog {
         ((TextView) dialog.findViewById(R.id.path)).setText(file.getPath());
         ((TextView) dialog.findViewById(R.id.date)).setText(fileMeta.getDateTxt());
         ((TextView) dialog.findViewById(R.id.info)).setText(fileMeta.getExt());
+
+        ((TextView) dialog.findViewById(R.id.publisher)).setText(fileMeta.getPublisher());
+        ((TextView) dialog.findViewById(R.id.isbn)).setText(showKeys(fileMeta.getIsbn()));
 
         if (fileMeta.getPages() != null && fileMeta.getPages() != 0) {
             ((TextView) dialog.findViewById(R.id.size)).setText(fileMeta.getSizeTxt() + " (" + fileMeta.getPages() + ")");
@@ -142,7 +155,8 @@ public class FileInformationDialog {
         String bookOverview = FileMetaCore.getBookOverview(file.getPath());
         infoView.setText(TxtUtils.nullToEmpty(bookOverview));
 
-        expand.setVisibility(TxtUtils.isNotEmpty(bookOverview) ? View.VISIBLE : View.GONE);
+        expand.setVisibility(TxtUtils.isNotEmpty(bookOverview) && bookOverview.length() > 200 ? View.VISIBLE : View.GONE);
+
         expand.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -156,9 +170,12 @@ public class FileInformationDialog {
         String sequence = fileMeta.getSequence();
         if (TxtUtils.isNotEmpty(sequence)) {
             final TextView metaSeries = (TextView) dialog.findViewById(R.id.metaSeries);
-            metaSeries.setText(showKeys(sequence));
 
+            if (fileMeta.getSIndex() != null && fileMeta.getSIndex() > 0) {
+                sequence = sequence + ", " + fileMeta.getSIndex();
+            }
 
+            metaSeries.setText(sequence);
 
         } else {
             ((TextView) dialog.findViewById(R.id.metaSeries)).setVisibility(View.GONE);
@@ -169,8 +186,6 @@ public class FileInformationDialog {
         if (TxtUtils.isNotEmpty(genre)) {
             final TextView metaGenre = (TextView) dialog.findViewById(R.id.metaGenre);
             metaGenre.setText(showKeys(genre));
-
-
 
         } else {
             ((TextView) dialog.findViewById(R.id.metaGenre)).setVisibility(View.GONE);
@@ -239,12 +254,11 @@ public class FileInformationDialog {
                     "info:CreationDate", //
                     "info:ModDate" //
             ));
-            
 
             try {
                 final CodecDocument doc = ImageExtractor.singleCodecContext(file.getPath(), "", 0, 0);
-                
-                if(BookType.DJVU.is(file.getPath())) {
+
+                if (BookType.DJVU.is(file.getPath())) {
                     list2.addAll(doc.getMetaKeys());
                 }
 

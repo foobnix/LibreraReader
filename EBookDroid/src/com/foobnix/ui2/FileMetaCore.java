@@ -30,7 +30,13 @@ import android.app.Activity;
 import android.support.v4.util.Pair;
 
 public class FileMetaCore {
+
+    public static int STATE_NONE = 0;
+    public static int STATE_BASIC = 1;
+    public static int STATE_FULL = 2;
+
     private static FileMetaCore in = new FileMetaCore();
+
 
     public static FileMetaCore get() {
         return in;
@@ -237,7 +243,7 @@ public class FileMetaCore {
             fileMeta.setPages(pagesCount);
         }
 
-        if (meta.getYear() != null) {
+        if (TxtUtils.isNotEmpty(meta.getYear())) {
             try {
                 fileMeta.setYear(Integer.parseInt(meta.getYear()));
             } catch (Exception e) {
@@ -245,6 +251,10 @@ public class FileMetaCore {
             }
 
         }
+        fileMeta.setPublisher(meta.getPublisher());
+        fileMeta.setIsbn(meta.getIsbn());
+
+        fileMeta.setState(STATE_FULL);
 
     }
 
@@ -269,6 +279,7 @@ public class FileMetaCore {
             fileMeta.setPathTxt(file.getName());
 
         }
+        fileMeta.setState(STATE_BASIC);
     }
 
 }

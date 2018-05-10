@@ -35,6 +35,8 @@ public class MobiExtract {
             String subject = parse.getSubject();
             String lang = parse.getLanguage();
             String year = parse.getPublishDate();
+            String publisher = parse.getPublisher();
+            String ibsn = parse.getIsbn();
 
 
             if (TxtUtils.isEmpty(title)) {
@@ -49,6 +51,8 @@ public class MobiExtract {
             ebookMeta.setGenre(subject);
             ebookMeta.setLang(lang);
             ebookMeta.setYear(year);
+            ebookMeta.setPublisher(publisher);
+            ebookMeta.setIsbn(ibsn);
             // ebookMeta.setPagesCount(parse.getBookSize() / 1024);
             return ebookMeta;
 

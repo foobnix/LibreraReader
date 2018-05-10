@@ -40,6 +40,8 @@ public class DjvuExtract {
         meta.setSequence(openDocument.getMeta("sequence") + "" + openDocument.getMeta("seria"));
         meta.setGenre(openDocument.getMeta("subject"));
         meta.setYear(openDocument.getMeta("year"));
+        meta.setPublisher(openDocument.getMeta("publisher"));
+        meta.setIsbn(openDocument.getMeta("isbn"));
         LOG.d("DjvuExtract", meta.getAuthor(), meta.getTitle(), meta.getPagesCount(), unZipPath);
         openDocument.recycle();
         openDocument = null;

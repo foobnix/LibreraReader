@@ -285,6 +285,23 @@ public class MobiParser {
         return new String(bytes);
     }
 
+    public String getPublisher()
+    {
+        byte[] bytes = exth.headers.get(101);
+        if (bytes == null) {
+            return null;
+        }
+        return new String(bytes);
+    }
+
+    public String getIsbn() {
+        byte[] bytes = exth.headers.get(104);
+        if (bytes == null) {
+            return null;
+        }
+        return new String(bytes);
+    }
+
     public String getPublishDate() {
         byte[] bytes = exth.headers.get(106);
         if (bytes == null) {

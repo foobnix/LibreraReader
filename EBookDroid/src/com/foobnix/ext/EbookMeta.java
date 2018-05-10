@@ -14,6 +14,8 @@ public class EbookMeta {
     private int pagesCount;
     private String keywords;
     private String year;
+    private String publisher;
+    private String isbn;
 
     public EbookMeta(String title, String author, byte[] coverImage) {
         this.title = updateString(title);
@@ -139,5 +141,20 @@ public class EbookMeta {
         this.year = year;
     }
 
+    public String getPublisher() {
+        return publisher;
+    }
+
+    public void setPublisher(String publisher) {
+        this.publisher = publisher;
+    }
+
+    public String getIsbn() {
+        return isbn;
+    }
+
+    public void setIsbn(String isbn) {
+        this.isbn = isbn;
+    }
 
 }

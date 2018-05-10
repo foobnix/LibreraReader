@@ -94,11 +94,13 @@ public class ImageExtractor implements ImageDownloader {
         }
 
         FileMeta fileMeta = AppDB.get().load(path);
+        LOG.d("FileMeta-State", fileMeta.getState());
 
         LOG.d("proccessCoverPage fileMeta", fileMeta, pageUrl);
 
-        EbookMeta ebookMeta = FileMetaCore.get().getEbookMeta(path, CacheDir.ZipApp, fileMeta == null);
-        if (fileMeta == null) {
+        EbookMeta ebookMeta = FileMetaCore.get().getEbookMeta(path, CacheDir.ZipApp, fileMeta.getState() != FileMetaCore.STATE_FULL);
+
+        if (fileMeta.getState() != FileMetaCore.STATE_FULL) {
             fileMeta = new FileMeta(path);
             FileMetaCore.get().upadteBasicMeta(fileMeta, new File(path));
             FileMetaCore.get().udpateFullMeta(fileMeta, ebookMeta);

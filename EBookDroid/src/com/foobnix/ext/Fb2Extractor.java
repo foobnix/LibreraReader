@@ -245,6 +245,8 @@ public class Fb2Extractor extends BaseExtractor {
             boolean titleInfo = false;
             boolean publishInfo = false;
             String year = "";
+            String publisher = "";
+            String isbn = "";
 
             int eventType = xpp.getEventType();
             while (eventType != XmlPullParser.END_DOCUMENT) {
@@ -262,6 +264,12 @@ public class Fb2Extractor extends BaseExtractor {
                     if (publishInfo) {
                         if (xpp.getName().equals("year")) {
                             year = xpp.nextText();
+                        }
+                        if (xpp.getName().equals("publisher")) {
+                            publisher = xpp.nextText();
+                        }
+                        if (xpp.getName().equals("isbn")) {
+                            isbn = xpp.nextText();
                         }
                     }
 
@@ -333,6 +341,8 @@ public class Fb2Extractor extends BaseExtractor {
                     ebookMeta.setsIndex(Integer.parseInt(number));
                     ebookMeta.setKeywords(keywords);
                     ebookMeta.setYear(year);
+                    ebookMeta.setPublisher(publisher);
+                    ebookMeta.setIsbn(isbn);
                     // ebookMeta.setPagesCount((int) fileSize / 512);
                 } catch (Exception e) {
                     LOG.e(e);
@@ -343,6 +353,8 @@ public class Fb2Extractor extends BaseExtractor {
                 ebookMeta.setLang(lang);
                 ebookMeta.setKeywords(keywords);
                 ebookMeta.setYear(year);
+                ebookMeta.setPublisher(publisher);
+                ebookMeta.setIsbn(isbn);
                 // ebookMeta.setPagesCount((int) fileSize / 512);
                 return ebookMeta;
             }

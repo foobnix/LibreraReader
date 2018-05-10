@@ -194,6 +194,8 @@ public class EpubExtractor extends BaseExtractor {
             String lang = null;
             String genre = null;
             String date = null;
+            String publisher = "";
+            String ibsn = "";
 
             while ((nextEntry = zipInputStream.getNextEntry()) != null) {
                 String name = nextEntry.getName().toLowerCase();
@@ -216,13 +218,23 @@ public class EpubExtractor extends BaseExtractor {
                             }
 
                             if ("dc:date".equals(xpp.getName()) || "dcns:date".equals(xpp.getName())) {
-                                if (xpp.getAttributeCount() == 0) {
+                                if (date != null && xpp.getAttributeCount() == 0) {
+                                    date = xpp.nextText();
+                                } else if (date == null) {
                                     date = xpp.nextText();
                                 }
                             }
 
                             if ("dc:subject".equals(xpp.getName()) || "dcns:subject".equals(xpp.getName())) {
                                 subject = xpp.nextText() + "," + subject;
+                            }
+
+                            if ("dc:publisher".equals(xpp.getName()) || "dcns:publisher".equals(xpp.getName())) {
+                                publisher = xpp.nextText();
+                            }
+
+                            if ("dc:identifier".equals(xpp.getName()) || "dcns:identifier".equals(xpp.getName())) {
+                                ibsn = xpp.nextText() + "," + ibsn;
                             }
 
                             if (lang == null && ("dc:language".equals(xpp.getName()) || "dcns:language".equals(xpp.getName()))) {
@@ -272,6 +284,7 @@ public class EpubExtractor extends BaseExtractor {
             inputStream.close();
 
             author = TxtUtils.replaceFirst(author, ", ", "");
+            ibsn = TxtUtils.replaceLast(ibsn, ",", "");
 
             EbookMeta ebookMeta = new EbookMeta(title, author, series, subject.replaceAll(",$", ""));
             try {
@@ -286,6 +299,8 @@ public class EpubExtractor extends BaseExtractor {
             ebookMeta.setLang(lang);
             ebookMeta.setGenre(genre);
             ebookMeta.setYear(date);
+            ebookMeta.setPublisher(publisher);
+            ebookMeta.setIsbn(ibsn);
             // ebookMeta.setPagesCount((int) size / 1024);
             return ebookMeta;
         } catch (

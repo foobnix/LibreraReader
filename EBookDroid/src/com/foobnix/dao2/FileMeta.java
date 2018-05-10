@@ -48,6 +48,9 @@ public class FileMeta {
     private Integer pages;
     private String keyword;
     private Integer year;
+    private Integer state;
+    private String publisher;
+    private String isbn;
 
     @Generated
     public FileMeta() {
@@ -58,7 +61,7 @@ public class FileMeta {
     }
 
     @Generated
-    public FileMeta(String path, String title, String author, String sequence, String genre, String child, String annotation, Integer sIndex, Integer cusType, String ext, Long size, Long date, String dateTxt, String sizeTxt, String pathTxt, Boolean isStar, Long isStarTime, Boolean isRecent, Long isRecentTime, Float isRecentProgress, Boolean isSearchBook, String lang, String tag, Integer pages, String keyword, Integer year) {
+    public FileMeta(String path, String title, String author, String sequence, String genre, String child, String annotation, Integer sIndex, Integer cusType, String ext, Long size, Long date, String dateTxt, String sizeTxt, String pathTxt, Boolean isStar, Long isStarTime, Boolean isRecent, Long isRecentTime, Float isRecentProgress, Boolean isSearchBook, String lang, String tag, Integer pages, String keyword, Integer year, Integer state, String publisher, String isbn) {
         this.path = path;
         this.title = title;
         this.author = author;
@@ -85,6 +88,9 @@ public class FileMeta {
         this.pages = pages;
         this.keyword = keyword;
         this.year = year;
+        this.state = state;
+        this.publisher = publisher;
+        this.isbn = isbn;
     }
 
     public String getPath() {
@@ -293,6 +299,30 @@ public class FileMeta {
 
     public void setYear(Integer year) {
         this.year = year;
+    }
+
+    public Integer getState() {
+        return state;
+    }
+
+    public void setState(Integer state) {
+        this.state = state;
+    }
+
+    public String getPublisher() {
+        return publisher;
+    }
+
+    public void setPublisher(String publisher) {
+        this.publisher = publisher;
+    }
+
+    public String getIsbn() {
+        return isbn;
+    }
+
+    public void setIsbn(String isbn) {
+        this.isbn = isbn;
     }
 
 }

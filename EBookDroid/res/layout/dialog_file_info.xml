@@ -21,9 +21,9 @@
                 android:layout_height="wrap_content" >
 
                 <FrameLayout
-                    android:layout_centerInParent="true"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" >
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true" >
 
                     <com.foobnix.pdf.info.view.ScaledImageView
                         android:id="@+id/image"
@@ -169,6 +169,34 @@
                 android:ellipsize="end"
                 android:padding="4dip"
                 android:text="Genre"
+                android:textIsSelectable="true" />
+
+            <TextView
+                style="@style/textSection"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/publisher" />
+
+            <TextView
+                android:id="@+id/publisher"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="4dip"
+                android:text="" />
+
+            <TextView
+                style="@style/textSection"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="ISBN" />
+
+            <TextView
+                android:id="@+id/isbn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="4dip"
+                android:selectAllOnFocus="true"
+                android:text=""
                 android:textIsSelectable="true" />
 
             <TextView
