@@ -257,7 +257,7 @@
    <string name="send_file">发送文件</string>
    <string name="delete">删除</string>
    <string name="remove_from_library">移出书库</string>
-   <string name="send_snapshot_of_the_page">页面分享</string>
+   <string name="send_snapshot_of_the_page">分享页面</string>
    <string name="file_info">文件信息</string>
    <string name="archive_files">文档</string>
    <string name="open_file">打开文件</string>
