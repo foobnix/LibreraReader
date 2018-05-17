@@ -66,7 +66,6 @@ public class ImageExtractor implements ImageDownloader {
 
     public static SharedPreferences sp;
 
-
     public static synchronized ImageExtractor getInstance(final Context c) {
         if (instance == null) {
             instance = new ImageExtractor(c);
@@ -93,7 +92,8 @@ public class ImageExtractor implements ImageDownloader {
             pageUrl.setHeight((int) (pageUrl.getWidth() * 1.5));
         }
 
-        FileMeta fileMeta = AppDB.get().load(path);
+        FileMeta fileMeta = AppDB.get().getOrCreate(path);
+
         LOG.d("FileMeta-State", fileMeta.getState());
 
         LOG.d("proccessCoverPage fileMeta", fileMeta, pageUrl);
@@ -101,7 +101,6 @@ public class ImageExtractor implements ImageDownloader {
         EbookMeta ebookMeta = FileMetaCore.get().getEbookMeta(path, CacheDir.ZipApp, fileMeta.getState() != FileMetaCore.STATE_FULL);
 
         if (fileMeta.getState() != FileMetaCore.STATE_FULL) {
-            fileMeta = new FileMeta(path);
             FileMetaCore.get().upadteBasicMeta(fileMeta, new File(path));
             FileMetaCore.get().udpateFullMeta(fileMeta, ebookMeta);
 
@@ -496,7 +495,6 @@ public class ImageExtractor implements ImageDownloader {
             return null;
         }
     }
-
 
     private InputStream bitmapToStreamRAW(Bitmap bitmap) {
         try {

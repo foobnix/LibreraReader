@@ -324,6 +324,11 @@ public class AppDB {
         } catch (Exception e) {
             LOG.e(e);
         }
+
+        if (load.getState() == null) {
+            load.setState(FileMetaCore.STATE_NONE);
+        }
+
         return load;
     }
 
