@@ -550,17 +550,23 @@ public class BrowseFragment2 extends UIFragment<FileMeta> {
                 Long modifiedAt = cl.getModifiedAt();
                 long size = cl.getSize();
 
-                LOG.d("CloudMetaData", path, name, modifiedAt, size);
+                LOG.d("CloudMetaData", path, name, modifiedAt, size, cl.getImageMetaData());
 
                 FileMeta meta = new FileMeta(PREFIX_CLOUD + path);
 
                 if (cl.getFolder()) {
                     meta.setCusType(FileMetaAdapter.DISPLAY_TYPE_DIRECTORY);
                 }
+
                 meta.setTitle(name);
                 meta.setPathTxt(name);
                 meta.setSize(size);
                 meta.setDate(modifiedAt);
+
+                meta.setSizeTxt(ExtUtils.readableFileSize(size));
+                if (modifiedAt != null) {
+                    meta.setDateTxt(ExtUtils.getDateFormat(modifiedAt));
+                }
 
                 result.add(meta);
 

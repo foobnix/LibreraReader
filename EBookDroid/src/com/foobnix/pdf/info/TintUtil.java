@@ -65,7 +65,6 @@ public class TintUtil {
             LOG.d("randomColor", hash, hue, sat, value);
             return Color.HSVToColor(new float[] { hue, sat, Math.max(Math.min(0.1f, value), 0.5f) });
         } catch (Exception e) {
-            LOG.e(e);
             return Color.HSVToColor(new float[] { new Random().nextInt(360), new Random().nextFloat(), (3f + new Random().nextInt(4)) / 10f });
         }
     }
