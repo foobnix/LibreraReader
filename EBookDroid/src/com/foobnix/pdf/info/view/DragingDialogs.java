@@ -1446,6 +1446,7 @@ public class DragingDialogs {
                                             } else {
                                                 intentCustom.putExtra("EXTRA_GRAVITY", Gravity.BOTTOM);
                                             }
+                                            intentCustom.putExtra("EXTRA_FULLSCREEN", false);
 
                                             controller.getActivity().startActivity(intentCustom);
                                             // controller.getActivity().overridePendingTransition(0, 0);

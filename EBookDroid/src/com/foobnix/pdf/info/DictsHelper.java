@@ -102,6 +102,7 @@ public class DictsHelper {
         } else {
             intentCustom.putExtra("EXTRA_GRAVITY", Gravity.BOTTOM);
         }
+        intentCustom.putExtra("EXTRA_FULLSCREEN", false);
 
         return intentCustom;
     }
