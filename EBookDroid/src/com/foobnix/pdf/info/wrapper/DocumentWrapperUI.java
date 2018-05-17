@@ -1544,7 +1544,7 @@ public class DocumentWrapperUI {
 
         @Override
         public void onClick(final View arg0) {
-            AppState.get().isCrop = true;
+            AppState.get().isCrop = false; // no crop with cut
             AppState.get().cutP = 50;
             AppState.get().isCut = !AppState.get().isCut;
 

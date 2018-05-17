@@ -10,11 +10,14 @@ import java.util.Map;
 
 import org.ebookdroid.BookType;
 
+import com.cloudrail.si.interfaces.CloudStorage;
+import com.cloudrail.si.types.CloudMetaData;
 import com.foobnix.android.utils.LOG;
 import com.foobnix.android.utils.ResultResponse;
 import com.foobnix.android.utils.StringDB;
 import com.foobnix.android.utils.TxtUtils;
 import com.foobnix.dao2.FileMeta;
+import com.foobnix.pdf.info.Clouds;
 import com.foobnix.pdf.info.ExtUtils;
 import com.foobnix.pdf.info.FileMetaComparators;
 import com.foobnix.pdf.info.R;
@@ -29,6 +32,7 @@ import com.foobnix.ui2.adapter.DefaultListeners;
 import com.foobnix.ui2.adapter.FileMetaAdapter;
 import com.foobnix.ui2.fast.FastScrollRecyclerView;
 
+import android.annotation.SuppressLint;
 import android.annotation.TargetApi;
 import android.content.ContentResolver;
 import android.content.Intent;
@@ -42,7 +46,6 @@ import android.os.Environment;
 import android.provider.DocumentsContract;
 import android.provider.DocumentsContract.Document;
 import android.support.v4.util.Pair;
-import android.support.v7.widget.LinearLayoutManager;
 import android.util.TypedValue;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -52,15 +55,18 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.View.OnLongClickListener;
 import android.view.ViewGroup;
+import android.view.ViewGroup.LayoutParams;
 import android.widget.EditText;
 import android.widget.HorizontalScrollView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.LinearLayout.LayoutParams;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+@SuppressLint("NewApi")
 public class BrowseFragment2 extends UIFragment<FileMeta> {
+    public static final String PREFIX_CLOUD = "cloud:";
     public static final Pair<Integer, Integer> PAIR = new Pair<Integer, Integer>(R.string.folders, R.drawable.glyphicons_145_folder_open);
     public static final String EXTRA_INIT_PATH = "EXTRA_PATH";
     public static final String EXTRA_TYPE = "EXTRA_TYPE";
@@ -107,6 +113,8 @@ public class BrowseFragment2 extends UIFragment<FileMeta> {
         TintUtil.setBackgroundFillColor(onClose, TintUtil.color);
         TintUtil.setBackgroundFillColor(onAction, TintUtil.color);
     }
+
+    public CloudStorage cloudStorage;
 
     @TargetApi(Build.VERSION_CODES.LOLLIPOP)
     @Override
@@ -207,7 +215,7 @@ public class BrowseFragment2 extends UIFragment<FileMeta> {
 
                     @Override
                     public boolean onMenuItemClick(MenuItem item) {
-                        setDirPath(Environment.getExternalStorageDirectory().getPath());
+                        displayAnyPath(Environment.getExternalStorageDirectory().getPath());
                         return false;
                     }
                 }).setIcon(R.drawable.glyphicons_146_folder_sd1);
@@ -226,7 +234,7 @@ public class BrowseFragment2 extends UIFragment<FileMeta> {
 
                         @Override
                         public boolean onMenuItemClick(MenuItem item) {
-                            setDirPath(info);
+                            displayAnyPath(info);
                             return false;
                         }
                     }).setIcon(R.drawable.glyphicons_146_folder_sd1);
@@ -237,7 +245,7 @@ public class BrowseFragment2 extends UIFragment<FileMeta> {
 
                     @Override
                     public boolean onMenuItemClick(MenuItem item) {
-                        setDirPath(AppState.get().downlodsPath);
+                        displayAnyPath(AppState.get().downlodsPath);
                         return false;
                     }
                 }).setIcon(R.drawable.glyphicons_591_folder_heart);
@@ -253,7 +261,7 @@ public class BrowseFragment2 extends UIFragment<FileMeta> {
 
                             @Override
                             public boolean onMenuItemClick(MenuItem item) {
-                                setDirPath(saf);
+                                displayAnyPath(saf);
                                 return false;
                             }
                         }).setOnMenuItemLongClickListener(new OnMenuItemClickListener() {
@@ -290,7 +298,7 @@ public class BrowseFragment2 extends UIFragment<FileMeta> {
 
                         @Override
                         public boolean onMenuItemClick(MenuItem item) {
-                            setDirPath(info);
+                            displayAnyPath(info);
                             return false;
                         }
                     }).setIcon(R.drawable.glyphicons_591_folder_star);
@@ -317,6 +325,55 @@ public class BrowseFragment2 extends UIFragment<FileMeta> {
 
                 }
 
+                menu.getMenu().add("Dropbox").setOnMenuItemClickListener(new OnMenuItemClickListener() {
+
+                    @Override
+                    public boolean onMenuItemClick(MenuItem item) {
+
+                        if (Clouds.get().isDropbox()) {
+                            new Thread() {
+                                @Override
+                                public void run() {
+                                    String userName = Clouds.get().dropbox.getUserName();
+                                    LOG.d("CloudRail LOGIN", userName);
+
+                                    BrowseFragment2.this.getActivity().runOnUiThread(new Runnable() {
+
+                                        @Override
+                                        public void run() {
+                                            displayAnyPath(PREFIX_CLOUD + "/");
+                                        }
+                                    });
+
+                                };
+
+                            }.start();
+                        } else {
+                            new Thread() {
+                                @Override
+                                public void run() {
+                                    Clouds.get().dropbox.login();
+                                    Clouds.get().dropboxToken = Clouds.get().dropbox.saveAsString();
+                                    Clouds.get().save();
+                                    LOG.d("CloudRail save", Clouds.get().dropboxToken);
+
+                                    BrowseFragment2.this.getActivity().runOnUiThread(new Runnable() {
+
+                                        @Override
+                                        public void run() {
+                                            displayAnyPath(PREFIX_CLOUD + "/");
+                                        }
+                                    });
+
+                                };
+
+                            }.start();
+                        }
+
+                        return true;
+                    }
+                }).setIcon(R.drawable.dropbox);
+
                 menu.show();
 
             }
@@ -334,7 +391,7 @@ public class BrowseFragment2 extends UIFragment<FileMeta> {
             @Override
             public boolean onResultRecive(FileMeta result) {
                 if (result.getCusType() != null && result.getCusType() == FileMetaAdapter.DISPLAY_TYPE_DIRECTORY) {
-                    setDirPath(result.getPath());
+                    displayAnyPath(result.getPath());
                     if (fragmentType == TYPE_SELECT_FOLDER) {
                         editPath.setText(fragmentText);
                     }
@@ -354,7 +411,7 @@ public class BrowseFragment2 extends UIFragment<FileMeta> {
             @Override
             public boolean onResultRecive(FileMeta result) {
                 if (result.getCusType() != null && result.getCusType() == FileMetaAdapter.DISPLAY_TYPE_DIRECTORY) {
-                    // setDirPath(result.getPath());
+                    // displayAnyPath(result.getPath());
                 } else {
                     DefaultListeners.getOnItemLongClickListener(getActivity(), searchAdapter).onResultRecive(result);
                 }
@@ -404,15 +461,20 @@ public class BrowseFragment2 extends UIFragment<FileMeta> {
                 menu.show();
             }
         });
-        populate();
+
+        displayAnyPath(getInitPath());
         onTintChanged();
+
+        progressBar = (ProgressBar) view.findViewById(R.id.progressBar);
+        progressBar.setVisibility(View.GONE);
+        TintUtil.setDrawableTint(progressBar.getIndeterminateDrawable().getCurrent(), Color.WHITE);
 
         return view;
     }
 
     @Override
     public void onReviceOpenDir(String path) {
-        setDirPath(path);
+        displayAnyPath(path);
     }
 
     OnClickListener onCloseButtonActoin = new OnClickListener() {
@@ -464,21 +526,144 @@ public class BrowseFragment2 extends UIFragment<FileMeta> {
         return Environment.getExternalStorageDirectory().getPath();
     }
 
+    String displayPath;
+
     @Override
     public List<FileMeta> prepareDataInBackground() {
+
+        if (displayPath.startsWith(PREFIX_CLOUD)) {
+            if (cloudStorage == null) {
+                cloudStorage = Clouds.get().dropbox;
+            }
+            String cloudPath = displayPath.replace(PREFIX_CLOUD, "");
+            if (TxtUtils.isEmpty(cloudPath)) {
+                cloudPath = "/";
+            }
+            LOG.d("Open clound path", cloudPath);
+            List<CloudMetaData> items = cloudStorage.getChildren(cloudPath);
+
+            List<FileMeta> result = new ArrayList<FileMeta>();
+
+            for (CloudMetaData cl : items) {
+                String path = cl.getPath();
+                String name = cl.getName();
+                Long modifiedAt = cl.getModifiedAt();
+                long size = cl.getSize();
+
+                LOG.d("CloudMetaData", path, name, modifiedAt, size);
+
+                FileMeta meta = new FileMeta(PREFIX_CLOUD + path);
+
+                if (cl.getFolder()) {
+                    meta.setCusType(FileMetaAdapter.DISPLAY_TYPE_DIRECTORY);
+                }
+                meta.setTitle(name);
+                meta.setPathTxt(name);
+                meta.setSize(size);
+                meta.setDate(modifiedAt);
+
+                result.add(meta);
+
+            }
+
+            return result;
+        }
+
         if (ExtUtils.isExteralSD(getInitPath())) {
-            return null;
+
+            List<FileMeta> items = new ArrayList<FileMeta>();
+
+            Uri uri = Uri.parse(displayPath);
+
+            ContentResolver contentResolver = getActivity().getContentResolver();
+            Uri childrenUri = null;
+
+            childrenUri = ExtUtils.getChildUri(getContext(), uri);
+
+            if (childrenUri != null) {
+
+                LOG.d("newNode uri >> ", uri);
+                LOG.d("newNode childrenUri >> ", childrenUri);
+
+                Cursor childCursor = contentResolver.query(childrenUri, new String[] { //
+                        Document.COLUMN_DISPLAY_NAME, //
+                        Document.COLUMN_DOCUMENT_ID, //
+                        Document.COLUMN_ICON, //
+                        Document.COLUMN_LAST_MODIFIED, //
+                        Document.COLUMN_MIME_TYPE, //
+                        Document.COLUMN_SIZE, //
+                        Document.COLUMN_SUMMARY, //
+                }, //
+                        null, null, null); //
+                try {
+                    while (childCursor.moveToNext()) {
+                        String COLUMN_DISPLAY_NAME = childCursor.getString(0);
+                        String COLUMN_DOCUMENT_ID = childCursor.getString(1);
+                        String COLUMN_ICON = childCursor.getString(2);
+                        String COLUMN_LAST_MODIFIED = childCursor.getString(3);
+                        String COLUMN_MIME_TYPE = childCursor.getString(4);
+                        String COLUMN_SIZE = childCursor.getString(5);
+                        String COLUMN_SUMMARY = childCursor.getString(6);
+
+                        LOG.d("found- child 2=", COLUMN_DISPLAY_NAME, COLUMN_DOCUMENT_ID, COLUMN_ICON);
+
+                        FileMeta meta = new FileMeta();
+                        meta.setAuthor(SearchFragment2.EMPTY_ID);
+
+                        final Uri newNode = DocumentsContract.buildDocumentUriUsingTree(uri, COLUMN_DOCUMENT_ID);
+                        meta.setPath(newNode.toString());
+                        LOG.d("newNode", newNode);
+
+                        if (Document.MIME_TYPE_DIR.equals(COLUMN_MIME_TYPE)) {
+                            meta.setCusType(FileMetaAdapter.DISPLAY_TYPE_DIRECTORY);
+                            meta.setPathTxt(COLUMN_DISPLAY_NAME);
+                            meta.setTitle(COLUMN_DISPLAY_NAME);
+
+                        } else {
+                            try {
+                                if (COLUMN_SIZE != null) {
+                                    long size = Long.parseLong(COLUMN_SIZE);
+                                    meta.setSize(size);
+                                    meta.setSizeTxt(ExtUtils.readableFileSize(size));
+                                }
+                                if (COLUMN_LAST_MODIFIED != null) {
+                                    meta.setDateTxt(ExtUtils.getDateFormat(Long.parseLong(COLUMN_LAST_MODIFIED)));
+                                }
+                            } catch (Exception e) {
+                                LOG.e(e);
+                            }
+                            meta.setExt(ExtUtils.getFileExtension(COLUMN_DISPLAY_NAME));
+
+                            if (BookType.FB2.is(COLUMN_DISPLAY_NAME)) {
+                                meta.setTitle(TxtUtils.encode1251(COLUMN_DISPLAY_NAME));
+                            } else {
+                                meta.setTitle(COLUMN_DISPLAY_NAME);
+                            }
+
+                        }
+                        items.add(meta);
+
+                    }
+                } finally {
+                    closeQuietly(childCursor);
+                }
+            }
+            return items;
+
         } else {
-            return SearchCore.getFilesAndDirs(getInitPath(), fragmentType == TYPE_DEFAULT);
+            return SearchCore.getFilesAndDirs(displayPath, fragmentType == TYPE_DEFAULT);
         }
     }
 
     @Override
     public void populateDataInUI(List<FileMeta> items) {
-        setDirPath(getInitPath(), items);
+        displayItems(items);
+        showPathHeader();
+
     }
 
     public boolean onBackAction() {
+
         if (ExtUtils.isExteralSD(AppState.get().dirLastPath)) {
             String path = AppState.get().dirLastPath;
             LOG.d("pathBack before", path);
@@ -490,35 +675,39 @@ public class BrowseFragment2 extends UIFragment<FileMeta> {
             LOG.d("pathBack after", path);
 
             if (path.endsWith("%3A")) {
-                setDirPath(path);
+                displayAnyPath(path);
                 return false;
             } else {
-                setDirPath(path);
+                displayAnyPath(path);
                 return true;
             }
 
         } else {
-
             File file = new File(AppState.get().dirLastPath);
             String path = file.getParent();
-            if (recyclerView != null && path != null) {
-                int pos = rememberPos.get(path) == null ? 0 : rememberPos.get(path);
-                setDirPath(path);
-                recyclerView.scrollToPosition(pos);
-                return true;
+
+            LOG.d("parent", path);
+
+            if (path.startsWith(PREFIX_CLOUD)) {
+                displayPath = path;
+                populate();
+            } else {
+                if (recyclerView != null && path != null) {
+                    int pos = rememberPos.get(path) == null ? 0 : rememberPos.get(path);
+                    displayAnyPath(path);
+                    recyclerView.scrollToPosition(pos);
+                    return true;
+                }
             }
         }
         return false;
     }
 
-    public void setDirPath(String path) {
-        if (path != null) {
-            if (path.startsWith("/")) {
-                path = path.replace("//", "/");
-            }
-        }
-        setDirPath(path, null);
-        onGridList();
+    public void displayAnyPath(String path) {
+        displayPath = path;
+        AppState.get().dirLastPath = path;
+
+        populate();
     }
 
     String prevPath;
@@ -535,137 +724,20 @@ public class BrowseFragment2 extends UIFragment<FileMeta> {
         }
     }
 
-    @TargetApi(Build.VERSION_CODES.LOLLIPOP)
-    public void setDirPath(final String path, List<FileMeta> items) {
-        LOG.d("setDirPath", path);
+    public void displayItems(List<FileMeta> items) {
         if (searchAdapter == null) {
             return;
         }
 
-        if (!path.equals(prevPath)) {
-            int pos = ((LinearLayoutManager) recyclerView.getLayoutManager()).findFirstVisibleItemPosition();
-            rememberPos.put(prevPath, pos);
-            LOG.d("rememberPos", path, pos);
-        }
-        prevPath = path;
-
-        if (AppDB.get().isStarFolder(path)) {
-            starIcon.setImageResource(R.drawable.star_1);
-        } else {
-            starIcon.setImageResource(R.drawable.star_2);
-        }
-        TintUtil.setTintImageWithAlpha(starIcon, Color.WHITE);
-
-        starIcon.setOnClickListener(new OnClickListener() {
-
-            @Override
-            public void onClick(View v) {
-                FileMeta fileMeta = AppDB.get().getOrCreate(path);
-                fileMeta.setCusType(FileMetaAdapter.DISPLAY_TYPE_DIRECTORY);
-                fileMeta.setPathTxt(ExtUtils.getFileName(path));
-                DefaultListeners.getOnStarClick(getActivity()).onResultRecive(fileMeta, null);
-                if (AppDB.get().isStarFolder(path)) {
-                    starIcon.setImageResource(R.drawable.star_1);
-                } else {
-                    starIcon.setImageResource(R.drawable.star_2);
-                }
-            }
-        });
-
-        AppState.get().dirLastPath = path;
+        // if (!path.equals(prevPath)) {
+        // int pos = ((LinearLayoutManager)
+        // recyclerView.getLayoutManager()).findFirstVisibleItemPosition();
+        // rememberPos.put(prevPath, pos);
+        // LOG.d("rememberPos", path, pos);
+        // }
+        // prevPath = path;
 
         searchAdapter.clearItems();
-        if (items == null) {
-            if (!ExtUtils.isExteralSD(path)) {
-                items = SearchCore.getFilesAndDirs(path, fragmentType == TYPE_DEFAULT);
-            } else {
-                items = new ArrayList<FileMeta>();
-                if (Build.VERSION.SDK_INT >= 21) {
-
-                    Uri uri = Uri.parse(path);
-
-                    ContentResolver contentResolver = getActivity().getContentResolver();
-                    Uri childrenUri = null;
-
-                    try {
-                        childrenUri = ExtUtils.getChildUri(getContext(), uri);
-
-                        if (childrenUri != null) {
-
-                            LOG.d("newNode uri >> ", uri);
-                            LOG.d("newNode childrenUri >> ", childrenUri);
-
-                            Cursor childCursor = contentResolver.query(childrenUri, new String[] { //
-                                    Document.COLUMN_DISPLAY_NAME, //
-                                    Document.COLUMN_DOCUMENT_ID, //
-                                    Document.COLUMN_ICON, //
-                                    Document.COLUMN_LAST_MODIFIED, //
-                                    Document.COLUMN_MIME_TYPE, //
-                                    Document.COLUMN_SIZE, //
-                                    Document.COLUMN_SUMMARY, //
-                            }, //
-                                    null, null, null); //
-                            try {
-                                while (childCursor.moveToNext()) {
-                                    String COLUMN_DISPLAY_NAME = childCursor.getString(0);
-                                    String COLUMN_DOCUMENT_ID = childCursor.getString(1);
-                                    String COLUMN_ICON = childCursor.getString(2);
-                                    String COLUMN_LAST_MODIFIED = childCursor.getString(3);
-                                    String COLUMN_MIME_TYPE = childCursor.getString(4);
-                                    String COLUMN_SIZE = childCursor.getString(5);
-                                    String COLUMN_SUMMARY = childCursor.getString(6);
-
-                                    LOG.d("found- child 2=", COLUMN_DISPLAY_NAME, COLUMN_DOCUMENT_ID, COLUMN_ICON);
-
-                                    FileMeta meta = new FileMeta();
-                                    meta.setAuthor(SearchFragment2.EMPTY_ID);
-
-                                    final Uri newNode = DocumentsContract.buildDocumentUriUsingTree(uri, COLUMN_DOCUMENT_ID);
-                                    meta.setPath(newNode.toString());
-                                    LOG.d("newNode", newNode);
-
-                                    if (Document.MIME_TYPE_DIR.equals(COLUMN_MIME_TYPE)) {
-                                        meta.setCusType(FileMetaAdapter.DISPLAY_TYPE_DIRECTORY);
-                                        meta.setPathTxt(COLUMN_DISPLAY_NAME);
-                                        meta.setTitle(COLUMN_DISPLAY_NAME);
-
-                                    } else {
-                                        try {
-                                            if (COLUMN_SIZE != null) {
-                                                long size = Long.parseLong(COLUMN_SIZE);
-                                                meta.setSize(size);
-                                                meta.setSizeTxt(ExtUtils.readableFileSize(size));
-                                            }
-                                            if (COLUMN_LAST_MODIFIED != null) {
-                                                meta.setDateTxt(ExtUtils.getDateFormat(Long.parseLong(COLUMN_LAST_MODIFIED)));
-                                            }
-                                        } catch (Exception e) {
-                                            LOG.e(e);
-                                        }
-                                        meta.setExt(ExtUtils.getFileExtension(COLUMN_DISPLAY_NAME));
-
-                                        if (BookType.FB2.is(COLUMN_DISPLAY_NAME)) {
-                                            meta.setTitle(TxtUtils.encode1251(COLUMN_DISPLAY_NAME));
-                                        } else {
-                                            meta.setTitle(COLUMN_DISPLAY_NAME);
-                                        }
-
-                                    }
-                                    items.add(meta);
-
-                                }
-                            } finally {
-                                closeQuietly(childCursor);
-                            }
-                        }
-                    } catch (Exception e) {
-                        LOG.e(e);
-                        Toast.makeText(getActivity(), R.string.incorrect_value, Toast.LENGTH_SHORT).show();
-                    }
-                }
-
-            }
-        }
 
         try {
             if (AppState.get().sortByBrowse == AppState.BR_SORT_BY_PATH) {
@@ -706,10 +778,22 @@ public class BrowseFragment2 extends UIFragment<FileMeta> {
         searchAdapter.getItemsList().addAll(items);
         recyclerView.setAdapter(searchAdapter);
 
+        scroller.postDelayed(new Runnable() {
+
+            @Override
+            public void run() {
+                scroller.fullScroll(HorizontalScrollView.FOCUS_RIGHT);
+            }
+
+        }, 100);
+
+    }
+
+    public void showPathHeader() {
         paths.removeAllViews();
 
-        if (ExtUtils.isExteralSD(path)) {
-            String id = ExtUtils.getExtSDDisplayName(getContext(), path);
+        if (ExtUtils.isExteralSD(displayPath)) {
+            String id = ExtUtils.getExtSDDisplayName(getContext(), displayPath);
 
             TextView slash = new TextView(getActivity());
             slash.setText(id);
@@ -717,7 +801,7 @@ public class BrowseFragment2 extends UIFragment<FileMeta> {
             paths.addView(slash);
         } else {
 
-            final String[] split = path.split("/");
+            final String[] split = displayPath.split("/");
 
             if (split == null || split.length == 0) {
                 TextView slash = new TextView(getActivity());
@@ -759,7 +843,7 @@ public class BrowseFragment2 extends UIFragment<FileMeta> {
                                 builder.append(split[j]);
                             }
                             String itemPath = builder.toString();
-                            setDirPath(itemPath);
+                            displayAnyPath(itemPath);
                         }
                     });
 
@@ -773,14 +857,29 @@ public class BrowseFragment2 extends UIFragment<FileMeta> {
             }
 
         }
-        scroller.postDelayed(new Runnable() {
+
+        if (AppDB.get().isStarFolder(displayPath)) {
+            starIcon.setImageResource(R.drawable.star_1);
+        } else {
+            starIcon.setImageResource(R.drawable.star_2);
+        }
+        TintUtil.setTintImageWithAlpha(starIcon, Color.WHITE);
+
+        starIcon.setOnClickListener(new OnClickListener() {
 
             @Override
-            public void run() {
-                scroller.fullScroll(HorizontalScrollView.FOCUS_RIGHT);
+            public void onClick(View v) {
+                FileMeta fileMeta = AppDB.get().getOrCreate(displayPath);
+                fileMeta.setCusType(FileMetaAdapter.DISPLAY_TYPE_DIRECTORY);
+                fileMeta.setPathTxt(ExtUtils.getFileName(displayPath));
+                DefaultListeners.getOnStarClick(getActivity()).onResultRecive(fileMeta, null);
+                if (AppDB.get().isStarFolder(displayPath)) {
+                    starIcon.setImageResource(R.drawable.star_1);
+                } else {
+                    starIcon.setImageResource(R.drawable.star_2);
+                }
             }
-
-        }, 100);
+        });
 
     }
 

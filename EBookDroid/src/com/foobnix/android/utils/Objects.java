@@ -25,7 +25,7 @@ public class Objects {
 
         Editor edit = sp.edit();
         for (final Field f : obj.getClass().getDeclaredFields()) {
-            if (Modifier.isStatic(f.getModifiers()) || Modifier.isPrivate(f.getModifiers())) {
+            if (Modifier.isStatic(f.getModifiers()) || Modifier.isPrivate(f.getModifiers()) || Modifier.isTransient(f.getModifiers())) {
                 continue;
             }
             try {
@@ -67,7 +67,7 @@ public class Objects {
     public static void loadFromSp(Object obj, SharedPreferences sp) {
 
         for (final Field f : obj.getClass().getDeclaredFields()) {
-            if (Modifier.isStatic(f.getModifiers()) || Modifier.isPrivate(f.getModifiers())) {
+            if (Modifier.isStatic(f.getModifiers()) || Modifier.isPrivate(f.getModifiers()) || Modifier.isTransient(f.getModifiers())) {
                 continue;
             }
 

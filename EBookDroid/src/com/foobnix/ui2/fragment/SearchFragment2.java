@@ -12,10 +12,6 @@ import java.util.Stack;
 
 import org.greenrobot.eventbus.Subscribe;
 
-import com.cloudrail.si.CloudRail;
-import com.cloudrail.si.exceptions.ParseException;
-import com.cloudrail.si.services.Dropbox;
-import com.cloudrail.si.types.CloudMetaData;
 import com.foobnix.android.utils.BaseItemLayoutAdapter;
 import com.foobnix.android.utils.Dips;
 import com.foobnix.android.utils.Keyboards;
@@ -50,7 +46,6 @@ import android.content.DialogInterface;
 import android.content.DialogInterface.OnDismissListener;
 import android.content.Intent;
 import android.content.IntentFilter;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v4.content.LocalBroadcastManager;
@@ -310,52 +305,6 @@ public class SearchFragment2 extends UIFragment<FileMeta> {
         });
 
         return view;
-
-    }
-
-    private String saveAsString;
-
-    public void test() {
-        CloudRail.setAppKey("5817abf0c40abf10ce9a04c5");
-
-        final Dropbox cs = new Dropbox(getActivity(), "wp5uvfelqbdnwkg", "e7hfer9dh5r18tz", "https://auth.cloudrail.com/Librera", "foobnix");
-
-        // cs.useAdvancedAuthentication();
-
-        if (saveAsString != null) {
-            try {
-                cs.loadAsString(saveAsString);
-                LOG.d("CloudStorage", "load", saveAsString);
-            } catch (ParseException e) {
-                LOG.d(e);
-            }
-        }
-
-        new AsyncTask() {
-            String userLogin, userName;
-            private List<CloudMetaData> childrens;
-
-            @Override
-            protected Object doInBackground(Object... params) {
-                userLogin = cs.getUserLogin();
-                userName = cs.getUserName();
-                childrens = cs.getChildren("/");
-                LOG.d("CloudStorage", userLogin, userName);
-                // saveAsString = cs.saveAsString();
-                LOG.d("CloudStorage", "save", saveAsString);
-                return true;
-            }
-
-            @Override
-            protected void onPostExecute(Object result) {
-                LOG.d("CloudStorage", userLogin, userName);
-                for (int i = 0; i < childrens.size(); i++) {
-                    CloudMetaData meta = childrens.get(i);
-                    LOG.d("CloudStorage", "Child", meta.getName(), "f:", meta.getFolder(), meta);
-                }
-            };
-
-        }.execute();
 
     }
 

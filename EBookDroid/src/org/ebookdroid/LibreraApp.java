@@ -15,6 +15,7 @@ import com.foobnix.ext.CacheZipUtils;
 import com.foobnix.pdf.info.ADS;
 import com.foobnix.pdf.info.AppSharedPreferences;
 import com.foobnix.pdf.info.AppsConfig;
+import com.foobnix.pdf.info.Clouds;
 import com.foobnix.pdf.info.ExtUtils;
 import com.foobnix.pdf.info.IMG;
 import com.foobnix.pdf.info.R;
@@ -65,6 +66,7 @@ public class LibreraApp extends Application {
 
         SettingsManager.init(this);
         CacheManager.init(this);
+        Clouds.get().init(this);
 
         LOG.d("Build", "Build.MANUFACTURER", Build.MANUFACTURER);
         LOG.d("Build", "Build.PRODUCT", Build.PRODUCT);
@@ -90,7 +92,7 @@ public class LibreraApp extends Application {
             LOG.e(e);
         }
 
-        if (AppsConfig.IS_BETA) {
+        if (AppsConfig.IS_BETA && !LOG.isEnable) {
             Thread.setDefaultUncaughtExceptionHandler(new Thread.UncaughtExceptionHandler() {
                 @Override
                 public void uncaughtException(Thread thread, final Throwable e) {

@@ -99,8 +99,10 @@ public class MainTabs2 extends AdsFragmentActivity {
             finish();
             return;
         }
-        if (intent.getCategories().contains("android.intent.category.BROWSABLE")) {
+        if (intent.getCategories() != null && intent.getCategories().contains("android.intent.category.BROWSABLE")) {
             CloudRail.setAuthenticationResponse(intent);
+            LOG.d("CloudRail response", intent);
+
         }
 
         checkGoToPage(intent);
@@ -159,7 +161,7 @@ public class MainTabs2 extends AdsFragmentActivity {
             UIFragment uiFragment = tabFragments.get(pager.getCurrentItem());
             if (uiFragment instanceof BrowseFragment2) {
                 BrowseFragment2 fr = (BrowseFragment2) uiFragment;
-                fr.setDirPath(pathSAF);
+                fr.displayAnyPath(pathSAF);
             }
         }
 

@@ -211,6 +211,7 @@ public abstract class UIFragment<T> extends Fragment {
             return;
         }
         if (AsyncTasks.isFinished(execute)) {
+
             execute = new AsyncTask<Object, Object, List<T>>() {
                 @Override
                 protected List<T> doInBackground(Object... params) {
@@ -226,13 +227,21 @@ public abstract class UIFragment<T> extends Fragment {
                 @Override
                 protected void onPreExecute() {
                     if (progressBar != null) {
-                        progressBar.setVisibility(View.VISIBLE);
+                        handler.postDelayed(new Runnable() {
+
+                            @Override
+                            public void run() {
+                                progressBar.setVisibility(View.VISIBLE);
+                            }
+                        }, 100);
+
                     }
                 };
 
                 @Override
                 protected void onPostExecute(List<T> result) {
                     if (progressBar != null) {
+                        handler.removeCallbacksAndMessages(null);
                         progressBar.setVisibility(View.GONE);
                     }
                     if (getActivity() != null) {

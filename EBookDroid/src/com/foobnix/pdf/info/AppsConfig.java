@@ -44,7 +44,10 @@ public class AppsConfig {
 
     static Random random = new Random();
 
+
     public static void init(final Context a) {
+
+
         MUPDF_VERSION = MuPdfDocument.getMupdfVersion();
         final String packageName = a.getPackageName();
         LOG.d("init packageName", packageName);
@@ -117,6 +120,8 @@ public class AppsConfig {
             EP_INTERSTITIAL = "0928de1630a1452b64eaab1813d3af64";
             EP_BANNER_NATIVE = "ec5086312cf4959dcc54fe8a8ad15401";
         }
+
+
 
     }
 

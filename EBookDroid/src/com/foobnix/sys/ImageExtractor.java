@@ -38,6 +38,7 @@ import com.foobnix.pdf.info.wrapper.MagicHelper;
 import com.foobnix.pdf.search.activity.PageImageState;
 import com.foobnix.ui2.AppDB;
 import com.foobnix.ui2.FileMetaCore;
+import com.foobnix.ui2.fragment.BrowseFragment2;
 import com.nostra13.universalimageloader.core.download.BaseImageDownloader;
 import com.nostra13.universalimageloader.core.download.ImageDownloader;
 
@@ -377,6 +378,10 @@ public class ImageExtractor implements ImageDownloader {
             if (ExtUtils.isImagePath(path)) {
                 return c.getContentResolver().openInputStream(Uri.parse(path));
             }
+            return messageFile("", "");
+        }
+
+        if (path.startsWith(BrowseFragment2.PREFIX_CLOUD)) {
             return messageFile("", "");
         }
 
