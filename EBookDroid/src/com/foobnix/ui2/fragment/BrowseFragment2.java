@@ -571,11 +571,12 @@ public class BrowseFragment2 extends UIFragment<FileMeta> {
 
                 meta.setTitle(name);
                 meta.setPathTxt(name);
-                meta.setSize(size);
-                meta.setDate(modifiedAt);
 
+                meta.setSize(size);
                 meta.setSizeTxt(ExtUtils.readableFileSize(size));
+
                 if (modifiedAt != null) {
+                    meta.setDate(modifiedAt);
                     meta.setDateTxt(ExtUtils.getDateFormat(modifiedAt));
                 }
 

@@ -97,7 +97,7 @@ public class DefaultListeners {
                 if (isTagCicked(a, result)) {
                     return true;
                 }
-                boolean isFolder = result.getCusType() != null && result.getCusType() == FileMetaAdapter.DISPLAY_TYPE_DIRECTORY;
+                boolean isFolder = AppDB.get().isFolder(result);
 
                 if (!isFolder && result.getPath().startsWith(Clouds.PREFIX_CLOUD_DROPBOX)) {
 
@@ -105,9 +105,8 @@ public class DefaultListeners {
 
                         @Override
                         public void run() {
-                            IMG.clearDiscCache();
-                            IMG.clearMemoryCache();
-                            // TempHolder.listHash++;
+                            IMG.clearCache(result.getPath());
+
 
                             Intent intent = new Intent(UIFragment.INTENT_TINT_CHANGE)//
                                     .putExtra(MainTabs2.EXTRA_NOTIFY_REFRESH, true)//

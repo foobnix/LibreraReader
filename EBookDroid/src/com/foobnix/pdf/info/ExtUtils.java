@@ -519,6 +519,10 @@ public class ExtUtils {
     private static Context context;
 
     public static boolean doifFileExists(Context c, File file) {
+        if (Clouds.isCloud(file.getPath())) {
+            return true;
+        }
+
         if (file != null && file.isFile()) {
             return true;
         }

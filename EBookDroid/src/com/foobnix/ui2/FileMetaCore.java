@@ -54,17 +54,14 @@ public class FileMetaCore {
             LOG.d("checkOrCreateMetaInfo", path);
             if (new File(path).isFile()) {
                 FileMeta fileMeta = AppDB.get().getOrCreate(path);
-                if (TxtUtils.isEmpty(fileMeta.getTitle())) {
-
-                    EbookMeta ebookMeta = FileMetaCore.get().getEbookMeta(path, CacheDir.ZipApp, false);
+                if (fileMeta.getState() != FileMetaCore.STATE_FULL) {
+                    EbookMeta ebookMeta = FileMetaCore.get().getEbookMeta(path, CacheDir.ZipApp, true);
 
                     FileMetaCore.get().upadteBasicMeta(fileMeta, new File(path));
                     FileMetaCore.get().udpateFullMeta(fileMeta, ebookMeta);
 
                     AppDB.get().update(fileMeta);
                     LOG.d("checkOrCreateMetaInfo", "UPDATE", path);
-                } else {
-                    LOG.d("checkOrCreateMetaInfo", "LOAD", path);
                 }
             }
         } catch (Exception e) {

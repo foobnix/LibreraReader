@@ -15,15 +15,15 @@
  *******************************************************************************/
 package com.nostra13.universalimageloader.utils;
 
-import android.graphics.Bitmap;
+import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.List;
 
 import com.nostra13.universalimageloader.cache.memory.MemoryCache;
 import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
 import com.nostra13.universalimageloader.core.assist.ImageSize;
 
-import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.List;
+import android.graphics.Bitmap;
 
 /**
  * Utility for generating of keys for memory cache, key comparing and other work with memory cache
@@ -44,8 +44,15 @@ public final class MemoryCacheUtils {
 	 * Pattern for cache key - <b>[imageUri]_[width]x[height]</b>.
 	 */
 	public static String generateKey(String imageUri, ImageSize targetSize) {
+        if (true) {
+            return generateKeyNoTarget(imageUri);
+        }
 		return new StringBuilder(imageUri).append(URI_AND_SIZE_SEPARATOR).append(targetSize.getWidth()).append(WIDTH_AND_HEIGHT_SEPARATOR).append(targetSize.getHeight()).toString();
 	}
+
+    public static String generateKeyNoTarget(String imageUri) {
+        return new StringBuilder(imageUri).toString();
+    }
 
 	public static Comparator<String> createFuzzyKeyComparator() {
 		return new Comparator<String>() {

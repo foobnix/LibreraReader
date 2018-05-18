@@ -45,7 +45,7 @@ public class LOG {
 
     public static String ojectAsString(Object obj) {
         if (!isEnable) {
-            return "";
+            return null;
         }
         StringBuffer out = new StringBuffer();
 

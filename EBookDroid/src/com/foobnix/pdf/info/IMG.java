@@ -15,6 +15,7 @@ import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
 import com.nostra13.universalimageloader.core.assist.ImageScaleType;
 import com.nostra13.universalimageloader.core.listener.ImageLoadingListener;
+import com.nostra13.universalimageloader.utils.MemoryCacheUtils;
 
 import android.content.Context;
 import android.database.Cursor;
@@ -46,7 +47,6 @@ public class IMG {
 
     public static void init(Context context) {
         IMG.context = context;
-
 
         bookBGWithMark = context.getResources().getDrawable(R.drawable.bookeffect2);
         bookBGNoMark = context.getResources().getDrawable(R.drawable.bookeffect1);
@@ -268,6 +268,19 @@ public class IMG {
         }
     }
 
+    public static void clearCache(String path) {
+        try {
+            String url = IMG.toUrl(path, ImageExtractor.COVER_PAGE, IMG.getImageSize());
+
+            String key = MemoryCacheUtils.generateKeyNoTarget(url);
+            ImageLoader.getInstance().getMemoryCache().remove(key);
+
+            ImageLoader.getInstance().getDiskCache().remove(url);
+        } catch (Exception e) {
+            LOG.e(e);
+        }
+    }
+
     private static String pattern = Pattern.quote("||");
 
     public static String getRealPathFromURI(final Context c, final Uri contentURI) {
@@ -282,13 +295,13 @@ public class IMG {
         }
     }
 
-
     public static void getCoverPage(ImageView img, String path, int width) {
         ImageLoader.getInstance().displayImage(IMG.toUrl(path, ImageExtractor.COVER_PAGE, width), img);
     }
 
     public static void getCoverPageWithEffect(ImageView img, String path, int width, ImageLoadingListener listener) {
-        ImageLoader.getInstance().displayImage(IMG.toUrl(path, ImageExtractor.COVER_PAGE, width), img, IMG.displayCacheMemoryDisc, listener);
+        String url = IMG.toUrl(path, ImageExtractor.COVER_PAGE, width);
+        ImageLoader.getInstance().displayImage(url, img, IMG.displayCacheMemoryDisc, listener);
     }
 
     public static void loadCoverPageWithEffect(String path, int width) {
