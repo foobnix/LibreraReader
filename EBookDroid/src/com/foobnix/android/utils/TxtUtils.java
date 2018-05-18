@@ -28,6 +28,13 @@ public class TxtUtils {
     public static String LONG_DASH = "–";
     public static String SMALL_DASH = " - ";
 
+    public static String trim(String string) {
+        if (string == null) {
+            return null;
+        }
+        return string.trim();
+    }
+
     public static String lastTwoPath(String txt) {
         if (TxtUtils.isEmpty(txt)) {
             return "[]";
