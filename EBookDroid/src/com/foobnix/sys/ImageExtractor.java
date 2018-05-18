@@ -100,15 +100,17 @@ public class ImageExtractor implements ImageDownloader {
         LOG.d("proccessCoverPage fileMeta", fileMeta, pageUrl);
 
         EbookMeta ebookMeta = FileMetaCore.get().getEbookMeta(path, CacheDir.ZipApp, fileMeta.getState() != FileMetaCore.STATE_FULL);
+        String unZipPath = ebookMeta.getUnzipPath();
 
         if (fileMeta.getState() != FileMetaCore.STATE_FULL) {
-            FileMetaCore.get().upadteBasicMeta(fileMeta, new File(path));
+            FileMetaCore.get().upadteBasicMeta(fileMeta, new File(unZipPath));
             FileMetaCore.get().udpateFullMeta(fileMeta, ebookMeta);
 
             AppDB.get().updateOrSave(fileMeta);
         }
 
-        String unZipPath = ebookMeta.getUnzipPath();
+        pageUrl.setPath(unZipPath);
+
 
         Bitmap cover = null;
 
