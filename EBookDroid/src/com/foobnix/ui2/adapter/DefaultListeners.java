@@ -9,8 +9,11 @@ import com.foobnix.android.utils.ResultResponse;
 import com.foobnix.android.utils.ResultResponse2;
 import com.foobnix.dao2.FileMeta;
 import com.foobnix.pdf.info.ADS;
+import com.foobnix.pdf.info.Clouds;
 import com.foobnix.pdf.info.ExtUtils;
+import com.foobnix.pdf.info.IMG;
 import com.foobnix.pdf.info.R;
+import com.foobnix.pdf.info.view.Downloader;
 import com.foobnix.pdf.info.widget.FileInformationDialog;
 import com.foobnix.pdf.info.widget.RecentUpates;
 import com.foobnix.pdf.info.widget.ShareDialog;
@@ -90,14 +93,36 @@ public class DefaultListeners {
         return new ResultResponse<FileMeta>() {
 
             @Override
-            public boolean onResultRecive(FileMeta result) {
+            public boolean onResultRecive(final FileMeta result) {
                 if (isTagCicked(a, result)) {
                     return true;
                 }
+                boolean isFolder = result.getCusType() != null && result.getCusType() == FileMetaAdapter.DISPLAY_TYPE_DIRECTORY;
 
-                final File item = new File(result.getPath());
-                if (item.isDirectory()) {
+                if (!isFolder && result.getPath().startsWith(Clouds.PREFIX_CLOUD_DROPBOX)) {
+
+                    Downloader.openOrDownload(a, result, new Runnable() {
+
+                        @Override
+                        public void run() {
+                            IMG.clearDiscCache();
+                            IMG.clearMemoryCache();
+                            // TempHolder.listHash++;
+
+                            Intent intent = new Intent(UIFragment.INTENT_TINT_CHANGE)//
+                                    .putExtra(MainTabs2.EXTRA_NOTIFY_REFRESH, true)//
+                                    .putExtra(MainTabs2.EXTRA_PAGE_NUMBER, UITab.getCurrentTabIndex(UITab.BrowseFragment));//
+                            LocalBroadcastManager.getInstance(a).sendBroadcast(intent);
+                        }
+                    });
+
+                    return false;
+                }
+
+                // final File item = new File(result.getPath());
+                if (isFolder) {
                     Intent intent = new Intent(UIFragment.INTENT_TINT_CHANGE)//
+
                             .putExtra(MainTabs2.EXTRA_PAGE_NUMBER, UITab.getCurrentTabIndex(UITab.BrowseFragment));//
                     LocalBroadcastManager.getInstance(a).sendBroadcast(intent);
 

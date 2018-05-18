@@ -382,15 +382,19 @@ public class ImageExtractor implements ImageDownloader {
         }
 
         if (path.startsWith(Clouds.PREFIX_CLOUD_DROPBOX)) {
-            String imgPath = Clouds.getPath(path);
-            LOG.d("Dropbox getThumbnail", imgPath);
-            return ExtUtils.isImagePath(imgPath) ? Clouds.get().dropbox.getThumbnail(imgPath) : messageFile("", "");
+            // String imgPath = Clouds.getPath(path);
+            // LOG.d("Dropbox getThumbnail", imgPath);
+            // return ExtUtils.isImagePath(imgPath) ?
+            // Clouds.get().dropbox.getThumbnail(imgPath) : messageFile("", "");
+            if (!Clouds.isCacheFileExist(path)) {
+                return messageFile("", "");
+            }
         }
 
-        File file = new File(path);
+        // File file = new File(path);
         try {
 
-            if (ExtUtils.isImageFile(file)) {
+            if (ExtUtils.isImagePath(path)) {
                 FileMeta fileMeta = AppDB.get().getOrCreate(path);
                 FileMetaCore.get().upadteBasicMeta(fileMeta, new File(path));
                 AppDB.get().update(fileMeta);
@@ -405,9 +409,10 @@ public class ImageExtractor implements ImageDownloader {
                 return messageFile("#json", "");
             }
 
-            if (!file.isFile()) {
-                return messageFile("#no file", "");
-            }
+            // if (!file.isFile()) {
+            // return messageFile("#no file", "");
+            // }
+
             sp.edit().putBoolean("" + imageUri.hashCode(), true).commit();
 
             int page = pageUrl.getPage();
@@ -469,7 +474,7 @@ public class ImageExtractor implements ImageDownloader {
             }
 
         } catch (MuPdfPasswordException e) {
-            return messageFile("#password", file.getName());
+            return messageFile("#password", ExtUtils.getFileName(path));
         } catch (final Exception e) {
             LOG.e(e);
             return messageFile("#error", "");

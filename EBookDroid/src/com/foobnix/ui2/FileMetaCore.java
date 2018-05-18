@@ -23,6 +23,7 @@ import com.foobnix.ext.EpubExtractor;
 import com.foobnix.ext.Fb2Extractor;
 import com.foobnix.ext.MobiExtract;
 import com.foobnix.ext.PdfExtract;
+import com.foobnix.pdf.info.Clouds;
 import com.foobnix.pdf.info.ExtUtils;
 import com.foobnix.pdf.info.wrapper.AppState;
 
@@ -72,6 +73,11 @@ public class FileMetaCore {
     }
 
     public EbookMeta getEbookMeta(String path, CacheDir folder, boolean extract) {
+
+        if (Clouds.isCacheFileExist(path)) {
+            path = Clouds.getCacheFile(path).getPath();
+        }
+
         EbookMeta ebookMeta = EbookMeta.Empty();
         try {
             if (path.toLowerCase(Locale.US).endsWith(".zip")) {

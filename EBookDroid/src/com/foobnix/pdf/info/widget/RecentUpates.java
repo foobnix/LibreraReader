@@ -49,8 +49,8 @@ public class RecentUpates {
 
         if (Build.VERSION.SDK_INT >= 25) {
             try {
-                FileMeta recentLast = AppDB.get().getRecentLast();
-                if (recentLast != null) {
+                FileMeta recentLast = AppDB.get().getRecentLastNoFolder();
+                if (recentLast != null && TxtUtils.isNotEmpty(recentLast.getTitle())) {
                     ShortcutManager shortcutManager = c.getSystemService(ShortcutManager.class);
                     String url = IMG.toUrl(recentLast.getPath(), ImageExtractor.COVER_PAGE, IMG.getImageSize());
                     Bitmap image = ImageLoader.getInstance().loadImageSync(url, IMG.displayCacheMemoryDisc);

@@ -145,6 +145,11 @@ public class AppDB {
         return fileMetaDao;
     }
 
+    public boolean isFolder(FileMeta meta) {
+        return meta.getCusType() != null && meta.getCusType() == FileMetaAdapter.DISPLAY_TYPE_DIRECTORY;
+
+    }
+
     public void open(Context c) {
         DatabaseUpgradeHelper helper = new DatabaseUpgradeHelper(c, DB_NAME);
 
@@ -213,7 +218,7 @@ public class AppDB {
         return items;
     }
 
-    public FileMeta getRecentLast() {
+    public FileMeta getRecentLastNoFolder() {
         List<FileMeta> list = fileMetaDao.queryBuilder().where(FileMetaDao.Properties.IsRecent.eq(1)).orderDesc(FileMetaDao.Properties.IsRecentTime).limit(1).list();
         removeNotExist(list);
         if (list == null || list.isEmpty()) {
@@ -343,10 +348,10 @@ public class AppDB {
     public synchronized void updateOrSave(FileMeta meta) {
         if (fileMetaDao.load(meta.getPath()) == null) {
             fileMetaDao.insert(meta);
-            LOG.d("updateOrSave1", meta.getAuthor(), meta.getPages());
+            LOG.d("updateOrSave insert", LOG.ojectAsString(meta));
         } else {
             fileMetaDao.update(meta);
-            LOG.d("updateOrSave2", meta.getAuthor(), meta.getPages());
+            LOG.d("updateOrSave update", LOG.ojectAsString(meta));
         }
 
     }

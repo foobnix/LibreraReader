@@ -10,7 +10,6 @@ import java.util.Map;
 
 import org.ebookdroid.BookType;
 
-import com.cloudrail.si.exceptions.AuthenticationException;
 import com.cloudrail.si.interfaces.CloudStorage;
 import com.cloudrail.si.types.CloudMetaData;
 import com.foobnix.android.utils.LOG;
@@ -366,8 +365,15 @@ public class BrowseFragment2 extends UIFragment<FileMeta> {
                                                 displayAnyPath(Clouds.PREFIX_CLOUD_DROPBOX + "/");
                                             }
                                         });
-                                    } catch (AuthenticationException e) {
+                                    } catch (Exception e) {
                                         LOG.d(e);
+                                        BrowseFragment2.this.getActivity().runOnUiThread(new Runnable() {
+
+                                            @Override
+                                            public void run() {
+                                                Toast.makeText(getActivity(), R.string.msg_unexpected_error, Toast.LENGTH_SHORT).show();
+                                            }
+                                        });
                                     }
 
                                 };

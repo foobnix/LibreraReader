@@ -1,10 +1,13 @@
 package com.foobnix.pdf.info;
 
+import java.io.File;
+
 import com.cloudrail.si.CloudRail;
 import com.cloudrail.si.interfaces.CloudStorage;
 import com.cloudrail.si.services.Dropbox;
 import com.foobnix.android.utils.LOG;
 import com.foobnix.android.utils.Objects;
+import com.foobnix.pdf.info.wrapper.AppState;
 
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -22,6 +25,31 @@ public class Clouds {
     transient public CloudStorage dropbox;
 
     public String dropboxToken;
+
+    public static boolean isCloud(String path) {
+        return path.startsWith(PREFIX_CLOUD);
+    }
+
+    public static boolean isCacheFileExist(String path) {
+        if (!path.startsWith(PREFIX_CLOUD)) {
+            return false;
+        }
+        String displayName = ExtUtils.getFileName(path);
+        final File file = new File(AppState.get().downlodsPath, displayName);
+        return file.isFile() && file.length() > 0;
+    }
+
+    public static File getCacheFile(String path) {
+        if (!path.startsWith(PREFIX_CLOUD)) {
+            return null;
+        }
+        String displayName = ExtUtils.getFileName(path);
+        File file = new File(AppState.get().downlodsPath, displayName);
+        if (file.isFile() && file.length() > 0) {
+            return file;
+        }
+        return null;
+    }
 
     public static String getPath(String pathWithPrefix) {
         return pathWithPrefix.replace(PREFIX_CLOUD_DROPBOX, "").replace(PREFIX_CLOUD_GDRIVE, "").replace(PREFIX_CLOUD_ONEDRIVE, "");

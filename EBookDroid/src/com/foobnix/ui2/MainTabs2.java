@@ -80,6 +80,7 @@ public class MainTabs2 extends AdsFragmentActivity {
     public static final String EXTRA_SHOW_TABS = "EXTRA_SHOW_TABS";
     public static String EXTRA_PAGE_NUMBER = "EXTRA_PAGE_NUMBER";
     public static String EXTRA_SEACH_TEXT = "EXTRA_SEACH_TEXT";
+    public static String EXTRA_NOTIFY_REFRESH = "EXTRA_NOTIFY_REFRESH";
     ViewPager pager;
     List<UIFragment> tabFragments;
 
@@ -103,13 +104,16 @@ public class MainTabs2 extends AdsFragmentActivity {
             CloudRail.setAuthenticationResponse(intent);
             LOG.d("CloudRail response", intent);
 
+            Intent intent1 = new Intent(UIFragment.INTENT_TINT_CHANGE)//
+                    .putExtra(MainTabs2.EXTRA_PAGE_NUMBER, UITab.getCurrentTabIndex(UITab.BrowseFragment));//
+
+            LocalBroadcastManager.getInstance(this).sendBroadcast(intent1);
+
         }
 
         checkGoToPage(intent);
 
     }
-
-
 
     public void testIntentHandler() {
         if (getIntent().hasExtra(RecentBooksWidget.TEST_LOCALE)) {
@@ -411,7 +415,6 @@ public class MainTabs2 extends AdsFragmentActivity {
 
     }
 
-
     @Subscribe
     public void onMessegeBrightness(MessegeBrightness msg) {
         BrightnessHelper.onMessegeBrightness(msg, toastBrightnessText, overlay);
@@ -424,6 +427,10 @@ public class MainTabs2 extends AdsFragmentActivity {
             int pos = intent.getIntExtra(EXTRA_PAGE_NUMBER, -1);
             if (pos != -1) {
                 pager.setCurrentItem(pos);
+                if (intent.getBooleanExtra(EXTRA_NOTIFY_REFRESH, false)) {
+                    onResume();
+                }
+
             } else {
                 if (AppState.get().isInkMode) {
                     TintUtil.setTintImageNoAlpha(imageMenu, TintUtil.color);

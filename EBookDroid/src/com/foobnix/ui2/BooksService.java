@@ -9,6 +9,7 @@ import com.foobnix.dao2.FileMeta;
 import com.foobnix.ext.CacheZipUtils.CacheDir;
 import com.foobnix.ext.EbookMeta;
 import com.foobnix.pdf.info.AppSharedPreferences;
+import com.foobnix.pdf.info.Clouds;
 import com.foobnix.pdf.info.ExtUtils;
 import com.foobnix.pdf.info.IMG;
 import com.foobnix.pdf.info.io.SearchCore;
@@ -65,6 +66,9 @@ public class BooksService extends IntentService {
             if (ACTION_REMOVE_DELETED.equals(intent.getAction())) {
                 List<FileMeta> list = AppDB.get().getAll();
                 for (FileMeta meta : list) {
+                    if (Clouds.isCloud(meta.getPath())) {
+                        continue;
+                    }
                     File bookFile = new File(meta.getPath());
                     if (!bookFile.exists()) {
                         AppDB.get().delete(meta);

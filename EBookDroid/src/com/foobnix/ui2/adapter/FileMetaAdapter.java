@@ -55,6 +55,7 @@ public class FileMetaAdapter extends AppRecycleAdapter<FileMeta, RecyclerView.Vi
     public static final int DISPLAY_TYPE_FILE = 2;
     public static final int DISPLAY_TYPE_DIRECTORY = 3;
     public static final int DISPALY_TYPE_LAYOUT_STARS = 4;
+    public static final int DISPLAY_TYPE_NONE = -1;
 
     public static final int DISPALY_TYPE_LAYOUT_TITLE_FOLDERS = 5;
     public static final int DISPALY_TYPE_LAYOUT_TITLE_BOOKS = 6;
