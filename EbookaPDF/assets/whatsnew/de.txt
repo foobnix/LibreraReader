@@ -1,6 +1,2 @@
-* Viele Verbesserungen nach Ihren Wünschen, zusammen machen wir den besten Buchleser und PDF-Reader. 
-* Zusätzliche Schriftarten (zum Beispiel für Schachbücher) 
-* Reduzierte Anwendungsgröße 
-* Verbesserte Symbole und Benutzeroberfläche 
-* Sortiert Bücher nach Dateityp 
-* Glattes horizontales Scrollen
+* Viele Verbesserungen durch Benutzer-Feedback 
+* Unterstützung für Cloud-Speicher: Dropbox, Google Drive, Microsoft OneDrive.

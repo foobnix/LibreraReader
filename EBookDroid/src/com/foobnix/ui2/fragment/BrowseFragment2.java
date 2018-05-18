@@ -766,8 +766,13 @@ public class BrowseFragment2 extends UIFragment<FileMeta> {
         } else {
             File file = new File(displayPath);
             String path = file.getParent();
+
             if (TxtUtils.isEmpty(path)) {
-                path = "/";
+                return false;
+            }
+
+            if (TxtUtils.isEmpty(path) || !path.contains("/")) {
+                path = Clouds.getPrefix(displayPath) + "/";
             }
 
             LOG.d("parent", path);
@@ -775,8 +780,8 @@ public class BrowseFragment2 extends UIFragment<FileMeta> {
             int pos = rememberPos.get(path) == null ? 0 : rememberPos.get(path);
             displayAnyPath(path);
             recyclerView.scrollToPosition(pos);
+            return true;
         }
-        return false;
     }
 
     public void displayAnyPath(String path) {

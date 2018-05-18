@@ -1,6 +1,2 @@
-* Veľa vylepšení podľa vašich želaní, spoločne budeme robiť najlepšie čitateľ knihy a PDF čítačku. 
-* Ďalšie písma (napríklad pre šachové knihy) 
-* Znížená veľkosť aplikácie 
-* Vylepšené ikony a používateľské rozhranie 
-* Zoradiť knihy podľa typu súboru 
-* Hladký horizontálny rolovanie
+* Veľa vylepšení spätnou väzbou od používateľov 
+* Podpora úložiska cloud: Dropbox, Google Drive, Microsoft OneDrive.

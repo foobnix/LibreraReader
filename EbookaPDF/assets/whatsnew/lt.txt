@@ -1,6 +1,1 @@
-* Daugybė patobulinimų pagal jūsų pageidavimus kartu sukursime geriausią knygų skaitytuvą ir PDF skaitytuvą. 
-* Papildomi šriftai (pvz., Šachmatų knygoms) 
-* Sumažintas programos dydis 
-* Patobulintos piktogramos ir vartotojo sąsaja 
-* Rūšiuoti knygas pagal failo tipą 
-* Lygus horizontalus slinkimas
+* Daugybė vartotojų atsiliepimų patobulinimų.Debesis saugojimo palaikymas:Dropbox,Google diskas,Microsoft OneDrive.

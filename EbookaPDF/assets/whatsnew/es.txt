@@ -1,6 +1,2 @@
-* Muchas mejoras de acuerdo a sus deseos, juntos haremos el mejor lector de libros y lector de PDF. 
-* Fuentes adicionales (por ejemplo, para libros de ajedrez) 
-* Tamaño de aplicación reducido 
-* Iconos mejorados e interfaz de usuario 
-* Ordenar libros por tipo de archivo 
-* Desplazamiento horizontal suave
+* Muchas mejoras por comentarios de los usuarios 
+* Soporte para almacenamiento en la nube: Dropbox, Google Drive, Microsoft OneDrive.

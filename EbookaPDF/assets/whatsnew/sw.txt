@@ -1,6 +1,2 @@
-* Maboresho mengi kulingana na matakwa yako, pamoja tutatengeneza msomaji bora wa Kitabu na msomaji wa PDF. 
-* Fonts za ziada (kwa mfano kwa vitabu vya chess) 
-* Kupunguza ukubwa wa maombi 
-* Icons zilizoboreshwa na interface ya mtumiaji 
-* Weka vitabu kwa aina ya faili 
-* Kutafuta kando ya usawa
+* Maboresho mengi na maoni ya mtumiaji 
+* Msaada kwa hifadhi ya wingu: Dropbox, Google Drive, Microsoft OneDrive.

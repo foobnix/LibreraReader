@@ -1,6 +1,2 @@
-* İsteklerinize göre birçok iyileştirme, birlikte en iyi Kitap okuyucusunu ve PDF okuyucuyu yapacağız. 
-* Ek yazı tipleri (örneğin satranç kitapları için) 
-* Azaltılmış uygulama boyutu 
-* Geliştirilmiş simgeler ve kullanıcı arabirimi 
-* Dosyaları dosya türüne göre sırala 
-* Düz yatay kaydırma
+* Kullanıcı geri bildirimlerine göre birçok iyileştirme 
+* Bulut depolama desteği: Dropbox, Google Drive, Microsoft OneDrive.

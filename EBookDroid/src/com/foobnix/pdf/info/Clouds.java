@@ -125,19 +125,19 @@ public class Clouds {
         Objects.loadFromSp(this, sp);
 
         // https://www.dropbox.com/developers/apps
-        dropbox = new Dropbox(c, "wp5uvfelqbdnwkg", "e7hfer9dh5r18tz", "https://auth.cloudrail.com/Librera", "foobnix");
+        dropbox = new Dropbox(c, "wp5uvfelqbdnwkg", "e7hfer9dh5r18tz", "https://auth.cloudrail.com/Librera", "");
         ((Dropbox) dropbox).useAdvancedAuthentication();
 
         String key = LOG.isEnable ? //
                 "744830629623-imfdo21enh5ckldo5orhqg1sujk2cn9v.apps.googleusercontent.com" : //
                 "961762082517-dgsen03hb73s6oh59ovivcansatu16lc.apps.googleusercontent.com"; //
 
-        googleDrive = new GoogleDrive(c, key, "", "com.foobnix.pdf.reader:/auth", "foobnix");
+        googleDrive = new GoogleDrive(c, key, "", "com.foobnix.pdf.reader:/auth", "");
         ((GoogleDrive) googleDrive).useAdvancedAuthentication();
 
         // https://apps.dev.microsoft.com/#/application
-        oneDrive = new OneDrive(c, "e5017cc6-0a84-4007-92ae-cfb9509d40db", "imhVPQO635[{xqdrPUN26[%", "https://www.cloudrailauth.com/auth", "foobnix");
-        ((GoogleDrive) googleDrive).useAdvancedAuthentication();
+        oneDrive = new OneDrive(c, "e5017cc6-0a84-4007-92ae-cfb9509d40db", "imhVPQO635[{xqdrPUN26[%", "https://auth.cloudrail.com/Librera", "");
+        ((OneDrive) oneDrive).useAdvancedAuthentication();
 
         try {
             dropbox.loadAsString(dropboxToken);
@@ -147,6 +147,12 @@ public class Clouds {
 
         try {
             googleDrive.loadAsString(googleDriveToken);
+        } catch (Exception e) {
+            LOG.e(e);
+        }
+
+        try {
+            oneDrive.loadAsString(oneDriveToken);
         } catch (Exception e) {
             LOG.e(e);
         }

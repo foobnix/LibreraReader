@@ -1,6 +1,2 @@
-* Monet toiveesi mukaiset parannukset, yhdessä parhaan kirjan lukijan ja PDF-lukijan kanssa. 
-* Muut fontit (esimerkiksi shakkikirjoille) 
-* Pienennetty sovelluskoko 
-* Parannetut kuvakkeet ja käyttöliittymä 
-* Lajittele kirjat tiedostotyypin mukaan 
-* Tasainen vaakasuora vieritys
+* Monet parannukset käyttäjän palautteen avulla 
+* Tuki pilven varastointiin: Dropbox, Google Drive, Microsoft OneDrive.

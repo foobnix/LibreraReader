@@ -1,6 +1,2 @@
-* Wiele ulepszeń zgodnie z Twoimi życzeniami, razem stworzymy najlepszy czytnik książek i czytnik PDF. 
-* Dodatkowe czcionki (na przykład dla książek w szachy) 
-* Zredukowany rozmiar aplikacji 
-* Ulepszone ikony i interfejs użytkownika 
-* Sortowanie książek według typu pliku 
-* Płynne przewijanie w poziomie
+* Wiele ulepszeń ze względu na opinie użytkowników 
+* Wsparcie dla przechowywania w chmurze: Dropbox, Dysk Google, Microsoft OneDrive.

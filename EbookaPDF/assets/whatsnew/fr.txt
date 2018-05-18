@@ -1,6 +1,2 @@
-* Beaucoup d’améliorations selon vos souhaits, ensemble nous ferons le meilleur lecteur de livre et lecteur de PDF. 
-* Polices supplémentaires (par exemple pour les livres d’échecs) 
-* Réduction de la taille de l’application 
-* Amélioration des icônes et de l’interface utilisateur 
-* Trier les livres par type de fichier 
-* Défilement horizontal lisse
+* Beaucoup d’améliorations par les commentaires des utilisateurs 
+* Support pour le stockage en nuage: Dropbox, Google Drive, Microsoft OneDrive.

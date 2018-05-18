@@ -1,327 +1,159 @@
 
 <nl-NL>
-* Veel verbeteringen op basis van uw wensen, samen maken we de beste boeklezer en PDF-lezer. 
-* Extra lettertypen (bijvoorbeeld voor schaakboeken) 
-* Gereduceerde approotte 
-* Verbeterde pictogrammen en gebruikersinterface 
-* Boeken sorteren op bestandstype 
-* Vloeiend horizontaal scrollen
+* Veel verbeteringen door feedback van gebruikers 
+* Ondersteuning voor cloudopslag: Dropbox, Google Drive, Microsoft OneDrive.
 </nl-NL>
 
 <id>
-* Banyak perbaikan sesuai keinginan Anda, bersama-sama kami akan membuat pembaca Buku terbaik dan pembaca PDF. 
-* Font tambahan (misalnya untuk buku catur) 
-* Mengurangi ukuran aplikasi 
-* Ikon yang disempurnakan dan antarmuka pengguna 
-* Urutkan buku berdasarkan jenis file 
-* Pengguliran horizontal halus
+* Banyak penyempurnaan oleh masukan pengguna 
+* Dukungan untuk penyimpanan cloud: Dropbox, Google Drive, Microsoft OneDrive.
 </id>
 
 <lt>
-* Daugybė patobulinimų pagal jūsų pageidavimus kartu sukursime geriausią knygų skaitytuvą ir PDF skaitytuvą. 
-* Papildomi šriftai (pvz., Šachmatų knygoms) 
-* Sumažintas programos dydis 
-* Patobulintos piktogramos ir vartotojo sąsaja 
-* Rūšiuoti knygas pagal failo tipą 
-* Lygus horizontalus slinkimas
+* Daugybė vartotojų atsiliepimų patobulinimų.Debesis saugojimo palaikymas:Dropbox,Google diskas,Microsoft OneDrive.
 </lt>
 
 <ar>
-* العديد من التحسينات وفقا لرغباتك ، معا سنجعل أفضل قارئ الكتاب وقارئ PDF. 
-* خطوط إضافية (على سبيل المثال لدفاتر الشطرنج) 
-* تخفيض حجم التطبيق 
-* رموز محسنة واجهة مستخدم 
-* فرز الكتب حسب نوع الملف 
-* التمرير الأفقي السلس
+* العديد من التحسينات من خلال تعليقات المستخدمين 
+* دعم التخزين السحابي: Dropbox ، Google Drive ، Microsoft OneDrive.
 </ar>
 
 <ro>
-* Multe îmbunătățiri în funcție de dorințele dvs., împreună vom face cel mai bun cititor de cărți și cititor PDF. 
-* Fonturi suplimentare (de exemplu, pentru cărțile de șah) 
-* Dimensiune redusă a aplicației 
-* Pictograme îmbunătățite și interfața cu utilizatorul 
-* Sortarea cărților după tipul de fișier 
-*
+* Multe îmbunătățiri de feedback de la utilizator 
+* Sprijin pentru stocarea în cloud: Dropbox, Google Drive, Microsoft OneDrive.
 </ro>
 
 <de-DE>
-* Viele Verbesserungen nach Ihren Wünschen, zusammen machen wir den besten Buchleser und PDF-Reader. 
-* Zusätzliche Schriftarten (zum Beispiel für Schachbücher) 
-* Reduzierte Anwendungsgröße 
-* Verbesserte Symbole und Benutzeroberfläche 
-* Sortiert Bücher nach Dateityp 
-* Glattes horizontales Scrollen
+* Viele Verbesserungen durch Benutzer-Feedback 
+* Unterstützung für Cloud-Speicher: Dropbox, Google Drive, Microsoft OneDrive.
 </de-DE>
 
 <pl-PL>
-* Wiele ulepszeń zgodnie z Twoimi życzeniami, razem stworzymy najlepszy czytnik książek i czytnik PDF. 
-* Dodatkowe czcionki (na przykład dla książek w szachy) 
-* Zredukowany rozmiar aplikacji 
-* Ulepszone ikony i interfejs użytkownika 
-* Sortowanie książek według typu pliku 
-* Płynne przewijanie w poziomie
+* Wiele ulepszeń ze względu na opinie użytkowników 
+* Wsparcie dla przechowywania w chmurze: Dropbox, Dysk Google, Microsoft OneDrive.
 </pl-PL>
 
 <iw-IL>
-* שיפורים רבים על פי רצונכם, יחד נעשה את הטוב ביותר קורא ספרים וקורא PDF. 
-* גופנים נוספים (לדוגמה עבור ספרי שחמט) 
-* גודל היישום מופחת 
-* סמלים משופרת וממשק משתמש 
-* מיון ספרים לפי סוג הקובץ 
-* גלילה אופקית חלקה
+* שיפורים רבים על ידי משוב המשתמש 
+* תמיכה עבור אחסון ענן: Dropbox, כונן Google, Microsoft OneDrive.
 </iw-IL>
 
 <hi-IN>
-* आपकी इच्छाओं के अनुसार कई सुधार, एक साथ हम सर्वश्रेष्ठ बुक रीडर और पीडीएफ रीडर बना लेंगे। 
-* अतिरिक्त फोंट (उदाहरण के लिए शतरंज पुस्तकों के लिए) 
-* कम आवेदन का आकार 
-* बेहतर आइकन और यूजर इंटरफेस 
-* फ़ाइल प्रकार के आधार पर सॉर्ट करें 
-* चिकना क्षैतिज स्क्रॉलिंग
+* उपयोगकर्ता प्रतिक्रिया द्वारा कई सुधार 
+* क्लाउड स्टोरेज के लिए समर्थन: ड्रॉपबॉक्स, Google ड्राइव, माइक्रोसॉफ्ट वनड्राइव।
 </hi-IN>
 
 <es-ES>
-* Muchas mejoras de acuerdo a sus deseos, juntos haremos el mejor lector de libros y lector de PDF. 
-* Fuentes adicionales (por ejemplo, para libros de ajedrez) 
-* Tamaño de aplicación reducido 
-* Iconos mejorados e interfaz de usuario 
-* Ordenar libros por tipo de archivo 
-* Desplazamiento horizontal suave
+* Muchas mejoras por comentarios de los usuarios 
+* Soporte para almacenamiento en la nube: Dropbox, Google Drive, Microsoft OneDrive.
 </es-ES>
 
 <fi-FI>
-* Monet toiveesi mukaiset parannukset, yhdessä parhaan kirjan lukijan ja PDF-lukijan kanssa. 
-* Muut fontit (esimerkiksi shakkikirjoille) 
-* Pienennetty sovelluskoko 
-* Parannetut kuvakkeet ja käyttöliittymä 
-* Lajittele kirjat tiedostotyypin mukaan 
-* Tasainen vaakasuora vieritys
+* Monet parannukset käyttäjän palautteen avulla 
+* Tuki pilven varastointiin: Dropbox, Google Drive, Microsoft OneDrive.
 </fi-FI>
 
 <vi>
-* Nhiều cải tiến theo ý muốn của bạn, chúng tôi sẽ làm cho Trình đọc Sách và Trình đọc PDF tốt nhất. 
-* Các phông chữ bổ sung (ví dụ như cho các sách cờ vua) 
-* Giảm kích thước ứng dụng 
-* Cải thiện biểu tượng và giao diện người dùng 
-* Sắp xếp sách theo loại tập tin 
-*
+* Nhiều cải tiến bằng phản hồi của người dùng 
+* Hỗ trợ lưu trữ đám mây: Dropbox, Google Drive, Microsoft OneDrive.
 </vi>
 
 <fr-FR>
-* Beaucoup d’améliorations selon vos souhaits, ensemble nous ferons le meilleur lecteur de livre et lecteur de PDF. 
-* Polices supplémentaires (par exemple pour les livres d’échecs) 
-* Réduction de la taille de l’application 
-* Amélioration des icônes et de l’interface utilisateur 
-* Trier les livres par type de fichier 
-* Défilement horizontal lisse
+* Beaucoup d’améliorations par les commentaires des utilisateurs 
+* Support pour le stockage en nuage: Dropbox, Google Drive, Microsoft OneDrive.
 </fr-FR>
 
 <fr-CA>
-* Beaucoup d’améliorations selon vos souhaits, ensemble nous ferons le meilleur lecteur de livre et lecteur de PDF. 
-* Polices supplémentaires (par exemple pour les livres d’échecs) 
-* Réduction de la taille de l’application 
-* Amélioration des icônes et de l’interface utilisateur 
-* Trier les livres par type de fichier 
-* Défilement horizontal lisse
+* Beaucoup d’améliorations par les commentaires des utilisateurs 
+* Support pour le stockage en nuage: Dropbox, Google Drive, Microsoft OneDrive.
 </fr-CA>
 
 <sw>
-* Maboresho mengi kulingana na matakwa yako, pamoja tutatengeneza msomaji bora wa Kitabu na msomaji wa PDF. 
-* Fonts za ziada (kwa mfano kwa vitabu vya chess) 
-* Kupunguza ukubwa wa maombi 
-* Icons zilizoboreshwa na interface ya mtumiaji 
-* Weka vitabu kwa aina ya faili 
-* Kutafuta kando ya usawa
+* Maboresho mengi na maoni ya mtumiaji 
+* Msaada kwa hifadhi ya wingu: Dropbox, Google Drive, Microsoft OneDrive.
 </sw>
 
 <zh-TW>
-*根据您的意愿做出许多改进，我们将一起制作最好的图书阅读器和PDF阅读器。 
-*其他字体（例如国际象棋书籍）
-*缩小的应用程序大小
-*改进的图标和用户界面
-*按文件类型对书籍进行排序
-*平滑水平滚动
+*用户反馈改进了许多
+*支持云存储：Dropbox，Google Drive和Microsoft OneDrive。
 </zh-TW>
 
 <ru-RU>
-* Много улучшений в соответствии с вашими пожеланиями, вместе мы сделаем лучший читатель книг и PDF-ридер. 
-* Дополнительные шрифты (например, для шахматных книг) 
-* Уменьшенный размер приложения 
-* Улучшенные значки и пользовательский интерфейс 
-* Сортировка книг по типу файлов 
-* Плавная горизонтальная прокрутка
+* Много улучшений отзывов пользователей 
+* Поддержка облачного хранилища: Dropbox, Google Диска, Microsoft OneDrive.
 </ru-RU>
 
 <th>
-* การปรับปรุงหลายอย่างตามความต้องการของคุณร่วมกันเราจะทำหนังสืออ่านและอ่าน PDF ที่ดีที่สุด 
-* 
-* 
-* 
-* 
-* 
-* 
-* 
-* 
-* 
-* 
-* 
-* 
-* 
-* 
-* 
-* 
-* 
-* 
-* 
-* 
-* 
-* 
-* 
-* 
-* 
-* 
-* 
-* 
-* 
-* 
-* 
-* 
-* 
-* 
-* 
-* 
-* 
-* 
-* 
-* 
-* 
-* 
-* ตัวอักษรเพิ่มเติม (ตัวอย่างเช่นสำหรับหนังสือหมากรุก)
+* การปรับปรุงโดยความคิดเห็นของผู้ใช้ 
+* การสนับสนุนการจัดเก็บข้อมูลแบบคลาวด์: Dropbox, Google ไดรฟ์, Microsoft OneDrive
 </th>
 
 <it-IT>
-* Molti miglioramenti secondo i tuoi desideri, insieme faremo il miglior lettore di libri e lettore PDF. 
-* Caratteri aggiuntivi (ad esempio per i libri di scacchi) 
-* Dimensioni ridotte dell’applicazione 
-* Icone migliorate e interfaccia utente 
-* Ordina i libri per tipo di file 
-* Scorrimento orizzontale uniforme
+* Molti miglioramenti grazie al feedback degli utenti 
+* Supporto per lo storage cloud: Dropbox, Google Drive, Microsoft OneDrive.
 </it-IT>
 
 <sv-SE>
-* Många förbättringar enligt dina önskemål, tillsammans gör vi den bästa bokläsaren och PDF-läsaren. 
-* Ytterligare teckensnitt (till exempel för schackböcker) 
-* Minskad applikationsstorlek 
-* Förbättrade ikoner och användargränssnitt 
-* Sortera böcker efter filtyp 
-* Glatt horisontell rullning
+* Många förbättringar genom användarreaktion 
+* Stöd för molnlagring: Dropbox, Google Drive, Microsoft OneDrive.
 </sv-SE>
 
 <fa>
-* بسیاری از بهبود با توجه به خواسته های خود را، همراه ما بهترین کتاب خوان و PDF خوان را. 
-* فونت های اضافی (به عنوان مثال برای کتاب شطرنج) 
-* کاهش اندازه برنامه 
-* آیکون های بهبود یافته و رابط کاربر 
-* مرتب سازی بر اساس نوع فایل 
-* پیمایش صاف افقی
+* بسیاری از بهبود توسط بازخورد کاربر 
+* پشتیبانی از ذخیره سازی ابر: Dropbox، گوگل درایو، مایکروسافت OneDrive.
 </fa>
 
 <pt-PT>
-* Muitas melhorias de acordo com seus desejos, juntos faremos o melhor leitor de livros e leitor de PDF. 
-* Fontes adicionais (por exemplo, para livros de xadrez) 
-* Tamanho reduzido do aplicativo 
-* Ícones e interface do usuário aprimorados 
-* Classificar livros por tipo de arquivo 
-* Rolagem horizontal suave
+* Muitas melhorias pelo feedback do usuário 
+* Suporte para armazenamento em nuvem: Dropbox, Google Drive, Microsoft OneDrive.
 </pt-PT>
 
 <pt-BR>
-* Muitas melhorias de acordo com seus desejos, juntos faremos o melhor leitor de livros e leitor de PDF. 
-* Fontes adicionais (por exemplo, para livros de xadrez) 
-* Tamanho reduzido do aplicativo 
-* Ícones e interface do usuário aprimorados 
-* Classificar livros por tipo de arquivo 
-* Rolagem horizontal suave
+* Muitas melhorias pelo feedback do usuário 
+* Suporte para armazenamento em nuvem: Dropbox, Google Drive, Microsoft OneDrive.
 </pt-BR>
 
 <ko-KR>
-* 귀하의 희망에 따라 많은 개선, 함께 우리는 최고의 도서 리더와 PDF 리더를 만들거야. 
-* 추가 글꼴 (예 : 체스 서적) 
-* 응용 프로그램 크기 감소 
-* 향상된 아이콘 및 사용자 인터페이스 
-* 파일 형식으로 책 정렬 
-* 부드러운 가로 스크롤
+* 사용자 의견에 의한 많은 개선 
+* 클라우드 스토리지 지원 : 보관 용, Google 드라이브, Microsoft OneDrive.
 </ko-KR>
 
 <hu-HU>
-* Számos fejlesztés az Ön kívánságainak megfelelően, együtt készítjük a legjobb könyvolvasót és PDF-olvasót. 
-* További betűkészletek (például sakkkönyvek esetén) 
-* Csökkentett alkalmazásméret 
-* Továbbfejlesztett ikonok és felhasználói felület 
-* A könyvek rendezése fájl típus szerint 
-* Sima vízszintes görgetés
+* Számos javítás a felhasználói visszajelzések alapján 
+* Támogatás a felhő tárolására: Dropbox, Google Drive, Microsoft OneDrive.
 </hu-HU>
 
 <sk>
-* Veľa vylepšení podľa vašich želaní, spoločne budeme robiť najlepšie čitateľ knihy a PDF čítačku. 
-* Ďalšie písma (napríklad pre šachové knihy) 
-* Znížená veľkosť aplikácie 
-* Vylepšené ikony a používateľské rozhranie 
-* Zoradiť knihy podľa typu súboru 
-* Hladký horizontálny rolovanie
+* Veľa vylepšení spätnou väzbou od používateľov 
+* Podpora úložiska cloud: Dropbox, Google Drive, Microsoft OneDrive.
 </sk>
 
 <tr-TR>
-* İsteklerinize göre birçok iyileştirme, birlikte en iyi Kitap okuyucusunu ve PDF okuyucuyu yapacağız. 
-* Ek yazı tipleri (örneğin satranç kitapları için) 
-* Azaltılmış uygulama boyutu 
-* Geliştirilmiş simgeler ve kullanıcı arabirimi 
-* Dosyaları dosya türüne göre sırala 
-* Düz yatay kaydırma
+* Kullanıcı geri bildirimlerine göre birçok iyileştirme 
+* Bulut depolama desteği: Dropbox, Google Drive, Microsoft OneDrive.
 </tr-TR>
 
 <no-NO>
-* Mange forbedringer i henhold til dine ønsker, sammen vil vi lage den beste bokleseren og PDF-leseren. 
-* Ekstra skrifttyper (for eksempel for sjakkbøker) 
-* Redusert applikasjonsstørrelse 
-* Forbedrede ikoner og brukergrensesnitt 
-* Sorter bøker etter filtype 
-* Glatt horisontal rulling
+* Mange forbedringer ved tilbakemeldinger fra brukerne 
+* Støtte for skylagring: Dropbox, Google Disk, Microsoft OneDrive.
 </no-NO>
 
 <la>
-* Multi improvements iuxta vota vestra: ut simul nos tibi optimum libri PDF legit et legit. Additional fonts 
-* (LUDUS LATRUNCULARIUS in libris exempli gratia) Reducitur applicationem magnitudinis 
-* 
-* 
-* Melior icones et user interface librorum Sort by file type 
-* venenum blanda horizontal scrolling
+* Multi improvements a user feedback 
+* nubes repono pro Support: Dropbox Google Coegi, Microsoft OneDrive.
 </la>
 
 <ja-JP>
-あなたの希望に応じて
-*多くの改善、一緒に私たちは最高の本とPDFリーダーを作るでしょう。 
-*追加フォント（チェスブックなど）
-*アプリケーションサイズの縮小
-*アイコンとユーザーインターフェイスの改善
-*ファイルの種類別ブックの並べ替え
-*スムーズな水平スクロール
+*ユーザーのフィードバックによる多くの改善
+*クラウドストレージのサポート：Dropbox、Googleドライブ、Microsoft OneDrive
 </ja-JP>
 
 <uk>
-* Багато вдосконалень відповідно до ваших побажань, разом ми зробимо найкращий читач книг і читач PDF. 
-* Додаткові шрифти (наприклад, для шахових книг) 
-* Зменшений розмір програми 
-* Покращена піктограма та користувальницький інтерфейс 
-* Сортування книг за типом файлів 
-* Плавна горизонтальна прокрутка
+* Багато вдосконалень за відгуками користувачів 
+* Підтримка хмарного зберігання: Dropbox, Google Диск, Microsoft OneDrive.
 </uk>
 
 <en-US>
-* Many improvements according to your wishes, together we'll make the best Book reader and PDF reader.
-* Additional fonts (for example for chess books)
-* Reduced application size
-* Improved icons and user interface
-* Sort books by file type
-* Smooth horizontal scrolling
+* Many improvements by user feedback
+* Support for cloud storage: Dropbox, Google Drive, Microsoft OneDrive.
 </en-US>

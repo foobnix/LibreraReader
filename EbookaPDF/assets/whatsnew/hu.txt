@@ -1,6 +1,2 @@
-* Számos fejlesztés az Ön kívánságainak megfelelően, együtt készítjük a legjobb könyvolvasót és PDF-olvasót. 
-* További betűkészletek (például sakkkönyvek esetén) 
-* Csökkentett alkalmazásméret 
-* Továbbfejlesztett ikonok és felhasználói felület 
-* A könyvek rendezése fájl típus szerint 
-* Sima vízszintes görgetés
+* Számos javítás a felhasználói visszajelzések alapján 
+* Támogatás a felhő tárolására: Dropbox, Google Drive, Microsoft OneDrive.

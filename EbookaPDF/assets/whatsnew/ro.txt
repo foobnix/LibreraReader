@@ -1,6 +1,2 @@
-* Multe îmbunătățiri în funcție de dorințele dvs., împreună vom face cel mai bun cititor de cărți și cititor PDF. 
-* Fonturi suplimentare (de exemplu, pentru cărțile de șah) 
-* Dimensiune redusă a aplicației 
-* Pictograme îmbunătățite și interfața cu utilizatorul 
-* Sortarea cărților după tipul de fișier 
-*
+* Multe îmbunătățiri de feedback de la utilizator 
+* Sprijin pentru stocarea în cloud: Dropbox, Google Drive, Microsoft OneDrive.

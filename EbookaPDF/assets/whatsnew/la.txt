@@ -1,6 +1,2 @@
-* Multi improvements iuxta vota vestra: ut simul nos tibi optimum libri PDF legit et legit. Additional fonts 
-* (LUDUS LATRUNCULARIUS in libris exempli gratia) Reducitur applicationem magnitudinis 
-* 
-* 
-* Melior icones et user interface librorum Sort by file type 
-* venenum blanda horizontal scrolling
+* Multi improvements a user feedback 
+* nubes repono pro Support: Dropbox Google Coegi, Microsoft OneDrive.
