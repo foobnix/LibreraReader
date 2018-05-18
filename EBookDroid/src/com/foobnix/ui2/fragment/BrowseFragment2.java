@@ -336,6 +336,7 @@ public class BrowseFragment2 extends UIFragment<FileMeta> {
                                     if (!Clouds.get().isDropbox()) {
                                         Clouds.get().dropbox.login();
                                         Clouds.get().dropboxToken = Clouds.get().dropbox.saveAsString();
+                                        Clouds.get().dropboxInfo = Clouds.get().googleDrive.getUserLogin();
                                         Clouds.get().save();
                                     }
 
@@ -375,7 +376,9 @@ public class BrowseFragment2 extends UIFragment<FileMeta> {
                                 try {
                                     if (!Clouds.get().isGoogleDrive()) {
                                         Clouds.get().googleDrive.login();
+
                                         Clouds.get().googleDriveToken = Clouds.get().googleDrive.saveAsString();
+                                        Clouds.get().googleDriveInfo = Clouds.get().googleDrive.getUserLogin();
                                         Clouds.get().save();
                                     }
 
@@ -404,6 +407,48 @@ public class BrowseFragment2 extends UIFragment<FileMeta> {
                         return true;
                     }
                 }).setIcon(R.drawable.gdrive);
+
+                menu.getMenu().add("One Drive").setOnMenuItemClickListener(new OnMenuItemClickListener() {
+
+                    @Override
+                    public boolean onMenuItemClick(MenuItem item) {
+                        new Thread() {
+                            @Override
+                            public void run() {
+                                try {
+                                    if (!Clouds.get().isOneDrive()) {
+                                        Clouds.get().oneDrive.login();
+
+                                        Clouds.get().oneDriveToken = Clouds.get().oneDrive.saveAsString();
+                                        Clouds.get().oneDriveInfo = Clouds.get().oneDrive.getUserLogin();
+                                        Clouds.get().save();
+                                    }
+
+                                    BrowseFragment2.this.getActivity().runOnUiThread(new Runnable() {
+
+                                        @Override
+                                        public void run() {
+                                            displayAnyPath(Clouds.PREFIX_CLOUD_ONEDRIVE + "/");
+                                        }
+                                    });
+                                } catch (Exception e) {
+                                    LOG.d(e);
+                                    BrowseFragment2.this.getActivity().runOnUiThread(new Runnable() {
+
+                                        @Override
+                                        public void run() {
+                                            Toast.makeText(getActivity(), R.string.msg_unexpected_error, Toast.LENGTH_SHORT).show();
+                                        }
+                                    });
+                                }
+
+                            };
+
+                        }.start();
+
+                        return true;
+                    }
+                }).setIcon(R.drawable.onedrive);
 
                 menu.show();
 
@@ -563,9 +608,7 @@ public class BrowseFragment2 extends UIFragment<FileMeta> {
     public List<FileMeta> prepareDataInBackground() {
 
         if (displayPath.startsWith(Clouds.PREFIX_CLOUD)) {
-            if (cloudStorage == null) {
-                cloudStorage = Clouds.get().cloud(displayPath);
-            }
+            cloudStorage = Clouds.get().cloud(displayPath);
             String cloudPath = Clouds.getPath(displayPath);
             if (TxtUtils.isEmpty(cloudPath)) {
                 cloudPath = "/";
@@ -842,7 +885,11 @@ public class BrowseFragment2 extends UIFragment<FileMeta> {
             final String[] split = path.split("/");
 
             TextView nameView = new TextView(getActivity());
-            nameView.setText(name + ":");
+            if (split.length == 0) {
+                nameView.setText(name + ": " + Clouds.get().getUserLogin(displayPath));
+            } else {
+                nameView.setText(name + ":");
+            }
             nameView.setTextColor(getResources().getColor(R.color.white));
             nameView.setOnClickListener(new OnClickListener() {
 

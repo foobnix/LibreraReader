@@ -6,6 +6,7 @@ import com.cloudrail.si.CloudRail;
 import com.cloudrail.si.interfaces.CloudStorage;
 import com.cloudrail.si.services.Dropbox;
 import com.cloudrail.si.services.GoogleDrive;
+import com.cloudrail.si.services.OneDrive;
 import com.foobnix.android.utils.LOG;
 import com.foobnix.android.utils.Objects;
 import com.foobnix.pdf.info.wrapper.AppState;
@@ -25,9 +26,15 @@ public class Clouds {
     transient SharedPreferences sp;
     transient public CloudStorage dropbox;
     transient public CloudStorage googleDrive;
+    transient public CloudStorage oneDrive;
 
     public String dropboxToken;
     public String googleDriveToken;
+    public String oneDriveToken;
+
+    public String dropboxInfo;
+    public String googleDriveInfo;
+    public String oneDriveInfo;
 
     public static boolean isCloud(String path) {
         return path.startsWith(PREFIX_CLOUD);
@@ -65,7 +72,24 @@ public class Clouds {
         if (path.startsWith(PREFIX_CLOUD_GDRIVE)) {
             return googleDrive;
         }
+
+        if (path.startsWith(PREFIX_CLOUD_ONEDRIVE)) {
+            return oneDrive;
+        }
         return null;
+    }
+
+    public String getUserLogin(String path) {
+        if (path.startsWith(PREFIX_CLOUD_DROPBOX)) {
+            return dropboxInfo;
+        }
+        if (path.startsWith(PREFIX_CLOUD_GDRIVE)) {
+            return googleDriveInfo;
+        }
+        if (path.startsWith(PREFIX_CLOUD_ONEDRIVE)) {
+            return oneDriveInfo;
+        }
+        return "";
     }
 
     public static String getPrefix(String path) {
@@ -111,6 +135,10 @@ public class Clouds {
         googleDrive = new GoogleDrive(c, key, "", "com.foobnix.pdf.reader:/auth", "foobnix");
         ((GoogleDrive) googleDrive).useAdvancedAuthentication();
 
+        // https://apps.dev.microsoft.com/#/application
+        oneDrive = new OneDrive(c, "e5017cc6-0a84-4007-92ae-cfb9509d40db", "imhVPQO635[{xqdrPUN26[%", "https://www.cloudrailauth.com/auth", "foobnix");
+        ((GoogleDrive) googleDrive).useAdvancedAuthentication();
+
         try {
             dropbox.loadAsString(dropboxToken);
         } catch (Exception e) {
@@ -130,6 +158,10 @@ public class Clouds {
 
     public boolean isGoogleDrive() {
         return googleDriveToken != null;
+    }
+
+    public boolean isOneDrive() {
+        return oneDriveToken != null;
     }
 
     public void save() {
