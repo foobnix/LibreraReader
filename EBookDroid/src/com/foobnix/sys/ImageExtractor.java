@@ -111,7 +111,6 @@ public class ImageExtractor implements ImageDownloader {
 
         pageUrl.setPath(unZipPath);
 
-
         Bitmap cover = null;
 
         if (ebookMeta.coverImage != null) {
@@ -380,12 +379,14 @@ public class ImageExtractor implements ImageDownloader {
             if (ExtUtils.isImagePath(path)) {
                 return c.getContentResolver().openInputStream(Uri.parse(path));
             }
-            return messageFile("", "");
+            String display = ExtUtils.getFileName(Uri.decode(path));
+            return messageFile("", display);
         }
 
         if (path.startsWith(Clouds.PREFIX_CLOUD)) {
             if (!Clouds.isCacheFileExist(path)) {
-                return messageFile("", "");
+                String display = ExtUtils.getFileName(path);
+                return messageFile("", display);
             }
         }
 
@@ -394,6 +395,12 @@ public class ImageExtractor implements ImageDownloader {
 
             if (ExtUtils.isImagePath(path)) {
                 FileMeta fileMeta = AppDB.get().getOrCreate(path);
+
+                File f = Clouds.getCacheFile(path);
+                if (f != null) {
+                    path = f.getPath();
+                }
+
                 FileMetaCore.get().upadteBasicMeta(fileMeta, new File(path));
                 AppDB.get().update(fileMeta);
 

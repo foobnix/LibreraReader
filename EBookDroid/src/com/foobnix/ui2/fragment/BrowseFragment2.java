@@ -325,7 +325,7 @@ public class BrowseFragment2 extends UIFragment<FileMeta> {
 
                 }
 
-                menu.getMenu().add("Dropbox").setOnMenuItemClickListener(new OnMenuItemClickListener() {
+                menu.getMenu().add("Dropbox").withTint(false).setOnMenuItemClickListener(new OnMenuItemClickListener() {
 
                     @Override
                     public boolean onMenuItemClick(MenuItem item) {
@@ -336,7 +336,7 @@ public class BrowseFragment2 extends UIFragment<FileMeta> {
                                     if (!Clouds.get().isDropbox()) {
                                         Clouds.get().dropbox.login();
                                         Clouds.get().dropboxToken = Clouds.get().dropbox.saveAsString();
-                                        Clouds.get().dropboxInfo = Clouds.get().googleDrive.getUserLogin();
+                                        Clouds.get().dropboxInfo = Clouds.get().dropbox.getUserLogin();
                                         Clouds.get().save();
                                     }
 
@@ -366,7 +366,7 @@ public class BrowseFragment2 extends UIFragment<FileMeta> {
                     }
                 }).setIcon(R.drawable.dropbox);
 
-                menu.getMenu().add("Google Drive").setOnMenuItemClickListener(new OnMenuItemClickListener() {
+                menu.getMenu().add("Google Drive").withTint(false).setOnMenuItemClickListener(new OnMenuItemClickListener() {
 
                     @Override
                     public boolean onMenuItemClick(MenuItem item) {
@@ -408,7 +408,7 @@ public class BrowseFragment2 extends UIFragment<FileMeta> {
                     }
                 }).setIcon(R.drawable.gdrive);
 
-                menu.getMenu().add("One Drive").setOnMenuItemClickListener(new OnMenuItemClickListener() {
+                menu.getMenu().add("One Drive").withTint(false).setOnMenuItemClickListener(new OnMenuItemClickListener() {
 
                     @Override
                     public boolean onMenuItemClick(MenuItem item) {
@@ -786,6 +786,7 @@ public class BrowseFragment2 extends UIFragment<FileMeta> {
 
     public void displayAnyPath(String path) {
         LOG.d("Display-path", path);
+
         displayPath = path;
         AppState.get().dirLastPath = path;
 
@@ -938,7 +939,9 @@ public class BrowseFragment2 extends UIFragment<FileMeta> {
                             builder.append(split[j]);
                         }
                         String itemPath = builder.toString();
-                        displayAnyPath(prefix + itemPath);
+                        String pathFull = prefix + itemPath;
+                        pathFull = pathFull.replace("://", ":/");
+                        displayAnyPath(pathFull);
                     }
                 });
 
