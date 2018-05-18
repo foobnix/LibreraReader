@@ -101,7 +101,7 @@ public class DefaultListeners {
                 }
                 boolean isFolder = AppDB.get().isFolder(result);
 
-                if (!isFolder && result.getPath().startsWith(Clouds.PREFIX_CLOUD_DROPBOX)) {
+                if (!isFolder && result.getPath().startsWith(Clouds.PREFIX_CLOUD)) {
 
                     Downloader.openOrDownload(a, result, new Runnable() {
 
@@ -203,7 +203,7 @@ public class DefaultListeners {
                 protected Boolean doInBackground(Object... params) {
                     try {
                         String path = Clouds.getPath(result.getPath());
-                        Clouds.get().dropbox.delete(path);
+                        Clouds.get().cloud(result.getPath()).delete(path);
                     } catch (Exception e) {
                         LOG.e(e);
                         return false;

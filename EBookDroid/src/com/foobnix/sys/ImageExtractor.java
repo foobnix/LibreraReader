@@ -383,11 +383,7 @@ public class ImageExtractor implements ImageDownloader {
             return messageFile("", "");
         }
 
-        if (path.startsWith(Clouds.PREFIX_CLOUD_DROPBOX)) {
-            // String imgPath = Clouds.getPath(path);
-            // LOG.d("Dropbox getThumbnail", imgPath);
-            // return ExtUtils.isImagePath(imgPath) ?
-            // Clouds.get().dropbox.getThumbnail(imgPath) : messageFile("", "");
+        if (path.startsWith(Clouds.PREFIX_CLOUD)) {
             if (!Clouds.isCacheFileExist(path)) {
                 return messageFile("", "");
             }

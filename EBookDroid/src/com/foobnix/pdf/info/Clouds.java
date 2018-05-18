@@ -5,6 +5,7 @@ import java.io.File;
 import com.cloudrail.si.CloudRail;
 import com.cloudrail.si.interfaces.CloudStorage;
 import com.cloudrail.si.services.Dropbox;
+import com.cloudrail.si.services.GoogleDrive;
 import com.foobnix.android.utils.LOG;
 import com.foobnix.android.utils.Objects;
 import com.foobnix.pdf.info.wrapper.AppState;
@@ -23,8 +24,10 @@ public class Clouds {
 
     transient SharedPreferences sp;
     transient public CloudStorage dropbox;
+    transient public CloudStorage googleDrive;
 
     public String dropboxToken;
+    public String googleDriveToken;
 
     public static boolean isCloud(String path) {
         return path.startsWith(PREFIX_CLOUD);
@@ -53,6 +56,16 @@ public class Clouds {
 
     public static String getPath(String pathWithPrefix) {
         return pathWithPrefix.replace(PREFIX_CLOUD_DROPBOX, "").replace(PREFIX_CLOUD_GDRIVE, "").replace(PREFIX_CLOUD_ONEDRIVE, "");
+    }
+
+    public CloudStorage cloud(String path) {
+        if (path.startsWith(PREFIX_CLOUD_DROPBOX)) {
+            return dropbox;
+        }
+        if (path.startsWith(PREFIX_CLOUD_GDRIVE)) {
+            return googleDrive;
+        }
+        return null;
     }
 
     public static String getPrefix(String path) {
@@ -87,20 +100,36 @@ public class Clouds {
         sp = c.getSharedPreferences("Clouds", Context.MODE_PRIVATE);
         Objects.loadFromSp(this, sp);
 
+        // https://www.dropbox.com/developers/apps
         dropbox = new Dropbox(c, "wp5uvfelqbdnwkg", "e7hfer9dh5r18tz", "https://auth.cloudrail.com/Librera", "foobnix");
         ((Dropbox) dropbox).useAdvancedAuthentication();
 
-        if (dropbox != null) {
-            try {
-                dropbox.loadAsString(dropboxToken);
-            } catch (Exception e) {
-                LOG.e(e);
-            }
+        String key = LOG.isEnable ? //
+                "744830629623-imfdo21enh5ckldo5orhqg1sujk2cn9v.apps.googleusercontent.com" : //
+                "961762082517-dgsen03hb73s6oh59ovivcansatu16lc.apps.googleusercontent.com"; //
+
+        googleDrive = new GoogleDrive(c, key, "", "com.foobnix.pdf.reader:/auth", "foobnix");
+        ((GoogleDrive) googleDrive).useAdvancedAuthentication();
+
+        try {
+            dropbox.loadAsString(dropboxToken);
+        } catch (Exception e) {
+            LOG.e(e);
+        }
+
+        try {
+            googleDrive.loadAsString(googleDriveToken);
+        } catch (Exception e) {
+            LOG.e(e);
         }
     }
 
     public boolean isDropbox() {
         return dropboxToken != null;
+    }
+
+    public boolean isGoogleDrive() {
+        return googleDriveToken != null;
     }
 
     public void save() {

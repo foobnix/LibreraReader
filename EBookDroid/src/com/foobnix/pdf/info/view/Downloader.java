@@ -47,7 +47,7 @@ public class Downloader {
 
                     @Override
                     protected String doInBackground(Object... params) {
-                        InputStream download = Clouds.get().dropbox.download(path);
+                        InputStream download = Clouds.get().cloud(meta.getPath()).download(path);
 
                         try {
                             FileOutputStream out = new FileOutputStream(file);

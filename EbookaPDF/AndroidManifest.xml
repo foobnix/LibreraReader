@@ -242,6 +242,7 @@
 		        <category android:name="android.intent.category.DEFAULT" />
 		        <category android:name="android.intent.category.BROWSABLE" />
 		
+		        <data android:scheme="com.foobnix.pdf.reader" />
 		        <data android:scheme="librera" />
 		    </intent-filter>
         </activity>

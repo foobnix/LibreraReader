@@ -329,13 +329,15 @@ public class BrowseFragment2 extends UIFragment<FileMeta> {
 
                     @Override
                     public boolean onMenuItemClick(MenuItem item) {
-
-                        if (Clouds.get().isDropbox()) {
-                            new Thread() {
-                                @Override
-                                public void run() {
-                                    String userName = Clouds.get().dropbox.getUserName();
-                                    LOG.d("CloudRail LOGIN", userName);
+                        new Thread() {
+                            @Override
+                            public void run() {
+                                try {
+                                    if (!Clouds.get().isDropbox()) {
+                                        Clouds.get().dropbox.login();
+                                        Clouds.get().dropboxToken = Clouds.get().dropbox.saveAsString();
+                                        Clouds.get().save();
+                                    }
 
                                     BrowseFragment2.this.getActivity().runOnUiThread(new Runnable() {
 
@@ -344,46 +346,64 @@ public class BrowseFragment2 extends UIFragment<FileMeta> {
                                             displayAnyPath(Clouds.PREFIX_CLOUD_DROPBOX + "/");
                                         }
                                     });
+                                } catch (Exception e) {
+                                    LOG.d(e);
+                                    BrowseFragment2.this.getActivity().runOnUiThread(new Runnable() {
 
-                                };
+                                        @Override
+                                        public void run() {
+                                            Toast.makeText(getActivity(), R.string.msg_unexpected_error, Toast.LENGTH_SHORT).show();
+                                        }
+                                    });
+                                }
 
-                            }.start();
-                        } else {
-                            new Thread() {
-                                @Override
-                                public void run() {
-                                    try {
-                                        Clouds.get().dropbox.login();
-                                        Clouds.get().dropboxToken = Clouds.get().dropbox.saveAsString();
-                                        Clouds.get().save();
-                                        LOG.d("CloudRail save", Clouds.get().dropboxToken);
+                            };
 
-                                        BrowseFragment2.this.getActivity().runOnUiThread(new Runnable() {
-
-                                            @Override
-                                            public void run() {
-                                                displayAnyPath(Clouds.PREFIX_CLOUD_DROPBOX + "/");
-                                            }
-                                        });
-                                    } catch (Exception e) {
-                                        LOG.d(e);
-                                        BrowseFragment2.this.getActivity().runOnUiThread(new Runnable() {
-
-                                            @Override
-                                            public void run() {
-                                                Toast.makeText(getActivity(), R.string.msg_unexpected_error, Toast.LENGTH_SHORT).show();
-                                            }
-                                        });
-                                    }
-
-                                };
-
-                            }.start();
-                        }
+                        }.start();
 
                         return true;
                     }
                 }).setIcon(R.drawable.dropbox);
+
+                menu.getMenu().add("Google Drive").setOnMenuItemClickListener(new OnMenuItemClickListener() {
+
+                    @Override
+                    public boolean onMenuItemClick(MenuItem item) {
+                        new Thread() {
+                            @Override
+                            public void run() {
+                                try {
+                                    if (!Clouds.get().isGoogleDrive()) {
+                                        Clouds.get().googleDrive.login();
+                                        Clouds.get().googleDriveToken = Clouds.get().googleDrive.saveAsString();
+                                        Clouds.get().save();
+                                    }
+
+                                    BrowseFragment2.this.getActivity().runOnUiThread(new Runnable() {
+
+                                        @Override
+                                        public void run() {
+                                            displayAnyPath(Clouds.PREFIX_CLOUD_GDRIVE + "/");
+                                        }
+                                    });
+                                } catch (Exception e) {
+                                    LOG.d(e);
+                                    BrowseFragment2.this.getActivity().runOnUiThread(new Runnable() {
+
+                                        @Override
+                                        public void run() {
+                                            Toast.makeText(getActivity(), R.string.msg_unexpected_error, Toast.LENGTH_SHORT).show();
+                                        }
+                                    });
+                                }
+
+                            };
+
+                        }.start();
+
+                        return true;
+                    }
+                }).setIcon(R.drawable.gdrive);
 
                 menu.show();
 
@@ -544,7 +564,7 @@ public class BrowseFragment2 extends UIFragment<FileMeta> {
 
         if (displayPath.startsWith(Clouds.PREFIX_CLOUD)) {
             if (cloudStorage == null) {
-                cloudStorage = Clouds.get().dropbox;
+                cloudStorage = Clouds.get().cloud(displayPath);
             }
             String cloudPath = Clouds.getPath(displayPath);
             if (TxtUtils.isEmpty(cloudPath)) {
