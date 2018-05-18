@@ -10,6 +10,7 @@ import java.util.Map;
 
 import org.ebookdroid.BookType;
 
+import com.cloudrail.si.exceptions.AuthenticationException;
 import com.cloudrail.si.interfaces.CloudStorage;
 import com.cloudrail.si.types.CloudMetaData;
 import com.foobnix.android.utils.LOG;
@@ -66,7 +67,7 @@ import android.widget.Toast;
 
 @SuppressLint("NewApi")
 public class BrowseFragment2 extends UIFragment<FileMeta> {
-    public static final String PREFIX_CLOUD = "cloud:";
+
     public static final Pair<Integer, Integer> PAIR = new Pair<Integer, Integer>(R.string.folders, R.drawable.glyphicons_145_folder_open);
     public static final String EXTRA_INIT_PATH = "EXTRA_PATH";
     public static final String EXTRA_TYPE = "EXTRA_TYPE";
@@ -341,7 +342,7 @@ public class BrowseFragment2 extends UIFragment<FileMeta> {
 
                                         @Override
                                         public void run() {
-                                            displayAnyPath(PREFIX_CLOUD + "/");
+                                            displayAnyPath(Clouds.PREFIX_CLOUD_DROPBOX + "/");
                                         }
                                     });
 
@@ -352,18 +353,22 @@ public class BrowseFragment2 extends UIFragment<FileMeta> {
                             new Thread() {
                                 @Override
                                 public void run() {
-                                    Clouds.get().dropbox.login();
-                                    Clouds.get().dropboxToken = Clouds.get().dropbox.saveAsString();
-                                    Clouds.get().save();
-                                    LOG.d("CloudRail save", Clouds.get().dropboxToken);
+                                    try {
+                                        Clouds.get().dropbox.login();
+                                        Clouds.get().dropboxToken = Clouds.get().dropbox.saveAsString();
+                                        Clouds.get().save();
+                                        LOG.d("CloudRail save", Clouds.get().dropboxToken);
 
-                                    BrowseFragment2.this.getActivity().runOnUiThread(new Runnable() {
+                                        BrowseFragment2.this.getActivity().runOnUiThread(new Runnable() {
 
-                                        @Override
-                                        public void run() {
-                                            displayAnyPath(PREFIX_CLOUD + "/");
-                                        }
-                                    });
+                                            @Override
+                                            public void run() {
+                                                displayAnyPath(Clouds.PREFIX_CLOUD_DROPBOX + "/");
+                                            }
+                                        });
+                                    } catch (AuthenticationException e) {
+                                        LOG.d(e);
+                                    }
 
                                 };
 
@@ -531,11 +536,11 @@ public class BrowseFragment2 extends UIFragment<FileMeta> {
     @Override
     public List<FileMeta> prepareDataInBackground() {
 
-        if (displayPath.startsWith(PREFIX_CLOUD)) {
+        if (displayPath.startsWith(Clouds.PREFIX_CLOUD)) {
             if (cloudStorage == null) {
                 cloudStorage = Clouds.get().dropbox;
             }
-            String cloudPath = displayPath.replace(PREFIX_CLOUD, "");
+            String cloudPath = Clouds.getPath(displayPath);
             if (TxtUtils.isEmpty(cloudPath)) {
                 cloudPath = "/";
             }
@@ -552,7 +557,7 @@ public class BrowseFragment2 extends UIFragment<FileMeta> {
 
                 LOG.d("CloudMetaData", path, name, modifiedAt, size, cl.getImageMetaData());
 
-                FileMeta meta = new FileMeta(PREFIX_CLOUD + path);
+                FileMeta meta = new FileMeta(Clouds.getPrefix(displayPath) + path);
 
                 if (cl.getFolder()) {
                     meta.setCusType(FileMetaAdapter.DISPLAY_TYPE_DIRECTORY);
@@ -689,27 +694,23 @@ public class BrowseFragment2 extends UIFragment<FileMeta> {
             }
 
         } else {
-            File file = new File(AppState.get().dirLastPath);
+            File file = new File(displayPath);
             String path = file.getParent();
+            if (TxtUtils.isEmpty(path)) {
+                path = "/";
+            }
 
             LOG.d("parent", path);
 
-            if (path.startsWith(PREFIX_CLOUD)) {
-                displayPath = path;
-                populate();
-            } else {
-                if (recyclerView != null && path != null) {
-                    int pos = rememberPos.get(path) == null ? 0 : rememberPos.get(path);
-                    displayAnyPath(path);
-                    recyclerView.scrollToPosition(pos);
-                    return true;
-                }
-            }
+            int pos = rememberPos.get(path) == null ? 0 : rememberPos.get(path);
+            displayAnyPath(path);
+            recyclerView.scrollToPosition(pos);
         }
         return false;
     }
 
     public void displayAnyPath(String path) {
+        LOG.d("Display-path", path);
         displayPath = path;
         AppState.get().dirLastPath = path;
 
@@ -807,60 +808,68 @@ public class BrowseFragment2 extends UIFragment<FileMeta> {
             paths.addView(slash);
         } else {
 
-            final String[] split = displayPath.split("/");
+            final String prefix = Clouds.getPrefix(displayPath);
+            final String path = Clouds.getPath(displayPath);
+            final String name = Clouds.getPrefixName(displayPath);
 
-            if (split == null || split.length == 0) {
+            final String[] split = path.split("/");
+
+            TextView nameView = new TextView(getActivity());
+            nameView.setText(name + ":");
+            nameView.setTextColor(getResources().getColor(R.color.white));
+            nameView.setOnClickListener(new OnClickListener() {
+
+                @Override
+                public void onClick(View v) {
+                    displayAnyPath(prefix + "/");
+                }
+            });
+            paths.addView(nameView);
+
+            for (int i = 0; i < split.length; i++) {
+                final int index = i;
+                String part = split[i];
+                if (TxtUtils.isEmpty(part)) {
+                    continue;
+                }
                 TextView slash = new TextView(getActivity());
                 slash.setText(" / ");
                 slash.setTextColor(getResources().getColor(R.color.white));
-                paths.addView(slash);
-            } else {
 
-                for (int i = 0; i < split.length; i++) {
-                    final int index = i;
-                    String part = split[i];
-                    if (TxtUtils.isEmpty(part)) {
-                        continue;
-                    }
-                    TextView slash = new TextView(getActivity());
-                    slash.setText(" / ");
-                    slash.setTextColor(getResources().getColor(R.color.white));
+                TextView item = new TextView(getActivity());
+                item.setText(part);
+                item.setGravity(Gravity.CENTER);
+                item.setTextColor(getResources().getColor(R.color.white));
+                item.setSingleLine();
+                TypedValue outValue = new TypedValue();
+                getContext().getTheme().resolveAttribute(android.R.attr.selectableItemBackground, outValue, true);
+                item.setBackgroundResource(outValue.resourceId);
 
-                    TextView item = new TextView(getActivity());
-                    item.setText(part);
-                    item.setGravity(Gravity.CENTER);
-                    item.setTextColor(getResources().getColor(R.color.white));
-                    item.setSingleLine();
-                    TypedValue outValue = new TypedValue();
-                    getContext().getTheme().resolveAttribute(android.R.attr.selectableItemBackground, outValue, true);
-                    item.setBackgroundResource(outValue.resourceId);
-
-                    if (i == split.length - 1) {
-                        item.setTypeface(Typeface.DEFAULT, Typeface.BOLD);
-                    }
-
-                    item.setOnClickListener(new OnClickListener() {
-
-                        @Override
-                        public void onClick(View v) {
-                            StringBuilder builder = new StringBuilder();
-                            for (int j = 0; j <= index; j++) {
-                                builder.append("/");
-                                builder.append(split[j]);
-                            }
-                            String itemPath = builder.toString();
-                            displayAnyPath(itemPath);
-                        }
-                    });
-
-                    paths.addView(slash);
-                    paths.addView(item, new LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.MATCH_PARENT));
+                if (i == split.length - 1) {
+                    item.setTypeface(Typeface.DEFAULT, Typeface.BOLD);
                 }
 
-                TextView stub = new TextView(getActivity());
-                stub.setText("    ");
-                paths.addView(stub);
+                item.setOnClickListener(new OnClickListener() {
+
+                    @Override
+                    public void onClick(View v) {
+                        StringBuilder builder = new StringBuilder();
+                        for (int j = 0; j <= index; j++) {
+                            builder.append("/");
+                            builder.append(split[j]);
+                        }
+                        String itemPath = builder.toString();
+                        displayAnyPath(prefix + itemPath);
+                    }
+                });
+
+                paths.addView(slash);
+                paths.addView(item, new LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.MATCH_PARENT));
             }
+
+            TextView stub = new TextView(getActivity());
+            stub.setText("    ");
+            paths.addView(stub);
 
         }
 

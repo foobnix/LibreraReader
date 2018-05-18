@@ -144,6 +144,7 @@ public abstract class BaseExtractor {
         }
     }
 
+
     public static byte[] bitmapToByteArray(Bitmap bitmap) {
         ByteArrayOutputStream stream = new ByteArrayOutputStream();
         bitmap.compress(Bitmap.CompressFormat.PNG, 95, stream);

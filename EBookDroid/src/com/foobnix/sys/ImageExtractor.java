@@ -30,6 +30,7 @@ import com.foobnix.ext.Fb2Extractor;
 import com.foobnix.ext.MobiExtract;
 import com.foobnix.ext.RtfExtract;
 import com.foobnix.opds.OPDS;
+import com.foobnix.pdf.info.Clouds;
 import com.foobnix.pdf.info.ExtUtils;
 import com.foobnix.pdf.info.IMG;
 import com.foobnix.pdf.info.PageUrl;
@@ -38,7 +39,6 @@ import com.foobnix.pdf.info.wrapper.MagicHelper;
 import com.foobnix.pdf.search.activity.PageImageState;
 import com.foobnix.ui2.AppDB;
 import com.foobnix.ui2.FileMetaCore;
-import com.foobnix.ui2.fragment.BrowseFragment2;
 import com.nostra13.universalimageloader.core.download.BaseImageDownloader;
 import com.nostra13.universalimageloader.core.download.ImageDownloader;
 
@@ -381,8 +381,10 @@ public class ImageExtractor implements ImageDownloader {
             return messageFile("", "");
         }
 
-        if (path.startsWith(BrowseFragment2.PREFIX_CLOUD)) {
-            return messageFile("", "");
+        if (path.startsWith(Clouds.PREFIX_CLOUD_DROPBOX)) {
+            String imgPath = Clouds.getPath(path);
+            LOG.d("Dropbox getThumbnail", imgPath);
+            return ExtUtils.isImagePath(imgPath) ? Clouds.get().dropbox.getThumbnail(imgPath) : messageFile("", "");
         }
 
         File file = new File(path);

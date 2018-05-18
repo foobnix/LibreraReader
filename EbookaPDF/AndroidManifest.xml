@@ -2,8 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.foobnix.pdf.reader"
     android:installLocation="auto"
-    android:versionCode="560"
-    android:versionName="7.8.77" >
+    android:versionCode="561"
+    android:versionName="7.8.78" >
 
     <uses-sdk
         android:minSdkVersion="14"
@@ -208,7 +208,7 @@
             android:name="com.foobnix.ui2.MainTabs2"
             android:configChanges="orientation|screenSize|keyboard|keyboardHidden"
             android:exported="true"
-            android:launchMode="singleTop"
+            android:launchMode="singleTask"
             android:resizeableActivity="true"
             android:screenOrientation="behind"
             android:windowSoftInputMode="stateHidden" >

@@ -135,7 +135,7 @@
                 android:gravity="center_vertical"
                 android:maxLines="2"
                 android:padding="4dip"
-                android:text="2012"
+                android:text=""
                 android:textIsSelectable="true"
                 android:textStyle="normal" />
 
