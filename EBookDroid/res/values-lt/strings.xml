@@ -220,7 +220,6 @@
    <string name="cancel">Atšaukti</string>
    <string name="close">Uždaryti</string>
    <string name="restore_defaults_full">Ar norite atstatyti numatytas vertes?</string>
-   <string name="delete_book_">Trinti failą iš įrenginio atminties?</string>
    <string name="send_file_to">Siųsti failą</string>
    <string name="apply_a_new_screen_orientation_">Taikyti naują ekrano poziciją?</string>
    <string name="send_mail">Siųsti elektroninį laišką</string>
@@ -473,4 +472,6 @@
    <string name="file_path">Bylos kelias</string>
    <string name="year">Metai</string>
    <string name="publisher">Leidėjas</string>
+   <string name="do_you_want_to_download_the_file_">Ar norite atsisiųsti failą?</string>
+   <string name="do_you_want_to_delete_this_file_">Ar norite ištrinti šį failą?</string>
 </resources>

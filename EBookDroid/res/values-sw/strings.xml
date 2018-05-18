@@ -220,7 +220,6 @@
    <string name="cancel">Kufuta</string>
    <string name="close">Karibu</string>
    <string name="restore_defaults_full">Unataka kurejesha maadili ya msingi?</string>
-   <string name="delete_book_">Kufuta faili kutoka kadi ya SD?</string>
    <string name="send_file_to">Kutuma file kwa</string>
    <string name="apply_a_new_screen_orientation_">Weka mpya screen Mwelekeo?</string>
    <string name="send_mail">Kutuma barua</string>
@@ -473,4 +472,6 @@
    <string name="file_path">Futa njia</string>
    <string name="year">Mwaka</string>
    <string name="publisher">Mchapishaji</string>
+   <string name="do_you_want_to_download_the_file_">Unataka kupakua faili?</string>
+   <string name="do_you_want_to_delete_this_file_">Unataka kufuta faili hii?</string>
 </resources>

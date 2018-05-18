@@ -220,7 +220,6 @@
    <string name="cancel">रद्द करना</string>
    <string name="close">बंद करे</string>
    <string name="restore_defaults_full">क्या आप डिफ़ॉल्ट मान को पुनर्स्थापित करना चाहते हैं?</string>
-   <string name="delete_book_">एसडी कार्ड से फाइल को नष्ट?</string>
    <string name="send_file_to">करने के लिए फ़ाइल भेजें</string>
    <string name="apply_a_new_screen_orientation_">एक नए स्क्रीन अभिविन्यास लागू करें?</string>
    <string name="send_mail">मेल भेजे</string>
@@ -473,4 +472,6 @@
    <string name="file_path">फ़ाइल पथ</string>
    <string name="year">साल</string>
    <string name="publisher">प्रकाशक</string>
+   <string name="do_you_want_to_download_the_file_">क्या आप फ़ाइल डाउनलोड करना चाहते हैं?</string>
+   <string name="do_you_want_to_delete_this_file_">क्या आप इस फाइल को मिटाना चाहते हैं?</string>
 </resources>

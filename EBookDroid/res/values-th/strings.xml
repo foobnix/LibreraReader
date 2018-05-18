@@ -220,7 +220,6 @@
    <string name="cancel">ยกเลิก</string>
    <string name="close">ปิด</string>
    <string name="restore_defaults_full">คุณต้องการคืนค่าเริ่มต้นหรือไม่?</string>
-   <string name="delete_book_">ลบไฟล์ออกจากการ์ด SD?</string>
    <string name="send_file_to">ส่งไฟล์ไปที่</string>
    <string name="apply_a_new_screen_orientation_">ใช้การวางแนวหน้าจอใหม่หรือไม่?</string>
    <string name="send_mail">ส่งอีเมล์</string>
@@ -473,4 +472,6 @@
    <string name="file_path">เส้นทางของไฟล์</string>
    <string name="year">ปี</string>
    <string name="publisher">สำนักพิมพ์</string>
+   <string name="do_you_want_to_download_the_file_">คุณต้องการดาวน์โหลดไฟล์หรือไม่?</string>
+   <string name="do_you_want_to_delete_this_file_">คุณต้องการลบไฟล์นี้หรือไม่?</string>
 </resources>

@@ -220,7 +220,6 @@
    <string name="cancel">إلغاء الأمر</string>
    <string name="close">إغلاق</string>
    <string name="restore_defaults_full">هل تريد استعادة القيم الافتراضية؟</string>
-   <string name="delete_book_">حذف الملف من الذاكرة?</string>
    <string name="send_file_to">إرسال الملف الى</string>
    <string name="apply_a_new_screen_orientation_">تطبيق اتجاه الشاشة الجديد؟</string>
    <string name="send_mail">إرسال البريد</string>
@@ -473,4 +472,6 @@
    <string name="file_path">مسار الملف</string>
    <string name="year">عام</string>
    <string name="publisher">الناشر</string>
+   <string name="do_you_want_to_download_the_file_">هل تريد تنزيل الملف؟</string>
+   <string name="do_you_want_to_delete_this_file_">هل تريد حذف هذا الملف؟</string>
 </resources>

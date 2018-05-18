@@ -220,7 +220,6 @@
    <string name="cancel">لغو کردن</string>
    <string name="close">نزدیک</string>
    <string name="restore_defaults_full">میخواهید مقادیر پیشفرض را بازگردانید؟</string>
-   <string name="delete_book_">فایل را از کارت SD را حذف کنید؟</string>
    <string name="send_file_to">ارسال فایل به</string>
    <string name="apply_a_new_screen_orientation_">درخواست یک جهت گیری روی صفحه نمایش جدید؟</string>
    <string name="send_mail">ارسال ایمیل</string>
@@ -473,4 +472,6 @@
    <string name="file_path">مسیر فایل</string>
    <string name="year">سال</string>
    <string name="publisher">ناشر</string>
+   <string name="do_you_want_to_download_the_file_">آیا می خواهید فایل را دانلود کنید؟</string>
+   <string name="do_you_want_to_delete_this_file_">آیا می خواهید این فایل را حذف کنید؟</string>
 </resources>

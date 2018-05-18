@@ -220,7 +220,6 @@
    <string name="cancel">Avbryt</string>
    <string name="close">Lukk</string>
    <string name="restore_defaults_full">Vil du gjenopprette standardverdiene?</string>
-   <string name="delete_book_">Slett filen fra SD-kort?</string>
    <string name="send_file_to">Send fil til</string>
    <string name="apply_a_new_screen_orientation_">Bruk en ny skjermretning?</string>
    <string name="send_mail">Send e-post</string>
@@ -473,4 +472,6 @@
    <string name="file_path">Filsti</string>
    <string name="year">År</string>
    <string name="publisher">Forlegger</string>
+   <string name="do_you_want_to_download_the_file_">Ønsker du å laste ned filen?</string>
+   <string name="do_you_want_to_delete_this_file_">Vil du slette denne filen?</string>
 </resources>

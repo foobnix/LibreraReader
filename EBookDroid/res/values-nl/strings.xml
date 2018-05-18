@@ -220,7 +220,6 @@
    <string name="cancel">Annuleer</string>
    <string name="close">Dichtbij</string>
    <string name="restore_defaults_full">Wilt u de standaardwaarden herstellen?</string>
-   <string name="delete_book_">Het bestand van SD-kaart te verwijderen?</string>
    <string name="send_file_to">Stuur bestand naar</string>
    <string name="apply_a_new_screen_orientation_">Breng een nieuwe oriëntatie van het scherm?</string>
    <string name="send_mail">Verzend mail</string>
@@ -473,4 +472,6 @@
    <string name="file_path">Bestandspad</string>
    <string name="year">Jaar</string>
    <string name="publisher">Uitgever</string>
+   <string name="do_you_want_to_download_the_file_">Wilt u het bestand downloaden?</string>
+   <string name="do_you_want_to_delete_this_file_">Wil je dit bestand verwijderen?</string>
 </resources>

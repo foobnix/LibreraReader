@@ -220,7 +220,6 @@
    <string name="cancel">Annullera</string>
    <string name="close">Stänga</string>
    <string name="restore_defaults_full">Vill du återställa standardvärdena?</string>
-   <string name="delete_book_">Ta bort filen från SD-kort?</string>
    <string name="send_file_to">Skicka fil till</string>
    <string name="apply_a_new_screen_orientation_">Applicera en ny skärm läggning?</string>
    <string name="send_mail">Skicka brev</string>
@@ -473,4 +472,6 @@
    <string name="file_path">Sökväg</string>
    <string name="year">År</string>
    <string name="publisher">Utgivare</string>
+   <string name="do_you_want_to_download_the_file_">Vill du ladda ner filen?</string>
+   <string name="do_you_want_to_delete_this_file_">Vill du radera den här filen?</string>
 </resources>

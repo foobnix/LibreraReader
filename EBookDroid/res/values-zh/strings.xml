@@ -220,7 +220,6 @@
    <string name="cancel">取消</string>
    <string name="close">关闭</string>
    <string name="restore_defaults_full">恢复默认？</string>
-   <string name="delete_book_">删除文件？</string>
    <string name="send_file_to">发送文件</string>
    <string name="apply_a_new_screen_orientation_">应用屏幕方向？</string>
    <string name="send_mail">发送邮件</string>
@@ -473,4 +472,6 @@
    <string name="file_path">路径</string>
    <string name="year">年代</string>
    <string name="publisher">出版者</string>
+   <string name="do_you_want_to_download_the_file_">你想下载文件吗？</string>
+   <string name="do_you_want_to_delete_this_file_">你想删除这个文件吗？</string>
 </resources>

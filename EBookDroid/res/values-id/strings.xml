@@ -220,7 +220,6 @@
    <string name="cancel">Membatalkan</string>
    <string name="close">Dekat</string>
    <string name="restore_defaults_full">Apakah Anda ingin mengembalikan nilai default?</string>
-   <string name="delete_book_">Hapus File dari kartu SD?</string>
    <string name="send_file_to">Kirim file ke</string>
    <string name="apply_a_new_screen_orientation_">Terapkan orientasi layar baru?</string>
    <string name="send_mail">Kirim surat</string>
@@ -473,4 +472,6 @@
    <string name="file_path">Jalur file</string>
    <string name="year">Tahun</string>
    <string name="publisher">Penerbit</string>
+   <string name="do_you_want_to_download_the_file_">Apakah Anda ingin mengunduh file?</string>
+   <string name="do_you_want_to_delete_this_file_">Apakah Anda ingin menghapus file ini?</string>
 </resources>

@@ -220,7 +220,6 @@
    <string name="cancel">Anulare</string>
    <string name="close">Închide</string>
    <string name="restore_defaults_full">Doriți să restaurați valorile implicite?</string>
-   <string name="delete_book_">Ștergeți fișierul de la card SD?</string>
    <string name="send_file_to">Trimitere fișier la</string>
    <string name="apply_a_new_screen_orientation_">Aplicați o nouă orientare ecran?</string>
    <string name="send_mail">Trimitere email</string>
@@ -473,4 +472,6 @@
    <string name="file_path">Dosarul fișierului</string>
    <string name="year">An</string>
    <string name="publisher">Editor</string>
+   <string name="do_you_want_to_download_the_file_">Doriți să descărcați fișierul?</string>
+   <string name="do_you_want_to_delete_this_file_">Doriți să ștergeți acest fișier?</string>
 </resources>

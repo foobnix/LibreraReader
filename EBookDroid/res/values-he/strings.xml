@@ -220,7 +220,6 @@
    <string name="cancel">לְבַטֵל</string>
    <string name="close">לִסְגוֹר</string>
    <string name="restore_defaults_full">האם ברצונך לשחזר את ערכי ברירת המחדל?</string>
-   <string name="delete_book_">למחוק את הקובץ מכרטיס SD?</string>
    <string name="send_file_to">שלח קובץ</string>
    <string name="apply_a_new_screen_orientation_">החלת כיוון מסך חדש?</string>
    <string name="send_mail">שלח מייל</string>
@@ -473,4 +472,6 @@
    <string name="file_path">נתיב קובץ</string>
    <string name="year">שָׁנָה</string>
    <string name="publisher">מוֹצִיא לָאוֹר</string>
+   <string name="do_you_want_to_download_the_file_">האם ברצונך להוריד את הקובץ?</string>
+   <string name="do_you_want_to_delete_this_file_">האם ברצונך למחוק קובץ זה?</string>
 </resources>

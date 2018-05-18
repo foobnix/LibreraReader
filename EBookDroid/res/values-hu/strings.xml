@@ -220,7 +220,6 @@
    <string name="cancel">Mégse</string>
    <string name="close">Bezárás</string>
    <string name="restore_defaults_full">Visszaállítja az alapértelmezett értékeket?</string>
-   <string name="delete_book_">Törli ezt a fájlt a belső memóriából?</string>
    <string name="send_file_to">Fájl küldése…</string>
    <string name="apply_a_new_screen_orientation_">Alkalmazza az új képernyőtájolást?</string>
    <string name="send_mail">Levél küldése</string>
@@ -473,4 +472,6 @@
    <string name="file_path">Fájl elérési út</string>
    <string name="year">Év</string>
    <string name="publisher">Kiadó</string>
+   <string name="do_you_want_to_download_the_file_">Szeretné letölteni a fájlt?</string>
+   <string name="do_you_want_to_delete_this_file_">Törölni szeretné ezt a fájlt?</string>
 </resources>

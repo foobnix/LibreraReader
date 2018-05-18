@@ -220,7 +220,6 @@
    <string name="cancel">キャンセル</string>
    <string name="close">閉じる</string>
    <string name="restore_defaults_full">デフォルト値を復元しますか？</string>
-   <string name="delete_book_">SDカードから削除しますか?</string>
    <string name="send_file_to">ファイルを送信する</string>
    <string name="apply_a_new_screen_orientation_">新しい画面の向きを適用しますか？</string>
    <string name="send_mail">メールを送信</string>
@@ -473,4 +472,6 @@
    <string name="file_path">ファイルパス</string>
    <string name="year">年</string>
    <string name="publisher">出版社</string>
+   <string name="do_you_want_to_download_the_file_">ファイルをダウンロードしますか？</string>
+   <string name="do_you_want_to_delete_this_file_">このファイルを削除しますか？</string>
 </resources>

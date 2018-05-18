@@ -10,6 +10,7 @@ import org.greenrobot.eventbus.EventBus;
 
 import com.foobnix.android.utils.Keyboards;
 import com.foobnix.dao2.FileMeta;
+import com.foobnix.pdf.info.Clouds;
 import com.foobnix.pdf.info.ExtUtils;
 import com.foobnix.pdf.info.R;
 import com.foobnix.pdf.info.Urls;
@@ -137,7 +138,7 @@ public class ShareDialog {
         items.add(a.getString(R.string.open_with));
         items.add(a.getString(R.string.send_file));
         items.add(a.getString(R.string.export_bookmarks));
-        final boolean canDelete = ExtUtils.isExteralSD(file.getPath()) ? true : file.canWrite();
+        final boolean canDelete = ExtUtils.isExteralSD(file.getPath()) || Clouds.isCloud(file.getPath()) ? true : file.canWrite();
         final boolean isShowInfo = !ExtUtils.isExteralSD(file.getPath());
 
         if (isMainTabs) {

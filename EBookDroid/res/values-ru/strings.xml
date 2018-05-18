@@ -220,7 +220,6 @@
    <string name="cancel">Отмена</string>
    <string name="close">Закрыть</string>
    <string name="restore_defaults_full">Хотите вернуть значения по умолчанию?</string>
-   <string name="delete_book_">Удалить безвозвратно файл с устройства?</string>
    <string name="send_file_to">Поделиться файлом</string>
    <string name="apply_a_new_screen_orientation_">Переориентировать экран?</string>
    <string name="send_mail">Отправить письмо</string>
@@ -473,4 +472,6 @@
    <string name="file_path">Путь к файлу</string>
    <string name="year">Год</string>
    <string name="publisher">Издатель</string>
+   <string name="do_you_want_to_download_the_file_">Вы хотите загрузить файл?</string>
+   <string name="do_you_want_to_delete_this_file_">Вы хотите удалить этот файл?</string>
 </resources>

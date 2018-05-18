@@ -220,7 +220,6 @@
    <string name="cancel">Peruuttaa</string>
    <string name="close">Kiinni</string>
    <string name="restore_defaults_full">Haluatko palauttaa oletusarvot?</string>
-   <string name="delete_book_">Poista tiedosto SD-kortilta?</string>
    <string name="send_file_to">Send tiedosto</string>
    <string name="apply_a_new_screen_orientation_">Levitä uusi näytön suunnan?</string>
    <string name="send_mail">Lähetä postia</string>
@@ -473,4 +472,6 @@
    <string name="file_path">Tiedostopolku</string>
    <string name="year">Vuosi</string>
    <string name="publisher">Kustantaja</string>
+   <string name="do_you_want_to_download_the_file_">Haluatko ladata tiedoston?</string>
+   <string name="do_you_want_to_delete_this_file_">Haluatko poistaa tämän tiedoston?</string>
 </resources>

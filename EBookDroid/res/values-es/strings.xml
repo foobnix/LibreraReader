@@ -220,7 +220,6 @@
    <string name="cancel">Cancelar</string>
    <string name="close">Cerrar</string>
    <string name="restore_defaults_full">¿Desea restaurar los valores predeterminados?</string>
-   <string name="delete_book_">Borrar el archivo de la tarjeta SD?</string>
    <string name="send_file_to">Enviar Archivo</string>
    <string name="apply_a_new_screen_orientation_">Aplicar una nueva orientación de la pantalla?</string>
    <string name="send_mail">Enviar correo</string>
@@ -473,4 +472,6 @@
    <string name="file_path">Ruta de archivo</string>
    <string name="year">Año</string>
    <string name="publisher">Editor</string>
+   <string name="do_you_want_to_download_the_file_">¿Quieres descargar el archivo?</string>
+   <string name="do_you_want_to_delete_this_file_">¿Quieres eliminar este archivo?</string>
 </resources>

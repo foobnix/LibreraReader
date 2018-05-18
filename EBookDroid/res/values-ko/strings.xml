@@ -220,7 +220,6 @@
    <string name="cancel">취소</string>
    <string name="close">닫기</string>
    <string name="restore_defaults_full">기본값을 복원 하시겠습니까?</string>
-   <string name="delete_book_">SD 카드에서 책을 지울까요?</string>
    <string name="send_file_to">에 파일 보내기</string>
    <string name="apply_a_new_screen_orientation_">새로운 화면 방향을 적용?</string>
    <string name="send_mail">메일을 보내세요</string>
@@ -473,4 +472,6 @@
    <string name="file_path">파일 경로</string>
    <string name="year">년</string>
    <string name="publisher">발행자</string>
+   <string name="do_you_want_to_download_the_file_">파일을 다운로드 하시겠습니까?</string>
+   <string name="do_you_want_to_delete_this_file_">이 파일을 삭제 하시겠습니까?</string>
 </resources>

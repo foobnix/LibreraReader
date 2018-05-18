@@ -534,6 +534,9 @@ public class ExtUtils {
     }
 
     public static boolean doifFileExists(Context c, String path) {
+        if (Clouds.isCloud(path)) {
+            return true;
+        }
         return doifFileExists(c, new File(path));
     }
 
@@ -610,6 +613,9 @@ public class ExtUtils {
     }
 
     public static boolean isValidFile(final File file) {
+        if (Clouds.isCloud(file.getPath())) {
+            return true;
+        }
         return file != null && file.isFile();
     }
 

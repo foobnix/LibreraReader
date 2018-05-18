@@ -220,7 +220,6 @@
    <string name="cancel">İptal et</string>
    <string name="close">Kapat</string>
    <string name="restore_defaults_full">Varsayılan değerleri geri yüklemek istiyor musunuz?</string>
-   <string name="delete_book_">SD karttan sil?</string>
    <string name="send_file_to">Dosya gönder</string>
    <string name="apply_a_new_screen_orientation_">Yeni ekran yönü uygulansın mı?</string>
    <string name="send_mail">Mail gönder</string>
@@ -473,4 +472,6 @@
    <string name="file_path">Dosya yolu</string>
    <string name="year">Yıl</string>
    <string name="publisher">Yayımcı</string>
+   <string name="do_you_want_to_download_the_file_">Dosyayı indirmek istiyor musunuz?</string>
+   <string name="do_you_want_to_delete_this_file_">Bu dosyayı silmek istiyor musunuz?</string>
 </resources>

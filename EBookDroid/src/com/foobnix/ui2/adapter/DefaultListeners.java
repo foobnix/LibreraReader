@@ -21,6 +21,7 @@ import com.foobnix.pdf.info.wrapper.DocumentController;
 import com.foobnix.pdf.info.wrapper.UITab;
 import com.foobnix.pdf.search.activity.msg.OpenDirMessage;
 import com.foobnix.pdf.search.activity.msg.OpenTagMessage;
+import com.foobnix.pdf.search.view.AsyncProgressTask;
 import com.foobnix.sys.TempHolder;
 import com.foobnix.ui2.AppDB;
 import com.foobnix.ui2.MainTabs2;
@@ -28,6 +29,7 @@ import com.foobnix.ui2.fragment.UIFragment;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.support.v4.content.LocalBroadcastManager;
@@ -107,7 +109,6 @@ public class DefaultListeners {
                         public void run() {
                             IMG.clearCache(result.getPath());
 
-
                             Intent intent = new Intent(UIFragment.INTENT_TINT_CHANGE)//
                                     .putExtra(MainTabs2.EXTRA_NOTIFY_REFRESH, true)//
                                     .putExtra(MainTabs2.EXTRA_PAGE_NUMBER, UITab.getCurrentTabIndex(UITab.BrowseFragment));//
@@ -185,11 +186,57 @@ public class DefaultListeners {
     };
 
     @SuppressLint("NewApi")
-    private static void deleteFile(Activity a, final FileMetaAdapter searchAdapter, final FileMeta result) {
+    private static void deleteFile(final Activity a, final FileMetaAdapter searchAdapter, final FileMeta result) {
         boolean delete = false;
         if (ExtUtils.isExteralSD(result.getPath())) {
             DocumentFile doc = DocumentFile.fromSingleUri(a, Uri.parse(result.getPath()));
             delete = doc.delete();
+        } else if (Clouds.isCloud(result.getPath())) {
+            new AsyncProgressTask<Boolean>() {
+
+                @Override
+                public Context getContext() {
+                    return a;
+                }
+
+                @Override
+                protected Boolean doInBackground(Object... params) {
+                    try {
+                        String path = Clouds.getPath(result.getPath());
+                        Clouds.get().dropbox.delete(path);
+                    } catch (Exception e) {
+                        LOG.e(e);
+                        return false;
+                    }
+                    return true;
+                }
+
+                @Override
+                protected void onPostExecute(Boolean status) {
+                    super.onPostExecute(status);
+                    LOG.d("Delete status", status);
+                    if (status != null && status == true) {
+
+                        TempHolder.listHash++;
+                        AppDB.get().delete(result);
+                        searchAdapter.getItemsList().remove(result);
+                        searchAdapter.notifyDataSetChanged();
+
+                        File cacheFile = Clouds.getCacheFile(result.getPath());
+                        if (cacheFile != null && cacheFile.delete()) {
+
+                            FileMeta cacheMeta = new FileMeta(cacheFile.getPath());
+                            AppDB.get().delete(cacheMeta);
+                            searchAdapter.getItemsList().remove(cacheMeta);
+                        }
+
+                    } else {
+                        Toast.makeText(a, R.string.can_t_delete_file, Toast.LENGTH_LONG).show();
+                    }
+                };
+
+            }.execute();
+
         } else {
             final File file = new File(result.getPath());
             delete = file.delete();
@@ -204,7 +251,9 @@ public class DefaultListeners {
             searchAdapter.notifyDataSetChanged();
 
         } else {
-            Toast.makeText(a, R.string.can_t_delete_file, Toast.LENGTH_LONG).show();
+            if (!Clouds.isCloud(result.getPath())) {
+                Toast.makeText(a, R.string.can_t_delete_file, Toast.LENGTH_LONG).show();
+            }
         }
     }
 
@@ -229,7 +278,7 @@ public class DefaultListeners {
                     ShareDialog.show(a, file, onDeleteAction, -1, null, null);
                 } else {
 
-                    if (ExtUtils.doifFileExists(a, file)) {
+                    if (ExtUtils.doifFileExists(a, result.getPath())) {
 
                         if (ExtUtils.isNotSupportedFile(file)) {
                             ShareDialog.showArchive(a, file, onDeleteAction);

@@ -220,7 +220,6 @@
    <string name="cancel">Zrušiť</string>
    <string name="close">Zavrieť</string>
    <string name="restore_defaults_full">Chcete obnoviť predvolené hodnoty?</string>
-   <string name="delete_book_">Delete the File from SD card?</string>
    <string name="send_file_to">Send file to</string>
    <string name="apply_a_new_screen_orientation_">Aplikovať nové orientácie obrazovky?</string>
    <string name="send_mail">Odoslať poštu</string>
@@ -473,4 +472,6 @@
    <string name="file_path">Cesta k súboru</string>
    <string name="year">Rok</string>
    <string name="publisher">Vydavateľ</string>
+   <string name="do_you_want_to_download_the_file_">Chcete súbor stiahnuť?</string>
+   <string name="do_you_want_to_delete_this_file_">Chcete odstrániť tento súbor?</string>
 </resources>

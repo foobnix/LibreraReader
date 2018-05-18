@@ -220,7 +220,6 @@
    <string name="cancel">Скасувати</string>
    <string name="close">Закрити</string>
    <string name="restore_defaults_full">Ви хочете відновити значення за замовчуванням?</string>
-   <string name="delete_book_">Видалити файл з SD карти?</string>
    <string name="send_file_to">Надіслати файл</string>
    <string name="apply_a_new_screen_orientation_">Застосувати нову орієнтацію екрану?</string>
    <string name="send_mail">Написати листа</string>
@@ -473,4 +472,6 @@
    <string name="file_path">Файл шляху</string>
    <string name="year">Рік</string>
    <string name="publisher">Видавець</string>
+   <string name="do_you_want_to_download_the_file_">Ви хочете завантажити файл?</string>
+   <string name="do_you_want_to_delete_this_file_">Ви хочете видалити цей файл?</string>
 </resources>
