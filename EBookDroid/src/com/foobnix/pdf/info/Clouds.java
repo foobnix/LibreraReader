@@ -65,6 +65,10 @@ public class Clouds {
         return pathWithPrefix.replace(PREFIX_CLOUD_DROPBOX, "").replace(PREFIX_CLOUD_GDRIVE, "").replace(PREFIX_CLOUD_ONEDRIVE, "");
     }
 
+    public void logout(String path) {
+        CloudStorage cloud = cloud(path);
+        cloud.logout();
+    }
     public CloudStorage cloud(String path) {
         if (path.startsWith(PREFIX_CLOUD_DROPBOX)) {
             return dropbox;

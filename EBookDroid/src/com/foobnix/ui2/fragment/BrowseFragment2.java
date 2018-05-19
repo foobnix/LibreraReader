@@ -26,6 +26,7 @@ import com.foobnix.pdf.info.io.SearchCore;
 import com.foobnix.pdf.info.view.MyPopupMenu;
 import com.foobnix.pdf.info.wrapper.AppState;
 import com.foobnix.pdf.info.wrapper.PopupHelper;
+import com.foobnix.pdf.search.view.AsyncProgressTask;
 import com.foobnix.ui2.AppDB;
 import com.foobnix.ui2.MainTabs2;
 import com.foobnix.ui2.adapter.DefaultListeners;
@@ -35,6 +36,7 @@ import com.foobnix.ui2.fast.FastScrollRecyclerView;
 import android.annotation.SuppressLint;
 import android.annotation.TargetApi;
 import android.content.ContentResolver;
+import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.Color;
@@ -892,7 +894,7 @@ public class BrowseFragment2 extends UIFragment<FileMeta> {
 
             TextView nameView = new TextView(getActivity());
             if (split.length == 0) {
-                nameView.setText(name + ": " + Clouds.get().getUserLogin(displayPath));
+                nameView.setText(name + ": " + Clouds.get().getUserLogin(displayPath) + " ");
             } else {
                 nameView.setText(name + ":");
             }
@@ -905,6 +907,43 @@ public class BrowseFragment2 extends UIFragment<FileMeta> {
                 }
             });
             paths.addView(nameView);
+
+            if (split.length == 0) {
+                TextView logout = new TextView(getActivity());
+                logout.setText(TxtUtils.underline(getActivity().getString(R.string.logout)));
+                logout.setTextColor(getResources().getColor(R.color.white));
+                logout.setOnClickListener(new OnClickListener() {
+
+                    @Override
+                    public void onClick(View v) {
+                        new AsyncProgressTask<Boolean>() {
+
+                            @Override
+                            public Context getContext() {
+                                return getActivity();
+                            }
+
+                            @Override
+                            protected Boolean doInBackground(Object... params) {
+                                try {
+                                    Clouds.get().logout(displayPath);
+                                } catch (Exception e) {
+                                    return false;
+                                }
+                                return true;
+                            }
+
+                            @Override
+                            protected void onPostExecute(Boolean result) {
+                                super.onPostExecute(result);
+                                displayAnyPath(Environment.getExternalStorageDirectory().getPath());
+                            }
+
+                        }.execute();
+                    }
+                });
+                paths.addView(logout);
+            }
 
             for (int i = 0; i < split.length; i++) {
                 final int index = i;

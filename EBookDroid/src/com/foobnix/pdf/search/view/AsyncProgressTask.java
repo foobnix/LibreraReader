@@ -15,7 +15,7 @@ public abstract class AsyncProgressTask<T> extends AsyncTask<Object, Object, T> 
 
     @Override
     protected void onPreExecute() {
-        dialog = ProgressDialog.show(getContext(), "", getContext().getString(R.string.msg_loading));
+        dialog = ProgressDialog.show(getContext(), "", getContext().getString(R.string.please_wait));
     }
 
     @Override
