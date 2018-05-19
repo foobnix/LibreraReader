@@ -32,7 +32,7 @@ public class TxtUtils {
         if (string == null) {
             return null;
         }
-        return string.trim();
+        return string.replaceAll("\\s", " ").trim();
     }
 
     public static String lastTwoPath(String txt) {
@@ -257,10 +257,10 @@ public class TxtUtils {
             for (String sub : split) {
                 if (TxtUtils.isNotEmpty(sub)) {
                     res.append(replaceLastFirstName(sub));
-                    res.append("; ");
+                    res.append(", ");
                 }
             }
-            return TxtUtils.replaceLast(res.toString(), ";", "");
+            return TxtUtils.replaceLast(res.toString(), ",", "").trim();
         }
 
         return replaceLastFirstName(name);
@@ -283,7 +283,7 @@ public class TxtUtils {
             res.append(" ");
             res.append(split[i]);
         }
-        return res.toString();
+        return res.toString().trim();
 
     }
 

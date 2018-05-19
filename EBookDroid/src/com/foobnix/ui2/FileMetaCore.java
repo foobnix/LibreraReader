@@ -235,7 +235,7 @@ public class FileMetaCore {
 
     public void udpateFullMeta(FileMeta fileMeta, EbookMeta meta) {
         fileMeta.setAuthor(TxtUtils.trim(meta.getAuthor()));
-        fileMeta.setTitle(TxtUtils.trim(meta.getTitle()));
+        fileMeta.setTitle(meta.getTitle());
         fileMeta.setSequence(TxtUtils.firstUppercase(meta.getSequence()));
         fileMeta.setGenre(meta.getGenre());
         fileMeta.setAnnotation(meta.getAnnotation());
