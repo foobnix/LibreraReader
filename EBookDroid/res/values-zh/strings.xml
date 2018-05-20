@@ -298,10 +298,10 @@
    <string name="two_pages">双页</string>
    <string name="two_pages_cover">封页</string>
    <string name="half_page">半页</string>
-   <string name="by_pages">按页/滚动</string>
-   <string name="by_screans">按屏/滚动</string>
+   <string name="by_pages">按页面滚动</string>
+   <string name="by_screans">按屏幕滚动</string>
    <string name="of_screen">滚距</string>
-   <string name="custom_value">自定义/值</string>
+   <string name="custom_value">自定义值</string>
    <string name="automatic_page_flipping">自动翻页</string>
    <string name="interval_sec_">间隔（秒）</string>
    <string name="loop_autoplay">启用自动循环</string>
