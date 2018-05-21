@@ -40,9 +40,9 @@ public class Clouds {
     transient public CloudStorage googleDrive;
     transient public CloudStorage oneDrive;
 
-    public String dropboxToken;
-    public String googleDriveToken;
-    public String oneDriveToken;
+    public volatile String dropboxToken;
+    public volatile String googleDriveToken;
+    public volatile String oneDriveToken;
 
     public String dropboxInfo;
     public String googleDriveInfo;
@@ -94,8 +94,29 @@ public class Clouds {
     }
 
     public void logout(String path) {
-        CloudStorage cloud = cloud(path);
-        cloud.logout();
+        LOG.d("Logout", path);
+
+        try {
+            CloudStorage cloud = cloud(path);
+            cloud.logout();
+        } catch (Exception e) {
+            LOG.e(e);
+        }
+
+        if (path.startsWith(PREFIX_CLOUD_DROPBOX)) {
+            dropboxInfo = null;
+            dropboxToken = null;
+        }
+        if (path.startsWith(PREFIX_CLOUD_GDRIVE)) {
+            googleDriveInfo = null;
+            googleDriveToken = null;
+        }
+
+        if (path.startsWith(PREFIX_CLOUD_ONEDRIVE)) {
+            oneDriveInfo = null;
+            oneDriveToken = null;
+        }
+
     }
 
     public CloudStorage cloud(String path) {
@@ -196,12 +217,13 @@ public class Clouds {
             LOG.d("syncronize Get Cloud not connected");
             return;
         }
-
-        if (!dropbox.exists(LIBRERA_SYNC_FOLDER)) {
-            LOG.d("syncronize No sync folder");
-            return;
-        }
         try {
+
+            if (!dropbox.exists(LIBRERA_SYNC_FOLDER)) {
+                LOG.d("syncronize No sync folder");
+                return;
+            }
+
             File root = new File(AppState.get().syncPath);
             root.mkdirs();
 
@@ -273,7 +295,6 @@ public class Clouds {
                         outStream.close();
                         LOG.d("upload File" + extSyncFile);
                     }
-
 
                     return true;
                 } catch (IOException e) {

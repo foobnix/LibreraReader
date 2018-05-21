@@ -17,6 +17,7 @@ import com.foobnix.android.utils.TxtUtils;
 import com.foobnix.pdf.info.AndroidWhatsNew;
 import com.foobnix.pdf.info.AppSharedPreferences;
 import com.foobnix.pdf.info.AppsConfig;
+import com.foobnix.pdf.info.Clouds;
 import com.foobnix.pdf.info.ExtUtils;
 import com.foobnix.pdf.info.IMG;
 import com.foobnix.pdf.info.PasswordDialog;
@@ -410,6 +411,20 @@ public class PrefFragment2 extends UIFragment {
         // "https://www.dropbox.com/sh/8el7kon2sbx46w8/xm3qoHYT7n");
         // }
         // });
+
+        inflate.findViewById(R.id.dropbox).setOnClickListener(new OnClickListener() {
+
+            @Override
+            public void onClick(final View v) {
+                Clouds.get().loginToDropbox(getActivity(), new Runnable() {
+
+                    @Override
+                    public void run() {
+                        Toast.makeText(getActivity(), R.string.success, Toast.LENGTH_SHORT).show();
+                    }
+                });
+            }
+        });
 
         inflate.findViewById(R.id.onKeyCode).setOnClickListener(new OnClickListener() {
 
@@ -1098,6 +1113,24 @@ public class PrefFragment2 extends UIFragment {
                     public boolean onResultRecive(String nPath, Dialog dialog) {
                         AppState.get().downlodsPath = nPath;
                         TxtUtils.underline(downloadFolder, TxtUtils.lastTwoPath(AppState.get().downlodsPath));
+                        dialog.dismiss();
+                        return false;
+                    }
+                });
+            }
+        });
+
+        final TextView syncPath = (TextView) inflate.findViewById(R.id.syncPath);
+        TxtUtils.underline(syncPath, TxtUtils.lastTwoPath(AppState.get().syncPath));
+        syncPath.setOnClickListener(new OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                ChooserDialogFragment.chooseFolder(getActivity(), AppState.get().syncPath).setOnSelectListener(new ResultResponse2<String, Dialog>() {
+                    @Override
+                    public boolean onResultRecive(String nPath, Dialog dialog) {
+                        AppState.get().syncPath = nPath;
+                        TxtUtils.underline(downloadFolder, TxtUtils.lastTwoPath(AppState.get().syncPath));
                         dialog.dismiss();
                         return false;
                     }

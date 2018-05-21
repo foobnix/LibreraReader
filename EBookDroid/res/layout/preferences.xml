@@ -227,9 +227,9 @@
 
                 <CheckBox
                     android:id="@+id/isFirstSurname"
-                    android:layout_weight="1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_weight="1"
                     android:text="@string/in_the_author_s_name_first_the_surname" />
 
                 <ImageView
@@ -240,6 +240,27 @@
                     android:padding="8dip"
                     android:src="@drawable/glyphicons_685_article"
                     android:tint="@color/tint_gray" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/dropbox"
+                android:background="@drawable/bg_clickable"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical" >
+
+                <ImageView
+                    android:layout_width="@dimen/wh_button"
+                    android:layout_height="@dimen/wh_button"
+                    android:layout_weight="0"
+                    android:padding="8dip"
+                    android:src="@drawable/dropbox" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Dropbox"
+                    android:textSize="16sp" />
             </LinearLayout>
         </LinearLayout>
 
@@ -1185,6 +1206,29 @@
                 android:text="[]" />
         </LinearLayout>
 
+        
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal" >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/cloud_sync_folder"
+                android:width="135dip" />
+
+            <TextView
+                android:id="@+id/syncPath"
+                style="@style/textLink"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ellipsize="start"
+                android:text="[]" />
+        </LinearLayout>
+        
+        
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
