@@ -128,7 +128,7 @@
    <string name="save_new_annotations_automatically">自动保存新注释</string>
    <string name="selecting_text_by_letters">选择文本单字</string>
    <string name="change_the_automatic_scrolling_speed_with_the_volume_keys">音量键调节滚动速度</string>
-   <string name="enable_brightness_adjustment_on_the_left_of_the_screen">滑动屏幕左侧调节亮度</string>
+   <string name="enable_brightness_adjustment_on_the_left_of_the_screen">擦动屏幕左侧边沿调节屏幕亮度</string>
    <string name="scroll_speed">鼠标灵敏度</string>
    <string name="page_quality">页面质量</string>
    <string name="pages_in_memory">预载页面</string>
@@ -298,10 +298,10 @@
    <string name="two_pages">双页</string>
    <string name="two_pages_cover">封页</string>
    <string name="half_page">半页</string>
-   <string name="by_pages">按页/滚动</string>
-   <string name="by_screans">按屏/滚动</string>
+   <string name="by_pages">按页面滚动</string>
+   <string name="by_screans">按屏幕滚动</string>
    <string name="of_screen">滚距</string>
-   <string name="custom_value">自定义/值</string>
+   <string name="custom_value">自定义值</string>
    <string name="automatic_page_flipping">自动翻页</string>
    <string name="interval_sec_">间隔（秒）</string>
    <string name="loop_autoplay">启用自动循环</string>
@@ -422,7 +422,7 @@
    <string name="the_page_is_clipped_the_text_selection_does_not_work">页面已被剪辑，文本选择失效。</string>
    <string name="title">书名</string>
    <string name="subject">主题</string>
-   <string name="keywords">索引</string>
+   <string name="keywords">关键词</string>
    <string name="number">页码</string>
    <string name="percent">百分比</string>
    <string name="reading_progress">阅读进度</string>
@@ -438,7 +438,7 @@
    <string name="show_battery_percentage">显示电量百分比</string>
    <string name="show_current_time">显示当前时间</string>
    <string name="telegram_channel">交流群</string>
-   <string name="zoom_in_out_using_the_volume_keys">音量键控制缩放</string>
+   <string name="zoom_in_out_using_the_volume_keys">音量键缩放</string>
    <string name="tag">标签名称</string>
    <string name="no_tag">无标签</string>
    <string name="add_tag">创建标签</string>
@@ -449,7 +449,7 @@
    <string name="recent_favorites_tags">最近阅读/我的珍藏/我的标签</string>
    <string name="line_spacing">行目间距</string>
    <string name="paragraph_spacing">段落间距</string>
-   <string name="indent">段落首行缩进</string>
+   <string name="indent">段首缩进</string>
    <string name="allow_text_highlight">启用文本高亮</string>
    <string name="text_highlight_mode_is_enable">文本高亮已经启用</string>
    <string name="text_highlight_mode_is_disable">文本高亮已被禁用</string>
