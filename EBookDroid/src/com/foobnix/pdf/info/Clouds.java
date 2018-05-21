@@ -7,6 +7,7 @@ import com.cloudrail.si.interfaces.CloudStorage;
 import com.cloudrail.si.services.Dropbox;
 import com.cloudrail.si.services.GoogleDrive;
 import com.cloudrail.si.services.OneDrive;
+import com.foobnix.android.utils.Apps;
 import com.foobnix.android.utils.LOG;
 import com.foobnix.android.utils.Objects;
 import com.foobnix.pdf.info.wrapper.AppState;
@@ -132,11 +133,8 @@ public class Clouds {
         dropbox = new Dropbox(c, "wp5uvfelqbdnwkg", "e7hfer9dh5r18tz", "https://auth.cloudrail.com/Librera", "");
         ((Dropbox) dropbox).useAdvancedAuthentication();
 
-        String key = LOG.isEnable ? //
-                "744830629623-imfdo21enh5ckldo5orhqg1sujk2cn9v.apps.googleusercontent.com" : //
-                "961762082517-dgsen03hb73s6oh59ovivcansatu16lc.apps.googleusercontent.com"; //
-
-        googleDrive = new GoogleDrive(c, key, "", "com.foobnix.pdf.reader:/auth", "");
+        // https://console.cloud.google.com/apis/credentials?project=librera-release
+        googleDrive = new GoogleDrive(c, AppsConfig.GOOGLE_DRIVE_KEY, "", Apps.getPackageName(c) + ":/auth", "");
         ((GoogleDrive) googleDrive).useAdvancedAuthentication();
 
         // https://apps.dev.microsoft.com/#/application

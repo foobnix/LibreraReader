@@ -16,6 +16,7 @@ import com.foobnix.sys.TempHolder;
 
 import android.annotation.TargetApi;
 import android.graphics.Typeface;
+import android.net.Uri;
 import android.os.Build;
 import android.support.v4.util.Pair;
 import android.text.Html;
@@ -39,6 +40,8 @@ public class TxtUtils {
         if (TxtUtils.isEmpty(txt)) {
             return "[]";
         }
+        txt = Uri.decode(txt);
+
         int fist = txt.lastIndexOf("/");
         if (fist >= 0) {
             int second = txt.lastIndexOf("/", fist - 1);

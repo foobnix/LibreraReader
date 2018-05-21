@@ -474,4 +474,5 @@
    <string name="publisher">Yayımcı</string>
    <string name="do_you_want_to_download_the_file_">Dosyayı indirmek istiyor musunuz?</string>
    <string name="do_you_want_to_delete_this_file_">Bu dosyayı silmek istiyor musunuz?</string>
+   <string name="logout">Çıkış Yap</string>
 </resources>

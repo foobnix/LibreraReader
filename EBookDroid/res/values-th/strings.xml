@@ -474,4 +474,5 @@
    <string name="publisher">สำนักพิมพ์</string>
    <string name="do_you_want_to_download_the_file_">คุณต้องการดาวน์โหลดไฟล์หรือไม่?</string>
    <string name="do_you_want_to_delete_this_file_">คุณต้องการลบไฟล์นี้หรือไม่?</string>
+   <string name="logout">ออกจากระบบ</string>
 </resources>

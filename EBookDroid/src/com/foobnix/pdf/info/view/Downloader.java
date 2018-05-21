@@ -47,14 +47,11 @@ public class Downloader {
 
                     @Override
                     protected String doInBackground(Object... params) {
-                        InputStream download = Clouds.get().cloud(meta.getPath()).download(path);
-
                         try {
+                            InputStream download = Clouds.get().cloud(meta.getPath()).download(path);
                             FileOutputStream out = new FileOutputStream(file);
                             Fb2Extractor.zipCopy(download, out);
                             out.close();
-
-
                         } catch (IOException e) {
                             LOG.e(e);
                         }

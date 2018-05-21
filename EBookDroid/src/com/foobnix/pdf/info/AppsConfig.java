@@ -30,15 +30,13 @@ public class AppsConfig {
     public static String ADMOB_FULLSCREEN;
     public static String ADMOB_NATIVE_BANNER;
 
-    public static String EP_BANNER_NATIVE;
-    public static String EP_INTERSTITIAL;
-
     public static String ANALYTICS_ID;
+
+    public static String GOOGLE_DRIVE_KEY;
 
     public static String APP_PACKAGE;
     public static boolean IS_BETA, IS_CLASSIC, IS_INK;
 
-    public static boolean IS_TEST_EP = false;
 
     public static String TXT_APP_NAME;
 
@@ -59,6 +57,7 @@ public class AppsConfig {
         if (PRO_LIBRERA_READER.equals(packageName)) {
             ADMOB_BANNER = null;
             ANALYTICS_ID = null;
+            GOOGLE_DRIVE_KEY = "961762082517-ej9mdc7bgp7jkd6hvbfimvda6vpi5p4t.apps.googleusercontent.com";
             return;
         }
 
@@ -69,8 +68,7 @@ public class AppsConfig {
             ADMOB_FULLSCREEN/*  */ = "ca-app-pub-8347903083053959/2769081274";
             ADMOB_NATIVE_BANNER/**/ = "ca-app-pub-8347903083053959/5722547677";
 
-            EP_BANNER_NATIVE = "9cf064256b16a112cc1fd3fb42487dbd";
-            EP_INTERSTITIAL = "cd6563264b30c32814df5f0e1048079b";
+            GOOGLE_DRIVE_KEY = "961762082517-dgsen03hb73s6oh59ovivcansatu16lc.apps.googleusercontent.com";
 
         }
 
@@ -82,8 +80,8 @@ public class AppsConfig {
             ADMOB_FULLSCREEN/*   */ = "ca-app-pub-8347903083053959/7763820878";
             ADMOB_NATIVE_BANNER/**/ = "ca-app-pub-8347903083053959/8572902871";
 
-            EP_BANNER_NATIVE = "45cb427bedf4118fd6983475ce7cfb3e";
-            EP_INTERSTITIAL = "c6d71b0cf97d5ca37764b26e8f365cf1";
+
+            GOOGLE_DRIVE_KEY = "961762082517-5825mr1t8duo7tlnkdr6itersmlreejq.apps.googleusercontent.com";
 
         }
 
@@ -93,8 +91,7 @@ public class AppsConfig {
             ADMOB_FULLSCREEN/* */ = "ca-app-pub-8347903083053959/2346153515";
             ADMOB_NATIVE_BANNER/**/ = null;
 
-            EP_BANNER_NATIVE = "ec263d6b75792d1e566a53f78b297cfc";
-            EP_INTERSTITIAL = "ff99040c9b6a825dbc8dfb56a8834225";
+            GOOGLE_DRIVE_KEY = "961762082517-3ud6u3hmjlbbpqdsqtk9md55o5jgkg41.apps.googleusercontent.com";
 
         }
         if (LIBRERA_INK_EDITION.equals(packageName)) {
@@ -104,6 +101,8 @@ public class AppsConfig {
             ADMOB_BANNER/*     */ = "ca-app-pub-8347903083053959/5364245672";
             ADMOB_FULLSCREEN/*  */ = null;
             ADMOB_NATIVE_BANNER/**/ = "ca-app-pub-8347903083053959/8572902871";
+
+            GOOGLE_DRIVE_KEY = "961762082517-4heqqjfki9n6og2mrltb260l1q8pfmdq.apps.googleusercontent.com";
 
         }
 
@@ -116,9 +115,8 @@ public class AppsConfig {
             ADMOB_BANNER = ADMOB_FULLSCREEN = ADMOB_NATIVE_BANNER = null;
             LOG.isEnable = true;
         }
-        if (IS_TEST_EP) {
-            EP_INTERSTITIAL = "0928de1630a1452b64eaab1813d3af64";
-            EP_BANNER_NATIVE = "ec5086312cf4959dcc54fe8a8ad15401";
+        if (LOG.isEnable) {
+            GOOGLE_DRIVE_KEY = "961762082517-3crh8ptru3vsfcplmtb6gkjlrv0ee79r.apps.googleusercontent.com";
         }
 
 

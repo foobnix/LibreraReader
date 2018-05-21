@@ -474,4 +474,5 @@
    <string name="publisher">Видавець</string>
    <string name="do_you_want_to_download_the_file_">Ви хочете завантажити файл?</string>
    <string name="do_you_want_to_delete_this_file_">Ви хочете видалити цей файл?</string>
+   <string name="logout">Вийти</string>
 </resources>

@@ -474,4 +474,5 @@
    <string name="publisher">Publisher</string>
    <string name="do_you_want_to_download_the_file_">Non vis ut download lima est?</string>
    <string name="do_you_want_to_delete_this_file_">Non vis ut delete lima hoc?</string>
+   <string name="logout">PP</string>
 </resources>

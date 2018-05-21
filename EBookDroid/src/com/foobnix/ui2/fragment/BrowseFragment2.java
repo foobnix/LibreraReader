@@ -908,7 +908,7 @@ public class BrowseFragment2 extends UIFragment<FileMeta> {
             });
             paths.addView(nameView);
 
-            if (split.length == 0) {
+            if (split.length == 0 && Clouds.isCloud(displayPath)) {
                 TextView logout = new TextView(getActivity());
                 logout.setText(TxtUtils.underline(getActivity().getString(R.string.logout)));
                 logout.setTextColor(getResources().getColor(R.color.white));

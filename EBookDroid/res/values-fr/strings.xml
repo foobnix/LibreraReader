@@ -474,4 +474,5 @@
    <string name="publisher">Éditeur</string>
    <string name="do_you_want_to_download_the_file_">Voulez-vous télécharger le fichier?</string>
    <string name="do_you_want_to_delete_this_file_">Voulez-vous supprimer ce fichier?</string>
+   <string name="logout">Connectez - Out</string>
 </resources>

@@ -474,4 +474,5 @@
    <string name="publisher">발행자</string>
    <string name="do_you_want_to_download_the_file_">파일을 다운로드 하시겠습니까?</string>
    <string name="do_you_want_to_delete_this_file_">이 파일을 삭제 하시겠습니까?</string>
+   <string name="logout">로그 아웃</string>
 </resources>
