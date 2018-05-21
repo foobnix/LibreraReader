@@ -38,7 +38,6 @@ public class FileMetaCore {
 
     private static FileMetaCore in = new FileMetaCore();
 
-
     public static FileMetaCore get() {
         return in;
     }
@@ -66,6 +65,27 @@ public class FileMetaCore {
             }
         } catch (Exception e) {
             LOG.e(e);
+        }
+    }
+
+    public static void createMetaIfNeed(String path, final boolean isSearhcBook) {
+        LOG.d("createMetaIfNeed", path);
+
+        if (new File(path).isFile()) {
+            FileMeta fileMeta = AppDB.get().getOrCreate(path);
+            if (fileMeta.getState() != FileMetaCore.STATE_FULL) {
+                EbookMeta ebookMeta = FileMetaCore.get().getEbookMeta(path, CacheDir.ZipApp, true);
+
+                FileMetaCore.get().upadteBasicMeta(fileMeta, new File(path));
+                FileMetaCore.get().udpateFullMeta(fileMeta, ebookMeta);
+
+                if (isSearhcBook) {
+                    fileMeta.setIsSearchBook(isSearhcBook);
+                }
+
+                AppDB.get().update(fileMeta);
+                LOG.d("checkOrCreateMetaInfo", "UPDATE", path);
+            }
         }
     }
 

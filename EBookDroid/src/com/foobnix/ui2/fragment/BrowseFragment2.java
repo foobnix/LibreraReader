@@ -331,38 +331,14 @@ public class BrowseFragment2 extends UIFragment<FileMeta> {
 
                     @Override
                     public boolean onMenuItemClick(MenuItem item) {
-                        new Thread() {
+
+                        Clouds.get().loginToDropbox(getActivity(), new Runnable() {
+
                             @Override
                             public void run() {
-                                try {
-                                    if (!Clouds.get().isDropbox()) {
-                                        Clouds.get().dropbox.login();
-                                        Clouds.get().dropboxToken = Clouds.get().dropbox.saveAsString();
-                                        Clouds.get().dropboxInfo = Clouds.get().dropbox.getUserLogin();
-                                        Clouds.get().save();
-                                    }
-
-                                    BrowseFragment2.this.getActivity().runOnUiThread(new Runnable() {
-
-                                        @Override
-                                        public void run() {
-                                            displayAnyPath(Clouds.PREFIX_CLOUD_DROPBOX + "/");
-                                        }
-                                    });
-                                } catch (Exception e) {
-                                    LOG.d(e);
-                                    BrowseFragment2.this.getActivity().runOnUiThread(new Runnable() {
-
-                                        @Override
-                                        public void run() {
-                                            Toast.makeText(getActivity(), R.string.msg_unexpected_error, Toast.LENGTH_SHORT).show();
-                                        }
-                                    });
-                                }
-
-                            };
-
-                        }.start();
+                                displayAnyPath(Clouds.PREFIX_CLOUD_DROPBOX + "/");
+                            }
+                        });
 
                         return true;
                     }

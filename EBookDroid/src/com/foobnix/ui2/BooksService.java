@@ -101,12 +101,7 @@ public class BooksService extends IntentService {
                                 continue;
                             }
 
-                            FileMetaCore.get().upadteBasicMeta(meta, file);
-                            EbookMeta ebookMeta = FileMetaCore.get().getEbookMeta(meta.getPath(), CacheDir.ZipService, true);
-                            FileMetaCore.get().udpateFullMeta(meta, ebookMeta);
-
-                            meta.setIsSearchBook(true);
-                            AppDB.get().updateOrSave(meta);
+                            FileMetaCore.createMetaIfNeed(meta.getPath(), true);
                             LOG.d(TAG, "BooksService", "insert", meta.getPath());
                         }
 
@@ -195,9 +190,15 @@ public class BooksService extends IntentService {
                 handler.removeCallbacks(timer2);
                 sendFinishMessage();
                 CacheDir.ZipService.removeCacheContent();
+
             }
 
         } finally {
+        }
+
+        if (Clouds.get().isDropbox()) {
+            Clouds.get().syncronizeGet();
+            sendFinishMessage();
         }
 
     }

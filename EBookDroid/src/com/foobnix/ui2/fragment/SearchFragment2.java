@@ -89,7 +89,6 @@ public class SearchFragment2 extends UIFragment<FileMeta> {
     View onRefresh, secondTopPanel;
     AutoCompleteTextView searchEditText;
 
-    public static List<FileMeta> itemsMeta = new ArrayList<FileMeta>();
     final Set<String> autocomplitions = new HashSet<String>();
     public int prevLibModeFileMeta = AppState.MODE_GRID;
     public int prevLibModeAuthors = NONE;

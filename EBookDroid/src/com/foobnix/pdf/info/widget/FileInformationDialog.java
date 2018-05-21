@@ -88,6 +88,7 @@ public class FileInformationDialog {
             AppDB.get().updateOrSave(fileMeta);
         }
 
+
         final View dialog = LayoutInflater.from(a).inflate(R.layout.dialog_file_info, null, false);
 
         TextView title = (TextView) dialog.findViewById(R.id.title);

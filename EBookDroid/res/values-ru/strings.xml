@@ -229,7 +229,7 @@
    <string name="___NOTIFICATION___SECTION___"></string>
    <string name="fail">Сбой</string>
    <string name="success">Успешно</string>
-   <string name="please_wait">Открывается...</string>
+   <string name="please_wait">Пожалуйста, подождите ...</string>
    <string name="incorrect_value">Неверное значение</string>
    <string name="this_directory_is_already_in_the_list">Этот каталог уже в списке</string>
    <string name="you_neet_to_apply_the_new_settings">Необходимо применить новые настройки</string>

@@ -156,6 +156,8 @@ public class ShareDialog {
             items.add(a.getString(R.string.file_info));
         }
 
+        items.add("Add to Dropbox Cloud");
+
         final AlertDialog.Builder builder = new AlertDialog.Builder(a);
         // builder.setTitle(R.string.choose_)//
         builder.setItems(items.toArray(new String[items.size()]), new DialogInterface.OnClickListener() {
@@ -243,6 +245,20 @@ public class ShareDialog {
                     Dialogs.showTagsDialog(a, file, null);
                 } else if (isShowInfo && which == i++) {
                     FileInformationDialog.showFileInfoDialog(a, file, onDeleteAction);
+                } else if (which == i++) {
+                    // sync
+                    if (Clouds.get().isDropbox()) {
+                        Clouds.get().syncronizeAdd(a, file);
+                    } else {
+                        Clouds.get().loginToDropbox(a, new Runnable() {
+
+                            @Override
+                            public void run() {
+                                Clouds.get().syncronizeAdd(a, file);
+                            }
+                        });
+
+                    }
                 }
 
             }

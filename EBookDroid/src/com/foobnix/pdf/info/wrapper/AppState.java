@@ -425,6 +425,7 @@ public class AppState {
     public String downlodsPath = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS), "Librera").getPath();
     public String ttsSpeakPath = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS), "Librera/TTS").getPath();
     public String backupPath = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS), "Librera/Backup").getPath();
+    public String syncPath = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS), "Librera/Librera.Cloud").getPath();
 
     public String fileToDelete;
 

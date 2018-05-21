@@ -192,51 +192,9 @@ public class DefaultListeners {
             DocumentFile doc = DocumentFile.fromSingleUri(a, Uri.parse(result.getPath()));
             delete = doc.delete();
         } else if (Clouds.isCloud(result.getPath())) {
-            new AsyncProgressTask<Boolean>() {
-
-                @Override
-                public Context getContext() {
-                    return a;
-                }
-
-                @Override
-                protected Boolean doInBackground(Object... params) {
-                    try {
-                        String path = Clouds.getPath(result.getPath());
-                        Clouds.get().cloud(result.getPath()).delete(path);
-                    } catch (Exception e) {
-                        LOG.e(e);
-                        return false;
-                    }
-                    return true;
-                }
-
-                @Override
-                protected void onPostExecute(Boolean status) {
-                    super.onPostExecute(status);
-                    LOG.d("Delete status", status);
-                    if (status != null && status == true) {
-
-                        TempHolder.listHash++;
-                        AppDB.get().delete(result);
-                        searchAdapter.getItemsList().remove(result);
-                        searchAdapter.notifyDataSetChanged();
-
-                        File cacheFile = Clouds.getCacheFile(result.getPath());
-                        if (cacheFile != null && cacheFile.delete()) {
-
-                            FileMeta cacheMeta = new FileMeta(cacheFile.getPath());
-                            AppDB.get().delete(cacheMeta);
-                            searchAdapter.getItemsList().remove(cacheMeta);
-                        }
-
-                    } else {
-                        Toast.makeText(a, R.string.can_t_delete_file, Toast.LENGTH_LONG).show();
-                    }
-                };
-
-            }.execute();
-
+            removeCloudFile(a, searchAdapter, result);
+        } else if (Clouds.isCloudSyncFile(result.getPath())) {
+            removeSyncFile(a, searchAdapter, result);
         } else {
             final File file = new File(result.getPath());
             delete = file.delete();
@@ -251,10 +209,110 @@ public class DefaultListeners {
             searchAdapter.notifyDataSetChanged();
 
         } else {
-            if (!Clouds.isCloud(result.getPath())) {
+            if (!Clouds.isCloud(result.getPath()) && !Clouds.isCloudSyncFile(result.getPath())) {
                 Toast.makeText(a, R.string.can_t_delete_file, Toast.LENGTH_LONG).show();
             }
         }
+    }
+
+    private static void removeSyncFile(final Activity a, final FileMetaAdapter searchAdapter, final FileMeta result) {
+        new AsyncProgressTask<Boolean>() {
+
+            @Override
+            public Context getContext() {
+                return a;
+            }
+
+            @Override
+            protected Boolean doInBackground(Object... params) {
+                try {
+                    String cloudFile = Clouds.LIBRERA_SYNC_FOLDER + "/" + ExtUtils.getFileName(result.getPath());
+                    LOG.d("delete dropbox", cloudFile);
+                    if (!Clouds.get().dropbox.exists(cloudFile)) {
+                        return true;
+                    }
+                    Clouds.get().dropbox.delete(cloudFile);
+                } catch (Exception e) {
+                    LOG.e(e);
+                    return false;
+                }
+                return true;
+            }
+
+            @Override
+            protected void onPostExecute(Boolean status) {
+                super.onPostExecute(status);
+                LOG.d("Delete status", status);
+                if (status != null && status == true) {
+
+                    TempHolder.listHash++;
+                    AppDB.get().delete(result);
+                    searchAdapter.getItemsList().remove(result);
+                    searchAdapter.notifyDataSetChanged();
+
+                    new File(result.getPath()).delete();
+
+                    File cacheFile = Clouds.getCacheFile(result.getPath());
+                    if (cacheFile != null && cacheFile.delete()) {
+
+                        FileMeta cacheMeta = new FileMeta(cacheFile.getPath());
+                        AppDB.get().delete(cacheMeta);
+                        searchAdapter.getItemsList().remove(cacheMeta);
+                    }
+
+                } else {
+                    Toast.makeText(a, R.string.can_t_delete_file, Toast.LENGTH_LONG).show();
+                }
+            };
+
+        }.execute();
+    }
+
+    private static void removeCloudFile(final Activity a, final FileMetaAdapter searchAdapter, final FileMeta result) {
+        new AsyncProgressTask<Boolean>() {
+
+            @Override
+            public Context getContext() {
+                return a;
+            }
+
+            @Override
+            protected Boolean doInBackground(Object... params) {
+                try {
+                    String path = Clouds.getPath(result.getPath());
+                    Clouds.get().cloud(result.getPath()).delete(path);
+                } catch (Exception e) {
+                    LOG.e(e);
+                    return false;
+                }
+                return true;
+            }
+
+            @Override
+            protected void onPostExecute(Boolean status) {
+                super.onPostExecute(status);
+                LOG.d("Delete status", status);
+                if (status != null && status == true) {
+
+                    TempHolder.listHash++;
+                    AppDB.get().delete(result);
+                    searchAdapter.getItemsList().remove(result);
+                    searchAdapter.notifyDataSetChanged();
+
+                    File cacheFile = Clouds.getCacheFile(result.getPath());
+                    if (cacheFile != null && cacheFile.delete()) {
+
+                        FileMeta cacheMeta = new FileMeta(cacheFile.getPath());
+                        AppDB.get().delete(cacheMeta);
+                        searchAdapter.getItemsList().remove(cacheMeta);
+                    }
+
+                } else {
+                    Toast.makeText(a, R.string.can_t_delete_file, Toast.LENGTH_LONG).show();
+                }
+            };
+
+        }.execute();
     }
 
     public static ResultResponse<FileMeta> getOnMenuClick(final Activity a, final FileMetaAdapter searchAdapter) {
