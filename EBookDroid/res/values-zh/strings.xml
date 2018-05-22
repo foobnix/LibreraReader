@@ -29,9 +29,9 @@
    <string name="opening_the_last_book_when_the_application_starts">启动后继续上次阅读</string>
    <string name="show_application_close_dialog_every_time">应用程序退出前询问</string>
    <string name="display_all_file_types_in_folders">显示文件夹中全部类型文件</string>
-   <string name="show_the_dialog_what_is_new_for_updates">显示更新信息</string>
+   <string name="show_the_dialog_what_is_new_for_updates">显示应用程序更新信息</string>
    <string name="what_is_new_in">更新说明</string>
-   <string name="full_list_of_changes_with_images_web_pdf_">上官网PDF中查看变更图文解说...</string>
+   <string name="full_list_of_changes_with_images_web_pdf_">下载官网PDF查看完整更新说明...</string>
    <string name="search_for_text_in_documents">多文件中搜索文本</string>
    <string name="search_in_the_subfolders">子文件夹</string>
    <string name="stop">停止</string>
@@ -225,7 +225,7 @@
    <string name="send_mail">发送邮件</string>
    <string name="do_you_want_to_clear_everything_">全部清空？</string>
    <string name="close_application_">退出应用程序？</string>
-   <string name="new_beta_version_available">有新测试版！</string>
+   <string name="new_beta_version_available">新测试版可用！</string>
    <string name="___NOTIFICATION___SECTION___">通知栏</string>
    <string name="fail">失败</string>
    <string name="success">成功</string>
