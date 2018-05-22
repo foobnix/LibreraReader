@@ -2,7 +2,6 @@ package com.foobnix.pdf.info.view;
 
 import java.io.File;
 import java.io.FileOutputStream;
-import java.io.IOException;
 import java.io.InputStream;
 
 import com.foobnix.android.utils.LOG;
@@ -16,6 +15,7 @@ import com.foobnix.pdf.search.view.AsyncProgressTask;
 
 import android.app.Activity;
 import android.content.Context;
+import android.widget.Toast;
 
 public class Downloader {
 
@@ -38,7 +38,7 @@ public class Downloader {
 
             @Override
             public void run() {
-                new AsyncProgressTask<String>() {
+                new AsyncProgressTask<Boolean>() {
 
                     @Override
                     public Context getContext() {
@@ -46,13 +46,15 @@ public class Downloader {
                     }
 
                     @Override
-                    protected String doInBackground(Object... params) {
+                    protected Boolean doInBackground(Object... params) {
                         try {
+                            LOG.d("Download file", meta.getPath(), path);
                             InputStream download = Clouds.get().cloud(meta.getPath()).download(path);
                             FileOutputStream out = new FileOutputStream(file);
                             Fb2Extractor.zipCopy(download, out);
                             out.close();
-                        } catch (IOException e) {
+                            return true;
+                        } catch (Exception e) {
                             LOG.e(e);
                         }
 
@@ -60,12 +62,15 @@ public class Downloader {
                     }
 
                     @Override
-                    protected void onPostExecute(String result) {
+                    protected void onPostExecute(Boolean result) {
                         super.onPostExecute(result);
-                        onFinish.run();
-                        if (file.isFile() && file.length() > 0) {
-                            ExtUtils.openFile(a, new FileMeta(file.getPath()));
-                            return;
+                        if (result == null) {
+                            Toast.makeText(getContext(), R.string.msg_unexpected_error, Toast.LENGTH_SHORT).show();
+                        } else {
+                            onFinish.run();
+                            if (file.isFile() && file.length() > 0) {
+                                ExtUtils.openFile(a, new FileMeta(file.getPath()));
+                            }
                         }
                     };
 

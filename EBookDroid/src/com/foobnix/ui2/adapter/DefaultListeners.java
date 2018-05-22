@@ -323,6 +323,9 @@ public class DefaultListeners {
                 ADS.hideAdsTemp(a);
 
                 final File file = new File(result.getPath());
+
+
+
                 Runnable onDeleteAction = new Runnable() {
 
                     @Override
@@ -331,6 +334,11 @@ public class DefaultListeners {
                     }
 
                 };
+
+                if (Clouds.isCloud(result.getPath())) {
+                    FileInformationDialog.showFileInfoDialog(a, file, onDeleteAction);
+                    return true;
+                }
 
                 if (ExtUtils.isExteralSD(result.getPath())) {
                     ShareDialog.show(a, file, onDeleteAction, -1, null, null);
