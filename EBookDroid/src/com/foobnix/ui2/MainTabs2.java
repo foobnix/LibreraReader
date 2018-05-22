@@ -39,6 +39,7 @@ import com.foobnix.sys.TempHolder;
 import com.foobnix.ui2.adapter.TabsAdapter2;
 import com.foobnix.ui2.fragment.BookmarksFragment2;
 import com.foobnix.ui2.fragment.BrowseFragment2;
+import com.foobnix.ui2.fragment.CloudsFragment2;
 import com.foobnix.ui2.fragment.OpdsFragment2;
 import com.foobnix.ui2.fragment.PrefFragment2;
 import com.foobnix.ui2.fragment.RecentFragment2;
@@ -229,7 +230,7 @@ public class MainTabs2 extends AdsFragmentActivity {
         tabFragments = new ArrayList<UIFragment>();
 
         try {
-            for (UITab tab : UITab.getOrdered(AppState.get().tabsOrder)) {
+            for (UITab tab : UITab.getOrdered(AppState.get().tabsOrder7)) {
                 if (tab.isVisible()) {
                     tabFragments.add(tab.getClazz().newInstance());
                 }
@@ -243,6 +244,7 @@ public class MainTabs2 extends AdsFragmentActivity {
             tabFragments.add(new BookmarksFragment2());
             tabFragments.add(new OpdsFragment2());
             tabFragments.add(new PrefFragment2());
+            tabFragments.add(new CloudsFragment2());
         }
         getSupportFragmentManager().beginTransaction().replace(R.id.left_drawer, new PrefFragment2()).commit();
 

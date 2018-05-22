@@ -475,4 +475,7 @@
    <string name="do_you_want_to_download_the_file_">Haluatko ladata tiedoston?</string>
    <string name="do_you_want_to_delete_this_file_">Haluatko poistaa tämän tiedoston?</string>
    <string name="logout">Kirjautua ulos</string>
+   <string name="cloud_not_connected">Pilvi ei ole kytkettynä</string>
+   <string name="cloud_sync_folder">Cloud sync -kansio</string>
+   <string name="clouds">Pilvet</string>
 </resources>

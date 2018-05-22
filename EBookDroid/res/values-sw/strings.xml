@@ -475,4 +475,7 @@
    <string name="do_you_want_to_download_the_file_">Unataka kupakua faili?</string>
    <string name="do_you_want_to_delete_this_file_">Unataka kufuta faili hii?</string>
    <string name="logout">Ingia</string>
+   <string name="cloud_not_connected">Wingu halijaunganishwa</string>
+   <string name="cloud_sync_folder">Faili ya usawazishaji wa wingu</string>
+   <string name="clouds">Mawingu</string>
 </resources>

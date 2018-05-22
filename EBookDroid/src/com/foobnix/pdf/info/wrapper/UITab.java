@@ -6,6 +6,7 @@ import java.util.List;
 import com.foobnix.android.utils.LOG;
 import com.foobnix.ui2.fragment.BookmarksFragment2;
 import com.foobnix.ui2.fragment.BrowseFragment2;
+import com.foobnix.ui2.fragment.CloudsFragment2;
 import com.foobnix.ui2.fragment.OpdsFragment2;
 import com.foobnix.ui2.fragment.PrefFragment2;
 import com.foobnix.ui2.fragment.RecentFragment2;
@@ -21,7 +22,8 @@ public enum UITab {
     StarsFragment(3, StarsFragment2.PAIR.first, StarsFragment2.PAIR.second, StarsFragment2.class, true), //
     BookmarksFragment(4, BookmarksFragment2.PAIR.first, BookmarksFragment2.PAIR.second, BookmarksFragment2.class, true), //
     OpdsFragment(5, OpdsFragment2.PAIR.first, OpdsFragment2.PAIR.second, OpdsFragment2.class, true), //
-    PrefFragment(6, PrefFragment2.PAIR.first, PrefFragment2.PAIR.second, PrefFragment2.class, true); //
+    PrefFragment(6, PrefFragment2.PAIR.first, PrefFragment2.PAIR.second, PrefFragment2.class, true), //
+    CloudsFragment(7, CloudsFragment2.PAIR.first, CloudsFragment2.PAIR.second, CloudsFragment2.class, true); //
 
     public int index;
     private int name;
@@ -77,7 +79,7 @@ public enum UITab {
     }
 
     public static int getCurrentTabIndex(UITab tab) {
-        List<UITab> ordered = getOrdered(AppState.get().tabsOrder);
+        List<UITab> ordered = getOrdered(AppState.get().tabsOrder7);
         for (int i = 0; i < ordered.size(); i++) {
             if (ordered.get(i) == tab) {
                 return i;
@@ -87,11 +89,11 @@ public enum UITab {
     }
 
     public static boolean isShowRecent() {
-        return AppState.get().tabsOrder.contains(UITab.RecentFragment.index + "#1");
+        return AppState.get().tabsOrder7.contains(UITab.RecentFragment.index + "#1");
     }
 
     public static boolean isShowPreferences() {
-        return AppState.get().tabsOrder.contains(UITab.PrefFragment.index + "#1");
+        return AppState.get().tabsOrder7.contains(UITab.PrefFragment.index + "#1");
     }
 
     public boolean isVisible() {

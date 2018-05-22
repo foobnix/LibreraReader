@@ -475,4 +475,7 @@
    <string name="do_you_want_to_download_the_file_">下载文件？</string>
    <string name="do_you_want_to_delete_this_file_">删除文件？</string>
    <string name="logout">登出</string>
+   <string name="cloud_not_connected">云未连接</string>
+   <string name="cloud_sync_folder">云同步文件夹</string>
+   <string name="clouds">云</string>
 </resources>

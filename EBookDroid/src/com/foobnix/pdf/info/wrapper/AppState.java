@@ -176,8 +176,8 @@ public class AppState {
 
     public String readColors = READ_COLORS_DEAFAUL;
 
-    public static String DEFAULTS_TABS_ORDER = "0#1,1#1,2#1,3#1,4#1,5#1,6#0";
-    public String tabsOrder = DEFAULTS_TABS_ORDER;
+    public static String DEFAULTS_TABS_ORDER = "0#1,1#1,2#1,3#1,4#1,5#1,6#0,7#1";
+    public String tabsOrder7 = DEFAULTS_TABS_ORDER;
 
     public int tintColor = Color.parseColor(STYLE_COLORS.get(0));
 
@@ -414,6 +414,7 @@ public class AppState {
     public int libraryMode = MODE_GRID;
     public int broseMode = MODE_LIST;
     public int recentMode = MODE_LIST;
+    public int cloudMode = MODE_LIST;
     public int bookmarksMode = BOOKMARK_MODE_BY_DATE;
     public int starsMode = MODE_LIST;
 
@@ -637,7 +638,7 @@ public class AppState {
 
     public void defaults(Context c) {
 
-        LOG.d("defaults", AppsConfig.IS_CLASSIC, AppState.get().tabsOrder);
+        LOG.d("defaults", AppsConfig.IS_CLASSIC, AppState.get().tabsOrder7);
     }
 
     public void load(final Context a) {

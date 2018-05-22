@@ -156,7 +156,7 @@ public class ShareDialog {
             items.add(a.getString(R.string.file_info));
         }
 
-        // items.add("Add to Dropbox Cloud");
+        items.add("Add to Dropbox Librera.Cloud");
 
         final AlertDialog.Builder builder = new AlertDialog.Builder(a);
         // builder.setTitle(R.string.choose_)//
@@ -245,7 +245,7 @@ public class ShareDialog {
                     Dialogs.showTagsDialog(a, file, null);
                 } else if (isShowInfo && which == i++) {
                     FileInformationDialog.showFileInfoDialog(a, file, onDeleteAction);
-                } else if (false && which == i++) {
+                } else if (which == i++) {
                     if (Clouds.get().isDropbox()) {
                         Clouds.get().syncronizeAdd(a, file);
                     } else {

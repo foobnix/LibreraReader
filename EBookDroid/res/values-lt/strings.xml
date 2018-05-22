@@ -475,4 +475,7 @@
    <string name="do_you_want_to_download_the_file_">Ar norite atsisiųsti failą?</string>
    <string name="do_you_want_to_delete_this_file_">Ar norite ištrinti šį failą?</string>
    <string name="logout">Atsijungti</string>
+   <string name="cloud_not_connected">Debesys nėra prijungtas</string>
+   <string name="cloud_sync_folder">Debesis sinchronizuoti aplanką</string>
+   <string name="clouds">Debesys</string>
 </resources>

@@ -229,17 +229,21 @@ public class Clouds {
 
             List<CloudMetaData> childs = dropbox.getChildren(LIBRERA_SYNC_FOLDER);
             for (CloudMetaData ch : childs) {
+
+                LOG.d("get-cloud", ch.getName(), ch.getModifiedAt(), ch.getSize());
+
                 if (ch.getFolder()) {
                     LOG.d("syncronize Skip folder", ch.getPath());
                     continue;
                 }
 
                 String name = ch.getName();
-                LOG.d("syncronize child", name);
                 File dest = new File(root, name);
-                if (!dest.exists()) {
+
+
+                if (!dest.exists() || (ch.getSize() != 0 && ch.getSize() != dest.length())) {
                     String path = ch.getPath();
-                    LOG.d("syncronize copy begin", path, "to", dest.getPath());
+                    LOG.d("get-syncronize copy begin", path, "to", dest.getPath());
                     try {
                         InputStream download = dropbox.download(path);
                         CacheZipUtils.copyFile(download, dest);
@@ -253,6 +257,8 @@ public class Clouds {
                     }
                     LOG.d("syncronize copy sync", path);
                 }
+                LOG.d("get-file-", dest.getName(), dest.lastModified(), dest.length());
+
             }
         } catch (Exception e) {
             LOG.e(e);

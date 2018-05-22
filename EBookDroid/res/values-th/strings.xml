@@ -475,4 +475,7 @@
    <string name="do_you_want_to_download_the_file_">คุณต้องการดาวน์โหลดไฟล์หรือไม่?</string>
    <string name="do_you_want_to_delete_this_file_">คุณต้องการลบไฟล์นี้หรือไม่?</string>
    <string name="logout">ออกจากระบบ</string>
+   <string name="cloud_not_connected">Cloud ไม่ได้เชื่อมต่อ</string>
+   <string name="cloud_sync_folder">โฟลเดอร์ซิงค์ระบบคลาวด์</string>
+   <string name="clouds">เมฆ</string>
 </resources>

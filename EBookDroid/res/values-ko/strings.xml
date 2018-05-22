@@ -475,4 +475,7 @@
    <string name="do_you_want_to_download_the_file_">파일을 다운로드 하시겠습니까?</string>
    <string name="do_you_want_to_delete_this_file_">이 파일을 삭제 하시겠습니까?</string>
    <string name="logout">로그 아웃</string>
+   <string name="cloud_not_connected">클라우드가 연결되지 않았습니다.</string>
+   <string name="cloud_sync_folder">클라우드 동기화 폴더</string>
+   <string name="clouds">구름</string>
 </resources>

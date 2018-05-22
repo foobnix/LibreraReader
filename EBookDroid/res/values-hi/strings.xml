@@ -475,4 +475,7 @@
    <string name="do_you_want_to_download_the_file_">क्या आप फ़ाइल डाउनलोड करना चाहते हैं?</string>
    <string name="do_you_want_to_delete_this_file_">क्या आप इस फाइल को मिटाना चाहते हैं?</string>
    <string name="logout">लोग आउट</string>
+   <string name="cloud_not_connected">क्लाउड कनेक्ट नहीं है</string>
+   <string name="cloud_sync_folder">क्लाउड सिंक फ़ोल्डर</string>
+   <string name="clouds">बादल</string>
 </resources>

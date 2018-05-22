@@ -475,4 +475,7 @@
    <string name="do_you_want_to_download_the_file_">Vill du ladda ner filen?</string>
    <string name="do_you_want_to_delete_this_file_">Vill du radera den här filen?</string>
    <string name="logout">Logga ut</string>
+   <string name="cloud_not_connected">Cloud inte anslutet</string>
+   <string name="cloud_sync_folder">Cloud synkroniseringsmapp</string>
+   <string name="clouds">Clouds</string>
 </resources>

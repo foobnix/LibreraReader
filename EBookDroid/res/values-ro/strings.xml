@@ -475,4 +475,7 @@
    <string name="do_you_want_to_download_the_file_">Doriți să descărcați fișierul?</string>
    <string name="do_you_want_to_delete_this_file_">Doriți să ștergeți acest fișier?</string>
    <string name="logout">Deconectare</string>
+   <string name="cloud_not_connected">Cloud nu este conectat</string>
+   <string name="cloud_sync_folder">Cloud sync folder</string>
+   <string name="clouds">Nori</string>
 </resources>

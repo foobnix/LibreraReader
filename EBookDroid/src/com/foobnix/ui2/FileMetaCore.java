@@ -68,25 +68,29 @@ public class FileMetaCore {
         }
     }
 
-    public static void createMetaIfNeed(String path, final boolean isSearhcBook) {
+    public static FileMeta createMetaIfNeed(String path, final boolean isSearhcBook) {
         LOG.d("createMetaIfNeed", path);
 
-        if (new File(path).isFile()) {
-            FileMeta fileMeta = AppDB.get().getOrCreate(path);
-            if (fileMeta.getState() != FileMetaCore.STATE_FULL) {
-                EbookMeta ebookMeta = FileMetaCore.get().getEbookMeta(path, CacheDir.ZipApp, true);
-
-                FileMetaCore.get().upadteBasicMeta(fileMeta, new File(path));
-                FileMetaCore.get().udpateFullMeta(fileMeta, ebookMeta);
-
-                if (isSearhcBook) {
-                    fileMeta.setIsSearchBook(isSearhcBook);
-                }
-
-                AppDB.get().update(fileMeta);
-                LOG.d("checkOrCreateMetaInfo", "UPDATE", path);
-            }
+        if (!new File(path).isFile()) {
+            throw new IllegalArgumentException(path);
         }
+
+        FileMeta fileMeta = AppDB.get().getOrCreate(path);
+        if (fileMeta.getState() != FileMetaCore.STATE_FULL) {
+            EbookMeta ebookMeta = FileMetaCore.get().getEbookMeta(path, CacheDir.ZipApp, true);
+
+            FileMetaCore.get().upadteBasicMeta(fileMeta, new File(path));
+            FileMetaCore.get().udpateFullMeta(fileMeta, ebookMeta);
+
+            if (isSearhcBook) {
+                fileMeta.setIsSearchBook(isSearhcBook);
+            }
+
+            AppDB.get().update(fileMeta);
+            LOG.d("checkOrCreateMetaInfo", "UPDATE", path);
+        }
+        return fileMeta;
+
     }
 
     public EbookMeta getEbookMeta(String path, CacheDir folder, boolean extract) {

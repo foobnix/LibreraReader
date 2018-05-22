@@ -475,4 +475,7 @@
    <string name="do_you_want_to_download_the_file_">¿Quieres descargar el archivo?</string>
    <string name="do_you_want_to_delete_this_file_">¿Quieres eliminar este archivo?</string>
    <string name="logout">Cerrar sesión</string>
+   <string name="cloud_not_connected">La nube no está conectada</string>
+   <string name="cloud_sync_folder">Carpeta de sincronización de la nube</string>
+   <string name="clouds">Nubes</string>
 </resources>

@@ -6,6 +6,7 @@ import java.util.List;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
 
 import com.foobnix.android.utils.AsyncTasks;
 import com.foobnix.android.utils.Dips;
@@ -102,13 +103,13 @@ public abstract class UIFragment<T> extends Fragment {
         }
     }
 
-    @Subscribe
+    @Subscribe(threadMode = ThreadMode.MAIN)
     public void notifyUpdateFragment(UpdateAllFragments event) {
         TempHolder.listHash++;
         onSelectFragment();
     }
 
-    @Subscribe
+    @Subscribe(threadMode = ThreadMode.MAIN)
     public void notifyUpdateFragment(NotifyAllFragments event) {
         notifyFragment();
     }

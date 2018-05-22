@@ -477,4 +477,5 @@
    <string name="logout">Logout</string>
    <string name="cloud_not_connected">Cloud not connected</string>
    <string name="cloud_sync_folder">Cloud sync folder</string>
+   <string name="clouds">Clouds</string>
 </resources>

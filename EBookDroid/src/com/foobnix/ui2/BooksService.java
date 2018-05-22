@@ -4,6 +4,8 @@ import java.io.File;
 import java.util.LinkedList;
 import java.util.List;
 
+import org.greenrobot.eventbus.EventBus;
+
 import com.foobnix.android.utils.LOG;
 import com.foobnix.dao2.FileMeta;
 import com.foobnix.ext.CacheZipUtils.CacheDir;
@@ -14,6 +16,7 @@ import com.foobnix.pdf.info.ExtUtils;
 import com.foobnix.pdf.info.IMG;
 import com.foobnix.pdf.info.io.SearchCore;
 import com.foobnix.pdf.info.wrapper.AppState;
+import com.foobnix.pdf.search.activity.msg.MessageSyncFinish;
 import com.foobnix.sys.ImageExtractor;
 import com.foobnix.ui2.adapter.FileMetaAdapter;
 
@@ -48,7 +51,9 @@ public class BooksService extends IntentService {
     public static String INTENT_NAME = "BooksServiceIntent";
     public static String ACTION_SEARCH_ALL = "ACTION_SEARCH_ALL";
     public static String ACTION_REMOVE_DELETED = "ACTION_REMOVE_DELETED";
+    public static String ACTION_SYNC_DROPBOX = "ACTION_SYNC_DROPBOX";
 
+    public static String RESULT_SYNC_FINISH = "RESULT_SYNC_FINISH";
     public static String RESULT_SEARCH_FINISH = "RESULT_SEARCH_FINISH";
     public static String RESULT_BUILD_LIBRARY = "RESULT_BUILD_LIBRARY";
     public static String RESULT_SEARCH_COUNT = "RESULT_SEARCH_COUNT";
@@ -109,6 +114,9 @@ public class BooksService extends IntentService {
                     AppState.get().searchDate = System.currentTimeMillis();
                     sendFinishMessage();
                 }
+
+                Clouds.get().syncronizeGet();
+                sendFinishMessage();
 
             } else if (ACTION_SEARCH_ALL.equals(intent.getAction())) {
                 LOG.d(ACTION_SEARCH_ALL);
@@ -191,14 +199,15 @@ public class BooksService extends IntentService {
                 sendFinishMessage();
                 CacheDir.ZipService.removeCacheContent();
 
+                Clouds.get().syncronizeGet();
+                sendFinishMessage();
+
+            } else if (ACTION_SYNC_DROPBOX.equals(intent.getAction())) {
+                Clouds.get().syncronizeGet();
+                sendFinishMessage();
             }
 
         } finally {
-        }
-
-        if (Clouds.get().isDropbox()) {
-            Clouds.get().syncronizeGet();
-            sendFinishMessage();
         }
 
     }
@@ -229,12 +238,14 @@ public class BooksService extends IntentService {
         }
 
         sendFinishMessage(this);
+        EventBus.getDefault().post(new MessageSyncFinish());
     }
 
     public static void sendFinishMessage(Context c) {
         Intent intent = new Intent(INTENT_NAME).putExtra(Intent.EXTRA_TEXT, RESULT_SEARCH_FINISH);
         LocalBroadcastManager.getInstance(c).sendBroadcast(intent);
     }
+
 
     private void sendProggressMessage() {
         Intent itent = new Intent(INTENT_NAME).putExtra(Intent.EXTRA_TEXT, RESULT_SEARCH_COUNT).putExtra(Intent.EXTRA_INDEX, itemsMeta.size());

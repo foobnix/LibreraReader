@@ -17,7 +17,6 @@ import com.foobnix.android.utils.TxtUtils;
 import com.foobnix.pdf.info.AndroidWhatsNew;
 import com.foobnix.pdf.info.AppSharedPreferences;
 import com.foobnix.pdf.info.AppsConfig;
-import com.foobnix.pdf.info.Clouds;
 import com.foobnix.pdf.info.ExtUtils;
 import com.foobnix.pdf.info.IMG;
 import com.foobnix.pdf.info.PasswordDialog;
@@ -142,7 +141,7 @@ public class PrefFragment2 extends UIFragment {
             @Override
             public void run() {
                 dragLinearLayout.removeAllViews();
-                for (UITab tab : UITab.getOrdered(AppState.get().tabsOrder)) {
+                for (UITab tab : UITab.getOrdered(AppState.get().tabsOrder7)) {
                     View library = LayoutInflater.from(getActivity()).inflate(R.layout.item_tab_line, null, false);
                     ((TextView) library.findViewById(R.id.text1)).setText(tab.getName());
                     ((CheckBox) library.findViewById(R.id.isVisible)).setChecked(tab.isVisible());
@@ -164,29 +163,29 @@ public class PrefFragment2 extends UIFragment {
 
             @Override
             public void onClick(View v) {
-                AppState.get().tabsOrder = "";
+                AppState.get().tabsOrder7 = "";
                 for (int i = 0; i < dragLinearLayout.getChildCount(); i++) {
                     View child = dragLinearLayout.getChildAt(i);
                     boolean isVisible = ((CheckBox) child.findViewById(R.id.isVisible)).isChecked();
-                    AppState.get().tabsOrder += child.getTag() + "#" + (isVisible ? "1" : "0") + ",";
+                    AppState.get().tabsOrder7 += child.getTag() + "#" + (isVisible ? "1" : "0") + ",";
                 }
-                AppState.get().tabsOrder = TxtUtils.replaceLast(AppState.get().tabsOrder, ",", "");
-                LOG.d("tabsApply", AppState.get().tabsOrder);
+                AppState.get().tabsOrder7 = TxtUtils.replaceLast(AppState.get().tabsOrder7, ",", "");
+                LOG.d("tabsApply", AppState.get().tabsOrder7);
                 AppState.get().save(getActivity());
                 onTheme();
             }
         });
 
         final CheckBox isshowPrefAsMenu = (CheckBox) inflate.findViewById(R.id.isshowPrefAsMenu);
-        isshowPrefAsMenu.setChecked(AppState.get().tabsOrder.contains(UITab.PrefFragment.index + "#0"));
+        isshowPrefAsMenu.setChecked(AppState.get().tabsOrder7.contains(UITab.PrefFragment.index + "#0"));
         isshowPrefAsMenu.setOnCheckedChangeListener(new OnCheckedChangeListener() {
 
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (isChecked) {
-                    AppState.get().tabsOrder = AppState.get().tabsOrder.replace(UITab.PrefFragment.index + "#1", UITab.PrefFragment.index + "#0");
+                    AppState.get().tabsOrder7 = AppState.get().tabsOrder7.replace(UITab.PrefFragment.index + "#1", UITab.PrefFragment.index + "#0");
                 } else {
-                    AppState.get().tabsOrder = AppState.get().tabsOrder.replace(UITab.PrefFragment.index + "#0", UITab.PrefFragment.index + "#1");
+                    AppState.get().tabsOrder7 = AppState.get().tabsOrder7.replace(UITab.PrefFragment.index + "#0", UITab.PrefFragment.index + "#1");
                 }
 
                 dragLinear.run();
@@ -202,7 +201,7 @@ public class PrefFragment2 extends UIFragment {
 
                     @Override
                     public void run() {
-                        AppState.get().tabsOrder = AppState.DEFAULTS_TABS_ORDER;
+                        AppState.get().tabsOrder7 = AppState.DEFAULTS_TABS_ORDER;
                         isshowPrefAsMenu.setChecked(false);
                         dragLinear.run();
                     }
@@ -412,19 +411,6 @@ public class PrefFragment2 extends UIFragment {
         // }
         // });
 
-        inflate.findViewById(R.id.dropbox).setOnClickListener(new OnClickListener() {
-
-            @Override
-            public void onClick(final View v) {
-                Clouds.get().loginToDropbox(getActivity(), new Runnable() {
-
-                    @Override
-                    public void run() {
-                        Toast.makeText(getActivity(), R.string.success, Toast.LENGTH_SHORT).show();
-                    }
-                });
-            }
-        });
 
         inflate.findViewById(R.id.onKeyCode).setOnClickListener(new OnClickListener() {
 

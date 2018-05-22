@@ -475,4 +475,7 @@
    <string name="do_you_want_to_download_the_file_">Вы хотите загрузить файл?</string>
    <string name="do_you_want_to_delete_this_file_">Вы хотите удалить этот файл?</string>
    <string name="logout">Выйти</string>
+   <string name="cloud_not_connected">Облако не подключено</string>
+   <string name="cloud_sync_folder">Папка облачной синхронизации</string>
+   <string name="clouds">Облака</string>
 </resources>
