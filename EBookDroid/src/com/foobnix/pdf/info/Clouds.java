@@ -240,7 +240,6 @@ public class Clouds {
                 String name = ch.getName();
                 File dest = new File(root, name);
 
-
                 if (!dest.exists() || (ch.getSize() != 0 && ch.getSize() != dest.length())) {
                     String path = ch.getPath();
                     LOG.d("get-syncronize copy begin", path, "to", dest.getPath());
@@ -260,6 +259,30 @@ public class Clouds {
                 LOG.d("get-file-", dest.getName(), dest.lastModified(), dest.length());
 
             }
+
+            if (root.listFiles() != null) {
+                for (File file : root.listFiles()) {
+                    if (file.isDirectory()) {
+                        continue;
+                    }
+                    boolean isFound = false;
+                    for (CloudMetaData ch : childs) {
+                        if (ch.getFolder()) {
+                            continue;
+                        }
+                        if (file.getName().equals(ch.getName())) {
+                            isFound = true;
+                            break;
+                        }
+                    }
+                    // file not found in dropbox
+                    if (!isFound) {
+                        file.delete();
+                        LOG.d("get-delete", file);
+                    }
+                }
+            }
+
         } catch (Exception e) {
             LOG.e(e);
         }
