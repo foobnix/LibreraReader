@@ -426,7 +426,10 @@ public class MainTabs2 extends AdsFragmentActivity {
         public void onReceive(Context context, Intent intent) {
             int pos = intent.getIntExtra(EXTRA_PAGE_NUMBER, -1);
             if (pos != -1) {
-                pager.setCurrentItem(pos);
+                if (pos >= 0) {
+                    pager.setCurrentItem(pos);
+                }
+
                 if (intent.getBooleanExtra(EXTRA_NOTIFY_REFRESH, false)) {
                     onResume();
                 }

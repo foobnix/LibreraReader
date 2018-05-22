@@ -111,7 +111,7 @@ public class DefaultListeners {
 
                             Intent intent = new Intent(UIFragment.INTENT_TINT_CHANGE)//
                                     .putExtra(MainTabs2.EXTRA_NOTIFY_REFRESH, true)//
-                                    .putExtra(MainTabs2.EXTRA_PAGE_NUMBER, UITab.getCurrentTabIndex(UITab.BrowseFragment));//
+                                    .putExtra(MainTabs2.EXTRA_PAGE_NUMBER, -2);//
                             LocalBroadcastManager.getInstance(a).sendBroadcast(intent);
                         }
                     });
@@ -324,7 +324,7 @@ public class DefaultListeners {
 
                 final File file = new File(result.getPath());
 
-
+               
 
                 Runnable onDeleteAction = new Runnable() {
 
@@ -334,7 +334,7 @@ public class DefaultListeners {
                     }
 
                 };
-
+                
                 if (Clouds.isCloud(result.getPath())) {
                     FileInformationDialog.showFileInfoDialog(a, file, onDeleteAction);
                     return true;

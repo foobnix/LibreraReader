@@ -20,6 +20,7 @@ import com.foobnix.dao2.DaoSession;
 import com.foobnix.dao2.DatabaseUpgradeHelper;
 import com.foobnix.dao2.FileMeta;
 import com.foobnix.dao2.FileMetaDao;
+import com.foobnix.pdf.info.Clouds;
 import com.foobnix.pdf.info.ExtUtils;
 import com.foobnix.pdf.info.R;
 import com.foobnix.pdf.info.wrapper.AppState;
@@ -211,6 +212,10 @@ public class AppDB {
         Iterator<FileMeta> iterator = items.iterator();
         while (iterator.hasNext()) {
             FileMeta next = iterator.next();
+            if (Clouds.isCloud(next.getPath())) {
+                continue;
+            }
+
             if (!new File(next.getPath()).isFile()) {
                 iterator.remove();
             }
