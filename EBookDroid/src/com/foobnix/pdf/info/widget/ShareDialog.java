@@ -15,6 +15,7 @@ import com.foobnix.dao2.FileMeta;
 import com.foobnix.pdf.info.Clouds;
 import com.foobnix.pdf.info.ExtUtils;
 import com.foobnix.pdf.info.R;
+import com.foobnix.pdf.info.TintUtil;
 import com.foobnix.pdf.info.Urls;
 import com.foobnix.pdf.info.view.Dialogs;
 import com.foobnix.pdf.info.wrapper.AppState;
@@ -30,6 +31,7 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.DialogInterface.OnDismissListener;
+import android.graphics.Color;
 import android.support.v4.util.Pair;
 import android.view.View;
 import android.widget.ImageView;
@@ -264,7 +266,22 @@ public class ShareDialog {
                         @Override
                         public void populateView(View layout, int position, Pair<Integer, Integer> item) {
                             ((TextView) layout.findViewById(R.id.text1)).setText(item.first);
-                            ((ImageView) layout.findViewById(R.id.image1)).setImageResource(item.second);
+                            ImageView imageView = (ImageView) layout.findViewById(R.id.image1);
+                            imageView.setImageResource(item.second);
+
+                            if (R.string.dropbox == item.first && !Clouds.get().isDropbox()) {
+                                TintUtil.setTintImageNoAlpha(imageView, Color.LTGRAY);
+                            }
+
+                            if (R.string.google_drive == item.first && !Clouds.get().isGoogleDrive()) {
+                                TintUtil.setTintImageNoAlpha(imageView, Color.LTGRAY);
+
+                            }
+                            if (R.string.one_drive == item.first && !Clouds.get().isOneDrive()) {
+                                TintUtil.setTintImageNoAlpha(imageView, Color.LTGRAY);
+
+                            }
+
                         }
                     }, new DialogInterface.OnClickListener() {
 
