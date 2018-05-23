@@ -186,7 +186,7 @@ public class CloudsFragment2 extends UIFragment<FileMeta> {
 
     @Override
     public List<FileMeta> prepareDataInBackground() {
-        File root = new File(AppState.get().syncPath);
+        File root = new File(AppState.get().syncDropboxPath);
         File[] listFiles = root.listFiles();
         if (listFiles == null) {
             return new ArrayList<FileMeta>();

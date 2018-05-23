@@ -1107,16 +1107,16 @@ public class PrefFragment2 extends UIFragment {
         });
 
         final TextView syncPath = (TextView) inflate.findViewById(R.id.syncPath);
-        TxtUtils.underline(syncPath, TxtUtils.lastTwoPath(AppState.get().syncPath));
+        TxtUtils.underline(syncPath, TxtUtils.lastTwoPath(AppState.get().syncDropboxPath));
         syncPath.setOnClickListener(new OnClickListener() {
 
             @Override
             public void onClick(View v) {
-                ChooserDialogFragment.chooseFolder(getActivity(), AppState.get().syncPath).setOnSelectListener(new ResultResponse2<String, Dialog>() {
+                ChooserDialogFragment.chooseFolder(getActivity(), AppState.get().syncDropboxPath).setOnSelectListener(new ResultResponse2<String, Dialog>() {
                     @Override
                     public boolean onResultRecive(String nPath, Dialog dialog) {
-                        AppState.get().syncPath = nPath;
-                        TxtUtils.underline(downloadFolder, TxtUtils.lastTwoPath(AppState.get().syncPath));
+                        AppState.get().syncDropboxPath = nPath;
+                        TxtUtils.underline(downloadFolder, TxtUtils.lastTwoPath(AppState.get().syncDropboxPath));
                         dialog.dismiss();
                         return false;
                     }

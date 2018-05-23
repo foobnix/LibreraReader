@@ -36,6 +36,7 @@ import android.view.KeyEvent;
 
 public class AppState {
 
+    private static final File DOWNLOADS_DIR = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS);
     public static final String PROXY_HTTP = "HTTP";
     public static final String PROXY_SOCKS = "SOCKS";
 
@@ -423,10 +424,10 @@ public class AppState {
 
     public String searchPaths = Environment.getExternalStorageDirectory() == null ? "/" : Environment.getExternalStorageDirectory().getPath();
     public String texturePath = Environment.getExternalStorageDirectory().getPath();
-    public String downlodsPath = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS), "Librera").getPath();
-    public String ttsSpeakPath = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS), "Librera/TTS").getPath();
-    public String backupPath = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS), "Librera/Backup").getPath();
-    public String syncPath = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS), "Librera/Librera.Cloud").getPath();
+    public String downlodsPath = new File(DOWNLOADS_DIR, "Librera/Cache").getPath();
+    public String ttsSpeakPath = new File(DOWNLOADS_DIR, "Librera/TTS").getPath();
+    public String backupPath = new File(DOWNLOADS_DIR, "Librera/Backup").getPath();
+    public String syncDropboxPath = new File(DOWNLOADS_DIR, "Librera/Librera.Cloud-Dropbox").getPath();
 
     public String fileToDelete;
 

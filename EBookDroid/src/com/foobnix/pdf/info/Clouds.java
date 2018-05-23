@@ -35,17 +35,18 @@ public class Clouds {
     private static final Clouds instance = new Clouds();
 
     transient SharedPreferences sp;
-    transient public CloudStorage dropbox;
-    transient public CloudStorage googleDrive;
-    transient public CloudStorage oneDrive;
+
+    transient volatile public CloudStorage dropbox;
+    transient volatile public CloudStorage googleDrive;
+    transient volatile public CloudStorage oneDrive;
 
     public volatile String dropboxToken;
     public volatile String googleDriveToken;
     public volatile String oneDriveToken;
 
-    public String dropboxInfo;
-    public String googleDriveInfo;
-    public String oneDriveInfo;
+    public volatile String dropboxInfo;
+    public volatile String googleDriveInfo;
+    public volatile String oneDriveInfo;
 
     public static boolean isCloud(String path) {
         return path.startsWith(PREFIX_CLOUD);
@@ -53,7 +54,7 @@ public class Clouds {
 
     public static boolean isCloudSyncFile(String path) {
         String parentName = new File(path).getParentFile().getName();
-        String syncName = new File(AppState.get().syncPath).getName();
+        String syncName = new File(AppState.get().syncDropboxPath).getName();
 
         LOG.d("isCloudSyncFile", parentName, syncName);
 
@@ -75,7 +76,7 @@ public class Clouds {
             return download;
         }
 
-        final File sync = new File(AppState.get().syncPath, displayName);
+        final File sync = new File(AppState.get().syncDropboxPath, displayName);
         if (sync.isFile() && sync.length() > 0) {
             return sync;
         }
@@ -223,7 +224,7 @@ public class Clouds {
                 return;
             }
 
-            File root = new File(AppState.get().syncPath);
+            File root = new File(AppState.get().syncDropboxPath);
             root.mkdirs();
 
             List<CloudMetaData> childs = dropbox.getChildren(LIBRERA_SYNC_FOLDER);
@@ -305,7 +306,7 @@ public class Clouds {
             @Override
             protected Boolean doInBackground(Object... params) {
                 try {
-                    File root = new File(AppState.get().syncPath);
+                    File root = new File(AppState.get().syncDropboxPath);
                     root.mkdirs();
                     File dest = new File(root, file.getName());
                     CacheZipUtils.copyFile(file, dest);
@@ -346,7 +347,7 @@ public class Clouds {
     }
 
     public static boolean isSyncFileExist(File file) {
-        File sync = new File(AppState.get().syncPath, file.getName());
+        File sync = new File(AppState.get().syncDropboxPath, file.getName());
         return sync.exists() && sync.length() > 0;
     }
 
