@@ -27,12 +27,12 @@
    <string name="number_of_books">书籍数量</string>
    <string name="remember_reading_mode">默认阅读模式</string>
    <string name="opening_the_last_book_when_the_application_starts">启动后继续上次阅读</string>
-   <string name="show_application_close_dialog_every_time">应用程序退出前询问</string>
+   <string name="show_application_close_dialog_every_time">程序退出前询问</string>
    <string name="display_all_file_types_in_folders">显示文件夹中全部类型文件</string>
-   <string name="show_the_dialog_what_is_new_for_updates">显示应用程序更新信息</string>
+   <string name="show_the_dialog_what_is_new_for_updates">显示更新信息</string>
    <string name="what_is_new_in">更新说明</string>
    <string name="full_list_of_changes_with_images_web_pdf_">下载官网PDF查看完整更新说明...</string>
-   <string name="search_for_text_in_documents">多文件中搜索文本</string>
+   <string name="search_for_text_in_documents">多文件中搜索</string>
    <string name="search_in_the_subfolders">子文件夹</string>
    <string name="stop">停止</string>
    <string name="document_converter_online_">文件格式在线转换</string>
@@ -164,7 +164,7 @@
    <string name="search">搜索</string>
    <string name="export_bookmarks">导出书签</string>
    <string name="simple_scroll_animation">显示翻页动画</string>
-   <string name="close_application">退出应用程序</string>
+   <string name="close_application">退出程序</string>
    <string name="___TABS___SECTION___">标签区域</string>
    <string name="library">我的书库</string>
    <string name="extracting_information_from_books">书籍信息</string>
@@ -224,7 +224,7 @@
    <string name="apply_a_new_screen_orientation_">应用屏幕方向？</string>
    <string name="send_mail">发送邮件</string>
    <string name="do_you_want_to_clear_everything_">全部清空？</string>
-   <string name="close_application_">退出应用程序？</string>
+   <string name="close_application_">退出程序？</string>
    <string name="new_beta_version_available">新测试版可用！</string>
    <string name="___NOTIFICATION___SECTION___">通知栏</string>
    <string name="fail">失败</string>
@@ -280,7 +280,7 @@
    <string name="enter_password">密码</string>
    <string name="page_position">页面调整</string>
    <string name="open_web_page">打开网页</string>
-   <string name="hide_app">隐藏应用程序</string>
+   <string name="hide_app">隐藏程序</string>
    <string name="go_to_the_library">返回书库</string>
    <string name="contrast_and_brightness">对比度和亮度</string>
    <string name="contrast">对比</string>
@@ -298,9 +298,9 @@
    <string name="two_pages">双页</string>
    <string name="two_pages_cover">封页</string>
    <string name="half_page">半页</string>
-   <string name="by_pages">按页面滚动</string>
-   <string name="by_screans">按屏幕滚动</string>
-   <string name="of_screen">滚距</string>
+   <string name="by_pages">按页</string>
+   <string name="by_screans">按屏幕</string>
+   <string name="of_screen">滚动距离</string>
    <string name="custom_value">自定义值</string>
    <string name="automatic_page_flipping">自动翻页</string>
    <string name="interval_sec_">间隔（秒）</string>
@@ -415,7 +415,7 @@
    <string name="you_can_search_only_one_word">只能搜索一个词</string>
    <string name="passwords_do_not_match">密码错误</string>
    <string name="set_an_application_password">设置密码</string>
-   <string name="request_a_password_when_the_application_starts">设置阅读器保护密码</string>
+   <string name="request_a_password_when_the_application_starts">设置程序保护密码</string>
    <string name="incorrect_password">密码错误</string>
    <string name="repeat_password">确认</string>
    <string name="internal_storage">内部存储</string>
@@ -427,7 +427,7 @@
    <string name="percent">百分比</string>
    <string name="reading_progress">阅读进度</string>
    <string name="awards">授权</string>
-   <string name="close_book_and_application">关闭书籍并退出应用程序</string>
+   <string name="close_book_and_application">退出程序</string>
    <string name="percent_and_number">百分比和页码</string>
    <string name="current_page">进度显示</string>
    <string name="backup_folder">备份路径</string>
@@ -477,5 +477,5 @@
    <string name="logout">登出</string>
    <string name="cloud_not_connected">云未连接</string>
    <string name="cloud_sync_folder">云同步文件夹</string>
-   <string name="clouds">云</string>
+   <string name="clouds">网络硬盘</string>
 </resources>
