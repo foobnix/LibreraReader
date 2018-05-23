@@ -1314,7 +1314,7 @@ public class ExtUtils {
 
     public static File openPDFInTextReflowAsync(Activity a, final File file, Handler dialog) {
         try {
-            File bookTempRoot = new File(AppState.get().downlodsPath, file.getName());
+            File bookTempRoot = new File(AppState.get().downlodsPath, "temp-dir-" + file.getName());
             if (!bookTempRoot.exists()) {
                 bookTempRoot.mkdirs();
             } else {

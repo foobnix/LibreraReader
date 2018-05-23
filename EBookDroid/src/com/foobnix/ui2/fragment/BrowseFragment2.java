@@ -327,7 +327,7 @@ public class BrowseFragment2 extends UIFragment<FileMeta> {
 
                 }
 
-                menu.getMenu().add("Dropbox").withTint(false).setOnMenuItemClickListener(new OnMenuItemClickListener() {
+                menu.getMenu().add(R.string.dropbox).withTint(false).setOnMenuItemClickListener(new OnMenuItemClickListener() {
 
                     @Override
                     public boolean onMenuItemClick(MenuItem item) {
@@ -344,85 +344,33 @@ public class BrowseFragment2 extends UIFragment<FileMeta> {
                     }
                 }).setIcon(R.drawable.dropbox);
 
-                menu.getMenu().add("Google Drive").withTint(false).setOnMenuItemClickListener(new OnMenuItemClickListener() {
+                menu.getMenu().add(R.string.google_drive).withTint(false).setOnMenuItemClickListener(new OnMenuItemClickListener() {
 
                     @Override
                     public boolean onMenuItemClick(MenuItem item) {
-                        new Thread() {
+                        Clouds.get().loginToDropbox(getActivity(), new Runnable() {
+
                             @Override
                             public void run() {
-                                try {
-                                    if (!Clouds.get().isGoogleDrive()) {
-                                        Clouds.get().googleDrive.login();
-
-                                        Clouds.get().googleDriveToken = Clouds.get().googleDrive.saveAsString();
-                                        Clouds.get().googleDriveInfo = Clouds.get().googleDrive.getUserLogin();
-                                        Clouds.get().save();
-                                    }
-
-                                    BrowseFragment2.this.getActivity().runOnUiThread(new Runnable() {
-
-                                        @Override
-                                        public void run() {
-                                            displayAnyPath(Clouds.PREFIX_CLOUD_GDRIVE + "/");
-                                        }
-                                    });
-                                } catch (Exception e) {
-                                    LOG.d(e);
-                                    BrowseFragment2.this.getActivity().runOnUiThread(new Runnable() {
-
-                                        @Override
-                                        public void run() {
-                                            Toast.makeText(getActivity(), R.string.msg_unexpected_error, Toast.LENGTH_SHORT).show();
-                                        }
-                                    });
-                                }
-
-                            };
-
-                        }.start();
+                                displayAnyPath(Clouds.PREFIX_CLOUD_GDRIVE + "/");
+                            }
+                        });
 
                         return true;
                     }
                 }).setIcon(R.drawable.gdrive);
 
-                menu.getMenu().add("One Drive").withTint(false).setOnMenuItemClickListener(new OnMenuItemClickListener() {
+                menu.getMenu().add(R.string.one_drive).withTint(false).setOnMenuItemClickListener(new OnMenuItemClickListener() {
 
                     @Override
                     public boolean onMenuItemClick(MenuItem item) {
-                        new Thread() {
+                        Clouds.get().loginToDropbox(getActivity(), new Runnable() {
+
                             @Override
                             public void run() {
-                                try {
-                                    if (!Clouds.get().isOneDrive()) {
-                                        Clouds.get().oneDrive.login();
-
-                                        Clouds.get().oneDriveToken = Clouds.get().oneDrive.saveAsString();
-                                        Clouds.get().oneDriveInfo = Clouds.get().oneDrive.getUserLogin();
-                                        Clouds.get().save();
-                                    }
-
-                                    BrowseFragment2.this.getActivity().runOnUiThread(new Runnable() {
-
-                                        @Override
-                                        public void run() {
-                                            displayAnyPath(Clouds.PREFIX_CLOUD_ONEDRIVE + "/");
-                                        }
-                                    });
-                                } catch (Exception e) {
-                                    LOG.d(e);
-                                    BrowseFragment2.this.getActivity().runOnUiThread(new Runnable() {
-
-                                        @Override
-                                        public void run() {
-                                            Toast.makeText(getActivity(), R.string.msg_unexpected_error, Toast.LENGTH_SHORT).show();
-                                        }
-                                    });
-                                }
-
-                            };
-
-                        }.start();
+                                displayAnyPath(Clouds.PREFIX_CLOUD_ONEDRIVE + "/");
+                            }
+                        });
 
                         return true;
                     }

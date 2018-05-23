@@ -6,6 +6,7 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
+import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
 
@@ -18,14 +19,18 @@ import com.foobnix.pdf.info.TintUtil;
 import com.foobnix.pdf.info.view.MyPopupMenu;
 import com.foobnix.pdf.info.wrapper.AppState;
 import com.foobnix.pdf.info.wrapper.PopupHelper;
+import com.foobnix.pdf.info.wrapper.UITab;
 import com.foobnix.pdf.search.activity.msg.MessageSyncFinish;
+import com.foobnix.pdf.search.activity.msg.OpenDirMessage;
 import com.foobnix.ui2.BooksService;
 import com.foobnix.ui2.FileMetaCore;
+import com.foobnix.ui2.MainTabs2;
 import com.foobnix.ui2.adapter.FileMetaAdapter;
 
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.support.v4.content.LocalBroadcastManager;
 import android.support.v4.util.Pair;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -88,23 +93,78 @@ public class CloudsFragment2 extends UIFragment<FileMeta> {
 
         TintUtil.setBackgroundFillColor(panelRecent, TintUtil.color);
 
-        final View dropboxProvider = view.findViewById(R.id.dropbox);
-        dropboxProvider.setOnClickListener(new OnClickListener() {
+        view.findViewById(R.id.dropbox).setOnClickListener(new OnClickListener() {
 
             @Override
             public void onClick(final View v) {
+                final boolean isDropbox = Clouds.get().isDropbox();
                 Clouds.get().loginToDropbox(getActivity(), new Runnable() {
 
                     @Override
                     public void run() {
-                        dropboxProvider.setVisibility(View.GONE);
-                        Toast.makeText(getActivity(), R.string.success, Toast.LENGTH_SHORT).show();
-                        getActivity().startService(new Intent(getActivity(), BooksService.class).setAction(BooksService.ACTION_SYNC_DROPBOX));
+                        if (isDropbox) {
+                            Intent intent = new Intent(UIFragment.INTENT_TINT_CHANGE)//
+                                    .putExtra(MainTabs2.EXTRA_PAGE_NUMBER, UITab.getCurrentTabIndex(UITab.BrowseFragment));//
+                            LocalBroadcastManager.getInstance(getActivity()).sendBroadcast(intent);
+
+                            EventBus.getDefault().post(new OpenDirMessage(Clouds.PREFIX_CLOUD_DROPBOX + "/"));
+                        } else {
+                            Toast.makeText(getActivity(), R.string.success, Toast.LENGTH_SHORT).show();
+                            getActivity().startService(new Intent(getActivity(), BooksService.class).setAction(BooksService.ACTION_SYNC_DROPBOX));
+                        }
                     }
                 });
             }
         });
-        dropboxProvider.setVisibility(Clouds.get().isDropbox() ? View.GONE : View.VISIBLE);
+
+        view.findViewById(R.id.gdrive).setOnClickListener(new OnClickListener() {
+
+            @Override
+            public void onClick(final View v) {
+                final boolean isDrive = Clouds.get().isGoogleDrive();
+                Clouds.get().loginToGoogleDrive(getActivity(), new Runnable() {
+
+                    @Override
+                    public void run() {
+                        if (isDrive) {
+                            Intent intent = new Intent(UIFragment.INTENT_TINT_CHANGE)//
+                                    .putExtra(MainTabs2.EXTRA_PAGE_NUMBER, UITab.getCurrentTabIndex(UITab.BrowseFragment));//
+                            LocalBroadcastManager.getInstance(getActivity()).sendBroadcast(intent);
+
+                            EventBus.getDefault().post(new OpenDirMessage(Clouds.PREFIX_CLOUD_GDRIVE + "/"));
+
+                        } else {
+                            Toast.makeText(getActivity(), R.string.success, Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                });
+            }
+        });
+
+        view.findViewById(R.id.oneDrive).setOnClickListener(new OnClickListener() {
+
+            @Override
+            public void onClick(final View v) {
+                final boolean isDrive = Clouds.get().isOneDrive();
+
+                Clouds.get().loginToOneDrive(getActivity(), new Runnable() {
+
+                    @Override
+                    public void run() {
+                        if (isDrive) {
+                            Intent intent = new Intent(UIFragment.INTENT_TINT_CHANGE)//
+                                    .putExtra(MainTabs2.EXTRA_PAGE_NUMBER, UITab.getCurrentTabIndex(UITab.BrowseFragment));//
+                            LocalBroadcastManager.getInstance(getActivity()).sendBroadcast(intent);
+
+                            EventBus.getDefault().post(new OpenDirMessage(Clouds.PREFIX_CLOUD_ONEDRIVE + "/"));
+
+                        } else {
+                            Toast.makeText(getActivity(), R.string.success, Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                });
+            }
+        });
 
         return view;
     }

@@ -2,7 +2,6 @@ package com.foobnix.pdf.info;
 
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.IOException;
 import java.io.InputStream;
 import java.util.List;
 
@@ -326,7 +325,7 @@ public class Clouds {
                     }
 
                     return true;
-                } catch (IOException e) {
+                } catch (Exception e) {
                     LOG.e(e);
                 }
 
@@ -382,9 +381,79 @@ public class Clouds {
                         }
                     });
                 }
-
             };
+        }.start();
+    }
 
+    public void loginToOneDrive(final Activity a, final Runnable success) {
+        new Thread() {
+            @Override
+            public void run() {
+                try {
+                    if (!Clouds.get().isOneDrive()) {
+                        Clouds.get().oneDrive.login();
+
+                        Clouds.get().oneDriveToken = Clouds.get().oneDrive.saveAsString();
+                        Clouds.get().oneDriveInfo = Clouds.get().oneDrive.getUserLogin();
+                        Clouds.get().save();
+                    }
+
+                    a.runOnUiThread(new Runnable() {
+
+                        @Override
+                        public void run() {
+                            if (success != null) {
+                                success.run();
+                            }
+                        }
+                    });
+                } catch (Exception e) {
+                    LOG.d(e);
+                    a.runOnUiThread(new Runnable() {
+
+                        @Override
+                        public void run() {
+                            Toast.makeText(a, R.string.msg_unexpected_error, Toast.LENGTH_SHORT).show();
+                        }
+                    });
+                }
+            };
+        }.start();
+    }
+
+    public void loginToGoogleDrive(final Activity a, final Runnable success) {
+        new Thread() {
+            @Override
+            public void run() {
+                try {
+                    if (!Clouds.get().isGoogleDrive()) {
+                        Clouds.get().googleDrive.login();
+
+                        Clouds.get().googleDriveToken = Clouds.get().googleDrive.saveAsString();
+                        Clouds.get().googleDriveInfo = Clouds.get().googleDrive.getUserLogin();
+                        Clouds.get().save();
+                    }
+
+                    a.runOnUiThread(new Runnable() {
+
+                        @Override
+                        public void run() {
+                            if (success != null) {
+                                success.run();
+                            }
+                        }
+                    });
+                } catch (Exception e) {
+                    LOG.d(e);
+                    a.runOnUiThread(new Runnable() {
+
+                        @Override
+                        public void run() {
+                            Toast.makeText(a, R.string.msg_unexpected_error, Toast.LENGTH_SHORT).show();
+                        }
+                    });
+                }
+            };
         }.start();
     }
 
