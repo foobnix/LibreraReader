@@ -270,18 +270,41 @@ public class ShareDialog {
 
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
+                            if (which == 0) {
+                                if (Clouds.get().isDropbox()) {
+                                    Clouds.get().syncronizeAdd(a, file, Clouds.get().dropbox);
+                                } else {
+                                    Clouds.get().loginToDropbox(a, new Runnable() {
+                                        @Override
+                                        public void run() {
+                                            Clouds.get().syncronizeAdd(a, file, Clouds.get().dropbox);
+                                        }
+                                    });
+                                }
+                            } else if (which == 1) {
 
-                            if (Clouds.get().isDropbox()) {
-                                Clouds.get().syncronizeAdd(a, file);
-                            } else {
-                                Clouds.get().loginToDropbox(a, new Runnable() {
+                                if (Clouds.get().isGoogleDrive()) {
+                                    Clouds.get().syncronizeAdd(a, file, Clouds.get().googleDrive);
+                                } else {
+                                    Clouds.get().loginToDropbox(a, new Runnable() {
+                                        @Override
+                                        public void run() {
+                                            Clouds.get().syncronizeAdd(a, file, Clouds.get().googleDrive);
+                                        }
+                                    });
+                                }
 
-                                    @Override
-                                    public void run() {
-                                        Clouds.get().syncronizeAdd(a, file);
-                                    }
-                                });
-
+                            } else if (which == 2) {
+                                if (Clouds.get().isOneDrive()) {
+                                    Clouds.get().syncronizeAdd(a, file, Clouds.get().oneDrive);
+                                } else {
+                                    Clouds.get().loginToDropbox(a, new Runnable() {
+                                        @Override
+                                        public void run() {
+                                            Clouds.get().syncronizeAdd(a, file, Clouds.get().oneDrive);
+                                        }
+                                    });
+                                }
                             }
 
                         }

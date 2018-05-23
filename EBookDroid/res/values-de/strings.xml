@@ -478,4 +478,6 @@
    <string name="cloud_not_connected">Cloud nicht verbunden</string>
    <string name="cloud_sync_folder">Cloud-Synchronisierungsordner</string>
    <string name="clouds">Wolken</string>
+   <string name="add_to_cloud">Zur Wolke hinzufügen</string>
+   <string name="librera_cloud">Librera Wolke</string>
 </resources>

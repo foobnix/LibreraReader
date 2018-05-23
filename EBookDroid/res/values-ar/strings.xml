@@ -478,4 +478,6 @@
    <string name="cloud_not_connected">السحابة غير متصلة</string>
    <string name="cloud_sync_folder">مجلد مزامنة السحابة</string>
    <string name="clouds">سحاب</string>
+   <string name="add_to_cloud">أضف إلى السحاب</string>
+   <string name="librera_cloud">Librera سحابة</string>
 </resources>

@@ -478,4 +478,6 @@
    <string name="cloud_not_connected">Wingu halijaunganishwa</string>
    <string name="cloud_sync_folder">Faili ya usawazishaji wa wingu</string>
    <string name="clouds">Mawingu</string>
+   <string name="add_to_cloud">Ongeza kwenye wingu</string>
+   <string name="librera_cloud">Librera wingu</string>
 </resources>

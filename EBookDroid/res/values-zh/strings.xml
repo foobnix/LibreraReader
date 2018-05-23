@@ -478,4 +478,6 @@
    <string name="cloud_not_connected">云未连接</string>
    <string name="cloud_sync_folder">云同步文件夹</string>
    <string name="clouds">网络硬盘</string>
+   <string name="add_to_cloud">添加到云</string>
+   <string name="librera_cloud">Librera云</string>
 </resources>

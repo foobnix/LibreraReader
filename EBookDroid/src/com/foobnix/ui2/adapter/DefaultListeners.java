@@ -226,7 +226,7 @@ public class DefaultListeners {
             @Override
             protected Boolean doInBackground(Object... params) {
                 try {
-                    String cloudFile = Clouds.LIBRERA_SYNC_FOLDER + "/" + ExtUtils.getFileName(result.getPath());
+                    String cloudFile = Clouds.LIBRERA_SYNC_ONLINE_FOLDER + "/" + ExtUtils.getFileName(result.getPath());
                     LOG.d("delete dropbox", cloudFile);
                     if (!Clouds.get().dropbox.exists(cloudFile)) {
                         return true;

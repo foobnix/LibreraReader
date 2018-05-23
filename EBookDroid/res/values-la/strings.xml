@@ -478,4 +478,6 @@
    <string name="cloud_not_connected">Seiuncta nubem</string>
    <string name="cloud_sync_folder">Nubes sync folder</string>
    <string name="clouds">Nubes</string>
+   <string name="add_to_cloud">Addere ad nubes</string>
+   <string name="librera_cloud">Nubes Librera</string>
 </resources>

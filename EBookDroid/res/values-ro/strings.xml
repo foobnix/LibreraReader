@@ -478,4 +478,6 @@
    <string name="cloud_not_connected">Cloud nu este conectat</string>
    <string name="cloud_sync_folder">Cloud sync folder</string>
    <string name="clouds">Nori</string>
+   <string name="add_to_cloud">Adăugați în nor</string>
+   <string name="librera_cloud">Librera nor</string>
 </resources>

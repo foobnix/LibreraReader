@@ -50,7 +50,7 @@ public class CloudsFragment2 extends UIFragment<FileMeta> {
     private ImageView imageDropbox;
     private ImageView imageGDrive;
     private ImageView imageOneDrive;
-    private ImageView onRefreshDropbox;
+    private ImageView onRefresh;
 
     @Override
     public Pair<Integer, Integer> getNameAndIconRes() {
@@ -85,8 +85,8 @@ public class CloudsFragment2 extends UIFragment<FileMeta> {
         progressBar.setVisibility(View.GONE);
         TintUtil.setDrawableTint(progressBar.getIndeterminateDrawable().getCurrent(), Color.WHITE);
 
-        onRefreshDropbox = view.findViewById(R.id.onRefreshDropbox);
-        onRefreshDropbox.setOnClickListener(new OnClickListener() {
+        onRefresh = view.findViewById(R.id.onRefreshDropbox);
+        onRefresh.setOnClickListener(new OnClickListener() {
 
             @Override
             public void onClick(View v) {
@@ -185,10 +185,8 @@ public class CloudsFragment2 extends UIFragment<FileMeta> {
     public void updateImages() {
         if (Clouds.get().isDropbox()) {
             TintUtil.setNoTintImage(imageDropbox);
-            TintUtil.setTintImageNoAlpha(onRefreshDropbox, Color.WHITE);
         } else {
             TintUtil.setTintImageNoAlpha(imageDropbox, Color.LTGRAY);
-            TintUtil.setTintImageNoAlpha(onRefreshDropbox, Color.LTGRAY);
         }
 
         if (Clouds.get().isGoogleDrive()) {
@@ -219,15 +217,16 @@ public class CloudsFragment2 extends UIFragment<FileMeta> {
         return false;
     }
 
-    @Override
-    public List<FileMeta> prepareDataInBackground() {
-        File root = new File(AppState.get().syncDropboxPath);
+    public static List<FileMeta> getCloudFiles(String path) {
+
+        List<FileMeta> res = new ArrayList<FileMeta>();
+
+        File root = new File(path);
         File[] listFiles = root.listFiles();
         if (listFiles == null) {
             return new ArrayList<FileMeta>();
         }
 
-        List<FileMeta> res = new ArrayList<FileMeta>();
         for (File file : listFiles) {
             if (file.isDirectory()) {
                 continue;
@@ -237,26 +236,32 @@ public class CloudsFragment2 extends UIFragment<FileMeta> {
         }
         Collections.sort(res, FileMetaComparators.BY_DATE);
         Collections.reverse(res);
-        
-        FileMeta meta = new FileMeta();
-        meta.setCusType(FileMetaAdapter.DISPALY_TYPE_LAYOUT_TITLE_DIVIDER);
-        meta.setTitle(getActivity().getString(R.string.dropbox));
-        
-        res.add(0, meta);
-        
-        FileMeta meta2 = new FileMeta();
-        meta2.setCusType(FileMetaAdapter.DISPALY_TYPE_LAYOUT_TITLE_DIVIDER);
-        meta2.setTitle(getActivity().getString(R.string.google_drive));
-
-        res.add(meta2);
-
-        FileMeta meta3 = new FileMeta();
-        meta3.setCusType(FileMetaAdapter.DISPALY_TYPE_LAYOUT_TITLE_DIVIDER);
-        meta3.setTitle(getActivity().getString(R.string.one_drive));
-
-        res.add(meta3);
 
         return res;
+
+    }
+
+    @Override
+    public List<FileMeta> prepareDataInBackground() {
+        List<FileMeta> res = new ArrayList<FileMeta>();
+
+        res.add(metaTitle(getActivity().getString(R.string.dropbox)));
+        res.addAll(getCloudFiles(AppState.get().syncDropboxPath));
+
+        res.add(metaTitle(getActivity().getString(R.string.google_drive)));
+        res.addAll(getCloudFiles(AppState.get().syncGdrivePath));
+
+        res.add(metaTitle(getActivity().getString(R.string.one_drive)));
+        res.addAll(getCloudFiles(AppState.get().syncOneDrivePath));
+
+        return res;
+    }
+
+    private FileMeta metaTitle(String name) {
+        FileMeta meta = new FileMeta();
+        meta.setCusType(FileMetaAdapter.DISPALY_TYPE_LAYOUT_TITLE_DIVIDER);
+        meta.setTitle(name);
+        return meta;
     }
 
     @Override

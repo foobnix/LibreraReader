@@ -415,7 +415,7 @@ public class AppState {
     public int libraryMode = MODE_GRID;
     public int broseMode = MODE_LIST;
     public int recentMode = MODE_LIST;
-    public int cloudMode = MODE_LIST;
+    public int cloudMode = MODE_LIST_COMPACT;
     public int bookmarksMode = BOOKMARK_MODE_BY_DATE;
     public int starsMode = MODE_LIST_COMPACT;
 
@@ -428,6 +428,8 @@ public class AppState {
     public String ttsSpeakPath = new File(DOWNLOADS_DIR, "Librera/TTS").getPath();
     public String backupPath = new File(DOWNLOADS_DIR, "Librera/Backup").getPath();
     public String syncDropboxPath = new File(DOWNLOADS_DIR, "Librera/Librera.Cloud-Dropbox").getPath();
+    public String syncGdrivePath = new File(DOWNLOADS_DIR, "Librera/Librera.Cloud-GoogleDrive").getPath();
+    public String syncOneDrivePath = new File(DOWNLOADS_DIR, "Librera/Librera.Cloud-OneDrive").getPath();
 
     public String fileToDelete;
 

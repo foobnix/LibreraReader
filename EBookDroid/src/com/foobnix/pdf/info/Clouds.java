@@ -26,7 +26,7 @@ import android.widget.Toast;
 
 public class Clouds {
 
-    public static final String LIBRERA_SYNC_FOLDER = "/Librera.Cloud";
+    public static final String LIBRERA_SYNC_ONLINE_FOLDER = "/Librera.Cloud";
     public static final String PREFIX_CLOUD = "cloud-";
     public static final String PREFIX_CLOUD_DROPBOX = PREFIX_CLOUD + "dropbox:";
     public static final String PREFIX_CLOUD_GDRIVE = PREFIX_CLOUD + "gdrive:";
@@ -213,21 +213,41 @@ public class Clouds {
     }
 
     public void syncronizeGet() {
-        if (!isDropbox()) {
-            LOG.d("syncronize Get Cloud not connected");
+        syncronizeGet(dropbox, AppState.get().syncDropboxPath);
+        syncronizeGet(googleDrive, AppState.get().syncGdrivePath);
+        syncronizeGet(oneDrive, AppState.get().syncOneDrivePath);
+    }
+
+    private void syncronizeGet(CloudStorage storage, String syncPath) {
+
+        LOG.d("syncronizeGet begin", storage);
+
+        if (storage instanceof Dropbox && !isDropbox()) {
+            LOG.d("Dropbox is not connected");
             return;
         }
+
+        if (storage instanceof GoogleDrive && !isGoogleDrive()) {
+            LOG.d("GoogleDrive is not connected");
+            return;
+        }
+
+        if (storage instanceof OneDrive && !isOneDrive()) {
+            LOG.d("OneDrive is not connected");
+            return;
+        }
+
         try {
 
-            if (!dropbox.exists(LIBRERA_SYNC_FOLDER)) {
+            if (!storage.exists(LIBRERA_SYNC_ONLINE_FOLDER)) {
                 LOG.d("syncronize No sync folder");
                 return;
             }
 
-            File root = new File(AppState.get().syncDropboxPath);
+            File root = new File(syncPath);
             root.mkdirs();
 
-            List<CloudMetaData> childs = dropbox.getChildren(LIBRERA_SYNC_FOLDER);
+            List<CloudMetaData> childs = storage.getChildren(LIBRERA_SYNC_ONLINE_FOLDER);
             for (CloudMetaData ch : childs) {
 
                 LOG.d("get-cloud", ch.getName(), ch.getModifiedAt(), ch.getSize());
@@ -244,7 +264,7 @@ public class Clouds {
                     String path = ch.getPath();
                     LOG.d("get-syncronize copy begin", path, "to", dest.getPath());
                     try {
-                        InputStream download = dropbox.download(path);
+                        InputStream download = storage.download(path);
                         CacheZipUtils.copyFile(download, dest);
                         download.close();
 
@@ -289,12 +309,7 @@ public class Clouds {
 
     }
 
-    public void syncronizeAdd(final Activity a, final File file) {
-        if (!isDropbox()) {
-            LOG.d("syncronizeAdd Cloud not connected");
-            Toast.makeText(a, R.string.cloud_not_connected, Toast.LENGTH_SHORT).show();
-            return;
-        }
+    public void syncronizeAdd(final Activity a, final File file, final CloudStorage cloud) {
 
         new AsyncProgressTask<Boolean>() {
 
@@ -306,21 +321,33 @@ public class Clouds {
             @Override
             protected Boolean doInBackground(Object... params) {
                 try {
-                    File root = new File(AppState.get().syncDropboxPath);
+                    String syncPath = "";
+                    if (cloud instanceof Dropbox) {
+                        syncPath = AppState.get().syncDropboxPath;
+                    } else if (cloud instanceof GoogleDrive) {
+                        syncPath = AppState.get().syncGdrivePath;
+                    } else if (cloud instanceof OneDrive) {
+                        syncPath = AppState.get().syncOneDrivePath;
+                    } else {
+                        new IllegalArgumentException("Invalid provider");
+
+                    }
+
+                    File root = new File(syncPath);
                     root.mkdirs();
                     File dest = new File(root, file.getName());
                     CacheZipUtils.copyFile(file, dest);
 
-                    String extSyncFolder = LIBRERA_SYNC_FOLDER;
-                    String extSyncFile = LIBRERA_SYNC_FOLDER + "/" + file.getName();
+                    String extSyncFolder = LIBRERA_SYNC_ONLINE_FOLDER;
+                    String extSyncFile = LIBRERA_SYNC_ONLINE_FOLDER + "/" + file.getName();
 
-                    if (!dropbox.exists(extSyncFolder)) {
-                        dropbox.createFolder(extSyncFolder);
+                    if (!cloud.exists(extSyncFolder)) {
+                        cloud.createFolder(extSyncFolder);
                         LOG.d("Create folder" + extSyncFolder);
                     }
-                    if (!dropbox.exists(extSyncFile)) {
+                    if (!cloud.exists(extSyncFile)) {
                         FileInputStream outStream = new FileInputStream(file);
-                        dropbox.upload(extSyncFile, outStream, 1024, true);
+                        cloud.upload(extSyncFile, outStream, file.length(), true);
                         outStream.close();
                         LOG.d("upload File" + extSyncFile);
                     }

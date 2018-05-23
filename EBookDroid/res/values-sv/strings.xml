@@ -478,4 +478,6 @@
    <string name="cloud_not_connected">Cloud inte anslutet</string>
    <string name="cloud_sync_folder">Cloud synkroniseringsmapp</string>
    <string name="clouds">Clouds</string>
+   <string name="add_to_cloud">Lägg till i molnet</string>
+   <string name="librera_cloud">Librera moln</string>
 </resources>
