@@ -2,12 +2,14 @@ package com.foobnix.pdf.info.widget;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import org.ebookdroid.BookType;
 import org.ebookdroid.ui.viewer.VerticalViewActivity;
 import org.greenrobot.eventbus.EventBus;
 
+import com.foobnix.android.utils.BaseItemLayoutAdapter;
 import com.foobnix.android.utils.Keyboards;
 import com.foobnix.dao2.FileMeta;
 import com.foobnix.pdf.info.Clouds;
@@ -28,6 +30,10 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.DialogInterface.OnDismissListener;
+import android.support.v4.util.Pair;
+import android.view.View;
+import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 public class ShareDialog {
@@ -156,10 +162,9 @@ public class ShareDialog {
             items.add(a.getString(R.string.file_info));
         }
 
-        items.add("Add to Dropbox Librera.Cloud");
+        items.add(a.getString(R.string.add_to_cloud));
 
         final AlertDialog.Builder builder = new AlertDialog.Builder(a);
-        // builder.setTitle(R.string.choose_)//
         builder.setItems(items.toArray(new String[items.size()]), new DialogInterface.OnClickListener() {
             @Override
             public void onClick(final DialogInterface dialog, final int which) {
@@ -246,18 +251,44 @@ public class ShareDialog {
                 } else if (isShowInfo && which == i++) {
                     FileInformationDialog.showFileInfoDialog(a, file, onDeleteAction);
                 } else if (which == i++) {
-                    if (Clouds.get().isDropbox()) {
-                        Clouds.get().syncronizeAdd(a, file);
-                    } else {
-                        Clouds.get().loginToDropbox(a, new Runnable() {
+                    final AlertDialog.Builder inner = new AlertDialog.Builder(a);
+                    inner.setTitle(R.string.add_to_cloud);
 
-                            @Override
-                            public void run() {
+                    List<Pair<Integer, Integer>> list = Arrays.asList(//
+                            new Pair<Integer, Integer>(R.string.dropbox, R.drawable.dropbox), //
+                            new Pair<Integer, Integer>(R.string.google_drive, R.drawable.gdrive), //
+                            new Pair<Integer, Integer>(R.string.one_drive, R.drawable.onedrive)//
+                    );
+
+                    inner.setAdapter(new BaseItemLayoutAdapter<Pair<Integer, Integer>>(a, R.layout.item_dict_line, list) {
+                        @Override
+                        public void populateView(View layout, int position, Pair<Integer, Integer> item) {
+                            ((TextView) layout.findViewById(R.id.text1)).setText(item.first);
+                            ((ImageView) layout.findViewById(R.id.image1)).setImageResource(item.second);
+                        }
+                    }, new DialogInterface.OnClickListener() {
+
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+
+                            if (Clouds.get().isDropbox()) {
                                 Clouds.get().syncronizeAdd(a, file);
-                            }
-                        });
+                            } else {
+                                Clouds.get().loginToDropbox(a, new Runnable() {
 
-                    }
+                                    @Override
+                                    public void run() {
+                                        Clouds.get().syncronizeAdd(a, file);
+                                    }
+                                });
+
+                            }
+
+                        }
+
+                    });
+                    inner.show();
+
                 }
 
             }

@@ -247,7 +247,7 @@ public class BrowseFragment2 extends UIFragment<FileMeta> {
 
                     @Override
                     public boolean onMenuItemClick(MenuItem item) {
-                        displayAnyPath(AppState.get().downlodsPath);
+                        displayAnyPath(new File(AppState.DOWNLOADS_DIR, "Librera").getPath());
                         return false;
                     }
                 }).setIcon(R.drawable.glyphicons_591_folder_heart);

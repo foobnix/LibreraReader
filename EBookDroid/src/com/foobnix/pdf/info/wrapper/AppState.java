@@ -36,7 +36,7 @@ import android.view.KeyEvent;
 
 public class AppState {
 
-    private static final File DOWNLOADS_DIR = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS);
+    public static final File DOWNLOADS_DIR = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS);
     public static final String PROXY_HTTP = "HTTP";
     public static final String PROXY_SOCKS = "SOCKS";
 
@@ -417,7 +417,7 @@ public class AppState {
     public int recentMode = MODE_LIST;
     public int cloudMode = MODE_LIST;
     public int bookmarksMode = BOOKMARK_MODE_BY_DATE;
-    public int starsMode = MODE_LIST;
+    public int starsMode = MODE_LIST_COMPACT;
 
     public boolean isBrowseGrid = false;
     public boolean isRecentGrid = false;

@@ -4,26 +4,27 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical" >
-
+    
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="4dip"
-        android:layout_marginTop="4dip"
         android:layout_marginRight="4dip"
+        android:layout_marginTop="4dip"
         android:gravity="center_vertical"
         android:orientation="horizontal" >
 
         <LinearLayout
-            android:layout_weight="1"
             android:id="@+id/dropbox"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_weight="1"
             android:background="@drawable/bg_border_ltgray"
             android:gravity="center_vertical"
             android:padding="2dip" >
 
             <ImageView
+                android:id="@+id/imageDropbox"
                 android:layout_width="@dimen/wh_button"
                 android:layout_height="@dimen/wh_button"
                 android:layout_weight="0"
@@ -33,23 +34,24 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/dropbox"
                 android:gravity="center"
                 android:singleLine="true"
+                android:text="@string/dropbox"
                 android:textSize="16sp" />
         </LinearLayout>
 
         <LinearLayout
-            android:layout_weight="1"
             android:id="@+id/gdrive"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="4dip"
+            android:layout_weight="1"
             android:background="@drawable/bg_border_ltgray"
             android:gravity="center_vertical"
             android:padding="2dip" >
 
             <ImageView
+                android:id="@+id/imageGDrive"
                 android:layout_width="@dimen/wh_button"
                 android:layout_height="@dimen/wh_button"
                 android:layout_weight="0"
@@ -59,23 +61,24 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/google_drive"
                 android:gravity="center"
                 android:singleLine="true"
+                android:text="@string/google_drive"
                 android:textSize="16sp" />
         </LinearLayout>
 
         <LinearLayout
-            android:layout_weight="1"
             android:id="@+id/oneDrive"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="4dip"
+            android:layout_weight="1"
             android:background="@drawable/bg_border_ltgray"
             android:gravity="center_vertical"
             android:padding="2dip" >
 
             <ImageView
+                android:id="@+id/imageOneDrive"
                 android:layout_width="@dimen/wh_button"
                 android:layout_height="@dimen/wh_button"
                 android:layout_weight="0"
@@ -85,9 +88,9 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/one_drive"
                 android:gravity="center"
                 android:singleLine="true"
+                android:text="@string/one_drive"
                 android:textSize="16sp" />
         </LinearLayout>
     </LinearLayout>
@@ -108,7 +111,7 @@
             android:layout_marginLeft="4dip"
             android:layout_weight="1"
             android:gravity="center_vertical"
-            android:text="Dropbox Librera.Cloud"
+            android:text="@string/librera_cloud"
             android:textColor="@color/white"
             android:textStyle="normal" />
 
@@ -134,7 +137,7 @@
             android:background="@color/tint_divider" />
 
         <ImageView
-            android:id="@+id/onRefresh"
+            android:id="@+id/onRefreshDropbox"
             style="@style/buttonWhite"
             android:layout_width="@dimen/wh_button"
             android:layout_height="@dimen/wh_button"
@@ -156,6 +159,8 @@
             android:contentDescription="@string/cd_show_results_as_a_list_or_grid"
             android:src="@drawable/glyphicons_114_justify" />
     </LinearLayout>
+
+    
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/recyclerView"

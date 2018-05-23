@@ -62,6 +62,7 @@ public class FileMetaAdapter extends AppRecycleAdapter<FileMeta, RecyclerView.Vi
     public static final int DISPALY_TYPE_SERIES = 7;
     public static final int DISPALY_TYPE_LAYOUT_TITLE_NONE = 8;
     public static final int DISPALY_TYPE_LAYOUT_TAG = 9;
+    public static final int DISPALY_TYPE_LAYOUT_TITLE_DIVIDER = 10;
 
     public static final int ADAPTER_LIST = 0;
     public static final int ADAPTER_GRID = 1;
@@ -133,6 +134,19 @@ public class FileMetaAdapter extends AppRecycleAdapter<FileMeta, RecyclerView.Vi
         public View parent;
 
         public TagViewHolder(View view) {
+            super(view);
+            title = (TextView) view.findViewById(R.id.text1);
+            image = (ImageView) view.findViewById(R.id.image1);
+            parent = view;
+        }
+    }
+
+    public class NameDividerViewHolder extends RecyclerView.ViewHolder {
+        public TextView title;
+        public ImageView image;
+        public View parent;
+
+        public NameDividerViewHolder(View view) {
             super(view);
             title = (TextView) view.findViewById(R.id.text1);
             image = (ImageView) view.findViewById(R.id.image1);
@@ -213,6 +227,11 @@ public class FileMetaAdapter extends AppRecycleAdapter<FileMeta, RecyclerView.Vi
         if (viewType == DISPALY_TYPE_LAYOUT_TAG) {
             itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.browse_tag, parent, false);
             return new TagViewHolder(itemView);
+        }
+
+        if (viewType == DISPALY_TYPE_LAYOUT_TITLE_DIVIDER) {
+            itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.layout_meta_item_divider, parent, false);
+            return new NameDividerViewHolder(itemView);
         }
 
         if (viewType == DISPLAY_TYPE_FILE) {
@@ -323,6 +342,10 @@ public class FileMetaAdapter extends AppRecycleAdapter<FileMeta, RecyclerView.Vi
             holder.title.setText(fileMeta.getPathTxt());
             TintUtil.setTintImageWithAlpha(holder.image);
             bindItemClickAndLongClickListeners(holder.parent, fileMeta);
+        } else if (holderAll instanceof NameDividerViewHolder) {
+            final NameDividerViewHolder holder = (NameDividerViewHolder) holderAll;
+            holder.title.setText(fileMeta.getTitle());
+            // bindItemClickAndLongClickListeners(holder.parent, fileMeta);
 
         } else if (holderAll instanceof DirectoryViewHolder)
 

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:gravity="center_vertical"
+    android:orientation="horizontal" >
+
+    <ImageView
+        android:visibility="gone"
+        android:id="@+id/image1"
+        android:layout_width="@dimen/wh_button_small"
+        android:layout_height="@dimen/wh_button_small"
+        android:layout_weight="0"
+        android:padding="4dip"
+        android:src="@drawable/dropbox" />
+
+    <TextView
+        android:textStyle="bold"
+        android:id="@+id/text1"
+        android:textSize="12sp"
+        android:gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="4dip"
+        android:layout_weight="1"
+        android:text="@string/dropbox"
+        />
+
+</LinearLayout>

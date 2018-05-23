@@ -292,7 +292,9 @@ public abstract class UIFragment<T> extends Fragment {
                     if (type == FileMetaAdapter.DISPALY_TYPE_LAYOUT_TITLE_NONE) {
                         return num;
                     }
-
+                    if (type == FileMetaAdapter.DISPALY_TYPE_LAYOUT_TITLE_DIVIDER) {
+                        return num;
+                    }
                     if (type == FileMetaAdapter.DISPLAY_TYPE_DIRECTORY) {
                         if (num == 1) {
                             return 1;
@@ -336,6 +338,9 @@ public abstract class UIFragment<T> extends Fragment {
                     }
 
                     if (type == FileMetaAdapter.DISPALY_TYPE_LAYOUT_TITLE_NONE) {
+                        return num;
+                    }
+                    if (type == FileMetaAdapter.DISPALY_TYPE_LAYOUT_TITLE_DIVIDER) {
                         return num;
                     }
 

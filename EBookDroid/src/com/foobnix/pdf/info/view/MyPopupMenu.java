@@ -190,6 +190,7 @@ public class MyPopupMenu {
         };
 
         p1.setAnchorView(anchor);
+
         p1.setAdapter(a);
 
         try {

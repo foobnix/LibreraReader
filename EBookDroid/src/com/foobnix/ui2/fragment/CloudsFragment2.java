@@ -47,6 +47,10 @@ public class CloudsFragment2 extends UIFragment<FileMeta> {
     FileMetaAdapter metaAdapter;
     ImageView onListGrid;
     View panelRecent;
+    private ImageView imageDropbox;
+    private ImageView imageGDrive;
+    private ImageView imageOneDrive;
+    private ImageView onRefreshDropbox;
 
     @Override
     public Pair<Integer, Integer> getNameAndIconRes() {
@@ -81,7 +85,8 @@ public class CloudsFragment2 extends UIFragment<FileMeta> {
         progressBar.setVisibility(View.GONE);
         TintUtil.setDrawableTint(progressBar.getIndeterminateDrawable().getCurrent(), Color.WHITE);
 
-        view.findViewById(R.id.onRefresh).setOnClickListener(new OnClickListener() {
+        onRefreshDropbox = view.findViewById(R.id.onRefreshDropbox);
+        onRefreshDropbox.setOnClickListener(new OnClickListener() {
 
             @Override
             public void onClick(View v) {
@@ -93,7 +98,12 @@ public class CloudsFragment2 extends UIFragment<FileMeta> {
 
         TintUtil.setBackgroundFillColor(panelRecent, TintUtil.color);
 
-        view.findViewById(R.id.dropbox).setOnClickListener(new OnClickListener() {
+        imageDropbox = view.findViewById(R.id.imageDropbox);
+        imageGDrive = view.findViewById(R.id.imageGDrive);
+        imageOneDrive = view.findViewById(R.id.imageOneDrive);
+
+        View dropbox = view.findViewById(R.id.dropbox);
+        dropbox.setOnClickListener(new OnClickListener() {
 
             @Override
             public void onClick(final View v) {
@@ -112,6 +122,7 @@ public class CloudsFragment2 extends UIFragment<FileMeta> {
                             Toast.makeText(getActivity(), R.string.success, Toast.LENGTH_SHORT).show();
                             getActivity().startService(new Intent(getActivity(), BooksService.class).setAction(BooksService.ACTION_SYNC_DROPBOX));
                         }
+                        updateImages();
                     }
                 });
             }
@@ -136,6 +147,7 @@ public class CloudsFragment2 extends UIFragment<FileMeta> {
                         } else {
                             Toast.makeText(getActivity(), R.string.success, Toast.LENGTH_SHORT).show();
                         }
+                        updateImages();
                     }
                 });
             }
@@ -161,12 +173,35 @@ public class CloudsFragment2 extends UIFragment<FileMeta> {
                         } else {
                             Toast.makeText(getActivity(), R.string.success, Toast.LENGTH_SHORT).show();
                         }
+                        updateImages();
                     }
                 });
             }
         });
 
         return view;
+    }
+
+    public void updateImages() {
+        if (Clouds.get().isDropbox()) {
+            TintUtil.setNoTintImage(imageDropbox);
+            TintUtil.setTintImageNoAlpha(onRefreshDropbox, Color.WHITE);
+        } else {
+            TintUtil.setTintImageNoAlpha(imageDropbox, Color.LTGRAY);
+            TintUtil.setTintImageNoAlpha(onRefreshDropbox, Color.LTGRAY);
+        }
+
+        if (Clouds.get().isGoogleDrive()) {
+            TintUtil.setNoTintImage(imageGDrive);
+        } else {
+            TintUtil.setTintImageNoAlpha(imageGDrive, Color.LTGRAY);
+        }
+
+        if (Clouds.get().isOneDrive()) {
+            TintUtil.setNoTintImage(imageOneDrive);
+        } else {
+            TintUtil.setTintImageNoAlpha(imageOneDrive, Color.LTGRAY);
+        }
     }
 
     @Subscribe(threadMode = ThreadMode.MAIN)
@@ -202,6 +237,24 @@ public class CloudsFragment2 extends UIFragment<FileMeta> {
         }
         Collections.sort(res, FileMetaComparators.BY_DATE);
         Collections.reverse(res);
+        
+        FileMeta meta = new FileMeta();
+        meta.setCusType(FileMetaAdapter.DISPALY_TYPE_LAYOUT_TITLE_DIVIDER);
+        meta.setTitle(getActivity().getString(R.string.dropbox));
+        
+        res.add(0, meta);
+        
+        FileMeta meta2 = new FileMeta();
+        meta2.setCusType(FileMetaAdapter.DISPALY_TYPE_LAYOUT_TITLE_DIVIDER);
+        meta2.setTitle(getActivity().getString(R.string.google_drive));
+
+        res.add(meta2);
+
+        FileMeta meta3 = new FileMeta();
+        meta3.setCusType(FileMetaAdapter.DISPALY_TYPE_LAYOUT_TITLE_DIVIDER);
+        meta3.setTitle(getActivity().getString(R.string.one_drive));
+
+        res.add(meta3);
 
         return res;
     }
@@ -213,6 +266,7 @@ public class CloudsFragment2 extends UIFragment<FileMeta> {
             metaAdapter.getItemsList().addAll(items);
             metaAdapter.notifyDataSetChanged();
         }
+        updateImages();
     }
 
     public void onGridList() {
