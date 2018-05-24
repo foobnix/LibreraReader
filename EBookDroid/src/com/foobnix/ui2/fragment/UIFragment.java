@@ -207,10 +207,11 @@ public abstract class UIFragment<T> extends Fragment {
 
     public void populate() {
 
-        if (isInProgress()) {
-            AsyncTasks.toastPleaseWait(getActivity());
-            return;
-        }
+        // if (isInProgress()) {
+        // AsyncTasks.toastPleaseWait(getActivity());
+        // return;
+        // }
+
         if (AsyncTasks.isFinished(execute)) {
 
             execute = new AsyncTask<Object, Object, List<T>>() {
@@ -255,6 +256,7 @@ public abstract class UIFragment<T> extends Fragment {
                 }
             }.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
         } else {
+            // AsyncTasks.toastPleaseWait(getActivity());
             LOG.d("SKIP task");
         }
     }

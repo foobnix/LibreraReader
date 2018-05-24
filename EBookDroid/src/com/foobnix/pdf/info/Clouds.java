@@ -129,6 +129,7 @@ public class Clouds {
         try {
             CloudStorage cloud = cloud(path);
             cloud.logout();
+            cloud.loadAsString("[{}]");
         } catch (Exception e) {
             LOG.e(e);
         }
