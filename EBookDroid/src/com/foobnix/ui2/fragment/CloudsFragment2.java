@@ -121,6 +121,7 @@ public class CloudsFragment2 extends UIFragment<FileMeta> {
                         } else {
                             Toast.makeText(getActivity(), R.string.success, Toast.LENGTH_SHORT).show();
                             getActivity().startService(new Intent(getActivity(), BooksService.class).setAction(BooksService.ACTION_SYNC_DROPBOX));
+                            progressBar.setVisibility(View.VISIBLE);
                         }
                         updateImages();
                     }
@@ -145,6 +146,7 @@ public class CloudsFragment2 extends UIFragment<FileMeta> {
                             EventBus.getDefault().post(new OpenDirMessage(Clouds.PREFIX_CLOUD_GDRIVE + "/"));
 
                         } else {
+                            progressBar.setVisibility(View.VISIBLE);
                             Toast.makeText(getActivity(), R.string.success, Toast.LENGTH_SHORT).show();
                         }
                         updateImages();
@@ -171,6 +173,7 @@ public class CloudsFragment2 extends UIFragment<FileMeta> {
                             EventBus.getDefault().post(new OpenDirMessage(Clouds.PREFIX_CLOUD_ONEDRIVE + "/"));
 
                         } else {
+                            progressBar.setVisibility(View.VISIBLE);
                             Toast.makeText(getActivity(), R.string.success, Toast.LENGTH_SHORT).show();
                         }
                         updateImages();
@@ -245,14 +248,23 @@ public class CloudsFragment2 extends UIFragment<FileMeta> {
     public List<FileMeta> prepareDataInBackground() {
         List<FileMeta> res = new ArrayList<FileMeta>();
 
-        res.add(metaTitle(getActivity().getString(R.string.dropbox)));
-        res.addAll(getCloudFiles(AppState.get().syncDropboxPath));
+        if (Clouds.get().isDropbox()) {
+            String title = getActivity().getString(R.string.dropbox) + " (" + Clouds.get().dropboxSpace + ")";
+            res.add(metaTitle(title));
+            res.addAll(getCloudFiles(AppState.get().syncDropboxPath));
+        }
 
-        res.add(metaTitle(getActivity().getString(R.string.google_drive)));
-        res.addAll(getCloudFiles(AppState.get().syncGdrivePath));
+        if (Clouds.get().isGoogleDrive()) {
+            String title = getActivity().getString(R.string.google_drive) + " (" + Clouds.get().googleSpace + ")";
+            res.add(metaTitle(title));
+            res.addAll(getCloudFiles(AppState.get().syncGdrivePath));
+        }
 
-        res.add(metaTitle(getActivity().getString(R.string.one_drive)));
-        res.addAll(getCloudFiles(AppState.get().syncOneDrivePath));
+        if (Clouds.get().isOneDrive()) {
+            String title = getActivity().getString(R.string.one_drive) + " (" + Clouds.get().oneDriveSpace + ")";
+            res.add(metaTitle(title));
+            res.addAll(getCloudFiles(AppState.get().syncOneDrivePath));
+        }
 
         return res;
     }

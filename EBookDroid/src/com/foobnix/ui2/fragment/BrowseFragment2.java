@@ -327,7 +327,7 @@ public class BrowseFragment2 extends UIFragment<FileMeta> {
 
                 }
 
-                menu.getMenu().add(R.string.dropbox).withTint(false).setOnMenuItemClickListener(new OnMenuItemClickListener() {
+                menu.getMenu().add(R.string.dropbox).active(Clouds.get().isDropbox()).setOnMenuItemClickListener(new OnMenuItemClickListener() {
 
                     @Override
                     public boolean onMenuItemClick(MenuItem item) {
@@ -344,11 +344,11 @@ public class BrowseFragment2 extends UIFragment<FileMeta> {
                     }
                 }).setIcon(R.drawable.dropbox);
 
-                menu.getMenu().add(R.string.google_drive).withTint(false).setOnMenuItemClickListener(new OnMenuItemClickListener() {
+                menu.getMenu().add(R.string.google_drive).active(Clouds.get().isGoogleDrive()).setOnMenuItemClickListener(new OnMenuItemClickListener() {
 
                     @Override
                     public boolean onMenuItemClick(MenuItem item) {
-                        Clouds.get().loginToDropbox(getActivity(), new Runnable() {
+                        Clouds.get().loginToGoogleDrive(getActivity(), new Runnable() {
 
                             @Override
                             public void run() {
@@ -360,11 +360,11 @@ public class BrowseFragment2 extends UIFragment<FileMeta> {
                     }
                 }).setIcon(R.drawable.gdrive);
 
-                menu.getMenu().add(R.string.one_drive).withTint(false).setOnMenuItemClickListener(new OnMenuItemClickListener() {
+                menu.getMenu().add(R.string.one_drive).active(Clouds.get().isOneDrive()).setOnMenuItemClickListener(new OnMenuItemClickListener() {
 
                     @Override
                     public boolean onMenuItemClick(MenuItem item) {
-                        Clouds.get().loginToDropbox(getActivity(), new Runnable() {
+                        Clouds.get().loginToOneDrive(getActivity(), new Runnable() {
 
                             @Override
                             public void run() {

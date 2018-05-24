@@ -49,7 +49,7 @@ public class MyPopupMenu {
         OnMenuItemClickListener click;
         OnMenuItemClickListener onLongClick;
         private String fontPath;
-        boolean withTint = true;
+        Boolean active;
 
         public Menu add(int res) {
             this.stringRes = c.getString(res);
@@ -72,8 +72,8 @@ public class MyPopupMenu {
             return this;
         }
 
-        public Menu withTint(boolean withTint) {
-            this.withTint = withTint;
+        public Menu active(Boolean active) {
+            this.active = active;
             return this;
         }
 
@@ -134,8 +134,10 @@ public class MyPopupMenu {
                 ImageView imageView = (ImageView) layout.findViewById(R.id.image1);
                 if (item.iconRes != 0) {
                     imageView.setImageResource(item.iconRes);
-                    if (item.iconRes == R.drawable.icon_pdf_pro || !item.withTint) {
+                    if (item.iconRes == R.drawable.icon_pdf_pro || Boolean.TRUE.equals(item.active)) {
                         TintUtil.setNoTintImage(imageView);
+                    } else if (Boolean.FALSE.equals(item.active)) {
+                        TintUtil.setTintImageWithAlpha(imageView, Color.LTGRAY);
                     } else {
                         if (isTabsActivity) {
                             if (AppState.get().isInkMode || AppState.get().isWhiteTheme) {

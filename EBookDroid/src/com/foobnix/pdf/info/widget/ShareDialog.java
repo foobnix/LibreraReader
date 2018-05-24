@@ -269,6 +269,8 @@ public class ShareDialog {
                             ImageView imageView = (ImageView) layout.findViewById(R.id.image1);
                             imageView.setImageResource(item.second);
 
+                            TintUtil.setNoTintImage(imageView);
+
                             if (R.string.dropbox == item.first && !Clouds.get().isDropbox()) {
                                 TintUtil.setTintImageNoAlpha(imageView, Color.LTGRAY);
                             }

@@ -11,16 +11,19 @@ import com.cloudrail.si.services.Dropbox;
 import com.cloudrail.si.services.GoogleDrive;
 import com.cloudrail.si.services.OneDrive;
 import com.cloudrail.si.types.CloudMetaData;
+import com.cloudrail.si.types.SpaceAllocation;
 import com.foobnix.android.utils.Apps;
 import com.foobnix.android.utils.LOG;
 import com.foobnix.android.utils.Objects;
 import com.foobnix.ext.CacheZipUtils;
 import com.foobnix.pdf.info.wrapper.AppState;
 import com.foobnix.pdf.search.view.AsyncProgressTask;
+import com.foobnix.ui2.BooksService;
 import com.foobnix.ui2.FileMetaCore;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.widget.Toast;
 
@@ -48,11 +51,15 @@ public class Clouds {
     public volatile String googleDriveInfo;
     public volatile String oneDriveInfo;
 
+    public volatile String dropboxSpace;
+    public volatile String googleSpace;
+    public volatile String oneDriveSpace;
+
     public static boolean isCloud(String path) {
         return path.startsWith(PREFIX_CLOUD);
     }
 
-    public static boolean isCloudSyncFile(String path) {
+    private static boolean isCloudSyncFile(String path) {
         String parentName = new File(path).getParentFile().getName();
         String syncName = new File(AppState.get().syncDropboxPath).getName();
 
@@ -65,23 +72,36 @@ public class Clouds {
         return false;
     }
 
+    private static File getFile(String folder, String displayName) {
+        File file = new File(folder, displayName);
+        if (file.isFile() && file.length() > 0) {
+            return file;
+        }
+        return null;
+    }
+
+    public static void runSync(Activity a) {
+        a.startService(new Intent(a, BooksService.class).setAction(BooksService.ACTION_SYNC_DROPBOX));
+    }
+
     public static File getCacheFile(String path) {
         if (!path.startsWith(PREFIX_CLOUD)) {
             return null;
         }
         String displayName = ExtUtils.getFileName(path);
 
-        File download = new File(AppState.get().downlodsPath, displayName);
-        if (download.isFile() && download.length() > 0) {
-            return download;
-        }
+        File file = getFile(AppState.get().downlodsPath, displayName);
 
-        final File sync = new File(AppState.get().syncDropboxPath, displayName);
-        if (sync.isFile() && sync.length() > 0) {
-            return sync;
+        if (file == null && path.startsWith(PREFIX_CLOUD_DROPBOX)) {
+            file = getFile(AppState.get().syncDropboxPath, displayName);
         }
-
-        return null;
+        if (file == null && path.startsWith(PREFIX_CLOUD_GDRIVE)) {
+            file = getFile(AppState.get().syncGdrivePath, displayName);
+        }
+        if (file == null && path.startsWith(PREFIX_CLOUD_ONEDRIVE)) {
+            file = getFile(AppState.get().syncOneDrivePath, displayName);
+        }
+        return file;
     }
 
     public static boolean isCacheFileExist(String path) {
@@ -213,9 +233,11 @@ public class Clouds {
     }
 
     public void syncronizeGet() {
+        updateSpace();
         syncronizeGet(dropbox, AppState.get().syncDropboxPath);
         syncronizeGet(googleDrive, AppState.get().syncGdrivePath);
         syncronizeGet(oneDrive, AppState.get().syncOneDrivePath);
+
     }
 
     private void syncronizeGet(CloudStorage storage, String syncPath) {
@@ -338,13 +360,9 @@ public class Clouds {
                     File dest = new File(root, file.getName());
                     CacheZipUtils.copyFile(file, dest);
 
-                    String extSyncFolder = LIBRERA_SYNC_ONLINE_FOLDER;
                     String extSyncFile = LIBRERA_SYNC_ONLINE_FOLDER + "/" + file.getName();
 
-                    if (!cloud.exists(extSyncFolder)) {
-                        cloud.createFolder(extSyncFolder);
-                        LOG.d("Create folder" + extSyncFolder);
-                    }
+                    createLibreraCloudFolder(cloud);
                     if (!cloud.exists(extSyncFile)) {
                         FileInputStream outStream = new FileInputStream(file);
                         cloud.upload(extSyncFile, outStream, file.length(), true);
@@ -368,14 +386,43 @@ public class Clouds {
                     return;
                 }
                 Toast.makeText(a, R.string.success, Toast.LENGTH_SHORT).show();
+                runSync(a);
             }
         }.execute();
 
     }
 
+    private void createLibreraCloudFolder(final CloudStorage cloud) {
+        String extSyncFolder = LIBRERA_SYNC_ONLINE_FOLDER;
+        if (!cloud.exists(extSyncFolder)) {
+            cloud.createFolder(extSyncFolder);
+            LOG.d("Create folder" + extSyncFolder);
+        }
+    }
+
     public static boolean isSyncFileExist(File file) {
         File sync = new File(AppState.get().syncDropboxPath, file.getName());
         return sync.exists() && sync.length() > 0;
+    }
+
+    public static void updateSpace() {
+        try {
+            if (Clouds.get().isDropbox()) {
+                SpaceAllocation allocation = Clouds.get().dropbox.getAllocation();
+                Clouds.get().dropboxSpace = ExtUtils.readableFileSize(allocation.getUsed()) + "/" + ExtUtils.readableFileSize(allocation.getTotal());
+            }
+            if (Clouds.get().isGoogleDrive()) {
+                SpaceAllocation allocation = Clouds.get().googleDrive.getAllocation();
+                Clouds.get().googleSpace = ExtUtils.readableFileSize(allocation.getUsed()) + "/" + ExtUtils.readableFileSize(allocation.getTotal());
+            }
+            if (Clouds.get().isOneDrive()) {
+                SpaceAllocation allocation = Clouds.get().oneDrive.getAllocation();
+                Clouds.get().oneDriveSpace = ExtUtils.readableFileSize(allocation.getUsed()) + "/" + ExtUtils.readableFileSize(allocation.getTotal());
+            }
+        } catch (Exception e) {
+            LOG.e(e);
+        }
+
     }
 
     public void loginToDropbox(final Activity a, final Runnable success) {
@@ -384,10 +431,15 @@ public class Clouds {
             public void run() {
                 try {
                     if (!Clouds.get().isDropbox()) {
+                        LOG.d("Begin login to dropbox");
                         Clouds.get().dropbox.login();
+                        LOG.d("End login to dropbox");
                         Clouds.get().dropboxToken = Clouds.get().dropbox.saveAsString();
+                        LOG.d("token", Clouds.get().dropboxToken);
                         Clouds.get().dropboxInfo = Clouds.get().dropbox.getUserLogin();
                         Clouds.get().save();
+                        createLibreraCloudFolder(Clouds.get().dropbox);
+                        Clouds.runSync(a);
                     }
 
                     a.runOnUiThread(new Runnable() {
@@ -424,6 +476,8 @@ public class Clouds {
                         Clouds.get().oneDriveToken = Clouds.get().oneDrive.saveAsString();
                         Clouds.get().oneDriveInfo = Clouds.get().oneDrive.getUserLogin();
                         Clouds.get().save();
+                        createLibreraCloudFolder(Clouds.get().oneDrive);
+                        Clouds.runSync(a);
                     }
 
                     a.runOnUiThread(new Runnable() {
@@ -460,6 +514,8 @@ public class Clouds {
                         Clouds.get().googleDriveToken = Clouds.get().googleDrive.saveAsString();
                         Clouds.get().googleDriveInfo = Clouds.get().googleDrive.getUserLogin();
                         Clouds.get().save();
+                        createLibreraCloudFolder(Clouds.get().googleDrive);
+                        Clouds.runSync(a);
                     }
 
                     a.runOnUiThread(new Runnable() {

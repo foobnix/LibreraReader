@@ -193,8 +193,6 @@ public class DefaultListeners {
             delete = doc.delete();
         } else if (Clouds.isCloud(result.getPath())) {
             removeCloudFile(a, searchAdapter, result);
-        } else if (Clouds.isCloudSyncFile(result.getPath())) {
-            removeSyncFile(a, searchAdapter, result);
         } else {
             final File file = new File(result.getPath());
             delete = file.delete();
@@ -209,7 +207,7 @@ public class DefaultListeners {
             searchAdapter.notifyDataSetChanged();
 
         } else {
-            if (!Clouds.isCloud(result.getPath()) && !Clouds.isCloudSyncFile(result.getPath())) {
+            if (!Clouds.isCloud(result.getPath())) {
                 Toast.makeText(a, R.string.can_t_delete_file, Toast.LENGTH_LONG).show();
             }
         }
@@ -307,6 +305,7 @@ public class DefaultListeners {
                         searchAdapter.getItemsList().remove(cacheMeta);
                     }
 
+                    Clouds.runSync(a);
                 } else {
                     Toast.makeText(a, R.string.can_t_delete_file, Toast.LENGTH_LONG).show();
                 }
