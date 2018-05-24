@@ -54,6 +54,7 @@ public class Clouds {
     public volatile String dropboxSpace;
     public volatile String googleSpace;
     public volatile String oneDriveSpace;
+    private Context context;
 
     public static boolean isCloud(String path) {
         return path.startsWith(PREFIX_CLOUD);
@@ -136,6 +137,7 @@ public class Clouds {
             oneDriveInfo = null;
             oneDriveToken = null;
         }
+        save();
 
     }
 
@@ -193,6 +195,7 @@ public class Clouds {
     }
 
     public void init(Context c) {
+        this.context = c;
         CloudRail.setAppKey("5817abf0c40abf10ce9a04c5");
 
         sp = c.getSharedPreferences("Clouds", Context.MODE_PRIVATE);
@@ -211,8 +214,10 @@ public class Clouds {
         ((OneDrive) oneDrive).useAdvancedAuthentication();
 
         try {
-            if (dropboxToken != null)
+            if (dropboxToken != null) {
+                LOG.d("loadAsString", dropboxToken);
                 dropbox.loadAsString(dropboxToken);
+            }
         } catch (Exception e) {
             LOG.e(e);
         }
@@ -437,6 +442,7 @@ public class Clouds {
                         Clouds.get().dropboxToken = Clouds.get().dropbox.saveAsString();
                         LOG.d("token", Clouds.get().dropboxToken);
                         Clouds.get().dropboxInfo = Clouds.get().dropbox.getUserLogin();
+
                         Clouds.get().save();
                         createLibreraCloudFolder(Clouds.get().dropbox);
                         Clouds.runSync(a);
