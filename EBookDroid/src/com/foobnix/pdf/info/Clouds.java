@@ -368,17 +368,18 @@ public class Clouds {
                     File root = new File(syncPath);
                     root.mkdirs();
                     File dest = new File(root, file.getName());
-                    CacheZipUtils.copyFile(file, dest);
+                    if (!file.getPath().equals(dest.getPath())) {
+                        CacheZipUtils.copyFile(file, dest);
+                    }
 
                     String extSyncFile = LIBRERA_SYNC_ONLINE_FOLDER + "/" + file.getName();
 
                     createLibreraCloudFolder(cloud);
-                    if (!cloud.exists(extSyncFile)) {
-                        FileInputStream outStream = new FileInputStream(file);
-                        cloud.upload(extSyncFile, outStream, file.length(), true);
-                        outStream.close();
-                        LOG.d("upload File" + extSyncFile);
-                    }
+
+                    FileInputStream outStream = new FileInputStream(file);
+                    cloud.upload(extSyncFile, outStream, file.length(), true);
+                    outStream.close();
+                    LOG.d("upload File" + extSyncFile);
 
                     return true;
                 } catch (Exception e) {

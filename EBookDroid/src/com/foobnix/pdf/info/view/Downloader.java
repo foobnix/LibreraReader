@@ -28,7 +28,7 @@ public class Downloader {
             downloadDir.mkdirs();
         }
 
-        final File file = new File(downloadDir, displayName);
+        final File file = Clouds.getCacheFile(meta.getPath());
         if (file.isFile() && file.length() > 0) {
             ExtUtils.openFile(a, new FileMeta(file.getPath()));
             return;
