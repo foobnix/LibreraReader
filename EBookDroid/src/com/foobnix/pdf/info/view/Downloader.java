@@ -28,11 +28,12 @@ public class Downloader {
             downloadDir.mkdirs();
         }
 
-        final File file = Clouds.getCacheFile(meta.getPath());
-        if (file.isFile() && file.length() > 0) {
+        File file = Clouds.getCacheFile(meta.getPath());
+        if (file != null) {
             ExtUtils.openFile(a, new FileMeta(file.getPath()));
             return;
         }
+        final File fileCache = new File(downloadDir, displayName);
 
         AlertDialogs.showDialog(a, a.getString(R.string.do_you_want_to_download_the_file_) + "\n\"" + displayName + "\"", a.getString(R.string.download), new Runnable() {
 
@@ -50,7 +51,7 @@ public class Downloader {
                         try {
                             LOG.d("Download file", meta.getPath(), path);
                             InputStream download = Clouds.get().cloud(meta.getPath()).download(path);
-                            FileOutputStream out = new FileOutputStream(file);
+                            FileOutputStream out = new FileOutputStream(fileCache);
                             Fb2Extractor.zipCopy(download, out);
                             out.close();
                             return true;
@@ -68,8 +69,8 @@ public class Downloader {
                             Toast.makeText(getContext(), R.string.msg_unexpected_error, Toast.LENGTH_SHORT).show();
                         } else {
                             onFinish.run();
-                            if (file.isFile() && file.length() > 0) {
-                                ExtUtils.openFile(a, new FileMeta(file.getPath()));
+                            if (fileCache.isFile() && fileCache.length() > 0) {
+                                ExtUtils.openFile(a, new FileMeta(fileCache.getPath()));
                             }
                         }
                     };

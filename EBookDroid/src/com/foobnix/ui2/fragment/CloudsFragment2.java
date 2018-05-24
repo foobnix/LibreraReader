@@ -21,6 +21,7 @@ import com.foobnix.pdf.info.wrapper.AppState;
 import com.foobnix.pdf.info.wrapper.PopupHelper;
 import com.foobnix.pdf.info.wrapper.UITab;
 import com.foobnix.pdf.search.activity.msg.MessageSyncFinish;
+import com.foobnix.pdf.search.activity.msg.MessageSyncUpdateList;
 import com.foobnix.pdf.search.activity.msg.OpenDirMessage;
 import com.foobnix.ui2.BooksService;
 import com.foobnix.ui2.FileMetaCore;
@@ -211,6 +212,12 @@ public class CloudsFragment2 extends UIFragment<FileMeta> {
         populate();
     }
 
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void notifyUpdateList(MessageSyncUpdateList event) {
+        populate();
+        LOG.d("notifyUpdateList populate MessageSyncUpdateList");
+    }
+
     @Override
     public void onTintChanged() {
         TintUtil.setBackgroundFillColor(panelRecent, TintUtil.color);
@@ -266,6 +273,8 @@ public class CloudsFragment2 extends UIFragment<FileMeta> {
             res.add(metaTitle(title));
             res.addAll(getCloudFiles(AppState.get().syncOneDrivePath, Clouds.PREFIX_CLOUD_ONEDRIVE + Clouds.LIBRERA_SYNC_ONLINE_FOLDER));
         }
+
+        LOG.d("prepareDataInBackground");
 
         return res;
     }

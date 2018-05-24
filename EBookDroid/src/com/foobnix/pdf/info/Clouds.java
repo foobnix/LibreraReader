@@ -5,6 +5,8 @@ import java.io.FileInputStream;
 import java.io.InputStream;
 import java.util.List;
 
+import org.greenrobot.eventbus.EventBus;
+
 import com.cloudrail.si.CloudRail;
 import com.cloudrail.si.interfaces.CloudStorage;
 import com.cloudrail.si.services.Dropbox;
@@ -17,6 +19,7 @@ import com.foobnix.android.utils.LOG;
 import com.foobnix.android.utils.Objects;
 import com.foobnix.ext.CacheZipUtils;
 import com.foobnix.pdf.info.wrapper.AppState;
+import com.foobnix.pdf.search.activity.msg.MessageSyncUpdateList;
 import com.foobnix.pdf.search.view.AsyncProgressTask;
 import com.foobnix.ui2.BooksService;
 import com.foobnix.ui2.FileMetaCore;
@@ -307,6 +310,8 @@ public class Clouds {
                         LOG.e(e);
                     }
                     LOG.d("syncronize copy sync", path);
+                    EventBus.getDefault().post(new MessageSyncUpdateList());
+
                 }
                 LOG.d("get-file-", dest.getName(), dest.lastModified(), dest.length());
 
