@@ -220,7 +220,7 @@ public class CloudsFragment2 extends UIFragment<FileMeta> {
         return false;
     }
 
-    public static List<FileMeta> getCloudFiles(String path) {
+    public static List<FileMeta> getCloudFiles(String path, String prefix) {
 
         List<FileMeta> res = new ArrayList<FileMeta>();
 
@@ -235,6 +235,7 @@ public class CloudsFragment2 extends UIFragment<FileMeta> {
                 continue;
             }
             FileMeta meta = FileMetaCore.createMetaIfNeed(file.getPath(), true);
+            meta.setPath(prefix + "/" + file.getName());
             res.add(meta);
         }
         Collections.sort(res, FileMetaComparators.BY_DATE);
@@ -251,19 +252,19 @@ public class CloudsFragment2 extends UIFragment<FileMeta> {
         if (Clouds.get().isDropbox()) {
             String title = getActivity().getString(R.string.dropbox) + " (" + Clouds.get().dropboxSpace + ")";
             res.add(metaTitle(title));
-            res.addAll(getCloudFiles(AppState.get().syncDropboxPath));
+            res.addAll(getCloudFiles(AppState.get().syncDropboxPath, Clouds.PREFIX_CLOUD_DROPBOX + Clouds.LIBRERA_SYNC_ONLINE_FOLDER));
         }
 
         if (Clouds.get().isGoogleDrive()) {
             String title = getActivity().getString(R.string.google_drive) + " (" + Clouds.get().googleSpace + ")";
             res.add(metaTitle(title));
-            res.addAll(getCloudFiles(AppState.get().syncGdrivePath));
+            res.addAll(getCloudFiles(AppState.get().syncGdrivePath, Clouds.PREFIX_CLOUD_GDRIVE + Clouds.LIBRERA_SYNC_ONLINE_FOLDER));
         }
 
         if (Clouds.get().isOneDrive()) {
             String title = getActivity().getString(R.string.one_drive) + " (" + Clouds.get().oneDriveSpace + ")";
             res.add(metaTitle(title));
-            res.addAll(getCloudFiles(AppState.get().syncOneDrivePath));
+            res.addAll(getCloudFiles(AppState.get().syncOneDrivePath, Clouds.PREFIX_CLOUD_ONEDRIVE + Clouds.LIBRERA_SYNC_ONLINE_FOLDER));
         }
 
         return res;

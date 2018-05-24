@@ -278,6 +278,7 @@ public class DefaultListeners {
             protected Boolean doInBackground(Object... params) {
                 try {
                     String path = Clouds.getPath(result.getPath());
+                    LOG.d("Delete file", result.getPath(), path);
                     Clouds.get().cloud(result.getPath()).delete(path);
                 } catch (Exception e) {
                     LOG.e(e);
@@ -298,6 +299,8 @@ public class DefaultListeners {
                     searchAdapter.notifyDataSetChanged();
 
                     File cacheFile = Clouds.getCacheFile(result.getPath());
+
+
                     if (cacheFile != null && cacheFile.delete()) {
 
                         FileMeta cacheMeta = new FileMeta(cacheFile.getPath());
@@ -321,8 +324,11 @@ public class DefaultListeners {
             public boolean onResultRecive(final FileMeta result) {
                 ADS.hideAdsTemp(a);
 
-                final File file = new File(result.getPath());
+                File file = new File(result.getPath());
 
+                if (Clouds.isCloud(file.getPath()) && Clouds.isCacheFileExist(file.getPath())) {
+                    file = Clouds.getCacheFile(file.getPath());
+                }
                
 
                 Runnable onDeleteAction = new Runnable() {
@@ -333,11 +339,6 @@ public class DefaultListeners {
                     }
 
                 };
-                
-                if (Clouds.isCloud(result.getPath())) {
-                    FileInformationDialog.showFileInfoDialog(a, file, onDeleteAction);
-                    return true;
-                }
 
                 if (ExtUtils.isExteralSD(result.getPath())) {
                     ShareDialog.show(a, file, onDeleteAction, -1, null, null);

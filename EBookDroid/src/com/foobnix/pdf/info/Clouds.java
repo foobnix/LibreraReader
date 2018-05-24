@@ -86,6 +86,7 @@ public class Clouds {
     }
 
     public static File getCacheFile(String path) {
+
         if (!path.startsWith(PREFIX_CLOUD)) {
             return null;
         }
@@ -102,6 +103,11 @@ public class Clouds {
         if (file == null && path.startsWith(PREFIX_CLOUD_ONEDRIVE)) {
             file = getFile(AppState.get().syncOneDrivePath, displayName);
         }
+
+        if (file != null) {
+            LOG.d("getCacheFile", path, file.getPath());
+        }
+
         return file;
     }
 
@@ -205,7 +211,6 @@ public class Clouds {
         dropbox = new Dropbox(c, "wp5uvfelqbdnwkg", "e7hfer9dh5r18tz", "https://auth.cloudrail.com/Librera", "");
         ((Dropbox) dropbox).useAdvancedAuthentication();
 
-        // https://console.cloud.google.com/apis/credentials?project=librera-release
         googleDrive = new GoogleDrive(c, AppsConfig.GOOGLE_DRIVE_KEY, "", Apps.getPackageName(c) + ":/auth", "");
         ((GoogleDrive) googleDrive).useAdvancedAuthentication();
 
