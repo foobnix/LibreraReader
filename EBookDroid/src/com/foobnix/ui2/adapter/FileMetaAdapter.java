@@ -12,6 +12,7 @@ import com.foobnix.android.utils.ResultResponse2;
 import com.foobnix.android.utils.StringDB;
 import com.foobnix.android.utils.TxtUtils;
 import com.foobnix.dao2.FileMeta;
+import com.foobnix.pdf.info.Clouds;
 import com.foobnix.pdf.info.ExtUtils;
 import com.foobnix.pdf.info.IMG;
 import com.foobnix.pdf.info.R;
@@ -79,7 +80,7 @@ public class FileMetaAdapter extends AppRecycleAdapter<FileMeta, RecyclerView.Vi
     public class FileMetaViewHolder extends RecyclerView.ViewHolder {
         public TextView title, author, path, browserExt, size, date, series, idPercentText;
         public LinearLayout tags;
-        public ImageView image, star, signIcon, menu;
+        public ImageView image, star, signIcon, menu, cloudImage;
         public View authorParent, progresLayout, parent, remove, layoutBootom, infoLayout, idProgressColor, idProgressBg, imageParent;
 
         public FileMetaViewHolder(View view) {
@@ -96,6 +97,7 @@ public class FileMetaAdapter extends AppRecycleAdapter<FileMeta, RecyclerView.Vi
             idPercentText = (TextView) view.findViewById(R.id.idPercentText);
 
             image = (ImageView) view.findViewById(R.id.browserItemIcon);
+            cloudImage = (ImageView) view.findViewById(R.id.cloudImage);
             star = (ImageView) view.findViewById(R.id.starIcon);
             signIcon = (ImageView) view.findViewById(R.id.signIcon);
             idProgressColor = view.findViewById(R.id.idProgressColor);
@@ -334,6 +336,22 @@ public class FileMetaAdapter extends AppRecycleAdapter<FileMeta, RecyclerView.Vi
             });
 
             holder.imageParent.setVisibility(AppState.get().isShowImages ? View.VISIBLE : View.GONE);
+
+            String path = fileMeta.getPath();
+            if (path.contains(Clouds.LIBRERA_SYNC_ONLINE_FOLDER)) {
+                holder.cloudImage.setVisibility(View.VISIBLE);
+                if (path.contains(AppState.LIBRERA_CLOUD_DROPBOX) || path.startsWith(Clouds.PREFIX_CLOUD_DROPBOX)) {
+                    holder.cloudImage.setImageResource(R.drawable.dropbox);
+                } else if (path.contains(AppState.LIBRERA_CLOUD_GOOGLEDRIVE) || path.startsWith(Clouds.PREFIX_CLOUD_GDRIVE)) {
+                    holder.cloudImage.setImageResource(R.drawable.gdrive);
+                } else if (path.contains(AppState.LIBRERA_CLOUD_ONEDRIVE) || path.startsWith(Clouds.PREFIX_CLOUD_ONEDRIVE)) {
+                    holder.cloudImage.setImageResource(R.drawable.onedrive);
+                } else {
+                    holder.cloudImage.setImageResource(R.drawable.star_1);
+                }
+            } else {
+                holder.cloudImage.setVisibility(View.GONE);
+            }
 
         }
 
@@ -729,7 +747,7 @@ public class FileMetaAdapter extends AppRecycleAdapter<FileMeta, RecyclerView.Vi
                 sizeDP = Math.max(80, AppState.get().coverSmallSize);
             }
 
-            IMG.updateImageSizeBig((View) holder.image.getParent().getParent(), sizeDP);
+            IMG.updateImageSizeBig(holder.imageParent, sizeDP);
 
             LayoutParams lp = holder.image.getLayoutParams();
             lp.width = Dips.dpToPx(sizeDP);
@@ -745,7 +763,7 @@ public class FileMetaAdapter extends AppRecycleAdapter<FileMeta, RecyclerView.Vi
             holder.path.setVisibility(View.VISIBLE);
             holder.size.setVisibility(View.VISIBLE);
 
-            IMG.updateImageSizeSmall((View) holder.image.getParent().getParent());
+            IMG.updateImageSizeSmall(holder.imageParent);
 
             LayoutParams lp = holder.image.getLayoutParams();
             lp.width = Dips.dpToPx(AppState.get().coverSmallSize);

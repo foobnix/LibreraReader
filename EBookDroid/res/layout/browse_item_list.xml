@@ -45,13 +45,27 @@
                         card_view:cardElevation="4dip"
                         card_view:cardPreventCornerOverlap="true" >
 
-                        <ImageView
-                            android:id="@+id/browserItemIcon"
+                        <RelativeLayout
                             android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center"
-                            android:adjustViewBounds="true"
-                            android:cropToPadding="true" />
+                            android:layout_height="wrap_content" >
+                            <ImageView
+                                android:id="@+id/browserItemIcon"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:adjustViewBounds="true"
+                                android:cropToPadding="true" />
+
+                            <ImageView
+                                android:layout_margin="2dip"
+                                android:layout_alignParentBottom="true"
+                                android:layout_alignParentRight="true"
+                                android:id="@+id/cloudImage"
+                                android:layout_width="@dimen/wh_button_small"
+                                android:layout_height="@dimen/wh_button_small"
+                                android:src="@drawable/dropbox" />
+
+                        </RelativeLayout>
                     </android.support.v7.widget.CardView>
                 </FrameLayout>
             </FrameLayout>
@@ -127,7 +141,7 @@
                         android:id="@+id/browserTags"
                         android:layout_width="wrap_content"
                         android:layout_height="20dp"
-                       	android:layout_marginLeft="3dip"
+                        android:layout_marginLeft="3dip"
                         android:layout_weight="0"
                         android:gravity="center_vertical"
                         android:orientation="horizontal" >

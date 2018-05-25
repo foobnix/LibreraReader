@@ -150,10 +150,10 @@ public class AppState {
             "https://books.fbreader.org/opds,FBReader,My personal catalogue,assets://opds/fbreader.png;" + //
             // "https://www.gitbook.com/api/opds/catalog.atom,GitBook,Public books are
             // always free.,assets://opds/gitbook.png;" + //
+            "http://www.feedbooks.com/publicdomain/catalog.atom,Feedbooks,Free ebooks,assets://opds/feedbooks.ico;" + //
             "http://m.gutenberg.org/ebooks.opds/,Project Gutenberg,Free ebooks since 1971,assets://opds/gutenberg.png;" + //
             "http://manybooks.net/opds/index.php,Manybooks,Online Catalog for Manybooks.net,assets://opds/manybooks.png;" + //
             "https://www.smashwords.com/atom,Smashwords,Online Catalog,assets://opds/smashwords.png;" + //
-            "http://www.feedbooks.com/publicdomain/catalog.atom,Feedbooks,Free ebooks,assets://opds/feedbooks.ico;" + //
             "http://samlib.ru,Журнал Самиздат (samlib.ru),Cовременная литература при библиотеке Мошкова,assets://opds/web.png;" + //
             SamlibOPDS.ROOT_AWARDS + ",Usefull links: The Awards and Top Books - Награды и премии, Complete award winners listing,assets://opds/rating.png;" //
     // end
@@ -422,14 +422,18 @@ public class AppState {
     public boolean isBrowseGrid = false;
     public boolean isRecentGrid = false;
 
+    public static final String LIBRERA_CLOUD_DROPBOX = "Librera.Cloud-Dropbox";
+    public static final String LIBRERA_CLOUD_GOOGLEDRIVE = "Librera.Cloud-GoogleDrive";
+    public static final String LIBRERA_CLOUD_ONEDRIVE = "Librera.Cloud-OneDrive";
+
     public String searchPaths = Environment.getExternalStorageDirectory() == null ? "/" : Environment.getExternalStorageDirectory().getPath();
     public String texturePath = Environment.getExternalStorageDirectory().getPath();
     public String downlodsPath = new File(DOWNLOADS_DIR, "Librera/Cache").getPath();
     public String ttsSpeakPath = new File(DOWNLOADS_DIR, "Librera/TTS").getPath();
     public String backupPath = new File(DOWNLOADS_DIR, "Librera/Backup").getPath();
-    public String syncDropboxPath = new File(DOWNLOADS_DIR, "Librera/Librera.Cloud-Dropbox").getPath();
-    public String syncGdrivePath = new File(DOWNLOADS_DIR, "Librera/Librera.Cloud-GoogleDrive").getPath();
-    public String syncOneDrivePath = new File(DOWNLOADS_DIR, "Librera/Librera.Cloud-OneDrive").getPath();
+    public String syncDropboxPath = new File(DOWNLOADS_DIR, "Librera/" + LIBRERA_CLOUD_DROPBOX).getPath();
+    public String syncGdrivePath = new File(DOWNLOADS_DIR, "Librera/" + LIBRERA_CLOUD_GOOGLEDRIVE).getPath();
+    public String syncOneDrivePath = new File(DOWNLOADS_DIR, "Librera/" + LIBRERA_CLOUD_ONEDRIVE).getPath();
 
     public String fileToDelete;
 

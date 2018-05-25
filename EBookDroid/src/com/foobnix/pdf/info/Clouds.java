@@ -32,6 +32,7 @@ import android.widget.Toast;
 
 public class Clouds {
 
+    private static final String TOKEN_EMPTY = "[{}]";
     public static final String LIBRERA_SYNC_ONLINE_FOLDER = "/Librera.Cloud";
     public static final String PREFIX_CLOUD = "cloud-";
     public static final String PREFIX_CLOUD_DROPBOX = PREFIX_CLOUD + "dropbox:";
@@ -61,6 +62,10 @@ public class Clouds {
 
     public static boolean isCloud(String path) {
         return path.startsWith(PREFIX_CLOUD);
+    }
+
+    public static boolean isCloudImage(String path) {
+        return path.contains("Librera.Cloud");
     }
 
     private static boolean isCloudSyncFile(String path) {
@@ -129,7 +134,6 @@ public class Clouds {
         try {
             CloudStorage cloud = cloud(path);
             cloud.logout();
-            cloud.loadAsString("[{}]");
         } catch (Exception e) {
             LOG.e(e);
         }
@@ -224,7 +228,6 @@ public class Clouds {
 
         try {
             if (dropboxToken != null) {
-                LOG.d("loadAsString", dropboxToken);
                 dropbox.loadAsString(dropboxToken);
             }
         } catch (Exception e) {
@@ -449,6 +452,7 @@ public class Clouds {
                 try {
                     if (!Clouds.get().isDropbox()) {
                         LOG.d("Begin login to dropbox");
+                        Clouds.get().dropbox.loadAsString(TOKEN_EMPTY);
                         Clouds.get().dropbox.login();
                         LOG.d("End login to dropbox");
                         Clouds.get().dropboxToken = Clouds.get().dropbox.saveAsString();
@@ -489,6 +493,7 @@ public class Clouds {
             public void run() {
                 try {
                     if (!Clouds.get().isOneDrive()) {
+                        Clouds.get().oneDrive.loadAsString(TOKEN_EMPTY);
                         Clouds.get().oneDrive.login();
 
                         Clouds.get().oneDriveToken = Clouds.get().oneDrive.saveAsString();
@@ -527,6 +532,7 @@ public class Clouds {
             public void run() {
                 try {
                     if (!Clouds.get().isGoogleDrive()) {
+                        Clouds.get().googleDrive.loadAsString(TOKEN_EMPTY);
                         Clouds.get().googleDrive.login();
 
                         Clouds.get().googleDriveToken = Clouds.get().googleDrive.saveAsString();
