@@ -392,7 +392,7 @@
    <string name="cd_clear_search_reasult">清除记录</string>
    <string name="cd_sort_results">排序结果</string>
    <string name="cd_sort_order">排序</string>
-   <string name="cd_update_search_search_for_new_books_on_sd_card">更新搜索，在SD卡上搜索新书。</string>
+   <string name="cd_update_search_search_for_new_books_on_sd_card">更新搜索以在SD卡上搜索新书</string>
    <string name="cd_show_results_as_a_list_or_grid">结果显示为列表或网格</string>
    <string name="cd_return_to_the_parent_folder">返回上级</string>
    <string name="cd_back_to_sd_card">返回SD卡</string>
