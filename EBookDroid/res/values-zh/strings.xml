@@ -54,7 +54,7 @@
    <string name="product">软件说明</string>
    <string name="version">当前版本</string>
    <string name="licence_gnu_gpl_v3_0">授权方式: GNU GPL v3.0</string>
-   <string name="licenses_for_libraries">许可证</string>
+   <string name="licenses_for_libraries">授权许可</string>
    <string name="autor_ivan_ivanenko">作者: Ivan Ivanenko</string>
    <string name="support">邮箱</string>
    <string name="web">官网</string>
@@ -470,7 +470,7 @@
    <string name="book">书名</string>
    <string name="information">信息</string>
    <string name="file_path">路径</string>
-   <string name="year">年代</string>
+   <string name="year">出版年份</string>
    <string name="publisher">出版者</string>
    <string name="do_you_want_to_download_the_file_">您要下载文件？</string>
    <string name="do_you_want_to_delete_this_file_">您要删除文件？</string>
