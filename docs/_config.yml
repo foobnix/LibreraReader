@@ -1,1 +1,2 @@
-theme: minimal-mistakes-jekyll
+markdown: kramdown
+relative_permalinks: false
