@@ -1548,10 +1548,37 @@ public class DragingDialogs {
 
     public static DragingPopup thumbnailDialog(final FrameLayout anchor, final DocumentController controller) {
         DragingPopup popup = new DragingPopup(R.string.go_to_page_dialog, anchor, 300, 400) {
+            View searchLayout;
+            @Override
+            public void beforeCreate() {
+                setTitlePopupIcon(R.drawable.glyphicons_518_option_vertical);
+                titlePopupMenu = new MyPopupMenu(anchor.getContext(), anchor);
+                titlePopupMenu.getMenu().add("Hide search bar").setOnMenuItemClickListener(new OnMenuItemClickListener() {
+
+                    @Override
+                    public boolean onMenuItemClick(MenuItem item) {
+                        AppState.get().isShowSearchBar = false;
+                        searchLayout.setVisibility(View.GONE);
+                        return false;
+                    }
+                });
+                titlePopupMenu.getMenu().add("Show search bar").setOnMenuItemClickListener(new OnMenuItemClickListener() {
+
+                    @Override
+                    public boolean onMenuItemClick(MenuItem item) {
+                        AppState.get().isShowSearchBar = true;
+                        searchLayout.setVisibility(View.VISIBLE);
+                        return false;
+                    }
+                });
+
+            };
+
             @Override
             public View getContentView(LayoutInflater inflater) {
                 View view = inflater.inflate(R.layout.dialog_go_to_page, null, false);
-                final View searchLayout = view.findViewById(R.id.searchLayout);
+                searchLayout = view.findViewById(R.id.searchLayout);
+                Views.visible(searchLayout, AppState.get().isShowSearchBar);
 
                 final EditText number = (EditText) view.findViewById(R.id.edit1);
                 number.clearFocus();
@@ -1613,9 +1640,9 @@ public class DragingDialogs {
                     public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount, int totalItemCount) {
                         LOG.d("onScroll", firstVisibleItem, Math.abs(firstVisibleItem - controller.getCurentPage()));
                         if (firstVisibleItem < 3 || Math.abs(firstVisibleItem - controller.getCurentPage()) < 20) {
-                            searchLayout.setVisibility(View.VISIBLE);
+                            // searchLayout.setVisibility(View.VISIBLE);
                         } else {
-                            searchLayout.setVisibility(View.GONE);
+                            // searchLayout.setVisibility(View.GONE);
                         }
                     }
                 });

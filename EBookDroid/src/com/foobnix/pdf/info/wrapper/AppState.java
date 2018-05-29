@@ -346,6 +346,7 @@ public class AppState {
     public boolean isDoubleCoverAlone = false;
 
     public boolean isDayNotInvert = true;
+    public boolean isShowSearchBar = true;
 
     public int cpTextLight = Color.BLACK;
     public int cpBGLight = Color.WHITE;

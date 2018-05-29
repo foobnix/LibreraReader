@@ -29,6 +29,14 @@ import android.widget.TextView;
 
 public class Views {
 
+    public static void visible(final View view, boolean visible) {
+        if (view == null) {
+            return;
+        }
+        view.setVisibility(visible ? View.VISIBLE : View.GONE);
+
+    }
+
     public static void visible(final View... views) {
         for (View v : views) {
             v.setVisibility(View.VISIBLE);

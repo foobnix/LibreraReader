@@ -1,0 +1,7 @@
+* Fast PDF Reader with modern design
+* Text Reflow with images, increase font size
+* Reading text aloud with TTS
+* Open PDF with password
+* Easily add bookmarks, notes
+* Trim white borders
+* Many other settings by your feedback
