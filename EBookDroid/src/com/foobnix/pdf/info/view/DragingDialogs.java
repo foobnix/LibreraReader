@@ -1553,7 +1553,7 @@ public class DragingDialogs {
             public void beforeCreate() {
                 setTitlePopupIcon(R.drawable.glyphicons_518_option_vertical);
                 titlePopupMenu = new MyPopupMenu(anchor.getContext(), anchor);
-                titlePopupMenu.getMenu().add("Hide search bar").setOnMenuItemClickListener(new OnMenuItemClickListener() {
+                titlePopupMenu.getMenu().add(R.string.hide_search_bar).setOnMenuItemClickListener(new OnMenuItemClickListener() {
 
                     @Override
                     public boolean onMenuItemClick(MenuItem item) {
@@ -1562,7 +1562,7 @@ public class DragingDialogs {
                         return false;
                     }
                 });
-                titlePopupMenu.getMenu().add("Show search bar").setOnMenuItemClickListener(new OnMenuItemClickListener() {
+                titlePopupMenu.getMenu().add(R.string.show_search_bar).setOnMenuItemClickListener(new OnMenuItemClickListener() {
 
                     @Override
                     public boolean onMenuItemClick(MenuItem item) {

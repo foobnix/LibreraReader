@@ -480,4 +480,6 @@
    <string name="clouds">Nuvole</string>
    <string name="add_to_cloud">Aggiungi al cloud</string>
    <string name="librera_cloud">Nube di Librera</string>
+   <string name="hide_search_bar">Nascondi la barra di ricerca</string>
+   <string name="show_search_bar">Mostra barra di ricerca</string>
 </resources>

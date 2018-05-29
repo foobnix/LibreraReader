@@ -480,4 +480,6 @@
    <string name="clouds">Wolken</string>
    <string name="add_to_cloud">Zur Wolke hinzufügen</string>
    <string name="librera_cloud">Librera Wolke</string>
+   <string name="hide_search_bar">Suchleiste ausblenden</string>
+   <string name="show_search_bar">Suchleiste anzeigen</string>
 </resources>

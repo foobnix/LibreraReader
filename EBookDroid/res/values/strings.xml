@@ -480,4 +480,6 @@
    <string name="clouds">Clouds</string>
    <string name="add_to_cloud">Add to cloud</string>
    <string name="librera_cloud">Librera cloud</string>
+   <string name="hide_search_bar">Hide search bar</string>
+   <string name="show_search_bar">Show search bar</string>
 </resources>

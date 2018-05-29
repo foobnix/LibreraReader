@@ -480,4 +480,6 @@
    <string name="clouds">Mây</string>
    <string name="add_to_cloud">Thêm vào đám mây</string>
    <string name="librera_cloud">Librera cloud</string>
+   <string name="hide_search_bar">Ẩn thanh tìm kiếm</string>
+   <string name="show_search_bar">Hiển thị thanh tìm kiếm</string>
 </resources>

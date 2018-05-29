@@ -480,4 +480,6 @@
    <string name="clouds">Mraky</string>
    <string name="add_to_cloud">Pridať do cloudu</string>
    <string name="librera_cloud">Oblak Librera</string>
+   <string name="hide_search_bar">Skryť panel vyhľadávania</string>
+   <string name="show_search_bar">Zobraziť panel vyhľadávania</string>
 </resources>

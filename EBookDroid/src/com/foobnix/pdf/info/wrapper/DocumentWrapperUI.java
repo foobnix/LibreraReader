@@ -1496,6 +1496,7 @@ public class DocumentWrapperUI {
 
                     AppState.get().isEditMode = false;
                     hideShow();
+                    hideShowEditIcon();
                 }
             });
         }
@@ -1567,6 +1568,7 @@ public class DocumentWrapperUI {
             progressDraw.updatePageCount(dc.getPageCount() - 1);
             titleBar.setOnTouchListener(new HorizontallSeekTouchEventListener(onSeek, dc.getPageCount(), false));
             progressDraw.setOnTouchListener(new HorizontallSeekTouchEventListener(onSeek, dc.getPageCount(), false));
+
 
         }
     };
@@ -1735,17 +1737,18 @@ public class DocumentWrapperUI {
     public void hideShowEditIcon() {
         if (dc != null && dc.getCurrentBook() != null && !dc.getCurrentBook().getName().toLowerCase(Locale.US).endsWith(".pdf")) {
             editTop2.setVisibility(View.GONE);
+        } else if (AppState.get().isCrop || AppState.get().isCut) {
+            editTop2.setVisibility(View.GONE);
         } else {
             boolean passwordProtected = dc.isPasswordProtected();
             LOG.d("passwordProtected", passwordProtected);
             if (dc != null && passwordProtected) {
                 editTop2.setVisibility(View.GONE);
-            } else if (AppState.get().isCut) {
-                editTop2.setVisibility(View.GONE);
             } else {
                 editTop2.setVisibility(View.VISIBLE);
             }
         }
+
     }
 
     public DocumentGestureListener getDocumentListener() {

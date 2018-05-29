@@ -480,4 +480,6 @@
    <string name="clouds">Nori</string>
    <string name="add_to_cloud">Adăugați în nor</string>
    <string name="librera_cloud">Librera nor</string>
+   <string name="hide_search_bar">Ascundeți bara de căutare</string>
+   <string name="show_search_bar">Afișați bara de căutare</string>
 </resources>

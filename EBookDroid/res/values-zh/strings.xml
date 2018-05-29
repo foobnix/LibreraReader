@@ -480,4 +480,6 @@
    <string name="clouds">网络硬盘</string>
    <string name="add_to_cloud">添加到云</string>
    <string name="librera_cloud">Librera云</string>
+   <string name="hide_search_bar">隐藏搜索栏</string>
+   <string name="show_search_bar">显示搜索栏</string>
 </resources>
