@@ -1,10 +1,12 @@
 package com.foobnix.pdf.info;
 
+import java.io.ByteArrayInputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.InputStream;
 import java.util.List;
 
+import org.ebookdroid.common.settings.books.BookSettings;
 import org.greenrobot.eventbus.EventBus;
 
 import com.cloudrail.si.CloudRail;
@@ -60,25 +62,30 @@ public class Clouds {
     public volatile String oneDriveSpace;
     private Context context;
 
+    public static void saveProgress(BookSettings bs) {
+        LOG.d("Save progress",bs);
+        if(!isCloudImage(bs.fileName)) {
+            return;
+        }
+        File bookFile = new File(bs.fileName);
+        File folder = new File(bookFile.getParentFile(), ".data");
+        folder.mkdirs();
+
+        File settings = new File(folder, bookFile.getName());
+        try {
+            CacheZipUtils.copyFile(new ByteArrayInputStream(bs.toJSON().toString().getBytes()), settings);
+        } catch (Exception e) {
+            LOG.e(e);
+        }
+
+    }
+
     public static boolean isCloud(String path) {
         return path.startsWith(PREFIX_CLOUD);
     }
 
     public static boolean isCloudImage(String path) {
         return path.contains("Librera.Cloud");
-    }
-
-    private static boolean isCloudSyncFile(String path) {
-        String parentName = new File(path).getParentFile().getName();
-        String syncName = new File(AppState.get().syncDropboxPath).getName();
-
-        LOG.d("isCloudSyncFile", parentName, syncName);
-
-        if (parentName.equals(syncName)) {
-            LOG.d("Cloud sync file");
-            return true;
-        }
-        return false;
     }
 
     private static File getFile(String folder, String displayName) {

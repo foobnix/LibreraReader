@@ -57,6 +57,8 @@ public class BookSettings implements CurrentPageListener {
 
     public void save() {
         SettingsManager.db.storeBookSettings(this);
+        //
+
     }
 
     BookSettings(final JSONObject object) throws JSONException {
@@ -76,7 +78,7 @@ public class BookSettings implements CurrentPageListener {
         this.pageDelta = object.optInt("pageDelta", pageDelta);
     }
 
-    JSONObject toJSON() throws JSONException {
+    public JSONObject toJSON() throws JSONException {
         final JSONObject obj = new JSONObject();
         obj.put("fileName", fileName);
         obj.put("currentPage", currentPage != null ? currentPage.toJSON() : null);
