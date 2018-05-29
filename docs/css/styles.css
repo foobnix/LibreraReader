@@ -18,14 +18,14 @@ html, body {
 
 @media (min-width: 48em) {
   .content {
-    margin-left: 21rem;
+    margin-left: 16rem;
     margin-right: 2rem;
   }
 }
 
 @media (min-width: 64em) {
   .content {
-    margin-left: 22rem;
+    margin-left: 17rem;
     margin-right: 3rem;
   }
 }
@@ -46,34 +46,14 @@ html, body {
 .sidebar.sidebar-green {
   background-color: #459D61;
 }
-.sidebar.sidebar-purple {
-  background-color: #77518A;
-}
-.sidebar.sidebar-pink {
-  background-color: #AD6AA9;
-}
-.sidebar.sidebar-red {
-  background-color: #B05353;
-}
-.sidebar.sidebar-cyan {
-  background-color: #5399B0;
-}
-.sidebar.sidebar-blue {
-  background-color: #5378B0;
-}
-.sidebar.sidebar-grey {
-  background-color: #959492;
-}
-.sidebar.sidebar-orange {
-  background-color: #DAA35C;
-}
+
 @media (min-width: 48em) {
   .sidebar {
     position: fixed;
     top: 0;
     left: 0;
     bottom: 0;
-    width: 19rem;
+    width: 13rem;
     text-align: left;
   }
 }

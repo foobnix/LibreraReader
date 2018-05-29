@@ -11,6 +11,7 @@ Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem
 
 **Bora Horza Gobuchul** is a [Changer](https://en.wikipedia.org/wiki/List_of_civilisations_in_the_Culture_series) and an operative of the Idiran Empire. Horza was one of a party of Changers allowed on Schar's World, and for that reason is tasked by the Idirans with retrieving a Mind that had crashed to the planet. Horza is humanoid, but committed to the Idirans because he despises the Culture for its dependence on machines and what he perceives to be spiritual emptiness.
 
+
 Why do we use it?
 It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).
 
