@@ -68,7 +68,6 @@ import android.widget.Toast;
 import okhttp3.CacheControl;
 import okhttp3.Response;
 import okio.BufferedSink;
-import okio.BufferedSource;
 import okio.Okio;
 
 public class OpdsFragment2 extends UIFragment<Entry> {
@@ -568,18 +567,25 @@ public class OpdsFragment2 extends UIFragment<Entry> {
                                     bookPath = file.getPath();
                                 }
 
+                                String href = link.href;
+
+                                // fix manybooks
+                                href = href.replace("http://manybooks.net/send/1:epub:.epub:epub/", "http://idownload.manybooks.net/");
+
                                 okhttp3.Request request = new okhttp3.Request.Builder()//
-                                        .cacheControl(new CacheControl.Builder().noCache().build()).url(link.href)//
+                                        .header("User-Agent", OPDS.USER_AGENT)
+                                        .cacheControl(new CacheControl.Builder().noCache().build()).url(href)//
                                         .build();//
 
                                 Response response = OPDS.client//
                                         .newCall(request)//
                                         .execute();
-                                BufferedSource source = response.body().source();
 
                                 BufferedSink sink = Okio.buffer(Okio.sink(outStream));
                                 sink.writeAll(response.body().source());
                                 sink.close();
+
+                                LOG.d("Download finish");
 
                             } catch (Exception e) {
                                 LOG.e(e);

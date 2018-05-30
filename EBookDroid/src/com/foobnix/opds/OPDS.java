@@ -38,9 +38,9 @@ public class OPDS {
 
     public static OkHttpClient.Builder builder = new OkHttpClient.Builder()//
             .cookieJar(new WebviewCookieHandler())//
-            .connectTimeout(45, TimeUnit.SECONDS)//
-            .writeTimeout(45, TimeUnit.SECONDS)//
-            .readTimeout(45, TimeUnit.SECONDS)//
+            .connectTimeout(35, TimeUnit.SECONDS)//
+            .writeTimeout(35, TimeUnit.SECONDS)//
+            .readTimeout(35, TimeUnit.SECONDS)//
             .cache(cache);//
 
     public static OkHttpClient client = builder.build();//
@@ -48,7 +48,7 @@ public class OPDS {
     final static Map<String, CachingAuthenticator> authCache = new ConcurrentHashMap<String, CachingAuthenticator>();
 
     public static int random = new Random().nextInt();
-    public static final String USER_AGENT = "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/57.0.2997." + random + " Safari/537.36";
+    public static final String USER_AGENT = "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.2997." + random + " Safari/537.36";
 
     public static void buildProxy() {
         new Thread(new Runnable() {
