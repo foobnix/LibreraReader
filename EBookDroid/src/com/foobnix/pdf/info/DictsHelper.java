@@ -98,7 +98,7 @@ public class DictsHelper {
             } else {
                 intentCustom.putExtra("EXTRA_GRAVITY", Gravity.BOTTOM | Gravity.CENTER);
             }
-            intentCustom.putExtra("EXTRA_WIDTH", Dips.screenWidth() / 2);
+            intentCustom.putExtra("EXTRA_WIDTH", Dips.isSmallScreen() ? Dips.screenWidth() * 2 / 3 : Dips.screenWidth() / 2);
         } else {
             intentCustom.putExtra("EXTRA_GRAVITY", Gravity.BOTTOM);
         }

@@ -1442,7 +1442,7 @@ public class DragingDialogs {
                                                 } else {
                                                     intentCustom.putExtra("EXTRA_GRAVITY", Gravity.BOTTOM | Gravity.CENTER);
                                                 }
-                                                intentCustom.putExtra("EXTRA_WIDTH", Dips.screenWidth() / 2);
+                                                intentCustom.putExtra("EXTRA_WIDTH", Dips.isSmallScreen() ? Dips.screenWidth() * 2 / 3 : Dips.screenWidth() / 2);
                                             } else {
                                                 intentCustom.putExtra("EXTRA_GRAVITY", Gravity.BOTTOM);
                                             }
@@ -1549,6 +1549,7 @@ public class DragingDialogs {
     public static DragingPopup thumbnailDialog(final FrameLayout anchor, final DocumentController controller) {
         DragingPopup popup = new DragingPopup(R.string.go_to_page_dialog, anchor, 300, 400) {
             View searchLayout;
+
             @Override
             public void beforeCreate() {
                 setTitlePopupIcon(R.drawable.glyphicons_518_option_vertical);
