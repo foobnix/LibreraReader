@@ -21,6 +21,7 @@ import com.foobnix.ext.CacheZipUtils.CacheDir;
 import com.foobnix.ext.EbookMeta;
 import com.foobnix.pdf.info.ADS;
 import com.foobnix.pdf.info.AppSharedPreferences;
+import com.foobnix.pdf.info.Clouds;
 import com.foobnix.pdf.info.ExtUtils;
 import com.foobnix.pdf.info.IMG;
 import com.foobnix.pdf.info.R;
@@ -88,8 +89,23 @@ public class FileInformationDialog {
             AppDB.get().updateOrSave(fileMeta);
         }
 
-
         final View dialog = LayoutInflater.from(a).inflate(R.layout.dialog_file_info, null, false);
+
+        final ImageView image = (ImageView) dialog.findViewById(R.id.cloudImage);
+        boolean isCloud = Clouds.showHideCloudImage(image, fileMeta.getPath());
+        if (!isCloud) {
+            // image.setVisibility(View.VISIBLE);
+            image.setImageResource(R.drawable.glyphicons_41_cloud_plus);
+            TintUtil.setTintImageWithAlpha(image);
+            image.setOnClickListener(new OnClickListener() {
+
+                @Override
+                public void onClick(View v) {
+                    ShareDialog.showAddToCloudDialog(a, new File(fileMeta.getPath()));
+
+                }
+            });
+        }
 
         TextView title = (TextView) dialog.findViewById(R.id.title);
         TextView author = (TextView) dialog.findViewById(R.id.author);

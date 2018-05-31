@@ -207,6 +207,7 @@ public class OpdsFragment2 extends UIFragment<Entry> {
                         break;
                     }
                 }
+
                 return false;
             }
         });
@@ -570,11 +571,8 @@ public class OpdsFragment2 extends UIFragment<Entry> {
                                 String href = link.href;
 
                                 // fix manybooks
-                                href = href.replace("http://manybooks.net/send/1:epub:.epub:epub/", "http://idownload.manybooks.net/");
-
                                 okhttp3.Request request = new okhttp3.Request.Builder()//
-                                        .header("User-Agent", OPDS.USER_AGENT)
-                                        .cacheControl(new CacheControl.Builder().noCache().build()).url(href)//
+                                        .header("User-Agent", OPDS.USER_AGENT).cacheControl(new CacheControl.Builder().noCache().build()).url(href)//
                                         .build();//
 
                                 Response response = OPDS.client//
@@ -711,6 +709,7 @@ public class OpdsFragment2 extends UIFragment<Entry> {
     }
 
     public void updateLinks(String parentTitle, String homeUrl, List<Link> links) {
+        Link alternative = null;
         for (Link l : links) {
             Hrefs.fixHref(l, homeUrl);
             l.parentTitle = parentTitle;
@@ -718,7 +717,28 @@ public class OpdsFragment2 extends UIFragment<Entry> {
             if (book.isFile()) {
                 l.filePath = book.getPath();
             }
+            if (l.href != null) {
 
+                if (l.href.startsWith("http://manybooks.net/opds/")) {
+                    l.type = Link.APPLICATION_ATOM_XML;
+                }
+                String manyUrl = "http://manybooks.net/send/1:epub:.epub:epub/";
+                if (l.href.startsWith(manyUrl)) {
+                    String url = l.href.replace(manyUrl, "http://idownload.manybooks.net/");
+                    alternative = new Link(url, l.type);
+                    alternative.rel = l.rel;
+                    alternative.parentTitle = "2." + parentTitle;
+                    File book1 = new File(AppState.get().downlodsPath, alternative.getDownloadName());
+                    if (book1.isFile()) {
+                        alternative.filePath = book1.getPath();
+                    }
+
+                }
+            }
+
+        }
+        if (alternative != null) {
+            links.add(alternative);
         }
     }
 

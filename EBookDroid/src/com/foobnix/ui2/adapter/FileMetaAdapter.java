@@ -338,20 +338,8 @@ public class FileMetaAdapter extends AppRecycleAdapter<FileMeta, RecyclerView.Vi
             holder.imageParent.setVisibility(AppState.get().isShowImages ? View.VISIBLE : View.GONE);
 
             String path = fileMeta.getPath();
-            if (path.contains(Clouds.LIBRERA_SYNC_ONLINE_FOLDER)) {
-                holder.cloudImage.setVisibility(View.VISIBLE);
-                if (path.contains(AppState.LIBRERA_CLOUD_DROPBOX) || path.startsWith(Clouds.PREFIX_CLOUD_DROPBOX)) {
-                    holder.cloudImage.setImageResource(R.drawable.dropbox);
-                } else if (path.contains(AppState.LIBRERA_CLOUD_GOOGLEDRIVE) || path.startsWith(Clouds.PREFIX_CLOUD_GDRIVE)) {
-                    holder.cloudImage.setImageResource(R.drawable.gdrive);
-                } else if (path.contains(AppState.LIBRERA_CLOUD_ONEDRIVE) || path.startsWith(Clouds.PREFIX_CLOUD_ONEDRIVE)) {
-                    holder.cloudImage.setImageResource(R.drawable.onedrive);
-                } else {
-                    holder.cloudImage.setImageResource(R.drawable.star_1);
-                }
-            } else {
-                holder.cloudImage.setVisibility(View.GONE);
-            }
+            Clouds.showHideCloudImage(holder.cloudImage, path);
+
 
         }
 

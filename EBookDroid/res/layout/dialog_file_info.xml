@@ -7,13 +7,13 @@
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:layout_weight="1"
         android:scrollbars="none" >
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:orientation="vertical" >
 
             <RelativeLayout
@@ -35,7 +35,18 @@
                         android:src="@drawable/icon_pdf_pro" />
                 </FrameLayout>
 
+                
                 <ImageView
+                    android:id="@+id/cloudImage"
+                    android:padding="8dip"
+                    android:layout_width="@dimen/wh_button"
+                    android:layout_height="@dimen/wh_button"
+                    android:layout_alignParentBottom="true"
+                    android:layout_alignParentLeft="true"
+                    android:src="@drawable/dropbox" />
+
+                <ImageView
+                    android:layout_toRightOf="@+id/cloudImage"
                     android:id="@+id/starIcon"
                     android:layout_width="@dimen/wh_button"
                     android:layout_height="@dimen/wh_button"
@@ -278,14 +289,6 @@
                 android:visibility="gone" />
 
             <TextView
-                android:id="@+id/delete"
-                style="@style/textLink"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/delete"
-                android:visibility="gone" />
-
-            <TextView
                 style="@style/textSection"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -392,6 +395,13 @@
                 android:ellipsize="end"
                 android:maxLines="5"
                 android:padding="4dip" />
+
+            <TextView
+                android:id="@+id/delete"
+                style="@style/textLink"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/delete" />
         </LinearLayout>
     </ScrollView>
 

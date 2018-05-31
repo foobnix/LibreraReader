@@ -253,87 +253,12 @@ public class ShareDialog {
                 } else if (isShowInfo && which == i++) {
                     FileInformationDialog.showFileInfoDialog(a, file, onDeleteAction);
                 } else if (which == i++) {
-                    final AlertDialog.Builder inner = new AlertDialog.Builder(a);
-                    inner.setTitle(R.string.add_to_cloud);
-
-                    List<Pair<Integer, Integer>> list = Arrays.asList(//
-                            new Pair<Integer, Integer>(R.string.dropbox, R.drawable.dropbox), //
-                            new Pair<Integer, Integer>(R.string.google_drive, R.drawable.gdrive), //
-                            new Pair<Integer, Integer>(R.string.one_drive, R.drawable.onedrive)//
-                    );
-
-                    inner.setAdapter(new BaseItemLayoutAdapter<Pair<Integer, Integer>>(a, R.layout.item_dict_line, list) {
-                        @Override
-                        public void populateView(View layout, int position, Pair<Integer, Integer> item) {
-                            ((TextView) layout.findViewById(R.id.text1)).setText(item.first);
-                            ImageView imageView = (ImageView) layout.findViewById(R.id.image1);
-                            imageView.setImageResource(item.second);
-
-                            TintUtil.setNoTintImage(imageView);
-
-                            if (R.string.dropbox == item.first && !Clouds.get().isDropbox()) {
-                                TintUtil.setTintImageNoAlpha(imageView, Color.LTGRAY);
-                            }
-
-                            if (R.string.google_drive == item.first && !Clouds.get().isGoogleDrive()) {
-                                TintUtil.setTintImageNoAlpha(imageView, Color.LTGRAY);
-
-                            }
-                            if (R.string.one_drive == item.first && !Clouds.get().isOneDrive()) {
-                                TintUtil.setTintImageNoAlpha(imageView, Color.LTGRAY);
-
-                            }
-
-                        }
-                    }, new DialogInterface.OnClickListener() {
-
-                        @Override
-                        public void onClick(DialogInterface dialog, int which) {
-                            if (which == 0) {
-                                if (Clouds.get().isDropbox()) {
-                                    Clouds.get().syncronizeAdd(a, file, Clouds.get().dropbox);
-                                } else {
-                                    Clouds.get().loginToDropbox(a, new Runnable() {
-                                        @Override
-                                        public void run() {
-                                            Clouds.get().syncronizeAdd(a, file, Clouds.get().dropbox);
-                                        }
-                                    });
-                                }
-                            } else if (which == 1) {
-
-                                if (Clouds.get().isGoogleDrive()) {
-                                    Clouds.get().syncronizeAdd(a, file, Clouds.get().googleDrive);
-                                } else {
-                                    Clouds.get().loginToDropbox(a, new Runnable() {
-                                        @Override
-                                        public void run() {
-                                            Clouds.get().syncronizeAdd(a, file, Clouds.get().googleDrive);
-                                        }
-                                    });
-                                }
-
-                            } else if (which == 2) {
-                                if (Clouds.get().isOneDrive()) {
-                                    Clouds.get().syncronizeAdd(a, file, Clouds.get().oneDrive);
-                                } else {
-                                    Clouds.get().loginToDropbox(a, new Runnable() {
-                                        @Override
-                                        public void run() {
-                                            Clouds.get().syncronizeAdd(a, file, Clouds.get().oneDrive);
-                                        }
-                                    });
-                                }
-                            }
-
-                        }
-
-                    });
-                    inner.show();
+                    showAddToCloudDialog(a, file);
 
                 }
 
             }
+
         });
         AlertDialog create = builder.create();
         create.setOnDismissListener(new OnDismissListener() {
@@ -345,5 +270,85 @@ public class ShareDialog {
         });
         create.show();
     };
+
+    public static void showAddToCloudDialog(final Activity a, final File file) {
+        final AlertDialog.Builder inner = new AlertDialog.Builder(a);
+        inner.setTitle(R.string.add_to_cloud);
+
+        List<Pair<Integer, Integer>> list = Arrays.asList(//
+                new Pair<Integer, Integer>(R.string.dropbox, R.drawable.dropbox), //
+                new Pair<Integer, Integer>(R.string.google_drive, R.drawable.gdrive), //
+                new Pair<Integer, Integer>(R.string.one_drive, R.drawable.onedrive)//
+        );
+
+        inner.setAdapter(new BaseItemLayoutAdapter<Pair<Integer, Integer>>(a, R.layout.item_dict_line, list) {
+            @Override
+            public void populateView(View layout, int position, Pair<Integer, Integer> item) {
+                ((TextView) layout.findViewById(R.id.text1)).setText(item.first);
+                ImageView imageView = (ImageView) layout.findViewById(R.id.image1);
+                imageView.setImageResource(item.second);
+
+                TintUtil.setNoTintImage(imageView);
+
+                if (R.string.dropbox == item.first && !Clouds.get().isDropbox()) {
+                    TintUtil.setTintImageNoAlpha(imageView, Color.LTGRAY);
+                }
+
+                if (R.string.google_drive == item.first && !Clouds.get().isGoogleDrive()) {
+                    TintUtil.setTintImageNoAlpha(imageView, Color.LTGRAY);
+
+                }
+                if (R.string.one_drive == item.first && !Clouds.get().isOneDrive()) {
+                    TintUtil.setTintImageNoAlpha(imageView, Color.LTGRAY);
+
+                }
+
+            }
+        }, new DialogInterface.OnClickListener() {
+
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                if (which == 0) {
+                    if (Clouds.get().isDropbox()) {
+                        Clouds.get().syncronizeAdd(a, file, Clouds.get().dropbox);
+                    } else {
+                        Clouds.get().loginToDropbox(a, new Runnable() {
+                            @Override
+                            public void run() {
+                                Clouds.get().syncronizeAdd(a, file, Clouds.get().dropbox);
+                            }
+                        });
+                    }
+                } else if (which == 1) {
+
+                    if (Clouds.get().isGoogleDrive()) {
+                        Clouds.get().syncronizeAdd(a, file, Clouds.get().googleDrive);
+                    } else {
+                        Clouds.get().loginToDropbox(a, new Runnable() {
+                            @Override
+                            public void run() {
+                                Clouds.get().syncronizeAdd(a, file, Clouds.get().googleDrive);
+                            }
+                        });
+                    }
+
+                } else if (which == 2) {
+                    if (Clouds.get().isOneDrive()) {
+                        Clouds.get().syncronizeAdd(a, file, Clouds.get().oneDrive);
+                    } else {
+                        Clouds.get().loginToDropbox(a, new Runnable() {
+                            @Override
+                            public void run() {
+                                Clouds.get().syncronizeAdd(a, file, Clouds.get().oneDrive);
+                            }
+                        });
+                    }
+                }
+
+            }
+
+        });
+        inner.show();
+    }
 
 }

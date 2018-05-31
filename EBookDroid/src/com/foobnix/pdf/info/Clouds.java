@@ -30,6 +30,8 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.view.View;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 public class Clouds {
@@ -63,8 +65,8 @@ public class Clouds {
     private Context context;
 
     public static void saveProgress(BookSettings bs) {
-        LOG.d("Save progress",bs);
-        if(!isCloudImage(bs.fileName)) {
+        LOG.d("Save progress", bs);
+        if (!isCloudImage(bs.fileName)) {
             return;
         }
         File bookFile = new File(bs.fileName);
@@ -570,6 +572,25 @@ public class Clouds {
                 }
             };
         }.start();
+    }
+
+    public static boolean showHideCloudImage(ImageView img, String path) {
+        if (path.contains(Clouds.LIBRERA_SYNC_ONLINE_FOLDER)) {
+            img.setVisibility(View.VISIBLE);
+            if (path.contains(AppState.LIBRERA_CLOUD_DROPBOX) || path.startsWith(Clouds.PREFIX_CLOUD_DROPBOX)) {
+                img.setImageResource(R.drawable.dropbox);
+            } else if (path.contains(AppState.LIBRERA_CLOUD_GOOGLEDRIVE) || path.startsWith(Clouds.PREFIX_CLOUD_GDRIVE)) {
+                img.setImageResource(R.drawable.gdrive);
+            } else if (path.contains(AppState.LIBRERA_CLOUD_ONEDRIVE) || path.startsWith(Clouds.PREFIX_CLOUD_ONEDRIVE)) {
+                img.setImageResource(R.drawable.onedrive);
+            } else {
+                img.setImageResource(R.drawable.star_1);
+            }
+            return true;
+        } else {
+            img.setVisibility(View.GONE);
+            return false;
+        }
     }
 
     public boolean isDropbox() {
