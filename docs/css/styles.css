@@ -12,20 +12,20 @@ html, body {
 
 @media (min-width: 58em) {
   html {
-    font-size: 20px;
+    font-size: 18px;
   }
 }
 
 @media (min-width: 48em) {
   .content {
-    margin-left: 16rem;
+    margin-left: 18rem;
     margin-right: 2rem;
   }
 }
 
 @media (min-width: 64em) {
   .content {
-    margin-left: 17rem;
+    margin-left: 20rem;
     margin-right: 3rem;
   }
 }
@@ -34,7 +34,7 @@ html, body {
 .sidebar {
   overflow: auto;
   text-align: center;
-  padding: 1rem 1rem;
+  padding: 1rem 0.8rem;
   color: white;
   background-color: #363636;
   display: flex;
@@ -53,7 +53,7 @@ html, body {
     top: 0;
     left: 0;
     bottom: 0;
-    width: 13rem;
+    width: 14rem;
     text-align: left;
   }
 }
@@ -80,7 +80,7 @@ html, body {
 
 .sidebar ul li {
   list-style: none;
-  padding-left: 2em;
+  padding-left: 1.5em;
 }
 
 nav {
