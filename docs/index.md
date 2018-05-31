@@ -1,6 +1,7 @@
 ---
 layout: main
 ---
-#Demo wiki site
+![](logo.jpg)
 
-Test Librera wiki pages
+# Menu
+{% include menu.html %}
