@@ -158,9 +158,13 @@ public class DefaultListeners {
                     return true;
                 }
 
-                File item = new File(result.getPath());
+                File file = new File(result.getPath());
 
-                if (item.isDirectory()) {
+                if (Clouds.isCloud(file.getPath()) && Clouds.isCacheFileExist(file.getPath())) {
+                    file = Clouds.getCacheFile(file.getPath());
+                }
+
+                if (file.isDirectory()) {
                     Intent intent = new Intent(UIFragment.INTENT_TINT_CHANGE)//
                             .putExtra(MainTabs2.EXTRA_PAGE_NUMBER, UITab.getCurrentTabIndex(UITab.BrowseFragment));//
                     LocalBroadcastManager.getInstance(a).sendBroadcast(intent);
@@ -177,8 +181,8 @@ public class DefaultListeners {
                     }
 
                 };
-                if (ExtUtils.doifFileExists(a, item)) {
-                    FileInformationDialog.showFileInfoDialog(a, item, onDeleteAction);
+                if (ExtUtils.doifFileExists(a, file)) {
+                    FileInformationDialog.showFileInfoDialog(a, file, onDeleteAction);
                 }
                 return true;
             }

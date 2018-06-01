@@ -30,6 +30,10 @@ html, body {
   }
 }
 
+.lang{  
+  font-size:14px;
+}
+
 /* Sidebar */
 .sidebar {
   overflow: auto;

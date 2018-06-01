@@ -223,6 +223,25 @@ public class AppDB {
         return items;
     }
 
+    public static void removeClouds(List<FileMeta> items) {
+        if (items == null || items.isEmpty()) {
+            return;
+        }
+        Iterator<FileMeta> iterator = items.iterator();
+        while (iterator.hasNext()) {
+            FileMeta next = iterator.next();
+            if (Clouds.isCloud(next.getPath())) {
+                File cacheFile = Clouds.getCacheFile(next.getPath());
+                if (cacheFile != null) {
+                    next.setPath(cacheFile.getPath());
+                } else {
+                    iterator.remove();
+
+                }
+            }
+        }
+    }
+
     public FileMeta getRecentLastNoFolder() {
         List<FileMeta> list = fileMetaDao.queryBuilder().where(FileMetaDao.Properties.IsRecent.eq(1)).orderDesc(FileMetaDao.Properties.IsRecentTime).limit(1).list();
         removeNotExist(list);

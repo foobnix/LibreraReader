@@ -53,6 +53,7 @@ class StackRemoteViewsFactory implements RemoteViewsService.RemoteViewsFactory {
         } else {
             recent = AppDB.get().getRecent();
         }
+        AppDB.removeClouds(recent);
     }
 
     @Override
