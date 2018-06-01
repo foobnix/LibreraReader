@@ -584,7 +584,8 @@ public class Clouds {
             } else if (path.contains(AppState.LIBRERA_CLOUD_ONEDRIVE) || path.startsWith(Clouds.PREFIX_CLOUD_ONEDRIVE)) {
                 img.setImageResource(R.drawable.onedrive);
             } else {
-                img.setImageResource(R.drawable.star_1);
+                // img.setImageResource(R.drawable.star_1);
+                img.setVisibility(View.GONE);
             }
             return true;
         } else {
