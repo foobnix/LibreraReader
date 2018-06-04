@@ -1387,12 +1387,14 @@ public class DragingDialogs {
                 final List<ResolveInfo> customList = pm.queryIntentActivities(intentCustom, 0);
 
                 final List<ResolveInfo> all = new ArrayList<ResolveInfo>();
+                all.addAll(customList);
+
                 if (Build.VERSION.SDK_INT >= 23) {
                     all.addAll(proccessTextList);
                 }
-                all.addAll(customList);
                 all.addAll(searchList);
                 all.addAll(sendList);
+
 
                 final SharedPreferences sp = anchor.getContext().getSharedPreferences("lastDict", Context.MODE_PRIVATE);
                 final String lastID = sp.getString("last", "");
@@ -1424,6 +1426,8 @@ public class DragingDialogs {
                                         final ComponentName name = new ComponentName(activity.applicationInfo.packageName, activity.name);
 
                                         if (customList.contains(app)) {
+                                            LOG.d("dict-intent", "customList");
+
                                             intentCustom.addCategory(Intent.CATEGORY_LAUNCHER);
                                             intentCustom.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_RESET_TASK_IF_NEEDED);
                                             intentCustom.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
@@ -1431,10 +1435,11 @@ public class DragingDialogs {
                                             intentCustom.setComponent(name);
 
                                             intentCustom.putExtra("EXTRA_QUERY", selecteText);
-                                            intentCustom.putExtra("EXTRA_HEIGHT", Dips.screenHeight() / 2);
+                                            intentCustom.putExtra("EXTRA_HEIGHT", Dips.screenHeight() * 2 / 3);
+                                            intentCustom.putExtra("EXTRA_FULLSCREEN", false);
+                                            intentCustom.putExtra("EXTRA_GRAVITY", Gravity.BOTTOM);
 
                                             if (AppState.get().isDouble || Dips.screenWidth() > Dips.screenHeight()) {
-                                                intentCustom.putExtra("EXTRA_HEIGHT", Dips.screenHeight() * 2 / 3);
                                                 if (TempHolder.get().textFromPage == 1) {
                                                     intentCustom.putExtra("EXTRA_GRAVITY", Gravity.BOTTOM | Gravity.RIGHT);
                                                 } else if (TempHolder.get().textFromPage == 2) {
@@ -1442,16 +1447,16 @@ public class DragingDialogs {
                                                 } else {
                                                     intentCustom.putExtra("EXTRA_GRAVITY", Gravity.BOTTOM | Gravity.CENTER);
                                                 }
-                                                intentCustom.putExtra("EXTRA_WIDTH", Dips.isSmallScreen() ? Dips.screenWidth() * 2 / 3 : Dips.screenWidth() / 2);
-                                            } else {
-                                                intentCustom.putExtra("EXTRA_GRAVITY", Gravity.BOTTOM);
+                                                intentCustom.putExtra("EXTRA_WIDTH", Dips.screenWidth() / 2);
                                             }
-                                            intentCustom.putExtra("EXTRA_FULLSCREEN", false);
+                                            LOG.d("intentCustom", intentCustom, intentCustom.getExtras());
 
                                             controller.getActivity().startActivity(intentCustom);
                                             // controller.getActivity().overridePendingTransition(0, 0);
 
                                         } else if (proccessTextList.contains(app)) {
+                                            LOG.d("dict-intent", "proccessTextList");
+
                                             intentProccessText.addCategory(Intent.CATEGORY_LAUNCHER);
                                             intentProccessText.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_RESET_TASK_IF_NEEDED);
                                             intentProccessText.setComponent(name);
@@ -1462,6 +1467,7 @@ public class DragingDialogs {
 
                                             controller.getActivity().startActivity(intentProccessText);
                                         } else if (searchList.contains(app)) {
+                                            LOG.d("dict-intent", "searchList");
                                             intentSearch.addCategory(Intent.CATEGORY_LAUNCHER);
                                             intentSearch.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_RESET_TASK_IF_NEEDED);
                                             intentSearch.setComponent(name);
@@ -1471,6 +1477,7 @@ public class DragingDialogs {
 
                                             controller.getActivity().startActivity(intentSearch);
                                         } else if (sendList.contains(app)) {
+                                            LOG.d("dict-intent", "sendList");
                                             intentSend.addCategory(Intent.CATEGORY_LAUNCHER);
                                             intentSend.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_RESET_TASK_IF_NEEDED);
                                             intentSend.setComponent(name);

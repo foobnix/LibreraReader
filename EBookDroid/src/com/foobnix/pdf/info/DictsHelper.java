@@ -86,10 +86,11 @@ public class DictsHelper {
         intentCustom.setAction("colordict.intent.action.SEARCH");
 
         intentCustom.putExtra("EXTRA_QUERY", selecteText);
-        intentCustom.putExtra("EXTRA_HEIGHT", Dips.screenHeight() / 2);
+        intentCustom.putExtra("EXTRA_HEIGHT", Dips.screenHeight() * 2 / 3);
+        intentCustom.putExtra("EXTRA_GRAVITY", Gravity.BOTTOM);
+        intentCustom.putExtra("EXTRA_FULLSCREEN", false);
 
         if (AppState.get().isDouble || Dips.screenWidth() > Dips.screenHeight()) {
-            intentCustom.putExtra("EXTRA_HEIGHT", Dips.screenHeight() * 2 / 3);
 
             if (TempHolder.get().textFromPage == 1) {
                 intentCustom.putExtra("EXTRA_GRAVITY", Gravity.BOTTOM | Gravity.RIGHT);
@@ -98,11 +99,12 @@ public class DictsHelper {
             } else {
                 intentCustom.putExtra("EXTRA_GRAVITY", Gravity.BOTTOM | Gravity.CENTER);
             }
-            intentCustom.putExtra("EXTRA_WIDTH", Dips.isSmallScreen() ? Dips.screenWidth() * 2 / 3 : Dips.screenWidth() / 2);
+            intentCustom.putExtra("EXTRA_WIDTH", Dips.screenWidth() / 2);
         } else {
             intentCustom.putExtra("EXTRA_GRAVITY", Gravity.BOTTOM);
         }
-        intentCustom.putExtra("EXTRA_FULLSCREEN", false);
+
+        LOG.d("intentCustom1", intentCustom, intentCustom.getExtras());
 
         return intentCustom;
     }
