@@ -51,6 +51,7 @@ public class FileMetaDao extends AbstractDao<FileMeta, String> {
         public final static Property State = new Property(26, Integer.class, "state", false, "STATE");
         public final static Property Publisher = new Property(27, String.class, "publisher", false, "PUBLISHER");
         public final static Property Isbn = new Property(28, String.class, "isbn", false, "ISBN");
+        public final static Property CacheFile = new Property(29, String.class, "cacheFile", false, "CACHE_FILE");
     }
 
 
@@ -94,7 +95,8 @@ public class FileMetaDao extends AbstractDao<FileMeta, String> {
                 "\"YEAR\" INTEGER," + // 25: year
                 "\"STATE\" INTEGER," + // 26: state
                 "\"PUBLISHER\" TEXT," + // 27: publisher
-                "\"ISBN\" TEXT);"); // 28: isbn
+                "\"ISBN\" TEXT," + // 28: isbn
+                "\"CACHE_FILE\" TEXT);"); // 29: cacheFile
         // Add Indexes
         db.execSQL("CREATE UNIQUE INDEX " + constraint + "path_asc ON FILE_META" +
                 " (\"PATH\" ASC);");
@@ -276,6 +278,11 @@ public class FileMetaDao extends AbstractDao<FileMeta, String> {
         if (isbn != null) {
             stmt.bindString(29, isbn);
         }
+ 
+        String cacheFile = entity.getCacheFile();
+        if (cacheFile != null) {
+            stmt.bindString(30, cacheFile);
+        }
     }
 
     @Override
@@ -426,6 +433,11 @@ public class FileMetaDao extends AbstractDao<FileMeta, String> {
         if (isbn != null) {
             stmt.bindString(29, isbn);
         }
+ 
+        String cacheFile = entity.getCacheFile();
+        if (cacheFile != null) {
+            stmt.bindString(30, cacheFile);
+        }
     }
 
     @Override
@@ -464,7 +476,8 @@ public class FileMetaDao extends AbstractDao<FileMeta, String> {
             cursor.isNull(offset + 25) ? null : cursor.getInt(offset + 25), // year
             cursor.isNull(offset + 26) ? null : cursor.getInt(offset + 26), // state
             cursor.isNull(offset + 27) ? null : cursor.getString(offset + 27), // publisher
-            cursor.isNull(offset + 28) ? null : cursor.getString(offset + 28) // isbn
+            cursor.isNull(offset + 28) ? null : cursor.getString(offset + 28), // isbn
+            cursor.isNull(offset + 29) ? null : cursor.getString(offset + 29) // cacheFile
         );
         return entity;
     }
@@ -500,6 +513,7 @@ public class FileMetaDao extends AbstractDao<FileMeta, String> {
         entity.setState(cursor.isNull(offset + 26) ? null : cursor.getInt(offset + 26));
         entity.setPublisher(cursor.isNull(offset + 27) ? null : cursor.getString(offset + 27));
         entity.setIsbn(cursor.isNull(offset + 28) ? null : cursor.getString(offset + 28));
+        entity.setCacheFile(cursor.isNull(offset + 29) ? null : cursor.getString(offset + 29));
      }
     
     @Override

@@ -115,6 +115,7 @@ public class DatabaseUpgradeHelper extends DaoMaster.OpenHelper {
             db.execSQL("ALTER TABLE " + FileMetaDao.TABLENAME + " ADD COLUMN " + FileMetaDao.Properties.State.columnName + " INTEGER");
             db.execSQL("ALTER TABLE " + FileMetaDao.TABLENAME + " ADD COLUMN " + FileMetaDao.Properties.Publisher.columnName + " TEXT");
             db.execSQL("ALTER TABLE " + FileMetaDao.TABLENAME + " ADD COLUMN " + FileMetaDao.Properties.Isbn.columnName + " TEXT");
+            db.execSQL("ALTER TABLE " + FileMetaDao.TABLENAME + " ADD COLUMN " + FileMetaDao.Properties.CacheFile.columnName + " TEXT");
         }
     }
 

@@ -48,6 +48,7 @@ public class Dao2Generator {
         note.addIntProperty("state");
         note.addStringProperty("publisher");
         note.addStringProperty("isbn");
+        note.addStringProperty("cacheFile");
 
 
 
