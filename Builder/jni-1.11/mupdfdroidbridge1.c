@@ -241,7 +241,7 @@ JNIEXPORT jstring JNICALL
 Java_org_ebookdroid_droids_mupdf_codec_MuPdfDocument_getMeta(JNIEnv *env,
 		jclass cls, jlong handle, jstring joptions) {
 	renderdocument_t *doc = (renderdocument_t*) (long) handle;
-	char info[1024];
+	char info[2048];
 
 	const char *options = (*env)->GetStringUTFChars(env, joptions, NULL);
 

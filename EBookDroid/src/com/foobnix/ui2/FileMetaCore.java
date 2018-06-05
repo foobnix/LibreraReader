@@ -274,7 +274,7 @@ public class FileMetaCore {
 
         if (TxtUtils.isNotEmpty(meta.getYear())) {
             try {
-                fileMeta.setYear(Integer.parseInt(meta.getYear()));
+                fileMeta.setYear(Integer.parseInt(meta.getYear().trim()));
             } catch (Exception e) {
                 LOG.e(e);
             }

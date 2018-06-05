@@ -8,6 +8,8 @@ import com.foobnix.android.utils.TxtUtils;
 
 public class PdfExtract {
 
+    public static int SUBJECT_LIMIT = 200;
+
     public static String getBookOverview(final String unZipPath) {
         final StringBuilder info = new StringBuilder();
         PdfContext codecContex = new PdfContext();
@@ -15,6 +17,11 @@ public class PdfExtract {
 
         info.append(openDocument.getMeta("info:Annotation"));
         info.append(openDocument.getMeta("info:Description"));
+
+        String subjectLikeDescription = openDocument.getMeta("info:Subject");
+        if (subjectLikeDescription != null && subjectLikeDescription.length() > SUBJECT_LIMIT) {
+            info.append(subjectLikeDescription);
+        }
 
         return info.toString();
     }
@@ -31,7 +38,10 @@ public class PdfExtract {
         EbookMeta meta = new EbookMeta(openDocument.getBookTitle(), openDocument.getBookAuthor());
         meta.setPagesCount(openDocument.getPageCount());
         meta.setKeywords(openDocument.getMeta("info:Keywords"));
-        meta.setGenre(openDocument.getMeta("info:Subject"));
+        String subjectLikeGenre = openDocument.getMeta("info:Subject");
+        if (subjectLikeGenre != null && subjectLikeGenre.length() <= SUBJECT_LIMIT) {
+            meta.setGenre(subjectLikeGenre);
+        }
         meta.setYear(openDocument.getMeta("info:CreationDate"));
         meta.setPublisher(openDocument.getMeta("info:Publisher"));
         meta.setIsbn(openDocument.getMeta("info:ISBN"));

@@ -86,7 +86,15 @@ public class DictsHelper {
         intentCustom.setAction("colordict.intent.action.SEARCH");
 
         intentCustom.putExtra("EXTRA_QUERY", selecteText);
-        intentCustom.putExtra("EXTRA_HEIGHT", Dips.screenHeight() * 2 / 3);
+        updateExtraGoldenDict(intentCustom);
+
+        LOG.d("intentCustom1", intentCustom, intentCustom.getExtras());
+
+        return intentCustom;
+    }
+
+    public static void updateExtraGoldenDict(final Intent intentCustom) {
+        intentCustom.putExtra("EXTRA_HEIGHT", Dips.screenHeight() * 3 / 4);
         intentCustom.putExtra("EXTRA_GRAVITY", Gravity.BOTTOM);
         intentCustom.putExtra("EXTRA_FULLSCREEN", false);
 
@@ -103,10 +111,6 @@ public class DictsHelper {
         } else {
             intentCustom.putExtra("EXTRA_GRAVITY", Gravity.BOTTOM);
         }
-
-        LOG.d("intentCustom1", intentCustom, intentCustom.getExtras());
-
-        return intentCustom;
     }
 
     public static List<DictItem> getByType(Context c, List<ResolveInfo> all, String type) {

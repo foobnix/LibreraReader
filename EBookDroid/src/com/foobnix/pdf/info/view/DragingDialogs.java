@@ -32,6 +32,7 @@ import com.foobnix.dao2.FileMeta;
 import com.foobnix.ext.EpubExtractor;
 import com.foobnix.hypen.HyphenPattern;
 import com.foobnix.pdf.info.AppSharedPreferences;
+import com.foobnix.pdf.info.DictsHelper;
 import com.foobnix.pdf.info.ExtUtils;
 import com.foobnix.pdf.info.FontExtractor;
 import com.foobnix.pdf.info.IMG;
@@ -1435,20 +1436,8 @@ public class DragingDialogs {
                                             intentCustom.setComponent(name);
 
                                             intentCustom.putExtra("EXTRA_QUERY", selecteText);
-                                            intentCustom.putExtra("EXTRA_HEIGHT", Dips.screenHeight() * 2 / 3);
-                                            intentCustom.putExtra("EXTRA_FULLSCREEN", false);
-                                            intentCustom.putExtra("EXTRA_GRAVITY", Gravity.BOTTOM);
+                                            DictsHelper.updateExtraGoldenDict(intentCustom);
 
-                                            if (AppState.get().isDouble || Dips.screenWidth() > Dips.screenHeight()) {
-                                                if (TempHolder.get().textFromPage == 1) {
-                                                    intentCustom.putExtra("EXTRA_GRAVITY", Gravity.BOTTOM | Gravity.RIGHT);
-                                                } else if (TempHolder.get().textFromPage == 2) {
-                                                    intentCustom.putExtra("EXTRA_GRAVITY", Gravity.BOTTOM | Gravity.LEFT);
-                                                } else {
-                                                    intentCustom.putExtra("EXTRA_GRAVITY", Gravity.BOTTOM | Gravity.CENTER);
-                                                }
-                                                intentCustom.putExtra("EXTRA_WIDTH", Dips.screenWidth() / 2);
-                                            }
                                             LOG.d("intentCustom", intentCustom, intentCustom.getExtras());
 
                                             controller.getActivity().startActivity(intentCustom);

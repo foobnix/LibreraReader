@@ -192,10 +192,11 @@ public class EpubExtractor extends BaseExtractor {
             String series = null;
             String number = null;
             String lang = null;
-            String genre = null;
+            String genre = "";
             String date = null;
             String publisher = "";
             String ibsn = "";
+
 
             while ((nextEntry = zipInputStream.getNextEntry()) != null) {
                 String name = nextEntry.getName().toLowerCase();
@@ -286,7 +287,9 @@ public class EpubExtractor extends BaseExtractor {
             author = TxtUtils.replaceFirst(author, ", ", "");
             ibsn = TxtUtils.replaceLast(ibsn, ",", "");
 
-            EbookMeta ebookMeta = new EbookMeta(title, author, series, subject.replaceAll(",$", ""));
+            String allGenres = subject + "," + genre;
+
+            EbookMeta ebookMeta = new EbookMeta(title, author, series, allGenres.replaceAll(",$", ""));
             try {
                 if (number != null) {
                     ebookMeta.setsIndex(Integer.parseInt(number));
@@ -297,7 +300,6 @@ public class EpubExtractor extends BaseExtractor {
                 LOG.d(e);
             }
             ebookMeta.setLang(lang);
-            ebookMeta.setGenre(genre);
             ebookMeta.setYear(date);
             ebookMeta.setPublisher(publisher);
             ebookMeta.setIsbn(ibsn);
@@ -321,6 +323,7 @@ public class EpubExtractor extends BaseExtractor {
 
             String coverName = null;
             String coverResource = null;
+
 
             while (coverName == null && (nextEntry = zipInputStream.getNextEntry()) != null) {
                 String name = nextEntry.getName().toLowerCase();
