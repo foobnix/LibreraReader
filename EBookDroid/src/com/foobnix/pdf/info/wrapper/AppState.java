@@ -429,7 +429,8 @@ public class AppState {
 
     public String searchPaths = Environment.getExternalStorageDirectory() == null ? "/" : Environment.getExternalStorageDirectory().getPath();
     public String texturePath = Environment.getExternalStorageDirectory().getPath();
-    public String downlodsPath = new File(DOWNLOADS_DIR, "Librera/Cache").getPath();
+    public String cachePath = new File(DOWNLOADS_DIR, "Librera/Cache").getPath();
+    public String downlodsPath = new File(DOWNLOADS_DIR, "Librera/Dowlnoad").getPath();
     public String ttsSpeakPath = new File(DOWNLOADS_DIR, "Librera/TTS").getPath();
     public String backupPath = new File(DOWNLOADS_DIR, "Librera/Backup").getPath();
     public String syncDropboxPath = new File(DOWNLOADS_DIR, "Librera/" + LIBRERA_CLOUD_DROPBOX).getPath();

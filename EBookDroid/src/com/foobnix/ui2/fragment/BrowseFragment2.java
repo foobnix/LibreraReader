@@ -28,6 +28,7 @@ import com.foobnix.pdf.info.wrapper.AppState;
 import com.foobnix.pdf.info.wrapper.PopupHelper;
 import com.foobnix.pdf.search.view.AsyncProgressTask;
 import com.foobnix.ui2.AppDB;
+import com.foobnix.ui2.FileMetaCore;
 import com.foobnix.ui2.MainTabs2;
 import com.foobnix.ui2.adapter.DefaultListeners;
 import com.foobnix.ui2.adapter.FileMetaAdapter;
@@ -569,9 +570,9 @@ public class BrowseFragment2 extends UIFragment<FileMeta> {
                     meta.setDate(modifiedAt);
                     meta.setDateTxt(ExtUtils.getDateFormat(modifiedAt));
                 }
+                meta.setState(FileMetaCore.STATE_FULL);
 
                 result.add(meta);
-
             }
 
             return result;

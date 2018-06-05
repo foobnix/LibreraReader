@@ -103,6 +103,7 @@ public class ImageExtractor implements ImageDownloader {
         String unZipPath = ebookMeta.getUnzipPath();
 
         if (fileMeta.getState() != FileMetaCore.STATE_FULL) {
+
             FileMetaCore.get().upadteBasicMeta(fileMeta, new File(unZipPath));
             FileMetaCore.get().udpateFullMeta(fileMeta, ebookMeta);
 

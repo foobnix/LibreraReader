@@ -90,14 +90,6 @@ public class Clouds {
         return path.contains("Librera.Cloud");
     }
 
-    private static File getFile(String folder, String displayName) {
-        File file = new File(folder, displayName);
-        if (file.isFile() && file.length() > 0) {
-            return file;
-        }
-        return null;
-    }
-
     public static void runSync(Activity a) {
         a.startService(new Intent(a, BooksService.class).setAction(BooksService.ACTION_SYNC_DROPBOX));
     }
@@ -107,29 +99,41 @@ public class Clouds {
         if (!path.startsWith(PREFIX_CLOUD)) {
             return null;
         }
-        String displayName = ExtUtils.getFileName(path);
 
-        File file = getFile(AppState.get().downlodsPath, displayName);
-
-        if (file == null && path.startsWith(PREFIX_CLOUD_DROPBOX)) {
-            file = getFile(AppState.get().syncDropboxPath, displayName);
-        }
-        if (file == null && path.startsWith(PREFIX_CLOUD_GDRIVE)) {
-            file = getFile(AppState.get().syncGdrivePath, displayName);
-        }
-        if (file == null && path.startsWith(PREFIX_CLOUD_ONEDRIVE)) {
-            file = getFile(AppState.get().syncOneDrivePath, displayName);
+        File cacheDir = new File(AppState.get().cachePath);
+        if (!cacheDir.exists()) {
+            cacheDir.mkdirs();
         }
 
-        if (file != null) {
-            LOG.d("getCacheFile", path, file.getPath());
+        String displayName = path.hashCode() + "_" + ExtUtils.getFileName(path);
+
+        if (!path.contains(".Cloud/")) {
+            File cacheFile = new File(AppState.get().cachePath, displayName);
+            LOG.d("cacheFile-1", cacheFile);
+            return cacheFile;
         }
 
-        return file;
+        displayName = ExtUtils.getFileName(path);
+
+        File cacheFile2 = null;
+        if (path.startsWith(PREFIX_CLOUD_DROPBOX)) {
+            cacheFile2 = new File(AppState.get().syncDropboxPath, displayName);
+        } else if (path.startsWith(PREFIX_CLOUD_GDRIVE)) {
+            cacheFile2 = new File(AppState.get().syncGdrivePath, displayName);
+        } else if (path.startsWith(PREFIX_CLOUD_ONEDRIVE)) {
+            cacheFile2 = new File(AppState.get().syncOneDrivePath, displayName);
+        } else {
+            cacheFile2 = new File(AppState.get().cachePath, displayName);
+        }
+        LOG.d("cacheFile-2", cacheFile2);
+
+        return cacheFile2;
+
     }
 
     public static boolean isCacheFileExist(String path) {
-        return getCacheFile(path) != null;
+        File cacheFile = getCacheFile(path);
+        return cacheFile != null && cacheFile.isFile();
 
     }
 
@@ -260,6 +264,10 @@ public class Clouds {
 
     public void syncronizeGet() {
         updateSpace();
+
+        IMG.clearMemoryCache();
+        IMG.clearDiscCache();
+
         syncronizeGet(dropbox, AppState.get().syncDropboxPath);
         syncronizeGet(googleDrive, AppState.get().syncGdrivePath);
         syncronizeGet(oneDrive, AppState.get().syncOneDrivePath);

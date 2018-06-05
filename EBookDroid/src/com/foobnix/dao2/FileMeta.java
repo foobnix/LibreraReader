@@ -51,7 +51,6 @@ public class FileMeta {
     private Integer state;
     private String publisher;
     private String isbn;
-    private String cacheFile;
 
     @Generated
     public FileMeta() {
@@ -62,7 +61,7 @@ public class FileMeta {
     }
 
     @Generated
-    public FileMeta(String path, String title, String author, String sequence, String genre, String child, String annotation, Integer sIndex, Integer cusType, String ext, Long size, Long date, String dateTxt, String sizeTxt, String pathTxt, Boolean isStar, Long isStarTime, Boolean isRecent, Long isRecentTime, Float isRecentProgress, Boolean isSearchBook, String lang, String tag, Integer pages, String keyword, Integer year, Integer state, String publisher, String isbn, String cacheFile) {
+    public FileMeta(String path, String title, String author, String sequence, String genre, String child, String annotation, Integer sIndex, Integer cusType, String ext, Long size, Long date, String dateTxt, String sizeTxt, String pathTxt, Boolean isStar, Long isStarTime, Boolean isRecent, Long isRecentTime, Float isRecentProgress, Boolean isSearchBook, String lang, String tag, Integer pages, String keyword, Integer year, Integer state, String publisher, String isbn) {
         this.path = path;
         this.title = title;
         this.author = author;
@@ -92,7 +91,6 @@ public class FileMeta {
         this.state = state;
         this.publisher = publisher;
         this.isbn = isbn;
-        this.cacheFile = cacheFile;
     }
 
     public String getPath() {
@@ -325,14 +323,6 @@ public class FileMeta {
 
     public void setIsbn(String isbn) {
         this.isbn = isbn;
-    }
-
-    public String getCacheFile() {
-        return cacheFile;
-    }
-
-    public void setCacheFile(String cacheFile) {
-        this.cacheFile = cacheFile;
     }
 
 }

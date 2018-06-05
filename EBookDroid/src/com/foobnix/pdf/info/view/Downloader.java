@@ -23,17 +23,12 @@ public class Downloader {
         String displayName = ExtUtils.getFileName(meta.getPath());
         final String path = Clouds.getPath(meta.getPath());
 
-        File downloadDir = new File(AppState.get().downlodsPath);
-        if (!downloadDir.exists()) {
-            downloadDir.mkdirs();
-        }
-
-        File file = Clouds.getCacheFile(meta.getPath());
-        if (file != null) {
-            ExtUtils.openFile(a, new FileMeta(file.getPath()));
+        final File fileCache = Clouds.getCacheFile(meta.getPath());
+        if (fileCache.isFile()) {
+            ExtUtils.openFile(a, new FileMeta(fileCache.getPath()));
             return;
         }
-        final File fileCache = new File(downloadDir, displayName);
+
 
         AlertDialogs.showDialog(a, a.getString(R.string.do_you_want_to_download_the_file_) + "\n\"" + displayName + "\"", a.getString(R.string.download), new Runnable() {
 

@@ -48,9 +48,6 @@ public class Dao2Generator {
         note.addIntProperty("state");
         note.addStringProperty("publisher");
         note.addStringProperty("isbn");
-        note.addStringProperty("cacheFile");
-
-
 
         new DaoGenerator().generateAll(schema, "/home/ivan-dev/git/LirbiReader/EBookDroid/src");
     }
