@@ -22,53 +22,26 @@
             android:gravity="center_vertical"
             android:orientation="horizontal" >
 
-            <FrameLayout
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent" >
+            <android.support.v7.widget.CardView
+                android:id="@+id/imageParent"
+                android:layout_width="60dip"
+                android:layout_height="100dip"
+                android:layout_gravity="center"
+                android:layout_margin="2dip"
+                android:padding="0dip"
+                card_view:cardBackgroundColor="@color/transparent"
+                card_view:cardCornerRadius="1dp"
+                card_view:cardElevation="4dip"
+                card_view:cardPreventCornerOverlap="true" >
 
-                <FrameLayout
-                    android:id="@+id/imageParent"
-                    android:layout_width="100dip"
-                    android:layout_height="60dip"
+                <ImageView
+                    android:id="@+id/browserItemIcon"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:background="@color/transparent"
-                    android:visibility="visible" >
-
-                    <android.support.v7.widget.CardView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:layout_margin="2dip"
-                        android:padding="0dip"
-                        card_view:cardBackgroundColor="@color/transparent"
-                        card_view:cardCornerRadius="1dp"
-                        card_view:cardElevation="4dip"
-                        card_view:cardPreventCornerOverlap="true" >
-
-                        <RelativeLayout
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content" >
-                            <ImageView
-                                android:id="@+id/browserItemIcon"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_gravity="center"
-                                android:adjustViewBounds="true"
-                                android:cropToPadding="true" />
-
-                            <ImageView
-                                android:layout_margin="2dip"
-                                android:layout_alignParentBottom="true"
-                                android:layout_alignParentRight="true"
-                                android:id="@+id/cloudImage"
-                                android:layout_width="@dimen/wh_button_small"
-                                android:layout_height="@dimen/wh_button_small"
-                                android:src="@drawable/dropbox" />
-
-                        </RelativeLayout>
-                    </android.support.v7.widget.CardView>
-                </FrameLayout>
-            </FrameLayout>
+                    android:adjustViewBounds="true"
+                    android:cropToPadding="true" />
+            </android.support.v7.widget.CardView>
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -166,6 +139,13 @@
                     android:layout_weight="0"
                     android:gravity="center_vertical"
                     android:orientation="horizontal" >
+                    
+                    <ImageView
+                        android:id="@+id/cloudImage"
+                        android:layout_width="@dimen/wh_button_small"
+                        android:layout_height="@dimen/wh_button_small"
+                        android:padding="4dip"
+                        android:src="@drawable/dropbox" />
 
                     <ImageView
                         android:id="@+id/starIcon"
@@ -178,6 +158,7 @@
                         android:padding="4dip"
                         android:src="@drawable/star_2"
                         android:tint="@color/tint_gray" />
+
 
                     <ImageView
                         android:id="@+id/signIcon"

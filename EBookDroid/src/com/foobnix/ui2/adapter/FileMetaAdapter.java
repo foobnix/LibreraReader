@@ -5,6 +5,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Locale;
 
+import com.foobnix.android.utils.Apps;
 import com.foobnix.android.utils.Dips;
 import com.foobnix.android.utils.LOG;
 import com.foobnix.android.utils.ResultResponse;
@@ -339,7 +340,6 @@ public class FileMetaAdapter extends AppRecycleAdapter<FileMeta, RecyclerView.Vi
 
             String path = fileMeta.getPath();
             Clouds.showHideCloudImage(holder.cloudImage, path);
-
 
         }
 
@@ -770,11 +770,11 @@ public class FileMetaAdapter extends AppRecycleAdapter<FileMeta, RecyclerView.Vi
             }
         }
 
-        if (AppState.get().isBorderAndShadow) {
-            View parent = (View) holder.image.getParent();
-            parent.setBackgroundColor(Color.TRANSPARENT);
-            FrameLayout.LayoutParams layoutParams = (FrameLayout.LayoutParams) parent.getLayoutParams();
-            layoutParams.setMargins(0, 0, 0, 0);
+        if (AppState.get().isBorderAndShadow || !AppState.get().isCropBookCovers) {
+            holder.imageParent.setBackgroundColor(Color.TRANSPARENT);
+            // LinearLayout.LayoutParams layoutParams = (LinearLayout.LayoutParams)
+            // holder.imageParent.getLayoutParams();
+            // layoutParams.setMargins(0, 0, 0, 0);
         }
 
         if (AppState.get().isCropBookCovers) {
