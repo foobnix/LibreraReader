@@ -127,8 +127,8 @@
    <string name="ignore_annotations_on_click">触碰忽略注释</string>
    <string name="save_new_annotations_automatically">自动保存注释</string>
    <string name="selecting_text_by_letters">选择文本单字</string>
-   <string name="change_the_automatic_scrolling_speed_with_the_volume_keys">音量键调节滚动速度</string>
-   <string name="enable_brightness_adjustment_on_the_left_of_the_screen">擦动屏幕左侧边沿调节屏幕亮度</string>
+   <string name="change_the_automatic_scrolling_speed_with_the_volume_keys">音量键调滚速</string>
+   <string name="enable_brightness_adjustment_on_the_left_of_the_screen">屏左边调亮度</string>
    <string name="scroll_speed">鼠标灵敏度</string>
    <string name="page_quality">页面质量</string>
    <string name="pages_in_memory">预载页面</string>
@@ -470,7 +470,7 @@
    <string name="book">书名</string>
    <string name="information">信息</string>
    <string name="file_path">路径</string>
-   <string name="year">出版年份</string>
+   <string name="year">年份</string>
    <string name="publisher">出版者</string>
    <string name="do_you_want_to_download_the_file_">您要下载文件？</string>
    <string name="do_you_want_to_delete_this_file_">您要删除文件？</string>
