@@ -17,6 +17,7 @@ import com.foobnix.android.utils.ResultResponse;
 import com.foobnix.android.utils.StringDB;
 import com.foobnix.android.utils.TxtUtils;
 import com.foobnix.dao2.FileMeta;
+import com.foobnix.pdf.info.AppsConfig;
 import com.foobnix.pdf.info.Clouds;
 import com.foobnix.pdf.info.ExtUtils;
 import com.foobnix.pdf.info.FileMetaComparators;
@@ -328,55 +329,57 @@ public class BrowseFragment2 extends UIFragment<FileMeta> {
 
                 }
 
-                menu.getMenu().add(R.string.dropbox).active(Clouds.get().isDropbox()).setOnMenuItemClickListener(new OnMenuItemClickListener() {
+                if (AppsConfig.IS_BETA) {
 
-                    @Override
-                    public boolean onMenuItemClick(MenuItem item) {
+                    menu.getMenu().add(R.string.dropbox).active(Clouds.get().isDropbox()).setOnMenuItemClickListener(new OnMenuItemClickListener() {
 
-                        Clouds.get().loginToDropbox(getActivity(), new Runnable() {
+                        @Override
+                        public boolean onMenuItemClick(MenuItem item) {
 
-                            @Override
-                            public void run() {
-                                displayAnyPath(Clouds.PREFIX_CLOUD_DROPBOX + "/");
-                            }
-                        });
+                            Clouds.get().loginToDropbox(getActivity(), new Runnable() {
 
-                        return true;
-                    }
-                }).setIcon(R.drawable.dropbox);
+                                @Override
+                                public void run() {
+                                    displayAnyPath(Clouds.PREFIX_CLOUD_DROPBOX + "/");
+                                }
+                            });
 
-                menu.getMenu().add(R.string.google_drive).active(Clouds.get().isGoogleDrive()).setOnMenuItemClickListener(new OnMenuItemClickListener() {
+                            return true;
+                        }
+                    }).setIcon(R.drawable.dropbox);
 
-                    @Override
-                    public boolean onMenuItemClick(MenuItem item) {
-                        Clouds.get().loginToGoogleDrive(getActivity(), new Runnable() {
+                    menu.getMenu().add(R.string.google_drive).active(Clouds.get().isGoogleDrive()).setOnMenuItemClickListener(new OnMenuItemClickListener() {
 
-                            @Override
-                            public void run() {
-                                displayAnyPath(Clouds.PREFIX_CLOUD_GDRIVE + "/");
-                            }
-                        });
+                        @Override
+                        public boolean onMenuItemClick(MenuItem item) {
+                            Clouds.get().loginToGoogleDrive(getActivity(), new Runnable() {
 
-                        return true;
-                    }
-                }).setIcon(R.drawable.gdrive);
+                                @Override
+                                public void run() {
+                                    displayAnyPath(Clouds.PREFIX_CLOUD_GDRIVE + "/");
+                                }
+                            });
 
-                menu.getMenu().add(R.string.one_drive).active(Clouds.get().isOneDrive()).setOnMenuItemClickListener(new OnMenuItemClickListener() {
+                            return true;
+                        }
+                    }).setIcon(R.drawable.gdrive);
 
-                    @Override
-                    public boolean onMenuItemClick(MenuItem item) {
-                        Clouds.get().loginToOneDrive(getActivity(), new Runnable() {
+                    menu.getMenu().add(R.string.one_drive).active(Clouds.get().isOneDrive()).setOnMenuItemClickListener(new OnMenuItemClickListener() {
 
-                            @Override
-                            public void run() {
-                                displayAnyPath(Clouds.PREFIX_CLOUD_ONEDRIVE + "/");
-                            }
-                        });
+                        @Override
+                        public boolean onMenuItemClick(MenuItem item) {
+                            Clouds.get().loginToOneDrive(getActivity(), new Runnable() {
 
-                        return true;
-                    }
-                }).setIcon(R.drawable.onedrive);
+                                @Override
+                                public void run() {
+                                    displayAnyPath(Clouds.PREFIX_CLOUD_ONEDRIVE + "/");
+                                }
+                            });
 
+                            return true;
+                        }
+                    }).setIcon(R.drawable.onedrive);
+                }
 
                 menu.show();
 

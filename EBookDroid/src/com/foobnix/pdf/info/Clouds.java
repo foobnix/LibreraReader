@@ -583,6 +583,11 @@ public class Clouds {
     }
 
     public static boolean showHideCloudImage(ImageView img, String path) {
+        if (AppsConfig.IS_BETA) {
+            img.setVisibility(View.GONE);
+            return false;
+        }
+
         if (path.contains(Clouds.LIBRERA_SYNC_ONLINE_FOLDER)) {
             img.setVisibility(View.VISIBLE);
             if (path.contains(AppState.LIBRERA_CLOUD_DROPBOX) || path.startsWith(Clouds.PREFIX_CLOUD_DROPBOX)) {

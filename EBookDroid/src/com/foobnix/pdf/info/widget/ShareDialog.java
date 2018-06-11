@@ -12,6 +12,7 @@ import org.greenrobot.eventbus.EventBus;
 import com.foobnix.android.utils.BaseItemLayoutAdapter;
 import com.foobnix.android.utils.Keyboards;
 import com.foobnix.dao2.FileMeta;
+import com.foobnix.pdf.info.AppsConfig;
 import com.foobnix.pdf.info.Clouds;
 import com.foobnix.pdf.info.ExtUtils;
 import com.foobnix.pdf.info.R;
@@ -164,7 +165,9 @@ public class ShareDialog {
             items.add(a.getString(R.string.file_info));
         }
 
-        items.add(a.getString(R.string.add_to_cloud));
+        if (AppsConfig.IS_BETA) {
+            items.add(a.getString(R.string.add_to_cloud));
+        }
 
         final AlertDialog.Builder builder = new AlertDialog.Builder(a);
         builder.setItems(items.toArray(new String[items.size()]), new DialogInterface.OnClickListener() {

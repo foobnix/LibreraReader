@@ -341,6 +341,7 @@ public class FileMetaAdapter extends AppRecycleAdapter<FileMeta, RecyclerView.Vi
             String path = fileMeta.getPath();
             Clouds.showHideCloudImage(holder.cloudImage, path);
 
+
         }
 
         else if (holderAll instanceof TagViewHolder) {
