@@ -1,2 +1,7 @@
-* Viele Verbesserungen durch Benutzer-Feedback 
-* Unterstützung für Cloud-Speicher: Dropbox, Google Drive, Microsoft OneDrive.
+* Modern Book Reader und PDF-Reader für jedermann 
+* Sortieren von Büchern nach Autor, Genre, Serie, Stichwörter 
+* Benutzerdefinierte Tags für Bücher 
+* Aktualisierte Bibliothek, Datei Navigation, Lesezeichen, Wörterbücher 
+* Zwei Spaltenmodus, Crop-Modus, Helligkeit ändern 
+* Viele Verbesserungen von Bewertungen 
+* Bitte schreiben Sie über Ihre Erfahrungen und hinterlassen Sie Feedback

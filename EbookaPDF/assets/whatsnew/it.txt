@@ -1,2 +1,7 @@
-* Molti miglioramenti grazie al feedback degli utenti 
-* Supporto per lo storage cloud: Dropbox, Google Drive, Microsoft OneDrive.
+* Lettore libro moderno e lettore PDF per tutti 
+* Ordinamento di libri per autore, genere, serie, parole chiave 
+* Tag personalizzati per libri 
+* Libreria aggiornata, navigazione file, segnalibri, dizionari 
+* Modalità a due colonne, modalità ritaglio, modifica luminosità 
+* Molti miglioramenti da recensioni 
+* Scrivi la tua esperienza e lascia un feedback

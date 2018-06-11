@@ -1,2 +1,7 @@
-* Many improvements by user feedback
-* Support for cloud storage: Dropbox, Google Drive, Microsoft OneDrive.
+* Modern Book Reader and PDF reader for everyone
+* Sorting books by author, genre, series, keywords
+* Custom tags for books
+* Updated library, file navigation, bookmarks, dictionaries
+* Two column mode, crop mode, change brightness
+* Many improvements by reviews
+* Please write about your experience and leave feedback

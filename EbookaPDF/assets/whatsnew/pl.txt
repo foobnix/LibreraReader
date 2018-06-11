@@ -1,2 +1,7 @@
-* Wiele ulepszeń ze względu na opinie użytkowników 
-* Wsparcie dla przechowywania w chmurze: Dropbox, Dysk Google, Microsoft OneDrive.
+* Nowoczesny czytnik książek i czytnik PDF dla każdego 
+* Sortowanie książek według autora, gatunku, serii, słów kluczowych 
+* Niestandardowe tagi dla książek 
+* Zaktualizowana biblioteka, nawigacja plików, zakładki, słowniki 
+* Tryb dwóch kolumn, tryb przycinania, zmiana jasności 
+* Wiele ulepszeń recenzji 
+* Napisz o swoich doświadczeniach i zostaw komentarz

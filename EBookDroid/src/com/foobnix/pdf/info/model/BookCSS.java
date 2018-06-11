@@ -119,7 +119,8 @@ public class BookCSS {
                 "svg {display:block} \n" + //
                 "figure > * {font-size: 0.7em} \n" + //
                 "tr{display:block}\n" + //
-                "td>*{display:inline}\n" //
+                "td>*{display:inline}\n" + //
+                "blockquote {margin-left:0.5em !important}\n" //
         ;
 
         LOG.d("BookCSS", "resetToDefault");

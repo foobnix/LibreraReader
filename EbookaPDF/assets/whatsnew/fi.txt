@@ -1,2 +1,7 @@
-* Monet parannukset käyttäjän palautteen avulla 
-* Tuki pilven varastointiin: Dropbox, Google Drive, Microsoft OneDrive.
+* Modern kirjojen lukija ja PDF-lukija kaikille 
+* Lajittelu kirjojen tekijän, lajityyppien, sarjan, avainsanojen 
+* Mukautetut tageja kirjoihin 
+* Päivitetty kirjasto, tiedostojen navigointi, kirjanmerkit, sanakirjat 
+* Kaksi saraketta tilaan, viljelytapa, kirkkauden muuttaminen 
+* 
+* Kirjoita kokemuksestasi ja anna palautetta

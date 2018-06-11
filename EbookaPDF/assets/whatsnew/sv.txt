@@ -1,2 +1,7 @@
-* Många förbättringar genom användarreaktion 
-* Stöd för molnlagring: Dropbox, Google Drive, Microsoft OneDrive.
+* Modern bokläsare och PDF-läsare för alla 
+* Sortera böcker efter författare, genre, serie, nyckelord 
+* Anpassade taggar för böcker 
+* Uppdaterat bibliotek, filnavigering, bokmärken, ordböcker 
+* Två kolumnläge, grödläge, ändra ljusstyrka 
+* Många förbättringar av recensioner 
+* Skriv om din erfarenhet och lämna feedback

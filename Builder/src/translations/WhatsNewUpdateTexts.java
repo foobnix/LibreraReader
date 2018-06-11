@@ -10,6 +10,7 @@ import java.util.Map;
 public class WhatsNewUpdateTexts {
 
     private static final String RECENT_PATH = "/home/ivan-dev/git/LirbiReader/EbookaPDF/assets/whatsnew/";
+    // https://console.cloud.google.com/apis/credentials/key/0?project=seismic-bucksaw-120809
 
     public static Map<String, String> codes = new HashMap<String, String>();
     static {

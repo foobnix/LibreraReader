@@ -1,2 +1,7 @@
-* Veľa vylepšení spätnou väzbou od používateľov 
-* Podpora úložiska cloud: Dropbox, Google Drive, Microsoft OneDrive.
+* Moderné čítanie kníh a čítačka PDF pre každého 
+* Triedenie kníh podľa autorov, žánrov, sérií, kľúčových slov 
+* Vlastné značky pre knihy 
+* Aktualizované knižnice, navigácia súborov, záložky, slovníky 
+* Dva režimy stĺpcov, orezanie, zmena jasu 
+* 
+* Napíšte o svojich skúsenostiach a nechajte spätnú väzbu

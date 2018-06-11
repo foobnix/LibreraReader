@@ -1,2 +1,6 @@
-* Beaucoup d’améliorations par les commentaires des utilisateurs 
-* Support pour le stockage en nuage: Dropbox, Google Drive, Microsoft OneDrive.
+* Lecteur de livre moderne et lecteur PDF pour tous 
+* Tri des livres par auteur, genre, série, mots-clés 
+* Balises personnalisées pour les livres 
+* Bibliothèque mise à jour, navigation, signets, dictionnaires 
+* Mode deux colonnes, mode recadrage, changement de luminosité 
+* S’il vous plaît écrire sur votre expérience et laisser des commentaires

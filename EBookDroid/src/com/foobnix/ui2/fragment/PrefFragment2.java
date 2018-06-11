@@ -318,7 +318,9 @@ public class PrefFragment2 extends UIFragment {
         try {
             PackageInfo packageInfo = getActivity().getPackageManager().getPackageInfo(getActivity().getPackageName(), 0);
             final String version = packageInfo.versionName;
-            ((TextView) inflate.findViewById(R.id.pVersion)).setText(String.format("%s: %s (%s)", getString(R.string.version), version, AppsConfig.MUPDF_VERSION));
+            // ((TextView) inflate.findViewById(R.id.pVersion)).setText(String.format("%s:
+            // %s (%s)", getString(R.string.version), version, AppsConfig.MUPDF_VERSION));
+            ((TextView) inflate.findViewById(R.id.pVersion)).setText(String.format("%s: %s", getString(R.string.version), version));
         } catch (final NameNotFoundException e) {
         }
 

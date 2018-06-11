@@ -1,2 +1,7 @@
-* Mange forbedringer ved tilbakemeldinger fra brukerne 
-* Støtte for skylagring: Dropbox, Google Disk, Microsoft OneDrive.
+* Moderne bokleser og PDF-leser for alle 
+* Sortering av bøker etter forfatter, genre, serie, nøkkelord 
+* Egendefinerte koder for bøker 
+* Oppdatert bibliotek, filnavigasjon, bokmerker, ordbøker 
+* To kolonnemodus, beskjæringsmodus, endre lysstyrke 
+* Mange forbedringer av vurderinger 
+* Skriv om din erfaring og gi tilbakemelding

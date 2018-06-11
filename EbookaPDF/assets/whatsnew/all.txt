@@ -1,159 +1,317 @@
 
 <nl-NL>
-* Veel verbeteringen door feedback van gebruikers 
-* Ondersteuning voor cloudopslag: Dropbox, Google Drive, Microsoft OneDrive.
+* Moderne boeklezer en PDF-lezer voor iedereen 
+* Sorteren van boeken op auteur, genre, series, trefwoorden 
+* Aangepaste tags voor boeken 
+* Bijgewerkte bibliotheek, bestandsnavigatie, bladwijzers, woordenboeken 
+* Twee-kolommodus, bijsnijmodus, helderheid wijzigen 
+* Veel verbeteringen door beoordelingen 
+* Schrijf alsjeblieft over je ervaringen en laat feedback achter
 </nl-NL>
 
 <id>
-* Banyak penyempurnaan oleh masukan pengguna 
-* Dukungan untuk penyimpanan cloud: Dropbox, Google Drive, Microsoft OneDrive.
+* Pembaca Buku Modern dan pembaca PDF untuk semua orang 
+* Menyortir buku oleh penulis, genre, seri, kata kunci 
+* Tag khusus untuk buku 
+* Pustaka yang diperbarui, navigasi file, bookmark, kamus 
+* Dua mode kolom, mode pemangkasan, ubah kecerahan 
+* Banyak penyempurnaan oleh ulasan 
+* Silakan tulis tentang pengalaman Anda dan tinggalkan umpan balik
 </id>
 
 <lt>
-* Daugybė vartotojų atsiliepimų patobulinimų.Debesis saugojimo palaikymas:Dropbox,Google diskas,Microsoft OneDrive.
+* Modernus knygų skaitytuvas ir PDF skaitytuvas visiems 
+* Rūšiavimas knygų pagal autorių, žanrą, seriją, raktinius žodžius 
+* Tinkintos knygų žymos 
+* Atnaujinta biblioteka, failų navigacija, žymės, žodynai 
+* Dviejų stulpelių režimas, apkarpymo režimas, ryškumo keitimas 
+* 
+* Prašome rašyti apie savo patirtį ir palikti atsiliepimus
 </lt>
 
 <ar>
-* العديد من التحسينات من خلال تعليقات المستخدمين 
-* دعم التخزين السحابي: Dropbox ، Google Drive ، Microsoft OneDrive.
+* قارئ الكتب الحديث وقارئ PDF للجميع 
+* فرز الكتب حسب المؤلف والنوع والمسلسلات والكلمات الرئيسية 
+* علامات مخصصة للكتب 
+* مكتبة محدثة ، تصفح الملفات ، الإشارات المرجعية ، القواميس 
+* وضع العمود ، وضع الاقتصاص ، تغير السطوع 
+* العديد من التحسينات من خلال المراجعات 
+* يرجى الكتابة عن تجربتك وترك ملاحظاتك
 </ar>
 
 <ro>
-* Multe îmbunătățiri de feedback de la utilizator 
-* Sprijin pentru stocarea în cloud: Dropbox, Google Drive, Microsoft OneDrive.
+* Cititor de carte modernă și cititor PDF pentru toată lumea 
+* Sortarea cărților după autor, gen, serie, cuvinte cheie 
+* Etichete personalizate pentru cărți 
+* Actualizare bibliotecă, navigare fișiere, marcaje, dicționare 
+* Două mod de coloană, 
+* Vă rugăm să scrieți despre experiența dvs. și să lăsați feedback
 </ro>
 
 <de-DE>
-* Viele Verbesserungen durch Benutzer-Feedback 
-* Unterstützung für Cloud-Speicher: Dropbox, Google Drive, Microsoft OneDrive.
+* Modern Book Reader und PDF-Reader für jedermann 
+* Sortieren von Büchern nach Autor, Genre, Serie, Stichwörter 
+* Benutzerdefinierte Tags für Bücher 
+* Aktualisierte Bibliothek, Datei Navigation, Lesezeichen, Wörterbücher 
+* Zwei Spaltenmodus, Crop-Modus, Helligkeit ändern 
+* Viele Verbesserungen von Bewertungen 
+* Bitte schreiben Sie über Ihre Erfahrungen und hinterlassen Sie Feedback
 </de-DE>
 
 <pl-PL>
-* Wiele ulepszeń ze względu na opinie użytkowników 
-* Wsparcie dla przechowywania w chmurze: Dropbox, Dysk Google, Microsoft OneDrive.
+* Nowoczesny czytnik książek i czytnik PDF dla każdego 
+* Sortowanie książek według autora, gatunku, serii, słów kluczowych 
+* Niestandardowe tagi dla książek 
+* Zaktualizowana biblioteka, nawigacja plików, zakładki, słowniki 
+* Tryb dwóch kolumn, tryb przycinania, zmiana jasności 
+* Wiele ulepszeń recenzji 
+* Napisz o swoich doświadczeniach i zostaw komentarz
 </pl-PL>
 
 <iw-IL>
-* שיפורים רבים על ידי משוב המשתמש 
-* תמיכה עבור אחסון ענן: Dropbox, כונן Google, Microsoft OneDrive.
+* קורא ספרים מודרנית וקורא PDF לכולם 
+* מיון ספרים לפי מחבר, ז’אנר, סדרה, מילות מפתח 
+* תגיות מותאמות אישית עבור ספרים 
+* עדכון הספרייה, ניווט הקובץ, סימניות, מילונים 
+* שני מצב טור, מצב חיתוך, שינוי בהירות 
+* שיפורים רבים על ידי ביקורות 
+* נא לכתוב על החוויה שלך ולהשאיר משוב
 </iw-IL>
 
 <hi-IN>
-* उपयोगकर्ता प्रतिक्रिया द्वारा कई सुधार 
-* क्लाउड स्टोरेज के लिए समर्थन: ड्रॉपबॉक्स, Google ड्राइव, माइक्रोसॉफ्ट वनड्राइव।
+* सभी के लिए आधुनिक पुस्तक पाठक और पीडीएफ पाठक 
+* लेखक, शैली, श्रृंखला, कीवर्ड द्वारा पुस्तकें छंटनी 
+* पुस्तकों के लिए कस्टम टैग 
+* अद्यतन पुस्तकालय, फ़ाइल नेविगेशन, बुकमार्क, शब्दकोश 
+* दो कॉलम मोड, फसल मोड, चमक बदलना 
+* समीक्षाओं में कई सुधार 
+* कृपया अपने अनुभव के बारे में लिखें और प्रतिक्रिया छोड़ दें
 </hi-IN>
 
 <es-ES>
-* Muchas mejoras por comentarios de los usuarios 
-* Soporte para almacenamiento en la nube: Dropbox, Google Drive, Microsoft OneDrive.
+* Lector de libros moderno y lector de PDF para todos 
+* Clasificando libros por autor, género, serie, palabras clave 
+* Etiquetas personalizadas para libros 
+* Biblioteca actualizada, navegación de archivos, marcadores, diccionarios 
+* Modo de dos columnas, modo de recorte, cambio de brillo 
+* Muchas mejoras por revisiones 
+* Por favor escribe sobre tu experiencia y deja tu opinión
 </es-ES>
 
 <fi-FI>
-* Monet parannukset käyttäjän palautteen avulla 
-* Tuki pilven varastointiin: Dropbox, Google Drive, Microsoft OneDrive.
+* Modern kirjojen lukija ja PDF-lukija kaikille 
+* Lajittelu kirjojen tekijän, lajityyppien, sarjan, avainsanojen 
+* Mukautetut tageja kirjoihin 
+* Päivitetty kirjasto, tiedostojen navigointi, kirjanmerkit, sanakirjat 
+* Kaksi saraketta tilaan, viljelytapa, kirkkauden muuttaminen 
+* 
+* Kirjoita kokemuksestasi ja anna palautetta
 </fi-FI>
 
 <vi>
-* Nhiều cải tiến bằng phản hồi của người dùng 
-* Hỗ trợ lưu trữ đám mây: Dropbox, Google Drive, Microsoft OneDrive.
+* Trình đọc sách hiện đại và trình đọc PDF cho mọi người 
+* Sắp xếp sách theo tác giả, thể loại, chuỗi, từ khóa 
+* Thẻ tùy chỉnh cho sách 
+* Thư viện cập nhật, điều hướng tệp, dấu trang, từ điển 
+* Chế độ hai cột, chế độ cắt, thay đổi độ sáng 
+* Nhiều cải tiến theo đánh giá 
+* Vui lòng viết về trải nghiệm của bạn và để lại phản hồi
 </vi>
 
 <fr-FR>
-* Beaucoup d’améliorations par les commentaires des utilisateurs 
-* Support pour le stockage en nuage: Dropbox, Google Drive, Microsoft OneDrive.
+* Lecteur de livre moderne et lecteur PDF pour tous 
+* Tri des livres par auteur, genre, série, mots-clés 
+* Balises personnalisées pour les livres 
+* Bibliothèque mise à jour, navigation, signets, dictionnaires 
+* Mode deux colonnes, mode recadrage, changement de luminosité 
+* S’il vous plaît écrire sur votre expérience et laisser des commentaires
 </fr-FR>
 
 <fr-CA>
-* Beaucoup d’améliorations par les commentaires des utilisateurs 
-* Support pour le stockage en nuage: Dropbox, Google Drive, Microsoft OneDrive.
+* Lecteur de livre moderne et lecteur PDF pour tous 
+* Tri des livres par auteur, genre, série, mots-clés 
+* Balises personnalisées pour les livres 
+* Bibliothèque mise à jour, navigation, signets, dictionnaires 
+* Mode deux colonnes, mode recadrage, changement de luminosité 
+* S’il vous plaît écrire sur votre expérience et laisser des commentaires
 </fr-CA>
 
 <sw>
-* Maboresho mengi na maoni ya mtumiaji 
-* Msaada kwa hifadhi ya wingu: Dropbox, Google Drive, Microsoft OneDrive.
+* Kisasa Kitabu Reader na msomaji wa PDF kwa kila mtu 
+* Kupanga vitabu na mwandishi, aina, mfululizo, maneno 
+* Vitambulisho maalum vya vitabu 
+* Maktaba ya kisasa, urambazaji wa faili, alama za alama, kamusi ya kamusi 
+* Mbili mode ya safu, mode ya mazao, mabadiliko ya mwangaza 
+* Maboresho mengi na maoni 
+* Tafadhali andika kuhusu uzoefu wako na uacha maoni
 </sw>
 
 <zh-TW>
-*用户反馈改进了许多
-*支持云存储：Dropbox，Google Drive和Microsoft OneDrive。
+*适用于所有人的现代图书阅读器和PDF阅读器
+*按作者，流派，系列，关键字对图书进行排序
+*为图书定制标签
+*更新图书馆，文件导航，书签，字典
+*两列模式，裁剪模式，改变亮度
+* 
+*请写下你的经验并留下反馈
 </zh-TW>
 
 <ru-RU>
-* Много улучшений отзывов пользователей 
-* Поддержка облачного хранилища: Dropbox, Google Диска, Microsoft OneDrive.
+* Современный читатель книг и PDF-ридер для всех 
+* Сортировка книг по автору, жанру, сериям, ключевым словам 
+* Пользовательские теги для книг 
+* Обновленная библиотека, файловая навигация, закладки, словари 
+* Режим двух столбцов, режим обрезки, изменение яркости 
+* Множество улучшений по отзывам 
+* Пожалуйста, напишите о своем опыте и оставьте отзыв
 </ru-RU>
 
 <th>
-* การปรับปรุงโดยความคิดเห็นของผู้ใช้ 
-* การสนับสนุนการจัดเก็บข้อมูลแบบคลาวด์: Dropbox, Google ไดรฟ์, Microsoft OneDrive
+* อ่านหนังสือที่ทันสมัยและอ่าน PDF สำหรับทุกคน 
+* เรียงลำดับหนังสือโดยผู้เขียนประเภทชุดคำหลัก 
+* แท็กที่กำหนดเองสำหรับหนังสือ 
+* ห้องสมุดปรับปรุงนำทางไฟล์บุ๊คมาร์คพจนานุกรม 
+* โหมดสองคอลัมน์โหมดพืช, เปลี่ยนความสว่าง 
+* การปรับปรุงหลายโดยความคิดเห็น 
+* กรุณาเขียนเกี่ยวกับประสบการณ์ของคุณและออกความคิดเห็น
 </th>
 
 <it-IT>
-* Molti miglioramenti grazie al feedback degli utenti 
-* Supporto per lo storage cloud: Dropbox, Google Drive, Microsoft OneDrive.
+* Lettore libro moderno e lettore PDF per tutti 
+* Ordinamento di libri per autore, genere, serie, parole chiave 
+* Tag personalizzati per libri 
+* Libreria aggiornata, navigazione file, segnalibri, dizionari 
+* Modalità a due colonne, modalità ritaglio, modifica luminosità 
+* Molti miglioramenti da recensioni 
+* Scrivi la tua esperienza e lascia un feedback
 </it-IT>
 
 <sv-SE>
-* Många förbättringar genom användarreaktion 
-* Stöd för molnlagring: Dropbox, Google Drive, Microsoft OneDrive.
+* Modern bokläsare och PDF-läsare för alla 
+* Sortera böcker efter författare, genre, serie, nyckelord 
+* Anpassade taggar för böcker 
+* Uppdaterat bibliotek, filnavigering, bokmärken, ordböcker 
+* Två kolumnläge, grödläge, ändra ljusstyrka 
+* Många förbättringar av recensioner 
+* Skriv om din erfarenhet och lämna feedback
 </sv-SE>
 
 <fa>
-* بسیاری از بهبود توسط بازخورد کاربر 
-* پشتیبانی از ذخیره سازی ابر: Dropbox، گوگل درایو، مایکروسافت OneDrive.
+* کتاب خوان مدرن و PDF خوان برای همه 
+* مرتب کردن کتاب ها توسط نویسنده، ژانر، سری، کلمات کلیدی 
+* برچسب های سفارشی برای کتاب 
+* به روز شده در کتابخانه، ناوبری فایل، بوک مارک ها، واژه نامه ها 
+* دو حالت ستون، حالت محصول، روشنایی تغییر 
+* بسیاری از بهبود توسط بررسی 
+* لطفا در مورد تجربه خود بنویسید و بازخورد را ترک کنید
 </fa>
 
 <pt-PT>
-* Muitas melhorias pelo feedback do usuário 
-* Suporte para armazenamento em nuvem: Dropbox, Google Drive, Microsoft OneDrive.
+* Leitor de livros moderno e leitor de PDF para todos 
+* Classificando livros por autor, gênero, série, palavras-chave 
+* Marcas personalizadas para livros 
+* Biblioteca atualizada, navegação de arquivos, marcadores, dicionários 
+* Modo de duas colunas, modo de corte, brilho mudança 
+* Muitas melhorias por comentários 
+* Por favor, escreva sobre sua experiência e deixe comentários
 </pt-PT>
 
 <pt-BR>
-* Muitas melhorias pelo feedback do usuário 
-* Suporte para armazenamento em nuvem: Dropbox, Google Drive, Microsoft OneDrive.
+* Leitor de livros moderno e leitor de PDF para todos 
+* Classificando livros por autor, gênero, série, palavras-chave 
+* Marcas personalizadas para livros 
+* Biblioteca atualizada, navegação de arquivos, marcadores, dicionários 
+* Modo de duas colunas, modo de corte, brilho mudança 
+* Muitas melhorias por comentários 
+* Por favor, escreva sobre sua experiência e deixe comentários
 </pt-BR>
 
 <ko-KR>
-* 사용자 의견에 의한 많은 개선 
-* 클라우드 스토리지 지원 : 보관 용, Google 드라이브, Microsoft OneDrive.
+* 모두를위한 현대 도서 리더 및 PDF 리더 
+* 저자, 장르, 시리즈, 키워드로 도서 정렬 
+* 도서에 대한 사용자 정의 태그 
+* 도서관, 파일 탐색, 책갈피, 사전을 업데이 트 
+* 두 열 모드, 자르기 모드, 밝기 변경 
+* 
+* 귀하의 경험에 대해 쓰고 피드백을 남기십시오.
 </ko-KR>
 
 <hu-HU>
-* Számos javítás a felhasználói visszajelzések alapján 
-* Támogatás a felhő tárolására: Dropbox, Google Drive, Microsoft OneDrive.
+* Modern könyvolvasó és PDF olvasó mindenki számára 
+* Könyvek sorrendje szerző szerint, műfaj, sorozatok, kulcsszavak szerint 
+* Egyéni címkék könyvekhez 
+* Frissített könyvtár, fájl navigáció, könyvjelzők, szótárak 
+* Két oszlopos mód, kivágási mód, fényerő módosítása 
+* 
+* Kérjük, írjon a tapasztalatairól, és hagyjon visszajelzést
 </hu-HU>
 
 <sk>
-* Veľa vylepšení spätnou väzbou od používateľov 
-* Podpora úložiska cloud: Dropbox, Google Drive, Microsoft OneDrive.
+* Moderné čítanie kníh a čítačka PDF pre každého 
+* Triedenie kníh podľa autorov, žánrov, sérií, kľúčových slov 
+* Vlastné značky pre knihy 
+* Aktualizované knižnice, navigácia súborov, záložky, slovníky 
+* Dva režimy stĺpcov, orezanie, zmena jasu 
+* 
+* Napíšte o svojich skúsenostiach a nechajte spätnú väzbu
 </sk>
 
 <tr-TR>
-* Kullanıcı geri bildirimlerine göre birçok iyileştirme 
-* Bulut depolama desteği: Dropbox, Google Drive, Microsoft OneDrive.
+* Herkes için Modern Kitap Okuyucu ve PDF Okuyucusu 
+* Yazar, yazar, tür, dizi, anahtar kelime ile kitap sıralama 
+* Kitaplar için özel etiketler 
+* Güncelleme kitaplığı, dosya gezinme, yer imleri, sözlükler 
+* İki sütun modu, kırpma modu, parlaklık değiştirmek 
+* Değerlendirmeler tarafından birçok iyileştirme 
+* Lütfen deneyimlerinizi yazın ve geri bildirim bırakın
 </tr-TR>
 
 <no-NO>
-* Mange forbedringer ved tilbakemeldinger fra brukerne 
-* Støtte for skylagring: Dropbox, Google Disk, Microsoft OneDrive.
+* Moderne bokleser og PDF-leser for alle 
+* Sortering av bøker etter forfatter, genre, serie, nøkkelord 
+* Egendefinerte koder for bøker 
+* Oppdatert bibliotek, filnavigasjon, bokmerker, ordbøker 
+* To kolonnemodus, beskjæringsmodus, endre lysstyrke 
+* Mange forbedringer av vurderinger 
+* Skriv om din erfaring og gi tilbakemelding
 </no-NO>
 
 <la>
-* Multi improvements a user feedback 
-* nubes repono pro Support: Dropbox Google Coegi, Microsoft OneDrive.
+* The book Lector et lectorem PDF quia omnis 
+* Sorting books by author, genere serie, keywords 
+* Custom tags for books 
+* Updated bibliotheca, lima navigation, bookmarks, dictionaries 
+* Duae columnae modus, seges modus, mutatio claritas 
+* Multi improvements per reviews Placere vobis scribere, 
+* et usus relinquere feedback
 </la>
 
 <ja-JP>
-*ユーザーのフィードバックによる多くの改善
-*クラウドストレージのサポート：Dropbox、Googleドライブ、Microsoft OneDrive
+*すべての人のための近代的なブックリーダーとPDFリーダー
+*著者、ジャンル、シリーズ、キーワードで書籍を並べ替える
+*本のカスタムタグ
+*更新されたライブラリ、ファイルナビゲーション、ブックマーク、辞書
+* 2列モード、クロップモード、明るさの変更
+* 
+*あなたの経験について書いて、フィードバックを残してください
 </ja-JP>
 
 <uk>
-* Багато вдосконалень за відгуками користувачів 
-* Підтримка хмарного зберігання: Dropbox, Google Диск, Microsoft OneDrive.
+* Сучасний читач книг і читач PDF для всіх 
+* Сортування книг за автором, жанром, серією, ключовими словами 
+* Спеціальні теги для книг 
+* Оновлена ​​бібліотека, навігація за допомогою файлів, закладки, словники 
+* Дві стовпчики, режим обрізки, яскравість зміни 
+* Багато вдосконалень за відгуками 
+* Будь ласка, напишіть про свій досвід і залиште відгук
 </uk>
 
 <en-US>
-* Many improvements by user feedback
-* Support for cloud storage: Dropbox, Google Drive, Microsoft OneDrive.
+* Modern Book Reader and PDF reader for everyone
+* Sorting books by author, genre, series, keywords
+* Custom tags for books
+* Updated library, file navigation, bookmarks, dictionaries
+* Two column mode, crop mode, change brightness
+* Many improvements by reviews
+* Please write about your experience and leave feedback
 </en-US>

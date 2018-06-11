@@ -1,2 +1,7 @@
-* Veel verbeteringen door feedback van gebruikers 
-* Ondersteuning voor cloudopslag: Dropbox, Google Drive, Microsoft OneDrive.
+* Moderne boeklezer en PDF-lezer voor iedereen 
+* Sorteren van boeken op auteur, genre, series, trefwoorden 
+* Aangepaste tags voor boeken 
+* Bijgewerkte bibliotheek, bestandsnavigatie, bladwijzers, woordenboeken 
+* Twee-kolommodus, bijsnijmodus, helderheid wijzigen 
+* Veel verbeteringen door beoordelingen 
+* Schrijf alsjeblieft over je ervaringen en laat feedback achter

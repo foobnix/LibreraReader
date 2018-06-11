@@ -1,2 +1,7 @@
-* Maboresho mengi na maoni ya mtumiaji 
-* Msaada kwa hifadhi ya wingu: Dropbox, Google Drive, Microsoft OneDrive.
+* Kisasa Kitabu Reader na msomaji wa PDF kwa kila mtu 
+* Kupanga vitabu na mwandishi, aina, mfululizo, maneno 
+* Vitambulisho maalum vya vitabu 
+* Maktaba ya kisasa, urambazaji wa faili, alama za alama, kamusi ya kamusi 
+* Mbili mode ya safu, mode ya mazao, mabadiliko ya mwangaza 
+* Maboresho mengi na maoni 
+* Tafadhali andika kuhusu uzoefu wako na uacha maoni

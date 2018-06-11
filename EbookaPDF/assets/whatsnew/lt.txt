@@ -1,1 +1,7 @@
-* Daugybė vartotojų atsiliepimų patobulinimų.Debesis saugojimo palaikymas:Dropbox,Google diskas,Microsoft OneDrive.
+* Modernus knygų skaitytuvas ir PDF skaitytuvas visiems 
+* Rūšiavimas knygų pagal autorių, žanrą, seriją, raktinius žodžius 
+* Tinkintos knygų žymos 
+* Atnaujinta biblioteka, failų navigacija, žymės, žodynai 
+* Dviejų stulpelių režimas, apkarpymo režimas, ryškumo keitimas 
+* 
+* Prašome rašyti apie savo patirtį ir palikti atsiliepimus

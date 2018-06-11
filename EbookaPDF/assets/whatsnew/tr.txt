@@ -1,2 +1,7 @@
-* Kullanıcı geri bildirimlerine göre birçok iyileştirme 
-* Bulut depolama desteği: Dropbox, Google Drive, Microsoft OneDrive.
+* Herkes için Modern Kitap Okuyucu ve PDF Okuyucusu 
+* Yazar, yazar, tür, dizi, anahtar kelime ile kitap sıralama 
+* Kitaplar için özel etiketler 
+* Güncelleme kitaplığı, dosya gezinme, yer imleri, sözlükler 
+* İki sütun modu, kırpma modu, parlaklık değiştirmek 
+* Değerlendirmeler tarafından birçok iyileştirme 
+* Lütfen deneyimlerinizi yazın ve geri bildirim bırakın

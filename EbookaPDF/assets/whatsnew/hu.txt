@@ -1,2 +1,7 @@
-* Számos javítás a felhasználói visszajelzések alapján 
-* Támogatás a felhő tárolására: Dropbox, Google Drive, Microsoft OneDrive.
+* Modern könyvolvasó és PDF olvasó mindenki számára 
+* Könyvek sorrendje szerző szerint, műfaj, sorozatok, kulcsszavak szerint 
+* Egyéni címkék könyvekhez 
+* Frissített könyvtár, fájl navigáció, könyvjelzők, szótárak 
+* Két oszlopos mód, kivágási mód, fényerő módosítása 
+* 
+* Kérjük, írjon a tapasztalatairól, és hagyjon visszajelzést

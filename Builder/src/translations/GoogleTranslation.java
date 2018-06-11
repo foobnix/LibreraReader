@@ -17,6 +17,7 @@ public class GoogleTranslation {
     private static final String KEY = "AIzaSyBJpTJYLsjwZiUOMHusU0QFEbxfXFCWk7M";
     // private static final String KEY =
     // "AIzaSyBjxDSZeTdavOAGFbM185GpHVPn142Gm1o";
+    // https://console.cloud.google.com/apis/credentials/key/0?project=seismic-bucksaw-120809
 
     public static void main(String[] args) throws JSONException, IOException {
         String ln = translate("sun", "zh");

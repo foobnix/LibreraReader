@@ -1,2 +1,7 @@
-* Nhiều cải tiến bằng phản hồi của người dùng 
-* Hỗ trợ lưu trữ đám mây: Dropbox, Google Drive, Microsoft OneDrive.
+* Trình đọc sách hiện đại và trình đọc PDF cho mọi người 
+* Sắp xếp sách theo tác giả, thể loại, chuỗi, từ khóa 
+* Thẻ tùy chỉnh cho sách 
+* Thư viện cập nhật, điều hướng tệp, dấu trang, từ điển 
+* Chế độ hai cột, chế độ cắt, thay đổi độ sáng 
+* Nhiều cải tiến theo đánh giá 
+* Vui lòng viết về trải nghiệm của bạn và để lại phản hồi

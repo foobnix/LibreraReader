@@ -1,2 +1,7 @@
-* Banyak penyempurnaan oleh masukan pengguna 
-* Dukungan untuk penyimpanan cloud: Dropbox, Google Drive, Microsoft OneDrive.
+* Pembaca Buku Modern dan pembaca PDF untuk semua orang 
+* Menyortir buku oleh penulis, genre, seri, kata kunci 
+* Tag khusus untuk buku 
+* Pustaka yang diperbarui, navigasi file, bookmark, kamus 
+* Dua mode kolom, mode pemangkasan, ubah kecerahan 
+* Banyak penyempurnaan oleh ulasan 
+* Silakan tulis tentang pengalaman Anda dan tinggalkan umpan balik
