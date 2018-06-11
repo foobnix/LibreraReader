@@ -265,8 +265,8 @@ public class Clouds {
     public void syncronizeGet() {
         updateSpace();
 
-        IMG.clearMemoryCache();
-        IMG.clearDiscCache();
+        // IMG.clearMemoryCache();
+        // IMG.clearDiscCache();
 
         syncronizeGet(dropbox, AppState.get().syncDropboxPath);
         syncronizeGet(googleDrive, AppState.get().syncGdrivePath);
