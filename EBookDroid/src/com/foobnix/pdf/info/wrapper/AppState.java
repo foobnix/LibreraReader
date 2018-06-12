@@ -669,6 +669,7 @@ public class AppState {
                     AppState.get().tintColor = Color.BLACK;
                     AppState.get().bolderTextOnImage = true;
                     AppState.get().isEnableBC = true;
+                    AppState.get().brigtnessImage = -50;
                     isAllowMoveTwoFingerWithLock = false;
                 }
 
