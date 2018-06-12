@@ -2477,6 +2477,9 @@ fz_layout_html(fz_context *ctx, fz_html *html, float w, float h, float em)
 
 	html->page_w = w - html->page_margin[L] - html->page_margin[R];
 	html->page_h = h - html->page_margin[T] - html->page_margin[B];
+	if(html->page_h == h){
+		html->page_h = h - fz_from_css_number_scale(html->root->style.line_height, em, em, em);;
+	}
 
 	hb_lock(ctx);
 
