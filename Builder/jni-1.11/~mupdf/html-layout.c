@@ -1466,12 +1466,13 @@ static float layout_block(fz_context *ctx, fz_html_box *box, fz_html_box *top, f
 		else if (child->type == BOX_FLOW)
 		{
 			layout_flow(ctx, child, box, page_h, hb_buf);
-			if (child->h > 0)
+			if (1==1 || child->h > 0)
 			{
 				box->h += child->h;
 				vertical = 0;
 				first = 0;
 			}
+
 		}
 	}
 
