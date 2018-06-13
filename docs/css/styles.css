@@ -33,6 +33,9 @@ html, body {
 .lang{  
   font-size:14px;
 }
+.sidebar li {  
+  font-size:14px;
+}
 
 /* Sidebar */
 .sidebar {
