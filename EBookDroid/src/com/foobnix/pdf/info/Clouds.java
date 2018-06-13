@@ -583,7 +583,7 @@ public class Clouds {
     }
 
     public static boolean showHideCloudImage(ImageView img, String path) {
-        if (!AppsConfig.IS_BETA) {
+        if (!AppsConfig.isCloudsEnable) {
             img.setVisibility(View.GONE);
             return false;
         }
