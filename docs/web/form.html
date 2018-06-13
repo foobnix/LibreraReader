@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<button  onclick="myFunction()">RUN</button>
+<div id="b1"></div>
+<br/>
+<textarea  autofocus id="demo" cols="140" rows="10"><b>Lirbi讀卡器</ B> - 為舒適讀取任何書格式的免費應用程序 <B> Lirbi Reader </ b> <B> Learning foreign languages ​​</ b> foreign languages <B> Learning foreign languages ​​</ b></textarea>
+<br/>
+<pre id="res"></pre>
+<script>
+function myFunction() {
+    var str = document.getElementById("demo").value; 
+    
+    var res = str;
+    res = res.replace(/\u200B/g,'');
+    res = res.replace(/<b> /ig, '<b>');
+    res = res.replace(/ <\/ b>/ig, '</b>');
+    res = res.replace(/<\/ b>/ig, '</b>');
+    
+    document.getElementById("demo").value = res;
+    document.getElementById("demo").select();
+
+    document.getElementById("res").innerHTML = res;
+    document.getElementById("b1").innerHTML = res.length;
+    
+}
+</script>
+
+</body>
+</html>
