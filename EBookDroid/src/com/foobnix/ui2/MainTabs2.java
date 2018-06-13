@@ -20,6 +20,7 @@ import com.foobnix.ext.CacheZipUtils.CacheDir;
 import com.foobnix.pdf.SlidingTabLayout;
 import com.foobnix.pdf.info.Android6;
 import com.foobnix.pdf.info.AndroidWhatsNew;
+import com.foobnix.pdf.info.AppsConfig;
 import com.foobnix.pdf.info.ExportSettingsManager;
 import com.foobnix.pdf.info.FontExtractor;
 import com.foobnix.pdf.info.PasswordDialog;
@@ -461,6 +462,9 @@ public class MainTabs2 extends AdsFragmentActivity {
     @Override
     protected void onResume() {
         super.onResume();
+
+        AppsConfig.isCloudsEnable = AppsConfig.IS_BETA || UITab.isShowCloudsPreferences();
+
         LOG.d(TAG, "onResume");
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
         DocumentController.chooseFullScreen(this, AppState.get().isFullScreenMain);

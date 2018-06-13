@@ -165,7 +165,7 @@ public class ShareDialog {
             items.add(a.getString(R.string.file_info));
         }
 
-        if (AppsConfig.IS_BETA) {
+        if (AppsConfig.isCloudsEnable) {
             items.add(a.getString(R.string.add_to_cloud));
         }
 

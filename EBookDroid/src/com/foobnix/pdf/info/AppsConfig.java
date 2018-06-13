@@ -42,6 +42,8 @@ public class AppsConfig {
 
     static Random random = new Random();
 
+    public static boolean isCloudsEnable = true;
+
 
     public static void init(final Context a) {
 

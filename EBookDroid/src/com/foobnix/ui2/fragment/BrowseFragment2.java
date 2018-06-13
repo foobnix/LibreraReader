@@ -329,7 +329,7 @@ public class BrowseFragment2 extends UIFragment<FileMeta> {
 
                 }
 
-                if (AppsConfig.IS_BETA) {
+                if (AppsConfig.isCloudsEnable) {
 
                     menu.getMenu().add(R.string.dropbox).active(Clouds.get().isDropbox()).setOnMenuItemClickListener(new OnMenuItemClickListener() {
 

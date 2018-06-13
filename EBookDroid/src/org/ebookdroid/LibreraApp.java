@@ -92,6 +92,7 @@ public class LibreraApp extends Application {
             LOG.e(e);
         }
 
+
         if (AppsConfig.IS_BETA && !LOG.isEnable) {
             Thread.setDefaultUncaughtExceptionHandler(new Thread.UncaughtExceptionHandler() {
                 @Override

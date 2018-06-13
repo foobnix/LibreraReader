@@ -96,6 +96,10 @@ public enum UITab {
         return AppState.get().tabsOrder7.contains(UITab.PrefFragment.index + "#1");
     }
 
+    public static boolean isShowCloudsPreferences() {
+        return AppState.get().tabsOrder7.contains(UITab.CloudsFragment.index + "#1");
+    }
+
     public boolean isVisible() {
         return isVisible;
     }

@@ -97,7 +97,7 @@ public class BookCSS {
         emptyLine = 1;
 
         lineHeight = 13;
-        paragraphHeight = 2;
+        paragraphHeight = 0;
         textIndent = 10;
         fontWeight = 400;
 
@@ -502,7 +502,9 @@ public class BookCSS {
         builder.append("epigraph{text-align:right; margin-left:2em;font-style: italic;}");
         builder.append("text-author{font-style: italic;font-weight: bold;}");
         builder.append("p>image{display:block;}");
-        builder.append(String.format("p{margin:%s 0}", em(paragraphHeight)));
+        if (paragraphHeight > 0) {// bug is here
+            builder.append(String.format("p{margin:%s 0}", em(paragraphHeight)));
+        }
         // not supported text-decoration
         builder.append("del,ins,u,strikethrough{font-style:italic}");
 
