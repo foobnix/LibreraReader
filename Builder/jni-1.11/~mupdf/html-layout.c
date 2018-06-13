@@ -596,11 +596,12 @@ static void insert_inline_box(fz_context *ctx, fz_html_box *box, fz_html_box *to
 	}
 }
 
-static void generate_boxes(fz_context *ctx, fz_xml *node, fz_html_box *top,
+static fz_html_box *
+generate_boxes(fz_context *ctx, fz_xml *node, fz_html_box *top,
 		fz_css_match *up_match, int list_counter, int markup_dir, int markup_lang, struct genstate *g)
 {
 	fz_css_match match;
-	fz_html_box *box;
+	fz_html_box *box, *last_top;
 	const char *tag;
 	int display;
 
@@ -756,7 +757,9 @@ static void generate_boxes(fz_context *ctx, fz_xml *node, fz_html_box *top,
 					int child_counter = list_counter;
 					if (!strcmp(tag, "ul") || !strcmp(tag, "ol"))
 						child_counter = 0;
-					generate_boxes(ctx, fz_xml_down(node), box, &match, child_counter, child_dir, child_lang, g);
+					last_top = generate_boxes(ctx, fz_xml_down(node), box, &match, child_counter, child_dir, child_lang, g);
+					if (last_top != box)
+						top = last_top;
 				}
 			}
 		}
@@ -790,6 +793,8 @@ static void generate_boxes(fz_context *ctx, fz_xml *node, fz_html_box *top,
 
 		node = fz_xml_next(node);
 	}
+
+	return top;
 }
 
 static void measure_image(fz_context *ctx, fz_html_flow *node, float max_w, float max_h)
@@ -1068,8 +1073,8 @@ static float measure_line(fz_html_flow *node, fz_html_flow *end, float *baseline
 		}
 		else
 		{
-			float a = node->box->em * 0.8;
-			float d = node->box->em * 0.2;
+			float a = node->box->em * 0.8f;
+			float d = node->box->em * 0.2f;
 			if (a > max_a) max_a = a;
 			if (d > max_d) max_d = d;
 		}
@@ -1195,11 +1200,11 @@ static void layout_line(fz_context *ctx, float indent, float page_w, float line_
 			break;
 		case VA_TOP:
 		case VA_TEXT_TOP:
-			va = -baseline + node->box->em * 0.8;
+			va = -baseline + node->box->em * 0.8f;
 			break;
 		case VA_BOTTOM:
 		case VA_TEXT_BOTTOM:
-			va = -baseline + line_h - node->box->em * 0.2;
+			va = -baseline + line_h - node->box->em * 0.2f;
 			break;
 		}
 
@@ -1231,10 +1236,12 @@ static void find_accumulated_margins(fz_context *ctx, fz_html_box *box, float *w
 static void flush_line(fz_context *ctx, fz_html_box *box, float page_h, float page_w, float line_w, int align, float indent, fz_html_flow *a, fz_html_flow *b)
 {
 	float avail, line_h, baseline;
-	avail = page_h - fmodf(box->y + box->h, page_h);
 	line_h = measure_line(a, b, &baseline);
-	if (line_h > avail)
-		box->h += avail;
+	if(page_h>0){
+		avail = page_h - fmodf(box->y + box->h, page_h);
+		if (line_h > avail)
+			box->h += avail;
+		}
 	layout_line(ctx, indent, page_w, line_w, align, a, b, box, baseline, line_h);
 	box->h += line_h;
 }
@@ -1804,8 +1811,8 @@ static void draw_list_mark(fz_context *ctx, fz_html_box *box, float page_top, fl
 	else
 	{
 		float h = fz_from_css_number_scale(box->style.line_height, box->em, box->em, box->em);
-		float a = box->em * 0.8;
-		float d = box->em * 0.2;
+		float a = box->em * 0.8f;
+		float d = box->em * 0.2f;
 		if (a + d > h)
 			h = a + d;
 		y = box->y + a + (h - a - d) / 2;
@@ -2004,8 +2011,8 @@ static fz_link *load_link_flow(fz_context *ctx, fz_html_flow *flow, fz_link *hea
 			if (flow->type != FLOW_IMAGE)
 			{
 				/* flow->y is the baseline, adjust bbox appropriately */
-				bbox.y0 -= 0.8 * flow->h;
-				bbox.y1 -= 0.8 * flow->h;
+				bbox.y0 -= 0.8f * flow->h;
+				bbox.y1 -= 0.8f * flow->h;
 			}
 
 			if (is_internal_uri(href))
@@ -2478,9 +2485,6 @@ fz_layout_html(fz_context *ctx, fz_html *html, float w, float h, float em)
 
 	html->page_w = w - html->page_margin[L] - html->page_margin[R];
 	html->page_h = h - html->page_margin[T] - html->page_margin[B];
-	if(html->page_h == h){
-		html->page_h = h - fz_from_css_number_scale(html->root->style.line_height, em, em, em);;
-	}
 
 	hb_lock(ctx);
 
@@ -2619,9 +2623,13 @@ detect_flow_directionality(fz_context *ctx, fz_pool *pool, uni_buf *buffer, fz_b
 			/* Make sure the buffer is large enough */
 			if (buffer->len + len > buffer->cap)
 			{
-				size_t newcap = buffer->cap * 2;
-				if (newcap == 0)
+				size_t newcap = buffer->cap;
+				if (newcap < 128)
 					newcap = 128; /* Sensible small default */
+
+				while (newcap < buffer->len + len)
+					newcap = (newcap * 3) / 2;
+
 				buffer->data = fz_resize_array(ctx, buffer->data, newcap, sizeof(uint32_t));
 				buffer->cap = newcap;
 			}
@@ -2674,7 +2682,7 @@ fz_html *
 fz_parse_html(fz_context *ctx, fz_html_font_set *set, fz_archive *zip, const char *base_uri, fz_buffer *buf, const char *user_css)
 {
 	fz_xml *xml;
-	fz_html *html;
+	fz_html *html = NULL;
 
 	fz_css_match match;
 	struct genstate g;
@@ -2738,9 +2746,9 @@ fz_parse_html(fz_context *ctx, fz_html_font_set *set, fz_archive *zip, const cha
 	}
 	fz_always(ctx)
 	{
+		fz_drop_tree(ctx, g.images, (void(*)(fz_context*,void*))fz_drop_image);
 		fz_drop_css(ctx, g.css);
 		fz_drop_xml(ctx, xml);
-		fz_drop_tree(ctx, g.images, (void(*)(fz_context*,void*))fz_drop_image);
 	}
 	fz_catch(ctx)
 	{
