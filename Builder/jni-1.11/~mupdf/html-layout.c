@@ -1459,16 +1459,12 @@ static float layout_block(fz_context *ctx, fz_html_box *box, fz_html_box *top, f
 				child->margin[T] = 0;
 				first = 0;
 			}
-			//1.13
-			box->h += child->h +
-				 child->padding[B] +
-				 child->border[B] +
-				 child->margin[B];
 
-			//box->h += child->h +
-			//				child->padding[T] + child->padding[B] +
-			//				child->border[T] + child->border[B] +
-			//				child->margin[T] + child->margin[B];
+
+			box->h += child->h +
+							child->padding[T] + child->padding[B] +
+							child->border[T] + child->border[B] +
+							child->margin[T] + child->margin[B];
 		}
 		else if (child->type == BOX_BREAK)
 		{
