@@ -335,12 +335,12 @@ Java_org_ebookdroid_droids_mupdf_codec_MuPdfLinks_getPageLinkUrl(JNIEnv *env,
 //		return NULL;
 //	}
 
-	//char linkbuf[1024];
+	//char linkbuf[2048];
 	//snprintf(linkbuf, 1023, "%s", link->dest.ld.uri.uri);
 
 	//return (*env)->NewStringUTF(env, linkbuf);
-	char linkbuf[1024];
-	snprintf(linkbuf, 1023, "%s", link->uri);
+	char linkbuf[2048];
+	snprintf(linkbuf, 2047, "%s", link->uri);
 
 	return (*env)->NewStringUTF(env, linkbuf);
 }
@@ -803,10 +803,10 @@ Java_org_ebookdroid_droids_mupdf_codec_MuPdfOutline_getLink(JNIEnv *env,
 	if (!outline)
 		return NULL;
 
-	char linkbuf[1024];
+	char linkbuf[2048];
 	int pageNo = outline->page;
 
-	snprintf(linkbuf, 1023, "#%d", pageNo + 1);
+	snprintf(linkbuf, 2047, "#%d", pageNo + 1);
 
 	return (*env)->NewStringUTF(env, linkbuf);
 }

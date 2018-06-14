@@ -115,12 +115,15 @@ public class BookCSS {
 
         linkColorDay = LINK_COLOR_UNIVERSAL;
         linkColorNight = LINK_COLOR_UNIVERSAL;
-        customCSS1 = "pre > * {white-space: pre; font-size: 0.7em;} /* pre, normal*/ \n" + //
-                "svg {display:block} \n" + //
-                "figure > * {font-size: 0.7em} \n" + //
-                "tr{display:block}\n" + //
-                "td>*{display:inline}\n" + //
-                "blockquote {margin-left:0.5em !important}\n" //
+        customCSS1 = //
+                "pre>* {white-space: pre; font-size: 0.7em;} /* pre, normal*/ \n" + //
+                        "svg {display:block} \n" + //
+                        "figure>* {font-size: 0.7em} \n" + //
+                        "tr {display:block}\n" + //
+                        "td>* {display:inline}\n" + //
+                        "blockquote {margin-left:0.5em !important}\n" + //
+                        ".mbppagebreak {margin-bottom:1em}\n"+ //
+                        ""//
         ;
 
         LOG.d("BookCSS", "resetToDefault");
