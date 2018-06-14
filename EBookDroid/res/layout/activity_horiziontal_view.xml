@@ -20,7 +20,7 @@
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:layout_gravity="center_horizontal"
-        android:layout_marginTop="120dip"
+        android:layout_marginTop="160dip"
         android:layout_weight="0" >
     </FrameLayout>
 

@@ -482,4 +482,5 @@
    <string name="librera_cloud">리브레라 구름</string>
    <string name="hide_search_bar">검색 창 숨기기</string>
    <string name="show_search_bar">검색 창 표시</string>
+   <string name="enable_swipe_gestures_for_pages">뒤집기 페이지에 제스처 사용</string>
 </resources>

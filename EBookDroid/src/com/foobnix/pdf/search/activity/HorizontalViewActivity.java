@@ -1827,7 +1827,7 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
 
     public void updateBannnerTop() {
         try {
-            ((RelativeLayout.LayoutParams) adFrame.getLayoutParams()).topMargin = actionBar.getHeight() + Dips.dpToPx(14);
+            ((RelativeLayout.LayoutParams) adFrame.getLayoutParams()).topMargin = actionBar.getHeight() + Dips.dpToPx(24);
         } catch (Exception e) {
             LOG.e(e);
         }

@@ -510,7 +510,10 @@ public class AppState {
     public boolean isScrollAnimation = true;
 
     @IgnoreHashCode
-    public boolean isDisableSwipe = false;
+    public boolean isEnableSwipeGestures = true;
+
+    @IgnoreHashCode
+    public boolean isSwipeGestureReverse = false;
 
     public boolean isCustomizeBgAndColors = false;
     public boolean isVibration = true;
@@ -665,7 +668,7 @@ public class AppState {
                     AppState.get().isRememberMode = false;
                     AppState.get().isReverseKeys = true;
                     AppState.get().isScrollAnimation = false;
-                    AppState.get().isDisableSwipe = true;
+                    AppState.get().isEnableSwipeGestures = true;
                     AppState.get().tintColor = Color.BLACK;
                     AppState.get().bolderTextOnImage = true;
                     AppState.get().isEnableBC = true;

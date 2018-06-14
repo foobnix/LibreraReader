@@ -722,9 +722,7 @@ public class SearchFragment2 extends UIFragment<FileMeta> {
     private ImageView onGridlList;
 
     private void sortByPopup(final View view) {
-        if (Dips.isHorizontal()) {
-            ADS.hideAdsTemp(getActivity());
-        }
+
 
         MyPopupMenu popup = new MyPopupMenu(getActivity(), view);
         for (final SORT_BY sortBy : SORT_BY.values()) {
@@ -746,9 +744,6 @@ public class SearchFragment2 extends UIFragment<FileMeta> {
     }
 
     private void popupMenu(final ImageView onGridList) {
-        if (Dips.isHorizontal()) {
-            ADS.hideAdsTemp(getActivity());
-        }
         MyPopupMenu p = new MyPopupMenu(getActivity(), onGridList);
         PopupHelper.addPROIcon(p, getActivity());
         List<Integer> names = Arrays.asList(R.string.list, //

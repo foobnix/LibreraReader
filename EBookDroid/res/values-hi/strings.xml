@@ -482,4 +482,5 @@
    <string name="librera_cloud">Librera बादल</string>
    <string name="hide_search_bar">खोज बार छुपाएं</string>
    <string name="show_search_bar">खोज बार दिखाएं</string>
+   <string name="enable_swipe_gestures_for_pages">पृष्ठों को फिसलने के लिए जेस्चर सक्षम करें</string>
 </resources>

@@ -2770,16 +2770,29 @@ public class DragingDialogs {
                     }
                 });
 
-                CheckBox isDisableSwipe = (CheckBox) inflate.findViewById(R.id.isDisableSwipe);
+                CheckBox isDisableSwipe = (CheckBox) inflate.findViewById(R.id.isEnableSwipeGestures);
                 isDisableSwipe.setVisibility(AppState.get().isAlwaysOpenAsMagazine ? View.VISIBLE : View.GONE);
-                isDisableSwipe.setChecked(AppState.get().isDisableSwipe);
+                isDisableSwipe.setChecked(AppState.get().isEnableSwipeGestures);
                 isDisableSwipe.setOnCheckedChangeListener(new OnCheckedChangeListener() {
 
                     @Override
                     public void onCheckedChanged(final CompoundButton buttonView, final boolean isChecked) {
-                        AppState.get().isDisableSwipe = isChecked;
+                        AppState.get().isEnableSwipeGestures = isChecked;
                     }
                 });
+
+                final ImageView isSwipeGestureReverse = (ImageView) inflate.findViewById(R.id.isSwipeGestureReverse);
+                isSwipeGestureReverse.setVisibility(AppState.get().isAlwaysOpenAsMagazine ? View.VISIBLE : View.GONE);
+                isSwipeGestureReverse.setImageResource(AppState.get().isSwipeGestureReverse ? R.drawable.glyphicons_214_arrow_up : R.drawable.glyphicons_21_arrow_down);
+                isSwipeGestureReverse.setOnClickListener(new OnClickListener() {
+
+                    @Override
+                    public void onClick(View v) {
+                        AppState.get().isSwipeGestureReverse = !AppState.get().isSwipeGestureReverse;
+                        isSwipeGestureReverse.setImageResource(AppState.get().isSwipeGestureReverse ? R.drawable.glyphicons_214_arrow_up : R.drawable.glyphicons_21_arrow_down);
+                    }
+                });
+
 
                 CheckBox isVibration = (CheckBox) inflate.findViewById(R.id.isVibration);
                 isVibration.setChecked(AppState.get().isVibration);

@@ -482,4 +482,5 @@
    <string name="librera_cloud">Librera سحابة</string>
    <string name="hide_search_bar">إخفاء شريط البحث</string>
    <string name="show_search_bar">إظهار شريط البحث</string>
+   <string name="enable_swipe_gestures_for_pages">مكّن الإيماءات لصفحات التقليب</string>
 </resources>

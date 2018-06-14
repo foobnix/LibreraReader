@@ -482,4 +482,5 @@
    <string name="librera_cloud">Librera-pilvi</string>
    <string name="hide_search_bar">Piilota hakupalkki</string>
    <string name="show_search_bar">Näytä hakupalkki</string>
+   <string name="enable_swipe_gestures_for_pages">Ota käyttöön liikkeiden kääntäminen sivulle</string>
 </resources>

@@ -482,4 +482,5 @@
    <string name="librera_cloud">Librera wingu</string>
    <string name="hide_search_bar">Ficha bar ya utafutaji</string>
    <string name="show_search_bar">Onyesha bar ya utafutaji</string>
+   <string name="enable_swipe_gestures_for_pages">Wezesha ishara za kurasa za kugeuka</string>
 </resources>

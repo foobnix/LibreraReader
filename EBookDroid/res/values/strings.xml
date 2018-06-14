@@ -482,4 +482,5 @@
    <string name="librera_cloud">Librera cloud</string>
    <string name="hide_search_bar">Hide search bar</string>
    <string name="show_search_bar">Show search bar</string>
+   <string name="enable_swipe_gestures_for_pages">Enable gestures for pages flipping</string>
 </resources>

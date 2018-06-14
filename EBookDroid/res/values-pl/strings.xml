@@ -300,7 +300,7 @@
    <string name="half_page">Połowa strony</string>
    <string name="by_pages">Co stronę</string>
    <string name="by_screans">Co ekran</string>
-   <string name="of_screen">ekranu</string>
+   <string name="of_screen">Ekranu</string>
    <string name="custom_value">Wartość niestandardowa</string>
    <string name="automatic_page_flipping">Automatyczne przewijanie stron</string>
    <string name="interval_sec_">Interwał (sek)</string>
@@ -482,4 +482,5 @@
    <string name="librera_cloud">Chmura Librera</string>
    <string name="hide_search_bar">Ukryj pasek wyszukiwania</string>
    <string name="show_search_bar">Pokaż pasek wyszukiwania</string>
+   <string name="enable_swipe_gestures_for_pages">Włącz gesty dla przewracania stron</string>
 </resources>

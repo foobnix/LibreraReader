@@ -237,12 +237,27 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/simple_scroll_animation" />
-        
-        <CheckBox
-            android:id="@+id/isDisableSwipe"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/disable_swipe_gestures_for_page_paging" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" >
+
+            <CheckBox
+                android:id="@+id/isEnableSwipeGestures"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/enable_swipe_gestures_for_pages" />
+
+            <ImageView
+                android:padding="4dip"
+                android:background="@drawable/bg_clickable"
+                android:id="@+id/isSwipeGestureReverse"
+                android:layout_width="@dimen/wh_button_small"
+                android:layout_height="@dimen/wh_button_small"
+                android:src="@drawable/glyphicons_21_arrow_down"
+                android:tint="@color/link_color" />
+        </LinearLayout>
 
         <CheckBox
             android:id="@+id/isScrollSpeedByVolumeKeys"
@@ -300,7 +315,6 @@
                 android:textSize="14sp"
                 android:textStyle="bold" />
         </LinearLayout>
-
 
         <LinearLayout
             android:layout_width="match_parent"

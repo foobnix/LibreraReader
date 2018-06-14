@@ -2,8 +2,9 @@
 
 ant clean-apk
 
-ant arm droid
-ant arm64 droid
+./link_to_mupdf_1.11.sh
+
+ant arm+arm64 droid
 ant x86 droid
 
 ./remove_all.sh

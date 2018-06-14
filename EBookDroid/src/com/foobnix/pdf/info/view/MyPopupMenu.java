@@ -8,6 +8,7 @@ import com.foobnix.android.utils.Dips;
 import com.foobnix.android.utils.Keyboards;
 import com.foobnix.android.utils.LOG;
 import com.foobnix.android.utils.TxtUtils;
+import com.foobnix.pdf.info.ADS;
 import com.foobnix.pdf.info.R;
 import com.foobnix.pdf.info.TintUtil;
 import com.foobnix.pdf.info.model.BookCSS;
@@ -96,6 +97,13 @@ public class MyPopupMenu {
     private OnDismissListener onDismissListener;
 
     public void show(int pos) {
+        try {
+            if (c instanceof MainTabs2) {
+                ADS.hideAdsTemp((Activity) c);
+            }
+        } catch (Exception e) {
+            LOG.e(e);
+        }
 
         final ListPopupWindow p1 = new ListPopupWindow(c);
         p1.setModal(true);
@@ -118,6 +126,7 @@ public class MyPopupMenu {
                 }
 
             }
+
         });
 
         BaseItemLayoutAdapter<Menu> a = new BaseItemLayoutAdapter<Menu>(c, R.layout.item_dict_line, list) {
