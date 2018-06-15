@@ -33,6 +33,11 @@ html, body {
 .lang{  
   font-size:14px;
 }
+h2{
+  font-size: 0.8em;
+}
+
+
 .sidebar li {  
   font-size:14px;
 }
