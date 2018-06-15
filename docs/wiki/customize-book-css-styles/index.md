@@ -18,7 +18,7 @@ __*Book preferences -> Reading Settings*__
 
 * 1 - Change style modes or edit custom CSS styles
 * 2 - Document styles mode
-* 3 - Edit custom CSS
+* 3 - Edit custom user CSS
 
 |1|2|3|
 |-|-|-|
