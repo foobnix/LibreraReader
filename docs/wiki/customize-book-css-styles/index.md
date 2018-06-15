@@ -27,7 +27,7 @@ __*Book preferences -> Reading Settings*__
 
 By default enable Document and User styles together
 
-For some books with code samples is easy to change code block size changing custom css
+For some books with code samples is easy to change code block size with user css
 <pre>
 {white-space: pre; font-size: 0.7em;} //  pre -  without break lines
 </pre>
