@@ -1,7 +1,7 @@
 ---
 layout: main
 ---
-![](logo.jpg)
+![](/css/logo-line.jpg)
 
 # Menu
   

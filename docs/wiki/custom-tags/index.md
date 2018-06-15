@@ -1,6 +1,7 @@
 ---
 layout: main
 ---
+[FAQ](/wiki/faq)
 
 # Create custom tags
 

@@ -1,16 +1,13 @@
-
 * [About Librera](/wiki/about#en) [(ru)](/wiki/about#ru)
     * Specification
     * History
     * Resources
-* FAQ 
-    * [Create custom tags](/wiki/custom-tags#en) [(ru)](/wiki/custom-tags#ru)
-    * [Customize book css styles](/wiki/customize-book-css-styles#en) [(ru)](/wiki/customize-book-css-styles#ru)
+{% include faq.md %}
 * Guide
     * Library screen
-        * Left menu
-            * Library settings (ru) 
-            * App preferences (ru)
+        * [Left menu](/wiki/left-menu#en) [(ru)](/wiki/left-menu#ru)
+            * [Library settings](/wiki/left-menu/library-settings#en)
+            * [App preferences](/wiki/left-menu/app-preferences#en)
         * Library tab
         * Folders tab
         * Recent tab
