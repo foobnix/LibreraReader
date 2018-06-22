@@ -32,10 +32,10 @@
    <string name="show_the_dialog_what_is_new_for_updates">程序更新说明</string>
    <string name="what_is_new_in">说明</string>
    <string name="full_list_of_changes_with_images_web_pdf_">下载官网PDF格式更新记录...</string>
-   <string name="search_for_text_in_documents">多文件中搜索</string>
+   <string name="search_for_text_in_documents">在多个文件中进行文本搜索</string>
    <string name="search_in_the_subfolders">子文件夹</string>
    <string name="stop">停止</string>
-   <string name="document_converter_online_">文件格式在线转换</string>
+   <string name="document_converter_online_">本地文件在线进行格式转换</string>
    <string name="book_covers">书籍封面</string>
    <string name="cover_image_size">封面大小</string>
    <string name="column_count">列数</string>
