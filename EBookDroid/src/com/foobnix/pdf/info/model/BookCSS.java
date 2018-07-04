@@ -514,7 +514,7 @@ public class BookCSS {
 
         // FB2 END
 
-        builder.append("p,div,body{");
+        builder.append("p,div,span, body{");
         builder.append(String.format("background-color:%s !important;", backgroundColor));
         builder.append(String.format("color:%s !important;", textColor));
         builder.append(String.format("line-height:%s !important;", em(lineHeight)));
