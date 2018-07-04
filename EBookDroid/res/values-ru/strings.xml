@@ -425,7 +425,6 @@
    <string name="keywords">Ключевые слова</string>
    <string name="number">Число страниц</string>
    <string name="percent">Процент прочитанного</string>
-   <string name="reading_progress">Показывать в строке</string>
    <string name="awards">Награды</string>
    <string name="close_book_and_application">Закрыть книгу и приложение</string>
    <string name="percent_and_number">Процент и число страниц</string>
