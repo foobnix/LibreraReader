@@ -14,7 +14,7 @@ public class FileMetaComparators {
         @Override
         public int compare(FileMeta o1, FileMeta o2) {
             try {
-                return o1.getPath().compareTo(o2.getPath());
+                return String.CASE_INSENSITIVE_ORDER.compare(o1.getPath(), o2.getPath());
             } catch (Exception e) {
                 LOG.e(e);
                 return 0;
@@ -49,7 +49,7 @@ public class FileMetaComparators {
         @Override
         public int compare(FileMeta o1, FileMeta o2) {
             try {
-                return o1.getExt().compareTo(o2.getExt());
+                return String.CASE_INSENSITIVE_ORDER.compare(o1.getExt(), o2.getExt());
             } catch (Exception e) {
                 LOG.e(e);
                 return 0;
