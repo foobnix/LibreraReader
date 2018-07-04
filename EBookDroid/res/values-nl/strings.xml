@@ -483,4 +483,5 @@
    <string name="hide_search_bar">Zoekbalk verbergen</string>
    <string name="show_search_bar">Toon zoekbalk</string>
    <string name="enable_swipe_gestures_for_pages">Schakel gebaren in voor het omslaan van pagina\'s</string>
+   <string name="never">Nooit</string>
 </resources>

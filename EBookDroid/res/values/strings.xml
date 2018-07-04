@@ -1,6 +1,6 @@
 <resources>
    <string name="___LIBRARY___SETTINGS___SECTION___"></string>
-   <string name="library_settings">Library settings</string>
+   <string name="library_settings">Library Settings</string>
    <string name="scan_device_for_new_books">Folders to scan for new books</string>
    <string name="add_folder">Add folder</string>
    <string name="archives">Archives</string>
@@ -8,7 +8,7 @@
    <string name="you_need_to_update_the_library">Now update Library to apply changes</string>
    <string name="in_the_author_s_name_first_the_surname">Author\'s last name, first name</string>
    <string name="orientation">Orientation</string>
-   <string name="automatic">Automatic</string>
+   <string name="automatic">Auto</string>
    <string name="landscape">Landscape</string>
    <string name="portrait">Portrait</string>
    <string name="landscape_180">Landscape (flipped)</string>
@@ -36,7 +36,7 @@
    <string name="search_in_the_subfolders">Include subfolders</string>
    <string name="stop">Stop</string>
    <string name="document_converter_online_">Online document converter</string>
-   <string name="book_covers">Book covers</string>
+   <string name="book_covers">Book Covers</string>
    <string name="cover_image_size">Thumbnails size</string>
    <string name="column_count">Columns count</string>
    <string name="show_book_covers">Show book covers</string>
@@ -115,7 +115,7 @@
    <string name="next_page">Next page</string>
    <string name="previous_page">Previous Page</string>
    <string name="db_do_nothing">Do nothing</string>
-   <string name="remind_about_rest_every">Remind to rest every (min)</string>
+   <string name="remind_about_rest_every">Remind to rest every</string>
    <string name="action_on_double_tap">Double tap (center)</string>
    <string name="db_auto_scroll">Auto-scroll</string>
    <string name="opening_book_with_losed_lock">Lock page in place</string>
@@ -257,7 +257,7 @@
    <string name="delete">Delete</string>
    <string name="remove_from_library">Remove from Library</string>
    <string name="send_snapshot_of_the_page">Send page</string>
-   <string name="file_info">File Info</string>
+   <string name="file_info">File info</string>
    <string name="archive_files">Archive files</string>
    <string name="open_file">Open file</string>
    <string name="read_a_book">Read now!</string>
@@ -314,7 +314,7 @@
    <string name="sound_volume">Volume</string>
    <string name="ongoing_notification">Show icon in Notification Bar</string>
    <string name="next">Next Page</string>
-   <string name="stop_reading_timer_">Stop reading after (min)</string>
+   <string name="stop_reading_timer_">Stop reading after</string>
    <string name="start">Set</string>
    <string name="reading_will_be_stopped">Reading will stop at</string>
    <string name="speak_into_file_wav_">Record TTS</string>
@@ -410,7 +410,7 @@
    <string name="start_recording">Start</string>
    <string name="favorite_folders_and_books">Favorite books and folders</string>
    <string name="don_t_show_this_dialog">Don\'t show this window</string>
-   <string name="show_the_book_close_dialog">Show \'close book\' prompt</string>
+   <string name="show_the_book_close_dialog">Show \'Close Book\' prompt</string>
    <string name="search_completed">Search is completed</string>
    <string name="you_can_search_only_one_word">You can search one word only</string>
    <string name="passwords_do_not_match">Passwords do not match</string>
@@ -424,11 +424,11 @@
    <string name="subject">Subject</string>
    <string name="keywords">Keywords</string>
    <string name="number">Page number</string>
-   <string name="percent">Percent</string>
+   <string name="percent">Progress (%)</string>
    <string name="reading_progress">Reading progress in</string>
    <string name="awards">Awards</string>
    <string name="close_book_and_application">Close book and exit App</string>
-   <string name="percent_and_number">Percent and page number</string>
+   <string name="percent_and_number">Progress and page number</string>
    <string name="current_page">Current page</string>
    <string name="backup_folder">Backup folder</string>
    <string name="audio_books_folder">Audio-books folder</string>
@@ -483,4 +483,5 @@
    <string name="hide_search_bar">Hide search bar</string>
    <string name="show_search_bar">Show search bar</string>
    <string name="enable_swipe_gestures_for_pages">Enable gestures to flip pages</string>
+   <string name="never">Never</string>
 </resources>

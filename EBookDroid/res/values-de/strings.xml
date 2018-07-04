@@ -483,4 +483,5 @@
    <string name="hide_search_bar">Suchleiste ausblenden</string>
    <string name="show_search_bar">Suchleiste anzeigen</string>
    <string name="enable_swipe_gestures_for_pages">Aktivieren Sie Gesten für das Umblättern von Seiten</string>
+   <string name="never">Noch nie</string>
 </resources>

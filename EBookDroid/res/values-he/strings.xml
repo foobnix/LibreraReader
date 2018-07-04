@@ -483,4 +483,5 @@
    <string name="hide_search_bar">הסתר את סרגל החיפוש</string>
    <string name="show_search_bar">הצג סרגל חיפוש</string>
    <string name="enable_swipe_gestures_for_pages">אפשר תנועות עבור דפים המדלפים</string>
+   <string name="never">לעולם לא</string>
 </resources>

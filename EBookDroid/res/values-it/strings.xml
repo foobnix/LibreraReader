@@ -483,4 +483,5 @@
    <string name="hide_search_bar">Nascondi la barra di ricerca</string>
    <string name="show_search_bar">Mostra barra di ricerca</string>
    <string name="enable_swipe_gestures_for_pages">Abilita i gesti per sfogliare le pagine</string>
+   <string name="never">Mai</string>
 </resources>

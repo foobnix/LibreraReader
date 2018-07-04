@@ -483,4 +483,5 @@
    <string name="hide_search_bar">Скрыть панель поиска</string>
    <string name="show_search_bar">Показать панель поиска</string>
    <string name="enable_swipe_gestures_for_pages">Включить жесты для перелистывания страниц</string>
+   <string name="never">Никогда</string>
 </resources>

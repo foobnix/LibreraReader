@@ -483,4 +483,5 @@
    <string name="hide_search_bar">Dölj sökfältet</string>
    <string name="show_search_bar">Visa sökfältet</string>
    <string name="enable_swipe_gestures_for_pages">Aktivera gester för sidor som bläddrar</string>
+   <string name="never">Aldrig</string>
 </resources>

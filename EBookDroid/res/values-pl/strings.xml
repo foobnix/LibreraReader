@@ -483,4 +483,5 @@
    <string name="hide_search_bar">Ukryj pasek wyszukiwania</string>
    <string name="show_search_bar">Pokaż pasek wyszukiwania</string>
    <string name="enable_swipe_gestures_for_pages">Włącz gesty dla przewracania stron</string>
+   <string name="never">Nigdy</string>
 </resources>

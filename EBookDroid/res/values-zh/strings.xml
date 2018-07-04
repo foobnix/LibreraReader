@@ -483,4 +483,5 @@
    <string name="hide_search_bar">隐藏搜索栏</string>
    <string name="show_search_bar">显示搜索栏</string>
    <string name="enable_swipe_gestures_for_pages">启用翻页手势</string>
+   <string name="never">决不</string>
 </resources>

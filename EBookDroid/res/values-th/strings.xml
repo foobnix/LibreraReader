@@ -483,4 +483,5 @@
    <string name="hide_search_bar">ซ่อนแถบค้นหา</string>
    <string name="show_search_bar">แสดงแถบค้นหา</string>
    <string name="enable_swipe_gestures_for_pages">เปิดใช้ท่าทางสัมผัสสำหรับการพลิกหน้า</string>
+   <string name="never">ไม่เคย</string>
 </resources>

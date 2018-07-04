@@ -3149,7 +3149,7 @@ public class DragingDialogs {
                 final TextView remindRestTime = (TextView) inflate.findViewById(R.id.remindRestTime);
                 final String minutesString = controller.getString(R.string.minutes).toLowerCase(Locale.US);
                 if (AppState.get().remindRestTime == -1) {
-                    remindRestTime.setText(R.string.no);
+                    remindRestTime.setText(R.string.never);
                 } else {
                     remindRestTime.setText(AppState.get().remindRestTime + " " + minutesString);
                 }
@@ -3161,12 +3161,12 @@ public class DragingDialogs {
                     public void onClick(View v) {
                         final PopupMenu popupMenu = new PopupMenu(v.getContext(), v);
 
-                        popupMenu.getMenu().add(R.string.no).setOnMenuItemClickListener(new OnMenuItemClickListener() {
+                        popupMenu.getMenu().add(R.string.never).setOnMenuItemClickListener(new OnMenuItemClickListener() {
 
                             @Override
                             public boolean onMenuItemClick(MenuItem item) {
                                 AppState.get().remindRestTime = -1;
-                                remindRestTime.setText(R.string.no);
+                                remindRestTime.setText(R.string.never);
                                 TxtUtils.underlineTextView(remindRestTime);
                                 return false;
                             }

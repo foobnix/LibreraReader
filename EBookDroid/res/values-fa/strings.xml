@@ -483,4 +483,5 @@
    <string name="hide_search_bar">پنهان کردن نوار جستجو</string>
    <string name="show_search_bar">نمایش نوار جستجو</string>
    <string name="enable_swipe_gestures_for_pages">فعال کردن حرکات برای صفحات کپی کردن</string>
+   <string name="never">هرگز</string>
 </resources>

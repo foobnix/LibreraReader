@@ -483,4 +483,5 @@
    <string name="hide_search_bar">Skryť panel vyhľadávania</string>
    <string name="show_search_bar">Zobraziť panel vyhľadávania</string>
    <string name="enable_swipe_gestures_for_pages">Povoliť gestá pre preklopenie stránok</string>
+   <string name="never">Nikdy</string>
 </resources>

@@ -483,4 +483,5 @@
    <string name="hide_search_bar">Slėpti paieškos juostą</string>
    <string name="show_search_bar">Rodyti paieškos juostą</string>
    <string name="enable_swipe_gestures_for_pages">Įgalinti šriftus puslapiams klipinti</string>
+   <string name="never">Niekada</string>
 </resources>

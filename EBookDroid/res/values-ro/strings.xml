@@ -483,4 +483,5 @@
    <string name="hide_search_bar">Ascundeți bara de căutare</string>
    <string name="show_search_bar">Afișați bara de căutare</string>
    <string name="enable_swipe_gestures_for_pages">Activați gesturile pentru afișarea paginilor</string>
+   <string name="never">Nu</string>
 </resources>

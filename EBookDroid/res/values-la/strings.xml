@@ -483,4 +483,5 @@
    <string name="hide_search_bar">Investigationis occultare vectes</string>
    <string name="show_search_bar">Show quaero talea</string>
    <string name="enable_swipe_gestures_for_pages">Paginae enable habitus flipping</string>
+   <string name="never">Numquam</string>
 </resources>
