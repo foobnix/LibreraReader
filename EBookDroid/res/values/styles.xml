@@ -67,11 +67,13 @@
           <item name="android:minEms">4</item>
           <item name="android:singleLine">true</item>
           <item name="android:ellipsize">end</item>
-          <item name="android:textColor">@color/link_color</item>
+          <item name="android:tag">textLink</item>
+          <item name="android:textColor">?android:attr/textColorLink</item>
           <item name="android:background">?android:attr/selectableItemBackground</item>
      </style>
        <style name="textLinkWhite" parent="textLink">
-          <item name="android:textColor">#ccffffff</item>
+         <item name="android:tag">textLinkWhite</item>
+          <item name="android:textColor">#ffffff</item>
      </style>
      
      <style name="textLinkStyle">

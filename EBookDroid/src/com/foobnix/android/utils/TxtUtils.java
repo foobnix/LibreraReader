@@ -15,6 +15,8 @@ import com.foobnix.pdf.info.wrapper.AppState;
 import com.foobnix.sys.TempHolder;
 
 import android.annotation.TargetApi;
+import android.content.res.TypedArray;
+import android.graphics.Color;
 import android.graphics.Typeface;
 import android.net.Uri;
 import android.os.Build;
@@ -22,6 +24,8 @@ import android.support.v4.util.Pair;
 import android.text.Html;
 import android.text.Spanned;
 import android.text.SpannedString;
+import android.view.View;
+import android.view.ViewGroup;
 import android.widget.TextView;
 
 public class TxtUtils {
@@ -741,6 +745,42 @@ public class TxtUtils {
             return substring;
         }
         return substring + " ...";
+
+    }
+
+    public static void updateAllLinks(View parent) {
+        try {
+            if (parent instanceof ViewGroup) {
+                if (AppState.get().isUiTextColor) {
+                    TxtUtils.updateAllLinks((ViewGroup) parent, AppState.get().uiTextColor);
+                } else {
+                    TypedArray out = parent.getContext().getTheme().obtainStyledAttributes(new int[] { android.R.attr.textColorLink });
+                    int systemLinkColor = out.getColor(0, 0);
+
+                    TxtUtils.updateAllLinks((ViewGroup) parent, systemLinkColor);
+                }
+            } else {
+                LOG.d("updateAllLinks parent is not ViewGroup");
+            }
+        } catch (Exception e) {
+            LOG.e(e);
+        }
+
+    }
+
+    public static void updateAllLinks(ViewGroup parent, int color) {
+        int childCount = parent.getChildCount();
+        for (int i = 0; i < childCount; i++) {
+            View child = parent.getChildAt(i);
+            if (child instanceof ViewGroup) {
+                updateAllLinks((ViewGroup) child, color);
+            }
+            if (child instanceof TextView) {
+                if ("textLink".equals(child.getTag())) {
+                    ((TextView) child).setTextColor(color);
+                }
+            }
+        }
 
     }
 

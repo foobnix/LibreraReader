@@ -56,6 +56,7 @@ import android.content.DialogInterface.OnDismissListener;
 import android.content.Intent;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager.NameNotFoundException;
+import android.content.res.TypedArray;
 import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
@@ -64,6 +65,7 @@ import android.support.v4.content.LocalBroadcastManager;
 import android.support.v4.util.Pair;
 import android.support.v4.widget.DrawerLayout;
 import android.text.Html;
+import android.util.TypedValue;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
@@ -412,7 +414,6 @@ public class PrefFragment2 extends UIFragment {
         // "https://www.dropbox.com/sh/8el7kon2sbx46w8/xm3qoHYT7n");
         // }
         // });
-
 
         inflate.findViewById(R.id.onKeyCode).setOnClickListener(new OnClickListener() {
 
@@ -1434,6 +1435,9 @@ public class PrefFragment2 extends UIFragment {
                         onTintChanged();
                         sendNotifyTintChanged();
                         ((MainTabs2) getActivity()).updateCurrentFragment();
+
+                        TxtUtils.updateAllLinks((ViewGroup) inflate.getRootView());
+
                     }
                 });
             }

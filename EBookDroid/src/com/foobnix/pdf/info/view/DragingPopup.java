@@ -260,7 +260,9 @@ public abstract class DragingPopup {
             popupView.findViewById(R.id.onTitleAction1).setVisibility(View.GONE);
         }
 
-        popupContent.addView(getContentView(inflater));
+        View contentView = getContentView(inflater);
+        TxtUtils.updateAllLinks(contentView);
+        popupContent.addView(contentView);
 
         ImageView onIconAction = (ImageView) popupView.findViewById(R.id.onIconAction);
         if (titlePopupMenu == null) {
