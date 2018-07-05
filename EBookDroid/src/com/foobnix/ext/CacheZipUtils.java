@@ -21,6 +21,7 @@ import java.util.zip.ZipOutputStream;
 import org.apache.commons.compress.archivers.zip.ZipArchiveEntry;
 import org.apache.commons.compress.archivers.zip.ZipArchiveInputStream;
 import org.ebookdroid.BookType;
+import org.ebookdroid.common.cache.CacheManager;
 
 import com.foobnix.android.utils.LOG;
 import com.foobnix.pdf.info.ExtUtils;
@@ -94,6 +95,7 @@ public class CacheZipUtils {
 
         CacheZipUtils.createAllCacheDirs();
         CacheDir.createCacheDirs();
+        CacheManager.clearAllTemp();
     }
 
     public static void createAllCacheDirs() {

@@ -484,4 +484,5 @@
    <string name="enable_swipe_gestures_for_pages">Saygısız sayfalar için hareketleri etkinleştir</string>
    <string name="never">Asla</string>
    <string name="show_notifications">Bildirimleri göster</string>
+   <string name="general_settings">Genel Ayarlar</string>
 </resources>

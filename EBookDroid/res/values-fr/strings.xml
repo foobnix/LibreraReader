@@ -484,4 +484,5 @@
    <string name="enable_swipe_gestures_for_pages">Activer les gestes pour les pages retournées</string>
    <string name="never">Jamais</string>
    <string name="show_notifications">Afficher les notifications</string>
+   <string name="general_settings">Réglages généraux</string>
 </resources>

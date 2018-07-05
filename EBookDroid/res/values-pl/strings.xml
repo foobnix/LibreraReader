@@ -484,4 +484,5 @@
    <string name="enable_swipe_gestures_for_pages">Włącz gesty dla przewracania stron</string>
    <string name="never">Nigdy</string>
    <string name="show_notifications">Pokaż powiadomienia</string>
+   <string name="general_settings">Ustawienia główne</string>
 </resources>

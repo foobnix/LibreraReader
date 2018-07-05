@@ -484,4 +484,5 @@
    <string name="enable_swipe_gestures_for_pages">Povoliť gestá pre preklopenie stránok</string>
    <string name="never">Nikdy</string>
    <string name="show_notifications">Zobraziť upozornenia</string>
+   <string name="general_settings">Všeobecné nastavenia</string>
 </resources>

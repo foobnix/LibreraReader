@@ -484,4 +484,5 @@
    <string name="enable_swipe_gestures_for_pages">مكّن الإيماءات لصفحات التقليب</string>
    <string name="never">أبدا</string>
    <string name="show_notifications">عرض الإخطارات</string>
+   <string name="general_settings">الاعدادات العامة</string>
 </resources>

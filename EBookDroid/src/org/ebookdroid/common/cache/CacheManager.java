@@ -15,6 +15,7 @@ import org.ebookdroid.LibreraApp;
 import org.emdev.utils.StringUtils;
 
 import com.foobnix.android.utils.LOG;
+import com.foobnix.ext.CacheZipUtils;
 import com.foobnix.pdf.info.ExtUtils;
 import com.foobnix.pdf.info.wrapper.AppState;
 
@@ -96,13 +97,24 @@ public class CacheManager {
         final File cacheDir = s_context.getFilesDir();
         // final File tempfile = File.createTempFile("temp", ext, cacheDir);
         final File tempfile = new File(cacheDir, ExtUtils.getFileName(ext));
-        LOG.d("TEMP FILE", tempfile);
+        LOG.d("TEMP_FILE", tempfile);
         tempfile.deleteOnExit();
 
         final InputStream source = s_context.getContentResolver().openInputStream(uri);
         copy(source, new FileOutputStream(tempfile));
 
         return tempfile;
+    }
+
+    public static void clearAllTemp() {
+        try {
+            final File cacheDir = s_context.getFilesDir();
+            CacheZipUtils.removeFiles(cacheDir.listFiles());
+            LOG.d("remove TEMP_FILE files");
+        } catch (Exception e) {
+            LOG.e(e);
+        }
+
     }
 
     public static void init(Context eBookDroidApp) {

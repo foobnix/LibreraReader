@@ -484,4 +484,5 @@
    <string name="enable_swipe_gestures_for_pages">אפשר תנועות עבור דפים המדלפים</string>
    <string name="never">לעולם לא</string>
    <string name="show_notifications">תראה התראות</string>
+   <string name="general_settings">הגדרות כלליות</string>
 </resources>

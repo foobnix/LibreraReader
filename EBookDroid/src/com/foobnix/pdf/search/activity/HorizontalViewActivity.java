@@ -1544,7 +1544,14 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
 
             @Override
             public void onClick(View v) {
-                nextPage();
+                if (AppState.get().tapZoneBottom == AppState.TAP_DO_NOTHING) {
+                    // do nothing
+                } else if (AppState.get().tapZoneBottom == AppState.TAP_NEXT_PAGE) {
+                    nextPage();
+                } else if (AppState.get().tapZoneBottom == AppState.TAP_PREV_PAGE) {
+                    prevPage();
+                }
+
             }
         });
 

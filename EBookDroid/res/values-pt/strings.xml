@@ -484,4 +484,5 @@
    <string name="enable_swipe_gestures_for_pages">Ativar gestos para páginas lançando</string>
    <string name="never">Nunca</string>
    <string name="show_notifications">Mostrar notificações</string>
+   <string name="general_settings">Configurações Gerais</string>
 </resources>

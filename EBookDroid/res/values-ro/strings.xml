@@ -484,4 +484,5 @@
    <string name="enable_swipe_gestures_for_pages">Activați gesturile pentru afișarea paginilor</string>
    <string name="never">Nu</string>
    <string name="show_notifications">Arata notificari</string>
+   <string name="general_settings">Setari generale</string>
 </resources>

@@ -484,4 +484,5 @@
    <string name="enable_swipe_gestures_for_pages">فعال کردن حرکات برای صفحات کپی کردن</string>
    <string name="never">هرگز</string>
    <string name="show_notifications">نشان دادن اعلانات</string>
+   <string name="general_settings">تنظیمات عمومی</string>
 </resources>

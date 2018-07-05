@@ -44,6 +44,8 @@ public class LibreraApp extends Application {
         super.onCreate();
 
         context = getApplicationContext();
+        LOG.isEnable = getResources().getBoolean(R.bool.is_log_enable);
+
         AppsConfig.init(getApplicationContext());
 
         if (AppsConfig.MUPDF_VERSION == AppsConfig.MUPDF_1_12) {
@@ -59,8 +61,6 @@ public class LibreraApp extends Application {
         CacheZipUtils.init(context);
         ExtUtils.init(getApplicationContext());
         IMG.init(getApplicationContext());
-
-        LOG.isEnable = getResources().getBoolean(R.bool.is_log_enable);
 
         TintUtil.init();
 

@@ -484,4 +484,5 @@
    <string name="enable_swipe_gestures_for_pages">पृष्ठों को फिसलने के लिए जेस्चर सक्षम करें</string>
    <string name="never">कभी नहीँ</string>
    <string name="show_notifications">सूचनाएं दिखाएं</string>
+   <string name="general_settings">सामान्य सेटिंग्स</string>
 </resources>

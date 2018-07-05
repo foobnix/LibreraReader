@@ -484,4 +484,5 @@
    <string name="enable_swipe_gestures_for_pages">ページ反転のためのジェスチャーを有効にする</string>
    <string name="never">絶対に</string>
    <string name="show_notifications">通知を表示</string>
+   <string name="general_settings">一般設定</string>
 </resources>

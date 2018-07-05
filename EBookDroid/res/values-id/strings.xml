@@ -484,4 +484,5 @@
    <string name="enable_swipe_gestures_for_pages">Aktifkan isyarat untuk membalik halaman</string>
    <string name="never">Tak pernah</string>
    <string name="show_notifications">Tampilkan pemberitahuan</string>
+   <string name="general_settings">Pengaturan Umum</string>
 </resources>

@@ -484,4 +484,5 @@
    <string name="enable_swipe_gestures_for_pages">เปิดใช้ท่าทางสัมผัสสำหรับการพลิกหน้า</string>
    <string name="never">ไม่เคย</string>
    <string name="show_notifications">แสดงการแจ้งเตือน</string>
+   <string name="general_settings">การตั้งค่าทั่วไป</string>
 </resources>

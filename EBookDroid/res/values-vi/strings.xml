@@ -484,4 +484,5 @@
    <string name="enable_swipe_gestures_for_pages">Bật cử chỉ để lật trang</string>
    <string name="never">Không bao giờ</string>
    <string name="show_notifications">Hiển thị thông báo</string>
+   <string name="general_settings">Cài đặt chung</string>
 </resources>

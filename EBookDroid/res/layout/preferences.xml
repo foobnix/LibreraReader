@@ -251,7 +251,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="4dip"
             android:background="@drawable/bg_search_second"
-            android:text="@string/preferences" />
+            android:text="@string/general_settings" />
 
         <LinearLayout
             android:layout_width="wrap_content"

@@ -484,4 +484,5 @@
    <string name="enable_swipe_gestures_for_pages">Abilita i gesti per sfogliare le pagine</string>
    <string name="never">Mai</string>
    <string name="show_notifications">Mostra notifiche</string>
+   <string name="general_settings">Impostazioni generali</string>
 </resources>

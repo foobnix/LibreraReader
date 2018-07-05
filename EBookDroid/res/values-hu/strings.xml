@@ -484,4 +484,5 @@
    <string name="enable_swipe_gestures_for_pages">Engedélyezze a gesztusokat a lapok átlapolásához</string>
    <string name="never">Soha</string>
    <string name="show_notifications">Értesítések megjelenítése</string>
+   <string name="general_settings">Általános beállítások</string>
 </resources>

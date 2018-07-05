@@ -484,4 +484,5 @@
    <string name="enable_swipe_gestures_for_pages">启用翻页手势</string>
    <string name="never">决不</string>
    <string name="show_notifications">显示通知</string>
+   <string name="general_settings">常规设置</string>
 </resources>

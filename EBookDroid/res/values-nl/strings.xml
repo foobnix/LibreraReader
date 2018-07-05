@@ -484,4 +484,5 @@
    <string name="enable_swipe_gestures_for_pages">Schakel gebaren in voor het omslaan van pagina\'s</string>
    <string name="never">Nooit</string>
    <string name="show_notifications">Toon meldingen</string>
+   <string name="general_settings">Algemene instellingen</string>
 </resources>

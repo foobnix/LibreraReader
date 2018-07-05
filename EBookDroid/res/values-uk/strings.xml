@@ -484,4 +484,5 @@
    <string name="enable_swipe_gestures_for_pages">Увімкнути жести для перегортання сторінок</string>
    <string name="never">Ніколи</string>
    <string name="show_notifications">Показати сповіщення</string>
+   <string name="general_settings">Загальні налаштування</string>
 </resources>

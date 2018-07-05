@@ -484,4 +484,5 @@
    <string name="enable_swipe_gestures_for_pages">Ota käyttöön liikkeiden kääntäminen sivulle</string>
    <string name="never">Ei koskaan</string>
    <string name="show_notifications">Näytä ilmoitukset</string>
+   <string name="general_settings">Yleiset asetukset</string>
 </resources>

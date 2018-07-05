@@ -484,4 +484,5 @@
    <string name="enable_swipe_gestures_for_pages">Įgalinti šriftus puslapiams klipinti</string>
    <string name="never">Niekada</string>
    <string name="show_notifications">Rodyti pranešimus</string>
+   <string name="general_settings">Bendrieji nustatymai</string>
 </resources>

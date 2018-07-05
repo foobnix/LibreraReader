@@ -484,4 +484,5 @@
    <string name="enable_swipe_gestures_for_pages">Aktivera gester för sidor som bläddrar</string>
    <string name="never">Aldrig</string>
    <string name="show_notifications">Visa notifikationer</string>
+   <string name="general_settings">Allmänna Inställningar</string>
 </resources>

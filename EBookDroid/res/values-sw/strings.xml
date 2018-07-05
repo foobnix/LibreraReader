@@ -484,4 +484,5 @@
    <string name="enable_swipe_gestures_for_pages">Wezesha ishara za kurasa za kugeuka</string>
    <string name="never">Kamwe</string>
    <string name="show_notifications">Onyesha arifa</string>
+   <string name="general_settings">Mazingira ya Jumla</string>
 </resources>
