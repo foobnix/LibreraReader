@@ -109,6 +109,7 @@ public class CacheManager {
     public static void clearAllTemp() {
         try {
             final File cacheDir = s_context.getFilesDir();
+            LOG.d("Cache dir for TEMP_FILE", cacheDir.getPath());
             CacheZipUtils.removeFiles(cacheDir.listFiles());
             LOG.d("remove TEMP_FILE files");
         } catch (Exception e) {

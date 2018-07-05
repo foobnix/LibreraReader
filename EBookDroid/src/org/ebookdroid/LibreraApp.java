@@ -44,9 +44,10 @@ public class LibreraApp extends Application {
         super.onCreate();
 
         context = getApplicationContext();
+
         LOG.isEnable = getResources().getBoolean(R.bool.is_log_enable);
 
-        AppsConfig.init(getApplicationContext());
+        AppsConfig.init(this);
 
         if (AppsConfig.MUPDF_VERSION == AppsConfig.MUPDF_1_12) {
             int initNative = StructuredText.initNative();
@@ -54,18 +55,19 @@ public class LibreraApp extends Application {
         }
 
         TTSNotification.initChannels(this);
-        Dips.init(context);
+        Dips.init(this);
         AppDB.get().open(this);
         AppState.get().load(this);
         AppSharedPreferences.get().init(this);
-        CacheZipUtils.init(context);
-        ExtUtils.init(getApplicationContext());
-        IMG.init(getApplicationContext());
+        CacheManager.init(this);
+        CacheZipUtils.init(this);
+        ExtUtils.init(this);
+        IMG.init(this);
 
         TintUtil.init();
 
         SettingsManager.init(this);
-        CacheManager.init(this);
+
         Clouds.get().init(this);
 
         LOG.d("Build", "Build.MANUFACTURER", Build.MANUFACTURER);
@@ -101,7 +103,7 @@ public class LibreraApp extends Application {
                     e.printStackTrace();
                     if (e instanceof android.database.sqlite.SQLiteException) {
                         LOG.d("Drop-databases1");
-                        AppDB.get().dropCreateTables(getApplicationContext());
+                        AppDB.get().dropCreateTables(LibreraApp.this);
                         LOG.d("Drop-databases2");
                     }
                     try {
