@@ -483,4 +483,5 @@
    <string name="show_search_bar">Arama çubuğunu göster</string>
    <string name="enable_swipe_gestures_for_pages">Saygısız sayfalar için hareketleri etkinleştir</string>
    <string name="never">Asla</string>
+   <string name="show_notifications">Bildirimleri göster</string>
 </resources>

@@ -533,8 +533,7 @@ public class DragingDialogs {
                         }
 
                         timerStart.setText(TempHolder.get().timerFinishTime == 0 ? R.string.start : R.string.cancel);
-                        ttsPage.setText(
-                                TempHolder.get().timerFinishTime == 0 ? "" : controller.getString(R.string.reading_will_be_stopped) + " " + DateFormat.getTimeFormat(activity).format(TempHolder.get().timerFinishTime));
+                        ttsPage.setText(TempHolder.get().timerFinishTime == 0 ? "" : controller.getString(R.string.reading_will_be_stopped) + " " + DateFormat.getTimeFormat(activity).format(TempHolder.get().timerFinishTime));
                     }
                 });
 
@@ -714,6 +713,19 @@ public class DragingDialogs {
                     }
                 });
                 //
+
+                CheckBox showNotification = (CheckBox) view.findViewById(R.id.showNotification);
+                showNotification.setChecked(AppState.get().showNotification);
+                showNotification.setOnCheckedChangeListener(new OnCheckedChangeListener() {
+
+                    @Override
+                    public void onCheckedChanged(final CompoundButton buttonView, final boolean isChecked) {
+                        AppState.get().showNotification = isChecked;
+                        if (!isChecked) {
+                            TTSNotification.hideNotification();
+                        }
+                    }
+                });
 
                 CheckBox notificationOngoing = (CheckBox) view.findViewById(R.id.notificationOngoing);
                 notificationOngoing.setChecked(AppState.get().notificationOngoing);
@@ -1305,8 +1317,7 @@ public class DragingDialogs {
                     public void onClick(View v) {
                         TTSEngine.get().stop();
 
-                        TTSService.playBookPage(controller.getCurentPageFirst1() - 1, controller.getCurrentBook().getPath(), editText.getText().toString().trim(), controller.getBookWidth(), controller.getBookHeight(),
-                                AppState.get().fontSizeSp);
+                        TTSService.playBookPage(controller.getCurentPageFirst1() - 1, controller.getCurrentBook().getPath(), editText.getText().toString().trim(), controller.getBookWidth(), controller.getBookHeight(), AppState.get().fontSizeSp);
                     }
                 });
 
@@ -1395,7 +1406,6 @@ public class DragingDialogs {
                 }
                 all.addAll(searchList);
                 all.addAll(sendList);
-
 
                 final SharedPreferences sp = anchor.getContext().getSharedPreferences("lastDict", Context.MODE_PRIVATE);
                 final String lastID = sp.getString("last", "");
@@ -2792,7 +2802,6 @@ public class DragingDialogs {
                         isSwipeGestureReverse.setImageResource(AppState.get().isSwipeGestureReverse ? R.drawable.glyphicons_214_arrow_up : R.drawable.glyphicons_21_arrow_down);
                     }
                 });
-
 
                 CheckBox isVibration = (CheckBox) inflate.findViewById(R.id.isVibration);
                 isVibration.setChecked(AppState.get().isVibration);

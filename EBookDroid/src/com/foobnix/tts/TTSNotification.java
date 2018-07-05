@@ -62,6 +62,10 @@ public class TTSNotification {
         bookPath1 = bookPath;
         page1 = page;
         try {
+            if (!AppState.get().showNotification) {
+                hideNotification();
+                return;
+            }
             NotificationManager nm = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
 
             NotificationCompat.Builder builder = new NotificationCompat.Builder(context, DEFAULT);
@@ -91,7 +95,6 @@ public class TTSNotification {
                     .addAction(R.drawable.glyphicons_174_play, context.getString(R.string.to_read), read)//
                     .addAction(R.drawable.glyphicons_177_forward, context.getString(R.string.next), next)//
                     .setContentTitle(TxtUtils.getFileMetaBookName(fileMeta)) //
-                    .setDefaults(NotificationCompat.DEFAULT_ALL)//
                     .setContentText(context.getString(R.string.page) + " " + page); ///
 
             Notification n = builder.build(); //

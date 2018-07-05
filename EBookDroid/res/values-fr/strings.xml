@@ -483,4 +483,5 @@
    <string name="show_search_bar">Afficher la barre de recherche</string>
    <string name="enable_swipe_gestures_for_pages">Activer les gestes pour les pages retournées</string>
    <string name="never">Jamais</string>
+   <string name="show_notifications">Afficher les notifications</string>
 </resources>

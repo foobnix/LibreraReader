@@ -483,4 +483,5 @@
    <string name="show_search_bar">A keresősáv megjelenítése</string>
    <string name="enable_swipe_gestures_for_pages">Engedélyezze a gesztusokat a lapok átlapolásához</string>
    <string name="never">Soha</string>
+   <string name="show_notifications">Értesítések megjelenítése</string>
 </resources>

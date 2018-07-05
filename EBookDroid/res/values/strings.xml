@@ -483,4 +483,5 @@
    <string name="show_search_bar">Show search bar</string>
    <string name="enable_swipe_gestures_for_pages">Enable H/V swipes for page-turning</string>
    <string name="never">Never</string>
+   <string name="show_notifications">Show notifications</string>
 </resources>

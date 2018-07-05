@@ -483,4 +483,5 @@
    <string name="show_search_bar">Показать панель поиска</string>
    <string name="enable_swipe_gestures_for_pages">Листать страницы вертикальными свайпами (направление определяется стрелкой)</string>
    <string name="never">Никогда</string>
+   <string name="show_notifications">Показать уведомления</string>
 </resources>

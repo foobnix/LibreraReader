@@ -1,5 +1,7 @@
 package com.foobnix.tts;
 
+import java.io.IOException;
+
 import org.ebookdroid.LibreraApp;
 import org.ebookdroid.common.settings.SettingsManager;
 import org.ebookdroid.common.settings.books.BookSettings;
@@ -21,7 +23,9 @@ import android.app.PendingIntent;
 import android.app.Service;
 import android.content.Context;
 import android.content.Intent;
+import android.content.res.AssetFileDescriptor;
 import android.media.AudioManager;
+import android.media.MediaPlayer;
 import android.media.AudioManager.OnAudioFocusChangeListener;
 import android.os.Build;
 import android.os.IBinder;
@@ -55,7 +59,7 @@ public class TTSService extends Service {
     MediaSessionCompat mMediaSessionCompat;
     boolean isActivated;
 
-    @SuppressLint("NewApi")
+    @TargetApi(24)
     @Override
     public void onCreate() {
         LOG.d(TAG, "Create");
@@ -106,6 +110,20 @@ public class TTSService extends Service {
         // 0, 0f).build());
 
         TTSEngine.get().getTTS();
+
+        if (Build.VERSION.SDK_INT >= 24) {
+            MediaPlayer mp = new MediaPlayer();
+            try {
+                mp.setDataSource(getAssets().openFd("silence.mp3"));
+                mp.prepareAsync();
+                mp.start();
+                LOG.d("silence");
+            } catch (IOException e) {
+                LOG.d("silence error");
+                LOG.e(e);
+
+            }
+        }
 
     }
 

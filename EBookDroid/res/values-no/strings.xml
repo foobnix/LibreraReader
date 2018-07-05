@@ -483,4 +483,5 @@
    <string name="show_search_bar">Vis søkefelt</string>
    <string name="enable_swipe_gestures_for_pages">Aktiver bevegelser for sider som blinker</string>
    <string name="never">Aldri</string>
+   <string name="show_notifications">Vis varsler</string>
 </resources>
