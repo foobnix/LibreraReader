@@ -15,6 +15,7 @@ import com.foobnix.pdf.info.wrapper.AppState;
 import com.foobnix.sys.ImageExtractor;
 import com.foobnix.sys.TempHolder;
 
+import android.annotation.SuppressLint;
 import android.annotation.TargetApi;
 import android.app.PendingIntent;
 import android.app.Service;
@@ -54,6 +55,7 @@ public class TTSService extends Service {
     MediaSessionCompat mMediaSessionCompat;
     boolean isActivated;
 
+    @SuppressLint("NewApi")
     @Override
     public void onCreate() {
         LOG.d(TAG, "Create");
@@ -63,7 +65,13 @@ public class TTSService extends Service {
 
         AppState.get().load(getApplicationContext());
         mAudioManager = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
-        mAudioManager.requestAudioFocus(listener, AudioManager.STREAM_VOICE_CALL, AudioManager.AUDIOFOCUS_GAIN);
+
+        if (Build.VERSION.SDK_INT >= 26) {
+            // mAudioManager.requestAudioFocus(new
+            // AudioFocusRequest.Builder(AudioManager.AUDIOFOCUS_GAIN).setOnAudioFocusChangeListener(listener).build());
+        } else {
+        }
+        mAudioManager.requestAudioFocus(listener, AudioManager.STREAM_MUSIC, AudioManager.AUDIOFOCUS_GAIN);
 
         mMediaSessionCompat = new MediaSessionCompat(getApplicationContext(), "Tag");
         mMediaSessionCompat.setFlags(MediaSessionCompat.FLAG_HANDLES_MEDIA_BUTTONS | MediaSessionCompat.FLAG_HANDLES_TRANSPORT_CONTROLS);
@@ -92,6 +100,10 @@ public class TTSService extends Service {
         mediaButtonIntent.setClass(this, MediaButtonReceiver.class);
         PendingIntent pendingIntent = PendingIntent.getBroadcast(this, 0, mediaButtonIntent, 0);
         mMediaSessionCompat.setMediaButtonReceiver(pendingIntent);
+
+        // mMediaSessionCompat.setPlaybackState(new
+        // PlaybackStateCompat.Builder().setActions(PlaybackStateCompat.ACTION_PLAY_PAUSE).setState(PlaybackStateCompat.STATE_CONNECTING,
+        // 0, 0f).build());
 
         TTSEngine.get().getTTS();
 
