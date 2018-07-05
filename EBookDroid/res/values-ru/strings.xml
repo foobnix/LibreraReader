@@ -122,14 +122,14 @@
    <string name="opening_book_with_cropped_borders">Активировать обрезку пустых полей при каждом открытии PDF/DJVU</string>
    <string name="db_auto_alignemnt">Вписать в ширину экрана</string>
    <string name="db_auto_center_horizontally">Выровнить по горизонтали</string>
-   <string name="zoom_in_zoom_out">Увел./умен. масштаб страниц в 2 раза</string>
+   <string name="zoom_in_zoom_out">Увел./умен. масштаб стр-ц в 2 раза</string>
    <string name="enhancements_for_oled_display">Заполнять пустоту вокруг страниц черным цветом при выборе любого из ночных пресетов (AMOLED-адаптация)</string>
    <string name="ignore_annotations_on_click">Игнорировать комментарии и пометки при нажатиях</string>
    <string name="save_new_annotations_automatically">Автоматически сохранять новые комментарии и пометки при закрытии книги или выходе из приложения</string>
    <string name="selecting_text_by_letters">Использовать побуквенное выделение текста (для иероглифических языков)</string>
    <string name="change_the_automatic_scrolling_speed_with_the_volume_keys">Менять скорость автопрокрутки текста клавишами регулировки громкости</string>
-   <string name="enable_brightness_adjustment_on_the_left_of_the_screen">Регулировать яркость подсветки у левой границы экрана</string>
-   <string name="scroll_speed">Прок. текста колёс. мыши</string>
+   <string name="enable_brightness_adjustment_on_the_left_of_the_screen">Регулировать яркость подсветки свайпом у левой границы экрана</string>
+   <string name="scroll_speed">Прокр. текста колёс. мыши</string>
    <string name="page_quality">Кач-во прорисовки стр-ц</string>
    <string name="pages_in_memory">Страниц в опер. памяти</string>
    <string name="screen_turn_off_after_inactivity_minutes_">Время перед гашением экрана (в минутах)</string>
@@ -163,7 +163,7 @@
    <string name="add">Добавить</string>
    <string name="search">Поиск</string>
    <string name="export_bookmarks">Экспорт закладок</string>
-   <string name="simple_scroll_animation">Показывать анимацию простого сдвига страниц</string>
+   <string name="simple_scroll_animation">Показывать анимацию простого сдвига страниц в сторону</string>
    <string name="close_application">Закрыть приложение</string>
    <string name="___TABS___SECTION___"></string>
    <string name="library">Библиотека</string>
@@ -457,7 +457,7 @@
    <string name="add_resource">Добавить ресурс</string>
    <string name="do_you_want_to_download_more_book_fonts_10mb_">Для удобства чтения можно скачать дополнительный набор шрифтов размером 10 Мб. Хотите ли вы это сделать?</string>
    <string name="hyphenation_language">Язык переносов</string>
-   <string name="replacing_the_white_color_in_the_images_with_the_background_color">Окрашивать белый фон изображений в цвет фона страниц</string>
+   <string name="replacing_the_white_color_in_the_images_with_the_background_color">Окрашивать белый фон изображений в цвет фона страниц при выборе любого дневного пресета</string>
    <string name="disable_swipe_gestures_for_page_paging">Отключить возможность листания страниц горизонтальными свайпами (для электр. читалок)</string>
    <string name="no_keywords">Без ключевых слов</string>
    <string name="my_tags">Свои теги</string>
@@ -470,9 +470,9 @@
    <string name="information">Информация</string>
    <string name="file_path">Путь к файлу</string>
    <string name="year">Год</string>
-   <string name="publisher">Издатель</string>
-   <string name="do_you_want_to_download_the_file_">Вы хотите загрузить файл?</string>
-   <string name="do_you_want_to_delete_this_file_">Вы хотите удалить этот файл?</string>
+   <string name="publisher">Издательство</string>
+   <string name="do_you_want_to_download_the_file_">Вы действительно хотите загрузить файл?</string>
+   <string name="do_you_want_to_delete_this_file_">Вы действительно хотите удалить этот файл?</string>
    <string name="logout">Выйти</string>
    <string name="cloud_not_connected">Облако не подключено</string>
    <string name="cloud_sync_folder">Папка облачной синхронизации</string>
@@ -481,6 +481,6 @@
    <string name="librera_cloud">Облако Librera</string>
    <string name="hide_search_bar">Скрыть панель поиска</string>
    <string name="show_search_bar">Показать панель поиска</string>
-   <string name="enable_swipe_gestures_for_pages">Включить жесты для перелистывания страниц</string>
+   <string name="enable_swipe_gestures_for_pages">Листать страницы вертикальными свайпами (направление определяется стрелкой)</string>
    <string name="never">Никогда</string>
 </resources>
