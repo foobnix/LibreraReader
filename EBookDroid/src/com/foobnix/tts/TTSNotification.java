@@ -54,7 +54,7 @@ public class TTSNotification {
         }
         NotificationManager notificationManager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
         NotificationChannel channel = new NotificationChannel(DEFAULT, AppsConfig.TXT_APP_NAME, NotificationManager.IMPORTANCE_DEFAULT);
-        // channel.setDescription("Channel description");
+        channel.setImportance(NotificationManager.IMPORTANCE_LOW);
         notificationManager.createNotificationChannel(channel);
     }
 
@@ -91,6 +91,7 @@ public class TTSNotification {
                     .addAction(R.drawable.glyphicons_174_play, context.getString(R.string.to_read), read)//
                     .addAction(R.drawable.glyphicons_177_forward, context.getString(R.string.next), next)//
                     .setContentTitle(TxtUtils.getFileMetaBookName(fileMeta)) //
+                    .setDefaults(NotificationCompat.DEFAULT_ALL)//
                     .setContentText(context.getString(R.string.page) + " " + page); ///
 
             Notification n = builder.build(); //
