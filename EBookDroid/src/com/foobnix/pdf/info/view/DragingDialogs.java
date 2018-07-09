@@ -190,7 +190,8 @@ public class DragingDialogs {
                 final CustomSeek marginTop = (CustomSeek) inflate.findViewById(R.id.marginTop);
                 final CustomSeek marginBottom = (CustomSeek) inflate.findViewById(R.id.marginBottom);
 
-                marginTop.init(0, 30, AppState.get().cropTop, "%");
+                int max = 30;
+                marginTop.init(0, max, AppState.get().cropTop, "%");
                 marginTop.setOnSeekChanged(new IntegerResponse() {
 
                     @Override
@@ -204,7 +205,7 @@ public class DragingDialogs {
                     }
                 });
 
-                marginBottom.init(0, 30, AppState.get().cropBottom, "%");
+                marginBottom.init(0, max, AppState.get().cropBottom, "%");
                 marginBottom.setOnSeekChanged(new IntegerResponse() {
 
                     @Override
@@ -221,7 +222,7 @@ public class DragingDialogs {
                 final CustomSeek marginLeft = (CustomSeek) inflate.findViewById(R.id.marginLeft);
                 final CustomSeek marginRight = (CustomSeek) inflate.findViewById(R.id.marginRight);
 
-                marginLeft.init(0, 30, AppState.get().cropLeft, "%");
+                marginLeft.init(0, max, AppState.get().cropLeft, "%");
                 marginLeft.setOnSeekChanged(new IntegerResponse() {
 
                     @Override
@@ -235,7 +236,7 @@ public class DragingDialogs {
                     }
                 });
 
-                marginRight.init(0, 30, AppState.get().cropRigth, "%");
+                marginRight.init(0, max, AppState.get().cropRigth, "%");
                 marginRight.setOnSeekChanged(new IntegerResponse() {
 
                     @Override
@@ -3549,8 +3550,10 @@ public class DragingDialogs {
                 });
 
                 // Margins
+
                 final CustomSeek marginTop = (CustomSeek) inflate.findViewById(R.id.marginTop);
-                marginTop.init(0, 30, BookCSS.get().marginTop);
+                int maxMargin = 40;
+                marginTop.init(0, maxMargin, BookCSS.get().marginTop);
                 marginTop.setOnSeekChanged(new IntegerResponse() {
 
                     @Override
@@ -3561,7 +3564,7 @@ public class DragingDialogs {
                 });
 
                 final CustomSeek marginBottom = (CustomSeek) inflate.findViewById(R.id.marginBottom);
-                marginBottom.init(0, 30, BookCSS.get().marginBottom);
+                marginBottom.init(0, maxMargin, BookCSS.get().marginBottom);
                 marginBottom.setOnSeekChanged(new IntegerResponse() {
 
                     @Override
@@ -3572,7 +3575,7 @@ public class DragingDialogs {
                 });
 
                 final CustomSeek marginLeft = (CustomSeek) inflate.findViewById(R.id.marginLeft);
-                marginLeft.init(0, 30, BookCSS.get().marginLeft);
+                marginLeft.init(0, maxMargin, BookCSS.get().marginLeft);
                 marginLeft.setOnSeekChanged(new IntegerResponse() {
 
                     @Override
@@ -3583,7 +3586,7 @@ public class DragingDialogs {
                 });
 
                 final CustomSeek marginRight = (CustomSeek) inflate.findViewById(R.id.marginRight);
-                marginRight.init(0, 30, BookCSS.get().marginRight);
+                marginRight.init(0, maxMargin, BookCSS.get().marginRight);
                 marginRight.setOnSeekChanged(new IntegerResponse() {
 
                     @Override
