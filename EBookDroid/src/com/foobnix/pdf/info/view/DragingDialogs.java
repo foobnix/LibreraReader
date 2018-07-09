@@ -714,21 +714,9 @@ public class DragingDialogs {
                 });
                 //
 
-                CheckBox showNotification = (CheckBox) view.findViewById(R.id.showNotification);
-                showNotification.setChecked(AppState.get().showNotification);
-                showNotification.setOnCheckedChangeListener(new OnCheckedChangeListener() {
-
-                    @Override
-                    public void onCheckedChanged(final CompoundButton buttonView, final boolean isChecked) {
-                        AppState.get().showNotification = isChecked;
-                        if (!isChecked) {
-                            TTSNotification.hideNotification();
-                        }
-                    }
-                });
-
-                CheckBox notificationOngoing = (CheckBox) view.findViewById(R.id.notificationOngoing);
+                final CheckBox notificationOngoing = (CheckBox) view.findViewById(R.id.notificationOngoing);
                 notificationOngoing.setChecked(AppState.get().notificationOngoing);
+                notificationOngoing.setEnabled(AppState.get().showNotification);
                 notificationOngoing.setOnCheckedChangeListener(new OnCheckedChangeListener() {
 
                     @Override
@@ -738,6 +726,22 @@ public class DragingDialogs {
                         TTSNotification.showLast();
                     }
                 });
+
+                final CheckBox showNotification = (CheckBox) view.findViewById(R.id.showNotification);
+                showNotification.setChecked(AppState.get().showNotification);
+                showNotification.setOnCheckedChangeListener(new OnCheckedChangeListener() {
+
+                    @Override
+                    public void onCheckedChanged(final CompoundButton buttonView, final boolean isChecked) {
+                        AppState.get().showNotification = isChecked;
+                        if (!isChecked) {
+                            TTSNotification.hideNotification();
+                        } else {
+                        }
+                        notificationOngoing.setEnabled(AppState.get().showNotification);
+                    }
+                });
+
 
                 CheckBox stopReadingOnCall = (CheckBox) view.findViewById(R.id.stopReadingOnCall);
                 stopReadingOnCall.setChecked(AppState.get().stopReadingOnCall);

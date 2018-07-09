@@ -10,6 +10,7 @@
     <dimen name="title_wh_button">18dp</dimen>
     <dimen name="title_wh_padding">3dp</dimen>
     <dimen name="title_h_adv">13sp</dimen>
+    <dimen name="sub_checkbox">35dip</dimen>
 
     <string name="ads_banner_size">FULL_WIDTHx320</string>
 

@@ -136,6 +136,7 @@
             android:text="@string/show_notifications" />
 
         <CheckBox
+            android:layout_marginLeft="@dimen/sub_checkbox"
             android:id="@+id/notificationOngoing"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
