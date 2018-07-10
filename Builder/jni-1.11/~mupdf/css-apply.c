@@ -1262,8 +1262,10 @@ fz_apply_css_style(fz_context *ctx, fz_html_font_set *set, fz_css_style *style, 
 	}
 
 	style->line_height = number_from_property(match, "line-height", 1.2f, N_SCALE);
+	if (style->line_height.value<0) style->line_height.value=0;
 
 	style->text_indent = number_from_property(match, "text-indent", 0, N_LENGTH);
+	if (style->text_indent.value<0) style->text_indent.value=0;
 
 	style->width = number_from_property(match, "width", 0, N_AUTO);
 	style->height = number_from_property(match, "height", 0, N_AUTO);
