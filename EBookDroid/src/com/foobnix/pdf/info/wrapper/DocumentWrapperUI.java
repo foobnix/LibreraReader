@@ -1178,8 +1178,11 @@ public class DocumentWrapperUI {
 
     public void hideShow() {
         if (AppState.get().isEditMode) {
+            DocumentController.turnOnButtons(a);
             show();
         } else {
+            DocumentController.turnOffButtons(a);
+
             hide();
         }
         initToolBarPlusMinus();

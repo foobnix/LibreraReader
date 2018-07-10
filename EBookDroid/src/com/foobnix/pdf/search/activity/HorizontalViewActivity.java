@@ -1876,6 +1876,8 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
         updateAnimation(adsHide);
 
         if (AppState.get().isEditMode) {
+            DocumentController.turnOnButtons(this);
+
             if (anchor.getVisibility() == View.GONE) {
                 adFrame.startAnimation(adsShow);
             }
@@ -1904,6 +1906,8 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
             });
 
         } else {
+            DocumentController.turnOffButtons(this);
+
             if (anchor.getVisibility() == View.GONE && adFrame.getVisibility() == View.VISIBLE) {
                 adFrame.startAnimation(adsHide);
             }

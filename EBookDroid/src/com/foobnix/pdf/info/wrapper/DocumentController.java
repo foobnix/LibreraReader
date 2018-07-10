@@ -319,6 +319,14 @@ public abstract class DocumentController {
         }
     }
 
+    public static void turnOffButtons(final Activity a) {
+        a.getWindow().getAttributes().buttonBrightness = WindowManager.LayoutParams.BRIGHTNESS_OVERRIDE_OFF;
+    }
+
+    public static void turnOnButtons(final Activity a) {
+        a.getWindow().getAttributes().buttonBrightness = WindowManager.LayoutParams.BRIGHTNESS_OVERRIDE_NONE;
+    }
+
     public static void runFullScreen(final Activity a) {
         try {
             a.getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
