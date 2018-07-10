@@ -1261,11 +1261,6 @@ fz_apply_css_style(fz_context *ctx, fz_html_font_set *set, fz_css_style *style, 
 		else if (!strcmp(value->data, "georgian")) style->list_style_type = LST_GEORGIAN;
 	}
 
-	style->line_height = number_from_property(match, "line-height", 1.2f, N_SCALE);
-	if (style->line_height.value<0) style->line_height.value=0;
-
-	style->text_indent = number_from_property(match, "text-indent", 0, N_LENGTH);
-	if (style->text_indent.value<0) style->text_indent.value=0;
 
 	style->width = number_from_property(match, "width", 0, N_AUTO);
 	style->height = number_from_property(match, "height", 0, N_AUTO);
@@ -1290,6 +1285,21 @@ fz_apply_css_style(fz_context *ctx, fz_html_font_set *set, fz_css_style *style, 
 	style->padding[1] = number_from_property(match, "padding-right", 0, N_LENGTH);
 	style->padding[2] = number_from_property(match, "padding-bottom", 0, N_LENGTH);
 	style->padding[3] = number_from_property(match, "padding-left", 0, N_LENGTH);
+
+
+	style->line_height = number_from_property(match, "line-height", 1.2f, N_SCALE);
+	if (style->line_height.value < 0) style->line_height.value = 1.2f;
+
+	style->text_indent = number_from_property(match, "text-indent", 0, N_LENGTH);
+	//fix to long negative text-indent
+	if (style->text_indent.value < 0){
+		if(style->text_indent.value * -1 > style->margin[3].value)
+		{
+			style->text_indent.value = -1 * style->margin[3].value;
+		}else{
+			style->text_indent.value=0;
+		}
+	}
 
 	style->color = color_from_property(match, "color", black);
 	style->background_color = color_from_property(match, "background-color", transparent);
