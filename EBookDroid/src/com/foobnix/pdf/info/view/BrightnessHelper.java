@@ -40,6 +40,7 @@ public class BrightnessHelper {
     static float currentPercent = 0;
 
     int MAX = Dips.dpToPx(3000);
+    int MIN = Dips.dpToPx(500);
     private float x;
     private float y;
     boolean isMovementStart;
@@ -88,7 +89,13 @@ public class BrightnessHelper {
 
         if ((isMovementStart || dy > Dips.DP_25) && event.getPointerCount() == 1 && x < BRIGHTNESS_WIDTH && dy > dx) {
             isMovementStart = true;
-            lastPercent = (int) (yDiff * 100 / MAX);
+
+            if (event.getY() < Dips.screenHeight() / 3 || event.getY() > Dips.screenHeight() - Dips.screenHeight() / 3) {
+                lastPercent = (int) (yDiff * 100 / MIN);
+            } else {
+                lastPercent = (int) (yDiff * 100 / MAX);
+            }
+
             float plus = getMinMaxValue(lastPercent + currentPercent);
             EventBus.getDefault().post(new MessegeBrightness((int) plus));
         }

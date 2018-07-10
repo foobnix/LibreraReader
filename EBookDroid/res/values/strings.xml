@@ -427,7 +427,7 @@
    <string name="percent">Percentage</string>
    <string name="awards">Awards</string>
    <string name="close_book_and_application">Close book and exit Librera</string>
-   <string name="percent_and_number">% + page #</string>
+   <string name="percent_and_number">Percentage and page number</string>
    <string name="current_page">Reading progress</string>
    <string name="backup_folder">Backup folder</string>
    <string name="audio_books_folder">Audio-books folder</string>

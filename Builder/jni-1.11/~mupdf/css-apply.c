@@ -1296,8 +1296,6 @@ fz_apply_css_style(fz_context *ctx, fz_html_font_set *set, fz_css_style *style, 
 		if(style->text_indent.value * -1 > style->margin[3].value)
 		{
 			style->text_indent.value = -1 * style->margin[3].value;
-		}else{
-			style->text_indent.value=0;
 		}
 	}
 
