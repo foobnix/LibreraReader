@@ -90,7 +90,7 @@ public class BrightnessHelper {
         if ((isMovementStart || dy > Dips.DP_25) && event.getPointerCount() == 1 && x < BRIGHTNESS_WIDTH && dy > dx) {
             isMovementStart = true;
 
-            if (event.getY() < Dips.screenHeight() / 3 || event.getY() > Dips.screenHeight() - Dips.screenHeight() / 3) {
+            if (y < Dips.screenHeight() / 3 || y > Dips.screenHeight() - Dips.screenHeight() / 3) {
                 lastPercent = (int) (yDiff * 100 / MIN);
             } else {
                 lastPercent = (int) (yDiff * 100 / MAX);
