@@ -2321,7 +2321,7 @@ public class DragingDialogs {
 
     public static void pageFlippingDialog(final FrameLayout anchor, final DocumentController controller, final Runnable onRefresh) {
 
-        new DragingPopup(anchor.getContext().getString(R.string.automatic_page_flipping), anchor, 300, 300) {
+        new DragingPopup(anchor.getContext().getString(R.string.automatic_page_flipping), anchor, 300, 380) {
 
             @Override
             public View getContentView(LayoutInflater inflater) {
@@ -2345,6 +2345,20 @@ public class DragingDialogs {
                     @Override
                     public void onCheckedChanged(final CompoundButton buttonView, final boolean isChecked) {
                         AppState.get().isLoopAutoplay = isChecked;
+                    }
+                });
+
+                final CheckBox isShowSatusBar = (CheckBox) inflate.findViewById(R.id.isShowSatusBar);
+                isShowSatusBar.setChecked(AppState.get().isShowToolBar);
+                isShowSatusBar.setOnCheckedChangeListener(new OnCheckedChangeListener() {
+
+                    @Override
+                    public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                        AppState.get().isShowToolBar = isChecked;
+                        AppState.get().isEditMode = false;
+                        if (onRefresh != null) {
+                            onRefresh.run();
+                        }
                     }
                 });
 

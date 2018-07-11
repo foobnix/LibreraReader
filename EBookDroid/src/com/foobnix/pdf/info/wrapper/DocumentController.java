@@ -173,6 +173,11 @@ public abstract class DocumentController {
 
     }
 
+    public double getPercentage() {
+        LOG.d("getPercentage", getCurentPage(), getPageCount());
+        return (getCurentPage() + 0.0001) / getPageCount();
+    }
+
     public MyADSProvider getAdsProvider() {
         return null;
     }

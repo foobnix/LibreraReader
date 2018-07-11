@@ -247,7 +247,7 @@
    <string name="convert_to">Convert to</string>
    <string name="mode_vertical">Scroll mode</string>
    <string name="mode_horizontally">Book mode</string>
-   <string name="mode_musician">Musician\’s mode</string>
+   <string name="mode_musician">Musician\'s mode</string>
    <string name="save">Save</string>
    <string name="remember_choice">Remember selection</string>
    <string name="edit_names">Edit names</string>
@@ -315,7 +315,7 @@
    <string name="ongoing_notification">Show ongoing notification</string>
    <string name="next">Next Page</string>
    <string name="stop_reading_timer_">Stop reading after</string>
-   <string name="start">Set</string>
+   <string name="start">Start</string>
    <string name="reading_will_be_stopped">Reading will stop at</string>
    <string name="speak_into_file_wav_">Record TTS</string>
    <string name="foot_notes">Footnote</string>

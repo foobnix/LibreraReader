@@ -104,8 +104,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 public class HorizontalViewActivity extends AdsFragmentActivity {
-    private static final String PAGE = "page";
-    private static final String PERCENT_EXTRA = "percent";
 
     VerticalViewPager viewPager;
     SeekBar seekBar;
@@ -1256,8 +1254,7 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
 
     public void updateReadPercent() {
         if (dc != null) {
-            double value = (dc.getCurentPage() + 0.0001) / dc.getPageCount();
-            getIntent().putExtra(PERCENT_EXTRA, value);
+            getIntent().putExtra(DocumentController.EXTRA_PERCENT, dc.getPercentage());
         }
     }
 

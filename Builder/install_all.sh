@@ -13,7 +13,7 @@ do
 	    FILES=$APK/*arm64.apk
 	elif [[ $TYPE == *"armeabi"* ]]; then
 		echo "TYPE: arm"
-	    FILES=$APK/*arm.apk
+	    FILES=$APK/*arm.apk	    
 	else 
 		echo "TYPE: x86"
 	    FILES=$APK/*x86*.apk

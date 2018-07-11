@@ -226,7 +226,7 @@ public abstract class HorizontalModeController extends DocumentController {
         // LOG.d("total-chars", charsCount);
 
         AppDB.get().addRecent(bookPath);
-        getPageFromUri();
+        // getPageFromUri();
 
         // loadOutline(null);
     }
