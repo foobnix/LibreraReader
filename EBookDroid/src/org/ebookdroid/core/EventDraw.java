@@ -34,8 +34,13 @@ public class EventDraw implements IEvent {
 
     private IActivityController base;
 
+    Paint paintWrods = new Paint();
+
     EventDraw(final Queue<EventDraw> eventQueue) {
         this.eventQueue = eventQueue;
+        paintWrods.setAlpha(60);
+        paintWrods.setStrokeWidth(Dips.dpToPx(1));
+        paintWrods.setTextSize(30);
     }
 
     void init(final ViewState viewState, final Canvas canvas, IActivityController base) {
@@ -120,7 +125,7 @@ public class EventDraw implements IEvent {
 
         // TODO Draw there
         // drawLine(page);
-        // drawPageLinks(page);
+        drawPageLinks(page);
         // drawSomething(page);
         // drawHighlights(page);
         drawSelectedText(page);
@@ -186,19 +191,21 @@ public class EventDraw implements IEvent {
 
     }
 
+
     private void drawPageLinks(final Page page) {
+
         if (LengthUtils.isEmpty(page.links)) {
             return;
         }
+
+        paintWrods.setColor(AppState.get().isDayNotInvert ? Color.BLUE : Color.YELLOW);
 
         for (final PageLink link : page.links) {
             final RectF rect = page.getLinkSourceRect(pageBounds, link);
             if (rect != null) {
                 rect.offset(-viewState.viewBase.x, -viewState.viewBase.y);
-                final Paint p = new Paint();
-                p.setColor(Color.MAGENTA);
-                p.setAlpha(40);
-                canvas.drawRect(rect, p);
+                // canvas.drawRect(rect, paintWrods);
+                canvas.drawLine(rect.left, rect.bottom, rect.right, rect.bottom, paintWrods);
             }
         }
     }

@@ -10,6 +10,7 @@ public class PageLink {
 
     public int targetPage = -1;
     public RectF targetRect;
+    public int number = 0;
 
     public PageLink() {
     }

@@ -80,7 +80,8 @@ public class PageImaveView extends View {
 
         paintWrods.setColor(AppState.get().isDayNotInvert ? Color.BLUE : Color.YELLOW);
         paintWrods.setAlpha(60);
-        paintWrods.setStrokeWidth(Dips.dpToPx(2));
+        paintWrods.setStrokeWidth(Dips.dpToPx(1));
+        paintWrods.setTextSize(30);
 
         EventBus.getDefault().register(this);
         clickUtils = new ClickUtils();
@@ -124,9 +125,9 @@ public class PageImaveView extends View {
 
                 for (int i = 0; i < t.length; i++) {
                     for (int j = 0; j < t[i].length; j++) {
-                        TextWord textWord = t[i][j];
-                        textWord.number = number;
-                        t[i][j] = textWord;
+                        // TextWord textWord = t[i][j];
+                        // textWord.number = number;
+                        t[i][j].number = number;
                     }
                 }
 
@@ -140,8 +141,38 @@ public class PageImaveView extends View {
         }
     }
 
-    public List<PageLink> getPageLinks() {
-        return PageImageState.get().pagesLinks.get(pageNumber);
+    public synchronized List<PageLink> getPageLinks(int number) {
+
+        try {
+            if (AppState.get().isDouble && number != 0) {
+
+                int page = pageNumber * 2;
+                if (AppState.get().isDoubleCoverAlone) {
+                    page--;
+                }
+
+                List<PageLink> t = null;
+                if (number == 1) {
+                    t = PageImageState.get().pagesLinks.get(page);
+                } else if (number == 2) {
+                    t = PageImageState.get().pagesLinks.get(page + 1);
+                }
+
+                for (PageLink l : t) {
+                    LOG.d("PageLinks targetPage after", l.targetPage);
+                    l.number = number;
+                    LOG.d("PageLinks targetPage before", l.targetPage);
+                }
+
+                return t;
+            } else {
+                return PageImageState.get().pagesLinks.get(pageNumber);
+            }
+        } catch (Exception e) {
+            LOG.e(e);
+            return null;
+        }
+
     }
 
     public void setPageNumber(int pageNumber) {
@@ -473,10 +504,15 @@ public class PageImaveView extends View {
                         invalidate();
                     }
                 }
-
-                PageLink pageLink = getPageLink(event.getX(), event.getY());
+                int target = 0;
+                PageLink pageLink = getPageLinkClicked(event.getX(), event.getY());
                 if (pageLink != null) {
-                    TempHolder.get().linkPage = pageLink.targetPage;
+                    target = pageLink.targetPage;
+                    if (AppState.get().isDouble) {
+                        target = pageLink.targetPage / 2;
+                    }
+                    TempHolder.get().linkPage = target;
+                    LOG.d("Go to targetPage", target);
                 }
 
                 if (isMoveNextPrev != 0) {
@@ -485,7 +521,7 @@ public class PageImaveView extends View {
                 } else if (TxtUtils.isNotEmpty(AppState.get().selectedText)) {
                     EventBus.getDefault().post(new MessageEvent(MessageEvent.MESSAGE_SELECTED_TEXT));
                 } else if (pageLink != null) {
-                    EventBus.getDefault().post(new MessageEvent(MessageEvent.MESSAGE_GOTO_PAGE_BY_LINK, pageLink.targetPage, pageLink.url));
+                    EventBus.getDefault().post(new MessageEvent(MessageEvent.MESSAGE_GOTO_PAGE_BY_LINK, target, pageLink.url));
                 } else {
                     if (!isIgronerClick) {
                         EventBus.getDefault().post(new MessageEvent(MessageEvent.MESSAGE_PERFORM_CLICK, event.getX(), event.getY()));
@@ -596,6 +632,22 @@ public class PageImaveView extends View {
                 canvas.drawRect(-dp1, 0, drawableWidth + dp1, drawableHeight, rect);
             }
 
+            paintWrods.setColor(AppState.get().isDayNotInvert ? Color.BLUE : Color.YELLOW);
+
+            if (AppState.get().isDouble) {
+                for (PageLink pl : getPageLinks(1)) {
+                    drawLink(canvas, pl);
+                }
+
+                for (PageLink pl : getPageLinks(2)) {
+                    drawLink(canvas, pl);
+                }
+            } else {
+                for (PageLink pl : getPageLinks(0)) {
+                    drawLink(canvas, pl);
+                }
+            }
+
             canvas.restoreToCount(saveCount);
 
         } catch (Exception e) {
@@ -683,13 +735,17 @@ public class PageImaveView extends View {
         c.drawRect(o, paintWrods);
     }
 
+    public void drawLink(Canvas c, PageLink pl) {
+        RectF o = transform(pl.sourceRect, pl.number);
+        c.drawLine(o.left, o.bottom, o.right, o.bottom, paintWrods);
+        // c.drawText("" + pl.targetPage, o.right, o.bottom, paintWrods);
+    }
+
     public static int MIN = Dips.dpToPx(15);
 
-    public PageLink getPageLink(float x1, float y1) {
-        List<PageLink> pageLinks = getPageLinks();
-        if (pageLinks == null) {
-            return null;
-        }
+    public PageLink getPageLinkClicked(float x1, float y1) {
+
+
 
         RectF tr = new RectF();
         imageMatrix().mapRect(tr);
@@ -707,11 +763,26 @@ public class PageImaveView extends View {
 
         RectF tapRect = new RectF(x, y, x, y);
 
+        x1 = x1 - tr.left;
+        x1 = x1 / scaleX;
+
+        int firstNumber = 0;
+        if (AppState.get().isDouble) {
+            firstNumber = x1 < drawableWidth / 2 ? 1 : 2;
+        }
+
+        List<PageLink> pageLinks = getPageLinks(firstNumber);
+        if (pageLinks == null) {
+            return null;
+        }
+
+        LOG.d("getPageLinkClicked", x1, "w", drawableWidth, firstNumber, "links", pageLinks.size());
+
         for (PageLink link : pageLinks) {
             if (link == null) {
                 continue;
             }
-            RectF wordRect = transform(link.sourceRect, 0);
+            RectF wordRect = transform(link.sourceRect, firstNumber);
             boolean intersects = RectF.intersects(wordRect, tapRect);
             if (intersects) {
                 return link;

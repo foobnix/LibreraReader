@@ -51,6 +51,7 @@ public class MuPdfLinks {
 
                 try {
                     link.targetPage = getPageLinkTargetPage(docHandle, linkHandle);
+                    LOG.d("getPageLinkTargetPage", link.targetPage);
                     // link.targetPage--;
                 } catch (Exception e) {
                     link.targetPage = -1;
