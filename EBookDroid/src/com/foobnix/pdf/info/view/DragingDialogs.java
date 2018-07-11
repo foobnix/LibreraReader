@@ -1690,6 +1690,7 @@ public class DragingDialogs {
                                     Toast.makeText(controller.getActivity(), R.string.incorrect_value, Toast.LENGTH_SHORT).show();
                                 }
                                 page = (int) (controller.getPageCount() * parseFloat) / 100;
+                                page = page + 1;
                             } else {
                                 page = Integer.valueOf(txt);
                             }

@@ -512,27 +512,30 @@ public class PageImaveView extends View {
                         invalidate();
                     }
                 }
-                int target = 0;
-                PageLink pageLink = getPageLinkClicked(event.getX(), event.getY());
-                if (pageLink != null) {
-                    target = pageLink.targetPage;
-                    if (AppState.get().isDouble) {
-                        target = pageLink.targetPage / 2;
-                    }
-                    TempHolder.get().linkPage = target;
-                    LOG.d("Go to targetPage", target);
-                }
 
-                if (isMoveNextPrev != 0) {
-                    LOG.d("isMoveNextPrev", isMoveNextPrev);
-                    EventBus.getDefault().post(new MessageEvent(MessageEvent.MESSAGE_GOTO_PAGE_SWIPE, isMoveNextPrev));
-                } else if (TxtUtils.isNotEmpty(AppState.get().selectedText)) {
-                    EventBus.getDefault().post(new MessageEvent(MessageEvent.MESSAGE_SELECTED_TEXT));
-                } else if (pageLink != null) {
-                    EventBus.getDefault().post(new MessageEvent(MessageEvent.MESSAGE_GOTO_PAGE_BY_LINK, target, pageLink.url));
-                } else {
-                    if (!isIgronerClick) {
+                if (!isIgronerClick) {
+                    int target = 0;
+                    PageLink pageLink = getPageLinkClicked(event.getX(), event.getY());
+                    if (pageLink != null) {
+                        target = pageLink.targetPage;
+                        if (AppState.get().isDouble) {
+                            target = pageLink.targetPage / 2;
+                        }
+                        TempHolder.get().linkPage = target;
+                        LOG.d("Go to targetPage", target);
+                    }
+
+                    if (isMoveNextPrev != 0) {
+                        LOG.d("isMoveNextPrev", isMoveNextPrev);
+                        EventBus.getDefault().post(new MessageEvent(MessageEvent.MESSAGE_GOTO_PAGE_SWIPE, isMoveNextPrev));
+                    } else if (pageLink != null) {
+                        EventBus.getDefault().post(new MessageEvent(MessageEvent.MESSAGE_GOTO_PAGE_BY_LINK, target, pageLink.url));
+                    } else {
                         EventBus.getDefault().post(new MessageEvent(MessageEvent.MESSAGE_PERFORM_CLICK, event.getX(), event.getY()));
+                    }
+                } else {
+                    if (TxtUtils.isNotEmpty(AppState.get().selectedText)) {
+                        EventBus.getDefault().post(new MessageEvent(MessageEvent.MESSAGE_SELECTED_TEXT));
                     }
                 }
                 isIgronerClick = false;
