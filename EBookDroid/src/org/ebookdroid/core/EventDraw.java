@@ -199,6 +199,7 @@ public class EventDraw implements IEvent {
         }
 
         paintWrods.setColor(AppState.get().isDayNotInvert ? Color.BLUE : Color.YELLOW);
+        paintWrods.setAlpha(60);
 
         for (final PageLink link : page.links) {
             final RectF rect = page.getLinkSourceRect(pageBounds, link);

@@ -1,5 +1,6 @@
 package com.foobnix.pdf.search.activity;
 
+import java.util.Collections;
 import java.util.List;
 
 import org.ebookdroid.LibreraApp;
@@ -78,8 +79,6 @@ public class PageImaveView extends View {
         imageGestureListener = new ImageSimpleGestureListener();
         gestureDetector = new GestureDetector(context, imageGestureListener);
 
-        paintWrods.setColor(AppState.get().isDayNotInvert ? Color.BLUE : Color.YELLOW);
-        paintWrods.setAlpha(60);
         paintWrods.setStrokeWidth(Dips.dpToPx(1));
         paintWrods.setTextSize(30);
 
@@ -142,6 +141,15 @@ public class PageImaveView extends View {
     }
 
     public synchronized List<PageLink> getPageLinks(int number) {
+        List<PageLink> all = getPageLinksInner(number);
+        if (all == null) {
+            return Collections.emptyList();
+        }
+        return all;
+
+    }
+
+    public synchronized List<PageLink> getPageLinksInner(int number) {
 
         try {
             if (AppState.get().isDouble && number != 0) {
@@ -632,19 +640,23 @@ public class PageImaveView extends View {
                 canvas.drawRect(-dp1, 0, drawableWidth + dp1, drawableHeight, rect);
             }
 
-            paintWrods.setColor(AppState.get().isDayNotInvert ? Color.BLUE : Color.YELLOW);
+            if (!AppState.get().isCut && !AppState.get().isCrop) {
 
-            if (AppState.get().isDouble) {
-                for (PageLink pl : getPageLinks(1)) {
-                    drawLink(canvas, pl);
-                }
+                paintWrods.setColor(AppState.get().isDayNotInvert ? Color.BLUE : Color.YELLOW);
+                paintWrods.setAlpha(60);
 
-                for (PageLink pl : getPageLinks(2)) {
-                    drawLink(canvas, pl);
-                }
-            } else {
-                for (PageLink pl : getPageLinks(0)) {
-                    drawLink(canvas, pl);
+                if (AppState.get().isDouble) {
+                    for (PageLink pl : getPageLinks(1)) {
+                        drawLink(canvas, pl);
+                    }
+
+                    for (PageLink pl : getPageLinks(2)) {
+                        drawLink(canvas, pl);
+                    }
+                } else {
+                    for (PageLink pl : getPageLinks(0)) {
+                        drawLink(canvas, pl);
+                    }
                 }
             }
 
@@ -744,8 +756,6 @@ public class PageImaveView extends View {
     public static int MIN = Dips.dpToPx(15);
 
     public PageLink getPageLinkClicked(float x1, float y1) {
-
-
 
         RectF tr = new RectF();
         imageMatrix().mapRect(tr);

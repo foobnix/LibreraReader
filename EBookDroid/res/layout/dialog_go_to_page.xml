@@ -17,7 +17,8 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:imeOptions="actionDone"
-            
+            android:digits="01234567890,.%"
+            android:inputType="numberDecimal"
             android:singleLine="true"
             android:visibility="visible" >
         </EditText>

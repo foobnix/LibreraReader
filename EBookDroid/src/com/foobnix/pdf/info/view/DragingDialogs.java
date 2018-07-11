@@ -534,7 +534,8 @@ public class DragingDialogs {
                         }
 
                         timerStart.setText(TempHolder.get().timerFinishTime == 0 ? R.string.start : R.string.cancel);
-                        ttsPage.setText(TempHolder.get().timerFinishTime == 0 ? "" : controller.getString(R.string.reading_will_be_stopped) + " " + DateFormat.getTimeFormat(activity).format(TempHolder.get().timerFinishTime));
+                        ttsPage.setText(
+                                TempHolder.get().timerFinishTime == 0 ? "" : controller.getString(R.string.reading_will_be_stopped) + " " + DateFormat.getTimeFormat(activity).format(TempHolder.get().timerFinishTime));
                     }
                 });
 
@@ -742,7 +743,6 @@ public class DragingDialogs {
                         notificationOngoing.setEnabled(AppState.get().showNotification);
                     }
                 });
-
 
                 CheckBox stopReadingOnCall = (CheckBox) view.findViewById(R.id.stopReadingOnCall);
                 stopReadingOnCall.setChecked(AppState.get().stopReadingOnCall);
@@ -1322,7 +1322,8 @@ public class DragingDialogs {
                     public void onClick(View v) {
                         TTSEngine.get().stop();
 
-                        TTSService.playBookPage(controller.getCurentPageFirst1() - 1, controller.getCurrentBook().getPath(), editText.getText().toString().trim(), controller.getBookWidth(), controller.getBookHeight(), AppState.get().fontSizeSp);
+                        TTSService.playBookPage(controller.getCurentPageFirst1() - 1, controller.getCurrentBook().getPath(), editText.getText().toString().trim(), controller.getBookWidth(), controller.getBookHeight(),
+                                AppState.get().fontSizeSp);
                     }
                 });
 
@@ -1680,16 +1681,29 @@ public class DragingDialogs {
                     public void onClick(View v) {
                         int page = 1;
                         try {
-                            page = Integer.valueOf(number.getText().toString());
-                        } catch (NumberFormatException e) {
+                            String txt = number.getText().toString();
+
+                            if (txt.contains("%") || txt.contains(".") || txt.contains(",")) {
+                                txt = txt.replace("%", "").replace(",", ".");
+                                float parseFloat = Float.parseFloat(txt);
+                                if (parseFloat > 100) {
+                                    Toast.makeText(controller.getActivity(), R.string.incorrect_value, Toast.LENGTH_SHORT).show();
+                                }
+                                page = (int) (controller.getPageCount() * parseFloat) / 100;
+                            } else {
+                                page = Integer.valueOf(txt);
+                            }
+
+                        } catch (Exception e) {
+                            LOG.e(e);
                             number.setText("1");
                         }
-                        Keyboards.close(number);
 
                         if (page >= 0 && page <= controller.getPageCount()) {
                             controller.onGoToPage(page);
+                            grid.setSelection(page - 1);
+                            Keyboards.close(number);
                         }
-                        grid.setSelection(page - 1);
                     }
                 });
 
@@ -1698,18 +1712,7 @@ public class DragingDialogs {
                     @Override
                     public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
                         if (actionId == EditorInfo.IME_ACTION_DONE) {
-
-                            int page = 1;
-                            try {
-                                page = Integer.valueOf(number.getText().toString());
-                            } catch (NumberFormatException e) {
-                                number.setText("1");
-                            }
-                            if (page >= 0 && page <= controller.getPageCount()) {
-                                controller.onGoToPage(page);
-                            }
-                            grid.setSelection(page - 1);
-                            Keyboards.close(number);
+                            onSearch.performClick();
                             return true;
                         }
                         return false;
@@ -2347,7 +2350,6 @@ public class DragingDialogs {
                         AppState.get().isLoopAutoplay = isChecked;
                     }
                 });
-
 
                 CheckBox isShowToolBar = (CheckBox) inflate.findViewById(R.id.isShowToolBar);
                 isShowToolBar.setChecked(AppState.get().isShowToolBar);

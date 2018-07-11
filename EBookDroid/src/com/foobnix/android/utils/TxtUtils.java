@@ -16,7 +16,6 @@ import com.foobnix.sys.TempHolder;
 
 import android.annotation.TargetApi;
 import android.content.res.TypedArray;
-import android.graphics.Color;
 import android.graphics.Typeface;
 import android.net.Uri;
 import android.os.Build;
