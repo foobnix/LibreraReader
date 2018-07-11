@@ -38,11 +38,6 @@
         android:layout_height="wrap_content"
         android:text="@string/loop_autoplay" />
     
-    <CheckBox
-            android:id="@+id/isShowSatusBar"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/show_status_bar" />
 
     <LinearLayout
         android:layout_width="match_parent"

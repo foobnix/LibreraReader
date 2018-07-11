@@ -2348,19 +2348,6 @@ public class DragingDialogs {
                     }
                 });
 
-                final CheckBox isShowSatusBar = (CheckBox) inflate.findViewById(R.id.isShowSatusBar);
-                isShowSatusBar.setChecked(AppState.get().isShowToolBar);
-                isShowSatusBar.setOnCheckedChangeListener(new OnCheckedChangeListener() {
-
-                    @Override
-                    public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                        AppState.get().isShowToolBar = isChecked;
-                        AppState.get().isEditMode = false;
-                        if (onRefresh != null) {
-                            onRefresh.run();
-                        }
-                    }
-                });
 
                 CheckBox isShowToolBar = (CheckBox) inflate.findViewById(R.id.isShowToolBar);
                 isShowToolBar.setChecked(AppState.get().isShowToolBar);
