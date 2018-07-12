@@ -440,7 +440,6 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
 
                     @Override
                     public boolean onMenuItemClick(MenuItem item) {
-
                         closeDialogs();
                         onModeChange.setImageResource(R.drawable.glyphicons_two_page_one);
                         AppState.get().isDouble = false;
@@ -834,10 +833,11 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
                     loadUI();
 
                     // AppState.get().isEditMode = false; //remember last
-                    updateUI(dc.getPageFromUri());
+                    int pageFromUri = dc.getPageFromUriSingleRun();
+                    updateUI(pageFromUri);
                     hideShow();
 
-                    EventBus.getDefault().post(new MessageAutoFit(dc.getPageFromUri()));
+                    EventBus.getDefault().post(new MessageAutoFit(pageFromUri));
                     seekBar.setOnSeekBarChangeListener(onSeek);
                     showHideInfoToolBar();
 
@@ -977,9 +977,6 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
 
         @Override
         public void run() {
-            // dc.getOutline(null, false);
-            updateReadPercent();
-
             updateUI(viewPager.getCurrentItem());
             showHideInfoToolBar();
             updateSeekBarColorAndSize();
@@ -1253,11 +1250,6 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
         }
     }
 
-    public void updateReadPercent() {
-        if (dc != null) {
-            getIntent().putExtra(DocumentController.EXTRA_PERCENT, dc.getPercentage());
-        }
-    }
 
     @Override
     protected void onResume() {
@@ -1748,7 +1740,6 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
 
         AppState.get().save(this);
         if (ExtUtils.isTextFomat(getIntent())) {
-            updateReadPercent();
             nullAdapter();
             dc.restartActivity();
         } else {

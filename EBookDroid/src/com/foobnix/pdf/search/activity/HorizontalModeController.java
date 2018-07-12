@@ -244,7 +244,7 @@ public abstract class HorizontalModeController extends DocumentController {
         return currentPage + 1;
     }
 
-    public int getPageFromUri() {
+    public int getPageFromUriSingleRun() {
         final double percent = activity.getIntent().getDoubleExtra(DocumentController.EXTRA_PERCENT, 0.0);
         int number = activity.getIntent().getIntExtra(EXTRA_PAGE, 0);
         LOG.d("_PAGE", "uri page", number);
@@ -507,6 +507,7 @@ public abstract class HorizontalModeController extends DocumentController {
     public int getPageCount() {
         return PageUrl.realToFake(pagesCount);
     }
+
 
     @Override
     public void onScrollY(int value) {
