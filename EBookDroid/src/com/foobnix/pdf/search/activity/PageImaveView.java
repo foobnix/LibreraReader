@@ -141,6 +141,10 @@ public class PageImaveView extends View {
     }
 
     public synchronized List<PageLink> getPageLinks(int number) {
+        if (AppState.get().isCut || AppState.get().isCrop) {
+            return Collections.emptyList();
+        }
+
         List<PageLink> all = getPageLinksInner(number);
         if (all == null) {
             return Collections.emptyList();
@@ -518,7 +522,7 @@ public class PageImaveView extends View {
                     PageLink pageLink = getPageLinkClicked(event.getX(), event.getY());
                     if (pageLink != null) {
                         target = pageLink.targetPage;
-                        if (AppState.get().isDouble) {
+                        if (AppState.get().isDouble && target != -1) {
                             target = pageLink.targetPage / 2;
                         }
                         TempHolder.get().linkPage = target;
