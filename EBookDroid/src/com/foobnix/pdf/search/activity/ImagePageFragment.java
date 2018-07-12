@@ -20,6 +20,7 @@ import android.widget.TextView;
 public class ImagePageFragment extends Fragment {
     public static final String POS = "pos";
     public static final String PAGE_PATH = "pagePath";
+    public static final String IS_TEXTFORMAT = "isTEXT";
 
     int page;
 

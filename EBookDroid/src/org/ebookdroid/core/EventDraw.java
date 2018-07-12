@@ -125,7 +125,9 @@ public class EventDraw implements IEvent {
 
         // TODO Draw there
         // drawLine(page);
+        if (!AppState.get().isTextFormat()) {
         drawPageLinks(page);
+        }
         // drawSomething(page);
         // drawHighlights(page);
         drawSelectedText(page);

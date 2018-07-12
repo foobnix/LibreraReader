@@ -1171,6 +1171,7 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
 
                 final Bundle b = new Bundle();
                 b.putInt(ImagePageFragment.POS, position);
+                b.putBoolean(ImagePageFragment.IS_TEXTFORMAT, dc.isTextFormat());
                 b.putString(ImagePageFragment.PAGE_PATH, dc.getPageUrl(position).toString());
 
                 f2.setArguments(b);
@@ -1777,6 +1778,7 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
 
                 final Bundle b = new Bundle();
                 b.putInt(ImagePageFragment.POS, position);
+                b.putBoolean(ImagePageFragment.IS_TEXTFORMAT, dc.isTextFormat());
                 b.putString(ImagePageFragment.PAGE_PATH, dc.getPageUrl(position).toString());
 
                 imageFragment.setArguments(b);

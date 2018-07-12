@@ -528,16 +528,17 @@ public class PageImaveView extends View {
                     if (isMoveNextPrev != 0) {
                         LOG.d("isMoveNextPrev", isMoveNextPrev);
                         EventBus.getDefault().post(new MessageEvent(MessageEvent.MESSAGE_GOTO_PAGE_SWIPE, isMoveNextPrev));
+                    } else if (TxtUtils.isNotEmpty(AppState.get().selectedText)) {
+                        EventBus.getDefault().post(new MessageEvent(MessageEvent.MESSAGE_SELECTED_TEXT));
                     } else if (pageLink != null) {
                         EventBus.getDefault().post(new MessageEvent(MessageEvent.MESSAGE_GOTO_PAGE_BY_LINK, target, pageLink.url));
                     } else {
                         EventBus.getDefault().post(new MessageEvent(MessageEvent.MESSAGE_PERFORM_CLICK, event.getX(), event.getY()));
                     }
-                } else {
-                    if (TxtUtils.isNotEmpty(AppState.get().selectedText)) {
-                        EventBus.getDefault().post(new MessageEvent(MessageEvent.MESSAGE_SELECTED_TEXT));
-                    }
+                } else if (TxtUtils.isNotEmpty(AppState.get().selectedText)) {
+                    EventBus.getDefault().post(new MessageEvent(MessageEvent.MESSAGE_SELECTED_TEXT));
                 }
+
                 isIgronerClick = false;
             } else if (action == MotionEvent.ACTION_CANCEL) {
                 LOG.d("TEST", "action ACTION_CANCEL");
@@ -648,17 +649,19 @@ public class PageImaveView extends View {
                 paintWrods.setColor(AppState.get().isDayNotInvert ? Color.BLUE : Color.YELLOW);
                 paintWrods.setAlpha(60);
 
-                if (AppState.get().isDouble) {
-                    for (PageLink pl : getPageLinks(1)) {
-                        drawLink(canvas, pl);
-                    }
+                if (!AppState.get().isTextFormat()) {
+                    if (AppState.get().isDouble) {
+                        for (PageLink pl : getPageLinks(1)) {
+                            drawLink(canvas, pl);
+                        }
 
-                    for (PageLink pl : getPageLinks(2)) {
-                        drawLink(canvas, pl);
-                    }
-                } else {
-                    for (PageLink pl : getPageLinks(0)) {
-                        drawLink(canvas, pl);
+                        for (PageLink pl : getPageLinks(2)) {
+                            drawLink(canvas, pl);
+                        }
+                    } else {
+                        for (PageLink pl : getPageLinks(0)) {
+                            drawLink(canvas, pl);
+                        }
                     }
                 }
             }
