@@ -361,7 +361,7 @@
    <string name="save_changes">Сохранить изменения?</string>
    <string name="rename">Переименовать</string>
    <string name="saving_">Сохранение...</string>
-   <string name="customize_font_background_colors">Применять особый алгоритм цветоизменения шрифтов и фонов для PDF/DJVU</string>
+   <string name="customize_font_background_colors">Применять особый алгоритм изменения цвета шрифтов и фонов для PDF/DJVU</string>
    <string name="customize_background_color">Настройка цвета фона</string>
    <string name="clear_all_recent">Очистить все недавние книги?</string>
    <string name="clear_all_bookmars">Очистить все закладки?</string>
@@ -479,10 +479,10 @@
    <string name="clouds">Облака</string>
    <string name="add_to_cloud">Добавить в облако</string>
    <string name="librera_cloud">Облако Librera</string>
-   <string name="hide_search_bar">Скрыть панель поиска</string>
-   <string name="show_search_bar">Показать панель поиска</string>
-   <string name="enable_swipe_gestures_for_pages">Листать страницы вертикальными свайпами (направление определяется стрелкой)</string>
+   <string name="hide_search_bar">Скрывать панель поиска</string>
+   <string name="show_search_bar">Показывать панель поиска</string>
+   <string name="enable_swipe_gestures_for_pages">Листать страницы вертикальными свайпами (направление листания определяется стрелкой)</string>
    <string name="never">Никогда</string>
-   <string name="show_notifications">Показать уведомления</string>
+   <string name="show_notifications">Показывать уведомление</string>
    <string name="general_settings">Общие настройки</string>
 </resources>
