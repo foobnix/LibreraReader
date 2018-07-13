@@ -92,7 +92,7 @@
 	<target name="x86" depends="cpu_replace">
 	    <echo>Target x86</echo>
 		<property name="pdf.app.platform" value="x86+x86_64" />
-		<property name="pdf.reader.code" value="${code.cpu_x86__}" />
+		<property name="pdf.reader.code" value="${code.cpu_x86+64}" />
 		
 		<replaceregexp file="../EbookaPDF/project.properties"
 			match='android.library.reference.1=../temp' replace='android.library.reference.1=../cpu_x86' />
@@ -119,7 +119,16 @@
 	
 	<target name="arm+arm64" depends="cpu_replace">
 		<property name="pdf.app.platform" value="arm+arm64" />
-		<property name="pdf.reader.code" value="${code.cpu_arm+arm64_beta}" />
+		<property name="pdf.reader.code" value="${code.cpu_arm+64}" />
+		
+		<replaceregexp file="../EbookaPDF/project.properties"
+			match='android.library.reference.1=../temp' replace='android.library.reference.1=../cpu_arm+arm64' />
+
+	</target>
+
+	<target name="beta" depends="cpu_replace">
+		<property name="pdf.app.platform" value="arm+arm64" />
+		<property name="pdf.reader.code" value="${code.cpu_beta}" />
 		
 		<replaceregexp file="../EbookaPDF/project.properties"
 			match='android.library.reference.1=../temp' replace='android.library.reference.1=../cpu_arm+arm64' />
