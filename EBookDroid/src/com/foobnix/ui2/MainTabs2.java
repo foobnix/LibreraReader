@@ -463,7 +463,7 @@ public class MainTabs2 extends AdsFragmentActivity {
     protected void onResume() {
         super.onResume();
 
-        AppsConfig.isCloudsEnable = AppsConfig.IS_BETA || UITab.isShowCloudsPreferences();
+        AppsConfig.isCloudsEnable = UITab.isShowCloudsPreferences();
 
         LOG.d(TAG, "onResume");
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
