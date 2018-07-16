@@ -87,7 +87,7 @@ public class ProgressDraw extends View {
         for (int i = 0; i < dividers.size(); i++) {
             OutlineLinkWrapper item = dividers.get(i);
             int nextTarget = item.targetPage;
-            if (nextTarget > currentPage && item.level <= 1 + first) {
+            if (nextTarget > currentPage && item.level <= 2 + first) {
                 return nextTarget - currentPage;
             }
         }
@@ -122,7 +122,7 @@ public class ProgressDraw extends View {
                 int first = dividers.get(0).level;
                 for (OutlineLinkWrapper item : dividers) {
                     int pos = item.targetPage - 1;
-                    if (pos < 0 || item.level >= 2 + first || item.getTitleRaw().endsWith(Fb2Extractor.FOOTER_AFTRER_BOODY)) {
+                    if (pos < 0 || item.level >= 3 + first || item.getTitleRaw().endsWith(Fb2Extractor.FOOTER_AFTRER_BOODY)) {
                         continue;
                     }
 

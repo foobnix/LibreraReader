@@ -126,7 +126,7 @@
 
 	</target>
 
-	<target name="beta" depends="cpu_replace">
+	<target name="beta-cpu" depends="cpu_replace">
 		<property name="pdf.app.platform" value="arm+arm64" />
 		<property name="pdf.reader.code" value="${code.cpu_beta}" />
 		
