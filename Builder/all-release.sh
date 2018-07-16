@@ -10,13 +10,6 @@ ant arm64 pro
 ant arm+arm64 pro
 ant x86 pro
 
-
-./remove_all.sh
-./install_all.sh
-
-./clear-cache.sh
-
-
 ant arm pdf
 ant arm64 pdf
 ant x86 pdf

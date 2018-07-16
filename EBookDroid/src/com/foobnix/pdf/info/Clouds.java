@@ -223,43 +223,50 @@ public class Clouds {
 
     public void init(Context c) {
         this.context = c;
-        CloudRail.setAppKey("5817abf0c40abf10ce9a04c5");
-
-        sp = c.getSharedPreferences("Clouds", Context.MODE_PRIVATE);
-        Objects.loadFromSp(this, sp);
-
-        // https://www.dropbox.com/developers/apps
-        dropbox = new Dropbox(c, "wp5uvfelqbdnwkg", "e7hfer9dh5r18tz", "https://auth.cloudrail.com/Librera", "");
-        ((Dropbox) dropbox).useAdvancedAuthentication();
-
-        googleDrive = new GoogleDrive(c, AppsConfig.GOOGLE_DRIVE_KEY, "", Apps.getPackageName(c) + ":/auth", "");
-        ((GoogleDrive) googleDrive).useAdvancedAuthentication();
-
-        // https://apps.dev.microsoft.com/#/application
-        oneDrive = new OneDrive(c, "e5017cc6-0a84-4007-92ae-cfb9509d40db", "imhVPQO635[{xqdrPUN26[%", "https://auth.cloudrail.com/Librera", "");
-        ((OneDrive) oneDrive).useAdvancedAuthentication();
-
         try {
-            if (dropboxToken != null) {
-                dropbox.loadAsString(dropboxToken);
+
+            CloudRail.setAppKey("5817abf0c40abf10ce9a04c5");
+
+            sp = c.getSharedPreferences("Clouds", Context.MODE_PRIVATE);
+            Objects.loadFromSp(this, sp);
+
+            // https://www.dropbox.com/developers/apps
+            dropbox = new Dropbox(c, "wp5uvfelqbdnwkg", "e7hfer9dh5r18tz", "https://auth.cloudrail.com/Librera", "");
+            ((Dropbox) dropbox).useAdvancedAuthentication();
+
+            googleDrive = new GoogleDrive(c, AppsConfig.GOOGLE_DRIVE_KEY, "", Apps.getPackageName(c) + ":/auth", "");
+            ((GoogleDrive) googleDrive).useAdvancedAuthentication();
+
+            // https://apps.dev.microsoft.com/#/application
+            oneDrive = new OneDrive(c, "e5017cc6-0a84-4007-92ae-cfb9509d40db", "imhVPQO635[{xqdrPUN26[%", "https://auth.cloudrail.com/Librera", "");
+            ((OneDrive) oneDrive).useAdvancedAuthentication();
+
+            try {
+                if (dropboxToken != null) {
+                    dropbox.loadAsString(dropboxToken);
+                }
+            } catch (Exception e) {
+                LOG.e(e);
             }
-        } catch (Exception e) {
+
+            try {
+                if (googleDriveToken != null)
+                    googleDrive.loadAsString(googleDriveToken);
+            } catch (Exception e) {
+                LOG.e(e);
+            }
+
+            try {
+                if (oneDriveToken != null)
+                    oneDrive.loadAsString(oneDriveToken);
+            } catch (Exception e) {
+                LOG.e(e);
+            }
+
+        } catch (Throwable e) {
             LOG.e(e);
         }
 
-        try {
-            if (googleDriveToken != null)
-                googleDrive.loadAsString(googleDriveToken);
-        } catch (Exception e) {
-            LOG.e(e);
-        }
-
-        try {
-            if (oneDriveToken != null)
-                oneDrive.loadAsString(oneDriveToken);
-        } catch (Exception e) {
-            LOG.e(e);
-        }
     }
 
     public void syncronizeGet() {
