@@ -5,6 +5,7 @@ import java.util.List;
 
 import com.foobnix.android.utils.Dips;
 import com.foobnix.android.utils.LOG;
+import com.foobnix.android.utils.TxtUtils;
 import com.foobnix.ext.Fb2Extractor;
 import com.foobnix.pdf.info.model.OutlineLinkWrapper;
 import com.foobnix.pdf.info.wrapper.AppState;
@@ -51,42 +52,11 @@ public class ProgressDraw extends View {
         setClickable(true);
     }
 
-    int level0count, level1count, level2count, deep = 0;
-
     public void updateDivs(List<OutlineLinkWrapper> dividers) {
         this.dividers = dividers;
-        level0count = 0;
-        level1count = 0;
         if (dividers == null || dividers.isEmpty()) {
             return;
         }
-
-        int first = dividers.get(0).level;
-        LOG.d("deep first", first);
-
-        for (OutlineLinkWrapper link : dividers) {
-            if (link.level == 0 + first) {
-                level0count++;
-            }
-            if (link.level == 1 + first) {
-                level1count++;
-            }
-            if (link.level == 2 + first) {
-                level2count++;
-            }
-        }
-
-        if (level0count >= max_count) {
-            deep = 0;
-        } else if (level1count >= max_count) {
-            deep = 1;
-        } else if (level2count >= max_count) {
-            deep = 2;
-        } else {
-            deep = 3;
-        }
-
-        deep += first;
 
         invalidate();
     }
@@ -106,6 +76,24 @@ public class ProgressDraw extends View {
     public void updateColor(int color) {
         this.color = ColorUtils.setAlphaComponent(color, ALPHA);
         invalidate();
+    }
+
+    public int getLeftPages(int currentPage, int maxPages) {
+        if (TxtUtils.isListEmpty(dividers)) {
+            return maxPages;
+        }
+
+        int first = dividers.get(0).level;
+        for (int i = 0; i < dividers.size(); i++) {
+            OutlineLinkWrapper item = dividers.get(i);
+            int nextTarget = item.targetPage;
+            if (nextTarget > currentPage && item.level <= 1 + first) {
+                return nextTarget - currentPage;
+            }
+        }
+
+        return maxPages - currentPage;
+
     }
 
     @Override
@@ -129,11 +117,12 @@ public class ProgressDraw extends View {
             float k = (float) getWidth() / pageCount;
             int h = getHeight();
             int currentChapter = 0;
+
             if (AppState.get().isShowChaptersOnProgress && dividers != null && !dividers.isEmpty()) {
-                LOG.d("deep level", deep);
+                int first = dividers.get(0).level;
                 for (OutlineLinkWrapper item : dividers) {
                     int pos = item.targetPage - 1;
-                    if (pos < 0 || item.level > deep || item.getTitleRaw().endsWith(Fb2Extractor.FOOTER_AFTRER_BOODY)) {
+                    if (pos < 0 || item.level >= 2 + first || item.getTitleRaw().endsWith(Fb2Extractor.FOOTER_AFTRER_BOODY)) {
                         continue;
                     }
 

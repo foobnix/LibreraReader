@@ -1490,7 +1490,11 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
             pagesCountIndicator.setText(textPage);
         } else if (AppState.get().readingProgress == AppState.READING_PROGRESS_PERCENT_NUMBERS) {
             currentSeek.setText(TxtUtils.deltaPage(page + 1));
-            pagesCountIndicator.setText(TxtUtils.getProgressPercent(page + 1, max) + "     " + TxtUtils.deltaPage(page + 1) + " ∕ " + textMax);
+            String text = TxtUtils.getProgressPercent(page + 1, max) + "   " + TxtUtils.deltaPage(page + 1) + " ∕ " + textMax;
+
+            text += "   (" + progressDraw.getLeftPages(page + 1, max) + ")";
+
+            pagesCountIndicator.setText(text);
         } else {
             pagesCountIndicator.setText(textPage + " ∕ " + textMax);
         }
