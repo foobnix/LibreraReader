@@ -312,7 +312,7 @@
    <string name="speed1">语速</string>
    <string name="pitch1">音调</string>
    <string name="sound_volume">音量</string>
-   <string name="ongoing_notification">显示通知</string>
+   <string name="ongoing_notification">进行通知</string>
    <string name="next">下一页</string>
    <string name="stop_reading_timer_">停止朗读（定时器）</string>
    <string name="start">开始</string>
