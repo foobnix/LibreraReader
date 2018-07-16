@@ -285,6 +285,12 @@ public class Clouds {
 
         LOG.d("syncronizeGet begin", storage);
 
+        if (storage == null) {
+            LOG.d("CloudStorage NULL");
+            return;
+        }
+
+
         if (storage instanceof Dropbox && !isDropbox()) {
             LOG.d("Dropbox is not connected");
             return;
@@ -376,6 +382,11 @@ public class Clouds {
 
     public void syncronizeAdd(final Activity a, final File file, final CloudStorage cloud) {
 
+        if (cloud == null) {
+            LOG.d("CloudStorage NULL");
+            return;
+        }
+
         new AsyncProgressTask<Boolean>() {
 
             @Override
@@ -437,6 +448,11 @@ public class Clouds {
     }
 
     private void createLibreraCloudFolder(final CloudStorage cloud) {
+        if (cloud == null) {
+            LOG.d("CloudStorage NULL");
+            return;
+        }
+
         String extSyncFolder = LIBRERA_SYNC_ONLINE_FOLDER;
         if (!cloud.exists(extSyncFolder)) {
             cloud.createFolder(extSyncFolder);
