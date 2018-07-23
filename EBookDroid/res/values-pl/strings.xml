@@ -304,7 +304,6 @@
    <string name="custom_value">Wartość niestandardowa</string>
    <string name="automatic_page_flipping">Automatyczne przewijanie stron</string>
    <string name="interval_sec_">Interwał (sek)</string>
-   <string name="loop_autoplay">Zapętlenie autoprzewijania</string>
    <string name="show_bottom_panel">Pokaż panel dolny</string>
    <string name="to_stop">Stop</string>
    <string name="to_read">Czytaj</string>
@@ -485,4 +484,5 @@
    <string name="never">Nigdy</string>
    <string name="show_notifications">Pokaż powiadomienia</string>
    <string name="general_settings">Ustawienia główne</string>
+   <string name="cyclic_scrolling_return_to_1_page_">Cykliczne przewijanie (powrót do 1 strony)</string>
 </resources>

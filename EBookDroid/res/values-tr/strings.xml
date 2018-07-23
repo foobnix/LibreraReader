@@ -304,7 +304,6 @@
    <string name="custom_value">Özel değer</string>
    <string name="automatic_page_flipping">Otomatik sayfa çevirme</string>
    <string name="interval_sec_">Aralık (sn)</string>
-   <string name="loop_autoplay">Otomatik sayfa değiştir</string>
    <string name="show_bottom_panel">Alt paneli göster</string>
    <string name="to_stop">Durdur</string>
    <string name="to_read">Oku</string>
@@ -485,4 +484,5 @@
    <string name="never">Asla</string>
    <string name="show_notifications">Bildirimleri göster</string>
    <string name="general_settings">Genel Ayarlar</string>
+   <string name="cyclic_scrolling_return_to_1_page_">Döngüsel kaydırma (1 sayfaya geri dön)</string>
 </resources>

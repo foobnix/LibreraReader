@@ -304,7 +304,6 @@
    <string name="custom_value">自定义/值</string>
    <string name="automatic_page_flipping">自动翻页</string>
    <string name="interval_sec_">间隔（秒）</string>
-   <string name="loop_autoplay">启用自动循环</string>
    <string name="show_bottom_panel">显示阅读状态</string>
    <string name="to_stop">停止</string>
    <string name="to_read">朗读</string>
@@ -485,4 +484,5 @@
    <string name="never">决不</string>
    <string name="show_notifications">显示通知</string>
    <string name="general_settings">常规设置</string>
+   <string name="cyclic_scrolling_return_to_1_page_">循环滚动（返回1页）</string>
 </resources>

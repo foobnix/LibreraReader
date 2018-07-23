@@ -304,7 +304,6 @@
    <string name="custom_value">कस्टम मूल्य</string>
    <string name="automatic_page_flipping">स्वचालित पृष्ठ फ्लिपिंग</string>
    <string name="interval_sec_">अंतराल (सेकंड)</string>
-   <string name="loop_autoplay">ऑटो पुस्तक पाशन</string>
    <string name="show_bottom_panel">नीचे पैनल दिखाएं</string>
    <string name="to_stop">रुकें</string>
    <string name="to_read">पढ़ना</string>
@@ -485,4 +484,5 @@
    <string name="never">कभी नहीँ</string>
    <string name="show_notifications">सूचनाएं दिखाएं</string>
    <string name="general_settings">सामान्य सेटिंग्स</string>
+   <string name="cyclic_scrolling_return_to_1_page_">चक्रीय स्क्रॉलिंग (1 पृष्ठ पर लौटें)</string>
 </resources>

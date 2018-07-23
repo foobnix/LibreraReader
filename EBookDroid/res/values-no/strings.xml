@@ -304,7 +304,6 @@
    <string name="custom_value">Tilpasset verdi</string>
    <string name="automatic_page_flipping">Automatisk sideflipping</string>
    <string name="interval_sec_">Intervall (sek)</string>
-   <string name="loop_autoplay">Looping auto scroll</string>
    <string name="show_bottom_panel">Vis bunnpanel</string>
    <string name="to_stop">Stoppe</string>
    <string name="to_read">Lese</string>
@@ -485,4 +484,5 @@
    <string name="never">Aldri</string>
    <string name="show_notifications">Vis varsler</string>
    <string name="general_settings">Generelle innstillinger</string>
+   <string name="cyclic_scrolling_return_to_1_page_">Syklisk rulling (tilbake til 1 side)</string>
 </resources>

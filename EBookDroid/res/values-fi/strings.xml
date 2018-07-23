@@ -304,7 +304,6 @@
    <string name="custom_value">Mukautettu arvo</string>
    <string name="automatic_page_flipping">Automaattinen sivu käännetään</string>
    <string name="interval_sec_">Aika (s)</string>
-   <string name="loop_autoplay">Looping Automaattinen vieritys</string>
    <string name="show_bottom_panel">Näytä pohjapaneelin</string>
    <string name="to_stop">Stop</string>
    <string name="to_read">Lukea</string>
@@ -485,4 +484,5 @@
    <string name="never">Ei koskaan</string>
    <string name="show_notifications">Näytä ilmoitukset</string>
    <string name="general_settings">Yleiset asetukset</string>
+   <string name="cyclic_scrolling_return_to_1_page_">Syklinen vieritys (palaa 1 sivulle)</string>
 </resources>

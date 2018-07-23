@@ -304,7 +304,6 @@
    <string name="custom_value">Valor customizado</string>
    <string name="automatic_page_flipping">Lançamento automático da página</string>
    <string name="interval_sec_">Intervalo (s)</string>
-   <string name="loop_autoplay">Rolagem automática com repetição</string>
    <string name="show_bottom_panel">Mostrar painel inferior</string>
    <string name="to_stop">Parar</string>
    <string name="to_read">Ler</string>
@@ -485,4 +484,5 @@
    <string name="never">Nunca</string>
    <string name="show_notifications">Mostrar notificações</string>
    <string name="general_settings">Configurações Gerais</string>
+   <string name="cyclic_scrolling_return_to_1_page_">Rolagem cíclica (retorno a 1 página)</string>
 </resources>

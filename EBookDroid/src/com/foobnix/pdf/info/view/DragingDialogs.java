@@ -2704,6 +2704,8 @@ public class DragingDialogs {
 
                 CheckBox isLoopAutoplay = (CheckBox) inflate.findViewById(R.id.isLoopAutoplay);
                 isLoopAutoplay.setChecked(AppState.get().isLoopAutoplay);
+                // isLoopAutoplay.setVisibility(AppState.get().isAlwaysOpenAsMagazine ?
+                // View.GONE : View.VISIBLE);
                 isLoopAutoplay.setOnCheckedChangeListener(new OnCheckedChangeListener() {
 
                     @Override

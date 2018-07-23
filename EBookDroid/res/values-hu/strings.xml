@@ -304,7 +304,6 @@
    <string name="custom_value">Egyéni érték</string>
    <string name="automatic_page_flipping">Automatikus lapozás</string>
    <string name="interval_sec_">Időköz (mp)</string>
-   <string name="loop_autoplay">Ismétlődő automatikus lapozás</string>
    <string name="show_bottom_panel">Alsó panel megjelenítése</string>
    <string name="to_stop">Leállítás</string>
    <string name="to_read">Olvasás</string>
@@ -485,4 +484,5 @@
    <string name="never">Soha</string>
    <string name="show_notifications">Értesítések megjelenítése</string>
    <string name="general_settings">Általános beállítások</string>
+   <string name="cyclic_scrolling_return_to_1_page_">Ciklikus görgetés (visszatérés 1 oldalra)</string>
 </resources>

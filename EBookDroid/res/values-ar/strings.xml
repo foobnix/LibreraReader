@@ -304,7 +304,6 @@
    <string name="custom_value">القيمة الجمركية</string>
    <string name="automatic_page_flipping">التلقائي التقليب الصفحة</string>
    <string name="interval_sec_">الفاصل الزمني (ثانية)</string>
-   <string name="loop_autoplay">تمرير تلقائي حلقي</string>
    <string name="show_bottom_panel">إظهار اللوحة السفلية</string>
    <string name="to_stop">إيقاف</string>
    <string name="to_read">قراءة</string>
@@ -485,4 +484,5 @@
    <string name="never">أبدا</string>
    <string name="show_notifications">عرض الإخطارات</string>
    <string name="general_settings">الاعدادات العامة</string>
+   <string name="cyclic_scrolling_return_to_1_page_">التمرير الدوري (الرجوع إلى صفحة واحدة)</string>
 </resources>

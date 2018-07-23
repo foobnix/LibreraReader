@@ -304,7 +304,6 @@
    <string name="custom_value">Valore tui</string>
    <string name="automatic_page_flipping">Automatic page flipping</string>
    <string name="interval_sec_">Intervalum (sec)</string>
-   <string name="loop_autoplay">Non sustinere auto-protrahendum ad finem libri</string>
    <string name="show_bottom_panel">Show bottom panel</string>
    <string name="to_stop">Sustinere</string>
    <string name="to_read">Lege</string>
@@ -485,4 +484,5 @@
    <string name="never">Numquam</string>
    <string name="show_notifications">Show Acta Vicimediorum Communium</string>
    <string name="general_settings">General Occasus</string>
+   <string name="cyclic_scrolling_return_to_1_page_">Insecta scrolling (redire ad paginam I)</string>
 </resources>

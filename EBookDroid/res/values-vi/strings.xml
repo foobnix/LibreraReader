@@ -304,7 +304,6 @@
    <string name="custom_value">Giá trị tùy chỉnh</string>
    <string name="automatic_page_flipping">Tự động lật trang</string>
    <string name="interval_sec_">Khoảng (giây)</string>
-   <string name="loop_autoplay">Looping di chuyển tự động</string>
    <string name="show_bottom_panel">Hiển thị bảng dưới cùng</string>
    <string name="to_stop">Dừng lại</string>
    <string name="to_read">Đọc</string>
@@ -485,4 +484,5 @@
    <string name="never">Không bao giờ</string>
    <string name="show_notifications">Hiển thị thông báo</string>
    <string name="general_settings">Cài đặt chung</string>
+   <string name="cyclic_scrolling_return_to_1_page_">Cuộn theo chu kỳ (trở về 1 trang)</string>
 </resources>

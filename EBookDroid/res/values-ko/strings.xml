@@ -304,7 +304,6 @@
    <string name="custom_value">맞춤 값</string>
    <string name="automatic_page_flipping">자동 페이지 뒤집기</string>
    <string name="interval_sec_">간격 (초)</string>
-   <string name="loop_autoplay">자동 스크롤 반복</string>
    <string name="show_bottom_panel">하단 패널 표시</string>
    <string name="to_stop">중지</string>
    <string name="to_read">읽기</string>
@@ -485,4 +484,5 @@
    <string name="never">못</string>
    <string name="show_notifications">알림 표시</string>
    <string name="general_settings">일반 설정</string>
+   <string name="cyclic_scrolling_return_to_1_page_">순환 스크롤 (1 페이지로 돌아 가기)</string>
 </resources>

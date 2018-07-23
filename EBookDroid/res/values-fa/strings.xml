@@ -304,7 +304,6 @@
    <string name="custom_value">ارزش سفارشی</string>
    <string name="automatic_page_flipping">کوه در می رم صفحه به صورت خودکار</string>
    <string name="interval_sec_">فاصله (ثانیه)</string>
-   <string name="loop_autoplay">حلقه خودکار اسکرول</string>
    <string name="show_bottom_panel">نمایش پانل پایین</string>
    <string name="to_stop">متوقف کردن</string>
    <string name="to_read">خواندن</string>
@@ -485,4 +484,5 @@
    <string name="never">هرگز</string>
    <string name="show_notifications">نشان دادن اعلانات</string>
    <string name="general_settings">تنظیمات عمومی</string>
+   <string name="cyclic_scrolling_return_to_1_page_">پیمایش سیسیک (بازگشت به 1 صفحه)</string>
 </resources>

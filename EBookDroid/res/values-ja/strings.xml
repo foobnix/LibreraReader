@@ -304,7 +304,6 @@
    <string name="custom_value">カスタム値</string>
    <string name="automatic_page_flipping">自動ページ反転</string>
    <string name="interval_sec_">間隔（秒）</string>
-   <string name="loop_autoplay">オートスクロールをループ</string>
    <string name="show_bottom_panel">下のパネルを表示</string>
    <string name="to_stop">止まる</string>
    <string name="to_read">読むために、</string>
@@ -485,4 +484,5 @@
    <string name="never">絶対に</string>
    <string name="show_notifications">通知を表示</string>
    <string name="general_settings">一般設定</string>
+   <string name="cyclic_scrolling_return_to_1_page_">サイクリックスクロール（1ページに戻る）</string>
 </resources>

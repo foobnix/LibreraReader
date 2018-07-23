@@ -304,7 +304,6 @@
    <string name="custom_value">Vlastná hodnota</string>
    <string name="automatic_page_flipping">Automatické preklopenie stránky</string>
    <string name="interval_sec_">Interval (sek)</string>
-   <string name="loop_autoplay">Zanka Samodejno pomikanje</string>
    <string name="show_bottom_panel">Zobraziť spodný panel</string>
    <string name="to_stop">Prestať</string>
    <string name="to_read">Čítať</string>
@@ -485,4 +484,5 @@
    <string name="never">Nikdy</string>
    <string name="show_notifications">Zobraziť upozornenia</string>
    <string name="general_settings">Všeobecné nastavenia</string>
+   <string name="cyclic_scrolling_return_to_1_page_">Cyklické rolovanie (návrat na 1 stránku)</string>
 </resources>

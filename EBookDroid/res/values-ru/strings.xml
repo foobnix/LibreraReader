@@ -304,7 +304,6 @@
    <string name="custom_value">Свое значение</string>
    <string name="automatic_page_flipping">Автоперелистывание страниц</string>
    <string name="interval_sec_">Интервал (в секундах)</string>
-   <string name="loop_autoplay">Достигнув конца книги, переходить к ее началу и начинать заново</string>
    <string name="show_bottom_panel">Отображать строку состояния</string>
    <string name="to_stop">Остановить</string>
    <string name="to_read">Читать</string>
@@ -485,4 +484,5 @@
    <string name="never">Никогда</string>
    <string name="show_notifications">Показывать уведомление</string>
    <string name="general_settings">Общие настройки</string>
+   <string name="cyclic_scrolling_return_to_1_page_">Циклическая прокрутка (возврат на 1 страницу)</string>
 </resources>

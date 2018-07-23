@@ -304,7 +304,6 @@
    <string name="custom_value">ค่าที่กำหนดเอง</string>
    <string name="automatic_page_flipping">หน้าพลิกอัตโนมัติ</string>
    <string name="interval_sec_">ช่วง (วินาที)</string>
-   <string name="loop_autoplay">วนอัตโนมัติเลื่อน</string>
    <string name="show_bottom_panel">แสดงแผงด้านล่าง</string>
    <string name="to_stop">หยุด</string>
    <string name="to_read">อ่าน</string>
@@ -485,4 +484,5 @@
    <string name="never">ไม่เคย</string>
    <string name="show_notifications">แสดงการแจ้งเตือน</string>
    <string name="general_settings">การตั้งค่าทั่วไป</string>
+   <string name="cyclic_scrolling_return_to_1_page_">การเลื่อนแบบวน (กลับไปที่หน้า 1)</string>
 </resources>

@@ -229,8 +229,8 @@
             android:id="@+id/isLoopAutoplay"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/loop_autoplay"
-            android:visibility="gone" />
+            android:text="@string/cyclic_scrolling_return_to_1_page_"
+             />
 
         <CheckBox
             android:id="@+id/isScrollAnimation"

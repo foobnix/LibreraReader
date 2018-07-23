@@ -368,7 +368,9 @@ public class AppState {
 
     public boolean isAllowMoveTwoFingerWithLock = true;
 
+    @IgnoreHashCode
     public boolean isLoopAutoplay = false;
+
     public boolean isBookCoverEffect = false;
 
     public int editWith = EDIT_PEN;

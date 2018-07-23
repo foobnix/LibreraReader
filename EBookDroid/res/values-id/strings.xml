@@ -304,7 +304,6 @@
    <string name="custom_value">Nilai khusus</string>
    <string name="automatic_page_flipping">Halaman otomatis membalik</string>
    <string name="interval_sec_">Interval (detik)</string>
-   <string name="loop_autoplay">Gulir otomatis lepas</string>
    <string name="show_bottom_panel">Tampilkan panel bawah</string>
    <string name="to_stop">Berhenti</string>
    <string name="to_read">Baca baca</string>
@@ -485,4 +484,5 @@
    <string name="never">Tak pernah</string>
    <string name="show_notifications">Tampilkan pemberitahuan</string>
    <string name="general_settings">Pengaturan Umum</string>
+   <string name="cyclic_scrolling_return_to_1_page_">Gerak siklik (kembali ke 1 halaman)</string>
 </resources>

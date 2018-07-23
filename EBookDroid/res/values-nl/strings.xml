@@ -304,7 +304,6 @@
    <string name="custom_value">Aangepaste waarde</string>
    <string name="automatic_page_flipping">Automatische bladzijde</string>
    <string name="interval_sec_">Interval (sec)</string>
-   <string name="loop_autoplay">Looping auto scroll</string>
    <string name="show_bottom_panel">Toon het onderste paneel</string>
    <string name="to_stop">Hou op</string>
    <string name="to_read">Lezen</string>
@@ -485,4 +484,5 @@
    <string name="never">Nooit</string>
    <string name="show_notifications">Toon meldingen</string>
    <string name="general_settings">Algemene instellingen</string>
+   <string name="cyclic_scrolling_return_to_1_page_">Cyclisch scrollen (teruggaan naar 1 pagina)</string>
 </resources>

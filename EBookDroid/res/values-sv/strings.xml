@@ -304,7 +304,6 @@
    <string name="custom_value">Anpassat värde</string>
    <string name="automatic_page_flipping">Automatisk sida bläddring</string>
    <string name="interval_sec_">Intervall (sek)</string>
-   <string name="loop_autoplay">Looping auto bläddra</string>
    <string name="show_bottom_panel">Visa bottenpanelen</string>
    <string name="to_stop">Sluta</string>
    <string name="to_read">Läsa</string>
@@ -485,4 +484,5 @@
    <string name="never">Aldrig</string>
    <string name="show_notifications">Visa notifikationer</string>
    <string name="general_settings">Allmänna Inställningar</string>
+   <string name="cyclic_scrolling_return_to_1_page_">Cyklisk rullning (återgå till 1 sida)</string>
 </resources>

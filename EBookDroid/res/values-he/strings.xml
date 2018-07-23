@@ -304,7 +304,6 @@
    <string name="custom_value">ערך מותאם אישית</string>
    <string name="automatic_page_flipping">דף אוטומטי מדפדף</string>
    <string name="interval_sec_">מרווח (שניות)</string>
-   <string name="loop_autoplay">Looping גלילה אוטומטית</string>
    <string name="show_bottom_panel">הצג את החלונית התחתונה</string>
    <string name="to_stop">תפסיק</string>
    <string name="to_read">לקרוא</string>
@@ -485,4 +484,5 @@
    <string name="never">לעולם לא</string>
    <string name="show_notifications">תראה התראות</string>
    <string name="general_settings">הגדרות כלליות</string>
+   <string name="cyclic_scrolling_return_to_1_page_">גלילה מחזורית (חזרה לדף אחד)</string>
 </resources>
