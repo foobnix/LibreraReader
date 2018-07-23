@@ -44,6 +44,11 @@ public class BooksService extends IntentService {
         LOG.d("BooksService", "onDestroy");
     }
 
+    @Override
+    public void onCreate() {
+        super.onCreate();
+    }
+
     public static String TAG = "BooksService";
 
     Handler handler;

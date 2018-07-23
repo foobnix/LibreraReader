@@ -53,6 +53,18 @@ public abstract class AbstractCodecContext implements CodecContext {
         }
     }
 
+    public static long getFileNameSalt(String path) {
+        long hashCode = 0;
+        try {
+            File file = new File(path);
+            hashCode = file.length() + file.lastModified();
+            LOG.d("getFileNameSalt", path, file.length(), file.lastModified());
+        } catch (Exception e) {
+            LOG.e(e);
+        }
+        return hashCode;
+    }
+
     @Override
     public CodecDocument openDocument(String fileNameOriginal, String password) {
         LOG.d("Open-Document", fileNameOriginal);
@@ -62,10 +74,10 @@ public abstract class AbstractCodecContext implements CodecContext {
             return openDocumentInnerCanceled(fileNameOriginal, password);
         }
 
-
         LOG.d("Open-Document 2 LANG:", BookCSS.get().hypenLang, fileNameOriginal);
 
-        File cacheFileName = getCacheFileName(fileNameOriginal);
+
+        File cacheFileName = getCacheFileName(fileNameOriginal + getFileNameSalt(fileNameOriginal));
         CacheZipUtils.removeFiles(CacheZipUtils.CACHE_BOOK_DIR.listFiles(), cacheFileName);
 
         if (cacheFileName != null && cacheFileName.isFile()) {

@@ -290,7 +290,6 @@ public class Clouds {
             return;
         }
 
-
         if (storage instanceof Dropbox && !isDropbox()) {
             LOG.d("Dropbox is not connected");
             return;
@@ -631,15 +630,15 @@ public class Clouds {
     }
 
     public boolean isDropbox() {
-        return dropboxToken != null;
+        return dropbox != null && dropboxToken != null;
     }
 
     public boolean isGoogleDrive() {
-        return googleDriveToken != null;
+        return googleDrive != null && googleDriveToken != null;
     }
 
     public boolean isOneDrive() {
-        return oneDriveToken != null;
+        return oneDrive != null && oneDriveToken != null;
     }
 
     public void save() {

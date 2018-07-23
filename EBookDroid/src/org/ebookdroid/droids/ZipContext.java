@@ -23,8 +23,10 @@ public class ZipContext extends PdfContext {
         if (pack.first) {
             LOG.d("ZipContext", "Singe archive entry");
             Fb2Context fb2Context = new Fb2Context();
-            String etryPath = pack.second;
-            File cacheFileName = fb2Context.getCacheFileName(new File(CacheDir.ZipApp.getDir(), etryPath).getPath());
+            String etryPath = getFileNameSalt(fileName) + pack.second;
+            String path = new File(CacheDir.ZipApp.getDir(), etryPath).getPath();
+
+            File cacheFileName = fb2Context.getCacheFileName(path + getFileNameSalt(path));
             LOG.d("ZipContext", etryPath, cacheFileName.getName());
             if (cacheFileName.exists()) {
                 LOG.d("ZipContext", "FB2 cache exists");
@@ -33,7 +35,7 @@ public class ZipContext extends PdfContext {
         }
 
 
-        String path = CacheZipUtils.extracIfNeed(fileName, CacheDir.ZipApp).unZipPath;
+        String path = CacheZipUtils.extracIfNeed(fileName, CacheDir.ZipApp, getFileNameSalt(fileName)).unZipPath;
         if (path.endsWith("zip")) {
             return null;
         }

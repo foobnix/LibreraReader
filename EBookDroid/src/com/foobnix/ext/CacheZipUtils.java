@@ -212,6 +212,11 @@ public class CacheZipUtils {
     }
 
     public static UnZipRes extracIfNeed(String path, CacheDir folder) {
+        return extracIfNeed(path, folder, -1);
+
+    }
+
+    public static UnZipRes extracIfNeed(String path, CacheDir folder, long salt) {
         if (!path.endsWith(".zip")) {
             return new UnZipRes(path, path, null);
         }
@@ -229,7 +234,11 @@ public class CacheZipUtils {
             ZipArchiveEntry nextEntry = null;
             while ((nextEntry = zipInputStream.getNextZipEntry()) != null) {
                 if (BookType.isSupportedExtByPath(nextEntry.getName())) {
-                    File file = new File(folder.getDir(), nextEntry.getName());
+                    String name = nextEntry.getName();
+                    if (salt != -1) {
+                        name = salt + name;
+                    }
+                    File file = new File(folder.getDir(), name);
                     BufferedOutputStream fileOutputStream = new BufferedOutputStream(new FileOutputStream(file));
                     writeToStream(zipInputStream, fileOutputStream);
                     LOG.d("Unpack archive", file.getPath());
