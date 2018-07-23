@@ -26,6 +26,7 @@ import com.foobnix.ui2.FileMetaCore;
 import com.foobnix.ui2.MainTabs2;
 import com.foobnix.ui2.MyContextWrapper;
 
+import android.app.ActionBar.LayoutParams;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.Context;
@@ -328,6 +329,8 @@ public class VerticalViewActivity extends AbstractActionActivity<VerticalViewAct
                     }
                 });
                 rotatoinDialog = dialog.show();
+                rotatoinDialog.getWindow().setLayout((int) (Dips.screenMinWH() * 0.8f), LayoutParams.WRAP_CONTENT);
+
             }
         } else {
             doConifChange();

@@ -65,6 +65,7 @@ import com.foobnix.ui2.MyContextWrapper;
 import com.nostra13.universalimageloader.core.ImageLoader;
 
 import android.annotation.TargetApi;
+import android.app.ActionBar.LayoutParams;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.Context;
@@ -1714,6 +1715,7 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
                     }
                 });
                 rotatoinDialog = dialog.show();
+                rotatoinDialog.getWindow().setLayout((int) (Dips.screenMinWH() * 0.8f), LayoutParams.WRAP_CONTENT);
             }
         } else {
             Keyboards.hideNavigationOnCreate(this);
