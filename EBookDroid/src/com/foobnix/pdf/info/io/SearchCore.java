@@ -141,7 +141,7 @@ public class SearchCore {
                 }
             } else {
                 for (String s : ExtUtils.browseExts) {
-                    if (f.getName().endsWith(s)) {
+                    if (f.getName().toLowerCase(Locale.US).endsWith(s)) {
                         return true;
                     }
                 }
