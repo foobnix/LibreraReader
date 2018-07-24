@@ -374,6 +374,15 @@ public class VerticalModeController extends DocumentController {
             @Override
             public void run() {
                 while (AppState.get().isAutoScroll) {
+
+                    if (AppState.get().isLoopAutoplay && ctr.getDocumentController().getScrollLimits().bottom == ctr.getDocumentController().getView().getScrollY()) {
+                        try {
+                            Thread.sleep(3000);
+                            LOG.d("Sleep 3000");
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        }
+                    }
                     auto();
                     try {
                         float x = AppState.get().autoScrollSpeed;
