@@ -1,24 +1,6 @@
 ---
 layout: main
 ---
-<style>
-img { 
-    border: 1px solid #363636;
-	margin: 5px 5px 5px 5px;	
-    }
-.textlist {
-    margin: 40px 0px 0px 0px;
-    padding: 0;
-}
-.textlist > li {
-    margin: 0;
-    padding-left: 2em;
-    list-style-position: inside;
-    text-indent:-1em;
-    overflow: hidden;
-}
-</style>
-
 [Руководство](/wiki/guide-ru)
 
 # Главный экран 
@@ -45,12 +27,13 @@ img {
 
 <img src="3.png" align="left" width="50"/> — Выбор способа отображения книг:
 
-<ul class="textlist">
-  <li>Список</li>
-  <li>Полусписок</li>
-  <li>Сетка (по умолчанию)</li>
-  <li>Только обложки</li>
-</ul>
+<br/>
+
+* Список
+* Полусписок
+* Сетка (по умолчанию)
+* Только обложки
+
 
 А также группировка по автору, серии и жанру.
 
