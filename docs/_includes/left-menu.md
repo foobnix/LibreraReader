@@ -3,6 +3,7 @@
     * History
     * Resources
 {% include faq.md %}
+{% include guide-ru.md %}
 * Guide
     * Library screen
         * [Left menu](/wiki/left-menu#en) [(ru)](/wiki/left-menu#ru)
