@@ -485,4 +485,5 @@
    <string name="show_notifications">Tampilkan pemberitahuan</string>
    <string name="general_settings">Pengaturan Umum</string>
    <string name="cyclic_scrolling_return_to_1_page_">Gerak siklik (kembali ke 1 halaman)</string>
+   <string name="normalize_font_size">Normalkan ukuran font</string>
 </resources>

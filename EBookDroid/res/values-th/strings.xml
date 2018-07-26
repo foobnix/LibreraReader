@@ -485,4 +485,5 @@
    <string name="show_notifications">แสดงการแจ้งเตือน</string>
    <string name="general_settings">การตั้งค่าทั่วไป</string>
    <string name="cyclic_scrolling_return_to_1_page_">การเลื่อนแบบวน (กลับไปที่หน้า 1)</string>
+   <string name="normalize_font_size">ทำให้ขนาดตัวอักษรเป็นปกติ</string>
 </resources>

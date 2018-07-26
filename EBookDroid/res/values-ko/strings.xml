@@ -485,4 +485,5 @@
    <string name="show_notifications">알림 표시</string>
    <string name="general_settings">일반 설정</string>
    <string name="cyclic_scrolling_return_to_1_page_">순환 스크롤 (1 페이지로 돌아 가기)</string>
+   <string name="normalize_font_size">글꼴 크기 표준화</string>
 </resources>

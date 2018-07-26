@@ -485,4 +485,5 @@
    <string name="show_notifications">Zobraziť upozornenia</string>
    <string name="general_settings">Všeobecné nastavenia</string>
    <string name="cyclic_scrolling_return_to_1_page_">Cyklické rolovanie (návrat na 1 stránku)</string>
+   <string name="normalize_font_size">Normalizovať veľkosť písma</string>
 </resources>

@@ -485,4 +485,5 @@
    <string name="show_notifications">Hiển thị thông báo</string>
    <string name="general_settings">Cài đặt chung</string>
    <string name="cyclic_scrolling_return_to_1_page_">Cuộn theo chu kỳ (trở về 1 trang)</string>
+   <string name="normalize_font_size">Bình thường hóa kích thước phông chữ</string>
 </resources>

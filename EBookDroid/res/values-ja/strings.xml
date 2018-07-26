@@ -485,4 +485,5 @@
    <string name="show_notifications">通知を表示</string>
    <string name="general_settings">一般設定</string>
    <string name="cyclic_scrolling_return_to_1_page_">サイクリックスクロール（1ページに戻る）</string>
+   <string name="normalize_font_size">フォントサイズを標準化する</string>
 </resources>

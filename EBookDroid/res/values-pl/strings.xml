@@ -485,4 +485,5 @@
    <string name="show_notifications">Pokaż powiadomienia</string>
    <string name="general_settings">Ustawienia główne</string>
    <string name="cyclic_scrolling_return_to_1_page_">Cykliczne przewijanie (powrót do 1 strony)</string>
+   <string name="normalize_font_size">Normalizuj rozmiar czcionki</string>
 </resources>

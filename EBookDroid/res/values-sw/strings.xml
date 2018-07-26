@@ -485,4 +485,5 @@
    <string name="show_notifications">Onyesha arifa</string>
    <string name="general_settings">Mazingira ya Jumla</string>
    <string name="cyclic_scrolling_return_to_1_page_">Kupiga rangi kwa kasi (kurudi kwenye ukurasa 1)</string>
+   <string name="normalize_font_size">Wekaza ukubwa wa font</string>
 </resources>

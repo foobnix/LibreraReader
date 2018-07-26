@@ -155,7 +155,7 @@ public class AppState {
             "http://manybooks.net/opds/index.php,Manybooks,Online Catalog for Manybooks.net,assets://opds/manybooks.png;" + //
             "https://www.smashwords.com/atom,Smashwords,Online Catalog,assets://opds/smashwords.png;" + //
             "http://samlib.ru,Журнал Самиздат (samlib.ru),Cовременная литература при библиотеке Мошкова,assets://opds/web.png;" + //
-            SamlibOPDS.ROOT_AWARDS + ",Usefull links: The Awards and Top Books - Награды и премии, Complete award winners listing,assets://opds/rating.png;" //
+            SamlibOPDS.ROOT_AWARDS + ",Usefull links: The Awards anspand Top Books - Награды и премии, Complete award winners listing,assets://opds/rating.png;" //
     // end
     ;
     // end
@@ -262,6 +262,8 @@ public class AppState {
 
     @IgnoreHashCode
     public boolean isAllowTextSelection = true;
+
+    public boolean isAccurateFontSize = true;
 
     @IgnoreHashCode
     public boolean isEditMode = true;

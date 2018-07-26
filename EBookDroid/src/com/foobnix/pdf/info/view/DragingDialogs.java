@@ -2824,6 +2824,17 @@ public class DragingDialogs {
                     }
                 });
 
+                CheckBox isAccurateFontSize = (CheckBox) inflate.findViewById(R.id.isAccurateFontSize);
+                isAccurateFontSize.setVisibility(controller.isTextFormat() ? View.VISIBLE : View.GONE);
+                isAccurateFontSize.setChecked(AppState.get().isAccurateFontSize);
+                isAccurateFontSize.setOnCheckedChangeListener(new OnCheckedChangeListener() {
+
+                    @Override
+                    public void onCheckedChanged(final CompoundButton buttonView, final boolean isChecked) {
+                        AppState.get().isAccurateFontSize = isChecked;
+                    }
+                });
+
                 CheckBox isOLED = (CheckBox) inflate.findViewById(R.id.isOLED);
                 isOLED.setChecked(AppState.get().isOLED);
                 isOLED.setOnCheckedChangeListener(new OnCheckedChangeListener() {

@@ -485,4 +485,5 @@
    <string name="show_notifications">Display global notification</string>
    <string name="general_settings">General Settings</string>
    <string name="cyclic_scrolling_return_to_1_page_">Cyclic scrolling (return to 1 page)</string>
+   <string name="normalize_font_size">Normalize font size</string>
 </resources>

@@ -485,4 +485,5 @@
    <string name="show_notifications">Bildirimleri göster</string>
    <string name="general_settings">Genel Ayarlar</string>
    <string name="cyclic_scrolling_return_to_1_page_">Döngüsel kaydırma (1 sayfaya geri dön)</string>
+   <string name="normalize_font_size">Yazı tipi boyutunu normalleştir</string>
 </resources>

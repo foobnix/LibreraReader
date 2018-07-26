@@ -485,4 +485,5 @@
    <string name="show_notifications">Értesítések megjelenítése</string>
    <string name="general_settings">Általános beállítások</string>
    <string name="cyclic_scrolling_return_to_1_page_">Ciklikus görgetés (visszatérés az 1. oldalra)</string>
+   <string name="normalize_font_size">A betűméret normalizálása</string>
 </resources>

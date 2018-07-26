@@ -485,4 +485,5 @@
    <string name="show_notifications">Vis varsler</string>
    <string name="general_settings">Generelle innstillinger</string>
    <string name="cyclic_scrolling_return_to_1_page_">Syklisk rulling (tilbake til 1 side)</string>
+   <string name="normalize_font_size">Normaliser skriftstørrelsen</string>
 </resources>

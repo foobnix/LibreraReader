@@ -485,4 +485,5 @@
    <string name="show_notifications">Toon meldingen</string>
    <string name="general_settings">Algemene instellingen</string>
    <string name="cyclic_scrolling_return_to_1_page_">Cyclisch scrollen (teruggaan naar 1 pagina)</string>
+   <string name="normalize_font_size">Lettergrootte normaliseren</string>
 </resources>

@@ -485,4 +485,5 @@
    <string name="show_notifications">显示通知</string>
    <string name="general_settings">常规设置</string>
    <string name="cyclic_scrolling_return_to_1_page_">循环滚动（返回1页）</string>
+   <string name="normalize_font_size">规范化字体大小</string>
 </resources>

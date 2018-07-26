@@ -485,4 +485,5 @@
    <string name="show_notifications">सूचनाएं दिखाएं</string>
    <string name="general_settings">सामान्य सेटिंग्स</string>
    <string name="cyclic_scrolling_return_to_1_page_">चक्रीय स्क्रॉलिंग (1 पृष्ठ पर लौटें)</string>
+   <string name="normalize_font_size">फ़ॉन्ट आकार सामान्य करें</string>
 </resources>

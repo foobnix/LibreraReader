@@ -485,4 +485,5 @@
    <string name="show_notifications">عرض الإخطارات</string>
    <string name="general_settings">الاعدادات العامة</string>
    <string name="cyclic_scrolling_return_to_1_page_">التمرير الدوري (الرجوع إلى صفحة واحدة)</string>
+   <string name="normalize_font_size">تطبيع حجم الخط</string>
 </resources>

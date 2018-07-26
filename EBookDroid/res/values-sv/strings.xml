@@ -485,4 +485,5 @@
    <string name="show_notifications">Visa notifikationer</string>
    <string name="general_settings">Allmänna Inställningar</string>
    <string name="cyclic_scrolling_return_to_1_page_">Cyklisk rullning (återgå till 1 sida)</string>
+   <string name="normalize_font_size">Normalisera typstorlek</string>
 </resources>

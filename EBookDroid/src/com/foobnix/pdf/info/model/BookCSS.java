@@ -122,7 +122,7 @@ public class BookCSS {
                         "tr {display:block}\n" + //
                         "td>* {display:inline}\n" + //
                         "blockquote {margin-left:0.5em !important}\n" + //
-                        ".mbppagebreak {margin-bottom:1em}\n"+ //
+                        ".mbppagebreak {margin-bottom:1em}\n" + //
                         "sup>* {font-size:0.83em;vertical-align:super}\n" + //
                         ""//
         ;
@@ -601,7 +601,10 @@ public class BookCSS {
             if (!isFontFileName(italicFont)) {
                 builder.append("i{font-family:" + italicFont + "; font-style: italic, oblique;}");
             }
-            builder.append("body,p,b,i,em{font-size:medium !important;}");
+            if (AppState.get().isAccurateFontSize) {
+                builder.append("body,p,b,i,em{font-size:medium !important;}");
+            }
+
             builder.append(customCSS1.replace("\n", ""));
 
         }

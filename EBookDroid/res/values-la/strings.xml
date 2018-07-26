@@ -485,4 +485,5 @@
    <string name="show_notifications">Show Acta Vicimediorum Communium</string>
    <string name="general_settings">General Occasus</string>
    <string name="cyclic_scrolling_return_to_1_page_">Insecta scrolling (redire ad paginam I)</string>
+   <string name="normalize_font_size">Font magnitudine Normalize</string>
 </resources>

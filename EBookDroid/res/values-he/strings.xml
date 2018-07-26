@@ -485,4 +485,5 @@
    <string name="show_notifications">תראה התראות</string>
    <string name="general_settings">הגדרות כלליות</string>
    <string name="cyclic_scrolling_return_to_1_page_">גלילה מחזורית (חזרה לדף אחד)</string>
+   <string name="normalize_font_size">מנרמל את גודל הגופן</string>
 </resources>

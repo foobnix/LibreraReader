@@ -485,4 +485,5 @@
    <string name="show_notifications">Rodyti pranešimus</string>
    <string name="general_settings">Bendrieji nustatymai</string>
    <string name="cyclic_scrolling_return_to_1_page_">Ciklinis slinkimas (grįžti į 1 puslapį)</string>
+   <string name="normalize_font_size">Normalizuokite šrifto dydį</string>
 </resources>

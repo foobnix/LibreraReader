@@ -485,4 +485,5 @@
    <string name="show_notifications">Zeige Benachrichtigungen</string>
    <string name="general_settings">Allgemeine Einstellungen</string>
    <string name="cyclic_scrolling_return_to_1_page_">Zyklisches Scrollen (zurück zu 1 Seite)</string>
+   <string name="normalize_font_size">Normalize Schriftgröße</string>
 </resources>

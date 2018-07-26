@@ -485,4 +485,5 @@
    <string name="show_notifications">Afficher les notifications</string>
    <string name="general_settings">Réglages généraux</string>
    <string name="cyclic_scrolling_return_to_1_page_">Défilement cyclique (retour à 1 page)</string>
+   <string name="normalize_font_size">Normaliser la taille de la police</string>
 </resources>

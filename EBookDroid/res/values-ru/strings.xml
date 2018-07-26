@@ -485,4 +485,5 @@
    <string name="show_notifications">Показывать уведомление</string>
    <string name="general_settings">Общие настройки</string>
    <string name="cyclic_scrolling_return_to_1_page_">Циклическая прокрутка (возврат на 1 страницу)</string>
+   <string name="normalize_font_size">Нормализовать размер шрифта</string>
 </resources>
