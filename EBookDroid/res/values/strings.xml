@@ -247,7 +247,7 @@
    <string name="convert_to">Convert to</string>
    <string name="mode_vertical">Scroll mode</string>
    <string name="mode_horizontally">Book mode</string>
-   <string name="mode_musician">Musician\’s mode</string>
+   <string name="mode_musician">Musician’s mode</string>
    <string name="save">Save</string>
    <string name="remember_choice">Remember selection</string>
    <string name="edit_names">Edit</string>
@@ -440,7 +440,7 @@
    <string name="tag">Tag</string>
    <string name="no_tag">No tags</string>
    <string name="add_tag">Add Tag</string>
-   <string name="do_you_want_to_delete_this_tag_from_all_books_">Delete this tag from all books?</string>
+   <string name="do_you_want_to_delete_this_tag_from_all_books_">Remove this tag from all books?</string>
    <string name="by_number_of_pages">Page Count</string>
    <string name="by_number_in_serie"># in Series</string>
    <string name="by_extension">Extension</string>
@@ -484,6 +484,6 @@
    <string name="never">Never</string>
    <string name="show_notifications">Display global notification</string>
    <string name="general_settings">General Settings</string>
-   <string name="cyclic_scrolling_return_to_1_page_">Cyclic scrolling (return to 1 page)</string>
+   <string name="cyclic_scrolling_return_to_1_page_">Loop scroll</string>
    <string name="normalize_font_size">Normalize font size</string>
 </resources>
