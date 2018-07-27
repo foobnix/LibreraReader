@@ -118,12 +118,12 @@
    <string name="remind_about_rest_every">Увед-е об отдыхе каждые</string>
    <string name="action_on_double_tap">Двойной тап по центру</string>
    <string name="db_auto_scroll">Автопрокрутка текста</string>
-   <string name="opening_book_with_losed_lock">Всегда блокировать смещения страниц при открытии PDF/DJVU</string>
+   <string name="opening_book_with_losed_lock">Всегда блокировать смещения страниц при открытии PDF/DJVU (\"закрывать\" замочек)</string>
    <string name="opening_book_with_cropped_borders">Активировать обрезку пустых полей при каждом открытии PDF/DJVU</string>
    <string name="db_auto_alignemnt">Вписать в ширину экрана</string>
    <string name="db_auto_center_horizontally">Выровнить по горизонтали</string>
    <string name="zoom_in_zoom_out">Увел./умен. масштаб стр-ц в 2 раза</string>
-   <string name="enhancements_for_oled_display">Заполнять пустоту вокруг страниц черным цветом при выборе любого из ночных пресетов (AMOLED-адаптация)</string>
+   <string name="enhancements_for_oled_display">Заполнять пустоту вокруг страниц черным цветом при выборе любого ночного пресета (AMOLED-адаптация)</string>
    <string name="ignore_annotations_on_click">Игнорировать комментарии и пометки при нажатиях</string>
    <string name="save_new_annotations_automatically">Автоматически сохранять новые комментарии и пометки при закрытии книги или выходе из приложения</string>
    <string name="selecting_text_by_letters">Использовать побуквенное выделение текста (для иероглифических языков)</string>
@@ -233,7 +233,7 @@
    <string name="incorrect_value">Неверное значение</string>
    <string name="this_directory_is_already_in_the_list">Этот каталог уже в списке</string>
    <string name="you_neet_to_apply_the_new_settings">Необходимо применить новые настройки</string>
-   <string name="block_page_movement_horizontally">Если замочек \"запереть\", страницы не будут смещаться в стороны</string>
+   <string name="block_page_movement_horizontally">Если замочек \"закрыть\", страницы не будут смещаться в стороны</string>
    <string name="there_are_no_email_applications_installed_">Приложения для работы с E-mail не установлены</string>
    <string name="file_not_found">Файл не найден</string>
    <string name="you_need_grant_permission">Вам необходимо предоставить приложению доступ к внешнему запоминающему устройству</string>
@@ -456,7 +456,7 @@
    <string name="add_resource">Добавить ресурс</string>
    <string name="do_you_want_to_download_more_book_fonts_10mb_">Для удобства чтения можно скачать дополнительный набор шрифтов размером 10 Мб. Хотите ли вы это сделать?</string>
    <string name="hyphenation_language">Язык переносов</string>
-   <string name="replacing_the_white_color_in_the_images_with_the_background_color">Окрашивать белый фон изображений в цвет фона страниц при выборе любого дневного пресета</string>
+   <string name="replacing_the_white_color_in_the_images_with_the_background_color">Позволять менять цвет шрифтов для PDF; окрашивать белый фон изображений в цвет фона стр-ц при выборе любого дневного пресета</string>
    <string name="disable_swipe_gestures_for_page_paging">Отключить возможность листания страниц горизонтальными свайпами (для электр. читалок)</string>
    <string name="no_keywords">Без ключевых слов</string>
    <string name="my_tags">Свои теги</string>
@@ -466,7 +466,7 @@
    <string name="librera_pro_program_for_reading_books_without_advertising_installing_it_removes_advertising_in_this_application">Librera PRO - программа для чтения книг без рекламы, установка ее удаляет рекламу в этом приложении</string>
    <string name="annotation">Аннотация</string>
    <string name="book">Книга</string>
-   <string name="information">Информация</string>
+   <string name="information">Дата; формат; размер файла</string>
    <string name="file_path">Путь к файлу</string>
    <string name="year">Год</string>
    <string name="publisher">Издательство</string>
@@ -484,6 +484,6 @@
    <string name="never">Никогда</string>
    <string name="show_notifications">Показывать уведомление</string>
    <string name="general_settings">Общие настройки</string>
-   <string name="cyclic_scrolling_return_to_1_page_">Циклическая прокрутка (возврат на 1 страницу)</string>
-   <string name="normalize_font_size">Нормализовать размер шрифта</string>
+   <string name="cyclic_scrolling_return_to_1_page_">Зацикливать автопрокрутку текста (при достижении конца книги переходить к ее началу)</string>
+   <string name="normalize_font_size">Нормализовывать размер шрифтов</string>
 </resources>
