@@ -113,7 +113,7 @@
                     <LinearLayout
                         android:id="@+id/browserTags"
                         android:layout_width="wrap_content"
-                        android:layout_height="20dp"
+                        android:layout_height="wrap_content"
                         android:layout_marginLeft="3dip"
                         android:layout_weight="0"
                         android:gravity="center_vertical"
