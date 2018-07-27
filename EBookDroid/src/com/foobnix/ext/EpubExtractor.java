@@ -80,7 +80,7 @@ public class EpubExtractor extends BaseExtractor {
                 break;
             }
             String name = nextEntry.getName();
-            String nameLow = name.toLowerCase();
+            String nameLow = name.toLowerCase(Locale.US);
 
             if (!name.endsWith("container.xml") && (nameLow.endsWith("html") || nameLow.endsWith("htm") || nameLow.endsWith("xml"))) {
                 LOG.d("nextEntry HTML cancell", TempHolder.get().loadingCancelled, name);
@@ -115,7 +115,7 @@ public class EpubExtractor extends BaseExtractor {
                 break;
             }
             String name = nextEntry.getName();
-            String nameLow = name.toLowerCase();
+            String nameLow = name.toLowerCase(Locale.US);
 
             if (!name.endsWith("container.xml") && (nameLow.endsWith("html") || nameLow.endsWith("htm") || nameLow.endsWith("xml"))) {
                 LOG.d("nextEntry HTML cancell", TempHolder.get().loadingCancelled, name);
@@ -145,7 +145,7 @@ public class EpubExtractor extends BaseExtractor {
             ArchiveEntry nextEntry = null;
 
             while ((nextEntry = zipInputStream.getNextEntry()) != null) {
-                String name = nextEntry.getName().toLowerCase();
+                String name = nextEntry.getName().toLowerCase(Locale.US);
                 if (name.endsWith(".opf")) {
 
                     XmlPullParser xpp = XmlParser.buildPullParser();
@@ -199,7 +199,7 @@ public class EpubExtractor extends BaseExtractor {
 
 
             while ((nextEntry = zipInputStream.getNextEntry()) != null) {
-                String name = nextEntry.getName().toLowerCase();
+                String name = nextEntry.getName().toLowerCase(Locale.US);
 
                 if (name.endsWith(".opf")) {
 
@@ -326,7 +326,7 @@ public class EpubExtractor extends BaseExtractor {
 
 
             while (coverName == null && (nextEntry = zipInputStream.getNextEntry()) != null) {
-                String name = nextEntry.getName().toLowerCase();
+                String name = nextEntry.getName().toLowerCase(Locale.US);
                 if (name.endsWith(".opf")) {
                     XmlPullParser xpp = XmlParser.buildPullParser();
                     xpp.setInput(zipInputStream, "utf-8");
@@ -503,7 +503,7 @@ public class EpubExtractor extends BaseExtractor {
                         break;
                     }
                     String name = nextEntry.getName();
-                    String nameLow = name.toLowerCase();
+                    String nameLow = name.toLowerCase(Locale.US);
                     if (nameLow.endsWith("html") || nameLow.endsWith("htm") || nameLow.endsWith("xml")) {
                         // System.out.println("- " + nameLow + " -");
                         Document parse = Jsoup.parse(zipInputStream, null, "", Parser.xmlParser());

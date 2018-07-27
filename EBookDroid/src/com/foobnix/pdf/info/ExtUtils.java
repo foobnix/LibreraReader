@@ -249,7 +249,7 @@ public class ExtUtils {
         if (TxtUtils.isEmpty(path)) {
             return false;
         }
-        path = path.trim().toLowerCase();
+        path = path.trim().toLowerCase(Locale.US);
 
         for (String ext : audio) {
             if (path.endsWith(ext)) {
@@ -338,7 +338,7 @@ public class ExtUtils {
 
     public static boolean isLibreFile(File file) {
         if (file != null && file.isFile()) {
-            String name = file.getName().toLowerCase();
+            String name = file.getName().toLowerCase(Locale.US);
             for (String ext : lirbeExt) {
                 if (name.endsWith(ext)) {
                     return true;
@@ -350,7 +350,7 @@ public class ExtUtils {
 
     public static boolean isOtherFile(File file) {
         if (file != null && file.isFile()) {
-            String name = file.getName().toLowerCase();
+            String name = file.getName().toLowerCase(Locale.US);
             for (String ext : otherExts) {
                 if (name.endsWith(ext)) {
                     return true;
@@ -376,7 +376,7 @@ public class ExtUtils {
 
     public static boolean isFileArchive(File file) {
         if (file != null && file.isFile()) {
-            String name = file.getName().toLowerCase();
+            String name = file.getName().toLowerCase(Locale.US);
             for (String ext : archiveExts) {
                 if (name.endsWith(ext)) {
                     return true;

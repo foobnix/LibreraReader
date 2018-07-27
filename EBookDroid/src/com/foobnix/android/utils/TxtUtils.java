@@ -364,7 +364,7 @@ public class TxtUtils {
         if (isEmpty(str) || str.length() <= 1) {
             return str;
         }
-        return str.substring(0, 1).toLowerCase() + str.substring(1);
+        return str.substring(0, 1).toLowerCase(Locale.US) + str.substring(1);
     }
 
     public static String filterDoubleSpaces(String str) {

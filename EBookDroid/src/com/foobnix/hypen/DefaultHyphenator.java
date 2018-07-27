@@ -3,6 +3,7 @@ package com.foobnix.hypen;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 
 /*
@@ -122,7 +123,7 @@ public class DefaultHyphenator {
         List<String> result = new ArrayList<String>();
 
         word = "_" + word + "_";
-        String lowercase = word.toLowerCase();
+        String lowercase = word.toLowerCase(Locale.US);
 
         int wordLength = lowercase.length();
 

@@ -175,7 +175,7 @@ public enum BookType {
         if (type == null) {
             return null;
         }
-        return mimeTypesToActivity.get(type.toLowerCase());
+        return mimeTypesToActivity.get(type.toLowerCase(Locale.US));
     }
 
 }

@@ -366,7 +366,7 @@ public class BookCSS {
                 Collections.sort(filtered, new Comparator<FontPack>() {
                     @Override
                     public int compare(FontPack o1, FontPack o2) {
-                        return o1.dispalyName.toLowerCase().compareTo(o2.dispalyName.toLowerCase());
+                        return o1.dispalyName.toLowerCase(Locale.US).compareTo(o2.dispalyName.toLowerCase(Locale.US));
                     }
 
                 });
@@ -418,7 +418,7 @@ public class BookCSS {
                     Collections.sort(filtered, new Comparator<String>() {
                         @Override
                         public int compare(String o1, String o2) {
-                            return o1.toLowerCase().compareTo(o2.toLowerCase());
+                            return o1.toLowerCase(Locale.US).compareTo(o2.toLowerCase(Locale.US));
                         }
 
                     });

@@ -1394,7 +1394,7 @@ public class DragingDialogs {
                 List<String> cache = new ArrayList<String>();
                 for (final ResolveInfo app : all) {
                     for (final String pkgKey : AppState.appDictionariesKeys) {
-                        if (app.activityInfo.packageName.toLowerCase().contains(pkgKey)) {
+                        if (app.activityInfo.packageName.toLowerCase(Locale.US).contains(pkgKey)) {
                             if (cache.contains(app.activityInfo.name)) {
                                 continue;
                             }

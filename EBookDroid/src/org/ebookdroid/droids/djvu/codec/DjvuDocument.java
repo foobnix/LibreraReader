@@ -3,6 +3,7 @@ package org.ebookdroid.droids.djvu.codec;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Locale;
 
 import org.ebookdroid.core.codec.AbstractCodecDocument;
 import org.ebookdroid.core.codec.CodecPageInfo;
@@ -48,6 +49,7 @@ public class DjvuDocument extends AbstractCodecDocument {
         }
     }
 
+    @Override
     public List<String> getMetaKeys() {
         TempHolder.lock.lock();
         try {
@@ -127,7 +129,7 @@ public class DjvuDocument extends AbstractCodecDocument {
 
     @Override
     public List<? extends RectF> searchText(final int pageNuber, final String pattern) throws DocSearchNotSupported {
-        final List<PageTextBox> list = DjvuPage.getPageText(documentHandle, pageNuber, context.getContextHandle(), pattern.toLowerCase());
+        final List<PageTextBox> list = DjvuPage.getPageText(documentHandle, pageNuber, context.getContextHandle(), pattern.toLowerCase(Locale.US));
         if (LengthUtils.isNotEmpty(list)) {
             CodecPageInfo cpi = getPageInfo(pageNuber);
             for (final PageTextBox ptb : list) {
