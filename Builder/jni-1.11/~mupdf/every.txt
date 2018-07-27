@@ -12,9 +12,15 @@ source/html/epub-doc.c
 source/html/css-apply.c
 //INHERIT
 
-		else if (!strcmp(value->data, "inherit")) style->font_size = make_number(1.0f, N_SCALE);
-				//else style->font_size =make_number(1.0f, N_SCALE);
-		else style->font_size = number_from_value(value, 1, N_SCALE);
+else if (!strcmp(value->data, "inherit")) style->font_size = make_number(1.0f, N_SCALE);
+		else
+		{
+			if (value->type == CSS_PERCENT){
+				style->font_size = make_number(fz_css_strtof(value->data, NULL)/100, N_SCALE);
+			}else{
+				style->font_size = number_from_value(value, 1, N_SCALE);
+			}
+		}
 		
 if (value->type == CSS_PERCENT)
 		return make_number(fz_css_strtof(value->data, NULL)/2.5, N_PERCENT);		

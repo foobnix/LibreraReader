@@ -263,7 +263,7 @@ public class AppState {
     @IgnoreHashCode
     public boolean isAllowTextSelection = true;
 
-    public boolean isAccurateFontSize = true;
+    public boolean isAccurateFontSize = false;
 
     @IgnoreHashCode
     public boolean isEditMode = true;

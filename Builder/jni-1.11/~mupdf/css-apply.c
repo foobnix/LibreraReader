@@ -896,6 +896,7 @@ number_from_value(fz_css_value *value, float initial, int initial_unit)
 
 		if (p[0] == 'e' && p[1] == 'm' && p[2] == 0)
 			return make_number(x, N_SCALE);
+
 		if (p[0] == 'e' && p[1] == 'x' && p[2] == 0)
 			return make_number(x / 2, N_SCALE);
 
@@ -1234,7 +1235,15 @@ fz_apply_css_style(fz_context *ctx, fz_html_font_set *set, fz_css_style *style, 
 		else if (!strcmp(value->data, "smaller")) style->font_size = make_number(1/1.2f, N_SCALE);
 		else if (!strcmp(value->data, "inherit")) style->font_size = make_number(1.0f, N_SCALE);
 		//else style->font_size =make_number(1.0f, N_SCALE);
-		else style->font_size = number_from_value(value, 1, N_SCALE);
+		else
+		{
+			if (value->type == CSS_PERCENT){
+				style->font_size = make_number(fz_css_strtof(value->data, NULL)/100, N_SCALE);
+			}else{
+				style->font_size = number_from_value(value, 1, N_SCALE);
+			}
+		}
+
 	}
 	else
 	{
