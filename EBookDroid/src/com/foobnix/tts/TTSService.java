@@ -1,6 +1,7 @@
 package com.foobnix.tts;
 
 import java.io.IOException;
+import java.util.Arrays;
 
 import org.ebookdroid.LibreraApp;
 import org.ebookdroid.common.settings.SettingsManager;
@@ -17,16 +18,14 @@ import com.foobnix.pdf.info.wrapper.AppState;
 import com.foobnix.sys.ImageExtractor;
 import com.foobnix.sys.TempHolder;
 
-import android.annotation.SuppressLint;
 import android.annotation.TargetApi;
 import android.app.PendingIntent;
 import android.app.Service;
 import android.content.Context;
 import android.content.Intent;
-import android.content.res.AssetFileDescriptor;
 import android.media.AudioManager;
-import android.media.MediaPlayer;
 import android.media.AudioManager.OnAudioFocusChangeListener;
+import android.media.MediaPlayer;
 import android.os.Build;
 import android.os.IBinder;
 import android.os.PowerManager;
@@ -85,7 +84,10 @@ public class TTSService extends Service {
                 LOG.d(TAG, "onMediaButtonEvent", isActivated, intent);
                 if (isActivated) {
                     KeyEvent event = (KeyEvent) intent.getExtras().get(Intent.EXTRA_KEY_EVENT);
-                    if (KeyEvent.ACTION_UP == event.getAction() && KeyEvent.KEYCODE_HEADSETHOOK == event.getKeyCode()) {
+
+                    boolean a = KeyEvent.ACTION_UP == event.getAction() && KeyEvent.KEYCODE_HEADSETHOOK == event.getKeyCode();
+                    boolean b = Arrays.asList(KeyEvent.KEYCODE_MEDIA_PLAY_PAUSE, KeyEvent.KEYCODE_MEDIA_PLAY, KeyEvent.KEYCODE_MEDIA_PAUSE, KeyEvent.KEYCODE_MEDIA_STOP).contains(event.getKeyCode());
+                    if (a || b) {
                         LOG.d(TAG, "onStartStop", "KEYCODE_HEADSETHOOK");
                         boolean isPlaying = TTSEngine.get().isPlaying();
                         if (isPlaying) {
@@ -94,6 +96,7 @@ public class TTSService extends Service {
                             playPage("", AppState.get().lastBookPage, null);
                         }
                     }
+
                 }
                 return isActivated;
             }

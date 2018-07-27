@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:myseek="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent" >
 
@@ -41,44 +42,29 @@
                 android:text="Google TTS!!!" />
         </LinearLayout>
 
-        <LinearLayout
+        <com.foobnix.pdf.info.view.CustomSeek
+            android:id="@+id/seekBarSpeed"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="5dip" >
+            android:layout_weight="1"
+            myseek:text="@string/speed1" >
+        </com.foobnix.pdf.info.view.CustomSeek>
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="@string/speed1" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="@string/pitch1" />
-        </LinearLayout>
-
-        <LinearLayout
+        <com.foobnix.pdf.info.view.CustomSeek
+            android:id="@+id/seekBarPitch"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" >
-
-            <SeekBar
-                android:id="@+id/seekBarSpeed"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:max="400"
-                android:progress="100" />
-
-            <SeekBar
-                android:id="@+id/seekBarPitch"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:max="200"
-                android:progress="100" />
-        </LinearLayout>
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            myseek:text="@string/pitch1" >
+        </com.foobnix.pdf.info.view.CustomSeek>
+        
+        <com.foobnix.pdf.info.view.CustomSeek
+            android:id="@+id/seekVolume"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            myseek:text="@string/sound_volume" >
+        </com.foobnix.pdf.info.view.CustomSeek>
 
         <TextView
             android:id="@+id/restore_defaults"
@@ -87,19 +73,6 @@
             android:layout_height="wrap_content"
             android:layout_weight="0"
             android:text="@string/restore_defaults_short" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="5dip"
-            android:text="@string/sound_volume" />
-
-        <SeekBar
-            android:id="@+id/seekVolume"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:max="200"
-            android:progress="100" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -128,7 +101,7 @@
             android:textIsSelectable="true"
             android:textSize="10sp"
             android:visibility="gone" />
-        
+
         <CheckBox
             android:id="@+id/showNotification"
             android:layout_width="wrap_content"
@@ -136,18 +109,17 @@
             android:text="@string/show_notifications" />
 
         <CheckBox
-            android:layout_marginLeft="@dimen/sub_checkbox"
             android:id="@+id/notificationOngoing"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/sub_checkbox"
             android:text="@string/ongoing_notification" />
-        
+
         <CheckBox
             android:id="@+id/stopReadingOnCall"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/pause_reading_if_the_incoming_call_or_other_sounds" />
-
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -176,7 +148,7 @@
                 android:minEms="2"
                 android:text="@string/start" />
         </LinearLayout>
-        
+
         <Button
             android:id="@+id/ttsSkeakToFile"
             android:layout_width="wrap_content"

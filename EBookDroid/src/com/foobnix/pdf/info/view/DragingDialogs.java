@@ -625,69 +625,43 @@ public class DragingDialogs {
                     }
                 });
 
-                final SeekBar seekBarSpeed = (SeekBar) view.findViewById(R.id.seekBarSpeed);
-                seekBarSpeed.setOnSeekBarChangeListener(new OnSeekBarChangeListener() {
+                final CustomSeek seekBarSpeed = (CustomSeek) view.findViewById(R.id.seekBarSpeed);
+                seekBarSpeed.init(0, 400, (int) AppState.get().ttsSpeed * 100);
+                seekBarSpeed.setOnSeekChanged(new IntegerResponse() {
 
                     @Override
-                    public void onStopTrackingTouch(SeekBar seekBar) {
-                    }
-
-                    @Override
-                    public void onStartTrackingTouch(SeekBar seekBar) {
-                    }
-
-                    @Override
-                    public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-                        if (fromUser) {
-                            AppState.get().ttsSpeed = (float) progress / 100;
-                        }
-
-                    }
-                });
-                final SeekBar seekBarPitch = (SeekBar) view.findViewById(R.id.seekBarPitch);
-                seekBarPitch.setOnSeekBarChangeListener(new OnSeekBarChangeListener() {
-
-                    @Override
-                    public void onStopTrackingTouch(SeekBar seekBar) {
-                    }
-
-                    @Override
-                    public void onStartTrackingTouch(SeekBar seekBar) {
-                    }
-
-                    @Override
-                    public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-                        if (fromUser) {
-                            AppState.get().ttsPitch = (float) progress / 100;
-                        }
+                    public boolean onResultRecive(int result) {
+                        AppState.get().ttsSpeed = (float) result / 100;
+                        return false;
                     }
                 });
 
-                seekBarPitch.setProgress((int) (AppState.get().ttsPitch * 100));
-                seekBarSpeed.setProgress((int) (AppState.get().ttsSpeed * 100));
+                final CustomSeek seekBarPitch = (CustomSeek) view.findViewById(R.id.seekBarPitch);
+                seekBarPitch.init(0, 200, (int) AppState.get().ttsPitch * 100);
+                seekBarPitch.setOnSeekChanged(new IntegerResponse() {
+
+                    @Override
+                    public boolean onResultRecive(int result) {
+                        AppState.get().ttsPitch = (float) result / 100;
+                        return false;
+                    }
+                });
 
                 final AudioManager audioManager = (AudioManager) activity.getSystemService(Context.AUDIO_SERVICE);
 
-                final SeekBar seekVolume = (SeekBar) view.findViewById(R.id.seekVolume);
-                seekVolume.setMax(audioManager.getStreamMaxVolume(AudioManager.STREAM_MUSIC));
-                seekVolume.setProgress(audioManager.getStreamVolume(AudioManager.STREAM_MUSIC));
-                seekVolume.setOnSeekBarChangeListener(new OnSeekBarChangeListener() {
+                final CustomSeek seekVolume = (CustomSeek) view.findViewById(R.id.seekVolume);
+                seekVolume.init(0, audioManager.getStreamMaxVolume(AudioManager.STREAM_MUSIC), audioManager.getStreamVolume(AudioManager.STREAM_MUSIC));
+                seekVolume.setOnSeekChanged(new IntegerResponse() {
 
                     @Override
-                    public void onStopTrackingTouch(SeekBar seekBar) {
-                    }
-
-                    @Override
-                    public void onStartTrackingTouch(SeekBar seekBar) {
-                    }
-
-                    @Override
-                    public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-                        if (fromUser) {
-                            audioManager.setStreamVolume(AudioManager.STREAM_MUSIC, progress, 0);
-                        }
+                    public boolean onResultRecive(int result) {
+                        audioManager.setStreamVolume(AudioManager.STREAM_MUSIC, result, 0);
+                        return false;
                     }
                 });
+
+
+
 
                 TxtUtils.underlineTextView((TextView) view.findViewById(R.id.restore_defaults)).setOnClickListener(new OnClickListener() {
 
@@ -698,8 +672,9 @@ public class DragingDialogs {
 
                             @Override
                             public void run() {
-                                seekBarPitch.setProgress(100);
-                                seekBarSpeed.setProgress(100);
+                                seekBarPitch.reset(100);
+                                seekBarSpeed.reset(100);
+                                seekVolume.reset(audioManager.getStreamMaxVolume(AudioManager.STREAM_MUSIC) / 2);
 
                                 AppState.get().ttsPitch = (float) 1.0;
                                 AppState.get().ttsSpeed = (float) 1.0;
