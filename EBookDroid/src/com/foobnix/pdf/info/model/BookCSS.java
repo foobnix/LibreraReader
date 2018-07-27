@@ -602,7 +602,7 @@ public class BookCSS {
                 builder.append("i{font-family:" + italicFont + "; font-style: italic, oblique;}");
             }
             if (AppState.get().isAccurateFontSize) {
-                builder.append("body,p,b,i,em{font-size:medium !important;}");
+                builder.append("body,p,b,i,em,span{font-size:medium !important;}");
             }
 
             builder.append(customCSS1.replace("\n", ""));
