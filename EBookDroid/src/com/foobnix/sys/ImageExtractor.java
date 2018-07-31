@@ -492,7 +492,7 @@ public class ImageExtractor implements ImageDownloader {
         }
     }
 
-    private ByteArrayInputStream bitmapToStream(Bitmap bitmap) {
+    public static ByteArrayInputStream bitmapToStream(Bitmap bitmap) {
         try {
             ByteArrayOutputStream os = new ByteArrayOutputStream();
 

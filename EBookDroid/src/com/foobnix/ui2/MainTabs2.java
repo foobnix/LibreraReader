@@ -190,6 +190,7 @@ public class MainTabs2 extends AdsFragmentActivity {
         }
     }
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         if (AppState.get().isWhiteTheme) {

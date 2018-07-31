@@ -2453,15 +2453,15 @@ public class DragingDialogs {
                     @Override
                     public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                         AppState.get().isShowSubChaptersOnProgress = isChecked;
-                        AppState.get().isShowChaptersOnProgress = isChecked;
 
-                        isShowChaptersOnProgress.setChecked(isChecked);
 
                         AppState.get().isEditMode = false;
                         if (onRefresh != null) {
                             onRefresh.run();
                         }
                         if (isChecked) {
+                            AppState.get().isShowChaptersOnProgress = true;
+                            isShowChaptersOnProgress.setChecked(true);
                             isShowReadingProgress.setChecked(true);
                         }
                     }

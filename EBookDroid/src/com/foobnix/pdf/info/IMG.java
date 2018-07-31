@@ -19,6 +19,7 @@ import com.nostra13.universalimageloader.utils.MemoryCacheUtils;
 
 import android.content.Context;
 import android.database.Cursor;
+import android.graphics.Bitmap;
 import android.graphics.Bitmap.Config;
 import android.graphics.BitmapFactory.Options;
 import android.graphics.Color;
@@ -304,8 +305,8 @@ public class IMG {
         ImageLoader.getInstance().displayImage(url, img, IMG.displayCacheMemoryDisc, listener);
     }
 
-    public static void loadCoverPageWithEffect(String path, int width) {
-        ImageLoader.getInstance().loadImageSync(IMG.toUrl(path, ImageExtractor.COVER_PAGE, width), IMG.displayCacheMemoryDisc);
+    public static Bitmap loadCoverPageWithEffect(String path, int width) {
+        return ImageLoader.getInstance().loadImageSync(IMG.toUrl(path, ImageExtractor.COVER_PAGE, width), IMG.displayCacheMemoryDisc);
     }
 
     public static void getCoverPageWithEffectPos(ImageView img, String path, int width, int pos, ImageLoadingListener listener) {
