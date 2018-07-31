@@ -32,10 +32,10 @@
    <string name="show_the_dialog_what_is_new_for_updates">程序更新说明</string>
    <string name="what_is_new_in">说明</string>
    <string name="full_list_of_changes_with_images_web_pdf_">下载官网PDF格式更新记录...</string>
-   <string name="search_for_text_in_documents">文件中搜文本</string>
+   <string name="search_for_text_in_documents">搜索文本</string>
    <string name="search_in_the_subfolders">子文件夹</string>
    <string name="stop">停止</string>
-   <string name="document_converter_online_">文件转换</string>
+   <string name="document_converter_online_">文件在线转换</string>
    <string name="book_covers">书籍封面</string>
    <string name="cover_image_size">封面大小</string>
    <string name="column_count">列数</string>
@@ -484,7 +484,7 @@
    <string name="show_notifications">显示通知</string>
    <string name="general_settings">常规设置</string>
    <string name="cyclic_scrolling_return_to_1_page_">循环滚动（返回1页）</string>
-   <string name="normalize_font_size">规范化字体大小</string>
+   <string name="normalize_font_size">规范字体大小</string>
    <string name="display_chapters_on_the_progress_line">显示章节预览</string>
-   <string name="display_sub_chapters_on_the_progress_line">进度线上的子章节</string>
+   <string name="display_sub_chapters_on_the_progress_line">进度条子章节</string>
 </resources>
