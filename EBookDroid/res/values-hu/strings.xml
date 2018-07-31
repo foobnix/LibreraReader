@@ -30,7 +30,7 @@
    <string name="show_application_close_dialog_every_time">Erősítse meg az alkalmazás kilépését a Vissza megérintésével</string>
    <string name="display_all_file_types_in_folders">Az összes fájltípus megjelenítése</string>
    <string name="show_the_dialog_what_is_new_for_updates">Újdonságok megjelenítése a frissítések után</string>
-   <string name="what_is_new_in">"Újdonságok - "</string>
+   <string name="what_is_new_in">Újdonságok -</string>
    <string name="full_list_of_changes_with_images_web_pdf_">A változások teljes listájának letöltése PDF formátumban</string>
    <string name="search_for_text_in_documents">Szöveg keresése</string>
    <string name="search_in_the_subfolders">Tartalmazza az almappákat is</string>
@@ -60,7 +60,7 @@
    <string name="web">Weboldal</string>
    <string name="beta_version">Béta verzió</string>
    <string name="archive">Archívum</string>
-   <string name="rate_pdf_reader1">"Kérjük, adjon visszajelzést és értékeljen minket a Google Playen: erre nagy szükség van a  továbbfejlesztéshez"</string>
+   <string name="rate_pdf_reader1">Kérjük, adjon visszajelzést és értékeljen minket a Google Playen: erre nagy szükség van a  továbbfejlesztéshez</string>
    <string name="___PREFERENCES___SECTION___"></string>
    <string name="formatted_text">Formázott szöveg (pszeudo grafikák)</string>
    <string name="continuous_text">Folyamatos szöveg (nincs sortörés)</string>
@@ -137,7 +137,6 @@
    <string name="status_bar">Állapotsor</string>
    <string name="show_status_bar">Állapotsor megjelenítése</string>
    <string name="show_progress_of_reading">Folyamatjelző megjelenítése</string>
-   <string name="display_chapters_on_the_progress_line">Fejezetjelek a folyamatjelző sávon</string>
    <string name="enable_rewind_of_pages_using_the_read_progress_line">Navigálás az állapotsoron keresztül</string>
    <string name="text_size">Betűméret</string>
    <string name="line_height">Folyamatjelző sáv magassága</string>
@@ -155,7 +154,7 @@
    <string name="color">Szín</string>
    <string name="horizontal">Vízszintes</string>
    <string name="vertical">Függőleges</string>
-   <string name="minutes">percben</string>
+   <string name="minutes">Percben</string>
    <string name="close_book">Könyv bezárása</string>
    <string name="background">Háttér</string>
    <string name="dialog_color_picker">Színválasztó</string>
@@ -486,4 +485,6 @@
    <string name="general_settings">Általános beállítások</string>
    <string name="cyclic_scrolling_return_to_1_page_">Ciklikus görgetés (vissza az 1. oldalra)</string>
    <string name="normalize_font_size">A betűméret normalizálása</string>
+   <string name="display_chapters_on_the_progress_line">Fejezetjelek a folyamatjelző sávon</string>
+   <string name="display_sub_chapters_on_the_progress_line">A haladó sorban szereplő alfejezetek</string>
 </resources>

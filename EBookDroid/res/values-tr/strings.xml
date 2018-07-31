@@ -137,7 +137,6 @@
    <string name="status_bar">Durum çubuğu</string>
    <string name="show_status_bar">Durum çubuğunu göster</string>
    <string name="show_progress_of_reading">Okuma ilerlemesini göster</string>
-   <string name="display_chapters_on_the_progress_line">İlerleme çizgisindeki bölümleri görüntüleme</string>
    <string name="enable_rewind_of_pages_using_the_read_progress_line">Oku ilerleme çizgisini kullanarak sayfaların geri sarılmasını etkinleştir</string>
    <string name="text_size">Yazı Boyutu</string>
    <string name="line_height">Satır yüksekliği</string>
@@ -486,4 +485,6 @@
    <string name="general_settings">Genel Ayarlar</string>
    <string name="cyclic_scrolling_return_to_1_page_">Döngüsel kaydırma (1 sayfaya geri dön)</string>
    <string name="normalize_font_size">Yazı tipi boyutunu normalleştir</string>
+   <string name="display_chapters_on_the_progress_line">İlerleme çizgisindeki bölümleri görüntüleme</string>
+   <string name="display_sub_chapters_on_the_progress_line">İlerleme satırındaki alt bölümler</string>
 </resources>

@@ -137,7 +137,6 @@
    <string name="status_bar">信息区域</string>
    <string name="show_status_bar">显示阅读状态</string>
    <string name="show_progress_of_reading">显示出进度条</string>
-   <string name="display_chapters_on_the_progress_line">显示章节预览</string>
    <string name="enable_rewind_of_pages_using_the_read_progress_line">可拖曳进度条</string>
    <string name="text_size">字体大小</string>
    <string name="line_height">进度条高</string>
@@ -486,4 +485,6 @@
    <string name="general_settings">常规设置</string>
    <string name="cyclic_scrolling_return_to_1_page_">循环滚动（返回1页）</string>
    <string name="normalize_font_size">规范化字体大小</string>
+   <string name="display_chapters_on_the_progress_line">显示章节预览</string>
+   <string name="display_sub_chapters_on_the_progress_line">进度线上的子章节</string>
 </resources>

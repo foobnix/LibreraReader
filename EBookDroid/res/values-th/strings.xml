@@ -137,7 +137,6 @@
    <string name="status_bar">แถบสถานะ</string>
    <string name="show_status_bar">แสดงแถบสถานะ</string>
    <string name="show_progress_of_reading">แสดงความก้าวหน้าในการอ่าน</string>
-   <string name="display_chapters_on_the_progress_line">แสดงบทในบรรทัดความคืบหน้า</string>
    <string name="enable_rewind_of_pages_using_the_read_progress_line">เปิดใช้งานการย้อนกลับของหน้าเว็บโดยใช้เส้นความคืบหน้าการอ่าน</string>
    <string name="text_size">ขนาดข้อความ</string>
    <string name="line_height">ความสูงของเส้น</string>
@@ -486,4 +485,6 @@
    <string name="general_settings">การตั้งค่าทั่วไป</string>
    <string name="cyclic_scrolling_return_to_1_page_">การเลื่อนแบบวน (กลับไปที่หน้า 1)</string>
    <string name="normalize_font_size">ทำให้ขนาดตัวอักษรเป็นปกติ</string>
+   <string name="display_chapters_on_the_progress_line">แสดงบทในบรรทัดความคืบหน้า</string>
+   <string name="display_sub_chapters_on_the_progress_line">Subchapters บนเส้นความคืบหน้า</string>
 </resources>

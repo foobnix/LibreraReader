@@ -137,7 +137,6 @@
    <string name="status_bar">Status Bar</string>
    <string name="show_status_bar">Show status bar</string>
    <string name="show_progress_of_reading">Show progress bar</string>
-   <string name="display_chapters_on_the_progress_line">Chapter ticks on progress bar</string>
    <string name="enable_rewind_of_pages_using_the_read_progress_line">Navigate by sliding across status bar</string>
    <string name="text_size">Font size</string>
    <string name="line_height">Progress bar height</string>
@@ -486,4 +485,6 @@
    <string name="general_settings">General Settings</string>
    <string name="cyclic_scrolling_return_to_1_page_">Loop scroll</string>
    <string name="normalize_font_size">Normalize font size</string>
+   <string name="display_chapters_on_the_progress_line">Chapter ticks on progress bar</string>
+   <string name="display_sub_chapters_on_the_progress_line">Subchapters on the progress line</string>
 </resources>

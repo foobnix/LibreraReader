@@ -137,7 +137,6 @@
    <string name="status_bar">שורת מצב</string>
    <string name="show_status_bar">הצג שורת מצב</string>
    <string name="show_progress_of_reading">הצג התקדמות בקריאה</string>
-   <string name="display_chapters_on_the_progress_line">הצגת פרקים על קו ההתקדמות</string>
    <string name="enable_rewind_of_pages_using_the_read_progress_line">אפשר הרצה אחורה של דפים באמצעות קו התקדמות הקריאה</string>
    <string name="text_size">גודל טקסט</string>
    <string name="line_height">גובה קו</string>
@@ -486,4 +485,6 @@
    <string name="general_settings">הגדרות כלליות</string>
    <string name="cyclic_scrolling_return_to_1_page_">גלילה מחזורית (חזרה לדף אחד)</string>
    <string name="normalize_font_size">מנרמל את גודל הגופן</string>
+   <string name="display_chapters_on_the_progress_line">הצגת פרקים על קו ההתקדמות</string>
+   <string name="display_sub_chapters_on_the_progress_line">Subchapters על קו ההתקדמות</string>
 </resources>

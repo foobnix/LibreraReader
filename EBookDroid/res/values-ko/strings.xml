@@ -137,7 +137,6 @@
    <string name="status_bar">상태 표시 줄</string>
    <string name="show_status_bar">상태 표시 줄 표시</string>
    <string name="show_progress_of_reading">독서의 진행 상황을 보여 준다.</string>
-   <string name="display_chapters_on_the_progress_line">진행률 줄에 챕터 표시</string>
    <string name="enable_rewind_of_pages_using_the_read_progress_line">읽기 진행 줄을 사용하여 페이지 되감기 사용</string>
    <string name="text_size">텍스트 크기</string>
    <string name="line_height">라인 높이</string>
@@ -486,4 +485,6 @@
    <string name="general_settings">일반 설정</string>
    <string name="cyclic_scrolling_return_to_1_page_">순환 스크롤 (1 페이지로 돌아 가기)</string>
    <string name="normalize_font_size">글꼴 크기 표준화</string>
+   <string name="display_chapters_on_the_progress_line">진행률 줄에 챕터 표시</string>
+   <string name="display_sub_chapters_on_the_progress_line">진행 선에 서브 챕터</string>
 </resources>

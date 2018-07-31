@@ -660,9 +660,6 @@ public class DragingDialogs {
                     }
                 });
 
-
-
-
                 TxtUtils.underlineTextView((TextView) view.findViewById(R.id.restore_defaults)).setOnClickListener(new OnClickListener() {
 
                     @Override
@@ -2405,6 +2402,7 @@ public class DragingDialogs {
 
                 final CheckBox isShowReadingProgress = (CheckBox) inflate.findViewById(R.id.isShowReadingProgress);
                 final CheckBox isShowChaptersOnProgress = (CheckBox) inflate.findViewById(R.id.isShowChaptersOnProgress);
+                final CheckBox isShowSubChaptersOnProgress = (CheckBox) inflate.findViewById(R.id.isShowSubChaptersOnProgress);
 
                 isShowReadingProgress.setChecked(AppState.get().isShowReadingProgress);
                 isShowReadingProgress.setOnCheckedChangeListener(new OnCheckedChangeListener() {
@@ -2418,6 +2416,11 @@ public class DragingDialogs {
                         }
                         isShowChaptersOnProgress.setChecked(isChecked);
                         isShowChaptersOnProgress.setEnabled(isChecked);
+
+                        isShowSubChaptersOnProgress.setEnabled(isChecked);
+                        if (!isChecked) {
+                            isShowSubChaptersOnProgress.setChecked(isChecked);
+                        }
                     }
                 });
 
@@ -2428,6 +2431,32 @@ public class DragingDialogs {
                     @Override
                     public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                         AppState.get().isShowChaptersOnProgress = isChecked;
+                        AppState.get().isEditMode = false;
+                        if (onRefresh != null) {
+                            onRefresh.run();
+                        }
+                        if (isChecked) {
+                            isShowReadingProgress.setChecked(true);
+                        } else {
+                            AppState.get().isShowSubChaptersOnProgress = false;
+                            isShowSubChaptersOnProgress.setChecked(false);
+
+                        }
+
+                    }
+                });
+
+                isShowSubChaptersOnProgress.setChecked(AppState.get().isShowSubChaptersOnProgress);
+                isShowSubChaptersOnProgress.setEnabled(AppState.get().isShowReadingProgress);
+                isShowSubChaptersOnProgress.setOnCheckedChangeListener(new OnCheckedChangeListener() {
+
+                    @Override
+                    public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                        AppState.get().isShowSubChaptersOnProgress = isChecked;
+                        AppState.get().isShowChaptersOnProgress = isChecked;
+
+                        isShowChaptersOnProgress.setChecked(isChecked);
+
                         AppState.get().isEditMode = false;
                         if (onRefresh != null) {
                             onRefresh.run();

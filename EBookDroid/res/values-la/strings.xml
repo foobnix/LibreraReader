@@ -137,7 +137,6 @@
    <string name="status_bar">Fascia stati</string>
    <string name="show_status_bar">Exhibere fasciam stati</string>
    <string name="show_progress_of_reading">Demostrare striam progressioni</string>
-   <string name="display_chapters_on_the_progress_line">Ostendere scarifationes capitulum striad progressioni</string>
    <string name="enable_rewind_of_pages_using_the_read_progress_line">Mutare paginas prolabendi secundum linea progressioni</string>
    <string name="text_size">Mensura litterum</string>
    <string name="line_height">Striai statura</string>
@@ -486,4 +485,6 @@
    <string name="general_settings">General Occasus</string>
    <string name="cyclic_scrolling_return_to_1_page_">Insecta scrolling (redire ad paginam I)</string>
    <string name="normalize_font_size">Font magnitudine Normalize</string>
+   <string name="display_chapters_on_the_progress_line">Ostendere scarifationes capitulum striad progressioni</string>
+   <string name="display_sub_chapters_on_the_progress_line">Progressus in acie rubricis</string>
 </resources>

@@ -137,7 +137,6 @@
    <string name="status_bar">Progreso juosta</string>
    <string name="show_status_bar">Rodyti progreso juostą</string>
    <string name="show_progress_of_reading">Rodyti skaitymo progresą</string>
-   <string name="display_chapters_on_the_progress_line">Rodyti skyrius skaitymo progreso linijoje</string>
    <string name="enable_rewind_of_pages_using_the_read_progress_line">Peršokti puslapius skaitymo progreso linijoje</string>
    <string name="text_size">Teksto dydis</string>
    <string name="line_height">Brūkšnio aukštis</string>
@@ -486,4 +485,6 @@
    <string name="general_settings">Bendrieji nustatymai</string>
    <string name="cyclic_scrolling_return_to_1_page_">Ciklinis slinkimas (grįžti į 1 puslapį)</string>
    <string name="normalize_font_size">Normalizuokite šrifto dydį</string>
+   <string name="display_chapters_on_the_progress_line">Rodyti skyrius skaitymo progreso linijoje</string>
+   <string name="display_sub_chapters_on_the_progress_line">Apakšfaktoriai apie pažangą</string>
 </resources>

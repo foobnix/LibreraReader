@@ -137,7 +137,6 @@
    <string name="status_bar">Statuslinjen</string>
    <string name="show_status_bar">Vis statuslinje</string>
    <string name="show_progress_of_reading">Vis fremdrift av lesing</string>
-   <string name="display_chapters_on_the_progress_line">Vis kapitler på fremdriftslinjen</string>
    <string name="enable_rewind_of_pages_using_the_read_progress_line">Aktiver tilbakespoling av sider ved hjelp av lesefremdriftslinjen</string>
    <string name="text_size">Tekststørrelse</string>
    <string name="line_height">Linjehøyde</string>
@@ -486,4 +485,6 @@
    <string name="general_settings">Generelle innstillinger</string>
    <string name="cyclic_scrolling_return_to_1_page_">Syklisk rulling (tilbake til 1 side)</string>
    <string name="normalize_font_size">Normaliser skriftstørrelsen</string>
+   <string name="display_chapters_on_the_progress_line">Vis kapitler på fremdriftslinjen</string>
+   <string name="display_sub_chapters_on_the_progress_line">Underkapsler på fremdriftslinjen</string>
 </resources>

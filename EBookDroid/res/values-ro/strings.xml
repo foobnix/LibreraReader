@@ -137,7 +137,6 @@
    <string name="status_bar">Bara de stare</string>
    <string name="show_status_bar">Afișează bara de stare</string>
    <string name="show_progress_of_reading">Afișați progresul citirii</string>
-   <string name="display_chapters_on_the_progress_line">Afișează capitole pe linia de progres</string>
    <string name="enable_rewind_of_pages_using_the_read_progress_line">Activați derularea înapoi a paginilor utilizând linia progresului citirii</string>
    <string name="text_size">Mărimea textului</string>
    <string name="line_height">Inaltimea liniei</string>
@@ -486,4 +485,6 @@
    <string name="general_settings">Setari generale</string>
    <string name="cyclic_scrolling_return_to_1_page_">Derulare ciclică (revenire la 1 pagină)</string>
    <string name="normalize_font_size">Normalizați dimensiunea fontului</string>
+   <string name="display_chapters_on_the_progress_line">Afișează capitole pe linia de progres</string>
+   <string name="display_sub_chapters_on_the_progress_line">Subcapitole pe linia progresului</string>
 </resources>

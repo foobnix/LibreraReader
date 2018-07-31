@@ -137,7 +137,6 @@
    <string name="status_bar">نوار وضعیت</string>
    <string name="show_status_bar">نمایش نوار وضعیت</string>
    <string name="show_progress_of_reading">نمایش پیشرفت خواندن</string>
-   <string name="display_chapters_on_the_progress_line">نمایش فصل در خط پیشرفت</string>
    <string name="enable_rewind_of_pages_using_the_read_progress_line">بازخوانی صفحات با استفاده از خط پیشرفت خواندن را فعال کنید</string>
    <string name="text_size">اندازه متن</string>
    <string name="line_height">ارتفاع خط</string>
@@ -486,4 +485,6 @@
    <string name="general_settings">تنظیمات عمومی</string>
    <string name="cyclic_scrolling_return_to_1_page_">پیمایش سیسیک (بازگشت به 1 صفحه)</string>
    <string name="normalize_font_size">اندازه فونت را عادی کنید</string>
+   <string name="display_chapters_on_the_progress_line">نمایش فصل در خط پیشرفت</string>
+   <string name="display_sub_chapters_on_the_progress_line">زیر شاخه ها در خط پیشرفت</string>
 </resources>

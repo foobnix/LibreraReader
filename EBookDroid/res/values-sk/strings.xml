@@ -137,7 +137,6 @@
    <string name="status_bar">Stavový riadok</string>
    <string name="show_status_bar">Zobraziť stavový riadok</string>
    <string name="show_progress_of_reading">Zobraziť postup čítania</string>
-   <string name="display_chapters_on_the_progress_line">Zobrazte kapitoly na riadku pokroku</string>
    <string name="enable_rewind_of_pages_using_the_read_progress_line">Povoľte posun dozadu stránok pomocou riadku postupu prečítania</string>
    <string name="text_size">Veľkosť textu</string>
    <string name="line_height">Výška linky</string>
@@ -486,4 +485,6 @@
    <string name="general_settings">Všeobecné nastavenia</string>
    <string name="cyclic_scrolling_return_to_1_page_">Cyklické rolovanie (návrat na 1 stránku)</string>
    <string name="normalize_font_size">Normalizovať veľkosť písma</string>
+   <string name="display_chapters_on_the_progress_line">Zobrazte kapitoly na riadku pokroku</string>
+   <string name="display_sub_chapters_on_the_progress_line">Podkapitoly na riadku pokroku</string>
 </resources>

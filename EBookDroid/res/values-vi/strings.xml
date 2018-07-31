@@ -137,7 +137,6 @@
    <string name="status_bar">Thanh trạng thái</string>
    <string name="show_status_bar">Hiển thị thanh trạng thái</string>
    <string name="show_progress_of_reading">Hiển thị tiến trình đọc</string>
-   <string name="display_chapters_on_the_progress_line">Hiển thị các chương trên dòng tiến trình</string>
    <string name="enable_rewind_of_pages_using_the_read_progress_line">Bật tua lại trang bằng cách sử dụng dòng tiến trình đọc</string>
    <string name="text_size">Cỡ chữ</string>
    <string name="line_height">Chiều cao giữa các dòng</string>
@@ -486,4 +485,6 @@
    <string name="general_settings">Cài đặt chung</string>
    <string name="cyclic_scrolling_return_to_1_page_">Cuộn theo chu kỳ (trở về 1 trang)</string>
    <string name="normalize_font_size">Bình thường hóa kích thước phông chữ</string>
+   <string name="display_chapters_on_the_progress_line">Hiển thị các chương trên dòng tiến trình</string>
+   <string name="display_sub_chapters_on_the_progress_line">Các chương trên dòng tiến độ</string>
 </resources>

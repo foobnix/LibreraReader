@@ -277,7 +277,9 @@ public class AppState {
     public boolean isShowImages = true;
     public boolean isShowToolBar = true;
     public boolean isShowReadingProgress = true;
+
     public boolean isShowChaptersOnProgress = true;
+    public boolean isShowSubChaptersOnProgress = false;
 
     public long fontExtractTime = 0;
 

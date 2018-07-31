@@ -30,6 +30,13 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="@dimen/sub_checkbox"
             android:text="@string/display_chapters_on_the_progress_line" />
+        
+        <CheckBox
+            android:id="@+id/isShowSubChaptersOnProgress"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/sub_checkbox"
+            android:text="@string/display_sub_chapters_on_the_progress_line" />
 
         <CheckBox
             android:id="@+id/isShowTime"

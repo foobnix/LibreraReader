@@ -137,7 +137,6 @@
    <string name="status_bar">Status balk</string>
    <string name="show_status_bar">Toon statusbalk</string>
    <string name="show_progress_of_reading">Toon vooruitgang met lezen</string>
-   <string name="display_chapters_on_the_progress_line">Toon hoofdstukken op de voortgangslijn</string>
    <string name="enable_rewind_of_pages_using_the_read_progress_line">Activeer terugspoelen van pagina\'s met behulp van de leesprogressie</string>
    <string name="text_size">Lettergrootte</string>
    <string name="line_height">Lijnhoogte</string>
@@ -486,4 +485,6 @@
    <string name="general_settings">Algemene instellingen</string>
    <string name="cyclic_scrolling_return_to_1_page_">Cyclisch scrollen (teruggaan naar 1 pagina)</string>
    <string name="normalize_font_size">Lettergrootte normaliseren</string>
+   <string name="display_chapters_on_the_progress_line">Toon hoofdstukken op de voortgangslijn</string>
+   <string name="display_sub_chapters_on_the_progress_line">Subhoofdstukken op de voortgangslijn</string>
 </resources>

@@ -137,7 +137,6 @@
    <string name="status_bar">Строка состояния</string>
    <string name="show_status_bar">Показывать строку состояния</string>
    <string name="show_progress_of_reading">Отображать полосу прогресса</string>
-   <string name="display_chapters_on_the_progress_line">Делать засечки глав в полосе прогресса</string>
    <string name="enable_rewind_of_pages_using_the_read_progress_line">Переходить между страницами скольжением пальца по строке состояния</string>
    <string name="text_size">Размер текста</string>
    <string name="line_height">Толщина полосы прогресса</string>
@@ -486,4 +485,6 @@
    <string name="general_settings">Общие настройки</string>
    <string name="cyclic_scrolling_return_to_1_page_">Зацикливать автопрокрутку текста (при достижении конца книги переходить к ее началу)</string>
    <string name="normalize_font_size">Нормализовывать размер шрифтов</string>
+   <string name="display_chapters_on_the_progress_line">Делать засечки глав в полосе прогресса</string>
+   <string name="display_sub_chapters_on_the_progress_line">Подглавы на линии прогресса</string>
 </resources>

@@ -137,7 +137,6 @@
    <string name="status_bar">Рядок стану</string>
    <string name="show_status_bar">Показати рядок стану</string>
    <string name="show_progress_of_reading">Показати прогрес читання</string>
-   <string name="display_chapters_on_the_progress_line">Відображати розділи на лінії прогресу</string>
    <string name="enable_rewind_of_pages_using_the_read_progress_line">Увімкнути гортання сторінок за допомогою рядка читання</string>
    <string name="text_size">Розмір тексту</string>
    <string name="line_height">Товщина лінії</string>
@@ -486,4 +485,6 @@
    <string name="general_settings">Загальні налаштування</string>
    <string name="cyclic_scrolling_return_to_1_page_">Циклічна прокрутка (повернення на 1 сторінку)</string>
    <string name="normalize_font_size">Нормализуйте розмір шрифту</string>
+   <string name="display_chapters_on_the_progress_line">Відображати розділи на лінії прогресу</string>
+   <string name="display_sub_chapters_on_the_progress_line">Підрозділи на лінії прогресу</string>
 </resources>

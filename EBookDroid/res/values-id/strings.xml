@@ -137,7 +137,6 @@
    <string name="status_bar">Status bar</string>
    <string name="show_status_bar">Tampilkan bilah status</string>
    <string name="show_progress_of_reading">Tampilkan kemajuan membaca</string>
-   <string name="display_chapters_on_the_progress_line">Tampilkan bab pada baris kemajuan</string>
    <string name="enable_rewind_of_pages_using_the_read_progress_line">Aktifkan pengguliran halaman dengan menggunakan garis kemajuan baca</string>
    <string name="text_size">Ukuran teks</string>
    <string name="line_height">Tinggi garis</string>
@@ -486,4 +485,6 @@
    <string name="general_settings">Pengaturan Umum</string>
    <string name="cyclic_scrolling_return_to_1_page_">Gerak siklik (kembali ke 1 halaman)</string>
    <string name="normalize_font_size">Normalkan ukuran font</string>
+   <string name="display_chapters_on_the_progress_line">Tampilkan bab pada baris kemajuan</string>
+   <string name="display_sub_chapters_on_the_progress_line">Subkat di garis kemajuan</string>
 </resources>

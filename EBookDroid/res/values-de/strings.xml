@@ -137,7 +137,6 @@
    <string name="status_bar">Statusleiste</string>
    <string name="show_status_bar">Zeige Statusleiste</string>
    <string name="show_progress_of_reading">Zeigen Sie den Fortschritt des Lesens</string>
-   <string name="display_chapters_on_the_progress_line">Zeigen Sie Kapitel auf der Fortschrittslinie an</string>
    <string name="enable_rewind_of_pages_using_the_read_progress_line">Aktivieren Sie das Zurückspulen von Seiten mit der Lese-Fortschrittslinie</string>
    <string name="text_size">Textgröße</string>
    <string name="line_height">Zeilenhöhe</string>
@@ -486,4 +485,6 @@
    <string name="general_settings">Allgemeine Einstellungen</string>
    <string name="cyclic_scrolling_return_to_1_page_">Zyklisches Scrollen (zurück zu 1 Seite)</string>
    <string name="normalize_font_size">Normalize Schriftgröße</string>
+   <string name="display_chapters_on_the_progress_line">Zeigen Sie Kapitel auf der Fortschrittslinie an</string>
+   <string name="display_sub_chapters_on_the_progress_line">Unterkapitel auf der Fortschrittslinie</string>
 </resources>

@@ -137,7 +137,6 @@
    <string name="status_bar">شريط الحالة</string>
    <string name="show_status_bar">أظهر شريط الحالة</string>
    <string name="show_progress_of_reading">عرض التقدم المحرز في القراءة</string>
-   <string name="display_chapters_on_the_progress_line">عرض الفصول على خط التقدم</string>
    <string name="enable_rewind_of_pages_using_the_read_progress_line">تمكين ترجيع الصفحات باستخدام سطر تقدم القراءة</string>
    <string name="text_size">حجم الخط</string>
    <string name="line_height">ارتفاع خط</string>
@@ -486,4 +485,6 @@
    <string name="general_settings">الاعدادات العامة</string>
    <string name="cyclic_scrolling_return_to_1_page_">التمرير الدوري (الرجوع إلى صفحة واحدة)</string>
    <string name="normalize_font_size">تطبيع حجم الخط</string>
+   <string name="display_chapters_on_the_progress_line">عرض الفصول على خط التقدم</string>
+   <string name="display_sub_chapters_on_the_progress_line">Subchapters على خط التقدم</string>
 </resources>

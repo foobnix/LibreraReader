@@ -137,7 +137,6 @@
    <string name="status_bar">Pasek stanu</string>
    <string name="show_status_bar">Pokaż pasek stanu</string>
    <string name="show_progress_of_reading">Pokaż postęp czytania</string>
-   <string name="display_chapters_on_the_progress_line">Wyświetl rozdziały w linii postępu</string>
    <string name="enable_rewind_of_pages_using_the_read_progress_line">Włącz przewijanie stron za pomocą linii postępu czytania</string>
    <string name="text_size">Rozmiar czcionki</string>
    <string name="line_height">Wysokość linii</string>
@@ -486,4 +485,6 @@
    <string name="general_settings">Ustawienia główne</string>
    <string name="cyclic_scrolling_return_to_1_page_">Cykliczne przewijanie (powrót do 1 strony)</string>
    <string name="normalize_font_size">Normalizuj rozmiar czcionki</string>
+   <string name="display_chapters_on_the_progress_line">Wyświetl rozdziały w linii postępu</string>
+   <string name="display_sub_chapters_on_the_progress_line">Podmapy w linii postępu</string>
 </resources>

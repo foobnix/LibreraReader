@@ -137,7 +137,6 @@
    <string name="status_bar">Kuonyesha hali</string>
    <string name="show_status_bar">Show mwamba hali</string>
    <string name="show_progress_of_reading">Onyesha maendeleo ya kusoma</string>
-   <string name="display_chapters_on_the_progress_line">Onyesha sura kwenye mstari wa maendeleo</string>
    <string name="enable_rewind_of_pages_using_the_read_progress_line">Wezesha upya wa kurasa kwa kutumia mstari wa maendeleo unaoisoma</string>
    <string name="text_size">Ukubwa wa maandishi</string>
    <string name="line_height">Urefu wa mstari</string>
@@ -486,4 +485,6 @@
    <string name="general_settings">Mazingira ya Jumla</string>
    <string name="cyclic_scrolling_return_to_1_page_">Kupiga rangi kwa kasi (kurudi kwenye ukurasa 1)</string>
    <string name="normalize_font_size">Wekaza ukubwa wa font</string>
+   <string name="display_chapters_on_the_progress_line">Onyesha sura kwenye mstari wa maendeleo</string>
+   <string name="display_sub_chapters_on_the_progress_line">Wachapishaji kwenye mstari wa maendeleo</string>
 </resources>

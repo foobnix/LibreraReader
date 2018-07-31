@@ -137,7 +137,6 @@
    <string name="status_bar">Tilarivillä</string>
    <string name="show_status_bar">Näytä tilarivi</string>
    <string name="show_progress_of_reading">Näytä lukemisen edistyminen</string>
-   <string name="display_chapters_on_the_progress_line">Näytä luvut edistysrivillä</string>
    <string name="enable_rewind_of_pages_using_the_read_progress_line">Ota käyttöön sivujen kelautuminen eteenpäin lukuarvon viivalla</string>
    <string name="text_size">Tekstin koko</string>
    <string name="line_height">Viivankorkeus</string>
@@ -486,4 +485,6 @@
    <string name="general_settings">Yleiset asetukset</string>
    <string name="cyclic_scrolling_return_to_1_page_">Syklinen vieritys (palaa 1 sivulle)</string>
    <string name="normalize_font_size">Normalize font size</string>
+   <string name="display_chapters_on_the_progress_line">Näytä luvut edistysrivillä</string>
+   <string name="display_sub_chapters_on_the_progress_line">Edistymislinjan alikansiot</string>
 </resources>

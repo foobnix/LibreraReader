@@ -137,7 +137,6 @@
    <string name="status_bar">Barra di stato</string>
    <string name="show_status_bar">Mostra la barra di stato</string>
    <string name="show_progress_of_reading">Mostra il progresso della lettura</string>
-   <string name="display_chapters_on_the_progress_line">Visualizza i capitoli sulla linea di avanzamento</string>
    <string name="enable_rewind_of_pages_using_the_read_progress_line">Abilitare il riavvolgimento delle pagine utilizzando la linea di avanzamento della lettura</string>
    <string name="text_size">Dimensione del testo</string>
    <string name="line_height">Altezza della linea</string>
@@ -486,4 +485,6 @@
    <string name="general_settings">Impostazioni generali</string>
    <string name="cyclic_scrolling_return_to_1_page_">Scorrimento ciclico (ritorno a 1 pagina)</string>
    <string name="normalize_font_size">Normalizza la dimensione del carattere</string>
+   <string name="display_chapters_on_the_progress_line">Visualizza i capitoli sulla linea di avanzamento</string>
+   <string name="display_sub_chapters_on_the_progress_line">Sottocapitoli sulla linea di progresso</string>
 </resources>
