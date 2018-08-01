@@ -313,6 +313,9 @@ public class PageImaveView extends View {
                     EventBus.getDefault().post(new MessageEvent(MessageEvent.MESSAGE_CLOSE_BOOK_APP, e.getX(), e.getY()));
                 } else if (AppState.get().doubleClickAction1 == AppState.DOUBLE_CLICK_CLOSE_HIDE_APP) {
                     Apps.showDesctop(getContext());
+                } else if (AppState.get().doubleClickAction1 == AppState.DOUBLE_CLICK_CENTER_HORIZONTAL) {
+                    PageImageState.get().isAutoFit = false;
+                    onCenterHorizontally(new MessageCenterHorizontally(pageNumber));
                 } else {
                     PageImageState.get().isAutoFit = true;
                     autoFit();
@@ -693,8 +696,13 @@ public class PageImaveView extends View {
     public void centerHorizontally() {
         float[] f = new float[9];
         imageMatrix().getValues(f);
-        float y = f[Matrix.MTRANS_Y];
-        imageMatrix().setTranslate((getWidth() - drawableWidth) / 2, y);
+        float tx = f[Matrix.MTRANS_X];
+        float sx = f[Matrix.MSCALE_X];
+
+
+
+        imageMatrix().postTranslate(getWidth() / 2 - tx - drawableWidth * sx / 2, 0);
+        LOG.d("centerHorizontally", getWidth(), tx, drawableWidth * sx);
     }
 
     public void autoFit() {
