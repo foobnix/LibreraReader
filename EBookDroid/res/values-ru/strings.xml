@@ -120,7 +120,7 @@
    <string name="db_auto_scroll">Автопрокрутка текста</string>
    <string name="opening_book_with_losed_lock">Всегда блокировать смещения страниц при открытии PDF/DJVU (\"закрывать\" замочек)</string>
    <string name="opening_book_with_cropped_borders">Активировать обрезку пустых полей при каждом открытии PDF/DJVU</string>
-   <string name="db_auto_alignemnt">Вписать в ширину экрана</string>
+   <string name="db_auto_alignemnt">Автоматическое выравнивание</string>
    <string name="db_auto_center_horizontally">Выровнить по горизонтали</string>
    <string name="zoom_in_zoom_out">Увел./умен. масштаб стр-ц в 2 раза</string>
    <string name="enhancements_for_oled_display">Заполнять пустоту вокруг страниц черным цветом при чтении в режиме \"Ночь\" (AMOLED-адаптация)</string>

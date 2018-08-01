@@ -120,8 +120,8 @@
    <string name="db_auto_scroll">Auto-scroll</string>
    <string name="opening_book_with_losed_lock">Lock page in place</string>
    <string name="opening_book_with_cropped_borders">Auto-crop white space</string>
-   <string name="db_auto_alignemnt">Fit width</string>
-   <string name="db_auto_center_horizontally">Fit page</string>
+   <string name="db_auto_alignemnt">Fit page</string>
+   <string name="db_auto_center_horizontally">Centering horizontally</string>
    <string name="zoom_in_zoom_out">Zoom in, zoom out</string>
    <string name="enhancements_for_oled_display">Night-mode enhancement for AMOLED displays</string>
    <string name="ignore_annotations_on_click">Ignore touching annotations</string>
