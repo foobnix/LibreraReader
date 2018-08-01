@@ -81,7 +81,7 @@
    <string name="___READING___SETTINGS___SECTION___"></string>
    <string name="reading_settings">Настройки чтения</string>
    <string name="folder_with_fonts">Папка со шрифтами</string>
-   <string name="text_align">Выравнивание текста</string>
+   <string name="text_align">Выравнивать текст</string>
    <string name="width">По ширине</string>
    <string name="left">По левому краю</string>
    <string name="right">По правому краю</string>
@@ -90,13 +90,13 @@
    <string name="styles">Стили</string>
    <string name="document_styles">Встроенные</string>
    <string name="user_styles">Пользовательские</string>
-   <string name="automatic_hyphenation">Авторасстановка переносов</string>
+   <string name="automatic_hyphenation">Автоматически расставлять переносы</string>
    <string name="empty_line">Пустая строка</string>
    <string name="margin_width">Ширина отступов</string>
    <string name="top">По верхнему краю</string>
    <string name="bottom">По нижнему краю</string>
-   <string name="links_color_day">Цвет ссылок (День)</string>
-   <string name="links_color_night">Цвет ссылок (Ночь)</string>
+   <string name="links_color_day">Цвет ссылок (\"День\")</string>
+   <string name="links_color_night">Цвет ссылок (\"Ночь\")</string>
    <string name="___ADVANCED___SETTINGS___SECTION___"></string>
    <string name="advanced_settings">Расширенные функции</string>
    <string name="direction_of_scrolling">Прокрутка текста</string>
@@ -123,7 +123,7 @@
    <string name="db_auto_alignemnt">Вписать в ширину экрана</string>
    <string name="db_auto_center_horizontally">Выровнить по горизонтали</string>
    <string name="zoom_in_zoom_out">Увел./умен. масштаб стр-ц в 2 раза</string>
-   <string name="enhancements_for_oled_display">Заполнять пустоту вокруг страниц черным цветом при выборе любого ночного пресета (AMOLED-адаптация)</string>
+   <string name="enhancements_for_oled_display">Заполнять пустоту вокруг страниц черным цветом при чтении в режиме \"Ночь\" (AMOLED-адаптация)</string>
    <string name="ignore_annotations_on_click">Игнорировать комментарии и пометки при нажатиях</string>
    <string name="save_new_annotations_automatically">Автоматически сохранять новые комментарии и пометки при закрытии книги или выходе из приложения</string>
    <string name="selecting_text_by_letters">Использовать побуквенное выделение текста (для иероглифических языков)</string>
@@ -453,9 +453,9 @@
    <string name="application_error_please_send_this_report_by_emial">Что-то пошло не так! Очень просим вам отправить этот отчет об ошибке по почте, т.к. он, возможно, помог бы разобраться в проблеме</string>
    <string name="pause_reading_if_the_incoming_call_or_other_sounds">Ставить чтение на паузу при входящих вызовах, уведомлениях и т. д.</string>
    <string name="add_resource">Добавить ресурс</string>
-   <string name="do_you_want_to_download_more_book_fonts_10mb_">Для удобства чтения можно скачать дополнительный набор шрифтов размером 10 Мб. Хотите ли вы это сделать?</string>
+   <string name="do_you_want_to_download_more_book_fonts_10mb_">Для удобства чтения можно скачать дополнительный набор книжных шрифтов размером 10 Мб. Хотите это сделать?</string>
    <string name="hyphenation_language">Язык переносов</string>
-   <string name="replacing_the_white_color_in_the_images_with_the_background_color">Позволять менять цвет шрифтов для PDF; окрашивать белый фон изображений в цвет фона стр-ц при выборе любого дневного пресета</string>
+   <string name="replacing_the_white_color_in_the_images_with_the_background_color">Позволять менять цвет шрифтов для PDF; окрашивать белый фон изображений в цвет фона стр-ц при чтении в режиме \"День\"</string>
    <string name="disable_swipe_gestures_for_page_paging">Отключить возможность листания страниц горизонтальными свайпами (для электр. читалок)</string>
    <string name="no_keywords">Без ключевых слов</string>
    <string name="my_tags">Свои теги</string>
@@ -484,7 +484,7 @@
    <string name="show_notifications">Показывать уведомление</string>
    <string name="general_settings">Общие настройки</string>
    <string name="cyclic_scrolling_return_to_1_page_">Зацикливать автопрокрутку текста (при достижении конца книги переходить к ее началу)</string>
-   <string name="normalize_font_size">Нормализовывать размер шрифтов</string>
-   <string name="display_chapters_on_the_progress_line">Делать засечки глав в полосе прогресса</string>
-   <string name="display_sub_chapters_on_the_progress_line">Подглавы на линии прогресса</string>
+   <string name="normalize_font_size">Использовать единый размер для разноразмерных шрифтов, встречающихся в некоторых книгах</string>
+   <string name="display_chapters_on_the_progress_line">С засечками глав на ней</string>
+   <string name="display_sub_chapters_on_the_progress_line">С засечками подглав</string>
 </resources>
