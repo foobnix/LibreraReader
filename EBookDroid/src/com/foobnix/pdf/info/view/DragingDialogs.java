@@ -2609,7 +2609,7 @@ public class DragingDialogs {
 
                 final CustomSeek progressLineHeight = (CustomSeek) inflate.findViewById(R.id.progressLineHeight);
                 progressLineHeight.setTitleTextWidth(Dips.dpToPx(100));
-                progressLineHeight.init(1, 10, AppState.get().progressLineHeight);
+                progressLineHeight.init(0, 10, AppState.get().progressLineHeight);
                 progressLineHeight.setOnSeekChanged(new IntegerResponse() {
 
                     @Override
