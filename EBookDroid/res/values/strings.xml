@@ -1,3 +1,4 @@
+
 <resources>
    <string name="___LIBRARY___SETTINGS___SECTION___"></string>
    <string name="library_settings">Library Settings</string>
@@ -121,7 +122,7 @@
    <string name="opening_book_with_losed_lock">Lock page in place</string>
    <string name="opening_book_with_cropped_borders">Auto-crop white space</string>
    <string name="db_auto_alignemnt">Fit page</string>
-   <string name="db_auto_center_horizontally">Centering horizontally</string>
+   <string name="db_auto_center_horizontally">Center (no rescale)</string>
    <string name="zoom_in_zoom_out">Zoom in, zoom out</string>
    <string name="enhancements_for_oled_display">Night-mode enhancement for AMOLED displays</string>
    <string name="ignore_annotations_on_click">Ignore touching annotations</string>
@@ -136,7 +137,7 @@
    <string name="___STATUS___BAR___SETTINGS___SECTION___"></string>
    <string name="status_bar">Status Bar</string>
    <string name="show_status_bar">Show status bar</string>
-   <string name="show_progress_of_reading">Show progress bar</string>
+   <string name="show_progress_of_reading">Enable progress bar</string>
    <string name="enable_rewind_of_pages_using_the_read_progress_line">Navigate by sliding across status bar</string>
    <string name="text_size">Font size</string>
    <string name="line_height">Progress bar height</string>
@@ -426,7 +427,7 @@
    <string name="awards">Awards</string>
    <string name="close_book_and_application">Close book and exit Librera</string>
    <string name="percent_and_number">Both</string>
-   <string name="current_page">Reading progress</string>
+   <string name="current_page">Progress indicator</string>
    <string name="backup_folder">Backup folder</string>
    <string name="audio_books_folder">Audio folder</string>
    <string name="enable_contrast_and_brightness">Adjust manually</string>
@@ -485,6 +486,6 @@
    <string name="general_settings">General Settings</string>
    <string name="cyclic_scrolling_return_to_1_page_">Loop scroll</string>
    <string name="normalize_font_size">Normalize font size</string>
-   <string name="display_chapters_on_the_progress_line">Chapter tick marks on progress bar</string>
-   <string name="display_sub_chapters_on_the_progress_line">Section tick marks within chapters</string>
+   <string name="display_chapters_on_the_progress_line">Module tick marks on progress bar</string>
+   <string name="display_sub_chapters_on_the_progress_line">Chapter/section tick marks</string>
 </resources>
