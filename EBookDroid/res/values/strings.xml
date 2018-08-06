@@ -49,8 +49,8 @@
    <string name="visible">Show</string>
    <string name="application_user_guide_">User Guide</string>
    <string name="import_or_export_application_settings_to_json_file">Backup</string>
-   <string name="import_">Import ...</string>
-   <string name="export_">Export ...</string>
+   <string name="import_">Import</string>
+   <string name="export_">Export</string>
    <string name="automatic_export_backup">Auto-export (backup) current session on exit</string>
    <string name="product">Product</string>
    <string name="version">Version</string>
@@ -87,7 +87,7 @@
    <string name="left">Left</string>
    <string name="right">Right</string>
    <string name="center">Center</string>
-   <string name="custom_css">Custom CSS code</string>
+   <string name="custom_css">Custom CSS Code</string>
    <string name="styles">Styles</string>
    <string name="document_styles">Document</string>
    <string name="user_styles">User-defined</string>
@@ -380,7 +380,7 @@
    <string name="application_cannot_open_the_book">Unable to open book</string>
    <string name="musician">Musician\'s</string>
    <string name="banner_slogan_LIRBI_READER">Reliable and accurate program for reading all book formats</string>
-   <string name="banner_slogan_PRO_LIRBI_READER_1">A paid version of the best ebook reader for Android devices</string>
+   <string name="banner_slogan_PRO_LIRBI_READER_1">A paid version of the best e-book reader for Android devices</string>
    <string name="banner_slogan_EPUB_READER">The most convenient reader for electronic books</string>
    <string name="banner_slogan_PDF_READER">The most convenient PDF Reader for electronic documents</string>
    <string name="books">Books</string>
@@ -425,7 +425,7 @@
    <string name="number">Page number</string>
    <string name="percent">Percentage</string>
    <string name="awards">Awards</string>
-   <string name="close_book_and_application">Close book and exit Librera</string>
+   <string name="close_book_and_application">Exit Librera</string>
    <string name="percent_and_number">Both</string>
    <string name="current_page">Progress indicator</string>
    <string name="backup_folder">Backup folder</string>

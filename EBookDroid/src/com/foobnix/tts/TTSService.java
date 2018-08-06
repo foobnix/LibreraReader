@@ -1,7 +1,6 @@
 package com.foobnix.tts;
 
 import java.io.IOException;
-import java.util.Arrays;
 
 import org.ebookdroid.LibreraApp;
 import org.ebookdroid.common.settings.SettingsManager;
@@ -84,17 +83,27 @@ public class TTSService extends Service {
                 LOG.d(TAG, "onMediaButtonEvent", isActivated, intent);
                 if (isActivated) {
                     KeyEvent event = (KeyEvent) intent.getExtras().get(Intent.EXTRA_KEY_EVENT);
+                    LOG.d(TAG, "onMediaButtonEvent", "event", event);
 
-                    boolean a = KeyEvent.ACTION_UP == event.getAction() && KeyEvent.KEYCODE_HEADSETHOOK == event.getKeyCode();
-                    boolean b = Arrays.asList(KeyEvent.KEYCODE_MEDIA_PLAY_PAUSE, KeyEvent.KEYCODE_MEDIA_PLAY, KeyEvent.KEYCODE_MEDIA_PAUSE, KeyEvent.KEYCODE_MEDIA_STOP).contains(event.getKeyCode());
-                    if (a || b) {
-                        LOG.d(TAG, "onStartStop", "KEYCODE_HEADSETHOOK");
-                        boolean isPlaying = TTSEngine.get().isPlaying();
+                    if (KeyEvent.ACTION_UP != event.getAction()) {
+                        return isActivated;
+                    }
+
+                    boolean isPlaying = TTSEngine.get().isPlaying();
+
+                    if (KeyEvent.KEYCODE_HEADSETHOOK == event.getKeyCode() || KeyEvent.KEYCODE_MEDIA_PLAY_PAUSE == event.getKeyCode()) {
                         if (isPlaying) {
                             TTSEngine.get().stop();
                         } else {
                             playPage("", AppState.get().lastBookPage, null);
                         }
+                    } else if (KeyEvent.KEYCODE_MEDIA_STOP == event.getKeyCode() || KeyEvent.KEYCODE_MEDIA_PAUSE == event.getKeyCode()) {
+                        TTSEngine.get().stop();
+                    } else if (KeyEvent.KEYCODE_MEDIA_PLAY == event.getKeyCode()) {
+                        if (!isPlaying) {
+                            playPage("", AppState.get().lastBookPage, null);
+                        }
+
                     }
 
                 }
