@@ -1507,8 +1507,8 @@ static float layout_block(fz_context *ctx, fz_html_box *box, fz_html_box *top, f
 	}
 	else
 	{
-		box->h -= vertical;
 		vertical = fz_max(margin[B], vertical);
+		box->h -= vertical;
 		margin[B] = vertical;
 	}
 
