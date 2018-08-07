@@ -2744,6 +2744,10 @@ fz_parse_html(fz_context *ctx, fz_html_font_set *set, fz_archive *zip, const cha
 
 		generate_boxes(ctx, xml, html->root, &match, 0, DEFAULT_DIR, FZ_LANG_UNSET, &g);
 
+		fz_html_box *box;
+		box = new_box(ctx, g.pool, DEFAULT_DIR);
+		insert_break_box(ctx, box, html->root->last);
+
 		detect_directionality(ctx, g.pool, html->root);
 	}
 	fz_always(ctx)

@@ -489,7 +489,7 @@ public class BookCSS {
         builder.append("@page{");
         builder.append(String.format("margin-top:%s !important;", em(marginTop)));
         builder.append(String.format("margin-right:%s !important;", em(marginRight)));
-        builder.append(String.format("margin-bottom:%s !important;", em(marginBottom)));
+        builder.append(String.format("margin-bottom:%s !important;", em(marginBottom - 1)));
         builder.append(String.format("margin-left:%s !important;", em(marginLeft)));
         builder.append("}");
         // PAGE END
