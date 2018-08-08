@@ -509,7 +509,7 @@ public class BookCSS {
             builder.append(String.format("p{margin:%s 0}", em(paragraphHeight)));
         }
         // not supported text-decoration
-        builder.append("del,ins,u,strikethrough{font-style:italic}");
+        builder.append("del,ins,u,strikethrough{font-family:monospace;}");
 
         // FB2 END
 
