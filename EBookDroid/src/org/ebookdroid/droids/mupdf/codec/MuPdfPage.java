@@ -35,7 +35,7 @@ import android.graphics.RectF;
 
 public class MuPdfPage extends AbstractCodecPage {
 
-    private static final char SPACE_CHAR = "\u00A0".charAt(0);
+    private static final char NON_BREAKE_SPACE = "\u00A0".charAt(0);
     private volatile long pageHandle;
     private final long docHandle;
     private int pageNumber;
@@ -427,7 +427,7 @@ public class MuPdfPage extends AbstractCodecPage {
                 for (TextChar[] sp : ln) {
                     for (TextChar tc : sp) {
                         if (AppState.get().selectingByLetters) {
-                            if (tc.c == SPACE_CHAR) {
+                            if (tc.c == NON_BREAKE_SPACE) {
                                 tc.c = ' ';
                             }
                             words.add(new TextWord(tc));
@@ -484,7 +484,7 @@ public class MuPdfPage extends AbstractCodecPage {
                     char chChar = (char) ch.c;
 
                     if (AppState.get().selectingByLetters) {
-                        if (chChar == SPACE_CHAR) {
+                        if (chChar == NON_BREAKE_SPACE) {
                             chChar = ' ';
                         }
                         word.addChar(ch.bbox, chChar);

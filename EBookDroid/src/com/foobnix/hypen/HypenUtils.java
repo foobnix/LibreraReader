@@ -38,7 +38,7 @@ public class HypenUtils {
         if (input == null || input.length() == 0) {
             return "";
         }
-        input = input.replace("<", " <").replace(">", "> ");// .replace("\u00A0", " ");
+        input = input.replace("<", " <").replace(">", "> ");// .replace("\u00A0", "_");// non break space
 
         StringTokenizer split = new StringTokenizer(input, " ", true);
         StringBuilder res = new StringBuilder();
@@ -51,12 +51,13 @@ public class HypenUtils {
                 continue;
             }
 
+
             if (w.length() <= 3) {
                 res.append(w);
                 continue;
             }
 
-            if (w.contains("<") || w.contains(">") || w.contains("=") || w.contains("&")) {
+            if (w.contains("<") || w.contains(">") || w.contains("=") || w.contains("&") || w.contains("\u00A0")) {
                 res.append(w);
                 continue;
             }
