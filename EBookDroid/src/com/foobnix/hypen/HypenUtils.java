@@ -8,6 +8,7 @@ import com.foobnix.pdf.info.model.BookCSS;
 
 public class HypenUtils {
 
+    private static final String NON_BREAK_SPACE = "\u00A0";
     private static final String SHY = "&shy;";
     private static DefaultHyphenator instance = new DefaultHyphenator(HyphenPattern.ru);
 
@@ -38,7 +39,8 @@ public class HypenUtils {
         if (input == null || input.length() == 0) {
             return "";
         }
-        input = input.replace("<", " <").replace(">", "> ");// .replace("\u00A0", "_");// non break space
+        // hack
+        input = input.replace("<", " <").replace(">", "> ").replace(NON_BREAK_SPACE, " " + NON_BREAK_SPACE);
 
         StringTokenizer split = new StringTokenizer(input, " ", true);
         StringBuilder res = new StringBuilder();
@@ -57,7 +59,7 @@ public class HypenUtils {
                 continue;
             }
 
-            if (w.contains("<") || w.contains(">") || w.contains("=") || w.contains("&") || w.contains("\u00A0")) {
+            if (w.contains("<") || w.contains(">") || w.contains("=") || w.contains("&")) {
                 res.append(w);
                 continue;
             }
