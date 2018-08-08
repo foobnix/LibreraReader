@@ -38,7 +38,7 @@ public class HypenUtils {
         if (input == null || input.length() == 0) {
             return "";
         }
-        input = input.replace("<", " <").replace(">", "> ").replace("\u00A0", " ");
+        input = input.replace("<", " <").replace(">", "> ");// .replace("\u00A0", " ");
 
         StringTokenizer split = new StringTokenizer(input, " ", true);
         StringBuilder res = new StringBuilder();
