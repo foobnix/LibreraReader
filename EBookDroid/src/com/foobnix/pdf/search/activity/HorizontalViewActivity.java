@@ -1493,7 +1493,8 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
             currentSeek.setText(TxtUtils.deltaPage(page + 1));
             String text = TxtUtils.getProgressPercent(page + 1, max) + "   " + TxtUtils.deltaPage(page + 1) + " ∕ " + textMax;
 
-            text += "   (" + progressDraw.getLeftPages(page + 1, max) + ")";
+            int leftPages = progressDraw.getLeftPages(page + 1, max);
+            text += "   (" + leftPages + ")" + (leftPages < 10 ? "  " : "");
 
             pagesCountIndicator.setText(text);
         } else {

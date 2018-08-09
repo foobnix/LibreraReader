@@ -8,7 +8,7 @@ import com.foobnix.pdf.info.model.BookCSS;
 
 public class HypenUtils {
 
-    private static final String NON_BREAK_SPACE = "\u00A0";
+    public static final String NON_BREAK_SPACE = "\u00A0";
     private static final String SHY = "&shy;";
     private static DefaultHyphenator instance = new DefaultHyphenator(HyphenPattern.ru);
 

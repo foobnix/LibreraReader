@@ -279,7 +279,7 @@ public class AppState {
     public boolean isShowReadingProgress = true;
 
     public boolean isShowChaptersOnProgress = true;
-    public boolean isShowSubChaptersOnProgress = false;
+    public boolean isShowSubChaptersOnProgress = true;
 
     public long fontExtractTime = 0;
 
