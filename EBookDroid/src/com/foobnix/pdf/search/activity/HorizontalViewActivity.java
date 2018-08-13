@@ -1565,6 +1565,7 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
             public boolean onResultRecive(List<OutlineLinkWrapper> result) {
                 onClose.setVisibility(View.VISIBLE);
                 progressDraw.updateDivs(result);
+                updateUI(dc.getCurrentPage());
                 if (TxtUtils.isListEmpty(result)) {
                     TintUtil.setTintImageWithAlpha(outline, Color.LTGRAY);
                 }
