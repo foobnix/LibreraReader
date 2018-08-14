@@ -881,7 +881,7 @@ public class PageImaveView extends View {
                 if (textWord == null) {
                     continue;
                 }
-                if (textWord.left < 0 || textWord.top < 0) {
+                if (!AppState.get().isTextFormat() && (textWord.left < 0 || textWord.top < 0)) {
                     continue;
                 }
 

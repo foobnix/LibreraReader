@@ -160,7 +160,7 @@
    <string name="dialog_color_picker">Color Picker</string>
    <string name="invalid_color_value">Invalid value</string>
    <string name="add">Add</string>
-   <string name="search">Search</string>
+   <string name="search">Find</string>
    <string name="export_bookmarks">Export</string>
    <string name="simple_scroll_animation">Animate page transition (scroll)</string>
    <string name="close_application">Exit Librera</string>
