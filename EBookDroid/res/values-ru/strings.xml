@@ -103,7 +103,7 @@
    <string name="direction_of_reading_rtl_">Направление чтения (RTL)</string>
    <string name="left_to_rigth">Слева направо</string>
    <string name="right_to_left">Справа налево</string>
-   <string name="right_page_then_left_page_rtl_">Сначала правая страница (или правая её половина), потом левая (для араб. и др. языков)</string>
+   <string name="right_page_then_left_page_rtl_">Сначала правая страница [или правая её половина], потом левая (для араб. и др. языков)</string>
    <string name="rotate_page">Угол поворота страниц</string>
    <string name="rotate_default">По умолчанию</string>
    <string name="tap_zone_size">Размер зон листаний</string>
@@ -123,8 +123,8 @@
    <string name="db_auto_alignemnt">Автоматическое выравнивание</string>
    <string name="db_auto_center_horizontally">Выровнить по горизонтали</string>
    <string name="zoom_in_zoom_out">Увел./умен. масштаб стр-ц в 2 раза</string>
-   <string name="enhancements_for_oled_display">Заполнять пустоту вокруг страниц черным цветом при чтении в режиме \"Ночь\" (AMOLED-адаптация)</string>
-   <string name="ignore_annotations_on_click">Игнорировать комментарии и пометки при нажатиях</string>
+   <string name="enhancements_for_oled_display">Заполнять пустующие области вокруг страниц черным цветом при чтении в режиме \"Ночь\" (AMOLED-адаптация)</string>
+   <string name="ignore_annotations_on_click">Не открывать соответствующее окно редактирования при тапах в места комментариев/пометок</string>
    <string name="save_new_annotations_automatically">Автоматически сохранять новые комментарии и пометки при закрытии книги или выходе из приложения</string>
    <string name="selecting_text_by_letters">Использовать побуквенное выделение текста (для иероглифических языков)</string>
    <string name="change_the_automatic_scrolling_speed_with_the_volume_keys">Менять скорость автопрокрутки текста клавишами регулировки громкости</string>
@@ -283,7 +283,7 @@
    <string name="go_to_the_library">Перейти в библиотеку</string>
    <string name="contrast_and_brightness">Контрастность и яркость</string>
    <string name="contrast">Контрастность</string>
-   <string name="make_text_bold">Полужирное начертание шрифта текста</string>
+   <string name="make_text_bold">Полужирное начертание шрифтов текста</string>
    <string name="searching_please_wait_">Идет поиск...</string>
    <string name="msg_no_text_found">Ничего не найдено</string>
    <string name="annotations_draw">Комментирование и рисование</string>
@@ -301,7 +301,7 @@
    <string name="by_screans">Экран</string>
    <string name="of_screen">Экрана</string>
    <string name="custom_value">Свое значение</string>
-   <string name="automatic_page_flipping">Автоперелистывание страниц</string>
+   <string name="automatic_page_flipping">Автолистание страниц</string>
    <string name="interval_sec_">Интервал (в секундах)</string>
    <string name="show_bottom_panel">Отображать строку состояния</string>
    <string name="to_stop">Остановить</string>
@@ -455,7 +455,7 @@
    <string name="add_resource">Добавить ресурс</string>
    <string name="do_you_want_to_download_more_book_fonts_10mb_">Для удобства чтения можно скачать дополнительный набор книжных шрифтов размером 10 Мб. Хотите это сделать?</string>
    <string name="hyphenation_language">Язык переносов</string>
-   <string name="replacing_the_white_color_in_the_images_with_the_background_color">Позволять менять цвет шрифтов для PDF; окрашивать белый фон изображений в цвет фона стр-ц при чтении в режиме \"День\"</string>
+   <string name="replacing_the_white_color_in_the_images_with_the_background_color">Позволять менять цвет шрифтов для PDF/DJVU; окрашивать белый фон изображений в цвет фона страниц при чтении в режиме \"День\"</string>
    <string name="disable_swipe_gestures_for_page_paging">Отключить возможность листания страниц горизонтальными свайпами (для электр. читалок)</string>
    <string name="no_keywords">Без ключевых слов</string>
    <string name="my_tags">Свои теги</string>
@@ -483,8 +483,8 @@
    <string name="never">Никогда</string>
    <string name="show_notifications">Показывать уведомление</string>
    <string name="general_settings">Общие настройки</string>
-   <string name="cyclic_scrolling_return_to_1_page_">Зацикливать автопрокрутку текста (при достижении конца книги переходить к ее началу)</string>
+   <string name="cyclic_scrolling_return_to_1_page_">Перевозобновлять автопрокрутку/автолистание текста (при достижении конца книги переходить к началу)</string>
    <string name="normalize_font_size">Использовать единый размер для разноразмерных шрифтов, встречающихся в некоторых книгах</string>
-   <string name="display_chapters_on_the_progress_line">С засечками глав на ней</string>
-   <string name="display_sub_chapters_on_the_progress_line">С засечками подглав</string>
+   <string name="display_chapters_on_the_progress_line">... с засечками глав на ней</string>
+   <string name="display_sub_chapters_on_the_progress_line">... и засечками подглав</string>
 </resources>
