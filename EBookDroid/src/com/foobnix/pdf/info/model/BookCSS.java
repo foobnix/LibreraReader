@@ -588,7 +588,11 @@ public class BookCSS {
                 builder.append("font-family:" + normalFont + " !important; font-weight:normal;");
             }
 
-            builder.append(String.format("text-align:%s !important;", getTextAlignConst(textAlign)));
+            if (AppState.get().isAccurateFontSize) {
+                builder.append(String.format("text-align:%s !important;", getTextAlignConst(textAlign)));
+            } else {
+                builder.append(String.format("text-align:%s;", getTextAlignConst(textAlign)));
+            }
             builder.append("}");
 
             builder.append(String.format("p{text-indent:%s;}", em(textIndent)));
