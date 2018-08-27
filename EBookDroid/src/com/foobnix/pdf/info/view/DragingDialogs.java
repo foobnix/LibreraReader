@@ -626,7 +626,7 @@ public class DragingDialogs {
                 });
 
                 final CustomSeek seekBarSpeed = (CustomSeek) view.findViewById(R.id.seekBarSpeed);
-                seekBarSpeed.init(0, 400, (int) AppState.get().ttsSpeed * 100);
+                seekBarSpeed.init(0, 600, (int) AppState.get().ttsSpeed * 100);
                 seekBarSpeed.setOnSeekChanged(new IntegerResponse() {
 
                     @Override

@@ -122,7 +122,7 @@ public class BookCSS {
                         "tr {display:block}\n" + //
                         "td>* {display:inline}\n" + //
                         "blockquote {margin-left:0.5em !important}\n" + //
-                        "sup>* {font-size:0.83em;vertical-align:super}\n" + //
+                        "sup>* {font-size:0.83em;vertical-align:super;font-weight:bold}\n" + //
                         ""//
         ;
 
