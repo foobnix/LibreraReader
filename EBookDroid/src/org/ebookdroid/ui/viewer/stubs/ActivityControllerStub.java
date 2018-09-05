@@ -10,20 +10,19 @@ import org.ebookdroid.ui.viewer.IActivityController;
 import org.ebookdroid.ui.viewer.IView;
 import org.ebookdroid.ui.viewer.IViewController;
 import org.ebookdroid.ui.viewer.VerticalViewActivity;
-
-import android.app.Activity;
-import android.content.Context;
-
 import org.emdev.ui.actions.ActionController;
 import org.emdev.ui.actions.IActionController;
 
 import com.foobnix.sys.VerticalModeController;
 
+import android.app.Activity;
+import android.content.Context;
+
 public class ActivityControllerStub extends ActionController<VerticalViewActivity> implements IActivityController {
 
     public static final ActivityControllerStub STUB = new ActivityControllerStub();
 
-    public static final DocumentModel DM_STUB = new DocumentModel(null);
+    public static final DocumentModel DM_STUB = new DocumentModel(null, null);
 
     public static final ZoomModel ZM_STUB = new ZoomModel();
 

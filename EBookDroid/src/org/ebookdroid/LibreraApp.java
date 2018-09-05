@@ -81,6 +81,7 @@ public class LibreraApp extends Application {
         LOG.d("Build.Context", "Context.getExternalCacheDir", getExternalCacheDir());
         LOG.d("Build.Context", "Context.getExternalFilesDir(null)", getExternalFilesDir(null));
         LOG.d("Build.Context", "Environment.getExternalStorageDirectory()", Environment.getExternalStorageDirectory());
+        LOG.d("Build.Height", Dips.screenHeight());
 
         try {
             if (LOG.isEnable) {

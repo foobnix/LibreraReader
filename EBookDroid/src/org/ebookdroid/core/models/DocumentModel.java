@@ -46,14 +46,14 @@ public class DocumentModel extends ListenerProxy {
 
     private Page[] pages = EMPTY_PAGES;
 
-    public DocumentModel(final BookType activityType) {
+    public DocumentModel(final BookType activityType, IView view) {
         super(CurrentPageListener.class);
         LOG.d("Document activityType Type", activityType);
         if (activityType != null) {
             try {
                 context = BookType.getCodecContextByType(activityType);
                 LOG.d("Document context Type", context);
-                decodeService = new DecodeServiceBase(context);
+                decodeService = new DecodeServiceBase(context, view);
             } catch (final Throwable th) {
                 throw new RuntimeException(th);
             }
@@ -182,6 +182,8 @@ public class DocumentModel extends ListenerProxy {
         final CodecPageInfo defCpi = new CodecPageInfo();
         defCpi.width = (view.getWidth());
         defCpi.height = (view.getHeight());
+
+        LOG.d("initPages", defCpi.width, defCpi.height);
 
         int viewIndex = 0;
 

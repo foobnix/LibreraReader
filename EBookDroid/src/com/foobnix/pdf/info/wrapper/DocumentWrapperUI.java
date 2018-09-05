@@ -1439,10 +1439,10 @@ public class DocumentWrapperUI {
             ((ImageView) v).setImageResource(AppState.get().isFullScreen ? R.drawable.glyphicons_487_fit_frame_to_image : R.drawable.glyphicons_488_fit_image_to_frame);
             DocumentController.chooseFullScreen(a, AppState.get().isFullScreen);
 
-            // if (controller.isTextFormat()) {
-            // onRefresh.run();
-            // controller.restartActivity();
-            // }
+            if (dc.isTextFormat()) {
+                onRefresh.run();
+                dc.restartActivity();
+            }
         }
     };
     public View.OnClickListener onScreenMode = new View.OnClickListener() {
@@ -1571,7 +1571,6 @@ public class DocumentWrapperUI {
             progressDraw.updatePageCount(dc.getPageCount() - 1);
             titleBar.setOnTouchListener(new HorizontallSeekTouchEventListener(onSeek, dc.getPageCount(), false));
             progressDraw.setOnTouchListener(new HorizontallSeekTouchEventListener(onSeek, dc.getPageCount(), false));
-
 
         }
     };

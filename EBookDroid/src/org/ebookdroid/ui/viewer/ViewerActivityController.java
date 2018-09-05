@@ -185,7 +185,7 @@ public class ViewerActivityController extends ActionController<VerticalViewActiv
             }
 
             LOG.d("codecType last", codecType);
-            documentModel = new DocumentModel(codecType);
+            documentModel = new DocumentModel(codecType, getView());
             documentModel.addListener(ViewerActivityController.this);
             progressModel = new DecodingProgressModel();
             progressModel.addListener(ViewerActivityController.this);

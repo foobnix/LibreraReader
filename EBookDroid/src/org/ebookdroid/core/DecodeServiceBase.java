@@ -25,6 +25,7 @@ import org.ebookdroid.core.codec.OutlineLink;
 import org.ebookdroid.core.codec.PageLink;
 import org.ebookdroid.core.crop.PageCropper;
 import org.ebookdroid.droids.mupdf.codec.TextWord;
+import org.ebookdroid.ui.viewer.IView;
 import org.ebookdroid.ui.viewer.IViewController.InvalidateSizeReason;
 import org.emdev.utils.CompareUtils;
 import org.emdev.utils.LengthUtils;
@@ -35,6 +36,7 @@ import com.foobnix.android.utils.ResultResponse;
 import com.foobnix.android.utils.Safe;
 import com.foobnix.android.utils.TxtUtils;
 import com.foobnix.pdf.info.model.AnnotationType;
+import com.foobnix.pdf.info.wrapper.AppState;
 import com.foobnix.sys.Colors;
 import com.foobnix.sys.ImageExtractor;
 import com.foobnix.sys.TempHolder;
@@ -82,8 +84,11 @@ public class DecodeServiceBase implements DecodeService {
 
     };
 
-    public DecodeServiceBase(final CodecContext codecContext) {
+    private IView view;
+
+    public DecodeServiceBase(final CodecContext codecContext, IView view) {
         this.codecContext = codecContext;
+        this.view = view;
     }
 
     @Override
@@ -458,7 +463,7 @@ public class DecodeServiceBase implements DecodeService {
 
     @Override
     public int getPageCount() {
-        return codecDocument != null ? codecDocument.getPageCount() : 0;
+        return codecDocument != null ? codecDocument.getPageCount(view.getWidth(), view.getHeight(), AppState.get().fontSizeSp) : 0;
     }
 
     @Override
