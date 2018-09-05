@@ -27,7 +27,6 @@ import org.emdev.ui.actions.IActionController;
 import org.emdev.ui.actions.params.EditableValue.PasswordEditable;
 import org.emdev.ui.progress.IProgressIndicator;
 import org.emdev.ui.tasks.BaseAsyncTask;
-import org.emdev.ui.uimanager.IUIManager;
 import org.emdev.utils.LengthUtils;
 
 import com.foobnix.android.utils.LOG;
@@ -126,7 +125,7 @@ public class ViewerActivityController extends ActionController<VerticalViewActiv
     public void afterCreate(VerticalViewActivity a) {
         final VerticalViewActivity activity = getManagedComponent();
 
-        IUIManager.setFullScreenMode(activity, getManagedComponent().view.getView(), AppState.get().isFullScreen);
+        DocumentController.chooseFullScreen(activity, AppState.get().isFullScreen);
 
         if (++loadingCount == 1) {
             documentModel = ActivityControllerStub.DM_STUB;

@@ -1,14 +1,14 @@
 package org.ebookdroid.ui.viewer.viewers;
 
+import java.util.concurrent.atomic.AtomicBoolean;
+
 import org.ebookdroid.common.settings.AppSettings;
+import org.emdev.common.android.AndroidVersion;
+
+import com.foobnix.pdf.info.wrapper.DocumentController;
 
 import android.app.Activity;
 import android.view.View;
-
-import java.util.concurrent.atomic.AtomicBoolean;
-
-import org.emdev.common.android.AndroidVersion;
-import org.emdev.ui.uimanager.IUIManager;
 
 public class FullScreenCallback implements Runnable {
 
@@ -28,7 +28,7 @@ public class FullScreenCallback implements Runnable {
             final long expected = time + 2000;
             final long now = System.currentTimeMillis();
             if (now <= expected) {
-                IUIManager.setFullScreenMode(activity, view, true);
+                DocumentController.chooseFullScreen(activity, true);
                 added.set(false);
             } else {
                 view.getHandler().postDelayed(this, expected - now);
