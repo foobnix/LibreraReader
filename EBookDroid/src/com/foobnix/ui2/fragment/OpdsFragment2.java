@@ -684,6 +684,10 @@ public class OpdsFragment2 extends UIFragment<Entry> {
 
             feed.updateLinksForUI();
 
+            if (urlRoot.contains("My:")) {
+                urlRoot = url;
+            }
+
             updateLinks(feed.title, urlRoot, feed.links);
 
             for (Link link : feed.links) {
