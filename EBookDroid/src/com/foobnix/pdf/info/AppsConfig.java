@@ -115,7 +115,7 @@ public class AppsConfig {
         if (IS_BETA) {
             ANALYTICS_ID = "UA-36581296-9";
             ADMOB_BANNER = ADMOB_FULLSCREEN = ADMOB_NATIVE_BANNER = null;
-            LOG.isEnable = true;
+            // LOG.isEnable = true;
         }
         if (LOG.isEnable) {
             GOOGLE_DRIVE_KEY = "961762082517-d2jro57s97ck73grvknbfnio8cg5fca3.apps.googleusercontent.com";
