@@ -28,16 +28,12 @@ public class HtmlExtractor {
 
             String encoding = ExtUtils.determineHtmlEncoding(new FileInputStream(inputPath), new FileInputStream(inputPath));
 
-
             LOG.d("HtmlExtractor encoding: ", encoding, "");
             BufferedReader input = new BufferedReader(new InputStreamReader(new FileInputStream(inputPath), encoding));
 
             StringBuilder html = new StringBuilder();
             String line;
 
-            if (BookCSS.get().isAutoHypens) {
-                HypenUtils.applyLanguage(BookCSS.get().hypenLang);
-            }
 
             boolean isBody = false;
             while ((line = input.readLine()) != null) {
@@ -61,6 +57,7 @@ public class HtmlExtractor {
             String string = Jsoup.clean(html.toString(), Whitelist.basic());
 
             if (BookCSS.get().isAutoHypens) {
+                HypenUtils.applyLanguage(BookCSS.get().hypenLang);
                 string = HypenUtils.applyHypnes(string);
                 // string = Jsoup.clean(string, Whitelist.none());
             }
@@ -69,6 +66,64 @@ public class HtmlExtractor {
             // string = string.replace("\">", "\"/>");
             string = string.replace("<br>", "<br/>");
             // string = string.replace("http://example.com/", "");
+
+            out.write(string.getBytes());
+            out.flush();
+            out.close();
+        } catch (Exception e) {
+            LOG.e(e);
+        }
+
+        return new FooterNote(file.getPath(), null);
+    }
+
+    public static FooterNote extractMht(String inputPath, final String outputDir) throws IOException {
+        // File file = new File(new File(inputPath).getParent(), OUT_FB2_XML);
+        File file = new File(outputDir, OUT_FB2_XML);
+
+        try {
+
+            BufferedReader input = new BufferedReader(new InputStreamReader(new FileInputStream(inputPath)));
+
+            StringBuilder html = new StringBuilder();
+            String line;
+
+            boolean isFlag = false;
+            while ((line = input.readLine()) != null) {
+
+                if (line.contains("<ht") || line.contains("<HT")) {
+                    isFlag = true;
+                }
+
+
+                if (isFlag) {
+                    if (line.endsWith("=")) {
+                        line = line.substring(0, line.length() - 1);
+                    }else {
+                        line = line + " ";
+                    }
+
+                    line = line.replace("<br>", "<br/>").replace("=20", " ").replace("=09", "<br/>");
+                    html.append(line);
+                }
+
+                if (line.contains("</ht") || line.contains("</HT")) {
+                    isFlag = false;
+                    html.append("<br/>");
+                }
+            }
+            input.close();
+
+            FileOutputStream out = new FileOutputStream(file);
+
+            String string = Jsoup.clean(html.toString(), Whitelist.basic());
+
+            if (BookCSS.get().isAutoHypens) {
+                HypenUtils.applyLanguage(BookCSS.get().hypenLang);
+                string = HypenUtils.applyHypnes(string);
+            }
+
+            string = "<html><head></head><body style='text-align:justify;'><br/>" + string + "</body></html>";
 
             out.write(string.getBytes());
             out.flush();

@@ -12,6 +12,7 @@ import org.ebookdroid.droids.CbrContext;
 import org.ebookdroid.droids.EpubContext;
 import org.ebookdroid.droids.Fb2Context;
 import org.ebookdroid.droids.HtmlContext;
+import org.ebookdroid.droids.MhtContext;
 import org.ebookdroid.droids.MobiContext;
 import org.ebookdroid.droids.RtfContext;
 import org.ebookdroid.droids.TxtContext;
@@ -41,6 +42,8 @@ public enum BookType {
     TXT(TxtContext.class, Arrays.asList("txt"), Arrays.asList("text/plain")),
 
     HTML(HtmlContext.class, Arrays.asList("html", "htm", "xhtml", "xhtm", "mht", "mhtml"), Arrays.asList("text/html", "text/xml")),
+
+    MHT(MhtContext.class, Arrays.asList("mht", "mhtml"), Arrays.asList("message/rfc822")),
 
     RTF(RtfContext.class, Arrays.asList("rtf"), Arrays.asList("application/rtf", "application/x-rtf", "text/rtf", "text/richtext")),
 

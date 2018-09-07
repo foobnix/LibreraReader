@@ -552,7 +552,7 @@ public class ExtUtils {
         if (path == null) {
             return false;
         }
-        return BookType.ZIP.is(path) || BookType.EPUB.is(path) || BookType.FB2.is(path) || BookType.TXT.is(path) || BookType.RTF.is(path) || BookType.HTML.is(path) || BookType.MOBI.is(path);
+        return BookType.ZIP.is(path) || BookType.EPUB.is(path) || BookType.FB2.is(path) || BookType.TXT.is(path) || BookType.RTF.is(path) || BookType.HTML.is(path) || BookType.MHT.is(path) || BookType.MOBI.is(path);
     }
 
     public static synchronized boolean isZip(File path) {
@@ -570,7 +570,7 @@ public class ExtUtils {
         if (path == null) {
             return false;
         }
-        return BookType.TXT.is(path) || BookType.RTF.is(path) || BookType.HTML.is(path) || BookType.PDF.is(path) || BookType.DJVU.is(path) || BookType.CBZ.is(path);
+        return BookType.TXT.is(path) || BookType.RTF.is(path) || BookType.HTML.is(path) || BookType.MHT.is(path) || BookType.PDF.is(path) || BookType.DJVU.is(path) || BookType.CBZ.is(path);
     }
 
     public static String getDateTimeFormat(File file) {
@@ -1597,7 +1597,6 @@ public class ExtUtils {
     }
 
     public static String determineHtmlEncoding(InputStream fis, InputStream fis2) {
-
 
         try {
             BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(fis));
