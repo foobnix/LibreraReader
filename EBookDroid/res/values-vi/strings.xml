@@ -479,7 +479,6 @@
    <string name="librera_cloud">Librera cloud</string>
    <string name="hide_search_bar">Ẩn thanh tìm kiếm</string>
    <string name="show_search_bar">Hiển thị thanh tìm kiếm</string>
-   <string name="enable_swipe_gestures_for_pages">Bật cử chỉ để lật trang</string>
    <string name="never">Không bao giờ</string>
    <string name="show_notifications">Hiển thị thông báo</string>
    <string name="general_settings">Cài đặt chung</string>
@@ -487,4 +486,6 @@
    <string name="normalize_font_size">Bình thường hóa kích thước phông chữ</string>
    <string name="display_chapters_on_the_progress_line">Hiển thị các chương trên dòng tiến trình</string>
    <string name="display_sub_chapters_on_the_progress_line">Các chương trên dòng tiến độ</string>
+   <string name="enable_vertical_gesture">Bật cử chỉ thẳng đứng cho trang tiếp theo</string>
+   <string name="enable_horizontal_gesture">Bật cử chỉ ngang cho trang tiếp theo</string>
 </resources>

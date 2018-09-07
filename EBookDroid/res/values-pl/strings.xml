@@ -479,7 +479,6 @@
    <string name="librera_cloud">Chmura Librera</string>
    <string name="hide_search_bar">Ukryj pasek wyszukiwania</string>
    <string name="show_search_bar">Pokaż pasek wyszukiwania</string>
-   <string name="enable_swipe_gestures_for_pages">Włącz gesty dla przewracania stron</string>
    <string name="never">Nigdy</string>
    <string name="show_notifications">Pokaż powiadomienia</string>
    <string name="general_settings">Ustawienia główne</string>
@@ -487,4 +486,6 @@
    <string name="normalize_font_size">Normalizuj rozmiar czcionki</string>
    <string name="display_chapters_on_the_progress_line">Wyświetl rozdziały w linii postępu</string>
    <string name="display_sub_chapters_on_the_progress_line">Podmapy w linii postępu</string>
+   <string name="enable_vertical_gesture">Włącz gest pionowy dla następnej strony</string>
+   <string name="enable_horizontal_gesture">Włącz gest poziomy dla następnej strony</string>
 </resources>

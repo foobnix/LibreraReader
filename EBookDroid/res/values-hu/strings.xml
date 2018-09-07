@@ -479,7 +479,6 @@
    <string name="librera_cloud">Librera felhő</string>
    <string name="hide_search_bar">Keresősáv elrejtése</string>
    <string name="show_search_bar">Keresősáv megjelenítése</string>
-   <string name="enable_swipe_gestures_for_pages">V/F lapozás engedélyezése a lapváltáshoz</string>
    <string name="never">Soha</string>
    <string name="show_notifications">Globális értesítés megjelenítése</string>
    <string name="general_settings">Általános beállítások</string>
@@ -487,4 +486,6 @@
    <string name="normalize_font_size">A betűméret normalizálása</string>
    <string name="display_chapters_on_the_progress_line">Fejezetjelek a folyamatjelző sávon</string>
    <string name="display_sub_chapters_on_the_progress_line">A haladó sorban szereplő alfejezetek</string>
+   <string name="enable_vertical_gesture">Engedélyezze a függőleges gesztust a következő oldalra</string>
+   <string name="enable_horizontal_gesture">Engedélyezze a vízszintes gesztust a következő oldalra</string>
 </resources>

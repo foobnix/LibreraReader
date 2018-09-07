@@ -479,7 +479,6 @@
    <string name="librera_cloud">Librera سحابة</string>
    <string name="hide_search_bar">إخفاء شريط البحث</string>
    <string name="show_search_bar">إظهار شريط البحث</string>
-   <string name="enable_swipe_gestures_for_pages">مكّن الإيماءات لصفحات التقليب</string>
    <string name="never">أبدا</string>
    <string name="show_notifications">عرض الإخطارات</string>
    <string name="general_settings">الاعدادات العامة</string>
@@ -487,4 +486,6 @@
    <string name="normalize_font_size">تطبيع حجم الخط</string>
    <string name="display_chapters_on_the_progress_line">عرض الفصول على خط التقدم</string>
    <string name="display_sub_chapters_on_the_progress_line">Subchapters على خط التقدم</string>
+   <string name="enable_vertical_gesture">تمكين الإيماءة الرأسية للصفحة التالية</string>
+   <string name="enable_horizontal_gesture">تمكين الإيماءة الأفقية للصفحة التالية</string>
 </resources>

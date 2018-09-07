@@ -479,7 +479,6 @@
    <string name="librera_cloud">Librera cloud</string>
    <string name="hide_search_bar">Sembunyikan bilah pencarian</string>
    <string name="show_search_bar">Tampilkan bilah penelusuran</string>
-   <string name="enable_swipe_gestures_for_pages">Aktifkan isyarat untuk membalik halaman</string>
    <string name="never">Tak pernah</string>
    <string name="show_notifications">Tampilkan pemberitahuan</string>
    <string name="general_settings">Pengaturan Umum</string>
@@ -487,4 +486,6 @@
    <string name="normalize_font_size">Normalkan ukuran font</string>
    <string name="display_chapters_on_the_progress_line">Tampilkan bab pada baris kemajuan</string>
    <string name="display_sub_chapters_on_the_progress_line">Subkat di garis kemajuan</string>
+   <string name="enable_vertical_gesture">Aktifkan isyarat vertikal untuk halaman berikutnya</string>
+   <string name="enable_horizontal_gesture">Aktifkan isyarat horizontal untuk halaman berikutnya</string>
 </resources>

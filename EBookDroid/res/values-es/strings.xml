@@ -479,7 +479,6 @@
    <string name="librera_cloud">Nube de Librera</string>
    <string name="hide_search_bar">Ocultar barra de búsqueda</string>
    <string name="show_search_bar">Mostrar barra de búsqueda</string>
-   <string name="enable_swipe_gestures_for_pages">Habilitar gestos para páginas que se invierten</string>
    <string name="never">Nunca</string>
    <string name="show_notifications">Mostrar notificaciones</string>
    <string name="general_settings">Configuración general</string>
@@ -487,4 +486,6 @@
    <string name="normalize_font_size">Normalizar el tamaño de letra</string>
    <string name="display_chapters_on_the_progress_line">Mostrar capítulos en la línea de progreso</string>
    <string name="display_sub_chapters_on_the_progress_line">Subcapítulos en la línea de progreso</string>
+   <string name="enable_vertical_gesture">Habilitar gesto vertical para la página siguiente</string>
+   <string name="enable_horizontal_gesture">Habilitar gesto horizontal para la página siguiente</string>
 </resources>

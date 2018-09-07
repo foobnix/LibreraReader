@@ -479,7 +479,6 @@
    <string name="librera_cloud">Librera-pilvi</string>
    <string name="hide_search_bar">Piilota hakupalkki</string>
    <string name="show_search_bar">Näytä hakupalkki</string>
-   <string name="enable_swipe_gestures_for_pages">Ota käyttöön liikkeiden kääntäminen sivulle</string>
    <string name="never">Ei koskaan</string>
    <string name="show_notifications">Näytä ilmoitukset</string>
    <string name="general_settings">Yleiset asetukset</string>
@@ -487,4 +486,6 @@
    <string name="normalize_font_size">Normalize font size</string>
    <string name="display_chapters_on_the_progress_line">Näytä luvut edistysrivillä</string>
    <string name="display_sub_chapters_on_the_progress_line">Edistymislinjan alikansiot</string>
+   <string name="enable_vertical_gesture">Ota pystysuoran ele käyttöön seuraavalle sivulle</string>
+   <string name="enable_horizontal_gesture">Ota horisontaalinen ele seuraavalle sivulle</string>
 </resources>

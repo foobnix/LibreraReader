@@ -479,7 +479,6 @@
    <string name="librera_cloud">Nubes Librera</string>
    <string name="hide_search_bar">Investigationis occultare vectes</string>
    <string name="show_search_bar">Show quaero talea</string>
-   <string name="enable_swipe_gestures_for_pages">Paginae enable habitus flipping</string>
    <string name="never">Numquam</string>
    <string name="show_notifications">Show Acta Vicimediorum Communium</string>
    <string name="general_settings">General Occasus</string>
@@ -487,4 +486,6 @@
    <string name="normalize_font_size">Font magnitudine Normalize</string>
    <string name="display_chapters_on_the_progress_line">Ostendere scarifationes capitulum striad progressioni</string>
    <string name="display_sub_chapters_on_the_progress_line">Progressus in acie rubricis</string>
+   <string name="enable_vertical_gesture">Admitte vertical complere alienum, quia tunc page</string>
+   <string name="enable_horizontal_gesture">Admitte motus horizontalis ad proximam paginam</string>
 </resources>

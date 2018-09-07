@@ -479,7 +479,6 @@
    <string name="librera_cloud">리브레라 구름</string>
    <string name="hide_search_bar">검색 창 숨기기</string>
    <string name="show_search_bar">검색 창 표시</string>
-   <string name="enable_swipe_gestures_for_pages">뒤집기 페이지에 제스처 사용</string>
    <string name="never">못</string>
    <string name="show_notifications">알림 표시</string>
    <string name="general_settings">일반 설정</string>
@@ -487,4 +486,6 @@
    <string name="normalize_font_size">글꼴 크기 표준화</string>
    <string name="display_chapters_on_the_progress_line">진행률 줄에 챕터 표시</string>
    <string name="display_sub_chapters_on_the_progress_line">진행 선에 서브 챕터</string>
+   <string name="enable_vertical_gesture">다음 페이지의 세로 제스처 사용</string>
+   <string name="enable_horizontal_gesture">다음 페이지의 가로 제스처 사용</string>
 </resources>

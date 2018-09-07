@@ -479,7 +479,6 @@
    <string name="librera_cloud">Oblak Librera</string>
    <string name="hide_search_bar">Skryť panel vyhľadávania</string>
    <string name="show_search_bar">Zobraziť panel vyhľadávania</string>
-   <string name="enable_swipe_gestures_for_pages">Povoliť gestá pre preklopenie stránok</string>
    <string name="never">Nikdy</string>
    <string name="show_notifications">Zobraziť upozornenia</string>
    <string name="general_settings">Všeobecné nastavenia</string>
@@ -487,4 +486,6 @@
    <string name="normalize_font_size">Normalizovať veľkosť písma</string>
    <string name="display_chapters_on_the_progress_line">Zobrazte kapitoly na riadku pokroku</string>
    <string name="display_sub_chapters_on_the_progress_line">Podkapitoly na riadku pokroku</string>
+   <string name="enable_vertical_gesture">Povoliť vertikálne gesto pre ďalšiu stránku</string>
+   <string name="enable_horizontal_gesture">Povoliť horizontálne gesto pre ďalšiu stránku</string>
 </resources>

@@ -479,7 +479,6 @@
    <string name="librera_cloud">Librera बादल</string>
    <string name="hide_search_bar">खोज बार छुपाएं</string>
    <string name="show_search_bar">खोज बार दिखाएं</string>
-   <string name="enable_swipe_gestures_for_pages">पृष्ठों को फिसलने के लिए जेस्चर सक्षम करें</string>
    <string name="never">कभी नहीँ</string>
    <string name="show_notifications">सूचनाएं दिखाएं</string>
    <string name="general_settings">सामान्य सेटिंग्स</string>
@@ -487,4 +486,6 @@
    <string name="normalize_font_size">फ़ॉन्ट आकार सामान्य करें</string>
    <string name="display_chapters_on_the_progress_line">प्रगति लाइन पर प्रदर्शन अध्याय</string>
    <string name="display_sub_chapters_on_the_progress_line">प्रगति लाइन पर सबचप्टर</string>
+   <string name="enable_vertical_gesture">अगले पृष्ठ के लिए लंबवत इशारा सक्षम करें</string>
+   <string name="enable_horizontal_gesture">अगले पृष्ठ के लिए क्षैतिज इशारा सक्षम करें</string>
 </resources>

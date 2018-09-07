@@ -200,7 +200,49 @@
                 android:visibility="gone" />
         </LinearLayout>
 
-        <CheckBox
+       
+        
+        
+        <LinearLayout
+            android:id="@+id/onScreenMode"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:clickable="true"
+            android:gravity="center_vertical" >
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="0"
+                android:padding="5dip"
+                android:src="@drawable/glyphicons_489_multiple_displays"
+                android:tint="@color/tint_gray" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="4dip"
+                android:layout_weight="1"
+                android:ellipsize="end"
+                android:text="@string/screen_orientation"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/screenOrientation"
+                style="@style/textLink"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/orientation" />
+        </LinearLayout>
+        
+        <View
+            android:id="@+id/topPanelLineDiv"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="2dip"
+            android:background="@color/lt_grey_alpha" />
+        
+         <CheckBox
             android:id="@+id/isPreText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -213,6 +255,7 @@
             android:layout_height="wrap_content"
             android:text="@string/continuous_text"
             android:visibility="gone" />
+        
 
         <LinearLayout
             android:id="@+id/fontSizeLayout"
@@ -435,38 +478,6 @@
                     android:layout_weight="1"
                     android:text="@string/reverse_keys" />
             </LinearLayout>
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/onScreenMode"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:clickable="true"
-            android:gravity="center_vertical" >
-
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="0"
-                android:padding="5dip"
-                android:src="@drawable/glyphicons_489_multiple_displays"
-                android:tint="@color/tint_gray" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="4dip"
-                android:layout_weight="1"
-                android:ellipsize="end"
-                android:text="@string/screen_orientation"
-                android:textStyle="bold" />
-
-            <TextView
-                android:id="@+id/screenOrientation"
-                style="@style/textLink"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/orientation" />
         </LinearLayout>
 
         <LinearLayout

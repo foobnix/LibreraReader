@@ -479,7 +479,6 @@
    <string name="librera_cloud">Librera云</string>
    <string name="hide_search_bar">隐藏搜索栏</string>
    <string name="show_search_bar">显示搜索栏</string>
-   <string name="enable_swipe_gestures_for_pages">启用翻页手势</string>
    <string name="never">从不</string>
    <string name="show_notifications">显示通知</string>
    <string name="general_settings">常规设置</string>
@@ -487,4 +486,6 @@
    <string name="normalize_font_size">规范字体大小</string>
    <string name="display_chapters_on_the_progress_line">显示章节预览</string>
    <string name="display_sub_chapters_on_the_progress_line">进度条子章节</string>
+   <string name="enable_vertical_gesture">为下一页启用垂直手势</string>
+   <string name="enable_horizontal_gesture">为下一页启用水平手势</string>
 </resources>

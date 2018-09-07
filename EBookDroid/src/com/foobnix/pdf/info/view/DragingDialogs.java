@@ -2795,14 +2795,14 @@ public class DragingDialogs {
                     }
                 });
 
-                CheckBox isDisableSwipe = (CheckBox) inflate.findViewById(R.id.isEnableSwipeGestures);
+                CheckBox isDisableSwipe = (CheckBox) inflate.findViewById(R.id.isEnableVerticalSwipe);
                 isDisableSwipe.setVisibility(AppState.get().isAlwaysOpenAsMagazine ? View.VISIBLE : View.GONE);
-                isDisableSwipe.setChecked(AppState.get().isEnableSwipeGestures);
+                isDisableSwipe.setChecked(AppState.get().isEnableVerticalSwipe);
                 isDisableSwipe.setOnCheckedChangeListener(new OnCheckedChangeListener() {
 
                     @Override
                     public void onCheckedChanged(final CompoundButton buttonView, final boolean isChecked) {
-                        AppState.get().isEnableSwipeGestures = isChecked;
+                        AppState.get().isEnableVerticalSwipe = isChecked;
                     }
                 });
 
@@ -2815,6 +2815,17 @@ public class DragingDialogs {
                     public void onClick(View v) {
                         AppState.get().isSwipeGestureReverse = !AppState.get().isSwipeGestureReverse;
                         isSwipeGestureReverse.setImageResource(AppState.get().isSwipeGestureReverse ? R.drawable.glyphicons_214_arrow_up : R.drawable.glyphicons_21_arrow_down);
+                    }
+                });
+
+                CheckBox isEnableHorizontalSwipe = (CheckBox) inflate.findViewById(R.id.isEnableHorizontalSwipe);
+                isEnableHorizontalSwipe.setVisibility(AppState.get().isAlwaysOpenAsMagazine ? View.VISIBLE : View.GONE);
+                isEnableHorizontalSwipe.setChecked(AppState.get().isEnableHorizontalSwipe);
+                isEnableHorizontalSwipe.setOnCheckedChangeListener(new OnCheckedChangeListener() {
+
+                    @Override
+                    public void onCheckedChanged(final CompoundButton buttonView, final boolean isChecked) {
+                        AppState.get().isEnableHorizontalSwipe = isChecked;
                     }
                 });
 

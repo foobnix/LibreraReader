@@ -479,7 +479,6 @@
    <string name="librera_cloud">Librera Wolke</string>
    <string name="hide_search_bar">Suchleiste ausblenden</string>
    <string name="show_search_bar">Suchleiste anzeigen</string>
-   <string name="enable_swipe_gestures_for_pages">Aktivieren Sie Gesten für das Umblättern von Seiten</string>
    <string name="never">Noch nie</string>
    <string name="show_notifications">Zeige Benachrichtigungen</string>
    <string name="general_settings">Allgemeine Einstellungen</string>
@@ -487,4 +486,6 @@
    <string name="normalize_font_size">Normalize Schriftgröße</string>
    <string name="display_chapters_on_the_progress_line">Zeigen Sie Kapitel auf der Fortschrittslinie an</string>
    <string name="display_sub_chapters_on_the_progress_line">Unterkapitel auf der Fortschrittslinie</string>
+   <string name="enable_vertical_gesture">Aktivieren Sie die vertikale Geste für die nächste Seite</string>
+   <string name="enable_horizontal_gesture">Aktivieren Sie die horizontale Geste für die nächste Seite</string>
 </resources>

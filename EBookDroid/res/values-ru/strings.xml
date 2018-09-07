@@ -479,7 +479,6 @@
    <string name="librera_cloud">Облако Librera</string>
    <string name="hide_search_bar">Скрывать панель поиска</string>
    <string name="show_search_bar">Показывать панель поиска</string>
-   <string name="enable_swipe_gestures_for_pages">Листать страницы вертикальными свайпами (направление листания определяется стрелкой)</string>
    <string name="never">Никогда</string>
    <string name="show_notifications">Показывать уведомление</string>
    <string name="general_settings">Общие настройки</string>
@@ -487,4 +486,6 @@
    <string name="normalize_font_size">Использовать единый размер для разноразмерных шрифтов, встречающихся в некоторых книгах</string>
    <string name="display_chapters_on_the_progress_line">... с засечками глав на ней</string>
    <string name="display_sub_chapters_on_the_progress_line">... и засечками подглав</string>
+   <string name="enable_vertical_gesture">Включить вертикальный жест для следующей страницы</string>
+   <string name="enable_horizontal_gesture">Включить горизонтальный жест для следующей страницы</string>
 </resources>

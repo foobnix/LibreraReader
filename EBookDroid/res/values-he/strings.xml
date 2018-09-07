@@ -479,7 +479,6 @@
    <string name="librera_cloud">ענן Librera</string>
    <string name="hide_search_bar">הסתר את סרגל החיפוש</string>
    <string name="show_search_bar">הצג סרגל חיפוש</string>
-   <string name="enable_swipe_gestures_for_pages">אפשר תנועות עבור דפים המדלפים</string>
    <string name="never">לעולם לא</string>
    <string name="show_notifications">תראה התראות</string>
    <string name="general_settings">הגדרות כלליות</string>
@@ -487,4 +486,6 @@
    <string name="normalize_font_size">מנרמל את גודל הגופן</string>
    <string name="display_chapters_on_the_progress_line">הצגת פרקים על קו ההתקדמות</string>
    <string name="display_sub_chapters_on_the_progress_line">Subchapters על קו ההתקדמות</string>
+   <string name="enable_vertical_gesture">הפעל מחווה אנכית עבור הדף הבא</string>
+   <string name="enable_horizontal_gesture">הפעל מחווה אופקית עבור הדף הבא</string>
 </resources>

@@ -479,7 +479,6 @@
    <string name="librera_cloud">Librerio debesis</string>
    <string name="hide_search_bar">Slėpti paieškos juostą</string>
    <string name="show_search_bar">Rodyti paieškos juostą</string>
-   <string name="enable_swipe_gestures_for_pages">Įgalinti šriftus puslapiams klipinti</string>
    <string name="never">Niekada</string>
    <string name="show_notifications">Rodyti pranešimus</string>
    <string name="general_settings">Bendrieji nustatymai</string>
@@ -487,4 +486,6 @@
    <string name="normalize_font_size">Normalizuokite šrifto dydį</string>
    <string name="display_chapters_on_the_progress_line">Rodyti skyrius skaitymo progreso linijoje</string>
    <string name="display_sub_chapters_on_the_progress_line">Apakšfaktoriai apie pažangą</string>
+   <string name="enable_vertical_gesture">Įgalinkite vertikalų gestą kitam puslapiui</string>
+   <string name="enable_horizontal_gesture">Įgalinkite horizontalų gestą kitam puslapiui</string>
 </resources>

@@ -479,7 +479,6 @@
    <string name="librera_cloud">Librera wingu</string>
    <string name="hide_search_bar">Ficha bar ya utafutaji</string>
    <string name="show_search_bar">Onyesha bar ya utafutaji</string>
-   <string name="enable_swipe_gestures_for_pages">Wezesha ishara za kurasa za kugeuka</string>
    <string name="never">Kamwe</string>
    <string name="show_notifications">Onyesha arifa</string>
    <string name="general_settings">Mazingira ya Jumla</string>
@@ -487,4 +486,6 @@
    <string name="normalize_font_size">Wekaza ukubwa wa font</string>
    <string name="display_chapters_on_the_progress_line">Onyesha sura kwenye mstari wa maendeleo</string>
    <string name="display_sub_chapters_on_the_progress_line">Wachapishaji kwenye mstari wa maendeleo</string>
+   <string name="enable_vertical_gesture">Wezesha ishara ya wima kwa ukurasa unaofuata</string>
+   <string name="enable_horizontal_gesture">Wezesha ishara ya usawa kwa ukurasa unaofuata</string>
 </resources>

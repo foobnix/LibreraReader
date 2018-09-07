@@ -243,11 +243,11 @@
             android:layout_height="wrap_content" >
 
             <CheckBox
-                android:id="@+id/isEnableSwipeGestures"
+                android:id="@+id/isEnableVerticalSwipe"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="@string/enable_swipe_gestures_for_pages" />
+                android:text="@string/enable_vertical_gesture" />
 
             <ImageView
                 android:padding="4dip"
@@ -258,6 +258,13 @@
                 android:src="@drawable/glyphicons_21_arrow_down"
                 android:tint="@color/link_color" />
         </LinearLayout>
+        
+          <CheckBox
+                android:id="@+id/isEnableHorizontalSwipe"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/enable_horizontal_gesture" />
 
         <CheckBox
             android:id="@+id/isScrollSpeedByVolumeKeys"

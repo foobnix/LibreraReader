@@ -479,7 +479,6 @@
    <string name="librera_cloud">Хмара бібліотеки</string>
    <string name="hide_search_bar">Сховати панель пошуку</string>
    <string name="show_search_bar">Показати панель пошуку</string>
-   <string name="enable_swipe_gestures_for_pages">Увімкнути жести для перегортання сторінок</string>
    <string name="never">Ніколи</string>
    <string name="show_notifications">Показати сповіщення</string>
    <string name="general_settings">Загальні налаштування</string>
@@ -487,4 +486,6 @@
    <string name="normalize_font_size">Нормализуйте розмір шрифту</string>
    <string name="display_chapters_on_the_progress_line">Відображати розділи на лінії прогресу</string>
    <string name="display_sub_chapters_on_the_progress_line">Підрозділи на лінії прогресу</string>
+   <string name="enable_vertical_gesture">Увімкнути вертикальний жест для наступної сторінки</string>
+   <string name="enable_horizontal_gesture">Увімкніть горизонтальний жест для наступної сторінки</string>
 </resources>

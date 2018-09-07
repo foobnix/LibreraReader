@@ -401,7 +401,7 @@ public class PageImaveView extends View {
                         if (AppState.get().isLocked) {
                             isReadyForMove = false;
                             isIgronerClick = false;
-                            if (AppState.get().isEnableSwipeGestures && Math.abs(dy) > Math.abs(dx) && Math.abs(dy) > Dips.DP_10) {
+                            if (AppState.get().isEnableVerticalSwipe && Math.abs(dy) > Math.abs(dx) && Math.abs(dy) > Dips.DP_10) {
                                 if (AppState.get().isSwipeGestureReverse) {
                                     isMoveNextPrev = dy > 0 ? -1 : 1;
                                 } else {
