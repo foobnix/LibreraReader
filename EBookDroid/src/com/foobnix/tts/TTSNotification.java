@@ -31,7 +31,7 @@ import android.support.v4.app.NotificationCompat;
 
 public class TTSNotification {
 
-    private static final String DEFAULT = "default";
+    public static final String DEFAULT = "default";
 
     public static final String ACTION_TTS = "TTSNotification_TTS";
 
@@ -39,7 +39,7 @@ public class TTSNotification {
     public static final String TTS_STOP = "TTS_STOP";
     public static final String TTS_NEXT = "TTS_NEXT";
 
-    private static final int NOT_ID = 123123;
+    public static final int NOT_ID = 123123;
 
     static String bookPath1;
     static int page1;

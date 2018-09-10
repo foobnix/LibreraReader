@@ -18,6 +18,7 @@ import com.foobnix.sys.ImageExtractor;
 import com.foobnix.sys.TempHolder;
 
 import android.annotation.TargetApi;
+import android.app.Notification;
 import android.app.PendingIntent;
 import android.app.Service;
 import android.content.Context;
@@ -31,6 +32,7 @@ import android.os.PowerManager;
 import android.os.PowerManager.WakeLock;
 import android.speech.tts.TextToSpeech.OnUtteranceCompletedListener;
 import android.speech.tts.UtteranceProgressListener;
+import android.support.v4.app.NotificationCompat;
 import android.support.v4.media.session.MediaButtonReceiver;
 import android.support.v4.media.session.MediaSessionCompat;
 import android.view.KeyEvent;
@@ -137,6 +139,15 @@ public class TTSService extends Service {
             }
         }
 
+        if (Build.VERSION.SDK_INT >= 26) {
+
+            Notification notification = new NotificationCompat.Builder(this, TTSNotification.DEFAULT) //
+                    .setContentTitle("Librera") //
+                    .setContentText("TTS").build();
+
+            startForeground(TTSNotification.NOT_ID, notification);
+        }
+
     }
 
     boolean isPlaying;
@@ -170,6 +181,7 @@ public class TTSService extends Service {
         playBookPage(AppState.get().lastBookPage, AppState.get().lastBookPath, "", AppState.get().lastBookWidth, AppState.get().lastBookHeight, AppState.get().lastFontSize);
     }
 
+    @TargetApi(26)
     public static void playBookPage(int page, String path, String anchor, int width, int height, int fontSize) {
         LOG.d(TAG, "playBookPage", page, path, width, height);
         TTSEngine.get().stop();
@@ -180,7 +192,11 @@ public class TTSService extends Service {
 
         Intent intent = playBookIntent(page, path, anchor);
 
-        LibreraApp.context.startService(intent);
+        if (Build.VERSION.SDK_INT >= 26) {
+            LibreraApp.context.startForegroundService(intent);
+        } else {
+            LibreraApp.context.startService(intent);
+        }
 
     }
 
