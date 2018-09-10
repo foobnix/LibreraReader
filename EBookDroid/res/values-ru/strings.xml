@@ -486,6 +486,6 @@
    <string name="normalize_font_size">Использовать единый размер для разноразмерных шрифтов, встречающихся в некоторых книгах</string>
    <string name="display_chapters_on_the_progress_line">... с засечками глав на ней</string>
    <string name="display_sub_chapters_on_the_progress_line">... и засечками подглав</string>
-   <string name="enable_vertical_gesture">Листать страницы вертикальными свайпами (направление зависит от настраиваемой стрелки)/string>
+   <string name="enable_vertical_gesture">Листать страницы вертикальными свайпами (направление зависит от настраиваемой стрелки)</string>
    <string name="enable_horizontal_gesture">Листать страницы горизонтальными свайпами</string>
 </resources>
