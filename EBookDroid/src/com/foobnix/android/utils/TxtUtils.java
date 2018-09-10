@@ -29,8 +29,9 @@ import android.widget.TextView;
 
 public class TxtUtils {
 
+    public static final String TTS_PAUSE = "<pause>";
     public static String LONG_DASH = "–";
-    public static String SMALL_DASH = " - ";
+    public static String SMALL_DASH = "-";
 
     public static final String NON_BREAKE_SPACE = "\u00A0";
     public static final char NON_BREAKE_SPACE_CHAR = NON_BREAKE_SPACE.charAt(0);
@@ -191,15 +192,25 @@ public class TxtUtils {
             return "";
         }
         LOG.d("pageHTML [before]", pageHTML);
+
+        pageHTML = pageHTML.replace("b><end-line><i>", TTS_PAUSE).replace("i><end-line><b>", TTS_PAUSE);
+        pageHTML = pageHTML.replace("<p><i>", TTS_PAUSE).replace("<p><b>", TTS_PAUSE);
         pageHTML = pageHTML.replace("<b>", "").replace("</b>", "").replace("<i>", "").replace("</i>", "").replace("<tt>", "").replace("</tt>", "");
-        pageHTML = pageHTML.replace("<br/>", " ");
+
         pageHTML = replaceEndLine(pageHTML);
+
+        pageHTML = pageHTML.replace("<br/>", TTS_PAUSE);
+        pageHTML = pageHTML.replace("...", TTS_PAUSE);
+        pageHTML = pageHTML.replace("!", "!" + TTS_PAUSE);
+        pageHTML = pageHTML.replace("?", "?" + TTS_PAUSE);
+        pageHTML = pageHTML.replace(TxtUtils.LONG_DASH, TTS_PAUSE);
+        pageHTML = pageHTML.replace("   ", TTS_PAUSE);
+
         pageHTML = pageHTML.replace("<p>", "").replace("</p>", " ");
         pageHTML = pageHTML.replace("&nbsp;", " ").replace("&lt;", " ").replace("&gt;", "").replace("&amp;", " ").replace("&quot;", " ");
         pageHTML = pageHTML.replace("'", "");
         pageHTML = pageHTML.replace("*", "");
-        pageHTML = pageHTML.replace("  ", " ").replace("  ", " ");
-        pageHTML = pageHTML.replace(".", ". ").replace(" .", ".").replace(" .", ".");
+        pageHTML = pageHTML.replace("[image]", "");
         pageHTML = pageHTML.replaceAll("(?u)(\\w+)(-\\s)", "$1");
         LOG.d("pageHTML [after]", pageHTML);
         return pageHTML;
@@ -266,7 +277,7 @@ public class TxtUtils {
             for (String sub : split) {
                 if (TxtUtils.isNotEmpty(sub)) {
                     res.append(replaceLastFirstName(sub));
-                    res.append(", ");
+                    res.append(TTS_PAUSE);
                 }
             }
             return TxtUtils.replaceLast(res.toString(), ",", "").trim();

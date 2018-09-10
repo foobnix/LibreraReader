@@ -1,6 +1,7 @@
 package com.foobnix.tts;
 
 import java.io.IOException;
+import java.util.UUID;
 
 import org.ebookdroid.LibreraApp;
 import org.ebookdroid.common.settings.SettingsManager;
@@ -363,17 +364,26 @@ public class TTSService extends Service {
 
                     @Override
                     public void onStart(String utteranceId) {
-
+                        LOG.d(TAG, "onUtteranceCompleted onStart", utteranceId);
                     }
 
                     @Override
                     public void onError(String utteranceId) {
+                        LOG.d(TAG, "onUtteranceCompleted onError", utteranceId);
+                        if (!utteranceId.equals(TTSEngine.UTTERANCE_ID_DONE)) {
+                            return;
+                        }
                         TTSEngine.get().stop();
                     }
 
                     @Override
                     public void onDone(String utteranceId) {
-                        LOG.d(TAG, "onUtteranceCompleted");
+                        LOG.d(TAG, "onUtteranceCompleted", utteranceId);
+                        if (!utteranceId.equals(TTSEngine.UTTERANCE_ID_DONE)) {
+                            LOG.d(TAG, "onUtteranceCompleted skip", "");
+                            return;
+                        }
+
                         if (TempHolder.get().timerFinishTime != 0 && System.currentTimeMillis() > TempHolder.get().timerFinishTime) {
                             LOG.d(TAG, "Timer");
                             TempHolder.get().timerFinishTime = 0;
@@ -390,7 +400,12 @@ public class TTSService extends Service {
 
                     @Override
                     public void onUtteranceCompleted(String utteranceId) {
-                        LOG.d(TAG, "onUtteranceCompleted");
+                        if (!utteranceId.equals(TTSEngine.UTTERANCE_ID_DONE)) {
+                            LOG.d(TAG, "onUtteranceCompleted skip", "");
+                            return;
+                        }
+
+                        LOG.d(TAG, "onUtteranceCompleted", utteranceId);
                         if (TempHolder.get().timerFinishTime != 0 && System.currentTimeMillis() > TempHolder.get().timerFinishTime) {
                             LOG.d(TAG, "Timer");
                             TempHolder.get().timerFinishTime = 0;
@@ -405,7 +420,9 @@ public class TTSService extends Service {
             }
 
             TTSNotification.show(AppState.get().lastBookPath, pageNumber + 1);
+
             TTSEngine.get().speek(firstPart);
+
             EventBus.getDefault().post(new TtsStatus());
 
             savePage();

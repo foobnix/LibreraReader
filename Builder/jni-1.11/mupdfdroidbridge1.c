@@ -1691,9 +1691,21 @@ fz_print_stext_page_as_text_my1(fz_context *ctx, fz_output *out, fz_stext_page *
 
 			for (line = block->lines; line < block->lines + block->len; line++)
 			{
+
+				fz_font *l_font = line->first_span->text->style->font;
+				fz_font *l_font2 = line->last_span->text->style->font;
+
+				int a = fz_font_is_bold(ctx,l_font) && fz_font_is_bold(ctx,l_font2);
+				int b = fz_font_is_italic(ctx,l_font) && fz_font_is_italic(ctx,l_font2);
+				int is_pause_line = !is_bold && !is_italic && (a || b);
+
 				fz_stext_span *span;
 				for (span = line->first_span; span; span = span->next)
 				{
+
+					fz_font *s_font = span->text->style->font;
+
+					int is_pause_span = !is_pause_line &&( fz_font_is_bold(ctx,s_font) || fz_font_is_italic(ctx,s_font));
 
 					for (ch = span->text; ch < span->text + span->len; ch++)
 					{
@@ -1726,13 +1738,21 @@ fz_print_stext_page_as_text_my1(fz_context *ctx, fz_output *out, fz_stext_page *
 						if (is_mono_ch) fz_write_printf(ctx,out,"</tt>");
 					}
 
+					if(is_pause_span){
+						//fz_write_printf(ctx,out,"<pause-span>");
+					}
+
 
 
 				fz_write_string(ctx, out, "<end-line>");
 				}
+				if(is_pause_line){
+					//fz_write_printf(ctx,out,"<pause-line>");
+				}
+
 			}
-			if (is_bold) fz_write_printf(ctx,out,"</b>");
-			if (is_italic) fz_write_printf(ctx,out,"</i>");
+			if (is_bold) {fz_write_printf(ctx,out,"</b>"); fz_write_printf(ctx,out,"<pause>");}
+			if (is_italic) {fz_write_printf(ctx,out,"</i>"); fz_write_printf(ctx,out,"<pause>");}
 			if (is_mono) fz_write_printf(ctx,out,"</tt>");
 			fz_write_printf(ctx,out,"</p>");
 			//fz_printf(ctx, out, "<br/>");

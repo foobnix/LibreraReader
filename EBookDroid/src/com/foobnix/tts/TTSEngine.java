@@ -29,7 +29,7 @@ import android.widget.Toast;
 public class TTSEngine {
 
     private static final String WAV = ".wav";
-    private static final String UTTERANCE_ID = "LirbiReader";
+    public static final String UTTERANCE_ID_DONE = "LirbiReader";
     private static final String TAG = "TTSEngine";
     volatile TextToSpeech ttsEngine;
     Object helpObject = new Object();
@@ -42,7 +42,12 @@ public class TTSEngine {
 
     HashMap<String, String> map = new HashMap<String, String>();
     {
-        map.put(TextToSpeech.Engine.KEY_PARAM_UTTERANCE_ID, UTTERANCE_ID);
+        map.put(TextToSpeech.Engine.KEY_PARAM_UTTERANCE_ID, UTTERANCE_ID_DONE);
+    }
+
+    HashMap<String, String> mapTemp = new HashMap<String, String>();
+    {
+        mapTemp.put(TextToSpeech.Engine.KEY_PARAM_UTTERANCE_ID, "Temp");
     }
 
     public void shutdown() {
@@ -141,7 +146,24 @@ public class TTSEngine {
         }
         ttsEngine.setSpeechRate(AppState.get().ttsSpeed);
         LOG.d(TAG, "Speek speed", AppState.get().ttsSpeed);
-        ttsEngine.speak(text, TextToSpeech.QUEUE_FLUSH, map);
+
+        if (text.contains(TxtUtils.TTS_PAUSE)) {
+            String[] parts = text.split(TxtUtils.TTS_PAUSE);
+            ttsEngine.speak(" ", TextToSpeech.QUEUE_FLUSH, mapTemp);
+            for (String big : parts) {
+                big = big.trim();
+                if (TxtUtils.isNotEmpty(big)) {
+                    ttsEngine.speak(big, TextToSpeech.QUEUE_ADD, mapTemp);
+                    ttsEngine.playSilence(AppState.get().ttsPauses, TextToSpeech.QUEUE_ADD, mapTemp);
+                    LOG.d("pageHTML-parts", big);
+                }
+            }
+            ttsEngine.playSilence(0L, TextToSpeech.QUEUE_ADD, map);
+        } else {
+            LOG.d("pageHTML-parts-single", text);
+            ttsEngine.speak(text, TextToSpeech.QUEUE_FLUSH, map);
+        }
+
     }
 
     public void speakToFile(final DocumentController controller, final ResultResponse<String> info) {
