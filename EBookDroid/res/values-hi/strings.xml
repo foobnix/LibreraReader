@@ -456,7 +456,6 @@
    <string name="do_you_want_to_download_more_book_fonts_10mb_">क्या आप अधिक पुस्तक फोंट (10 एमबी) डाउनलोड करना चाहते हैं?</string>
    <string name="hyphenation_language">हायफिनेशन भाषा</string>
    <string name="replacing_the_white_color_in_the_images_with_the_background_color">पृष्ठभूमि रंग के साथ चित्रों में सफ़ेद रंग की जगह</string>
-   <string name="disable_swipe_gestures_for_page_paging">पृष्ठ पेजिंग के लिए ज़ोर से मारना इशारों को अक्षम करें</string>
    <string name="no_keywords">कोई कीवर्ड नहीं</string>
    <string name="my_tags">मेरे टैग</string>
    <string name="crop_borders_symmetrically">सीमाओं को सममित रूप से क्रॉप करें</string>

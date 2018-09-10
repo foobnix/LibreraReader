@@ -456,7 +456,6 @@
    <string name="do_you_want_to_download_more_book_fonts_10mb_">Для удобства чтения можно скачать дополнительный набор книжных шрифтов размером 10 Мб. Хотите это сделать?</string>
    <string name="hyphenation_language">Язык переносов</string>
    <string name="replacing_the_white_color_in_the_images_with_the_background_color">Позволять менять цвет шрифтов для PDF/DJVU; окрашивать белый фон изображений в цвет фона страниц при чтении в режиме \"День\"</string>
-   <string name="disable_swipe_gestures_for_page_paging">Отключить возможность листания страниц горизонтальными свайпами (для электр. читалок)</string>
    <string name="no_keywords">Без ключевых слов</string>
    <string name="my_tags">Свои теги</string>
    <string name="crop_borders_symmetrically">Симметричная обрезка полей</string>

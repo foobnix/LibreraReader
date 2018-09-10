@@ -456,7 +456,6 @@
    <string name="do_you_want_to_download_more_book_fonts_10mb_">Több betűtípust szeretne letölteni (10MB)?</string>
    <string name="hyphenation_language">Nyelv</string>
    <string name="replacing_the_white_color_in_the_images_with_the_background_color">A fehér szín lecserélése a képeken a háttérszínre</string>
-   <string name="disable_swipe_gestures_for_page_paging">V/F lapozás engedélyezése a lapváltáshoz</string>
    <string name="no_keywords">Nincsenek kulcsszavak</string>
    <string name="my_tags">Saját címkéim</string>
    <string name="crop_borders_symmetrically">Tükrözött körülvágás</string>

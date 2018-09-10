@@ -456,7 +456,6 @@
    <string name="do_you_want_to_download_more_book_fonts_10mb_">Voulez-vous télécharger plus de polices de livre (10MB)?</string>
    <string name="hyphenation_language">Césure</string>
    <string name="replacing_the_white_color_in_the_images_with_the_background_color">Remplacer la couleur blanche dans les images par la couleur de fond</string>
-   <string name="disable_swipe_gestures_for_page_paging">Désactiver les gestes de balayage pour la pagination de la page</string>
    <string name="no_keywords">Aucun mot-clé</string>
    <string name="my_tags">Mes tags</string>
    <string name="crop_borders_symmetrically">Rogner les bordures symétriquement</string>

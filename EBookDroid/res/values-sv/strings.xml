@@ -456,7 +456,6 @@
    <string name="do_you_want_to_download_more_book_fonts_10mb_">Vill du ladda ner fler bokstäver (10 MB)?</string>
    <string name="hyphenation_language">Hyphenation språk</string>
    <string name="replacing_the_white_color_in_the_images_with_the_background_color">Byter den vita färgen i bilderna med bakgrundsfärgen</string>
-   <string name="disable_swipe_gestures_for_page_paging">Inaktivera svepbehåll för sidsökning</string>
    <string name="no_keywords">Inga nyckelord</string>
    <string name="my_tags">Mina taggar</string>
    <string name="crop_borders_symmetrically">Beskär gränserna symmetriskt</string>

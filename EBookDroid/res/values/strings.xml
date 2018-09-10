@@ -456,7 +456,6 @@
    <string name="do_you_want_to_download_more_book_fonts_10mb_">Download additional fonts (10MB)?</string>
    <string name="hyphenation_language">Language</string>
    <string name="replacing_the_white_color_in_the_images_with_the_background_color">Replace white color in images with background color (day mode only)</string>
-   <string name="disable_swipe_gestures_for_page_paging">Enable H/V swipes for page-turning</string>
    <string name="no_keywords">No keywords</string>
    <string name="my_tags">My tags</string>
    <string name="crop_borders_symmetrically">Mirrored crop</string>

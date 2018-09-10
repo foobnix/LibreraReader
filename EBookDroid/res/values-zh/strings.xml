@@ -456,7 +456,6 @@
    <string name="do_you_want_to_download_more_book_fonts_10mb_">您要下载更多书籍字体（10MB）？</string>
    <string name="hyphenation_language">断字语言</string>
    <string name="replacing_the_white_color_in_the_images_with_the_background_color">一致化背景色</string>
-   <string name="disable_swipe_gestures_for_page_paging">禁用轻扫翻页</string>
    <string name="no_keywords">无关键词</string>
    <string name="my_tags">我的标签</string>
    <string name="crop_borders_symmetrically">裁剪边界对称</string>

@@ -456,7 +456,6 @@
    <string name="do_you_want_to_download_more_book_fonts_10mb_">도서 글꼴 (10MB)을 더 다운로드 하시겠습니까?</string>
    <string name="hyphenation_language">하이픈 넣기 언어</string>
    <string name="replacing_the_white_color_in_the_images_with_the_background_color">이미지의 흰색 색상을 배경색으로 바꾸기</string>
-   <string name="disable_swipe_gestures_for_page_paging">페이지 페이징을 위해 스 와이프 제스처 사용 중지</string>
    <string name="no_keywords">키워드 없음</string>
    <string name="my_tags">내 태그</string>
    <string name="crop_borders_symmetrically">대칭으로 테두리 자르기</string>

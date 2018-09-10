@@ -456,7 +456,6 @@
    <string name="do_you_want_to_download_more_book_fonts_10mb_">คุณต้องการดาวน์โหลดแบบอักษรหนังสือมากกว่า (10MB) หรือไม่?</string>
    <string name="hyphenation_language">ยัติภังค์</string>
    <string name="replacing_the_white_color_in_the_images_with_the_background_color">การแทนที่สีขาวในภาพด้วยสีพื้นหลัง</string>
-   <string name="disable_swipe_gestures_for_page_paging">ปิดใช้ท่าทางสัมผัสการกวาดนิ้วเพื่อเพจเพจ</string>
    <string name="no_keywords">ไม่มีคำหลัก</string>
    <string name="my_tags">แท็กของฉัน</string>
    <string name="crop_borders_symmetrically">ครอบตัดขอบสมมาตร</string>
