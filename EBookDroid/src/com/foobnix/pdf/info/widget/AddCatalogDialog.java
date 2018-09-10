@@ -99,7 +99,7 @@ public class AddCatalogDialog {
 
         final EditText name = (EditText) dialog.findViewById(R.id.name);
         final EditText description = (EditText) dialog.findViewById(R.id.description);
-        final ProgressBar progressBar = (ProgressBar) dialog.findViewById(R.id.progressBar);
+        final ProgressBar progressBar = (ProgressBar) dialog.findViewById(R.id.progressBarAdd);
         TintUtil.setDrawableTint(progressBar.getIndeterminateDrawable().getCurrent(), TintUtil.color);
         final ImageView image = (ImageView) dialog.findViewById(R.id.image);
         final CheckBox addAsWEb = (CheckBox) dialog.findViewById(R.id.addAsWEb);

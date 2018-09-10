@@ -57,7 +57,7 @@
         
         
         <ProgressBar
-            android:id="@+id/progressBar"
+            android:id="@+id/progressBarBrowse"
             android:layout_width="@dimen/wh_button"
             android:layout_height="@dimen/wh_button"
             android:layout_weight="0" />

@@ -148,7 +148,7 @@ public class OpdsFragment2 extends UIFragment<Entry> {
         pathContainer = view.findViewById(R.id.pathContainer);
         view1 = view.findViewById(R.id.view1);
         view2 = view.findViewById(R.id.view2);
-        progressBar = (ProgressBar) view.findViewById(R.id.progressBar);
+        progressBar = (ProgressBar) view.findViewById(R.id.progressBarOPDS);
         progressBar.setVisibility(View.GONE);
         TintUtil.setDrawableTint(progressBar.getIndeterminateDrawable().getCurrent(), Color.WHITE);
 

@@ -472,7 +472,7 @@ public class BrowseFragment2 extends UIFragment<FileMeta> {
         displayAnyPath(getInitPath());
         onTintChanged();
 
-        progressBar = (ProgressBar) view.findViewById(R.id.progressBar);
+        progressBar = (ProgressBar) view.findViewById(R.id.progressBarBrowse);
         progressBar.setVisibility(View.GONE);
         TintUtil.setDrawableTint(progressBar.getIndeterminateDrawable().getCurrent(), Color.WHITE);
 

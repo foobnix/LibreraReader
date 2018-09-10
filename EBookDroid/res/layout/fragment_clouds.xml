@@ -126,7 +126,7 @@
             android:visibility="gone" />
 
         <ProgressBar
-            android:id="@+id/progressBar1"
+            android:id="@+id/progressBarClouds"
             android:layout_width="@dimen/wh_button"
             android:layout_height="@dimen/wh_button"
             android:layout_weight="0" />

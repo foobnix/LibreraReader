@@ -736,7 +736,7 @@ public class DragingDialogs {
                         View inflate = LayoutInflater.from(v.getContext()).inflate(R.layout.dialog_tts_wav, null, false);
                         final TextView ttsSpeakPath = (TextView) inflate.findViewById(R.id.ttsSpeakPath);
                         final TextView progressText = (TextView) inflate.findViewById(R.id.progressText);
-                        final ProgressBar progressBar1 = (ProgressBar) inflate.findViewById(R.id.progressBar1);
+                        final ProgressBar progressBar1 = (ProgressBar) inflate.findViewById(R.id.progressBarTTS);
                         final Button start = (Button) inflate.findViewById(R.id.start);
                         final Button stop = (Button) inflate.findViewById(R.id.stop);
 
@@ -842,7 +842,7 @@ public class DragingDialogs {
                 final EditText searchEdit = (EditText) view.findViewById(R.id.edit1);
                 searchEdit.setText(text);
 
-                final ProgressBar progressBar = (ProgressBar) view.findViewById(R.id.progressBar1);
+                final ProgressBar progressBar = (ProgressBar) view.findViewById(R.id.progressBarSearch);
                 final TextView searchingMsg = (TextView) view.findViewById(R.id.searching);
                 final GridView gridView = (GridView) view.findViewById(R.id.grid1);
                 gridView.setColumnWidth(Dips.dpToPx(80));

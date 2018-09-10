@@ -186,7 +186,7 @@ public class Dialogs {
             View view = LayoutInflater.from(c).inflate(R.layout.dialog_loading_book, null, false);
             final TextView text = (TextView) view.findViewById(R.id.text1);
 
-            ProgressBar pr = (ProgressBar) view.findViewById(R.id.progressBar1);
+            ProgressBar pr = (ProgressBar) view.findViewById(R.id.progressBarLoading);
             TintUtil.setDrawableTint(pr.getIndeterminateDrawable().getCurrent(), AppState.get().isDayNotInvert ? TintUtil.color : Color.WHITE);
 
             ImageView image = (ImageView) view.findViewById(R.id.onCancel);

@@ -82,7 +82,7 @@ public class CloudsFragment2 extends UIFragment<FileMeta> {
         onGridList();
         populate();
 
-        progressBar = view.findViewById(R.id.progressBar1);
+        progressBar = view.findViewById(R.id.progressBarClouds);
         progressBar.setVisibility(View.GONE);
         TintUtil.setDrawableTint(progressBar.getIndeterminateDrawable().getCurrent(), Color.WHITE);
 
