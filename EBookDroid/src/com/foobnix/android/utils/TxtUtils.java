@@ -786,4 +786,8 @@ public class TxtUtils {
 
     }
 
+    public static int visibleIf(boolean isVisible) {
+        return isVisible ? View.VISIBLE : View.GONE;
+    }
+
 }

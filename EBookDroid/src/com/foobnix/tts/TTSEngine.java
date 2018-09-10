@@ -213,6 +213,18 @@ public class TTSEngine {
         }
     }
 
+    @TargetApi(Build.VERSION_CODES.LOLLIPOP)
+    public String getCurrentLang() {
+        try {
+            if (Build.VERSION.SDK_INT >= 21) {
+                return ttsEngine.getVoice().getLocale().getDisplayLanguage();
+            }
+        } catch (Exception e) {
+            LOG.e(e);
+        }
+        return "---";
+    }
+
     public String getCurrentEngineName() {
         try {
             if (ttsEngine != null) {

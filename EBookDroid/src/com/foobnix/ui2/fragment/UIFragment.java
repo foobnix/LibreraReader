@@ -212,6 +212,9 @@ public abstract class UIFragment<T> extends Fragment {
     AsyncTask<Object, Object, List<T>> execute;
 
     public void populate() {
+        if (true) {
+            // return;
+        }
 
         // if (isInProgress()) {
         // AsyncTasks.toastPleaseWait(getActivity());

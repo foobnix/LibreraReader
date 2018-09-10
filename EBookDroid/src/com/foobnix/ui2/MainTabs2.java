@@ -176,7 +176,7 @@ public class MainTabs2 extends AdsFragmentActivity {
     @Override
     protected void onPostCreate(Bundle savedInstanceState) {
         super.onPostCreate(savedInstanceState);
-        testIntentHandler();
+        // testIntentHandler();
     }
 
     @Override

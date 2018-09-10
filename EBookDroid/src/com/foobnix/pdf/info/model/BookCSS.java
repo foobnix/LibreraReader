@@ -111,7 +111,7 @@ public class BookCSS {
 
         documentStyle = STYLES_DOC_AND_USER;
         isAutoHypens = true;
-        hypenLang = "ru";
+        hypenLang = "en";
 
         linkColorDay = LINK_COLOR_UNIVERSAL;
         linkColorNight = LINK_COLOR_UNIVERSAL;

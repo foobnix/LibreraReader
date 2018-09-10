@@ -40,6 +40,24 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Google TTS!!!" />
+
+            <TextView
+                android:id="@+id/langLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dip"
+                android:layout_weight="0"
+                android:text="@string/hyphenation_language"
+                android:visibility="gone" />
+
+            <TextView
+                android:id="@+id/ttsLang"
+                style="@style/textLink"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dip"
+                android:layout_weight="0"
+                android:text="(Alan:Russian)" />
         </LinearLayout>
 
         <com.foobnix.pdf.info.view.CustomSeek
@@ -57,7 +75,7 @@
             android:layout_weight="1"
             myseek:text="@string/pitch1" >
         </com.foobnix.pdf.info.view.CustomSeek>
-        
+
         <com.foobnix.pdf.info.view.CustomSeek
             android:id="@+id/seekVolume"
             android:layout_width="match_parent"
