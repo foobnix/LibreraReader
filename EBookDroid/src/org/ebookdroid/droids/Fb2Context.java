@@ -10,6 +10,7 @@ import org.ebookdroid.core.codec.OutlineLink;
 import org.ebookdroid.droids.mupdf.codec.MuPdfDocument;
 import org.ebookdroid.droids.mupdf.codec.PdfContext;
 
+import com.foobnix.android.utils.Apps;
 import com.foobnix.android.utils.LOG;
 import com.foobnix.ext.CacheZipUtils;
 import com.foobnix.ext.Fb2Extractor;
@@ -23,7 +24,7 @@ public class Fb2Context extends PdfContext {
 
     @Override
     public File getCacheFileName(String fileNameOriginal) {
-        fileNameOriginal = fileNameOriginal + BookCSS.get().isAutoHypens + BookCSS.get().hypenLang + AppState.get().isDouble;
+        fileNameOriginal = fileNameOriginal + BookCSS.get().isAutoHypens + BookCSS.get().hypenLang + AppState.get().isDouble + AppState.get().isAccurateFontSize;
         cacheFile = new File(CacheZipUtils.CACHE_BOOK_DIR, fileNameOriginal.hashCode() + ".epub");
         cacheFile1 = new File(CacheZipUtils.CACHE_BOOK_DIR, fileNameOriginal.hashCode() + ".epub.fb2");
         return cacheFile;

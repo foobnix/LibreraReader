@@ -19,6 +19,7 @@ import com.artifex.mupdf.fitz.StructuredText;
 import com.artifex.mupdf.fitz.StructuredText.TextBlock;
 import com.artifex.mupdf.fitz.StructuredText.TextLine;
 import com.foobnix.android.utils.LOG;
+import com.foobnix.android.utils.TxtUtils;
 import com.foobnix.pdf.info.AppsConfig;
 import com.foobnix.pdf.info.model.AnnotationType;
 import com.foobnix.pdf.info.wrapper.AppState;
@@ -35,7 +36,7 @@ import android.graphics.RectF;
 
 public class MuPdfPage extends AbstractCodecPage {
 
-    private static final char NON_BREAKE_SPACE = "\u00A0".charAt(0);
+
     private volatile long pageHandle;
     private final long docHandle;
     private int pageNumber;
@@ -427,7 +428,7 @@ public class MuPdfPage extends AbstractCodecPage {
                 for (TextChar[] sp : ln) {
                     for (TextChar tc : sp) {
                         if (AppState.get().selectingByLetters) {
-                            if (tc.c == NON_BREAKE_SPACE) {
+                            if (tc.c == TxtUtils.NON_BREAKE_SPACE_CHAR) {
                                 tc.c = ' ';
                             }
                             words.add(new TextWord(tc));
@@ -484,7 +485,7 @@ public class MuPdfPage extends AbstractCodecPage {
                     char chChar = (char) ch.c;
 
                     if (AppState.get().selectingByLetters) {
-                        if (chChar == NON_BREAKE_SPACE) {
+                        if (chChar == TxtUtils.NON_BREAKE_SPACE_CHAR) {
                             chChar = ' ';
                         }
                         word.addChar(ch.bbox, chChar);

@@ -32,6 +32,9 @@ public class TxtUtils {
     public static String LONG_DASH = "–";
     public static String SMALL_DASH = " - ";
 
+    public static final String NON_BREAKE_SPACE = "\u00A0";
+    public static final char NON_BREAKE_SPACE_CHAR = NON_BREAKE_SPACE.charAt(0);
+
     public static String trim(String string) {
         if (string == null) {
             return null;

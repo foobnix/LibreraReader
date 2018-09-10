@@ -624,6 +624,9 @@ public class Fb2Extractor extends BaseExtractor {
             if (!line.endsWith(" ")) {
                 line = line + " ";
             }
+            if (AppState.get().isAccurateFontSize) {
+                line = line.replace(TxtUtils.NON_BREAKE_SPACE, " ");
+            }
 
             String subLine[] = line.split("</");
 

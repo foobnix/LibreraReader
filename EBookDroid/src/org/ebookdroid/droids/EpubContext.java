@@ -12,6 +12,7 @@ import com.foobnix.ext.CacheZipUtils;
 import com.foobnix.ext.EpubExtractor;
 import com.foobnix.pdf.info.JsonHelper;
 import com.foobnix.pdf.info.model.BookCSS;
+import com.foobnix.pdf.info.wrapper.AppState;
 import com.foobnix.sys.TempHolder;
 
 public class EpubContext extends PdfContext {
@@ -22,7 +23,7 @@ public class EpubContext extends PdfContext {
     @Override
     public File getCacheFileName(String fileNameOriginal) {
         LOG.d(TAG, "getCacheFileName", fileNameOriginal, BookCSS.get().hypenLang);
-        cacheFile = new File(CacheZipUtils.CACHE_BOOK_DIR, (fileNameOriginal + BookCSS.get().isAutoHypens + BookCSS.get().hypenLang).hashCode() + ".epub");
+        cacheFile = new File(CacheZipUtils.CACHE_BOOK_DIR, (fileNameOriginal + AppState.get().isAccurateFontSize + BookCSS.get().isAutoHypens + BookCSS.get().hypenLang).hashCode() + ".epub");
         return cacheFile;
     }
 

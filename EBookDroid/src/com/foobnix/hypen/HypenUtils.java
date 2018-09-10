@@ -4,11 +4,12 @@ import java.util.List;
 import java.util.Locale;
 import java.util.StringTokenizer;
 
+import com.foobnix.android.utils.TxtUtils;
 import com.foobnix.pdf.info.model.BookCSS;
+import com.foobnix.pdf.info.wrapper.AppState;
 
 public class HypenUtils {
 
-    public static final String NON_BREAK_SPACE = "\u00A0";
     private static final String SHY = "&shy;";
     private static DefaultHyphenator instance = new DefaultHyphenator(HyphenPattern.ru);
 
@@ -40,7 +41,10 @@ public class HypenUtils {
             return "";
         }
         // hack
-        input = input.replace("<", " <").replace(">", "> ").replace(NON_BREAK_SPACE, " " + NON_BREAK_SPACE);
+        input = input.replace("<", " <").replace(">", "> ");
+        if (!AppState.get().isAccurateFontSize) {
+            input = input.replace(TxtUtils.NON_BREAKE_SPACE, " " + TxtUtils.NON_BREAKE_SPACE);
+        }
 
         StringTokenizer split = new StringTokenizer(input, " ", true);
         StringBuilder res = new StringBuilder();
@@ -52,7 +56,6 @@ public class HypenUtils {
                 res.append(" ");
                 continue;
             }
-
 
             if (w.length() <= 3) {
                 res.append(w);
