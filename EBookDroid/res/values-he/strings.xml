@@ -487,4 +487,5 @@
    <string name="display_sub_chapters_on_the_progress_line">Subchapters על קו ההתקדמות</string>
    <string name="enable_vertical_gesture">הפעל מחווה אנכית עבור הדף הבא</string>
    <string name="enable_horizontal_gesture">הפעל מחווה אופקית עבור הדף הבא</string>
+   <string name="pause_duration">השהה את משך הזמן</string>
 </resources>

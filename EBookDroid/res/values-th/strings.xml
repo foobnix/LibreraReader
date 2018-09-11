@@ -487,4 +487,5 @@
    <string name="display_sub_chapters_on_the_progress_line">Subchapters บนเส้นความคืบหน้า</string>
    <string name="enable_vertical_gesture">เปิดใช้งานท่าทางในแนวตั้งสำหรับหน้าถัดไป</string>
    <string name="enable_horizontal_gesture">เปิดใช้งานท่าทางสัมผัสในแนวนอนสำหรับหน้าถัดไป</string>
+   <string name="pause_duration">หยุดชั่วคราว</string>
 </resources>

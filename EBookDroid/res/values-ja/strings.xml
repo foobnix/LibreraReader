@@ -487,4 +487,5 @@
    <string name="display_sub_chapters_on_the_progress_line">進捗線のサブチャプター</string>
    <string name="enable_vertical_gesture">次のページの垂直ジェスチャーを有効にする</string>
    <string name="enable_horizontal_gesture">次のページの水平方向のジェスチャーを有効にする</string>
+   <string name="pause_duration">一時停止時間</string>
 </resources>

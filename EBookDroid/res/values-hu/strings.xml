@@ -487,4 +487,5 @@
    <string name="display_sub_chapters_on_the_progress_line">A haladó sorban szereplő alfejezetek</string>
    <string name="enable_vertical_gesture">Engedélyezze a függőleges gesztust a következő oldalra</string>
    <string name="enable_horizontal_gesture">Engedélyezze a vízszintes gesztust a következő oldalra</string>
+   <string name="pause_duration">Szüneteltetés időtartama</string>
 </resources>

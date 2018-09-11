@@ -487,4 +487,5 @@
    <string name="display_sub_chapters_on_the_progress_line">进度条子章节</string>
    <string name="enable_vertical_gesture">启用垂直手势</string>
    <string name="enable_horizontal_gesture">启用水平手势</string>
+   <string name="pause_duration">暂停持续时间</string>
 </resources>

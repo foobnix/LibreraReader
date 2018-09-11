@@ -487,4 +487,5 @@
    <string name="display_sub_chapters_on_the_progress_line">İlerleme satırındaki alt bölümler</string>
    <string name="enable_vertical_gesture">Bir sonraki sayfa için dikey hareketi etkinleştir</string>
    <string name="enable_horizontal_gesture">Bir sonraki sayfa için yatay hareketi etkinleştir</string>
+   <string name="pause_duration">Duraklat süresi</string>
 </resources>

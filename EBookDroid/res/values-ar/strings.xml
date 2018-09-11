@@ -487,4 +487,5 @@
    <string name="display_sub_chapters_on_the_progress_line">Subchapters على خط التقدم</string>
    <string name="enable_vertical_gesture">تمكين الإيماءة الرأسية للصفحة التالية</string>
    <string name="enable_horizontal_gesture">تمكين الإيماءة الأفقية للصفحة التالية</string>
+   <string name="pause_duration">وقفة المدة</string>
 </resources>

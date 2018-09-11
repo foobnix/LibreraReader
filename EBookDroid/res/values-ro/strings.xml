@@ -487,4 +487,5 @@
    <string name="display_sub_chapters_on_the_progress_line">Subcapitole pe linia progresului</string>
    <string name="enable_vertical_gesture">Activați gestul vertical pentru pagina următoare</string>
    <string name="enable_horizontal_gesture">Activați gestul orizontal pentru pagina următoare</string>
+   <string name="pause_duration">Întrerupeți durata</string>
 </resources>

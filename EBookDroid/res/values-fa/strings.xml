@@ -487,4 +487,5 @@
    <string name="display_sub_chapters_on_the_progress_line">زیر شاخه ها در خط پیشرفت</string>
    <string name="enable_vertical_gesture">ژست عمودی را برای صفحه بعدی فعال کنید</string>
    <string name="enable_horizontal_gesture">ژست افقی را برای صفحه بعدی فعال کنید</string>
+   <string name="pause_duration">مدت زمان مکث</string>
 </resources>

@@ -487,4 +487,5 @@
    <string name="display_sub_chapters_on_the_progress_line">Podkapitoly na riadku pokroku</string>
    <string name="enable_vertical_gesture">Povoliť vertikálne gesto pre ďalšiu stránku</string>
    <string name="enable_horizontal_gesture">Povoliť horizontálne gesto pre ďalšiu stránku</string>
+   <string name="pause_duration">Trvanie prestávky</string>
 </resources>

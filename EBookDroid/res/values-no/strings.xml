@@ -487,4 +487,5 @@
    <string name="display_sub_chapters_on_the_progress_line">Underkapsler på fremdriftslinjen</string>
    <string name="enable_vertical_gesture">Aktiver vertikal gest for neste side</string>
    <string name="enable_horizontal_gesture">Aktiver horisontal gest for neste side</string>
+   <string name="pause_duration">Pause varighet</string>
 </resources>

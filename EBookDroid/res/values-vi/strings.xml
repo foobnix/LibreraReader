@@ -487,4 +487,5 @@
    <string name="display_sub_chapters_on_the_progress_line">Các chương trên dòng tiến độ</string>
    <string name="enable_vertical_gesture">Bật cử chỉ thẳng đứng cho trang tiếp theo</string>
    <string name="enable_horizontal_gesture">Bật cử chỉ ngang cho trang tiếp theo</string>
+   <string name="pause_duration">Tạm dừng thời lượng</string>
 </resources>

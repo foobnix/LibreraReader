@@ -487,4 +487,5 @@
    <string name="display_sub_chapters_on_the_progress_line">Underkapslar på framstegslinjen</string>
    <string name="enable_vertical_gesture">Aktivera vertikal gest för nästa sida</string>
    <string name="enable_horizontal_gesture">Aktivera horisontell gest för nästa sida</string>
+   <string name="pause_duration">Pausvaraktighet</string>
 </resources>

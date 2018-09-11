@@ -487,4 +487,5 @@
    <string name="display_sub_chapters_on_the_progress_line">Subcapítulos en la línea de progreso</string>
    <string name="enable_vertical_gesture">Habilitar gesto vertical para la página siguiente</string>
    <string name="enable_horizontal_gesture">Habilitar gesto horizontal para la página siguiente</string>
+   <string name="pause_duration">Duración de la pausa</string>
 </resources>

@@ -487,4 +487,5 @@
    <string name="display_sub_chapters_on_the_progress_line">진행 선에 서브 챕터</string>
    <string name="enable_vertical_gesture">다음 페이지의 세로 제스처 사용</string>
    <string name="enable_horizontal_gesture">다음 페이지의 가로 제스처 사용</string>
+   <string name="pause_duration">일시 중지 기간</string>
 </resources>

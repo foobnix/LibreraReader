@@ -487,4 +487,5 @@
    <string name="display_sub_chapters_on_the_progress_line">Unterkapitel auf der Fortschrittslinie</string>
    <string name="enable_vertical_gesture">Aktivieren Sie die vertikale Geste für die nächste Seite</string>
    <string name="enable_horizontal_gesture">Aktivieren Sie die horizontale Geste für die nächste Seite</string>
+   <string name="pause_duration">Pausendauer</string>
 </resources>

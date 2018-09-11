@@ -487,4 +487,5 @@
    <string name="display_sub_chapters_on_the_progress_line">प्रगति लाइन पर सबचप्टर</string>
    <string name="enable_vertical_gesture">अगले पृष्ठ के लिए लंबवत इशारा सक्षम करें</string>
    <string name="enable_horizontal_gesture">अगले पृष्ठ के लिए क्षैतिज इशारा सक्षम करें</string>
+   <string name="pause_duration">अवधि रोकें</string>
 </resources>

@@ -487,4 +487,5 @@
    <string name="display_sub_chapters_on_the_progress_line">Subkat di garis kemajuan</string>
    <string name="enable_vertical_gesture">Aktifkan isyarat vertikal untuk halaman berikutnya</string>
    <string name="enable_horizontal_gesture">Aktifkan isyarat horizontal untuk halaman berikutnya</string>
+   <string name="pause_duration">Jeda durasi</string>
 </resources>

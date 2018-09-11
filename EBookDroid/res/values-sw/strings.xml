@@ -487,4 +487,5 @@
    <string name="display_sub_chapters_on_the_progress_line">Wachapishaji kwenye mstari wa maendeleo</string>
    <string name="enable_vertical_gesture">Wezesha ishara ya wima kwa ukurasa unaofuata</string>
    <string name="enable_horizontal_gesture">Wezesha ishara ya usawa kwa ukurasa unaofuata</string>
+   <string name="pause_duration">Pumzika muda</string>
 </resources>
