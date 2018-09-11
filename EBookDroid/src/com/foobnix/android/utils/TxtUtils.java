@@ -194,12 +194,12 @@ public class TxtUtils {
         LOG.d("pageHTML [before]", pageHTML);
 
         pageHTML = pageHTML.replace("b><end-line><i>", TTS_PAUSE).replace("i><end-line><b>", TTS_PAUSE);
-        pageHTML = pageHTML.replace("<p><i>", TTS_PAUSE).replace("<p><b>", TTS_PAUSE);
+        pageHTML = pageHTML.replace("b><p><i>", TTS_PAUSE).replace("i><p><b>", TTS_PAUSE);
         pageHTML = pageHTML.replace("<b>", "").replace("</b>", "").replace("<i>", "").replace("</i>", "").replace("<tt>", "").replace("</tt>", "");
 
         pageHTML = replaceEndLine(pageHTML);
 
-        pageHTML = pageHTML.replace("<br/>", TTS_PAUSE);
+        // pageHTML = pageHTML.replace("<br/>", TTS_PAUSE);
         pageHTML = pageHTML.replace("...", TTS_PAUSE);
         pageHTML = pageHTML.replace("!", "!" + TTS_PAUSE);
         pageHTML = pageHTML.replace("?", "?" + TTS_PAUSE);

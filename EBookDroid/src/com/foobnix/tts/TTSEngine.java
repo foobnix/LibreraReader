@@ -154,7 +154,7 @@ public class TTSEngine {
                 big = big.trim();
                 if (TxtUtils.isNotEmpty(big)) {
                     ttsEngine.speak(big, TextToSpeech.QUEUE_ADD, mapTemp);
-                    ttsEngine.playSilence(AppState.get().ttsPauses, TextToSpeech.QUEUE_ADD, mapTemp);
+                    ttsEngine.playSilence(AppState.get().ttsPauseDuration, TextToSpeech.QUEUE_ADD, mapTemp);
                     LOG.d("pageHTML-parts", big);
                 }
             }

@@ -487,4 +487,5 @@
    <string name="display_sub_chapters_on_the_progress_line">Chapter/section tick marks</string>
    <string name="enable_vertical_gesture">Turn pages by vertical swipes</string>
    <string name="enable_horizontal_gesture">Turn pages by horizontal swipes</string>
+   <string name="pause_duration">Pause duration</string>
 </resources>

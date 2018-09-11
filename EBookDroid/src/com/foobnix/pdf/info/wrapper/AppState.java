@@ -254,7 +254,7 @@ public class AppState {
 
     public int flippingInterval = 10;
     public int ttsTimer = 60;
-    public int ttsPauses = 500;
+    public int ttsPauseDuration = 350;
 
     @IgnoreHashCode
     public int readingProgress = READING_PROGRESS_PERCENT_NUMBERS;

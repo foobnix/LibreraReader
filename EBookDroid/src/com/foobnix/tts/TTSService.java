@@ -1,7 +1,6 @@
 package com.foobnix.tts;
 
 import java.io.IOException;
-import java.util.UUID;
 
 import org.ebookdroid.LibreraApp;
 import org.ebookdroid.common.settings.SettingsManager;
@@ -144,6 +143,8 @@ public class TTSService extends Service {
 
             Notification notification = new NotificationCompat.Builder(this, TTSNotification.DEFAULT) //
                     .setContentTitle("Librera") //
+                    .setAutoCancel(true)//
+                    .setPriority(NotificationCompat.PRIORITY_DEFAULT)//
                     .setContentText("TTS").build();
 
             startForeground(TTSNotification.NOT_ID, notification);

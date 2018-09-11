@@ -102,7 +102,6 @@ import android.media.AudioManager;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Handler;
-import android.speech.tts.TextToSpeech;
 import android.speech.tts.TextToSpeech.EngineInfo;
 import android.speech.tts.TextToSpeech.OnInitListener;
 import android.support.v4.app.FragmentActivity;
@@ -504,6 +503,34 @@ public class DragingDialogs {
 
                 final TextView ttsLang = (TextView) view.findViewById(R.id.ttsLang);
                 TxtUtils.underlineTextView(ttsLang);
+
+                final TextView ttsPauseDuration = (TextView) view.findViewById(R.id.ttsPauseDuration);
+                ttsPauseDuration.setText("" + AppState.get().ttsPauseDuration + " ms");
+                TxtUtils.underlineTextView(ttsPauseDuration);
+
+                ttsPauseDuration.setOnClickListener(new OnClickListener() {
+
+                    @Override
+                    public void onClick(View v) {
+                        final PopupMenu popupMenu = new PopupMenu(v.getContext(), v);
+                        for (int i = 0; i <= 750; i += 50) {
+                            final int j = i;
+                            popupMenu.getMenu().add(i + " ms").setOnMenuItemClickListener(new OnMenuItemClickListener() {
+
+                                @Override
+                                public boolean onMenuItemClick(MenuItem item) {
+                                    TTSEngine.get().stop();
+                                    AppState.get().ttsPauseDuration = j;
+                                    ttsPauseDuration.setText("" + AppState.get().ttsPauseDuration + " ms");
+                                    TxtUtils.underlineTextView(ttsPauseDuration);
+                                    return false;
+                                }
+                            });
+                        }
+                        popupMenu.show();
+
+                    }
+                });
 
                 ttsLang.setVisibility(TxtUtils.visibleIf(Build.VERSION.SDK_INT >= 21));
                 TxtUtils.underlineTextView(ttsLang);
