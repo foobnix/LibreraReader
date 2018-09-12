@@ -2,8 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.foobnix.pdf.reader"
     android:installLocation="auto"
-    android:versionCode="657"
-    android:versionName="7.9.108" >
+    android:versionCode="659"
+    android:versionName="7.9.110" >
 
     <uses-sdk
         android:minSdkVersion="14"
@@ -14,6 +14,7 @@
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
 
     <!-- android:name="com.foobnix.pdf.info.TestAppName" -->
     <application

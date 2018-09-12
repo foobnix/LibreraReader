@@ -483,7 +483,7 @@ public class DragingDialogs {
             return;
         }
 
-        DragingPopup dialog = new DragingPopup(R.string.text_to_speech, anchor, 300, 440) {
+        DragingPopup dialog = new DragingPopup(R.string.text_to_speech, anchor, 300, 480) {
 
             @Override
             @SuppressLint("NewApi")
@@ -770,6 +770,7 @@ public class DragingDialogs {
                 }
 
                 seekBarSpeed.addMyPopupMenu(menu);
+                TxtUtils.setLinkTextColor(seekBarSpeed.getTitleText());
 
                 final CustomSeek seekBarPitch = (CustomSeek) view.findViewById(R.id.seekBarPitch);
                 seekBarPitch.init(0, 200, (int) AppState.get().ttsPitch * 100);

@@ -787,6 +787,12 @@ public class TxtUtils {
         } catch (Exception e) {
             LOG.e(e);
         }
+    }
+
+    public static void setLinkTextColor(TextView txt) {
+        if (AppState.get().isUiTextColor) {
+            txt.setTextColor(AppState.get().uiTextColor);
+        }
 
     }
 

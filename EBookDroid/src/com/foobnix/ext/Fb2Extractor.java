@@ -522,7 +522,7 @@ public class Fb2Extractor extends BaseExtractor {
         return false;
     }
 
-    static final List<String> anchors = Arrays.asList("</title><p>", "</cite><p>", "</epigraph><p>");
+    static final List<String> ignore = Arrays.asList("<cite><p>", "<epigraph><p>");
 
     public ByteArrayOutputStream generateFb2File(String fb2, String encoding, boolean fixXML) throws Exception {
         BufferedReader input = new BufferedReader(new InputStreamReader(new FileInputStream(fb2), encoding));
@@ -570,52 +570,40 @@ public class Fb2Extractor extends BaseExtractor {
 
             if (AppState.get().isInitialFirstLetter && !isFindBodyEnd) {
 
-                if (line.contains("</title>")) {
+                int open = line.lastIndexOf("<title");
+                int close = line.lastIndexOf("</title>");
+                if (open >= 0) {
+                    ready = false;
+                }
+                if (close >= 0 && close > open) {
                     ready = true;
                 }
 
                 if (ready) {
-                    for (String anchor : anchors) {
+                    if (!TxtUtils.contains(line, ignore)) {
+                        String anchor = "<p>";
                         int indexOf = line.indexOf(anchor);
-                        if (indexOf >= 0) {
+                        if (indexOf >= 0 && line.length() - anchor.length() - indexOf >= 3) {
                             ready = false;
                             indexOf = indexOf + anchor.length();
-                            if (line.charAt(indexOf) == '<') {
-                                break;
+
+                            if (line.charAt(indexOf) != '<') {
+
+                                if (!Character.isLetter(line.charAt(indexOf))) {
+                                    indexOf++;
+                                }
+
+                                if (!Character.isLetter(line.charAt(indexOf))) {
+                                    indexOf++;
+                                }
+
+                                if (Character.isLetter(line.charAt(indexOf))) {
+                                    line = line.substring(0, indexOf) + "<letter>" + line.substring(indexOf, indexOf + 1) + "</letter>" + line.substring(indexOf + 1);
+                                    LOG.d("check-line-new", line);
+                                }
                             }
 
-                            if (!Character.isLetter(line.charAt(indexOf))) {
-                                indexOf++;
-                            }
-
-                            if (!Character.isLetter(line.charAt(indexOf))) {
-                                break;
-                            }
-
-                            line = line.substring(0, indexOf) + "<letter>" + line.substring(indexOf, indexOf + 1) + "</letter>" + line.substring(indexOf + 1);
-                            LOG.d("check-line-new", line);
-                            break;
                         }
-                    }
-                }
-                if (ready) {
-                    String anchor = "<p>";
-                    int indexOf = line.indexOf(anchor);
-                    if (indexOf >= 0) {
-                        ready = false;
-                        indexOf = indexOf + anchor.length();
-
-                        if (line.charAt(indexOf) != '<') {
-
-                            if (!Character.isLetter(line.charAt(indexOf))) {
-                                indexOf++;
-                            }
-                            if (Character.isLetter(line.charAt(indexOf))) {
-                                line = line.substring(0, indexOf) + "<letter>" + line.substring(indexOf, indexOf + 1) + "</letter>" + line.substring(indexOf + 1);
-                                LOG.d("check-line-new", line);
-                            }
-                        }
-
                     }
                 }
             }
