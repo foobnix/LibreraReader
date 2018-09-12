@@ -123,6 +123,7 @@ public class BookCSS {
                         "td>* {display:inline}\n" + //
                         "blockquote {margin-left:0.5em !important}\n" + //
                         "sup>* {font-size:0.83em;vertical-align:super;font-weight:bold}\n" + //
+                        "letter{font-size:2em}\n" + //
                         ""//
         ;
 

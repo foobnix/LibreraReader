@@ -321,7 +321,6 @@ public class Fb2Extractor extends BaseExtractor {
                 eventType = xpp.next();
             }
 
-
             genre = genre.replace(",,", ",") + ",";
             authors = TxtUtils.replaceFirst(authors, ", ", "");
 
@@ -538,6 +537,7 @@ public class Fb2Extractor extends BaseExtractor {
 
         boolean isFindBodyEnd = false;
         boolean titleBegin = false;
+        boolean endTitle = false;
 
         long init = System.currentTimeMillis();
 
@@ -564,6 +564,28 @@ public class Fb2Extractor extends BaseExtractor {
                 line = line.replace("l:href==", "l:href=");
             }
 
+            if (AppState.get().isFirstLetter) {
+
+                List<String> anchors = new ArrayList<String>(Arrays.asList("</cite><p>", "</epigraph><p>", "</title><p>"));
+                if (endTitle) {
+                    anchors.add("<p>");
+                }
+                for (String anchor : anchors) {
+                    int indexOf = line.indexOf(anchor);
+                    if (indexOf >= 0) {
+                        indexOf = indexOf + anchor.length();
+                        if (line.charAt(indexOf) == '<' || line.charAt(indexOf) == '–' || line.charAt(indexOf) == '–') {
+                            continue;
+                        }
+                        LOG.d("letter-find-before", line);
+                        line = line.substring(0, indexOf) + "<letter>" + line.substring(indexOf, indexOf + 1) + "</letter>" + line.substring(indexOf + 1);
+                        LOG.d("letter-find-after", line);
+                        break;
+                    }
+                }
+                endTitle = false;
+            }
+
             String subLine[] = line.split("</");
 
             for (int i = 0; i < subLine.length; i++) {
@@ -577,8 +599,10 @@ public class Fb2Extractor extends BaseExtractor {
                     titleBegin = true;
                 }
 
+                endTitle = false;
                 if (line.contains("</title")) {
                     titleBegin = false;
+                    endTitle = true;
 
                     if (line.contains("</title>")) {
                         count++;
@@ -598,12 +622,14 @@ public class Fb2Extractor extends BaseExtractor {
                 writer.print(line);
             }
 
+
         }
 
         long delta = System.currentTimeMillis() - init;
         LOG.d("generateFb2File", delta / 1000.0);
         input.close();
         writer.close();
+
 
         return out;
     }
@@ -621,6 +647,7 @@ public class Fb2Extractor extends BaseExtractor {
             if (TempHolder.get().loadingCancelled) {
                 break;
             }
+
             if (!line.endsWith(" ")) {
                 line = line + " ";
             }
