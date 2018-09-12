@@ -488,4 +488,6 @@
    <string name="enable_vertical_gesture">启用垂直手势</string>
    <string name="enable_horizontal_gesture">启用水平手势</string>
    <string name="pause_duration">暂停持续时间</string>
+   <string name="voice">语音</string>
+   <string name="hide_notification_and_stop_reading">隐藏通知并停止阅读</string>
 </resources>

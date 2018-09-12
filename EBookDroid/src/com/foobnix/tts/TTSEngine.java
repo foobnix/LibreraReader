@@ -113,6 +113,13 @@ public class TTSEngine {
         }
     }
 
+    public void stopDestroy() {
+        LOG.d(TAG, "stop");
+        synchronized (helpObject) {
+            ttsEngine = null;
+        }
+    }
+
     public synchronized TextToSpeech setTTSWithEngine(String engine) {
         shutdown();
         synchronized (helpObject) {
@@ -147,7 +154,7 @@ public class TTSEngine {
         ttsEngine.setSpeechRate(AppState.get().ttsSpeed);
         LOG.d(TAG, "Speek speed", AppState.get().ttsSpeed);
 
-        if (text.contains(TxtUtils.TTS_PAUSE)) {
+        if (AppState.get().ttsPauseDuration > 0 && text.contains(TxtUtils.TTS_PAUSE)) {
             String[] parts = text.split(TxtUtils.TTS_PAUSE);
             ttsEngine.speak(" ", TextToSpeech.QUEUE_FLUSH, mapTemp);
             for (String big : parts) {
@@ -160,8 +167,9 @@ public class TTSEngine {
             }
             ttsEngine.playSilence(0L, TextToSpeech.QUEUE_ADD, map);
         } else {
+            String textToPlay = text.replace(TxtUtils.TTS_PAUSE, "");
             LOG.d("pageHTML-parts-single", text);
-            ttsEngine.speak(text, TextToSpeech.QUEUE_FLUSH, map);
+            ttsEngine.speak(textToPlay, TextToSpeech.QUEUE_FLUSH, map);
         }
 
     }
@@ -238,8 +246,8 @@ public class TTSEngine {
     @TargetApi(Build.VERSION_CODES.LOLLIPOP)
     public String getCurrentLang() {
         try {
-            if (Build.VERSION.SDK_INT >= 21) {
-                return ttsEngine.getVoice().getLocale().getDisplayLanguage();
+            if (ttsEngine != null && Build.VERSION.SDK_INT >= 21) {
+                return ttsEngine.getDefaultVoice().getLocale().getDisplayLanguage();
             }
         } catch (Exception e) {
             LOG.e(e);

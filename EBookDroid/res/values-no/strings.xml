@@ -488,4 +488,6 @@
    <string name="enable_vertical_gesture">Aktiver vertikal gest for neste side</string>
    <string name="enable_horizontal_gesture">Aktiver horisontal gest for neste side</string>
    <string name="pause_duration">Pause varighet</string>
+   <string name="voice">Stemme</string>
+   <string name="hide_notification_and_stop_reading">Skjul varsel og slutte å lese</string>
 </resources>

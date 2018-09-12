@@ -488,4 +488,6 @@
    <string name="enable_vertical_gesture">अगले पृष्ठ के लिए लंबवत इशारा सक्षम करें</string>
    <string name="enable_horizontal_gesture">अगले पृष्ठ के लिए क्षैतिज इशारा सक्षम करें</string>
    <string name="pause_duration">अवधि रोकें</string>
+   <string name="voice">आवाज़</string>
+   <string name="hide_notification_and_stop_reading">अधिसूचना छुपाएं और पढ़ना बंद करो</string>
 </resources>

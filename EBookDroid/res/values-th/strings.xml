@@ -488,4 +488,6 @@
    <string name="enable_vertical_gesture">เปิดใช้งานท่าทางในแนวตั้งสำหรับหน้าถัดไป</string>
    <string name="enable_horizontal_gesture">เปิดใช้งานท่าทางสัมผัสในแนวนอนสำหรับหน้าถัดไป</string>
    <string name="pause_duration">หยุดชั่วคราว</string>
+   <string name="voice">เสียงพูด</string>
+   <string name="hide_notification_and_stop_reading">ซ่อนการแจ้งเตือนและหยุดอ่าน</string>
 </resources>

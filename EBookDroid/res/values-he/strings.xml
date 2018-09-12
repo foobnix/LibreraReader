@@ -488,4 +488,6 @@
    <string name="enable_vertical_gesture">הפעל מחווה אנכית עבור הדף הבא</string>
    <string name="enable_horizontal_gesture">הפעל מחווה אופקית עבור הדף הבא</string>
    <string name="pause_duration">השהה את משך הזמן</string>
+   <string name="voice">קוֹל</string>
+   <string name="hide_notification_and_stop_reading">הסתר הודעה והפסיק לקרוא</string>
 </resources>

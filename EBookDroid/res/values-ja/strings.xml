@@ -488,4 +488,6 @@
    <string name="enable_vertical_gesture">次のページの垂直ジェスチャーを有効にする</string>
    <string name="enable_horizontal_gesture">次のページの水平方向のジェスチャーを有効にする</string>
    <string name="pause_duration">一時停止時間</string>
+   <string name="voice">音声</string>
+   <string name="hide_notification_and_stop_reading">通知を非表示にして読み上げを停止する</string>
 </resources>

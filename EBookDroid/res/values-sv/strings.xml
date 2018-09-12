@@ -488,4 +488,6 @@
    <string name="enable_vertical_gesture">Aktivera vertikal gest för nästa sida</string>
    <string name="enable_horizontal_gesture">Aktivera horisontell gest för nästa sida</string>
    <string name="pause_duration">Pausvaraktighet</string>
+   <string name="voice">Röst</string>
+   <string name="hide_notification_and_stop_reading">Dölj anmälan och sluta läsa</string>
 </resources>

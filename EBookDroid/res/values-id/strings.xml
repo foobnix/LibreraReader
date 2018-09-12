@@ -488,4 +488,6 @@
    <string name="enable_vertical_gesture">Aktifkan isyarat vertikal untuk halaman berikutnya</string>
    <string name="enable_horizontal_gesture">Aktifkan isyarat horizontal untuk halaman berikutnya</string>
    <string name="pause_duration">Jeda durasi</string>
+   <string name="voice">Suara</string>
+   <string name="hide_notification_and_stop_reading">Sembunyikan notifikasi dan berhenti membaca</string>
 </resources>

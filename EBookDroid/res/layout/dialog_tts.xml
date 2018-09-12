@@ -25,18 +25,27 @@
             android:gravity="center_vertical" >
 
             <ImageView
-                android:id="@+id/ttsSettings"
+                android:id="@+id/ttsSettings1"
                 android:layout_width="@dimen/wh_button"
                 android:layout_height="@dimen/wh_button"
                 android:layout_alignParentRight="true"
                 android:background="@drawable/bg_border_ltgray"
                 android:padding="8dip"
                 android:src="@drawable/glyphicons_137_cogwheel"
-                android:tint="@color/tint_gray" />
+                android:tint="@color/tint_gray"
+                android:visibility="gone" />
+
+            <TextView
+                android:id="@+id/ttsSettings"
+                style="@style/textLink"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:minEms="2"
+                android:minWidth="110dip"
+                android:text="@string/voice" />
 
             <TextView
                 android:id="@+id/ttsEngine"
-                style="@style/textLink"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Google TTS!!!" />
@@ -52,7 +61,6 @@
 
             <TextView
                 android:id="@+id/ttsLang"
-                style="@style/textLink"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dip"
@@ -83,25 +91,6 @@
             android:layout_weight="1"
             myseek:text="@string/sound_volume" >
         </com.foobnix.pdf.info.view.CustomSeek>
-        
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" >
-
-            <TextView
-                android:layout_width="180dip"
-                android:layout_height="wrap_content"
-                android:singleLine="true"
-                android:text="@string/pause_duration"
-                />
-
-            <TextView
-                android:id="@+id/ttsPauseDuration"
-                style="@style/textLink"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="350" />
-        </LinearLayout>
 
         <TextView
             android:id="@+id/restore_defaults"
@@ -138,6 +127,32 @@
             android:textIsSelectable="true"
             android:textSize="10sp"
             android:visibility="gone" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dip" >
+
+            <TextView
+                android:layout_width="180dip"
+                android:layout_height="wrap_content"
+                android:singleLine="true"
+                android:text="@string/pause_duration" />
+
+            <TextView
+                android:id="@+id/ttsPauseDuration"
+                style="@style/textLink"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="350" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/ttsStopService"
+            style="@style/textLink"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/hide_notification_and_stop_reading" />
 
         <CheckBox
             android:id="@+id/showNotification"

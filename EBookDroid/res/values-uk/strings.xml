@@ -488,4 +488,6 @@
    <string name="enable_vertical_gesture">Увімкнути вертикальний жест для наступної сторінки</string>
    <string name="enable_horizontal_gesture">Увімкніть горизонтальний жест для наступної сторінки</string>
    <string name="pause_duration">Тривалість паузи</string>
+   <string name="voice">Голос</string>
+   <string name="hide_notification_and_stop_reading">Сховати сповіщення та припинити читання</string>
 </resources>

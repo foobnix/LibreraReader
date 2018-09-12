@@ -450,7 +450,7 @@
    <string name="allow_text_highlight">Enable text selection</string>
    <string name="text_highlight_mode_is_enable">Text selection is enabled</string>
    <string name="text_highlight_mode_is_disable">Text selection is disabled</string>
-   <string name="application_error_please_send_this_report_by_emial">Something went wrong! Kindly email this report so we could fix the bug ASAP.</string>
+   <string name="application_error_please_send_this_report_by_emial">Something went wrong! Kindly email this report so we can fix the bug ASAP.</string>
    <string name="pause_reading_if_the_incoming_call_or_other_sounds">Pause on incoming calls, messages, etc.</string>
    <string name="add_resource">Add bookshelf</string>
    <string name="do_you_want_to_download_more_book_fonts_10mb_">Download additional fonts (10MB)?</string>
@@ -487,5 +487,7 @@
    <string name="display_sub_chapters_on_the_progress_line">Chapter/section tick marks</string>
    <string name="enable_vertical_gesture">Turn pages by vertical swipes</string>
    <string name="enable_horizontal_gesture">Turn pages by horizontal swipes</string>
-   <string name="pause_duration">Pause duration</string>
+   <string name="pause_duration">Pause</string>
+   <string name="voice">Voice</string>
+   <string name="hide_notification_and_stop_reading">Hide notification and stop reading</string>
 </resources>

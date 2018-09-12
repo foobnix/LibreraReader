@@ -488,4 +488,6 @@
    <string name="enable_vertical_gesture">ژست عمودی را برای صفحه بعدی فعال کنید</string>
    <string name="enable_horizontal_gesture">ژست افقی را برای صفحه بعدی فعال کنید</string>
    <string name="pause_duration">مدت زمان مکث</string>
+   <string name="voice">صدای</string>
+   <string name="hide_notification_and_stop_reading">مخفی کردن اعلان و متوقف کردن خواندن</string>
 </resources>

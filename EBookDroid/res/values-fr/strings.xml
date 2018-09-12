@@ -488,4 +488,6 @@
    <string name="enable_vertical_gesture">Activer le geste vertical pour la page suivante</string>
    <string name="enable_horizontal_gesture">Activer le geste horizontal pour la page suivante</string>
    <string name="pause_duration">Durée de pause</string>
+   <string name="voice">Voix</string>
+   <string name="hide_notification_and_stop_reading">Masquer la notification et arrêter de lire</string>
 </resources>

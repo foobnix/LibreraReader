@@ -488,4 +488,6 @@
    <string name="enable_vertical_gesture">Povoliť vertikálne gesto pre ďalšiu stránku</string>
    <string name="enable_horizontal_gesture">Povoliť horizontálne gesto pre ďalšiu stránku</string>
    <string name="pause_duration">Trvanie prestávky</string>
+   <string name="voice">Hlas</string>
+   <string name="hide_notification_and_stop_reading">Skryť upozornenie a zastaviť čítanie</string>
 </resources>

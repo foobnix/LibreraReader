@@ -488,4 +488,6 @@
    <string name="enable_vertical_gesture">Ota pystysuoran ele käyttöön seuraavalle sivulle</string>
    <string name="enable_horizontal_gesture">Ota horisontaalinen ele seuraavalle sivulle</string>
    <string name="pause_duration">Tauko kesto</string>
+   <string name="voice">Ääni</string>
+   <string name="hide_notification_and_stop_reading">Piilota ilmoitus ja lopeta käsittely</string>
 </resources>

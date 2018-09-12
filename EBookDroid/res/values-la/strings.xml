@@ -488,4 +488,6 @@
    <string name="enable_vertical_gesture">Admitte vertical complere alienum, quia tunc page</string>
    <string name="enable_horizontal_gesture">Admitte motus horizontalis ad proximam paginam</string>
    <string name="pause_duration">Saeculum diapsalma</string>
+   <string name="voice">Voice</string>
+   <string name="hide_notification_and_stop_reading">Et nolite celare notitia legere</string>
 </resources>

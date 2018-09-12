@@ -488,4 +488,6 @@
    <string name="enable_vertical_gesture">تمكين الإيماءة الرأسية للصفحة التالية</string>
    <string name="enable_horizontal_gesture">تمكين الإيماءة الأفقية للصفحة التالية</string>
    <string name="pause_duration">وقفة المدة</string>
+   <string name="voice">صوت</string>
+   <string name="hide_notification_and_stop_reading">إخفاء الإخطار ووقف القراءة</string>
 </resources>

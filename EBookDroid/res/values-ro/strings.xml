@@ -488,4 +488,6 @@
    <string name="enable_vertical_gesture">Activați gestul vertical pentru pagina următoare</string>
    <string name="enable_horizontal_gesture">Activați gestul orizontal pentru pagina următoare</string>
    <string name="pause_duration">Întrerupeți durata</string>
+   <string name="voice">Voce</string>
+   <string name="hide_notification_and_stop_reading">Ascundeți notificarea și opriți citirea</string>
 </resources>

@@ -488,4 +488,6 @@
    <string name="enable_vertical_gesture">Bir sonraki sayfa için dikey hareketi etkinleştir</string>
    <string name="enable_horizontal_gesture">Bir sonraki sayfa için yatay hareketi etkinleştir</string>
    <string name="pause_duration">Duraklat süresi</string>
+   <string name="voice">Ses</string>
+   <string name="hide_notification_and_stop_reading">Bildirimi gizle ve okumayı durdur</string>
 </resources>

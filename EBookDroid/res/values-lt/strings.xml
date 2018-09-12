@@ -488,4 +488,6 @@
    <string name="enable_vertical_gesture">Įgalinkite vertikalų gestą kitam puslapiui</string>
    <string name="enable_horizontal_gesture">Įgalinkite horizontalų gestą kitam puslapiui</string>
    <string name="pause_duration">Sustabdymo trukmė</string>
+   <string name="voice">Balsas</string>
+   <string name="hide_notification_and_stop_reading">Slėpti pranešimą ir nustoti skaityti</string>
 </resources>

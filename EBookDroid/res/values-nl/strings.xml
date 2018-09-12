@@ -488,4 +488,6 @@
    <string name="enable_vertical_gesture">Schakel verticaal gebaar in voor de volgende pagina</string>
    <string name="enable_horizontal_gesture">Schakel horizontale beweging in voor de volgende pagina</string>
    <string name="pause_duration">Pauzeerduur</string>
+   <string name="voice">Stem</string>
+   <string name="hide_notification_and_stop_reading">Verberg melding en stop met lezen</string>
 </resources>

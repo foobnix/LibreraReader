@@ -101,6 +101,36 @@ public abstract class DocumentController {
         }
     }
 
+    Runnable timer = new Runnable() {
+
+        @Override
+        public void run() {
+            try {
+                timerTask.run();
+                handler.postDelayed(timer, timeout);
+                LOG.d("Timer-Task Run");
+            } catch (Exception e) {
+                LOG.e(e);
+            }
+        }
+    };
+
+    private int timeout;
+    private Runnable timerTask;
+
+    public synchronized void runTimer(int timeout, Runnable run) {
+        this.timeout = timeout;
+        this.timerTask = run;
+        stopTimer();
+        handler.post(timer);
+    }
+
+    public void stopTimer() {
+        if (handler != null) {
+            handler.removeCallbacks(timer);
+        }
+    }
+
     private final LinkedList<Integer> linkHistory = new LinkedList<Integer>();
 
     public abstract void onGoToPage(int page);

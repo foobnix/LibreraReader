@@ -488,4 +488,6 @@
    <string name="enable_vertical_gesture">Wezesha ishara ya wima kwa ukurasa unaofuata</string>
    <string name="enable_horizontal_gesture">Wezesha ishara ya usawa kwa ukurasa unaofuata</string>
    <string name="pause_duration">Pumzika muda</string>
+   <string name="voice">Sauti</string>
+   <string name="hide_notification_and_stop_reading">Ficha taarifa na uacha kusoma</string>
 </resources>

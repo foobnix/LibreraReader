@@ -11,6 +11,7 @@ import java.util.Map;
 import java.util.Set;
 
 import org.ebookdroid.BookType;
+import org.ebookdroid.LibreraApp;
 import org.ebookdroid.common.settings.SettingsManager;
 import org.ebookdroid.common.settings.books.BookSettings;
 import org.greenrobot.eventbus.EventBus;
@@ -501,8 +502,22 @@ public class DragingDialogs {
                 final TextView timerTime = (TextView) view.findViewById(R.id.timerTime);
                 final TextView timerStart = (TextView) view.findViewById(R.id.timerStart);
 
+                final TextView ttsStopService = (TextView) view.findViewById(R.id.ttsStopService);
+                ttsStopService.setVisibility(TxtUtils.visibleIf(Build.VERSION.SDK_INT >= 26));
+                TxtUtils.underlineTextView(ttsStopService);
+
+                ttsStopService.setOnClickListener(new OnClickListener() {
+
+                    @Override
+                    public void onClick(View v) {
+                        TTSEngine.get().stop();
+                        controller.getActivity().stopService(new Intent(controller.getActivity(), TTSService.class));
+                        TTSNotification.hideNotification();
+                    }
+                });
+
                 final TextView ttsLang = (TextView) view.findViewById(R.id.ttsLang);
-                TxtUtils.underlineTextView(ttsLang);
+                // TxtUtils.underlineTextView(ttsLang);
 
                 final TextView ttsPauseDuration = (TextView) view.findViewById(R.id.ttsPauseDuration);
                 ttsPauseDuration.setText("" + AppState.get().ttsPauseDuration + " ms");
@@ -533,7 +548,6 @@ public class DragingDialogs {
                 });
 
                 ttsLang.setVisibility(TxtUtils.visibleIf(Build.VERSION.SDK_INT >= 21));
-                TxtUtils.underlineTextView(ttsLang);
 
                 timerTime.setText(AppState.get().ttsTimer + " " + controller.getString(R.string.minutes).toLowerCase(Locale.US));
                 timerTime.setOnClickListener(new OnClickListener() {
@@ -581,32 +595,48 @@ public class DragingDialogs {
                     @Override
                     public void onInit(int status) {
                         textEngine.setText(TTSEngine.get().getCurrentEngineName());
-                        TxtUtils.underlineTextView(textEngine);
+                        // TxtUtils.underlineTextView(textEngine);
+                        ttsLang.setText(TTSEngine.get().getCurrentLang());
 
-                        Locale l = new Locale(BookCSS.get().hypenLang);
-                        int lstat = TTSEngine.get().getTTS().isLanguageAvailable(l);
-                        LOG.d("TTS-local status", lstat);
-                        if (status >= 0) {
-                            TTSEngine.get().getTTS().setLanguage(l);
+                        if (false) {
+                            Locale l = new Locale(BookCSS.get().hypenLang);
+                            int lstat = TTSEngine.get().getTTS().isLanguageAvailable(l);
+                            LOG.d("TTS-local status", lstat);
+                            if (status >= 0) {
+                                TTSEngine.get().getTTS().setLanguage(l);
+                            }
                         }
 
-                        ttsLang.setText(TTSEngine.get().getCurrentLang());
-                        TxtUtils.underlineTextView(ttsLang);
+                        // TxtUtils.underlineTextView(ttsLang);
 
                     }
                 });
+
+                controller.runTimer(3000, new Runnable() {
+
+                    @Override
+                    public void run() {
+                        textEngine.setText(TTSEngine.get().getCurrentEngineName());
+                        // TxtUtils.underlineTextView(textEngine);
+                        ttsLang.setText(TTSEngine.get().getCurrentLang());
+                    }
+                });
+
                 textEngine.setText(TTSEngine.get().getCurrentEngineName());
-                TxtUtils.underlineTextView(textEngine);
+                // TxtUtils.underlineTextView(textEngine);
 
                 ttsLang.setText(TTSEngine.get().getCurrentLang());
-                TxtUtils.underlineTextView(ttsLang);
-
+                // TxtUtils.underlineTextView(ttsLang);
 
                 ttsLang.setOnClickListener(new OnClickListener() {
 
                     @Override
                     public void onClick(View v) {
+                        if (true) {
+                            return;
+                        }
                         TTSEngine.get().stop();
+
                         MyPopupMenu p = new MyPopupMenu(v.getContext(), v);
                         Set<Locale> availableLanguages = TTSEngine.get().getTTS().getAvailableLanguages();
                         for (final Locale l : availableLanguages) {
@@ -632,6 +662,10 @@ public class DragingDialogs {
 
                     @Override
                     public void onClick(View v) {
+                        if (true) {
+                            return;
+                        }
+
                         TTSEngine.get().stop();
 
                         PopupMenu menu = new PopupMenu(v.getContext(), v);
@@ -647,7 +681,7 @@ public class DragingDialogs {
                                     TxtUtils.underlineTextView(textEngine);
 
                                     ttsLang.setText(TTSEngine.get().getCurrentLang());
-                                    TxtUtils.underlineTextView(ttsLang);
+                                    // TxtUtils.underlineTextView(ttsLang);
                                     return false;
                                 }
                             });
@@ -656,12 +690,14 @@ public class DragingDialogs {
                     }
                 });
 
-                view.findViewById(R.id.ttsSettings).setOnClickListener(new OnClickListener() {
+                TxtUtils.underlineTextView((TextView) view.findViewById(R.id.ttsSettings)).setOnClickListener(new OnClickListener() {
 
                     @Override
                     public void onClick(View v) {
                         try {
                             TTSEngine.get().stop();
+                            TTSEngine.get().stopDestroy();
+
                             Intent intent = new Intent();
                             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                             if (Build.VERSION.SDK_INT >= 14) {
@@ -796,6 +832,9 @@ public class DragingDialogs {
                     }
                 });
 
+                showNotification.setVisibility(TxtUtils.visibleIf(Build.VERSION.SDK_INT < 26));
+                notificationOngoing.setVisibility(TxtUtils.visibleIf(Build.VERSION.SDK_INT < 26));
+
                 CheckBox stopReadingOnCall = (CheckBox) view.findViewById(R.id.stopReadingOnCall);
                 stopReadingOnCall.setChecked(AppState.get().stopReadingOnCall);
                 stopReadingOnCall.setOnCheckedChangeListener(new OnCheckedChangeListener() {
@@ -905,6 +944,7 @@ public class DragingDialogs {
 
             @Override
             public void run() {
+                controller.stopTimer();
                 AppState.get().save(controller.getActivity());
 
             }

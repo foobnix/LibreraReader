@@ -488,4 +488,6 @@
    <string name="enable_vertical_gesture">Листать страницы вертикальными свайпами (направление зависит от настраиваемой стрелки)</string>
    <string name="enable_horizontal_gesture">Листать страницы горизонтальными свайпами</string>
    <string name="pause_duration">Длительность паузы</string>
+   <string name="voice">Голос</string>
+   <string name="hide_notification_and_stop_reading">Скрыть уведомление и прекратить чтение</string>
 </resources>

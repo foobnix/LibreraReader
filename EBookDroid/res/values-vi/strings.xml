@@ -488,4 +488,6 @@
    <string name="enable_vertical_gesture">Bật cử chỉ thẳng đứng cho trang tiếp theo</string>
    <string name="enable_horizontal_gesture">Bật cử chỉ ngang cho trang tiếp theo</string>
    <string name="pause_duration">Tạm dừng thời lượng</string>
+   <string name="voice">Tiếng nói</string>
+   <string name="hide_notification_and_stop_reading">Ẩn thông báo và ngừng đọc</string>
 </resources>
