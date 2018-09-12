@@ -544,7 +544,7 @@ public class Fb2Extractor extends BaseExtractor {
 
         boolean firstLine = true;
 
-        int attempts = 2;
+        boolean ready = true;
 
         while ((line = input.readLine()) != null) {
             if (TempHolder.get().loadingCancelled) {
@@ -571,38 +571,53 @@ public class Fb2Extractor extends BaseExtractor {
             if (AppState.get().isInitialFirstLetter && !isFindBodyEnd) {
 
                 if (line.contains("</title>")) {
-                    attempts = 2;
+                    ready = true;
                 }
 
-                if (attempts >= 1) {
+                if (ready) {
                     for (String anchor : anchors) {
                         int indexOf = line.indexOf(anchor);
                         if (indexOf >= 0) {
-                            attempts = 0;
+                            ready = false;
                             indexOf = indexOf + anchor.length();
-                            if (line.charAt(indexOf) == '<' || line.charAt(indexOf) == '–' || line.charAt(indexOf) == '-' || line.charAt(indexOf) == '\'') {
+                            if (line.charAt(indexOf) == '<') {
                                 break;
                             }
+
+                            if (!Character.isLetter(line.charAt(indexOf))) {
+                                indexOf++;
+                            }
+
+                            if (!Character.isLetter(line.charAt(indexOf))) {
+                                break;
+                            }
+
                             line = line.substring(0, indexOf) + "<letter>" + line.substring(indexOf, indexOf + 1) + "</letter>" + line.substring(indexOf + 1);
                             LOG.d("check-line-new", line);
                             break;
                         }
                     }
                 }
-                if (attempts == 1) {
+                if (ready) {
                     String anchor = "<p>";
                     int indexOf = line.indexOf(anchor);
                     if (indexOf >= 0) {
-                        attempts = 0;
+                        ready = false;
                         indexOf = indexOf + anchor.length();
-                        if (line.charAt(indexOf) == '<' || line.charAt(indexOf) == '–' || line.charAt(indexOf) == '-' || line.charAt(indexOf) == '\'') {
-                            continue;
+
+                        if (line.charAt(indexOf) != '<') {
+
+                            if (!Character.isLetter(line.charAt(indexOf))) {
+                                indexOf++;
+                            }
+                            if (Character.isLetter(line.charAt(indexOf))) {
+                                line = line.substring(0, indexOf) + "<letter>" + line.substring(indexOf, indexOf + 1) + "</letter>" + line.substring(indexOf + 1);
+                                LOG.d("check-line-new", line);
+                            }
                         }
-                        line = line.substring(0, indexOf) + "<letter>" + line.substring(indexOf, indexOf + 1) + "</letter>" + line.substring(indexOf + 1);
-                        LOG.d("check-line-new", line);
+
                     }
                 }
-                attempts--;
             }
 
             String subLine[] = line.split("</");
