@@ -324,8 +324,8 @@ public class AppState {
     @IgnoreHashCode
     public int appBrightness = AUTO_BRIGTNESS;
 
-    public float ttsSpeed = 1.0f;
-    public float ttsPitch = 1.0f;
+    public volatile float ttsSpeed = 1.0f;
+    public volatile float ttsPitch = 1.0f;
 
     public List<Integer> nextKeys = NEXT_KEYS;
     public List<Integer> prevKeys = PREV_KEYS;

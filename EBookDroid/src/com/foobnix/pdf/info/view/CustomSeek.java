@@ -162,6 +162,10 @@ public class CustomSeek extends FrameLayout {
         init(min, max, current, sufix);
     }
 
+    public void sendProgressChanged() {
+        integerResponse.onResultRecive(valueResponse);
+    }
+
     public void setMax(int max) {
         this.max = max;
         distance = max - min;
@@ -226,6 +230,19 @@ public class CustomSeek extends FrameLayout {
 
     public void setOnSeekChanged(IntegerResponse integerResponse) {
         this.integerResponse = integerResponse;
+    }
+
+    public void addMyPopupMenu(final MyPopupMenu menu) {
+        titleText.setTextAppearance(getContext(), R.style.textLink);
+
+        TxtUtils.underlineTextView(titleText);
+        titleText.setOnClickListener(new OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                menu.show();
+            }
+        });
     }
 
 }

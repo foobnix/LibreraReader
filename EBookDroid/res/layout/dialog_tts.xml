@@ -11,6 +11,7 @@
         android:padding="2dip" >
 
         <TextView
+            android:visibility="gone"
             android:id="@+id/ttsPage"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

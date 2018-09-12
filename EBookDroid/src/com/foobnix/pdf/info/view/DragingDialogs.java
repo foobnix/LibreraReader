@@ -584,11 +584,13 @@ public class DragingDialogs {
 
                         timerStart.setText(TempHolder.get().timerFinishTime == 0 ? R.string.start : R.string.cancel);
                         ttsPage.setText(TempHolder.get().timerFinishTime == 0 ? "" : controller.getString(R.string.reading_will_be_stopped) + " " + DateFormat.getTimeFormat(activity).format(TempHolder.get().timerFinishTime));
+                        ttsPage.setVisibility(TxtUtils.visibleIf(TempHolder.get().timerFinishTime > 0));
                     }
                 });
 
-                timerStart.setText(TempHolder.get().timerFinishTime == 0 ? R.string.start : R.string.cancel);
                 ttsPage.setText(TempHolder.get().timerFinishTime == 0 ? "" : controller.getString(R.string.reading_will_be_stopped) + " " + DateFormat.getTimeFormat(activity).format(TempHolder.get().timerFinishTime));
+                timerStart.setText(TempHolder.get().timerFinishTime == 0 ? R.string.start : R.string.cancel);
+                ttsPage.setVisibility(TxtUtils.visibleIf(TempHolder.get().timerFinishTime > 0));
 
                 TTSEngine.get().getTTS(new OnInitListener() {
 
@@ -746,10 +748,28 @@ public class DragingDialogs {
 
                     @Override
                     public boolean onResultRecive(int result) {
+                        TTSEngine.get().stop();
                         AppState.get().ttsSpeed = (float) result / 100;
+                        LOG.d("TTS-ttsSpeed 2", AppState.get().ttsSpeed);
                         return false;
                     }
                 });
+
+                final MyPopupMenu menu = new MyPopupMenu(seekBarSpeed.getContext(), seekBarSpeed);
+                for (int i = 5; i <= 60; i += 5) {
+                    final int j = i;
+                    menu.getMenu().add(String.format("%.1f x", (float) i / 10)).setOnMenuItemClickListener(new OnMenuItemClickListener() {
+
+                        @Override
+                        public boolean onMenuItemClick(MenuItem item) {
+                            seekBarSpeed.reset(j * 10);
+                            seekBarSpeed.sendProgressChanged();
+                            return false;
+                        }
+                    });
+                }
+
+                seekBarSpeed.addMyPopupMenu(menu);
 
                 final CustomSeek seekBarPitch = (CustomSeek) view.findViewById(R.id.seekBarPitch);
                 seekBarPitch.init(0, 200, (int) AppState.get().ttsPitch * 100);
@@ -757,6 +777,7 @@ public class DragingDialogs {
 
                     @Override
                     public boolean onResultRecive(int result) {
+                        TTSEngine.get().stop();
                         AppState.get().ttsPitch = (float) result / 100;
                         return false;
                     }
@@ -796,7 +817,7 @@ public class DragingDialogs {
 
                                 textEngine.setText(TTSEngine.get().getCurrentEngineName());
                                 ttsLang.setText(TTSEngine.get().getCurrentLang());
-                                TxtUtils.underlineTextView(textEngine);
+                                // TxtUtils.underlineTextView(textEngine);
                             }
                         });
 
