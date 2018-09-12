@@ -490,4 +490,5 @@
    <string name="pause_duration">השהה את משך הזמן</string>
    <string name="voice">קוֹל</string>
    <string name="hide_notification_and_stop_reading">הסתר הודעה והפסיק לקרוא</string>
+   <string name="enable_a_large_initial_letter">אפשר אות ראשית גדולה</string>
 </resources>

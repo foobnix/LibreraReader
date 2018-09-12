@@ -43,6 +43,15 @@ public class TxtUtils {
         return string.replaceAll("\\s", " ").trim();
     }
 
+    public static boolean contains(String line, List<String> items) {
+        for (String s : items) {
+            if (line.contains(s)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
     public static String lastTwoPath(String txt) {
         if (TxtUtils.isEmpty(txt)) {
             return "[]";

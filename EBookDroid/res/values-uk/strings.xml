@@ -490,4 +490,5 @@
    <string name="pause_duration">Тривалість паузи</string>
    <string name="voice">Голос</string>
    <string name="hide_notification_and_stop_reading">Сховати сповіщення та припинити читання</string>
+   <string name="enable_a_large_initial_letter">Увімкнути велику початкову літеру</string>
 </resources>

@@ -490,4 +490,5 @@
    <string name="pause_duration">一時停止時間</string>
    <string name="voice">音声</string>
    <string name="hide_notification_and_stop_reading">通知を非表示にして読み上げを停止する</string>
+   <string name="enable_a_large_initial_letter">大きな頭文字を有効にする</string>
 </resources>

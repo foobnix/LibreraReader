@@ -490,4 +490,5 @@
    <string name="pause_duration">Saeculum diapsalma</string>
    <string name="voice">Voice</string>
    <string name="hide_notification_and_stop_reading">Et nolite celare notitia legere</string>
+   <string name="enable_a_large_initial_letter">Magna litterae activare initial</string>
 </resources>

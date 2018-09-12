@@ -2989,6 +2989,17 @@ public class DragingDialogs {
                     }
                 });
 
+                CheckBox isFirstLetter = (CheckBox) inflate.findViewById(R.id.isFirstLetter);
+                isFirstLetter.setVisibility(controller.isTextFormat() ? View.VISIBLE : View.GONE);
+                isFirstLetter.setChecked(AppState.get().isInitialFirstLetter);
+                isFirstLetter.setOnCheckedChangeListener(new OnCheckedChangeListener() {
+
+                    @Override
+                    public void onCheckedChanged(final CompoundButton buttonView, final boolean isChecked) {
+                        AppState.get().isInitialFirstLetter = isChecked;
+                    }
+                });
+
                 CheckBox isOLED = (CheckBox) inflate.findViewById(R.id.isOLED);
                 isOLED.setChecked(AppState.get().isOLED);
                 isOLED.setOnCheckedChangeListener(new OnCheckedChangeListener() {

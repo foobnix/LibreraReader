@@ -490,4 +490,5 @@
    <string name="pause_duration">Pausendauer</string>
    <string name="voice">Stimme</string>
    <string name="hide_notification_and_stop_reading">Benachrichtigung ausblenden und das Lesen stoppen</string>
+   <string name="enable_a_large_initial_letter">Aktivieren Sie einen großen Anfangsbuchstaben</string>
 </resources>

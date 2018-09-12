@@ -490,4 +490,5 @@
    <string name="pause_duration">Wstrzymaj czas</string>
    <string name="voice">Głos</string>
    <string name="hide_notification_and_stop_reading">Ukryj powiadomienie i przestań czytać</string>
+   <string name="enable_a_large_initial_letter">Włącz dużą początkową literę</string>
 </resources>

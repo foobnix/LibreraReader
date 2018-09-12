@@ -295,6 +295,12 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/normalize_font_size" />
+        
+        <CheckBox
+            android:id="@+id/isFirstLetter"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/enable_a_large_initial_letter" />
 
         <com.foobnix.pdf.info.view.CustomSeek
             android:id="@+id/seekWheelSpeed"

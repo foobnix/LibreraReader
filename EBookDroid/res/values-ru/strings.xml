@@ -490,4 +490,5 @@
    <string name="pause_duration">Длительность паузы</string>
    <string name="voice">Голос</string>
    <string name="hide_notification_and_stop_reading">Скрыть уведомление и прекратить чтение</string>
+   <string name="enable_a_large_initial_letter">Включить большую начальную букву</string>
 </resources>

@@ -490,4 +490,5 @@
    <string name="pause_duration">अवधि रोकें</string>
    <string name="voice">आवाज़</string>
    <string name="hide_notification_and_stop_reading">अधिसूचना छुपाएं और पढ़ना बंद करो</string>
+   <string name="enable_a_large_initial_letter">एक बड़ा प्रारंभिक पत्र सक्षम करें</string>
 </resources>

@@ -490,4 +490,5 @@
    <string name="pause_duration">Jeda durasi</string>
    <string name="voice">Suara</string>
    <string name="hide_notification_and_stop_reading">Sembunyikan notifikasi dan berhenti membaca</string>
+   <string name="enable_a_large_initial_letter">Aktifkan huruf awal yang besar</string>
 </resources>

@@ -490,4 +490,5 @@
    <string name="pause_duration">Pausvaraktighet</string>
    <string name="voice">Röst</string>
    <string name="hide_notification_and_stop_reading">Dölj anmälan och sluta läsa</string>
+   <string name="enable_a_large_initial_letter">Aktivera en stor initialt bokstav</string>
 </resources>

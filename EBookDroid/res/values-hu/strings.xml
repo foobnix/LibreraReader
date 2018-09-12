@@ -490,4 +490,5 @@
    <string name="pause_duration">Szüneteltetés időtartama</string>
    <string name="voice">Hang</string>
    <string name="hide_notification_and_stop_reading">Az értesítés elrejtése és az olvasás leállítása</string>
+   <string name="enable_a_large_initial_letter">Engedélyezzen egy nagy kezdeti levelet</string>
 </resources>

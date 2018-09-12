@@ -490,4 +490,5 @@
    <string name="pause_duration">Tạm dừng thời lượng</string>
    <string name="voice">Tiếng nói</string>
    <string name="hide_notification_and_stop_reading">Ẩn thông báo và ngừng đọc</string>
+   <string name="enable_a_large_initial_letter">Bật chữ cái đầu tiên lớn</string>
 </resources>

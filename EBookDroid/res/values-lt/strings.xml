@@ -490,4 +490,5 @@
    <string name="pause_duration">Sustabdymo trukmė</string>
    <string name="voice">Balsas</string>
    <string name="hide_notification_and_stop_reading">Slėpti pranešimą ir nustoti skaityti</string>
+   <string name="enable_a_large_initial_letter">Įgalinti didelę pradinę raidę</string>
 </resources>

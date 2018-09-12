@@ -490,4 +490,5 @@
    <string name="pause_duration">وقفة المدة</string>
    <string name="voice">صوت</string>
    <string name="hide_notification_and_stop_reading">إخفاء الإخطار ووقف القراءة</string>
+   <string name="enable_a_large_initial_letter">تمكين حرف أولي كبير</string>
 </resources>

@@ -490,4 +490,5 @@
    <string name="pause_duration">暂停持续时间</string>
    <string name="voice">语音</string>
    <string name="hide_notification_and_stop_reading">隐藏通知并停止阅读</string>
+   <string name="enable_a_large_initial_letter">启用大型首字母</string>
 </resources>

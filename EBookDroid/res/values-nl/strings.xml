@@ -490,4 +490,5 @@
    <string name="pause_duration">Pauzeerduur</string>
    <string name="voice">Stem</string>
    <string name="hide_notification_and_stop_reading">Verberg melding en stop met lezen</string>
+   <string name="enable_a_large_initial_letter">Schakel een grote beginletter in</string>
 </resources>

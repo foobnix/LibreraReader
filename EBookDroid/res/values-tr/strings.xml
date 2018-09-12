@@ -490,4 +490,5 @@
    <string name="pause_duration">Duraklat süresi</string>
    <string name="voice">Ses</string>
    <string name="hide_notification_and_stop_reading">Bildirimi gizle ve okumayı durdur</string>
+   <string name="enable_a_large_initial_letter">Büyük bir başlangıç ​​harfini etkinleştir</string>
 </resources>

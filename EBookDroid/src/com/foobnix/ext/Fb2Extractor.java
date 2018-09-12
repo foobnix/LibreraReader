@@ -522,6 +522,8 @@ public class Fb2Extractor extends BaseExtractor {
         return false;
     }
 
+    static final List<String> anchors = Arrays.asList("</title><p>", "</cite><p>", "</epigraph><p>");
+
     public ByteArrayOutputStream generateFb2File(String fb2, String encoding, boolean fixXML) throws Exception {
         BufferedReader input = new BufferedReader(new InputStreamReader(new FileInputStream(fb2), encoding));
 
@@ -537,11 +539,13 @@ public class Fb2Extractor extends BaseExtractor {
 
         boolean isFindBodyEnd = false;
         boolean titleBegin = false;
-        boolean endTitle = false;
 
         long init = System.currentTimeMillis();
 
         boolean firstLine = true;
+
+        int attempts = 2;
+
         while ((line = input.readLine()) != null) {
             if (TempHolder.get().loadingCancelled) {
                 break;
@@ -564,26 +568,41 @@ public class Fb2Extractor extends BaseExtractor {
                 line = line.replace("l:href==", "l:href=");
             }
 
-            if (AppState.get().isFirstLetter) {
+            if (AppState.get().isInitialFirstLetter && !isFindBodyEnd) {
 
-                List<String> anchors = new ArrayList<String>(Arrays.asList("</cite><p>", "</epigraph><p>", "</title><p>"));
-                if (endTitle) {
-                    anchors.add("<p>");
+                if (line.contains("</title>")) {
+                    attempts = 2;
                 }
-                for (String anchor : anchors) {
-                    int indexOf = line.indexOf(anchor);
-                    if (indexOf >= 0) {
-                        indexOf = indexOf + anchor.length();
-                        if (line.charAt(indexOf) == '<' || line.charAt(indexOf) == '–' || line.charAt(indexOf) == '–') {
-                            continue;
+
+                if (attempts >= 1) {
+                    for (String anchor : anchors) {
+                        int indexOf = line.indexOf(anchor);
+                        if (indexOf >= 0) {
+                            attempts = 0;
+                            indexOf = indexOf + anchor.length();
+                            if (line.charAt(indexOf) == '<' || line.charAt(indexOf) == '–' || line.charAt(indexOf) == '-' || line.charAt(indexOf) == '\'') {
+                                break;
+                            }
+                            line = line.substring(0, indexOf) + "<letter>" + line.substring(indexOf, indexOf + 1) + "</letter>" + line.substring(indexOf + 1);
+                            LOG.d("check-line-new", line);
+                            break;
                         }
-                        LOG.d("letter-find-before", line);
-                        line = line.substring(0, indexOf) + "<letter>" + line.substring(indexOf, indexOf + 1) + "</letter>" + line.substring(indexOf + 1);
-                        LOG.d("letter-find-after", line);
-                        break;
                     }
                 }
-                endTitle = false;
+                if (attempts == 1) {
+                    String anchor = "<p>";
+                    int indexOf = line.indexOf(anchor);
+                    if (indexOf >= 0) {
+                        attempts = 0;
+                        indexOf = indexOf + anchor.length();
+                        if (line.charAt(indexOf) == '<' || line.charAt(indexOf) == '–' || line.charAt(indexOf) == '-' || line.charAt(indexOf) == '\'') {
+                            continue;
+                        }
+                        line = line.substring(0, indexOf) + "<letter>" + line.substring(indexOf, indexOf + 1) + "</letter>" + line.substring(indexOf + 1);
+                        LOG.d("check-line-new", line);
+                    }
+                }
+                attempts--;
             }
 
             String subLine[] = line.split("</");
@@ -599,10 +618,8 @@ public class Fb2Extractor extends BaseExtractor {
                     titleBegin = true;
                 }
 
-                endTitle = false;
                 if (line.contains("</title")) {
                     titleBegin = false;
-                    endTitle = true;
 
                     if (line.contains("</title>")) {
                         count++;
@@ -622,14 +639,12 @@ public class Fb2Extractor extends BaseExtractor {
                 writer.print(line);
             }
 
-
         }
 
         long delta = System.currentTimeMillis() - init;
         LOG.d("generateFb2File", delta / 1000.0);
         input.close();
         writer.close();
-
 
         return out;
     }

@@ -490,4 +490,5 @@
    <string name="pause_duration">Întrerupeți durata</string>
    <string name="voice">Voce</string>
    <string name="hide_notification_and_stop_reading">Ascundeți notificarea și opriți citirea</string>
+   <string name="enable_a_large_initial_letter">Activați o literă inițială mare</string>
 </resources>

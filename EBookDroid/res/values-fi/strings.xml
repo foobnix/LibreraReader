@@ -490,4 +490,5 @@
    <string name="pause_duration">Tauko kesto</string>
    <string name="voice">Ääni</string>
    <string name="hide_notification_and_stop_reading">Piilota ilmoitus ja lopeta käsittely</string>
+   <string name="enable_a_large_initial_letter">Ota käyttöön suuri alkukirjain</string>
 </resources>

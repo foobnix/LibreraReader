@@ -490,4 +490,5 @@
    <string name="pause_duration">Pause varighet</string>
    <string name="voice">Stemme</string>
    <string name="hide_notification_and_stop_reading">Skjul varsel og slutte å lese</string>
+   <string name="enable_a_large_initial_letter">Aktiver et stort innledende brev</string>
 </resources>

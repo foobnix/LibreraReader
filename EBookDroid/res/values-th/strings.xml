@@ -490,4 +490,5 @@
    <string name="pause_duration">หยุดชั่วคราว</string>
    <string name="voice">เสียงพูด</string>
    <string name="hide_notification_and_stop_reading">ซ่อนการแจ้งเตือนและหยุดอ่าน</string>
+   <string name="enable_a_large_initial_letter">เปิดใช้อักษรตัวแรกขนาดใหญ่</string>
 </resources>

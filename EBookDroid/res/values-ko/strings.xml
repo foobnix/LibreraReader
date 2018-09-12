@@ -490,4 +490,5 @@
    <string name="pause_duration">일시 중지 기간</string>
    <string name="voice">목소리</string>
    <string name="hide_notification_and_stop_reading">알림 숨기기 및 읽기 중지</string>
+   <string name="enable_a_large_initial_letter">큰 초기 문자 사용</string>
 </resources>

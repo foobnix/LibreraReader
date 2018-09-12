@@ -283,7 +283,8 @@ public class AppState {
     public boolean isShowSubChaptersOnProgress = true;
 
     public long fontExtractTime = 0;
-    public boolean isFirstLetter = true;
+
+    public boolean isInitialFirstLetter = true;
 
     public int nextScreenScrollBy = NEXT_SCREEN_SCROLL_BY_PAGES;// 0 by
                                                                 // pages,
