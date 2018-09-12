@@ -3667,14 +3667,14 @@ public class DragingDialogs {
                         edit.setMinWidth(Dips.dpToPx(1000));
                         edit.setLines(8);
                         edit.setGravity(Gravity.TOP);
-                        edit.setText(BookCSS.get().customCSS1);
+                        edit.setText(BookCSS.get().customCSS2);
                         builder.setView(edit);
 
                         builder.setPositiveButton(R.string.save, new DialogInterface.OnClickListener() {
 
                             @Override
                             public void onClick(final DialogInterface dialog, final int id) {
-                                BookCSS.get().customCSS1 = edit.getText().toString();
+                                BookCSS.get().customCSS2 = edit.getText().toString();
                                 BookCSS.get().save(v.getContext());
                             }
                         });

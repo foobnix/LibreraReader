@@ -67,7 +67,7 @@ public class BookCSS {
     public int paragraphHeight;
     public int textIndent;
     public int fontWeight;
-    public String customCSS1;
+    public String customCSS2;
 
     public int textAlign;
 
@@ -115,7 +115,7 @@ public class BookCSS {
 
         linkColorDay = LINK_COLOR_UNIVERSAL;
         linkColorNight = LINK_COLOR_UNIVERSAL;
-        customCSS1 = //
+        customCSS2 = //
                 "code, pre,pre>* {white-space: pre; font-size: 0.6em !important;} /* pre, normal*/ \n" + //
                         "svg {display:block} \n" + //
                         "figure>* {font-size: 0.7em} \n" + //
@@ -123,7 +123,8 @@ public class BookCSS {
                         "td>* {display:inline}\n" + //
                         "blockquote {margin-left:0.5em !important}\n" + //
                         "sup>* {font-size:0.83em;vertical-align:super;font-weight:bold}\n" + //
-                        "letter{font-size:2em;}\n" + //
+                        "letter {font-size: 2em; color:red; font-weight: bold;}\n" + //
+                        "title>p{font-size:1.2em;  color:red !important}\n" + //
                         ""//
         ;
 
@@ -609,7 +610,7 @@ public class BookCSS {
                 builder.append("body,p,b,i,em,span{font-size:medium !important;}");
             }
 
-            builder.append(customCSS1.replace("\n", ""));
+            builder.append(customCSS2.replace("\n", ""));
 
         }
 

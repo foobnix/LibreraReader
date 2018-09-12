@@ -581,8 +581,12 @@ public class Fb2Extractor extends BaseExtractor {
 
                 if (ready) {
                     if (!TxtUtils.contains(line, ignore)) {
-                        String anchor = "<p>";
+                        String anchor = "<p";
                         int indexOf = line.indexOf(anchor);
+                        if (indexOf >= 0) {
+                            anchor = ">";
+                            indexOf = line.indexOf('>', indexOf);
+                        }
                         if (indexOf >= 0 && line.length() - anchor.length() - indexOf >= 3) {
                             ready = false;
                             indexOf = indexOf + anchor.length();
