@@ -306,11 +306,11 @@
    <string name="show_bottom_panel">Afficher le panneau inférieur</string>
    <string name="to_stop">Arrêter</string>
    <string name="to_read">Lire</string>
+   <string name="to_paly_pause">Jouer pause</string>
    <string name="text_to_speech">Texte pour parler</string>
    <string name="speed1">La vitesse</string>
    <string name="pitch1">Pas son</string>
    <string name="sound_volume">Volume de la musique</string>
-   <string name="ongoing_notification">Notification en cours</string>
    <string name="next">Suivant</string>
    <string name="stop_reading_timer_">Arrêtez la lecture (minuterie)</string>
    <string name="start">Début</string>
@@ -479,7 +479,6 @@
    <string name="hide_search_bar">Masquer la barre de recherche</string>
    <string name="show_search_bar">Afficher la barre de recherche</string>
    <string name="never">Jamais</string>
-   <string name="show_notifications">Afficher les notifications</string>
    <string name="general_settings">Réglages généraux</string>
    <string name="cyclic_scrolling_return_to_1_page_">Défilement cyclique (retour à 1 page)</string>
    <string name="normalize_font_size">Normaliser la taille de la police</string>
@@ -489,6 +488,5 @@
    <string name="enable_horizontal_gesture">Activer le geste horizontal pour la page suivante</string>
    <string name="pause_duration">Durée de pause</string>
    <string name="voice">Voix</string>
-   <string name="hide_notification_and_stop_reading">Masquer la notification et arrêter de lire</string>
    <string name="enable_a_large_initial_letter">Activer une grande lettre initiale</string>
 </resources>

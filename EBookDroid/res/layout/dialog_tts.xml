@@ -11,13 +11,13 @@
         android:padding="2dip" >
 
         <TextView
-            android:visibility="gone"
             android:id="@+id/ttsPage"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
             android:layout_gravity="center_horizontal"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            android:visibility="gone" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -47,9 +47,9 @@
 
             <TextView
                 android:id="@+id/ttsEngine"
-                android:layout_weight="1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_weight="1"
                 android:text="Google TTS!!!" />
 
             <TextView
@@ -102,33 +102,30 @@
             android:layout_weight="0"
             android:text="@string/restore_defaults_short" />
 
-        <LinearLayout
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="2dip"
+            android:background="@color/lt_grey_alpha" />
+        
+        <com.foobnix.tts.TTSControlsView 
+            android:id="@+id/ttsActive"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="5dip"
-            android:gravity="center_horizontal" >
+            android:layout_marginTop="5dip" />
 
-            <Button
-                android:id="@+id/onPause"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/to_stop" />
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="2dip"
+            android:background="@color/lt_grey_alpha" />
 
-            <Button
-                android:id="@+id/onPlay"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="10dip"
-                android:text="@string/to_read" />
-        </LinearLayout>
-
-        <TextView
-            android:id="@+id/textDebug"
+        <CheckBox
+            android:id="@+id/stopReadingOnCall"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textIsSelectable="true"
-            android:textSize="10sp"
-            android:visibility="gone" />
+            android:singleLine="true"
+            android:text="@string/pause_reading_if_the_incoming_call_or_other_sounds" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -136,8 +133,9 @@
             android:layout_marginLeft="5dip" >
 
             <TextView
-                android:layout_width="180dip"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:minWidth="150dip"
                 android:singleLine="true"
                 android:text="@string/pause_duration" />
 
@@ -149,39 +147,15 @@
                 android:text="350" />
         </LinearLayout>
 
-        <TextView
-            android:id="@+id/ttsStopService"
-            style="@style/textLink"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/hide_notification_and_stop_reading" />
-
-        <CheckBox
-            android:id="@+id/showNotification"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/show_notifications" />
-
-        <CheckBox
-            android:id="@+id/notificationOngoing"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/sub_checkbox"
-            android:text="@string/ongoing_notification" />
-
-        <CheckBox
-            android:id="@+id/stopReadingOnCall"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/pause_reading_if_the_incoming_call_or_other_sounds" />
-
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" >
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dip" >
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:minWidth="150dip"
                 android:singleLine="true"
                 android:text="@string/stop_reading_timer_"
                 android:textStyle="normal" />
@@ -203,8 +177,9 @@
                 android:text="@string/start" />
         </LinearLayout>
 
-        <Button
+        <TextView
             android:id="@+id/ttsSkeakToFile"
+            style="@style/textLink"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/speak_into_file_wav_" />

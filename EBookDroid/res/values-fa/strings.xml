@@ -306,11 +306,11 @@
    <string name="show_bottom_panel">نمایش پانل پایین</string>
    <string name="to_stop">متوقف کردن</string>
    <string name="to_read">خواندن</string>
+   <string name="to_paly_pause">پخش توقف</string>
    <string name="text_to_speech">متن به گفتار</string>
    <string name="speed1">سرعت</string>
    <string name="pitch1">زمین صدا</string>
    <string name="sound_volume">حجم موسیقی</string>
-   <string name="ongoing_notification">اطلاع رسانی در حال انجام</string>
    <string name="next">بعد</string>
    <string name="stop_reading_timer_">توقف خواندن (تایمر)</string>
    <string name="start">شروع</string>
@@ -479,7 +479,6 @@
    <string name="hide_search_bar">پنهان کردن نوار جستجو</string>
    <string name="show_search_bar">نمایش نوار جستجو</string>
    <string name="never">هرگز</string>
-   <string name="show_notifications">نشان دادن اعلانات</string>
    <string name="general_settings">تنظیمات عمومی</string>
    <string name="cyclic_scrolling_return_to_1_page_">پیمایش سیسیک (بازگشت به 1 صفحه)</string>
    <string name="normalize_font_size">اندازه فونت را عادی کنید</string>
@@ -489,6 +488,5 @@
    <string name="enable_horizontal_gesture">ژست افقی را برای صفحه بعدی فعال کنید</string>
    <string name="pause_duration">مدت زمان مکث</string>
    <string name="voice">صدای</string>
-   <string name="hide_notification_and_stop_reading">مخفی کردن اعلان و متوقف کردن خواندن</string>
    <string name="enable_a_large_initial_letter">یک نامه ابتدایی بزرگ را فعال کنید</string>
 </resources>

@@ -306,11 +306,11 @@
    <string name="show_bottom_panel">Hiển thị bảng dưới cùng</string>
    <string name="to_stop">Dừng lại</string>
    <string name="to_read">Đọc</string>
+   <string name="to_paly_pause">Tạm dừng chơi</string>
    <string name="text_to_speech">Văn bản để nói</string>
    <string name="speed1">Tốc độ</string>
    <string name="pitch1">Sân Sound</string>
    <string name="sound_volume">Âm lượng nhạc</string>
-   <string name="ongoing_notification">Thông báo liên tục</string>
    <string name="next">Kế tiếp</string>
    <string name="stop_reading_timer_">Ngừng đọc (hẹn giờ)</string>
    <string name="start">Khởi đầu</string>
@@ -479,7 +479,6 @@
    <string name="hide_search_bar">Ẩn thanh tìm kiếm</string>
    <string name="show_search_bar">Hiển thị thanh tìm kiếm</string>
    <string name="never">Không bao giờ</string>
-   <string name="show_notifications">Hiển thị thông báo</string>
    <string name="general_settings">Cài đặt chung</string>
    <string name="cyclic_scrolling_return_to_1_page_">Cuộn theo chu kỳ (trở về 1 trang)</string>
    <string name="normalize_font_size">Bình thường hóa kích thước phông chữ</string>
@@ -489,6 +488,5 @@
    <string name="enable_horizontal_gesture">Bật cử chỉ ngang cho trang tiếp theo</string>
    <string name="pause_duration">Tạm dừng thời lượng</string>
    <string name="voice">Tiếng nói</string>
-   <string name="hide_notification_and_stop_reading">Ẩn thông báo và ngừng đọc</string>
    <string name="enable_a_large_initial_letter">Bật chữ cái đầu tiên lớn</string>
 </resources>

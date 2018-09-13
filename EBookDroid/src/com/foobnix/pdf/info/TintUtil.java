@@ -170,6 +170,9 @@ public class TintUtil {
     }
 
     public static ImageView setTintImageWithAlpha(ImageView img) {
+        if (img == null) {
+            return null;
+        }
         img.setColorFilter(color, Mode.SRC_ATOP);
         img.setAlpha(230);
         return img;

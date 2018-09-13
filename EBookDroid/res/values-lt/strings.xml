@@ -306,11 +306,11 @@
    <string name="show_bottom_panel">Rodyti progreso juostą</string>
    <string name="to_stop">Stabdyti</string>
    <string name="to_read">Skaityti</string>
+   <string name="to_paly_pause">Groti / pristabdyti</string>
    <string name="text_to_speech">Tekstas į kalbą</string>
    <string name="speed1">Greitis</string>
    <string name="pitch1">Garso stiprumas</string>
    <string name="sound_volume">G,arsumas</string>
-   <string name="ongoing_notification">Leisti pranešimų signalus</string>
    <string name="next">Kitas</string>
    <string name="stop_reading_timer_">Nustoti skaityti (laikmatis)</string>
    <string name="start">Pradėti</string>
@@ -479,7 +479,6 @@
    <string name="hide_search_bar">Slėpti paieškos juostą</string>
    <string name="show_search_bar">Rodyti paieškos juostą</string>
    <string name="never">Niekada</string>
-   <string name="show_notifications">Rodyti pranešimus</string>
    <string name="general_settings">Bendrieji nustatymai</string>
    <string name="cyclic_scrolling_return_to_1_page_">Ciklinis slinkimas (grįžti į 1 puslapį)</string>
    <string name="normalize_font_size">Normalizuokite šrifto dydį</string>
@@ -489,6 +488,5 @@
    <string name="enable_horizontal_gesture">Įgalinkite horizontalų gestą kitam puslapiui</string>
    <string name="pause_duration">Sustabdymo trukmė</string>
    <string name="voice">Balsas</string>
-   <string name="hide_notification_and_stop_reading">Slėpti pranešimą ir nustoti skaityti</string>
    <string name="enable_a_large_initial_letter">Įgalinti didelę pradinę raidę</string>
 </resources>

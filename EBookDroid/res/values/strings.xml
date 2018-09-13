@@ -306,11 +306,11 @@
    <string name="show_bottom_panel">Show timer (status bar)</string>
    <string name="to_stop">Stop</string>
    <string name="to_read">Start</string>
+   <string name="to_paly_pause">Play / Pause</string>
    <string name="text_to_speech">TTS Settings</string>
    <string name="speed1">Speed</string>
    <string name="pitch1">Pitch</string>
    <string name="sound_volume">Volume</string>
-   <string name="ongoing_notification">Ongoing notification</string>
    <string name="next">Next Page</string>
    <string name="stop_reading_timer_">Reading ends in</string>
    <string name="start">Start</string>
@@ -479,7 +479,6 @@
    <string name="hide_search_bar">Hide search bar</string>
    <string name="show_search_bar">Show search bar</string>
    <string name="never">Never</string>
-   <string name="show_notifications">Display global notification</string>
    <string name="general_settings">General Settings</string>
    <string name="cyclic_scrolling_return_to_1_page_">Loop scroll</string>
    <string name="normalize_font_size">Normalize font size</string>
@@ -489,6 +488,5 @@
    <string name="enable_horizontal_gesture">Turn pages by horizontal swipes</string>
    <string name="pause_duration">Pause</string>
    <string name="voice">Voice</string>
-   <string name="hide_notification_and_stop_reading">Hide notification and stop reading</string>
    <string name="enable_a_large_initial_letter">Enable a large initial letter</string>
 </resources>

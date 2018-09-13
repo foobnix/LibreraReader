@@ -8,10 +8,8 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
-import java.util.Set;
 
 import org.ebookdroid.BookType;
-import org.ebookdroid.LibreraApp;
 import org.ebookdroid.common.settings.SettingsManager;
 import org.ebookdroid.common.settings.books.BookSettings;
 import org.greenrobot.eventbus.EventBus;
@@ -70,8 +68,8 @@ import com.foobnix.pdf.search.activity.msg.InvalidateMessage;
 import com.foobnix.pdf.search.activity.msg.MovePageAction;
 import com.foobnix.pdf.search.menu.MenuBuilderM;
 import com.foobnix.sys.TempHolder;
+import com.foobnix.tts.TTSControlsView;
 import com.foobnix.tts.TTSEngine;
-import com.foobnix.tts.TTSNotification;
 import com.foobnix.tts.TTSService;
 import com.foobnix.ui2.AppDB;
 import com.foobnix.ui2.adapter.DefaultListeners;
@@ -103,7 +101,6 @@ import android.media.AudioManager;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Handler;
-import android.speech.tts.TextToSpeech.EngineInfo;
 import android.speech.tts.TextToSpeech.OnInitListener;
 import android.support.v4.app.FragmentActivity;
 import android.support.v7.widget.LinearLayoutManager;
@@ -493,28 +490,15 @@ public class DragingDialogs {
                 final View view = inflater.inflate(R.layout.dialog_tts, null, false);
 
                 final TextView ttsPage = (TextView) view.findViewById(R.id.ttsPage);
-                // ttsPage.setText(activity.getString(R.string.page) + " " +
-                // controller.getCurentPageFirst1());
 
                 final TextView textEngine = (TextView) view.findViewById(R.id.ttsEngine);
-                final TextView textDebug = (TextView) view.findViewById(R.id.textDebug);
 
                 final TextView timerTime = (TextView) view.findViewById(R.id.timerTime);
                 final TextView timerStart = (TextView) view.findViewById(R.id.timerStart);
 
-                final TextView ttsStopService = (TextView) view.findViewById(R.id.ttsStopService);
-                ttsStopService.setVisibility(TxtUtils.visibleIf(Build.VERSION.SDK_INT >= 26));
-                TxtUtils.underlineTextView(ttsStopService);
+                TTSControlsView tts = (TTSControlsView) view.findViewById(R.id.ttsActive);
+                tts.setDC(controller);
 
-                ttsStopService.setOnClickListener(new OnClickListener() {
-
-                    @Override
-                    public void onClick(View v) {
-                        TTSEngine.get().stop();
-                        controller.getActivity().stopService(new Intent(controller.getActivity(), TTSService.class));
-                        TTSNotification.hideNotification();
-                    }
-                });
 
                 final TextView ttsLang = (TextView) view.findViewById(R.id.ttsLang);
                 // TxtUtils.underlineTextView(ttsLang);
@@ -583,7 +567,8 @@ public class DragingDialogs {
                         }
 
                         timerStart.setText(TempHolder.get().timerFinishTime == 0 ? R.string.start : R.string.cancel);
-                        ttsPage.setText(TempHolder.get().timerFinishTime == 0 ? "" : controller.getString(R.string.reading_will_be_stopped) + " " + DateFormat.getTimeFormat(activity).format(TempHolder.get().timerFinishTime));
+                        ttsPage.setText(
+                                TempHolder.get().timerFinishTime == 0 ? "" : controller.getString(R.string.reading_will_be_stopped) + " " + DateFormat.getTimeFormat(activity).format(TempHolder.get().timerFinishTime));
                         ttsPage.setVisibility(TxtUtils.visibleIf(TempHolder.get().timerFinishTime > 0));
                     }
                 });
@@ -597,19 +582,7 @@ public class DragingDialogs {
                     @Override
                     public void onInit(int status) {
                         textEngine.setText(TTSEngine.get().getCurrentEngineName());
-                        // TxtUtils.underlineTextView(textEngine);
                         ttsLang.setText(TTSEngine.get().getCurrentLang());
-
-                        if (false) {
-                            Locale l = new Locale(BookCSS.get().hypenLang);
-                            int lstat = TTSEngine.get().getTTS().isLanguageAvailable(l);
-                            LOG.d("TTS-local status", lstat);
-                            if (status >= 0) {
-                                TTSEngine.get().getTTS().setLanguage(l);
-                            }
-                        }
-
-                        // TxtUtils.underlineTextView(ttsLang);
 
                     }
                 });
@@ -619,78 +592,12 @@ public class DragingDialogs {
                     @Override
                     public void run() {
                         textEngine.setText(TTSEngine.get().getCurrentEngineName());
-                        // TxtUtils.underlineTextView(textEngine);
                         ttsLang.setText(TTSEngine.get().getCurrentLang());
                     }
                 });
 
                 textEngine.setText(TTSEngine.get().getCurrentEngineName());
-                // TxtUtils.underlineTextView(textEngine);
-
                 ttsLang.setText(TTSEngine.get().getCurrentLang());
-                // TxtUtils.underlineTextView(ttsLang);
-
-                ttsLang.setOnClickListener(new OnClickListener() {
-
-                    @Override
-                    public void onClick(View v) {
-                        if (true) {
-                            return;
-                        }
-                        TTSEngine.get().stop();
-
-                        MyPopupMenu p = new MyPopupMenu(v.getContext(), v);
-                        Set<Locale> availableLanguages = TTSEngine.get().getTTS().getAvailableLanguages();
-                        for (final Locale l : availableLanguages) {
-                            p.getMenu().add(l.getDisplayName()).setOnMenuItemClickListener(new OnMenuItemClickListener() {
-
-                                @Override
-                                public boolean onMenuItemClick(MenuItem item) {
-
-                                    TTSEngine.get().getTTS().setLanguage(l);
-
-                                    ttsLang.setText(TTSEngine.get().getCurrentLang());
-                                    TxtUtils.underlineTextView(ttsLang);
-                                    return false;
-                                }
-                            });
-                        }
-                        p.show();
-
-                    }
-                });
-
-                textEngine.setOnClickListener(new OnClickListener() {
-
-                    @Override
-                    public void onClick(View v) {
-                        if (true) {
-                            return;
-                        }
-
-                        TTSEngine.get().stop();
-
-                        PopupMenu menu = new PopupMenu(v.getContext(), v);
-                        List<EngineInfo> engines = TTSEngine.get().getTTS().getEngines();
-                        for (final EngineInfo eInfo : engines) {
-                            final String name = TTSEngine.engineToString(eInfo);
-                            menu.getMenu().add(name).setOnMenuItemClickListener(new OnMenuItemClickListener() {
-
-                                @Override
-                                public boolean onMenuItemClick(MenuItem item) {
-                                    textEngine.setText(name);
-                                    TTSEngine.get().setTTSWithEngine(eInfo.name);
-                                    TxtUtils.underlineTextView(textEngine);
-
-                                    ttsLang.setText(TTSEngine.get().getCurrentLang());
-                                    // TxtUtils.underlineTextView(ttsLang);
-                                    return false;
-                                }
-                            });
-                        }
-                        menu.show();
-                    }
-                });
 
                 TxtUtils.underlineTextView((TextView) view.findViewById(R.id.ttsSettings)).setOnClickListener(new OnClickListener() {
 
@@ -716,31 +623,6 @@ public class DragingDialogs {
                     }
                 });
 
-                view.findViewById(R.id.onPlay).setOnClickListener(new OnClickListener() {
-
-                    @Override
-                    public void onClick(View v) {
-                        TTSService.playBookPage(controller.getCurentPageFirst1() - 1, controller.getCurrentBook().getPath(), "", controller.getBookWidth(), controller.getBookHeight(), AppState.get().fontSizeSp);
-
-                    }
-                });
-                view.findViewById(R.id.onPause).setOnClickListener(new OnClickListener() {
-
-                    @Override
-                    public void onClick(View v) {
-                        TTSEngine.get().stop();
-                        TTSNotification.hideNotification();
-                    }
-                });
-
-                view.findViewById(R.id.onPause).setOnLongClickListener(new OnLongClickListener() {
-
-                    @Override
-                    public boolean onLongClick(View v) {
-                        textDebug.setVisibility(View.VISIBLE);
-                        return true;
-                    }
-                });
 
                 final CustomSeek seekBarSpeed = (CustomSeek) view.findViewById(R.id.seekBarSpeed);
                 seekBarSpeed.init(0, 600, (int) AppState.get().ttsSpeed * 100);
@@ -825,37 +707,6 @@ public class DragingDialogs {
                     }
                 });
                 //
-
-                final CheckBox notificationOngoing = (CheckBox) view.findViewById(R.id.notificationOngoing);
-                notificationOngoing.setChecked(AppState.get().notificationOngoing);
-                notificationOngoing.setEnabled(AppState.get().showNotification);
-                notificationOngoing.setOnCheckedChangeListener(new OnCheckedChangeListener() {
-
-                    @Override
-                    public void onCheckedChanged(final CompoundButton buttonView, final boolean isChecked) {
-                        AppState.get().notificationOngoing = isChecked;
-                        TTSNotification.hideNotification();
-                        TTSNotification.showLast();
-                    }
-                });
-
-                final CheckBox showNotification = (CheckBox) view.findViewById(R.id.showNotification);
-                showNotification.setChecked(AppState.get().showNotification);
-                showNotification.setOnCheckedChangeListener(new OnCheckedChangeListener() {
-
-                    @Override
-                    public void onCheckedChanged(final CompoundButton buttonView, final boolean isChecked) {
-                        AppState.get().showNotification = isChecked;
-                        if (!isChecked) {
-                            TTSNotification.hideNotification();
-                        } else {
-                        }
-                        notificationOngoing.setEnabled(AppState.get().showNotification);
-                    }
-                });
-
-                showNotification.setVisibility(TxtUtils.visibleIf(Build.VERSION.SDK_INT < 26));
-                notificationOngoing.setVisibility(TxtUtils.visibleIf(Build.VERSION.SDK_INT < 26));
 
                 CheckBox stopReadingOnCall = (CheckBox) view.findViewById(R.id.stopReadingOnCall);
                 stopReadingOnCall.setChecked(AppState.get().stopReadingOnCall);
@@ -1436,7 +1287,8 @@ public class DragingDialogs {
                     public void onClick(View v) {
                         TTSEngine.get().stop();
 
-                        TTSService.playBookPage(controller.getCurentPageFirst1() - 1, controller.getCurrentBook().getPath(), editText.getText().toString().trim(), controller.getBookWidth(), controller.getBookHeight(), AppState.get().fontSizeSp);
+                        TTSService.playBookPage(controller.getCurentPageFirst1() - 1, controller.getCurrentBook().getPath(), editText.getText().toString().trim(), controller.getBookWidth(), controller.getBookHeight(),
+                                AppState.get().fontSizeSp);
                     }
                 });
 

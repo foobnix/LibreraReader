@@ -272,8 +272,6 @@ public class AppState {
     public boolean isFullScreenMain = false;
     @IgnoreHashCode
     public boolean isAutoFit = false;
-    public boolean showNotification = true;
-    public boolean notificationOngoing = false;
 
     public boolean isShowImages = true;
     public boolean isShowToolBar = true;

@@ -306,11 +306,11 @@
    <string name="show_bottom_panel">Onyesha jopo chini</string>
    <string name="to_stop">Kukomesha</string>
    <string name="to_read">Kusoma</string>
+   <string name="to_paly_pause">Jaribu / Pause</string>
    <string name="text_to_speech">Nakala ya hotuba</string>
    <string name="speed1">Kasi</string>
    <string name="pitch1">Sauti lami</string>
    <string name="sound_volume">Music kiasi</string>
-   <string name="ongoing_notification">Taarifa unaoendelea</string>
    <string name="next">Ijayo</string>
    <string name="stop_reading_timer_">Acha kusoma (timer)</string>
    <string name="start">Start</string>
@@ -479,7 +479,6 @@
    <string name="hide_search_bar">Ficha bar ya utafutaji</string>
    <string name="show_search_bar">Onyesha bar ya utafutaji</string>
    <string name="never">Kamwe</string>
-   <string name="show_notifications">Onyesha arifa</string>
    <string name="general_settings">Mazingira ya Jumla</string>
    <string name="cyclic_scrolling_return_to_1_page_">Kupiga rangi kwa kasi (kurudi kwenye ukurasa 1)</string>
    <string name="normalize_font_size">Wekaza ukubwa wa font</string>
@@ -489,6 +488,5 @@
    <string name="enable_horizontal_gesture">Wezesha ishara ya usawa kwa ukurasa unaofuata</string>
    <string name="pause_duration">Pumzika muda</string>
    <string name="voice">Sauti</string>
-   <string name="hide_notification_and_stop_reading">Ficha taarifa na uacha kusoma</string>
    <string name="enable_a_large_initial_letter">Wezesha barua kubwa ya awali</string>
 </resources>

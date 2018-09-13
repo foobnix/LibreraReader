@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="5dip"
+    android:gravity="center_horizontal" >
+
+    <ImageView
+        android:id="@+id/ttsPrev"
+        android:layout_width="@dimen/wh_button_big"
+        android:layout_height="@dimen/wh_button_big"
+        android:background="@drawable/bg_clickable"
+        android:padding="5dip"
+        android:src="@drawable/glyphicons_173_rewind" />
+
+    <ImageView
+        android:id="@+id/ttsPlayPause"
+        android:layout_width="@dimen/wh_button_big"
+        android:layout_height="@dimen/wh_button_big"
+        android:layout_marginLeft="10dip"
+        android:background="@drawable/bg_clickable"
+        android:padding="5dip"
+        android:src="@drawable/glyphicons_174_play" />
+
+    <ImageView
+        android:id="@+id/ttsNext"
+        android:layout_width="@dimen/wh_button_big"
+        android:layout_height="@dimen/wh_button_big"
+        android:layout_marginLeft="10dip"
+        android:background="@drawable/bg_clickable"
+        android:padding="5dip"
+        android:src="@drawable/glyphicons_177_forward" />
+
+    <ImageView
+        android:id="@+id/ttsStop"
+        android:layout_width="@dimen/wh_button_big"
+        android:layout_height="@dimen/wh_button_big"
+        android:layout_marginLeft="20dip"
+        android:background="@drawable/bg_clickable"
+        android:padding="5dip"
+        android:src="@drawable/glyphicons_176_stop" />
+
+</LinearLayout>

@@ -306,11 +306,11 @@
    <string name="show_bottom_panel">Vis bunnpanel</string>
    <string name="to_stop">Stoppe</string>
    <string name="to_read">Lese</string>
+   <string name="to_paly_pause">Play / Pause</string>
    <string name="text_to_speech">Tekst til tale</string>
    <string name="speed1">Hastighet</string>
    <string name="pitch1">Lydhøyde</string>
    <string name="sound_volume">Musikkvolum</string>
-   <string name="ongoing_notification">Løpende varsling</string>
    <string name="next">Neste</string>
    <string name="stop_reading_timer_">Stopp lesing (timer)</string>
    <string name="start">Start</string>
@@ -479,7 +479,6 @@
    <string name="hide_search_bar">Skjul søkefelt</string>
    <string name="show_search_bar">Vis søkefelt</string>
    <string name="never">Aldri</string>
-   <string name="show_notifications">Vis varsler</string>
    <string name="general_settings">Generelle innstillinger</string>
    <string name="cyclic_scrolling_return_to_1_page_">Syklisk rulling (tilbake til 1 side)</string>
    <string name="normalize_font_size">Normaliser skriftstørrelsen</string>
@@ -489,6 +488,5 @@
    <string name="enable_horizontal_gesture">Aktiver horisontal gest for neste side</string>
    <string name="pause_duration">Pause varighet</string>
    <string name="voice">Stemme</string>
-   <string name="hide_notification_and_stop_reading">Skjul varsel og slutte å lese</string>
    <string name="enable_a_large_initial_letter">Aktiver et stort innledende brev</string>
 </resources>

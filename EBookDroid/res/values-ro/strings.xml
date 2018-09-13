@@ -306,11 +306,11 @@
    <string name="show_bottom_panel">Afișați panoul de jos</string>
    <string name="to_stop">Stop</string>
    <string name="to_read">Citiți</string>
+   <string name="to_paly_pause">Redare / Pauză</string>
    <string name="text_to_speech">Text de vorbire</string>
    <string name="speed1">Viteză</string>
    <string name="pitch1">Smoală sunet</string>
    <string name="sound_volume">Volumul muzicii</string>
-   <string name="ongoing_notification">Notificare în curs de desfășurare</string>
    <string name="next">Următorul</string>
    <string name="stop_reading_timer_">Opriți citirea (temporizator)</string>
    <string name="start">Start</string>
@@ -479,7 +479,6 @@
    <string name="hide_search_bar">Ascundeți bara de căutare</string>
    <string name="show_search_bar">Afișați bara de căutare</string>
    <string name="never">Nu</string>
-   <string name="show_notifications">Arata notificari</string>
    <string name="general_settings">Setari generale</string>
    <string name="cyclic_scrolling_return_to_1_page_">Derulare ciclică (revenire la 1 pagină)</string>
    <string name="normalize_font_size">Normalizați dimensiunea fontului</string>
@@ -489,6 +488,5 @@
    <string name="enable_horizontal_gesture">Activați gestul orizontal pentru pagina următoare</string>
    <string name="pause_duration">Întrerupeți durata</string>
    <string name="voice">Voce</string>
-   <string name="hide_notification_and_stop_reading">Ascundeți notificarea și opriți citirea</string>
    <string name="enable_a_large_initial_letter">Activați o literă inițială mare</string>
 </resources>

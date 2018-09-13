@@ -306,11 +306,11 @@
    <string name="show_bottom_panel">Tampilkan panel bawah</string>
    <string name="to_stop">Berhenti</string>
    <string name="to_read">Baca baca</string>
+   <string name="to_paly_pause">Mainkan / Jeda</string>
    <string name="text_to_speech">Teks pidato</string>
    <string name="speed1">Kecepatan</string>
    <string name="pitch1">Nada suara</string>
    <string name="sound_volume">Volume musik</string>
-   <string name="ongoing_notification">Pemberitahuan yang sedang berlangsung</string>
    <string name="next">Berikutnya</string>
    <string name="stop_reading_timer_">Berhenti membaca (timer)</string>
    <string name="start">Mulai</string>
@@ -479,7 +479,6 @@
    <string name="hide_search_bar">Sembunyikan bilah pencarian</string>
    <string name="show_search_bar">Tampilkan bilah penelusuran</string>
    <string name="never">Tak pernah</string>
-   <string name="show_notifications">Tampilkan pemberitahuan</string>
    <string name="general_settings">Pengaturan Umum</string>
    <string name="cyclic_scrolling_return_to_1_page_">Gerak siklik (kembali ke 1 halaman)</string>
    <string name="normalize_font_size">Normalkan ukuran font</string>
@@ -489,6 +488,5 @@
    <string name="enable_horizontal_gesture">Aktifkan isyarat horizontal untuk halaman berikutnya</string>
    <string name="pause_duration">Jeda durasi</string>
    <string name="voice">Suara</string>
-   <string name="hide_notification_and_stop_reading">Sembunyikan notifikasi dan berhenti membaca</string>
    <string name="enable_a_large_initial_letter">Aktifkan huruf awal yang besar</string>
 </resources>

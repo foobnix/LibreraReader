@@ -227,6 +227,7 @@
                 android:contentDescription="@string/block_page_movement_horizontally"
                 android:src="@drawable/glyphicons_204_lock" />
         </LinearLayout>
+        
     </LinearLayout>
 
 </FrameLayout>

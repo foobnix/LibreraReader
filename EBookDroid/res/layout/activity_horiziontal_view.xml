@@ -183,8 +183,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dip"
-                android:minWidth="50dip"
                 android:layout_weight="1"
+                android:minWidth="50dip"
                 android:text="--:--"
                 android:textColor="@color/tint_gray"
                 android:textSize="9sp" />
@@ -209,14 +209,13 @@
                 android:layout_alignParentBottom="true"
                 android:layout_marginLeft="10dip"
                 android:layout_toRightOf="@+id/pagesCountIndicator"
-                android:text="{10}"
                 android:minEms="3"
+                android:text="{10}"
                 android:textColor="@color/tint_gray"
                 android:textSize="12sp"
                 android:visibility="gone" />
 
             <TextView
-                android:minWidth="50dip"
                 android:id="@+id/pagesPower"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -224,6 +223,7 @@
                 android:layout_weight="1"
                 android:drawablePadding="0dip"
                 android:gravity="right"
+                android:minWidth="50dip"
                 android:text="--%"
                 android:textColor="@color/tint_gray"
                 android:textSize="9sp" />
@@ -236,7 +236,8 @@
     </LinearLayout>
 
     <ImageView
-        android:id="@+id/ttsActive"
+        android:id="@+id/ttsActive1"
+        android:visibility="gone"
         style="@style/buttonWhite"
         android:layout_width="@dimen/wh_button"
         android:layout_height="@dimen/wh_button"
@@ -252,11 +253,19 @@
         android:id="@+id/bottomBar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_above="@+id/ttsControls"
         android:layout_alignParentBottom="true"
         android:background="#96aa39" >
+
         <include layout="@layout/document_footer" />
     </FrameLayout>
 
+    <com.foobnix.tts.TTSControlsView
+        android:layout_marginBottom="10dip"
+        android:id="@+id/ttsActive"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true" />
 
     <FrameLayout
         android:id="@+id/anchor"

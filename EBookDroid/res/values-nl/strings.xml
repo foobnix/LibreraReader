@@ -306,11 +306,11 @@
    <string name="show_bottom_panel">Toon het onderste paneel</string>
    <string name="to_stop">Hou op</string>
    <string name="to_read">Lezen</string>
+   <string name="to_paly_pause">Speel pauze</string>
    <string name="text_to_speech">Tekst naar spraak</string>
    <string name="speed1">Snelheid</string>
    <string name="pitch1">Toonhoogte</string>
    <string name="sound_volume">Muziekvolume</string>
-   <string name="ongoing_notification">Lopende kennisgeving</string>
    <string name="next">Volgende</string>
    <string name="stop_reading_timer_">Stop met lezen (timer)</string>
    <string name="start">Begin</string>
@@ -479,7 +479,6 @@
    <string name="hide_search_bar">Zoekbalk verbergen</string>
    <string name="show_search_bar">Toon zoekbalk</string>
    <string name="never">Nooit</string>
-   <string name="show_notifications">Toon meldingen</string>
    <string name="general_settings">Algemene instellingen</string>
    <string name="cyclic_scrolling_return_to_1_page_">Cyclisch scrollen (teruggaan naar 1 pagina)</string>
    <string name="normalize_font_size">Lettergrootte normaliseren</string>
@@ -489,6 +488,5 @@
    <string name="enable_horizontal_gesture">Schakel horizontale beweging in voor de volgende pagina</string>
    <string name="pause_duration">Pauzeerduur</string>
    <string name="voice">Stem</string>
-   <string name="hide_notification_and_stop_reading">Verberg melding en stop met lezen</string>
    <string name="enable_a_large_initial_letter">Schakel een grote beginletter in</string>
 </resources>

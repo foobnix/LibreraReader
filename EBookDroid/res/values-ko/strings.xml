@@ -306,11 +306,11 @@
    <string name="show_bottom_panel">하단 패널 표시</string>
    <string name="to_stop">중지</string>
    <string name="to_read">읽기</string>
+   <string name="to_paly_pause">재생 / 일시 중지</string>
    <string name="text_to_speech">음성 읽기</string>
    <string name="speed1">속도</string>
    <string name="pitch1">사운드 피치</string>
    <string name="sound_volume">음악 볼륨</string>
-   <string name="ongoing_notification">지속적인 통지</string>
    <string name="next">다음</string>
    <string name="stop_reading_timer_">독서 중지 (타이머)</string>
    <string name="start">스타트</string>
@@ -479,7 +479,6 @@
    <string name="hide_search_bar">검색 창 숨기기</string>
    <string name="show_search_bar">검색 창 표시</string>
    <string name="never">못</string>
-   <string name="show_notifications">알림 표시</string>
    <string name="general_settings">일반 설정</string>
    <string name="cyclic_scrolling_return_to_1_page_">순환 스크롤 (1 페이지로 돌아 가기)</string>
    <string name="normalize_font_size">글꼴 크기 표준화</string>
@@ -489,6 +488,5 @@
    <string name="enable_horizontal_gesture">다음 페이지의 가로 제스처 사용</string>
    <string name="pause_duration">일시 중지 기간</string>
    <string name="voice">목소리</string>
-   <string name="hide_notification_and_stop_reading">알림 숨기기 및 읽기 중지</string>
    <string name="enable_a_large_initial_letter">큰 초기 문자 사용</string>
 </resources>

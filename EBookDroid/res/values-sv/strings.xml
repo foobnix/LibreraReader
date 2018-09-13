@@ -306,11 +306,11 @@
    <string name="show_bottom_panel">Visa bottenpanelen</string>
    <string name="to_stop">Sluta</string>
    <string name="to_read">Läsa</string>
+   <string name="to_paly_pause">Play / Pause</string>
    <string name="text_to_speech">Text till tal</string>
    <string name="speed1">Fart</string>
    <string name="pitch1">Ljud tonhöjd</string>
    <string name="sound_volume">Musikvolymen</string>
-   <string name="ongoing_notification">Pågående anmälan</string>
    <string name="next">Nästa</string>
    <string name="stop_reading_timer_">Sluta läsa (timer)</string>
    <string name="start">Start</string>
@@ -479,7 +479,6 @@
    <string name="hide_search_bar">Dölj sökfältet</string>
    <string name="show_search_bar">Visa sökfältet</string>
    <string name="never">Aldrig</string>
-   <string name="show_notifications">Visa notifikationer</string>
    <string name="general_settings">Allmänna Inställningar</string>
    <string name="cyclic_scrolling_return_to_1_page_">Cyklisk rullning (återgå till 1 sida)</string>
    <string name="normalize_font_size">Normalisera typstorlek</string>
@@ -489,6 +488,5 @@
    <string name="enable_horizontal_gesture">Aktivera horisontell gest för nästa sida</string>
    <string name="pause_duration">Pausvaraktighet</string>
    <string name="voice">Röst</string>
-   <string name="hide_notification_and_stop_reading">Dölj anmälan och sluta läsa</string>
    <string name="enable_a_large_initial_letter">Aktivera en stor initialt bokstav</string>
 </resources>

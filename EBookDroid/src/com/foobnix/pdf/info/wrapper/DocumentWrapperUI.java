@@ -43,6 +43,7 @@ import com.foobnix.pdf.search.activity.msg.MessegeBrightness;
 import com.foobnix.pdf.search.view.CloseAppDialog;
 import com.foobnix.sys.TempHolder;
 import com.foobnix.tts.MessagePageNumber;
+import com.foobnix.tts.TTSControlsView;
 import com.foobnix.tts.TTSEngine;
 import com.foobnix.tts.TtsStatus;
 import com.foobnix.ui2.AppDB;
@@ -89,9 +90,10 @@ public class DocumentWrapperUI {
 
     TextView toastBrightnessText, currentPageIndex, currentSeek, maxSeek, currentTime, bookName, nextTypeBootom, batteryLevel, lirbiLogo, reverseKeysIndicator;
     ImageView onDocDontext, toolBarButton, linkHistory, lockUnlock, lockUnlockTop, textToSpeachTop, clockIcon, batteryIcon;
-    ImageView showSearch, nextScreenType, autoScroll, textToSpeach, ttsActive, onModeChange, imageMenuArrow, editTop2, goToPage1, goToPage1Top;
+    ImageView showSearch, nextScreenType, autoScroll, textToSpeach, onModeChange, imageMenuArrow, editTop2, goToPage1, goToPage1Top;
     View adFrame, titleBar, overlay, menuLayout, moveLeft, moveRight, bottomBar, onCloseBook, seekSpeedLayot, zoomPlus, zoomMinus;
     View line1, line2, lineFirst, lineClose, closeTop;
+    TTSControlsView ttsActive;
     SeekBar seekBar, speedSeekBar;
     FrameLayout anchor;
     DrawView drawView;
@@ -151,9 +153,7 @@ public class DocumentWrapperUI {
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void onTTSStatus(TtsStatus status) {
         try {
-            if (ttsActive != null) {
-                ttsActive.setVisibility(TTSEngine.get().isPlaying() ? View.VISIBLE : View.GONE);
-            }
+            ttsActive.setVisibility(TxtUtils.visibleIf(!TTSEngine.get().isShutdown()));
         } catch (Exception e) {
             LOG.e(e);
         }
@@ -311,19 +311,22 @@ public class DocumentWrapperUI {
             }
         }
 
-        if (AppState.get().isUseVolumeKeys && AppState.get().getNextKeys().contains(keyCode)) {
-            if (closeDialogs()) {
+        if (!TTSEngine.get().isPlaying()) {
+            if (AppState.get().isUseVolumeKeys && AppState.get().getNextKeys().contains(keyCode)) {
+                if (closeDialogs()) {
+                    return true;
+                }
+                nextChose(false, event.getRepeatCount());
                 return true;
             }
-            nextChose(false, event.getRepeatCount());
-            return true;
-        }
-        if (AppState.get().isUseVolumeKeys && AppState.get().getPrevKeys().contains(keyCode)) {
-            if (closeDialogs()) {
+
+            if (AppState.get().isUseVolumeKeys && AppState.get().getPrevKeys().contains(keyCode)) {
+                if (closeDialogs()) {
+                    return true;
+                }
+                prevChose(false, event.getRepeatCount());
                 return true;
             }
-            prevChose(false, event.getRepeatCount());
-            return true;
         }
 
         if (AppState.get().isUseVolumeKeys && KeyEvent.KEYCODE_HEADSETHOOK == keyCode) {
@@ -686,20 +689,9 @@ public class DocumentWrapperUI {
         textToSpeachTop = (ImageView) a.findViewById(R.id.textToSpeachTop);
         textToSpeachTop.setOnClickListener(onTextToSpeach);
 
-        ttsActive = (ImageView) a.findViewById(R.id.ttsActive);
-        onTTSStatus(null);
-        ttsActive.setOnClickListener(onTextToSpeach);
-
-        ttsActive.setOnLongClickListener(new OnLongClickListener() {
-
-            @Override
-            public boolean onLongClick(View v) {
-                Vibro.vibrate();
-                TTSEngine.get().stop();
-                ttsActive.setVisibility(View.GONE);
-                return true;
-            }
-        });
+        ttsActive = a.findViewById(R.id.ttsActive);
+        ttsActive.setVisibility(TxtUtils.visibleIf(TTSEngine.get().isPlaying()));
+        ttsActive.setDC(dc);
 
         batteryIcon = (ImageView) a.findViewById(R.id.batteryIcon);
         clockIcon = (ImageView) a.findViewById(R.id.clockIcon);
@@ -847,7 +839,8 @@ public class DocumentWrapperUI {
 
     public void updateSeekBarColorAndSize() {
         lirbiLogo.setText(AppState.get().musicText);
-        TintUtil.setBackgroundFillColorBottomRight(ttsActive, ColorUtils.setAlphaComponent(TintUtil.color, 230));
+        // TintUtil.setBackgroundFillColorBottomRight(ttsActive,
+        // ColorUtils.setAlphaComponent(TintUtil.color, 230));
 
         TintUtil.setTintText(bookName, TintUtil.getStatusBarColor());
         TintUtil.setTintImageWithAlpha(textToSpeachTop, TintUtil.getStatusBarColor());

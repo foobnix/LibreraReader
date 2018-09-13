@@ -306,11 +306,11 @@
    <string name="show_bottom_panel">显示阅读状态</string>
    <string name="to_stop">停止</string>
    <string name="to_read">朗读</string>
+   <string name="to_paly_pause">播放/暂停</string>
    <string name="text_to_speech">文字转语音</string>
    <string name="speed1">语速</string>
    <string name="pitch1">音调</string>
    <string name="sound_volume">音量</string>
-   <string name="ongoing_notification">进行通知</string>
    <string name="next">下一页</string>
    <string name="stop_reading_timer_">停止朗读（定时器）</string>
    <string name="start">开始</string>
@@ -479,7 +479,6 @@
    <string name="hide_search_bar">隐藏搜索栏</string>
    <string name="show_search_bar">显示搜索栏</string>
    <string name="never">决不</string>
-   <string name="show_notifications">显示通知</string>
    <string name="general_settings">常规设置</string>
    <string name="cyclic_scrolling_return_to_1_page_">首尾循环滚动</string>
    <string name="normalize_font_size">规范字体大小</string>
@@ -489,6 +488,5 @@
    <string name="enable_horizontal_gesture">启用水平手势</string>
    <string name="pause_duration">暂停持续时间</string>
    <string name="voice">语音</string>
-   <string name="hide_notification_and_stop_reading">隐藏通知并停止阅读</string>
    <string name="enable_a_large_initial_letter">启用大型首字母</string>
 </resources>

@@ -306,11 +306,11 @@
    <string name="show_bottom_panel">Näytä pohjapaneelin</string>
    <string name="to_stop">Stop</string>
    <string name="to_read">Lukea</string>
+   <string name="to_paly_pause">Toista / keskeytä</string>
    <string name="text_to_speech">Teksti puheeksi</string>
    <string name="speed1">Nopeus</string>
    <string name="pitch1">Ääni piki</string>
    <string name="sound_volume">Musiikin äänenvoimakkuus</string>
-   <string name="ongoing_notification">Juoksevat ilmoitus</string>
    <string name="next">Seuraava</string>
    <string name="stop_reading_timer_">Lopeta lukeminen (ajastin)</string>
    <string name="start">Alkaa</string>
@@ -479,7 +479,6 @@
    <string name="hide_search_bar">Piilota hakupalkki</string>
    <string name="show_search_bar">Näytä hakupalkki</string>
    <string name="never">Ei koskaan</string>
-   <string name="show_notifications">Näytä ilmoitukset</string>
    <string name="general_settings">Yleiset asetukset</string>
    <string name="cyclic_scrolling_return_to_1_page_">Syklinen vieritys (palaa 1 sivulle)</string>
    <string name="normalize_font_size">Normalize font size</string>
@@ -489,6 +488,5 @@
    <string name="enable_horizontal_gesture">Ota horisontaalinen ele seuraavalle sivulle</string>
    <string name="pause_duration">Tauko kesto</string>
    <string name="voice">Ääni</string>
-   <string name="hide_notification_and_stop_reading">Piilota ilmoitus ja lopeta käsittely</string>
    <string name="enable_a_large_initial_letter">Ota käyttöön suuri alkukirjain</string>
 </resources>

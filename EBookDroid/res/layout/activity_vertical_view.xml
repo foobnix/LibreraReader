@@ -77,7 +77,8 @@
         android:elevation="2dip" />
 
     <ImageView
-        android:id="@+id/ttsActive"
+        android:id="@+id/ttsActive1"
+        android:visibility="gone"
         style="@style/buttonWhite"
         android:layout_width="@dimen/wh_button"
         android:layout_height="@dimen/wh_button"
@@ -121,6 +122,13 @@
         android:layout_height="@dimen/speed_size"
         android:layout_above="@+id/bottomBar1"
         layout="@layout/document_speed_bar" />
+
+    <com.foobnix.tts.TTSControlsView
+        android:id="@+id/ttsActive"
+        android:layout_above="@+id/seekSpeedLayot"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dip" />
 
     <FrameLayout
         android:id="@+id/bottomBar1"

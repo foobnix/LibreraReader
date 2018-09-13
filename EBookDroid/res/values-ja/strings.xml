@@ -306,11 +306,11 @@
    <string name="show_bottom_panel">下のパネルを表示</string>
    <string name="to_stop">止まる</string>
    <string name="to_read">読むために、</string>
+   <string name="to_paly_pause">再生/一時停止</string>
    <string name="text_to_speech">スピーチへのテキスト</string>
    <string name="speed1">速度</string>
    <string name="pitch1">サウンドピッチ</string>
    <string name="sound_volume">音楽の音量</string>
-   <string name="ongoing_notification">継続的な通知</string>
    <string name="next">次へ</string>
    <string name="stop_reading_timer_">読書を止める（タイマー）</string>
    <string name="start">開始</string>
@@ -479,7 +479,6 @@
    <string name="hide_search_bar">検索バーを非表示にする</string>
    <string name="show_search_bar">検索バーを表示</string>
    <string name="never">絶対に</string>
-   <string name="show_notifications">通知を表示</string>
    <string name="general_settings">一般設定</string>
    <string name="cyclic_scrolling_return_to_1_page_">サイクリックスクロール（1ページに戻る）</string>
    <string name="normalize_font_size">フォントサイズを標準化する</string>
@@ -489,6 +488,5 @@
    <string name="enable_horizontal_gesture">次のページの水平方向のジェスチャーを有効にする</string>
    <string name="pause_duration">一時停止時間</string>
    <string name="voice">音声</string>
-   <string name="hide_notification_and_stop_reading">通知を非表示にして読み上げを停止する</string>
    <string name="enable_a_large_initial_letter">大きな頭文字を有効にする</string>
 </resources>

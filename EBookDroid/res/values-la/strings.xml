@@ -306,11 +306,11 @@
    <string name="show_bottom_panel">Show bottom panel</string>
    <string name="to_stop">Sustinere</string>
    <string name="to_read">Lege</string>
+   <string name="to_paly_pause">Play / Blogs</string>
    <string name="text_to_speech">Scriptum recitare</string>
    <string name="speed1">Celeritas</string>
    <string name="pitch1">Amplitudo vocis</string>
    <string name="sound_volume">Sonaritudo</string>
-   <string name="ongoing_notification">Monitio pertinax</string>
    <string name="next">Sequens</string>
    <string name="stop_reading_timer_">Sustinere recitationem exim</string>
    <string name="start">Initiare</string>
@@ -479,7 +479,6 @@
    <string name="hide_search_bar">Investigationis occultare vectes</string>
    <string name="show_search_bar">Show quaero talea</string>
    <string name="never">Numquam</string>
-   <string name="show_notifications">Show Acta Vicimediorum Communium</string>
    <string name="general_settings">General Occasus</string>
    <string name="cyclic_scrolling_return_to_1_page_">Insecta scrolling (redire ad paginam I)</string>
    <string name="normalize_font_size">Font magnitudine Normalize</string>
@@ -489,6 +488,5 @@
    <string name="enable_horizontal_gesture">Admitte motus horizontalis ad proximam paginam</string>
    <string name="pause_duration">Saeculum diapsalma</string>
    <string name="voice">Voice</string>
-   <string name="hide_notification_and_stop_reading">Et nolite celare notitia legere</string>
    <string name="enable_a_large_initial_letter">Magna litterae activare initial</string>
 </resources>

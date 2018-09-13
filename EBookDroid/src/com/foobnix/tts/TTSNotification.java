@@ -35,9 +35,12 @@ public class TTSNotification {
 
     public static final String ACTION_TTS = "TTSNotification_TTS";
 
-    public static final String TTS_READ = "TTS_READ";
-    public static final String TTS_STOP = "TTS_STOP";
+    public static final String TTS_PLAY = "TTS_PLAY";
+    public static final String TTS_PAUSE = "TTS_PAUSE";
+    public static final String TTS_PLAY_PAUSE = "TTS_PLAY_PAUSE";
+    public static final String TTS_STOP_DESTROY = "TTS_STOP_DESTROY";
     public static final String TTS_NEXT = "TTS_NEXT";
+    public static final String TTS_PREV = "TTS_PREV";
 
     public static final int NOT_ID = 123123;
 
@@ -62,10 +65,6 @@ public class TTSNotification {
         bookPath1 = bookPath;
         page1 = page;
         try {
-            if (!AppState.get().showNotification) {
-                hideNotification();
-                return;
-            }
             NotificationManager nm = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
 
             NotificationCompat.Builder builder = new NotificationCompat.Builder(context, DEFAULT);
@@ -81,19 +80,19 @@ public class TTSNotification {
 
             PendingIntent contentIntent = PendingIntent.getActivity(context, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
 
-            PendingIntent stop = PendingIntent.getService(context, 0, new Intent(TTS_STOP, null, context, TTSService.class), PendingIntent.FLAG_UPDATE_CURRENT);
-            PendingIntent read = PendingIntent.getService(context, 0, new Intent(TTS_READ, null, context, TTSService.class), PendingIntent.FLAG_UPDATE_CURRENT);
+            PendingIntent palyPause = PendingIntent.getService(context, 0, new Intent(TTS_PLAY_PAUSE, null, context, TTSService.class), PendingIntent.FLAG_UPDATE_CURRENT);
             PendingIntent next = PendingIntent.getService(context, 0, new Intent(TTS_NEXT, null, context, TTSService.class), PendingIntent.FLAG_UPDATE_CURRENT);
+            PendingIntent stopDestroy = PendingIntent.getService(context, 0, new Intent(TTS_STOP_DESTROY, null, context, TTSService.class), PendingIntent.FLAG_UPDATE_CURRENT);
 
             builder.setContentIntent(contentIntent) //
                     .setSmallIcon(R.drawable.glyphicons_185_volume_up) //
                     .setLargeIcon(getBookImage(bookPath)) //
                     .setTicker(context.getString(R.string.app_name)) //
                     .setWhen(System.currentTimeMillis()) //
-                    .setOngoing(AppState.get().notificationOngoing)//
-                    .addAction(R.drawable.glyphicons_175_pause, context.getString(R.string.to_stop), stop)//
-                    .addAction(R.drawable.glyphicons_174_play, context.getString(R.string.to_read), read)//
-                    .addAction(R.drawable.glyphicons_177_forward, context.getString(R.string.next), next)//
+                    .setOngoing(true)//
+                    .addAction(R.drawable.glyphicons_175_pause, context.getString(R.string.to_paly_pause), palyPause)//
+                    .addAction(R.drawable.glyphicons_174_play, context.getString(R.string.next), next)//
+                    .addAction(R.drawable.glyphicons_177_forward, context.getString(R.string.stop), stopDestroy)//
                     .setContentTitle(TxtUtils.getFileMetaBookName(fileMeta)) //
                     .setContentText(context.getString(R.string.page) + " " + page); ///
 

@@ -306,11 +306,11 @@
    <string name="show_bottom_panel">Zobraziť spodný panel</string>
    <string name="to_stop">Prestať</string>
    <string name="to_read">Čítať</string>
+   <string name="to_paly_pause">Play / Pause</string>
    <string name="text_to_speech">Prevod textu na reč</string>
    <string name="speed1">Rýchlosť</string>
    <string name="pitch1">Zvuk rozteč</string>
    <string name="sound_volume">Hlasitosť hudby</string>
-   <string name="ongoing_notification">Prebiehajúce oznámenia</string>
    <string name="next">Ďalšie</string>
    <string name="stop_reading_timer_">Zastaviť čítanie (časovač)</string>
    <string name="start">Štart</string>
@@ -479,7 +479,6 @@
    <string name="hide_search_bar">Skryť panel vyhľadávania</string>
    <string name="show_search_bar">Zobraziť panel vyhľadávania</string>
    <string name="never">Nikdy</string>
-   <string name="show_notifications">Zobraziť upozornenia</string>
    <string name="general_settings">Všeobecné nastavenia</string>
    <string name="cyclic_scrolling_return_to_1_page_">Cyklické rolovanie (návrat na 1 stránku)</string>
    <string name="normalize_font_size">Normalizovať veľkosť písma</string>
@@ -489,6 +488,5 @@
    <string name="enable_horizontal_gesture">Povoliť horizontálne gesto pre ďalšiu stránku</string>
    <string name="pause_duration">Trvanie prestávky</string>
    <string name="voice">Hlas</string>
-   <string name="hide_notification_and_stop_reading">Skryť upozornenie a zastaviť čítanie</string>
    <string name="enable_a_large_initial_letter">Povoliť veľké počiatočné písmeno</string>
 </resources>

@@ -306,11 +306,11 @@
    <string name="show_bottom_panel">แสดงแผงด้านล่าง</string>
    <string name="to_stop">หยุด</string>
    <string name="to_read">อ่าน</string>
+   <string name="to_paly_pause">เล่น / หยุดชั่วคราว</string>
    <string name="text_to_speech">ข้อความเป็นคำพูด</string>
    <string name="speed1">ความเร็ว</string>
    <string name="pitch1">สนามเสียง</string>
    <string name="sound_volume">ปริมาณเพลง</string>
-   <string name="ongoing_notification">การแจ้งเตือนที่กำลังดำเนินอยู่</string>
    <string name="next">ต่อไป</string>
    <string name="stop_reading_timer_">หยุดอ่าน (จับเวลา)</string>
    <string name="start">เริ่มต้น</string>
@@ -479,7 +479,6 @@
    <string name="hide_search_bar">ซ่อนแถบค้นหา</string>
    <string name="show_search_bar">แสดงแถบค้นหา</string>
    <string name="never">ไม่เคย</string>
-   <string name="show_notifications">แสดงการแจ้งเตือน</string>
    <string name="general_settings">การตั้งค่าทั่วไป</string>
    <string name="cyclic_scrolling_return_to_1_page_">การเลื่อนแบบวน (กลับไปที่หน้า 1)</string>
    <string name="normalize_font_size">ทำให้ขนาดตัวอักษรเป็นปกติ</string>
@@ -489,6 +488,5 @@
    <string name="enable_horizontal_gesture">เปิดใช้งานท่าทางสัมผัสในแนวนอนสำหรับหน้าถัดไป</string>
    <string name="pause_duration">หยุดชั่วคราว</string>
    <string name="voice">เสียงพูด</string>
-   <string name="hide_notification_and_stop_reading">ซ่อนการแจ้งเตือนและหยุดอ่าน</string>
    <string name="enable_a_large_initial_letter">เปิดใช้อักษรตัวแรกขนาดใหญ่</string>
 </resources>

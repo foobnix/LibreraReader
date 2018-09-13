@@ -55,6 +55,7 @@ import com.foobnix.pdf.search.view.VerticalViewPager;
 import com.foobnix.sys.ClickUtils;
 import com.foobnix.sys.TempHolder;
 import com.foobnix.tts.MessagePageNumber;
+import com.foobnix.tts.TTSControlsView;
 import com.foobnix.tts.TTSEngine;
 import com.foobnix.tts.TTSNotification;
 import com.foobnix.tts.TtsStatus;
@@ -80,7 +81,6 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Parcelable;
 import android.support.v4.app.Fragment;
-import android.support.v4.graphics.ColorUtils;
 import android.support.v4.view.ViewPager.OnPageChangeListener;
 import android.text.InputType;
 import android.view.KeyEvent;
@@ -111,10 +111,11 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
     TextView toastBrightnessText, maxSeek, currentSeek, pagesCountIndicator, flippingIntervalView, pagesTime, pagesPower, titleTxt, chapterView, modeName;
     View adFrame, bottomBar, bottomIndicators, moveCenter, onClose, overlay;
     LinearLayout actionBar;
+    TTSControlsView ttsActive;
     FrameLayout anchor;
     UnderlineImageView onCrop, onBC;
 
-    ImageView lockModelImage, linkHistory, ttsActive, onModeChange, outline, onMove, textToSpeach, onPageFlip1;
+    ImageView lockModelImage, linkHistory, onModeChange, outline, onMove, textToSpeach, onPageFlip1;
 
     HorizontalModeController dc;
 
@@ -411,25 +412,17 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
                 DragingDialogs.textToSpeachDialog(anchor, dc);
             }
         });
-        ttsActive = (ImageView) findViewById(R.id.ttsActive);
-        onTTSStatus(null);
-        ttsActive.setOnClickListener(new View.OnClickListener() {
+        ttsActive = findViewById(R.id.ttsActive);
+        ttsActive.setVisibility(TxtUtils.visibleIf(TTSEngine.get().isPlaying()));
 
-            @Override
-            public void onClick(final View v) {
-                DragingDialogs.textToSpeachDialog(anchor, dc);
-            }
-        });
-        ttsActive.setOnLongClickListener(new OnLongClickListener() {
 
-            @Override
-            public boolean onLongClick(View v) {
-                Vibro.vibrate();
-                TTSEngine.get().stop();
-                ttsActive.setVisibility(View.GONE);
-                return true;
-            }
-        });
+        // ttsActive.setOnClickListener(new View.OnClickListener() {
+        //
+        // @Override
+        // public void onClick(final View v) {
+        // DragingDialogs.textToSpeachDialog(anchor, dc);
+        // }
+        // });
 
         onModeChange = (ImageView) findViewById(R.id.onModeChange);
         onModeChange.setOnClickListener(new OnClickListener() {
@@ -859,6 +852,8 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
                     onCrop.underline(AppState.get().isCrop);
                     onCrop.invalidate();
 
+                    ttsActive.setDC(dc);
+
                     // RecentUpates.updateAll(HorizontalViewActivity.this);
 
                 }
@@ -991,7 +986,7 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void onTTSStatus(TtsStatus status) {
         try {
-            ttsActive.setVisibility(TTSEngine.get().isPlaying() ? View.VISIBLE : View.GONE);
+            ttsActive.setVisibility(TxtUtils.visibleIf(!TTSEngine.get().isShutdown()));
         } catch (Exception e) {
             LOG.e(e);
         }
@@ -1251,7 +1246,6 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
         }
     }
 
-
     @Override
     protected void onResume() {
         super.onResume();
@@ -1301,6 +1295,7 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
         lastClick = System.currentTimeMillis();
         viewPager.setCurrentItem(dc.getCurentPage() + 1, isAnimate);
         dc.checkReadingTimer();
+
     }
 
     public void prevPage() {
@@ -1520,7 +1515,6 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
             chapterView.setVisibility(View.GONE);
         }
 
-        onTTSStatus(null);
         LOG.d("_PAGE", "Update UI", page);
     }
 
@@ -1598,7 +1592,8 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
         TintUtil.setTintBgSimple(actionBar, 230);
         TintUtil.setTintBgSimple(bottomBar, 230);
         TintUtil.setStatusBarColor(this);
-        TintUtil.setBackgroundFillColorBottomRight(ttsActive, ColorUtils.setAlphaComponent(TintUtil.color, 230));
+        // TintUtil.setBackgroundFillColorBottomRight(ttsActive,
+        // ColorUtils.setAlphaComponent(TintUtil.color, 230));
     }
 
     OnPageChangeListener onViewPagerChangeListener = new OnPageChangeListener() {
@@ -2017,28 +2012,31 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
                 return true;
             }
 
-            if (AppState.get().getNextKeys().contains(keyCode)) {
-                if (closeDialogs()) {
+            if (!TTSEngine.get().isPlaying()) {
+                if (AppState.get().getNextKeys().contains(keyCode)) {
+                    if (closeDialogs()) {
+                        isMyKey = true;
+                        return true;
+                    }
+                    nextPage();
+                    flippingTimer = 0;
+                    isMyKey = true;
+                    return true;
+                } else if (AppState.get().getPrevKeys().contains(keyCode)) {
+                    if (closeDialogs()) {
+                        isMyKey = true;
+                        return true;
+                    }
+                    prevPage();
+                    flippingTimer = 0;
                     isMyKey = true;
                     return true;
                 }
-                nextPage();
-                flippingTimer = 0;
-                isMyKey = true;
-                return true;
-            } else if (AppState.get().getPrevKeys().contains(keyCode)) {
-                if (closeDialogs()) {
-                    isMyKey = true;
-                    return true;
-                }
-                prevPage();
-                flippingTimer = 0;
-                isMyKey = true;
-                return true;
             }
         }
 
         return super.onKeyDown(keyCode, event);
+
     }
 
     @Override

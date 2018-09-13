@@ -306,11 +306,11 @@
    <string name="show_bottom_panel">Pokaż panel dolny</string>
    <string name="to_stop">Stop</string>
    <string name="to_read">Czytaj</string>
+   <string name="to_paly_pause">Odtwórz / wstrzymaj</string>
    <string name="text_to_speech">Tekst na mowę</string>
    <string name="speed1">Prędkość</string>
    <string name="pitch1">Wysokość dźwięku</string>
    <string name="sound_volume">Głośność dźwięku</string>
-   <string name="ongoing_notification">Stałe powiadomienie</string>
    <string name="next">Następny</string>
    <string name="stop_reading_timer_">Zatrzymaj czytanie (timer)</string>
    <string name="start">Start</string>
@@ -479,7 +479,6 @@
    <string name="hide_search_bar">Ukryj pasek wyszukiwania</string>
    <string name="show_search_bar">Pokaż pasek wyszukiwania</string>
    <string name="never">Nigdy</string>
-   <string name="show_notifications">Pokaż powiadomienia</string>
    <string name="general_settings">Ustawienia główne</string>
    <string name="cyclic_scrolling_return_to_1_page_">Cykliczne przewijanie (powrót do 1 strony)</string>
    <string name="normalize_font_size">Normalizuj rozmiar czcionki</string>
@@ -489,6 +488,5 @@
    <string name="enable_horizontal_gesture">Włącz gest poziomy dla następnej strony</string>
    <string name="pause_duration">Wstrzymaj czas</string>
    <string name="voice">Głos</string>
-   <string name="hide_notification_and_stop_reading">Ukryj powiadomienie i przestań czytać</string>
    <string name="enable_a_large_initial_letter">Włącz dużą początkową literę</string>
 </resources>

@@ -354,7 +354,6 @@
         </LinearLayout>
 
         <View
-            android:id="@+id/topPanelLineDiv"
             android:layout_width="match_parent"
             android:layout_height="1dp"
             android:layout_marginTop="2dip"

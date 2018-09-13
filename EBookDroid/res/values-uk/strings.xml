@@ -306,11 +306,11 @@
    <string name="show_bottom_panel">Показати нижню панель</string>
    <string name="to_stop">Зупинити</string>
    <string name="to_read">Читати</string>
+   <string name="to_paly_pause">Відтворення / Пауза</string>
    <string name="text_to_speech">Перетворення тексту в мову</string>
    <string name="speed1">Швидкість</string>
    <string name="pitch1">Висота звуку</string>
    <string name="sound_volume">Гучність</string>
-   <string name="ongoing_notification">Постійне повідомлення</string>
    <string name="next">Наступна</string>
    <string name="stop_reading_timer_">Зупинити читання через</string>
    <string name="start">Почати</string>
@@ -479,7 +479,6 @@
    <string name="hide_search_bar">Сховати панель пошуку</string>
    <string name="show_search_bar">Показати панель пошуку</string>
    <string name="never">Ніколи</string>
-   <string name="show_notifications">Показати сповіщення</string>
    <string name="general_settings">Загальні налаштування</string>
    <string name="cyclic_scrolling_return_to_1_page_">Циклічна прокрутка (повернення на 1 сторінку)</string>
    <string name="normalize_font_size">Нормализуйте розмір шрифту</string>
@@ -489,6 +488,5 @@
    <string name="enable_horizontal_gesture">Увімкніть горизонтальний жест для наступної сторінки</string>
    <string name="pause_duration">Тривалість паузи</string>
    <string name="voice">Голос</string>
-   <string name="hide_notification_and_stop_reading">Сховати сповіщення та припинити читання</string>
    <string name="enable_a_large_initial_letter">Увімкнути велику початкову літеру</string>
 </resources>

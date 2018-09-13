@@ -306,11 +306,11 @@
    <string name="show_bottom_panel">הצג את החלונית התחתונה</string>
    <string name="to_stop">תפסיק</string>
    <string name="to_read">לקרוא</string>
+   <string name="to_paly_pause">הפעל / השהה</string>
    <string name="text_to_speech">טקסט לדיבור</string>
    <string name="speed1">מְהִירוּת</string>
    <string name="pitch1">המגרש סאונד</string>
    <string name="sound_volume">נפח מוסיקה</string>
-   <string name="ongoing_notification">הודעה מתמשכת</string>
    <string name="next">הַבָּא</string>
    <string name="stop_reading_timer_">הפסק לקרוא (טיימר)</string>
    <string name="start">הַתחָלָה</string>
@@ -479,7 +479,6 @@
    <string name="hide_search_bar">הסתר את סרגל החיפוש</string>
    <string name="show_search_bar">הצג סרגל חיפוש</string>
    <string name="never">לעולם לא</string>
-   <string name="show_notifications">תראה התראות</string>
    <string name="general_settings">הגדרות כלליות</string>
    <string name="cyclic_scrolling_return_to_1_page_">גלילה מחזורית (חזרה לדף אחד)</string>
    <string name="normalize_font_size">מנרמל את גודל הגופן</string>
@@ -489,6 +488,5 @@
    <string name="enable_horizontal_gesture">הפעל מחווה אופקית עבור הדף הבא</string>
    <string name="pause_duration">השהה את משך הזמן</string>
    <string name="voice">קוֹל</string>
-   <string name="hide_notification_and_stop_reading">הסתר הודעה והפסיק לקרוא</string>
    <string name="enable_a_large_initial_letter">אפשר אות ראשית גדולה</string>
 </resources>

@@ -139,16 +139,12 @@ public class TTSService extends Service {
             }
         }
 
-        if (Build.VERSION.SDK_INT >= 26) {
+        Notification notification = new NotificationCompat.Builder(this, TTSNotification.DEFAULT) //
+                .setContentTitle("Librera") //
+                .setPriority(NotificationCompat.PRIORITY_DEFAULT)//
+                .setContentText("TTS").build();
 
-            Notification notification = new NotificationCompat.Builder(this, TTSNotification.DEFAULT) //
-                    .setContentTitle("Librera") //
-                    .setAutoCancel(true)//
-                    .setPriority(NotificationCompat.PRIORITY_DEFAULT)//
-                    .setContentText("TTS").build();
-
-            startForeground(TTSNotification.NOT_ID, notification);
-        }
+        startForeground(TTSNotification.NOT_ID, notification);
 
     }
 
@@ -226,7 +222,34 @@ public class TTSService extends Service {
                 LOG.d(TAG, key, "=>", intent.getExtras().get(key));
         }
 
-        if (TTSNotification.TTS_STOP.equals(intent.getAction())) {
+        if (TTSNotification.TTS_STOP_DESTROY.equals(intent.getAction())) {
+            TTSEngine.get().stop();
+            savePage();
+            TTSEngine.get().stopDestroy();
+
+            if (wakeLock.isHeld()) {
+                wakeLock.release();
+            }
+
+            EventBus.getDefault().post(new TtsStatus());
+            stopSelf();
+
+        }
+
+        if (TTSNotification.TTS_PLAY_PAUSE.equals(intent.getAction())) {
+            TTSEngine.get().stop();
+
+            if (TTSEngine.get().isPlaying()) {
+                savePage();
+            } else {
+                playPage("", AppState.get().lastBookPage, null);
+            }
+            if (wakeLock.isHeld()) {
+                wakeLock.release();
+            }
+
+        }
+        if (TTSNotification.TTS_PAUSE.equals(intent.getAction())) {
             TTSEngine.get().stop();
             savePage();
             if (wakeLock.isHeld()) {
@@ -234,7 +257,8 @@ public class TTSService extends Service {
             }
 
         }
-        if (TTSNotification.TTS_READ.equals(intent.getAction())) {
+
+        if (TTSNotification.TTS_PLAY.equals(intent.getAction())) {
             TTSEngine.get().stop();
             playPage("", AppState.get().lastBookPage, null);
             if (!wakeLock.isHeld()) {
@@ -244,6 +268,13 @@ public class TTSService extends Service {
         if (TTSNotification.TTS_NEXT.equals(intent.getAction())) {
             TTSEngine.get().stop();
             playPage("", AppState.get().lastBookPage + 1, null);
+            if (!wakeLock.isHeld()) {
+                wakeLock.acquire();
+            }
+        }
+        if (TTSNotification.TTS_PREV.equals(intent.getAction())) {
+            TTSEngine.get().stop();
+            playPage("", AppState.get().lastBookPage - 1, null);
             if (!wakeLock.isHeld()) {
                 wakeLock.acquire();
             }
@@ -264,6 +295,8 @@ public class TTSService extends Service {
             }
 
         }
+
+        EventBus.getDefault().post(new TtsStatus());
 
         return START_STICKY;
     }
@@ -366,6 +399,7 @@ public class TTSService extends Service {
                     @Override
                     public void onStart(String utteranceId) {
                         LOG.d(TAG, "onUtteranceCompleted onStart", utteranceId);
+                        EventBus.getDefault().post(new TtsStatus());
                     }
 
                     @Override
@@ -375,6 +409,8 @@ public class TTSService extends Service {
                             return;
                         }
                         TTSEngine.get().stop();
+                        EventBus.getDefault().post(new TtsStatus());
+
                     }
 
                     @Override
@@ -398,6 +434,7 @@ public class TTSService extends Service {
                 });
             } else {
                 TTSEngine.get().getTTS().setOnUtteranceCompletedListener(new OnUtteranceCompletedListener() {
+
 
                     @Override
                     public void onUtteranceCompleted(String utteranceId) {

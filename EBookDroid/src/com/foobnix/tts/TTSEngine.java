@@ -96,6 +96,10 @@ public class TTSEngine {
 
     }
 
+    public synchronized boolean isShutdown() {
+        return ttsEngine == null;
+    }
+
     @TargetApi(Build.VERSION_CODES.ICE_CREAM_SANDWICH_MR1)
     public void stop() {
         LOG.d(TAG, "stop");
@@ -224,11 +228,16 @@ public class TTSEngine {
 
     }
 
-    public boolean isPlaying() {
+    public synchronized boolean isPlaying() {
         if (TempHolder.isRecordTTS) {
             return false;
         }
-        return ttsEngine != null && ttsEngine.isSpeaking();
+        synchronized (helpObject) {
+            if (ttsEngine == null) {
+                return false;
+            }
+            return ttsEngine != null && ttsEngine.isSpeaking();
+        }
     }
 
     public void playCurrent() {

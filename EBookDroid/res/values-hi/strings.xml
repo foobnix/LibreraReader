@@ -306,11 +306,11 @@
    <string name="show_bottom_panel">नीचे पैनल दिखाएं</string>
    <string name="to_stop">रुकें</string>
    <string name="to_read">पढ़ना</string>
+   <string name="to_paly_pause">चालू करे रोके</string>
    <string name="text_to_speech">लिखे हुए को बोलने में बदलना</string>
    <string name="speed1">गति</string>
    <string name="pitch1">ध्वनि पिच</string>
    <string name="sound_volume">संगीत की आवाज</string>
-   <string name="ongoing_notification">जारी सूचना</string>
    <string name="next">अगला</string>
    <string name="stop_reading_timer_">पढ़ना बंद करें (टाइमर)</string>
    <string name="start">प्रारंभ</string>
@@ -479,7 +479,6 @@
    <string name="hide_search_bar">खोज बार छुपाएं</string>
    <string name="show_search_bar">खोज बार दिखाएं</string>
    <string name="never">कभी नहीँ</string>
-   <string name="show_notifications">सूचनाएं दिखाएं</string>
    <string name="general_settings">सामान्य सेटिंग्स</string>
    <string name="cyclic_scrolling_return_to_1_page_">चक्रीय स्क्रॉलिंग (1 पृष्ठ पर लौटें)</string>
    <string name="normalize_font_size">फ़ॉन्ट आकार सामान्य करें</string>
@@ -489,6 +488,5 @@
    <string name="enable_horizontal_gesture">अगले पृष्ठ के लिए क्षैतिज इशारा सक्षम करें</string>
    <string name="pause_duration">अवधि रोकें</string>
    <string name="voice">आवाज़</string>
-   <string name="hide_notification_and_stop_reading">अधिसूचना छुपाएं और पढ़ना बंद करो</string>
    <string name="enable_a_large_initial_letter">एक बड़ा प्रारंभिक पत्र सक्षम करें</string>
 </resources>
