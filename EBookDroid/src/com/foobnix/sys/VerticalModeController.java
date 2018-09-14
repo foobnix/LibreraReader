@@ -72,12 +72,12 @@ public class VerticalModeController extends DocumentController {
 
     @Override
     public int getBookWidth() {
-        return Dips.screenWidth();
+        return ctr.getView().getWidth();
     }
 
     @Override
     public int getBookHeight() {
-        return Dips.screenHeight();
+        return ctr.getView().getHeight();
     }
 
     public void saveCurrentPage() {
