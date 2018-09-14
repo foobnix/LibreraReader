@@ -42,9 +42,6 @@ public class HypenUtils {
         }
         // hack
         input = input.replace("<", " <").replace(">", "> ");
-        if (!AppState.get().isAccurateFontSize) {
-            input = input.replace(TxtUtils.NON_BREAKE_SPACE, " " + TxtUtils.NON_BREAKE_SPACE);
-        }
 
         StringTokenizer split = new StringTokenizer(input, " ", true);
         StringBuilder res = new StringBuilder();

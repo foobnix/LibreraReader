@@ -2831,27 +2831,7 @@ public class DragingDialogs {
                     }
                 });
 
-                CheckBox isAccurateFontSize = (CheckBox) inflate.findViewById(R.id.isAccurateFontSize);
-                isAccurateFontSize.setVisibility(controller.isTextFormat() ? View.VISIBLE : View.GONE);
-                isAccurateFontSize.setChecked(AppState.get().isAccurateFontSize);
-                isAccurateFontSize.setOnCheckedChangeListener(new OnCheckedChangeListener() {
 
-                    @Override
-                    public void onCheckedChanged(final CompoundButton buttonView, final boolean isChecked) {
-                        AppState.get().isAccurateFontSize = isChecked;
-                    }
-                });
-
-                CheckBox isFirstLetter = (CheckBox) inflate.findViewById(R.id.isFirstLetter);
-                isFirstLetter.setVisibility(controller.isTextFormat() ? View.VISIBLE : View.GONE);
-                isFirstLetter.setChecked(AppState.get().isInitialFirstLetter);
-                isFirstLetter.setOnCheckedChangeListener(new OnCheckedChangeListener() {
-
-                    @Override
-                    public void onCheckedChanged(final CompoundButton buttonView, final boolean isChecked) {
-                        AppState.get().isInitialFirstLetter = isChecked;
-                    }
-                });
 
                 CheckBox isOLED = (CheckBox) inflate.findViewById(R.id.isOLED);
                 isOLED.setChecked(AppState.get().isOLED);
@@ -3350,6 +3330,7 @@ public class DragingDialogs {
 
     public static DragingPopup moreBookSettings(final FrameLayout anchor, final DocumentController controller, final Runnable onRefresh, final Runnable updateUIRefresh) {
         final int initCssHash = BookCSS.get().toCssString().hashCode();
+        final int initAppHash = Objects.hashCode(AppState.get());
 
         DragingPopup dialog = new DragingPopup(R.string.reading_settings, anchor, PREF_WIDTH, PREF_HEIGHT) {
 
@@ -3506,6 +3487,28 @@ public class DragingDialogs {
                     }
                 });
                 // - hypens
+                //
+                CheckBox isAccurateFontSize = (CheckBox) inflate.findViewById(R.id.isAccurateFontSize);
+                isAccurateFontSize.setVisibility(controller.isTextFormat() ? View.VISIBLE : View.GONE);
+                isAccurateFontSize.setChecked(AppState.get().isAccurateFontSize);
+                isAccurateFontSize.setOnCheckedChangeListener(new OnCheckedChangeListener() {
+
+                    @Override
+                    public void onCheckedChanged(final CompoundButton buttonView, final boolean isChecked) {
+                        AppState.get().isAccurateFontSize = isChecked;
+                    }
+                });
+
+                CheckBox isFirstLetter = (CheckBox) inflate.findViewById(R.id.isFirstLetter);
+                isFirstLetter.setVisibility(TxtUtils.visibleIf(BookType.FB2.is(controller.getCurrentBook().getPath())));
+                isFirstLetter.setChecked(AppState.get().isInitialFirstLetter);
+                isFirstLetter.setOnCheckedChangeListener(new OnCheckedChangeListener() {
+
+                    @Override
+                    public void onCheckedChanged(final CompoundButton buttonView, final boolean isChecked) {
+                        AppState.get().isInitialFirstLetter = isChecked;
+                    }
+                });
 
                 View customCSS = inflate.findViewById(R.id.customCSS);
                 // TxtUtils.underlineTextView(customCSS);
@@ -3779,7 +3782,7 @@ public class DragingDialogs {
 
             @Override
             public void run() {
-                if (initCssHash != BookCSS.get().toCssString().hashCode()) {
+                if (initCssHash != BookCSS.get().toCssString().hashCode() || initAppHash != Objects.hashCode(AppState.get())) {
                     AppState.get().save(controller.getActivity());
                     if (onRefresh != null) {
                         onRefresh.run();

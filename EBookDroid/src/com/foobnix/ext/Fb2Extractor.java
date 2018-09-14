@@ -568,6 +568,8 @@ public class Fb2Extractor extends BaseExtractor {
                 line = line.replace("l:href==", "l:href=");
             }
 
+            line = accurateLine(line);
+
             if (AppState.get().isInitialFirstLetter && !isFindBodyEnd) {
 
                 int open = line.lastIndexOf("<title");
@@ -656,7 +658,15 @@ public class Fb2Extractor extends BaseExtractor {
         return out;
     }
 
-    public static ByteArrayOutputStream generateHyphenFile(InputStreamReader inputStream) throws Exception {
+    public static String accurateLine(String line) {
+        if (AppState.get().isAccurateFontSize) {
+            line = line.replace(TxtUtils.NON_BREAKE_SPACE, " ");
+            line = line.replace(">" + TxtUtils.LONG_DASH + " ", ">" + TxtUtils.LONG_DASH + TxtUtils.NON_BREAKE_SPACE);
+        }
+        return line;
+    }
+
+    public static ByteArrayOutputStream generateHyphenFileEpub(InputStreamReader inputStream) throws Exception {
         BufferedReader input = new BufferedReader(inputStream);
 
         ByteArrayOutputStream out = new ByteArrayOutputStream();
@@ -673,10 +683,8 @@ public class Fb2Extractor extends BaseExtractor {
             if (!line.endsWith(" ")) {
                 line = line + " ";
             }
-            if (AppState.get().isAccurateFontSize) {
-                line = line.replace(TxtUtils.NON_BREAKE_SPACE, " ");
-                line = line.replace(TxtUtils.LONG_DASH + " ", TxtUtils.LONG_DASH + TxtUtils.NON_BREAKE_SPACE);
-            }
+
+            line = accurateLine(line);
 
             String subLine[] = line.split("</");
 

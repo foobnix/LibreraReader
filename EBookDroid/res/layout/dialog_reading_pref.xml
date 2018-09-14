@@ -96,23 +96,22 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dip"
-                android:gravity="center_vertical"
                 android:layout_weight="1"
+                android:gravity="center_vertical"
                 android:singleLine="false"
                 android:text="@string/user_styles" />
-            
+
             <ImageView
                 android:id="@+id/customCSS"
                 android:layout_width="@dimen/wh_button"
                 android:layout_height="@dimen/wh_button"
                 android:layout_alignParentRight="true"
-                android:layout_weight="0"
                 android:layout_marginRight="4dip"
+                android:layout_weight="0"
                 android:background="@drawable/bg_border_ltgray"
                 android:padding="8dip"
                 android:src="@drawable/glyphicons_685_article"
                 android:tint="@color/tint_gray" />
-           
         </LinearLayout>
 
         <CheckBox
@@ -140,14 +139,25 @@
                 style="@style/textLink"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="0"
                 android:layout_marginLeft="10dip"
+                android:layout_weight="0"
                 android:minWidth="50dip"
                 android:text="Russian" />
         </LinearLayout>
-        
+
+        <CheckBox
+            android:id="@+id/isAccurateFontSize"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/normalize_font_size" />
+
+        <CheckBox
+            android:id="@+id/isFirstLetter"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/enable_a_large_initial_letter" />
+
         <View
-            
             android:layout_width="match_parent"
             android:layout_height="1dp"
             android:layout_marginTop="2dip"
@@ -184,9 +194,8 @@
             android:layout_marginTop="5dip"
             myseek:text="@string/empty_line" >
         </com.foobnix.pdf.info.view.CustomSeek>
-        
+
         <View
-            
             android:layout_width="match_parent"
             android:layout_height="1dp"
             android:layout_marginTop="2dip"
@@ -238,9 +247,8 @@
             android:layout_marginTop="5dip"
             myseek:text="@string/right" >
         </com.foobnix.pdf.info.view.CustomSeek>
-        
+
         <View
-            
             android:layout_width="match_parent"
             android:layout_height="1dp"
             android:layout_marginTop="2dip"
