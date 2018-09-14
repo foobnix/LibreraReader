@@ -169,7 +169,8 @@ public class TxtUtils {
 
     }
 
-    static List<String> partsDivs = Arrays.asList(".", "!", ";", "?", ":");
+    int a = 1;
+    static List<String> partsDivs = Arrays.asList(".", "!", ";", "?", ":", "...", LONG_DASH1, LONG_DASH2);
 
     public static String[] getParts(String text) {
         int max = -1;
