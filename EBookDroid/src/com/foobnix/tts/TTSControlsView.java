@@ -4,9 +4,11 @@ import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
 
+import com.foobnix.android.utils.Apps;
 import com.foobnix.android.utils.LOG;
 import com.foobnix.pdf.info.R;
 import com.foobnix.pdf.info.TintUtil;
+import com.foobnix.pdf.info.model.BookCSS;
 import com.foobnix.pdf.info.wrapper.AppState;
 import com.foobnix.pdf.info.wrapper.DocumentController;
 
@@ -14,6 +16,7 @@ import android.app.PendingIntent;
 import android.app.PendingIntent.CanceledException;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Handler;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
@@ -60,11 +63,13 @@ public class TTSControlsView extends FrameLayout {
         ttsDialog = (ImageView) view.findViewById(R.id.ttsDialog);
         ttsDialog.setVisibility(View.GONE);
 
-        TintUtil.setTintImageWithAlpha(ttsStop);
-        TintUtil.setTintImageWithAlpha(ttsPlayPause);
-        TintUtil.setTintImageWithAlpha(ttsNext);
-        TintUtil.setTintImageWithAlpha(ttsPrev);
-        TintUtil.setTintImageWithAlpha(ttsDialog);
+        int color = Color.parseColor(AppState.get().isDayNotInvert ? BookCSS.get().linkColorDay : BookCSS.get().linkColorNight);
+
+        TintUtil.setTintImageWithAlpha(ttsStop, color);
+        TintUtil.setTintImageWithAlpha(ttsPlayPause, color);
+        TintUtil.setTintImageWithAlpha(ttsNext, color);
+        TintUtil.setTintImageWithAlpha(ttsPrev, color);
+        TintUtil.setTintImageWithAlpha(ttsDialog, color);
 
         ttsNext.setOnClickListener(new OnClickListener() {
 
