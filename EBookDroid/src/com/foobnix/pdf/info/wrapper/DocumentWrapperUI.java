@@ -692,6 +692,13 @@ public class DocumentWrapperUI {
         ttsActive = a.findViewById(R.id.ttsActive);
         ttsActive.setVisibility(TxtUtils.visibleIf(TTSEngine.get().isPlaying()));
         ttsActive.setDC(dc);
+        ttsActive.addOnDialogRunnable(new Runnable() {
+
+            @Override
+            public void run() {
+                DragingDialogs.textToSpeachDialog(anchor, dc);
+            }
+        });
 
         batteryIcon = (ImageView) a.findViewById(R.id.batteryIcon);
         clockIcon = (ImageView) a.findViewById(R.id.clockIcon);

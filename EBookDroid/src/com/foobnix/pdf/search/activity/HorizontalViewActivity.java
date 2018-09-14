@@ -853,6 +853,13 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
                     onCrop.invalidate();
 
                     ttsActive.setDC(dc);
+                    ttsActive.addOnDialogRunnable(new Runnable() {
+
+                        @Override
+                        public void run() {
+                            DragingDialogs.textToSpeachDialog(anchor, dc);
+                        }
+                    });
 
                     // RecentUpates.updateAll(HorizontalViewActivity.this);
 

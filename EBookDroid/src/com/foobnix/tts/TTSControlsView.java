@@ -29,6 +29,19 @@ public class TTSControlsView extends FrameLayout {
         controller = dc;
     }
 
+    private ImageView ttsDialog;
+
+    public void addOnDialogRunnable(final Runnable run) {
+        ttsDialog.setVisibility(View.VISIBLE);
+        ttsDialog.setOnClickListener(new OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                run.run();
+            }
+        });
+    }
+
     public TTSControlsView(final Context context, AttributeSet attrs) {
         super(context, attrs);
 
@@ -41,10 +54,14 @@ public class TTSControlsView extends FrameLayout {
         final ImageView ttsNext = (ImageView) view.findViewById(R.id.ttsNext);
         final ImageView ttsPrev = (ImageView) view.findViewById(R.id.ttsPrev);
 
+        ttsDialog = (ImageView) view.findViewById(R.id.ttsDialog);
+        ttsDialog.setVisibility(View.INVISIBLE);
+
         TintUtil.setTintImageWithAlpha(ttsStop);
         TintUtil.setTintImageWithAlpha(ttsPlayPause);
         TintUtil.setTintImageWithAlpha(ttsNext);
         TintUtil.setTintImageWithAlpha(ttsPrev);
+        TintUtil.setTintImageWithAlpha(ttsDialog);
 
         ttsNext.setOnClickListener(new OnClickListener() {
 

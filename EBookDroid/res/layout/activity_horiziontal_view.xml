@@ -248,6 +248,14 @@
         android:padding="7dip"
         android:src="@drawable/glyphicons_185_volume_up"
         android:tint="@color/white" />
+    
+    
+    <com.foobnix.tts.TTSControlsView
+        android:layout_marginBottom="10dip"
+        android:id="@+id/ttsActive"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true" />
 
     <FrameLayout
         android:id="@+id/bottomBar"
@@ -260,12 +268,7 @@
         <include layout="@layout/document_footer" />
     </FrameLayout>
 
-    <com.foobnix.tts.TTSControlsView
-        android:layout_marginBottom="10dip"
-        android:id="@+id/ttsActive"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true" />
+    
 
     <FrameLayout
         android:id="@+id/anchor"
