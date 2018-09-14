@@ -210,6 +210,7 @@ public class TxtUtils {
 
         // pageHTML = pageHTML.replace("<br/>", TTS_PAUSE);
         pageHTML = pageHTML.replace("...", TTS_PAUSE);
+        pageHTML = pageHTML.replace("…", TTS_PAUSE);
         pageHTML = pageHTML.replace("!", "!" + TTS_PAUSE);
         pageHTML = pageHTML.replace("?", "?" + TTS_PAUSE);
         pageHTML = pageHTML.replace(TxtUtils.LONG_DASH, TTS_PAUSE);

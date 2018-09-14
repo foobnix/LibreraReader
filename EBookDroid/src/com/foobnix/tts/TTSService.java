@@ -399,7 +399,6 @@ public class TTSService extends Service {
                     @Override
                     public void onStart(String utteranceId) {
                         LOG.d(TAG, "onUtteranceCompleted onStart", utteranceId);
-                        EventBus.getDefault().post(new TtsStatus());
                     }
 
                     @Override

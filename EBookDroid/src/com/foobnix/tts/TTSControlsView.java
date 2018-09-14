@@ -14,6 +14,7 @@ import android.app.PendingIntent;
 import android.app.PendingIntent.CanceledException;
 import android.content.Context;
 import android.content.Intent;
+import android.os.Handler;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -30,6 +31,8 @@ public class TTSControlsView extends FrameLayout {
     }
 
     private ImageView ttsDialog;
+
+    Handler handler;
 
     public void addOnDialogRunnable(final Runnable run) {
         ttsDialog.setVisibility(View.VISIBLE);
@@ -55,7 +58,7 @@ public class TTSControlsView extends FrameLayout {
         final ImageView ttsPrev = (ImageView) view.findViewById(R.id.ttsPrev);
 
         ttsDialog = (ImageView) view.findViewById(R.id.ttsDialog);
-        ttsDialog.setVisibility(View.INVISIBLE);
+        ttsDialog.setVisibility(View.GONE);
 
         TintUtil.setTintImageWithAlpha(ttsStop);
         TintUtil.setTintImageWithAlpha(ttsPlayPause);
@@ -120,6 +123,7 @@ public class TTSControlsView extends FrameLayout {
                 }
             }
         });
+        handler = new Handler();
     }
 
     @Override
@@ -132,13 +136,25 @@ public class TTSControlsView extends FrameLayout {
     protected void onDetachedFromWindow() {
         super.onDetachedFromWindow();
         EventBus.getDefault().unregister(this);
+        handler.removeCallbacksAndMessages(null);
     }
 
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void onTTSStatus(TtsStatus status) {
         if (ttsPlayPause != null) {
-            ttsPlayPause.setImageResource(TTSEngine.get().isPlaying() ? R.drawable.glyphicons_175_pause : R.drawable.glyphicons_174_play);
+            update.run();
+            handler.removeCallbacksAndMessages(null);
+            handler.postDelayed(update, 500);
         }
     }
+
+    Runnable update = new Runnable() {
+
+        @Override
+        public void run() {
+            LOG.d("TtsStatus-isPlaying", TTSEngine.get().isPlaying());
+            ttsPlayPause.setImageResource(TTSEngine.get().isPlaying() ? R.drawable.glyphicons_175_pause : R.drawable.glyphicons_174_play);
+        }
+    };
 
 }
