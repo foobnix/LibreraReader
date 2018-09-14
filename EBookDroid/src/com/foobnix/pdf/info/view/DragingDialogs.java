@@ -499,6 +499,9 @@ public class DragingDialogs {
                 TTSControlsView tts = (TTSControlsView) view.findViewById(R.id.ttsActive);
                 tts.setDC(controller);
 
+                TextView ttsSkeakToFile = (TextView) view.findViewById(R.id.ttsSkeakToFile);
+
+
 
                 final TextView ttsLang = (TextView) view.findViewById(R.id.ttsLang);
                 // TxtUtils.underlineTextView(ttsLang);
@@ -547,7 +550,7 @@ public class DragingDialogs {
                                 public boolean onMenuItemClick(MenuItem item) {
                                     AppState.get().ttsTimer = number;
                                     timerTime.setText(AppState.get().ttsTimer + " " + controller.getString(R.string.minutes).toLowerCase(Locale.US));
-
+                                    TxtUtils.underlineTextView(timerTime);
                                     return false;
                                 }
                             });
@@ -570,6 +573,9 @@ public class DragingDialogs {
                         ttsPage.setText(
                                 TempHolder.get().timerFinishTime == 0 ? "" : controller.getString(R.string.reading_will_be_stopped) + " " + DateFormat.getTimeFormat(activity).format(TempHolder.get().timerFinishTime));
                         ttsPage.setVisibility(TxtUtils.visibleIf(TempHolder.get().timerFinishTime > 0));
+
+                        TxtUtils.underlineTextView(timerStart);
+
                     }
                 });
 
@@ -718,7 +724,7 @@ public class DragingDialogs {
                     }
                 });
 
-                view.findViewById(R.id.ttsSkeakToFile).setOnClickListener(new OnClickListener() {
+                ttsSkeakToFile.setOnClickListener(new OnClickListener() {
 
                     @Override
                     public void onClick(View v) {
@@ -809,6 +815,10 @@ public class DragingDialogs {
                         create.show();
                     }
                 });
+
+                TxtUtils.underlineTextView(timerStart);
+                TxtUtils.underlineTextView(timerTime);
+                TxtUtils.underlineTextView(ttsSkeakToFile);
 
                 return view;
             }
