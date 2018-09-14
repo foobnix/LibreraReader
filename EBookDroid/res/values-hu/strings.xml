@@ -488,5 +488,7 @@
    <string name="enable_horizontal_gesture">Engedélyezze a vízszintes gesztust a következő oldalra</string>
    <string name="pause_duration">Szüneteltetés időtartama</string>
    <string name="voice">Hang</string>
-   <string name="enable_a_large_initial_letter">Engedélyezzen egy nagy kezdeti levelet</string>
+   <string name="capital_letter">Nagybetű</string>
+   <string name="show_the_capital_letter">Mutassa be a nagybetűs levelet</string>
+   <string name="size">Méret</string>
 </resources>

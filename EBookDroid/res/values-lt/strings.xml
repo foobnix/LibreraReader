@@ -488,5 +488,7 @@
    <string name="enable_horizontal_gesture">Įgalinkite horizontalų gestą kitam puslapiui</string>
    <string name="pause_duration">Sustabdymo trukmė</string>
    <string name="voice">Balsas</string>
-   <string name="enable_a_large_initial_letter">Įgalinti didelę pradinę raidę</string>
+   <string name="capital_letter">Didžioji raidė</string>
+   <string name="show_the_capital_letter">Rodyti didžiąją raidę</string>
+   <string name="size">Dydis</string>
 </resources>

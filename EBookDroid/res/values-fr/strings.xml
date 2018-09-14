@@ -488,5 +488,7 @@
    <string name="enable_horizontal_gesture">Activer le geste horizontal pour la page suivante</string>
    <string name="pause_duration">Durée de pause</string>
    <string name="voice">Voix</string>
-   <string name="enable_a_large_initial_letter">Activer une grande lettre initiale</string>
+   <string name="capital_letter">Lettre capitale</string>
+   <string name="show_the_capital_letter">Afficher la lettre majuscule</string>
+   <string name="size">Taille</string>
 </resources>

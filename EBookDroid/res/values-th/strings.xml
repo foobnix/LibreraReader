@@ -488,5 +488,7 @@
    <string name="enable_horizontal_gesture">เปิดใช้งานท่าทางสัมผัสในแนวนอนสำหรับหน้าถัดไป</string>
    <string name="pause_duration">หยุดชั่วคราว</string>
    <string name="voice">เสียงพูด</string>
-   <string name="enable_a_large_initial_letter">เปิดใช้อักษรตัวแรกขนาดใหญ่</string>
+   <string name="capital_letter">ตัวพิมพ์ใหญ่</string>
+   <string name="show_the_capital_letter">แสดงตัวพิมพ์ใหญ่</string>
+   <string name="size">ขนาด</string>
 </resources>

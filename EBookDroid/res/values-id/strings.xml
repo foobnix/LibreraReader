@@ -488,5 +488,7 @@
    <string name="enable_horizontal_gesture">Aktifkan isyarat horizontal untuk halaman berikutnya</string>
    <string name="pause_duration">Jeda durasi</string>
    <string name="voice">Suara</string>
-   <string name="enable_a_large_initial_letter">Aktifkan huruf awal yang besar</string>
+   <string name="capital_letter">Huruf kapital</string>
+   <string name="show_the_capital_letter">Tunjukkan huruf kapital</string>
+   <string name="size">Ukuran</string>
 </resources>

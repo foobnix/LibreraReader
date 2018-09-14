@@ -488,5 +488,7 @@
    <string name="enable_horizontal_gesture">Bật cử chỉ ngang cho trang tiếp theo</string>
    <string name="pause_duration">Tạm dừng thời lượng</string>
    <string name="voice">Tiếng nói</string>
-   <string name="enable_a_large_initial_letter">Bật chữ cái đầu tiên lớn</string>
+   <string name="capital_letter">Chữ viết hoa</string>
+   <string name="show_the_capital_letter">Hiển thị chữ cái viết hoa</string>
+   <string name="size">Kích thước</string>
 </resources>

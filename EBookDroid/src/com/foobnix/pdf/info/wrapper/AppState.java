@@ -282,7 +282,6 @@ public class AppState {
 
     public long fontExtractTime = 0;
 
-    public boolean isInitialFirstLetter = true;
 
     public int nextScreenScrollBy = NEXT_SCREEN_SCROLL_BY_PAGES;// 0 by
                                                                 // pages,

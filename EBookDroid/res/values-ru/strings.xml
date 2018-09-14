@@ -488,5 +488,7 @@
    <string name="enable_horizontal_gesture">Листать страницы горизонтальными свайпами</string>
    <string name="pause_duration">Длительность пауз</string>
    <string name="voice">Синтезатор речи</string>
-   <string name="enable_a_large_initial_letter">Применять буквицу</string>
+   <string name="capital_letter">Заглавная буква</string>
+   <string name="show_the_capital_letter">Показать заглавную букву</string>
+   <string name="size">Размер</string>
 </resources>

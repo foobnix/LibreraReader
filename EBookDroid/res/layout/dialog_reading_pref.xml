@@ -151,11 +151,6 @@
             android:layout_height="wrap_content"
             android:text="@string/normalize_font_size" />
 
-        <CheckBox
-            android:id="@+id/isFirstLetter"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/enable_a_large_initial_letter" />
 
         <View
             android:layout_width="match_parent"

@@ -488,5 +488,7 @@
    <string name="enable_horizontal_gesture">Admitte motus horizontalis ad proximam paginam</string>
    <string name="pause_duration">Saeculum diapsalma</string>
    <string name="voice">Voice</string>
-   <string name="enable_a_large_initial_letter">Magna litterae activare initial</string>
+   <string name="capital_letter">Litterae capital</string>
+   <string name="show_the_capital_letter">Caput epistulam ostende</string>
+   <string name="size">Magnitudine</string>
 </resources>

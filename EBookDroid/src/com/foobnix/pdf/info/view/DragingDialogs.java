@@ -3499,16 +3499,6 @@ public class DragingDialogs {
                     }
                 });
 
-                CheckBox isFirstLetter = (CheckBox) inflate.findViewById(R.id.isFirstLetter);
-                isFirstLetter.setVisibility(TxtUtils.visibleIf(BookType.FB2.is(controller.getCurrentBook().getPath())));
-                isFirstLetter.setChecked(AppState.get().isInitialFirstLetter);
-                isFirstLetter.setOnCheckedChangeListener(new OnCheckedChangeListener() {
-
-                    @Override
-                    public void onCheckedChanged(final CompoundButton buttonView, final boolean isChecked) {
-                        AppState.get().isInitialFirstLetter = isChecked;
-                    }
-                });
 
                 View customCSS = inflate.findViewById(R.id.customCSS);
                 // TxtUtils.underlineTextView(customCSS);
@@ -4063,7 +4053,7 @@ public class DragingDialogs {
                             public void run() {
                                 TxtUtils.underline(textFontName, BookCSS.get().displayFontName);
                             }
-                        });
+                        }, controller);
                     }
                 });
 

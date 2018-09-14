@@ -488,5 +488,7 @@
    <string name="enable_horizontal_gesture">Увімкніть горизонтальний жест для наступної сторінки</string>
    <string name="pause_duration">Тривалість паузи</string>
    <string name="voice">Голос</string>
-   <string name="enable_a_large_initial_letter">Увімкнути велику початкову літеру</string>
+   <string name="capital_letter">Велика буква</string>
+   <string name="show_the_capital_letter">Показати велику літеру</string>
+   <string name="size">Розмір</string>
 </resources>

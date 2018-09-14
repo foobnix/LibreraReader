@@ -488,5 +488,7 @@
    <string name="enable_horizontal_gesture">Turn pages by horizontal swipes</string>
    <string name="pause_duration">Pause</string>
    <string name="voice">Voice</string>
-   <string name="enable_a_large_initial_letter">Enable a large initial letter</string>
+   <string name="capital_letter">Capital letter</string>
+   <string name="show_the_capital_letter">Show the capital letter</string>
+   <string name="size">Size</string>
 </resources>

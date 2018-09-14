@@ -488,5 +488,7 @@
    <string name="enable_horizontal_gesture">Aktivera horisontell gest för nästa sida</string>
    <string name="pause_duration">Pausvaraktighet</string>
    <string name="voice">Röst</string>
-   <string name="enable_a_large_initial_letter">Aktivera en stor initialt bokstav</string>
+   <string name="capital_letter">Stor bokstav</string>
+   <string name="show_the_capital_letter">Visa bokstaven</string>
+   <string name="size">Storlek</string>
 </resources>

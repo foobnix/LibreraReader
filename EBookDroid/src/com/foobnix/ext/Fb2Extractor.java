@@ -570,7 +570,7 @@ public class Fb2Extractor extends BaseExtractor {
 
             line = accurateLine(line);
 
-            if (AppState.get().isInitialFirstLetter && !isFindBodyEnd) {
+            if (BookCSS.get().isCapitalLetter && !isFindBodyEnd) {
 
                 int open = line.lastIndexOf("<title");
                 int close = line.lastIndexOf("</title>");

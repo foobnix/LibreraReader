@@ -488,5 +488,7 @@
    <string name="enable_horizontal_gesture">Włącz gest poziomy dla następnej strony</string>
    <string name="pause_duration">Wstrzymaj czas</string>
    <string name="voice">Głos</string>
-   <string name="enable_a_large_initial_letter">Włącz dużą początkową literę</string>
+   <string name="capital_letter">Wielka litera</string>
+   <string name="show_the_capital_letter">Pokaż wielką literę</string>
+   <string name="size">Rozmiar</string>
 </resources>

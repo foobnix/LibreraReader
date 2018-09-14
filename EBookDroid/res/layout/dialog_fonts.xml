@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:myseek="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
@@ -10,8 +11,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:gravity="center_vertical"
-        android:padding="2dip"
-        android:orientation="horizontal" >
+        android:orientation="horizontal"
+        android:padding="2dip" >
 
         <TextView
             android:id="@+id/textFontNormal"
@@ -36,7 +37,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
-            android:layout_marginLeft="4dip"
             android:layout_weight="0"
             android:background="@drawable/bg_border_ltgray"
             android:padding="10dip"
@@ -57,17 +57,16 @@
     </LinearLayout>
 
     <LinearLayout
-         android:padding="2dip"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:gravity="center_vertical"
-        android:orientation="horizontal" >
+        android:orientation="horizontal"
+        android:padding="2dip" >
 
         <TextView
             android:id="@+id/textFontBold"
             android:layout_width="90dip"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="4dip"
             android:layout_marginRight="4dip"
             android:text="@string/bold_font"
             android:textStyle="bold" />
@@ -88,7 +87,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
-            android:layout_marginLeft="4dip"
             android:layout_weight="0"
             android:background="@drawable/bg_border_ltgray"
             android:padding="10dip"
@@ -109,17 +107,16 @@
     </LinearLayout>
 
     <LinearLayout
-         android:padding="2dip"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:gravity="center_vertical"
-        android:orientation="horizontal" >
+        android:orientation="horizontal"
+        android:padding="2dip" >
 
         <TextView
             android:id="@+id/textFontItalic"
             android:layout_width="90dip"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="4dip"
             android:layout_marginRight="4dip"
             android:text="@string/italic_font"
             android:textStyle="italic" />
@@ -140,7 +137,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
-            android:layout_marginLeft="4dip"
             android:layout_weight="0"
             android:background="@drawable/bg_border_ltgray"
             android:padding="10dip"
@@ -161,17 +157,16 @@
     </LinearLayout>
 
     <LinearLayout
-         android:padding="2dip"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:gravity="center_vertical"
-        android:orientation="horizontal" >
+        android:orientation="horizontal"
+        android:padding="2dip" >
 
         <TextView
             android:id="@+id/textFontBoldItalic"
             android:layout_width="90dip"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="4dip"
             android:layout_marginRight="4dip"
             android:text="@string/bold_italic_font"
             android:textStyle="bold|italic" />
@@ -192,7 +187,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
-            android:layout_marginLeft="4dip"
             android:layout_weight="0"
             android:background="@drawable/bg_border_ltgray"
             android:padding="10dip"
@@ -213,17 +207,16 @@
     </LinearLayout>
 
     <LinearLayout
-         android:padding="2dip"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:gravity="center_vertical"
-        android:orientation="horizontal" >
+        android:orientation="horizontal"
+        android:padding="2dip" >
 
         <TextView
             android:id="@+id/textFontHeaders"
             android:layout_width="90dip"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="4dip"
             android:layout_marginRight="4dip"
             android:text="@string/font_for_headers"
             android:textSize="16sp"
@@ -245,7 +238,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
-            android:layout_marginLeft="4dip"
             android:layout_weight="0"
             android:background="@drawable/bg_border_ltgray"
             android:padding="10dip"
@@ -263,6 +255,105 @@
             android:padding="10dip"
             android:src="@drawable/glyphicons_21_arrow_down"
             android:tint="@color/tint_gray" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:id="@+id/isFB2"
+        android:layout_height="wrap_content"
+        android:orientation="vertical" >
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="2dip"
+            android:background="@color/lt_grey_alpha" />
+
+        <CheckBox
+            android:id="@+id/isFirstLetter"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/show_the_capital_letter" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="2dip"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:padding="2dip" >
+
+            <TextView
+                android:id="@+id/textFontCapital"
+                android:layout_width="90dip"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="4dip"
+                android:text="@string/capital_letter"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/capitalFontSpinner"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center_vertical"
+                android:minWidth="500dip"
+                android:singleLine="true"
+                android:text="headersFontSpinner"
+                android:textSize="16sp" />
+
+            <ImageView
+                android:id="@+id/capitalFontUp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_weight="0"
+                android:background="@drawable/bg_border_ltgray"
+                android:padding="10dip"
+                android:src="@drawable/glyphicons_214_arrow_up"
+                android:tint="@color/tint_gray" />
+
+            <ImageView
+                android:id="@+id/capitalFontDown"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_marginLeft="4dip"
+                android:layout_weight="0"
+                android:background="@drawable/bg_border_ltgray"
+                android:padding="10dip"
+                android:src="@drawable/glyphicons_21_arrow_down"
+                android:tint="@color/tint_gray" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dip"
+            android:padding="2dip" >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:minWidth="100dip"
+                android:singleLine="true"
+                android:text="@string/size"
+                android:textStyle="normal" />
+
+            <TextView
+                android:id="@+id/capitalLetterSize"
+                style="@style/textLink"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dip"
+                android:text="1.2 em" />
+        </LinearLayout>
+
+        <com.foobnix.pdf.info.view.CustomColorView
+            android:id="@+id/capitalLetterColor"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            myseek:text="@string/color" />
     </LinearLayout>
 
 </LinearLayout>

@@ -488,5 +488,7 @@
    <string name="enable_horizontal_gesture">Activați gestul orizontal pentru pagina următoare</string>
    <string name="pause_duration">Întrerupeți durata</string>
    <string name="voice">Voce</string>
-   <string name="enable_a_large_initial_letter">Activați o literă inițială mare</string>
+   <string name="capital_letter">Majusculă</string>
+   <string name="show_the_capital_letter">Afișați litera principală</string>
+   <string name="size">Mărimea</string>
 </resources>

@@ -488,5 +488,7 @@
    <string name="enable_horizontal_gesture">تمكين الإيماءة الأفقية للصفحة التالية</string>
    <string name="pause_duration">وقفة المدة</string>
    <string name="voice">صوت</string>
-   <string name="enable_a_large_initial_letter">تمكين حرف أولي كبير</string>
+   <string name="capital_letter">الحرف الكبير</string>
+   <string name="show_the_capital_letter">اعرض الحرف الكبير</string>
+   <string name="size">بحجم</string>
 </resources>

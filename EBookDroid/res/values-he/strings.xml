@@ -488,5 +488,7 @@
    <string name="enable_horizontal_gesture">הפעל מחווה אופקית עבור הדף הבא</string>
    <string name="pause_duration">השהה את משך הזמן</string>
    <string name="voice">קוֹל</string>
-   <string name="enable_a_large_initial_letter">אפשר אות ראשית גדולה</string>
+   <string name="capital_letter">אות גדולה</string>
+   <string name="show_the_capital_letter">הצג את אות ההוני</string>
+   <string name="size">גודל</string>
 </resources>

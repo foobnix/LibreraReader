@@ -488,5 +488,7 @@
    <string name="enable_horizontal_gesture">Aktivieren Sie die horizontale Geste für die nächste Seite</string>
    <string name="pause_duration">Pausendauer</string>
    <string name="voice">Stimme</string>
-   <string name="enable_a_large_initial_letter">Aktivieren Sie einen großen Anfangsbuchstaben</string>
+   <string name="capital_letter">Großbuchstabe</string>
+   <string name="show_the_capital_letter">Zeigen Sie den Großbuchstaben</string>
+   <string name="size">Größe</string>
 </resources>

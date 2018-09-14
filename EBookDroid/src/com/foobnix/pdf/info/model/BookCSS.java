@@ -25,6 +25,7 @@ import com.foobnix.ui2.AppDB;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.Environment;
 
@@ -79,11 +80,16 @@ public class BookCSS {
     public String boldItalicFont;
     public String italicFont;
     public String headersFont;
+    public String capitalFont;
 
     public boolean isAutoHypens;
     public String hypenLang;
     public String linkColorDay;
     public String linkColorNight;
+
+    public boolean isCapitalLetter = false;
+    public int capitalLetterSize = 20;
+    public String capitalLetterColor = "#ff0000";
 
     public void resetToDefault(Context c) {
         textAlign = TEXT_ALIGN_JUSTIFY;
@@ -108,6 +114,7 @@ public class BookCSS {
         italicFont = DEFAULT_FONT;
         boldItalicFont = DEFAULT_FONT;
         headersFont = DEFAULT_FONT;
+        capitalFont = DEFAULT_FONT;
 
         documentStyle = STYLES_DOC_AND_USER;
         isAutoHypens = true;
@@ -123,8 +130,8 @@ public class BookCSS {
                         "td>* {display:inline}\n" + //
                         "blockquote {margin-left:0.5em !important}\n" + //
                         "sup>* {font-size:0.83em;vertical-align:super;font-weight:bold}\n" + //
-                        "letter {font-size: 2em; color:red; font-weight: bold;}\n" + //
-                        "title>p{font-size:1.2em;  color:red !important}\n" + //
+                        // "letter {font-size: 2em; color:red; font-weight: bold;}\n" + //
+                        // "title>p{font-size:1.2em; color:red !important}\n" + //
                         ""//
         ;
 
@@ -183,6 +190,7 @@ public class BookCSS {
         public String italicFont;
         public String boldItalicFont;
         public String headersFont;
+        public String capitalFont;
 
         public FontPack(String name, String path) {
             fontFolder = path;
@@ -192,6 +200,7 @@ public class BookCSS {
             italicFont = path + "/" + name;
             boldItalicFont = path + "/" + name;
             headersFont = path + "/" + name;
+            capitalFont = path + "/" + name;
         }
 
         public FontPack(String name) {
@@ -201,6 +210,7 @@ public class BookCSS {
             italicFont = name;
             boldItalicFont = name;
             headersFont = name;
+            capitalFont = name;
         }
 
         @Override
@@ -220,6 +230,7 @@ public class BookCSS {
         italicFont = DEFAULT_FONT;
         boldItalicFont = DEFAULT_FONT;
         headersFont = DEFAULT_FONT;
+        capitalFont = DEFAULT_FONT;
 
         if (displayFontName != null && !displayFontName.contains(".")) {
             normalFont = displayFontName;
@@ -227,6 +238,7 @@ public class BookCSS {
             italicFont = displayFontName;
             boldItalicFont = displayFontName;
             headersFont = displayFontName;
+            capitalFont = displayFontName;
             return;
         }
 
@@ -247,10 +259,9 @@ public class BookCSS {
 
                 if (fontName.equals(dispalyName) || fontName.contains("regular") || fontName.contains("normal") || fontName.contains("light") || fontName.contains("medium") || fontName.endsWith("me")) {
                     if (!fontName.contains("regularitalic")) {
-                        normalFont = fullName;
+                        normalFont = capitalFont = fullName;
                     }
-                } else if (fontName.contains("bolditalic") || fontName.contains("boldoblique") || fontName.contains("boldit") || fontName.contains("boit") || fontName.contains("bold it")
-                        || fontName.contains("bold italic")) {
+                } else if (fontName.contains("bolditalic") || fontName.contains("boldoblique") || fontName.contains("boldit") || fontName.contains("boit") || fontName.contains("bold it") || fontName.contains("bold italic")) {
                     boldItalicFont = fullName;
 
                 } else if (fontName.contains("bold") || fontName.endsWith("bo") || fontName.endsWith("bd") || fontName.contains("bolt")) {
@@ -538,6 +549,10 @@ public class BookCSS {
                 builder.append("@font-face {font-family: my; src: url('" + normalFont + "') format('truetype'); font-weight: normal; font-style: normal;}");
             }
 
+            if (isFontFileName(capitalFont)) {
+                builder.append("@font-face {font-family: myCapital; src: url('" + capitalFont + "') format('truetype'); font-weight: normal; font-style: normal;}");
+            }
+
             if (isFontFileName(boldFont)) {
                 builder.append("@font-face {font-family: my; src: url('" + boldFont + "') format('truetype'); font-weight: bold; font-style: normal;}");
             }
@@ -581,6 +596,20 @@ public class BookCSS {
             // BODY BEGIN
 
             // BODY END
+
+            if (isCapitalLetter) {
+                builder.append("letter{");
+                if (isFontFileName(capitalFont)) {
+                    builder.append("font-family: myCapital !important;");
+                } else {
+                    builder.append("font-family:" + capitalFont + " !important; font-weight:normal;");
+                }
+
+                builder.append(String.format("font-size:%s;", em(capitalLetterSize)));
+                builder.append(String.format("color:%s;", capitalLetterColor));
+
+                builder.append("}");
+            }
 
             builder.append("body,p{");
 

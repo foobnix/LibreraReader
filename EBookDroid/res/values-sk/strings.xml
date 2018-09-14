@@ -488,5 +488,7 @@
    <string name="enable_horizontal_gesture">Povoliť horizontálne gesto pre ďalšiu stránku</string>
    <string name="pause_duration">Trvanie prestávky</string>
    <string name="voice">Hlas</string>
-   <string name="enable_a_large_initial_letter">Povoliť veľké počiatočné písmeno</string>
+   <string name="capital_letter">Veľké písmeno</string>
+   <string name="show_the_capital_letter">Zobraziť veľké písmeno</string>
+   <string name="size">Veľkosť</string>
 </resources>

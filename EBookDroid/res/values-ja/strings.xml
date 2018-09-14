@@ -488,5 +488,7 @@
    <string name="enable_horizontal_gesture">次のページの水平方向のジェスチャーを有効にする</string>
    <string name="pause_duration">一時停止時間</string>
    <string name="voice">音声</string>
-   <string name="enable_a_large_initial_letter">大きな頭文字を有効にする</string>
+   <string name="capital_letter">大文字</string>
+   <string name="show_the_capital_letter">大文字を表示する</string>
+   <string name="size">サイズ</string>
 </resources>

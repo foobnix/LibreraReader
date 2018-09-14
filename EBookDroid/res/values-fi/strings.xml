@@ -488,5 +488,7 @@
    <string name="enable_horizontal_gesture">Ota horisontaalinen ele seuraavalle sivulle</string>
    <string name="pause_duration">Tauko kesto</string>
    <string name="voice">Ääni</string>
-   <string name="enable_a_large_initial_letter">Ota käyttöön suuri alkukirjain</string>
+   <string name="capital_letter">Iso kirjain</string>
+   <string name="show_the_capital_letter">Näytä pääkirje</string>
+   <string name="size">Koko</string>
 </resources>

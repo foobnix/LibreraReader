@@ -488,5 +488,7 @@
    <string name="enable_horizontal_gesture">ژست افقی را برای صفحه بعدی فعال کنید</string>
    <string name="pause_duration">مدت زمان مکث</string>
    <string name="voice">صدای</string>
-   <string name="enable_a_large_initial_letter">یک نامه ابتدایی بزرگ را فعال کنید</string>
+   <string name="capital_letter">حرف بزرگ</string>
+   <string name="show_the_capital_letter">نمایش نامه بزرگ</string>
+   <string name="size">اندازه</string>
 </resources>

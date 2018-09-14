@@ -488,5 +488,7 @@
    <string name="enable_horizontal_gesture">अगले पृष्ठ के लिए क्षैतिज इशारा सक्षम करें</string>
    <string name="pause_duration">अवधि रोकें</string>
    <string name="voice">आवाज़</string>
-   <string name="enable_a_large_initial_letter">एक बड़ा प्रारंभिक पत्र सक्षम करें</string>
+   <string name="capital_letter">बड़ा अक्षर</string>
+   <string name="show_the_capital_letter">पूंजी पत्र दिखाएं</string>
+   <string name="size">आकार</string>
 </resources>
