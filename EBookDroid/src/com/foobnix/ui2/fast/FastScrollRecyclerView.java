@@ -21,7 +21,6 @@ import com.foobnix.pdf.info.TintUtil;
 
 import android.content.Context;
 import android.graphics.Color;
-import android.support.annotation.ColorInt;
 import android.support.v7.widget.RecyclerView;
 import android.util.AttributeSet;
 import android.view.ViewGroup;
@@ -104,7 +103,7 @@ public class FastScrollRecyclerView extends RecyclerView {
      * @param color
      *            The color for the scroll track
      */
-    public void setTrackColor(@ColorInt int color) {
+    public void setTrackColor(int color) {
         mFastScroller.setTrackColor(color);
     }
 
@@ -114,7 +113,7 @@ public class FastScrollRecyclerView extends RecyclerView {
      * @param color
      *            The color for the scroll handle
      */
-    public void setHandleColor(@ColorInt int color) {
+    public void setHandleColor(int color) {
         mFastScroller.setHandleColor(color);
     }
 
@@ -124,7 +123,7 @@ public class FastScrollRecyclerView extends RecyclerView {
      * @param color
      *            The background color for the index bubble
      */
-    public void setBubbleColor(@ColorInt int color) {
+    public void setBubbleColor(int color) {
         mFastScroller.setBubbleColor(color);
     }
 
@@ -134,7 +133,7 @@ public class FastScrollRecyclerView extends RecyclerView {
      * @param color
      *            The text color for the index bubble
      */
-    public void setBubbleTextColor(@ColorInt int color) {
+    public void setBubbleTextColor(int color) {
         mFastScroller.setBubbleTextColor(color);
     }
 

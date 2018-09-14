@@ -15,7 +15,6 @@ import android.graphics.Canvas;
 import android.graphics.Rect;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
-import android.support.annotation.NonNull;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.view.MotionEventCompat;
 import android.util.AttributeSet;
@@ -582,7 +581,7 @@ public class DragLinearLayout extends LinearLayout {
     }
 
     @Override
-    protected void dispatchDraw(@NonNull Canvas canvas) {
+    protected void dispatchDraw(Canvas canvas) {
         super.dispatchDraw(canvas);
 
         if (draggedItem.detecting && (draggedItem.dragging || draggedItem.settling())) {
@@ -674,7 +673,7 @@ public class DragLinearLayout extends LinearLayout {
     }
 
     @Override
-    public boolean onTouchEvent(@NonNull MotionEvent event) {
+    public boolean onTouchEvent(MotionEvent event) {
         switch (MotionEventCompat.getActionMasked(event)) {
             case MotionEvent.ACTION_DOWN: {
                 if (!draggedItem.detecting || draggedItem.settling()) return false;

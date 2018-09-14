@@ -27,8 +27,6 @@ import android.content.res.TypedArray;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
-import android.support.annotation.ColorInt;
-import android.support.annotation.NonNull;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.graphics.drawable.DrawableCompat;
 import android.support.v4.view.GravityCompat;
@@ -58,8 +56,8 @@ public class FastScroller extends LinearLayout {
     private static final int sScrollbarHideDelay = 500;
     private static final int sTrackSnapRange = 5;
 
-    @ColorInt private int mBubbleColor;
-    @ColorInt private int mHandleColor;
+    private int mBubbleColor;
+    private int mHandleColor;
 
     private int mHeight;
     private boolean mHideScrollbar;
@@ -138,12 +136,12 @@ public class FastScroller extends LinearLayout {
     }
 
     @Override
-    public void setLayoutParams(@NonNull ViewGroup.LayoutParams params) {
+    public void setLayoutParams(ViewGroup.LayoutParams params) {
         params.width = LayoutParams.WRAP_CONTENT;
         super.setLayoutParams(params);
     }
 
-    public void setLayoutParams(@NonNull ViewGroup viewGroup) {
+    public void setLayoutParams(ViewGroup viewGroup) {
         if (viewGroup instanceof FrameLayout) {
             FrameLayout.LayoutParams layoutParams = (FrameLayout.LayoutParams) getLayoutParams();
 
@@ -206,8 +204,8 @@ public class FastScroller extends LinearLayout {
      *
      * @param color The color for the scroll track
      */
-    public void setTrackColor(@ColorInt int color) {
-        @ColorInt int trackColor = color;
+    public void setTrackColor(int color) {
+        int trackColor = color;
 
         if (mTrackImage == null) {
             mTrackImage = DrawableCompat.wrap(ContextCompat.getDrawable(getContext(), R.drawable.fastscroll_track));
@@ -223,7 +221,7 @@ public class FastScroller extends LinearLayout {
      *
      * @param color The color for the scroll handle
      */
-    public void setHandleColor(@ColorInt int color) {
+    public void setHandleColor(int color) {
         mHandleColor = color;
 
         if (mHandleImage == null) {
@@ -240,7 +238,7 @@ public class FastScroller extends LinearLayout {
      *
      * @param color The background color for the index bubble
      */
-    public void setBubbleColor(@ColorInt int color) {
+    public void setBubbleColor(int color) {
         mBubbleColor = color;
 
         if (mBubbleImage == null) {
@@ -263,7 +261,7 @@ public class FastScroller extends LinearLayout {
      *
      * @param color The text color for the index bubble
      */
-    public void setBubbleTextColor(@ColorInt int color) {
+    public void setBubbleTextColor(int color) {
         mBubbleView.setTextColor(color);
     }
 
@@ -475,10 +473,10 @@ public class FastScroller extends LinearLayout {
         mTrackView = (ImageView) findViewById(R.id.fastscroll_track);
         mScrollbar = findViewById(R.id.fastscroll_scrollbar);
 
-        @ColorInt int bubbleColor = Color.GRAY;
-        @ColorInt int handleColor = Color.DKGRAY;
-        @ColorInt int trackColor = Color.LTGRAY;
-        @ColorInt int textColor = Color.WHITE;
+        int bubbleColor = Color.GRAY;
+        int handleColor = Color.DKGRAY;
+        int trackColor = Color.LTGRAY;
+        int textColor = Color.WHITE;
 
         boolean hideScrollbar = true;
         boolean showTrack = false;

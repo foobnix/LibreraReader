@@ -2,12 +2,12 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.foobnix.pdf.reader"
     android:installLocation="auto"
-    android:versionCode="664"
-    android:versionName="7.10.0" >
+    android:versionCode="668"
+    android:versionName="7.10.4" >
 
     <uses-sdk
         android:minSdkVersion="14"
-        android:targetSdkVersion="26" />
+        android:targetSdkVersion="27" />
 
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.VIBRATE" />
@@ -247,10 +247,11 @@
 		        <data android:scheme="librera" />
 		    </intent-filter>
         </activity>
-        <activity
+        
+         <activity
             android:name="com.google.android.gms.ads.AdActivity"
             android:configChanges="keyboard|keyboardHidden|orientation|screenLayout|uiMode|screenSize|smallestScreenSize"
-            android:resizeableActivity="true"
+            android:exported="false"
             android:theme="@android:style/Theme.Translucent" />
 
         <receiver

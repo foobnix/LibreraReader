@@ -4,8 +4,6 @@ import com.foobnix.android.utils.LOG;
 
 import android.os.Bundle;
 import android.os.Parcelable;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
@@ -40,19 +38,19 @@ import android.view.ViewGroup;
 public abstract class UpdatableFragmentPagerAdapter extends PagerAdapter {
     private static final String TAG = "FragmentPagerAdapter";
 
-    @NonNull
+
     private final FragmentManager mFragmentManager;
-    @Nullable
+
     private FragmentTransaction mCurTransaction = null;
-    @Nullable
+
     private Fragment mCurrentPrimaryItem = null;
 
-    @NonNull
+
     private final LongSparseArray<Fragment> mFragments = new LongSparseArray<Fragment>();
-    @NonNull
+
     private final LongSparseArray<Fragment.SavedState> mSavedStates = new LongSparseArray<Fragment.SavedState>();
 
-    public UpdatableFragmentPagerAdapter(@NonNull FragmentManager fm) {
+    public UpdatableFragmentPagerAdapter(FragmentManager fm) {
         mFragmentManager = fm;
     }
 
@@ -62,7 +60,7 @@ public abstract class UpdatableFragmentPagerAdapter extends PagerAdapter {
     public abstract Fragment getItem(int position);
 
     @Override
-    public void startUpdate(@NonNull ViewGroup container) {
+    public void startUpdate(ViewGroup container) {
         if (container.getId() == View.NO_ID) {
             throw new IllegalStateException("ViewPager with adapter " + this
                     + " requires a view id");
@@ -70,7 +68,7 @@ public abstract class UpdatableFragmentPagerAdapter extends PagerAdapter {
     }
 
     @Override
-    @NonNull
+
     public Object instantiateItem(ViewGroup container, int position) {
         long tag = getItemId(position);
         Fragment fragment = mFragments.get(tag);
@@ -103,7 +101,7 @@ public abstract class UpdatableFragmentPagerAdapter extends PagerAdapter {
     }
 
     @Override
-    public void destroyItem(ViewGroup container, int position, @NonNull Object object) {
+    public void destroyItem(ViewGroup container, int position, Object object) {
         Fragment fragment = (Fragment) object;
         int currentPosition = getItemPosition(fragment);
 
@@ -129,7 +127,7 @@ public abstract class UpdatableFragmentPagerAdapter extends PagerAdapter {
     }
 
     @Override
-    public void setPrimaryItem(ViewGroup container, int position, @Nullable Object object) {
+    public void setPrimaryItem(ViewGroup container, int position, Object object) {
         Fragment fragment = (Fragment) object;
         if (fragment != mCurrentPrimaryItem) {
             if (mCurrentPrimaryItem != null) {
@@ -153,7 +151,7 @@ public abstract class UpdatableFragmentPagerAdapter extends PagerAdapter {
     }
 
     @Override
-    public boolean isViewFromObject(@NonNull View view, @NonNull Object object) {
+    public boolean isViewFromObject(View view, Object object) {
         return ((Fragment) object).getView() == view;
     }
 
@@ -185,7 +183,7 @@ public abstract class UpdatableFragmentPagerAdapter extends PagerAdapter {
     }
 
     @Override
-    public void restoreState(@Nullable Parcelable state, ClassLoader loader) {
+    public void restoreState(Parcelable state, ClassLoader loader) {
         if (state != null) {
             Bundle bundle = (Bundle) state;
             bundle.setClassLoader(loader);
