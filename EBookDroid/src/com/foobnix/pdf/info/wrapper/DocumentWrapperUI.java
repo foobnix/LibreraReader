@@ -496,7 +496,7 @@ public class DocumentWrapperUI {
 
     public void showChapter() {
         if (TxtUtils.isNotEmpty(dc.getCurrentChapter())) {
-            bookName.setText(bookTitle + " – " + dc.getCurrentChapter().trim());
+            bookName.setText(bookTitle + " " + TxtUtils.LONG_DASH1 + " " + dc.getCurrentChapter().trim());
         } else {
             bookName.setText(bookTitle);
 

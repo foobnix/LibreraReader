@@ -30,7 +30,8 @@ import android.widget.TextView;
 public class TxtUtils {
 
     public static final String TTS_PAUSE = "<pause>";
-    public static String LONG_DASH = "–";
+    public static String LONG_DASH1 = "\u2013";
+    public static String LONG_DASH2 = "\u2014";
     public static String SMALL_DASH = "-";
 
     public static final String NON_BREAKE_SPACE = "\u00A0";
@@ -213,7 +214,8 @@ public class TxtUtils {
         pageHTML = pageHTML.replace("…", TTS_PAUSE);
         pageHTML = pageHTML.replace("!", "!" + TTS_PAUSE);
         pageHTML = pageHTML.replace("?", "?" + TTS_PAUSE);
-        pageHTML = pageHTML.replace(TxtUtils.LONG_DASH, TTS_PAUSE);
+        pageHTML = pageHTML.replace(TxtUtils.LONG_DASH1, TTS_PAUSE);
+        pageHTML = pageHTML.replace(TxtUtils.LONG_DASH2, TTS_PAUSE);
         pageHTML = pageHTML.replace("   ", TTS_PAUSE);
 
         pageHTML = pageHTML.replace("<p>", "").replace("</p>", " ");
@@ -222,7 +224,7 @@ public class TxtUtils {
         pageHTML = pageHTML.replace("*", "");
         pageHTML = pageHTML.replace("[image]", "");
         pageHTML = pageHTML.replaceAll("(?u)(\\w+)(-\\s)", "$1");
-        LOG.d("pageHTML [after]", pageHTML);
+        LOG.d("pageHTML [after] ", pageHTML);
         return pageHTML;
     }
 
@@ -269,7 +271,7 @@ public class TxtUtils {
 
     public static String getFileMetaBookName(FileMeta fileMeta) {
         if (TxtUtils.isNotEmpty(fileMeta.getAuthor())) {
-            return fileMeta.getAuthor() + " " + LONG_DASH + " " + fileMeta.getTitle();
+            return fileMeta.getAuthor() + " " + LONG_DASH1 + " " + fileMeta.getTitle();
         } else {
             return fileMeta.getTitle();
         }

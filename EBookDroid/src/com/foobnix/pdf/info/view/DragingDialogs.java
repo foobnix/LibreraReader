@@ -1901,7 +1901,7 @@ public class DragingDialogs {
         final AppBookmark bookmark = new AppBookmark(controller.getCurrentBook().getPath(), controller.getString(R.string.fast_bookmark), page, controller.getTitle());
         AppSharedPreferences.get().addBookMark(bookmark);
 
-        String TEXT = controller.getString(R.string.fast_bookmark) + " " + TxtUtils.LONG_DASH + " " + controller.getString(R.string.page) + " " + page + "";
+        String TEXT = controller.getString(R.string.fast_bookmark) + " " + TxtUtils.LONG_DASH1 + " " + controller.getString(R.string.page) + " " + page + "";
         Toast.makeText(controller.getActivity(), TEXT, Toast.LENGTH_SHORT).show();
 
     }
@@ -1983,7 +1983,7 @@ public class DragingDialogs {
                         bookmarksAdapter.notifyDataSetChanged();
 
                         closeDialog();
-                        String TEXT = controller.getString(R.string.fast_bookmark) + " " + TxtUtils.LONG_DASH + " " + controller.getString(R.string.page) + " " + page + "";
+                        String TEXT = controller.getString(R.string.fast_bookmark) + " " + TxtUtils.LONG_DASH1 + " " + controller.getString(R.string.page) + " " + page + "";
                         Toast.makeText(controller.getActivity(), TEXT, Toast.LENGTH_SHORT).show();
 
                     }

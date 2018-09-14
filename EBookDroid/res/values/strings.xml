@@ -31,7 +31,7 @@
    <string name="display_all_file_types_in_folders">Display all file types</string>
    <string name="show_the_dialog_what_is_new_for_updates">Show What\'s New after updates</string>
    <string name="what_is_new_in">What is new in</string>
-   <string name="full_list_of_changes_with_images_web_pdf_">Download a full list of changes in PDF format</string>
+   <string name="full_list_of_changes_with_images_web_pdf_">Download a full list of changes (PDF file)</string>
    <string name="search_for_text_in_documents">Search for Text</string>
    <string name="search_in_the_subfolders">Include subfolders</string>
    <string name="stop">Stop</string>
@@ -486,9 +486,9 @@
    <string name="display_sub_chapters_on_the_progress_line">Chapter/section tick marks</string>
    <string name="enable_vertical_gesture">Turn pages by vertical swipes</string>
    <string name="enable_horizontal_gesture">Turn pages by horizontal swipes</string>
-   <string name="pause_duration">Pause</string>
+   <string name="pause_duration">Break</string>
    <string name="voice">Voice</string>
-   <string name="capital_letter">Capital letter</string>
-   <string name="show_the_capital_letter">Show the capital letter</string>
+   <string name="capital_letter">Initial</string>
+   <string name="show_the_capital_letter">Begin chapters with initials</string>
    <string name="size">Size</string>
 </resources>

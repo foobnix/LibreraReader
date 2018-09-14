@@ -311,6 +311,7 @@ public class MuPdfPage extends AbstractCodecPage {
             TempHolder.lock.lock();
             byte[] pageAsHtml = getPageAsHtml(docHandle, pageHandle, -1);
             String string = new String(pageAsHtml);
+            LOG.d("getPageAsHtml", string);
             return string;
         } catch (Exception e) {
             LOG.e(e);
@@ -331,6 +332,7 @@ public class MuPdfPage extends AbstractCodecPage {
             // FZ_STEXT_PRESERVE_IMAGES = 4,
             byte[] pageAsHtml = getPageAsHtml(docHandle, pageHandle, 4);
             String string = new String(pageAsHtml);
+            LOG.d("getPageAsHtml WithImages", string);
             return string;
         } catch (Exception e) {
             LOG.e(e);

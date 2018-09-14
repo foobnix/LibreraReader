@@ -661,7 +661,8 @@ public class Fb2Extractor extends BaseExtractor {
     public static String accurateLine(String line) {
         if (AppState.get().isAccurateFontSize) {
             line = line.replace(TxtUtils.NON_BREAKE_SPACE, " ");
-            line = line.replace(">" + TxtUtils.LONG_DASH + " ", ">" + TxtUtils.LONG_DASH + TxtUtils.NON_BREAKE_SPACE);
+            line = line.replace(">" + TxtUtils.LONG_DASH1 + " ", ">" + TxtUtils.LONG_DASH1 + TxtUtils.NON_BREAKE_SPACE);
+            line = line.replace(">" + TxtUtils.LONG_DASH2 + " ", ">" + TxtUtils.LONG_DASH2 + TxtUtils.NON_BREAKE_SPACE);
         }
         return line;
     }
