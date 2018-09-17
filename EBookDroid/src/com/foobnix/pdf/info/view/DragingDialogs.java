@@ -501,8 +501,6 @@ public class DragingDialogs {
 
                 TextView ttsSkeakToFile = (TextView) view.findViewById(R.id.ttsSkeakToFile);
 
-
-
                 final TextView ttsLang = (TextView) view.findViewById(R.id.ttsLang);
                 // TxtUtils.underlineTextView(ttsLang);
 
@@ -570,8 +568,7 @@ public class DragingDialogs {
                         }
 
                         timerStart.setText(TempHolder.get().timerFinishTime == 0 ? R.string.start : R.string.cancel);
-                        ttsPage.setText(
-                                TempHolder.get().timerFinishTime == 0 ? "" : controller.getString(R.string.reading_will_be_stopped) + " " + DateFormat.getTimeFormat(activity).format(TempHolder.get().timerFinishTime));
+                        ttsPage.setText(TempHolder.get().timerFinishTime == 0 ? "" : controller.getString(R.string.reading_will_be_stopped) + " " + DateFormat.getTimeFormat(activity).format(TempHolder.get().timerFinishTime));
                         ttsPage.setVisibility(TxtUtils.visibleIf(TempHolder.get().timerFinishTime > 0));
 
                         TxtUtils.underlineTextView(timerStart);
@@ -629,7 +626,6 @@ public class DragingDialogs {
                     }
                 });
 
-
                 final CustomSeek seekBarSpeed = (CustomSeek) view.findViewById(R.id.seekBarSpeed);
                 seekBarSpeed.init(0, 600, (int) AppState.get().ttsSpeed * 100);
                 seekBarSpeed.setOnSeekChanged(new IntegerResponse() {
@@ -644,13 +640,13 @@ public class DragingDialogs {
                 });
 
                 final MyPopupMenu menu = new MyPopupMenu(seekBarSpeed.getContext(), seekBarSpeed);
-                for (int i = 5; i <= 60; i += 5) {
-                    final int j = i;
-                    menu.getMenu().add(String.format("%.1f x", (float) i / 10)).setOnMenuItemClickListener(new OnMenuItemClickListener() {
+                List<Float> values = Arrays.asList(0.25f, 0.5f, 0.75f, 1f, 1.25f, 1.5f, 1.75f, 2f, 3f, 4f, 5f, 6f);
+                for (final float i:values) {
+                    menu.getMenu().add(String.format("%s x", i)).setOnMenuItemClickListener(new OnMenuItemClickListener() {
 
                         @Override
                         public boolean onMenuItemClick(MenuItem item) {
-                            seekBarSpeed.reset(j * 10);
+                            seekBarSpeed.reset((int)(i * 100));
                             seekBarSpeed.sendProgressChanged();
                             return false;
                         }
@@ -1297,8 +1293,7 @@ public class DragingDialogs {
                     public void onClick(View v) {
                         TTSEngine.get().stop();
 
-                        TTSService.playBookPage(controller.getCurentPageFirst1() - 1, controller.getCurrentBook().getPath(), editText.getText().toString().trim(), controller.getBookWidth(), controller.getBookHeight(),
-                                AppState.get().fontSizeSp);
+                        TTSService.playBookPage(controller.getCurentPageFirst1() - 1, controller.getCurrentBook().getPath(), editText.getText().toString().trim(), controller.getBookWidth(), controller.getBookHeight(), AppState.get().fontSizeSp);
                     }
                 });
 
@@ -2841,8 +2836,6 @@ public class DragingDialogs {
                     }
                 });
 
-
-
                 CheckBox isOLED = (CheckBox) inflate.findViewById(R.id.isOLED);
                 isOLED.setChecked(AppState.get().isOLED);
                 isOLED.setOnCheckedChangeListener(new OnCheckedChangeListener() {
@@ -3508,7 +3501,6 @@ public class DragingDialogs {
                         AppState.get().isAccurateFontSize = isChecked;
                     }
                 });
-
 
                 View customCSS = inflate.findViewById(R.id.customCSS);
                 // TxtUtils.underlineTextView(customCSS);

@@ -208,15 +208,12 @@ public class TxtUtils {
         pageHTML = pageHTML.replace("b><p><i>", TTS_PAUSE).replace("i><p><b>", TTS_PAUSE);
         pageHTML = pageHTML.replace("<b>", "").replace("</b>", "").replace("<i>", "").replace("</i>", "").replace("<tt>", "").replace("</tt>", "");
 
-        pageHTML = replaceEndLine(pageHTML);
-
-        // pageHTML = pageHTML.replace("<br/>", TTS_PAUSE);
         pageHTML = pageHTML.replace("...", TTS_PAUSE);
         pageHTML = pageHTML.replace("…", TTS_PAUSE);
         pageHTML = pageHTML.replace("!", "!" + TTS_PAUSE);
         pageHTML = pageHTML.replace("?", "?" + TTS_PAUSE);
-        pageHTML = pageHTML.replace(TxtUtils.LONG_DASH1, TTS_PAUSE);
-        pageHTML = pageHTML.replace(TxtUtils.LONG_DASH2, TTS_PAUSE);
+        pageHTML = pageHTML.replace(">" + TxtUtils.LONG_DASH1, ">" + TTS_PAUSE);
+        pageHTML = pageHTML.replace(">" + TxtUtils.LONG_DASH2, ">" + TTS_PAUSE);
         pageHTML = pageHTML.replace("   ", TTS_PAUSE);
 
         pageHTML = pageHTML.replace("<p>", "").replace("</p>", " ");
@@ -224,6 +221,8 @@ public class TxtUtils {
         pageHTML = pageHTML.replace("'", "");
         pageHTML = pageHTML.replace("*", "");
         pageHTML = pageHTML.replace("[image]", "");
+
+        pageHTML = replaceEndLine(pageHTML);
         pageHTML = pageHTML.replaceAll("(?u)(\\w+)(-\\s)", "$1");
         LOG.d("pageHTML [after] ", pageHTML);
         return pageHTML;
