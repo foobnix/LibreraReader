@@ -629,6 +629,7 @@ public class AppState {
         providers.put("Google Search", String.format("http://www.google.com/search?q=%s", text));
         providers.put("Wikipedia", String.format("https://%s.m.wikipedia.org/wiki/%s", from, text));
         providers.put("Wiktionary", String.format("https://%s.m.wiktionary.org/wiki/%s", from, text));
+        providers.put("Academic.ru", String.format("https://dic.academic.ru/searchall.php?SWord=%s", text));
         return providers;
     }
 
