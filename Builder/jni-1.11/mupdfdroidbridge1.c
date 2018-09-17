@@ -1822,18 +1822,18 @@ Java_org_ebookdroid_droids_mupdf_codec_MuPdfPage_getPageAsHtml(JNIEnv * env, job
 
 
 		fz_close_device(ctx, dev);
-		fz_drop_device(ctx, dev);
-		dev = NULL;
+		//fz_drop_device(ctx, dev);
+		//dev = NULL;
 
-		fz_analyze_text(ctx, sheet, text);
+		//fz_analyze_text(ctx, sheet, text);
 
 		buf = fz_new_buffer(ctx, 256);
 		out = fz_new_output_with_buffer(ctx, buf);
 
 		fz_print_stext_page_as_text_my1(ctx, out, text, j);
 
-		fz_drop_output(ctx, out);
-		out = NULL;
+		//fz_drop_output(ctx, out);
+		//out = NULL;
 
 		len = fz_buffer_storage(ctx, buf, &data);
 
@@ -1848,7 +1848,7 @@ Java_org_ebookdroid_droids_mupdf_codec_MuPdfPage_getPageAsHtml(JNIEnv * env, job
 	{
 		fz_drop_stext_page(ctx, text);
 		fz_drop_stext_sheet(ctx, sheet);
-		fz_close_device(ctx, dev);
+		//fz_close_device(ctx, dev);
 		fz_drop_device(ctx, dev);
 		fz_drop_output(ctx, out);
 		fz_drop_buffer(ctx, buf);
