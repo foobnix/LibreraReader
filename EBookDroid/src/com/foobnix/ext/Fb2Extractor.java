@@ -536,14 +536,12 @@ public class Fb2Extractor extends BaseExtractor {
         }
 
         boolean isFindBodyEnd = false;
-        boolean titleBegin = false;
 
         long init = System.currentTimeMillis();
 
         boolean firstLine = true;
 
         boolean ready = true;
-        boolean epigraphBegin = false;
 
         while ((line = input.readLine()) != null) {
             if (TempHolder.get().loadingCancelled) {
@@ -569,66 +567,9 @@ public class Fb2Extractor extends BaseExtractor {
 
             line = accurateLine(line);
 
-            if (BookCSS.get().isCapitalLetter && !isFindBodyEnd) {
-
-                int titleTagBegin = line.lastIndexOf("<title");
-                int titleTagEnd = line.lastIndexOf("</title>");
-
-                if (ready || epigraphBegin) {
-
-                    if (!epigraphBegin) {
-                        epigraphBegin = line.lastIndexOf("<epigraph>") >= 0;
-                    }
-                    if (epigraphBegin) {
-                        epigraphBegin = true;
-                        ready = false;
-                    }
-
-                    if (epigraphBegin && line.lastIndexOf("</epigraph>") >= 0) {
-                        epigraphBegin = false;
-                        ready = true;
-                    }
-                }
-                if (titleTagBegin >= 0) {
-                    ready = false;
-                }
-
-                if (titleTagEnd >= 0 && titleTagEnd > titleTagBegin) {
-                    ready = true;
-                }
-
-                if (ready) {
-                    String anchor = "<p";
-                    int indexOf = line.indexOf(anchor);
-                    if (indexOf >= 0) {
-                        anchor = ">";
-                        indexOf = line.indexOf('>', indexOf);
-                    }
-                    if (indexOf >= 0 && line.length() - anchor.length() - indexOf >= 3) {
-                        ready = false;
-                        indexOf = indexOf + anchor.length();
-
-                        if (line.charAt(indexOf) != '<') {
-
-                            if (!Character.isLetter(line.charAt(indexOf))) {
-                                indexOf++;
-                            }
-
-                            if (!Character.isLetter(line.charAt(indexOf))) {
-                                indexOf++;
-                            }
-
-                            if (Character.isLetter(line.charAt(indexOf))) {
-                                line = line.substring(0, indexOf) + "<letter>" + line.substring(indexOf, indexOf + 1) + "</letter>" + line.substring(indexOf + 1);
-                                LOG.d("check-line-new", line);
-                            }
-                        }
-
-                    }
-                }
-            }
-
             String subLine[] = line.split("</");
+
+            line = null;
 
             for (int i = 0; i < subLine.length; i++) {
                 if (i == 0) {
@@ -637,16 +578,20 @@ public class Fb2Extractor extends BaseExtractor {
                     line = "</" + subLine[i];
                 }
 
-                if (BookCSS.get().isAutoHypens && line.contains("<title")) {
-                    titleBegin = true;
-                }
-
-                if (line.contains("</title")) {
-                    titleBegin = false;
+                if (!isFindBodyEnd) {
 
                     if (line.contains("</title>")) {
+                        ready = true;
                         count++;
                         line = line.replace("</title>", "<a id=\"" + count + "\"></a></title>");
+                    }
+
+                    if (BookCSS.get().isCapitalLetter && ready) {
+                        int indexP = line.indexOf("<p");
+                        if (indexP >= 0) {
+                            line = capitalLetter(line, indexP);
+                            ready = false;
+                        }
                     }
                 }
 
@@ -655,7 +600,7 @@ public class Fb2Extractor extends BaseExtractor {
                 }
 
                 if (!isFindBodyEnd) {
-                    if ((AppState.get().isDouble || !titleBegin) && BookCSS.get().isAutoHypens) {
+                    if (BookCSS.get().isAutoHypens) {
                         line = HypenUtils.applyHypnes(line);
                     }
                 }
@@ -670,6 +615,35 @@ public class Fb2Extractor extends BaseExtractor {
         writer.close();
 
         return out;
+    }
+
+    public String capitalLetter(String line, int indexOf) {
+        String anchor = "<p";
+        if (indexOf >= 0) {
+            anchor = ">";
+            indexOf = line.indexOf('>', indexOf);
+        }
+        if (indexOf >= 0 && line.length() - anchor.length() - indexOf >= 3) {
+            indexOf = indexOf + anchor.length();
+
+            if (line.charAt(indexOf) != '<') {
+
+                if (!Character.isLetter(line.charAt(indexOf))) {
+                    indexOf++;
+                }
+
+                if (!Character.isLetter(line.charAt(indexOf))) {
+                    indexOf++;
+                }
+
+                if (Character.isLetter(line.charAt(indexOf))) {
+                    line = line.substring(0, indexOf) + "<letter>" + line.substring(indexOf, indexOf + 1) + "</letter>" + line.substring(indexOf + 1);
+                    LOG.d("check-line-new", line);
+                }
+            }
+
+        }
+        return line;
     }
 
     public static String accurateLine(String line) {

@@ -516,6 +516,7 @@ public class BookCSS {
         builder.append("section+section>title{page-break-before:always;}");
         builder.append(String.format("empty-line{padding-top:%s;}", em(emptyLine)));
         builder.append("epigraph{text-align:right; margin-left:2em;font-style: italic;}");
+
         builder.append("text-author{font-style: italic;font-weight: bold;}");
         builder.append("p>image{display:block;}");
         if (paragraphHeight > 0) {// bug is here
@@ -602,7 +603,7 @@ public class BookCSS {
                 if (isFontFileName(capitalFont)) {
                     builder.append("font-family: myCapital !important;");
                 } else {
-                    builder.append("font-family:" + capitalFont + " !important; font-weight:normal;");
+                    builder.append("font-family:" + capitalFont + " !important;");
                 }
 
                 builder.append(String.format("font-size:%s;", em(capitalLetterSize)));
