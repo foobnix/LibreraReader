@@ -136,7 +136,8 @@ public class FontDialog {
         String text = textFontCapital.getText().toString();
         textFontCapital.setText(Html.fromHtml("<b>" + text.substring(0, 1) + "</b>" + text.substring(1)));
 
-        int visibleFB2 = TxtUtils.visibleIf(BookType.FB2.is(controller.getCurrentBook().getPath()));
+        boolean isFB2 = BookType.FB2.is(controller.getCurrentBook().getPath()) || BookType.ZIP.is(controller.getCurrentBook().getPath());
+        int visibleFB2 = TxtUtils.visibleIf(isFB2);
         inflate.findViewById(R.id.isFB2).setVisibility(visibleFB2);
         
         final AlertDialog.Builder builder = new AlertDialog.Builder(c);

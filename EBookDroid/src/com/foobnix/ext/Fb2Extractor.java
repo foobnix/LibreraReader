@@ -522,7 +522,7 @@ public class Fb2Extractor extends BaseExtractor {
         return false;
     }
 
-    static final List<String> ignore = Arrays.asList("<cite><p>", "<epigraph><p>");
+    static final List<String> ignore = Arrays.asList("<cite><p>");
 
     public ByteArrayOutputStream generateFb2File(String fb2, String encoding, boolean fixXML) throws Exception {
         BufferedReader input = new BufferedReader(new InputStreamReader(new FileInputStream(fb2), encoding));
@@ -545,6 +545,7 @@ public class Fb2Extractor extends BaseExtractor {
         boolean firstLine = true;
 
         boolean ready = true;
+        boolean epigraphBegin = false;
 
         while ((line = input.readLine()) != null) {
             if (TempHolder.get().loadingCancelled) {
@@ -572,12 +573,29 @@ public class Fb2Extractor extends BaseExtractor {
 
             if (BookCSS.get().isCapitalLetter && !isFindBodyEnd) {
 
-                int open = line.lastIndexOf("<title");
-                int close = line.lastIndexOf("</title>");
-                if (open >= 0) {
+                int titleTagBegin = line.lastIndexOf("<title");
+                int titleTagEnd = line.lastIndexOf("</title>");
+
+                if (ready || epigraphBegin) {
+
+                    if (!epigraphBegin) {
+                        epigraphBegin = line.lastIndexOf("<epigraph>") >= 0;
+                    }
+                    if (epigraphBegin) {
+                        epigraphBegin = true;
+                        ready = false;
+                    }
+
+                    if (epigraphBegin && line.lastIndexOf("</epigraph>") >= 0) {
+                        epigraphBegin = false;
+                        ready = true;
+                    }
+                }
+                if (titleTagBegin >= 0) {
                     ready = false;
                 }
-                if (close >= 0 && close > open) {
+
+                if (titleTagEnd >= 0 && titleTagEnd > titleTagBegin) {
                     ready = true;
                 }
 
