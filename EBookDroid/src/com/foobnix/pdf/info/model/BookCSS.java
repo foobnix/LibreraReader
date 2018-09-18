@@ -649,9 +649,6 @@ public class BookCSS {
 
     }
 
-    public String getFontWeight(String fontName) {
-        return isFontFileName(fontName) ? "bold" : "bold";
-    }
 
     public String getHeaderFontFamily(String fontName) {
         return isFontFileName(fontName) ? "myHeader" : fontName;
