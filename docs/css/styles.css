@@ -37,6 +37,9 @@ h2{
   font-size: 0.8em;
 }
 
+th{
+  display: none;
+}
 
 .sidebar li {  
   font-size:14px;
