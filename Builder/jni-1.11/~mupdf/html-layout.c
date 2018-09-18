@@ -730,8 +730,8 @@ generate_boxes(fz_context *ctx, fz_xml *node, fz_html_box *top,
 				else if (display == DIS_INLINE)
 				{
 					insert_inline_box(ctx, box, top, child_dir, g);
-					if (id)
-						generate_anchor(ctx, box, g);
+					//if (id)
+						//generate_anchor(ctx, box, g);
 					if (tag[0]=='a' && tag[1]==0)
 					{
 						if (g->is_fb2)

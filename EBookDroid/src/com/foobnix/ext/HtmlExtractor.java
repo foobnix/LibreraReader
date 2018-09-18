@@ -11,10 +11,12 @@ import java.util.Locale;
 import org.jsoup.Jsoup;
 import org.jsoup.safety.Whitelist;
 
+import com.foobnix.android.utils.Apps;
 import com.foobnix.android.utils.LOG;
 import com.foobnix.hypen.HypenUtils;
 import com.foobnix.pdf.info.ExtUtils;
 import com.foobnix.pdf.info.model.BookCSS;
+import com.foobnix.pdf.info.wrapper.AppState;
 
 public class HtmlExtractor {
 
@@ -34,27 +36,36 @@ public class HtmlExtractor {
             StringBuilder html = new StringBuilder();
             String line;
 
+            if (AppState.get().isAccurateFontSize) {
+                boolean isBody = false;
+                while ((line = input.readLine()) != null) {
 
-            boolean isBody = false;
-            while ((line = input.readLine()) != null) {
-
-                LOG.d(line);
-
-                if (line.toLowerCase(Locale.US).contains("<body")) {
-                    isBody = true;
+                    if (line.toLowerCase(Locale.US).contains("<body")) {
+                        isBody = true;
+                    }
+                    if (isBody) {
+                        html.append(line);
+                    }
+                    if (line.toLowerCase(Locale.US).contains("</html>")) {
+                        break;
+                    }
                 }
-                if (isBody) {
+            } else {
+                while ((line = input.readLine()) != null) {
                     html.append(line);
-                }
-                if (line.toLowerCase(Locale.US).contains("</html>")) {
-                    break;
                 }
             }
             input.close();
 
             FileOutputStream out = new FileOutputStream(file);
 
-            String string = Jsoup.clean(html.toString(), Whitelist.basic());
+            String string = null;
+            if (AppState.get().isAccurateFontSize) {
+
+                string = Jsoup.clean(html.toString(), Whitelist.basic());
+            } else {
+                string = html.toString();
+            }
 
             if (BookCSS.get().isAutoHypens) {
                 HypenUtils.applyLanguage(BookCSS.get().hypenLang);
@@ -62,7 +73,9 @@ public class HtmlExtractor {
                 // string = Jsoup.clean(string, Whitelist.none());
             }
             // String string = html.toString();
-            string = "<html><head></head><body style='text-align:justify;'><br/>" + string + "</body></html>";
+            if (AppState.get().isAccurateFontSize) {
+                string = "<html><head></head><body style='text-align:justify;'><br/>" + string + "</body></html>";
+            }
             // string = string.replace("\">", "\"/>");
             string = string.replace("<br>", "<br/>");
             // string = string.replace("http://example.com/", "");
@@ -95,11 +108,10 @@ public class HtmlExtractor {
                     isFlag = true;
                 }
 
-
                 if (isFlag) {
                     if (line.endsWith("=")) {
                         line = line.substring(0, line.length() - 1);
-                    }else {
+                    } else {
                         line = line + " ";
                     }
 

@@ -1230,7 +1230,8 @@ fz_apply_css_style(fz_context *ctx, fz_html_font_set *set, fz_css_style *style, 
 		else if (!strcmp(value->data, "medium")) style->font_size = make_number(1.0f, N_SCALE);
 		else if (!strcmp(value->data, "small")) style->font_size = make_number(0.83f, N_SCALE);
 		else if (!strcmp(value->data, "x-small")) style->font_size = make_number(0.69f, N_SCALE);
-		else if (!strcmp(value->data, "xx-small")) style->font_size = make_number(0.69f, N_SCALE);
+		else if (!strcmp(value->data, "xx-small")) style->font_size = make_number(0.49f, N_SCALE);
+
 		else if (!strcmp(value->data, "larger")) style->font_size = make_number(1.2f, N_SCALE);
 		else if (!strcmp(value->data, "smaller")) style->font_size = make_number(1/1.2f, N_SCALE);
 		else if (!strcmp(value->data, "inherit")) style->font_size = make_number(1.0f, N_SCALE);
