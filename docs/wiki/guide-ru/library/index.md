@@ -1,7 +1,7 @@
 ---
 layout: main
 ---
-[Руководство](/wiki/guide-ru)
+[<](/wiki/guide-ru)
 
 # Главный экран 
 

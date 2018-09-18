@@ -1,7 +1,7 @@
 ---
 layout: main
 ---
-[FAQ](/wiki/faq)
+[<](/wiki/faq)
 
 # How to convert PDF to EPUB
 

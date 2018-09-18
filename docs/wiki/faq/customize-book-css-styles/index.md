@@ -1,7 +1,7 @@
 ---
 layout: main
 ---
-[FAQ](/wiki/faq)
+[<](/wiki/faq)
 
 # Customize book css styles
 

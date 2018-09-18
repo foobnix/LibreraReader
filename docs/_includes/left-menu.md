@@ -2,8 +2,8 @@
     * Specification
     * History
     * Resources
-{% include faq.md %}
-{% include guide-ru.md %}
+ * [FAQ](/wiki/faq)
+ * [Руководство](/wiki/guide-ru)
 * Guide
     * Library screen
         * [Left menu](/wiki/left-menu#en) [(ru)](/wiki/left-menu#ru)
@@ -28,9 +28,8 @@
     * Listen books aloud
     * Bookmarks and notes
     *  Clouds synchronization
-* What is new
-    * Version 7.9
-    * Version 7.8
-    * Version 7.7
-    * Version 7.6
+* [What is new](/wiki/what-is-new/)
+	* [Version 7.10](/wiki/what-is-new/7.10/en-version-7.10)
+* [Что нового](/wiki/what-is-new/)
+	* [Версия 7.10](/wiki/what-is-new/7.10/ru-version-7.10)
 * Download

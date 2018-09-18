@@ -1,5 +1,8 @@
 ---
 layout: main
 ---
+[<](/wiki/)
+
 # Руководство
-{% include guide-ru.md %}
+
+[Библиотека](/wiki/guide-ru/library)
