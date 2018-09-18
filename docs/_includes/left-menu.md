@@ -32,4 +32,4 @@
 	* [Version 7.10](/wiki/what-is-new/7.10/en-version-7.10)
 * [Что нового](/wiki/what-is-new/)
 	* [Версия 7.10](/wiki/what-is-new/7.10/ru-version-7.10)
-* Download
+* [Download - Скачать](/wiki/download)
