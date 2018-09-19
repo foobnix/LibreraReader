@@ -491,5 +491,5 @@
    <string name="capital_letter">Didžioji raidė</string>
    <string name="show_the_capital_letter">Rodyti didžiąją raidę</string>
    <string name="size">Dydis</string>
-   <string name="quick_bookmark_on_the_click_on_the_headset_button">Greita žymė ant laisvų rankų įrangos mygtuko paspaudimo</string>
+   <string name="quick_bookmark_by_the_headset">Greita žymė su laisvų rankų įranga</string>
 </resources>

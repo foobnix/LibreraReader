@@ -491,5 +491,5 @@
    <string name="capital_letter">Initial</string>
    <string name="show_the_capital_letter">Begin chapters with initials</string>
    <string name="size">Size</string>
-   <string name="quick_bookmark_on_the_click_on_the_headset_button">Quick bookmark on the click on the headset button</string>
+   <string name="quick_bookmark_by_the_headset">Quick bookmark by the headset</string>
 </resources>

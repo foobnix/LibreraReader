@@ -491,5 +491,5 @@
    <string name="capital_letter">Majusculă</string>
    <string name="show_the_capital_letter">Afișați litera principală</string>
    <string name="size">Mărimea</string>
-   <string name="quick_bookmark_on_the_click_on_the_headset_button">Marcaj rapid pentru clic pe butonul setului cu cască</string>
+   <string name="quick_bookmark_by_the_headset">Marcaj rapid de la setul cu cască</string>
 </resources>

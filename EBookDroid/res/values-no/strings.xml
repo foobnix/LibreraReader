@@ -491,5 +491,5 @@
    <string name="capital_letter">Stor bokstav</string>
    <string name="show_the_capital_letter">Vis hovedstaven</string>
    <string name="size">Størrelse</string>
-   <string name="quick_bookmark_on_the_click_on_the_headset_button">Raskt bokmerke ved å klikke på hodesettknappen</string>
+   <string name="quick_bookmark_by_the_headset">Rask bokmerke av hodesettet</string>
 </resources>

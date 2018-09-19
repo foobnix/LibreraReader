@@ -491,5 +491,5 @@
    <string name="capital_letter">Wielka litera</string>
    <string name="show_the_capital_letter">Pokaż wielką literę</string>
    <string name="size">Rozmiar</string>
-   <string name="quick_bookmark_on_the_click_on_the_headset_button">Szybka zakładka po kliknięciu na przycisk zestawu słuchawkowego</string>
+   <string name="quick_bookmark_by_the_headset">Szybka zakładka przez zestaw słuchawkowy</string>
 </resources>

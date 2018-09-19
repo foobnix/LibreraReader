@@ -491,5 +491,5 @@
    <string name="capital_letter">Letra maiúscula</string>
    <string name="show_the_capital_letter">Mostrar a letra maiúscula</string>
    <string name="size">Tamanho</string>
-   <string name="quick_bookmark_on_the_click_on_the_headset_button">Marcador rápido no clique no botão do fone de ouvido</string>
+   <string name="quick_bookmark_by_the_headset">Marcador rápido pelo fone de ouvido</string>
 </resources>

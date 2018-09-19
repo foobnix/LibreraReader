@@ -491,5 +491,5 @@
    <string name="capital_letter">Büyük harf</string>
    <string name="show_the_capital_letter">Büyük harf göster</string>
    <string name="size">Boyut</string>
-   <string name="quick_bookmark_on_the_click_on_the_headset_button">Kulaklık düğmesinin üzerindeki tıklamada hızlı yer imi</string>
+   <string name="quick_bookmark_by_the_headset">Kulaklıkla hızlı yer imi</string>
 </resources>

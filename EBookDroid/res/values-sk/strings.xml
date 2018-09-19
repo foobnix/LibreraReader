@@ -491,5 +491,5 @@
    <string name="capital_letter">Veľké písmeno</string>
    <string name="show_the_capital_letter">Zobraziť veľké písmeno</string>
    <string name="size">Veľkosť</string>
-   <string name="quick_bookmark_on_the_click_on_the_headset_button">Rýchla záložka pri kliknutí na tlačidlo náhlavnej súpravy</string>
+   <string name="quick_bookmark_by_the_headset">Rýchla záložka na náhlavnej súprave</string>
 </resources>

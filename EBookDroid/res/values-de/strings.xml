@@ -491,5 +491,5 @@
    <string name="capital_letter">Großbuchstabe</string>
    <string name="show_the_capital_letter">Zeigen Sie den Großbuchstaben</string>
    <string name="size">Größe</string>
-   <string name="quick_bookmark_on_the_click_on_the_headset_button">Quick-Lesezeichen auf den Klick auf die Headset-Taste</string>
+   <string name="quick_bookmark_by_the_headset">Schnelles Lesezeichen am Headset</string>
 </resources>

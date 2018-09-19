@@ -491,5 +491,5 @@
    <string name="capital_letter">Iso kirjain</string>
    <string name="show_the_capital_letter">Näytä pääkirje</string>
    <string name="size">Koko</string>
-   <string name="quick_bookmark_on_the_click_on_the_headset_button">Nopea kirjanmerkki napsauttamalla kuulokkeen painiketta</string>
+   <string name="quick_bookmark_by_the_headset">Pikavalintanumero kuulokkeella</string>
 </resources>
