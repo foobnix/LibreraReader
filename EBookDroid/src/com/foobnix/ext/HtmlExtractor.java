@@ -36,7 +36,8 @@ public class HtmlExtractor {
             StringBuilder html = new StringBuilder();
             String line;
 
-            if (AppState.get().isAccurateFontSize) {
+            boolean accurate = !LOG.isEnable || AppState.get().isAccurateFontSize;
+            if (accurate) {
                 boolean isBody = false;
                 while ((line = input.readLine()) != null) {
 
@@ -60,7 +61,7 @@ public class HtmlExtractor {
             FileOutputStream out = new FileOutputStream(file);
 
             String string = null;
-            if (AppState.get().isAccurateFontSize) {
+            if (accurate) {
 
                 string = Jsoup.clean(html.toString(), Whitelist.basic());
             } else {
@@ -73,7 +74,7 @@ public class HtmlExtractor {
                 // string = Jsoup.clean(string, Whitelist.none());
             }
             // String string = html.toString();
-            if (AppState.get().isAccurateFontSize) {
+            if (accurate) {
                 string = "<html><head></head><body style='text-align:justify;'><br/>" + string + "</body></html>";
             }
             // string = string.replace("\">", "\"/>");

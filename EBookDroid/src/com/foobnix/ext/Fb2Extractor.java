@@ -580,10 +580,11 @@ public class Fb2Extractor extends BaseExtractor {
 
                 if (!isFindBodyEnd) {
 
-                    if (line.contains("</title>")) {
+                    int indexOf = line.indexOf("</title>");
+                    if (indexOf >= 0) {
                         ready = true;
                         count++;
-                        line = line.replace("</title>", "<a id=\"" + count + "\"></a></title>");
+                        line = line.substring(0, indexOf) + "<a id=\"" + count + "\"></a>" + line.substring(indexOf);
                     }
 
                     if (BookCSS.get().isCapitalLetter && ready) {
