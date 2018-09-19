@@ -36,7 +36,9 @@ public abstract class AbstractCodecContext implements CodecContext {
     public abstract CodecDocument openDocumentInner(String fileName, String password);
 
     public CodecDocument openDocumentInnerCanceled(String fileName, String password) {
+        long t = System.currentTimeMillis();
         CodecDocument openDocument = openDocumentInner(fileName, password);
+        LOG.d("openDocumentInner-time", (float) (System.currentTimeMillis() - t) / 1000, fileName);
         LOG.d("removeTempFiles1", TempHolder.get().loadingCancelled);
         if (TempHolder.get().loadingCancelled) {
             removeTempFiles();
@@ -75,7 +77,6 @@ public abstract class AbstractCodecContext implements CodecContext {
         }
 
         LOG.d("Open-Document 2 LANG:", BookCSS.get().hypenLang, fileNameOriginal);
-
 
         File cacheFileName = getCacheFileName(fileNameOriginal + getFileNameSalt(fileNameOriginal));
         CacheZipUtils.removeFiles(CacheZipUtils.CACHE_BOOK_DIR.listFiles(), cacheFileName);
