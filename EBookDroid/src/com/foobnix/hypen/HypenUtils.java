@@ -40,6 +40,7 @@ public class HypenUtils {
             return "";
         }
 
+
         final StringBuilder res = new StringBuilder();
 
         HtmlTokenizer tokenizer = new HtmlTokenizer(input, new TokensListener() {
@@ -55,14 +56,15 @@ public class HypenUtils {
                 if (w.length() <= 3) {
                     res.append(w);
                 } else {
-                    res.append(join(instance.hyphenate(w), SHY));
+                    String join = join(instance.hyphenate(w), SHY);
+                    // LOG.d("Hypn2-", join);
+                    res.append(join);
                 }
 
             }
 
         });
         tokenizer.run();
-
 
         String out = res.toString();
 
@@ -199,7 +201,7 @@ public class HypenUtils {
                     continue;
                 }
 
-                if (ch != ' ' || Character.isLetter(ch)) {
+                if (Character.isLetter(ch)) {
                     res.append(ch);
                 } else {
                     if (res.length() > 0) {
