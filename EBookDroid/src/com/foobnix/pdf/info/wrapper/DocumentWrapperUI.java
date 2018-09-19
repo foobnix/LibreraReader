@@ -331,7 +331,11 @@ public class DocumentWrapperUI {
 
         if (AppState.get().isUseVolumeKeys && KeyEvent.KEYCODE_HEADSETHOOK == keyCode) {
             if (TTSEngine.get().isPlaying()) {
-                TTSEngine.get().stop();
+                if (AppState.get().isFastBookmarkByTTS) {
+                    TTSEngine.get().fastTTSBookmakr(dc.getActivity());
+                } else {
+                    TTSEngine.get().stop();
+                }
             } else {
                 TTSEngine.get().playCurrent();
                 anchor.setTag("");

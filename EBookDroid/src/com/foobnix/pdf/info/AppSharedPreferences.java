@@ -96,6 +96,19 @@ public class AppSharedPreferences {
         bookmarks.clear();
     }
 
+    public boolean hasBookmark(String path, int page) {
+
+        List<AppBookmark> objects = AppSharedPreferences.get().getBookmarksByBook(new File(path));
+
+        for (AppBookmark all : objects) {
+            if (all.getPage() == page) {
+                return true;
+            }
+        }
+        return false;
+
+    }
+
     public List<AppBookmark> getBookmarksByBook(File book) {
         List<AppBookmark> filter = new ArrayList<AppBookmark>();
         if (book == null) {

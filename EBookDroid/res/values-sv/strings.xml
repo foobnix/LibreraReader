@@ -491,4 +491,5 @@
    <string name="capital_letter">Stor bokstav</string>
    <string name="show_the_capital_letter">Visa bokstaven</string>
    <string name="size">Storlek</string>
+   <string name="quick_bookmark_on_the_click_on_the_headset_button">Snabbt bokmärke på klicket på headsetknappen</string>
 </resources>

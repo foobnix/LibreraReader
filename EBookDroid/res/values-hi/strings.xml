@@ -491,4 +491,5 @@
    <string name="capital_letter">बड़ा अक्षर</string>
    <string name="show_the_capital_letter">पूंजी पत्र दिखाएं</string>
    <string name="size">आकार</string>
+   <string name="quick_bookmark_on_the_click_on_the_headset_button">हेडसेट बटन पर क्लिक पर त्वरित बुकमार्क</string>
 </resources>

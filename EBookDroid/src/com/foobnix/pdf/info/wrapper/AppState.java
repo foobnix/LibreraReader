@@ -264,7 +264,7 @@ public class AppState {
     @IgnoreHashCode
     public boolean isAllowTextSelection = true;
 
-    public boolean isAccurateFontSize = true;
+    public boolean isAccurateFontSize = false;
 
     @IgnoreHashCode
     public boolean isEditMode = true;
@@ -331,6 +331,9 @@ public class AppState {
 
     @IgnoreHashCode
     public boolean isUseVolumeKeys = true;
+
+    @IgnoreHashCode
+    public boolean isFastBookmarkByTTS = false;
 
     @IgnoreHashCode
     public boolean isReverseKeys = Dips.isSmallScreen();
@@ -450,6 +453,9 @@ public class AppState {
 
     @IgnoreHashCode
     public int lastBookPage = 0;
+
+    @IgnoreHashCode
+    public String lastBookTitle;
 
     public int lastBookWidth = 0;
     public int lastBookHeight = 0;

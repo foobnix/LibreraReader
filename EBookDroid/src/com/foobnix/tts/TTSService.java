@@ -94,8 +94,13 @@ public class TTSService extends Service {
                     boolean isPlaying = TTSEngine.get().isPlaying();
 
                     if (KeyEvent.KEYCODE_HEADSETHOOK == event.getKeyCode() || KeyEvent.KEYCODE_MEDIA_PLAY_PAUSE == event.getKeyCode()) {
+
                         if (isPlaying) {
-                            TTSEngine.get().stop();
+                            if (AppState.get().isFastBookmarkByTTS) {
+                                TTSEngine.get().fastTTSBookmakr(getBaseContext());
+                            } else {
+                                TTSEngine.get().stop();
+                            }
                         } else {
                             playPage("", AppState.get().lastBookPage, null);
                         }
@@ -176,17 +181,18 @@ public class TTSService extends Service {
     }
 
     public static void playLastBook() {
-        playBookPage(AppState.get().lastBookPage, AppState.get().lastBookPath, "", AppState.get().lastBookWidth, AppState.get().lastBookHeight, AppState.get().lastFontSize);
+        playBookPage(AppState.get().lastBookPage, AppState.get().lastBookPath, "", AppState.get().lastBookWidth, AppState.get().lastBookHeight, AppState.get().lastFontSize, AppState.get().lastBookTitle);
     }
 
     @TargetApi(26)
-    public static void playBookPage(int page, String path, String anchor, int width, int height, int fontSize) {
+    public static void playBookPage(int page, String path, String anchor, int width, int height, int fontSize, String title) {
         LOG.d(TAG, "playBookPage", page, path, width, height);
         TTSEngine.get().stop();
 
         AppState.get().lastBookWidth = width;
         AppState.get().lastBookHeight = height;
         AppState.get().lastFontSize = fontSize;
+        AppState.get().lastBookTitle = title;
 
         Intent intent = playBookIntent(page, path, anchor);
 
@@ -433,7 +439,6 @@ public class TTSService extends Service {
                 });
             } else {
                 TTSEngine.get().getTTS().setOnUtteranceCompletedListener(new OnUtteranceCompletedListener() {
-
 
                     @Override
                     public void onUtteranceCompleted(String utteranceId) {

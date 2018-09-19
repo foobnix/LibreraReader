@@ -491,4 +491,5 @@
    <string name="capital_letter">Nagybetű</string>
    <string name="show_the_capital_letter">Mutassa be a nagybetűs levelet</string>
    <string name="size">Méret</string>
+   <string name="quick_bookmark_on_the_click_on_the_headset_button">Gyors könyvjelző a fülhallgató gombjára való kattintással</string>
 </resources>

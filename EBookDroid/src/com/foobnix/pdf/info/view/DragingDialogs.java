@@ -720,6 +720,16 @@ public class DragingDialogs {
                     }
                 });
 
+                CheckBox isFastBookmarkByTTS = (CheckBox) view.findViewById(R.id.isFastBookmarkByTTS);
+                isFastBookmarkByTTS.setChecked(AppState.get().isFastBookmarkByTTS);
+                isFastBookmarkByTTS.setOnCheckedChangeListener(new OnCheckedChangeListener() {
+
+                    @Override
+                    public void onCheckedChanged(final CompoundButton buttonView, final boolean isChecked) {
+                        AppState.get().isFastBookmarkByTTS = isChecked;
+                    }
+                });
+
                 ttsSkeakToFile.setOnClickListener(new OnClickListener() {
 
                     @Override
@@ -1293,7 +1303,7 @@ public class DragingDialogs {
                     public void onClick(View v) {
                         TTSEngine.get().stop();
 
-                        TTSService.playBookPage(controller.getCurentPageFirst1() - 1, controller.getCurrentBook().getPath(), editText.getText().toString().trim(), controller.getBookWidth(), controller.getBookHeight(), AppState.get().fontSizeSp);
+                        TTSService.playBookPage(controller.getCurentPageFirst1() - 1, controller.getCurrentBook().getPath(), editText.getText().toString().trim(), controller.getBookWidth(), controller.getBookHeight(), AppState.get().fontSizeSp, controller.getTitle());
                     }
                 });
 

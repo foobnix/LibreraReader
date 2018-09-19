@@ -12,13 +12,17 @@ import org.greenrobot.eventbus.EventBus;
 import com.foobnix.android.utils.LOG;
 import com.foobnix.android.utils.ResultResponse;
 import com.foobnix.android.utils.TxtUtils;
+import com.foobnix.android.utils.Vibro;
 import com.foobnix.ext.CacheZipUtils;
+import com.foobnix.pdf.info.AppSharedPreferences;
 import com.foobnix.pdf.info.R;
+import com.foobnix.pdf.info.wrapper.AppBookmark;
 import com.foobnix.pdf.info.wrapper.AppState;
 import com.foobnix.pdf.info.wrapper.DocumentController;
 import com.foobnix.sys.TempHolder;
 
 import android.annotation.TargetApi;
+import android.content.Context;
 import android.os.Build;
 import android.speech.tts.TextToSpeech;
 import android.speech.tts.TextToSpeech.EngineInfo;
@@ -226,6 +230,19 @@ public class TTSEngine {
 
         });
 
+    }
+
+    public static void fastTTSBookmakr(Context c) {
+        int page = AppState.get().lastBookPage + 1;
+        boolean hasBookmark = AppSharedPreferences.get().hasBookmark(AppState.get().lastBookPath, page);
+
+        if (!hasBookmark) {
+            final AppBookmark bookmark = new AppBookmark(AppState.get().lastBookPath, c.getString(R.string.fast_bookmark), page, AppState.get().lastBookTitle);
+            AppSharedPreferences.get().addBookMark(bookmark);
+
+        }
+        Vibro.vibrate();
+        LOG.d("Fast-bookmark", AppState.get().lastBookPage);
     }
 
     public synchronized boolean isPlaying() {

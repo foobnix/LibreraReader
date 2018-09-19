@@ -491,4 +491,5 @@
    <string name="capital_letter">대문자</string>
    <string name="show_the_capital_letter">대문자 표시</string>
    <string name="size">크기</string>
+   <string name="quick_bookmark_on_the_click_on_the_headset_button">헤드셋 버튼 클릭시 빠른 북마크</string>
 </resources>

@@ -163,8 +163,12 @@
             android:id="@+id/stopReadingOnCall"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:singleLine="true"
             android:text="@string/pause_reading_if_the_incoming_call_or_other_sounds" />
+        <CheckBox
+            android:id="@+id/isFastBookmarkByTTS"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/quick_bookmark_by_the_headset" />
 
         <TextView
             android:id="@+id/ttsSkeakToFile"
