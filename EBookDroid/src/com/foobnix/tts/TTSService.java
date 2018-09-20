@@ -461,7 +461,7 @@ public class TTSService extends Service {
                 });
             }
 
-            TTSNotification.show(AppState.get().lastBookPath, pageNumber + 1);
+            TTSNotification.show(AppState.get().lastBookPath, pageNumber + 1, dc.getPageCount());
 
             TTSEngine.get().speek(firstPart);
 

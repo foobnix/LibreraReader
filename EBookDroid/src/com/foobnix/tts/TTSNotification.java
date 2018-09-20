@@ -49,6 +49,7 @@ public class TTSNotification {
 
     static String bookPath1;
     static int page1;
+    static int pageCount;
 
     private static Context context;
 
@@ -64,9 +65,10 @@ public class TTSNotification {
         notificationManager.createNotificationChannel(channel);
     }
 
-    public static void show(String bookPath, int page) {
+    public static void show(String bookPath, int page, int maxPages) {
         bookPath1 = bookPath;
         page1 = page;
+        pageCount = maxPages;
         try {
             NotificationManager nm = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
 
@@ -107,7 +109,7 @@ public class TTSNotification {
             remoteViews.setInt(R.id.ttsStop, "setColorFilter", TintUtil.color);
 
             String fileMetaBookName = TxtUtils.getFileMetaBookName(fileMeta);
-            String pageNumber = context.getString(R.string.page) + " " + page;
+            String pageNumber = context.getString(R.string.page) + " " + page + "/" + maxPages;
 
             remoteViews.setTextViewText(R.id.bookInfo, pageNumber + " " + fileMetaBookName);
             remoteViews.setViewVisibility(R.id.bookInfo, View.VISIBLE);
@@ -144,7 +146,7 @@ public class TTSNotification {
     }
 
     public static void showLast() {
-        show(bookPath1, page1);
+        show(bookPath1, page1, pageCount);
     }
 
     public static Bitmap getBookImage(String path) {
