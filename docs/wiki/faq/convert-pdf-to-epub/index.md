@@ -22,7 +22,7 @@ Choose "Convert to EPUB"
 ![](1.png)|![](2.png)|![](3.png)|
 
 
-### Text Reflow (Mobile View mode)
+### Text Reflow (Mobile View modHow to convert PDF to EPUBe)
 
 PDF Text Reflow convent PDF to EPUB in offline.
 Images are available.
