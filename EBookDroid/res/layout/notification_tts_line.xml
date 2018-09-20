@@ -1,63 +1,89 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="80dp"
-    android:gravity="center_horizontal"
+    android:layout_height="90dip"
+    android:orientation="horizontal"
     android:paddingBottom="8dp"
-    android:paddingTop="8dp">
+    android:paddingTop="8dp" >
 
     <ImageView
         android:id="@+id/ttsIcon"
-        android:layout_width="60dp"
+        android:layout_width="80dip"
         android:layout_height="match_parent"
+        android:layout_gravity="center"
         android:layout_marginRight="10dp"
-        android:layout_gravity="center"
         android:background="@drawable/bg_clickable"
-        android:src="@drawable/glyphicons_185_volume_up" />
+        android:src="@drawable/icon_pdf_pro" />
 
-    <ImageView
-        android:id="@+id/ttsPlay"
-        android:layout_width="48dp"
-        android:layout_height="48dp"
-        android:layout_gravity="center"
-        android:background="@drawable/bg_clickable"
-        android:padding="8dp"
-        android:src="@drawable/glyphicons_174_play" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical" >
 
-    <ImageView
-        android:id="@+id/ttsPause"
-        android:layout_width="48dp"
-        android:layout_height="48dp"
-        android:layout_gravity="center"
-        android:background="@drawable/bg_clickable"
-        android:padding="8dp"
-        android:src="@drawable/glyphicons_175_pause" />
+        <TextView
+            android:id="@+id/bookInfo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="4dip"
+            android:gravity="center_vertical|left"
+            android:lines="2"
+            android:text="Book Title"
+            android:textStyle="normal" />
 
-    <ImageView
-        android:id="@+id/ttsPrev"
-        android:layout_width="48dp"
-        android:layout_height="48dp"
-        android:layout_gravity="center"
-        android:background="@drawable/bg_clickable"
-        android:padding="8dp"
-        android:src="@drawable/glyphicons_173_rewind" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal" >
 
-    <ImageView
-        android:id="@+id/ttsNext"
-        android:layout_width="48dp"
-        android:layout_height="48dp"
-        android:layout_gravity="center"
-        android:background="@drawable/bg_clickable"
-        android:padding="8dp"
-        android:src="@drawable/glyphicons_177_forward" />
+            <ImageView
+                android:id="@+id/ttsPrev"
+                android:layout_width="@dimen/wh_button_big"
+                android:layout_height="@dimen/wh_button_big"
+                android:layout_gravity="center"
+                android:background="@drawable/bg_clickable"
+                android:padding="6dp"
+                android:src="@drawable/glyphicons_173_rewind" />
 
-    <ImageView
-        android:id="@+id/ttsStop"
-        android:layout_width="48dp"
-        android:layout_height="48dp"
-        android:layout_gravity="center"
-        android:background="@drawable/bg_clickable"
-        android:padding="8dp"
-        android:src="@drawable/glyphicons_176_stop" />
+            <ImageView
+                android:id="@+id/ttsPlay"
+                android:layout_width="40dip"
+                android:layout_height="40dip"
+                android:layout_gravity="center"
+                android:layout_marginLeft="10dip"
+                android:background="@drawable/bg_clickable"
+                android:padding="6dp"
+                android:src="@drawable/glyphicons_174_play" />
+
+            <ImageView
+                android:id="@+id/ttsPause"
+                android:layout_width="40dip"
+                android:layout_height="40dip"
+                android:layout_gravity="center"
+                android:layout_marginLeft="10dip"
+                android:background="@drawable/bg_clickable"
+                android:padding="6dp"
+                android:src="@drawable/glyphicons_175_pause" />
+
+            <ImageView
+                android:id="@+id/ttsNext"
+                android:layout_width="@dimen/wh_button_big"
+                android:layout_height="@dimen/wh_button_big"
+                android:layout_gravity="center"
+                android:layout_marginLeft="10dip"
+                android:background="@drawable/bg_clickable"
+                android:padding="6dp"
+                android:src="@drawable/glyphicons_177_forward" />
+
+            <ImageView
+                android:id="@+id/ttsStop"
+                android:layout_width="@dimen/wh_button_big"
+                android:layout_height="@dimen/wh_button_big"
+                android:layout_gravity="center"
+                android:layout_marginLeft="10dip"
+                android:background="@drawable/bg_clickable"
+                android:padding="8dp"
+                android:src="@drawable/glyphicons_176_stop" />
+        </LinearLayout>
+    </LinearLayout>
 
 </LinearLayout>

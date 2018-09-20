@@ -11,6 +11,7 @@ import com.foobnix.dao2.FileMeta;
 import com.foobnix.pdf.info.AppsConfig;
 import com.foobnix.pdf.info.IMG;
 import com.foobnix.pdf.info.R;
+import com.foobnix.pdf.info.TintUtil;
 import com.foobnix.pdf.info.wrapper.AppState;
 import com.foobnix.pdf.search.activity.HorizontalViewActivity;
 import com.foobnix.sys.ImageExtractor;
@@ -28,6 +29,8 @@ import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Build;
 import android.support.v4.app.NotificationCompat;
+import android.view.View;
+import android.widget.RemoteViews;
 
 public class TTSNotification {
 
@@ -87,15 +90,27 @@ public class TTSNotification {
             PendingIntent prev = PendingIntent.getService(context, 0, new Intent(TTS_PREV, null, context, TTSService.class), PendingIntent.FLAG_UPDATE_CURRENT);
             PendingIntent stopDestroy = PendingIntent.getService(context, 0, new Intent(TTS_STOP_DESTROY, null, context, TTSService.class), PendingIntent.FLAG_UPDATE_CURRENT);
 
-            RemoteViews remoteViews = new RemoteViews(context.getPackageName(),R.layout.notification_tts_line);
+            RemoteViews remoteViews = new RemoteViews(context.getPackageName(), R.layout.notification_tts_line);
             Bitmap bookImage = getBookImage(bookPath);
             remoteViews.setImageViewBitmap(R.id.ttsIcon, bookImage);
-            remoteViews.setOnClickPendingIntent(R.id.ttsPlay, play);
+
             remoteViews.setOnClickPendingIntent(R.id.ttsPause, pause);
+            remoteViews.setOnClickPendingIntent(R.id.ttsPlay, play);
             remoteViews.setOnClickPendingIntent(R.id.ttsNext, next);
             remoteViews.setOnClickPendingIntent(R.id.ttsPrev, prev);
             remoteViews.setOnClickPendingIntent(R.id.ttsStop, stopDestroy);
 
+            remoteViews.setInt(R.id.ttsPause, "setColorFilter", TintUtil.color);
+            remoteViews.setInt(R.id.ttsPlay, "setColorFilter", TintUtil.color);
+            remoteViews.setInt(R.id.ttsNext, "setColorFilter", TintUtil.color);
+            remoteViews.setInt(R.id.ttsPrev, "setColorFilter", TintUtil.color);
+            remoteViews.setInt(R.id.ttsStop, "setColorFilter", TintUtil.color);
+
+            String fileMetaBookName = TxtUtils.getFileMetaBookName(fileMeta);
+            String pageNumber = context.getString(R.string.page) + " " + page;
+
+            remoteViews.setTextViewText(R.id.bookInfo, pageNumber + " " + fileMetaBookName);
+            remoteViews.setViewVisibility(R.id.bookInfo, View.VISIBLE);
 
             builder.setContentIntent(contentIntent) //
                     .setSmallIcon(R.drawable.glyphicons_185_volume_up) //
@@ -106,8 +121,8 @@ public class TTSNotification {
                     .addAction(R.drawable.glyphicons_175_pause, context.getString(R.string.to_paly_pause), playPause)//
                     .addAction(R.drawable.glyphicons_174_play, context.getString(R.string.next), next)//
                     .addAction(R.drawable.glyphicons_177_forward, context.getString(R.string.stop), stopDestroy)//
-                    .setContentTitle(TxtUtils.getFileMetaBookName(fileMeta)) //
-                    .setContentText(context.getString(R.string.page) + " " + page) //
+                    .setContentTitle(fileMetaBookName) //
+                    .setContentText(pageNumber) //
                     .setContent(remoteViews); ///
 
             Notification n = builder.build(); //

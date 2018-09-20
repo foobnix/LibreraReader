@@ -2,8 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginTop="5dip"
-    android:gravity="center_horizontal" >
+    android:gravity="center" >
 
     <ImageView
         android:id="@+id/ttsDialog"
@@ -24,8 +23,8 @@
 
     <ImageView
         android:id="@+id/ttsPlayPause"
-        android:layout_width="@dimen/wh_button_big"
-        android:layout_height="@dimen/wh_button_big"
+        android:layout_width="40dip"
+        android:layout_height="40dip"
         android:layout_marginLeft="10dip"
         android:background="@drawable/bg_clickable"
         android:padding="7dip"
@@ -46,7 +45,7 @@
         android:layout_height="@dimen/wh_button_big"
         android:layout_marginLeft="10dip"
         android:background="@drawable/bg_clickable"
-        android:padding="7dip"
+        android:padding="8dip"
         android:src="@drawable/glyphicons_176_stop" />
 
 </LinearLayout>

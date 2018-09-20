@@ -243,9 +243,9 @@ public class TTSService extends Service {
         }
 
         if (TTSNotification.TTS_PLAY_PAUSE.equals(intent.getAction())) {
-            TTSEngine.get().stop();
 
             if (TTSEngine.get().isPlaying()) {
+                TTSEngine.get().stop();
                 savePage();
             } else {
                 playPage("", AppState.get().lastBookPage, null);
