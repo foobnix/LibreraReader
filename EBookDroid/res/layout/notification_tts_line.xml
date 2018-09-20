@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="80dp"
+    android:gravity="center_horizontal"
+    android:paddingBottom="8dp"
+    android:paddingTop="8dp">
+
+    <ImageView
+        android:id="@+id/ttsIcon"
+        android:layout_width="60dp"
+        android:layout_height="match_parent"
+        android:layout_marginRight="10dp"
+        android:layout_gravity="center"
+        android:background="@drawable/bg_clickable"
+        android:src="@drawable/glyphicons_185_volume_up" />
+
+    <ImageView
+        android:id="@+id/ttsPlay"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_gravity="center"
+        android:background="@drawable/bg_clickable"
+        android:padding="8dp"
+        android:src="@drawable/glyphicons_174_play" />
+
+    <ImageView
+        android:id="@+id/ttsPause"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_gravity="center"
+        android:background="@drawable/bg_clickable"
+        android:padding="8dp"
+        android:src="@drawable/glyphicons_175_pause" />
+
+    <ImageView
+        android:id="@+id/ttsPrev"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_gravity="center"
+        android:background="@drawable/bg_clickable"
+        android:padding="8dp"
+        android:src="@drawable/glyphicons_173_rewind" />
+
+    <ImageView
+        android:id="@+id/ttsNext"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_gravity="center"
+        android:background="@drawable/bg_clickable"
+        android:padding="8dp"
+        android:src="@drawable/glyphicons_177_forward" />
+
+    <ImageView
+        android:id="@+id/ttsStop"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_gravity="center"
+        android:background="@drawable/bg_clickable"
+        android:padding="8dp"
+        android:src="@drawable/glyphicons_176_stop" />
+
+</LinearLayout>
