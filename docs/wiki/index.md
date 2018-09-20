@@ -5,5 +5,10 @@ layout: main
 
 # Menu
   
-{% capture my_include %}{% include left-menu.md %}{% endcapture %}
+## English
+{% capture my_include %}{% include en-left-menu.md %}{% endcapture %}
+{{ my_include | markdownify }}
+    
+## Русский
+{% capture my_include %}{% include ru-left-menu.md %}{% endcapture %}
 {{ my_include | markdownify }}

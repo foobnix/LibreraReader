@@ -27,10 +27,13 @@
 
         <span style="color:red">(in progress)</span>
 
-
-        
-        {% capture my_include %}{% include left-menu.md %}{% endcapture %}
-        {{ my_include | markdownify }}
+        <h3>English</h3>
+       {% capture my_include %}{% include en-left-menu.md %}{% endcapture %}
+    {{ my_include | markdownify }}
+    
+    <h3>Русский</h3>
+     {% capture my_include %}{% include ru-left-menu.md %}{% endcapture %}
+    {{ my_include | markdownify }}
 
        
     </div>

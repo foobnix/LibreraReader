@@ -1,7 +1,7 @@
 ---
 layout: main
 ---
-# Downloads - Скачать
+# Download
 
 [Librera Reader on Google Play](https://play.google.com/store/apps/details?id=com.foobnix.pdf.reader)
 
