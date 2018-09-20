@@ -80,21 +80,35 @@ public class TTSNotification {
 
             PendingIntent contentIntent = PendingIntent.getActivity(context, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
 
-            PendingIntent palyPause = PendingIntent.getService(context, 0, new Intent(TTS_PLAY_PAUSE, null, context, TTSService.class), PendingIntent.FLAG_UPDATE_CURRENT);
+            PendingIntent playPause = PendingIntent.getService(context, 0, new Intent(TTS_PLAY_PAUSE, null, context, TTSService.class), PendingIntent.FLAG_UPDATE_CURRENT);
+            PendingIntent pause = PendingIntent.getService(context, 0, new Intent(TTS_PAUSE, null, context, TTSService.class), PendingIntent.FLAG_UPDATE_CURRENT);
+            PendingIntent play = PendingIntent.getService(context, 0, new Intent(TTS_PLAY, null, context, TTSService.class), PendingIntent.FLAG_UPDATE_CURRENT);
             PendingIntent next = PendingIntent.getService(context, 0, new Intent(TTS_NEXT, null, context, TTSService.class), PendingIntent.FLAG_UPDATE_CURRENT);
+            PendingIntent prev = PendingIntent.getService(context, 0, new Intent(TTS_PREV, null, context, TTSService.class), PendingIntent.FLAG_UPDATE_CURRENT);
             PendingIntent stopDestroy = PendingIntent.getService(context, 0, new Intent(TTS_STOP_DESTROY, null, context, TTSService.class), PendingIntent.FLAG_UPDATE_CURRENT);
+
+            RemoteViews remoteViews = new RemoteViews(context.getPackageName(),R.layout.notification_tts_line);
+            Bitmap bookImage = getBookImage(bookPath);
+            remoteViews.setImageViewBitmap(R.id.ttsIcon, bookImage);
+            remoteViews.setOnClickPendingIntent(R.id.ttsPlay, play);
+            remoteViews.setOnClickPendingIntent(R.id.ttsPause, pause);
+            remoteViews.setOnClickPendingIntent(R.id.ttsNext, next);
+            remoteViews.setOnClickPendingIntent(R.id.ttsPrev, prev);
+            remoteViews.setOnClickPendingIntent(R.id.ttsStop, stopDestroy);
+
 
             builder.setContentIntent(contentIntent) //
                     .setSmallIcon(R.drawable.glyphicons_185_volume_up) //
-                    .setLargeIcon(getBookImage(bookPath)) //
+                    .setLargeIcon(bookImage) //
                     .setTicker(context.getString(R.string.app_name)) //
                     .setWhen(System.currentTimeMillis()) //
                     .setOngoing(true)//
-                    .addAction(R.drawable.glyphicons_175_pause, context.getString(R.string.to_paly_pause), palyPause)//
+                    .addAction(R.drawable.glyphicons_175_pause, context.getString(R.string.to_paly_pause), playPause)//
                     .addAction(R.drawable.glyphicons_174_play, context.getString(R.string.next), next)//
                     .addAction(R.drawable.glyphicons_177_forward, context.getString(R.string.stop), stopDestroy)//
                     .setContentTitle(TxtUtils.getFileMetaBookName(fileMeta)) //
-                    .setContentText(context.getString(R.string.page) + " " + page); ///
+                    .setContentText(context.getString(R.string.page) + " " + page) //
+                    .setContent(remoteViews); ///
 
             Notification n = builder.build(); //
             nm.notify(NOT_ID, n);
