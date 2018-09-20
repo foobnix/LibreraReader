@@ -114,16 +114,17 @@ public class TTSNotification {
 
             builder.setContentIntent(contentIntent) //
                     .setSmallIcon(R.drawable.glyphicons_185_volume_up) //
-                    .setLargeIcon(bookImage) //
-                    .setTicker(context.getString(R.string.app_name)) //
-                    .setWhen(System.currentTimeMillis()) //
+                    // .setLargeIcon(bookImage) //
+                    // .setTicker(context.getString(R.string.app_name)) //
+                    // .setWhen(System.currentTimeMillis()) //
                     .setOngoing(true)//
-                    .addAction(R.drawable.glyphicons_175_pause, context.getString(R.string.to_paly_pause), playPause)//
-                    .addAction(R.drawable.glyphicons_174_play, context.getString(R.string.next), next)//
-                    .addAction(R.drawable.glyphicons_177_forward, context.getString(R.string.stop), stopDestroy)//
-                    .setContentTitle(fileMetaBookName) //
-                    .setContentText(pageNumber) //
-                    .setContent(remoteViews); ///
+                    //.addAction(R.drawable.glyphicons_175_pause, context.getString(R.string.to_paly_pause), playPause)//
+                    //.addAction(R.drawable.glyphicons_174_play, context.getString(R.string.next), next)//
+                    //.addAction(R.drawable.glyphicons_177_forward, context.getString(R.string.stop), stopDestroy)//
+                    //.setContentTitle(fileMetaBookName) //
+                    //.setContentText(pageNumber) //
+                    .setStyle(new NotificationCompat.DecoratedCustomViewStyle())//
+                    .setCustomContentView(remoteViews); ///
 
             Notification n = builder.build(); //
             nm.notify(NOT_ID, n);

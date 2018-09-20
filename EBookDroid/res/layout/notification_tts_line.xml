@@ -1,15 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="90dip"
+    android:layout_height="wrap_content"
     android:orientation="horizontal"
     android:paddingBottom="8dp"
     android:paddingTop="8dp" >
 
     <ImageView
         android:id="@+id/ttsIcon"
-        android:layout_width="80dip"
+        android:layout_width="60dip"
         android:layout_height="match_parent"
+        android:cropToPadding="true"
+        android:adjustViewBounds="true"
+        android:maxHeight="90dip"
         android:layout_gravity="center"
         android:layout_marginRight="10dp"
         android:background="@drawable/bg_clickable"
@@ -17,10 +20,11 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:orientation="vertical" >
 
         <TextView
+            style="@style/TextAppearance.Compat.Notification.Title"
             android:id="@+id/bookInfo"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -32,7 +36,7 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:orientation="horizontal" >
 
             <ImageView
@@ -46,8 +50,8 @@
 
             <ImageView
                 android:id="@+id/ttsPlay"
-                android:layout_width="40dip"
-                android:layout_height="40dip"
+                android:layout_width="@dimen/wh_button_big"
+                android:layout_height="@dimen/wh_button_big"
                 android:layout_gravity="center"
                 android:layout_marginLeft="10dip"
                 android:background="@drawable/bg_clickable"
