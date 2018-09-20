@@ -557,7 +557,7 @@ public class Fb2Extractor extends BaseExtractor {
                     }
                 }
                 firstLine = false;
-                writer.print(line);
+                writer.println(line);
                 continue;
             }
 
@@ -605,7 +605,7 @@ public class Fb2Extractor extends BaseExtractor {
                         line = HypenUtils.applyHypnes(line);
                     }
                 }
-                writer.print(line);
+                writer.println(line);
             }
 
         }
@@ -671,13 +671,14 @@ public class Fb2Extractor extends BaseExtractor {
             }
             line = accurateLine(line);
             line = HypenUtils.applyHypnes(line);
-            writer.write(line);
+            writer.println(line);
         }
         writer.close();
         return out;
     }
 
-    public static ByteArrayOutputStream generateHyphenFileEpubOld(InputStreamReader inputStream) throws Exception {
+    @Deprecated
+    private ByteArrayOutputStream generateHyphenFileEpubOld(InputStreamReader inputStream) throws Exception {
         BufferedReader input = new BufferedReader(inputStream);
 
         ByteArrayOutputStream out = new ByteArrayOutputStream();
@@ -707,7 +708,7 @@ public class Fb2Extractor extends BaseExtractor {
                 }
 
                 line = HypenUtils.applyHypnesOld2(line);
-                writer.print(line);
+                writer.println(line);
             }
         }
         writer.close();

@@ -11,7 +11,6 @@ import java.util.Locale;
 import org.jsoup.Jsoup;
 import org.jsoup.safety.Whitelist;
 
-import com.foobnix.android.utils.Apps;
 import com.foobnix.android.utils.LOG;
 import com.foobnix.hypen.HypenUtils;
 import com.foobnix.pdf.info.ExtUtils;
@@ -45,7 +44,7 @@ public class HtmlExtractor {
                         isBody = true;
                     }
                     if (isBody) {
-                        html.append(line);
+                        html.append(line + "\n");
                     }
                     if (line.toLowerCase(Locale.US).contains("</html>")) {
                         break;
@@ -53,7 +52,7 @@ public class HtmlExtractor {
                 }
             } else {
                 while ((line = input.readLine()) != null) {
-                    html.append(line);
+                    html.append(line + "\n");
                 }
             }
             input.close();

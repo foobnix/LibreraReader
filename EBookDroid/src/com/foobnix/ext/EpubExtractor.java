@@ -65,7 +65,8 @@ public class EpubExtractor extends BaseExtractor {
 
     }
 
-    public static void proccessHypensDefault(String input, String output) throws Exception {
+    @Deprecated
+    private void proccessHypensDefault(String input, String output) throws Exception {
         LOG.d("proccessHypens1", input, output);
 
         FileInputStream inputStream = new FileInputStream(new File(input));
@@ -120,7 +121,7 @@ public class EpubExtractor extends BaseExtractor {
             if (!name.endsWith("container.xml") && (nameLow.endsWith("html") || nameLow.endsWith("htm") || nameLow.endsWith("xml"))) {
                 LOG.d("nextEntry HTML cancell", TempHolder.get().loadingCancelled, name);
 
-                ByteArrayOutputStream hStream = Fb2Extractor.generateHyphenFileEpubOld(new InputStreamReader(zipInputStream));
+                ByteArrayOutputStream hStream = Fb2Extractor.generateHyphenFileEpub(new InputStreamReader(zipInputStream));
 
                 Fb2Extractor.writeToZipNoClose(zos, name, new ByteArrayInputStream(hStream.toByteArray()));
             } else {
