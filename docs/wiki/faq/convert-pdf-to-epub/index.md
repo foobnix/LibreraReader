@@ -13,13 +13,13 @@ In the left menu find the **Online document converter**
 
 Choose "Convert to EPUB"
 
-* 1 - Convert PDF to EPUB
-* 2 - Select document and start process
-* 3 - Download EPUB Book
+* Convert PDF to EPUB
+* Select document and start process
+* Download EPUB Book
 
 |1|2|3|
 |-|-|-|
-![](1.png)|![](2.png)|![](3.png)|
+|![](1.png)|![](2.png)|![](3.png)|
 
 
 ### Text Reflow (Mobile View modHow to convert PDF to EPUBe)
@@ -27,12 +27,12 @@ Choose "Convert to EPUB"
 PDF Text Reflow convent PDF to EPUB in offline.
 Images are available.
 
-* 4 - Open book menu -> Text Reflow
-* 5 - Text Reflow (or mobile view mode)
-* 6 - PDF and EPUB books
+* Open book menu -> Text Reflow
+* Text Reflow (or mobile view mode)
+* PDF and EPUB books
 
 |4|5|6|
 |-|-|-|
-![](4.png)|![](5.png)|![](6.png)|
+|![](4.png)|![](5.png)|![](6.png)|
 
 

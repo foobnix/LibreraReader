@@ -241,7 +241,7 @@ public class SyncTranslations {
         return text;
     }
 
-    private static String unTranslated(String text, String lang) {
+    public static String unTranslated(String text, String lang) {
         if (text == null || text.length() == 0) {
             return "";
         }
