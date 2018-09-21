@@ -119,6 +119,7 @@ public class TTSEngine {
                 EventBus.getDefault().post(new TtsStatus());
             }
         }
+        TTSNotification.showLast();
     }
 
     public void stopDestroy() {

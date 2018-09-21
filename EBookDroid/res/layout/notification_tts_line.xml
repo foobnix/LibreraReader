@@ -10,12 +10,12 @@
         android:id="@+id/ttsIcon"
         android:layout_width="60dip"
         android:layout_height="match_parent"
-        android:cropToPadding="true"
-        android:adjustViewBounds="true"
-        android:maxHeight="90dip"
         android:layout_gravity="center"
         android:layout_marginRight="10dp"
+        android:adjustViewBounds="true"
         android:background="@drawable/bg_clickable"
+        android:cropToPadding="true"
+        android:maxHeight="90dip"
         android:src="@drawable/icon_pdf_pro" />
 
     <LinearLayout
@@ -24,8 +24,8 @@
         android:orientation="vertical" >
 
         <TextView
-            style="@style/TextAppearance.Compat.Notification.Title"
             android:id="@+id/bookInfo"
+            style="@style/TextAppearance.Compat.Notification.Title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="4dip"
@@ -53,20 +53,20 @@
                 android:layout_width="@dimen/wh_button_big"
                 android:layout_height="@dimen/wh_button_big"
                 android:layout_gravity="center"
-                android:layout_marginLeft="10dip"
+                android:layout_marginLeft="8dp"
                 android:background="@drawable/bg_clickable"
-                android:padding="6dp"
                 android:src="@drawable/glyphicons_174_play" />
 
             <ImageView
                 android:id="@+id/ttsPause"
-                android:layout_width="40dip"
-                android:layout_height="40dip"
+                android:layout_width="@dimen/wh_button_big"
+                android:layout_height="@dimen/wh_button_big"
                 android:layout_gravity="center"
                 android:layout_marginLeft="10dip"
                 android:background="@drawable/bg_clickable"
-                android:padding="6dp"
-                android:src="@drawable/glyphicons_175_pause" />
+                android:padding="2dp"
+                android:src="@drawable/glyphicons_175_pause"
+                android:visibility="gone" />
 
             <ImageView
                 android:id="@+id/ttsNext"
@@ -87,6 +87,16 @@
                 android:background="@drawable/bg_clickable"
                 android:padding="8dp"
                 android:src="@drawable/glyphicons_176_stop" />
+
+            <ImageView
+                android:id="@+id/ttsBookMark"
+                android:layout_width="@dimen/wh_button_big"
+                android:layout_height="@dimen/wh_button_big"
+                android:layout_gravity="center"
+                android:layout_marginLeft="10dip"
+                android:background="@drawable/bg_clickable"
+                android:padding="6dp"
+                android:src="@drawable/glyphicons_73_bookmark" />
         </LinearLayout>
     </LinearLayout>
 

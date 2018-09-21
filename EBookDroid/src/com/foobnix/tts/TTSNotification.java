@@ -28,6 +28,7 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Build;
+import android.os.Handler;
 import android.support.v4.app.NotificationCompat;
 import android.view.View;
 import android.widget.RemoteViews;
@@ -52,6 +53,7 @@ public class TTSNotification {
     static int pageCount;
 
     private static Context context;
+    private static Handler handler;
 
     @TargetApi(26)
     public static void initChannels(Context context) {
@@ -63,6 +65,7 @@ public class TTSNotification {
         NotificationChannel channel = new NotificationChannel(DEFAULT, AppsConfig.TXT_APP_NAME, NotificationManager.IMPORTANCE_DEFAULT);
         channel.setImportance(NotificationManager.IMPORTANCE_LOW);
         notificationManager.createNotificationChannel(channel);
+        handler = new Handler();
     }
 
     public static void show(String bookPath, int page, int maxPages) {
@@ -96,17 +99,24 @@ public class TTSNotification {
             Bitmap bookImage = getBookImage(bookPath);
             remoteViews.setImageViewBitmap(R.id.ttsIcon, bookImage);
 
+            remoteViews.setOnClickPendingIntent(R.id.ttsPlay, playPause);
             remoteViews.setOnClickPendingIntent(R.id.ttsPause, pause);
-            remoteViews.setOnClickPendingIntent(R.id.ttsPlay, play);
             remoteViews.setOnClickPendingIntent(R.id.ttsNext, next);
             remoteViews.setOnClickPendingIntent(R.id.ttsPrev, prev);
             remoteViews.setOnClickPendingIntent(R.id.ttsStop, stopDestroy);
+
+            if (TTSEngine.get().isPlaying()) {
+                remoteViews.setImageViewResource(R.id.ttsPlay, R.drawable.glyphicons_175_pause);
+            } else {
+                remoteViews.setImageViewResource(R.id.ttsPlay, R.drawable.glyphicons_174_play);
+            }
 
             remoteViews.setInt(R.id.ttsPause, "setColorFilter", TintUtil.color);
             remoteViews.setInt(R.id.ttsPlay, "setColorFilter", TintUtil.color);
             remoteViews.setInt(R.id.ttsNext, "setColorFilter", TintUtil.color);
             remoteViews.setInt(R.id.ttsPrev, "setColorFilter", TintUtil.color);
             remoteViews.setInt(R.id.ttsStop, "setColorFilter", TintUtil.color);
+            remoteViews.setInt(R.id.ttsBookMark, "setColorFilter", TintUtil.color);
 
             String fileMetaBookName = TxtUtils.getFileMetaBookName(fileMeta);
             String pageNumber = context.getString(R.string.page) + " " + page + "/" + maxPages;
@@ -120,12 +130,16 @@ public class TTSNotification {
                     // .setTicker(context.getString(R.string.app_name)) //
                     // .setWhen(System.currentTimeMillis()) //
                     .setOngoing(true)//
-                    //.addAction(R.drawable.glyphicons_175_pause, context.getString(R.string.to_paly_pause), playPause)//
-                    //.addAction(R.drawable.glyphicons_174_play, context.getString(R.string.next), next)//
-                    //.addAction(R.drawable.glyphicons_177_forward, context.getString(R.string.stop), stopDestroy)//
-                    //.setContentTitle(fileMetaBookName) //
-                    //.setContentText(pageNumber) //
-                    //.setStyle(new NotificationCompat.DecoratedCustomViewStyle())//
+                    // .addAction(R.drawable.glyphicons_175_pause,
+                    // context.getString(R.string.to_paly_pause), playPause)//
+                    // .addAction(R.drawable.glyphicons_174_play, context.getString(R.string.next),
+                    // next)//
+                    // .addAction(R.drawable.glyphicons_177_forward,
+                    // context.getString(R.string.stop), stopDestroy)//
+                    // .setContentTitle(fileMetaBookName) //
+                    // .setContentText(pageNumber) //
+                    // .setStyle(new NotificationCompat.DecoratedCustomViewStyle())//
+                    .setCustomBigContentView(remoteViews) ///
                     .setCustomContentView(remoteViews); ///
 
             Notification n = builder.build(); //
@@ -146,8 +160,17 @@ public class TTSNotification {
     }
 
     public static void showLast() {
-        show(bookPath1, page1, pageCount);
+        handler.postDelayed(run, 250);
+
     }
+
+    static Runnable run = new Runnable() {
+
+        @Override
+        public void run() {
+            show(bookPath1, page1, pageCount);
+        }
+    };
 
     public static Bitmap getBookImage(String path) {
         String url = IMG.toUrl(path, ImageExtractor.COVER_PAGE_WITH_EFFECT, IMG.getImageSize());

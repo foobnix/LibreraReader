@@ -469,6 +469,8 @@ public class TTSService extends Service {
 
             savePage();
 
+            TTSNotification.showLast();
+
         }
     }
 
