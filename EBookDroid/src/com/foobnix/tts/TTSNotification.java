@@ -125,7 +125,7 @@ public class TTSNotification {
                     //.addAction(R.drawable.glyphicons_177_forward, context.getString(R.string.stop), stopDestroy)//
                     //.setContentTitle(fileMetaBookName) //
                     //.setContentText(pageNumber) //
-                    .setStyle(new NotificationCompat.DecoratedCustomViewStyle())//
+                    //.setStyle(new NotificationCompat.DecoratedCustomViewStyle())//
                     .setCustomContentView(remoteViews); ///
 
             Notification n = builder.build(); //
