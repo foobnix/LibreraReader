@@ -140,6 +140,7 @@ public class TTSNotification {
                     // .setTicker(context.getString(R.string.app_name)) //
                     // .setWhen(System.currentTimeMillis()) //
                     .setOngoing(true)//
+                    .setVisibility(NotificationCompat.VISIBILITY_PUBLIC)//
                     // .addAction(R.drawable.glyphicons_175_pause,
                     // context.getString(R.string.to_paly_pause), playPause)//
                     // .addAction(R.drawable.glyphicons_174_play, context.getString(R.string.next),
