@@ -10,6 +10,7 @@ import org.ebookdroid.common.cache.CacheManager;
 import org.ebookdroid.common.settings.SettingsManager;
 import org.ebookdroid.common.settings.books.BookSettings;
 import org.ebookdroid.core.PageIndex;
+import org.ebookdroid.core.PageSearcher;
 import org.ebookdroid.core.codec.CodecDocument;
 import org.ebookdroid.core.codec.CodecPage;
 import org.ebookdroid.core.codec.OutlineLink;
@@ -628,6 +629,26 @@ public abstract class HorizontalModeController extends DocumentController {
                     boolean nextWorld = false;
                     String firstPart = "";
                     TextWord firstWord = null;
+                    int firstWordIndex = 0;
+
+                    PageSearcher pageSearcher= new PageSearcher();
+                    pageSearcher.setTextForSearch(text);
+                    pageSearcher.setListener(new PageSearcher.OnWordSearched() {
+                        @Override
+                        public void onSearch(TextWord word, Object data) {
+                            if (!(data instanceof Integer))return;
+                            Integer pageNumber = (Integer) data;
+                            LOG.d("Find on page_", pageNumber, text,word);
+                            List<TextWord> selectedWords = PageImageState.get().getSelectedWords(pageNumber);
+                            if (selectedWords==null||selectedWords.size()<=0){
+                                result.onResultRecive(pageNumber);
+                                LOG.d("Find on page", pageNumber, text);
+                            }
+                            if (selectedWords==null||!selectedWords.contains(word)) {
+                                PageImageState.get().addWord(pageNumber, word);
+                            }
+                        }
+                    });
 
                     for (int i = 0; i < getPageCount(); i++) {
                         if (!TempHolder.isSeaching) {
@@ -685,14 +706,19 @@ public abstract class HorizontalModeController extends DocumentController {
                                 } else if (word.w.length() >= 3 && word.w.endsWith("-")) {
                                     nextWorld = true;
                                     firstWord = word;
+                                    firstWordIndex = i;
                                     firstPart = word.w.replace("-", "");
                                 } else if (nextWorld && (firstPart + word.w.toLowerCase(Locale.US)).contains(text)) {
                                     LOG.d("Contains 2", firstPart, word.w, text);
-                                    PageImageState.get().addWord(i, firstWord);
+                                    PageImageState.get().addWord(firstWordIndex, firstWord);
                                     PageImageState.get().addWord(i, word);
                                     nextWorld = false;
                                     firstWord = null;
                                     firstPart = "";
+                                    if (prev != firstWordIndex) {
+                                        result.onResultRecive(firstWordIndex);
+                                        prev = firstWordIndex;
+                                    }
                                     if (prev != i) {
                                         result.onResultRecive(i);
                                         prev = i;
@@ -702,6 +728,7 @@ public abstract class HorizontalModeController extends DocumentController {
                                     nextWorld = false;
                                     firstWord = null;
                                 }
+                                pageSearcher.addWord(new PageSearcher.WordData(word,i));
                             }
                         }
 

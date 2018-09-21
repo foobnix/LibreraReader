@@ -30,8 +30,11 @@ public class PageSearcher {
     }
 
     public void searchAtPage(Page page) {
+        if (page==null)return;
+        if (page.texts==null)return;
         for (TextWord[] line : page.texts) {
             for (TextWord textWord : line) {
+                if (textWord==null)continue;
                 addWord(new WordData(textWord, page));
             }
         }
@@ -51,30 +54,32 @@ public class PageSearcher {
             }
             words.addFirst(removedWord);
             for (WordData wordData : words) {
-                if (listener != null) listener.onSearch(wordData.word, wordData.page);
+                if (listener != null) listener.onSearch(wordData.word, wordData.data);
             }
             words.clear();
         }
+        textRow=getTextRow();
         while (words.size() > 0
                 && textRow.length() - words.getFirst().wordText.length() > textForSearch.length()
                 && textRow.length() - words.getLast().wordText.length() > textForSearch.length()
                 ) {
             words.removeFirst();
+            textRow=getTextRow();
         }
     }
 
     public interface OnWordSearched {
-        void onSearch(TextWord word, Page page);
+        void onSearch(TextWord word, Object page);
     }
 
-    private static class WordData {
+    public static class WordData {
         String wordText;
         TextWord word;
-        Page page;
+        Object data;
 
-        public WordData(TextWord word, Page page) {
+        public WordData(TextWord word, Object data) {
             this.word = word;
-            this.page = page;
+            this.data = data;
             wordText = word.w.toLowerCase(Locale.US).replaceAll("\\W", "");
         }
     }
