@@ -3,8 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="horizontal"
-    android:paddingBottom="8dp"
-    android:paddingTop="8dp" >
+    android:padding="8dip" >
 
     <ImageView
         android:id="@+id/ttsIcon"
@@ -44,7 +43,7 @@
                 android:layout_width="@dimen/wh_button_big"
                 android:layout_height="@dimen/wh_button_big"
                 android:layout_gravity="center"
-                 android:layout_marginLeft="10dp"
+                android:layout_marginLeft="10dp"
                 android:background="@drawable/bg_clickable"
                 android:padding="6dp"
                 android:src="@drawable/glyphicons_173_rewind" />
@@ -55,8 +54,8 @@
                 android:layout_height="@dimen/wh_button_big"
                 android:layout_gravity="center"
                 android:layout_marginLeft="14dp"
-                 android:padding="2dp"
                 android:background="@drawable/bg_clickable"
+                android:padding="2dp"
                 android:src="@drawable/glyphicons_174_play" />
 
             <ImageView
