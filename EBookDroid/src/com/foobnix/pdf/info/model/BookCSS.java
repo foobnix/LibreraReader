@@ -25,7 +25,6 @@ import com.foobnix.ui2.AppDB;
 
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.Environment;
 
@@ -123,15 +122,7 @@ public class BookCSS {
         linkColorDay = LINK_COLOR_UNIVERSAL;
         linkColorNight = LINK_COLOR_UNIVERSAL;
         customCSS2 = //
-                "code, pre,pre>* {white-space: pre; font-size: 0.6em !important;} /* pre, normal*/ \n" + //
-                        "svg {display:block} \n" + //
-                        "figure>* {font-size: 0.7em} \n" + //
-                        "tr {display:block}\n" + //
-                        "td>* {display:inline}\n" + //
-                        "blockquote {margin-left:0.5em !important}\n" + //
-                        "sup>* {font-size:0.83em;vertical-align:super;font-weight:bold}\n" + //
-                        // "letter {font-size: 2em; color:red; font-weight: bold;}\n" + //
-                        // "title>p{font-size:1.2em; color:red !important}\n" + //
+                "code,pre,pre>* {white-space: pre-line;}\n" + //
                         ""//
         ;
 
@@ -497,6 +488,11 @@ public class BookCSS {
         builder.append("isAutoHypens1" + isAutoHypens + hypenLang + "{}");
 
         builder.append("b>span,strong>span{font-weight:normal}");// fix chess
+
+        builder.append("svg {display:block}");
+        builder.append("tr {display:block}");
+        builder.append("td>* {display:inline}");
+        builder.append("sup>* {font-size:0.83em;vertical-align:super;}");
 
         // PAGE BEGIN
         builder.append("@page{");
