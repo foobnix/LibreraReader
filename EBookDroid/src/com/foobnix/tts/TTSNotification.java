@@ -61,6 +61,8 @@ public class TTSNotification {
     @TargetApi(26)
     public static void initChannels(Context context) {
         TTSNotification.context = context;
+        handler = new Handler();
+
         if (Build.VERSION.SDK_INT < 26) {
             return;
         }
@@ -68,7 +70,7 @@ public class TTSNotification {
         NotificationChannel channel = new NotificationChannel(DEFAULT, AppsConfig.TXT_APP_NAME, NotificationManager.IMPORTANCE_DEFAULT);
         channel.setImportance(NotificationManager.IMPORTANCE_LOW);
         notificationManager.createNotificationChannel(channel);
-        handler = new Handler();
+
     }
 
     public static void show(String bookPath, int page, int maxPages) {
