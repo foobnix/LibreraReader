@@ -12,7 +12,10 @@ public class GenerateFAQ {
 
     public static void main(String[] args) throws IOException {
 
-        PrintWriter out = new PrintWriter(new File(ROOT, "index.md"));
+        // String in = "index.md";
+        String in = "ru.md";
+
+        PrintWriter out = new PrintWriter(new File(ROOT, in));
         out.println("---");
         out.println("layout: main");
         out.println("---");
@@ -24,10 +27,10 @@ public class GenerateFAQ {
         File list = new File(ROOT);
         for (File file : list.listFiles()) {
             if (file.isDirectory()) {
-                File child = new File(file, "index.md");
+                File child = new File(file, in);
                 String title = getTitle(child).trim();
 
-                String line = String.format("* [%s](/wiki/faq/%s)", title, file.getName());
+                String line = String.format("* [%s](/wiki/faq/%s/%s)", title, file.getName(), in.replace(".md", ""));
                 System.out.println(line);
                 out.println(line);
             }

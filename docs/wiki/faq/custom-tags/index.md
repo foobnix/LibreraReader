@@ -13,43 +13,43 @@ find and orginize book collections.
 
 ### There are many places where user can **add tags** to the book.
 
-* 1 - By long tap on star (favorites) icon
-* 2 - From the book menu
-* 3 - From the book information dialog
+* By long tap on star (favorites) icon
+* From the book menu
+* From the book information dialog
 
 |1|2|3|
 |-|-|-|
-![](1.png)|![](2.png)|![](3.png)|
+|![](1.png)|![](2.png)|![](3.png)|
 
 ### Adding tags is very easy, just click
 
 > If delete tag, this tag will be removed from all books assigned
 
-* 4 - Add Tag
-* 5 - Create new tag
-* 6 - Delete assigned tag
+* Add Tag
+* Create new tag
+* Delete assigned tag
 
 |4|5|6|
 |-|-|-|
-![](4.png)|![](5.png)|![](6.png)|
+|![](4.png)|![](5.png)|![](6.png)|
 
 
 ### Create custom list and collections
 
-* 7 - Assign Tag to the book
-* 8 - Find all tag list in favorite tab
-* 9 - Get all books by tag
+* Assign Tag to the book
+* Find all tag list in favorite tab
+* Get all books by tag
 
 |7|8|9|
 |-|-|-|
-![](7.png)|![](8.png)|![](9.png)|
+|![](7.png)|![](8.png)|![](9.png)|
 
 ### See tags collections from the book
 
-* 10 - Click recent-tags icon
-* 11 - Select collections you want (favorite books or user tags)
-* 12 - Displaying books by tag, click to read any book
+* Click recent-tags icon
+* Select collections you want (favorite books or user tags)
+* Displaying books by tag, click to read any book
 
 |10|11|12|
 |-|-|-|
-![](10.png)|![](11.png)|![](12.png)|
+|![](10.png)|![](11.png)|![](12.png)|
