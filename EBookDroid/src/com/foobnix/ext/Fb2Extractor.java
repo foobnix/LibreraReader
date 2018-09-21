@@ -542,7 +542,7 @@ public class Fb2Extractor extends BaseExtractor {
         boolean firstLine = true;
 
         boolean ready = true;
-
+        HypenUtils.resetTokenizer();
         while ((line = input.readLine()) != null) {
             if (TempHolder.get().loadingCancelled) {
                 break;
@@ -664,21 +664,24 @@ public class Fb2Extractor extends BaseExtractor {
         String line;
 
         HypenUtils.applyLanguage(BookCSS.get().hypenLang);
+        HypenUtils.resetTokenizer();
 
         while ((line = input.readLine()) != null) {
             if (TempHolder.get().loadingCancelled) {
                 break;
             }
+            // LOG.d("gen-in", line);
             line = accurateLine(line);
             line = HypenUtils.applyHypnes(line);
             writer.println(line);
+            // LOG.d("gen-ou", line);
         }
         writer.close();
         return out;
     }
 
     @Deprecated
-    private ByteArrayOutputStream generateHyphenFileEpubOld(InputStreamReader inputStream) throws Exception {
+    public static ByteArrayOutputStream generateHyphenFileEpubOld(InputStreamReader inputStream) throws Exception {
         BufferedReader input = new BufferedReader(inputStream);
 
         ByteArrayOutputStream out = new ByteArrayOutputStream();
@@ -688,6 +691,7 @@ public class Fb2Extractor extends BaseExtractor {
         HypenUtils.applyLanguage(BookCSS.get().hypenLang);
 
         while ((line = input.readLine()) != null) {
+            LOG.d("gen0-in", line);
             if (TempHolder.get().loadingCancelled) {
                 break;
             }
@@ -708,8 +712,11 @@ public class Fb2Extractor extends BaseExtractor {
                 }
 
                 line = HypenUtils.applyHypnesOld2(line);
-                writer.println(line);
+                writer.print(line);
+                LOG.d("gen0-ou", line);
             }
+            writer.println();
+
         }
         writer.close();
         return out;

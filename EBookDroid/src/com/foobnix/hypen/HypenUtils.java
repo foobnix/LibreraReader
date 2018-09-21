@@ -35,16 +35,15 @@ public class HypenUtils {
         return res;
     }
 
+
     private static String applyHypnesNewMy(final String input) {
         if (input == null || input.length() == 0) {
             return "";
         }
 
-
         final StringBuilder res = new StringBuilder();
 
-        HtmlTokenizer tokenizer = new HtmlTokenizer(input, new TokensListener() {
-
+        tokenize(input, new TokensListener() {
 
             @Override
             public void findOther(char ch) {
@@ -57,14 +56,11 @@ public class HypenUtils {
                     res.append(w);
                 } else {
                     String join = join(instance.hyphenate(w), SHY);
-                    // LOG.d("Hypn2-", join);
                     res.append(join);
                 }
-
             }
 
         });
-        tokenizer.run();
 
         String out = res.toString();
 
@@ -165,57 +161,49 @@ public class HypenUtils {
 
         void findOther(char ch);
     }
+    static boolean ignore = false;
 
-    public static class HtmlTokenizer {
+    public static void resetTokenizer() {
+        ignore = false;
+    }
 
-        private String in;
-        private TokensListener listener;
+    public static void tokenize(String in, TokensListener listener) {
 
-        public HtmlTokenizer(String in, TokensListener listener) {
-            this.in = in;
-            this.listener = listener;
+        StringBuilder res = new StringBuilder();
+        for (int i = 0; i < in.length(); i++) {
+            char ch = in.charAt(i);
+
+            if (ch == '<') {
+                ignore = true;
+            }
+            if (ch == '>') {
+                ignore = false;
+            }
+
+            if (ignore) {
+                if (res.length() > 0) {
+                    listener.findText(res.toString());
+                    res.setLength(0);
+                }
+
+                listener.findOther(ch);
+                continue;
+            }
+
+            if (Character.isLetter(ch)) {
+                res.append(ch);
+            } else {
+                if (res.length() > 0) {
+                    listener.findText(res.toString());
+                    res.setLength(0);
+                }
+                listener.findOther(ch);
+            }
+
         }
-
-        public void run() {
-
-            StringBuilder res = new StringBuilder();
-            boolean ignore = false;
-            for (int i = 0; i < in.length(); i++) {
-                char ch = in.charAt(i);
-
-
-                if (ch == '<') {
-                    ignore = true;
-                }
-                if (ch == '>') {
-                    ignore = false;
-                }
-
-                if (ignore) {
-                    if (res.length() > 0) {
-                        listener.findText(res.toString());
-                        res.setLength(0);
-                    }
-
-                    listener.findOther(ch);
-                    continue;
-                }
-
-                if (Character.isLetter(ch)) {
-                    res.append(ch);
-                } else {
-                    if (res.length() > 0) {
-                        listener.findText(res.toString());
-                        res.setLength(0);
-                    }
-                    listener.findOther(ch);
-                }
-
-            }
-            if (res.length() > 0) {
-                listener.findText(res.toString());
-                res.setLength(0);
-            }
+        if (res.length() > 0) {
+            listener.findText(res.toString());
+            res.setLength(0);
         }
 
     }

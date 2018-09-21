@@ -45,6 +45,8 @@ public class RtfExtract {
                 HypenUtils.applyLanguage(BookCSS.get().hypenLang);
             }
 
+            HypenUtils.resetTokenizer();
+
             parser.parse(source, new AbstractTextConverter() {
                 boolean isImage;
                 String format = "jpg";

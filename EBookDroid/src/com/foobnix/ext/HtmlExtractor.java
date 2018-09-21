@@ -35,6 +35,8 @@ public class HtmlExtractor {
             StringBuilder html = new StringBuilder();
             String line;
 
+            HypenUtils.resetTokenizer();
+
             boolean accurate = !LOG.isEnable || AppState.get().isAccurateFontSize;
             if (accurate) {
                 boolean isBody = false;
@@ -102,6 +104,7 @@ public class HtmlExtractor {
             String line;
 
             boolean isFlag = false;
+            HypenUtils.resetTokenizer();
             while ((line = input.readLine()) != null) {
 
                 if (line.contains("<ht") || line.contains("<HT")) {
