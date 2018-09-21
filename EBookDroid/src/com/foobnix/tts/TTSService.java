@@ -237,8 +237,8 @@ public class TTSService extends Service {
                 wakeLock.release();
             }
 
-            EventBus.getDefault().post(new TtsStatus());
             stopSelf();
+            return START_NOT_STICKY;
 
         }
 
@@ -253,6 +253,7 @@ public class TTSService extends Service {
             if (wakeLock.isHeld()) {
                 wakeLock.release();
             }
+            TTSNotification.showLast();
 
         }
         if (TTSNotification.TTS_PAUSE.equals(intent.getAction())) {
@@ -261,7 +262,7 @@ public class TTSService extends Service {
             if (wakeLock.isHeld()) {
                 wakeLock.release();
             }
-
+            TTSNotification.showLast();
         }
 
         if (TTSNotification.TTS_PLAY.equals(intent.getAction())) {
@@ -270,6 +271,7 @@ public class TTSService extends Service {
             if (!wakeLock.isHeld()) {
                 wakeLock.acquire();
             }
+            TTSNotification.showLast();
         }
         if (TTSNotification.TTS_NEXT.equals(intent.getAction())) {
             TTSEngine.get().stop();

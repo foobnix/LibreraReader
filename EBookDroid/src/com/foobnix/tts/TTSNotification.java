@@ -100,15 +100,15 @@ public class TTSNotification {
 
             RemoteViews remoteViews = new RemoteViews(context.getPackageName(), R.layout.notification_tts_line);
 
-
             Bitmap bookImage = getBookImage(bookPath);
             remoteViews.setImageViewBitmap(R.id.ttsIcon, bookImage);
 
             remoteViews.setOnClickPendingIntent(R.id.ttsPlay, playPause);
-            remoteViews.setOnClickPendingIntent(R.id.ttsPause, pause);
             remoteViews.setOnClickPendingIntent(R.id.ttsNext, next);
             remoteViews.setOnClickPendingIntent(R.id.ttsPrev, prev);
             remoteViews.setOnClickPendingIntent(R.id.ttsStop, stopDestroy);
+
+            remoteViews.setViewVisibility(R.id.ttsDialog, View.GONE);
 
             if (TTSEngine.get().isPlaying()) {
                 remoteViews.setImageViewResource(R.id.ttsPlay, R.drawable.glyphicons_175_pause);
@@ -116,7 +116,6 @@ public class TTSNotification {
                 remoteViews.setImageViewResource(R.id.ttsPlay, R.drawable.glyphicons_174_play);
             }
 
-            remoteViews.setInt(R.id.ttsPause, "setColorFilter", TintUtil.color);
             remoteViews.setInt(R.id.ttsPlay, "setColorFilter", TintUtil.color);
             remoteViews.setInt(R.id.ttsNext, "setColorFilter", TintUtil.color);
             remoteViews.setInt(R.id.ttsPrev, "setColorFilter", TintUtil.color);
@@ -170,7 +169,9 @@ public class TTSNotification {
     }
 
     public static void showLast() {
-        handler.postDelayed(run, 250);
+        if (handler != null && !TTSEngine.get().isShutdown()) {
+            handler.postDelayed(run, 250);
+        }
 
     }
 

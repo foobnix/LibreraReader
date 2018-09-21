@@ -54,7 +54,7 @@ public class TTSControlsView extends FrameLayout {
         addView(view);
 
         final ImageView ttsStop = (ImageView) view.findViewById(R.id.ttsStop);
-        ttsPlayPause = (ImageView) view.findViewById(R.id.ttsPlayPause);
+        ttsPlayPause = (ImageView) view.findViewById(R.id.ttsPlay);
 
         final ImageView ttsNext = (ImageView) view.findViewById(R.id.ttsNext);
         final ImageView ttsPrev = (ImageView) view.findViewById(R.id.ttsPrev);

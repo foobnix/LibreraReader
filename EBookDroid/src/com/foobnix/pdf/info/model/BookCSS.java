@@ -492,7 +492,7 @@ public class BookCSS {
         builder.append("svg {display:block}");
         builder.append("tr {display:block}");
         builder.append("td>* {display:inline}");
-        builder.append("sup>* {font-size:0.83em;vertical-align:super;}");
+        builder.append("sup>* {font-size:0.83em;vertical-align:super; font-weigh:bold}");
 
         // PAGE BEGIN
         builder.append("@page{");

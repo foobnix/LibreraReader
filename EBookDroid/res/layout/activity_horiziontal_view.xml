@@ -253,7 +253,8 @@
     <com.foobnix.tts.TTSControlsView
         android:layout_marginBottom="10dip"
         android:id="@+id/ttsActive"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
+        android:layout_centerHorizontal="true"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true" />
 
