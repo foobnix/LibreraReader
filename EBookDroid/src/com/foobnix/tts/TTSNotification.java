@@ -30,6 +30,7 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Handler;
 import android.support.v4.app.NotificationCompat;
+import android.support.v4.app.RemoteInput;
 import android.view.View;
 import android.widget.RemoteViews;
 
@@ -45,6 +46,8 @@ public class TTSNotification {
     public static final String TTS_STOP_DESTROY = "TTS_STOP_DESTROY";
     public static final String TTS_NEXT = "TTS_NEXT";
     public static final String TTS_PREV = "TTS_PREV";
+
+    private static final String KEY_TEXT_REPLY = "key_text_reply";
 
     public static final int NOT_ID = 123123;
 
@@ -96,6 +99,8 @@ public class TTSNotification {
             PendingIntent stopDestroy = PendingIntent.getService(context, 0, new Intent(TTS_STOP_DESTROY, null, context, TTSService.class), PendingIntent.FLAG_UPDATE_CURRENT);
 
             RemoteViews remoteViews = new RemoteViews(context.getPackageName(), R.layout.notification_tts_line);
+
+
             Bitmap bookImage = getBookImage(bookPath);
             remoteViews.setImageViewBitmap(R.id.ttsIcon, bookImage);
 
@@ -116,13 +121,17 @@ public class TTSNotification {
             remoteViews.setInt(R.id.ttsNext, "setColorFilter", TintUtil.color);
             remoteViews.setInt(R.id.ttsPrev, "setColorFilter", TintUtil.color);
             remoteViews.setInt(R.id.ttsStop, "setColorFilter", TintUtil.color);
-            remoteViews.setInt(R.id.ttsBookMark, "setColorFilter", TintUtil.color);
 
             String fileMetaBookName = TxtUtils.getFileMetaBookName(fileMeta);
             String pageNumber = context.getString(R.string.page) + " " + page + "/" + maxPages;
 
             remoteViews.setTextViewText(R.id.bookInfo, pageNumber + " " + fileMetaBookName);
             remoteViews.setViewVisibility(R.id.bookInfo, View.VISIBLE);
+
+            NotificationCompat.Action action = new NotificationCompat.Action.Builder(R.drawable.glyphicons_114_justify, "Reply", pause)//
+                    .addRemoteInput(new RemoteInput.Builder("TEST")//
+                            .setLabel("Quick reply").build())
+                    .build();
 
             builder.setContentIntent(contentIntent) //
                     .setSmallIcon(R.drawable.glyphicons_185_volume_up) //
@@ -139,6 +148,7 @@ public class TTSNotification {
                     // .setContentTitle(fileMetaBookName) //
                     // .setContentText(pageNumber) //
                     // .setStyle(new NotificationCompat.DecoratedCustomViewStyle())//
+                    .addAction(action)//
                     .setCustomBigContentView(remoteViews) ///
                     .setCustomContentView(remoteViews); ///
 
