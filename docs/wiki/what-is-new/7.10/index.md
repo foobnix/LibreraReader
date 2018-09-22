@@ -30,6 +30,7 @@ Reading text aloud supports pauses on punctuation symbols.
 
 
 ### Other improvements
+
 * Search by many words in a book
 * Disable normalize font size 
 * Enable normalize font size

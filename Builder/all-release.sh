@@ -29,3 +29,5 @@ ant version
 ./remove_all.sh
 ./install_all.sh
 
+cd /home/ivan-dev/Dropbox/FREE_PDF_APK/testing
+md5sum *.apk > checksum.txt
