@@ -209,6 +209,21 @@ public class DecodeServiceBase implements DecodeService {
         Thread t = new Thread() {
             @Override
             public void run() {
+                PageSearcher pageSearcher= new PageSearcher();
+                pageSearcher.setTextForSearch(text);
+                pageSearcher.setListener(new PageSearcher.OnWordSearched() {
+                    @Override
+                    public void onSearch(TextWord word, Object data) {
+                        if (!(data instanceof Page))return;
+                        Page page = (Page) data;
+                        if (page.selectedText==null||page.selectedText.size()<=0){
+                            response.onResultRecive(page.index.docIndex);
+                            LOG.d("Find on page", page.index.docIndex, text);
+                        }
+                        if (page.selectedText==null)page.selectedText=new ArrayList<>();
+                        if (!page.selectedText.contains(word))page.selectedText.add(word);
+                    }
+                });
                 for (Page page : pages) {
 
                     if (!TempHolder.isSeaching) {
@@ -246,6 +261,7 @@ public class DecodeServiceBase implements DecodeService {
                         response.onResultRecive(page.index.docIndex);
                         LOG.d("Find on page1", page.index.docIndex, text);
                     }
+                    pageSearcher.searchAtPage(page);
                 }
                 response.onResultRecive(-1);
                 finish.run();
