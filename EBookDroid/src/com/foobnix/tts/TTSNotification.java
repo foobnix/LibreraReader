@@ -172,7 +172,9 @@ public class TTSNotification {
     }
 
     public static void showLast() {
-        if (handler != null && !TTSEngine.get().isShutdown()) {
+        if (TTSEngine.get().isShutdown()) {
+            hideNotification();
+        } else if (handler != null) {
             handler.postDelayed(run, 250);
         }
 

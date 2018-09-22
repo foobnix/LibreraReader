@@ -112,7 +112,7 @@ public class TTSService extends Service {
                         }
 
                     }
-
+                    TTSNotification.showLast();
                 }
                 return isActivated;
             }
@@ -167,6 +167,7 @@ public class TTSService extends Service {
                 isPlaying = TTSEngine.get().isPlaying();
                 LOG.d("onAudioFocusChange", "Is playing", isPlaying);
                 TTSEngine.get().stop();
+                TTSNotification.showLast();
             } else {
                 if (isPlaying) {
                     playPage("", AppState.get().lastBookPage, null);

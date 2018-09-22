@@ -2019,6 +2019,7 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
                     TTSEngine.get().playCurrent();
                     anchor.setTag("");
                 }
+                TTSNotification.showLast();
                 DragingDialogs.textToSpeachDialog(anchor, dc);
                 return true;
             }
