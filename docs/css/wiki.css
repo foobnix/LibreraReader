@@ -40,6 +40,9 @@ h2{
 th{
   display: none;
 }
+td{
+  padding-left:4px;
+}
 
 .sidebar li {  
   font-size:14px;

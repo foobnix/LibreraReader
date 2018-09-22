@@ -82,11 +82,13 @@ public class WikiTranslate {
     }
 
     public static void main(String[] args) throws Exception {
-        translate("/home/ivan-dev/git/LirbiReader/docs/wiki/about", "ru");
         translate("/home/ivan-dev/git/LirbiReader/docs/wiki/what-is-new/7.10", "ru");
-        translate("/home/ivan-dev/git/LirbiReader/docs/wiki/faq/convert-pdf-to-epub", "ru");
-        translate("/home/ivan-dev/git/LirbiReader/docs/wiki/faq/custom-tags", "ru");
-        translate("/home/ivan-dev/git/LirbiReader/docs/wiki/faq/customize-book-css-styles", "ru");
+        // translate("/home/ivan-dev/git/LirbiReader/docs/wiki/what-is-new/7.10", "ru");
+        // translate("/home/ivan-dev/git/LirbiReader/docs/wiki/faq/convert-pdf-to-epub",
+        // "ru");
+        // translate("/home/ivan-dev/git/LirbiReader/docs/wiki/faq/custom-tags", "ru");
+        // translate("/home/ivan-dev/git/LirbiReader/docs/wiki/faq/customize-book-css-styles",
+        // "ru");
 
     }
 
