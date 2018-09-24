@@ -3715,7 +3715,7 @@ public class DragingDialogs {
                 // link color
                 final CustomColorView linkColorDay = (CustomColorView) inflate.findViewById(R.id.linkColorDay);
                 linkColorDay.withDefaultColors(Color.parseColor(BookCSS.LINK_COLOR_DAY), Color.parseColor(BookCSS.LINK_COLOR_UNIVERSAL));
-                linkColorDay.init(Color.parseColor(BookCSS.get().linkColorDay));
+                linkColorDay.init(Color.parseColor(BookCSS.get().getLinkColorDay()));
                 linkColorDay.setOnColorChanged(new StringResponse() {
 
                     @Override
@@ -3727,7 +3727,7 @@ public class DragingDialogs {
 
                 final CustomColorView linkColorNight = (CustomColorView) inflate.findViewById(R.id.linkColorNight);
                 linkColorNight.withDefaultColors(Color.parseColor(BookCSS.LINK_COLOR_NIGHT), Color.parseColor(BookCSS.LINK_COLOR_UNIVERSAL));
-                linkColorNight.init(Color.parseColor(BookCSS.get().linkColorNight));
+                linkColorNight.init(Color.parseColor(BookCSS.get().getLinkColorNight()));
                 linkColorNight.setOnColorChanged(new StringResponse() {
 
                     @Override
@@ -3768,8 +3768,8 @@ public class DragingDialogs {
 
                                 emptyLine.reset(BookCSS.get().emptyLine);
 
-                                linkColorDay.init(Color.parseColor(BookCSS.get().linkColorDay));
-                                linkColorNight.init(Color.parseColor(BookCSS.get().linkColorNight));
+                                linkColorDay.init(Color.parseColor(BookCSS.get().getLinkColorDay()));
+                                linkColorNight.init(Color.parseColor(BookCSS.get().getLinkColorNight()));
                             }
                         });
 
