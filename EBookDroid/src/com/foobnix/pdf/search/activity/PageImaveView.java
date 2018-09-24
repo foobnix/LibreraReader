@@ -512,11 +512,13 @@ public class PageImaveView extends View {
                 if (isLognPress) {
                     selectText(event.getX(), event.getY(), xInit, yInit);
                 } else if (AppState.get().isTextFormat()) {
-                    selectText(event.getX(), event.getY(), event.getX(), event.getY());
-                    if (!TxtUtils.isFooterNote(AppState.get().selectedText)) {
-                        PageImageState.get().cleanSelectedWords();
-                        AppState.get().selectedText = null;
-                        invalidate();
+                    if (!TempHolder.isSeaching) {
+                        selectText(event.getX(), event.getY(), event.getX(), event.getY());
+                        if (!TxtUtils.isFooterNote(AppState.get().selectedText)) {
+                            PageImageState.get().cleanSelectedWords();
+                            AppState.get().selectedText = null;
+                            invalidate();
+                        }
                     }
                 }
 
@@ -698,8 +700,6 @@ public class PageImaveView extends View {
         imageMatrix().getValues(f);
         float tx = f[Matrix.MTRANS_X];
         float sx = f[Matrix.MSCALE_X];
-
-
 
         imageMatrix().postTranslate(getWidth() / 2 - tx - drawableWidth * sx / 2, 0);
         LOG.d("centerHorizontally", getWidth(), tx, drawableWidth * sx);

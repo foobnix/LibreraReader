@@ -170,18 +170,20 @@ public class AdvGuestureDetector extends SimpleOnGestureListener implements IMul
             }
 
             if (isTextFormat) {
-                String text = avc.processLongTap(true, e, e, false);
-                if (TxtUtils.isFooterNote(text)) {
-                    AppState.get().selectedText = text;
-                    avc.processLongTap(true, e, e, true);
-                    docCtrl.onLongPress(e);
-                    return false;
-                }
-                if (TxtUtils.isNotEmpty(text)) {
-                    docCtrl.clearSelectedText();
-                    // docCtrl.closeFooterNotesDialog();
-                    AppState.get().selectedText = null;
+                if (!TempHolder.isSeaching) {
+                    String text = avc.processLongTap(true, e, e, false);
+                    if (TxtUtils.isFooterNote(text)) {
+                        AppState.get().selectedText = text;
+                        avc.processLongTap(true, e, e, true);
+                        docCtrl.onLongPress(e);
+                        return false;
+                    }
+                    if (TxtUtils.isNotEmpty(text)) {
+                        docCtrl.clearSelectedText();
+                        // docCtrl.closeFooterNotesDialog();
+                        AppState.get().selectedText = null;
 
+                    }
                 }
             }
 
