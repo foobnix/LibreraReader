@@ -44,7 +44,6 @@ import android.view.WindowManager;
 import android.widget.FrameLayout;
 
 public class VerticalViewActivity extends AbstractActionActivity<VerticalViewActivity, ViewerActivityController> {
-    public static final String PERCENT_EXTRA = "percent";
     public static final DisplayMetrics DM = new DisplayMetrics();
 
     IView view;
@@ -246,6 +245,7 @@ public class VerticalViewActivity extends AbstractActionActivity<VerticalViewAct
     @Override
     protected void onPause() {
         super.onPause();
+        getIntent().putExtra(DocumentController.EXTRA_PERCENT, 0.0);
         LOG.d("onPause", this.getClass());
         getController().onPause();
         needToRestore = AppState.get().isAutoScroll;
@@ -355,7 +355,7 @@ public class VerticalViewActivity extends AbstractActionActivity<VerticalViewAct
         if (ExtUtils.isTextFomat(getIntent())) {
 
             double value = getController().getDocumentModel().getPercentRead();
-            getIntent().putExtra(PERCENT_EXTRA, value);
+            getIntent().putExtra(DocumentController.EXTRA_PERCENT, value);
 
             LOG.d("READ PERCEnt", value);
 

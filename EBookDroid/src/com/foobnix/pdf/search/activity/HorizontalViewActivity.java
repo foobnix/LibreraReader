@@ -1280,6 +1280,7 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
     @Override
     protected void onPause() {
         super.onPause();
+        getIntent().putExtra(DocumentController.EXTRA_PERCENT, 0.0);
         AppState.get().save(this);
         TempHolder.isSeaching = false;
         handler.postDelayed(closeRunnable, AppState.APP_CLOSE_AUTOMATIC);

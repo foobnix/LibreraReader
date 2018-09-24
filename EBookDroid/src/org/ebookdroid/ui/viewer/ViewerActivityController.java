@@ -246,10 +246,10 @@ public class ViewerActivityController extends ActionController<VerticalViewActiv
 
                 int pageIntent = intent.getIntExtra(DocumentController.EXTRA_PAGE, 0);
                 intent.putExtra(HorizontalModeController.EXTRA_PASSWORD, password);
-                double percent = intent.getDoubleExtra(VerticalViewActivity.PERCENT_EXTRA, 0.0);
+                double percent = intent.getDoubleExtra(DocumentController.EXTRA_PERCENT, 0.0);
 
                 intent.putExtra(DocumentController.EXTRA_PAGE, 0);
-                intent.putExtra(VerticalViewActivity.PERCENT_EXTRA, 0.0);
+                intent.putExtra(DocumentController.EXTRA_PERCENT, 0.0);
 
                 if (percent > 0) {
                     LOG.d("Percent", percent, getDocumentModel().getPageCount());
