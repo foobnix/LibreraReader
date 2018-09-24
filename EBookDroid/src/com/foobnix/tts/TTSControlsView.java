@@ -62,7 +62,7 @@ public class TTSControlsView extends FrameLayout {
         ttsDialog = (ImageView) view.findViewById(R.id.ttsDialog);
         ttsDialog.setVisibility(View.GONE);
 
-        int color = Color.parseColor(AppState.get().isDayNotInvert ? BookCSS.get().linkColorDay : BookCSS.get().linkColorNight);
+        int color = Color.parseColor(AppState.get().isDayNotInvert ? BookCSS.get().getLinkColorDay() : BookCSS.get().getLinkColorNight());
 
         TintUtil.setTintImageWithAlpha(ttsStop, color);
         TintUtil.setTintImageWithAlpha(ttsPlayPause, color);

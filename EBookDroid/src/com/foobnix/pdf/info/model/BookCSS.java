@@ -25,8 +25,12 @@ import com.foobnix.ui2.AppDB;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.Environment;
+import android.text.TextUtils;
+
+import org.ebookdroid.LibreraApp;
 
 public class BookCSS {
 
@@ -119,8 +123,9 @@ public class BookCSS {
         isAutoHypens = true;
         hypenLang = "en";
 
-        linkColorDay = LINK_COLOR_UNIVERSAL;
-        linkColorNight = LINK_COLOR_UNIVERSAL;
+        linkColorDay = null;
+        linkColorNight = null;
+
         customCSS2 = //
                 "code,pre,pre>* {white-space: pre-line;}\n" + //
                         ""//
@@ -311,6 +316,31 @@ public class BookCSS {
 
     private Collection<FontPack> getAllFontsFiltered(String path) {
         return getAllFontsFiltered(path, false);
+    }
+
+    public String getLinkColorNight(){
+        if (TextUtils.isEmpty(linkColorNight)){
+            return getBaseLinkColor();
+        }else{
+            return linkColorNight;
+        }
+    }
+
+    public String getLinkColorDay(){
+        if (TextUtils.isEmpty(linkColorDay)){
+            return getBaseLinkColor();
+        }else{
+            return linkColorDay;
+        }
+    }
+
+    public String getBaseLinkColor() {
+        int color = AppState.get().isUiTextColor ?
+                AppState.get().uiTextColor :
+                LibreraApp.context.getTheme().obtainStyledAttributes(new int[]{android.R.attr.textColorLink})
+                        .getColor(0, Color.parseColor(LINK_COLOR_UNIVERSAL));
+
+        return "#" + Integer.toHexString(color).substring(2);
     }
 
     private Collection<FontPack> getAllFontsFiltered(String path, final boolean excludeNoto) {
@@ -536,9 +566,9 @@ public class BookCSS {
         if (documentStyle == STYLES_DOC_AND_USER || documentStyle == STYLES_ONLY_USER) {
 
             if (AppState.get().isDayNotInvert) {
-                builder.append("a{color:" + linkColorDay + " !important;}");
+                builder.append("a{color:" + getLinkColorDay() + " !important;}");
             } else {
-                builder.append("a{color:" + linkColorNight + " !important;}");
+                builder.append("a{color:" + getLinkColorNight() + " !important;}");
             }
 
             // FONTS BEGIN
