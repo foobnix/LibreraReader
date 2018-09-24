@@ -248,7 +248,7 @@ public abstract class HorizontalModeController extends DocumentController {
     public int getPageFromUriSingleRun() {
         final double percent = activity.getIntent().getDoubleExtra(DocumentController.EXTRA_PERCENT, 0.0);
         int number = activity.getIntent().getIntExtra(EXTRA_PAGE, 0);
-        LOG.d("_PAGE", "uri page", number);
+        LOG.d("_PAGE", "uri page", number, activity.getIntent().getExtras());
 
         activity.getIntent().putExtra(EXTRA_PAGE, 0);
         activity.getIntent().putExtra(EXTRA_PERCENT, 0.0);
@@ -282,6 +282,7 @@ public abstract class HorizontalModeController extends DocumentController {
             bs.updateFromAppState();
             bs.currentPageChanged(new PageIndex(currentPage, currentPage), pagesCount);
             bs.save();
+            activity.getIntent().putExtra(EXTRA_PAGE, currentPage);
         } catch (Exception e) {
             LOG.e(e);
         }

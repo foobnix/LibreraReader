@@ -6,6 +6,8 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
+import org.ebookdroid.common.settings.SettingsManager;
+import org.ebookdroid.common.settings.books.BookSettings;
 import org.ebookdroid.core.codec.Annotation;
 import org.ebookdroid.core.codec.PageLink;
 
@@ -223,9 +225,15 @@ public abstract class DocumentController {
     }
 
     public void goToPageByTTS() {
-        if (!TTSEngine.get().isShutdown() && getCurrentBook().getPath().equals(AppState.get().lastBookPath)) {
-            onGoToPage(AppState.get().lastBookPage + 1);
-            LOG.d("goToPageByTTS", AppState.get().lastBookPage + 1);
+        try {
+            BookSettings bs = SettingsManager.getBookSettings(getCurrentBook().getPath());
+
+            if (getCurrentBook().getPath().equals(AppState.get().lastBookPath)) {
+                onGoToPage(bs.getCurrentPage().viewIndex + 1);
+                LOG.d("goToPageByTTS", AppState.get().lastBookPage + 1);
+            }
+        } catch (Exception e) {
+            LOG.e(e);
         }
     }
 
