@@ -491,5 +491,5 @@
    <string name="capital_letter">Буквица</string>
    <string name="show_the_capital_letter">Использовать буквицу</string>
    <string name="size">Размер</string>
-   <string name="quick_bookmark_by_the_headset">Быстрая закладка с помощью гарнитуры</string>
+   <string name="quick_bookmark_by_the_headset">Использовать кнопку гарнитуры для создания быстрых закладок к книге</string>
 </resources>
