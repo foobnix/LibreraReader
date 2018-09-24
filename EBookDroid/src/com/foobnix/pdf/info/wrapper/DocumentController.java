@@ -222,6 +222,13 @@ public abstract class DocumentController {
 
     }
 
+    public void goToPageByTTS() {
+        if (!TTSEngine.get().isShutdown() && getCurrentBook().getPath().equals(AppState.get().lastBookPath)) {
+            onGoToPage(AppState.get().lastBookPage + 1);
+            LOG.d("goToPageByTTS", AppState.get().lastBookPage + 1);
+        }
+    }
+
     public abstract void cleanImageMatrix();
 
     public void checkReadingTimer() {

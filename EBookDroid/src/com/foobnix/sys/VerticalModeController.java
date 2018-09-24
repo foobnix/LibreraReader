@@ -55,7 +55,7 @@ import android.widget.Toast;
 
 public class VerticalModeController extends DocumentController {
 
-    private final ViewerActivityController ctr;
+    private ViewerActivityController ctr;
 
     private static final double ZOOM_VALUE = 0.05;
 

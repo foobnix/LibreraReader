@@ -1268,8 +1268,8 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
             dc.onResume();
         }
 
-        if (dc != null && TTSEngine.get().isPlaying()) {
-            dc.onGoToPage(AppState.get().lastBookPage + 1);
+        if (dc != null) {
+            dc.goToPageByTTS();
         }
 
         handler.removeCallbacks(closeRunnable);
@@ -1280,7 +1280,6 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
     @Override
     protected void onPause() {
         super.onPause();
-        getIntent().putExtra(DocumentController.EXTRA_PERCENT, 0.0);
         AppState.get().save(this);
         TempHolder.isSeaching = false;
         handler.postDelayed(closeRunnable, AppState.APP_CLOSE_AUTOMATIC);

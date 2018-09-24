@@ -245,7 +245,6 @@ public class VerticalViewActivity extends AbstractActionActivity<VerticalViewAct
     @Override
     protected void onPause() {
         super.onPause();
-        getIntent().putExtra(DocumentController.EXTRA_PERCENT, 0.0);
         LOG.d("onPause", this.getClass());
         getController().onPause();
         needToRestore = AppState.get().isAutoScroll;

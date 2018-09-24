@@ -1845,9 +1845,9 @@ public class DocumentWrapperUI {
         LOG.d("DocumentWrapperUI", "onResume");
         handlerTimer.post(updateTimePower);
 
-        if (dc != null && TTSEngine.get().isPlaying()) {
-            dc.onGoToPage(AppState.get().lastBookPage);
-        }
+        if (dc != null) {
+            dc.goToPageByTTS();
+        } 
     }
 
     public void onPause() {

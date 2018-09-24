@@ -103,6 +103,7 @@ public class ViewerActivityController extends ActionController<VerticalViewActiv
 
         controller = new VerticalModeController(activity, this);
         wrapperControlls = new DocumentWrapperUI(controller);
+        LOG.d("ViewerActivityController create");
     }
 
     @Override
@@ -294,6 +295,7 @@ public class ViewerActivityController extends ActionController<VerticalViewActiv
         if (wrapperControlls != null) {
             wrapperControlls.onDestroy();
         }
+        LOG.d("ViewerActivityController onDestroy");
     }
 
     public void beforeDestroy() {
@@ -305,10 +307,13 @@ public class ViewerActivityController extends ActionController<VerticalViewActiv
             }
             SettingsManager.removeListener(this);
         }
+        LOG.d("ViewerActivityController beforeDestroy");
+
     }
 
     public void afterDestroy(boolean finishing) {
         getDocumentController().onDestroy();
+        LOG.d("ViewerActivityController afterDestroy");
     }
 
     public void askPassword(final String fileName, final int promtId) {
@@ -569,6 +574,7 @@ public class ViewerActivityController extends ActionController<VerticalViewActiv
 
     public void closeActivity(final ActionEx action) {
         viewerActivity.showInterstial();
+        LOG.d("ViewerActivityController closeActivity");
     }
 
     public void closeActivityFinal(final Runnable action) {
@@ -617,6 +623,8 @@ public class ViewerActivityController extends ActionController<VerticalViewActiv
 
         System.gc();
         BitmapManager.clear("finish");
+
+        LOG.d("ViewerActivityController closeActivity1");
     }
 
     /**
