@@ -380,7 +380,7 @@ public abstract class DragingPopup {
                         popupView.getLayoutParams().height = nHeight;
                     }
                     if (event.getRawX() + popupView.getLayoutParams().width < rootWidth) {
-                        AnchorHelper.setX(anchor, event.getRawX());
+                        AnchorHelper.setX(anchor, event.getRawX() + (x2 - x));
                     }
 
                     AnchorHelper.setY(anchor, y2);
