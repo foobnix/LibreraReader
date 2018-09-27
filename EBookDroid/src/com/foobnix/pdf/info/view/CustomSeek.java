@@ -21,6 +21,7 @@ public class CustomSeek extends FrameLayout {
 
     private TextView textCurerntValue;
     private SeekBar seek;
+    private int step;
 
     public CustomSeek(Context context) {
         super(context);
@@ -52,7 +53,7 @@ public class CustomSeek extends FrameLayout {
 
             @Override
             public void onClick(View v) {
-                int i = seek.getProgress() + 1;
+                int i = seek.getProgress() + step;
                 if (i < distance) {
                     seek.setProgress(i);
                 }
@@ -63,7 +64,7 @@ public class CustomSeek extends FrameLayout {
 
             @Override
             public void onClick(View v) {
-                int i = seek.getProgress() - 1;
+                int i = seek.getProgress() - step;
                 if (i >= 0) {
                     seek.setProgress(i);
                 }
@@ -131,6 +132,10 @@ public class CustomSeek extends FrameLayout {
 
         initWith(name, textColor);
 
+    }
+
+    public void setStep(int step) {
+        this.step = step;
     }
 
     public void setTitleTextWidth(int width) {
