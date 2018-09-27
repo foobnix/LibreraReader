@@ -76,6 +76,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="2dip"
                 android:layout_weight="0"
+                android:singleLine="true"
+                android:ellipsize="start"
                 android:gravity="right"
                 android:minEms="3"
                 android:text="1/123"

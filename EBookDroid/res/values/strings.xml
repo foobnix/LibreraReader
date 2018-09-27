@@ -421,7 +421,7 @@
    <string name="title">Title</string>
    <string name="subject">Subject</string>
    <string name="keywords">Keywords</string>
-   <string name="number">Page number</string>
+   <string name="number">Number</string>
    <string name="percent">Percentage</string>
    <string name="awards">Awards</string>
    <string name="close_book_and_application">Exit Librera</string>
@@ -492,4 +492,6 @@
    <string name="show_the_capital_letter">Begin chapters with initials</string>
    <string name="size">Size</string>
    <string name="quick_bookmark_by_the_headset">Remote bookmarks (headset\'s pause/stop button)</string>
+   <string name="page_format">Page format</string>
+   <string name="chapter_format">Chapter format</string>
 </resources>

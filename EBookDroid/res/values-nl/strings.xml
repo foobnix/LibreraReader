@@ -492,4 +492,6 @@
    <string name="show_the_capital_letter">Toon de hoofdletter</string>
    <string name="size">Grootte</string>
    <string name="quick_bookmark_by_the_headset">Snelle bladwijzer door de headset</string>
+   <string name="page_format">Pagina-indeling</string>
+   <string name="chapter_format">Hoofdstuk formaat</string>
 </resources>

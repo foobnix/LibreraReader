@@ -238,9 +238,12 @@ public class AppState {
     public final static int OUTLINE_HEADERS_AND_SUBHEADERES = 0;
     public final static int OUTLINE_ONLY_HEADERS = 1;
 
-    public final static int READING_PROGRESS_NUMBERS = 0;
-    public final static int READING_PROGRESS_PERCENT = 1;
-    public final static int READING_PROGRESS_PERCENT_NUMBERS = 2;
+    public final static int PAGE_NUMBER_FORMAT_NUMBER = 0;
+    public final static int PAGE_NUMBER_FORMAT_PERCENT = 1;
+
+    public final static int CHAPTER_FORMAT_1 = 0;
+    public final static int CHAPTER_FORMAT_2 = 1;
+    public final static int CHAPTER_FORMAT_3 = 2;
 
     public final static int AUTO_BRIGTNESS = -1000;
 
@@ -257,7 +260,10 @@ public class AppState {
     public int ttsPauseDuration = 350;
 
     @IgnoreHashCode
-    public int readingProgress = READING_PROGRESS_PERCENT_NUMBERS;
+    public int pageNumberFormat = PAGE_NUMBER_FORMAT_NUMBER;
+    
+    @IgnoreHashCode
+    public int chapterFormat = CHAPTER_FORMAT_1;
 
     public int outlineMode = OUTLINE_ONLY_HEADERS;
 

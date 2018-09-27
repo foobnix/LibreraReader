@@ -492,4 +492,6 @@
    <string name="show_the_capital_letter">Zobraziť veľké písmeno</string>
    <string name="size">Veľkosť</string>
    <string name="quick_bookmark_by_the_headset">Rýchla záložka na náhlavnej súprave</string>
+   <string name="page_format">Formát stránky</string>
+   <string name="chapter_format">Formát kapitoly</string>
 </resources>

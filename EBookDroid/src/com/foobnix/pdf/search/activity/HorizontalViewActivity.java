@@ -25,6 +25,8 @@ import com.foobnix.pdf.info.Android6;
 import com.foobnix.pdf.info.DictsHelper;
 import com.foobnix.pdf.info.ExtUtils;
 import com.foobnix.pdf.info.IMG;
+import com.foobnix.pdf.info.OutlineHelper;
+import com.foobnix.pdf.info.OutlineHelper.Info;
 import com.foobnix.pdf.info.PasswordDialog;
 import com.foobnix.pdf.info.R;
 import com.foobnix.pdf.info.TintUtil;
@@ -233,6 +235,16 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
             }
         });
 
+        pagesCountIndicator.setOnLongClickListener(new OnLongClickListener() {
+
+            @Override
+            public boolean onLongClick(View v) {
+                OutlineHelper.showChapterFormatPopup(v, onRefresh);
+                return true;
+
+            }
+        });
+
         currentSeek.setOnLongClickListener(new OnLongClickListener() {
 
             @Override
@@ -414,7 +426,6 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
         });
         ttsActive = findViewById(R.id.ttsActive);
         ttsActive.setVisibility(TxtUtils.visibleIf(TTSEngine.get().isPlaying()));
-
 
         // ttsActive.setOnClickListener(new View.OnClickListener() {
         //
@@ -1479,29 +1490,10 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
             viewPager.setCurrentItem(page, false);
         }
 
-        int max = dc.getPageCount();
-        String textPage = TxtUtils.deltaPage(page + 1, max);
-        String textMax = TxtUtils.deltaPageMax(max);
-        if (AppState.get().isRTL) {
-            maxSeek.setText("" + textPage);
-            currentSeek.setText(textMax);
-        } else {
-            maxSeek.setText("" + textMax);
-            currentSeek.setText("" + textPage);
-        }
-        if (AppState.get().readingProgress == AppState.READING_PROGRESS_PERCENT) {
-            pagesCountIndicator.setText(textPage);
-        } else if (AppState.get().readingProgress == AppState.READING_PROGRESS_PERCENT_NUMBERS) {
-            currentSeek.setText(TxtUtils.deltaPage(page + 1));
-            String text = TxtUtils.getProgressPercent(page + 1, max) + "   " + TxtUtils.deltaPage(page + 1) + " ∕ " + textMax;
-
-            int leftPages = progressDraw.getLeftPages(page + 1, max);
-            text += "   (" + leftPages + ")" + (leftPages < 10 ? "  " : "");
-
-            pagesCountIndicator.setText(text);
-        } else {
-            pagesCountIndicator.setText(textPage + " ∕ " + textMax);
-        }
+        Info info = OutlineHelper.getForamtingInfo(dc);
+        maxSeek.setText(info.textPage);
+        currentSeek.setText(info.textMax);
+        pagesCountIndicator.setText(info.chText);
 
         seekBar.setProgress(page);
         if (dc != null) {

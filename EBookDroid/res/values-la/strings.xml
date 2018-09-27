@@ -421,7 +421,7 @@
    <string name="title">Titulus</string>
    <string name="subject">Sibiectus</string>
    <string name="keywords">Keywords</string>
-   <string name="number">Numeris paginai</string>
+   <string name="number">Numerus</string>
    <string name="percent">Procentum</string>
    <string name="awards">Signi laudis</string>
    <string name="close_book_and_application">Claudere applicationem</string>
@@ -492,4 +492,6 @@
    <string name="show_the_capital_letter">Caput epistulam ostende</string>
    <string name="size">Magnitudine</string>
    <string name="quick_bookmark_by_the_headset">Velox bookmark a headset</string>
+   <string name="page_format">Forma page</string>
+   <string name="chapter_format">CAPUT forma</string>
 </resources>

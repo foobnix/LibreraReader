@@ -5,7 +5,6 @@ import java.util.List;
 
 import com.foobnix.android.utils.Dips;
 import com.foobnix.android.utils.LOG;
-import com.foobnix.android.utils.TxtUtils;
 import com.foobnix.ext.Fb2Extractor;
 import com.foobnix.pdf.info.model.OutlineLinkWrapper;
 import com.foobnix.pdf.info.wrapper.AppState;
@@ -78,23 +77,7 @@ public class ProgressDraw extends View {
         invalidate();
     }
 
-    public int getLeftPages(int currentPage, int maxPages) {
-        if (TxtUtils.isListEmpty(dividers)) {
-            return maxPages;
-        }
 
-        int first = dividers.get(0).level;
-        for (int i = 0; i < dividers.size(); i++) {
-            OutlineLinkWrapper item = dividers.get(i);
-            int nextTarget = item.targetPage;
-            if (nextTarget > currentPage && item.level <= (AppState.get().isShowSubChaptersOnProgress ? 2 : 0) + first) {
-                return nextTarget - currentPage;
-            }
-        }
-
-        return maxPages - currentPage;
-
-    }
 
     @Override
     protected void onDraw(Canvas canvas) {

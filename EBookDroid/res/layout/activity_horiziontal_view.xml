@@ -186,6 +186,7 @@
                 android:layout_weight="1"
                 android:minWidth="50dip"
                 android:text="--:--"
+                android:singleLine="true"
                 android:textColor="@color/tint_gray"
                 android:textSize="9sp" />
 
@@ -197,12 +198,15 @@
                 android:layout_alignParentBottom="true"
                 android:layout_centerHorizontal="true"
                 android:layout_weight="1"
+                android:singleLine="true"
                 android:gravity="center"
+                android:ellipsize="start"
                 android:text="-/-"
                 android:textColor="@color/tint_gray"
                 android:textSize="12sp" />
 
             <TextView
+                android:singleLine="true"
                 android:id="@+id/flippingIntervalView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -216,6 +220,7 @@
                 android:visibility="gone" />
 
             <TextView
+                android:singleLine="true"
                 android:id="@+id/pagesPower"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

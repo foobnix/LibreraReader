@@ -299,18 +299,14 @@ public abstract class DocumentController {
 
     protected volatile List<OutlineLinkWrapper> outline;
 
-    public String getCurrentChapter() {
-        if (outline == null || outline.isEmpty()) {
-            return null;
-        }
-        int root = OutlineHelper.getRootItemByPageNumber(outline, getCurentPageFirst1());
-        if (outline.size() > root) {
-            OutlineLinkWrapper item = outline.get(root);
-            return item.getTitleAsString();
-        } else {
-            return null;
-        }
+    public List<OutlineLinkWrapper> getCurrentOutline() {
+        return outline;
     }
+
+    public String getCurrentChapter() {
+        return OutlineHelper.getCurrentChapterAsString(this);
+    }
+
 
     public static boolean isEinkOrMode(Context c) {
         return Dips.isEInk(c) || AppState.get().isInkMode;

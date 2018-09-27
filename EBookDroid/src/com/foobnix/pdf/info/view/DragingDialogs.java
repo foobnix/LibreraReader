@@ -2130,7 +2130,7 @@ public class DragingDialogs {
                                     public void run() {
                                         if (outline != null && outline.size() > 0) {
                                             contentList.clearChoices();
-                                            OutlineLinkWrapper currentByPageNumber = OutlineHelper.getCurrentByPageNumber(outline, controller.getCurentPageFirst1());
+                                            OutlineLinkWrapper currentByPageNumber = OutlineHelper.getCurrentChapter(controller);
                                             final OutlineAdapter adapter = new OutlineAdapter(controller.getActivity(), outline, currentByPageNumber, controller.getPageCount());
                                             contentList.setAdapter(adapter);
                                             contentList.setOnItemClickListener(onClickContent);
@@ -2547,25 +2547,23 @@ public class DragingDialogs {
                     }
                 });
 
-                // status bar
+                // Seek format
 
                 final List<Integer> modeIds = Arrays.asList(//
-                        AppState.READING_PROGRESS_NUMBERS, //
-                        AppState.READING_PROGRESS_PERCENT, //
-                        AppState.READING_PROGRESS_PERCENT_NUMBERS//
+                        AppState.PAGE_NUMBER_FORMAT_NUMBER, //
+                        AppState.PAGE_NUMBER_FORMAT_PERCENT //
                 );//
 
                 final List<String> modeStrings = Arrays.asList(//
                         controller.getString(R.string.number), //
-                        controller.getString(R.string.percent), //
-                        controller.getString(R.string.percent_and_number)//
+                        controller.getString(R.string.percent) //
                 );//
 
-                final TextView readingProgress = (TextView) inflate.findViewById(R.id.readingProgress);
-                readingProgress.setText(modeStrings.get(modeIds.indexOf(AppState.get().readingProgress)));
-                TxtUtils.underlineTextView(readingProgress);
+                final TextView pageNumberFormat = (TextView) inflate.findViewById(R.id.pageNumberFormat);
+                pageNumberFormat.setText(modeStrings.get(modeIds.indexOf(AppState.get().pageNumberFormat)));
+                TxtUtils.underlineTextView(pageNumberFormat);
 
-                readingProgress.setOnClickListener(new OnClickListener() {
+                pageNumberFormat.setOnClickListener(new OnClickListener() {
 
                     @Override
                     public void onClick(View v) {
@@ -2576,9 +2574,42 @@ public class DragingDialogs {
 
                                 @Override
                                 public boolean onMenuItemClick(MenuItem item) {
-                                    AppState.get().readingProgress = modeIds.get(j);
-                                    readingProgress.setText(modeStrings.get(modeIds.indexOf(AppState.get().readingProgress)));
-                                    TxtUtils.underlineTextView(readingProgress);
+                                    AppState.get().pageNumberFormat = modeIds.get(j);
+                                    pageNumberFormat.setText(modeStrings.get(modeIds.indexOf(AppState.get().pageNumberFormat)));
+                                    TxtUtils.underlineTextView(pageNumberFormat);
+                                    if (onRefresh != null) {
+                                        onRefresh.run();
+                                    }
+                                    return false;
+                                }
+                            });
+                        }
+
+                        popupMenu.show();
+                    }
+                });
+
+                // Chpater format
+
+
+                final TextView chapterFormat = (TextView) inflate.findViewById(R.id.chapterFormat);
+                chapterFormat.setText(OutlineHelper.CHAPTER_STRINGS.get(OutlineHelper.CHAPTER_FORMATS.indexOf(AppState.get().chapterFormat)));
+                TxtUtils.underlineTextView(chapterFormat);
+
+                chapterFormat.setOnClickListener(new OnClickListener() {
+
+                    @Override
+                    public void onClick(View v) {
+                        final MyPopupMenu popupMenu = new MyPopupMenu(v.getContext(), v);
+                        for (int i = 0; i < OutlineHelper.CHAPTER_STRINGS.size(); i++) {
+                            final int j = i;
+                            popupMenu.getMenu().add(OutlineHelper.CHAPTER_STRINGS.get(i)).setOnMenuItemClickListener(new OnMenuItemClickListener() {
+
+                                @Override
+                                public boolean onMenuItemClick(MenuItem item) {
+                                    AppState.get().chapterFormat = OutlineHelper.CHAPTER_FORMATS.get(j);
+                                    chapterFormat.setText(OutlineHelper.CHAPTER_STRINGS.get(OutlineHelper.CHAPTER_FORMATS.indexOf(AppState.get().chapterFormat)));
+                                    TxtUtils.underlineTextView(chapterFormat);
                                     if (onRefresh != null) {
                                         onRefresh.run();
                                     }

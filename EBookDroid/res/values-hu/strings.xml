@@ -421,7 +421,7 @@
    <string name="title">Cím</string>
    <string name="subject">Tárgy</string>
    <string name="keywords">Kulcsszavak</string>
-   <string name="number">Oldalszám</string>
+   <string name="number">Szám</string>
    <string name="percent">Százalék</string>
    <string name="awards">Díjak</string>
    <string name="close_book_and_application">Könyv bezárása és kilépés a Librera alkalmazásból</string>
@@ -492,4 +492,6 @@
    <string name="show_the_capital_letter">Mutassa be a nagybetűs levelet</string>
    <string name="size">Méret</string>
    <string name="quick_bookmark_by_the_headset">Gyors könyvjelző a headset segítségével</string>
+   <string name="page_format">Oldalformátum</string>
+   <string name="chapter_format">Fejezet formátuma</string>
 </resources>

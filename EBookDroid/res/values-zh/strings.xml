@@ -421,7 +421,7 @@
    <string name="title">书名</string>
    <string name="subject">主题</string>
    <string name="keywords">关键词</string>
-   <string name="number">页码</string>
+   <string name="number">数</string>
    <string name="percent">百分比</string>
    <string name="awards">授权</string>
    <string name="close_book_and_application">退出程序</string>
@@ -492,4 +492,6 @@
    <string name="show_the_capital_letter">显示大写字母</string>
    <string name="size">尺寸</string>
    <string name="quick_bookmark_by_the_headset">耳机快速书签</string>
+   <string name="page_format">页面格式</string>
+   <string name="chapter_format">章节格式</string>
 </resources>

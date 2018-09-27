@@ -101,16 +101,37 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="4dip"
                 android:singleLine="true"
-                android:text="@string/current_page" />
+                android:text="@string/page_format" />
 
             <TextView
-                android:id="@+id/readingProgress"
+                android:id="@+id/pageNumberFormat"
                 style="@style/textLink"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dip"
                 android:layout_weight="1"
-                android:text="Numbers" />
+                android:text="Number" />
+        </LinearLayout>
+          <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dip" >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="4dip"
+                android:singleLine="true"
+                android:text="@string/chapter_format" />
+
+            <TextView
+                android:id="@+id/chapterFormat"
+                style="@style/textLink"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dip"
+                android:layout_weight="1"
+                android:text="45% 10 / 100 (12)" />
         </LinearLayout>
 
         <com.foobnix.pdf.info.view.CustomSeek

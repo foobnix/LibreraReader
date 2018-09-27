@@ -492,4 +492,6 @@
    <string name="show_the_capital_letter">Afișați litera principală</string>
    <string name="size">Mărimea</string>
    <string name="quick_bookmark_by_the_headset">Marcaj rapid de la setul cu cască</string>
+   <string name="page_format">Formatul paginii</string>
+   <string name="chapter_format">Formatul capitolului</string>
 </resources>

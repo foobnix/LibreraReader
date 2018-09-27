@@ -421,12 +421,12 @@
    <string name="title">Название</string>
    <string name="subject">Тема</string>
    <string name="keywords">Ключевые слова</string>
-   <string name="number">Число страниц</string>
+   <string name="number">Число</string>
    <string name="percent">Процент прочитанного</string>
    <string name="awards">Награды</string>
    <string name="close_book_and_application">Закрыть книгу и приложение</string>
    <string name="percent_and_number">Процент и число страниц</string>
-   <string name="current_page">Ход чтения</string>
+   <string name="current_page">Индикатор прогресса</string>
    <string name="backup_folder">Папка для автом. экспорта настроек</string>
    <string name="audio_books_folder">Папка для начит. голосом книг</string>
    <string name="enable_contrast_and_brightness">Включить</string>
@@ -492,4 +492,6 @@
    <string name="show_the_capital_letter">Использовать буквицу</string>
    <string name="size">Размер</string>
    <string name="quick_bookmark_by_the_headset">Использовать кнопку гарнитуры для создания быстрых закладок к книге</string>
+   <string name="page_format">Формат страницы</string>
+   <string name="chapter_format">Формат главы</string>
 </resources>

@@ -492,4 +492,6 @@
    <string name="show_the_capital_letter">Büyük harf göster</string>
    <string name="size">Boyut</string>
    <string name="quick_bookmark_by_the_headset">Kulaklıkla hızlı yer imi</string>
+   <string name="page_format">Sayfa formatı</string>
+   <string name="chapter_format">Bölüm formatı</string>
 </resources>

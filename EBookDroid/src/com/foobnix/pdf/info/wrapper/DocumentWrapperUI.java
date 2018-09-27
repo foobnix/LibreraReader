@@ -24,6 +24,8 @@ import com.foobnix.android.utils.Vibro;
 import com.foobnix.android.utils.Views;
 import com.foobnix.pdf.info.DictsHelper;
 import com.foobnix.pdf.info.ExtUtils;
+import com.foobnix.pdf.info.OutlineHelper;
+import com.foobnix.pdf.info.OutlineHelper.Info;
 import com.foobnix.pdf.info.R;
 import com.foobnix.pdf.info.TintUtil;
 import com.foobnix.pdf.info.UiSystemUtils;
@@ -89,7 +91,7 @@ public class DocumentWrapperUI {
     DocumentGuestureDetector documentGestureDetector;
     GestureDetector gestureDetector;
 
-    TextView toastBrightnessText, currentPageIndex, currentSeek, maxSeek, currentTime, bookName, nextTypeBootom, batteryLevel, lirbiLogo, reverseKeysIndicator;
+    TextView toastBrightnessText, pagesCountIndicator, currentSeek, maxSeek, currentTime, bookName, nextTypeBootom, batteryLevel, lirbiLogo, reverseKeysIndicator;
     ImageView onDocDontext, toolBarButton, linkHistory, lockUnlock, lockUnlockTop, textToSpeachTop, clockIcon, batteryIcon;
     ImageView showSearch, nextScreenType, autoScroll, textToSpeach, onModeChange, imageMenuArrow, editTop2, goToPage1, goToPage1Top;
     View adFrame, titleBar, overlay, menuLayout, moveLeft, moveRight, bottomBar, onCloseBook, seekSpeedLayot, zoomPlus, zoomMinus;
@@ -386,31 +388,11 @@ public class DocumentWrapperUI {
 
     public void updateSpeedLabel() {
 
-        int maxValue = dc.getPageCount();
-        String current = TxtUtils.deltaPage(dc.getCurentPage(), maxValue);
-        String max = TxtUtils.deltaPageMax(maxValue);
+        Info info = OutlineHelper.getForamtingInfo(dc);
 
-        if (AppState.get().readingProgress == AppState.READING_PROGRESS_PERCENT) {
-            if (AppState.get().isAutoScroll) {
-                currentPageIndex.setText(String.format("{%s} %s", AppState.get().autoScrollSpeed, current));
-            } else {
-                currentPageIndex.setText(String.format("%s", current));
-            }
-
-        } else if (AppState.get().readingProgress == AppState.READING_PROGRESS_PERCENT_NUMBERS) {
-            if (AppState.get().isAutoScroll) {
-                currentPageIndex.setText(String.format("{%s} %s", AppState.get().autoScrollSpeed, current));
-            } else {
-                currentPageIndex.setText(TxtUtils.getProgressPercent(dc.getCurentPage(), maxValue) + " " + TxtUtils.deltaPage(dc.getCurentPage()) + "∕" + maxValue);
-            }
-        } else {
-
-            if (AppState.get().isAutoScroll) {
-                currentPageIndex.setText(String.format("{%s} %s/%s", AppState.get().autoScrollSpeed, current, max));
-            } else {
-                currentPageIndex.setText(String.format("%s/%s", current, max));
-            }
-        }
+        maxSeek.setText(info.textPage);
+        currentSeek.setText(info.textMax);
+        pagesCountIndicator.setText(info.chText);
     }
 
     public void updateUI() {
@@ -418,11 +400,6 @@ public class DocumentWrapperUI {
         final int current = dc.getCurentPage();
 
         updateSpeedLabel();
-        currentSeek.setText(TxtUtils.deltaPage(current, max));
-        if (AppState.get().readingProgress == AppState.READING_PROGRESS_PERCENT_NUMBERS) {
-            currentSeek.setText(TxtUtils.deltaPage(current));
-        }
-        maxSeek.setText(TxtUtils.deltaPageMax(max));
 
         seekBar.setOnSeekBarChangeListener(null);
         seekBar.setMax(max - 1);
@@ -725,8 +702,19 @@ public class DocumentWrapperUI {
         TextView modeName = (TextView) a.findViewById(R.id.modeName);
         modeName.setText(AppState.get().nameVerticalMode);
 
-        currentPageIndex = (TextView) a.findViewById(R.id.currentPageIndex);
-        currentPageIndex.setVisibility(View.GONE);
+        pagesCountIndicator = (TextView) a.findViewById(R.id.currentPageIndex);
+        pagesCountIndicator.setVisibility(View.GONE);
+
+        pagesCountIndicator.setOnLongClickListener(new OnLongClickListener() {
+
+            @Override
+            public boolean onLongClick(View v) {
+                OutlineHelper.showChapterFormatPopup(v, onRefresh);
+                return true;
+
+            }
+        });
+
         currentSeek = (TextView) a.findViewById(R.id.currentSeek);
         maxSeek = (TextView) a.findViewById(R.id.maxSeek);
         bookName = (TextView) a.findViewById(R.id.bookName);
@@ -859,7 +847,7 @@ public class DocumentWrapperUI {
         TintUtil.setTintImageWithAlpha(textToSpeachTop, TintUtil.getStatusBarColor());
         TintUtil.setTintImageWithAlpha(lockUnlockTop, TintUtil.getStatusBarColor());
         TintUtil.setTintImageWithAlpha(nextScreenType, TintUtil.getStatusBarColor());
-        TintUtil.setTintText(currentPageIndex, TintUtil.getStatusBarColor());
+        TintUtil.setTintText(pagesCountIndicator, TintUtil.getStatusBarColor());
         TintUtil.setTintText(currentTime, TintUtil.getStatusBarColor());
         TintUtil.setTintText(batteryLevel, TintUtil.getStatusBarColor());
         TintUtil.setTintText(reverseKeysIndicator, ColorUtils.setAlphaComponent(TintUtil.getStatusBarColor(), 200));
@@ -880,7 +868,7 @@ public class DocumentWrapperUI {
 
         // textSize
         bookName.setTextSize(AppState.get().statusBarTextSizeAdv);
-        currentPageIndex.setTextSize(AppState.get().statusBarTextSizeAdv);
+        pagesCountIndicator.setTextSize(AppState.get().statusBarTextSizeAdv);
         currentTime.setTextSize(AppState.get().statusBarTextSizeAdv);
         batteryLevel.setTextSize(AppState.get().statusBarTextSizeAdv);
         reverseKeysIndicator.setTextSize(AppState.get().statusBarTextSizeAdv);
@@ -1827,11 +1815,13 @@ public class DocumentWrapperUI {
                     seekBar.setVisibility(View.VISIBLE);
 
                     onCloseBook.setVisibility(View.VISIBLE);
-                    currentPageIndex.setVisibility(View.VISIBLE);
+                    pagesCountIndicator.setVisibility(View.VISIBLE);
 
                     showHelp();
 
                     hideShowEditIcon();
+
+                    updateSpeedLabel();
 
                 }
             });

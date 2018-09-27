@@ -492,4 +492,6 @@
    <string name="show_the_capital_letter">Mostrar a letra maiúscula</string>
    <string name="size">Tamanho</string>
    <string name="quick_bookmark_by_the_headset">Marcador rápido pelo fone de ouvido</string>
+   <string name="page_format">Formato de página</string>
+   <string name="chapter_format">Formato de capítulo</string>
 </resources>

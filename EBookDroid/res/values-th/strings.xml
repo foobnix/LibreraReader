@@ -492,4 +492,6 @@
    <string name="show_the_capital_letter">แสดงตัวพิมพ์ใหญ่</string>
    <string name="size">ขนาด</string>
    <string name="quick_bookmark_by_the_headset">บุ๊คมาร์คด่วนโดยชุดหูฟัง</string>
+   <string name="page_format">รูปแบบหน้าเว็บ</string>
+   <string name="chapter_format">รูปแบบบท</string>
 </resources>

@@ -492,4 +492,6 @@
    <string name="show_the_capital_letter">Vis hovedstaven</string>
    <string name="size">Størrelse</string>
    <string name="quick_bookmark_by_the_headset">Rask bokmerke av hodesettet</string>
+   <string name="page_format">Sideformat</string>
+   <string name="chapter_format">Kapittelformat</string>
 </resources>

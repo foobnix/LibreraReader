@@ -492,4 +492,6 @@
    <string name="show_the_capital_letter">Näytä pääkirje</string>
    <string name="size">Koko</string>
    <string name="quick_bookmark_by_the_headset">Pikavalintanumero kuulokkeella</string>
+   <string name="page_format">Sivun muoto</string>
+   <string name="chapter_format">Lukuformaatti</string>
 </resources>

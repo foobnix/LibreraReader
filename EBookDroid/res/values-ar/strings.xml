@@ -492,4 +492,6 @@
    <string name="show_the_capital_letter">اعرض الحرف الكبير</string>
    <string name="size">بحجم</string>
    <string name="quick_bookmark_by_the_headset">المرجعية السريعة من قبل سماعة الرأس</string>
+   <string name="page_format">تنسيق الصفحة</string>
+   <string name="chapter_format">تنسيق الفصل</string>
 </resources>

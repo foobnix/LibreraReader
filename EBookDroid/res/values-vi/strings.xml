@@ -492,4 +492,6 @@
    <string name="show_the_capital_letter">Hiển thị chữ cái viết hoa</string>
    <string name="size">Kích thước</string>
    <string name="quick_bookmark_by_the_headset">Đánh dấu nhanh bằng tai nghe</string>
+   <string name="page_format">Định dạng trang</string>
+   <string name="chapter_format">Định dạng chương</string>
 </resources>

@@ -492,4 +492,6 @@
    <string name="show_the_capital_letter">Zeigen Sie den Großbuchstaben</string>
    <string name="size">Größe</string>
    <string name="quick_bookmark_by_the_headset">Schnelles Lesezeichen am Headset</string>
+   <string name="page_format">Seitenformat</string>
+   <string name="chapter_format">Kapitelformat</string>
 </resources>
