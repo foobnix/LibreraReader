@@ -8,6 +8,7 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
+import java.util.concurrent.atomic.AtomicBoolean;
 
 import org.ebookdroid.BookType;
 import org.ebookdroid.common.settings.SettingsManager;
@@ -887,16 +888,14 @@ public class DragingDialogs {
 
                     @Override
                     public void onClick(View v) {
-                        boolean isRun = TempHolder.isSeaching;
-                        TempHolder.isSeaching = false;
-                        if (!isRun) {
-                            searchEdit.setText("");
-                            controller.clearSelectedText();
-                            searchingMsg.setVisibility(View.GONE);
-                            adapter.getItems().clear();
-                            adapter.notifyDataSetChanged();
-                        }
+                        TempHolder.isSearching.set(false);
+                        TempHolder.isSearching = new AtomicBoolean(false);
 
+                        searchEdit.setText("");
+                        controller.clearSelectedText();
+                        searchingMsg.setVisibility(View.GONE);
+                        adapter.getItems().clear();
+                        adapter.notifyDataSetChanged();
                     }
                 });
 
@@ -966,14 +965,14 @@ public class DragingDialogs {
 
                     @Override
                     public void onClick(View v) {
-                        if (TempHolder.isSeaching) {
-                            return;
-                        }
                         String searchString = searchEdit.getText().toString().trim();
                         if (searchString.length() < 2) {
                             return;
                         }
-                        TempHolder.isSeaching = true;
+
+                        TempHolder.isSearching.set(false);
+                        final AtomicBoolean isSearchingLocal = new AtomicBoolean(true);
+                        TempHolder.isSearching = isSearchingLocal;
 
                         searchingMsg.setText(R.string.searching_please_wait_);
                         searchingMsg.setVisibility(View.VISIBLE);
@@ -988,6 +987,7 @@ public class DragingDialogs {
                         controller.doSearch(searchString, new ResultResponse<Integer>() {
                             @Override
                             public boolean onResultRecive(final Integer pageNumber) {
+                                if (!isSearchingLocal.get())return false;
                                 hMessage.sendEmptyMessage(pageNumber);
                                 return false;
                             }
@@ -1002,8 +1002,8 @@ public class DragingDialogs {
 
             @Override
             public void run() {
-                TempHolder.isSeaching = false;
-
+                TempHolder.isSearching.set(false);
+                TempHolder.isSearching = new AtomicBoolean(false);
             }
         });
         dialog.show("searchMenu");

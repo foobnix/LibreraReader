@@ -1281,7 +1281,7 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
     protected void onPause() {
         super.onPause();
         AppState.get().save(this);
-        TempHolder.isSeaching = false;
+        TempHolder.isSearching.set(false);
         handler.postDelayed(closeRunnable, AppState.APP_CLOSE_AUTOMATIC);
         handlerTimer.removeCallbacks(updateTimePower);
 

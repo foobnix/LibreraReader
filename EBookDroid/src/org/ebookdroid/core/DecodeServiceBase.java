@@ -209,11 +209,13 @@ public class DecodeServiceBase implements DecodeService {
         Thread t = new Thread() {
             @Override
             public void run() {
+                final AtomicBoolean isSearchingLocal = TempHolder.isSearching;
                 PageSearcher pageSearcher= new PageSearcher();
                 pageSearcher.setTextForSearch(text);
                 pageSearcher.setListener(new PageSearcher.OnWordSearched() {
                     @Override
                     public void onSearch(TextWord word, Object data) {
+                        if (!isSearchingLocal.get()) return;
                         if (!(data instanceof Page))return;
                         Page page = (Page) data;
                         if (page.selectedText==null||page.selectedText.size()<=0){
@@ -226,7 +228,7 @@ public class DecodeServiceBase implements DecodeService {
                 });
                 for (Page page : pages) {
 
-                    if (!TempHolder.isSeaching) {
+                    if (!isSearchingLocal.get()) {
                         response.onResultRecive(Integer.MAX_VALUE);
                         finish.run();
                         return;
@@ -237,7 +239,7 @@ public class DecodeServiceBase implements DecodeService {
                     }
 
                     if (isRecycled.get()) {
-                        TempHolder.isSeaching = false;
+                        isSearchingLocal.set(false);
                         return;
                     }
                     if (page.texts == null) {
@@ -265,7 +267,7 @@ public class DecodeServiceBase implements DecodeService {
                 }
                 response.onResultRecive(-1);
                 finish.run();
-                TempHolder.isSeaching = false;
+                isSearchingLocal.set(false);
             };
 
         };

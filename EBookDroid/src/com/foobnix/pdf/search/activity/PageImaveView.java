@@ -512,7 +512,7 @@ public class PageImaveView extends View {
                 if (isLognPress) {
                     selectText(event.getX(), event.getY(), xInit, yInit);
                 } else if (AppState.get().isTextFormat()) {
-                    if (!TempHolder.isSeaching) {
+                    if (!TempHolder.isSearching.get()) {
                         selectText(event.getX(), event.getY(), event.getX(), event.getY());
                         if (!TxtUtils.isFooterNote(AppState.get().selectedText)) {
                             PageImageState.get().cleanSelectedWords();

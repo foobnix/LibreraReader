@@ -250,7 +250,7 @@ public class VerticalViewActivity extends AbstractActionActivity<VerticalViewAct
         needToRestore = AppState.get().isAutoScroll;
         AppState.get().isAutoScroll = false;
         AppState.get().save(this);
-        TempHolder.isSeaching = false;
+        TempHolder.isSearching.set(false);
         if (handler != null) {
             handler.postDelayed(closeRunnable, AppState.APP_CLOSE_AUTOMATIC);
         }
