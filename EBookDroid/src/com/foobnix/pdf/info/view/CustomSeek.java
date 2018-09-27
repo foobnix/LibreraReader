@@ -21,7 +21,7 @@ public class CustomSeek extends FrameLayout {
 
     private TextView textCurerntValue;
     private SeekBar seek;
-    private int step;
+    private int step = 1;
 
     public CustomSeek(Context context) {
         super(context);

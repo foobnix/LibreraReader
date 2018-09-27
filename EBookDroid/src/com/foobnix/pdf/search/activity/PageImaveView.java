@@ -274,7 +274,7 @@ public class PageImaveView extends View {
     static volatile boolean isFirstZoomInOut = true;
     static volatile boolean prevLock = false;
 
-    class ImageSimpleGestureListener extends GestureDetector.SimpleOnGestureListener {
+    class ImageSimpleGestureListener extends SimpleTouchOnGestureListener {
 
         @Override
         public boolean onDoubleTap(final MotionEvent e) {
@@ -375,6 +375,7 @@ public class PageImaveView extends View {
             }
         }
 
+        @Override
         public boolean onTouchEvent(final MotionEvent event) {
             final int action = event.getAction() & MotionEvent.ACTION_MASK;
 

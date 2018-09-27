@@ -705,15 +705,6 @@ public class DocumentWrapperUI {
         pagesCountIndicator = (TextView) a.findViewById(R.id.currentPageIndex);
         pagesCountIndicator.setVisibility(View.GONE);
 
-        pagesCountIndicator.setOnLongClickListener(new OnLongClickListener() {
-
-            @Override
-            public boolean onLongClick(View v) {
-                OutlineHelper.showChapterFormatPopup(v, onRefresh);
-                return true;
-
-            }
-        });
 
         currentSeek = (TextView) a.findViewById(R.id.currentSeek);
         maxSeek = (TextView) a.findViewById(R.id.maxSeek);
