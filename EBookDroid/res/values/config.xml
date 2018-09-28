@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Beta 7.10.28</string>
+    <string name="app_name">Beta 7.10.30</string>
     <string name="app_name_pro">Librera PRO</string>
 
-	<bool name="is_log_enable">false</bool>
+	<bool name="is_log_enable">true</bool>
 	
 	<string name="my_email">librera.reader@gmail.com</string>
     <string name="my_site"><![CDATA[<u>http://librera.mobi</u>]]></string>

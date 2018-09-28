@@ -3,25 +3,26 @@ package web;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
-import java.io.IOException;
 import java.io.PrintWriter;
 
 public class GenerateFAQ {
 
     static String ROOT = "/home/ivan-dev/git/LirbiReader/docs/wiki/faq";
 
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) throws Exception {
 
-        // String in = "index.md";
-        String in = "ru.md";
+        updateIndex("index.md", "Frequently asked questions");
+        updateIndex("ru.md", "Часто задаваемые вопросы");
+    }
 
+    private static void updateIndex(String in, String pageTitle) throws Exception {
         PrintWriter out = new PrintWriter(new File(ROOT, in));
         out.println("---");
         out.println("layout: main");
         out.println("---");
         out.println("[<](/wiki/)");
         out.println("");
-        out.println("# Frequently asked questions");
+        out.println("# " + pageTitle);
         out.println("");
 
         File list = new File(ROOT);
@@ -52,7 +53,7 @@ public class GenerateFAQ {
             input.close();
         } catch (Exception e) {
         }
-        throw new IllegalArgumentException("Title not found");
+        throw new IllegalArgumentException("Title not found: " + file.getPath());
     }
 
 }
