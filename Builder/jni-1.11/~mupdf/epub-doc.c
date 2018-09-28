@@ -258,6 +258,12 @@ rel_path_from_idref(fz_xml *manifest, const char *idref)
 		const char *id = fz_xml_att(item, "id");
 		if (id && !strcmp(id, idref))
 			return fz_xml_att(item, "href");
+
+		const char *id2 = fz_xml_att(item, "properties");
+				if (id2 && !strcmp(id2, idref))
+					return fz_xml_att(item, "href");
+
+
 		item = fz_xml_find_next(item, "item");
 	}
 	return NULL;
