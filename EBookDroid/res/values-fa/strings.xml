@@ -492,6 +492,6 @@
    <string name="show_the_capital_letter">نمایش نامه بزرگ</string>
    <string name="size">اندازه</string>
    <string name="quick_bookmark_by_the_headset">نشانک سریع توسط هدست</string>
-   <string name="page_format">فرمت صفحه</string>
+   <string name="slider_scale">مقیاس لغزان</string>
    <string name="chapter_format">فرمت فصل</string>
 </resources>

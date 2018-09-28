@@ -492,6 +492,6 @@
    <string name="show_the_capital_letter">Mostra la lettera maiuscola</string>
    <string name="size">Dimensione</string>
    <string name="quick_bookmark_by_the_headset">Segnalibro rapido dall\'auricolare</string>
-   <string name="page_format">Formato della pagina</string>
+   <string name="slider_scale">Scala del dispositivo di scorrimento</string>
    <string name="chapter_format">Formato del capitolo</string>
 </resources>

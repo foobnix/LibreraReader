@@ -492,6 +492,6 @@
    <string name="show_the_capital_letter">大文字を表示する</string>
    <string name="size">サイズ</string>
    <string name="quick_bookmark_by_the_headset">ヘッドセットによるクイックブックマーク</string>
-   <string name="page_format">ページフォーマット</string>
+   <string name="slider_scale">スライダースケール</string>
    <string name="chapter_format">章形式</string>
 </resources>

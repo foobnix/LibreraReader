@@ -492,6 +492,6 @@
    <string name="show_the_capital_letter">Pokaż wielką literę</string>
    <string name="size">Rozmiar</string>
    <string name="quick_bookmark_by_the_headset">Szybka zakładka przez zestaw słuchawkowy</string>
-   <string name="page_format">Format strony</string>
+   <string name="slider_scale">Skala suwaka</string>
    <string name="chapter_format">Format rozdziału</string>
 </resources>

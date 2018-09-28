@@ -492,6 +492,6 @@
    <string name="show_the_capital_letter">הצג את אות ההוני</string>
    <string name="size">גודל</string>
    <string name="quick_bookmark_by_the_headset">סימנייה מהירה על ידי הדיבורית האישית</string>
-   <string name="page_format">פורמט דף</string>
+   <string name="slider_scale">סולם המחוון</string>
    <string name="chapter_format">פרק פרק</string>
 </resources>

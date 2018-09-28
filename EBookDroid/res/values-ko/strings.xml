@@ -492,6 +492,6 @@
    <string name="show_the_capital_letter">대문자 표시</string>
    <string name="size">크기</string>
    <string name="quick_bookmark_by_the_headset">헤드셋으로 빠른 북마크</string>
-   <string name="page_format">페이지 형식</string>
+   <string name="slider_scale">슬라이더 크기</string>
    <string name="chapter_format">장 형식</string>
 </resources>

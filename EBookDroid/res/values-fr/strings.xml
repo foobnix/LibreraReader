@@ -492,6 +492,6 @@
    <string name="show_the_capital_letter">Afficher la lettre majuscule</string>
    <string name="size">Taille</string>
    <string name="quick_bookmark_by_the_headset">Marque-page rapide par le casque</string>
-   <string name="page_format">Format de la page</string>
+   <string name="slider_scale">Échelle de curseur</string>
    <string name="chapter_format">Format de chapitre</string>
 </resources>

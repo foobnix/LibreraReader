@@ -101,7 +101,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="4dip"
                 android:singleLine="true"
-                android:text="@string/page_format" />
+                android:text="@string/slider_scale" />
 
             <TextView
                 android:id="@+id/pageNumberFormat"
