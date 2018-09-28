@@ -968,6 +968,7 @@ public class DragingDialogs {
                     @Override
                     public void onClick(View v) {
                         if (TempHolder.isSeaching) {
+                            TempHolder.isSeaching = false;
                             return;
                         }
                         String searchString = searchEdit.getText().toString().trim();
