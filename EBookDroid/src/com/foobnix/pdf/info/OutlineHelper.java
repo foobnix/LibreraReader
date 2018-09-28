@@ -88,7 +88,7 @@ public class OutlineHelper {
                     lastPage = currentChapter.targetPage;
                 }
                 int pageRel = dc.getCurentPageFirst1() - lastPage + 1;
-                int totalChapter = nextChapter.targetPage - currentChapter.targetPage;
+                int totalChapter = lastPage - currentChapter.targetPage;
                 String currentChapterAsString = getCurrentChapterAsString(dc);
                 currentChapterAsString = TxtUtils.substring(currentChapterAsString, 20);
                 info.chText = currentChapterAsString + " " + TxtUtils.LONG_DASH1 + " " + pageRel + " / " + totalChapter;
