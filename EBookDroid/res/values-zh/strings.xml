@@ -363,7 +363,7 @@
    <string name="customize_background_color">自定义背景色</string>
    <string name="clear_all_recent">清空最近</string>
    <string name="clear_all_bookmars">清空书签</string>
-   <string name="this_function_will_works_in_modern_android">这个功能在最新安卓系统中可用</string>
+   <string name="this_function_will_works_in_modern_android">这个功能在更高版本Android系统中可用</string>
    <string name="menu">选单</string>
    <string name="search_not_supported_formats">搜索未支持的格式</string>
    <string name="add_bookmark">添加书签</string>
