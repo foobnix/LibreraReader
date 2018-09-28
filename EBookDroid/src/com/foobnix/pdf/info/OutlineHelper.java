@@ -84,11 +84,13 @@ public class OutlineHelper {
             } else {
 
                 int lastPage = max;
+                int pages = max;
                 if (nextChapter != null) {
                     lastPage = currentChapter.targetPage;
+                    pages = nextChapter.targetPage;
                 }
                 int pageRel = dc.getCurentPageFirst1() - lastPage + 1;
-                int totalChapter = lastPage - currentChapter.targetPage;
+                int totalChapter = pages - currentChapter.targetPage;
                 String currentChapterAsString = getCurrentChapterAsString(dc);
                 currentChapterAsString = TxtUtils.substring(currentChapterAsString, 20);
                 info.chText = currentChapterAsString + " " + TxtUtils.LONG_DASH1 + " " + pageRel + " / " + totalChapter;
