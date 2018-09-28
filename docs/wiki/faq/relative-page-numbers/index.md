@@ -13,6 +13,7 @@ For example if you study some doc, it's easy to find pages by book numbers.
 * Slider with relative page number
 
 Relative pages apply for the table of content and bookmarks also.
+To disable relative pages just click on current page number on the slider and choose "Restore defaults"
 
 |1|2|3|
 |-|-|-|
