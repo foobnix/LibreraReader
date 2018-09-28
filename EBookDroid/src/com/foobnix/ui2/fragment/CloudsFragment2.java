@@ -11,6 +11,7 @@ import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
 
 import com.foobnix.android.utils.LOG;
+import com.foobnix.android.utils.TxtUtils;
 import com.foobnix.dao2.FileMeta;
 import com.foobnix.pdf.info.Clouds;
 import com.foobnix.pdf.info.FileMetaComparators;
@@ -52,6 +53,8 @@ public class CloudsFragment2 extends UIFragment<FileMeta> {
     private ImageView imageGDrive;
     private ImageView imageOneDrive;
     private ImageView onRefresh;
+    private ImageView isShowCloudsLine;
+    private View cloudsLayout;
 
     @Override
     public Pair<Integer, Integer> getNameAndIconRes() {
@@ -94,6 +97,19 @@ public class CloudsFragment2 extends UIFragment<FileMeta> {
                 progressBar.setVisibility(View.VISIBLE);
                 getActivity().startService(new Intent(getActivity(), BooksService.class).setAction(BooksService.ACTION_SYNC_DROPBOX));
 
+            }
+        });
+        cloudsLayout = view.findViewById(R.id.cloudsLayout);
+        isShowCloudsLine = view.findViewById(R.id.isShowCloudsLine);
+        isShowCloudsLine.setImageResource(AppState.get().isShowCloudsLine ? R.drawable.glyphicons_602_chevron_down : R.drawable.glyphicons_601_chevron_up);
+        cloudsLayout.setVisibility(TxtUtils.visibleIf(AppState.get().isShowCloudsLine));
+        isShowCloudsLine.setOnClickListener(new OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                AppState.get().isShowCloudsLine = !AppState.get().isShowCloudsLine;
+                isShowCloudsLine.setImageResource(AppState.get().isShowCloudsLine ? R.drawable.glyphicons_602_chevron_down : R.drawable.glyphicons_601_chevron_up);
+                cloudsLayout.setVisibility(TxtUtils.visibleIf(AppState.get().isShowCloudsLine));
             }
         });
 

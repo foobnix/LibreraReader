@@ -439,6 +439,8 @@ public class AppState {
     public boolean isBrowseGrid = false;
     public boolean isRecentGrid = false;
 
+    public boolean isShowCloudsLine = true;
+
     public static final String LIBRERA_CLOUD_DROPBOX = "Librera.Cloud-Dropbox";
     public static final String LIBRERA_CLOUD_GOOGLEDRIVE = "Librera.Cloud-GoogleDrive";
     public static final String LIBRERA_CLOUD_ONEDRIVE = "Librera.Cloud-OneDrive";
