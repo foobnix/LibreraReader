@@ -378,6 +378,9 @@ epub_parse_nav_imp(fz_context *ctx, epub_document *doc, fz_xml *node, char *base
 	{
 		fz_xml *tag = fz_xml_find_down(node, "a");
 		char *text = fz_xml_text(fz_xml_down(tag));
+		if(!text){
+			text = fz_xml_text(fz_xml_down(fz_xml_down(tag)));
+		}
 		char *content = fz_xml_att(tag, "href");
 		if (text && content)
 		{
@@ -416,7 +419,11 @@ epub_parse_nav(fz_context *ctx, epub_document *doc, const char *path)
 	fz_drop_buffer(ctx, buf);
 
 	fz_xml *body = fz_xml_find_down(ncx, "body");
-	fz_xml *nav = fz_xml_find_down(body, "nav");
+	fz_xml *section = fz_xml_find_down(body, "section");
+	if(section){
+		body = section;
+	}
+	fz_xml * nav = fz_xml_find_down(body, "nav");
 
 	while (nav){
 		char *id = fz_xml_att(nav, "epub:type");
