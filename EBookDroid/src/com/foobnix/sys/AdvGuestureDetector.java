@@ -170,7 +170,7 @@ public class AdvGuestureDetector extends SimpleOnGestureListener implements IMul
             }
 
             if (isTextFormat) {
-                if (!TempHolder.isSeaching) {
+                if (!TempHolder.isSearching.get()) {
                     String text = avc.processLongTap(true, e, e, false);
                     if (TxtUtils.isFooterNote(text)) {
                         AppState.get().selectedText = text;

@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Locale;
+import java.util.concurrent.atomic.AtomicBoolean;
 
 import org.ebookdroid.common.cache.CacheManager;
 import org.ebookdroid.common.settings.SettingsManager;
@@ -55,7 +56,6 @@ public abstract class HorizontalModeController extends DocumentController {
 
     private int pagesCount;
     int currentPage;
-    private CopyAsyncTask searchTask;
     private boolean isTextFormat = false;
     String bookPath;
     CodecDocument codeDocument;
@@ -613,14 +613,11 @@ public abstract class HorizontalModeController extends DocumentController {
 
     @Override
     public void doSearch(final String text, final com.foobnix.android.utils.ResultResponse<Integer> result) {
-        if (searchTask != null && searchTask.getStatus() != CopyAsyncTask.Status.FINISHED) {
-            return;
-        }
-
-        searchTask = new CopyAsyncTask() {
+         new CopyAsyncTask() {
 
             @Override
             protected Object doInBackground(Object... params) {
+                final AtomicBoolean isSearchingLocal = TempHolder.isSearching;
                 try {
                     PageImageState.get().cleanSelectedWords();
                     String textLowCase = text.toLowerCase(Locale.US);
@@ -637,6 +634,7 @@ public abstract class HorizontalModeController extends DocumentController {
                     pageSearcher.setListener(new PageSearcher.OnWordSearched() {
                         @Override
                         public void onSearch(TextWord word, Object data) {
+                            if (!isSearchingLocal.get()) return;
                             if (!(data instanceof Integer))return;
                             Integer pageNumber = (Integer) data;
                             LOG.d("Find on page_", pageNumber, text,word);
@@ -652,13 +650,13 @@ public abstract class HorizontalModeController extends DocumentController {
                     });
 
                     for (int i = 0; i < getPageCount(); i++) {
-                        if (!TempHolder.isSeaching) {
+                        if (!isSearchingLocal.get()) {
                             result.onResultRecive(Integer.MAX_VALUE);
                             return null;
                         }
 
                         if (isClosed) {
-                            TempHolder.isSeaching = false;
+                            isSearchingLocal.set(false);
                             return null;
                         }
                         if (i > 1) {
@@ -676,6 +674,10 @@ public abstract class HorizontalModeController extends DocumentController {
                             find.clear();
                             index = 0;
                             for (TextWord word : line) {
+                                if (!isSearchingLocal.get()) {
+                                    result.onResultRecive(Integer.MAX_VALUE);
+                                    return null;
+                                }
                                 if (AppState.get().selectingByLetters) {
                                     String it = String.valueOf(textLowCase.charAt(index));
                                     if (word.w.toLowerCase(Locale.US).equals(it)) {
@@ -738,7 +740,7 @@ public abstract class HorizontalModeController extends DocumentController {
                 } catch (Exception e) {
                     result.onResultRecive(-1);
                 }
-                TempHolder.isSeaching = false;
+                isSearchingLocal.set(false);
                 return null;
             }
 
