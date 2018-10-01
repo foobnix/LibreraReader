@@ -418,7 +418,6 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
             }
         });
         ttsActive = findViewById(R.id.ttsActive);
-        ttsActive.setVisibility(TxtUtils.visibleIf(TTSEngine.get().isPlaying()));
 
         // ttsActive.setOnClickListener(new View.OnClickListener() {
         //
@@ -1280,6 +1279,11 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
         handler.removeCallbacks(closeRunnable);
         handlerTimer.post(updateTimePower);
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
+
+        if (ttsActive != null) {
+            ttsActive.setVisibility(TxtUtils.visibleIf(TTSEngine.get().isPlaying()));
+        }
+
     }
 
     @Override

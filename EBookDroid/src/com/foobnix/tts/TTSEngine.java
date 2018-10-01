@@ -5,6 +5,8 @@ import java.io.FileFilter;
 import java.text.DecimalFormat;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Timer;
+import java.util.TimerTask;
 
 import org.ebookdroid.LibreraApp;
 import org.greenrobot.eventbus.EventBus;
@@ -23,6 +25,9 @@ import com.foobnix.sys.TempHolder;
 
 import android.annotation.TargetApi;
 import android.content.Context;
+import android.media.MediaPlayer;
+import android.media.MediaPlayer.OnCompletionListener;
+import android.media.MediaPlayer.OnPreparedListener;
 import android.os.Build;
 import android.speech.tts.TextToSpeech;
 import android.speech.tts.TextToSpeech.EngineInfo;
@@ -36,6 +41,8 @@ public class TTSEngine {
     public static final String UTTERANCE_ID_DONE = "LirbiReader";
     private static final String TAG = "TTSEngine";
     volatile TextToSpeech ttsEngine;
+    volatile MediaPlayer mp;
+    Timer mTimer;
     Object helpObject = new Object();
 
     private static TTSEngine INSTANCE = new TTSEngine();
@@ -86,7 +93,13 @@ public class TTSEngine {
         if (LibreraApp.context == null) {
             return null;
         }
+
         synchronized (helpObject) {
+
+            if (TTSEngine.get().isMp3() && mp == null) {
+                TTSEngine.get().loadMP3(AppState.get().mp3BookPath, false);
+            }
+
             if (ttsEngine != null) {
                 return ttsEngine;
             }
@@ -249,6 +262,10 @@ public class TTSEngine {
         if (TempHolder.isRecordTTS) {
             return false;
         }
+        if (isMp3()) {
+            return mp != null && mp.isPlaying();
+        }
+
         synchronized (helpObject) {
             if (ttsEngine == null) {
                 return false;
@@ -300,6 +317,98 @@ public class TTSEngine {
 
     public static String engineToString(EngineInfo info) {
         return info.label;
+    }
+
+    public void loadMP3(String ttsPlayMp3Path, final boolean play) {
+        try {
+            mp3Desproy();
+            mp = new MediaPlayer();
+            mp.setDataSource(ttsPlayMp3Path);
+            mp.prepareAsync();
+            mp.setOnPreparedListener(new OnPreparedListener() {
+
+                @Override
+                public void onPrepared(MediaPlayer mp) {
+                    mp.seekTo(AppState.get().mp3seek);
+                    if (play) {
+                        mp.start();
+                    }
+                    EventBus.getDefault().post(new TtsStatus());
+                }
+            });
+            mp.setOnCompletionListener(new OnCompletionListener() {
+
+                @Override
+                public void onCompletion(MediaPlayer mp) {
+                    mp.pause();
+                }
+            });
+
+            mTimer = new Timer();
+
+            mTimer.schedule(new TimerTask() {
+
+                @Override
+                public void run() {
+                    AppState.get().mp3seek = mp.getCurrentPosition();
+                    LOG.d("Run timer-task");
+                    EventBus.getDefault().post(new TtsStatus());
+                };
+            }, 1000, 1000);
+
+        } catch (Exception e) {
+            LOG.e(e);
+        }
+    }
+
+    public MediaPlayer getMP() {
+        return mp;
+    }
+
+    public void mp3Desproy() {
+        if (mp != null) {
+            mp.stop();
+            mp.release();
+            mp = null;
+            if (mTimer != null) {
+                mTimer.purge();
+                mTimer.cancel();
+                mTimer = null;
+            }
+        }
+        LOG.d("mp3Desproy");
+    }
+
+    public void mp3Next() {
+        int seek = mp.getCurrentPosition();
+        mp.seekTo(seek + 5 * 1000);
+    }
+
+    public void mp3Prev() {
+        int seek = mp.getCurrentPosition();
+        mp.seekTo(seek - 5 * 1000);
+    }
+
+    public boolean isMp3PlayPause() {
+        if (isMp3()) {
+            if (mp == null) {
+                loadMP3(AppState.get().mp3BookPath, false);
+                return true;
+            }
+
+            if (mp.isPlaying()) {
+                mp.pause();
+            } else {
+                mp.start();
+            }
+            TTSNotification.showLast();
+            return true;
+        }
+        return false;
+    }
+
+    public boolean isMp3() {
+        return TxtUtils.isNotEmpty(AppState.get().mp3BookPath);
     }
 
 }

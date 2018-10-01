@@ -64,7 +64,6 @@ public class AppState {
     public static final String JPG = "JPG";
 
     public static final String[] LIBRE_EXT = ".odt, .odp, .docx, .doc, .pptx, .ppt".split(", ");
-    public static final String[] OTHER_BOOK_MEDIA = ".wav, mp3".split(", ");
     public static final String[] OTHER_BOOK_EXT = ".abw, .docm, .lwp, .md, .pages, .rst, .sdw, .tex, .wpd, .wps, .zabw, .cbc, .chm, .lit, .lrf, .oeb, .pml, .rb, .snb, .tcr, .txtz, .azw1, .tpz".split(", ");
     public static final String[] OTHER_ARCH_EXT = ".img, .zip, .rar, .7z, .arj, .bz2, .bzip2, .tbz2, .tbz, .txz, .cab, .gz, .gzip, .tgz, .iso, .lzh, .lha, .lzma, .tar, .xar, .z, .taz, .xz, .dmg".split(", ");
 
@@ -458,6 +457,9 @@ public class AppState {
     public String fileToDelete;
 
     public String lastBookPath;
+
+    public String mp3BookPath;
+    public int mp3seek = 0;
 
     @IgnoreHashCode
     public int lastBookPage = 0;

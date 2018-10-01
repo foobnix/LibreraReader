@@ -126,7 +126,12 @@ public class TTSNotification {
             String fileMetaBookName = TxtUtils.getFileMetaBookName(fileMeta);
             String pageNumber = context.getString(R.string.page) + " " + page + "/" + maxPages;
 
-            remoteViews.setTextViewText(R.id.bookInfo, pageNumber + " " + fileMetaBookName);
+            if (page == -1 || maxPages == -1) {
+                pageNumber = "";
+            }
+
+            String textLine = pageNumber + " " + fileMetaBookName;
+            remoteViews.setTextViewText(R.id.bookInfo, textLine.trim());
             remoteViews.setViewVisibility(R.id.bookInfo, View.VISIBLE);
 
             NotificationCompat.Action action = new NotificationCompat.Action.Builder(R.drawable.glyphicons_114_justify, "Reply", pause)//

@@ -110,6 +110,8 @@ public class ExtUtils {
     public final static List<String> archiveExts = Arrays.asList(AppState.OTHER_ARCH_EXT);
     public final static List<String> browseExts = BookType.getAllSupportedExtensions();
     public static Map<String, String> mimeCache = new HashMap<String, String>();
+    public final static List<String> AUDIO = Arrays.asList(".mp3", ".mp4", ".wav", ".ogg", ".m4a", ".flac");
+
     static {
         browseExts.addAll(otherExts);
         browseExts.addAll(archiveExts);
@@ -117,7 +119,7 @@ public class ExtUtils {
         browseExts.addAll(lirbeExt);
         browseExts.add(".json");
         browseExts.addAll(BookCSS.fontExts);
-        browseExts.addAll(Arrays.asList(AppState.OTHER_BOOK_MEDIA));
+        browseExts.addAll(AUDIO);
 
         mimeCache.put(".tpz", "application/x-topaz-ebook");
         mimeCache.put(".azw1", "application/x-topaz-ebook");
@@ -170,7 +172,7 @@ public class ExtUtils {
         mimeCache.put(".webm", "video/webm");
     }
 
-    static List<String> audio = Arrays.asList(".mp3", ".mp4", ".wav", ".ogg", ".m4a");
+
     static List<String> video = Arrays.asList(".webm", ".m3u8", ".ts", ".flv", ".mp4", ".3gp", ".mov", ".avi", ".wmv", ".mp4", ".m4v");
 
     public static void openFile(Activity a, FileMeta meta) {
@@ -251,7 +253,7 @@ public class ExtUtils {
         }
         path = path.trim().toLowerCase(Locale.US);
 
-        for (String ext : audio) {
+        for (String ext : AUDIO) {
             if (path.endsWith(ext)) {
                 return true;
             }

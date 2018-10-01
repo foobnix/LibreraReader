@@ -673,7 +673,6 @@ public class DocumentWrapperUI {
         textToSpeachTop.setOnClickListener(onTextToSpeach);
 
         ttsActive = a.findViewById(R.id.ttsActive);
-        ttsActive.setVisibility(TxtUtils.visibleIf(TTSEngine.get().isPlaying()));
         ttsActive.setDC(dc);
         ttsActive.addOnDialogRunnable(new Runnable() {
 
@@ -704,7 +703,6 @@ public class DocumentWrapperUI {
 
         pagesCountIndicator = (TextView) a.findViewById(R.id.currentPageIndex);
         pagesCountIndicator.setVisibility(View.GONE);
-
 
         currentSeek = (TextView) a.findViewById(R.id.currentSeek);
         maxSeek = (TextView) a.findViewById(R.id.maxSeek);
@@ -1828,7 +1826,12 @@ public class DocumentWrapperUI {
 
         if (dc != null) {
             dc.goToPageByTTS();
-        } 
+        }
+
+        if (ttsActive != null) {
+            ttsActive.setVisibility(TxtUtils.visibleIf(TTSEngine.get().isPlaying()));
+        }
+
     }
 
     public void onPause() {

@@ -494,4 +494,5 @@
    <string name="quick_bookmark_by_the_headset">บุ๊คมาร์คด่วนโดยชุดหูฟัง</string>
    <string name="slider_scale">สเกลเลื่อน</string>
    <string name="chapter_format">รูปแบบบท</string>
+   <string name="play_a_music_file">เล่นไฟล์เพลง</string>
 </resources>

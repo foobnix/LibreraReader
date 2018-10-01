@@ -494,4 +494,5 @@
    <string name="quick_bookmark_by_the_headset">Segnalibro rapido dall\'auricolare</string>
    <string name="slider_scale">Scala del dispositivo di scorrimento</string>
    <string name="chapter_format">Formato del capitolo</string>
+   <string name="play_a_music_file">Riproduci un file musicale</string>
 </resources>

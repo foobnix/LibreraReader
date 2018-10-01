@@ -494,4 +494,5 @@
    <string name="quick_bookmark_by_the_headset">耳机快速书签</string>
    <string name="slider_scale">滑块刻度</string>
    <string name="chapter_format">章节格式</string>
+   <string name="play_a_music_file">播放音乐文件</string>
 </resources>

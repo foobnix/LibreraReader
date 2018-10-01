@@ -99,9 +99,9 @@
 
         <com.foobnix.tts.TTSControlsView
             android:id="@+id/ttsActive"
-            android:layout_gravity="center_horizontal"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
             android:layout_marginTop="5dip" />
 
         <View
@@ -109,6 +109,26 @@
             android:layout_height="1dp"
             android:layout_marginTop="2dip"
             android:background="@color/lt_grey_alpha" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="3dip" >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/play_a_music_file" />
+
+            <TextView
+                android:id="@+id/ttsPlayMusicFile"
+                style="@style/textLink"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="0"
+                android:text="@string/open_file" />
+        </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -133,7 +153,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="3dip">
+            android:padding="3dip" >
 
             <TextView
                 android:layout_width="wrap_content"
@@ -165,6 +185,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/pause_reading_if_the_incoming_call_or_other_sounds" />
+
         <CheckBox
             android:id="@+id/isFastBookmarkByTTS"
             android:layout_width="wrap_content"

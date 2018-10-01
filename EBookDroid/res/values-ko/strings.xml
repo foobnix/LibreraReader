@@ -494,4 +494,5 @@
    <string name="quick_bookmark_by_the_headset">헤드셋으로 빠른 북마크</string>
    <string name="slider_scale">슬라이더 크기</string>
    <string name="chapter_format">장 형식</string>
+   <string name="play_a_music_file">음악 파일 재생</string>
 </resources>

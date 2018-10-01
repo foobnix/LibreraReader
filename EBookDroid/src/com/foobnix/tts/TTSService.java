@@ -136,6 +136,7 @@ public class TTSService extends Service {
                 mp.setDataSource(getAssets().openFd("silence.mp3"));
                 mp.prepareAsync();
                 mp.start();
+
                 LOG.d("silence");
             } catch (IOException e) {
                 LOG.d("silence error");
@@ -150,6 +151,7 @@ public class TTSService extends Service {
                 .setContentText("TTS").build();
 
         startForeground(TTSNotification.NOT_ID, notification);
+
 
     }
 
@@ -230,6 +232,9 @@ public class TTSService extends Service {
         }
 
         if (TTSNotification.TTS_STOP_DESTROY.equals(intent.getAction())) {
+            TTSEngine.get().mp3Desproy();
+            AppState.get().mp3BookPath = null;
+            AppState.get().mp3seek = 0;
             TTSEngine.get().stop();
             savePage();
             TTSEngine.get().stopDestroy();
@@ -243,7 +248,12 @@ public class TTSService extends Service {
 
         }
 
+
         if (TTSNotification.TTS_PLAY_PAUSE.equals(intent.getAction())) {
+
+            if (TTSEngine.get().isMp3PlayPause()) {
+                return START_STICKY;
+            }
 
             if (TTSEngine.get().isPlaying()) {
                 TTSEngine.get().stop();
@@ -258,6 +268,11 @@ public class TTSService extends Service {
 
         }
         if (TTSNotification.TTS_PAUSE.equals(intent.getAction())) {
+
+            if (TTSEngine.get().isMp3PlayPause()) {
+                return START_STICKY;
+            }
+
             TTSEngine.get().stop();
             savePage();
             if (wakeLock.isHeld()) {
@@ -267,6 +282,12 @@ public class TTSService extends Service {
         }
 
         if (TTSNotification.TTS_PLAY.equals(intent.getAction())) {
+
+            if (TTSEngine.get().isMp3PlayPause()) {
+
+                return START_STICKY;
+            }
+
             TTSEngine.get().stop();
             playPage("", AppState.get().lastBookPage, null);
             if (!wakeLock.isHeld()) {
@@ -275,6 +296,12 @@ public class TTSService extends Service {
             TTSNotification.showLast();
         }
         if (TTSNotification.TTS_NEXT.equals(intent.getAction())) {
+
+            if (TTSEngine.get().isMp3()) {
+                TTSEngine.get().mp3Next();
+                return START_STICKY;
+            }
+
             TTSEngine.get().stop();
             playPage("", AppState.get().lastBookPage + 1, null);
             if (!wakeLock.isHeld()) {
@@ -282,6 +309,12 @@ public class TTSService extends Service {
             }
         }
         if (TTSNotification.TTS_PREV.equals(intent.getAction())) {
+
+            if (TTSEngine.get().isMp3()) {
+                TTSEngine.get().mp3Prev();
+                return START_STICKY;
+            }
+
             TTSEngine.get().stop();
             playPage("", AppState.get().lastBookPage - 1, null);
             if (!wakeLock.isHeld()) {
@@ -290,6 +323,11 @@ public class TTSService extends Service {
         }
 
         if (ACTION_PLAY_CURRENT_PAGE.equals(intent.getAction())) {
+            if (TTSEngine.get().isMp3PlayPause()) {
+                TTSNotification.show(AppState.get().lastBookPath, -1, -1);
+                return START_STICKY;
+            }
+
             mMediaSessionCompat.setActive(true);
             isActivated = true;
             int pageNumber = intent.getIntExtra(EXTRA_INT, -1);

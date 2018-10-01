@@ -494,7 +494,9 @@ public class DragingDialogs {
                 final TextView textEngine = (TextView) view.findViewById(R.id.ttsEngine);
 
                 final TextView timerTime = (TextView) view.findViewById(R.id.timerTime);
+
                 final TextView timerStart = (TextView) view.findViewById(R.id.timerStart);
+                final TextView ttsPlayMusicFile = (TextView) view.findViewById(R.id.ttsPlayMusicFile);
 
                 TTSControlsView tts = (TTSControlsView) view.findViewById(R.id.ttsActive);
                 tts.setDC(controller);
@@ -590,12 +592,18 @@ public class DragingDialogs {
                     }
                 });
 
-                controller.runTimer(3000, new Runnable() {
+                controller.runTimer(1000, new Runnable() {
 
                     @Override
                     public void run() {
                         textEngine.setText(TTSEngine.get().getCurrentEngineName());
                         ttsLang.setText(TTSEngine.get().getCurrentLang());
+                        if (TxtUtils.isNotEmpty(AppState.get().mp3BookPath)) {
+                            TxtUtils.underline(ttsPlayMusicFile, TxtUtils.lastTwoPath(AppState.get().mp3BookPath));
+                        } else {
+                            TxtUtils.underline(ttsPlayMusicFile, controller.getString(R.string.open_file));
+
+                        }
                     }
                 });
 
@@ -642,12 +650,12 @@ public class DragingDialogs {
 
                 final MyPopupMenu menu = new MyPopupMenu(seekBarSpeed.getContext(), seekBarSpeed);
                 List<Float> values = Arrays.asList(0.25f, 0.5f, 0.75f, 1f, 1.25f, 1.5f, 1.75f, 2f, 3f, 4f, 5f, 6f);
-                for (final float i:values) {
+                for (final float i : values) {
                     menu.getMenu().add(String.format("%s x", i)).setOnMenuItemClickListener(new OnMenuItemClickListener() {
 
                         @Override
                         public boolean onMenuItemClick(MenuItem item) {
-                            seekBarSpeed.reset((int)(i * 100));
+                            seekBarSpeed.reset((int) (i * 100));
                             seekBarSpeed.sendProgressChanged();
                             return false;
                         }
@@ -730,6 +738,40 @@ public class DragingDialogs {
                         AppState.get().isFastBookmarkByTTS = isChecked;
                     }
                 });
+                // TTS Play music File
+                ttsPlayMusicFile.setOnClickListener(new OnClickListener() {
+
+                    @Override
+                    public void onClick(View v) {
+
+                        ChooserDialogFragment.chooseFile((FragmentActivity) controller.getActivity(), "Open music file").setOnSelectListener(new ResultResponse2<String, Dialog>() {
+
+                            @Override
+                            public boolean onResultRecive(String result1, Dialog result2) {
+                                if (ExtUtils.isMediaContent(result1)) {
+
+                                    AppState.get().mp3BookPath = result1;
+                                    AppState.get().mp3seek = 0;
+
+                                    TxtUtils.underline(ttsPlayMusicFile, TxtUtils.lastTwoPath(AppState.get().mp3BookPath));
+                                    TTSService.playBookPage(controller.getCurentPageFirst1() - 1, controller.getCurrentBook().getPath(), "", controller.getBookWidth(), controller.getBookHeight(), AppState.get().fontSizeSp, controller.getTitle());
+                                } else {
+                                    Toast.makeText(controller.getActivity(), R.string.incorrect_value, Toast.LENGTH_SHORT).show();
+                                }
+                                result2.dismiss();
+                                return false;
+                            }
+                        });
+
+                    }
+                });
+                if (TxtUtils.isNotEmpty(AppState.get().mp3BookPath)) {
+                    TxtUtils.underline(ttsPlayMusicFile, TxtUtils.lastTwoPath(AppState.get().mp3BookPath));
+
+                } else {
+                    TxtUtils.underlineTextView(ttsPlayMusicFile);
+
+                }
 
                 ttsSkeakToFile.setOnClickListener(new OnClickListener() {
 
@@ -2591,7 +2633,6 @@ public class DragingDialogs {
                 });
 
                 // Chpater format
-
 
                 final TextView chapterFormat = (TextView) inflate.findViewById(R.id.chapterFormat);
                 chapterFormat.setText(OutlineHelper.CHAPTER_STRINGS.get(OutlineHelper.CHAPTER_FORMATS.indexOf(AppState.get().chapterFormat)));

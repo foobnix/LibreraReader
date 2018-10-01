@@ -494,4 +494,5 @@
    <string name="quick_bookmark_by_the_headset">Remote bookmarks (headset\'s start/stop button)</string>
    <string name="slider_scale">Slider scale</string>
    <string name="chapter_format">Legend format</string>
+   <string name="play_a_music_file">Play a music file</string>
 </resources>
