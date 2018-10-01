@@ -744,7 +744,7 @@ public class DragingDialogs {
                     @Override
                     public void onClick(View v) {
 
-                        ChooserDialogFragment.chooseFile((FragmentActivity) controller.getActivity(), "Open music file").setOnSelectListener(new ResultResponse2<String, Dialog>() {
+                        ChooserDialogFragment.chooseFile((FragmentActivity) controller.getActivity(), controller.getString(R.string.open_file)).setOnSelectListener(new ResultResponse2<String, Dialog>() {
 
                             @Override
                             public boolean onResultRecive(String result1, Dialog result2) {
