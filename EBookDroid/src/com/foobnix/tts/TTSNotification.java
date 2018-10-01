@@ -9,6 +9,7 @@ import com.foobnix.android.utils.LOG;
 import com.foobnix.android.utils.TxtUtils;
 import com.foobnix.dao2.FileMeta;
 import com.foobnix.pdf.info.AppsConfig;
+import com.foobnix.pdf.info.ExtUtils;
 import com.foobnix.pdf.info.IMG;
 import com.foobnix.pdf.info.R;
 import com.foobnix.pdf.info.TintUtil;
@@ -30,7 +31,6 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Handler;
 import android.support.v4.app.NotificationCompat;
-import android.support.v4.app.RemoteInput;
 import android.view.View;
 import android.widget.RemoteViews;
 
@@ -131,13 +131,13 @@ public class TTSNotification {
             }
 
             String textLine = pageNumber + " " + fileMetaBookName;
+
+            if (TxtUtils.isNotEmpty(AppState.get().mp3BookPath)) {
+                textLine = "[" + ExtUtils.getFileName(AppState.get().mp3BookPath) + "] " + textLine;
+            }
+
             remoteViews.setTextViewText(R.id.bookInfo, textLine.trim());
             remoteViews.setViewVisibility(R.id.bookInfo, View.VISIBLE);
-
-            NotificationCompat.Action action = new NotificationCompat.Action.Builder(R.drawable.glyphicons_114_justify, "Reply", pause)//
-                    .addRemoteInput(new RemoteInput.Builder("TEST")//
-                            .setLabel("Quick reply").build())
-                    .build();
 
             builder.setContentIntent(contentIntent) //
                     .setSmallIcon(R.drawable.glyphicons_185_volume_up) //
@@ -155,7 +155,7 @@ public class TTSNotification {
                     // .setContentTitle(fileMetaBookName) //
                     // .setContentText(pageNumber) //
                     // .setStyle(new NotificationCompat.DecoratedCustomViewStyle())//
-                    .addAction(action)//
+                    // .addAction(action)//
                     .setCustomBigContentView(remoteViews) ///
                     .setCustomContentView(remoteViews); ///
 
