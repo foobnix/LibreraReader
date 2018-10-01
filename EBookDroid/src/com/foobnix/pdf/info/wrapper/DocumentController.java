@@ -57,6 +57,8 @@ public abstract class DocumentController {
     public static final String EXTRA_PASSWORD = "password";
     public static final String EXTRA_PERCENT = "percent";
 
+    public static final int REPEAT_SKIP_AMOUNT = 10;
+
     public final static List<Integer> orientationIds = Arrays.asList(//
             ActivityInfo.SCREEN_ORIENTATION_SENSOR, //
             ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE, //

@@ -436,7 +436,7 @@ public class VerticalViewActivity extends AbstractActionActivity<VerticalViewAct
         LOG.d("onKeyDown");
 
         int repeatCount = event.getRepeatCount();
-        if (repeatCount >= 1 && repeatCount < 6) {
+        if (repeatCount >= 1 && repeatCount < DocumentController.REPEAT_SKIP_AMOUNT) {
             return true;
         }
 
