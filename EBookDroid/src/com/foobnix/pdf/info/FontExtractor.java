@@ -48,10 +48,16 @@ public class FontExtractor {
                     synchronized (lock) {
                         if (hasZipFonts()) {
                             long lastModified = FONT_LOCAL_ZIP.lastModified();
-                            if (lastModified != AppState.get().fontExtractTime) {
+
+                            File fontDir = new File(BookCSS.get().fontFolder);
+                            File index = new File(fontDir, "index");
+                            LOG.d("extractFonts index exist", index.exists());
+                            if (lastModified != AppState.get().fontExtractTime || !index.exists()) {
                                 copyFontsFromZip();
+                                boolean indexRes = index.createNewFile();
                                 AppState.get().fontExtractTime = lastModified;
                                 LOG.d("extractFonts YES", AppState.get().fontExtractTime, lastModified);
+                                LOG.d("extractFonts index create", indexRes);
                             } else {
                                 LOG.d("extractFonts NO");
                             }
@@ -93,6 +99,7 @@ public class FontExtractor {
     public static File getFontsDir(final Context c, String to) {
         return new File(c.getExternalCacheDir(), to);
     }
+
 
     public static void copyFontsFromZip() {
         try {
