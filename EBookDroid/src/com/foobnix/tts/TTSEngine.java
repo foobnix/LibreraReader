@@ -27,7 +27,6 @@ import android.annotation.TargetApi;
 import android.content.Context;
 import android.media.MediaPlayer;
 import android.media.MediaPlayer.OnCompletionListener;
-import android.media.MediaPlayer.OnPreparedListener;
 import android.os.Build;
 import android.speech.tts.TextToSpeech;
 import android.speech.tts.TextToSpeech.EngineInfo;
@@ -97,7 +96,7 @@ public class TTSEngine {
         synchronized (helpObject) {
 
             if (TTSEngine.get().isMp3() && mp == null) {
-                TTSEngine.get().loadMP3(AppState.get().mp3BookPath, false);
+                TTSEngine.get().loadMP3(AppState.get().mp3BookPath);
             }
 
             if (ttsEngine != null) {
@@ -319,23 +318,12 @@ public class TTSEngine {
         return info.label;
     }
 
-    public void loadMP3(String ttsPlayMp3Path, final boolean play) {
+    public void loadMP3(String ttsPlayMp3Path) {
         try {
-            mp3Desproy();
+            mp3Destroy();
             mp = new MediaPlayer();
             mp.setDataSource(ttsPlayMp3Path);
-            mp.prepareAsync();
-            mp.setOnPreparedListener(new OnPreparedListener() {
-
-                @Override
-                public void onPrepared(MediaPlayer mp) {
-                    mp.seekTo(AppState.get().mp3seek);
-                    if (play) {
-                        mp.start();
-                    }
-                    EventBus.getDefault().post(new TtsStatus());
-                }
-            });
+            mp.prepare();
             mp.setOnCompletionListener(new OnCompletionListener() {
 
                 @Override
@@ -365,10 +353,10 @@ public class TTSEngine {
         return mp;
     }
 
-    public void mp3Desproy() {
+    public void mp3Destroy() {
         if (mp != null) {
             mp.stop();
-            mp.release();
+            mp.reset();
             mp = null;
             if (mTimer != null) {
                 mTimer.purge();
@@ -392,10 +380,8 @@ public class TTSEngine {
     public boolean isMp3PlayPause() {
         if (isMp3()) {
             if (mp == null) {
-                loadMP3(AppState.get().mp3BookPath, false);
-                return true;
+                loadMP3(AppState.get().mp3BookPath);
             }
-
             if (mp.isPlaying()) {
                 mp.pause();
             } else {
@@ -405,6 +391,12 @@ public class TTSEngine {
             return true;
         }
         return false;
+    }
+
+    public void playMp3() {
+        if (mp != null) {
+            mp.start();
+        }
     }
 
     public boolean isMp3() {

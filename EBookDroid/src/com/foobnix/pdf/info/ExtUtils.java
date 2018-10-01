@@ -266,6 +266,21 @@ public class ExtUtils {
         return false;
     }
 
+    public static boolean isAudioContent(String path) {
+        if (TxtUtils.isEmpty(path)) {
+            return false;
+        }
+        path = path.trim().toLowerCase(Locale.US);
+
+        for (String ext : AUDIO) {
+            if (path.endsWith(ext)) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
     public static String upperCaseFirst(String text) {
         if (text.length() >= 1) {
             text = text.trim();

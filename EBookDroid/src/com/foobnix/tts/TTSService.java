@@ -232,7 +232,7 @@ public class TTSService extends Service {
         }
 
         if (TTSNotification.TTS_STOP_DESTROY.equals(intent.getAction())) {
-            TTSEngine.get().mp3Desproy();
+            TTSEngine.get().mp3Destroy();
             AppState.get().mp3BookPath = null;
             AppState.get().mp3seek = 0;
             TTSEngine.get().stop();
@@ -242,8 +242,10 @@ public class TTSService extends Service {
             if (wakeLock.isHeld()) {
                 wakeLock.release();
             }
+            EventBus.getDefault().post(new TtsStatus());
 
             stopSelf();
+
             return START_NOT_STICKY;
 
         }

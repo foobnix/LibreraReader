@@ -180,7 +180,7 @@ public class TTSNotification {
         if (TTSEngine.get().isShutdown()) {
             hideNotification();
         } else if (handler != null) {
-            handler.postDelayed(run, 250);
+            handler.postDelayed(run, 500);
         }
 
     }

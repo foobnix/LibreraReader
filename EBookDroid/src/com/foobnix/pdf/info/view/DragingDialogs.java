@@ -601,7 +601,7 @@ public class DragingDialogs {
                         if (TxtUtils.isNotEmpty(AppState.get().mp3BookPath)) {
                             TxtUtils.underline(ttsPlayMusicFile, TxtUtils.lastTwoPath(AppState.get().mp3BookPath));
                         } else {
-                            TxtUtils.underline(ttsPlayMusicFile, controller.getString(R.string.open_file));
+                            TxtUtils.underline(ttsPlayMusicFile, controller.getString(R.string.play_a_music_file));
 
                         }
                     }
@@ -748,12 +748,13 @@ public class DragingDialogs {
 
                             @Override
                             public boolean onResultRecive(String result1, Dialog result2) {
-                                if (ExtUtils.isMediaContent(result1)) {
+                                if (ExtUtils.isAudioContent(result1)) {
 
                                     AppState.get().mp3BookPath = result1;
                                     AppState.get().mp3seek = 0;
 
                                     TxtUtils.underline(ttsPlayMusicFile, TxtUtils.lastTwoPath(AppState.get().mp3BookPath));
+                                    TTSEngine.get().mp3Destroy();
                                     TTSService.playBookPage(controller.getCurentPageFirst1() - 1, controller.getCurrentBook().getPath(), "", controller.getBookWidth(), controller.getBookHeight(), AppState.get().fontSizeSp, controller.getTitle());
                                 } else {
                                     Toast.makeText(controller.getActivity(), R.string.incorrect_value, Toast.LENGTH_SHORT).show();
@@ -881,7 +882,7 @@ public class DragingDialogs {
 
             }
         });
-        dialog.show("TTS");
+        dialog.show("TTS", false, true);
 
     }
 
@@ -2138,7 +2139,15 @@ public class DragingDialogs {
                                             dialog.dismiss();
                                             if (aPath != null && aPath.isFile()) {
                                                 LOG.d("Try to open path", aPath);
-                                                ExtUtils.openWith(anchor.getContext(), aPath);
+                                                if (ExtUtils.isAudioContent(aPath.getPath())) {
+                                                    TTSEngine.get().mp3Destroy();
+                                                    AppState.get().mp3BookPath = aPath.getPath();
+                                                    AppState.get().mp3seek = 0;
+                                                    TTSService.playBookPage(controller.getCurentPageFirst1() - 1, controller.getCurrentBook().getPath(), "", controller.getBookWidth(), controller.getBookHeight(), AppState.get().fontSizeSp, controller.getTitle());
+                                                } else {
+                                                    ExtUtils.openWith(anchor.getContext(), aPath);
+                                                }
+
                                             } else {
                                                 Toast.makeText(controller.getActivity(), R.string.msg_unexpected_error, Toast.LENGTH_LONG).show();
                                             }
