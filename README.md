@@ -2,8 +2,8 @@
 
 # Librera Reader
 
-Librera Reader is a book reader and PDF Redaer for Android 
-Supprt formats PDF, EPUB, MOBI, DjVu, FB2, TXT, RTF, AZW, AZW3, HTML, CBZ, CBR and OPDS Catalogs
+Librera Reader is an e-book reader for Android devices; 
+it supports the following formats: PDF, EPUB, MOBI, DjVu, FB2, TXT, RTF, AZW, AZW3, HTML, CBZ, CBR, and OPDS Catalogs
 
 Web: [http://librera.mobi/](http://librera.mobi/)
 
@@ -17,7 +17,7 @@ Android Play market apps:
 
 [Beta(latest) .apk](http://beta.librera.mobi)
 
-Application fonts (**fonts.zip** downalod to internal sd card, to [Downloads] folder)
+Application fonts (**fonts.zip** download to internal sd card, to [Downloads] folder)
 [link1](https://github.com/foobnix/LirbiReader/tree/master/Builder/fonts) 
 [link2](https://www.dropbox.com/home/FREE_PDF_APK/testing)
 
@@ -25,11 +25,11 @@ Application fonts (**fonts.zip** downalod to internal sd card, to [Downloads] fo
 
 ## Support intents
 
-intent.putExtra("page", int); //to open doc on page number
+intent.putExtra("page", int); //open a doc on a certain page
 
-intent.putExtra("percent", float); //to open doc page by percent 
+intent.putExtra("percent", float); //open a doc at a certain percentage point
 
-intent.putExtra("password", String); //to open password protected PDFlink
+intent.putExtra("password", String); //open a password-protected PDFlink
 
 ## Support links
 
@@ -41,9 +41,9 @@ intent.putExtra("password", String); //to open password protected PDFlink
 Librera is developed on Eclise with ADT (Android Developer Tools Plugin)
 
 INSTALL
-0) Linux is prefer (Windows never tested)
+0) Linux is preferred (Windows has never been tested)
 1) Install Eclipse
-2) Install Android ADT (from the Eclipse markeplace)
+2) Install Android ADT (from the Eclipse marketplace)
 3) Install Android NDK
 4) Install JAVA
 5) Install ANT
@@ -53,7 +53,7 @@ DOWNLOAD Librera SOURCE CODE from GITHUB
 1) git clone https://github.com/foobnix/LirbiReader.git
 
 2) run ./LirbiReader/update_all.sh
-Downlaod required packages (Google Play Service, RecicleView, CardView, etc)
+Download required packages (Google Play Service, RecicleView, CardView, etc)
 
 3) Download Mupdf sources tar.gz from [http://mupdf.com/downloads](http://mupdf.com/downloads)
 
@@ -73,7 +73,7 @@ MY=/home/ivan-dev/git/LirbiReader
 ./LirbiReader/Builder/all-beta.sh
 
 
-## Librera depend on
+## Librera depends on
 
 MuPDF - (AGPL License) https://mupdf.com/downloads/archive/ (mupdf-1.12.0-source.tar.xz)
 
@@ -109,4 +109,3 @@ Librera is distributed under the GPL
 ## License
 
 See the [LICENSE](LICENSE.txt) file for license rights and limitations (GPL v.3).
-
