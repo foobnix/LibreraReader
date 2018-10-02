@@ -120,7 +120,7 @@
    <string name="db_auto_scroll">Автопрокрутка текста</string>
    <string name="opening_book_with_losed_lock">Всегда блокировать смещения страниц при открытии PDF/DJVU (\"закрывать\" замочек)</string>
    <string name="opening_book_with_cropped_borders">Активировать обрезку пустых полей при каждом открытии PDF/DJVU</string>
-   <string name="db_auto_alignemnt">Автоматическое выравнивание</string>
+   <string name="db_auto_alignemnt">Вписать в ширину экрана</string>
    <string name="db_auto_center_horizontally">Выровнить по горизонтали</string>
    <string name="zoom_in_zoom_out">Увел./умен. масштаб стр-ц в 2 раза</string>
    <string name="enhancements_for_oled_display">Заполнять пустующие области вокруг страниц черным цветом при чтении в режиме \"Ночь\" (AMOLED-адаптация)</string>
@@ -252,7 +252,7 @@
    <string name="edit_names">Свои названия</string>
    <string name="make_text_reflow">Перекомпоновать в текстовый формат</string>
    <string name="open_with">Открыть с помощью...</string>
-   <string name="send_file">Отправить файл</string>
+   <string name="send_file">Поделиться файлом</string>
    <string name="delete">Удалить</string>
    <string name="remove_from_library">Исключить из библиотеки</string>
    <string name="send_snapshot_of_the_page">Отпр. снимок страницы</string>
@@ -421,7 +421,7 @@
    <string name="title">Название</string>
    <string name="subject">Тема</string>
    <string name="keywords">Ключевые слова</string>
-   <string name="number">Число</string>
+   <string name="number">Число страниц</string>
    <string name="percent">Процент прочитанного</string>
    <string name="awards">Награды</string>
    <string name="close_book_and_application">Закрыть книгу и приложение</string>
@@ -491,8 +491,8 @@
    <string name="capital_letter">Буквица</string>
    <string name="show_the_capital_letter">Использовать буквицу</string>
    <string name="size">Размер</string>
-   <string name="quick_bookmark_by_the_headset">Использовать кнопку гарнитуры для создания быстрых закладок к книге</string>
-   <string name="slider_scale">Шкала слайдера</string>
-   <string name="chapter_format">Формат главы</string>
-   <string name="play_a_music_file">Воспроизведение музыкального файла</string>
+   <string name="quick_bookmark_by_the_headset">Использовать одну из кнопок гарнитуры для создания быстрых закладок к книге</string>
+   <string name="slider_scale">Шкала бегунка</string>
+   <string name="chapter_format">Формат прогресса чтения</string>
+   <string name="play_a_music_file">Вопроизвести музыкальный файл</string>
 </resources>
