@@ -3,6 +3,8 @@ layout: main
 ---
 [<](/wiki/what-is-new)
 
+#7.10
+
 # What is new in Librera 7.10
 
 Text to speech with new UI and works better in the background. 

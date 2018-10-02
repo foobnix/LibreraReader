@@ -13,5 +13,8 @@
     <string name="google_drive">Google Drive</string>
     
     <string name="dropbox">Dropbox</string>
+    
+    <string name="whatisnew_url">http://librera.mobi/wiki/what-is-new/7.10/#710</string>
+    <string name="wiki_url">http://librera.mobi/wiki#menu</string>
 	
 </resources>

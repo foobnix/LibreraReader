@@ -10,6 +10,7 @@ import com.foobnix.android.utils.Apps;
 import com.foobnix.android.utils.Https;
 import com.foobnix.android.utils.LOG;
 import com.foobnix.android.utils.TxtUtils;
+import com.foobnix.opds.OPDS;
 import com.foobnix.pdf.CopyAsyncTask;
 import com.foobnix.pdf.info.view.AlertDialogs;
 import com.foobnix.pdf.info.wrapper.AppState;
@@ -21,6 +22,8 @@ import android.content.DialogInterface;
 import android.content.DialogInterface.OnClickListener;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.webkit.WebView;
+import android.webkit.WebViewClient;
 import android.widget.TextView;
 
 public class AndroidWhatsNew {
@@ -29,7 +32,67 @@ public class AndroidWhatsNew {
     private static final String BETA_TXT = "changelog.txt";
     private static final String BETA = "beta-";
 
+    public static String getLangUrl(String url, String lang) {
+        if ("ru".equals(AppState.get().appLang)) {
+            url = url.replace("#", "ru#");
+        }
+        return url;
+
+    }
+
+    public static void show2(final Context c) {
+
+        View inflate = LayoutInflater.from(c).inflate(R.layout.whatsnew2, null, false);
+
+        final WebView wv = inflate.findViewById(R.id.webView2);
+        wv.getSettings().setUserAgentString(OPDS.USER_AGENT);
+        wv.getSettings().setJavaScriptEnabled(true);
+
+        wv.loadUrl(getLangUrl(c.getString(R.string.whatisnew_url), AppState.get().appLang));
+
+        wv.setFocusable(true);
+        wv.setWebViewClient(new WebViewClient() {
+            @Override
+            public boolean shouldOverrideUrlLoading(WebView view, String url) {
+                view.loadUrl(url);
+                return true;
+            }
+
+        });
+
+        TextView wiki = (TextView) inflate.findViewById(R.id.wiki);
+        TxtUtils.underlineTextView(wiki);
+        wiki.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                try {
+                    Urls.open(c, getLangUrl(c.getString(R.string.wiki_url), AppState.get().appLang));
+                } catch (Exception e) {
+                    LOG.e(e);
+                }
+            }
+        });
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(c);
+        builder.setView(inflate);
+        builder.setNegativeButton(R.string.close, new OnClickListener() {
+
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+
+            }
+        });
+
+        builder.show();
+
+    }
+
     public static void show(final Context c) {
+        if (true) {
+            show2(c);
+            return;
+        }
         String versionName = Apps.getVersionName(c);
         View inflate = LayoutInflater.from(c).inflate(R.layout.whatsnew, null, false);
 
