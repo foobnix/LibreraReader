@@ -3,7 +3,7 @@ layout: main
 ---
 [<](/wiki/what-is-new/ru)
 
-#7.10
+# 7.10
 
 # Что нового в Librera 7.10
 
