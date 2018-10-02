@@ -378,10 +378,10 @@
    <string name="clear_all_marked">Clear all marked</string>
    <string name="application_cannot_open_the_book">Unable to open book</string>
    <string name="musician">Musician\'s</string>
-   <string name="banner_slogan_LIRBI_READER">Reliable and accurate program for reading all book formats</string>
+   <string name="banner_slogan_LIRBI_READER">A reliable and feature-rich application for reading all e-book formats</string>
    <string name="banner_slogan_PRO_LIRBI_READER_1">A paid version of the best e-book reader for Android devices</string>
-   <string name="banner_slogan_EPUB_READER">The most convenient reader for electronic books</string>
-   <string name="banner_slogan_PDF_READER">The most convenient PDF Reader for electronic documents</string>
+   <string name="banner_slogan_EPUB_READER">The most customizable and versatile reader for e-books</string>
+   <string name="banner_slogan_PDF_READER">The most convenient reader for PDF and DjVu documents</string>
    <string name="books">Books</string>
    <string name="reading_out_loud">TTS Reading</string>
    <string name="librera_pro_no_ads_leading_book_reader_and_pdf">Librera PRO (ad-free): a Leading ePUB and PDF Reader</string>
@@ -494,5 +494,5 @@
    <string name="quick_bookmark_by_the_headset">Remote bookmarks (headset\'s start/stop button)</string>
    <string name="slider_scale">Slider scale</string>
    <string name="chapter_format">Legend format</string>
-   <string name="play_a_music_file">Play a music file</string>
+   <string name="play_a_music_file">Play an audio file</string>
 </resources>
