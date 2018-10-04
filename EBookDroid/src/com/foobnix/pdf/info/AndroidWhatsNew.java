@@ -28,7 +28,7 @@ import android.widget.TextView;
 
 public class AndroidWhatsNew {
 
-    public static final String DETAIL_URL_RU = "http://doc.librera.mobi";
+    public static final String DETAIL_URL_RU = "http://librera.mobi/wiki";
     private static final String BETA_TXT = "changelog.txt";
     private static final String BETA = "beta-";
 
@@ -115,7 +115,6 @@ public class AndroidWhatsNew {
             @Override
             public void onClick(View v) {
                 try {
-                    // notes.setText(steamToString(c.getResources().getAssets().open(BETA_TXT)));
                     Urls.open(c, DETAIL_URL_RU);
                 } catch (Exception e) {
                     LOG.e(e);
