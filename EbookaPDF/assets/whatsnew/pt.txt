@@ -1,7 +1,7 @@
-* Leitor de livros moderno e leitor de PDF para todos 
-* Classificando livros por autor, gênero, série, palavras-chave 
-* Marcas personalizadas para livros 
-* Biblioteca atualizada, navegação de arquivos, marcadores, dicionários 
-* Modo de duas colunas, modo de corte, brilho mudança 
-* Muitas melhorias por comentários 
-* Por favor, escreva sobre sua experiência e deixe comentários
+* Grande atualização com a adição de muitos seus comentários 
+* Nova interface de texto para fala 
+* Suporte aprimorado para EPUB 3.0, leitor de áudio do livro 
+* Muitas palavras pesquisam em todos os formatos e PDF 
+* Suporte telefones com recortes 
+* Formato de capítulo 30% 5 \ 20 (15) ou nome do capítulo 5 \ 20 
+* Por favor, escreva feedbacks ou idéias

@@ -1,7 +1,7 @@
-* Pembaca Buku Modern dan pembaca PDF untuk semua orang 
-* Menyortir buku oleh penulis, genre, seri, kata kunci 
-* Tag khusus untuk buku 
-* Pustaka yang diperbarui, navigasi file, bookmark, kamus 
-* Dua mode kolom, mode pemangkasan, ubah kecerahan 
-* Banyak penyempurnaan oleh ulasan 
-* Silakan tulis tentang pengalaman Anda dan tinggalkan umpan balik
+* Pembaruan besar dengan penambahan banyak ulasan Anda 
+* Antarmuka Text To Speech Baru 
+* Peningkatan dukungan untuk EPUB 3.0, pemutar audio dari buku 
+* Banyak kata mencari dalam semua format dan PDF 
+* Mendukung telepon dengan guntingan 
+* Format Bab 30% 5 \ 20 (15) atau Bab nama 5 \ 20 
+* Silakan tulis umpan balik atau ide

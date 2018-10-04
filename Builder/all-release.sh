@@ -21,8 +21,8 @@ ant x86 classic
 ant arm+arm64 droid
 ant x86 droid
 
-ant arm+arm64 pdf-ink
-ant x86 pdf-ink
+#ant arm+arm64 pdf-ink
+#ant x86 pdf-ink
 
 ant version
 

@@ -1,7 +1,7 @@
-* Nowoczesny czytnik książek i czytnik PDF dla każdego 
-* Sortowanie książek według autora, gatunku, serii, słów kluczowych 
-* Niestandardowe tagi dla książek 
-* Zaktualizowana biblioteka, nawigacja plików, zakładki, słowniki 
-* Tryb dwóch kolumn, tryb przycinania, zmiana jasności 
-* Wiele ulepszeń recenzji 
-* Napisz o swoich doświadczeniach i zostaw komentarz
+* Duża aktualizacja z dodatkiem wielu twoich recenzji 
+* Nowy interfejs Text To Speech 
+* Ulepszona obsługa EPUB 3.0, odtwarzacz audio z książki 
+* Wiele słów wyszukiwania we wszystkich formatach i PDF 
+* Obsługa telefonów z wycięciami 
+* Format rozdziału 30% 5 \ 20 (15) lub nazwa rozdziału 5 \ 20 
+* Proszę pisać informacje zwrotne lub pomysły

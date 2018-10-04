@@ -1,7 +1,7 @@
-* Modern Book Reader und PDF-Reader für jedermann 
-* Sortieren von Büchern nach Autor, Genre, Serie, Stichwörter 
-* Benutzerdefinierte Tags für Bücher 
-* Aktualisierte Bibliothek, Datei Navigation, Lesezeichen, Wörterbücher 
-* Zwei Spaltenmodus, Crop-Modus, Helligkeit ändern 
-* Viele Verbesserungen von Bewertungen 
-* Bitte schreiben Sie über Ihre Erfahrungen und hinterlassen Sie Feedback
+* Großes Update mit der Zugabe von vielen Ihrer Bewertungen 
+* Neue Text To Speech-Schnittstelle 
+* Verbesserte Unterstützung für EPUB 3.0, Audio-Player aus dem Buch 
+* Viele Wörter suchen in allen Formaten und PDF 
+* Support-Handys mit Ausschnitten 
+* Kapitelformat 30% 5 \ 20 (15) oder Kapitelname 5 \ 20 
+* Bitte schreiben Sie Feedback oder Ideen

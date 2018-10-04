@@ -1,317 +1,320 @@
 
 <nl-NL>
-* Moderne boeklezer en PDF-lezer voor iedereen 
-* Sorteren van boeken op auteur, genre, series, trefwoorden 
-* Aangepaste tags voor boeken 
-* Bijgewerkte bibliotheek, bestandsnavigatie, bladwijzers, woordenboeken 
-* Twee-kolommodus, bijsnijmodus, helderheid wijzigen 
-* Veel verbeteringen door beoordelingen 
-* Schrijf alsjeblieft over je ervaringen en laat feedback achter
+* Grote update met de toevoeging van veel van uw recensies 
+* Nieuwe Text To Speech-interface 
+* Verbeterde ondersteuning voor EPUB 3.0, audiospeler uit het boek 
+* Veel woorden zoeken in alle formaten en PDF 
+* Ondersteuning van telefoons met uitsparingen 
+* Hoofdstukformaat 30% 5 \ 20 (15) of hoofdstuknaam 5 \ 20 
+* Schrijf feedback of ideeën
 </nl-NL>
 
 <id>
-* Pembaca Buku Modern dan pembaca PDF untuk semua orang 
-* Menyortir buku oleh penulis, genre, seri, kata kunci 
-* Tag khusus untuk buku 
-* Pustaka yang diperbarui, navigasi file, bookmark, kamus 
-* Dua mode kolom, mode pemangkasan, ubah kecerahan 
-* Banyak penyempurnaan oleh ulasan 
-* Silakan tulis tentang pengalaman Anda dan tinggalkan umpan balik
+* Pembaruan besar dengan penambahan banyak ulasan Anda 
+* Antarmuka Text To Speech Baru 
+* Peningkatan dukungan untuk EPUB 3.0, pemutar audio dari buku 
+* Banyak kata mencari dalam semua format dan PDF 
+* Mendukung telepon dengan guntingan 
+* Format Bab 30% 5 \ 20 (15) atau Bab nama 5 \ 20 
+* Silakan tulis umpan balik atau ide
 </id>
 
 <lt>
-* Modernus knygų skaitytuvas ir PDF skaitytuvas visiems 
-* Rūšiavimas knygų pagal autorių, žanrą, seriją, raktinius žodžius 
-* Tinkintos knygų žymos 
-* Atnaujinta biblioteka, failų navigacija, žymės, žodynai 
-* Dviejų stulpelių režimas, apkarpymo režimas, ryškumo keitimas 
-* 
-* Prašome rašyti apie savo patirtį ir palikti atsiliepimus
+* Didelis naujinimas su daugybe jūsų atsiliepimų 
+* NaujaText-to-Speech sąsaja 
+* Patobulintas palaikymasEPUB 3.0, garso grotuvas iš knygos 
+* Daug žodžių ieškoma visuose formatuose ir PDF formatu 
+* Palaikomi telefonai su išpjovomis 
+* Skirsnio formatas 30% 5 \ 20 (15) arba skyriaus pavadinimas 5 \ 20 
+* Prašome rašyti atsiliepimus ar idėjas
 </lt>
 
 <ar>
-* قارئ الكتب الحديث وقارئ PDF للجميع 
-* فرز الكتب حسب المؤلف والنوع والمسلسلات والكلمات الرئيسية 
-* علامات مخصصة للكتب 
-* مكتبة محدثة ، تصفح الملفات ، الإشارات المرجعية ، القواميس 
-* وضع العمود ، وضع الاقتصاص ، تغير السطوع 
-* العديد من التحسينات من خلال المراجعات 
-* يرجى الكتابة عن تجربتك وترك ملاحظاتك
+* تحديث كبير مع إضافة العديد من مراجعاتك 
+* واجهة نصية جديدة على الكلام 
+* دعم محسّن ل EPUB 3.0 ، مشغل صوت من الكتاب 
+* العديد من الكلمات البحث في جميع التنسيقات و PDF 
+* دعم الهواتف مع القواطع 
+* تنسيق الفصل 30٪ 5 \ 20 (15) أو اسم الفصل 5 \ 20 
+* يرجى كتابة الملاحظات أو الأفكار
 </ar>
 
 <ro>
-* Cititor de carte modernă și cititor PDF pentru toată lumea 
-* Sortarea cărților după autor, gen, serie, cuvinte cheie 
-* Etichete personalizate pentru cărți 
-* Actualizare bibliotecă, navigare fișiere, marcaje, dicționare 
-* Două mod de coloană, 
-* Vă rugăm să scrieți despre experiența dvs. și să lăsați feedback
+* Actualizare mare cu adaugarea numeroaselor recenzii 
+* Interfata New Text To Speech 
+* Suport imbunatatit pentru EPUB 3.0, player audio de la cartea 
+* Numeroase cuvinte de cautare in toate formatele si PDF 
+* Suport telefoane cu decupaje 
+* Format capitol 30% 5 \ 20 (15) sau numele capitolului 5 \ 20 
+* Vă rugăm să scrieți feedback sau idei
 </ro>
 
 <de-DE>
-* Modern Book Reader und PDF-Reader für jedermann 
-* Sortieren von Büchern nach Autor, Genre, Serie, Stichwörter 
-* Benutzerdefinierte Tags für Bücher 
-* Aktualisierte Bibliothek, Datei Navigation, Lesezeichen, Wörterbücher 
-* Zwei Spaltenmodus, Crop-Modus, Helligkeit ändern 
-* Viele Verbesserungen von Bewertungen 
-* Bitte schreiben Sie über Ihre Erfahrungen und hinterlassen Sie Feedback
+* Großes Update mit der Zugabe von vielen Ihrer Bewertungen 
+* Neue Text To Speech-Schnittstelle 
+* Verbesserte Unterstützung für EPUB 3.0, Audio-Player aus dem Buch 
+* Viele Wörter suchen in allen Formaten und PDF 
+* Support-Handys mit Ausschnitten 
+* Kapitelformat 30% 5 \ 20 (15) oder Kapitelname 5 \ 20 
+* Bitte schreiben Sie Feedback oder Ideen
 </de-DE>
 
 <pl-PL>
-* Nowoczesny czytnik książek i czytnik PDF dla każdego 
-* Sortowanie książek według autora, gatunku, serii, słów kluczowych 
-* Niestandardowe tagi dla książek 
-* Zaktualizowana biblioteka, nawigacja plików, zakładki, słowniki 
-* Tryb dwóch kolumn, tryb przycinania, zmiana jasności 
-* Wiele ulepszeń recenzji 
-* Napisz o swoich doświadczeniach i zostaw komentarz
+* Duża aktualizacja z dodatkiem wielu twoich recenzji 
+* Nowy interfejs Text To Speech 
+* Ulepszona obsługa EPUB 3.0, odtwarzacz audio z książki 
+* Wiele słów wyszukiwania we wszystkich formatach i PDF 
+* Obsługa telefonów z wycięciami 
+* Format rozdziału 30% 5 \ 20 (15) lub nazwa rozdziału 5 \ 20 
+* Proszę pisać informacje zwrotne lub pomysły
 </pl-PL>
 
 <iw-IL>
-* קורא ספרים מודרנית וקורא PDF לכולם 
-* מיון ספרים לפי מחבר, ז’אנר, סדרה, מילות מפתח 
-* תגיות מותאמות אישית עבור ספרים 
-* עדכון הספרייה, ניווט הקובץ, סימניות, מילונים 
-* שני מצב טור, מצב חיתוך, שינוי בהירות 
-* שיפורים רבים על ידי ביקורות 
-* נא לכתוב על החוויה שלך ולהשאיר משוב
+* עדכון גדול עם תוספת של ביקורות רבות שלך 
+* טקסט חדש לדיבור ממשק 
+* תמיכה משופרת עבור EPUB 3.0, נגן אודיו מהספר 
+* חיפוש מילים רבות בכל הפורמטים ו- PDF 
+* תמיכה טלפונים עם cutouts 
+* פרק פרק 30% 5 \ 20 (15) או פרק שם 5 \ 20 
+* אנא כתוב משוב או רעיונות
 </iw-IL>
 
 <hi-IN>
-* सभी के लिए आधुनिक पुस्तक पाठक और पीडीएफ पाठक 
-* लेखक, शैली, श्रृंखला, कीवर्ड द्वारा पुस्तकें छंटनी 
-* पुस्तकों के लिए कस्टम टैग 
-* अद्यतन पुस्तकालय, फ़ाइल नेविगेशन, बुकमार्क, शब्दकोश 
-* दो कॉलम मोड, फसल मोड, चमक बदलना 
-* समीक्षाओं में कई सुधार 
-* कृपया अपने अनुभव के बारे में लिखें और प्रतिक्रिया छोड़ दें
+* आपकी कई समीक्षाओं के अतिरिक्त के साथ बड़ा अपडेट 
+* नया टेक्स्ट टू स्पीच इंटरफेस 
+* ईपीबीबी 3.0 के लिए बेहतर समर्थन, पुस्तक से ऑडियो प्लेयर 
+* सभी प्रारूपों और पीडीएफ में कई शब्द खोज 
+* कटआउट के साथ समर्थन फोन 
+* अध्याय प्रारूप 30% 5 \ 20 (15) या अध्याय का नाम 5 \ 20 
+* कृपया प्रतिक्रियाएं या विचार लिखें
 </hi-IN>
 
 <es-ES>
-* Lector de libros moderno y lector de PDF para todos 
-* Clasificando libros por autor, género, serie, palabras clave 
-* Etiquetas personalizadas para libros 
-* Biblioteca actualizada, navegación de archivos, marcadores, diccionarios 
-* Modo de dos columnas, modo de recorte, cambio de brillo 
-* Muchas mejoras por revisiones 
-* Por favor escribe sobre tu experiencia y deja tu opinión
+* Gran actualización con la adición de muchas de sus revisiones 
+* Nuevo interfaz Text To Speech 
+* Compatibilidad mejorada para EPUB 3.0, reproductor de audio del libro 
+* Muchas palabras buscan en todos los formatos y PDF 
+* Teléfonos de soporte con cortes (15) o Nombre del capítulo 5 \ 20 
+* Por favor escriba comentarios o ideas
 </es-ES>
 
 <fi-FI>
-* Modern kirjojen lukija ja PDF-lukija kaikille 
-* Lajittelu kirjojen tekijän, lajityyppien, sarjan, avainsanojen 
-* Mukautetut tageja kirjoihin 
-* Päivitetty kirjasto, tiedostojen navigointi, kirjanmerkit, sanakirjat 
-* Kaksi saraketta tilaan, viljelytapa, kirkkauden muuttaminen 
-* 
-* Kirjoita kokemuksestasi ja anna palautetta
+* Suuri päivitys lisäämällä monia arvosteluja 
+* Uusi teksti-puheeksi-käyttöliittymä 
+* Parannettu tuki EPUB 3.0: lle, audiosoitin kirjasta 
+* Monissa sanoissa haku kaikissa formaateissa ja PDF-muodossa 
+* Puhelimet, joissa on leikkaus 
+* Lukuformaatti 30% 5 \ 20 (15) tai luvun nimi 5 \ 20 
+* Kirjoita palautetta tai ideoita
 </fi-FI>
 
 <vi>
-* Trình đọc sách hiện đại và trình đọc PDF cho mọi người 
-* Sắp xếp sách theo tác giả, thể loại, chuỗi, từ khóa 
-* Thẻ tùy chỉnh cho sách 
-* Thư viện cập nhật, điều hướng tệp, dấu trang, từ điển 
-* Chế độ hai cột, chế độ cắt, thay đổi độ sáng 
-* Nhiều cải tiến theo đánh giá 
-* Vui lòng viết về trải nghiệm của bạn và để lại phản hồi
+* Cập nhật lớn với việc bổ sung nhiều đánh giá 
+* Giao diện Text to Speech 
+* Cải thiện hỗ trợ cho EPUB 3.0, trình phát âm thanh từ sách 
+* Nhiều từ tìm kiếm ở mọi định dạng và PDF 
+* Hỗ trợ điện thoại với cutouts 
+* Định dạng chương 30% 5 \ 20 (15) hoặc Tên chương 5 \ 20 
+* Vui lòng viết phản hồi hoặc ý tưởng
 </vi>
 
 <fr-FR>
-* Lecteur de livre moderne et lecteur PDF pour tous 
-* Tri des livres par auteur, genre, série, mots-clés 
-* Balises personnalisées pour les livres 
-* Bibliothèque mise à jour, navigation, signets, dictionnaires 
-* Mode deux colonnes, mode recadrage, changement de luminosité 
-* S’il vous plaît écrire sur votre expérience et laisser des commentaires
+* Grande mise à jour avec l’ajout de nombreux commentaires 
+* Nouvelle interface Text To Speech 
+* Amélioration de la prise en charge de EPUB 3.0, lecteur audio du livre 
+* Recherche de nombreux mots dans tous les formats, y compris les PDF 
+* Téléphones d’assistance avec découpes 
+* Format du chapitre 30% 5 \ 20 (15) ou nom du chapitre 5 \ 20 
+* Merci d’écrire vos réactions ou idées
 </fr-FR>
 
 <fr-CA>
-* Lecteur de livre moderne et lecteur PDF pour tous 
-* Tri des livres par auteur, genre, série, mots-clés 
-* Balises personnalisées pour les livres 
-* Bibliothèque mise à jour, navigation, signets, dictionnaires 
-* Mode deux colonnes, mode recadrage, changement de luminosité 
-* S’il vous plaît écrire sur votre expérience et laisser des commentaires
+* Grande mise à jour avec l’ajout de nombreux commentaires 
+* Nouvelle interface Text To Speech 
+* Amélioration de la prise en charge de EPUB 3.0, lecteur audio du livre 
+* Recherche de nombreux mots dans tous les formats, y compris les PDF 
+* Téléphones d’assistance avec découpes 
+* Format du chapitre 30% 5 \ 20 (15) ou nom du chapitre 5 \ 20 
+* Merci d’écrire vos réactions ou idées
 </fr-CA>
 
 <sw>
-* Kisasa Kitabu Reader na msomaji wa PDF kwa kila mtu 
-* Kupanga vitabu na mwandishi, aina, mfululizo, maneno 
-* Vitambulisho maalum vya vitabu 
-* Maktaba ya kisasa, urambazaji wa faili, alama za alama, kamusi ya kamusi 
-* Mbili mode ya safu, mode ya mazao, mabadiliko ya mwangaza 
-* Maboresho mengi na maoni 
-* Tafadhali andika kuhusu uzoefu wako na uacha maoni
+* Toleo kubwa kwa kuongeza maoni yako mengi 
+* Nakala ya Nakala ya Mazungumzo Mpya 
+* Msaada ulioboreshwa kwa EPUB 3.0, mchezaji wa sauti kutoka kwa kitabu 
+* Tafuta maneno mengi katika fomu zote na PDF 
+* Kusaidia simu na vipandizizi 
+* Fomu ya sura 30% 5 \ 20 (15) au Sura jina 5 \ 20 
+* Tafadhali weka machapisho au mawazo
 </sw>
 
 <zh-TW>
-*适用于所有人的现代图书阅读器和PDF阅读器
-*按作者，流派，系列，关键字对图书进行排序
-*为图书定制标签
-*更新图书馆，文件导航，书签，字典
-*两列模式，裁剪模式，改变亮度
-* 
-*请写下你的经验并留下反馈
+*大量更新，增加了许多评论
+*新的文本到语音界面
+*改进了对EPUB 3.0的支持，来自书籍的音频播放器
+*许多单词搜索所有格式和PDF 
+*支持带剪切的手机
+*章节格式30％5 \ 20 （15）或章节名称5 \ 20 
+*请写下反馈或想法
 </zh-TW>
 
 <ru-RU>
-* Современный читатель книг и PDF-ридер для всех 
-* Сортировка книг по автору, жанру, сериям, ключевым словам 
-* Пользовательские теги для книг 
-* Обновленная библиотека, файловая навигация, закладки, словари 
-* Режим двух столбцов, режим обрезки, изменение яркости 
-* Множество улучшений по отзывам 
-* Пожалуйста, напишите о своем опыте и оставьте отзыв
+* Большое обновление с добавлением многих ваших отзывов 
+* Новый интерфейс Text To Speech 
+* Улучшенная поддержка EPUB 3.0, аудиоплеер из книги 
+* Многоязычный поиск во всех форматах и ​​PDF 
+* Поддержка телефонов с вырезами 
+* Формат главы 30% 5 \ 20 (15) или название главы 5 \ 20 
+* Пожалуйста, напишите отзывы или идеи
 </ru-RU>
 
 <th>
-* อ่านหนังสือที่ทันสมัยและอ่าน PDF สำหรับทุกคน 
-* เรียงลำดับหนังสือโดยผู้เขียนประเภทชุดคำหลัก 
-* แท็กที่กำหนดเองสำหรับหนังสือ 
-* ห้องสมุดปรับปรุงนำทางไฟล์บุ๊คมาร์คพจนานุกรม 
-* โหมดสองคอลัมน์โหมดพืช, เปลี่ยนความสว่าง 
-* การปรับปรุงหลายโดยความคิดเห็น 
-* กรุณาเขียนเกี่ยวกับประสบการณ์ของคุณและออกความคิดเห็น
+* การปรับปรุงที่ยิ่งใหญ่ด้วยการเพิ่มความคิดเห็นของคุณ 
+* ข้อความใหม่ในการเชื่อมต่อคำพูด 
+* การสนับสนุนที่ดีขึ้นสำหรับ EPUB 3.0 เครื่องเล่นเสียงจากหนังสือ 
+* การค้นหาคำต่างๆในทุกรูปแบบและ PDF 
+* โทรศัพท์สนับสนุนที่มี cutouts 
+* รูปแบบบท 30% 5 \ 20 (15) หรือชื่อบทที่ 5 \ 20 
+* กรุณาเขียนความคิดเห็นหรือความคิดเห็น
 </th>
 
 <it-IT>
-* Lettore libro moderno e lettore PDF per tutti 
-* Ordinamento di libri per autore, genere, serie, parole chiave 
-* Tag personalizzati per libri 
-* Libreria aggiornata, navigazione file, segnalibri, dizionari 
-* Modalità a due colonne, modalità ritaglio, modifica luminosità 
-* Molti miglioramenti da recensioni 
-* Scrivi la tua esperienza e lascia un feedback
+* Grande aggiornamento con l’aggiunta di molte tue recensioni 
+* Nuova interfaccia Text To Speech 
+* Supporto migliorato per EPUB 3.0, lettore audio dal libro 
+* Ricerca di molte parole in tutti i formati e PDF 
+* Supporto telefoni con ritagli 
+* Formato capitolo 30% 5 \ 20 (15) o Nome capitolo 5 \ 20 
+* Si prega di scrivere feedback o idee
 </it-IT>
 
 <sv-SE>
-* Modern bokläsare och PDF-läsare för alla 
-* Sortera böcker efter författare, genre, serie, nyckelord 
-* Anpassade taggar för böcker 
-* Uppdaterat bibliotek, filnavigering, bokmärken, ordböcker 
-* Två kolumnläge, grödläge, ändra ljusstyrka 
-* Många förbättringar av recensioner 
-* Skriv om din erfarenhet och lämna feedback
+* Stor uppdatering med tillägg av många dina recensioner 
+* Ny text till talgränssnitt 
+* Förbättrat stöd för EPUB 3.0, ljudspelare från boken 
+* Många ordsökning i alla format och PDF 
+* Stödtelefoner med utklipp 
+* Kapitelformat 30% 5 \ 20 (15) eller kapitelnamn 5 \ 20 
+* Vänligen skriv feedback eller idéer
 </sv-SE>
 
 <fa>
-* کتاب خوان مدرن و PDF خوان برای همه 
-* مرتب کردن کتاب ها توسط نویسنده، ژانر، سری، کلمات کلیدی 
-* برچسب های سفارشی برای کتاب 
-* به روز شده در کتابخانه، ناوبری فایل، بوک مارک ها، واژه نامه ها 
-* دو حالت ستون، حالت محصول، روشنایی تغییر 
-* بسیاری از بهبود توسط بررسی 
-* لطفا در مورد تجربه خود بنویسید و بازخورد را ترک کنید
+* به روز رسانی بزرگ با علاوه بر بسیاری از بررسی های شما 
+* رابط جدید متن به گفتار 
+* پشتیبانی بهبود یافته برای EPUB 3.0، پخش صوتی از کتاب 
+* بسیاری از کلمات در همه فرمت ها و PDF 
+* جستجو پشتیبانی از تلفن با برش 
+* فصل فرمت 30٪ 5 \ 20 (15) یا نام فصل 5 \ 20 
+* لطفا نظرات و ایده های خود را ارسال کنید
 </fa>
 
 <pt-PT>
-* Leitor de livros moderno e leitor de PDF para todos 
-* Classificando livros por autor, gênero, série, palavras-chave 
-* Marcas personalizadas para livros 
-* Biblioteca atualizada, navegação de arquivos, marcadores, dicionários 
-* Modo de duas colunas, modo de corte, brilho mudança 
-* Muitas melhorias por comentários 
-* Por favor, escreva sobre sua experiência e deixe comentários
+* Grande atualização com a adição de muitos seus comentários 
+* Nova interface de texto para fala 
+* Suporte aprimorado para EPUB 3.0, leitor de áudio do livro 
+* Muitas palavras pesquisam em todos os formatos e PDF 
+* Suporte telefones com recortes 
+* Formato de capítulo 30% 5 \ 20 (15) ou nome do capítulo 5 \ 20 
+* Por favor, escreva feedbacks ou idéias
 </pt-PT>
 
 <pt-BR>
-* Leitor de livros moderno e leitor de PDF para todos 
-* Classificando livros por autor, gênero, série, palavras-chave 
-* Marcas personalizadas para livros 
-* Biblioteca atualizada, navegação de arquivos, marcadores, dicionários 
-* Modo de duas colunas, modo de corte, brilho mudança 
-* Muitas melhorias por comentários 
-* Por favor, escreva sobre sua experiência e deixe comentários
+* Grande atualização com a adição de muitos seus comentários 
+* Nova interface de texto para fala 
+* Suporte aprimorado para EPUB 3.0, leitor de áudio do livro 
+* Muitas palavras pesquisam em todos os formatos e PDF 
+* Suporte telefones com recortes 
+* Formato de capítulo 30% 5 \ 20 (15) ou nome do capítulo 5 \ 20 
+* Por favor, escreva feedbacks ou idéias
 </pt-BR>
 
 <ko-KR>
-* 모두를위한 현대 도서 리더 및 PDF 리더 
-* 저자, 장르, 시리즈, 키워드로 도서 정렬 
-* 도서에 대한 사용자 정의 태그 
-* 도서관, 파일 탐색, 책갈피, 사전을 업데이 트 
-* 두 열 모드, 자르기 모드, 밝기 변경 
-* 
-* 귀하의 경험에 대해 쓰고 피드백을 남기십시오.
+* 많은 리뷰 추가로 큰 업데이트 
+* 새로운 텍스트 음성 인터페이스 
+* 책에서 오디오 플레이어 EPUB 3.0에 대한 지원 향상 
+* 모든 단어 및 모든 형식의 PDF로 검색 
+* 단서가있는 휴대폰 지원 
+* 장 형식 30 % 5 \ 20 (15) 또는 장 이름 5 \ 20 
+* 의견이나 아이디어를 적어주십시오.
 </ko-KR>
 
 <hu-HU>
-* Modern könyvolvasó és PDF olvasó mindenki számára 
-* Könyvek sorrendje szerző szerint, műfaj, sorozatok, kulcsszavak szerint 
-* Egyéni címkék könyvekhez 
-* Frissített könyvtár, fájl navigáció, könyvjelzők, szótárak 
-* Két oszlopos mód, kivágási mód, fényerő módosítása 
-* 
-* Kérjük, írjon a tapasztalatairól, és hagyjon visszajelzést
+* Nagy frissítés számos új véleményének hozzáadásával 
+* Új szöveg-beszédfelület 
+* Továbbfejlesztett támogatás az EPUB 3.0-hoz, audió lejátszó a könyvből 
+* Sok szó keresés minden formátumban és PDF formátumban 
+* Támogatott telefonok kivágásokkal 
+* Fejezet formátuma 30% 5 \ 20 (15) vagy fejezetnév 5 \ 20 
+* Kérjük, írjon visszajelzéseket vagy ötleteket
 </hu-HU>
 
 <sk>
-* Moderné čítanie kníh a čítačka PDF pre každého 
-* Triedenie kníh podľa autorov, žánrov, sérií, kľúčových slov 
-* Vlastné značky pre knihy 
-* Aktualizované knižnice, navigácia súborov, záložky, slovníky 
-* Dva režimy stĺpcov, orezanie, zmena jasu 
-* 
-* Napíšte o svojich skúsenostiach a nechajte spätnú väzbu
+* Veľká aktualizácia s pridaním mnohých vašich recenzií 
+* Nové rozhranie Text to Speech 
+* Vylepšená podpora pre EPUB 3.0, audio prehrávač z knihy 
+* Veľa slov vyhľadáva vo všetkých formátoch a PDF 
+* Podpora telefónov s výrezmi 
+* Formát kapitoly 30% 5 \ 20 (15) alebo názov kapitoly 5 \ 20 
+* Napíšte nám pripomienky alebo nápady
 </sk>
 
 <tr-TR>
-* Herkes için Modern Kitap Okuyucu ve PDF Okuyucusu 
-* Yazar, yazar, tür, dizi, anahtar kelime ile kitap sıralama 
-* Kitaplar için özel etiketler 
-* Güncelleme kitaplığı, dosya gezinme, yer imleri, sözlükler 
-* İki sütun modu, kırpma modu, parlaklık değiştirmek 
-* Değerlendirmeler tarafından birçok iyileştirme 
-* Lütfen deneyimlerinizi yazın ve geri bildirim bırakın
+* Birçok yorumunuzu ekleyerek büyük güncelleme 
+* Konuşma Arayüzü Yeni Metin 
+* EPUB 3.0 için geliştirilmiş destek, kitaptan ses çalar 
+* Tüm formatlarda ve PDF’de birçok kelime arama 
+* Kesikli destek telefonları 
+* Bölüm biçimi 30% 5 \ 20 (15) veya Bölüm adı 5 \ 20 
+* Lütfen geri bildirim veya fikir yazın
 </tr-TR>
 
 <no-NO>
-* Moderne bokleser og PDF-leser for alle 
-* Sortering av bøker etter forfatter, genre, serie, nøkkelord 
-* Egendefinerte koder for bøker 
-* Oppdatert bibliotek, filnavigasjon, bokmerker, ordbøker 
-* To kolonnemodus, beskjæringsmodus, endre lysstyrke 
-* Mange forbedringer av vurderinger 
-* Skriv om din erfaring og gi tilbakemelding
+* Stor oppdatering med tillegg av mange vurderinger 
+* Ny tekst til tale-grensesnitt 
+* Forbedret støtte for EPUB 3.0, lydspiller fra boken 
+* Mange ordsøk i alle formater og PDF 
+* Støttetelefoner med utklipp 
+* Kapittelformat 30% 5 \ 20 (15) eller kapittelnavn 5 \ 20 
+* Vennligst skriv tilbakemeldinger eller ideer
 </no-NO>
 
 <la>
-* The book Lector et lectorem PDF quia omnis 
-* Sorting books by author, genere serie, keywords 
-* Custom tags for books 
-* Updated bibliotheca, lima navigation, bookmarks, dictionaries 
-* Duae columnae modus, seges modus, mutatio claritas 
-* Multi improvements per reviews Placere vobis scribere, 
-* et usus relinquere feedback
+* Big update cum praeter a multis tibi recensiones 
+* New Text Ut sermo interface 
+* Melior subsidium EPUB 3.0, audio ludio ludius in libro 
+* Multi verbis quaerere in cunctis formats et PDF 
+* Support phones sunt cutouts 
+* CAPUT forma XXX% V \ XX (XV), vel nomine CAPUT V \ 
+* XX Please write seu ideas feedbacks
 </la>
 
 <ja-JP>
-*すべての人のための近代的なブックリーダーとPDFリーダー
-*著者、ジャンル、シリーズ、キーワードで書籍を並べ替える
-*本のカスタムタグ
-*更新されたライブラリ、ファイルナビゲーション、ブックマーク、辞書
-* 2列モード、クロップモード、明るさの変更
-* 
-*あなたの経験について書いて、フィードバックを残してください
+*多くのあなたのレビューを追加して大きなアップデート
+*新しいテキストを音声インターフェイス
+* EPUB 3.0、オーディオプレーヤーの本からのサポートを改善
+*すべての形式とPDFで
+*多くの単語を検索
+*カットアウトを持つ携帯電話をサポート
+*章形式30％5 \ 20 （15）またはChapter name 5 \ 20 
+*フィードバックやアイデアを書いてください
 </ja-JP>
 
 <uk>
-* Сучасний читач книг і читач PDF для всіх 
-* Сортування книг за автором, жанром, серією, ключовими словами 
-* Спеціальні теги для книг 
-* Оновлена ​​бібліотека, навігація за допомогою файлів, закладки, словники 
-* Дві стовпчики, режим обрізки, яскравість зміни 
-* Багато вдосконалень за відгуками 
-* Будь ласка, напишіть про свій досвід і залиште відгук
+* Велике оновлення з додаванням багатьох ваших відгуків 
+* Новий інтерфейс Text To Speech 
+* Покращена підтримка EPUB 3.0, аудіоплеєр з книги 
+* Багато слів пошуку в усіх форматах та PDF 
+* Підтримка телефонів з вирізами 
+* Формат розділу 30% 5 \ 20 (15) або назва розділу 5 \ 20 
+* Будь ласка, напишіть відгуки або ідеї
 </uk>
 
 <en-US>
-* Modern Book Reader and PDF reader for everyone
-* Sorting books by author, genre, series, keywords
-* Custom tags for books
-* Updated library, file navigation, bookmarks, dictionaries
-* Two column mode, crop mode, change brightness
-* Many improvements by reviews
-* Please write about your experience and leave feedback
+* Big update with the addition of many your reviews
+* New Text To Speech interface
+* Improved support for EPUB 3.0, audio player from the book
+* Many words search in all formats and PDF
+* Support phones with cutouts
+* Chapter format  30% 5\20 (15) or Chapter name 5\20
+* Please write feedbacks or ideas
 </en-US>

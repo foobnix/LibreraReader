@@ -1,7 +1,7 @@
-* Modern bokläsare och PDF-läsare för alla 
-* Sortera böcker efter författare, genre, serie, nyckelord 
-* Anpassade taggar för böcker 
-* Uppdaterat bibliotek, filnavigering, bokmärken, ordböcker 
-* Två kolumnläge, grödläge, ändra ljusstyrka 
-* Många förbättringar av recensioner 
-* Skriv om din erfarenhet och lämna feedback
+* Stor uppdatering med tillägg av många dina recensioner 
+* Ny text till talgränssnitt 
+* Förbättrat stöd för EPUB 3.0, ljudspelare från boken 
+* Många ordsökning i alla format och PDF 
+* Stödtelefoner med utklipp 
+* Kapitelformat 30% 5 \ 20 (15) eller kapitelnamn 5 \ 20 
+* Vänligen skriv feedback eller idéer

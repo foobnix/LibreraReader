@@ -1,7 +1,7 @@
-* Lettore libro moderno e lettore PDF per tutti 
-* Ordinamento di libri per autore, genere, serie, parole chiave 
-* Tag personalizzati per libri 
-* Libreria aggiornata, navigazione file, segnalibri, dizionari 
-* Modalità a due colonne, modalità ritaglio, modifica luminosità 
-* Molti miglioramenti da recensioni 
-* Scrivi la tua esperienza e lascia un feedback
+* Grande aggiornamento con l’aggiunta di molte tue recensioni 
+* Nuova interfaccia Text To Speech 
+* Supporto migliorato per EPUB 3.0, lettore audio dal libro 
+* Ricerca di molte parole in tutti i formati e PDF 
+* Supporto telefoni con ritagli 
+* Formato capitolo 30% 5 \ 20 (15) o Nome capitolo 5 \ 20 
+* Si prega di scrivere feedback o idee

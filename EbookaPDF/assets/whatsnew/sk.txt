@@ -1,7 +1,7 @@
-* Moderné čítanie kníh a čítačka PDF pre každého 
-* Triedenie kníh podľa autorov, žánrov, sérií, kľúčových slov 
-* Vlastné značky pre knihy 
-* Aktualizované knižnice, navigácia súborov, záložky, slovníky 
-* Dva režimy stĺpcov, orezanie, zmena jasu 
-* 
-* Napíšte o svojich skúsenostiach a nechajte spätnú väzbu
+* Veľká aktualizácia s pridaním mnohých vašich recenzií 
+* Nové rozhranie Text to Speech 
+* Vylepšená podpora pre EPUB 3.0, audio prehrávač z knihy 
+* Veľa slov vyhľadáva vo všetkých formátoch a PDF 
+* Podpora telefónov s výrezmi 
+* Formát kapitoly 30% 5 \ 20 (15) alebo názov kapitoly 5 \ 20 
+* Napíšte nám pripomienky alebo nápady

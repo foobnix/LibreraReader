@@ -1,6 +1,7 @@
-* Cititor de carte modernă și cititor PDF pentru toată lumea 
-* Sortarea cărților după autor, gen, serie, cuvinte cheie 
-* Etichete personalizate pentru cărți 
-* Actualizare bibliotecă, navigare fișiere, marcaje, dicționare 
-* Două mod de coloană, 
-* Vă rugăm să scrieți despre experiența dvs. și să lăsați feedback
+* Actualizare mare cu adaugarea numeroaselor recenzii 
+* Interfata New Text To Speech 
+* Suport imbunatatit pentru EPUB 3.0, player audio de la cartea 
+* Numeroase cuvinte de cautare in toate formatele si PDF 
+* Suport telefoane cu decupaje 
+* Format capitol 30% 5 \ 20 (15) sau numele capitolului 5 \ 20 
+* Vă rugăm să scrieți feedback sau idei

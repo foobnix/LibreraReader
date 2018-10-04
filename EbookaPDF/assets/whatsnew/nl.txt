@@ -1,7 +1,7 @@
-* Moderne boeklezer en PDF-lezer voor iedereen 
-* Sorteren van boeken op auteur, genre, series, trefwoorden 
-* Aangepaste tags voor boeken 
-* Bijgewerkte bibliotheek, bestandsnavigatie, bladwijzers, woordenboeken 
-* Twee-kolommodus, bijsnijmodus, helderheid wijzigen 
-* Veel verbeteringen door beoordelingen 
-* Schrijf alsjeblieft over je ervaringen en laat feedback achter
+* Grote update met de toevoeging van veel van uw recensies 
+* Nieuwe Text To Speech-interface 
+* Verbeterde ondersteuning voor EPUB 3.0, audiospeler uit het boek 
+* Veel woorden zoeken in alle formaten en PDF 
+* Ondersteuning van telefoons met uitsparingen 
+* Hoofdstukformaat 30% 5 \ 20 (15) of hoofdstuknaam 5 \ 20 
+* Schrijf feedback of ideeën

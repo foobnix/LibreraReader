@@ -1,7 +1,7 @@
-* The book Lector et lectorem PDF quia omnis 
-* Sorting books by author, genere serie, keywords 
-* Custom tags for books 
-* Updated bibliotheca, lima navigation, bookmarks, dictionaries 
-* Duae columnae modus, seges modus, mutatio claritas 
-* Multi improvements per reviews Placere vobis scribere, 
-* et usus relinquere feedback
+* Big update cum praeter a multis tibi recensiones 
+* New Text Ut sermo interface 
+* Melior subsidium EPUB 3.0, audio ludio ludius in libro 
+* Multi verbis quaerere in cunctis formats et PDF 
+* Support phones sunt cutouts 
+* CAPUT forma XXX% V \ XX (XV), vel nomine CAPUT V \ 
+* XX Please write seu ideas feedbacks

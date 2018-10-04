@@ -1,7 +1,7 @@
-* Modern Book Reader and PDF reader for everyone
-* Sorting books by author, genre, series, keywords
-* Custom tags for books
-* Updated library, file navigation, bookmarks, dictionaries
-* Two column mode, crop mode, change brightness
-* Many improvements by reviews
-* Please write about your experience and leave feedback
+* Big update with the addition of many your reviews
+* New Text To Speech interface
+* Improved support for EPUB 3.0, audio player from the book
+* Many words search in all formats and PDF
+* Support phones with cutouts
+* Chapter format  40% 5\20 (15) or Chapter name 5\20
+* Please write feedbacks or ideas

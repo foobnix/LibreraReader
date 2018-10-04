@@ -1,7 +1,7 @@
-* Kisasa Kitabu Reader na msomaji wa PDF kwa kila mtu 
-* Kupanga vitabu na mwandishi, aina, mfululizo, maneno 
-* Vitambulisho maalum vya vitabu 
-* Maktaba ya kisasa, urambazaji wa faili, alama za alama, kamusi ya kamusi 
-* Mbili mode ya safu, mode ya mazao, mabadiliko ya mwangaza 
-* Maboresho mengi na maoni 
-* Tafadhali andika kuhusu uzoefu wako na uacha maoni
+* Toleo kubwa kwa kuongeza maoni yako mengi 
+* Nakala ya Nakala ya Mazungumzo Mpya 
+* Msaada ulioboreshwa kwa EPUB 3.0, mchezaji wa sauti kutoka kwa kitabu 
+* Tafuta maneno mengi katika fomu zote na PDF 
+* Kusaidia simu na vipandizizi 
+* Fomu ya sura 30% 5 \ 20 (15) au Sura jina 5 \ 20 
+* Tafadhali weka machapisho au mawazo

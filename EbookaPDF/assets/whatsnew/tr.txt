@@ -1,7 +1,7 @@
-* Herkes için Modern Kitap Okuyucu ve PDF Okuyucusu 
-* Yazar, yazar, tür, dizi, anahtar kelime ile kitap sıralama 
-* Kitaplar için özel etiketler 
-* Güncelleme kitaplığı, dosya gezinme, yer imleri, sözlükler 
-* İki sütun modu, kırpma modu, parlaklık değiştirmek 
-* Değerlendirmeler tarafından birçok iyileştirme 
-* Lütfen deneyimlerinizi yazın ve geri bildirim bırakın
+* Birçok yorumunuzu ekleyerek büyük güncelleme 
+* Konuşma Arayüzü Yeni Metin 
+* EPUB 3.0 için geliştirilmiş destek, kitaptan ses çalar 
+* Tüm formatlarda ve PDF’de birçok kelime arama 
+* Kesikli destek telefonları 
+* Bölüm biçimi 30% 5 \ 20 (15) veya Bölüm adı 5 \ 20 
+* Lütfen geri bildirim veya fikir yazın

@@ -85,15 +85,12 @@ import android.os.Parcelable;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager.OnPageChangeListener;
 import android.text.InputType;
-import android.view.GestureDetector;
 import android.view.KeyEvent;
 import android.view.MenuItem;
 import android.view.MenuItem.OnMenuItemClickListener;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.View.OnLongClickListener;
-import android.view.View.OnTouchListener;
 import android.view.ViewTreeObserver.OnGlobalLayoutListener;
 import android.view.Window;
 import android.view.WindowManager;
@@ -1531,64 +1528,17 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
 
             @Override
             public void onClick(View v) {
-                if (false) {
-                    if (AppState.get().tapZoneBottom == AppState.TAP_DO_NOTHING) {
-                        // do nothing
-                    } else if (AppState.get().tapZoneBottom == AppState.TAP_NEXT_PAGE) {
-                        nextPage();
-                    } else if (AppState.get().tapZoneBottom == AppState.TAP_PREV_PAGE) {
-                        prevPage();
-                    }
+                if (AppState.get().tapZoneBottom == AppState.TAP_DO_NOTHING) {
+                    // do nothing
+                } else if (AppState.get().tapZoneBottom == AppState.TAP_NEXT_PAGE) {
+                    nextPage();
+                } else if (AppState.get().tapZoneBottom == AppState.TAP_PREV_PAGE) {
+                    prevPage();
                 }
 
             }
         });
-        pagesCountIndicator.setOnTouchListener(new OnTouchListener() {
 
-            boolean isLongPress = false;
-            boolean result = true;
-            float y = 0;
-            SimpleTouchOnGestureListener listener = new SimpleTouchOnGestureListener() {
-                @Override
-                public void onLongPress(MotionEvent e) {
-                    super.onLongPress(e);
-                    if (isLongPress) {
-                        OutlineHelper.showChapterFormatPopup(pagesCountIndicator, onRefresh);
-
-                    }
-                }
-
-                @Override
-                public boolean onTouchEvent(MotionEvent e) {
-                    LOG.d("SimpleTouchOnGestureListener", Math.abs(e.getY() - y), Dips.DP_5);
-                    if (Math.abs(e.getY() - y) > Dips.DP_5) {
-                        isLongPress = false;
-                        result = false;
-                    }
-
-                    return result;
-
-                }
-
-                @Override
-                public boolean onDown(MotionEvent e) {
-                    isLongPress = true;
-                    result = true;
-                    y = e.getY();
-                    return true;
-
-                }
-
-            };
-            GestureDetector gestureDetector = new GestureDetector(HorizontalViewActivity.this, listener);
-
-            @Override
-            public boolean onTouch(View v, MotionEvent event) {
-                // gestureDetector.onTouchEvent(event);
-                // return listener.onTouchEvent(event);
-                return false;
-            }
-        });
 
         updateLockMode();
 

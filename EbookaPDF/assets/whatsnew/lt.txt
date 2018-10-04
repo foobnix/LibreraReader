@@ -1,7 +1,7 @@
-* Modernus knygų skaitytuvas ir PDF skaitytuvas visiems 
-* Rūšiavimas knygų pagal autorių, žanrą, seriją, raktinius žodžius 
-* Tinkintos knygų žymos 
-* Atnaujinta biblioteka, failų navigacija, žymės, žodynai 
-* Dviejų stulpelių režimas, apkarpymo režimas, ryškumo keitimas 
-* 
-* Prašome rašyti apie savo patirtį ir palikti atsiliepimus
+* Didelis naujinimas su daugybe jūsų atsiliepimų 
+* NaujaText-to-Speech sąsaja 
+* Patobulintas palaikymasEPUB 3.0, garso grotuvas iš knygos 
+* Daug žodžių ieškoma visuose formatuose ir PDF formatu 
+* Palaikomi telefonai su išpjovomis 
+* Skirsnio formatas 30% 5 \ 20 (15) arba skyriaus pavadinimas 5 \ 20 
+* Prašome rašyti atsiliepimus ar idėjas

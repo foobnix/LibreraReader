@@ -1,7 +1,7 @@
-* Modern könyvolvasó és PDF olvasó mindenki számára 
-* Könyvek sorrendje szerző szerint, műfaj, sorozatok, kulcsszavak szerint 
-* Egyéni címkék könyvekhez 
-* Frissített könyvtár, fájl navigáció, könyvjelzők, szótárak 
-* Két oszlopos mód, kivágási mód, fényerő módosítása 
-* 
-* Kérjük, írjon a tapasztalatairól, és hagyjon visszajelzést
+* Nagy frissítés számos új véleményének hozzáadásával 
+* Új szöveg-beszédfelület 
+* Továbbfejlesztett támogatás az EPUB 3.0-hoz, audió lejátszó a könyvből 
+* Sok szó keresés minden formátumban és PDF formátumban 
+* Támogatott telefonok kivágásokkal 
+* Fejezet formátuma 30% 5 \ 20 (15) vagy fejezetnév 5 \ 20 
+* Kérjük, írjon visszajelzéseket vagy ötleteket

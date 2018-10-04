@@ -1,7 +1,7 @@
-* Modern kirjojen lukija ja PDF-lukija kaikille 
-* Lajittelu kirjojen tekijän, lajityyppien, sarjan, avainsanojen 
-* Mukautetut tageja kirjoihin 
-* Päivitetty kirjasto, tiedostojen navigointi, kirjanmerkit, sanakirjat 
-* Kaksi saraketta tilaan, viljelytapa, kirkkauden muuttaminen 
-* 
-* Kirjoita kokemuksestasi ja anna palautetta
+* Suuri päivitys lisäämällä monia arvosteluja 
+* Uusi teksti-puheeksi-käyttöliittymä 
+* Parannettu tuki EPUB 3.0: lle, audiosoitin kirjasta 
+* Monissa sanoissa haku kaikissa formaateissa ja PDF-muodossa 
+* Puhelimet, joissa on leikkaus 
+* Lukuformaatti 30% 5 \ 20 (15) tai luvun nimi 5 \ 20 
+* Kirjoita palautetta tai ideoita

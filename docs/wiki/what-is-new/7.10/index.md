@@ -5,6 +5,14 @@ layout: main
 
 # 7.10
 
+* Big update with the addition of many your reviews
+* New Text To Speech interface
+* Improved support for EPUB 3.0, audio player from the book
+* Many words search in all formats and PDF
+* Support phones with cutouts
+* Chapter format  "30% 5\20 (15)" or "Chapter name 5\20"
+* Please write feedbacks or ideas
+
 # What is new in Librera 7.10
 
 Text to speech with new UI and works better in the background. 
@@ -52,5 +60,5 @@ Chapter formant can be changed from the format "page\total" to "Chapter page\tot
 |-|-|-|
 |![](6.png)|![](4.png)|![](5.png)|
 
-* Support phones with cutout dispalys
+* Support phones with cutout displays
 * Table of content for EPUB 3.0 books

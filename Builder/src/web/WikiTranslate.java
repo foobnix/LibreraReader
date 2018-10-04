@@ -12,11 +12,7 @@ import translations.GoogleTranslation;
 public class WikiTranslate {
 
     public static void main(String[] args) throws Exception {
-        String string = "brightness-control-and-blue-light-filter";
-        //translate("/home/ivan-dev/git/LirbiReader/docs/wiki/faq/" + string + "/", "ru");
-
-        translate("/home/ivan-dev/git/LirbiReader/docs/wiki/manual", "ru");
-        translate("/home/ivan-dev/git/LirbiReader/docs/wiki/stories", "ru");
+        translate("/home/ivan-dev/git/LirbiReader/docs/wiki/what-is-new/7.10", "ru");
     }
 
     public static void translate(String root, String ln) throws Exception {

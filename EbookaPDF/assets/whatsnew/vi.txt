@@ -1,7 +1,7 @@
-* Trình đọc sách hiện đại và trình đọc PDF cho mọi người 
-* Sắp xếp sách theo tác giả, thể loại, chuỗi, từ khóa 
-* Thẻ tùy chỉnh cho sách 
-* Thư viện cập nhật, điều hướng tệp, dấu trang, từ điển 
-* Chế độ hai cột, chế độ cắt, thay đổi độ sáng 
-* Nhiều cải tiến theo đánh giá 
-* Vui lòng viết về trải nghiệm của bạn và để lại phản hồi
+* Cập nhật lớn với việc bổ sung nhiều đánh giá 
+* Giao diện Text to Speech 
+* Cải thiện hỗ trợ cho EPUB 3.0, trình phát âm thanh từ sách 
+* Nhiều từ tìm kiếm ở mọi định dạng và PDF 
+* Hỗ trợ điện thoại với cutouts 
+* Định dạng chương 30% 5 \ 20 (15) hoặc Tên chương 5 \ 20 
+* Vui lòng viết phản hồi hoặc ý tưởng
