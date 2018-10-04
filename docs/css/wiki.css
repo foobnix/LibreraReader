@@ -221,3 +221,33 @@ section code {
 section img {
   max-width: 100%;
 }
+
+
+img {
+  cursor: pointer;
+  }
+
+/* The Modal (background) */
+.modal {
+   display: none; /* Hidden by default */
+   position: fixed; /* Stay in place */
+   z-index: 1; /* Sit on top */
+   padding-top: 0px; /* Location of the box */
+   left: 0;
+   top: 0;
+   width: 100%; /* Full width */
+   height: 98%; /* Full height */
+   overflow: hidden; /* Enable scroll if needed */
+ 
+}
+
+/* Modal Content (image) */
+.modal-content {
+   margin: auto;
+   display: block;
+   border-width: 2px;
+   border-color: black;
+   height: 100%;
+}
+
+

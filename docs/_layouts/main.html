@@ -51,6 +51,57 @@
         
     
 </div>
+
+<!-- The Modal -->
+<div id="myModal" class="modal">
+  <img class="modal-content" id="img01" src="1.png">
+</div>
+
+<script>
+// Get the modal
+var modal = document.getElementById('myModal');
+
+// Get the image and insert it inside the modal - use its "alt" text as a caption
+var images = document.querySelectorAll('td > img');
+alert(images.length);
+var modalImg = document.getElementById("img01");
+
+for (var i = 0; i < images.length; i++) {
+  
+  
+images[i].onclick = function(event){
+	    modal.style.display = "block";
+	    modalImg.src = this.src;
+    
+    }
+
+   
+   }
+
+// Get the <span> element that closes the modal
+var span = document.getElementsByClassName("modal-content")[0];
+
+// When the user clicks on <span> (x), close the modal
+span.onclick = function() { 
+    modal.style.display = "none";
+}
+
+document.onkeydown = function(evt) {
+    evt = evt || window.event;
+    var isEscape = false;
+    if ("key" in evt) {
+        isEscape = (evt.key == "Escape" || evt.key == "Esc");
+    } else {
+        isEscape = (evt.keyCode == 27);
+    }
+    if (isEscape) {
+        modal.style.display = "none";
+    }
+};
+
+</script>
+
+
 </body>
 </html>
 
