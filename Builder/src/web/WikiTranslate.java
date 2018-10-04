@@ -15,7 +15,8 @@ public class WikiTranslate {
         String string = "brightness-control-and-blue-light-filter";
         //translate("/home/ivan-dev/git/LirbiReader/docs/wiki/faq/" + string + "/", "ru");
 
-        translate("/home/ivan-dev/git/LirbiReader/docs/wiki/what-is-new/7.10", "ru");
+        translate("/home/ivan-dev/git/LirbiReader/docs/wiki/manual", "ru");
+        translate("/home/ivan-dev/git/LirbiReader/docs/wiki/stories", "ru");
     }
 
     public static void translate(String root, String ln) throws Exception {
