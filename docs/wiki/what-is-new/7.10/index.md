@@ -5,31 +5,31 @@ layout: main
 
 # 7.10
 
-* Big update with the addition of many your reviews
-* New Text To Speech interface
-* Improved support for EPUB 3.0, audio player from the book
-* Many words search in all formats and PDF
-* Support phones with cutouts
-* Chapter format  "30% 5\20 (15)" or "Chapter name 5\20"
-* Please write feedbacks or ideas
+* A major update based on readers' requests and feedback
+* New Text-To-Speech (TTS) interface
+* Improved support for EPUB 3.0, audio files playback
+* Multi-word search queries in all formats, including PDF
+* Support for notched smartphones
+* The status bar legend now has three options to choose from: full, compact, and chapter-oriented
+* More feedback and requests are very welcome!
 
 # What is new in Librera 7.10
 
-Text to speech with new UI and works better in the background. 
-Reading text aloud supports pauses on punctuation symbols. 
+The TTS Settings window has gotten a new look and now works better in the background. 
+TTS reading supports adjustable pauses (breaks) at punctuation marks. 
 
-* TTS controls buttons in the bottom
+* TTS controls at the bottom
 * Easy speed change
-* Better notification
+* Improved notification behavior
 
 ||||
 |-|-|-|
 |![](1.png)|![](2.png)|![](3.png)|
 
-New version can search for many words in the any book format. 
-Normalize makes all fonts in the book size with the same height value and change non break spaces to usual spaces.
+Search for multiple words in any book format. 
+The "Normalize font size" option makes all fonts the same size (height) and collapses no-break spaces to single spaces.
 
-* Search by many words in a book
+* Multiple-word search queries in a book
 * Disable normalize font size 
 * Enable normalize font size
 
@@ -37,28 +37,28 @@ Normalize makes all fonts in the book size with the same height value and change
 |-|-|-|
 |![](7.png)|![](8.png)|![](9.png)|
 
-From the Text To Speech dialog you can open any external audio file and listen it with a book.
-It's can be usefull for study foreign languages or for musicians.
-It's also possible to listen attached media files from the Librera book player.
-Chapter formant can be changed from the format "page\total" to "Chapter page\total"
+Open an external audio file from the TTS Settings dialog and listen to it while reading.
+This feature should come in handy for those learning foreign languages or for musicians.
+Librera player is also a shot at reading multimedia books.
+The format of the status bar legend can be changed from full to compact to chapter-oriented
 
-* Build-in Audio player (for playing external MP3, MP4, FLAC audio files inside the book)
-* Play media from the Epub3 book with a build-in player
-* New chapter format
+* Built-in audio player (for playing external MP3, MP4, FLAC audio files while reading a book)
+* Play media files in EPUB3 books
+* Three status bar legend formats to choose from
 
 ||||
 |-|-|-|
 |![](10.png)|![](11.png)|![](12.png)|
 
- Big capital letter for __FB2__ books can be configured from the fonts settings dialog.
+ Leading initials in chapters of __FB2__ books can be configured in the Configure Fonts dialog.
 
-* Find font configurations
-* You can enable and configure capital letter for FB2 books
-* Change it font, color, size, etc
+* Pop up the Configure Fonts window after opening an FB2 book
+* Enable and configure leading initials
+* You can change their font, color, size, etc.
 
 ||||
 |-|-|-|
 |![](6.png)|![](4.png)|![](5.png)|
 
-* Support phones with cutout displays
-* Table of content for EPUB 3.0 books
+* Support for phones w/ notched displays
+* Table of contents for EPUB 3.0 books
