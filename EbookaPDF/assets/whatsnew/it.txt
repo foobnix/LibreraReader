@@ -1,7 +1,7 @@
-* Grande aggiornamento con l’aggiunta di molte tue recensioni 
-* Nuova interfaccia Text To Speech 
-* Supporto migliorato per EPUB 3.0, lettore audio dal libro 
-* Ricerca di molte parole in tutti i formati e PDF 
-* Supporto telefoni con ritagli 
-* Formato capitolo 30% 5 \ 20 (15) o Nome capitolo 5 \ 20 
-* Si prega di scrivere feedback o idee
+* Un importante aggiornamento basato su richieste e feedback dei lettori 
+* Nuova interfaccia Text-To-Speech (TTS) 
+* Supporto migliorato per EPUB 3.0, riproduzione di file audio 
+* Ricerca di parole multiple in tutti i formati, incluso PDF 
+* Supporto per smartphone con tacche 
+* La legenda della barra di stato ora ha tre opzioni tra cui scegliere: completa, compatta e orientata ai capitoli 
+* Più feedback e richieste sono ben accette!

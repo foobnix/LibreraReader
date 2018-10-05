@@ -1,7 +1,7 @@
-* Stor oppdatering med tillegg av mange vurderinger 
-* Ny tekst til tale-grensesnitt 
-* Forbedret støtte for EPUB 3.0, lydspiller fra boken 
-* Mange ordsøk i alle formater og PDF 
-* Støttetelefoner med utklipp 
-* Kapittelformat 30% 5 \ 20 (15) eller kapittelnavn 5 \ 20 
-* Vennligst skriv tilbakemeldinger eller ideer
+* En viktig oppdatering basert på leserens forespørsler og tilbakemelding 
+* TTS-grensesnitt for tekst-til-tale (TTS) 
+* Forbedret støtte for EPUB 3.0, avspilling av lydfiler 
+* Multi-ordsøk i alle formater, inkludert PDF 
+* Støtte for innhakkede smartphones 
+* Statuslinjen legenden har nå tre alternativer å velge mellom: full, kompakt og kapitletorientert 
+* Flere tilbakemeldinger og forespørsler er veldig velkommen!

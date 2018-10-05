@@ -1,7 +1,7 @@
-* Big update with the addition of many your reviews
-* New Text To Speech interface
-* Improved support for EPUB 3.0, audio player from the book
-* Many words search in all formats and PDF
-* Support phones with cutouts
-* Chapter format  40% 5\20 (15) or Chapter name 5\20
-* Please write feedbacks or ideas
+* A major update based on readers’ requests and feedback
+* New Text-To-Speech (TTS) interface
+* Improved support for EPUB 3.0, audio files playback
+* Multi-word search queries in all formats, including PDF
+* Support for notched smartphones
+* The status bar legend now has three options to choose from: full, compact, and chapter-oriented
+* More feedback and requests are very welcome!

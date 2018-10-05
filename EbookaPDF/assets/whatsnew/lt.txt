@@ -1,7 +1,7 @@
-* Didelis naujinimas su daugybe jūsų atsiliepimų 
-* NaujaText-to-Speech sąsaja 
-* Patobulintas palaikymasEPUB 3.0, garso grotuvas iš knygos 
-* Daug žodžių ieškoma visuose formatuose ir PDF formatu 
-* Palaikomi telefonai su išpjovomis 
-* Skirsnio formatas 30% 5 \ 20 (15) arba skyriaus pavadinimas 5 \ 20 
-* Prašome rašyti atsiliepimus ar idėjas
+* Svarbus naujinimas, pagrįstas skaitytojų prašymais ir atsiliepimais 
+* Nauja teksto į kalbą (TTS) sąsaja 
+* Patobulintas palaikymasEPUB 3.0, atkūrimas garso failų 
+* Daugialypės paieškos užklausos visuose formatuose, įskaitant PDF 
+* Parama iškirptiems išmaniesiems telefonams 
+* Dabar būsenos juostos legenda turi tris pasirinkimus: pilnas, kompaktiškas ir orientuotas į skyrių 
+* Daugiau atsiliepimų ir prašymų yra labai sveikintini!

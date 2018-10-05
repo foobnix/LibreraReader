@@ -1,7 +1,6 @@
-* Nagy frissítés számos új véleményének hozzáadásával 
-* Új szöveg-beszédfelület 
-* Továbbfejlesztett támogatás az EPUB 3.0-hoz, audió lejátszó a könyvből 
-* Sok szó keresés minden formátumban és PDF formátumban 
-* Támogatott telefonok kivágásokkal 
-* Fejezet formátuma 30% 5 \ 20 (15) vagy fejezetnév 5 \ 20 
-* Kérjük, írjon visszajelzéseket vagy ötleteket
+* Az olvasó kéréseinek és visszajelzéseinek köszönhetően jelentős frissítés 
+* Új szöveg-to-speech (TTS) felület 
+* Továbbfejlesztett támogatás az EPUB 3.0-hoz, audió fájlok lejátszása 
+* Többféle keresési lekérdezés minden formátumban, beleértve a PDF-t 
+* Az állapotjelző legenda most három lehetőség közül választhat: teljes, kompakt és fejezetközpontú 
+* Több visszajelzés és kérés nagyon örvendetes!

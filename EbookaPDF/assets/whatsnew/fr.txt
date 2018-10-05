@@ -1,7 +1,7 @@
-* Grande mise à jour avec l’ajout de nombreux commentaires 
-* Nouvelle interface Text To Speech 
-* Amélioration de la prise en charge de EPUB 3.0, lecteur audio du livre 
-* Recherche de nombreux mots dans tous les formats, y compris les PDF 
-* Téléphones d’assistance avec découpes 
-* Format du chapitre 30% 5 \ 20 (15) ou nom du chapitre 5 \ 20 
-* Merci d’écrire vos réactions ou idées
+* Mise à jour majeure basée sur les demandes et les commentaires des lecteurs 
+* Nouvelle interface de synthèse vocale (TTS) 
+* Amélioration du support pour EPUB 3.0, lecture de fichiers audio 
+* Requêtes de recherche multi-mots dans tous les formats, y compris PDF 
+* Support pour les smartphones cochés 
+* La légende de la barre d’état propose désormais trois options: complète, compacte et axée sur les chapitres 
+* Plus de commentaires et de demandes sont les bienvenus!

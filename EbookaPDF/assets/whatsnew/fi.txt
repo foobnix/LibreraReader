@@ -1,7 +1,6 @@
-* Suuri päivitys lisäämällä monia arvosteluja 
-* Uusi teksti-puheeksi-käyttöliittymä 
-* Parannettu tuki EPUB 3.0: lle, audiosoitin kirjasta 
-* Monissa sanoissa haku kaikissa formaateissa ja PDF-muodossa 
-* Puhelimet, joissa on leikkaus 
-* Lukuformaatti 30% 5 \ 20 (15) tai luvun nimi 5 \ 20 
-* Kirjoita palautetta tai ideoita
+* Suuri päivitys, joka perustuu lukijoiden pyyntöihin ja palautteeseen 
+* Uusi teksti-puheeksi (TTS) -rajapinta 
+* Parannettu tuki EPUB 3.0: lle, äänitiedostojen toisto 
+* Useilla eri hakusanoilla kaikissa tiedostomuodoissa, mukaan lukien PDF 
+* Tilarivin legenda sisältää nyt kolme vaihtoehtoa: täysi, pienikokoinen ja luvun suuntainen 
+* Lisää palautetta ja pyyntöjä on erittäin tervetullut!

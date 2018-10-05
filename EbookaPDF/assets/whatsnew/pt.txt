@@ -1,7 +1,7 @@
-* Grande atualização com a adição de muitos seus comentários 
-* Nova interface de texto para fala 
-* Suporte aprimorado para EPUB 3.0, leitor de áudio do livro 
-* Muitas palavras pesquisam em todos os formatos e PDF 
-* Suporte telefones com recortes 
-* Formato de capítulo 30% 5 \ 20 (15) ou nome do capítulo 5 \ 20 
-* Por favor, escreva feedbacks ou idéias
+* Uma grande atualização com base nas solicitações e comentários dos leitores 
+* Nova interface de conversão de texto em fala 
+* Suporte aprimorado para EPUB 3.0, reprodução de arquivos de áudio 
+* Consultas de pesquisa de várias palavras em todos os formatos, incluindo PDF 
+* Suporte para smartphones entalhados 
+* A legenda da barra de status agora tem três opções para escolher: completa, compacta e orientada por capítulos 
+* Mais comentários e solicitações são muito bem-vindos!

@@ -1,7 +1,7 @@
-* Actualizare mare cu adaugarea numeroaselor recenzii 
-* Interfata New Text To Speech 
-* Suport imbunatatit pentru EPUB 3.0, player audio de la cartea 
-* Numeroase cuvinte de cautare in toate formatele si PDF 
-* Suport telefoane cu decupaje 
-* Format capitol 30% 5 \ 20 (15) sau numele capitolului 5 \ 20 
-* Vă rugăm să scrieți feedback sau idei
+* O actualizare majoră bazată pe solicitările și feedback-ul cititorilor 
+* Interfața TTS 
+* Suport îmbunătățit pentru EPUB 3.0, redarea fișierelor audio 
+* Interogări de căutare multi-word în toate formatele, inclusiv PDF 
+* Suport pentru smartphone-uri notate 
+* Legenda bara de stare are acum trei opțiuni de alegere: completă, compactă și orientată spre capitol 
+* Mai multe feedback și solicitări sunt foarte binevenite!

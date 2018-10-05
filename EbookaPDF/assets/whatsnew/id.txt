@@ -1,7 +1,7 @@
-* Pembaruan besar dengan penambahan banyak ulasan Anda 
-* Antarmuka Text To Speech Baru 
-* Peningkatan dukungan untuk EPUB 3.0, pemutar audio dari buku 
-* Banyak kata mencari dalam semua format dan PDF 
-* Mendukung telepon dengan guntingan 
-* Format Bab 30% 5 \ 20 (15) atau Bab nama 5 \ 20 
-* Silakan tulis umpan balik atau ide
+* Pembaruan besar berdasarkan permintaan dan umpan balik pembaca 
+* Antarmuka New Text-To-Speech (TTS) 
+* Peningkatan dukungan untuk EPUB 3.0, pemutaran file audio 
+* Permintaan pencarian multi-kata dalam semua format, termasuk PDF 
+* Dukungan untuk smartphone berlekuk 
+* Legenda status bar sekarang memiliki tiga opsi untuk dipilih: full, compact, dan chapter-oriented 
+* Lebih banyak umpan balik dan permintaan sangat diterima!

@@ -1,6 +1,5 @@
-* Gran actualización con la adición de muchas de sus revisiones 
-* Nuevo interfaz Text To Speech 
-* Compatibilidad mejorada para EPUB 3.0, reproductor de audio del libro 
-* Muchas palabras buscan en todos los formatos y PDF 
-* Teléfonos de soporte con cortes (15) o Nombre del capítulo 5 \ 20 
-* Por favor escriba comentarios o ideas
+* Una actualización importante basada en las solicitudes y comentarios de los lectores 
+* Nueva interfaz de Text-to-Speech (TTS) 
+* Soporte mejorado para EPUB 3.0, reproducción de archivos de audio 
+* Consultas de búsqueda de múltiples palabras en todos los formatos, incluido PDF La leyenda de la barra de estado ahora tiene tres opciones para elegir: completa, compacta y orientada a capítulos 
+* ¡Más comentarios y solicitudes son bienvenidos!

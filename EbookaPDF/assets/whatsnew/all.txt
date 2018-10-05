@@ -1,320 +1,312 @@
 
 <nl-NL>
-* Grote update met de toevoeging van veel van uw recensies 
-* Nieuwe Text To Speech-interface 
-* Verbeterde ondersteuning voor EPUB 3.0, audiospeler uit het boek 
-* Veel woorden zoeken in alle formaten en PDF 
-* Ondersteuning van telefoons met uitsparingen 
-* Hoofdstukformaat 30% 5 \ 20 (15) of hoofdstuknaam 5 \ 20 
-* Schrijf feedback of ideeën
+* Een belangrijke update op basis van verzoeken en feedback van lezers 
+* Nieuwe Text-To-Speech (TTS) -interface 
+* Verbeterde ondersteuning voor EPUB 3.0, afspelen van audiobestanden 
+* Zoekopdrachten van meerdere woorden in alle indelingen, inclusief PDF 
+* Ondersteuning voor gekerfde smartphones 
+* De legende van de statusbalk heeft nu drie opties om uit te kiezen: volledig, compact en hoofdstukgericht 
+* Meer feedback en verzoeken zijn van harte welkom!
 </nl-NL>
 
 <id>
-* Pembaruan besar dengan penambahan banyak ulasan Anda 
-* Antarmuka Text To Speech Baru 
-* Peningkatan dukungan untuk EPUB 3.0, pemutar audio dari buku 
-* Banyak kata mencari dalam semua format dan PDF 
-* Mendukung telepon dengan guntingan 
-* Format Bab 30% 5 \ 20 (15) atau Bab nama 5 \ 20 
-* Silakan tulis umpan balik atau ide
+* Pembaruan besar berdasarkan permintaan dan umpan balik pembaca 
+* Antarmuka New Text-To-Speech (TTS) 
+* Peningkatan dukungan untuk EPUB 3.0, pemutaran file audio 
+* Permintaan pencarian multi-kata dalam semua format, termasuk PDF 
+* Dukungan untuk smartphone berlekuk 
+* Legenda status bar sekarang memiliki tiga opsi untuk dipilih: full, compact, dan chapter-oriented 
+* Lebih banyak umpan balik dan permintaan sangat diterima!
 </id>
 
 <lt>
-* Didelis naujinimas su daugybe jūsų atsiliepimų 
-* NaujaText-to-Speech sąsaja 
-* Patobulintas palaikymasEPUB 3.0, garso grotuvas iš knygos 
-* Daug žodžių ieškoma visuose formatuose ir PDF formatu 
-* Palaikomi telefonai su išpjovomis 
-* Skirsnio formatas 30% 5 \ 20 (15) arba skyriaus pavadinimas 5 \ 20 
-* Prašome rašyti atsiliepimus ar idėjas
+* Svarbus naujinimas, pagrįstas skaitytojų prašymais ir atsiliepimais 
+* Nauja teksto į kalbą (TTS) sąsaja 
+* Patobulintas palaikymasEPUB 3.0, atkūrimas garso failų 
+* Daugialypės paieškos užklausos visuose formatuose, įskaitant PDF 
+* Parama iškirptiems išmaniesiems telefonams 
+* Dabar būsenos juostos legenda turi tris pasirinkimus: pilnas, kompaktiškas ir orientuotas į skyrių 
+* Daugiau atsiliepimų ir prašymų yra labai sveikintini!
 </lt>
 
 <ar>
-* تحديث كبير مع إضافة العديد من مراجعاتك 
-* واجهة نصية جديدة على الكلام 
-* دعم محسّن ل EPUB 3.0 ، مشغل صوت من الكتاب 
-* العديد من الكلمات البحث في جميع التنسيقات و PDF 
-* دعم الهواتف مع القواطع 
-* تنسيق الفصل 30٪ 5 \ 20 (15) أو اسم الفصل 5 \ 20 
-* يرجى كتابة الملاحظات أو الأفكار
+* تحديث رئيسي يعتمد على طلبات القراء وردود الفعل 
+* واجهة جديدة لتحويل النص إلى كلام (TTS) 
+* دعم محسّن لـ EPUB 3.0 وتشغيل ملفات الصوت 
+* استعلامات بحث متعددة الكلمات في جميع التنسيقات ، بما في ذلك PDF 
+* دعم للهواتف الذكية المدعومة 
+* يحتوي مفتاح شريط الحالة الآن على ثلاثة خيارات للاختيار من بينها: كاملة وصغيرة الحجم وموجهة للفصل 
+* مزيد من التعليقات والطلبات موضع ترحيب كبير!
 </ar>
 
 <ro>
-* Actualizare mare cu adaugarea numeroaselor recenzii 
-* Interfata New Text To Speech 
-* Suport imbunatatit pentru EPUB 3.0, player audio de la cartea 
-* Numeroase cuvinte de cautare in toate formatele si PDF 
-* Suport telefoane cu decupaje 
-* Format capitol 30% 5 \ 20 (15) sau numele capitolului 5 \ 20 
-* Vă rugăm să scrieți feedback sau idei
+* O actualizare majoră bazată pe solicitările și feedback-ul cititorilor 
+* Interfața TTS 
+* Suport îmbunătățit pentru EPUB 3.0, redarea fișierelor audio 
+* Interogări de căutare multi-word în toate formatele, inclusiv PDF 
+* Suport pentru smartphone-uri notate 
+* Legenda bara de stare are acum trei opțiuni de alegere: completă, compactă și orientată spre capitol 
+* Mai multe feedback și solicitări sunt foarte binevenite!
 </ro>
 
 <de-DE>
-* Großes Update mit der Zugabe von vielen Ihrer Bewertungen 
-* Neue Text To Speech-Schnittstelle 
-* Verbesserte Unterstützung für EPUB 3.0, Audio-Player aus dem Buch 
-* Viele Wörter suchen in allen Formaten und PDF 
-* Support-Handys mit Ausschnitten 
-* Kapitelformat 30% 5 \ 20 (15) oder Kapitelname 5 \ 20 
-* Bitte schreiben Sie Feedback oder Ideen
+* Ein wichtiges Update basierend auf Leserwünschen und Feedback 
+* Neue Text-To-Speech (TTS) -Schnittstelle 
+* Verbesserte Unterstützung für EPUB 3.0, Wiedergabe von Audiodateien 
+* Mehrwort-Suchanfragen in allen Formaten, einschließlich PDF 
+* Unterstützung für Notch-Smartphones 
+* Die Legende der Statusleiste bietet jetzt drei Optionen: voll, kompakt und kapitelorientiert 
+* Mehr Feedback und Anfragen sind sehr willkommen!
 </de-DE>
 
 <pl-PL>
-* Duża aktualizacja z dodatkiem wielu twoich recenzji 
-* Nowy interfejs Text To Speech 
-* Ulepszona obsługa EPUB 3.0, odtwarzacz audio z książki 
-* Wiele słów wyszukiwania we wszystkich formatach i PDF 
-* Obsługa telefonów z wycięciami 
-* Format rozdziału 30% 5 \ 20 (15) lub nazwa rozdziału 5 \ 20 
-* Proszę pisać informacje zwrotne lub pomysły
+* Ważna aktualizacja oparta na zapytaniach czytelników i sprzężeniu zwrotnym 
+* Nowy interfejs Text-To-Speech (TTS) 
+* Udoskonalona obsługa formatu EPUB 3.0, odtwarzanie plików audio 
+* Wyszukiwanie wielu słów we wszystkich formatach, w tym PDF 
+* Wsparcie dla smartfonów z nacięciami 
+* Legenda paska stanu ma teraz trzy opcje do wyboru: pełna, kompaktowa i zorientowana na rozdział 
+* Więcej opinii i próśb jest bardzo mile widziane!
 </pl-PL>
 
 <iw-IL>
-* עדכון גדול עם תוספת של ביקורות רבות שלך 
-* טקסט חדש לדיבור ממשק 
-* תמיכה משופרת עבור EPUB 3.0, נגן אודיו מהספר 
-* חיפוש מילים רבות בכל הפורמטים ו- PDF 
-* תמיכה טלפונים עם cutouts 
-* פרק פרק 30% 5 \ 20 (15) או פרק שם 5 \ 20 
-* אנא כתוב משוב או רעיונות
+* עדכון גדול המבוסס על בקשות הקוראים משוב 
+* חדש טקסט לדיבור (TTS) ממשק 
+* תמיכה משופרת עבור EPUB 3.0, קבצי אודיו השמעה 
+* שאילתות מרובות מילה בכל הפורמטים, כולל PDF 
+* תמיכה עבור טלפונים חכמים מחורצים 
+* שורת המצב המקרא עכשיו יש שלוש אפשרויות לבחירה: מלא, קומפקטי, פרק מוכווני 
+* משוב יותר ובקשות יתקבלו בברכה!
 </iw-IL>
 
 <hi-IN>
-* आपकी कई समीक्षाओं के अतिरिक्त के साथ बड़ा अपडेट 
-* नया टेक्स्ट टू स्पीच इंटरफेस 
-* ईपीबीबी 3.0 के लिए बेहतर समर्थन, पुस्तक से ऑडियो प्लेयर 
-* सभी प्रारूपों और पीडीएफ में कई शब्द खोज 
-* कटआउट के साथ समर्थन फोन 
-* अध्याय प्रारूप 30% 5 \ 20 (15) या अध्याय का नाम 5 \ 20 
-* कृपया प्रतिक्रियाएं या विचार लिखें
+* पाठकों के अनुरोधों और प्रतिक्रियाओं के आधार पर एक बड़ा अपडेट 
+* नया टेक्स्ट-टू-स्पीच (टीटीएस) इंटरफ़ेस 
+* ईपीबीबी 3.0, ऑडियो फाइल प्लेबैक के लिए बेहतर समर्थन 
+* पीडीएफ सहित सभी प्रारूपों में बहु शब्द खोज क्वेरी 
+* नोट किए गए स्मार्टफ़ोन के लिए समर्थन 
+* स्टेटस बार लीजेंड में अब तीन विकल्प हैं: पूर्ण, कॉम्पैक्ट, और अध्याय उन्मुख 
+* अधिक प्रतिक्रिया और अनुरोध बहुत स्वागत है!
 </hi-IN>
 
 <es-ES>
-* Gran actualización con la adición de muchas de sus revisiones 
-* Nuevo interfaz Text To Speech 
-* Compatibilidad mejorada para EPUB 3.0, reproductor de audio del libro 
-* Muchas palabras buscan en todos los formatos y PDF 
-* Teléfonos de soporte con cortes (15) o Nombre del capítulo 5 \ 20 
-* Por favor escriba comentarios o ideas
+* Una actualización importante basada en las solicitudes y comentarios de los lectores 
+* Nueva interfaz de Text-to-Speech (TTS) 
+* Soporte mejorado para EPUB 3.0, reproducción de archivos de audio 
+* Consultas de búsqueda de múltiples palabras en todos los formatos, incluido PDF La leyenda de la barra de estado ahora tiene tres opciones para elegir: completa, compacta y orientada a capítulos 
+* ¡Más comentarios y solicitudes son bienvenidos!
 </es-ES>
 
 <fi-FI>
-* Suuri päivitys lisäämällä monia arvosteluja 
-* Uusi teksti-puheeksi-käyttöliittymä 
-* Parannettu tuki EPUB 3.0: lle, audiosoitin kirjasta 
-* Monissa sanoissa haku kaikissa formaateissa ja PDF-muodossa 
-* Puhelimet, joissa on leikkaus 
-* Lukuformaatti 30% 5 \ 20 (15) tai luvun nimi 5 \ 20 
-* Kirjoita palautetta tai ideoita
+* Suuri päivitys, joka perustuu lukijoiden pyyntöihin ja palautteeseen 
+* Uusi teksti-puheeksi (TTS) -rajapinta 
+* Parannettu tuki EPUB 3.0: lle, äänitiedostojen toisto 
+* Useilla eri hakusanoilla kaikissa tiedostomuodoissa, mukaan lukien PDF 
+* Tilarivin legenda sisältää nyt kolme vaihtoehtoa: täysi, pienikokoinen ja luvun suuntainen 
+* Lisää palautetta ja pyyntöjä on erittäin tervetullut!
 </fi-FI>
 
 <vi>
-* Cập nhật lớn với việc bổ sung nhiều đánh giá 
-* Giao diện Text to Speech 
-* Cải thiện hỗ trợ cho EPUB 3.0, trình phát âm thanh từ sách 
-* Nhiều từ tìm kiếm ở mọi định dạng và PDF 
-* Hỗ trợ điện thoại với cutouts 
-* Định dạng chương 30% 5 \ 20 (15) hoặc Tên chương 5 \ 20 
-* Vui lòng viết phản hồi hoặc ý tưởng
+* Cập nhật lớn dựa trên yêu cầu và phản hồi của người đọc 
+* Giao diện Text-To-Speech mới (TTS) 
+* Cải thiện hỗ trợ cho EPUB 3.0, phát lại tệp âm thanh 
+* Truy vấn tìm kiếm nhiều từ ở tất cả các định dạng, bao gồm PDF 
+* Hỗ trợ cho điện thoại thông minh nổi bật 
+* Chú giải thanh trạng thái hiện có ba tùy chọn để chọn: đầy đủ, nhỏ gọn và hướng theo chương 
+* Phản hồi và yêu cầu khác rất được hoan nghênh!
 </vi>
 
 <fr-FR>
-* Grande mise à jour avec l’ajout de nombreux commentaires 
-* Nouvelle interface Text To Speech 
-* Amélioration de la prise en charge de EPUB 3.0, lecteur audio du livre 
-* Recherche de nombreux mots dans tous les formats, y compris les PDF 
-* Téléphones d’assistance avec découpes 
-* Format du chapitre 30% 5 \ 20 (15) ou nom du chapitre 5 \ 20 
-* Merci d’écrire vos réactions ou idées
+* Mise à jour majeure basée sur les demandes et les commentaires des lecteurs 
+* Nouvelle interface de synthèse vocale (TTS) 
+* Amélioration du support pour EPUB 3.0, lecture de fichiers audio 
+* Requêtes de recherche multi-mots dans tous les formats, y compris PDF 
+* Support pour les smartphones cochés 
+* La légende de la barre d’état propose désormais trois options: complète, compacte et axée sur les chapitres 
+* Plus de commentaires et de demandes sont les bienvenus!
 </fr-FR>
 
 <fr-CA>
-* Grande mise à jour avec l’ajout de nombreux commentaires 
-* Nouvelle interface Text To Speech 
-* Amélioration de la prise en charge de EPUB 3.0, lecteur audio du livre 
-* Recherche de nombreux mots dans tous les formats, y compris les PDF 
-* Téléphones d’assistance avec découpes 
-* Format du chapitre 30% 5 \ 20 (15) ou nom du chapitre 5 \ 20 
-* Merci d’écrire vos réactions ou idées
+* Mise à jour majeure basée sur les demandes et les commentaires des lecteurs 
+* Nouvelle interface de synthèse vocale (TTS) 
+* Amélioration du support pour EPUB 3.0, lecture de fichiers audio 
+* Requêtes de recherche multi-mots dans tous les formats, y compris PDF 
+* Support pour les smartphones cochés 
+* La légende de la barre d’état propose désormais trois options: complète, compacte et axée sur les chapitres 
+* Plus de commentaires et de demandes sont les bienvenus!
 </fr-CA>
 
 <sw>
-* Toleo kubwa kwa kuongeza maoni yako mengi 
-* Nakala ya Nakala ya Mazungumzo Mpya 
-* Msaada ulioboreshwa kwa EPUB 3.0, mchezaji wa sauti kutoka kwa kitabu 
-* Tafuta maneno mengi katika fomu zote na PDF 
-* Kusaidia simu na vipandizizi 
-* Fomu ya sura 30% 5 \ 20 (15) au Sura jina 5 \ 20 
-* Tafadhali weka machapisho au mawazo
+* Toleo la msingi linalotokana na maombi ya wasomaji na maoni 
+* Nakala mpya ya Nakala-To-Speech (TTS) 
+* Usaidizi ulioboreshwa kwa EPUB 3.0, uchezaji wa faili za sauti 
+* Maswali ya utafutaji wa neno nyingi katika fomu zote, ikiwa ni pamoja na PDF 
+* Msaada kwa simu za mkononi zisizochapishwa 
+* Hadithi ya bar ya hali sasa ina chaguo tatu cha kuchagua kutoka: full, compact, na sura-oriented 
+* Zaidi maoni na maombi ni welcome sana!
 </sw>
 
 <zh-TW>
-*大量更新，增加了许多评论
-*新的文本到语音界面
-*改进了对EPUB 3.0的支持，来自书籍的音频播放器
-*许多单词搜索所有格式和PDF 
-*支持带剪切的手机
-*章节格式30％5 \ 20 （15）或章节名称5 \ 20 
-*请写下反馈或想法
+*基于读者请求和反馈的重大更新
+*新的文本转语音（TTS）界面
+*改进了对EPUB 3.0的支持，音频文件播放
+*所有格式的多字搜索查询，包括PDF 
+*支持缺口智能手机
+*状态栏图例现在有三个选项可供选择：完整，紧凑和面向章节
+*非常欢迎更多反馈和请求！
 </zh-TW>
 
 <ru-RU>
-* Большое обновление с добавлением многих ваших отзывов 
-* Новый интерфейс Text To Speech 
-* Улучшенная поддержка EPUB 3.0, аудиоплеер из книги 
-* Многоязычный поиск во всех форматах и ​​PDF 
-* Поддержка телефонов с вырезами 
-* Формат главы 30% 5 \ 20 (15) или название главы 5 \ 20 
-* Пожалуйста, напишите отзывы или идеи
+* Большое обновление, основанное на запросах и отзывах читателей 
+* Новый интерфейс Text-To-Speech (TTS) 
+* Улучшенная поддержка EPUB 3.0, воспроизведение аудиофайлов 
+* Многопользовательские поисковые запросы во всех форматах, включая PDF 
+* Поддержка надрезанных смартфонов 
+* В легенде панели состояния теперь есть три варианта выбора: полный, компактный и ориентированный на главы 
+* Больше отзывов и запросов очень приветствуются!
 </ru-RU>
 
 <th>
-* การปรับปรุงที่ยิ่งใหญ่ด้วยการเพิ่มความคิดเห็นของคุณ 
-* ข้อความใหม่ในการเชื่อมต่อคำพูด 
-* การสนับสนุนที่ดีขึ้นสำหรับ EPUB 3.0 เครื่องเล่นเสียงจากหนังสือ 
-* การค้นหาคำต่างๆในทุกรูปแบบและ PDF 
-* โทรศัพท์สนับสนุนที่มี cutouts 
-* รูปแบบบท 30% 5 \ 20 (15) หรือชื่อบทที่ 5 \ 20 
-* กรุณาเขียนความคิดเห็นหรือความคิดเห็น
+* ปรับปรุงที่สำคัญขึ้นอยู่กับคำขอของผู้อ่านและข้อเสนอแนะ 
+* อินเตอร์เฟซ Text-To-Speech (TTS) ใหม่ 
+* การสนับสนุนที่ดีขึ้นสำหรับ EPUB 3.0, การเล่นไฟล์เสียง 
+* คำค้นหาหลายคำในทุกรูปแบบรวมทั้ง PDF 
+* การสนับสนุนสำหรับโน้ตบุ๊ค 
+* คำอธิบายแถบสถานะมีสามทางเลือก: แบบเต็มขนาดกะทัดรัดและบท - ข้อเสนอแนะและคำร้องขออื่น ๆ ยินดีต้อนรับ!
 </th>
 
 <it-IT>
-* Grande aggiornamento con l’aggiunta di molte tue recensioni 
-* Nuova interfaccia Text To Speech 
-* Supporto migliorato per EPUB 3.0, lettore audio dal libro 
-* Ricerca di molte parole in tutti i formati e PDF 
-* Supporto telefoni con ritagli 
-* Formato capitolo 30% 5 \ 20 (15) o Nome capitolo 5 \ 20 
-* Si prega di scrivere feedback o idee
+* Un importante aggiornamento basato su richieste e feedback dei lettori 
+* Nuova interfaccia Text-To-Speech (TTS) 
+* Supporto migliorato per EPUB 3.0, riproduzione di file audio 
+* Ricerca di parole multiple in tutti i formati, incluso PDF 
+* Supporto per smartphone con tacche 
+* La legenda della barra di stato ora ha tre opzioni tra cui scegliere: completa, compatta e orientata ai capitoli 
+* Più feedback e richieste sono ben accette!
 </it-IT>
 
 <sv-SE>
-* Stor uppdatering med tillägg av många dina recensioner 
-* Ny text till talgränssnitt 
-* Förbättrat stöd för EPUB 3.0, ljudspelare från boken 
-* Många ordsökning i alla format och PDF 
-* Stödtelefoner med utklipp 
-* Kapitelformat 30% 5 \ 20 (15) eller kapitelnamn 5 \ 20 
-* Vänligen skriv feedback eller idéer
+* En viktig uppdatering baserad på läsarnas önskemål och feedback 
+* Nytt text-till-tal (TTS) -gränssnitt 
+* Förbättrat stöd för EPUB 3.0, uppspelning av ljudfiler 
+* Multi-word-sökfrågor i alla format, inklusive PDF 
+* Stöd för hakade smartphones 
+* Statusfältet har nu tre alternativ att välja mellan: fullständig, kompakt och kapitelinriktad 
+* Mer feedback och önskemål är mycket välkomna!
 </sv-SE>
 
 <fa>
-* به روز رسانی بزرگ با علاوه بر بسیاری از بررسی های شما 
-* رابط جدید متن به گفتار 
-* پشتیبانی بهبود یافته برای EPUB 3.0، پخش صوتی از کتاب 
-* بسیاری از کلمات در همه فرمت ها و PDF 
-* جستجو پشتیبانی از تلفن با برش 
-* فصل فرمت 30٪ 5 \ 20 (15) یا نام فصل 5 \ 20 
-* لطفا نظرات و ایده های خود را ارسال کنید
+* یک بروز رسانی عمده بر اساس درخواست های خوانندگان و بازخورد 
+* رابط جدید متن به گفتار (TTS) 
+* پشتیبانی بهبود یافته برای EPUB 3.0، پخش فایل های صوتی 
+* نمایش کلمات چند کلمه ای در تمام فرمت ها، از جمله PDF 
+* پشتیبانی از گوشی های هوشمند 
+* Legend نوار وضعیت در حال حاضر دارای سه گزینه برای انتخاب: کامل، جمع و جور و فصل گرا 
+* بازخورد بیشتر و درخواست بسیار خوش آمدید!
 </fa>
 
 <pt-PT>
-* Grande atualização com a adição de muitos seus comentários 
-* Nova interface de texto para fala 
-* Suporte aprimorado para EPUB 3.0, leitor de áudio do livro 
-* Muitas palavras pesquisam em todos os formatos e PDF 
-* Suporte telefones com recortes 
-* Formato de capítulo 30% 5 \ 20 (15) ou nome do capítulo 5 \ 20 
-* Por favor, escreva feedbacks ou idéias
+* Uma grande atualização com base nas solicitações e comentários dos leitores 
+* Nova interface de conversão de texto em fala 
+* Suporte aprimorado para EPUB 3.0, reprodução de arquivos de áudio 
+* Consultas de pesquisa de várias palavras em todos os formatos, incluindo PDF 
+* Suporte para smartphones entalhados 
+* A legenda da barra de status agora tem três opções para escolher: completa, compacta e orientada por capítulos 
+* Mais comentários e solicitações são muito bem-vindos!
 </pt-PT>
 
 <pt-BR>
-* Grande atualização com a adição de muitos seus comentários 
-* Nova interface de texto para fala 
-* Suporte aprimorado para EPUB 3.0, leitor de áudio do livro 
-* Muitas palavras pesquisam em todos os formatos e PDF 
-* Suporte telefones com recortes 
-* Formato de capítulo 30% 5 \ 20 (15) ou nome do capítulo 5 \ 20 
-* Por favor, escreva feedbacks ou idéias
+* Uma grande atualização com base nas solicitações e comentários dos leitores 
+* Nova interface de conversão de texto em fala 
+* Suporte aprimorado para EPUB 3.0, reprodução de arquivos de áudio 
+* Consultas de pesquisa de várias palavras em todos os formatos, incluindo PDF 
+* Suporte para smartphones entalhados 
+* A legenda da barra de status agora tem três opções para escolher: completa, compacta e orientada por capítulos 
+* Mais comentários e solicitações são muito bem-vindos!
 </pt-BR>
 
 <ko-KR>
-* 많은 리뷰 추가로 큰 업데이트 
-* 새로운 텍스트 음성 인터페이스 
-* 책에서 오디오 플레이어 EPUB 3.0에 대한 지원 향상 
-* 모든 단어 및 모든 형식의 PDF로 검색 
-* 단서가있는 휴대폰 지원 
-* 장 형식 30 % 5 \ 20 (15) 또는 장 이름 5 \ 20 
-* 의견이나 아이디어를 적어주십시오.
+* 독자의 요청 및 피드백을 기반으로 한 주요 업데이트 
+* 새로운 텍스트 음성 변환 (TTS) 인터페이스 
+* EPUB 3.0, 오디오 파일 재생 지원 향상 
+* PDF를 포함한 모든 형식의 다중 단어 검색 쿼리 
+* 노치 스마트 폰 지원 
+* 상태 표시 줄 범례에는 전체, 소형 및 챕터 중심의 세 가지 옵션이 있습니다. 
+* 더 많은 피드백과 요청을 환영합니다!
 </ko-KR>
 
 <hu-HU>
-* Nagy frissítés számos új véleményének hozzáadásával 
-* Új szöveg-beszédfelület 
-* Továbbfejlesztett támogatás az EPUB 3.0-hoz, audió lejátszó a könyvből 
-* Sok szó keresés minden formátumban és PDF formátumban 
-* Támogatott telefonok kivágásokkal 
-* Fejezet formátuma 30% 5 \ 20 (15) vagy fejezetnév 5 \ 20 
-* Kérjük, írjon visszajelzéseket vagy ötleteket
+* Az olvasó kéréseinek és visszajelzéseinek köszönhetően jelentős frissítés 
+* Új szöveg-to-speech (TTS) felület 
+* Továbbfejlesztett támogatás az EPUB 3.0-hoz, audió fájlok lejátszása 
+* Többféle keresési lekérdezés minden formátumban, beleértve a PDF-t 
+* Az állapotjelző legenda most három lehetőség közül választhat: teljes, kompakt és fejezetközpontú 
+* Több visszajelzés és kérés nagyon örvendetes!
 </hu-HU>
 
 <sk>
-* Veľká aktualizácia s pridaním mnohých vašich recenzií 
-* Nové rozhranie Text to Speech 
-* Vylepšená podpora pre EPUB 3.0, audio prehrávač z knihy 
-* Veľa slov vyhľadáva vo všetkých formátoch a PDF 
-* Podpora telefónov s výrezmi 
-* Formát kapitoly 30% 5 \ 20 (15) alebo názov kapitoly 5 \ 20 
-* Napíšte nám pripomienky alebo nápady
+* Veľká aktualizácia založená na požiadavkách a spätnej väzbe čitateľov 
+* Nové rozhranie TTS (Text-to-Speech) 
+* Vylepšená podpora pre EPUB 3.0, prehrávanie zvukových súborov 
+* Multi-word vyhľadávacie dotazy vo všetkých formátoch, vrátane PDF 
+* Legenda stavovej lišty má teraz tri možnosti výberu: úplné, kompaktné a orientované na kapitoly 
+* Viac spätnej väzby a požiadaviek sú veľmi vítané!
 </sk>
 
 <tr-TR>
-* Birçok yorumunuzu ekleyerek büyük güncelleme 
-* Konuşma Arayüzü Yeni Metin 
-* EPUB 3.0 için geliştirilmiş destek, kitaptan ses çalar 
-* Tüm formatlarda ve PDF’de birçok kelime arama 
-* Kesikli destek telefonları 
-* Bölüm biçimi 30% 5 \ 20 (15) veya Bölüm adı 5 \ 20 
-* Lütfen geri bildirim veya fikir yazın
+* Okuyucuların istekleri ve geri bildirimlerine dayalı büyük bir güncelleme 
+* Yeni Metin-Konuşma (TTS) arayüzü 
+* EPUB 3.0 için geliştirilmiş destek, ses dosyaları oynatma 
+* PDF dahil tüm formatlarda çok sözcüklü arama sorguları 
+* Çentikli akıllı telefonlar için destek 
+* Durum çubuğu açıklamasının şu anda seçim yapabileceğiniz üç seçeneği vardır: tam, kompakt ve bölüm odaklı 
+* Daha fazla geri bildirim ve istek çok açıktır!
 </tr-TR>
 
 <no-NO>
-* Stor oppdatering med tillegg av mange vurderinger 
-* Ny tekst til tale-grensesnitt 
-* Forbedret støtte for EPUB 3.0, lydspiller fra boken 
-* Mange ordsøk i alle formater og PDF 
-* Støttetelefoner med utklipp 
-* Kapittelformat 30% 5 \ 20 (15) eller kapittelnavn 5 \ 20 
-* Vennligst skriv tilbakemeldinger eller ideer
+* En viktig oppdatering basert på leserens forespørsler og tilbakemelding 
+* TTS-grensesnitt for tekst-til-tale (TTS) 
+* Forbedret støtte for EPUB 3.0, avspilling av lydfiler 
+* Multi-ordsøk i alle formater, inkludert PDF 
+* Støtte for innhakkede smartphones 
+* Statuslinjen legenden har nå tre alternativer å velge mellom: full, kompakt og kapitletorientert 
+* Flere tilbakemeldinger og forespørsler er veldig velkommen!
 </no-NO>
 
 <la>
-* Big update cum praeter a multis tibi recensiones 
-* New Text Ut sermo interface 
-* Melior subsidium EPUB 3.0, audio ludio ludius in libro 
-* Multi verbis quaerere in cunctis formats et PDF 
-* Support phones sunt cutouts 
-* CAPUT forma XXX% V \ XX (XV), vel nomine CAPUT V \ 
-* XX Please write seu ideas feedbacks
+* A major update secundum legentibus, petitiones et feedback 
+* Novae cum textu ad-Declamatio (TTS) interface 
+* Melior subsidium EPUB 3.0, audio files playback 
+* Multi-verbum quaerere queries in formats, inter PDF 
+* Support est Tegeaea Suspendisse potenti 
+* quod status talea autem legenda est options eligere ex tribus, plenus pacto et capite orientatur Magis 
+* petitiones, et quae grata feedback!
 </la>
 
 <ja-JP>
-*多くのあなたのレビューを追加して大きなアップデート
-*新しいテキストを音声インターフェイス
-* EPUB 3.0、オーディオプレーヤーの本からのサポートを改善
-*すべての形式とPDFで
-*多くの単語を検索
-*カットアウトを持つ携帯電話をサポート
-*章形式30％5 \ 20 （15）またはChapter name 5 \ 20 
-*フィードバックやアイデアを書いてください
+*読者の要望とフィードバックに基づく主要なアップデート
+*新しいテキスト音声変換（TTS）インターフェース
+* EPUB 3.0、オーディオファイルの再生の改善
+* PDFを含むあらゆる形式のマルチワード検索クエリ
+*ノッチ付きスマートフォンのサポート
+*ステータスバーの凡例には、フル、コンパクト、チャプタ指向の3種類のオプションが用意されています。
 </ja-JP>
 
 <uk>
-* Велике оновлення з додаванням багатьох ваших відгуків 
-* Новий інтерфейс Text To Speech 
-* Покращена підтримка EPUB 3.0, аудіоплеєр з книги 
-* Багато слів пошуку в усіх форматах та PDF 
-* Підтримка телефонів з вирізами 
-* Формат розділу 30% 5 \ 20 (15) або назва розділу 5 \ 20 
-* Будь ласка, напишіть відгуки або ідеї
+* Основне оновлення на основі запитів читачів та зворотного зв’язку 
+* Новий інтерфейс тексту до мовлення (TTS) 
+* Покращена підтримка EPUB 3.0, відтворення аудіофайлів 
+* Багатослівні пошукові запити у всіх форматах, включаючи PDF 
+* Підтримка смартфонів, Тепер у легенді статусної панелі є три варіанти на вибір: повний, компактний та орієнтований на розділи 
+* Більше відгуків та запитів дуже раді!
 </uk>
 
 <en-US>
-* Big update with the addition of many your reviews
-* New Text To Speech interface
-* Improved support for EPUB 3.0, audio player from the book
-* Many words search in all formats and PDF
-* Support phones with cutouts
-* Chapter format  30% 5\20 (15) or Chapter name 5\20
-* Please write feedbacks or ideas
+* A major update based on readers’ requests and feedback
+* New Text-To-Speech (TTS) interface
+* Improved support for EPUB 3.0, audio files playback
+* Multi-word search queries in all formats, including PDF
+* Support for notched smartphones
+* The status bar legend now has three options to choose from: full, compact, and chapter-oriented
+* More feedback and requests are very welcome!
 </en-US>

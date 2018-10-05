@@ -1,7 +1,7 @@
-* Birçok yorumunuzu ekleyerek büyük güncelleme 
-* Konuşma Arayüzü Yeni Metin 
-* EPUB 3.0 için geliştirilmiş destek, kitaptan ses çalar 
-* Tüm formatlarda ve PDF’de birçok kelime arama 
-* Kesikli destek telefonları 
-* Bölüm biçimi 30% 5 \ 20 (15) veya Bölüm adı 5 \ 20 
-* Lütfen geri bildirim veya fikir yazın
+* Okuyucuların istekleri ve geri bildirimlerine dayalı büyük bir güncelleme 
+* Yeni Metin-Konuşma (TTS) arayüzü 
+* EPUB 3.0 için geliştirilmiş destek, ses dosyaları oynatma 
+* PDF dahil tüm formatlarda çok sözcüklü arama sorguları 
+* Çentikli akıllı telefonlar için destek 
+* Durum çubuğu açıklamasının şu anda seçim yapabileceğiniz üç seçeneği vardır: tam, kompakt ve bölüm odaklı 
+* Daha fazla geri bildirim ve istek çok açıktır!

@@ -1,7 +1,7 @@
-* Grote update met de toevoeging van veel van uw recensies 
-* Nieuwe Text To Speech-interface 
-* Verbeterde ondersteuning voor EPUB 3.0, audiospeler uit het boek 
-* Veel woorden zoeken in alle formaten en PDF 
-* Ondersteuning van telefoons met uitsparingen 
-* Hoofdstukformaat 30% 5 \ 20 (15) of hoofdstuknaam 5 \ 20 
-* Schrijf feedback of ideeën
+* Een belangrijke update op basis van verzoeken en feedback van lezers 
+* Nieuwe Text-To-Speech (TTS) -interface 
+* Verbeterde ondersteuning voor EPUB 3.0, afspelen van audiobestanden 
+* Zoekopdrachten van meerdere woorden in alle indelingen, inclusief PDF 
+* Ondersteuning voor gekerfde smartphones 
+* De legende van de statusbalk heeft nu drie opties om uit te kiezen: volledig, compact en hoofdstukgericht 
+* Meer feedback en verzoeken zijn van harte welkom!

@@ -1,7 +1,7 @@
-* Großes Update mit der Zugabe von vielen Ihrer Bewertungen 
-* Neue Text To Speech-Schnittstelle 
-* Verbesserte Unterstützung für EPUB 3.0, Audio-Player aus dem Buch 
-* Viele Wörter suchen in allen Formaten und PDF 
-* Support-Handys mit Ausschnitten 
-* Kapitelformat 30% 5 \ 20 (15) oder Kapitelname 5 \ 20 
-* Bitte schreiben Sie Feedback oder Ideen
+* Ein wichtiges Update basierend auf Leserwünschen und Feedback 
+* Neue Text-To-Speech (TTS) -Schnittstelle 
+* Verbesserte Unterstützung für EPUB 3.0, Wiedergabe von Audiodateien 
+* Mehrwort-Suchanfragen in allen Formaten, einschließlich PDF 
+* Unterstützung für Notch-Smartphones 
+* Die Legende der Statusleiste bietet jetzt drei Optionen: voll, kompakt und kapitelorientiert 
+* Mehr Feedback und Anfragen sind sehr willkommen!

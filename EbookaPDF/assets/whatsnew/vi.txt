@@ -1,7 +1,7 @@
-* Cập nhật lớn với việc bổ sung nhiều đánh giá 
-* Giao diện Text to Speech 
-* Cải thiện hỗ trợ cho EPUB 3.0, trình phát âm thanh từ sách 
-* Nhiều từ tìm kiếm ở mọi định dạng và PDF 
-* Hỗ trợ điện thoại với cutouts 
-* Định dạng chương 30% 5 \ 20 (15) hoặc Tên chương 5 \ 20 
-* Vui lòng viết phản hồi hoặc ý tưởng
+* Cập nhật lớn dựa trên yêu cầu và phản hồi của người đọc 
+* Giao diện Text-To-Speech mới (TTS) 
+* Cải thiện hỗ trợ cho EPUB 3.0, phát lại tệp âm thanh 
+* Truy vấn tìm kiếm nhiều từ ở tất cả các định dạng, bao gồm PDF 
+* Hỗ trợ cho điện thoại thông minh nổi bật 
+* Chú giải thanh trạng thái hiện có ba tùy chọn để chọn: đầy đủ, nhỏ gọn và hướng theo chương 
+* Phản hồi và yêu cầu khác rất được hoan nghênh!

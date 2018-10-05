@@ -1,7 +1,7 @@
-* Toleo kubwa kwa kuongeza maoni yako mengi 
-* Nakala ya Nakala ya Mazungumzo Mpya 
-* Msaada ulioboreshwa kwa EPUB 3.0, mchezaji wa sauti kutoka kwa kitabu 
-* Tafuta maneno mengi katika fomu zote na PDF 
-* Kusaidia simu na vipandizizi 
-* Fomu ya sura 30% 5 \ 20 (15) au Sura jina 5 \ 20 
-* Tafadhali weka machapisho au mawazo
+* Toleo la msingi linalotokana na maombi ya wasomaji na maoni 
+* Nakala mpya ya Nakala-To-Speech (TTS) 
+* Usaidizi ulioboreshwa kwa EPUB 3.0, uchezaji wa faili za sauti 
+* Maswali ya utafutaji wa neno nyingi katika fomu zote, ikiwa ni pamoja na PDF 
+* Msaada kwa simu za mkononi zisizochapishwa 
+* Hadithi ya bar ya hali sasa ina chaguo tatu cha kuchagua kutoka: full, compact, na sura-oriented 
+* Zaidi maoni na maombi ni welcome sana!

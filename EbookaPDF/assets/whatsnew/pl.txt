@@ -1,7 +1,7 @@
-* Duża aktualizacja z dodatkiem wielu twoich recenzji 
-* Nowy interfejs Text To Speech 
-* Ulepszona obsługa EPUB 3.0, odtwarzacz audio z książki 
-* Wiele słów wyszukiwania we wszystkich formatach i PDF 
-* Obsługa telefonów z wycięciami 
-* Format rozdziału 30% 5 \ 20 (15) lub nazwa rozdziału 5 \ 20 
-* Proszę pisać informacje zwrotne lub pomysły
+* Ważna aktualizacja oparta na zapytaniach czytelników i sprzężeniu zwrotnym 
+* Nowy interfejs Text-To-Speech (TTS) 
+* Udoskonalona obsługa formatu EPUB 3.0, odtwarzanie plików audio 
+* Wyszukiwanie wielu słów we wszystkich formatach, w tym PDF 
+* Wsparcie dla smartfonów z nacięciami 
+* Legenda paska stanu ma teraz trzy opcje do wyboru: pełna, kompaktowa i zorientowana na rozdział 
+* Więcej opinii i próśb jest bardzo mile widziane!
