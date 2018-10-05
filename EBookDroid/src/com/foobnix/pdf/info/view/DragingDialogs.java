@@ -635,7 +635,7 @@ public class DragingDialogs {
                 });
 
                 final CustomSeek seekBarSpeed = (CustomSeek) view.findViewById(R.id.seekBarSpeed);
-                seekBarSpeed.init(0, 600, (int) AppState.get().ttsSpeed * 100);
+                seekBarSpeed.init(0, 600, (int) (AppState.get().ttsSpeed * 100));
                 seekBarSpeed.setStep(10);
                 seekBarSpeed.setOnSeekChanged(new IntegerResponse() {
 
@@ -666,7 +666,7 @@ public class DragingDialogs {
                 TxtUtils.setLinkTextColor(seekBarSpeed.getTitleText());
 
                 final CustomSeek seekBarPitch = (CustomSeek) view.findViewById(R.id.seekBarPitch);
-                seekBarPitch.init(0, 200, (int) AppState.get().ttsPitch * 100);
+                seekBarPitch.init(0, 200, (int) (AppState.get().ttsPitch * 100));
                 seekBarPitch.setOnSeekChanged(new IntegerResponse() {
 
                     @Override
