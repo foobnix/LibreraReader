@@ -371,7 +371,7 @@
    <string name="size_of_allocated_memory">内存配置</string>
    <string name="display_settings">显示设置</string>
    <string name="image_format">图像格式</string>
-   <string name="enable_vibration_for_some_actions">选取文本振动</string>
+   <string name="enable_vibration_for_some_actions">某些操作振动</string>
    <string name="image">图片</string>
    <string name="transparency">透明度</string>
    <string name="write_feedback">反馈</string>
