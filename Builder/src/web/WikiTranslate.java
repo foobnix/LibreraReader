@@ -109,8 +109,7 @@ public class WikiTranslate {
                 if (!isIgnore && line.trim().length() != 0) {
                     line = line.replace(prefix, "");
                     // adsf **sadf** asdf
-                    line = line.replace(" **", " @# ");
-                    line = line.replace("** ", " #@ ");
+                    line = line.replace("**", "__");
 
                     line = line.replace(" __", " @# ");
                     line = line.replace("__ ", " #@ ");

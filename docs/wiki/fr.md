@@ -1,9 +1,11 @@
 ---
 layout: main
-version: 2
+version: 3
 ---
 ![](/css/logo-line.jpg)
 
-# Menu
+# Ce sont des pages Wiki de Librera Reader
+
+S&#39;il vous plaît sélectionnez votre langue et bienvenue à __Librera__
   
 {% include menu.md %}

@@ -1,36 +1,47 @@
 ---
 layout: main
-version: 1
+version: 3
 ---
 [<](/wiki/)
 
-# About Librera Application
+# About the Librera Book Reader  application for Android
 
-> It's possible to convert any to any format by **Librera** using online services, or convert __PDF to EPUB__ using Text Reflow mode (Mobile mode)
+> __Librera Reader__ (a.k.a. __Lirbi Reader__, __PDF Reader__) is a highly customizable and feature-rich application for reading books in PDF, EPUB, MOBI, DjVu, FB2, TXT, RTF, AZW, AZW3, HTML, CBZ, CBR formats on Android devices.
+With its intuitive, yet powerful, interface, Librera makes ebook reading a veritable pleasure. It even features a unique auto-scrolling, hands-free Musician's mode.
+As of today, it can boast of more than 10 million downloads to devices running all flavors of Android OS.
 
-Librera Reader is book reader application that supports many formats for Android.
-Application can read __PDF, EPUB, MOBI, DjVu, FB2, TXT, RTF, AZW, AZW3, HTML, CBZ, CBR__
-
-
-* Convert PDF to EPUB
-* Select document and start process
-* Download EPUB Book
-
-|1|2|3|
+||||
 |-|-|-|
 |![](1.png)|![](2.png)|![](3.png)|
 
-### Online Converter
+# Just a few librera's main features
 
-In the left menu find the __Online document converter__
+* Easy document discovery by configurable criteria:
+* Auto-Scan (of user-preset folders)	
+* Browse (with an in-app file explorer) 
+* Recent (featuring a reading-progress indicator)
+* Support for bookmarks, annotations, and EPUB3 tables of contents
+* Support for clouds and online catalogs
+* Configurable Day and Night modes
+* Configurable link color (hence, footnotes and endnotes color)
+* Support for many popular online (including translators) and offline dictionaries
+* Vertical-scroll lock
+* Auto- and manual centering of documents
+* Custom CSS code input
+* Single-page view of two-page documents
+* Musician's mode with configurable scroll speed
+* Customizable TTS reading and built-in media player
+* Multi-word text search
+* Online document conversion
+* Reading of archived (.zip) documents
+* Support for RTL languages (Thai, Hebrew, Arabic, etc.)
+* Import and export of settings, auto-backup of current session
+* Leading initials in FB2 documents
+* And a whole bunch of other features for you to check out.
 
-Choose "Convert to EPUB"
 
-* Convert PDF to EPUB
-* Select document and start process
-* Download EPUB Book
+With __Librera Reader__, you can easily create self-maintained libraries of all your documents by specifying which formats to include and which folders to scan. All document collections can be viewed as a list or grid. Documents are easily identified by size- and style-adjustable thumbnail covers and detailed descriptions. Your library can be sorted by path, name, size, date, etc., and there is a filter to help locate specific documents or document groups. 
 
+While reading, documents can be locked into a vertical-scroll-only mode and their navigation set to either page- or screen-flipping. Text can be reflowed and annotated. Volume keys' functionality is configurable, and backgrounds and fonts customizable via the intuitive Settings window. Excerpts can be translated, shared, copied, and searched for on the Internet. 
 
-|1|2|3|
-|-|-|-|
-|![](1.png)|![](2.png)|![](3.png)|
+The best way to fully appreciate Librera Reader is to use its PRO version. You can start with Free, ad-supported one first, and decide for yourselves. We promise you won't be disappointed. Once you are convinced, please obtain a PRO license to help the app's further development.

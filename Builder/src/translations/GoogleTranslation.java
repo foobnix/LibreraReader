@@ -35,6 +35,10 @@ public class GoogleTranslation {
         System.out.println();
         // System.out.println(translate);
 
+        try {
+            Thread.sleep(100);
+        } catch (InterruptedException e) {
+        }
 
         return translate;
     }

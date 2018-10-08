@@ -1,9 +1,11 @@
 ---
 layout: main
-version: 2
+version: 3
 ---
 ![](/css/logo-line.jpg)
 
-# Speisekarte
+# Das sind Librera Reader Wiki Seiten
+
+Bitte wählen Sie Ihre Sprache und willkommen bei __Librera__
   
 {% include menu.md %}
