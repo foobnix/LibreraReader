@@ -6,7 +6,7 @@ version: 1
 
 # Was ist neu in Librera Buchleser
 
-* [Version 7.10](/wiki/was-ist-neu/7.10/de)
+* [Version 7.10](/wiki/what-is-new/7.10/de)
 
 
     
