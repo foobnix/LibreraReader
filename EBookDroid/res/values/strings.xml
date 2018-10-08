@@ -27,7 +27,7 @@
    <string name="number_of_books">Books</string>
    <string name="remember_reading_mode">Remember reading mode</string>
    <string name="opening_the_last_book_when_the_application_starts">Load last book at startup</string>
-   <string name="show_application_close_dialog_every_time">Confirm app exit upon Back tap</string>
+   <string name="show_application_close_dialog_every_time">Confirm exit upon Back gesture</string>
    <string name="display_all_file_types_in_folders">Display all file types</string>
    <string name="show_the_dialog_what_is_new_for_updates">Show What\'s New after updates</string>
    <string name="what_is_new_in">What is new in</string>
@@ -115,7 +115,7 @@
    <string name="next_page">Next Page</string>
    <string name="previous_page">Previous Page</string>
    <string name="db_do_nothing">Do Nothing</string>
-   <string name="remind_about_rest_every">Eye rest notification every</string>
+   <string name="remind_about_rest_every">Eye rest reminder every</string>
    <string name="action_on_double_tap">Double tap (center)</string>
    <string name="db_auto_scroll">Auto-scroll</string>
    <string name="opening_book_with_losed_lock">Lock page in place</string>
@@ -408,7 +408,7 @@
    <string name="start_recording">Start</string>
    <string name="favorite_folders_and_books">Favorite Books and Folders</string>
    <string name="don_t_show_this_dialog">Don\'t show this window</string>
-   <string name="show_the_book_close_dialog">Confirm book close upon Back tap</string>
+   <string name="show_the_book_close_dialog">Confirm book close upon Back gesture</string>
    <string name="search_completed">Search is completed</string>
    <string name="you_can_search_only_one_word">You can search one word only</string>
    <string name="passwords_do_not_match">Passwords do not match</string>
@@ -491,7 +491,7 @@
    <string name="capital_letter">Initial</string>
    <string name="show_the_capital_letter">Lead chapters with initials</string>
    <string name="size">Size</string>
-   <string name="quick_bookmark_by_the_headset">Remote bookmarks (headset\'s start/stop button)</string>
+   <string name="quick_bookmark_by_the_headset">Enable remote bookmarks (Start/Stop button)</string>
    <string name="slider_scale">Slider scale</string>
    <string name="chapter_format">Legend format</string>
    <string name="play_a_music_file">Play an audio file</string>
