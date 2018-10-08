@@ -24,14 +24,10 @@
 </div>
         
         <h1 class="site-title"><a href="/wiki">Librera Wiki</a></h1>
-        <h2>English</h2>
-       {% capture my_include %}{% include en-left-menu.md %}{% endcapture %}
-    {{ my_include | markdownify }}
-    
-    <h2>Русский</h3>
-     {% capture my_include %}{% include ru-left-menu.md %}{% endcapture %}
-    {{ my_include | markdownify }}
-
+        
+     {% capture my_include %}{% include menu.md %}{% endcapture %}
+   {{ my_include | markdownify }}
+	        
        
     </div>
 

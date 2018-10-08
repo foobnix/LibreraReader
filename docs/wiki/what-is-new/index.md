@@ -1,5 +1,6 @@
 ---
 layout: main
+version: 1
 ---
 [<](/wiki/)
 

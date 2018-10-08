@@ -12,7 +12,44 @@ import translations.GoogleTranslation;
 public class WikiTranslate {
 
     public static void main(String[] args) throws Exception {
-        translate("/home/ivan-dev/git/LirbiReader/docs/wiki/what-is-new/7.10", "ru");
+        syncPaths("/home/ivan-dev/git/LirbiReader/docs/wiki", "ru");
+        syncPaths("/home/ivan-dev/git/LirbiReader/docs/wiki", "fr");
+        syncPaths("/home/ivan-dev/git/LirbiReader/docs/wiki", "de");
+    }
+
+    public static void syncPaths(String path, final String ln) throws Exception {
+
+        File root = new File(path);
+        File[] listFiles = root.listFiles();
+        if (listFiles == null) {
+            return;
+        }
+        for (File file : listFiles) {
+            if (file.isFile() && file.getName().equals("index.md")) {
+                System.out.println("Find: " + file.getPath());
+                translate(file.getParent(), ln);
+            } else {
+                syncPaths(file.getPath(), ln);
+            }
+        }
+
+    }
+
+    public static int getVersion(String path) throws Exception {
+
+        BufferedReader input = new BufferedReader(new FileReader(path));
+        String line;
+        try {
+            while ((line = input.readLine()) != null) {
+                if (line.startsWith("version:")) {
+                    return Integer.parseInt(line.replace("version:", "").trim());
+                }
+            }
+            return 0;
+        } finally {
+            input.close();
+        }
+
     }
 
     public static void translate(String root, String ln) throws Exception {
@@ -21,23 +58,40 @@ public class WikiTranslate {
         File index = new File(root, "index.md");
         File ru = new File(root, ln + ".md");
 
-        List<String> ignoreLines = Arrays.asList("[<]", "|", "{", "<");
+        int inVersion = getVersion(index.getPath());
+
+        int outVersion = -1;
+        if (ru.isFile()) {
+            outVersion = getVersion(ru.getPath());
+        }
+
+        System.out.println("Version in " + inVersion);
+        System.out.println("Version ou " + outVersion);
+
+        if ((inVersion == 0 && outVersion != -1) || inVersion == outVersion) {
+            System.out.println("[Skip]");
+            return;
+        }
+
+        List<String> ignoreLines = Arrays.asList("[<]", "|", "{", "<", "!", "---");
         List<String> preLines = Arrays.asList("# ", "## ", "### ", "* ", "> ", "1. ", "2. ", "3. ");
 
         PrintWriter out = new PrintWriter(ru);
 
         BufferedReader input = new BufferedReader(new FileReader(index));
         String line;
-        int skip2 = 0;
+        int header = 0;
+
         while ((line = input.readLine()) != null) {
-            if (skip2 >= 2) {
+
+            if (line.equals("---")) {
+                header++;
+            }
+            if (header >= 2) {
 
                 boolean isIgnore = false;
                 String prefix = "";
 
-                if (line.startsWith("[<]") && !line.endsWith(ln)) {
-                    line = line.replace("/)", ")").replace(")", "/" + ln + ")");
-                }
 
                 for (String txt : ignoreLines) {
                     if (line.startsWith(txt)) {
@@ -69,14 +123,19 @@ public class WikiTranslate {
                     line = line.replace("@ # ", "__");
                     line = line.replace(" @ #", "__");
                     line = line.replace(" # @", "__");
+                    if (line.contains("[")) {
+                        line = line.replace(" /", "/");
+                        line = line.replace("/ ", "/");
+                        line = line.replace("] (", "](");
+                    }
 
                 }
+                if (line.endsWith("/)")) {
+                    line = line.replace("/)", ")").replace(")", "/" + ln + ")");
+                }
+
             }
             out.println(line);
-
-            if (line.equals("---")) {
-                skip2++;
-            }
 
         }
         input.close();
@@ -84,7 +143,5 @@ public class WikiTranslate {
         System.out.println("done");
 
     }
-
-
 
 }

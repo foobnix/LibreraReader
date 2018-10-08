@@ -4,6 +4,6 @@ version: 2
 ---
 ![](/css/logo-line.jpg)
 
-# Menu
+# Speisekarte
   
 {% include menu.md %}

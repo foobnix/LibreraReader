@@ -1,6 +1,0 @@
-* [О программе](/wiki/about/ru)
-* [Руковдоство](/wiki/manual/ru)
-* [Частые вопросы](/wiki/faq/ru)
-* [Истории](/wiki/stories/ru)
-* [Что нового](/wiki/what-is-new/ru)
-* [Скачать](/wiki/download/ru)

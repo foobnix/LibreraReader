@@ -1,7 +1,8 @@
 ---
 layout: main
+version: 1
 ---
-[<](/stories/)
+[<](/wiki/)
 
 #Stories
 

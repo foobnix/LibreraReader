@@ -1,7 +1,8 @@
 ---
 layout: main
+version: 2
 ---
-[<](/manual/ru)
+[<](/wiki/ru)
 
 #Гид пользователя
 

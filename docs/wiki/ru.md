@@ -4,6 +4,6 @@ version: 2
 ---
 ![](/css/logo-line.jpg)
 
-# Menu
+# Меню
   
 {% include menu.md %}
