@@ -1,9 +1,9 @@
 ---
 layout: main
-version: 1
+version: 2
 ---
 [<](/wiki/ru)
 
-#Истории
+# Истории
 
-(В ходе выполнения)
+* [Librera для изучения иностранных языков](/wiki/stories/librera-for-study-foreign-languages/ru)

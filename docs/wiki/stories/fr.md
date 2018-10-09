@@ -1,9 +1,9 @@
 ---
 layout: main
-version: 1
+version: 2
 ---
 [<](/wiki/fr)
 
-#Histoires
+# Histoires
 
-(En cours)
+* [Librera pour apprendre des langues étrangères](/wiki/stories/librera-pour-étudier-langues-étrangères/fr)

@@ -12,6 +12,11 @@ import translations.GoogleTranslation;
 public class WikiTranslate {
 
     public static void main(String[] args) throws Exception {
+
+        GenerateFAQ.updateIndex("/home/ivan-dev/git/LirbiReader/docs/wiki/faq", "Frequently asked questions", 2);
+        GenerateFAQ.updateIndex("/home/ivan-dev/git/LirbiReader/docs/wiki/stories", "Stories", 2);
+        GenerateFAQ.updateIndex("/home/ivan-dev/git/LirbiReader/docs/wiki/manual", "Guide", 2);
+
         syncPaths("/home/ivan-dev/git/LirbiReader/docs/wiki", "ru");
         syncPaths("/home/ivan-dev/git/LirbiReader/docs/wiki", "fr");
         syncPaths("/home/ivan-dev/git/LirbiReader/docs/wiki", "de");
@@ -129,7 +134,7 @@ public class WikiTranslate {
                     }
 
                 }
-                if (line.endsWith("/)")) {
+                if (line.endsWith(")")) {
                     line = line.replace("/)", ")").replace(")", "/" + ln + ")");
                 }
 

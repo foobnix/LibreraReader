@@ -4,6 +4,6 @@ version: 2
 ---
 [<](/wiki/)
 
-#User Guide
+# Guide
 
-(In progress)
+* [Main applicatin window](/wiki/manual/main-app)

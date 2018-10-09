@@ -1,9 +1,9 @@
 ---
 layout: main
-version: 1
+version: 2
 ---
 [<](/wiki/)
 
-#Stories
+# Stories
 
-(In progress)
+* [Librera for learning foreign languages](/wiki/stories/librera-for-study-foreign-languages)

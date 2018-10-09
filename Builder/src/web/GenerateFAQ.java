@@ -7,31 +7,30 @@ import java.io.PrintWriter;
 
 public class GenerateFAQ {
 
-    static String ROOT = "/home/ivan-dev/git/LirbiReader/docs/wiki/faq";
-
     public static void main(String[] args) throws Exception {
-
-        updateIndex("index.md", "Frequently asked questions");
-        updateIndex("ru.md", "Часто задаваемые вопросы");
+        updateIndex("/home/ivan-dev/git/LirbiReader/docs/wiki/faq", "Frequently asked questions1", 1);
+        updateIndex("/home/ivan-dev/git/LirbiReader/docs/wiki/stories", "Stories", 1);
     }
 
-    private static void updateIndex(String in, String pageTitle) throws Exception {
-        PrintWriter out = new PrintWriter(new File(ROOT, in));
+    public static void updateIndex(final String in, String pageTitle, int version) throws Exception {
+        File outFile = new File(in, "index.md");
+        final PrintWriter out = new PrintWriter(outFile);
         out.println("---");
         out.println("layout: main");
+        out.println("version: " + version);
         out.println("---");
         out.println("[<](/wiki/)");
         out.println("");
         out.println("# " + pageTitle);
         out.println("");
 
-        File list = new File(ROOT);
+        File list = new File(in);
         for (File file : list.listFiles()) {
             if (file.isDirectory()) {
-                File child = new File(file, in);
+                File child = new File(file, "index.md");
                 String title = getTitle(child).trim();
 
-                String line = String.format("* [%s](/wiki/faq/%s/%s)", title, file.getName(), in.replace(".md", ""));
+                String line = String.format("* [%s](/wiki/%s/%s)", title, outFile.getParentFile().getName(), file.getName());
                 System.out.println(line);
                 out.println(line);
             }

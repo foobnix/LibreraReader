@@ -4,6 +4,6 @@ version: 2
 ---
 [<](/wiki/fr)
 
-#Mode d&#39;emploi
+# Guider
 
-(En cours)
+* [Fenêtre principale d&#39;application](/wiki/manual/main-app/fr)
