@@ -17,9 +17,16 @@ public class WikiTranslate {
         GenerateFAQ.updateIndex("/home/ivan-dev/git/LirbiReader/docs/wiki/stories", "Stories", 2);
         GenerateFAQ.updateIndex("/home/ivan-dev/git/LirbiReader/docs/wiki/manual", "Guide", 2);
 
-        syncPaths("/home/ivan-dev/git/LirbiReader/docs/wiki", "ru");
-        syncPaths("/home/ivan-dev/git/LirbiReader/docs/wiki", "fr");
-        syncPaths("/home/ivan-dev/git/LirbiReader/docs/wiki", "de");
+        String root = "/home/ivan-dev/git/LirbiReader/docs/wiki";
+        // String root = "/home/ivan-dev/git/LirbiReader/docs/_includes";
+        syncPaths(root, "ru");
+        syncPaths(root, "fr");
+        syncPaths(root, "de");
+        syncPaths(root, "it");
+        syncPaths(root, "pt");
+        syncPaths(root, "es");
+        syncPaths(root, "zh");
+        syncPaths(root, "ar");
     }
 
     public static void syncPaths(String path, final String ln) throws Exception {
@@ -87,8 +94,16 @@ public class WikiTranslate {
         String line;
         int header = 0;
 
+        boolean first = true;
         while ((line = input.readLine()) != null) {
 
+            if (first && !line.equals("---")) {
+                header = 3;
+                first = false;
+
+            }
+
+            first = false;
             if (line.equals("---")) {
                 header++;
             }
@@ -96,7 +111,6 @@ public class WikiTranslate {
 
                 boolean isIgnore = false;
                 String prefix = "";
-
 
                 for (String txt : ignoreLines) {
                     if (line.startsWith(txt)) {
@@ -122,7 +136,19 @@ public class WikiTranslate {
                     line = line.replaceAll("__$", " @#");
                     line = line.replaceAll("[*]{2}$", " @#");
 
-                    line = prefix + GoogleTranslation.translate(line, ln);
+                    String url = null;
+                    if (line.startsWith("[")) {
+                        int div = line.indexOf("](");
+                        url = line.substring(div + 2, line.length() - 1);
+                        line = line.substring(1, div);
+                    }
+
+                    if (url != null) {
+                        line = GoogleTranslation.translate(line, ln);
+                        line = String.format("* [%s](%s)", line, url);
+                    } else {
+                        line = prefix + GoogleTranslation.translate(line, ln);
+                    }
 
                     line = line.replace("@ # ", "__");
                     line = line.replace(" @ #", "__");

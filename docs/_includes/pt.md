@@ -1,0 +1,6 @@
+* [Sobre o aplicativo](/wiki/about/pt)
+* [Guia](/wiki/manual/pt)
+* [Perguntas frequentes](/wiki/faq/pt)
+* [Histórias](/wiki/stories/pt)
+* [O que é novo](/wiki/what-is-new/pt)
+* [Baixar](/wiki/download/pt)

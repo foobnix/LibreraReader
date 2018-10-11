@@ -30,8 +30,8 @@ public class GoogleTranslation {
         // System.out.println(url);
         JSONObject json = readJsonFromUrl(url);
         String translate = json.getJSONObject("data").getJSONArray("translations").getJSONObject(0).getString("translatedText");
-        System.out.println("[en] "+inputOriginal);
-        System.out.println("[" + toLang + "] " + translate);
+        System.out.println("[en]" + inputOriginal);
+        System.out.println("[" + toLang + "]" + translate);
         System.out.println();
         // System.out.println(translate);
 

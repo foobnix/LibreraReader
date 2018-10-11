@@ -8,8 +8,12 @@ import java.io.PrintWriter;
 public class GenerateFAQ {
 
     public static void main(String[] args) throws Exception {
-        updateIndex("/home/ivan-dev/git/LirbiReader/docs/wiki/faq", "Frequently asked questions1", 1);
-        updateIndex("/home/ivan-dev/git/LirbiReader/docs/wiki/stories", "Stories", 1);
+        // updateIndex("/home/ivan-dev/git/LirbiReader/docs/wiki/faq", "Frequently asked
+        // questions1", 1);
+        // updateIndex("/home/ivan-dev/git/LirbiReader/docs/wiki/stories", "Stories",
+        // 1);
+
+        WikiTranslate.translate("/home/ivan-dev/git/LirbiReader/docs/wiki/faq", "it");
     }
 
     public static void updateIndex(final String in, String pageTitle, int version) throws Exception {

@@ -1,0 +1,6 @@
+* [حول التطبيق](/wiki/about/ar)
+* [يرشد](/wiki/manual/ar)
+* [التعليمات](/wiki/faq/ar)
+* [قصص](/wiki/stories/ar)
+* [ما الجديد](/wiki/what-is-new/ar)
+* [تحميل](/wiki/download/ar)
