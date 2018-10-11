@@ -200,19 +200,18 @@ public class TxtUtils {
         }
         LOG.d("pageHTML [before]", pageHTML);
 
-        pageHTML = pageHTML.replace("b><end-line><i>", TTS_PAUSE).replace("i><end-line><b>", TTS_PAUSE);
-        pageHTML = pageHTML.replace("b><p><i>", TTS_PAUSE).replace("i><p><b>", TTS_PAUSE);
+        pageHTML = pageHTML.replace("<b><end-line><i>", TTS_PAUSE).replace("<i><end-line><b>", TTS_PAUSE);
+        pageHTML = pageHTML.replace("<b><p><i>", TTS_PAUSE).replace("<i><p><b>", TTS_PAUSE);
         pageHTML = pageHTML.replace("<b>", "").replace("</b>", "").replace("<i>", "").replace("</i>", "").replace("<tt>", "").replace("</tt>", "");
 
         pageHTML = pageHTML.replace("...", TTS_PAUSE);
         pageHTML = pageHTML.replace("…", TTS_PAUSE);
-        pageHTML = pageHTML.replace("!", "!" + TTS_PAUSE);
-        pageHTML = pageHTML.replace("?", "?" + TTS_PAUSE);
+        pageHTML = pageHTML.replaceAll("[!?]+", TTS_PAUSE);
         pageHTML = pageHTML.replace(">" + TxtUtils.LONG_DASH1, ">" + TTS_PAUSE);
         pageHTML = pageHTML.replace(">" + TxtUtils.LONG_DASH2, ">" + TTS_PAUSE);
         pageHTML = pageHTML.replace("   ", TTS_PAUSE);
 
-        pageHTML = pageHTML.replace("<p>", "").replace("</p>", " ");
+        pageHTML = pageHTML.replace("<p>", "").replace("</p>", "");
         pageHTML = pageHTML.replace("&nbsp;", " ").replace("&lt;", " ").replace("&gt;", "").replace("&amp;", " ").replace("&quot;", " ");
         pageHTML = pageHTML.replace("'", "");
         pageHTML = pageHTML.replace("*", "");
@@ -221,6 +220,7 @@ public class TxtUtils {
         pageHTML = replaceEndLine(pageHTML);
         pageHTML = pageHTML.replaceAll("(?u)(\\w+)(-\\s)", "$1");
         LOG.d("pageHTML [after] ", pageHTML);
+
         return pageHTML;
     }
 
