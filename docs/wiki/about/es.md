@@ -10,7 +10,7 @@ version: 3
 para leer libros en formato PDF, EPUB, MOBI, DjVu, FB2, TXT, RTF, AZW, AZW3, HTML, CBZ, CBR en dispositivos Android.
 Con su interfaz intuitiva, pero poderosa, Librera convierte el libro electrónico en un verdadero placer.
 Incluso cuenta con un modo único de músico con desplazamiento automático y manos libres.
-A partir de hoy, puede presumir de más de __10 millones de descargas @ @ a dispositivos que ejecutan todos los tipos de Android OS.
+A partir de hoy, puede presumir de más de __10 millones de descargas__ a dispositivos que ejecutan todos los tipos de Android OS.
 
 ||||
 |-|-|-|

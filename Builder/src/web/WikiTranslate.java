@@ -153,6 +153,7 @@ public class WikiTranslate {
                     line = line.replace("@ # ", "__");
                     line = line.replace(" @ #", "__");
                     line = line.replace(" # @", "__");
+                    line = line.replace(" @ @", "__");
                     if (line.contains("[")) {
                         line = line.replace(" /", "/");
                         line = line.replace("/ ", "/");
