@@ -124,7 +124,7 @@
    <string name="db_auto_center_horizontally">Выровнить по горизонтали</string>
    <string name="zoom_in_zoom_out">Увел./умен. масштаб стр-ц в 2 раза</string>
    <string name="enhancements_for_oled_display">Заполнять пустующие области вокруг страниц черным цветом при чтении в режиме \"Ночь\" (AMOLED-адаптация)</string>
-   <string name="ignore_annotations_on_click">Не открывать соответствующее окно редактирования при тапах в места комментариев/пометок</string>
+   <string name="ignore_annotations_on_click">Не открывать окно редактирования комментариев/пометок при тапах в области их расположения</string>
    <string name="save_new_annotations_automatically">Автоматически сохранять новые комментарии и пометки при закрытии книги или выходе из приложения</string>
    <string name="selecting_text_by_letters">Использовать побуквенное выделение текста (для иероглифических языков)</string>
    <string name="change_the_automatic_scrolling_speed_with_the_volume_keys">Менять скорость автопрокрутки текста клавишами регулировки громкости</string>
@@ -147,7 +147,7 @@
    <string name="language">Язык</string>
    <string name="font_size">Размер шрифта</string>
    <string name="brightness">Яркость</string>
-   <string name="bluelight_filter">Фильтр синего цвета и затемнение</string>
+   <string name="bluelight_filter">Фильтр синего цвета и минусовая яркость</string>
    <string name="password">Пароль</string>
    <string name="restore_defaults_short">Вернуть значения по умолчанию</string>
    <string name="customize">Настройка</string>
@@ -493,6 +493,6 @@
    <string name="size">Размер</string>
    <string name="quick_bookmark_by_the_headset">Использовать одну из кнопок гарнитуры для создания быстрых закладок к книге</string>
    <string name="slider_scale">Шкала бегунка</string>
-   <string name="chapter_format">Формат прогресса чтения</string>
-   <string name="play_a_music_file">Вопроизвести музыкальный файл</string>
+   <string name="chapter_format">Прогресс чтения</string>
+   <string name="play_a_music_file">Выбрать и проиграть муз. файл</string>
 </resources>
