@@ -98,8 +98,10 @@ public class HtmlExtractor {
 
         try {
 
-            BufferedReader input = new BufferedReader(new InputStreamReader(new FileInputStream(inputPath)));
+            String encoding = ExtUtils.determineHtmlEncoding(new FileInputStream(inputPath), new FileInputStream(inputPath));
 
+            LOG.d("HtmlExtractor encoding: ", encoding, "");
+            BufferedReader input = new BufferedReader(new InputStreamReader(new FileInputStream(inputPath), encoding));
             StringBuilder html = new StringBuilder();
             String line;
 
