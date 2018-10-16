@@ -20,6 +20,7 @@ public class TextWord extends RectF {
         Add(tc);
     }
 
+
     @Override
     public String toString() {
         return "" + w + left + " " + top + " " + right + " " + bottom;
@@ -28,6 +29,11 @@ public class TextWord extends RectF {
     public void Add(TextChar tc) {
         super.union(tc);
         w = w.concat(new String(new char[] { tc.c }));
+    }
+
+    public TextWord(String w, RectF rect) {
+        super(rect);
+        this.w = w;
     }
 
     public void addChar(Rect rect, char c) {

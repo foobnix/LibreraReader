@@ -15,6 +15,7 @@ import org.ebookdroid.droids.mupdf.codec.TextWord;
 import org.emdev.utils.LengthUtils;
 
 import com.foobnix.android.utils.LOG;
+import com.foobnix.android.utils.TxtUtils;
 import com.foobnix.pdf.info.model.AnnotationType;
 import com.foobnix.pdf.info.wrapper.MagicHelper;
 import com.foobnix.sys.TempHolder;
@@ -224,7 +225,6 @@ public class DjvuPage extends AbstractCodecPage {
             final float height = getHeight();
             for (final PageTextBox ptb : list) {
                 normalizeTextBox(ptb, width, height);
-                // System.out.println("" + ptb);
             }
         }
         return list;
@@ -254,8 +254,7 @@ public class DjvuPage extends AbstractCodecPage {
 
     // private static native boolean isDecodingDone(long pageHandle);
 
-    private boolean renderPageWrapper(long pageHandle, long contextHandle, int targetWidth, int targetHeight, float pageSliceX, float pageSliceY, float pageSliceWidth, float pageSliceHeight, int[] buffer,
-            int renderMode) {
+    private boolean renderPageWrapper(long pageHandle, long contextHandle, int targetWidth, int targetHeight, float pageSliceX, float pageSliceY, float pageSliceWidth, float pageSliceHeight, int[] buffer, int renderMode) {
         try {
             TempHolder.lock.lock();
             return renderPage(pageHandle, contextHandle, targetWidth, targetHeight, pageSliceX, pageSliceY, pageSliceWidth, pageSliceHeight, buffer, renderMode);
@@ -264,8 +263,7 @@ public class DjvuPage extends AbstractCodecPage {
         }
     }
 
-    private boolean renderPageBitmapWrapper(long pageHandle, long contextHandle, int targetWidth, int targetHeight, float pageSliceX, float pageSliceY, float pageSliceWidth, float pageSliceHeight, Bitmap bitmap,
-            int renderMode) {
+    private boolean renderPageBitmapWrapper(long pageHandle, long contextHandle, int targetWidth, int targetHeight, float pageSliceX, float pageSliceY, float pageSliceWidth, float pageSliceHeight, Bitmap bitmap, int renderMode) {
         try {
             TempHolder.lock.lock();
             return renderPageBitmap(pageHandle, contextHandle, targetWidth, targetHeight, pageSliceX, pageSliceY, pageSliceWidth, pageSliceHeight, bitmap, renderMode);
@@ -274,11 +272,9 @@ public class DjvuPage extends AbstractCodecPage {
         }
     }
 
-    private static native boolean renderPage(long pageHandle, long contextHandle, int targetWidth, int targetHeight, float pageSliceX, float pageSliceY, float pageSliceWidth, float pageSliceHeight, int[] buffer,
-            int renderMode);
+    private static native boolean renderPage(long pageHandle, long contextHandle, int targetWidth, int targetHeight, float pageSliceX, float pageSliceY, float pageSliceWidth, float pageSliceHeight, int[] buffer, int renderMode);
 
-    private static native boolean renderPageBitmap(long pageHandle, long contextHandle, int targetWidth, int targetHeight, float pageSliceX, float pageSliceY, float pageSliceWidth, float pageSliceHeight, Bitmap bitmap,
-            int renderMode);
+    private static native boolean renderPageBitmap(long pageHandle, long contextHandle, int targetWidth, int targetHeight, float pageSliceX, float pageSliceY, float pageSliceWidth, float pageSliceHeight, Bitmap bitmap, int renderMode);
 
     private static native void free(long pageHandle);
 
@@ -288,8 +284,28 @@ public class DjvuPage extends AbstractCodecPage {
 
     @Override
     public TextWord[][] getText() {
-        // TODO Auto-generated method stub
-        return null;
+        try {
+            List<PageTextBox> boxs = getPageText1();
+            if (TxtUtils.isListEmpty(boxs)) {
+                return null;
+            }
+
+            TextWord[] line = new TextWord[boxs.size()];
+
+            for (int i = 0; i < boxs.size(); i++) {
+                PageTextBox box = boxs.get(i);
+                TextWord textWord = new TextWord(box.text, box);
+                textWord.setOriginal(box);
+                line[i] = textWord;
+            }
+            TextWord[][] res = new TextWord[1][];
+            res[0] = line;
+
+            return res;
+        } catch (Exception e) {
+            LOG.e(e);
+            return null;
+        }
     }
 
     @Override
