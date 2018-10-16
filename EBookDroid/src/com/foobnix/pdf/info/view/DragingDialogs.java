@@ -3192,7 +3192,8 @@ public class DragingDialogs {
                         controller.getString(R.string.close_book), //
                         controller.getString(R.string.close_book_and_application), //
                         controller.getString(R.string.hide_app), //
-                        controller.getString(R.string.db_do_nothing) //
+                        controller.getString(R.string.db_do_nothing), //
+                        controller.getString(R.string.read_a_book) //
 
                 );
 
@@ -3204,7 +3205,8 @@ public class DragingDialogs {
                         AppState.DOUBLE_CLICK_CLOSE_BOOK, //
                         AppState.DOUBLE_CLICK_CLOSE_BOOK_AND_APP, //
                         AppState.DOUBLE_CLICK_CLOSE_HIDE_APP, //
-                        AppState.DOUBLE_CLICK_NOTHING //
+                        AppState.DOUBLE_CLICK_NOTHING, //
+                        AppState.DOUBLE_CLICK_START_STOP_TTS //
                 );//
                 final TextView doubleClickAction1 = (TextView) inflate.findViewById(R.id.doubleTapValue);
                 doubleClickAction1.setText(doubleTapNames.get(doubleTapIDS.indexOf(AppState.get().doubleClickAction1)));

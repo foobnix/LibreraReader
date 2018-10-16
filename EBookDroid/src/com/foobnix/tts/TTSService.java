@@ -203,6 +203,15 @@ public class TTSService extends Service {
         playBookPage(AppState.get().lastBookPage, AppState.get().lastBookPath, "", AppState.get().lastBookWidth, AppState.get().lastBookHeight, AppState.get().lastFontSize, AppState.get().lastBookTitle);
     }
 
+    public static void playPause(Context context) {
+        PendingIntent next = PendingIntent.getService(context, 0, new Intent(TTSNotification.TTS_PLAY_PAUSE, null, context, TTSService.class), PendingIntent.FLAG_UPDATE_CURRENT);
+        try {
+            next.send();
+        } catch (Exception e) {
+            LOG.e(e);
+        }
+    }
+
     @TargetApi(26)
     public static void playBookPage(int page, String path, String anchor, int width, int height, int fontSize, String title) {
         LOG.d(TAG, "playBookPage", page, path, width, height);
@@ -265,7 +274,6 @@ public class TTSService extends Service {
             return START_NOT_STICKY;
 
         }
-
 
         if (TTSNotification.TTS_PLAY_PAUSE.equals(intent.getAction())) {
 
