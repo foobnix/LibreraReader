@@ -123,17 +123,7 @@ public class TTSControlsView extends FrameLayout {
 
             @Override
             public void onClick(View v) {
-
-                if (TTSEngine.get().isPlaying()) {
-                    PendingIntent next = PendingIntent.getService(context, 0, new Intent(TTSNotification.TTS_PAUSE, null, context, TTSService.class), PendingIntent.FLAG_UPDATE_CURRENT);
-                    try {
-                        next.send();
-                    } catch (CanceledException e) {
-                        LOG.d(e);
-                    }
-                } else {
-                    TTSService.playBookPage(controller.getCurentPageFirst1() - 1, controller.getCurrentBook().getPath(), "", controller.getBookWidth(), controller.getBookHeight(), AppState.get().fontSizeSp, controller.getTitle());
-                }
+                TTSService.playPause(context, controller);
             }
         });
         handler = new Handler();

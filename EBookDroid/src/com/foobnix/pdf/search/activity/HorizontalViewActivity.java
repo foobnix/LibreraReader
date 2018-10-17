@@ -60,6 +60,7 @@ import com.foobnix.tts.MessagePageNumber;
 import com.foobnix.tts.TTSControlsView;
 import com.foobnix.tts.TTSEngine;
 import com.foobnix.tts.TTSNotification;
+import com.foobnix.tts.TTSService;
 import com.foobnix.tts.TtsStatus;
 import com.foobnix.ui2.AdsFragmentActivity;
 import com.foobnix.ui2.AppDB;
@@ -1377,6 +1378,8 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
             handler.removeCallbacks(doShowHideWrapperControllsRunnable);
             updateLockMode();
             // Toast.makeText(this, "DB", Toast.LENGTH_SHORT).show();
+        } else if (ev.getMessage().equals(MessageEvent.MESSAGE_PLAY_PAUSE)) {
+            TTSService.playPause(HorizontalViewActivity.this, dc);
         } else if (ev.getMessage().equals(MessageEvent.MESSAGE_SELECTED_TEXT)) {
             if (dc.isTextFormat() && TxtUtils.isFooterNote(AppState.get().selectedText)) {
                 DragingDialogs.showFootNotes(anchor, dc, new Runnable() {

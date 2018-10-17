@@ -9,6 +9,7 @@ public class MessageEvent {
     public static final String MESSAGE_DOUBLE_TAP = "MESSAGE_DOUBLE_TAP";
     public static final String MESSAGE_CLOSE_BOOK = "MESSAGE_CLOSE_BOOK";
     public static final String MESSAGE_CLOSE_BOOK_APP = "MESSAGE_CLOSE_BOOK_APP";
+    public static final String MESSAGE_PLAY_PAUSE = "MESSAGE_PLAY_PAUSE";
 
     private String msgType = "";
     private int page;

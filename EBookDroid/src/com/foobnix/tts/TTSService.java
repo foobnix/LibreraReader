@@ -14,12 +14,14 @@ import com.foobnix.android.utils.TxtUtils;
 import com.foobnix.android.utils.Vibro;
 import com.foobnix.pdf.info.R;
 import com.foobnix.pdf.info.wrapper.AppState;
+import com.foobnix.pdf.info.wrapper.DocumentController;
 import com.foobnix.sys.ImageExtractor;
 import com.foobnix.sys.TempHolder;
 
 import android.annotation.TargetApi;
 import android.app.Notification;
 import android.app.PendingIntent;
+import android.app.PendingIntent.CanceledException;
 import android.app.Service;
 import android.bluetooth.BluetoothDevice;
 import android.content.BroadcastReceiver;
@@ -203,12 +205,16 @@ public class TTSService extends Service {
         playBookPage(AppState.get().lastBookPage, AppState.get().lastBookPath, "", AppState.get().lastBookWidth, AppState.get().lastBookHeight, AppState.get().lastFontSize, AppState.get().lastBookTitle);
     }
 
-    public static void playPause(Context context) {
-        PendingIntent next = PendingIntent.getService(context, 0, new Intent(TTSNotification.TTS_PLAY_PAUSE, null, context, TTSService.class), PendingIntent.FLAG_UPDATE_CURRENT);
-        try {
-            next.send();
-        } catch (Exception e) {
-            LOG.e(e);
+    public static void playPause(Context context, DocumentController controller) {
+        if (TTSEngine.get().isPlaying()) {
+            PendingIntent next = PendingIntent.getService(context, 0, new Intent(TTSNotification.TTS_PAUSE, null, context, TTSService.class), PendingIntent.FLAG_UPDATE_CURRENT);
+            try {
+                next.send();
+            } catch (CanceledException e) {
+                LOG.d(e);
+            }
+        } else {
+            TTSService.playBookPage(controller.getCurentPageFirst1() - 1, controller.getCurrentBook().getPath(), "", controller.getBookWidth(), controller.getBookHeight(), AppState.get().fontSizeSp, controller.getTitle());
         }
     }
 

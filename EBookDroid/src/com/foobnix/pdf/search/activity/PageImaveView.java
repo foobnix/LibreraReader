@@ -26,7 +26,6 @@ import com.foobnix.pdf.search.activity.msg.MovePageAction;
 import com.foobnix.pdf.search.activity.msg.TextWordsMessage;
 import com.foobnix.sys.ClickUtils;
 import com.foobnix.sys.TempHolder;
-import com.foobnix.tts.TTSService;
 
 import android.content.Context;
 import android.graphics.Bitmap;
@@ -315,7 +314,7 @@ public class PageImaveView extends View {
                 } else if (AppState.get().doubleClickAction1 == AppState.DOUBLE_CLICK_CLOSE_HIDE_APP) {
                     Apps.showDesctop(getContext());
                 } else if (AppState.get().doubleClickAction1 == AppState.DOUBLE_CLICK_START_STOP_TTS) {
-                    TTSService.playPause(getContext());
+                    EventBus.getDefault().post(new MessageEvent(MessageEvent.MESSAGE_PLAY_PAUSE, e.getX(), e.getY()));
                 } else if (AppState.get().doubleClickAction1 == AppState.DOUBLE_CLICK_CENTER_HORIZONTAL) {
                     PageImageState.get().isAutoFit = false;
                     onCenterHorizontally(new MessageCenterHorizontally(pageNumber));
