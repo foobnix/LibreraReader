@@ -415,10 +415,7 @@ void djvu_get_djvu_words(SearchHelper& h, jobject list, miniexp_t expr, jstring 
                 h.box.setText(ptb, txt);
                 h.arr.add(list, ptb);
             }
-            else
-            {
-                h.str.release(txt);
-            }
+            h.str.release(txt);
         }
         else if (miniexp_consp(head))
         {
@@ -458,6 +455,8 @@ extern "C" jobject Java_org_ebookdroid_droids_djvu_codec_DjvuPage_getPageText(JN
     jobject arrayList = h.arr.create();
 
     djvu_get_djvu_words(h, arrayList, r, pattern);
+
+
 
     return arrayList;
 }

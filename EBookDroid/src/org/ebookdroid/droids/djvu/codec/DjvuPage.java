@@ -219,7 +219,7 @@ public class DjvuPage extends AbstractCodecPage {
     }
 
     public List<PageTextBox> getPageText1() {
-        final List<PageTextBox> list = getPageText(docHandle, pageNo, contextHandle, null);
+        final List<PageTextBox> list = getPageTextSync(docHandle, pageNo, contextHandle, null);
         if (LengthUtils.isNotEmpty(list)) {
             final float width = getWidth();
             final float height = getHeight();
@@ -281,6 +281,15 @@ public class DjvuPage extends AbstractCodecPage {
     private native static ArrayList<PageLink> getPageLinks(long docHandle, int pageNo);
 
     native static List<PageTextBox> getPageText(long docHandle, int pageNo, long contextHandle, String pattern);
+
+    public static List<PageTextBox> getPageTextSync(long docHandle, int pageNo, long contextHandle, String pattern) {
+        try {
+            TempHolder.lock.lock();
+            return getPageText(docHandle, pageNo, contextHandle, pattern);
+        } finally {
+            TempHolder.lock.unlock();
+        }
+    }
 
     @Override
     public TextWord[][] getText() {
