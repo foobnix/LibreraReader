@@ -4,6 +4,8 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.util.Arrays;
+import java.util.List;
 import java.util.regex.Pattern;
 
 import com.foobnix.android.utils.Apps;
@@ -33,8 +35,11 @@ public class AndroidWhatsNew {
     private static final String BETA = "beta-";
 
     public static String getLangUrl(String url, String lang) {
-        if ("ru".equals(AppState.get().appLang)) {
-            url = url.replace("#", "ru#");
+
+        List<String> lns = Arrays.asList("ar", "de", "es", "fr", "it", "pt", "ru", "zh");
+
+        if (lns.contains(lang)) {
+            url = url.replace("#", lang + "#");
         }
         return url;
 
@@ -81,6 +86,13 @@ public class AndroidWhatsNew {
             @Override
             public void onClick(DialogInterface dialog, int which) {
 
+            }
+        });
+        builder.setPositiveButton(R.string.add_a_review, new OnClickListener() {
+
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                rateIT(c);
             }
         });
 

@@ -495,4 +495,5 @@
    <string name="slider_scale">Escala deslizante</string>
    <string name="chapter_format">Formato de capítulo</string>
    <string name="play_a_music_file">Tocar um arquivo de música</string>
+   <string name="add_a_review">Adicione um comentário</string>
 </resources>
