@@ -45,6 +45,7 @@ import android.content.DialogInterface.OnDismissListener;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.Bundle;
+import android.os.Environment;
 import android.os.Handler;
 import android.support.v4.content.LocalBroadcastManager;
 import android.support.v4.graphics.ColorUtils;
@@ -542,8 +543,11 @@ public class SearchFragment2 extends UIFragment<FileMeta> {
                 List<FileMeta> res = new ArrayList<FileMeta>();
                 String last = null;
 
+                String extDir = Environment.getExternalStorageDirectory().getPath();
+
                 for (FileMeta it : searchBy) {
                     String parentName = it.getParentPath();
+                    parentName = parentName.replace(extDir, "");
                     if (!parentName.equals(last)) {
                         FileMeta fm = new FileMeta();
                         fm.setCusType(FileMetaAdapter.DISPALY_TYPE_LAYOUT_TITLE_DIVIDER);
