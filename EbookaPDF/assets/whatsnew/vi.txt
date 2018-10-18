@@ -1,7 +1,7 @@
-* Cập nhật lớn dựa trên yêu cầu và phản hồi của người đọc 
-* Giao diện Text-To-Speech mới (TTS) 
+* Bản cập nhật lớn của PDF Reader dựa trên yêu cầu và phản hồi 
+* Trình đọc PDF với giao diện Text-To-Speech (TTS) mới 
 * Cải thiện hỗ trợ cho EPUB 3.0, phát lại tệp âm thanh 
-* Truy vấn tìm kiếm nhiều từ ở tất cả các định dạng, bao gồm PDF 
-* Hỗ trợ cho điện thoại thông minh nổi bật 
-* Chú giải thanh trạng thái hiện có ba tùy chọn để chọn: đầy đủ, nhỏ gọn và hướng theo chương 
+* Truy vấn tìm kiếm nhiều từ ở mọi định dạng, bao gồm PDF, DJVU 
+* Hỗ trợ cho điện thoại thông minh khía cạnh 
+* Truyền thuyết thanh trạng thái hiện có ba tùy chọn để lựa chọn: đầy đủ, nhỏ gọn và hướng theo chương 
 * Phản hồi và yêu cầu khác rất được hoan nghênh!

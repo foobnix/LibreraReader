@@ -90,7 +90,7 @@ public class AppDB {
 
     public enum SORT_BY {
         //
-        PATH(0, R.string.by_path, FileMetaDao.Properties.Path), //
+        PATH(0, R.string.by_path, FileMetaDao.Properties.ParentPath), //
         FILE_NAME(1, R.string.by_file_name, FileMetaDao.Properties.PathTxt), //
         SIZE(2, R.string.by_size, FileMetaDao.Properties.Size), //
         DATA(3, R.string.by_date, FileMetaDao.Properties.Date), //
@@ -486,6 +486,7 @@ public class AppDB {
     public List<FileMeta> searchBy(String str, SORT_BY sortby, boolean isAsc) {
         try {
             QueryBuilder<FileMeta> where = fileMetaDao.queryBuilder();
+            where.preferLocalizedStringOrder();
 
             SEARCH_IN searchIn = null;
             for (SEARCH_IN in : SEARCH_IN.values()) {

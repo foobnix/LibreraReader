@@ -10,7 +10,7 @@ public class Dao2Generator {
 
     public static void main(String[] args) throws IOException, Exception {
 
-        Schema schema = new Schema(7, "com.foobnix.dao2");
+        Schema schema = new Schema(8, "com.foobnix.dao2");
 
         Entity note = schema.addEntity("FileMeta");
 
@@ -48,6 +48,7 @@ public class Dao2Generator {
         note.addIntProperty("state");
         note.addStringProperty("publisher");
         note.addStringProperty("isbn");
+        note.addStringProperty("parentPath").indexAsc("parentPath_asc", false).indexDesc("parentPath_desc", false);
 
         new DaoGenerator().generateAll(schema, "/home/ivan-dev/git/LirbiReader/EBookDroid/src");
     }

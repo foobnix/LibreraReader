@@ -1,7 +1,7 @@
-* Mise à jour majeure basée sur les demandes et les commentaires des lecteurs 
-* Nouvelle interface de synthèse vocale (TTS) 
-* Amélioration du support pour EPUB 3.0, lecture de fichiers audio 
-* Requêtes de recherche multi-mots dans tous les formats, y compris PDF 
-* Support pour les smartphones cochés 
-* La légende de la barre d’état propose désormais trois options: complète, compacte et axée sur les chapitres 
-* Plus de commentaires et de demandes sont les bienvenus!
+* Une mise à jour majeure de PDF Reader basée sur les demandes et les commentaires 
+* PDF Reader avec la nouvelle interface de synthèse vocale (TTS) 
+* Support amélioré pour EPUB 3.0, lecture de fichiers audio 
+* Requêtes de recherche multi-mots dans tous les formats, y compris PDF, DJVU 
+* Prise en charge des smartphones cochés 
+* La légende de la barre d’état propose désormais trois options: complète, compacte et axée sur les chapitres. 
+* D’autres commentaires et demandes sont les bienvenus!

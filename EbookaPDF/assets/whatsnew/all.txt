@@ -1,311 +1,316 @@
 
 <nl-NL>
-* Een belangrijke update op basis van verzoeken en feedback van lezers 
-* Nieuwe Text-To-Speech (TTS) -interface 
-* Verbeterde ondersteuning voor EPUB 3.0, afspelen van audiobestanden 
-* Zoekopdrachten van meerdere woorden in alle indelingen, inclusief PDF 
+* Een grote update van PDF Reader gebaseerd op verzoeken en feedback 
+* PDF Reader met nieuwe Text-To-Speech (TTS) interface 
+* Verbeterde ondersteuning voor EPUB 3.0, audiobestanden afspelen 
+* Meerdere woorden zoeken in alle formaten, inclusief PDF, DJVU 
 * Ondersteuning voor gekerfde smartphones 
-* De legende van de statusbalk heeft nu drie opties om uit te kiezen: volledig, compact en hoofdstukgericht 
+* De statusbalklegende heeft nu drie opties om uit te kiezen: volledig, compact en hoofdstukgericht 
 * Meer feedback en verzoeken zijn van harte welkom!
 </nl-NL>
 
 <id>
-* Pembaruan besar berdasarkan permintaan dan umpan balik pembaca 
-* Antarmuka New Text-To-Speech (TTS) 
+* Pembaruan besar PDF Reader berdasarkan permintaan dan umpan balik 
+* PDF Reader dengan antarmuka Text-To-Speech (TTS) baru 
 * Peningkatan dukungan untuk EPUB 3.0, pemutaran file audio 
-* Permintaan pencarian multi-kata dalam semua format, termasuk PDF 
+* Permintaan pencarian multi-kata dalam semua format, termasuk PDF, DJVU 
 * Dukungan untuk smartphone berlekuk 
-* Legenda status bar sekarang memiliki tiga opsi untuk dipilih: full, compact, dan chapter-oriented 
-* Lebih banyak umpan balik dan permintaan sangat diterima!
+* Leg legenda status sekarang memiliki tiga opsi untuk dipilih: lengkap, kompak, dan berorientasi bab 
+* Lebih banyak umpan balik dan permintaan sangat disambut!
 </id>
 
 <lt>
-* Svarbus naujinimas, pagrįstas skaitytojų prašymais ir atsiliepimais 
-* Nauja teksto į kalbą (TTS) sąsaja 
-* Patobulintas palaikymasEPUB 3.0, atkūrimas garso failų 
-* Daugialypės paieškos užklausos visuose formatuose, įskaitant PDF 
-* Parama iškirptiems išmaniesiems telefonams 
-* Dabar būsenos juostos legenda turi tris pasirinkimus: pilnas, kompaktiškas ir orientuotas į skyrių 
-* Daugiau atsiliepimų ir prašymų yra labai sveikintini!
+* Pagrindinė PDF Reader atnaujinta informacija, pagrįsta prašymais ir atsiliepimais 
+* PDF Reader su nauja teksto į kalbą (TTS) sąsaja 
+* Patobulintas palaikymasEPUB 3.0, garso failų atkūrimas 
+* Daugialypės paieškos užklausos visuose formatuose, įskaitant PDF, DJVU 
+* Parama išrinktiems išmaniesiems telefonams 
+* Dabar būsenos juostos legendoje yra trys pasirinktys: pilnas, kompaktiškas ir orientuotas į skyrių 
+* Daugiau atsiliepimų ir užklausų yra labai sveikintinos!
 </lt>
 
 <ar>
-* تحديث رئيسي يعتمد على طلبات القراء وردود الفعل 
-* واجهة جديدة لتحويل النص إلى كلام (TTS) 
-* دعم محسّن لـ EPUB 3.0 وتشغيل ملفات الصوت 
-* استعلامات بحث متعددة الكلمات في جميع التنسيقات ، بما في ذلك PDF 
-* دعم للهواتف الذكية المدعومة 
-* يحتوي مفتاح شريط الحالة الآن على ثلاثة خيارات للاختيار من بينها: كاملة وصغيرة الحجم وموجهة للفصل 
-* مزيد من التعليقات والطلبات موضع ترحيب كبير!
+* تحديث رئيسي لقارئ PDF يعتمد على الطلبات والملاحظات 
+* قارئ PDF مع واجهة تحويل النص إلى كلام (TTS) 
+* دعم محسّن لـ EPUB 3.0 ، تشغيل ملفات صوتية 
+* استعلامات بحث متعددة الكلمات في جميع التنسيقات ، بما في ذلك PDF ، DJVU 
+* دعم للهواتف الذكية حقق 
+* أسطورة شريط الحالة لديها الآن ثلاثة خيارات للاختيار من بينها: كامل ، والتعاقد ، والفصل 
+* مزيد من ردود الفعل والطلبات هي موضع ترحيب كبير!
 </ar>
 
 <ro>
-* O actualizare majoră bazată pe solicitările și feedback-ul cititorilor 
-* Interfața TTS 
+* O actualizare majoră a Reader-ului PDF bazat pe solicitări și feedback 
+* Reader PDF cu interfață TTS 
 * Suport îmbunătățit pentru EPUB 3.0, redarea fișierelor audio 
-* Interogări de căutare multi-word în toate formatele, inclusiv PDF 
+* Interogări de căutare multi-word în toate formatele, inclusiv PDF, DJVU 
 * Suport pentru smartphone-uri notate 
-* Legenda bara de stare are acum trei opțiuni de alegere: completă, compactă și orientată spre capitol 
+* Legenda barei de stare are acum trei opțiuni de alegere: completă, compactă și orientată către capitole 
 * Mai multe feedback și solicitări sunt foarte binevenite!
 </ro>
 
 <de-DE>
-* Ein wichtiges Update basierend auf Leserwünschen und Feedback 
-* Neue Text-To-Speech (TTS) -Schnittstelle 
+* Ein großes Update von PDF Reader basierend auf Anfragen und Feedback 
+* PDF Reader mit neuer Text-To-Speech (TTS) Schnittstelle 
 * Verbesserte Unterstützung für EPUB 3.0, Wiedergabe von Audiodateien 
-* Mehrwort-Suchanfragen in allen Formaten, einschließlich PDF 
-* Unterstützung für Notch-Smartphones 
+* Mehrwort-Suchanfragen in allen Formaten, einschließlich PDF, DJVU 
+* Unterstützung für gekerbte Smartphones 
 * Die Legende der Statusleiste bietet jetzt drei Optionen: voll, kompakt und kapitelorientiert 
-* Mehr Feedback und Anfragen sind sehr willkommen!
+* Weitere Rückmeldungen und Anfragen sind sehr willkommen!
 </de-DE>
 
 <pl-PL>
-* Ważna aktualizacja oparta na zapytaniach czytelników i sprzężeniu zwrotnym 
-* Nowy interfejs Text-To-Speech (TTS) 
-* Udoskonalona obsługa formatu EPUB 3.0, odtwarzanie plików audio 
-* Wyszukiwanie wielu słów we wszystkich formatach, w tym PDF 
-* Wsparcie dla smartfonów z nacięciami 
+* Ważna aktualizacja czytnika PDF na podstawie zapytań i opinii 
+* Czytnik plików PDF z nowym interfejsem Text-To-Speech (TTS) 
+* Poprawiona obsługa formatu EPUB 3.0, odtwarzanie plików audio 
+* Zapytania zawierające wiele słów we wszystkich formatach, w tym PDF, DJVU 
+* Obsługa ząbkowanych smartfonów 
 * Legenda paska stanu ma teraz trzy opcje do wyboru: pełna, kompaktowa i zorientowana na rozdział 
 * Więcej opinii i próśb jest bardzo mile widziane!
 </pl-PL>
 
 <iw-IL>
-* עדכון גדול המבוסס על בקשות הקוראים משוב 
-* חדש טקסט לדיבור (TTS) ממשק 
+* עדכון עיקרי של קורא PDF מבוסס על בקשות ומשוב 
+* PDF Reader עם ממשק חדש טקסט לדיבור (TTS) 
 * תמיכה משופרת עבור EPUB 3.0, קבצי אודיו השמעה 
-* שאילתות מרובות מילה בכל הפורמטים, כולל PDF 
-* תמיכה עבור טלפונים חכמים מחורצים 
-* שורת המצב המקרא עכשיו יש שלוש אפשרויות לבחירה: מלא, קומפקטי, פרק מוכווני 
+* שאילתות מרובות מילה בכל הפורמטים, כולל PDF, DJVU 
+* תמיכה עבור סמארטפונים מחורצים 
+* שורת המצב מקרא עכשיו יש שלוש אפשרויות לבחירה: מלא, קומפקטי, פרק מוכווני 
 * משוב יותר ובקשות יתקבלו בברכה!
 </iw-IL>
 
 <hi-IN>
-* पाठकों के अनुरोधों और प्रतिक्रियाओं के आधार पर एक बड़ा अपडेट 
-* नया टेक्स्ट-टू-स्पीच (टीटीएस) इंटरफ़ेस 
+* अनुरोध और फीडबैक के आधार पर पीडीएफ रीडर का एक बड़ा अपडेट 
+* नए टेक्स्ट-टू-स्पीच (टीटीएस) इंटरफ़ेस के साथ पीडीएफ रीडर 
 * ईपीबीबी 3.0, ऑडियो फाइल प्लेबैक के लिए बेहतर समर्थन 
-* पीडीएफ सहित सभी प्रारूपों में बहु शब्द खोज क्वेरी 
+* पीडीएफ, डीजेवीयू सहित सभी प्रारूपों में बहु शब्द खोज क्वेरी 
 * नोट किए गए स्मार्टफ़ोन के लिए समर्थन 
-* स्टेटस बार लीजेंड में अब तीन विकल्प हैं: पूर्ण, कॉम्पैक्ट, और अध्याय उन्मुख 
-* अधिक प्रतिक्रिया और अनुरोध बहुत स्वागत है!
+* स्टेटस बार किंवदंती में अब तीन विकल्प हैं: पूर्ण, कॉम्पैक्ट, और अध्याय उन्मुख 
+* अधिक प्रतिक्रिया और अनुरोधों का बहुत स्वागत है!
 </hi-IN>
 
 <es-ES>
-* Una actualización importante basada en las solicitudes y comentarios de los lectores 
-* Nueva interfaz de Text-to-Speech (TTS) 
-* Soporte mejorado para EPUB 3.0, reproducción de archivos de audio 
-* Consultas de búsqueda de múltiples palabras en todos los formatos, incluido PDF La leyenda de la barra de estado ahora tiene tres opciones para elegir: completa, compacta y orientada a capítulos 
+* Una actualización importante de PDF Reader basada en solicitudes y comentarios 
+* Lector de PDF con la nueva interfaz Text-To-Speech (TTS) 
+* Compatibilidad mejorada para EPUB 3.0, reproducción de archivos de audio 
+* Consultas de búsqueda de múltiples palabras en todos los formatos, incluyendo PDF, DJVU 
+* Soporte para teléfonos inteligentes con muescas 
+* La leyenda de la barra de estado ahora tiene tres opciones para elegir: completa, compacta y orientada a capítulos 
 * ¡Más comentarios y solicitudes son bienvenidos!
 </es-ES>
 
 <fi-FI>
-* Suuri päivitys, joka perustuu lukijoiden pyyntöihin ja palautteeseen 
-* Uusi teksti-puheeksi (TTS) -rajapinta 
-* Parannettu tuki EPUB 3.0: lle, äänitiedostojen toisto 
-* Useilla eri hakusanoilla kaikissa tiedostomuodoissa, mukaan lukien PDF 
-* Tilarivin legenda sisältää nyt kolme vaihtoehtoa: täysi, pienikokoinen ja luvun suuntainen 
+* PDF-lukulaite, joka perustuu pyyntöihin ja palautteeseen 
+* PDF Reader uudella Text-to-Speech (TTS) -liitännöllä 
+* Parempi tuki EPUB 3.0: lle, äänitiedostojen toisto 
+* Monen sanan hakukyselyt kaikissa tiedostomuodoissa, mukaan lukien PDF, DJVU 
+* Tuki lovetuille älypuhelimille 
+* Tilapalkin legenda sisältää nyt kolme vaihtoehtoa: täysi, pienikokoinen ja luvun suuntainen 
 * Lisää palautetta ja pyyntöjä on erittäin tervetullut!
 </fi-FI>
 
 <vi>
-* Cập nhật lớn dựa trên yêu cầu và phản hồi của người đọc 
-* Giao diện Text-To-Speech mới (TTS) 
+* Bản cập nhật lớn của PDF Reader dựa trên yêu cầu và phản hồi 
+* Trình đọc PDF với giao diện Text-To-Speech (TTS) mới 
 * Cải thiện hỗ trợ cho EPUB 3.0, phát lại tệp âm thanh 
-* Truy vấn tìm kiếm nhiều từ ở tất cả các định dạng, bao gồm PDF 
-* Hỗ trợ cho điện thoại thông minh nổi bật 
-* Chú giải thanh trạng thái hiện có ba tùy chọn để chọn: đầy đủ, nhỏ gọn và hướng theo chương 
+* Truy vấn tìm kiếm nhiều từ ở mọi định dạng, bao gồm PDF, DJVU 
+* Hỗ trợ cho điện thoại thông minh khía cạnh 
+* Truyền thuyết thanh trạng thái hiện có ba tùy chọn để lựa chọn: đầy đủ, nhỏ gọn và hướng theo chương 
 * Phản hồi và yêu cầu khác rất được hoan nghênh!
 </vi>
 
 <fr-FR>
-* Mise à jour majeure basée sur les demandes et les commentaires des lecteurs 
-* Nouvelle interface de synthèse vocale (TTS) 
-* Amélioration du support pour EPUB 3.0, lecture de fichiers audio 
-* Requêtes de recherche multi-mots dans tous les formats, y compris PDF 
-* Support pour les smartphones cochés 
-* La légende de la barre d’état propose désormais trois options: complète, compacte et axée sur les chapitres 
-* Plus de commentaires et de demandes sont les bienvenus!
+* Une mise à jour majeure de PDF Reader basée sur les demandes et les commentaires 
+* PDF Reader avec la nouvelle interface de synthèse vocale (TTS) 
+* Support amélioré pour EPUB 3.0, lecture de fichiers audio 
+* Requêtes de recherche multi-mots dans tous les formats, y compris PDF, DJVU 
+* Prise en charge des smartphones cochés 
+* La légende de la barre d’état propose désormais trois options: complète, compacte et axée sur les chapitres. 
+* D’autres commentaires et demandes sont les bienvenus!
 </fr-FR>
 
 <fr-CA>
-* Mise à jour majeure basée sur les demandes et les commentaires des lecteurs 
-* Nouvelle interface de synthèse vocale (TTS) 
-* Amélioration du support pour EPUB 3.0, lecture de fichiers audio 
-* Requêtes de recherche multi-mots dans tous les formats, y compris PDF 
-* Support pour les smartphones cochés 
-* La légende de la barre d’état propose désormais trois options: complète, compacte et axée sur les chapitres 
-* Plus de commentaires et de demandes sont les bienvenus!
+* Une mise à jour majeure de PDF Reader basée sur les demandes et les commentaires 
+* PDF Reader avec la nouvelle interface de synthèse vocale (TTS) 
+* Support amélioré pour EPUB 3.0, lecture de fichiers audio 
+* Requêtes de recherche multi-mots dans tous les formats, y compris PDF, DJVU 
+* Prise en charge des smartphones cochés 
+* La légende de la barre d’état propose désormais trois options: complète, compacte et axée sur les chapitres. 
+* D’autres commentaires et demandes sont les bienvenus!
 </fr-CA>
 
 <sw>
-* Toleo la msingi linalotokana na maombi ya wasomaji na maoni 
-* Nakala mpya ya Nakala-To-Speech (TTS) 
-* Usaidizi ulioboreshwa kwa EPUB 3.0, uchezaji wa faili za sauti 
-* Maswali ya utafutaji wa neno nyingi katika fomu zote, ikiwa ni pamoja na PDF 
-* Msaada kwa simu za mkononi zisizochapishwa 
-* Hadithi ya bar ya hali sasa ina chaguo tatu cha kuchagua kutoka: full, compact, na sura-oriented 
+* Sasisho kubwa la PDF Reader kulingana na maombi na maoni 
+* PDF Reader na interface mpya ya Nakala-To-Speech (TTS) 
+* Usaidizi ulioboreshwa kwa EPUB 3.0, sauti za kucheza sauti 
+* Maswali ya utafutaji wa neno nyingi katika muundo wote, ikiwa ni pamoja na PDF, DJVU 
+* Msaada kwa ajili ya smartphones zilizopigwa 
+* Hadithi ya bar ya hali sasa ina chaguzi tatu za kuchagua kutoka: full, compact, na sura-oriented 
 * Zaidi maoni na maombi ni welcome sana!
 </sw>
 
 <zh-TW>
-*基于读者请求和反馈的重大更新
-*新的文本转语音（TTS）界面
+*基于请求和反馈的PDF阅读器的重大更新
+*具有新的文本到语音（TTS）界面的PDF阅读器
 *改进了对EPUB 3.0的支持，音频文件播放
-*所有格式的多字搜索查询，包括PDF 
+*包括PDF，DJVU在内的所有格式的多字搜索查询
 *支持缺口智能手机
 *状态栏图例现在有三个选项可供选择：完整，紧凑和面向章节
 *非常欢迎更多反馈和请求！
 </zh-TW>
 
 <ru-RU>
-* Большое обновление, основанное на запросах и отзывах читателей 
-* Новый интерфейс Text-To-Speech (TTS) 
+* Большое обновление PDF Reader на основе запросов и отзывов 
+* PDF Reader с новым интерфейсом Text-To-Speech (TTS) 
 * Улучшенная поддержка EPUB 3.0, воспроизведение аудиофайлов 
-* Многопользовательские поисковые запросы во всех форматах, включая PDF 
+* Многопользовательские поисковые запросы во всех форматах, включая PDF, DJVU 
 * Поддержка надрезанных смартфонов 
 * В легенде панели состояния теперь есть три варианта выбора: полный, компактный и ориентированный на главы 
 * Больше отзывов и запросов очень приветствуются!
 </ru-RU>
 
 <th>
-* ปรับปรุงที่สำคัญขึ้นอยู่กับคำขอของผู้อ่านและข้อเสนอแนะ 
-* อินเตอร์เฟซ Text-To-Speech (TTS) ใหม่ 
-* การสนับสนุนที่ดีขึ้นสำหรับ EPUB 3.0, การเล่นไฟล์เสียง 
-* คำค้นหาหลายคำในทุกรูปแบบรวมทั้ง PDF 
-* การสนับสนุนสำหรับโน้ตบุ๊ค 
-* คำอธิบายแถบสถานะมีสามทางเลือก: แบบเต็มขนาดกะทัดรัดและบท - ข้อเสนอแนะและคำร้องขออื่น ๆ ยินดีต้อนรับ!
+* การปรับปรุงที่สำคัญของ PDF Reader ตามคำขอและข้อเสนอแนะ 
+* PDF Reader ด้วยอินเตอร์เฟซ Text-To-Speech (TTS) ใหม่ 
+* รองรับ EPUB 3.0 ที่ดีขึ้น, การเล่นไฟล์เสียง 
+* คำค้นหาแบบ Multi-word ในทุกรูปแบบรวมถึง PDF, DJVU 
+* การสนับสนุนสำหรับสมาร์ทโฟนที่ทำจากหยัก 
+* ตำนานแถบสถานะปัจจุบันมี 3 ทางเลือกให้เลือกคือแบบเต็มขนาดกะทัดรัดและแบบเน้นบทข้อเสนอแนะและการร้องขอเพิ่มเติม
 </th>
 
 <it-IT>
-* Un importante aggiornamento basato su richieste e feedback dei lettori 
-* Nuova interfaccia Text-To-Speech (TTS) 
+* Un importante aggiornamento di PDF Reader basato su richieste e feedback 
+* PDF Reader con nuova interfaccia Text-To-Speech (TTS) 
 * Supporto migliorato per EPUB 3.0, riproduzione di file audio 
-* Ricerca di parole multiple in tutti i formati, incluso PDF 
-* Supporto per smartphone con tacche 
+* Ricerca di parole multiple in tutti i formati, incluso PDF, DJVU 
+* Supporto per gli smartphone con tacche 
 * La legenda della barra di stato ora ha tre opzioni tra cui scegliere: completa, compatta e orientata ai capitoli 
 * Più feedback e richieste sono ben accette!
 </it-IT>
 
 <sv-SE>
-* En viktig uppdatering baserad på läsarnas önskemål och feedback 
-* Nytt text-till-tal (TTS) -gränssnitt 
+* En viktig uppdatering av PDF-läsare baserat på förfrågningar och återkoppling 
+* PDF-läsare med nytt gränssnitt för text-till-tal (TTS) 
 * Förbättrat stöd för EPUB 3.0, uppspelning av ljudfiler 
-* Multi-word-sökfrågor i alla format, inklusive PDF 
-* Stöd för hakade smartphones 
-* Statusfältet har nu tre alternativ att välja mellan: fullständig, kompakt och kapitelinriktad 
+* Multi-word-sökfrågor i alla format, inklusive PDF, DJVU 
+* Stöd för notched smartphones 
+* Statuslinjen legenden har nu tre alternativ att välja mellan: full, kompakt och kapitelinriktad 
 * Mer feedback och önskemål är mycket välkomna!
 </sv-SE>
 
 <fa>
-* یک بروز رسانی عمده بر اساس درخواست های خوانندگان و بازخورد 
-* رابط جدید متن به گفتار (TTS) 
+* به روز رسانی عمده PDF Reader بر اساس درخواست ها و بازخورد 
+* PDF Reader با رابط جدید متن به گفتار (TTS) 
 * پشتیبانی بهبود یافته برای EPUB 3.0، پخش فایل های صوتی 
-* نمایش کلمات چند کلمه ای در تمام فرمت ها، از جمله PDF 
-* پشتیبانی از گوشی های هوشمند 
-* Legend نوار وضعیت در حال حاضر دارای سه گزینه برای انتخاب: کامل، جمع و جور و فصل گرا 
+* نمایش چند کلمه ای در تمام فرمت ها، از جمله PDF، DJVU 
+* پشتیبانی از گوشی های هوشمند دارای رتبه 
+* نوار افسانه نوار وضعیت در حال حاضر دارای سه گزینه برای انتخاب: کامل، جمع و جور و فصل گرا 
 * بازخورد بیشتر و درخواست بسیار خوش آمدید!
 </fa>
 
 <pt-PT>
-* Uma grande atualização com base nas solicitações e comentários dos leitores 
-* Nova interface de conversão de texto em fala 
+* Uma grande atualização do PDF Reader baseada em solicitações e feedback 
+* Leitor de PDF com nova interface Text-To-Speech (TTS) 
 * Suporte aprimorado para EPUB 3.0, reprodução de arquivos de áudio 
-* Consultas de pesquisa de várias palavras em todos os formatos, incluindo PDF 
+* Consultas de pesquisa de várias palavras em todos os formatos, incluindo PDF, DJVU 
 * Suporte para smartphones entalhados 
-* A legenda da barra de status agora tem três opções para escolher: completa, compacta e orientada por capítulos 
-* Mais comentários e solicitações são muito bem-vindos!
+* A legenda da barra de status agora tem três opções para escolher: completo, compacto e orientado por capítulo 
+* Mais comentários e pedidos são muito bem-vindos!
 </pt-PT>
 
 <pt-BR>
-* Uma grande atualização com base nas solicitações e comentários dos leitores 
-* Nova interface de conversão de texto em fala 
+* Uma grande atualização do PDF Reader baseada em solicitações e feedback 
+* Leitor de PDF com nova interface Text-To-Speech (TTS) 
 * Suporte aprimorado para EPUB 3.0, reprodução de arquivos de áudio 
-* Consultas de pesquisa de várias palavras em todos os formatos, incluindo PDF 
+* Consultas de pesquisa de várias palavras em todos os formatos, incluindo PDF, DJVU 
 * Suporte para smartphones entalhados 
-* A legenda da barra de status agora tem três opções para escolher: completa, compacta e orientada por capítulos 
-* Mais comentários e solicitações são muito bem-vindos!
+* A legenda da barra de status agora tem três opções para escolher: completo, compacto e orientado por capítulo 
+* Mais comentários e pedidos são muito bem-vindos!
 </pt-BR>
 
 <ko-KR>
-* 독자의 요청 및 피드백을 기반으로 한 주요 업데이트 
-* 새로운 텍스트 음성 변환 (TTS) 인터페이스 
+* 요청 및 피드백을 기반으로 한 PDF Reader의 주요 업데이트 
+* 새로운 TTS (텍스트 음성 변환) 인터페이스가있는 PDF Reader 
 * EPUB 3.0, 오디오 파일 재생 지원 향상 
-* PDF를 포함한 모든 형식의 다중 단어 검색 쿼리 
-* 노치 스마트 폰 지원 
+* PDF, DJVU를 포함한 모든 형식의 다중 단어 검색 쿼리 
+* 노치 형 스마트 폰 지원 
 * 상태 표시 줄 범례에는 전체, 소형 및 챕터 중심의 세 가지 옵션이 있습니다. 
-* 더 많은 피드백과 요청을 환영합니다!
+* 더 많은 의견과 요청을 환영합니다!
 </ko-KR>
 
 <hu-HU>
-* Az olvasó kéréseinek és visszajelzéseinek köszönhetően jelentős frissítés 
-* Új szöveg-to-speech (TTS) felület 
-* Továbbfejlesztett támogatás az EPUB 3.0-hoz, audió fájlok lejátszása 
-* Többféle keresési lekérdezés minden formátumban, beleértve a PDF-t 
-* Az állapotjelző legenda most három lehetőség közül választhat: teljes, kompakt és fejezetközpontú 
-* Több visszajelzés és kérés nagyon örvendetes!
+* A PDF Reader alapja a kérések és a visszajelzések alapján 
+* PDF Reader új szöveg-to-speech (TTS) interfésszel 
+* Továbbfejlesztett támogatás az EPUB 3.0-hoz, audiofájlok lejátszása 
+* Többféle keresési lekérdezés minden formátumban, beleértve a PDF, DJVU 
+* A beágyazott okostelefonok támogatása 
+* Az állapotjelző legenda három lehetőség közül választhat: teljes, kompakt és fejezetközpontú 
+* További visszajelzések és kérések nagyon örülnek!
 </hu-HU>
 
 <sk>
-* Veľká aktualizácia založená na požiadavkách a spätnej väzbe čitateľov 
-* Nové rozhranie TTS (Text-to-Speech) 
-* Vylepšená podpora pre EPUB 3.0, prehrávanie zvukových súborov 
-* Multi-word vyhľadávacie dotazy vo všetkých formátoch, vrátane PDF 
-* Legenda stavovej lišty má teraz tri možnosti výberu: úplné, kompaktné a orientované na kapitoly 
-* Viac spätnej väzby a požiadaviek sú veľmi vítané!
+* Veľká aktualizácia programu PDF Reader na základe požiadaviek a spätnej väzby 
+* PDF Reader s novým rozhraním TTS (Text-to-Speech) 
+* Vylepšená podpora EPUB 3.0, prehrávanie zvukových súborov 
+* Multi-word vyhľadávacie dotazy vo všetkých formátoch vrátane PDF, DJVU 
+* Podpora pre zúžené smartphony 
+* Legenda stavovej lišty teraz má tri možnosti na výber: plné, kompaktné a kapitola orientované 
+* Viac spätnej väzby a požiadavky sú veľmi vítané!
 </sk>
 
 <tr-TR>
-* Okuyucuların istekleri ve geri bildirimlerine dayalı büyük bir güncelleme 
-* Yeni Metin-Konuşma (TTS) arayüzü 
+* PDF Okuyucunun istek ve geri bildirimlere dayalı büyük bir güncellemesi 
+* Yeni Metin-Konuşma (TTS) arayüzüne sahip PDF Okuyucu 
 * EPUB 3.0 için geliştirilmiş destek, ses dosyaları oynatma 
-* PDF dahil tüm formatlarda çok sözcüklü arama sorguları 
+* PDF, DJVU dahil tüm formatlarda çok sözcüklü arama sorguları 
 * Çentikli akıllı telefonlar için destek 
-* Durum çubuğu açıklamasının şu anda seçim yapabileceğiniz üç seçeneği vardır: tam, kompakt ve bölüm odaklı 
-* Daha fazla geri bildirim ve istek çok açıktır!
+* Durum çubuğu açıklamasının artık üç seçenek vardır: tam, kompakt ve bölüm odaklı 
+* Daha fazla geri bildirim ve istek çok hoş geldiniz!
 </tr-TR>
 
 <no-NO>
-* En viktig oppdatering basert på leserens forespørsler og tilbakemelding 
-* TTS-grensesnitt for tekst-til-tale (TTS) 
+* En stor oppdatering av PDF-leser basert på forespørsler og tilbakemelding 
+* PDF-leser med nytt tekst-til-tale (TTS) -grensesnitt 
 * Forbedret støtte for EPUB 3.0, avspilling av lydfiler 
-* Multi-ordsøk i alle formater, inkludert PDF 
-* Støtte for innhakkede smartphones 
-* Statuslinjen legenden har nå tre alternativer å velge mellom: full, kompakt og kapitletorientert 
+* Multi-ordsøk i alle formater, inkludert PDF, DJVU 
+* Støtte for hakkede smarttelefoner 
+* Statuslinjen Legenden har nå tre alternativer å velge mellom: full, kompakt og kapitletorientert 
 * Flere tilbakemeldinger og forespørsler er veldig velkommen!
 </no-NO>
 
 <la>
-* A major update secundum legentibus, petitiones et feedback 
-* Novae cum textu ad-Declamatio (TTS) interface 
+* A major update PDF Lector secundum petitiones et feedback 
+* PDF Lector cum novo textu ut, Declamatio (TTS) interface 
 * Melior subsidium EPUB 3.0, audio files playback 
-* Multi-verbum quaerere queries in formats, inter PDF 
-* Support est Tegeaea Suspendisse potenti 
-* quod status talea autem legenda est options eligere ex tribus, plenus pacto et capite orientatur Magis 
+* Multi-verbum quaerere queries in formats, inter PDF, DJVU Integer Suspendisse potenti retusis 
+* 
+* nunc est quod status talea legenda options eligere ex tribus, plenus pacto et capite orientatur Magis 
 * petitiones, et quae grata feedback!
 </la>
 
 <ja-JP>
-*読者の要望とフィードバックに基づく主要なアップデート
-*新しいテキスト音声変換（TTS）インターフェース
-* EPUB 3.0、オーディオファイルの再生の改善
-* PDFを含むあらゆる形式のマルチワード検索クエリ
+*リクエストやフィードバックに基づいてPDFリーダーの主要なアップデート
+*新しいテキスト音声（TTS）インターフェイスを備えたPDFリーダー
+* EPUB 3.0、オーディオファイルの再生のサポートの改善
+* PDF、DJVUを含むすべてのフォーマットのマルチワード検索クエリ
 *ノッチ付きスマートフォンのサポート
-*ステータスバーの凡例には、フル、コンパクト、チャプタ指向の3種類のオプションが用意されています。
+*ステータスバーの凡例には、フル、コンパクト、チャプター指向の3種類のオプションが用意されています。
 </ja-JP>
 
 <uk>
-* Основне оновлення на основі запитів читачів та зворотного зв’язку 
-* Новий інтерфейс тексту до мовлення (TTS) 
+* Основне оновлення PDF Reader на основі запитів та відгуків 
+* PDF Reader з новим інтерфейсом Text-to-Speech (TTS) 
 * Покращена підтримка EPUB 3.0, відтворення аудіофайлів 
-* Багатослівні пошукові запити у всіх форматах, включаючи PDF 
-* Підтримка смартфонів, Тепер у легенді статусної панелі є три варіанти на вибір: повний, компактний та орієнтований на розділи 
+* Багатослова пошукові запити у всіх форматах, включаючи PDF, DJVU 
+* Підтримка смартфонів, що вийшли з ладу. Тепер легенда на панелі статусу має три варіанти на вибір: повна, компактна та орієнтована на розділи 
 * Більше відгуків та запитів дуже раді!
 </uk>
 
 <en-US>
-* A major update based on readers’ requests and feedback
-* New Text-To-Speech (TTS) interface
+* A major update of PDF Reader based on requests and feedback
+* PDF Reader with new Text-To-Speech (TTS) interface
 * Improved support for EPUB 3.0, audio files playback
-* Multi-word search queries in all formats, including PDF
+* Multi-word search queries in all formats, including PDF, DJVU
 * Support for notched smartphones
 * The status bar legend now has three options to choose from: full, compact, and chapter-oriented
 * More feedback and requests are very welcome!

@@ -1,7 +1,7 @@
-* En viktig oppdatering basert på leserens forespørsler og tilbakemelding 
-* TTS-grensesnitt for tekst-til-tale (TTS) 
+* En stor oppdatering av PDF-leser basert på forespørsler og tilbakemelding 
+* PDF-leser med nytt tekst-til-tale (TTS) -grensesnitt 
 * Forbedret støtte for EPUB 3.0, avspilling av lydfiler 
-* Multi-ordsøk i alle formater, inkludert PDF 
-* Støtte for innhakkede smartphones 
-* Statuslinjen legenden har nå tre alternativer å velge mellom: full, kompakt og kapitletorientert 
+* Multi-ordsøk i alle formater, inkludert PDF, DJVU 
+* Støtte for hakkede smarttelefoner 
+* Statuslinjen Legenden har nå tre alternativer å velge mellom: full, kompakt og kapitletorientert 
 * Flere tilbakemeldinger og forespørsler er veldig velkommen!

@@ -1,7 +1,7 @@
-* O actualizare majoră bazată pe solicitările și feedback-ul cititorilor 
-* Interfața TTS 
+* O actualizare majoră a Reader-ului PDF bazat pe solicitări și feedback 
+* Reader PDF cu interfață TTS 
 * Suport îmbunătățit pentru EPUB 3.0, redarea fișierelor audio 
-* Interogări de căutare multi-word în toate formatele, inclusiv PDF 
+* Interogări de căutare multi-word în toate formatele, inclusiv PDF, DJVU 
 * Suport pentru smartphone-uri notate 
-* Legenda bara de stare are acum trei opțiuni de alegere: completă, compactă și orientată spre capitol 
+* Legenda barei de stare are acum trei opțiuni de alegere: completă, compactă și orientată către capitole 
 * Mai multe feedback și solicitări sunt foarte binevenite!

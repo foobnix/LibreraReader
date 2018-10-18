@@ -1,7 +1,7 @@
-* A major update secundum legentibus, petitiones et feedback 
-* Novae cum textu ad-Declamatio (TTS) interface 
+* A major update PDF Lector secundum petitiones et feedback 
+* PDF Lector cum novo textu ut, Declamatio (TTS) interface 
 * Melior subsidium EPUB 3.0, audio files playback 
-* Multi-verbum quaerere queries in formats, inter PDF 
-* Support est Tegeaea Suspendisse potenti 
-* quod status talea autem legenda est options eligere ex tribus, plenus pacto et capite orientatur Magis 
+* Multi-verbum quaerere queries in formats, inter PDF, DJVU Integer Suspendisse potenti retusis 
+* 
+* nunc est quod status talea legenda options eligere ex tribus, plenus pacto et capite orientatur Magis 
 * petitiones, et quae grata feedback!

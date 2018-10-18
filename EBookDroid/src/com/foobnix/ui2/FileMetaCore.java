@@ -292,6 +292,7 @@ public class FileMetaCore {
 
         fileMeta.setSize(file.length());
         fileMeta.setDate(file.lastModified());
+        fileMeta.setParentPath(file.getParent());
 
         fileMeta.setExt(ExtUtils.getFileExtension(file));
         fileMeta.setSizeTxt(ExtUtils.readableFileSize(file.length()));

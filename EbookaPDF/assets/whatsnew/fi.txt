@@ -1,6 +1,7 @@
-* Suuri päivitys, joka perustuu lukijoiden pyyntöihin ja palautteeseen 
-* Uusi teksti-puheeksi (TTS) -rajapinta 
-* Parannettu tuki EPUB 3.0: lle, äänitiedostojen toisto 
-* Useilla eri hakusanoilla kaikissa tiedostomuodoissa, mukaan lukien PDF 
-* Tilarivin legenda sisältää nyt kolme vaihtoehtoa: täysi, pienikokoinen ja luvun suuntainen 
+* PDF-lukulaite, joka perustuu pyyntöihin ja palautteeseen 
+* PDF Reader uudella Text-to-Speech (TTS) -liitännöllä 
+* Parempi tuki EPUB 3.0: lle, äänitiedostojen toisto 
+* Monen sanan hakukyselyt kaikissa tiedostomuodoissa, mukaan lukien PDF, DJVU 
+* Tuki lovetuille älypuhelimille 
+* Tilapalkin legenda sisältää nyt kolme vaihtoehtoa: täysi, pienikokoinen ja luvun suuntainen 
 * Lisää palautetta ja pyyntöjä on erittäin tervetullut!

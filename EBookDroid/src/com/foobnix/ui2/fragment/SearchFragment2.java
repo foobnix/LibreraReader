@@ -538,6 +538,24 @@ public class SearchFragment2 extends UIFragment<FileMeta> {
                 }
             }
 
+            if (AppState.get().sortBy == SORT_BY.PATH.getIndex()) {
+                List<FileMeta> res = new ArrayList<FileMeta>();
+                String last = null;
+
+                for (FileMeta it : searchBy) {
+                    String parentName = it.getParentPath();
+                    if (!parentName.equals(last)) {
+                        FileMeta fm = new FileMeta();
+                        fm.setCusType(FileMetaAdapter.DISPALY_TYPE_LAYOUT_TITLE_DIVIDER);
+                        fm.setTitle(parentName);
+                        last = parentName;
+                        res.add(fm);
+                    }
+                    res.add(it);
+                }
+                searchBy = res;
+            }
+
             return searchBy;
         } else {
             return null;

@@ -119,6 +119,9 @@ public class AppsConfig {
         }
         if (LOG.isEnable) {
             GOOGLE_DRIVE_KEY = "961762082517-d2jro57s97ck73grvknbfnio8cg5fca3.apps.googleusercontent.com";
+
+            // QueryBuilder.LOG_SQL = true;
+            // QueryBuilder.LOG_VALUES = true;
         }
 
 

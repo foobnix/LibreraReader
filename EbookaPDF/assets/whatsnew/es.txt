@@ -1,5 +1,7 @@
-* Una actualización importante basada en las solicitudes y comentarios de los lectores 
-* Nueva interfaz de Text-to-Speech (TTS) 
-* Soporte mejorado para EPUB 3.0, reproducción de archivos de audio 
-* Consultas de búsqueda de múltiples palabras en todos los formatos, incluido PDF La leyenda de la barra de estado ahora tiene tres opciones para elegir: completa, compacta y orientada a capítulos 
+* Una actualización importante de PDF Reader basada en solicitudes y comentarios 
+* Lector de PDF con la nueva interfaz Text-To-Speech (TTS) 
+* Compatibilidad mejorada para EPUB 3.0, reproducción de archivos de audio 
+* Consultas de búsqueda de múltiples palabras en todos los formatos, incluyendo PDF, DJVU 
+* Soporte para teléfonos inteligentes con muescas 
+* La leyenda de la barra de estado ahora tiene tres opciones para elegir: completa, compacta y orientada a capítulos 
 * ¡Más comentarios y solicitudes son bienvenidos!
