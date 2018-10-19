@@ -161,11 +161,11 @@ public class TTSService extends Service {
         filter.addAction(BluetoothDevice.ACTION_ACL_CONNECTED);
         filter.addAction(BluetoothDevice.ACTION_ACL_DISCONNECT_REQUESTED);
         filter.addAction(BluetoothDevice.ACTION_ACL_DISCONNECTED);
-        registerReceiver(mReceiver, filter);
+        registerReceiver(blueToothReceiver, filter);
 
     }
 
-    private final BroadcastReceiver mReceiver = new BroadcastReceiver() {
+    private final BroadcastReceiver blueToothReceiver = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
             TTSEngine.get().stop();
@@ -435,6 +435,8 @@ public class TTSService extends Service {
                 TTSEngine.get().speek(LibreraApp.context.getString(R.string.the_book_is_over));
 
                 EventBus.getDefault().post(new TtsStatus());
+
+                stopSelf();
                 return;
             }
 
@@ -502,6 +504,7 @@ public class TTSService extends Service {
                         if (TempHolder.get().timerFinishTime != 0 && System.currentTimeMillis() > TempHolder.get().timerFinishTime) {
                             LOG.d(TAG, "Timer");
                             TempHolder.get().timerFinishTime = 0;
+                            stopSelf();
                             return;
                         }
 
@@ -524,6 +527,7 @@ public class TTSService extends Service {
                         if (TempHolder.get().timerFinishTime != 0 && System.currentTimeMillis() > TempHolder.get().timerFinishTime) {
                             LOG.d(TAG, "Timer");
                             TempHolder.get().timerFinishTime = 0;
+                            stopSelf();
                             return;
                         }
                         playPage(secondPart, AppState.get().lastBookPage + 1, null);
@@ -564,9 +568,11 @@ public class TTSService extends Service {
     @Override
     public void onDestroy() {
         super.onDestroy();
+        unregisterReceiver(blueToothReceiver);
         if (wakeLock.isHeld()) {
             wakeLock.release();
         }
+        TTSNotification.hideNotification();
         TTSEngine.get().shutdown();
 
         isActivated = false;

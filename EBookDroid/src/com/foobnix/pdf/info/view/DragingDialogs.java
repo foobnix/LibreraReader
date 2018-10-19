@@ -3115,7 +3115,8 @@ public class DragingDialogs {
                     @Override
                     public void onClick(View v) {
                         final PopupMenu popupMenu = new PopupMenu(v.getContext(), v);
-                        for (int i = 1; i <= 10; i++) {
+                        List<Integer> times = Arrays.asList(1, 2, 3, 4, 5, 10, 20, 30, 60);
+                        for (int i : times) {
                             final int number = i;
                             popupMenu.getMenu().add("" + i).setOnMenuItemClickListener(new OnMenuItemClickListener() {
 

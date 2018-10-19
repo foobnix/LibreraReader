@@ -136,6 +136,9 @@ public class TTSEngine {
     public void stopDestroy() {
         LOG.d(TAG, "stop");
         synchronized (helpObject) {
+            if (ttsEngine != null) {
+                ttsEngine.shutdown();
+            }
             ttsEngine = null;
         }
     }
@@ -157,11 +160,22 @@ public class TTSEngine {
         if (TxtUtils.isEmpty(text)) {
             return;
         }
+        if (ttsEngine == null) {
+            LOG.d("getTTS-status was null");
+        } else {
+            LOG.d("getTTS-status not null");
+        }
+
         ttsEngine = getTTS(new OnInitListener() {
 
             @Override
             public void onInit(int status) {
+                LOG.d("getTTS-status", status);
                 if (status == TextToSpeech.SUCCESS) {
+                    try {
+                        Thread.sleep(1000);
+                    } catch (InterruptedException e) {
+                    }
                     speek(text);
                 }
             }
