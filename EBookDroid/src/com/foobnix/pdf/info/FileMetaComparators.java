@@ -1,5 +1,6 @@
 package com.foobnix.pdf.info;
 
+import java.io.File;
 import java.util.Comparator;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -13,6 +14,18 @@ public class FileMetaComparators {
     public static Comparator<FileMeta> BY_PATH = new Comparator<FileMeta>() {
         @Override
         public int compare(FileMeta o1, FileMeta o2) {
+            try {
+                return String.CASE_INSENSITIVE_ORDER.compare(o1.getPath(), o2.getPath());
+            } catch (Exception e) {
+                LOG.e(e);
+                return 0;
+            }
+        }
+    };
+
+    public static Comparator<File> BY_PATH_FILE = new Comparator<File>() {
+        @Override
+        public int compare(File o1, File o2) {
             try {
                 return String.CASE_INSENSITIVE_ORDER.compare(o1.getPath(), o2.getPath());
             } catch (Exception e) {

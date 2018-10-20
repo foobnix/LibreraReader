@@ -413,8 +413,15 @@ public class TTSEngine {
         }
     }
 
+    public void pauseMp3() {
+        if (mp != null) {
+            mp.pause();
+        }
+    }
+
     public boolean isMp3() {
         return TxtUtils.isNotEmpty(AppState.get().mp3BookPath);
     }
+
 
 }

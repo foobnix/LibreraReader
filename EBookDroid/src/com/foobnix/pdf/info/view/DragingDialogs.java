@@ -498,7 +498,7 @@ public class DragingDialogs {
                 final TextView timerStart = (TextView) view.findViewById(R.id.timerStart);
                 final TextView ttsPlayMusicFile = (TextView) view.findViewById(R.id.ttsPlayMusicFile);
 
-                TTSControlsView tts = (TTSControlsView) view.findViewById(R.id.ttsActive);
+                final TTSControlsView tts = (TTSControlsView) view.findViewById(R.id.ttsActive);
                 tts.setDC(controller);
 
                 TextView ttsSkeakToFile = (TextView) view.findViewById(R.id.ttsSkeakToFile);
@@ -598,12 +598,7 @@ public class DragingDialogs {
                     public void run() {
                         textEngine.setText(TTSEngine.get().getCurrentEngineName());
                         ttsLang.setText(TTSEngine.get().getCurrentLang());
-                        if (TxtUtils.isNotEmpty(AppState.get().mp3BookPath)) {
-                            TxtUtils.underline(ttsPlayMusicFile, TxtUtils.lastTwoPath(AppState.get().mp3BookPath));
-                        } else {
-                            TxtUtils.underline(ttsPlayMusicFile, controller.getString(R.string.play_a_music_file));
 
-                        }
                     }
                 });
 
@@ -753,7 +748,8 @@ public class DragingDialogs {
                                     AppState.get().mp3BookPath = result1;
                                     AppState.get().mp3seek = 0;
 
-                                    TxtUtils.underline(ttsPlayMusicFile, TxtUtils.lastTwoPath(AppState.get().mp3BookPath));
+                                    tts.udateButtons();
+
                                     TTSEngine.get().mp3Destroy();
                                     TTSService.playBookPage(controller.getCurentPageFirst1() - 1, controller.getCurrentBook().getPath(), "", controller.getBookWidth(), controller.getBookHeight(), AppState.get().fontSizeSp, controller.getTitle());
                                 } else {
@@ -766,13 +762,7 @@ public class DragingDialogs {
 
                     }
                 });
-                if (TxtUtils.isNotEmpty(AppState.get().mp3BookPath)) {
-                    TxtUtils.underline(ttsPlayMusicFile, TxtUtils.lastTwoPath(AppState.get().mp3BookPath));
-
-                } else {
-                    TxtUtils.underlineTextView(ttsPlayMusicFile);
-
-                }
+                TxtUtils.underlineTextView(ttsPlayMusicFile);
 
                 ttsSkeakToFile.setOnClickListener(new OnClickListener() {
 

@@ -68,16 +68,24 @@ public class TTSControlsView extends FrameLayout {
         final ImageView ttsNext = (ImageView) view.findViewById(R.id.ttsNext);
         final ImageView ttsPrev = (ImageView) view.findViewById(R.id.ttsPrev);
 
+        ttsPrevTrack = (ImageView) view.findViewById(R.id.ttsPrevTrack);
+        ttsNextTrack = (ImageView) view.findViewById(R.id.ttsNextTrack);
+        trackName = (TextView) view.findViewById(R.id.trackName);
+
         ttsDialog = (ImageView) view.findViewById(R.id.ttsDialog);
         ttsDialog.setVisibility(View.GONE);
+        trackName.setVisibility(View.GONE);
 
-        int color = Color.parseColor(AppState.get().isDayNotInvert ? BookCSS.get().linkColorDay : BookCSS.get().linkColorNight);
+        colorTint = Color.parseColor(AppState.get().isDayNotInvert ? BookCSS.get().linkColorDay : BookCSS.get().linkColorNight);
 
-        TintUtil.setTintImageWithAlpha(ttsStop, color);
-        TintUtil.setTintImageWithAlpha(ttsPlayPause, color);
-        TintUtil.setTintImageWithAlpha(ttsNext, color);
-        TintUtil.setTintImageWithAlpha(ttsPrev, color);
-        TintUtil.setTintImageWithAlpha(ttsDialog, color);
+        TintUtil.setTintImageWithAlpha(ttsStop, colorTint);
+        TintUtil.setTintImageWithAlpha(ttsPlayPause, colorTint);
+        TintUtil.setTintImageWithAlpha(ttsNext, colorTint);
+        TintUtil.setTintImageWithAlpha(ttsPrev, colorTint);
+        TintUtil.setTintImageWithAlpha(ttsDialog, colorTint);
+        TintUtil.setTintImageWithAlpha(ttsPrevTrack, colorTint);
+        TintUtil.setTintImageWithAlpha(ttsNextTrack, colorTint);
+        TintUtil.setTintText(trackName, colorTint);
 
         ttsNext.setOnClickListener(new OnClickListener() {
 
@@ -126,13 +134,23 @@ public class TTSControlsView extends FrameLayout {
                 TTSService.playPause(context, controller);
             }
         });
+        ttsPlayPause.setOnLongClickListener(new OnLongClickListener() {
+
+            @Override
+            public boolean onLongClick(View v) {
+                TTSEngine.get().pauseMp3();
+                TTSEngine.get().mp.seekTo(0);
+                return true;
+            }
+        });
+
         handler = new Handler();
         seekMp3 = (SeekBar) view.findViewById(R.id.seekMp3);
         seekCurrent = (TextView) view.findViewById(R.id.seekCurrent);
         seekMax = (TextView) view.findViewById(R.id.seekMax);
         layoutMp3 = view.findViewById(R.id.layoutMp3);
 
-        int tinColor = ColorUtils.setAlphaComponent(color, 230);
+        int tinColor = ColorUtils.setAlphaComponent(colorTint, 230);
 
         seekMp3.getProgressDrawable().setColorFilter(tinColor, Mode.SRC_ATOP);
         if (Build.VERSION.SDK_INT >= 16) {
@@ -144,11 +162,47 @@ public class TTSControlsView extends FrameLayout {
         layoutMp3.setVisibility(View.GONE);
         initMp3();
 
+        ttsPrevTrack.setOnClickListener(new OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                String track = TTSTracks.getPrevTrack();
+                if (track != null) {
+                    TTSEngine.get().stop();
+                    AppState.get().mp3BookPath = track;
+                    TTSEngine.get().loadMP3(track);
+                    // TTSEngine.get().playMp3();
+                    udateButtons();
+                }
+            }
+        });
+
+        ttsNextTrack.setOnClickListener(new OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                String track = TTSTracks.getNextTrack();
+                if (track != null) {
+                    TTSEngine.get().stop();
+                    AppState.get().mp3BookPath = track;
+                    TTSEngine.get().loadMP3(track);
+                    // TTSEngine.get().playMp3();
+                    udateButtons();
+                }
+            }
+        });
+
+        ttsPrevTrack.setVisibility(TxtUtils.visibleIf(TTSTracks.isMultyTracks()));
+        ttsNextTrack.setVisibility(TxtUtils.visibleIf(TTSTracks.isMultyTracks()));
+
     }
 
     public void initMp3() {
         if (TTSEngine.get().isMp3() && layoutMp3.getVisibility() == View.GONE) {
             layoutMp3.setVisibility(View.VISIBLE);
+            trackName.setVisibility(View.VISIBLE);
+
+            udateButtons();
 
             seekMp3.setOnSeekBarChangeListener(new OnSeekBarChangeListener() {
 
@@ -172,6 +226,18 @@ public class TTSControlsView extends FrameLayout {
             });
 
         }
+    }
+
+    public void udateButtons() {
+        trackName.setText(TTSTracks.getCurrentTrackName());
+
+        boolean isMulty = TTSTracks.isMultyTracks();
+        ttsPrevTrack.setVisibility(TxtUtils.visibleIf(isMulty));
+        ttsNextTrack.setVisibility(TxtUtils.visibleIf(isMulty));
+
+        TintUtil.setTintImageWithAlpha(ttsPrevTrack, TTSTracks.getPrevTrack() != null ? colorTint : Color.GRAY);
+        TintUtil.setTintImageWithAlpha(ttsNextTrack, TTSTracks.getNextTrack() != null ? colorTint : Color.GRAY);
+
     }
 
     @Override
@@ -208,10 +274,15 @@ public class TTSControlsView extends FrameLayout {
 
                     seekMp3.setMax(TTSEngine.get().mp.getDuration());
                     seekMp3.setProgress(TTSEngine.get().mp.getCurrentPosition());
+
+
+
+                    udateButtons();
                 }
 
             } else {
                 layoutMp3.setVisibility(View.GONE);
+                trackName.setVisibility(View.GONE);
             }
 
             LOG.d("TtsStatus-isPlaying", TTSEngine.get().isPlaying());
@@ -222,5 +293,9 @@ public class TTSControlsView extends FrameLayout {
     private SeekBar seekMp3;
     private TextView seekCurrent;
     private TextView seekMax;
+    private TextView trackName;
+    private ImageView ttsPrevTrack;
+    private ImageView ttsNextTrack;
+    private int colorTint;
 
 }

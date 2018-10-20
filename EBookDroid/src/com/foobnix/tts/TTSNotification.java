@@ -110,6 +110,9 @@ public class TTSNotification {
             remoteViews.setOnClickPendingIntent(R.id.ttsPrev, prev);
             remoteViews.setOnClickPendingIntent(R.id.ttsStop, stopDestroy);
 
+            remoteViews.setViewVisibility(R.id.ttsNextTrack, View.GONE);
+            remoteViews.setViewVisibility(R.id.ttsPrevTrack, View.GONE);
+
             remoteViews.setViewVisibility(R.id.ttsDialog, View.GONE);
 
             if (TTSEngine.get().isPlaying()) {
