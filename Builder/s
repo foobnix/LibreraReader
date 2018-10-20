@@ -1,0 +1,16 @@
+n1=$1
+n2=$2
+if [ -z "$1" ]
+then
+n1="/home/ivan-dev/Pictures"
+n2="Screenshot"-`date +%Y-%m-%d-%H-%M-%S`  
+fi
+
+echo $n1
+echo $n2
+
+adb shell screencap -p /sdcard/screen.png
+
+adb pull /sdcard/screen.png "$n1/$n2.png"
+adb shell rm /sdcard/screen.png
+convert -quality 85% -resize 50% "$n1/$n2.png" "$n1/$n2.png"

@@ -42,6 +42,9 @@ You can enable the option to open a known word or a sentence in the selected dic
 |![](7.png)|![](8.png)|![](9.png)|
 
 
+Librera can play external audio files with the book
+Application displays formats .mp3, .mp4, .wav, .ogg, .m4a, .flac
+Long click on play\pause button reset track to the beginning
 
 * Add an audi file that goes to the book
 * Manage listening, play-pause
