@@ -4,47 +4,45 @@ version: 2
 ---
 [<](/wiki/stories)
 
-# Main applicatin window
+# The Main Screen
 
-> Library tab or the bookshelf is the main view of the application.
+> Library Tab, or Bookcase
 
-* Library Tab - display all books found on the device
-* Change the order by Data, File Size, Author etc
-* Change the view type by List, Grid, Covers
+* Library Tab - displays all the books found on the device
+* Change the sorting order by Data, File Size, Author, etc.
+* Rearrange books by changing the viewing mode: List, Grid, Covers only, etc.
 
 ||||
 |-|-|-|
 |![](1.png)|![](2.png)|![](3.png)|
 
 
-* Two columns view
+* Condensed (two-column) view
 * Grid view
-* Covers view
+* Covers only (Book Cover)
 
 ||||
 |-|-|-|
 |![](4.png)|![](5.png)|![](6.png)|
 
 
-* Seach in the library by the word "comm"
-* Start - to add books for favorites list
-* Long click on star to add custom tags
-* History - custom tag on book
-* Long click on book card to open Book information dialog
-* Book menu
+* Search the library for "comm" string
+* Tap star to add a book to the Favorites list
+* Long-press on star to add a custom tag
+* Tap History to add a custom tag to a book
+* Long-press on a book to open the Info window
+* Tap triple-dot to pop up the Menu window
 
 ||||
 |-|-|-|
 |![](7.png)|![](8.png)|![](9.png)|
 
-* Book series, number in series, search by FB2
-* Click on Author to find all books by author
-* Cross to clear search in library
-* Long click to watch and edit search history and auto completion
-* Book information and reading progress line
+* Search for a book by extension (FB2)
+* Click on Author to find all books by this author
+* Tap _x_ to clear search results
+* Long-press on check-mark to view and edit the search-history and auto-complete list
+* Book info and reading progress
 
 ||||
 |-|-|-|
 |![](10.png)|![](11.png)|![](12.png)|
-
-
