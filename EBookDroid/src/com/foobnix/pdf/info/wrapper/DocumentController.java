@@ -228,11 +228,14 @@ public abstract class DocumentController {
 
     public void goToPageByTTS() {
         try {
-            BookSettings bs = SettingsManager.getBookSettings(getCurrentBook().getPath());
+            if (TTSEngine.get().isPlaying()) {
 
-            if (getCurrentBook().getPath().equals(AppState.get().lastBookPath)) {
-                onGoToPage(bs.getCurrentPage().viewIndex + 1);
-                LOG.d("goToPageByTTS", AppState.get().lastBookPage + 1);
+                BookSettings bs = SettingsManager.getBookSettings(getCurrentBook().getPath());
+
+                if (getCurrentBook().getPath().equals(AppState.get().lastBookPath)) {
+                    onGoToPage(bs.getCurrentPage().viewIndex + 1);
+                    LOG.d("goToPageByTTS", AppState.get().lastBookPage + 1);
+                }
             }
         } catch (Exception e) {
             LOG.e(e);
@@ -308,7 +311,6 @@ public abstract class DocumentController {
     public String getCurrentChapter() {
         return OutlineHelper.getCurrentChapterAsString(this);
     }
-
 
     public static boolean isEinkOrMode(Context c) {
         return Dips.isEInk(c) || AppState.get().isInkMode;

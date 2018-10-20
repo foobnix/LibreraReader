@@ -423,5 +423,11 @@ public class TTSEngine {
         return TxtUtils.isNotEmpty(AppState.get().mp3BookPath);
     }
 
+    public void seekTo(int i) {
+        if (mp != null) {
+            mp.seekTo(i);
+        }
+
+    }
 
 }
