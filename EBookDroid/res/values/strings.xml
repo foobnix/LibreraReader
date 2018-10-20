@@ -259,7 +259,7 @@
    <string name="file_info">File info</string>
    <string name="archive_files">Archive files</string>
    <string name="open_file">Open file</string>
-   <string name="read_a_book">Read now!</string>
+   <string name="read_a_book">Read!</string>
    <string name="___SORT___AND___VIEW___SECTION___"></string>
    <string name="by_path">Path</string>
    <string name="by_file_name">Filename</string>
@@ -495,5 +495,5 @@
    <string name="slider_scale">Slider scale</string>
    <string name="chapter_format">Legend format</string>
    <string name="play_a_music_file">Play an audio file</string>
-   <string name="add_a_review">Add a review</string>
+   <string name="add_a_review">Rate us</string>
 </resources>
