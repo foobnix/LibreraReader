@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:myseek="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:minHeight="400dip"
+    android:minWidth="1000dip"
+    android:orientation="vertical"
+    android:padding="4dip" >
+
+    <com.foobnix.pdf.info.view.CustomSeek
+        android:id="@+id/fastReadSpeed"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="0"
+        myseek:text="@string/speed1" >
+    </com.foobnix.pdf.info.view.CustomSeek>
+    
+     <com.foobnix.pdf.info.view.CustomSeek
+        android:id="@+id/fastReadFontSize"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="0"
+        myseek:text="@string/font_size" >
+    </com.foobnix.pdf.info.view.CustomSeek>
+
+    <TextView
+        android:id="@+id/textWord"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="center"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:text="@string/start"
+        android:textSize="40sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/onReset"
+        style="@style/textLink"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="0"
+        android:text="@string/reset" />
+
+</LinearLayout>

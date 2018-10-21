@@ -496,4 +496,6 @@
    <string name="chapter_format">Hoofdstuk formaat</string>
    <string name="play_a_music_file">Speel een muziekbestand</string>
    <string name="add_a_review">Voeg een beoordeling toe</string>
+   <string name="reset">Reset</string>
+   <string name="fast_reading">Snel lezen</string>
 </resources>

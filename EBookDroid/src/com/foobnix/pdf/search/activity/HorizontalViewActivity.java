@@ -575,7 +575,14 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
                             dc.getActivity().finish();
                         }
                     }
-                }, dc.getCurentPage(), null, dc);
+                }, dc.getCurentPage(), dc, new Runnable() {
+
+                    @Override
+                    public void run() {
+                        hideShow();
+
+                    }
+                });
                 Keyboards.hideNavigation(HorizontalViewActivity.this);
                 hideAds();
 

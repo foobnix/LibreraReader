@@ -329,6 +329,9 @@ public class AppState {
     @IgnoreHashCode
     public int appBrightness = AUTO_BRIGTNESS;
 
+    public volatile int fastReadSpeed = 300;
+    public volatile int fastReadFontSize = 40;
+
     public volatile float ttsSpeed = 1.0f;
     public volatile float ttsPitch = 1.0f;
 

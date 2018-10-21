@@ -14,6 +14,7 @@ import com.foobnix.android.utils.Keyboards;
 import com.foobnix.dao2.FileMeta;
 import com.foobnix.pdf.info.AppsConfig;
 import com.foobnix.pdf.info.Clouds;
+import com.foobnix.pdf.info.DialogFastRead;
 import com.foobnix.pdf.info.ExtUtils;
 import com.foobnix.pdf.info.R;
 import com.foobnix.pdf.info.TintUtil;
@@ -21,7 +22,6 @@ import com.foobnix.pdf.info.Urls;
 import com.foobnix.pdf.info.view.Dialogs;
 import com.foobnix.pdf.info.wrapper.AppState;
 import com.foobnix.pdf.info.wrapper.DocumentController;
-import com.foobnix.pdf.info.wrapper.DocumentWrapperUI;
 import com.foobnix.pdf.info.wrapper.UITab;
 import com.foobnix.pdf.search.activity.HorizontalViewActivity;
 import com.foobnix.pdf.search.activity.msg.UpdateAllFragments;
@@ -111,7 +111,7 @@ public class ShareDialog {
 
     }
 
-    public static void show(final Activity a, final File file, final Runnable onDeleteAction, final int page, final DocumentWrapperUI ui, final DocumentController dc) {
+    public static void show(final Activity a, final File file, final Runnable onDeleteAction, final int page, final DocumentController dc, final Runnable hideShow) {
         if (!ExtUtils.isExteralSD(file.getPath()) && ExtUtils.isNotValidFile(file)) {
             Toast.makeText(a, R.string.file_not_found, Toast.LENGTH_LONG).show();
             return;
@@ -142,6 +142,10 @@ public class ShareDialog {
 
         if (isPDF) {
             items.add(a.getString(R.string.make_text_reflow));
+        }
+
+        if (dc != null) {
+            items.add(a.getString(R.string.fast_reading));
         }
 
         items.add(a.getString(R.string.open_with));
@@ -229,8 +233,13 @@ public class ShareDialog {
                 if (isPDF && which == i++) {
                     ExtUtils.openPDFInTextReflow(a, file, page + 1, dc);
                 }
-
-                if (which == i++) {
+                if (dc != null && which == i++) {
+                    if (hideShow != null) {
+                        AppState.get().isEditMode = false;
+                        hideShow.run();
+                    }
+                    DialogFastRead.show(a, dc);
+                } else if (which == i++) {
                     ExtUtils.openWith(a, file);
                 } else if (which == i++) {
                     ExtUtils.sendFileTo(a, file);

@@ -922,7 +922,14 @@ public class DocumentWrapperUI {
                         dc.getActivity().finish();
                     }
                 }
-            }, dc.getCurentPage() - 1, DocumentWrapperUI.this, dc);
+            }, dc.getCurentPage() - 1, dc, new Runnable() {
+
+                @Override
+                public void run() {
+                    hideShow();
+
+                }
+            });
             Keyboards.hideNavigation(a);
             hideAds();
         }

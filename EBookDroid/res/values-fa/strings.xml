@@ -496,4 +496,6 @@
    <string name="chapter_format">فرمت فصل</string>
    <string name="play_a_music_file">یک فایل موسیقی را پخش کنید</string>
    <string name="add_a_review">یک بررسی اضافه کنید</string>
+   <string name="reset">بازنشانی</string>
+   <string name="fast_reading">خواندن سریع</string>
 </resources>

@@ -496,4 +496,6 @@
    <string name="chapter_format">章节格式</string>
    <string name="play_a_music_file">播放音乐文件</string>
    <string name="add_a_review">添加评论</string>
+   <string name="reset">重启</string>
+   <string name="fast_reading">快速阅读</string>
 </resources>

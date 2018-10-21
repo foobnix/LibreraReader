@@ -496,4 +496,6 @@
    <string name="chapter_format">Skyriaus formatas</string>
    <string name="play_a_music_file">Groti muzikos failą</string>
    <string name="add_a_review">Pridėti apžvalgą</string>
+   <string name="reset">Atstatyti</string>
+   <string name="fast_reading">Greitas skaitymas</string>
 </resources>

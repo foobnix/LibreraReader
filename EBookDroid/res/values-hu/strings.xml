@@ -496,4 +496,6 @@
    <string name="chapter_format">Fejezet formátuma</string>
    <string name="play_a_music_file">Zeneszám lejátszása</string>
    <string name="add_a_review">Vélemény hozzáadása</string>
+   <string name="reset">Visszaállítás</string>
+   <string name="fast_reading">Gyors olvasás</string>
 </resources>

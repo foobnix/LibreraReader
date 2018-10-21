@@ -496,4 +496,6 @@
    <string name="chapter_format">Fomu ya sura</string>
    <string name="play_a_music_file">Jaribu faili ya muziki</string>
    <string name="add_a_review">Ongeza ukaguzi</string>
+   <string name="reset">Weka upya</string>
+   <string name="fast_reading">Kusoma kwa haraka</string>
 </resources>

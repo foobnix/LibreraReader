@@ -496,4 +496,6 @@
    <string name="chapter_format">Kapitelformat</string>
    <string name="play_a_music_file">Spela en musikfil</string>
    <string name="add_a_review">Lägg till en recension</string>
+   <string name="reset">Återställa</string>
+   <string name="fast_reading">Snabbläsning</string>
 </resources>

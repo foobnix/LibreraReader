@@ -496,4 +496,6 @@
    <string name="chapter_format">Formato del capitolo</string>
    <string name="play_a_music_file">Riproduci un file musicale</string>
    <string name="add_a_review">Aggiungi una recensione</string>
+   <string name="reset">Reset</string>
+   <string name="fast_reading">Lettura veloce</string>
 </resources>

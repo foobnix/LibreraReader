@@ -203,6 +203,7 @@ public abstract class DocumentController {
 
     public abstract int getBookHeight();
 
+
     public void saveSettings() {
 
     }
