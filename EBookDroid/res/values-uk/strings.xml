@@ -497,7 +497,6 @@
    <string name="rate_us">Оцініть нас</string>
    <string name="reset">Скинути</string>
    <string name="fast_reading">Швидке читання</string>
-   <string name="position">Позиція</string>
    <string name="status_bar_location">Місцезнаходження панелі статусу</string>
    <string name="add_to_bookmark">Додати до закладок</string>
 </resources>

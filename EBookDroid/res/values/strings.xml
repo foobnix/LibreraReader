@@ -497,7 +497,6 @@
    <string name="rate_us">Rate us</string>
    <string name="reset">Reset</string>
    <string name="fast_reading">Fast Reading</string>
-   <string name="position">Position</string>
    <string name="status_bar_location">Status Bar location</string>
    <string name="add_to_bookmark">Add to bookmarks</string>
 </resources>

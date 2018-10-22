@@ -497,7 +497,6 @@
    <string name="rate_us">评价我们</string>
    <string name="reset">重启</string>
    <string name="fast_reading">快速阅读</string>
-   <string name="position">位置</string>
    <string name="status_bar_location">状态栏位置</string>
    <string name="add_to_bookmark">添加到书签</string>
 </resources>

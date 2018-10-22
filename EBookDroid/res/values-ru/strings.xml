@@ -497,7 +497,6 @@
    <string name="rate_us">Оцените нас</string>
    <string name="reset">Сброс</string>
    <string name="fast_reading">Быстрое чтение</string>
-   <string name="position">Позиция</string>
    <string name="status_bar_location">Расположение строки состояния</string>
    <string name="add_to_bookmark">Добавить в закладки</string>
 </resources>

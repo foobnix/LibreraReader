@@ -497,7 +497,6 @@
    <string name="rate_us">قيمنا</string>
    <string name="reset">إعادة تعيين</string>
    <string name="fast_reading">قراءة سريعة</string>
-   <string name="position">موضع</string>
    <string name="status_bar_location">موقع شريط الحالة</string>
    <string name="add_to_bookmark">إضافة إلى المواقع المفضلة</string>
 </resources>

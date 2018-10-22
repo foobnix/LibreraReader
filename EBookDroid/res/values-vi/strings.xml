@@ -497,7 +497,6 @@
    <string name="rate_us">Đánh giá chúng tôi</string>
    <string name="reset">Cài lại</string>
    <string name="fast_reading">Đọc nhanh</string>
-   <string name="position">Chức vụ</string>
    <string name="status_bar_location">Vị trí thanh trạng thái</string>
    <string name="add_to_bookmark">Thêm vào dấu trang</string>
 </resources>

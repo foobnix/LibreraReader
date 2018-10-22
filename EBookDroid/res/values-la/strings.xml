@@ -497,7 +497,6 @@
    <string name="rate_us">Rate nobis</string>
    <string name="reset">Reset</string>
    <string name="fast_reading">Fast Rading \'</string>
-   <string name="position">Statum</string>
    <string name="status_bar_location">Status Bar loco</string>
    <string name="add_to_bookmark">Add to bookmarks</string>
 </resources>

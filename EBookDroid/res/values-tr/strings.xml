@@ -497,7 +497,6 @@
    <string name="rate_us">Bizi değerlendirin</string>
    <string name="reset">Reset</string>
    <string name="fast_reading">Hızlı okuma</string>
-   <string name="position">Pozisyon</string>
    <string name="status_bar_location">Durum Çubuğu konumu</string>
    <string name="add_to_bookmark">Yer imlerine ekle</string>
 </resources>

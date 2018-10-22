@@ -497,7 +497,6 @@
    <string name="rate_us">우리를 평가해라.</string>
    <string name="reset">다시 놓기</string>
    <string name="fast_reading">빠른 읽기</string>
-   <string name="position">위치</string>
    <string name="status_bar_location">상태 표시 줄 위치</string>
    <string name="add_to_bookmark">북마크에 추가</string>
 </resources>

@@ -497,7 +497,6 @@
    <string name="rate_us">Beoordeel ons</string>
    <string name="reset">Reset</string>
    <string name="fast_reading">Snel lezen</string>
-   <string name="position">Positie</string>
    <string name="status_bar_location">Statusbalklocatie</string>
    <string name="add_to_bookmark">Voeg toe aan bladwijzers</string>
 </resources>

@@ -497,7 +497,6 @@
    <string name="rate_us">Gradera oss</string>
    <string name="reset">Återställa</string>
    <string name="fast_reading">Snabbläsning</string>
-   <string name="position">Placera</string>
    <string name="status_bar_location">Statusbar plats</string>
    <string name="add_to_bookmark">Lägg till i bokmärken</string>
 </resources>

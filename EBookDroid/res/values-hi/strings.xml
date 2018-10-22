@@ -497,7 +497,6 @@
    <string name="rate_us">हमें रेटिंग दें</string>
    <string name="reset">रीसेट</string>
    <string name="fast_reading">फास्ट रीडिंग</string>
-   <string name="position">पद</string>
    <string name="status_bar_location">स्टेटस बार स्थान</string>
    <string name="add_to_bookmark">बुकमार्क्स में जोड़ें</string>
 </resources>

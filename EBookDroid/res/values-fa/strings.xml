@@ -497,7 +497,6 @@
    <string name="rate_us">به ما رای دهید</string>
    <string name="reset">بازنشانی</string>
    <string name="fast_reading">خواندن سریع</string>
-   <string name="position">موقعیت</string>
    <string name="status_bar_location">موقعیت محل نوار</string>
    <string name="add_to_bookmark">افزودن به بوک مارک ها</string>
 </resources>

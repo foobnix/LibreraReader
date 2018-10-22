@@ -497,7 +497,6 @@
    <string name="rate_us">Ohodnoť nás</string>
    <string name="reset">Resetovať</string>
    <string name="fast_reading">Rýchle čítanie</string>
-   <string name="position">Pozície</string>
    <string name="status_bar_location">Umiestnenie stavovej lišty</string>
    <string name="add_to_bookmark">Pridať do záložiek</string>
 </resources>

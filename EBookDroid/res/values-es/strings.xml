@@ -497,7 +497,6 @@
    <string name="rate_us">Nos califica</string>
    <string name="reset">Reiniciar</string>
    <string name="fast_reading">Lectura rapida</string>
-   <string name="position">Posición</string>
    <string name="status_bar_location">Ubicación de la barra de estado</string>
    <string name="add_to_bookmark">Añadir a marcadores</string>
 </resources>

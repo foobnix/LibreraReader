@@ -497,7 +497,6 @@
    <string name="rate_us">דרג אותנו</string>
    <string name="reset">אפס</string>
    <string name="fast_reading">קריאה מהירה</string>
-   <string name="position">עמדה</string>
    <string name="status_bar_location">מיקום שורת המצב</string>
    <string name="add_to_bookmark">הוסף לסימניות</string>
 </resources>
