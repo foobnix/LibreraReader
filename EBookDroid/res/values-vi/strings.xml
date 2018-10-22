@@ -496,4 +496,6 @@
    <string name="chapter_format">Định dạng chương</string>
    <string name="play_a_music_file">Phát tệp nhạc</string>
    <string name="add_a_review">Thêm một bài đánh giá</string>
+   <string name="reset">Cài lại</string>
+   <string name="fast_reading">Đọc nhanh</string>
 </resources>

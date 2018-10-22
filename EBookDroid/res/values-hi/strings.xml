@@ -496,4 +496,6 @@
    <string name="chapter_format">अध्याय प्रारूप</string>
    <string name="play_a_music_file">एक संगीत फ़ाइल चलाएं</string>
    <string name="add_a_review">कोई समीक्षा जोड़ें</string>
+   <string name="reset">रीसेट</string>
+   <string name="fast_reading">फास्ट रीडिंग</string>
 </resources>

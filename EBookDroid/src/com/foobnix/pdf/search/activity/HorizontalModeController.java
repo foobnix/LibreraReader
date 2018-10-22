@@ -339,6 +339,8 @@ public abstract class HorizontalModeController extends DocumentController {
             if (!codecPage.isRecycled()) {
                 String pageHTML = codecPage.getPageHTML();
                 pageHTML = TxtUtils.replaceHTMLforTTS(pageHTML);
+                pageHTML = pageHTML.replace(TxtUtils.TTS_PAUSE, "");
+                pageHTML = pageHTML.replace(TxtUtils.NON_BREAKE_SPACE, " ");
                 return pageHTML;
 
             }

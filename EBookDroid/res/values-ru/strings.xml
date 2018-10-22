@@ -496,4 +496,6 @@
    <string name="chapter_format">Прогресс чтения</string>
    <string name="play_a_music_file">Выбрать и проиграть муз. файл</string>
    <string name="add_a_review">Добавить отзыв</string>
+   <string name="reset">Сброс</string>
+   <string name="fast_reading">Быстрое чтение</string>
 </resources>

@@ -218,6 +218,7 @@ public class TxtUtils {
         pageHTML = pageHTML.replace("[image]", "");
 
         pageHTML = replaceEndLine(pageHTML);
+        pageHTML = pageHTML.replace("  ", " ");
         pageHTML = pageHTML.replaceAll("(?u)(\\w+)(-\\s)", "$1");
         LOG.d("pageHTML [after] ", pageHTML);
 

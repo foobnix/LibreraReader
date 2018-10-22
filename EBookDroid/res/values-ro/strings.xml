@@ -496,4 +496,6 @@
    <string name="chapter_format">Formatul capitolului</string>
    <string name="play_a_music_file">Redați un fișier de muzică</string>
    <string name="add_a_review">Adăugați o recenzie</string>
+   <string name="reset">Restabili</string>
+   <string name="fast_reading">Citire rapidă</string>
 </resources>

@@ -139,7 +139,7 @@ public class TTSControlsView extends FrameLayout {
             @Override
             public boolean onLongClick(View v) {
                 TTSEngine.get().pauseMp3();
-                TTSEngine.get().mp.seekTo(0);
+                TTSEngine.get().seekTo(0);
                 return true;
             }
         });
