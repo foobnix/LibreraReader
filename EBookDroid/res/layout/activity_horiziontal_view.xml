@@ -23,6 +23,83 @@
         android:layout_marginTop="160dip"
         android:layout_weight="0" >
     </FrameLayout>
+    
+    <LinearLayout
+        android:id="@+id/bottomPanel"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:orientation="vertical" >
+
+        <LinearLayout
+            android:id="@+id/bottomIndicators"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="-1dip"
+            android:clickable="true"
+            android:orientation="horizontal" >
+
+            <TextView
+                android:id="@+id/pagesTime"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dip"
+                android:layout_weight="1"
+                android:minWidth="50dip"
+                android:singleLine="true"
+                android:text="--:--"
+                android:textColor="@color/tint_gray"
+                android:textSize="9sp" />
+
+            <TextView
+                android:id="@+id/pagesCountIndicator"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_above="@+id/progressDraw"
+                android:layout_alignParentBottom="true"
+                android:layout_centerHorizontal="true"
+                android:layout_weight="1"
+                android:ellipsize="start"
+                android:gravity="center"
+                android:singleLine="true"
+                android:text="-/-"
+                android:textColor="@color/tint_gray"
+                android:textSize="12sp" />
+
+            <TextView
+                android:id="@+id/flippingIntervalView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_marginLeft="10dip"
+                android:layout_toRightOf="@+id/pagesCountIndicator"
+                android:minEms="3"
+                android:singleLine="true"
+                android:text="{10}"
+                android:textColor="@color/tint_gray"
+                android:textSize="12sp"
+                android:visibility="gone" />
+
+            <TextView
+                android:id="@+id/pagesPower"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="10dip"
+                android:layout_weight="1"
+                android:drawablePadding="0dip"
+                android:gravity="right"
+                android:minWidth="50dip"
+                android:singleLine="true"
+                android:text="--%"
+                android:textColor="@color/tint_gray"
+                android:textSize="9sp" />
+        </LinearLayout>
+
+        <com.foobnix.pdf.info.view.ProgressDraw
+            android:id="@+id/progressDraw"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/progress" />
+    </LinearLayout>
 
     <LinearLayout
         android:id="@+id/actionBar"
@@ -164,82 +241,7 @@
         </LinearLayout>
     </LinearLayout>
 
-    <LinearLayout
-        android:id="@+id/bottomPanel"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:orientation="vertical" >
-
-        <LinearLayout
-            android:id="@+id/bottomIndicators"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="-1dip"
-            android:clickable="true"
-            android:orientation="horizontal" >
-
-            <TextView
-                android:id="@+id/pagesTime"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="10dip"
-                android:layout_weight="1"
-                android:minWidth="50dip"
-                android:singleLine="true"
-                android:text="--:--"
-                android:textColor="@color/tint_gray"
-                android:textSize="9sp" />
-
-            <TextView
-                android:id="@+id/pagesCountIndicator"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_above="@+id/progressDraw"
-                android:layout_alignParentBottom="true"
-                android:layout_centerHorizontal="true"
-                android:layout_weight="1"
-                android:ellipsize="start"
-                android:gravity="center"
-                android:singleLine="true"
-                android:text="-/-"
-                android:textColor="@color/tint_gray"
-                android:textSize="12sp" />
-
-            <TextView
-                android:id="@+id/flippingIntervalView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentBottom="true"
-                android:layout_marginLeft="10dip"
-                android:layout_toRightOf="@+id/pagesCountIndicator"
-                android:minEms="3"
-                android:singleLine="true"
-                android:text="{10}"
-                android:textColor="@color/tint_gray"
-                android:textSize="12sp"
-                android:visibility="gone" />
-
-            <TextView
-                android:id="@+id/pagesPower"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginRight="10dip"
-                android:layout_weight="1"
-                android:drawablePadding="0dip"
-                android:gravity="right"
-                android:minWidth="50dip"
-                android:singleLine="true"
-                android:text="--%"
-                android:textColor="@color/tint_gray"
-                android:textSize="9sp" />
-        </LinearLayout>
-
-        <com.foobnix.pdf.info.view.ProgressDraw
-            android:id="@+id/progressDraw"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/progress" />
-    </LinearLayout>
+    
 
     <ImageView
         android:id="@+id/ttsActive1"
