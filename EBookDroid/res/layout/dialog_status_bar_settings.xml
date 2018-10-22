@@ -90,6 +90,29 @@
                 android:src="@drawable/glyphicons_207_ok"
                 android:tint="@color/tint_gray" />
         </LinearLayout>
+        
+         <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dip" >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="4dip"
+                android:singleLine="true"
+                android:text="@string/status_bar_location" />
+
+            <TextView
+                android:id="@+id/statusBarPosition"
+                style="@style/textLink"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dip"
+                android:layout_weight="1"
+                android:text="@string/bottom" />
+        </LinearLayout>
+        
 
         <LinearLayout
             android:layout_width="match_parent"

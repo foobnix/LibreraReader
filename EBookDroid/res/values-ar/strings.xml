@@ -495,7 +495,9 @@
    <string name="slider_scale">مقياس المنزلق</string>
    <string name="chapter_format">تنسيق الفصل</string>
    <string name="play_a_music_file">تشغيل ملف موسيقى</string>
-   <string name="add_a_review">إضافة إلى استعراض</string>
+   <string name="rate_us">قيمنا</string>
    <string name="reset">إعادة تعيين</string>
    <string name="fast_reading">قراءة سريعة</string>
+   <string name="position">موضع</string>
+   <string name="status_bar_location">موقع شريط الحالة</string>
 </resources>

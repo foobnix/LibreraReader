@@ -495,7 +495,9 @@
    <string name="slider_scale">Schieberegler</string>
    <string name="chapter_format">Kapitelformat</string>
    <string name="play_a_music_file">Spielen Sie eine Musikdatei ab</string>
-   <string name="add_a_review">Bewertung hinzufügen</string>
+   <string name="rate_us">Bewerten Sie uns</string>
    <string name="reset">Zurücksetzen</string>
    <string name="fast_reading">Schnelles Lesen</string>
+   <string name="position">Position</string>
+   <string name="status_bar_location">Statusleiste</string>
 </resources>

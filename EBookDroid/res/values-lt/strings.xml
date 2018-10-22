@@ -495,7 +495,9 @@
    <string name="slider_scale">Slankiklio skalė</string>
    <string name="chapter_format">Skyriaus formatas</string>
    <string name="play_a_music_file">Groti muzikos failą</string>
-   <string name="add_a_review">Pridėti apžvalgą</string>
+   <string name="rate_us">Įvertinkite mus</string>
    <string name="reset">Atstatyti</string>
    <string name="fast_reading">Greitas skaitymas</string>
+   <string name="position">Pozicija</string>
+   <string name="status_bar_location">Būsenos juostos vieta</string>
 </resources>

@@ -495,7 +495,9 @@
    <string name="slider_scale">Posúvač stupnice</string>
    <string name="chapter_format">Formát kapitoly</string>
    <string name="play_a_music_file">Prehrávanie hudobného súboru</string>
-   <string name="add_a_review">Pridať recenziu</string>
+   <string name="rate_us">Ohodnoť nás</string>
    <string name="reset">Resetovať</string>
    <string name="fast_reading">Rýchle čítanie</string>
+   <string name="position">Pozície</string>
+   <string name="status_bar_location">Umiestnenie stavovej lišty</string>
 </resources>

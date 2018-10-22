@@ -495,7 +495,9 @@
    <string name="slider_scale">स्लाइडर पैमाने</string>
    <string name="chapter_format">अध्याय प्रारूप</string>
    <string name="play_a_music_file">एक संगीत फ़ाइल चलाएं</string>
-   <string name="add_a_review">कोई समीक्षा जोड़ें</string>
+   <string name="rate_us">हमें रेटिंग दें</string>
    <string name="reset">रीसेट</string>
    <string name="fast_reading">फास्ट रीडिंग</string>
+   <string name="position">पद</string>
+   <string name="status_bar_location">स्टेटस बार स्थान</string>
 </resources>

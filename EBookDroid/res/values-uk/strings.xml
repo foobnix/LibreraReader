@@ -495,7 +495,9 @@
    <string name="slider_scale">Масштаб слайдера</string>
    <string name="chapter_format">Формат глави</string>
    <string name="play_a_music_file">Відтворити музичний файл</string>
-   <string name="add_a_review">Додати відгук</string>
+   <string name="rate_us">Оцініть нас</string>
    <string name="reset">Скинути</string>
    <string name="fast_reading">Швидке читання</string>
+   <string name="position">Позиція</string>
+   <string name="status_bar_location">Місцезнаходження панелі статусу</string>
 </resources>

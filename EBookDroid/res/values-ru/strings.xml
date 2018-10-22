@@ -495,7 +495,9 @@
    <string name="slider_scale">Шкала бегунка</string>
    <string name="chapter_format">Прогресс чтения</string>
    <string name="play_a_music_file">Выбрать и проиграть муз. файл</string>
-   <string name="add_a_review">Добавить отзыв</string>
+   <string name="rate_us">Оцените нас</string>
    <string name="reset">Сброс</string>
    <string name="fast_reading">Быстрое чтение</string>
+   <string name="position">Позиция</string>
+   <string name="status_bar_location">Расположение строки состояния</string>
 </resources>

@@ -495,7 +495,9 @@
    <string name="slider_scale">Slider scale</string>
    <string name="chapter_format">Legend format</string>
    <string name="play_a_music_file">Play an audio file</string>
-   <string name="add_a_review">Rate us</string>
+   <string name="rate_us">Rate us</string>
    <string name="reset">Reset</string>
    <string name="fast_reading">Fast Reading</string>
+   <string name="position">Position</string>
+   <string name="status_bar_location">Status Bar location</string>
 </resources>

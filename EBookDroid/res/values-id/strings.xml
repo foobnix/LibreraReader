@@ -495,7 +495,9 @@
    <string name="slider_scale">Skala Slider</string>
    <string name="chapter_format">Format bab</string>
    <string name="play_a_music_file">Mainkan file musik</string>
-   <string name="add_a_review">Tambahkan ulasan</string>
+   <string name="rate_us">Beri kami nilai</string>
    <string name="reset">Setel ulang</string>
    <string name="fast_reading">Membaca Cepat</string>
+   <string name="position">Posisi</string>
+   <string name="status_bar_location">Lokasi Bilah Status</string>
 </resources>

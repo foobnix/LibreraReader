@@ -113,7 +113,7 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
     SeekBar seekBar;
     TextView toastBrightnessText, maxSeek, currentSeek, pagesCountIndicator, flippingIntervalView, pagesTime, pagesPower, titleTxt, chapterView, modeName;
     View adFrame, bottomBar, bottomIndicators, moveCenter, onClose, overlay;
-    LinearLayout actionBar;
+    LinearLayout actionBar, bottomPanel;
     TTSControlsView ttsActive;
     FrameLayout anchor;
     UnderlineImageView onCrop, onBC;
@@ -205,6 +205,7 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
         progressDraw = (ProgressDraw) findViewById(R.id.progressDraw);
 
         actionBar = (LinearLayout) findViewById(R.id.actionBar);
+        bottomPanel = (LinearLayout) findViewById(R.id.bottomPanel);
 
         bottomBar = findViewById(R.id.bottomBar);
         bottomIndicators = findViewById(R.id.bottomIndicators);
@@ -1124,6 +1125,17 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
             pagesTime.setVisibility(AppState.get().isShowTime ? View.VISIBLE : View.INVISIBLE);
         }
 
+        RelativeLayout.LayoutParams layoutParams = (RelativeLayout.LayoutParams) bottomPanel.getLayoutParams();
+
+        if (AppState.get().statusBarPosition == AppState.STATUSBAR_POSITION_TOP) {
+
+            layoutParams.addRule(RelativeLayout.ALIGN_PARENT_BOTTOM, 0);
+            layoutParams.addRule(RelativeLayout.ALIGN_PARENT_TOP);
+        } else {
+            layoutParams.addRule(RelativeLayout.ALIGN_PARENT_TOP, 0);
+            layoutParams.addRule(RelativeLayout.ALIGN_PARENT_BOTTOM);
+        }
+
     }
 
     private void showSearchDialog() {
@@ -1548,7 +1560,6 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
 
             }
         });
-
 
         updateLockMode();
 

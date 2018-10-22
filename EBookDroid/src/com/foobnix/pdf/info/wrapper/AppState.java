@@ -82,6 +82,9 @@ public class AppState {
     public static int TAP_PREV_PAGE = 1;
     public static int TAP_DO_NOTHING = 2;
 
+    public static int STATUSBAR_POSITION_TOP = 1;
+    public static int STATUSBAR_POSITION_BOTTOM = 2;
+
     public static int BLUE_FILTER_DEFAULT_COLOR = Color.BLACK;
     public static String MY_SYSTEM_LANG = "my";
 
@@ -295,6 +298,8 @@ public class AppState {
                                                                 // persent
 
     public int nextScreenScrollMyValue = 15;
+
+    public int statusBarPosition = STATUSBAR_POSITION_BOTTOM;
 
     public boolean isReplaceWhite = false;
 

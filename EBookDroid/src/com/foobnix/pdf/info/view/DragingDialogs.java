@@ -2588,6 +2588,53 @@ public class DragingDialogs {
                         }
                     }
                 });
+                // position
+
+                // Seek format
+
+                {
+                    final List<Integer> modeIds = Arrays.asList(//
+                            AppState.STATUSBAR_POSITION_TOP, //
+                            AppState.STATUSBAR_POSITION_BOTTOM //
+                    );//
+
+                    final List<String> modeStrings = Arrays.asList(//
+                            controller.getString(R.string.top), //
+                            controller.getString(R.string.bottom) //
+                    );//
+
+                    final TextView statusBarPosition = (TextView) inflate.findViewById(R.id.statusBarPosition);
+                    statusBarPosition.setText(modeStrings.get(modeIds.indexOf(AppState.get().statusBarPosition)));
+                    TxtUtils.underlineTextView(statusBarPosition);
+
+                    statusBarPosition.setVisibility(TxtUtils.visibleIf(controller.getActivity() instanceof HorizontalViewActivity));
+
+                    statusBarPosition.setOnClickListener(new OnClickListener() {
+
+                        @Override
+                        public void onClick(View v) {
+                            final MyPopupMenu popupMenu = new MyPopupMenu(v.getContext(), v);
+                            for (int i = 0; i < modeStrings.size(); i++) {
+                                final int j = i;
+                                popupMenu.getMenu().add(modeStrings.get(i)).setOnMenuItemClickListener(new OnMenuItemClickListener() {
+
+                                    @Override
+                                    public boolean onMenuItemClick(MenuItem item) {
+                                        AppState.get().statusBarPosition = modeIds.get(j);
+                                        statusBarPosition.setText(modeStrings.get(modeIds.indexOf(AppState.get().statusBarPosition)));
+                                        TxtUtils.underlineTextView(statusBarPosition);
+                                        if (onRefresh != null) {
+                                            onRefresh.run();
+                                        }
+                                        return false;
+                                    }
+                                });
+                            }
+
+                            popupMenu.show();
+                        }
+                    });
+                }
 
                 // Seek format
 

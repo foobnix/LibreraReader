@@ -495,7 +495,9 @@
    <string name="slider_scale">Skala suwaka</string>
    <string name="chapter_format">Format legendy</string>
    <string name="play_a_music_file">Odtwórz plik muzyczny</string>
-   <string name="add_a_review">Dodać recenzję</string>
+   <string name="rate_us">Oceń nas</string>
    <string name="reset">Nastawić</string>
    <string name="fast_reading">Szybki odczyt</string>
+   <string name="position">Pozycja</string>
+   <string name="status_bar_location">Położenie paska stanu</string>
 </resources>

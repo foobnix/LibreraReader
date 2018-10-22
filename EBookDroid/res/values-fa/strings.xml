@@ -495,7 +495,9 @@
    <string name="slider_scale">مقیاس لغزان</string>
    <string name="chapter_format">فرمت فصل</string>
    <string name="play_a_music_file">یک فایل موسیقی را پخش کنید</string>
-   <string name="add_a_review">یک بررسی اضافه کنید</string>
+   <string name="rate_us">به ما رای دهید</string>
    <string name="reset">بازنشانی</string>
    <string name="fast_reading">خواندن سریع</string>
+   <string name="position">موقعیت</string>
+   <string name="status_bar_location">موقعیت محل نوار</string>
 </resources>

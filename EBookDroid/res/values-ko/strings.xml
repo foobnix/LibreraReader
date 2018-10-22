@@ -495,7 +495,9 @@
    <string name="slider_scale">슬라이더 크기</string>
    <string name="chapter_format">장 형식</string>
    <string name="play_a_music_file">음악 파일 재생</string>
-   <string name="add_a_review">리뷰 추가</string>
+   <string name="rate_us">우리를 평가해라.</string>
    <string name="reset">다시 놓기</string>
    <string name="fast_reading">빠른 읽기</string>
+   <string name="position">위치</string>
+   <string name="status_bar_location">상태 표시 줄 위치</string>
 </resources>
