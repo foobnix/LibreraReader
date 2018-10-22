@@ -361,7 +361,6 @@ public class TTSService extends Service {
             }
 
             mMediaSessionCompat.setActive(true);
-            isActivated = true;
             int pageNumber = intent.getIntExtra(EXTRA_INT, -1);
             AppState.get().lastBookPath = intent.getStringExtra(EXTRA_PATH);
             String anchor = intent.getStringExtra(EXTRA_ANCHOR);
@@ -411,6 +410,7 @@ public class TTSService extends Service {
     @TargetApi(Build.VERSION_CODES.ICE_CREAM_SANDWICH_MR1)
     private void playPage(String preText, int pageNumber, String anchor) {
         if (pageNumber != -1) {
+            isActivated = true;
             EventBus.getDefault().post(new MessagePageNumber(pageNumber));
             AppState.get().lastBookPage = pageNumber;
             CodecDocument dc = getDC();
