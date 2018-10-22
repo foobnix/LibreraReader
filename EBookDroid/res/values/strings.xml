@@ -161,7 +161,7 @@
    <string name="invalid_color_value">Invalid value</string>
    <string name="add">Add</string>
    <string name="search">Find</string>
-   <string name="export_bookmarks">Export bookmarks</string>
+   <string name="export_bookmarks">Export Bookmarks</string>
    <string name="simple_scroll_animation">Animate page transition (scroll)</string>
    <string name="close_application">Exit Librera</string>
    <string name="___TABS___SECTION___"></string>
@@ -289,7 +289,7 @@
    <string name="annotations_draw">Annotations and Drawings</string>
    <string name="go_to_page_dialog">Go to Page</string>
    <string name="bookmark_with_text">Note</string>
-   <string name="fast_bookmark">Fast Bookmark</string>
+   <string name="fast_bookmark">Quick Bookmark</string>
    <string name="content_of_book">Contents</string>
    <string name="heading_and_subheadings">Headings and subheadings</string>
    <string name="headings_only">Headings only</string>
@@ -328,8 +328,8 @@
    <string name="share">Share</string>
    <string name="copy">Copy</string>
    <string name="search_in_google">Google Search</string>
-   <string name="search_in_document">Search in Document</string>
-   <string name="web_dict">Web Dictionary</string>
+   <string name="search_in_document">Find in Document</string>
+   <string name="web_dict">Web Dictionary Lookup</string>
    <string name="___TO___CHECK___SECTION___"></string>
    <string name="font">Font</string>
    <string name="font_name">Font</string>
@@ -496,7 +496,7 @@
    <string name="play_a_music_file">Play an audio file</string>
    <string name="rate_us">Rate us</string>
    <string name="reset">Reset</string>
-   <string name="fast_reading">Fast Reading</string>
-   <string name="status_bar_location">Status Bar location</string>
-   <string name="add_to_bookmark">Add to bookmarks</string>
+   <string name="fast_reading">Animate reading</string>
+   <string name="status_bar_location">Position</string>
+   <string name="add_to_bookmark">Bookmark</string>
 </resources>
