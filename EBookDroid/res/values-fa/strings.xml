@@ -324,7 +324,6 @@
    <string name="underline_of_text">زیر خط دار خط از متن</string>
    <string name="strikethrough_of_text">خط خورده از متن</string>
    <string name="text">متن</string>
-   <string name="add_to_bookmark">اضافه کردن به نشانه</string>
    <string name="bookmark_on_page_">چوب الف بر روی صفحه</string>
    <string name="share">اشتراک گذاری</string>
    <string name="copy">نسخه</string>
@@ -500,4 +499,5 @@
    <string name="fast_reading">خواندن سریع</string>
    <string name="position">موقعیت</string>
    <string name="status_bar_location">موقعیت محل نوار</string>
+   <string name="add_to_bookmark">افزودن به بوک مارک ها</string>
 </resources>

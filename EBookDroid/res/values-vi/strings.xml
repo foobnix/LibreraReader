@@ -324,7 +324,6 @@
    <string name="underline_of_text">Nhấn mạnh</string>
    <string name="strikethrough_of_text">Gạch ngang</string>
    <string name="text">Bản văn</string>
-   <string name="add_to_bookmark">Thêm vào Bookmark</string>
    <string name="bookmark_on_page_">Bookmark trang</string>
    <string name="share">Chia sẻ</string>
    <string name="copy">Bản sao</string>
@@ -500,4 +499,5 @@
    <string name="fast_reading">Đọc nhanh</string>
    <string name="position">Chức vụ</string>
    <string name="status_bar_location">Vị trí thanh trạng thái</string>
+   <string name="add_to_bookmark">Thêm vào dấu trang</string>
 </resources>

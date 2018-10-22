@@ -324,7 +324,6 @@
    <string name="underline_of_text">पाठ के अंडरलाइन</string>
    <string name="strikethrough_of_text">पाठ के स्ट्राइकथ्रू</string>
    <string name="text">टेक्स्ट</string>
-   <string name="add_to_bookmark">बुकमार्क में जोड़ें</string>
    <string name="bookmark_on_page_">पृष्ठ पर बुकमार्क</string>
    <string name="share">शेयर</string>
    <string name="copy">प्रतिलिपि</string>
@@ -500,4 +499,5 @@
    <string name="fast_reading">फास्ट रीडिंग</string>
    <string name="position">पद</string>
    <string name="status_bar_location">स्टेटस बार स्थान</string>
+   <string name="add_to_bookmark">बुकमार्क्स में जोड़ें</string>
 </resources>

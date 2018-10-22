@@ -324,7 +324,6 @@
    <string name="underline_of_text">Onderstrepen</string>
    <string name="strikethrough_of_text">Doorhalen</string>
    <string name="text">Tekst</string>
-   <string name="add_to_bookmark">Voeg toe aan Bookmark</string>
    <string name="bookmark_on_page_">Bookmark op pagina</string>
    <string name="share">Delen</string>
    <string name="copy">Kopiëren</string>
@@ -500,4 +499,5 @@
    <string name="fast_reading">Snel lezen</string>
    <string name="position">Positie</string>
    <string name="status_bar_location">Statusbalklocatie</string>
+   <string name="add_to_bookmark">Voeg toe aan bladwijzers</string>
 </resources>

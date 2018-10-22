@@ -2045,6 +2045,18 @@ public class DragingDialogs {
                 objects.addAll(AppSharedPreferences.get().getBookmarksByBook(controller.getCurrentBook()));
                 bookmarksAdapter.notifyDataSetChanged();
 
+                setTitlePopupIcon(R.drawable.glyphicons_518_option_vertical);
+                titlePopupMenu = new MyPopupMenu(controller.getActivity(), null);
+
+                titlePopupMenu.getMenu().add(R.string.export_).setOnMenuItemClickListener(new OnMenuItemClickListener() {
+
+                    @Override
+                    public boolean onMenuItemClick(MenuItem item) {
+                        ExtUtils.sendBookmarksTo(controller.getActivity(), controller.getCurrentBook());
+                        return false;
+                    }
+                });
+
                 return a;
             }
         }.show("addBookmarks", false, true);

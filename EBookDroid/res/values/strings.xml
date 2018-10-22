@@ -161,7 +161,7 @@
    <string name="invalid_color_value">Invalid value</string>
    <string name="add">Add</string>
    <string name="search">Find</string>
-   <string name="export_bookmarks">Export</string>
+   <string name="export_bookmarks">Export bookmarks</string>
    <string name="simple_scroll_animation">Animate page transition (scroll)</string>
    <string name="close_application">Exit Librera</string>
    <string name="___TABS___SECTION___"></string>
@@ -182,7 +182,7 @@
    <string name="starred">Favorites</string>
    <string name="bookmarks">Bookmarks</string>
    <string name="back">Back</string>
-   <string name="import_bookmarks">Import</string>
+   <string name="import_bookmarks">Import Bookmarks</string>
    <string name="email">Email</string>
    <string name="file">File</string>
    <string name="filter">Filter</string>
@@ -324,7 +324,6 @@
    <string name="underline_of_text">Underline</string>
    <string name="strikethrough_of_text">Strikethrough</string>
    <string name="text">Text</string>
-   <string name="add_to_bookmark">Bookmark</string>
    <string name="bookmark_on_page_">Bookmark to page</string>
    <string name="share">Share</string>
    <string name="copy">Copy</string>
@@ -500,4 +499,5 @@
    <string name="fast_reading">Fast Reading</string>
    <string name="position">Position</string>
    <string name="status_bar_location">Status Bar location</string>
+   <string name="add_to_bookmark">Add to bookmarks</string>
 </resources>

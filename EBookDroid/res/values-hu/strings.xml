@@ -324,7 +324,6 @@
    <string name="underline_of_text">Aláhúzás</string>
    <string name="strikethrough_of_text">Áthúzás</string>
    <string name="text">Szöveg</string>
-   <string name="add_to_bookmark">Könyvjelző</string>
    <string name="bookmark_on_page_">Könyvjelző az oldalhoz</string>
    <string name="share">Megosztás</string>
    <string name="copy">Másolás</string>
@@ -500,4 +499,5 @@
    <string name="fast_reading">Gyors olvasás</string>
    <string name="position">Pozíció</string>
    <string name="status_bar_location">Állapotjelző helye</string>
+   <string name="add_to_bookmark">Hozzáadás könyvjelzőkhöz</string>
 </resources>

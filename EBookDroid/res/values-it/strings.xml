@@ -324,7 +324,6 @@
    <string name="underline_of_text">Sottolinea testo</string>
    <string name="strikethrough_of_text">Barra testo</string>
    <string name="text">Testo</string>
-   <string name="add_to_bookmark">Aggiungi segnalibro</string>
    <string name="bookmark_on_page_">Segnalibro a pagina</string>
    <string name="share">Condividi</string>
    <string name="copy">Copia</string>
@@ -500,4 +499,5 @@
    <string name="fast_reading">Lettura veloce</string>
    <string name="position">Posizione</string>
    <string name="status_bar_location">Posizione della barra di stato</string>
+   <string name="add_to_bookmark">Aggiungi ai segnalibri</string>
 </resources>

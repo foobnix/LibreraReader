@@ -324,7 +324,6 @@
    <string name="underline_of_text">Pabraukti</string>
    <string name="strikethrough_of_text">Perbraukti</string>
    <string name="text">Tekstas</string>
-   <string name="add_to_bookmark">Įtraukti į žymeles</string>
    <string name="bookmark_on_page_">Pažymėti puslapį</string>
    <string name="share">Dalintis</string>
    <string name="copy">Kopijuoti</string>
@@ -500,4 +499,5 @@
    <string name="fast_reading">Greitas skaitymas</string>
    <string name="position">Pozicija</string>
    <string name="status_bar_location">Būsenos juostos vieta</string>
+   <string name="add_to_bookmark">Pridėti prie žymių</string>
 </resources>

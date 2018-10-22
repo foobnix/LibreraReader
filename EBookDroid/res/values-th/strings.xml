@@ -324,7 +324,6 @@
    <string name="underline_of_text">ขีดเส้นใต้</string>
    <string name="strikethrough_of_text">ขีดฆ่า</string>
    <string name="text">ข้อความ</string>
-   <string name="add_to_bookmark">เพิ่มในบุ๊กมาร์ก</string>
    <string name="bookmark_on_page_">บุ๊คมาร์คในหน้า</string>
    <string name="share">หุ้น</string>
    <string name="copy">สำเนา</string>
@@ -500,4 +499,5 @@
    <string name="fast_reading">การอ่านอย่างรวดเร็ว</string>
    <string name="position">ตำแหน่ง</string>
    <string name="status_bar_location">ตำแหน่งแถบสถานะ</string>
+   <string name="add_to_bookmark">เพิ่มในบุ๊กมาร์ก</string>
 </resources>

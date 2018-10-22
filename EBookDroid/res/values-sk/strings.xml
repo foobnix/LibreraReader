@@ -324,7 +324,6 @@
    <string name="underline_of_text">Podčiarknutie textu</string>
    <string name="strikethrough_of_text">Prečiarknutie textu</string>
    <string name="text">Textový</string>
-   <string name="add_to_bookmark">Pridať do záložiek</string>
    <string name="bookmark_on_page_">Záložka na strane</string>
    <string name="share">Share</string>
    <string name="copy">Kopírovať</string>
@@ -500,4 +499,5 @@
    <string name="fast_reading">Rýchle čítanie</string>
    <string name="position">Pozície</string>
    <string name="status_bar_location">Umiestnenie stavovej lišty</string>
+   <string name="add_to_bookmark">Pridať do záložiek</string>
 </resources>

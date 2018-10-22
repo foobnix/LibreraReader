@@ -324,7 +324,6 @@
    <string name="underline_of_text">Подчеркивание текста</string>
    <string name="strikethrough_of_text">Зачеркивание текста</string>
    <string name="text">Текст</string>
-   <string name="add_to_bookmark">Создать закладку</string>
    <string name="bookmark_on_page_">Закладка к странице</string>
    <string name="share">Поделиться</string>
    <string name="copy">Скопировать</string>
@@ -500,4 +499,5 @@
    <string name="fast_reading">Быстрое чтение</string>
    <string name="position">Позиция</string>
    <string name="status_bar_location">Расположение строки состояния</string>
+   <string name="add_to_bookmark">Добавить в закладки</string>
 </resources>

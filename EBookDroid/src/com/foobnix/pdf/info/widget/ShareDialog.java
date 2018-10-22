@@ -150,7 +150,6 @@ public class ShareDialog {
 
         items.add(a.getString(R.string.open_with));
         items.add(a.getString(R.string.send_file));
-        items.add(a.getString(R.string.export_bookmarks));
         final boolean canDelete = ExtUtils.isExteralSD(file.getPath()) || Clouds.isCloud(file.getPath()) ? true : file.canWrite();
         final boolean isShowInfo = !ExtUtils.isExteralSD(file.getPath());
 
@@ -243,8 +242,6 @@ public class ShareDialog {
                     ExtUtils.openWith(a, file);
                 } else if (which == i++) {
                     ExtUtils.sendFileTo(a, file);
-                } else if (which == i++) {
-                    ExtUtils.sendBookmarksTo(a, file);
                 } else if (isMainTabs && canDelete && which == i++) {
                     FileInformationDialog.dialogDelete(a, file, onDeleteAction);
                 } else if (isMainTabs && which == i++) {

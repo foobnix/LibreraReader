@@ -324,7 +324,6 @@
    <string name="underline_of_text">テキストの下線</string>
    <string name="strikethrough_of_text">テキストの取り消し線</string>
    <string name="text">テキスト</string>
-   <string name="add_to_bookmark">ブックマークに追加</string>
    <string name="bookmark_on_page_">ページ中のブックマーク</string>
    <string name="share">Share</string>
    <string name="copy">コピー</string>
@@ -500,4 +499,5 @@
    <string name="fast_reading">速読</string>
    <string name="position">ポジション</string>
    <string name="status_bar_location">ステータスバーの場所</string>
+   <string name="add_to_bookmark">ブックマークに追加</string>
 </resources>

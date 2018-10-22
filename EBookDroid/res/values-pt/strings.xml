@@ -324,7 +324,6 @@
    <string name="underline_of_text">Sublinhado do texto</string>
    <string name="strikethrough_of_text">Tachado de texto</string>
    <string name="text">Texto</string>
-   <string name="add_to_bookmark">Adicionar a Favoritos</string>
    <string name="bookmark_on_page_">Marcador na página</string>
    <string name="share">Compartilhar</string>
    <string name="copy">Cópia</string>
@@ -500,4 +499,5 @@
    <string name="fast_reading">Leitura Rápida</string>
    <string name="position">Posição</string>
    <string name="status_bar_location">Localização da barra de status</string>
+   <string name="add_to_bookmark">Adicionar aos favoritos</string>
 </resources>

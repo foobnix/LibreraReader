@@ -324,7 +324,6 @@
    <string name="underline_of_text">Kusisitiza</string>
    <string name="strikethrough_of_text">Mkato</string>
    <string name="text">Nakala</string>
-   <string name="add_to_bookmark">Ili kuongeza Kwanza</string>
    <string name="bookmark_on_page_">Kwanza juu ya ukurasa</string>
    <string name="share">Kushiriki</string>
    <string name="copy">Copy</string>
@@ -500,4 +499,5 @@
    <string name="fast_reading">Kusoma kwa haraka</string>
    <string name="position">Nafasi</string>
    <string name="status_bar_location">Eneo la Hali ya Bar</string>
+   <string name="add_to_bookmark">Ongeza kwenye salamisho</string>
 </resources>

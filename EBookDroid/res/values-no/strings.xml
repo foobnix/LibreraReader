@@ -324,7 +324,6 @@
    <string name="underline_of_text">Understrek</string>
    <string name="strikethrough_of_text">Gjennom</string>
    <string name="text">Tekst</string>
-   <string name="add_to_bookmark">Legg til i bokmerke</string>
    <string name="bookmark_on_page_">Bokmerke på side</string>
    <string name="share">Dele</string>
    <string name="copy">Kopiere</string>
@@ -500,4 +499,5 @@
    <string name="fast_reading">Rask lesing</string>
    <string name="position">Stilling</string>
    <string name="status_bar_location">Statuslinje plassering</string>
+   <string name="add_to_bookmark">Legg til i bokmerker</string>
 </resources>

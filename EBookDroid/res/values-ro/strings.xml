@@ -324,7 +324,6 @@
    <string name="underline_of_text">Sublinia</string>
    <string name="strikethrough_of_text">Strikethrough</string>
    <string name="text">Text</string>
-   <string name="add_to_bookmark">Adăugați în marcaj</string>
    <string name="bookmark_on_page_">Marcaj pe pagină</string>
    <string name="share">Distribuiți</string>
    <string name="copy">Copiați</string>
@@ -500,4 +499,5 @@
    <string name="fast_reading">Citire rapidă</string>
    <string name="position">Poziţie</string>
    <string name="status_bar_location">Bara de stare</string>
+   <string name="add_to_bookmark">Adăugați la marcaje</string>
 </resources>

@@ -324,7 +324,6 @@
    <string name="underline_of_text">밑줄</string>
    <string name="strikethrough_of_text">취소 선</string>
    <string name="text">본문</string>
-   <string name="add_to_bookmark">즐겨 찾기에 추가</string>
    <string name="bookmark_on_page_">페이지 즐겨 찾기</string>
    <string name="share">공유하기</string>
    <string name="copy">복사</string>
@@ -500,4 +499,5 @@
    <string name="fast_reading">빠른 읽기</string>
    <string name="position">위치</string>
    <string name="status_bar_location">상태 표시 줄 위치</string>
+   <string name="add_to_bookmark">북마크에 추가</string>
 </resources>

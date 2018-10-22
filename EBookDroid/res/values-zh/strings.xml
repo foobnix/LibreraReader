@@ -324,7 +324,6 @@
    <string name="underline_of_text">下划线</string>
    <string name="strikethrough_of_text">删除线</string>
    <string name="text">文本</string>
-   <string name="add_to_bookmark">加入笔记</string>
    <string name="bookmark_on_page_">添加书签</string>
    <string name="share">分享</string>
    <string name="copy">复制</string>
@@ -500,4 +499,5 @@
    <string name="fast_reading">快速阅读</string>
    <string name="position">位置</string>
    <string name="status_bar_location">状态栏位置</string>
+   <string name="add_to_bookmark">添加到书签</string>
 </resources>

@@ -324,7 +324,6 @@
    <string name="underline_of_text">Підкреслення тексту</string>
    <string name="strikethrough_of_text">Закреслення тексту</string>
    <string name="text">Текст</string>
-   <string name="add_to_bookmark">Додати до закладок</string>
    <string name="bookmark_on_page_">Закладка на сторінку</string>
    <string name="share">Поділитися</string>
    <string name="copy">Копіювати</string>
@@ -500,4 +499,5 @@
    <string name="fast_reading">Швидке читання</string>
    <string name="position">Позиція</string>
    <string name="status_bar_location">Місцезнаходження панелі статусу</string>
+   <string name="add_to_bookmark">Додати до закладок</string>
 </resources>
