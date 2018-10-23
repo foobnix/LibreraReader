@@ -496,7 +496,7 @@
    <string name="play_a_music_file">Redați un fișier de muzică</string>
    <string name="rate_us">Ne evalua</string>
    <string name="reset">Restabili</string>
-   <string name="fast_reading">Citire rapidă</string>
    <string name="status_bar_location">Bara de stare</string>
    <string name="add_to_bookmark">Adăugați la marcaje</string>
+   <string name="fast_reading">Citirea rapidă (RSVP)</string>
 </resources>

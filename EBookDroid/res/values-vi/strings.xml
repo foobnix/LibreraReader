@@ -496,7 +496,7 @@
    <string name="play_a_music_file">Phát tệp nhạc</string>
    <string name="rate_us">Đánh giá chúng tôi</string>
    <string name="reset">Cài lại</string>
-   <string name="fast_reading">Đọc nhanh</string>
    <string name="status_bar_location">Vị trí thanh trạng thái</string>
    <string name="add_to_bookmark">Thêm vào dấu trang</string>
+   <string name="fast_reading">Đọc nhanh (RSVP)</string>
 </resources>

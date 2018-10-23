@@ -496,7 +496,7 @@
    <string name="play_a_music_file">Toista musiikkitiedosto</string>
    <string name="rate_us">Arvioi meidät</string>
    <string name="reset">Asettaa uudelleen</string>
-   <string name="fast_reading">Nopea lukeminen</string>
    <string name="status_bar_location">Tilapalkin sijainti</string>
    <string name="add_to_bookmark">Lisää kirjanmerkkeihin</string>
+   <string name="fast_reading">Nopea käsittely (RSVP)</string>
 </resources>

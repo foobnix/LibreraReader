@@ -496,7 +496,7 @@
    <string name="play_a_music_file">Lire un fichier de musique</string>
    <string name="rate_us">Évaluez nous</string>
    <string name="reset">Réinitialiser</string>
-   <string name="fast_reading">Lecture rapide</string>
    <string name="status_bar_location">Emplacement de la barre d\'état</string>
    <string name="add_to_bookmark">Ajouter aux favoris</string>
+   <string name="fast_reading">Lecture rapide (RSVP)</string>
 </resources>

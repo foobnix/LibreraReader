@@ -496,7 +496,7 @@
    <string name="play_a_music_file">Jaribu faili ya muziki</string>
    <string name="rate_us">Kiwango cha sisi</string>
    <string name="reset">Weka upya</string>
-   <string name="fast_reading">Kusoma kwa haraka</string>
    <string name="status_bar_location">Eneo la Hali ya Bar</string>
    <string name="add_to_bookmark">Ongeza kwenye salamisho</string>
+   <string name="fast_reading">Kusoma kwa haraka (RSVP)</string>
 </resources>

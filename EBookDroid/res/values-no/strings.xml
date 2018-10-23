@@ -496,7 +496,7 @@
    <string name="play_a_music_file">Spill en musikkfil</string>
    <string name="rate_us">Rangere oss</string>
    <string name="reset">Tilbakestille</string>
-   <string name="fast_reading">Rask lesing</string>
    <string name="status_bar_location">Statuslinje plassering</string>
    <string name="add_to_bookmark">Legg til i bokmerker</string>
+   <string name="fast_reading">Rask lesing (RSVP)</string>
 </resources>

@@ -496,7 +496,7 @@
    <string name="play_a_music_file">Spielen Sie eine Musikdatei ab</string>
    <string name="rate_us">Bewerten Sie uns</string>
    <string name="reset">Zurücksetzen</string>
-   <string name="fast_reading">Schnelles Lesen</string>
    <string name="status_bar_location">Statusleiste</string>
    <string name="add_to_bookmark">Zu Lesezeichen hinzufügen</string>
+   <string name="fast_reading">Schnelles Lesen (RSVP)</string>
 </resources>

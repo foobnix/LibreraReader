@@ -496,7 +496,7 @@
    <string name="play_a_music_file">נגן קובץ מוסיקה</string>
    <string name="rate_us">דרג אותנו</string>
    <string name="reset">אפס</string>
-   <string name="fast_reading">קריאה מהירה</string>
    <string name="status_bar_location">מיקום שורת המצב</string>
    <string name="add_to_bookmark">הוסף לסימניות</string>
+   <string name="fast_reading">קריאה מהירה (RSVP)</string>
 </resources>

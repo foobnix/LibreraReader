@@ -496,7 +496,7 @@
    <string name="play_a_music_file">Zeneszám lejátszása</string>
    <string name="rate_us">Értékelj minket</string>
    <string name="reset">Visszaállítás</string>
-   <string name="fast_reading">Gyors olvasás</string>
    <string name="status_bar_location">Állapotjelző helye</string>
    <string name="add_to_bookmark">Hozzáadás könyvjelzőkhöz</string>
+   <string name="fast_reading">Gyors olvasás (RSVP)</string>
 </resources>

@@ -496,7 +496,7 @@
    <string name="play_a_music_file">音楽ファイルを再生する</string>
    <string name="rate_us">私たちを評価してください</string>
    <string name="reset">リセット</string>
-   <string name="fast_reading">速読</string>
    <string name="status_bar_location">ステータスバーの場所</string>
    <string name="add_to_bookmark">ブックマークに追加</string>
+   <string name="fast_reading">速読（RSVP）</string>
 </resources>

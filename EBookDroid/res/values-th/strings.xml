@@ -496,7 +496,7 @@
    <string name="play_a_music_file">เล่นไฟล์เพลง</string>
    <string name="rate_us">ให้คะแนนเรา</string>
    <string name="reset">รีเซ็ต</string>
-   <string name="fast_reading">การอ่านอย่างรวดเร็ว</string>
    <string name="status_bar_location">ตำแหน่งแถบสถานะ</string>
    <string name="add_to_bookmark">เพิ่มในบุ๊กมาร์ก</string>
+   <string name="fast_reading">การอ่านอย่างรวดเร็ว (RSVP)</string>
 </resources>
