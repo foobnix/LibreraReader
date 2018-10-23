@@ -223,7 +223,7 @@
    <string name="apply_a_new_screen_orientation_">Apply new screen orientation?</string>
    <string name="send_mail">Send email</string>
    <string name="do_you_want_to_clear_everything_">Clear everything?</string>
-   <string name="close_application_">Exit Librera?</string>
+   <string name="close_application_">Exit application?</string>
    <string name="new_beta_version_available">New Beta version is available</string>
    <string name="___NOTIFICATION___SECTION___"></string>
    <string name="fail">Error</string>

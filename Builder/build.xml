@@ -298,7 +298,7 @@
 		<antcall target="clean-all" />
 
 		<property name="pdf.package" value="${package.ink}" />
-		<property name="pdf.icon" value="@drawable/icon_pdf_reader_ink" />
+		<property name="pdf.icon" value="@drawable/icon_pdf_2" />
 		<property name="pdf.app.name" value="${name.ink}" />
 		<property name="pdf.export.name" value="${name.ink} Ink" />
 

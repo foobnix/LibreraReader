@@ -11,6 +11,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.concurrent.TimeUnit;
 
+import com.foobnix.android.utils.Apps;
 import com.foobnix.android.utils.Dips;
 import com.foobnix.android.utils.LOG;
 import com.foobnix.android.utils.MemoryUtils;
@@ -709,6 +710,9 @@ public class AppState {
                     AppState.get().isEnableBC = true;
                     AppState.get().brigtnessImage = -50;
                     isAllowMoveTwoFingerWithLock = false;
+                }
+                if (AppsConfig.LIBRERA_PDF_2.equals(Apps.getPackageName(a))) {
+                    isShowWhatIsNewDialog = false;
                 }
 
                 loadIn(a);
