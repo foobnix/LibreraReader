@@ -498,5 +498,5 @@
    <string name="reset">Reset</string>
    <string name="status_bar_location">Position</string>
    <string name="add_to_bookmark">Bookmark</string>
-   <string name="fast_reading">Fast reading (RSVP)</string>
+   <string name="fast_reading">RSVP reading</string>
 </resources>
