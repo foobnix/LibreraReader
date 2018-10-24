@@ -20,6 +20,7 @@
     <application
         android:name="org.ebookdroid.LibreraApp"
         android:icon="@drawable/icon_pdf_2"
+        android:roundIcon="@drawable/icon_pdf_2"
         android:label="@string/app_name"
         android:largeHeap="true"
         android:theme="@style/StyledIndicatorsWhite" >

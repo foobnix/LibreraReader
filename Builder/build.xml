@@ -65,6 +65,25 @@
 
 		<replaceregexp file="../EbookaPDF/AndroidManifest.xml"
 			match='android:icon="@drawable/test"' replace='android:icon="${pdf.icon}"' />
+		
+		<!-- section 3a -->
+		<replaceregexp file="../EbookaPDF/AndroidManifest.xml"
+			match='android:roundIcon="@drawable/icon_pdf_classic"' replace='android:roundIcon="${pdf.icon}"' />
+
+		<replaceregexp file="../EbookaPDF/AndroidManifest.xml"
+			match='android:roundIcon="@drawable/icon_pdf_pro"' replace='android:roundIcon="${pdf.icon}"' />
+
+		<replaceregexp file="../EbookaPDF/AndroidManifest.xml"
+			match='android:roundIcon="@drawable/icon_pdf_reader"' replace='android:roundIcon="${pdf.icon}"' />
+		
+		<replaceregexp file="../EbookaPDF/AndroidManifest.xml"
+			match='android:roundIcon="@drawable/icon_pdf_droid"' replace='android:roundIcon="${pdf.icon}"' />
+	
+	    <replaceregexp file="../EbookaPDF/AndroidManifest.xml"
+			match='android:roundIcon="@drawable/icon_pdf_reader_ink"' replace='android:roundIcon="${pdf.icon}"' />
+
+		<replaceregexp file="../EbookaPDF/AndroidManifest.xml"
+			match='android:roundIcon="@drawable/test"' replace='android:roundIcon="${pdf.icon}"' />
 
 
 		<!-- section 5 -->
