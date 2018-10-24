@@ -1,5 +1,5 @@
 <resources>
-   <string name="___LIBRARY___SETTINGS___SECTION___"></string>
+   <string name="___LIBRARY___SETTINGS___SECTION___">Kütüphane Ayar Bölümü</string>
    <string name="library_settings">Kütüphane Ayarları</string>
    <string name="scan_device_for_new_books">Cihazda Kitapları Tara</string>
    <string name="add_folder">Klasörü eklemek</string>
@@ -30,7 +30,7 @@
    <string name="show_application_close_dialog_every_time">Her seferinde uygulama kapat iletişim kutusunu göster</string>
    <string name="display_all_file_types_in_folders">Tüm dosya türlerini klasörlerde görüntüle</string>
    <string name="show_the_dialog_what_is_new_for_updates">Güncellemedeki yenilikleri göster</string>
-   <string name="what_is_new_in">Içinde yenilikler</string>
+   <string name="what_is_new_in">Yenilikler</string>
    <string name="full_list_of_changes_with_images_web_pdf_">Resimlerle yapılan değişikliklerin tam listesi (web, PDF)</string>
    <string name="search_for_text_in_documents">Çoklu doküman araması</string>
    <string name="search_in_the_subfolders">Alt klasörlerde ara</string>
@@ -61,7 +61,7 @@
    <string name="beta_version">Beta sürümü</string>
    <string name="archive">Arşiv</string>
    <string name="rate_pdf_reader1">Görüşleriniz bizim için çok önemli. Google Play\'de bizi değerlendirin</string>
-   <string name="___PREFERENCES___SECTION___"></string>
+   <string name="___PREFERENCES___SECTION___">Tercihler Bölümü</string>
    <string name="formatted_text">Biçimlendirilmiş metin (sahte grafik)</string>
    <string name="continuous_text">Sürekli metin (satır sonu yok)</string>
    <string name="customize_fonts">Yazı tiplerini özelleştir</string>
@@ -78,7 +78,7 @@
    <string name="dictionary">Sözlük</string>
    <string name="day">Gün</string>
    <string name="nigth">Gece</string>
-   <string name="___READING___SETTINGS___SECTION___"></string>
+   <string name="___READING___SETTINGS___SECTION___">Okuma Ayarları Bölümü</string>
    <string name="reading_settings">Okuma Ayarları</string>
    <string name="folder_with_fonts">Yazıtipi Klasörü</string>
    <string name="text_align">Metni Hizala</string>
@@ -88,7 +88,7 @@
    <string name="center">Ortala</string>
    <string name="custom_css">Özel CSS</string>
    <string name="styles">Stiller</string>
-   <string name="document_styles">Doküman stilleri</string>
+   <string name="document_styles">Döküman stilleri</string>
    <string name="user_styles">Kullanıcı stilleri</string>
    <string name="automatic_hyphenation">Otomatik hecele</string>
    <string name="empty_line">Boş Hattı</string>
@@ -97,7 +97,7 @@
    <string name="bottom">Alt</string>
    <string name="links_color_day">Bağlantı renkleri (gün)</string>
    <string name="links_color_night">Bağlantılar rengi (gece)</string>
-   <string name="___ADVANCED___SETTINGS___SECTION___"></string>
+   <string name="___ADVANCED___SETTINGS___SECTION___">Kapsamlı Ayar Bölümü</string>
    <string name="advanced_settings">Gelişmiş Ayarlar</string>
    <string name="direction_of_scrolling">Kaydırma yönü</string>
    <string name="direction_of_reading_rtl_">Okuma yönü (RTL)</string>
@@ -106,8 +106,8 @@
    <string name="right_page_then_left_page_rtl_">Sağ sayfa sonra sol sayfa (RTL)</string>
    <string name="rotate_page">Sayfa Döndür</string>
    <string name="rotate_default">Orijinale döndür</string>
-   <string name="tap_zone_size">Tap-zone boyutu</string>
-   <string name="customize_tap_zones">Musluk bölgeleri özelleştirme</string>
+   <string name="tap_zone_size">Dokunma alan boyutu</string>
+   <string name="customize_tap_zones">Dokunma alan özelleştirme</string>
    <string name="left_side">Sol taraf</string>
    <string name="right_side">Sağ taraf</string>
    <string name="top_side">Üst taraf</string>
@@ -115,7 +115,7 @@
    <string name="next_page">Sonraki Sayfa</string>
    <string name="previous_page">Önceki sayfa</string>
    <string name="db_do_nothing">Hiçbir şey yapma</string>
-   <string name="remind_about_rest_every">Dinlenme hakkında hatırlat</string>
+   <string name="remind_about_rest_every">Durdurma hakkında hatırlat</string>
    <string name="action_on_double_tap">İki kez hafifçe vurun</string>
    <string name="db_auto_scroll">Otomatik kaydırma</string>
    <string name="opening_book_with_losed_lock">Kilitli kilitli açılış kitabı</string>
@@ -133,7 +133,7 @@
    <string name="page_quality">Sayfa Kalitesi</string>
    <string name="pages_in_memory">Hafızadaki sayfalar</string>
    <string name="screen_turn_off_after_inactivity_minutes_">Hareketsizlik sonrası ekranı kapat (dakika)</string>
-   <string name="___STATUS___BAR___SETTINGS___SECTION___"></string>
+   <string name="___STATUS___BAR___SETTINGS___SECTION___">Ana Ayarlar Bölüm </string>
    <string name="status_bar">Durum çubuğu</string>
    <string name="show_status_bar">Durum çubuğunu göster</string>
    <string name="show_progress_of_reading">Okuma ilerlemesini göster</string>
@@ -142,7 +142,7 @@
    <string name="line_height">Satır yüksekliği</string>
    <string name="text_color_day">Metin rengi (gün)</string>
    <string name="text_color_night">Metin rengi (gece)</string>
-   <string name="___MULTIPLE___SECTIONS___"></string>
+   <string name="___MULTIPLE___SECTIONS___">Birden fazla bölüm</string>
    <string name="preferences">Ayarlar</string>
    <string name="language">Dil</string>
    <string name="font_size">Yazı Boyutu</string>
@@ -180,7 +180,7 @@
    <string name="next_keys">Bir sonraki kelime:</string>
    <string name="prev_keys">Bir önceki kelime :</string>
    <string name="starred">Yıldızlı</string>
-   <string name="bookmarks">Favoriler</string>
+   <string name="bookmarks">Beğeniler</string>
    <string name="back">Arka</string>
    <string name="import_bookmarks">İthalat imleri</string>
    <string name="email">E-posta</string>
@@ -225,7 +225,7 @@
    <string name="do_you_want_to_clear_everything_">Her şeyi silmek istiyor musun</string>
    <string name="close_application_">Uygulamayı Kapat?</string>
    <string name="new_beta_version_available">Yeni beta sürümü mevcut</string>
-   <string name="___NOTIFICATION___SECTION___"></string>
+   <string name="___NOTIFICATION___SECTION___">Bildiri Bölümü</string>
    <string name="fail">Hata</string>
    <string name="success">Başarlı</string>
    <string name="please_wait">Lütfen bekle</string>
@@ -237,7 +237,7 @@
    <string name="file_not_found">Dosya Bulunamadı</string>
    <string name="you_need_grant_permission">Bu uygulama için dış depolama izni gerekir</string>
    <string name="remind_msg">Lütfen gözleriniz için biraz ara verin ve dinlenin.</string>
-   <string name="bookmark_for_this_page_already_exists">Bu sayfa için Favori zaten var</string>
+   <string name="bookmark_for_this_page_already_exists">Bu sayfa için beğeni mevcut</string>
    <string name="can_t_download">İndiremez</string>
    <string name="loading_error">Yükleme hatası</string>
    <string name="loading_failed">Sayfa yüklemede hata</string>
@@ -254,13 +254,13 @@
    <string name="open_with">Birlikte aç</string>
    <string name="send_file">Dosya Gönder</string>
    <string name="delete">Sil</string>
-   <string name="remove_from_library">Kütüphaneden kaldır</string>
-   <string name="send_snapshot_of_the_page">Sayfanın anlık resmini gönder</string>
-   <string name="file_info">Dosya Bilgileri</string>
-   <string name="archive_files">Arşiv dosyaları</string>
-   <string name="open_file">Açık dosya</string>
-   <string name="read_a_book">Kitabı Oku</string>
-   <string name="___SORT___AND___VIEW___SECTION___"></string>
+   <string name="remove_from_library">Kütüphaneden_kaldır</string>
+   <string name="send_snapshot_of_the_page">Sayfanın_anlık_resmini_gönder</string>
+   <string name="file_info">Dosya_Bilgileri</string>
+   <string name="archive_files">Arşiv_dosyaları</string>
+   <string name="open_file">Dosya_aç</string>
+   <string name="read_a_book">Kitabı_Oku</string>
+   <string name="___SORT___AND___VIEW___SECTION___">___Sırala___ve___Görüntüle___Bölümü</string>
    <string name="by_path">Dosya yolu</string>
    <string name="by_file_name">Dosya adı</string>
    <string name="by_size">Boyut</string>
@@ -275,7 +275,8 @@
    <string name="author">Yazar</string>
    <string name="genre">Tür</string>
    <string name="serie">Serie</string>
-   <string name="___READING___SCREEN___SECTION___"></string>
+   <string name="___READING___SCREEN___SECTION___">
+   ___Okuma___Ekranı___Bölümü</string>
    <string name="enter_password">Parolanı Gir</string>
    <string name="page_position">Sayfa konumu</string>
    <string name="open_web_page">Açık Web Sayfası</string>
@@ -309,10 +310,10 @@
    <string name="to_paly_pause">Oynat durdur</string>
    <string name="text_to_speech">Konuşma metni</string>
    <string name="speed1">Hız</string>
-   <string name="pitch1">Ses zift</string>
-   <string name="sound_volume">Müzik hacmi</string>
+   <string name="pitch1">Keskin Ses</string>
+   <string name="sound_volume">Müzik sesi</string>
    <string name="next">Bir sonraki</string>
-   <string name="stop_reading_timer_">Okumayı durdur (zamanlayıcı)</string>
+   <string name="stop_reading_timer_">Okuma zamanlayıcısını durdur</string>
    <string name="start">Başlama</string>
    <string name="reading_will_be_stopped">Okuma duracak</string>
    <string name="speak_into_file_wav_">Dosyaya doğru konuşun (wav)</string>
@@ -386,7 +387,7 @@
    <string name="librera_pro_no_ads_leading_book_reader_and_pdf">Librera PRO (reklamsız) Öncü kitap okuyucu ve PDF</string>
    <string name="custom_text">Özel metin</string>
    <string name="cd_search_books_in_the_library">Kütüphanede kitap ara</string>
-   <string name="cd_clear_search_reasult">Aramayı Temizle Başarı</string>
+   <string name="cd_clear_search_reasult">Aramayı Temizleme Başarılı</string>
    <string name="cd_sort_results">Sonuçları Sırala</string>
    <string name="cd_sort_order">Sıralama düzeni</string>
    <string name="cd_update_search_search_for_new_books_on_sd_card">SD kartta arama güncelleme, yeni kitap ara</string>
@@ -401,7 +402,7 @@
    <string name="cd_back_to_all_catalogs">Tüm kataloglara dön</string>
    <string name="cd_add_new_opds_catalog">Yeni OPDS kataloğu ekle</string>
    <string name="can_t_delete_file">Dosya silinemiyor</string>
-   <string name="switch_off">Kapatmak</string>
+   <string name="switch_off">Kapat</string>
    <string name="___RECENTLY___ADDED___SECTION___"></string>
    <string name="read_the_tutorial_online_or_download_in_pdf_format">Öğreticiyi çevrimiçi okuyun veya PDF formatında indirin</string>
    <string name="start_recording">Kayda başla</string>
@@ -433,7 +434,7 @@
    <string name="link_color">Bağlantı rengi</string>
    <string name="show_battery_percentage">Pil yüzdesini göster</string>
    <string name="show_current_time">Geçerli saati göster</string>
-   <string name="telegram_channel">Telgraf kanalı</string>
+   <string name="telegram_channel">Telegram kanalı</string>
    <string name="zoom_in_out_using_the_volume_keys">Ses seviyesi tuşlarını kullanarak yakınlaştırma / uzaklaştırma</string>
    <string name="tag">Etiket</string>
    <string name="no_tag">Etiket yok</string>
@@ -442,7 +443,7 @@
    <string name="by_number_of_pages">Sayfa sayısı</string>
    <string name="by_number_in_serie">Seri numarası</string>
    <string name="by_extension">Uzantı</string>
-   <string name="recent_favorites_tags">Son, favoriler, etiketler</string>
+   <string name="recent_favorites_tags">En son beğenilen etiketler</string>
    <string name="line_spacing">Satır aralığı</string>
    <string name="paragraph_spacing">Paragraf aralığı</string>
    <string name="indent">Çentik</string>
@@ -453,11 +454,11 @@
    <string name="pause_reading_if_the_incoming_call_or_other_sounds">Gelen çağrı veya başka sesler varsa okumayı duraklatın</string>
    <string name="add_resource">Kaynak ekle</string>
    <string name="do_you_want_to_download_more_book_fonts_10mb_">Daha fazla kitap fontu (10MB) indirmek ister misiniz?</string>
-   <string name="hyphenation_language">Tireleme dili</string>
+   <string name="hyphenation_language">Sözcük kesme</string>
    <string name="replacing_the_white_color_in_the_images_with_the_background_color">Resimdeki beyaz rengi arka plan rengiyle değiştirme</string>
    <string name="no_keywords">Anahtar kelime yok</string>
    <string name="my_tags">Etiketlerim</string>
-   <string name="crop_borders_symmetrically">Simetrik olarak bitki sınırları</string>
+   <string name="crop_borders_symmetrically">Simetrik olarak kenar sınırları</string>
    <string name="displaying_the_author_and_title_of_the_pdf_book_from_the_meta_tags">Meta kitabından yazarı ve PDF kitabının başlığını görüntüleme</string>
    <string name="meta_tags">Meta etiketleri</string>
    <string name="librera_pro_program_for_reading_books_without_advertising_installing_it_removes_advertising_in_this_application">Librera PRO - reklamsız kitap okumak için program, bu uygulamada reklam kaldırır</string>
@@ -471,7 +472,7 @@
    <string name="do_you_want_to_delete_this_file_">Bu dosyayı silmek istiyor musunuz?</string>
    <string name="logout">Çıkış Yap</string>
    <string name="cloud_not_connected">Bulut bağlı değil</string>
-   <string name="cloud_sync_folder">Cloud senkronizasyon klasörü</string>
+   <string name="cloud_sync_folder">Bulut senkronizasyon klasörü</string>
    <string name="clouds">Bulutlar</string>
    <string name="add_to_cloud">Bulut ekle</string>
    <string name="librera_cloud">Librera bulut</string>
@@ -495,7 +496,7 @@
    <string name="chapter_format">Bölüm formatı</string>
    <string name="play_a_music_file">Bir müzik dosyası çal</string>
    <string name="rate_us">Bizi değerlendirin</string>
-   <string name="reset">Reset</string>
+   <string name="reset">Sıfırlayın</string>
    <string name="status_bar_location">Durum Çubuğu konumu</string>
    <string name="add_to_bookmark">Yer imlerine ekle</string>
    <string name="fast_reading">Hızlı okuma (RSVP)</string>
