@@ -118,7 +118,7 @@ public class DialogSpeedRead {
                             while (i + 1 < words.length && !word.endsWith(".")) {
                                 String temp = word + " " + words[i + 1];
 
-                                if (word.length() >= 3 && temp.length() > AppState.get().fastManyWords) {
+                                if (word.length() >= 3 && temp.replace(" ", "").length() > AppState.get().fastManyWords) {
                                     break;
                                 }
                                 word = temp;
@@ -193,7 +193,7 @@ public class DialogSpeedRead {
                 currentWord = 0;
             }
         });
-
+        currentWord = 0;
         create.show();
     }
 
