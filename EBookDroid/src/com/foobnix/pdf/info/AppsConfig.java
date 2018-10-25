@@ -25,7 +25,7 @@ public class AppsConfig {
     public static final String EBOOKA_READER = "droid.reader.book.epub.mobi.pdf.djvu.fb2.txt.azw.azw3";
 
     public static final String LIBRERA_INK_EDITION = "mobi.librera.book.reader";
-    public static final String LIBRERA_PDF_2 = "pdf.reader.viewer";
+    public static final String LIBRERA_PDF_2 = "pdf.pdf.reader";
 
     public static String ADMOB_BANNER;
     public static String ADMOB_FULLSCREEN;
@@ -112,9 +112,9 @@ public class AppsConfig {
         if (LIBRERA_PDF_2.equals(packageName)) {
             ANALYTICS_ID = "UA-36581296-8";
 
-            ADMOB_BANNER/*     */ = "ca-app-pub-8347903083053959/5364245672";
-            ADMOB_FULLSCREEN/*  */ = null;
-            ADMOB_NATIVE_BANNER/**/ = "ca-app-pub-8347903083053959/8572902871";
+            ANALYTICS_ID = "UA-36581296-8";
+            ADMOB_BANNER/*     */ = "ca-app-pub-8347903083053959/6159730856";
+            ADMOB_FULLSCREEN/* */ = "ca-app-pub-8347903083053959/2346153515";
 
             GOOGLE_DRIVE_KEY = "961762082517-eiun09s9u6vferhd9avnkjmgs7ob9tns.apps.googleusercontent.com";
 

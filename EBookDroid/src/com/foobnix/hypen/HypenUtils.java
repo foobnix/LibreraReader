@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Locale;
 import java.util.StringTokenizer;
 
+import com.foobnix.android.utils.LOG;
 import com.foobnix.pdf.info.model.BookCSS;
 
 public class HypenUtils {
@@ -35,7 +36,6 @@ public class HypenUtils {
         return res;
     }
 
-
     private static String applyHypnesNewMy(final String input) {
         if (input == null || input.length() == 0) {
             return "";
@@ -55,8 +55,14 @@ public class HypenUtils {
                 if (w.length() <= 3) {
                     res.append(w);
                 } else {
-                    String join = join(instance.hyphenate(w), SHY);
-                    res.append(join);
+                    try {
+                        List<String> hyphenate = instance.hyphenate(w);
+                        String join = join(hyphenate, SHY);
+                        res.append(join);
+                    } catch (Exception e) {
+                        res.append(w);
+                        LOG.e(e, "Exception findText", w);
+                    }
                 }
             }
 
@@ -161,6 +167,7 @@ public class HypenUtils {
 
         void findOther(char ch);
     }
+
     static boolean ignore = false;
 
     public static void resetTokenizer() {

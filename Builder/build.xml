@@ -41,6 +41,9 @@
 	
 	<replaceregexp file="../EbookaPDF/AndroidManifest.xml" flags="g"
 		match='${package.ink}' replace='${pdf.package}' />
+
+	<replaceregexp file="../EbookaPDF/AndroidManifest.xml" flags="g"
+		match='pdf.reader.viewer' replace='${pdf.package}' />
 	
 	
 		<replaceregexp file="../EBookDroid/res/values/config.xml"
@@ -319,7 +322,7 @@
 		<property name="pdf.package" value="${package.ink}" />
 		<property name="pdf.icon" value="@drawable/icon_pdf_2" />
 		<property name="pdf.app.name" value="${name.ink}" />
-		<property name="pdf.export.name" value="${name.ink} Ink" />
+		<property name="pdf.export.name" value="${name.ink} v2" />
 
 		<antcall target="prepare-packages" />
 		<antcall target="free-replace" />

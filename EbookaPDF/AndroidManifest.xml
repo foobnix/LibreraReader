@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="pdf.reader.viewer"
+    package="pdf.pdf.reader"
     android:installLocation="auto"
     android:versionCode="707"
-    android:versionName="7.10.52" >
+    android:versionName="7.10.53" >
 
     <uses-sdk
         android:minSdkVersion="14"
@@ -26,7 +26,7 @@
         android:theme="@style/StyledIndicatorsWhite" >
         <provider
             android:name="android.support.v4.content.FileProvider"
-            android:authorities="pdf.reader.viewer.provider"
+            android:authorities="pdf.pdf.reader.provider"
             android:exported="false"
             android:grantUriPermissions="true" >
             <meta-data
@@ -244,7 +244,7 @@
 		        <category android:name="android.intent.category.DEFAULT" />
 		        <category android:name="android.intent.category.BROWSABLE" />
 		
-		        <data android:scheme="pdf.reader.viewer" />
+		        <data android:scheme="pdf.pdf.reader" />
 		        <data android:scheme="librera" />
 		    </intent-filter>
         </activity>
