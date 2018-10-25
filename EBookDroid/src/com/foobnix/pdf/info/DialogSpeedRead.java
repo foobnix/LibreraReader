@@ -36,7 +36,7 @@ public class DialogSpeedRead {
         final TextView onReset = (TextView) layout.findViewById(R.id.onReset);
 
         final CustomSeek seekBarSpeed = (CustomSeek) layout.findViewById(R.id.fastReadSpeed);
-        seekBarSpeed.init(0, 900, AppState.get().fastReadSpeed);
+        seekBarSpeed.init(10, 900, AppState.get().fastReadSpeed);
         seekBarSpeed.setStep(10);
         seekBarSpeed.setOnSeekChanged(new IntegerResponse() {
 
@@ -114,7 +114,8 @@ public class DialogSpeedRead {
                         String word = words[i];
 
                         if (AppState.get().fastManyWords != 0) {
-                            while (i + 1 < words.length) {
+
+                            while (i + 1 < words.length && !word.endsWith(".")) {
                                 String temp = word + " " + words[i + 1];
 
                                 if (word.length() >= 3 && temp.length() > AppState.get().fastManyWords) {
@@ -122,6 +123,7 @@ public class DialogSpeedRead {
                                 }
                                 word = temp;
                                 i++;
+
                             }
                         }
 
