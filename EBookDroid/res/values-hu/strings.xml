@@ -499,4 +499,5 @@
    <string name="status_bar_location">Állapotjelző helye</string>
    <string name="add_to_bookmark">Hozzáadás könyvjelzőkhöz</string>
    <string name="fast_reading">Gyors olvasás (RSVP)</string>
+   <string name="average_line_length">Átlagos vonalhossz</string>
 </resources>

@@ -499,4 +499,5 @@
    <string name="status_bar_location">Statusbar plats</string>
    <string name="add_to_bookmark">Lägg till i bokmärken</string>
    <string name="fast_reading">Snabb läsning (RSVP)</string>
+   <string name="average_line_length">Genomsnittlig linje längd</string>
 </resources>

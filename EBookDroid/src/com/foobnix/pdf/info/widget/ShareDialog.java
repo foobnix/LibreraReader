@@ -14,7 +14,7 @@ import com.foobnix.android.utils.Keyboards;
 import com.foobnix.dao2.FileMeta;
 import com.foobnix.pdf.info.AppsConfig;
 import com.foobnix.pdf.info.Clouds;
-import com.foobnix.pdf.info.DialogFastRead;
+import com.foobnix.pdf.info.DialogSpeedRead;
 import com.foobnix.pdf.info.ExtUtils;
 import com.foobnix.pdf.info.R;
 import com.foobnix.pdf.info.TintUtil;
@@ -237,7 +237,7 @@ public class ShareDialog {
                         AppState.get().isEditMode = false;
                         hideShow.run();
                     }
-                    DialogFastRead.show(a, dc);
+                    DialogSpeedRead.show(a, dc);
                 } else if (which == i++) {
                     ExtUtils.openWith(a, file);
                 } else if (which == i++) {

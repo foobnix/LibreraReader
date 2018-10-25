@@ -133,7 +133,7 @@
    <string name="page_quality">Sayfa Kalitesi</string>
    <string name="pages_in_memory">Hafızadaki sayfalar</string>
    <string name="screen_turn_off_after_inactivity_minutes_">Hareketsizlik sonrası ekranı kapat (dakika)</string>
-   <string name="___STATUS___BAR___SETTINGS___SECTION___">Ana Ayarlar Bölüm </string>
+   <string name="___STATUS___BAR___SETTINGS___SECTION___">Ana Ayarlar Bölüm</string>
    <string name="status_bar">Durum çubuğu</string>
    <string name="show_status_bar">Durum çubuğunu göster</string>
    <string name="show_progress_of_reading">Okuma ilerlemesini göster</string>
@@ -275,8 +275,7 @@
    <string name="author">Yazar</string>
    <string name="genre">Tür</string>
    <string name="serie">Serie</string>
-   <string name="___READING___SCREEN___SECTION___">
-   ___Okuma___Ekranı___Bölümü</string>
+   <string name="___READING___SCREEN___SECTION___">___Okuma___Ekranı___Bölümü</string>
    <string name="enter_password">Parolanı Gir</string>
    <string name="page_position">Sayfa konumu</string>
    <string name="open_web_page">Açık Web Sayfası</string>
@@ -500,4 +499,5 @@
    <string name="status_bar_location">Durum Çubuğu konumu</string>
    <string name="add_to_bookmark">Yer imlerine ekle</string>
    <string name="fast_reading">Hızlı okuma (RSVP)</string>
+   <string name="average_line_length">Ortalama hat uzunluğu</string>
 </resources>

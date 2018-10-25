@@ -251,6 +251,8 @@ public class VerticalViewActivity extends AbstractActionActivity<VerticalViewAct
         AppState.get().isAutoScroll = false;
         AppState.get().save(this);
         TempHolder.isSeaching = false;
+        TempHolder.isActiveSpeedRead = false;
+
         if (handler != null) {
             handler.postDelayed(closeRunnable, AppState.APP_CLOSE_AUTOMATIC);
         }

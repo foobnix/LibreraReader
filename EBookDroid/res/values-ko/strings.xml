@@ -499,4 +499,5 @@
    <string name="status_bar_location">상태 표시 줄 위치</string>
    <string name="add_to_bookmark">북마크에 추가</string>
    <string name="fast_reading">빠른 읽기 (RSVP)</string>
+   <string name="average_line_length">평균 선 길이</string>
 </resources>

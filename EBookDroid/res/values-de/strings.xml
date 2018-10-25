@@ -499,4 +499,5 @@
    <string name="status_bar_location">Statusleiste</string>
    <string name="add_to_bookmark">Zu Lesezeichen hinzufügen</string>
    <string name="fast_reading">Schnelles Lesen (RSVP)</string>
+   <string name="average_line_length">Durchschnittliche Zeilenlänge</string>
 </resources>

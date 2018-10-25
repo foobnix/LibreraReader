@@ -24,6 +24,14 @@
         android:layout_weight="0"
         myseek:text="@string/font_size" >
     </com.foobnix.pdf.info.view.CustomSeek>
+    
+     <com.foobnix.pdf.info.view.CustomSeek
+        android:id="@+id/fastManyWords"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="0"
+        myseek:text="@string/average_line_length" >
+    </com.foobnix.pdf.info.view.CustomSeek>
 
     <TextView
         android:id="@+id/textWord"

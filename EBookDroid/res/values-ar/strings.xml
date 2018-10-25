@@ -499,4 +499,5 @@
    <string name="status_bar_location">موقع شريط الحالة</string>
    <string name="add_to_bookmark">إضافة إلى المواقع المفضلة</string>
    <string name="fast_reading">القراءة السريعة (RSVP)</string>
+   <string name="average_line_length">متوسط ​​طول الخط</string>
 </resources>

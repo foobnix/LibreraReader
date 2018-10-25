@@ -499,4 +499,5 @@
    <string name="status_bar_location">स्टेटस बार स्थान</string>
    <string name="add_to_bookmark">बुकमार्क्स में जोड़ें</string>
    <string name="fast_reading">फास्ट रीडिंग (आरएसवीपी)</string>
+   <string name="average_line_length">औसत रेखा लंबाई</string>
 </resources>

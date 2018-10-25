@@ -10,6 +10,7 @@ import com.foobnix.pdf.info.view.CustomSeek;
 import com.foobnix.pdf.info.view.MyPopupMenu;
 import com.foobnix.pdf.info.wrapper.AppState;
 import com.foobnix.pdf.info.wrapper.DocumentController;
+import com.foobnix.sys.TempHolder;
 
 import android.app.AlertDialog;
 import android.content.Context;
@@ -22,9 +23,7 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.TextView;
 
-public class DialogFastRead {
-
-    volatile static boolean isActive = false;
+public class DialogSpeedRead {
 
     volatile static int currentWord = 0;
 
@@ -44,6 +43,17 @@ public class DialogFastRead {
             @Override
             public boolean onResultRecive(int result) {
                 AppState.get().fastReadSpeed = result;
+                return false;
+            }
+        });
+
+        final CustomSeek fastManyWords = (CustomSeek) layout.findViewById(R.id.fastManyWords);
+        fastManyWords.init(0, 30, AppState.get().fastManyWords);
+        fastManyWords.setOnSeekChanged(new IntegerResponse() {
+
+            @Override
+            public boolean onResultRecive(int result) {
+                AppState.get().fastManyWords = result;
                 return false;
             }
         });
@@ -101,17 +111,31 @@ public class DialogFastRead {
                     });
 
                     for (int i = currentWord; i < words.length; i++) {
-                        final String word = words[i];
-                        if (!isActive) {
+                        String word = words[i];
+
+                        if (AppState.get().fastManyWords != 0) {
+                            while (i + 1 < words.length) {
+                                String temp = word + " " + words[i + 1];
+
+                                if (word.length() >= 3 && temp.length() > AppState.get().fastManyWords) {
+                                    break;
+                                }
+                                word = temp;
+                                i++;
+                            }
+                        }
+
+                        if (!TempHolder.isActiveSpeedRead) {
                             currentWord = i;
                             return;
                         }
 
+                        final String wordFinal = word;
                         dc.getActivity().runOnUiThread(new Runnable() {
 
                             @Override
                             public void run() {
-                                textWord.setText(word);
+                                textWord.setText(wordFinal);
                             }
                         });
                         try {
@@ -128,8 +152,8 @@ public class DialogFastRead {
 
             @Override
             public void onClick(View v) {
-                isActive = !isActive;
-                if (isActive) {
+                TempHolder.isActiveSpeedRead = !TempHolder.isActiveSpeedRead;
+                if (TempHolder.isActiveSpeedRead) {
                     new Thread(task).start();
                 }
 
@@ -142,7 +166,7 @@ public class DialogFastRead {
             public void onClick(View v) {
                 textWord.setText(R.string.start);
                 TxtUtils.underlineTextView(textWord);
-                isActive = false;
+                TempHolder.isActiveSpeedRead = false;
                 currentWord = 0;
             }
         });
@@ -152,7 +176,7 @@ public class DialogFastRead {
         builder.setNegativeButton(R.string.close, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int id) {
-                isActive = false;
+                TempHolder.isActiveSpeedRead = false;
                 currentWord = 0;
                 dialog.dismiss();
             }
@@ -163,7 +187,7 @@ public class DialogFastRead {
 
             @Override
             public void onDismiss(DialogInterface dialog) {
-                isActive = false;
+                TempHolder.isActiveSpeedRead = false;
                 currentWord = 0;
             }
         });

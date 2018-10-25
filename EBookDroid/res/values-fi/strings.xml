@@ -499,4 +499,5 @@
    <string name="status_bar_location">Tilapalkin sijainti</string>
    <string name="add_to_bookmark">Lisää kirjanmerkkeihin</string>
    <string name="fast_reading">Nopea käsittely (RSVP)</string>
+   <string name="average_line_length">Keskimääräinen pituus</string>
 </resources>
