@@ -3,7 +3,7 @@
 MUPDF_ROOT=/home/ivan-dev/dev/mupdf-1.12.0-source
 MUPDF_JAVA=$MUPDF_ROOT/platform/java
 
-MY=/home/ivan-dev/git/LirbiReader
+MY=/home/ivan-dev/git/LibreraReader
 
 rm -rf  $MUPDF_JAVA/jni
 cp -rRp $MY/Builder/jni-1.12 $MUPDF_JAVA/jni
