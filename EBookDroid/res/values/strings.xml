@@ -485,7 +485,7 @@
    <string name="display_sub_chapters_on_the_progress_line">Chapter/section tick marks</string>
    <string name="enable_vertical_gesture">Turn pages by vertical swipes</string>
    <string name="enable_horizontal_gesture">Turn pages by horizontal swipes</string>
-   <string name="pause_duration">Break</string>
+   <string name="pause_duration">Expressive breaks</string>
    <string name="voice">Voice</string>
    <string name="capital_letter">Initial</string>
    <string name="show_the_capital_letter">Lead chapters with initials</string>
@@ -499,5 +499,5 @@
    <string name="status_bar_location">Position</string>
    <string name="add_to_bookmark">Bookmark</string>
    <string name="fast_reading">Speed read (RSVP)</string>
-   <string name="average_line_length">Average line length</string>
+   <string name="average_line_length">Min. line length (CPL)</string>
 </resources>
