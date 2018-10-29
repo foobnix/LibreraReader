@@ -37,6 +37,7 @@ import com.foobnix.android.utils.LOG;
 import com.foobnix.android.utils.TxtUtils;
 import com.foobnix.pdf.info.ExtUtils;
 import com.foobnix.sys.TempHolder;
+import com.foobnix.sys.Zips;
 
 public class EpubExtractor extends BaseExtractor {
 
@@ -105,7 +106,7 @@ public class EpubExtractor extends BaseExtractor {
         LOG.d("proccessHypens2", input, output);
 
         FileInputStream inputStream = new FileInputStream(new File(input));
-        ZipArchiveInputStream zipInputStream = new ZipArchiveInputStream(inputStream);
+        ZipArchiveInputStream zipInputStream = Zips.buildZipArchiveInputStream(inputStream);
         ArchiveEntry nextEntry = null;
 
         ZipOutputStream zos = new ZipOutputStream(new FileOutputStream(new File(output)));
@@ -143,7 +144,7 @@ public class EpubExtractor extends BaseExtractor {
         try {
             final File file = new File(path);
             InputStream inputStream = new FileInputStream(file);
-            ZipArchiveInputStream zipInputStream = new ZipArchiveInputStream(inputStream);
+            ZipArchiveInputStream zipInputStream = Zips.buildZipArchiveInputStream(inputStream);
 
             ArchiveEntry nextEntry = null;
 
@@ -185,7 +186,7 @@ public class EpubExtractor extends BaseExtractor {
         final File file = new File(path);
         try {
             InputStream inputStream = new FileInputStream(file);
-            ZipArchiveInputStream zipInputStream = new ZipArchiveInputStream(inputStream);
+            ZipArchiveInputStream zipInputStream = Zips.buildZipArchiveInputStream(inputStream);
 
             ArchiveEntry nextEntry = null;
 
@@ -320,7 +321,7 @@ public class EpubExtractor extends BaseExtractor {
         byte[] cover = null;
         try {
             InputStream inputStream = new FileInputStream(new File(path));
-            ZipArchiveInputStream zipInputStream = new ZipArchiveInputStream(inputStream);
+            ZipArchiveInputStream zipInputStream = Zips.buildZipArchiveInputStream(inputStream);
 
             ArchiveEntry nextEntry = null;
 
@@ -360,7 +361,7 @@ public class EpubExtractor extends BaseExtractor {
                 inputStream.close();
 
                 inputStream = new FileInputStream(new File(path));
-                zipInputStream = new ZipArchiveInputStream(inputStream);
+                zipInputStream = Zips.buildZipArchiveInputStream(inputStream);
                 while ((nextEntry = zipInputStream.getNextEntry()) != null) {
                     String name = nextEntry.getName();
                     if (name.contains(coverName)) {
@@ -375,7 +376,7 @@ public class EpubExtractor extends BaseExtractor {
                 inputStream.close();
 
                 inputStream = new FileInputStream(new File(path));
-                zipInputStream = new ZipArchiveInputStream(inputStream);
+                zipInputStream = Zips.buildZipArchiveInputStream(inputStream);
                 while ((nextEntry = zipInputStream.getNextEntry()) != null) {
                     String name = nextEntry.getName().toLowerCase(Locale.US);
                     if (name.endsWith(".jpeg") || name.endsWith(".jpg") || name.endsWith(".png")) {
@@ -393,7 +394,7 @@ public class EpubExtractor extends BaseExtractor {
                 inputStream.close();
 
                 inputStream = new FileInputStream(new File(path));
-                zipInputStream = new ZipArchiveInputStream(inputStream);
+                zipInputStream = Zips.buildZipArchiveInputStream(inputStream);
                 while ((nextEntry = zipInputStream.getNextEntry()) != null) {
                     String name = nextEntry.getName().toLowerCase(Locale.US);
                     if (name.endsWith(".jpeg") || name.endsWith(".jpg") || name.endsWith(".png")) {

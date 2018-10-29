@@ -15,6 +15,7 @@ import org.ebookdroid.BookType;
 
 import com.foobnix.android.utils.LOG;
 import com.foobnix.pdf.info.ExtUtils;
+import com.foobnix.sys.Zips;
 
 import junrar.Archive;
 import junrar.rarfile.FileHeader;
@@ -43,7 +44,7 @@ public class CbzCbrExtractor {
             if (BookType.CBZ.is(path) || isZip(path)) {
                 FileInputStream is = new FileInputStream(new File(path));
 
-                ZipArchiveInputStream zipInputStream = new ZipArchiveInputStream(is);
+                ZipArchiveInputStream zipInputStream = Zips.buildZipArchiveInputStream(is);
 
                 while (zipInputStream.getNextZipEntry() != null) {
                         count++;
