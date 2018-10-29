@@ -1,5 +1,6 @@
 package com.foobnix.pdf.info;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -29,7 +30,6 @@ public class DialogSpeedRead {
 
     volatile static int currentWord = 0;
     volatile static String[] words = new String[] { "" };
-
 
     public static void show(final Context a, final DocumentController dc) {
         final AlertDialog.Builder builder = new AlertDialog.Builder(a);
@@ -110,7 +110,6 @@ public class DialogSpeedRead {
                 final int page = dc.getCurentPageFirst1();
                 final int pageCount = dc.getPageCount() + 1;
 
-
                 for (int currentPage = page; currentPage < pageCount; currentPage++) {
 
                     if (!TempHolder.isActiveSpeedRead) {
@@ -119,15 +118,27 @@ public class DialogSpeedRead {
 
                     final int currentPage1 = currentPage;
                     String textForPage = dc.getTextForPage(currentPage - 1);
-                    words = textForPage.split(" ");
 
+                    List<String> tempList = Arrays.asList(textForPage.split(" "));
+                    List<String> res = new ArrayList<String>();
+                    for (String item : tempList) {
+                        if (item.contains("-") && item.length() > 10) {
+                            String[] it = item.split("-");
+                            res.add(it[0] + "-");
+                            res.add(it[1]);
+                        } else {
+                            res.add(item);
+                        }
+
+                    }
+                    words = res.toArray(new String[res.size()]);
 
                     dc.getActivity().runOnUiThread(new Runnable() {
 
                         @Override
                         public void run() {
                             if (TempHolder.isActiveSpeedRead) {
-                            dc.onGoToPage(currentPage1);
+                                dc.onGoToPage(currentPage1);
                             }
                         }
                     });
@@ -155,7 +166,6 @@ public class DialogSpeedRead {
                                 if (word.length() >= 3 && temp.replace(" ", "").length() > AppState.get().fastManyWords) {
                                     break;
                                 }
-
 
                                 word = temp;
                                 i++;
@@ -257,12 +267,10 @@ public class DialogSpeedRead {
                 reset();
             }
 
-
         });
         reset();
         create.show();
     }
-
 
     private static void reset() {
         currentWord = 0;
