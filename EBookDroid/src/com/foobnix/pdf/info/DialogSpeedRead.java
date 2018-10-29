@@ -122,7 +122,7 @@ public class DialogSpeedRead {
                     List<String> tempList = Arrays.asList(textForPage.split(" "));
                     List<String> res = new ArrayList<String>();
                     for (String item : tempList) {
-                        if (item.contains("-") && item.length() > 10) {
+                        if (item.contains("-") && item.length() >= 10) {
                             String[] it = item.split("-");
                             res.add(it[0] + "-");
                             res.add(it[1]);
