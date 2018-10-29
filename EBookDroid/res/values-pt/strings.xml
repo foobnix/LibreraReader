@@ -499,5 +499,5 @@
    <string name="status_bar_location">Localização da barra de status</string>
    <string name="add_to_bookmark">Adicionar aos favoritos</string>
    <string name="fast_reading">Leitura rápida (RSVP)</string>
-   <string name="average_line_length">Comprimento médio da linha</string>
+   <string name="minimum_line_length">Comprimento mínimo da linha (CPL)</string>
 </resources>

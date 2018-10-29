@@ -499,5 +499,5 @@
    <string name="status_bar_location">Umiestnenie stavovej lišty</string>
    <string name="add_to_bookmark">Pridať do záložiek</string>
    <string name="fast_reading">Rýchle čítanie (RSVP)</string>
-   <string name="average_line_length">Priemerná dĺžka riadku</string>
+   <string name="minimum_line_length">Minimálna dĺžka linky (CPL)</string>
 </resources>

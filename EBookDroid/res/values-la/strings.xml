@@ -499,5 +499,5 @@
    <string name="status_bar_location">Status Bar loco</string>
    <string name="add_to_bookmark">Add to bookmarks</string>
    <string name="fast_reading">Lectio Fast (RSVP)</string>
-   <string name="average_line_length">Longitudo media acie</string>
+   <string name="minimum_line_length">Minimum tandem lineam (CPL)</string>
 </resources>

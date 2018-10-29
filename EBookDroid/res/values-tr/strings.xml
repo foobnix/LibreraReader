@@ -499,5 +499,5 @@
    <string name="status_bar_location">Durum Çubuğu konumu</string>
    <string name="add_to_bookmark">Yer imlerine ekle</string>
    <string name="fast_reading">Hızlı okuma (RSVP)</string>
-   <string name="average_line_length">Ortalama hat uzunluğu</string>
+   <string name="minimum_line_length">Minimum çizgi uzunluğu (CPL)</string>
 </resources>

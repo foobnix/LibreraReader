@@ -499,5 +499,5 @@
    <string name="status_bar_location">موقعیت محل نوار</string>
    <string name="add_to_bookmark">افزودن به بوک مارک ها</string>
    <string name="fast_reading">خواندن سریع (RSVP)</string>
-   <string name="average_line_length">طول خط میانگین</string>
+   <string name="minimum_line_length">حداقل طول خط (CPL)</string>
 </resources>

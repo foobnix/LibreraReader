@@ -499,5 +499,5 @@
    <string name="status_bar_location">ตำแหน่งแถบสถานะ</string>
    <string name="add_to_bookmark">เพิ่มในบุ๊กมาร์ก</string>
    <string name="fast_reading">การอ่านอย่างรวดเร็ว (RSVP)</string>
-   <string name="average_line_length">ความยาวเส้นเฉลี่ย</string>
+   <string name="minimum_line_length">ความยาวบรรทัดขั้นต่ำ (CPL)</string>
 </resources>

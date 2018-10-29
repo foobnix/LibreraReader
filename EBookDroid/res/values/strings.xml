@@ -499,5 +499,5 @@
    <string name="status_bar_location">Position</string>
    <string name="add_to_bookmark">Bookmark</string>
    <string name="fast_reading">Speed read (RSVP)</string>
-   <string name="average_line_length">Min. line length (CPL)</string>
+   <string name="minimum_line_length">Minimum line length (CPL)</string>
 </resources>

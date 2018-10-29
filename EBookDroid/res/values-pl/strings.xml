@@ -499,5 +499,5 @@
    <string name="status_bar_location">Położenie paska stanu</string>
    <string name="add_to_bookmark">Dodaj do zakładek</string>
    <string name="fast_reading">Szybki odczyt (RSVP)</string>
-   <string name="average_line_length">Średnia długość linii</string>
+   <string name="minimum_line_length">Minimalna długość linii (CPL)</string>
 </resources>

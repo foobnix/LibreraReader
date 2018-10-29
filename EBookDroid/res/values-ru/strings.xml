@@ -499,5 +499,5 @@
    <string name="status_bar_location">Расположение строки состояния</string>
    <string name="add_to_bookmark">Добавить в закладки</string>
    <string name="fast_reading">Скорочтение (RSVP)</string>
-   <string name="average_line_length">Средняя длина линии</string>
+   <string name="minimum_line_length">Минимальная длина линии (CPL)</string>
 </resources>

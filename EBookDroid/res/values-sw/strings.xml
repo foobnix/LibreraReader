@@ -499,5 +499,5 @@
    <string name="status_bar_location">Eneo la Hali ya Bar</string>
    <string name="add_to_bookmark">Ongeza kwenye salamisho</string>
    <string name="fast_reading">Kusoma kwa haraka (RSVP)</string>
-   <string name="average_line_length">Wastani wa urefu wa mstari</string>
+   <string name="minimum_line_length">Urefu wa mstari wa chini (CPL)</string>
 </resources>

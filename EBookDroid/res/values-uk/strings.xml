@@ -499,5 +499,5 @@
    <string name="status_bar_location">Місцезнаходження панелі статусу</string>
    <string name="add_to_bookmark">Додати до закладок</string>
    <string name="fast_reading">Швидке читання (RSVP)</string>
-   <string name="average_line_length">Середня довжина лінії</string>
+   <string name="minimum_line_length">Мінімальна довжина лінії (CPL)</string>
 </resources>

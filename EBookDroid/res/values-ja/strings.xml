@@ -499,5 +499,5 @@
    <string name="status_bar_location">ステータスバーの場所</string>
    <string name="add_to_bookmark">ブックマークに追加</string>
    <string name="fast_reading">速読（RSVP）</string>
-   <string name="average_line_length">平均線長</string>
+   <string name="minimum_line_length">最小行長（CPL）</string>
 </resources>

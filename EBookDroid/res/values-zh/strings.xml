@@ -499,5 +499,5 @@
    <string name="status_bar_location">状态栏位置</string>
    <string name="add_to_bookmark">添加到书签</string>
    <string name="fast_reading">快速阅读（RSVP）</string>
-   <string name="average_line_length">平均线长</string>
+   <string name="minimum_line_length">最小线长（CPL）</string>
 </resources>

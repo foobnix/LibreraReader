@@ -499,5 +499,5 @@
    <string name="status_bar_location">Vị trí thanh trạng thái</string>
    <string name="add_to_bookmark">Thêm vào dấu trang</string>
    <string name="fast_reading">Đọc nhanh (RSVP)</string>
-   <string name="average_line_length">Độ dài dòng trung bình</string>
+   <string name="minimum_line_length">Độ dài dòng tối thiểu (CPL)</string>
 </resources>

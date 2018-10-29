@@ -499,5 +499,5 @@
    <string name="status_bar_location">מיקום שורת המצב</string>
    <string name="add_to_bookmark">הוסף לסימניות</string>
    <string name="fast_reading">קריאה מהירה (RSVP)</string>
-   <string name="average_line_length">אורך שורה ממוצע</string>
+   <string name="minimum_line_length">אורך שורה מינימלי (CPL)</string>
 </resources>

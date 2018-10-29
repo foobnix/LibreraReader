@@ -499,5 +499,5 @@
    <string name="status_bar_location">Lokasi Bilah Status</string>
    <string name="add_to_bookmark">Tambahkan ke bookmark</string>
    <string name="fast_reading">Pembacaan cepat (RSVP)</string>
-   <string name="average_line_length">Panjang garis rata-rata</string>
+   <string name="minimum_line_length">Panjang baris minimum (CPL)</string>
 </resources>

@@ -30,7 +30,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight="0"
-        myseek:text="@string/average_line_length" >
+        myseek:text="@string/minimum_line_length" >
     </com.foobnix.pdf.info.view.CustomSeek>
 
     <TextView
