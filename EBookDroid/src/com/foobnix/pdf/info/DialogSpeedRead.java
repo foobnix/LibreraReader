@@ -21,11 +21,14 @@ import android.view.MenuItem;
 import android.view.MenuItem.OnMenuItemClickListener;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 public class DialogSpeedRead {
 
     volatile static int currentWord = 0;
+    volatile static String[] words = new String[] { "" };
+
 
     public static void show(final Context a, final DocumentController dc) {
         final AlertDialog.Builder builder = new AlertDialog.Builder(a);
@@ -34,6 +37,15 @@ public class DialogSpeedRead {
 
         final TextView textWord = (TextView) layout.findViewById(R.id.textWord);
         final TextView onReset = (TextView) layout.findViewById(R.id.onReset);
+
+        final ImageView onNext = (ImageView) layout.findViewById(R.id.onNext);
+        final ImageView onPrev = (ImageView) layout.findViewById(R.id.onPrev);
+
+        onNext.setVisibility(View.VISIBLE);
+        onPrev.setVisibility(View.VISIBLE);
+
+        TintUtil.setTintImageWithAlpha(onNext, TintUtil.color, 100);
+        TintUtil.setTintImageWithAlpha(onPrev, TintUtil.color, 100);
 
         final CustomSeek seekBarSpeed = (CustomSeek) layout.findViewById(R.id.fastReadSpeed);
         seekBarSpeed.init(10, 900, AppState.get().fastReadSpeed);
@@ -97,20 +109,33 @@ public class DialogSpeedRead {
                 final int page = dc.getCurentPageFirst1();
                 final int pageCount = dc.getPageCount() + 1;
 
+
                 for (int currentPage = page; currentPage < pageCount; currentPage++) {
+
+                    if (!TempHolder.isActiveSpeedRead) {
+                        return;
+                    }
+
                     final int currentPage1 = currentPage;
                     String textForPage = dc.getTextForPage(currentPage - 1);
-                    final String[] words = textForPage.split(" ");
+                    words = textForPage.split(" ");
+
 
                     dc.getActivity().runOnUiThread(new Runnable() {
 
                         @Override
                         public void run() {
+                            if (TempHolder.isActiveSpeedRead) {
                             dc.onGoToPage(currentPage1);
+                            }
                         }
                     });
 
                     for (int i = currentWord; i < words.length; i++) {
+                        if (!TempHolder.isActiveSpeedRead) {
+                            return;
+                        }
+
                         String word = words[i];
 
                         if (AppState.get().fastManyWords != 0) {
@@ -127,12 +152,8 @@ public class DialogSpeedRead {
                             }
                         }
 
-                        if (!TempHolder.isActiveSpeedRead) {
-                            currentWord = i;
-                            return;
-                        }
-
                         final String wordFinal = word;
+                        currentWord = i;
                         dc.getActivity().runOnUiThread(new Runnable() {
 
                             @Override
@@ -154,9 +175,40 @@ public class DialogSpeedRead {
 
             @Override
             public void onClick(View v) {
+                onReset.setVisibility(View.VISIBLE);
                 TempHolder.isActiveSpeedRead = !TempHolder.isActiveSpeedRead;
                 if (TempHolder.isActiveSpeedRead) {
                     new Thread(task).start();
+
+                    onNext.setVisibility(View.GONE);
+                    onPrev.setVisibility(View.GONE);
+                } else {
+                    onNext.setVisibility(View.VISIBLE);
+                    onPrev.setVisibility(View.VISIBLE);
+                }
+
+            }
+        });
+
+        onPrev.setOnClickListener(new OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                if (currentWord > 0) {
+                    currentWord--;
+                    textWord.setText(words[currentWord]);
+                }
+
+            }
+        });
+
+        onNext.setOnClickListener(new OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                if (currentWord < words.length - 1) {
+                    currentWord++;
+                    textWord.setText(words[currentWord]);
                 }
 
             }
@@ -170,8 +222,10 @@ public class DialogSpeedRead {
                 TxtUtils.underlineTextView(textWord);
                 TempHolder.isActiveSpeedRead = false;
                 currentWord = 0;
+                textWord.setText(words[currentWord]);
             }
         });
+        onReset.setVisibility(View.INVISIBLE);
 
         builder.setView(layout);
 
@@ -179,7 +233,7 @@ public class DialogSpeedRead {
             @Override
             public void onClick(DialogInterface dialog, int id) {
                 TempHolder.isActiveSpeedRead = false;
-                currentWord = 0;
+                reset();
                 dialog.dismiss();
             }
         });
@@ -190,11 +244,18 @@ public class DialogSpeedRead {
             @Override
             public void onDismiss(DialogInterface dialog) {
                 TempHolder.isActiveSpeedRead = false;
-                currentWord = 0;
+                reset();
             }
+
+
         });
-        currentWord = 0;
+        reset();
         create.show();
+    }
+
+    private static void reset() {
+        currentWord = 0;
+        words = new String[] { "" };
     }
 
 }
