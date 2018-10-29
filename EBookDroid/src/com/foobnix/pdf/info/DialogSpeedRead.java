@@ -4,6 +4,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import com.foobnix.android.utils.IntegerResponse;
+import com.foobnix.android.utils.LOG;
 import com.foobnix.android.utils.TxtUtils;
 import com.foobnix.pdf.info.model.BookCSS;
 import com.foobnix.pdf.info.view.CustomSeek;
@@ -140,12 +141,22 @@ public class DialogSpeedRead {
 
                         if (AppState.get().fastManyWords != 0) {
 
-                            while (i + 1 < words.length && !word.endsWith(".")) {
+                            while (i + 1 < words.length) {
+
+                                String lastWord = TxtUtils.lastWord(word);
+                                boolean isLastWorld = lastWord.endsWith(".") && lastWord.length() > 3;
+                                LOG.d("isLastWorld", word, lastWord, isLastWorld);
+                                if (isLastWorld) {
+                                    break;
+                                }
+
                                 String temp = word + " " + words[i + 1];
 
                                 if (word.length() >= 3 && temp.replace(" ", "").length() > AppState.get().fastManyWords) {
                                     break;
                                 }
+
+
                                 word = temp;
                                 i++;
 
@@ -222,7 +233,6 @@ public class DialogSpeedRead {
                 TxtUtils.underlineTextView(textWord);
                 TempHolder.isActiveSpeedRead = false;
                 currentWord = 0;
-                textWord.setText(words[currentWord]);
             }
         });
         onReset.setVisibility(View.INVISIBLE);
@@ -252,6 +262,7 @@ public class DialogSpeedRead {
         reset();
         create.show();
     }
+
 
     private static void reset() {
         currentWord = 0;
