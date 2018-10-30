@@ -163,7 +163,6 @@
    <string name="search">Ara</string>
    <string name="export_bookmarks">Notları çıkar</string>
    <string name="simple_scroll_animation">Basit kaydırma animasyonu</string>
-   <string name="close_application">Uygulamayı kapat</string>
    <string name="___TABS___SECTION___"></string>
    <string name="library">Kütüphane</string>
    <string name="extracting_information_from_books">Kitaplardan bilgi ayıklanıyor</string>
@@ -500,4 +499,5 @@
    <string name="add_to_bookmark">Yer imlerine ekle</string>
    <string name="fast_reading">Hızlı okuma (RSVP)</string>
    <string name="minimum_line_length">Minimum çizgi uzunluğu (CPL)</string>
+   <string name="ask_rate_us">Bu uygulamayı beğendiyseniz, Google Play\'de bize oy vermek veya yorum yazmak için lütfen bu bağlantıyı tıklayın. Teşekkür ederim. (Bu mesaj artık gösterilmeyecek)</string>
 </resources>

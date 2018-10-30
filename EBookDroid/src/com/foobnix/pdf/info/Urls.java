@@ -111,6 +111,15 @@ public class Urls {
         }
     }
 
+    public static void rateIT(Context a) {
+        try {
+            Urls.open(a, "market://details?id=" + a.getPackageName());
+        } catch (Exception e) {
+            Urls.open(a, "https://play.google.com/store/apps/details?id=" + a.getPackageName());
+            LOG.e(e);
+        }
+    }
+
     public static String getLangCode() {
         try {
             return Locale.getDefault().getLanguage();

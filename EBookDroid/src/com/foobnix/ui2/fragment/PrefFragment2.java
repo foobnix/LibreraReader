@@ -1463,7 +1463,7 @@ public class PrefFragment2 extends UIFragment {
 
             @Override
             public void onClick(final View v) {
-                rateIT();
+                Urls.rateIT(getActivity());
             }
         });
         underline(inflate.findViewById(R.id.openWeb)).setOnClickListener(new OnClickListener() {
@@ -1838,14 +1838,6 @@ public class PrefFragment2 extends UIFragment {
         }
     }
 
-    public void rateIT() {
-        try {
-            Urls.open(getActivity(), "market://details?id=" + getActivity().getPackageName());
-        } catch (Exception e) {
-            Urls.open(getActivity(), "https://play.google.com/store/apps/details?id=" + getActivity().getPackageName());
-            LOG.e(e);
-        }
-    }
 
     public void rotationText() {
         screenOrientation.setText(DocumentController.getRotationText());

@@ -317,6 +317,8 @@ public class AppState {
     @IgnoreHashCode
     public boolean isBrighrnessEnable = true;
 
+    public boolean isShowRateUsOnExit = true;
+
     @IgnoreHashCode
     public boolean isRewindEnable = true;
     @IgnoreHashCode

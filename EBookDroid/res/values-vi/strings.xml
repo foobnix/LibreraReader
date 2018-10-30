@@ -163,7 +163,6 @@
    <string name="search">Tìm kiếm</string>
    <string name="export_bookmarks">Export Bookmarks</string>
    <string name="simple_scroll_animation">Hoạt hình cuộn đơn giản</string>
-   <string name="close_application">Đóng ứng dụng</string>
    <string name="___TABS___SECTION___"></string>
    <string name="library">Thư viện</string>
    <string name="extracting_information_from_books">Trích xuất thông tin từ sách</string>
@@ -500,4 +499,5 @@
    <string name="add_to_bookmark">Thêm vào dấu trang</string>
    <string name="fast_reading">Đọc nhanh (RSVP)</string>
    <string name="minimum_line_length">Độ dài dòng tối thiểu (CPL)</string>
+   <string name="ask_rate_us">Nếu bạn thích ứng dụng này, vui lòng nhấp vào liên kết này để xếp hạng chúng tôi trên Google Play hoặc viết bài đánh giá. Cảm ơn bạn. (thông báo này sẽ không còn được hiển thị sau)</string>
 </resources>

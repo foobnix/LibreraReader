@@ -163,7 +163,6 @@
    <string name="search">Sök</string>
    <string name="export_bookmarks">Exportera bokmärken</string>
    <string name="simple_scroll_animation">Enkel rullnings animation</string>
-   <string name="close_application">Stäng ansökan</string>
    <string name="___TABS___SECTION___"></string>
    <string name="library">Bibliotek</string>
    <string name="extracting_information_from_books">Extrahera information från böcker</string>
@@ -500,4 +499,5 @@
    <string name="add_to_bookmark">Lägg till i bokmärken</string>
    <string name="fast_reading">Snabb läsning (RSVP)</string>
    <string name="minimum_line_length">Minsta linjelängd (CPL)</string>
+   <string name="ask_rate_us">Om du gillar den här applikationen, vänligen klicka på den här länken för att betygsätta oss på Google Play eller skriv en recension. Tack. (det här meddelandet visas inte längre efter)</string>
 </resources>

@@ -163,7 +163,6 @@
    <string name="search">Søke</string>
    <string name="export_bookmarks">Eksporter bokmerker</string>
    <string name="simple_scroll_animation">Enkel rulleanimasjon</string>
-   <string name="close_application">Lukk søknad</string>
    <string name="___TABS___SECTION___"></string>
    <string name="library">Bibliotek</string>
    <string name="extracting_information_from_books">Utpakking av informasjon fra bøker</string>
@@ -500,4 +499,5 @@
    <string name="add_to_bookmark">Legg til i bokmerker</string>
    <string name="fast_reading">Rask lesing (RSVP)</string>
    <string name="minimum_line_length">Minimum linjelengde (CPL)</string>
+   <string name="ask_rate_us">Hvis du liker dette programmet, kan du klikke på denne linken for å rangere oss på Google Play eller skrive en anmeldelse. Takk skal du ha. (denne meldingen vil ikke lenger bli vist etter)</string>
 </resources>

@@ -163,7 +163,6 @@
    <string name="search">खोज</string>
    <string name="export_bookmarks">बुकमार्क निर्यात करें</string>
    <string name="simple_scroll_animation">सरल पुस्तक एनीमेशन</string>
-   <string name="close_application">एप्लिकेशन बंद करो</string>
    <string name="___TABS___SECTION___"></string>
    <string name="library">पुस्तकालय</string>
    <string name="extracting_information_from_books">पुस्तकों से जानकारी निकालने</string>
@@ -500,4 +499,5 @@
    <string name="add_to_bookmark">बुकमार्क्स में जोड़ें</string>
    <string name="fast_reading">फास्ट रीडिंग (आरएसवीपी)</string>
    <string name="minimum_line_length">न्यूनतम लाइन लंबाई (सीपीएल)</string>
+   <string name="ask_rate_us">अगर आपको यह एप्लिकेशन पसंद है, तो कृपया Google Play पर हमें रेट करने या समीक्षा लिखने के लिए इस लिंक पर क्लिक करें। धन्यवाद। (यह संदेश अब प्रदर्शित नहीं होगा)</string>
 </resources>

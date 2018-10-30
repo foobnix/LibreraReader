@@ -163,7 +163,6 @@
    <string name="search">検索</string>
    <string name="export_bookmarks">ブックマークのエクスポート</string>
    <string name="simple_scroll_animation">シンプルなスクロールアニメーション</string>
-   <string name="close_application">アプリケーションを閉じる</string>
    <string name="___TABS___SECTION___"></string>
    <string name="library">Library</string>
    <string name="extracting_information_from_books">本から情報を抽出します</string>
@@ -500,4 +499,5 @@
    <string name="add_to_bookmark">ブックマークに追加</string>
    <string name="fast_reading">速読（RSVP）</string>
    <string name="minimum_line_length">最小行長（CPL）</string>
+   <string name="ask_rate_us">このアプリケーションが気に入ったら、このリンクをクリックしてGoogle Playで評価するかレビューを書いてください。ありがとうございました。 （このメッセージは後で表示されなくなります）</string>
 </resources>

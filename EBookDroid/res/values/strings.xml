@@ -163,7 +163,6 @@
    <string name="search">Find</string>
    <string name="export_bookmarks">Export</string>
    <string name="simple_scroll_animation">Animate page transition (scroll)</string>
-   <string name="close_application">Exit Librera</string>
    <string name="___TABS___SECTION___"></string>
    <string name="library">Library</string>
    <string name="extracting_information_from_books">Extracting information from files</string>
@@ -500,4 +499,5 @@
    <string name="add_to_bookmark">Bookmark</string>
    <string name="fast_reading">Speed read (RSVP)</string>
    <string name="minimum_line_length">Minimum line length (CPL)</string>
+   <string name="ask_rate_us">If you like this application, please click this link to rate us on Google Play or write a review. Thank you. (this message will no longer be displayed after)</string>
 </resources>

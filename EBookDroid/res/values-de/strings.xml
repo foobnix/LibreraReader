@@ -163,7 +163,6 @@
    <string name="search">Suche</string>
    <string name="export_bookmarks">Lesezeichen exportieren</string>
    <string name="simple_scroll_animation">Einfache Scroll-Animation</string>
-   <string name="close_application">Schließe die Anwendung</string>
    <string name="___TABS___SECTION___"></string>
    <string name="library">Bibliothek</string>
    <string name="extracting_information_from_books">Extrahieren von Informationen aus Bücher</string>
@@ -500,4 +499,5 @@
    <string name="add_to_bookmark">Zu Lesezeichen hinzufügen</string>
    <string name="fast_reading">Schnelles Lesen (RSVP)</string>
    <string name="minimum_line_length">Mindestleitungslänge (CPL)</string>
+   <string name="ask_rate_us">Wenn Ihnen diese Anwendung gefällt, klicken Sie bitte auf diesen Link, um uns bei Google Play zu bewerten oder eine Bewertung abzugeben. Vielen Dank. (Diese Nachricht wird nicht mehr angezeigt)</string>
 </resources>
