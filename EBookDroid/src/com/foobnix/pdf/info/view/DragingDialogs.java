@@ -1948,7 +1948,7 @@ public class DragingDialogs {
             }
         }
 
-        final AppBookmark bookmark = new AppBookmark(controller.getCurrentBook().getPath(), controller.getString(R.string.fast_bookmark), page, controller.getTitle());
+        final AppBookmark bookmark = new AppBookmark(controller.getCurrentBook().getPath(), controller.getString(R.string.fast_bookmark), page, controller.getTitle(), controller.getPercentage());
         AppSharedPreferences.get().addBookMark(bookmark);
 
         String TEXT = controller.getString(R.string.fast_bookmark) + " " + TxtUtils.LONG_DASH1 + " " + controller.getString(R.string.page) + " " + page + "";
@@ -1958,7 +1958,7 @@ public class DragingDialogs {
 
     public static void addBookmarks(final FrameLayout anchor, final DocumentController controller, final Runnable onRefeshUI) {
         final List<AppBookmark> objects = new ArrayList<AppBookmark>();
-        final BookmarksAdapter bookmarksAdapter = new BookmarksAdapter(anchor.getContext(), objects, true);
+        final BookmarksAdapter bookmarksAdapter = new BookmarksAdapter(anchor.getContext(), objects, true, controller);
 
         final View.OnClickListener onAdd = new View.OnClickListener() {
 
@@ -1983,7 +1983,13 @@ public class DragingDialogs {
                     controller.getLinkHistory().add(offsetY);
                 }
 
-                controller.onGoToPage(page);
+                if (appBookmark.getPercent() > 0) {
+                    int page2 = (int) (appBookmark.getPercent() * controller.getPageCount());
+                    LOG.d("appBookmark", page2);
+                    controller.onGoToPage(page2);
+                } else {
+                    controller.onGoToPage(page);
+                }
 
                 onRefeshUI.run();
             }
@@ -2025,7 +2031,7 @@ public class DragingDialogs {
                             }
                         }
 
-                        final AppBookmark bookmark = new AppBookmark(controller.getCurrentBook().getPath(), controller.getString(R.string.fast_bookmark), page, controller.getTitle());
+                        final AppBookmark bookmark = new AppBookmark(controller.getCurrentBook().getPath(), controller.getString(R.string.fast_bookmark), page, controller.getTitle(), controller.getPercentage());
                         AppSharedPreferences.get().addBookMark(bookmark);
 
                         objects.clear();

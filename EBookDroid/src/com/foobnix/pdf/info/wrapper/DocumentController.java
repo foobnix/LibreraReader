@@ -208,9 +208,8 @@ public abstract class DocumentController {
 
     }
 
-    public double getPercentage() {
-        LOG.d("getPercentage", getCurentPage(), getPageCount());
-        return (getCurentPage() + 0.0) / getPageCount();
+    public float getPercentage() {
+        return (float) (getCurentPageFirst1() + 0.0001) / getPageCount();
     }
 
     public void updateReadPercent() {

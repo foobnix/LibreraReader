@@ -336,7 +336,7 @@ public class DocumentWrapperUI {
         if (AppState.get().isUseVolumeKeys && KeyEvent.KEYCODE_HEADSETHOOK == keyCode) {
             if (TTSEngine.get().isPlaying()) {
                 if (AppState.get().isFastBookmarkByTTS) {
-                    TTSEngine.get().fastTTSBookmakr(dc.getActivity());
+                    TTSEngine.get().fastTTSBookmakr(dc.getActivity(), dc.getPercentage());
                 } else {
                     TTSEngine.get().stop();
                 }

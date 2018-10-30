@@ -2021,7 +2021,7 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
             if (AppState.get().isUseVolumeKeys && KeyEvent.KEYCODE_HEADSETHOOK == keyCode) {
                 if (TTSEngine.get().isPlaying()) {
                     if (AppState.get().isFastBookmarkByTTS) {
-                        TTSEngine.get().fastTTSBookmakr(getBaseContext());
+                        TTSEngine.get().fastTTSBookmakr(getBaseContext(), dc.getPercentage());
                     } else {
                         TTSEngine.get().stop();
                     }

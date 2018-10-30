@@ -7,6 +7,7 @@ import com.foobnix.pdf.info.AppSharedPreferences;
 import com.foobnix.pdf.info.R;
 import com.foobnix.pdf.info.wrapper.AppBookmark;
 import com.foobnix.pdf.info.wrapper.AppState;
+import com.foobnix.pdf.info.wrapper.DocumentController;
 
 import android.content.Context;
 import android.graphics.Color;
@@ -28,11 +29,13 @@ public class BookmarksAdapter extends BaseAdapter {
 
     private int muxnumberOfLines = 3;
     private String higlightText;
+    private DocumentController controller;
 
-    public BookmarksAdapter(Context context, List<AppBookmark> objects, boolean submenu) {
+    public BookmarksAdapter(Context context, List<AppBookmark> objects, boolean submenu, DocumentController controller) {
         this.context = context;
         this.objects = objects;
         this.submenu = submenu;
+        this.controller = controller;
     }
 
     @Override
@@ -50,10 +53,15 @@ public class BookmarksAdapter extends BaseAdapter {
         ViewCompat.setElevation(((View) image.getParent()), 0);
         view.setBackgroundColor(Color.TRANSPARENT);
 
-
         String pageNumber = TxtUtils.deltaPage(AppState.get().isCut ? bookmark.getPage() * 2 : bookmark.getPage());
         titleView.setVisibility(View.GONE);
-        textView.setText(pageNumber + ": " + bookmark.getText());
+        int pageByPercent = (int) (bookmark.getPercent() * controller.getPageCount());
+        if (bookmark.getPercent() > 0) {
+            textView.setText(pageByPercent + ": " + bookmark.getText());
+        } else {
+            textView.setText(bookmark.getPercent() + ": " + bookmark.getText());
+        }
+
         pageView.setText(pageNumber);
 
         RelativeLayout.LayoutParams layoutParams = (RelativeLayout.LayoutParams) pageView.getLayoutParams();

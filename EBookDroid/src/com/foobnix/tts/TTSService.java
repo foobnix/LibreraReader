@@ -102,7 +102,7 @@ public class TTSService extends Service {
 
                         if (isPlaying) {
                             if (AppState.get().isFastBookmarkByTTS) {
-                                TTSEngine.get().fastTTSBookmakr(getBaseContext());
+                                TTSEngine.get().fastTTSBookmakr(getBaseContext(), 0);
                             } else {
                                 TTSEngine.get().stop();
                             }
