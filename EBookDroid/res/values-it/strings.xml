@@ -163,7 +163,6 @@
    <string name="search">Cerca</string>
    <string name="export_bookmarks">Esporta segnalibri</string>
    <string name="simple_scroll_animation">Animazione di scorrimento semplice</string>
-   <string name="close_application">Chiudi l\'applicazione</string>
    <string name="___TABS___SECTION___"></string>
    <string name="library">Libreria</string>
    <string name="extracting_information_from_books">Estraggo le informazioni da libri</string>
@@ -499,5 +498,6 @@
    <string name="status_bar_location">Posizione della barra di stato</string>
    <string name="add_to_bookmark">Aggiungi ai segnalibri</string>
    <string name="fast_reading">Lettura veloce (RSVP)</string>
-   <string name="average_line_length">Lunghezza della linea media</string>
+   <string name="minimum_line_length">Lunghezza minima della linea (CPL)</string>
+   <string name="ask_rate_us">Se ti piace questa applicazione, fai clic su questo link per votarci su Google Play o scrivere una recensione. Grazie. (questo messaggio non verrà più visualizzato dopo)</string>
 </resources>

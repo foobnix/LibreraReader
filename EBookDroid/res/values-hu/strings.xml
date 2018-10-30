@@ -163,7 +163,6 @@
    <string name="search">Keresés</string>
    <string name="export_bookmarks">Exportálás</string>
    <string name="simple_scroll_animation">Lapáttűnés animálása (görgetés)</string>
-   <string name="close_application">Librera bezárása</string>
    <string name="___TABS___SECTION___"></string>
    <string name="library">Könyvtár</string>
    <string name="extracting_information_from_books">Információk kiolvasása a fájlokból</string>
@@ -499,5 +498,6 @@
    <string name="status_bar_location">Állapotjelző helye</string>
    <string name="add_to_bookmark">Hozzáadás könyvjelzőkhöz</string>
    <string name="fast_reading">Gyors olvasás (RSVP)</string>
-   <string name="average_line_length">Átlagos vonalhossz</string>
+   <string name="minimum_line_length">Minimális vonalhossz (CPL)</string>
+   <string name="ask_rate_us">Ha tetszik ez az alkalmazás, kérjük, kattintson erre a linkre, hogy értékelje a Google Playen vagy írjon véleményt. Köszönöm. (ez az üzenet többé nem jelenik meg)</string>
 </resources>

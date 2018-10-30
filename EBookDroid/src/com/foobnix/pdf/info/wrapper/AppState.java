@@ -317,6 +317,8 @@ public class AppState {
     @IgnoreHashCode
     public boolean isBrighrnessEnable = true;
 
+    public boolean isShowRateUsOnExit = true;
+
     @IgnoreHashCode
     public boolean isRewindEnable = true;
     @IgnoreHashCode
@@ -336,7 +338,7 @@ public class AppState {
     public int appBrightness = AUTO_BRIGTNESS;
 
     public volatile int fastReadSpeed = 200;
-    public volatile int fastReadFontSize = 40;
+    public volatile int fastReadFontSize = 32;
     public volatile int fastManyWords = 6;
 
     public volatile float ttsSpeed = 1.0f;

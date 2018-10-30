@@ -163,7 +163,6 @@
    <string name="search">جستجو کردن</string>
    <string name="export_bookmarks">صادر کردن نشانکها</string>
    <string name="simple_scroll_animation">انیمیشن اسکرول ساده</string>
-   <string name="close_application">بستن برنامه</string>
    <string name="___TABS___SECTION___"></string>
    <string name="library">کتابخانه</string>
    <string name="extracting_information_from_books">استخراج اطلاعات از کتاب</string>
@@ -499,5 +498,6 @@
    <string name="status_bar_location">موقعیت محل نوار</string>
    <string name="add_to_bookmark">افزودن به بوک مارک ها</string>
    <string name="fast_reading">خواندن سریع (RSVP)</string>
-   <string name="average_line_length">طول خط میانگین</string>
+   <string name="minimum_line_length">حداقل طول خط (CPL)</string>
+   <string name="ask_rate_us">اگر این برنامه را دوست دارید، لطفا با کلیک بر روی این لینک برای رای دادن به ما در Google Play یا نوشتن نظر. متشکرم. (این پیام دیگر بعد از نمایش داده نمی شود)</string>
 </resources>

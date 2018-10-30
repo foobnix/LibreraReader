@@ -163,7 +163,6 @@
    <string name="search">ค้นหา</string>
    <string name="export_bookmarks">ส่งออกบุ๊กมาร์ก</string>
    <string name="simple_scroll_animation">ภาพเคลื่อนไหวแบบเลื่อนง่ายๆ</string>
-   <string name="close_application">ปิดแอปพลิเคชัน</string>
    <string name="___TABS___SECTION___"></string>
    <string name="library">ห้องสมุด</string>
    <string name="extracting_information_from_books">การดึงข้อมูลจากหนังสือ</string>
@@ -499,5 +498,6 @@
    <string name="status_bar_location">ตำแหน่งแถบสถานะ</string>
    <string name="add_to_bookmark">เพิ่มในบุ๊กมาร์ก</string>
    <string name="fast_reading">การอ่านอย่างรวดเร็ว (RSVP)</string>
-   <string name="average_line_length">ความยาวเส้นเฉลี่ย</string>
+   <string name="minimum_line_length">ความยาวบรรทัดขั้นต่ำ (CPL)</string>
+   <string name="ask_rate_us">หากคุณชอบแอปพลิเคชันนี้โปรดคลิกลิงก์นี้เพื่อให้คะแนนเราบน Google Play หรือเขียนรีวิว ขอบคุณ. (ข้อความนี้จะไม่แสดงภายหลัง)</string>
 </resources>

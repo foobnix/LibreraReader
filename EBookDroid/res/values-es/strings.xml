@@ -163,7 +163,6 @@
    <string name="search">Buscar</string>
    <string name="export_bookmarks">Exportar Marcadores</string>
    <string name="simple_scroll_animation">La animación de desplazamiento sencillo</string>
-   <string name="close_application">Cierra la aplicación</string>
    <string name="___TABS___SECTION___"></string>
    <string name="library">Librería</string>
    <string name="extracting_information_from_books">Extraer información de los libros</string>
@@ -499,5 +498,6 @@
    <string name="status_bar_location">Ubicación de la barra de estado</string>
    <string name="add_to_bookmark">Añadir a marcadores</string>
    <string name="fast_reading">Lectura rápida (RSVP)</string>
-   <string name="average_line_length">Longitud media de la línea</string>
+   <string name="minimum_line_length">Longitud de línea mínima (CPL)</string>
+   <string name="ask_rate_us">Si le gusta esta aplicación, haga clic en este enlace para calificarnos en Google Play o escriba una reseña. Gracias. (este mensaje ya no se mostrará después)</string>
 </resources>

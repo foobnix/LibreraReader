@@ -45,7 +45,7 @@ public class ListBoxHelper {
                 try {
                     final String text = editText.getText().toString();
                     if (text != null && !text.trim().equals("")) {
-                        final AppBookmark bookmark = new AppBookmark(controller.getCurrentBook().getPath(), text, curentPageFirst1, controller.getTitle());
+                        final AppBookmark bookmark = new AppBookmark(controller.getCurrentBook().getPath(), text, curentPageFirst1, controller.getTitle(), controller.getPercentage());
                         AppSharedPreferences.get().addBookMark(bookmark);
                         if (objects != null) {
                             objects.add(0, bookmark);
@@ -78,7 +78,7 @@ public class ListBoxHelper {
     }
 
     public static void addBookmark(DocumentController controller, String text) {
-        final AppBookmark bookmark = new AppBookmark(controller.getCurrentBook().getPath(), text, controller.getCurentPage(), controller.getTitle());
+        final AppBookmark bookmark = new AppBookmark(controller.getCurrentBook().getPath(), text, controller.getCurentPage(), controller.getTitle(), controller.getPercentage());
         AppSharedPreferences.get().addBookMark(bookmark);
     }
 

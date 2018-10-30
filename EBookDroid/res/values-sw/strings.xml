@@ -163,7 +163,6 @@
    <string name="search">Tafuta</string>
    <string name="export_bookmarks">Export Bookmarks</string>
    <string name="simple_scroll_animation">Rahisi kitabu uhuishaji</string>
-   <string name="close_application">Close maombi</string>
    <string name="___TABS___SECTION___"></string>
    <string name="library">Maktaba</string>
    <string name="extracting_information_from_books">Kuchimba habari kutoka vitabu</string>
@@ -499,5 +498,6 @@
    <string name="status_bar_location">Eneo la Hali ya Bar</string>
    <string name="add_to_bookmark">Ongeza kwenye salamisho</string>
    <string name="fast_reading">Kusoma kwa haraka (RSVP)</string>
-   <string name="average_line_length">Wastani wa urefu wa mstari</string>
+   <string name="minimum_line_length">Urefu wa mstari wa chini (CPL)</string>
+   <string name="ask_rate_us">Ikiwa ungependa programu hii, tafadhali bofya kiungo hiki ili upeze kwenye Google Play au uandike mapitio. Asante. (ujumbe huu hautaonyeshwa tena)</string>
 </resources>

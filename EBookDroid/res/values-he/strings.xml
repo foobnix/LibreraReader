@@ -163,7 +163,6 @@
    <string name="search">חפש</string>
    <string name="export_bookmarks">יצוא סימניות</string>
    <string name="simple_scroll_animation">אנימציה גלילה פשוט</string>
-   <string name="close_application">סגור את היישום</string>
    <string name="___TABS___SECTION___"></string>
    <string name="library">סִפְרִיָה</string>
    <string name="extracting_information_from_books">להוציא מידע מתוך ספרים</string>
@@ -499,5 +498,6 @@
    <string name="status_bar_location">מיקום שורת המצב</string>
    <string name="add_to_bookmark">הוסף לסימניות</string>
    <string name="fast_reading">קריאה מהירה (RSVP)</string>
-   <string name="average_line_length">אורך שורה ממוצע</string>
+   <string name="minimum_line_length">אורך שורה מינימלי (CPL)</string>
+   <string name="ask_rate_us">אם אתה אוהב את היישום הזה, לחץ על קישור זה כדי לדרג אותנו ב- Google Play או לכתוב ביקורת. תודה. (הודעה זו לא תוצג עוד לאחר)</string>
 </resources>

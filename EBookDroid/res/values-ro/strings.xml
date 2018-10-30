@@ -163,7 +163,6 @@
    <string name="search">Căutare</string>
    <string name="export_bookmarks">Marcaje la export</string>
    <string name="simple_scroll_animation">Parcurgere animație simplă</string>
-   <string name="close_application">Închideți aplicația</string>
    <string name="___TABS___SECTION___"></string>
    <string name="library">Bibliotecă</string>
    <string name="extracting_information_from_books">Dezarhivarea informații din cărți</string>
@@ -499,5 +498,6 @@
    <string name="status_bar_location">Bara de stare</string>
    <string name="add_to_bookmark">Adăugați la marcaje</string>
    <string name="fast_reading">Citirea rapidă (RSVP)</string>
-   <string name="average_line_length">Lungimea medie a liniei</string>
+   <string name="minimum_line_length">Lungimea minimă a liniei (CPL)</string>
+   <string name="ask_rate_us">Dacă vă place această aplicație, faceți clic pe acest link pentru a ne evalua pe Google Play sau pentru a scrie o recenzie. Mulțumesc. (acest mesaj nu va mai fi afișat după)</string>
 </resources>

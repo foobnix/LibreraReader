@@ -163,7 +163,6 @@
    <string name="search">Hae</string>
    <string name="export_bookmarks">Vie kirjanmerkkejä</string>
    <string name="simple_scroll_animation">Yksinkertainen selaa animaatio</string>
-   <string name="close_application">Sulje sovellus</string>
    <string name="___TABS___SECTION___"></string>
    <string name="library">Kirjasto</string>
    <string name="extracting_information_from_books">Tiedon keruuseen kirjoista</string>
@@ -499,5 +498,6 @@
    <string name="status_bar_location">Tilapalkin sijainti</string>
    <string name="add_to_bookmark">Lisää kirjanmerkkeihin</string>
    <string name="fast_reading">Nopea käsittely (RSVP)</string>
-   <string name="average_line_length">Keskimääräinen pituus</string>
+   <string name="minimum_line_length">Vähimmäislinjan pituus (CPL)</string>
+   <string name="ask_rate_us">Jos pidät tästä sovelluksesta, napsauta tätä linkkiä korostaaksesi meidät Google Playssa tai kirjoita arvostelu. Kiitos. (tämä viesti ei enää näy sen jälkeen)</string>
 </resources>

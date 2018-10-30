@@ -163,7 +163,6 @@
    <string name="search">Ieškoti</string>
    <string name="export_bookmarks">Kurti žymelių kopiją</string>
    <string name="simple_scroll_animation">Slinkimo animacija</string>
-   <string name="close_application">Užverti programą</string>
    <string name="___TABS___SECTION___"></string>
    <string name="library">Biblioteka</string>
    <string name="extracting_information_from_books">Išskleidžiama knygų informacija</string>
@@ -499,5 +498,6 @@
    <string name="status_bar_location">Būsenos juostos vieta</string>
    <string name="add_to_bookmark">Pridėti prie žymių</string>
    <string name="fast_reading">Greitas skaitymas (RSVP)</string>
-   <string name="average_line_length">Vidutinis linijos ilgis</string>
+   <string name="minimum_line_length">Minimalus linijos ilgis (CPL)</string>
+   <string name="ask_rate_us">Jei jums patinka ši programa, spustelėkite šią nuorodą, kad galėtumėte įvertinti \"Google Play\" arba parašyti atsiliepimą. Ačiū. (šis pranešimas nebebus rodomas po)</string>
 </resources>

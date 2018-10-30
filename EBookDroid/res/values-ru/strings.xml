@@ -163,7 +163,6 @@
    <string name="search">Поиск</string>
    <string name="export_bookmarks">Экспорт закладок</string>
    <string name="simple_scroll_animation">Показывать анимацию простого сдвига страниц в сторону</string>
-   <string name="close_application">Закрыть приложение</string>
    <string name="___TABS___SECTION___"></string>
    <string name="library">Библиотека</string>
    <string name="extracting_information_from_books">Извлечение информации из книг</string>
@@ -499,5 +498,6 @@
    <string name="status_bar_location">Расположение строки состояния</string>
    <string name="add_to_bookmark">Добавить в закладки</string>
    <string name="fast_reading">Скорочтение (RSVP)</string>
-   <string name="average_line_length">Средняя длина линии</string>
+   <string name="minimum_line_length">Минимальная длина линии (CPL)</string>
+   <string name="ask_rate_us">Если вам нравится это приложение, нажмите эту ссылку, чтобы оценить нас в Google Play или написать отзыв. Спасибо. (это сообщение больше не будет отображаться после)</string>
 </resources>

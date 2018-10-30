@@ -61,7 +61,7 @@
                 android:ellipsize="end"
                 android:gravity="center"
                 android:singleLine="true"
-                android:text="@string/close_application"
+                android:text="@string/close_application_"
                 android:textSize="@dimen/text_subtitle"
                 android:visibility="visible" />
         </LinearLayout>

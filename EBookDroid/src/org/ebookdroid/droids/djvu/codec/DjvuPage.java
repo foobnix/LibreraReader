@@ -76,7 +76,17 @@ public class DjvuPage extends AbstractCodecPage {
 
     @Override
     public String getPageHTML() {
-        return "";
+        List<PageTextBox> pageText1 = getPageText1();
+        if (TxtUtils.isListEmpty(pageText1)) {
+            return "";
+        }
+        StringBuilder res = new StringBuilder();
+        for (PageTextBox p : pageText1) {
+            res.append(p.text);
+            res.append(" ");
+        }
+
+        return res.toString();
     }
 
     @Override

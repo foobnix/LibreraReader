@@ -163,7 +163,6 @@
    <string name="search">검색</string>
    <string name="export_bookmarks">북마크 저장하기</string>
    <string name="simple_scroll_animation">간단한 스크롤 애니메이션</string>
-   <string name="close_application">응용 프로그램 닫기</string>
    <string name="___TABS___SECTION___"></string>
    <string name="library">도서관</string>
    <string name="extracting_information_from_books">책에서 정보 추출</string>
@@ -499,5 +498,6 @@
    <string name="status_bar_location">상태 표시 줄 위치</string>
    <string name="add_to_bookmark">북마크에 추가</string>
    <string name="fast_reading">빠른 읽기 (RSVP)</string>
-   <string name="average_line_length">평균 선 길이</string>
+   <string name="minimum_line_length">최소 라인 길이 (CPL)</string>
+   <string name="ask_rate_us">이 애플리케이션이 마음에 들면이 링크를 클릭하여 Google Play에서 평가하거나 리뷰를 작성하십시오. 고맙습니다. (이 메시지는 이후에 더 이상 표시되지 않습니다)</string>
 </resources>

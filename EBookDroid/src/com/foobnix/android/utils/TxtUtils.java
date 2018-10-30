@@ -53,6 +53,18 @@ public class TxtUtils {
         return false;
     }
 
+    public static String lastWord(String line) {
+        if (TxtUtils.isEmpty(line)) {
+            return "";
+        }
+        line = line.trim();
+        int indexOf = line.lastIndexOf(" ");
+        if (indexOf == -1) {
+            return line;
+        }
+        return line.substring(indexOf + 1);
+    }
+
     public static String lastTwoPath(String txt) {
         if (TxtUtils.isEmpty(txt)) {
             return "[]";

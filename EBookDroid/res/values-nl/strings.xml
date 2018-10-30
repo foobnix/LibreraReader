@@ -163,7 +163,6 @@
    <string name="search">Zoeken</string>
    <string name="export_bookmarks">Bookmarks export</string>
    <string name="simple_scroll_animation">Simple scroll animatie</string>
-   <string name="close_application">Dichte toepassing</string>
    <string name="___TABS___SECTION___"></string>
    <string name="library">Bibliotheek</string>
    <string name="extracting_information_from_books">Extraheren van informatie uit boeken</string>
@@ -499,5 +498,6 @@
    <string name="status_bar_location">Statusbalklocatie</string>
    <string name="add_to_bookmark">Voeg toe aan bladwijzers</string>
    <string name="fast_reading">Snel lezen (RSVP)</string>
-   <string name="average_line_length">Gemiddelde lijnlengte</string>
+   <string name="minimum_line_length">Minimale lijnlengte (CPL)</string>
+   <string name="ask_rate_us">Als je deze applicatie leuk vindt, klik dan op deze link om ons te beoordelen op Google Play of om een ​​recensie te schrijven. Dank je. (dit bericht wordt niet meer weergegeven na)</string>
 </resources>

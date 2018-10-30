@@ -4,7 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.foobnix.android.utils.Apps;
+import com.foobnix.android.utils.TxtUtils;
 import com.foobnix.pdf.info.R;
+import com.foobnix.pdf.info.Urls;
 import com.foobnix.pdf.info.view.MyPopupMenu;
 import com.foobnix.pdf.info.wrapper.AppState;
 import com.foobnix.pdf.info.wrapper.DocumentController;
@@ -19,9 +21,11 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.DialogInterface.OnClickListener;
 import android.view.KeyEvent;
+import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.MenuItem.OnMenuItemClickListener;
 import android.view.View;
+import android.widget.TextView;
 
 public class CloseAppDialog {
 
@@ -51,7 +55,22 @@ public class CloseAppDialog {
         }
 
         AlertDialog.Builder dialog = new AlertDialog.Builder(c);
-        dialog.setTitle(R.string.close_application_);
+
+        View inflate = LayoutInflater.from(c).inflate(R.layout.dialog_exit, null, false);
+
+        final TextView onAsk = (TextView) inflate.findViewById(R.id.onAsk);
+        onAsk.setVisibility(TxtUtils.visibleIf(AppState.get().isShowRateUsOnExit));
+        onAsk.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                onAsk.setVisibility(View.GONE);
+                AppState.get().isShowRateUsOnExit = false;
+                Urls.rateIT(c);
+            }
+        });
+
+        dialog.setView(inflate);
 
         dialog.setPositiveButton(R.string.cancel, new OnClickListener() {
 
@@ -80,7 +99,7 @@ public class CloseAppDialog {
         items.add(c.getString(R.string.close_book)); //
         items.add(c.getString(R.string.go_to_the_library)); //
         items.add(c.getString(R.string.hide_app)); //
-        items.add(c.getString(R.string.close_application)); //
+        items.add(c.getString(R.string.close_application_)); //
 
         final DialogInterface.OnClickListener listener = new DialogInterface.OnClickListener() {
 

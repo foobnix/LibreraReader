@@ -163,7 +163,6 @@
    <string name="search">Perlustrare</string>
    <string name="export_bookmarks">Signa exportare</string>
    <string name="simple_scroll_animation">Animatio procurrendi</string>
-   <string name="close_application">Claude applicationem</string>
    <string name="___TABS___SECTION___"></string>
    <string name="library">Librarium</string>
    <string name="extracting_information_from_books">Desumo informationem ex plicis</string>
@@ -499,5 +498,6 @@
    <string name="status_bar_location">Status Bar loco</string>
    <string name="add_to_bookmark">Add to bookmarks</string>
    <string name="fast_reading">Lectio Fast (RSVP)</string>
-   <string name="average_line_length">Longitudo media acie</string>
+   <string name="minimum_line_length">Minimum tandem lineam (CPL)</string>
+   <string name="ask_rate_us">Si tibi placet application, preme hanc coniuctionem ut sis nobis rate Play write a review on Google. Gratias tibi. (Post hoc autem non potest ostendi)</string>
 </resources>
