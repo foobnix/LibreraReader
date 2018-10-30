@@ -3,11 +3,12 @@ package com.foobnix.pdf.info.wrapper;
 import com.foobnix.android.utils.LOG;
 
 public class AppBookmark {
+    private static final String DIV = "~";
     private String path;
     private String text;
+    private String title;
     private int page;
     private long date;
-    private String title;
     private float percent = 0;
 
     public AppBookmark(String path, String text, int page, String title, long date, float percent) {
@@ -17,19 +18,23 @@ public class AppBookmark {
 
     public AppBookmark(String path, String text, int page, String title, float percent) {
         super();
-        this.path = path;
-        this.text = text;
+        this.path = fixText(path);
+        this.text = fixText(text);
+        this.title = fixText(title);
 
         if (text != null) {
-            this.text = text.replace("~", "").replace("  ", " ").replace("  ", " ");
-        }
-        if (path != null) {
-            this.path = path.replace("~", "");
+            this.text = text.replace("  ", " ").replace("  ", " ");
         }
         this.page = page;
         this.percent = percent;
-        this.title = title;
         this.date = System.currentTimeMillis();
+    }
+
+    private String fixText(String path) {
+        if (path == null) {
+            return null;
+        }
+        return path.replace(DIV, "");
     }
 
     public static String decode(AppBookmark bookmark) {
@@ -41,7 +46,7 @@ public class AppBookmark {
     public static AppBookmark encode(String line) {
         try {
             if (line != null && !line.equals("")) {
-                String[] l = line.split("~");
+                String[] l = line.split(DIV);
                 if (l.length == 5) {
                     return new AppBookmark(l[0], l[1], Integer.parseInt(l[2]), l[3], Long.parseLong(l[4]), 0);
                 } else if (l.length == 6) {
@@ -63,7 +68,7 @@ public class AppBookmark {
     }
 
     public void setPath(String path) {
-        this.path = path;
+        this.path = fixText(path);
     }
 
     public String getText() {
@@ -71,7 +76,7 @@ public class AppBookmark {
     }
 
     public void setText(String text) {
-        this.text = text;
+        this.text = fixText(text);
     }
 
     public int getPage() {
@@ -95,7 +100,7 @@ public class AppBookmark {
     }
 
     public void setTitle(String title) {
-        this.title = title;
+        this.title = fixText(title);
     }
 
     public float getPercent() {
