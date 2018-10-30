@@ -1,3 +1,5 @@
+./link_ant.sh
+
 ant -f build_index.xml index
 ant -f build_index.xml index-beta
 
@@ -26,8 +28,11 @@ ant version
 
 ./remove_all.sh
 ./install_all.sh
+./link_eclipse.sh
 
 cd /home/ivan-dev/Dropbox/FREE_PDF_APK/testing
 md5sum *.apk > checksum.txt
+
+
 
 #./copy-fonts.sh
