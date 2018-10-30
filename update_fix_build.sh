@@ -6,7 +6,7 @@ if [[ -d $d ]]; then
 then
     echo "[$d]"
     rm $d/build.xml
-    #rm $d/proguard-project.txt
+    rm $d/proguard-project.txt
     sed -i -e 's/proguard.config/#proguard.config/g' $d/project.properties
     echo '<?xml version="1.0" encoding="UTF-8"?>
 	<project name="'$d'" default="help">

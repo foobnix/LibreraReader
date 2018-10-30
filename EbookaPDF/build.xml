@@ -4,6 +4,9 @@
        <property file="../Builder/ant.properties" />
     <property file="../Builder/local.properties" />
     
+    <property name="ant.build.javac.source" value="1.8"/>
+	<property name="ant.build.javac.target" value="1.8"/>
+    
     <loadproperties srcFile="project.properties" />
 
     <!-- quick check on sdk.dir -->
