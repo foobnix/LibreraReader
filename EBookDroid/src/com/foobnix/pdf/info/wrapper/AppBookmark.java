@@ -19,8 +19,12 @@ public class AppBookmark {
         super();
         this.path = path;
         this.text = text;
+
         if (text != null) {
             this.text = text.replace("~", "").replace("  ", " ").replace("  ", " ");
+        }
+        if (path != null) {
+            this.path = path.replace("~", "");
         }
         this.page = page;
         this.percent = percent;
