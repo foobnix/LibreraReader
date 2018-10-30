@@ -2,6 +2,7 @@ package com.foobnix.pdf.search.view;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 import com.foobnix.android.utils.Apps;
 import com.foobnix.android.utils.TxtUtils;
@@ -59,7 +60,10 @@ public class CloseAppDialog {
         View inflate = LayoutInflater.from(c).inflate(R.layout.dialog_exit, null, false);
 
         final TextView onAsk = (TextView) inflate.findViewById(R.id.onAsk);
-        onAsk.setVisibility(TxtUtils.visibleIf(AppState.get().isShowRateUsOnExit));
+
+        long delta = System.currentTimeMillis() - AppState.get().installationDate;
+
+        onAsk.setVisibility(TxtUtils.visibleIf(AppState.get().isShowRateUsOnExit && TimeUnit.MILLISECONDS.toDays(delta) > 2));
         onAsk.setOnClickListener(new View.OnClickListener() {
 
             @Override

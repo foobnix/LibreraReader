@@ -10,7 +10,6 @@ public class AppBookmark {
     private String title;
     private float percent = 0;
 
-
     public AppBookmark(String path, String text, int page, String title, long date, float percent) {
         this(path, text, page, title, percent);
         this.date = date;
@@ -36,16 +35,21 @@ public class AppBookmark {
     }
 
     public static AppBookmark encode(String line) {
-        if (line != null && !line.equals("")) {
-            String[] l = line.split("~");
-            if (l.length == 5) {
-                return new AppBookmark(l[0], l[1], Integer.parseInt(l[2]), l[3], Long.parseLong(l[4]), 0);
-            } else if (l.length == 6) {
-                return new AppBookmark(l[0], l[1], Integer.parseInt(l[2]), l[3], Long.parseLong(l[4]), Float.parseFloat(l[5]));
+        try {
+            if (line != null && !line.equals("")) {
+                String[] l = line.split("~");
+                if (l.length == 5) {
+                    return new AppBookmark(l[0], l[1], Integer.parseInt(l[2]), l[3], Long.parseLong(l[4]), 0);
+                } else if (l.length == 6) {
+                    return new AppBookmark(l[0], l[1], Integer.parseInt(l[2]), l[3], Long.parseLong(l[4]), Float.parseFloat(l[5]));
+                } else {
+                    return null;
+                }
             } else {
                 return null;
             }
-        } else {
+        } catch (Exception e) {
+            LOG.e(e);
             return null;
         }
     }

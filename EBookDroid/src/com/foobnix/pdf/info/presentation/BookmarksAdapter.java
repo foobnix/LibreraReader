@@ -59,7 +59,7 @@ public class BookmarksAdapter extends BaseAdapter {
         if (bookmark.getPercent() > 0) {
             textView.setText(pageByPercent + ": " + bookmark.getText());
         } else {
-            textView.setText(bookmark.getPercent() + ": " + bookmark.getText());
+            textView.setText(bookmark.getPage() + ": " + bookmark.getText());
         }
 
         pageView.setText(pageNumber);
