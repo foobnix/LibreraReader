@@ -494,16 +494,16 @@ public class EpubExtractor extends BaseExtractor {
         Map<String, String> notes = new HashMap<String, String>();
         try {
             InputStream in = new FileInputStream(new File(inputPath));
-            ZipInputStream zipInputStream = new ZipInputStream(in);
+            ZipArchiveInputStream zipInputStream = Zips.buildZipArchiveInputStream(in);
 
-            ZipEntry nextEntry = null;
+            ZipArchiveEntry nextEntry = null;
             Map<String, String> textLink = new HashMap<String, String>();
             Set<String> files = new HashSet<String>();
 
             try {
                 // CacheZipUtils.removeFiles(CacheZipUtils.ATTACHMENTS_CACHE_DIR.listFiles());
 
-                while ((nextEntry = zipInputStream.getNextEntry()) != null) {
+                while ((nextEntry = (ZipArchiveEntry) zipInputStream.getNextEntry()) != null) {
                     if (TempHolder.get().loadingCancelled) {
                         break;
                     }
@@ -544,13 +544,13 @@ public class EpubExtractor extends BaseExtractor {
                         }
 
                     }
-                    zipInputStream.closeEntry();
+                    zipInputStream.close();
                 }
 
                 in = new FileInputStream(new File(inputPath));
-                zipInputStream = new ZipInputStream(in);
+                zipInputStream = Zips.buildZipArchiveInputStream(in);
 
-                while ((nextEntry = zipInputStream.getNextEntry()) != null) {
+                while ((nextEntry = (ZipArchiveEntry) zipInputStream.getNextEntry()) != null) {
                     if (TempHolder.get().loadingCancelled) {
                         break;
                     }
@@ -596,7 +596,7 @@ public class EpubExtractor extends BaseExtractor {
                         }
 
                     }
-                    zipInputStream.closeEntry();
+                    zipInputStream.close();
                 }
                 zipInputStream.close();
                 in.close();
