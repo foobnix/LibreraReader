@@ -22,6 +22,7 @@ import java.util.zip.ZipInputStream;
 import java.util.zip.ZipOutputStream;
 
 import org.apache.commons.compress.archivers.ArchiveEntry;
+import org.apache.commons.compress.archivers.zip.ZipArchiveEntry;
 import org.apache.commons.compress.archivers.zip.ZipArchiveInputStream;
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -462,9 +463,9 @@ public class EpubExtractor extends BaseExtractor {
         List<String> attachments = new ArrayList<String>();
         try {
             InputStream in = new FileInputStream(new File(inputPath));
-            ZipEntry nextEntry = null;
-            ZipInputStream zipInputStream = new ZipInputStream(in);
-            while ((nextEntry = zipInputStream.getNextEntry()) != null) {
+            ZipArchiveEntry nextEntry = null;
+            ZipArchiveInputStream zipInputStream = Zips.buildZipArchiveInputStream(in);
+            while ((nextEntry = (ZipArchiveEntry) zipInputStream.getNextEntry()) != null) {
                 if (TempHolder.get().loadingCancelled) {
                     break;
                 }

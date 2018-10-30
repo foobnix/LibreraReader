@@ -180,10 +180,10 @@ public class HypenUtils {
         for (int i = 0; i < in.length(); i++) {
             char ch = in.charAt(i);
 
-            if (ch == '<') {
+            if (ch == '<' || ch == '&') {
                 ignore = true;
             }
-            if (ch == '>') {
+            if (ch == '>' || ch == ';') {
                 ignore = false;
             }
 
