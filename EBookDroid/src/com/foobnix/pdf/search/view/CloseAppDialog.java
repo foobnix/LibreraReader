@@ -26,6 +26,7 @@ import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.MenuItem.OnMenuItemClickListener;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 public class CloseAppDialog {
@@ -60,17 +61,37 @@ public class CloseAppDialog {
         View inflate = LayoutInflater.from(c).inflate(R.layout.dialog_exit, null, false);
 
         final TextView onAsk = (TextView) inflate.findViewById(R.id.onAsk);
+        final TextView onRateUs = (TextView) inflate.findViewById(R.id.onRateUs);
+        final View topLayout = inflate.findViewById(R.id.topLayout);
+        final ImageView onClose = (ImageView) inflate.findViewById(R.id.onClose);
 
         long delta = System.currentTimeMillis() - AppState.get().installationDate;
 
-        onAsk.setVisibility(TxtUtils.visibleIf(AppState.get().isShowRateUsOnExit && TimeUnit.MILLISECONDS.toDays(delta) > 2));
+        topLayout.setVisibility(TxtUtils.visibleIf(AppState.get().isShowRateUsOnExit && TimeUnit.MILLISECONDS.toDays(delta) > 2));
+        // topLayout.setVisibility(TxtUtils.visibleIf(AppState.get().isShowRateUsOnExit));
         onAsk.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View v) {
-                onAsk.setVisibility(View.GONE);
-                AppState.get().isShowRateUsOnExit = false;
                 Urls.rateIT(c);
+            }
+        });
+
+        onRateUs.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                Urls.rateIT(c);
+            }
+        });
+        TxtUtils.underlineTextView(onRateUs);
+
+        onClose.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                topLayout.setVisibility(View.GONE);
+                AppState.get().isShowRateUsOnExit = false;
             }
         });
 
