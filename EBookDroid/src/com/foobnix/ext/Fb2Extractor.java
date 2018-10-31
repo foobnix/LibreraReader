@@ -670,11 +670,11 @@ public class Fb2Extractor extends BaseExtractor {
             if (TempHolder.get().loadingCancelled) {
                 break;
             }
-            LOG.d("gen-in", line);
+            // LOG.d("gen-in", line);
             line = accurateLine(line);
             line = HypenUtils.applyHypnes(line);
             writer.println(line);
-            LOG.d("gen-ou", line);
+            // LOG.d("gen-ou", line);
         }
         writer.close();
         return out;

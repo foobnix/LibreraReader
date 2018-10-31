@@ -544,8 +544,8 @@ public class EpubExtractor extends BaseExtractor {
                         }
 
                     }
-                    zipInputStream.close();
                 }
+                zipInputStream.close();
 
                 in = new FileInputStream(new File(inputPath));
                 zipInputStream = Zips.buildZipArchiveInputStream(in);
@@ -596,7 +596,6 @@ public class EpubExtractor extends BaseExtractor {
                         }
 
                     }
-                    zipInputStream.close();
                 }
                 zipInputStream.close();
                 in.close();
