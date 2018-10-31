@@ -13,12 +13,12 @@ public class WikiTranslate {
 
     public static void main(String[] args) throws Exception {
 
-        GenerateFAQ.updateIndex("/home/ivan-dev/git/LirbiReader/docs/wiki/faq", "Frequently asked questions", 2);
-        GenerateFAQ.updateIndex("/home/ivan-dev/git/LirbiReader/docs/wiki/stories", "Stories", 2);
-        GenerateFAQ.updateIndex("/home/ivan-dev/git/LirbiReader/docs/wiki/manual", "Guide", 2);
+        GenerateFAQ.updateIndex("/home/ivan-dev/git/LibreraReader/docs/wiki/faq", "Frequently asked questions", 2);
+        GenerateFAQ.updateIndex("/home/ivan-dev/git/LibreraReader/docs/wiki/stories", "Stories", 2);
+        GenerateFAQ.updateIndex("/home/ivan-dev/git/LibreraReader/docs/wiki/manual", "Guide", 2);
 
-        String root = "/home/ivan-dev/git/LirbiReader/docs/wiki";
-        // String root = "/home/ivan-dev/git/LirbiReader/docs/_includes";
+        String root = "/home/ivan-dev/git/LibreraReader/docs/wiki";
+        // String root = "/home/ivan-dev/git/LibreraReader/docs/_includes";
         syncPaths(root, "ru");
         syncPaths(root, "fr");
         syncPaths(root, "de");
@@ -53,6 +53,9 @@ public class WikiTranslate {
         String line;
         try {
             while ((line = input.readLine()) != null) {
+                if (line.startsWith("version :")) {
+                    throw new IllegalArgumentException(path);
+                }
                 if (line.startsWith("version:")) {
                     return Integer.parseInt(line.replace("version:", "").trim());
                 }
@@ -85,7 +88,7 @@ public class WikiTranslate {
             return;
         }
 
-        List<String> ignoreLines = Arrays.asList("[<]", "|", "{", "<", "!", "---");
+        List<String> ignoreLines = Arrays.asList("[<]", "|", "{", "<", "!", "---", "# 7", "# 8");
         List<String> preLines = Arrays.asList("# ", "## ", "### ", "* ", "> ", "1. ", "2. ", "3. ");
 
         PrintWriter out = new PrintWriter(ru);

@@ -33,6 +33,7 @@ public class AndroidWhatsNew {
     public static final String DETAIL_URL_RU = "http://librera.mobi/wiki";
     private static final String BETA_TXT = "changelog.txt";
     private static final String BETA = "beta-";
+    private static final String WIKI_URL = "http://librera.mobi/wiki/what-is-new/%s/#%s";
 
     public static String getLangUrl(String url, String lang) {
 
@@ -41,6 +42,7 @@ public class AndroidWhatsNew {
         if (lns.contains(lang)) {
             url = url.replace("#", lang + "#");
         }
+        LOG.d("getLangUrl", url);
         return url;
 
     }
@@ -53,7 +55,16 @@ public class AndroidWhatsNew {
         wv.getSettings().setUserAgentString(OPDS.USER_AGENT);
         wv.getSettings().setJavaScriptEnabled(true);
 
-        wv.loadUrl(getLangUrl(c.getString(R.string.whatisnew_url), AppState.get().appLang));
+        try {
+            String versionName = Apps.getVersionName(c);
+            String shortVersion = versionName.substring(0, versionName.lastIndexOf("."));
+            String url = String.format(WIKI_URL, shortVersion, shortVersion.replace(".", ""));
+            LOG.d("Show2", url);
+            wv.loadUrl(getLangUrl(url, AppState.get().appLang));
+        } catch (Exception e) {
+            LOG.e(e);
+            wv.loadUrl(DETAIL_URL_RU);
+        }
 
         wv.setFocusable(true);
         wv.setWebViewClient(new WebViewClient() {

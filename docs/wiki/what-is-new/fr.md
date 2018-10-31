@@ -1,12 +1,13 @@
 ---
 layout: main
-version: 1
+version: 2
 ---
 [<](/wiki/fr)
 
 # Quoi de neuf dans le lecteur de livre Librera
 
 * [Version 7.10](/wiki/what-is-new/7.10/fr)
+* [Version 7.11](/wiki/what-is-new/7.11/fr)
 
 
     

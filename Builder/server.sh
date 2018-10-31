@@ -1,2 +1,2 @@
-cd /home/ivan-dev/git/LirbiReader/docs
+cd /home/ivan-dev/git/LibreraReader/docs
 jekyll serve

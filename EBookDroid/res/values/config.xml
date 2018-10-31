@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Beta 7.11.6</string>
+    <string name="app_name">Beta 7.11.9</string>
     <string name="app_name_pro">Librera PRO</string>
 
 	<bool name="is_log_enable">true</bool>
@@ -14,7 +14,6 @@
     
     <string name="dropbox">Dropbox</string>
     
-    <string name="whatisnew_url">http://librera.mobi/wiki/what-is-new/7.10/#710</string>
     <string name="wiki_url">http://librera.mobi/wiki#menu</string>
 	
 </resources>

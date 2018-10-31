@@ -6,4 +6,4 @@ version: 2
 
 # Guide
 
-* [Main applicatin window](/wiki/manual/main-app)
+* [The Main Screen](/wiki/manual/main-app)
