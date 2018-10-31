@@ -500,4 +500,5 @@
    <string name="fast_reading">Speed read (RSVP)</string>
    <string name="minimum_line_length">Minimum line length (CPL)</string>
    <string name="ask_rate_us">If you like this application, please click this link to rate us on Google Play or write a review. Thank you. (this message will no longer be displayed after)</string>
+   <string name="exit">Exit</string>
 </resources>
