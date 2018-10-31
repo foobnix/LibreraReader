@@ -499,5 +499,7 @@
    <string name="add_to_bookmark">Hozzáadás könyvjelzőkhöz</string>
    <string name="fast_reading">Gyors olvasás (RSVP)</string>
    <string name="minimum_line_length">Minimális vonalhossz (CPL)</string>
-   <string name="ask_rate_us">Ha tetszik ez az alkalmazás, kérjük, kattintson erre a linkre, hogy értékelje a Google Playen vagy írjon véleményt. Köszönöm. (ez az üzenet többé nem jelenik meg)</string>
+   <string name="exit">Kijárat</string>
+   <string name="ask_rate_us1">Ha tetszik ez az alkalmazás, kérjük, értékelje és tekintse meg a Google Playen. Köszönöm!</string>
+   <string name="message">Üzenet</string>
 </resources>

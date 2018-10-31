@@ -499,5 +499,7 @@
    <string name="add_to_bookmark">Add to bookmarks</string>
    <string name="fast_reading">Lectio Fast (RSVP)</string>
    <string name="minimum_line_length">Minimum tandem lineam (CPL)</string>
-   <string name="ask_rate_us">Si tibi placet application, preme hanc coniuctionem ut sis nobis rate Play write a review on Google. Gratias tibi. (Post hoc autem non potest ostendi)</string>
+   <string name="exit">Exitus</string>
+   <string name="ask_rate_us1">Si tibi placet application, obsecro, nobiscum review on Google rate et de. Gratias tibi!</string>
+   <string name="message">Nuntius</string>
 </resources>

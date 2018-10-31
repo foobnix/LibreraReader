@@ -499,5 +499,7 @@
    <string name="add_to_bookmark">ブックマークに追加</string>
    <string name="fast_reading">速読（RSVP）</string>
    <string name="minimum_line_length">最小行長（CPL）</string>
-   <string name="ask_rate_us">このアプリケーションが気に入ったら、このリンクをクリックしてGoogle Playで評価するかレビューを書いてください。ありがとうございました。 （このメッセージは後で表示されなくなります）</string>
+   <string name="exit">出口</string>
+   <string name="ask_rate_us1">このアプリケーションが気に入ったら、評価してGoogle Playでレビューしてください。ありがとうございました！</string>
+   <string name="message">メッセージ</string>
 </resources>

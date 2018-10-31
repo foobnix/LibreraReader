@@ -499,5 +499,7 @@
    <string name="add_to_bookmark">Thêm vào dấu trang</string>
    <string name="fast_reading">Đọc nhanh (RSVP)</string>
    <string name="minimum_line_length">Độ dài dòng tối thiểu (CPL)</string>
-   <string name="ask_rate_us">Nếu bạn thích ứng dụng này, vui lòng nhấp vào liên kết này để xếp hạng chúng tôi trên Google Play hoặc viết bài đánh giá. Cảm ơn bạn. (thông báo này sẽ không còn được hiển thị sau)</string>
+   <string name="exit">Lối thoát hiểm</string>
+   <string name="ask_rate_us1">Nếu bạn thích ứng dụng này, vui lòng xếp hạng và đánh giá chúng tôi trên Google Play. Cảm ơn bạn!</string>
+   <string name="message">Thông điệp</string>
 </resources>

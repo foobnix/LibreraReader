@@ -499,5 +499,7 @@
    <string name="add_to_bookmark">افزودن به بوک مارک ها</string>
    <string name="fast_reading">خواندن سریع (RSVP)</string>
    <string name="minimum_line_length">حداقل طول خط (CPL)</string>
-   <string name="ask_rate_us">اگر این برنامه را دوست دارید، لطفا با کلیک بر روی این لینک برای رای دادن به ما در Google Play یا نوشتن نظر. متشکرم. (این پیام دیگر بعد از نمایش داده نمی شود)</string>
+   <string name="exit">خروج</string>
+   <string name="ask_rate_us1">اگر این برنامه را دوست دارید، لطفا ما را در Google Play ارزیابی و بررسی کنید. متشکرم!</string>
+   <string name="message">پیام</string>
 </resources>

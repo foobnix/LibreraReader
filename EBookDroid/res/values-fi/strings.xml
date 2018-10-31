@@ -499,5 +499,7 @@
    <string name="add_to_bookmark">Lisää kirjanmerkkeihin</string>
    <string name="fast_reading">Nopea käsittely (RSVP)</string>
    <string name="minimum_line_length">Vähimmäislinjan pituus (CPL)</string>
-   <string name="ask_rate_us">Jos pidät tästä sovelluksesta, napsauta tätä linkkiä korostaaksesi meidät Google Playssa tai kirjoita arvostelu. Kiitos. (tämä viesti ei enää näy sen jälkeen)</string>
+   <string name="exit">Poistuminen</string>
+   <string name="ask_rate_us1">Jos pidät tästä sovelluksesta, arvostathan ja tarkista meidät Google Playssa. Kiitos!</string>
+   <string name="message">Viesti</string>
 </resources>

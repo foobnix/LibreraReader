@@ -499,5 +499,7 @@
    <string name="add_to_bookmark">إضافة إلى المواقع المفضلة</string>
    <string name="fast_reading">القراءة السريعة (RSVP)</string>
    <string name="minimum_line_length">الحد الأدنى للطول (CPL)</string>
-   <string name="ask_rate_us">إذا كنت تحب هذا التطبيق ، فيرجى النقر على هذا الرابط لتقييمنا على Google Play أو كتابة تعليق. شكرا لكم. (لن يتم عرض هذه الرسالة بعد)</string>
+   <string name="exit">ىخرج</string>
+   <string name="ask_rate_us1">إذا كنت تحب هذا التطبيق ، يرجى تقييم ومراجعة لنا على Google Play. شكرا لكم!</string>
+   <string name="message">رسالة</string>
 </resources>

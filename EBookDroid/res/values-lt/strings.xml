@@ -499,5 +499,7 @@
    <string name="add_to_bookmark">Pridėti prie žymių</string>
    <string name="fast_reading">Greitas skaitymas (RSVP)</string>
    <string name="minimum_line_length">Minimalus linijos ilgis (CPL)</string>
-   <string name="ask_rate_us">Jei jums patinka ši programa, spustelėkite šią nuorodą, kad galėtumėte įvertinti \"Google Play\" arba parašyti atsiliepimą. Ačiū. (šis pranešimas nebebus rodomas po)</string>
+   <string name="exit">Išeiti</string>
+   <string name="ask_rate_us1">Jei jums patinka ši paraiška, įvertinkite ir peržiūrėkite mus \"Google Play\". Ačiū!</string>
+   <string name="message">Pranešimas</string>
 </resources>

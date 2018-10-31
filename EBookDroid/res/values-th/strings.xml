@@ -499,5 +499,7 @@
    <string name="add_to_bookmark">เพิ่มในบุ๊กมาร์ก</string>
    <string name="fast_reading">การอ่านอย่างรวดเร็ว (RSVP)</string>
    <string name="minimum_line_length">ความยาวบรรทัดขั้นต่ำ (CPL)</string>
-   <string name="ask_rate_us">หากคุณชอบแอปพลิเคชันนี้โปรดคลิกลิงก์นี้เพื่อให้คะแนนเราบน Google Play หรือเขียนรีวิว ขอบคุณ. (ข้อความนี้จะไม่แสดงภายหลัง)</string>
+   <string name="exit">ทางออก</string>
+   <string name="ask_rate_us1">หากคุณชอบแอปพลิเคชันนี้โปรดให้คะแนนและรีวิวเราบน Google Play ขอบคุณ!</string>
+   <string name="message">ข่าวสาร</string>
 </resources>

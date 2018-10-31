@@ -499,5 +499,7 @@
    <string name="add_to_bookmark">Legg til i bokmerker</string>
    <string name="fast_reading">Rask lesing (RSVP)</string>
    <string name="minimum_line_length">Minimum linjelengde (CPL)</string>
-   <string name="ask_rate_us">Hvis du liker dette programmet, kan du klikke på denne linken for å rangere oss på Google Play eller skrive en anmeldelse. Takk skal du ha. (denne meldingen vil ikke lenger bli vist etter)</string>
+   <string name="exit">Exit</string>
+   <string name="ask_rate_us1">Hvis du liker dette programmet, kan du vurdere og vurdere oss på Google Play. Takk skal du ha!</string>
+   <string name="message">Budskap</string>
 </resources>

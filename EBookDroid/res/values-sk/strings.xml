@@ -499,5 +499,7 @@
    <string name="add_to_bookmark">Pridať do záložiek</string>
    <string name="fast_reading">Rýchle čítanie (RSVP)</string>
    <string name="minimum_line_length">Minimálna dĺžka linky (CPL)</string>
-   <string name="ask_rate_us">Ak sa vám táto aplikácia páči, kliknite na tento odkaz, aby ste nás hodnotili v službe Google Play alebo napíšte recenziu. Ďakujem. (táto správa sa už nebude zobrazovať)</string>
+   <string name="exit">Východ</string>
+   <string name="ask_rate_us1">Ak sa vám táto aplikácia páči, prosím ohodnoťte a skontrolujte nás v službe Google Play. Ďakujem!</string>
+   <string name="message">Správa</string>
 </resources>

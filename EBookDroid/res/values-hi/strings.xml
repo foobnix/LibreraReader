@@ -499,5 +499,7 @@
    <string name="add_to_bookmark">बुकमार्क्स में जोड़ें</string>
    <string name="fast_reading">फास्ट रीडिंग (आरएसवीपी)</string>
    <string name="minimum_line_length">न्यूनतम लाइन लंबाई (सीपीएल)</string>
-   <string name="ask_rate_us">अगर आपको यह एप्लिकेशन पसंद है, तो कृपया Google Play पर हमें रेट करने या समीक्षा लिखने के लिए इस लिंक पर क्लिक करें। धन्यवाद। (यह संदेश अब प्रदर्शित नहीं होगा)</string>
+   <string name="exit">बाहर जाएं</string>
+   <string name="ask_rate_us1">अगर आपको यह एप्लिकेशन पसंद है, तो कृपया Google Play पर हमें रेट करें और समीक्षा करें। धन्यवाद!</string>
+   <string name="message">संदेश</string>
 </resources>

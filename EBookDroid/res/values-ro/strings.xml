@@ -499,5 +499,7 @@
    <string name="add_to_bookmark">Adăugați la marcaje</string>
    <string name="fast_reading">Citirea rapidă (RSVP)</string>
    <string name="minimum_line_length">Lungimea minimă a liniei (CPL)</string>
-   <string name="ask_rate_us">Dacă vă place această aplicație, faceți clic pe acest link pentru a ne evalua pe Google Play sau pentru a scrie o recenzie. Mulțumesc. (acest mesaj nu va mai fi afișat după)</string>
+   <string name="exit">Ieșire</string>
+   <string name="ask_rate_us1">Dacă vă place această aplicație, vă rugăm să evaluați și să ne analizați pe Google Play. Mulțumesc!</string>
+   <string name="message">Mesaj</string>
 </resources>

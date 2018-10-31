@@ -499,5 +499,7 @@
    <string name="add_to_bookmark">Yer imlerine ekle</string>
    <string name="fast_reading">Hızlı okuma (RSVP)</string>
    <string name="minimum_line_length">Minimum çizgi uzunluğu (CPL)</string>
-   <string name="ask_rate_us">Bu uygulamayı beğendiyseniz, Google Play\'de bize oy vermek veya yorum yazmak için lütfen bu bağlantıyı tıklayın. Teşekkür ederim. (Bu mesaj artık gösterilmeyecek)</string>
+   <string name="exit">Çıkış</string>
+   <string name="ask_rate_us1">Bu uygulamayı beğenirseniz, lütfen Google Play\'de bize oy verin ve yorum yapın. Teşekkür ederim!</string>
+   <string name="message">Mesaj</string>
 </resources>

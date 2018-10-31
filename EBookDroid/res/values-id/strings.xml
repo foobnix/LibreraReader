@@ -499,5 +499,7 @@
    <string name="add_to_bookmark">Tambahkan ke bookmark</string>
    <string name="fast_reading">Pembacaan cepat (RSVP)</string>
    <string name="minimum_line_length">Panjang baris minimum (CPL)</string>
-   <string name="ask_rate_us">Jika Anda menyukai aplikasi ini, silakan klik tautan ini untuk menilai kami di Google Play atau tulis ulasan. Terima kasih. (pesan ini tidak akan ditampilkan lagi setelah)</string>
+   <string name="exit">Keluar</string>
+   <string name="ask_rate_us1">Jika Anda menyukai aplikasi ini, harap beri peringkat dan tinjau kami di Google Play. Terima kasih!</string>
+   <string name="message">Pesan</string>
 </resources>

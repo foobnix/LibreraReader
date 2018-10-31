@@ -63,7 +63,7 @@ public class SyncTranslations {
         return asList;
     }
 
-    private static Config IVAN = new Config("ivan", "", "/home/ivan-dev/git/LirbiReader/EBookDroid/res/");
+    private static Config IVAN = new Config("ivan", "", "/home/ivan-dev/git/LibreraReader/EBookDroid/res/");
 
     // run as "SyncTranslations user_name"
     public static void main(final String[] args) throws Exception {
@@ -78,7 +78,7 @@ public class SyncTranslations {
 
         final String projectEN = project + "values/strings.xml";
 
-        final List<String> asList = getAllLangCodes("/home/ivan-dev/git/LirbiReader/EBookDroid/res");
+        final List<String> asList = getAllLangCodes("/home/ivan-dev/git/LibreraReader/EBookDroid/res");
 
         // final List<String> asList = Arrays.asList("ru");
 

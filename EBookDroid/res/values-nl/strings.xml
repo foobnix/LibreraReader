@@ -499,5 +499,7 @@
    <string name="add_to_bookmark">Voeg toe aan bladwijzers</string>
    <string name="fast_reading">Snel lezen (RSVP)</string>
    <string name="minimum_line_length">Minimale lijnlengte (CPL)</string>
-   <string name="ask_rate_us">Als je deze applicatie leuk vindt, klik dan op deze link om ons te beoordelen op Google Play of om een ​​recensie te schrijven. Dank je. (dit bericht wordt niet meer weergegeven na)</string>
+   <string name="exit">Uitgang</string>
+   <string name="ask_rate_us1">Als u van deze app houdt, kunt u ons beoordelen en beoordelen op Google Play. Dank je!</string>
+   <string name="message">Bericht</string>
 </resources>

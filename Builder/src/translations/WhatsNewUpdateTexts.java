@@ -9,7 +9,7 @@ import java.util.Map;
 
 public class WhatsNewUpdateTexts {
 
-    private static final String RECENT_PATH = "/home/ivan-dev/git/LirbiReader/EbookaPDF/assets/whatsnew/";
+    private static final String RECENT_PATH = "/home/ivan-dev/git/LibreraReader/EbookaPDF/assets/whatsnew/";
     // https://console.cloud.google.com/apis/credentials/key/0?project=seismic-bucksaw-120809
 
     public static Map<String, String> codes = new HashMap<String, String>();
@@ -42,10 +42,10 @@ public class WhatsNewUpdateTexts {
     }
 
     public static void main(String[] args) throws IOException {
-        final List<String> asList = SyncTranslations.getAllLangCodes("/home/ivan-dev/git/LirbiReader/EBookDroid/res");
+        final List<String> asList = SyncTranslations.getAllLangCodes("/home/ivan-dev/git/LibreraReader/EBookDroid/res");
         // final List<String> asList = Arrays.asList("ru");
 
-        String recentEN = new String(Files.readAllBytes(Paths.get("/home/ivan-dev/git/LirbiReader/EbookaPDF/assets/recent.txt")));
+        String recentEN = new String(Files.readAllBytes(Paths.get("/home/ivan-dev/git/LibreraReader/EbookaPDF/assets/recent.txt")));
 
         StringBuilder res = new StringBuilder();
         for (String ex : asList) {

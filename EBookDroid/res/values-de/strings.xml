@@ -499,5 +499,7 @@
    <string name="add_to_bookmark">Zu Lesezeichen hinzufügen</string>
    <string name="fast_reading">Schnelles Lesen (RSVP)</string>
    <string name="minimum_line_length">Mindestleitungslänge (CPL)</string>
-   <string name="ask_rate_us">Wenn Ihnen diese Anwendung gefällt, klicken Sie bitte auf diesen Link, um uns bei Google Play zu bewerten oder eine Bewertung abzugeben. Vielen Dank. (Diese Nachricht wird nicht mehr angezeigt)</string>
+   <string name="exit">Ausgang</string>
+   <string name="ask_rate_us1">Wenn Ihnen diese Anwendung gefällt, bewerten und bewerten Sie uns bei Google Play. Vielen Dank!</string>
+   <string name="message">Botschaft</string>
 </resources>

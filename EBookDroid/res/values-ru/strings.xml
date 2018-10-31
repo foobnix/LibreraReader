@@ -499,5 +499,7 @@
    <string name="add_to_bookmark">Добавить в закладки</string>
    <string name="fast_reading">Скорочтение (RSVP)</string>
    <string name="minimum_line_length">Минимальная длина линии (CPL)</string>
-   <string name="ask_rate_us">Если вам нравится это приложение, нажмите эту ссылку, чтобы оценить нас в Google Play или написать отзыв. Спасибо. (это сообщение больше не будет отображаться после)</string>
+   <string name="exit">Выход</string>
+   <string name="ask_rate_us1">Если вам нравится это приложение, пожалуйста, оцените и просмотрите нас в Google Play. Спасибо!</string>
+   <string name="message">Сообщение</string>
 </resources>

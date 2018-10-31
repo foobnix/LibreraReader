@@ -499,5 +499,7 @@
    <string name="add_to_bookmark">북마크에 추가</string>
    <string name="fast_reading">빠른 읽기 (RSVP)</string>
    <string name="minimum_line_length">최소 라인 길이 (CPL)</string>
-   <string name="ask_rate_us">이 애플리케이션이 마음에 들면이 링크를 클릭하여 Google Play에서 평가하거나 리뷰를 작성하십시오. 고맙습니다. (이 메시지는 이후에 더 이상 표시되지 않습니다)</string>
+   <string name="exit">출구</string>
+   <string name="ask_rate_us1">이 애플리케이션이 마음에 들면 Google Play에서 Google을 평가하고 리뷰 해주세요. 고맙습니다!</string>
+   <string name="message">메시지</string>
 </resources>
