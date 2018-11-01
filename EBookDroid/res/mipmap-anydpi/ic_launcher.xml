@@ -1,4 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <adaptive-icon xmlns:android="http://schemas.android.com/apk/res/android">
-    <foreground android:drawable="@mipmap/pro_adaptive" />
+    <background android:drawable="@drawable/bg_test" />
+    
+    <foreground>
+    <inset
+      android:drawable="@mipmap/pro_adaptive2"
+      android:inset="22%" />
+  </foreground>
+  
+    
 </adaptive-icon>
