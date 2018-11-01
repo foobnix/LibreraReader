@@ -267,7 +267,7 @@ public class AppState {
     public int pageNumberFormat = PAGE_NUMBER_FORMAT_NUMBER;
     
     @IgnoreHashCode
-    public int chapterFormat = CHAPTER_FORMAT_1;
+    public int chapterFormat = CHAPTER_FORMAT_3;
 
     public int outlineMode = OUTLINE_ONLY_HEADERS;
 

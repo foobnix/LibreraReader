@@ -12,7 +12,7 @@
         android:layout_height="230dip"
         android:layout_margin="2dip"
         android:scaleType="centerCrop"
-        android:src="@drawable/icon_pdf_pro" />
+        android:src="@mipmap/icon_pdf_pro" />
 
     <TextView
         android:id="@+id/title"

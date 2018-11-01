@@ -51,47 +51,47 @@
 		
 	<!-- section 3 -->
 		<replaceregexp file="../EbookaPDF/AndroidManifest.xml"
-			match='android:icon="@drawable/icon_pdf_classic"' replace='android:icon="${pdf.icon}"' />
+			match='android:icon="@mipmap/icon_pdf_classic"' replace='android:icon="${pdf.icon}"' />
 
 		<replaceregexp file="../EbookaPDF/AndroidManifest.xml"
-			match='android:icon="@drawable/icon_pdf_pro"' replace='android:icon="${pdf.icon}"' />
+			match='android:icon="@mipmap/icon_pdf_pro"' replace='android:icon="${pdf.icon}"' />
 
 		<replaceregexp file="../EbookaPDF/AndroidManifest.xml"
-			match='android:icon="@drawable/icon_pdf_reader"' replace='android:icon="${pdf.icon}"' />
+			match='android:icon="@mipmap/icon_pdf_reader"' replace='android:icon="${pdf.icon}"' />
 		
 		<replaceregexp file="../EbookaPDF/AndroidManifest.xml"
-			match='android:icon="@drawable/icon_pdf_droid"' replace='android:icon="${pdf.icon}"' />
+			match='android:icon="@mipmap/icon_pdf_droid"' replace='android:icon="${pdf.icon}"' />
 	
 	    <replaceregexp file="../EbookaPDF/AndroidManifest.xml"
-			match='android:icon="@drawable/icon_pdf_reader_ink"' replace='android:icon="${pdf.icon}"' />
+			match='android:icon="@mipmap/icon_pdf_reader_ink"' replace='android:icon="${pdf.icon}"' />
 	    
 	    <replaceregexp file="../EbookaPDF/AndroidManifest.xml"
-			match='android:icon="@drawable/icon_pdf_2"' replace='android:icon="${pdf.icon}"' />
+			match='android:icon="@mipmap/icon_pdf_2"' replace='android:icon="${pdf.icon}"' />
 
 		<replaceregexp file="../EbookaPDF/AndroidManifest.xml"
-			match='android:icon="@drawable/test"' replace='android:icon="${pdf.icon}"' />
+			match='android:icon="@mipmap/test"' replace='android:icon="${pdf.icon}"' />
 		
 		<!-- section 3a -->
 		<replaceregexp file="../EbookaPDF/AndroidManifest.xml"
-			match='android:roundIcon="@drawable/icon_pdf_classic"' replace='android:roundIcon="${pdf.icon}"' />
+			match='android:mipmap="@drawable/icon_pdf_classic"' replace='android:roundIcon="${pdf.icon}"' />
 
 		<replaceregexp file="../EbookaPDF/AndroidManifest.xml"
-			match='android:roundIcon="@drawable/icon_pdf_pro"' replace='android:roundIcon="${pdf.icon}"' />
+			match='android:mipmap="@drawable/icon_pdf_pro"' replace='android:roundIcon="${pdf.icon}"' />
 
 		<replaceregexp file="../EbookaPDF/AndroidManifest.xml"
-			match='android:roundIcon="@drawable/icon_pdf_reader"' replace='android:roundIcon="${pdf.icon}"' />
+			match='android:mipmap="@drawable/icon_pdf_reader"' replace='android:roundIcon="${pdf.icon}"' />
 		
 		<replaceregexp file="../EbookaPDF/AndroidManifest.xml"
-			match='android:roundIcon="@drawable/icon_pdf_droid"' replace='android:roundIcon="${pdf.icon}"' />
+			match='android:mipmap="@drawable/icon_pdf_droid"' replace='android:roundIcon="${pdf.icon}"' />
 	
 	    <replaceregexp file="../EbookaPDF/AndroidManifest.xml"
-			match='android:roundIcon="@drawable/icon_pdf_reader_ink"' replace='android:roundIcon="${pdf.icon}"' />
+			match='android:mipmap="@drawable/icon_pdf_reader_ink"' replace='android:roundIcon="${pdf.icon}"' />
 	    
 	     <replaceregexp file="../EbookaPDF/AndroidManifest.xml"
-			match='android:roundIcon="@drawable/icon_pdf_2"' replace='android:roundIcon="${pdf.icon}"' />
+			match='android:mipmap="@drawable/icon_pdf_2"' replace='android:roundIcon="${pdf.icon}"' />
 
 		<replaceregexp file="../EbookaPDF/AndroidManifest.xml"
-			match='android:roundIcon="@drawable/test"' replace='android:roundIcon="${pdf.icon}"' />
+			match='android:mipmap="@drawable/test"' replace='android:roundIcon="${pdf.icon}"' />
 
 
 		<!-- section 5 -->

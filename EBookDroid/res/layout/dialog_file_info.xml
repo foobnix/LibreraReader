@@ -32,7 +32,7 @@
                         android:layout_centerInParent="true"
                         android:layout_gravity="center_horizontal"
                         android:layout_margin="10dip"
-                        android:src="@drawable/icon_pdf_pro" />
+                        android:src="@mipmap/icon_pdf_pro" />
                 </FrameLayout>
 
                 

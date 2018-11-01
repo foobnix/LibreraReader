@@ -26,7 +26,7 @@
                 android:layout_width="@dimen/wh_button"
                 android:layout_height="@dimen/wh_button"
                 android:layout_margin="4dip"
-                android:src="@drawable/icon_pdf_pro" />
+                android:src="@mipmap/icon_pdf_pro" />
 
             <TextView
                 android:id="@+id/downloadPRO"

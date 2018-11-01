@@ -143,7 +143,7 @@ public class MyPopupMenu {
                 ImageView imageView = (ImageView) layout.findViewById(R.id.image1);
                 if (item.iconRes != 0) {
                     imageView.setImageResource(item.iconRes);
-                    if (item.iconRes == R.drawable.icon_pdf_pro || Boolean.TRUE.equals(item.active)) {
+                    if (item.iconRes == R.mipmap.icon_pdf_pro || Boolean.TRUE.equals(item.active)) {
                         TintUtil.setNoTintImage(imageView);
                     } else if (Boolean.FALSE.equals(item.active)) {
                         TintUtil.setTintImageWithAlpha(imageView, Color.LTGRAY);

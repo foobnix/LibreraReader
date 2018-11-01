@@ -88,7 +88,7 @@ public class LibreraApp extends Application {
                 String myID = ADS.getByTestID(this);
                 ADS.adRequest = new AdRequest.Builder()//
                         .addTestDevice(AdRequest.DEVICE_ID_EMULATOR)//
-                        // .addTestDevice(myID)//
+                        .addTestDevice(myID)//
                         .build();//
             }
         } catch (Exception e) {

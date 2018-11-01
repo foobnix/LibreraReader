@@ -45,7 +45,7 @@ public class PopupHelper {
 
     public static void addPROIcon(final PopupMenu menu, final Context c) {
         if (!AppsConfig.checkIsProInstalled(c)) {
-            menu.getMenu().add("Librera PRO").setIcon(R.drawable.icon_pdf_pro).setOnMenuItemClickListener(new OnMenuItemClickListener() {
+            menu.getMenu().add("Librera PRO").setIcon(R.mipmap.icon_pdf_pro).setOnMenuItemClickListener(new OnMenuItemClickListener() {
 
                 @Override
                 public boolean onMenuItemClick(MenuItem item) {
@@ -58,7 +58,7 @@ public class PopupHelper {
 
     public static void addPROIcon(final MyPopupMenu menu, final Context c) {
         if (!AppsConfig.checkIsProInstalled(c)) {
-            menu.getMenu().add(R.string.app_name_pro).setIcon(R.drawable.icon_pdf_pro).setOnMenuItemClickListener(new OnMenuItemClickListener() {
+            menu.getMenu().add(R.string.app_name_pro).setIcon(R.mipmap.icon_pdf_pro).setOnMenuItemClickListener(new OnMenuItemClickListener() {
 
                 @Override
                 public boolean onMenuItemClick(MenuItem item) {

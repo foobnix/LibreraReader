@@ -5,7 +5,7 @@
     <item>
         <bitmap
             android:gravity="center"
-            android:src="@drawable/icon_pdf_pro" />
+            android:src="@mipmap/icon_pdf_pro" />
     </item>
 
 </layer-list>

@@ -15,7 +15,7 @@
         android:background="@drawable/bg_clickable"
         android:cropToPadding="true"
         android:maxHeight="90dip"
-        android:src="@drawable/icon_pdf_pro" />
+        android:src="@mipmap/icon_pdf_pro" />
 
     <LinearLayout
         android:layout_width="match_parent"

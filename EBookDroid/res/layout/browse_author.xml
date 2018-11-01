@@ -23,7 +23,7 @@
             android:layout_marginRight="8dip"
             android:background="@drawable/bg_circular"
             android:gravity="center"
-            android:src="@drawable/icon_pdf_reader"
+            android:src="@mipmap/icon_pdf_reader"
             android:text="A"
             android:textAllCaps="true"
             android:textColor="@color/white"
