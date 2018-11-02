@@ -35,7 +35,7 @@
         </provider>
 
 		<activity android:name="com.cloudrail.si.servicecode.commands.awaitCodeRedirect.AuthenticationActivity" />
-        
+
                 
         <activity
             android:name="com.foobnix.zipmanager.ZipActivity"
@@ -56,6 +56,14 @@
                 <data android:mimeType="application/x-compressed-zip" />
                 <data android:mimeType="application/x-zip-compressed" />
                 <data android:mimeType="application/zip" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="com.foobnix.zipmanager.SendReceiveActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.SEND" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <data android:mimeType="*/*" />
             </intent-filter>
         </activity>
         <activity
