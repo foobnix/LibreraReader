@@ -1,8 +1,8 @@
 ---
 layout: main
-version: 2
+version: 4
 ---
-[<](/wiki/what-is-new/es)
+[Qué es nuevo](/wiki/what-is-new/es)
 
 # 7.11
 

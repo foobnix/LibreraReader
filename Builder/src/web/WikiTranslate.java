@@ -88,7 +88,7 @@ public class WikiTranslate {
             return;
         }
 
-        List<String> ignoreLines = Arrays.asList("[<]", "|", "{", "<", "!", "---", "# 7", "# 8");
+        List<String> ignoreLines = Arrays.asList("[<]", "|", "{", "<", "!", "---", "# 7.", "# 8.");
         List<String> preLines = Arrays.asList("# ", "## ", "### ", "* ", "> ", "1. ", "2. ", "3. ");
 
         PrintWriter out = new PrintWriter(ru);
@@ -148,7 +148,7 @@ public class WikiTranslate {
 
                     if (url != null) {
                         line = GoogleTranslation.translate(line, ln);
-                        line = String.format("* [%s](%s)", line, url);
+                        line = String.format("[%s](%s)", line, url);
                     } else {
                         line = prefix + GoogleTranslation.translate(line, ln);
                     }

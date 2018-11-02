@@ -1,8 +1,8 @@
 ---
 layout: main
-version: 2
+version: 4
 ---
-[<](/wiki/what-is-new/zh)
+[什么是新的](/wiki/what-is-new/zh)
 
 # 7.11
 

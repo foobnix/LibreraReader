@@ -26,9 +26,9 @@
 {% if page.url contains 'it.html' %}
 {% assign find = true %}
   
-[Deutsch](/wiki/de)
+[Italiano](/wiki/it)
 
-{% include de.md %}
+{% include it.md %}
 {% endif %}
 
 
@@ -77,6 +77,7 @@
 [Русский](/wiki/ru)<br/>
 [Français](/wiki/fr)<br/>
 [Deutsch](/wiki/de)<br/>
+[Italiano](/wiki/it)<br/>
 [Portugal](/wiki/pt)<br/>
 [Español](/wiki/es)<br/>
 [العربية](/wiki/ar)<br/>

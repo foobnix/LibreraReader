@@ -1,8 +1,8 @@
 ---
 layout: main
-version: 2
+version: 4
 ---
-[<](/wiki/what-is-new/ar)
+[ما الجديد](/wiki/what-is-new/ar)
 
 # 7.11
 
