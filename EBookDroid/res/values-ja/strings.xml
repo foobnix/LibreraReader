@@ -222,7 +222,6 @@
    <string name="apply_a_new_screen_orientation_">新しい画面の向きを適用しますか？</string>
    <string name="send_mail">メールを送信</string>
    <string name="do_you_want_to_clear_everything_">すべてをクリアしますか？</string>
-   <string name="close_application_">閉じるアプリケーション？</string>
    <string name="new_beta_version_available">利用可能な新しいベータ版</string>
    <string name="___NOTIFICATION___SECTION___"></string>
    <string name="fail">失敗しました</string>
@@ -499,7 +498,7 @@
    <string name="add_to_bookmark">ブックマークに追加</string>
    <string name="fast_reading">速読（RSVP）</string>
    <string name="minimum_line_length">最小行長（CPL）</string>
-   <string name="exit">出口</string>
    <string name="ask_rate_us1">このアプリケーションが気に入ったら、評価してGoogle Playでレビューしてください。ありがとうございました！</string>
    <string name="message">メッセージ</string>
+   <string name="exit_application">終了アプリケーション</string>
 </resources>

@@ -222,7 +222,6 @@
    <string name="apply_a_new_screen_orientation_">Переориентировать экран?</string>
    <string name="send_mail">Отправить письмо</string>
    <string name="do_you_want_to_clear_everything_">Уверены, что хотите всё очистить?</string>
-   <string name="close_application_">Закрыть приложение?</string>
    <string name="new_beta_version_available">Доступна новая бета-версия</string>
    <string name="___NOTIFICATION___SECTION___"></string>
    <string name="fail">Сбой</string>
@@ -499,7 +498,7 @@
    <string name="add_to_bookmark">Добавить в закладки</string>
    <string name="fast_reading">Скорочтение (RSVP)</string>
    <string name="minimum_line_length">Минимальная длина линии (CPL)</string>
-   <string name="exit">Выход</string>
    <string name="ask_rate_us1">Если вам нравится это приложение, пожалуйста, оцените и просмотрите нас в Google Play. Спасибо!</string>
    <string name="message">Сообщение</string>
+   <string name="exit_application">Выход из приложения</string>
 </resources>

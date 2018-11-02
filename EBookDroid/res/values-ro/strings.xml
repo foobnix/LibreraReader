@@ -222,7 +222,6 @@
    <string name="apply_a_new_screen_orientation_">Aplicați o nouă orientare ecran?</string>
    <string name="send_mail">Trimitere email</string>
    <string name="do_you_want_to_clear_everything_">Vrei să ștergi totul?</string>
-   <string name="close_application_">Închideți aplicația?</string>
    <string name="new_beta_version_available">Noua versiune beta disponibilă</string>
    <string name="___NOTIFICATION___SECTION___"></string>
    <string name="fail">Eşuat</string>
@@ -499,7 +498,7 @@
    <string name="add_to_bookmark">Adăugați la marcaje</string>
    <string name="fast_reading">Citirea rapidă (RSVP)</string>
    <string name="minimum_line_length">Lungimea minimă a liniei (CPL)</string>
-   <string name="exit">Ieșire</string>
    <string name="ask_rate_us1">Dacă vă place această aplicație, vă rugăm să evaluați și să ne analizați pe Google Play. Mulțumesc!</string>
    <string name="message">Mesaj</string>
+   <string name="exit_application">Ieșiți din aplicație</string>
 </resources>

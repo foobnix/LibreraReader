@@ -222,7 +222,6 @@
    <string name="apply_a_new_screen_orientation_">Levitä uusi näytön suunnan?</string>
    <string name="send_mail">Lähetä postia</string>
    <string name="do_you_want_to_clear_everything_">Haluatko tyhjentää kaiken?</string>
-   <string name="close_application_">Sulje sovellus?</string>
    <string name="new_beta_version_available">Uusi beta-versio saatavilla</string>
    <string name="___NOTIFICATION___SECTION___"></string>
    <string name="fail">Epäonnistua</string>
@@ -499,7 +498,7 @@
    <string name="add_to_bookmark">Lisää kirjanmerkkeihin</string>
    <string name="fast_reading">Nopea käsittely (RSVP)</string>
    <string name="minimum_line_length">Vähimmäislinjan pituus (CPL)</string>
-   <string name="exit">Poistuminen</string>
    <string name="ask_rate_us1">Jos pidät tästä sovelluksesta, arvostathan ja tarkista meidät Google Playssa. Kiitos!</string>
    <string name="message">Viesti</string>
+   <string name="exit_application">Poistu sovelluksesta</string>
 </resources>

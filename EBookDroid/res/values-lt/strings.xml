@@ -222,7 +222,6 @@
    <string name="apply_a_new_screen_orientation_">Taikyti naują ekrano poziciją?</string>
    <string name="send_mail">Siųsti elektroninį laišką</string>
    <string name="do_you_want_to_clear_everything_">Ar norite išvalyti viską?</string>
-   <string name="close_application_">Užverti programą?</string>
    <string name="new_beta_version_available">Yra nauja beta versijos versija</string>
    <string name="___NOTIFICATION___SECTION___"></string>
    <string name="fail">Nepavyko</string>
@@ -499,7 +498,7 @@
    <string name="add_to_bookmark">Pridėti prie žymių</string>
    <string name="fast_reading">Greitas skaitymas (RSVP)</string>
    <string name="minimum_line_length">Minimalus linijos ilgis (CPL)</string>
-   <string name="exit">Išeiti</string>
    <string name="ask_rate_us1">Jei jums patinka ši paraiška, įvertinkite ir peržiūrėkite mus \"Google Play\". Ačiū!</string>
    <string name="message">Pranešimas</string>
+   <string name="exit_application">Išeikite iš paraiškos</string>
 </resources>

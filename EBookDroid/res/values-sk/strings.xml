@@ -222,7 +222,6 @@
    <string name="apply_a_new_screen_orientation_">Aplikovať nové orientácie obrazovky?</string>
    <string name="send_mail">Odoslať poštu</string>
    <string name="do_you_want_to_clear_everything_">Chcete vymazať všetko?</string>
-   <string name="close_application_">Close aplikácie?</string>
    <string name="new_beta_version_available">Nová beta verzia je k dispozícii</string>
    <string name="___NOTIFICATION___SECTION___"></string>
    <string name="fail">Fail</string>
@@ -499,7 +498,7 @@
    <string name="add_to_bookmark">Pridať do záložiek</string>
    <string name="fast_reading">Rýchle čítanie (RSVP)</string>
    <string name="minimum_line_length">Minimálna dĺžka linky (CPL)</string>
-   <string name="exit">Východ</string>
    <string name="ask_rate_us1">Ak sa vám táto aplikácia páči, prosím ohodnoťte a skontrolujte nás v službe Google Play. Ďakujem!</string>
    <string name="message">Správa</string>
+   <string name="exit_application">Ukončite aplikáciu</string>
 </resources>

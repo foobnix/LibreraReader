@@ -222,7 +222,6 @@
    <string name="apply_a_new_screen_orientation_">应用新的屏幕方向？</string>
    <string name="send_mail">发送邮件</string>
    <string name="do_you_want_to_clear_everything_">您要全部清空？</string>
-   <string name="close_application_">退出程序？</string>
    <string name="new_beta_version_available">新测试版可用</string>
    <string name="___NOTIFICATION___SECTION___">通知栏</string>
    <string name="fail">失败</string>
@@ -499,7 +498,7 @@
    <string name="add_to_bookmark">添加到书签</string>
    <string name="fast_reading">快速阅读（RSVP）</string>
    <string name="minimum_line_length">最小线长（CPL）</string>
-   <string name="exit">出口</string>
    <string name="ask_rate_us1">如果您喜欢此应用程序，请在Google Play上评分并查看我们。谢谢！</string>
    <string name="message">信息</string>
+   <string name="exit_application">退出申请</string>
 </resources>

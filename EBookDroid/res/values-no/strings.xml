@@ -222,7 +222,6 @@
    <string name="apply_a_new_screen_orientation_">Bruk en ny skjermretning?</string>
    <string name="send_mail">Send e-post</string>
    <string name="do_you_want_to_clear_everything_">Vil du fjerne alt?</string>
-   <string name="close_application_">Lukk søknad?</string>
    <string name="new_beta_version_available">Ny betaversjon tilgjengelig</string>
    <string name="___NOTIFICATION___SECTION___"></string>
    <string name="fail">Fail</string>
@@ -499,7 +498,7 @@
    <string name="add_to_bookmark">Legg til i bokmerker</string>
    <string name="fast_reading">Rask lesing (RSVP)</string>
    <string name="minimum_line_length">Minimum linjelengde (CPL)</string>
-   <string name="exit">Exit</string>
    <string name="ask_rate_us1">Hvis du liker dette programmet, kan du vurdere og vurdere oss på Google Play. Takk skal du ha!</string>
    <string name="message">Budskap</string>
+   <string name="exit_application">Avslutt søknad</string>
 </resources>

@@ -222,7 +222,6 @@
    <string name="apply_a_new_screen_orientation_">Weka mpya screen Mwelekeo?</string>
    <string name="send_mail">Kutuma barua</string>
    <string name="do_you_want_to_clear_everything_">Je, unataka kufuta kila kitu?</string>
-   <string name="close_application_">Karibu maombi?</string>
    <string name="new_beta_version_available">Toleo jipya la beta linapatikana</string>
    <string name="___NOTIFICATION___SECTION___"></string>
    <string name="fail">Kushindwa</string>
@@ -499,7 +498,7 @@
    <string name="add_to_bookmark">Ongeza kwenye salamisho</string>
    <string name="fast_reading">Kusoma kwa haraka (RSVP)</string>
    <string name="minimum_line_length">Urefu wa mstari wa chini (CPL)</string>
-   <string name="exit">Utgång</string>
    <string name="ask_rate_us1">Ikiwa ungependa programu hii, tafadhali kiwango na uhakikishe kwenye Google Play. Asante!</string>
    <string name="message">Ujumbe</string>
+   <string name="exit_application">Toka programu</string>
 </resources>

@@ -222,7 +222,6 @@
    <string name="apply_a_new_screen_orientation_">Applicera en ny skärm läggning?</string>
    <string name="send_mail">Skicka brev</string>
    <string name="do_you_want_to_clear_everything_">Vill du rensa allt?</string>
-   <string name="close_application_">Stäng programmet?</string>
    <string name="new_beta_version_available">Ny betaversion tillgänglig</string>
    <string name="___NOTIFICATION___SECTION___"></string>
    <string name="fail">Misslyckas</string>
@@ -499,7 +498,7 @@
    <string name="add_to_bookmark">Lägg till i bokmärken</string>
    <string name="fast_reading">Snabb läsning (RSVP)</string>
    <string name="minimum_line_length">Minsta linjelängd (CPL)</string>
-   <string name="exit">Utgång</string>
    <string name="ask_rate_us1">Om du gillar den här applikationen kan du betygsätta och granska oss på Google Play. Tack!</string>
    <string name="message">Meddelande</string>
+   <string name="exit_application">Avsluta ansökan</string>
 </resources>

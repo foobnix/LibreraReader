@@ -222,7 +222,6 @@
    <string name="apply_a_new_screen_orientation_">Apply new screen orientation?</string>
    <string name="send_mail">Send email</string>
    <string name="do_you_want_to_clear_everything_">Clear everything?</string>
-   <string name="close_application_">Exit application?</string>
    <string name="new_beta_version_available">New Beta version is available</string>
    <string name="___NOTIFICATION___SECTION___"></string>
    <string name="fail">Error</string>
@@ -499,7 +498,7 @@
    <string name="add_to_bookmark">Bookmark</string>
    <string name="fast_reading">Speed read (RSVP)</string>
    <string name="minimum_line_length">Minimum line length (CPL)</string>
-   <string name="exit">Exit</string>
    <string name="ask_rate_us1">If you like this application, please rate and review us on Google Play. Thank you!</string>
    <string name="message">Message</string>
+   <string name="exit_application">Exit application</string>
 </resources>

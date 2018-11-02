@@ -222,7 +222,6 @@
    <string name="apply_a_new_screen_orientation_">Áp dụng một hướng màn hình mới?</string>
    <string name="send_mail">Gửi thư</string>
    <string name="do_you_want_to_clear_everything_">Bạn có muốn làm rõ mọi thứ không?</string>
-   <string name="close_application_">Đóng ứng dụng?</string>
    <string name="new_beta_version_available">Phiên bản beta mới có sẵn</string>
    <string name="___NOTIFICATION___SECTION___"></string>
    <string name="fail">Thất bại</string>
@@ -499,7 +498,7 @@
    <string name="add_to_bookmark">Thêm vào dấu trang</string>
    <string name="fast_reading">Đọc nhanh (RSVP)</string>
    <string name="minimum_line_length">Độ dài dòng tối thiểu (CPL)</string>
-   <string name="exit">Lối thoát hiểm</string>
    <string name="ask_rate_us1">Nếu bạn thích ứng dụng này, vui lòng xếp hạng và đánh giá chúng tôi trên Google Play. Cảm ơn bạn!</string>
    <string name="message">Thông điệp</string>
+   <string name="exit_application">Ứng dụng xuất cảnh</string>
 </resources>

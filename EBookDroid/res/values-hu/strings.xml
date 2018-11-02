@@ -222,7 +222,6 @@
    <string name="apply_a_new_screen_orientation_">Alkalmazza az új képernyőtájolást?</string>
    <string name="send_mail">Levél küldése</string>
    <string name="do_you_want_to_clear_everything_">Mindent törölni szeretne?</string>
-   <string name="close_application_">Kilép a Librera alkalmazásból?</string>
    <string name="new_beta_version_available">Az új béta verzió érhető el</string>
    <string name="___NOTIFICATION___SECTION___"></string>
    <string name="fail">Hiba</string>
@@ -499,7 +498,7 @@
    <string name="add_to_bookmark">Hozzáadás könyvjelzőkhöz</string>
    <string name="fast_reading">Gyors olvasás (RSVP)</string>
    <string name="minimum_line_length">Minimális vonalhossz (CPL)</string>
-   <string name="exit">Kijárat</string>
    <string name="ask_rate_us1">Ha tetszik ez az alkalmazás, kérjük, értékelje és tekintse meg a Google Playen. Köszönöm!</string>
    <string name="message">Üzenet</string>
+   <string name="exit_application">Kilépés alkalmazásból</string>
 </resources>

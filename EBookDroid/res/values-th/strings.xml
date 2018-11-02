@@ -222,7 +222,6 @@
    <string name="apply_a_new_screen_orientation_">ใช้การวางแนวหน้าจอใหม่หรือไม่?</string>
    <string name="send_mail">ส่งอีเมล์</string>
    <string name="do_you_want_to_clear_everything_">คุณต้องการล้างทุกอย่างหรือไม่?</string>
-   <string name="close_application_">ปิดโปรแกรมหรือไม่?</string>
    <string name="new_beta_version_available">มีเวอร์ชันเบต้าใหม่แล้ว</string>
    <string name="___NOTIFICATION___SECTION___"></string>
    <string name="fail">ล้มเหลว</string>
@@ -499,7 +498,7 @@
    <string name="add_to_bookmark">เพิ่มในบุ๊กมาร์ก</string>
    <string name="fast_reading">การอ่านอย่างรวดเร็ว (RSVP)</string>
    <string name="minimum_line_length">ความยาวบรรทัดขั้นต่ำ (CPL)</string>
-   <string name="exit">ทางออก</string>
    <string name="ask_rate_us1">หากคุณชอบแอปพลิเคชันนี้โปรดให้คะแนนและรีวิวเราบน Google Play ขอบคุณ!</string>
    <string name="message">ข่าวสาร</string>
+   <string name="exit_application">ออกจากแอพพลิเคชัน</string>
 </resources>

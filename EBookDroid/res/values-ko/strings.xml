@@ -222,7 +222,6 @@
    <string name="apply_a_new_screen_orientation_">새로운 화면 방향을 적용?</string>
    <string name="send_mail">메일을 보내세요</string>
    <string name="do_you_want_to_clear_everything_">모든 걸 정리 하시겠습니까?</string>
-   <string name="close_application_">프로그램 닫기</string>
    <string name="new_beta_version_available">새로운 베타 버전 사용 가능</string>
    <string name="___NOTIFICATION___SECTION___"></string>
    <string name="fail">실패</string>
@@ -499,7 +498,7 @@
    <string name="add_to_bookmark">북마크에 추가</string>
    <string name="fast_reading">빠른 읽기 (RSVP)</string>
    <string name="minimum_line_length">최소 라인 길이 (CPL)</string>
-   <string name="exit">출구</string>
    <string name="ask_rate_us1">이 애플리케이션이 마음에 들면 Google Play에서 Google을 평가하고 리뷰 해주세요. 고맙습니다!</string>
    <string name="message">메시지</string>
+   <string name="exit_application">응용 프로그램 종료</string>
 </resources>

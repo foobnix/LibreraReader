@@ -61,7 +61,7 @@
                 android:ellipsize="end"
                 android:gravity="center"
                 android:singleLine="true"
-                android:text="@string/exit"
+                android:text="@string/exit_application"
                 android:textSize="@dimen/text_subtitle"
                 android:visibility="visible" />
         </LinearLayout>

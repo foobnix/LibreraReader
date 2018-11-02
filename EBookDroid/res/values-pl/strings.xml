@@ -222,7 +222,6 @@
    <string name="apply_a_new_screen_orientation_">Zmienić orientację ekranu?</string>
    <string name="send_mail">Wyślij e-mail</string>
    <string name="do_you_want_to_clear_everything_">Czy chcesz wszystko wyczyścić?</string>
-   <string name="close_application_">Zamknąć program?</string>
    <string name="new_beta_version_available">Dostępna jest nowa wersja beta</string>
    <string name="___NOTIFICATION___SECTION___"></string>
    <string name="fail">Nieudane</string>
@@ -499,7 +498,7 @@
    <string name="add_to_bookmark">Dodaj do zakładek</string>
    <string name="fast_reading">Szybki odczyt (RSVP)</string>
    <string name="minimum_line_length">Minimalna długość linii (CPL)</string>
-   <string name="exit">Wyjście</string>
    <string name="ask_rate_us1">Jeśli podoba ci się ta aplikacja, oceń i sprawdź nas w Google Play. Dziękuję Ci!</string>
    <string name="message">Wiadomość</string>
+   <string name="exit_application">Zamknij aplikację</string>
 </resources>

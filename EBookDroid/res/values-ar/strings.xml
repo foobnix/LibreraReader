@@ -222,7 +222,6 @@
    <string name="apply_a_new_screen_orientation_">تطبيق اتجاه الشاشة الجديد؟</string>
    <string name="send_mail">إرسال البريد</string>
    <string name="do_you_want_to_clear_everything_">هل تريد مسح كل شيء؟</string>
-   <string name="close_application_">انهيار الطلب؟</string>
    <string name="new_beta_version_available">النسخة التجريبية الجديدة المتاحة</string>
    <string name="___NOTIFICATION___SECTION___"></string>
    <string name="fail">فشل</string>
@@ -499,7 +498,7 @@
    <string name="add_to_bookmark">إضافة إلى المواقع المفضلة</string>
    <string name="fast_reading">القراءة السريعة (RSVP)</string>
    <string name="minimum_line_length">الحد الأدنى للطول (CPL)</string>
-   <string name="exit">ىخرج</string>
    <string name="ask_rate_us1">إذا كنت تحب هذا التطبيق ، يرجى تقييم ومراجعة لنا على Google Play. شكرا لكم!</string>
    <string name="message">رسالة</string>
+   <string name="exit_application">الخروج من التطبيق</string>
 </resources>

@@ -222,7 +222,6 @@
    <string name="apply_a_new_screen_orientation_">Terapkan orientasi layar baru?</string>
    <string name="send_mail">Kirim surat</string>
    <string name="do_you_want_to_clear_everything_">Apakah Anda ingin menghapus semuanya?</string>
-   <string name="close_application_">Tutup aplikasi?</string>
    <string name="new_beta_version_available">Versi beta baru tersedia</string>
    <string name="___NOTIFICATION___SECTION___"></string>
    <string name="fail">Gagal</string>
@@ -499,7 +498,7 @@
    <string name="add_to_bookmark">Tambahkan ke bookmark</string>
    <string name="fast_reading">Pembacaan cepat (RSVP)</string>
    <string name="minimum_line_length">Panjang baris minimum (CPL)</string>
-   <string name="exit">Keluar</string>
    <string name="ask_rate_us1">Jika Anda menyukai aplikasi ini, harap beri peringkat dan tinjau kami di Google Play. Terima kasih!</string>
    <string name="message">Pesan</string>
+   <string name="exit_application">Keluar dari aplikasi</string>
 </resources>

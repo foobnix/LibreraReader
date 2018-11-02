@@ -222,7 +222,6 @@
    <string name="apply_a_new_screen_orientation_">درخواست یک جهت گیری روی صفحه نمایش جدید؟</string>
    <string name="send_mail">ارسال ایمیل</string>
    <string name="do_you_want_to_clear_everything_">آیا می خواهید همه چیز را پاک کنید؟</string>
-   <string name="close_application_">بستن برنامه؟</string>
    <string name="new_beta_version_available">نسخه بتا جدید موجود است</string>
    <string name="___NOTIFICATION___SECTION___"></string>
    <string name="fail">شکست</string>
@@ -499,7 +498,7 @@
    <string name="add_to_bookmark">افزودن به بوک مارک ها</string>
    <string name="fast_reading">خواندن سریع (RSVP)</string>
    <string name="minimum_line_length">حداقل طول خط (CPL)</string>
-   <string name="exit">خروج</string>
    <string name="ask_rate_us1">اگر این برنامه را دوست دارید، لطفا ما را در Google Play ارزیابی و بررسی کنید. متشکرم!</string>
    <string name="message">پیام</string>
+   <string name="exit_application">خروج از برنامه</string>
 </resources>

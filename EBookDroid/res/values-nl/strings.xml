@@ -222,7 +222,6 @@
    <string name="apply_a_new_screen_orientation_">Breng een nieuwe oriëntatie van het scherm?</string>
    <string name="send_mail">Verzend mail</string>
    <string name="do_you_want_to_clear_everything_">Wil je alles opruimen?</string>
-   <string name="close_application_">Sluit de toepassing?</string>
    <string name="new_beta_version_available">Nieuwe beta versie beschikbaar</string>
    <string name="___NOTIFICATION___SECTION___"></string>
    <string name="fail">Mislukken</string>
@@ -499,7 +498,7 @@
    <string name="add_to_bookmark">Voeg toe aan bladwijzers</string>
    <string name="fast_reading">Snel lezen (RSVP)</string>
    <string name="minimum_line_length">Minimale lijnlengte (CPL)</string>
-   <string name="exit">Uitgang</string>
    <string name="ask_rate_us1">Als u van deze app houdt, kunt u ons beoordelen en beoordelen op Google Play. Dank je!</string>
    <string name="message">Bericht</string>
+   <string name="exit_application">Sluit app af</string>
 </resources>

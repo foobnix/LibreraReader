@@ -9,8 +9,8 @@
         android:layout_height="wrap_content"
         android:gravity="center"
         android:padding="10dip"
-        android:text="@string/close_application_"
-        android:textSize="24sp" />
+        android:text="@string/exit_application"
+        android:textSize="20sp" />
 
     <LinearLayout
         android:id="@+id/topLayout"

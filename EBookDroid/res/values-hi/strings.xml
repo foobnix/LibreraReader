@@ -222,7 +222,6 @@
    <string name="apply_a_new_screen_orientation_">एक नए स्क्रीन अभिविन्यास लागू करें?</string>
    <string name="send_mail">मेल भेजे</string>
    <string name="do_you_want_to_clear_everything_">क्या आप सब कुछ साफ़ करना चाहते हैं?</string>
-   <string name="close_application_">एप्लिकेशन बंद करो?</string>
    <string name="new_beta_version_available">नया बीटा संस्करण उपलब्ध है</string>
    <string name="___NOTIFICATION___SECTION___"></string>
    <string name="fail">असफल</string>
@@ -499,7 +498,7 @@
    <string name="add_to_bookmark">बुकमार्क्स में जोड़ें</string>
    <string name="fast_reading">फास्ट रीडिंग (आरएसवीपी)</string>
    <string name="minimum_line_length">न्यूनतम लाइन लंबाई (सीपीएल)</string>
-   <string name="exit">बाहर जाएं</string>
    <string name="ask_rate_us1">अगर आपको यह एप्लिकेशन पसंद है, तो कृपया Google Play पर हमें रेट करें और समीक्षा करें। धन्यवाद!</string>
    <string name="message">संदेश</string>
+   <string name="exit_application">छोड़ने के लिए प्रार्थनापत्र</string>
 </resources>

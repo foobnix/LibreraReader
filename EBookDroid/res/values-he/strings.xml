@@ -222,7 +222,6 @@
    <string name="apply_a_new_screen_orientation_">החלת כיוון מסך חדש?</string>
    <string name="send_mail">שלח מייל</string>
    <string name="do_you_want_to_clear_everything_">אתה רוצה לנקות הכל?</string>
-   <string name="close_application_">קרוב יישום?</string>
    <string name="new_beta_version_available">גרסת ביתא חדשה זמינה</string>
    <string name="___NOTIFICATION___SECTION___"></string>
    <string name="fail">לְהִכָּשֵׁל</string>
@@ -499,7 +498,7 @@
    <string name="add_to_bookmark">הוסף לסימניות</string>
    <string name="fast_reading">קריאה מהירה (RSVP)</string>
    <string name="minimum_line_length">אורך שורה מינימלי (CPL)</string>
-   <string name="exit">צא</string>
    <string name="ask_rate_us1">אם אתה אוהב את האפליקציה הזו, דרג אותנו ובדוק אותנו ב- Google Play. תודה!</string>
    <string name="message">הודעה</string>
+   <string name="exit_application">צא מיישום</string>
 </resources>
