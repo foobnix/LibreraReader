@@ -4,12 +4,10 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 
-import org.apache.commons.compress.utils.IOUtils;
-
 import com.foobnix.android.utils.LOG;
 import com.foobnix.android.utils.TxtUtils;
 import com.foobnix.libmobi.LibMobi;
-import com.foobnix.mobi.parser.MobiParser;
+import com.foobnix.mobi.parser.MobiParserIS;
 
 public class MobiExtract {
 
@@ -27,9 +25,8 @@ public class MobiExtract {
     public static EbookMeta getBookMetaInformation(String path, boolean onlyTitle) throws IOException {
         File file = new File(path);
         try {
-            byte[] raw = IOUtils.toByteArray(new FileInputStream(file));
 
-            MobiParser parse = new MobiParser(raw);
+            MobiParserIS parse = new MobiParserIS(new FileInputStream(file));
             String title = parse.getTitle();
             String author = parse.getAuthor();
             String subject = parse.getSubject();
@@ -54,6 +51,9 @@ public class MobiExtract {
             ebookMeta.setPublisher(publisher);
             ebookMeta.setIsbn(ibsn);
             // ebookMeta.setPagesCount(parse.getBookSize() / 1024);
+
+            parse.close();
+
             return ebookMeta;
 
         } catch (Throwable e) {
@@ -66,11 +66,9 @@ public class MobiExtract {
         String info = "";
         try {
             File file = new File(path);
-            byte[] raw = IOUtils.toByteArray(new FileInputStream(file));
-
-            MobiParser parse = new MobiParser(raw);
+            MobiParserIS parse = new MobiParserIS(new FileInputStream(file));
             info = parse.getDescription();
-
+            parse.close();
         } catch (Throwable e) {
             LOG.e(e);
         }
@@ -80,16 +78,13 @@ public class MobiExtract {
     public static byte[] getBookCover(String path) {
         try {
             File file = new File(path);
-            FileInputStream fileInputStream = new FileInputStream(file);
             try {
-                byte[] raw = IOUtils.toByteArray(fileInputStream);
-                MobiParser parse = new MobiParser(raw);
+                MobiParserIS parse = new MobiParserIS(new FileInputStream(file));
                 byte[] coverOrThumb = parse.getCoverOrThumb();
-                parse = null;
-                raw = null;
+                LOG.d("coverOrThumb", coverOrThumb.length);
+                parse.close();
                 return coverOrThumb;
             } finally {
-                fileInputStream.close();
             }
         } catch (Throwable e) {
             LOG.e(e);

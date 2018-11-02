@@ -1,8 +1,8 @@
 package com.foobnix.mobi.parser;
 
-import java.io.ByteArrayOutputStream;
+import java.io.BufferedInputStream;
 import java.io.IOException;
-import java.io.UnsupportedEncodingException;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -11,7 +11,7 @@ import java.util.Map;
 
 import com.foobnix.android.utils.LOG;
 
-public class MobiParser {
+public class MobiParserIS {
     public static int COMPRESSION_NONE = 0;
     public static int COMPRESSION_PalmDOC = 2;
     public static int COMPRESSION_HUFF = 17480;
@@ -24,7 +24,7 @@ public class MobiParser {
     public String encoding;
     public String fullName;
     public String locale;
-    private byte[] raw;
+    public InputStream raw;
     public int firstImageIndex;
     public int lastContentIndex;
     public EXTH exth = new EXTH();
@@ -35,13 +35,13 @@ public class MobiParser {
 
     // http://wiki.mobileread.com/wiki/MOBI#MOBI_Header
     // https://wiki.mobileread.com/wiki/MOBI#EXTH_Header
-    class EXTH {
+    public class EXTH {
         public String identifier;
         public int len;
         public int count;
         public Map<Integer, byte[]> headers = new HashMap<Integer, byte[]>();
 
-        public EXTH parse(byte[] raw) {
+        public EXTH parse(InputStream raw) {
             int offset = indexOf(raw, "EXTH".getBytes());
             identifier = asString(raw, offset, 4);
             len = asInt(raw, offset + 4, 4);
@@ -49,13 +49,21 @@ public class MobiParser {
 
             int rOffset = offset + 12;
 
-            for (int i = 0; i < count; i++) {
+            for (int i = 0; i < count - 1; i++) {
                 int rType = asInt(raw, rOffset, 4);
                 int rLen = asInt(raw, rOffset + 4, 4);
-                byte[] data = Arrays.copyOfRange(raw, rOffset + 8, rOffset + rLen);
+                byte[] data = copyOfRange(raw, rOffset + 8, rLen - 8);
                 rOffset = rOffset + rLen;
                 headers.put(rType, data);
+
+                System.out.println(i + ": " + rType + "," + rOffset + "," + data.length);
             }
+
+            System.out.println("MobiParserIS");
+            System.out.println("identifier" + identifier);
+            System.out.println("len" + len);
+            System.out.println("count" + count);
+
             return this;
         }
 
@@ -70,13 +78,48 @@ public class MobiParser {
         return total;
     }
 
-    public static String asString(byte[] raw, int offset, int len) {
-        return new String(Arrays.copyOfRange(raw, offset, offset + len));
+    public static String asString(InputStream is, int offset, int len) {
+        try {
+            is.reset();
+            byte[] res = new byte[len];
+            is.skip(offset);
+            is.read(res, 0, len);
+            return new String(res);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
     }
 
-    public static int asInt(byte[] raw, int offset, int len) {
-        byte[] range = Arrays.copyOfRange(raw, offset, offset + len);
-        return byteArrayToInt(range);
+    public static int asInt(InputStream is, int offset, int len) {
+        try {
+            is.reset();
+            byte[] res = new byte[len];
+            is.skip(offset);
+            is.read(res, 0, len);
+            return byteArrayToInt(res);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return -1;
+        }
+    }
+
+    public static byte[] copyOfRange(InputStream is, int offset, int len) {
+        try {
+            byte[] res = new byte[len];
+            is.reset();
+            for (int i = 0; i < offset; i++) {
+                is.skip(1);
+            }
+            is.read(res, 0, len);
+            return res;
+        } catch (
+
+        Exception e) {
+            System.out.println("copyOfRange" + offset + " ! " + len);
+            e.printStackTrace();
+            return null;
+        }
     }
 
     public static int toInt(byte bytes[], int pos) {
@@ -86,67 +129,43 @@ public class MobiParser {
         return (bytes[bytes.length - pos] & 0xff);
     }
 
-    public static byte[] lz77(byte[] bytes) {
-        ByteArrayBuffer outputStream = new ByteArrayBuffer(bytes.length);
-        int i = 0;
-        while (i < bytes.length - 4) {// try -2,4,8,10
-            int b = bytes[i++] & 0x00FF;
-            try {
-                if (b == 0x0) {
-                    outputStream.write(b);
-                } else if (b <= 0x08) {
-                    for (int j = 0; j < b; j++)
-                        outputStream.write(bytes[i + j]);
-                    i += b;
+    public int indexOf(InputStream is, byte[] search) {
+        try {
+            is.reset();
+            byte[] res = new byte[search.length];
+            int count = 0;
+            while (is.read(res) != -1) {
+                if (Arrays.equals(res, search)) {
+                    return count;
                 }
-
-                else if (b <= 0x7f) {
-                    outputStream.write(b);
-                } else if (b <= 0xbf) {
-                    b = b << 8 | bytes[i++] & 0xFF;
-                    int length = (b & 0x0007) + 3;
-                    int location = (b >> 3) & 0x7FF;
-
-                    for (int j = 0; j < length; j++)
-                        outputStream.write(outputStream.getRawData()[outputStream.size() - location]);
-                } else {
-                    outputStream.write(' ');
-                    outputStream.write(b ^ 0x80);
-                }
-            } catch (Exception e) {
-                e.printStackTrace();
+                count += search.length;
             }
-        }
-        return outputStream.getRawData();
-    }
-
-    public int indexOf(byte[] input, byte[] search) {
-        for (int i = 0; i < input.length - search.length + 1; ++i) {
-            boolean found = true;
-            for (int j = 0; j < search.length; ++j) {
-                if (input[i + j] != search[j]) {
-                    found = false;
-                    break;
-                }
-            }
-            if (found)
-                return i;
+        } catch (Exception e) {
+            e.printStackTrace();
         }
         return -1;
     }
 
-    @Deprecated
-    private MobiParser(byte[] file) throws IOException {
-        raw = file;
+    public void close() {
+        try {
+            raw.close();
+        } catch (IOException e) {
+            LOG.e(e);
+            e.printStackTrace();
+        }
+    }
+
+    public MobiParserIS(InputStream is) throws Exception {
+        is = new BufferedInputStream(is);
+        is.mark(Integer.MAX_VALUE);
+        raw = is;
 
         name = asString(raw, 0, 32);
 
         recordsCount = asInt(raw, 76, 2);
 
         for (int i = 78; i < 78 + recordsCount * 8; i += 8) {
-            int recordOffset = byteArrayToInt(Arrays.copyOfRange(raw, i, i + 4));
-            // int recordID = byteArrayToInt(Arrays.copyOfRange(raw, i + 5, i +
-            // 5 + 3));
+            int recordOffset = asInt(is, i, 4);
             recordsOffset.add(recordOffset);
         }
         int mobiOffset = recordsOffset.get(0);
@@ -155,7 +174,6 @@ public class MobiParser {
         bookSize = asInt(raw, mobiOffset + 4, 4);
 
         int encryption = asInt(raw, mobiOffset + 12, 2);
-        LOG.d("MobiParser", "encryption", encryption);
 
         mobiType = asInt(raw, mobiOffset + 24, 4);
         encoding = asInt(raw, mobiOffset + 28, 4) == 1252 ? "cp1251" : "UTF-8";
@@ -187,51 +205,6 @@ public class MobiParser {
     }
 
     byte[] INDX = "INDX".getBytes();
-
-    public String getTextContent() {
-        ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
-        if (firstContentIndex == 0) {
-            firstContentIndex = 1;
-        }
-        for (int i = firstContentIndex; i < lastContentIndex - 1 && i < firstImageIndex; i++) {
-            int start = recordsOffset.get(i);
-            int end = recordsOffset.get(i + 1);
-            byte[] coded = Arrays.copyOfRange(raw, start, end);
-
-            byte[] decoded = null;
-            if (commpression == COMPRESSION_PalmDOC) {
-                decoded = lz77(coded);
-            } else if (commpression == COMPRESSION_NONE) {
-                decoded = coded;
-            } else if (commpression == COMPRESSION_HUFF) {
-                try {
-                    decoded = coded;
-                } catch (Exception e) {
-                    e.printStackTrace();
-                    decoded = ("error").getBytes();
-                }
-            } else {
-                decoded = ("Compression not supported " + commpression).getBytes();
-            }
-
-            byte[] header = Arrays.copyOfRange(decoded, 0, 4);
-            if (Arrays.equals(INDX, header)) {
-                continue;
-            }
-
-            for (int n = 0; n < decoded.length; n++) {
-                if (decoded[n] != 0x00) {
-                    outputStream.write(decoded[n]);
-                }
-
-            }
-        }
-        try {
-            return outputStream.toString(encoding);
-        } catch (UnsupportedEncodingException e) {
-            return outputStream.toString();
-        }
-    }
 
     public static String byteArrayToString(byte[] buffer, String encoding) {
         int len = buffer.length;
@@ -269,7 +242,6 @@ public class MobiParser {
         return locale;
     }
 
-
     public String getAuthor() {
         byte[] bytes = exth.headers.get(100);
         if (bytes == null) {
@@ -286,8 +258,7 @@ public class MobiParser {
         return new String(bytes);
     }
 
-    public String getPublisher()
-    {
+    public String getPublisher() {
         byte[] bytes = exth.headers.get(101);
         if (bytes == null) {
             return null;
@@ -361,12 +332,12 @@ public class MobiParser {
         }
 
         Integer from = recordsOffset.get(index);
-        Integer to = raw.length;
+        int size = 0;
         if (index + 1 < recordsOffset.size()) {
-            to = recordsOffset.get(index + 1);
+            size = recordsOffset.get(index + 1) - from;
         }
 
-        return Arrays.copyOfRange(raw, from, to);
+        return copyOfRange(raw, from, size);
     }
 
 }
