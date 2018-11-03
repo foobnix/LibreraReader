@@ -27,34 +27,35 @@ public class MobiExtract {
         try {
 
             MobiParserIS parse = new MobiParserIS(new FileInputStream(file));
-            String title = parse.getTitle();
-            String author = parse.getAuthor();
-            String subject = parse.getSubject();
-            String lang = parse.getLanguage();
-            String year = parse.getPublishDate();
-            String publisher = parse.getPublisher();
-            String ibsn = parse.getIsbn();
+            try {
+                String title = parse.getTitle();
+                String author = parse.getAuthor();
+                String subject = parse.getSubject();
+                String lang = parse.getLanguage();
+                String year = parse.getPublishDate();
+                String publisher = parse.getPublisher();
+                String ibsn = parse.getIsbn();
 
+                if (TxtUtils.isEmpty(title)) {
+                    title = file.getName();
+                }
+                byte[] decode = null;
+                if (!onlyTitle) {
+                    decode = parse.getCoverOrThumb();
+                }
 
-            if (TxtUtils.isEmpty(title)) {
-                title = file.getName();
+                EbookMeta ebookMeta = new EbookMeta(title, author, decode);
+                ebookMeta.setGenre(subject);
+                ebookMeta.setLang(lang);
+                ebookMeta.setYear(year);
+                ebookMeta.setPublisher(publisher);
+                ebookMeta.setIsbn(ibsn);
+                // ebookMeta.setPagesCount(parse.getBookSize() / 1024);
+
+                return ebookMeta;
+            } finally {
+                parse.close();
             }
-            byte[] decode = null;
-            if (!onlyTitle) {
-                decode = parse.getCoverOrThumb();
-            }
-
-            EbookMeta ebookMeta = new EbookMeta(title, author, decode);
-            ebookMeta.setGenre(subject);
-            ebookMeta.setLang(lang);
-            ebookMeta.setYear(year);
-            ebookMeta.setPublisher(publisher);
-            ebookMeta.setIsbn(ibsn);
-            // ebookMeta.setPagesCount(parse.getBookSize() / 1024);
-
-            parse.close();
-
-            return ebookMeta;
 
         } catch (Throwable e) {
             LOG.e(e);
@@ -67,8 +68,11 @@ public class MobiExtract {
         try {
             File file = new File(path);
             MobiParserIS parse = new MobiParserIS(new FileInputStream(file));
-            info = parse.getDescription();
-            parse.close();
+            try {
+                info = parse.getDescription();
+            } finally {
+                parse.close();
+            }
         } catch (Throwable e) {
             LOG.e(e);
         }
@@ -76,16 +80,19 @@ public class MobiExtract {
     }
 
     public static byte[] getBookCover(String path) {
+        LOG.d("getBookCover", path);
         try {
             File file = new File(path);
+            MobiParserIS parse = new MobiParserIS(new FileInputStream(file));
             try {
-                MobiParserIS parse = new MobiParserIS(new FileInputStream(file));
                 byte[] coverOrThumb = parse.getCoverOrThumb();
                 parse.close();
                 return coverOrThumb;
             } finally {
+                parse.close();
             }
         } catch (Throwable e) {
+            LOG.e(e, path);
             LOG.e(e);
         }
         return null;

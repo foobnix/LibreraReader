@@ -99,4 +99,5 @@ public abstract class AdsFragmentActivity extends FragmentActivity {
         return false;
     }
 
+
 }

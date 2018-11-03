@@ -43,7 +43,7 @@ public class MobiParserIS {
         public int count;
         public Map<Integer, byte[]> headers = new HashMap<Integer, byte[]>();
 
-        public EXTH parse(InputStream raw) {
+        public EXTH parse(InputStream raw) throws IOException {
             int offset = indexOf(raw, "EXTH".getBytes());
             identifier = asString(raw, offset, 4);
             len = asInt(raw, offset + 4, 4);
@@ -74,30 +74,20 @@ public class MobiParserIS {
         return total;
     }
 
-    public static String asString(InputStream is, int offset, int len) {
-        try {
-            is.reset();
-            byte[] res = new byte[len];
-            IOUtils.skip(is, offset);
-            IOUtils.readFully(is, res);
-            return new String(res);
-        } catch (Exception e) {
-            LOG.e(e);
-            return null;
-        }
+    public static String asString(InputStream is, int offset, int len) throws IOException {
+        is.reset();
+        byte[] res = new byte[len];
+        IOUtils.skip(is, offset);
+        IOUtils.readFully(is, res);
+        return new String(res);
     }
 
-    public static int asInt(InputStream is, int offset, int len) {
-        try {
-            is.reset();
-            byte[] res = new byte[len];
-            IOUtils.skip(is, offset);
-            IOUtils.readFully(is, res);
-            return byteArrayToInt(res);
-        } catch (Exception e) {
-            LOG.e(e);
-            return -1;
-        }
+    public static int asInt(InputStream is, int offset, int len) throws IOException {
+        is.reset();
+        byte[] res = new byte[len];
+        IOUtils.skip(is, offset);
+        IOUtils.readFully(is, res);
+        return byteArrayToInt(res);
     }
 
     public static byte[] copyOfRange(InputStream is, long offset, int len) {
