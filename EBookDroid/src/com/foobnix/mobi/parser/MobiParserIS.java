@@ -9,6 +9,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.commons.compress.utils.IOUtils;
+
 import com.foobnix.android.utils.LOG;
 
 public class MobiParserIS {
@@ -56,13 +58,7 @@ public class MobiParserIS {
                 rOffset = rOffset + rLen;
                 headers.put(rType, data);
 
-                System.out.println(i + ": " + rType + "," + rOffset + "," + data.length);
             }
-
-            System.out.println("MobiParserIS");
-            System.out.println("identifier" + identifier);
-            System.out.println("len" + len);
-            System.out.println("count" + count);
 
             return this;
         }
@@ -82,11 +78,11 @@ public class MobiParserIS {
         try {
             is.reset();
             byte[] res = new byte[len];
-            is.skip(offset);
-            is.read(res, 0, len);
+            IOUtils.skip(is, offset);
+            IOUtils.readFully(is, res);
             return new String(res);
         } catch (Exception e) {
-            e.printStackTrace();
+            LOG.e(e);
             return null;
         }
     }
@@ -95,29 +91,25 @@ public class MobiParserIS {
         try {
             is.reset();
             byte[] res = new byte[len];
-            is.skip(offset);
-            is.read(res, 0, len);
+            IOUtils.skip(is, offset);
+            IOUtils.readFully(is, res);
             return byteArrayToInt(res);
         } catch (Exception e) {
-            e.printStackTrace();
+            LOG.e(e);
             return -1;
         }
     }
 
-    public static byte[] copyOfRange(InputStream is, int offset, int len) {
+    public static byte[] copyOfRange(InputStream is, long offset, int len) {
+        LOG.d("copyOfRange", offset, (offset / 1024 / 1024));
         try {
             byte[] res = new byte[len];
             is.reset();
-            for (int i = 0; i < offset; i++) {
-                is.skip(1);
-            }
-            is.read(res, 0, len);
+            IOUtils.skip(is, offset);
+            IOUtils.readFully(is, res);
             return res;
-        } catch (
-
-        Exception e) {
-            System.out.println("copyOfRange" + offset + " ! " + len);
-            e.printStackTrace();
+        } catch (Exception e) {
+            LOG.e(e);
             return null;
         }
     }
@@ -141,7 +133,7 @@ public class MobiParserIS {
                 count += search.length;
             }
         } catch (Exception e) {
-            e.printStackTrace();
+            LOG.e(e);
         }
         return -1;
     }
@@ -151,13 +143,12 @@ public class MobiParserIS {
             raw.close();
         } catch (IOException e) {
             LOG.e(e);
-            e.printStackTrace();
         }
     }
 
     public MobiParserIS(InputStream is) throws Exception {
         is = new BufferedInputStream(is);
-        is.mark(Integer.MAX_VALUE);
+        is.mark(16 * 1024);
         raw = is;
 
         name = asString(raw, 0, 32);

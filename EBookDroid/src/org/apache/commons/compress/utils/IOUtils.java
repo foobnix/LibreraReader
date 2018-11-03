@@ -33,8 +33,8 @@ import java.nio.channels.ReadableByteChannel;
  */
 public final class IOUtils {
 
-    private static final int COPY_BUF_SIZE = 8024;
-    private static final int SKIP_BUF_SIZE = 4096;
+    public static final int COPY_BUF_SIZE = 8024;
+    public static final int SKIP_BUF_SIZE = 4096;
 
     // This buffer does not need to be synchronised because it is write only; the contents are ignored
     // Does not affect Immutability

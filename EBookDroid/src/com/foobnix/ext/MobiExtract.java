@@ -81,7 +81,6 @@ public class MobiExtract {
             try {
                 MobiParserIS parse = new MobiParserIS(new FileInputStream(file));
                 byte[] coverOrThumb = parse.getCoverOrThumb();
-                LOG.d("coverOrThumb", coverOrThumb.length);
                 parse.close();
                 return coverOrThumb;
             } finally {
