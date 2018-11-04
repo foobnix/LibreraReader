@@ -9,7 +9,7 @@
         android:layout_height="wrap_content"
         android:gravity="center"
         android:padding="10dip"
-        android:text="@string/exit_application"
+        android:text="@string/exit_application_question"
         android:textSize="20sp" />
 
     <LinearLayout

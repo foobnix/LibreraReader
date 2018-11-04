@@ -501,4 +501,5 @@
    <string name="ask_rate_us1">Als u van deze app houdt, kunt u ons beoordelen en beoordelen op Google Play. Dank je!</string>
    <string name="message">Bericht</string>
    <string name="exit_application">Sluit app af</string>
+   <string name="exit_application_question">Sluit app af?</string>
 </resources>

@@ -500,5 +500,6 @@
    <string name="minimum_line_length">Minimum line length (CPL)</string>
    <string name="ask_rate_us1">If you like this application, please rate and review us on Google Play. Thank you!</string>
    <string name="message">Message</string>
-   <string name="exit_application">Exit App</string>
+   <string name="exit_application">Exit Application</string>
+   <string name="exit_application_question">Exit Application?</string>
 </resources>

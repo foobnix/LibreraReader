@@ -501,4 +501,5 @@
    <string name="ask_rate_us1">Si vous aimez cette application, évaluez et commentez-nous sur Google Play. Je vous remercie!</string>
    <string name="message">Message</string>
    <string name="exit_application">Demande de sortie</string>
+   <string name="exit_application_question">Exit Application?</string>
 </resources>

@@ -501,4 +501,5 @@
    <string name="ask_rate_us1">Ikiwa ungependa programu hii, tafadhali kiwango na uhakikishe kwenye Google Play. Asante!</string>
    <string name="message">Ujumbe</string>
    <string name="exit_application">Toka programu</string>
+   <string name="exit_application_question">Maombi ya Toka?</string>
 </resources>

@@ -501,4 +501,5 @@
    <string name="ask_rate_us1">如果您喜欢此应用程序，请在Google Play上评分并查看我们。谢谢！</string>
    <string name="message">信息</string>
    <string name="exit_application">退出申请</string>
+   <string name="exit_application_question">退出申请？</string>
 </resources>

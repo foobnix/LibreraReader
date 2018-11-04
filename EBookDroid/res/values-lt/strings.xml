@@ -501,4 +501,5 @@
    <string name="ask_rate_us1">Jei jums patinka ši paraiška, įvertinkite ir peržiūrėkite mus \"Google Play\". Ačiū!</string>
    <string name="message">Pranešimas</string>
    <string name="exit_application">Išeikite iš paraiškos</string>
+   <string name="exit_application_question">Išeiti iš paraiškos?</string>
 </resources>

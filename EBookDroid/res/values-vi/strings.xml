@@ -501,4 +501,5 @@
    <string name="ask_rate_us1">Nếu bạn thích ứng dụng này, vui lòng xếp hạng và đánh giá chúng tôi trên Google Play. Cảm ơn bạn!</string>
    <string name="message">Thông điệp</string>
    <string name="exit_application">Ứng dụng xuất cảnh</string>
+   <string name="exit_application_question">Ứng dụng xuất cảnh?</string>
 </resources>

@@ -501,4 +501,5 @@
    <string name="ask_rate_us1">Om du gillar den här applikationen kan du betygsätta och granska oss på Google Play. Tack!</string>
    <string name="message">Meddelande</string>
    <string name="exit_application">Avsluta ansökan</string>
+   <string name="exit_application_question">Avsluta ansökan?</string>
 </resources>

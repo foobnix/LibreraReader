@@ -501,4 +501,5 @@
    <string name="ask_rate_us1">Bu uygulamayı beğenirseniz, lütfen Google Play\'de bize oy verin ve yorum yapın. Teşekkür ederim!</string>
    <string name="message">Mesaj</string>
    <string name="exit_application">Çıkış uygulaması</string>
+   <string name="exit_application_question">Çıkış uygulaması?</string>
 </resources>
