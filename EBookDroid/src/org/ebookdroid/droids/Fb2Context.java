@@ -19,6 +19,7 @@ import com.foobnix.pdf.info.wrapper.AppState;
 
 public class Fb2Context extends PdfContext {
 
+    public static final String META_INF_CONTAINER_XML = "/META-INF/container.xml";
     File cacheFile, cacheFile1;
 
     @Override
@@ -68,7 +69,7 @@ public class Fb2Context extends PdfContext {
     @Override
     public CodecDocument openDocumentInner(final String fileName, String password) {
         String outName = null;
-        if (cacheFile.isFile()) {
+        if (cacheFile.exists()) {
             outName = cacheFile.getPath();
         } else if (cacheFile1.isFile()) {
             outName = cacheFile1.getPath();
@@ -80,11 +81,11 @@ public class Fb2Context extends PdfContext {
             LOG.d("Fb2Context create", fileName, "to", outName);
         }
 
-        LOG.d("Fb2Context open", outName);
 
         try {
-            String sufix = "META-INF/container.xml";
+            String sufix = META_INF_CONTAINER_XML;
             // sufix = "";
+            LOG.d("Fb2Context open", outName + META_INF_CONTAINER_XML);
             muPdfDocument = new MuPdfDocument(this, MuPdfDocument.FORMAT_PDF, outName + sufix, password);
         } catch (Exception e) {
             LOG.e(e);
@@ -92,8 +93,9 @@ public class Fb2Context extends PdfContext {
                 cacheFile.delete();
             }
             outName = cacheFile1.getPath();
-            Fb2Extractor.get().convertFB2(fileName, outName);
-            muPdfDocument = new MuPdfDocument(this, MuPdfDocument.FORMAT_PDF, outName, password);
+            // Fb2Extractor.get().convertFB2(fileName, outName);
+            // muPdfDocument = new MuPdfDocument(this, MuPdfDocument.FORMAT_PDF, outName,
+            // password);
             LOG.d("Fb2Context create", outName);
         }
 

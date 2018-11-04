@@ -4,6 +4,7 @@ import java.io.File;
 import java.lang.reflect.Field;
 import java.util.concurrent.atomic.AtomicLong;
 
+import org.ebookdroid.droids.Fb2Context;
 import org.ebookdroid.droids.mupdf.codec.exceptions.MuPdfPasswordException;
 import org.ebookdroid.droids.mupdf.codec.exceptions.MuPdfPasswordRequiredException;
 import org.ebookdroid.ui.viewer.VerticalViewActivity;
@@ -36,6 +37,7 @@ public abstract class AbstractCodecContext implements CodecContext {
     public abstract CodecDocument openDocumentInner(String fileName, String password);
 
     public CodecDocument openDocumentInnerCanceled(String fileName, String password) {
+        LOG.d("Open-Document", fileName);
         long t = System.currentTimeMillis();
         CodecDocument openDocument = openDocumentInner(fileName, password);
         LOG.d("openDocumentInner-time", (float) (System.currentTimeMillis() - t) / 1000, fileName);
@@ -81,9 +83,14 @@ public abstract class AbstractCodecContext implements CodecContext {
         File cacheFileName = getCacheFileName(fileNameOriginal + getFileNameSalt(fileNameOriginal));
         CacheZipUtils.removeFiles(CacheZipUtils.CACHE_BOOK_DIR.listFiles(), cacheFileName);
 
-        if (cacheFileName != null && cacheFileName.isFile()) {
-            LOG.d("Open-Document from cache", fileNameOriginal);
-            return openDocumentInnerCanceled(fileNameOriginal, password);
+        if (cacheFileName != null) {
+            if (cacheFileName.isFile()) {
+                LOG.d("Open-Document from cache file", fileNameOriginal);
+                return openDocumentInnerCanceled(fileNameOriginal, password);
+            } else if (cacheFileName.isDirectory()) {
+                LOG.d("Open-Document from cache dir", "[" + fileNameOriginal + "]");
+                return openDocumentInnerCanceled(fileNameOriginal + Fb2Context.META_INF_CONTAINER_XML, password);
+            }
         }
 
         CacheZipUtils.cacheLock.lock();
@@ -115,8 +122,7 @@ public abstract class AbstractCodecContext implements CodecContext {
     /**
      * Constructor.
      *
-     * @param contextHandle
-     *            contect handler
+     * @param contextHandle contect handler
      */
     protected AbstractCodecContext(final long contextHandle) {
         this.contextHandle = contextHandle;

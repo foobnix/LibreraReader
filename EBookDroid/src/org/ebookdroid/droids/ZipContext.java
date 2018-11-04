@@ -28,9 +28,12 @@ public class ZipContext extends PdfContext {
 
             File cacheFileName = fb2Context.getCacheFileName(path + getFileNameSalt(path));
             LOG.d("ZipContext", etryPath, cacheFileName.getName());
-            if (cacheFileName.exists()) {
+
+            if (cacheFileName.isFile()) {
                 LOG.d("ZipContext", "FB2 cache exists");
                 return fb2Context.openDocumentInner(etryPath, password);
+            } else if (cacheFileName.isDirectory()) {
+                return fb2Context.openDocumentInner(etryPath + Fb2Context.META_INF_CONTAINER_XML, password);
             }
         }
 
