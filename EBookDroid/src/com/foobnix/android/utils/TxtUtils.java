@@ -417,6 +417,17 @@ public class TxtUtils {
 
     }
 
+    public static String substringSmart(String str, int len) {
+        if (str.length() > len) {
+            int index = str.indexOf(" ", len);
+            if (index > 0) {
+                return str.substring(0, index);
+            }
+        }
+        return str;
+
+    }
+
     static List<String> dividers = Arrays.asList(" - ", " _ ", "_-_", "+-+");
 
     public static Pair<String, String> getTitleAuthorByPath(String name) {
@@ -835,10 +846,11 @@ public class TxtUtils {
         int minutes = (int) ((millis % (1000 * 60 * 60)) / (1000 * 60));
         int seconds = (int) (((millis % (1000 * 60 * 60)) % (1000 * 60)) / 1000);
 
-        if(hours>0) {
+        if (hours > 0) {
             buf.append(String.format("%02d", hours)).append(":");
-        };
-        
+        }
+        ;
+
         buf.append(String.format("%02d", minutes)).append(":").append(String.format("%02d", seconds));
 
         return buf.toString();

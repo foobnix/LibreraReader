@@ -3,6 +3,8 @@ package com.foobnix.pdf.info;
 import java.util.Arrays;
 import java.util.List;
 
+import com.foobnix.android.utils.Dips;
+import com.foobnix.android.utils.LOG;
 import com.foobnix.android.utils.TxtUtils;
 import com.foobnix.pdf.info.model.OutlineLinkWrapper;
 import com.foobnix.pdf.info.view.MyPopupMenu;
@@ -96,7 +98,10 @@ public class OutlineHelper {
                 int totalChapter = Math.max(1, last - current);
 
                 String currentChapterAsString = getCurrentChapterAsString(dc);
-                currentChapterAsString = TxtUtils.substring(currentChapterAsString, 20);
+                int len = Math.min(30, Dips.screenWidthDP() / 20);
+                LOG.d("screenWidthDP", len);
+                currentChapterAsString = TxtUtils.substringSmart(currentChapterAsString, len);
+
                 info.chText = currentChapterAsString + " " + TxtUtils.LONG_DASH1 + " " + pageRel + " / " + totalChapter;
                 info.chText += pageRel < 10 ? "  " : "";
             }

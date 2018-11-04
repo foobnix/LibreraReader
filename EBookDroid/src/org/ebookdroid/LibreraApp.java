@@ -76,6 +76,8 @@ public class LibreraApp extends Application {
         LOG.d("Build", "Build.BRAND", Build.BRAND);
         LOG.d("Build", "Build.MODEL", Build.MODEL);
 
+        LOG.d("Build", "Build.screenWidth", Dips.screenWidthDP(), Dips.screenWidth());
+
         LOG.d("Build.Context", "Context.getFilesDir()", getFilesDir());
         LOG.d("Build.Context", "Context.getCacheDir()", getCacheDir());
         LOG.d("Build.Context", "Context.getExternalCacheDir", getExternalCacheDir());
