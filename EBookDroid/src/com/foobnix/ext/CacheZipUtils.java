@@ -141,7 +141,8 @@ public class CacheZipUtils {
             }
             for (File file : files) {
                 if (file != null) {
-                    file.delete();
+                    // file.delete();
+                    deleteDir(file);
                 }
             }
         } catch (Exception e) {
@@ -151,18 +152,21 @@ public class CacheZipUtils {
 
     public static void removeFiles(File[] files, File exept) {
         try {
+
             if (files == null || exept == null) {
                 return;
             }
             for (File file : files) {
                 if (file != null && !file.getName().startsWith(exept.getName())) {
-                    file.delete();
+                    // file.delete();
+                    deleteDir(file);
                 }
             }
         } catch (Exception e) {
             LOG.e(e);
         }
     }
+
 
     public static Pair<Boolean, String> isSingleAndSupportEntryFile(File file) {
         try {
@@ -350,6 +354,7 @@ public class CacheZipUtils {
     }
 
     public static void deleteDir(File file) {
+        LOG.d("deleteDir", file.getPath());
         File[] contents = file.listFiles();
         if (contents != null) {
             for (File f : contents) {

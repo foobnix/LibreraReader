@@ -1,11 +1,14 @@
 package com.foobnix.ext;
 
+import java.io.BufferedOutputStream;
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -447,7 +450,7 @@ public class Fb2Extractor extends BaseExtractor {
     public boolean convertFB2(String inputFile, String toName) {
         try {
             String encoding = findHeaderEncoding(inputFile);
-            ByteArrayOutputStream generateFb2File = generateFb2File(inputFile, encoding, true);
+            ByteArrayOutputStream generateFb2File = (ByteArrayOutputStream) generateFb2File(inputFile, encoding, true, new ByteArrayOutputStream());
             FileOutputStream out = new FileOutputStream(toName);
             out.write(generateFb2File.toByteArray());
             out.close();
@@ -457,6 +460,40 @@ public class Fb2Extractor extends BaseExtractor {
         }
         return true;
 
+    }
+
+    public boolean convertToFolder(String inputFile, String toName) {
+        try {
+            
+            File root = new File(toName);
+            root.mkdirs();
+            
+            File META_INF = new File(root, "META-INF");
+            META_INF.mkdirs();
+
+            File OEBPS = new File(root, "OEBPS");
+            OEBPS.mkdirs();
+
+            writeToFile(new File(root, "mimetype"), "application/epub+zip");
+            writeToFile(new File(META_INF, "container.xml"), container_xml);
+            writeToFile(new File(OEBPS, "content.opf"), content_opf);
+
+            String encoding = findHeaderEncoding(inputFile);
+            List<String> titles = getFb2Titles(inputFile, encoding);
+
+            String ncx = genetateNCX(titles);
+            writeToFile(new File(OEBPS, "fb2.ncx"), ncx);
+
+            LOG.d("writeToFile", "fb2.fb2");
+            OutputStream out = new BufferedOutputStream(new FileOutputStream(new File(OEBPS, "fb2.fb2")));
+            generateFb2File(inputFile, encoding, false, out);
+            LOG.d("Fb2Context convert true");
+            return true;
+        } catch (Exception e) {
+            LOG.d("Fb2Context convert false error");
+            LOG.e(e);
+        }
+        return false;
     }
 
     @Override
@@ -476,8 +513,9 @@ public class Fb2Extractor extends BaseExtractor {
             String ncx = genetateNCX(titles);
             writeToZip(zos, "OEBPS/fb2.ncx", ncx);
 
-            ByteArrayOutputStream generateFb2File = generateFb2File(inputFile, encoding, false);
+            ByteArrayOutputStream generateFb2File = (ByteArrayOutputStream) generateFb2File(inputFile, encoding, false, new ByteArrayOutputStream());
             writeToZip(zos, "OEBPS/fb2.fb2", new ByteArrayInputStream(generateFb2File.toByteArray()));
+            generateFb2File.close();
             LOG.d("Fb2Context convert true");
             zos.close();
             return true;
@@ -488,6 +526,7 @@ public class Fb2Extractor extends BaseExtractor {
         LOG.d("Fb2Context convert false");
         return false;
     }
+
 
     public static boolean convertFolderToEpub(File inputFolder, File outputFile, String author, String title, List<OutlineLink> outline) {
 
@@ -522,10 +561,9 @@ public class Fb2Extractor extends BaseExtractor {
         return false;
     }
 
-    public ByteArrayOutputStream generateFb2File(String fb2, String encoding, boolean fixXML) throws Exception {
+    public OutputStream generateFb2File(String fb2, String encoding, boolean fixXML, OutputStream out) throws Exception {
         BufferedReader input = new BufferedReader(new InputStreamReader(new FileInputStream(fb2), encoding));
 
-        ByteArrayOutputStream out = new ByteArrayOutputStream();
         PrintWriter writer = new PrintWriter(out);
         String line;
 
@@ -880,6 +918,20 @@ public class Fb2Extractor extends BaseExtractor {
 
     public static void writeToZip(ZipOutputStream zos, String name, String content) throws IOException {
         writeToZip(zos, name, new ByteArrayInputStream(content.getBytes()));
+    }
+
+    public static void writeToFile(File fileName, String content) throws IOException {
+        LOG.d("writeToFile", fileName);
+        BufferedWriter writer = new BufferedWriter(new FileWriter(fileName));
+        writer.write(content);
+        writer.close();
+    }
+
+    public static void writeToFile(File fileName, ByteArrayOutputStream outputStream) throws IOException {
+        LOG.d("writeToFile", fileName);
+        OutputStream out = new BufferedOutputStream(new FileOutputStream(fileName));
+        outputStream.writeTo(out);
+        out.close();
     }
 
     private static final int BUFFER_SIZE = 16 * 1024;

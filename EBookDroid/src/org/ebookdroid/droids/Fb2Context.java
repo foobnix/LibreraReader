@@ -10,7 +10,6 @@ import org.ebookdroid.core.codec.OutlineLink;
 import org.ebookdroid.droids.mupdf.codec.MuPdfDocument;
 import org.ebookdroid.droids.mupdf.codec.PdfContext;
 
-import com.foobnix.android.utils.Apps;
 import com.foobnix.android.utils.LOG;
 import com.foobnix.ext.CacheZipUtils;
 import com.foobnix.ext.Fb2Extractor;
@@ -77,14 +76,16 @@ public class Fb2Context extends PdfContext {
 
         if (outName == null) {
             outName = cacheFile.getPath();
-            Fb2Extractor.get().convert(fileName, outName);
+            Fb2Extractor.get().convertToFolder(fileName, outName);
             LOG.d("Fb2Context create", fileName, "to", outName);
         }
 
         LOG.d("Fb2Context open", outName);
 
         try {
-            muPdfDocument = new MuPdfDocument(this, MuPdfDocument.FORMAT_PDF, outName, password);
+            String sufix = "META-INF/container.xml";
+            // sufix = "";
+            muPdfDocument = new MuPdfDocument(this, MuPdfDocument.FORMAT_PDF, outName + sufix, password);
         } catch (Exception e) {
             LOG.e(e);
             if (cacheFile.isFile()) {
