@@ -502,4 +502,5 @@
    <string name="message">پیام</string>
    <string name="exit_application">خروج از برنامه</string>
    <string name="exit_application_question">خروج از برنامه؟</string>
+   <string name="open_folder_as_a_book">پوشه را به عنوان یک کتاب باز کنید</string>
 </resources>

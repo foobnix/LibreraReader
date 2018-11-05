@@ -1,6 +1,6 @@
 ---
 layout: main
-version: 5
+version: 6
 ---
 [What is new](/wiki/what-is-new)
 
@@ -12,6 +12,7 @@ version: 5
 * Selecting the text in DJVU and search in DJVU
 * Status bar location Top or Bottom in Book mode
 * Bookmarks linked to the reading percentage
+* Open folder as a book
 
 **Fixes**
 

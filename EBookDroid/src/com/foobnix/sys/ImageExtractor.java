@@ -15,6 +15,7 @@ import org.ebookdroid.core.codec.CodecDocument;
 import org.ebookdroid.core.codec.CodecPage;
 import org.ebookdroid.core.codec.CodecPageInfo;
 import org.ebookdroid.core.crop.PageCropper;
+import org.ebookdroid.droids.FolderContext;
 import org.ebookdroid.droids.mupdf.codec.exceptions.MuPdfPasswordException;
 
 import com.BaseExtractor;
@@ -128,6 +129,8 @@ public class ImageExtractor implements ImageDownloader {
             cover = proccessOtherPage(pageUrl);
         } else if (BookType.CBZ.is(unZipPath) || BookType.CBR.is(unZipPath)) {
             cover = BaseExtractor.arrayToBitmap(CbzCbrExtractor.getBookCover(unZipPath), pageUrl.getWidth());
+        } else if (BookType.FOLDER.is(unZipPath)) {
+            cover = BaseExtractor.arrayToBitmap(FolderContext.getBookCover(unZipPath), pageUrl.getWidth());
         } else if (ExtUtils.isFileArchive(unZipPath)) {
             String ext = ExtUtils.getFileExtension(unZipPath);
             cover = BaseExtractor.getBookCoverWithTitle("...", "  [" + ext.toUpperCase(Locale.US) + "]", true);

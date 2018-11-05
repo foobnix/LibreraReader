@@ -502,4 +502,5 @@
    <string name="message">Mensaje</string>
    <string name="exit_application">Aplicación de salida</string>
    <string name="exit_application_question">Solicitud de salida?</string>
+   <string name="open_folder_as_a_book">Abrir carpeta como libro</string>
 </resources>

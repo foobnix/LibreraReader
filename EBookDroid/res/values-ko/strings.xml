@@ -502,4 +502,5 @@
    <string name="message">메시지</string>
    <string name="exit_application">응용 프로그램 종료</string>
    <string name="exit_application_question">신청서를 종료 하시겠습니까?</string>
+   <string name="open_folder_as_a_book">책으로 폴더 열기</string>
 </resources>

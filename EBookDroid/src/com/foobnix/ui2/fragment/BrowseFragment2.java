@@ -9,6 +9,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.ebookdroid.BookType;
+import org.ebookdroid.droids.FolderContext;
 
 import com.cloudrail.si.interfaces.CloudStorage;
 import com.cloudrail.si.types.CloudMetaData;
@@ -85,9 +86,9 @@ public class BrowseFragment2 extends UIFragment<FileMeta> {
     private LinearLayout paths;
     HorizontalScrollView scroller;
     private TextView stub;
-    private ImageView onListGrid, starIcon, onSort;
+    private ImageView onListGrid, starIcon, onSort, starIconDir;
     private EditText editPath;
-    private View pathContainer, onClose, onAction;
+    private View pathContainer, onClose, onAction, openAsBook;
 
     private int fragmentType = TYPE_DEFAULT;
     private String fragmentText = "";
@@ -130,8 +131,12 @@ public class BrowseFragment2 extends UIFragment<FileMeta> {
         pathContainer = view.findViewById(R.id.pathContainer);
         View onCloseActionPaner = view.findViewById(R.id.onCloseActionPaner);
         onClose = view.findViewById(R.id.onClose);
+        openAsBook = view.findViewById(R.id.openAsBook);
+        ImageView openAsbookImage = (ImageView) view.findViewById(R.id.openAsbookImage);
+        TintUtil.setTintImageWithAlpha(openAsbookImage);
 
         starIcon = (ImageView) view.findViewById(R.id.starIcon);
+        starIconDir = (ImageView) view.findViewById(R.id.starIconDir);
         onSort = (ImageView) view.findViewById(R.id.onSort);
 
         onSort.setOnLongClickListener(new OnLongClickListener() {
@@ -144,6 +149,16 @@ public class BrowseFragment2 extends UIFragment<FileMeta> {
                 return true;
             }
         });
+
+        openAsBook.setOnClickListener(new OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                File lxml = FolderContext.genarateXML(searchAdapter.getItemsList(), displayPath);
+                ExtUtils.showDocument(getActivity(), lxml);
+            }
+        });
+        openAsBook.setVisibility(View.GONE);
 
         onSort.setImageResource(AppState.get().sortByReverse ? R.drawable.glyphicons_410_sort_by_attributes_alt : R.drawable.glyphicons_409_sort_by_attributes);
 
@@ -801,6 +816,8 @@ public class BrowseFragment2 extends UIFragment<FileMeta> {
 
         }, 100);
 
+        openAsBook.setVisibility(TxtUtils.visibleIf(FolderContext.isFolderWithImage(items)));
+
     }
 
     public void showPathHeader() {
@@ -943,6 +960,32 @@ public class BrowseFragment2 extends UIFragment<FileMeta> {
                 } else {
                     starIcon.setImageResource(R.drawable.star_2);
                 }
+            }
+        });
+
+        final String ldir = new File(displayPath, FolderContext.LIST_LXML).getPath();
+        if (AppDB.get().isStarFolder(ldir)) {
+            starIconDir.setImageResource(R.drawable.star_1);
+        } else {
+            starIconDir.setImageResource(R.drawable.star_2);
+        }
+        TintUtil.setTintImageWithAlpha(starIconDir);
+
+        starIconDir.setOnClickListener(new OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                FolderContext.genarateXML(searchAdapter.getItemsList(), displayPath);
+
+                FileMeta fileMeta = AppDB.get().getOrCreate(ldir);
+                FileMetaCore.createMetaIfNeed(ldir, false);
+                DefaultListeners.getOnStarClick(getActivity()).onResultRecive(fileMeta, null);
+                if (AppDB.get().isStarFolder(ldir)) {
+                    starIconDir.setImageResource(R.drawable.star_1);
+                } else {
+                    starIconDir.setImageResource(R.drawable.star_2);
+                }
+                TintUtil.setTintImageWithAlpha(starIconDir);
             }
         });
 

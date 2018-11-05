@@ -11,6 +11,7 @@ import org.ebookdroid.core.codec.CodecContext;
 import org.ebookdroid.droids.CbrContext;
 import org.ebookdroid.droids.EpubContext;
 import org.ebookdroid.droids.Fb2Context;
+import org.ebookdroid.droids.FolderContext;
 import org.ebookdroid.droids.HtmlContext;
 import org.ebookdroid.droids.MhtContext;
 import org.ebookdroid.droids.MobiContext;
@@ -32,7 +33,10 @@ public enum BookType {
     CBZ(PdfContext.class, Arrays.asList("cbz"), Arrays.asList("application/x-cbz")),
 	CBR(CbrContext.class, Arrays.asList("cbr"), Arrays.asList("application/x-cbr")),
 
+    FOLDER(FolderContext.class, Arrays.asList(FolderContext.LXML), Arrays.asList("application/lxml")),
+
     EPUB(EpubContext.class, Arrays.asList("epub"), Arrays.asList("application/epub+zip")),
+
 
     FB2(Fb2Context.class, Arrays.asList("fb2"),
             Arrays.asList("application/fb2", "application/x-fictionbook", "application/x-fictionbook+xml", "application/x-fb2", "application/fb2+zip", "application/fb2.zip", "application/x-zip-compressed-fb2")),
@@ -41,7 +45,7 @@ public enum BookType {
 
     TXT(TxtContext.class, Arrays.asList("txt"), Arrays.asList("text/plain")),
 
-    HTML(HtmlContext.class, Arrays.asList("html", "htm", "xhtml", "xhtm", "mht", "mhtml"), Arrays.asList("text/html", "text/xml")),
+    HTML(HtmlContext.class, Arrays.asList("html", "htm", "xhtml", "xhtm", "mht", "mhtml", "xml"), Arrays.asList("text/html", "text/xml")),
 
     MHT(MhtContext.class, Arrays.asList("mht", "mhtml"), Arrays.asList("message/rfc822")),
 
@@ -116,6 +120,7 @@ public enum BookType {
                 list.add(ext);
             }
         }
+        list.remove(FolderContext.LXML);
         return list;
     }
 

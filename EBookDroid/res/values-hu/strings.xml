@@ -502,4 +502,5 @@
    <string name="message">Üzenet</string>
    <string name="exit_application">Kilépés alkalmazásból</string>
    <string name="exit_application_question">Kilépés az alkalmazásból?</string>
+   <string name="open_folder_as_a_book">Nyissa meg a mappát könyvként</string>
 </resources>

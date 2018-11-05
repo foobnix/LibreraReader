@@ -502,4 +502,5 @@
    <string name="message">Mesaj</string>
    <string name="exit_application">Ieșiți din aplicație</string>
    <string name="exit_application_question">Ieșiți din aplicație?</string>
+   <string name="open_folder_as_a_book">Deschideți folderul ca o carte</string>
 </resources>
