@@ -169,7 +169,8 @@ public class FileMetaCore {
             ebookMeta.setPagesCount(CbzCbrExtractor.getPageCount(unZipPath));
 
         } else if (BookType.FOLDER.is(unZipPath)) {
-            ebookMeta.setTitle(new File(unZipPath).getParentFile().getName());
+            File parent = new File(unZipPath).getParentFile();
+            ebookMeta.setTitle(parent.getName());
             ebookMeta.setPagesCount(FolderContext.getPageCount(unZipPath));
         }
 

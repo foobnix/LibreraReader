@@ -6,6 +6,7 @@ import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.ebookdroid.BookType;
 import org.ebookdroid.core.codec.CodecDocument;
 import org.ebookdroid.droids.mupdf.codec.MuPdfDocument;
 import org.ebookdroid.droids.mupdf.codec.PdfContext;
@@ -31,7 +32,7 @@ public class FolderContext extends PdfContext {
     public static File genarateXML(List<FileMeta> items, String root) {
         List<FileMeta> res = new ArrayList<FileMeta>();
         for (FileMeta meta : items) {
-            if (ExtUtils.isImagePath(meta.getPath())) {
+            if (ExtUtils.isImagePath(meta.getPath()) || BookType.TIFF.is(meta.getPath())) {
                 res.add(meta);
             }
         }
@@ -58,7 +59,7 @@ public class FolderContext extends PdfContext {
 
     public static boolean isFolderWithImage(List<FileMeta> items) {
         for (FileMeta meta : items) {
-            if (ExtUtils.isImagePath(meta.getPath())) {
+            if (ExtUtils.isImagePath(meta.getPath()) || BookType.TIFF.is(meta.getPath())) {
                 return true;
             }
         }
