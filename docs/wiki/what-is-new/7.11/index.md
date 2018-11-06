@@ -12,7 +12,7 @@ version: 6
 * Text selection and search in DjVu documents
 * Option to change the status bar position (Top or Bottom) in Book mode
 * Bookmarks are now linked to reading progress percentage values
-* Now folders can be opened as books 
+* Now folders can be opened as books
 
 **Fixes**
 
@@ -21,4 +21,4 @@ version: 6
 * Hyphenation rules for more languages
 * TTS reading will stop if your Bluetooth device gets disconnected
 
-Subscribe to the __Librera Reader Telegram__ channel [https://t.me/LibreraReader](https://t.me/LibreraReader), news, announcements and a lot of interesting about the new functionality.
+Subscribe to the __Librera Reader__ Telegram channel [https://t.me/LibreraReader](https://t.me/LibreraReader). Be the first to learn about our latest developments, never miss out on the freshest news, announcements, and other interesting stuff regarding Librera's new features and functionality.
