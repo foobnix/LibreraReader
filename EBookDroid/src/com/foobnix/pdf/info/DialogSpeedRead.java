@@ -34,7 +34,7 @@ public class DialogSpeedRead {
     public static void show(final Context a, final DocumentController dc) {
         final AlertDialog.Builder builder = new AlertDialog.Builder(a);
 
-        View layout = LayoutInflater.from(a).inflate(R.layout.dialog_fast_reading, null, false);
+        View layout = LayoutInflater.from(a).inflate(R.layout.dialog_speed_reading, null, false);
 
         final TextView textWord = (TextView) layout.findViewById(R.id.textWord);
         final TextView onReset = (TextView) layout.findViewById(R.id.onReset);
@@ -112,7 +112,7 @@ public class DialogSpeedRead {
 
                 for (int currentPage = page; currentPage < pageCount; currentPage++) {
 
-                    if (!TempHolder.isActiveSpeedRead) {
+                    if (!TempHolder.isActiveSpeedRead.get()) {
                         return;
                     }
 
@@ -137,14 +137,14 @@ public class DialogSpeedRead {
 
                         @Override
                         public void run() {
-                            if (TempHolder.isActiveSpeedRead) {
+                            if (TempHolder.isActiveSpeedRead.get()) {
                                 dc.onGoToPage(currentPage1);
                             }
                         }
                     });
 
                     for (int i = currentWord; i < words.length; i++) {
-                        if (!TempHolder.isActiveSpeedRead) {
+                        if (!TempHolder.isActiveSpeedRead.get()) {
                             return;
                         }
 
@@ -197,8 +197,8 @@ public class DialogSpeedRead {
             @Override
             public void onClick(View v) {
                 onReset.setVisibility(View.VISIBLE);
-                TempHolder.isActiveSpeedRead = !TempHolder.isActiveSpeedRead;
-                if (TempHolder.isActiveSpeedRead) {
+                TempHolder.isActiveSpeedRead.set(!TempHolder.isActiveSpeedRead.get());
+                if (TempHolder.isActiveSpeedRead.get()) {
                     new Thread(task).start();
 
                     onNext.setVisibility(View.GONE);
@@ -241,7 +241,7 @@ public class DialogSpeedRead {
             public void onClick(View v) {
                 textWord.setText(R.string.start);
                 TxtUtils.underlineTextView(textWord);
-                TempHolder.isActiveSpeedRead = false;
+                TempHolder.isActiveSpeedRead.set(false);
                 currentWord = 0;
             }
         });
@@ -252,7 +252,7 @@ public class DialogSpeedRead {
         builder.setNegativeButton(R.string.close, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int id) {
-                TempHolder.isActiveSpeedRead = false;
+                TempHolder.isActiveSpeedRead.set(false);
                 reset();
                 dialog.dismiss();
             }
@@ -263,7 +263,7 @@ public class DialogSpeedRead {
 
             @Override
             public void onDismiss(DialogInterface dialog) {
-                TempHolder.isActiveSpeedRead = false;
+                TempHolder.isActiveSpeedRead.set(false);
                 reset();
             }
 

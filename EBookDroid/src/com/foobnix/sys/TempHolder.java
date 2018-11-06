@@ -1,5 +1,6 @@
 package com.foobnix.sys;
 
+import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.concurrent.locks.ReentrantLock;
 
 import com.foobnix.pdf.info.wrapper.UITab;
@@ -18,7 +19,7 @@ public class TempHolder {
     public static volatile boolean isSeaching = false;
     public static volatile boolean isConverting = false;
     public static volatile boolean isRecordTTS = false;
-    public static volatile boolean isActiveSpeedRead = false;
+    public static volatile AtomicBoolean isActiveSpeedRead = new AtomicBoolean(false);
 
     public long timerFinishTime = 0;
 

@@ -251,7 +251,7 @@ public class VerticalViewActivity extends AbstractActionActivity<VerticalViewAct
         AppState.get().isAutoScroll = false;
         AppState.get().save(this);
         TempHolder.isSeaching = false;
-        TempHolder.isActiveSpeedRead = false;
+        TempHolder.isActiveSpeedRead.set(false);
 
         if (handler != null) {
             handler.postDelayed(closeRunnable, AppState.APP_CLOSE_AUTOMATIC);
@@ -301,6 +301,7 @@ public class VerticalViewActivity extends AbstractActionActivity<VerticalViewAct
     @Override
     public void onConfigurationChanged(final Configuration newConfig) {
         super.onConfigurationChanged(newConfig);
+        TempHolder.isActiveSpeedRead.set(false);
         if (isInitPosistion == null) {
             return;
         }
