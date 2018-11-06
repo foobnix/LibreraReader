@@ -83,7 +83,7 @@
 			match='android:mipmap="@mipmap/launcher_droid"' replace='android:roundIcon="${adaptive.icon}"' />
 		
 		<replaceregexp file="../EbookaPDF/AndroidManifest.xml"
-			match='android:mipmap="@mipmap/launcher_reader_pro"' replace='android:roundIcon="${adaptive.icon}"' />
+			match='android:mipmap="@mipmap/launcher_pro"' replace='android:roundIcon="${adaptive.icon}"' />
 	
 	    <replaceregexp file="../EbookaPDF/AndroidManifest.xml"
 			match='android:mipmap="@mipmap/launcher_reader"' replace='android:roundIcon="${adaptive.icon}"' />
@@ -408,13 +408,11 @@
 
 	<!-- PRO pro-replace -->
 	<target name="pro">
-
-
 		<antcall target="clean-all" />
 
 		<property name="pdf.package" value="${package.pro}" />
 		<property name="pdf.icon" value="@mipmap/icon_pdf_pro" />
-		<property name="pdf.icon" value="@mipmap/launcher_reader_pro" />
+		<property name="pdf.icon" value="@mipmap/launcher_pro" />
 		<property name="pdf.app.name" value="${name.pro}" />
 		<property name="pdf.export.name" value="${name.pro}-PRO" />
 

@@ -109,6 +109,7 @@ public class DialogSpeedRead {
             public void run() {
                 final int page = dc.getCurentPageFirst1();
                 final int pageCount = dc.getPageCount() + 1;
+                int counter = 0;
 
                 for (int currentPage = page; currentPage < pageCount; currentPage++) {
 
@@ -117,7 +118,25 @@ public class DialogSpeedRead {
                     }
 
                     final int currentPage1 = currentPage;
+
+                    dc.getActivity().runOnUiThread(new Runnable() {
+
+                        @Override
+                        public void run() {
+                            if (TempHolder.isActiveSpeedRead.get()) {
+                                dc.onGoToPage(currentPage1);
+                            }
+                        }
+                    });
+
                     String textForPage = dc.getTextForPage(currentPage - 1);
+                    if(TxtUtils.isEmpty(textForPage)) {
+                        counter++;
+                    }
+                    if(counter>3) {
+                        LOG.d("3 Empty Page");
+                        break;
+                    }
 
                     List<String> tempList = Arrays.asList(textForPage.split(" "));
                     List<String> res = new ArrayList<String>();
@@ -132,16 +151,8 @@ public class DialogSpeedRead {
 
                     }
                     words = res.toArray(new String[res.size()]);
+                    currentWord = 0;
 
-                    dc.getActivity().runOnUiThread(new Runnable() {
-
-                        @Override
-                        public void run() {
-                            if (TempHolder.isActiveSpeedRead.get()) {
-                                dc.onGoToPage(currentPage1);
-                            }
-                        }
-                    });
 
                     for (int i = currentWord; i < words.length; i++) {
                         if (!TempHolder.isActiveSpeedRead.get()) {

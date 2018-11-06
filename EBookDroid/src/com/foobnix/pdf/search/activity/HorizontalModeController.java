@@ -333,7 +333,7 @@ public abstract class HorizontalModeController extends DocumentController {
     }
 
     @Override
-    public String getTextForPage(int page) {
+    public synchronized String getTextForPage(int page) {
         try {
             CodecPage codecPage = codeDocument.getPage(page);
             if (!codecPage.isRecycled()) {
