@@ -20,3 +20,5 @@ version: 6
 * Adaptive application icon in compliance w/ the recent Android 8+ trends
 * Hyphenation rules for more languages
 * TTS reading will stop if your Bluetooth device gets disconnected
+
+Subscribe to the __Librera Reader Telegram__ channel [https://t.me/LibreraReader](https://t.me/LibreraReader), news, announcements and a lot of interesting about the new functionality.

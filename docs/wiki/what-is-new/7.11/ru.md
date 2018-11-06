@@ -20,5 +20,7 @@ __Fixes__
 * Hyphen для некоторых языков
 * TTS останавливается, если Bluetooth потеряет соединение
 
+Подпишитесь на канал __Librera Reader Telegram__ [https://t.me/LibreraReader](https://t.me/LibreraReader), новости, анонсы и много интересного о новых функциях.
+
 
     
