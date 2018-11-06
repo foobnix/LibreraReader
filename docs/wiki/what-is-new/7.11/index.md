@@ -6,20 +6,17 @@ version: 6
 
 # 7.11
 
-**New functionality**
+**New Features**
 
-* Speed reading (RSVP) or Fast reading mode
-* Selecting the text in DJVU and search in DJVU
-* Status bar location Top or Bottom in Book mode
-* Bookmarks linked to the reading percentage
-* Open folder as a book
+* RSVP (Rapid Serial Visual Presentation) speed reading mode (w/ a twist!)
+* Text selection and search in DjVu documents
+* Option to change the status bar position (Top or Bottom) in Book mode
+* Bookmarks are now linked to reading progress percentage values
+* Now folders can be opened as books 
 
 **Fixes**
 
-* Cover page generation for big AZW and AZW3 books
-* Adaptive application icon for Android 8+
-* Hyphenations for some languages
-* TTS stop if Bluetooth lose connection
-
-
-    
+* Cover page generation for large AZW and AZW3 books
+* Adaptive application icon in compliance w/ the recent Android 8+ trends
+* Hyphenation rules for more languages
+* TTS reading will stop if your Bluetooth device gets disconnected
