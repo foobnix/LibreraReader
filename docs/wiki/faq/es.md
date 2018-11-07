@@ -1,6 +1,6 @@
 ---
 layout: main
-version: 2
+version: 5
 ---
 [<](/wiki/es)
 
@@ -9,5 +9,6 @@ version: 2
 * [Cómo convertir PDF a EPUB](/wiki/faq/convert-pdf-to-epub/es)
 * [Crear etiquetas personalizadas](/wiki/faq/custom-tags/es)
 * [Control de brillo y filtro de luz azul.](/wiki/faq/brightness-control-and-blue-light-filter/es)
+* [Cómo aumentar el tamaño de fuente en un documento PDF en Android](/wiki/faq/how-to-make-the-font-size-bigger-on-a-pdf/es)
 * [Números de página relativos para libros PDF](/wiki/faq/relative-page-numbers/es)
 * [Personalizar libros de estilos css.](/wiki/faq/customize-book-css-styles/es)

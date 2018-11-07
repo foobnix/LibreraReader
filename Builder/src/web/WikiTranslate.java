@@ -13,13 +13,13 @@ public class WikiTranslate {
 
     public static void main(String[] args) throws Exception {
 
-        GenerateFAQ.updateIndex("/home/ivan-dev/git/LibreraReader/docs/wiki/faq", "Frequently asked questions", 2);
+        GenerateFAQ.updateIndex("/home/ivan-dev/git/LibreraReader/docs/wiki/faq", "Frequently asked questions", 5);
         GenerateFAQ.updateIndex("/home/ivan-dev/git/LibreraReader/docs/wiki/stories", "Stories", 2);
-        GenerateFAQ.updateIndex("/home/ivan-dev/git/LibreraReader/docs/wiki/manual", "Guide", 2);
+        GenerateFAQ.updateIndex("/home/ivan-dev/git/LibreraReader/docs/wiki/manual", "Guide", 3);
 
         String root = "/home/ivan-dev/git/LibreraReader/docs/wiki";
-        // String root = "/home/ivan-dev/git/LibreraReader/docs/_includes";
         syncPaths(root, "ru");
+
         syncPaths(root, "fr");
         syncPaths(root, "de");
         syncPaths(root, "it");
@@ -148,15 +148,19 @@ public class WikiTranslate {
 
                     if (url != null) {
                         line = GoogleTranslation.translate(line, ln);
-                        line = String.format("[%s](%s)", line, url);
+                        line = prefix + String.format("[%s](%s)", line, url);
                     } else {
                         line = prefix + GoogleTranslation.translate(line, ln);
+                        System.out.println("Prefix: " + line);
                     }
 
                     line = line.replace("@ # ", "__");
                     line = line.replace(" @ #", "__");
                     line = line.replace(" # @", "__");
                     line = line.replace(" @ @", "__");
+                    line = line.replace(" @#", "__");
+                    line = line.replace(" @ #", "__");
+                    line = line.replace(" @ #", "__");
                     if (line.contains("[")) {
                         line = line.replace(" /", "/");
                         line = line.replace("/ ", "/");
