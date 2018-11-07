@@ -3,17 +3,21 @@ package web;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
+import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import translations.GoogleTranslation;
 
 public class WikiTranslate {
 
+
     public static void main(String[] args) throws Exception {
 
-        GenerateFAQ.updateIndex("/home/ivan-dev/git/LibreraReader/docs/wiki/faq", "Frequently asked questions", 5);
+        GenerateFAQ.updateIndex("/home/ivan-dev/git/LibreraReader/docs/wiki/faq", "Frequently asked questions", 6);
         GenerateFAQ.updateIndex("/home/ivan-dev/git/LibreraReader/docs/wiki/stories", "Stories", 2);
         GenerateFAQ.updateIndex("/home/ivan-dev/git/LibreraReader/docs/wiki/manual", "Guide", 3);
 
@@ -28,6 +32,68 @@ public class WikiTranslate {
         syncPaths(root, "zh");
         syncPaths(root, "ar");
     }
+
+    public static String traslateMD(String in, String ln) throws IOException {
+        if (in.trim().length() == 0) {
+            return in;
+        }
+
+        in = in.replace("__", "**");
+
+        List<String> ignoreLines = Arrays.asList("[<]", "|", "{", "<", "!", "---", "# 7.", "# 8.");
+
+        for (String pr : ignoreLines) {
+            if (in.startsWith(pr)) {
+                return in;
+            }
+        }
+
+        Map<String, String> map = new HashMap<>();
+        map.put("# ", "{1} ");
+        map.put("** ", "{2} ");
+        map.put(" **", " {3}");
+        map.put("* ", "{4}");
+        map.put("**", "{6}");
+
+        Map<String, String> reverse = new HashMap<>();
+        reverse.put("{1} ", "# ");
+
+        reverse.put(" {2}", "**");
+        reverse.put("{3} ", "**");
+
+        reverse.put(" {6}", "**");
+        reverse.put("{6} ", "**");
+
+        reverse.put("{4} ", "* ");
+
+        // System.out.println(in);
+        for (String key : map.keySet()) {
+            in = in.replace(key, map.get(key));
+        }
+        // System.out.println(in);
+
+        if (in.contains("](/")) {// ulr
+            int index = in.indexOf("](/");
+            String url = in.substring(index + 1, in.indexOf(")") + 1);
+
+            url = url.replace("/)", ")").replace(")", "/" + ln + ")");
+
+            System.out.println("url:" + url);
+            reverse.put(" {5}", url);
+            in = in.substring(0, index + 1) + "{5}" + in.substring(in.indexOf(")", index) + 1);
+        }
+
+        String line = GoogleTranslation.translate(in, ln);
+        line = line.replace("&#39;", "'");
+
+
+        for (String key : reverse.keySet()) {
+            line = line.replace(key, reverse.get(key));
+        }
+        System.out.println(line);
+        return line;
+    }
+    
 
     public static void syncPaths(String path, final String ln) throws Exception {
 
@@ -68,7 +134,7 @@ public class WikiTranslate {
     }
 
     public static void translate(String root, String ln) throws Exception {
-        System.out.println("Tranlate: " + root);
+        // System.out.println("Tranlate: " + root);
 
         File index = new File(root, "index.md");
         File ru = new File(root, ln + ".md");
@@ -80,17 +146,15 @@ public class WikiTranslate {
             outVersion = getVersion(ru.getPath());
         }
 
-        System.out.println("Version in " + inVersion);
-        System.out.println("Version ou " + outVersion);
+        // System.out.println("Version in " + inVersion);
+        // System.out.println("Version ou " + outVersion);
 
         if ((inVersion == 0 && outVersion != -1) || inVersion == outVersion) {
-            System.out.println("[Skip]");
+            // System.out.println("[Skip]");
             return;
         }
 
-        List<String> ignoreLines = Arrays.asList("[<]", "|", "{", "<", "!", "---", "# 7.", "# 8.");
-        List<String> preLines = Arrays.asList("# ", "## ", "### ", "* ", "> ", "1. ", "2. ", "3. ");
-
+        System.out.println("Tranlate: " + root);
         PrintWriter out = new PrintWriter(ru);
 
         BufferedReader input = new BufferedReader(new FileReader(index));
@@ -112,65 +176,7 @@ public class WikiTranslate {
             }
             if (header >= 2) {
 
-                boolean isIgnore = false;
-                String prefix = "";
-
-                for (String txt : ignoreLines) {
-                    if (line.startsWith(txt)) {
-                        isIgnore = true;
-                        break;
-                    }
-                }
-                for (String txt : preLines) {
-                    if (line.startsWith(txt)) {
-                        prefix = txt;
-                        break;
-                    }
-                }
-
-                if (!isIgnore && line.trim().length() != 0) {
-                    line = line.replace(prefix, "");
-                    // adsf **sadf** asdf
-                    line = line.replace("**", "__");
-
-                    line = line.replace(" __", " @# ");
-                    line = line.replace("__ ", " #@ ");
-
-                    line = line.replaceAll("__$", " @#");
-                    line = line.replaceAll("[*]{2}$", " @#");
-
-                    String url = null;
-                    if (line.startsWith("[")) {
-                        int div = line.indexOf("](");
-                        url = line.substring(div + 2, line.length() - 1);
-                        line = line.substring(1, div);
-                    }
-
-                    if (url != null) {
-                        line = GoogleTranslation.translate(line, ln);
-                        line = prefix + String.format("[%s](%s)", line, url);
-                    } else {
-                        line = prefix + GoogleTranslation.translate(line, ln);
-                        System.out.println("Prefix: " + line);
-                    }
-
-                    line = line.replace("@ # ", "__");
-                    line = line.replace(" @ #", "__");
-                    line = line.replace(" # @", "__");
-                    line = line.replace(" @ @", "__");
-                    line = line.replace(" @#", "__");
-                    line = line.replace(" @ #", "__");
-                    line = line.replace(" @ #", "__");
-                    if (line.contains("[")) {
-                        line = line.replace(" /", "/");
-                        line = line.replace("/ ", "/");
-                        line = line.replace("] (", "](");
-                    }
-
-                }
-                if (line.endsWith(")")) {
-                    line = line.replace("/)", ")").replace(")", "/" + ln + ")");
-                }
+                line = traslateMD(line, ln);
 
             }
             out.println(line);

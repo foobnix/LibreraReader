@@ -1,6 +1,6 @@
 ---
 layout: main
-version: 6
+version: 7
 ---
 [What is new](/wiki/what-is-new)
 

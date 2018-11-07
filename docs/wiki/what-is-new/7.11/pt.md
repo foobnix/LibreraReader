@@ -1,36 +1,36 @@
 ---
 layout: main
-version: 6
+version: 7
 ---
-[O que é novo](/wiki/what-is-new/pt)
+[O que há de novo](/wiki/what-is-new/pt)
 
 # 7.11
 
-__Novas características__
+**Novos recursos**
 
-* RSVP (Rapid Serial Visual Presentation/pt) modo de leitura de velocidade (com uma torção!/pt)
-* Seleção de texto e pesquisa em documentos DjVu
-* Opção para alterar a posição da barra de status (Superior ou Inferior) no modo Livro
-* Os marcadores agora estão vinculados à leitura dos valores percentuais de progresso
-* Agora as pastas podem ser abertas como livros
+* RSVP (Rapid Serial Visual Presentation) modo de leitura de velocidade (w / a torção!)
+* Seleção de texto e pesquisa em documentos do DjVu
+* Opção para alterar a posição da barra de status (superior ou inferior) no modo de livro
+* Os marcadores agora estão vinculados a valores percentuais de progresso de leitura
+* Agora, as pastas podem ser abertas como livros
 
-__Conserta__
+**Correções**
 
 * Geração de página de capa para grandes livros AZW e AZW3
 * Ícone de aplicativo adaptável em conformidade com as recentes tendências do Android 8+
 * Regras de hifenização para mais idiomas
-* A leitura de TTS será interrompida se o seu dispositivo Bluetooth for desconectado
+* A leitura do TTS será interrompida se o seu dispositivo Bluetooth for desconectado
 
-Inscreva-se no canal __Librera Reader__ Telegram [https://t.me/LibreraReader](https://t.me/LibreraReader). Seja o primeiro a aprender sobre nossos últimos desenvolvimentos, nunca perca as notícias mais recentes, anúncios e outras coisas interessantes sobre os novos recursos e funcionalidades do Librera.
+Inscreva-se no canal Telegram do **Librera Reader** [https://t.me/LibreraReader](https://t.me/LibreraReader). Seja o primeiro a aprender sobre nossos últimos desenvolvimentos, nunca perca as notícias mais recentes, anúncios e outras coisas interessantes sobre os novos recursos e funcionalidades do Librera.
 
 
-__Speed ​​lendo RSVP (Rapid Serial Visual Presentation)__
+**Speed   reading RSVP (Apresentação Visual Serial Rápida)**
 
 A velocidade de leitura permite que você aumente a leitura de velocidade para 700 palavras por minuto (WPM) lendo as páginas em uma palavra por linha.
-Mais informações você pode encontrar em [Seção de leitura de velocidade](/wiki/manual/Rapid-Serial-Visual-Presentation/pt)
+Mais informações você pode encontrar em [seção de leitura de velocidade](/wiki/manual/Rapid-Serial-Visual-Presentation/pt)
 
 
-* O RSVP pode ser aberto no menu do livro
+* RSVP pode ser aberto no menu de livros
 * Clique único para começar a leitura rápida
 * 30 amostras de CPL
 
@@ -38,9 +38,9 @@ Mais informações você pode encontrar em [Seção de leitura de velocidade](/w
 |-|-|-|
 |![](/wiki/manual/Rapid-Serial-Visual-Presentation/1.png)|![](/wiki/manual/Rapid-Serial-Visual-Presentation/2.png)|![](/wiki/manual/Rapid-Serial-Visual-Presentation/3.png)|
 
-__Posição da barra de status (superior ou inferior) no modo de livro__
+**Posição da barra de status (superior ou inferior) no modo de livro**
 
-* Barra de status inferior (por padrão/pt)
+* Barra de status inferior (por padrão)
 * Alterar a configuração da posição
 * Barra de status top
 
@@ -49,14 +49,14 @@ __Posição da barra de status (superior ou inferior) no modo de livro__
 |![](1.png)|![](2.png)|![](3.png)|
 
 
-__Abra a pasta com imagens como um livro (Vincular em um livro)__
+**Abra a pasta com imagens como um livro (Vincule em um livro)**
 
 É fácil abrir qualquer pasta com imagens como um livro virtual no aplicativo Librera.
 
 
 * Abra a pasta com imagens e vincule-a em um livro
 * Pasta com imagens como livro virtual
-* Adicione bordas, contraste e brilho brancos da cultura
+* Adicionar bordas, contraste e brilho brancos da cultura
 
 ||||
 |-|-|-|
