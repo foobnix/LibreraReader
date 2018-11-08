@@ -24,40 +24,39 @@ version: 7
 Subscribe to the __Librera Reader__ Telegram channel [https://t.me/LibreraReader](https://t.me/LibreraReader). Be the first to learn about our latest developments, never miss out on the freshest news, announcements, and other interesting stuff regarding Librera's new features and functionality.
 
 
-**Speed reading RSVP (Rapid Serial Visual Presentation)**
+**RSVP (Rapid Serial Visual Presentation) Reading / Speed Reading**
 
-Speed reading allow you to grow speed reading to 700 words per minute (WPM) reading pages by one word per line.
-More information you can find in [Speed reading section](/wiki/manual/Rapid-Serial-Visual-Presentation/)
+Speed reading with __Librera__ allows you to improve your reading speed to up to 700 words per minute (WPM) implementing the RSVP method.
+Please follow the link to find more info on the subject  [Speed reading section](/wiki/manual/Rapid-Serial-Visual-Presentation/)
 
 
-* RSVP can be opened from the book menu
-* Single click to begin fast reading
-* 30 CPL sample
+* The RSVP mode can be launched from the book menu (Speed read)
+* Speed read in just one tap
+* Adjust minimum line length: up to 30 CPL
 
 ||||
 |-|-|-|
 |![](/wiki/manual/Rapid-Serial-Visual-Presentation/1.png)|![](/wiki/manual/Rapid-Serial-Visual-Presentation/2.png)|![](/wiki/manual/Rapid-Serial-Visual-Presentation/3.png)|
 
-**Status bar position (Top or Bottom) in Book mode**
+**Status Bar Position (Top or Bottom) in Book Mode**
 
-* Status bar bottom (by default)
-* Change the position setting
-* Status bar top
+* The status bar is at bottom by default
+* Select its position from the dropdown list
+* Status bar on top
 
 ||||
 |-|-|-|
 |![](1.png)|![](2.png)|![](3.png)|
 
 
-**Open folder with images as a book (Bind in a book)**
+**Open Folder w/ Images as a Book (Bind in a Book)**
 
-It's easy to open any folder with images like a virtual book in Librera application.
+To open a folder as a book, navigate to it in the Folders tab and tap on its name. If it holds at least one image file, you will see the Bind in a Book option.
 
 
-* Open folder with images and bind it in a book
-* Folder with images like virtual book 
-* Add crop white borders, contrast and brightness
-
+* Open a folder with images and bind them in a book
+* Folder w/ images opened as a virtual book 
+* Crop white space, adjust contrast and brightness, etc.
 ||||
 |-|-|-|
 |![](/wiki/manual/Open-Folder-With-Images-As-A-Book/1.png)|![](/wiki/manual/Open-Folder-With-Images-As-A-Book/2.png)|![](/wiki/manual/Open-Folder-With-Images-As-A-Book/3.png)|
