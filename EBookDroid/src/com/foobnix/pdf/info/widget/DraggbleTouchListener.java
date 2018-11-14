@@ -113,6 +113,10 @@ public class DraggbleTouchListener implements OnTouchListener {
                 }
             }
 
+            if (onMove != null) {
+                onMove.run();
+            }
+
         }
         if (event.getAction() == MotionEvent.ACTION_UP) {
             float dx = event.getRawX() - initPoint.x;
@@ -128,10 +132,15 @@ public class DraggbleTouchListener implements OnTouchListener {
         return true;
     }
 
-    Runnable onMoveFinish;
+    Runnable onMoveFinish, onMove;
 
     public void setOnMoveFinish(Runnable onMoveFinish) {
         this.onMoveFinish = onMoveFinish;
+
+    }
+
+    public void setOnMove(Runnable onMove) {
+        this.onMove = onMove;
 
     }
 

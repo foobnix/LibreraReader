@@ -218,29 +218,43 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
         anchorX = (ImageView) findViewById(R.id.anchorX);
         anchorY = (ImageView) findViewById(R.id.anchorY);
 
+        TintUtil.setTintImageWithAlpha(anchorX, AppState.get().isDayNotInvert ? Color.BLUE : Color.YELLOW);
+        TintUtil.setTintImageWithAlpha(anchorY, AppState.get().isDayNotInvert ? Color.BLUE : Color.YELLOW);
+
         anchorX.setVisibility(View.GONE);
         anchorY.setVisibility(View.GONE);
 
         DraggbleTouchListener touch1 = new DraggbleTouchListener(anchorX, (View) anchorX.getParent());
         DraggbleTouchListener touch2 = new DraggbleTouchListener(anchorY, (View) anchorY.getParent());
 
-        Runnable onMoveFinish = new Runnable() {
+        final Runnable onMoveAction = new Runnable() {
 
             @Override
             public void run() {
-                float x = anchorX.getX();
-                float y = anchorX.getY();
+                float x = anchorX.getX() + anchorX.getWidth();
+                float y = anchorX.getY() + anchorX.getHeight() / 2;
 
                 float x1 = anchorY.getX();
                 float y1 = anchorY.getY();
                 EventBus.getDefault().post(new MessagePageXY(MessagePageXY.TYPE_SELECT_TEXT, viewPager.getCurrentItem(), x, y, x1, y1));
+            }
+        };
 
+        Runnable onMoveFinish = new Runnable() {
+
+            @Override
+            public void run() {
+                onMoveAction.run();
                 DragingDialogs.selectTextMenu(anchor, dc, true, onRefresh);
 
             }
         };
+
         touch1.setOnMoveFinish(onMoveFinish);
         touch2.setOnMoveFinish(onMoveFinish);
+
+        touch1.setOnMove(onMoveAction);
+        touch2.setOnMove(onMoveAction);
 
         moveCenter = findViewById(R.id.moveCenter);
 
@@ -1379,6 +1393,7 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
         viewPager.setCurrentItem(dc.getCurentPage() + 1, isAnimate);
         dc.checkReadingTimer();
 
+
     }
 
     public void prevPage() {
@@ -1391,6 +1406,8 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
         lastClick = System.currentTimeMillis();
         viewPager.setCurrentItem(dc.getCurentPage() - 1, isAnimate);
         dc.checkReadingTimer();
+
+
     }
 
     @TargetApi(Build.VERSION_CODES.HONEYCOMB)
@@ -1690,6 +1707,9 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
             LOG.d("onPageSelected", pos);
 
             progressDraw.updateProgress(pos);
+
+            EventBus.getDefault().post(new MessagePageXY(MessagePageXY.TYPE_HIDE));
+
         }
 
         @Override

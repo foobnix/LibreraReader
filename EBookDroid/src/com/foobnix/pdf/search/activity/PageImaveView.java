@@ -204,7 +204,7 @@ public class PageImaveView extends View {
     @Subscribe
     public void onInvalidate(MessagePageXY event) {
         if (pageNumber == event.getPage() && MessagePageXY.TYPE_SELECT_TEXT == event.getType()) {
-            selectText(event.getX(), event.getY(), event.getX1(), event.getY1());
+            selectText(event.getX1(), event.getY1(), event.getX(), event.getY());
         }
 
     }
@@ -409,8 +409,10 @@ public class PageImaveView extends View {
                     final float dy = event.getY() - y;
 
                     if (isLognPress) {
-                        selectText(event.getX(), event.getY(), xInit, yInit);
-                        EventBus.getDefault().post(new MessagePageXY(MessagePageXY.TYPE_SHOW, -1, event.getX(), event.getY(), xInit, yInit));
+                        String selectText = selectText(event.getX(), event.getY(), xInit, yInit);
+                        if (selectText.contains(" ")) {
+                            EventBus.getDefault().post(new MessagePageXY(MessagePageXY.TYPE_SHOW, -1, xInit, yInit, event.getX(), event.getY()));
+                        }
                     } else {
 
                         if (AppState.get().isLocked) {
@@ -484,18 +486,21 @@ public class PageImaveView extends View {
                         LOG.d("postScale", scale, values[Matrix.MSCALE_X]);
                         if (values[Matrix.MSCALE_X] > 0.3f || scale > 1) {
                             imageMatrix().postScale(scale, scale, centerX, centerY);
+                            EventBus.getDefault().post(new MessagePageXY(MessagePageXY.TYPE_HIDE));
                         }
                     }
                     final float dx = centerX - cx;
                     final float dy = centerY - cy;
                     if (AppState.get().isAllowMoveTwoFingerWithLock || !AppState.get().isLocked) {
                         imageMatrix().postTranslate(dx, dy);
+                        EventBus.getDefault().post(new MessagePageXY(MessagePageXY.TYPE_HIDE));
                     }
                     cx = centerX(event);
                     cy = centerY(event);
 
                     PageImageState.get().isAutoFit = false;
                     invalidateAndMsg();
+
                 }
             } else if (action == MotionEvent.ACTION_POINTER_UP) {
                 LOG.d("TEST", "action ACTION_POINTER_UP");
@@ -525,8 +530,10 @@ public class PageImaveView extends View {
                 cy = 0;
 
                 if (isLognPress) {
-                    selectText(event.getX(), event.getY(), xInit, yInit);
-                    EventBus.getDefault().post(new MessagePageXY(MessagePageXY.TYPE_SHOW, -1, event.getX(), event.getY(), xInit, yInit));
+                    String selectText = selectText(event.getX(), event.getY(), xInit, yInit);
+                    if (selectText.contains(" ")) {
+                    EventBus.getDefault().post(new MessagePageXY(MessagePageXY.TYPE_SHOW, -1, xInit, yInit, event.getX(), event.getY()));
+                    }
 
                 } else if (AppState.get().isTextFormat()) {
                     if (!TempHolder.isSeaching) {

@@ -304,8 +304,8 @@
       <ImageView
         android:id="@+id/anchorX"
         android:tint="@color/tint_blue"
-        android:layout_width="@dimen/wh_button_small"
-        android:layout_height="@dimen/wh_button_small"
+        android:layout_width="@dimen/wh_button"
+        android:layout_height="@dimen/wh_button"
         android:layout_marginLeft="100dip"
         android:layout_marginRight="100dip"
         android:src="@drawable/glyphicons_basic_299_circle_selected"
@@ -314,8 +314,8 @@
       <ImageView
           android:tint="@color/tint_blue"
         android:id="@+id/anchorY"
-        android:layout_width="@dimen/wh_button_small"
-        android:layout_height="@dimen/wh_button_small"
+        android:layout_width="@dimen/wh_button"
+        android:layout_height="@dimen/wh_button"
         android:src="@drawable/glyphicons_basic_298_circle_empty"
          />
       
