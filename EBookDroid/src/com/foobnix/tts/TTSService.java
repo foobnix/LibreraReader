@@ -151,6 +151,7 @@ public class TTSService extends Service {
         }
 
         Notification notification = new NotificationCompat.Builder(this, TTSNotification.DEFAULT) //
+                .setSmallIcon(R.drawable.glyphicons_185_volume_up) //
                 .setContentTitle("Librera") //
                 .setPriority(NotificationCompat.PRIORITY_DEFAULT)//
                 .setContentText("TTS").build();
