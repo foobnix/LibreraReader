@@ -211,6 +211,7 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
         bottomIndicators = findViewById(R.id.bottomIndicators);
         adFrame = findViewById(R.id.adFrame);
         anchor = (FrameLayout) findViewById(R.id.anchor);
+
         moveCenter = findViewById(R.id.moveCenter);
 
         currentSeek = (TextView) findViewById(R.id.currentSeek);
@@ -923,7 +924,7 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
     }
 
     private boolean closeDialogs() {
-        return dc.closeDialogs(anchor);
+        return dc.closeDialogs();
     }
 
     public void hideAds() {
@@ -1360,6 +1361,11 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
                 }
             });
         } else if (ev.getMessage().equals(MessageEvent.MESSAGE_PERFORM_CLICK)) {
+            boolean isOpen = closeDialogs();
+            if (isOpen) {
+                return;
+            }
+
             int x = (int) ev.getX();
             int y = (int) ev.getY();
             if (clickUtils.isClickRight(x, y) && AppState.get().tapZoneRight != AppState.TAP_DO_NOTHING) {
@@ -1477,6 +1483,7 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
 
         };
         dc.init(this);
+        dc.initAnchor(anchor);
     }
 
     Runnable updateTimePower = new Runnable() {

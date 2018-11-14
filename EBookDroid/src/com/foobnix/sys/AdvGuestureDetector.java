@@ -111,6 +111,7 @@ public class AdvGuestureDetector extends SimpleOnGestureListener implements IMul
 
     @Override
     public boolean onDown(final MotionEvent e) {
+
         isScrollFinished = avc.getView().getScroller().isFinished();
         if (!isScrollFinished) {
             avc.getView().getScroller().forceFinished(true);
@@ -142,6 +143,11 @@ public class AdvGuestureDetector extends SimpleOnGestureListener implements IMul
     @Override
     public boolean onSingleTapUp(final MotionEvent e) {
         updateBorders();
+        if (docCtrl.closeDialogs()) {
+            alowConfirm = false;
+            return true;
+        }
+
         if (!AppState.get().isMusicianMode && !AppState.get().isIgnoreAnnotatations || AppState.get().editWith == AppState.EDIT_DELETE) {
             alowConfirm = false;
             Annotation annotation2 = avc.isAnnotationTap(e.getX(), e.getY());

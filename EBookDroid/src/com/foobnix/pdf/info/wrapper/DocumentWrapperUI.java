@@ -63,7 +63,6 @@ import android.graphics.Color;
 import android.os.Build;
 import android.os.Handler;
 import android.support.v4.graphics.ColorUtils;
-import android.view.GestureDetector;
 import android.view.KeyEvent;
 import android.view.MenuItem;
 import android.view.MenuItem.OnMenuItemClickListener;
@@ -88,9 +87,6 @@ public class DocumentWrapperUI {
     Activity a;
     String bookTitle;
 
-    DocumentGestureListener documentListener;
-    DocumentGuestureDetector documentGestureDetector;
-    GestureDetector gestureDetector;
 
     TextView toastBrightnessText, pagesCountIndicator, currentSeek, maxSeek, currentTime, bookName, nextTypeBootom, batteryLevel, lirbiLogo, reverseKeysIndicator;
     ImageView onDocDontext, toolBarButton, linkHistory, lockUnlock, lockUnlockTop, textToSpeachTop, clockIcon, batteryIcon;
@@ -114,30 +110,6 @@ public class DocumentWrapperUI {
         this.dc = controller;
         controller.setUi(this);
 
-        documentListener = new DocumentGestureListener() {
-
-            @Override
-            public void onDoubleTap() {
-                doShowHideWrapperControlls();
-            }
-
-            @Override
-            public void onNextPage() {
-                nextChose(false);
-
-            }
-
-            @Override
-            public void onPrevPage() {
-                prevChose(false);
-            }
-
-            @Override
-            public void onSingleTap() {
-                // onSingleTap();
-            }
-
-        };
         EventBus.getDefault().register(this);
 
     }
@@ -163,6 +135,7 @@ public class DocumentWrapperUI {
         }
 
     }
+
 
     public void onSingleTap() {
         if (AppState.get().isMusicianMode) {
@@ -546,6 +519,7 @@ public class DocumentWrapperUI {
         speedSeekBar = (SeekBar) a.findViewById(R.id.seekBarSpeed);
         seekSpeedLayot = a.findViewById(R.id.seekSpeedLayot);
         anchor = (FrameLayout) a.findViewById(R.id.anchor);
+        dc.initAnchor(anchor);
 
         titleBar = a.findViewById(R.id.titleBar);
         titleBar.setOnClickListener(onMenu);
@@ -1500,7 +1474,7 @@ public class DocumentWrapperUI {
     };
 
     private boolean closeDialogs() {
-        return dc.closeDialogs(anchor);
+        return dc.closeDialogs();
     }
 
     public View.OnClickListener onModeChangeClick = new View.OnClickListener() {
@@ -1745,25 +1719,6 @@ public class DocumentWrapperUI {
 
     }
 
-    public DocumentGestureListener getDocumentListener() {
-        return documentListener;
-    }
-
-    public void setDocumentListener(final DocumentGestureListener wrapperListener) {
-        this.documentListener = wrapperListener;
-    }
-
-    // public DocumentGuestureDetector getDocumentGestureDetector() {
-    // return documentGestureDetector;
-    // }
-
-    public GestureDetector getGestureDetector() {
-        return gestureDetector;
-    }
-
-    public void setGestureDetector(final GestureDetector gestureDetector) {
-        this.gestureDetector = gestureDetector;
-    }
 
     public DocumentController getController() {
         return dc;
