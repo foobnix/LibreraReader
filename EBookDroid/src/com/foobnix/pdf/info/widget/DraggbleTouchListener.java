@@ -36,6 +36,12 @@ public class DraggbleTouchListener implements OnTouchListener {
         this.root = (View) anchor.getParent();
     }
 
+    public DraggbleTouchListener(View anchor, View root) {
+        this.anchor = anchor;
+        this.root = root;
+        anchor.setOnTouchListener(this);
+    }
+
     long time;
 
     private Runnable onEventDetected;
@@ -47,6 +53,7 @@ public class DraggbleTouchListener implements OnTouchListener {
             onEventDetected.run();
         }
         if (anchor == null || root == null) {
+            LOG.d("anchor or root is null");
             return false;
         }
         if (event.getAction() == MotionEvent.ACTION_DOWN) {
@@ -94,14 +101,16 @@ public class DraggbleTouchListener implements OnTouchListener {
 
             AnchorHelper.setXY(anchor, x, y);
 
-            if (heigh > Dips.screenHeight() - Dips.DP_25) {
-                popup.getView().getLayoutParams().height = Dips.screenHeight() - Dips.DP_25;
-                popup.getView().requestLayout();
-            }
+            if (popup != null) {
+                if (heigh > Dips.screenHeight() - Dips.DP_25) {
+                    popup.getView().getLayoutParams().height = Dips.screenHeight() - Dips.DP_25;
+                    popup.getView().requestLayout();
+                }
 
-            if (width > Dips.screenWidth() - Dips.DP_25) {
-                popup.getView().getLayoutParams().width = Dips.screenWidth() - Dips.DP_25;
-                popup.getView().requestLayout();
+                if (width > Dips.screenWidth() - Dips.DP_25) {
+                    popup.getView().getLayoutParams().width = Dips.screenWidth() - Dips.DP_25;
+                    popup.getView().requestLayout();
+                }
             }
 
         }

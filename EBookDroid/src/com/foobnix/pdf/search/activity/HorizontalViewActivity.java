@@ -33,6 +33,7 @@ import com.foobnix.pdf.info.TintUtil;
 import com.foobnix.pdf.info.UiSystemUtils;
 import com.foobnix.pdf.info.model.OutlineLinkWrapper;
 import com.foobnix.pdf.info.view.AlertDialogs;
+import com.foobnix.pdf.info.view.AnchorHelper;
 import com.foobnix.pdf.info.view.BrightnessHelper;
 import com.foobnix.pdf.info.view.Dialogs;
 import com.foobnix.pdf.info.view.DragingDialogs;
@@ -40,6 +41,7 @@ import com.foobnix.pdf.info.view.HorizontallSeekTouchEventListener;
 import com.foobnix.pdf.info.view.MyPopupMenu;
 import com.foobnix.pdf.info.view.ProgressDraw;
 import com.foobnix.pdf.info.view.UnderlineImageView;
+import com.foobnix.pdf.info.widget.DraggbleTouchListener;
 import com.foobnix.pdf.info.widget.FileInformationDialog;
 import com.foobnix.pdf.info.widget.RecentUpates;
 import com.foobnix.pdf.info.widget.ShareDialog;
@@ -51,6 +53,7 @@ import com.foobnix.pdf.search.activity.msg.FlippingStop;
 import com.foobnix.pdf.search.activity.msg.InvalidateMessage;
 import com.foobnix.pdf.search.activity.msg.MessageAutoFit;
 import com.foobnix.pdf.search.activity.msg.MessageEvent;
+import com.foobnix.pdf.search.activity.msg.MessagePageXY;
 import com.foobnix.pdf.search.activity.msg.MessegeBrightness;
 import com.foobnix.pdf.search.view.CloseAppDialog;
 import com.foobnix.pdf.search.view.VerticalViewPager;
@@ -118,7 +121,7 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
     FrameLayout anchor;
     UnderlineImageView onCrop, onBC;
 
-    ImageView lockModelImage, linkHistory, onModeChange, outline, onMove, textToSpeach, onPageFlip1;
+    ImageView lockModelImage, linkHistory, onModeChange, outline, onMove, textToSpeach, onPageFlip1, anchorX, anchorY;
 
     HorizontalModeController dc;
 
@@ -211,6 +214,33 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
         bottomIndicators = findViewById(R.id.bottomIndicators);
         adFrame = findViewById(R.id.adFrame);
         anchor = (FrameLayout) findViewById(R.id.anchor);
+
+        anchorX = (ImageView) findViewById(R.id.anchorX);
+        anchorY = (ImageView) findViewById(R.id.anchorY);
+
+        anchorX.setVisibility(View.GONE);
+        anchorY.setVisibility(View.GONE);
+
+        DraggbleTouchListener touch1 = new DraggbleTouchListener(anchorX, (View) anchorX.getParent());
+        DraggbleTouchListener touch2 = new DraggbleTouchListener(anchorY, (View) anchorY.getParent());
+
+        Runnable onMoveFinish = new Runnable() {
+
+            @Override
+            public void run() {
+                float x = anchorX.getX();
+                float y = anchorX.getY();
+
+                float x1 = anchorY.getX();
+                float y1 = anchorY.getY();
+                EventBus.getDefault().post(new MessagePageXY(MessagePageXY.TYPE_SELECT_TEXT, viewPager.getCurrentItem(), x, y, x1, y1));
+
+                DragingDialogs.selectTextMenu(anchor, dc, true, onRefresh);
+
+            }
+        };
+        touch1.setOnMoveFinish(onMoveFinish);
+        touch2.setOnMoveFinish(onMoveFinish);
 
         moveCenter = findViewById(R.id.moveCenter);
 
@@ -915,6 +945,24 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
             }
 
         });
+
+    }
+
+    @Subscribe
+    public void showHideTextSelectors(MessagePageXY event) {
+        if (event.getType() == MessagePageXY.TYPE_HIDE) {
+            anchorX.setVisibility(View.GONE);
+            anchorY.setVisibility(View.GONE);
+
+        }
+        if (event.getType() == MessagePageXY.TYPE_SHOW) {
+            anchorX.setVisibility(View.VISIBLE);
+            anchorY.setVisibility(View.VISIBLE);
+
+            AnchorHelper.setXY(anchorX, event.getX(), event.getY());
+            AnchorHelper.setXY(anchorY, event.getX1(), event.getY1());
+
+        }
 
     }
 

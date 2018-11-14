@@ -41,8 +41,8 @@ public class MessageEvent {
         this.msgType = msg;
         this.x = x;
         this.y = y;
-
     }
+
 
     public MessageEvent() {
     }
