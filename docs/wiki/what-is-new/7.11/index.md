@@ -8,6 +8,7 @@ version: 7
 
 **New Features**
 
+* Selecting text with start and end markers
 * RSVP (Rapid Serial Visual Presentation) speed reading mode (w/ a twist!)
 * Text selection and search in DjVu documents
 * Option to change the status bar position (Top or Bottom) in Book mode
@@ -22,6 +23,16 @@ version: 7
 * TTS reading will stop if your Bluetooth device gets disconnected
 
 Subscribe to the __Librera Reader__ Telegram channel [https://t.me/LibreraReader](https://t.me/LibreraReader). Be the first to learn about our latest developments, never miss out on the freshest news, announcements, and other interesting stuff regarding Librera's new features and functionality.
+
+**Selecting text with start and end markers**
+
+* If user selecting more the one word markers become visible.
+* It's possible to select text **by letters** or **by words**
+* You can move markers in real time
+
+||||
+|-|-|-|
+|![](4.png)|![](5.png)|![](6.png)|
 
 
 **RSVP (Rapid Serial Visual Presentation) Reading / Speed Reading**
