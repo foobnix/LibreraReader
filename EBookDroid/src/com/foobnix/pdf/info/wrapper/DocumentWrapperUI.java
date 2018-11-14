@@ -30,6 +30,7 @@ import com.foobnix.pdf.info.R;
 import com.foobnix.pdf.info.TintUtil;
 import com.foobnix.pdf.info.UiSystemUtils;
 import com.foobnix.pdf.info.model.OutlineLinkWrapper;
+import com.foobnix.pdf.info.view.AnchorHelper;
 import com.foobnix.pdf.info.view.BrightnessHelper;
 import com.foobnix.pdf.info.view.CustomSeek;
 import com.foobnix.pdf.info.view.Dialogs;
@@ -39,8 +40,10 @@ import com.foobnix.pdf.info.view.HorizontallSeekTouchEventListener;
 import com.foobnix.pdf.info.view.MyPopupMenu;
 import com.foobnix.pdf.info.view.ProgressDraw;
 import com.foobnix.pdf.info.view.UnderlineImageView;
+import com.foobnix.pdf.info.widget.DraggbleTouchListener;
 import com.foobnix.pdf.info.widget.ShareDialog;
 import com.foobnix.pdf.search.activity.HorizontalModeController;
+import com.foobnix.pdf.search.activity.msg.MessagePageXY;
 import com.foobnix.pdf.search.activity.msg.MessegeBrightness;
 import com.foobnix.pdf.search.view.CloseAppDialog;
 import com.foobnix.sys.TempHolder;
@@ -96,6 +99,7 @@ public class DocumentWrapperUI {
     TTSControlsView ttsActive;
     SeekBar seekBar, speedSeekBar;
     FrameLayout anchor;
+    ImageView anchorX, anchorY;
     DrawView drawView;
     ProgressDraw progressDraw;
     UnderlineImageView crop, cut, onBC;
@@ -503,6 +507,24 @@ public class DocumentWrapperUI {
         }
     };
 
+    @Subscribe
+    public void showHideTextSelectors(MessagePageXY event) {
+        if (event.getType() == MessagePageXY.TYPE_HIDE) {
+            anchorX.setVisibility(View.GONE);
+            anchorY.setVisibility(View.GONE);
+
+        }
+        if (event.getType() == MessagePageXY.TYPE_SHOW) {
+            anchorX.setVisibility(View.VISIBLE);
+            anchorY.setVisibility(View.VISIBLE);
+
+            AnchorHelper.setXY(anchorX, event.getX(), event.getY());
+            AnchorHelper.setXY(anchorY, event.getX1(), event.getY1());
+
+        }
+
+    }
+
     public void initUI(final Activity a) {
         this.a = a;
 
@@ -520,6 +542,47 @@ public class DocumentWrapperUI {
         seekSpeedLayot = a.findViewById(R.id.seekSpeedLayot);
         anchor = (FrameLayout) a.findViewById(R.id.anchor);
         dc.initAnchor(anchor);
+
+        anchorX = (ImageView) a.findViewById(R.id.anchorX);
+        anchorY = (ImageView) a.findViewById(R.id.anchorY);
+
+        TintUtil.setTintImageWithAlpha(anchorX, AppState.get().isDayNotInvert ? Color.BLUE : Color.YELLOW, 150);
+        TintUtil.setTintImageWithAlpha(anchorY, AppState.get().isDayNotInvert ? Color.BLUE : Color.YELLOW, 150);
+
+        anchorX.setVisibility(View.GONE);
+        anchorY.setVisibility(View.GONE);
+
+        DraggbleTouchListener touch1 = new DraggbleTouchListener(anchorX, (View) anchorX.getParent());
+        DraggbleTouchListener touch2 = new DraggbleTouchListener(anchorY, (View) anchorY.getParent());
+
+        final Runnable onMoveAction = new Runnable() {
+
+            @Override
+            public void run() {
+                float x = anchorX.getX() + anchorX.getWidth();
+                float y = anchorX.getY() + anchorX.getHeight() / 2;
+
+                float x1 = anchorY.getX();
+                float y1 = anchorY.getY();
+                EventBus.getDefault().post(new MessagePageXY(MessagePageXY.TYPE_SELECT_TEXT, dc.getCurentPage(), x, y, x1, y1));
+            }
+        };
+
+        Runnable onMoveFinish = new Runnable() {
+
+            @Override
+            public void run() {
+                onMoveAction.run();
+                DragingDialogs.selectTextMenu(anchor, dc, true, onRefresh);
+
+            }
+        };
+
+        touch1.setOnMoveFinish(onMoveFinish);
+        touch2.setOnMoveFinish(onMoveFinish);
+
+        touch1.setOnMove(onMoveAction);
+        touch2.setOnMove(onMoveAction);
 
         titleBar = a.findViewById(R.id.titleBar);
         titleBar.setOnClickListener(onMenu);

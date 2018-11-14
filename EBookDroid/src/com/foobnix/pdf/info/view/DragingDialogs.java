@@ -1385,14 +1385,16 @@ public class DragingDialogs {
                 TextView onBookSearch = (TextView) view.findViewById(R.id.onBookSearch);
                 // onBookSearch.setText(controller.getString(R.string.search_in_the_book)
                 // + " \"" + AppState.get().selectedText + "\"");
-                onBookSearch.setVisibility(selectedText.contains(" ") ? View.GONE : View.VISIBLE);
-                onBookSearch.setOnClickListener(new View.OnClickListener() {
+                if (onBookSearch != null) {
+                    onBookSearch.setVisibility(selectedText != null && selectedText.contains(" ") ? View.GONE : View.VISIBLE);
+                    onBookSearch.setOnClickListener(new View.OnClickListener() {
 
-                    @Override
-                    public void onClick(View v) {
-                        searchMenu(anchor, controller, selectedText);
-                    }
-                });
+                        @Override
+                        public void onClick(View v) {
+                            searchMenu(anchor, controller, selectedText);
+                        }
+                    });
+                }
 
                 LinearLayout dictLayout = (LinearLayout) view.findViewById(R.id.dictionaryLine);
                 dictLayout.removeAllViews();

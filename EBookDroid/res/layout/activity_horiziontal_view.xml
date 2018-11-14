@@ -306,12 +306,12 @@
         android:tint="@color/tint_blue"
         android:layout_width="@dimen/wh_button"
         android:layout_height="@dimen/wh_button"
-        android:layout_marginLeft="100dip"
-        android:layout_marginRight="100dip"
+        android:layout_marginTop="100dip"
         android:src="@drawable/glyphicons_basic_299_circle_selected"
          />
      
       <ImageView
+           android:layout_marginTop="150dip"
           android:tint="@color/tint_blue"
         android:id="@+id/anchorY"
         android:layout_width="@dimen/wh_button"

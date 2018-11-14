@@ -13,6 +13,9 @@ import org.ebookdroid.ui.viewer.IView;
 import org.ebookdroid.ui.viewer.IViewController;
 import org.emdev.utils.MathUtils;
 import org.emdev.utils.concurrent.Flag;
+import org.greenrobot.eventbus.EventBus;
+
+import com.foobnix.pdf.search.activity.msg.MessagePageXY;
 
 import android.graphics.PointF;
 import android.graphics.Rect;
@@ -218,6 +221,7 @@ public final class PdfSurfaceView extends android.view.SurfaceView implements IV
                 final int xx = MathUtils.adjust(x, l.left, l.right);
                 final int yy = MathUtils.adjust(y, l.top, l.bottom);
                 PdfSurfaceView.super.scrollTo(xx, yy);
+                EventBus.getDefault().post(new MessagePageXY(MessagePageXY.TYPE_HIDE));
             }
         };
         base.getActivity().runOnUiThread(r);
@@ -333,6 +337,7 @@ public final class PdfSurfaceView extends android.view.SurfaceView implements IV
      */
     @Override
     public final void redrawView() {
+        EventBus.getDefault().post(new MessagePageXY(MessagePageXY.TYPE_HIDE));
         redrawView(new ViewState(base.getDocumentController()));
     }
 
@@ -347,6 +352,7 @@ public final class PdfSurfaceView extends android.view.SurfaceView implements IV
                 ds.updateViewState(viewState);
             }
         }
+
     }
 
     @Override

@@ -202,7 +202,7 @@ public class PageImaveView extends View {
     }
 
     @Subscribe
-    public void onInvalidate(MessagePageXY event) {
+    public void onSelectTextByAnchors(MessagePageXY event) {
         if (pageNumber == event.getPage() && MessagePageXY.TYPE_SELECT_TEXT == event.getType()) {
             selectText(event.getX1(), event.getY1(), event.getX(), event.getY());
         }

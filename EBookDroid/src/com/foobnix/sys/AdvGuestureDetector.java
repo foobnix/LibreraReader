@@ -8,6 +8,8 @@ import org.ebookdroid.common.touch.IMultiTouchListener;
 import org.ebookdroid.common.touch.TouchManager;
 import org.ebookdroid.core.AbstractViewController;
 import org.ebookdroid.core.codec.Annotation;
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
 
 import com.foobnix.android.utils.Dips;
 import com.foobnix.android.utils.LOG;
@@ -19,6 +21,7 @@ import com.foobnix.pdf.info.model.AnnotationType;
 import com.foobnix.pdf.info.view.BrightnessHelper;
 import com.foobnix.pdf.info.wrapper.AppState;
 import com.foobnix.pdf.info.wrapper.DocumentController;
+import com.foobnix.pdf.search.activity.msg.MessagePageXY;
 
 import android.content.Context;
 import android.graphics.Rect;
@@ -53,6 +56,7 @@ public class AdvGuestureDetector extends SimpleOnGestureListener implements IMul
         clickUtils = new ClickUtils();
         updateBorders();
         brightnessHelper = new BrightnessHelper();
+        EventBus.getDefault().register(this);
     }
 
     public void updateBorders() {
@@ -62,12 +66,15 @@ public class AdvGuestureDetector extends SimpleOnGestureListener implements IMul
     public IGestureDetector innerDetector = new IGestureDetector() {
 
         float x, y;
+        float xInit, yInit;
 
         @Override
         public boolean onTouchEvent(MotionEvent ev) {
             if (ev.getAction() == MotionEvent.ACTION_DOWN) {
                 x = ev.getX();
                 y = ev.getY();
+                xInit = ev.getX();
+                yInit = ev.getY();
             }
             if (ev.getAction() == MotionEvent.ACTION_UP) {
                 if (isLongMovement) {
@@ -82,6 +89,9 @@ public class AdvGuestureDetector extends SimpleOnGestureListener implements IMul
                 AppState.get().selectedText = avc.processLongTap(false, null, ev, true);
                 x = ev.getX();
                 y = ev.getY();
+
+                EventBus.getDefault().post(new MessagePageXY(MessagePageXY.TYPE_SHOW, -1, xInit, yInit, x, y));
+
             }
             return false;
         }
@@ -188,6 +198,7 @@ public class AdvGuestureDetector extends SimpleOnGestureListener implements IMul
                         docCtrl.clearSelectedText();
                         // docCtrl.closeFooterNotesDialog();
                         AppState.get().selectedText = null;
+                        EventBus.getDefault().post(new MessagePageXY(MessagePageXY.TYPE_HIDE));
 
                     }
                 }
@@ -200,6 +211,7 @@ public class AdvGuestureDetector extends SimpleOnGestureListener implements IMul
                 return false;
             }
         }
+
         if (clickUtils.isClickRight(e.getX(), e.getY())) {
             docCtrl.onRightPress();
 
@@ -254,6 +266,8 @@ public class AdvGuestureDetector extends SimpleOnGestureListener implements IMul
                 avc.getView().redrawView();
 
             }
+
+
             return true;
         } catch (Exception e) {
             return false;
@@ -280,6 +294,8 @@ public class AdvGuestureDetector extends SimpleOnGestureListener implements IMul
             avc.getView().scrollBy(0, (int) y);
 
         }
+
+
         return true;
     }
 
@@ -315,6 +331,16 @@ public class AdvGuestureDetector extends SimpleOnGestureListener implements IMul
         AppState.get().selectedText = avc.processLongTap(true, e, e, true);
     }
 
+    @Subscribe
+    public void onSelectTextByAnchors(MessagePageXY event) {
+        if (MessagePageXY.TYPE_SELECT_TEXT == event.getType()) {
+            MotionEvent e1 = MotionEvent.obtain(0, 0, 0, event.getX(), event.getY(), 0);
+            MotionEvent e2 = MotionEvent.obtain(0, 0, 0, event.getX1(), event.getY1(), 0);
+            AppState.get().selectedText = avc.processLongTap(false, e1, e2, true);
+        }
+
+    }
+
     /**
      * {@inheritDoc}
      * 
@@ -336,6 +362,7 @@ public class AdvGuestureDetector extends SimpleOnGestureListener implements IMul
             time = System.currentTimeMillis();
             avc.base.getZoomModel().scaleZoom(factor);
         }
+
 
     }
 

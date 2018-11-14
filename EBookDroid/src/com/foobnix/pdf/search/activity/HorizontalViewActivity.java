@@ -218,8 +218,8 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
         anchorX = (ImageView) findViewById(R.id.anchorX);
         anchorY = (ImageView) findViewById(R.id.anchorY);
 
-        TintUtil.setTintImageWithAlpha(anchorX, AppState.get().isDayNotInvert ? Color.BLUE : Color.YELLOW);
-        TintUtil.setTintImageWithAlpha(anchorY, AppState.get().isDayNotInvert ? Color.BLUE : Color.YELLOW);
+        TintUtil.setTintImageWithAlpha(anchorX, AppState.get().isDayNotInvert ? Color.BLUE : Color.YELLOW, 150);
+        TintUtil.setTintImageWithAlpha(anchorY, AppState.get().isDayNotInvert ? Color.BLUE : Color.YELLOW, 150);
 
         anchorX.setVisibility(View.GONE);
         anchorY.setVisibility(View.GONE);

@@ -23,6 +23,7 @@ import org.ebookdroid.core.codec.PageLink;
 import org.ebookdroid.droids.mupdf.codec.MuPdfLinks;
 import org.ebookdroid.droids.mupdf.codec.TextWord;
 import org.ebookdroid.ui.viewer.ViewerActivityController;
+import org.greenrobot.eventbus.EventBus;
 
 import com.foobnix.android.utils.Dips;
 import com.foobnix.android.utils.LOG;
@@ -36,6 +37,7 @@ import com.foobnix.pdf.info.model.OutlineLinkWrapper;
 import com.foobnix.pdf.info.widget.PrefDialogs;
 import com.foobnix.pdf.info.wrapper.AppState;
 import com.foobnix.pdf.info.wrapper.DocumentController;
+import com.foobnix.pdf.search.activity.msg.MessagePageXY;
 
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -139,6 +141,7 @@ public class VerticalModeController extends DocumentController {
 
     @Override
     public void clearSelectedText() {
+        EventBus.getDefault().post(new MessagePageXY(MessagePageXY.TYPE_HIDE));
         ctr.getDocumentController().clearSelectedText();
     }
 
