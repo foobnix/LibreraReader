@@ -2007,6 +2007,7 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
 
             int repeatCount = event.getRepeatCount();
             if (repeatCount >= 1 && repeatCount < DocumentController.REPEAT_SKIP_AMOUNT) {
+                isMyKey = true;
                 return true;
             }
             if (AppState.get().isZoomInOutWithVolueKeys) {
