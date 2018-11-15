@@ -2,6 +2,7 @@ package com.foobnix.pdf.search.view;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 import com.foobnix.android.utils.Apps;
 import com.foobnix.android.utils.TxtUtils;
@@ -69,9 +70,8 @@ public class CloseAppDialog {
 
         topLayout.setBackgroundColor(TintUtil.color);
 
-        // topLayout.setVisibility(TxtUtils.visibleIf(AppState.get().isShowRateUsOnExit
-        // && TimeUnit.MILLISECONDS.toDays(delta) > 2));
-        topLayout.setVisibility(View.VISIBLE);
+        topLayout.setVisibility(TxtUtils.visibleIf(AppState.get().isShowRateUsOnExit && TimeUnit.MILLISECONDS.toDays(delta) > 2));
+        // topLayout.setVisibility(View.VISIBLE);
         onAsk.setOnClickListener(new View.OnClickListener() {
 
             @Override

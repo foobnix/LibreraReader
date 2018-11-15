@@ -2064,6 +2064,7 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
 
     @Override
     public boolean onKeyDown(final int keyCode1, final KeyEvent event) {
+
         int keyCode = event.getKeyCode();
         if (keyCode == 0) {
             keyCode = event.getScanCode();

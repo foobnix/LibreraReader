@@ -42,7 +42,7 @@ public class DraggbleTouchListener implements OnTouchListener {
         anchor.setOnTouchListener(this);
     }
 
-    long time;
+    long time, time1;
 
     private Runnable onEventDetected;
 
@@ -114,7 +114,11 @@ public class DraggbleTouchListener implements OnTouchListener {
             }
 
             if (onMove != null) {
-                onMove.run();
+                long d = System.currentTimeMillis() - time1;
+                if (d > 50) {
+                    time1 = System.currentTimeMillis();
+                    onMove.run();
+                }
             }
 
         }
