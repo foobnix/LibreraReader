@@ -35,13 +35,19 @@ public class AndroidWhatsNew {
     private static final String BETA = "beta-";
     private static final String WIKI_URL = "http://librera.mobi/wiki/what-is-new/%s/#%s";
 
-    public static String getLangUrl(String url, String lang) {
+    public static String getLangUrl(Context c, String url, String lang) {
 
         List<String> lns = Arrays.asList("ar", "de", "es", "fr", "it", "pt", "ru", "zh");
+
+        url += "?p=" + Apps.getPackageName(c);
+        url += "&v=" + Apps.getVersionName(c);
+        url += "&ln=" + lang;
+        url += "&beta=" + AppsConfig.IS_BETA;
 
         if (lns.contains(lang)) {
             url = url.replace("#", lang + "#");
         }
+
         LOG.d("getLangUrl", url);
         return url;
 
@@ -60,7 +66,7 @@ public class AndroidWhatsNew {
             String shortVersion = versionName.substring(0, versionName.lastIndexOf("."));
             String url = String.format(WIKI_URL, shortVersion, shortVersion.replace(".", ""));
             LOG.d("Show2", url);
-            wv.loadUrl(getLangUrl(url, AppState.get().appLang));
+            wv.loadUrl(getLangUrl(c, url, AppState.get().appLang));
         } catch (Exception e) {
             LOG.e(e);
             wv.loadUrl(DETAIL_URL_RU);
@@ -83,7 +89,7 @@ public class AndroidWhatsNew {
             @Override
             public void onClick(View v) {
                 try {
-                    Urls.open(c, getLangUrl(c.getString(R.string.wiki_url), AppState.get().appLang));
+                    Urls.open(c, getLangUrl(c, c.getString(R.string.wiki_url), AppState.get().appLang));
                 } catch (Exception e) {
                     LOG.e(e);
                 }
