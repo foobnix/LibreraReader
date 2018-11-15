@@ -411,7 +411,9 @@ public class PageImaveView extends View {
 
                     if (isLognPress) {
                         String selectText = selectText(event.getX(), event.getY(), xInit, yInit);
-                        EventBus.getDefault().post(new MessagePageXY(MessagePageXY.TYPE_SHOW, -1, xInit, yInit, event.getX(), event.getY()));
+                        if (selectText.contains(" ")) {
+                            EventBus.getDefault().post(new MessagePageXY(MessagePageXY.TYPE_SHOW, -1, xInit, yInit, event.getX(), event.getY()));
+                        }
                     } else {
 
                         if (AppState.get().isLocked) {
