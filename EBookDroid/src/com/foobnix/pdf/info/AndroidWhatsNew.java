@@ -33,20 +33,30 @@ public class AndroidWhatsNew {
     public static final String DETAIL_URL_RU = "http://librera.mobi/wiki";
     private static final String BETA_TXT = "changelog.txt";
     private static final String BETA = "beta-";
-    private static final String WIKI_URL = "http://librera.mobi/wiki/what-is-new/%s/#%s";
+    private static final String WIKI_URL = "http://librera.mobi/wiki/what-is-new/%s/";
 
-    public static String getLangUrl(Context c, String url, String lang) {
+    public static String getLangUrl(Context c) {
+
+        String versionName = Apps.getVersionName(c);
+        String shortVersion = versionName.substring(0, versionName.lastIndexOf("."));
+        String url = String.format(WIKI_URL, shortVersion);
 
         List<String> lns = Arrays.asList("ar", "de", "es", "fr", "it", "pt", "ru", "zh");
-
-        url += "?p=" + Apps.getPackageName(c);
-        url += "&v=" + Apps.getVersionName(c);
-        url += "&ln=" + lang;
-        url += "&beta=" + AppsConfig.IS_BETA;
-
-        if (lns.contains(lang)) {
-            url = url.replace("#", lang + "#");
+        String appLang = AppState.get().appLang;
+        if (appLang.equals(AppState.MY_SYSTEM_LANG)) {
+            appLang = Urls.getLangCode();
         }
+
+        if (lns.contains(appLang)) {
+            url += appLang;
+        }
+
+        url += "?utm_p=" + Apps.getPackageName(c);
+        url += "&utm_v=" + Apps.getVersionName(c);
+        url += "&utm_ln=" + appLang;
+        url += "&utm_beta=" + AppsConfig.IS_BETA;
+
+        url += "#" + shortVersion.replace(".", "");
 
         LOG.d("getLangUrl", url);
         return url;
@@ -61,16 +71,7 @@ public class AndroidWhatsNew {
         wv.getSettings().setUserAgentString(OPDS.USER_AGENT);
         wv.getSettings().setJavaScriptEnabled(true);
 
-        try {
-            String versionName = Apps.getVersionName(c);
-            String shortVersion = versionName.substring(0, versionName.lastIndexOf("."));
-            String url = String.format(WIKI_URL, shortVersion, shortVersion.replace(".", ""));
-            LOG.d("Show2", url);
-            wv.loadUrl(getLangUrl(c, url, AppState.get().appLang));
-        } catch (Exception e) {
-            LOG.e(e);
-            wv.loadUrl(DETAIL_URL_RU);
-        }
+        wv.loadUrl(getLangUrl(c));
 
         wv.setFocusable(true);
         wv.setWebViewClient(new WebViewClient() {
@@ -89,7 +90,7 @@ public class AndroidWhatsNew {
             @Override
             public void onClick(View v) {
                 try {
-                    Urls.open(c, getLangUrl(c, c.getString(R.string.wiki_url), AppState.get().appLang));
+                    Urls.open(c, getLangUrl(c));
                 } catch (Exception e) {
                     LOG.e(e);
                 }

@@ -2623,11 +2623,12 @@ public class DragingDialogs {
                             controller.getString(R.string.bottom) //
                     );//
 
+                    final View statusBarPositionParent = inflate.findViewById(R.id.statusBarPositionParent);
                     final TextView statusBarPosition = (TextView) inflate.findViewById(R.id.statusBarPosition);
                     statusBarPosition.setText(modeStrings.get(modeIds.indexOf(AppState.get().statusBarPosition)));
                     TxtUtils.underlineTextView(statusBarPosition);
 
-                    statusBarPosition.setVisibility(TxtUtils.visibleIf(controller.getActivity() instanceof HorizontalViewActivity));
+                    statusBarPositionParent.setVisibility(TxtUtils.visibleIf(controller.getActivity() instanceof HorizontalViewActivity));
 
                     statusBarPosition.setOnClickListener(new OnClickListener() {
 
