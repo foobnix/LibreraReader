@@ -77,16 +77,16 @@
 			match=' android:roundIcon="@mipmap/launcher_2"' replace='android:roundIcon="${adaptive.icon}"' />
 
 		<replaceregexp file="../EbookaPDF/AndroidManifest.xml"
-			match='android:mipmap="@mipmap/launcher_classic"' replace='android:roundIcon="${adaptive.icon}"' />
+			match='android:roundIcon="@mipmap/launcher_classic"' replace='android:roundIcon="${adaptive.icon}"' />
 
 		<replaceregexp file="../EbookaPDF/AndroidManifest.xml"
-			match='android:mipmap="@mipmap/launcher_droid"' replace='android:roundIcon="${adaptive.icon}"' />
+			match='android:roundIcon="@mipmap/launcher_droid"' replace='android:roundIcon="${adaptive.icon}"' />
 		
 		<replaceregexp file="../EbookaPDF/AndroidManifest.xml"
-			match='android:mipmap="@mipmap/launcher_pro"' replace='android:roundIcon="${adaptive.icon}"' />
+			match='android:roundIcon="@mipmap/launcher_pro"' replace='android:roundIcon="${adaptive.icon}"' />
 	
 	    <replaceregexp file="../EbookaPDF/AndroidManifest.xml"
-			match='android:mipmap="@mipmap/launcher_reader"' replace='android:roundIcon="${adaptive.icon}"' />
+			match='android:roundIcon="@mipmap/launcher_reader"' replace='android:roundIcon="${adaptive.icon}"' />
 	    
 
 		<!-- section 5 -->
@@ -412,7 +412,7 @@
 
 		<property name="pdf.package" value="${package.pro}" />
 		<property name="pdf.icon" value="@mipmap/icon_pdf_pro" />
-		<property name="pdf.icon" value="@mipmap/launcher_pro" />
+		<property name="adaptive.icon" value="@mipmap/launcher_pro" />
 		<property name="pdf.app.name" value="${name.pro}" />
 		<property name="pdf.export.name" value="${name.pro}-PRO" />
 
@@ -442,7 +442,7 @@
 	    
 	 <property name="pdf.package" value="${package.pro}" />
 		<property name="pdf.icon" value="@mipmap/icon_pdf_pro" />
-		<property name="pdf.icon" value="@mipmap/icon_pdf_pro" />
+		<property name="adaptive.icon" value="@mipmap/launcher_pro" />
 		<property name="pdf.app.name" value="${name.pro}" />
 		<property name="pdf.export.name" value="${name.pro}-PRO" />
 		
