@@ -402,6 +402,7 @@ public class PageImaveView extends View {
                 isReadyForMove = false;
                 isLognPress = false;
                 isMoveNextPrev = 0;
+                EventBus.getDefault().post(new MessagePageXY(MessagePageXY.TYPE_HIDE));
             } else if (action == MotionEvent.ACTION_MOVE) {
                 if (event.getPointerCount() == 1) {
                     LOG.d("TEST", "action ACTION_MOVE 1");
@@ -410,9 +411,7 @@ public class PageImaveView extends View {
 
                     if (isLognPress) {
                         String selectText = selectText(event.getX(), event.getY(), xInit, yInit);
-                        if (selectText.contains(" ")) {
-                            EventBus.getDefault().post(new MessagePageXY(MessagePageXY.TYPE_SHOW, -1, xInit, yInit, event.getX(), event.getY()));
-                        }
+                        EventBus.getDefault().post(new MessagePageXY(MessagePageXY.TYPE_SHOW, -1, xInit, yInit, event.getX(), event.getY()));
                     } else {
 
                         if (AppState.get().isLocked) {
@@ -532,7 +531,7 @@ public class PageImaveView extends View {
                 if (isLognPress) {
                     String selectText = selectText(event.getX(), event.getY(), xInit, yInit);
                     if (selectText.contains(" ")) {
-                    EventBus.getDefault().post(new MessagePageXY(MessagePageXY.TYPE_SHOW, -1, xInit, yInit, event.getX(), event.getY()));
+                        EventBus.getDefault().post(new MessagePageXY(MessagePageXY.TYPE_SHOW, -1, xInit, yInit, event.getX(), event.getY()));
                     }
 
                 } else if (AppState.get().isTextFormat()) {

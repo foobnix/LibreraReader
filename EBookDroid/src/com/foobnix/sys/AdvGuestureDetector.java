@@ -63,6 +63,8 @@ public class AdvGuestureDetector extends SimpleOnGestureListener implements IMul
         clickUtils.initMusician();
     }
 
+    long time2 = 0;
+
     public IGestureDetector innerDetector = new IGestureDetector() {
 
         float x, y;
@@ -90,7 +92,11 @@ public class AdvGuestureDetector extends SimpleOnGestureListener implements IMul
                 x = ev.getX();
                 y = ev.getY();
 
-                EventBus.getDefault().post(new MessagePageXY(MessagePageXY.TYPE_SHOW, -1, xInit, yInit, x, y));
+                long d = System.currentTimeMillis() - time2;
+                if (d > 25) {
+                    time2 = System.currentTimeMillis();
+                    EventBus.getDefault().post(new MessagePageXY(MessagePageXY.TYPE_SHOW, -1, xInit, yInit, x, y));
+                }
 
             }
             return false;
@@ -121,7 +127,7 @@ public class AdvGuestureDetector extends SimpleOnGestureListener implements IMul
 
     @Override
     public boolean onDown(final MotionEvent e) {
-
+        EventBus.getDefault().post(new MessagePageXY(MessagePageXY.TYPE_HIDE));
         isScrollFinished = avc.getView().getScroller().isFinished();
         if (!isScrollFinished) {
             avc.getView().getScroller().forceFinished(true);
@@ -267,7 +273,6 @@ public class AdvGuestureDetector extends SimpleOnGestureListener implements IMul
 
             }
 
-
             return true;
         } catch (Exception e) {
             return false;
@@ -294,7 +299,6 @@ public class AdvGuestureDetector extends SimpleOnGestureListener implements IMul
             avc.getView().scrollBy(0, (int) y);
 
         }
-
 
         return true;
     }
@@ -362,7 +366,6 @@ public class AdvGuestureDetector extends SimpleOnGestureListener implements IMul
             time = System.currentTimeMillis();
             avc.base.getZoomModel().scaleZoom(factor);
         }
-
 
     }
 
