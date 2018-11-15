@@ -1,6 +1,6 @@
 ---
 layout: main
-version: 7
+version: 8
 ---
 [Cosa c'è di nuovo](/wiki/what-is-new/it)
 
@@ -8,6 +8,7 @@ version: 7
 
 **Nuove funzionalità**
 
+* Selezione del testo con indicatori di inizio e fine
 * Modalità di lettura veloce RSVP (Rapid Serial Visual Presentation) (w / a twist!)
 * Selezione del testo e ricerca nei documenti DjVu
 * Opzione per cambiare la posizione della barra di stato (Superiore o Inferiore) in modalità Libro
@@ -23,25 +24,35 @@ La lettura di * TTS si interrompe se il dispositivo Bluetooth viene disconnesso
 
 Iscriviti al **Librera Reader** canale Telegram [https://t.me/LibreraReader](https://t.me/LibreraReader). Puoi essere il primo a conoscere i nostri ultimi sviluppi, non perdere mai le novità più recenti, gli annunci e altre cose interessanti sulle nuove funzionalità e funzionalità di Librera.
 
+**Selezione del testo con i marcatori di inizio e fine**
 
-**Velocità di lettura RSVP (Rapid Serial Visual Presentation)**
+* Se l'utente seleziona più gli indicatori di una parola diventano visibili.
+* È possibile selezionare il testo **per le lettere** o **per le parole**
+* Puoi muovere i segnalini in tempo reale
 
-La lettura veloce consente di aumentare la velocità di lettura a 700 parole al minuto (WPM) leggendo le pagine di una parola per riga.
-Maggiori informazioni si possono trovare in [Speed   reading section](/wiki/manual/Rapid-Serial-Visual-Presentation/it)
+||||
+|-|-|-|
+|![](4.png)|![](5.png)|![](6.png)|
 
 
-* RSVP può essere aperto dal menu del libro
-* Clic singolo per iniziare la lettura veloce
-* 30 campioni CPL
+**RSVP (Rapid Serial Visual Presentation) Lettura / Lettura velocità**
+
+La lettura veloce con **Librera** consente di migliorare la velocità di lettura fino a 700 parole al minuto (WPM) implementando il metodo RSVP.
+Si prega di seguire il link per trovare maggiori informazioni sull'argomento [Speed   reading section](/wiki/manual/Rapid-Serial-Visual-Presentation/it)
+
+
+* La modalità RSVP può essere avviata dal menu del libro (lettura veloce)
+* Velocità di lettura con un solo tocco
+* Regola la lunghezza della linea minima: fino a 30 CPL
 
 ||||
 |-|-|-|
 |![](/wiki/manual/Rapid-Serial-Visual-Presentation/1.png)|![](/wiki/manual/Rapid-Serial-Visual-Presentation/2.png)|![](/wiki/manual/Rapid-Serial-Visual-Presentation/3.png)|
 
-**Posizione barra di stato (superiore o inferiore) in modalità Libro**
+**Posizione barra di stato (superiore o inferiore) in modalità libro**
 
-* Barra di stato inferiore (per impostazione predefinita)
-* Cambia l'impostazione della posizione
+* La barra di stato è in fondo per impostazione predefinita
+* Seleziona la sua posizione dall'elenco a discesa
 * Barra di stato in alto
 
 ||||
@@ -49,18 +60,23 @@ Maggiori informazioni si possono trovare in [Speed   reading section](/wiki/manu
 |![](1.png)|![](2.png)|![](3.png)|
 
 
-**Apri cartella con immagini come libro (rilegatura in un libro)**
+**Apri cartella con le immagini come libro (rilegatura in un libro)**
 
-È facile aprire qualsiasi cartella con immagini come un libro virtuale nell'applicazione Librera.
+Per aprire una cartella come un libro, vai ad essa nella scheda Cartelle e tocca il suo nome. Se contiene almeno un file immagine, vedrai l'opzione Bind in un libro.
 
 
-* Apri la cartella con le immagini e collegale in un libro
-* Cartella con immagini come il libro virtuale
-* Aggiungi bordi, contrasto e luminosità del ritaglio bianco
+* Apri una cartella con immagini e uniscile in un libro
+* Cartella con immagini aperte come libro virtuale
+* Ritaglia lo spazio bianco, regola il contrasto e la luminosità, ecc.
 
 ||||
 |-|-|-|
 |![](/wiki/manual/Open-Folder-With-Images-As-A-Book/1.png)|![](/wiki/manual/Open-Folder-With-Images-As-A-Book/2.png)|![](/wiki/manual/Open-Folder-With-Images-As-A-Book/3.png)|
 
+
+# Cosa c'è di nuovo nel lettore di libri Librera
+
+* [Versione 7.11](/wiki/what-is-new/7.11/it)
+* [Versione 7.10](/wiki/what-is-new/7.10/it)
 
 

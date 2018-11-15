@@ -15,8 +15,9 @@ public class WikiTest {
         in = "**Fixes**";
         in = "**Speed reading RSVP (Rapid Serial Visual Presentation)**";
         in = "**Status bar position (Top or Bottom) in Book mode**";
+        in = "[What is new](/wiki/what-is-new)";
 
-        String ln = "fr";
+        String ln = "ru";
 
         System.out.println(in);
         String out = WikiTranslate.traslateMD(in, ln);

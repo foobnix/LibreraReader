@@ -7,6 +7,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Arrays;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -55,7 +56,7 @@ public class WikiTranslate {
         map.put("* ", "{4}");
         map.put("**", "{6}");
 
-        Map<String, String> reverse = new HashMap<>();
+        Map<String, String> reverse = new LinkedHashMap<>();
         reverse.put("{1} ", "# ");
 
         reverse.put(" {2}", "**");
@@ -79,6 +80,7 @@ public class WikiTranslate {
             url = url.replace("/)", ")").replace(")", "/" + ln + ")");
 
             System.out.println("url:" + url);
+            reverse.put("   {5}", url);
             reverse.put(" {5}", url);
             in = in.substring(0, index + 1) + "{5}" + in.substring(in.indexOf(")", index) + 1);
         }

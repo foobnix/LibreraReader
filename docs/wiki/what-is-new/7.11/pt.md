@@ -1,6 +1,6 @@
 ---
 layout: main
-version: 7
+version: 8
 ---
 [O que há de novo](/wiki/what-is-new/pt)
 
@@ -8,6 +8,7 @@ version: 7
 
 **Novos recursos**
 
+* Selecionando texto com marcadores de início e fim
 * RSVP (Rapid Serial Visual Presentation) modo de leitura de velocidade (w / a torção!)
 * Seleção de texto e pesquisa em documentos do DjVu
 * Opção para alterar a posição da barra de status (superior ou inferior) no modo de livro
@@ -23,16 +24,26 @@ version: 7
 
 Inscreva-se no canal Telegram do **Librera Reader** [https://t.me/LibreraReader](https://t.me/LibreraReader). Seja o primeiro a aprender sobre nossos últimos desenvolvimentos, nunca perca as notícias mais recentes, anúncios e outras coisas interessantes sobre os novos recursos e funcionalidades do Librera.
 
+**Selecionando texto com marcadores de início e fim**
 
-**Speed   reading RSVP (Apresentação Visual Serial Rápida)**
+* Se o usuário selecionar mais os marcadores de uma palavra se tornam visíveis.
+* É possível selecionar o texto **por letras** ou **por palavras**
+* Você pode mover marcadores em tempo real
 
-A velocidade de leitura permite que você aumente a leitura de velocidade para 700 palavras por minuto (WPM) lendo as páginas em uma palavra por linha.
-Mais informações você pode encontrar em [seção de leitura de velocidade](/wiki/manual/Rapid-Serial-Visual-Presentation/pt)
+||||
+|-|-|-|
+|![](4.png)|![](5.png)|![](6.png)|
 
 
-* RSVP pode ser aberto no menu de livros
-* Clique único para começar a leitura rápida
-* 30 amostras de CPL
+**RSVP (Rapid Serial Visual Presentation) leitura / leitura de velocidade**
+
+A velocidade de leitura com o **Librera** permite que você melhore sua velocidade de leitura para até 700 palavras por minuto (WPM), implementando o método RSVP.
+Por favor, siga o link para encontrar mais informações sobre o assunto [seção de leitura de velocidade](/wiki/manual/Rapid-Serial-Visual-Presentation/pt)
+
+
+* O modo RSVP pode ser iniciado a partir do menu de livros (velocidade de leitura)
+* Velocidade de leitura em apenas um toque
+* Ajuste o comprimento mínimo da linha: até 30 CPL
 
 ||||
 |-|-|-|
@@ -40,27 +51,32 @@ Mais informações você pode encontrar em [seção de leitura de velocidade](/w
 
 **Posição da barra de status (superior ou inferior) no modo de livro**
 
-* Barra de status inferior (por padrão)
-* Alterar a configuração da posição
-* Barra de status top
+* A barra de status está na parte inferior por padrão
+* Selecione sua posição na lista suspensa
+* Barra de status no topo
 
 ||||
 |-|-|-|
 |![](1.png)|![](2.png)|![](3.png)|
 
 
-**Abra a pasta com imagens como um livro (Vincule em um livro)**
+**Abrir pasta com imagens como um livro (vincular em um livro)**
 
-É fácil abrir qualquer pasta com imagens como um livro virtual no aplicativo Librera.
+Para abrir uma pasta como um livro, navegue até ela na guia Pastas e toque em seu nome. Se houver pelo menos um arquivo de imagem, você verá a opção Vincular em um livro.
 
 
-* Abra a pasta com imagens e vincule-a em um livro
-* Pasta com imagens como livro virtual
-* Adicionar bordas, contraste e brilho brancos da cultura
+* Abra uma pasta com imagens e vincule-as em um livro
+* Pasta com imagens abertas como um livro virtual
+* Recorte o espaço em branco, ajuste o contraste e o brilho etc.
 
 ||||
 |-|-|-|
 |![](/wiki/manual/Open-Folder-With-Images-As-A-Book/1.png)|![](/wiki/manual/Open-Folder-With-Images-As-A-Book/2.png)|![](/wiki/manual/Open-Folder-With-Images-As-A-Book/3.png)|
 
+
+# O que há de novo no leitor de livros Librera
+
+* [Versão 7.11](/wiki/what-is-new/7.11/pt)
+* [Versão 7.10](/wiki/what-is-new/7.10/pt)
 
 

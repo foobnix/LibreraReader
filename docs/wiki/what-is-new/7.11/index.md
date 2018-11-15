@@ -1,6 +1,6 @@
 ---
 layout: main
-version: 7
+version: 8
 ---
 [What is new](/wiki/what-is-new)
 
@@ -68,9 +68,15 @@ To open a folder as a book, navigate to it in the Folders tab and tap on its nam
 * Open a folder with images and bind them in a book
 * Folder w/ images opened as a virtual book 
 * Crop white space, adjust contrast and brightness, etc.
+
 ||||
 |-|-|-|
 |![](/wiki/manual/Open-Folder-With-Images-As-A-Book/1.png)|![](/wiki/manual/Open-Folder-With-Images-As-A-Book/2.png)|![](/wiki/manual/Open-Folder-With-Images-As-A-Book/3.png)|
 
+
+# What is new in Librera book reader
+
+* [Version 7.11](/wiki/what-is-new/7.11/)
+* [Version 7.10](/wiki/what-is-new/7.10/)
 
 

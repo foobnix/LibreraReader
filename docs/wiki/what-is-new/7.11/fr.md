@@ -1,6 +1,6 @@
 ---
 layout: main
-version: 7
+version: 8
 ---
 [Quoi de neuf](/wiki/what-is-new/fr)
 
@@ -8,6 +8,7 @@ version: 7
 
 **Nouvelles fonctionnalités**
 
+* Sélection de texte avec des marqueurs de début et de fin
 * Mode de lecture rapide RSVP (présentation visuelle en série rapide) (avec une torsion!)
 * Sélection de texte et recherche dans les documents DjVu
 * Option permettant de modifier la position de la barre d'état (haut ou bas) en mode Livre
@@ -21,18 +22,28 @@ version: 7
 * Règles de césure pour plus de langues
 * La lecture de la synthèse vocale s'arrête si votre périphérique Bluetooth est déconnecté.
 
-Abonnez-vous au **lecteur Librera** du canal télégramme [https://t.me/LibreraReader]. Soyez le premier à en apprendre davantage sur nos derniers développements, ne manquez jamais les dernières nouvelles, annonces et autres informations intéressantes relatives aux nouvelles fonctionnalités de Librera.
+Abonnez-vous au **lecteur Librera** du télégramme [https://t.me/LibreraReader](https://t.me/LibreraReader). Soyez le premier à en apprendre davantage sur nos derniers développements, ne manquez jamais les dernières nouvelles, annonces et autres informations intéressantes relatives aux nouvelles fonctionnalités de Librera.
+
+**Sélection de texte avec des marqueurs de début et de fin**
+
+* Si l'utilisateur sélectionne plus, les marqueurs d'un mot deviennent visibles.
+* Il est possible de sélectionner du texte **par des lettres** ou **par des mots**.
+* Vous pouvez déplacer des marqueurs en temps réel
+
+||||
+|-|-|-|
+|![](4.png)|![](5.png)|![](6.png)|
 
 
-**Lecture rapide RSVP (présentation visuelle en série rapide)**
+**Lecture RSVP (présentation visuelle en série rapide) / Lecture rapide**
 
-La lecture rapide vous permet d'augmenter la vitesse de lecture à 700 mots par minute (WPM) en lisant des pages d'un mot par ligne.
-Vous trouverez plus d’informations dans [Section de lecture rapide](/wiki/manual/Rapid-Serial-Visual-Presentation/fr)
+La lecture rapide avec **Librera** vous permet d’améliorer votre vitesse de lecture jusqu’à 700 mots par minute (WPM) en implémentant la méthode RSVP.
+Suivez le lien pour trouver plus d'informations sur le sujet [section de lecture rapide](/wiki/manual/Rapid-Serial-Visual-Presentation/fr)
 
 
-* RSVP peut être ouvert à partir du menu du livre
-* Un seul clic pour commencer la lecture rapide
-* 30 exemple CPL
+* Le mode RSVP peut être lancé à partir du menu du livre (Lecture rapide)
+* Lecture rapide en un seul clic
+* Ajuster la longueur de ligne minimale: jusqu'à 30 CPL
 
 ||||
 |-|-|-|
@@ -40,8 +51,8 @@ Vous trouverez plus d’informations dans [Section de lecture rapide](/wiki/manu
 
 **Position de la barre d'état (haut ou bas) en mode Livre**
 
-* Barre d'état en bas (par défaut)
-* Modifier le paramètre de position
+* La barre d'état est en bas par défaut
+* Sélectionnez sa position dans la liste déroulante
 * Barre d'état en haut
 
 ||||
@@ -49,18 +60,23 @@ Vous trouverez plus d’informations dans [Section de lecture rapide](/wiki/manu
 |![](1.png)|![](2.png)|![](3.png)|
 
 
-**Ouvrir un dossier contenant des images sous forme de livre (à relier dans un livre)**
+**Ouvrir un dossier avec des images sous forme de livre (relié dans un livre)**
 
-Il est facile d'ouvrir n'importe quel dossier avec des images, comme un livre virtuel dans l'application Librera.
+Pour ouvrir un dossier sous forme de livre, accédez à l'onglet Dossiers et appuyez sur son nom. S'il contient au moins un fichier image, l'option Liaison dans un livre apparaît.
 
 
-* Ouvrir le dossier avec les images et le lier dans un livre
-* Dossier contenant des images comme un livre virtuel
-* Ajoutez des bordures de rognage blanches, le contraste et la luminosité
+* Ouvrir un dossier contenant des images et les lier dans un livre.
+* Dossier avec images ouvert en tant que livre virtuel
+* Recadrer les espaces blancs, régler le contraste et la luminosité, etc.
 
 ||||
 |-|-|-|
 |![](/wiki/manual/Open-Folder-With-Images-As-A-Book/1.png)|![](/wiki/manual/Open-Folder-With-Images-As-A-Book/2.png)|![](/wiki/manual/Open-Folder-With-Images-As-A-Book/3.png)|
 
+
+# Quoi de neuf dans le lecteur de livre Librera
+
+* [Version 7.11](/wiki/what-is-new/7.11/fr)
+* [Version 7.10](/wiki/what-is-new/7.10/fr)
 
 

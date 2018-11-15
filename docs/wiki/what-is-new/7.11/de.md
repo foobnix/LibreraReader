@@ -1,6 +1,6 @@
 ---
 layout: main
-version: 7
+version: 8
 ---
 [Was ist neu](/wiki/what-is-new/de)
 
@@ -8,6 +8,7 @@ version: 7
 
 **Neue Funktionen**
 
+* Auswählen von Text mit Start- und Endmarkierungen
 * RSVP (Rapid Serial Visual Presentation) - Geschwindigkeitslesemodus (mit einer Drehung!)
 * Textauswahl und Suche in DjVu-Dokumenten
 * Option zum Ändern der Statusleiste (oben oder unten) im Buchmodus
@@ -17,22 +18,32 @@ version: 7
 **Korrekturen**
 
 * Deckblatterstellung für große Bücher von AZW und AZW3
-* Adaptives Anwendungssymbol in Übereinstimmung mit den neuesten Android 8+-Trends
+* Adaptives Anwendungssymbol in Übereinstimmung mit den neuesten Android 8+ -Trends
 * Trennungsregeln für mehr Sprachen
 * Das TTS-Lesen stoppt, wenn Ihr Bluetooth-Gerät getrennt wird
 
 Abonnieren Sie den **Librera Reader** -Telegrammkanal [https://t.me/LibreraReader((ttps://t.me/LibreraReader)). Erfahren Sie als Erster die neuesten Entwicklungen, verpassen Sie nie die neuesten Nachrichten, Ankündigungen und andere interessante Informationen zu den neuen Funktionen und Funktionen von Librera.
 
+**Auswählen von Text mit Start- und Endmarkierungen**
 
-**Kurzzeit-RSVP (Rapid Serial Visual Presentation)**
+* Wenn der Benutzer mehrere Wortmarken auswählt, werden diese sichtbar.
+* Es ist möglich, Text **durch Buchstaben** oder **durch Wörter** auszuwählen.
+* Sie können Markierungen in Echtzeit verschieben
 
-Durch die Geschwindigkeitsmessung können Sie die Geschwindigkeit beim Lesen auf 700 Wörter pro Minute (WPM) um ein Wort pro Zeile erhöhen.
-Weitere Informationen finden Sie im Abschnitt [Geschwindigkeitsablesung](/wiki/manual/Rapid-Serial-Visual-Presentation/de).
+||||
+|-|-|-|
+|![](4.png)|![](5.png)|![](6.png)|
 
 
-* RSVP kann über das Buchmenü geöffnet werden
-* Einfacher Klick, um schnelles Lesen zu beginnen
-* 30 CPL-Stichprobe
+**RSVP (Rapid Serial Visual Presentation) Lesen / Geschwindigkeitslesen**
+
+Durch das Lesen der Geschwindigkeit mit **Librera** können Sie die Lesegeschwindigkeit auf bis zu 700 Wörter pro Minute (WPM) verbessern, indem Sie die RSVP-Methode verwenden.
+Bitte folgen Sie dem Link, um weitere Informationen zum Thema zu erhalten [Abschnitt Geschwindigkeitsmessung](/wiki/manual/Rapid-Serial-Visual-Presentation/de)
+
+
+* Der RSVP-Modus kann über das Buchmenü gestartet werden (Geschwindigkeit lesen).
+* Geschwindigkeitsmessung mit nur einem Tastendruck
+* Minimale Zeilenlänge einstellen: bis zu 30 CPL
 
 ||||
 |-|-|-|
@@ -40,8 +51,8 @@ Weitere Informationen finden Sie im Abschnitt [Geschwindigkeitsablesung](/wiki/m
 
 **Statusleiste (oben oder unten) im Buchmodus**
 
-* Statusleiste unten (standardmäßig)
-* Ändern Sie die Positionseinstellung
+* Die Statusleiste befindet sich standardmäßig unten
+* Wählen Sie seine Position aus der Dropdown-Liste aus
 * Statusleiste oben
 
 ||||
@@ -49,18 +60,23 @@ Weitere Informationen finden Sie im Abschnitt [Geschwindigkeitsablesung](/wiki/m
 |![](1.png)|![](2.png)|![](3.png)|
 
 
-**Ordner mit Bildern als Buch öffnen (In ein Buch binden)**
+**Ordner mit Bildern als Buch öffnen (In einem Buch binden)**
 
-Es ist einfach, jeden Ordner mit Bildern wie einem virtuellen Buch in der Librera-Anwendung zu öffnen.
+Um einen Ordner als Buch zu öffnen, navigieren Sie auf der Registerkarte Ordner zu diesem Ordner und tippen Sie auf den Namen. Wenn es mindestens eine Bilddatei enthält, wird die Option In ein Buch binden angezeigt.
 
 
-* Ordner mit Bildern öffnen und in ein Buch einbinden
-* Ordner mit Bildern wie virtuelles Buch
-* Fügen Sie weiße Rahmen, Kontrast und Helligkeit hinzu
+* Öffnen Sie einen Ordner mit Bildern und binden Sie diese in ein Buch
+* Ordner mit Bildern, die als virtuelles Buch geöffnet wurden
+* Leerraum beschneiden, Kontrast und Helligkeit anpassen, usw.
 
 ||||
 |-|-|-|
 |![](/wiki/manual/Open-Folder-With-Images-As-A-Book/1.png)|![](/wiki/manual/Open-Folder-With-Images-As-A-Book/2.png)|![](/wiki/manual/Open-Folder-With-Images-As-A-Book/3.png)|
 
+
+# Was ist neu in Librera Book Reader?
+
+* [Version 7.11](/wiki/what-is-new/7.11/de)
+* [Version 7.10](/wiki/what-is-new/7.10/de)
 
 
