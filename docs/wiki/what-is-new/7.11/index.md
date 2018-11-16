@@ -24,11 +24,11 @@ version: 8
 
 Subscribe to the __Librera Reader__ Telegram channel [https://t.me/LibreraReader](https://t.me/LibreraReader). Be the first to learn about our latest developments, never miss out on the freshest news, announcements, and other interesting stuff regarding Librera's new features and functionality.
 
-**Selecting text with start and end markers**
+**Text Selection Handles**
 
-* If user selecting more the one word markers become visible.
-* It's possible to select text **by letters** or **by words**
-* You can move markers in real time
+* If the user selects more than one word, the text selection handles will appear
+* Text can be selected in either **letter-by-letter** or **word-by-word** fashion
+* Either handle (start or end) can be dragged separately, in real time
 
 ||||
 |-|-|-|
