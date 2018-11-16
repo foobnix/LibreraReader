@@ -115,7 +115,7 @@ public class DraggbleTouchListener implements OnTouchListener {
 
             if (onMove != null) {
                 long d = System.currentTimeMillis() - time1;
-                if (d > 50) {
+                if (d > 200) {
                     time1 = System.currentTimeMillis();
                     onMove.run();
                 }

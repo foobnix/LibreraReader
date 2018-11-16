@@ -973,7 +973,10 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
             anchorX.setVisibility(View.VISIBLE);
             anchorY.setVisibility(View.VISIBLE);
 
-            AnchorHelper.setXY(anchorX, event.getX(), event.getY());
+            float x = event.getX() - anchorX.getWidth();
+            float y = event.getY() - anchorX.getHeight() / 2;
+
+            AnchorHelper.setXY(anchorX, x, y);
             AnchorHelper.setXY(anchorY, event.getX1(), event.getY1());
 
         }

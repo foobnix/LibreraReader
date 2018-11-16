@@ -338,7 +338,11 @@ public class AdvGuestureDetector extends SimpleOnGestureListener implements IMul
     @Subscribe
     public void onSelectTextByAnchors(MessagePageXY event) {
         if (MessagePageXY.TYPE_SELECT_TEXT == event.getType()) {
-            MotionEvent e1 = MotionEvent.obtain(0, 0, 0, event.getX(), event.getY(), 0);
+
+            float x = event.getX() - Dips.DP_36;
+            float y = event.getY() - Dips.DP_36 / 2;
+
+            MotionEvent e1 = MotionEvent.obtain(0, 0, 0, x, y, 0);
             MotionEvent e2 = MotionEvent.obtain(0, 0, 0, event.getX1(), event.getY1(), 0);
             AppState.get().selectedText = avc.processLongTap(false, e1, e2, true);
         }
