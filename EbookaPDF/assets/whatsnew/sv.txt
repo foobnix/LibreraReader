@@ -1,7 +1,0 @@
-* En viktig uppdatering av PDF-läsare baserat på förfrågningar och återkoppling 
-* PDF-läsare med nytt gränssnitt för text-till-tal (TTS) 
-* Förbättrat stöd för EPUB 3.0, uppspelning av ljudfiler 
-* Multi-word-sökfrågor i alla format, inklusive PDF, DJVU 
-* Stöd för notched smartphones 
-* Statuslinjen legenden har nu tre alternativ att välja mellan: full, kompakt och kapitelinriktad 
-* Mer feedback och önskemål är mycket välkomna!

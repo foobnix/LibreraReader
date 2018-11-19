@@ -1,7 +1,0 @@
-* A major update of PDF Reader based on requests and feedback
-* PDF Reader with new Text-To-Speech (TTS) interface
-* Improved support for EPUB 3.0, audio files playback
-* Multi-word search queries in all formats, including PDF, DJVU
-* Support for notched smartphones
-* The status bar legend now has three options to choose from: full, compact, and chapter-oriented
-* More feedback and requests are very welcome!

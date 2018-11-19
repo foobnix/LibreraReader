@@ -117,6 +117,7 @@ public class BrowseFragment2 extends UIFragment<FileMeta> {
         TintUtil.setBackgroundFillColor(pathContainer, TintUtil.color);
         TintUtil.setBackgroundFillColor(onClose, TintUtil.color);
         TintUtil.setBackgroundFillColor(onAction, TintUtil.color);
+        TintUtil.setTintImageWithAlpha(openAsbookImage);
     }
 
     public CloudStorage cloudStorage;
@@ -132,7 +133,7 @@ public class BrowseFragment2 extends UIFragment<FileMeta> {
         View onCloseActionPaner = view.findViewById(R.id.onCloseActionPaner);
         onClose = view.findViewById(R.id.onClose);
         openAsBook = view.findViewById(R.id.openAsBook);
-        ImageView openAsbookImage = (ImageView) view.findViewById(R.id.openAsbookImage);
+        openAsbookImage = (ImageView) view.findViewById(R.id.openAsbookImage);
         TintUtil.setTintImageWithAlpha(openAsbookImage);
 
         starIcon = (ImageView) view.findViewById(R.id.starIcon);
@@ -740,6 +741,7 @@ public class BrowseFragment2 extends UIFragment<FileMeta> {
     }
 
     String prevPath;
+    private ImageView openAsbookImage;
 
     @TargetApi(Build.VERSION_CODES.KITKAT)
     public void closeQuietly(AutoCloseable closeable) {
@@ -1040,7 +1042,10 @@ public class BrowseFragment2 extends UIFragment<FileMeta> {
         if (searchAdapter != null) {
             searchAdapter.notifyDataSetChanged();
         }
+
+
     }
+
 
     @Override
     public void resetFragment() {

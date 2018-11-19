@@ -1,7 +1,0 @@
-* Ein großes Update von PDF Reader basierend auf Anfragen und Feedback 
-* PDF Reader mit neuer Text-To-Speech (TTS) Schnittstelle 
-* Verbesserte Unterstützung für EPUB 3.0, Wiedergabe von Audiodateien 
-* Mehrwort-Suchanfragen in allen Formaten, einschließlich PDF, DJVU 
-* Unterstützung für gekerbte Smartphones 
-* Die Legende der Statusleiste bietet jetzt drei Optionen: voll, kompakt und kapitelorientiert 
-* Weitere Rückmeldungen und Anfragen sind sehr willkommen!

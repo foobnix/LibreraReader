@@ -215,6 +215,8 @@ public class AndroidWhatsNew {
 
             @Override
             protected void onPostExecute(Object result) {
+
+                try {
                 if (result == null || TxtUtils.isEmpty("" + result)) {
                     return;
                 }
@@ -231,6 +233,9 @@ public class AndroidWhatsNew {
                         Urls.open(c, "http://beta.librera.mobi");
                     }
                 });
+                } catch (Exception e) {
+                    LOG.e(e);
+                }
             }
         }.execute();
 

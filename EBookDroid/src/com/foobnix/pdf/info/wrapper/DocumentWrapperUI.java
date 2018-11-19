@@ -185,7 +185,8 @@ public class DocumentWrapperUI {
     };
 
     public void showSelectTextMenu() {
-        DragingDialogs.selectTextMenu(anchor, dc, true, updateUIRunnable);
+            DragingDialogs.selectTextMenu(anchor, dc, true, updateUIRunnable);
+
     }
 
     public boolean checkBack(final KeyEvent event) {
@@ -573,7 +574,11 @@ public class DocumentWrapperUI {
             @Override
             public void run() {
                 onMoveAction.run();
-                DragingDialogs.selectTextMenu(anchor, dc, true, onRefresh);
+                if (AppState.get().isRememberDictionary) {
+                    DictsHelper.runIntent(dc.getActivity(), AppState.get().selectedText);
+                } else {
+                    DragingDialogs.selectTextMenu(anchor, dc, true, updateUIRunnable);
+                }
 
             }
         };

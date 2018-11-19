@@ -1,7 +1,0 @@
-* Ważna aktualizacja czytnika PDF na podstawie zapytań i opinii 
-* Czytnik plików PDF z nowym interfejsem Text-To-Speech (TTS) 
-* Poprawiona obsługa formatu EPUB 3.0, odtwarzanie plików audio 
-* Zapytania zawierające wiele słów we wszystkich formatach, w tym PDF, DJVU 
-* Obsługa ząbkowanych smartfonów 
-* Legenda paska stanu ma teraz trzy opcje do wyboru: pełna, kompaktowa i zorientowana na rozdział 
-* Więcej opinii i próśb jest bardzo mile widziane!

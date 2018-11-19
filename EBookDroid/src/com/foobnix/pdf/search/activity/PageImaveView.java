@@ -411,7 +411,7 @@ public class PageImaveView extends View {
 
                     if (isLognPress) {
                         String selectText = selectText(event.getX(), event.getY(), xInit, yInit);
-                        if (selectText.contains(" ")) {
+                        if (selectText != null && selectText.contains(" ")) {
                             EventBus.getDefault().post(new MessagePageXY(MessagePageXY.TYPE_SHOW, -1, xInit, yInit, event.getX(), event.getY()));
                         }
                     } else {
@@ -532,7 +532,7 @@ public class PageImaveView extends View {
 
                 if (isLognPress) {
                     String selectText = selectText(event.getX(), event.getY(), xInit, yInit);
-                    if (selectText.contains(" ")) {
+                    if (selectText != null && selectText.contains(" ")) {
                         EventBus.getDefault().post(new MessagePageXY(MessagePageXY.TYPE_SHOW, -1, xInit, yInit, event.getX(), event.getY()));
                     }
 

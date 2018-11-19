@@ -1,0 +1,6 @@
+* Selecting text with start and end markers
+* Fast read mode (RSVP) in PDF works also
+* Text selection and search in DjVu documents
+* Folders with images can be opened like a book
+* Option to change the status bar position (Top or Bottom) in Book mode
+* Bookmarks are now linked to reading progress percentage values

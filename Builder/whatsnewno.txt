@@ -1,0 +1,6 @@
+* Valg av tekst med start- og sluttmarkører 
+* Hurtiglestemodus (RSVP) i PDF fungerer også 
+* Tekstvalg og søk i DjVu-dokumenter 
+* Mapper med bilder kan åpnes som en bok 
+* Alternativ for å endre statuslinjens posisjon (øverst eller nederst) i bokmodus 
+* Bokmerker er nå knyttet til leseprogresentasjonsverdier

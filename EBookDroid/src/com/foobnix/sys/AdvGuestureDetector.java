@@ -95,7 +95,9 @@ public class AdvGuestureDetector extends SimpleOnGestureListener implements IMul
                 long d = System.currentTimeMillis() - time2;
                 if (d > 25) {
                     time2 = System.currentTimeMillis();
-                    EventBus.getDefault().post(new MessagePageXY(MessagePageXY.TYPE_SHOW, -1, xInit, yInit, x, y));
+                    if (TxtUtils.isNotEmpty(AppState.get().selectedText)) {
+                        EventBus.getDefault().post(new MessagePageXY(MessagePageXY.TYPE_SHOW, -1, xInit, yInit, x, y));
+                    }
                 }
 
             }

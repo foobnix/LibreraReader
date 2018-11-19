@@ -1,7 +1,0 @@
-* Een grote update van PDF Reader gebaseerd op verzoeken en feedback 
-* PDF Reader met nieuwe Text-To-Speech (TTS) interface 
-* Verbeterde ondersteuning voor EPUB 3.0, audiobestanden afspelen 
-* Meerdere woorden zoeken in alle formaten, inclusief PDF, DJVU 
-* Ondersteuning voor gekerfde smartphones 
-* De statusbalklegende heeft nu drie opties om uit te kiezen: volledig, compact en hoofdstukgericht 
-* Meer feedback en verzoeken zijn van harte welkom!

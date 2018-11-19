@@ -245,7 +245,11 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
             @Override
             public void run() {
                 onMoveAction.run();
-                DragingDialogs.selectTextMenu(anchor, dc, true, onRefresh);
+                if (AppState.get().isRememberDictionary) {
+                    DictsHelper.runIntent(dc.getActivity(), AppState.get().selectedText);
+                } else {
+                    DragingDialogs.selectTextMenu(anchor, dc, true, onRefresh);
+                }
 
             }
         };

@@ -1,0 +1,6 @@
+* La sélection de texte avec les marqueurs de début et de fin 
+* Le mode de lecture rapide (RSVP) en PDF fonctionne également 
+* La sélection de texte et la recherche dans les documents DjVu 
+* Les dossiers avec des images peuvent être ouverts comme un livre 
+* Option pour changer la position de la barre d’état (Haut ou Bas) en mode Livre 
+* Les signets sont désormais liés à la lecture des valeurs de pourcentage de progression

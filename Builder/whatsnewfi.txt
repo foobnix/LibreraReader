@@ -1,0 +1,6 @@
+* Tekstin valinta aloitus- ja loppumerkillä 
+* Lyhyt lukutila (RSVP) PDF: ssä toimii myös 
+* Tekstin valinta ja haku DjVu-dokumenteissa 
+* Kuvissa olevat kansiot voidaan avata kirjan tavoin 
+* Vaihtoehto tilapalkin sijainnin muuttamiseksi (ylä- tai alapuolella) Kirjamoodissa 
+* Kirjanmerkit on nyt liitetty lukemisen edistyksen prosenttiarvoksi

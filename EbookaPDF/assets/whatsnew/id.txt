@@ -1,7 +1,0 @@
-* Pembaruan besar PDF Reader berdasarkan permintaan dan umpan balik 
-* PDF Reader dengan antarmuka Text-To-Speech (TTS) baru 
-* Peningkatan dukungan untuk EPUB 3.0, pemutaran file audio 
-* Permintaan pencarian multi-kata dalam semua format, termasuk PDF, DJVU 
-* Dukungan untuk smartphone berlekuk 
-* Leg legenda status sekarang memiliki tiga opsi untuk dipilih: lengkap, kompak, dan berorientasi bab 
-* Lebih banyak umpan balik dan permintaan sangat disambut!

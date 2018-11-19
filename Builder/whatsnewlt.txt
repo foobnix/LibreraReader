@@ -1,0 +1,6 @@
+* Teksto pasirinkimas su pradžios ir pabaigos žymekliais 
+* Greitas skaitymo režimas (RSVP) visiems formatams ir PDF 
+* Teksto parinkimas ir paieška DjVu dokumentuose 
+* Aplankai su vaizdais gali būti atidaryti kaip knyga 
+* Galimybė pakeisti būsenos juostos poziciją (viršuje arba apačioje) ) režimuKnygos 
+* Žymės dabar yra susietos su skaitymo progreso procentine verte

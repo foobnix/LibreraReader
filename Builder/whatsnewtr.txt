@@ -1,0 +1,6 @@
+* Başlangıç   ve bitiş işaretleyicileri ile metin seçimi 
+* PDF’de hızlı okuma modu (RSVP) de çalışır 
+* Metin seçimi ve DjVu belgelerinde arama 
+* Görüntülü klasörler bir kitap gibi açılabilir 
+* Durum çubuğu konumunu değiştirmek için Seçenek (Üst veya Alt) Kitap modunda 
+* Yer imleri artık okuma ilerleme yüzdesi değerlerine bağlanmıştır

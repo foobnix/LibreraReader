@@ -1,7 +1,0 @@
-* Sasisho kubwa la PDF Reader kulingana na maombi na maoni 
-* PDF Reader na interface mpya ya Nakala-To-Speech (TTS) 
-* Usaidizi ulioboreshwa kwa EPUB 3.0, sauti za kucheza sauti 
-* Maswali ya utafutaji wa neno nyingi katika muundo wote, ikiwa ni pamoja na PDF, DJVU 
-* Msaada kwa ajili ya smartphones zilizopigwa 
-* Hadithi ya bar ya hali sasa ina chaguzi tatu za kuchagua kutoka: full, compact, na sura-oriented 
-* Zaidi maoni na maombi ni welcome sana!
