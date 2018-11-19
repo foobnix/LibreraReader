@@ -1,6 +1,0 @@
-* Val av text med start- och slutmarkörer 
-* Snabbläsning (PDF) fungerar också 
-* Textval och sökning i DjVu-dokument 
-* Mappar med bilder kan öppnas som en bok 
-* Alternativ för att ändra statusfältets position (Top eller Bottom) i bokläge 
-* Bokmärken är nu länkade till läsningsförlopps procentvärden

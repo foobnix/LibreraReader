@@ -1,6 +1,0 @@
-* Tekst selecteren met begin- en eindmarkeringen 
-* Snelle leesmodus (RSVP) voor alle formaten en PDF 
-* Tekstselectie en zoeken in DjVu-documenten 
-* Mappen met afbeeldingen kunnen als een boek worden geopend 
-* Optie om de statusbalkpositie te wijzigen (boven- of onderkant) ) in Boekmodus 
-* Bladwijzers zijn nu gekoppeld aan het lezen van voortgangspercentagewaarden

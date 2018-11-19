@@ -320,7 +320,7 @@
 	
 	
 	
-	<target name="pdf-ink">
+	<target name="pdf-v2">
 		<antcall target="clean-all" />
 
 		<property name="pdf.package" value="${package.ink}" />
@@ -378,7 +378,7 @@
 		<echo file="${dropbox}/version.txt" append="false">${version.code}.${version.code.index}</echo>
 	</target>
 
-	<target name="droid">
+	<target name="ebooka">
 
 
 

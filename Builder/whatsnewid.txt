@@ -1,6 +1,0 @@
-* Memilih teks dengan penanda awal dan akhir 
-* Mode cepat baca (RSVP) untuk semua format dan PDF 
-* Pemilihan teks dan pencarian dalam dokumen DjVu 
-* Folder dengan gambar dapat dibuka seperti buku 
-* Opsi untuk mengubah posisi bar status (Atas atau Bawah ) dalam mode Buku 
-* Bookmark sekarang terhubung dengan membaca nilai persentase kemajuan

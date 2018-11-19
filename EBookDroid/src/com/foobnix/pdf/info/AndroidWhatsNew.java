@@ -118,7 +118,7 @@ public class AndroidWhatsNew {
 
     }
 
-    public static void show(final Context c) {
+    private static void show1(final Context c) {
         if (true) {
             show2(c);
             return;
@@ -249,7 +249,7 @@ public class AndroidWhatsNew {
         String oldVersion = AppState.get().versionNew;
 
         if (TxtUtils.isEmpty(oldVersion) || !isEqualsFirstSecondDigit(currentVersion, oldVersion)) {
-            show(c);
+            show2(c);
             AppState.get().versionNew = currentVersion;
             AppState.get().save(c);
         }

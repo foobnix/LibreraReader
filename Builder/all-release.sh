@@ -19,8 +19,12 @@ ant arm classic
 ant arm64 classic
 ant x86 classic
 
-ant arm+arm64 droid
-ant x86 droid
+ant arm+arm64 ebooka
+ant x86 ebooka
+
+
+ant arm+arm64 pdf-v2
+ant x86 pdf-v2
 
 ./remove_all.sh
 ./install_all.sh

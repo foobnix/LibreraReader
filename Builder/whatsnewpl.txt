@@ -1,6 +1,0 @@
-* Wybór tekstu ze znacznikami początkowymi i końcowymi 
-* Tryb szybkiego czytania (RSVP) w pliku PDF działa także 
-* Wybór tekstu i wyszukiwanie w dokumentach DjVu 
-* Foldery z obrazami można otwierać jak książkę 
-* Opcja zmiany pozycji paska stanu (góra lub dół) w trybie Book 
-* Zakładki są teraz powiązane z wartościami procentowymi postępu odczytu

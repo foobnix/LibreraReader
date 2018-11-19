@@ -1,6 +1,0 @@
-* Selezione del testo con marcatori di inizio e fine 
-* La modalità di lettura veloce (RSVP) in PDF funziona anche 
-* Selezione del testo e ricerca nei documenti DjVu 
-* Le cartelle con le immagini possono essere aperte come un libro 
-* Opzione per cambiare la posizione della barra di stato (Superiore o Inferiore) in modalità Libro 
-* I segnalibri sono ora collegati alla lettura dei valori percentuali di avanzamento

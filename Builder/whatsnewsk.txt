@@ -1,6 +1,0 @@
-* Výber textu so začiatočnými a koncovými značkami 
-* Funkcia rýchleho čítania (RSVP) v PDF funguje tiež 
-* Výber textu a vyhľadávanie v dokumentoch DjVu 
-* Priečinky s obrázkami môžu byť otvorené ako kniha 
-* Možnosť zmeniť pozíciu stavového riadka (horná alebo dolná) v režime Kniha 
-* Záložky sú teraz spojené s čítaním percentuálnych hodnôt pokroku

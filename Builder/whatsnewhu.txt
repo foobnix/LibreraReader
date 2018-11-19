@@ -1,6 +1,0 @@
-* Szöveg kiválasztása kezdő és zárójelekkel 
-* Gyors olvasási mód (RSVP) PDF formátumban is működik 
-* Szövegválasztás és keresés a DjVu dokumentumokban 
-* A képeket tartalmazó könyvtárak megnyithatók, mint egy könyv 
-* Az állapotsor helyzetének (felső vagy alsó) Book módban 
-* A könyvjelzők mostantól az olvasási folyamat százalékos értékekhez kapcsolódnak

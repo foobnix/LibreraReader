@@ -1,6 +1,0 @@
-* Selecionando texto com marcadores de início e fim 
-* Modo de leitura rápida (RSVP) em PDF também funciona 
-* Seleção de texto e busca em documentos DjVu 
-* Pastas com imagens podem ser abertas como um livro 
-* Opção para alterar a posição da barra de status (Superior ou Inferior) no modo Livro 
-* Os marcadores agora estão vinculados à leitura dos valores percentuais de progresso

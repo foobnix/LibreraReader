@@ -1,6 +1,0 @@
-* Auswählen von Text mit Start- und Endmarken 
-* Schneller Lesemodus (RSVP) in PDF funktioniert auch 
-* Textauswahl und -suche in DjVu-Dokumenten 
-* Ordner mit Bildern können wie ein Buch geöffnet werden 
-* Option zum Ändern der Statusleiste (oben oder unten) im Buchmodus 
-* Lesezeichen sind jetzt mit dem Fortschrittsprozentsatzwert verknüpft

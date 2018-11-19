@@ -1,6 +1,0 @@
-* Selectarea textului cu marcajele de start și de sfârșit 
-* Modul de citire rapidă (RSVP) în PDF funcționează și 
-* Selecția și căutarea textului în documentele DjVu 
-* Dosarele cu imagini pot fi deschise ca o carte 
-* Opțiunea de a schimba poziția barei de stare (Sus sau Jos) în modul Cărți 
-* Marcajele sunt acum legate de citirea valorilor procentuale ale progresului

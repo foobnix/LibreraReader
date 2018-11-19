@@ -999,7 +999,7 @@ public class PrefFragment2 extends UIFragment {
 
             @Override
             public void onClick(View v) {
-                AndroidWhatsNew.show(getActivity());
+                AndroidWhatsNew.show2(getActivity());
 
             }
         });

@@ -1,6 +1,0 @@
-* Chọn văn bản với các dấu đầu và cuối 
-* Chế độ đọc nhanh (RSVP) trong PDF cũng 
-* Chọn và tìm kiếm văn bản trong tài liệu DjVu 
-* Thư mục có hình ảnh có thể được mở như sách 
-* Tùy chọn thay đổi vị trí thanh trạng thái (Trên hoặc Dưới) trong Chế độ sách 
-* Dấu trang hiện được liên kết với giá trị phần trăm tiến độ đọc
