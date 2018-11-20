@@ -516,8 +516,15 @@ epub_parse_header(fz_context *ctx, epub_document *doc)
 	{
 		if (path_from_idref(s, manifest, base_uri, fz_xml_att(itemref, "idref"), sizeof s))
 		{
-			*tailp = epub_parse_chapter(ctx, doc, s);
-			tailp = &(*tailp)->next;
+			fz_try(ctx)
+			{
+				*tailp = epub_parse_chapter(ctx, doc, s);
+				tailp = &(*tailp)->next;
+			}
+			fz_catch(ctx)
+			{
+				fz_warn(ctx, "ignoring chapter %s", s);
+			}
 		}
 		itemref = fz_xml_find_next(itemref, "itemref");
 	}
