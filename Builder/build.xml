@@ -326,7 +326,7 @@
 
 		<property name="pdf.package" value="${package.ink}" />
 		<property name="pdf.icon" value="@mipmap/icon_pdf_2" />
-		<property name="adaptive.icon" value="@mipmap/launcher_reader" />
+		<property name="adaptive.icon" value="@mipmap/launcher_2" />
 		<property name="pdf.app.name" value="${name.ink}" />
 		<property name="pdf.export.name" value="${name.ink} v2" />
 
