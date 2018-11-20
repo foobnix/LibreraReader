@@ -1,6 +1,5 @@
-* Selecting text with start and end markers
+* A major update based on readers feedback
 * Fast read mode (RSVP) for all formats and PDF
 * Text selection and search in DjVu documents
+* PDF Reader with new Text-To-Speech (TTS) interface
 * Folders with images can be opened like a book
-* Option to change the status bar position (Top or Bottom) in Book mode
-* Bookmarks are now linked to reading progress percentage values

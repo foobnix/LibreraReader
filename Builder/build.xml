@@ -10,7 +10,7 @@
 </target>
 
 	<target name="prepare-packages">
-
+		<echo>!!!!!!!!!!!!!!!!!!!!!!</echo>
 	    <echo>Prepare Packages "${pdf.package}"</echo>
 	    <echo>${package.pdf}</echo>
 	    <echo>${package.pro}</echo>
@@ -21,28 +21,29 @@
 	   
 	   
    <replaceregexp file="../EbookaPDF/AndroidManifest.xml" flags="g"
-	match='librera.beta111' replace='${pdf.package}' />
+	match='librera.beta111' replace='VALUE_1' />
 
 	<replaceregexp file="../EbookaPDF/AndroidManifest.xml" flags="g"
-	match='librera.beta112' replace='${pdf.package}' />
+	match='librera.beta112' replace='VALUE_1' />
 	
  <replaceregexp file="../EbookaPDF/AndroidManifest.xml" flags="g"
-		match='${package.pdf}' replace='${pdf.package}' />
+		match='${package.pdf}' replace='VALUE_1' />
 	
 	<replaceregexp file="../EbookaPDF/AndroidManifest.xml" flags="g"
-		match='${package.pro}' replace='${pdf.package}' />
+		match='${package.pro}' replace='VALUE_1' />
 	
 	<replaceregexp file="../EbookaPDF/AndroidManifest.xml" flags="g"
-		match='${package.classic}' replace='${pdf.package}' />
+		match='${package.classic}' replace='VALUE_1' />
 	
 	<replaceregexp file="../EbookaPDF/AndroidManifest.xml" flags="g"
-		match='${package.droid}' replace='${pdf.package}' />
+		match='${package.droid}' replace='VALUE_1' />
 	
 	<replaceregexp file="../EbookaPDF/AndroidManifest.xml" flags="g"
-		match='${package.ink}' replace='${pdf.package}' />
+		match='${package.ink}' replace='VALUE_1' />
+	
+	<replaceregexp file="../EbookaPDF/AndroidManifest.xml" flags="g"
+		match='VALUE_1' replace='${pdf.package}' />
 
-	<replaceregexp file="../EbookaPDF/AndroidManifest.xml" flags="g"
-		match='pdf.reader.viewer' replace='${pdf.package}' />
 	
 	
 		<replaceregexp file="../EBookDroid/res/values/config.xml"

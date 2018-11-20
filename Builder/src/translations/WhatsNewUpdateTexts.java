@@ -9,7 +9,7 @@ import java.util.Map;
 
 public class WhatsNewUpdateTexts {
 
-    private static final String RECENT_PATH = "/home/ivan-dev/git/LibreraReader/Builder/whatsnew";
+    private static final String RECENT_PATH = "/home/ivan-dev/git/LibreraReader/Builder/whatsnew/";
     // https://console.cloud.google.com/apis/credentials/key/0?project=seismic-bucksaw-120809
 
     public static Map<String, String> codes = new HashMap<String, String>();
@@ -24,7 +24,7 @@ public class WhatsNewUpdateTexts {
         codes.put("ja", "ja-JP");
         codes.put("ko", "ko-KR");
         codes.put("pt", "pt-PT,pt-BR");
-        codes.put("ru", "ru-RU");
+      
         codes.put("tr", "tr-TR");
         codes.put("zh", "zh-TW");
 
@@ -34,6 +34,8 @@ public class WhatsNewUpdateTexts {
         codes.put("sv", "sv-SE");
         codes.put("fi", "fi-FI");
         codes.put("hu", "hu-HU");
+        
+        codes.put("ru", "ru-RU");
 
     }
 
