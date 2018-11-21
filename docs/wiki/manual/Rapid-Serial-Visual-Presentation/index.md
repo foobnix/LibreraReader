@@ -29,6 +29,7 @@ or
 * Enter the RSVP speed reading mode from the book menu
 * Single click to start or stop
 * Minimum line length up to 30 CPL
+
 ||||
 |-|-|-|
 |![](1.png)|![](2.png)|![](3.png)|
