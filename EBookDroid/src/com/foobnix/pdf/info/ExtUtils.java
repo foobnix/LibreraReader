@@ -172,6 +172,70 @@ public class ExtUtils {
         mimeCache.put(".webm", "video/webm");
     }
 
+    public static void updateSearchExts() {
+        List<String> result = new ArrayList<String>();
+        seachExts.clear();
+
+        if (AppState.get().supportPDF) {
+            result.add(".pdf");
+        }
+        if (AppState.get().supportXPS) {
+            result.add(".xps");
+        }
+
+        if (AppState.get().supportEPUB) {
+            result.add(".epub");
+        }
+
+        if (AppState.get().supportDJVU) {
+            result.add(".djvu");
+        }
+        if (AppState.get().supportFB2) {
+            result.add(".fb2");
+            if (!AppState.get().supportZIP) {
+                result.add(".fb2.zip");
+            }
+        }
+        if (AppState.get().supportTXT) {
+            result.add(".txt");
+            result.add(".html");
+            result.add(".xhtml");
+            if (!AppState.get().supportZIP) {
+                result.add(".txt.zip");
+            }
+        }
+        if (AppState.get().supportRTF) {
+            result.add(".rtf");
+            if (!AppState.get().supportZIP) {
+                result.add(".rtf.zip");
+            }
+        }
+        if (AppState.get().supportMOBI) {
+            result.add(".mobi");
+            result.add(".azw");
+            result.add(".azw3");
+        }
+        if (AppState.get().supportCBZ) {
+            result.add(".cbz");
+            result.add(".cbr");
+        }
+        if (AppState.get().supportZIP) {
+            result.addAll(archiveExts);
+        }
+        if (AppState.get().supportOther) {
+            result.addAll(otherExts);
+            result.addAll(lirbeExt);
+            result.add(".prc");
+            result.add(".pdb");
+            
+        }
+
+        for (String ext : result) {
+            seachExts.add(ext);
+            // seachExts.add(ext.toUpperCase(Locale.US));
+        }
+
+    }
 
     static List<String> video = Arrays.asList(".webm", ".m3u8", ".ts", ".flv", ".mp4", ".3gp", ".mov", ".avi", ".wmv", ".mp4", ".m4v");
 
@@ -467,67 +531,7 @@ public class ExtUtils {
         }
     }
 
-    public static void updateSearchExts() {
-        List<String> result = new ArrayList<String>();
-        seachExts.clear();
 
-        if (AppState.get().supportPDF) {
-            result.add(".pdf");
-        }
-        if (AppState.get().supportXPS) {
-            result.add(".xps");
-        }
-
-        if (AppState.get().supportEPUB) {
-            result.add(".epub");
-        }
-
-        if (AppState.get().supportDJVU) {
-            result.add(".djvu");
-        }
-        if (AppState.get().supportFB2) {
-            result.add(".fb2");
-            if (!AppState.get().supportZIP) {
-                result.add(".fb2.zip");
-            }
-        }
-        if (AppState.get().supportTXT) {
-            result.add(".txt");
-            result.add(".html");
-            result.add(".xhtml");
-            if (!AppState.get().supportZIP) {
-                result.add(".txt.zip");
-            }
-        }
-        if (AppState.get().supportRTF) {
-            result.add(".rtf");
-            if (!AppState.get().supportZIP) {
-                result.add(".rtf.zip");
-            }
-        }
-        if (AppState.get().supportMOBI) {
-            result.add(".mobi");
-            result.add(".azw");
-            result.add(".azw3");
-        }
-        if (AppState.get().supportCBZ) {
-            result.add(".cbz");
-            result.add(".cbr");
-        }
-        if (AppState.get().supportZIP) {
-            result.addAll(archiveExts);
-        }
-        if (AppState.get().supportOther) {
-            result.addAll(otherExts);
-            result.addAll(lirbeExt);
-        }
-
-        for (String ext : result) {
-            seachExts.add(ext);
-            // seachExts.add(ext.toUpperCase(Locale.US));
-        }
-
-    }
 
     public static FileFilter getFileFilter() {
         return filter;
