@@ -25,6 +25,8 @@ import android.text.TextUtils;
 
 public class RtfExtract {
 
+    private static final String WMF = "wmf";
+
     public static FooterNote extract(String inputPath, final String outputDir, final String fileName) throws IOException {
 
         File file = new File(outputDir, fileName);
@@ -68,13 +70,21 @@ public class RtfExtract {
                     if (isImage) {
                         try {
                             isImage = false;
-                            String imageName = fileName + counter++ + ".rtf." + format;
-                            FileOutputStream fileWriter = new FileOutputStream(new File(outputDir, imageName));
-                            fileWriter.write(HexUtils.parseHexString(string));
-                            fileWriter.flush();
-                            fileWriter.close();
 
-                            writer.write("<img src='" + imageName + "' />");
+                            String imageName = fileName + counter++ + ".rtf." + format;
+
+                            if (WMF.equals(format)) {
+                                writer.print("[" + imageName + "]");
+                            } else {
+
+                                FileOutputStream fileWriter = new FileOutputStream(new File(outputDir, imageName));
+                                byte[] in = HexUtils.parseHexString(string);
+                                fileWriter.write(in);
+                                fileWriter.flush();
+                                fileWriter.close();
+
+                                writer.write("<img src='" + imageName + "' />");
+                            }
 
                         } catch (Exception e) {
                             LOG.e(e);
@@ -148,6 +158,10 @@ public class RtfExtract {
                         isImage = true;
                         format = "jpg";
                     }
+                    if (command == Command.wmetafile) {
+                        isImage = true;
+                        format = WMF;
+                    }
                 }
 
             });
@@ -172,7 +186,6 @@ public class RtfExtract {
             IRtfSource source = new RtfStreamSource(fileInputStream);
             IRtfParser parser = new StandardRtfParser();
 
-
             decode = null;
 
             parser.parse(source, new RtfListenerAdaptor() {
@@ -189,7 +202,6 @@ public class RtfExtract {
                         }
                     }
                 }
-
 
                 @Override
                 public void processCommand(Command command, int parameter, boolean hasParameter, boolean optional) {
