@@ -4,7 +4,6 @@ import java.io.BufferedOutputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -16,15 +15,16 @@ import java.util.List;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
 import java.util.zip.ZipEntry;
+import java.util.zip.ZipInputStream;
 import java.util.zip.ZipOutputStream;
 
-import org.apache.commons.compress.archivers.zip.ZipArchiveEntry;
-import org.apache.commons.compress.archivers.zip.ZipArchiveInputStream;
 import org.ebookdroid.BookType;
 import org.ebookdroid.common.cache.CacheManager;
 
 import com.foobnix.android.utils.LOG;
 import com.foobnix.pdf.info.ExtUtils;
+import com.foobnix.sys.ArchiveEntry;
+import com.foobnix.sys.ZipArchiveInputStream;
 
 import android.content.Context;
 import android.os.Environment;
@@ -167,37 +167,36 @@ public class CacheZipUtils {
     public static Pair<Boolean, String> isSingleAndSupportEntryFile(File file) {
         try {
             return isSingleAndSupportEntry(new FileInputStream(file));
-        } catch (FileNotFoundException e) {
+        } catch (Exception e) {
             return new Pair<Boolean, String>(false, "");
         }
     }
 
     public static Pair<Boolean, String> isSingleAndSupportEntry(InputStream is) {
-        if (is == null) {
-            return new Pair<Boolean, String>(false, "");
-        }
         String name = "";
         try {
-            ZipArchiveInputStream zipInputStream = new ZipArchiveInputStream(is, "cp1251");
+            ZipInputStream zipInputStream = new ZipInputStream(is);
             boolean find = false;
-            ZipArchiveEntry nextEntry = null;
+            ZipEntry nextEntry = null;
 
-            while ((nextEntry = zipInputStream.getNextZipEntry()) != null) {
+            while ((nextEntry = zipInputStream.getNextEntry()) != null) {
+                if (nextEntry.isDirectory()) {
+                    continue;
+                }
                 name = nextEntry.getName();
                 if (find) {
                     zipInputStream.close();
-                    is.close();
                     return new Pair<Boolean, String>(false, "");
                 }
                 find = true;
             }
             zipInputStream.close();
-            is.close();
         } catch (Exception e) {
             LOG.e(e);
         }
         return new Pair<Boolean, String>(BookType.isSupportedExtByPath(name), name);
     }
+
 
     public static class UnZipRes {
         public String originalPath;
@@ -224,15 +223,13 @@ public class CacheZipUtils {
         folder.removeCacheContent();
 
         try {
-            InputStream in = new FileInputStream(new File(path));
-            if (!isSingleAndSupportEntry(in).first) {
+            if (!isSingleAndSupportEntry(new FileInputStream(new File(path))).first) {
                 return new UnZipRes(path, path, null);
             }
-            in = new FileInputStream(new File(path));
-            ZipArchiveInputStream zipInputStream = new ZipArchiveInputStream(in, "cp1251");
+            ZipArchiveInputStream zipInputStream = new ZipArchiveInputStream(path);
 
-            ZipArchiveEntry nextEntry = null;
-            while ((nextEntry = zipInputStream.getNextZipEntry()) != null) {
+            ArchiveEntry nextEntry = null;
+            while ((nextEntry = zipInputStream.getNextEntry()) != null) {
                 if (BookType.isSupportedExtByPath(nextEntry.getName())) {
                     String name = nextEntry.getName();
                     if (salt != -1) {
@@ -244,13 +241,11 @@ public class CacheZipUtils {
                     LOG.d("Unpack archive", file.getPath());
 
                     zipInputStream.close();
-                    in.close();
 
                     return new UnZipRes(path, file.getPath(), nextEntry.getName());
                 }
             }
             zipInputStream.close();
-            in.close();
         } catch (Exception e) {
             LOG.e(e);
         }
@@ -261,11 +256,10 @@ public class CacheZipUtils {
         try {
             LOG.d("extractArchive From:", fromFile);
             LOG.d("extractArchive To:  ", toDir);
-            InputStream in = new FileInputStream(fromFile);
-            ZipArchiveInputStream zipInputStream = new ZipArchiveInputStream(in);
+            ZipArchiveInputStream zipInputStream = new ZipArchiveInputStream(fromFile.getPath());
 
-            ZipArchiveEntry nextEntry = null;
-            while ((nextEntry = zipInputStream.getNextZipEntry()) != null) {
+            ArchiveEntry nextEntry = null;
+            while ((nextEntry = zipInputStream.getNextEntry()) != null) {
                 if (nextEntry.isDirectory()) {
                     continue;
                 }
@@ -276,7 +270,6 @@ public class CacheZipUtils {
                 writeToStream(zipInputStream, fileOutputStream);
             }
             zipInputStream.close();
-            in.close();
         } catch (Exception e) {
             LOG.e(e);
             return false;

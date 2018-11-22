@@ -9,8 +9,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.apache.commons.compress.utils.IOUtils;
-
 import com.foobnix.android.utils.LOG;
 
 public class MobiParserIS {
