@@ -503,4 +503,5 @@
    <string name="exit_application">終了アプリケーション</string>
    <string name="exit_application_question">アプリケーションを終了しますか？</string>
    <string name="open_folder_as_a_book">ブックとしてのフォルダを開く</string>
+   <string name="read_out_loud_with_tts">TTSで大声で読む</string>
 </resources>

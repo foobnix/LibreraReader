@@ -503,4 +503,5 @@
    <string name="exit_application">Aplicación de salida</string>
    <string name="exit_application_question">Solicitud de salida?</string>
    <string name="open_folder_as_a_book">Abrir carpeta como libro</string>
+   <string name="read_out_loud_with_tts">Leer en voz alta con TTS</string>
 </resources>

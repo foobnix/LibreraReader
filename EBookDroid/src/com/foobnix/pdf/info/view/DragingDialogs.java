@@ -3252,7 +3252,7 @@ public class DragingDialogs {
                         controller.getString(R.string.close_book_and_application), //
                         controller.getString(R.string.hide_app), //
                         controller.getString(R.string.db_do_nothing), //
-                        controller.getString(R.string.read_a_book) //
+                        controller.getString(R.string.read_out_loud_with_tts) //
 
                 );
 

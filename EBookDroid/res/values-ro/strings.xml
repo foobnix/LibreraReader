@@ -503,4 +503,5 @@
    <string name="exit_application">Ieșiți din aplicație</string>
    <string name="exit_application_question">Ieșiți din aplicație?</string>
    <string name="open_folder_as_a_book">Deschideți folderul ca o carte</string>
+   <string name="read_out_loud_with_tts">Citiți cu voce tare cu TTS</string>
 </resources>

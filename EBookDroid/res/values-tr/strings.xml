@@ -503,4 +503,5 @@
    <string name="exit_application">Çıkış uygulaması</string>
    <string name="exit_application_question">Çıkış uygulaması?</string>
    <string name="open_folder_as_a_book">Klasörü kitap olarak aç</string>
+   <string name="read_out_loud_with_tts">TTS ile yüksek sesle oku</string>
 </resources>

@@ -503,4 +503,5 @@
    <string name="exit_application">الخروج من التطبيق</string>
    <string name="exit_application_question">الخروج من التطبيق؟</string>
    <string name="open_folder_as_a_book">افتح المجلد ككتاب</string>
+   <string name="read_out_loud_with_tts">قراءة بصوت عال مع تحويل النص إلى كلام</string>
 </resources>

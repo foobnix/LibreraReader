@@ -503,4 +503,5 @@
    <string name="exit_application">छोड़ने के लिए प्रार्थनापत्र</string>
    <string name="exit_application_question">छोड़ने के लिए प्रार्थनापत्र?</string>
    <string name="open_folder_as_a_book">एक पुस्तक के रूप में फ़ोल्डर खोलें</string>
+   <string name="read_out_loud_with_tts">टीटीएस के साथ जोर से पढ़ें</string>
 </resources>

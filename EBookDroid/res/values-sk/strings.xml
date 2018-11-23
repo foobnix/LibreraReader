@@ -503,4 +503,5 @@
    <string name="exit_application">Ukončite aplikáciu</string>
    <string name="exit_application_question">Ukončiť aplikáciu?</string>
    <string name="open_folder_as_a_book">Otvoriť priečinok ako knihu</string>
+   <string name="read_out_loud_with_tts">Prečítajte si nahlas s TTS</string>
 </resources>

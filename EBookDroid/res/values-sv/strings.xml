@@ -503,4 +503,5 @@
    <string name="exit_application">Avsluta ansökan</string>
    <string name="exit_application_question">Avsluta ansökan?</string>
    <string name="open_folder_as_a_book">Öppna mappen som en bok</string>
+   <string name="read_out_loud_with_tts">Löst ut med TTS</string>
 </resources>
