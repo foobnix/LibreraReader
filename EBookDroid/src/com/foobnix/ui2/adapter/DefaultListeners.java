@@ -405,9 +405,11 @@ public class DefaultListeners {
             @Override
             public boolean onResultRecive(FileMeta fileMeta, FileMetaAdapter adapter) {
                 Boolean isStar = fileMeta.getIsStar();
+
                 if (isStar == null) {
-                    isStar = false;
+                    isStar = AppDB.get().isStarFolder(fileMeta.getPath());
                 }
+
                 fileMeta.setIsStar(!isStar);
                 fileMeta.setIsStarTime(System.currentTimeMillis());
                 AppDB.get().updateOrSave(fileMeta);
