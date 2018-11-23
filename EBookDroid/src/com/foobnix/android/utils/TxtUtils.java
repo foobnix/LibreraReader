@@ -298,7 +298,7 @@ public class TxtUtils {
             for (String sub : split) {
                 if (TxtUtils.isNotEmpty(sub)) {
                     res.append(replaceLastFirstName(sub));
-                    res.append(TTS_PAUSE);
+                    res.append(",");
                 }
             }
             return TxtUtils.replaceLast(res.toString(), ",", "").trim();
