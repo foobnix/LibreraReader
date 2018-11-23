@@ -90,7 +90,6 @@ public class DocumentWrapperUI {
     Activity a;
     String bookTitle;
 
-
     TextView toastBrightnessText, pagesCountIndicator, currentSeek, maxSeek, currentTime, bookName, nextTypeBootom, batteryLevel, lirbiLogo, reverseKeysIndicator;
     ImageView onDocDontext, toolBarButton, linkHistory, lockUnlock, lockUnlockTop, textToSpeachTop, clockIcon, batteryIcon;
     ImageView showSearch, nextScreenType, autoScroll, textToSpeach, onModeChange, imageMenuArrow, editTop2, goToPage1, goToPage1Top;
@@ -140,7 +139,6 @@ public class DocumentWrapperUI {
 
     }
 
-
     public void onSingleTap() {
         if (AppState.get().isMusicianMode) {
             onAutoScrollClick();
@@ -185,7 +183,7 @@ public class DocumentWrapperUI {
     };
 
     public void showSelectTextMenu() {
-            DragingDialogs.selectTextMenu(anchor, dc, true, updateUIRunnable);
+        DragingDialogs.selectTextMenu(anchor, dc, true, updateUIRunnable);
 
     }
 
@@ -413,10 +411,11 @@ public class DocumentWrapperUI {
             reverseKeysIndicator.setVisibility(View.GONE);
         }
 
-        moveLeft.setVisibility(Dips.isSmallScreen() ? View.GONE : View.VISIBLE);
-        moveRight.setVisibility(Dips.isSmallScreen() ? View.GONE : View.VISIBLE);
-        zoomPlus.setVisibility(Dips.isSmallScreen() ? View.GONE : View.VISIBLE);
-        zoomMinus.setVisibility(Dips.isSmallScreen() ? View.GONE : View.VISIBLE);
+        moveLeft.setVisibility(Dips.isSmallScreen() && Dips.isVertical() ? View.GONE : View.VISIBLE);
+        moveRight.setVisibility(Dips.isSmallScreen() && Dips.isVertical() ? View.GONE : View.VISIBLE);
+        zoomPlus.setVisibility(Dips.isSmallScreen() && Dips.isVertical() ? View.GONE : View.VISIBLE);
+        zoomMinus.setVisibility(Dips.isSmallScreen() && Dips.isVertical() ? View.GONE : View.VISIBLE);
+
         if (dc.isTextFormat()) {
             moveLeft.setVisibility(View.GONE);
             moveRight.setVisibility(View.GONE);
@@ -1787,7 +1786,6 @@ public class DocumentWrapperUI {
 
     }
 
-
     public DocumentController getController() {
         return dc;
     }
@@ -1866,6 +1864,7 @@ public class DocumentWrapperUI {
             ttsActive.setVisibility(TxtUtils.visibleIf(TTSEngine.get().isPlaying()));
         }
 
+
     }
 
     public void onPause() {
@@ -1879,6 +1878,14 @@ public class DocumentWrapperUI {
         handlerTimer.removeCallbacksAndMessages(null);
         handler.removeCallbacksAndMessages(null);
 
+    }
+
+    public void onConfigChanged() {
+        try {
+            updateUI();
+        } catch (Exception e) {
+            LOG.e(e);
+        }
     }
 
 }

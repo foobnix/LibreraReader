@@ -128,6 +128,10 @@ public class Dips {
         return screenWidth() > screenHeight();
     }
 
+    public static boolean isVertical() {
+        return screenWidth() < screenHeight();
+    }
+
     public static boolean isXLargeScreen() {
         int size = Resources.getSystem().getConfiguration().screenLayout & Configuration.SCREENLAYOUT_SIZE_MASK;
         // return size == Configuration.SCREENLAYOUT_SIZE_LARGE || size ==
