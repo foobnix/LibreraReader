@@ -36,7 +36,13 @@ public class DraggbleTouchListener implements OnTouchListener {
         this.root = (View) anchor.getParent();
     }
 
-    long time;
+    public DraggbleTouchListener(View anchor, View root) {
+        this.anchor = anchor;
+        this.root = root;
+        anchor.setOnTouchListener(this);
+    }
+
+    long time, time1;
 
     private Runnable onEventDetected;
 
@@ -47,6 +53,7 @@ public class DraggbleTouchListener implements OnTouchListener {
             onEventDetected.run();
         }
         if (anchor == null || root == null) {
+            LOG.d("anchor or root is null");
             return false;
         }
         if (event.getAction() == MotionEvent.ACTION_DOWN) {
@@ -94,14 +101,24 @@ public class DraggbleTouchListener implements OnTouchListener {
 
             AnchorHelper.setXY(anchor, x, y);
 
-            if (heigh > Dips.screenHeight() - Dips.DP_25) {
-                popup.getView().getLayoutParams().height = Dips.screenHeight() - Dips.DP_25;
-                popup.getView().requestLayout();
+            if (popup != null) {
+                if (heigh > Dips.screenHeight() - Dips.DP_25) {
+                    popup.getView().getLayoutParams().height = Dips.screenHeight() - Dips.DP_25;
+                    popup.getView().requestLayout();
+                }
+
+                if (width > Dips.screenWidth() - Dips.DP_25) {
+                    popup.getView().getLayoutParams().width = Dips.screenWidth() - Dips.DP_25;
+                    popup.getView().requestLayout();
+                }
             }
 
-            if (width > Dips.screenWidth() - Dips.DP_25) {
-                popup.getView().getLayoutParams().width = Dips.screenWidth() - Dips.DP_25;
-                popup.getView().requestLayout();
+            if (onMove != null) {
+                long d = System.currentTimeMillis() - time1;
+                if (d > 200) {
+                    time1 = System.currentTimeMillis();
+                    onMove.run();
+                }
             }
 
         }
@@ -119,10 +136,15 @@ public class DraggbleTouchListener implements OnTouchListener {
         return true;
     }
 
-    Runnable onMoveFinish;
+    Runnable onMoveFinish, onMove;
 
     public void setOnMoveFinish(Runnable onMoveFinish) {
         this.onMoveFinish = onMoveFinish;
+
+    }
+
+    public void setOnMove(Runnable onMove) {
+        this.onMove = onMove;
 
     }
 

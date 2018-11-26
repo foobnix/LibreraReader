@@ -1,7 +1,0 @@
-* A PDF Reader alapja a kérések és a visszajelzések alapján 
-* PDF Reader új szöveg-to-speech (TTS) interfésszel 
-* Továbbfejlesztett támogatás az EPUB 3.0-hoz, audiofájlok lejátszása 
-* Többféle keresési lekérdezés minden formátumban, beleértve a PDF, DJVU 
-* A beágyazott okostelefonok támogatása 
-* Az állapotjelző legenda három lehetőség közül választhat: teljes, kompakt és fejezetközpontú 
-* További visszajelzések és kérések nagyon örülnek!

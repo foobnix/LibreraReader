@@ -501,4 +501,7 @@
    <string name="ask_rate_us1">Si vous aimez cette application, évaluez et commentez-nous sur Google Play. Je vous remercie!</string>
    <string name="message">Message</string>
    <string name="exit_application">Demande de sortie</string>
+   <string name="exit_application_question">Exit Application?</string>
+   <string name="open_folder_as_a_book">Ouvrir le dossier en tant que livre</string>
+   <string name="read_out_loud_with_tts">Lire à haute voix avec TTS</string>
 </resources>

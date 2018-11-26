@@ -35,6 +35,7 @@ import com.foobnix.pdf.info.wrapper.DocumentController;
 import com.foobnix.pdf.search.activity.msg.InvalidateMessage;
 import com.foobnix.pdf.search.activity.msg.MessageAutoFit;
 import com.foobnix.pdf.search.activity.msg.MessageCenterHorizontally;
+import com.foobnix.pdf.search.activity.msg.MessagePageXY;
 import com.foobnix.pdf.search.activity.msg.MovePageAction;
 import com.foobnix.sys.ImageExtractor;
 import com.foobnix.sys.TempHolder;
@@ -333,7 +334,7 @@ public abstract class HorizontalModeController extends DocumentController {
     }
 
     @Override
-    public String getTextForPage(int page) {
+    public synchronized String getTextForPage(int page) {
         try {
             CodecPage codecPage = codeDocument.getPage(page);
             if (!codecPage.isRecycled()) {
@@ -528,6 +529,7 @@ public abstract class HorizontalModeController extends DocumentController {
 
     @Override
     public void clearSelectedText() {
+        EventBus.getDefault().post(new MessagePageXY(MessagePageXY.TYPE_HIDE));
         AppState.get().selectedText = null;
         PageImageState.get().cleanSelectedWords();
         EventBus.getDefault().post(new InvalidateMessage());

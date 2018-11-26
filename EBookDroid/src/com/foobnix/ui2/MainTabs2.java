@@ -684,5 +684,4 @@ public class MainTabs2 extends AdsFragmentActivity {
         }
         EventBus.getDefault().post(new MsgCloseMainTabs());
     }
-
 }

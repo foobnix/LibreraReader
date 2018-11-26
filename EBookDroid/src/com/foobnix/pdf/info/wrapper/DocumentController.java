@@ -203,7 +203,6 @@ public abstract class DocumentController {
 
     public abstract int getBookHeight();
 
-
     public void saveSettings() {
 
     }
@@ -303,6 +302,11 @@ public abstract class DocumentController {
     }
 
     protected volatile List<OutlineLinkWrapper> outline;
+    private FrameLayout anchor;
+
+    public void initAnchor(FrameLayout anchor) {
+        this.anchor = anchor;
+    }
 
     public List<OutlineLinkWrapper> getCurrentOutline() {
         return outline;
@@ -328,12 +332,12 @@ public abstract class DocumentController {
         }
     }
 
-    public boolean closeDialogs(FrameLayout anchor) {
+    public boolean closeDialogs() {
         boolean isVisible = anchor.getVisibility() == View.VISIBLE;
-        anchor.setVisibility(View.GONE);
-        anchor.setTag("backGo");
-        anchor.removeAllViews();
         if (isVisible) {
+            anchor.setVisibility(View.GONE);
+            anchor.setTag("backGo");
+            anchor.removeAllViews();
             clearSelectedText();
         }
         return isVisible;

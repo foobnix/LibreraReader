@@ -501,4 +501,7 @@
    <string name="ask_rate_us1">Ak sa vám táto aplikácia páči, prosím ohodnoťte a skontrolujte nás v službe Google Play. Ďakujem!</string>
    <string name="message">Správa</string>
    <string name="exit_application">Ukončite aplikáciu</string>
+   <string name="exit_application_question">Ukončiť aplikáciu?</string>
+   <string name="open_folder_as_a_book">Otvoriť priečinok ako knihu</string>
+   <string name="read_out_loud_with_tts">Prečítajte si nahlas s TTS</string>
 </resources>

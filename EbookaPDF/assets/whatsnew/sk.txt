@@ -1,7 +1,0 @@
-* Veľká aktualizácia programu PDF Reader na základe požiadaviek a spätnej väzby 
-* PDF Reader s novým rozhraním TTS (Text-to-Speech) 
-* Vylepšená podpora EPUB 3.0, prehrávanie zvukových súborov 
-* Multi-word vyhľadávacie dotazy vo všetkých formátoch vrátane PDF, DJVU 
-* Podpora pre zúžené smartphony 
-* Legenda stavovej lišty teraz má tri možnosti na výber: plné, kompaktné a kapitola orientované 
-* Viac spätnej väzby a požiadavky sú veľmi vítané!

@@ -298,7 +298,7 @@ public class TxtUtils {
             for (String sub : split) {
                 if (TxtUtils.isNotEmpty(sub)) {
                     res.append(replaceLastFirstName(sub));
-                    res.append(TTS_PAUSE);
+                    res.append(",");
                 }
             }
             return TxtUtils.replaceLast(res.toString(), ",", "").trim();
@@ -412,6 +412,17 @@ public class TxtUtils {
     public static String substring(String str, int len) {
         if (str.length() > len) {
             return str.substring(0, len);
+        }
+        return str;
+
+    }
+
+    public static String substringSmart(String str, int len) {
+        if (str.length() > len) {
+            int index = str.indexOf(" ", len);
+            if (index > 0) {
+                return str.substring(0, index);
+            }
         }
         return str;
 
@@ -835,10 +846,11 @@ public class TxtUtils {
         int minutes = (int) ((millis % (1000 * 60 * 60)) / (1000 * 60));
         int seconds = (int) (((millis % (1000 * 60 * 60)) % (1000 * 60)) / 1000);
 
-        if(hours>0) {
+        if (hours > 0) {
             buf.append(String.format("%02d", hours)).append(":");
-        };
-        
+        }
+        ;
+
         buf.append(String.format("%02d", minutes)).append(":").append(String.format("%02d", seconds));
 
         return buf.toString();

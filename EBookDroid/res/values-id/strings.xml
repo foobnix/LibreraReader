@@ -501,4 +501,7 @@
    <string name="ask_rate_us1">Jika Anda menyukai aplikasi ini, harap beri peringkat dan tinjau kami di Google Play. Terima kasih!</string>
    <string name="message">Pesan</string>
    <string name="exit_application">Keluar dari aplikasi</string>
+   <string name="exit_application_question">Aplikasi Keluar?</string>
+   <string name="open_folder_as_a_book">Buka folder sebagai buku</string>
+   <string name="read_out_loud_with_tts">Baca dengan keras menggunakan TTS</string>
 </resources>

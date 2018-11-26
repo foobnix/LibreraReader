@@ -9,12 +9,12 @@
         android:layout_height="wrap_content"
         android:gravity="center"
         android:padding="10dip"
-        android:text="@string/exit_application"
+        android:text="@string/exit_application_question"
         android:textSize="20sp" />
 
     <LinearLayout
         android:id="@+id/topLayout"
-        android:background="#aa00ff"
+        android:background="#77a248"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical" >

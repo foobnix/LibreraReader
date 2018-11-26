@@ -500,5 +500,8 @@
    <string name="minimum_line_length">最小线长（CPL）</string>
    <string name="ask_rate_us1">如果您喜欢此应用程序，请在Google Play上评分并查看我们。谢谢！</string>
    <string name="message">信息</string>
-   <string name="exit_application">退出申请</string>
+   <string name="exit_application">退出程序</string>
+   <string name="exit_application_question">退出程序？</string>
+   <string name="open_folder_as_a_book">文件夹作为书籍打开</string>
+   <string name="read_out_loud_with_tts">用TTS大声朗读</string>
 </resources>

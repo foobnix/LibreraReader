@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<adaptive-icon xmlns:android="http://schemas.android.com/apk/res/android">
+    <background android:drawable="@color/white"  />
+    
+    <foreground>
+    <inset
+      android:drawable="@mipmap/icon_pdf_2"
+      android:inset="23%" />
+  </foreground>
+  
+    
+</adaptive-icon>

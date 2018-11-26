@@ -1,9 +1,11 @@
 ---
 layout: main
-version: 2
+version: 3
 ---
 [<](/wiki/ar)
 
 # يرشد
 
-* [نافذة التطبيق الرئيسية](/wiki/manual/main-app/ar)
+* [سرعة القراءة RSVP (العرض التقديمي التسلسلي السريع/ar) في Android](/wiki/manual/Rapid-Serial-Visual-Presentation/ar)
+* [فتح مجلد يحتوي على صور ككتاب (ربط في كتاب/ar)](/wiki/manual/Open-Folder-With-Images-As-A-Book/ar)
+* [الشاشة الرئيسية](/wiki/manual/main-app/ar)

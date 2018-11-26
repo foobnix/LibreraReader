@@ -9,7 +9,7 @@ import java.util.Map;
 
 public class WhatsNewUpdateTexts {
 
-    private static final String RECENT_PATH = "/home/ivan-dev/git/LibreraReader/EbookaPDF/assets/whatsnew/";
+    private static final String RECENT_PATH = "/home/ivan-dev/git/LibreraReader/Builder/whatsnew/";
     // https://console.cloud.google.com/apis/credentials/key/0?project=seismic-bucksaw-120809
 
     public static Map<String, String> codes = new HashMap<String, String>();
@@ -24,7 +24,7 @@ public class WhatsNewUpdateTexts {
         codes.put("ja", "ja-JP");
         codes.put("ko", "ko-KR");
         codes.put("pt", "pt-PT,pt-BR");
-        codes.put("ru", "ru-RU");
+      
         codes.put("tr", "tr-TR");
         codes.put("zh", "zh-TW");
 
@@ -34,6 +34,8 @@ public class WhatsNewUpdateTexts {
         codes.put("sv", "sv-SE");
         codes.put("fi", "fi-FI");
         codes.put("hu", "hu-HU");
+        
+        codes.put("ru", "ru-RU");
 
     }
 
@@ -45,7 +47,7 @@ public class WhatsNewUpdateTexts {
         final List<String> asList = SyncTranslations.getAllLangCodes("/home/ivan-dev/git/LibreraReader/EBookDroid/res");
         // final List<String> asList = Arrays.asList("ru");
 
-        String recentEN = new String(Files.readAllBytes(Paths.get("/home/ivan-dev/git/LibreraReader/EbookaPDF/assets/recent.txt")));
+        String recentEN = new String(Files.readAllBytes(Paths.get("/home/ivan-dev/git/LibreraReader/Builder/whatsnew/recent.txt")));
 
         StringBuilder res = new StringBuilder();
         for (String ex : asList) {
@@ -63,7 +65,7 @@ public class WhatsNewUpdateTexts {
             recentTR = recentTR.replace("&quot;", "");
             recentTR = recentTR.replaceAll("^\n", "");
             translation = SyncTranslations.upperCase(recentTR);
-            Files.write(Paths.get(outRecnet), recentTR.getBytes());
+            // Files.write(Paths.get(outRecnet), recentTR.getBytes());
 
             String[] lnx = ln(ex);
             for (String ln : lnx) {
@@ -74,7 +76,7 @@ public class WhatsNewUpdateTexts {
         }
 
         recentEN = recentEN.replace("_", "");
-        Files.write(Paths.get(RECENT_PATH + "en" + ".txt"), recentEN.getBytes());
+        // Files.write(Paths.get(RECENT_PATH + "en" + ".txt"), recentEN.getBytes());
 
         String[] lnx = ln("en");
         for (String ln : lnx) {

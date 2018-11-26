@@ -501,4 +501,7 @@
    <string name="ask_rate_us1">אם אתה אוהב את האפליקציה הזו, דרג אותנו ובדוק אותנו ב- Google Play. תודה!</string>
    <string name="message">הודעה</string>
    <string name="exit_application">צא מיישום</string>
+   <string name="exit_application_question">יציאה מהיישום?</string>
+   <string name="open_folder_as_a_book">פתח את התיקיה כספר</string>
+   <string name="read_out_loud_with_tts">קרא בקול רם עם TTS</string>
 </resources>

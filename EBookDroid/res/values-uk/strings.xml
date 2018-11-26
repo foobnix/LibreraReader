@@ -501,4 +501,7 @@
    <string name="ask_rate_us1">Якщо вам подобається ця заявка, будь ласка, оцініть та перегляньте нас в Google Play. Дякую!</string>
    <string name="message">Повідомлення</string>
    <string name="exit_application">Завершити додаток</string>
+   <string name="exit_application_question">Завершити додаток?</string>
+   <string name="open_folder_as_a_book">Відкрийте папку як книгу</string>
+   <string name="read_out_loud_with_tts">Читати гучно з TTS</string>
 </resources>

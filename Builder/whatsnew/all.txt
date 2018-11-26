@@ -1,0 +1,254 @@
+
+<nl-NL>
+* Een belangrijke update gebaseerd op feedback van lezers 
+* Snelle leesmodus (RSVP) voor alle formaten en PDF 
+* Tekstselectie en zoeken in DjVu-documenten 
+* PDF Reader met nieuwe Text-To-Speech (TTS) interface 
+* Mappen met afbeeldingen kunnen worden geopend zoals een boek
+</nl-NL>
+
+<id>
+* Pembaruan besar berdasarkan umpan balik pembaca 
+* Mode cepat baca (RSVP) untuk semua format dan PDF 
+* Pemilihan teks dan pencarian dalam dokumen DjVu 
+* PDF Reader dengan antarmuka Text-To-Speech (TTS) baru 
+* Folder dengan gambar dapat dibuka seperti buku
+</id>
+
+<lt>
+* Svarbus naujinimas, pagrįstas skaitytojų atsiliepimais 
+* Greitas skaitymo režimas (RSVP) visuose formatuose ir PDF formatu 
+* Teksto parinkimas ir paieška DjVu dokumentuose 
+* PDF Reader su nauja teksto į kalbą (TTS) sąsaja 
+* Katalogai su vaizdais gali būti atidaryti kaip knyga
+</lt>
+
+<ar>
+* تحديث رئيسي يعتمد على ملاحظات القراء 
+* وضع القراءة السريعة (RSVP) لجميع التنسيقات و PDF 
+* اختيار النص والبحث في مستندات DjVu 
+* قارئ PDF مع واجهة تحويل النص إلى كلام (TTS) 
+* يمكن فتح المجلدات مع الصور مثل كتاب
+</ar>
+
+<ro>
+* O actualizare majoră bazată pe feedback-ul cititorilor 
+* Modul de citire rapidă (RSVP) pentru toate formatele și PDF 
+* Selecția și căutarea textului în documentele DjVu 
+* Reader PDF cu interfață Text-To-Speech (TTS) 
+* Foldere cu imagini pot fi deschise o carte
+</ro>
+
+<de-DE>
+* Ein wichtiges Update basierend auf dem Feedback der Leser. 
+* Fast Read-Modus (RSVP) für alle Formate und PDFs. 
+* Textauswahl und -suche in DjVu-Dokumenten ein Buch
+</de-DE>
+
+<pl-PL>
+* Ważna aktualizacja oparta na informacjach zwrotnych czytelników 
+* Tryb szybkiego czytania (RSVP) dla wszystkich formatów i PDF 
+* Wybór tekstu i wyszukiwanie w dokumentach DjVu 
+* Czytnik plików PDF z nowym interfejsem Text-To-Speech (TTS) 
+* Foldery z obrazami można otwierać książka
+</pl-PL>
+
+<iw-IL>
+* עדכון גדול מבוסס על משוב הקוראים 
+* מצב קריאה מהירה (RSVP) עבור כל הפורמטים ו- PDF 
+* בחירת טקסט וחיפוש במסמכים DjVu 
+* PDF Reader עם טקסט חדש לדיבור (TTS) ממשק 
+* תיקיות עם תמונות ניתן לפתוח כמו ספר
+</iw-IL>
+
+<hi-IN>
+* पाठकों के फीडबैक पर आधारित एक बड़ा अपडेट 
+* सभी प्रारूपों और पीडीएफ के लिए फास्ट रीड मोड (आरएसवीपी) 
+* डीजेवी दस्तावेजों में टेक्स्ट चयन और खोज 
+* नए टेक्स्ट-टू-स्पीच (टीटीएस) इंटरफ़ेस के साथ पीडीएफ रीडर 
+* छवियों वाले फ़ोल्डर खोले जा सकते हैं एक किताब
+</hi-IN>
+
+<es-ES>
+* Una actualización importante basada en los comentarios de los lectores 
+* Modo de lectura rápida (RSVP) para todos los formatos y PDF 
+* Selección de texto y búsqueda en documentos DjVu 
+* Lector de PDF con la nueva interfaz de texto a voz (TTS) un libro
+</es-ES>
+
+<fi-FI>
+* Merkittävä päivitys, joka perustuu lukijoiden palautteeseen 
+* Nopea lukutila (RSVP) kaikissa tiedostomuodoissa ja PDF-muodossa 
+* Teksti valitaan ja haetaan DjVu-dokumenteissa 
+* PDF-lukija uudella tekstille-puheeksi (TTS) 
+* Kuvissa olevat kansiot voidaan avata kirja
+</fi-FI>
+
+<vi>
+* Cập nhật lớn dựa trên phản hồi của người đọc 
+* Chế độ đọc nhanh (RSVP) cho tất cả các định dạng và PDF 
+* Lựa chọn văn bản và tìm kiếm trong tài liệu DjVu 
+* Trình đọc PDF với giao diện Text-To-Speech (TTS) mới 
+* Thư mục có hình ảnh có thể mở ra một quyển sách
+</vi>
+
+<fr-FR>
+* Une mise à jour majeure basée sur les commentaires des lecteurs 
+* Mode de lecture rapide (RSVP) pour tous les formats et PDF 
+* Sélection de texte et recherche dans les documents DjVu 
+* Lecteur PDF avec nouvelle interface de synthèse vocale (TTS) 
+* Les dossiers avec des images peuvent être ouverts comme un livre
+</fr-FR>
+
+<fr-CA>
+* Une mise à jour majeure basée sur les commentaires des lecteurs 
+* Mode de lecture rapide (RSVP) pour tous les formats et PDF 
+* Sélection de texte et recherche dans les documents DjVu 
+* Lecteur PDF avec nouvelle interface de synthèse vocale (TTS) 
+* Les dossiers avec des images peuvent être ouverts comme un livre
+</fr-CA>
+
+<sw>
+* Toleo la msingi linalotokana na maoni ya wasomaji 
+* Mfumo wa kusoma haraka (RSVP) kwa muundo wote na PDF 
+* Uchaguzi wa maandishi na utafutaji katika nyaraka za DjVu 
+* PDF Reader na interface mpya ya Maandishi-To-Speech (TTS) 
+* Folders zilizo na picha zinaweza kufunguliwa kama kitabu
+</sw>
+
+<zh-TW>
+*基于读者反馈的重大更新
+*适用于所有格式的快速阅读模式（RSVP）和PDF 
+* DjVu文档中的文本选择和搜索
+*带有新文本到语音（TTS）界面的PDF阅读器
+*带图像的文件夹可以像一本书
+</zh-TW>
+
+<ru-RU>
+* Большое обновление, основанное на отзывах читателей 
+* Быстрый режим чтения (RSVP) для всех форматов и PDF 
+* Выбор текста и поиск в документах DjVu 
+* PDF Reader с новым интерфейсом Text-To-Speech (TTS) 
+* Папки с изображениями можно открыть, как книга
+</ru-RU>
+
+<th>
+* การปรับปรุงที่สำคัญขึ้นอยู่กับความคิดเห็นของผู้อ่าน 
+* Fast อ่านโหมด (RSVP) สำหรับทุกรูปแบบและ PDF 
+* การเลือกข้อความและการค้นหาในเอกสาร DjVu 
+* PDF Reader กับใหม่ Text-To-Speech (TTS) interface 
+* โฟลเดอร์ที่มีภาพสามารถเปิดได้เช่น หนังสือ
+</th>
+
+<it-IT>
+* Un importante aggiornamento basato sul feedback dei lettori 
+* Modalità di lettura veloce (RSVP) per tutti i formati e PDF 
+* Selezione del testo e ricerca nei documenti DjVu 
+* PDF Reader con nuova interfaccia Text-To-Speech (TTS) 
+* Le cartelle con le immagini possono essere aperte come un libro
+</it-IT>
+
+<sv-SE>
+* En viktig uppdatering baserad på läsarens återkoppling 
+* Snabbläsning (RSVP) för alla format och PDF 
+* Textval och sökning i DjVu-dokument 
+* PDF-läsare med nytt text-till-tal (TTS) gränssnitt 
+* Mappar med bilder kan öppnas som en bok
+</sv-SE>
+
+<fa>
+* یک بروز رسانی مهم بر اساس بازخورد خوانندگان 
+* حالت سریع خواندن (RSVP) برای تمام فرمت ها و PDF 
+* انتخاب متن و جستجو در اسناد DjVu 
+* PDF Reader با رابط جدید متن به گفتار (TTS) 
+* پوشه ها با تصاویر می توانند مانند یک کتاب
+</fa>
+
+<pt-PT>
+* Uma grande atualização com base no feedback dos leitores 
+* Modo de leitura rápida (RSVP) para todos os formatos e PDF 
+* Seleção de texto e pesquisa em documentos DjVu 
+* Leitor de PDF com nova interface Text-To-Speech (TTS) 
+* Pastas com imagens podem ser abertas como um livro
+</pt-PT>
+
+<pt-BR>
+* Uma grande atualização com base no feedback dos leitores 
+* Modo de leitura rápida (RSVP) para todos os formatos e PDF 
+* Seleção de texto e pesquisa em documentos DjVu 
+* Leitor de PDF com nova interface Text-To-Speech (TTS) 
+* Pastas com imagens podem ser abertas como um livro
+</pt-BR>
+
+<ko-KR>
+* 독자 의견을 기반으로 한 주요 업데이트 
+* 모든 형식 및 PDF에 대한 
+* 빠른 읽기 모드 (RSVP) 
+* DjVu 문서에서 텍스트 선택 및 검색 
+* 새로운 TTS (텍스트 음성 변환) 인터페이스가있는 PDF 리더 
+* 이미지가있는 폴더는 다음과 같이 열 수 있습니다. 책
+</ko-KR>
+
+<hu-HU>
+* A legfontosabb frissítés az olvasók visszajelzései alapján 
+* Gyors olvasási mód (RSVP) minden formátumhoz és PDF formátumhoz 
+* Szövegválasztás és keresés a DjVu dokumentumokban 
+* PDF olvasó új szöveges beszélgetés (TTS) felületen 
+* A képeket tartalmazó mappák megnyithatók könyv
+</hu-HU>
+
+<sk>
+* Veľká aktualizácia založená na spätnej väzbe čitateľov 
+* Rýchle čítanie (RSVP) pre všetky formáty a PDF 
+* Výber textu a vyhľadávanie v dokumentoch DjVu 
+* PDF Reader s novým rozhraním Text to Speech (TTS) 
+* Priečinky s obrázkami môžu byť otvorené ako kniha
+</sk>
+
+<tr-TR>
+* Okuyucular geribildirim dayalı büyük bir güncelleme 
+* Tüm formatlar ve PDF için Hızlı okuma modu (RSVP) 
+* Metin seçimi ve DjVu belgelerinde arama 
+* Yeni Metin-Konuşma (TTS) arayüzü ile PDF Okuyucu 
+* Görüntüler ile Klasörler gibi açılabilir kitap
+</tr-TR>
+
+<no-NO>
+* En stor oppdatering basert på leser tilbakemelding 
+* Rask lesemodus (RSVP) for alle formater og PDF 
+* Tekstvalg og søk i DjVu-dokumenter 
+* PDF Reader med nytt tekst-til-tale (TTS) grensesnitt 
+* Mapper med bilder kan åpnes som en bok
+</no-NO>
+
+<la>
+* A major update secundum legentibus feedback 
+* Fast lege modus (RSVP) omnes formats et PDF 
+* Text Selectio quaerere in DjVu litteris 
+* PDF Lector cum novo textu ut, Declamatio (TTS) interface 
+* Folders in imaginibus potest aperuit similis librum
+</la>
+
+<ja-JP>
+*読者のフィードバックに基づくメジャーアップデート
+*すべてのフォーマットとPDFのための高速読み込みモード（RSVP）
+* DjVuドキュメントでのテキスト選択と検索
+*新しいTTS（Text-To-Speech）インターフェイスを備えたPDFリーダー
+*画像付きのフォルダは一冊の本
+</ja-JP>
+
+<uk>
+* Основне оновлення на основі відгуків читачів 
+* Швидкий режим читання (RSVP) для всіх форматів і PDF 
+* Вибір тексту та пошук в документах DjVu 
+* PDF Reader з новим інтерфейсом Text-to-Speech (TTS) 
+* Папки із зображеннями можуть бути відкриті, як книга
+</uk>
+
+<en-US>
+* A major update based on readers feedback
+* Fast read mode (RSVP) for all formats and PDF
+* Text selection and search in DjVu documents
+* PDF Reader with new Text-To-Speech (TTS) interface
+* Folders with images can be opened like a book
+</en-US>

@@ -501,4 +501,7 @@
    <string name="ask_rate_us1">Si tibi placet application, obsecro, nobiscum review on Google rate et de. Gratias tibi!</string>
    <string name="message">Nuntius</string>
    <string name="exit_application">Exitus application</string>
+   <string name="exit_application_question">Application exit?</string>
+   <string name="open_folder_as_a_book">Libri aperti ut folder</string>
+   <string name="read_out_loud_with_tts">Et cum magna Read TTS</string>
 </resources>

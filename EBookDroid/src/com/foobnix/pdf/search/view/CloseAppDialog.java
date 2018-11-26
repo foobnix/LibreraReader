@@ -7,6 +7,7 @@ import java.util.concurrent.TimeUnit;
 import com.foobnix.android.utils.Apps;
 import com.foobnix.android.utils.TxtUtils;
 import com.foobnix.pdf.info.R;
+import com.foobnix.pdf.info.TintUtil;
 import com.foobnix.pdf.info.Urls;
 import com.foobnix.pdf.info.view.MyPopupMenu;
 import com.foobnix.pdf.info.wrapper.AppState;
@@ -67,8 +68,10 @@ public class CloseAppDialog {
 
         long delta = System.currentTimeMillis() - AppState.get().installationDate;
 
+        topLayout.setBackgroundColor(TintUtil.color);
+
         topLayout.setVisibility(TxtUtils.visibleIf(AppState.get().isShowRateUsOnExit && TimeUnit.MILLISECONDS.toDays(delta) > 2));
-        // topLayout.setVisibility(TxtUtils.visibleIf(AppState.get().isShowRateUsOnExit));
+        // topLayout.setVisibility(View.VISIBLE);
         onAsk.setOnClickListener(new View.OnClickListener() {
 
             @Override

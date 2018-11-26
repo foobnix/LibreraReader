@@ -10,7 +10,7 @@
         android:layout_height="@dimen/wh_button_big"
         android:background="@drawable/bg_clickable"
         android:padding="7dip"
-        android:src="@drawable/glyphicons_185_volume_up" />
+        android:src="@drawable/glyphicons_137_cogwheel" />
 
     <ImageView
         android:id="@+id/ttsPrev"

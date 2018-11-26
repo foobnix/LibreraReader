@@ -10,7 +10,7 @@
 </target>
 
 	<target name="prepare-packages">
-
+		<echo>!!!!!!!!!!!!!!!!!!!!!!</echo>
 	    <echo>Prepare Packages "${pdf.package}"</echo>
 	    <echo>${package.pdf}</echo>
 	    <echo>${package.pro}</echo>
@@ -21,28 +21,29 @@
 	   
 	   
    <replaceregexp file="../EbookaPDF/AndroidManifest.xml" flags="g"
-	match='librera.beta111' replace='${pdf.package}' />
+	match='librera.beta111' replace='VALUE_1' />
 
 	<replaceregexp file="../EbookaPDF/AndroidManifest.xml" flags="g"
-	match='librera.beta112' replace='${pdf.package}' />
+	match='librera.beta112' replace='VALUE_1' />
 	
  <replaceregexp file="../EbookaPDF/AndroidManifest.xml" flags="g"
-		match='${package.pdf}' replace='${pdf.package}' />
+		match='${package.pdf}' replace='VALUE_1' />
 	
 	<replaceregexp file="../EbookaPDF/AndroidManifest.xml" flags="g"
-		match='${package.pro}' replace='${pdf.package}' />
+		match='${package.pro}' replace='VALUE_1' />
 	
 	<replaceregexp file="../EbookaPDF/AndroidManifest.xml" flags="g"
-		match='${package.classic}' replace='${pdf.package}' />
+		match='${package.classic}' replace='VALUE_1' />
 	
 	<replaceregexp file="../EbookaPDF/AndroidManifest.xml" flags="g"
-		match='${package.droid}' replace='${pdf.package}' />
+		match='${package.droid}' replace='VALUE_1' />
 	
 	<replaceregexp file="../EbookaPDF/AndroidManifest.xml" flags="g"
-		match='${package.ink}' replace='${pdf.package}' />
+		match='${package.ink}' replace='VALUE_1' />
+	
+	<replaceregexp file="../EbookaPDF/AndroidManifest.xml" flags="g"
+		match='VALUE_1' replace='${pdf.package}' />
 
-	<replaceregexp file="../EbookaPDF/AndroidManifest.xml" flags="g"
-		match='pdf.reader.viewer' replace='${pdf.package}' />
 	
 	
 		<replaceregexp file="../EBookDroid/res/values/config.xml"
@@ -72,28 +73,22 @@
 			match='android:icon="@mipmap/test"' replace='android:icon="${pdf.icon}"' />
 		
 		<!-- section 3a -->
-		<!-- 
-		<replaceregexp file="../EbookaPDF/AndroidManifest.xml"
-			match='android:mipmap="@mipmap/icon_pdf_classic"' replace='android:roundIcon="${pdf.icon}"' />
-
-		<replaceregexp file="../EbookaPDF/AndroidManifest.xml"
-			match='android:mipmap="@mipmap/icon_pdf_pro"' replace='android:roundIcon="${pdf.icon}"' />
-
-		<replaceregexp file="../EbookaPDF/AndroidManifest.xml"
-			match='android:mipmap="@mipmap/icon_pdf_reader"' replace='android:roundIcon="${pdf.icon}"' />
 		
 		<replaceregexp file="../EbookaPDF/AndroidManifest.xml"
-			match='android:mipmap="@mipmap/icon_pdf_droid"' replace='android:roundIcon="${pdf.icon}"' />
-	
-	    <replaceregexp file="../EbookaPDF/AndroidManifest.xml"
-			match='android:mipmap="@mipmap/icon_pdf_reader_ink"' replace='android:roundIcon="${pdf.icon}"' />
-	    
-	     <replaceregexp file="../EbookaPDF/AndroidManifest.xml"
-			match='android:mipmap="@mipmap/icon_pdf_2"' replace='android:roundIcon="${pdf.icon}"' />
+			match=' android:roundIcon="@mipmap/launcher_2"' replace='android:roundIcon="${adaptive.icon}"' />
 
 		<replaceregexp file="../EbookaPDF/AndroidManifest.xml"
-			match='android:mipmap="@drawable/test"' replace='android:roundIcon="${pdf.icon}"' />
- 	-->
+			match='android:roundIcon="@mipmap/launcher_classic"' replace='android:roundIcon="${adaptive.icon}"' />
+
+		<replaceregexp file="../EbookaPDF/AndroidManifest.xml"
+			match='android:roundIcon="@mipmap/launcher_droid"' replace='android:roundIcon="${adaptive.icon}"' />
+		
+		<replaceregexp file="../EbookaPDF/AndroidManifest.xml"
+			match='android:roundIcon="@mipmap/launcher_pro"' replace='android:roundIcon="${adaptive.icon}"' />
+	
+	    <replaceregexp file="../EbookaPDF/AndroidManifest.xml"
+			match='android:roundIcon="@mipmap/launcher_reader"' replace='android:roundIcon="${adaptive.icon}"' />
+	    
 
 		<!-- section 5 -->
 		
@@ -224,6 +219,7 @@
 
 		<property name="pdf.package" value="com.foobnix.pdf.reader" />
 		<property name="pdf.icon" value="@mipmap/icon_pdf_reader" />
+		<property name="adaptive.icon" value="@mipmap/launcher_reader" />
 		<property name="pdf.app.name" value="${name.pdf}" />
 		<property name="pdf.export.name" value="${name.pdf}" />
 
@@ -249,6 +245,7 @@
 
 		<property name="pdf.package" value="${package.pdf}" />
 		<property name="pdf.icon" value="@mipmap/icon_pdf_reader" />
+		<property name="adaptive.icon" value="@mipmap/launcher_reader" />
 		<property name="pdf.app.name" value="Beta ${version.code}.${version.code.index}" />
 		<property name="pdf.export.name" value="Librera Beta" />
 
@@ -275,6 +272,7 @@
 
 		<property name="pdf.package" value="librera.beta111" />
 		<property name="pdf.icon" value="@mipmap/icon_pdf_reader" />
+		<property name="adaptive.icon" value="@mipmap/launcher_reader" />
 		<property name="pdf.app.name" value="Beta ${version.code}.${version.code.index} (11)" />
 		<property name="pdf.export.name" value="Beta" />
 
@@ -300,6 +298,7 @@
 
 		<property name="pdf.package" value="librera.beta112" />
 		<property name="pdf.icon" value="@mipmap/icon_pdf_reader" />
+		<property name="adaptive.icon" value="@mipmap/launcher_reader" />
 		<property name="pdf.app.name" value="Beta ${version.code}.${version.code.index} (12)" />
 		<property name="pdf.export.name" value="Beta" />
 
@@ -322,11 +321,12 @@
 	
 	
 	
-	<target name="pdf-ink">
+	<target name="pdf-v2">
 		<antcall target="clean-all" />
 
 		<property name="pdf.package" value="${package.ink}" />
 		<property name="pdf.icon" value="@mipmap/icon_pdf_2" />
+		<property name="adaptive.icon" value="@mipmap/launcher_2" />
 		<property name="pdf.app.name" value="${name.ink}" />
 		<property name="pdf.export.name" value="${name.ink} v2" />
 
@@ -355,6 +355,7 @@
 
 		<property name="pdf.package" value="${package.classic}" />
 		<property name="pdf.icon" value="@mipmap/icon_pdf_classic" />
+		<property name="adaptive.icon" value="@mipmap/launcher_classic" />
 		<property name="pdf.app.name" value="${name.classic}" />
 		<property name="pdf.export.name" value="${name.classic}" />
 
@@ -378,7 +379,7 @@
 		<echo file="${dropbox}/version.txt" append="false">${version.code}.${version.code.index}</echo>
 	</target>
 
-	<target name="droid">
+	<target name="ebooka">
 
 
 
@@ -386,6 +387,7 @@
 
 		<property name="pdf.package" value="${package.droid}" />
 		<property name="pdf.icon" value="@mipmap/icon_pdf_droid" />
+		<property name="adaptive.icon" value="@mipmap/launcher_droid" />
 		<property name="pdf.app.name" value="${name.droid}" />
 		<property name="pdf.export.name" value="${name.droid}" />
 
@@ -407,12 +409,11 @@
 
 	<!-- PRO pro-replace -->
 	<target name="pro">
-
-
 		<antcall target="clean-all" />
 
 		<property name="pdf.package" value="${package.pro}" />
 		<property name="pdf.icon" value="@mipmap/icon_pdf_pro" />
+		<property name="adaptive.icon" value="@mipmap/launcher_pro" />
 		<property name="pdf.app.name" value="${name.pro}" />
 		<property name="pdf.export.name" value="${name.pro}-PRO" />
 
@@ -442,6 +443,7 @@
 	    
 	 <property name="pdf.package" value="${package.pro}" />
 		<property name="pdf.icon" value="@mipmap/icon_pdf_pro" />
+		<property name="adaptive.icon" value="@mipmap/launcher_pro" />
 		<property name="pdf.app.name" value="${name.pro}" />
 		<property name="pdf.export.name" value="${name.pro}-PRO" />
 		

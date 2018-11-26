@@ -135,7 +135,8 @@ public class MobiParser {
         return -1;
     }
 
-    public MobiParser(byte[] file) throws IOException {
+    @Deprecated
+    private MobiParser(byte[] file) throws IOException {
         raw = file;
 
         name = asString(raw, 0, 32);

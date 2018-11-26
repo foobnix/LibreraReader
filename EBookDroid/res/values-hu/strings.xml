@@ -501,4 +501,7 @@
    <string name="ask_rate_us1">Ha tetszik ez az alkalmazás, kérjük, értékelje és tekintse meg a Google Playen. Köszönöm!</string>
    <string name="message">Üzenet</string>
    <string name="exit_application">Kilépés alkalmazásból</string>
+   <string name="exit_application_question">Kilépés az alkalmazásból?</string>
+   <string name="open_folder_as_a_book">Nyissa meg a mappát könyvként</string>
+   <string name="read_out_loud_with_tts">Olvassa el hangosan a TTS-et</string>
 </resources>

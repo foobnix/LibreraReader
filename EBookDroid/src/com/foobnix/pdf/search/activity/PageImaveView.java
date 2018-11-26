@@ -22,6 +22,7 @@ import com.foobnix.pdf.search.activity.msg.InvalidateMessage;
 import com.foobnix.pdf.search.activity.msg.MessageAutoFit;
 import com.foobnix.pdf.search.activity.msg.MessageCenterHorizontally;
 import com.foobnix.pdf.search.activity.msg.MessageEvent;
+import com.foobnix.pdf.search.activity.msg.MessagePageXY;
 import com.foobnix.pdf.search.activity.msg.MovePageAction;
 import com.foobnix.pdf.search.activity.msg.TextWordsMessage;
 import com.foobnix.sys.ClickUtils;
@@ -201,6 +202,14 @@ public class PageImaveView extends View {
     }
 
     @Subscribe
+    public void onSelectTextByAnchors(MessagePageXY event) {
+        if (pageNumber == event.getPage() && MessagePageXY.TYPE_SELECT_TEXT == event.getType()) {
+            selectText(event.getX1(), event.getY1(), event.getX(), event.getY());
+        }
+
+    }
+
+    @Subscribe
     public void onAutoFit(MessageAutoFit event) {
         LOG.d("onAutoFit recive");
         if (pageNumber == event.getPage()) {
@@ -374,6 +383,8 @@ public class PageImaveView extends View {
             String selectText = selectText(xInit, yInit, e.getX(), e.getY());
             if (TxtUtils.isEmpty(selectText)) {
                 AppState.get().selectedText = null;
+                EventBus.getDefault().post(new MessagePageXY(MessagePageXY.TYPE_HIDE));
+
             }
         }
 
@@ -391,6 +402,7 @@ public class PageImaveView extends View {
                 isReadyForMove = false;
                 isLognPress = false;
                 isMoveNextPrev = 0;
+                EventBus.getDefault().post(new MessagePageXY(MessagePageXY.TYPE_HIDE));
             } else if (action == MotionEvent.ACTION_MOVE) {
                 if (event.getPointerCount() == 1) {
                     LOG.d("TEST", "action ACTION_MOVE 1");
@@ -398,7 +410,10 @@ public class PageImaveView extends View {
                     final float dy = event.getY() - y;
 
                     if (isLognPress) {
-                        selectText(event.getX(), event.getY(), xInit, yInit);
+                        String selectText = selectText(event.getX(), event.getY(), xInit, yInit);
+                        if (selectText != null && selectText.contains(" ")) {
+                            EventBus.getDefault().post(new MessagePageXY(MessagePageXY.TYPE_SHOW, -1, xInit, yInit, event.getX(), event.getY()));
+                        }
                     } else {
 
                         if (AppState.get().isLocked) {
@@ -472,18 +487,21 @@ public class PageImaveView extends View {
                         LOG.d("postScale", scale, values[Matrix.MSCALE_X]);
                         if (values[Matrix.MSCALE_X] > 0.3f || scale > 1) {
                             imageMatrix().postScale(scale, scale, centerX, centerY);
+                            EventBus.getDefault().post(new MessagePageXY(MessagePageXY.TYPE_HIDE));
                         }
                     }
                     final float dx = centerX - cx;
                     final float dy = centerY - cy;
                     if (AppState.get().isAllowMoveTwoFingerWithLock || !AppState.get().isLocked) {
                         imageMatrix().postTranslate(dx, dy);
+                        EventBus.getDefault().post(new MessagePageXY(MessagePageXY.TYPE_HIDE));
                     }
                     cx = centerX(event);
                     cy = centerY(event);
 
                     PageImageState.get().isAutoFit = false;
                     invalidateAndMsg();
+
                 }
             } else if (action == MotionEvent.ACTION_POINTER_UP) {
                 LOG.d("TEST", "action ACTION_POINTER_UP");
@@ -513,7 +531,11 @@ public class PageImaveView extends View {
                 cy = 0;
 
                 if (isLognPress) {
-                    selectText(event.getX(), event.getY(), xInit, yInit);
+                    String selectText = selectText(event.getX(), event.getY(), xInit, yInit);
+                    if (selectText != null && selectText.contains(" ")) {
+                        EventBus.getDefault().post(new MessagePageXY(MessagePageXY.TYPE_SHOW, -1, xInit, yInit, event.getX(), event.getY()));
+                    }
+
                 } else if (AppState.get().isTextFormat()) {
                     if (!TempHolder.isSeaching) {
                         selectText(event.getX(), event.getY(), event.getX(), event.getY());
@@ -521,6 +543,8 @@ public class PageImaveView extends View {
                             PageImageState.get().cleanSelectedWords();
                             AppState.get().selectedText = null;
                             invalidate();
+
+                            EventBus.getDefault().post(new MessagePageXY(MessagePageXY.TYPE_HIDE));
                         }
                     }
                 }

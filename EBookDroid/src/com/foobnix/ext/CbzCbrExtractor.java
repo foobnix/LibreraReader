@@ -9,12 +9,12 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.Locale;
 
-import org.apache.commons.compress.archivers.zip.ZipArchiveEntry;
-import org.apache.commons.compress.archivers.zip.ZipArchiveInputStream;
 import org.ebookdroid.BookType;
 
 import com.foobnix.android.utils.LOG;
 import com.foobnix.pdf.info.ExtUtils;
+import com.foobnix.sys.ArchiveEntry;
+import com.foobnix.sys.ZipArchiveInputStream;
 import com.foobnix.sys.Zips;
 
 import junrar.Archive;
@@ -42,15 +42,13 @@ public class CbzCbrExtractor {
         int count = 0;
         try {
             if (BookType.CBZ.is(path) || isZip(path)) {
-                FileInputStream is = new FileInputStream(new File(path));
 
-                ZipArchiveInputStream zipInputStream = Zips.buildZipArchiveInputStream(is);
+                ZipArchiveInputStream zipInputStream = Zips.buildZipArchiveInputStream(path);
 
-                while (zipInputStream.getNextZipEntry() != null) {
+                while (zipInputStream.getNextEntry() != null) {
                         count++;
                 }
                 zipInputStream.close();
-                is.close();
 
             } else if (BookType.CBR.is(path)) {
                 Archive archive = new Archive(new File(path));
@@ -72,13 +70,12 @@ public class CbzCbrExtractor {
         ByteArrayOutputStream out = new ByteArrayOutputStream();
         try {
             if (BookType.CBZ.is(path) || isZip(path)) {
-                FileInputStream is = new FileInputStream(new File(path));
 
-                ZipArchiveInputStream zipInputStream = new ZipArchiveInputStream(is, "cp1251");
-                ZipArchiveEntry nextEntry = null;
+                ZipArchiveInputStream zipInputStream = new ZipArchiveInputStream(path);
+                ArchiveEntry nextEntry = null;
 
                 List<String> names = new ArrayList<String>();
-                while ((nextEntry = zipInputStream.getNextZipEntry()) != null) {
+                while ((nextEntry = zipInputStream.getNextEntry()) != null) {
                     String name = nextEntry.getName();
                     LOG.d("Name", name);
                     if (ExtUtils.isImagePath(name)) {
@@ -86,23 +83,20 @@ public class CbzCbrExtractor {
                     }
                 }
                 zipInputStream.close();
-                is.close();
                 Collections.sort(names);
 
-                is = new FileInputStream(new File(path));
 
-                zipInputStream = new ZipArchiveInputStream(is, "cp1251");
+                zipInputStream = new ZipArchiveInputStream(path);
                 nextEntry = null;
 
                 String first = names.get(0);
-                while ((nextEntry = zipInputStream.getNextZipEntry()) != null) {
+                while ((nextEntry = zipInputStream.getNextEntry()) != null) {
                     if (nextEntry.getName().equals(first)) {
                         CacheZipUtils.writeToStream(zipInputStream, out);
                         break;
                     }
                 }
                 zipInputStream.close();
-                is.close();
 
             } else if (BookType.CBR.is(path)) {
                 Archive archive = new Archive(new File(path));

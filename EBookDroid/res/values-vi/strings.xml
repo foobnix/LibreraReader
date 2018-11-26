@@ -501,4 +501,7 @@
    <string name="ask_rate_us1">Nếu bạn thích ứng dụng này, vui lòng xếp hạng và đánh giá chúng tôi trên Google Play. Cảm ơn bạn!</string>
    <string name="message">Thông điệp</string>
    <string name="exit_application">Ứng dụng xuất cảnh</string>
+   <string name="exit_application_question">Ứng dụng xuất cảnh?</string>
+   <string name="open_folder_as_a_book">Mở thư mục dưới dạng sách</string>
+   <string name="read_out_loud_with_tts">Đọc to với TTS</string>
 </resources>

@@ -83,8 +83,8 @@
    <string name="folder_with_fonts">Папка со шрифтами</string>
    <string name="text_align">Выравнивать текст</string>
    <string name="width">По ширине</string>
-   <string name="left">По левому краю</string>
-   <string name="right">По правому краю</string>
+   <string name="left">Слева</string>
+   <string name="right">Справа</string>
    <string name="center">По центру</string>
    <string name="custom_css">Пользовательские CSS</string>
    <string name="styles">Стили</string>
@@ -93,8 +93,8 @@
    <string name="automatic_hyphenation">Автоматически расставлять переносы</string>
    <string name="empty_line">Пустая строка</string>
    <string name="margin_width">Ширина отступов</string>
-   <string name="top">По верхнему краю</string>
-   <string name="bottom">По нижнему краю</string>
+   <string name="top">Сверху</string>
+   <string name="bottom">Снизу</string>
    <string name="links_color_day">Цвет ссылок (\"День\")</string>
    <string name="links_color_night">Цвет ссылок (\"Ночь\")</string>
    <string name="___ADVANCED___SETTINGS___SECTION___"></string>
@@ -306,7 +306,7 @@
    <string name="to_read">Читать</string>
    <string name="to_paly_pause">Читать / Пауза</string>
    <string name="text_to_speech">Преобразование текста в речь</string>
-   <string name="speed1">Скорость речи</string>
+   <string name="speed1">Скорость</string>
    <string name="pitch1">Высота голоса</string>
    <string name="sound_volume">Громкость</string>
    <string name="next">След. стр.</string>
@@ -494,11 +494,14 @@
    <string name="play_a_music_file">Выбрать и проиграть муз. файл</string>
    <string name="rate_us">Оцените нас</string>
    <string name="reset">Сброс</string>
-   <string name="status_bar_location">Расположение строки состояния</string>
+   <string name="status_bar_location">Расположение строки сост-я</string>
    <string name="add_to_bookmark">Добавить в закладки</string>
    <string name="fast_reading">Скорочтение (RSVP)</string>
-   <string name="minimum_line_length">Минимальная длина линии (CPL)</string>
-   <string name="ask_rate_us1">Если вам нравится это приложение, пожалуйста, оцените и просмотрите нас в Google Play. Спасибо!</string>
+   <string name="minimum_line_length">Минимальная длина линии текста (CPL)</string>
+   <string name="ask_rate_us1">Если вам нравится это приложение, пожалуйста, загляните и оцените нас на Google Play. Спасибо!</string>
    <string name="message">Сообщение</string>
    <string name="exit_application">Выход из приложения</string>
+   <string name="exit_application_question">Выйти из приложения?</string>
+   <string name="open_folder_as_a_book">Открыть папку в виде книги</string>
+   <string name="read_out_loud_with_tts">Читайте вслух с TTS</string>
 </resources>

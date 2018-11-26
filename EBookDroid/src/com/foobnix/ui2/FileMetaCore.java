@@ -6,6 +6,7 @@ import java.util.Locale;
 
 import org.ebookdroid.BookType;
 import org.ebookdroid.common.cache.CacheManager;
+import org.ebookdroid.droids.FolderContext;
 import org.jsoup.Jsoup;
 import org.jsoup.safety.Whitelist;
 
@@ -167,6 +168,10 @@ public class FileMetaCore {
         } else if (BookType.CBR.is(unZipPath) || BookType.CBZ.is(unZipPath)) {
             ebookMeta.setPagesCount(CbzCbrExtractor.getPageCount(unZipPath));
 
+        } else if (BookType.FOLDER.is(unZipPath)) {
+            File parent = new File(unZipPath).getParentFile();
+            ebookMeta.setTitle(parent.getName());
+            ebookMeta.setPagesCount(FolderContext.getPageCount(unZipPath));
         }
 
         try {

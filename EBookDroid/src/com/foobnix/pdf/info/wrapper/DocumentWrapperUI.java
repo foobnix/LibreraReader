@@ -30,6 +30,7 @@ import com.foobnix.pdf.info.R;
 import com.foobnix.pdf.info.TintUtil;
 import com.foobnix.pdf.info.UiSystemUtils;
 import com.foobnix.pdf.info.model.OutlineLinkWrapper;
+import com.foobnix.pdf.info.view.AnchorHelper;
 import com.foobnix.pdf.info.view.BrightnessHelper;
 import com.foobnix.pdf.info.view.CustomSeek;
 import com.foobnix.pdf.info.view.Dialogs;
@@ -39,8 +40,10 @@ import com.foobnix.pdf.info.view.HorizontallSeekTouchEventListener;
 import com.foobnix.pdf.info.view.MyPopupMenu;
 import com.foobnix.pdf.info.view.ProgressDraw;
 import com.foobnix.pdf.info.view.UnderlineImageView;
+import com.foobnix.pdf.info.widget.DraggbleTouchListener;
 import com.foobnix.pdf.info.widget.ShareDialog;
 import com.foobnix.pdf.search.activity.HorizontalModeController;
+import com.foobnix.pdf.search.activity.msg.MessagePageXY;
 import com.foobnix.pdf.search.activity.msg.MessegeBrightness;
 import com.foobnix.pdf.search.view.CloseAppDialog;
 import com.foobnix.sys.TempHolder;
@@ -63,7 +66,6 @@ import android.graphics.Color;
 import android.os.Build;
 import android.os.Handler;
 import android.support.v4.graphics.ColorUtils;
-import android.view.GestureDetector;
 import android.view.KeyEvent;
 import android.view.MenuItem;
 import android.view.MenuItem.OnMenuItemClickListener;
@@ -88,10 +90,6 @@ public class DocumentWrapperUI {
     Activity a;
     String bookTitle;
 
-    DocumentGestureListener documentListener;
-    DocumentGuestureDetector documentGestureDetector;
-    GestureDetector gestureDetector;
-
     TextView toastBrightnessText, pagesCountIndicator, currentSeek, maxSeek, currentTime, bookName, nextTypeBootom, batteryLevel, lirbiLogo, reverseKeysIndicator;
     ImageView onDocDontext, toolBarButton, linkHistory, lockUnlock, lockUnlockTop, textToSpeachTop, clockIcon, batteryIcon;
     ImageView showSearch, nextScreenType, autoScroll, textToSpeach, onModeChange, imageMenuArrow, editTop2, goToPage1, goToPage1Top;
@@ -100,6 +98,7 @@ public class DocumentWrapperUI {
     TTSControlsView ttsActive;
     SeekBar seekBar, speedSeekBar;
     FrameLayout anchor;
+    ImageView anchorX, anchorY;
     DrawView drawView;
     ProgressDraw progressDraw;
     UnderlineImageView crop, cut, onBC;
@@ -114,30 +113,6 @@ public class DocumentWrapperUI {
         this.dc = controller;
         controller.setUi(this);
 
-        documentListener = new DocumentGestureListener() {
-
-            @Override
-            public void onDoubleTap() {
-                doShowHideWrapperControlls();
-            }
-
-            @Override
-            public void onNextPage() {
-                nextChose(false);
-
-            }
-
-            @Override
-            public void onPrevPage() {
-                prevChose(false);
-            }
-
-            @Override
-            public void onSingleTap() {
-                // onSingleTap();
-            }
-
-        };
         EventBus.getDefault().register(this);
 
     }
@@ -209,6 +184,7 @@ public class DocumentWrapperUI {
 
     public void showSelectTextMenu() {
         DragingDialogs.selectTextMenu(anchor, dc, true, updateUIRunnable);
+
     }
 
     public boolean checkBack(final KeyEvent event) {
@@ -435,10 +411,11 @@ public class DocumentWrapperUI {
             reverseKeysIndicator.setVisibility(View.GONE);
         }
 
-        moveLeft.setVisibility(Dips.isSmallScreen() ? View.GONE : View.VISIBLE);
-        moveRight.setVisibility(Dips.isSmallScreen() ? View.GONE : View.VISIBLE);
-        zoomPlus.setVisibility(Dips.isSmallScreen() ? View.GONE : View.VISIBLE);
-        zoomMinus.setVisibility(Dips.isSmallScreen() ? View.GONE : View.VISIBLE);
+        moveLeft.setVisibility(Dips.isSmallScreen() && Dips.isVertical() ? View.GONE : View.VISIBLE);
+        moveRight.setVisibility(Dips.isSmallScreen() && Dips.isVertical() ? View.GONE : View.VISIBLE);
+        zoomPlus.setVisibility(Dips.isSmallScreen() && Dips.isVertical() ? View.GONE : View.VISIBLE);
+        zoomMinus.setVisibility(Dips.isSmallScreen() && Dips.isVertical() ? View.GONE : View.VISIBLE);
+
         if (dc.isTextFormat()) {
             moveLeft.setVisibility(View.GONE);
             moveRight.setVisibility(View.GONE);
@@ -530,6 +507,24 @@ public class DocumentWrapperUI {
         }
     };
 
+    @Subscribe
+    public void showHideTextSelectors(MessagePageXY event) {
+        if (event.getType() == MessagePageXY.TYPE_HIDE) {
+            anchorX.setVisibility(View.GONE);
+            anchorY.setVisibility(View.GONE);
+
+        }
+        if (event.getType() == MessagePageXY.TYPE_SHOW) {
+            anchorX.setVisibility(View.VISIBLE);
+            anchorY.setVisibility(View.VISIBLE);
+
+            AnchorHelper.setXY(anchorX, event.getX(), event.getY());
+            AnchorHelper.setXY(anchorY, event.getX1(), event.getY1());
+
+        }
+
+    }
+
     public void initUI(final Activity a) {
         this.a = a;
 
@@ -546,6 +541,52 @@ public class DocumentWrapperUI {
         speedSeekBar = (SeekBar) a.findViewById(R.id.seekBarSpeed);
         seekSpeedLayot = a.findViewById(R.id.seekSpeedLayot);
         anchor = (FrameLayout) a.findViewById(R.id.anchor);
+        dc.initAnchor(anchor);
+
+        anchorX = (ImageView) a.findViewById(R.id.anchorX);
+        anchorY = (ImageView) a.findViewById(R.id.anchorY);
+
+        TintUtil.setTintImageWithAlpha(anchorX, AppState.get().isDayNotInvert ? Color.BLUE : Color.YELLOW, 150);
+        TintUtil.setTintImageWithAlpha(anchorY, AppState.get().isDayNotInvert ? Color.BLUE : Color.YELLOW, 150);
+
+        anchorX.setVisibility(View.GONE);
+        anchorY.setVisibility(View.GONE);
+
+        DraggbleTouchListener touch1 = new DraggbleTouchListener(anchorX, (View) anchorX.getParent());
+        DraggbleTouchListener touch2 = new DraggbleTouchListener(anchorY, (View) anchorY.getParent());
+
+        final Runnable onMoveAction = new Runnable() {
+
+            @Override
+            public void run() {
+                float x = anchorX.getX() + anchorX.getWidth();
+                float y = anchorX.getY() + anchorX.getHeight() / 2;
+
+                float x1 = anchorY.getX();
+                float y1 = anchorY.getY();
+                EventBus.getDefault().post(new MessagePageXY(MessagePageXY.TYPE_SELECT_TEXT, dc.getCurentPage(), x, y, x1, y1));
+            }
+        };
+
+        Runnable onMoveFinish = new Runnable() {
+
+            @Override
+            public void run() {
+                onMoveAction.run();
+                if (AppState.get().isRememberDictionary) {
+                    DictsHelper.runIntent(dc.getActivity(), AppState.get().selectedText);
+                } else {
+                    DragingDialogs.selectTextMenu(anchor, dc, true, updateUIRunnable);
+                }
+
+            }
+        };
+
+        touch1.setOnMoveFinish(onMoveFinish);
+        touch2.setOnMoveFinish(onMoveFinish);
+
+        touch1.setOnMove(onMoveAction);
+        touch2.setOnMove(onMoveAction);
 
         titleBar = a.findViewById(R.id.titleBar);
         titleBar.setOnClickListener(onMenu);
@@ -1500,7 +1541,7 @@ public class DocumentWrapperUI {
     };
 
     private boolean closeDialogs() {
-        return dc.closeDialogs(anchor);
+        return dc.closeDialogs();
     }
 
     public View.OnClickListener onModeChangeClick = new View.OnClickListener() {
@@ -1745,26 +1786,6 @@ public class DocumentWrapperUI {
 
     }
 
-    public DocumentGestureListener getDocumentListener() {
-        return documentListener;
-    }
-
-    public void setDocumentListener(final DocumentGestureListener wrapperListener) {
-        this.documentListener = wrapperListener;
-    }
-
-    // public DocumentGuestureDetector getDocumentGestureDetector() {
-    // return documentGestureDetector;
-    // }
-
-    public GestureDetector getGestureDetector() {
-        return gestureDetector;
-    }
-
-    public void setGestureDetector(final GestureDetector gestureDetector) {
-        this.gestureDetector = gestureDetector;
-    }
-
     public DocumentController getController() {
         return dc;
     }
@@ -1843,6 +1864,7 @@ public class DocumentWrapperUI {
             ttsActive.setVisibility(TxtUtils.visibleIf(TTSEngine.get().isPlaying()));
         }
 
+
     }
 
     public void onPause() {
@@ -1856,6 +1878,14 @@ public class DocumentWrapperUI {
         handlerTimer.removeCallbacksAndMessages(null);
         handler.removeCallbacksAndMessages(null);
 
+    }
+
+    public void onConfigChanged() {
+        try {
+            updateUI();
+        } catch (Exception e) {
+            LOG.e(e);
+        }
     }
 
 }

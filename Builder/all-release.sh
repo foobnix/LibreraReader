@@ -1,4 +1,3 @@
-
 ./link_ant.sh
 ./link_to_mupdf_1.11.sh
 ./copy-fonts.sh
@@ -20,13 +19,12 @@ ant arm classic
 ant arm64 classic
 ant x86 classic
 
-ant arm+arm64 droid
-ant x86 droid
+ant arm+arm64 ebooka
+ant x86 ebooka
 
-#ant arm+arm64 pdf-ink
-#ant x86 pdf-ink
 
-ant version
+ant arm+arm64 pdf-v2
+ant x86 pdf-v2
 
 ./remove_all.sh
 ./install_all.sh

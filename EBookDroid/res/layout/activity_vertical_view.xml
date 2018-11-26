@@ -147,14 +147,7 @@
         </FrameLayout>
     </FrameLayout>
 
-    <FrameLayout
-        android:id="@+id/anchor"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerInParent="false"
-        android:minHeight="10dip"
-        android:minWidth="10dip"
-        android:visibility="gone" />
+   
 
     <FrameLayout
         android:id="@+id/overlay"
@@ -177,5 +170,32 @@
         android:textSize="16sp"
         android:textStyle="bold"
         android:visibility="visible" />
+    
+    <ImageView
+        android:id="@+id/anchorX"
+        android:tint="@color/tint_blue"
+        android:layout_width="@dimen/wh_button"
+        android:layout_height="@dimen/wh_button"
+        android:layout_marginTop="100dip"
+        android:src="@drawable/glyphicons_basic_299_circle_selected"
+         />
+     
+      <ImageView
+           android:layout_marginTop="150dip"
+          android:tint="@color/tint_blue"
+        android:id="@+id/anchorY"
+        android:layout_width="@dimen/wh_button"
+        android:layout_height="@dimen/wh_button"
+        android:src="@drawable/glyphicons_basic_298_circle_empty"
+         />
+      
+       <FrameLayout
+        android:id="@+id/anchor"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="false"
+        android:minHeight="10dip"
+        android:minWidth="10dip"
+        android:visibility="gone" />
 
 </RelativeLayout>

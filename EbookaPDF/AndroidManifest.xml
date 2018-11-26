@@ -2,8 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.foobnix.pdf.reader"
     android:installLocation="auto"
-    android:versionCode="763"
-    android:versionName="7.11.13" >
+    android:versionCode="793"
+    android:versionName="7.11.37" >
 
     <uses-sdk
         android:minSdkVersion="14"
@@ -20,7 +20,7 @@
     <application
         android:name="org.ebookdroid.LibreraApp"
         android:icon="@mipmap/icon_pdf_reader"
-        android:roundIcon="@mipmap/ic_launcher"
+      android:roundIcon="@mipmap/launcher_reader"
         android:label="@string/app_name"
         android:largeHeap="true"
         android:theme="@style/StyledIndicatorsWhite" >

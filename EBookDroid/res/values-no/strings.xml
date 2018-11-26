@@ -501,4 +501,7 @@
    <string name="ask_rate_us1">Hvis du liker dette programmet, kan du vurdere og vurdere oss på Google Play. Takk skal du ha!</string>
    <string name="message">Budskap</string>
    <string name="exit_application">Avslutt søknad</string>
+   <string name="exit_application_question">Utgangsprogram?</string>
+   <string name="open_folder_as_a_book">Åpne mappen som en bok</string>
+   <string name="read_out_loud_with_tts">Les høyt med TTS</string>
 </resources>

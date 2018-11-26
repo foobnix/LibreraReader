@@ -1385,14 +1385,16 @@ public class DragingDialogs {
                 TextView onBookSearch = (TextView) view.findViewById(R.id.onBookSearch);
                 // onBookSearch.setText(controller.getString(R.string.search_in_the_book)
                 // + " \"" + AppState.get().selectedText + "\"");
-                onBookSearch.setVisibility(selectedText.contains(" ") ? View.GONE : View.VISIBLE);
-                onBookSearch.setOnClickListener(new View.OnClickListener() {
+                if (onBookSearch != null) {
+                    onBookSearch.setVisibility(selectedText != null && selectedText.contains(" ") ? View.GONE : View.VISIBLE);
+                    onBookSearch.setOnClickListener(new View.OnClickListener() {
 
-                    @Override
-                    public void onClick(View v) {
-                        searchMenu(anchor, controller, selectedText);
-                    }
-                });
+                        @Override
+                        public void onClick(View v) {
+                            searchMenu(anchor, controller, selectedText);
+                        }
+                    });
+                }
 
                 LinearLayout dictLayout = (LinearLayout) view.findViewById(R.id.dictionaryLine);
                 dictLayout.removeAllViews();
@@ -2621,11 +2623,12 @@ public class DragingDialogs {
                             controller.getString(R.string.bottom) //
                     );//
 
+                    final View statusBarPositionParent = inflate.findViewById(R.id.statusBarPositionParent);
                     final TextView statusBarPosition = (TextView) inflate.findViewById(R.id.statusBarPosition);
                     statusBarPosition.setText(modeStrings.get(modeIds.indexOf(AppState.get().statusBarPosition)));
                     TxtUtils.underlineTextView(statusBarPosition);
 
-                    statusBarPosition.setVisibility(TxtUtils.visibleIf(controller.getActivity() instanceof HorizontalViewActivity));
+                    statusBarPositionParent.setVisibility(TxtUtils.visibleIf(controller.getActivity() instanceof HorizontalViewActivity));
 
                     statusBarPosition.setOnClickListener(new OnClickListener() {
 
@@ -3249,7 +3252,7 @@ public class DragingDialogs {
                         controller.getString(R.string.close_book_and_application), //
                         controller.getString(R.string.hide_app), //
                         controller.getString(R.string.db_do_nothing), //
-                        controller.getString(R.string.read_a_book) //
+                        controller.getString(R.string.read_out_loud_with_tts) //
 
                 );
 

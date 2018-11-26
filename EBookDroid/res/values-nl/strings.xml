@@ -501,4 +501,7 @@
    <string name="ask_rate_us1">Als u van deze app houdt, kunt u ons beoordelen en beoordelen op Google Play. Dank je!</string>
    <string name="message">Bericht</string>
    <string name="exit_application">Sluit app af</string>
+   <string name="exit_application_question">Sluit app af?</string>
+   <string name="open_folder_as_a_book">Open de map als een boek</string>
+   <string name="read_out_loud_with_tts">Voorlezen met TTS</string>
 </resources>

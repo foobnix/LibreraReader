@@ -33,15 +33,31 @@ public class AndroidWhatsNew {
     public static final String DETAIL_URL_RU = "http://librera.mobi/wiki";
     private static final String BETA_TXT = "changelog.txt";
     private static final String BETA = "beta-";
-    private static final String WIKI_URL = "http://librera.mobi/wiki/what-is-new/%s/#%s";
+    private static final String WIKI_URL = "http://librera.mobi/wiki/what-is-new/%s/";
 
-    public static String getLangUrl(String url, String lang) {
+    public static String getLangUrl(Context c) {
+
+        String versionName = Apps.getVersionName(c);
+        String shortVersion = versionName.substring(0, versionName.lastIndexOf("."));
+        String url = String.format(WIKI_URL, shortVersion);
 
         List<String> lns = Arrays.asList("ar", "de", "es", "fr", "it", "pt", "ru", "zh");
-
-        if (lns.contains(lang)) {
-            url = url.replace("#", lang + "#");
+        String appLang = AppState.get().appLang;
+        if (appLang.equals(AppState.MY_SYSTEM_LANG)) {
+            appLang = Urls.getLangCode();
         }
+
+        if (lns.contains(appLang)) {
+            url += appLang;
+        }
+
+        url += "?utm_p=" + Apps.getPackageName(c);
+        url += "&utm_v=" + Apps.getVersionName(c);
+        url += "&utm_ln=" + appLang;
+        url += "&utm_beta=" + AppsConfig.IS_BETA;
+
+        url += "#" + shortVersion.replace(".", "");
+
         LOG.d("getLangUrl", url);
         return url;
 
@@ -55,16 +71,7 @@ public class AndroidWhatsNew {
         wv.getSettings().setUserAgentString(OPDS.USER_AGENT);
         wv.getSettings().setJavaScriptEnabled(true);
 
-        try {
-            String versionName = Apps.getVersionName(c);
-            String shortVersion = versionName.substring(0, versionName.lastIndexOf("."));
-            String url = String.format(WIKI_URL, shortVersion, shortVersion.replace(".", ""));
-            LOG.d("Show2", url);
-            wv.loadUrl(getLangUrl(url, AppState.get().appLang));
-        } catch (Exception e) {
-            LOG.e(e);
-            wv.loadUrl(DETAIL_URL_RU);
-        }
+        wv.loadUrl(getLangUrl(c));
 
         wv.setFocusable(true);
         wv.setWebViewClient(new WebViewClient() {
@@ -83,7 +90,7 @@ public class AndroidWhatsNew {
             @Override
             public void onClick(View v) {
                 try {
-                    Urls.open(c, getLangUrl(c.getString(R.string.wiki_url), AppState.get().appLang));
+                    Urls.open(c, getLangUrl(c));
                 } catch (Exception e) {
                     LOG.e(e);
                 }
@@ -111,7 +118,7 @@ public class AndroidWhatsNew {
 
     }
 
-    public static void show(final Context c) {
+    private static void show1(final Context c) {
         if (true) {
             show2(c);
             return;
@@ -208,6 +215,8 @@ public class AndroidWhatsNew {
 
             @Override
             protected void onPostExecute(Object result) {
+
+                try {
                 if (result == null || TxtUtils.isEmpty("" + result)) {
                     return;
                 }
@@ -224,6 +233,9 @@ public class AndroidWhatsNew {
                         Urls.open(c, "http://beta.librera.mobi");
                     }
                 });
+                } catch (Exception e) {
+                    LOG.e(e);
+                }
             }
         }.execute();
 
@@ -237,7 +249,7 @@ public class AndroidWhatsNew {
         String oldVersion = AppState.get().versionNew;
 
         if (TxtUtils.isEmpty(oldVersion) || !isEqualsFirstSecondDigit(currentVersion, oldVersion)) {
-            show(c);
+            show2(c);
             AppState.get().versionNew = currentVersion;
             AppState.get().save(c);
         }

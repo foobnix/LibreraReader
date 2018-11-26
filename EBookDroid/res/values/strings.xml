@@ -55,7 +55,7 @@
    <string name="version">Version</string>
    <string name="licence_gnu_gpl_v3_0">License: GNU GPL v3.0</string>
    <string name="licenses_for_libraries">Libraries\' Licenses</string>
-   <string name="autor_ivan_ivanenko">Author: Ivan Ivanenko</string>
+   <string name="autor_ivan_ivanenko">Developer: Ivan Ivanenko</string>
    <string name="support">Support</string>
    <string name="web">Home page</string>
    <string name="beta_version">Beta version</string>
@@ -500,5 +500,8 @@
    <string name="minimum_line_length">Minimum line length (CPL)</string>
    <string name="ask_rate_us1">If you like this application, please rate and review us on Google Play. Thank you!</string>
    <string name="message">Message</string>
-   <string name="exit_application">Exit application</string>
+   <string name="exit_application">Exit</string>
+   <string name="exit_application_question">Exit Application?</string>
+   <string name="open_folder_as_a_book">Bind in a Book</string>
+   <string name="read_out_loud_with_tts">Read out loud with TTS</string>
 </resources>

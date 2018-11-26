@@ -1,5 +1,6 @@
 package com.foobnix.ext;
 
+import java.io.ByteArrayInputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
@@ -22,8 +23,13 @@ import com.rtfparserkit.rtf.Command;
 import com.rtfparserkit.utils.HexUtils;
 
 import android.text.TextUtils;
+import net.arnx.wmf2svg.gdi.svg.SvgGdi;
+import net.arnx.wmf2svg.gdi.wmf.WmfParser;
+import net.arnx.wmf2svg.util.ImageUtil;
 
 public class RtfExtract {
+
+    private static final String WMF = "wmf";
 
     public static FooterNote extract(String inputPath, final String outputDir, final String fileName) throws IOException {
 
@@ -68,13 +74,41 @@ public class RtfExtract {
                     if (isImage) {
                         try {
                             isImage = false;
-                            String imageName = fileName + counter++ + ".rtf." + format;
-                            FileOutputStream fileWriter = new FileOutputStream(new File(outputDir, imageName));
-                            fileWriter.write(HexUtils.parseHexString(string));
-                            fileWriter.flush();
-                            fileWriter.close();
 
-                            writer.write("<img src='" + imageName + "' />");
+
+                            if (WMF.equals(format)) {
+                                String imageName = fileName + counter++ + ".png";
+
+                                ImageUtil.testOut = new File(outputDir, imageName).toString();
+
+                                byte[] bytes = HexUtils.parseHexString(string);
+                                InputStream in = new ByteArrayInputStream(bytes);
+
+                                WmfParser parser = new WmfParser();
+                                SvgGdi gdi = new SvgGdi();
+                                parser.parse(in, gdi);
+                                
+                                // imageName += ".svg";
+
+                                // FileOutputStream fileWriter = new FileOutputStream(new File(outputDir,
+                                // imageName));
+                                // gdi.write(fileWriter);
+                                // fileWriter.close();
+
+                                ImageUtil.testOut = null;
+
+                                writer.write("<img src='" + imageName + "' />");
+
+                            } else {
+                                String imageName = fileName + counter++ + ".rtf." + format;
+
+                                FileOutputStream fileWriter = new FileOutputStream(new File(outputDir, imageName));
+                                byte[] in = HexUtils.parseHexString(string);
+                                fileWriter.write(in);
+                                fileWriter.flush();
+                                fileWriter.close();
+                                writer.write("<img src='" + imageName + "' />");
+                            }
 
                         } catch (Exception e) {
                             LOG.e(e);
@@ -148,6 +182,10 @@ public class RtfExtract {
                         isImage = true;
                         format = "jpg";
                     }
+                    if (command == Command.wmetafile) {
+                        isImage = true;
+                        format = WMF;
+                    }
                 }
 
             });
@@ -172,7 +210,6 @@ public class RtfExtract {
             IRtfSource source = new RtfStreamSource(fileInputStream);
             IRtfParser parser = new StandardRtfParser();
 
-
             decode = null;
 
             parser.parse(source, new RtfListenerAdaptor() {
@@ -189,7 +226,6 @@ public class RtfExtract {
                         }
                     }
                 }
-
 
                 @Override
                 public void processCommand(Command command, int parameter, boolean hasParameter, boolean optional) {

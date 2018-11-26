@@ -10,15 +10,14 @@ import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ThreadFactory;
 
-import org.apache.commons.compress.archivers.zip.ZipArchiveEntry;
-import org.apache.commons.compress.archivers.zip.ZipArchiveInputStream;
-
 import com.foobnix.android.utils.BaseItemLayoutAdapter;
 import com.foobnix.android.utils.LOG;
 import com.foobnix.ext.CacheZipUtils;
 import com.foobnix.pdf.info.ExtUtils;
 import com.foobnix.pdf.info.R;
 import com.foobnix.pdf.search.view.AsyncProgressTask;
+import com.foobnix.sys.ArchiveEntry;
+import com.foobnix.sys.ZipArchiveInputStream;
 
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -117,9 +116,9 @@ public class ZipDialog {
         try {
 
             InputStream openInputStream = getStream(a, uri);
-            ZipArchiveInputStream zipInputStream = new ZipArchiveInputStream(openInputStream, CP1251, true);
-            ZipArchiveEntry nextEntry = null;
-            while ((nextEntry = zipInputStream.getNextZipEntry()) != null) {
+            ZipArchiveInputStream zipInputStream = new ZipArchiveInputStream(openInputStream, CP1251);
+            ArchiveEntry nextEntry = null;
+            while ((nextEntry = zipInputStream.getNextEntry()) != null) {
                 String nameFull = nextEntry.getName();
                 LOG.d(nameFull);
                 if (!nextEntry.isDirectory()) {
@@ -210,9 +209,9 @@ public class ZipDialog {
             // CacheZipUtils.removeFiles(CacheZipUtils.CACHE_UN_ZIP_DIR.listFiles());
 
             InputStream openInputStream = getStream(a, uri);
-            ZipArchiveInputStream zipInputStream = new ZipArchiveInputStream(openInputStream, CP1251, true);
-            ZipArchiveEntry nextEntry = null;
-            while ((nextEntry = zipInputStream.getNextZipEntry()) != null) {
+            ZipArchiveInputStream zipInputStream = new ZipArchiveInputStream(openInputStream, CP1251);
+            ArchiveEntry nextEntry = null;
+            while ((nextEntry = zipInputStream.getNextEntry()) != null) {
                 String name = nextEntry.getName();
                 LOG.d("extractFile", name, fileName);
                 if (name.equals(fileName) || single) {
