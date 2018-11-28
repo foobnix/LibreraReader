@@ -15,10 +15,18 @@ public class HtmlContext extends PdfContext {
 
     @Override
     public CodecDocument openDocumentInner(String fileName, String password) {
+        try {
+            return openDocumentInnerForce(fileName, password, false);
+        } catch (Exception e) {
+            return openDocumentInnerForce(fileName, password, true);
+        }
+    }
+
+    public CodecDocument openDocumentInnerForce(String fileName, String password, boolean forse) {
 
         Map<String, String> notes = null;
         try {
-            FooterNote extract = HtmlExtractor.extract(fileName, CacheZipUtils.CACHE_BOOK_DIR.getPath());
+            FooterNote extract = HtmlExtractor.extract(fileName, CacheZipUtils.CACHE_BOOK_DIR.getPath(), forse);
             fileName = extract.path;
             notes = extract.notes;
             LOG.d("new file name", fileName);
