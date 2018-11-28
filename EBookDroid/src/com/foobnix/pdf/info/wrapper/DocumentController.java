@@ -333,6 +333,9 @@ public abstract class DocumentController {
     }
 
     public boolean closeDialogs() {
+        if (anchor == null) {
+            return false;
+        }
         boolean isVisible = anchor.getVisibility() == View.VISIBLE;
         if (isVisible) {
             anchor.setVisibility(View.GONE);

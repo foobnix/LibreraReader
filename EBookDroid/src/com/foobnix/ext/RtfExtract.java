@@ -75,7 +75,6 @@ public class RtfExtract {
                         try {
                             isImage = false;
 
-
                             if (WMF.equals(format)) {
                                 String imageName = fileName + counter++ + ".png";
 
@@ -87,11 +86,10 @@ public class RtfExtract {
                                 WmfParser parser = new WmfParser();
                                 SvgGdi gdi = new SvgGdi();
                                 parser.parse(in, gdi);
-                                
-                                // imageName += ".svg";
+
 
                                 // FileOutputStream fileWriter = new FileOutputStream(new File(outputDir,
-                                // imageName));
+                                // "1.svg"));
                                 // gdi.write(fileWriter);
                                 // fileWriter.close();
 
