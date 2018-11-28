@@ -186,7 +186,7 @@
                 android:layout_height="@dimen/wh_button"
                 android:layout_weight="0"
                 android:contentDescription="read aloud TTS"
-                android:src="@drawable/glyphicons_185_volume_up" />
+                android:src="@drawable/glyphicons_185_volume_up1" />
 
             <ImageView
                 android:id="@+id/toPage"
