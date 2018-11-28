@@ -8,7 +8,7 @@ import java.util.Iterator;
 
 import com.foobnix.android.utils.LOG;
 import com.foobnix.ext.CacheZipUtils.CacheDir;
-import com.google.android.gms.common.util.IOUtils;
+import com.foobnix.mobi.parser.IOUtils;
 
 import net.lingala.zip4j.core.ZipFile;
 import net.lingala.zip4j.exception.ZipException;
@@ -42,7 +42,8 @@ public class ZipArchiveInputStream extends InputStream {
             tempFile = new File(CacheDir.ZipApp.getDir(), "temp.zip");
 
             LOG.d("zip-tempFile", tempFile.getPath());
-            IOUtils.copyStream(is, new FileOutputStream(tempFile));
+            IOUtils.copy(is, new FileOutputStream(tempFile));
+            is.close();
 
             zp = new ZipFile(tempFile);
             zp.setFileNameCharset(encoding);
@@ -56,6 +57,16 @@ public class ZipArchiveInputStream extends InputStream {
     public void close() throws IOException {
         if (tempFile != null) {
             tempFile.delete();
+        }
+        if (inputStream != null) {
+            try {
+                inputStream.close(true);
+            } catch (Exception e) {
+                LOG.e(e);
+            }
+        }
+        if (zp != null) {
+            zp = null;
         }
     }
 
