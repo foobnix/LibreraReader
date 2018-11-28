@@ -22,6 +22,7 @@ public class ZipArchiveInputStream extends InputStream {
     private ZipFile zp;
     private ZipInputStream inputStream;
     private File tempFile;
+    private String encoding = "UTF-8";
 
     public ZipArchiveInputStream(String file) {
         try {
@@ -32,7 +33,8 @@ public class ZipArchiveInputStream extends InputStream {
         }
     }
 
-    public ZipArchiveInputStream(InputStream is, String string) {
+    public ZipArchiveInputStream(InputStream is, String encoding) {
+        this.encoding = encoding;
         try {
             if (tempFile != null) {
                 tempFile.delete();
@@ -68,7 +70,7 @@ public class ZipArchiveInputStream extends InputStream {
             return null;
         }
 
-        return current != null ? new ArchiveEntry(current) : null;
+        return current != null ? new ArchiveEntry(current, encoding) : null;
     }
 
     @Override

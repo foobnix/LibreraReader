@@ -10,14 +10,15 @@ import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ThreadFactory;
 
+import org.apache.commons.compress.archivers.ArchiveEntry;
+import org.apache.commons.compress.archivers.zip.ZipArchiveInputStream;
+
 import com.foobnix.android.utils.BaseItemLayoutAdapter;
 import com.foobnix.android.utils.LOG;
 import com.foobnix.ext.CacheZipUtils;
 import com.foobnix.pdf.info.ExtUtils;
 import com.foobnix.pdf.info.R;
 import com.foobnix.pdf.search.view.AsyncProgressTask;
-import com.foobnix.sys.ArchiveEntry;
-import com.foobnix.sys.ZipArchiveInputStream;
 
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -116,7 +117,7 @@ public class ZipDialog {
         try {
 
             InputStream openInputStream = getStream(a, uri);
-            ZipArchiveInputStream zipInputStream = new ZipArchiveInputStream(openInputStream, CP1251);
+            ZipArchiveInputStream zipInputStream = new ZipArchiveInputStream(openInputStream, CP1251, true);
             ArchiveEntry nextEntry = null;
             while ((nextEntry = zipInputStream.getNextEntry()) != null) {
                 String nameFull = nextEntry.getName();
