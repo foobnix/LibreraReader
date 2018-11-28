@@ -45,6 +45,7 @@ public class ZipArchiveInputStream extends InputStream {
             IOUtils.copyStream(is, new FileOutputStream(tempFile));
 
             zp = new ZipFile(tempFile);
+            zp.setFileNameCharset(encoding);
             iterator = zp.getFileHeaders().iterator();
         } catch (Exception e) {
             LOG.e(e);
