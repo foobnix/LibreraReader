@@ -265,7 +265,7 @@ public class ExtUtils {
 
             if (ExtUtils.isZip(file)) {
 
-                if (CacheZipUtils.isSingleAndSupportEntryFile(file).first) {
+                if (CacheZipUtils.isSingleAndSupportEntry(file.getPath()).first) {
                     ExtUtils.showDocument(a, file);
                 } else {
                     ZipDialog.show(a, Uri.fromFile(file), null);

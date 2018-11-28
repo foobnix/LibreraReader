@@ -29,6 +29,7 @@ import com.foobnix.sys.ZipArchiveInputStream;
 import android.content.Context;
 import android.os.Environment;
 import android.support.v4.util.Pair;
+import net.lingala.zip4j.model.FileHeader;
 
 public class CacheZipUtils {
     private static final int BUFFER_SIZE = 16 * 1024;
@@ -164,9 +165,24 @@ public class CacheZipUtils {
         }
     }
 
-    public static Pair<Boolean, String> isSingleAndSupportEntryFile(File file) {
+    public static Pair<Boolean, String> isSingleAndSupportEntry(String file) {
         try {
-            return isSingleAndSupportEntry(new FileInputStream(file));
+            net.lingala.zip4j.core.ZipFile zp = new net.lingala.zip4j.core.ZipFile(file);
+            List<FileHeader> fileHeaders = zp.getFileHeaders();
+            int count = 0;
+            FileHeader last = null;
+            for (FileHeader h : fileHeaders) {
+                if (h.isDirectory()) {
+                    continue;
+                }
+                count++;
+                last = h;
+            }
+            if (count == 1 && last != null) {
+                String name = last.getFileName();
+                return new Pair<Boolean, String>(BookType.isSupportedExtByPath(name), name);
+            }
+            return new Pair<Boolean, String>(false, "");
         } catch (Exception e) {
             return new Pair<Boolean, String>(false, "");
         }
@@ -175,6 +191,7 @@ public class CacheZipUtils {
     public static Pair<Boolean, String> isSingleAndSupportEntry(InputStream is) {
         String name = "";
         try {
+
             ZipInputStream zipInputStream = new ZipInputStream(is);
             boolean find = false;
             ZipEntry nextEntry = null;
@@ -196,7 +213,6 @@ public class CacheZipUtils {
         }
         return new Pair<Boolean, String>(BookType.isSupportedExtByPath(name), name);
     }
-
 
     public static class UnZipRes {
         public String originalPath;
@@ -223,7 +239,7 @@ public class CacheZipUtils {
         folder.removeCacheContent();
 
         try {
-            if (!isSingleAndSupportEntry(new FileInputStream(new File(path))).first) {
+            if (!isSingleAndSupportEntry(path).first) {
                 return new UnZipRes(path, path, null);
             }
             ZipArchiveInputStream zipInputStream = new ZipArchiveInputStream(path);
