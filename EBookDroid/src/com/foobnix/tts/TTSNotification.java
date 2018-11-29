@@ -127,7 +127,7 @@ public class TTSNotification {
             remoteViews.setInt(R.id.ttsStop, "setColorFilter", TintUtil.color);
 
             String fileMetaBookName = TxtUtils.getFileMetaBookName(fileMeta);
-            String pageNumber = context.getString(R.string.page) + " " + page + "/" + maxPages;
+            String pageNumber = "(" + page + "/" + maxPages + ")";
 
             if (page == -1 || maxPages == -1) {
                 pageNumber = "";
@@ -143,7 +143,7 @@ public class TTSNotification {
             remoteViews.setViewVisibility(R.id.bookInfo, View.VISIBLE);
 
             builder.setContentIntent(contentIntent) //
-                    .setSmallIcon(R.drawable.glyphicons_185_volume_up) //
+                    .setSmallIcon(R.drawable.glyphicons_185_volume_up1) //
                     // .setLargeIcon(bookImage) //
                     // .setTicker(context.getString(R.string.app_name)) //
                     // .setWhen(System.currentTimeMillis()) //
