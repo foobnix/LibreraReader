@@ -50,7 +50,7 @@
    <string name="import_or_export_application_settings_to_json_file">Backup</string>
    <string name="import_">Import</string>
    <string name="export_">Export</string>
-   <string name="automatic_export_backup">Auto-export (backup) current session on exit</string>
+   <string name="automatic_export_backup">Auto-export (back up) current session on exit</string>
    <string name="product">Product</string>
    <string name="version">Version</string>
    <string name="licence_gnu_gpl_v3_0">License: GNU GPL v3.0</string>
@@ -117,12 +117,12 @@
    <string name="db_do_nothing">Do Nothing</string>
    <string name="remind_about_rest_every">Eye rest reminder every</string>
    <string name="action_on_double_tap">Double tap (center)</string>
-   <string name="db_auto_scroll">Auto-scroll</string>
+   <string name="db_auto_scroll">Auto-Scroll</string>
    <string name="opening_book_with_losed_lock">Lock page in place</string>
    <string name="opening_book_with_cropped_borders">Auto-crop white space</string>
-   <string name="db_auto_alignemnt">Fit page</string>
+   <string name="db_auto_alignemnt">Fit Page</string>
    <string name="db_auto_center_horizontally">Center (no rescale)</string>
-   <string name="zoom_in_zoom_out">Zoom in / out</string>
+   <string name="zoom_in_zoom_out">Zoom In/Out</string>
    <string name="enhancements_for_oled_display">Night-mode enhancement for AMOLED displays</string>
    <string name="ignore_annotations_on_click">Ignore touching annotations</string>
    <string name="save_new_annotations_automatically">Auto-save annotations on exit</string>
@@ -501,7 +501,7 @@
    <string name="ask_rate_us1">If you like this application, please rate and review us on Google Play. Thank you!</string>
    <string name="message">Message</string>
    <string name="exit_application">Exit</string>
-   <string name="exit_application_question">Exit Application?</string>
+   <string name="exit_application_question">Exit application?</string>
    <string name="open_folder_as_a_book">Bind in a Book</string>
-   <string name="read_out_loud_with_tts">Read out loud with TTS</string>
+   <string name="read_out_loud_with_tts">Read (TTS)</string>
 </resources>
