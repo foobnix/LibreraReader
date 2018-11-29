@@ -1,0 +1,140 @@
+package banner;
+
+import java.awt.Color;
+import java.awt.Font;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
+import java.awt.Image;
+import java.awt.RenderingHints;
+import java.awt.event.ComponentAdapter;
+import java.awt.event.ComponentEvent;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
+import java.awt.font.TextAttribute;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.util.HashMap;
+import java.util.Map;
+
+import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+
+public class BannerTest {
+
+    public static void main(String[] args) throws Exception {
+        String bg = "/home/ivan-dev/Dropbox/Projects/Librera/pdf-v2.0-screenshots/Projects/Чистые фоны/Монтажная область ";
+        String phone = "/home/ivan-dev/Dropbox/Projects/Librera/pdf-v2.0-screenshots/Phone-Template/Sample1.png";
+        String screenshots = "/home/ivan-dev/Dropbox/Projects/Librera/pdf-v2.0-screenshots/Generated/Screenshots/";
+        String out = "/home/ivan-dev/Dropbox/Projects/Librera/pdf-v2.0-screenshots/Generated/";
+
+
+        show(bg + "2.png", phone, screenshots + "1.png", out + "1.png", "Library View");
+    }
+
+    public static void show(String img1, String img2, String img3, String out, String text) throws Exception {
+        final JFrame frame = new JFrame();
+        JPanel panel = new JPanel();
+
+        BufferedImage image1 = ImageIO.read(new File(img1));
+        BufferedImage image2 = ImageIO.read(new File(img2));
+        BufferedImage imgScreenshot = ImageIO.read(new File(img3));
+
+        image2 = scale(image2, 990);
+        imgScreenshot = scale(imgScreenshot, 880);
+
+        Graphics g = image1.getGraphics();
+
+        
+        Graphics2D g2 = (Graphics2D) g;
+        g2.setRenderingHint(RenderingHints.KEY_TEXT_ANTIALIASING, RenderingHints.VALUE_TEXT_ANTIALIAS_ON);
+        g2.setRenderingHint(RenderingHints.KEY_INTERPOLATION, RenderingHints.VALUE_INTERPOLATION_BICUBIC);
+
+        int center2 = (image1.getWidth() - image2.getWidth()) / 2;
+        int center3 = (image1.getWidth() - imgScreenshot.getWidth()) / 2;
+        g.drawImage(image2, center2, (image1.getHeight() - image2.getHeight()) - 50, null);
+        g.drawImage(imgScreenshot, center3, (image1.getHeight() - imgScreenshot.getHeight()), null);
+
+        Font font = new Font("Arial", Font.BOLD, 100);
+
+
+        Map<TextAttribute, Object> attributes = new HashMap<TextAttribute, Object>();
+        attributes.put(TextAttribute.TRACKING, 0.1);
+        font = font.deriveFont(attributes);
+
+        g.setFont(font);
+
+        int sWidth = g.getFontMetrics().stringWidth(text);
+        int center4 = (image1.getWidth() - sWidth) / 2;
+
+        g.setColor(Color.BLACK);
+
+        int textY = 140;
+
+        g.drawString(text, center4 + 4, textY + 4);
+
+        g.setColor(Color.WHITE);
+        g.setFont(font);
+        g.drawString(text, center4, textY);
+
+        g.dispose();
+
+        File outFile = new File(out);
+
+        ImageIO.write(image1, "png", outFile);
+
+        if (true) {
+            image1 = toBufferedImage(image1.getScaledInstance(image1.getWidth(null) / 2, image1.getHeight(null) / 2, Image.SCALE_DEFAULT));
+        }
+
+        ImageIcon icon = new ImageIcon(image1);
+        JLabel label = new JLabel();
+        label.setIcon(icon);
+        panel.add(label);
+        frame.getContentPane().add(panel);
+        frame.setVisible(true);
+        frame.setSize(image1.getWidth(), image1.getHeight());
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+//        frame.setResizable(false);
+
+        frame.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyPressed(KeyEvent ke) { // handler
+                if (ke.getKeyCode() == ke.VK_ESCAPE) {
+                    frame.dispose();
+                } else {
+                }
+            }
+        });
+        frame.addComponentListener(new ComponentAdapter() {
+
+            @Override
+            public void componentHidden(ComponentEvent e) {
+                frame.dispose();
+            }
+
+            @Override
+            public void componentShown(ComponentEvent e) {
+                frame.dispose();
+            }
+        });
+
+    }
+
+    public static BufferedImage scale(BufferedImage img, int width) {
+        float k = (float) img.getHeight() / img.getWidth();
+        return toBufferedImage(img.getScaledInstance(width, (int) (width * k), Image.SCALE_SMOOTH));
+    }
+
+    public static BufferedImage toBufferedImage(Image img) {
+        BufferedImage bimage = new BufferedImage(img.getWidth(null), img.getHeight(null), BufferedImage.TYPE_INT_ARGB);
+        Graphics2D bGr = bimage.createGraphics();
+        bGr.drawImage(img, 0, 0, null);
+        bGr.dispose();
+        return bimage;
+    }
+
+
+}

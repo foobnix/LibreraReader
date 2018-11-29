@@ -7,11 +7,9 @@ import net.lingala.zip4j.model.FileHeader;
 public class ArchiveEntry {
 
     private FileHeader header;
-    private String encoding;
 
-    public ArchiveEntry(FileHeader header, String encoding) {
+    public ArchiveEntry(FileHeader header) {
         this.header = header;
-        this.encoding = encoding;
     }
 
     public long getSize() {

@@ -22,7 +22,6 @@ public class ZipArchiveInputStream extends InputStream {
     private ZipFile zp;
     private ZipInputStream inputStream;
     private File tempFile;
-    private String encoding = "UTF-8";
 
     // public static final Lock lock = new ReentrantLock();
 
@@ -36,9 +35,8 @@ public class ZipArchiveInputStream extends InputStream {
         }
     }
 
-    public ZipArchiveInputStream(InputStream is, String encoding) {
+    public ZipArchiveInputStream(InputStream is) {
         // CacheZipUtils.cacheLock.lock();
-        this.encoding = encoding;
         try {
             if (tempFile != null) {
                 tempFile.delete();
@@ -50,7 +48,6 @@ public class ZipArchiveInputStream extends InputStream {
             is.close();
 
             zp = new ZipFile(tempFile);
-            zp.setFileNameCharset(encoding);
             iterator = zp.getFileHeaders().iterator();
         } catch (Exception e) {
             LOG.e(e);
@@ -87,7 +84,7 @@ public class ZipArchiveInputStream extends InputStream {
         }
         closeStream();
         current = iterator.next();
-        return current != null ? new ArchiveEntry(current, encoding) : null;
+        return current != null ? new ArchiveEntry(current) : null;
     }
 
     private void openStream() throws IOException {

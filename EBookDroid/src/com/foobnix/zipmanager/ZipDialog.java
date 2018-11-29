@@ -34,16 +34,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 public class ZipDialog {
-    public static String CP1251 = "CP866";
-
-    static {
-        try {
-            java.nio.charset.Charset.forName(CP1251);
-        } catch (Exception e) {
-            CP1251 = "cp1251";
-        }
-    }
-
     static AlertDialog create;
 
     public static Executor EXECUTOR = Executors.newSingleThreadExecutor(new ThreadFactory() {
@@ -116,7 +106,7 @@ public class ZipDialog {
         try {
 
             InputStream openInputStream = getStream(a, uri);
-            ZipArchiveInputStream zipInputStream = new ZipArchiveInputStream(openInputStream, CP1251);
+            ZipArchiveInputStream zipInputStream = new ZipArchiveInputStream(openInputStream);
             ArchiveEntry nextEntry = null;
             while ((nextEntry = zipInputStream.getNextEntry()) != null) {
                 String nameFull = nextEntry.getName();
@@ -209,7 +199,7 @@ public class ZipDialog {
             // CacheZipUtils.removeFiles(CacheZipUtils.CACHE_UN_ZIP_DIR.listFiles());
 
             InputStream openInputStream = getStream(a, uri);
-            ZipArchiveInputStream zipInputStream = new ZipArchiveInputStream(openInputStream, CP1251);
+            ZipArchiveInputStream zipInputStream = new ZipArchiveInputStream(openInputStream);
             ArchiveEntry nextEntry = null;
             while ((nextEntry = zipInputStream.getNextEntry()) != null) {
                 String name = nextEntry.getName();
