@@ -24,7 +24,10 @@ public class ZipArchiveInputStream extends InputStream {
     private File tempFile;
     private String encoding = "UTF-8";
 
+    // public static final Lock lock = new ReentrantLock();
+
     public ZipArchiveInputStream(String file) {
+        // CacheZipUtils.cacheLock.lock();
         try {
             zp = new ZipFile(file);
             iterator = zp.getFileHeaders().iterator();
@@ -34,6 +37,7 @@ public class ZipArchiveInputStream extends InputStream {
     }
 
     public ZipArchiveInputStream(InputStream is, String encoding) {
+        // CacheZipUtils.cacheLock.lock();
         this.encoding = encoding;
         try {
             if (tempFile != null) {
@@ -55,48 +59,62 @@ public class ZipArchiveInputStream extends InputStream {
 
     @Override
     public void close() throws IOException {
+        // CacheZipUtils.cacheLock.unlock();
+
         if (tempFile != null) {
             tempFile.delete();
         }
-        if (inputStream != null) {
-            try {
-                inputStream.close(true);
-            } catch (Exception e) {
-                LOG.e(e);
-            }
-        }
+        closeStream();
         if (zp != null) {
             zp = null;
         }
     }
 
-    public ArchiveEntry getNextEntry() {
-        try {
-            if (iterator == null || !iterator.hasNext()) {
-                return null;
+    private void closeStream() {
+        if (inputStream != null) {
+            try {
+                inputStream.close(true);
+                inputStream = null;
+            } catch (Exception e) {
+                LOG.e(e);
             }
-            current = iterator.next();
-            inputStream = zp.getInputStream(current);
-        } catch (ZipException e) {
-            LOG.e(e);
+        }
+    }
+
+    public ArchiveEntry getNextEntry() {
+        if (iterator == null || !iterator.hasNext()) {
             return null;
         }
-
+        closeStream();
+        current = iterator.next();
         return current != null ? new ArchiveEntry(current, encoding) : null;
+    }
+
+    private void openStream() throws IOException {
+        if (inputStream == null) {
+            try {
+                inputStream = zp.getInputStream(current);
+            } catch (ZipException e) {
+                throw new IOException();
+            }
+        }
     }
 
     @Override
     public int read() throws IOException {
+        openStream();
         return inputStream.read();
     }
 
     @Override
     public int read(byte[] b) throws IOException {
+        openStream();
         return inputStream.read(b);
     }
 
     @Override
     public int read(byte[] b, int off, int len) throws IOException {
+        openStream();
         return inputStream.read(b, off, len);
     }
 
