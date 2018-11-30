@@ -15,6 +15,7 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Random;
 
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
@@ -25,40 +26,51 @@ import javax.swing.JPanel;
 public class BannerTest {
 
     public static void main(String[] args) throws Exception {
+        System.out.println("Start banners");
+
         String bg = "/home/ivan-dev/Dropbox/Projects/Librera/pdf-v2.0-screenshots/Projects/Чистые фоны/Монтажная область ";
-        String phone = "/home/ivan-dev/Dropbox/Projects/Librera/pdf-v2.0-screenshots/Phone-Template/Sample1.png";
-        String screenshots = "/home/ivan-dev/Dropbox/Projects/Librera/pdf-v2.0-screenshots/Generated/Screenshots/";
+        String phone = "/home/ivan-dev/Dropbox/Projects/Librera/pdf-v2.0-screenshots/Phone-Template/6p.png";
+        String screenshot = "/home/ivan-dev/Dropbox/Projects/Librera/pdf-v2.0-screenshots/Generated/Screenshots/";
         String out = "/home/ivan-dev/Dropbox/Projects/Librera/pdf-v2.0-screenshots/Generated/";
 
+        for (File file : new File(out).listFiles()) {
+            if (file.isFile()) {
+                file.delete();
+            }
+        }
+        // show(false, "Read aloud using TTS", bg + "4.png", phone, screenshot +
+        // "1.png", out);
 
-        show(bg + "2.png", phone, screenshots + "1.png", out + "1.png", "Library View");
+        for (File file : new File(screenshot).listFiles()) {
+            String name = file.getName().replace("_", " ").replace(".png", "");
+            show(false, name, bg + (new Random().nextInt(16) + 1) + ".png", phone, file.getPath(), out);
+        }
+
+        System.out.println("Finish");
     }
 
-    public static void show(String img1, String img2, String img3, String out, String text) throws Exception {
-        final JFrame frame = new JFrame();
-        JPanel panel = new JPanel();
-
+    public static void show(boolean show, String text, String img1, String img2, String img3, String out) throws Exception {
+        System.out.println("Process: " + text);
+        out += new File(img3).getName().replace(" ", "_");
         BufferedImage image1 = ImageIO.read(new File(img1));
         BufferedImage image2 = ImageIO.read(new File(img2));
         BufferedImage imgScreenshot = ImageIO.read(new File(img3));
 
-        image2 = scale(image2, 990);
-        imgScreenshot = scale(imgScreenshot, 880);
+        image2 = scale(image2, 1100);
+        imgScreenshot = scale(imgScreenshot, 884);
 
         Graphics g = image1.getGraphics();
 
-        
         Graphics2D g2 = (Graphics2D) g;
         g2.setRenderingHint(RenderingHints.KEY_TEXT_ANTIALIASING, RenderingHints.VALUE_TEXT_ANTIALIAS_ON);
         g2.setRenderingHint(RenderingHints.KEY_INTERPOLATION, RenderingHints.VALUE_INTERPOLATION_BICUBIC);
 
         int center2 = (image1.getWidth() - image2.getWidth()) / 2;
-        int center3 = (image1.getWidth() - imgScreenshot.getWidth()) / 2;
-        g.drawImage(image2, center2, (image1.getHeight() - image2.getHeight()) - 50, null);
+        int center3 = (image1.getWidth() - imgScreenshot.getWidth()) / 2 + 5;
+        g.drawImage(image2, center2, (image1.getHeight() - image2.getHeight()) + 300, null);
         g.drawImage(imgScreenshot, center3, (image1.getHeight() - imgScreenshot.getHeight()), null);
 
-        Font font = new Font("Arial", Font.BOLD, 100);
-
+        Font font = new Font("Arial", Font.BOLD, 76);
 
         Map<TextAttribute, Object> attributes = new HashMap<TextAttribute, Object>();
         attributes.put(TextAttribute.TRACKING, 0.1);
@@ -71,7 +83,7 @@ public class BannerTest {
 
         g.setColor(Color.BLACK);
 
-        int textY = 140;
+        int textY = 120;
 
         g.drawString(text, center4 + 4, textY + 4);
 
@@ -84,42 +96,49 @@ public class BannerTest {
         File outFile = new File(out);
 
         ImageIO.write(image1, "png", outFile);
+        System.out.println("Write: " + outFile.getPath());
 
-        if (true) {
-            image1 = toBufferedImage(image1.getScaledInstance(image1.getWidth(null) / 2, image1.getHeight(null) / 2, Image.SCALE_DEFAULT));
-        }
+        if (show) {
 
-        ImageIcon icon = new ImageIcon(image1);
-        JLabel label = new JLabel();
-        label.setIcon(icon);
-        panel.add(label);
-        frame.getContentPane().add(panel);
-        frame.setVisible(true);
-        frame.setSize(image1.getWidth(), image1.getHeight());
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+            if (true) {
+                image1 = toBufferedImage(image1.getScaledInstance(image1.getWidth(null) / 2, image1.getHeight(null) / 2, Image.SCALE_DEFAULT));
+            }
+
+            final JFrame frame = new JFrame();
+            JPanel panel = new JPanel();
+
+            ImageIcon icon = new ImageIcon(image1);
+            JLabel label = new JLabel();
+            label.setIcon(icon);
+            panel.add(label);
+            frame.getContentPane().add(panel);
+            frame.setVisible(true);
+            frame.setSize(image1.getWidth(), image1.getHeight());
+            frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 //        frame.setResizable(false);
 
-        frame.addKeyListener(new KeyAdapter() {
-            @Override
-            public void keyPressed(KeyEvent ke) { // handler
-                if (ke.getKeyCode() == ke.VK_ESCAPE) {
-                    frame.dispose();
-                } else {
+            frame.addKeyListener(new KeyAdapter() {
+                @Override
+                public void keyPressed(KeyEvent ke) { // handler
+                    if (ke.getKeyCode() == ke.VK_ESCAPE) {
+                        frame.dispose();
+                    } else {
+                    }
                 }
-            }
-        });
-        frame.addComponentListener(new ComponentAdapter() {
+            });
+            frame.addComponentListener(new ComponentAdapter() {
 
-            @Override
-            public void componentHidden(ComponentEvent e) {
-                frame.dispose();
-            }
+                @Override
+                public void componentHidden(ComponentEvent e) {
+                    frame.dispose();
+                }
 
-            @Override
-            public void componentShown(ComponentEvent e) {
-                frame.dispose();
-            }
-        });
+                @Override
+                public void componentShown(ComponentEvent e) {
+                    frame.dispose();
+                }
+            });
+        }
 
     }
 
@@ -135,6 +154,5 @@ public class BannerTest {
         bGr.dispose();
         return bimage;
     }
-
 
 }
