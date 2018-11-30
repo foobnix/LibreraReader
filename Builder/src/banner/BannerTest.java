@@ -29,9 +29,9 @@ public class BannerTest {
         System.out.println("Start banners");
 
         String bg = "/home/ivan-dev/Dropbox/Projects/Librera/pdf-v2.0-screenshots/Projects/Чистые фоны/Монтажная область ";
-        String phone = "/home/ivan-dev/Dropbox/Projects/Librera/pdf-v2.0-screenshots/Phone-Template/6p.png";
-        String screenshot = "/home/ivan-dev/Dropbox/Projects/Librera/pdf-v2.0-screenshots/Generated/Screenshots/";
-        String out = "/home/ivan-dev/Dropbox/Projects/Librera/pdf-v2.0-screenshots/Generated/";
+        String phone = "/home/ivan-dev/Dropbox/Projects/Librera/Screenshots/6p.png";
+        String screenshot = "/home/ivan-dev/Dropbox/Projects/Librera/Screenshots/Source/";
+        String out = "/home/ivan-dev/Dropbox/Projects/Librera/Screenshots/gen/";
 
         for (File file : new File(out).listFiles()) {
             if (file.isFile()) {
@@ -52,9 +52,17 @@ public class BannerTest {
     public static void show(boolean show, String text, String img1, String img2, String img3, String out) throws Exception {
         System.out.println("Process: " + text);
         out += new File(img3).getName().replace(" ", "_");
+        File outFile = new File(out);
+
         BufferedImage image1 = ImageIO.read(new File(img1));
         BufferedImage image2 = ImageIO.read(new File(img2));
         BufferedImage imgScreenshot = ImageIO.read(new File(img3));
+
+        if (imgScreenshot.getWidth() > imgScreenshot.getHeight()) {
+            ImageIO.write(imgScreenshot, "png", outFile);
+            System.out.println("Write: " + outFile.getPath());
+            return;
+        }
 
         image2 = scale(image2, 1100);
         imgScreenshot = scale(imgScreenshot, 884);
@@ -70,7 +78,7 @@ public class BannerTest {
         g.drawImage(image2, center2, (image1.getHeight() - image2.getHeight()) + 300, null);
         g.drawImage(imgScreenshot, center3, (image1.getHeight() - imgScreenshot.getHeight()), null);
 
-        Font font = new Font("Arial", Font.BOLD, 76);
+        Font font = new Font("Arial", Font.BOLD, 70);
 
         Map<TextAttribute, Object> attributes = new HashMap<TextAttribute, Object>();
         attributes.put(TextAttribute.TRACKING, 0.1);
@@ -93,7 +101,7 @@ public class BannerTest {
 
         g.dispose();
 
-        File outFile = new File(out);
+
 
         ImageIO.write(image1, "png", outFile);
         System.out.println("Write: " + outFile.getPath());
