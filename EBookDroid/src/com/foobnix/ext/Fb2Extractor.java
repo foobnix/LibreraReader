@@ -444,7 +444,8 @@ public class Fb2Extractor extends BaseExtractor {
         return map;
     }
 
-    public boolean convertFB2(String inputFile, String toName) {
+    @Deprecated
+    private boolean convertFB2(String inputFile, String toName) {
         try {
             String encoding = findHeaderEncoding(inputFile);
             ByteArrayOutputStream generateFb2File = generateFb2File(inputFile, encoding, true);
@@ -459,8 +460,7 @@ public class Fb2Extractor extends BaseExtractor {
 
     }
 
-    @Override
-    public boolean convert(String inputFile, String toName) {
+    public boolean convert(String inputFile, String toName, boolean fixHTML) {
 
         try {
             ZipOutputStream zos = new ZipOutputStream(new FileOutputStream(new File(toName)));
@@ -476,7 +476,7 @@ public class Fb2Extractor extends BaseExtractor {
             String ncx = genetateNCX(titles);
             writeToZip(zos, "OEBPS/fb2.ncx", ncx);
 
-            ByteArrayOutputStream generateFb2File = generateFb2File(inputFile, encoding, false);
+            ByteArrayOutputStream generateFb2File = generateFb2File(inputFile, encoding, fixHTML);
             writeToZip(zos, "OEBPS/fb2.fb2", new ByteArrayInputStream(generateFb2File.toByteArray()));
             LOG.d("Fb2Context convert true");
             zos.close();

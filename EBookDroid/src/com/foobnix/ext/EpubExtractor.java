@@ -591,9 +591,5 @@ public class EpubExtractor extends BaseExtractor {
         }
     }
 
-    @Override
-    public boolean convert(String path, String to) {
-        return false;
-    }
 
 }

@@ -32,7 +32,6 @@ public abstract class BaseExtractor {
 
     public abstract Map<String, String> getFooterNotes(String path);
 
-    public abstract boolean convert(String path, String to);
 
     public abstract String getBookOverview(String path);
 

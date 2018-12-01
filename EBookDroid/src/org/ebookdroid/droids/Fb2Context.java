@@ -1,16 +1,12 @@
 package org.ebookdroid.droids;
 
 import java.io.File;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Map;
 
 import org.ebookdroid.core.codec.CodecDocument;
-import org.ebookdroid.core.codec.OutlineLink;
 import org.ebookdroid.droids.mupdf.codec.MuPdfDocument;
 import org.ebookdroid.droids.mupdf.codec.PdfContext;
 
-import com.foobnix.android.utils.Apps;
 import com.foobnix.android.utils.LOG;
 import com.foobnix.ext.CacheZipUtils;
 import com.foobnix.ext.Fb2Extractor;
@@ -20,64 +16,28 @@ import com.foobnix.pdf.info.wrapper.AppState;
 
 public class Fb2Context extends PdfContext {
 
-    File cacheFile, cacheFile1;
+    File cacheFile;
 
     @Override
     public File getCacheFileName(String fileNameOriginal) {
         fileNameOriginal = fileNameOriginal + BookCSS.get().isAutoHypens + BookCSS.get().hypenLang + AppState.get().isDouble + AppState.get().isAccurateFontSize + BookCSS.get().isCapitalLetter;
         cacheFile = new File(CacheZipUtils.CACHE_BOOK_DIR, fileNameOriginal.hashCode() + ".epub");
-        cacheFile1 = new File(CacheZipUtils.CACHE_BOOK_DIR, fileNameOriginal.hashCode() + ".epub.fb2");
         return cacheFile;
     }
 
+
     MuPdfDocument muPdfDocument;
-
-    public CodecDocument openDocumentInner2(final String fileName1, String password) {
-
-        final String fileName = cacheFile1.getPath();
-        Fb2Extractor.get().convertFB2(fileName1, fileName);
-
-        MuPdfDocument muPdfDocument2 = new MuPdfDocument(this, MuPdfDocument.FORMAT_PDF, fileName, password) {
-            @Override
-            public java.util.List<OutlineLink> getOutline() {
-                List<OutlineLink> res = new ArrayList<OutlineLink>();
-                try {
-                    String encoding = Fb2Extractor.findHeaderEncoding(fileName1);
-                    List<String> titles = Fb2Extractor.getFb2Titles(fileName1, encoding);
-                    for (int i = 0; i < titles.size(); i++) {
-
-                        String string = titles.get(i).replace("~@~[title]", "###");
-                        String full[] = string.split("###");
-                        int level = Integer.parseInt(full[0]);
-                        String title = full[1];
-                        String linkUri = "#" + (i + 1);
-                        res.add(new OutlineLink(title + linkUri, "", level, getDocumentHandle(), linkUri));
-                    }
-
-                } catch (Exception e) {
-                    LOG.e(e);
-                }
-
-                return res;
-
-            };
-        };
-
-        return muPdfDocument2;
-    }
 
     @Override
     public CodecDocument openDocumentInner(final String fileName, String password) {
         String outName = null;
         if (cacheFile.isFile()) {
             outName = cacheFile.getPath();
-        } else if (cacheFile1.isFile()) {
-            outName = cacheFile1.getPath();
-        }
+        } else
 
         if (outName == null) {
             outName = cacheFile.getPath();
-            Fb2Extractor.get().convert(fileName, outName);
+            Fb2Extractor.get().convert(fileName, outName, false);
             LOG.d("Fb2Context create", fileName, "to", outName);
         }
 
@@ -85,15 +45,16 @@ public class Fb2Context extends PdfContext {
 
         try {
             muPdfDocument = new MuPdfDocument(this, MuPdfDocument.FORMAT_PDF, outName, password);
+            muPdfDocument.getPageCount();
         } catch (Exception e) {
             LOG.e(e);
+            LOG.d("Fb2Context Fix XML true");
             if (cacheFile.isFile()) {
                 cacheFile.delete();
             }
-            outName = cacheFile1.getPath();
-            Fb2Extractor.get().convertFB2(fileName, outName);
+            Fb2Extractor.get().convert(fileName, outName, true);
+            LOG.d("Fb2Context create 2", outName);
             muPdfDocument = new MuPdfDocument(this, MuPdfDocument.FORMAT_PDF, outName, password);
-            LOG.d("Fb2Context create", outName);
         }
 
         final File jsonFile = new File(cacheFile + ".json");
