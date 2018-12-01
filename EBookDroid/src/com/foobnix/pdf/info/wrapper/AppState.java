@@ -719,7 +719,6 @@ public class AppState {
                     isShowWhatIsNewDialog = false;
                 }
 
-                searchPaths = Environment.getExternalStorageDirectory().getPath();
 
                 try {
                     List<String> extFolders = ExtUtils.getExternalStorageDirectories(a);
