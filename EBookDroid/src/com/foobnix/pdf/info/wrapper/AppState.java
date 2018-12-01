@@ -17,6 +17,7 @@ import com.foobnix.android.utils.LOG;
 import com.foobnix.android.utils.MemoryUtils;
 import com.foobnix.android.utils.Objects;
 import com.foobnix.android.utils.Objects.IgnoreHashCode;
+import com.foobnix.android.utils.TxtUtils;
 import com.foobnix.opds.SamlibOPDS;
 import com.foobnix.pdf.info.AppsConfig;
 import com.foobnix.pdf.info.ExportSettingsManager;
@@ -266,7 +267,7 @@ public class AppState {
 
     @IgnoreHashCode
     public int pageNumberFormat = PAGE_NUMBER_FORMAT_NUMBER;
-    
+
     @IgnoreHashCode
     public int chapterFormat = CHAPTER_FORMAT_3;
 
@@ -292,7 +293,6 @@ public class AppState {
     public boolean isShowSubChaptersOnProgress = true;
 
     public long fontExtractTime = 0;
-
 
     public int nextScreenScrollBy = NEXT_SCREEN_SCROLL_BY_PAGES;// 0 by
                                                                 // pages,
@@ -458,7 +458,7 @@ public class AppState {
     public static final String LIBRERA_CLOUD_GOOGLEDRIVE = "Librera.Cloud-GoogleDrive";
     public static final String LIBRERA_CLOUD_ONEDRIVE = "Librera.Cloud-OneDrive";
 
-    public String searchPaths = Environment.getExternalStorageDirectory() == null ? "/" : Environment.getExternalStorageDirectory().getPath();
+    public String searchPaths = "/";
     public String texturePath = Environment.getExternalStorageDirectory().getPath();
     public String cachePath = new File(DOWNLOADS_DIR, "Librera/Cache").getPath();
     public String downlodsPath = new File(DOWNLOADS_DIR, "Librera/Download").getPath();
@@ -717,6 +717,26 @@ public class AppState {
                 }
                 if (AppsConfig.LIBRERA_PDF_2.equals(Apps.getPackageName(a))) {
                     isShowWhatIsNewDialog = false;
+                }
+
+                searchPaths = Environment.getExternalStorageDirectory().getPath();
+
+                try {
+                    List<String> extFolders = ExtUtils.getExternalStorageDirectories(a);
+
+                    if (!extFolders.contains(Environment.getExternalStorageDirectory().getPath())) {
+                        extFolders.add(Environment.getExternalStorageDirectory().getPath());
+                    }
+                    if (!extFolders.contains(ExtUtils.getSDPath())) {
+                        String sdPath = ExtUtils.getSDPath();
+                        if (sdPath != null) {
+                            extFolders.add(sdPath);
+                        }
+                    }
+                    searchPaths = TxtUtils.joinList(",", extFolders);
+                    LOG.d("searchPaths", searchPaths);
+                } catch (Exception e) {
+                    LOG.e(e);
                 }
 
                 loadIn(a);

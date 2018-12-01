@@ -57,6 +57,11 @@ public class PopupHelper {
     }
 
     public static void addPROIcon(final MyPopupMenu menu, final Context c) {
+        if (true) {
+            // templorary hide this;
+            return;
+
+        }
         if (!AppsConfig.checkIsProInstalled(c)) {
             menu.getMenu().add(R.string.app_name_pro).setIcon(R.mipmap.icon_pdf_pro).setOnMenuItemClickListener(new OnMenuItemClickListener() {
 
