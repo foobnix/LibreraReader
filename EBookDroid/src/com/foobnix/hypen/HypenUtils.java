@@ -5,12 +5,11 @@ import java.util.Locale;
 import java.util.StringTokenizer;
 
 import com.foobnix.android.utils.LOG;
-import com.foobnix.pdf.info.model.BookCSS;
 
 public class HypenUtils {
 
     private static final String SHY = "&shy;";
-    private static DefaultHyphenator instance = new DefaultHyphenator(HyphenPattern.ru);
+    private static DefaultHyphenator instance = new DefaultHyphenator(HyphenPattern.error);
 
     public static void applyLanguage(String lang) {
         if (lang == null) {
@@ -21,13 +20,22 @@ public class HypenUtils {
                 lang = lang.substring(0, 2).toLowerCase(Locale.US);
             }
 
-            HyphenPattern pattern = HyphenPattern.valueOf(lang);
+            HyphenPattern pattern = HyphenPattern.error;
+
+            HyphenPattern[] values = HyphenPattern.values();
+            for (HyphenPattern p : values) {
+                if (p.lang.equals(lang)) {
+                    pattern = p;
+                }
+            }
             if (instance.pattern != pattern) {
                 instance = new DefaultHyphenator(pattern);
             }
         } catch (Exception e) {
-            BookCSS.get().isAutoHypens = false;
+            LOG.e(e);
+            instance = new DefaultHyphenator(HyphenPattern.error);
         }
+        LOG.d("My-pattern-lang", instance.pattern.lang);
 
     }
 

@@ -663,7 +663,7 @@ public class Fb2Extractor extends BaseExtractor {
         PrintWriter writer = new PrintWriter(out);
         String line;
 
-        HypenUtils.applyLanguage(BookCSS.get().hypenLang);
+
         HypenUtils.resetTokenizer();
 
         while ((line = input.readLine()) != null) {
