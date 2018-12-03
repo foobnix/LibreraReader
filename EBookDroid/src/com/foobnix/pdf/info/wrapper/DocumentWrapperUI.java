@@ -424,12 +424,19 @@ public class DocumentWrapperUI {
             crop.setVisibility(View.GONE);
             cut.setVisibility(View.GONE);
             onModeChange.setVisibility(View.GONE);
-            if (Dips.isEInk(dc.getActivity()) || AppState.get().isInkMode) {
+            if (Dips.isEInk(dc.getActivity()) || AppState.get().isInkMode || AppState.get().isEnableBC) {
                 onBC.setVisibility(View.VISIBLE);
             } else {
                 onBC.setVisibility(View.GONE);
             }
+            if (AppState.get().isCrop) {
+                crop.setVisibility(View.VISIBLE);
+            }
+            if (AppState.get().isCut) {
+                cut.setVisibility(View.VISIBLE);
+            }
         }
+
 
         crop.underline(AppState.get().isCrop);
         cut.underline(AppState.get().isCut);
@@ -1863,7 +1870,6 @@ public class DocumentWrapperUI {
         if (ttsActive != null) {
             ttsActive.setVisibility(TxtUtils.visibleIf(TTSEngine.get().isPlaying()));
         }
-
 
     }
 

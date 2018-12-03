@@ -391,7 +391,8 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
         });
 
         onBC.setVisibility(isTextFomat ? View.GONE : View.VISIBLE);
-        if (DocumentController.isEinkOrMode(this)) {
+
+        if (DocumentController.isEinkOrMode(this) || AppState.get().isEnableBC) {
             onBC.setVisibility(View.VISIBLE);
         }
         onMove.setVisibility(DocumentController.isEinkOrMode(this) && !isTextFomat ? View.VISIBLE : View.GONE);
@@ -586,7 +587,7 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
         });
 
         onCrop = (UnderlineImageView) findViewById(R.id.onCrop);
-        onCrop.setVisibility(isTextFomat ? View.GONE : View.VISIBLE);
+        onCrop.setVisibility(isTextFomat && !AppState.get().isCrop ? View.GONE : View.VISIBLE);
         onCrop.setOnClickListener(new View.OnClickListener() {
 
             @Override
@@ -900,10 +901,10 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
 
                     updateIconMode();
 
-                    onCrop.setVisibility(dc.isTextFormat() ? View.GONE : View.VISIBLE);
+                    onCrop.setVisibility(dc.isTextFormat() && !AppState.get().isCrop ? View.GONE : View.VISIBLE);
                     onMove.setVisibility(DocumentController.isEinkOrMode(HorizontalViewActivity.this) && !dc.isTextFormat() ? View.VISIBLE : View.GONE);
                     onBC.setVisibility(dc.isTextFormat() ? View.GONE : View.VISIBLE);
-                    if (Dips.isEInk(dc.getActivity()) || AppState.get().isInkMode) {
+                    if (Dips.isEInk(dc.getActivity()) || AppState.get().isInkMode || AppState.get().isEnableBC) {
                         onBC.setVisibility(View.VISIBLE);
                     }
 
