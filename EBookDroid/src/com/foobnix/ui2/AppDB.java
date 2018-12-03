@@ -99,7 +99,8 @@ public class AppDB {
         SERIES(6, R.string.by_series, FileMetaDao.Properties.Sequence), //
         SERIES_INDEX(7, R.string.by_number_in_serie, FileMetaDao.Properties.SIndex), //
         PAGES(8, R.string.by_number_of_pages, FileMetaDao.Properties.Pages), //
-        EXT(9, R.string.by_extension, FileMetaDao.Properties.Ext);//
+        EXT(9, R.string.by_extension, FileMetaDao.Properties.Ext), //
+        LANGUAGE(10, R.string.language, FileMetaDao.Properties.Lang);//
 
         private final int index;
         private final int resName;

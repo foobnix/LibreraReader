@@ -23,6 +23,7 @@ import com.foobnix.pdf.info.TintUtil;
 import com.foobnix.pdf.info.view.EditTextHelper;
 import com.foobnix.pdf.info.view.KeyCodeDialog;
 import com.foobnix.pdf.info.view.MyPopupMenu;
+import com.foobnix.pdf.info.widget.DialogTranslateFromTo;
 import com.foobnix.pdf.info.widget.PrefDialogs;
 import com.foobnix.pdf.info.wrapper.AppState;
 import com.foobnix.pdf.info.wrapper.PopupHelper;
@@ -539,15 +540,25 @@ public class SearchFragment2 extends UIFragment<FileMeta> {
                 }
             }
 
-            if (AppState.get().sortBy == SORT_BY.PATH.getIndex()) {
+            if (AppState.get().sortBy == SORT_BY.PATH.getIndex() || AppState.get().sortBy == SORT_BY.LANGUAGE.getIndex()) {
                 List<FileMeta> res = new ArrayList<FileMeta>();
                 String last = null;
 
                 String extDir = Environment.getExternalStorageDirectory().getPath();
 
                 for (FileMeta it : searchBy) {
-                    String parentName = it.getParentPath();
-                    parentName = parentName.replace(extDir, "");
+                    String parentName = null;
+                    if (AppState.get().sortBy == SORT_BY.PATH.getIndex()) {
+                        parentName = it.getParentPath();
+                        parentName = parentName.replace(extDir, "");
+                    } else if (AppState.get().sortBy == SORT_BY.LANGUAGE.getIndex()) {
+                        String lang = it.getLang();
+                        if (TxtUtils.isEmpty(lang)) {
+                            parentName = "---";
+                        } else {
+                            parentName = DialogTranslateFromTo.getLanuageByCode(lang);
+                        }
+                    }
                     if (!parentName.equals(last)) {
                         FileMeta fm = new FileMeta();
                         fm.setCusType(FileMetaAdapter.DISPALY_TYPE_LAYOUT_TITLE_DIVIDER);
@@ -742,7 +753,6 @@ public class SearchFragment2 extends UIFragment<FileMeta> {
     private ImageView onGridlList;
 
     private void sortByPopup(final View view) {
-
 
         MyPopupMenu popup = new MyPopupMenu(getActivity(), view);
         for (final SORT_BY sortBy : SORT_BY.values()) {
