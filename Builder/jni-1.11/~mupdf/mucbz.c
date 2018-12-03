@@ -200,7 +200,12 @@ cbz_load_page(fz_context *ctx, cbz_document *doc, int number)
 	fz_var(page);
 
 	if (doc->arch)
-		buf = fz_read_archive_entry(ctx, doc->arch, doc->page[number]);
+		//buf = fz_read_archive_entry(ctx, doc->arch, doc->page[number]);
+		if (fz_has_archive_entry(ctx, doc->arch, doc->page[number]))
+			buf = fz_read_archive_entry(ctx, doc->arch, doc->page[number]);
+		else
+			buf = fz_read_file(ctx, doc->page[number]);
+
 	if (!buf)
 		fz_throw(ctx, FZ_ERROR_GENERIC, "cannot load cbz page");
 

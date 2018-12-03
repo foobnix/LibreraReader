@@ -29,7 +29,7 @@ public class FolderContext extends PdfContext {
         return muPdfDocument;
     }
 
-    public static File genarateXML(List<FileMeta> items, String root) {
+    public static File genarateXML(List<FileMeta> items, String base) {
         List<FileMeta> res = new ArrayList<FileMeta>();
         for (FileMeta meta : items) {
             if (ExtUtils.isImagePath(meta.getPath()) || BookType.TIFF.is(meta.getPath())) {
@@ -37,14 +37,19 @@ public class FolderContext extends PdfContext {
             }
         }
 
+        File root = new File(CacheZipUtils.ATTACHMENTS_CACHE_DIR, new File(base).getName());
+        root.mkdirs();
+
         File file = new File(root, LIST_LXML);
         file.delete();
+
         try {
             LOG.d("genarateXML", file.getPath());
             PrintWriter pr = new PrintWriter(file);
             pr.println("<container count=\"" + res.size() + "\">");
             for (FileMeta meta : res) {
-                String x = "<item  path=\"" + ExtUtils.getFileName(meta.getPath()) + "\" />";
+                // String x = "<item path=\"" + ExtUtils.getFileName(meta.getPath()) + "\" />";
+                String x = "<item  path=\"" + meta.getPath() + "\" />";
                 pr.println(x);
                 LOG.d("genarateXML", x);
             }
@@ -105,7 +110,12 @@ public class FolderContext extends PdfContext {
                         File list = new File(unZipPath);
                         File parentFile = list.getParentFile();
                         String name = xpp.getAttributeValue(null, "path");
-                        File file = new File(parentFile, name);
+                        File file = null;
+                        if (name.startsWith("/") || name.startsWith("file://")) {
+                            file = new File(name);
+                        } else {
+                            file = new File(parentFile, name);
+                        }
                         LOG.d("getBookCover-file", file);
                         inputStream.close();
                         return CacheZipUtils.getEntryAsByte(new FileInputStream(file));
