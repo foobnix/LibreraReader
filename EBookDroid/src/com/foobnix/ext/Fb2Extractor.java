@@ -596,7 +596,7 @@ public class Fb2Extractor extends BaseExtractor {
                     }
                 }
 
-                if (!isFindBodyEnd && line.contains("</body>")) {
+                if (!isFindBodyEnd && line.contains("<body name=\"notes\"")) {
                     isFindBodyEnd = true;
                 }
 
@@ -662,7 +662,6 @@ public class Fb2Extractor extends BaseExtractor {
         ByteArrayOutputStream out = new ByteArrayOutputStream();
         PrintWriter writer = new PrintWriter(out);
         String line;
-
 
         HypenUtils.resetTokenizer();
 
@@ -769,6 +768,10 @@ public class Fb2Extractor extends BaseExtractor {
                     isTitle = true;
                 }
 
+                if (xpp.getName().equals("body") && xpp.getAttributeCount() > 0 && "notes".equals(xpp.getAttributeValue(0))) {
+                    break;
+                }
+
             } else if (eventType == XmlPullParser.END_TAG) {
                 if (xpp.getName().equals("title")) {
                     isTitle = false;
@@ -782,9 +785,7 @@ public class Fb2Extractor extends BaseExtractor {
                 if (xpp.getName().equals("section")) {
                     section--;
                 }
-                if (xpp.getName().equals("body")) {
-                    break;
-                }
+
 
             } else if (eventType == XmlPullParser.TEXT) {
                 if (isTitle) {
