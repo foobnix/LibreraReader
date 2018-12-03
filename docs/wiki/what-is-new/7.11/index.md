@@ -14,6 +14,7 @@ version: 8
 * Option to change the status bar position (Top or Bottom) in Book mode
 * Bookmarks are now linked to reading progress percentage values
 * Now folders can be opened as books
+* Sort book Library by Language
 
 **Fixes**
 
@@ -73,6 +74,15 @@ To open a folder as a book, navigate to it in the Folders tab and tap on its nam
 |-|-|-|
 |![](/wiki/manual/Open-Folder-With-Images-As-A-Book/1.png)|![](/wiki/manual/Open-Folder-With-Images-As-A-Book/2.png)|![](/wiki/manual/Open-Folder-With-Images-As-A-Book/3.png)|
 
+
+**Sort books by Language**
+
+* See all languages available in the Library
+* Sort books by Languages
+
+||||
+|-|-|-|
+|![](7.png)|![](8.png)|![](9.png)|
 
 # What is new in Librera book reader
 

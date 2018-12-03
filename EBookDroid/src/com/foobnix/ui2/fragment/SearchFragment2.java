@@ -483,9 +483,12 @@ public class SearchFragment2 extends UIFragment<FileMeta> {
 
     }
 
+    int countTitles = 0;
+
     @Override
     public List<FileMeta> prepareDataInBackground() {
         String txt = searchEditText.getText().toString().trim();
+        countTitles = 0;
         if (Arrays.asList(AppState.MODE_GRID, AppState.MODE_COVERS, AppState.MODE_LIST, AppState.MODE_LIST_COMPACT).contains(AppState.get().libraryMode)) {
 
             if (!prevText.contains(txt)) {
@@ -566,6 +569,7 @@ public class SearchFragment2 extends UIFragment<FileMeta> {
                         fm.setTitle(parentName);
                         last = parentName;
                         res.add(fm);
+                        countTitles++;
                     }
                     res.add(it);
                 }
@@ -859,7 +863,7 @@ public class SearchFragment2 extends UIFragment<FileMeta> {
     }
 
     public void showBookCount() {
-        countBooks.setText("" + recyclerView.getAdapter().getItemCount());
+        countBooks.setText("" + (recyclerView.getAdapter().getItemCount() - countTitles));
     }
 
     @Override
