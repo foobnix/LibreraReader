@@ -64,8 +64,11 @@ public class FolderContext extends PdfContext {
 
     public static boolean isFolderWithImage(List<FileMeta> items) {
         for (FileMeta meta : items) {
-            if (ExtUtils.isImagePath(meta.getPath()) || BookType.TIFF.is(meta.getPath())) {
-                return true;
+            String path = meta.getPath();
+            if (new File(path).isFile()) {
+                if (ExtUtils.isImagePath(path) || BookType.TIFF.is(meta.getPath())) {
+                    return true;
+                }
             }
         }
         return false;
