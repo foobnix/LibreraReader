@@ -169,6 +169,7 @@
    <string name="no_author">Sin autor</string>
    <string name="no_serie">Sin serie</string>
    <string name="no_genre">Sin género</string>
+   <string name="no_language">No idioma</string>
    <string name="without_series">Sin series</string>
    <string name="folders">Carpetas</string>
    <string name="recent">Reciente</string>

@@ -169,6 +169,7 @@
    <string name="no_author">작성자 없음</string>
    <string name="no_serie">세리가 없다.</string>
    <string name="no_genre">장르 없음</string>
+   <string name="no_language">언어 없음</string>
    <string name="without_series">시리즈 없음</string>
    <string name="folders">폴더</string>
    <string name="recent">최근</string>

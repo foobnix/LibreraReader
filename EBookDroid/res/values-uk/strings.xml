@@ -169,6 +169,7 @@
    <string name="no_author">Без автора</string>
    <string name="no_serie">Без серії</string>
    <string name="no_genre">Без жанру</string>
+   <string name="no_language">Немає мови</string>
    <string name="without_series">Без серії</string>
    <string name="folders">Папки</string>
    <string name="recent">Недавні</string>

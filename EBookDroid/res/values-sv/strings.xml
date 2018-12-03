@@ -169,6 +169,7 @@
    <string name="no_author">Ingen författare</string>
    <string name="no_serie">Ingen serie</string>
    <string name="no_genre">Ingen genre</string>
+   <string name="no_language">Inget språk</string>
    <string name="without_series">Utan serie</string>
    <string name="folders">Mappar</string>
    <string name="recent">Nyligen</string>

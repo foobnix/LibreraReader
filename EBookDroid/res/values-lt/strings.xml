@@ -169,6 +169,7 @@
    <string name="no_author">Ne autorius</string>
    <string name="no_serie">Nėra serijos</string>
    <string name="no_genre">Nėra žanro</string>
+   <string name="no_language">Nėra kalbos</string>
    <string name="without_series">Be serijos</string>
    <string name="folders">Aplankai</string>
    <string name="recent">Naujausi</string>

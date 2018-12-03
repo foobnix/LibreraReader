@@ -169,6 +169,7 @@
    <string name="no_author">Brak autora</string>
    <string name="no_serie">Brak serii</string>
    <string name="no_genre">Brak gatunku</string>
+   <string name="no_language">Bez języka</string>
    <string name="without_series">Bez serii</string>
    <string name="folders">Foldery</string>
    <string name="recent">Ostatnie</string>

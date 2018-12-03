@@ -169,6 +169,7 @@
    <string name="no_author">אין מחבר</string>
    <string name="no_serie">אין סרייה</string>
    <string name="no_genre">אין ז\'אנר</string>
+   <string name="no_language">אין שפה</string>
    <string name="without_series">ללא סדרה</string>
    <string name="folders">תיקיות</string>
    <string name="recent">לאחרונה</string>

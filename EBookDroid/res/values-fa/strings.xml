@@ -169,6 +169,7 @@
    <string name="no_author">بدون نویسنده</string>
    <string name="no_serie">هیچ سریالی وجود ندارد</string>
    <string name="no_genre">هیچ ژانر نیست</string>
+   <string name="no_language">بدون زبان</string>
    <string name="without_series">بدون سری</string>
    <string name="folders">پوشه</string>
    <string name="recent">اخیر</string>

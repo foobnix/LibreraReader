@@ -169,6 +169,7 @@
    <string name="no_author">Yazar yok</string>
    <string name="no_serie">Seri yok</string>
    <string name="no_genre">Tür yok</string>
+   <string name="no_language">Dil yok</string>
    <string name="without_series">Serisi olmadan</string>
    <string name="folders">Klasörler</string>
    <string name="recent">Güncel</string>

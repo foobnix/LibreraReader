@@ -169,6 +169,7 @@
    <string name="no_author">Nici un autor</string>
    <string name="no_serie">Nici o serie</string>
    <string name="no_genre">Nici un gen</string>
+   <string name="no_language">Nici o limbă</string>
    <string name="without_series">Fără serii</string>
    <string name="folders">Dosare</string>
    <string name="recent">Recent</string>

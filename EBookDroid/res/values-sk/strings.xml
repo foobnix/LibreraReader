@@ -169,6 +169,7 @@
    <string name="no_author">Žiadny autor</string>
    <string name="no_serie">Žiadna séria</string>
    <string name="no_genre">Žiadny žáner</string>
+   <string name="no_language">Žiadny jazyk</string>
    <string name="without_series">Bez série</string>
    <string name="folders">Zložky</string>
    <string name="recent">Nedávne</string>

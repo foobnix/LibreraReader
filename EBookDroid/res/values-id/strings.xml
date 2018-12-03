@@ -169,6 +169,7 @@
    <string name="no_author">Tidak ada penulis</string>
    <string name="no_serie">Tidak ada serie</string>
    <string name="no_genre">Tidak ada genre</string>
+   <string name="no_language">Tidak ada bahasa</string>
    <string name="without_series">Tanpa seri</string>
    <string name="folders">Map</string>
    <string name="recent">Baru</string>

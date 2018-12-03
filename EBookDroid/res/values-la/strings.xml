@@ -169,6 +169,7 @@
    <string name="no_author">Nullus effector denotum</string>
    <string name="no_serie">Nulla catena</string>
    <string name="no_genre">Nullum generis</string>
+   <string name="no_language">Nec lingua</string>
    <string name="without_series">Foras catena</string>
    <string name="folders">Coopercula</string>
    <string name="recent">Recentissimi</string>

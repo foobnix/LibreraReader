@@ -217,6 +217,7 @@ public class AppState {
     public final static int MODE_LIST_COMPACT = 7;
     public final static int MODE_USER_TAGS = 8;
     public final static int MODE_KEYWORDS = 9;
+    public final static int MODE_LANGUAGES = 10;
 
     public final static int BOOKMARK_MODE_BY_DATE = 1;
     public final static int BOOKMARK_MODE_BY_BOOK = 2;

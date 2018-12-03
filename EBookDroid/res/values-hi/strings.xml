@@ -169,6 +169,7 @@
    <string name="no_author">कोई लेखक नहीं</string>
    <string name="no_serie">कोई सीरी नहीं</string>
    <string name="no_genre">कोई शैली नहीं</string>
+   <string name="no_language">कोई भाषा नहीं</string>
    <string name="without_series">श्रृंखला के बिना</string>
    <string name="folders">फ़ोल्डर</string>
    <string name="recent">हाल का</string>

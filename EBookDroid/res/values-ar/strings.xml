@@ -169,6 +169,7 @@
    <string name="no_author">لا مؤلف</string>
    <string name="no_serie">لا دوري الدرجة الاولى الايطالي</string>
    <string name="no_genre">لا يوجد نوع</string>
+   <string name="no_language">لا لغة</string>
    <string name="without_series">بدون سلسلة</string>
    <string name="folders">المجلدات</string>
    <string name="recent">السجل</string>

@@ -169,6 +169,7 @@
    <string name="no_author">无作者</string>
    <string name="no_serie">无丛书</string>
    <string name="no_genre">无流派</string>
+   <string name="no_language">没有语言</string>
    <string name="without_series">无丛书</string>
    <string name="folders">文件夹</string>
    <string name="recent">最近</string>

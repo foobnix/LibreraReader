@@ -169,6 +169,7 @@
    <string name="no_author">Nincs szerző</string>
    <string name="no_serie">Nincsenek sorozatok</string>
    <string name="no_genre">Nincs műfaj</string>
+   <string name="no_language">Nincs nyelv</string>
    <string name="without_series">N/A</string>
    <string name="folders">Mappa</string>
    <string name="recent">Legutóbbi</string>

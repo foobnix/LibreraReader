@@ -7,6 +7,7 @@ import java.util.EmptyStackException;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Locale;
 import java.util.Set;
 import java.util.Stack;
 
@@ -659,10 +660,34 @@ public class SearchFragment2 extends UIFragment<FileMeta> {
             } else if (AppState.get().libraryMode == AppState.MODE_USER_TAGS) {
                 searchEditText.setHint(R.string.my_tags);
                 empty = EMPTY_ID + getActivity().getString(R.string.no_tag);
+            } else if (AppState.get().libraryMode == AppState.MODE_LANGUAGES) {
+                searchEditText.setHint(R.string.language);
+                empty = EMPTY_ID + getActivity().getString(R.string.no_language);
             }
 
             authorsAdapter.clearItems();
             List<String> list = AppDB.get().getAll(SEARCH_IN.getByMode(AppState.get().libraryMode));
+            if (AppState.get().libraryMode == AppState.MODE_LANGUAGES) {
+                List<String> res = new ArrayList<String>();
+                String prev = null;
+                for (String ln : list) {
+                    if (TxtUtils.isEmpty(ln)) {
+                        ln = "";
+                    } else if (ln.length() > 2) {
+                        ln = ln.substring(0, 2);
+                    }
+
+                    String full = DialogTranslateFromTo.getLanuageByCode(ln);
+                    String lnLow = ln.toLowerCase(Locale.US);
+
+                    if (!lnLow.equals(prev)) {
+                        prev = lnLow;
+                        res.add(full + " (" + lnLow + ")");
+                    }
+                }
+                list = res;
+
+            }
             list.add(0, empty);
             authorsAdapter.getItemsList().addAll(list);
             authorsAdapter.notifyDataSetChanged();
@@ -784,6 +809,7 @@ public class SearchFragment2 extends UIFragment<FileMeta> {
                 R.string.genre, //
                 R.string.serie, //
                 R.string.keywords, //
+                R.string.language, //
                 R.string.my_tags //
         );
 
@@ -795,6 +821,7 @@ public class SearchFragment2 extends UIFragment<FileMeta> {
                 R.drawable.glyphicons_66_tag, //
                 R.drawable.glyphicons_710_list_numbered, //
                 R.drawable.glyphicons_67_keywords, //
+                R.drawable.glyphicons_2_book_open, //
                 R.drawable.glyphicons_67_tags);
         final List<Integer> actions = Arrays.asList(AppState.MODE_LIST, AppState.MODE_LIST_COMPACT, //
                 AppState.MODE_GRID, //
@@ -803,6 +830,7 @@ public class SearchFragment2 extends UIFragment<FileMeta> {
                 AppState.MODE_GENRE, //
                 AppState.MODE_SERIES, //
                 AppState.MODE_KEYWORDS, //
+                AppState.MODE_LANGUAGES, //
                 AppState.MODE_USER_TAGS); //
 
         for (int i = 0; i < names.size(); i++) {
@@ -814,7 +842,7 @@ public class SearchFragment2 extends UIFragment<FileMeta> {
                     AppState.get().libraryMode = actions.get(index);
                     onGridList.setImageResource(icons.get(index));
 
-                    if (Arrays.asList(AppState.MODE_AUTHORS, AppState.MODE_SERIES, AppState.MODE_GENRE, AppState.MODE_USER_TAGS, AppState.MODE_KEYWORDS).contains(AppState.get().libraryMode)) {
+                    if (Arrays.asList(AppState.MODE_AUTHORS, AppState.MODE_SERIES, AppState.MODE_GENRE, AppState.MODE_USER_TAGS, AppState.MODE_KEYWORDS, AppState.MODE_LANGUAGES).contains(AppState.get().libraryMode)) {
                         searchEditText.setText("");
                     }
 

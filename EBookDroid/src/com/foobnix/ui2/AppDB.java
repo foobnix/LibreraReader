@@ -45,7 +45,8 @@ public class AppDB {
         GENRE(FileMetaDao.Properties.Genre, AppState.MODE_GENRE), //
         AUTHOR(FileMetaDao.Properties.Author, AppState.MODE_AUTHORS), //
         TAGS(FileMetaDao.Properties.Tag, AppState.MODE_USER_TAGS), //
-        KEYWRODS(FileMetaDao.Properties.Keyword, AppState.MODE_KEYWORDS);
+        KEYWRODS(FileMetaDao.Properties.Keyword, AppState.MODE_KEYWORDS), //
+        LANGUAGES(FileMetaDao.Properties.Lang, AppState.MODE_LANGUAGES);
         // ANNOT(FileMetaDao.Properties.Annotation, -1); //
         // REGEX(FileMetaDao.Properties.Path, -1);//
         //
@@ -421,8 +422,7 @@ public class AppDB {
 
     public List<FileMeta> getStarsFiles() {
         QueryBuilder<FileMeta> where = fileMetaDao.queryBuilder();
-        List<FileMeta> list = where.where(FileMetaDao.Properties.IsStar.eq(1), where.or(FileMetaDao.Properties.CusType.isNull(), FileMetaDao.Properties.CusType.eq(FileMetaAdapter.DISPLAY_TYPE_FILE)))
-                .orderDesc(FileMetaDao.Properties.IsStarTime).list();
+        List<FileMeta> list = where.where(FileMetaDao.Properties.IsStar.eq(1), where.or(FileMetaDao.Properties.CusType.isNull(), FileMetaDao.Properties.CusType.eq(FileMetaAdapter.DISPLAY_TYPE_FILE))).orderDesc(FileMetaDao.Properties.IsStarTime).list();
         return removeNotExist(list);
     }
 
@@ -493,6 +493,11 @@ public class AppDB {
             for (SEARCH_IN in : SEARCH_IN.values()) {
                 if (str.startsWith(in.getDotPrefix())) {
                     str = str.replace(in.getDotPrefix(), "").trim();
+
+                    if (in == SEARCH_IN.LANGUAGES) {
+                        str = str.substring(str.indexOf("(") + 1).replace(")", "").trim();
+                    }
+
                     searchIn = in;
                     break;
                 }

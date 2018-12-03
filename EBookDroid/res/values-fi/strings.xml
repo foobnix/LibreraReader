@@ -169,6 +169,7 @@
    <string name="no_author">Ei kirjoittajaa</string>
    <string name="no_serie">Ei sarjaa</string>
    <string name="no_genre">Ei lajia</string>
+   <string name="no_language">Ei kieltä</string>
    <string name="without_series">Ilman sarjaa</string>
    <string name="folders">Kansiot</string>
    <string name="recent">Viimeaikainen</string>
