@@ -55,7 +55,7 @@ public class AdvGuestureDetector extends SimpleOnGestureListener implements IMul
 
         clickUtils = new ClickUtils();
         updateBorders();
-        brightnessHelper = new BrightnessHelper();
+        brightnessHelper = new BrightnessHelper(contex);
         EventBus.getDefault().register(this);
     }
 

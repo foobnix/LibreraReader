@@ -319,6 +319,9 @@ public class AppState {
     @IgnoreHashCode
     public boolean isBrighrnessEnable = true;
 
+    @IgnoreHashCode
+    public boolean isAllowMinBrigthness = false;
+
     public boolean isShowRateUsOnExit = true;
 
     @IgnoreHashCode

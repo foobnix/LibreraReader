@@ -2887,6 +2887,17 @@ public class DragingDialogs {
                     }
                 });
 
+                CheckBox isAllowMinBrigthness = (CheckBox) inflate.findViewById(R.id.isAllowMinBrigthness);
+                isAllowMinBrigthness.setChecked(AppState.get().isAllowMinBrigthness);
+                isAllowMinBrigthness.setOnCheckedChangeListener(new OnCheckedChangeListener() {
+
+                    @Override
+                    public void onCheckedChanged(final CompoundButton buttonView, final boolean isChecked) {
+                        AppState.get().isAllowMinBrigthness = isChecked;
+                        BrightnessHelper.applyBrigtness(controller.getActivity());
+                    }
+                });
+
                 CheckBox isShowLongBackDialog = (CheckBox) inflate.findViewById(R.id.isShowLongBackDialog);
                 isShowLongBackDialog.setChecked(AppState.get().isShowLongBackDialog);
                 isShowLongBackDialog.setOnCheckedChangeListener(new OnCheckedChangeListener() {

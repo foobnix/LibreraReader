@@ -505,4 +505,5 @@
    <string name="exit_application_question">退出程序？</string>
    <string name="open_folder_as_a_book">文件夹作为书籍打开</string>
    <string name="read_out_loud_with_tts">用TTS大声朗读</string>
+   <string name="allow_minimum_brightness">允许最小亮度</string>
 </resources>

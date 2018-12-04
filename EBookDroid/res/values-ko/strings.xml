@@ -505,4 +505,5 @@
    <string name="exit_application_question">신청서를 종료 하시겠습니까?</string>
    <string name="open_folder_as_a_book">책으로 폴더 열기</string>
    <string name="read_out_loud_with_tts">TTS로 소리내어 읽기</string>
+   <string name="allow_minimum_brightness">최소 밝기 허용</string>
 </resources>

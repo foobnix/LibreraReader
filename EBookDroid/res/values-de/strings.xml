@@ -505,4 +505,5 @@
    <string name="exit_application_question">Anwendung verlassen?</string>
    <string name="open_folder_as_a_book">Ordner als Buch öffnen</string>
    <string name="read_out_loud_with_tts">Mit TTS laut vorlesen</string>
+   <string name="allow_minimum_brightness">Minimale Helligkeit zulassen</string>
 </resources>

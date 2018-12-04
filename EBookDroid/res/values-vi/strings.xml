@@ -505,4 +505,5 @@
    <string name="exit_application_question">Ứng dụng xuất cảnh?</string>
    <string name="open_folder_as_a_book">Mở thư mục dưới dạng sách</string>
    <string name="read_out_loud_with_tts">Đọc to với TTS</string>
+   <string name="allow_minimum_brightness">Cho phép độ sáng tối thiểu</string>
 </resources>
