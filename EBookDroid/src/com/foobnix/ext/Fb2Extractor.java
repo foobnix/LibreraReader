@@ -596,7 +596,7 @@ public class Fb2Extractor extends BaseExtractor {
                     }
                 }
 
-                if (!isFindBodyEnd && line.contains("<body name=\"notes\"")) {
+                if (!isFindBodyEnd && line.contains("<binary")) {
                     isFindBodyEnd = true;
                 }
 
@@ -756,6 +756,7 @@ public class Fb2Extractor extends BaseExtractor {
         int section = 0;
         int dividerSection = -1;
         String dividerLine = null;
+        boolean secondBody = false;
         while (eventType != XmlPullParser.END_DOCUMENT) {
             if (TempHolder.get().loadingCancelled) {
                 break;
@@ -767,9 +768,15 @@ public class Fb2Extractor extends BaseExtractor {
                 if (xpp.getName().equals("title")) {
                     isTitle = true;
                 }
-
-                if (xpp.getName().equals("body") && xpp.getAttributeCount() > 0 && "notes".equals(xpp.getAttributeValue(0))) {
+                if (xpp.getName().equals("binary")) {
                     break;
+                }
+
+                if (xpp.getName().equals("body")) {
+                    if (secondBody && xpp.getAttributeCount() > 0) {
+                        break;
+                    }
+                    secondBody = true;
                 }
 
             } else if (eventType == XmlPullParser.END_TAG) {
