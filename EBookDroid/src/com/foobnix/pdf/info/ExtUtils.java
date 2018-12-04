@@ -206,6 +206,7 @@ public class ExtUtils {
         }
         if (AppState.get().supportRTF) {
             result.add(".rtf");
+            result.add(".odt");
             if (!AppState.get().supportZIP) {
                 result.add(".rtf.zip");
             }
@@ -227,7 +228,7 @@ public class ExtUtils {
             result.addAll(lirbeExt);
             result.add(".prc");
             result.add(".pdb");
-            
+
         }
 
         for (String ext : result) {
@@ -531,8 +532,6 @@ public class ExtUtils {
         }
     }
 
-
-
     public static FileFilter getFileFilter() {
         return filter;
     }
@@ -573,7 +572,11 @@ public class ExtUtils {
         if (path == null) {
             return false;
         }
-        return BookType.ZIP.is(path) || BookType.EPUB.is(path) || BookType.FB2.is(path) || BookType.TXT.is(path) || BookType.RTF.is(path) || BookType.HTML.is(path) || BookType.MHT.is(path) || BookType.MOBI.is(path);
+        return BookType.ZIP.is(path) || BookType.EPUB.is(path) //
+                || BookType.FB2.is(path) || BookType.TXT.is(path) //
+                || BookType.RTF.is(path) || BookType.HTML.is(path) //
+                || BookType.MHT.is(path) || BookType.MOBI.is(path) //
+                || BookType.ODT.is(path);//
     }
 
     public static synchronized boolean isZip(File path) {

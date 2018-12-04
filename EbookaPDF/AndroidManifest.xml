@@ -2,8 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.foobnix.pdf.reader"
     android:installLocation="auto"
-    android:versionCode="807"
-    android:versionName="7.11.51" >
+    android:versionCode="808"
+    android:versionName="7.11.52" >
 
     <uses-sdk
         android:minSdkVersion="14"
@@ -128,6 +128,7 @@
                 <data android:mimeType="image/x.djvu" />
                 <data android:mimeType="text/plain" />
                 <data android:mimeType="image/tiff" />
+                <data android:mimeType="application/vnd.oasis.opendocument.text" />
             </intent-filter>
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
@@ -154,6 +155,7 @@
                 <data android:pathPattern=".*\\.cbz" />
                 <data android:pathPattern=".*\\.cbr" />
                 <data android:pathPattern=".*\\.tiff" />
+                <data android:pathPattern=".*\\.odt" />
             </intent-filter>
         </activity>
 

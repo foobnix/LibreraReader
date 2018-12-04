@@ -15,6 +15,7 @@ import org.ebookdroid.droids.FolderContext;
 import org.ebookdroid.droids.HtmlContext;
 import org.ebookdroid.droids.MhtContext;
 import org.ebookdroid.droids.MobiContext;
+import org.ebookdroid.droids.OdtContext;
 import org.ebookdroid.droids.RtfContext;
 import org.ebookdroid.droids.TxtContext;
 import org.ebookdroid.droids.ZipContext;
@@ -32,6 +33,7 @@ public enum BookType {
 
     CBZ(PdfContext.class, Arrays.asList("cbz"), Arrays.asList("application/x-cbz")),
 	CBR(CbrContext.class, Arrays.asList("cbr"), Arrays.asList("application/x-cbr")),
+    ODT(OdtContext.class, Arrays.asList("odt"), Arrays.asList("application/vnd.oasis.opendocument.text")),
 
     FOLDER(FolderContext.class, Arrays.asList(FolderContext.LXML), Arrays.asList("application/lxml")),
 
