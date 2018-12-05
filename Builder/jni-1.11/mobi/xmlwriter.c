@@ -166,7 +166,7 @@ static MOBI_RET mobi_xml_buffer_addstring(xmlTextWriterPtr writer, const char *s
  @return MOBI_RET status code (on success MOBI_SUCCESS)
  */
 static MOBI_RET mobi_xml_buffer_addchar(xmlTextWriterPtr writer, const unsigned char c) {
-    if (writer == NULL || writer->xmlbuf->mobibuffer == NULL || writer->xmlbuf->mobibuffer == NULL) {
+    if (writer == NULL || writer->xmlbuf == NULL || writer->xmlbuf->mobibuffer == NULL) {
         return MOBI_INIT_FAILED;
     }
     MOBIBuffer *buf = writer->xmlbuf->mobibuffer;

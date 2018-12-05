@@ -57,7 +57,7 @@
 #define INDX_INFLSTRINGS_MAX 500 /**< Max number of inflected strings */
 #define ORDT_RECORD_MAXCNT 256 /* max entries count in old ordt */
 #define CNCX_RECORD_MAXCNT 0xf /* max entries count */
-#define INDX_RECORD_MAXCNT 5000 /* max index entries per record */
+#define INDX_RECORD_MAXCNT 6000 /* max index entries per record */
 #define INDX_TOTAL_MAXCNT ((size_t) INDX_RECORD_MAXCNT * 0xffff) /* max total index entries */
 #define INDX_NAME_SIZEMAX 0xff
 
