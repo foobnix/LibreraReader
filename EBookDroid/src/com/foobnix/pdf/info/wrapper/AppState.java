@@ -500,7 +500,7 @@ public class AppState {
     public boolean supportDJVU = true;
     public boolean supportEPUB = true;
     public boolean supportFB2 = true;
-    public boolean supportRTF = false;
+    public boolean supportRTF = true;
     public boolean supportMOBI = true;
     public boolean supportCBZ = false;
     public boolean supportZIP = false;
