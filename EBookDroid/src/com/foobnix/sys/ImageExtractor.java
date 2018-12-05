@@ -29,6 +29,7 @@ import com.foobnix.ext.EbookMeta;
 import com.foobnix.ext.EpubExtractor;
 import com.foobnix.ext.Fb2Extractor;
 import com.foobnix.ext.MobiExtract;
+import com.foobnix.ext.OdtExtractor;
 import com.foobnix.ext.RtfExtract;
 import com.foobnix.opds.OPDS;
 import com.foobnix.pdf.info.Clouds;
@@ -119,6 +120,8 @@ public class ImageExtractor implements ImageDownloader {
             cover = BaseExtractor.arrayToBitmap(ebookMeta.coverImage, pageUrl.getWidth());
         } else if (BookType.EPUB.is(unZipPath)) {
             cover = BaseExtractor.arrayToBitmap(EpubExtractor.get().getBookCover(unZipPath), pageUrl.getWidth());
+        } else if (BookType.ODT.is(unZipPath)) {
+            cover = BaseExtractor.arrayToBitmap(OdtExtractor.get().getBookCover(unZipPath), pageUrl.getWidth());
         } else if (BookType.FB2.is(unZipPath)) {
             cover = BaseExtractor.arrayToBitmap(Fb2Extractor.get().getBookCover(unZipPath), pageUrl.getWidth());
         } else if (BookType.MOBI.is(unZipPath)) {
