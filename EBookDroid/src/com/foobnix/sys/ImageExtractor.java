@@ -120,7 +120,7 @@ public class ImageExtractor implements ImageDownloader {
             cover = BaseExtractor.arrayToBitmap(ebookMeta.coverImage, pageUrl.getWidth());
         } else if (BookType.EPUB.is(unZipPath)) {
             cover = BaseExtractor.arrayToBitmap(EpubExtractor.get().getBookCover(unZipPath), pageUrl.getWidth());
-        } else if (BookType.ODT.is(unZipPath)) {
+        } else if (ExtUtils.isLibreFile(unZipPath)) {
             cover = BaseExtractor.arrayToBitmap(OdtExtractor.get().getBookCover(unZipPath), pageUrl.getWidth());
         } else if (BookType.FB2.is(unZipPath)) {
             cover = BaseExtractor.arrayToBitmap(Fb2Extractor.get().getBookCover(unZipPath), pageUrl.getWidth());

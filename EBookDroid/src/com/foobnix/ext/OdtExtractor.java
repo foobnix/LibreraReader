@@ -41,7 +41,7 @@ public class OdtExtractor extends BaseExtractor {
             }
             for (FileHeader h : headers) {
                 String name = h.getFileName().toLowerCase(Locale.US);
-                if ((name.endsWith(".png") || name.endsWith(".jpg")) && h.getUncompressedSize() > 1024) {
+                if ((name.endsWith(".png") || name.endsWith(".jpg") || name.endsWith(".jpeg")) && h.getUncompressedSize() > 1024) {
                     LOG.d("find thumbnail.png in ", path, h.getFileName(), h.getUncompressedSize());
                     ZipInputStream inputStream = zp.getInputStream(h);
                     try {

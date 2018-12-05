@@ -430,6 +430,19 @@ public class ExtUtils {
         return false;
     }
 
+    public static boolean isLibreFile(String name) {
+        if (TxtUtils.isEmpty(name)) {
+            return false;
+        }
+        name = name.toLowerCase(Locale.US);
+        for (String ext : lirbeExt) {
+            if (name.endsWith(ext)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
     public static boolean isOtherFile(File file) {
         if (file != null && file.isFile()) {
             String name = file.getName().toLowerCase(Locale.US);
