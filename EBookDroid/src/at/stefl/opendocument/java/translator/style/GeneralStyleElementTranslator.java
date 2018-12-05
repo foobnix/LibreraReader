@@ -20,7 +20,7 @@ public class GeneralStyleElementTranslator extends DefaultStyleElementTranslator
                 if (value.contains("pt")) {
                     LOG.d("StyleProperty before", "font-size", value);
                     float f = Float.parseFloat(value.replace("pt", ""));
-                    float em = Math.min(Math.max(1, f / 12), 2);
+                    float em = Math.min(Math.max(1, f / 12), 1.4f);
                     String emValue = em + "em";
                     LOG.d("StyleProperty after", "font-size", emValue);
                     return new StyleProperty("font-size", emValue);
