@@ -90,7 +90,7 @@ public class PrefFragment2 extends UIFragment {
 
     private static final String WWW_SITE = "http://librera.mobi";
     private static final String WWW_BETA_SITE = "http://beta.librera.mobi";
-    private static final String WWW_ARCHIVE_SITE = "http://archive.librera.mobi";
+    private static final String WWW_WIKI_SITE = "http://wiki.librera.mobi";
     private TextView curBrightness, themeColor;
     private CheckBox isRememberDictionary;
 
@@ -1480,11 +1480,11 @@ public class PrefFragment2 extends UIFragment {
                 Urls.open(getActivity(), WWW_BETA_SITE);
             }
         });
-        underline(inflate.findViewById(R.id.openArchive)).setOnClickListener(new OnClickListener() {
+        underline(inflate.findViewById(R.id.openWiki)).setOnClickListener(new OnClickListener() {
 
             @Override
             public void onClick(final View v) {
-                Urls.open(getActivity(), WWW_ARCHIVE_SITE);
+                Urls.open(getActivity(), WWW_WIKI_SITE);
             }
         });
 
@@ -1561,19 +1561,6 @@ public class PrefFragment2 extends UIFragment {
                 });
                 builder.show();
 
-            }
-        });
-
-        // tutorials
-
-        TextView tutorialLink = (TextView) inflate.findViewById(R.id.tutorialLink);
-        TxtUtils.underlineTextView(tutorialLink);
-
-        tutorialLink.setOnClickListener(new OnClickListener() {
-
-            @Override
-            public void onClick(View v) {
-                Urls.open(getActivity(), AndroidWhatsNew.DETAIL_URL_RU);
             }
         });
 
