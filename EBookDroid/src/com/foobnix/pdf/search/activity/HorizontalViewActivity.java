@@ -22,6 +22,7 @@ import com.foobnix.ext.CacheZipUtils;
 import com.foobnix.pdf.CopyAsyncTask;
 import com.foobnix.pdf.info.ADS;
 import com.foobnix.pdf.info.Android6;
+import com.foobnix.pdf.info.AppsConfig;
 import com.foobnix.pdf.info.DictsHelper;
 import com.foobnix.pdf.info.ExtUtils;
 import com.foobnix.pdf.info.IMG;
@@ -788,9 +789,10 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
 
             @Override
             protected void onPostExecute(Object result) {
-                if (LOG.isEnable) {
+                if (AppsConfig.IS_BETA) {
                     long time = System.currentTimeMillis() - start;
-                    // modeName.setText("" + time / 1000);
+                    float sec = (float) time / 1000;
+                    modeName.setText(modeName.getText() + " (" + String.format("%.1f", sec) + " sec" + ")");
                 }
                 try {
                     // onClose.setVisibility(View.VISIBLE);
@@ -1944,6 +1946,10 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
             return;
         }
         prev = AppState.get().isEditMode;
+
+        if (AppsConfig.IS_BETA && animated) {
+            modeName.setText(R.string.mode_horizontally);
+        }
 
         if (!animated || AppState.get().isInkMode) {
             actionBar.setVisibility(AppState.get().isEditMode ? View.VISIBLE : View.GONE);
