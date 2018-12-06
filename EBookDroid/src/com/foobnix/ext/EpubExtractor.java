@@ -182,7 +182,6 @@ public class EpubExtractor extends BaseExtractor {
 
     @Override
     public EbookMeta getBookMetaInformation(String path) {
-        final File file = new File(path);
         try {
             ZipArchiveInputStream zipInputStream = Zips.buildZipArchiveInputStream(path);
 
@@ -203,7 +202,7 @@ public class EpubExtractor extends BaseExtractor {
             while ((nextEntry = zipInputStream.getNextEntry()) != null) {
                 String name = nextEntry.getName().toLowerCase(Locale.US);
 
-                if (name.endsWith(".opf")) {
+                if (name.endsWith(".opf") || name.endsWith("meta.xml")) {
 
                     XmlPullParser xpp = XmlParser.buildPullParser();
                     xpp.setInput(zipInputStream, "utf-8");

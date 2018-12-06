@@ -19,6 +19,9 @@ public class HypenUtils {
             if (lang.length() > 2) {
                 lang = lang.substring(0, 2).toLowerCase(Locale.US);
             }
+            if ("sp".equals(lang)) {
+                lang = "es";
+            }
 
             HyphenPattern pattern = HyphenPattern.error;
 

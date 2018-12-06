@@ -201,7 +201,6 @@ public class RtfExtract {
     static byte[] decode = null;
 
     public static byte[] getImageCover(String path) {
-        File file = new File(path);
         try {
 
             final FileInputStream fileInputStream = new FileInputStream(path);
