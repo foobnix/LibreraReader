@@ -50,6 +50,11 @@ public class BannerTest {
     }
 
     public static void show(boolean show, String text, String img1, String img2, String img3, String out) throws Exception {
+        int n = text.indexOf(":");
+        if (n > 0) {
+            text = text.substring(n + 1).trim();
+        }
+
         System.out.println("Process: " + text);
         out += new File(img3).getName().replace(" ", "_");
         File outFile = new File(out);
