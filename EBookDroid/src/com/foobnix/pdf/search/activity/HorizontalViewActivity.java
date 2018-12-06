@@ -115,13 +115,13 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
     VerticalViewPager viewPager;
     SeekBar seekBar;
     TextView toastBrightnessText, maxSeek, currentSeek, pagesCountIndicator, flippingIntervalView, pagesTime, pagesPower, titleTxt, chapterView, modeName;
-    View adFrame, bottomBar, bottomIndicators, moveCenter, onClose, overlay;
+    View adFrame, bottomBar, bottomIndicators, onClose, overlay;
     LinearLayout actionBar, bottomPanel;
     TTSControlsView ttsActive;
     FrameLayout anchor;
     UnderlineImageView onCrop, onBC;
 
-    ImageView lockModelImage, linkHistory, onModeChange, outline, onMove, textToSpeach, onPageFlip1, anchorX, anchorY;
+    ImageView moveCenter, lockModelImage, linkHistory, onModeChange, outline, onMove, textToSpeach, onPageFlip1, anchorX, anchorY;
 
     HorizontalModeController dc;
 
@@ -1235,6 +1235,11 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
         } else {
             lockModelImage.setImageResource(R.drawable.glyphicons_205_unlock);
         }
+        if (AppState.get().isLocked) {
+            TintUtil.setTintImageWithAlpha(moveCenter, Color.LTGRAY);
+        } else {
+            TintUtil.setTintImageWithAlpha(moveCenter, Color.WHITE);
+        }
 
     }
 
@@ -1401,7 +1406,6 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
         viewPager.setCurrentItem(dc.getCurentPage() + 1, isAnimate);
         dc.checkReadingTimer();
 
-
     }
 
     public void prevPage() {
@@ -1414,7 +1418,6 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
         lastClick = System.currentTimeMillis();
         viewPager.setCurrentItem(dc.getCurentPage() - 1, isAnimate);
         dc.checkReadingTimer();
-
 
     }
 

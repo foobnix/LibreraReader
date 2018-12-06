@@ -92,7 +92,7 @@ public class DocumentWrapperUI {
 
     TextView toastBrightnessText, pagesCountIndicator, currentSeek, maxSeek, currentTime, bookName, nextTypeBootom, batteryLevel, lirbiLogo, reverseKeysIndicator;
     ImageView onDocDontext, toolBarButton, linkHistory, lockUnlock, lockUnlockTop, textToSpeachTop, clockIcon, batteryIcon;
-    ImageView showSearch, nextScreenType, autoScroll, textToSpeach, onModeChange, imageMenuArrow, editTop2, goToPage1, goToPage1Top;
+    ImageView showSearch, nextScreenType, moveCenter, autoScroll, textToSpeach, onModeChange, imageMenuArrow, editTop2, goToPage1, goToPage1Top;
     View adFrame, titleBar, overlay, menuLayout, moveLeft, moveRight, bottomBar, onCloseBook, seekSpeedLayot, zoomPlus, zoomMinus;
     View line1, line2, lineFirst, lineClose, closeTop;
     TTSControlsView ttsActive;
@@ -487,6 +487,11 @@ public class DocumentWrapperUI {
             // lockUnlockTop.setColorFilter(a.getResources().getColor(R.color.tint_white));
             // mode = View.GONE;
         }
+        if (AppState.get().isLocked) {
+            TintUtil.setTintImageWithAlpha(moveCenter, Color.LTGRAY);
+        } else {
+            TintUtil.setTintImageWithAlpha(moveCenter, Color.WHITE);
+        }
 
     }
 
@@ -647,7 +652,7 @@ public class DocumentWrapperUI {
         moveLeft = a.findViewById(R.id.moveLeft);
         moveLeft.setOnClickListener(onMoveLeft);
 
-        final ImageView moveCenter = (ImageView) a.findViewById(R.id.moveCenter);
+        moveCenter = a.findViewById(R.id.moveCenter);
         moveCenter.setOnClickListener(onMoveCenter);
 
         moveRight = a.findViewById(R.id.moveRight);
