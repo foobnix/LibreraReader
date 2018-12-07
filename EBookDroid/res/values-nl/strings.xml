@@ -352,7 +352,6 @@
    <string name="press_color_to_apply">Druk op de kleur toe te passen</string>
    <string name="pro_pdf_description_ads_free">Toepassing zonder advertenties</string>
    <string name="rotate">Draaien</string>
-   <string name="select">Kiezen</string>
    <string name="split_pages_in_two">Split pagina</string>
    <string name="save_changes">Wijzigingen opslaan?</string>
    <string name="rename">Andere naam geven</string>
@@ -506,4 +505,5 @@
    <string name="open_folder_as_a_book">Open de map als een boek</string>
    <string name="read_out_loud_with_tts">Voorlezen met TTS</string>
    <string name="allow_minimum_brightness">Minimale helderheid toestaan</string>
+   <string name="select">Kiezen</string>
 </resources>

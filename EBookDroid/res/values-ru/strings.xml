@@ -352,7 +352,6 @@
    <string name="press_color_to_apply">Выберите цвет</string>
    <string name="pro_pdf_description_ads_free">Приложение без рекламы</string>
    <string name="rotate">Повернуть</string>
-   <string name="select">Выбрать</string>
    <string name="split_pages_in_two">Разрезать страницы</string>
    <string name="save_changes">Сохранить изменения?</string>
    <string name="rename">Переименовать</string>
@@ -506,4 +505,5 @@
    <string name="open_folder_as_a_book">Открыть папку в виде книги</string>
    <string name="read_out_loud_with_tts">TTS-аудионачитка книги</string>
    <string name="allow_minimum_brightness">Разрешить минимальную яркость</string>
+   <string name="select">Выбрать</string>
 </resources>

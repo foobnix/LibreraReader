@@ -352,7 +352,6 @@
    <string name="press_color_to_apply">اضغط على اللون للتنفيذ</string>
    <string name="pro_pdf_description_ads_free">برنامج بدون إعلانات</string>
    <string name="rotate">فتل</string>
-   <string name="select">اختار</string>
    <string name="split_pages_in_two">قسم الصفحة لجزئين</string>
    <string name="save_changes">حفظ التغيرات؟</string>
    <string name="rename">إعادة تسمية</string>
@@ -506,4 +505,5 @@
    <string name="open_folder_as_a_book">افتح المجلد ككتاب</string>
    <string name="read_out_loud_with_tts">قراءة بصوت عال مع تحويل النص إلى كلام</string>
    <string name="allow_minimum_brightness">السماح بالحد الأدنى من السطوع</string>
+   <string name="select">تحديد</string>
 </resources>

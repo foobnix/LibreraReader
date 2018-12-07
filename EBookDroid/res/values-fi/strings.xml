@@ -352,7 +352,6 @@
    <string name="press_color_to_apply">Paina Color soveltamaan</string>
    <string name="pro_pdf_description_ads_free">Sovellus ilman mainoksia</string>
    <string name="rotate">Kiertää</string>
-   <string name="select">Valita</string>
    <string name="split_pages_in_two">Split sivu</string>
    <string name="save_changes">Tallenna muutokset?</string>
    <string name="rename">Nimeä uudelleen</string>
@@ -506,4 +505,5 @@
    <string name="open_folder_as_a_book">Avaa kansio kirjana</string>
    <string name="read_out_loud_with_tts">Lue ääneen TTS: llä</string>
    <string name="allow_minimum_brightness">Sallitaan Minimi kirkkaus</string>
+   <string name="select">Valita</string>
 </resources>

@@ -352,7 +352,6 @@
    <string name="press_color_to_apply">Натисніть Color для застосування</string>
    <string name="pro_pdf_description_ads_free">Програма без реклами</string>
    <string name="rotate">Повернути</string>
-   <string name="select">Вибрати</string>
    <string name="split_pages_in_two">Розрізати сторінку</string>
    <string name="save_changes">Зберегти зміни</string>
    <string name="rename">Змінити назву</string>
@@ -506,4 +505,5 @@
    <string name="open_folder_as_a_book">Відкрийте папку як книгу</string>
    <string name="read_out_loud_with_tts">Читати гучно з TTS</string>
    <string name="allow_minimum_brightness">Дозволити мінімальну яскравість</string>
+   <string name="select">Виберіть</string>
 </resources>

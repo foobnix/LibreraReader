@@ -352,7 +352,6 @@
    <string name="press_color_to_apply">مطبوعات در رنگ به درخواست</string>
    <string name="pro_pdf_description_ads_free">برنامه بدون تبلیغات</string>
    <string name="rotate">چرخش</string>
-   <string name="select">انتخاب کنید</string>
    <string name="split_pages_in_two">صفحه اسپلیت</string>
    <string name="save_changes">ذخیره تغییرات؟</string>
    <string name="rename">تغییر نام</string>
@@ -506,4 +505,5 @@
    <string name="open_folder_as_a_book">پوشه را به عنوان یک کتاب باز کنید</string>
    <string name="read_out_loud_with_tts">با TTS با صدای بلند بخوانید</string>
    <string name="allow_minimum_brightness">به حداقل روشنایی اجازه دهید</string>
+   <string name="select">انتخاب کنید</string>
 </resources>

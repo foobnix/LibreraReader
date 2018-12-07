@@ -352,7 +352,6 @@
    <string name="press_color_to_apply">לחץ על צבע כדי להחיל</string>
    <string name="pro_pdf_description_ads_free">יישום ללא מודעות</string>
    <string name="rotate">לְסוֹבֵב</string>
-   <string name="select">בחר</string>
    <string name="split_pages_in_two">דף פיצול</string>
    <string name="save_changes">שמור שינויים?</string>
    <string name="rename">שינוי שם</string>
@@ -506,4 +505,5 @@
    <string name="open_folder_as_a_book">פתח את התיקיה כספר</string>
    <string name="read_out_loud_with_tts">קרא בקול רם עם TTS</string>
    <string name="allow_minimum_brightness">אפשר בהירות מינימלית</string>
+   <string name="select">בחר</string>
 </resources>

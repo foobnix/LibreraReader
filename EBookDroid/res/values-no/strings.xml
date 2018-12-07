@@ -352,7 +352,6 @@
    <string name="press_color_to_apply">Trykk på Farge for å søke</string>
    <string name="pro_pdf_description_ads_free">Søknad uten annonser</string>
    <string name="rotate">Rotere</string>
-   <string name="select">Plukke ut</string>
    <string name="split_pages_in_two">Split side</string>
    <string name="save_changes">Lagre endringer?</string>
    <string name="rename">Gi nytt navn</string>
@@ -506,4 +505,5 @@
    <string name="open_folder_as_a_book">Åpne mappen som en bok</string>
    <string name="read_out_loud_with_tts">Les høyt med TTS</string>
    <string name="allow_minimum_brightness">Tillat minimal lysstyrke</string>
+   <string name="select">Å velge</string>
 </resources>

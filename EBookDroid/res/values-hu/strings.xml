@@ -352,7 +352,6 @@
    <string name="press_color_to_apply">Válasszon színt</string>
    <string name="pro_pdf_description_ads_free">Hirdetésmentes Librera</string>
    <string name="rotate">Elforgatás</string>
-   <string name="select">OK</string>
    <string name="split_pages_in_two">Oldal felosztása</string>
    <string name="save_changes">Menti a módosításokat?</string>
    <string name="rename">Átnevezés</string>
@@ -506,4 +505,5 @@
    <string name="open_folder_as_a_book">Nyissa meg a mappát könyvként</string>
    <string name="read_out_loud_with_tts">Olvassa el hangosan a TTS-et</string>
    <string name="allow_minimum_brightness">Minimális fényerő engedélyezése</string>
+   <string name="select">Választ</string>
 </resources>

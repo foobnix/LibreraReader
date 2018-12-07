@@ -352,7 +352,6 @@
    <string name="press_color_to_apply">Tryck på Färg för att tillämpa</string>
    <string name="pro_pdf_description_ads_free">Program utan annonser</string>
    <string name="rotate">Rotera</string>
-   <string name="select">Välj</string>
    <string name="split_pages_in_two">Split sida</string>
    <string name="save_changes">Spara ändringar?</string>
    <string name="rename">Döpa om</string>
@@ -506,4 +505,5 @@
    <string name="open_folder_as_a_book">Öppna mappen som en bok</string>
    <string name="read_out_loud_with_tts">Löst ut med TTS</string>
    <string name="allow_minimum_brightness">Tillåt minsta ljusstyrka</string>
+   <string name="select">Välj</string>
 </resources>

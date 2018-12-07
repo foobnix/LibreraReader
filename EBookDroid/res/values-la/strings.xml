@@ -352,7 +352,6 @@
    <string name="press_color_to_apply">Press on Color to apply</string>
    <string name="pro_pdf_description_ads_free">Application without Ads</string>
    <string name="rotate">Invertere</string>
-   <string name="select">Eligite</string>
    <string name="split_pages_in_two">Diffindere paginas</string>
    <string name="save_changes">Conservaveris mutationes?</string>
    <string name="rename">Transnominare</string>
@@ -506,4 +505,5 @@
    <string name="open_folder_as_a_book">Libri aperti ut folder</string>
    <string name="read_out_loud_with_tts">Et cum magna Read TTS</string>
    <string name="allow_minimum_brightness">Minimum patitur candor</string>
+   <string name="select">Select</string>
 </resources>

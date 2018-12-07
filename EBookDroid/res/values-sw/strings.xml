@@ -352,7 +352,6 @@
    <string name="press_color_to_apply">Vyombo vya habari juu Color kuomba</string>
    <string name="pro_pdf_description_ads_free">Maombi bila matangazo</string>
    <string name="rotate">Kilimo cha kubadilishana</string>
-   <string name="select">Kuchagua</string>
    <string name="split_pages_in_two">Split ukurasa</string>
    <string name="save_changes">Hifadhi mabadiliko?</string>
    <string name="rename">Rename</string>
@@ -506,4 +505,5 @@
    <string name="open_folder_as_a_book">Fungua folda kama kitabu</string>
    <string name="read_out_loud_with_tts">Soma kwa sauti kwa sauti na TTS</string>
    <string name="allow_minimum_brightness">Ruhusu Uwezeshaji wa Chini</string>
+   <string name="select">Chagua</string>
 </resources>

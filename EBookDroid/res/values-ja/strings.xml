@@ -352,7 +352,6 @@
    <string name="press_color_to_apply">カラーを選択して適用</string>
    <string name="pro_pdf_description_ads_free">広告なしのプログラム</string>
    <string name="rotate">Rotate</string>
-   <string name="select">選択</string>
    <string name="split_pages_in_two">Split page</string>
    <string name="save_changes">変更を保存</string>
    <string name="rename">名前の変更</string>
@@ -506,4 +505,5 @@
    <string name="open_folder_as_a_book">ブックとしてのフォルダを開く</string>
    <string name="read_out_loud_with_tts">TTSで大声で読む</string>
    <string name="allow_minimum_brightness">最小輝度を許可する</string>
+   <string name="select">選択</string>
 </resources>

@@ -352,7 +352,6 @@
    <string name="press_color_to_apply">Appuyer sur la couleur pour l\'appliquer</string>
    <string name="pro_pdf_description_ads_free">Programme sans annonces</string>
    <string name="rotate">Pivoter</string>
-   <string name="select">Selectionner</string>
    <string name="split_pages_in_two">Diviser les pages en 2</string>
    <string name="save_changes">Enregistrer</string>
    <string name="rename">Renommer</string>
@@ -506,4 +505,5 @@
    <string name="open_folder_as_a_book">Ouvrir le dossier en tant que livre</string>
    <string name="read_out_loud_with_tts">Lire à haute voix avec TTS</string>
    <string name="allow_minimum_brightness">Autoriser la luminosité minimale</string>
+   <string name="select">Sélectionner</string>
 </resources>

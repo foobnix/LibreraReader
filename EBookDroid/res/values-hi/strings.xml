@@ -352,7 +352,6 @@
    <string name="press_color_to_apply">लागू करने के लिए रंग पर प्रेस</string>
    <string name="pro_pdf_description_ads_free">विज्ञापन के बिना कार्यक्रम</string>
    <string name="rotate">घुमाएँ</string>
-   <string name="select">चुनते हैं</string>
    <string name="split_pages_in_two">विभाजन पेज</string>
    <string name="save_changes">परिवर्तनों को सुरक्षित करें?</string>
    <string name="rename">नाम बदलें</string>
@@ -506,4 +505,5 @@
    <string name="open_folder_as_a_book">एक पुस्तक के रूप में फ़ोल्डर खोलें</string>
    <string name="read_out_loud_with_tts">टीटीएस के साथ जोर से पढ़ें</string>
    <string name="allow_minimum_brightness">न्यूनतम चमक की अनुमति दें</string>
+   <string name="select">चुनते हैं</string>
 </resources>

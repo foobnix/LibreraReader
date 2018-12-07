@@ -352,7 +352,6 @@
    <string name="press_color_to_apply">Tekan Warna untuk melamar</string>
    <string name="pro_pdf_description_ads_free">Aplikasi tanpa iklan</string>
    <string name="rotate">Memutar</string>
-   <string name="select">Memilih</string>
    <string name="split_pages_in_two">Halaman split</string>
    <string name="save_changes">Simpan perubahan?</string>
    <string name="rename">Ganti nama</string>
@@ -506,4 +505,5 @@
    <string name="open_folder_as_a_book">Buka folder sebagai buku</string>
    <string name="read_out_loud_with_tts">Baca dengan keras menggunakan TTS</string>
    <string name="allow_minimum_brightness">Izinkan Kecerahan Minimum</string>
+   <string name="select">Memilih</string>
 </resources>

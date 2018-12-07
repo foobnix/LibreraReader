@@ -352,7 +352,6 @@
    <string name="press_color_to_apply">눌러서 색상 적용</string>
    <string name="pro_pdf_description_ads_free">광고없는 프로버전 설명</string>
    <string name="rotate">회전</string>
-   <string name="select">선택</string>
    <string name="split_pages_in_two">페이지 나누기</string>
    <string name="save_changes">변경사항 저장</string>
    <string name="rename">이름 바꾸기</string>
@@ -506,4 +505,5 @@
    <string name="open_folder_as_a_book">책으로 폴더 열기</string>
    <string name="read_out_loud_with_tts">TTS로 소리내어 읽기</string>
    <string name="allow_minimum_brightness">최소 밝기 허용</string>
+   <string name="select">고르다</string>
 </resources>

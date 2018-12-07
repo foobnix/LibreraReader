@@ -352,7 +352,6 @@
    <string name="press_color_to_apply">Seleccione el color</string>
    <string name="pro_pdf_description_ads_free">Programa sin anuncios</string>
    <string name="rotate">Girar</string>
-   <string name="select">Seleccionar</string>
    <string name="split_pages_in_two">Dividir página</string>
    <string name="save_changes">Guardar cambios?</string>
    <string name="rename">Cambiar nombre</string>
@@ -506,4 +505,5 @@
    <string name="open_folder_as_a_book">Abrir carpeta como libro</string>
    <string name="read_out_loud_with_tts">Leer en voz alta con TTS</string>
    <string name="allow_minimum_brightness">Permitir brillo mínimo</string>
+   <string name="select">Seleccionar</string>
 </resources>

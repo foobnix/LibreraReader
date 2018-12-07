@@ -352,7 +352,6 @@
    <string name="press_color_to_apply">Press on Color to apply</string>
    <string name="pro_pdf_description_ads_free">Program bez reklám</string>
    <string name="rotate">Rotate</string>
-   <string name="select">Select</string>
    <string name="split_pages_in_two">Split page</string>
    <string name="save_changes">Uložiť zmeny?</string>
    <string name="rename">Premenovať</string>
@@ -506,4 +505,5 @@
    <string name="open_folder_as_a_book">Otvoriť priečinok ako knihu</string>
    <string name="read_out_loud_with_tts">Prečítajte si nahlas s TTS</string>
    <string name="allow_minimum_brightness">Povoliť minimálny jas</string>
+   <string name="select">Vybrať</string>
 </resources>

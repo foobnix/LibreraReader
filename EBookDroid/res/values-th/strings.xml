@@ -352,7 +352,6 @@
    <string name="press_color_to_apply">กดปุ่มสีเพื่อใช้</string>
    <string name="pro_pdf_description_ads_free">แอพพลิเคชันที่ไม่มีโฆษณา</string>
    <string name="rotate">หมุน</string>
-   <string name="select">เลือก</string>
    <string name="split_pages_in_two">แบ่งหน้า</string>
    <string name="save_changes">บันทึกการเปลี่ยนแปลง?</string>
    <string name="rename">ตั้งชื่อใหม่</string>
@@ -506,4 +505,5 @@
    <string name="open_folder_as_a_book">เปิดโฟลเดอร์เป็นหนังสือ</string>
    <string name="read_out_loud_with_tts">อ่านออกเสียงด้วย TTS</string>
    <string name="allow_minimum_brightness">อนุญาตความสว่างขั้นต่ำ</string>
+   <string name="select">เลือก</string>
 </resources>
