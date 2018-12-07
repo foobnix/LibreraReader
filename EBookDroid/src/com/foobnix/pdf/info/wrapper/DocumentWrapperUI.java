@@ -487,11 +487,11 @@ public class DocumentWrapperUI {
             // lockUnlockTop.setColorFilter(a.getResources().getColor(R.color.tint_white));
             // mode = View.GONE;
         }
-        if (AppState.get().isLocked) {
-            TintUtil.setTintImageWithAlpha(moveCenter, Color.LTGRAY);
-        } else {
-            TintUtil.setTintImageWithAlpha(moveCenter, Color.WHITE);
-        }
+//        if (AppState.get().isLocked) {
+//            TintUtil.setTintImageWithAlpha(moveCenter, Color.LTGRAY);
+//        } else {
+//            TintUtil.setTintImageWithAlpha(moveCenter, Color.WHITE);
+//        }
 
     }
 

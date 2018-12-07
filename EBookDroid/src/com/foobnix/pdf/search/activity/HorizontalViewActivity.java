@@ -1237,11 +1237,11 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
         } else {
             lockModelImage.setImageResource(R.drawable.glyphicons_205_unlock);
         }
-        if (AppState.get().isLocked) {
-            TintUtil.setTintImageWithAlpha(moveCenter, Color.LTGRAY);
-        } else {
-            TintUtil.setTintImageWithAlpha(moveCenter, Color.WHITE);
-        }
+//        if (AppState.get().isLocked) {
+//            TintUtil.setTintImageWithAlpha(moveCenter, Color.LTGRAY);
+//        } else {
+//            TintUtil.setTintImageWithAlpha(moveCenter, Color.WHITE);
+//        }
 
     }
 

@@ -973,7 +973,7 @@ public class ExtUtils {
             targetedOpenIntents.add(targetedOpenIntent);
         }
         Intent remove = targetedOpenIntents.remove(targetedOpenIntents.size() - 1);
-        Intent createChooser = Intent.createChooser(remove, context.getString(R.string.select));
+        Intent createChooser = Intent.createChooser(remove, context.getString(R.string.open_with));
         Intent chooserIntent = createChooser.putExtra(Intent.EXTRA_INITIAL_INTENTS, targetedOpenIntents.toArray(new Parcelable[] {}));
 
         return chooserIntent;
