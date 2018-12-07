@@ -113,7 +113,7 @@
                 android:id="@+id/supportDJVU"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:minWidth="110dp"
+                android:minWidth="90dp"
                 android:text="DJVU"
                 android:textSize="11sp" />
 
@@ -143,7 +143,7 @@
                 android:id="@+id/supportEPUB"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:minWidth="110dp"
+                android:minWidth="90dp"
                 android:text="EPUB"
                 android:textSize="11sp" />
 
