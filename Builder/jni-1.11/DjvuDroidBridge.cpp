@@ -407,13 +407,14 @@ void djvu_get_djvu_words(SearchHelper& h, jobject list, miniexp_t expr, jstring 
                 add = h.str.indexOf(ltxt, pattern) >= 0;
                 h.str.release(ltxt);
             }
-            if (add)
+            if (add && txt)
             {
                 // add to list
                 jobject ptb = h.box.create();
                 h.box.setRect(ptb, coords);
                 h.box.setText(ptb, txt);
                 h.arr.add(list, ptb);
+                h.box.release(ptb);
             }
             h.str.release(txt);
         }

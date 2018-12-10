@@ -129,7 +129,7 @@ public class DjvuDocument extends AbstractCodecDocument {
 
     @Override
     public List<? extends RectF> searchText(final int pageNuber, final String pattern) throws DocSearchNotSupported {
-        final List<PageTextBox> list = DjvuPage.getPageText(documentHandle, pageNuber, context.getContextHandle(), pattern.toLowerCase(Locale.US));
+        final List<PageTextBox> list = DjvuPage.getPageTextSync(documentHandle, pageNuber, context.getContextHandle(), pattern.toLowerCase(Locale.US));
         if (LengthUtils.isNotEmpty(list)) {
             CodecPageInfo cpi = getPageInfo(pageNuber);
             for (final PageTextBox ptb : list) {
