@@ -272,6 +272,8 @@ public abstract class DocumentController {
 
     public void onResume() {
         readTimeStart = System.currentTimeMillis();
+        BookSettings bs = SettingsManager.getBookSettings(getCurrentBook().getPath());
+        onGoToPage(bs.getCurrentPage().viewIndex + 1);
     }
 
     public Bitmap getBookImage() {

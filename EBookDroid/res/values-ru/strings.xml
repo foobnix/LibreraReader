@@ -169,7 +169,7 @@
    <string name="no_author">Без автора</string>
    <string name="no_serie">Без серии</string>
    <string name="no_genre">Без жанра</string>
-   <string name="no_language">Нет языка</string>
+   <string name="no_language">Без выявленного языка</string>
    <string name="without_series">Вне серий</string>
    <string name="folders">Папки</string>
    <string name="recent">Недавние</string>
@@ -454,7 +454,7 @@
    <string name="hyphenation_language">Язык переносов</string>
    <string name="replacing_the_white_color_in_the_images_with_the_background_color">Позволять менять цвет шрифтов для PDF/DJVU; окрашивать белый фон изображений в цвет фона страниц при чтении в режиме \"День\"</string>
    <string name="no_keywords">Без ключевых слов</string>
-   <string name="my_tags">Свои теги</string>
+   <string name="my_tags">Теги</string>
    <string name="crop_borders_symmetrically">Симметричная обрезка полей</string>
    <string name="displaying_the_author_and_title_of_the_pdf_book_from_the_meta_tags">Отображать имена авторов и названия PDF-книг, используя информацию метаданных</string>
    <string name="meta_tags">Метаданные</string>
@@ -492,18 +492,18 @@
    <string name="slider_scale">Шкала бегунка</string>
    <string name="chapter_format">Прогресс чтения</string>
    <string name="play_a_music_file">Выбрать и проиграть музык. файл</string>
-   <string name="rate_us">Оцените нас</string>
+   <string name="rate_us">Поставить оценку</string>
    <string name="reset">Сброс</string>
    <string name="status_bar_location">Расположение строки сост-я</string>
    <string name="add_to_bookmark">Добавить в закладки</string>
    <string name="fast_reading">Скорочтение (RSVP)</string>
    <string name="minimum_line_length">Минимальная длина линии текста (CPL)</string>
-   <string name="ask_rate_us1">Если вам нравится это приложение, пожалуйста, загляните и оцените нас на Google Play. Спасибо!</string>
+   <string name="ask_rate_us1">Если вам нравится это приложение, пожалуйста, загляните и оцените его на Google Play. Спасибо!</string>
    <string name="message">Сообщение</string>
    <string name="exit_application">Выйти из приложения</string>
    <string name="exit_application_question">Выйти из приложения?</string>
-   <string name="open_folder_as_a_book">Открыть папку в виде книги</string>
+   <string name="open_folder_as_a_book">Открыть файлы папки как книгу</string>
    <string name="read_out_loud_with_tts">TTS-аудионачитка книги</string>
-   <string name="allow_minimum_brightness">Разрешить минимальную яркость</string>
+   <string name="allow_minimum_brightness">Разрешать минимально возможные значения минусовой яркости/string>
    <string name="select">Выбрать</string>
 </resources>
