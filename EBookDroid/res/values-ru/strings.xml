@@ -504,6 +504,6 @@
    <string name="exit_application_question">Выйти из приложения?</string>
    <string name="open_folder_as_a_book">Открыть файлы папки как книгу</string>
    <string name="read_out_loud_with_tts">TTS-аудионачитка книги</string>
-   <string name="allow_minimum_brightness">Разрешать минимально возможные значения минусовой яркости/string>
+   <string name="allow_minimum_brightness">Разрешать минимально возможные значения яркости</string>
    <string name="select">Выбрать</string>
 </resources>
