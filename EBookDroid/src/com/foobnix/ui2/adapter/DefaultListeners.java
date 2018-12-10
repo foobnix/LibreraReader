@@ -13,6 +13,7 @@ import com.foobnix.pdf.info.Clouds;
 import com.foobnix.pdf.info.ExtUtils;
 import com.foobnix.pdf.info.IMG;
 import com.foobnix.pdf.info.R;
+import com.foobnix.pdf.info.view.Dialogs;
 import com.foobnix.pdf.info.view.Downloader;
 import com.foobnix.pdf.info.widget.FileInformationDialog;
 import com.foobnix.pdf.info.widget.RecentUpates;
@@ -96,6 +97,12 @@ public class DefaultListeners {
 
             @Override
             public boolean onResultRecive(final FileMeta result) {
+
+                if (false) {
+                    Dialogs.testWebView(a, result.getPath());
+                    return false;
+                }
+
                 if (isTagCicked(a, result)) {
                     return true;
                 }
@@ -326,6 +333,7 @@ public class DefaultListeners {
 
             @Override
             public boolean onResultRecive(final FileMeta result) {
+                
                 ADS.hideAdsTemp(a);
 
                 File file = new File(result.getPath());

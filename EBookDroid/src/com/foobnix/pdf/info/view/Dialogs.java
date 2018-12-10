@@ -20,6 +20,7 @@ import com.foobnix.android.utils.Vibro;
 import com.foobnix.dao2.FileMeta;
 import com.foobnix.pdf.info.R;
 import com.foobnix.pdf.info.TintUtil;
+import com.foobnix.pdf.info.WebViewHepler;
 import com.foobnix.pdf.info.wrapper.AppState;
 import com.foobnix.pdf.info.wrapper.DocumentController;
 import com.foobnix.sys.TempHolder;
@@ -52,6 +53,29 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 public class Dialogs {
+
+    public static void testWebView(final Activity a, final String path) {
+
+        if (WebViewHepler.webView == null) {
+            WebViewHepler.init(a);
+        }
+
+        final ImageView imageView = new ImageView(a);
+        imageView.setImageBitmap(WebViewHepler.getBitmap(path));
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(a);
+        builder.setView(imageView);
+
+        builder.setPositiveButton(R.string.close, new DialogInterface.OnClickListener() {
+
+            @Override
+            public void onClick(final DialogInterface dialog, final int id) {
+
+            }
+        });
+        builder.show();
+
+    }
 
     public static void customValueDialog(final Context a, final int initValue, final IntegerResponse reponse) {
         final AlertDialog.Builder builder = new AlertDialog.Builder(a);
@@ -448,7 +472,6 @@ public class Dialogs {
             public void onClick(View v) {
                 String text = edit.getText().toString().trim();
 
-
                 if (TxtUtils.isEmpty(text)) {
                     Toast.makeText(a, R.string.incorrect_value, Toast.LENGTH_SHORT).show();
                     return;
@@ -465,7 +488,6 @@ public class Dialogs {
 
                 Keyboards.close(edit);
                 Keyboards.hideNavigation((Activity) a);
-
 
                 AppState.get().bookTags = StringDB.add(AppState.get().bookTags, text);
                 if (onRefresh != null) {
