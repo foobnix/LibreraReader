@@ -389,7 +389,18 @@ footer .footer-below {
     font-size: 20px;
     line-height: 28px;
 }
-
+.scroll-top .btn :after{
+	content:'';
+	width: 10px;
+	height: 10px;
+	border-top: 2px solid #ccc;
+	border-left: 2px solid #ccc;
+	transform: rotate(45deg);
+	position: absolute;
+	top: 4px; bottom: 0;
+	left: 0; right: 0;
+	margin: auto;
+  }
 .scroll-top .btn:focus {
     outline: 0;
 }
