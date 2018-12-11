@@ -182,7 +182,7 @@ public class AppState {
 
     public String readColors = READ_COLORS_DEAFAUL;
 
-    public static String DEFAULTS_TABS_ORDER = "0#1,1#1,2#1,3#1,4#1,5#1,6#0,7#0";
+    public static String DEFAULTS_TABS_ORDER = "0#1,1#1,2#1,3#1,4#1,5#1,6#0,7#1";
     public String tabsOrder7 = DEFAULTS_TABS_ORDER;
 
     public int tintColor = Color.parseColor(STYLE_COLORS.get(0));

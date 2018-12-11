@@ -208,6 +208,22 @@
                 <category android:name="android.intent.category.LAUNCHER1" />
             </intent-filter>
         </activity>
+        
+        <activity
+            android:name="com.foobnix.ui2.CloudrailActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait" >
+            
+             <intent-filter>
+		        <action android:name="android.intent.action.VIEW" />
+		        <category android:name="android.intent.category.DEFAULT" />
+		        <category android:name="android.intent.category.BROWSABLE" />
+		
+		        <data android:scheme="com.foobnix.pdf.reader" />
+		        <data android:scheme="librera" />
+		    </intent-filter>
+            
+            </activity>
         <activity
             android:name="com.foobnix.ui2.MainTabs2"
             android:configChanges="orientation|screenSize|keyboard|keyboardHidden"
@@ -241,14 +257,7 @@
 
                 <data android:mimeType="text/plain" />
             </intent-filter>
-             <intent-filter>
-		        <action android:name="android.intent.action.VIEW" />
-		        <category android:name="android.intent.category.DEFAULT" />
-		        <category android:name="android.intent.category.BROWSABLE" />
-		
-		        <data android:scheme="com.foobnix.pdf.reader" />
-		        <data android:scheme="librera" />
-		    </intent-filter>
+            
         </activity>
         
          <activity

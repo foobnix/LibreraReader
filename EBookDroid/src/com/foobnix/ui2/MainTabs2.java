@@ -154,6 +154,9 @@ public class MainTabs2 extends AdsFragmentActivity {
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
+
+        LOG.d("REQUEST_CODE_ADD_RESOURCE", requestCode, resultCode, data);
+
         if (requestCode == REQUEST_CODE_ADD_RESOURCE && resultCode == Activity.RESULT_OK) {
             getContentResolver().takePersistableUriPermission(data.getData(), Intent.FLAG_GRANT_READ_URI_PERMISSION | Intent.FLAG_GRANT_WRITE_URI_PERMISSION);
             Uri uri = data.getData();
