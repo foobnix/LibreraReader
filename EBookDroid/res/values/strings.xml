@@ -504,6 +504,6 @@
    <string name="exit_application_question">Exit application?</string>
    <string name="open_folder_as_a_book">Bind in a Book</string>
    <string name="read_out_loud_with_tts">Read (TTS)</string>
-   <string name="allow_minimum_brightness">Allow Minimum Brightness</string>
+   <string name="allow_minimum_brightness">Allow zero-brightness (black screen)</string>
    <string name="select">Select</string>
 </resources>
