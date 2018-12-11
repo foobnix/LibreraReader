@@ -126,7 +126,9 @@ public abstract class DocumentController {
         this.timeout = timeout;
         this.timerTask = run;
         stopTimer();
-        handler.post(timer);
+        if (handler != null) {
+            handler.post(timer);
+        }
     }
 
     public void stopTimer() {

@@ -14,6 +14,7 @@ import com.foobnix.android.utils.Dips;
 import com.foobnix.android.utils.IntegerResponse;
 import com.foobnix.android.utils.Keyboards;
 import com.foobnix.android.utils.LOG;
+import com.foobnix.android.utils.ResultResponse;
 import com.foobnix.android.utils.StringDB;
 import com.foobnix.android.utils.TxtUtils;
 import com.foobnix.android.utils.Vibro;
@@ -31,6 +32,7 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.DialogInterface.OnDismissListener;
+import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.os.Handler;
 import android.text.InputType;
@@ -61,7 +63,15 @@ public class Dialogs {
         }
 
         final ImageView imageView = new ImageView(a);
-        imageView.setImageBitmap(WebViewHepler.getBitmap(path));
+        
+        WebViewHepler.getBitmap(path, new ResultResponse<Bitmap>() {
+            
+            @Override
+            public boolean onResultRecive(Bitmap result) {
+                imageView.setImageBitmap(result);
+                return false;
+            }
+        });
 
         AlertDialog.Builder builder = new AlertDialog.Builder(a);
         builder.setView(imageView);

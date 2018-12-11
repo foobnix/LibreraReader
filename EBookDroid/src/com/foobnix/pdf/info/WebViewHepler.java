@@ -4,6 +4,7 @@ import java.util.concurrent.locks.ReentrantLock;
 
 import com.foobnix.android.utils.Dips;
 import com.foobnix.android.utils.LOG;
+import com.foobnix.android.utils.ResultResponse;
 
 import android.annotation.TargetApi;
 import android.content.Context;
@@ -16,6 +17,7 @@ import android.webkit.WebViewClient;
 public class WebViewHepler {
 
     public static WebView webView;
+    static long timeout = 0;
     public static final ReentrantLock lock = new ReentrantLock();
 
     @TargetApi(Build.VERSION_CODES.LOLLIPOP)
@@ -29,17 +31,28 @@ public class WebViewHepler {
 
         webView.getSettings().setJavaScriptEnabled(true);
         webView.setFocusable(true);
+        webView.loadUrl("file://error.html");
+
     }
 
-    public static Bitmap getBitmap(String path) {
+    public static void getBitmap(String path, final ResultResponse<Bitmap> res) {
 
+        final long init = System.currentTimeMillis();
         webView.setWebViewClient(new WebViewClient() {
 
             @Override
             public void onPageFinished(WebView view, String url) {
-                LOG.d("WebView onPageFinished", url);
 
                 // webView.scrollTo(0, Dips.screenHeight() / 2);
+                timeout = System.currentTimeMillis() - init;
+                LOG.d("WebView onPageFinished", url, timeout);
+
+                final Bitmap bitmap = Bitmap.createBitmap(Dips.screenWidth(), Dips.screenHeight() / 2, Bitmap.Config.ARGB_8888);
+                final Canvas c = new Canvas(bitmap);
+                // webView.scrollTo(0, Dips.screenHeight() / 2 * -1);
+                webView.draw(c);
+                res.onResultRecive(bitmap);
+
             }
 
             @Override
@@ -50,18 +63,7 @@ public class WebViewHepler {
             }
         });
         webView.loadUrl("file://" + path);
-
-        try {
-            Thread.sleep(3000);
-        } catch (InterruptedException e) {
-
-        }
-
-        Bitmap bitmap = Bitmap.createBitmap(Dips.screenWidth(), Dips.screenHeight() / 2, Bitmap.Config.ARGB_8888);
-        Canvas c = new Canvas(bitmap);
-        webView.draw(c);
-
-        return bitmap;
+        // webView.loadUrl("file:///android_asset/reader/index.html");
 
     }
 

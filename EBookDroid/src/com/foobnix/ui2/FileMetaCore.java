@@ -72,9 +72,6 @@ public class FileMetaCore {
     public static FileMeta createMetaIfNeed(String path, final boolean isSearhcBook) {
         LOG.d("createMetaIfNeed", path);
 
-        if (!new File(path).isFile()) {
-            throw new IllegalArgumentException(path);
-        }
 
         FileMeta fileMeta = AppDB.get().getOrCreate(path);
         if (fileMeta.getState() != FileMetaCore.STATE_FULL) {
