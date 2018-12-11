@@ -542,13 +542,14 @@ public class DragingDialogs {
                     @Override
                     public void onClick(View v) {
                         final PopupMenu popupMenu = new PopupMenu(v.getContext(), v);
-                        for (int i = 15; i <= 300; i += 15) {
-                            final int number = i;
+                       
+                        int[] items = { 1, 15, 30, 45, 60, 90, 120, 240, 360 };
+                        for (final int i : items) {
                             popupMenu.getMenu().add("" + i).setOnMenuItemClickListener(new OnMenuItemClickListener() {
 
                                 @Override
                                 public boolean onMenuItemClick(MenuItem item) {
-                                    AppState.get().ttsTimer = number;
+                                    AppState.get().ttsTimer = i;
                                     timerTime.setText(AppState.get().ttsTimer + " " + controller.getString(R.string.minutes).toLowerCase(Locale.US));
                                     TxtUtils.underlineTextView(timerTime);
                                     return false;
