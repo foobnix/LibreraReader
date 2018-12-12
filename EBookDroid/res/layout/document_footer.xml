@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
+        xmlns:myseek="http://schemas.android.com/apk/res-auto"
     android:layout_height="wrap_content" >
 
     <LinearLayout
@@ -8,6 +9,25 @@
         android:layout_height="wrap_content"
         android:clickable="true"
         android:orientation="vertical" >
+        
+         <TextView
+             	android:padding="4dip"
+                android:id="@+id/playListName"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="4dip"
+                android:layout_weight="1"
+                android:text="Playlists"
+                android:textColor="#ffffff"
+                android:textSize="14sp"
+                android:textStyle="bold" />
+
+            <com.jmedeisis.draglinearlayout.DragLinearLayout 
+                android:id="@+id/playlist"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal" >
+            </com.jmedeisis.draglinearlayout.DragLinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -227,7 +247,6 @@
                 android:contentDescription="@string/block_page_movement_horizontally"
                 android:src="@drawable/glyphicons_204_lock" />
         </LinearLayout>
-        
     </LinearLayout>
 
 </FrameLayout>

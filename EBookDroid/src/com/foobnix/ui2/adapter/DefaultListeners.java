@@ -49,7 +49,7 @@ public class DefaultListeners {
 
                     @Override
                     public void run() {
-                        ExtUtils.showDocumentWithoutDialog(a, new File(result.getPath()), -1);
+                        ExtUtils.showDocumentWithoutDialog(a, new File(result.getPath()), -1, null);
 
                     }
                 });

@@ -63,9 +63,9 @@ public class Dialogs {
         }
 
         final ImageView imageView = new ImageView(a);
-        
+
         WebViewHepler.getBitmap(path, new ResultResponse<Bitmap>() {
-            
+
             @Override
             public boolean onResultRecive(Bitmap result) {
                 imageView.setImageBitmap(result);
@@ -510,10 +510,13 @@ public class Dialogs {
         });
     }
 
-    public static void showTagsDialog(final Context a, File file, final Runnable refresh) {
-        final FileMeta fileMeta = AppDB.get().getOrCreate(file.getPath());
 
-        LOG.d("showTagsDialog book tags", fileMeta.getTag());
+
+    public static void showTagsDialog(final Context a, File file, final Runnable refresh) {
+        final FileMeta fileMeta = file == null ? null : AppDB.get().getOrCreate(file.getPath());
+        final String tag = file == null ? "" : fileMeta.getTag();
+
+        LOG.d("showTagsDialog book tags", tag);
 
         final AlertDialog.Builder builder = new AlertDialog.Builder(a);
         // builder.setTitle(R.string.tag);
@@ -525,7 +528,7 @@ public class Dialogs {
         TxtUtils.underline(add, "+ " + a.getString(R.string.add_tag));
 
         final List<String> tags = StringDB.asList(AppState.get().bookTags);
-        List<String> fileTags = StringDB.asList(fileMeta.getTag());
+        List<String> fileTags = StringDB.asList(tag);
         for (String fileTag : fileTags) {
             if (!StringDB.contains(AppState.get().bookTags, fileTag)) {
                 tags.add(fileTag);
@@ -547,6 +550,9 @@ public class Dialogs {
             public void populateView(View layout, final int position, final String tagName) {
                 CheckBox text = (CheckBox) layout.findViewById(R.id.tagName);
                 text.setText(tagName);
+                if (fileMeta == null) {
+                    text.setEnabled(false);
+                }
 
                 text.setOnCheckedChangeListener(new OnCheckedChangeListener() {
 
@@ -560,7 +566,7 @@ public class Dialogs {
                     }
                 });
 
-                text.setChecked(StringDB.contains(fileMeta.getTag(), tagName));
+                text.setChecked(StringDB.contains(tag, tagName));
 
                 layout.findViewById(R.id.deleteTag).setOnClickListener(new OnClickListener() {
 
@@ -623,30 +629,39 @@ public class Dialogs {
             }
         });
 
-        builder.setPositiveButton(R.string.apply, new AlertDialog.OnClickListener() {
+        if (fileMeta != null) {
 
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                String res = "";
-                for (int i : checked) {
-                    res = StringDB.add(res, tags.get(i));
-                }
-                LOG.d("showTagsDialog", res);
-                fileMeta.setTag(res);
-                AppDB.get().update(fileMeta);
-                if (refresh != null) {
-                    refresh.run();
-                }
-                TempHolder.listHash++;
-            }
+            builder.setPositiveButton(R.string.apply, new AlertDialog.OnClickListener() {
 
-        });
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    String res = "";
+                    for (int i : checked) {
+                        res = StringDB.add(res, tags.get(i));
+                    }
+                    LOG.d("showTagsDialog", res);
+                    if (fileMeta != null) {
+                        fileMeta.setTag(res);
+                        AppDB.get().update(fileMeta);
+                    }
+                    if (refresh != null) {
+                        refresh.run();
+                    }
+                    TempHolder.listHash++;
+                }
+
+            });
+        }
 
         AlertDialog create = builder.create();
         create.setOnDismissListener(new OnDismissListener() {
 
             @Override
             public void onDismiss(DialogInterface dialog) {
+                if (refresh != null) {
+                    refresh.run();
+                }
+                TempHolder.listHash++;
                 Keyboards.close((Activity) a);
                 Keyboards.hideNavigation((Activity) a);
 
@@ -655,5 +670,7 @@ public class Dialogs {
         create.show();
 
     }
+
+
 
 }

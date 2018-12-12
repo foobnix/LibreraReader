@@ -1,0 +1,144 @@
+package com.foobnix.pdf.info;
+
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.FilenameFilter;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
+
+import com.foobnix.android.utils.LOG;
+import com.foobnix.android.utils.TxtUtils;
+import com.foobnix.pdf.info.wrapper.AppState;
+
+public class Playlists {
+    final public static String L_PLAYLIST = ".playlist";
+
+    public static void createPlayList(String name) {
+        LOG.d("Playlists", "createPlayList", name);
+        if (TxtUtils.isEmpty(name)) {
+            return;
+        }
+
+        File root = new File(AppState.get().playlistPath);
+        root.mkdirs();
+
+        File child = new File(root, name + L_PLAYLIST);
+        if (!child.exists()) {
+            try {
+                child.createNewFile();
+            } catch (IOException e) {
+                LOG.e(e);
+            }
+        }
+    }
+
+    public static void deletePlaylist(String name) {
+        LOG.d("Playlists", "deletePlaylist", name);
+        if (TxtUtils.isEmpty(name)) {
+            return;
+        }
+        File child = new File(AppState.get().playlistPath, name.endsWith(L_PLAYLIST) ? name : name + L_PLAYLIST);
+        child.delete();
+    }
+
+    public static void addMetaToPlaylist(String name, File file) {
+        File child = new File(AppState.get().playlistPath, name.endsWith(L_PLAYLIST) ? name : name + L_PLAYLIST);
+
+        try {
+            PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter(child, true)));
+            out.println(file.getPath());
+            out.close();
+        } catch (IOException e) {
+            LOG.e(e);
+        }
+
+    }
+
+    public static void updatePlaylist(String name, List<String> items) {
+        File child = getFile(name);
+        LOG.d("Playlists", "updatePlaylist", child);
+
+        try {
+            PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter(child)));
+            for (String path : items) {
+                out.println(path);
+            }
+            out.close();
+        } catch (IOException e) {
+            LOG.e(e);
+        }
+
+    }
+
+    public static List<String> getPlaylistItems(String name) {
+        List<String> res = new ArrayList<String>();
+        try {
+            if (TxtUtils.isEmpty(name)) {
+                return res;
+            }
+
+            File child = getFile(name);
+
+            BufferedReader reader = new BufferedReader(new FileReader(child));
+
+            String line;
+
+            while ((line = reader.readLine()) != null) {
+                if (TxtUtils.isNotEmpty(line)) {
+                    res.add(line);
+                }
+            }
+            reader.close();
+        } catch (Exception e) {
+            LOG.e(e);
+        }
+        return res;
+
+    }
+
+    public static File getFile(String name) {
+        File child = null;
+        if (name.startsWith("/")) {
+            child = new File(name);
+        } else {
+            child = new File(AppState.get().playlistPath, name.endsWith(L_PLAYLIST) ? name : name + L_PLAYLIST);
+        }
+        return child;
+    }
+
+    public static String getFirstItem(String path) {
+        try {
+            return getPlaylistItems(path).get(0);
+        } catch (Exception e) {
+            LOG.e(e);
+            return path;
+        }
+    }
+
+    public static List<String> getAllPlaylists() {
+        List<String> res = new ArrayList<String>();
+        File root = new File(AppState.get().playlistPath);
+
+        String[] list = root.list(new FilenameFilter() {
+
+            @Override
+            public boolean accept(File dir, String name) {
+                return name.endsWith(L_PLAYLIST);
+            }
+        });
+        if (list == null) {
+            return res;
+        }
+        res.addAll(Arrays.asList(list));
+        Collections.sort(res, String.CASE_INSENSITIVE_ORDER);
+        return res;
+    }
+
+}

@@ -37,6 +37,7 @@ import com.foobnix.pdf.info.view.AlertDialogs;
 import com.foobnix.pdf.info.view.AnchorHelper;
 import com.foobnix.pdf.info.view.BrightnessHelper;
 import com.foobnix.pdf.info.view.Dialogs;
+import com.foobnix.pdf.info.view.DialogsPlaylist;
 import com.foobnix.pdf.info.view.DragingDialogs;
 import com.foobnix.pdf.info.view.HorizontallSeekTouchEventListener;
 import com.foobnix.pdf.info.view.MyPopupMenu;
@@ -210,6 +211,7 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
 
         actionBar = (LinearLayout) findViewById(R.id.actionBar);
         bottomPanel = (LinearLayout) findViewById(R.id.bottomPanel);
+
 
         bottomBar = findViewById(R.id.bottomBar);
         bottomIndicators = findViewById(R.id.bottomIndicators);
@@ -967,7 +969,10 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
 
         });
 
+        DialogsPlaylist.dispalyPlaylist(this, dc);
     }
+
+
 
     @Subscribe
     public void showHideTextSelectors(MessagePageXY event) {
