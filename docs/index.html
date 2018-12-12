@@ -21,6 +21,8 @@
     <link href="/css/font-awesome.min.css" rel="stylesheet" type="text/css">
     <link href="http://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
     <link href="http://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="/css/style.css" type="text/css">
+    <link rel="stylesheet" href="/css/media.css" type="text/css">
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -38,34 +40,25 @@
         <div class="container">
             <!-- Brand and toggle get grouped for better mobile display -->
             <div class="navbar-header page-scroll">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
+               
                 <div>
                     <a class="navbar-brand" href="#page-top">Librera Reader</a>
-
                 </div>
             </div>
 
             <!-- Collect the nav links, forms, and other content for toggling -->
-            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                <ul class="nav navbar-nav navbar-right">
-                    <li class="hidden">
-                        <a href="#page-top"></a>
-                    </li>
-                    <li class="page-scroll">
-                        <a href="#about">About</a>
-                    </li>
-                    <li class="page-scroll">
-                        <a href="#download">Download</a>
-                    </li>
-                    <li class="page-scroll">
-                        <a href="/wiki">Wiki</a>
-                    </li>
-                </li>
+            <div class="dws-menu">
+			
+                <input type="checkbox" name="toggle" id="menu" class="toggleMenu">
+                <label for="menu" class="toggleMenu"><i class="fa fa-bars"></i><a href="#page-top">Librera Reader</a></label>
+                            
+                    <ul class="nav navbar-nav navbar-right">
+                        <li class="hidden"><a href="#page-top"></a></li>
+                        <li class="page-scroll"><a href="#about">About</a></li>
+                        <li class="page-scroll"><a href="#download">Download</a></li>
+                        <li class="page-scroll"><a href="/wiki">Wiki</a></li>
+                    </ul>               
+                 
             </div>
             <!-- /.navbar-collapse -->
         </div>
@@ -181,6 +174,8 @@ The best way to fully appreciate <b>Librera Reader</b> is to use its <b>PRO</b> 
                     <h2>Download</h2>
                     
                 </div>
+                <br/>
+                <br/>
             </div>
             <div class="row">
                <a href="https://play.google.com/store/apps/details?id=com.foobnix.pdf.reader" target="_blank">Librera Reader (Play Market)</a><br/>
