@@ -210,7 +210,7 @@ public class DialogsPlaylist {
                 ((TextView) layout.findViewById(R.id.text1)).setText(item);
 
                 ImageView imageView = (ImageView) layout.findViewById(R.id.image1);
-                TintUtil.setTintImageWithAlpha(imageView);
+                imageView.setVisibility(View.GONE);
             }
         }, new DialogInterface.OnClickListener() {
 
@@ -310,7 +310,7 @@ public class DialogsPlaylist {
         final TextView playListName = (TextView) a.findViewById(R.id.playListName);
 
         final String palylistPath = a.getIntent().getStringExtra(DocumentController.EXTRA_PLAYLIST);
-        if (TxtUtils.isEmpty(palylistPath) && !dc.isMusicianMode()) {
+        if (TxtUtils.isEmpty(palylistPath) && dc != null && !dc.isMusicianMode()) {
             playlist.setVisibility(View.GONE);
             playListName.setVisibility(View.GONE);
             return;
@@ -376,7 +376,7 @@ public class DialogsPlaylist {
 
                 @Override
                 public void onClick(View v) {
-                    if (!dc.getCurrentBook().getPath().equals(s)) {
+                    if (dc != null && dc.getCurrentBook() != null && !dc.getCurrentBook().getPath().equals(s)) {
 
                         dc.onCloseActivityFinal(new Runnable() {
 

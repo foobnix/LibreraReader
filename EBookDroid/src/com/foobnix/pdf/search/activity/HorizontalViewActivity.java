@@ -924,6 +924,8 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
                         }
                     });
 
+                    DialogsPlaylist.dispalyPlaylist(HorizontalViewActivity.this, dc);
+
                     // RecentUpates.updateAll(HorizontalViewActivity.this);
 
                 }
@@ -969,7 +971,7 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
 
         });
 
-        DialogsPlaylist.dispalyPlaylist(this, dc);
+
     }
 
 
