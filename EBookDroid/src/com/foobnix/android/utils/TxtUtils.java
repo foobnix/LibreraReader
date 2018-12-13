@@ -493,7 +493,8 @@ public class TxtUtils {
 
     }
 
-    public static TextView underlineTextView(TextView textView) {
+    public static TextView underlineTextView(View view) {
+        TextView textView = (TextView) view;
         String text = textView.getText().toString();
         textView.setText(underline(text));
         return textView;

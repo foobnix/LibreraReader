@@ -12,8 +12,10 @@ import com.foobnix.pdf.info.ADS;
 import com.foobnix.pdf.info.Clouds;
 import com.foobnix.pdf.info.ExtUtils;
 import com.foobnix.pdf.info.IMG;
+import com.foobnix.pdf.info.Playlists;
 import com.foobnix.pdf.info.R;
 import com.foobnix.pdf.info.view.Dialogs;
+import com.foobnix.pdf.info.view.DialogsPlaylist;
 import com.foobnix.pdf.info.view.Downloader;
 import com.foobnix.pdf.info.widget.FileInformationDialog;
 import com.foobnix.pdf.info.widget.RecentUpates;
@@ -103,6 +105,11 @@ public class DefaultListeners {
                     return false;
                 }
 
+                if (result.getPath().endsWith(Playlists.L_PLAYLIST)) {
+                    DialogsPlaylist.showPlayList(a, result.getPath());
+                    return true;
+                }
+
                 if (isTagCicked(a, result)) {
                     return true;
                 }
@@ -157,6 +164,12 @@ public class DefaultListeners {
 
             @Override
             public boolean onResultRecive(final FileMeta result) {
+
+                if (result.getPath().endsWith(Playlists.L_PLAYLIST)) {
+                    ExtUtils.openFile(a, result);
+                    return false;
+                }
+
                 if (ExtUtils.isExteralSD(result.getPath())) {
                     return false;
                 }

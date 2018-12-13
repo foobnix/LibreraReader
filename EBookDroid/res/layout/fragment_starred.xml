@@ -22,9 +22,42 @@
             android:layout_marginLeft="4dip"
             android:layout_weight="1"
             android:gravity="center_vertical"
-            android:text="@string/favorite_folders_and_books"
+            android:text="@string/favorite"
             android:textColor="@color/white"
             android:textStyle="normal" />
+        
+          <View
+            android:layout_width="1dip"
+            android:layout_height="match_parent"
+            android:background="@color/tint_divider" />
+          
+          <TextView
+            android:id="@+id/onTags"
+            style="@style/textLinkWhite"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="0"
+            android:gravity="center"
+            android:text="@string/tags" />
+        
+           <View
+            android:layout_width="1dip"
+            android:layout_height="match_parent"
+            android:background="@color/tint_divider" />
+
+        <TextView
+            android:id="@+id/onPlaylists"
+            style="@style/textLinkWhite"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="0"
+            android:gravity="center"
+            android:text="@string/playlists" />
+        
+           <View
+            android:layout_width="1dip"
+            android:layout_height="match_parent"
+            android:background="@color/tint_divider" />
 
         <TextView
             android:contentDescription="@string/cd_clear_all"
@@ -33,23 +66,13 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="0"
+            android:visibility="gone"
             android:text="@string/clear_all" />
         
-         <View
-            android:layout_width="1dip"
-            android:layout_height="match_parent"
-            android:background="@color/tint_divider" />
-
-        <ImageView
-            android:id="@+id/onPlaylists"
-            style="@style/buttonWhite"
-            android:layout_width="@dimen/wh_button"
-            android:layout_height="@dimen/wh_button"
-            android:layout_weight="0"
-            android:contentDescription="@string/cd_add_new_opds_catalog"
-            android:src="@drawable/glyphicons_433_plus" />
+      
 
         <View
+            android:visibility="gone"
             android:layout_width="1dip"
             android:layout_height="match_parent"
             android:background="@color/tint_divider" />

@@ -55,6 +55,7 @@ public class FileMetaAdapter extends AppRecycleAdapter<FileMeta, RecyclerView.Vi
     public static final int DISPLAY_TYPE_FILE = 2;
     public static final int DISPLAY_TYPE_DIRECTORY = 3;
     public static final int DISPALY_TYPE_LAYOUT_STARS = 4;
+    public static final int DISPLAY_TYPE_PLAYLIST = 11;
     public static final int DISPLAY_TYPE_NONE = -1;
 
     public static final int DISPALY_TYPE_LAYOUT_TITLE_FOLDERS = 5;
@@ -63,6 +64,7 @@ public class FileMetaAdapter extends AppRecycleAdapter<FileMeta, RecyclerView.Vi
     public static final int DISPALY_TYPE_LAYOUT_TITLE_NONE = 8;
     public static final int DISPALY_TYPE_LAYOUT_TAG = 9;
     public static final int DISPALY_TYPE_LAYOUT_TITLE_DIVIDER = 10;
+
 
     public static final int ADAPTER_LIST = 0;
     public static final int ADAPTER_GRID = 1;
@@ -115,13 +117,14 @@ public class FileMetaAdapter extends AppRecycleAdapter<FileMeta, RecyclerView.Vi
     }
 
     public class DirectoryViewHolder extends RecyclerView.ViewHolder {
-        public TextView title, path;
+        public TextView title, path, play;
         public ImageView image, starIcon;
         public View parent;
 
         public DirectoryViewHolder(View view) {
             super(view);
             title = (TextView) view.findViewById(R.id.text1);
+            play = (TextView) view.findViewById(R.id.play);
             path = (TextView) view.findViewById(R.id.text2);
             image = (ImageView) view.findViewById(R.id.image1);
             starIcon = (ImageView) view.findViewById(R.id.starIcon);
@@ -211,6 +214,7 @@ public class FileMetaAdapter extends AppRecycleAdapter<FileMeta, RecyclerView.Vi
             return new StarsTitleViewHolder(itemView);
         }
 
+
         if (viewType == DISPALY_TYPE_LAYOUT_TITLE_BOOKS) {
             itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.fragment_starred_title_books, parent, false);
             return new StarsTitleViewHolder(itemView);
@@ -221,6 +225,10 @@ public class FileMetaAdapter extends AppRecycleAdapter<FileMeta, RecyclerView.Vi
         }
 
         if (viewType == DISPLAY_TYPE_DIRECTORY) {
+            itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.browse_dir, parent, false);
+            return new DirectoryViewHolder(itemView);
+        }
+        if (viewType == DISPLAY_TYPE_PLAYLIST) {
             itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.browse_dir, parent, false);
             return new DirectoryViewHolder(itemView);
         }
@@ -356,8 +364,13 @@ public class FileMetaAdapter extends AppRecycleAdapter<FileMeta, RecyclerView.Vi
 
         {
             final DirectoryViewHolder holder = (DirectoryViewHolder) holderAll;
+
+            holder.play.setVisibility(View.GONE);
             holder.title.setText(fileMeta.getPathTxt());
             holder.path.setText(fileMeta.getPath());
+
+            holder.starIcon.setVisibility(ExtUtils.isExteralSD(fileMeta.getPath()) ? View.GONE : View.VISIBLE);
+
 
             TintUtil.setTintImageWithAlpha(holder.image, holder.image.getContext() instanceof MainTabs2 ? TintUtil.getColorInDayNighth() : TintUtil.getColorInDayNighthBook());
 
@@ -384,7 +397,7 @@ public class FileMetaAdapter extends AppRecycleAdapter<FileMeta, RecyclerView.Vi
                 });
             }
 
-            holder.starIcon.setVisibility(ExtUtils.isExteralSD(fileMeta.getPath()) ? View.GONE : View.VISIBLE);
+
 
             if (adapterType == ADAPTER_GRID || adapterType == ADAPTER_COVERS) {
                 // holder.image.setVisibility(View.GONE);
@@ -396,6 +409,25 @@ public class FileMetaAdapter extends AppRecycleAdapter<FileMeta, RecyclerView.Vi
                 } else {
                     holder.path.setVisibility(View.GONE);
                 }
+            }
+
+            if (fileMeta.getCusType() == DISPLAY_TYPE_PLAYLIST) {
+                holder.image.setImageResource(R.drawable.glyphicons_basic_160_playlist);
+                holder.starIcon.setVisibility(View.GONE);
+                holder.path.setVisibility(View.GONE);
+                holder.play.setVisibility(View.VISIBLE);
+
+                holder.play.setText(holder.play.getText().toString().toUpperCase(Locale.US));
+
+                TxtUtils.underlineTextView(holder.play);
+
+                holder.play.setOnClickListener(new OnClickListener() {
+
+                    @Override
+                    public void onClick(View v) {
+                        onItemLongClickListener.onResultRecive(fileMeta);
+                    }
+                });
             }
 
         } else if (holderAll instanceof StarsLayoutViewHolder) {

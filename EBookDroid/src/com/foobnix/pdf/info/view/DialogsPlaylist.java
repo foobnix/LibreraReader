@@ -39,16 +39,20 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 public class DialogsPlaylist {
+    static AlertDialog create;
 
-    public static void showPlaylistsDialog(final Context a, final Runnable refresh) {
+    public static void showPlaylistsDialog(final Context a, final Runnable refresh, final File file) {
         final AlertDialog.Builder builder = new AlertDialog.Builder(a);
-        // builder.setTitle(R.string.tag);
+
+        if (file != null) {
+            builder.setTitle(R.string.add_to_playlist);
+        }
 
         View inflate = LayoutInflater.from(a).inflate(R.layout.dialog_tags, null, false);
 
         final ListView list = (ListView) inflate.findViewById(R.id.listView1);
         final TextView add = (TextView) inflate.findViewById(R.id.addTag);
-        TxtUtils.underline(add, "+ " + "Add playlist");
+        TxtUtils.underline(add, "+ " + a.getString(R.string.create_playlist));
 
         final List<String> items = Playlists.getAllPlaylists();
 
@@ -57,17 +61,27 @@ public class DialogsPlaylist {
             public void populateView(View layout, final int position, final String tagName) {
                 TextView text = (TextView) layout.findViewById(R.id.text1);
                 text.setText(tagName);
-                TxtUtils.underlineTextView(text);
+                if (file == null) {
+                    TxtUtils.underlineTextView(text);
+                }
 
                 layout.setOnClickListener(new OnClickListener() {
 
                     @Override
                     public void onClick(View v) {
-                        showPlayList(a, tagName);
+                        if (file != null) {
+                            Playlists.addMetaToPlaylist(tagName, file);
+                            create.dismiss();
+                        } else {
+                            showPlayList(a, tagName);
+                        }
                     }
                 });
 
                 ImageView img = layout.findViewById(R.id.delete1);
+                if (file != null) {
+                    img.setVisibility(View.GONE);
+                }
                 TintUtil.setTintImageWithAlpha(img);
                 img.setOnClickListener(new OnClickListener() {
 
@@ -123,11 +137,12 @@ public class DialogsPlaylist {
             }
         });
 
-        AlertDialog create = builder.create();
+        create = builder.create();
         create.setOnDismissListener(new OnDismissListener() {
 
             @Override
             public void onDismiss(DialogInterface dialog) {
+                create = null;
                 if (refresh != null) {
                     refresh.run();
                 }
@@ -143,7 +158,7 @@ public class DialogsPlaylist {
 
     public static void addPlaylistDialog(final Context a, final Runnable onRefresh) {
         final AlertDialog.Builder builder = new AlertDialog.Builder(a);
-        builder.setTitle("Playlist");
+        builder.setTitle(R.string.create_playlist);
 
         final EditText edit = new EditText(a);
 
@@ -226,7 +241,7 @@ public class DialogsPlaylist {
 
     public static void showPlayList(final Context a, final String file) {
         final AlertDialog.Builder builder = new AlertDialog.Builder(a);
-        builder.setTitle(file);
+        builder.setTitle(ExtUtils.getFileName(file));
 
         final DragLinearLayout layout = new DragLinearLayout(a);
         layout.setOrientation(LinearLayout.VERTICAL);
@@ -290,7 +305,7 @@ public class DialogsPlaylist {
             }
         });
         if (res.size() > 0) {
-            builder.setPositiveButton("Open", new AlertDialog.OnClickListener() {
+            builder.setPositiveButton(R.string.play, new AlertDialog.OnClickListener() {
 
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
@@ -341,7 +356,7 @@ public class DialogsPlaylist {
                     });
                 }
 
-                menu.getMenu().add("Manage Playlists").setOnMenuItemClickListener(new OnMenuItemClickListener() {
+                menu.getMenu().add(R.string.playlists).setOnMenuItemClickListener(new OnMenuItemClickListener() {
 
                     @Override
                     public boolean onMenuItemClick(MenuItem item) {
@@ -351,7 +366,7 @@ public class DialogsPlaylist {
                             public void run() {
                                 dispalyPlaylist(a, dc);
                             }
-                        });
+                        }, null);
                         return false;
                     }
                 });

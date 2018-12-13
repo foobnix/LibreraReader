@@ -525,7 +525,7 @@ public class Dialogs {
 
         final ListView list = (ListView) inflate.findViewById(R.id.listView1);
         final TextView add = (TextView) inflate.findViewById(R.id.addTag);
-        TxtUtils.underline(add, "+ " + a.getString(R.string.add_tag));
+        TxtUtils.underline(add, "+ " + a.getString(R.string.create_tag));
 
         final List<String> tags = StringDB.asList(AppState.get().bookTags);
         List<String> fileTags = StringDB.asList(tag);
@@ -568,7 +568,9 @@ public class Dialogs {
 
                 text.setChecked(StringDB.contains(tag, tagName));
 
-                layout.findViewById(R.id.deleteTag).setOnClickListener(new OnClickListener() {
+                ImageView delete = (ImageView) layout.findViewById(R.id.deleteTag);
+                TintUtil.setTintImageWithAlpha(delete);
+                delete.setOnClickListener(new OnClickListener() {
 
                     @Override
                     public void onClick(View v) {

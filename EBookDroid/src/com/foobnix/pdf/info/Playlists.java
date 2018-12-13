@@ -15,7 +15,9 @@ import java.util.List;
 
 import com.foobnix.android.utils.LOG;
 import com.foobnix.android.utils.TxtUtils;
+import com.foobnix.dao2.FileMeta;
 import com.foobnix.pdf.info.wrapper.AppState;
+import com.foobnix.ui2.adapter.FileMetaAdapter;
 
 public class Playlists {
     final public static String L_PLAYLIST = ".playlist";
@@ -120,6 +122,20 @@ public class Playlists {
             LOG.e(e);
             return path;
         }
+    }
+
+    public static List<FileMeta> getAllPlaylistsMeta() {
+        List<FileMeta> res = new ArrayList<FileMeta>();
+
+        for (String s : getAllPlaylists()) {
+            FileMeta meta = new FileMeta(getFile(s).getPath());
+            meta.setPathTxt(s);
+            meta.setCusType(FileMetaAdapter.DISPLAY_TYPE_PLAYLIST);
+            res.add(meta);
+        }
+
+        return res;
+
     }
 
     public static List<String> getAllPlaylists() {

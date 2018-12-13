@@ -9,6 +9,7 @@ import org.greenrobot.eventbus.EventBus;
 import com.foobnix.android.utils.ResultResponse;
 import com.foobnix.android.utils.TxtUtils;
 import com.foobnix.dao2.FileMeta;
+import com.foobnix.pdf.info.Playlists;
 import com.foobnix.pdf.info.R;
 import com.foobnix.pdf.info.TintUtil;
 import com.foobnix.pdf.info.view.AlertDialogs;
@@ -18,17 +19,12 @@ import com.foobnix.pdf.info.view.MyPopupMenu;
 import com.foobnix.pdf.info.widget.RecentUpates;
 import com.foobnix.pdf.info.wrapper.AppState;
 import com.foobnix.pdf.info.wrapper.PopupHelper;
-import com.foobnix.pdf.info.wrapper.UITab;
 import com.foobnix.pdf.search.activity.msg.NotifyAllFragments;
-import com.foobnix.pdf.search.activity.msg.OpenDirMessage;
 import com.foobnix.ui2.AppDB;
 import com.foobnix.ui2.AppDB.SEARCH_IN;
-import com.foobnix.ui2.MainTabs2;
 import com.foobnix.ui2.adapter.FileMetaAdapter;
 
-import android.content.Intent;
 import android.os.Bundle;
-import android.support.v4.content.LocalBroadcastManager;
 import android.support.v4.util.Pair;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -44,7 +40,7 @@ public class StarsFragment2 extends UIFragment<FileMeta> {
     public static final Pair<Integer, Integer> PAIR = new Pair<Integer, Integer>(R.string.starred, R.drawable.glyphicons_50_star);
 
     FileMetaAdapter recentAdapter;
-    ImageView onListGrid, onPlaylists;
+    ImageView onListGrid;
     View panelRecent;
 
     @Override
@@ -97,61 +93,37 @@ public class StarsFragment2 extends UIFragment<FileMeta> {
             }
         });
 
-        onPlaylists = (ImageView) view.findViewById(R.id.onPlaylists);
-        onPlaylists.setOnClickListener(new OnClickListener() {
+        TxtUtils.underlineTextView(view.findViewById(R.id.onPlaylists)).setOnClickListener(new OnClickListener() {
 
             @Override
-            public void onClick(final View v) {
-                MyPopupMenu menu = new MyPopupMenu(v);
-                menu.getMenu().add("Manage tags").setOnMenuItemClickListener(new OnMenuItemClickListener() {
+            public void onClick(View v) {
+                DialogsPlaylist.showPlaylistsDialog(v.getContext(), new Runnable() {
 
                     @Override
-                    public boolean onMenuItemClick(MenuItem item) {
-                        Dialogs.showTagsDialog(v.getContext(), null, new Runnable() {
-
-                            @Override
-                            public void run() {
-                                resetFragment();
-                                EventBus.getDefault().post(new NotifyAllFragments());
-                            }
-                        });
-                        return false;
+                    public void run() {
+                        resetFragment();
+                        EventBus.getDefault().post(new NotifyAllFragments());
                     }
-                });
-                menu.getMenu().add("Open Playlist").setOnMenuItemClickListener(new OnMenuItemClickListener() {
+                }, null);
 
-                    @Override
-                    public boolean onMenuItemClick(MenuItem item) {
-
-                        Intent intent = new Intent(UIFragment.INTENT_TINT_CHANGE)//
-
-                                .putExtra(MainTabs2.EXTRA_PAGE_NUMBER, UITab.getCurrentTabIndex(UITab.BrowseFragment));//
-                        LocalBroadcastManager.getInstance(getActivity()).sendBroadcast(intent);
-
-                        EventBus.getDefault().post(new OpenDirMessage(AppState.get().playlistPath));
-
-                        return false;
-                    }
-                });
-
-                menu.getMenu().add("Manage Playlists").setOnMenuItemClickListener(new OnMenuItemClickListener() {
-
-                    @Override
-                    public boolean onMenuItemClick(MenuItem item) {
-                        DialogsPlaylist.showPlaylistsDialog(v.getContext(), new Runnable() {
-
-                            @Override
-                            public void run() {
-                                resetFragment();
-                                EventBus.getDefault().post(new NotifyAllFragments());
-                            }
-                        });
-                        return false;
-                    }
-                });
-                menu.show();
             }
         });
+        TxtUtils.underlineTextView(view.findViewById(R.id.onTags)).setOnClickListener(new OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                Dialogs.showTagsDialog(v.getContext(), null, new Runnable() {
+
+                    @Override
+                    public void run() {
+                        resetFragment();
+                        EventBus.getDefault().post(new NotifyAllFragments());
+                    }
+                });
+
+            }
+        });
+
 
         recentAdapter.setOnGridOrList(new ResultResponse<ImageView>() {
 
@@ -237,7 +209,10 @@ public class StarsFragment2 extends UIFragment<FileMeta> {
             all.add(empy);
         }
 
+        all.addAll(Playlists.getAllPlaylistsMeta());
+
         all.addAll(AppDB.get().getStarsFolder());
+
 
         FileMeta books = new FileMeta();
         books.setCusType(FileMetaAdapter.DISPALY_TYPE_LAYOUT_TITLE_NONE);

@@ -306,7 +306,7 @@ public abstract class UIFragment<T> extends Fragment {
                     if (type == FileMetaAdapter.DISPALY_TYPE_LAYOUT_TITLE_DIVIDER) {
                         return num;
                     }
-                    if (type == FileMetaAdapter.DISPLAY_TYPE_DIRECTORY) {
+                    if (type == FileMetaAdapter.DISPLAY_TYPE_DIRECTORY || type == FileMetaAdapter.DISPLAY_TYPE_PLAYLIST) {
                         if (num == 1) {
                             return 1;
                         } else if (num == 2) {
