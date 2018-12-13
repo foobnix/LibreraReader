@@ -34,7 +34,6 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.TextView;
 
 public class StarsFragment2 extends UIFragment<FileMeta> {
     public static final Pair<Integer, Integer> PAIR = new Pair<Integer, Integer>(R.string.starred, R.drawable.glyphicons_50_star);
@@ -60,7 +59,7 @@ public class StarsFragment2 extends UIFragment<FileMeta> {
         bindAdapter(recentAdapter);
         bindAuthorsSeriesAdapter(recentAdapter);
 
-        TxtUtils.underlineTextView((TextView) view.findViewById(R.id.clearAllRecent)).setOnClickListener(new OnClickListener() {
+        TxtUtils.underlineTextView(view.findViewById(R.id.clearAllRecent)).setOnClickListener(new OnClickListener() {
 
             @Override
             public void onClick(View v) {
@@ -210,6 +209,10 @@ public class StarsFragment2 extends UIFragment<FileMeta> {
         }
 
         all.addAll(Playlists.getAllPlaylistsMeta());
+
+        FileMeta empy = new FileMeta();
+        empy.setCusType(FileMetaAdapter.DISPALY_TYPE_LAYOUT_TITLE_NONE);
+        all.add(empy);
 
         all.addAll(AppDB.get().getStarsFolder());
 

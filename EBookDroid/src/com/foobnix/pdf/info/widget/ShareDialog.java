@@ -201,7 +201,7 @@ public class ShareDialog {
                                 AppState.get().isAlwaysOpenAsMagazine = false;
                             }
                             AppState.get().isMusicianMode = false;
-                            ExtUtils.showDocumentWithoutDialog(a, file, page + 1, null);
+                            ExtUtils.showDocumentWithoutDialog(a, file, page + 1, a.getIntent().getStringExtra(DocumentController.EXTRA_PLAYLIST));
 
                         }
                     });
@@ -220,7 +220,7 @@ public class ShareDialog {
 
                                 }
                                 AppState.get().isMusicianMode = false;
-                                ExtUtils.showDocumentWithoutDialog(a, file, page + 1, null);
+                                ExtUtils.showDocumentWithoutDialog(a, file, page + 1, a.getIntent().getStringExtra(DocumentController.EXTRA_PLAYLIST));
                             }
                         });
                     }
@@ -232,7 +232,7 @@ public class ShareDialog {
                         public void run() {
                             AppState.get().isMusicianMode = true;
                             AppState.get().isAlwaysOpenAsMagazine = false;
-                            ExtUtils.showDocumentWithoutDialog(a, file, page + 1, null);
+                            ExtUtils.showDocumentWithoutDialog(a, file, page + 1, a.getIntent().getStringExtra(DocumentController.EXTRA_PLAYLIST));
                         }
                     });
                 }

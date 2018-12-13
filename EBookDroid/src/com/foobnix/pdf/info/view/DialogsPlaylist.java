@@ -25,6 +25,7 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.DialogInterface.OnDismissListener;
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.MenuItem.OnMenuItemClickListener;
@@ -39,6 +40,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 public class DialogsPlaylist {
+    private static final int SIZE = Dips.isLargeOrXLargeScreen() ? Dips.DP_80 : Dips.DP_60;
     static AlertDialog create;
 
     public static void showPlaylistsDialog(final Context a, final Runnable refresh, final File file) {
@@ -87,7 +89,7 @@ public class DialogsPlaylist {
 
                     @Override
                     public void onClick(View v) {
-                        AlertDialogs.showOkDialog((Activity) a, "Are you sure to delete playlist", new Runnable() {
+                        AlertDialogs.showOkDialog((Activity) a, a.getString(R.string.are_you_sure_to_delete_playlist_), new Runnable() {
 
                             @Override
                             public void run() {
@@ -269,7 +271,7 @@ public class DialogsPlaylist {
                 }
             });
 
-            int size = Dips.DP_80;
+            int size = SIZE;
             img.getLayoutParams().width = size;
             img.getLayoutParams().height = (int) (size * IMG.WIDTH_DK);
             IMG.getCoverPageWithEffect(img, s, size, null);
@@ -380,9 +382,12 @@ public class DialogsPlaylist {
             ImageView img = new ImageView(a);
             img.setTag(s);
 
-            int size = Dips.DP_80;
+            int size = SIZE;
             img.setLayoutParams(new LayoutParams(size, (int) (size * IMG.WIDTH_DK)));
             img.setPadding(Dips.DP_5, Dips.DP_5, Dips.DP_5, Dips.DP_5);
+            if (dc != null && dc.getCurrentBook() != null && s.equals(dc.getCurrentBook().getPath())) {
+                img.setBackgroundColor(Color.YELLOW);
+            }
 
             IMG.getCoverPageWithEffect(img, s, size, null);
             playlist.addView(img);

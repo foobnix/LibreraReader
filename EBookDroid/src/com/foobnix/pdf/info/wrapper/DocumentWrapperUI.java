@@ -880,7 +880,7 @@ public class DocumentWrapperUI {
         maxSeek.setVisibility(View.GONE);
         seekBar.setVisibility(View.INVISIBLE);
 
-        DialogsPlaylist.dispalyPlaylist(a, dc);
+
 
     }
 
@@ -1858,6 +1858,8 @@ public class DocumentWrapperUI {
                     hideShowEditIcon();
 
                     updateSpeedLabel();
+
+                    DialogsPlaylist.dispalyPlaylist(a, dc);
 
                 }
             });

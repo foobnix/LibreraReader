@@ -471,7 +471,6 @@
    <string name="cloud_not_connected">Debesys nėra prijungtas</string>
    <string name="cloud_sync_folder">Debesis sinchronizuoti aplanką</string>
    <string name="clouds">Debesys</string>
-   <string name="add_to_cloud">Pridėti prie debesies</string>
    <string name="librera_cloud">Librerio debesis</string>
    <string name="hide_search_bar">Slėpti paieškos juostą</string>
    <string name="show_search_bar">Rodyti paieškos juostą</string>
@@ -506,4 +505,14 @@
    <string name="read_out_loud_with_tts">Skaitykite garsiai su TTS</string>
    <string name="allow_minimum_brightness">Leisti minimalų ryškumą</string>
    <string name="select">Pasirinkite</string>
+   <string name="create_playlist">Sukurti grojaraštį</string>
+   <string name="upload_to_cloud">Įkelti į \"Cloud\"</string>
+   <string name="add_to_playlist">Pridėti į grojaraštį</string>
+   <string name="create_tag">Sukurti žymą</string>
+   <string name="add_tags">Pridėti žymes</string>
+   <string name="play">Žaisti</string>
+   <string name="favorite">Mėgstamiausia</string>
+   <string name="playlists">Grojaraščiai</string>
+   <string name="tags">Žymos</string>
+   <string name="are_you_sure_to_delete_playlist_">Ar tikrai ištrinsite grojaraštį?</string>
 </resources>

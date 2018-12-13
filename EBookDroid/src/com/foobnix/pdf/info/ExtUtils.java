@@ -864,7 +864,7 @@ public class ExtUtils {
             Toast.makeText(c, R.string.file_not_found, Toast.LENGTH_LONG).show();
             return;
         }
-        LOG.d("showDocument", uri.getPath());
+        LOG.d("showDocument", uri.getPath(), playlist);
 
         if (AppState.get().isAlwaysOpenAsMagazine) {
             openHorizontalView(c, uri, page - 1, playlist);

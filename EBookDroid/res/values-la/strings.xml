@@ -471,7 +471,6 @@
    <string name="cloud_not_connected">Seiuncta nubem</string>
    <string name="cloud_sync_folder">Nubes sync folder</string>
    <string name="clouds">Nubes</string>
-   <string name="add_to_cloud">Addere ad nubes</string>
    <string name="librera_cloud">Nubes Librera</string>
    <string name="hide_search_bar">Investigationis occultare vectes</string>
    <string name="show_search_bar">Show quaero talea</string>
@@ -506,4 +505,14 @@
    <string name="read_out_loud_with_tts">Et cum magna Read TTS</string>
    <string name="allow_minimum_brightness">Minimum patitur candor</string>
    <string name="select">Select</string>
+   <string name="create_playlist">Create Playlist</string>
+   <string name="upload_to_cloud">Ut upload Сloud</string>
+   <string name="add_to_playlist">Add to Playlist</string>
+   <string name="create_tag">Tag crea</string>
+   <string name="add_tags">Add tags</string>
+   <string name="play">Ludere</string>
+   <string name="favorite">Favorite</string>
+   <string name="playlists">Video</string>
+   <string name="tags">Tags</string>
+   <string name="are_you_sure_to_delete_playlist_">Esne certus ut delete playlist?</string>
 </resources>

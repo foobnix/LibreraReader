@@ -471,7 +471,6 @@
    <string name="cloud_not_connected">云未连接</string>
    <string name="cloud_sync_folder">云同步文件夹</string>
    <string name="clouds">云盘</string>
-   <string name="add_to_cloud">添加到云</string>
    <string name="librera_cloud">Librera云</string>
    <string name="hide_search_bar">隐藏搜索栏</string>
    <string name="show_search_bar">显示搜索栏</string>
@@ -506,4 +505,14 @@
    <string name="read_out_loud_with_tts">用TTS大声朗读</string>
    <string name="allow_minimum_brightness">允许最小亮度</string>
    <string name="select">选择</string>
+   <string name="create_playlist">创建播放列表</string>
+   <string name="upload_to_cloud">上传到Сloud</string>
+   <string name="add_to_playlist">添加到播放列表</string>
+   <string name="create_tag">创建标签</string>
+   <string name="add_tags">添加标签</string>
+   <string name="play">玩</string>
+   <string name="favorite">喜爱</string>
+   <string name="playlists">播放列表</string>
+   <string name="tags">标签</string>
+   <string name="are_you_sure_to_delete_playlist_">您确定要删除播放列表吗？</string>
 </resources>

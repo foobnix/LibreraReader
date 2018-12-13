@@ -471,7 +471,6 @@
    <string name="cloud_not_connected">Бұлт қосылмаған</string>
    <string name="cloud_sync_folder">Бұлтты синхрондау қалтасы</string>
    <string name="clouds">Бұлттар</string>
-   <string name="add_to_cloud">Бұлтқа қосу</string>
    <string name="librera_cloud">Liberty Cloud</string>
    <string name="hide_search_bar">Іздеу жолағын жасыру</string>
    <string name="show_search_bar">Іздеу жолағын көрсету</string>
@@ -506,4 +505,14 @@
    <string name="read_out_loud_with_tts">Оқылды (TTS)</string>
    <string name="allow_minimum_brightness">Ең аз жарықтыққа рұқсат ету</string>
    <string name="select">Таңдаңыз</string>
+   <string name="create_playlist">Ойнату тізімін жасау</string>
+   <string name="upload_to_cloud">Слудқа жүктеу</string>
+   <string name="add_to_playlist">Ойнату тізіміне қосу</string>
+   <string name="create_tag">Тег құрыңыз</string>
+   <string name="add_tags">Тегтерді қосу</string>
+   <string name="play">Ойнату</string>
+   <string name="favorite">Сүйікті</string>
+   <string name="playlists">Ойнату тізімдері</string>
+   <string name="tags">Тегтер</string>
+   <string name="are_you_sure_to_delete_playlist_">Ойнату тізімін жойғыңыз келе ме?</string>
 </resources>

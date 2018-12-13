@@ -471,7 +471,6 @@
    <string name="cloud_not_connected">클라우드가 연결되지 않았습니다.</string>
    <string name="cloud_sync_folder">클라우드 동기화 폴더</string>
    <string name="clouds">구름</string>
-   <string name="add_to_cloud">클라우드에 추가</string>
    <string name="librera_cloud">리브레라 구름</string>
    <string name="hide_search_bar">검색 창 숨기기</string>
    <string name="show_search_bar">검색 창 표시</string>
@@ -506,4 +505,14 @@
    <string name="read_out_loud_with_tts">TTS로 소리내어 읽기</string>
    <string name="allow_minimum_brightness">최소 밝기 허용</string>
    <string name="select">고르다</string>
+   <string name="create_playlist">재생 목록 만들기</string>
+   <string name="upload_to_cloud">Сloud에 업로드</string>
+   <string name="add_to_playlist">재생 목록에 추가</string>
+   <string name="create_tag">태그 생성</string>
+   <string name="add_tags">태그 추가</string>
+   <string name="play">놀이</string>
+   <string name="favorite">인기 있는 말</string>
+   <string name="playlists">재생 목록</string>
+   <string name="tags">태그</string>
+   <string name="are_you_sure_to_delete_playlist_">재생 목록을 삭제 하시겠습니까?</string>
 </resources>

@@ -471,7 +471,6 @@
    <string name="cloud_not_connected">Cloud non connesso</string>
    <string name="cloud_sync_folder">Cartella di sincronizzazione cloud</string>
    <string name="clouds">Nuvole</string>
-   <string name="add_to_cloud">Aggiungi al cloud</string>
    <string name="librera_cloud">Nube di Librera</string>
    <string name="hide_search_bar">Nascondi la barra di ricerca</string>
    <string name="show_search_bar">Mostra barra di ricerca</string>
@@ -506,4 +505,14 @@
    <string name="read_out_loud_with_tts">Leggi ad alta voce con TTS</string>
    <string name="allow_minimum_brightness">Consenti luminosità minima</string>
    <string name="select">Selezionare</string>
+   <string name="create_playlist">Crea playlist</string>
+   <string name="upload_to_cloud">Carica su Сloud</string>
+   <string name="add_to_playlist">Aggiungi a playlist</string>
+   <string name="create_tag">Crea tag</string>
+   <string name="add_tags">Aggiungere etichette</string>
+   <string name="play">Giocare</string>
+   <string name="favorite">Preferito</string>
+   <string name="playlists">Playlist</string>
+   <string name="tags">Tag</string>
+   <string name="are_you_sure_to_delete_playlist_">Sei sicuro di cancellare la playlist?</string>
 </resources>

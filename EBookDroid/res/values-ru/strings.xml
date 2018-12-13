@@ -471,7 +471,6 @@
    <string name="cloud_not_connected">Облако не подключено</string>
    <string name="cloud_sync_folder">Папка облачной синхронизации</string>
    <string name="clouds">Облака</string>
-   <string name="add_to_cloud">Добавить в облако</string>
    <string name="librera_cloud">Облако Librera</string>
    <string name="hide_search_bar">Скрывать панель поиска</string>
    <string name="show_search_bar">Показывать панель поиска</string>
@@ -506,4 +505,14 @@
    <string name="read_out_loud_with_tts">TTS-аудионачитка книги</string>
    <string name="allow_minimum_brightness">Разрешать минимально возможные значения яркости</string>
    <string name="select">Выбрать</string>
+   <string name="create_playlist">Создать плейлист</string>
+   <string name="upload_to_cloud">Загрузить на Сloud</string>
+   <string name="add_to_playlist">Добавить в плейлист</string>
+   <string name="create_tag">Создать тег</string>
+   <string name="add_tags">Добавить теги</string>
+   <string name="play">Играть</string>
+   <string name="favorite">Любимец</string>
+   <string name="playlists">Плейлисты</string>
+   <string name="tags">Теги</string>
+   <string name="are_you_sure_to_delete_playlist_">Вы уверены, что хотите удалить плейлист?</string>
 </resources>
