@@ -17,7 +17,6 @@
         android:padding="4dip" >
 
         <ImageView
-            android:tint="@color/tint_gray"
             android:id="@+id/image1"
             android:layout_width="@dimen/wh_button"
             android:layout_height="@dimen/wh_button"

@@ -257,7 +257,6 @@ public class DialogsPlaylist {
             ((TextView) library.findViewById(R.id.text1)).setText(" " + new File(s).getName());
             ((CheckBox) library.findViewById(R.id.isVisible)).setVisibility(View.GONE);
             ImageView img = ((ImageView) library.findViewById(R.id.image1));
-            TintUtil.setNoTintImage(img);
 
             ImageView imgDrag = ((ImageView) library.findViewById(R.id.imageDrag));
             imgDrag.setImageResource(R.drawable.glyphicons_208_remove_2);
