@@ -94,7 +94,7 @@ public class Playlists {
 
             while ((line = reader.readLine()) != null) {
                 if (TxtUtils.isNotEmpty(line)) {
-                    res.add(line);
+                    res.add(line.replace(L_PLAYLIST, ""));
                 }
             }
             reader.close();
@@ -124,12 +124,17 @@ public class Playlists {
         }
     }
 
+    public static String formatPlaylistName(String name) {
+        name = ExtUtils.getFileName(name);
+        return TxtUtils.firstUppercase(name.replace(Playlists.L_PLAYLIST, "")) + " (" + getPlaylistItems(name).size() + ")";
+    }
+
     public static List<FileMeta> getAllPlaylistsMeta() {
         List<FileMeta> res = new ArrayList<FileMeta>();
 
         for (String s : getAllPlaylists()) {
             FileMeta meta = new FileMeta(getFile(s).getPath());
-            meta.setPathTxt(s);
+            meta.setPathTxt(formatPlaylistName(s));
             meta.setCusType(FileMetaAdapter.DISPLAY_TYPE_PLAYLIST);
             res.add(meta);
         }

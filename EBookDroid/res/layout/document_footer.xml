@@ -11,18 +11,19 @@
         android:orientation="vertical" >
         
          <TextView
-             	android:padding="4dip"
+             android:visibility="gone"
+             	android:padding="5dip"
                 android:id="@+id/playListName"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_marginTop="4dip"
                 android:layout_weight="1"
                 android:text="Playlists"
                 android:textColor="#ffffff"
                 android:textSize="14sp"
                 android:textStyle="bold" />
 
-            <com.jmedeisis.draglinearlayout.DragLinearLayout 
+            <com.jmedeisis.draglinearlayout.DragLinearLayout
+                android:padding="5dip" 
                 android:id="@+id/playlist"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

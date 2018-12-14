@@ -4,6 +4,8 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.greenrobot.eventbus.EventBus;
+
 import com.foobnix.android.utils.BaseItemLayoutAdapter;
 import com.foobnix.android.utils.Dips;
 import com.foobnix.android.utils.Keyboards;
@@ -15,17 +17,20 @@ import com.foobnix.pdf.info.Playlists;
 import com.foobnix.pdf.info.R;
 import com.foobnix.pdf.info.TintUtil;
 import com.foobnix.pdf.info.wrapper.DocumentController;
+import com.foobnix.pdf.search.activity.msg.UpdateAllFragments;
 import com.foobnix.sys.TempHolder;
 import com.jmedeisis.draglinearlayout.DragLinearLayout;
 import com.jmedeisis.draglinearlayout.DragLinearLayout.OnViewSwapListener;
 
+import android.annotation.TargetApi;
 import android.app.ActionBar.LayoutParams;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.DialogInterface.OnDismissListener;
-import android.graphics.Color;
+import android.net.Uri;
+import android.os.Build;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.MenuItem.OnMenuItemClickListener;
@@ -34,6 +39,7 @@ import android.view.View.OnClickListener;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.ImageView.ScaleType;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -54,7 +60,7 @@ public class DialogsPlaylist {
 
         final ListView list = (ListView) inflate.findViewById(R.id.listView1);
         final TextView add = (TextView) inflate.findViewById(R.id.addTag);
-        TxtUtils.underline(add, "+ " + a.getString(R.string.create_playlist));
+        TxtUtils.underline(add, a.getString(R.string.create_playlist));
 
         final List<String> items = Playlists.getAllPlaylists();
 
@@ -62,7 +68,7 @@ public class DialogsPlaylist {
             @Override
             public void populateView(View layout, final int position, final String tagName) {
                 TextView text = (TextView) layout.findViewById(R.id.text1);
-                text.setText(tagName);
+                text.setText(Playlists.formatPlaylistName(tagName));
                 if (file == null) {
                     TxtUtils.underlineTextView(text);
                 }
@@ -215,41 +221,32 @@ public class DialogsPlaylist {
         });
     }
 
-    public static void showAddToPlaylistDialog(final Activity a, final File file) {
-        final AlertDialog.Builder inner = new AlertDialog.Builder(a);
-        inner.setTitle("Add to playlist");
-
-        final List<String> list = Playlists.getAllPlaylists();
-
-        inner.setAdapter(new BaseItemLayoutAdapter<String>(a, R.layout.item_dict_line, list) {
-            @Override
-            public void populateView(View layout, int position, String item) {
-                ((TextView) layout.findViewById(R.id.text1)).setText(item);
-
-                ImageView imageView = (ImageView) layout.findViewById(R.id.image1);
-                imageView.setVisibility(View.GONE);
-            }
-        }, new DialogInterface.OnClickListener() {
-
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                String name = list.get(which);
-                Playlists.addMetaToPlaylist(name, file);
-            }
-
-        });
-        inner.show();
-    }
 
     public static void showPlayList(final Context a, final String file) {
         final AlertDialog.Builder builder = new AlertDialog.Builder(a);
-        builder.setTitle(ExtUtils.getFileName(file));
+        builder.setTitle(Playlists.formatPlaylistName(file));
 
         final DragLinearLayout layout = new DragLinearLayout(a);
         layout.setOrientation(LinearLayout.VERTICAL);
 
         List<String> res = Playlists.getPlaylistItems(file);
-        for (String s : res) {
+
+        final Runnable update = new Runnable() {
+
+            @Override
+            public void run() {
+                List<String> list = new ArrayList<String>();
+                for (int i = 0; i < layout.getChildCount(); i++) {
+                    View child = layout.getChildAt(i);
+                    list.add((String) child.getTag());
+                }
+                Playlists.updatePlaylist(file, list);
+
+                EventBus.getDefault().post(new UpdateAllFragments());
+            }
+        };
+
+        for (final String s : res) {
 
             final View library = LayoutInflater.from(a).inflate(R.layout.item_tab_line, null, false);
             library.setTag(s);
@@ -276,6 +273,15 @@ public class DialogsPlaylist {
             IMG.getCoverPageWithEffect(img, s, size, null);
             layout.addView(library);
 
+            library.setOnClickListener(new OnClickListener() {
+
+                @Override
+                public void onClick(View v) {
+                    update.run();
+                    ExtUtils.showDocument(a, Uri.fromFile(new File(s)), -1, file);
+                }
+            });
+
         }
 
         for (int i = 0; i < layout.getChildCount(); i++) {
@@ -283,18 +289,7 @@ public class DialogsPlaylist {
             layout.setViewDraggable(child, child);
         }
 
-        final Runnable update = new Runnable() {
 
-            @Override
-            public void run() {
-                List<String> list = new ArrayList<String>();
-                for (int i = 0; i < layout.getChildCount(); i++) {
-                    View child = layout.getChildAt(i);
-                    list.add((String) child.getTag());
-                }
-                Playlists.updatePlaylist(file, list);
-            }
-        };
 
         builder.setView(layout);
 
@@ -321,21 +316,25 @@ public class DialogsPlaylist {
         builder.show();
     }
 
+
+
+    @TargetApi(Build.VERSION_CODES.JELLY_BEAN)
     public static void dispalyPlaylist(final Activity a, final DocumentController dc) {
         final DragLinearLayout playlist = (DragLinearLayout) a.findViewById(R.id.playlist);
         final TextView playListName = (TextView) a.findViewById(R.id.playListName);
+        playListName.setVisibility(View.GONE);
 
         final String palylistPath = a.getIntent().getStringExtra(DocumentController.EXTRA_PLAYLIST);
         if (TxtUtils.isEmpty(palylistPath) && dc != null && !dc.isMusicianMode()) {
             playlist.setVisibility(View.GONE);
-            playListName.setVisibility(View.GONE);
             return;
         }
+        playListName.setVisibility(View.VISIBLE);
         playlist.removeAllViews();
 
         List<String> playlistItems = Playlists.getPlaylistItems(palylistPath);
         if (TxtUtils.isNotEmpty(palylistPath)) {
-            playListName.setText(new File(palylistPath).getName());
+            playListName.setText(Playlists.formatPlaylistName(palylistPath));
         }
 
         playListName.setOnClickListener(new OnClickListener() {
@@ -346,7 +345,7 @@ public class DialogsPlaylist {
 
                 MyPopupMenu menu = new MyPopupMenu(v);
                 for (final String item : items) {
-                    menu.getMenu().add(item).setOnMenuItemClickListener(new OnMenuItemClickListener() {
+                    menu.getMenu().add(Playlists.formatPlaylistName(item)).setOnMenuItemClickListener(new OnMenuItemClickListener() {
 
                         @Override
                         public boolean onMenuItemClick(MenuItem m) {
@@ -378,17 +377,28 @@ public class DialogsPlaylist {
         });
 
         for (final String s : playlistItems) {
-            ImageView img = new ImageView(a);
+            UnderlineImageView img = new UnderlineImageView(a, null);
             img.setTag(s);
+            img.setUnderlineValue(Dips.DP_3);
+            img.setLeftPadding(false);
+            img.setBackgroundResource(R.drawable.bg_clickable);
+
+
 
             int size = SIZE;
             img.setLayoutParams(new LayoutParams(size, (int) (size * IMG.WIDTH_DK)));
-            img.setPadding(Dips.DP_5, Dips.DP_5, Dips.DP_5, Dips.DP_5);
+            img.setPadding(Dips.DP_3, 0, Dips.DP_5, Dips.DP_10);
             if (dc != null && dc.getCurrentBook() != null && s.equals(dc.getCurrentBook().getPath())) {
-                img.setBackgroundColor(Color.YELLOW);
+                // img.setBackgroundColor(Color.YELLOW);
+                img.underline(true);
             }
 
             IMG.getCoverPageWithEffect(img, s, size, null);
+            if (Build.VERSION.SDK_INT >= 16) {
+                img.setCropToPadding(true);
+            }
+            img.setAdjustViewBounds(true);
+            img.setScaleType(ScaleType.CENTER_CROP);
             playlist.addView(img);
 
             img.setOnClickListener(new OnClickListener() {

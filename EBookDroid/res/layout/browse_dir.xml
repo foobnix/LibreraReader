@@ -65,7 +65,7 @@
             android:layout_height="wrap_content"
             android:text="@string/play"
             android:layout_marginRight="10dip"
-            android:textSize="16sp" />
+            android:textSize="14sp" />
 
         <ImageView
             android:id="@+id/starIcon"
