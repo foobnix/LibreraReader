@@ -252,8 +252,8 @@
    <string name="make_text_reflow">文本重排</string>
    <string name="open_with">打开方式</string>
    <string name="send_file">发送文件</string>
-   <string name="delete">删除文件</string>
-   <string name="remove_from_library">移出书库</string>
+   <string name="delete">删除</string>
+   <string name="remove_from_library">移出书架</string>
    <string name="send_snapshot_of_the_page">分享页面</string>
    <string name="file_info">文件信息</string>
    <string name="archive_files">文档</string>
