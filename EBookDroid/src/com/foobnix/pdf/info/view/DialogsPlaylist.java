@@ -16,6 +16,9 @@ import com.foobnix.pdf.info.IMG;
 import com.foobnix.pdf.info.Playlists;
 import com.foobnix.pdf.info.R;
 import com.foobnix.pdf.info.TintUtil;
+import com.foobnix.pdf.info.view.drag.OnStartDragListener;
+import com.foobnix.pdf.info.view.drag.PlaylistAdapter;
+import com.foobnix.pdf.info.view.drag.SimpleItemTouchHelperCallback;
 import com.foobnix.pdf.info.wrapper.DocumentController;
 import com.foobnix.pdf.search.activity.msg.UpdateAllFragments;
 import com.foobnix.sys.TempHolder;
@@ -31,12 +34,15 @@ import android.content.DialogInterface;
 import android.content.DialogInterface.OnDismissListener;
 import android.net.Uri;
 import android.os.Build;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.RecyclerView.ViewHolder;
+import android.support.v7.widget.helper.ItemTouchHelper;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.MenuItem.OnMenuItemClickListener;
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ImageView.ScaleType;
@@ -222,76 +228,63 @@ public class DialogsPlaylist {
     }
 
 
+    static ItemTouchHelper mItemTouchHelper;
     public static void showPlayList(final Context a, final String file) {
         final AlertDialog.Builder builder = new AlertDialog.Builder(a);
         builder.setTitle(Playlists.formatPlaylistName(file));
 
-        final DragLinearLayout layout = new DragLinearLayout(a);
-        layout.setOrientation(LinearLayout.VERTICAL);
 
-        List<String> res = Playlists.getPlaylistItems(file);
+        RecyclerView recyclerView = new RecyclerView(a);
+        recyclerView.setHasFixedSize(true);
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(a);
+        linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
+        recyclerView.setLayoutManager(linearLayoutManager);
+
+        final List<String> res = Playlists.getPlaylistItems(file);
+
+        final PlaylistAdapter adapter = new PlaylistAdapter(a, res, new OnStartDragListener() {
+
+            @Override
+            public void onStartDrag(ViewHolder viewHolder) {
+                mItemTouchHelper.startDrag(viewHolder);
+            }
+
+            @Override
+            public void onRevemove() {
+                Playlists.updatePlaylist(file, res);
+            }
+
+            @Override
+            public void onItemClick(String result) {
+                Playlists.updatePlaylist(file, res);
+                EventBus.getDefault().post(new UpdateAllFragments());
+
+                ExtUtils.showDocument(a, Uri.fromFile(new File(result)), -1, file);
+            }
+
+        });
+        recyclerView.setAdapter(adapter);
 
         final Runnable update = new Runnable() {
 
             @Override
             public void run() {
-                List<String> list = new ArrayList<String>();
-                for (int i = 0; i < layout.getChildCount(); i++) {
-                    View child = layout.getChildAt(i);
-                    list.add((String) child.getTag());
-                }
+                List<String> list = adapter.getItems();
                 Playlists.updatePlaylist(file, list);
-
                 EventBus.getDefault().post(new UpdateAllFragments());
             }
         };
 
-        for (final String s : res) {
 
-            final View library = LayoutInflater.from(a).inflate(R.layout.item_tab_line, null, false);
-            library.setTag(s);
+        ItemTouchHelper.Callback callback = new SimpleItemTouchHelperCallback(adapter);
+        mItemTouchHelper = new ItemTouchHelper(callback);
 
-            ((TextView) library.findViewById(R.id.text1)).setText(" " + new File(s).getName());
-            ((CheckBox) library.findViewById(R.id.isVisible)).setVisibility(View.GONE);
-            ImageView img = ((ImageView) library.findViewById(R.id.image1));
+        mItemTouchHelper.attachToRecyclerView(recyclerView);
 
-            ImageView imgDrag = ((ImageView) library.findViewById(R.id.imageDrag));
-            imgDrag.setImageResource(R.drawable.glyphicons_208_remove_2);
-            TintUtil.setTintImageWithAlpha(imgDrag);
+        final DragLinearLayout layout = new DragLinearLayout(a);
+        layout.setOrientation(LinearLayout.VERTICAL);
 
-            imgDrag.setOnClickListener(new OnClickListener() {
-
-                @Override
-                public void onClick(View v) {
-                    layout.removeView(library);
-                }
-            });
-
-            int size = SIZE;
-            img.getLayoutParams().width = size;
-            img.getLayoutParams().height = (int) (size * IMG.WIDTH_DK);
-            IMG.getCoverPageWithEffect(img, s, size, null);
-            layout.addView(library);
-
-            library.setOnClickListener(new OnClickListener() {
-
-                @Override
-                public void onClick(View v) {
-                    update.run();
-                    ExtUtils.showDocument(a, Uri.fromFile(new File(s)), -1, file);
-                }
-            });
-
-        }
-
-        for (int i = 0; i < layout.getChildCount(); i++) {
-            View child = layout.getChildAt(i);
-            layout.setViewDraggable(child, child);
-        }
-
-
-
-        builder.setView(layout);
+        builder.setView(recyclerView);
 
         builder.setNegativeButton(R.string.close, new AlertDialog.OnClickListener() {
 
