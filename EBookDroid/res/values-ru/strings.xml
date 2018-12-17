@@ -506,12 +506,12 @@
    <string name="allow_minimum_brightness">Разрешать минимально возможные значения яркости</string>
    <string name="select">Выбрать</string>
    <string name="create_playlist">Создать плейлист</string>
-   <string name="upload_to_cloud">Загрузить на Сloud</string>
+   <string name="upload_to_cloud">Загрузить в облако</string>
    <string name="add_to_playlist">Добавить в плейлист</string>
    <string name="create_tag">Создать тег</string>
    <string name="add_tags">Добавить теги</string>
-   <string name="play">Играть</string>
-   <string name="favorite">Любимец</string>
+   <string name="play">Проиграть</string>
+   <string name="favorite">Избранные</string>
    <string name="playlists">Плейлисты</string>
    <string name="tags">Теги</string>
    <string name="are_you_sure_to_delete_playlist_">Вы уверены, что хотите удалить плейлист?</string>
