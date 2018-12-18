@@ -1,12 +1,13 @@
 ---
 layout: main
-version: 6
+version: 7
 ---
 [<](/wiki/)
 
 # Häufig gestellte Fragen
 
 * [So konvertieren Sie PDF in EPUB](/wiki/faq/convert-pdf-to-epub/de)
+* [So löschen Sie Bücher von der externen SD-Karte](/wiki/faq/how-to-delete-file-from-external-sd-card/de)
 * [Benutzerdefinierte Tags erstellen](/wiki/faq/custom-tags/de)
 * [Helligkeitskontrolle und Blaulichtfilter](/wiki/faq/brightness-control-and-blue-light-filter/de)
 * [So erhöhen Sie die Schriftgröße in einem PDF-Dokument in Android](/wiki/faq/how-to-make-the-font-size-bigger-on-a-pdf/de)

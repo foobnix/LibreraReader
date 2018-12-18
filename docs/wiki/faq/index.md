@@ -1,12 +1,13 @@
 ---
 layout: main
-version: 6
+version: 7
 ---
 [<](/wiki/)
 
 # Frequently asked questions
 
 * [How to convert PDF to EPUB](/wiki/faq/convert-pdf-to-epub)
+* [How to delete books from the External SD card](/wiki/faq/how-to-delete-file-from-external-sd-card)
 * [Create custom tags](/wiki/faq/custom-tags)
 * [Brightness control and blue light filter](/wiki/faq/brightness-control-and-blue-light-filter)
 * [How to increase font size in PDF document in Android](/wiki/faq/how-to-make-the-font-size-bigger-on-a-pdf)
