@@ -1,7 +1,6 @@
 package com.foobnix.pdf.info.view;
 
 import java.io.File;
-import java.util.ArrayList;
 import java.util.List;
 
 import org.greenrobot.eventbus.EventBus;
@@ -12,7 +11,6 @@ import com.foobnix.android.utils.Keyboards;
 import com.foobnix.android.utils.TxtUtils;
 import com.foobnix.dao2.FileMeta;
 import com.foobnix.pdf.info.ExtUtils;
-import com.foobnix.pdf.info.IMG;
 import com.foobnix.pdf.info.Playlists;
 import com.foobnix.pdf.info.R;
 import com.foobnix.pdf.info.TintUtil;
@@ -23,10 +21,8 @@ import com.foobnix.pdf.info.wrapper.DocumentController;
 import com.foobnix.pdf.search.activity.msg.UpdateAllFragments;
 import com.foobnix.sys.TempHolder;
 import com.jmedeisis.draglinearlayout.DragLinearLayout;
-import com.jmedeisis.draglinearlayout.DragLinearLayout.OnViewSwapListener;
 
 import android.annotation.TargetApi;
-import android.app.ActionBar.LayoutParams;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
@@ -45,7 +41,6 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.ImageView.ScaleType;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -262,7 +257,7 @@ public class DialogsPlaylist {
                 ExtUtils.showDocument(a, Uri.fromFile(new File(result)), -1, file);
             }
 
-        });
+        }, true);
         recyclerView.setAdapter(adapter);
 
         final Runnable update = new Runnable() {
@@ -313,22 +308,53 @@ public class DialogsPlaylist {
 
     @TargetApi(Build.VERSION_CODES.JELLY_BEAN)
     public static void dispalyPlaylist(final Activity a, final DocumentController dc) {
-        final DragLinearLayout playlist = (DragLinearLayout) a.findViewById(R.id.playlist);
+        final RecyclerView playlistRecycleView = (RecyclerView) a.findViewById(R.id.playlistRecycleView);
+
+        playlistRecycleView.setHasFixedSize(true);
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(a);
+        linearLayoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
+        playlistRecycleView.setLayoutManager(linearLayoutManager);
+
+
         final TextView playListName = (TextView) a.findViewById(R.id.playListName);
         playListName.setVisibility(View.GONE);
 
         final String palylistPath = a.getIntent().getStringExtra(DocumentController.EXTRA_PLAYLIST);
         if (TxtUtils.isEmpty(palylistPath) && dc != null && !dc.isMusicianMode()) {
-            playlist.setVisibility(View.GONE);
+            playlistRecycleView.setVisibility(View.GONE);
             return;
         }
         playListName.setVisibility(View.VISIBLE);
-        playlist.removeAllViews();
 
         List<String> playlistItems = Playlists.getPlaylistItems(palylistPath);
         if (TxtUtils.isNotEmpty(palylistPath)) {
             playListName.setText(Playlists.formatPlaylistName(palylistPath));
         }
+
+        final List<String> res = Playlists.getPlaylistItems(palylistPath);
+
+        final PlaylistAdapter adapter = new PlaylistAdapter(a, res, new OnStartDragListener() {
+
+            @Override
+            public void onStartDrag(ViewHolder viewHolder) {
+                mItemTouchHelper.startDrag(viewHolder);
+            }
+
+            @Override
+            public void onRevemove() {
+                // Playlists.updatePlaylist(palylistPath, res);
+            }
+
+            @Override
+            public void onItemClick(String result) {
+                Playlists.updatePlaylist(result, res);
+                EventBus.getDefault().post(new UpdateAllFragments());
+
+                ExtUtils.showDocument(a, Uri.fromFile(new File(result)), -1, result);
+            }
+
+        }, false);
+        playlistRecycleView.setAdapter(adapter);
 
         playListName.setOnClickListener(new OnClickListener() {
 
@@ -369,67 +395,6 @@ public class DialogsPlaylist {
             }
         });
 
-        for (final String s : playlistItems) {
-            UnderlineImageView img = new UnderlineImageView(a, null);
-            img.setTag(s);
-            img.setUnderlineValue(Dips.DP_3);
-            img.setLeftPadding(false);
-            img.setBackgroundResource(R.drawable.bg_clickable);
-
-
-
-            int size = SIZE;
-            img.setLayoutParams(new LayoutParams(size, (int) (size * IMG.WIDTH_DK)));
-            img.setPadding(Dips.DP_3, 0, Dips.DP_5, Dips.DP_10);
-            if (dc != null && dc.getCurrentBook() != null && s.equals(dc.getCurrentBook().getPath())) {
-                // img.setBackgroundColor(Color.YELLOW);
-                img.underline(true);
-            }
-
-            IMG.getCoverPageWithEffect(img, s, size, null);
-            if (Build.VERSION.SDK_INT >= 16) {
-                img.setCropToPadding(true);
-            }
-            img.setAdjustViewBounds(true);
-            img.setScaleType(ScaleType.CENTER_CROP);
-            playlist.addView(img);
-
-            img.setOnClickListener(new OnClickListener() {
-
-                @Override
-                public void onClick(View v) {
-                    if (dc != null && dc.getCurrentBook() != null && !dc.getCurrentBook().getPath().equals(s)) {
-
-                        dc.onCloseActivityFinal(new Runnable() {
-
-                            @Override
-                            public void run() {
-                                ExtUtils.showDocumentWithoutDialog(a, new File(s), -1, palylistPath);
-                            }
-                        });
-                    }
-                }
-            });
-
-            playlist.setViewDraggable(img, img);
-            playlist.setOnViewSwapListener(new OnViewSwapListener() {
-
-                @Override
-                public void onSwapFinish() {
-                    List<String> list = new ArrayList<String>();
-                    for (int i = 0; i < playlist.getChildCount(); i++) {
-                        View child = playlist.getChildAt(i);
-                        list.add((String) child.getTag());
-                    }
-                    Playlists.updatePlaylist(palylistPath, list);
-                }
-
-                @Override
-                public void onSwap(View draggedView, int initPosition, View swappedView, int swappedPosition) {
-                }
-            });
-
-        }
 
     }
 

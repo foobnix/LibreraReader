@@ -7,8 +7,11 @@ import com.foobnix.android.utils.Dips;
 import com.foobnix.pdf.info.ExtUtils;
 import com.foobnix.pdf.info.IMG;
 import com.foobnix.pdf.info.R;
+import com.foobnix.pdf.info.view.UnderlineImageView;
 
+import android.annotation.TargetApi;
 import android.content.Context;
+import android.os.Build;
 import android.support.v4.view.MotionEventCompat;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -16,6 +19,7 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.ImageView.ScaleType;
 import android.widget.TextView;
 
 public class PlaylistAdapter extends RecyclerView.Adapter<PlaylistAdapter.ItemViewHolder> implements ItemTouchHelperAdapter {
@@ -25,24 +29,32 @@ public class PlaylistAdapter extends RecyclerView.Adapter<PlaylistAdapter.ItemVi
 
 
     private final OnStartDragListener mDragStartListener;
+    private boolean horizontal;
 
-    public PlaylistAdapter(Context context, List<String> mItems, OnStartDragListener dragStartListener) {
+    public PlaylistAdapter(Context context, List<String> mItems, OnStartDragListener dragStartListener, boolean horizontal) {
         mDragStartListener = dragStartListener;
         this.mItems = mItems;
+        this.horizontal = horizontal;
     }
 
     @Override
     public ItemViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_tab_line, parent, false);
+        View view = null;
+        if (horizontal) {
+            view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_playlist_line, parent, false);
+        } else {
+            view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_playlist_grid, parent, false);
+
+        }
         ItemViewHolder itemViewHolder = new ItemViewHolder(view);
         return itemViewHolder;
     }
 
+    @TargetApi(Build.VERSION_CODES.JELLY_BEAN)
     @Override
     public void onBindViewHolder(final ItemViewHolder holder, int position) {
         final String item = mItems.get(position);
         holder.textView.setText(ExtUtils.getFileName(item));
-        holder.isVisible.setVisibility(View.GONE);
         
         holder.parent.setOnClickListener(new View.OnClickListener() {
 
@@ -56,7 +68,14 @@ public class PlaylistAdapter extends RecyclerView.Adapter<PlaylistAdapter.ItemVi
         holder.imageView.getLayoutParams().width = size;
         holder.imageView.getLayoutParams().height = (int) (size * IMG.WIDTH_DK);
 
-        IMG.getCoverPageWithEffect(holder.imageView, item, SIZE, null);
+        holder.imageView.setAdjustViewBounds(true);
+        holder.imageView.setScaleType(ScaleType.CENTER_CROP);
+
+        if (Build.VERSION.SDK_INT >= 16) {
+            holder.imageView.setCropToPadding(true);
+        }
+
+        IMG.getCoverPage(holder.imageView, item, SIZE);
 
         // Start a drag whenever the handle view it touched
         holder.imageDrag.setOnTouchListener(new View.OnTouchListener() {
@@ -98,17 +117,17 @@ public class PlaylistAdapter extends RecyclerView.Adapter<PlaylistAdapter.ItemVi
     public static class ItemViewHolder extends RecyclerView.ViewHolder implements ItemTouchHelperViewHolder {
 
         public final TextView textView;
-        public final ImageView imageView, imageDrag;
-        public final View isVisible;
+        public final ImageView imageDrag;
+        public final UnderlineImageView imageView;
+
         public final View parent;
 
         public ItemViewHolder(View itemView) {
             super(itemView);
             parent = itemView;
             textView = (TextView) itemView.findViewById(R.id.text1);
-            imageView = (ImageView) itemView.findViewById(R.id.image1);
+            imageView = (UnderlineImageView) itemView.findViewById(R.id.image1);
             imageDrag = (ImageView) itemView.findViewById(R.id.imageDrag);
-            isVisible = itemView.findViewById(R.id.isVisible);
         }
 
         @Override

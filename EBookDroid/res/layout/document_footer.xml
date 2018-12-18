@@ -22,13 +22,13 @@
                 android:textSize="14sp"
                 android:textStyle="bold" />
 
-            <com.jmedeisis.draglinearlayout.DragLinearLayout
+            <android.support.v7.widget.RecyclerView
                 android:padding="5dip" 
-                android:id="@+id/playlist"
+                android:id="@+id/playlistRecycleView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal" >
-            </com.jmedeisis.draglinearlayout.DragLinearLayout>
+            </android.support.v7.widget.RecyclerView>
 
         <LinearLayout
             android:layout_width="match_parent"
