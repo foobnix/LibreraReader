@@ -514,6 +514,7 @@ public class Clouds {
                     });
                 } catch (Exception e) {
                     LOG.d(e);
+
                     a.runOnUiThread(new Runnable() {
 
                         @Override

@@ -169,6 +169,7 @@
    <string name="no_author">Без автора</string>
    <string name="no_serie">Без серії</string>
    <string name="no_genre">Без жанру</string>
+   <string name="no_language">Немає мови</string>
    <string name="without_series">Без серії</string>
    <string name="folders">Папки</string>
    <string name="recent">Недавні</string>
@@ -351,7 +352,6 @@
    <string name="press_color_to_apply">Натисніть Color для застосування</string>
    <string name="pro_pdf_description_ads_free">Програма без реклами</string>
    <string name="rotate">Повернути</string>
-   <string name="select">Вибрати</string>
    <string name="split_pages_in_two">Розрізати сторінку</string>
    <string name="save_changes">Зберегти зміни</string>
    <string name="rename">Змінити назву</string>
@@ -471,7 +471,6 @@
    <string name="cloud_not_connected">Хмара не підключена</string>
    <string name="cloud_sync_folder">Папка синхронізації Cloud</string>
    <string name="clouds">Хмари</string>
-   <string name="add_to_cloud">Додати до хмари</string>
    <string name="librera_cloud">Хмара бібліотеки</string>
    <string name="hide_search_bar">Сховати панель пошуку</string>
    <string name="show_search_bar">Показати панель пошуку</string>
@@ -504,4 +503,16 @@
    <string name="exit_application_question">Завершити додаток?</string>
    <string name="open_folder_as_a_book">Відкрийте папку як книгу</string>
    <string name="read_out_loud_with_tts">Читати гучно з TTS</string>
+   <string name="allow_minimum_brightness">Дозволити мінімальну яскравість</string>
+   <string name="select">Виберіть</string>
+   <string name="create_playlist">Створити список відтворення</string>
+   <string name="upload_to_cloud">Завантажити в обмін</string>
+   <string name="add_to_playlist">Додати до плейлиста</string>
+   <string name="create_tag">Створити тег</string>
+   <string name="add_tags">Додати теги</string>
+   <string name="play">Грати</string>
+   <string name="favorite">Улюблений</string>
+   <string name="playlists">Списки відтворення</string>
+   <string name="tags">Теги</string>
+   <string name="are_you_sure_to_delete_playlist_">Ви дійсно бажаєте видалити список відтворення?</string>
 </resources>

@@ -30,15 +30,15 @@ public class AppBookmark {
         this.date = System.currentTimeMillis();
     }
 
-    private String fixText(String path) {
+    private static String fixText(String path) {
         if (path == null) {
-            return null;
+            return "";
         }
-        return path.replace(DIV, "");
+        return path.replace(DIV, "-");
     }
 
     public static String decode(AppBookmark bookmark) {
-        String format = String.format("%s~%s~%s~%s~%s~%s", bookmark.getPath(), bookmark.getText(), bookmark.getPage(), bookmark.getTitle(), bookmark.getDate(), bookmark.getPercent());
+        String format = String.format("%s~%s~%s~%s~%s~%s", fixText(bookmark.getPath()), fixText(bookmark.getText()), bookmark.getPage(), fixText(bookmark.getTitle()), bookmark.getDate(), bookmark.getPercent());
         LOG.d("AppBookmark", format);
         return format;
     }

@@ -169,6 +169,7 @@
    <string name="no_author">Nullus effector denotum</string>
    <string name="no_serie">Nulla catena</string>
    <string name="no_genre">Nullum generis</string>
+   <string name="no_language">Nec lingua</string>
    <string name="without_series">Foras catena</string>
    <string name="folders">Coopercula</string>
    <string name="recent">Recentissimi</string>
@@ -351,7 +352,6 @@
    <string name="press_color_to_apply">Press on Color to apply</string>
    <string name="pro_pdf_description_ads_free">Application without Ads</string>
    <string name="rotate">Invertere</string>
-   <string name="select">Eligite</string>
    <string name="split_pages_in_two">Diffindere paginas</string>
    <string name="save_changes">Conservaveris mutationes?</string>
    <string name="rename">Transnominare</string>
@@ -471,7 +471,6 @@
    <string name="cloud_not_connected">Seiuncta nubem</string>
    <string name="cloud_sync_folder">Nubes sync folder</string>
    <string name="clouds">Nubes</string>
-   <string name="add_to_cloud">Addere ad nubes</string>
    <string name="librera_cloud">Nubes Librera</string>
    <string name="hide_search_bar">Investigationis occultare vectes</string>
    <string name="show_search_bar">Show quaero talea</string>
@@ -504,4 +503,16 @@
    <string name="exit_application_question">Application exit?</string>
    <string name="open_folder_as_a_book">Libri aperti ut folder</string>
    <string name="read_out_loud_with_tts">Et cum magna Read TTS</string>
+   <string name="allow_minimum_brightness">Minimum patitur candor</string>
+   <string name="select">Select</string>
+   <string name="create_playlist">Create Playlist</string>
+   <string name="upload_to_cloud">Ut upload Сloud</string>
+   <string name="add_to_playlist">Add to Playlist</string>
+   <string name="create_tag">Tag crea</string>
+   <string name="add_tags">Add tags</string>
+   <string name="play">Ludere</string>
+   <string name="favorite">Favorite</string>
+   <string name="playlists">Video</string>
+   <string name="tags">Tags</string>
+   <string name="are_you_sure_to_delete_playlist_">Esne certus ut delete playlist?</string>
 </resources>

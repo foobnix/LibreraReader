@@ -22,6 +22,7 @@ import com.foobnix.ext.CacheZipUtils;
 import com.foobnix.pdf.CopyAsyncTask;
 import com.foobnix.pdf.info.ADS;
 import com.foobnix.pdf.info.Android6;
+import com.foobnix.pdf.info.AppsConfig;
 import com.foobnix.pdf.info.DictsHelper;
 import com.foobnix.pdf.info.ExtUtils;
 import com.foobnix.pdf.info.IMG;
@@ -36,6 +37,7 @@ import com.foobnix.pdf.info.view.AlertDialogs;
 import com.foobnix.pdf.info.view.AnchorHelper;
 import com.foobnix.pdf.info.view.BrightnessHelper;
 import com.foobnix.pdf.info.view.Dialogs;
+import com.foobnix.pdf.info.view.DialogsPlaylist;
 import com.foobnix.pdf.info.view.DragingDialogs;
 import com.foobnix.pdf.info.view.HorizontallSeekTouchEventListener;
 import com.foobnix.pdf.info.view.MyPopupMenu;
@@ -115,13 +117,13 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
     VerticalViewPager viewPager;
     SeekBar seekBar;
     TextView toastBrightnessText, maxSeek, currentSeek, pagesCountIndicator, flippingIntervalView, pagesTime, pagesPower, titleTxt, chapterView, modeName;
-    View adFrame, bottomBar, bottomIndicators, moveCenter, onClose, overlay;
+    View adFrame, bottomBar, bottomIndicators, onClose, overlay;
     LinearLayout actionBar, bottomPanel;
     TTSControlsView ttsActive;
     FrameLayout anchor;
     UnderlineImageView onCrop, onBC;
 
-    ImageView lockModelImage, linkHistory, onModeChange, outline, onMove, textToSpeach, onPageFlip1, anchorX, anchorY;
+    ImageView moveCenter, lockModelImage, linkHistory, onModeChange, outline, onMove, textToSpeach, onPageFlip1, anchorX, anchorY;
 
     HorizontalModeController dc;
 
@@ -209,6 +211,7 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
 
         actionBar = (LinearLayout) findViewById(R.id.actionBar);
         bottomPanel = (LinearLayout) findViewById(R.id.bottomPanel);
+
 
         bottomBar = findViewById(R.id.bottomBar);
         bottomIndicators = findViewById(R.id.bottomIndicators);
@@ -391,7 +394,8 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
         });
 
         onBC.setVisibility(isTextFomat ? View.GONE : View.VISIBLE);
-        if (DocumentController.isEinkOrMode(this)) {
+
+        if (DocumentController.isEinkOrMode(this) || AppState.get().isEnableBC) {
             onBC.setVisibility(View.VISIBLE);
         }
         onMove.setVisibility(DocumentController.isEinkOrMode(this) && !isTextFomat ? View.VISIBLE : View.GONE);
@@ -586,7 +590,7 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
         });
 
         onCrop = (UnderlineImageView) findViewById(R.id.onCrop);
-        onCrop.setVisibility(isTextFomat ? View.GONE : View.VISIBLE);
+        onCrop.setVisibility(isTextFomat && !AppState.get().isCrop ? View.GONE : View.VISIBLE);
         onCrop.setOnClickListener(new View.OnClickListener() {
 
             @Override
@@ -787,9 +791,10 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
 
             @Override
             protected void onPostExecute(Object result) {
-                if (LOG.isEnable) {
+                if (AppsConfig.IS_BETA) {
                     long time = System.currentTimeMillis() - start;
-                    // modeName.setText("" + time / 1000);
+                    float sec = (float) time / 1000;
+                    modeName.setText(modeName.getText() + " (" + String.format("%.1f", sec) + " sec" + ")");
                 }
                 try {
                     // onClose.setVisibility(View.VISIBLE);
@@ -900,10 +905,10 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
 
                     updateIconMode();
 
-                    onCrop.setVisibility(dc.isTextFormat() ? View.GONE : View.VISIBLE);
+                    onCrop.setVisibility(dc.isTextFormat() && !AppState.get().isCrop ? View.GONE : View.VISIBLE);
                     onMove.setVisibility(DocumentController.isEinkOrMode(HorizontalViewActivity.this) && !dc.isTextFormat() ? View.VISIBLE : View.GONE);
                     onBC.setVisibility(dc.isTextFormat() ? View.GONE : View.VISIBLE);
-                    if (Dips.isEInk(dc.getActivity()) || AppState.get().isInkMode) {
+                    if (Dips.isEInk(dc.getActivity()) || AppState.get().isInkMode || AppState.get().isEnableBC) {
                         onBC.setVisibility(View.VISIBLE);
                     }
 
@@ -918,6 +923,8 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
                             DragingDialogs.textToSpeachDialog(anchor, dc);
                         }
                     });
+
+                    DialogsPlaylist.dispalyPlaylist(HorizontalViewActivity.this, dc);
 
                     // RecentUpates.updateAll(HorizontalViewActivity.this);
 
@@ -964,7 +971,10 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
 
         });
 
+
     }
+
+
 
     @Subscribe
     public void showHideTextSelectors(MessagePageXY event) {
@@ -1103,7 +1113,7 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
         }
 
         onPageFlip1.setVisibility(View.VISIBLE);
-        onPageFlip1.setImageResource(R.drawable.glyphicons_175_pause);
+        onPageFlip1.setImageResource(R.drawable.glyphicons_37_file_pause);
     }
 
     @Subscribe
@@ -1111,7 +1121,7 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
         flippingHandler.removeCallbacks(flippingRunnable);
         flippingHandler.removeCallbacksAndMessages(null);
         flippingIntervalView.setVisibility(View.GONE);
-        onPageFlip1.setImageResource(R.drawable.glyphicons_174_play);
+        onPageFlip1.setImageResource(R.drawable.glyphicons_37_file_play);
 
     }
 
@@ -1234,6 +1244,11 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
         } else {
             lockModelImage.setImageResource(R.drawable.glyphicons_205_unlock);
         }
+//        if (AppState.get().isLocked) {
+//            TintUtil.setTintImageWithAlpha(moveCenter, Color.LTGRAY);
+//        } else {
+//            TintUtil.setTintImageWithAlpha(moveCenter, Color.WHITE);
+//        }
 
     }
 
@@ -1400,7 +1415,6 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
         viewPager.setCurrentItem(dc.getCurentPage() + 1, isAnimate);
         dc.checkReadingTimer();
 
-
     }
 
     public void prevPage() {
@@ -1413,7 +1427,6 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
         lastClick = System.currentTimeMillis();
         viewPager.setCurrentItem(dc.getCurentPage() - 1, isAnimate);
         dc.checkReadingTimer();
-
 
     }
 
@@ -1940,6 +1953,10 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
             return;
         }
         prev = AppState.get().isEditMode;
+
+        if (AppsConfig.IS_BETA && animated) {
+            modeName.setText(R.string.mode_horizontally);
+        }
 
         if (!animated || AppState.get().isInkMode) {
             actionBar.setVisibility(AppState.get().isEditMode ? View.VISIBLE : View.GONE);

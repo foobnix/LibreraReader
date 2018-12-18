@@ -133,7 +133,7 @@ public class VerticalViewActivity extends AbstractActionActivity<VerticalViewAct
                 setTheme(R.style.StyledIndicatorsBlack);
             }
             finish();
-            ExtUtils.showDocumentInner(this, getIntent().getData(), getIntent().getIntExtra(DocumentController.EXTRA_PAGE, 0));
+            ExtUtils.showDocumentInner(this, getIntent().getData(), getIntent().getIntExtra(DocumentController.EXTRA_PAGE, 0), getIntent().getStringExtra(DocumentController.EXTRA_PLAYLIST));
             return;
         } else {
             if (getIntent().getData() != null) {

@@ -8,7 +8,7 @@ import java.util.Iterator;
 
 import com.foobnix.android.utils.LOG;
 import com.foobnix.ext.CacheZipUtils.CacheDir;
-import com.google.android.gms.common.util.IOUtils;
+import com.foobnix.mobi.parser.IOUtils;
 
 import net.lingala.zip4j.core.ZipFile;
 import net.lingala.zip4j.exception.ZipException;
@@ -23,7 +23,10 @@ public class ZipArchiveInputStream extends InputStream {
     private ZipInputStream inputStream;
     private File tempFile;
 
+    // public static final Lock lock = new ReentrantLock();
+
     public ZipArchiveInputStream(String file) {
+        // CacheZipUtils.cacheLock.lock();
         try {
             zp = new ZipFile(file);
             iterator = zp.getFileHeaders().iterator();
@@ -32,7 +35,8 @@ public class ZipArchiveInputStream extends InputStream {
         }
     }
 
-    public ZipArchiveInputStream(InputStream is, String string) {
+    public ZipArchiveInputStream(InputStream is) {
+        // CacheZipUtils.cacheLock.lock();
         try {
             if (tempFile != null) {
                 tempFile.delete();
@@ -40,7 +44,8 @@ public class ZipArchiveInputStream extends InputStream {
             tempFile = new File(CacheDir.ZipApp.getDir(), "temp.zip");
 
             LOG.d("zip-tempFile", tempFile.getPath());
-            IOUtils.copyStream(is, new FileOutputStream(tempFile));
+            IOUtils.copy(is, new FileOutputStream(tempFile));
+            is.close();
 
             zp = new ZipFile(tempFile);
             iterator = zp.getFileHeaders().iterator();
@@ -51,38 +56,62 @@ public class ZipArchiveInputStream extends InputStream {
 
     @Override
     public void close() throws IOException {
+        // CacheZipUtils.cacheLock.unlock();
+
         if (tempFile != null) {
             tempFile.delete();
+        }
+        closeStream();
+        if (zp != null) {
+            zp = null;
+        }
+    }
+
+    private void closeStream() {
+        if (inputStream != null) {
+            try {
+                inputStream.close(true);
+                inputStream = null;
+            } catch (Exception e) {
+                LOG.e(e);
+            }
         }
     }
 
     public ArchiveEntry getNextEntry() {
-        try {
-            if (iterator == null || !iterator.hasNext()) {
-                return null;
-            }
-            current = iterator.next();
-            inputStream = zp.getInputStream(current);
-        } catch (ZipException e) {
-            LOG.e(e);
+        if (iterator == null || !iterator.hasNext()) {
             return null;
         }
-
+        closeStream();
+        current = iterator.next();
         return current != null ? new ArchiveEntry(current) : null;
+    }
+
+    private void openStream() throws IOException {
+        if (inputStream == null) {
+            try {
+                inputStream = zp.getInputStream(current);
+            } catch (ZipException e) {
+                throw new IOException();
+            }
+        }
     }
 
     @Override
     public int read() throws IOException {
+        openStream();
         return inputStream.read();
     }
 
     @Override
     public int read(byte[] b) throws IOException {
+        openStream();
         return inputStream.read(b);
     }
 
     @Override
     public int read(byte[] b, int off, int len) throws IOException {
+        openStream();
         return inputStream.read(b, off, len);
     }
 

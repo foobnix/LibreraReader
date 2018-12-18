@@ -21,7 +21,7 @@ public class HtmlExtractor {
 
     public static final String OUT_FB2_XML = "temp.html";
 
-    public static FooterNote extract(String inputPath, final String outputDir) throws IOException {
+    public static FooterNote extract(String inputPath, final String outputDir, boolean force) throws IOException {
         // File file = new File(new File(inputPath).getParent(), OUT_FB2_XML);
         File file = new File(outputDir, OUT_FB2_XML);
 
@@ -37,7 +37,7 @@ public class HtmlExtractor {
 
             HypenUtils.resetTokenizer();
 
-            boolean accurate = !LOG.isEnable || AppState.get().isAccurateFontSize;
+            boolean accurate = !LOG.isEnable || AppState.get().isAccurateFontSize || force;
             if (accurate) {
                 boolean isBody = false;
                 while ((line = input.readLine()) != null) {

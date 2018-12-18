@@ -169,6 +169,7 @@
    <string name="no_author">Brak autora</string>
    <string name="no_serie">Brak serii</string>
    <string name="no_genre">Brak gatunku</string>
+   <string name="no_language">Bez języka</string>
    <string name="without_series">Bez serii</string>
    <string name="folders">Foldery</string>
    <string name="recent">Ostatnie</string>
@@ -351,7 +352,6 @@
    <string name="press_color_to_apply">Wybierz kolor, aby zastosować</string>
    <string name="pro_pdf_description_ads_free">Aplikacja bez reklam</string>
    <string name="rotate">Obróć</string>
-   <string name="select">Wybierz</string>
    <string name="split_pages_in_two">Podział strony</string>
    <string name="save_changes">Zapisz zmiany</string>
    <string name="rename">Zmień nazwę</string>
@@ -471,7 +471,6 @@
    <string name="cloud_not_connected">Chmura nie jest połączona</string>
    <string name="cloud_sync_folder">Folder synchronizacji w chmurze</string>
    <string name="clouds">Chmury</string>
-   <string name="add_to_cloud">Dodaj do chmury</string>
    <string name="librera_cloud">Chmura Librera</string>
    <string name="hide_search_bar">Ukryj pasek wyszukiwania</string>
    <string name="show_search_bar">Pokaż pasek wyszukiwania</string>
@@ -504,4 +503,16 @@
    <string name="exit_application_question">Zamknij aplikację?</string>
    <string name="open_folder_as_a_book">Otwórz folder jako książkę</string>
    <string name="read_out_loud_with_tts">Czytaj głośno za pomocą TTS</string>
+   <string name="allow_minimum_brightness">Zezwalaj na minimalną jasność</string>
+   <string name="select">Wybierz</string>
+   <string name="create_playlist">Stwórz playlistę</string>
+   <string name="upload_to_cloud">Prześlij do Сloud</string>
+   <string name="add_to_playlist">Dodaj do listy odtwarzania</string>
+   <string name="create_tag">Utwórz tag</string>
+   <string name="add_tags">Dodaj tagi</string>
+   <string name="play">Grać</string>
+   <string name="favorite">Ulubiony</string>
+   <string name="playlists">Listy odtwarzania</string>
+   <string name="tags">Tagi</string>
+   <string name="are_you_sure_to_delete_playlist_">Czy na pewno chcesz usunąć playlistę?</string>
 </resources>

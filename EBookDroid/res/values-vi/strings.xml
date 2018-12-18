@@ -169,6 +169,7 @@
    <string name="no_author">Không có tác giả</string>
    <string name="no_serie">Không có serie</string>
    <string name="no_genre">Không có thể loại</string>
+   <string name="no_language">Không ngôn ngữ</string>
    <string name="without_series">Không có hàng loạt</string>
    <string name="folders">Thư mục</string>
    <string name="recent">Mới đây</string>
@@ -351,7 +352,6 @@
    <string name="press_color_to_apply">Nhấn vào màu để áp dụng</string>
    <string name="pro_pdf_description_ads_free">Ứng dụng mà không cần quảng cáo</string>
    <string name="rotate">Quay</string>
-   <string name="select">Lựa chọn</string>
    <string name="split_pages_in_two">Trang chia</string>
    <string name="save_changes">Lưu thay đổi?</string>
    <string name="rename">Đổi tên</string>
@@ -471,7 +471,6 @@
    <string name="cloud_not_connected">Đám mây không được kết nối</string>
    <string name="cloud_sync_folder">Thư mục đồng bộ hóa trên đám mây</string>
    <string name="clouds">Mây</string>
-   <string name="add_to_cloud">Thêm vào đám mây</string>
    <string name="librera_cloud">Librera cloud</string>
    <string name="hide_search_bar">Ẩn thanh tìm kiếm</string>
    <string name="show_search_bar">Hiển thị thanh tìm kiếm</string>
@@ -504,4 +503,16 @@
    <string name="exit_application_question">Ứng dụng xuất cảnh?</string>
    <string name="open_folder_as_a_book">Mở thư mục dưới dạng sách</string>
    <string name="read_out_loud_with_tts">Đọc to với TTS</string>
+   <string name="allow_minimum_brightness">Cho phép độ sáng tối thiểu</string>
+   <string name="select">Lựa chọn</string>
+   <string name="create_playlist">Tạo danh sách phát</string>
+   <string name="upload_to_cloud">Tải lên lên</string>
+   <string name="add_to_playlist">Thêm vào danh sách phát</string>
+   <string name="create_tag">Tạo thẻ</string>
+   <string name="add_tags">Thêm thẻ</string>
+   <string name="play">Chơi</string>
+   <string name="favorite">Yêu thích</string>
+   <string name="playlists">Danh sách phát</string>
+   <string name="tags">Thẻ</string>
+   <string name="are_you_sure_to_delete_playlist_">Bạn có chắc chắn xóa danh sách phát?</string>
 </resources>

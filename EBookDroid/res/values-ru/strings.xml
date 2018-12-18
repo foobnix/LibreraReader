@@ -5,7 +5,7 @@
    <string name="add_folder">Добавить еще путь</string>
    <string name="archives">Архивы</string>
    <string name="other">Другое</string>
-   <string name="you_need_to_update_the_library">Для вступления изменений в силу нужно обновить библиотеку. Сделать это сейчас?</string>
+   <string name="you_need_to_update_the_library">Для вступления изменений в силу нужно пересканировать библиотеку. Сделать это сейчас?</string>
    <string name="in_the_author_s_name_first_the_surname">Сначала фамилия автора, а затем имя</string>
    <string name="orientation">Ориентация</string>
    <string name="automatic">Автоматическая</string>
@@ -116,7 +116,7 @@
    <string name="previous_page">Предыдущая страница</string>
    <string name="db_do_nothing">Ничего не делать</string>
    <string name="remind_about_rest_every">Увед-е об отдыхе каждые</string>
-   <string name="action_on_double_tap">Двойной тап по центру</string>
+   <string name="action_on_double_tap">Два тапа по центру экрана</string>
    <string name="db_auto_scroll">Автопрокрутка текста</string>
    <string name="opening_book_with_losed_lock">Всегда блокировать смещения страниц при открытии PDF/DJVU (\"закрывать\" замочек)</string>
    <string name="opening_book_with_cropped_borders">Активировать обрезку пустых полей при каждом открытии PDF/DJVU</string>
@@ -169,6 +169,7 @@
    <string name="no_author">Без автора</string>
    <string name="no_serie">Без серии</string>
    <string name="no_genre">Без жанра</string>
+   <string name="no_language">Без выявленного языка</string>
    <string name="without_series">Вне серий</string>
    <string name="folders">Папки</string>
    <string name="recent">Недавние</string>
@@ -351,7 +352,6 @@
    <string name="press_color_to_apply">Выберите цвет</string>
    <string name="pro_pdf_description_ads_free">Приложение без рекламы</string>
    <string name="rotate">Повернуть</string>
-   <string name="select">Выбрать</string>
    <string name="split_pages_in_two">Разрезать страницы</string>
    <string name="save_changes">Сохранить изменения?</string>
    <string name="rename">Переименовать</string>
@@ -454,7 +454,7 @@
    <string name="hyphenation_language">Язык переносов</string>
    <string name="replacing_the_white_color_in_the_images_with_the_background_color">Позволять менять цвет шрифтов для PDF/DJVU; окрашивать белый фон изображений в цвет фона страниц при чтении в режиме \"День\"</string>
    <string name="no_keywords">Без ключевых слов</string>
-   <string name="my_tags">Свои теги</string>
+   <string name="my_tags">Теги</string>
    <string name="crop_borders_symmetrically">Симметричная обрезка полей</string>
    <string name="displaying_the_author_and_title_of_the_pdf_book_from_the_meta_tags">Отображать имена авторов и названия PDF-книг, используя информацию метаданных</string>
    <string name="meta_tags">Метаданные</string>
@@ -471,7 +471,6 @@
    <string name="cloud_not_connected">Облако не подключено</string>
    <string name="cloud_sync_folder">Папка облачной синхронизации</string>
    <string name="clouds">Облака</string>
-   <string name="add_to_cloud">Добавить в облако</string>
    <string name="librera_cloud">Облако Librera</string>
    <string name="hide_search_bar">Скрывать панель поиска</string>
    <string name="show_search_bar">Показывать панель поиска</string>
@@ -491,17 +490,29 @@
    <string name="quick_bookmark_by_the_headset">Использовать одну из кнопок гарнитуры для создания быстрых закладок к книге</string>
    <string name="slider_scale">Шкала бегунка</string>
    <string name="chapter_format">Прогресс чтения</string>
-   <string name="play_a_music_file">Выбрать и проиграть муз. файл</string>
-   <string name="rate_us">Оцените нас</string>
+   <string name="play_a_music_file">Выбрать и проиграть музык. файл</string>
+   <string name="rate_us">Поставить оценку</string>
    <string name="reset">Сброс</string>
    <string name="status_bar_location">Расположение строки сост-я</string>
    <string name="add_to_bookmark">Добавить в закладки</string>
    <string name="fast_reading">Скорочтение (RSVP)</string>
    <string name="minimum_line_length">Минимальная длина линии текста (CPL)</string>
-   <string name="ask_rate_us1">Если вам нравится это приложение, пожалуйста, загляните и оцените нас на Google Play. Спасибо!</string>
+   <string name="ask_rate_us1">Если вам нравится это приложение, пожалуйста, загляните и оцените его на Google Play. Спасибо!</string>
    <string name="message">Сообщение</string>
-   <string name="exit_application">Выход из приложения</string>
+   <string name="exit_application">Выйти из приложения</string>
    <string name="exit_application_question">Выйти из приложения?</string>
-   <string name="open_folder_as_a_book">Открыть папку в виде книги</string>
-   <string name="read_out_loud_with_tts">Читайте вслух с TTS</string>
+   <string name="open_folder_as_a_book">Открыть файлы папки как книгу</string>
+   <string name="read_out_loud_with_tts">TTS-аудионачитка книги</string>
+   <string name="allow_minimum_brightness">Разрешать минимально возможные значения яркости</string>
+   <string name="select">Выбрать</string>
+   <string name="create_playlist">Создать плейлист</string>
+   <string name="upload_to_cloud">Загрузить в облако</string>
+   <string name="add_to_playlist">Добавить в плейлист</string>
+   <string name="create_tag">Создать тег</string>
+   <string name="add_tags">Добавить теги</string>
+   <string name="play">Проиграть</string>
+   <string name="favorite">Избранные</string>
+   <string name="playlists">Плейлисты</string>
+   <string name="tags">Теги</string>
+   <string name="are_you_sure_to_delete_playlist_">Вы уверены, что хотите удалить плейлист?</string>
 </resources>

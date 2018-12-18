@@ -4,6 +4,7 @@ import java.io.File;
 import java.lang.reflect.Field;
 import java.util.concurrent.atomic.AtomicLong;
 
+import org.ebookdroid.BookType;
 import org.ebookdroid.droids.mupdf.codec.exceptions.MuPdfPasswordException;
 import org.ebookdroid.droids.mupdf.codec.exceptions.MuPdfPasswordRequiredException;
 import org.ebookdroid.ui.viewer.VerticalViewActivity;
@@ -79,7 +80,9 @@ public abstract class AbstractCodecContext implements CodecContext {
         LOG.d("Open-Document 2 LANG:", BookCSS.get().hypenLang, fileNameOriginal);
 
         File cacheFileName = getCacheFileName(fileNameOriginal + getFileNameSalt(fileNameOriginal));
-        CacheZipUtils.removeFiles(CacheZipUtils.CACHE_BOOK_DIR.listFiles(), cacheFileName);
+        if (!BookType.ODT.is(fileNameOriginal)) {
+            CacheZipUtils.removeFiles(CacheZipUtils.CACHE_BOOK_DIR.listFiles(), cacheFileName);
+        }
 
         if (cacheFileName != null && cacheFileName.isFile()) {
             LOG.d("Open-Document from cache", fileNameOriginal);
@@ -115,8 +118,7 @@ public abstract class AbstractCodecContext implements CodecContext {
     /**
      * Constructor.
      *
-     * @param contextHandle
-     *            contect handler
+     * @param contextHandle contect handler
      */
     protected AbstractCodecContext(final long contextHandle) {
         this.contextHandle = contextHandle;

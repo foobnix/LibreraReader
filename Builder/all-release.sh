@@ -6,10 +6,11 @@ ant clean-apk
 
 rm /home/ivan-dev/Dropbox/FREE_PDF_APK/testing/*.apk
 
-ant arm pro
-ant arm64 pro
 ant arm+arm64 pro
 ant x86 pro
+
+ant arm pro
+ant arm64 pro
 
 ant arm pdf
 ant arm64 pdf
@@ -17,14 +18,13 @@ ant x86 pdf
 
 ant arm classic
 ant arm64 classic
-ant x86 classic
 
-ant arm+arm64 ebooka
-ant x86 ebooka
+ant arm ebooka
+ant arm64 ebooka
 
+ant arm pdf-v2
+ant arm64 pdf-v2
 
-ant arm+arm64 pdf-v2
-ant x86 pdf-v2
 
 ./remove_all.sh
 ./install_all.sh

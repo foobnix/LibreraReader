@@ -169,6 +169,7 @@
    <string name="no_author">Ingen forfatter</string>
    <string name="no_serie">Ingen serie</string>
    <string name="no_genre">Ingen sjanger</string>
+   <string name="no_language">Ingen språk</string>
    <string name="without_series">Uten serie</string>
    <string name="folders">Mapper</string>
    <string name="recent">Nylig</string>
@@ -351,7 +352,6 @@
    <string name="press_color_to_apply">Trykk på Farge for å søke</string>
    <string name="pro_pdf_description_ads_free">Søknad uten annonser</string>
    <string name="rotate">Rotere</string>
-   <string name="select">Plukke ut</string>
    <string name="split_pages_in_two">Split side</string>
    <string name="save_changes">Lagre endringer?</string>
    <string name="rename">Gi nytt navn</string>
@@ -471,7 +471,6 @@
    <string name="cloud_not_connected">Cloud ikke tilkoblet</string>
    <string name="cloud_sync_folder">Cloud synkroniseringsmappe</string>
    <string name="clouds">Skyer</string>
-   <string name="add_to_cloud">Legg til i skyen</string>
    <string name="librera_cloud">Flytt skyen</string>
    <string name="hide_search_bar">Skjul søkefelt</string>
    <string name="show_search_bar">Vis søkefelt</string>
@@ -504,4 +503,16 @@
    <string name="exit_application_question">Utgangsprogram?</string>
    <string name="open_folder_as_a_book">Åpne mappen som en bok</string>
    <string name="read_out_loud_with_tts">Les høyt med TTS</string>
+   <string name="allow_minimum_brightness">Tillat minimal lysstyrke</string>
+   <string name="select">Å velge</string>
+   <string name="create_playlist">Lag spilleliste</string>
+   <string name="upload_to_cloud">Last opp til Сloud</string>
+   <string name="add_to_playlist">Legg til i spilleliste</string>
+   <string name="create_tag">Opprett tagg</string>
+   <string name="add_tags">Legg til merkelapper</string>
+   <string name="play">Spille</string>
+   <string name="favorite">Favoritt</string>
+   <string name="playlists">Spillelister</string>
+   <string name="tags">Tags</string>
+   <string name="are_you_sure_to_delete_playlist_">Er du sikker på å slette spilleliste?</string>
 </resources>

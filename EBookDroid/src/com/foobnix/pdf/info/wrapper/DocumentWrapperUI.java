@@ -34,6 +34,7 @@ import com.foobnix.pdf.info.view.AnchorHelper;
 import com.foobnix.pdf.info.view.BrightnessHelper;
 import com.foobnix.pdf.info.view.CustomSeek;
 import com.foobnix.pdf.info.view.Dialogs;
+import com.foobnix.pdf.info.view.DialogsPlaylist;
 import com.foobnix.pdf.info.view.DragingDialogs;
 import com.foobnix.pdf.info.view.DrawView;
 import com.foobnix.pdf.info.view.HorizontallSeekTouchEventListener;
@@ -92,7 +93,7 @@ public class DocumentWrapperUI {
 
     TextView toastBrightnessText, pagesCountIndicator, currentSeek, maxSeek, currentTime, bookName, nextTypeBootom, batteryLevel, lirbiLogo, reverseKeysIndicator;
     ImageView onDocDontext, toolBarButton, linkHistory, lockUnlock, lockUnlockTop, textToSpeachTop, clockIcon, batteryIcon;
-    ImageView showSearch, nextScreenType, autoScroll, textToSpeach, onModeChange, imageMenuArrow, editTop2, goToPage1, goToPage1Top;
+    ImageView showSearch, nextScreenType, moveCenter, autoScroll, textToSpeach, onModeChange, imageMenuArrow, editTop2, goToPage1, goToPage1Top;
     View adFrame, titleBar, overlay, menuLayout, moveLeft, moveRight, bottomBar, onCloseBook, seekSpeedLayot, zoomPlus, zoomMinus;
     View line1, line2, lineFirst, lineClose, closeTop;
     TTSControlsView ttsActive;
@@ -424,12 +425,19 @@ public class DocumentWrapperUI {
             crop.setVisibility(View.GONE);
             cut.setVisibility(View.GONE);
             onModeChange.setVisibility(View.GONE);
-            if (Dips.isEInk(dc.getActivity()) || AppState.get().isInkMode) {
+            if (Dips.isEInk(dc.getActivity()) || AppState.get().isInkMode || AppState.get().isEnableBC) {
                 onBC.setVisibility(View.VISIBLE);
             } else {
                 onBC.setVisibility(View.GONE);
             }
+            if (AppState.get().isCrop) {
+                crop.setVisibility(View.VISIBLE);
+            }
+            if (AppState.get().isCut) {
+                cut.setVisibility(View.VISIBLE);
+            }
         }
+
 
         crop.underline(AppState.get().isCrop);
         cut.underline(AppState.get().isCut);
@@ -480,6 +488,11 @@ public class DocumentWrapperUI {
             // lockUnlockTop.setColorFilter(a.getResources().getColor(R.color.tint_white));
             // mode = View.GONE;
         }
+//        if (AppState.get().isLocked) {
+//            TintUtil.setTintImageWithAlpha(moveCenter, Color.LTGRAY);
+//        } else {
+//            TintUtil.setTintImageWithAlpha(moveCenter, Color.WHITE);
+//        }
 
     }
 
@@ -640,7 +653,7 @@ public class DocumentWrapperUI {
         moveLeft = a.findViewById(R.id.moveLeft);
         moveLeft.setOnClickListener(onMoveLeft);
 
-        final ImageView moveCenter = (ImageView) a.findViewById(R.id.moveCenter);
+        moveCenter = a.findViewById(R.id.moveCenter);
         moveCenter.setOnClickListener(onMoveCenter);
 
         moveRight = a.findViewById(R.id.moveRight);
@@ -866,6 +879,8 @@ public class DocumentWrapperUI {
         currentSeek.setVisibility(View.GONE);
         maxSeek.setVisibility(View.GONE);
         seekBar.setVisibility(View.INVISIBLE);
+
+
 
     }
 
@@ -1223,9 +1238,9 @@ public class DocumentWrapperUI {
         initToolBarPlusMinus();
 
         if (AppState.get().isAutoScroll) {
-            autoScroll.setImageResource(R.drawable.glyphicons_175_pause);
+            autoScroll.setImageResource(R.drawable.glyphicons_37_file_pause);
         } else {
-            autoScroll.setImageResource(R.drawable.glyphicons_174_play);
+            autoScroll.setImageResource(R.drawable.glyphicons_37_file_play);
         }
 
         if (AppState.get().isMusicianMode) {
@@ -1844,6 +1859,8 @@ public class DocumentWrapperUI {
 
                     updateSpeedLabel();
 
+                    DialogsPlaylist.dispalyPlaylist(a, dc);
+
                 }
             });
         } catch (Exception e) {
@@ -1863,7 +1880,6 @@ public class DocumentWrapperUI {
         if (ttsActive != null) {
             ttsActive.setVisibility(TxtUtils.visibleIf(TTSEngine.get().isPlaying()));
         }
-
 
     }
 

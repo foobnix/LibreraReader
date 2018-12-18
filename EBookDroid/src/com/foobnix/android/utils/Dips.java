@@ -18,7 +18,9 @@ import android.view.WindowManager;
 
 public class Dips {
 
+    public final static int DP_0 = 0;
     public final static int DP_3 = Dips.dpToPx(3);
+    public final static int DP_4 = Dips.dpToPx(4);
     public final static int DP_5 = Dips.dpToPx(5);
     public final static int DP_10 = Dips.dpToPx(10);
     public final static int DP_15 = Dips.dpToPx(15);
@@ -26,6 +28,8 @@ public class Dips {
     public final static int DP_36 = Dips.dpToPx(36);
     public final static int DP_40 = Dips.dpToPx(40);
     public final static int DP_50 = Dips.dpToPx(50);
+    public final static int DP_60 = Dips.dpToPx(60);
+    public final static int DP_80 = Dips.dpToPx(80);
     public final static int DP_800 = Dips.dpToPx(800);
     public final static int DP_600 = Dips.dpToPx(600);
     public final static int DP_400 = Dips.dpToPx(400);

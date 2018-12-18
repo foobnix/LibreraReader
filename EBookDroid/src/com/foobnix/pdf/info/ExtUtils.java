@@ -206,6 +206,7 @@ public class ExtUtils {
         }
         if (AppState.get().supportRTF) {
             result.add(".rtf");
+            result.add(".odt");
             if (!AppState.get().supportZIP) {
                 result.add(".rtf.zip");
             }
@@ -227,7 +228,7 @@ public class ExtUtils {
             result.addAll(lirbeExt);
             result.add(".prc");
             result.add(".pdb");
-            
+
         }
 
         for (String ext : result) {
@@ -265,7 +266,7 @@ public class ExtUtils {
 
             if (ExtUtils.isZip(file)) {
 
-                if (CacheZipUtils.isSingleAndSupportEntryFile(file).first) {
+                if (CacheZipUtils.isSingleAndSupportEntry(file.getPath()).first) {
                     ExtUtils.showDocument(a, file);
                 } else {
                     ZipDialog.show(a, Uri.fromFile(file), null);
@@ -429,6 +430,19 @@ public class ExtUtils {
         return false;
     }
 
+    public static boolean isLibreFile(String name) {
+        if (TxtUtils.isEmpty(name)) {
+            return false;
+        }
+        name = name.toLowerCase(Locale.US);
+        for (String ext : lirbeExt) {
+            if (name.endsWith(ext)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
     public static boolean isOtherFile(File file) {
         if (file != null && file.isFile()) {
             String name = file.getName().toLowerCase(Locale.US);
@@ -531,8 +545,6 @@ public class ExtUtils {
         }
     }
 
-
-
     public static FileFilter getFileFilter() {
         return filter;
     }
@@ -573,7 +585,11 @@ public class ExtUtils {
         if (path == null) {
             return false;
         }
-        return BookType.ZIP.is(path) || BookType.EPUB.is(path) || BookType.FB2.is(path) || BookType.TXT.is(path) || BookType.RTF.is(path) || BookType.HTML.is(path) || BookType.MHT.is(path) || BookType.MOBI.is(path);
+        return BookType.ZIP.is(path) || BookType.EPUB.is(path) //
+                || BookType.FB2.is(path) || BookType.TXT.is(path) //
+                || BookType.RTF.is(path) || BookType.HTML.is(path) //
+                || BookType.MHT.is(path) || BookType.MOBI.is(path) //
+                || BookType.ODT.is(path);//
     }
 
     public static synchronized boolean isZip(File path) {
@@ -658,7 +674,7 @@ public class ExtUtils {
         ImageLoader.getInstance().clearAllTasks();
 
         if (AppState.get().isRememberMode) {
-            showDocumentWithoutDialog(c, file, page);
+            showDocumentWithoutDialog(c, file, page, null);
             return true;
         }
 
@@ -778,7 +794,7 @@ public class ExtUtils {
                 dialog.dismiss();
                 AppState.get().isAlwaysOpenAsMagazine = false;
                 AppState.get().isMusicianMode = false;
-                showDocumentWithoutDialog(c, file, page);
+                showDocumentWithoutDialog(c, file, page, null);
             }
         });
         horizontal.setOnClickListener(new View.OnClickListener() {
@@ -788,7 +804,7 @@ public class ExtUtils {
                 dialog.dismiss();
                 AppState.get().isAlwaysOpenAsMagazine = true;
                 AppState.get().isMusicianMode = false;
-                showDocumentWithoutDialog(c, file, page);
+                showDocumentWithoutDialog(c, file, page, null);
             }
         });
 
@@ -799,7 +815,7 @@ public class ExtUtils {
                 dialog.dismiss();
                 AppState.get().isAlwaysOpenAsMagazine = false;
                 AppState.get().isMusicianMode = true;
-                showDocumentWithoutDialog(c, file, page);
+                showDocumentWithoutDialog(c, file, page, null);
             }
         });
 
@@ -819,8 +835,8 @@ public class ExtUtils {
 
     }
 
-    public static void showDocumentWithoutDialog(final Context c, final File file, final int page) {
-        showDocument(c, Uri.fromFile(file), page);
+    public static void showDocumentWithoutDialog(final Context c, final File file, final int page, String playlist) {
+        showDocument(c, Uri.fromFile(file), page, playlist);
     }
 
     public static boolean showDocument(final Activity c, final Uri uri) {
@@ -832,26 +848,26 @@ public class ExtUtils {
         return showDocument(c, new File(filePath), -1);
     }
 
-    public static void showDocument(final Context c, final Uri uri, final int page) {
+    public static void showDocument(final Context c, final Uri uri, final int page, final String playList) {
         Safe.run(new Runnable() {
 
             @Override
             public void run() {
-                showDocumentInner(c, uri, page);
+                showDocumentInner(c, uri, page, playList);
             }
         });
 
     }
 
-    public static void showDocumentInner(final Context c, final Uri uri, final int page) {
+    public static void showDocumentInner(final Context c, final Uri uri, final int page, String playlist) {
         if (!isValidFile(uri)) {
             Toast.makeText(c, R.string.file_not_found, Toast.LENGTH_LONG).show();
             return;
         }
-        LOG.d("showDocument", uri.getPath());
+        LOG.d("showDocument", uri.getPath(), playlist);
 
         if (AppState.get().isAlwaysOpenAsMagazine) {
-            openHorizontalView(c, uri, page - 1);
+            openHorizontalView(c, uri, page - 1, playlist);
             return;
         }
 
@@ -861,17 +877,31 @@ public class ExtUtils {
         } catch (Exception e) {
             LOG.e(e);
         }
-        intent.setData(uri);
+        intent.setData(checkPlaylisturi(uri, intent, playlist));
 
         if (page > 0) {
             intent.putExtra(DocumentController.EXTRA_PAGE, page);
 
         }
         c.startActivity(intent);
-        // FileMetaDB.get().addRecent(uri.getPath());
     }
 
-    private static void openHorizontalView(final Context c, final Uri uri, final int page) {
+    public static Uri checkPlaylisturi(Uri uri, Intent intent, String playlist) {
+        if (TxtUtils.isNotEmpty(playlist)) {
+            intent.putExtra(DocumentController.EXTRA_PLAYLIST, playlist);
+        }
+
+        if (uri.getPath().endsWith(Playlists.L_PLAYLIST)) {
+            intent.putExtra(DocumentController.EXTRA_PLAYLIST, uri.getPath());
+            LOG.d("Open-uri1", uri.getPath());
+            Uri parse = Uri.fromFile(new File(Playlists.getFirstItem(uri.getPath())));
+            LOG.d("Open-uri2", parse);
+            return parse;
+        }
+        return uri;
+    }
+
+    private static void openHorizontalView(final Context c, final Uri uri, final int page, String playlist) {
         if (uri == null) {
             Toast.makeText(c, R.string.file_not_found, Toast.LENGTH_LONG).show();
             return;
@@ -882,7 +912,8 @@ public class ExtUtils {
         }
 
         final Intent intent = new Intent(c, HorizontalViewActivity.class);
-        intent.setData(uri);
+        intent.setData(checkPlaylisturi(uri, intent, playlist));
+
         try {
             intent.putExtra(PasswordDialog.EXTRA_APP_PASSWORD, ((Activity) c).getIntent().getStringExtra(PasswordDialog.EXTRA_APP_PASSWORD));
         } catch (Exception e) {
@@ -957,7 +988,7 @@ public class ExtUtils {
             targetedOpenIntents.add(targetedOpenIntent);
         }
         Intent remove = targetedOpenIntents.remove(targetedOpenIntents.size() - 1);
-        Intent createChooser = Intent.createChooser(remove, context.getString(R.string.select));
+        Intent createChooser = Intent.createChooser(remove, context.getString(R.string.open_with));
         Intent chooserIntent = createChooser.putExtra(Intent.EXTRA_INITIAL_INTENTS, targetedOpenIntents.toArray(new Parcelable[] {}));
 
         return chooserIntent;
@@ -1310,12 +1341,12 @@ public class ExtUtils {
                             if (a instanceof VerticalViewActivity) {
                                 AppState.get().isAlwaysOpenAsMagazine = false;
                                 AppState.get().isMusicianMode = false;
-                                showDocumentWithoutDialog(a, (File) result, page);
+                                showDocumentWithoutDialog(a, (File) result, page, null);
 
                             } else if (a instanceof HorizontalViewActivity) {
                                 AppState.get().isAlwaysOpenAsMagazine = true;
                                 AppState.get().isMusicianMode = false;
-                                showDocumentWithoutDialog(a, (File) result, page);
+                                showDocumentWithoutDialog(a, (File) result, page, null);
                             } else {
                                 showDocument(a, (File) result);
                             }

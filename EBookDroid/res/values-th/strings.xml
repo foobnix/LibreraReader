@@ -169,6 +169,7 @@
    <string name="no_author">ไม่มีผู้แต่ง</string>
    <string name="no_serie">ไม่มีซีรี่ส์</string>
    <string name="no_genre">ไม่มีประเภท</string>
+   <string name="no_language">ไม่มีภาษา</string>
    <string name="without_series">ไม่มีชุด</string>
    <string name="folders">โฟลเดอร์</string>
    <string name="recent">เมื่อเร็ว ๆ นี้</string>
@@ -351,7 +352,6 @@
    <string name="press_color_to_apply">กดปุ่มสีเพื่อใช้</string>
    <string name="pro_pdf_description_ads_free">แอพพลิเคชันที่ไม่มีโฆษณา</string>
    <string name="rotate">หมุน</string>
-   <string name="select">เลือก</string>
    <string name="split_pages_in_two">แบ่งหน้า</string>
    <string name="save_changes">บันทึกการเปลี่ยนแปลง?</string>
    <string name="rename">ตั้งชื่อใหม่</string>
@@ -471,7 +471,6 @@
    <string name="cloud_not_connected">Cloud ไม่ได้เชื่อมต่อ</string>
    <string name="cloud_sync_folder">โฟลเดอร์ซิงค์ระบบคลาวด์</string>
    <string name="clouds">เมฆ</string>
-   <string name="add_to_cloud">เพิ่มลงในคลาวด์</string>
    <string name="librera_cloud">Librera cloud</string>
    <string name="hide_search_bar">ซ่อนแถบค้นหา</string>
    <string name="show_search_bar">แสดงแถบค้นหา</string>
@@ -504,4 +503,16 @@
    <string name="exit_application_question">ออกจากแอพพลิเคชั่น?</string>
    <string name="open_folder_as_a_book">เปิดโฟลเดอร์เป็นหนังสือ</string>
    <string name="read_out_loud_with_tts">อ่านออกเสียงด้วย TTS</string>
+   <string name="allow_minimum_brightness">อนุญาตความสว่างขั้นต่ำ</string>
+   <string name="select">เลือก</string>
+   <string name="create_playlist">สร้างเพลย์ลิสต์</string>
+   <string name="upload_to_cloud">อัปโหลดไปที่Сloud</string>
+   <string name="add_to_playlist">เพิ่มลงในเพลย์ลิสต์</string>
+   <string name="create_tag">สร้างแท็ก</string>
+   <string name="add_tags">เพิ่มแท็ก</string>
+   <string name="play">เล่น</string>
+   <string name="favorite">ที่ชื่นชอบ</string>
+   <string name="playlists">รายการเพลง</string>
+   <string name="tags">แท็ก</string>
+   <string name="are_you_sure_to_delete_playlist_">คุณแน่ใจหรือไม่ว่าต้องการลบเพลย์ลิสต์</string>
 </resources>

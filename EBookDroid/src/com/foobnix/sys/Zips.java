@@ -6,5 +6,4 @@ public class Zips {
         return new ZipArchiveInputStream(file);
     }
 
-
 }

@@ -188,6 +188,12 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/enable_brightness_adjustment_on_the_left_of_the_screen" />
+        
+        <CheckBox
+            android:id="@+id/isAllowMinBrigthness"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/allow_minimum_brightness" />
 
         <CheckBox
             android:id="@+id/isIgnoreAnnotatations"

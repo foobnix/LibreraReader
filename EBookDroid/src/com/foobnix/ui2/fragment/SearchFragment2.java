@@ -7,6 +7,7 @@ import java.util.EmptyStackException;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Locale;
 import java.util.Set;
 import java.util.Stack;
 
@@ -23,6 +24,7 @@ import com.foobnix.pdf.info.TintUtil;
 import com.foobnix.pdf.info.view.EditTextHelper;
 import com.foobnix.pdf.info.view.KeyCodeDialog;
 import com.foobnix.pdf.info.view.MyPopupMenu;
+import com.foobnix.pdf.info.widget.DialogTranslateFromTo;
 import com.foobnix.pdf.info.widget.PrefDialogs;
 import com.foobnix.pdf.info.wrapper.AppState;
 import com.foobnix.pdf.info.wrapper.PopupHelper;
@@ -481,9 +483,12 @@ public class SearchFragment2 extends UIFragment<FileMeta> {
 
     }
 
+    int countTitles = 0;
+
     @Override
     public List<FileMeta> prepareDataInBackground() {
         String txt = searchEditText.getText().toString().trim();
+        countTitles = 0;
         if (Arrays.asList(AppState.MODE_GRID, AppState.MODE_COVERS, AppState.MODE_LIST, AppState.MODE_LIST_COMPACT).contains(AppState.get().libraryMode)) {
 
             if (!prevText.contains(txt)) {
@@ -539,21 +544,32 @@ public class SearchFragment2 extends UIFragment<FileMeta> {
                 }
             }
 
-            if (AppState.get().sortBy == SORT_BY.PATH.getIndex()) {
+            if (AppState.get().sortBy == SORT_BY.PATH.getIndex() || AppState.get().sortBy == SORT_BY.LANGUAGE.getIndex()) {
                 List<FileMeta> res = new ArrayList<FileMeta>();
                 String last = null;
 
                 String extDir = Environment.getExternalStorageDirectory().getPath();
 
                 for (FileMeta it : searchBy) {
-                    String parentName = it.getParentPath();
-                    parentName = parentName.replace(extDir, "");
+                    String parentName = null;
+                    if (AppState.get().sortBy == SORT_BY.PATH.getIndex()) {
+                        parentName = it.getParentPath();
+                        parentName = parentName.replace(extDir, "");
+                    } else if (AppState.get().sortBy == SORT_BY.LANGUAGE.getIndex()) {
+                        String lang = it.getLang();
+                        if (TxtUtils.isEmpty(lang)) {
+                            parentName = "---";
+                        } else {
+                            parentName = DialogTranslateFromTo.getLanuageByCode(lang);
+                        }
+                    }
                     if (!parentName.equals(last)) {
                         FileMeta fm = new FileMeta();
                         fm.setCusType(FileMetaAdapter.DISPALY_TYPE_LAYOUT_TITLE_DIVIDER);
                         fm.setTitle(parentName);
                         last = parentName;
                         res.add(fm);
+                        countTitles++;
                     }
                     res.add(it);
                 }
@@ -648,10 +664,34 @@ public class SearchFragment2 extends UIFragment<FileMeta> {
             } else if (AppState.get().libraryMode == AppState.MODE_USER_TAGS) {
                 searchEditText.setHint(R.string.my_tags);
                 empty = EMPTY_ID + getActivity().getString(R.string.no_tag);
+            } else if (AppState.get().libraryMode == AppState.MODE_LANGUAGES) {
+                searchEditText.setHint(R.string.language);
+                empty = EMPTY_ID + getActivity().getString(R.string.no_language);
             }
 
             authorsAdapter.clearItems();
             List<String> list = AppDB.get().getAll(SEARCH_IN.getByMode(AppState.get().libraryMode));
+            if (AppState.get().libraryMode == AppState.MODE_LANGUAGES) {
+                List<String> res = new ArrayList<String>();
+                String prev = null;
+                for (String ln : list) {
+                    if (TxtUtils.isEmpty(ln)) {
+                        ln = "";
+                    } else if (ln.length() > 2) {
+                        ln = ln.substring(0, 2);
+                    }
+
+                    String full = DialogTranslateFromTo.getLanuageByCode(ln);
+                    String lnLow = ln.toLowerCase(Locale.US);
+
+                    if (!lnLow.equals(prev)) {
+                        prev = lnLow;
+                        res.add(full + " (" + lnLow + ")");
+                    }
+                }
+                list = res;
+
+            }
             list.add(0, empty);
             authorsAdapter.getItemsList().addAll(list);
             authorsAdapter.notifyDataSetChanged();
@@ -743,7 +783,6 @@ public class SearchFragment2 extends UIFragment<FileMeta> {
 
     private void sortByPopup(final View view) {
 
-
         MyPopupMenu popup = new MyPopupMenu(getActivity(), view);
         for (final SORT_BY sortBy : SORT_BY.values()) {
             popup.getMenu().add(sortBy.getResName()).setOnMenuItemClickListener(new OnMenuItemClickListener() {
@@ -774,6 +813,7 @@ public class SearchFragment2 extends UIFragment<FileMeta> {
                 R.string.genre, //
                 R.string.serie, //
                 R.string.keywords, //
+                R.string.language, //
                 R.string.my_tags //
         );
 
@@ -785,6 +825,7 @@ public class SearchFragment2 extends UIFragment<FileMeta> {
                 R.drawable.glyphicons_66_tag, //
                 R.drawable.glyphicons_710_list_numbered, //
                 R.drawable.glyphicons_67_keywords, //
+                R.drawable.glyphicons_basic_417_globe, //
                 R.drawable.glyphicons_67_tags);
         final List<Integer> actions = Arrays.asList(AppState.MODE_LIST, AppState.MODE_LIST_COMPACT, //
                 AppState.MODE_GRID, //
@@ -793,6 +834,7 @@ public class SearchFragment2 extends UIFragment<FileMeta> {
                 AppState.MODE_GENRE, //
                 AppState.MODE_SERIES, //
                 AppState.MODE_KEYWORDS, //
+                AppState.MODE_LANGUAGES, //
                 AppState.MODE_USER_TAGS); //
 
         for (int i = 0; i < names.size(); i++) {
@@ -804,7 +846,7 @@ public class SearchFragment2 extends UIFragment<FileMeta> {
                     AppState.get().libraryMode = actions.get(index);
                     onGridList.setImageResource(icons.get(index));
 
-                    if (Arrays.asList(AppState.MODE_AUTHORS, AppState.MODE_SERIES, AppState.MODE_GENRE, AppState.MODE_USER_TAGS, AppState.MODE_KEYWORDS).contains(AppState.get().libraryMode)) {
+                    if (Arrays.asList(AppState.MODE_AUTHORS, AppState.MODE_SERIES, AppState.MODE_GENRE, AppState.MODE_USER_TAGS, AppState.MODE_KEYWORDS, AppState.MODE_LANGUAGES).contains(AppState.get().libraryMode)) {
                         searchEditText.setText("");
                     }
 
@@ -821,7 +863,7 @@ public class SearchFragment2 extends UIFragment<FileMeta> {
     }
 
     public void showBookCount() {
-        countBooks.setText("" + recyclerView.getAdapter().getItemCount());
+        countBooks.setText("" + (recyclerView.getAdapter().getItemCount() - countTitles));
     }
 
     @Override

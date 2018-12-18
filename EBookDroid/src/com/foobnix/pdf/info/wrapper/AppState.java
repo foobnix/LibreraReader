@@ -17,6 +17,7 @@ import com.foobnix.android.utils.LOG;
 import com.foobnix.android.utils.MemoryUtils;
 import com.foobnix.android.utils.Objects;
 import com.foobnix.android.utils.Objects.IgnoreHashCode;
+import com.foobnix.android.utils.TxtUtils;
 import com.foobnix.opds.SamlibOPDS;
 import com.foobnix.pdf.info.AppsConfig;
 import com.foobnix.pdf.info.ExportSettingsManager;
@@ -58,6 +59,7 @@ public class AppState {
         CONVERTERS.put("MOBI", "https://cloudconvert.com/anything-to-mobi, http://toepub.com".split(", "));
         CONVERTERS.put("AZW3", "https://cloudconvert.com/anything-to-azw3, http://toepub.com".split(", "));
         CONVERTERS.put("DOCX", "https://cloudconvert.com/anything-to-docx, http://document.online-convert.com/convert-to-docx, http://pdf2docx.com/".split(", "));
+        CONVERTERS.put("FB2", "https://cloudconvert.com/anything-to-fb2, https://ebook.online-convert.com/convert-to-fb2".split(", "));
 
     }
 
@@ -180,7 +182,7 @@ public class AppState {
 
     public String readColors = READ_COLORS_DEAFAUL;
 
-    public static String DEFAULTS_TABS_ORDER = "0#1,1#1,2#1,3#1,4#1,5#1,6#0,7#0";
+    public static String DEFAULTS_TABS_ORDER = "0#1,1#1,2#1,3#1,4#1,5#1,6#0,7#1";
     public String tabsOrder7 = DEFAULTS_TABS_ORDER;
 
     public int tintColor = Color.parseColor(STYLE_COLORS.get(0));
@@ -215,6 +217,7 @@ public class AppState {
     public final static int MODE_LIST_COMPACT = 7;
     public final static int MODE_USER_TAGS = 8;
     public final static int MODE_KEYWORDS = 9;
+    public final static int MODE_LANGUAGES = 10;
 
     public final static int BOOKMARK_MODE_BY_DATE = 1;
     public final static int BOOKMARK_MODE_BY_BOOK = 2;
@@ -265,7 +268,7 @@ public class AppState {
 
     @IgnoreHashCode
     public int pageNumberFormat = PAGE_NUMBER_FORMAT_NUMBER;
-    
+
     @IgnoreHashCode
     public int chapterFormat = CHAPTER_FORMAT_3;
 
@@ -292,7 +295,6 @@ public class AppState {
 
     public long fontExtractTime = 0;
 
-
     public int nextScreenScrollBy = NEXT_SCREEN_SCROLL_BY_PAGES;// 0 by
                                                                 // pages,
                                                                 // 25 - 25%
@@ -316,6 +318,9 @@ public class AppState {
 
     @IgnoreHashCode
     public boolean isBrighrnessEnable = true;
+
+    @IgnoreHashCode
+    public boolean isAllowMinBrigthness = false;
 
     public boolean isShowRateUsOnExit = true;
 
@@ -457,7 +462,7 @@ public class AppState {
     public static final String LIBRERA_CLOUD_GOOGLEDRIVE = "Librera.Cloud-GoogleDrive";
     public static final String LIBRERA_CLOUD_ONEDRIVE = "Librera.Cloud-OneDrive";
 
-    public String searchPaths = Environment.getExternalStorageDirectory() == null ? "/" : Environment.getExternalStorageDirectory().getPath();
+    public String searchPaths = "/";
     public String texturePath = Environment.getExternalStorageDirectory().getPath();
     public String cachePath = new File(DOWNLOADS_DIR, "Librera/Cache").getPath();
     public String downlodsPath = new File(DOWNLOADS_DIR, "Librera/Download").getPath();
@@ -466,6 +471,7 @@ public class AppState {
     public String syncDropboxPath = new File(DOWNLOADS_DIR, "Librera/" + LIBRERA_CLOUD_DROPBOX).getPath();
     public String syncGdrivePath = new File(DOWNLOADS_DIR, "Librera/" + LIBRERA_CLOUD_GOOGLEDRIVE).getPath();
     public String syncOneDrivePath = new File(DOWNLOADS_DIR, "Librera/" + LIBRERA_CLOUD_ONEDRIVE).getPath();
+    public String playlistPath = new File(DOWNLOADS_DIR, "Librera/Playlist").getPath();
 
     public String fileToDelete;
 
@@ -495,7 +501,7 @@ public class AppState {
     public boolean supportDJVU = true;
     public boolean supportEPUB = true;
     public boolean supportFB2 = true;
-    public boolean supportRTF = false;
+    public boolean supportRTF = true;
     public boolean supportMOBI = true;
     public boolean supportCBZ = false;
     public boolean supportZIP = false;
@@ -716,6 +722,25 @@ public class AppState {
                 }
                 if (AppsConfig.LIBRERA_PDF_2.equals(Apps.getPackageName(a))) {
                     isShowWhatIsNewDialog = false;
+                }
+
+
+                try {
+                    List<String> extFolders = ExtUtils.getExternalStorageDirectories(a);
+
+                    if (!extFolders.contains(Environment.getExternalStorageDirectory().getPath())) {
+                        extFolders.add(Environment.getExternalStorageDirectory().getPath());
+                    }
+                    if (!extFolders.contains(ExtUtils.getSDPath())) {
+                        String sdPath = ExtUtils.getSDPath();
+                        if (sdPath != null) {
+                            extFolders.add(sdPath);
+                        }
+                    }
+                    searchPaths = TxtUtils.joinList(",", extFolders);
+                    LOG.d("searchPaths", searchPaths);
+                } catch (Exception e) {
+                    LOG.e(e);
                 }
 
                 loadIn(a);

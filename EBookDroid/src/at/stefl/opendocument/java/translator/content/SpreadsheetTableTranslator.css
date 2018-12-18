@@ -1,0 +1,8 @@
+table {
+	border-collapse: collapse;
+	display: block;
+}
+
+td {
+	vertical-align: top;
+}

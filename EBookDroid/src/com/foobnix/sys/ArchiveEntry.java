@@ -1,5 +1,7 @@
 package com.foobnix.sys;
 
+import com.foobnix.android.utils.TxtUtils;
+
 import net.lingala.zip4j.model.FileHeader;
 
 public class ArchiveEntry {
@@ -23,7 +25,7 @@ public class ArchiveEntry {
     }
 
     public String getName() {
-        return header.getFileName();
+        return TxtUtils.encode1251(header.getFileName());
     }
 
 }

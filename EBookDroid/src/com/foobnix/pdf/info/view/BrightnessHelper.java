@@ -14,10 +14,10 @@ import com.foobnix.pdf.search.activity.msg.MessegeBrightness;
 
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.DialogInterface.OnDismissListener;
 import android.graphics.Color;
-import android.os.Build;
 import android.provider.Settings.SettingNotFoundException;
 import android.support.v4.graphics.ColorUtils;
 import android.view.LayoutInflater;
@@ -45,9 +45,10 @@ public class BrightnessHelper {
     private float y;
     boolean isMovementStart;
 
-    public BrightnessHelper() {
+    public BrightnessHelper(Context c) {
         updateCurrentValue();
     }
+
 
     public void updateCurrentValue() {
         if (AppState.get().isEnableBlueFilter) {
@@ -112,21 +113,20 @@ public class BrightnessHelper {
             if (appBrightness == AppState.AUTO_BRIGTNESS) {
                 lp.screenBrightness = WindowManager.LayoutParams.BRIGHTNESS_OVERRIDE_NONE;
             } else if (appBrightness == 0) {
-                if (Build.VERSION.SDK_INT >= 21) {
+                if (AppState.get().isAllowMinBrigthness) {
                     lp.screenBrightness = WindowManager.LayoutParams.BRIGHTNESS_OVERRIDE_OFF;
                 } else {
                     lp.screenBrightness = 0.01f;
                 }
             } else {
-                lp.screenBrightness = (float) appBrightness / 100;
+                float value = (float) appBrightness / 100;
+                lp.screenBrightness = Math.max(0.01f, value);
             }
 
             LOG.d("applyBrigtness", lp.screenBrightness);
 
             a.getWindow().setAttributes(lp);
-        } catch (
-
-        Exception e) {
+        } catch (Exception e) {
             LOG.e(e);
         }
     }

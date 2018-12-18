@@ -444,7 +444,8 @@ public class Fb2Extractor extends BaseExtractor {
         return map;
     }
 
-    public boolean convertFB2(String inputFile, String toName) {
+    @Deprecated
+    private boolean convertFB2(String inputFile, String toName) {
         try {
             String encoding = findHeaderEncoding(inputFile);
             ByteArrayOutputStream generateFb2File = generateFb2File(inputFile, encoding, true);
@@ -459,8 +460,7 @@ public class Fb2Extractor extends BaseExtractor {
 
     }
 
-    @Override
-    public boolean convert(String inputFile, String toName) {
+    public boolean convert(String inputFile, String toName, boolean fixHTML) {
 
         try {
             ZipOutputStream zos = new ZipOutputStream(new FileOutputStream(new File(toName)));
@@ -476,7 +476,7 @@ public class Fb2Extractor extends BaseExtractor {
             String ncx = genetateNCX(titles);
             writeToZip(zos, "OEBPS/fb2.ncx", ncx);
 
-            ByteArrayOutputStream generateFb2File = generateFb2File(inputFile, encoding, false);
+            ByteArrayOutputStream generateFb2File = generateFb2File(inputFile, encoding, fixHTML);
             writeToZip(zos, "OEBPS/fb2.fb2", new ByteArrayInputStream(generateFb2File.toByteArray()));
             LOG.d("Fb2Context convert true");
             zos.close();
@@ -596,7 +596,7 @@ public class Fb2Extractor extends BaseExtractor {
                     }
                 }
 
-                if (!isFindBodyEnd && line.contains("</body>")) {
+                if (!isFindBodyEnd && line.contains("<binary")) {
                     isFindBodyEnd = true;
                 }
 
@@ -663,7 +663,6 @@ public class Fb2Extractor extends BaseExtractor {
         PrintWriter writer = new PrintWriter(out);
         String line;
 
-        HypenUtils.applyLanguage(BookCSS.get().hypenLang);
         HypenUtils.resetTokenizer();
 
         while ((line = input.readLine()) != null) {
@@ -757,6 +756,7 @@ public class Fb2Extractor extends BaseExtractor {
         int section = 0;
         int dividerSection = -1;
         String dividerLine = null;
+        boolean secondBody = false;
         while (eventType != XmlPullParser.END_DOCUMENT) {
             if (TempHolder.get().loadingCancelled) {
                 break;
@@ -767,6 +767,16 @@ public class Fb2Extractor extends BaseExtractor {
                 }
                 if (xpp.getName().equals("title")) {
                     isTitle = true;
+                }
+                if (xpp.getName().equals("binary")) {
+                    break;
+                }
+
+                if (xpp.getName().equals("body")) {
+                    if (secondBody && xpp.getAttributeCount() > 0) {
+                        break;
+                    }
+                    secondBody = true;
                 }
 
             } else if (eventType == XmlPullParser.END_TAG) {
@@ -782,9 +792,7 @@ public class Fb2Extractor extends BaseExtractor {
                 if (xpp.getName().equals("section")) {
                     section--;
                 }
-                if (xpp.getName().equals("body")) {
-                    break;
-                }
+
 
             } else if (eventType == XmlPullParser.TEXT) {
                 if (isTitle) {

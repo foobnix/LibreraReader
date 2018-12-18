@@ -15,6 +15,7 @@ import org.ebookdroid.droids.FolderContext;
 import org.ebookdroid.droids.HtmlContext;
 import org.ebookdroid.droids.MhtContext;
 import org.ebookdroid.droids.MobiContext;
+import org.ebookdroid.droids.OdtContext;
 import org.ebookdroid.droids.RtfContext;
 import org.ebookdroid.droids.TxtContext;
 import org.ebookdroid.droids.ZipContext;
@@ -32,6 +33,7 @@ public enum BookType {
 
     CBZ(PdfContext.class, Arrays.asList("cbz"), Arrays.asList("application/x-cbz")),
 	CBR(CbrContext.class, Arrays.asList("cbr"), Arrays.asList("application/x-cbr")),
+    ODT(OdtContext.class, Arrays.asList("odt"), Arrays.asList("application/vnd.oasis.opendocument.text")),
 
     FOLDER(FolderContext.class, Arrays.asList(FolderContext.LXML), Arrays.asList("application/lxml")),
 
@@ -43,7 +45,7 @@ public enum BookType {
 
     MOBI(MobiContext.class, Arrays.asList("mobi", "azw", "azw3", "azw4", "pdb", "prc"), Arrays.asList("application/x-mobipocket-ebook", "application/x-palm-database")),
 
-    TXT(TxtContext.class, Arrays.asList("txt"), Arrays.asList("text/plain")),
+    TXT(TxtContext.class, Arrays.asList("txt", "playlist"), Arrays.asList("text/plain")),
 
     HTML(HtmlContext.class, Arrays.asList("html", "htm", "xhtml", "xhtm", "mht", "mhtml", "xml"), Arrays.asList("text/html", "text/xml")),
 
@@ -93,7 +95,7 @@ public enum BookType {
 
         path = path.toLowerCase(Locale.US);
         for (final String ext : extensions) {
-            if (path.endsWith(ext) || path.endsWith(ext + ".zip")) {
+            if (path.endsWith(ext) || path.endsWith("." + ext + ".zip")) {
                 return true;
             }
         }

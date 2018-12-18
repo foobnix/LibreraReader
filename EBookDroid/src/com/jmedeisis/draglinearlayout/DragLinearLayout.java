@@ -1,7 +1,5 @@
 package com.jmedeisis.draglinearlayout;
 
-import com.foobnix.pdf.info.R;
-
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.animation.LayoutTransition;
@@ -9,13 +7,11 @@ import android.animation.ObjectAnimator;
 import android.animation.ValueAnimator;
 import android.content.Context;
 import android.content.res.Resources;
-import android.content.res.TypedArray;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Rect;
 import android.graphics.drawable.BitmapDrawable;
-import android.graphics.drawable.Drawable;
-import android.support.v4.content.ContextCompat;
+import android.support.annotation.NonNull;
 import android.support.v4.view.MotionEventCompat;
 import android.util.AttributeSet;
 import android.util.Log;
@@ -26,64 +22,66 @@ import android.view.ViewConfiguration;
 import android.view.ViewTreeObserver;
 import android.view.ViewTreeObserver.OnPreDrawListener;
 import android.widget.LinearLayout;
-import android.widget.ScrollView;
 
 /**
- * A LinearLayout that supports children Views that can be dragged and swapped around.
- * See {@link #addDragView(android.view.View, android.view.View)},
- * {@link #addDragView(android.view.View, android.view.View, int)},
- * {@link #setViewDraggable(android.view.View, android.view.View)}, and
- * {@link #removeDragView(android.view.View)}.
+ * copy from github:https://github.com/justasm/DragLinearLayout
  * <p/>
- * Currently, no error-checking is done on standard {@link #addView(android.view.View)} and
- * {@link #removeView(android.view.View)} calls, so avoid using these with children previously
- * declared as draggable to prevent memory leaks and/or subtle bugs. Pull requests welcome!
+ * Edited by @author chensuilun add support for HORIZONTAL , simplify code ,
+ * some useful callback ,add OverScroll constrain , long click to drag support
  */
 public class DragLinearLayout extends LinearLayout {
-    private static final String LOG_TAG = DragLinearLayout.class.getSimpleName();
+    private static final String TAG = DragLinearLayout.class.getSimpleName();
     private static final long NOMINAL_SWITCH_DURATION = 150;
     private static final long MIN_SWITCH_DURATION = NOMINAL_SWITCH_DURATION;
     private static final long MAX_SWITCH_DURATION = NOMINAL_SWITCH_DURATION * 2;
     private static final float NOMINAL_DISTANCE = 20;
-    private final float nominalDistanceScaled;
+    private final float mNominalDistanceScaled;
 
     /**
-     * Use with {@link com.jmedeisis.draglinearlayout.DragLinearLayout#setOnViewSwapListener(com.jmedeisis.draglinearlayout.DragLinearLayout.OnViewSwapListener)}
-     * to listen for draggable view swaps.
+     * Use with
+     * {@link DragLinearLayout#setOnViewSwapListener(DragLinearLayout.OnViewSwapListener)}
+     * to listen for draggable mView swaps.
      */
     public interface OnViewSwapListener {
         /**
-         * Invoked right before the two items are swapped due to a drag event.
-         * After the swap, the firstView will be in the secondPosition, and vice versa.
+         * Invoked right before the two items are swapped due to a drag event. After the
+         * swap, the firstView will be in the secondPosition, and vice versa.
          * <p/>
-         * No guarantee is made as to which of the two has a lesser/greater position.
+         * No guarantee is made as to which of the two has a lesser/greater mPosition.
          */
-        void onSwap(View firstView, int firstPosition, View secondView, int secondPosition);
+        void onSwap(View draggedView, int initPosition, View swappedView, int swappedPosition);
+
+        /**
+         * Invoked when swap action finish
+         */
+        void onSwapFinish();
     }
 
-    private OnViewSwapListener swapListener;
+    private OnViewSwapListener mSwapListener;
 
-    private LayoutTransition layoutTransition;
+    private LayoutTransition mLayoutTransition;
 
     /**
      * Mapping from child index to drag-related info container.
      * Presence of mapping implies the child can be dragged, and is considered for swaps with the
      * currently dragged item.
      */
-    private final SparseArray<DraggableChild> draggableChildren;
+    private final SparseArray<DraggableChild> mDraggableChildren;
 
     private class DraggableChild {
         /**
-         * If non-null, a reference to an on-going position animation.
+         * If non-null, a reference to an on-going mPosition animation.
          */
-        private ValueAnimator swapAnimation;
+        private ValueAnimator mValueAnimator;
 
         public void endExistingAnimation() {
-            if (null != swapAnimation) swapAnimation.end();
+            if (null != mValueAnimator)
+                mValueAnimator.end();
         }
 
         public void cancelExistingAnimation() {
-            if (null != swapAnimation) swapAnimation.cancel();
+            if (null != mValueAnimator)
+                mValueAnimator.cancel();
         }
     }
 
@@ -91,108 +89,136 @@ public class DragLinearLayout extends LinearLayout {
      * Holds state information about the currently dragged item.
      * <p/>
      * Rough lifecycle:
-     * <li>#startDetectingOnPossibleDrag - #detecting == true</li>
-     * <li>     if drag is recognised, #onDragStart - #dragging == true</li>
-     * <li>     if drag ends, #onDragStop - #dragging == false, #settling == true</li>
-     * <li>if gesture ends without drag, or settling finishes, #stopDetecting - #detecting == false</li>
+     * <li>#startDetectingOnPossibleDrag - #mDetecting == true</li>
+     * <li>if drag is recognised, #onDragStart - #mDragging == true</li>
+     * <li>if drag ends, #onDragStop - #mDragging == false, #settling == true</li>
+     * <li>if gesture ends without drag, or settling finishes, #stopDetecting -
+     * #mDetecting == false</li>
      */
     private class DragItem {
-        private View view;
-        private int startVisibility;
-        private BitmapDrawable viewDrawable;
-        private int position;
-        private int startTop;
-        private int height;
-        private int totalDragOffset;
-        private int targetTopOffset;
-        private ValueAnimator settleAnimation;
+        private View mView;
+        private int mStartVisibility;
+        private BitmapDrawable mBitmapDrawable;
+        private int mPosition;
 
-        private boolean detecting;
-        private boolean dragging;
+        private int mStartTop;
+        private int mHeight;
+        private int mTotalDragOffset;
+        private int mTargetTopOffset;
+
+        private int mStartLeft;
+        private int mWidth;
+        private int mTargetLeftOffset;
+
+        private ValueAnimator mSettleAnimation;
+
+        private boolean mDetecting;
+        private boolean mDragging;
+
+        private int mMaxLeftOffset;
+        private int mMaxRightOffset;
+        private int mMaxTopOffset;
+        private int mMaxBottomOffset;
 
         public DragItem() {
             stopDetecting();
         }
 
         public void startDetectingOnPossibleDrag(final View view, final int position) {
-            this.view = view;
-            this.startVisibility = view.getVisibility();
-            this.viewDrawable = getDragDrawable(view);
-            this.position = position;
-            this.startTop = view.getTop();
-            this.height = view.getHeight();
-            this.totalDragOffset = 0;
-            this.targetTopOffset = 0;
-            this.settleAnimation = null;
+            this.mView = view;
+            this.mStartVisibility = view.getVisibility();
+            this.mBitmapDrawable = getDragDrawable(view);
+            this.mPosition = position;
+            this.mStartTop = view.getTop();
+            this.mHeight = view.getHeight();
+            mStartLeft = view.getLeft();
+            mWidth = view.getWidth();
+            this.mTotalDragOffset = 0;
+            this.mTargetTopOffset = 0;
+            this.mTargetLeftOffset = 0;
+            this.mSettleAnimation = null;
 
-            this.detecting = true;
+            mMaxLeftOffset = -mStartLeft;
+            mMaxRightOffset = getWidth() - view.getRight();
+            mMaxTopOffset = -mStartTop;
+            mMaxBottomOffset = getHeight() - view.getBottom();
+
+            this.mDetecting = true;
         }
 
         public void onDragStart() {
-            view.setVisibility(View.INVISIBLE);
-            this.dragging = true;
+            mView.setVisibility(View.INVISIBLE);
+            this.mDragging = true;
         }
 
         public void setTotalOffset(int offset) {
-            totalDragOffset = offset;
-            updateTargetTop();
+            mTotalDragOffset = offset;
+            if (!mOverScrollable) {
+                if (getOrientation() == HORIZONTAL) {
+                    mTotalDragOffset = Math.min(Math.max(mMaxLeftOffset, mTotalDragOffset), mMaxRightOffset);
+                } else {
+                    mTotalDragOffset = Math.min(Math.max(mMaxTopOffset, mTotalDragOffset), mMaxBottomOffset);
+                }
+            }
+            updateTargetLocation();
         }
 
-        public void updateTargetTop() {
-            targetTopOffset = startTop - view.getTop() + totalDragOffset;
+        public void updateTargetLocation() {
+            if (getOrientation() == VERTICAL) {
+                updateTargetTop();
+            } else {
+                updateTargetLeft();
+            }
+        }
+
+        private void updateTargetLeft() {
+            mTargetLeftOffset = mStartLeft - mView.getLeft() + mTotalDragOffset;
+        }
+
+        private void updateTargetTop() {
+            mTargetTopOffset = mStartTop - mView.getTop() + mTotalDragOffset;
         }
 
         public void onDragStop() {
-            this.dragging = false;
+            this.mDragging = false;
         }
 
         public boolean settling() {
-            return null != settleAnimation;
+            return null != mSettleAnimation;
         }
 
         public void stopDetecting() {
-            this.detecting = false;
-            if (null != view) view.setVisibility(startVisibility);
-            view = null;
-            startVisibility = -1;
-            viewDrawable = null;
-            position = -1;
-            startTop = -1;
-            height = -1;
-            totalDragOffset = 0;
-            targetTopOffset = 0;
-            if (null != settleAnimation) settleAnimation.end();
-            settleAnimation = null;
+            this.mDetecting = false;
+            if (null != mView)
+                mView.setVisibility(mStartVisibility);
+            mView = null;
+            mStartVisibility = -1;
+            mBitmapDrawable = null;
+            mPosition = -1;
+            mStartTop = -1;
+            mHeight = -1;
+            mStartLeft = -1;
+            mWidth = -1;
+            mTotalDragOffset = 0;
+            mTargetTopOffset = 0;
+            mTargetLeftOffset = 0;
+            if (null != mSettleAnimation)
+                mSettleAnimation.end();
+            mSettleAnimation = null;
         }
     }
 
     /**
-     * The currently dragged item, if {@link com.jmedeisis.draglinearlayout.DragLinearLayout.DragItem#detecting}.
+     * The currently dragged item, if {@link DragLinearLayout.DragItem#mDetecting}.
      */
-    private final DragItem draggedItem;
-    private final int slop;
+    private final DragItem mDragItem;
+    private final int mSlop;
 
     private static final int INVALID_POINTER_ID = -1;
-    private int downY = -1;
-    private int activePointerId = INVALID_POINTER_ID;
+    private int mDownY = -1;
+    private int mDownX = -1;
+    private int mActivePointerId = INVALID_POINTER_ID;
 
-    /**
-     * The shadow to be drawn above the {@link #draggedItem}.
-     */
-    private final Drawable dragTopShadowDrawable;
-    /**
-     * The shadow to be drawn below the {@link #draggedItem}.
-     */
-    private final Drawable dragBottomShadowDrawable;
-    private final int dragShadowHeight;
-
-    /**
-     * See {@link #setContainerScrollView(android.widget.ScrollView)}.
-     */
-    private ScrollView containerScrollView;
-    private int scrollSensitiveAreaHeight;
-    private static final int DEFAULT_SCROLL_SENSITIVE_AREA_HEIGHT_DP = 48;
-    private static final int MAX_DRAG_SCROLL_SPEED = 16;
 
     public DragLinearLayout(Context context) {
         this(context, null);
@@ -200,38 +226,12 @@ public class DragLinearLayout extends LinearLayout {
 
     public DragLinearLayout(Context context, AttributeSet attrs) {
         super(context, attrs);
-
-        setOrientation(LinearLayout.VERTICAL);
-
-        draggableChildren = new SparseArray<DraggableChild>();
-
-        draggedItem = new DragItem();
+        mDraggableChildren = new SparseArray<DraggableChild>();
+        mDragItem = new DragItem();
         ViewConfiguration vc = ViewConfiguration.get(context);
-        slop = vc.getScaledTouchSlop();
-
+        mSlop = vc.getScaledTouchSlop();
         final Resources resources = getResources();
-        dragTopShadowDrawable = ContextCompat.getDrawable(context, R.drawable.ab_solid_shadow_holo_flipped);
-        dragBottomShadowDrawable = ContextCompat.getDrawable(context, R.drawable.ab_solid_shadow_holo);
-        dragShadowHeight = resources.getDimensionPixelSize(R.dimen.downwards_drop_shadow_height);
-
-        TypedArray a = context.getTheme().obtainStyledAttributes(attrs, R.styleable.DragLinearLayout, 0, 0);
-        try {
-            scrollSensitiveAreaHeight = a.getDimensionPixelSize(R.styleable.DragLinearLayout_scrollSensitiveHeight,
-                    (int) (DEFAULT_SCROLL_SENSITIVE_AREA_HEIGHT_DP * resources.getDisplayMetrics().density + 0.5f));
-        } finally {
-            a.recycle();
-        }
-
-        nominalDistanceScaled = (int) (NOMINAL_DISTANCE * resources.getDisplayMetrics().density + 0.5f);
-    }
-
-    @Override
-    public void setOrientation(int orientation) {
-        // enforce VERTICAL orientation; remove if HORIZONTAL support is ever added
-        if (LinearLayout.HORIZONTAL == orientation) {
-            throw new IllegalArgumentException("DragLinearLayout must be VERTICAL.");
-        }
-        super.setOrientation(orientation);
+        mNominalDistanceScaled = (int) (NOMINAL_DISTANCE * resources.getDisplayMetrics().density + 0.5f);
     }
 
     /**
@@ -251,11 +251,11 @@ public class DragLinearLayout extends LinearLayout {
         addView(child, index);
 
         // update drag-able children mappings
-        final int numMappings = draggableChildren.size();
+        final int numMappings = mDraggableChildren.size();
         for (int i = numMappings - 1; i >= 0; i--) {
-            final int key = draggableChildren.keyAt(i);
+            final int key = mDraggableChildren.keyAt(i);
             if (key >= index) {
-                draggableChildren.put(key + 1, draggableChildren.get(key));
+                mDraggableChildren.put(key + 1, mDraggableChildren.get(key));
             }
         }
 
@@ -263,19 +263,21 @@ public class DragLinearLayout extends LinearLayout {
     }
 
     /**
-     * Makes the child a candidate for dragging. Must be an existing child of this layout.
+     * Makes the child a candidate for mDragging. Must be an existing child of this
+     * layout.
      */
     public void setViewDraggable(View child, View dragHandle) {
         if (null == child || null == dragHandle) {
             throw new IllegalArgumentException(
-                "Draggable children and their drag handles must not be null.");
+                    "Draggable children and their drag handles must not be null.");
         }
-        
+
         if (this == child.getParent()) {
             dragHandle.setOnTouchListener(new DragHandleOnTouchListener(child));
-            draggableChildren.put(indexOfChild(child), new DraggableChild());
+            dragHandle.setOnLongClickListener(mLongClickDragListener);
+            mDraggableChildren.put(indexOfChild(child), new DraggableChild());
         } else {
-            Log.e(LOG_TAG, child + " is not a child, cannot make draggable.");
+            Log.e(TAG, child + " is not a child, cannot make draggable.");
         }
     }
 
@@ -288,57 +290,42 @@ public class DragLinearLayout extends LinearLayout {
         if (this == child.getParent()) {
             final int index = indexOfChild(child);
             removeView(child);
-
+            child.setOnTouchListener(null);
+            child.setOnLongClickListener(null);
             // update drag-able children mappings
-            final int mappings = draggableChildren.size();
+            final int mappings = mDraggableChildren.size();
             for (int i = 0; i < mappings; i++) {
-                final int key = draggableChildren.keyAt(i);
+                final int key = mDraggableChildren.keyAt(i);
                 if (key >= index) {
-                    DraggableChild next = draggableChildren.get(key + 1);
+                    DraggableChild next = mDraggableChildren.get(key + 1);
                     if (null == next) {
-                        draggableChildren.delete(key);
+                        mDraggableChildren.delete(key);
                     } else {
-                        draggableChildren.put(key, next);
+                        mDraggableChildren.put(key, next);
                     }
                 }
             }
         }
     }
 
+
     @Override
     public void removeAllViews() {
+        int count = getChildCount();
+        for (int i = 0; i < count; i++) {
+            getChildAt(i).setOnLongClickListener(null);
+            getChildAt(i).setOnTouchListener(null);
+        }
         super.removeAllViews();
-        draggableChildren.clear();
+        mDraggableChildren.clear();
     }
+
 
     /**
-     * If this layout is within a {@link android.widget.ScrollView}, register it here so that it
-     * can be scrolled during item drags.
-     */
-    public void setContainerScrollView(ScrollView scrollView) {
-        this.containerScrollView = scrollView;
-    }
-
-    /**
-     * Sets the height from upper / lower edge at which a container {@link android.widget.ScrollView},
-     * if one is registered via {@link #setContainerScrollView(android.widget.ScrollView)},
-     * is scrolled.
-     */
-    @SuppressWarnings("UnusedDeclaration")
-    public void setScrollSensitiveHeight(int height) {
-        this.scrollSensitiveAreaHeight = height;
-    }
-
-    @SuppressWarnings("UnusedDeclaration")
-    public int getScrollSensitiveHeight() {
-        return scrollSensitiveAreaHeight;
-    }
-
-    /**
-     * See {@link com.jmedeisis.draglinearlayout.DragLinearLayout.OnViewSwapListener}.
+     * See {@link DragLinearLayout.OnViewSwapListener}.
      */
     public void setOnViewSwapListener(OnViewSwapListener swapListener) {
-        this.swapListener = swapListener;
+        this.mSwapListener = swapListener;
     }
 
     /**
@@ -346,231 +333,282 @@ public class DragLinearLayout extends LinearLayout {
      */
     private long getTranslateAnimationDuration(float distance) {
         return Math.min(MAX_SWITCH_DURATION, Math.max(MIN_SWITCH_DURATION,
-                (long) (NOMINAL_SWITCH_DURATION * Math.abs(distance) / nominalDistanceScaled)));
+                (long) (NOMINAL_SWITCH_DURATION * Math.abs(distance) / mNominalDistanceScaled)));
     }
 
     /**
-     * Initiates a new {@link #draggedItem} unless the current one is still
-     * {@link com.jmedeisis.draglinearlayout.DragLinearLayout.DragItem#detecting}.
+     * Initiates a new {@link #mDragItem} unless the current one is still
+     * {@link DragLinearLayout.DragItem#mDetecting}.
      */
-    private void startDetectingDrag(View child) {
-        if (draggedItem.detecting)
+    public void startDetectingDrag(View child) {
+        if (mDragItem.mDetecting)
             return; // existing drag in process, only one at a time is allowed
 
         final int position = indexOfChild(child);
 
         // complete any existing animations, both for the newly selected child and the previous dragged one
-        draggableChildren.get(position).endExistingAnimation();
+        mDraggableChildren.get(position).endExistingAnimation();
 
-        draggedItem.startDetectingOnPossibleDrag(child, position);
-        if (containerScrollView != null) {
-            containerScrollView.requestDisallowInterceptTouchEvent(true);
-        }
+        mDragItem.startDetectingOnPossibleDrag(child, position);
     }
 
     private void startDrag() {
         // remove layout transition, it conflicts with drag animation
         // we will restore it after drag animation end, see onDragStop()
-        layoutTransition = getLayoutTransition();
-        if (layoutTransition != null) {
+        mLayoutTransition = getLayoutTransition();
+        if (mLayoutTransition != null) {
             setLayoutTransition(null);
         }
 
-        draggedItem.onDragStart();
+        mDragItem.onDragStart();
         requestDisallowInterceptTouchEvent(true);
     }
 
     /**
-     * Animates the dragged item to its final resting position.
+     * Animates the dragged item to its final resting mPosition.
      */
     private void onDragStop() {
-        draggedItem.settleAnimation = ValueAnimator.ofFloat(draggedItem.totalDragOffset,
-                draggedItem.totalDragOffset - draggedItem.targetTopOffset)
-                .setDuration(getTranslateAnimationDuration(draggedItem.targetTopOffset));
-        draggedItem.settleAnimation.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+        if (getOrientation() == VERTICAL) {
+            mDragItem.mSettleAnimation = ValueAnimator.ofFloat(mDragItem.mTotalDragOffset, mDragItem.mTotalDragOffset - mDragItem.mTargetTopOffset).setDuration(getTranslateAnimationDuration(mDragItem.mTargetTopOffset));
+        } else {
+            mDragItem.mSettleAnimation = ValueAnimator.ofFloat(mDragItem.mTotalDragOffset, mDragItem.mTotalDragOffset - mDragItem.mTargetLeftOffset).setDuration(getTranslateAnimationDuration(mDragItem.mTargetLeftOffset));
+        }
+
+        mDragItem.mSettleAnimation.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
             public void onAnimationUpdate(ValueAnimator animation) {
-                if (!draggedItem.detecting) return; // already stopped
+                if (!mDragItem.mDetecting)
+                    return; // already stopped
 
-                draggedItem.setTotalOffset(((Float) animation.getAnimatedValue()).intValue());
+                mDragItem.setTotalOffset(((Float) animation.getAnimatedValue()).intValue());
 
-                final int shadowAlpha = (int) ((1 - animation.getAnimatedFraction()) * 255);
-                if (null != dragTopShadowDrawable) dragTopShadowDrawable.setAlpha(shadowAlpha);
-                dragBottomShadowDrawable.setAlpha(shadowAlpha);
                 invalidate();
             }
         });
-        draggedItem.settleAnimation.addListener(new AnimatorListenerAdapter() {
+        mDragItem.mSettleAnimation.addListener(new AnimatorListenerAdapter() {
             @Override
             public void onAnimationStart(Animator animation) {
-                draggedItem.onDragStop();
+                mDragItem.onDragStop();
             }
 
             @Override
             public void onAnimationEnd(Animator animation) {
-                if (!draggedItem.detecting) {
+                if (!mDragItem.mDetecting) {
                     return; // already stopped
                 }
 
-                draggedItem.settleAnimation = null;
-                draggedItem.stopDetecting();
-
-                if (null != dragTopShadowDrawable) dragTopShadowDrawable.setAlpha(255);
-                dragBottomShadowDrawable.setAlpha(255);
+                mDragItem.mSettleAnimation = null;
+                mDragItem.stopDetecting();
 
                 // restore layout transition
-                if (layoutTransition != null && getLayoutTransition() == null) {
-                    setLayoutTransition(layoutTransition);
+                if (mLayoutTransition != null && getLayoutTransition() == null) {
+                    setLayoutTransition(mLayoutTransition);
+                }
+                if (mSwapListener != null) {
+                    mSwapListener.onSwapFinish();
                 }
             }
         });
-        draggedItem.settleAnimation.start();
+        mDragItem.mSettleAnimation.start();
     }
 
     /**
-     * Updates the dragged item with the given total offset from its starting position.
-     * Evaluates and executes draggable view swaps.
+     * Updates the dragged item with the given total offset from its starting
+     * mPosition. Evaluates and executes draggable mView swaps.
      */
     private void onDrag(final int offset) {
-        draggedItem.setTotalOffset(offset);
-        invalidate();
+        if (getOrientation() == VERTICAL) {
+            mDragItem.setTotalOffset(offset);
+            invalidate();
 
-        int currentTop = draggedItem.startTop + draggedItem.totalDragOffset;
+            int currentTop = mDragItem.mStartTop + mDragItem.mTotalDragOffset;
 
-        handleContainerScroll(currentTop);
+            int belowPosition = nextDraggablePosition(mDragItem.mPosition);
+            int abovePosition = previousDraggablePosition(mDragItem.mPosition);
 
-        int belowPosition = nextDraggablePosition(draggedItem.position);
-        int abovePosition = previousDraggablePosition(draggedItem.position);
+            View belowView = getChildAt(belowPosition);
+            View aboveView = getChildAt(abovePosition);
 
-        View belowView = getChildAt(belowPosition);
-        View aboveView = getChildAt(abovePosition);
+            final boolean isBelow = (belowView != null) && (currentTop + mDragItem.mHeight > belowView.getTop() + belowView.getHeight() / 2);
+            final boolean isAbove = (aboveView != null) && (currentTop < aboveView.getTop() + aboveView.getHeight() / 2);
 
-        final boolean isBelow = (belowView != null) &&
-                (currentTop + draggedItem.height > belowView.getTop() + belowView.getHeight() / 2);
-        final boolean isAbove = (aboveView != null) &&
-                (currentTop < aboveView.getTop() + aboveView.getHeight() / 2);
+            if (isBelow || isAbove) {
+                final View switchView = isBelow ? belowView : aboveView;
 
-        if (isBelow || isAbove) {
-            final View switchView = isBelow ? belowView : aboveView;
+                // swap elements
+                final int originalPosition = mDragItem.mPosition;
+                final int switchPosition = isBelow ? belowPosition : abovePosition;
 
-            // swap elements
-            final int originalPosition = draggedItem.position;
-            final int switchPosition = isBelow ? belowPosition : abovePosition;
+                mDraggableChildren.get(switchPosition).cancelExistingAnimation();
+                final float switchViewStartY = switchView.getY();
 
-            draggableChildren.get(switchPosition).cancelExistingAnimation();
-            final float switchViewStartY = switchView.getY();
-
-            if (null != swapListener) {
-                swapListener.onSwap(draggedItem.view, draggedItem.position, switchView, switchPosition);
-            }
-
-            if (isBelow) {
-                removeViewAt(originalPosition);
-                removeViewAt(switchPosition - 1);
-
-                addView(belowView, originalPosition);
-                addView(draggedItem.view, switchPosition);
-            } else {
-                removeViewAt(switchPosition);
-                removeViewAt(originalPosition - 1);
-
-                addView(draggedItem.view, switchPosition);
-                addView(aboveView, originalPosition);
-            }
-            draggedItem.position = switchPosition;
-
-            final ViewTreeObserver switchViewObserver = switchView.getViewTreeObserver();
-            switchViewObserver.addOnPreDrawListener(new OnPreDrawListener() {
-                @Override
-                public boolean onPreDraw() {
-                    switchViewObserver.removeOnPreDrawListener(this);
-
-                    final ObjectAnimator switchAnimator = ObjectAnimator.ofFloat(switchView, "y",
-                            switchViewStartY, switchView.getTop())
-                            .setDuration(getTranslateAnimationDuration(switchView.getTop() - switchViewStartY));
-                    switchAnimator.addListener(new AnimatorListenerAdapter() {
-                        @Override
-                        public void onAnimationStart(Animator animation) {
-                            draggableChildren.get(originalPosition).swapAnimation = switchAnimator;
-                        }
-
-                        @Override
-                        public void onAnimationEnd(Animator animation) {
-                            draggableChildren.get(originalPosition).swapAnimation = null;
-                        }
-                    });
-                    switchAnimator.start();
-
-                    return true;
+                if (null != mSwapListener) {
+                    mSwapListener.onSwap(mDragItem.mView, mDragItem.mPosition, switchView, switchPosition);
                 }
-            });
 
-            final ViewTreeObserver observer = draggedItem.view.getViewTreeObserver();
-            observer.addOnPreDrawListener(new OnPreDrawListener() {
-                @Override
-                public boolean onPreDraw() {
-                    observer.removeOnPreDrawListener(this);
-                    draggedItem.updateTargetTop();
+                if (isBelow) {
+                    removeViewAt(originalPosition);
+                    removeViewAt(switchPosition - 1);
 
-                    // TODO test if still necessary..
-                    // because draggedItem#view#getTop() is only up-to-date NOW
-                    // (and not right after the #addView() swaps above)
-                    // we may need to update an ongoing settle animation
-                    if (draggedItem.settling()) {
-                        Log.d(LOG_TAG, "Updating settle animation");
-                        draggedItem.settleAnimation.removeAllListeners();
-                        draggedItem.settleAnimation.cancel();
-                        onDragStop();
+                    addView(belowView, originalPosition);
+                    addView(mDragItem.mView, switchPosition);
+                } else {
+                    removeViewAt(switchPosition);
+                    removeViewAt(originalPosition - 1);
+
+                    addView(mDragItem.mView, switchPosition);
+                    addView(aboveView, originalPosition);
+                }
+                mDragItem.mPosition = switchPosition;
+
+                final ViewTreeObserver switchViewObserver = switchView.getViewTreeObserver();
+                switchViewObserver.addOnPreDrawListener(new OnPreDrawListener() {
+                    @Override
+                    public boolean onPreDraw() {
+                        switchViewObserver.removeOnPreDrawListener(this);
+
+                        final ObjectAnimator switchAnimator = ObjectAnimator.ofFloat(switchView, "y", switchViewStartY, switchView.getTop()).setDuration(getTranslateAnimationDuration(switchView.getTop() - switchViewStartY));
+                        switchAnimator.addListener(new AnimatorListenerAdapter() {
+                            @Override
+                            public void onAnimationStart(Animator animation) {
+                                mDraggableChildren.get(originalPosition).mValueAnimator = switchAnimator;
+                            }
+
+                            @Override
+                            public void onAnimationEnd(Animator animation) {
+                                mDraggableChildren.get(originalPosition).mValueAnimator = null;
+                            }
+                        });
+                        switchAnimator.start();
+
+                        return true;
                     }
-                    return true;
+                });
+
+                final ViewTreeObserver observer = mDragItem.mView.getViewTreeObserver();
+                observer.addOnPreDrawListener(new OnPreDrawListener() {
+                    @Override
+                    public boolean onPreDraw() {
+                        observer.removeOnPreDrawListener(this);
+                        mDragItem.updateTargetLocation();
+
+                        // TODO test if still necessary..
+                        // because mDragItem#mView#getTop() is only up-to-date NOW
+                        // (and not right after the #addView() swaps above)
+                        // we may need to update an ongoing settle animation
+                        if (mDragItem.settling()) {
+                            Log.d(TAG, "Updating settle animation");
+                            mDragItem.mSettleAnimation.removeAllListeners();
+                            mDragItem.mSettleAnimation.cancel();
+                            onDragStop();
+                        }
+                        return true;
+                    }
+                });
+            }
+        } else {
+            mDragItem.setTotalOffset(offset);
+            invalidate();
+
+            int currentLeft = mDragItem.mStartLeft + mDragItem.mTotalDragOffset;
+
+            int nextPosition = nextDraggablePosition(mDragItem.mPosition);
+            int prePosition = previousDraggablePosition(mDragItem.mPosition);
+
+            View nextView = getChildAt(nextPosition);
+            View preView = getChildAt(prePosition);
+
+            final boolean isToNext = (nextView != null) && (currentLeft + mDragItem.mWidth > nextView.getLeft() + nextView.getWidth() / 2);
+            final boolean isToPre = (preView != null) && (currentLeft < preView.getLeft() + preView.getWidth() / 2);
+
+            if (isToNext || isToPre) {
+                final View switchView = isToNext ? nextView : preView;
+
+                // swap elements
+                final int originalPosition = mDragItem.mPosition;
+                final int switchPosition = isToNext ? nextPosition : prePosition;
+
+                mDraggableChildren.get(switchPosition).cancelExistingAnimation();
+                final float switchViewStartX = switchView.getX();
+
+                if (null != mSwapListener) {
+                    mSwapListener.onSwap(mDragItem.mView, mDragItem.mPosition, switchView, switchPosition);
                 }
-            });
+
+                if (isToNext) {
+                    removeViewAt(originalPosition);
+                    removeViewAt(switchPosition - 1);
+
+                    addView(nextView, originalPosition);
+                    addView(mDragItem.mView, switchPosition);
+                } else {
+                    removeViewAt(switchPosition);
+                    removeViewAt(originalPosition - 1);
+
+                    addView(mDragItem.mView, switchPosition);
+                    addView(preView, originalPosition);
+                }
+                mDragItem.mPosition = switchPosition;
+
+                final ViewTreeObserver switchViewObserver = switchView.getViewTreeObserver();
+                switchViewObserver.addOnPreDrawListener(new OnPreDrawListener() {
+                    @Override
+                    public boolean onPreDraw() {
+                        switchViewObserver.removeOnPreDrawListener(this);
+
+                        final ObjectAnimator switchAnimator = ObjectAnimator.ofFloat(switchView, "x", switchViewStartX, switchView.getLeft()).setDuration(getTranslateAnimationDuration(switchView.getLeft() - switchViewStartX));
+                        switchAnimator.addListener(new AnimatorListenerAdapter() {
+                            @Override
+                            public void onAnimationStart(Animator animation) {
+                                mDraggableChildren.get(originalPosition).mValueAnimator = switchAnimator;
+                            }
+
+                            @Override
+                            public void onAnimationEnd(Animator animation) {
+                                mDraggableChildren.get(originalPosition).mValueAnimator = null;
+                            }
+                        });
+                        switchAnimator.start();
+
+                        return true;
+                    }
+                });
+
+                final ViewTreeObserver observer = mDragItem.mView.getViewTreeObserver();
+                observer.addOnPreDrawListener(new OnPreDrawListener() {
+                    @Override
+                    public boolean onPreDraw() {
+                        observer.removeOnPreDrawListener(this);
+                        mDragItem.updateTargetLocation();
+
+                        if (mDragItem.settling()) {
+                            mDragItem.mSettleAnimation.removeAllListeners();
+                            mDragItem.mSettleAnimation.cancel();
+                            onDragStop();
+                        }
+                        return true;
+                    }
+                });
+            }
         }
     }
 
     private int previousDraggablePosition(int position) {
-        int startIndex = draggableChildren.indexOfKey(position);
-        if (startIndex < 1 || startIndex > draggableChildren.size()) return -1;
-        return draggableChildren.keyAt(startIndex - 1);
+        int startIndex = mDraggableChildren.indexOfKey(position);
+        if (startIndex < 1 || startIndex > mDraggableChildren.size())
+            return -1;
+        return mDraggableChildren.keyAt(startIndex - 1);
     }
 
     private int nextDraggablePosition(int position) {
-        int startIndex = draggableChildren.indexOfKey(position);
-        if (startIndex < -1 || startIndex > draggableChildren.size() - 2) return -1;
-        return draggableChildren.keyAt(startIndex + 1);
+        int startIndex = mDraggableChildren.indexOfKey(position);
+        if (startIndex < -1 || startIndex > mDraggableChildren.size() - 2)
+            return -1;
+        return mDraggableChildren.keyAt(startIndex + 1);
     }
 
     private Runnable dragUpdater;
 
-    private void handleContainerScroll(final int currentTop) {
-        if (null != containerScrollView) {
-            final int startScrollY = containerScrollView.getScrollY();
-            final int absTop = getTop() - startScrollY + currentTop;
-            final int height = containerScrollView.getHeight();
-
-            final int delta;
-
-            if (absTop < scrollSensitiveAreaHeight) {
-                delta = (int) (-MAX_DRAG_SCROLL_SPEED * smootherStep(scrollSensitiveAreaHeight, 0, absTop));
-            } else if (absTop > height - scrollSensitiveAreaHeight) {
-                delta = (int) (MAX_DRAG_SCROLL_SPEED * smootherStep(height - scrollSensitiveAreaHeight, height, absTop));
-            } else {
-                delta = 0;
-            }
-
-            containerScrollView.removeCallbacks(dragUpdater);
-            containerScrollView.smoothScrollBy(0, delta);
-            dragUpdater = new Runnable() {
-                @Override
-                public void run() {
-                    if (draggedItem.dragging && startScrollY != containerScrollView.getScrollY()) {
-                        onDrag(draggedItem.totalDragOffset + delta);
-                    }
-                }
-            };
-            containerScrollView.post(dragUpdater);
-        }
-    }
 
     /**
      * By Ken Perlin. See <a href="http://en.wikipedia.org/wiki/Smoothstep">Smoothstep - Wikipedia</a>.
@@ -581,75 +619,83 @@ public class DragLinearLayout extends LinearLayout {
     }
 
     @Override
-    protected void dispatchDraw(Canvas canvas) {
+    protected void dispatchDraw(@NonNull Canvas canvas) {
         super.dispatchDraw(canvas);
 
-        if (draggedItem.detecting && (draggedItem.dragging || draggedItem.settling())) {
+        if (mDragItem.mDetecting && (mDragItem.mDragging || mDragItem.settling())) {
             canvas.save();
-            canvas.translate(0, draggedItem.totalDragOffset);
-            draggedItem.viewDrawable.draw(canvas);
-
-            final int left = draggedItem.viewDrawable.getBounds().left;
-            final int right = draggedItem.viewDrawable.getBounds().right;
-            final int top = draggedItem.viewDrawable.getBounds().top;
-            final int bottom = draggedItem.viewDrawable.getBounds().bottom;
-
-            dragBottomShadowDrawable.setBounds(left, bottom, right, bottom + dragShadowHeight);
-            dragBottomShadowDrawable.draw(canvas);
-
-            if (null != dragTopShadowDrawable) {
-                dragTopShadowDrawable.setBounds(left, top - dragShadowHeight, right, top);
-                dragTopShadowDrawable.draw(canvas);
+            if (getOrientation() == VERTICAL) {
+                canvas.translate(0, mDragItem.mTotalDragOffset);
+            } else {
+                canvas.translate(mDragItem.mTotalDragOffset, 0);
             }
+            mDragItem.mBitmapDrawable.draw(canvas);
 
             canvas.restore();
         }
     }
 
     /*
-     * Note regarding touch handling:
-     * In general, we have three cases -
-     * 1) User taps outside any children.
-     *      #onInterceptTouchEvent receives DOWN
-     *      #onTouchEvent receives DOWN
-     *          draggedItem.detecting == false, we return false and no further events are received
-     * 2) User taps on non-interactive drag handle / child, e.g. TextView or ImageView.
-     *      #onInterceptTouchEvent receives DOWN
-     *      DragHandleOnTouchListener (attached to each draggable child) #onTouch receives DOWN
-     *      #startDetectingDrag is called, draggedItem is now detecting
-     *      view does not handle touch, so our #onTouchEvent receives DOWN
-     *          draggedItem.detecting == true, we #startDrag() and proceed to handle the drag
+     * Note regarding touch handling: In general, we have three cases - 1) User taps
+     * outside any children. #onInterceptTouchEvent receives DOWN #onTouchEvent
+     * receives DOWN mDragItem.mDetecting == false, we return false and no further
+     * events are received 2) User taps on non-interactive drag handle / child, e.g.
+     * TextView or ImageView. #onInterceptTouchEvent receives DOWN
+     * DragHandleOnTouchListener (attached to each draggable child) #onTouch
+     * receives DOWN #startDetectingDrag is called, mDragItem is now mDetecting
+     * mView does not handle touch, so our #onTouchEvent receives DOWN
+     * mDragItem.mDetecting == true, we #startDrag() and proceed to handle the drag
      * 3) User taps on interactive drag handle / child, e.g. Button.
-     *      #onInterceptTouchEvent receives DOWN
-     *      DragHandleOnTouchListener (attached to each draggable child) #onTouch receives DOWN
-     *      #startDetectingDrag is called, draggedItem is now detecting
-     *      view handles touch, so our #onTouchEvent is not called yet
-     *      #onInterceptTouchEvent receives ACTION_MOVE
-     *      if dy > touch slop, we assume user wants to drag and intercept the event
-     *      #onTouchEvent receives further ACTION_MOVE events, proceed to handle the drag
+     * #onInterceptTouchEvent receives DOWN DragHandleOnTouchListener (attached to
+     * each draggable child) #onTouch receives DOWN #startDetectingDrag is called,
+     * mDragItem is now mDetecting mView handles touch, so our #onTouchEvent is not
+     * called yet #onInterceptTouchEvent receives ACTION_MOVE if dy > touch mSlop,
+     * we assume user wants to drag and intercept the event #onTouchEvent receives
+     * further ACTION_MOVE events, proceed to handle the drag
      *
-     * For cases 2) and 3), lifting the active pointer at any point in the sequence of events
-     * triggers #onTouchEnd and the draggedItem, if detecting, is #stopDetecting.
+     * For cases 2) and 3), lifting the active pointer at any point in the sequence
+     * of events triggers #onTouchEnd and the mDragItem, if mDetecting, is
+     * #stopDetecting.
      */
 
     @Override
     public boolean onInterceptTouchEvent(MotionEvent event) {
+        if (!mDraggable && !mIsLongClickDraggable) {
+            return super.onInterceptTouchEvent(event);
+        }
         switch (MotionEventCompat.getActionMasked(event)) {
             case MotionEvent.ACTION_DOWN: {
-                if (draggedItem.detecting) return false; // an existing item is (likely) settling
-                downY = (int) MotionEventCompat.getY(event, 0);
-                activePointerId = MotionEventCompat.getPointerId(event, 0);
+            getParent().requestDisallowInterceptTouchEvent(true);
+            if (mDragItem.mDetecting)
+                return false; // an existing item is (likely) settling
+            mDownY = (int) MotionEventCompat.getY(event, 0);
+            mDownX = (int) MotionEventCompat.getX(event, 0);
+            mActivePointerId = MotionEventCompat.getPointerId(event, 0);
                 break;
             }
             case MotionEvent.ACTION_MOVE: {
-                if (!draggedItem.detecting) return false;
-                if (INVALID_POINTER_ID == activePointerId) break;
-                final int pointerIndex = event.findPointerIndex(activePointerId);
+            if (!mDraggable) {
+                return super.onInterceptTouchEvent(event);
+            }
+            if (!mDragItem.mDetecting)
+                return false;
+            if (INVALID_POINTER_ID == mActivePointerId)
+                break;
+            final int pointerIndex = event.findPointerIndex(mActivePointerId);
                 final float y = MotionEventCompat.getY(event, pointerIndex);
-                final float dy = y - downY;
-                if (Math.abs(dy) > slop) {
+            final float x = MotionEventCompat.getX(event, pointerIndex);
+            final float dy = y - mDownY;
+            final float dx = x - mDownX;
+            if (getOrientation() == VERTICAL) {
+                if (Math.abs(dy) > mSlop) {
                     startDrag();
                     return true;
+                }
+            } else {
+                if (Math.abs(dx) > mSlop) {
+                    startDrag();
+                    return true;
+                }
                 }
                 return false;
             }
@@ -657,14 +703,16 @@ public class DragLinearLayout extends LinearLayout {
                 final int pointerIndex = MotionEventCompat.getActionIndex(event);
                 final int pointerId = MotionEventCompat.getPointerId(event, pointerIndex);
 
-                if (pointerId != activePointerId)
+            if (pointerId != mActivePointerId)
                     break; // if active pointer, fall through and cancel!
             }
             case MotionEvent.ACTION_CANCEL:
             case MotionEvent.ACTION_UP: {
+            getParent().requestDisallowInterceptTouchEvent(false);
                 onTouchEnd();
 
-                if (draggedItem.detecting) draggedItem.stopDetecting();
+            if (mDragItem.mDetecting)
+                mDragItem.stopDetecting();
                 break;
             }
         }
@@ -673,39 +721,53 @@ public class DragLinearLayout extends LinearLayout {
     }
 
     @Override
-    public boolean onTouchEvent(MotionEvent event) {
+    public boolean onTouchEvent(@NonNull MotionEvent event) {
+        if (!mDraggable && !mIsLongClickDraggable) {
+            return super.onTouchEvent(event);
+        }
         switch (MotionEventCompat.getActionMasked(event)) {
             case MotionEvent.ACTION_DOWN: {
-                if (!draggedItem.detecting || draggedItem.settling()) return false;
+            if (!mDragItem.mDetecting || mDragItem.settling())
+                return false;
                 startDrag();
                 return true;
             }
             case MotionEvent.ACTION_MOVE: {
-                if (!draggedItem.dragging) break;
-                if (INVALID_POINTER_ID == activePointerId) break;
+            if (!mDraggable && !mIsEnterLongClick) {
+                return super.onTouchEvent(event);
+            }
+            if (!mDragItem.mDragging)
+                break;
+            if (INVALID_POINTER_ID == mActivePointerId)
+                break;
 
-                int pointerIndex = event.findPointerIndex(activePointerId);
+            int pointerIndex = event.findPointerIndex(mActivePointerId);
                 int lastEventY = (int) MotionEventCompat.getY(event, pointerIndex);
-                int deltaY = lastEventY - downY;
-
+            int lastEventX = (int) MotionEventCompat.getX(event, pointerIndex);
+            if (getOrientation() == VERTICAL) {
+                int deltaY = lastEventY - mDownY;
                 onDrag(deltaY);
+            } else {
+                int deltaX = lastEventX - mDownX;
+                onDrag(deltaX);
+            }
                 return true;
             }
             case MotionEvent.ACTION_POINTER_UP: {
                 final int pointerIndex = MotionEventCompat.getActionIndex(event);
                 final int pointerId = MotionEventCompat.getPointerId(event, pointerIndex);
 
-                if (pointerId != activePointerId)
+            if (pointerId != mActivePointerId)
                     break; // if active pointer, fall through and cancel!
             }
             case MotionEvent.ACTION_CANCEL:
             case MotionEvent.ACTION_UP: {
                 onTouchEnd();
 
-                if (draggedItem.dragging) {
+            if (mDragItem.mDragging) {
                     onDragStop();
-                } else if (draggedItem.detecting) {
-                    draggedItem.stopDetecting();
+            } else if (mDragItem.mDetecting) {
+                mDragItem.stopDetecting();
                 }
                 return true;
             }
@@ -714,8 +776,10 @@ public class DragLinearLayout extends LinearLayout {
     }
 
     private void onTouchEnd() {
-        downY = -1;
-        activePointerId = INVALID_POINTER_ID;
+        mDownY = -1;
+        mDownX = -1;
+        mIsEnterLongClick = false;
+        mActivePointerId = INVALID_POINTER_ID;
     }
 
     private class DragHandleOnTouchListener implements OnTouchListener {
@@ -727,7 +791,7 @@ public class DragLinearLayout extends LinearLayout {
 
         @Override
         public boolean onTouch(View v, MotionEvent event) {
-            if (MotionEvent.ACTION_DOWN == MotionEventCompat.getActionMasked(event)) {
+            if (MotionEvent.ACTION_DOWN == MotionEventCompat.getActionMasked(event) && mDraggable) {
                 startDetectingDrag(view);
             }
             return false;
@@ -748,7 +812,7 @@ public class DragLinearLayout extends LinearLayout {
     }
 
     /**
-     * @return a bitmap showing a screenshot of the view passed in.
+     * @return a bitmap showing a screenshot of the mView passed in.
      */
     private static Bitmap getBitmapFromView(View view) {
         Bitmap bitmap = Bitmap.createBitmap(view.getWidth(), view.getHeight(), Bitmap.Config.ARGB_8888);
@@ -756,4 +820,68 @@ public class DragLinearLayout extends LinearLayout {
         view.draw(canvas);
         return bitmap;
     }
+
+    // ------------------------------扩展---------------------------------------
+
+    private boolean mDraggable = true;
+    private boolean mOverScrollable = true;
+    private boolean mIsLongClickDraggable = true;
+    private ILongClickToDragListener mClickToDragListener;
+    private boolean mIsEnterLongClick = false;
+
+    public void setClickToDragListener(ILongClickToDragListener clickToDragListener) {
+        mClickToDragListener = clickToDragListener;
+    }
+
+    public void setDraggable(boolean draggable) {
+        if (mDraggable != draggable) {
+            mDraggable = draggable;
+        }
+    }
+
+    public void setOverScrollable(boolean overScrollable) {
+        if (mOverScrollable != overScrollable) {
+            mOverScrollable = overScrollable;
+        }
+    }
+
+    /**
+     * @param longClickDrag if set ,it will ignore
+     *                      {@link DragLinearLayout#mDraggable}
+     */
+    public void setLongClickDrag(boolean longClickDrag) {
+        if (mIsLongClickDraggable != longClickDrag) {
+            mIsLongClickDraggable = longClickDrag;
+        }
+    }
+
+    private LongClickDragListener mLongClickDragListener = new LongClickDragListener();
+
+    /**
+     * @author chensuilun 长按进入编辑
+     */
+    public class LongClickDragListener implements OnLongClickListener {
+
+        @Override
+        public boolean onLongClick(View v) {
+            if (!mIsLongClickDraggable) {
+                return false;
+            }
+            mIsEnterLongClick = true;
+            if (mClickToDragListener != null) {
+                mClickToDragListener.onLongClickToDrag(v);
+            }
+            startDetectingDrag(v);
+            return true;
+        }
+    }
+
+    /**
+     * @author chensuilun
+     */
+    public interface ILongClickToDragListener {
+
+        void onLongClickToDrag(View dragableView);
+    }
+
 }

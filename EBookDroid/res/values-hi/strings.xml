@@ -169,6 +169,7 @@
    <string name="no_author">कोई लेखक नहीं</string>
    <string name="no_serie">कोई सीरी नहीं</string>
    <string name="no_genre">कोई शैली नहीं</string>
+   <string name="no_language">कोई भाषा नहीं</string>
    <string name="without_series">श्रृंखला के बिना</string>
    <string name="folders">फ़ोल्डर</string>
    <string name="recent">हाल का</string>
@@ -351,7 +352,6 @@
    <string name="press_color_to_apply">लागू करने के लिए रंग पर प्रेस</string>
    <string name="pro_pdf_description_ads_free">विज्ञापन के बिना कार्यक्रम</string>
    <string name="rotate">घुमाएँ</string>
-   <string name="select">चुनते हैं</string>
    <string name="split_pages_in_two">विभाजन पेज</string>
    <string name="save_changes">परिवर्तनों को सुरक्षित करें?</string>
    <string name="rename">नाम बदलें</string>
@@ -471,7 +471,6 @@
    <string name="cloud_not_connected">क्लाउड कनेक्ट नहीं है</string>
    <string name="cloud_sync_folder">क्लाउड सिंक फ़ोल्डर</string>
    <string name="clouds">बादल</string>
-   <string name="add_to_cloud">बादल में जोड़ें</string>
    <string name="librera_cloud">Librera बादल</string>
    <string name="hide_search_bar">खोज बार छुपाएं</string>
    <string name="show_search_bar">खोज बार दिखाएं</string>
@@ -504,4 +503,16 @@
    <string name="exit_application_question">छोड़ने के लिए प्रार्थनापत्र?</string>
    <string name="open_folder_as_a_book">एक पुस्तक के रूप में फ़ोल्डर खोलें</string>
    <string name="read_out_loud_with_tts">टीटीएस के साथ जोर से पढ़ें</string>
+   <string name="allow_minimum_brightness">न्यूनतम चमक की अनुमति दें</string>
+   <string name="select">चुनते हैं</string>
+   <string name="create_playlist">प्लेलिस्ट बनायें</string>
+   <string name="upload_to_cloud">Сloud पर अपलोड करें</string>
+   <string name="add_to_playlist">प्लेलिस्ट में जोड़ें</string>
+   <string name="create_tag">टैग बनाएं</string>
+   <string name="add_tags">टैग लगा दो</string>
+   <string name="play">प्ले</string>
+   <string name="favorite">पसंदीदा</string>
+   <string name="playlists">प्लेलिस्ट</string>
+   <string name="tags">टैग</string>
+   <string name="are_you_sure_to_delete_playlist_">क्या आप प्लेलिस्ट को हटाना चाहते हैं?</string>
 </resources>

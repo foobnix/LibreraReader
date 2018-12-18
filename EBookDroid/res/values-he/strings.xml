@@ -169,6 +169,7 @@
    <string name="no_author">אין מחבר</string>
    <string name="no_serie">אין סרייה</string>
    <string name="no_genre">אין ז\'אנר</string>
+   <string name="no_language">אין שפה</string>
    <string name="without_series">ללא סדרה</string>
    <string name="folders">תיקיות</string>
    <string name="recent">לאחרונה</string>
@@ -351,7 +352,6 @@
    <string name="press_color_to_apply">לחץ על צבע כדי להחיל</string>
    <string name="pro_pdf_description_ads_free">יישום ללא מודעות</string>
    <string name="rotate">לְסוֹבֵב</string>
-   <string name="select">בחר</string>
    <string name="split_pages_in_two">דף פיצול</string>
    <string name="save_changes">שמור שינויים?</string>
    <string name="rename">שינוי שם</string>
@@ -471,7 +471,6 @@
    <string name="cloud_not_connected">ענן לא מחובר</string>
    <string name="cloud_sync_folder">תיקיית סינכרון ענן</string>
    <string name="clouds">עננים</string>
-   <string name="add_to_cloud">הוסף לענן</string>
    <string name="librera_cloud">ענן Librera</string>
    <string name="hide_search_bar">הסתר את סרגל החיפוש</string>
    <string name="show_search_bar">הצג סרגל חיפוש</string>
@@ -504,4 +503,16 @@
    <string name="exit_application_question">יציאה מהיישום?</string>
    <string name="open_folder_as_a_book">פתח את התיקיה כספר</string>
    <string name="read_out_loud_with_tts">קרא בקול רם עם TTS</string>
+   <string name="allow_minimum_brightness">אפשר בהירות מינימלית</string>
+   <string name="select">בחר</string>
+   <string name="create_playlist">צור פלייליסט</string>
+   <string name="upload_to_cloud">טען ל-</string>
+   <string name="add_to_playlist">הוסף לרשימת ההשמעה</string>
+   <string name="create_tag">צור תג</string>
+   <string name="add_tags">הוסף תגיות</string>
+   <string name="play">שחק</string>
+   <string name="favorite">אהוב</string>
+   <string name="playlists">פלייליסטים</string>
+   <string name="tags">תגים</string>
+   <string name="are_you_sure_to_delete_playlist_">האם אתה בטוח למחוק את הפלייליסט?</string>
 </resources>

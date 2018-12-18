@@ -14,12 +14,14 @@ import com.foobnix.android.utils.Dips;
 import com.foobnix.android.utils.IntegerResponse;
 import com.foobnix.android.utils.Keyboards;
 import com.foobnix.android.utils.LOG;
+import com.foobnix.android.utils.ResultResponse;
 import com.foobnix.android.utils.StringDB;
 import com.foobnix.android.utils.TxtUtils;
 import com.foobnix.android.utils.Vibro;
 import com.foobnix.dao2.FileMeta;
 import com.foobnix.pdf.info.R;
 import com.foobnix.pdf.info.TintUtil;
+import com.foobnix.pdf.info.WebViewHepler;
 import com.foobnix.pdf.info.wrapper.AppState;
 import com.foobnix.pdf.info.wrapper.DocumentController;
 import com.foobnix.sys.TempHolder;
@@ -30,6 +32,7 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.DialogInterface.OnDismissListener;
+import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.os.Handler;
 import android.text.InputType;
@@ -52,6 +55,37 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 public class Dialogs {
+
+    public static void testWebView(final Activity a, final String path) {
+
+        if (WebViewHepler.webView == null) {
+            WebViewHepler.init(a);
+        }
+
+        final ImageView imageView = new ImageView(a);
+
+        WebViewHepler.getBitmap(path, new ResultResponse<Bitmap>() {
+
+            @Override
+            public boolean onResultRecive(Bitmap result) {
+                imageView.setImageBitmap(result);
+                return false;
+            }
+        });
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(a);
+        builder.setView(imageView);
+
+        builder.setPositiveButton(R.string.close, new DialogInterface.OnClickListener() {
+
+            @Override
+            public void onClick(final DialogInterface dialog, final int id) {
+
+            }
+        });
+        builder.show();
+
+    }
 
     public static void customValueDialog(final Context a, final int initValue, final IntegerResponse reponse) {
         final AlertDialog.Builder builder = new AlertDialog.Builder(a);
@@ -448,7 +482,6 @@ public class Dialogs {
             public void onClick(View v) {
                 String text = edit.getText().toString().trim();
 
-
                 if (TxtUtils.isEmpty(text)) {
                     Toast.makeText(a, R.string.incorrect_value, Toast.LENGTH_SHORT).show();
                     return;
@@ -466,7 +499,6 @@ public class Dialogs {
                 Keyboards.close(edit);
                 Keyboards.hideNavigation((Activity) a);
 
-
                 AppState.get().bookTags = StringDB.add(AppState.get().bookTags, text);
                 if (onRefresh != null) {
                     onRefresh.run();
@@ -478,10 +510,13 @@ public class Dialogs {
         });
     }
 
-    public static void showTagsDialog(final Context a, File file, final Runnable refresh) {
-        final FileMeta fileMeta = AppDB.get().getOrCreate(file.getPath());
 
-        LOG.d("showTagsDialog book tags", fileMeta.getTag());
+
+    public static void showTagsDialog(final Context a, File file, final Runnable refresh) {
+        final FileMeta fileMeta = file == null ? null : AppDB.get().getOrCreate(file.getPath());
+        final String tag = file == null ? "" : fileMeta.getTag();
+
+        LOG.d("showTagsDialog book tags", tag);
 
         final AlertDialog.Builder builder = new AlertDialog.Builder(a);
         // builder.setTitle(R.string.tag);
@@ -490,10 +525,10 @@ public class Dialogs {
 
         final ListView list = (ListView) inflate.findViewById(R.id.listView1);
         final TextView add = (TextView) inflate.findViewById(R.id.addTag);
-        TxtUtils.underline(add, "+ " + a.getString(R.string.add_tag));
+        TxtUtils.underline(add, a.getString(R.string.create_tag));
 
         final List<String> tags = StringDB.asList(AppState.get().bookTags);
-        List<String> fileTags = StringDB.asList(fileMeta.getTag());
+        List<String> fileTags = StringDB.asList(tag);
         for (String fileTag : fileTags) {
             if (!StringDB.contains(AppState.get().bookTags, fileTag)) {
                 tags.add(fileTag);
@@ -515,6 +550,9 @@ public class Dialogs {
             public void populateView(View layout, final int position, final String tagName) {
                 CheckBox text = (CheckBox) layout.findViewById(R.id.tagName);
                 text.setText(tagName);
+                if (fileMeta == null) {
+                    text.setEnabled(false);
+                }
 
                 text.setOnCheckedChangeListener(new OnCheckedChangeListener() {
 
@@ -528,9 +566,11 @@ public class Dialogs {
                     }
                 });
 
-                text.setChecked(StringDB.contains(fileMeta.getTag(), tagName));
+                text.setChecked(StringDB.contains(tag, tagName));
 
-                layout.findViewById(R.id.deleteTag).setOnClickListener(new OnClickListener() {
+                ImageView delete = (ImageView) layout.findViewById(R.id.deleteTag);
+                TintUtil.setTintImageWithAlpha(delete);
+                delete.setOnClickListener(new OnClickListener() {
 
                     @Override
                     public void onClick(View v) {
@@ -591,30 +631,39 @@ public class Dialogs {
             }
         });
 
-        builder.setPositiveButton(R.string.apply, new AlertDialog.OnClickListener() {
+        if (fileMeta != null) {
 
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                String res = "";
-                for (int i : checked) {
-                    res = StringDB.add(res, tags.get(i));
-                }
-                LOG.d("showTagsDialog", res);
-                fileMeta.setTag(res);
-                AppDB.get().update(fileMeta);
-                if (refresh != null) {
-                    refresh.run();
-                }
-                TempHolder.listHash++;
-            }
+            builder.setPositiveButton(R.string.apply, new AlertDialog.OnClickListener() {
 
-        });
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    String res = "";
+                    for (int i : checked) {
+                        res = StringDB.add(res, tags.get(i));
+                    }
+                    LOG.d("showTagsDialog", res);
+                    if (fileMeta != null) {
+                        fileMeta.setTag(res);
+                        AppDB.get().update(fileMeta);
+                    }
+                    if (refresh != null) {
+                        refresh.run();
+                    }
+                    TempHolder.listHash++;
+                }
+
+            });
+        }
 
         AlertDialog create = builder.create();
         create.setOnDismissListener(new OnDismissListener() {
 
             @Override
             public void onDismiss(DialogInterface dialog) {
+                if (refresh != null) {
+                    refresh.run();
+                }
+                TempHolder.listHash++;
                 Keyboards.close((Activity) a);
                 Keyboards.hideNavigation((Activity) a);
 
@@ -623,5 +672,7 @@ public class Dialogs {
         create.show();
 
     }
+
+
 
 }

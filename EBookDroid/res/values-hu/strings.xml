@@ -169,6 +169,7 @@
    <string name="no_author">Nincs szerző</string>
    <string name="no_serie">Nincsenek sorozatok</string>
    <string name="no_genre">Nincs műfaj</string>
+   <string name="no_language">Nincs nyelv</string>
    <string name="without_series">N/A</string>
    <string name="folders">Mappa</string>
    <string name="recent">Legutóbbi</string>
@@ -351,7 +352,6 @@
    <string name="press_color_to_apply">Válasszon színt</string>
    <string name="pro_pdf_description_ads_free">Hirdetésmentes Librera</string>
    <string name="rotate">Elforgatás</string>
-   <string name="select">OK</string>
    <string name="split_pages_in_two">Oldal felosztása</string>
    <string name="save_changes">Menti a módosításokat?</string>
    <string name="rename">Átnevezés</string>
@@ -471,7 +471,6 @@
    <string name="cloud_not_connected">A felhőtár nincs csatlakoztatva</string>
    <string name="cloud_sync_folder">Felhő mappa szinkronizálása</string>
    <string name="clouds">Felhőtárak</string>
-   <string name="add_to_cloud">Hozzáadás a felhőhöz</string>
    <string name="librera_cloud">Librera felhő</string>
    <string name="hide_search_bar">Keresősáv elrejtése</string>
    <string name="show_search_bar">Keresősáv megjelenítése</string>
@@ -504,4 +503,16 @@
    <string name="exit_application_question">Kilépés az alkalmazásból?</string>
    <string name="open_folder_as_a_book">Nyissa meg a mappát könyvként</string>
    <string name="read_out_loud_with_tts">Olvassa el hangosan a TTS-et</string>
+   <string name="allow_minimum_brightness">Minimális fényerő engedélyezése</string>
+   <string name="select">Választ</string>
+   <string name="create_playlist">Lejátszási lista létrehozása</string>
+   <string name="upload_to_cloud">Feltöltés Сloudba</string>
+   <string name="add_to_playlist">Lejátszási listához adni</string>
+   <string name="create_tag">Címke létrehozása</string>
+   <string name="add_tags">Címkék hozzáadása</string>
+   <string name="play">Játék</string>
+   <string name="favorite">Kedvenc</string>
+   <string name="playlists">Lejátszási listák</string>
+   <string name="tags">Címkék</string>
+   <string name="are_you_sure_to_delete_playlist_">Biztosan törli a lejátszási listát?</string>
 </resources>

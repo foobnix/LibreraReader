@@ -169,6 +169,7 @@
    <string name="no_author">Geen auteur</string>
    <string name="no_serie">Geen serie</string>
    <string name="no_genre">Geen genre</string>
+   <string name="no_language">Geen taal</string>
    <string name="without_series">Zonder serie</string>
    <string name="folders">Folders</string>
    <string name="recent">Recent</string>
@@ -351,7 +352,6 @@
    <string name="press_color_to_apply">Druk op de kleur toe te passen</string>
    <string name="pro_pdf_description_ads_free">Toepassing zonder advertenties</string>
    <string name="rotate">Draaien</string>
-   <string name="select">Kiezen</string>
    <string name="split_pages_in_two">Split pagina</string>
    <string name="save_changes">Wijzigingen opslaan?</string>
    <string name="rename">Andere naam geven</string>
@@ -471,7 +471,6 @@
    <string name="cloud_not_connected">Cloud niet verbonden</string>
    <string name="cloud_sync_folder">Cloud sync-map</string>
    <string name="clouds">Wolken</string>
-   <string name="add_to_cloud">Voeg toe aan de cloud</string>
    <string name="librera_cloud">Librera cloud</string>
    <string name="hide_search_bar">Zoekbalk verbergen</string>
    <string name="show_search_bar">Toon zoekbalk</string>
@@ -504,4 +503,16 @@
    <string name="exit_application_question">Sluit app af?</string>
    <string name="open_folder_as_a_book">Open de map als een boek</string>
    <string name="read_out_loud_with_tts">Voorlezen met TTS</string>
+   <string name="allow_minimum_brightness">Minimale helderheid toestaan</string>
+   <string name="select">Kiezen</string>
+   <string name="create_playlist">Maak afspeellijst</string>
+   <string name="upload_to_cloud">Uploaden naar Сoud</string>
+   <string name="add_to_playlist">Toevoegen aan afspeellijst</string>
+   <string name="create_tag">Maak een tag</string>
+   <string name="add_tags">Tags toevoegen</string>
+   <string name="play">Spelen</string>
+   <string name="favorite">Favoriete</string>
+   <string name="playlists">Afspeellijsten</string>
+   <string name="tags">Tags</string>
+   <string name="are_you_sure_to_delete_playlist_">Weet je zeker dat je de afspeellijst wilt verwijderen?</string>
 </resources>

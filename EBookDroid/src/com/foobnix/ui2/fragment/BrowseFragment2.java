@@ -926,6 +926,7 @@ public class BrowseFragment2 extends UIFragment<FileMeta> {
                             builder.append(split[j]);
                         }
                         String itemPath = builder.toString();
+                        itemPath = TxtUtils.replaceFirst(itemPath, "//", "/");
                         String pathFull = prefix + itemPath;
                         pathFull = pathFull.replace("://", ":/");
                         displayAnyPath(pathFull);

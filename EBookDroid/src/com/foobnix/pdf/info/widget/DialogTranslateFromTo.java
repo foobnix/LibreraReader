@@ -130,24 +130,24 @@ public class DialogTranslateFromTo {
 
     public static String getLanuageByCode(String code) {
         try {
-            if (LibreraApp.context == null) {
+            if (LibreraApp.context == null || TxtUtils.isEmpty(code)) {
                 return "";
             }
+
             if (AppState.MY_SYSTEM_LANG.equals(code)) {
                 return LibreraApp.context.getString(R.string.system_language);
             }
+
             try {
+                if (code.length() > 2) {
+                    code = code.substring(0, 2);
+                }
                 Locale l = new Locale(code);
                 return TxtUtils.firstUppercase(l.getDisplayLanguage(l));
             } catch (Exception e) {
+                LOG.e(e);
             }
 
-            if (TxtUtils.isEmpty(code)) {
-                return "";
-            }
-            if (code.length() > 2) {
-                code = code.substring(0, 2);
-            }
             for (String key : langs.keySet()) {
                 String value = langs.get(key);
                 if (code.equals(value)) {

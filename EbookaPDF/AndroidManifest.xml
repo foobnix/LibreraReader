@@ -2,8 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.foobnix.pdf.reader"
     android:installLocation="auto"
-    android:versionCode="793"
-    android:versionName="7.11.37" >
+    android:versionCode="831"
+    android:versionName="7.12.5" >
 
     <uses-sdk
         android:minSdkVersion="14"
@@ -20,7 +20,7 @@
     <application
         android:name="org.ebookdroid.LibreraApp"
         android:icon="@mipmap/icon_pdf_reader"
-      android:roundIcon="@mipmap/launcher_reader"
+    android:roundIcon="@mipmap/launcher_reader"
         android:label="@string/app_name"
         android:largeHeap="true"
         android:theme="@style/StyledIndicatorsWhite" >
@@ -136,6 +136,7 @@
                 <data android:mimeType="image/x.djvu" />
                 <data android:mimeType="text/plain" />
                 <data android:mimeType="image/tiff" />
+                <data android:mimeType="application/vnd.oasis.opendocument.text" />
             </intent-filter>
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
@@ -162,6 +163,7 @@
                 <data android:pathPattern=".*\\.cbz" />
                 <data android:pathPattern=".*\\.cbr" />
                 <data android:pathPattern=".*\\.tiff" />
+                <data android:pathPattern=".*\\.odt" />
             </intent-filter>
         </activity>
 
@@ -214,6 +216,22 @@
                 <category android:name="android.intent.category.LAUNCHER1" />
             </intent-filter>
         </activity>
+        
+        <activity
+            android:name="com.foobnix.ui2.CloudrailActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait" >
+            
+             <intent-filter>
+		        <action android:name="android.intent.action.VIEW" />
+		        <category android:name="android.intent.category.DEFAULT" />
+		        <category android:name="android.intent.category.BROWSABLE" />
+		
+		        <data android:scheme="com.foobnix.pdf.reader" />
+		        <data android:scheme="librera" />
+		    </intent-filter>
+            
+            </activity>
         <activity
             android:name="com.foobnix.ui2.MainTabs2"
             android:configChanges="orientation|screenSize|keyboard|keyboardHidden"
@@ -247,14 +265,7 @@
 
                 <data android:mimeType="text/plain" />
             </intent-filter>
-             <intent-filter>
-		        <action android:name="android.intent.action.VIEW" />
-		        <category android:name="android.intent.category.DEFAULT" />
-		        <category android:name="android.intent.category.BROWSABLE" />
-		
-		        <data android:scheme="com.foobnix.pdf.reader" />
-		        <data android:scheme="librera" />
-		    </intent-filter>
+            
         </activity>
         
          <activity

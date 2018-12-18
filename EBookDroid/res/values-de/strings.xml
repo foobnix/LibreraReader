@@ -169,6 +169,7 @@
    <string name="no_author">Kein Autor</string>
    <string name="no_serie">Keine Serie</string>
    <string name="no_genre">Kein Genre</string>
+   <string name="no_language">Keine sprache</string>
    <string name="without_series">Ohne Serien</string>
    <string name="folders">Ordner</string>
    <string name="recent">Verlauf</string>
@@ -351,7 +352,6 @@
    <string name="press_color_to_apply">Farbe auswählen um sie anzuwenden</string>
    <string name="pro_pdf_description_ads_free">Programm ohne Werbung</string>
    <string name="rotate">Drehen</string>
-   <string name="select">Wählen</string>
    <string name="split_pages_in_two">Seite aufteilen</string>
    <string name="save_changes">Änderungen speichern?</string>
    <string name="rename">Umbenennen</string>
@@ -471,7 +471,6 @@
    <string name="cloud_not_connected">Cloud nicht verbunden</string>
    <string name="cloud_sync_folder">Cloud-Synchronisierungsordner</string>
    <string name="clouds">Wolken</string>
-   <string name="add_to_cloud">Zur Wolke hinzufügen</string>
    <string name="librera_cloud">Librera Wolke</string>
    <string name="hide_search_bar">Suchleiste ausblenden</string>
    <string name="show_search_bar">Suchleiste anzeigen</string>
@@ -504,4 +503,16 @@
    <string name="exit_application_question">Anwendung verlassen?</string>
    <string name="open_folder_as_a_book">Ordner als Buch öffnen</string>
    <string name="read_out_loud_with_tts">Mit TTS laut vorlesen</string>
+   <string name="allow_minimum_brightness">Minimale Helligkeit zulassen</string>
+   <string name="select">Wählen</string>
+   <string name="create_playlist">Wiedergabeliste erstellen</string>
+   <string name="upload_to_cloud">In Сloud hochladen</string>
+   <string name="add_to_playlist">Zur Titelliste hinzufügen</string>
+   <string name="create_tag">Tag erstellen</string>
+   <string name="add_tags">Tags hinzufügen</string>
+   <string name="play">Abspielen</string>
+   <string name="favorite">Liebling</string>
+   <string name="playlists">Wiedergabelisten</string>
+   <string name="tags">Stichworte</string>
+   <string name="are_you_sure_to_delete_playlist_">Möchten Sie die Wiedergabeliste wirklich löschen?</string>
 </resources>

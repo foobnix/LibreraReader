@@ -169,6 +169,7 @@
    <string name="no_author">Ei kirjoittajaa</string>
    <string name="no_serie">Ei sarjaa</string>
    <string name="no_genre">Ei lajia</string>
+   <string name="no_language">Ei kieltä</string>
    <string name="without_series">Ilman sarjaa</string>
    <string name="folders">Kansiot</string>
    <string name="recent">Viimeaikainen</string>
@@ -351,7 +352,6 @@
    <string name="press_color_to_apply">Paina Color soveltamaan</string>
    <string name="pro_pdf_description_ads_free">Sovellus ilman mainoksia</string>
    <string name="rotate">Kiertää</string>
-   <string name="select">Valita</string>
    <string name="split_pages_in_two">Split sivu</string>
    <string name="save_changes">Tallenna muutokset?</string>
    <string name="rename">Nimeä uudelleen</string>
@@ -471,7 +471,6 @@
    <string name="cloud_not_connected">Pilvi ei ole kytkettynä</string>
    <string name="cloud_sync_folder">Cloud sync -kansio</string>
    <string name="clouds">Pilvet</string>
-   <string name="add_to_cloud">Lisää pilviin</string>
    <string name="librera_cloud">Librera-pilvi</string>
    <string name="hide_search_bar">Piilota hakupalkki</string>
    <string name="show_search_bar">Näytä hakupalkki</string>
@@ -504,4 +503,16 @@
    <string name="exit_application_question">Poistu sovelluksesta?</string>
    <string name="open_folder_as_a_book">Avaa kansio kirjana</string>
    <string name="read_out_loud_with_tts">Lue ääneen TTS: llä</string>
+   <string name="allow_minimum_brightness">Sallitaan Minimi kirkkaus</string>
+   <string name="select">Valita</string>
+   <string name="create_playlist">Luo soittolista</string>
+   <string name="upload_to_cloud">Lähetä Сloudiin</string>
+   <string name="add_to_playlist">Lisää soittolistaan</string>
+   <string name="create_tag">Luo tunniste</string>
+   <string name="add_tags">Lisää tageja</string>
+   <string name="play">Pelata</string>
+   <string name="favorite">Suosikki</string>
+   <string name="playlists">Soittolistoja</string>
+   <string name="tags">Tunnisteet</string>
+   <string name="are_you_sure_to_delete_playlist_">Haluatko varmasti poistaa soittolistan?</string>
 </resources>

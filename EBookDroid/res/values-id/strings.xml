@@ -169,6 +169,7 @@
    <string name="no_author">Tidak ada penulis</string>
    <string name="no_serie">Tidak ada serie</string>
    <string name="no_genre">Tidak ada genre</string>
+   <string name="no_language">Tidak ada bahasa</string>
    <string name="without_series">Tanpa seri</string>
    <string name="folders">Map</string>
    <string name="recent">Baru</string>
@@ -351,7 +352,6 @@
    <string name="press_color_to_apply">Tekan Warna untuk melamar</string>
    <string name="pro_pdf_description_ads_free">Aplikasi tanpa iklan</string>
    <string name="rotate">Memutar</string>
-   <string name="select">Memilih</string>
    <string name="split_pages_in_two">Halaman split</string>
    <string name="save_changes">Simpan perubahan?</string>
    <string name="rename">Ganti nama</string>
@@ -471,7 +471,6 @@
    <string name="cloud_not_connected">Cloud tidak terhubung</string>
    <string name="cloud_sync_folder">Folder sinkronisasi cloud</string>
    <string name="clouds">Awan</string>
-   <string name="add_to_cloud">Tambahkan ke cloud</string>
    <string name="librera_cloud">Librera cloud</string>
    <string name="hide_search_bar">Sembunyikan bilah pencarian</string>
    <string name="show_search_bar">Tampilkan bilah penelusuran</string>
@@ -504,4 +503,16 @@
    <string name="exit_application_question">Aplikasi Keluar?</string>
    <string name="open_folder_as_a_book">Buka folder sebagai buku</string>
    <string name="read_out_loud_with_tts">Baca dengan keras menggunakan TTS</string>
+   <string name="allow_minimum_brightness">Izinkan Kecerahan Minimum</string>
+   <string name="select">Memilih</string>
+   <string name="create_playlist">Buat Daftar Putar</string>
+   <string name="upload_to_cloud">Unggah ke Сloud</string>
+   <string name="add_to_playlist">Tambahkan ke Daftar Putar</string>
+   <string name="create_tag">Buat tag</string>
+   <string name="add_tags">Tambahkan tanda</string>
+   <string name="play">Bermain</string>
+   <string name="favorite">Favorit</string>
+   <string name="playlists">Playlist</string>
+   <string name="tags">Tag</string>
+   <string name="are_you_sure_to_delete_playlist_">Apakah Anda yakin untuk menghapus daftar putar?</string>
 </resources>

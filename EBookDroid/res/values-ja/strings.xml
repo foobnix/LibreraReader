@@ -169,6 +169,7 @@
    <string name="no_author">著者はありません</string>
    <string name="no_serie">セリエがない</string>
    <string name="no_genre">ジャンルなし</string>
+   <string name="no_language">言語なし</string>
    <string name="without_series">シリーズなし</string>
    <string name="folders">フォルダ</string>
    <string name="recent">最近開いたファイル</string>
@@ -351,7 +352,6 @@
    <string name="press_color_to_apply">カラーを選択して適用</string>
    <string name="pro_pdf_description_ads_free">広告なしのプログラム</string>
    <string name="rotate">Rotate</string>
-   <string name="select">選択</string>
    <string name="split_pages_in_two">Split page</string>
    <string name="save_changes">変更を保存</string>
    <string name="rename">名前の変更</string>
@@ -471,7 +471,6 @@
    <string name="cloud_not_connected">クラウドに接続されて</string>
    <string name="cloud_sync_folder">クラウド同期フォルダ</string>
    <string name="clouds">雲</string>
-   <string name="add_to_cloud">クラウドに追加</string>
    <string name="librera_cloud">リブレラの雲</string>
    <string name="hide_search_bar">検索バーを非表示にする</string>
    <string name="show_search_bar">検索バーを表示</string>
@@ -504,4 +503,16 @@
    <string name="exit_application_question">アプリケーションを終了しますか？</string>
    <string name="open_folder_as_a_book">ブックとしてのフォルダを開く</string>
    <string name="read_out_loud_with_tts">TTSで大声で読む</string>
+   <string name="allow_minimum_brightness">最小輝度を許可する</string>
+   <string name="select">選択</string>
+   <string name="create_playlist">プレイリストを作成する</string>
+   <string name="upload_to_cloud">Сloudにアップロード</string>
+   <string name="add_to_playlist">プレイリストに追加する</string>
+   <string name="create_tag">タグを作成する</string>
+   <string name="add_tags">タグを追加する</string>
+   <string name="play">遊びます</string>
+   <string name="favorite">お気に入り</string>
+   <string name="playlists">プレイリスト</string>
+   <string name="tags">タグ</string>
+   <string name="are_you_sure_to_delete_playlist_">プレイリストを削除してもよろしいですか？</string>
 </resources>

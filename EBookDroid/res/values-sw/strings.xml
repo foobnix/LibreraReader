@@ -169,6 +169,7 @@
    <string name="no_author">Hakuna mwandishi</string>
    <string name="no_serie">Hakuna serie</string>
    <string name="no_genre">Hakuna aina</string>
+   <string name="no_language">Hakuna lugha</string>
    <string name="without_series">Bila mfululizo</string>
    <string name="folders">Folders</string>
    <string name="recent">Hivi karibuni</string>
@@ -351,7 +352,6 @@
    <string name="press_color_to_apply">Vyombo vya habari juu Color kuomba</string>
    <string name="pro_pdf_description_ads_free">Maombi bila matangazo</string>
    <string name="rotate">Kilimo cha kubadilishana</string>
-   <string name="select">Kuchagua</string>
    <string name="split_pages_in_two">Split ukurasa</string>
    <string name="save_changes">Hifadhi mabadiliko?</string>
    <string name="rename">Rename</string>
@@ -471,7 +471,6 @@
    <string name="cloud_not_connected">Wingu halijaunganishwa</string>
    <string name="cloud_sync_folder">Faili ya usawazishaji wa wingu</string>
    <string name="clouds">Mawingu</string>
-   <string name="add_to_cloud">Ongeza kwenye wingu</string>
    <string name="librera_cloud">Librera wingu</string>
    <string name="hide_search_bar">Ficha bar ya utafutaji</string>
    <string name="show_search_bar">Onyesha bar ya utafutaji</string>
@@ -504,4 +503,16 @@
    <string name="exit_application_question">Maombi ya Toka?</string>
    <string name="open_folder_as_a_book">Fungua folda kama kitabu</string>
    <string name="read_out_loud_with_tts">Soma kwa sauti kwa sauti na TTS</string>
+   <string name="allow_minimum_brightness">Ruhusu Uwezeshaji wa Chini</string>
+   <string name="select">Chagua</string>
+   <string name="create_playlist">Unda Orodha ya kucheza</string>
+   <string name="upload_to_cloud">Pakia kwa Сloud</string>
+   <string name="add_to_playlist">Ongeza kwenye Orodha ya kucheza</string>
+   <string name="create_tag">Unda lebo</string>
+   <string name="add_tags">Ongeza vitambulisho</string>
+   <string name="play">Jaribu</string>
+   <string name="favorite">Mapenzi</string>
+   <string name="playlists">Orodha za kucheza</string>
+   <string name="tags">Vitambulisho</string>
+   <string name="are_you_sure_to_delete_playlist_">Una uhakika kufuta orodha ya kucheza?</string>
 </resources>

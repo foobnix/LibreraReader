@@ -4,16 +4,22 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import org.greenrobot.eventbus.EventBus;
+
 import com.foobnix.android.utils.ResultResponse;
 import com.foobnix.android.utils.TxtUtils;
 import com.foobnix.dao2.FileMeta;
+import com.foobnix.pdf.info.Playlists;
 import com.foobnix.pdf.info.R;
 import com.foobnix.pdf.info.TintUtil;
 import com.foobnix.pdf.info.view.AlertDialogs;
+import com.foobnix.pdf.info.view.Dialogs;
+import com.foobnix.pdf.info.view.DialogsPlaylist;
 import com.foobnix.pdf.info.view.MyPopupMenu;
 import com.foobnix.pdf.info.widget.RecentUpates;
 import com.foobnix.pdf.info.wrapper.AppState;
 import com.foobnix.pdf.info.wrapper.PopupHelper;
+import com.foobnix.pdf.search.activity.msg.NotifyAllFragments;
 import com.foobnix.ui2.AppDB;
 import com.foobnix.ui2.AppDB.SEARCH_IN;
 import com.foobnix.ui2.adapter.FileMetaAdapter;
@@ -28,7 +34,6 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.TextView;
 
 public class StarsFragment2 extends UIFragment<FileMeta> {
     public static final Pair<Integer, Integer> PAIR = new Pair<Integer, Integer>(R.string.starred, R.drawable.glyphicons_50_star);
@@ -54,7 +59,7 @@ public class StarsFragment2 extends UIFragment<FileMeta> {
         bindAdapter(recentAdapter);
         bindAuthorsSeriesAdapter(recentAdapter);
 
-        TxtUtils.underlineTextView((TextView) view.findViewById(R.id.clearAllRecent)).setOnClickListener(new OnClickListener() {
+        TxtUtils.underlineTextView(view.findViewById(R.id.clearAllRecent)).setOnClickListener(new OnClickListener() {
 
             @Override
             public void onClick(View v) {
@@ -86,6 +91,38 @@ public class StarsFragment2 extends UIFragment<FileMeta> {
                 popupMenu(onListGrid);
             }
         });
+
+        TxtUtils.underlineTextView(view.findViewById(R.id.onPlaylists)).setOnClickListener(new OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                DialogsPlaylist.showPlaylistsDialog(v.getContext(), new Runnable() {
+
+                    @Override
+                    public void run() {
+                        resetFragment();
+                        EventBus.getDefault().post(new NotifyAllFragments());
+                    }
+                }, null);
+
+            }
+        });
+        TxtUtils.underlineTextView(view.findViewById(R.id.onTags)).setOnClickListener(new OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                Dialogs.showTagsDialog(v.getContext(), null, new Runnable() {
+
+                    @Override
+                    public void run() {
+                        resetFragment();
+                        EventBus.getDefault().post(new NotifyAllFragments());
+                    }
+                });
+
+            }
+        });
+
 
         recentAdapter.setOnGridOrList(new ResultResponse<ImageView>() {
 
@@ -171,7 +208,14 @@ public class StarsFragment2 extends UIFragment<FileMeta> {
             all.add(empy);
         }
 
+        all.addAll(Playlists.getAllPlaylistsMeta());
+
+        FileMeta empy = new FileMeta();
+        empy.setCusType(FileMetaAdapter.DISPALY_TYPE_LAYOUT_TITLE_NONE);
+        all.add(empy);
+
         all.addAll(AppDB.get().getStarsFolder());
+
 
         FileMeta books = new FileMeta();
         books.setCusType(FileMetaAdapter.DISPALY_TYPE_LAYOUT_TITLE_NONE);

@@ -12,6 +12,7 @@ import java.util.Locale;
 import com.foobnix.android.utils.LOG;
 import com.foobnix.dao2.FileMeta;
 import com.foobnix.pdf.info.ExtUtils;
+import com.foobnix.pdf.info.Playlists;
 import com.foobnix.pdf.info.wrapper.AppState;
 import com.foobnix.ui2.AppDB;
 import com.foobnix.ui2.FileMetaCore;
@@ -118,6 +119,9 @@ public class SearchCore {
                     FileMetaCore.get().upadteBasicMeta(meta, it);
                 } else {
                     meta = load;
+                }
+                if (it.getName().endsWith(Playlists.L_PLAYLIST)) {
+                    meta.setCusType(FileMetaAdapter.DISPLAY_TYPE_PLAYLIST);
                 }
             }
             files.add(meta);

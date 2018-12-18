@@ -30,6 +30,7 @@ public class DialogSpeedRead {
 
     volatile static int currentWord = 0;
     volatile static String[] words = new String[] { "" };
+    static String[] punctuations = { ".", ",", ";", ":", "?", "!" };
 
     public static void show(final Context a, final DocumentController dc) {
         final AlertDialog.Builder builder = new AlertDialog.Builder(a);
@@ -130,10 +131,10 @@ public class DialogSpeedRead {
                     });
 
                     String textForPage = dc.getTextForPage(currentPage - 1);
-                    if(TxtUtils.isEmpty(textForPage)) {
+                    if (TxtUtils.isEmpty(textForPage)) {
                         counter++;
                     }
-                    if(counter>3) {
+                    if (counter > 3) {
                         LOG.d("3 Empty Page");
                         break;
                     }
@@ -152,7 +153,6 @@ public class DialogSpeedRead {
                     }
                     words = res.toArray(new String[res.size()]);
                     currentWord = 0;
-
 
                     for (int i = currentWord; i < words.length; i++) {
                         if (!TempHolder.isActiveSpeedRead.get()) {
@@ -184,19 +184,31 @@ public class DialogSpeedRead {
                             }
                         }
 
-                        final String wordFinal = word;
+                        final String wordFinal = word.trim();
                         currentWord = i;
                         dc.getActivity().runOnUiThread(new Runnable() {
 
                             @Override
                             public void run() {
                                 textWord.setText(wordFinal);
+                                LOG.d("RSPV-show text", wordFinal);
                             }
                         });
+
+                        int k = 0;
+                        for (String c : punctuations) {
+                            if (wordFinal.endsWith(c)) {
+                                k = 100;
+                                LOG.d("RSPV-punctuation");
+                                break;
+                            }
+                        }
+
+                        float wps = (float) AppState.get().fastReadSpeed / 60;
                         try {
-                            float wps = (float) AppState.get().fastReadSpeed / 60;
-                            Thread.sleep((int) (1000 / wps));
+                            Thread.sleep((int) (1000 / wps) + k);
                         } catch (Exception e) {
+                            LOG.e(e);
                         }
                     }
                 }

@@ -33,7 +33,9 @@ import org.xmlpull.v1.XmlPullParser;
 import com.BaseExtractor;
 import com.foobnix.android.utils.LOG;
 import com.foobnix.android.utils.TxtUtils;
+import com.foobnix.hypen.HypenUtils;
 import com.foobnix.pdf.info.ExtUtils;
+import com.foobnix.pdf.info.model.BookCSS;
 import com.foobnix.sys.ArchiveEntry;
 import com.foobnix.sys.TempHolder;
 import com.foobnix.sys.ZipArchiveInputStream;
@@ -111,6 +113,8 @@ public class EpubExtractor extends BaseExtractor {
         ZipOutputStream zos = new ZipOutputStream(new FileOutputStream(new File(output)));
         zos.setLevel(0);
 
+        HypenUtils.applyLanguage(BookCSS.get().hypenLang);
+
         while ((nextEntry = zipInputStream.getNextEntry()) != null) {
             if (TempHolder.get().loadingCancelled) {
                 break;
@@ -178,7 +182,6 @@ public class EpubExtractor extends BaseExtractor {
 
     @Override
     public EbookMeta getBookMetaInformation(String path) {
-        final File file = new File(path);
         try {
             ZipArchiveInputStream zipInputStream = Zips.buildZipArchiveInputStream(path);
 
@@ -199,7 +202,7 @@ public class EpubExtractor extends BaseExtractor {
             while ((nextEntry = zipInputStream.getNextEntry()) != null) {
                 String name = nextEntry.getName().toLowerCase(Locale.US);
 
-                if (name.endsWith(".opf")) {
+                if (name.endsWith(".opf") || name.endsWith("meta.xml")) {
 
                     XmlPullParser xpp = XmlParser.buildPullParser();
                     xpp.setInput(zipInputStream, "utf-8");
@@ -591,9 +594,5 @@ public class EpubExtractor extends BaseExtractor {
         }
     }
 
-    @Override
-    public boolean convert(String path, String to) {
-        return false;
-    }
 
 }

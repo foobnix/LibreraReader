@@ -169,6 +169,7 @@
    <string name="no_author">بدون نویسنده</string>
    <string name="no_serie">هیچ سریالی وجود ندارد</string>
    <string name="no_genre">هیچ ژانر نیست</string>
+   <string name="no_language">بدون زبان</string>
    <string name="without_series">بدون سری</string>
    <string name="folders">پوشه</string>
    <string name="recent">اخیر</string>
@@ -351,7 +352,6 @@
    <string name="press_color_to_apply">مطبوعات در رنگ به درخواست</string>
    <string name="pro_pdf_description_ads_free">برنامه بدون تبلیغات</string>
    <string name="rotate">چرخش</string>
-   <string name="select">انتخاب کنید</string>
    <string name="split_pages_in_two">صفحه اسپلیت</string>
    <string name="save_changes">ذخیره تغییرات؟</string>
    <string name="rename">تغییر نام</string>
@@ -471,7 +471,6 @@
    <string name="cloud_not_connected">ابر متصل نیست</string>
    <string name="cloud_sync_folder">پوشه همگام سازی ابر</string>
    <string name="clouds">ابرها</string>
-   <string name="add_to_cloud">اضافه کردن به ابر</string>
    <string name="librera_cloud">ابری Librera</string>
    <string name="hide_search_bar">پنهان کردن نوار جستجو</string>
    <string name="show_search_bar">نمایش نوار جستجو</string>
@@ -504,4 +503,16 @@
    <string name="exit_application_question">خروج از برنامه؟</string>
    <string name="open_folder_as_a_book">پوشه را به عنوان یک کتاب باز کنید</string>
    <string name="read_out_loud_with_tts">با TTS با صدای بلند بخوانید</string>
+   <string name="allow_minimum_brightness">به حداقل روشنایی اجازه دهید</string>
+   <string name="select">انتخاب کنید</string>
+   <string name="create_playlist">ایجاد لیست پخش</string>
+   <string name="upload_to_cloud">آپلود به کلام</string>
+   <string name="add_to_playlist">اضافه کردن به لیست پخش</string>
+   <string name="create_tag">ایجاد تگ</string>
+   <string name="add_tags">افزودن برچسب</string>
+   <string name="play">بازی</string>
+   <string name="favorite">مورد علاقه</string>
+   <string name="playlists">لیست های پخش</string>
+   <string name="tags">برچسب ها</string>
+   <string name="are_you_sure_to_delete_playlist_">مطمئنید که لیست پخش را حذف کنید؟</string>
 </resources>

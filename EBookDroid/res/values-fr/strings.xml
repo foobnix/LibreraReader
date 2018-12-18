@@ -169,6 +169,7 @@
    <string name="no_author">Aucun auteur</string>
    <string name="no_serie">Aucune série</string>
    <string name="no_genre">Aucun genre</string>
+   <string name="no_language">Pas de langue</string>
    <string name="without_series">Sans série</string>
    <string name="folders">Dossiers</string>
    <string name="recent">Récent</string>
@@ -351,7 +352,6 @@
    <string name="press_color_to_apply">Appuyer sur la couleur pour l\'appliquer</string>
    <string name="pro_pdf_description_ads_free">Programme sans annonces</string>
    <string name="rotate">Pivoter</string>
-   <string name="select">Selectionner</string>
    <string name="split_pages_in_two">Diviser les pages en 2</string>
    <string name="save_changes">Enregistrer</string>
    <string name="rename">Renommer</string>
@@ -471,7 +471,6 @@
    <string name="cloud_not_connected">Cloud non connecté</string>
    <string name="cloud_sync_folder">Dossier de synchronisation du cloud</string>
    <string name="clouds">Des nuages</string>
-   <string name="add_to_cloud">Ajouter au nuage</string>
    <string name="librera_cloud">Librera cloud</string>
    <string name="hide_search_bar">Masquer la barre de recherche</string>
    <string name="show_search_bar">Afficher la barre de recherche</string>
@@ -504,4 +503,16 @@
    <string name="exit_application_question">Exit Application?</string>
    <string name="open_folder_as_a_book">Ouvrir le dossier en tant que livre</string>
    <string name="read_out_loud_with_tts">Lire à haute voix avec TTS</string>
+   <string name="allow_minimum_brightness">Autoriser la luminosité minimale</string>
+   <string name="select">Sélectionner</string>
+   <string name="create_playlist">Créer une playlist</string>
+   <string name="upload_to_cloud">Transférer vers Сloud</string>
+   <string name="add_to_playlist">Ajouter à la playlist</string>
+   <string name="create_tag">Créer un tag</string>
+   <string name="add_tags">Ajouter des balises</string>
+   <string name="play">Jouer</string>
+   <string name="favorite">Préféré</string>
+   <string name="playlists">Playlists</string>
+   <string name="tags">Mots clés</string>
+   <string name="are_you_sure_to_delete_playlist_">Êtes-vous sûr de vouloir supprimer la playlist?</string>
 </resources>

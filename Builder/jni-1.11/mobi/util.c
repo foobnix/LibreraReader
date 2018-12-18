@@ -73,7 +73,7 @@ static const unsigned char cp1252_to_utf8[32][3] = {
  */
 const char * mobi_version(void) {
 #ifndef PACKAGE_VERSION
-#define PACKAGE_VERSION "0.3"
+#define PACKAGE_VERSION "0.4"
 #endif
     return PACKAGE_VERSION;
 }
@@ -1693,12 +1693,11 @@ static MOBI_RET mobi_decompress_content(const MOBIData *m, char *text, FILE *fil
         size_t extra_size = 0;
         if (extra_flags) {
             extra_size = mobi_get_record_extrasize(curr, extra_flags);
-            if (extra_size == MOBI_NOTSET || extra_size >= curr->size) {
+            if (extra_size == MOBI_NOTSET) {
                 mobi_free_huffcdic(huffcdic);
                 return MOBI_DATA_CORRUPT;
             }
         }
-        const size_t record_size = curr->size - extra_size;
         size_t decompressed_size = mobi_get_textrecord_maxsize(m);
         unsigned char *decompressed = malloc(decompressed_size);
         if (decompressed == NULL) {
@@ -1709,21 +1708,52 @@ static MOBI_RET mobi_decompress_content(const MOBIData *m, char *text, FILE *fil
         MOBI_RET ret = MOBI_SUCCESS;
 #ifdef USE_ENCRYPTION
         if (mobi_is_encrypted(m) && m->drm_key) {
-            size_t decrypt_size = record_size;
             if (compression_type != RECORD0_HUFF_COMPRESSION) {
                 /* decrypt also multibyte extra data */
-                size_t mb_size = mobi_get_record_mb_extrasize(curr, extra_flags);
-                decrypt_size += mb_size;
+                extra_size = mobi_get_record_extrasize(curr, extra_flags & 0xfffe);
+                if (extra_size == MOBI_NOTSET || extra_size > curr->size) {
+                    free(decompressed);
+                    return MOBI_DATA_CORRUPT;
+                }
             }
-            ret = mobi_drm_decrypt_buffer(decompressed, curr->data, decrypt_size, m);
-            if (ret != MOBI_SUCCESS) {
+            const size_t decrypt_size = curr->size - extra_size;
+            if (decrypt_size > decompressed_size) {
+                debug_print("Record too large: %zu\n", decrypt_size);
                 mobi_free_huffcdic(huffcdic);
                 free(decompressed);
-                return ret;
+                return MOBI_DATA_CORRUPT;
             }
-            memcpy(curr->data, decompressed, decrypt_size);
+            if (decrypt_size) {
+                ret = mobi_drm_decrypt_buffer(decompressed, curr->data, decrypt_size, m);
+                if (ret != MOBI_SUCCESS) {
+                    mobi_free_huffcdic(huffcdic);
+                    free(decompressed);
+                    return ret;
+                }
+                memcpy(curr->data, decompressed, decrypt_size);
+                if (compression_type != RECORD0_HUFF_COMPRESSION && (extra_flags & 1)) {
+                    // update multibyte data size after decryption
+                    extra_size = mobi_get_record_extrasize(curr, extra_flags);
+                    if (extra_size == MOBI_NOTSET) {
+                        free(decompressed);
+                        return MOBI_DATA_CORRUPT;
+                    }
+                }
+            }
         }
 #endif
+        if (extra_size > curr->size) {
+            debug_print("Wrong record size: -%zu\n", extra_size - curr->size);
+            mobi_free_huffcdic(huffcdic);
+            free(decompressed);
+            return MOBI_DATA_CORRUPT;
+        } else if (extra_size == curr->size) {
+            debug_print("Skipping empty record%s", "\n");
+            free(decompressed);
+            curr = curr->next;
+            continue;
+        }
+        const size_t record_size = curr->size - extra_size;
         switch (compression_type) {
             case RECORD0_NO_COMPRESSION:
                 /* no compression */
@@ -2370,6 +2400,12 @@ MOBI_RET mobi_decode_font_resource(unsigned char **decoded_font, size_t *decoded
             return MOBI_DATA_CORRUPT;
         }
     } else {
+        if (*decoded_size < encoded_size) {
+            buffer_free(buf);
+            free(*decoded_font);
+            debug_print("Font size in record (%lu) larger then declared (%zu)\n", encoded_size, *decoded_size);
+            return MOBI_DATA_CORRUPT;
+        }
         memcpy(*decoded_font, encoded_font, encoded_size);
     }
 
@@ -2731,8 +2767,8 @@ size_t mobi_get_kf8boundary_seqnumber(const MOBIData *m) {
         uint32_t rec_number = mobi_decode_exthvalue(exth_tag->data, exth_tag->size);
         rec_number--;
         const MOBIPdbRecord *record = mobi_get_record_by_seqnumber(m, rec_number);
-        if (record) {
-            if(memcmp(record->data, "BOUNDARY", 8) == 0) {
+        if (record && record->size >= sizeof(BOUNDARY_MAGIC) - 1) {
+            if (memcmp(record->data, BOUNDARY_MAGIC, sizeof(BOUNDARY_MAGIC) - 1) == 0) {
                 return rec_number;
             }
         }

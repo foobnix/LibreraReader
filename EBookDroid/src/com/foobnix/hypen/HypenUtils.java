@@ -5,12 +5,11 @@ import java.util.Locale;
 import java.util.StringTokenizer;
 
 import com.foobnix.android.utils.LOG;
-import com.foobnix.pdf.info.model.BookCSS;
 
 public class HypenUtils {
 
     private static final String SHY = "&shy;";
-    private static DefaultHyphenator instance = new DefaultHyphenator(HyphenPattern.ru);
+    private static DefaultHyphenator instance = new DefaultHyphenator(HyphenPattern.error);
 
     public static void applyLanguage(String lang) {
         if (lang == null) {
@@ -20,14 +19,26 @@ public class HypenUtils {
             if (lang.length() > 2) {
                 lang = lang.substring(0, 2).toLowerCase(Locale.US);
             }
+            if ("sp".equals(lang)) {
+                lang = "es";
+            }
 
-            HyphenPattern pattern = HyphenPattern.valueOf(lang);
+            HyphenPattern pattern = HyphenPattern.error;
+
+            HyphenPattern[] values = HyphenPattern.values();
+            for (HyphenPattern p : values) {
+                if (p.lang.equals(lang)) {
+                    pattern = p;
+                }
+            }
             if (instance.pattern != pattern) {
                 instance = new DefaultHyphenator(pattern);
             }
         } catch (Exception e) {
-            BookCSS.get().isAutoHypens = false;
+            LOG.e(e);
+            instance = new DefaultHyphenator(HyphenPattern.error);
         }
+        LOG.d("My-pattern-lang", instance.pattern.lang);
 
     }
 
@@ -169,9 +180,11 @@ public class HypenUtils {
     }
 
     static boolean ignore = false;
+    static boolean ignore1 = false;
 
     public static void resetTokenizer() {
         ignore = false;
+        ignore1 = false;
     }
 
     public static void tokenize(String in, TokensListener listener) {
@@ -180,14 +193,20 @@ public class HypenUtils {
         for (int i = 0; i < in.length(); i++) {
             char ch = in.charAt(i);
 
-            if (ch == '<' || ch == '&') {
+            if (ch == '<') {
+                ignore1 = true;
+            }
+            if (ch == '>') {
+                ignore1 = false;
+            }
+            if (ch == '&') {
                 ignore = true;
             }
-            if (ch == '>' || ch == ';') {
+            if (ch == ';') {
                 ignore = false;
             }
 
-            if (ignore) {
+            if (ignore || ignore1) {
                 if (res.length() > 0) {
                     listener.findText(res.toString());
                     res.setLength(0);

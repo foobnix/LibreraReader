@@ -223,7 +223,7 @@ MOBI_RET mobi_build_opf_guide(OPF *opf, const MOBIRawml *rawml) {
  @return MOBI_RET status code (on success MOBI_SUCCESS)
  */
 MOBI_RET mobi_write_ncx_level(xmlTextWriterPtr writer, const NCX *ncx, const size_t level, const size_t from, const size_t to, size_t *seq) {
-    for (size_t i = from; i < to; i++) {
+    for (size_t i = from; i <= to; i++) {
         if (level != ncx[i].level) {
             continue;
         }
@@ -498,10 +498,10 @@ MOBI_RET mobi_write_ncx(MOBIRawml *rawml, const NCX *ncx, const OPF *opf, uint32
     /* start <navMap> */
     xml_ret = xmlTextWriterStartElement(writer, BAD_CAST "navMap");
     if (xml_ret < 0) { goto cleanup; }
-    if (ncx) {
+    if (ncx && rawml->ncx->entries_count > 0) {
         const size_t count = rawml->ncx->entries_count;
         size_t seq = 1;
-        ret = mobi_write_ncx_level(writer, ncx, 0, 0, count, &seq);
+        ret = mobi_write_ncx_level(writer, ncx, 0, 0, count - 1, &seq);
         if (ret != MOBI_SUCCESS) { goto cleanup; }
     }
 

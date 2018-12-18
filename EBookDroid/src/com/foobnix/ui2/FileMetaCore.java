@@ -72,9 +72,6 @@ public class FileMetaCore {
     public static FileMeta createMetaIfNeed(String path, final boolean isSearhcBook) {
         LOG.d("createMetaIfNeed", path);
 
-        if (!new File(path).isFile()) {
-            throw new IllegalArgumentException(path);
-        }
 
         FileMeta fileMeta = AppDB.get().getOrCreate(path);
         if (fileMeta.getState() != FileMetaCore.STATE_FULL) {
@@ -142,7 +139,7 @@ public class FileMetaCore {
         if (CalirbeExtractor.isCalibre(unZipPath)) {
             ebookMeta = CalirbeExtractor.getBookMetaInformation(unZipPath);
             LOG.d("isCalibre find", unZipPath);
-        } else if (BookType.EPUB.is(unZipPath)) {
+        } else if (BookType.EPUB.is(unZipPath) || BookType.ODT.is(unZipPath)) {
             ebookMeta = EpubExtractor.get().getBookMetaInformation(unZipPath);
         } else if (BookType.FB2.is(unZipPath)) {
             ebookMeta = Fb2Extractor.get().getBookMetaInformation(unZipPath);

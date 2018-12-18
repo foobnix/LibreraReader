@@ -56,6 +56,7 @@ public abstract class DocumentController {
     public static final String EXTRA_PAGE = "page";
     public static final String EXTRA_PASSWORD = "password";
     public static final String EXTRA_PERCENT = "percent";
+    public static final String EXTRA_PLAYLIST = "playlist";
 
     public static final int REPEAT_SKIP_AMOUNT = 10;
 
@@ -126,7 +127,9 @@ public abstract class DocumentController {
         this.timeout = timeout;
         this.timerTask = run;
         stopTimer();
-        handler.post(timer);
+        if (handler != null) {
+            handler.post(timer);
+        }
     }
 
     public void stopTimer() {
@@ -270,8 +273,18 @@ public abstract class DocumentController {
         return AppState.get().isAlwaysOpenAsMagazine;
     }
 
+    public boolean isMusicianMode() {
+        return AppState.get().isMusicianMode;
+    }
+
     public void onResume() {
         readTimeStart = System.currentTimeMillis();
+        try {
+            BookSettings bs = SettingsManager.getBookSettings(getCurrentBook().getPath());
+            onGoToPage(bs.getCurrentPage().viewIndex + 1);
+        } catch (Exception e) {
+            LOG.e(e);
+        }
     }
 
     public Bitmap getBookImage() {
@@ -333,6 +346,9 @@ public abstract class DocumentController {
     }
 
     public boolean closeDialogs() {
+        if (anchor == null) {
+            return false;
+        }
         boolean isVisible = anchor.getVisibility() == View.VISIBLE;
         if (isVisible) {
             anchor.setVisibility(View.GONE);

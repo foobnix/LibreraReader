@@ -169,6 +169,7 @@
    <string name="no_author">Ingen författare</string>
    <string name="no_serie">Ingen serie</string>
    <string name="no_genre">Ingen genre</string>
+   <string name="no_language">Inget språk</string>
    <string name="without_series">Utan serie</string>
    <string name="folders">Mappar</string>
    <string name="recent">Nyligen</string>
@@ -351,7 +352,6 @@
    <string name="press_color_to_apply">Tryck på Färg för att tillämpa</string>
    <string name="pro_pdf_description_ads_free">Program utan annonser</string>
    <string name="rotate">Rotera</string>
-   <string name="select">Välj</string>
    <string name="split_pages_in_two">Split sida</string>
    <string name="save_changes">Spara ändringar?</string>
    <string name="rename">Döpa om</string>
@@ -471,7 +471,6 @@
    <string name="cloud_not_connected">Cloud inte anslutet</string>
    <string name="cloud_sync_folder">Cloud synkroniseringsmapp</string>
    <string name="clouds">Clouds</string>
-   <string name="add_to_cloud">Lägg till i molnet</string>
    <string name="librera_cloud">Librera moln</string>
    <string name="hide_search_bar">Dölj sökfältet</string>
    <string name="show_search_bar">Visa sökfältet</string>
@@ -504,4 +503,16 @@
    <string name="exit_application_question">Avsluta ansökan?</string>
    <string name="open_folder_as_a_book">Öppna mappen som en bok</string>
    <string name="read_out_loud_with_tts">Löst ut med TTS</string>
+   <string name="allow_minimum_brightness">Tillåt minsta ljusstyrka</string>
+   <string name="select">Välj</string>
+   <string name="create_playlist">Skapa spellista</string>
+   <string name="upload_to_cloud">Ladda upp till Сloud</string>
+   <string name="add_to_playlist">Lägg till i spellista</string>
+   <string name="create_tag">Skapa tagg</string>
+   <string name="add_tags">Lägg till taggar</string>
+   <string name="play">Spela</string>
+   <string name="favorite">Favorit</string>
+   <string name="playlists">Spellistor</string>
+   <string name="tags">Tags</string>
+   <string name="are_you_sure_to_delete_playlist_">Är du säker på att radera spellista?</string>
 </resources>

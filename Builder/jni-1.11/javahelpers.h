@@ -200,6 +200,11 @@ public:
         return jenv->NewObject(cls, cid);
     }
 
+    void release(jobject it)
+       {
+            jenv->DeleteLocalRef(it);
+       }
+
     jobject setRect(jobject ptb, const int* coords)
     {
         if (valid && ptb)

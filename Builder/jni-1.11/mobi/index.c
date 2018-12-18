@@ -352,7 +352,7 @@ static MOBI_RET mobi_parse_index_entry(MOBIIndx *indx, const MOBIIdxt idxt, cons
     }
     /* save original record maxlen */
     const size_t buf_maxlen = buf->maxlen;
-    if (buf->offset + entry_length > buf_maxlen) {
+    if (buf->offset + entry_length >= buf_maxlen) {
         debug_print("Entry length too long: %zu\n", entry_length);
         return MOBI_DATA_CORRUPT;
     }
