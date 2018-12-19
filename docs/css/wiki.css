@@ -79,6 +79,7 @@ img {
     width: 14rem;
     text-align: left;
   }
+  
 }
 
 .site-title {
@@ -97,14 +98,13 @@ img {
 }
 
 .sidebar ul {
-  margin: 0px;
+  margin: 0px 0px 5px 0px;
   padding: 0px;
 }
 
 .sidebar ul li {
   list-style: none;
-  padding-left: 1.5em;
-}
+ }
 
 nav {
   margin: 1em 0 1em 0;
@@ -257,7 +257,7 @@ img {
     height: 25px;
     overflow: hidden;
     transition: all .3s ease;
-    margin: 0 25px 10px 0;
+    margin: 0 25px 10px 20px;
     vertical-align: top;
    
 }
@@ -298,4 +298,4 @@ img {
     the others are 41px
     */
     height: 255px;
-}</style>
+}
