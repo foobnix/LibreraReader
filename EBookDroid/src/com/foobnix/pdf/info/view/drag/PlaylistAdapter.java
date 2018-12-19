@@ -57,6 +57,7 @@ public class PlaylistAdapter extends RecyclerView.Adapter<PlaylistAdapter.ItemVi
     public void onBindViewHolder(final ItemViewHolder holder, int position) {
         final String item = mItems.get(position);
         holder.textView.setText(ExtUtils.getFileNameWithoutExt(ExtUtils.getFileName(item)));
+        holder.textView.setVisibility(TxtUtils.visibleIf(!horizontal));
 
         holder.parent.setOnClickListener(new View.OnClickListener() {
 
