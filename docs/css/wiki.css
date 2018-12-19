@@ -250,10 +250,6 @@ img {
    height: 100%;
 }
 
-
-
-
-
 .languagepicker {
     background-color: #989494;
     display: inline-block;
@@ -263,7 +259,7 @@ img {
     transition: all .3s ease;
     margin: 0 25px 10px 0;
     vertical-align: top;
-    float: left;
+   
 }
 
 .languagepicker:hover {
