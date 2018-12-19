@@ -4,6 +4,7 @@ import java.util.Collections;
 import java.util.List;
 
 import com.foobnix.android.utils.Dips;
+import com.foobnix.android.utils.TxtUtils;
 import com.foobnix.pdf.info.ExtUtils;
 import com.foobnix.pdf.info.IMG;
 import com.foobnix.pdf.info.R;
@@ -27,9 +28,10 @@ public class PlaylistAdapter extends RecyclerView.Adapter<PlaylistAdapter.ItemVi
     private final List<String> mItems;
     private static final int SIZE = Dips.isLargeOrXLargeScreen() ? Dips.DP_80 : Dips.DP_60;
 
-
     private final OnStartDragListener mDragStartListener;
     private boolean horizontal;
+
+    private String currentPath;
 
     public PlaylistAdapter(Context context, List<String> mItems, OnStartDragListener dragStartListener, boolean horizontal) {
         mDragStartListener = dragStartListener;
@@ -41,9 +43,9 @@ public class PlaylistAdapter extends RecyclerView.Adapter<PlaylistAdapter.ItemVi
     public ItemViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = null;
         if (horizontal) {
-            view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_playlist_line, parent, false);
-        } else {
             view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_playlist_grid, parent, false);
+        } else {
+            view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_playlist_line, parent, false);
 
         }
         ItemViewHolder itemViewHolder = new ItemViewHolder(view);
@@ -54,8 +56,8 @@ public class PlaylistAdapter extends RecyclerView.Adapter<PlaylistAdapter.ItemVi
     @Override
     public void onBindViewHolder(final ItemViewHolder holder, int position) {
         final String item = mItems.get(position);
-        holder.textView.setText(ExtUtils.getFileName(item));
-        
+        holder.textView.setText(ExtUtils.getFileNameWithoutExt(ExtUtils.getFileName(item)));
+
         holder.parent.setOnClickListener(new View.OnClickListener() {
 
             @Override
@@ -75,18 +77,25 @@ public class PlaylistAdapter extends RecyclerView.Adapter<PlaylistAdapter.ItemVi
             holder.imageView.setCropToPadding(true);
         }
 
+        holder.imageView.setLeftPadding(false);
+        holder.imageView.setUnderlineValue(Dips.DP_3);
+        holder.imageView.underline(item.equals(currentPath));
+
         IMG.getCoverPage(holder.imageView, item, SIZE);
 
         // Start a drag whenever the handle view it touched
-        holder.imageDrag.setOnTouchListener(new View.OnTouchListener() {
-            @Override
-            public boolean onTouch(View v, MotionEvent event) {
-                if (MotionEventCompat.getActionMasked(event) == MotionEvent.ACTION_DOWN) {
-                    mDragStartListener.onStartDrag(holder);
+        if (holder.imageDrag != null) {
+            holder.imageDrag.setOnTouchListener(new View.OnTouchListener() {
+                @Override
+                public boolean onTouch(View v, MotionEvent event) {
+                    if (MotionEventCompat.getActionMasked(event) == MotionEvent.ACTION_DOWN) {
+                        mDragStartListener.onStartDrag(holder);
+                    }
+                    return false;
                 }
-                return false;
-            }
-        });
+            });
+            holder.imageDrag.setVisibility(TxtUtils.visibleIf(!horizontal));
+        }
     }
 
     @Override
@@ -108,11 +117,17 @@ public class PlaylistAdapter extends RecyclerView.Adapter<PlaylistAdapter.ItemVi
         return mItems.size();
     }
 
-
     public List<String> getItems() {
         return mItems;
     }
 
+    public String getCurrentPath() {
+        return currentPath;
+    }
+
+    public void setCurrentPath(String currentPath) {
+        this.currentPath = currentPath;
+    }
 
     public static class ItemViewHolder extends RecyclerView.ViewHolder implements ItemTouchHelperViewHolder {
 

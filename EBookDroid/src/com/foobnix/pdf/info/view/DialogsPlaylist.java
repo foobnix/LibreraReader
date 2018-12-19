@@ -8,6 +8,7 @@ import org.greenrobot.eventbus.EventBus;
 import com.foobnix.android.utils.BaseItemLayoutAdapter;
 import com.foobnix.android.utils.Dips;
 import com.foobnix.android.utils.Keyboards;
+import com.foobnix.android.utils.LOG;
 import com.foobnix.android.utils.TxtUtils;
 import com.foobnix.dao2.FileMeta;
 import com.foobnix.pdf.info.ExtUtils;
@@ -82,7 +83,7 @@ public class DialogsPlaylist {
                             Playlists.addMetaToPlaylist(tagName, file);
                             create.dismiss();
                         } else {
-                            showPlayList(a, tagName);
+                            showPlayList(a, tagName, null);
                         }
                     }
                 });
@@ -222,12 +223,11 @@ public class DialogsPlaylist {
         });
     }
 
-
     static ItemTouchHelper mItemTouchHelper;
-    public static void showPlayList(final Context a, final String file) {
+
+    public static void showPlayList(final Context a, final String file, final Runnable refresh) {
         final AlertDialog.Builder builder = new AlertDialog.Builder(a);
         builder.setTitle(Playlists.formatPlaylistName(file));
-
 
         RecyclerView recyclerView = new RecyclerView(a);
         recyclerView.setHasFixedSize(true);
@@ -257,7 +257,7 @@ public class DialogsPlaylist {
                 ExtUtils.showDocument(a, Uri.fromFile(new File(result)), -1, file);
             }
 
-        }, true);
+        }, false);
         recyclerView.setAdapter(adapter);
 
         final Runnable update = new Runnable() {
@@ -267,9 +267,11 @@ public class DialogsPlaylist {
                 List<String> list = adapter.getItems();
                 Playlists.updatePlaylist(file, list);
                 EventBus.getDefault().post(new UpdateAllFragments());
+                if (refresh != null) {
+                    refresh.run();
+                }
             }
         };
-
 
         ItemTouchHelper.Callback callback = new SimpleItemTouchHelperCallback(adapter);
         mItemTouchHelper = new ItemTouchHelper(callback);
@@ -286,9 +288,12 @@ public class DialogsPlaylist {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 update.run();
+                if (refresh != null) {
+                    refresh.run();
+                }
             }
         });
-        if (res.size() > 0) {
+        if (res.size() > 0 && refresh == null) {
             builder.setPositiveButton(R.string.play, new AlertDialog.OnClickListener() {
 
                 @Override
@@ -304,8 +309,6 @@ public class DialogsPlaylist {
         builder.show();
     }
 
-
-
     @TargetApi(Build.VERSION_CODES.JELLY_BEAN)
     public static void dispalyPlaylist(final Activity a, final DocumentController dc) {
         final RecyclerView playlistRecycleView = (RecyclerView) a.findViewById(R.id.playlistRecycleView);
@@ -315,20 +318,19 @@ public class DialogsPlaylist {
         linearLayoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
         playlistRecycleView.setLayoutManager(linearLayoutManager);
 
-
         final TextView playListName = (TextView) a.findViewById(R.id.playListName);
+        final TextView playListNameEdit = (TextView) a.findViewById(R.id.playListNameEdit);
         playListName.setVisibility(View.GONE);
+        playListNameEdit.setVisibility(View.GONE);
+        playlistRecycleView.setVisibility(View.GONE);
 
         final String palylistPath = a.getIntent().getStringExtra(DocumentController.EXTRA_PLAYLIST);
-        if (TxtUtils.isEmpty(palylistPath) && dc != null && !dc.isMusicianMode()) {
-            playlistRecycleView.setVisibility(View.GONE);
-            return;
-        }
-        playListName.setVisibility(View.VISIBLE);
 
-        List<String> playlistItems = Playlists.getPlaylistItems(palylistPath);
         if (TxtUtils.isNotEmpty(palylistPath)) {
             playListName.setText(Playlists.formatPlaylistName(palylistPath));
+            playListName.setVisibility(View.VISIBLE);
+            playListNameEdit.setVisibility(View.VISIBLE);
+            playlistRecycleView.setVisibility(View.VISIBLE);
         }
 
         final List<String> res = Playlists.getPlaylistItems(palylistPath);
@@ -337,24 +339,49 @@ public class DialogsPlaylist {
 
             @Override
             public void onStartDrag(ViewHolder viewHolder) {
-                mItemTouchHelper.startDrag(viewHolder);
             }
 
             @Override
             public void onRevemove() {
-                // Playlists.updatePlaylist(palylistPath, res);
             }
 
             @Override
-            public void onItemClick(String result) {
-                Playlists.updatePlaylist(result, res);
-                EventBus.getDefault().post(new UpdateAllFragments());
+            public void onItemClick(final String s) {
+                LOG.d("onItemClick", s);
+                if (dc != null && dc.getCurrentBook() != null && !dc.getCurrentBook().getPath().equals(s)) {
 
-                ExtUtils.showDocument(a, Uri.fromFile(new File(result)), -1, result);
+                    dc.onCloseActivityFinal(new Runnable() {
+
+                        @Override
+                        public void run() {
+                            ExtUtils.showDocumentWithoutDialog(a, new File(s), -1, palylistPath);
+                        }
+                    });
+                }
+
             }
 
-        }, false);
+        }, true);
+        if (dc != null && dc.getCurrentBook() != null) {
+            adapter.setCurrentPath(dc.getCurrentBook().getPath());
+        }
         playlistRecycleView.setAdapter(adapter);
+
+        playListNameEdit.setOnClickListener(new OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                showPlayList(a, palylistPath, new Runnable() {
+                    @Override
+                    public void run() {
+                        adapter.getItems().clear();
+                        adapter.getItems().addAll(Playlists.getPlaylistItems(palylistPath));
+                        adapter.notifyDataSetChanged();
+
+                    }
+                });
+            }
+        });
 
         playListName.setOnClickListener(new OnClickListener() {
 
@@ -375,26 +402,27 @@ public class DialogsPlaylist {
                     });
                 }
 
-                menu.getMenu().add(R.string.playlists).setOnMenuItemClickListener(new OnMenuItemClickListener() {
+                if (false) {
+                    menu.getMenu().add(R.string.playlists).setOnMenuItemClickListener(new OnMenuItemClickListener() {
 
-                    @Override
-                    public boolean onMenuItemClick(MenuItem item) {
-                        showPlaylistsDialog(a, new Runnable() {
+                        @Override
+                        public boolean onMenuItemClick(MenuItem item) {
+                            showPlaylistsDialog(a, new Runnable() {
 
-                            @Override
-                            public void run() {
-                                dispalyPlaylist(a, dc);
-                            }
-                        }, null);
-                        return false;
-                    }
-                });
+                                @Override
+                                public void run() {
+                                    dispalyPlaylist(a, dc);
+                                }
+                            }, null);
+                            return false;
+                        }
+                    });
+                }
 
                 menu.show();
 
             }
         });
-
 
     }
 

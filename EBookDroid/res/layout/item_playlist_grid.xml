@@ -4,35 +4,19 @@
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:gravity="center_vertical"
-    android:orientation="vertical"
-    android:padding="4dip" >
+    android:orientation="vertical" >
 
-    <RelativeLayout
+    <com.foobnix.pdf.info.view.UnderlineImageView
+        android:id="@+id/image1"
         android:layout_width="80dip"
-        android:layout_height="120dip" >
-
-        <com.foobnix.pdf.info.view.UnderlineImageView
-            android:id="@+id/image1"
-            android:layout_width="80dip"
-            android:layout_height="120dip"
-            android:layout_weight="0"
-            android:padding="8dip"
-            android:src="@drawable/glyphicons_2_book_open" />
-
-        <ImageView
-            android:id="@+id/imageDrag"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:layout_alignParentTop="true"
-            android:layout_marginLeft="10dip"
-            android:layout_marginRight="4dip"
-            android:layout_weight="0"
-            android:adjustViewBounds="true"
-            android:cropToPadding="true"
-            android:src="@drawable/glyphicons_517_menu_hamburger"
-            android:tint="@color/tint_gray" />
-    </RelativeLayout>
+        android:layout_height="120dip"
+        android:layout_weight="0"
+        android:background="@drawable/bg_clickable"
+        android:paddingLeft="2dip"
+        android:paddingRight="2dip"
+        android:layout_marginBottom="2dip"	
+        android:paddingBottom="8dip"
+        android:src="@drawable/glyphicons_2_book_open" />
 
     <TextView
         android:id="@+id/text1"
@@ -41,9 +25,9 @@
         android:layout_marginLeft="4dip"
         android:layout_weight="1"
         android:ellipsize="end"
-        android:textColor="@color/white"
         android:singleLine="true"
         android:text="Lirbary"
-         />
+        android:textSize="@dimen/text_subtitle"
+        android:textColor="@color/white" />
 
 </LinearLayout>

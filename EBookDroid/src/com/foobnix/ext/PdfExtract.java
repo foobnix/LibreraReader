@@ -35,6 +35,9 @@ public class PdfExtract {
             LOG.e(e);
             return EbookMeta.Empty();
         }
+        if (openDocument == null) {
+            return EbookMeta.Empty();
+        }
         EbookMeta meta = new EbookMeta(openDocument.getBookTitle(), openDocument.getBookAuthor());
         meta.setPagesCount(openDocument.getPageCount());
         meta.setKeywords(openDocument.getMeta("info:Keywords"));

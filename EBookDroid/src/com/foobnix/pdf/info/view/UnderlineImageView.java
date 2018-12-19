@@ -40,7 +40,8 @@ public class UnderlineImageView extends ImageView {
         if (isUnderline) {
             p.setColor(Color.WHITE);
             p.setStrokeWidth(dp1);
-            canvas.drawLine(leftPadding ? dp1 * 2 : dp1, getHeight() - dp1, getWidth() - dp1 * 2, getHeight() - dp1, p);
+            int padding = leftPadding ? dp1 * 2 : 0;
+            canvas.drawLine(padding, getHeight() - dp1, getWidth() - padding, getHeight() - dp1, p);
         }
         canvas.restore();
     }

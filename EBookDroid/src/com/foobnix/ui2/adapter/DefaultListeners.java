@@ -106,7 +106,7 @@ public class DefaultListeners {
                 }
 
                 if (result.getPath().endsWith(Playlists.L_PLAYLIST)) {
-                    DialogsPlaylist.showPlayList(a, result.getPath());
+                    DialogsPlaylist.showPlayList(a, result.getPath(), null);
                     return true;
                 }
 
