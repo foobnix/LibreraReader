@@ -251,3 +251,55 @@ img {
 }
 
 
+
+
+
+.languagepicker {
+    background-color: #989494;
+    display: inline-block;
+    padding: 0;
+    height: 25px;
+    overflow: hidden;
+    transition: all .3s ease;
+    margin: 0 25px 10px 0;
+    vertical-align: top;
+    float: left;
+}
+
+.languagepicker:hover {
+    /* don't forget the 1px border */
+    height: 300px;
+}
+
+
+.languagepicker li {
+    display: block;
+    padding: 0px 20px;
+    line-height: 25px;
+    border-top: 1px solid #EEE;
+}
+
+
+
+.languagepicker a:first-child li {
+    border: none;
+    background: #18bc9c !important;
+}
+
+.languagepicker li img {
+    margin-right: 5px;
+}
+
+.roundborders {
+    border-radius: 5px;
+}
+
+
+.large:hover {
+    /* 
+    don't forget the 1px border!
+    The first language is 40px heigh, 
+    the others are 41px
+    */
+    height: 255px;
+}</style>
