@@ -58,7 +58,7 @@
 {% include index.md %}
 {% endif %}
 
-<br/>
+
 <ul class="languagepicker roundborders large">
 	<a href="#"><li>{{ lang }}</li></a>
     <a href="index"><li>English</li></a>
