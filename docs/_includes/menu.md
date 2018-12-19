@@ -48,9 +48,6 @@
 {% include index.md %}
 {% endif %}
 
-
-
-<br/>
 <ul class="languagepicker roundborders large">
 	<a href="#"><li>language</li></a>
     <a href="index"><li>English</li></a>
@@ -63,6 +60,5 @@
     <a href="ar"><li>العربية</li></a>
     <a href="zh"><li>中文</li></a>
 </ul>
-<br/>
-	       
+      
 	        
