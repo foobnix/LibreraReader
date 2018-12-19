@@ -248,7 +248,7 @@
    <string name="mode_musician">Chế độ \"Nhạc sĩ\"</string>
    <string name="save">Tiết kiệm</string>
    <string name="remember_choice">Nhớ sự lựa chọn</string>
-   <string name="edit_names">Chỉnh sửa tên</string>
+   <string name="edit">Chỉnh sửa</string>
    <string name="make_text_reflow">Chế độ văn bản (Text Reflow)</string>
    <string name="open_with">Mở với</string>
    <string name="send_file">Gửi file</string>

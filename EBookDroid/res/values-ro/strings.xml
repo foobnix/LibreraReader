@@ -248,7 +248,7 @@
    <string name="mode_musician">Modul \"Muzician\"</string>
    <string name="save">Salvați</string>
    <string name="remember_choice">Ține minte alegerea</string>
-   <string name="edit_names">Editați numele</string>
+   <string name="edit">Editați | ×</string>
    <string name="make_text_reflow">Modul text (Text reflow)</string>
    <string name="open_with">Deschis cu</string>
    <string name="send_file">Trimiteți fișier</string>

@@ -248,7 +248,7 @@
    <string name="mode_musician">โหมด \"นักดนตรี\"</string>
    <string name="save">บันทึก</string>
    <string name="remember_choice">โปรดจำไว้ว่าทางเลือก</string>
-   <string name="edit_names">แก้ไขชื่อ</string>
+   <string name="edit">แก้ไข</string>
    <string name="make_text_reflow">โหมดข้อความ (Text Reflow)</string>
    <string name="open_with">เปิดด้วย</string>
    <string name="send_file">ส่งไฟล์</string>

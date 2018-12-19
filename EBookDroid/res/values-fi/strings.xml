@@ -248,7 +248,7 @@
    <string name="mode_musician">Tila \"Muusikko\"</string>
    <string name="save">Tallentaa</string>
    <string name="remember_choice">Muista valinta</string>
-   <string name="edit_names">Muokkaa nimiä</string>
+   <string name="edit">Muokata</string>
    <string name="make_text_reflow">Teksti-tilassa (Text Reflow)</string>
    <string name="open_with">Avaa</string>
    <string name="send_file">Lähetä tiedosto</string>

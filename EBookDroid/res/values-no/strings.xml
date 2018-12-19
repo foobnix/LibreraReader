@@ -248,7 +248,7 @@
    <string name="mode_musician">Modus \"musiker\"</string>
    <string name="save">Lagre</string>
    <string name="remember_choice">Husk valg</string>
-   <string name="edit_names">Rediger navn</string>
+   <string name="edit">Redigere</string>
    <string name="make_text_reflow">Tekstmodus (Tekst Reflow)</string>
    <string name="open_with">Åpne med</string>
    <string name="send_file">Send fil</string>

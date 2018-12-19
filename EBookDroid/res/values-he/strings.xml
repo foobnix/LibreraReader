@@ -248,7 +248,7 @@
    <string name="mode_musician">מצב \"מוסיקאי\"</string>
    <string name="save">להציל</string>
    <string name="remember_choice">זכור בחירה</string>
-   <string name="edit_names">ערוך שמות</string>
+   <string name="edit">ערוך</string>
    <string name="make_text_reflow">מצב טקסט (הזרמה מחדש טקסט)</string>
    <string name="open_with">לפתוח עם</string>
    <string name="send_file">שלח קובץ</string>

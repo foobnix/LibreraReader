@@ -248,7 +248,7 @@
    <string name="mode_musician">Режим \"Музикант\"</string>
    <string name="save">Зберегти</string>
    <string name="remember_choice">Запам\'ятати вибір</string>
-   <string name="edit_names">Редагувати назви</string>
+   <string name="edit">Редагувати</string>
    <string name="make_text_reflow">Перекомпонувати в текстовий формат</string>
    <string name="open_with">Відкрити за допомогою</string>
    <string name="send_file">Надіслати файл</string>

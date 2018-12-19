@@ -248,7 +248,7 @@
    <string name="mode_musician">演奏乐谱</string>
    <string name="save">保存</string>
    <string name="remember_choice">记住选择</string>
-   <string name="edit_names">编辑名称</string>
+   <string name="edit">编辑</string>
    <string name="make_text_reflow">文本重排</string>
    <string name="open_with">打开方式</string>
    <string name="send_file">发送文件</string>

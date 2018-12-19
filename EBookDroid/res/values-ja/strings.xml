@@ -248,7 +248,7 @@
    <string name="mode_musician">モード \"ミュージシャン\"</string>
    <string name="save">保存</string>
    <string name="remember_choice">選択肢を思い出して</string>
-   <string name="edit_names">名前の編集</string>
+   <string name="edit">編集</string>
    <string name="make_text_reflow">テキストモード（テキストリフロー）</string>
    <string name="open_with">次のアプリで開く</string>
    <string name="send_file">ファイルを送信</string>

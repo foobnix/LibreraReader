@@ -248,7 +248,7 @@
    <string name="mode_musician">मोड \"संगीतकार\"</string>
    <string name="save">बचाना</string>
    <string name="remember_choice">पसंद याद रखें</string>
-   <string name="edit_names">नाम संपादित करें</string>
+   <string name="edit">संपादित करें</string>
    <string name="make_text_reflow">पाठ मोड (पाठ Reflow)</string>
    <string name="open_with">के साथ खोलें</string>
    <string name="send_file">फाइल भेज</string>

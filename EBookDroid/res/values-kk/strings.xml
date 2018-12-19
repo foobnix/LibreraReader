@@ -248,7 +248,7 @@
    <string name="mode_musician">Музыканттың режимі</string>
    <string name="save">Сақтау</string>
    <string name="remember_choice">Таңдауын есте сақтаңыз</string>
-   <string name="edit_names">Өңдеу</string>
+   <string name="edit">Өңдеу</string>
    <string name="make_text_reflow">PDF-ні қайта шығару</string>
    <string name="open_with">Ашыңыз</string>
    <string name="send_file">Файлды жіберу</string>

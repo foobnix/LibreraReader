@@ -248,7 +248,7 @@
    <string name="mode_musician">حالت \"موسیقیدان\"</string>
    <string name="save">صرفه جویی</string>
    <string name="remember_choice">به یاد داشته باشید انتخاب</string>
-   <string name="edit_names">ویرایش نام ها</string>
+   <string name="edit">ویرایش</string>
    <string name="make_text_reflow">حالت متن (متن جزر)</string>
    <string name="open_with">بازکردن با</string>
    <string name="send_file">ارسال فایل</string>

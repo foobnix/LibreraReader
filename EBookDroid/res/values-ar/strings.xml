@@ -248,7 +248,7 @@
    <string name="mode_musician">وضع \"موسيقي\"</string>
    <string name="save">حفظ</string>
    <string name="remember_choice">تذكر الخيار</string>
-   <string name="edit_names">تعديل الأسماء</string>
+   <string name="edit">تصحيح</string>
    <string name="make_text_reflow">وضع النص (إنحسر النص)</string>
    <string name="open_with">فتح باسم</string>
    <string name="send_file">إرسال ملف</string>

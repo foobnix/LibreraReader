@@ -248,7 +248,7 @@
    <string name="mode_musician">Režimas \"muzikantas\"</string>
    <string name="save">Išsaugoti</string>
    <string name="remember_choice">Prisimink pasirinkimą</string>
-   <string name="edit_names">Redaguoti pavadinimus</string>
+   <string name="edit">Redaguoti</string>
    <string name="make_text_reflow">Teksto režimas (Teksto pritaikymas)</string>
    <string name="open_with">Atverti naudojant</string>
    <string name="send_file">Siųsti failą</string>

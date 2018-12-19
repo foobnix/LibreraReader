@@ -927,6 +927,9 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
                     DialogsPlaylist.dispalyPlaylist(HorizontalViewActivity.this, dc);
 
                     // RecentUpates.updateAll(HorizontalViewActivity.this);
+                    if (dc.getPageCount() == 0) {
+                        onClose.setVisibility(View.VISIBLE);
+                    }
 
                 }
 

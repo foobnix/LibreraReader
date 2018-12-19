@@ -248,7 +248,7 @@
    <string name="mode_musician">Mod \"Müzisyen\"</string>
    <string name="save">Kaydet</string>
    <string name="remember_choice">Seçimi hatırla</string>
-   <string name="edit_names">İsimleri düzenle</string>
+   <string name="edit">Düzenle</string>
    <string name="make_text_reflow">Metni yeniden akıt</string>
    <string name="open_with">Birlikte aç</string>
    <string name="send_file">Dosya Gönder</string>

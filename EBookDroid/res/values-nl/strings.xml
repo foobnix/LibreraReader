@@ -248,7 +248,7 @@
    <string name="mode_musician">Modus \"Musicus\"</string>
    <string name="save">Save</string>
    <string name="remember_choice">Onthoud de keuze</string>
-   <string name="edit_names">Bewerk namen</string>
+   <string name="edit">Bewerk</string>
    <string name="make_text_reflow">Tekst mode (tekst plaatsen)</string>
    <string name="open_with">Openen met</string>
    <string name="send_file">Verstuur bestand</string>

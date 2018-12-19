@@ -757,7 +757,7 @@ public class ExtUtils {
                     AppState.get().save(c);
 
                 } else { // text view
-                    editNames.setText(R.string.edit_names);
+                    editNames.setText(R.string.edit);
                     Views.visible(vertical, horizontal, music);
                     Views.gone(verticalEdit, horizontalEdit, musicEdit);
                 }

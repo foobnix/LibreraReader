@@ -248,7 +248,7 @@
    <string name="mode_musician">Modus \"Musiker\"</string>
    <string name="save">Speichern</string>
    <string name="remember_choice">Denken Sie an die Wahl</string>
-   <string name="edit_names">Namen bearbeiten</string>
+   <string name="edit">Bearbeiten</string>
    <string name="make_text_reflow">Textmodus (Text Reflow)</string>
    <string name="open_with">Öffnen mit</string>
    <string name="send_file">Datei senden</string>
