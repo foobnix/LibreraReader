@@ -136,6 +136,23 @@ public class PrefFragment2 extends UIFragment {
         final LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
         layoutParams.setMargins(Dips.dpToPx(2), Dips.dpToPx(2), Dips.dpToPx(2), Dips.dpToPx(2));
 
+        final Handler handler = new Handler();
+        final Runnable ask2 = new Runnable() {
+
+            @Override
+            public void run() {
+                AlertDialogs.showDialog(getActivity(), getActivity().getString(R.string.you_neet_to_apply_the_new_settings), getString(R.string.ok), new Runnable() {
+
+                    @Override
+                    public void run() {
+                        inflate.findViewById(R.id.tabsApply).performClick();
+                    }
+                }, null);
+            }
+        };
+
+        final int timeout = 1500;
+
         final Runnable dragLinear = new Runnable() {
 
             @Override
@@ -145,6 +162,14 @@ public class PrefFragment2 extends UIFragment {
                     View library = LayoutInflater.from(getActivity()).inflate(R.layout.item_tab_line, null, false);
                     ((TextView) library.findViewById(R.id.text1)).setText(tab.getName());
                     ((CheckBox) library.findViewById(R.id.isVisible)).setChecked(tab.isVisible());
+                    ((CheckBox) library.findViewById(R.id.isVisible)).setOnCheckedChangeListener(new OnCheckedChangeListener() {
+
+                        @Override
+                        public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                            handler.removeCallbacks(ask2);
+                            handler.postDelayed(ask2, timeout);
+                        }
+                    });
                     ((ImageView) library.findViewById(R.id.image1)).setImageResource(tab.getIcon());
                     TintUtil.setTintImageWithAlpha(((ImageView) library.findViewById(R.id.image1)), TintUtil.COLOR_TINT_GRAY);
                     library.setTag(tab.getIndex());
@@ -159,10 +184,11 @@ public class PrefFragment2 extends UIFragment {
             }
         };
         dragLinear.run();
-        TxtUtils.underlineTextView((TextView) inflate.findViewById(R.id.tabsApply)).setOnClickListener(new OnClickListener() {
+        TxtUtils.underlineTextView(inflate.findViewById(R.id.tabsApply)).setOnClickListener(new OnClickListener() {
 
             @Override
             public void onClick(View v) {
+                handler.removeCallbacks(ask2);
                 AppState.get().tabsOrder7 = "";
                 for (int i = 0; i < dragLinearLayout.getChildCount(); i++) {
                     View child = dragLinearLayout.getChildAt(i);
@@ -182,6 +208,8 @@ public class PrefFragment2 extends UIFragment {
 
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                handler.removeCallbacksAndMessages(ask2);
+                handler.postDelayed(ask2, timeout);
                 if (isChecked) {
                     AppState.get().tabsOrder7 = AppState.get().tabsOrder7.replace(UITab.PrefFragment.index + "#1", UITab.PrefFragment.index + "#0");
                 } else {
@@ -193,7 +221,7 @@ public class PrefFragment2 extends UIFragment {
             }
         });
 
-        TxtUtils.underlineTextView((TextView) inflate.findViewById(R.id.tabsDefaul)).setOnClickListener(new OnClickListener() {
+        TxtUtils.underlineTextView(inflate.findViewById(R.id.tabsDefaul)).setOnClickListener(new OnClickListener() {
 
             @Override
             public void onClick(View v) {
@@ -738,7 +766,6 @@ public class PrefFragment2 extends UIFragment {
             }
         });
 
-        final Handler handler = new Handler();
         final Runnable ask = new Runnable() {
 
             @Override
@@ -753,7 +780,6 @@ public class PrefFragment2 extends UIFragment {
             }
         };
 
-        final int timeout = 1500;
 
         inflate.findViewById(R.id.moreLybraryettings).setOnClickListener(new OnClickListener() {
 
@@ -965,7 +991,7 @@ public class PrefFragment2 extends UIFragment {
             }
         });
 
-        TxtUtils.underlineTextView((TextView) inflate.findViewById(R.id.appPassword)).setOnClickListener(new OnClickListener() {
+        TxtUtils.underlineTextView(inflate.findViewById(R.id.appPassword)).setOnClickListener(new OnClickListener() {
 
             @Override
             public void onClick(View v) {
@@ -1044,7 +1070,7 @@ public class PrefFragment2 extends UIFragment {
             }
         });
 
-        TxtUtils.underlineTextView((TextView) inflate.findViewById(R.id.importButton)).setOnClickListener(new View.OnClickListener() {
+        TxtUtils.underlineTextView(inflate.findViewById(R.id.importButton)).setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(final View v) {
@@ -1052,7 +1078,7 @@ public class PrefFragment2 extends UIFragment {
             }
         });
 
-        TxtUtils.underlineTextView((TextView) inflate.findViewById(R.id.exportButton)).setOnClickListener(new View.OnClickListener() {
+        TxtUtils.underlineTextView(inflate.findViewById(R.id.exportButton)).setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(final View v) {
@@ -1339,7 +1365,7 @@ public class PrefFragment2 extends UIFragment {
             }
         });
 
-        TextView onDefalt = TxtUtils.underlineTextView((TextView) inflate.findViewById(R.id.onDefaultColor));
+        TextView onDefalt = TxtUtils.underlineTextView(inflate.findViewById(R.id.onDefaultColor));
         onDefalt.setOnClickListener(new OnClickListener() {
 
             @Override
@@ -1601,7 +1627,7 @@ public class PrefFragment2 extends UIFragment {
             }
         });
 
-        TxtUtils.underlineTextView((TextView) inflate.findViewById(R.id.docSearch)).setOnClickListener(new OnClickListener() {
+        TxtUtils.underlineTextView(inflate.findViewById(R.id.docSearch)).setOnClickListener(new OnClickListener() {
 
             @Override
             public void onClick(View v) {
